@@ -125,7 +125,7 @@ class ApiParse extends ApiBase {
 						'action' => 'query',
 						'redirects' => '',
 					);
-					if ( !is_null ( $pageid ) ) {
+					if ( !is_null( $pageid ) ) {
 						$reqParams['pageids'] = $pageid;
 					} else { // $page
 						$reqParams['titles'] = $page;
@@ -219,6 +219,7 @@ class ApiParse extends ApiBase {
 					ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
 				}
 				$result->addValue( null, $this->getModuleName(), $result_array );
+
 				return;
 			}
 
@@ -300,8 +301,8 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?
-							$p_result->getDisplayTitle() :
-							$titleObj->getPrefixedText();
+				$p_result->getDisplayTitle() :
+				$titleObj->getPrefixedText();
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
@@ -395,6 +396,7 @@ class ApiParse extends ApiBase {
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 
 		wfProfileOut( __METHOD__ );
+
 		return $popts;
 	}
 
@@ -425,6 +427,7 @@ class ApiParse extends ApiBase {
 			if ( $getWikitext ) {
 				$this->content = $page->getContent( Revision::RAW );
 			}
+
 			return $pout;
 		}
 	}
@@ -439,6 +442,7 @@ class ApiParse extends ApiBase {
 			$this->dieUsage( "Sections are not supported by " . $what, 'nosuchsection' );
 			$section = false;
 		}
+
 		return $section;
 	}
 
@@ -456,6 +460,7 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $entry, $bits[1] );
 			$result[] = $entry;
 		}
+
 		return $result;
 	}
 
@@ -502,6 +507,7 @@ class ApiParse extends ApiBase {
 	private function categoriesHtml( $categories ) {
 		$context = $this->getContext();
 		$context->getOutput()->addCategoryLinks( $categories );
+
 		return $context->getSkin()->getCategories();
 	}
 
@@ -554,6 +560,7 @@ class ApiParse extends ApiBase {
 				$result[] = $entry;
 			}
 		}
+
 		return $result;
 	}
 
@@ -573,6 +580,7 @@ class ApiParse extends ApiBase {
 				$result[] = $entry;
 			}
 		}
+
 		return $result;
 	}
 
@@ -584,6 +592,7 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $entry, $content );
 			$result[] = $entry;
 		}
+
 		return $result;
 	}
 
@@ -595,6 +604,7 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $entry, $value );
 			$result[] = $entry;
 		}
+
 		return $result;
 	}
 
@@ -606,6 +616,7 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $entry, $link );
 			$result[] = $entry;
 		}
+
 		return $result;
 	}
 
@@ -674,6 +685,7 @@ class ApiParse extends ApiBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		$wikitext = CONTENT_MODEL_WIKITEXT;
+
 		return array(
 			'text' => "Text to parse. Use {$p}title or {$p}contentmodel to control the content model",
 			'summary' => 'Summary to parse',
@@ -736,6 +748,7 @@ class ApiParse extends ApiBase {
 
 	public function getDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'Parses content and returns parser output',
 			'See the various prop-Modules of action=query to get information from the current version of a page',

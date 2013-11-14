@@ -40,6 +40,7 @@ class ApiOpenSearch extends ApiBase {
 		if ( in_array( $format, $allowed ) ) {
 			return $this->getMain()->createPrinterByName( $format );
 		}
+
 		return $this->getMain()->createPrinterByName( $allowed[0] );
 	}
 

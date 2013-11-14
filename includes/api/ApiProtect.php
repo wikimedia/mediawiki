@@ -90,9 +90,9 @@ class ApiProtect extends ApiBase {
 				$expiryarray[$p[0]] = $exp;
 			}
 			$resultProtections[] = array( $p[0] => $protections[$p[0]],
-					'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
-								'infinite' :
-								wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
+				'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
+					'infinite' :
+					wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
 		}
 
 		$cascade = $params['cascade'];
@@ -167,16 +167,17 @@ class ApiProtect extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'title' => "Title of the page you want to (un)protect. Cannot be used together with {$p}pageid",
 			'pageid' => "ID of the page you want to (un)protect. Cannot be used together with {$p}title",
 			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'List of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array( 'Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
-					'Use \'infinite\', \'indefinite\' or \'never\', for a never-expiring protection.' ),
+				'Use \'infinite\', \'indefinite\' or \'never\', for a never-expiring protection.' ),
 			'reason' => 'Reason for (un)protecting',
 			'cascade' => array( 'Enable cascading protection (i.e. protect pages included in this page)',
-					'Ignored if not all protection levels are \'sysop\' or \'protect\'' ),
+				'Ignored if not all protection levels are \'sysop\' or \'protect\'' ),
 			'watch' => 'If set, add the page being (un)protected to your watchlist',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
 		);

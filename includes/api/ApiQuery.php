@@ -163,6 +163,7 @@ class ApiQuery extends ApiBase {
 			$this->mNamedDB[$name] = wfGetDB( $db, $groups );
 			$this->profileDBOut();
 		}
+
 		return $this->mNamedDB[$name];
 	}
 
@@ -181,6 +182,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getModules() {
 		wfDeprecated( __METHOD__, '1.21' );
+
 		return $this->getModuleManager()->getNamesWithClasses();
 	}
 
@@ -197,6 +199,7 @@ class ApiQuery extends ApiBase {
 				$gens[$name] = $class;
 			}
 		}
+
 		return $gens;
 	}
 
@@ -216,8 +219,8 @@ class ApiQuery extends ApiBase {
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
 		if ( $this->getParameter( 'export' ) &&
-				$this->getParameter( 'exportnowrap' ) )
-		{
+			$this->getParameter( 'exportnowrap' )
+		) {
 			return new ApiFormatRaw( $this->getMain(),
 				$this->getMain()->createPrinterByName( 'xml' ) );
 		} else {
@@ -407,6 +410,7 @@ class ApiQuery extends ApiBase {
 			}
 		}
 		$this->dieContinueUsageIf( $completeModules !== null && count( $tmp ) !== 0 );
+
 		return $modules;
 	}
 
@@ -429,6 +433,7 @@ class ApiQuery extends ApiBase {
 		} else { // private
 			$cacheMode = 'private';
 		}
+
 		return $cacheMode;
 	}
 
@@ -514,10 +519,12 @@ class ApiQuery extends ApiBase {
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = '';
 			if ( $title->isSpecialPage() &&
-					!SpecialPageFactory::exists( $title->getDBkey() ) ) {
+				!SpecialPageFactory::exists( $title->getDBkey() )
+			) {
 				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
-					!wfFindFile( $title ) ) {
+				!wfFindFile( $title )
+			) {
 				$vals['missing'] = '';
 			}
 			$pages[$fakeId] = $vals;
@@ -566,6 +573,7 @@ class ApiQuery extends ApiBase {
 			$this->mGeneratorContinue = array();
 		}
 		$this->mGeneratorContinue[$paramName] = $paramValue;
+
 		return true;
 	}
 
@@ -638,6 +646,7 @@ class ApiQuery extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
+
 		return $result;
 	}
 
