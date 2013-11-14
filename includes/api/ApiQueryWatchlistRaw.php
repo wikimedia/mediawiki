@@ -91,7 +91,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			$this->addOption( 'ORDER BY', array(
 				'wl_namespace' . $sort,
 				'wl_title' . $sort
-			));
+			) );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
@@ -109,8 +109,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			if ( is_null( $resultPageSet ) ) {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $t );
-				if ( isset( $prop['changed'] ) && !is_null( $row->wl_notificationtimestamp ) )
-				{
+				if ( isset( $prop['changed'] ) && !is_null( $row->wl_notificationtimestamp ) ) {
 					$vals['changed'] = wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 				}
 				$fit = $this->getResult()->addValue( $this->getModuleName(), null, $vals );

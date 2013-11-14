@@ -106,7 +106,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				// Abuse siprop as a query-continue parameter
 				// and set it to all unprocessed props
 				$this->setContinueEnumParameter( 'prop', implode( '|',
-						array_diff( $params['prop'], $done ) ) );
+					array_diff( $params['prop'], $done ) ) );
 				break;
 			}
 			$done[] = $p;
@@ -114,9 +114,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgContLang,
-			$wgDisableLangConversion,
-			$wgDisableTitleConversion;
+		global $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion;
 
 		$data = array();
 		$mainPage = Title::newMainPage();
@@ -280,6 +278,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -303,6 +302,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		sort( $data );
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -318,6 +318,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 		}
 		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -334,6 +335,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $arr;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'magicword' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -379,6 +381,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'iw' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -410,6 +413,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$result->setIndexedTagName( $data, 'db' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -450,7 +454,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 				if ( $group == 'user' ) {
 					$arr['number'] = SiteStats::users();
-
 				// '*' and autopromote groups have no size
 				} elseif ( $group !== '*' && !isset( $wgAutopromote[$group] ) ) {
 					$arr['number'] = SiteStats::numberInGroup( $group );
@@ -476,6 +479,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$result->setIndexedTagName( $data, 'group' );
+
 		return $result->addValue( 'query', $property, $data );
 	}
 
@@ -487,6 +491,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = array( 'ext' => $ext );
 		}
 		$this->getResult()->setIndexedTagName( $data, 'fe' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -521,18 +526,19 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$ret['url'] = $ext['url'];
 				}
 				if ( isset( $ext['version'] ) ) {
-						$ret['version'] = $ext['version'];
+					$ret['version'] = $ext['version'];
 				} elseif ( isset( $ext['svn-revision'] ) &&
 					preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/',
-						$ext['svn-revision'], $m ) )
-				{
-						$ret['version'] = 'r' . $m[1];
+						$ext['svn-revision'], $m )
+				) {
+					$ret['version'] = 'r' . $m[1];
 				}
 				$data[] = $ret;
 			}
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ext' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -566,6 +572,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $lang;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'lang' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -585,6 +592,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $skin;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'skin' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -593,6 +601,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$wgParser->firstCallInit();
 		$tags = array_map( array( $this, 'formatParserTags' ), $wgParser->getTags() );
 		$this->getResult()->setIndexedTagName( $tags, 't' );
+
 		return $this->getResult()->addValue( 'query', $property, $tags );
 	}
 
@@ -601,12 +610,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$wgParser->firstCallInit();
 		$hooks = $wgParser->getFunctionHooks();
 		$this->getResult()->setIndexedTagName( $hooks, 'h' );
+
 		return $this->getResult()->addValue( 'query', $property, $hooks );
 	}
 
 	public function appendVariables( $property ) {
 		$variables = MagicWord::getVariableIDs();
 		$this->getResult()->setIndexedTagName( $variables, 'v' );
+
 		return $this->getResult()->addValue( 'query', $property, $variables );
 	}
 
@@ -615,6 +626,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// Make a copy of the global so we don't try to set the _element key of it - bug 45130
 		$protocols = array_values( $wgUrlProtocols );
 		$this->getResult()->setIndexedTagName( $protocols, 'p' );
+
 		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
 
@@ -639,6 +651,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'hook' );
+
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
@@ -687,6 +700,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'prop' => array(
 				'Which sysinfo properties to get:',
@@ -696,14 +710,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' specialpagealiases    - List of special page aliases',
 				' magicwords            - List of magic words and their aliases',
 				' statistics            - Returns site statistics',
-				" interwikimap          - Returns interwiki map " .
+				' interwikimap          - Returns interwiki map ' .
 					"(optionally filtered, (optionally localised by using {$p}inlanguagecode))",
 				' dbrepllag             - Returns database server with the highest replication lag',
 				' usergroups            - Returns user groups and the associated permissions',
 				' extensions            - Returns extensions installed on the wiki',
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
-				" languages             - Returns a list of languages MediaWiki supports" .
+				' languages             - Returns a list of languages MediaWiki supports' .
 					"(optionally localised by using {$p}inlanguagecode)",
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',

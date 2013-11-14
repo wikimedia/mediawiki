@@ -45,8 +45,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
-			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
-			$fld_notificationtimestamp = false, $fld_userid = false, $fld_loginfo = false;
+		$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
+		$fld_notificationtimestamp = false, $fld_userid = false, $fld_loginfo = false;
 
 	/**
 	 * @param $resultPageSet ApiPageSet
@@ -121,7 +121,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'wl_user' => $userId,
 				'wl_namespace=rc_namespace',
 				'wl_title=rc_title'
-		) ) ) );
+			)
+		) ) );
 
 		$this->addWhere( array(
 			'rc_deleted' => 0,
@@ -144,9 +145,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-					|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
-					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
-					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+				|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -194,7 +195,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
 				break;
@@ -205,7 +206,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'start',
-							wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
+						wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
 					break;
 				}
 			} else {
@@ -348,6 +349,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			foreach ( $type as $t ) {
 				$retval[] = $this->parseRCType( $t );
 			}
+
 			return $retval;
 		}
 		switch ( $type ) {
@@ -446,6 +448,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'allrev' => 'Include multiple revisions of the same page within given timeframe',
 			'start' => 'The timestamp to start enumerating from',
@@ -488,6 +491,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	public function getResultProperties() {
 		global $wgLogTypes;
+
 		return array(
 			'' => array(
 				'type' => array(

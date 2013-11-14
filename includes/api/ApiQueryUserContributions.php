@@ -37,8 +37,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	private $params, $prefixMode, $userprefix, $multiUserMode, $usernames, $parentLens;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
-			$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
-			$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
+		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
+		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
 
 	public function execute() {
 		// Parse some parameters
@@ -100,7 +100,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// Fetch each row
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
+			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ( $this->multiUserMode ) {
 					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
@@ -195,7 +195,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( !is_null( $show ) ) {
 			$show = array_flip( $show );
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) ) ) {
+				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+			) {
 				$this->dieUsageMsg( 'show' );
 			}
 
@@ -220,7 +221,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		) );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
-				$this->fld_patrolled ) {
+			$this->fld_patrolled
+		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
@@ -439,6 +441,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	public function getParamDescription() {
 		global $wgRCMaxAge;
 		$p = $this->getModulePrefix();
+
 		return array(
 			'limit' => 'The maximum number of contributions to return',
 			'start' => 'The start timestamp to return from',
@@ -462,7 +465,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				' tags           - Lists tags for the edit',
 			),
 			'show' => array( "Show only items that meet this criteria, e.g. non minor edits only: {$p}show=!minor",
-					"NOTE: if {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than \$wgRCMaxAge ($wgRCMaxAge) won't be shown", ),
+				"NOTE: If {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than \$wgRCMaxAge ($wgRCMaxAge) won't be shown", ),
 			'tag' => 'Only list revisions tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',
 		);
