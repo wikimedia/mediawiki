@@ -152,6 +152,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$result->setIndexedTagName( $acceptLang, 'lang' );
 			$vals['acceptlang'] = $acceptLang;
 		}
+
 		return $vals;
 	}
 
@@ -188,6 +189,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				}
 			}
 		}
+
 		return $retval;
 	}
 

@@ -58,6 +58,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			'userrights' => array( 'ApiQueryUsers', 'getUserrightsToken' ),
 		);
 		wfRunHooks( 'APIQueryUsersTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
@@ -67,6 +68,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
+
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
 		return $wgUser->getEditToken( $user->getName() );
@@ -90,10 +92,10 @@ class ApiQueryUsers extends ApiQueryBase {
 			if ( $n === false || $n === '' ) {
 				$vals = array( 'name' => $u, 'invalid' => '' );
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-						null, $vals );
+					null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'users',
-							implode( '|', array_diff( $users, $done ) ) );
+						implode( '|', array_diff( $users, $done ) ) );
 					$goodNames = array();
 					break;
 				}
@@ -244,10 +246,10 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-					null, $data[$u] );
+				null, $data[$u] );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'users',
-						implode( '|', array_diff( $users, $done ) ) );
+					implode( '|', array_diff( $users, $done ) ) );
 				break;
 			}
 			$done[] = $u;
