@@ -52,6 +52,7 @@ class ApiLogin extends ApiBase {
 				'result' => 'Aborted',
 				'reason' => 'Cannot log in when using a callback',
 			) );
+
 			return;
 		}
 

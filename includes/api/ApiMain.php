@@ -191,7 +191,7 @@ class ApiMain extends ApiBase {
 		$this->mResult = new ApiResult( $this );
 		$this->mEnableWrite = $enableWrite;
 
-		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
+		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
 	}
 
@@ -270,6 +270,7 @@ class ApiMain extends ApiBase {
 	public function setCacheMode( $mode ) {
 		if ( !in_array( $mode, array( 'private', 'public', 'anon-public-user-private' ) ) ) {
 			wfDebug( __METHOD__ . ": unrecognised cache mode \"$mode\"\n" );
+
 			// Ignore for forwards-compatibility
 			return;
 		}
@@ -278,6 +279,7 @@ class ApiMain extends ApiBase {
 			// Private wiki, only private headers
 			if ( $mode !== 'private' ) {
 				wfDebug( __METHOD__ . ": ignoring request for $mode cache mode, private wiki\n" );
+
 				return;
 			}
 		}
@@ -337,6 +339,7 @@ class ApiMain extends ApiBase {
 		if ( $printer === null ) {
 			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
 		}
+
 		return $printer;
 	}
 
@@ -463,6 +466,7 @@ class ApiMain extends ApiBase {
 			$response->header( "HTTP/1.1 403 $message", true, 403 );
 			$response->header( 'Cache-Control: no-cache' );
 			echo "'origin' parameter does not match Origin header\n";
+
 			return false;
 		}
 		if ( self::matchOrigin( $originParam, $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions ) ) {
@@ -470,6 +474,7 @@ class ApiMain extends ApiBase {
 			$response->header( 'Access-Control-Allow-Credentials: true' );
 			$this->getOutput()->addVaryHeader( 'Origin' );
 		}
+
 		return true;
 	}
 
@@ -489,9 +494,11 @@ class ApiMain extends ApiBase {
 						return false;
 					}
 				}
+
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -510,6 +517,7 @@ class ApiMain extends ApiBase {
 			array( '.*?', '.' ),
 			$wildcard
 		);
+
 		return "/https?:\/\/$wildcard/";
 	}
 
@@ -524,6 +532,7 @@ class ApiMain extends ApiBase {
 
 		if ( $this->mCacheMode == 'private' ) {
 			$response->header( 'Cache-Control: private' );
+
 			return;
 		}
 
@@ -535,6 +544,7 @@ class ApiMain extends ApiBase {
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
 					$response->header( 'Cache-Control: private' );
+
 					return;
 				}
 				// Logged out, send normal public headers below
@@ -542,6 +552,7 @@ class ApiMain extends ApiBase {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( 'Cache-Control: private' );
+
 				return;
 			} // else no XVO and anonymous, send public headers below
 		}
@@ -565,6 +576,7 @@ class ApiMain extends ApiBase {
 			// Sending a Vary header in this case is harmless, and protects us
 			// against conditional calls of setCacheMaxAge().
 			$response->header( 'Cache-Control: private' );
+
 			return;
 		}
 
@@ -720,6 +732,7 @@ class ApiMain extends ApiBase {
 				}
 			}
 		}
+
 		return $module;
 	}
 
@@ -746,9 +759,11 @@ class ApiMain extends ApiBase {
 				} else {
 					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 				}
+
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -759,8 +774,8 @@ class ApiMain extends ApiBase {
 	protected function checkExecutePermissions( $module ) {
 		$user = $this->getUser();
 		if ( $module->isReadMode() && !User::isEveryoneAllowed( 'read' ) &&
-			!$user->isAllowed( 'read' ) )
-		{
+			!$user->isAllowed( 'read' )
+		) {
 			$this->dieUsageMsg( 'readrequired' );
 		}
 		if ( $module->isWriteMode() ) {
@@ -881,6 +896,7 @@ class ApiMain extends ApiBase {
 				$table[rawurlencode( $chars[$i] )] = $chars[$i];
 			}
 		}
+
 		return strtr( rawurlencode( $s ), $table );
 	}
 
@@ -896,6 +912,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getVal( $name, $default = null ) {
 		$this->mParamsUsed[$name] = true;
+
 		return $this->getRequest()->getVal( $name, $default );
 	}
 
@@ -905,6 +922,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getCheck( $name ) {
 		$this->mParamsUsed[$name] = true;
+
 		return $this->getRequest()->getCheck( $name );
 	}
 
@@ -917,6 +935,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getUpload( $name ) {
 		$this->mParamsUsed[$name] = true;
+
 		return $this->getRequest()->getUpload( $name );
 	}
 
@@ -932,7 +951,7 @@ class ApiMain extends ApiBase {
 			// Printer has not yet executed; don't warn that its parameters are unused
 			$printerParams = array_map(
 				array( $this->mPrinter, 'encodeParamName' ),
-				array_keys( $this->mPrinter->getFinalParams() ?: array() )
+				array_keys( $this->mPrinter->getFinalParams() ? : array() )
 			);
 			$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
 		} else {
@@ -1150,6 +1169,7 @@ class ApiMain extends ApiBase {
 		if ( $wgAPICacheHelpTimeout > 0 ) {
 			$wgMemc->set( $key, $retval, $wgAPICacheHelpTimeout );
 		}
+
 		return $retval;
 	}
 
@@ -1180,7 +1200,7 @@ class ApiMain extends ApiBase {
 		foreach ( self::$mRights as $right => $rightMsg ) {
 			$groups = User::getGroupsWithPermission( $right );
 			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg['msg'], $rightMsg['params'] ) .
-						"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
+				"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
@@ -1234,6 +1254,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getShowVersions() {
 		wfDeprecated( __METHOD__, '1.21' );
+
 		return false;
 	}
 
@@ -1336,6 +1357,7 @@ class UsageException extends MWException {
 		if ( is_array( $this->mExtraData ) ) {
 			$result = array_merge( $result, $this->mExtraData );
 		}
+
 		return $result;
 	}
 
