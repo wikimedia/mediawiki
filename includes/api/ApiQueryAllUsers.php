@@ -58,7 +58,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_registration = isset( $prop['registration'] );
 			$fld_implicitgroups = isset( $prop['implicitgroups'] );
 		} else {
-			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = $fld_rights = $fld_implicitgroups = false;
+			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration =
+				$fld_rights = $fld_implicitgroups = false;
 		}
 
 		$limit = $params['limit'];
@@ -123,7 +124,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			if ( count( $params['excludegroup'] ) == 1 ) {
 				$exclude = array( 'ug1.ug_group' => $params['excludegroup'][0] );
 			} else {
-				$exclude = array( $db->makeList( array( 'ug1.ug_group' => $params['excludegroup'] ), LIST_OR ) );
+				$exclude = array( $db->makeList(
+					array( 'ug1.ug_group' => $params['excludegroup'] ),
+					LIST_OR
+				) );
 			}
 			$this->addJoinConds( array( 'ug1' => array( 'LEFT OUTER JOIN',
 				array_merge( array( 'ug1.ug_user=user_id' ), $exclude )
@@ -187,12 +191,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$lastUser = false;
 		$result = $this->getResult();
 
-		//
-		// This loop keeps track of the last entry.
-		// For each new row, if the new row is for different user then the last, the last entry is added to results.
-		// Otherwise, the group of the new row is appended to the last entry.
-		// The setContinue... is more complex because of this, and takes into account the higher sql limit
-		// to make sure all rows that belong to the same user are received.
+		// This loop keeps track of the last entry. For each new row, if the
+		// new row is for different user then the last, the last entry is added
+		// to results. Otherwise, the group of the new row is appended to the
+		// last entry. The setContinue... is more complex because of this, and
+		// takes into account the higher sql limit to make sure all rows that
+		// belong to the same user are received.
 
 		foreach ( $res as $row ) {
 			$count++;
@@ -212,7 +216,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 
 				if ( $count > $limit ) {
-					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+					// We've reached the one extra which shows that there are
+					// additional pages to be had. Stop here...
 					$this->setContinueEnumParameter( 'from', $row->user_name );
 					break;
 				}
@@ -246,10 +251,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			if ( $sqlLimit == $count ) {
-				// BUG!  database contains group name that User::getAllGroups() does not return
-				// TODO: should handle this more gracefully
-				ApiBase::dieDebug( __METHOD__,
-					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function' );
+				// @todo BUG!  database contains group name that User::getAllGroups() does not return
+				// Should handle this more gracefully
+				ApiBase::dieDebug(
+					__METHOD__,
+					'MediaWiki configuration error: The database contains more ' .
+						'user groups than known to User::getAllGroups() function'
+				);
 			}
 
 			$lastUserObj = User::newFromId( $row->user_id );
@@ -369,11 +377,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'dir' => 'Direction to sort in',
 			'group' => 'Limit users to given group name(s)',
 			'excludegroup' => 'Exclude users in given group name(s)',
-			'rights' => 'Limit users to given right(s) (does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed)',
+			'rights' => 'Limit users to given right(s) (does not include rights ' .
+				'granted by implicit or auto-promoted groups like *, user, or autoconfirmed)',
 			'prop' => array(
 				'What pieces of information to include.',
 				' blockinfo      - Adds the information about a current block on the user',
-				' groups         - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
+				' groups         - Lists groups that the user is in. This uses ' .
+					'more server resources and may return fewer results than the limit',
 				' implicitgroups - Lists all the groups the user is automatically in',
 				' rights         - Lists rights that the user has',
 				' editcount      - Adds the edit count of the user',
@@ -433,7 +443,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'group-excludegroup', 'info' => 'group and excludegroup cannot be used together' ),
+			array(
+				'code' => 'group-excludegroup',
+				'info' => 'group and excludegroup cannot be used together'
+			),
 		) );
 	}
 

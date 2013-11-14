@@ -39,7 +39,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->dieUsage( 'You don\'t have permission to view deleted revision information', 'permissiondenied' );
+			$this->dieUsage(
+				'You don\'t have permission to view deleted revision information',
+				'permissiondenied'
+			);
 		}
 
 		$db = $this->getDB();
@@ -116,7 +119,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			// This also means stricter restrictions
 			if ( !$user->isAllowed( 'undelete' ) ) {
-				$this->dieUsage( 'You don\'t have permission to view deleted revision content', 'permissiondenied' );
+				$this->dieUsage(
+					'You don\'t have permission to view deleted revision content',
+					'permissiondenied'
+				);
 			}
 		}
 		// Check limits
@@ -152,7 +158,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange( 'ar_title', $dir, $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'ar_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+				$this->addWhere( 'ar_title' .
+					$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 			}
 		}
 
@@ -179,7 +186,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'USE INDEX', array( 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) ) );
+		$this->addOption(
+			'USE INDEX',
+			array( 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) )
+		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
 				$this->addOption( 'GROUP BY', 'ar_title' );
@@ -391,7 +401,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'Operates in three modes:',
 			' 1) List deleted revisions for the given title(s), sorted by timestamp',
 			' 2) List deleted contributions for the given user, sorted by timestamp (no titles specified)',
-			" 3) List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, {$p}user not set)",
+			" 3) List all deleted revisions in the given namespace, sorted by title and timestamp',
+			'    (no titles specified, {$p}user not set)",
 			'Certain parameters only apply to some modes and are ignored in others.',
 			'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3',
 		);
@@ -399,12 +410,22 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision information' ),
-			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
-			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision content' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You don\'t have permission to view deleted revision information'
+			),
+			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together'
+			),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You don\'t have permission to view deleted revision content'
+			),
 			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
-			array( 'code' => 'badparams', 'info' => "The 'prefix' parameter cannot be used in modes 1 or 2" ),
+			array(
+				'code' => 'badparams',
+				'info' => "The 'prefix' parameter cannot be used in modes 1 or 2"
+			),
 			array( 'code' => 'badparams', 'info' => "The 'start' parameter cannot be used in mode 3" ),
 			array( 'code' => 'badparams', 'info' => "The 'end' parameter cannot be used in mode 3" ),
 		) );
@@ -412,7 +433,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&drprop=user|comment|content'
+			'api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
+				'drprop=user|comment|content'
 				=> 'List the last deleted revisions of Main Page and Talk:Main Page, with content (mode 1)',
 			'api.php?action=query&list=deletedrevs&druser=Bob&drlimit=50'
 				=> 'List the last 50 deleted contributions by Bob (mode 2)',
