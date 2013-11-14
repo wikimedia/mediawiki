@@ -81,9 +81,9 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				$this->addOption( 'ORDER BY', 'iwl_from' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-						'iwl_from' . $sort,
-						'iwl_title' . $sort
-				));
+					'iwl_from' . $sort,
+					'iwl_title' . $sort
+				) );
 			}
 		} else {
 			// Don't order by iwl_from if it's constant in the WHERE clause
@@ -91,10 +91,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				$this->addOption( 'ORDER BY', 'iwl_prefix' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-						'iwl_from' . $sort,
-						'iwl_prefix' . $sort,
-						'iwl_title' . $sort
-				));
+					'iwl_from' . $sort,
+					'iwl_prefix' . $sort,
+					'iwl_title' . $sort
+				) );
 			}
 		}
 

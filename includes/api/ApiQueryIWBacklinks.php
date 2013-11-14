@@ -92,14 +92,14 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				$this->addOption( 'ORDER BY', array(
 					'iwl_title' . $sort,
 					'iwl_from' . $sort
-				));
+				) );
 			}
 		} else {
 			$this->addOption( 'ORDER BY', array(
 				'iwl_prefix' . $sort,
 				'iwl_title' . $sort,
 				'iwl_from' . $sort
-			));
+			) );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -111,7 +111,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// Continue string preserved in case the redirect query doesn't pass the limit
 				$this->setContinueEnumParameter( 'continue', "{$row->iwl_prefix}|{$row->iwl_title}|{$row->iwl_from}" );

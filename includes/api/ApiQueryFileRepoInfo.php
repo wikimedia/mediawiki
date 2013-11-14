@@ -91,6 +91,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'prop' => array(
 				'Which repository properties to get (there may be more available on some wikis):',
