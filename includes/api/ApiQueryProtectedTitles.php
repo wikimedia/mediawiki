@@ -80,7 +80,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$titles = array();
 
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
+			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->pt_timestamp ) );
 				break;
@@ -148,6 +148,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		global $wgRestrictionLevels;
+
 		return array(
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -216,6 +217,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	public function getResultProperties() {
 		global $wgRestrictionLevels;
+
 		return array(
 			'' => array(
 				'ns' => 'namespace',
