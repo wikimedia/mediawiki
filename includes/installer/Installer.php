@@ -499,7 +499,12 @@ abstract class Installer {
 		global $IP;
 
 		wfSuppressWarnings();
-		$_lsExists = file_exists( "$IP/LocalSettings.php" );
+		if  ( defined( "MW_CONFIG_FILE" ) ) {
+			$settingsFile = MW_CONFIG_FILE;
+		} else {
+			$settingsFile = "$IP/LocalSettings.php";
+		}
+		$_lsExists = file_exists( $settingsFile );
 		wfRestoreWarnings();
 
 		if ( !$_lsExists ) {
@@ -508,7 +513,7 @@ abstract class Installer {
 		unset( $_lsExists );
 
 		require "$IP/includes/DefaultSettings.php";
-		require "$IP/LocalSettings.php";
+		require "$settingsFile";
 		if ( file_exists( "$IP/AdminSettings.php" ) ) {
 			require "$IP/AdminSettings.php";
 		}
