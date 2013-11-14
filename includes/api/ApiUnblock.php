@@ -96,6 +96,7 @@ class ApiUnblock extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'id' => "ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with {$p}user",
 			'user' => "Username, IP address or IP range you want to unblock. Cannot be used together with {$p}id",

@@ -117,6 +117,7 @@ class ApiResult extends ApiBase {
 			// Objects can't always be cast to string
 			$s = strlen( $value );
 		}
+
 		return $s;
 	}
 
@@ -287,7 +288,8 @@ class ApiResult extends ApiBase {
 			if ( $newsize > $wgAPIMaxResultSize ) {
 				$this->setWarning(
 					"This result was truncated because it would otherwise be larger than the " .
-							"limit of {$wgAPIMaxResultSize} bytes" );
+						"limit of {$wgAPIMaxResultSize} bytes" );
+
 				return false;
 			}
 			$this->mSize = $newsize;
@@ -322,6 +324,7 @@ class ApiResult extends ApiBase {
 			// Add named element
 			self::setElement( $data, $name, $value, $flags );
 		}
+
 		return true;
 	}
 
@@ -394,6 +397,7 @@ class ApiResult extends ApiBase {
 			$result[] = $error;
 		}
 		$this->setIndexedTagName( $result, $errorType );
+
 		return $result;
 	}
 

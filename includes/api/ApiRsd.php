@@ -107,6 +107,7 @@ class ApiRsd extends ApiBase {
 			),
 		);
 		wfRunHooks( 'ApiRsdServiceApis', array( &$apis ) );
+
 		return $apis;
 	}
 
@@ -149,6 +150,7 @@ class ApiRsd extends ApiBase {
 			}
 			$outputData[] = $data;
 		}
+
 		return $outputData;
 	}
 }
