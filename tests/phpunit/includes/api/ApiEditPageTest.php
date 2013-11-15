@@ -126,6 +126,9 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 
+	/**
+	 * @return array
+	 */
 	public static function provideEditAppend() {
 		return array(
 			array( #0: append
@@ -407,6 +410,10 @@ class ApiEditPageTest extends ApiTestCase {
 			"no edit conflict expected here" );
 	}
 
+	/**
+	 * @param WikiPage $page
+	 * @param string|int $timestamp
+	 */
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
 		$dbw = wfGetDB( DB_MASTER );
 

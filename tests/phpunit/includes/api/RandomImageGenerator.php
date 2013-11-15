@@ -113,7 +113,11 @@ class RandomImageGenerator {
 
 	/**
 	 * Figure out how we write images. This is a factor of both format and the local system
-	 * @param $format (a typical extension like 'svg', 'jpg', etc.)
+	 *
+	 * @param string $format (a typical extension like 'svg', 'jpg', etc.)
+	 *
+	 * @throws Exception
+	 * @return string
 	 */
 	function getImageWriteMethod( $format ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
@@ -219,9 +223,12 @@ class RandomImageGenerator {
 	/**
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (which is obviously always svg here)
-	 * @param $filename: filename to write to
+	 *
+	 * @param array $spec spec describing background and shapes to draw
+	 * @param string $format file format to write (which is obviously always svg here)
+	 * @param string $filename filename to write to
+	 *
+	 * @throws Exception
 	 */
 	public function writeSvg( $spec, $format, $filename ) {
 		$svg = new SimpleXmlElement( '<svg/>' );
@@ -247,9 +254,9 @@ class RandomImageGenerator {
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
-	 * @param $spec: spec describing background and circles to draw
-	 * @param $format: file format to write
-	 * @param $filename: filename to write to
+	 * @param array $spec spec describing background and circles to draw
+	 * @param string $format file format to write
+	 * @param string $filename filename to write to
 	 */
 	public function writeImageWithApi( $spec, $format, $filename ) {
 		// this is a hack because I can't get setImageOrientation() to work. See below.
@@ -304,7 +311,7 @@ class RandomImageGenerator {
 	 * This is used when simulating a rotated image capture with Exif orientation
 	 * @param $spec Object returned by getImageSpec
 	 * @param $matrix 2x2 transformation matrix
-	 * @return transformed Spec
+	 * @return array transformed Spec
 	 */
 	private static function rotateImageSpec( &$spec, $matrix ) {
 		$tSpec = array();
@@ -361,9 +368,12 @@ class RandomImageGenerator {
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (unused by this method but kept so it has the same signature as writeImageWithApi)
-	 * @param $filename: filename to write to
+	 * @param array $spec spec describing background and shapes to draw
+	 * @param string $format file format to write (unused by this method but kept so it has the same signature as
+	 * writeImageWithApi)
+	 * @param string $filename filename to write to
+	 *
+	 * @return bool
 	 */
 	public function writeImageWithCommandLine( $spec, $format, $filename ) {
 		global $wgImageMagickConvertCommand;
@@ -388,7 +398,7 @@ class RandomImageGenerator {
 	/**
 	 * Generate a string of random colors for ImageMagick or SVG, like "rgb(12, 37, 98)"
 	 *
-	 * @return {String}
+	 * @return string
 	 */
 	public function getRandomColor() {
 		$components = array();
@@ -422,8 +432,10 @@ class RandomImageGenerator {
 	 *
 	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
 	 *
-	 * @param $number_desired Integer: number of lines desired
-	 * @return Array: of exactly n elements, drawn randomly from lines the file
+	 * @param int $number_desired number of lines desired
+	 *
+	 * @throws Exception
+	 * @return array of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) {
 		$filepath = $this->dictionaryFile;

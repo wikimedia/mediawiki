@@ -110,6 +110,9 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		} while ( true );
 	}
 
+	/**
+	 * @param array $data
+	 */
 	private function printResult( $data ) {
 		$q = $data['query'];
 		$print = array();

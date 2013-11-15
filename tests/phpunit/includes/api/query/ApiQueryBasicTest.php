@@ -1,7 +1,6 @@
 <?php
 /**
  *
- *
  * Created on Feb 6, 2013
  *
  * Copyright © 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
@@ -35,6 +34,8 @@ require_once 'ApiQueryTestBase.php';
  * @covers ApiQuery
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
+	protected $exceptionFromAddDBData;
+
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()
@@ -130,6 +131,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 		) )
 	);
 
+	// Although this appears to have no use it is used by testLists()
 	private static $allcategories = array(
 		array( 'list' => 'allcategories', 'acprefix' => 'AQBT-' ),
 		array( 'allcategories' => array(
@@ -236,6 +238,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 		$this->check( self::$alllinks );
 		$this->check( self::$alltransclusions );
 		// This test is temporarily disabled until a sqlite bug is fixed
+		// Confirmed still broken 15-nov-2013
 		// $this->check( self::$allcategories );
 		$this->check( self::$backlinks );
 		$this->check( self::$embeddedin );
@@ -367,29 +370,30 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 
 	/**
 	 * Recursively compare arrays, ignoring mismatches in numeric key and pageids.
-	 * @param $expected array expected values
-	 * @param $result array returned values
+	 *
+	 * @param $expectedArray array expected values
+	 * @param $resultArray array returned values
 	 */
-	private function assertQueryResults( $expected, $result ) {
-		reset( $expected );
-		reset( $result );
+	private function assertQueryResults( $expectedArray, $resultArray ) {
+		reset( $expectedArray );
+		reset( $resultArray );
 		while ( true ) {
-			$e = each( $expected );
-			$r = each( $result );
+			$expectedValue = each( $expectedArray );
+			$resultValue = each( $resultArray );
 			// If either of the arrays is shorter, abort. If both are done, success.
-			$this->assertEquals( (bool)$e, (bool)$r );
-			if ( !$e ) {
+			$this->assertEquals( (bool)$expectedValue, (bool)$resultValue );
+			if ( !$expectedValue ) {
 				break; // done
 			}
 			// continue only if keys are identical or both keys are numeric
-			$this->assertTrue( $e['key'] === $r['key'] || ( is_numeric( $e['key'] ) && is_numeric( $r['key'] ) ) );
+			$this->assertTrue( $expectedValue['key'] === $resultValue['key'] || ( is_numeric( $expectedValue['key'] ) && is_numeric( $resultValue['key'] ) ) );
 			// don't compare pageids
-			if ( $e['key'] !== 'pageid' ) {
+			if ( $expectedValue['key'] !== 'pageid' ) {
 				// If values are arrays, compare recursively, otherwise compare with ===
-				if ( is_array( $e['value'] ) && is_array( $r['value'] ) ) {
-					$this->assertQueryResults( $e['value'], $r['value'] );
+				if ( is_array( $expectedValue['value'] ) && is_array( $resultValue['value'] ) ) {
+					$this->assertQueryResults( $expectedValue['value'], $resultValue['value'] );
 				} else {
-					$this->assertEquals( $e['value'], $r['value'] );
+					$this->assertEquals( $expectedValue['value'], $resultValue['value'] );
 				}
 			}
 		}
