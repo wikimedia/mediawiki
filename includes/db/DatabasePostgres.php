@@ -1424,6 +1424,13 @@ SQL;
 		return implode( ' || ', $stringList );
 	}
 
+	public function buildGroupConcatField(
+		$delimiter, $table, $field, $conds = '', $options = array(), $join_conds = array()
+	) {
+		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delimiter ) . '))';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+	}
+
 	public function getSearchEngine() {
 		return 'SearchPostgres';
 	}

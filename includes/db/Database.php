@@ -2080,6 +2080,29 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * Build a GROUP_CONCAT or equivalent statement for a query.
+	 *
+	 * This is useful for combining a field for several rows into a single string.
+	 * NULL values will not appear in the output, duplicated values will appear,
+	 * and the resulting delimiter-separated values have no defined sort order.
+	 * Code using the results may need to use the PHP unique() or sort() methods.
+	 *
+	 * @param string $delim Glue to bind the results together
+	 * @param string|array $table Table name
+	 * @param string $field Field name
+	 * @param string|array $conds Conditions
+	 * @param string|array $join_conds Join conditions
+	 * @return String SQL text
+	 * @since 1.23
+	 */
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = array()
+	) {
+		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+	}
+
+	/**
 	 * Change the current database
 	 *
 	 * @todo Explain what exactly will fail if this is not overridden.
