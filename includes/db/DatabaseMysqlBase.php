@@ -76,6 +76,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		} catch ( Exception $ex ) {
 			wfProfileOut( "dbconnect-$server" );
 			wfProfileOut( __METHOD__ );
+			$this->restoreErrorHandler();
 			throw $ex;
 		}
 		$error = $this->restoreErrorHandler();

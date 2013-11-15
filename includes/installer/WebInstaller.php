@@ -336,7 +336,12 @@ class WebInstaller extends Installer {
 
 		$this->phpErrors = array();
 		set_error_handler( array( $this, 'errorHandler' ) );
-		session_start();
+		try {
+			session_start();
+		} catch ( Exception $e ) {
+			restore_error_handler();
+			throw $e;
+		}
 		restore_error_handler();
 
 		if ( $this->phpErrors ) {

@@ -352,14 +352,19 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( 'UserMailer::errorHandler' );
 
-			$safeMode = wfIniGetBool( 'safe_mode' );
+			try {
+				$safeMode = wfIniGetBool( 'safe_mode' );
 
-			foreach ( $to as $recip ) {
-				if ( $safeMode ) {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-				} else {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+				foreach ( $to as $recip ) {
+					if ( $safeMode ) {
+						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
+					} else {
+						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+					}
 				}
+			} catch ( Exception $e ) {
+				restore_error_handler();
+				throw $e;
 			}
 
 			restore_error_handler();

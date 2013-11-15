@@ -199,6 +199,9 @@ class Hooks {
 				$retval = call_user_func_array( $callback, $hook_args );
 			} catch ( MWHookException $e ) {
 				$badhookmsg = $e->getMessage();
+			} catch ( Exception $e ) {
+				restore_error_handler();
+				throw $e;
 			}
 			restore_error_handler();
 			wfProfileOut( $func );
