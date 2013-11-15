@@ -199,7 +199,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// Check permissions
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+					$this->dieUsage(
+						'You need the patrol right to request the patrolled flag',
+						'permissiondenied'
+					);
 				}
 			}
 
@@ -215,7 +218,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
 
 			// Don't throw log entries out the window here
-			$this->addWhereIf( 'page_is_redirect = 0 OR page_is_redirect IS NULL', isset( $show['!redirect'] ) );
+			$this->addWhereIf(
+				'page_is_redirect = 0 OR page_is_redirect IS NULL',
+				isset( $show['!redirect'] )
+			);
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -253,7 +259,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->initProperties( $prop );
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+				$this->dieUsage(
+					'You need the patrol right to request the patrolled flag',
+					'permissiondenied'
+				);
 			}
 
 			$this->addFields( 'rc_id' );
@@ -265,8 +274,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ), $this->fld_flags );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
-			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
-			$showRedirects = $this->fld_redirect || isset( $show['redirect'] ) || isset( $show['!redirect'] );
+			$this->addFieldsIf(
+				array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ),
+				$this->fld_loginfo
+			);
+			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
+				|| isset( $show['!redirect'] );
 		}
 
 		if ( $this->fld_tags ) {
@@ -277,13 +290,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_sha1 ) {
 			$this->addTables( 'revision' );
-			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN', array( 'rc_this_oldid=rev_id' ) ) ) );
+			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN',
+				array( 'rc_this_oldid=rev_id' ) ) ) );
 			$this->addFields( array( 'rev_sha1', 'rev_deleted' ) );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN',
+				array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
 			$this->addFields( 'page_is_redirect' );
 
 			if ( $params['toponly'] ) {
@@ -313,8 +328,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$this->setContinueEnumParameter(
+					'continue',
+					wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id
+				);
 				break;
 			}
 
@@ -328,7 +347,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
+					$this->setContinueEnumParameter(
+						'continue',
+						wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id
+					);
 					break;
 				}
 			} else {
@@ -790,7 +812,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'show' ),
-			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You need the patrol right to request the patrolled flag'
+			),
 			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
 		) );
 	}

@@ -128,7 +128,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		while ( $result ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional items to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional items to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );
 				break;
 			}
