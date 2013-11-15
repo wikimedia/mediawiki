@@ -1354,6 +1354,13 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mServer;
 	}
 
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = array()
+	) {
+		$fld = "LISTAGG($field," . $this->addQuotes( $delim ) . ") WITHIN GROUP (ORDER BY $field)";
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+	}
+
 	public function getSearchEngine() {
 		return 'SearchOracle';
 	}
