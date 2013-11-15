@@ -99,6 +99,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		return true;
 	}
 
+	/**
+	 * @param IContextSource $context
+	 * @param array|null $options
+	 *
+	 * @return array
+	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
 		// Match with above.
 		$kinds = array(

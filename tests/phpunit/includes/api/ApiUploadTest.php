@@ -110,6 +110,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
+		/** @var array $filePaths */
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
@@ -201,6 +202,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		}
 
 		// we'll reuse this filename
+		/** @var array $filePaths */
 		$fileName = basename( $filePaths[0] );
 
 		// clear any other files with the same name
@@ -272,6 +274,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
+		/** @var array $filePaths */
 		$fileNames[0] = basename( $filePaths[0] );
 		$fileNames[1] = "SameContentAs" . $fileNames[0];
 
@@ -356,6 +359,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
+		/** @var array $filePaths */
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
