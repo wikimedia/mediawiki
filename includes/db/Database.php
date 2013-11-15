@@ -788,7 +788,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			'postgres' => array(),
 			'sqlite'   => array(),
 			'oracle'   => array(),
-			'mssql'    => array(),
 		);
 
 		$driver = false;
