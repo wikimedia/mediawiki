@@ -83,6 +83,17 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	/**
 	 * @return bool
 	 */
+	protected function mysqlSetCharset( $charset ) {
+		if ( function_exists( 'mysql_set_charset' ) ) {
+			return mysql_set_charset( $charset, $this->mConn );
+		} else {
+			return $this->query( 'SET NAMES ' . $charset, __METHOD__ );
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
 	protected function closeConnection() {
 		return mysql_close( $this->mConn );
 	}
