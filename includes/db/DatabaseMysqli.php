@@ -82,6 +82,17 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return bool
 	 */
+	protected function mysqlSetCharset( $charset ) {
+		if ( method_exists( $this->mConn, 'set_charset' ) ) {
+			return $this->mConn->set_charset( $charset );
+		} else {
+			return $this->query( 'SET NAMES ' . $charset, __METHOD__ );
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
 	protected function closeConnection() {
 		return $this->mConn->close();
 	}
