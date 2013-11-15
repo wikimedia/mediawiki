@@ -370,7 +370,14 @@ class DatabasePostgres extends DatabaseBase {
 		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
 		$this->close();
 		$this->installErrorHandler();
-		$this->mConn = pg_connect( $this->connectString );
+
+		try {
+			$this->mConn = pg_connect( $this->connectString );
+		} catch ( Exception $ex ) {
+			$this->restoreErrorHandler();
+			throw $ex;
+		}
+
 		$phpError = $this->restoreErrorHandler();
 
 		if ( !$this->mConn ) {
