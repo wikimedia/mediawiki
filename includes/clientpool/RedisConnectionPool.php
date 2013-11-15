@@ -204,7 +204,7 @@ class RedisConnectionPool {
 			}
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
-			wfDebugLog( 'redis', "Redis exception: " . $e->getMessage() . "\n" );
+			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() . "\n" );
 			return false;
 		}
 
