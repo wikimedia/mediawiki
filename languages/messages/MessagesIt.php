@@ -3787,6 +3787,7 @@ Per favore, conferma che vuoi veramente ricreare questa pagina.",
 
 # Separators for various lists, etc.
 'percent' => '$1&#160;%',
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

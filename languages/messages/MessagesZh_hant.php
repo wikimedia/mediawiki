@@ -1201,8 +1201,9 @@ $2
 'revdelete-text' => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-confirm' => '請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
-'revdelete-suppress-text' => "壓制'''只'''應在以下的情況下進行:
-* 不合適的個人資料
+'revdelete-suppress-text' => "禁制應'''僅'''於下述情形之一時使用：
+* 潛在誹謗性資訊
+* 不合適個人資料
 *: ''住家地址、電話號碼、社群保安號碼等。''",
 'revdelete-legend' => '設定可見性之限制',
 'revdelete-hide-text' => '修訂文字',
@@ -1212,8 +1213,8 @@ $2
 'revdelete-hide-user' => '編輯者的用戶名/IP位址',
 'revdelete-hide-restricted' => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-radio-same' => '（不要更改）',
-'revdelete-radio-set' => '可見',
-'revdelete-radio-unset' => '隱藏',
+'revdelete-radio-set' => '隱藏',
+'revdelete-radio-unset' => '可見',
 'revdelete-suppress' => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-unsuppress' => '在已恢復的修訂中移除限制',
 'revdelete-log' => '理由：',
@@ -3102,6 +3103,7 @@ $2',
 'pageinfo-length' => '頁面長度 （以位元組為單位）',
 'pageinfo-article-id' => '頁面編號',
 'pageinfo-language' => '頁面內容語言',
+'pageinfo-content-model' => '頁面內容模型',
 'pageinfo-robot-policy' => '機械人索引',
 'pageinfo-robot-index' => '容許',
 'pageinfo-robot-noindex' => '阻止',
@@ -3772,6 +3774,7 @@ $5
 'colon-separator' => '：',
 'word-separator' => '',
 'parentheses' => '（$1）',
+'quotation-marks' => '“$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',

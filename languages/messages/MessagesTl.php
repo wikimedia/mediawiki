@@ -2249,7 +2249,7 @@ Tugon at karagdagang tulong:
 'excontentauthor' => "ang nilalaman ay: '$1' (at ang tanging nag-ambag ay si '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => "nilalaman bago nablangko: '$1'",
 'exblank' => 'walang laman ang pahina',
-'delete-confirm' => 'Burahin "$1"',
+'delete-confirm' => 'Burahin ang "$1"',
 'delete-legend' => 'Burahin',
 'historywarning' => "'''Babala''': May kasaysayan ang pahinang buburahin mo na tinatayang may $1 {{PLURAL:$1|pagbabago|mga pagbabago}}:",
 'confirmdeletetext' => 'Lubos mo nang buburahin ang pahinang ito pati ang kalahatan ng kasaysayan nito.
