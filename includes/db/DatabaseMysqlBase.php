@@ -114,9 +114,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// Tell the server we're communicating with it in UTF-8.
 		// This may engage various charset conversions.
 		if ( $wgDBmysql5 ) {
-			$this->query( 'SET NAMES utf8', __METHOD__ );
+			$this->mysqlSetCharset( 'utf8' );
 		} else {
-			$this->query( 'SET NAMES binary', __METHOD__ );
+			$this->mysqlSetCharset( 'binary' );
 		}
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
@@ -137,6 +137,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @throws DBConnectionError
 	 */
 	abstract protected function mysqlConnect( $realServer );
+
+	/**
+	 * Set the character set of the MySQL link
+	 *
+	 * @param string $charset
+	 * @return bool
+	 */
+	abstract protected function mysqlSetCharset( $charset );
 
 	/**
 	 * @param $res ResultWrapper
