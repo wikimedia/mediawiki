@@ -939,6 +939,12 @@ class DatabaseMssql extends DatabaseBase {
 		return implode( ' + ', $stringList );
 	}
 
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = array()
+	) {
+		throw new DBUnexpectedError( $this, "buildGroupConcatField() not supported for MsSql." );
+	}
+
 	public function getSearchEngine() {
 		return "SearchMssql";
 	}

@@ -1354,6 +1354,12 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mServer;
 	}
 
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = array()
+	) {
+		throw new DBUnexpectedError( $this, "buildGroupConcatField() not supported for Oracle." );
+	}
+
 	public function getSearchEngine() {
 		return 'SearchOracle';
 	}
