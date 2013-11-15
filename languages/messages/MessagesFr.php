@@ -2514,7 +2514,7 @@ Les prochaines modifications de cette page et de la page de discussion associée
 
 'enotif_mailer' => 'Système de notification par courriel de {{SITENAME}}',
 'enotif_reset' => 'Marquer toutes les pages comme visitées',
-'enotif_impersonal_salutation' => 'Utilisateur de {{SITENAME}}',
+'enotif_impersonal_salutation' => '{{GENDER:$2|utilisateur|utilisatrice|utilisateur/utilisatrice}} $1 de {{SITENAME}}',
 'enotif_subject_deleted' => 'La page $1 sur {{SITENAME}} a été supprimée par {{GENDER:$2|$2}}',
 'enotif_subject_created' => 'La page $1 sur {{SITENAME}} a été créée par {{GENDER:$2|$2}}',
 'enotif_subject_moved' => 'La page $1 sur {{SITENAME}} a été renommée par {{GENDER:$2|$2}}',
