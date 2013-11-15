@@ -89,8 +89,8 @@ $wgAutoloadClasses += array(
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
-	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
-	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
+	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
+	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
