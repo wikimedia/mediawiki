@@ -10,53 +10,28 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @var SkinTemplate
 	 */
 	private $skin;
-	/** Local cache for sidebar messages */
-	private $messages;
-
-	/** Build $this->messages array */
-	private function initMessagesHref() {
-		# List of default messages for the sidebar:
-		$URL_messages = array(
-			'mainpage',
-			'portal-url',
-			'currentevents-url',
-			'recentchanges-url',
-			'randompage-url',
-			'helppage',
-		);
-
-		foreach ( $URL_messages as $m ) {
-			$titleName = MessageCache::singleton()->get( $m );
-			$title = Title::newFromText( $titleName );
-			$this->messages[$m]['href'] = $title->getLocalURL();
-		}
-	}
 
 	protected function setUp() {
 		parent::setUp();
-		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
 		$this->skin->getContext()->setLanguage( Language::factory( 'en' ) );
 	}
 
 	/**
-	 * Internal helper to test the sidebar
-	 * @param $expected
-	 * @param $text
-	 * @param $message (Default: '')
-	 * @todo this assert method to should be converted to a test using a dataprovider..
+	 * @covers SkinTemplate::addToSidebarPlain
+	 * @dataProvider provideSideBarTest
+	 * @group Database
 	 */
-	private function assertSideBar( $expected, $text, $message = '' ) {
+	public function testSideBar( $expected, $text, $message = '' ) {
 		$bar = array();
 		$this->skin->addToSidebarPlain( $bar, $text );
 		$this->assertEquals( $expected, $bar, $message );
 	}
 
-	/**
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testSidebarWithOnlyTwoTitles() {
-		$this->assertSideBar(
+	public static function provideSideBarTest() {
+		$testCases = array();
+
+		$testCases['testSidebarWithOnlyTwoTitles'] = array(
 			array(
 				'Title1' => array(),
 				'Title2' => array(),
@@ -65,17 +40,14 @@ class SideBarTest extends MediaWikiLangTestCase {
 * Title2
 '
 		);
-	}
 
-	/**
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testExpandMessages() {
-		$this->assertSidebar(
+		$titleName = MessageCache::singleton()->get( 'helppage' );
+		$title = Title::newFromText( $titleName );
+		$testCases['testExpandMessages'] = array(
 			array( 'Title' => array(
 				array(
 					'text' => 'Help',
-					'href' => $this->messages['helppage']['href'],
+					'href' => $title->getLocalURL(),
 					'id' => 'n-help',
 					'active' => null
 				)
@@ -84,13 +56,8 @@ class SideBarTest extends MediaWikiLangTestCase {
 ** helppage|help
 '
 		);
-	}
 
-	/**
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testExternalUrlsRequireADescription() {
-		$this->assertSidebar(
+		$testCases['testExternalUrlsRequireADescription'] = array(
 			array( 'Title' => array(
 				# ** http://www.mediawiki.org/| Home
 				array(
@@ -108,15 +75,9 @@ class SideBarTest extends MediaWikiLangTestCase {
 ** http://valid.no.desc.org/
 '
 		);
-	}
 
-	/**
-	 * bug 33321 - Make sure there's a | after transforming.
-	 * @group Database
-	 * @covers SkinTemplate::addToSidebarPlain
-	 */
-	public function testTrickyPipe() {
-		$this->assertSidebar(
+		//bug 33321 - Make sure there's a | after transforming.
+		$testCases['testTrickyPipe'] = array(
 			array( 'Title' => array(
 				# The first 2 are skipped
 				# Doesn't really test the url properly
@@ -142,8 +103,9 @@ class SideBarTest extends MediaWikiLangTestCase {
 ** {{PLURAL:1|page-to-go-to{{int:pipe-separator/en}}title-to-display|branch not taken}}
 '
 		);
-	}
 
+		return $testCases;
+	}
 
 	#### Attributes for external links ##########################
 	private function getAttribs() {
@@ -187,7 +149,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test $wgExternaLinkTarget in sidebar
-	 * @dataProvider dataRespectExternallinktarget
+	 * @dataProvider provideRespectExternallinktarget
 	 */
 	public function testRespectExternallinktarget( $externalLinkTarget ) {
 		$this->setMwGlobals( 'wgExternalLinkTarget', $externalLinkTarget );
@@ -197,7 +159,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $attribs['target'], $externalLinkTarget );
 	}
 
-	public static function dataRespectExternallinktarget() {
+	public static function provideRespectExternallinktarget() {
 		return array(
 			array( '_blank' ),
 			array( '_self' ),
