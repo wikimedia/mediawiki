@@ -828,6 +828,13 @@ class DatabaseSqlite extends DatabaseBase {
 		return '(' . implode( ') || (', $stringList ) . ')';
 	}
 
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = array()
+	) {
+		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+	}
+
 	/**
 	 * @throws MWException
 	 * @param $oldName

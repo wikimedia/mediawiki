@@ -193,10 +193,9 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		// JOIN on tag_summary
-		$tables[] = 'tag_summary';
-		$join_conds['tag_summary'] = array( 'LEFT JOIN', "ts_$join_cond=$join_cond" );
-		$fields[] = 'ts_tags';
+		$fields['ts_tags'] = wfGetDB( DB_SLAVE )->buildGroupConcatField(
+			',', 'change_tag', 'ct_tag', "ct_$join_cond=$join_cond"
+		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
