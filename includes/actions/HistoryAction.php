@@ -37,6 +37,9 @@ class HistoryAction extends FormlessAction {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
 
+	/** @var array Array of message keys and strings */
+	public $message;
+
 	public function getName() {
 		return 'history';
 	}
@@ -341,14 +344,28 @@ class HistoryAction extends FormlessAction {
  * @ingroup Actions
  */
 class HistoryPager extends ReverseChronologicalPager {
-	public $lastRow = false, $counter, $historyPage, $buttons, $conds;
+	/**
+	 * @var bool|stdClass
+	 */
+	public $lastRow = false;
+
+	public $counter, $historyPage, $buttons, $conds;
+
 	protected $oldIdChecked;
+
 	protected $preventClickjacking = false;
 	/**
 	 * @var array
 	 */
 	protected $parentLens;
 
+	/**
+	 * @param HistoryAction $historyPage
+	 * @param string $year
+	 * @param string $month
+	 * @param string $tagFilter
+	 * @param array $conds
+	 */
 	function __construct( $historyPage, $year = '', $month = '', $tagFilter = '', $conds = array() ) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
@@ -397,6 +414,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		return 'rev_timestamp';
 	}
 
+	/**
+	 * @param stdClass $row
+	 * @return string
+	 */
 	function formatRow( $row ) {
 		if ( $this->lastRow ) {
 			$latest = ( $this->counter == 1 && $this->mIsFirst );
@@ -537,14 +558,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
-	 * @param $row Object: the database row corresponding to the previous line.
-	 * @param $next Mixed: the database row corresponding to the next line
+	 * @param stdObject $row The database row corresponding to the previous line.
+	 * @param mixed $next The database row corresponding to the next line
 	 *   (chronologically previous)
-	 * @param $notificationtimestamp
-	 * @param $latest Boolean: whether this row corresponds to the page's latest revision.
-	 * @param $firstInList Boolean: whether this row corresponds to the first
+	 * @param bool|string $notificationtimestamp
+	 * @param bool $latest Whether this row corresponds to the page's latest revision.
+	 * @param bool $firstInList Whether this row corresponds to the first
 	 *   displayed on this history page.
-	 * @return String: HTML output for the row
+	 * @return string HTML output for the row
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
 		$latest = false, $firstInList = false ) {
