@@ -542,6 +542,7 @@ class SpecialPageFactory {
 	 * @param $name String
 	 * @param $subpage String|Bool
 	 *
+	 * @throws MWException
 	 * @return String
 	 */
 	static function getLocalNameFor( $name, $subpage = false ) {
@@ -563,7 +564,7 @@ class SpecialPageFactory {
 				}
 			}
 			if ( !$found ) {
-				wfWarn( "Did not find alias for special page '$name'. " .
+				throw new MWException( "Did not find alias for special page '$name'. " .
 					"Perhaps no aliases are defined for it?" );
 			}
 		}
