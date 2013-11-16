@@ -470,6 +470,40 @@ abstract class File {
 	}
 
 	/**
+	 * Gives a (possibly empty) list of languages to render
+	 * the file in.
+	 *
+	 * If the file doesn't have translations, or if the file
+	 * format does not support that sort of thing, returns
+	 * an empty array.
+	 *
+	 * @return Array
+	 */
+	public function getAvailableLanguages() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getAvailableLanguages( $this );
+		} else {
+			return array();
+		}
+	}
+
+	/**
+	 * In files that support multiple language, what is the default language
+	 * to use if none specified.
+	 *
+	 * @return String lang code, or null if filetype doesn't support multiple languages.
+	 */
+	public function getDefaultRenderLanguage() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getDefaultRenderLanguage( $this );
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Will the thumbnail be animated if one would expect it to be.
 	 *
 	 * Currently used to add a warning to the image description page
