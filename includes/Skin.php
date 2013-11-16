@@ -1559,7 +1559,7 @@ abstract class Skin extends ContextSource {
 	 * editSectionLinkForOther().
 	 *
 	 * @param $nt      Title  The title being linked to (may not be the same as
-	 *   $wgTitle, if the section is included from a template)
+	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
 	 * @param string $tooltip The tooltip to use for the link: will be escaped
