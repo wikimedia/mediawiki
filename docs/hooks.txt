@@ -1909,6 +1909,7 @@ that tests continue to run properly.
 my talk page, my contributions" etc).
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)
 &$title: Title object representing the current page
+$skin: Skin object providing context (e.g. to check if the user is logged in, etc.)
 
 'PingLimiter': Allows extensions to override the results of User::pingLimiter().
 &$user : User performing the action
