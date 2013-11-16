@@ -30,7 +30,6 @@
  * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
-
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
 	private $mBufferResult = false, $mBuffer, $mDisabled = false;
 
@@ -156,17 +155,20 @@ abstract class ApiFormatBase extends ApiBase {
 <!DOCTYPE HTML>
 <html>
 <head>
-<?php if ( $this->mUnescapeAmps ) {
+<?php
+			if ( $this->mUnescapeAmps ) {
 ?>	<title>MediaWiki API</title>
-<?php } else {
+<?php
+			} else {
 ?>	<title>MediaWiki API Result</title>
-<?php } ?>
+<?php
+			}
+?>
 </head>
 <body>
 <?php
-
-
 			if ( !$isHelpScreen ) {
+// @codingStandardsIgnoreStart Exclude long line from CodeSniffer checks
 ?>
 <br />
 <small>
@@ -179,15 +181,14 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 </small>
 <pre style='white-space: pre-wrap;'>
 <?php
-
-
-			} else { // don't wrap the contents of the <pre> for help screens
-			          // because these are actually formatted to rely on
-			          // the monospaced font for layout purposes
+// @codingStandardsIgnoreEnd
+			// don't wrap the contents of the <pre> for help screens
+			// because these are actually formatted to rely on
+			// the monospaced font for layout purposes
+			} else {
 ?>
 <pre>
 <?php
-
 			}
 		}
 	}
@@ -206,8 +207,6 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 </body>
 </html>
 <?php
-
-
 		}
 	}
 
@@ -281,7 +280,11 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
 		// This regex hacks around bug 13218 (&quot; included in the URL)
-		$text = preg_replace( "#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
+		$text = preg_replace(
+			"#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#",
+			'<a href="\\1">\\1</a>\\3\\4',
+			$text
+		);
 
 		/**
 		 * Temporary fix for bad links in help messages. As a special case,

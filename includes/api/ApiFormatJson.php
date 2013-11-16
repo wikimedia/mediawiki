@@ -81,8 +81,10 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getParamDescription() {
 		return array(
-			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
-			'utf8' => 'If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
+			'callback' => 'If specified, wraps the output into a given function ' .
+				'call. For safety, all user-specific data will be restricted.',
+			'utf8' => 'If specified, encodes most (but not all) non-ASCII ' .
+				'characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
 		);
 	}
 

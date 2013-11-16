@@ -31,7 +31,6 @@
  * @ingroup API
  */
 class ApiDelete extends ApiBase {
-
 	/**
 	 * Extracts the title, token, and reason from the request parameters and invokes
 	 * the local delete() function with these as arguments. It does not make use of
@@ -52,7 +51,14 @@ class ApiDelete extends ApiBase {
 		$user = $this->getUser();
 
 		if ( $titleObj->getNamespace() == NS_FILE ) {
-			$status = self::deleteFile( $pageObj, $user, $params['token'], $params['oldimage'], $reason, false );
+			$status = self::deleteFile(
+				$pageObj,
+				$user,
+				$params['token'],
+				$params['oldimage'],
+				$reason,
+				false
+			);
 		} else {
 			$status = self::delete( $pageObj, $user, $params['token'], $reason );
 		}
@@ -135,7 +141,9 @@ class ApiDelete extends ApiBase {
 	 * @param $suppress bool
 	 * @return Status|array
 	 */
-	public static function deleteFile( Page $page, User $user, $token, $oldimage, &$reason = null, $suppress = false ) {
+	public static function deleteFile( Page $page, User $user, $token, $oldimage,
+		&$reason = null, $suppress = false
+	) {
 		$title = $page->getTitle();
 		$errors = self::getPermissionsError( $title, $user, $token );
 		if ( count( $errors ) ) {
@@ -211,9 +219,11 @@ class ApiDelete extends ApiBase {
 			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
 			'token' => 'A delete token previously retrieved through prop=info',
-			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used',
+			'reason'
+				=> 'Reason for the deletion. If not set, an automatically generated reason will be used',
 			'watch' => 'Add the page to your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+			'watchlist' => 'Unconditionally add or remove the page from your ' .
+				'watchlist, use preferences or do not change watch',
 			'unwatch' => 'Remove the page from your watchlist',
 			'oldimage' => 'The name of the old image to delete as provided by iiprop=archivename'
 		);
@@ -258,7 +268,8 @@ class ApiDelete extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=delete&title=Main%20Page&token=123ABC' => 'Delete the Main Page',
-			'api.php?action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move' => 'Delete the Main Page with the reason "Preparing for move"',
+			'api.php?action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
+				=> 'Delete the Main Page with the reason "Preparing for move"',
 		);
 	}
 
