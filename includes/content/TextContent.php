@@ -156,14 +156,14 @@ class TextContent extends AbstractContent {
 	/**
 	 * Diff this content object with another content object.
 	 *
-	 * @since 1.21diff
+	 * @since 1.21
 	 *
 	 * @param $that Content: The other content object to compare this content
 	 * object to.
 	 * @param $lang Language: The language object to use for text segmentation.
 	 *    If not given, $wgContentLang is used.
 	 *
-	 * @return DiffResult: A diff representing the changes that would have to be
+	 * @return Diff A diff representing the changes that would have to be
 	 *    made to this content object to make it equal to $that.
 	 */
 	public function diff( Content $that, Language $lang = null ) {
@@ -178,7 +178,7 @@ class TextContent extends AbstractContent {
 		}
 
 		$otext = $this->getNativeData();
-		$ntext = $this->getNativeData();
+		$ntext = $that->getNativeData();
 
 		# Note: Use native PHP diff, external engines don't give us abstract output
 		$ota = explode( "\n", $lang->segmentForDiff( $otext ) );
