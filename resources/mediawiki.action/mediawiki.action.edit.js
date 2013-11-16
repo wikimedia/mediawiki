@@ -130,8 +130,8 @@
 	};
 
 	// Legacy (for compatibility with the code previously in skins/common.edit.js)
-	window.addButton = toolbar.addButton;
-	window.insertTags = toolbar.insertTags;
+	mw.log.deprecate( window, 'addButton', toolbar.addButton, 'Use mw.toolbar.addButton instead' );
+	mw.log.deprecate( window, 'insertTags', toolbar.insertTags, 'Use mw.toolbar.insertTags instead' );
 
 	// Expose API publicly
 	mw.toolbar = toolbar;

@@ -73,6 +73,8 @@ changes to languages because of Bugzilla reports.
 ** The rc_type field of recentchanges will be deprecated in a future point
    release.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
+* The global functions addButton and insertTags (for mw.toolbar.addButton and
+  mw.toolbar.insertTags) now emits mw.log.warn when accessed.
 
 == Compatibility ==
 
