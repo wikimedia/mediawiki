@@ -219,7 +219,7 @@ class LoginForm extends SpecialPage {
 			return;
 		}
 
-		$status = $this->addNewaccountInternal();
+		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
