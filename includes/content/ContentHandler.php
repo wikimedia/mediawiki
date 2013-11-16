@@ -354,6 +354,8 @@ abstract class ContentHandler {
 	 * @throws MWException if the model id isn't known.
 	 */
 	public static function getLocalizedName( $name ) {
+		// Messages: content-model-wikitext, content-model-text,
+		// content-model-javascript, content-model-css
 		$key = "content-model-$name";
 
 		$msg = wfMessage( $key );
