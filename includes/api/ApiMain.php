@@ -110,6 +110,7 @@ class ApiMain extends ApiBase {
 		'none' => 'ApiFormatNone',
 	);
 
+	// @codingStandardsIgnoreStart String contenation on "msg" not allowed to break long line
 	/**
 	 * List of user roles that are specifically relevant to the API.
 	 * array( 'right' => array ( 'msg'    => 'Some message with a $1',
@@ -126,6 +127,7 @@ class ApiMain extends ApiBase {
 			'params' => array( ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 )
 		)
 	);
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var ApiFormatBase
@@ -144,7 +146,8 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
-	 * @param $context IContextSource|WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
+	 * @param $context IContextSource|WebRequest - if this is an instance of
+	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite should be set to true if the api may modify data
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
@@ -459,6 +462,7 @@ class ApiMain extends ApiBase {
 		} else {
 			$origins = explode( ' ', $originHeader );
 		}
+
 		if ( !in_array( $originParam, $origins ) ) {
 			// origin parameter set but incorrect
 			// Send a 403 response
@@ -469,7 +473,14 @@ class ApiMain extends ApiBase {
 
 			return false;
 		}
-		if ( self::matchOrigin( $originParam, $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions ) ) {
+
+		$matchOrigin = self::matchOrigin(
+			$originParam,
+			$wgCrossSiteAJAXdomains,
+			$wgCrossSiteAJAXdomainExceptions
+		);
+
+		if ( $matchOrigin ) {
 			$response->header( "Access-Control-Allow-Origin: $originParam" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
 			$this->getOutput()->addVaryHeader( 'Origin' );
@@ -483,7 +494,8 @@ class ApiMain extends ApiBase {
 	 * @param string $value Origin header
 	 * @param array $rules Set of wildcard rules
 	 * @param array $exceptions Set of wildcard rules
-	 * @return bool True if $value matches a rule in $rules and doesn't match any rules in $exceptions, false otherwise
+	 * @return bool True if $value matches a rule in $rules and doesn't match
+	 *    any rules in $exceptions, false otherwise
 	 */
 	protected static function matchOrigin( $value, $rules, $exceptions ) {
 		foreach ( $rules as $rule ) {
@@ -650,7 +662,10 @@ class ApiMain extends ApiBase {
 				'code' => 'internal_api_error_' . get_class( $e ),
 				'info' => $info,
 			);
-			ApiResult::setContent( $errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : '' );
+			ApiResult::setContent(
+				$errMessage,
+				$wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : ''
+			);
 		}
 
 		// Remember all the warnings to re-add them later
@@ -727,7 +742,9 @@ class ApiMain extends ApiBase {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
+				if ( !$this->getUser()
+					->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() )
+				) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
@@ -892,7 +909,8 @@ class ApiMain extends ApiBase {
 		static $table;
 		if ( !$table ) {
 			$chars = ';@$!*(),/:';
-			for ( $i = 0; $i < strlen( $chars ); $i++ ) {
+			$numChars = strlen( $chars );
+			for ( $i = 0; $i < $numChars; $i++ ) {
 				$table[rawurlencode( $chars[$i] )] = $chars[$i];
 			}
 		}
@@ -1053,13 +1071,17 @@ class ApiMain extends ApiBase {
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
-			'servedby' => 'Include the hostname that served the request in the results. Unconditionally shown on error',
+			'servedby' => 'Include the hostname that served the request in the ' .
+				'results. Unconditionally shown on error',
 			'origin' => array(
-				'When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain.',
-				'This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body).',
-				'This must match one of the origins in the Origin: header exactly, so it has to be set to something like http://en.wikipedia.org or https://meta.wikimedia.org .',
-				'If this parameter does not match the Origin: header, a 403 response will be returned.',
-				'If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.',
+				'When accessing the API using a cross-domain AJAX request (CORS), set this to the',
+				'originating domain. This must be included in any pre-flight request, and',
+				'therefore must be part of the request URI (not the POST body). This must match',
+				'one of the origins in the Origin: header exactly, so it has to be set to ',
+				'something like http://en.wikipedia.org or https://meta.wikimedia.org . If this',
+				'parameter does not match the Origin: header, a 403 response will be returned. If',
+				'this parameter matches the Origin: header and the origin is whitelisted, an',
+				'Access-Control-Allow-Origin header will be set.',
 			),
 		);
 	}
@@ -1073,14 +1095,14 @@ class ApiMain extends ApiBase {
 		return array(
 			'',
 			'',
-			'**********************************************************************************************************',
-			'**                                                                                                      **',
-			'**                      This is an auto-generated MediaWiki API documentation page                      **',
-			'**                                                                                                      **',
-			'**                                     Documentation and Examples:                                      **',
-			'**                                  https://www.mediawiki.org/wiki/API                                  **',
-			'**                                                                                                      **',
-			'**********************************************************************************************************',
+			'**********************************************************************************************',
+			'**                                                                                          **',
+			'**                This is an auto-generated MediaWiki API documentation page                **',
+			'**                                                                                          **',
+			'**                               Documentation and Examples:                                **',
+			'**                            https://www.mediawiki.org/wiki/API                            **',
+			'**                                                                                          **',
+			'**********************************************************************************************',
 			'',
 			'Status:                All features shown on this page should be working, but the API',
 			'                       is still in active development, and may change at any time.',
@@ -1093,13 +1115,15 @@ class ApiMain extends ApiBase {
 			'                       In the case of an invalid action being passed, these will have a value',
 			'                       of "unknown_action"',
 			'',
-			'                       For more information see https://www.mediawiki.org/wiki/API:Errors_and_warnings',
+			'                       For more information see https://www.mediawiki.org' .
+				'/wiki/API:Errors_and_warnings',
 			'',
 			'Documentation:         https://www.mediawiki.org/wiki/API:Main_page',
 			'FAQ                    https://www.mediawiki.org/wiki/API:FAQ',
 			'Mailing list:          https://lists.wikimedia.org/mailman/listinfo/mediawiki-api',
 			'Api Announcements:     https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce',
-			'Bugs & Requests:       https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts',
+			'Bugs & Requests:       https://bugzilla.wikimedia.org/buglist.cgi?component=API&' .
+				'bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts',
 			'',
 			'',
 			'',
@@ -1132,7 +1156,8 @@ class ApiMain extends ApiBase {
 			'    Victor Vasiliev - vasilvv @ gmail . com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
-			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead developer Sep 2006-Sep 2007, 2012-present)',
+			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead ' .
+				'developer Sep 2006-Sep 2007, 2012-present)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at https://bugzilla.wikimedia.org/'
@@ -1221,7 +1246,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * @param $module ApiBase
-	 * @param string $paramName What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @param string $paramName What type of request is this? e.g. action,
+	 *    query, list, prop, meta, format
 	 * @return string
 	 */
 	public static function makeHelpMsgHeader( $module, $paramName ) {
