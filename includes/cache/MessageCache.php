@@ -1028,6 +1028,7 @@ class MessageCache {
 
 		wfProfileIn( __METHOD__ );
 		if ( !$title || !$title instanceof Title ) {
+			wfDeprecated( __METHOD__ . ' without parameter $title (should be a Title object)', '1.23' );
 			global $wgTitle;
 			$title = $wgTitle;
 		}

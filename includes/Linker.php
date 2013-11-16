@@ -1058,7 +1058,6 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array(), $title = null ) {
-		global $wgTitle;
 		$class = "external";
 		if ( $linktype ) {
 			$class .= " $linktype";
@@ -1073,6 +1072,8 @@ class Linker {
 		}
 
 		if ( !$title ) {
+			wfDeprecated( __METHOD__ . ' without parameter $title (should be a Title object)', '1.23' );
+			global $wgTitle;
 			$title = $wgTitle;
 		}
 		$attribs['rel'] = Parser::getExternalLinkRel( $url, $title );
