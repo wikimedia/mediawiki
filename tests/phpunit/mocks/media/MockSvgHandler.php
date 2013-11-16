@@ -1,6 +1,6 @@
 <?php
 /**
- * Fake handler for Bitmap images.
+ * Fake handler for SVG images.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,12 +21,8 @@
  * @ingroup Media
  */
 
-class MockBitmapHandler extends BitmapHandler {
+class MockSvgHandler extends SvgHandler {
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		return MockImageHandler::doFakeTransform( $this, $image, $dstPath, $dstUrl, $params, $flags );
-	}
-
-	function doClientImage( $image, $scalerParams ) {
-			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 	}
 }
