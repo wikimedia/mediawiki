@@ -8254,7 +8254,7 @@ Non-animated images use {{msg-mw|svg-long-desc}}.',
 * $1 - the error message
 See also:
 * {{msg-mw|Thumbnail error}}',
-'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image' => 'Displayed under the file on file description pages, when a reduced-size thumbnail of the original file is being displayed.',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail.
 
 Can be followed by {{msg-mw|Show-big-image-other}}.
