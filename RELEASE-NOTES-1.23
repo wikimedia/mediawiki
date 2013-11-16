@@ -51,6 +51,7 @@ production.
   behavior of several other features where (bogus) section edit links will
   disappear, such as file description pages loaded via $wgUseInstantCommons or
   pages transcluded cross-wiki via $wgEnableScaryTranscluding.
+* (bug 56912) Show correct link color on cached result of Special:DeadendPages.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
