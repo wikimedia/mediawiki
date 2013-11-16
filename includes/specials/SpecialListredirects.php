@@ -76,20 +76,19 @@ class ListredirectsPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		$batch = new LinkBatch;
+		if ( !$res->numRows() ) {
+			return;
+		}
 
+		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			$batch->addObj( $this->getRedirectTarget( $row ) );
 		}
-
 		$batch->execute();
 
 		// Back to start for display
-		if ( $res->numRows() > 0 ) {
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
-		}
+		$res->seek( 0 );
 	}
 
 	protected function getRedirectTarget( $row ) {
