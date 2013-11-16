@@ -741,7 +741,7 @@ class SkinTemplate extends Skin {
 			$personal_urls[$login_id] = $login_url;
 		}
 
-		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title ) );
+		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title, $this ) );
 		wfProfileOut( __METHOD__ );
 		return $personal_urls;
 	}
