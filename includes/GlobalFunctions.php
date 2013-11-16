@@ -496,17 +496,18 @@ function wfAppendQuery( $url, $query ) {
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest;
-	$serverUrl = $wgServer;
 	if ( $defaultProto === PROTO_CANONICAL ) {
 		$serverUrl = $wgCanonicalServer;
-	}
-	// Make $wgInternalServer fall back to $wgServer if not set
-	if ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
+	} elseif ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
+		// Make $wgInternalServer fall back to $wgServer if not set
 		$serverUrl = $wgInternalServer;
+	} else {
+		$serverUrl = $wgServer;
+		if ( $defaultProto === PROTO_CURRENT ) {
+			$defaultProto = $wgRequest->getProtocol() . '://';
+		}
 	}
-	if ( $defaultProto === PROTO_CURRENT ) {
-		$defaultProto = $wgRequest->getProtocol() . '://';
-	}
+
 
 	// Analyze $serverUrl to obtain its protocol
 	$bits = wfParseUrl( $serverUrl );
