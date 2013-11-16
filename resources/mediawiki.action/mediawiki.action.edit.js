@@ -133,7 +133,7 @@
 	window.addButton = toolbar.addButton;
 	window.insertTags = toolbar.insertTags;
 
-	// Explose API publicly
+	// Expose API publicly
 	mw.toolbar = toolbar;
 
 	$( function () {
