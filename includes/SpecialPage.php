@@ -259,11 +259,7 @@ class SpecialPage {
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
-		if ( $name ) {
-			return Title::makeTitle( NS_SPECIAL, $name, $fragment );
-		} else {
-			throw new MWException( "Invalid special page name \"$name\"" );
-		}
+		return Title::makeTitle( NS_SPECIAL, $name, $fragment );
 	}
 
 	/**
