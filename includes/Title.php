@@ -273,7 +273,7 @@ class Title {
 	/**
 	 * Make a Title object from a DB row
 	 *
-	 * @param $row Object database row (needs at least page_title,page_namespace)
+	 * @param stdClass $row Object database row (needs at least page_title,page_namespace)
 	 * @return Title corresponding Title
 	 */
 	public static function newFromRow( $row ) {
@@ -286,7 +286,7 @@ class Title {
 	 * Load Title object fields from a DB row.
 	 * If false is given, the title will be treated as non-existing.
 	 *
-	 * @param $row Object|bool database row
+	 * @param $row stdClass|bool database row
 	 */
 	public function loadFromRow( $row ) {
 		if ( $row ) { // page found
