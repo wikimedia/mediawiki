@@ -241,6 +241,26 @@ class LanguageTest extends LanguageClassesTestCase {
 			$this->getLang()->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
 			'truncate suffix, large ellipsis'
 		);
+		$this->assertEquals(
+			"123XXX",
+			$this->getLang()->truncate( "123                ", 9, 'XXX' ),
+			'truncate prefix, with spaces'
+		);
+		$this->assertEquals(
+			"12345XXX",
+			$this->getLang()->truncate( "12345            8", 11, 'XXX' ),
+			'truncate prefix, with spaces and non-space ending'
+		);
+		$this->assertEquals(
+			"XXX234",
+			$this->getLang()->truncate( "1              234", -8, 'XXX' ),
+			'truncate suffix, with spaces'
+		);
+		$this->assertEquals(
+			"12345XXX",
+			$this->getLang()->truncate( "1234567890", 5, 'XXX', false ),
+			'truncate without adjustment'
+		);
 	}
 
 	/**
