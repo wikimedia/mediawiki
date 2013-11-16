@@ -692,4 +692,28 @@ abstract class MediaHandler {
 		return 0;
 	}
 
+	/**
+	 * Get list of languages file can be viewed in.
+	 *
+	 * @param File $file
+	 * @return Array Array of language codes, or empty array if unsupported.
+	 */
+	public function getAvailableLanguages( File $file ) {
+		return array();
+	}
+
+	/**
+	 * On file types that support renderings in multiple languages,
+	 * which language is used by default if unspecified.
+	 *
+	 * If getAvailableLanguages returns a non-empty array, this must return
+	 * a valid language code. Otherwise can return null if files of this
+	 * type do not support alternative language renderings.
+	 *
+	 * @param File $file
+	 * @return String language code or null if multi-language not supported for filetype.
+	 */
+	public function getDefaultRenderLanguage( File $file ) {
+		return null;
+	}
 }
