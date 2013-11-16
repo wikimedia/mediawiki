@@ -37,6 +37,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 
 	// From DatabaseMysql
 	protected function mysqlConnect( $realServer ) {}
+	protected function mysqlSetCharset( $charset ) {}
 	protected function mysqlFreeResult( $res ) {}
 	protected function mysqlFetchObject( $res ) {}
 	protected function mysqlFetchArray( $res ) {}
