@@ -27,6 +27,29 @@
  * @ingroup SpecialPage
  */
 abstract class PageQueryPage extends QueryPage {
+
+	/**
+	 * Pre-cache page existence to speed up link generation
+	 *
+	 * @param $db DatabaseBase connection
+	 * @param ResultWrapper $res
+	 */
+	public function preprocessResults( $db, $res ) {
+		// nothing to do, if query is fresh and only select existing pages
+		// or there are no data
+		if ( !$this->isCached() || !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch();
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+		}
+		$batch->execute();
+
+		$res->seek( 0 );
+	}
+
 	/**
 	 * Format the result as a simple link to the page
 	 *
@@ -41,7 +64,11 @@ abstract class PageQueryPage extends QueryPage {
 
 		if ( $title instanceof Title ) {
 			$text = $wgContLang->convert( $title->getPrefixedText() );
-			return Linker::linkKnown( $title, htmlspecialchars( $text ) );
+			if ( $this->isCached() ) {
+				return Linker::link( $title, htmlspecialchars( $text ) );
+			} else {
+				return Linker::linkKnown( $title, htmlspecialchars( $text ) );
+			}
 		} else {
 			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
 				Linker::getInvalidTitleDescription( $this->getContext(), $row->namespace, $row->title ) );
