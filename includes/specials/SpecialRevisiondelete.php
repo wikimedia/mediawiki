@@ -194,6 +194,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showConvenienceLinks() {
 		# Give a link to the logs/hist for this page
 		if ( $this->targetObj ) {
+			// Also set header tabs to be for the target.
+			$this->getSkin()->setRelevantTitle( $this->targetObj );
+
 			$links = array();
 			$links[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
