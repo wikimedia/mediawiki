@@ -98,7 +98,10 @@ class ApiComparePages extends ApiBase {
 
 			return $title->getLatestRevID();
 		}
-		$this->dieUsage( 'inputneeded', 'A title, a page ID, or a revision number is needed for both the from and the to parameters' );
+		$this->dieUsage(
+			'A title, a page ID, or a revision number is needed for both the from and the to parameters',
+			'inputneeded'
+		);
 	}
 
 	public function getAllowedParams() {
