@@ -550,10 +550,12 @@
 		 * Get the URL to this title
 		 *
 		 * @see mw.util#getUrl
+		 * @param {Object} [params] A mapping of query parameter names to values,
+		 *     e.g. `{ action: 'edit' }`.
 		 * @return {string}
 		 */
-		getUrl: function () {
-			return mw.util.getUrl( this.toString() );
+		getUrl: function ( params ) {
+			return mw.util.getUrl( this.toString(), params );
 		},
 
 		/**

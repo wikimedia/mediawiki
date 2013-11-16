@@ -164,8 +164,8 @@
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
 		 * @param {string} str Page name to get the link for.
-		 * @param {Object} params A mapping of query parameter names to values,
-		 *     e.g. { action: 'edit' }. Optional.
+		 * @param {Object} [params] A mapping of query parameter names to values,
+		 *     e.g. `{ action: 'edit' }`.
 		 * @return {string} Location for a page with name of `str` or boolean false on error.
 		 */
 		getUrl: function ( str, params ) {
