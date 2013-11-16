@@ -502,6 +502,7 @@ class LogEventsList extends ContextSource {
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
+	 * - useMaster boolean Use master DB
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -515,6 +516,7 @@ class LogEventsList extends ContextSource {
 			'wrap' => "$1",
 			'flags' => 0,
 			'useRequestParams' => false,
+			'useMaster' => false,
 		);
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -548,6 +550,9 @@ class LogEventsList extends ContextSource {
 			$pager->mIsBackwards = false;
 		}
 
+		if ( $param['useMaster'] ) {
+			$pager->mDb = wfGetDB( DB_MASTER );
+		}
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}

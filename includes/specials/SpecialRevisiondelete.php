@@ -55,6 +55,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** The RevDel_List object, storing the list of items to be deleted/undeleted */
 	var $list;
 
+	/** Was the DB modified in this request */
+	protected $wasSaved = false;
+
 	/**
 	 * UI labels for each type.
 	 */
@@ -177,14 +180,24 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Show relevant lines from the deletion log
 		$deleteLogPage = new LogPage( 'delete' );
 		$output->addHTML( "<h2>" . $deleteLogPage->getName()->escaped() . "</h2>\n" );
-		LogEventsList::showLogExtract( $output, 'delete',
-			$this->targetObj, '', array( 'lim' => 25, 'conds' => $qc ) );
+		LogEventsList::showLogExtract(
+			$output,
+			'delete',
+			$this->targetObj,
+			'', /* user */
+			array( 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved )
+		);
 		# Show relevant lines from the suppression log
 		if ( $user->isAllowed( 'suppressionlog' ) ) {
 			$suppressLogPage = new LogPage( 'suppress' );
 			$output->addHTML( "<h2>" . $suppressLogPage->getName()->escaped() . "</h2>\n" );
-			LogEventsList::showLogExtract( $output, 'suppress',
-				$this->targetObj, '', array( 'lim' => 25, 'conds' => $qc ) );
+			LogEventsList::showLogExtract(
+				$output,
+				'suppress',
+				$this->targetObj,
+				'',
+				array( 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved )
+			);
 		}
 	}
 
@@ -523,6 +536,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function success() {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeLabels['success'] );
+		$this->wasSaved = true;
 		$this->list->reloadFromMaster();
 		$this->showForm();
 	}
