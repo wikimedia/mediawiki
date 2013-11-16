@@ -65,8 +65,11 @@ class ApiComparePages extends ApiBase {
 		$difftext = $de->getDiffBody();
 
 		if ( $difftext === false ) {
-			$this->dieUsage( 'The diff cannot be retrieved. ' .
-				'Maybe one or both revisions do not exist or you do not have permission to view them.', 'baddiff' );
+			$this->dieUsage(
+				'The diff cannot be retrieved. Maybe one or both revisions do ' .
+					'not exist or you do not have permission to view them.',
+				'baddiff'
+			);
 		} else {
 			ApiResult::setContent( $vals, $difftext );
 		}
@@ -164,7 +167,11 @@ class ApiComparePages extends ApiBase {
 			array( 'code' => 'inputneeded', 'info' => 'A title or a revision is needed' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'nosuchpageid', 'pageid' ),
-			array( 'code' => 'baddiff', 'info' => 'The diff cannot be retrieved. Maybe one or both revisions do not exist or you do not have permission to view them.' ),
+			array(
+				'code' => 'baddiff',
+				'info' => 'The diff cannot be retrieved. Maybe one or both ' .
+					'revisions do not exist or you do not have permission to view them.'
+			),
 		) );
 	}
 

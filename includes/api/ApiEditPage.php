@@ -32,7 +32,6 @@
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
-
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -88,7 +87,8 @@ class ApiEditPage extends ApiBase {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
 
-		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
+		// @todo Ask handler whether direct editing is supported at all! make
+		// allowFlatEdit() method or some such
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
 			$params['contentformat'] = $contentHandler->getDefaultFormat();
@@ -156,7 +156,10 @@ class ApiEditPage extends ApiBase {
 			if ( !is_null( $params['section'] ) ) {
 				if ( !$contentHandler->supportsSections() ) {
 					$modelName = $contentHandler->getModelID();
-					$this->dieUsage( "Sections are not supported for this content model: $modelName.", 'sectionsnotsupported' );
+					$this->dieUsage(
+						"Sections are not supported for this content model: $modelName.",
+						'sectionsnotsupported'
+					);
 				}
 
 				if ( $params['section'] == 'new' ) {
@@ -204,13 +207,19 @@ class ApiEditPage extends ApiBase {
 			}
 
 			if ( $undoRev->getPage() != $pageObj->getID() ) {
-				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(), $titleObj->getPrefixedText() ) );
+				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(),
+					$titleObj->getPrefixedText() ) );
 			}
 			if ( $undoafterRev->getPage() != $pageObj->getID() ) {
-				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
+				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(),
+					$titleObj->getPrefixedText() ) );
 			}
 
-			$newContent = $contentHandler->getUndoContent( $pageObj->getRevision(), $undoRev, $undoafterRev );
+			$newContent = $contentHandler->getUndoContent(
+				$pageObj->getRevision(),
+				$undoRev,
+				$undoafterRev
+			);
 
 			if ( !$newContent ) {
 				$this->dieUsageMsg( 'undo-failure' );
@@ -220,8 +229,11 @@ class ApiEditPage extends ApiBase {
 
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
-			if ( is_null( $params['summary'] ) && $titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo'] ) {
-				$params['summary'] = wfMessage( 'undo-summary', $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
+			if ( is_null( $params['summary'] ) &&
+				$titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo']
+			) {
+				$params['summary'] = wfMessage( 'undo-summary' )
+					->params ( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
 			}
 		}
 
@@ -333,8 +345,9 @@ class ApiEditPage extends ApiBase {
 
 		// The following is needed to give the hook the full content of the
 		// new revision rather than just the current section. (Bug 52077)
-		if ( !is_null( $params['section'] ) && $contentHandler->supportsSections() && $titleObj->exists() ) {
-
+		if ( !is_null( $params['section'] ) &&
+			$contentHandler->supportsSections() && $titleObj->exists()
+		) {
 			$sectionTitle = '';
 			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
 			// backwards compatibility with old forms/bots).
@@ -346,7 +359,11 @@ class ApiEditPage extends ApiBase {
 
 			$contentObj = $contentHandler->unserializeContent( $content, $contentFormat );
 
-			$fullContentObj = $articleObject->replaceSectionContent( $params['section'], $contentObj, $sectionTitle );
+			$fullContentObj = $articleObject->replaceSectionContent(
+				$params['section'],
+				$contentObj,
+				$sectionTitle
+			);
 			if ( $fullContentObj ) {
 				$content = $fullContentObj->serialize( $contentFormat );
 			} else {
@@ -511,14 +528,25 @@ class ApiEditPage extends ApiBase {
 				array( 'emptynewsection' ),
 				array( 'unknownerror', 'retval' ),
 				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
-				array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
-				array( 'code' => 'sectionsnotsupported', 'info' => 'Sections are not supported for this type of page.' ),
-				array( 'code' => 'editnotsupported', 'info' => 'Editing of this type of page is not supported using '
-					. 'the text based edit API.' ),
-				array( 'code' => 'appendnotsupported', 'info' => 'This type of page can not be edited by appending '
-					. 'or prepending text.' ),
-				array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to '
-					. 'the page\'s content model' ),
+				array(
+					'code' => 'invalidsection',
+					'info' => 'The section parameter must be set to an integer or \'new\''
+				),
+				array(
+					'code' => 'sectionsnotsupported',
+					'info' => 'Sections are not supported for this type of page.'
+				),
+				array(
+					'code' => 'editnotsupported',
+					'info' => 'Editing of this type of page is not supported using the text based edit API.'
+				),
+				array(
+					'code' => 'appendnotsupported',
+					'info' => 'This type of page can not be edited by appending or prepending text.' ),
+				array(
+					'code' => 'badformat',
+					'info' => 'The requested serialization format can not be applied to the page\'s content model'
+				),
 				array( 'customcssprotected' ),
 				array( 'customjsprotected' ),
 			)
@@ -599,17 +627,22 @@ class ApiEditPage extends ApiBase {
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
-			'token' => array( 'Edit token. You can get one of these through prop=info.',
-				"The token should always be sent as the last parameter, or at least, after the {$p}text parameter"
+			'token' => array(
+				'Edit token. You can get one of these through prop=info.',
+				"The token should always be sent as the last parameter, or at " .
+					"least, after the {$p}text parameter"
 			),
-			'summary' => "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
+			'summary'
+				=> "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
-			'basetimestamp' => array( 'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
+			'basetimestamp' => array(
+				'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
 				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
-			'starttimestamp' => array( 'Timestamp when you obtained the edit token.',
+			'starttimestamp' => array(
+				'Timestamp when you obtained the edit token.',
 				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
@@ -617,9 +650,13 @@ class ApiEditPage extends ApiBase {
 			'nocreate' => 'Throw an error if the page doesn\'t exist',
 			'watch' => 'Add the page to your watchlist',
 			'unwatch' => 'Remove the page from your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
-			'md5' => array( "The MD5 hash of the {$p}text parameter, or the {$p}prependtext and {$p}appendtext parameters concatenated.",
-				'If set, the edit won\'t be done unless the hash is correct' ),
+			'watchlist' => 'Unconditionally add or remove the page from your ' .
+				'watchlist, use preferences or do not change watch',
+			'md5' => array(
+				"The MD5 hash of the {$p}text parameter, or the {$p}prependtext " .
+					"and {$p}appendtext parameters concatenated.",
+				'If set, the edit won\'t be done unless the hash is correct'
+			),
 			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
 			'appendtext' => array( "Add this text to the end of the page. Overrides {$p}text.",
 				"Use {$p}section=new to append a new section" ),
@@ -676,11 +713,14 @@ class ApiEditPage extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B\\'
+			'api.php?action=edit&title=Test&summary=test%20summary&' .
+			'text=article%20content&basetimestamp=20070824123454&token=%2B\\'
 				=> 'Edit a page (anonymous user)',
-			'api.php?action=edit&title=Test&summary=NOTOC&minor=&prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\'
+			'api.php?action=edit&title=Test&summary=NOTOC&minor=&' .
+				'prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\'
 				=> 'Prepend __NOTOC__ to a page (anonymous user)',
-			'api.php?action=edit&title=Test&undo=13585&undoafter=13579&basetimestamp=20070824123454&token=%2B\\'
+			'api.php?action=edit&title=Test&undo=13585&undoafter=13579&' .
+				'basetimestamp=20070824123454&token=%2B\\'
 				=> 'Undo r13579 through r13585 with autosummary (anonymous user)',
 		);
 	}

@@ -684,7 +684,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				=>'If translations for extmetadata property are available, fetch all of them.',
 			'extmetadatafilter'
 				=> "If specified and non-empty, only these keys will be returned for {$p}prop=extmetadata",
-			'continue' => 'If the query response includes a continue value, use it here to get another page of results',
+			'continue' => 'If the query response includes a continue value, ' .
+				'use it here to get another page of results',
 			'localonly' => 'Look only for files in the local repository',
 		);
 	}
