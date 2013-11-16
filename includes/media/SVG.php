@@ -77,6 +77,43 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
+	 * Which languages (systemLanguage attribute) is supported.
+	 *
+	 * @note This list is not guaranteed to be exhaustive.
+	 * To avoid OOM errors, we only look at first bit of a file.
+	 * Thus all languages on this list are present in the file,
+	 * but its possible for the file to have a language not on
+	 * this list.
+	 *
+	 * @param File $file
+	 * @return Array of language codes, or empty if no language switching supported.
+	 */
+	public function getAvailableLanguages( File $file ) {
+		$metadata = $file->getMetadata();
+		$langList = array();
+		if ( $metadata ) {
+			$metadata = $this->unpackMetadata( $metadata );
+			if ( isset( $metadata['translations'] ) ) {
+				foreach( $metadata['translations'] as $lang => $langType ) {
+					if ( $langType === SvgReader::LANG_FULL_MATCH ) {
+						$langList[] = $lang;
+					}
+				}
+			}
+		}
+		return $langList;
+	}
+
+	/**
+	 * What language to render file in if none selected.
+	 *
+	 * @return String language code.
+	 */
+	public function getDefaultRenderLanguage( File $file ) {
+		return 'en';
+	}
+
+	/**
 	 * We do not support making animated svg thumbnails
 	 */
 	function canAnimateThumb( $file ) {
@@ -129,7 +166,7 @@ class SvgHandler extends ImageHandler {
 		$clientHeight = $params['height'];
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
-		$lang = isset( $params['lang'] ) ? $params['lang'] : 'en';
+		$lang = isset( $params['lang'] ) ? $params['lang'] : $this->getDefaultRenderLanguage( $image );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
