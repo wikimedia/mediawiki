@@ -220,10 +220,10 @@ class ParserCache {
 	}
 
 	/**
-	 * @param $parserOutput ParserOutput
-	 * @param $article Article
-	 * @param $popts ParserOptions
-	 * @param $cacheTime Time when the cache was generated
+	 * @param ParserOutput $parserOutput
+	 * @param Article $article
+	 * @param ParserOptions $popts
+	 * @param string $cacheTime Time when the cache was generated
 	 */
 	public function save( $parserOutput, $article, $popts, $cacheTime = null ) {
 		$expire = $parserOutput->getCacheExpiry();
