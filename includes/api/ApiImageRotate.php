@@ -24,10 +24,6 @@
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Add all items from $values into the result
 	 * @param array $result output
