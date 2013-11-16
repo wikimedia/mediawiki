@@ -27,6 +27,10 @@
  * @ingroup Parser
  */
 class CacheTime {
+	/** @var  array|bool ParserOptions which have been taken into account to
+	 * produce output or false if not available.
+	 */
+	public $mUsedOptions;
 
 	var	$mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
