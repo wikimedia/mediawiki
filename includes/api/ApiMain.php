@@ -1152,11 +1152,11 @@ class ApiMain extends ApiBase {
 	protected function getCredits() {
 		return array(
 			'API developers:',
-			'    Roan Kattouw "<Firstname>.<Lastname>@gmail.com" (lead developer Sep 2007-2009)',
+			'    Roan Kattouw roan . kattouw @ gmail . com" (lead developer Sep 2007-2009)',
 			'    Victor Vasiliev - vasilvv @ gmail . com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
-			'    Yuri Astrakhan "<Firstname><Lastname>@gmail.com" (creator, lead ' .
+			'    Yuri Astrakhan yuri . astrakhan @ gmail . com" (creator, lead ' .
 				'developer Sep 2006-Sep 2007, 2012-present)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
