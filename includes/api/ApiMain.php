@@ -858,7 +858,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Log the preceding request
-	 * @param $time Time in seconds
+	 * @param int $time Time in seconds
 	 */
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();

@@ -593,7 +593,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Extract all requested fields from the row received from the database
-	 * @param $row Result row
+	 * @param stdClass $row Result row
 	 */
 	public function processDbRow( $row ) {
 		// Store Title object in various data structures
