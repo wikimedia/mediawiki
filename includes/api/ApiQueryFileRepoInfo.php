@@ -100,7 +100,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 				'Which repository properties to get (there may be more available on some wikis):',
 				' apiurl      - URL to the repository API - helpful for getting image info from the host.',
 				' name        - The key of the repository - used in e.g. ' .
-				'$wgForeignFileRepos and imageinfo return values.',
+					'$wgForeignFileRepos and imageinfo return values.',
 				' displayname - The human-readable name of the repository wiki.',
 				' rooturl     - Root URL for image paths.',
 				' local       - Whether that repository is the local one or not.',
