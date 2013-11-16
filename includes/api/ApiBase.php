@@ -1239,7 +1239,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.22
 	 * @param Status $status Status object
-	 * @throws UsageException
+	 * @throws MWException
 	 */
 	public function dieStatus( $status ) {
 		if ( $status->isGood() ) {
@@ -1519,6 +1519,7 @@ abstract class ApiBase extends ContextSource {
 	 * Internal code errors should be reported with this method
 	 * @param string $method Method or function name
 	 * @param string $message Error message
+	 * @throws MWException
 	 */
 	protected static function dieDebug( $method, $message ) {
 		throw new MWException( "Internal error in $method: $message" );
