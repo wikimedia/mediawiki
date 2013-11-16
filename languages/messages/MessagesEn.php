@@ -4663,6 +4663,11 @@ Please confirm that you really want to recreate this page.",
 'imgmultigo'       => 'Go!',
 'imgmultigoto'     => 'Go to page $1',
 
+'img-lang-opt' => '$2 ($1)',
+'img-lang-default' => '(default language)',
+'img-lang-info' => 'Render this image in $1 $2.',
+'img-lang-go' => 'Go',
+
 # Table pager
 'ascending_abbrev'         => 'asc',
 'descending_abbrev'        => 'desc',

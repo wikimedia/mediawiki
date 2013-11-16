@@ -9606,6 +9606,17 @@ See also:
 See also:
 * {{msg-mw|Imgmultigo|Submit button text}}',
 
+'img-lang-opt' => '{{optional}} Items in the language drop down on the image page for a translated SVG file. For an example see [[:File:Gerrit patchset 25838 test.svg]]. See also {{msg-mw|img-lang-info}}
+
+* $1 Language code
+* $2 Language name (Either in the language in question, or the name of that language translated to the current users interface language)',
+'img-lang-default' => 'An option in the drop down of a translatable file. For example see [[:File:Gerrit patchset 25838 test.svg]]. Used when it cannot be determined what the default fallback language is. However it should be noted that most of the time, the content displayed for this option would be in English.',
+'img-lang-info' => 'Label for drop down box. Appears underneath the image on the image description page. See [[:File:Gerrit patchset 25838 test.svg]] for an example.
+
+* $1 is a drop down box with language options (See also {{msg-mw|img-lang-opt}})
+* $2 is a submit button, which uses the text from {{msg-mw|img-lang-go}}',
+'img-lang-go' => 'Go button for the language select for translatable files. See [[:File:Gerrit patchset 25838 test.svg]] for an example. See {{msg-mw|img-lang-info}}.',
+
 # Table pager
 'ascending_abbrev' => 'Abbreviation of ascending order.
 See also:
