@@ -178,7 +178,7 @@ class TextContent extends AbstractContent {
 		}
 
 		$otext = $this->getNativeData();
-		$ntext = $this->getNativeData();
+		$ntext = $that->getNativeData();
 
 		# Note: Use native PHP diff, external engines don't give us abstract output
 		$ota = explode( "\n", $lang->segmentForDiff( $otext ) );
