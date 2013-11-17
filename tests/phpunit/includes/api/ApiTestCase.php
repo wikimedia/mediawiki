@@ -188,3 +188,5 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		);
 	}
 }
+
+
