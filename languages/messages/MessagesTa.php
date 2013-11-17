@@ -2587,7 +2587,7 @@ $1',
 'allmessagesdefault' => 'இயல்பிருப்பு உரை',
 'allmessagescurrent' => 'தற்போதைய உரை',
 'allmessagestext' => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை தகவல்களினதும் பட்டியலாகும்.
-மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [//translatewiki.net பீட்டாவிக்கி], [//www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
+மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [//translatewiki.net பீட்டாவிக்கி], [https://www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' முடக்கப்பட்டுள்ளப் படியால் இப்பக்கததை பயன்படுத்த முடியாது.",
 'allmessages-filter-legend' => 'வடிகட்டி',
 'allmessages-filter' => 'தனிப்பயனாக்கத்தின்படி வடிகட்டு.',
@@ -3303,7 +3303,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'இக்கோப்பை வெளி மென்பொருள் கொண்டு தொகுக்க',
-'edit-externally-help' => 'மேலும் தகவல்களுக்கு [//www.mediawiki.org/wiki/Manual:External_editors அமைப்பு அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
+'edit-externally-help' => 'மேலும் தகவல்களுக்கு [https://www.mediawiki.org/wiki/Manual:External_editors அமைப்பு அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'அனைத்து',
@@ -3476,7 +3476,7 @@ $5
 'version-hook-subscribedby' => 'பயன்பாடு',
 'version-version' => '(பதிப்பு $1)',
 'version-license' => 'அனுமதி',
-'version-poweredby-credits' => "இந்த் விக்கி '''[//www.mediawiki.org/ MediaWiki]''' இதன் மூலம் வழங்கப்படுகிறது, காப்புரிமை © 2001-$1 $2.",
+'version-poweredby-credits' => "இந்த் விக்கி '''[https://www.mediawiki.org/ MediaWiki]''' இதன் மூலம் வழங்கப்படுகிறது, காப்புரிமை © 2001-$1 $2.",
 'version-poweredby-others' => 'பிறர்',
 'version-license-info' => 'மீடியாவிக்கியானது இலவச மென்பொருள்.இதை நீங்கள் மற்றவர்களுக்கு கொடுப்பது அல்லது திருத்தம் செய்வது இலவச மென்பொருள் அறக்கட்டளை வழங்கிய   GNUவின் பொது உரிம விதிகளுக்குட்பட்டது;உரிமத்தின் இரண்டாவது பதிப்பு அல்லது அதற்கு மேற்பட்ட பதிப்பு (உங்கள் விருப்பத்திற்க்கேற்றவாறு).
 மீடியா உபயோகப்படக்கூடியது என்ற நம்பிக்கையில் வெளியிடப்பட்டுள்ளது, ஆனால் இதற்க்கு உத்தரவாதம் கிடையாது.மேலும் வணிகத்தன்மைக்கான அல்லது ஒரு குறிப்பிட்ட செயலுக்காகவும் உத்தரவாதம் கிடையாது.மேலும் விவரங்களுக்கு GNU பொது உரிமத்தை பார்க்கவும்.

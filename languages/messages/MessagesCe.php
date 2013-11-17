@@ -1456,7 +1456,7 @@ PICT # тайп тайпан
 Декъашхо къастичи, цун керла файлаш гойту.',
 'listfiles_search_for' => 'Лаха хIуман цIарца:',
 'imgfile' => 'файл',
-'listfiles' => 'Файлийн могӀам',
+'listfiles' => 'Файлаш',
 'listfiles_date' => 'Терахь',
 'listfiles_name' => 'Файлан цӀе',
 'listfiles_user' => 'Декъашхо',
@@ -2085,7 +2085,7 @@ PICT # тайп тайпан
 'allmessagesdefault' => 'Шаьшха йоза',
 'allmessagescurrent' => 'Карарчу хенан йоза',
 'allmessagestext' => 'ХӀара «MediaWiki» цӀерийн меттигера системан хаамийн могӀа бу.
-Хьайна MediaWiki тая лууш делахь, дехар до, проект [//translatewiki.net translatewiki.net] [//www.mediawiki.org/wiki/Localisation юьйцучу хьажа].',
+Хьайна MediaWiki тая лууш делахь, дехар до, проект [//translatewiki.net translatewiki.net] [https://www.mediawiki.org/wiki/Localisation юьйцучу хьажа].',
 'allmessages-filter-legend' => 'Литтар',
 'allmessages-filter' => 'Литтар оцу хьола хийцамца:',
 'allmessages-filter-unmodified' => 'Хийцан йоцурш',
@@ -2342,7 +2342,7 @@ PICT # тайп тайпан
 
 # External editor support
 'edit-externally' => 'Рéдаккха хlокху хlуман, арахьара диллагlарам лелош',
-'edit-externally-help' => '(мадарра хьажа. оцу [//www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
+'edit-externally-help' => '(мадарра хьажа. оцу [https://www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'массо',

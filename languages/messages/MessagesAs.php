@@ -2834,7 +2834,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'allmessagesdefault' => 'সাধাৰণ বাৰ্তা পাঠ্য',
 'allmessagescurrent' => 'বৰ্তমানৰ বাৰ্তাৰ পাঠ',
 'allmessagestext' => 'মিডিয়াৱিকি নামস্থানত থকা প্ৰণালী বাৰ্তাসমূহৰ তালিকা ইয়াত দিয়া হৈছে ।
-যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [//www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [//translatewiki.net translatewiki.net] চাওক ।',
+যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [https://www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [//translatewiki.net translatewiki.net] চাওক ।',
 'allmessagesnotsupportedDB' => "এই পৃষ্ঠা ব্যৱহাৰ কৰিব নোৱাৰি কাৰণ '''\$wgUseDatabaseMessages''' নিষ্ক্ৰিয় কৰা হৈছে ।",
 'allmessages-filter-legend' => 'ছেকনী',
 'allmessages-filter' => 'স্বনিৰ্বাচন অৱস্থাৰে পৰিস্ৰাৱন কৰক:',
@@ -3588,7 +3588,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally' => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক ।',
-'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [//www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
+'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [https://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',
@@ -3777,7 +3777,7 @@ $5
 'version-hook-subscribedby' => 'চাবস্ক্ৰাইব কৰিছে',
 'version-version' => '(সংস্কৰণ $1)',
 'version-license' => 'অনুজ্ঞাপত্ৰ',
-'version-poweredby-credits' => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
+'version-poweredby-credits' => "এই ৱিকি '''[https://www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
 'version-poweredby-others' => 'অন্য',
 'version-credits-summary' => 'আমি নিম্নোক্ত ব্যক্তিসকলক তেওঁলোকে [[Special:Version|মিডিয়াৱিকি]]লৈ দিয়া দিয়া বৰঙনিৰ বাবে চিনাকী  কৰিব বিচাৰিছো।',
 'version-license-info' => "মিডিয়াৱিকি এটা বিনামূলীয়া চফ্টৱেৰ; আপুনি Free Software Foundation -ৰ দ্বাৰা প্ৰকাশিত GNU General Public License -ৰ চুক্তিসমূহৰ অন্তৰ্গত ইয়াক পুনৰ বিতৰণ কৰিব পাৰিব অথবা সলনি কৰিব পাৰিব; হয়তো অনুজ্ঞাপত্ৰৰ সংস্কৰণ ২ 

@@ -2866,7 +2866,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagesdefault' => 'Standardtekst',
 'allmessagescurrent' => 'Gjeldande meldingstekst',
 'allmessagestext' => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
-Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
+Vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB' => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
 'allmessages-filter-legend' => 'Filtrer',
 'allmessages-filter' => 'Filtrer etter tilpassingsgrad:',
@@ -3627,7 +3627,7 @@ Andre er gøymde som standard.
 
 # External editor support
 'edit-externally' => 'Endre denne fila med eit eksternt program',
-'edit-externally-help' => '(Sjå [//www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonane] for meir informasjon)',
+'edit-externally-help' => '(Sjå [https://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonane] for meir informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3807,7 +3807,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-hook-subscribedby' => 'Brukt av',
 'version-version' => '(versjon $1)',
 'version-license' => 'Lisens',
-'version-poweredby-credits' => "Denne wikien er driven av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Denne wikien er driven av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
 'version-poweredby-translators' => 'translatewiki.net-omsetjarar',
 'version-credits-summary' => 'Me ynskjer godskriva desse personane for tilskotet deira til [[Special:Version|MediaWiki]].',

@@ -2833,7 +2833,7 @@ $1',
 
 סיסאפן קענען ענדערן די מעלדונגען דורך דרוקן אויפן נאמען פון דער מעלדונג.
 
-ביטע באזוכט [//www.mediawiki.org/wiki/Localisation מעדיעוויקי לאקאליזאציע] און [//translatewiki.net בעטאוויקי] אויב איר ווילט ביישטייערן צו דער גענערישער מעדיעוויקי לאקאליזאציע.',
+ביטע באזוכט [https://www.mediawiki.org/wiki/Localisation מעדיעוויקי לאקאליזאציע] און [//translatewiki.net בעטאוויקי] אויב איר ווילט ביישטייערן צו דער גענערישער מעדיעוויקי לאקאליזאציע.',
 'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
 'allmessages-filter-legend' => 'פילטער',
 'allmessages-filter' => 'פֿילטערן לויטן סטאטוס פון מעלדונג:',
@@ -3534,7 +3534,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'רעדאַקטירט די טעקע מיט א דרויסנדיגער אַפליקאַציע',
-'edit-externally-help' => 'זעט די [//www.mediawiki.org/wiki/Manual:External_editors אויפֿשטעל אנווייזונגען] פאר מער אינפארמאציע.',
+'edit-externally-help' => 'זעט די [https://www.mediawiki.org/wiki/Manual:External_editors אויפֿשטעל אנווייזונגען] פאר מער אינפארמאציע.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'אַלע',

@@ -8254,7 +8254,8 @@ Non-animated images use {{msg-mw|svg-long-desc}}.',
 * $1 - the error message
 See also:
 * {{msg-mw|Thumbnail error}}',
-'show-big-image' => 'Displayed under the file on file description pages, when a reduced-size thumbnail of the original file is being displayed.',
+'show-big-image' => 'Displayed under the file on file description pages, when a reduced-size thumbnail of the original file is being displayed.
+{{Identical|Original file}}',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail.
 
 Can be followed by {{msg-mw|Show-big-image-other}}.
@@ -9424,7 +9425,7 @@ Parameters:
 
 # External editor support
 'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
-'edit-externally-help' => '{{doc-important|Please leave the link "<code>http://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
+'edit-externally-help' => '{{doc-important|Please leave the link "<code>https://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
 Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
 
 # 'all' in various places, this might be different for inflected languages

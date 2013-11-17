@@ -3446,7 +3446,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'កែប្រែ​ឯកសារ​នេះដោយប្រើប្រាស់​កម្មវិធី​ខាងក្រៅ',
-'edit-externally-help' => '(សូមមើល[//www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
+'edit-externally-help' => '(សូមមើល[https://www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ទាំងអស់',
@@ -3639,7 +3639,7 @@ $5
 'version-hook-subscribedby' => 'បានជាវ ជាប្រចាំ ដោយ',
 'version-version' => '(កំណែ $1)',
 'version-license' => 'អាជ្ញាប័ណ្ណ',
-'version-poweredby-credits' => "វិគីនេះឧបត្ថម្ភដោយ '''[//www.mediawiki.org/ មេឌាវិគី]''', រក្សាសិទ្ធ © ២០០១-$1 $2។",
+'version-poweredby-credits' => "វិគីនេះឧបត្ថម្ភដោយ '''[https://www.mediawiki.org/ មេឌាវិគី]''', រក្សាសិទ្ធ © ២០០១-$1 $2។",
 'version-poweredby-others' => 'អ្នកដទៃទៀត',
 'version-software' => 'ផ្នែកទន់​ដែល​បានដំឡើង',
 'version-software-product' => 'ផលិតផល',

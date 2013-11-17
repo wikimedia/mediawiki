@@ -2117,7 +2117,7 @@ Zəhmət olmasa başqa ad seçin.',
 'allmessagesname' => 'Ad',
 'allmessagesdefault' => 'İlkin mətn',
 'allmessagescurrent' => 'İndiki mətn',
-'allmessagestext' => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.',
+'allmessagestext' => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.',
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter-unmodified' => 'Dəyişdirilməmiş',
 'allmessages-filter-all' => 'Hamısı',
@@ -2736,7 +2736,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => 'Bu faylı kənar proqram vasitəsilə redaktə et.',
-'edit-externally-help' => '(Daha ətraflı məlumat üçün [//www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
+'edit-externally-help' => '(Daha ətraflı məlumat üçün [https://www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hamısını',
@@ -2836,7 +2836,7 @@ Variants for Chinese language
 'version-hook-subscribedby' => 'Abunə olan',
 'version-version' => '(Versiya $1)',
 'version-license' => 'Lisenziya',
-'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
+'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
 'version-poweredby-others' => 'digərləri',
 'version-software-product' => 'Məhsul',
 'version-software-version' => 'Versiya',

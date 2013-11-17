@@ -2751,7 +2751,7 @@ MediaWiki жүйесінің [[{{#special:Import}}|сырттан алу бет�
 'allmessagesdefault' => 'Әдепкі мәтіні',
 'allmessagescurrent' => 'Ағымдық мәтіні',
 'allmessagestext' => 'Мында {{ns:mediawiki}} есім аясында жетімді жүйе хабар тізімі беріледі.
-Егер әмбебап MediaWiki жерсіндіруге үлес қосқыңыз келсе [//www.mediawiki.org/wiki/Localisation MediaWiki жерсіндіру бетіне] және [//translatewiki.net translatewiki.net жобасына] барып шығыңыз.',
+Егер әмбебап MediaWiki жерсіндіруге үлес қосқыңыз келсе [https://www.mediawiki.org/wiki/Localisation MediaWiki жерсіндіру бетіне] және [//translatewiki.net translatewiki.net жобасына] барып шығыңыз.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' өшірілген себебінен '''{{#special:AllMessages}}''' беті қолданылмайды.",
 'allmessages-filter-legend' => 'Сүзгі',
 'allmessages-filter-unmodified' => 'Өзгертілмегендер',
@@ -3403,7 +3403,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Бұл файлды шеттік қондырма арқылы өңдеу',
-'edit-externally-help' => '(көбірек ақпарат үшін [//www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз)',
+'edit-externally-help' => '(көбірек ақпарат үшін [https://www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлық',

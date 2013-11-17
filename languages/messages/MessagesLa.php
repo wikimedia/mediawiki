@@ -829,8 +829,8 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdelete-hide-comment' => 'Summarium emendationis',
 'revdelete-hide-user' => 'Nomen usoris/locus IP',
 'revdelete-radio-same' => 'non mutare',
-'revdelete-radio-set' => 'Visibiles/visibilia',
-'revdelete-radio-unset' => 'Non visibiles/non visibilia',
+'revdelete-radio-set' => 'Celare',
+'revdelete-radio-unset' => 'Visibiles/visibilia',
 'revdelete-log' => 'Causa:',
 'revdel-restore' => 'visibilitatem mutare',
 'revdel-restore-deleted' => 'Recensiones deletae',
@@ -2294,7 +2294,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 
 # External editor support
 'edit-externally' => 'Hunc fasciculum in programmate externali recensere',
-'edit-externally-help' => '(Vide et [//www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
+'edit-externally-help' => '(Vide et [https://www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omnes',

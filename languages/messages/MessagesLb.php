@@ -2839,7 +2839,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'Aktuellen Text',
 'allmessagestext' => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
-Besicht w.e.g. [//www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [//translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
+Besicht w.e.g. [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [//translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter nom ugepassten Zoustand:',
@@ -3138,7 +3138,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'svg-long-desc' => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
 'svg-long-desc-animated' => 'Animéierten SVG-Fichier, Basisgréisst $1 x $2 Pixel, Gréisst vum Fichier: $3',
 'svg-long-error' => 'Ongëltegen SVG-Fichier: $1',
-'show-big-image' => 'Voll Opléisung',
+'show-big-image' => 'Original Fichier',
 'show-big-image-preview' => 'Gréisst vun dësem Preview: $1.',
 'show-big-image-other' => 'Aner {{PLURAL:$2|Opléisung|Opléisungen}}: $1.',
 'show-big-image-size' => '$1 × $2 Pixel',
@@ -3597,7 +3597,7 @@ Déi aner sinn am Standard verstoppt.
 
 # External editor support
 'edit-externally' => 'Dëse Fichier mat engem externe Programm änneren',
-'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[//www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
+'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[https://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -3684,6 +3684,9 @@ Dëse Confirmatiounscode leeft den $4 of.',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Dës Säit vun Ärer Iwwerwaachungslëscht erofhuelen?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
+
 # Multipage image navigation
 'imgmultipageprev' => '← Vireg Säit',
 'imgmultipagenext' => 'nächst Säit →',
@@ -3769,7 +3772,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-hook-subscribedby' => 'Opruff vum',
 'version-version' => '(Versioun $1)',
 'version-license' => 'Lizenz',
-'version-poweredby-credits' => "Dës Wiki funktionéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Dës Wiki funktionéiert mat '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anerer',
 'version-poweredby-translators' => 'translatewiki.net Iwwersetzer',
 'version-credits-summary' => "Mir soen dëse Persoune 'Merci' fir hir Mataarbecht u [[Special:Version|MediaWiki]].",

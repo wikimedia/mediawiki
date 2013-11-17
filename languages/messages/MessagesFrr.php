@@ -2640,7 +2640,7 @@ Di eksport as uk mä [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] mögelk, tun
 'allmessagesdefault' => 'Standard tekst',
 'allmessagescurrent' => 'Aktuel tekst',
 'allmessagestext' => "Det as en list mä MediaWiki-süsteemteksten.
-Wees so gud an beschük a sidjen [//www.mediawiki.org/wiki/Localisation MediaWiki-auersaatang] an [//translatewiki.net translatewiki.net], wan dü bi't auersaaten mähalep meest.",
+Wees so gud an beschük a sidjen [https://www.mediawiki.org/wiki/Localisation MediaWiki-auersaatang] an [//translatewiki.net translatewiki.net], wan dü bi't auersaaten mähalep meest.",
 'allmessagesnotsupportedDB' => 'Detdiar spezial-sidj koon ei brükt wurd, auer <tt>$wgUseDatabaseMessages</tt> ei aktiif as.',
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter för di uunpaaset stant:',
@@ -3387,7 +3387,7 @@ Ferwisangen uun det salew rä wurd üs ütjnoomen uunsen, huar det datei dach uu
 
 # External editor support
 'edit-externally' => 'Detdiar datei mä en ekstern program bewerke',
-'edit-externally-help' => "(Luk efter uun't [//www.mediawiki.org/wiki/Manual:External_editors hoonbuk] am muar diartu)",
+'edit-externally-help' => "(Luk efter uun't [https://www.mediawiki.org/wiki/Manual:External_editors hoonbuk] am muar diartu)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aaltumaal',
@@ -3566,7 +3566,7 @@ Dü könst uk det [[Special:EditWatchlist|normool sidj]] tu bewerkin nem.",
 'version-hook-subscribedby' => 'Aprepen faan',
 'version-version' => '(Werjuun $1)',
 'version-license' => 'Lisens',
-'version-poweredby-credits' => "Detheer wääbsteed werket mä '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Detheer wääbsteed werket mä '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'öödern',
 'version-poweredby-translators' => 'Auersaatern faan translatewiki.net',
 'version-credits-summary' => 'Wi besoonke üs bi jodiar persuunen för hör bidracher tu [[Special:Version|MediaWiki]].',

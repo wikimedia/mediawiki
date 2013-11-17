@@ -903,7 +903,7 @@ Ka dungu ellkangeay wünedullin reke.
 
 # External editor support
 'edit-externally' => 'Kümeelün tüfachi eltukawün wekun küdauwe mew',
-'edit-externally-help' => '(Pen feychi [//www.mediawiki.org/wiki/Manual:External_editors adtukünun chumngechi pünengeael]  doy dungungeam)',
+'edit-externally-help' => '(Pen feychi [https://www.mediawiki.org/wiki/Manual:External_editors adtukünun chumngechi pünengeael]  doy dungungeam)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kom',

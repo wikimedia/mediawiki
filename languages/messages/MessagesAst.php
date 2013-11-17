@@ -2769,7 +2769,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 'allmessagesdefault' => 'Testu predetermináu',
 'allmessagescurrent' => 'Testu actual',
 'allmessagestext' => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
-Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
+Por favor visita [https://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessages-filter-legend' => 'Peñerar',
 'allmessages-filter' => 'Peñerar por estáu de personalización:',
@@ -3552,7 +3552,7 @@ Los demás tarán anubríos de mou predetermináu.
 
 # External editor support
 'edit-externally' => 'Editar esti ficheru usando una aplicación esterna',
-'edit-externally-help' => '(Pa más información ver les [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
+'edit-externally-help' => '(Pa más información ver les [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'too',
@@ -3739,7 +3739,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-hook-subscribedby' => 'Suscritu por',
 'version-version' => '(Versión $1)',
 'version-license' => 'Llicencia',
-'version-poweredby-credits' => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Esta wiki funciona con '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
 'version-poweredby-translators' => 'los traductores de translatewiki.net',
 'version-credits-summary' => 'Nos prestaría dar reconocimientu a les siguientes persones pola so contribución a [[Special:Version|MediaWiki]].',

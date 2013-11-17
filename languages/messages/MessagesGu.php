@@ -2815,7 +2815,7 @@ $1',
 'allmessagesdefault' => 'મૂળ સંદેશ',
 'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
 'allmessagestext' => 'આ મિડિયાવિકિ નામસ્થળમાં આવેલ પ્રણાલીજનિત સંદેશાની યાદી આ મુજબ છે.
-જો તમે મિડિયાયાવિકિના સ્થાનીયકરણમાં મદદરૂપ થવા ઇચ્છતા હોવ તો કૃપયા [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] અને [//translatewiki.net translatewiki.net]ની મુલાકાત લો.',
+જો તમે મિડિયાયાવિકિના સ્થાનીયકરણમાં મદદરૂપ થવા ઇચ્છતા હોવ તો કૃપયા [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] અને [//translatewiki.net translatewiki.net]ની મુલાકાત લો.',
 'allmessagesnotsupportedDB' => "આ પાનું ન વાપરી શકાશે કેમકે '''\$wgUseDatabaseMessages'''  નિષ્ક્રીય કરાયું છે",
 'allmessages-filter-legend' => 'ચાળણી',
 'allmessages-filter' => 'સ્થાનીયકરણ સ્થિતિ દ્વારા ચાળો',
@@ -3550,7 +3550,7 @@ $2',
 
 # External editor support
 'edit-externally' => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
-'edit-externally-help' => '(વધુ માહિતી માટે [//www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સૂચનાઓ] જુઓ)',
+'edit-externally-help' => '(વધુ માહિતી માટે [https://www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સૂચનાઓ] જુઓ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'બધા',
@@ -3731,7 +3731,7 @@ $5
 'version-hook-subscribedby' => 'દ્વ્રારા લાભાન્વીત',
 'version-version' => '(આવૃત્તિ $1)',
 'version-license' => 'પરવાનો',
-'version-poweredby-credits' => "આ વિકિ  '''[//www.mediawiki.org/ MediaWiki]''' દ્વારા ચાલે છે, પ્રકાશનાધિકાર © 2001-$1 $2.",
+'version-poweredby-credits' => "આ વિકિ  '''[https://www.mediawiki.org/ MediaWiki]''' દ્વારા ચાલે છે, પ્રકાશનાધિકાર © 2001-$1 $2.",
 'version-poweredby-others' => 'અન્યો',
 'version-poweredby-translators' => 'ટ્રાન્સલેટવિકિ.નેટ ભાષાંતરકર્તાઓ',
 'version-license-info' => 'મિડિયાવિકિ એક મુક્ત સોફ્ટવેર છે. તમે તેનું પુનઃવિતરણ કરી શકો છો અને/અથવા તેને the Free Software Foundation દ્વારા પ્રકાશિત  GNU General Public License હેઠળ તેના સંસ્કરણ 2 ને કે તે પછીના સંસ્કરણ   મઠારી શકો છો . 

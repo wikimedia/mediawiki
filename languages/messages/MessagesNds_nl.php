@@ -2953,7 +2953,7 @@ A'j dat leste doon willen dan ku'j oek n verwiezing gebruken, bieveurbeeld [[{{#
 'allmessagesdefault' => 'Standardtekste',
 'allmessagescurrent' => 'De leste versie',
 'allmessagestext' => "Hieronder steet n lieste mit alle systeemteksten in de MediaWiki-naamruumte.
-Kiek oek effen bie [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
+Kiek oek effen bie [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
 'allmessagesnotsupportedDB' => "Disse zied kan niet gebruukt wörden umdat '''\$wgUseDatabaseMessages''' uutezet is.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filtreer op wiezigingen:',
@@ -3713,7 +3713,7 @@ Aandere velden wörden verbörgen.
 
 # External editor support
 'edit-externally' => 'Wiezig dit bestaand mit n extern programma',
-'edit-externally-help' => '(Zie de [//www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
+'edit-externally-help' => '(Zie de [https://www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3896,7 +3896,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].',
 'version-hook-subscribedby' => 'In-eschreven deur',
 'version-version' => '(Versie $1)',
 'version-license' => 'Lisensie',
-'version-poweredby-credits' => "Disse wiki wörden an-estuurd deur '''[//www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
+'version-poweredby-credits' => "Disse wiki wörden an-estuurd deur '''[https://www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
 'version-poweredby-others' => 'aanderen',
 'version-poweredby-translators' => 'vertalers van translatewiki.net',
 'version-credits-summary' => 'Wulen erkennen grege de volgende personen veur der biedrage an [[Special:Version|MediaWiki]].',

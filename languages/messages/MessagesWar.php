@@ -2341,7 +2341,7 @@ An iba in daan nakatago.
 
 # External editor support
 'edit-externally' => 'Igliwat ini nga fayl gamit han gawas nga aplikasyon',
-'edit-externally-help' => '(Kitaa an [//www.mediawiki.org/wiki/Manual:External_editors mga pagtutdo hin pag-ayad] para han dugang nga pananabutan)',
+'edit-externally-help' => '(Kitaa an [https://www.mediawiki.org/wiki/Manual:External_editors mga pagtutdo hin pag-ayad] para han dugang nga pananabutan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ngatanan',
@@ -2442,7 +2442,7 @@ An iba in daan nakatago.
 'version-hook-name' => 'Ngaran han kawil',
 'version-version' => '(Bersion $1)',
 'version-license' => 'Lisensya',
-'version-poweredby-credits' => "Ini nga wiki in pinapaandar han '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ini nga wiki in pinapaandar han '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mga iba',
 'version-software-product' => 'Produkto',
 'version-software-version' => 'Bersyon',

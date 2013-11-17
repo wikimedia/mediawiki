@@ -2841,7 +2841,7 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:E
 'allmessagesdefault' => 'Ñawpaq qillqa',
 'allmessagescurrent' => 'Kunan kachkaq qillqa',
 'allmessagestext' => "Kayqa MediaWiki suti k'itipi llamk'achinalla willaykunayuq sutisuyum.
-Ama hina kaspa, [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [//translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
+Ama hina kaspa, [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [//translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
 'allmessagesnotsupportedDB' => "Kay p'anqaqa manam llamk'achinallachu, '''\$wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
 'allmessages-filter-legend' => "Ch'illchina",
 'allmessages-filter' => "Ch'illchina, allinchasqa kachkaykama:",
@@ -3596,7 +3596,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 
 # External editor support
 'edit-externally' => "Kay willañiqita hawa rurana wakichiwan llamk'apuy",
-'edit-externally-help' => 'Astawan willasunaykipaqqa [//www.mediawiki.org/wiki/Manual:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
+'edit-externally-help' => 'Astawan willasunaykipaqqa [https://www.mediawiki.org/wiki/Manual:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'lliw',
@@ -3767,7 +3767,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'version-hook-subscribedby' => 'Kay runap mañaykusqan:',
 'version-version' => '(Musuqchasqa $1)',
 'version-license' => 'Saqillay',
-'version-poweredby-credits' => "Kay wikitaqa '''[//www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Kay wikitaqa '''[https://www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'hukkuna',
 'version-credits-summary' => "Kay qatiqpi runakunatam [[Special:Version|MediaWiki]] nisqapaq llamk'apusqankunapaq riqsichiyta munayku.",
 'version-license-info' => "MediaWiki llamp'u kaqqa qispim; mast'ariytam icha wakinchaytam atinki GNU General Public License nisqa saqillaypa kamachisqankama, Free Software Foundation nisqap uyaychasqan; saqillaypa iskay ñiqin musuqchasqan, munaspaykiqa aswan musuq musuqchasqan.

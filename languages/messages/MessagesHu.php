@@ -2905,7 +2905,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesdefault' => 'Alapértelmezett szöveg',
 'allmessagescurrent' => 'Jelenlegi szöveg',
 'allmessagestext' => 'Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.',
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessages-filter-legend' => 'Elemek szűrése',
 'allmessages-filter' => 'Módosítás állapota:',
@@ -3665,7 +3665,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 
 # External editor support
 'edit-externally' => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => '(Lásd a [//www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
+'edit-externally-help' => '(Lásd a [https://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'bármikor',
@@ -3848,7 +3848,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-hook-subscribedby' => 'Használja',
 'version-version' => '(verzió: $1)',
 'version-license' => 'Licenc',
-'version-poweredby-credits' => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ez a wiki '''[https://www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mások',
 'version-poweredby-translators' => 'translatewiki.net fordítók',
 'version-credits-summary' => 'Szeretnénk elismerni a következő személyek hozzájárulását a [[Special:Version|MediaWiki]] szoftverhez.',

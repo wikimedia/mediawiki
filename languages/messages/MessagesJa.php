@@ -3128,7 +3128,7 @@ $1 のブロックの理由は「''$2''」です。",
 'allmessagesdefault' => '既定のメッセージ文',
 'allmessagescurrent' => '現在のメッセージ文',
 'allmessagestext' => 'これは MediaWiki 名前空間で利用できるシステム メッセージの一覧です。
-MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ]や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
+MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、[https://www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ]や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''が無効のため、このページを使用できません。",
 'allmessages-filter-legend' => '絞り込み',
 'allmessages-filter' => '変更状態により絞り込む:',
@@ -3449,7 +3449,7 @@ $1',
 'svg-long-desc' => 'SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-desc-animated' => 'アニメーション SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-error' => '無効な SVG ファイル: $1',
-'show-big-image' => '高解像度での画像',
+'show-big-image' => '元のファイル',
 'show-big-image-preview' => 'このプレビューのサイズ: $1。',
 'show-big-image-other' => 'その他の{{PLURAL:$2|解像度}}: $1。',
 'show-big-image-size' => '$1 × $2 ピクセル',
@@ -3976,7 +3976,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => '外部アプリケーションを使用してこのファイルを編集',
-'edit-externally-help' => '(詳しくは[//www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
+'edit-externally-help' => '(詳しくは[https://www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'すべて',
@@ -4243,7 +4243,7 @@ $5
 'version-hook-subscribedby' => '使用個所',
 'version-version' => '(バージョン $1)',
 'version-license' => 'ライセンス',
-'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
+'version-poweredby-credits' => "このウィキは、'''[https://www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
 'version-poweredby-others' => 'その他',
 'version-poweredby-translators' => 'translatewiki.net の翻訳者たち',
 'version-credits-summary' => '[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。',

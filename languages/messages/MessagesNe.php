@@ -2411,7 +2411,7 @@ $1को बन्देजको कारण : "$2" हो',
 'allmessagesdefault' => 'डिफल्ट सन्देश पाठ',
 'allmessagescurrent' => 'वर्तमान सन्देश पाठ',
 'allmessagestext' => 'यो मीडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।
-यदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [//translatewiki.net translatewiki.net]मा जानुहोस्।',
+यदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [//translatewiki.net translatewiki.net]मा जानुहोस्।',
 'allmessages-filter-legend' => 'फिल्टर',
 'allmessages-filter-unmodified' => 'असंशोधित',
 'allmessages-filter-all' => 'सबै',
@@ -3077,7 +3077,7 @@ $8',
 
 # External editor support
 'edit-externally' => 'यो फाइललाई बाह्य अनुप्रयोग प्रयोग गरेर सम्पादन गर्ने',
-'edit-externally-help' => '(थप जानकारीको लागि [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] मा हेर्नुहोस् )',
+'edit-externally-help' => '(थप जानकारीको लागि [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] मा हेर्नुहोस् )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सबै',
@@ -3328,7 +3328,7 @@ $5
 'version-version' => '(संस्करण $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'इजाजतपत्र',
-'version-poweredby-credits' => "यो विकी '''[//www.mediawiki.org/ मिडियाविकि]''' द्वारा सशक्तिकरण गरिएको छ, copyright © सन् २००१-$1 $2.",
+'version-poweredby-credits' => "यो विकी '''[https://www.mediawiki.org/ मिडियाविकि]''' द्वारा सशक्तिकरण गरिएको छ, copyright © सन् २००१-$1 $2.",
 'version-poweredby-others' => 'अन्य',
 'version-software' => 'स्थापना गरिएको सफ्टवेयर',
 'version-software-product' => 'उत्पादन',

@@ -1232,6 +1232,7 @@ Podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Sp
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornamai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del site.",
 'revdelete-confirm' => "Confirmatz que volètz efectuar aquesta accion, que ne comprenètz las consequéncias, e qu'o fasètz en acòrd amb [[{{MediaWiki:Policy-url}}|las règlas]].",
 'revdelete-suppress-text' => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
+* Informacions potencialament difamatòrias
 * Informacions personalas inapropriadas
 *: ''adreça, numèro de telefòn, numèro de seguretat sociala, ...''",
 'revdelete-legend' => 'Metre en plaça de restriccions de version :',
@@ -1242,8 +1243,8 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'revdelete-hide-user' => 'Nom d’utilizaire/Adreça IP de l’editor',
 'revdelete-hide-restricted' => 'Suprimir aquestas donadas als administrators e mai als autres',
 'revdelete-radio-same' => '(cambiar pas)',
-'revdelete-radio-set' => 'Visible',
-'revdelete-radio-unset' => 'Amagat',
+'revdelete-radio-set' => 'Amagat',
+'revdelete-radio-unset' => 'Visible',
 'revdelete-suppress' => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
 'revdelete-unsuppress' => 'Levar las restriccions sus las versions restablidas',
 'revdelete-log' => 'Motiu :',
@@ -2899,7 +2900,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:E
 'allmessagesdefault' => 'Messatge per defaut',
 'allmessagescurrent' => 'Messatge actual',
 'allmessagestext' => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
-Visitatz la [//www.mediawiki.org/wiki/Localisation Localizacion MediaWiki] e [//translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MediaWiki generica.',
+Visitatz la [https://www.mediawiki.org/wiki/Localisation Localizacion MediaWiki] e [//translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MediaWiki generica.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
 'allmessages-filter-legend' => 'Filtre',
 'allmessages-filter' => 'Filtrar per estat de modificacion :',
@@ -3110,6 +3111,7 @@ Inscriviscatz '''PAS RES''' dedins !",
 'pageinfo-length' => 'Talha de la pagina (en octets)',
 'pageinfo-article-id' => 'Numèro de la pagina',
 'pageinfo-language' => 'Lenga del contengut de la pagina',
+'pageinfo-content-model' => 'Modèl de contengut de la pagina',
 'pageinfo-robot-policy' => 'Indexacion per robòts',
 'pageinfo-robot-index' => 'Autorizada',
 'pageinfo-robot-noindex' => 'Interdicha',
@@ -3194,7 +3196,7 @@ Se l'executatz, vòstre sistèma pòt èsser compromés.",
 'svg-long-desc' => 'Fichièr SVG, resolucion de $1 × $2 pixèls, talha : $3',
 'svg-long-desc-animated' => 'Fichièr SVG animat, talha $1 x $2 pixèls, talha del fichièr : $3',
 'svg-long-error' => 'Fichièr SVG invalid : $1',
-'show-big-image' => 'Imatge en resolucion mai nauta',
+'show-big-image' => "Fichièr d'origina",
 'show-big-image-preview' => "Talha d'aqueste apercebut : $1.",
 'show-big-image-other' => '{{PLURAL:$2|Autra resolucion|Autras resolucions}} : $1.',
 'show-big-image-size' => '$1 × $2 pixèls',
@@ -3664,7 +3666,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 
 # External editor support
 'edit-externally' => 'Modificar aqueste fichièr en utilizant una aplicacion extèrna',
-'edit-externally-help' => "(Consultatz [//www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
+'edit-externally-help' => "(Consultatz [https://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',
@@ -3760,6 +3762,7 @@ Confirmatz que desiratz tornar crear aqueste article.",
 
 # Separators for various lists, etc.
 'colon-separator' => '&nbsp;:&#32;',
+'quotation-marks' => '« $1 »',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedenta',
@@ -3849,7 +3852,7 @@ Ensajatz la previsualizacion normala.',
 'version-hook-subscribedby' => 'Definit per',
 'version-version' => '(Version $1)',
 'version-license' => 'Licéncia',
-'version-poweredby-credits' => "Aqueste wiki fonciona gràcias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Aqueste wiki fonciona gràcias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
 'version-poweredby-translators' => 'traductors de translatewiki.net',
 'version-software' => 'Logicial installat',

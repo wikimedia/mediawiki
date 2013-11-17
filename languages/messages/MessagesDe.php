@@ -3072,7 +3072,7 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'Aktueller Text',
 'allmessagestext' => 'Dies ist eine Liste der MediaWiki-Systemtexte.
-Bitte besuche die Seiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], sofern du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
+Bitte besuche die Seiten [https://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], sofern du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB' => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter für angepassten Zustand:',
@@ -3387,7 +3387,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'svg-long-desc' => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
 'svg-long-desc-animated' => 'Animierte SVG-Datei, Basisgröße $1 × $2 Pixel, Dateigröße: $3',
 'svg-long-error' => 'Ungültige SVG-Datei: $1',
-'show-big-image' => 'Volle Auflösung',
+'show-big-image' => 'Originaldatei',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other' => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
 'show-big-image-size' => '$1 × $2 Pixel',
@@ -3853,7 +3853,7 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # External editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => '(weitere Informationen in den [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
+'edit-externally-help' => '(weitere Informationen in den [https://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -4057,7 +4057,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-version' => '(Version $1)',
 'version-svn-revision' => '(Version $2)',
 'version-license' => 'Lizenz',
-'version-poweredby-credits' => "Diese Website nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Diese Website nutzt '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'andere',
 'version-poweredby-translators' => 'Übersetzer von translatewiki.net',
 'version-credits-summary' => 'Wir danken folgenden Personen für ihre Beiträge zu [[Special:Version|MediaWiki]].',

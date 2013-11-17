@@ -2766,7 +2766,7 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{#Special:Expo
 'allmessagesdefault' => 'Panugmad na tekstong mensahe',
 'allmessagescurrent' => 'Presenteng teksto',
 'allmessagestext' => 'Ini sarong listahan nin pansistemang mga mensahe na mananagboan sa espasyong-pangaran kan MediaWiki.
-Pakibisita an [//www.mediawiki.org/wiki/Localisation Mediawiki Lokalisasyon] asin [//translatewiki.net translatewiki.net] kun boot mong mag-ambag sa henerikong lokalisasyon kan MediaWiki.',
+Pakibisita an [https://www.mediawiki.org/wiki/Localisation Mediawiki Lokalisasyon] asin [//translatewiki.net translatewiki.net] kun boot mong mag-ambag sa henerikong lokalisasyon kan MediaWiki.',
 'allmessagesnotsupportedDB' => "Dai pwedeng gamiton an '''{{ns:special}}:Allmessages''' ta sarado an '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend' => 'An Pansara',
 'allmessages-filter' => 'Pansara sa paagi kan estado nin kustomisasyon:',
@@ -3535,7 +3535,7 @@ Sublokas kan siyudad na ipinahiling',
 
 # External editor support
 'edit-externally' => 'Liwaton ining sagunson na pinaggagamit an panluwasan na aplikasyon',
-'edit-externally-help' => '(Hilngon an [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa kadagdagang impormasyon)',
+'edit-externally-help' => '(Hilngon an [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa kadagdagang impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gabos',
@@ -3719,7 +3719,7 @@ Pwede mo man [[Special:EditWatchlist|gamiton an standard editor]].',
 'version-hook-subscribedby' => 'Pinaghaguhot ni',
 'version-version' => '(Bersyon na $1)',
 'version-license' => 'Lisensiya',
-'version-poweredby-credits' => "An wiking ini pinagpagana kan '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "An wiking ini pinagpagana kan '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mga iba pa',
 'version-poweredby-translators' => 'translatewiki.net na mga paradakit-taramon',
 'version-credits-summary' => 'Gusto niyamong rekonosiron an minasunod na mga persona nin huli kan saindang ambag sa [[Special:Version|Mediawiki]].',

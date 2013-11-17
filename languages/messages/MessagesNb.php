@@ -3737,7 +3737,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 
 # External editor support
 'edit-externally' => 'Rediger denne filen med et eksternt program',
-'edit-externally-help' => '(Se [//www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
+'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3940,7 +3940,7 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'version-hook-subscribedby' => 'Brukes av',
 'version-version' => '(versjon $1)',
 'version-license' => 'Lisens',
-'version-poweredby-credits' => "Denne wikien er drevet av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Denne wikien er drevet av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
 'version-poweredby-translators' => 'translatewiki.net-oversettere',
 'version-credits-summary' => 'Vi ønsker å takke følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',

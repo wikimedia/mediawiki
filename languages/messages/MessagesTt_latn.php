@@ -1753,7 +1753,7 @@ Zinhar başqa isem saylağız.',
 'allmessagesdefault' => 'Töpcay yazma',
 'allmessagescurrent' => 'Eligi yazma',
 'allmessagestext' => 'Bu isemlek MediaWiki isemnär mäydanında bulğan sistema xäbärläreneñ isemlege.
-Ğomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [//www.mediawiki.org/wiki/Localisation MediaWiki Lokalizatsiäse] häm [//translatewiki.net translatewiki.net] säxifälärne qullanığız.',
+Ğomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [https://www.mediawiki.org/wiki/Localisation MediaWiki Lokalizatsiäse] häm [//translatewiki.net translatewiki.net] säxifälärne qullanığız.',
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter-unmodified' => 'Üzgärtelmägän',
 'allmessages-filter-all' => 'Barısı',
@@ -2038,7 +2038,7 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 
 # External editor support
 'edit-externally' => 'Bu faylnı tışqı quşımtanı qullanıp üzgärtü',
-'edit-externally-help' => '(tulıraq mäğlümat öçen [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
+'edit-externally-help' => '(tulıraq mäğlümat öçen [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'barlıq',

@@ -2904,7 +2904,7 @@ stran »[[{{MediaWiki:Mainpage}}]]«.',
 'allmessagesdefault' => 'Prednastavljeno besedilo',
 'allmessagescurrent' => 'Trenutno besedilo',
 'allmessagestext' => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Za lokalizacijo in prevajanje obiščite [//www.mediawiki.org/wiki/Localisation MediaWiki] in [//translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.',
+Za lokalizacijo in prevajanje obiščite [https://www.mediawiki.org/wiki/Localisation MediaWiki] in [//translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.',
 'allmessagesnotsupportedDB' => "Te strani ni mogoče uporabljati, ker je bilo '''\$wgUseDatabaseMessages''' izključeno.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filtriraj po prilagoditvenem stanju:',
@@ -3668,7 +3668,7 @@ Druga bodo po privzetem skrita.
 
 # External editor support
 'edit-externally' => 'Uredite datoteko z uporabo zunanjega orodja',
-'edit-externally-help' => '(Za več informacij glejte [//www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
+'edit-externally-help' => '(Za več informacij glejte [https://www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vse',
@@ -3858,7 +3858,7 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'version-hook-subscribedby' => 'Naročen s strani',
 'version-version' => '(Različica $1)',
 'version-license' => 'Licenca',
-'version-poweredby-credits' => "Ta wiki poganja '''[//www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
+'version-poweredby-credits' => "Ta wiki poganja '''[https://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 'version-poweredby-others' => 'drugi',
 'version-poweredby-translators' => 'Prevajalci translatewiki.net',
 'version-credits-summary' => 'Radi bi priznali prispevek naslednjih oseb k [[Special:Version|MediaWiki]].',

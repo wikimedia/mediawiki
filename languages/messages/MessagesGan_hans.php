@@ -1601,7 +1601,7 @@ $1',
 'allmessagesdefault' => '默认文字',
 'allmessagescurrent' => '眼前𠮶文字',
 'allmessagestext' => '个首列到全部制定得正𠮶系统界面。
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系统界面功能'''关卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -2070,7 +2070,7 @@ $1',
 
 # External editor support
 'edit-externally' => '用外部程式来编辑个只档案',
-'edit-externally-help' => '请参看[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
+'edit-externally-help' => '请参看[https://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -2194,7 +2194,7 @@ $3
 'version-hook-subscribedby' => '订阅人',
 'version-version' => '（版本 $1）',
 'version-license' => '许可证',
-'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-credits' => "个只 Wiki 由 '''[https://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
 

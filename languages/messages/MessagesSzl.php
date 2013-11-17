@@ -733,13 +733,13 @@ Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśćach inkszyc
 'sitecsspreview' => "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego arkusza stylůw CSS.'''
 '''Ńic jeszcze ńy zostoło naszkryflane!'''",
 'sitejspreview' => "'''Pamjyntej, aże to je na raźe ino podglůnd Twojego JavaScriptu - nic jeszcze ńy zostoło naszkryflane!'''",
-'userinvalidcssjstitle' => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aže zajty užytkowńika zawjyrajůnce CSS i JavaScript powinny začynać śe mouům buchštabům, np. {{ns:user}}:Foo/vector.css.",
+'userinvalidcssjstitle' => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aże zajty użytkowńika zawjyrajůnce CSS i JavaScript powinny zaczynać śe małům buchsztabům, lb. {{ns:user}}:Foo/vector.css.",
 'updated' => '(Pomjyńano)',
 'note' => "'''Pozůr:'''",
 'previewnote' => "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",
 'continue-editing' => 'Przyndź do pola sprowjańo',
 'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu ze pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecydujesz śe jům naszkryflać.',
-'session_fail_preview' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe i zalogůj uod nowa.'''",
+'session_fail_preview' => "'''Przepraszomy! Serwer ńy może przetworzić tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj jeszcze roz. Kejby to ńy pomogło - wyloguj śe a zalogůj uod nowa.'''",
 'session_fail_preview_html' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.'''
 
 ''Jako iže na {{GRAMMAR:MS.lp|{{SITENAME}}}} wuůnčono zostoua uopcyjo \"raw HTML\", podglůnd zostou schrůńony coby zabezpječyć před atakami JavaScript.''
@@ -2182,7 +2182,7 @@ Možeš tyž užyć linku, np.[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] do 
 'allmessagesdefault' => 'Tekst důmyślny',
 'allmessagescurrent' => 'Tekst uobecny',
 'allmessagestext' => 'Uoto lista wšyjstkych kůmůńikatůw systymowych dostympnych w přestřyńi mjan MedjaWiki.
-Uodwjydź [//www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [//translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
+Uodwjydź [https://www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [//translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta zajta ńy može być užyta, bez tůž co zmjynna '''\$wgUseDatabaseMessages''' je wůuůnčůno.",
 
 # Thumbnails
@@ -2667,7 +2667,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 
 # External editor support
 'edit-externally' => 'Sprowjej tyn plik bez eksterno aplikacyjo',
-'edit-externally-help' => '(Zobocz [//www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo eksternych edytorůw], kaj je uo tym wjyncy naszkryflůne)',
+'edit-externally-help' => '(Zobocz [https://www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo eksternych edytorůw], kaj je uo tym wjyncy naszkryflůne)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'do kupy',
