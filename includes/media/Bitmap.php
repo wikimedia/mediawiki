@@ -92,9 +92,8 @@ class BitmapHandler extends TransformationalImageHandler {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
 				$decoderHint = array( '-define', "jpeg:size={$params['physicalDimensions']}" );
 			}
-		} elseif ( $params['mimeType'] == 'image/png' ) {
+		} elseif ( $params['mimeType'] == 'image/png' || $params['mimeType'] == 'image/webp' ) {
 			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
-
 		} elseif ( $params['mimeType'] == 'image/gif' ) {
 			if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
 				// Extract initial frame only; we're so big it'll
