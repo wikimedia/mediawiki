@@ -18,6 +18,8 @@
 		map = {
 			// SimpleSearch is broken in Opera < 9.6
 			opera: [['>=', 9.6]],
+			// Konqueror is unable to position the suggestions correctly (bug 50805)
+			konqueror: false,
 			docomo: false,
 			blackberry: false,
 			ipod: false,
