@@ -91,8 +91,8 @@ class ApiFormatJson extends ApiFormatBase {
 	public function getDescription() {
 		if ( $this->mIsRaw ) {
 			return 'Output data with the debugging elements in JSON format' . parent::getDescription();
-		} else {
-			return 'Output data in JSON format' . parent::getDescription();
 		}
+
+		return 'Output data in JSON format' . parent::getDescription();
 	}
 }

@@ -157,19 +157,19 @@ class ApiMove extends ApiBase {
 		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );
 		if ( isset( $success[0] ) ) {
 			return array( 'error' => $this->parseMsg( $success ) );
-		} else {
-			// At least some pages could be moved
-			// Report each of them separately
-			foreach ( $success as $oldTitle => $newTitle ) {
-				$r = array( 'from' => $oldTitle );
-				if ( is_array( $newTitle ) ) {
-					$r['error'] = $this->parseMsg( reset( $newTitle ) );
-				} else {
-					// Success
-					$r['to'] = $newTitle;
-				}
-				$retval[] = $r;
+		}
+
+		// At least some pages could be moved
+		// Report each of them separately
+		foreach ( $success as $oldTitle => $newTitle ) {
+			$r = array( 'from' => $oldTitle );
+			if ( is_array( $newTitle ) ) {
+				$r['error'] = $this->parseMsg( reset( $newTitle ) );
+			} else {
+				// Success
+				$r['to'] = $newTitle;
 			}
+			$retval[] = $r;
 		}
 
 		return $retval;

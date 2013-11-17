@@ -177,9 +177,9 @@ abstract class ApiBase extends ContextSource {
 	public function getModuleProfileName( $db = false ) {
 		if ( $db ) {
 			return 'API:' . $this->mModuleName . '-DB';
-		} else {
-			return 'API:' . $this->mModuleName;
 		}
+
+		return 'API:' . $this->mModuleName;
 	}
 
 	/**
@@ -530,9 +530,9 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			return $msg;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -1297,9 +1297,9 @@ abstract class ApiBase extends ContextSource {
 	private function warnOrDie( $msg, $enforceLimits = false ) {
 		if ( $enforceLimits ) {
 			$this->dieUsage( $msg, 'integeroutofrange' );
-		} else {
-			$this->setWarning( $msg );
 		}
+
+		$this->setWarning( $msg );
 	}
 
 	/**
@@ -1902,14 +1902,14 @@ abstract class ApiBase extends ContextSource {
 		global $wgDebugAPI;
 		if ( $wgDebugAPI !== true ) {
 			$this->dieUsageMsg( $error );
-		} else {
-			if ( is_string( $error ) ) {
-				$error = array( $error );
-			}
-			$parsed = $this->parseMsg( $error );
-			$this->setWarning( '$wgDebugAPI: ' . $parsed['code']
-				. ' - ' . $parsed['info'] );
 		}
+
+		if ( is_string( $error ) ) {
+			$error = array( $error );
+		}
+
+		$parsed = $this->parseMsg( $error );
+		$this->setWarning( '$wgDebugAPI: ' . $parsed['code'] . ' - ' . $parsed['info'] );
 	}
 
 	/**
