@@ -876,6 +876,7 @@ $wgMediaHandlers = array(
 	'image/png' => 'PNGHandler',
 	'image/gif' => 'GIFHandler',
 	'image/tiff' => 'TiffHandler',
+	'image/webp' => 'WebPHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
 	'image/x-bmp' => 'BmpHandler',
 	'image/x-xcf' => 'XCFHandler',
