@@ -50,6 +50,7 @@ $wgAutoloadLocalClasses = array(
 	'ChangeTags' => 'includes/ChangeTags.php',
 	'ChannelFeed' => 'includes/Feed.php',
 	'Collation' => 'includes/Collation.php',
+	'CollationCkb' => 'includes/Collation.php',
 	'ConcatenatedGzipHistoryBlob' => 'includes/HistoryBlob.php',
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
