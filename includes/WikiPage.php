@@ -246,6 +246,15 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Clear the mPreparedEdit cache field, as may be needed by mutable content types
+	 * @return void
+	 * @since 1.23
+	 */
+	public function clearPreparedEdit() {
+		$this->mPreparedEdit = false;
+	}
+
+	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new page.
 	 *
