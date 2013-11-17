@@ -606,11 +606,9 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
-		wfProfileIn( __METHOD__ . '-miss' );
 		wfProfileIn( __METHOD__ . '-miss-' . $this->name );
 		$stat = $this->doGetFileStat( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
-		wfProfileOut( __METHOD__ . '-miss' );
 		if ( is_array( $stat ) ) { // file exists
 			$stat['latest'] = $latest;
 			$this->cheapCache->set( $path, 'stat', $stat );
@@ -673,11 +671,9 @@ abstract class FileBackendStore extends FileBackend {
 				return $stat['hash'];
 			}
 		}
-		wfProfileIn( __METHOD__ . '-miss' );
 		wfProfileIn( __METHOD__ . '-miss-' . $this->name );
 		$hash = $this->doGetFileSha1Base36( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
-		wfProfileOut( __METHOD__ . '-miss' );
 		$this->cheapCache->set( $path, 'sha1', array( 'hash' => $hash, 'latest' => $latest ) );
 		return $hash;
 	}
@@ -782,11 +778,9 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $res == StreamFile::NOT_MODIFIED ) {
 			// do nothing; client cache is up to date
 		} elseif ( $res == StreamFile::READY_STREAM ) {
-			wfProfileIn( __METHOD__ . '-send' );
 			wfProfileIn( __METHOD__ . '-send-' . $this->name );
 			$status = $this->doStreamFile( $params );
 			wfProfileOut( __METHOD__ . '-send-' . $this->name );
-			wfProfileOut( __METHOD__ . '-send' );
 			if ( !$status->isOK() ) {
 				// Per bug 41113, nasty things can happen if bad cache entries get
 				// stuck in cache. It's also possible that this error can come up
