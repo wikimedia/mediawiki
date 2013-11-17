@@ -42,7 +42,7 @@ class EditCLI extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser, $wgTitle;
+		global $wgUser;
 
 		$userName = $this->getOption( 'user', 'Maintenance script' );
 		$summary = $this->getOption( 'summary', '' );
@@ -61,17 +61,17 @@ class EditCLI extends Maintenance {
 			$wgUser->addToDatabase();
 		}
 
-		$wgTitle = Title::newFromText( $this->getArg() );
-		if ( !$wgTitle ) {
+		$title = Title::newFromText( $this->getArg() );
+		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
-		$context->setTitle( $wgTitle );
+		$context->setTitle( $title );
 
-		$page = WikiPage::factory( $wgTitle );
+		$page = WikiPage::factory( $title );
 
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
-		$content = ContentHandler::makeContent( $text, $wgTitle );
+		$content = ContentHandler::makeContent( $text, $title );
 
 		# Do the edit
 		$this->output( "Saving... " );
