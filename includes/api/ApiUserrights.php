@@ -67,13 +67,11 @@ class ApiUserrights extends ApiBase {
 		$status = $form->fetchUser( $params['user'] );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
-		} else {
-			$user = $status->value;
 		}
 
-		$this->mUser = $user;
+		$this->mUser = $status->value;
 
-		return $user;
+		return $status->value;
 	}
 
 	public function mustBePosted() {
