@@ -180,7 +180,7 @@ class UpdateMediaWiki extends Maintenance {
 		# cache from $wgExtensionFunctions (bug 20471)
 		$wgLocalisationCacheConf = array(
 			'class' => 'LocalisationCache',
-			'storeClass' => 'LCStore_Null',
+			'storeClass' => 'LCStoreNull',
 			'storeDirectory' => false,
 			'manualRecache' => false,
 		);

@@ -195,16 +195,16 @@ class LocalisationCache {
 			switch ( $conf['store'] ) {
 				case 'files':
 				case 'file':
-					$storeClass = 'LCStore_CDB';
+					$storeClass = 'LCStoreCDB';
 					break;
 				case 'db':
-					$storeClass = 'LCStore_DB';
+					$storeClass = 'LCStoreDB';
 					break;
 				case 'accel':
-					$storeClass = 'LCStore_Accel';
+					$storeClass = 'LCStoreAccel';
 					break;
 				case 'detect':
-					$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
+					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
 				default:
 					throw new MWException(
@@ -404,7 +404,7 @@ class LocalisationCache {
 		$deps = $this->store->get( $code, 'deps' );
 		$keys = $this->store->get( $code, 'list' );
 		$preload = $this->store->get( $code, 'preload' );
-		// Different keys may expire separately, at least in LCStore_Accel
+		// Different keys may expire separately, at least in LCStoreAccel
 		if ( $deps === null || $keys === null || $preload === null ) {
 			wfDebug( __METHOD__ . "($code): cache missing, need to make one\n" );
 
@@ -901,7 +901,7 @@ class LocalisationCache {
 		# Clear out the MessageBlobStore
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
-		if ( !$this->store instanceof LCStore_Null ) {
+		if ( !$this->store instanceof LCStoreNull ) {
 			MessageBlobStore::clear();
 		}
 
@@ -966,7 +966,7 @@ class LocalisationCache {
 	 * Disable the storage backend
 	 */
 	public function disableBackend() {
-		$this->store = new LCStore_Null;
+		$this->store = new LCStoreNull;
 		$this->manualRecache = false;
 	}
 }
@@ -1021,7 +1021,7 @@ interface LCStore {
  * This will work if one of XCache, WinCache or APC cacher is configured.
  * (See ObjectCache.php)
  */
-class LCStore_Accel implements LCStore {
+class LCStoreAccel implements LCStore {
 	var $currentLang;
 	var $keys;
 
@@ -1070,7 +1070,7 @@ class LCStore_Accel implements LCStore {
  * LCStore implementation which uses the standard DB functions to store data.
  * This will work on any MediaWiki installation.
  */
-class LCStore_DB implements LCStore {
+class LCStoreDB implements LCStore {
 	var $currentLang;
 	var $writesDone = false;
 
@@ -1173,7 +1173,7 @@ class LCStore_DB implements LCStore {
  *
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
-class LCStore_CDB implements LCStore {
+class LCStoreCDB implements LCStore {
 	var $readers, $writer, $currentLang, $directory;
 
 	function __construct( $conf = array() ) {
@@ -1254,7 +1254,7 @@ class LCStore_CDB implements LCStore {
 /**
  * Null store backend, used to avoid DB errors during install
  */
-class LCStore_Null implements LCStore {
+class LCStoreNull implements LCStore {
 	public function get( $code, $key ) {
 		return null;
 	}
