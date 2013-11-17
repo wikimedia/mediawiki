@@ -79,6 +79,7 @@ class ProcessCacheLRU {
 		if ( isset( $this->cache[$key][$prop] ) ) {
 			return ( $maxAge <= 0 || ( time() - $this->cacheTimes[$key][$prop] ) <= $maxAge );
 		}
+
 		return false;
 	}
 

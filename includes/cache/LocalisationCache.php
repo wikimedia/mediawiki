@@ -241,6 +241,7 @@ class LocalisationCache {
 				self::$magicWordKeys
 			) );
 		}
+
 		return isset( $this->mergeableKeys[$key] );
 	}
 
@@ -276,7 +277,8 @@ class LocalisationCache {
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
-			 !isset( $this->loadedItems[$code][$key] ) ) {
+			!isset( $this->loadedItems[$code][$key] )
+		) {
 			wfProfileIn( __METHOD__ . '-load' );
 			$this->loadSubitem( $code, $key, $subkey );
 			wfProfileOut( __METHOD__ . '-load' );
@@ -331,6 +333,7 @@ class LocalisationCache {
 
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
 			$this->loadItem( $this->shallowFallbacks[$code], $key );
+
 			return;
 		}
 
@@ -358,6 +361,7 @@ class LocalisationCache {
 	protected function loadSubitem( $code, $key, $subkey ) {
 		if ( !in_array( $key, self::$splitKeys ) ) {
 			$this->loadItem( $code, $key );
+
 			return;
 		}
 
@@ -367,12 +371,14 @@ class LocalisationCache {
 
 		// Check to see if initLanguage() loaded it for us
 		if ( isset( $this->loadedItems[$code][$key] ) ||
-			 isset( $this->loadedSubitems[$code][$key][$subkey] ) ) {
+			isset( $this->loadedSubitems[$code][$key][$subkey] )
+		) {
 			return;
 		}
 
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
 			$this->loadSubitem( $this->shallowFallbacks[$code], $key, $subkey );
+
 			return;
 		}
 
@@ -391,6 +397,7 @@ class LocalisationCache {
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {
 			wfDebug( __METHOD__ . "($code): forced reload\n" );
+
 			return true;
 		}
 
@@ -400,6 +407,7 @@ class LocalisationCache {
 		// Different keys may expire separately, at least in LCStore_Accel
 		if ( $deps === null || $keys === null || $preload === null ) {
 			wfDebug( __METHOD__ . "($code): cache missing, need to make one\n" );
+
 			return true;
 		}
 
@@ -411,6 +419,7 @@ class LocalisationCache {
 			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
 				wfDebug( __METHOD__ . "($code): cache for $code expired due to " .
 					get_class( $dep ) . "\n" );
+
 				return true;
 			}
 		}
@@ -433,6 +442,7 @@ class LocalisationCache {
 		# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
 		if ( !Language::isValidBuiltInCode( $code ) ) {
 			$this->initShallowFallback( $code, 'en' );
+
 			return;
 		}
 
@@ -445,6 +455,7 @@ class LocalisationCache {
 			} else {
 				$this->initShallowFallback( $code, 'en' );
 			}
+
 			return;
 		}
 
@@ -458,6 +469,7 @@ class LocalisationCache {
 						'Please run maintenance/rebuildLocalisationCache.php.' );
 				}
 				$this->initShallowFallback( $code, 'en' );
+
 				return;
 			} else {
 				throw new MWException( 'Invalid or missing localisation cache.' );
@@ -511,6 +523,7 @@ class LocalisationCache {
 			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $data;
 	}
 
@@ -527,8 +540,10 @@ class LocalisationCache {
 			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
 		} catch ( CLDRPluralRuleError $e ) {
 			wfDebugLog( 'l10n', $e->getMessage() . "\n" );
+
 			return array();
 		}
+
 		return $compiledRules;
 	}
 
@@ -616,6 +631,7 @@ class LocalisationCache {
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
@@ -633,6 +649,7 @@ class LocalisationCache {
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
 
 		wfProfileOut( __METHOD__ );
+
 		return $data;
 	}
 
@@ -747,7 +764,6 @@ class LocalisationCache {
 			foreach ( $data as $key => $value ) {
 				$this->mergeItem( $key, $coreData[$key], $value );
 			}
-
 		}
 
 		# Fill in the fallback if it's not there already
@@ -1016,6 +1032,7 @@ class LCStore_Accel implements LCStore {
 	public function get( $code, $key ) {
 		$k = wfMemcKey( 'l10n', $code, 'k', $key );
 		$r = $this->cache->get( $k );
+
 		return $r === false ? null : $r;
 	}
 
@@ -1096,6 +1113,7 @@ class LCStore_DB implements LCStore {
 			if ( $this->dbw->wasReadOnlyError() ) {
 				$this->readOnly = true;
 				$this->dbw->rollback( __METHOD__ );
+
 				return;
 			} else {
 				throw $e;
@@ -1187,6 +1205,7 @@ class LCStore_CDB implements LCStore {
 			if ( $value === false ) {
 				return null;
 			}
+
 			return unserialize( $value );
 		}
 	}
@@ -1227,6 +1246,7 @@ class LCStore_CDB implements LCStore {
 		if ( strval( $code ) === '' || strpos( $code, '/' ) !== false ) {
 			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
+
 		return "{$this->directory}/l10n_cache-$code.cdb";
 	}
 }
@@ -1239,9 +1259,14 @@ class LCStore_Null implements LCStore {
 		return null;
 	}
 
-	public function startWrite( $code ) {}
-	public function finishWrite() {}
-	public function set( $key, $value ) {}
+	public function startWrite( $code ) {
+	}
+
+	public function finishWrite() {
+	}
+
+	public function set( $key, $value ) {
+	}
 }
 
 /**
@@ -1301,6 +1326,7 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 	public function getItem( $code, $key ) {
 		unset( $this->mruLangs[$code] );
 		$this->mruLangs[$code] = true;
+
 		return parent::getItem( $code, $key );
 	}
 
@@ -1313,6 +1339,7 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 	public function getSubitem( $code, $key, $subkey ) {
 		unset( $this->mruLangs[$code] );
 		$this->mruLangs[$code] = true;
+
 		return parent::getSubitem( $code, $key, $subkey );
 	}
 
