@@ -47,6 +47,8 @@ abstract class Collation {
 				return new IdentityCollation;
 			case 'uca-default':
 				return new IcuCollation( 'root' );
+			case 'xx-uca-ckb':
+				return new CollationCkb;
 			default:
 				$match = array();
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
@@ -352,7 +354,7 @@ class IcuCollation extends Collation {
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheKey = wfMemcKey( 'first-letters', $this->locale );
+		$cacheKey = wfMemcKey( 'first-letters', $this->locale, $this->digitTransformLanguage->getCode() );
 		$cacheEntry = $cache->get( $cacheKey );
 
 		if ( $cacheEntry && isset( $cacheEntry['version'] )
@@ -615,5 +617,19 @@ class IcuCollation extends Collation {
 		} else {
 			return false;
 		}
+	}
+}
+
+/**
+ * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
+ *
+ * Uses the same collation rules as Persian / Farsi ('fa'), but different characters for digits.
+ */
+class CollationCkb extends IcuCollation {
+	function __construct() {
+		// This will set $locale and collators, which affect the actual sorting order
+		parent::__construct( 'fa' );
+		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
+		$this->digitTransformLanguage = Language::factory( 'ckb' );
 	}
 }
