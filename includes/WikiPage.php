@@ -245,7 +245,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
 		// Bug 57026: do not clear mPreparedEdit since prepareTextForEdit() already checks
-		// the requested rev ID and immutable content against the cached one.
+		// the requested rev ID and content against the cached one for equality. For most
+		// content types, the output should not change during the lifetime of this cache.
 		// Clearing it can cause extra parses on edit for no reason.
 	}
 
