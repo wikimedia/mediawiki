@@ -309,7 +309,7 @@ class BitmapHandler extends ImageHandler {
 		$animation_pre = '';
 		$animation_post = '';
 		$decoderHint = '';
-		if ( $params['mimeType'] == 'image/jpeg' ) {
+		if ( $params['mimeType'] == 'image/jpeg' || $params['mimeType'] == 'image/webp' ) {
 			$quality = "-quality 80"; // 80%
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
