@@ -467,33 +467,53 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
-		global $wgLang;
+		global $wgLang, $wgMemc, $IP;
 
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
 		$vcsText = false;
 
 		if ( isset( $extension['path'] ) ) {
-			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
-			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
-			if ( $gitHeadSHA1 !== false ) {
-				$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
-				$gitViewerUrl = $gitInfo->getHeadViewUrl();
-				if ( $gitViewerUrl !== false ) {
-					$vcsText = "[$gitViewerUrl $vcsText]";
-				}
-				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
-				if ( $gitHeadCommitDate ) {
-					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
-				}
+			$coreId = false;
+			$coreGitInfo = new GitInfo( $IP );
+			$coreHeadSHA1 = $coreGitInfo->getHeadSHA1();
+			if ( $coreGitInfo->getHeadSHA1() ) {
+				$coreId = $coreHeadSHA1;
 			} else {
-				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
-				# Make subversion text/link.
+				$svnInfo = self::getSvnInfo( $IP );
 				if ( $svnInfo !== false ) {
-					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-					$vcsText = $this->msg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
-					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+					$coreId = $svnInfo['checkout-rev']; # SVN
 				}
+			}
+
+			$memcKey = wfMemcKey( 'specialversion-ext-version-text', $extension['path'], $coreId );
+			$vcsText = $wgMemc->get( $memcKey );
+			if ( !$vcsText ) {
+				wfDebug( 'Getting git extension info for ' . $name );
+				$gitInfo = new GitInfo( dirname( $extension['path'] ) );
+				$gitHeadSHA1 = $gitInfo->getHeadSHA1();
+				if ( $gitHeadSHA1 !== false ) {
+					$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
+					$gitViewerUrl = $gitInfo->getHeadViewUrl();
+					if ( $gitViewerUrl !== false ) {
+						$vcsText = "[$gitViewerUrl $vcsText]";
+					}
+					$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+					if ( $gitHeadCommitDate ) {
+						$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+					}
+				} else {
+					$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
+					# Make subversion text/link.
+					if ( $svnInfo !== false ) {
+						$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
+						$vcsText = $this->msg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
+						$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+					}
+				}
+				$wgMemc->set( $memcKey, $vcsText, 60*60*24 );
+			} else {
+				wfDebug( 'Pulled git extension info for ' . $name . ' from cache' );
 			}
 		}
 
