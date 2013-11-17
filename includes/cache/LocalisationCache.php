@@ -1273,7 +1273,7 @@ class LCStore_Null implements LCStore {
  * A localisation cache optimised for loading large amounts of data for many
  * languages. Used by rebuildLocalisationCache.php.
  */
-class LocalisationCache_BulkLoad extends LocalisationCache {
+class LocalisationCacheBulkLoad extends LocalisationCache {
 	/**
 	 * A cache of the contents of data files.
 	 * Core files are serialized to avoid using ~1GB of RAM during a recache.
