@@ -56,6 +56,11 @@ production.
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
   categories.
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.23===
 

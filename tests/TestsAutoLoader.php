@@ -57,6 +57,7 @@ $wgAutoloadClasses += array(
 	'ApiTestCase' => "$testDir/phpunit/includes/api/ApiTestCase.php",
 	'ApiTestContext' => "$testDir/phpunit/includes/api/ApiTestContext.php",
 	'MockApi' => "$testDir/phpunit/includes/api/MockApi.php",
+	'MockApiQueryBase' => "$testDir/phpunit/includes/api/MockApiQueryBase.php",
 	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",
 	'RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
 
