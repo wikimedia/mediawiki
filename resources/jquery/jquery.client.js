@@ -190,6 +190,10 @@
 		/**
 		 * Checks the current browser against a support map object.
 		 *
+		 * Version numbers passed as numeric values will be compared like numbers (1.2 > 1.11).
+		 * Version numbers passed as string values will be compared using a simple component-wise
+		 * algorithm, similar to PHP's version_compare ('1.2' < '1.11').
+		 *
 		 * A browser map is in the following format:
 		 * {
 		 *   // Multiple rules with configurable operators
@@ -223,7 +227,7 @@
 		test: function ( map, profile, exactMatchOnly ) {
 			/*jshint evil: true */
 
-			var conditions, dir, i, op, val;
+			var conditions, dir, i, op, val, j, pieceVersion, pieceVal, compare;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
 			if ( map.ltr && map.rtl ) {
 				dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
@@ -247,7 +251,30 @@
 				op = conditions[i][0];
 				val = conditions[i][1];
 				if ( typeof val === 'string' ) {
-					if ( !( eval( 'profile.version' + op + '"' + val + '"' ) ) ) {
+					// Perform a component-wise comparison of versions, similar to PHP's version_compare
+					// but simpler. '1.11' is larger than '1.2'.
+					pieceVersion = profile.version.toString().split( '.' );
+					pieceVal = val.split( '.' );
+					// Extend with zeroes to equal length
+					while ( pieceVersion.length < pieceVal.length ) {
+						pieceVersion.push( '0' );
+					}
+					while ( pieceVal.length < pieceVersion.length ) {
+						pieceVal.push( '0' );
+					}
+					// Compare components
+					compare = 0;
+					for ( j = 0; j < pieceVersion.length; j++ ) {
+						if ( Number( pieceVersion[j] ) < Number( pieceVal[j] ) ) {
+							compare = -1;
+							break;
+						} else if ( Number( pieceVersion[j] ) > Number( pieceVal[j] ) ) {
+							compare = 1;
+							break;
+						}
+					}
+					// compare will be -1, 0 or 1, depending on comparison result
+					if ( !( eval( '' + compare + op + '0' ) ) ) {
 						return false;
 					}
 				} else if ( typeof val === 'number' ) {

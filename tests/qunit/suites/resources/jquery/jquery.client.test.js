@@ -396,7 +396,7 @@
 					rtl: true
 				}
 			},
-			// Bug #34924
+			// Rekonq (bug 34924)
 			'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) rekonq Safari/534.34': {
 				title: 'Rekonq',
 				platform: 'Linux i686',
@@ -413,30 +413,49 @@
 					ltr: true,
 					rtl: true
 				}
+			},
+			// Konqueror
+			'Mozilla/5.0 (X11; Linux i686) KHTML/4.9.1 (like Gecko) Konqueror/4.9': {
+				title: 'Konqueror',
+				platform: 'Linux i686',
+				profile: {
+					name: 'konqueror',
+					layout: 'khtml',
+					layoutVersion: 'unknown',
+					platform: 'linux',
+					version: '4.9.1',
+					versionBase: '4',
+					versionNumber: 4.9
+				},
+				wikiEditor: {
+					// '4.9' is less than '4.11'.
+					ltr: false,
+					rtl: false
+				}
 			}
 		},
 		testMap = {
-			// Example from WikiEditor
-			// Make sure to use raw numbers, a string like "7.0" would fail on a
-			// version 10 browser since in string comparaison "10" is before "7.0" :)
+			// Example from WikiEditor (modified with spoof Konqueror addition)
 			'ltr': {
-				'msie': [['>=', 7.0]],
-				'firefox': [['>=', 2]],
-				'opera': [['>=', 9.6]],
-				'safari': [['>=', 3]],
-				'chrome': [['>=', 3]],
-				'netscape': [['>=', 9]],
+				'msie': [['>=', '7.0']],
+				'firefox': [['>=', '2']],
+				'opera': [['>=', '9.6']],
+				'safari': [['>=', '3']],
+				'chrome': [['>=', '3']],
+				'netscape': [['>=', '9']],
+				'konqueror': [['>=', '4.11']],
 				'blackberry': false,
 				'ipod': false,
 				'iphone': false
 			},
 			'rtl': {
-				'msie': [['>=', 8]],
-				'firefox': [['>=', 2]],
-				'opera': [['>=', 9.6]],
-				'safari': [['>=', 3]],
-				'chrome': [['>=', 3]],
-				'netscape': [['>=', 9]],
+				'msie': [['>=', '8']],
+				'firefox': [['>=', '2']],
+				'opera': [['>=', '9.6']],
+				'safari': [['>=', '3']],
+				'chrome': [['>=', '3']],
+				'netscape': [['>=', '9']],
+				'konqueror': [['>=', '4.11']],
 				'blackberry': false,
 				'ipod': false,
 				'iphone': false
