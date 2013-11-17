@@ -365,9 +365,9 @@ class ApiEditPage extends ApiBase {
 				$apiResult->addValue( null, $this->getModuleName(), $r );
 
 				return;
-			} else {
-				$this->dieUsageMsg( 'hookaborted' );
 			}
+
+			$this->dieUsageMsg( 'hookaborted' );
 		}
 
 		// Do the actual save

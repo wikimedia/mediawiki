@@ -72,7 +72,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param  $pageid
 	 * @param  $title
 	 * @param $rc RecentChange (optional)
-	 * @return bool|String
+	 * @return bool|string
 	 */
 	public static function getPatrolToken( $pageid, $title, $rc = null ) {
 		global $wgUser;
@@ -99,9 +99,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			return $cachedPatrolToken;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
