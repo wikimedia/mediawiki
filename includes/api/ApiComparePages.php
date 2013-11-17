@@ -67,9 +67,9 @@ class ApiComparePages extends ApiBase {
 		if ( $difftext === false ) {
 			$this->dieUsage( 'The diff cannot be retrieved. ' .
 				'Maybe one or both revisions do not exist or you do not have permission to view them.', 'baddiff' );
-		} else {
-			ApiResult::setContent( $vals, $difftext );
 		}
+
+		ApiResult::setContent( $vals, $difftext );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $vals );
 	}
