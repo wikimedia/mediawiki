@@ -903,7 +903,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-domain' => 'Domena',
 'passwordreset-capture' => 'Czy pokazywać treść wiadomości e‐mail?',
 'passwordreset-capture-help' => 'Jeśli zaznaczysz to pole, zobaczysz treść wiadomości e‐mail z tymczasowym hasłem, w tej samej formie w jakiej jest wysyłana do użytkownika.',
-'passwordreset-email' => 'Adres e‐mail',
+'passwordreset-email' => 'Adres e‐mail:',
 'passwordreset-emailtitle' => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'passwordreset-emailtext-ip' => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o zresetowanie twojego hasła w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
@@ -928,10 +928,10 @@ Tymczasowe hasło – $2',
 'changeemail-header' => 'Zmiana adresu e‐mail',
 'changeemail-text' => 'Wypełnij formularz, jeśli chcesz zmienić swój adres poczty elektronicznej. Będziesz musiał wprowadzić hasło, aby potwierdzić tę zmianę.',
 'changeemail-no-info' => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
-'changeemail-oldemail' => 'Obecny adres e‐mail',
-'changeemail-newemail' => 'Nowy adres e-mail',
+'changeemail-oldemail' => 'Obecny adres e‐mail:',
+'changeemail-newemail' => 'Nowy adres e-mail:',
 'changeemail-none' => '(brak)',
-'changeemail-password' => 'Hasło {{SITENAME}}:',
+'changeemail-password' => 'Twoje hasło:',
 'changeemail-submit' => 'Zapisz nowy',
 'changeemail-cancel' => 'Anuluj',
 
@@ -3003,7 +3003,7 @@ Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}
 'allmessagesdefault' => 'Tekst domyślny',
 'allmessagescurrent' => 'Tekst obecny',
 'allmessagestext' => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
-Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
+Odwiedź [https://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter' => 'Filtrowanie według stanu modyfikacji:',
@@ -3790,7 +3790,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # External editor support
 'edit-externally' => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => '(Więcej informacji o używaniu [//www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
+'edit-externally-help' => '(Więcej informacji o używaniu [https://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wszystkie',
@@ -4026,7 +4026,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-hook-subscribedby' => 'Zapotrzebowany przez',
 'version-version' => '(Wersja $1)',
 'version-license' => 'Licencja',
-'version-poweredby-credits' => "Ta wiki korzysta z oprogramowania '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
+'version-poweredby-credits' => "Ta wiki korzysta z oprogramowania '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others' => 'inni',
 'version-poweredby-translators' => 'tłumacze translatewiki.net',
 'version-credits-summary' => 'Następujące osoby wniosły istotny wkład w rozwój oprogramowania [[Special:Version|MediaWiki]].',

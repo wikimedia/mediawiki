@@ -2740,7 +2740,7 @@ $1',
 'allmessagesdefault' => 'كۆڭۈلدىكى ئۇچۇر تېكستى',
 'allmessagescurrent' => 'نۆۋەتتىكى ئۇچۇر تېكستى',
 'allmessagestext' => 'بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.
-ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[//www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
+ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[https://www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
 'allmessagesnotsupportedDB' => "بۇ بەتنى ئىشلەتكىلى بولمايدۇ، سەۋەبى '''\$wgUseDatabaseMessages''' چەكلەنگەن.",
 'allmessages-filter-legend' => 'سۈزگۈچ',
 'allmessages-filter' => 'ئىختىيارىچە سۈزگۈچ ھالىتى:',
@@ -3557,7 +3557,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => 'بۇ ھۆججەتنى سىرتقى قوللىنىشچان پروگراممىدا تەھرىرلە',
-'edit-externally-help' => '( [//www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
+'edit-externally-help' => '( [https://www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەممىسى',
@@ -3741,7 +3741,7 @@ $5
 'version-hook-subscribedby' => 'ئىمزا قويغۇچى',
 'version-version' => '(نەشرى $1)',
 'version-license' => 'ئىجازەتنامە',
-'version-poweredby-credits' => "بۇ ۋىكىنى '''[//www.mediawiki.org/ MediaWiki]''' تېخنىكىلىق قوللايدۇ، نەشر ھوقۇقى © 2001-$1 $2",
+'version-poweredby-credits' => "بۇ ۋىكىنى '''[https://www.mediawiki.org/ MediaWiki]''' تېخنىكىلىق قوللايدۇ، نەشر ھوقۇقى © 2001-$1 $2",
 'version-poweredby-others' => 'باشقا',
 'version-poweredby-translators' => 'translatewiki.net تەرجىمانلىرى',
 'version-credits-summary' => 'تۆۋەندىكى كىشىنىڭ [[Special:Version|MediaWiki]] غا تۆھپە قوشقانلىقىغا رەھمەت ئېيتىمىز.',

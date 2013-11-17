@@ -43,6 +43,7 @@
  * @author Qaqqalik
  * @author Remember the dot
  * @author Sarrus
+ * @author Shirayuki
  * @author Simeondahl
  * @author Sir48
  * @author Slomox
@@ -648,7 +649,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'gotaccount' => 'Har du allerede en konto? $1.',
 'gotaccountlink' => 'Log på',
 'userlogin-resetlink' => 'Har du glemt dine login oplysninger?',
-'userlogin-resetpassword-link' => 'Nulstil din adgangskode',
+'userlogin-resetpassword-link' => 'Glemt din adgangskode?',
 'helplogin-url' => 'Help:Logge på',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjælp til at logge på]]',
 'userlogin-loggedin' => 'Du er allerede logget på som {{GENDER:$1|$1}}.
@@ -712,14 +713,14 @@ kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangsko
 'passwordsent' => 'En ny adgangskode er sendt til e-mailadressen, som er registreret for "$1".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
 'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille en ny adgangskode.',
-'eauthentsent' => 'En bekræftelsesmail er sendt til den angivne e-mailadresse.
+'eauthentsent' => 'En e-mailbekræftelse er sendt til den angivne e-mailadresse.
 
-Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
+Før flere e-mails bliver sendt til kontoen, skal du følge instruktionerne i e-mailen, for at bekræfte at kontoen rent faktisk er din.',
 'throttled-mailpassword' => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt en ny adgangskode. For at forhindre misbrug af funktionen, kan der kun bestilles en ny adgangskode én gang for hver {{PLURAL:$1|time|$1 timer}}.',
 'mailerror' => 'Fejl ved afsendelse af e-mail: $1',
 'acct_creation_throttle_hit' => 'Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|en konto|$1 kontoer}} det sidste døgn, og det er ikke tilladt at oprette flere.
 Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblikket.',
-'emailauthenticated' => 'Din e-mailadresse blev bekræftet $2 $3.',
+'emailauthenticated' => 'Din e-mailadresse blev bekræftet den $2 kl. $3.',
 'emailnotauthenticated' => 'Din e-mailadresse er endnu ikke bekræftet.
 Ingen e-mail vil blive sendt for de følgende funktioner.',
 'noemailprefs' => 'Angiv en e-mailadresse, så følgende funktioner er til rådighed.',
@@ -1143,19 +1144,20 @@ Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/s
 'revdelete-text' => "'''Slettede versioner vil fortsat vises i sidehistorik og på logsider, men dele af deres indhold vil ikke være offentligt tilgængeligt.'''
 Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det skjulte indhold og kan gendanne det igen, medmindre der laves yderligere restriktioner.",
 'revdelete-confirm' => 'Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
-'revdelete-suppress-text' => "Skjulning bør '''kun''' bruges i de følgende tilfælde:
+'revdelete-suppress-text' => "Der bør '''kun''' skjules i de følgende tilfælde:
+* Potentielt injurierende oplysninger
 * Upassende personlige oplysninger
-*: ''hjemadresser og -telefonnumre, CPR-numre og lign.''",
+*: ''hjemmeadresser og -telefonnumre, CPR-numre og lign.''",
 'revdelete-legend' => 'Fastlægge begrænsninger for versionerne:',
-'revdelete-hide-text' => 'Skjul versionens tekst',
+'revdelete-hide-text' => 'Tekst for versionen',
 'revdelete-hide-image' => 'Skjul filindhold',
 'revdelete-hide-name' => 'Skjul handling og mål',
-'revdelete-hide-comment' => 'Skjul ændringskommentar',
-'revdelete-hide-user' => 'Skjul brugerens brugernavn/IP',
+'revdelete-hide-comment' => 'Redigeringssammendrag',
+'revdelete-hide-user' => 'Brugerens brugernavn/IP-adrsse',
 'revdelete-hide-restricted' => 'Skjul også informationen for administratorer',
 'revdelete-radio-same' => '(ikke ændre)',
-'revdelete-radio-set' => 'Ja',
-'revdelete-radio-unset' => 'Nej',
+'revdelete-radio-set' => 'Skjult',
+'revdelete-radio-unset' => 'Synligt',
 'revdelete-suppress' => 'Skjul også informationen for administratorer',
 'revdelete-unsuppress' => 'Ophæv begrænsninger for gendannede versioner',
 'revdelete-log' => 'Begrundelse:',
@@ -2846,7 +2848,7 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'allmessagesdefault' => 'Standardtekst',
 'allmessagescurrent' => 'Nuværende tekst',
 'allmessagestext' => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
-Besøg venligst [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] og [//translatewiki.net translatewiki.net] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
+Besøg venligst [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] og [//translatewiki.net translatewiki.net] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
 'allmessages-filter-legend' => 'Filtrér',
 'allmessages-filter' => 'Filtrér efter tilpasningsstatus:',
@@ -3057,6 +3059,7 @@ Udfyld '''IKKE''' dette!",
 'pageinfo-length' => 'Sidelængde (i bytes)',
 'pageinfo-article-id' => 'Side-ID',
 'pageinfo-language' => 'Sprog for sideindholdet',
+'pageinfo-content-model' => 'Sidens indhold er',
 'pageinfo-robot-policy' => 'Indeksering af robotter',
 'pageinfo-robot-index' => 'Tilladt',
 'pageinfo-robot-noindex' => 'Ikke tilladt',
@@ -3142,7 +3145,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'svg-long-desc' => 'SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3',
 'svg-long-desc-animated' => 'Animeret SVG-fil, basisstørrelse $1 × $2 punkter, filstørrelse: $3',
 'svg-long-error' => 'Ugyldig SVG-fil: $1',
-'show-big-image' => 'Version i større opløsning',
+'show-big-image' => 'Oprindelige fil',
 'show-big-image-preview' => 'Størrelse af denne forhåndsvisning: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Anden opløsning|Andre opløsninger}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3609,7 +3612,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # External editor support
 'edit-externally' => 'Rediger denne fil med en ekstern editor',
-'edit-externally-help' => '(Se [//www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
+'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3788,7 +3791,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-hook-subscribedby' => 'Brugt af',
 'version-version' => '(Version $1)',
 'version-license' => 'Licens',
-'version-poweredby-credits' => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Denne wiki er drevet af '''[https://www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
 'version-poweredby-translators' => 'translatewiki.net oversættere',
 'version-credits-summary' => 'Vi vil gerne anerkende følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
@@ -3807,7 +3810,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 # Special:Redirect
 'redirect' => 'Omdirigering pga. fil, bruger eller udgave ID',
 'redirect-legend' => 'Omstilling til en fil eller en side',
-'redirect-summary' => "Denne side omdirigerer en (hvis filnavnet er angivet), en side (hvis udgave ID'et er angivet) eller en brugerside (hvis et numerisk brugernummer er angivet).",
+'redirect-summary' => "Denne specialside omdirigerer til en fil (hvis filnavnet er angivet), en side (hvis udgave ID'et er angivet) eller en brugerside (hvis et numerisk brugernummer er angivet). Eksempler på brug: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] eller [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Kør',
 'redirect-lookup' => 'Slå op:',
 'redirect-value' => 'Værdi:',
@@ -3872,7 +3875,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'tags-hitcount-header' => 'Taggede ændringer',
 'tags-active-yes' => 'Ja',
 'tags-active-no' => 'Nej',
-'tags-edit' => 'Redigér',
+'tags-edit' => 'redigér',
 'tags-hitcount' => '{{PLURAL:$1|en ændring|$1 ændringer}}',
 
 # Special:ComparePages

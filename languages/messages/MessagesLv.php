@@ -2357,7 +2357,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'allmessagesdefault' => 'Noklusētais ziņojuma teksts',
 'allmessagescurrent' => 'Pašreizējais teksts',
 'allmessagestext' => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
-Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
+Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
 'allmessages-filter-legend' => 'Filtrs',
 'allmessages-filter' => 'Filtrēt pēc izmainīšanas statusa:',
@@ -2936,7 +2936,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 
 # External editor support
 'edit-externally' => 'Izmainīt šo failu ar ārēju programmu',
-'edit-externally-help' => '(Skat. [//www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
+'edit-externally-help' => '(Skat. [https://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visas',
@@ -3079,7 +3079,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-hook-name' => 'Aizķeres nosaukums',
 'version-version' => '(Versija $1)',
 'version-license' => 'Licence',
-'version-poweredby-credits' => "Šis viki darbojas ar '''[//www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
+'version-poweredby-credits' => "Šis viki darbojas ar '''[https://www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
 'version-poweredby-others' => 'citi',
 'version-poweredby-translators' => 'translatewiki.net tulkotāji',
 'version-credits-summary' => 'Mēs vēlētos izteikt atzinību šīm personām par viņu ieguldījumu [[Special:Version|MediaWiki]].',

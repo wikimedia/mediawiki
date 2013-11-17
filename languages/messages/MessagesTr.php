@@ -2940,7 +2940,7 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'allmessagesdefault' => 'Varsayılan mesaj metni',
 'allmessagescurrent' => 'Kullanımdaki metin',
 'allmessagestext' => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
-Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [//www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [//translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
+Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [https://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [//translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
 'allmessages-filter-legend' => 'Filtre',
 'allmessages-filter' => 'Özelleştirme durumuna göre filtrele:',
@@ -3684,7 +3684,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 # External editor support
 'edit-externally' => 'Dosyayı harici bir uygulamayla değiştirin.',
-'edit-externally-help' => '(Daha fazla bilgi için metadaki [//www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
+'edit-externally-help' => '(Daha fazla bilgi için metadaki [https://www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hepsini göster',
@@ -3876,7 +3876,7 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'version-hook-subscribedby' => 'Abone olan',
 'version-version' => '(Sürüm $1)',
 'version-license' => 'Lisans',
-'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
+'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
 'version-poweredby-others' => 'diğerleri',
 'version-license-info' => "MediaWiki özgür bir yazılımdır; MediaWiki'yi, Özgür Yazılım Vakfı tarafından yayımlanmış olan GNU Genel Kamu Lisansının 2. veya (seçeceğiniz) daha sonraki bir sürümünün koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
 

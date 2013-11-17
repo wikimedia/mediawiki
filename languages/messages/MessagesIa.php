@@ -14,6 +14,7 @@
  * @author McDutchie
  * @author Nemo bis
  * @author Reedy
+ * @author Shirayuki
  * @author Yfdyh000
  * @author לערי ריינהארט
  */
@@ -1147,8 +1148,8 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-hide-user' => 'Nomine de usator o adresse IP del modificator',
 'revdelete-hide-restricted' => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-radio-same' => '(non cambiar)',
-'revdelete-radio-set' => 'Visibile',
-'revdelete-radio-unset' => 'Celate',
+'revdelete-radio-set' => 'Celate',
+'revdelete-radio-unset' => 'Visibile',
 'revdelete-suppress' => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-unsuppress' => 'Eliminar restrictiones super versiones restaurate',
 'revdelete-log' => 'Motivo:',
@@ -2888,7 +2889,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'allmessagesdefault' => 'Texto predefinite',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext' => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
-Per favor visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
+Per favor visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessages-filter-legend' => 'Filtro',
 'allmessages-filter' => 'Filtrar per stato de personalisation:',
@@ -3193,7 +3194,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'svg-long-desc' => 'File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'svg-long-desc-animated' => 'File SVG animate, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'svg-long-error' => 'File SVG invalide: $1',
-'show-big-image' => 'Plen resolution',
+'show-big-image' => 'File original',
 'show-big-image-preview' => ' Dimension de iste previsualisation: $1.',
 'show-big-image-other' => 'Altere {{PLURAL:$2|resolution|resolutiones}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3661,7 +3662,7 @@ Le alteres essera initialmente celate.
 
 # External editor support
 'edit-externally' => 'Modificar iste file con un programma externe',
-'edit-externally-help' => '(Vide le [//www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
+'edit-externally-help' => '(Vide le [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totes',
@@ -3852,7 +3853,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'version-hook-subscribedby' => 'Subscribite per',
 'version-version' => '(Version $1)',
 'version-license' => 'Licentia',
-'version-poweredby-credits' => "Iste wiki es actionate per '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Iste wiki es actionate per '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'alteres',
 'version-poweredby-translators' => 'Traductores de translatewiki.net',
 'version-credits-summary' => 'Nos vole recognoscer le sequente personas pro lor contribution a [[Special:Version|MediaWiki]].',

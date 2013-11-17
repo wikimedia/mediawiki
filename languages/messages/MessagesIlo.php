@@ -2759,7 +2759,7 @@ No iti kinaudi a kaso mabalinmo nga usaren ti silpo, a kas pagarigan [[{{#Specia
 'allmessagesdefault' => 'Kasisigud a testo ti mensahe',
 'allmessagescurrent' => 'Agdama a testo ti mensahe',
 'allmessagestext' => 'Daytoy ti listaan dagiti mensahe ti sistema a magun-od idiay MediaWiki a nagan ti espasio.
-Pangngaasi a bisitaen ti [//www.mediawiki.org/wiki/Localisation Lokalisasion ti MediaWiki] ken [//translatewiki.net translatewiki.net] no kayatmo ti agparawad kadagiti sapasap a panagipatarus ti MediaWiki.',
+Pangngaasi a bisitaen ti [https://www.mediawiki.org/wiki/Localisation Lokalisasion ti MediaWiki] ken [//translatewiki.net translatewiki.net] no kayatmo ti agparawad kadagiti sapasap a panagipatarus ti MediaWiki.',
 'allmessagesnotsupportedDB' => "Saan a mausar daytoy a panid ngamin ket ti '''\$wgUseDatabaseMessages''' ket nabaldado.",
 'allmessages-filter-legend' => 'Sagat',
 'allmessages-filter' => 'Sagaten babaen ti naipaduma a kasasaad:',
@@ -3508,7 +3508,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 
 # External editor support
 'edit-externally' => 'Baliwan daytoy a papeles babaen ti akinruar nga aplikasion',
-'edit-externally-help' => '(Kitaen ti [//www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay a pakaammo).',
+'edit-externally-help' => '(Kitaen ti [https://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay a pakaammo).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'amin',
@@ -3697,7 +3697,7 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'version-hook-subscribedby' => 'Umanamong babaen ti',
 'version-version' => '(Bersion $1)',
 'version-license' => 'Lisensia',
-'version-poweredby-credits' => "Daytoy a wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
+'version-poweredby-credits' => "Daytoy a wiki ket pinaandar ti '''[https://www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
 'version-poweredby-others' => 'dadduma pay',
 'version-poweredby-translators' => 'agipatpatarus ti translatewiki.net',
 'version-credits-summary' => 'Kayatmi koma a pammadayawan dagiti sumaganad a tao para kadagiti inparawadda iti [[Special:Version|MediaWiki]].',

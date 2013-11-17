@@ -2766,7 +2766,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'allmessagesdefault' => 'Testun rhagosodedig',
 'allmessagescurrent' => 'Testun cyfredol',
 'allmessagestext' => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
-Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net].",
+Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
 'allmessages-filter-legend' => 'Hidl',
 'allmessages-filter' => 'Hidlo yn ôl eu cyflwr addasu:',
@@ -3525,7 +3525,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 # External editor support
 'edit-externally' => 'Golygwch y ffeil gyda rhaglen allanol',
-'edit-externally-help' => '(Gwelwch y [//www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth)',
+'edit-externally-help' => '(Gwelwch y [https://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'holl',
@@ -3697,7 +3697,7 @@ Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'version-hook-subscribedby' => 'Tanysgrifwyd gan',
 'version-version' => '(Fersiwn $1)',
 'version-license' => 'Trwydded',
-'version-poweredby-credits' => "Mae'r wici hwn wedi'i nerthu gan '''[//www.mediawiki.org/ MediaWiki]''', hawlfraint © 2001 - $1 $2.",
+'version-poweredby-credits' => "Mae'r wici hwn wedi'i nerthu gan '''[https://www.mediawiki.org/ MediaWiki]''', hawlfraint © 2001 - $1 $2.",
 'version-poweredby-others' => 'eraill',
 'version-poweredby-translators' => 'cyfieithwyr translatewiki.net',
 'version-credits-summary' => 'Hoffem gydnabod cyfraniad y bobl canlynol i [[Special:Version|MediaWiki]].',

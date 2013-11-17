@@ -927,7 +927,7 @@ $messages = array(
 
 # External editor support
 'edit-externally' => 'дѣла иꙁмѣнѥниѥ вънѣщьниимь орѫдиѥмь',
-'edit-externally-help' => '(ꙁьри [//www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
+'edit-externally-help' => '(ꙁьри [https://www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вьсꙗ',

@@ -682,8 +682,8 @@ $1',
 # Main script and global functions
 'nosuchaction' => '无该命令',
 'nosuchactiontext' => 'URL指定的操作无效。你可能输入了错误的URL地址，或是点击了错误的链接。这也可能表明{{SITENAME}}使用的软件的存在漏洞（bug）。',
-'nosuchspecialpage' => '无该特殊页面',
-'nospecialpagetext' => '<strong>你请求了一个无效的特殊页面。</strong>
+'nosuchspecialpage' => '此特殊页面不存在',
+'nospecialpagetext' => '<strong>您请求了一个无效的特殊页面。</strong>
 
 有效的特殊页面的列表可以在[[Special:SpecialPages|{{int:specialpages}}]]找到。',
 
@@ -1265,7 +1265,7 @@ $3的理由是''$2''",
 'revdelete-hide-comment' => '编辑摘要',
 'revdelete-hide-user' => '编辑者的用户名/IP地址',
 'revdelete-hide-restricted' => '同时阻止管理员与其他用户查看数据',
-'revdelete-radio-same' => '（不要更改）',
+'revdelete-radio-same' => '（不更改）',
 'revdelete-radio-set' => '隐藏',
 'revdelete-radio-unset' => '可见',
 'revdelete-suppress' => '同时阻止管理员与其他用户查看数据',
@@ -1507,7 +1507,7 @@ $1",
 该信息将会公开。',
 'email' => '电子邮件',
 'prefs-help-realname' => '真实姓名是选填项目。如果你选择提供它，它将会用于贡献署名。',
-'prefs-help-email' => "<nowiki>*</nowiki> 您不一定要提供电子邮件，但如果您遗失密码，将'''无法'''再次登入。您可以随时在此提供电子邮件，或更改资料。如您更改电子邮件，您将需要[[Help:电子邮件确认|重新确认]]。",
+'prefs-help-email' => '电子邮件是可选项，但是在您忘记密码时很有用。',
 'prefs-help-email-others' => '你也可以选择让其他用户通过你的用户或讨论页面上的链接用电子邮件联系你。其他用户联系你时你的电子邮件地址不会显示。',
 'prefs-help-email-required' => '电子邮件地址是必填项目。',
 'prefs-info' => '基本信息',
@@ -2899,7 +2899,7 @@ $1被封禁的理由是：“$2”',
 'allmessagesdefault' => '默认信息文字',
 'allmessagescurrent' => '当前信息文字',
 'allmessagestext' => '此处列出了MediaWiki名字空间下的所有有效系统消息。
-如果想为MediaWiki的本地化贡献翻译，请访问[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[//translatewiki.net translatewiki.net]。',
+如果想为MediaWiki的本地化贡献翻译，请访问[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "此页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessages-filter-legend' => '过滤',
 'allmessages-filter' => '按自定义状态过滤：',
@@ -3702,7 +3702,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => '用外部应用程序编辑本文件',
-'edit-externally-help' => '（更多信息请见[//www.mediawiki.org/wiki/Manual:External_editors 安装说明]）',
+'edit-externally-help' => '（更多信息请见[https://www.mediawiki.org/wiki/Manual:External_editors 安装说明]）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '所有',
@@ -3744,8 +3744,7 @@ $5
 确认码会在$4过期。',
 'confirmemail_body_changed' => '拥有IP地址$1的用户（可能是您）在{{SITENAME}}更改了账户“$2”的电子邮箱地址。
 
-请确认这个账户是属于您的，并同时重新激活在{{SITENAME}}上的电子邮件功能。请
-在浏览器中打开下面的链接：
+要确认此账户确实属于您并同时激活在{{SITENAME}}的电子邮件功能，请在浏览器中打开下面的链接：
 
 $3
 
@@ -3886,7 +3885,7 @@ $5
 'version-hook-subscribedby' => '署名',
 'version-version' => '（版本$1）',
 'version-license' => '授权协议',
-'version-poweredby-credits' => "本Wiki由'''[//www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-credits' => "本Wiki由'''[https://www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
 'version-poweredby-translators' => 'translatewiki.net上的翻译者',
 'version-credits-summary' => '我们感谢下列人士为[[Special:Version|MediaWiki]]作出的贡献。',
@@ -4109,7 +4108,7 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'api-error-unclassified' => '出现未知错误。',
 'api-error-unknown-code' => '未知错误：$1',
 'api-error-unknown-error' => '内部错误：尝试上传文件时出错。',
-'api-error-unknown-warning' => '未知的警告：$1',
+'api-error-unknown-warning' => '未知的警告：“$1”。',
 'api-error-unknownerror' => '未知错误：$1。',
 'api-error-uploaddisabled' => '该wiki停用上传。',
 'api-error-verification-error' => '该文件可能损坏或扩展名错误。',

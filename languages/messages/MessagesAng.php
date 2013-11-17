@@ -12,6 +12,7 @@
  * @author Gott wisst
  * @author JJohnson
  * @author Omnipaedista
+ * @author Shirayuki
  * @author Spacebirdy
  * @author Tsepelcory
  * @author Wōdenhelm
@@ -1217,7 +1218,7 @@ Cēos ōðerne naman lā.',
 'exif-gpsdirection-t' => 'Sōþ rihtung',
 
 # External editor support
-'edit-externally-help' => '(Sēon þā [//www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
+'edit-externally-help' => '(Sēon þā [https://www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eall',

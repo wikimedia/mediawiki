@@ -2948,7 +2948,7 @@ En la lasta okazo, vi ankaŭ povas uzi ligilon, ekz-e [[{{#Special:Export}}/{{Me
 'allmessagesdefault' => 'Defaŭlta teksto',
 'allmessagescurrent' => 'Nuna teksto',
 'allmessagestext' => 'Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.
-Bonvolu aliri [//www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]
+Bonvolu aliri [https://www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]
 se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.',
 'allmessages-filter-legend' => 'Filtri',
@@ -3716,7 +3716,7 @@ Aliaj estos kaŝitaj defaŭlte.
 
 # External editor support
 'edit-externally' => 'Ŝanĝi ĉi tiun dosieron per ekstera programaro',
-'edit-externally-help' => "(Vidu la [//www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
+'edit-externally-help' => "(Vidu la [https://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ĉiuj',
@@ -3955,7 +3955,7 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-hook-subscribedby' => 'Abonita de',
 'version-version' => '(Versio $1)',
 'version-license' => 'Permesilo',
-'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[//www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
+'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[https://www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others' => 'aliaj',
 'version-credits-summary' => 'Ni ŝatus agnoski la sekvajn personojn pro siaj kontribuoj al [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.

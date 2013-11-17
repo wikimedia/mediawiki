@@ -1502,7 +1502,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 
 # External editor support
 'edit-externally' => 'Na dosya be mırecaetê de teberi bıvurne',
-'edit-externally-help' => '(Serba daêna melumati qaytê pelga [//www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
+'edit-externally-help' => '(Serba daêna melumati qaytê pelga [https://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pêro',

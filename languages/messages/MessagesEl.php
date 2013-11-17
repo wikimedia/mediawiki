@@ -2981,7 +2981,7 @@ $1',
 'allmessagesdefault' => 'Προεπιλεγμένο κείμενο μηνύματος',
 'allmessagescurrent' => 'Παρόν κείμενο',
 'allmessagestext' => 'Αυτή είναι μια λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki.
-Παρακαλούμε επισκεφθείτε τα [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [//translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
+Παρακαλούμε επισκεφθείτε τα [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [//translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
 'allmessagesnotsupportedDB' => "Αυτή η σελίδα δεν υποστηρίζεται επειδή το ''wgUseDatabaseMessages'' είναι απενεργοποιημένο.",
 'allmessages-filter-legend' => 'Φίλτρο',
 'allmessages-filter' => 'Ταξινόμηση βάσει της δήλωσης προσαρμογής:',
@@ -3747,7 +3747,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Επεξεργαστείτε αυτό το αρχείο χρησιμοποιώντας κάποια εξωτερική εφαρμογή',
-'edit-externally-help' => '(Βλ. [//www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης] για περισσότερες πληροφορίες)',
+'edit-externally-help' => '(Βλ. [https://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης] για περισσότερες πληροφορίες)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'όλες',
@@ -3934,7 +3934,7 @@ $5
 'version-hook-subscribedby' => 'Υπογεγραμμένο από',
 'version-version' => '(Έκδοση $1)',
 'version-license' => 'Άδεια χρήσης',
-'version-poweredby-credits' => "Αυτό το wiki λειτουργεί με το λογισμικό '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
+'version-poweredby-credits' => "Αυτό το wiki λειτουργεί με το λογισμικό '''[https://www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others' => 'άλλοι',
 'version-poweredby-translators' => 'translatewiki.net μεταφραστές',
 'version-credits-summary' => 'Θα θέλαμε να αναγνωρίσουμε τη συμβολή των παρακάτω προσώπων στο [[Special:Version|MediaWiki]].',

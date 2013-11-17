@@ -2050,7 +2050,7 @@ $1',
 'allmessagesname' => 'Исем',
 'allmessagesdefault' => 'Баштан ук куелган текс',
 'allmessagestext' => 'Бу исемлек MediaWiki исемнәр мәйданында булган система хәбәрләренең исемлеге.
-Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [//www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [//translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
+Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [https://www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [//translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
 'allmessages-filter-legend' => 'Фильтр',
 'allmessages-filter-unmodified' => 'Үзгәртелмәгән',
 'allmessages-filter-all' => 'Барысы',
@@ -2376,7 +2376,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Бу файлны тышкы кушымтаны кулланып үзгәртү',
-'edit-externally-help' => '(тулырак мәгълүмат өчен [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
+'edit-externally-help' => '(тулырак мәгълүмат өчен [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлык',

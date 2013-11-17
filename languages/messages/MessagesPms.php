@@ -2727,7 +2727,7 @@ Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré
 'allmessagesdefault' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'allmessagescurrent' => 'Test corent',
 'allmessagestext' => "Costa-sì a l'é na lista dij mëssagi ëd sistema disponìbij ant lë spassi nominal MediaWiki.
-Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
+Për piasì, ch'a vìsita la [https://www.mediawiki.org/wiki/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
 'allmessagesnotsupportedDB' => "Sta pàgina-sì a peul pa esse dovrà përchè '''\$wgUseDatabaseMessages''' a l'é stàit disabilità.",
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter' => 'Filtré për stat ëd përsonalisassion:',
@@ -3021,7 +3021,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-desc-animated' => "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-error' => 'Archivi SVG nen bon: $1',
-'show-big-image' => 'Version a arzolussion pien-a',
+'show-big-image' => 'Archivi original',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
 'show-big-image-size' => '$1 × $2 pontin',
@@ -3493,7 +3493,7 @@ J'àutri a saran stërmà coma stàndard.
 
 # External editor support
 'edit-externally' => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "(Lese [//www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
+'edit-externally-help' => "(Lese [https://www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',
@@ -3702,7 +3702,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'version-hook-subscribedby' => 'A son scrivusse',
 'version-version' => '(Version $1)',
 'version-license' => 'Licensa',
-'version-poweredby-credits' => "Costa wiki-sì a marcia mersì a '''[//www.mediawiki.org/ MediaWiki]''', licensa © 2001-$1 $2.",
+'version-poweredby-credits' => "Costa wiki-sì a marcia grassie a '''[https://www.mediawiki.org/ MediaWiki]''', licensa © 2001-$1 $2.",
 'version-poweredby-others' => 'àutri',
 'version-poweredby-translators' => 'tradutor ëd translatewiki.net',
 'version-credits-summary' => 'I tnoma a aringrassié le përson-e sì-dapress për soa contribussion a [[Special:Version|MediaWiki]].',

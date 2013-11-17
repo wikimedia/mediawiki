@@ -2876,7 +2876,7 @@ In die laaste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:Ex
 'allmessagesdefault' => 'Verstekteks',
 'allmessagescurrent' => 'Huidige teks',
 'allmessagestext' => "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamruimte teenwoordig is.
-Gaan na [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
+Gaan na [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
 'allmessagesnotsupportedDB' => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filtreer op staat van verandering:',
@@ -3636,7 +3636,7 @@ Ander velde sal versteek wees.
 
 # External editor support
 'edit-externally' => "Wysig hierdie lêer met 'n eksterne program",
-'edit-externally-help' => '(Sien [//www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
+'edit-externally-help' => '(Sien [https://www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3823,7 +3823,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'version-hook-subscribedby' => 'Gebruik deur',
 'version-version' => '(Weergawe $1)',
 'version-license' => 'Lisensie',
-'version-poweredby-credits' => "Hierdie wiki word aangedryf deur '''[//www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
+'version-poweredby-credits' => "Hierdie wiki word aangedryf deur '''[https://www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
 'version-poweredby-others' => 'andere',
 'version-poweredby-translators' => 'translatewiki.net-vertalers',
 'version-credits-summary' => 'Ons erken graag die volgende persone vir hul bydrae aan [[Special:Version|MediaWiki]].',

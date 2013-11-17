@@ -2904,7 +2904,7 @@ U potonjem slučaju možete rabiti i poveznicu, npr. [[{{#Special:Export}}/{{Med
 'allmessagesname' => 'Ime',
 'allmessagesdefault' => 'Prvotni tekst',
 'allmessagescurrent' => 'Trenutačni tekst',
-'allmessagestext' => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [//www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [//translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.',
+'allmessagestext' => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [https://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [//translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.',
 'allmessagesnotsupportedDB' => "Ova stranica ne može biti korištena jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend' => 'Filtriraj',
 'allmessages-filter' => 'Filtriraj prema prilagođenom obliku:',
@@ -3655,7 +3655,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 # External editor support
 'edit-externally' => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => '(Vidi [//www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
+'edit-externally-help' => '(Vidi [https://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3895,7 +3895,7 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'version-hook-subscribedby' => 'Pretplaćeno od',
 'version-version' => '(Inačica $1)',
 'version-license' => 'Licencija',
-'version-poweredby-credits' => "Ovaj wiki pogoni '''[//www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-credits' => "Ovaj wiki pogoni '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others' => 'ostali',
 'version-credits-summary' => 'Željeli bismo zahvaliti sljedećim suradnicima na njihovom doprinosu [[Special:Version|MediaWikiju]].',
 'version-license-info' => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.

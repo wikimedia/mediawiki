@@ -2580,7 +2580,7 @@ $1',
 'allmessagesdefault' => 'అప్రమేయ సందేశపు పాఠ్యం',
 'allmessagescurrent' => 'ప్రస్తుత పాఠ్యం',
 'allmessagestext' => 'మీడియావికీ పేరుబరిలో ఉన్న అంతరవర్తి సందేశాల జాబితా ఇది.
-సాధారణ మీడియావికీ స్థానికీకరణకి మీరు తోడ్పడాలనుకుంటే, దయచేసి [//www.mediawiki.org/wiki/Localisation మీడియావికీ స్థానికీకరణ] మరియు [//translatewiki.net ట్రాన్స్&zwnj;లేట్&zwnj;వికీ.నెట్] సైట్లను చూడండి.',
+సాధారణ మీడియావికీ స్థానికీకరణకి మీరు తోడ్పడాలనుకుంటే, దయచేసి [https://www.mediawiki.org/wiki/Localisation మీడియావికీ స్థానికీకరణ] మరియు [//translatewiki.net ట్రాన్స్&zwnj;లేట్&zwnj;వికీ.నెట్] సైట్లను చూడండి.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' అన్నది అచేతనం చేసి ఉన్నందువల్ల ఈ పేజీని వాడలేరు.",
 'allmessages-filter-legend' => 'వడపోత',
 'allmessages-filter' => 'కస్టమైజేషను స్థితిని బట్టి వడకట్టు:',
@@ -3250,7 +3250,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
-'edit-externally-help' => '(మరింత సమాచారం కొరకు [//www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
+'edit-externally-help' => '(మరింత సమాచారం కొరకు [https://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'అన్నీ',
@@ -3416,7 +3416,7 @@ $5
 'version-hook-subscribedby' => 'ఉపయోగిస్తున్నవి',
 'version-version' => '(సంచిక $1)',
 'version-license' => 'లైసెన్సు',
-'version-poweredby-credits' => "ఈ వికీ  '''[//www.mediawiki.org/ మీడియావికీ]'''చే శక్తిమంతం, కాపీహక్కులు  © 2001-$1 $2.",
+'version-poweredby-credits' => "ఈ వికీ  '''[https://www.mediawiki.org/ మీడియావికీ]'''చే శక్తిమంతం, కాపీహక్కులు  © 2001-$1 $2.",
 'version-poweredby-others' => 'ఇతరులు',
 'version-license-info' => 'మీడియావికీ అన్నది స్వేచ్ఛా మృదూపకరణం; మీరు దీన్ని పునఃపంపిణీ చేయవచ్చు మరియు/లేదా ఫ్రీ సాఫ్ట్&zwnj;వేర్ ఫౌండేషన్ ప్రచురించిన గ్నూ జనరల్ పబ్లిక్ లైసెస్సు వెర్షను 2 లేదా (మీ ఎంపిక ప్రకారం) అంతకంటే కొత్త వెర్షను యొక్క నియమాలకు లోబడి మార్చుకోవచ్చు.
 

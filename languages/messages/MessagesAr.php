@@ -3193,7 +3193,7 @@ $1',
 'allmessagesdefault' => 'النص الافتراضي',
 'allmessagescurrent' => 'النص الحالي',
 'allmessagestext' => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
-من فضلك زر [//www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
+من فضلك زر [https://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
 'allmessages-filter-legend' => 'المرشح',
 'allmessages-filter' => 'رشح حسب حالة التخصيص:',
@@ -4010,7 +4010,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => '(انظر [//www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
+'edit-externally-help' => '(انظر [https://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',
@@ -4289,7 +4289,7 @@ $5
 'version-version' => '(نسخة $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'الرخصة',
-'version-poweredby-credits' => "تدار هذه الويكي بواسطة '''[//www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
+'version-poweredby-credits' => "تدار هذه الويكي بواسطة '''[https://www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
 'version-poweredby-translators' => 'مترجمو translatewiki.net',
 'version-credits-summary' => 'نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[Special:Version|ميدياويكي]].',

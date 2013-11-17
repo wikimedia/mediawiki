@@ -2595,7 +2595,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'jetzige Tekscht',
 'allmessagestext' => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
-Lueg au uf [//www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [//translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
+Lueg au uf [https://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [//translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter fir dr aapasst Zuestand:',
@@ -3314,7 +3314,7 @@ Andri wäre standardmäßig nit aazeigt.
 
 # External editor support
 'edit-externally' => 'Die Datei mit emnen externe Programm bearbeite',
-'edit-externally-help' => '(Lueg d [//www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
+'edit-externally-help' => '(Lueg d [https://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alli',
@@ -3494,7 +3494,7 @@ Du chasch au d [[Special:EditWatchlist|Standard-Bearbeitigssyte]] bruuche.',
 'version-hook-subscribedby' => 'Ufruef vu',
 'version-version' => '(Version $1)',
 'version-license' => 'Lizänz',
-'version-poweredby-credits' => "Die Websyte nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Die Websyte nutzt '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'anderi',
 'version-credits-summary' => 'Mir danke däne Lyt fir ihri Bytreg zue [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki isch e freji Software, d. h. s cha, no dr Bedingige vu dr GNU General Public-Lizänz, wu vu dr Free Software Foundation vereffentligt woren isch, wyterverteilt un/oder modifiziert wäre. Doderbyy cha d Version 2, oder no eigenem Ermässe, jedi nejeri Version vu dr Lizänz brucht wäre.

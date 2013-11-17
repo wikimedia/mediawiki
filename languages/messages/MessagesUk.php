@@ -1350,8 +1350,8 @@ $3 зазначив таку причину: ''$2''",
 'revdelete-hide-user' => "Ім'я автора/IP адреса",
 'revdelete-hide-restricted' => 'Приховати дані також і від адміністраторів',
 'revdelete-radio-same' => '(не змінювати)',
-'revdelete-radio-set' => 'Видимий',
-'revdelete-radio-unset' => 'Прихований',
+'revdelete-radio-set' => 'Видимо',
+'revdelete-radio-unset' => 'Приховано',
 'revdelete-suppress' => 'Приховувати дані також і від адміністраторів',
 'revdelete-unsuppress' => 'Зняти обмеження з відновлених версій',
 'revdelete-log' => 'Причина:',
@@ -2806,9 +2806,11 @@ $1',
 'blockip' => 'Блокування',
 'blockip-title' => 'Блокування користувача',
 'blockip-legend' => 'Блокування користувача',
-'blockiptext' => "Використовуйте форму нижче, щоб заблокувати можливість редагування із зазначеної IP-адреси або або ім'я користувача.
-Це слід робити лише для попередження вандалізму і у відповідності до [[{{MediaWiki:Policy-url}}|правил]].
-Заповніть конкретну причину нижче (наприклад, вкажіть точні сторінки, на яких було зроблено акт вандалізму).",
+'blockiptext' => "Використовуйте форму нижче, щоб заблокувати можливість редагування зазначеній IP-адресі або користувачу.
+Це слід робити лише для запобігання порушенням і у відповідності до [[{{MediaWiki:Policy-url}}|правил]].
+Обов'язково заповніть причину нижче, бажано дати інформативну вичерпну інформацію (наприклад, послатися на конкретні правила, дати посилання на редагування користувача, які призвели до блокування). Можна конкретизувати причину блокування на сторінці обговорення користувача.
+* Якщо ви блокуєте обліковий запис бота, переконайтеся, що ви вимкнули автоблокування (для запобігання автоматичного блокування облікових записів власника бота або інших ботів).
+* Зверніть увагу, що IP-адреси у більшості випадків не варто блокувати на більший за декілька днів термін, щоб під блокування не підпали інші користувачі з таким самим IP. Винятки — частий довготривалий вандалізм.",
 'ipadressorusername' => "IP-адреса або ім'я користувача:",
 'ipbexpiry' => 'Термін:',
 'ipbreason' => 'Причина:',
@@ -3065,7 +3067,7 @@ $1',
 'allmessagesdefault' => 'Стандартний текст',
 'allmessagescurrent' => 'Поточний текст',
 'allmessagestext' => 'Це список усіх системних повідомлень, які доступні в просторі назв «MediaWiki».
-Будь ласка, відвідайте [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [//translatewiki.net translatewiki.net], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
+Будь ласка, відвідайте [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [//translatewiki.net translatewiki.net], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
 'allmessagesnotsupportedDB' => "Ця сторінка не може використовуватися, оскільки вимкнена опція '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend' => 'Фільтр',
 'allmessages-filter' => 'Фільтр за внесеними змінами:',
@@ -3941,7 +3943,7 @@ $8',
 
 # External editor support
 'edit-externally' => 'Редагувати цей файл, використовуючи зовнішню програму',
-'edit-externally-help' => '(Подробиці див. на сторінці [//www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
+'edit-externally-help' => '(Подробиці див. на сторінці [https://www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всі',
@@ -4200,7 +4202,7 @@ $5
 'version-version' => '(Версія $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'Ліцензія',
-'version-poweredby-credits' => "Ця Вікі працює на системі управління вмістом '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ця Вікі працює на системі управління вмістом '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'інші',
 'version-poweredby-translators' => 'перекладачі translatewiki.net',
 'version-credits-summary' => 'Нам хотілося б відзначити наступних осіб, що зробили внесок у [[Special:Version|MediaWiki]].',

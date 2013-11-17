@@ -3208,7 +3208,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Правіць файл у вонкавай праграме',
-'edit-externally-help' => '(Гл. падрабязней [//www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
+'edit-externally-help' => '(Гл. падрабязней [https://www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усе',
@@ -3377,7 +3377,7 @@ $5
 'version-hook-subscribedby' => 'Сюды падпісаныя',
 'version-version' => '(Версія $1)',
 'version-license' => 'Ліцэнзія',
-'version-poweredby-credits' => "Пляцоўка працуе на '''[//www.mediawiki.org/ MediaWiki]''', капірайт © 2001-$1 $2.",
+'version-poweredby-credits' => "Пляцоўка працуе на '''[https://www.mediawiki.org/ MediaWiki]''', капірайт © 2001-$1 $2.",
 'version-poweredby-others' => 'іншыя',
 'version-license-info' => "MediaWiki з'яўляецца свабодным праграмным забеспячэннем. Такім чынам, вы можаце паўторна распаўсюджваць прадукт і(або) змяняць яго на ўмовах пагаднення GNU General Public License у тым выглядзе, у якім яно публікуецца фондам Free Software Foundation; сілу мае версія (выпуск) 2 гэтага пагаднення або, на ваш выбар, навейшая версія (выпуск) пагаднення.
 

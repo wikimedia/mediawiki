@@ -3044,7 +3044,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagesdefault' => 'Texto predeterminado',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext' => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
-Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [//translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
+Por favor visita [https://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [//translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessages-filter-legend' => 'Filtro',
 'allmessages-filter' => 'Filtrar por estado de personalización:',
@@ -3833,7 +3833,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 
 # External editor support
 'edit-externally' => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => '(Lee las [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
+'edit-externally-help' => '(Lee las [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',
@@ -4014,7 +4014,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-hook-subscribedby' => 'Suscrito por',
 'version-version' => '(Versión $1)',
 'version-license' => 'Licencia',
-'version-poweredby-credits' => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Este wiki funciona gracias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
 'version-poweredby-translators' => 'Traductores de translatewiki.net',
 'version-credits-summary' => 'Queremos reconocer a las siguientes personas por su contribución a [[Special:Version|MediaWiki]].',

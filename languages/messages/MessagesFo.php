@@ -2628,7 +2628,7 @@ Vinarliga vel eitt annað navn.',
 'allmessagesdefault' => 'Enskur tekstur',
 'allmessagescurrent' => 'Verandi tekstur',
 'allmessagestext' => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
-Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
+Vinarliga vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 'allmessages-filter-legend' => 'Filtur',
 'allmessages-filter-unmodified' => 'Óbroytt',
@@ -3058,7 +3058,7 @@ Onnur metadáta verða fjald sum standard.
 
 # External editor support
 'edit-externally' => 'Rætta hesa fílu við eksternari applikatión',
-'edit-externally-help' => '(Sí [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] fyri meira kunning)',
+'edit-externally-help' => '(Sí [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] fyri meira kunning)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alt',
@@ -3148,7 +3148,7 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'version-hook-name' => 'Krókurnavn',
 'version-version' => '(Útgáva $1)',
 'version-license' => 'Lisensur',
-'version-poweredby-credits' => "Henda wiki verður rikin av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Henda wiki verður rikin av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'onnur',
 'version-poweredby-translators' => 'translatewiki.net týðarar',
 'version-credits-summary' => 'Vit ynskja at takka fylgjandi persónum fyri teirra íkast til [[Special:Version|MediaWiki]].',

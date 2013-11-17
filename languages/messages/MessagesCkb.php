@@ -2607,7 +2607,7 @@ $1',
 'allmessagesdefault' => 'دەقی بنەڕەتی',
 'allmessagescurrent' => 'دەقی ھەنووکە',
 'allmessagestext' => 'ئەمە لیستێکە لە پەیامەکانی بەردەست لە بۆشایی‌ناوی میدیاویکی.
-تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
+تکایە سەردانی [https://www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
 'allmessagesnotsupportedDB' => "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''\$wgUseDatabaseMessages''' لەکار خستراوە.",
 'allmessages-filter-legend' => 'پاڵێو',
 'allmessages-filter-unmodified' => 'نەگۆڕدراو',
@@ -3175,7 +3175,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'دەستکاریی ئەم پەڕەیە بکە بە بەکارھێنانی پڕۆگرامێکی دەرەکی',
-'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [//www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
+'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [https://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەموو',

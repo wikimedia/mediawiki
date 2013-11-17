@@ -1639,7 +1639,7 @@ Sa dara cás, is féidir leat nasc a úsáid, mar shampla [[{{#Special:Export}}/
 'allmessagesdefault' => 'Téacs réamhshocraithe',
 'allmessagescurrent' => 'Téacs reatha',
 'allmessagestext' => 'Is liosta é seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki.
-Tabhair cuairt ar [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.',
+Tabhair cuairt ar [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.',
 'allmessagesnotsupportedDB' => "Ní féidir an leathanach seo a úsáid dá bharr gur díchumasaíodh '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-all' => 'Uile',
 'allmessages-language' => 'Teanga:',
@@ -2090,7 +2090,7 @@ cúlra i bhfócas)',
 
 # External editor support
 'edit-externally' => 'Athraigh an comhad seo le feidhmchlár seachtrach',
-'edit-externally-help' => '(Féach ar na [//www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
+'edit-externally-help' => '(Féach ar na [https://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'an t-iomlán',

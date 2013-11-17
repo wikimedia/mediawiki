@@ -2980,7 +2980,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagesdefault' => 'Nội dung mặc định',
 'allmessagescurrent' => 'Nội dung hiện thời',
 'allmessagestext' => 'Đây là toàn bộ thông điệp hệ thống có trong không gian tên MediaWiki.
-Mời vào [//www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hóa MediaWiki] và [//translatewiki.net/wiki/?uselang=vi translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
+Mời vào [https://www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hóa MediaWiki] và [//translatewiki.net/wiki/?uselang=vi translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessages-filter-legend' => 'Bộ lọc',
 'allmessages-filter' => 'Lọc theo tình trạng sửa đổi:',
@@ -3812,7 +3812,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 # External editor support
 'edit-externally' => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '(Xem [//www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
+'edit-externally-help' => '(Xem [https://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tất cả',
@@ -4057,7 +4057,7 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'version-hook-subscribedby' => 'Được theo dõi bởi',
 'version-version' => '(Phiên bản $1)',
 'version-license' => 'Giấy phép bản quyền',
-'version-poweredby-credits' => "Wiki này chạy trên '''[//www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
+'version-poweredby-credits' => "Wiki này chạy trên '''[https://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
 'version-poweredby-others' => 'những người khác',
 'version-poweredby-translators' => 'các biên dịch viên translatewiki.net',
 'version-credits-summary' => 'Chúng tôi muốn công nhận những người sau đã đóng góp vào [[Special:Version|MediaWiki]].',

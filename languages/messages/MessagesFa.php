@@ -3149,7 +3149,7 @@ $1',
 'allmessagesdefault' => 'متن پیش‌فرض پیغام',
 'allmessagescurrent' => 'متن کنونی پیغام',
 'allmessagestext' => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
+چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [https://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB' => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessages-filter-legend' => 'پالایه',
 'allmessages-filter' => 'پالودن بر اساس وضعیت شخصی‌سازی:',
@@ -3919,7 +3919,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'ویرایش این پرونده با یک ویرایشگر بیرونی',
-'edit-externally-help' => '(برای اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
+'edit-externally-help' => '(برای اطلاعات بیشتر [https://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',
@@ -4166,7 +4166,7 @@ $5
 'version-version' => '(نسخه $1)',
 'version-svn-revision' => '(&رلم;r$2)',
 'version-license' => 'اجازه‌نامه',
-'version-poweredby-credits' => "این ویکی توسط '''[//www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
+'version-poweredby-credits' => "این ویکی توسط '''[https://www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
 'version-poweredby-others' => 'دیگران',
 'version-poweredby-translators' => 'مترجمان translatewiki.net',
 'version-credits-summary' => 'افراد زیر را به خاطر ویرایش‌هایش در [[Special:Version|مدیاویکی]] معرفی می‌نمائیم.',

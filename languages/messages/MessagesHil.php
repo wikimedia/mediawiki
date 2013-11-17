@@ -1884,7 +1884,7 @@ Ang iban ay pagataguon sang default.
 
 # External editor support
 'edit-externally' => 'Islan ini nga file gamit ang eksternal nga aplikasyon',
-'edit-externally-help' => '(Lantawa ang [//www.mediawiki.org/wiki/Manual:External_editors tudlo sa pag panugod] para sa mga dugang nga impormasyon)',
+'edit-externally-help' => '(Lantawa ang [https://www.mediawiki.org/wiki/Manual:External_editors tudlo sa pag panugod] para sa mga dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',

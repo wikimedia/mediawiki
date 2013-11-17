@@ -2966,7 +2966,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagesdefault' => 'Texto predeterminado',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext' => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
-Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
+Por favor, visite a [https://www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Esta páxina non está dispoñible porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend' => 'Filtrar',
 'allmessages-filter' => 'Filtrar por estado de personalización:',
@@ -3749,7 +3749,7 @@ Os demais agocharanse por omisión.
 
 # External editor support
 'edit-externally' => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => '(Vexa as seguintes [//www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para obter máis información)',
+'edit-externally-help' => '(Vexa as seguintes [https://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para obter máis información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todo',
@@ -3941,7 +3941,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versión $1)',
 'version-license' => 'Licenza',
-'version-poweredby-credits' => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
+'version-poweredby-credits' => "Este wiki está desenvolvido por '''[https://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
 'version-poweredby-translators' => 'os tradutores de translatewiki.net',
 'version-credits-summary' => 'Queremos recoñecer as seguintes persoas polas súas achegas a [[Special:Version|MediaWiki]].',

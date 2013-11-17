@@ -2682,7 +2682,7 @@ Láti ṣàkójáde àwọn ojúewé, ẹ tẹ àkọlé wọn sínú àpótí �
 'allmessagesdefault' => 'Ìkọ ìránṣẹ́ àtìbẹ̀rẹ̀',
 'allmessagescurrent' => 'Ìkọ ìránṣẹ́ lọ́wọ́',
 'allmessagestext' => 'Èyí ni àtòjọ àwọn ìránṣẹ́ sístẹ́mù tó wà nínú orúkọàyè MediaWiki.
-Ẹ lọ sí [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] àti [//translatewiki.net translatewiki.net] tí ẹ bá fẹ́ kópa nínú ìyèdèpadà ìsiṣẹ́ MediaWiki.',
+Ẹ lọ sí [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] àti [//translatewiki.net translatewiki.net] tí ẹ bá fẹ́ kópa nínú ìyèdèpadà ìsiṣẹ́ MediaWiki.',
 'allmessagesnotsupportedDB' => "Ojúewé yìí kò ṣe é lò nítorípé '''\$wgUseDatabaseMessages''' ti jẹ́ dídálẹkun.",
 'allmessages-filter-legend' => 'Ajọ̀',
 'allmessages-filter' => 'Ajọ̀ gẹ́gẹ́bí ipò ìṣàyàn:',
@@ -3281,7 +3281,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 # External editor support
 'edit-externally' => "Ẹ lo ìmúlò òde láti ṣ'àtúnṣe fáìlì yìí",
-'edit-externally-help' => '(Ẹ wo [//www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
+'edit-externally-help' => '(Ẹ wo [https://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gbogbo',
@@ -3443,7 +3443,7 @@ $5
 'version-hook-name' => 'Orúkọ hook',
 'version-version' => '(Àtẹ̀jáde $1)',
 'version-license' => 'Ìwé àṣẹ',
-'version-poweredby-credits' => "Agbára ìṣiṣẹ́ wiki yìí wá látọwọ́ '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Agbára ìṣiṣẹ́ wiki yìí wá látọwọ́ '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'àwọn mìíràn',
 'version-credits-summary' => 'Ìdùnnú wa ni láti rántí àwọn ẹni wọ̀nyí fún ìdáwọ́lé wọn sí [[Special:Version|MediaWiki]].',
 'version-software' => 'Atòlànà kọ̀mpútà kíkànsínú',

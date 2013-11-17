@@ -1010,7 +1010,7 @@ Bloos  dsajln, dii mi´m dsajchn * ôôfanga, wärn berigsichdichd. Un dä ärsc
 
 # External editor support
 'edit-externally' => 'Dii dadaj mid an ägsdärna brogram ändârn',
-'edit-externally-help' => '(Määr un genauârs dâdsuu baj den [//www.mediawiki.org/wiki/Manual:External_editors Inschdaladsjoonsanwajsungn])',
+'edit-externally-help' => '(Määr un genauârs dâdsuu baj den [https://www.mediawiki.org/wiki/Manual:External_editors Inschdaladsjoonsanwajsungn])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ale',

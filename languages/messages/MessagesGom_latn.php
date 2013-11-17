@@ -718,7 +718,7 @@ Zori tor hi failik bodol'lam zalear kai mahiti bodololem failik sarkem mell khai
 
 # External editor support
 'edit-externally' => 'Hea failik bhaili program uzar korun bodol.',
-'edit-externally-help' => '(Odhik mahite khatir [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] polloi)',
+'edit-externally-help' => '(Odhik mahite khatir [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] polloi)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'soglle',

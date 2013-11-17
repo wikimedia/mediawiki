@@ -2272,7 +2272,7 @@ $1',
 'allmessagesdefault' => 'Ուղերձի լռելյայն տեքստ',
 'allmessagescurrent' => 'Ընթացիկ տեքստ',
 'allmessagestext' => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
 'allmessages-filter-all' => 'Բոլորը',
 'allmessages-language' => 'Լեզու',
@@ -2566,7 +2566,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
-'edit-externally-help' => '(Մանրամասնությունների համար տես [//www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
+'edit-externally-help' => '(Մանրամասնությունների համար տես [https://www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'բոլոր',

@@ -22,6 +22,7 @@
  * @author Kaganer
  * @author Kulmalukko
  * @author Linnea
+ * @author Mies
  * @author Mobe
  * @author Nedergard
  * @author Nike
@@ -1256,8 +1257,9 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella piilotettua sisältöä, ja he voivat palauttaa sen näkyviin tämän käyttöliittymän kautta, ellei tätä ole erikseen rajoitettu.",
 'revdelete-confirm' => 'Varmista, että haluat tehdä tämän – ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
+* Mahdollisesti henkilön kunniaa loukkaavia tietoja
 * Sopimattomat henkilötiedot
-*: ''kotiosoitteet, puhelinnumerot, sosiaaliturvatunnukset ja muut.''",
+*: ''kotiosoitteet, puhelinnumerot, henkilötunnukset ja muut.''",
 'revdelete-legend' => 'Aseta version näkyvyyden rajoitukset',
 'revdelete-hide-text' => 'Piilota version tekstisisältö',
 'revdelete-hide-image' => 'Piilota tiedoston sisältö',
@@ -1266,8 +1268,8 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti tarkastella p
 'revdelete-hide-user' => 'Piilota tekijän tunnus tai IP-osoite',
 'revdelete-hide-restricted' => 'Häivytä tiedot sekä ylläpitäjien että muiden käyttäjien näkyviltä',
 'revdelete-radio-same' => '(älä muuta)',
-'revdelete-radio-set' => 'Kyllä',
-'revdelete-radio-unset' => 'Ei',
+'revdelete-radio-set' => 'Piilossa',
+'revdelete-radio-unset' => 'Näkyvissä',
 'revdelete-suppress' => 'Häivytä tiedot myös ylläpitäjien näkyviltä samalla kun piilotat ne muilta käyttäjiltä',
 'revdelete-unsuppress' => 'Poista rajoitukset palautetuilta versioilta',
 'revdelete-log' => 'Syy:',
@@ -1413,9 +1415,9 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-ns' => 'Hae nimiavaruuksista:',
 'powersearch-redir' => 'Luettele ohjaukset',
 'powersearch-field' => 'Etsi',
-'powersearch-togglelabel' => 'Valitse:',
+'powersearch-togglelabel' => 'Muuta valintaa',
 'powersearch-toggleall' => 'Valitse kaikki',
-'powersearch-togglenone' => 'Ei mitään',
+'powersearch-togglenone' => 'Poista valinnat',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 'search-error' => 'Virhe ilmaantui haettaessa: $1',
@@ -2015,7 +2017,7 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'filehist-help' => 'Päiväystä napsauttamalla näet, millainen tiedosto oli kyseisellä hetkellä.',
 'filehist-deleteall' => 'poista kaikki',
 'filehist-deleteone' => 'poista tämä',
-'filehist-revert' => 'palauta tämä',
+'filehist-revert' => 'palauta',
 'filehist-current' => 'nykyinen',
 'filehist-datetime' => 'Päiväys',
 'filehist-thumb' => 'Pienoiskuva',
@@ -2070,7 +2072,7 @@ Voit tarvittaessa muokata [$2 tiedoston kuvaussivua] kohteessa.',
 'filedelete-submit' => 'Poista',
 'filedelete-success' => "Tiedosto '''$1''' on poistettu.",
 'filedelete-success-old' => "Tiedoston '''[[Media:$1|$1]]''' $2 kello $3 luotu versio on poistettu.",
-'filedelete-nofile' => "Tiedostoa '''$1''' ei ole olemassa.",
+'filedelete-nofile' => "Tiedostoa '''$1''' ei ole.",
 'filedelete-nofile-old' => "Tiedostosta '''$1''' ei ole olemassa arkistossa olevaa versiota, jolla on annetut ominaisuudet.",
 'filedelete-otherreason' => 'Muu syy tai tarkennus:',
 'filedelete-reason-otherlist' => 'Muu syy',
@@ -2460,7 +2462,7 @@ Palaute ja lisäapu osoitteessa:
 'excontentauthor' => 'sisälsi: ”$1” (ainoa muokkaaja oli $2)',
 'exbeforeblank' => 'ennen tyhjentämistä sisälsi: ”$1”',
 'exblank' => 'oli tyhjä',
-'delete-confirm' => 'Poista ”$1”',
+'delete-confirm' => 'Sivun ”$1” poistaminen',
 'delete-legend' => 'Sivun poisto',
 'historywarning' => "'''Varoitus:''' Sivua, jota olet poistamassa, on muokattu noin $1 {{PLURAL:$1|kerta|kertaa}}:",
 'confirmdeletetext' => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
@@ -2600,17 +2602,17 @@ Sinulla on kenties käytössä väärä linkki, tai sitten versio on saatettu pa
 'undeletedfiles' => '{{PLURAL:$1|1 tiedosto|$1 tiedostoa}} palautettiin',
 'cannotundelete' => 'Palauttaminen epäonnistui:
 $1',
-'undeletedpage' => "'''$1 on palautettu takaisin'''
+'undeletedpage' => "'''$1 on palautettu.'''
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
-'undelete-header' => 'Katso [[Special:Log/delete|poistolokia]], jossa ovat äskettäin poistetut sivut.',
+'undelete-header' => '[[Special:Log/delete|Poistolokissa]] on lista viimeisimmistä poistoista.',
 'undelete-search-title' => 'Etsi poistettuja sivuja',
 'undelete-search-box' => 'Etsi poistettuja sivuja',
 'undelete-search-prefix' => 'Näytä sivut, jotka alkavat merkkijonolla:',
 'undelete-search-submit' => 'Hae',
 'undelete-no-results' => 'Poistoarkistosta ei löytynyt haettuja sivuja.',
-'undelete-filename-mismatch' => 'Ei voida palauttaa tiedoston versiota, jonka aikaleima on $1: Tiedostonimi ei ole sama.',
-'undelete-bad-store-key' => 'Ei voida palauttaa tiedoston versiota, jonka aikaleima on $1: Tiedostoa ei ollut olemassa ennen poistoa.',
+'undelete-filename-mismatch' => 'Tiedoston versiota, jonka aikaleima on $1, ei voi palauttaa, koska tiedostonimi ei ole sama.',
+'undelete-bad-store-key' => 'Tiedoston version, jonka aikaleima on $1 palauttaminen epäonnistui, koska tiedostoa ei ollut ennen poistoa.',
 'undelete-cleanup-error' => 'Käyttämättömän arkistotiedoston $1 poistaminen epäonnistui.',
 'undelete-missing-filearchive' => 'Tiedostoarkiston tunnuksen $1 hakeminen epäonnistui. Tiedosto on saatettu jo palauttaa.',
 'undelete-error' => 'Sivun palauttaminen epäonnistui',
@@ -2818,7 +2820,7 @@ Muista [[Special:UnlockDB|poistaa tietokannan lukitus]] kun huolto on tehty.',
 'lockedbyandtime' => '(lukinnut {{GENDER:$1|$1}} $2 kello $3)',
 
 # Move page
-'move-page' => 'Siirrä $1',
+'move-page' => 'Sivun $1 siirto',
 'move-page-legend' => 'Siirrä sivu',
 'movepagetext' => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
 Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.
@@ -2889,7 +2891,7 @@ Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
 'immobile-target-namespace-iw' => 'Kielilinkki ei ole kelvollinen kohde sivun siirrolle.',
 'immobile-source-page' => 'Tämä sivu ei ole siirrettävissä.',
 'immobile-target-page' => 'Kyseiselle kohdenimelle ei voi siirtää.',
-'bad-target-model' => 'Toivottu kohde käyttää eri sisältömuotoa. Sisällön muuttaminen muodosta $1 muotoon $2 ei ole mahdollista.',
+'bad-target-model' => 'Kohde käyttää eri sisältömallia. Sisällön muuttaminen muodosta $1 muotoon $2 ei ole mahdollista.',
 'imagenocrossnamespace' => 'Tiedostoja ei voi siirtää pois tiedostonimiavaruudesta.',
 'nonfile-cannot-move-to-file' => 'Sivuja ei voi siirtää tiedostonimiavaruuteen.',
 'imagetypemismatch' => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
@@ -2906,7 +2908,7 @@ Alla on viimeisin lokitapahtuma:',
 Valitse toinen nimi.',
 
 # Export
-'export' => 'Vie sivuja',
+'export' => 'Sivujen vienti',
 'exporttext' => "Voit viedä (''export'') sivun tai usean sivun tekstin ja muokkaushistorian XML-muodossa.
 Tämä tieto voidaan tuoda (''import'') toiseen wikiin käyttämällä MediaWikiä [[Special:Import|tuontisivun]] kautta.
 
@@ -2933,7 +2935,7 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun 
 'allmessagesdefault' => 'Oletusarvo',
 'allmessagescurrent' => 'Nykyinen arvo',
 'allmessagestext' => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
-Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [//translatewiki.net translatewiki.net].',
+Jos haluat muokata MediaWikin yleistä kotoistusta, käy [https://www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
 'allmessages-filter-legend' => 'Suodata',
 'allmessages-filter' => 'Suodata muutosten perusteella',
@@ -3057,7 +3059,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 'tooltip-n-mainpage-description' => 'Siirry etusivulle',
 'tooltip-n-portal' => 'Keskustelua projektista',
 'tooltip-n-currentevents' => 'Taustatietoa tämänhetkisistä tapahtumista',
-'tooltip-n-recentchanges' => 'Luettelo wikiin tehdyistä tuoreista muutoksista',
+'tooltip-n-recentchanges' => 'Luettelo tuoreista muutoksista',
 'tooltip-n-randompage' => 'Avaa satunnainen sivu',
 'tooltip-n-help' => 'Ohjeita',
 'tooltip-t-whatlinkshere' => 'Lista sivuista, jotka viittaavat tänne',
@@ -3159,7 +3161,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 'pageinfo-article-id' => 'Sivun tunniste',
 'pageinfo-language' => 'Sivun sisällön kieli',
 'pageinfo-content-model' => 'Sivun sisällön muoto',
-'pageinfo-robot-policy' => 'Robottien tekemä indeksointi',
+'pageinfo-robot-policy' => 'Hakukonemerkinnät',
 'pageinfo-robot-index' => 'Indeksoitava',
 'pageinfo-robot-noindex' => 'Ei indeksoitava',
 'pageinfo-views' => 'Katselukertojen määrä',
@@ -3244,7 +3246,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'svg-long-desc' => 'SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
 'svg-long-desc-animated' => 'Animoitu SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
 'svg-long-error' => 'Kelvoton SVG-tiedosto: $1',
-'show-big-image' => 'Korkeatarkkuuksinen versio',
+'show-big-image' => 'Alkuperäinen tiedosto',
 'show-big-image-preview' => 'Tämän esikatselun koko: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Muu resoluutio|Muut resoluutiot}}: $1.',
 'show-big-image-size' => '$1 × $2 kuvapistettä',
@@ -3711,7 +3713,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 
 # External editor support
 'edit-externally' => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
-'edit-externally-help' => '(Katso [//www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
+'edit-externally-help' => '(Katso [https://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'koko historia',
@@ -3893,7 +3895,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-hook-subscribedby' => 'Kytkökset',
 'version-version' => '(Versio $1)',
 'version-license' => 'Lisenssi',
-'version-poweredby-credits' => "Tämä wiki käyttää '''[//www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Tämä wiki käyttää '''[https://www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'muut',
 'version-poweredby-translators' => 'translatewiki.net-kääntäjät',
 'version-credits-summary' => 'Haluaisimme kiittää seuraavia henkilöitä heidän panoksestaan [[Special:Version|MediaWiki-ohjelmistoon]].',

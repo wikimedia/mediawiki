@@ -1274,8 +1274,8 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-hide-user' => 'Numele de utilizator sau adresa IP',
 'revdelete-hide-restricted' => 'Ascunde informațiile față de administratori și față de alți utilizatori',
 'revdelete-radio-same' => '(nu schimba)',
-'revdelete-radio-set' => 'Vizibil',
-'revdelete-radio-unset' => 'Ascuns',
+'revdelete-radio-set' => 'Ascuns',
+'revdelete-radio-unset' => 'Vizibil',
 'revdelete-suppress' => 'Ascunde versiunile și față de administratori',
 'revdelete-unsuppress' => 'Anulează restricțiile la versiunile restaurate',
 'revdelete-log' => 'Motivul ștergerii:',
@@ -2108,7 +2108,9 @@ Această pagină specială permite căutarea fișierelor în funcție de tipul M
 * Imagini animate : <code>image/gif</code>
 * Fișiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code>
 * Fișiere video : <code>video/ogg</code>, <code>video/x-ogg</code>
-* Fișiere PDF : <code>application/pdf</code>',
+* Fișiere PDF : <code>application/pdf</code>
+
+Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup fișiere mime.types].',
 'mimetype' => 'Tip MIME:',
 'download' => 'descarcă',
 
@@ -2982,7 +2984,7 @@ Pentru a exporta, introduceți titlurile în căsuța de mai jos, unul pe linie,
 'allmessagesdefault' => 'Textul standard',
 'allmessagescurrent' => 'Textul curent',
 'allmessagestext' => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
-Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [//translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
+Vă rugăm să vizitați [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [//translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessages-filter-legend' => 'Filtru',
 'allmessages-filter' => 'Filtru după statutul de modificare:',
@@ -3282,7 +3284,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'svg-long-desc' => 'Fișier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
 'svg-long-desc-animated' => 'Fișier SVG animat, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
 'svg-long-error' => 'Fișier SVG invalid: $1',
-'show-big-image' => 'Rezoluție maximă',
+'show-big-image' => 'Fișier original',
 'show-big-image-preview' => 'Mărimea acestei previzualizări: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altă rezoluție|Alte rezoluții}}: $1.',
 'show-big-image-size' => '$1 × $2 pixeli',
@@ -3753,7 +3755,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally' => 'Editează acest fișier folosind o aplicație externă.',
-'edit-externally-help' => '(Vedeți [//www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
+'edit-externally-help' => '(Vedeți [https://www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'toate',
@@ -3932,7 +3934,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-hook-subscribedby' => 'Subscris de',
 'version-version' => '(Versiune $1)',
 'version-license' => 'Licență',
-'version-poweredby-credits' => "Acest wiki este dezvoltat de '''[//www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
+'version-poweredby-credits' => "Acest wiki este motorizat de '''[https://www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others' => 'alții',
 'version-poweredby-translators' => 'traducătorii de la translatewiki.net',
 'version-credits-summary' => 'Am dori să amintim următoarele persoane pentru contribuțiile aduse proiectului [[Special:Version|MediaWiki]].',

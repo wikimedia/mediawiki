@@ -2514,7 +2514,7 @@ Les prochaines modifications de cette page et de la page de discussion associée
 
 'enotif_mailer' => 'Système de notification par courriel de {{SITENAME}}',
 'enotif_reset' => 'Marquer toutes les pages comme visitées',
-'enotif_impersonal_salutation' => '{{GENDER:$2|utilisateur|utilisatrice|utilisateur/utilisatrice}} $1 de {{SITENAME}}',
+'enotif_impersonal_salutation' => 'Utilisateur de {{SITENAME}}',
 'enotif_subject_deleted' => 'La page $1 sur {{SITENAME}} a été supprimée par {{GENDER:$2|$2}}',
 'enotif_subject_created' => 'La page $1 sur {{SITENAME}} a été créée par {{GENDER:$2|$2}}',
 'enotif_subject_moved' => 'La page $1 sur {{SITENAME}} a été renommée par {{GENDER:$2|$2}}',
@@ -3056,7 +3056,7 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagesdefault' => 'Message par défaut',
 'allmessagescurrent' => 'Message actuel',
 'allmessagestext' => "Ceci est la liste des messages disponibles dans l'espace MediaWiki.
-Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
+Veuillez visiter la [https://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
 'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
 'allmessages-filter-legend' => 'Filtrer',
 'allmessages-filter' => 'Filtrer par état de modification :',
@@ -3846,7 +3846,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # External editor support
 'edit-externally' => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => "(Consulter [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
+'edit-externally-help' => "(Consulter [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',
@@ -4109,7 +4109,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 'version-hook-subscribedby' => 'Abonnés :',
 'version-version' => '(version $1)',
 'version-license' => 'Licence',
-'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
 'version-poweredby-translators' => 'traducteurs de translatewiki.net',
 'version-credits-summary' => 'Nous tenons à remercier les personnes suivantes pour leur contribution à  [[Special:Version|MediaWiki]].',

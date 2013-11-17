@@ -11,6 +11,7 @@
  * @author AvatarTeam
  * @author B4bol4t
  * @author Basvb
+ * @author Breghtje
  * @author DasRakel
  * @author Effeietsanders
  * @author Erwin
@@ -831,7 +832,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccount' => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
-'userlogin-resetpassword-link' => 'Uw wachtwoord opnieuw instellen',
+'userlogin-resetpassword-link' => 'Wachtwoord vergeten?',
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
 'userlogin-loggedin' => 'U bent al aangemeld als {{GENDER:$1|$1}}.
@@ -915,8 +916,8 @@ Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLUR
 'acct_creation_throttle_hit' => 'Bezoekers van deze wiki met hetzelfde IP-adres als u hebben de afgelopen dag al $1 gebruiker{{PLURAL:$1||s}} geregistreerd, wat het maximale aantal in deze periode is.
 Daarom kunt u vanaf uw IP-adres op dit moment geen nieuwe gebruikers registreren.',
 'emailauthenticated' => 'Uw e-mailadres is bevestigd op $2 om $3.',
-'emailnotauthenticated' => 'Uw e-mailadres is niet bevestigd.
-U ontvangt geen e-mail voor de onderstaande functies.',
+'emailnotauthenticated' => 'Uw e-mailadres is niet nog bevestigd.
+Geen e-mail zal worden verzonden voor een van de volgende functies.',
 'noemailprefs' => 'Geef een e-mailadres op in uw voorkeuren om deze functies te gebruiken.',
 'emailconfirmlink' => 'Bevestig uw e-mailadres',
 'invalidemailaddress' => 'Het e-mailadres is niet aanvaard, omdat het een ongeldige opmaak heeft.
@@ -1360,18 +1361,19 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
 'revdelete-confirm' => 'Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
+* Potentieel lasterlijke informatie
 * Ongepaste persoonlijke informatie
-*: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
+*: ''woonadres, telefoonnummers,  rijksrigisternummers, enzovoort.''",
 'revdelete-legend' => 'Zichtbaarheidsbeperkingen instellen',
-'revdelete-hide-text' => 'Bewerkte tekst verbergen',
+'revdelete-hide-text' => 'Herziening van de tekst',
 'revdelete-hide-image' => 'Bestandsinhoud verbergen',
 'revdelete-hide-name' => 'Handeling en doel verbergen',
-'revdelete-hide-comment' => 'Bewerkingssamenvatting verbergen',
-'revdelete-hide-user' => 'Gebruikersnaam/IP-adres van de gebruiker verbergen',
+'revdelete-hide-comment' => 'Wijzig samenvatting',
+'revdelete-hide-user' => 'bewerker gebruikersnaam/IP-adres',
 'revdelete-hide-restricted' => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-radio-same' => '(niet wijzigen)',
-'revdelete-radio-set' => 'Ja',
-'revdelete-radio-unset' => 'Nee',
+'revdelete-radio-set' => 'Verborgen',
+'revdelete-radio-unset' => 'Zichtbaar',
 'revdelete-suppress' => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-unsuppress' => 'Beperkingen op teruggeplaatste wijzigingen verwijderen',
 'revdelete-log' => 'Reden:',
@@ -3120,7 +3122,7 @@ In het laatste geval kunt u ook een koppeling gebruiken, bijvoorbeeld [[{{#Speci
 'allmessagesdefault' => 'Standaardinhoud',
 'allmessagescurrent' => 'Huidige inhoud',
 'allmessagestext' => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
-Ga naar [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
+Ga naar [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB' => "Deze pagina kan niet worden gebruikt, omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filteren op aangepast:',
@@ -3437,7 +3439,7 @@ $1',
 'svg-long-desc' => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'svg-long-desc-animated' => 'Bewegend SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'svg-long-error' => 'Ongeldig SVG-bestand: $1',
-'show-big-image' => 'Volledige resolutie',
+'show-big-image' => 'Oorspronkelijk bestand',
 'show-big-image-preview' => 'Grootte van deze voorvertoning: $1.',
 'show-big-image-other' => 'Andere {{PLURAL:$2|resolutie|resoluties}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3906,7 +3908,7 @@ Andere velden worden verborgen.
 
 # External editor support
 'edit-externally' => 'Dit bestand in een extern programma bewerken',
-'edit-externally-help' => '(zie de [//www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
+'edit-externally-help' => '(zie de [https://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -4109,7 +4111,7 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'version-hook-subscribedby' => 'Geabonneerd door',
 'version-version' => '(Versie $1)',
 'version-license' => 'Licentie',
-'version-poweredby-credits' => "Deze wiki wordt aangedreven door '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Deze wiki wordt aangedreven door '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anderen',
 'version-poweredby-translators' => 'translatewiki.net-vertalers',
 'version-credits-summary' => 'We erkennen graag de volgende personen voor hun bijdrage aan [[Special:Version|MediaWiki]].',

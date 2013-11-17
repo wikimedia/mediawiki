@@ -2547,7 +2547,7 @@ $1|ਤਬਦੀਲੀ ਹੋਈ|'''$1''' ਤਬਦੀਲੀਆਂ ਹੋਈਆ�
 
 # External editor support
 'edit-externally' => 'ਬਾਹਰੀ ਐਪਲੀਕੇਸ਼ਨ ਵਰਤ ਕੇ ਇਸ ਫ਼ਾਈਲ ਨੂੰ ਸੋਧੋ',
-'edit-externally-help' => '(ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ਵੇਖੋ)',
+'edit-externally-help' => '(ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ਵੇਖੋ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ਸਭ',

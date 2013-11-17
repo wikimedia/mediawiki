@@ -3670,7 +3670,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादित करा.',
-'edit-externally-help' => 'अधिक माहितीसाठी  [//www.mediawiki.org/wiki/Manual:External_editors स्थापन करण्याच्या सूचना] येथे पहा.',
+'edit-externally-help' => 'अधिक माहितीसाठी  [https://www.mediawiki.org/wiki/Manual:External_editors स्थापन करण्याच्या सूचना] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्व',
@@ -3846,7 +3846,7 @@ $5
 'version-hook-subscribedby' => 'वर्गणीदार',
 'version-version' => '(आवृत्ती $1)',
 'version-license' => 'परवाना',
-'version-poweredby-credits' => "हा विकी '''[//www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
+'version-poweredby-credits' => "हा विकी '''[https://www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
 'version-poweredby-others' => 'इतर',
 'version-poweredby-translators' => 'ट्रांसलेटविकि.नेट वरील भाषांतरकार',
 'version-credits-summary' => 'आम्ही खालील व्यक्तींना, [[Special:Version|मिडियाविकि]]वर त्यांनी दिलेल्या योगदानामुळे, मान्यता देऊ ईच्छितो.',

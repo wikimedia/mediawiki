@@ -1287,7 +1287,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # External editor support
 'edit-externally' => 'Бо файлды даштыкы капсырылга-биле эдер',
-'edit-externally-help' => '(Улаштыр тодарадырда бо [//www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
+'edit-externally-help' => '(Улаштыр тодарадырда бо [https://www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'шупту',

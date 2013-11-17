@@ -1716,7 +1716,7 @@ Bidh agad ris an co-aontachadh a làimh.'''",
 'allmessagesname' => 'Ainm',
 'allmessagesdefault' => 'Teacsa bunaiteach na teachdaireachd',
 'allmessagestext' => 'Seo liosta de theachdaireachdan an t-siostaim a tha ri làimh ann an namespace MediaWiki.
-Tadhail air [//www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [//translatewiki.net translatewiki.net] ma tha thu airson pàirt a ghabhail ann an ionadaileadh MediaWiki.',
+Tadhail air [https://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [//translatewiki.net translatewiki.net] ma tha thu airson pàirt a ghabhail ann an ionadaileadh MediaWiki.',
 
 # Thumbnails
 'thumbnail-more' => 'Meudaich',
@@ -1835,7 +1835,7 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 
 # External editor support
 'edit-externally' => 'Deasaich am faidhle le prògram on taobh a-muigh',
-'edit-externally-help' => '(Seall air [//www.mediawiki.org/wiki/Manual:External_editors mìneachadh an t-suidheachaidh] airson barrachd fiosrachaidh)',
+'edit-externally-help' => '(Seall air [https://www.mediawiki.org/wiki/Manual:External_editors mìneachadh an t-suidheachaidh] airson barrachd fiosrachaidh)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'a h-uile',

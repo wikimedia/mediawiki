@@ -2620,7 +2620,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'allmessagesdefault' => 'Testu lehenetsia',
 'allmessagescurrent' => 'Oraingo testua',
 'allmessagestext' => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
-Mesedez bisitatu [//www.mediawiki.org/wiki/Localisation MediaWiki] eta [//translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
+Mesedez bisitatu [https://www.mediawiki.org/wiki/Localisation MediaWiki] eta [//translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessages-filter-legend' => 'Iragazi',
 'allmessages-filter' => 'Aldaketa-egoeraren arabera iragazi:',
@@ -3388,7 +3388,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 # External editor support
 'edit-externally' => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',
-'edit-externally-help' => '(Ikus [//www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
+'edit-externally-help' => '(Ikus [https://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'guztiak',
@@ -3532,7 +3532,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-hook-subscribedby' => 'Hauen harpidetzarekin',
 'version-version' => '(Bertsioa $1)',
 'version-license' => 'Lizentzia',
-'version-poweredby-credits' => "Wiki hau '''[//www.mediawiki.org/ MediaWiki]'''k sustatzen du (copyright © 2001-$1 $2).",
+'version-poweredby-credits' => "Wiki hau '''[https://www.mediawiki.org/ MediaWiki]'''k sustatzen du (copyright © 2001-$1 $2).",
 'version-poweredby-others' => 'beste batzuk',
 'version-software' => 'Instalatutako softwarea',
 'version-software-product' => 'Produktua',

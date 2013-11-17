@@ -2824,7 +2824,7 @@ $1',
 'allmessagesdefault' => 'სტანდარტული ტექსტი',
 'allmessagescurrent' => 'მიმდინარე ტექსტი',
 'allmessagestext' => 'ეს არის სისემურ შეტყობინებათა სია «MediaWiki» სახელთა სივრცეში.
-გთხოვთ ეწვიოთ  [//www.mediawiki.org/wiki/Localisation ლოკალიზაციის აღმწერ] გვერდს [//translatewiki.net translatewiki.net] პროექტს, თუ გსურთ MediaWiki ლოკალიზაციაში წვლილის შეტანა.',
+გთხოვთ ეწვიოთ  [https://www.mediawiki.org/wiki/Localisation ლოკალიზაციის აღმწერ] გვერდს [//translatewiki.net translatewiki.net] პროექტს, თუ გსურთ MediaWiki ლოკალიზაციაში წვლილის შეტანა.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
 'allmessages-filter-legend' => 'ფილტრი',
 'allmessages-filter' => 'ფილტრი ცვლილებების სტატუსით:',
@@ -3634,7 +3634,7 @@ $8',
 
 # External editor support
 'edit-externally' => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
-'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [//www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
+'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [https://www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ყველა',
@@ -3858,7 +3858,7 @@ $5
 'version-version' => '(ვერსია $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'ლიცენზია',
-'version-poweredby-credits' => "ეს ვიკი მუშაობს '''[//www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "ეს ვიკი მუშაობს '''[https://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'სხვები',
 'version-poweredby-translators' => 'translatewiki.net-ის მთარგმნელები',
 'version-credits-summary' => 'გვინდა მადლობა გადავუხადოთ შემდეგ მომხმარებლებს მათი წვლილისათვის [[Special:Version|მედიავიკის]] განვითარებაში.',

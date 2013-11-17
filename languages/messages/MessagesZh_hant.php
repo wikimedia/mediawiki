@@ -54,6 +54,7 @@
  * @author Xiaomingyan
  * @author Yfdyh000
  * @author Yuyu
+ * @author 乌拉跨氪
  */
 
 $fallback = 'zh-hans';
@@ -1212,7 +1213,7 @@ $2
 'revdelete-hide-comment' => '編輯摘要',
 'revdelete-hide-user' => '編輯者的用戶名/IP位址',
 'revdelete-hide-restricted' => '同時廢止由操作員以及其他用戶的資料',
-'revdelete-radio-same' => '（不要更改）',
+'revdelete-radio-same' => '（不更改）',
 'revdelete-radio-set' => '隱藏',
 'revdelete-radio-unset' => '可見',
 'revdelete-suppress' => '同時廢止由操作員以及其他用戶的資料',
@@ -1456,7 +1457,7 @@ $1",
 'email' => '電子郵件',
 'prefs-help-realname' => '真實姓名是可選的。
 如果您選擇提供它，它會用於貢獻署名。',
-'prefs-help-email' => "<nowiki>*</nowiki> 您不一定要提供電子郵件，但如果您遺失密碼，將'''無法'''再次登入。您可以隨時在此提供電子郵件，或更改資料。如您更改電子郵件，您將需要[[Help:电子邮件确认|重新確認]]。",
+'prefs-help-email' => '电子邮件是可选项，但是在您忘记密码时很有用。',
 'prefs-help-email-others' => '您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required' => '電子郵件地址是必填項目。',
 'prefs-info' => '基本資料',
@@ -2880,7 +2881,7 @@ $1被封禁的理由是“$2”',
 'allmessagesdefault' => '預設的訊息文字',
 'allmessagescurrent' => '現時的訊息文字',
 'allmessagestext' => '這裡列出所有可定製的系統界面。
-如果想貢獻正宗的MediaWiki本地化的話，請參閱[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[//translatewiki.net translatewiki.net]。',
+如果想貢獻正宗的MediaWiki本地化的話，請參閱[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
 'allmessages-filter-legend' => '搜尋',
 'allmessages-filter' => '以自定狀況過濾：',
@@ -3676,7 +3677,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => '用外部程式編輯此檔案',
-'edit-externally-help' => '（請參見[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
+'edit-externally-help' => '（請參見[https://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -3861,7 +3862,7 @@ $5
 'version-hook-subscribedby' => '利用於',
 'version-version' => '（版本 $1）',
 'version-license' => '授權',
-'version-poweredby-credits' => "此維基由'''[//www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-credits' => "此維基由'''[https://www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
 'version-poweredby-translators' => 'translatewiki.net 上的翻譯者',
 'version-credits-summary' => '我們感謝以下人士為[[Special:Version|MediaWiki]]作出的貢獻。',

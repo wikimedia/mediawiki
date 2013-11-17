@@ -2959,7 +2959,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'allmessagesdefault' => 'štandardný text',
 'allmessagescurrent' => 'aktuálny text',
 'allmessagestext' => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
-Prosím, navštívte [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
+Prosím, navštívte [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
 'allmessagesnotsupportedDB' => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter podľa stavu prispôsobenia:',
@@ -3739,7 +3739,7 @@ Ostatné budú predvolene skryté.
 
 # External editor support
 'edit-externally' => 'Upraviť tento súbor pomocou externého programu',
-'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [//www.mediawiki.org/wiki/Manual:External_editors externého editora])',
+'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [https://www.mediawiki.org/wiki/Manual:External_editors externého editora])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'všetky',
@@ -3935,7 +3935,7 @@ Tiež môžete [[Special:EditWatchlist|použiť štandardný editor]].',
 'version-hook-subscribedby' => 'Pripojené',
 'version-version' => '(Verzia $1)',
 'version-license' => 'Licencia',
-'version-poweredby-credits' => "Táto wiki beží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Táto wiki beží na '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'ďalší',
 'version-poweredby-translators' => 'prekladatelia na translatewiki.net',
 'version-credits-summary' => 'Nasledujúcim osobám by sme radi poďakovali za ich príspevky k vývoju [[Special:Version|MediaWiki]].',

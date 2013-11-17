@@ -2750,7 +2750,7 @@ $1',
 'allmessagesdefault' => 'Текст по подразбиране',
 'allmessagescurrent' => 'Текущ текст',
 'allmessagestext' => 'Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.
-Посетете [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [//translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
+Посетете [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [//translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
 'allmessagesnotsupportedDB' => "Тази страница не може да бъде използвана, тъй като е изключена възможността '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend' => 'Филтър',
 'allmessages-filter' => 'Филтриране по ниво на персонализация:',
@@ -3450,7 +3450,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Редактиране на файла чрез външно приложение',
-'edit-externally-help' => '(За повече информация прегледайте [//www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
+'edit-externally-help' => '(За повече информация прегледайте [https://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всички',
@@ -3620,7 +3620,7 @@ $5
 'version-hook-subscribedby' => 'Ползвана от',
 'version-version' => '(Версия $1)',
 'version-license' => 'Лиценз',
-'version-poweredby-credits' => "Това уики се задвиждва от '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Това уики се задвиждва от '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'други',
 'version-poweredby-translators' => 'преводачи в translatewiki.net',
 'version-credits-summary' => 'Бихме искали да изкажем признателност на следните хора за техните приноси към [[Special:Version|MediaWiki]].',

@@ -2820,7 +2820,7 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'allmessagesdefault' => 'Kemennadenn dre ziouer',
 'allmessagescurrent' => 'Kemennadenn zo bremañ',
 'allmessagestext' => "Setu roll ar c'hemennadennoù reizhiad a c'haller kaout en esaouennoù anv MediaWiki.
-Kit da welet [//www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [//translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
+Kit da welet [https://www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [//translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
 'allmessagesnotsupportedDB' => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
 'allmessages-filter-legend' => 'Sil',
 'allmessages-filter' => "Silañ dre stad ar c'hemmoù",
@@ -3589,7 +3589,7 @@ Kuzhet e vo ar re all dre ziouer.
 
 # External editor support
 'edit-externally' => 'Kemmañ ar restr-mañ dre un arload diavaez',
-'edit-externally-help' => "(Gwelet [//www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
+'edit-externally-help' => "(Gwelet [https://www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pep tra',
@@ -3792,7 +3792,7 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'version-hook-subscribedby' => 'Termenet gant',
 'version-version' => '(Stumm $1)',
 'version-license' => 'Aotre-implijout',
-'version-poweredby-credits' => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 're all',
 'version-poweredby-translators' => 'troerien translatewiki.net',
 'version-credits-summary' => 'Karout a rafemp trugarekaat an dud-mañ evit ho kenlabour e [[Special:Version|MediaWiki]].',
