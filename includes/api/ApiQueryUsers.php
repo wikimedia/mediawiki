@@ -273,9 +273,9 @@ class ApiQueryUsers extends ApiQueryBase {
 	public function getCacheMode( $params ) {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
-		} else {
-			return 'anon-public-user-private';
 		}
+
+		return 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {

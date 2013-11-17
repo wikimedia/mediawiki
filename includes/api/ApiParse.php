@@ -425,23 +425,24 @@ class ApiParse extends ApiBase {
 		if ( $this->section !== false && $this->content !== null ) {
 			$this->content = $this->getSectionContent(
 				$this->content,
-				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getText() );
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getText()
+			);
 
 			// Not cached (save or load)
 			return $this->content->getParserOutput( $page->getTitle(), null, $popts );
-		} else {
-			// Try the parser cache first
-			// getParserOutput will save to Parser cache if able
-			$pout = $page->getParserOutput( $popts );
-			if ( !$pout ) {
-				$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
-			}
-			if ( $getWikitext ) {
-				$this->content = $page->getContent( Revision::RAW );
-			}
-
-			return $pout;
 		}
+
+		// Try the parser cache first
+		// getParserOutput will save to Parser cache if able
+		$pout = $page->getParserOutput( $popts );
+		if ( !$pout ) {
+			$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
+		}
+		if ( $getWikitext ) {
+			$this->content = $page->getContent( Revision::RAW );
+		}
+
+		return $pout;
 	}
 
 	private function getSectionContent( Content $content, $what ) {

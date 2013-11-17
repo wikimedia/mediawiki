@@ -726,10 +726,10 @@ class ApiMain extends ApiBase {
 		if ( $salt !== false ) {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
-			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
-					$this->dieUsageMsg( 'sessionfailure' );
-				}
+			}
+
+			if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getContext()->getRequest() ) ) {
+				$this->dieUsageMsg( 'sessionfailure' );
 			}
 		}
 
@@ -756,11 +756,9 @@ class ApiMain extends ApiBase {
 
 				if ( $wgShowHostnames ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
-				} else {
-					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 				}
 
-				return false;
+				$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 			}
 		}
 
