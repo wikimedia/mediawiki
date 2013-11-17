@@ -458,9 +458,9 @@ class ApiUpload extends ApiBase {
 		if ( $permission !== true ) {
 			if ( !$user->isLoggedIn() ) {
 				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
-			} else {
-				$this->dieUsageMsg( 'badaccess-groups' );
 			}
+
+			$this->dieUsageMsg( 'badaccess-groups' );
 		}
 	}
 
@@ -661,11 +661,10 @@ class ApiUpload extends ApiBase {
 						'result' => 'Queued',
 						'statuskey' => $error[0][1],
 					);
-				} else {
-					$this->getResult()->setIndexedTagName( $error, 'error' );
-
-					$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 				}
+
+				$this->getResult()->setIndexedTagName( $error, 'error' );
+				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 			}
 			$result['result'] = 'Success';
 		}
