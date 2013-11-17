@@ -63,6 +63,7 @@ production.
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
+* EditPage::spamPage() was deprecated since 1.17 and has been removed.
 
 === Languages updated in 1.23===
 
