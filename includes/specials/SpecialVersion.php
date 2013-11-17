@@ -467,33 +467,38 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	function getCreditsForExtension( array $extension ) {
-		global $wgLang;
+		global $wgLang, $wgMemc;
 
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
 		$vcsText = false;
 
 		if ( isset( $extension['path'] ) ) {
-			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
-			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
-			if ( $gitHeadSHA1 !== false ) {
-				$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
-				$gitViewerUrl = $gitInfo->getHeadViewUrl();
-				if ( $gitViewerUrl !== false ) {
-					$vcsText = "[$gitViewerUrl $vcsText]";
+			$memcKey = wfMemcKey( 'specialversion-ext-version-text', $extension['path'] );
+			$vcsText = $wgMemc->get( $memcKey );
+			if ( !$vcsText ) {
+				$gitInfo = new GitInfo( dirname( $extension['path'] ) );
+				$gitHeadSHA1 = $gitInfo->getHeadSHA1();
+				if ( $gitHeadSHA1 !== false ) {
+					$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
+					$gitViewerUrl = $gitInfo->getHeadViewUrl();
+					if ( $gitViewerUrl !== false ) {
+						$vcsText = "[$gitViewerUrl $vcsText]";
+					}
+					$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
+					if ( $gitHeadCommitDate ) {
+						$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
+					}
+				} else {
+					$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
+					# Make subversion text/link.
+					if ( $svnInfo !== false ) {
+						$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
+						$vcsText = $this->msg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
+						$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+					}
 				}
-				$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
-				if ( $gitHeadCommitDate ) {
-					$vcsText .= "<br/>" . $wgLang->timeanddate( $gitHeadCommitDate, true );
-				}
-			} else {
-				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
-				# Make subversion text/link.
-				if ( $svnInfo !== false ) {
-					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-					$vcsText = $this->msg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] )->text();
-					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
-				}
+				$wgMemc->set( $memcKey, $vcsText, 60*60*24 );
 			}
 		}
 
