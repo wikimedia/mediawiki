@@ -43,13 +43,9 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 	function testXmlDumpsBackupUseCase() {
 		global $wgDBprefix;
 
-		global $argv;
-		$argv = array( null, "--globals" );
-
 		$gss = new GetSlaveServer();
 		$gss->loadParamsAndArgs();
 		$gss->execute();
-		$gss->globals();
 
 		// The main answer
 		$output = $this->getActualOutput();
