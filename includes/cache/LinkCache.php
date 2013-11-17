@@ -51,6 +51,7 @@ class LinkCache {
 			return self::$instance;
 		}
 		self::$instance = new LinkCache;
+
 		return self::$instance;
 	}
 
@@ -218,16 +219,19 @@ class LinkCache {
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 			wfProfileOut( __METHOD__ );
+
 			return 0;
 		}
 		$id = $this->getGoodLinkID( $key );
 		if ( $id != 0 ) {
 			wfProfileOut( __METHOD__ );
+
 			return $id;
 		}
 
 		if ( $key === '' ) {
 			wfProfileOut( __METHOD__ );
+
 			return 0;
 		}
 
@@ -262,6 +266,7 @@ class LinkCache {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $id;
 	}
 
