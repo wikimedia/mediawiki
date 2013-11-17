@@ -32,6 +32,11 @@ class SpecialVersion extends SpecialPage {
 
 	protected $firstExtOpened = false;
 
+	/**
+	 * Stores the current rev id/SHA hash of MediaWiki core
+	 */
+	protected $coreId = '';
+
 	protected static $extensionTypes = false;
 
 	protected static $viewvcUrls = array(
@@ -597,19 +602,42 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( isset( $extension['path'] ) ) {
-			$extensionPath = dirname( $extension['path'] );
-			$gitInfo = new GitInfo( $extensionPath );
-			$vcsVersion = $gitInfo->getHeadSHA1();
-			if ( $vcsVersion !== false ) {
-				$vcsVersion = substr( $vcsVersion, 0, 7 );
-				$vcsLink = $gitInfo->getHeadViewUrl();
-				$vcsDate = $gitInfo->getHeadCommitDate();
-			} else {
-				$svnInfo = self::getSvnInfo( $extensionPath );
-				if ( $svnInfo !== false ) {
-					$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
-					$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+			global $IP;
+			if ( $this->coreId == '' ) {
+				wfDebug( 'Looking up core head id' );
+				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
+				if ( $coreHeadSHA1 ) {
+					$this->coreId = $coreHeadSHA1;
+				} else {
+					$svnInfo = self::getSvnInfo( $IP );
+					if ( $svnInfo !== false ) {
+						$this->coreId = $svnInfo['checkout-rev'];
+					}
 				}
+			}
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$memcKey = wfMemcKey( 'specialversion-ext-version-text', $extension['path'], $this->coreId );
+			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
+
+			if ( !$vcsVersion ) {
+				wfDebug( "Getting git extension info for $extensionName" );
+				$extensionPath = dirname( $extension['path'] );
+				$gitInfo = new GitInfo( $extensionPath );
+				$vcsVersion = $gitInfo->getHeadSHA1();
+				if ( $vcsVersion !== false ) {
+					$vcsVersion = substr( $vcsVersion, 0, 7 );
+					$vcsLink = $gitInfo->getHeadViewUrl();
+					$vcsDate = $gitInfo->getHeadCommitDate();
+				} else {
+					$svnInfo = self::getSvnInfo( $extensionPath );
+					if ( $svnInfo !== false ) {
+						$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
+						$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+					}
+				}
+				$cache->set( $memcKey, array( $vcsVersion, $vcsLink, $vcsDate ), 60 * 60 * 24 );
+			} else {
+				wfDebug( "Pulled git extension info for $extensionName from cache" );
 			}
 		}
 
