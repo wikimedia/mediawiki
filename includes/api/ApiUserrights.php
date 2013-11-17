@@ -41,10 +41,10 @@ class ApiUserrights extends ApiBase {
 		$form->setContext( $this->getContext() );
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
-		list( $r['added'], $r['removed'] ) =
-			$form->doSaveUserGroups(
-				$user, (array)$params['add'],
-				(array)$params['remove'], $params['reason'] );
+		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
+			$user, (array)$params['add'],
+			(array)$params['remove'], $params['reason']
+		);
 
 		$result = $this->getResult();
 		$result->setIndexedTagName( $r['added'], 'group' );
