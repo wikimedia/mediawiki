@@ -148,15 +148,16 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		// 'continue' always overrides 'from'
-		$from = $continue || is_null( $params['from'] )
-			? null
-			: $this->titlePartToKey( $params['from'] );
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$from = ( $continue || $params['from'] === null ? null :
+				$this->titlePartToKey( $params['from'], $params['namespace'] ) );
+		$to = ( $params['to'] === null ? null :
+				$this->titlePartToKey( $params['to'], $params['namespace'] ) );
 		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
 
+
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $pfx . $fieldTitle .
-				$db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey(
+				$params['prefix'], $params['namespace'] ), $db->anyString() ) );
 		}
 
 		$this->addFields( array( 'pl_title' => $pfx . $fieldTitle ) );

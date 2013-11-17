@@ -85,6 +85,11 @@ production.
   MediaWiki 1.24.
 * action=parse now has disabletoc flag to disable table of contents in output.
 * SpecialRecentChanges::feedSetup() was removed.
+* (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
+  list=deletedrevs and list=filearchive did not handle case-sensitivity
+  properly for all parameters.
+* ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
+  namespace in order to properly capitalize the title part.
 
 === Languages updated in 1.23 ===
 
