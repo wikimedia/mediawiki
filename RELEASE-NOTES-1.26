@@ -30,6 +30,10 @@ production.
 * (T68699) The expiration of the UserID and Token login cookies
   ($wgExtendedLoginCookieExpiration) can be configured independently of the
   expiration of all other cookies ($wgCookieExpiration).
+* (bug 50519) Support for generating JPEG/PNG thumbnails from WebP images added
+  if ImageMagick is used as image scaler ($wgUseImageMagick = true). Uploading
+  of WebP images still disabled by default. Add $wgFileExtensions[] =
+  'webp'; to LocalSettings.php to enable uploading of WebP images.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
