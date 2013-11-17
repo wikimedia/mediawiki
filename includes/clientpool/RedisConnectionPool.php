@@ -314,6 +314,8 @@ class RedisConnectionPool {
 /**
  * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
  *
+ * This class simply wraps the Redis class and can be used the same way
+ *
  * @ingroup Redis
  * @since 1.21
  */
@@ -335,6 +337,14 @@ class RedisConnRef {
 		$this->pool = $pool;
 		$this->server = $server;
 		$this->conn = $conn;
+	}
+
+	/**
+	 * @return string
+	 * @since 1.23
+	 */
+	public function getServer() {
+		return $this->server;
 	}
 
 	public function getLastError() {

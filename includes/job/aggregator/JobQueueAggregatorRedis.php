@@ -32,23 +32,27 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 
+	/** @var Array List of Redis server addresses */
+	protected $servers;
+
 	/**
 	 * @params include:
-	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
-	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
-	 *                   If a hostname is specified but no port, the standard port number
-	 *                   6379 will be used. Required.
+	 *   - redisConfig  : An array of parameters to RedisConnectionPool::__construct().
+	 *   - redisServers : Array of server entries, the first being the primary and the
+	 *                    others being fallback servers. Each entry is either a hostname/port
+	 *                    combination or the absolute path of a UNIX socket.
+	 *                    If a hostname is specified but no port, the standard port number
+	 *                    6379 will be used. Required.
 	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
-		$this->server = $params['redisServer'];
+		$this->servers = isset( $params['redisServers'] )
+			? $params['redisServers']
+			: array( $params['redisServer'] ); // b/c
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 	}
 
-	/**
-	 * @see JobQueueAggregator::doNotifyQueueEmpty()
-	 */
 	protected function doNotifyQueueEmpty( $wiki, $type ) {
 		$conn = $this->getConnection();
 		if ( !$conn ) {
@@ -63,9 +67,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 	}
 
-	/**
-	 * @see JobQueueAggregator::doNotifyQueueNonEmpty()
-	 */
 	protected function doNotifyQueueNonEmpty( $wiki, $type ) {
 		$conn = $this->getConnection();
 		if ( !$conn ) {
@@ -80,9 +81,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 	}
 
-	/**
-	 * @see JobQueueAggregator::doAllGetReadyWikiQueues()
-	 */
 	protected function doGetAllReadyWikiQueues() {
 		$conn = $this->getConnection();
 		if ( !$conn ) {
@@ -130,9 +128,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 	}
 
-	/**
-	 * @see JobQueueAggregator::doPurge()
-	 */
 	protected function doPurge() {
 		$conn = $this->getConnection();
 		if ( !$conn ) {
@@ -150,11 +145,18 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	/**
 	 * Get a connection to the server that handles all sub-queues for this queue
 	 *
-	 * @return Array (server name, Redis instance)
+	 * @return RedisConnRef|bool Returns false on failure
 	 * @throws MWException
 	 */
 	protected function getConnection() {
-		return $this->redisPool->getConnection( $this->server );
+		$conn = false;
+		foreach ( $this->servers as $server ) {
+			$conn = $this->redisPool->getConnection( $server );
+			if ( $conn ) {
+				break;
+			}
+		}
+		return $conn;
 	}
 
 	/**
@@ -163,7 +165,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 * @return void
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
-		$this->redisPool->handleException( $this->server, $conn, $e );
+		$this->redisPool->handleException( $conn->getServer(), $conn, $e );
 	}
 
 	/**
