@@ -695,7 +695,7 @@ class MimeMagic {
 		}
 
 		/* Look for WebP */
-		if ( strncmp( $head, "RIFF", 4 ) == 0 && strncmp( substr( $head, 8, 8 ), "WEBPVP8 ", 8 ) == 0 ) {
+		if ( strncmp( $head, "RIFF", 4 ) == 0 && strncmp( substr( $head, 8, 7 ), "WEBPVP8", 7 ) == 0 ) {
 			wfDebug( __METHOD__ . ": recognized file as image/webp\n" );
 			return "image/webp";
 		}
