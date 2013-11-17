@@ -57,6 +57,10 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* The jquery.client module now performs a component-wise version comparison in
+  its #test method when strings are used in the browser map: version '1.10' is
+  now correctly considered larger than '1.2'. Using numbers in the version map
+  is not affected.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
