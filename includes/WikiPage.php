@@ -250,6 +250,22 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Get the mPreparedEdit cache field
+	 * @return array
+	 */
+	public function getPreparedEdit() {
+		return $this->mPreparedEdit;
+	}
+
+	/**
+	 * Clear the mPreparedEdit cache field
+	 * @return void
+	 */
+	public function clearPreparedEdit() {
+		$this->mPreparedEdit = false;
+	}
+
+	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new page.
 	 *
