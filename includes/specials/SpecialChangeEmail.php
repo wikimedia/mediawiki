@@ -136,7 +136,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @param $msg string
 	 */
 	protected function error( $msg ) {
-		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
+		$this->getOutput()->addHTML( "<p class='error'>\n" . $this->msg( $msg )->plain() . "\n</p>" );
 	}
 
 	protected function showForm() {
