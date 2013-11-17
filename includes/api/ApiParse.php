@@ -262,7 +262,7 @@ class ApiParse extends ApiBase {
 			);
 		}
 
-		if ( isset( $prop['langlinks'] ) || isset( $prop['languageshtml'] ) ) {
+		if ( isset( $prop['langlinks'] ) ) {
 			$langlinks = $p_result->getLanguageLinks();
 
 			if ( $params['effectivelanglinks'] ) {
@@ -277,12 +277,6 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['langlinks'] ) ) {
 			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
-		}
-		if ( isset( $prop['languageshtml'] ) ) {
-			$languagesHtml = $this->languagesHtml( $langlinks );
-
-			$result_array['languageshtml'] = array();
-			ApiResult::setContent( $result_array['languageshtml'], $languagesHtml );
 		}
 		if ( isset( $prop['categories'] ) ) {
 			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategories() );
@@ -523,43 +517,6 @@ class ApiParse extends ApiBase {
 		return $context->getSkin()->getCategories();
 	}
 
-	/**
-	 * @deprecated since 1.18 No modern skin generates language links this way,
-	 * please use language links data to generate your own HTML.
-	 * @param $languages array
-	 * @return string
-	 */
-	private function languagesHtml( $languages ) {
-		wfDeprecated( __METHOD__, '1.18' );
-
-		global $wgContLang, $wgHideInterlanguageLinks;
-
-		if ( $wgHideInterlanguageLinks || count( $languages ) == 0 ) {
-			return '';
-		}
-
-		$s = htmlspecialchars( wfMessage( 'otherlanguages' )->text() .
-			wfMessage( 'colon-separator' )->text() );
-
-		$langs = array();
-		foreach ( $languages as $l ) {
-			$nt = Title::newFromText( $l );
-			$text = Language::fetchLanguageName( $nt->getInterwiki() );
-
-			$langs[] = Html::element( 'a',
-				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => 'external' ),
-				$text == '' ? $l : $text );
-		}
-
-		$s .= implode( wfMessage( 'pipe-separator' )->escaped(), $langs );
-
-		if ( $wgContLang->isRTL() ) {
-			$s = Html::rawElement( 'span', array( 'dir' => 'LTR' ), $s );
-		}
-
-		return $s;
-	}
-
 	private function formatLinks( $links ) {
 		$result = array();
 		foreach ( $links as $ns => $nslinks ) {
@@ -661,7 +618,6 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_TYPE => array(
 					'text',
 					'langlinks',
-					'languageshtml',
 					'categories',
 					'categorieshtml',
 					'links',
@@ -715,7 +671,6 @@ class ApiParse extends ApiBase {
 				' langlinks      - Gives the language links in the parsed wikitext',
 				' categories     - Gives the categories in the parsed wikitext',
 				' categorieshtml - Gives the HTML version of the categories',
-				' languageshtml  - Gives the HTML version of the language links',
 				' links          - Gives the internal links in the parsed wikitext',
 				' templates      - Gives the templates in the parsed wikitext',
 				' images         - Gives the images in the parsed wikitext',
@@ -731,7 +686,7 @@ class ApiParse extends ApiBase {
 			),
 			'effectivelanglinks' => array(
 				'Includes language links supplied by extensions',
-				'(for use with prop=langlinks|languageshtml)',
+				'(for use with prop=langlinks)',
 			),
 			'pst' => array(
 				'Do a pre-save transform on the input before parsing it',
