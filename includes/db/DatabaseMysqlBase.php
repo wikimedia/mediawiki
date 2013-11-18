@@ -480,7 +480,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	public function addIdentifierQuotes( $s ) {
 		// Characters in the range \u0001-\uFFFF are valid in a quoted identifier
 		// Remove NUL bytes and escape backticks by doubling
-		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s )  . '`';
+		return '`' . str_replace( array( "\0", '`' ), array( '', '``' ), $s ) . '`';
 	}
 
 	/**
@@ -1024,12 +1024,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			// Query for the VIEWS
 			$result = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
 			$this->allViews = array();
-			while ( ($row = $this->fetchRow($result)) !== false ) {
+			while ( ( $row = $this->fetchRow( $result ) ) !== false ) {
 				array_push( $this->allViews, $row[$propertyName] );
 			}
 		}
 
-		if ( is_null($prefix) || $prefix === '' ) {
+		if ( is_null( $prefix ) || $prefix === '' ) {
 			return $this->allViews;
 		}
 

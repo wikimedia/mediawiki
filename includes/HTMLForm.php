@@ -1034,7 +1034,7 @@ class HTMLForm extends ContextSource {
 		$subsectionHtml = '';
 		$hasLabel = false;
 
-		switch( $displayFormat ) {
+		switch ( $displayFormat ) {
 			case 'table':
 				$getFieldHtmlMethod = 'getTableRow';
 				break;

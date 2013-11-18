@@ -19,7 +19,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 			$array = array( 'a', 'b' );
 			$object = new StdClass();
 			self::helperThrowAnException( $array, $object, $refvar );
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 		}
 
 		# Make sure our strack trace contains an array and an object passed to
@@ -37,7 +37,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 				$hasArray = $hasArray || is_array( $arg );
 			}
 
-			if( $hasObject && $hasArray ) {
+			if ( $hasObject && $hasArray ) {
 				break;
 			}
 		}
@@ -55,8 +55,8 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 				continue;
 			}
 			foreach ( $frame['args'] as $arg ) {
-				$this->assertNotInternalType( 'array', $arg);
-				$this->assertNotInternalType( 'object', $arg);
+				$this->assertNotInternalType( 'array', $arg );
+				$this->assertNotInternalType( 'object', $arg );
 			}
 		}
 

@@ -1045,7 +1045,7 @@ abstract class DatabaseUpdater {
 	protected function disableContentHandlerUseDB() {
 		global $wgContentHandlerUseDB;
 
-		if( $wgContentHandlerUseDB ) {
+		if ( $wgContentHandlerUseDB ) {
 			$this->output( "Turning off Content Handler DB fields for this part of upgrade.\n" );
 			$this->holdContentHandlerUseDB = $wgContentHandlerUseDB;
 			$wgContentHandlerUseDB = false;
@@ -1058,7 +1058,7 @@ abstract class DatabaseUpdater {
 	protected function enableContentHandlerUseDB() {
 		global $wgContentHandlerUseDB;
 
-		if( $this->holdContentHandlerUseDB ) {
+		if ( $this->holdContentHandlerUseDB ) {
 			$this->output( "Content Handler DB fields should be usable now.\n" );
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}

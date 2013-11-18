@@ -239,7 +239,7 @@ class Status {
 				$s = wfMessage( $longContext, $wrapper );
 			}
 		} else {
-			$msgs =  $this->getErrorMessageArray( $this->errors );
+			$msgs = $this->getErrorMessageArray( $this->errors );
 			$msgCount = count( $msgs );
 
 			if ( $shortContext ) {

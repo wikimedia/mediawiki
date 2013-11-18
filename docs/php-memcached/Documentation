@@ -233,22 +233,21 @@ print "\n";
  ***********************/
 
  // first read the file and save it in memcache
-$fp = fopen( "./image.jpg", "rb" ) ;
-if ( !$fp )
-{
-	print "Could not open ./file.dat!\n" ;
-	exit ;
+$fp = fopen( "./image.jpg", "rb" );
+if ( !$fp ) {
+	print "Could not open ./file.dat!\n";
+	exit;
 }
-$data = fread( $fp, filesize( "./image.jpg" ) ) ;
-fclose( $fp ) ;
-print "Data length is " . strlen( $data ) . "\n" ;
-$memc->set( "key", $data ) ;
+$data = fread( $fp, filesize( "./image.jpg" ) );
+fclose( $fp );
+print "Data length is " . strlen( $data ) . "\n";
+$memc->set( "key", $data );
 
 // now open a file for writing and write the data
 // retrieved from memcache
 $fp = fopen("./test.jpg","wb");
-$data = $memc->get( "key" ) ;
-print "Data length is " . strlen( $data ) . "\n" ;
+$data = $memc->get( "key" );
+print "Data length is " . strlen( $data ) . "\n";
 fwrite($fp,$data,strlen( $data ));
 fclose($fp);
 

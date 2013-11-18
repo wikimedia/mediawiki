@@ -187,7 +187,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlError( $conn = null ) {
-		if ($conn === null) {
+		if ( $conn === null ) {
 			return mysqli_connect_error();
 		} else {
 			return $conn->error;

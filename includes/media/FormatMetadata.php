@@ -977,7 +977,7 @@ class FormatMetadata extends ContextSource {
 					$defaultItem = $vals['x-default'];
 					unset( $vals['x-default'] );
 				}
-				foreach( $priorityLanguages as $pLang ) {
+				foreach ( $priorityLanguages as $pLang ) {
 					if ( isset( $vals[$pLang] ) ) {
 						$isDefault = false;
 						if ( $vals[$pLang] === $defaultItem ) {
@@ -1506,7 +1506,7 @@ class FormatMetadata extends ContextSource {
 			// This is an API-specific function so it would be cleaner to call it from
 			// outside fetchExtendedMetadata, but this way we don't need to redo the
 			// computation on a cache hit.
-			$this->sanitizeArrayForXml($extendedMetadata);
+			$this->sanitizeArrayForXml( $extendedMetadata );
 			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
 			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
 		}
@@ -1628,7 +1628,7 @@ class FormatMetadata extends ContextSource {
 
 		// choose the language best matching user or site settings
 		$priorityLanguages = $this->getPriorityLanguages();
-		foreach( $priorityLanguages as $lang ) {
+		foreach ( $priorityLanguages as $lang ) {
 			if ( isset( $value[$lang] ) ) {
 				return $value[$lang];
 			}
@@ -1640,9 +1640,9 @@ class FormatMetadata extends ContextSource {
 		}
 
 		// otherwise just return any one language
-		unset($value['_type']);
-		if (!empty($value)) {
-			return reset($value);
+		unset( $value['_type'] );
+		if ( !empty( $value ) ) {
+			return reset( $value );
 		}
 
 		// this should not happen; signal error
