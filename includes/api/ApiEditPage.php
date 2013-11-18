@@ -348,7 +348,6 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['section'] ) &&
 			$contentHandler->supportsSections() && $titleObj->exists()
 		) {
-			$sectionTitle = '';
 			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
 			// backwards compatibility with old forms/bots).
 			if ( $ep->sectiontitle !== '' ) {
