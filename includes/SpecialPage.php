@@ -1440,3 +1440,45 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 		return true;
 	}
 }
+
+/**
+ * Abstract class to redirect to an action for an article
+ */
+abstract class RedirectSpecialAction extends RedirectSpecialArticle {
+	function __construct( $name, $action ) {
+		parent::__construct( $name );
+		$this->mAllowedRedirectParams = array_diff(
+			$this->mAllowedRedirectParams,
+			array( 'action' )
+		);
+		$this->mAction = $action;
+		$this->mAddedRedirectParams['action'] = $this->mAction;
+	}
+
+	function getRedirect( $par ) {
+		if ( !$par ) {
+			throw new ErrorPageError( 'badtitle', 'badtitletext' );
+		}
+		$this->mAddedRedirectParams['title'] = Title::newFromText( $par )->getPrefixedText();
+		return true;
+	}
+
+}
+
+/**
+ * Redirect Special:Edit/Foo to ?title=Foo&action=edit
+ */
+class SpecialEditRedirect extends RedirectSpecialAction {
+	function __construct() {
+		parent::__construct( 'Edit', 'edit' );
+	}
+}
+
+/**
+ * Redirect Special:History/Foo to ?title=Foo&action=history
+ */
+class SpecialHistoryRedirect extends RedirectSpecialAction {
+	function __construct() {
+		parent::__construct( 'History', 'history' );
+	}
+}
