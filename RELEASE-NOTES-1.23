@@ -52,6 +52,8 @@ production.
   disappear, such as file description pages loaded via $wgUseInstantCommons or
   pages transcluded cross-wiki via $wgEnableScaryTranscluding.
 * (bug 56912) Show correct link color on cached result of Special:DeadendPages.
+* Classes TitleListDependency and TitleDependency have been removed, as they
+  have been found unused in core and extensions for a long time.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
