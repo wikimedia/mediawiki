@@ -100,6 +100,7 @@ class RecentChange {
 	public static function newFromRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
+
 		return $rc;
 	}
 
@@ -114,6 +115,7 @@ class RecentChange {
 		$rc->loadFromCurRow( $row );
 		$rc->notificationtimestamp = false;
 		$rc->numberofWatchingusers = false;
+
 		return $rc;
 	}
 
@@ -203,6 +205,7 @@ class RecentChange {
 		if ( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 		}
+
 		return $this->mTitle;
 	}
 
@@ -219,6 +222,7 @@ class RecentChange {
 				$this->mPerformer = User::newFromName( $this->mAttribs['rc_user_text'], false );
 			}
 		}
+
 		return $this->mPerformer;
 	}
 
@@ -380,6 +384,7 @@ class RecentChange {
 	 */
 	public static function cleanupForIRC( $text ) {
 		wfDeprecated( __METHOD__, '1.22' );
+
 		return IRCColourfulRCFeedFormatter::cleanupForIRC( $text );
 	}
 
@@ -400,6 +405,7 @@ class RecentChange {
 		if ( !$change instanceof RecentChange ) {
 			return null;
 		}
+
 		return $change->doMarkPatrolled( $wgUser, $auto );
 	}
 
@@ -445,6 +451,7 @@ class RecentChange {
 		// Log this patrol event
 		PatrolLog::record( $this, $auto, $user );
 		wfRunHooks( 'MarkPatrolledComplete', array( $this->getAttribute( 'rc_id' ), &$user, false ) );
+
 		return array();
 	}
 
@@ -467,6 +474,7 @@ class RecentChange {
 		// Invalidate the page cache after the page has been patrolled
 		// to make sure that the Patrol link isn't visible any longer!
 		$this->getTitle()->invalidateCache();
+
 		return $dbw->affectedRows();
 	}
 
@@ -494,39 +502,40 @@ class RecentChange {
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
-			'rc_timestamp'  => $timestamp,
-			'rc_namespace'  => $title->getNamespace(),
-			'rc_title'      => $title->getDBkey(),
-			'rc_type'       => RC_EDIT,
-			'rc_source'     => self::SRC_EDIT,
-			'rc_minor'      => $minor ? 1 : 0,
-			'rc_cur_id'     => $title->getArticleID(),
-			'rc_user'       => $user->getId(),
-			'rc_user_text'  => $user->getName(),
-			'rc_comment'    => $comment,
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $title->getNamespace(),
+			'rc_title' => $title->getDBkey(),
+			'rc_type' => RC_EDIT,
+			'rc_source' => self::SRC_EDIT,
+			'rc_minor' => $minor ? 1 : 0,
+			'rc_cur_id' => $title->getArticleID(),
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_comment' => $comment,
 			'rc_this_oldid' => $newId,
 			'rc_last_oldid' => $oldId,
-			'rc_bot'        => $bot ? 1 : 0,
-			'rc_ip'         => self::checkIPAddress( $ip ),
-			'rc_patrolled'  => intval( $patrol ),
-			'rc_new'        => 0,  # obsolete
-			'rc_old_len'    => $oldSize,
-			'rc_new_len'    => $newSize,
-			'rc_deleted'    => 0,
-			'rc_logid'      => 0,
-			'rc_log_type'   => null,
+			'rc_bot' => $bot ? 1 : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => intval( $patrol ),
+			'rc_new' => 0, # obsolete
+			'rc_old_len' => $oldSize,
+			'rc_new_len' => $newSize,
+			'rc_deleted' => 0,
+			'rc_logid' => 0,
+			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params'     => ''
+			'rc_params' => ''
 		);
 
 		$rc->mExtra = array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => $lastTimestamp,
-			'oldSize'       => $oldSize,
-			'newSize'       => $newSize,
-			'pageStatus'   => 'changed'
+			'oldSize' => $oldSize,
+			'newSize' => $newSize,
+			'pageStatus' => 'changed'
 		);
 		$rc->save();
+
 		return $rc;
 	}
 
@@ -553,29 +562,29 @@ class RecentChange {
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
-			'rc_timestamp'      => $timestamp,
-			'rc_namespace'      => $title->getNamespace(),
-			'rc_title'          => $title->getDBkey(),
-			'rc_type'           => RC_NEW,
-			'rc_source'         => self::SRC_NEW,
-			'rc_minor'          => $minor ? 1 : 0,
-			'rc_cur_id'         => $title->getArticleID(),
-			'rc_user'           => $user->getId(),
-			'rc_user_text'      => $user->getName(),
-			'rc_comment'        => $comment,
-			'rc_this_oldid'     => $newId,
-			'rc_last_oldid'     => 0,
-			'rc_bot'            => $bot ? 1 : 0,
-			'rc_ip'             => self::checkIPAddress( $ip ),
-			'rc_patrolled'      => intval( $patrol ),
-			'rc_new'            => 1, # obsolete
-			'rc_old_len'        => 0,
-			'rc_new_len'        => $size,
-			'rc_deleted'        => 0,
-			'rc_logid'          => 0,
-			'rc_log_type'       => null,
-			'rc_log_action'     => '',
-			'rc_params'         => ''
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $title->getNamespace(),
+			'rc_title' => $title->getDBkey(),
+			'rc_type' => RC_NEW,
+			'rc_source' => self::SRC_NEW,
+			'rc_minor' => $minor ? 1 : 0,
+			'rc_cur_id' => $title->getArticleID(),
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_comment' => $comment,
+			'rc_this_oldid' => $newId,
+			'rc_last_oldid' => 0,
+			'rc_bot' => $bot ? 1 : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => intval( $patrol ),
+			'rc_new' => 1, # obsolete
+			'rc_old_len' => 0,
+			'rc_new_len' => $size,
+			'rc_deleted' => 0,
+			'rc_logid' => 0,
+			'rc_log_type' => null,
+			'rc_log_action' => '',
+			'rc_params' => ''
 		);
 
 		$rc->mExtra = array(
@@ -586,6 +595,7 @@ class RecentChange {
 			'pageStatus' => 'created'
 		);
 		$rc->save();
+
 		return $rc;
 	}
 
@@ -616,6 +626,7 @@ class RecentChange {
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
 			$target, $logComment, $params, $newId, $actionCommentIRC );
 		$rc->save();
+
 		return true;
 	}
 
@@ -663,38 +674,39 @@ class RecentChange {
 		$rc->mTitle = $target;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = array(
-			'rc_timestamp'  => $timestamp,
-			'rc_namespace'  => $target->getNamespace(),
-			'rc_title'      => $target->getDBkey(),
-			'rc_type'       => RC_LOG,
-			'rc_source'     => self::SRC_LOG,
-			'rc_minor'      => 0,
-			'rc_cur_id'     => $target->getArticleID(),
-			'rc_user'       => $user->getId(),
-			'rc_user_text'  => $user->getName(),
-			'rc_comment'    => $logComment,
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $target->getNamespace(),
+			'rc_title' => $target->getDBkey(),
+			'rc_type' => RC_LOG,
+			'rc_source' => self::SRC_LOG,
+			'rc_minor' => 0,
+			'rc_cur_id' => $target->getArticleID(),
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_comment' => $logComment,
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
-			'rc_bot'        => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
-			'rc_ip'         => self::checkIPAddress( $ip ),
-			'rc_patrolled'  => 1,
-			'rc_new'        => 0, # obsolete
-			'rc_old_len'    => null,
-			'rc_new_len'    => null,
-			'rc_deleted'    => 0,
-			'rc_logid'      => $newId,
-			'rc_log_type'   => $type,
+			'rc_bot' => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => 1,
+			'rc_new' => 0, # obsolete
+			'rc_old_len' => null,
+			'rc_new_len' => null,
+			'rc_deleted' => 0,
+			'rc_logid' => $newId,
+			'rc_log_type' => $type,
 			'rc_log_action' => $action,
-			'rc_params'     => $params
+			'rc_params' => $params
 		);
 
 		$rc->mExtra = array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
-			'pageStatus'    => $pageStatus,
+			'pageStatus' => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
 		);
+
 		return $rc;
 	}
 
@@ -780,6 +792,7 @@ class RecentChange {
 		} else {
 			$trail = '';
 		}
+
 		return $trail;
 	}
 
@@ -800,6 +813,7 @@ class RecentChange {
 		if ( $old === null || $new === null ) {
 			return '';
 		}
+
 		return ChangesList::showCharacterDifference( $old, $new );
 	}
 
@@ -814,7 +828,7 @@ class RecentChange {
 
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function() use ( $dbw, $method ) {
+		$dbw->onTransactionIdle( function () use ( $dbw, $method ) {
 			global $wgRCMaxAge;
 
 			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
@@ -839,6 +853,7 @@ class RecentChange {
 				$ip = '';
 			}
 		}
+
 		return $ip;
 	}
 
@@ -853,6 +868,7 @@ class RecentChange {
 	 */
 	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {
 		global $wgRCMaxAge;
+
 		return wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $wgRCMaxAge;
 	}
 }

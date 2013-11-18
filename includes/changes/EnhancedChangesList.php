@@ -220,10 +220,10 @@ class EnhancedChangesList extends ChangesList {
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+				. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
 		} else {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
-					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
+				. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
 		$classes[] = $block[0]->watched && $block[0]->mAttribs['rc_timestamp'] >= $block[0]->watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
@@ -467,11 +467,11 @@ class EnhancedChangesList extends ChangesList {
 			} else {
 
 				$link = Linker::linkKnown(
-						$rcObj->getTitle(),
-						$rcObj->timestamp,
-						array(),
-						$params
-					);
+					$rcObj->getTitle(),
+					$rcObj->timestamp,
+					array(),
+					$params
+				);
 				if ( $this->isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
 					$link = '<span class="history-deleted">' . $link . '</span> ';
 				}
@@ -530,6 +530,7 @@ class EnhancedChangesList extends ChangesList {
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
 		$encAlt = htmlspecialchars( $alt );
 		$encTitle = htmlspecialchars( $title );
+
 		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" title=\"$encTitle\" />";
 	}
 
@@ -540,6 +541,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function sideArrow() {
 		$dir = $this->getLanguage()->isRTL() ? 'l' : 'r';
+
 		return $this->arrow( $dir, '+', $this->msg( 'rc-enhanced-expand' )->text() );
 	}
 
@@ -578,10 +580,10 @@ class EnhancedChangesList extends ChangesList {
 		if ( $logType ) {
 			# Log entry
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $logType . '-' . $rcObj->mAttribs['rc_title'] );
+				. $logType . '-' . $rcObj->mAttribs['rc_title'] );
 		} else {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
-					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
+				$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
 		$classes[] = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
@@ -615,7 +617,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $type != RC_LOG ) {
 			$query['action'] = 'history';
 			$r .= ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rcObj->difflink .$this->message['pipe-separator'] . Linker::linkKnown(
+				->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
 					$rcObj->getTitle(),
 					$this->message['hist'],
 					array(),
@@ -658,7 +660,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesBlock() {
-		if ( count ( $this->rc_cache ) == 0 ) {
+		if ( count( $this->rc_cache ) == 0 ) {
 			return '';
 		}
 
@@ -686,5 +688,4 @@ class EnhancedChangesList extends ChangesList {
 	public function endRecentChangesList() {
 		return $this->recentChangesBlock() . parent::endRecentChangesList();
 	}
-
 }
