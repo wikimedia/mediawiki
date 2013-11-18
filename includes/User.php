@@ -2173,14 +2173,21 @@ class User {
 	/**
 	 * Set the password for a password reminder or new account email
 	 *
-	 * @param string $str New password to set
+	 * @param $str New password to set or null to set an invalid
+	 *  password hash meaning that the user will not be able to use it
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->load();
-		$this->mNewpassword = self::crypt( $str );
-		if ( $throttle ) {
-			$this->mNewpassTime = wfTimestampNow();
+
+		if ( $str === null ) {
+			$this->mNewpassword = '';
+			$this->mNewpassTime = null;
+		} else {
+			$this->mNewpassword = self::crypt( $str );
+			if ( $throttle ) {
+				$this->mNewpassTime = wfTimestampNow();
+			}
 		}
 	}
 
