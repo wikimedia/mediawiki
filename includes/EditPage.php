@@ -1204,13 +1204,29 @@ class EditPage {
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
-	function attemptSave() {
-		global $wgUser, $wgOut;
+	public function attemptSave() {
+		global $wgUser;
 
 		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
+
+        return $this->handleStatus( $status, $resultDetails );
+    }
+
+	/**
+     * Handle status after attempt save
+     *
+     * @param Status $status
+     * @param array|bool $resultDetails
+     *
+     * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
+     * return bool false, if output is done, true if rest of the form should be displayed
+     */
+    private function handleStatus( Status $status, $resultDetails ) {
+        global $wgUser, $wgOut;
+
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
