@@ -1278,19 +1278,19 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	 * A cache of the contents of data files.
 	 * Core files are serialized to avoid using ~1GB of RAM during a recache.
 	 */
-	var $fileCache = array();
+	private $fileCache = array();
 
 	/**
 	 * Most recently used languages. Uses the linked-list aspect of PHP hashtables
 	 * to keep the most recently used language codes at the end of the array, and
 	 * the language codes that are ready to be deleted at the beginning.
 	 */
-	var $mruLangs = array();
+	private $mruLangs = array();
 
 	/**
 	 * Maximum number of languages that may be loaded into $this->data
 	 */
-	var $maxLoadedLangs = 10;
+	private $maxLoadedLangs = 10;
 
 	/**
 	 * @param $fileName
