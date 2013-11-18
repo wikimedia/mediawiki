@@ -6,6 +6,11 @@
 	 * Given an email validity status (true, false, null) update the label CSS class
 	 */
 	function updateMailValidityLabel( mail ) {
+		// Set up the validity notice if it doesn't already exist
+		if ( $( '#mw-emailaddress-validity' ).length === 0 ) {
+			$( '#wpNewEmail' ).after( '<label for="wpNewEmail" id="mw-emailaddress-validity"></label>' );
+		}
+
 		var isValid = mw.util.validateEmail( mail ),
 			$label = $( '#mw-emailaddress-validity' );
 
@@ -24,19 +29,22 @@
 	}
 
 	$( function () {
-		// Lame tip to let user know if its email is valid. See bug 22449.
-		// Only bind once for 'blur' so that the user can fill it in without errors;
-		// after that, look at every keypress for immediate feedback.
-		$( '#wpNewEmail' ).one( 'blur', function () {
-			var $this = $( this );
-			if ( $( '#mw-emailaddress-validity' ).length === 0 ) {
-				$this.after( '<label for="wpNewEmail" id="mw-emailaddress-validity"></label>' );
-			}
-
-			updateMailValidityLabel( $this.val() );
-			$this.keyup( function () {
+		$( '#wpNewEmail' )
+			// Lame tip to let user know if its email is valid. See bug 22449.
+			// Only bind once for 'blur' so that the user can fill it in without errors;
+			// after that, look at every keypress for immediate feedback.
+			.one( 'blur', function () {
+				var $this = $( this );
 				updateMailValidityLabel( $this.val() );
+				$this.keyup( function () {
+					updateMailValidityLabel( $this.val() );
+				} );
+			} )
+			// Supress built-in validation notice and just call updateMailValidityLabel(),
+			// to avoid double notice. See bug 40909.
+			.on( 'invalid', function ( e ) {
+				e.preventDefault();
+				updateMailValidityLabel( $( this ).val() );
 			} );
-		} );
 	} );
 }( mediaWiki, jQuery ) );
