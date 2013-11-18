@@ -28,8 +28,8 @@
  * @ingroup Cache
  */
 class DependencyWrapper {
-	var $value;
-	var $deps;
+	private $value;
+	private $deps;
 
 	/**
 	 * Create an instance.
