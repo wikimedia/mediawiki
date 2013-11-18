@@ -24,19 +24,26 @@
 	}
 
 	$( function () {
-		// Lame tip to let user know if its email is valid. See bug 22449.
-		// Only bind once for 'blur' so that the user can fill it in without errors;
-		// after that, look at every keypress for immediate feedback.
-		$( '#wpNewEmail' ).one( 'blur', function () {
-			var $this = $( this );
-			if ( $( '#mw-emailaddress-validity' ).length === 0 ) {
-				$this.after( '<label for="wpNewEmail" id="mw-emailaddress-validity"></label>' );
-			}
+		$( '#wpNewEmail' )
+			// Lame tip to let user know if its email is valid. See bug 22449.
+			// Only bind once for 'blur' so that the user can fill it in without errors;
+			// after that, look at every keypress for immediate feedback.
+			.one( 'blur', function () {
+				var $this = $( this );
+				if ( $( '#mw-emailaddress-validity' ).length === 0 ) {
+					$this.after( '<label for="wpNewEmail" id="mw-emailaddress-validity"></label>' );
+				}
 
-			updateMailValidityLabel( $this.val() );
-			$this.keyup( function () {
 				updateMailValidityLabel( $this.val() );
+				$this.keyup( function () {
+					updateMailValidityLabel( $this.val() );
+				} );
+			} )
+			// Supress built-in validation notice and just call updateMailValidityLabel(),
+			// to avoid double notice. See bug 40909.
+			.on( 'invalid', function ( e ) {
+				e.preventDefault();
+				updateMailValidityLabel( $( this ).val() );
 			} );
-		} );
 	} );
 }( mediaWiki, jQuery ) );
