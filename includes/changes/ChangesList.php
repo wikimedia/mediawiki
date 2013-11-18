@@ -23,7 +23,6 @@
  */
 
 class ChangesList extends ContextSource {
-
 	/**
 	 * @var Skin
 	 */
@@ -140,8 +139,8 @@ class ChangesList extends ContextSource {
 			$flag = $map[$flag];
 		}
 
-		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" . $flagInfos[$flag]['title'] . "'>" .
-			$flagInfos[$flag]['letter'] .
+		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" .
+			$flagInfos[$flag]['title'] . "'>" . $flagInfos[$flag]['letter'] .
 			'</abbr>';
 	}
 
@@ -313,7 +312,9 @@ class ChangesList extends ContextSource {
 				'action' => 'history'
 			)
 		);
-		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' <span class="mw-changeslist-separator">. .</span> ';
+		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there me?
+		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
+			' <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -353,8 +354,12 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
+		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there me?
 		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
-			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+			$this->getLanguage()->userTime(
+				$rc->mAttribs['rc_timestamp'],
+				$this->getUser()
+			) . '</span> <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -375,7 +380,8 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
+			$s .= ' <span class="history-deleted">' .
+				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
 				$rc->mAttribs['rc_user_text'] );
@@ -405,7 +411,8 @@ class ChangesList extends ContextSource {
 	public function insertComment( $rc ) {
 		if ( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			if ( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-				return ' <span class="history-deleted">' . $this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
+				return ' <span class="history-deleted">' .
+					$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 			} else {
 				return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 			}
@@ -435,7 +442,8 @@ class ChangesList extends ContextSource {
 		static $cache = array();
 		if ( $count > 0 ) {
 			if ( !isset( $cache[$count] ) ) {
-				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )->numParams( $count )->escaped();
+				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )
+					->numParams( $count )->escaped();
 			}
 			return $cache[$count];
 		} else {
@@ -488,12 +496,16 @@ class ChangesList extends ContextSource {
 	 * @param $rc RecentChange
 	 */
 	public function insertRollback( &$s, &$rc ) {
-		if ( $rc->mAttribs['rc_type'] == RC_EDIT && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
+		if ( $rc->mAttribs['rc_type'] == RC_EDIT
+			&& $rc->mAttribs['rc_this_oldid']
+			&& $rc->mAttribs['rc_cur_id']
+		) {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
 			  * show a link on the top-most revision */
-			if ( $this->getUser()->isAllowed( 'rollback' ) && $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid'] )
-			{
+			if ( $this->getUser()->isAllowed( 'rollback' )
+				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
+			) {
 				$rev = new Revision( array(
 					'title' => $page,
 					'id' => $rc->mAttribs['rc_this_oldid'],
@@ -516,7 +528,10 @@ class ChangesList extends ContextSource {
 			return;
 		}
 
-		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $rc->mAttribs['ts_tags'], 'changeslist' );
+		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
+			$rc->mAttribs['ts_tags'],
+			'changeslist'
+		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
 	}
