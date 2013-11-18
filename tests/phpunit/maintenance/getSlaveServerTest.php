@@ -44,6 +44,11 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 		global $wgDBprefix;
 
 		global $argv;
+		// Although we'd prefer to not dump globals, dumping globals actually
+		// models the use case from the xmldumps-backup scripts that WMF uses
+		// to dump wikis (as of 2013-11-18). See
+		//   http://git.wikimedia.org/blob/operations%2Fdumps.git/11e9b23b4bc76bf3d89e1fb32348c7a11079bd55/xmldumps-backup%2Fworker.py#L209
+		// So as wmf's xml dumps rely on "--globals", we have to test it :-(
 		$argv = array( null, "--globals" );
 
 		$gss = new GetSlaveServer();
