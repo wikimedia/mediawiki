@@ -160,7 +160,8 @@ class ApiFormatXml extends ApiFormatBase {
 			}
 
 			if ( is_null( $subElemIndName ) && count( $indElements ) ) {
-				ApiBase::dieDebug( __METHOD__, "($elemName, ...) has integer keys without _element value. Use ApiResult::setIndexedTagName()." );
+				ApiBase::dieDebug( __METHOD__, "($elemName, ...) has integer keys " .
+					"without _element value. Use ApiResult::setIndexedTagName()." );
 			}
 
 			if ( count( $subElements ) && count( $indElements ) && !is_null( $subElemContent ) ) {
@@ -214,7 +215,8 @@ class ApiFormatXml extends ApiFormatBase {
 
 			return;
 		}
-		$this->printText( '<?xml-stylesheet href="' . htmlspecialchars( $nt->getLocalURL( 'action=raw' ) ) . '" type="text/xsl" ?>' );
+		$this->printText( '<?xml-stylesheet href="' .
+			htmlspecialchars( $nt->getLocalURL( 'action=raw' ) ) . '" type="text/xsl" ?>' );
 	}
 
 	public function getAllowedParams() {

@@ -77,7 +77,11 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg( reset( $retval ) );
 		}
 
-		$r = array( 'from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason'] );
+		$r = array(
+			'from' => $fromTitle->getPrefixedText(),
+			'to' => $toTitle->getPrefixedText(),
+			'reason' => $params['reason']
+		);
 
 		if ( $fromTitle->exists() ) {
 			//NOTE: we assume that if the old title exists, it's because it was re-created as
@@ -232,7 +236,8 @@ class ApiMove extends ApiBase {
 			'noredirect' => 'Don\'t create a redirect',
 			'watch' => 'Add the page and the redirect to your watchlist',
 			'unwatch' => 'Remove the page and the redirect from your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+			'watchlist' => 'Unconditionally add or remove the page from your ' .
+				'watchlist, use preferences or do not change watch',
 			'ignorewarnings' => 'Ignore any warnings'
 		);
 	}
@@ -293,7 +298,8 @@ class ApiMove extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=move&from=Badtitle&to=Goodtitle&token=123ABC&reason=Misspelled%20title&movetalk=&noredirect='
+			'api.php?action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
+				'reason=Misspelled%20title&movetalk=&noredirect='
 		);
 	}
 

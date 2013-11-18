@@ -46,7 +46,15 @@ class ApiFileRevert extends ApiBase {
 		$this->checkPermissions( $this->getUser() );
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
-		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'], 0, false, false, $this->getUser() );
+		$status = $this->file->upload(
+			$sourceUrl,
+			$this->params['comment'],
+			$this->params['comment'],
+			0,
+			false,
+			false,
+			$this->getUser()
+		);
 
 		if ( $status->isGood() ) {
 			$result = array( 'result' => 'Success' );
@@ -185,7 +193,8 @@ class ApiFileRevert extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&archivename=20110305152740!Wiki.png&token=123ABC'
+			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&' .
+				'archivename=20110305152740!Wiki.png&token=123ABC'
 				=> 'Revert Wiki.png to the version of 20110305152740',
 		);
 	}
