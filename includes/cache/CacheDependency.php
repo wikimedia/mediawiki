@@ -110,8 +110,8 @@ class DependencyWrapper {
 	 *    callback was defined.
 	 */
 	static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false,
-		$callbackParams = array(), $deps = array() )
-	{
+		$callbackParams = array(), $deps = array()
+	) {
 		$obj = $cache->get( $key );
 
 		if ( is_object( $obj ) && $obj instanceof DependencyWrapper && !$obj->isExpired() ) {
@@ -141,7 +141,8 @@ abstract class CacheDependency {
 	/**
 	 * Hook to perform any expensive pre-serialize loading of dependency values.
 	 */
-	function loadDependencyValues() { }
+	function loadDependencyValues() {
+	}
 }
 
 /**
@@ -172,6 +173,7 @@ class FileDependency extends CacheDependency {
 	 */
 	function __sleep() {
 		$this->loadDependencyValues();
+
 		return array( 'filename', 'timestamp' );
 	}
 
@@ -198,6 +200,7 @@ class FileDependency extends CacheDependency {
 			} else {
 				# Deleted
 				wfDebug( "Dependency triggered: {$this->filename} deleted.\n" );
+
 				return true;
 			}
 		} else {
@@ -205,6 +208,7 @@ class FileDependency extends CacheDependency {
 			if ( $lastmod > $this->timestamp ) {
 				# Modified or created
 				wfDebug( "Dependency triggered: {$this->filename} changed.\n" );
+
 				return true;
 			} else {
 				# Not modified
@@ -353,6 +357,7 @@ class TitleListDependency extends CacheDependency {
 			$this->linkBatch = new LinkBatch;
 			$this->linkBatch->setArray( $this->timestamps );
 		}
+
 		return $this->linkBatch;
 	}
 
@@ -407,6 +412,7 @@ class GlobalDependency extends CacheDependency {
 		if ( !isset( $GLOBALS[$this->name] ) ) {
 			return true;
 		}
+
 		return $GLOBALS[$this->name] != $this->value;
 	}
 }

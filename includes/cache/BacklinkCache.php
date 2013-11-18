@@ -108,6 +108,7 @@ class BacklinkCache {
 		if ( !self::$cache->has( $dbKey, 'obj', 3600 ) ) {
 			self::$cache->set( $dbKey, 'obj', new self( $title ) );
 		}
+
 		return self::$cache->get( $dbKey, 'obj' );
 	}
 
@@ -149,6 +150,7 @@ class BacklinkCache {
 		if ( !isset( $this->db ) ) {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
+
 		return $this->db;
 	}
 
@@ -179,8 +181,8 @@ class BacklinkCache {
 		$fromField = $this->getPrefix( $table ) . '_from';
 
 		if ( !$startId && !$endId && is_infinite( $max )
-			&& isset( $this->fullResultCache[$table] ) )
-		{
+			&& isset( $this->fullResultCache[$table] )
+		) {
 			wfDebug( __METHOD__ . ": got results from cache\n" );
 			$res = $this->fullResultCache[$table];
 		} else {
@@ -204,7 +206,7 @@ class BacklinkCache {
 				$res = $this->getDB()->select(
 					$table,
 					array( $this->getPrefix( $table ) . '_from AS page_id' ),
-					array_filter( $conds, function( $clause ) { // kind of janky
+					array_filter( $conds, function ( $clause ) { // kind of janky
 						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
 					} ),
 					__METHOD__,
@@ -230,6 +232,7 @@ class BacklinkCache {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -337,6 +340,7 @@ class BacklinkCache {
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
 			$entry = reset( $this->partitionCache[$table] );
+
 			return min( $max, $entry['numRows'] );
 		}
 
@@ -385,6 +389,7 @@ class BacklinkCache {
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache\n" );
+
 			return $this->partitionCache[$table][$batchSize]['batches'];
 		}
 
@@ -395,6 +400,7 @@ class BacklinkCache {
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
 			wfDebug( __METHOD__ . ": got from full result cache\n" );
+
 			return $cacheEntry['batches'];
 		}
 
@@ -410,6 +416,7 @@ class BacklinkCache {
 		if ( is_array( $memcValue ) ) {
 			$cacheEntry = $memcValue;
 			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
+
 			return $cacheEntry['batches'];
 		}
 
@@ -444,6 +451,7 @@ class BacklinkCache {
 		$wgMemc->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
 		wfDebug( __METHOD__ . ": got from database\n" );
+
 		return $cacheEntry['batches'];
 	}
 
