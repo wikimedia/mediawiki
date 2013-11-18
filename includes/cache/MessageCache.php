@@ -700,7 +700,8 @@ class MessageCache {
 	 *                   "msg/lang".
 	 *
 	 * @throws MWException when given an invalid key
-	 * @return string|bool False if the message doesn't exist, otherwise the message (which can be empty)
+	 * @return string|bool False if the message doesn't exist, otherwise the
+	 *   message (which can be empty)
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLang;
@@ -737,7 +738,12 @@ class MessageCache {
 
 		// Loop through each language in the fallback list until we find something useful
 		$lang = wfGetLangObj( $langcode );
-		$message = $this->getMessageFromFallbackChain( $lang, $lckey, $uckey, !$this->mDisable && $useDB );
+		$message = $this->getMessageFromFallbackChain(
+			$lang,
+			$lckey,
+			$uckey,
+			!$this->mDisable && $useDB
+		);
 
 		// If we still have no message, maybe the key was in fact a full key so try that
 		if ( $message === false ) {
@@ -815,7 +821,8 @@ class MessageCache {
 			return $message;
 		}
 
-		list( $fallbackChain, $siteFallbackChain ) = Language::getFallbacksIncludingSiteLanguage( $langcode );
+		list( $fallbackChain, $siteFallbackChain ) =
+			Language::getFallbacksIncludingSiteLanguage( $langcode );
 
 		// Next try checking the database for all of the fallback languages of the requested language.
 		if ( $useDB ) {
