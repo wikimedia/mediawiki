@@ -1376,6 +1376,8 @@ CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,
 
 -- Used for storing page restrictions (i.e. protection levels)
 CREATE TABLE /*_*/page_restrictions (
+  -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
+  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Page to apply restrictions to (Foreign Key to page).
   pr_page int NOT NULL,
   -- The protection type (edit, move, etc)
@@ -1387,9 +1389,7 @@ CREATE TABLE /*_*/page_restrictions (
   -- Field for future support of per-user restriction.
   pr_user int NULL,
   -- Field for time-limited protection.
-  pr_expiry varbinary(14) NULL,
-  -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
-  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT
+  pr_expiry varbinary(14) NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions (pr_page,pr_type);
