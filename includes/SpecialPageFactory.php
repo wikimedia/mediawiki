@@ -167,6 +167,8 @@ class SpecialPageFactory {
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
+		'Edit'                      => 'SpecialEditRedirect',
+		'History'                   => 'SpecialHistoryRedirect',
 	);
 
 	private static $mAliases;
