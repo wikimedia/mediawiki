@@ -61,6 +61,7 @@ class ChangesList extends ContextSource {
 		$list = null;
 		if ( wfRunHooks( 'FetchChangesList', array( $user, &$sk, &$list ) ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+
 			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
 		} else {
 			return $list;
@@ -104,6 +105,7 @@ class ChangesList extends ContextSource {
 				? self::flag( $flag )
 				: $nothing;
 		}
+
 		return $f;
 	}
 
@@ -155,6 +157,7 @@ class ChangesList extends ContextSource {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+
 		return '';
 	}
 
@@ -400,6 +403,7 @@ class ChangesList extends ContextSource {
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
+
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
@@ -417,6 +421,7 @@ class ChangesList extends ContextSource {
 				return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 			}
 		}
+
 		return '';
 	}
 
@@ -445,6 +450,7 @@ class ChangesList extends ContextSource {
 				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )
 					->numParams( $count )->escaped();
 			}
+
 			return $cache[$count];
 		} else {
 			return '';
@@ -502,7 +508,7 @@ class ChangesList extends ContextSource {
 		) {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
-			  * show a link on the top-most revision */
+			 * show a link on the top-most revision */
 			if ( $this->getUser()->isAllowed( 'rollback' )
 				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
 			) {

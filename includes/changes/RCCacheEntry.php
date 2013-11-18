@@ -30,6 +30,7 @@ class RCCacheEntry extends RecentChange {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;
+
 		return $rc2;
 	}
 }
