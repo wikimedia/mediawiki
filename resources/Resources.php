@@ -755,6 +755,14 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.hlist' => array(
+		'styles' => 'resources/mediawiki/mediawiki.hlist.css',
+		'scripts' => 'resources/mediawiki/mediawiki.hlist.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+	),
+
 	/* MediaWiki Action */
 
 	'mediawiki.action.edit' => array(
