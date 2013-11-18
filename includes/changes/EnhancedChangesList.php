@@ -98,7 +98,8 @@ class EnhancedChangesList extends ChangesList {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 				$logpage = new LogPage( $logType );
 				$logname = $logpage->getName()->escaped();
-				$clink = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, $logname ) )->escaped();
+				$clink = $this->msg( 'parentheses' )
+					->rawParams( Linker::linkKnown( $logtitle, $logname ) )->escaped();
 			} else {
 				$clink = Linker::link( $cacheEntry->getTitle() );
 			}
@@ -162,7 +163,8 @@ class EnhancedChangesList extends ChangesList {
 
 		# Make user links
 		if ( $this->isDeleted( $cacheEntry, Revision::DELETED_USER ) ) {
-			$cacheEntry->userlink = ' <span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
+			$cacheEntry->userlink = ' <span class="history-deleted">' .
+				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$cacheEntry->userlink = Linker::userLink(
 				$cacheEntry->mAttribs['rc_user'],
@@ -286,7 +288,9 @@ class EnhancedChangesList extends ChangesList {
 			$text = $userlink;
 			$text .= $this->getLanguage()->getDirMark();
 			if ( $count > 1 ) {
-				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->formatNum( $count ) . '×' )->escaped();
+				// @todo FIXME: Hardcoded '×'. Should be a message.
+				$formattedCount = $this->getLanguage()->formatNum( $count ) . '×';
+				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $formattedCount )->escaped();
 			}
 			array_push( $users, $text );
 		}
@@ -296,7 +300,8 @@ class EnhancedChangesList extends ChangesList {
 				implode( $this->message['semicolon-separator'], $users )
 			)->escaped() . '</span>';
 
-		$tl = '<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
+		$tl = '<span class="mw-collapsible-toggle mw-collapsible-arrow ' .
+			'mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
@@ -312,7 +317,8 @@ class EnhancedChangesList extends ChangesList {
 
 		# Article link
 		if ( $namehidden ) {
-			$r .= ' <span class="history-deleted">' . $this->msg( 'rev-deleted-event' )->escaped() . '</span>';
+			$r .= ' <span class="history-deleted">' .
+				$this->msg( 'rev-deleted-event' )->escaped() . '</span>';
 		} elseif ( $allLogs ) {
 			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
 		} else {
@@ -473,7 +479,9 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $link . '</span>';
 
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
-				$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
+				$r .= ' ' . $this->msg( 'parentheses' )
+					->rawParams( $rcObj->curlink . $this->message['pipe-separator'] .
+						$rcObj->lastlink )->escaped();
 			}
 			$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
@@ -598,19 +606,21 @@ class EnhancedChangesList extends ChangesList {
 			$logPage = new LogPage( $logType );
 			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logName = $logPage->getName()->escaped();
-			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logTitle, $logName ) )->escaped();
+			$r .= $this->msg( 'parentheses' )
+				->rawParams( Linker::linkKnown( $logTitle, $logName ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
 		# Diff and hist links
 		if ( $type != RC_LOG ) {
 			$query['action'] = 'history';
-			$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
-				$rcObj->getTitle(),
-				$this->message['hist'],
-				array(),
-				$query
-			) )->escaped();
+			$r .= ' ' . $this->msg( 'parentheses' )
+				->rawParams( $rcObj->difflink .$this->message['pipe-separator'] . Linker::linkKnown(
+					$rcObj->getTitle(),
+					$this->message['hist'],
+					array(),
+					$query
+				) )->escaped();
 		}
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 		# Character diff
