@@ -177,7 +177,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgMemc, $wgLanguageCode;
+		global $wgLanguageCode;
 
 		$query = array_merge( $query,
 			array(
