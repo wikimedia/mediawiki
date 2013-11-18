@@ -149,7 +149,8 @@ abstract class CacheDependency {
  * @ingroup Cache
  */
 class FileDependency extends CacheDependency {
-	var $filename, $timestamp;
+	private $filename;
+	private $timestamp;
 
 	/**
 	 * Create a file dependency
@@ -222,9 +223,10 @@ class FileDependency extends CacheDependency {
  * @ingroup Cache
  */
 class TitleDependency extends CacheDependency {
-	var $titleObj;
-	var $ns, $dbk;
-	var $touched;
+	private $titleObj;
+	private $ns;
+	private $dbk;
+	private $touched;
 
 	/**
 	 * Construct a title dependency
@@ -291,8 +293,8 @@ class TitleDependency extends CacheDependency {
  * @ingroup Cache
  */
 class TitleListDependency extends CacheDependency {
-	var $linkBatch;
-	var $timestamps;
+	private $linkBatch;
+	private $timestamps;
 
 	/**
 	 * Construct a dependency on a list of titles
@@ -398,7 +400,8 @@ class TitleListDependency extends CacheDependency {
  * @ingroup Cache
  */
 class GlobalDependency extends CacheDependency {
-	var $name, $value;
+	private $name;
+	private $value;
 
 	function __construct( $name ) {
 		$this->name = $name;
@@ -421,7 +424,8 @@ class GlobalDependency extends CacheDependency {
  * @ingroup Cache
  */
 class ConstantDependency extends CacheDependency {
-	var $name, $value;
+	private $name;
+	private $value;
 
 	function __construct( $name ) {
 		$this->name = $name;
