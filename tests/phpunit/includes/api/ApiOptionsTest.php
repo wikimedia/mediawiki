@@ -10,7 +10,7 @@
 class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	/** @var PHPUnit_Framework_MockObject_MockObject */
-	private $mUserMock ;
+	private $mUserMock;
 	/** @var ApiOptions */
 	private $mTested;
 	private $mSession;
