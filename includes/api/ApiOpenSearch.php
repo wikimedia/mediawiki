@@ -90,10 +90,12 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgOpenSearchDefaultLimit;
+
 		return array(
 			'search' => null,
 			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_DFLT => $wgOpenSearchDefaultLimit,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 100,
