@@ -6,7 +6,7 @@
  * @author Trevor Parscal <tparscal@wikimedia.org>, 2012
  * @author Krinkle <krinklemail@gmail.com>, 2012
  * @version 0.2.0
- * @license GPL v2
+ * @license MIT
  */
 ( function ( $ ) {
 
