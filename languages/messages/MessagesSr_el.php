@@ -1323,7 +1323,7 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 'mergelog' => 'Dnevnik spajanja',
 'pagemerge-logentry' => 'stranica [[$1]] je spojena u [[$2]] (sve do izmene $3)',
 'revertmerge' => 'rastavi',
-'mergelogpagetext' => 'Ispod se nalazi spisak skorašnjih spajanja istorija stranica.',
+'mergelogpagetext' => 'Ispod je spisak najskorijih spajanja istorija dveju stranica.',
 
 # Diffs
 'history-title' => 'Istorija izmena stranice „$1“',

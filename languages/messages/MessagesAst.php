@@ -522,7 +522,7 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'gotaccount' => '¿Yá tienes una cuenta? $1.',
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => "¿Escaeció los datos d'accesu?",
-'userlogin-resetpassword-link' => 'Reaniciar la contraseña',
+'userlogin-resetpassword-link' => '¿Escaeció la contraseña?',
 'helplogin-url' => 'Help:Aniciar sesión',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
 'userlogin-loggedin' => "Yá anició sesión como {{GENDER:$1|$1}}.
@@ -602,8 +602,8 @@ Pa evitar abusos, namái s'unviará un corréu de reaniciu cada {{PLURAL:$1|hora
 'mailerror' => 'Fallu al unviar el corréu: $1',
 'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
 Poro, los visitantes qu'usen esta direición IP nun puen crear más cuentes de momentu.",
-'emailauthenticated' => "La to direición de corréu electrónicu confirmóse'l $2 a les $3.",
-'emailnotauthenticated' => "La to direición de corréu electrónicu inda nun se comprobó.
+'emailauthenticated' => "La so direición de corréu electrónicu confirmóse'l $2 a les $3.",
+'emailnotauthenticated' => "La so direición de corréu electrónicu inda nun se confirmó.
 Nun s'unviará corréu pa nenguna de les funciones siguientes.",
 'noemailprefs' => 'Conseña una direición de corréu electrónicu nes tos preferencies pa que funcionen eses carauterístiques.',
 'emailconfirmlink' => 'Confirmar la direición de corréu electrónicu',
@@ -1048,18 +1048,18 @@ Otros alministradores de {{SITENAME}} van siguir pudiendo acceder al conteníu a
 'revdelete-confirm' => "Confirma que quies facer esto, qu'entiendes les consecuencies, y que vas facer esto d'alcuerdo [[{{MediaWiki:Policy-url}}|cola política]].",
 'revdelete-suppress-text' => "La supresión '''namái''' tendría d'usase nos casos darréu:
 * Información que pudiere ser bilordiosa
-* Información personal non apropiada
-*: ''direiciones de llares y númberos de teléfonu, númberos de seguridá social, etc.''",
+* Información personal inapropiada
+*: ''direiciones de llares y númberos de teléfonu, númberos d'identidá nacional, etc.''",
 'revdelete-legend' => 'Establecer torgues de visibilidá',
-'revdelete-hide-text' => 'Tapecer testu de la revisión',
+'revdelete-hide-text' => 'Testu de la revisión',
 'revdelete-hide-image' => 'Tapecer el conteníu del ficheru',
 'revdelete-hide-name' => 'Tapecer aición y oxetivu',
-'revdelete-hide-comment' => "Tapecer el resume d'edición",
-'revdelete-hide-user' => "Tapecer el nome d'usuariu/IP del editor",
+'revdelete-hide-comment' => "Resume d'edición",
+'revdelete-hide-user' => 'Nome del editor/Direición IP',
 'revdelete-hide-restricted' => "Desaniciar datos de los alministradores y d'otros",
 'revdelete-radio-same' => '(ensin cambeos)',
-'revdelete-radio-set' => 'Sí',
-'revdelete-radio-unset' => 'Non',
+'revdelete-radio-set' => 'Tapecíu',
+'revdelete-radio-unset' => 'Visible',
 'revdelete-suppress' => "Desaniciar datos de los alministradores igual que d'otros",
 'revdelete-unsuppress' => 'Desaniciar les torgues nes revisiones restauraes',
 'revdelete-log' => 'Motivu:',
@@ -2996,6 +2996,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-length' => 'Llonxitú de la páxina (en bytes)',
 'pageinfo-article-id' => 'ID de la páxina',
 'pageinfo-language' => 'Llingua del conteníu de la páxina',
+'pageinfo-content-model' => 'Plantía del conteníu de la páxina',
 'pageinfo-robot-policy' => 'Indexación por robots',
 'pageinfo-robot-index' => 'Permitío',
 'pageinfo-robot-noindex' => 'Torgao',
@@ -3080,7 +3081,7 @@ Al executalu pues comprometer el to sistema.",
 'svg-long-desc' => 'ficheru SVG, $1 × $2 píxels nominales, tamañu de ficheru: $3',
 'svg-long-desc-animated' => 'Ficheru SVG animáu; nominalmente de $1 × $2 pixels; tamañu del ficheru: $3',
 'svg-long-error' => 'Ficheru SVG inválidu: $1',
-'show-big-image' => 'Resolución completa',
+'show-big-image' => 'Ficheru orixinal',
 'show-big-image-preview' => "Tamañu d'esta previsualización: $1.",
 'show-big-image-other' => '{{PLURAL:$2|Otra resolución|Otres resoluciones}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3652,6 +3653,9 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'confirm-unwatch-button' => 'Aceutar',
 'confirm-unwatch-top' => '¿Desaniciar esta páxina de la to llista de vixilancia?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '«$1»',
+
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
 'imgmultipagenext' => 'páxina siguiente →',
@@ -3758,7 +3762,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 # Special:Redirect
 'redirect' => "Redireición por nome de ficheru, o ID d'usuariu o de revisión",
 'redirect-legend' => 'Redirixir a un ficheru o una páxina',
-'redirect-summary' => "Esta páxina especial redirixe a un ficheru (dando'l nome), una páxina (dando una ID de revisión) o una páxina d'usuariu (dando una ID d'usuariu).",
+'redirect-summary' => "Esta páxina especial redirixe a un ficheru (dando'l so nome), una páxina (dando una ID de revisión) o una páxina d'usuariu (dando un númberu d'ID d'usuariu). Usu: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Dir',
 'redirect-lookup' => 'Buscar:',
 'redirect-value' => 'Valor:',

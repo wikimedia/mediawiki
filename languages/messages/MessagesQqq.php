@@ -2027,7 +2027,7 @@ See also:
 Parameters:
 * \$1 - number of categories",
 'edittools' => '{{optional}}
-This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
+This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a JavaScript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
 'edittools-upload' => '{{optional}}
 This text will be shown below upload forms. It will default to the contents of edittools.',
 'nocreatetext' => 'Used as error message.

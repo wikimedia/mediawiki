@@ -1417,7 +1417,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-field' => 'Etsi',
 'powersearch-togglelabel' => 'Muuta valintaa',
 'powersearch-toggleall' => 'Valitse kaikki',
-'powersearch-togglenone' => 'Poista valinnat',
+'powersearch-togglenone' => 'Ei mitään',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 'search-error' => 'Virhe ilmaantui haettaessa: $1',
@@ -2908,7 +2908,7 @@ Alla on viimeisin lokitapahtuma:',
 Valitse toinen nimi.',
 
 # Export
-'export' => 'Sivujen vienti',
+'export' => 'Vie sivuja',
 'exporttext' => "Voit viedä (''export'') sivun tai usean sivun tekstin ja muokkaushistorian XML-muodossa.
 Tämä tieto voidaan tuoda (''import'') toiseen wikiin käyttämällä MediaWikiä [[Special:Import|tuontisivun]] kautta.
 

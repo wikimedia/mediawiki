@@ -3029,7 +3029,7 @@ $1',
 'svg-long-desc' => 'Файл във формат SVG, основен размер: $1 × $2 пиксела, големина на файла: $3',
 'svg-long-desc-animated' => 'Анимиран SVG файл, основен размер $1 × $2 пиксела, големина на файла: $3',
 'svg-long-error' => 'Невалиден SVG файл: $1',
-'show-big-image' => 'Пълна разделителна способност',
+'show-big-image' => 'Оригинален файл',
 'show-big-image-preview' => 'Размер на този преглед: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Друга разделителна способност|Други разделителни способности}}: $1.',
 'show-big-image-size' => '$1 × $2 пиксела',
@@ -3536,6 +3536,9 @@ $5
 'confirm-watch-top' => 'Добавяне на страницата в списъка ви за наблюдение?',
 'confirm-unwatch-button' => 'Потвърждаване',
 'confirm-unwatch-top' => 'Премахване на страницата от списъка ви за наблюдение?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '„$1“',
 
 # Multipage image navigation
 'imgmultipageprev' => '← предишна страница',

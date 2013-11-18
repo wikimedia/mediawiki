@@ -1570,7 +1570,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-reupload' => 'superscriber iste file existente',
 'action-reupload-shared' => 'supplantar iste file in un repositorio commun',
 'action-upload_by_url' => 'incargar iste file ab un adresse URL',
-'action-writeapi' => 'usar le API de scriptura',
+'action-writeapi' => 'usar le API pro modificar le wiki',
 'action-delete' => 'deler iste pagina',
 'action-deleterevision' => 'deler iste version',
 'action-deletedhistory' => 'vider le historia delite de iste pagina',
