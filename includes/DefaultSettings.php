@@ -5237,6 +5237,12 @@ $wgOpenSearchTemplate = false;
 $wgEnableOpenSearchSuggest = true;
 
 /**
+ * Integer defining default number of entries to show on
+ * OpenSearch call.
+ */
+$wgOpenSearchDefaultLimit = 10;
+
+/**
  * Expiry time for search suggestion responses
  */
 $wgSearchSuggestCacheExpiry = 1200;

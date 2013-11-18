@@ -37,6 +37,9 @@ production.
 * (bug 56033) Add content model to the page information.
 * Added Article::MissingArticleConditions hook to give extensions a chance to
   hide their (unrelated) log entries.
+* Added $wgOpenSearchDefaultLimit to DefaultSettings.php defining the default
+  number of enties to show on OpenSearch API call
+
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
