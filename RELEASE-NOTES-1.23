@@ -37,6 +37,9 @@ production.
 * (bug 56033) Add content model to the page information.
 * Added Article::MissingArticleConditions hook to give extensions a chance to
   hide their (unrelated) log entries.
+* (bug 11456) Add Special:Edit and Special:History as internal link redirects.
+  Special:Edit/Foo will redirect to index.php?title=Foo&action=edit,
+  Special:History will use action=history.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
