@@ -637,9 +637,6 @@ return array(
 			'user.tokens',
 		),
 	),
-	'mediawiki.icon' => array(
-		'styles' => 'resources/mediawiki/mediawiki.icon.css',
-	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
@@ -652,14 +649,6 @@ return array(
 		// Uses a custom mw.config variable that is set in debughtml,
 		// must be loaded on the bottom
 		'position' => 'bottom',
-	),
-	'mediawiki.inspect' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
-		'dependencies' => array(
-			'jquery.byteLength',
-			'jquery.json',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
@@ -693,9 +682,27 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.hlist' => array(
+		'styles' => 'resources/mediawiki/mediawiki.hlist.css',
+		'scripts' => 'resources/mediawiki/mediawiki.hlist.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 		'messages' => array( 'htmlform-chosen-placeholder' ),
+	),
+	'mediawiki.icon' => array(
+		'styles' => 'resources/mediawiki/mediawiki.icon.css',
+	),
+	'mediawiki.inspect' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
+		'dependencies' => array(
+			'jquery.byteLength',
+			'jquery.json',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.notification' => array(
 		'styles' => 'resources/mediawiki/mediawiki.notification.css',
@@ -753,14 +760,6 @@ return array(
 		'messages' => array( 'showtoc', 'hidetoc' ),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
-	),
-
-	'mediawiki.hlist' => array(
-		'styles' => 'resources/mediawiki/mediawiki.hlist.css',
-		'scripts' => 'resources/mediawiki/mediawiki.hlist.js',
-		'dependencies' => array(
-			'jquery.client',
-		),
 	),
 
 	/* MediaWiki Action */
