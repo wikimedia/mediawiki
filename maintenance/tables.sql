@@ -1521,7 +1521,7 @@ CREATE UNIQUE INDEX /*i*/md_module_skin ON /*_*/module_deps (md_module, md_skin)
 
 -- Holds all the sites known to the wiki.
 CREATE TABLE /*_*/sites (
--- Numeric id of the site
+  -- Numeric id of the site
   site_id                    INT UNSIGNED        NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Global identifier for the site, ie 'enwiktionary'
