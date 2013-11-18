@@ -1608,7 +1608,12 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *   - user:        DB user
  *   - password:    DB password
  *   - type:        "mysql" or "postgres"
- *   - load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
+ *
+ *   - load:        Ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0.
+ *                  If this is zero for any given server, no normal query traffic will be
+ *                  sent to it. It will be excluded from lag checks in maintenance scripts.
+ *                  The only way it can receive traffic is if groupLoads is used.
+ *
  *   - groupLoads:  array of load ratios, the key is the query group name. A query may belong
  *                  to several groups, the most specific group defined here is used.
  *
