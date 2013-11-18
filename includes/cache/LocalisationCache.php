@@ -1022,8 +1022,8 @@ interface LCStore {
  * (See ObjectCache.php)
  */
 class LCStoreAccel implements LCStore {
-	var $currentLang;
-	var $keys;
+	private $currentLang;
+	private $keys;
 
 	public function __construct() {
 		$this->cache = wfGetCache( CACHE_ACCEL );
@@ -1071,15 +1071,15 @@ class LCStoreAccel implements LCStore {
  * This will work on any MediaWiki installation.
  */
 class LCStoreDB implements LCStore {
-	var $currentLang;
-	var $writesDone = false;
+	private $currentLang;
+	private $writesDone = false;
 
 	/**
 	 * @var DatabaseBase
 	 */
-	var $dbw;
-	var $batch;
-	var $readOnly = false;
+	private $dbw;
+	private $batch;
+	private $readOnly = false;
 
 	public function get( $code, $key ) {
 		if ( $this->writesDone ) {
@@ -1174,7 +1174,10 @@ class LCStoreDB implements LCStore {
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
 class LCStoreCDB implements LCStore {
-	var $readers, $writer, $currentLang, $directory;
+	private $readers;
+	private $writer;
+	private $currentLang;
+	private $directory;
 
 	function __construct( $conf = array() ) {
 		global $wgCacheDirectory;
