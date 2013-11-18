@@ -44,12 +44,6 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$opts['target'] = $par;
 	}
 
-	public function feedSetup() {
-		$opts = parent::feedSetup();
-		$opts['target'] = $this->getRequest()->getVal( 'target' );
-		return $opts;
-	}
-
 	public function getFeedObject( $feedFormat ) {
 		$feed = new ChangesFeed( $feedFormat, false );
 		$feedObj = $feed->getFeedObject(

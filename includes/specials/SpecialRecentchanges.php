@@ -68,11 +68,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Create a FormOptions object with options as specified by the user
 	 *
+	 * @param bool $isFeed
 	 * @param array $parameters
-	 *
 	 * @return FormOptions
 	 */
-	public function setup( $parameters ) {
+	public function setup( $isFeed, $parameters ) {
+		global $wgFeedLimit;
+
 		$opts = $this->getDefaultOptions();
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
@@ -82,11 +84,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 
 		// Give precedence to subpage syntax
-		if ( $parameters !== null ) {
+		if ( !$isFeed && $parameters !== null ) {
 			$this->parseParameters( $parameters, $opts );
 		}
 
-		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateIntBounds( 'limit', 0, $isFeed ? $wgFeedLimit : 5000 );
 
 		return $opts;
 	}
@@ -106,20 +108,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Create a FormOptions object specific for feed requests and return it
-	 *
-	 * @return FormOptions
-	 */
-	public function feedSetup() {
-		global $wgFeedLimit;
-		$opts = $this->getDefaultOptions();
-		$opts->fetchValuesFromRequest( $this->getRequest() );
-		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
-
-		return $opts;
-	}
-
-	/**
 	 * Get the current FormOptions for this request
 	 */
 	public function getOptions() {
@@ -129,7 +117,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			} else {
 				$isFeed = (bool)$this->getRequest()->getVal( 'feed' );
 			}
-			$this->rcOptions = $isFeed ? $this->feedSetup() : $this->setup( $this->rcSubpage );
+			$this->rcOptions = $this->setup( $isFeed, $this->rcSubpage );
 		}
 
 		return $this->rcOptions;

@@ -24,7 +24,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		# setup the rc object
 		$this->rc = new SpecialRecentChanges();
 		$this->rc->setContext( $context );
-		$formOptions = $this->rc->setup( null );
+		$formOptions = $this->rc->setup( false, null );
 
 		# Filter out rc_timestamp conditions which depends on the test runtime
 		# This condition is not needed as of march 2, 2011 -- hashar
