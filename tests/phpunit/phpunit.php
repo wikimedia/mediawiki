@@ -49,7 +49,7 @@ class PHPUnitMaintClass extends Maintenance {
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
 
-		$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
