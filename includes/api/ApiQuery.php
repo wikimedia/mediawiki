@@ -714,7 +714,7 @@ class ApiQuery extends ApiBase {
 			'meta' => 'Which metadata to get about the site. Module help is available below',
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
-			'exportnowrap' => 'Return the export XML without wrapping it in an '.
+			'exportnowrap' => 'Return the export XML without wrapping it in an ' .
 				'XML result (same format as Special:Export). Can only be used with export',
 			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
 			'continue' => array(

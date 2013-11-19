@@ -169,7 +169,7 @@ class UpdateMediaWiki extends Maintenance {
 		$time2 = new MWTimestamp();
 
 		$this->output( "\nDone.\n" );
-		$this->output( "\nThe job took ". $time2->diff( $time1 )->format( "%i:%S" ). "\n" );
+		$this->output( "\nThe job took " . $time2->diff( $time1 )->format( "%i:%S" ) . "\n" );
 	}
 
 	function afterFinalSetup() {

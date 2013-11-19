@@ -121,7 +121,7 @@ class PurgeChangedFiles extends Maintenance {
 			$this->mOptions['verbose'] = 1;
 		}
 
-		$this->verbose( 'Purging files that were: ' . implode( ', ', $typeList ) . "\n");
+		$this->verbose( 'Purging files that were: ' . implode( ', ', $typeList ) . "\n" );
 		foreach ( $typeList as $type ) {
 			$this->verbose( "Checking for {$type} files...\n" );
 			$this->purgeFromLogType( $type );
@@ -186,7 +186,7 @@ class PurgeChangedFiles extends Maintenance {
 					// Purge items from fileachive table (rows are likely here)
 					$this->purgeFromArchiveTable( $repo, $file );
 
-				} else if ( $logType === 'move' ) {
+				} elseif ( $logType === 'move' ) {
 					// Purge the target file as well
 
 					$params = unserialize( $row->log_params );

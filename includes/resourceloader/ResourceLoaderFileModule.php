@@ -585,7 +585,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getAllStyleFiles() {
 		$files = array();
-		foreach( (array)$this->styles as $key => $value ) {
+		foreach ( (array)$this->styles as $key => $value ) {
 			if ( is_array( $value ) ) {
 				$path = $key;
 			} else {

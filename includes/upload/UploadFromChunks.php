@@ -127,7 +127,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Get a 0-byte temp file to perform the concatenation at
 		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext );
 		$tmpPath = false; // fail in concatenate()
-		if( $tmpFile ) {
+		if ( $tmpFile ) {
 			// keep alive with $this
 			$tmpPath = $tmpFile->bind( $this )->getPath();
 		}

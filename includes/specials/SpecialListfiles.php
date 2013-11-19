@@ -240,7 +240,7 @@ class ImageListPager extends TablePager {
 				}
 				$field = $prefix . substr( $field, 3 ) . ' AS ' . $field;
 			}
-			$fields[array_search('top', $fields)] = "'no' AS top";
+			$fields[array_search( 'top', $fields )] = "'no' AS top";
 		} else {
 			if ( $this->mShowAll ) {
 				$fields[array_search( 'top', $fields )] = "'yes' AS top";

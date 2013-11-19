@@ -4830,7 +4830,7 @@ class Title {
 			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
 			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
 		} else {
-			$langObj =  wfGetLangObj( $this->mPageLanguage[0] );
+			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
 		}
 		wfProfileOut( __METHOD__ );
 		return $langObj;

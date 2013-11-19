@@ -65,20 +65,20 @@ class FormatMetadataTest extends MediaWikiTestCase {
 
 	public static function provideFlattenArray() {
 		return array(
-			array (
-				array(1 ,2 ,3), 'ul', false, false,
+			array(
+				array( 1, 2, 3 ), 'ul', false, false,
 				"<ul><li>1</li>\n<li>2</li>\n<li>3</li></ul>",
 			),
-			array (
-				array(1 ,2 ,3), 'ol', false, false,
+			array(
+				array( 1, 2, 3 ), 'ol', false, false,
 				"<ol><li>1</li>\n<li>2</li>\n<li>3</li></ol>",
 			),
-			array (
-				array(1 ,2 ,3), 'ul', true, false,
+			array(
+				array( 1, 2, 3 ), 'ul', true, false,
 				"\n*1\n*2\n*3",
 			),
-			array (
-				array(1 ,2 ,3), 'ol', true, false,
+			array(
+				array( 1, 2, 3 ), 'ol', true, false,
 				"\n#1\n#2\n#3",
 			),
 			// TODO: more test cases

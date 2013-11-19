@@ -554,7 +554,7 @@ QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
 				return;
 			}
 			mw.messages.set(test.message );
-			mw.config.set( 'wgUserLanguage', test.lang ) ;
+			mw.config.set( 'wgUserLanguage', test.lang );
 			var parser = new mw.jqueryMsg.parser( { language: langClass } );
 			assert.equal(
 				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',

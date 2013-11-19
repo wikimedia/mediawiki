@@ -212,7 +212,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => "==section 1==\nnew content 1",
 		) );
 		$this->assertEquals( 'Success', $re['edit']['result'] );
-		$newtext = WikiPage::factory( Title::newFromText( $name) )->getContent( Revision::RAW )->getNativeData();
+		$newtext = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
 		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
 
 		// Test that we raise a 'nosuchsection' error

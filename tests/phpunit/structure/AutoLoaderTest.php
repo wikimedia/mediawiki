@@ -90,6 +90,6 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
 		$uncerealized = unserialize( $dummyCereal );
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
-			"unserialize() can load classes case-insensitively.");
+			"unserialize() can load classes case-insensitively." );
 	}
 }
