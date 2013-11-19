@@ -221,7 +221,7 @@ class LinksUpdate extends SqlDataUpdate {
 	public static function queueRecursiveJobsForTable( Title $title, $table ) {
 		wfProfileIn( __METHOD__ );
 		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
-			$job = new RefreshLinksJob2(
+			$job = new RefreshLinksPartitionJob(
 				$title,
 				array(
 					'table' => $table,

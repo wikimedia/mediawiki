@@ -109,6 +109,9 @@ class JobQueueGroup {
 	 */
 	public function push( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		if ( !count( $jobs ) ) {
+			return true;
+		}
 
 		$jobsByType = array(); // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
@@ -334,8 +337,8 @@ class JobQueueGroup {
 		if ( $this->cache->has( 'isDeprioritized', $type, 5 ) ) {
 			return $this->cache->get( 'isDeprioritized', $type );
 		}
-		if ( $type === 'refreshLinks2' ) {
-			// Don't keep converting refreshLinks2 => refreshLinks jobs if the
+		if ( $type === 'refreshLinksPartition' || $type === 'refreshLinks2' ) {
+			// Don't keep converting refreshLinksPartition => refreshLinks jobs if the
 			// later jobs have not been done yet. This helps throttle queue spam.
 			$deprioritized = !$this->get( 'refreshLinks' )->isEmpty();
 			$this->cache->set( 'isDeprioritized', $type, $deprioritized );
