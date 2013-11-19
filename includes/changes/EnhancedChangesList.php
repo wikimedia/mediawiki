@@ -21,7 +21,7 @@
  */
 
 class EnhancedChangesList extends ChangesList {
-
+	/** @var array of RCCacheEntry */
 	protected $rc_cache;
 
 	/**
@@ -89,6 +89,7 @@ class EnhancedChangesList extends ChangesList {
 
 		// Page moves, very old style, not supported anymore
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
+			$clink = '';
 		// New unpatrolled pages
 		} elseif ( $cacheEntry->unpatrolled && $type == RC_NEW ) {
 			$clink = Linker::linkKnown( $cacheEntry->getTitle() );
@@ -208,6 +209,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC group
+	 * @param array $block Array of RCCacheEntry
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
@@ -241,6 +243,7 @@ class EnhancedChangesList extends ChangesList {
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
+		$oldid = '';
 		foreach ( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
@@ -340,6 +343,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$sinceLast = 0;
 		$unvisitedOldid = null;
+		/** @var $rcObj RCCacheEntry */
 		foreach ( $block as $rcObj ) {
 			// Same logic as below inside main foreach
 			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
@@ -355,6 +359,8 @@ class EnhancedChangesList extends ChangesList {
 		# Total change link
 		$r .= ' ';
 		$logtext = '';
+		/** @var $block0 RecentChange */
+		$block0 = $block[0];
 		if ( !$allLogs ) {
 			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$logtext .= $nchanges[$n];
@@ -362,7 +368,7 @@ class EnhancedChangesList extends ChangesList {
 				$logtext .= $nchanges[$n];
 			} else {
 				$logtext .= Linker::link(
-					$block[0]->getTitle(),
+					$block0->getTitle(),
 					$nchanges[$n],
 					array(),
 					$queryParams + array(
@@ -373,7 +379,7 @@ class EnhancedChangesList extends ChangesList {
 				);
 				if ( $sinceLast > 0 && $sinceLast < $n ) {
 					$logtext .= $this->message['pipe-separator'] . Linker::link(
-						$block[0]->getTitle(),
+						$block0->getTitle(),
 						$sinceLastVisitMsg[$sinceLast],
 						array(),
 						$queryParams + array(
@@ -389,7 +395,7 @@ class EnhancedChangesList extends ChangesList {
 		# History
 		if ( $allLogs ) {
 			// don't show history link for logs
-		} elseif ( $namehidden || !$block[0]->getTitle()->exists() ) {
+		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
 			$logtext .= $this->message['pipe-separator'] . $this->message['enhancedrc-history'];
 		} else {
 			$params = $queryParams;
@@ -397,7 +403,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$logtext .= $this->message['pipe-separator'] .
 				Linker::linkKnown(
-					$block[0]->getTitle(),
+					$block0->getTitle(),
 					$this->message['enhancedrc-history'],
 					array(),
 					$params
@@ -432,7 +438,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$r .= $users;
-		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		$r .= $this->numberofWatchingusers( $block0->numberofWatchingusers );
 		$r .= '</td></tr>';
 
 		# Sub-entries
@@ -568,8 +574,8 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Enhanced RC ungrouped line.
 	 *
-	 * @param $rcObj RecentChange
-	 * @return String: a HTML formatted line (generated using $r)
+	 * @param RecentChange|RCCacheEntry $rcObj
+	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgRCShowChangedSize;
@@ -670,6 +676,7 @@ class EnhancedChangesList extends ChangesList {
 		wfProfileIn( __METHOD__ );
 
 		$blockOut = '';
+		/** @var $block array */
 		foreach ( $this->rc_cache as $block ) {
 			if ( count( $block ) < 2 ) {
 				$blockOut .= $this->recentChangesBlockLine( array_shift( $block ) );
