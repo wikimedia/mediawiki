@@ -102,6 +102,7 @@ class RedisConnectionPool {
 		if ( !isset( $options['password'] ) ) {
 			$options['password'] = null;
 		}
+
 		return $options;
 	}
 
@@ -127,6 +128,7 @@ class RedisConnectionPool {
 			self::$instances[$id] = new self( $options );
 			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
 		}
+
 		return self::$instances[$id];
 	}
 
@@ -151,6 +153,7 @@ class RedisConnectionPool {
 				// Server is dead
 				wfDebug( "server $server is marked down for another " .
 					( $this->downServers[$server] - $now ) . " seconds, can't get connection" );
+
 				return false;
 			}
 		}
@@ -161,6 +164,7 @@ class RedisConnectionPool {
 				if ( $connection['free'] ) {
 					$connection['free'] = false;
 					--$this->idlePoolSize;
+
 					return new RedisConnRef( $this, $server, $connection['conn'] );
 				}
 			}
@@ -195,6 +199,7 @@ class RedisConnectionPool {
 				wfDebugLog( 'redis', "Could not connect to server $server" );
 				// Mark server down for some time to avoid further timeouts
 				$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
+
 				return false;
 			}
 			if ( $this->password !== null ) {
@@ -205,12 +210,14 @@ class RedisConnectionPool {
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
 			wfDebugLog( 'redis', "Redis exception: " . $e->getMessage() . "\n" );
+
 			return false;
 		}
 
 		if ( $conn ) {
 			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
 			$this->connections[$server][] = array( 'conn' => $conn, 'free' => false );
+
 			return new RedisConnRef( $this, $server, $conn );
 		} else {
 			return false;
@@ -304,9 +311,11 @@ class RedisConnectionPool {
 		if ( $this->password !== null ) {
 			if ( !$conn->auth( $this->password ) ) {
 				wfDebugLog( 'redis', "Authentication error connecting to $server" );
+
 				return false;
 			}
 		}
+
 		return true;
 	}
 }
