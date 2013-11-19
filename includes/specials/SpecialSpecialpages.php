@@ -144,6 +144,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		}
 
 		if ( $includesRestrictedPages || $includesCachedPages ) {
+			$out->wrapWikiMsg( "<h2 class=\"mw-specialpages-note-top\">$1</h2>", 'specialpages-note-top' );
 			$out->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
 		}
 	}

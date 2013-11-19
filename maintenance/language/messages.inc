@@ -3734,6 +3734,7 @@ $wgMessageStructure = array(
 	'special-specialpages' => array(
 		'specialpages',
 		'specialpages-summary',
+		'specialpages-note-top',
 		'specialpages-note',
 		'specialpages-group-maintenance',
 		'specialpages-group-other',
