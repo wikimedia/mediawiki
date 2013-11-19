@@ -1,4 +1,5 @@
 <?php
+
 interface HTMLNestedFilterable {
 	/**
 	 * Support for seperating multi-option preferences into multiple preferences
