@@ -735,6 +735,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		# Get the current user name for accounts
 		$join_cond['user'] = Revision::userJoinCond();
 
+		$options = array();
+		if ( $index ) {
+			$options['USE INDEX'] = array( 'revision' => $index );
+		}
+
 		$queryInfo = array(
 			'tables' => $tables,
 			'fields' => array_merge(
@@ -744,7 +749,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					'page_latest', 'page_is_redirect', 'page_len' )
 			),
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array( 'revision' => $index ) ),
+			'options' => $options,
 			'join_conds' => $join_cond
 		);
 
@@ -766,10 +771,10 @@ class ContribsPager extends ReverseChronologicalPager {
 		$condition = array();
 		$join_conds = array();
 		$tables = array( 'revision', 'page', 'user' );
+		$index = false;
 		if ( $this->contribs == 'newbie' ) {
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)( $max - $max / 100 );
-			$index = 'user_timestamp';
 			# ignore local groups with the bot right
 			# @todo FIXME: Global groups may have 'bot' rights
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
