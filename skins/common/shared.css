@@ -485,7 +485,10 @@ a.new {
 /* feed links */
 a.feedlink {
 	/* @embed */
-	background: url(images/feed-icon.png) center left no-repeat;
+	background: url(images/feed-icon.svg);
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
 	padding-left: 16px;
 }
 
