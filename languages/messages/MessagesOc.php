@@ -1780,8 +1780,8 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'filetype-bad-ie-mime' => 'Lo fichièr pòt pas èsser importat perque serià detectat coma « $1 » per Internet Explorer, tipe de fichièr interdich perque potencialament dangierós.',
 'filetype-unwanted-type' => "«.$1»''' es un format de fichièr pas desirat.
 {{PLURAL:$3|Lo tipe de fichièr preconizat es|Los tipes de fichièrs preconizats son}} $2.",
-'filetype-banned-type' => "''' « .$1 » '''{{PLURAL:$4|est pas un tipe de fichièr autorizat|son pas de tipes de fichièrs autorizats}}. 
-{{PLURAL:$3|lo tipe de fichièr autorizat es |los tipes de fichièrs autorizats son}} $2.",
+'filetype-banned-type' => "''' « .$1 » '''{{PLURAL:$4|es pas un tipe de fichièr autorizat|son pas de tipes de fichièrs autorizats}}. 
+{{PLURAL:$3|Lo tipe de fichièr autorizat es|Los tipes de fichièrs autorizats son}} $2.",
 'filetype-missing' => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'empty-file' => "Lo fichièr qu'avètz somés èra void.",
 'file-too-large' => "Lo fichièr qu'avètz somés èra tròp grand.",
@@ -2115,6 +2115,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 
 'pageswithprop' => 'Paginas amb una proprietat de pagina',
 'pageswithprop-legend' => 'Paginas amb una proprietat de pagina',
+'pageswithprop-text' => "Aquesta pagina fa la lista de las paginas qu'utilizan una proprietat de pagina particulara.",
 'pageswithprop-prop' => 'Nom de la proprietat :',
 'pageswithprop-submit' => 'Anar',
 'pageswithprop-prophidden-long' => 'valor de proprietat de tèxte long amagada ($1)',
@@ -2208,6 +2209,7 @@ Notatz que d’autres sites pòdon aver un ligam dirècte cap a un fichièr, e d
 'pager-newer-n' => '{{PLURAL:$1|1 mai recenta|$1 mai recentas}}',
 'pager-older-n' => '{{PLURAL:$1|1 mai anciana|$1 mai ancianas}}',
 'suppress' => 'Supervisor',
+'querypage-disabled' => 'Aquesta pagina especiala es desactivada per de rasons de performàncias.',
 
 # Book sources
 'booksources' => 'Obratges de referéncia',
@@ -4020,7 +4022,9 @@ Ensajatz la previsualizacion normala.',
 'feedback-error1' => "Error : Resultat de l'IPA pas reconegut",
 'feedback-error2' => 'Error : la modificacion a fracassat',
 'feedback-error3' => "Error : pas cap de responsa de l'API",
+'feedback-thanks' => 'Mercé ! Vòstre comentari es estat publicat sus la pagina "[$2 $1]".',
 'feedback-close' => 'Fach',
+'feedback-bugcheck' => "Remirable ! Verificatz simplament qu'es pas un dels [$1 bugs ja coneguts].",
 'feedback-bugnew' => 'Ai verificat. Senhalar un bug novèl',
 
 # Search suggestions
@@ -4031,6 +4035,8 @@ Ensajatz la previsualizacion normala.',
 'api-error-badaccess-groups' => 'Sètz pas autorizat a cargar de fichièrs sus aqueste wiki.',
 'api-error-badtoken' => 'Error intèrna : marrit « geton ».',
 'api-error-copyuploaddisabled' => 'Los cargaments via URL son desactivats sus aqueste servidor.',
+'api-error-duplicate' => "I a ja {{PLURAL:$1|[$2 un autre fichièr present]|[$2 d'autres fichièrs presents]}} sul site amb lo meteis contengut.",
+'api-error-duplicate-archive' => "I aviá ja {{PLURAL:$1|[$2 un autre fichièr present]|[$2 d'autres fichièrs presents]}} sul site amb lo meteis contengut, mas {{PLURAL:$1|es estat suprimit|son estats suprimits}}.",
 'api-error-duplicate-archive-popup-title' => 'Duplicar {{PLURAL:$1|lo fichièr|los fichièrs}} que {{PLURAL:$1|ja es estat suprimit|je son estats suprimits}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|fichièr|fichièrs}} en doble',
 'api-error-empty-file' => "Lo fichièr qu'avètz somés èra void.",
@@ -4040,6 +4046,8 @@ Ensajatz la previsualizacion normala.',
 'api-error-file-too-large' => "Lo fichièr qu'avètz somés èra tròp grand.",
 'api-error-filename-tooshort' => 'Lo nom del fichièr es tròp cort.',
 'api-error-filetype-banned' => 'Aqueste tipe de fichièr es interdich',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|es pas un tipe de fichièr autorizat|son pas de tipes de fichièrs autorizats}}. 
+{{PLURAL:$3|Lo tipe de fichièr autorizat es|Los tipes de fichièrs autorizats son}} $2.',
 'api-error-filetype-missing' => "L'extension del fichièr es mancanta.",
 'api-error-hookaborted' => "La modificacion qu'avètz ensajat de realizar es estada anullada per una extension.",
 'api-error-http' => 'Error intèrna : se pòt pas connectar al servidor.',

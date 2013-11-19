@@ -1069,8 +1069,8 @@ Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. 
 'revdelete-hide-user' => 'Enw defnyddiwr/IP y golygydd',
 'revdelete-hide-restricted' => 'Gosod y cyfyngiadau gweld data ar weinyddwyr yn ogystal ag eraill',
 'revdelete-radio-same' => '(peidier â newid)',
-'revdelete-radio-set' => 'Gweladwy',
-'revdelete-radio-unset' => 'Cudd',
+'revdelete-radio-set' => 'Cudd',
+'revdelete-radio-unset' => 'Gweladwy',
 'revdelete-suppress' => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-unsuppress' => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-log' => 'Rheswm:',
@@ -2972,6 +2972,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-length' => 'Hyd y dudalen (beitiau)',
 'pageinfo-article-id' => 'ID y dudalen',
 'pageinfo-language' => 'Iaith cynnwys y dudalen',
+'pageinfo-content-model' => 'Ffurf cynnwys y dudalen',
 'pageinfo-robot-policy' => 'Rhestrwyd gan robot',
 'pageinfo-robot-index' => 'Caniateir',
 'pageinfo-robot-noindex' => 'Gwrthodedig',
@@ -3055,7 +3056,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'svg-long-desc' => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'svg-long-desc-animated' => 'Ffeil SVG animeiddiedig, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'svg-long-error' => 'Ffeil SVG annilys: $1',
-'show-big-image' => 'Maint llawn',
+'show-big-image' => 'Y ffeil gwreiddiol',
 'show-big-image-preview' => 'Maint y rhagolwg: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Datrysiad arall|Datrysiad arall|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill}}: $1.',
 'show-big-image-size' => '$1 × $2 picsel',
@@ -3612,6 +3613,9 @@ Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
 'confirm-watch-top' => 'Ychwaneger y dudalen hon at eich rhestr wylio?',
 'confirm-unwatch-button' => 'Iawn',
 'confirm-unwatch-top' => 'Tynner y dudalen hon oddi ar eich rhestr wylio?',
+
+# Separators for various lists, etc.
+'quotation-marks' => "'$1'",
 
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",

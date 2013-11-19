@@ -832,7 +832,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccount' => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
-'userlogin-resetpassword-link' => 'Wachtwoord vergeten?',
+'userlogin-resetpassword-link' => 'Uw wachtwoord opnieuw instellen',
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
 'userlogin-loggedin' => 'U bent al aangemeld als {{GENDER:$1|$1}}.
@@ -916,8 +916,8 @@ Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLUR
 'acct_creation_throttle_hit' => 'Bezoekers van deze wiki met hetzelfde IP-adres als u hebben de afgelopen dag al $1 gebruiker{{PLURAL:$1||s}} geregistreerd, wat het maximale aantal in deze periode is.
 Daarom kunt u vanaf uw IP-adres op dit moment geen nieuwe gebruikers registreren.',
 'emailauthenticated' => 'Uw e-mailadres is bevestigd op $2 om $3.',
-'emailnotauthenticated' => 'Uw e-mailadres is niet nog bevestigd.
-Geen e-mail zal worden verzonden voor een van de volgende functies.',
+'emailnotauthenticated' => 'Uw e-mailadres is niet bevestigd.
+De volgende functies verzenden nog geen e-mail.',
 'noemailprefs' => 'Geef een e-mailadres op in uw voorkeuren om deze functies te gebruiken.',
 'emailconfirmlink' => 'Bevestig uw e-mailadres',
 'invalidemailaddress' => 'Het e-mailadres is niet aanvaard, omdat het een ongeldige opmaak heeft.
@@ -1361,15 +1361,14 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
 'revdelete-confirm' => 'Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
-* Potentieel lasterlijke informatie
 * Ongepaste persoonlijke informatie
-*: ''woonadres, telefoonnummers,  rijksrigisternummers, enzovoort.''",
+*: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
 'revdelete-legend' => 'Zichtbaarheidsbeperkingen instellen',
-'revdelete-hide-text' => 'Herziening van de tekst',
+'revdelete-hide-text' => 'Bewerkte tekst verbergen',
 'revdelete-hide-image' => 'Bestandsinhoud verbergen',
 'revdelete-hide-name' => 'Handeling en doel verbergen',
-'revdelete-hide-comment' => 'Wijzig samenvatting',
-'revdelete-hide-user' => 'bewerker gebruikersnaam/IP-adres',
+'revdelete-hide-comment' => 'Bewerkingssamenvatting verbergen',
+'revdelete-hide-user' => 'Gebruikersnaam/IP-adres van de gebruiker verbergen',
 'revdelete-hide-restricted' => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-radio-same' => '(niet wijzigen)',
 'revdelete-radio-set' => 'Verborgen',

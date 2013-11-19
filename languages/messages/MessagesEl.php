@@ -2090,7 +2090,7 @@ $1',
 'uploadnewversion-linktext' => 'Φορτώστε μια νέα έκδοση αυτού του αρχείου',
 'shared-repo-from' => 'από το $1',
 'shared-repo' => 'ένα κοινό εναποθετήριο',
-'shared-repo-name-wikimediacommons' => 'Κοινά Wikimedia',
+'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'upload-disallowed-here' => 'Δεν μπορείτε να αντικαταστήσετε αυτό το αρχείο.',
 
 # File reversion
