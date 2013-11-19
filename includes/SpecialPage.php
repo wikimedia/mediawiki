@@ -875,7 +875,6 @@ class SpecialPage {
 	public function getFinalGroupName() {
 		global $wgSpecialPageGroups;
 		$name = $this->getName();
-		$group = '-';
 
 		// Allow overbidding the group from the wiki side
 		$msg = $this->msg( 'specialpages-specialpagegroup-' . strtolower( $name ) )->inContentLanguage();
