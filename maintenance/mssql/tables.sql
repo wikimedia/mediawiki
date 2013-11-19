@@ -674,13 +674,13 @@ CREATE UNIQUE INDEX /*$wgDBprefix*/qcc_titletwo ON /*$wgDBprefix*/querycachetwo(
 
 --- Used for storing page restrictions (i.e. protection levels)
 CREATE TABLE /*$wgDBprefix*/page_restrictions (
+   pr_id INT UNIQUE IDENTITY,
    pr_page INT NOT NULL REFERENCES /*$wgDBprefix*/page(page_id) ON DELETE CASCADE,
    pr_type NVARCHAR(200) NOT NULL,
    pr_level NVARCHAR(200) NOT NULL,
    pr_cascade SMALLINT NOT NULL,
    pr_user INT NULL,
    pr_expiry DATETIME NULL,
-   pr_id INT UNIQUE IDENTITY,
    CONSTRAINT /*$wgDBprefix*/pr_pagetype PRIMARY KEY(pr_page,pr_type),
 );
 CREATE INDEX /*$wgDBprefix*/pr_page      ON /*$wgDBprefix*/page_restrictions(pr_page);
