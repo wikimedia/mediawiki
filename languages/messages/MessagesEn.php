@@ -3095,7 +3095,7 @@ changed back to last revision by $2.',
 'sessionfailure-title' => 'Session failure',
 'sessionfailure'       => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
-Go back to the previous page, reload that page and then try again.',
+Click the submit button again.',
 
 # Protect
 'protectlogpage'                   => 'Protection log',
