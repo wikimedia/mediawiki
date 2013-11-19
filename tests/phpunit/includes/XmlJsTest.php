@@ -14,7 +14,7 @@ class XmlJs extends MediaWikiTestCase {
 		$this->assertEquals( $value, $obj->value );
 	}
 
-	public function provideConstruction(){
+	public function provideConstruction() {
 		return array(
 			array( null ),
 			array( '' ),

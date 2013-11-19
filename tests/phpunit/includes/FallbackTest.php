@@ -69,5 +69,4 @@ class FallbackTest extends MediaWikiTestCase {
 			);
 		}
 	}
-
 }

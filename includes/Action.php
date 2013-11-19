@@ -167,7 +167,7 @@ abstract class Action {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
-		} else if ( $this->page instanceof Article ) {
+		} elseif ( $this->page instanceof Article ) {
 			// NOTE: $this->page can be a WikiPage, which does not have a context.
 			wfDebug( __METHOD__ . ': no context known, falling back to Article\'s context.' );
 			return $this->page->getContext();

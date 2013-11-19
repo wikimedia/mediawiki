@@ -49,7 +49,7 @@ class ExceptionTest extends MediaWikiTestCase {
 	 * @param $key String Name of the key to validate in the serialized JSON
 	 * @dataProvider provideJsonSerializedKeys
 	 */
-	function testJsonserializeexceptionKeys($expectedKeyType, $exClass, $key) {
+	function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
 
 		# Make sure we log a backtrace:
 		$this->setMwGlobals( array( 'wgLogExceptionBacktrace' => true ) );
@@ -61,7 +61,7 @@ class ExceptionTest extends MediaWikiTestCase {
 			"JSON serialized exception is missing key '$key'"
 		);
 		$this->assertInternalType( $expectedKeyType, $json->$key,
-			"JSON serialized key '$key' has type " . gettype($json->$key)
+			"JSON serialized key '$key' has type " . gettype( $json->$key )
 			. " (expected: $expectedKeyType)."
 		);
 	}
@@ -71,7 +71,7 @@ class ExceptionTest extends MediaWikiTestCase {
 	 */
 	function provideJsonSerializedKeys() {
 		$testCases = array();
-		foreach( array( 'Exception', 'MWException' ) as $exClass ) {
+		foreach ( array( 'Exception', 'MWException' ) as $exClass ) {
 			$exTests = array(
 				array( 'string',  $exClass,  'id' ),
 				array( 'string',  $exClass,  'file' ),
@@ -81,7 +81,7 @@ class ExceptionTest extends MediaWikiTestCase {
 				# Backtrace only enabled with wgLogExceptionBacktrace = true
 				array( 'array',   $exClass,  'backtrace' ),
 			);
-			$testCases = array_merge($testCases, $exTests);
+			$testCases = array_merge( $testCases, $exTests );
 		}
 		return $testCases;
 	}

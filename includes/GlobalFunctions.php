@@ -3810,7 +3810,7 @@ function wfGetNull() {
  * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
-	if( $cluster !== false ) {
+	if ( $cluster !== false ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
 	} else {
 		$lb = wfGetLB( $wiki );

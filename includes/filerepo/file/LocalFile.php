@@ -539,7 +539,7 @@ class LocalFile extends File {
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
-				'img_metadata' => $dbw->encodeBlob($this->metadata),
+				'img_metadata' => $dbw->encodeBlob( $this->metadata ),
 				'img_sha1' => $this->sha1,
 			),
 			array( 'img_name' => $this->getName() ),
@@ -1225,7 +1225,7 @@ class LocalFile extends File {
 				'img_description' => $comment,
 				'img_user' => $user->getId(),
 				'img_user_text' => $user->getName(),
-				'img_metadata' => $dbw->encodeBlob($this->metadata),
+				'img_metadata' => $dbw->encodeBlob( $this->metadata ),
 				'img_sha1' => $this->sha1
 			),
 			__METHOD__,
@@ -1276,7 +1276,7 @@ class LocalFile extends File {
 					'img_description' => $comment,
 					'img_user'        => $user->getId(),
 					'img_user_text'   => $user->getName(),
-					'img_metadata'    => $dbw->encodeBlob($this->metadata),
+					'img_metadata'    => $dbw->encodeBlob( $this->metadata ),
 					'img_sha1'        => $this->sha1
 				),
 				array( 'img_name' => $this->getName() ),

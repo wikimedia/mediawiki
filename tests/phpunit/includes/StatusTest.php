@@ -5,7 +5,7 @@
  */
 class StatusTest extends MediaWikiTestCase {
 
-	public function testCanConstruct(){
+	public function testCanConstruct() {
 		new Status();
 		$this->assertTrue( true );
 	}
@@ -17,14 +17,14 @@ class StatusTest extends MediaWikiTestCase {
 	 * @covers Status::isGood
 	 * @covers Status::isOK
 	 */
-	public function testNewGood( $value = null ){
+	public function testNewGood( $value = null ) {
 		$status = Status::newGood( $value );
 		$this->assertTrue( $status->isGood() );
 		$this->assertTrue( $status->isOK() );
 		$this->assertEquals( $value, $status->getValue() );
 	}
 
-	public static function provideValues(){
+	public static function provideValues() {
 		return array(
 			array(),
 			array( 'foo' ),
@@ -96,13 +96,13 @@ class StatusTest extends MediaWikiTestCase {
 		$status = new Status();
 		$messages = $this->getMockMessages( $mockDetails );
 
-		foreach( $messages as $message ){
+		foreach ( $messages as $message ) {
 			$status->warning( $message );
 		}
 		$warnings = $status->getWarningsArray();
 
 		$this->assertEquals( count( $messages ), count( $warnings ) );
-		foreach( $messages as $key => $message ) {
+		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( array( $message->getKey() ), $message->getParams() );
 			$this->assertEquals( $warnings[$key], $expectedArray );
 		}
@@ -117,13 +117,13 @@ class StatusTest extends MediaWikiTestCase {
 		$status = new Status();
 		$messages = $this->getMockMessages( $mockDetails );
 
-		foreach( $messages as $message ){
+		foreach ( $messages as $message ) {
 			$status->error( $message );
 		}
 		$errors = $status->getErrorsArray();
 
 		$this->assertEquals( count( $messages ), count( $errors ) );
-		foreach( $messages as $key => $message ) {
+		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( array( $message->getKey() ), $message->getParams() );
 			$this->assertEquals( $errors[$key], $expectedArray );
 		}
@@ -146,15 +146,15 @@ class StatusTest extends MediaWikiTestCase {
 	 * @param array $messageDetails eg. array( 'KEY' => array(/PARAMS/) )
 	 * @return Message[]
 	 */
-	protected function getMockMessages( $messageDetails ){
+	protected function getMockMessages( $messageDetails ) {
 		$messages = array();
-		foreach( $messageDetails as $key => $paramsArray ){
+		foreach ( $messageDetails as $key => $paramsArray ) {
 			$messages[] = $this->getMockMessage( $key, $paramsArray );
 		}
 		return $messages;
 	}
 
-	public static function provideMockMessageDetails(){
+	public static function provideMockMessageDetails() {
 		return array(
 			array( array( 'key1' => array( 'foo' => 'bar' ) ) ),
 			array( array( 'key1' => array( 'foo' => 'bar' ), 'key2' => array( 'foo2' => 'bar2' ) ) ),
@@ -165,7 +165,7 @@ class StatusTest extends MediaWikiTestCase {
 	 * @covers Status::merge
 	 * @todo test merge with $overwriteValue true
 	 */
-	public function testMerge(){
+	public function testMerge() {
 		$status1 = new Status();
 		$status2 = new Status();
 		$message1 = $this->getMockMessage( 'warn1' );

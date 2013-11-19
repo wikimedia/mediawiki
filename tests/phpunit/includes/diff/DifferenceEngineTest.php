@@ -47,7 +47,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$strings = array( "it is a kitten", "two kittens", "three kittens", "four kittens" );
 		$revisions = array();
 
-		foreach( $strings as $string ) {
+		foreach ( $strings as $string ) {
 			$content = ContentHandler::makeContent( $string, $title );
 			$page->doEditContent( $content, 'edit page' );
 			$revisions[] = $page->getLatest();
@@ -59,7 +59,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	public function testMapDiffPrevNext() {
 		$cases = $this->getMapDiffPrevNextCases();
 
-		foreach( $cases as $case ) {
+		foreach ( $cases as $case ) {
 			list( $expected, $old, $new, $message ) = $case;
 
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
@@ -81,7 +81,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	public function testLoadRevisionData() {
 		$cases = $this->getLoadRevisionDataCases();
 
-		foreach( $cases as $case ) {
+		foreach ( $cases as $case ) {
 			list( $expectedOld, $expectedNew, $old, $new, $message ) = $case;
 
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );

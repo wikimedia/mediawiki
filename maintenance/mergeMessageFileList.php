@@ -148,7 +148,7 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
 	// Include the extension to update $wgExtensionMessagesFiles
-	if ( !( include_once( $fileName ) ) ) {
+	if ( !( include_once $fileName ) ) {
 		fwrite( STDERR, "Unable to read $fileName\n" );
 		exit( 1 );
 	}

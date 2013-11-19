@@ -663,7 +663,7 @@ CREATE TABLE &mw_prefix.msg_resource (
   mr_lang varchar2(32) NOT NULL,
   mr_blob BLOB NOT NULL,
   mr_timestamp TIMESTAMP(6) WITH TIME ZONE NOT NULL
-) ;
+);
 CREATE UNIQUE INDEX &mw_prefix.msg_resource_u01 ON &mw_prefix.msg_resource (mr_resource, mr_lang);
 
 CREATE TABLE &mw_prefix.msg_resource_links (
