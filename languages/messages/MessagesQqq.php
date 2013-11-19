@@ -1223,6 +1223,10 @@ Parameters:
 'exception-nologin' => 'Generic page title used on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.
 {{Identical|Not logged in}}',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
+'exception-nologin-text-manual' => 'Generic reason displayed on error page when a user is not logged in.
+
+Parameters:
+* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 
 # Virus scanner
 'virus-badscanner' => 'Used as error message. Parameters:
@@ -2964,8 +2968,8 @@ See also:
 {{Identical|Preferences}}',
 'prefs-edits' => 'In user preferences.',
 'prefsnologin' => '{{Identical|Not logged in}}',
-'prefsnologintext' => 'Parameters:
-* $1 - URI for "returnto" argument',
+'prefsnologintext2' => 'Parameters:
+* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.
 {{Identical|Change password}}",
 'prefs-skin' => 'Used in user preferences.

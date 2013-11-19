@@ -1085,7 +1085,8 @@ The administrator who locked it offered this explanation: "$3".',
 'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
 'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
 'exception-nologin'             => 'Not logged in',
-'exception-nologin-text'        => 'This page or action requires you to be logged in on this wiki.',
+'exception-nologin-text'        => 'Please [[Special:Userlogin|log in]] to be able to access this page or action.',
+'exception-nologin-text-manual' => 'Please $1 to be able to access this page or action.',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1899,7 +1900,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
 'prefsnologin'                  => 'Not logged in',
-'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
+'prefsnologintext2'             => 'Please $1 to set user preferences.',
 'changepassword'                => 'Change password',
 'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
 'prefs-skin'                    => 'Skin',
