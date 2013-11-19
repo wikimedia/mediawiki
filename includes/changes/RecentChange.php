@@ -64,7 +64,6 @@
  * @todo document functions and variables
  */
 class RecentChange {
-
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
 	const SRC_EDIT = 'mw.edit';
@@ -72,24 +71,21 @@ class RecentChange {
 	const SRC_LOG = 'mw.log';
 	const SRC_EXTERNAL = 'mw.external'; // obsolete
 
-	var $mAttribs = array(), $mExtra = array();
+	public $mAttribs = array();
+	public $mExtra = array();
 
 	/**
 	 * @var Title
 	 */
-	var $mTitle = false;
+	public $mTitle = false;
 
 	/**
 	 * @var User
 	 */
 	private $mPerformer = false;
 
-	/**
-	 * @var Title
-	 */
-	var $mMovedToTitle = false;
-	var $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentchangeslinked
-	var $notificationtimestamp;
+	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentchangeslinked
+	public $notificationtimestamp;
 
 	# Factory methods
 
