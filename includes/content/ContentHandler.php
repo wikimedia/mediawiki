@@ -145,8 +145,8 @@ abstract class ContentHandler {
 	 *    not be unserialized using $format.
 	 */
 	public static function makeContent( $text, Title $title = null,
-		$modelId = null, $format = null )
-	{
+		$modelId = null, $format = null
+	) {
 		if ( is_null( $modelId ) ) {
 			if ( is_null( $title ) ) {
 				throw new MWException( "Must provide a Title object or a content model ID." );
@@ -156,6 +156,7 @@ abstract class ContentHandler {
 		}
 
 		$handler = ContentHandler::getForModelID( $modelId );
+
 		return $handler->unserializeContent( $text, $format );
 	}
 
@@ -259,6 +260,7 @@ abstract class ContentHandler {
 	 */
 	public static function getForTitle( Title $title ) {
 		$modelId = $title->getContentModel();
+
 		return ContentHandler::getForModelID( $modelId );
 	}
 
@@ -273,6 +275,7 @@ abstract class ContentHandler {
 	 */
 	public static function getForContent( Content $content ) {
 		$modelId = $content->getModel();
+
 		return ContentHandler::getForModelID( $modelId );
 	}
 
@@ -335,9 +338,10 @@ abstract class ContentHandler {
 		}
 
 		wfDebugLog( 'ContentHandler', 'Created handler for ' . $modelId
-					. ': ' . get_class( $handler ) );
+			. ': ' . get_class( $handler ) );
 
 		ContentHandler::$handlers[$modelId] = $handler;
+
 		return ContentHandler::$handlers[$modelId];
 	}
 
@@ -380,6 +384,7 @@ abstract class ContentHandler {
 		}
 
 		$formats = array_unique( $formats );
+
 		return $formats;
 	}
 
@@ -607,7 +612,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Title        $title the page to determine the language for.
+	 * @param Title $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
 	 *
 	 * @return Language the page's language
@@ -623,6 +628,7 @@ abstract class ContentHandler {
 		}
 
 		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
+
 		return wfGetLangObj( $pageLang );
 	}
 
@@ -641,7 +647,7 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Title        $title the page to determine the language for.
+	 * @param Title $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
 	 *
 	 * @return Language the page's language for viewing
@@ -735,15 +741,15 @@ abstract class ContentHandler {
 		if ( is_object( $rt ) ) {
 			if ( !is_object( $ot )
 				|| !$rt->equals( $ot )
-				|| $ot->getFragment() != $rt->getFragment() )
-			{
+				|| $ot->getFragment() != $rt->getFragment()
+			) {
 				$truncatedtext = $newContent->getTextForSummary(
 					250
-						- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
-						- strlen( $rt->getFullText() ) );
+					- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
+					- strlen( $rt->getFullText() ) );
 
 				return wfMessage( 'autoredircomment', $rt->getFullText() )
-						->rawParams( $truncatedtext )->inContentLanguage()->text();
+					->rawParams( $truncatedtext )->inContentLanguage()->text();
 			}
 		}
 
@@ -756,7 +762,7 @@ abstract class ContentHandler {
 				200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
 
 			return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
-					->inContentLanguage()->text();
+				->inContentLanguage()->text();
 		}
 
 		// Blanking auto-summaries
@@ -764,15 +770,15 @@ abstract class ContentHandler {
 			return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
 		} elseif ( !empty( $oldContent )
 			&& $oldContent->getSize() > 10 * $newContent->getSize()
-			&& $newContent->getSize() < 500 )
-		{
+			&& $newContent->getSize() < 500
+		) {
 			// Removing more than 90% of the article
 
 			$truncatedtext = $newContent->getTextForSummary(
 				200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
 
 			return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
-					->inContentLanguage()->text();
+				->inContentLanguage()->text();
 		}
 
 		// If we reach this point, there's no applicable auto-summary for our
@@ -1004,11 +1010,11 @@ abstract class ContentHandler {
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *
-	 * @param string      $func The name of the deprecated function
-	 * @param string      $version The version since the method is deprecated. Usually 1.21
-	 *                    for ContentHandler related stuff.
-	 * @param string|bool $component: Component to which the function belongs.
-	 *                                If false, it is assumed the function is in MediaWiki core.
+	 * @param string $func The name of the deprecated function
+	 * @param string $version The version since the method is deprecated. Usually 1.21
+	 *   for ContentHandler related stuff.
+	 * @param string|bool $component : Component to which the function belongs.
+	 *   If false, it is assumed the function is in MediaWiki core.
 	 *
 	 * @see ContentHandler::$enableDeprecationWarnings
 	 * @see wfDeprecated
@@ -1037,7 +1043,8 @@ abstract class ContentHandler {
 	 * @see ContentHandler::$enableDeprecationWarnings
 	 */
 	public static function runLegacyHooks( $event, $args = array(),
-			$warn = null ) {
+		$warn = null
+	) {
 
 		if ( $warn === null ) {
 			$warn = self::$enableDeprecationWarnings;
