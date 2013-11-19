@@ -31,7 +31,7 @@ class LinkBatch {
 	/**
 	 * 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
-	var $data = array();
+	public $data = array();
 
 	/**
 	 * For debugging which method is using this class.
