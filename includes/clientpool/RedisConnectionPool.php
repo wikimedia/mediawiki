@@ -52,15 +52,15 @@ class RedisConnectionPool {
 	protected $serializer;
 	/** @} */
 
-	/** @var integer Current idle pool size */
+	/** @var int Current idle pool size */
 	protected $idlePoolSize = 0;
 
-	/** @var Array (server name => ((connection info array),...) */
+	/** @var array (server name => ((connection info array),...) */
 	protected $connections = array();
-	/** @var Array (server name => UNIX timestamp) */
+	/** @var array (server name => UNIX timestamp) */
 	protected $downServers = array();
 
-	/** @var Array (pool ID => RedisConnectionPool) */
+	/** @var array (pool ID => RedisConnectionPool) */
 	protected static $instances = array();
 
 	/** integer; seconds to cache servers as "down". */
@@ -68,6 +68,7 @@ class RedisConnectionPool {
 
 	/**
 	 * @param array $options
+	 * @throws MWException
 	 */
 	protected function __construct( array $options ) {
 		if ( !class_exists( 'Redis' ) ) {
@@ -89,8 +90,8 @@ class RedisConnectionPool {
 	}
 
 	/**
-	 * @param $options Array
-	 * @return Array
+	 * @param array $options
+	 * @return array
 	 */
 	protected static function applyDefaultConfig( array $options ) {
 		if ( !isset( $options['connectTimeout'] ) ) {
@@ -107,7 +108,7 @@ class RedisConnectionPool {
 	}
 
 	/**
-	 * @param $options Array
+	 * @param array $options
 	 * $options include:
 	 *   - connectTimeout : The timeout for new connections, in seconds.
 	 *                      Optional, default is 1 second.
@@ -227,9 +228,9 @@ class RedisConnectionPool {
 	/**
 	 * Mark a connection to a server as free to return to the pool
 	 *
-	 * @param $server string
-	 * @param $conn Redis
-	 * @return boolean
+	 * @param string $server
+	 * @param Redis $conn
+	 * @return bool
 	 */
 	public function freeConnection( $server, Redis $conn ) {
 		$found = false;
@@ -249,15 +250,13 @@ class RedisConnectionPool {
 
 	/**
 	 * Close any extra idle connections if there are more than the limit
-	 *
-	 * @return void
 	 */
 	protected function closeExcessIdleConections() {
 		if ( $this->idlePoolSize <= count( $this->connections ) ) {
 			return; // nothing to do (no more connections than servers)
 		}
 
-		foreach ( $this->connections as $server => &$serverConnections ) {
+		foreach ( $this->connections as &$serverConnections ) {
 			foreach ( $serverConnections as $key => &$connection ) {
 				if ( $connection['free'] ) {
 					unset( $serverConnections[$key] );
@@ -275,10 +274,9 @@ class RedisConnectionPool {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 *
-	 * @param $server string
-	 * @param $cref RedisConnRef
-	 * @param $e RedisException
-	 * @return void
+	 * @param string $server
+	 * @param RedisConnRef $cref
+	 * @param RedisException $e
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
@@ -338,9 +336,9 @@ class RedisConnRef {
 	protected $lastError; // string
 
 	/**
-	 * @param $pool RedisConnectionPool
-	 * @param $server string
-	 * @param $conn Redis
+	 * @param RedisConnectionPool $pool
+	 * @param string $server
+	 * @param Redis $conn
 	 */
 	public function __construct( RedisConnectionPool $pool, $server, Redis $conn ) {
 		$this->pool = $pool;
@@ -423,7 +421,7 @@ class RedisConnRef {
 	}
 
 	/**
-	 * @param RedisConnRef $conn
+	 * @param Redis $conn
 	 * @return bool
 	 */
 	public function isConnIdentical( Redis $conn ) {
