@@ -29,13 +29,17 @@ class ChangesList extends ContextSource {
 	public $skin;
 
 	protected $watchlist = false;
-
+	protected $lastdate;
 	protected $message;
+	protected $rc_cache;
+	protected $rcCacheIndex;
+	protected $rclistOpen;
+	protected $rcMoveIndex;
 
 	/**
 	 * Changeslist constructor
 	 *
-	 * @param $obj Skin or IContextSource
+	 * @param Skin|IContextSource $obj
 	 */
 	public function __construct( $obj ) {
 		if ( $obj instanceof IContextSource ) {
@@ -52,8 +56,8 @@ class ChangesList extends ContextSource {
 	 * Fetch an appropriate changes list class for the specified context
 	 * Some users might want to use an enhanced list format, for instance
 	 *
-	 * @param $context IContextSource to use
-	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
+	 * @param IContextSource $context
+	 * @return ChangesList derivative
 	 */
 	public static function newFromContext( IContextSource $context ) {
 		$user = $context->getUser();
@@ -95,7 +99,7 @@ class ChangesList extends ContextSource {
 	 * Returns the appropriate flags for new page, minor change and patrolling
 	 * @param array $flags Associative array of 'flag' => Bool
 	 * @param string $nothing to use for empty space
-	 * @return String
+	 * @return string
 	 */
 	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
 		global $wgRecentChangesFlags;
@@ -116,7 +120,7 @@ class ChangesList extends ContextSource {
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
-	 * @return String: Raw HTML
+	 * @return string Raw HTML
 	 */
 	public static function flag( $flag ) {
 		static $flagInfos = null;
@@ -148,7 +152,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns text for the start of the tabular part of RC
-	 * @return String
+	 * @return string
 	 */
 	public function beginRecentChangesList() {
 		$this->rc_cache = array();
@@ -163,10 +167,10 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Show formatted char difference
-	 * @param $old Integer: bytes
-	 * @param $new Integer: bytes
-	 * @param $context IContextSource context to use
-	 * @return String
+	 * @param int $old Number of bytes
+	 * @param int $new Number of bytes
+	 * @param IContextSource $context
+	 * @return string
 	 */
 	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
 		global $wgRCChangedSizeThreshold, $wgMiserMode;
@@ -200,12 +204,10 @@ class ChangesList extends ContextSource {
 
 		if ( $szdiff === 0 ) {
 			$formattedSizeClass = 'mw-plusminus-null';
-		}
-		if ( $szdiff > 0 ) {
+		} elseif ( $szdiff > 0 ) {
 			$formattedSize = '+' . $formattedSize;
 			$formattedSizeClass = 'mw-plusminus-pos';
-		}
-		if ( $szdiff < 0 ) {
+		} else {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
@@ -441,6 +443,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
+	 * @param int $count Number of user watching a page
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
@@ -459,9 +462,9 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Determine if said field of a revision is hidden
-	 * @param $rc RCCacheEntry
-	 * @param $field Integer: one of DELETED_* bitfield constants
-	 * @return Boolean
+	 * @param RCCacheEntry|RecentChange $rc
+	 * @param int $field One of DELETED_* bitfield constants
+	 * @return bool
 	 */
 	public static function isDeleted( $rc, $field ) {
 		return ( $rc->mAttribs['rc_deleted'] & $field ) == $field;
@@ -470,10 +473,10 @@ class ChangesList extends ContextSource {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
-	 * @param $rc RCCacheEntry
-	 * @param $field Integer
-	 * @param $user User object to check, or null to use $wgUser
-	 * @return Boolean
+	 * @param RCCacheEntry|RecentChange $rc
+	 * @param int $field
+	 * @param User $user User object to check, or null to use $wgUser
+	 * @return bool
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
