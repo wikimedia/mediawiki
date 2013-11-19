@@ -43,6 +43,7 @@ class TextContentHandler extends ContentHandler {
 	 */
 	public function serializeContent( Content $content, $format = null ) {
 		$this->checkFormat( $format );
+
 		return $content->getNativeData();
 	}
 
@@ -83,6 +84,7 @@ class TextContentHandler extends ContentHandler {
 		}
 
 		$mergedContent = $this->unserializeContent( $result, $format );
+
 		return $mergedContent;
 	}
 
