@@ -10,7 +10,7 @@ class HTMLSelectField extends HTMLFormField {
 			return $p;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams[ 'options' ] );
+		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
@@ -25,14 +25,14 @@ class HTMLSelectField extends HTMLFormField {
 		# If one of the options' 'name' is int(0), it is automatically selected.
 		# because PHP sucks and thinks int(0) == 'some string'.
 		# Working around this by forcing all of them to strings.
-		foreach ( $this->mParams[ 'options' ] as &$opt ) {
+		foreach ( $this->mParams['options'] as &$opt ) {
 			if ( is_int( $opt ) ) {
 				$opt = strval( $opt );
 			}
 		}
 		unset( $opt ); # PHP keeps $opt around as a reference, which is a bit scary
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
+		if ( ! empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
@@ -40,7 +40,7 @@ class HTMLSelectField extends HTMLFormField {
 			$select->setAttribute( 'class', $this->mClass );
 		}
 
-		$select->addOptions( $this->mParams[ 'options' ] );
+		$select->addOptions( $this->mParams['options'] );
 
 		return $select->getHTML();
 	}

@@ -15,7 +15,7 @@ class HTMLRadioField extends HTMLFormField {
 			return false;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams[ 'options' ] );
+		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
@@ -33,7 +33,7 @@ class HTMLRadioField extends HTMLFormField {
 	 * @return String
 	 */
 	function getInputHTML( $value ) {
-		$html = $this->formatOptions( $this->mParams[ 'options' ], $value );
+		$html = $this->formatOptions( $this->mParams['options'], $value );
 
 		return $html;
 	}
@@ -42,8 +42,8 @@ class HTMLRadioField extends HTMLFormField {
 		$html = '';
 
 		$attribs = array();
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attribs[ 'disabled' ] = 'disabled';
+		if ( ! empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
 		}
 
 		# TODO: should this produce an unordered list perhaps?

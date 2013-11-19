@@ -14,21 +14,23 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
-			$params[ 'other' ] = wfMessage( $params[ 'other-message' ] )->plain();
+			$params['other'] = wfMessage( $params['other-message'] )->plain();
 		} else {
-			$params[ 'other' ] = null;
+			$params['other'] = null;
 		}
 
 		if ( array_key_exists( 'options', $params ) ) {
 			# Options array already specified
 		} elseif ( array_key_exists( 'options-message', $params ) ) {
 			# Generate options array from a system message
-			$params[ 'options' ] = self::parseMessage( wfMessage( $params[ 'options-message' ] )->inContentLanguage()->plain(), $params[ 'other' ] );
+			$params['options'] =
+				self::parseMessage( wfMessage( $params['options-message'] )->inContentLanguage()->plain(),
+					$params['other'] );
 		} else {
 			# Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
 		}
-		$this->mFlatOptions = self::flattenOptions( $params[ 'options' ] );
+		$this->mFlatOptions = self::flattenOptions( $params['options'] );
 
 		parent::__construct( $params );
 	}
@@ -62,14 +64,14 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 				# groupmember
 				$opt = trim( substr( $value, 2 ) );
 				if ( $optgroup === false ) {
-					$options[ $opt ] = $opt;
+					$options[$opt] = $opt;
 				} else {
-					$options[ $optgroup ][ $opt ] = $opt;
+					$options[$optgroup][$opt] = $opt;
 				}
 			} else {
 				# groupless reason list
 				$optgroup = false;
-				$options[ $option ] = $option;
+				$options[$option] = $option;
 			}
 		}
 
@@ -77,7 +79,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	function getInputHTML( $value ) {
-		$select = parent::getInputHTML( $value[ 1 ] );
+		$select = parent::getInputHTML( $value[1] );
 
 		$textAttribs = array(
 			'id' => $this->mID . '-other',
@@ -85,16 +87,16 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		);
 
 		if ( $this->mClass !== '' ) {
-			$textAttribs[ 'class' ] = $this->mClass;
+			$textAttribs['class'] = $this->mClass;
 		}
 
 		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
-			if ( isset( $this->mParams[ $param ] ) ) {
-				$textAttribs[ $param ] = '';
+			if ( isset( $this->mParams[$param] ) ) {
+				$textAttribs[$param] = '';
 			}
 		}
 
-		$textbox = Html::input( $this->mName . '-other', $value[ 2 ], 'text', $textAttribs );
+		$textbox = Html::input( $this->mName . '-other', $value[2], 'text', $textAttribs );
 
 		return "$select<br />\n$textbox";
 	}
@@ -140,20 +142,20 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	function getSize() {
-		return isset( $this->mParams[ 'size' ] ) ? $this->mParams[ 'size' ] : 45;
+		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
 	function validate( $value, $alldata ) {
 		# HTMLSelectField forces $value to be one of the options in the select
 		# field, which is not useful here.  But we do want the validation further up
 		# the chain
-		$p = parent::validate( $value[ 1 ], $alldata );
+		$p = parent::validate( $value[1], $alldata );
 
 		if ( $p !== true ) {
 			return $p;
 		}
 
-		if ( isset( $this->mParams[ 'required' ] ) && $this->mParams[ 'required' ] !== false && $value[ 1 ] === '' ) {
+		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value[1] === '' ) {
 			return $this->msg( 'htmlform-required' )->parse();
 		}
 
