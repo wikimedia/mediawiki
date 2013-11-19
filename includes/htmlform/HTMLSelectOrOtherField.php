@@ -5,9 +5,10 @@
 class HTMLSelectOrOtherField extends HTMLTextField {
 
 	function __construct( $params ) {
-		if ( ! in_array( 'other', $params[ 'options' ], true ) ) {
-			$msg = isset( $params[ 'other' ] ) ? $params[ 'other' ] : wfMessage( 'htmlform-selectorother-other' )->text();
-			$params[ 'options' ][ $msg ] = 'other';
+		if ( ! in_array( 'other', $params['options'], true ) ) {
+			$msg =
+				isset( $params['other'] ) ? $params['other'] : wfMessage( 'htmlform-selectorother-other' )->text();
+			$params['options'][$msg] = 'other';
 		}
 
 		parent::__construct( $params );
@@ -25,12 +26,12 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$valInSelect = false;
 
 		if ( $value !== false ) {
-			$valInSelect = in_array( $value, HTMLFormField::flattenOptions( $this->mParams[ 'options' ] ) );
+			$valInSelect = in_array( $value, HTMLFormField::flattenOptions( $this->mParams['options'] ) );
 		}
 
 		$selected = $valInSelect ? $value : 'other';
 
-		$opts = self::forceToStringRecursive( $this->mParams[ 'options' ] );
+		$opts = self::forceToStringRecursive( $this->mParams['options'] );
 
 		$select = new XmlSelect( $this->mName, $this->mID, $selected );
 		$select->addOptions( $opts );
@@ -39,19 +40,19 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		$tbAttribs = array( 'id' => $this->mID . '-other', 'size' => $this->getSize() );
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
+		if ( ! empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
-			$tbAttribs[ 'disabled' ] = 'disabled';
+			$tbAttribs['disabled'] = 'disabled';
 		}
 
 		$select = $select->getHTML();
 
-		if ( isset( $this->mParams[ 'maxlength' ] ) ) {
-			$tbAttribs[ 'maxlength' ] = $this->mParams[ 'maxlength' ];
+		if ( isset( $this->mParams['maxlength'] ) ) {
+			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
 		}
 
 		if ( $this->mClass !== '' ) {
-			$tbAttribs[ 'class' ] = $this->mClass;
+			$tbAttribs['class'] = $this->mClass;
 		}
 
 		$textbox = Html::input( $this->mName . '-other', $valInSelect ? '' : $value, 'text', $tbAttribs );

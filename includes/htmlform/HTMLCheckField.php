@@ -4,29 +4,33 @@
  */
 class HTMLCheckField extends HTMLFormField {
 	function getInputHTML( $value ) {
-		if ( ! empty( $this->mParams[ 'invert' ] ) ) {
+		if ( ! empty( $this->mParams['invert'] ) ) {
 			$value = ! $value;
 		}
 
 		$attr = $this->getTooltipAndAccessKey();
-		$attr[ 'id' ] = $this->mID;
+		$attr['id'] = $this->mID;
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attr[ 'disabled' ] = 'disabled';
+		if ( ! empty( $this->mParams['disabled'] ) ) {
+			$attr['disabled'] = 'disabled';
 		}
 
 		if ( $this->mClass !== '' ) {
-			$attr[ 'class' ] = $this->mClass;
+			$attr['class'] = $this->mClass;
 		}
 
 		if ( $this->mParent->isVForm() ) {
 			// Nest checkbox inside label.
-			return Html::rawElement( 'label', array(
+			return Html::rawElement( 'label',
+				array(
 					'class' => 'mw-ui-checkbox-label'
-				), Xml::check( $this->mName, $value, $attr ) . // Html:rawElement doesn't escape contents.
+				),
+				Xml::check( $this->mName, $value, $attr ) . // Html:rawElement doesn't escape contents.
 				htmlspecialchars( $this->mLabel ) );
 		} else {
-			return Xml::check( $this->mName, $value, $attr ) . '&#160;' . Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			return Xml::check( $this->mName, $value, $attr )
+			. '&#160;'
+			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 		}
 	}
 
@@ -53,7 +57,7 @@ class HTMLCheckField extends HTMLFormField {
 	 */
 	function loadDataFromRequest( $request ) {
 		$invert = false;
-		if ( isset( $this->mParams[ 'invert' ] ) && $this->mParams[ 'invert' ] ) {
+		if ( isset( $this->mParams['invert'] ) && $this->mParams['invert'] ) {
 			$invert = true;
 		}
 

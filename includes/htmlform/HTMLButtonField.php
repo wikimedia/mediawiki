@@ -10,7 +10,7 @@ class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
 
 	public function __construct( $info ) {
-		$info[ 'nodata' ] = true;
+		$info['nodata'] = true;
 		parent::__construct( $info );
 	}
 
@@ -20,8 +20,8 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 		);
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attr[ 'disabled' ] = 'disabled';
+		if ( ! empty( $this->mParams['disabled'] ) ) {
+			$attr['disabled'] = 'disabled';
 		}
 
 		return Html::input( $this->mName, $value, $this->buttonType, $attr );

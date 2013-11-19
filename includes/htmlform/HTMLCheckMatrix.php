@@ -39,8 +39,8 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	function validate( $value, $alldata ) {
-		$rows = $this->mParams[ 'rows' ];
-		$columns = $this->mParams[ 'columns' ];
+		$rows = $this->mParams['rows'];
+		$columns = $this->mParams['columns'];
 
 		// Make sure user-defined validation callback is run
 		$p = parent::validate( $value, $alldata );
@@ -58,7 +58,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$validOptions = array();
 		foreach ( $rows as $rowTag ) {
 			foreach ( $columns as $columnTag ) {
-				$validOptions[ ] = $columnTag . '-' . $rowTag;
+				$validOptions[] = $columnTag . '-' . $rowTag;
 			}
 		}
 		$validValues = array_intersect( $value, $validOptions );
@@ -83,12 +83,12 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$html = '';
 		$tableContents = '';
 		$attribs = array();
-		$rows = $this->mParams[ 'rows' ];
-		$columns = $this->mParams[ 'columns' ];
+		$rows = $this->mParams['rows'];
+		$columns = $this->mParams['columns'];
 
 		// If the disabled param is set, disable all the options
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attribs[ 'disabled' ] = 'disabled';
+		if ( ! empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
 		}
 
 		// Build the column headers
@@ -99,17 +99,17 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
 
 		$tooltipClass = 'mw-icon-question';
-		if ( isset( $this->mParams[ 'tooltip-class' ] ) ) {
-			$tooltipClass = $this->mParams[ 'tooltip-class' ];
+		if ( isset( $this->mParams['tooltip-class'] ) ) {
+			$tooltipClass = $this->mParams['tooltip-class'];
 		}
 
 		// Build the options matrix
 		foreach ( $rows as $rowLabel => $rowTag ) {
 			// Append tooltip if configured
-			if ( isset( $this->mParams[ 'tooltips' ][ $rowLabel ] ) ) {
+			if ( isset( $this->mParams['tooltips'][$rowLabel] ) ) {
 				$tooltipAttribs = array(
 					'class' => "mw-htmlform-tooltip $tooltipClass",
-					'title' => $this->mParams[ 'tooltips' ][ $rowLabel ],
+					'title' => $this->mParams['tooltips'][$rowLabel],
 				);
 				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
 			}
@@ -124,28 +124,35 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				$checked = in_array( $thisTag, (array)$value, true );
 				if ( $this->isTagForcedOff( $thisTag ) ) {
 					$checked = false;
-					$thisAttribs[ 'disabled' ] = 1;
+					$thisAttribs['disabled'] = 1;
 				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
 					$checked = true;
-					$thisAttribs[ 'disabled' ] = 1;
+					$thisAttribs['disabled'] = 1;
 				}
-				$rowContents .= Html::rawElement( 'td', array(), Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs ) );
+				$rowContents .= Html::rawElement(
+					'td',
+					array(),
+					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs )
+				);
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
 		}
 
 		// Put it all in a table
-		$html .= Html::rawElement( 'table', array( 'class' => 'mw-htmlform-matrix' ), Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
+		$html .= Html::rawElement( 'table',
+				array( 'class' => 'mw-htmlform-matrix' ),
+				Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
 
 		return $html;
 	}
 
 	protected function isTagForcedOff( $tag ) {
-		return isset( $this->mParams[ 'force-options-off' ] ) && in_array( $tag, $this->mParams[ 'force-options-off' ] );
+		return
+			isset( $this->mParams['force-options-off'] ) && in_array( $tag, $this->mParams['force-options-off'] );
 	}
 
 	protected function isTagForcedOn( $tag ) {
-		return isset( $this->mParams[ 'force-options-on' ] ) && in_array( $tag, $this->mParams[ 'force-options-on' ] );
+		return isset( $this->mParams['force-options-on'] ) && in_array( $tag, $this->mParams['force-options-on'] );
 	}
 
 	/**
@@ -171,7 +178,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$field = Html::rawElement( 'td', array( 'class' => 'mw-input' ) + $cellAttributes, $inputHtml . "\n$errors" );
 
 		$html = Html::rawElement( 'tr', array( 'class' => 'mw-htmlform-vertical-label' ), $label );
-		$html .= Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $field );
+		$html .= Html::rawElement( 'tr',
+			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			$field );
 
 		return $html . $helptext;
 	}
@@ -210,19 +219,19 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	function filterDataForSubmit( $data ) {
-		$columns = HTMLFormField::flattenOptions( $this->mParams[ 'columns' ] );
-		$rows = HTMLFormField::flattenOptions( $this->mParams[ 'rows' ] );
+		$columns = HTMLFormField::flattenOptions( $this->mParams['columns'] );
+		$rows = HTMLFormField::flattenOptions( $this->mParams['rows'] );
 		$res = array();
 		foreach ( $columns as $column ) {
 			foreach ( $rows as $row ) {
 				// Make sure option hasn't been forced
 				$thisTag = "$column-$row";
 				if ( $this->isTagForcedOff( $thisTag ) ) {
-					$res[ $thisTag ] = false;
+					$res[$thisTag] = false;
 				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
-					$res[ $thisTag ] = true;
+					$res[$thisTag] = true;
 				} else {
-					$res[ $thisTag ] = in_array( $thisTag, $data );
+					$res[$thisTag] = in_array( $thisTag, $data );
 				}
 			}
 		}

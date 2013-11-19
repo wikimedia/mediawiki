@@ -70,7 +70,7 @@ abstract class HTMLFormField {
 	 * @return Mixed Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
-		if ( isset( $this->mParams[ 'required' ] ) && $this->mParams[ 'required' ] !== false && $value === '' ) {
+		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value === '' ) {
 			return $this->msg( 'htmlform-required' )->parse();
 		}
 
@@ -141,8 +141,8 @@ abstract class HTMLFormField {
 		$this->mParams = $params;
 
 		# Generate the label from a message, if possible
-		if ( isset( $params[ 'label-message' ] ) ) {
-			$msgInfo = $params[ 'label-message' ];
+		if ( isset( $params['label-message'] ) ) {
+			$msgInfo = $params['label-message'];
 
 			if ( is_array( $msgInfo ) ) {
 				$msg = array_shift( $msgInfo );
@@ -152,35 +152,35 @@ abstract class HTMLFormField {
 			}
 
 			$this->mLabel = wfMessage( $msg, $msgInfo )->parse();
-		} elseif ( isset( $params[ 'label' ] ) ) {
-			if ( $params[ 'label' ] === '&#160;' ) {
+		} elseif ( isset( $params['label'] ) ) {
+			if ( $params['label'] === '&#160;' ) {
 				// Apparently some things set &nbsp directly and in an odd format
 				$this->mLabel = '&#160;';
 			} else {
-				$this->mLabel = htmlspecialchars( $params[ 'label' ] );
+				$this->mLabel = htmlspecialchars( $params['label'] );
 			}
-		} elseif ( isset( $params[ 'label-raw' ] ) ) {
-			$this->mLabel = $params[ 'label-raw' ];
+		} elseif ( isset( $params['label-raw'] ) ) {
+			$this->mLabel = $params['label-raw'];
 		}
 
 		$this->mName = "wp{$params['fieldname']}";
-		if ( isset( $params[ 'name' ] ) ) {
-			$this->mName = $params[ 'name' ];
+		if ( isset( $params['name'] ) ) {
+			$this->mName = $params['name'];
 		}
 
 		$validName = Sanitizer::escapeId( $this->mName );
-		if ( $this->mName != $validName && ! isset( $params[ 'nodata' ] ) ) {
+		if ( $this->mName != $validName && ! isset( $params['nodata'] ) ) {
 			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
 		}
 
 		$this->mID = "mw-input-{$this->mName}";
 
-		if ( isset( $params[ 'default' ] ) ) {
-			$this->mDefault = $params[ 'default' ];
+		if ( isset( $params['default'] ) ) {
+			$this->mDefault = $params['default'];
 		}
 
-		if ( isset( $params[ 'id' ] ) ) {
-			$id = $params[ 'id' ];
+		if ( isset( $params['id'] ) ) {
+			$id = $params['id'];
 			$validId = Sanitizer::escapeId( $id );
 
 			if ( $id != $validId ) {
@@ -190,23 +190,23 @@ abstract class HTMLFormField {
 			$this->mID = $id;
 		}
 
-		if ( isset( $params[ 'cssclass' ] ) ) {
-			$this->mClass = $params[ 'cssclass' ];
+		if ( isset( $params['cssclass'] ) ) {
+			$this->mClass = $params['cssclass'];
 		}
 
-		if ( isset( $params[ 'validation-callback' ] ) ) {
-			$this->mValidationCallback = $params[ 'validation-callback' ];
+		if ( isset( $params['validation-callback'] ) ) {
+			$this->mValidationCallback = $params['validation-callback'];
 		}
 
-		if ( isset( $params[ 'filter-callback' ] ) ) {
-			$this->mFilterCallback = $params[ 'filter-callback' ];
+		if ( isset( $params['filter-callback'] ) ) {
+			$this->mFilterCallback = $params['filter-callback'];
 		}
 
-		if ( isset( $params[ 'flatlist' ] ) ) {
+		if ( isset( $params['flatlist'] ) ) {
 			$this->mClass .= ' mw-htmlform-flatlist';
 		}
 
-		if ( isset( $params[ 'hidelabel' ] ) ) {
+		if ( isset( $params['hidelabel'] ) ) {
 			$this->mShowEmptyLabels = false;
 		}
 	}
@@ -226,8 +226,8 @@ abstract class HTMLFormField {
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = array();
 
-		if ( ! empty( $this->mParams[ 'vertical-label' ] ) ) {
-			$cellAttributes[ 'colspan' ] = 2;
+		if ( ! empty( $this->mParams['vertical-label'] ) ) {
+			$cellAttributes['colspan'] = 2;
 			$verticalLabel = true;
 		} else {
 			$verticalLabel = false;
@@ -239,9 +239,14 @@ abstract class HTMLFormField {
 
 		if ( $verticalLabel ) {
 			$html = Html::rawElement( 'tr', array( 'class' => 'mw-htmlform-vertical-label' ), $label );
-			$html .= Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $field );
+			$html .= Html::rawElement( 'tr',
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+				$field );
 		} else {
-			$html = Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $label . $field );
+			$html =
+				Html::rawElement( 'tr',
+					array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+					$label . $field );
 		}
 
 		return $html . $helptext;
@@ -269,10 +274,11 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		);
 
-		$field = Html::rawElement( 'div', array( 'class' => $outerDivClass ) + $cellAttributes, $inputHtml . "\n$errors" );
+		$field =
+			Html::rawElement( 'div', array( 'class' => $outerDivClass ) + $cellAttributes, $inputHtml . "\n$errors" );
 		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
 		if ( $this->mParent->isVForm() ) {
-			$divCssClasses[ ] = 'mw-ui-vform-div';
+			$divCssClasses[] = 'mw-ui-vform-div';
 		}
 		$html = Html::rawElement( 'div', array( 'class' => $divCssClasses ), $label . $field );
 		$html .= $helptext;
@@ -357,12 +363,12 @@ abstract class HTMLFormField {
 	public function getHelpText() {
 		$helptext = null;
 
-		if ( isset( $this->mParams[ 'help-message' ] ) ) {
-			$this->mParams[ 'help-messages' ] = array( $this->mParams[ 'help-message' ] );
+		if ( isset( $this->mParams['help-message'] ) ) {
+			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
 		}
 
-		if ( isset( $this->mParams[ 'help-messages' ] ) ) {
-			foreach ( $this->mParams[ 'help-messages' ] as $name ) {
+		if ( isset( $this->mParams['help-messages'] ) ) {
+			foreach ( $this->mParams['help-messages'] as $name ) {
 				$helpMessage = (array)$name;
 				$msg = $this->msg( array_shift( $helpMessage ), $helpMessage );
 
@@ -375,8 +381,8 @@ abstract class HTMLFormField {
 					$helptext .= $msg->parse(); // Append message
 				}
 			}
-		} elseif ( isset( $this->mParams[ 'help' ] ) ) {
-			$helptext = $this->mParams[ 'help' ];
+		} elseif ( isset( $this->mParams['help'] ) ) {
+			$helptext = $this->mParams['help'];
 		}
 		return $helptext;
 	}
@@ -392,7 +398,9 @@ abstract class HTMLFormField {
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
-		if ( $errors === true || ( ! $this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
+		if ( $errors === true ||
+			( ! $this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) )
+		) {
 			$errors = '';
 			$errorClass = '';
 		} else {
@@ -412,7 +420,7 @@ abstract class HTMLFormField {
 		$for = array();
 
 		if ( $this->needsLabel() ) {
-			$for[ 'for' ] = $this->mID;
+			$for['for'] = $this->mID;
 		}
 
 		$labelValue = trim( $this->getLabel() );
@@ -425,10 +433,16 @@ abstract class HTMLFormField {
 		$html = '';
 
 		if ( $displayFormat === 'table' ) {
-			$html = Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, Html::rawElement( 'label', $for, $labelValue ) );
+			$html =
+				Html::rawElement( 'td',
+					array( 'class' => 'mw-label' ) + $cellAttributes,
+					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
 			if ( $displayFormat === 'div' ) {
-				$html = Html::rawElement( 'div', array( 'class' => 'mw-label' ) + $cellAttributes, Html::rawElement( 'label', $for, $labelValue ) );
+				$html =
+					Html::rawElement( 'div',
+						array( 'class' => 'mw-label' ) + $cellAttributes,
+						Html::rawElement( 'label', $for, $labelValue ) );
 			} else {
 				$html = Html::rawElement( 'label', $for, $labelValue );
 			}
@@ -451,10 +465,10 @@ abstract class HTMLFormField {
 	 * @return array Attributes
 	 */
 	public function getTooltipAndAccessKey() {
-		if ( empty( $this->mParams[ 'tooltip' ] ) ) {
+		if ( empty( $this->mParams['tooltip'] ) ) {
 			return array();
 		}
-		return Linker::tooltipAndAccesskeyAttribs( $this->mParams[ 'tooltip' ] );
+		return Linker::tooltipAndAccesskeyAttribs( $this->mParams['tooltip'] );
 	}
 
 	/**
@@ -473,7 +487,7 @@ abstract class HTMLFormField {
 			if ( is_array( $value ) ) {
 				$flatOpts = array_merge( $flatOpts, self::flattenOptions( $value ) );
 			} else {
-				$flatOpts[ ] = $value;
+				$flatOpts[] = $value;
 			}
 		}
 
@@ -497,9 +511,9 @@ abstract class HTMLFormField {
 			$lines = array();
 			foreach ( $errors as $error ) {
 				if ( $error instanceof Message ) {
-					$lines[ ] = Html::rawElement( 'li', array(), $error->parse() );
+					$lines[] = Html::rawElement( 'li', array(), $error->parse() );
 				} else {
-					$lines[ ] = Html::rawElement( 'li', array(), $error );
+					$lines[] = Html::rawElement( 'li', array(), $error );
 				}
 			}
 			return Html::rawElement( 'ul', array( 'class' => 'error' ), implode( "\n", $lines ) );
