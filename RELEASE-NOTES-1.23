@@ -54,6 +54,7 @@ production.
 * (bug 56912) Show correct link color on cached result of Special:DeadendPages.
 * Classes TitleListDependency and TitleDependency have been removed, as they
   have been found unused in core and extensions for a long time.
+* (bug 57098) SpecialPasswordReset now obeys returnto parameter
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
