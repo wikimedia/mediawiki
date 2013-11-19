@@ -126,6 +126,7 @@ class StatusTest extends MediaWikiTestCase {
 	 * @dataProvider provideMockMessageDetails
 	 * @covers Status::warning
 	 * @covers Status::getWarningsArray
+	 * @covers Status::getStatusArray
 	 */
 	public function testWarningWithMessage( $mockDetails ) {
 		$status = new Status();
@@ -147,6 +148,7 @@ class StatusTest extends MediaWikiTestCase {
 	 * @dataProvider provideMockMessageDetails
 	 * @covers Status::error
 	 * @covers Status::getErrorsArray
+	 * @covers Status::getStatusArray
 	 */
 	public function testErrorWithMessage( $mockDetails ) {
 		$status = new Status();
@@ -406,9 +408,68 @@ class StatusTest extends MediaWikiTestCase {
 		$this->assertEquals( $newMessage, $status->errors[0]['message'] );
 	}
 
-	//todo test getErrorMessage
-	//todo test getErrorMessageArray
-	//todo test getStatusArray
-	//todo test getErrorsByType
+	/**
+	 * @covers Status::getErrorMessage
+	 */
+	public function testGetErrorMessage() {
+		$method = new ReflectionMethod( 'Status', 'getErrorMessage' );
+		$method->setAccessible(true);
+		$status = new Status();
+		$key = 'foo';
+		$params = array( 'bar' );
+
+		/** @var Message $message */
+		$message = $method->invoke( $status, array_merge( array( $key ), $params ) );
+		$this->assertInstanceOf( 'Message', $message );
+		$this->assertEquals( $key, $message->getKey() );
+		$this->assertEquals( $params, $message->getParams() );
+	}
+
+	/**
+	 * @covers Status::getErrorMessageArray
+	 */
+	public function testGetErrorMessageArray() {
+		$method = new ReflectionMethod( 'Status', 'getErrorMessageArray' );
+		$method->setAccessible(true);
+		$status = new Status();
+		$key = 'foo';
+		$params = array( 'bar' );
+
+		/** @var Message[] $messageArray */
+		$messageArray = $method->invoke(
+			$status,
+			array(
+				array_merge( array( $key ), $params ),
+				array_merge( array( $key ), $params )
+			)
+		);
+
+		$this->assertInternalType( 'array', $messageArray );
+		$this->assertCount( 2, $messageArray );
+		foreach( $messageArray as $message ) {
+			$this->assertInstanceOf( 'Message', $message );
+			$this->assertEquals( $key, $message->getKey() );
+			$this->assertEquals( $params, $message->getParams() );
+		}
+	}
+
+	/**
+	 * @covers Status::getErrorsByType
+	 */
+	public function testGetErrorsByType() {
+		$status = new Status();
+		$warning = new Message( 'warning111' );
+		$error = new Message( 'error111' );
+		$status->warning( $warning );
+		$status->error( $error );
+
+		$warnings = $status->getErrorsByType( 'warning' );
+		$errors = $status->getErrorsByType( 'error' );
+
+		$this->assertCount( 1, $warnings );
+		$this->assertCount( 1, $errors );
+		$this->assertEquals( $warning, $warnings[0]['message'] );
+		$this->assertEquals( $error, $errors[0]['message'] );
+	}
 
 }
