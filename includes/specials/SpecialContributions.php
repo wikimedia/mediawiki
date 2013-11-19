@@ -766,10 +766,10 @@ class ContribsPager extends ReverseChronologicalPager {
 		$condition = array();
 		$join_conds = array();
 		$tables = array( 'revision', 'page', 'user' );
+		$index = false;
 		if ( $this->contribs == 'newbie' ) {
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)( $max - $max / 100 );
-			$index = 'user_timestamp';
 			# ignore local groups with the bot right
 			# @todo FIXME: Global groups may have 'bot' rights
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );

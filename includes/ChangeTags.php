@@ -201,9 +201,6 @@ class ChangeTags {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
-			// FORCE INDEX -- change_tags will almost ALWAYS be the correct query plan.
-			$options['USE INDEX'] = array( 'change_tag' => 'change_tag_tag_id' );
-			unset( $options['FORCE INDEX'] );
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = array( 'INNER JOIN', "ct_$join_cond=$join_cond" );
 			$conds['ct_tag'] = $filter_tag;
