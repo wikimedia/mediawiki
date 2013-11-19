@@ -109,6 +109,9 @@ class JobQueueGroup {
 	 */
 	public function push( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		if ( !count( $jobs ) ) {
+			return true;
+		}
 
 		$jobsByType = array(); // (job type => list of jobs)
 		foreach ( $jobs as $job ) {

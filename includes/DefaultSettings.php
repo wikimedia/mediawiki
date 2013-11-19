@@ -5032,7 +5032,7 @@ $wgProfilePerHost = false;
  * Host for UDP profiler.
  *
  * The host should be running a daemon which can be obtained from MediaWiki
- * Git at: 
+ * Git at:
  * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
  */
 $wgUDPProfilerHost = '127.0.0.1';
@@ -6044,6 +6044,7 @@ $wgHooks = array();
 $wgJobClasses = array(
 	'refreshLinks' => 'RefreshLinksJob',
 	'refreshLinks2' => 'RefreshLinksJob2',
+	'refreshLinksRange' => 'refreshLinksRange',
 	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',

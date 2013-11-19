@@ -104,7 +104,7 @@ class RefreshLinksJob extends Job {
 }
 
 /**
- * Background job to update links for a given title.
+ * Background job to update links for titles in certain backlink range by page ID.
  * Newer version for high use templates.
  *
  * @ingroup JobQueue
@@ -211,6 +211,69 @@ class RefreshLinksJob2 extends Job {
 	/**
 	 * @return Array
 	 */
+	public function getDeduplicationInfo() {
+		$info = parent::getDeduplicationInfo();
+		// Don't let highly unique "masterPos" values ruin duplicate detection
+		if ( is_array( $info['params'] ) ) {
+			unset( $info['params']['masterPos'] );
+		}
+		return $info;
+	}
+}
+
+/**
+ * Background job to update links for titles in certain backlink range by page ID.
+ * Newer version for high use templates.
+ *
+ * @ingroup JobQueue
+ */
+class RefreshLinksRangeJob extends Job {
+	function __construct( $title, $params, $id = 0 ) {
+		parent::__construct( 'refreshLinksRange', $title, $params, $id );
+		// Base jobs for large templates can easily be de-duplicated
+		$this->removeDuplicates = !isset( $params['range'] );
+	}
+
+	function run() {
+		global $wgUpdateRowsPerJob;
+
+		if ( is_null( $this->title ) ) {
+			$this->error = "refreshLinksRange: Invalid title";
+			return false;
+		}
+
+		// Carry over information for de-duplication
+		$extraParams = $this->getRootJobParams();
+		// Avoid slave lag when fetching templates.
+		// When the outermost job is run, we know that the caller that enqueued it must have
+		// committed the relevant changes to the DB by now. At that point, record the master
+		// position and pass it along as the job recursively breaks into smaller range jobs.
+		// Hopefully, when leaf jobs are popped, the slaves will have reached that position.
+		if ( isset( $this->params['masterPos'] ) ) {
+			$extraParams['masterPos'] = $this->params['masterPos'];
+		} elseif ( wfGetLB()->getServerCount() > 1 ) {
+			$extraParams['masterPos'] = wfGetLB()->getMasterPos();
+		} else {
+			$extraParams['masterPos'] = false;
+		}
+		// Convert this into no more than $wgUpdateRowsPerJob RefreshLinksRangeJob jobs,
+		// making the ranges of each as large as needed. This will happen recursively until
+		// jobs starting covering ranges less than $wgUpdateRowsPerJob. Those jobs will then
+		// break down into per-title RefreshLinks jobs.
+		list( $level, $jobs ) = BacklinkJobUtils::partitionBacklinkJob(
+			$this,
+			get_class( $this ),
+			'RefreshLinksJob',
+			$wgUpdateRowsPerJob,
+			$wgUpdateRowsPerJob,
+			1, // job-per-title
+			array( 'params' => $extraParams )
+		);
+		JobQueueGroup::singleton()->push( $jobs );
+
+		return true;
+	}
+
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		// Don't let highly unique "masterPos" values ruin duplicate detection
