@@ -63,6 +63,8 @@ production.
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
+* action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
+  MediaWiki 1.24.
 
 === Languages updated in 1.23===
 
