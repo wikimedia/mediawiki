@@ -273,6 +273,7 @@ abstract class AbstractContent implements Content {
 				break;
 			}
 		}
+
 		return $titles;
 	}
 
@@ -293,6 +294,7 @@ abstract class AbstractContent implements Content {
 	 */
 	public function getUltimateRedirectTarget() {
 		$titles = $this->getRedirectChain();
+
 		return $titles ? array_pop( $titles ) : null;
 	}
 
@@ -394,8 +396,8 @@ abstract class AbstractContent implements Content {
 	 *    database after deletion.
 	 */
 	public function getDeletionUpdates( WikiPage $page,
-		ParserOutput $parserOutput = null )
-	{
+		ParserOutput $parserOutput = null
+	) {
 		return array(
 			new LinksDeletionUpdate( $page ),
 		);
@@ -422,8 +424,8 @@ abstract class AbstractContent implements Content {
 	 * This base implementation calls the hook ConvertContent to enable custom conversions.
 	 * Subclasses may override this to implement conversion for "their" content model.
 	 *
-	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * @param string $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
 	 * not allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
@@ -439,6 +441,7 @@ abstract class AbstractContent implements Content {
 		$result = false;
 
 		wfRunHooks( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) );
+
 		return $result;
 	}
 }
