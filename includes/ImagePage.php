@@ -415,7 +415,7 @@ class ImagePage extends Article {
 				$params['width'] = $width;
 				$params['height'] = $height;
 				$thumbnail = $this->displayImg->transform( $params );
-				self::processResponsiveImages($this->displayImg, $thumbnail, $params);
+				Linker::processResponsiveImages( $this->displayImg, $thumbnail, $params );
 
 				$anchorclose = Html::rawElement( 'div', array( 'class' => 'mw-filepage-resolutioninfo' ), $msgsmall );
 
@@ -587,36 +587,6 @@ EOT
 			}
 		}
 		$out->setFileVersion( $this->displayImg );
-	}
-
-	/**
-	 * Process responsive images: add 1.5x and 2x subimages to the thumbnail, where
-	 * applicable.
-	 *
-	 * @param File $file
-	 * @param MediaOutput $thumb
-	 * @param array $hp image parameters
-	 */
-	protected static function processResponsiveImages( $file, $thumb, $hp ) {
-		global $wgResponsiveImages;
-		if ( $wgResponsiveImages ) {
-			$hp15 = $hp;
-			$hp15['width'] = round( $hp['width'] * 1.5 );
-			$hp20 = $hp;
-			$hp20['width'] = $hp['width'] * 2;
-			if ( isset( $hp['height'] ) ) {
-				$hp15['height'] = round( $hp['height'] * 1.5 );
-				$hp20['height'] = $hp['height'] * 2;
-			}
-			$thumb15 = $file->transform( $hp15 );
-			$thumb20 = $file->transform( $hp20 );
-			if ( $thumb15->url !== $thumb->url ) {
-				$thumb->responsiveUrls['1.5'] = $thumb15->url;
-			}
-			if ( $thumb20->url !== $thumb->url ) {
-				$thumb->responsiveUrls['2'] = $thumb20->url;
-			}
-		}
 	}
 
 	/**
