@@ -140,6 +140,9 @@ class SkinTemplate extends Skin {
 			foreach ( $out->getLanguageLinks() as $languageLinkText ) {
 				$languageLinkParts = explode( ':', $languageLinkText, 2 );
 				$class = 'interwiki-' . $languageLinkParts[0];
+				if ( !$languageLinkParts[1] ) {
+					$languageLinkText .= $this->msg( 'mainpage', 'Main Page' );
+				}
 				unset( $languageLinkParts );
 				$languageLinkTitle = Title::newFromText( $languageLinkText );
 				if ( $languageLinkTitle ) {
