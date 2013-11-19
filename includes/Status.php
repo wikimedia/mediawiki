@@ -83,7 +83,7 @@ class Status {
 	 * @param $ok Boolean: whether the operation completed
 	 * @param $value Mixed
 	 */
-	function setResult( $ok, $value = null ) {
+	public function setResult( $ok, $value = null ) {
 		$this->ok = $ok;
 		$this->value = $value;
 	}
@@ -94,7 +94,7 @@ class Status {
 	 *
 	 * @return Boolean
 	 */
-	function isGood() {
+	public function isGood() {
 		return $this->ok && !$this->errors;
 	}
 
@@ -103,7 +103,7 @@ class Status {
 	 *
 	 * @return Boolean
 	 */
-	function isOK() {
+	public function isOK() {
 		return $this->ok;
 	}
 
@@ -112,7 +112,7 @@ class Status {
 	 *
 	 * @param string|Message $message message name or object
 	 */
-	function warning( $message /*, parameters... */ ) {
+	public function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
 		$this->errors[] = array(
 			'type' => 'warning',
@@ -126,7 +126,7 @@ class Status {
 	 *
 	 * @param string|Message $message message name or object
 	 */
-	function error( $message /*, parameters... */ ) {
+	public function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
 		$this->errors[] = array(
 			'type' => 'error',
@@ -140,7 +140,7 @@ class Status {
 	 *
 	 * @param string|Message $message message name or object
 	 */
-	function fatal( $message /*, parameters... */ ) {
+	public function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
 		$this->errors[] = array(
 			'type' => 'error',
@@ -152,7 +152,7 @@ class Status {
 	/**
 	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
 	 */
-	function __wakeup() {
+	public function __wakeup() {
 		$this->cleanCallback = false;
 	}
 
@@ -179,7 +179,7 @@ class Status {
 	 * @param string $longContext a long enclosing context message name, for a list
 	 * @return String
 	 */
-	function getWikiText( $shortContext = false, $longContext = false ) {
+	public function getWikiText( $shortContext = false, $longContext = false ) {
 		if ( count( $this->errors ) == 0 ) {
 			if ( $this->ok ) {
 				$this->fatal( 'internalerror_info',
@@ -219,7 +219,7 @@ class Status {
 	 * @param string $longContext a long enclosing context message name, for a list
 	 * @return Message
 	 */
-	function getMessage( $shortContext = false, $longContext = false ) {
+	public function getMessage( $shortContext = false, $longContext = false ) {
 		if ( count( $this->errors ) == 0 ) {
 			if ( $this->ok ) {
 				$this->fatal( 'internalerror_info',
@@ -239,7 +239,7 @@ class Status {
 				$s = wfMessage( $longContext, $wrapper );
 			}
 		} else {
-			$msgs =  $this->getErrorMessageArray( $this->errors );
+			$msgs = $this->getErrorMessageArray( $this->errors );
 			$msgCount = count( $msgs );
 
 			if ( $shortContext ) {
@@ -316,7 +316,7 @@ class Status {
 	 * @param $other Status Other Status object
 	 * @param $overwriteValue Boolean: whether to override the "value" member
 	 */
-	function merge( $other, $overwriteValue = false ) {
+	public function merge( $other, $overwriteValue = false ) {
 		$this->errors = array_merge( $this->errors, $other->errors );
 		$this->ok = $this->ok && $other->ok;
 		if ( $overwriteValue ) {
@@ -332,7 +332,7 @@ class Status {
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 */
-	function getErrorsArray() {
+	public function getErrorsArray() {
 		return $this->getStatusArray( "error" );
 	}
 
@@ -342,7 +342,7 @@ class Status {
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 */
-	function getWarningsArray() {
+	public function getWarningsArray() {
 		return $this->getStatusArray( "warning" );
 	}
 
@@ -398,7 +398,7 @@ class Status {
 	 * @param string $msg message name
 	 * @return Boolean
 	 */
-	function hasMessage( $msg ) {
+	public function hasMessage( $msg ) {
 		foreach ( $this->errors as $error ) {
 			if ( $error['message'] === $msg ) {
 				return true;
@@ -418,7 +418,7 @@ class Status {
 	 * @param $dest Message|String: Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
-	function replaceMessage( $source, $dest ) {
+	public function replaceMessage( $source, $dest ) {
 		$replaced = false;
 		foreach ( $this->errors as $index => $error ) {
 			if ( $error['message'] === $source ) {
