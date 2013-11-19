@@ -693,6 +693,13 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.hlist' => array(
+		'styles' => 'resources/mediawiki/mediawiki.hlist.css',
+		'scripts' => 'resources/mediawiki/mediawiki.hlist.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 		'messages' => array( 'htmlform-chosen-placeholder' ),
