@@ -105,6 +105,7 @@ class RecentChange {
 	}
 
 	/**
+	 * No uses left in Gerrit on 2013-11-19.
 	 * @deprecated in 1.22
 	 * @param $row
 	 * @return RecentChange
@@ -324,7 +325,7 @@ class RecentChange {
 			'add_interwiki_prefix' => $wgRC2UDPInterwikiPrefix,
 		);
 
-		return $engine->send( $feed, $line );
+		$engine->send( $feed, $line );
 	}
 
 	/**
@@ -351,6 +352,7 @@ class RecentChange {
 				continue;
 			}
 
+			/** @var $formatter RCFeedFormatter */
 			$formatter = new $feed['formatter']();
 			$line = $formatter->getLine( $feed, $this, $actionComment );
 
@@ -361,7 +363,8 @@ class RecentChange {
 	/**
 	 * Gets the stream engine object for a given URI from $wgRCEngines
 	 *
-	 * @param $uri string URI to get the engine object for
+	 * @param string $uri URI to get the engine object for
+	 * @throws MWException
 	 * @return object The engine object
 	 */
 	private static function getEngine( $uri ) {
