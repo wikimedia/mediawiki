@@ -373,7 +373,9 @@ class LoadBalancer {
 		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
-			$this->doWait( $i, true );
+			if ( $this->mLoads[$i] > 0 ) {
+				$this->doWait( $i, true );
+			}
 		}
 		wfProfileOut( __METHOD__ );
 	}
