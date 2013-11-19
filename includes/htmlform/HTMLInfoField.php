@@ -1,20 +1,21 @@
 <?php
+
 /**
  * An information field (text blob), not a proper input.
  */
 class HTMLInfoField extends HTMLFormField {
 	public function __construct( $info ) {
-		$info[ 'nodata' ] = true;
+		$info['nodata'] = true;
 
 		parent::__construct( $info );
 	}
 
 	public function getInputHTML( $value ) {
-		return ! empty( $this->mParams[ 'raw' ] ) ? $value : htmlspecialchars( $value );
+		return !empty( $this->mParams['raw'] ) ? $value : htmlspecialchars( $value );
 	}
 
 	public function getTableRow( $value ) {
-		if ( ! empty( $this->mParams[ 'rawrow' ] ) ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
 			return $value;
 		}
 
@@ -25,7 +26,7 @@ class HTMLInfoField extends HTMLFormField {
 	 * @since 1.20
 	 */
 	public function getDiv( $value ) {
-		if ( ! empty( $this->mParams[ 'rawrow' ] ) ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
 			return $value;
 		}
 
@@ -36,7 +37,7 @@ class HTMLInfoField extends HTMLFormField {
 	 * @since 1.20
 	 */
 	public function getRaw( $value ) {
-		if ( ! empty( $this->mParams[ 'rawrow' ] ) ) {
+		if ( !empty( $this->mParams['rawrow'] ) ) {
 			return $value;
 		}
 

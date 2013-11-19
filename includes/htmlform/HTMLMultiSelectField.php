@@ -1,9 +1,9 @@
 <?php
+
 /**
  * Multi-select field
  */
 class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
-
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -11,13 +11,13 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			return $p;
 		}
 
-		if ( ! is_array( $value ) ) {
+		if ( !is_array( $value ) ) {
 			return false;
 		}
 
 		# If all options are valid, array_intersect of the valid options
 		# and the provided options will return the provided options.
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams[ 'options' ] );
+		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		$validValues = array_intersect( $value, $validOptions );
 		if ( count( $validValues ) == count( $value ) ) {
@@ -28,7 +28,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function getInputHTML( $value ) {
-		$html = $this->formatOptions( $this->mParams[ 'options' ], $value );
+		$html = $this->formatOptions( $this->mParams['options'], $value );
 
 		return $html;
 	}
@@ -38,8 +38,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 		$attribs = array();
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attribs[ 'disabled' ] = 'disabled';
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
 		}
 
 		foreach ( $options as $label => $info ) {
@@ -49,10 +49,22 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			} else {
 				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
 
-				$checkbox = Xml::check( $this->mName . '[]', in_array( $info, $value, true ), $attribs + $thisAttribs );
-				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
+				$checkbox = Xml::check(
+					$this->mName . '[]',
+					in_array( $info, $value, true ),
+					$attribs + $thisAttribs
+				);
+				$checkbox .= '&#160;' . Html::rawElement(
+					'label',
+					array( 'for' => "{$this->mID}-$info" ),
+					$label
+				);
 
-				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-flatlist-item' ), $checkbox );
+				$html .= ' ' . Html::rawElement(
+					'div',
+					array( 'class' => 'mw-htmlform-flatlist-item' ),
+					$checkbox
+				);
 			}
 		}
 
@@ -94,11 +106,11 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function filterDataForSubmit( $data ) {
-		$options = HTMLFormField::flattenOptions( $this->mParams[ 'options' ] );
+		$options = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		$res = array();
 		foreach ( $options as $opt ) {
-			$res[ "$opt" ] = in_array( $opt, $data );
+			$res["$opt"] = in_array( $opt, $data );
 		}
 
 		return $res;

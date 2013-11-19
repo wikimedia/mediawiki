@@ -1,4 +1,5 @@
 <?php
+
 class HTMLApiField extends HTMLFormField {
 	public function getTableRow( $value ) {
 		return '';
