@@ -10021,6 +10021,7 @@ See also:
 * {{msg-mw|Accesskey-t-specialpages}}
 * {{msg-mw|Tooltip-t-specialpages}}
 {{Identical|Special page}}',
+'specialpages-note-top' => 'Heading for specialpages-note',
 'specialpages-note' => 'Footer note for the [[Special:SpecialPages]] page',
 'specialpages-group-maintenance' => '{{doc-special-group|like=[[Special:DoubleRedirects]], [[Special:LonelyPages]] and [[Special:WantedPages]]}}',
 'specialpages-group-other' => '{{doc-special-group|like=[[Special:AdminLinks]] and [[Special:BookSources]]}}',

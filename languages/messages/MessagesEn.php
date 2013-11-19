@@ -4899,9 +4899,9 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 # Special:SpecialPages
 'specialpages'                   => 'Special pages',
 'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
-'specialpages-note'              => '----
-* Normal special pages.
-* <span class="mw-specialpagerestricted">Restricted special pages.</span>',
+'specialpages-note-top'          => 'Legend',
+'specialpages-note'              => ' * Normal special pages.
+ * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / create account',
