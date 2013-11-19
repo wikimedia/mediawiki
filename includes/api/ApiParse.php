@@ -532,6 +532,9 @@ class ApiParse extends ApiBase {
 	 */
 	private function languagesHtml( $languages ) {
 		wfDeprecated( __METHOD__, '1.18' );
+		$this->setWarning( '"action=parse&prop=languageshtml" is deprecated ' .
+			'and will be removed in MediaWiki 1.24. Use "prop=langlinks" ' .
+			'to generate your own HTML.' );
 
 		global $wgContLang, $wgHideInterlanguageLinks;
 
@@ -716,7 +719,8 @@ class ApiParse extends ApiBase {
 				' langlinks      - Gives the language links in the parsed wikitext',
 				' categories     - Gives the categories in the parsed wikitext',
 				' categorieshtml - Gives the HTML version of the categories',
-				' languageshtml  - Gives the HTML version of the language links',
+				' languageshtml  - DEPRECATED. Will be removed in MediaWiki 1.24.',
+				'                  Gives the HTML version of the language links',
 				' links          - Gives the internal links in the parsed wikitext',
 				' templates      - Gives the templates in the parsed wikitext',
 				' images         - Gives the images in the parsed wikitext',
