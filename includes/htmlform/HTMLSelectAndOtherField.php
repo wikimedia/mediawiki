@@ -23,7 +23,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			# Options array already specified
 		} elseif ( array_key_exists( 'options-message', $params ) ) {
 			# Generate options array from a system message
-			$params[ 'options' ] = self::parseMessage( wfMessage( $params[ 'options-message' ] )->inContentLanguage()->plain(), $params[ 'other' ] );
+			$params[ 'options' ] =
+				self::parseMessage( wfMessage( $params[ 'options-message' ] )->inContentLanguage()->plain(),
+					$params[ 'other' ] );
 		} else {
 			# Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );

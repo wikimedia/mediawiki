@@ -21,12 +21,16 @@ class HTMLCheckField extends HTMLFormField {
 
 		if ( $this->mParent->isVForm() ) {
 			// Nest checkbox inside label.
-			return Html::rawElement( 'label', array(
+			return Html::rawElement( 'label',
+				array(
 					'class' => 'mw-ui-checkbox-label'
-				), Xml::check( $this->mName, $value, $attr ) . // Html:rawElement doesn't escape contents.
+				),
+				Xml::check( $this->mName, $value, $attr ) . // Html:rawElement doesn't escape contents.
 				htmlspecialchars( $this->mLabel ) );
 		} else {
-			return Xml::check( $this->mName, $value, $attr ) . '&#160;' . Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			return Xml::check( $this->mName, $value, $attr )
+			. '&#160;'
+			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 		}
 	}
 

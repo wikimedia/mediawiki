@@ -239,9 +239,14 @@ abstract class HTMLFormField {
 
 		if ( $verticalLabel ) {
 			$html = Html::rawElement( 'tr', array( 'class' => 'mw-htmlform-vertical-label' ), $label );
-			$html .= Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $field );
+			$html .= Html::rawElement( 'tr',
+				array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+				$field );
 		} else {
-			$html = Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $label . $field );
+			$html =
+				Html::rawElement( 'tr',
+					array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+					$label . $field );
 		}
 
 		return $html . $helptext;
@@ -269,7 +274,8 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		);
 
-		$field = Html::rawElement( 'div', array( 'class' => $outerDivClass ) + $cellAttributes, $inputHtml . "\n$errors" );
+		$field =
+			Html::rawElement( 'div', array( 'class' => $outerDivClass ) + $cellAttributes, $inputHtml . "\n$errors" );
 		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
 		if ( $this->mParent->isVForm() ) {
 			$divCssClasses[ ] = 'mw-ui-vform-div';
@@ -392,7 +398,9 @@ abstract class HTMLFormField {
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
-		if ( $errors === true || ( ! $this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
+		if ( $errors === true ||
+			( ! $this->mParent->getRequest()->wasPosted() && ( $this->mParent->getMethod() == 'post' ) )
+		) {
 			$errors = '';
 			$errorClass = '';
 		} else {
@@ -425,10 +433,16 @@ abstract class HTMLFormField {
 		$html = '';
 
 		if ( $displayFormat === 'table' ) {
-			$html = Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, Html::rawElement( 'label', $for, $labelValue ) );
+			$html =
+				Html::rawElement( 'td',
+					array( 'class' => 'mw-label' ) + $cellAttributes,
+					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
 			if ( $displayFormat === 'div' ) {
-				$html = Html::rawElement( 'div', array( 'class' => 'mw-label' ) + $cellAttributes, Html::rawElement( 'label', $for, $labelValue ) );
+				$html =
+					Html::rawElement( 'div',
+						array( 'class' => 'mw-label' ) + $cellAttributes,
+						Html::rawElement( 'label', $for, $labelValue ) );
 			} else {
 				$html = Html::rawElement( 'label', $for, $labelValue );
 			}

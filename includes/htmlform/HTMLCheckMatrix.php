@@ -129,19 +129,26 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$checked = true;
 					$thisAttribs[ 'disabled' ] = 1;
 				}
-				$rowContents .= Html::rawElement( 'td', array(), Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs ) );
+				$rowContents .= Html::rawElement(
+					'td',
+					array(),
+					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs )
+				);
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
 		}
 
 		// Put it all in a table
-		$html .= Html::rawElement( 'table', array( 'class' => 'mw-htmlform-matrix' ), Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
+		$html .= Html::rawElement( 'table',
+				array( 'class' => 'mw-htmlform-matrix' ),
+				Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
 
 		return $html;
 	}
 
 	protected function isTagForcedOff( $tag ) {
-		return isset( $this->mParams[ 'force-options-off' ] ) && in_array( $tag, $this->mParams[ 'force-options-off' ] );
+		return
+			isset( $this->mParams[ 'force-options-off' ] ) && in_array( $tag, $this->mParams[ 'force-options-off' ] );
 	}
 
 	protected function isTagForcedOn( $tag ) {
@@ -171,7 +178,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$field = Html::rawElement( 'td', array( 'class' => 'mw-input' ) + $cellAttributes, $inputHtml . "\n$errors" );
 
 		$html = Html::rawElement( 'tr', array( 'class' => 'mw-htmlform-vertical-label' ), $label );
-		$html .= Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ), $field );
+		$html .= Html::rawElement( 'tr',
+			array( 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass" ),
+			$field );
 
 		return $html . $helptext;
 	}
