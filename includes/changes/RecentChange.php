@@ -406,7 +406,8 @@ class RecentChange {
 	/**
 	 * Mark this RecentChange as patrolled
 	 *
-	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and 'markedaspatrollederror-noautopatrol' as errors
+	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
+	 * 'markedaspatrollederror-noautopatrol' as errors
 	 * @param $user User object doing the action
 	 * @param $auto Boolean: for automatic patrol
 	 * @return array of permissions errors, see Title::getUserPermissionsErrors()
@@ -427,7 +428,9 @@ class RecentChange {
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if ( $user->getName() == $this->getAttribute( 'rc_user_text' ) && !$user->isAllowed( 'autopatrol' ) ) {
+		if ( $user->getName() == $this->getAttribute( 'rc_user_text' )
+			&& !$user->isAllowed( 'autopatrol' )
+		) {
 			$errors[] = array( 'markedaspatrollederror-noautopatrol' );
 		}
 		if ( $errors ) {
@@ -602,9 +605,10 @@ class RecentChange {
 	 * @return bool
 	 */
 	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip, $type,
-		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '' )
-	{
+		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
+	) {
 		global $wgLogRestrictions;
+
 		# Don't add private logs to RC!
 		if ( isset( $wgLogRestrictions[$type] ) && $wgLogRestrictions[$type] != '*' ) {
 			return false;
@@ -826,7 +830,8 @@ class RecentChange {
 		global $wgRequest;
 		if ( $ip ) {
 			if ( !IP::isIPAddress( $ip ) ) {
-				throw new MWException( "Attempt to write \"" . $ip . "\" as an IP address into recent changes" );
+				throw new MWException( "Attempt to write \"" . $ip .
+					"\" as an IP address into recent changes" );
 			}
 		} else {
 			$ip = $wgRequest->getIP();
