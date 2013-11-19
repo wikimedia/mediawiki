@@ -60,6 +60,8 @@ production.
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
   categories.
+* Announce that action=parse&prop=languageshtml was deprecated in 1.18 and will
+  be removed in MediaWiki 1.24.
 
 === Languages updated in 1.23===
 
