@@ -21,12 +21,12 @@
  */
 
 class EnhancedChangesList extends ChangesList {
-
+	/** @var array Array of array of RCCacheEntry */
 	protected $rc_cache;
 
 	/**
 	 * Add the JavaScript file for enhanced changeslist
-	 * @return String
+	 * @return string
 	 */
 	public function beginRecentChangesList() {
 		$this->rc_cache = array();
@@ -50,8 +50,8 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 *
-	 * @param $baseRC RecentChange
-	 * @param $watched bool
+	 * @param RecentChange $baseRC
+	 * @param bool $watched
 	 *
 	 * @return string
 	 */
@@ -90,6 +90,7 @@ class EnhancedChangesList extends ChangesList {
 
 		// Page moves, very old style, not supported anymore
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
+			$clink = '';
 		// New unpatrolled pages
 		} elseif ( $cacheEntry->unpatrolled && $type == RC_NEW ) {
 			$clink = Linker::linkKnown( $cacheEntry->getTitle() );
@@ -209,6 +210,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC group
+	 * @param RCCacheEntry[] $block
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
@@ -242,6 +244,7 @@ class EnhancedChangesList extends ChangesList {
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
+		$oldid = '';
 		foreach ( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
@@ -341,6 +344,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$sinceLast = 0;
 		$unvisitedOldid = null;
+		/** @var $rcObj RCCacheEntry */
 		foreach ( $block as $rcObj ) {
 			// Same logic as below inside main foreach
 			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
@@ -356,6 +360,8 @@ class EnhancedChangesList extends ChangesList {
 		# Total change link
 		$r .= ' ';
 		$logtext = '';
+		/** @var $block0 RecentChange */
+		$block0 = $block[0];
 		if ( !$allLogs ) {
 			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$logtext .= $nchanges[$n];
@@ -363,7 +369,7 @@ class EnhancedChangesList extends ChangesList {
 				$logtext .= $nchanges[$n];
 			} else {
 				$logtext .= Linker::link(
-					$block[0]->getTitle(),
+					$block0->getTitle(),
 					$nchanges[$n],
 					array(),
 					$queryParams + array(
@@ -374,7 +380,7 @@ class EnhancedChangesList extends ChangesList {
 				);
 				if ( $sinceLast > 0 && $sinceLast < $n ) {
 					$logtext .= $this->message['pipe-separator'] . Linker::link(
-						$block[0]->getTitle(),
+						$block0->getTitle(),
 						$sinceLastVisitMsg[$sinceLast],
 						array(),
 						$queryParams + array(
@@ -390,7 +396,7 @@ class EnhancedChangesList extends ChangesList {
 		# History
 		if ( $allLogs ) {
 			// don't show history link for logs
-		} elseif ( $namehidden || !$block[0]->getTitle()->exists() ) {
+		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
 			$logtext .= $this->message['pipe-separator'] . $this->message['enhancedrc-history'];
 		} else {
 			$params = $queryParams;
@@ -398,7 +404,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$logtext .= $this->message['pipe-separator'] .
 				Linker::linkKnown(
-					$block[0]->getTitle(),
+					$block0->getTitle(),
 					$this->message['enhancedrc-history'],
 					array(),
 					$params
@@ -433,7 +439,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$r .= $users;
-		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		$r .= $this->numberofWatchingusers( $block0->numberofWatchingusers );
 		$r .= '</td></tr>';
 
 		# Sub-entries
@@ -524,10 +530,10 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for an arrow or placeholder graphic
-	 * @param string $dir one of '', 'd', 'l', 'r'
-	 * @param string $alt text
-	 * @param string $title text
-	 * @return String: HTML "<img>" tag
+	 * @param string $dir One of '', 'd', 'l', 'r'
+	 * @param string $alt
+	 * @param string $title
+	 * @return string HTML "<img>" tag
 	 */
 	protected function arrow( $dir, $alt = '', $title = '' ) {
 		global $wgStylePath;
@@ -541,7 +547,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a right- or left-facing arrow,
 	 * depending on language direction.
-	 * @return String: HTML "<img>" tag
+	 * @return string HTML "<img>" tag
 	 */
 	protected function sideArrow() {
 		$dir = $this->getLanguage()->isRTL() ? 'l' : 'r';
@@ -552,7 +558,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generate HTML for a down-facing arrow
 	 * depending on language direction.
-	 * @return String: HTML "<img>" tag
+	 * @return string HTML "<img>" tag
 	 */
 	protected function downArrow() {
 		return $this->arrow( 'd', '-', $this->msg( 'rc-enhanced-hide' )->text() );
@@ -560,7 +566,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Generate HTML for a spacer image
-	 * @return String: HTML "<img>" tag
+	 * @return string HTML "<img>" tag
 	 */
 	protected function spacerArrow() {
 		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space
@@ -569,8 +575,8 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Enhanced RC ungrouped line.
 	 *
-	 * @param $rcObj RecentChange
-	 * @return String: a HTML formatted line (generated using $r)
+	 * @param RecentChange|RCCacheEntry $rcObj
+	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgRCShowChangedSize;
