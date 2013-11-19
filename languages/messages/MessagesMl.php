@@ -3757,7 +3757,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'ഈ പ്രമാണം ഒരു ബാഹ്യ ആപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തിരുത്തുക',
-'edit-externally-help' => '(കൂടുതൽ വിവരത്തിനു //www.mediawiki.org/wiki/Manual:External_editors കാണുക)',
+'edit-externally-help' => '(കൂടുതൽ വിവരത്തിനു [https://www.mediawiki.org/wiki/Manual:External_editors സജ്ജമാക്കൽ നിർദ്ദേശങ്ങൾ] കാണുക)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'എല്ലാം',
