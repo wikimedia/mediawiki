@@ -657,10 +657,13 @@ $wgAutoloadLocalClasses = array(
 	'HTMLCacheUpdateJob' => 'includes/job/jobs/HTMLCacheUpdateJob.php',
 	'NullJob' => 'includes/job/jobs/NullJob.php',
 	'RefreshLinksJob' => 'includes/job/jobs/RefreshLinksJob.php',
-	'RefreshLinksJob2' => 'includes/job/jobs/RefreshLinksJob.php',
+	'RefreshLinksJob2' => 'includes/job/jobs/RefreshLinksJob2.php',
 	'UploadFromUrlJob' => 'includes/job/jobs/UploadFromUrlJob.php',
 	'AssembleUploadChunksJob' => 'includes/job/jobs/AssembleUploadChunksJob.php',
 	'PublishStashedFileJob' => 'includes/job/jobs/PublishStashedFileJob.php',
+
+	# includes/job/utils
+	'BacklinkJobUtils' => 'includes/job/utils/BacklinkJobUtils.php',
 
 	# includes/json
 	'FormatJson' => 'includes/json/FormatJson.php',
