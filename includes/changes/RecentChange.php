@@ -87,6 +87,11 @@ class RecentChange {
 	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentchangeslinked
 	public $notificationtimestamp;
 
+	/**
+	 * @var int Line number of recent change. Default -1.
+	 */
+	public $counter = -1;
+
 	# Factory methods
 
 	/**
