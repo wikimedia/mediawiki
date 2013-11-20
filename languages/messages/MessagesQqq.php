@@ -7849,6 +7849,9 @@ See also:
 Format of a sidebar interwiki link tooltip. Parameters:
 * $1 - page name in the target wiki
 * $2 - target wiki language autonym',
+'interlanguage-link-title-langonly' => '{{Optional}}
+Format of a sidebar interwiki link tooltip where the target page name is not available. Parameters:
+* $1 - target wiki language autonym',
 
 # Stylesheets
 'common.css' => '{{optional}}

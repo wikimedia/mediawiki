@@ -156,10 +156,17 @@ class SkinTemplate extends Skin {
 					// otherwise we'll end up with the autonym again.
 					$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
 
+					if ( $languageLinkTitle->getText() === '' ) {
+						$ilTitle = wfMessage( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
+					} else {
+						$ilTitle = wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(),
+							$ilLangLocalName )->text();
+					}
+
 					$language_urls[] = array(
 						'href' => $languageLinkTitle->getFullURL(),
 						'text' => $ilLangName,
-						'title' => wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(), $ilLangLocalName )->text(),
+						'title' => $ilTitle,
 						'class' => $class,
 						'lang' => wfBCP47( $ilInterwikiCode ),
 						'hreflang' => wfBCP47( $ilInterwikiCode ),
