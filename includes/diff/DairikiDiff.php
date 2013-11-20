@@ -384,6 +384,8 @@ class DiffEngine {
 				if ( empty( $ymatches[$line] ) ) {
 					continue;
 				}
+
+				$k = 0;
 				$matches = $ymatches[$line];
 				reset( $matches );
 				while ( list( , $y ) = each( $matches ) ) {
@@ -394,6 +396,7 @@ class DiffEngine {
 						break;
 					}
 				}
+
 				while ( list( , $y ) = each( $matches ) ) {
 					if ( $y > $this->seq[$k - 1] ) {
 						assert( '$y < $this->seq[$k]' );
