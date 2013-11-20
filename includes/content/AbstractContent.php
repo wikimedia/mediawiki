@@ -32,7 +32,6 @@
  * @ingroup Content
  */
 abstract class AbstractContent implements Content {
-
 	/**
 	 * Name of the content model this Content object represents.
 	 * Use with CONTENT_MODEL_XXX constants
@@ -264,7 +263,7 @@ abstract class AbstractContent implements Content {
 				break;
 			}
 			// Redirects to some special pages are not permitted
-			if ( $newtitle instanceOf Title && $newtitle->isValidRedirectTarget() ) {
+			if ( $newtitle instanceof Title && $newtitle->isValidRedirectTarget() ) {
 				// The new title passes the checks, so make that our current
 				// title so that further recursion can be checked
 				$title = $newtitle;
@@ -404,7 +403,8 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * This default implementation always returns false. Subclasses may override this to supply matching logic.
+	 * This default implementation always returns false. Subclasses may override
+	 * this to supply matching logic.
 	 *
 	 * @see Content::matchMagicWord
 	 *

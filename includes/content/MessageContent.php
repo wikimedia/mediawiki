@@ -34,7 +34,6 @@
  * @ingroup Content
  */
 class MessageContent extends AbstractContent {
-
 	/**
 	 * @var Message
 	 */
@@ -130,6 +129,7 @@ class MessageContent extends AbstractContent {
 	/**
 	 * @see Content::isCountable
 	 *
+	 * @param bool $hasLinks
 	 * @return bool false
 	 */
 	public function isCountable( $hasLinks = null ) {
@@ -139,6 +139,10 @@ class MessageContent extends AbstractContent {
 	/**
 	 * @see Content::getParserOutput
 	 *
+	 * @param Title $title
+	 * @param int $revId Optional revision ID
+	 * @param ParserOptions $options
+	 * @param bool $generateHtml Wether to generate HTML
 	 * @return ParserOutput
 	 */
 	public function getParserOutput(

@@ -33,7 +33,6 @@
  * @ingroup Content
  */
 class TextContent extends AbstractContent {
-
 	public function __construct( $text, $model_id = CONTENT_MODEL_TEXT ) {
 		parent::__construct( $model_id );
 

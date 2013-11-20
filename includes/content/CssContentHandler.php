@@ -28,7 +28,6 @@
  * @ingroup Content
  */
 class CssContentHandler extends TextContentHandler {
-
 	public function __construct( $modelId = CONTENT_MODEL_CSS ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
 	}
@@ -46,6 +45,8 @@ class CssContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because CSS is english, and should be handled as such.
 	 *
+	 * @param Title $title
+	 * @param Content $content
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
@@ -57,6 +58,8 @@ class CssContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because CSS is english, and should be handled as such.
 	 *
+	 * @param Title $title
+	 * @param Content $content
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()

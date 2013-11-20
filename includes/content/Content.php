@@ -32,7 +32,6 @@
  * @ingroup Content
  */
 interface Content {
-
 	/**
 	 * @since 1.21
 	 *
@@ -363,7 +362,8 @@ interface Content {
 	 *
 	 * @param Title $target the new redirect target
 	 *
-	 * @return Content a new Content object with the updated redirect (or $this if this Content object isn't a redirect)
+	 * @return Content a new Content object with the updated redirect (or $this
+	 *   if this Content object isn't a redirect)
 	 */
 	public function updateRedirect( Title $target );
 
@@ -438,11 +438,11 @@ interface Content {
 	 * This may be used to check the content's consistency with global state. This function should
 	 * NOT write any information to the database.
 	 *
-	 * Note that this method will usually be called inside the same transaction bracket that will be used
-	 * to save the new revision.
+	 * Note that this method will usually be called inside the same transaction
+	 * bracket that will be used to save the new revision.
 	 *
-	 * Note that this method is called before any update to the page table is performed. This means that
-	 * $page may not yet know a page ID.
+	 * Note that this method is called before any update to the page table is
+	 * performed. This means that $page may not yet know a page ID.
 	 *
 	 * @since 1.21
 	 *
@@ -451,9 +451,9 @@ interface Content {
 	 * @param int $baseRevId the ID of the current revision
 	 * @param User $user
 	 *
-	 * @return Status A status object indicating whether the content was successfully prepared for saving.
-	 *                If the returned status indicates an error, a rollback will be performed and the
-	 *                transaction aborted.
+	 * @return Status A status object indicating whether the content was
+	 *   successfully prepared for saving. If the returned status indicates
+	 *   an error, a rollback will be performed and the transaction aborted.
 	 *
 	 * @see see WikiPage::doEditContent()
 	 */

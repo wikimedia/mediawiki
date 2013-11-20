@@ -28,7 +28,6 @@
  * @todo make ScriptContentHandler base class, do highlighting stuff there?
  */
 class JavaScriptContentHandler extends TextContentHandler {
-
 	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
@@ -46,6 +45,8 @@ class JavaScriptContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because JS is english, and should be handled as such.
 	 *
+	 * @param Title $title
+	 * @param Content $content
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
@@ -57,6 +58,8 @@ class JavaScriptContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because JS is english, and should be handled as such.
 	 *
+	 * @param Title $title
+	 * @param Content $content
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
