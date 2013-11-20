@@ -3018,9 +3018,9 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.
 
-			 Your friendly {{SITENAME}} notification system
+Your friendly {{SITENAME}} notification system
 
 --
 To change your email notification settings, visit
