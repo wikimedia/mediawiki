@@ -223,7 +223,7 @@ class BacklinkCache {
 				);
 			}
 
-			if ( !$startId && !$endId && $res->numRows() < $max ) {
+			if ( $select === 'all' && !$startId && !$endId && $res->numRows() < $max ) {
 				// The full results fit within the limit, so cache them
 				$this->fullResultCache[$table] = $res;
 			} else {
