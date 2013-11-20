@@ -843,7 +843,8 @@ class MappedDiff extends Diff {
 		parent::__construct( $mapped_from_lines, $mapped_to_lines );
 
 		$xi = $yi = 0;
-		for ( $i = 0; $i < count( $this->edits ); $i++ ) {
+		$editCount = count( $this->edits );
+		for ( $i = 0; $i < $editCount; $i++ ) {
 			$orig = &$this->edits[$i]->orig;
 			if ( is_array( $orig ) ) {
 				$orig = array_slice( $from_lines, $xi, count( $orig ) );
