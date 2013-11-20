@@ -669,7 +669,6 @@ class Diff {
 	function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
 		$this->edits = $eng->diff( $from_lines, $to_lines );
-		// $this->check($from_lines, $to_lines);
 	}
 
 	/**
@@ -764,43 +763,6 @@ class Diff {
 		}
 
 		return $lines;
-	}
-
-	/**
-	 * Check a Diff for validity.
-	 *
-	 * This is here only for debugging purposes.
-	 * @param $from_lines
-	 * @param $to_lines
-	 */
-	private function check( $from_lines, $to_lines ) {
-		wfProfileIn( __METHOD__ );
-		if ( serialize( $from_lines ) != serialize( $this->orig() ) ) {
-			trigger_error( "Reconstructed original doesn't match", E_USER_ERROR );
-		}
-		if ( serialize( $to_lines ) != serialize( $this->closing() ) ) {
-			trigger_error( "Reconstructed closing doesn't match", E_USER_ERROR );
-		}
-
-		$rev = $this->reverse();
-		if ( serialize( $to_lines ) != serialize( $rev->orig() ) ) {
-			trigger_error( "Reversed original doesn't match", E_USER_ERROR );
-		}
-		if ( serialize( $from_lines ) != serialize( $rev->closing() ) ) {
-			trigger_error( "Reversed closing doesn't match", E_USER_ERROR );
-		}
-
-		$prevtype = 'none';
-		foreach ( $this->edits as $edit ) {
-			if ( $prevtype == $edit->type ) {
-				trigger_error( 'Edit sequence is non-optimal', E_USER_ERROR );
-			}
-			$prevtype = $edit->type;
-		}
-
-		$lcs = $this->lcs();
-		trigger_error( 'Diff okay: LCS = ' . $lcs, E_USER_NOTICE );
-		wfProfileOut( __METHOD__ );
 	}
 }
 
