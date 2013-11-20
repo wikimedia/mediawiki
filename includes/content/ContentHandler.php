@@ -278,9 +278,9 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * @var Array A Cache of ContentHandler instances by model id
+	 * @var array A Cache of ContentHandler instances by model id
 	 */
-	static $handlers;
+	protected static $handlers;
 
 	/**
 	 * Returns the ContentHandler singleton for the given model ID. Use the
