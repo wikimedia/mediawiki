@@ -148,8 +148,8 @@ div.vectorTabs {
 			/* @noflip */
 			float: left;
 			line-height: 1.125em;
-			/* For IE6, overridden later to display:block by modern browsers */
-			display: inline-block;
+			display: block;
+			*display: inline-block;
 			height: 100%;
 			margin: 0;
 			padding: 0;
@@ -159,14 +159,10 @@ div.vectorTabs {
 			background-repeat: repeat-x;
 			white-space: nowrap;
 		}
-
-		/* IGNORED BY IE6 which doesn't support child selector */
-		> li {
-			display: block;
-		}
 	}
 
 	li {
+
 		&.new {
 			a,
 			a:visited{
@@ -191,19 +187,14 @@ div.vectorTabs {
 		}
 
 		a {
-			/* For IE6, overridden later to display:block by modern browsers */
-			display: inline-block;
+			display: block;
+			*display: inline-block;
 			height: 1.9em;
 			padding-left: 0.5em;
 			padding-right: 0.5em;
 			color: @menu-link-color;
 			cursor: pointer;
 			font-size: 0.8em;
-		}
-
-		/* Ignored by IE6 which doesn't support child selector */
-		> a {
-			display: block;
 		}
 	}
 
@@ -214,16 +205,14 @@ div.vectorTabs {
 		background-repeat: no-repeat;
 
 		a  {
-			/* For IE6, overridden later to display:block by modern browsers */
-			display: inline-block;
+			display: block;
+			*display: inline-block;
 			padding-top: 1.25em;
 		}
 
-		/* Ignored by IE6 which doesn't support child selector */
 		> a {
 			/* @noflip */
 			float: left;
-			display: block;
 		}
 	}
 }
