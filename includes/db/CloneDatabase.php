@@ -25,7 +25,6 @@
  */
 
 class CloneDatabase {
-
 	/**
 	 * Table prefix for cloning
 	 * @var String
@@ -66,8 +65,8 @@ class CloneDatabase {
 	 * @param $dropCurrentTables bool
 	 */
 	public function __construct( DatabaseBase $db, array $tablesToClone,
-		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true )
-	{
+		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
+	) {
 		$this->db = $db;
 		$this->tablesToClone = $tablesToClone;
 		$this->newTablePrefix = $newTablePrefix;

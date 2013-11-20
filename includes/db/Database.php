@@ -208,7 +208,8 @@ interface DatabaseType {
  * Interface for classes that implement or wrap DatabaseBase
  * @ingroup Database
  */
-interface IDatabase {}
+interface IDatabase {
+}
 
 /**
  * Database abstraction object
@@ -626,7 +627,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Clear a flag for this connection
 	 *
-	 * @param $flag: same as setFlag()'s $flag param
+	 * @param $flag : same as setFlag()'s $flag param
 	 */
 	public function clearFlag( $flag ) {
 		global $wgDebugDBTransactions;
@@ -639,7 +640,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Returns a boolean whether the flag $flag is set for this connection
 	 *
-	 * @param $flag: same as setFlag()'s $flag param
+	 * @param $flag : same as setFlag()'s $flag param
 	 * @return Boolean
 	 */
 	public function getFlag( $flag ) {
@@ -764,7 +765,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Given a DB type, construct the name of the appropriate child class of
 	 * DatabaseBase. This is designed to replace all of the manual stuff like:
-	 *	$class = 'Database' . ucfirst( strtolower( $dbType ) );
+	 *    $class = 'Database' . ucfirst( strtolower( $dbType ) );
 	 * as well as validate against the canonical list of DB types we have
 	 *
 	 * This factory function is mostly useful for when you need to connect to a
@@ -784,11 +785,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	final public static function factory( $dbType, $p = array() ) {
 		$canonicalDBTypes = array(
-			'mysql'    => array( 'mysqli', 'mysql' ),
+			'mysql' => array( 'mysqli', 'mysql' ),
 			'postgres' => array(),
-			'sqlite'   => array(),
-			'oracle'   => array(),
-			'mssql'    => array(),
+			'sqlite' => array(),
+			'oracle' => array(),
+			'mssql' => array(),
 		);
 
 		$driver = false;
@@ -829,6 +830,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				'tablePrefix' => isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
 				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false
 			);
+
 			return new $class( $params );
 		} else {
 			return null;
@@ -852,6 +854,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->mPHPError ) {
 			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->mPHPError );
 			$error = preg_replace( '!^.*?:\s?(.*)$!', '$1', $error );
+
 			return $error;
 		} else {
 			return false;
@@ -891,6 +894,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 			$ret = $this->closeConnection();
 			$this->mConn = false;
+
 			return $ret;
 		} else {
 			return true;
@@ -987,8 +991,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		# If DBO_TRX is set, start a transaction
 		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' )
-		{
+			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK'
+		) {
 			# Avoid establishing transactions for SHOW and SET statements too -
 			# that would delay transaction initializations to once connection
 			# is really used by application
@@ -1362,6 +1366,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				: $options['HAVING'];
 			$sql .= ' HAVING ' . $having;
 		}
+
 		return $sql;
 	}
 
@@ -1378,8 +1383,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$ob = is_array( $options['ORDER BY'] )
 				? implode( ',', $options['ORDER BY'] )
 				: $options['ORDER BY'];
+
 			return ' ORDER BY ' . $ob;
 		}
+
 		return '';
 	}
 
@@ -1546,8 +1553,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @see DatabaseBase::select()
 	 */
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array() )
-	{
+		$options = array(), $join_conds = array()
+	) {
 		if ( is_array( $vars ) ) {
 			$vars = implode( ',', $this->fieldNamesWithAlias( $vars ) );
 		}
@@ -1611,8 +1618,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return object|bool
 	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
-		$options = array(), $join_conds = array() )
-	{
+		$options = array(), $join_conds = array()
+	) {
 		$options = (array)$options;
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
@@ -1651,8 +1658,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return Integer: row count
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = array() )
-	{
+		$fname = __METHOD__, $options = array()
+	) {
 		$rows = 0;
 		$res = $this->select( $table, array( 'rowcount' => 'COUNT(*)' ), $conds, $fname, $options );
 
@@ -1905,7 +1912,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param $table  String name of the table to UPDATE. This will be passed through
 	 *                DatabaseBase::tableName().
 	 *
-	 * @param array $values  An array of values to SET. For each array element,
+	 * @param array $values An array of values to SET. For each array element,
 	 *                the key gives the field name, and the value gives the data
 	 *                to set that field to. The data will be quoted by
 	 *                DatabaseBase::addQuotes().
@@ -2099,6 +2106,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$delim, $table, $field, $conds = '', $join_conds = array()
 	) {
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
+
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
 	}
 
@@ -2116,6 +2124,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# if your database engine supports a concept similar to MySQL's
 		# databases you may as well.
 		$this->mDBname = $db;
+
 		return true;
 	}
 
@@ -2285,6 +2294,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 			$retval[] = $this->tableNameWithAlias( $table, $alias );
 		}
+
 		return $retval;
 	}
 
@@ -2318,6 +2328,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 			$retval[] = $this->fieldNameWithAlias( $field, $alias );
 		}
+
 		return $retval;
 	}
 
@@ -2360,7 +2371,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				}
 
 				$retJOIN[] = $tableClause;
-			// Is there an INDEX clause for this table?
+	 		// Is there an INDEX clause for this table?
 			} elseif ( isset( $use_index[$alias] ) ) {
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
 				$tableClause .= ' ' . $this->useIndexClause(
@@ -2751,8 +2762,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @throws DBUnexpectedError
 	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
-		$fname = __METHOD__ )
-	{
+		$fname = __METHOD__
+	) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this,
 				'DatabaseBase::deleteJoin() called with empty $conds' );
@@ -2863,8 +2874,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array() )
-	{
+		$insertOptions = array(), $selectOptions = array()
+	) {
 		$destTable = $this->tableName( $destTable );
 
 		if ( is_array( $insertOptions ) ) {
@@ -2923,6 +2934,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBUnexpectedError( $this, "Invalid non-numeric limit passed to limitResult()\n" );
 		}
+
 		return "$sql LIMIT "
 			. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
 			. "{$limit} ";
@@ -2947,6 +2959,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	public function unionQueries( $sqls, $all ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
+
 		return '(' . implode( $glue, $sqls ) . ')';
 	}
 
@@ -2963,6 +2976,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, LIST_AND );
 		}
+
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
@@ -3083,9 +3097,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $tries <= 0 ) {
 			$this->rollback( __METHOD__ );
 			$this->reportQueryError( $error, $errno, $sql, $fname );
+
 			return false;
 		} else {
 			$this->commit( __METHOD__ );
+
 			return $retVal;
 		}
 	}
@@ -3110,15 +3126,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			if ( $wait > $timeout * 1e6 ) {
 				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
 				wfProfileOut( __METHOD__ );
+
 				return -1;
 			} elseif ( $wait > 0 ) {
 				wfDebug( "Fake slave waiting $wait us\n" );
 				usleep( $wait );
 				wfProfileOut( __METHOD__ );
+
 				return 1;
 			} else {
 				wfDebug( "Fake slave up to date ($wait us)\n" );
 				wfProfileOut( __METHOD__ );
+
 				return 0;
 			}
 		}
@@ -3138,6 +3157,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$pos = new MySQLMasterPos( 'fake', microtime( true ) - $this->mFakeSlaveLag );
 			wfDebug( __METHOD__ . ": fake slave pos = $pos\n" );
+
 			return $pos;
 		} else {
 			# Stub
@@ -3216,7 +3236,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
 					call_user_func( $phpCallback );
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
-				} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {
+				}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
 
@@ -3239,7 +3260,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				try {
 					list( $phpCallback ) = $callback;
 					call_user_func( $phpCallback );
-				} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {
+				}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
 
@@ -3511,8 +3533,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * For caching purposes the list of all views should be stored in
 	 * $this->allViews. The process cache can be cleared with clearViewsCache()
 	 *
-	 * @param string $prefix   Only show VIEWs with this prefix, eg. unit_test_
-	 * @param string $fname    Name of calling function
+	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
+	 * @param string $fname Name of calling function
 	 * @throws MWException
 	 * @since 1.22
 	 */
@@ -3696,8 +3718,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		try {
 			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname, $inputCallback );
-		}
-		catch ( MWException $e ) {
+		} catch ( MWException $e ) {
 			fclose( $fp );
 			throw $e;
 		}
@@ -3751,8 +3772,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return bool|string
 	 */
 	public function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = __METHOD__, $inputCallback = false )
-	{
+		$fname = __METHOD__, $inputCallback = false
+	) {
 		$cmd = '';
 
 		while ( !feof( $fp ) ) {
@@ -3790,6 +3811,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 					if ( false === $res ) {
 						$err = $this->lastError();
+
 						return "Query \"{$cmd}\" failed with error code \"$err\".\n";
 					}
 				}
@@ -3815,6 +3837,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -3845,6 +3868,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			// replace /*$var*/
 			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ), $ins );
 		}
+
 		return $ins;
 	}
 
@@ -3998,6 +4022,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $this->cascadingDeletes() ) {
 			$sql .= " CASCADE";
 		}
+
 		return $this->query( $sql, $fName );
 	}
 
@@ -4078,7 +4103,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$callers = array();
 			foreach ( $this->mTrxIdleCallbacks as $callbackInfo ) {
 				$callers[] = $callbackInfo[1];
-
 			}
 			$callers = implode( ', ', $callers );
 			trigger_error( "DB transaction callbacks still pending (from $callers)." );

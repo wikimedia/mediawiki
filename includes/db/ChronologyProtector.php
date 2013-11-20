@@ -83,6 +83,7 @@ class ChronologyProtector {
 		$info = $lb->parentInfo();
 		if ( !$db || !$db->doneWrites() ) {
 			wfDebug( __METHOD__ . ": LB {$info['id']}, no writes done\n" );
+
 			return;
 		}
 		$pos = $db->getMasterPos();

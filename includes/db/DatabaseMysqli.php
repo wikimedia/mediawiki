@@ -29,7 +29,6 @@
  * @see Database
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
-
 	/**
 	 * @param $sql string
 	 * @return resource
@@ -40,6 +39,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		} else {
 			$ret = $this->mConn->query( $sql, MYSQLI_USE_RESULT );
 		}
+
 		return $ret;
 	}
 
@@ -70,8 +70,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				usleep( 1000 );
 			}
 			if ( $mysqli->real_connect( $realServer, $this->mUser,
-				$this->mPassword, $this->mDBname, null, null, $connFlags ) )
-			{
+				$this->mPassword, $this->mDBname, null, null, $connFlags )
+			) {
 				return $mysqli;
 			}
 		}
@@ -128,6 +128,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
+
 		return $this->mConn->select_db( $db );
 	}
 
@@ -140,6 +141,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	protected function mysqlFreeResult( $res ) {
 		$res->free_result();
+
 		return true;
 	}
 
@@ -148,6 +150,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		if ( $object === null ) {
 			return false;
 		}
+
 		return $object;
 	}
 
@@ -156,6 +159,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		if ( $array === null ) {
 			return false;
 		}
+
 		return $array;
 	}
 
@@ -174,11 +178,13 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$field->unique_key = $field->flags & MYSQLI_UNIQUE_KEY_FLAG;
 		$field->multiple_key = $field->flags & MYSQLI_MULTIPLE_KEY_FLAG;
 		$field->binary = $field->flags & MYSQLI_BINARY_FLAG;
+
 		return $field;
 	}
 
 	protected function mysqlFieldName( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
+
 		return $field->name;
 	}
 
@@ -201,5 +207,4 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlPing() {
 		return $this->mConn->ping();
 	}
-
 }

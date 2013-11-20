@@ -32,7 +32,6 @@
  */
 
 class ORMRow implements IORMRow {
-
 	/**
 	 * The fields of the object.
 	 * field name (w/o prefix) => value
@@ -130,8 +129,10 @@ class ORMRow implements IORMRow {
 
 			if ( $result !== false ) {
 				$this->setFields( $this->table->getFieldsFromDBResult( $result ), $override );
+
 				return true;
 			}
+
 			return false;
 		}
 
@@ -233,7 +234,7 @@ class ORMRow implements IORMRow {
 	 */
 	public function hasIdField() {
 		return $this->hasField( 'id' )
-			&& !is_null( $this->getField( 'id' ) );
+		&& !is_null( $this->getField( 'id' ) );
 	}
 
 	/**
@@ -252,7 +253,7 @@ class ORMRow implements IORMRow {
 				$value = $this->fields[$name];
 
 				// Skip null id fields so that the DBMS can set the default.
-				if ( $name === 'id' && is_null ( $value ) ) {
+				if ( $name === 'id' && is_null( $value ) ) {
 					continue;
 				}
 
@@ -552,7 +553,6 @@ class ORMRow implements IORMRow {
 	 * @param array|string|null $summaryFields
 	 */
 	public function loadSummaryFields( $summaryFields = null ) {
-
 	}
 
 	/**
@@ -590,5 +590,4 @@ class ORMRow implements IORMRow {
 	public function getTable() {
 		return $this->table;
 	}
-
 }

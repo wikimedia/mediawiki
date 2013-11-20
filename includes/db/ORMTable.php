@@ -29,7 +29,6 @@
  */
 
 class ORMTable extends DBAccessBase implements IORMTable {
-
 	/**
 	 * Cache for instances, used by the singleton method.
 	 *
@@ -201,8 +200,10 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$res = $this->rawSelect( $fields, $conditions, $options, $functionName );
+
 		return new ORMResult( $this, $res );
 	}
 
@@ -221,7 +222,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode).
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$result = $this->selectFields( $fields, $conditions, $options, false, $functionName );
 
 		$objects = array();
@@ -239,19 +241,19 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param null|string|array $fields
-	 * @param array             $conditions
-	 * @param array             $options
-	 * @param null|string       $functionName
+	 * @param array $conditions
+	 * @param array $options
+	 * @param null|string $functionName
 	 *
 	 * @return ResultWrapper
 	 * @throws DBQueryError if the quey failed (even if the database was in ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		if ( is_null( $fields ) ) {
 			$fields = array_keys( $this->getFields() );
-		}
-		else {
+		} else {
 			$fields = (array)$fields;
 		}
 
@@ -313,7 +315,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName = null ) {
+		array $options = array(), $collapse = true, $functionName = null
+	) {
 		$objects = array();
 
 		$result = $this->rawSelect( $fields, $conditions, $options, $functionName );
@@ -325,8 +328,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		if ( $collapse ) {
 			if ( count( $fields ) === 1 ) {
 				$objects = array_map( 'array_shift', $objects );
-			}
-			elseif ( count( $fields ) === 2 ) {
+			} elseif ( count( $fields ) === 2 ) {
 				$o = array();
 
 				foreach ( $objects as $object ) {
@@ -354,7 +356,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return IORMRow|bool False on failure
 	 */
 	public function selectRow( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$options['LIMIT'] = 1;
 
 		$objects = $this->select( $fields, $conditions, $options, $functionName );
@@ -376,7 +379,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
-								  array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$dbr = $this->getReadDbConnection();
 
 		$result = $dbr->selectRow(
@@ -388,6 +392,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		);
 
 		$this->releaseConnection( $dbr );
+
 		return $result;
 	}
 
@@ -409,7 +414,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return mixed|array|bool False on failure
 	 */
 	public function selectFieldsRow( $fields = null, array $conditions = array(),
-									 array $options = array(), $collapse = true, $functionName = null ) {
+		array $options = array(), $collapse = true, $functionName = null
+	) {
 		$options['LIMIT'] = 1;
 
 		$objects = $this->selectFields( $fields, $conditions, $options, $collapse, $functionName );
@@ -491,6 +497,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 
 		$this->releaseConnection( $dbw );
+
 		return $result;
 	}
 
@@ -665,6 +672,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		) !== false; // DatabaseBase::update does not always return true for success as documented...
 
 		$this->releaseConnection( $dbw );
+
 		return $result;
 	}
 
@@ -711,8 +719,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 				if ( is_array( $value ) ) {
 					$field = $value[0];
 					$value = $value[1];
-				}
-				else {
+				} else {
 					$value = explode( ' ', $value, 2 );
 					$value[0] = $this->getPrefixedField( $value[0] );
 					$prefixedValues[] = implode( ' ', $value );
@@ -1103,5 +1110,4 @@ class ORMTable extends DBAccessBase implements IORMTable {
 
 		return $success;
 	}
-
 }
