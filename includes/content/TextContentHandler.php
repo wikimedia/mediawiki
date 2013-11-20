@@ -29,8 +29,9 @@
  * @ingroup Content
  */
 class TextContentHandler extends ContentHandler {
-
-	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = array( CONTENT_FORMAT_TEXT ) ) {
+	public function __construct( $modelId = CONTENT_MODEL_TEXT,
+		$formats = array( CONTENT_FORMAT_TEXT )
+	) {
 		parent::__construct( $modelId, $formats );
 	}
 

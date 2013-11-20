@@ -31,7 +31,6 @@
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
-
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}
@@ -196,7 +195,7 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @see   Content::updateRedirect()
+	 * @see Content::updateRedirect()
 	 *
 	 * This implementation replaces the first link on the page with the given new target
 	 * if this Content object is a redirect. Otherwise, this method returns $this.
@@ -205,7 +204,8 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param Title $target
 	 *
-	 * @return Content a new Content object with the updated redirect (or $this if this Content object isn't a redirect)
+	 * @return Content a new Content object with the updated redirect (or $this
+	 *   if this Content object isn't a redirect)
 	 */
 	public function updateRedirect( Title $target ) {
 		if ( !$this->isRedirect() ) {

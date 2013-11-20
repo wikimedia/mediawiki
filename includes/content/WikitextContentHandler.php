@@ -29,7 +29,6 @@
  * @ingroup Content
  */
 class WikitextContentHandler extends TextContentHandler {
-
 	public function __construct( $modelId = CONTENT_MODEL_WIKITEXT ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_WIKITEXT ) );
 	}
@@ -72,7 +71,9 @@ class WikitextContentHandler extends TextContentHandler {
 		}
 
 		$mwRedir = MagicWord::get( 'redirect' );
-		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $optionalColon . $destination->getFullText() . ']]';
+		$redirectText = $mwRedir->getSynonym( 0 ) .
+			' [[' . $optionalColon . $destination->getFullText() . ']]';
+
 		if ( $text != '' ) {
 			$redirectText .= "\n" . $text;
 		}

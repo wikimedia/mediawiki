@@ -31,7 +31,6 @@
  * @ingroup Content
  */
 class MWContentSerializationException extends MWException {
-
 }
 
 /**
@@ -54,7 +53,6 @@ class MWContentSerializationException extends MWException {
  * @ingroup Content
  */
 abstract class ContentHandler {
-
 	/**
 	 * Switch for enabling deprecation warnings. Used by ContentHandler::deprecated()
 	 * and ContentHandler::runLegacyHooks().
@@ -333,7 +331,8 @@ abstract class ContentHandler {
 			$handler = new $class( $modelId );
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "$class from \$wgContentHandlers is not compatible with ContentHandler" );
+				throw new MWException( "$class from \$wgContentHandlers is not " .
+					"compatible with ContentHandler" );
 			}
 		}
 
@@ -603,9 +602,11 @@ abstract class ContentHandler {
 	/**
 	 * Get the language in which the content of the given page is written.
 	 *
-	 * This default implementation just returns $wgContLang (except for pages in the MediaWiki namespace)
+	 * This default implementation just returns $wgContLang (except for pages
+	 * in the MediaWiki namespace)
 	 *
-	 * Note that the pages language is not cacheable, since it may in some cases depend on user settings.
+	 * Note that the pages language is not cacheable, since it may in some
+	 * cases depend on user settings.
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
@@ -1086,7 +1087,8 @@ abstract class ContentHandler {
 
 			wfRestoreWarnings();
 
-			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " . implode( ', ', $handlerInfo ), 2 );
+			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " .
+				implode( ', ', $handlerInfo ), 2 );
 		}
 
 		// convert Content objects to text
