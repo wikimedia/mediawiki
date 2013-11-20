@@ -99,6 +99,7 @@ class DerivativeContext extends ContextSource {
 	 * Set the Title object
 	 *
 	 * @param Title $t
+	 * @throws MWException
 	 */
 	public function setTitle( $t ) {
 		if ( $t !== null && !$t instanceof Title ) {
@@ -298,6 +299,7 @@ class DerivativeContext extends ContextSource {
 	 */
 	public function msg() {
 		$args = func_get_args();
+
 		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
 }
