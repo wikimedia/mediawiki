@@ -35,7 +35,7 @@ abstract class DiffOp {
 	public $orig;
 	public $closing;
 
-	public abstract function reverse();
+	abstract public function reverse();
 
 	/**
 	 * @return int
