@@ -29,7 +29,6 @@
  * @ingroup DifferenceEngine
  */
 class ArrayDiffFormatter extends DiffFormatter {
-
 	/**
 	 * @param $diff
 	 * @return array
@@ -74,6 +73,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 					$newline += count( $edit->orig );
 			}
 		}
+
 		return $retval;
 	}
 }

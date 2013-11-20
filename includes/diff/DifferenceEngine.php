@@ -34,33 +34,47 @@ define( 'MW_DIFF_VERSION', '1.11a' );
  * @ingroup DifferenceEngine
  */
 class DifferenceEngine extends ContextSource {
+	/** @var int */
 	public $mOldid;
+
+	/** @var int */
 	public $mNewid;
+
 	private $mOldTags;
 	private $mNewTags;
 
-	/**
-	 * @var Content
-	 */
+	/** @var Content */
 	public $mOldContent;
+
+	/** @var Content */
 	public $mNewContent;
+
+	/** @var Language */
 	protected $mDiffLang;
 
-	/**
-	 * @var Title
-	 */
+	/** @var  Title */
 	public $mOldPage;
+
+	/** @var  Title */
 	public $mNewPage;
 
-	/**
-	 * @var Revision
-	 */
+	/** @var Revision */
 	public $mOldRev;
+
+	/** @var  Revision */
 	public $mNewRev;
-	private $mRevisionsIdsLoaded = false; // Have the revisions IDs been loaded
-	public $mRevisionsLoaded = false; // Have the revisions been loaded
-	public $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
-	public $mCacheHit = false; // Was the diff fetched from cache?
+
+	/** @var bool Have the revisions IDs been loaded */
+	private $mRevisionsIdsLoaded = false;
+
+	/** @var bool Have the revisions been loaded */
+	public $mRevisionsLoaded = false;
+
+	/** @var int How many text blobs have been loaded, 0, 1 or 2? */
+	public $mTextLoaded = 0;
+
+	/** @var bool Was the diff fetched from cache? */
+	public $mCacheHit = false;
 
 	/**
 	 * Set this to true to add debug info to the HTML output.
@@ -69,14 +83,16 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public $enableDebugComment = false;
 
-	// If true, line X is not displayed when X is 1, for example to increase
-	// readability and conserve space with many small diffs.
+	/** @var bool  If true, line X is not displayed when X is 1, for example
+	 *    to increase readability and conserve space with many small diffs.
+	 */
 	protected $mReducedLineNumbers = false;
 
-	// Link to action=markpatrolled
+	/** @var string Link to action=markpatrolled  */
 	protected $mMarkPatrolledLink = null;
 
-	protected $unhide = false; # show rev_deleted content if allowed
+	/** @var bool Show rev_deleted content if allowed */
+	protected $unhide = false;
 	/**#@-*/
 
 	/**
@@ -118,6 +134,7 @@ class DifferenceEngine extends ContextSource {
 			# Default language in which the diff text is written.
 			$this->mDiffLang = $this->getTitle()->getPageLanguage();
 		}
+
 		return $this->mDiffLang;
 	}
 
@@ -133,6 +150,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	function getOldid() {
 		$this->loadRevisionIds();
+
 		return $this->mOldid;
 	}
 
@@ -141,6 +159,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	function getNewid() {
 		$this->loadRevisionIds();
+
 		return $this->mNewid;
 	}
 
@@ -160,12 +179,14 @@ class DifferenceEngine extends ContextSource {
 			if ( $row ) {
 				$rev = Revision::newFromArchiveRow( $row );
 				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
+
 				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( array(
 					'target' => $title->getPrefixedText(),
 					'timestamp' => $rev->getTimestamp()
-				));
+				) );
 			}
 		}
+
 		return false;
 	}
 
@@ -215,6 +236,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->loadRevisionData() ) {
 			$this->showMissingRevision();
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -283,7 +305,8 @@ class DifferenceEngine extends ContextSource {
 							'href' => $this->mNewPage->getLocalURL( array(
 								'action' => 'edit',
 								'undoafter' => $this->mOldid,
-								'undo' => $this->mNewid ) ),
+								'undo' => $this->mNewid
+							) ),
 							'title' => Linker::titleAttrib( 'undo' )
 						),
 						$this->msg( 'editundo' )->text()
@@ -316,9 +339,9 @@ class DifferenceEngine extends ContextSource {
 
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
-					Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
+				Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
 				'<div id="mw-diff-otitle3">' . $oldminor .
-					Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
+				Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
 				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
@@ -370,9 +393,9 @@ class DifferenceEngine extends ContextSource {
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
-				" $rollback</div>" .
+			" $rollback</div>" .
 			'<div id="mw-diff-ntitle3">' . $newminor .
-				Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
+			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
@@ -503,6 +526,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $link !== '' ) {
 			$link = '&#160;&#160;&#160;' . $link . ' ';
 		}
+
 		return $link;
 	}
 
@@ -589,6 +613,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$parserOutput = $page->getParserOutput( $parserOptions, $rev->getId() );
+
 		return $parserOutput;
 	}
 
@@ -606,10 +631,12 @@ class DifferenceEngine extends ContextSource {
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
 			$this->showMissingRevision();
+
 			return false;
 		} else {
 			$this->showDiffStyle();
 			$this->getOutput()->addHTML( $diff );
+
 			return true;
 		}
 	}
@@ -658,23 +685,27 @@ class DifferenceEngine extends ContextSource {
 		// Check if the diff should be hidden from this user
 		if ( !$this->loadRevisionData() ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		} elseif ( $this->mOldRev &&
 			!$this->mOldRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		} elseif ( $this->mNewRev &&
 			!$this->mNewRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 		// Short-circuit
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
-			&& $this->mOldRev->getID() == $this->mNewRev->getID() ) )
-		{
+			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
+		) {
 			wfProfileOut( __METHOD__ );
+
 			return '';
 		}
 		// Cacheable?
@@ -690,6 +721,7 @@ class DifferenceEngine extends ContextSource {
 					$difftext = $this->localiseLineNumbers( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
 					wfProfileOut( __METHOD__ );
+
 					return $difftext;
 				}
 			} // don't try to load but save the result
@@ -699,6 +731,7 @@ class DifferenceEngine extends ContextSource {
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
@@ -718,6 +751,7 @@ class DifferenceEngine extends ContextSource {
 			$difftext = $this->localiseLineNumbers( $difftext );
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $difftext;
 	}
 
@@ -757,8 +791,8 @@ class DifferenceEngine extends ContextSource {
 	 */
 	function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
-			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; "
-					. "override generateContentDiffBody to fix this." );
+			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; " .
+				"override generateContentDiffBody to fix this." );
 		}
 
 		if ( !( $new instanceof TextContent ) ) {
@@ -806,9 +840,10 @@ class DifferenceEngine extends ContextSource {
 		if ( $wgExternalDiffEngine == 'wikidiff' && function_exists( 'wikidiff_do_diff' ) ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
-			$otext = htmlspecialchars ( $wgContLang->segmentForDiff( $otext ) );
-			$ntext = htmlspecialchars ( $wgContLang->segmentForDiff( $ntext ) );
+			$otext = htmlspecialchars( $wgContLang->segmentForDiff( $otext ) );
+			$ntext = htmlspecialchars( $wgContLang->segmentForDiff( $ntext ) );
 			wfProfileOut( __METHOD__ );
+
 			return $wgContLang->unsegmentForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
 			$this->debug( 'wikidiff1' );
 		}
@@ -821,6 +856,7 @@ class DifferenceEngine extends ContextSource {
 			$text .= $this->debug( 'wikidiff2' );
 			wfProfileOut( 'wikidiff2_do_diff' );
 			wfProfileOut( __METHOD__ );
+
 			return $text;
 		}
 		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
@@ -832,11 +868,13 @@ class DifferenceEngine extends ContextSource {
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
 				wfProfileOut( __METHOD__ );
+
 				return false;
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
 				wfProfileOut( __METHOD__ );
+
 				return false;
 			}
 			fwrite( $tempFile1, $otext );
@@ -851,6 +889,7 @@ class DifferenceEngine extends ContextSource {
 			unlink( $tempName1 );
 			unlink( $tempName2 );
 			wfProfileOut( __METHOD__ );
+
 			return $difftext;
 		}
 
@@ -860,7 +899,8 @@ class DifferenceEngine extends ContextSource {
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
 		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
-		wfProfileOut( __METHOD__ );
+			wfProfileOut( __METHOD__ );
+
 		return $difftext;
 	}
 
@@ -868,7 +908,7 @@ class DifferenceEngine extends ContextSource {
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
 	 *
-	 * @param String $generator: What diff engine was used
+	 * @param String $generator : What diff engine was used
 	 *
 	 * @return string
 	 */
@@ -882,13 +922,10 @@ class DifferenceEngine extends ContextSource {
 			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );
-		return "<!-- diff generator: "
-			. implode( " ",
-				array_map(
-					"htmlspecialchars",
-				$data )
-			)
-			. " -->\n";
+
+		return "<!-- diff generator: " .
+			implode( " ",	array_map( "htmlspecialchars", $data ) ) .
+			" -->\n";
 	}
 
 	/**
@@ -899,14 +936,18 @@ class DifferenceEngine extends ContextSource {
 	 * @return mixed
 	 */
 	function localiseLineNumbers( $text ) {
-		return preg_replace_callback( '/<!--LINE (\d+)-->/',
-		array( &$this, 'localiseLineNumbersCb' ), $text );
+		return preg_replace_callback(
+			'/<!--LINE (\d+)-->/',
+			array( &$this, 'localiseLineNumbersCb' ),
+			$text
+		);
 	}
 
 	function localiseLineNumbersCb( $matches ) {
 		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
 			return '';
 		}
+
 		return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
 	}
 
@@ -934,8 +975,10 @@ class DifferenceEngine extends ContextSource {
 		if ( $nEdits > 0 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
 			$numUsers = $this->mNewPage->countAuthorsBetween( $oldRev, $newRev, $limit );
+
 			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
 		}
+
 		return ''; // nothing
 	}
 
@@ -953,6 +996,7 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$msg = 'diff-multi';
 		}
+
 		return wfMessage( $msg )->numParams( $numEdits, $numUsers )->parse();
 	}
 
@@ -1015,11 +1059,11 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Add the header to a diff body
 	 *
-	 * @param String $diff: Diff body
-	 * @param String $otitle: Old revision header
-	 * @param String $ntitle: New revision header
-	 * @param String $multi: Notice telling user that there are intermediate revisions between the ones being compared
-	 * @param String $notice: Other notices, e.g. that user is viewing deleted content
+	 * @param string $diff Diff body
+	 * @param string $otitle Old revision header
+	 * @param string $ntitle New revision header
+	 * @param string $multi Notice telling user that there are intermediate revisions between the ones being compared
+	 * @param string $notice Other notices, e.g. that user is viewing deleted content
 	 *
 	 * @return string
 	 */
