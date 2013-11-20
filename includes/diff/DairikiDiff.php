@@ -870,7 +870,7 @@ class MappedDiff extends Diff {
  * @private
  * @ingroup DifferenceEngine
  */
-class HWLDF_WordAccumulator {
+class HWLDFWordAccumulator {
 	private $lines = array();
 	private $line = '';
 	private $group = '';
@@ -1011,7 +1011,7 @@ class WordLevelDiff extends MappedDiff {
 	 */
 	public function orig() {
 		wfProfileIn( __METHOD__ );
-		$orig = new HWLDF_WordAccumulator;
+		$orig = new HWLDFWordAccumulator;
 
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
@@ -1031,7 +1031,7 @@ class WordLevelDiff extends MappedDiff {
 	 */
 	public function closing() {
 		wfProfileIn( __METHOD__ );
-		$closing = new HWLDF_WordAccumulator;
+		$closing = new HWLDFWordAccumulator;
 
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
