@@ -415,6 +415,7 @@ class ImagePage extends Article {
 				$params['width'] = $width;
 				$params['height'] = $height;
 				$thumbnail = $this->displayImg->transform( $params );
+				Linker::processResponsiveImages( $this->displayImg, $thumbnail, $params );
 
 				$anchorclose = Html::rawElement( 'div', array( 'class' => 'mw-filepage-resolutioninfo' ), $msgsmall );
 
