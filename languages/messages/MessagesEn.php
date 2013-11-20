@@ -1098,7 +1098,7 @@ The administrator who locked it offered this explanation: "$3".',
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                     => 'Welcome, $1!',
 'welcomecreation-msg'             => 'Your account has been created.
-Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
+You can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish.',
 'yourname'                        => 'Username:',
 'userlogin-yourname'              => 'Username',
 'userlogin-yourname-ph'           => 'Enter your username',
