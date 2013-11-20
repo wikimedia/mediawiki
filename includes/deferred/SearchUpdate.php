@@ -29,22 +29,13 @@
  * @ingroup Search
  */
 class SearchUpdate implements DeferrableUpdate {
-	/**
-	 * Page id being updated
-	 * @var int
-	 */
+	/** @var int Page id being updated */
 	private $id = 0;
 
-	/**
-	 * Title we're updating
-	 * @var Title
-	 */
+	/** @var Title Title we're updating */
 	private $title;
 
-	/**
-	 * Content of the page (not text)
-	 * @var Content|false
-	 */
+	/** @var Content|false Content of the page (not text) */
 	private $content;
 
 	/**
@@ -52,7 +43,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 *
 	 * @param int $id Page id to update
 	 * @param Title|string $title Title of page to update
-	 * @param Content|string|false $c Content of the page to update.
+	 * @param Content|string|bool $c Content of the page to update. Default: false.
 	 *  If a Content object, text will be gotten from it. String is for back-compat.
 	 *  Passing false tells the backend to just update the title, not the content
 	 */

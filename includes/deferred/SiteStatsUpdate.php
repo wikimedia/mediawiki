@@ -22,11 +22,22 @@
  * Class for handling updates to the site_stats table
  */
 class SiteStatsUpdate implements DeferrableUpdate {
+	/** @var int */
 	protected $views = 0;
+
+	/** @var int */
 	protected $edits = 0;
+
+	/** @var int */
 	protected $pages = 0;
+
+	/** @var int */
 	protected $articles = 0;
+
+	/** @var int */
 	protected $users = 0;
+
+	/** @var int */
 	protected $images = 0;
 
 	// @todo deprecate this constructor
@@ -39,7 +50,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param $deltas Array
+	 * @param array $deltas
 	 * @return SiteStatsUpdate
 	 */
 	public static function factory( array $deltas ) {
@@ -71,14 +82,13 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * Do not call this outside of SiteStatsUpdate
-	 *
-	 * @return void
 	 */
 	public function tryDBUpdateInternal() {
 		global $wgSiteStatsAsyncFactor;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
+		$pd = array();
 		if ( $wgSiteStatsAsyncFactor ) {
 			// Lock the table so we don't have double DB/memcached updates
 			if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
@@ -119,7 +129,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param $dbw DatabaseBase
+	 * @param DatabaseBase $dbw
 	 * @return bool|mixed
 	 */
 	public static function cacheUpdate( $dbw ) {
@@ -134,7 +144,8 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				'rc_user != 0',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
-				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 ) ),
+				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX )
+					- $wgActiveUserDays * 24 * 3600 ) ),
 			),
 			__METHOD__
 		);
@@ -158,9 +169,9 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param $sql string
-	 * @param $field string
-	 * @param $delta integer
+	 * @param string $sql
+	 * @param string $field
+	 * @param int $delta
 	 */
 	protected function appendUpdate( &$sql, $field, $delta ) {
 		if ( $delta ) {
@@ -176,7 +187,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param $type string
+	 * @param string $type
 	 * @param string $sign ('+' or '-')
 	 * @return string
 	 */
@@ -187,9 +198,8 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	/**
 	 * Adjust the pending deltas for a stat type.
 	 * Each stat type has two pending counters, one for increments and decrements
-	 * @param $type string
-	 * @param $delta integer Delta (positive or negative)
-	 * @return void
+	 * @param string $type
+	 * @param int $delta Delta (positive or negative)
 	 */
 	protected function adjustPending( $type, $delta ) {
 		global $wgMemc;
@@ -210,8 +220,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * Get pending delta counters for each stat type
-	 * @return Array Positive and negative deltas for each type
-	 * @return void
+	 * @return array Positive and negative deltas for each type
 	 */
 	protected function getPendingDeltas() {
 		global $wgMemc;
@@ -231,7 +240,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	/**
 	 * Reduce pending delta counters after updates have been applied
 	 * @param array $pd Result of getPendingDeltas(), used for DB update
-	 * @return void
 	 */
 	protected function removePendingDeltas( array $pd ) {
 		global $wgMemc;

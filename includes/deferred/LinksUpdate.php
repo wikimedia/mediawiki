@@ -28,19 +28,44 @@
 class LinksUpdate extends SqlDataUpdate {
 	// @todo make members protected, but make sure extensions don't break
 
-	public $mId, //!< Page ID of the article linked from
-		$mTitle, //!< Title object of the article linked from
-		$mParserOutput, //!< Parser output
-		$mLinks, //!< Map of title strings to IDs for the links in the document
-		$mImages, //!< DB keys of the images used, in the array key only
-		$mTemplates, //!< Map of title strings to IDs for the template references, including broken ones
-		$mExternals, //!< URLs of external links, array key only
-		$mCategories, //!< Map of category names to sort keys
-		$mInterlangs, //!< Map of language codes to titles
-		$mProperties, //!< Map of arbitrary name to value
-		$mDb, //!< Database connection reference
-		$mOptions, //!< SELECT options to be used (array)
-		$mRecursive; //!< Whether to queue jobs for recursive updates
+	/** @var int Page ID of the article linked from */
+	public $mId;
+
+	/** @var Title object of the article linked from */
+	public $mTitle;
+
+	/** @var ParserOutput */
+	public $mParserOutput;
+
+	/** @var array Map of title strings to IDs for the links in the document */
+	public $mLinks;
+
+	/** @var array DB keys of the images used, in the array key only */
+	public $mImages;
+
+	/** @var array Map of title strings to IDs for the template references, including broken ones */
+	public $mTemplates;
+
+	/** @var array URLs of external links, array key only */
+	public $mExternals;
+
+	/** @var array Map of category names to sort keys */
+	public $mCategories;
+
+	/** @var array ap of language codes to titles */
+	public $mInterlangs;
+
+	/** @var array Map of arbitrary name to value */
+	public $mProperties;
+
+	/** @var DatabaseBase Database connection reference */
+	public $mDb;
+
+	/** @var array SELECT options to be used */
+	public $mOptions;
+
+	/** @var bool Whether to queue jobs for recursive updates */
+	public $mRecursive;
 
 	/**
 	 * @var null|array Added links if calculated.
@@ -55,9 +80,9 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Constructor
 	 *
-	 * @param $title Title of the page we're updating
-	 * @param $parserOutput ParserOutput: output from a full parse of this page
-	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @param Title $title Title of the page we're updating
+	 * @param ParserOutput $parserOutput Output from a full parse of this page
+	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @throws MWException
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
@@ -77,7 +102,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mId = $title->getArticleID();
 
 		if ( !$this->mId ) {
-			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
+			throw new MWException( "The Title object did not provide an article " .
+				"ID. Perhaps the page doesn't exist?" );
 		}
 
 		$this->mParserOutput = $parserOutput;
@@ -215,7 +241,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * Queue a RefreshLinks job for any table.
 	 *
 	 * @param Title $title Title to do job for
-	 * @param String $table Table to use (e.g. 'templatelinks')
+	 * @param string $table Table to use (e.g. 'templatelinks')
 	 */
 	public static function queueRecursiveJobsForTable( Title $title, $table ) {
 		wfProfileIn( __METHOD__ );
@@ -243,8 +269,8 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param array $added associative array of category name => sort key
-	 * @param array $deleted associative array of category name => sort key
+	 * @param array $added Associative array of category name => sort key
+	 * @param array $deleted Associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );
@@ -262,10 +288,10 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update a table by doing a delete query then an insert query
-	 * @param $table
-	 * @param $prefix
-	 * @param $deletions
-	 * @param $insertions
+	 * @param string $table Table name
+	 * @param string $prefix Field name prefix
+	 * @param array $deletions
+	 * @param array $insertions Rows to insert
 	 */
 	function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
 		if ( $table == 'page_props' ) {
@@ -312,7 +338,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getLinkInsertions( $existing = array() ) {
@@ -335,7 +361,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Get an array of template insertions. Like getLinkInsertions()
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getTemplateInsertions( $existing = array() ) {
@@ -357,7 +383,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of image insertions
 	 * Skips the names specified in $existing
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getImageInsertions( $existing = array() ) {
@@ -375,7 +401,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Get an array of externallinks insertions. Skips the names specified in $existing
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getExternalInsertions( $existing = array() ) {
@@ -462,7 +488,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Get an array of page property insertions
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	function getPropertyInsertions( $existing = array() ) {
@@ -482,13 +508,16 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of interwiki insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
 		foreach ( $this->mInterwikis as $prefix => $dbkeys ) {
-			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
+			$diffs = isset( $existing[$prefix] )
+				? array_diff_key( $dbkeys, $existing[$prefix] )
+				: $dbkeys;
+
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'iwl_from' => $this->mId,
@@ -504,7 +533,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getLinkDeletions( $existing ) {
@@ -523,7 +552,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing templates, returns those templates which are not in $this
 	 * and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getTemplateDeletions( $existing ) {
@@ -542,7 +571,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing images, returns those images which are not in $this
 	 * and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getImageDeletions( $existing ) {
@@ -552,7 +581,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing external links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getExternalDeletions( $existing ) {
@@ -562,7 +591,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getCategoryDeletions( $existing ) {
@@ -572,7 +601,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing interlanguage links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getInterlangDeletions( $existing ) {
@@ -581,7 +610,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Get array of properties which should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	function getPropertyDeletions( $existing ) {
@@ -591,7 +620,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Given an array of existing interwiki links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 * @param $existing array
+	 * @param array $existing
 	 * @return array
 	 */
 	private function getInterwikiDeletions( $existing ) {
@@ -731,7 +760,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
 	 *
-	 * @return array
+	 * @return array of property names and values
 	 */
 	private function getExistingProperties() {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
@@ -771,7 +800,7 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Invalidate any necessary link lists related to page property changes
-	 * @param $changed
+	 * @param array $changed
 	 */
 	private function invalidateProperties( $changed ) {
 		global $wgPagePropLinkInvalidations;
@@ -831,12 +860,13 @@ class LinksUpdate extends SqlDataUpdate {
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
-	protected $mPage; //!< WikiPage the wikipage that was deleted
+	/** @var WikiPage The WikiPage that was deleted */
+	protected $mPage;
 
 	/**
 	 * Constructor
 	 *
-	 * @param $page WikiPage Page we are updating
+	 * @param WikiPage $page Page we are updating
 	 * @throws MWException
 	 */
 	function __construct( WikiPage $page ) {
@@ -899,8 +929,8 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param array $added associative array of category name => sort key
-	 * @param array $deleted associative array of category name => sort key
+	 * @param array $added Associative array of category name => sort key
+	 * @param array $deleted Associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );

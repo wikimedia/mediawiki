@@ -46,7 +46,7 @@ class DeferredUpdates {
 
 	/**
 	 * Add an update to the deferred list
-	 * @param $update DeferrableUpdate Some object that implements doUpdate()
+	 * @param DeferrableUpdate $update Some object that implements doUpdate()
 	 */
 	public static function addUpdate( DeferrableUpdate $update ) {
 		array_push( self::$updates, $update );
@@ -56,8 +56,8 @@ class DeferredUpdates {
 	 * HTMLCacheUpdates are the most common deferred update people use. This
 	 * is a shortcut method for that.
 	 * @see HTMLCacheUpdate::__construct()
-	 * @param $title
-	 * @param $table
+	 * @param Title $title
+	 * @param string $table
 	 */
 	public static function addHTMLCacheUpdate( $title, $table ) {
 		self::addUpdate( new HTMLCacheUpdate( $title, $table ) );
@@ -77,7 +77,7 @@ class DeferredUpdates {
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $commit set to 'commit' to commit after every update to
-	 *                prevent lock contention
+	 *   prevent lock contention
 	 */
 	public static function doUpdates( $commit = '' ) {
 		global $wgDeferredUpdateList;
@@ -93,11 +93,13 @@ class DeferredUpdates {
 			return;
 		}
 
+		$dbw = false;
 		$doCommit = $commit == 'commit';
 		if ( $doCommit ) {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
+		/** @var DeferrableUpdate $update */
 		foreach ( $updates as $update ) {
 			try {
 				$update->doUpdate();

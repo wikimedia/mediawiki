@@ -27,16 +27,15 @@
  * @ingroup Cache
  */
 class HTMLCacheUpdate implements DeferrableUpdate {
-	/**
-	 * @var Title
-	 */
+	/** @var Title */
 	public $mTitle;
 
+	/** @var string */
 	public $mTable;
 
 	/**
-	 * @param $titleTo
-	 * @param $table
+	 * @param Title $titleTo
+	 * @param string $table
 	 */
 	function __construct( Title $titleTo, $table ) {
 		$this->mTitle = $titleTo;
