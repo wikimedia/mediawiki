@@ -328,6 +328,7 @@ class LBFactory_Fake extends LBFactory {
  */
 class DBAccessError extends MWException {
 	function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). This is not allowed." );
+		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
+			"This is not allowed." );
 	}
 }

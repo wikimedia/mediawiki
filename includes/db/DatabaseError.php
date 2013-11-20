@@ -146,8 +146,14 @@ class DBConnectionError extends DBError {
 	function getHTML() {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
-		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
-		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
+		$sorry = htmlspecialchars( $this->msg(
+			'dberr-problems',
+			'Sorry! This site is experiencing technical difficulties.'
+		) );
+		$again = htmlspecialchars( $this->msg(
+			'dberr-again',
+			'Try waiting a few minutes and reloading.'
+		) );
 
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$info = str_replace(
@@ -155,7 +161,10 @@ class DBConnectionError extends DBError {
 				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot contact the database server: $1)' ) )
 			);
 		} else {
-			$info = htmlspecialchars( $this->msg( 'dberr-info-hidden', '(Cannot contact the database server)' ) );
+			$info = htmlspecialchars( $this->msg(
+				'dberr-info-hidden',
+				'(Cannot contact the database server)'
+			) );
 		}
 
 		# No database access
@@ -220,8 +229,14 @@ class DBConnectionError extends DBError {
 	function searchForm() {
 		global $wgSitename, $wgCanonicalServer, $wgRequest;
 
-		$usegoogle = htmlspecialchars( $this->msg( 'dberr-usegoogle', 'You can try searching via Google in the meantime.' ) );
-		$outofdate = htmlspecialchars( $this->msg( 'dberr-outofdate', 'Note that their indexes of our content may be out of date.' ) );
+		$usegoogle = htmlspecialchars( $this->msg(
+			'dberr-usegoogle',
+			'You can try searching via Google in the meantime.'
+		) );
+		$outofdate = htmlspecialchars( $this->msg(
+			'dberr-outofdate',
+			'Note that their indexes of our content may be out of date.'
+		) );
 		$googlesearch = htmlspecialchars( $this->msg( 'searchbutton', 'Search' ) );
 
 		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
@@ -299,7 +314,9 @@ class DBQueryError extends DBError {
 	 * @param $fname string
 	 */
 	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+		$message = "A database error has occurred. Did you forget to run " .
+			"maintenance/update.php after upgrading?  See: " .
+			"https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 			"Query: $sql\n" .
 			"Function: $fname\n" .
 			"Error: $errno $error\n";

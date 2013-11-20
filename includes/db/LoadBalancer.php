@@ -457,10 +457,12 @@ class LoadBalancer {
 
 		if ( $i == DB_LAST ) {
 			wfProfileOut( __METHOD__ );
-			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with deprecated server index DB_LAST' );
+			throw new MWException( 'Attempt to call ' . __METHOD__ .
+				' with deprecated server index DB_LAST' );
 		} elseif ( $i === null || $i === false ) {
 			wfProfileOut( __METHOD__ );
-			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with invalid server index' );
+			throw new MWException( 'Attempt to call ' . __METHOD__ .
+				' with invalid server index' );
 		}
 
 		if ( $wiki === wfWikiID() ) {
@@ -550,7 +552,8 @@ class LoadBalancer {
 			return;
 		}
 		if ( $this->mConns['foreignUsed'][$serverIndex][$wiki] !== $conn ) {
-			throw new MWException( __METHOD__ . ": connection not found, has the connection been freed already?" );
+			throw new MWException( __METHOD__ . ": connection not found, has " .
+				"the connection been freed already?" );
 		}
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
 		if ( $refCount <= 0 ) {
@@ -854,7 +857,8 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Sets the server info structure for the given index. Entry at index $i is created if it doesn't exist
+	 * Sets the server info structure for the given index. Entry at index $i
+	 * is created if it doesn't exist
 	 * @param $i
 	 * @param $serverInfo
 	 */

@@ -95,7 +95,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param string|null $rowClass
 	 * @param string $fieldPrefix
 	 */
-	public function __construct( $tableName = '', array $fields = array(), array $defaults = array(), $rowClass = null, $fieldPrefix = '' ) {
+	public function __construct( $tableName = '', array $fields = array(),
+		array $defaults = array(), $rowClass = null, $fieldPrefix = ''
+	) {
 		$this->tableName = $tableName;
 		$this->fields = $fields;
 		$this->defaults = $defaults;
@@ -542,7 +544,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 			}
 
 			if ( $setDefaults && $hasDefault ) {
-				$default = is_array( $defaults[$field] ) ? implode( '|', $defaults[$field] ) : $defaults[$field];
+				$default = is_array( $defaults[$field] )
+					? implode( '|', $defaults[$field] )
+					: $defaults[$field];
 				$params[$field][ApiBase::PARAM_DFLT] = $default;
 			}
 		}
@@ -575,7 +579,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	}
 
 	/**
-	 * Set the database ID to use for read operations, use DB_XXX constants or an index to the load balancer setup.
+	 * Set the database ID to use for read operations, use DB_XXX constants or
+	 *   an index to the load balancer setup.
 	 *
 	 * @param integer $db
 	 *
@@ -590,7 +595,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return String|bool The target wiki, in a form that  LBFactory understands (or false if the local wiki is used)
+	 * @return String|bool The target wiki, in a form that LBFactory understands
+	 *   (or false if the local wiki is used)
 	 */
 	public function getTargetWiki() {
 		return $this->wiki;
@@ -599,7 +605,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Set the ID of the any foreign wiki to use as a target for database operations
 	 *
-	 * @param string|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 * @param string|bool $wiki The target wiki, in a form that  LBFactory
+	 *   understands (or false if the local wiki shall be used)
 	 *
 	 * @since 1.20
 	 */

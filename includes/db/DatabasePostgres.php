@@ -326,8 +326,10 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function hasConstraint( $name ) {
-		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" .
-			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
+		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
+			"WHERE c.connamespace = n.oid AND conname = '" .
+			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" .
+			pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
 		$res = $this->doQuery( $SQL );
 
 		return $this->numRows( $res );
@@ -345,7 +347,12 @@ class DatabasePostgres extends DatabaseBase {
 	function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			throw new DBConnectionError( $this, "Postgres functions missing, have you compiled PHP with the --with-pgsql option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
+			throw new DBConnectionError(
+				$this,
+				"Postgres functions missing, have you compiled PHP with the --with-pgsql\n" .
+				"option? (Note: if you recently installed PHP, you may need to restart your\n" .
+				"webserver and database)\n"
+			);
 		}
 
 		global $wgDBport;
@@ -390,7 +397,8 @@ class DatabasePostgres extends DatabaseBase {
 
 		if ( !$this->mConn ) {
 			wfDebug( "DB connection error\n" );
-			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
+			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " .
+				substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
@@ -483,7 +491,8 @@ class DatabasePostgres extends DatabaseBase {
 			PGSQL_DIAG_SOURCE_FUNCTION
 		);
 		foreach ( $diags as $d ) {
-			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n", $d, pg_result_error_field( $this->mLastResult, $d ) ) );
+			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n",
+				$d, pg_result_error_field( $this->mLastResult, $d ) ) );
 		}
 	}
 
@@ -530,7 +539,10 @@ class DatabasePostgres extends DatabaseBase {
 		# @todo hashar: not sure if the following test really trigger if the object
 		#          fetching failed.
 		if ( pg_last_error( $this->mConn ) ) {
-			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
+			throw new DBUnexpectedError(
+				$this,
+				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+			);
 		}
 
 		return $row;
@@ -544,7 +556,10 @@ class DatabasePostgres extends DatabaseBase {
 		$row = pg_fetch_array( $res );
 		wfRestoreWarnings();
 		if ( pg_last_error( $this->mConn ) ) {
-			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
+			throw new DBUnexpectedError(
+				$this,
+				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+			);
 		}
 
 		return $row;
@@ -558,7 +573,10 @@ class DatabasePostgres extends DatabaseBase {
 		$n = pg_num_rows( $res );
 		wfRestoreWarnings();
 		if ( pg_last_error( $this->mConn ) ) {
-			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
+			throw new DBUnexpectedError(
+				$this,
+				'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) )
+			);
 		}
 
 		return $n;
@@ -638,7 +656,9 @@ class DatabasePostgres extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
+	function estimateRowCount( $table, $vars = '*', $conds = '',
+		$fname = __METHOD__, $options = array()
+	) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		$rows = -1;
@@ -876,7 +896,8 @@ __INDEXATTR__;
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
-	 * Source items may be literals rather then field names, but strings should be quoted with Database::addQuotes()
+	 * Source items may be literals rather then field names, but strings should
+	 * be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 * @todo FIXME: Implement this a little better (seperate select/insert)?
@@ -1017,7 +1038,8 @@ __INDEXATTR__;
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
+		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
+			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
@@ -1196,7 +1218,8 @@ __INDEXATTR__;
 			}
 		} else {
 			$this->mCoreSchema = $this->getCurrentSchema();
-			wfDebug( "Schema \"" . $desired_schema . "\" not found, using current \"" . $this->mCoreSchema . "\"\n" );
+			wfDebug( "Schema \"" . $desired_schema . "\" not found, using current \"" .
+				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
 		$this->commit( __METHOD__ );
@@ -1543,7 +1566,8 @@ SQL;
 	}
 
 	/**
-	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKSFROM PG DOCS: http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKSFROM
+	 * PG DOCS: http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 	 * @param $lockName string
 	 * @param $method string
 	 * @return bool
