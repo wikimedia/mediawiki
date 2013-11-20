@@ -66,6 +66,8 @@ abstract class DiffFormatter {
 
 		$this->startDiff();
 
+		// Initialize $x0 and $y0 to prevent IDEs from getting confused.
+		$x0 = $y0 = 0;
 		foreach ( $diff->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
 				if ( is_array( $block ) ) {
@@ -117,11 +119,12 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
 	 * @param $edits
+	 * @throws MWException
 	 */
 	protected function block( $xbeg, $xlen, $ybeg, $ylen, &$edits ) {
 		wfProfileIn( __METHOD__ );
