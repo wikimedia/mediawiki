@@ -652,9 +652,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 */
+	// @codingStandardsIgnoreStart Suppress "useless method overriding" sniffer warning
 	public function releaseConnection( DatabaseBase $db ) {
 		parent::releaseConnection( $db ); // just make it public
 	}
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Update the records matching the provided conditions by
