@@ -800,7 +800,8 @@ L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
 'exception-nologin' => 'Non connecté(e)',
-'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
+'exception-nologin-text' => 'Veuillez [[Special:Userlogin|vous connecter]] pour pouvoir accéder à cette page ou cette action.',
+'exception-nologin-text-manual' => 'Veuillez $1 pour pouvoir accéder à cette page ou cette action.',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -1508,7 +1509,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'mypreferences' => 'Préférences',
 'prefs-edits' => 'Nombre de modifications :',
 'prefsnologin' => 'Non connecté',
-'prefsnologintext' => 'Vous devez être <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} connecté]</span> pour modifier vos préférences d\'utilisateur.',
+'prefsnologintext2' => 'Veuillez $1 pour définir les préférences utilisateur.',
 'changepassword' => 'Changer de mot de passe',
 'prefs-skin' => 'Habillage',
 'skin-preview' => 'Prévisualiser',
@@ -2539,9 +2540,9 @@ Contactez ce contributeur :
 courriel : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
-Il n\'y aura pas d\'autres notifications en cas de changements ultérieurs, à moins que vous ne visitiez cette page. Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pages de votre liste de suivi.
+Il n’y aura pas d’autres notifications en cas de changements ultérieurs, à moins que vous ne visitiez cette page une fois connecté. Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pages de votre liste de suivi.
 
-             Votre système de notification de {{SITENAME}}
+Votre système de notification de {{SITENAME}}
 
 --
 Pour modifier les paramètres de notification par courriel, visitez
@@ -4153,8 +4154,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 
 # Special:SpecialPages
 'specialpages' => 'Pages spéciales',
-'specialpages-note' => '----
-* Pages spéciales normales.
+'specialpages-note' => '* Pages spéciales normales.
 * <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>
 * <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourraient être désuètes).</span>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',

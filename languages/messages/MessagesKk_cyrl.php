@@ -1383,7 +1383,6 @@ $1",
 'mypreferences' => 'Баптаулар',
 'prefs-edits' => 'Өңдеме саны:',
 'prefsnologin' => 'Кірмегенсіз',
-'prefsnologintext' => 'Қатысушы бапталымдарыңызды жөндеу үшін <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} кіруіңіз]</span> жөн.',
 'changepassword' => 'Құпия сөзді өзгерту',
 'prefs-skin' => 'Мәнерлер',
 'skin-preview' => 'Қарап шығу',
@@ -3641,8 +3640,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Арнайы беттер',
-'specialpages-note' => '----
-* Кәдімгі арнайы беттер.
+'specialpages-note' => '* Кәдімгі арнайы беттер.
 * <span class=="mw-specialpagerestricted">Шектелген арнайы беттер.</span>',
 'specialpages-group-maintenance' => 'Техникалық талқылау есептері',
 'specialpages-group-other' => 'Тағы басқа арнайы беттер',

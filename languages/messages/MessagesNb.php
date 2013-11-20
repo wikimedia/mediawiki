@@ -1437,7 +1437,6 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'mypreferences' => 'Innstillinger',
 'prefs-edits' => 'Antall redigeringer:',
 'prefsnologin' => 'Ikke logget inn',
-'prefsnologintext' => 'Du må være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
 'changepassword' => 'Endre passord',
 'prefs-skin' => 'Utseende',
 'skin-preview' => 'Forhåndsvisning',
@@ -3981,8 +3980,7 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 
 # Special:SpecialPages
 'specialpages' => 'Spesialsider',
-'specialpages-note' => '----
-* Normale spesialsider.
+'specialpages-note' => '* Normale spesialsider.
 * <span class="mw-specialpagerestricted">Spesialsider med begrenset tilgang.</span>
 * <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk (kan være foreldede).</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',

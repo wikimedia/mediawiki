@@ -1625,7 +1625,6 @@ $1",
 'mypreferences' => 'تفضيلات',
 'prefs-edits' => 'عدد التعديلات:',
 'prefsnologin' => 'غير مسجل الدخول',
-'prefsnologintext' => 'يجب أن تكون <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} مسجل الدخول]</span>  حتى تتمكن من تعديل تفضيلات المستخدم.',
 'changepassword' => 'غير كلمة السر',
 'prefs-skin' => 'واجهة',
 'skin-preview' => 'عرض مسبق',
@@ -4332,8 +4331,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'الصفحات الخاصة',
-'specialpages-note' => '----
-* صفحات خاصة عادية.
+'specialpages-note' => '* صفحات خاصة عادية.
 * <span class="mw-specialpagerestricted">صفحات خاصة للمخولين.</span>
 * <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط (قد تكون مهجورة).</span>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',

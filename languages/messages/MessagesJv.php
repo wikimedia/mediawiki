@@ -1065,7 +1065,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'mypreferences' => 'Préferènsi',
 'prefs-edits' => 'Gunggungé suntingan:',
 'prefsnologin' => 'Durung mlebu log',
-'prefsnologintext' => 'Panjenengan kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log]</span> kanggo ngowahin préferènsi njenengan.',
 'changepassword' => 'Ganti tembung sandi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratilik',
@@ -3473,8 +3472,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 
 # Special:SpecialPages
 'specialpages' => 'Kaca istiméwa',
-'specialpages-note' => '----
-* Kaca astamiwa biasa.
+'specialpages-note' => '* Kaca astamiwa biasa.
 * <span class="mw-specialpagerestricted">Kaca astamiwa kawatesan.</span>',
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other' => 'Kaca-kaca astaméwa liyané',

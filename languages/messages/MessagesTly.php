@@ -617,7 +617,6 @@ $messages = array(
 'preferences' => 'Кукон',
 'mypreferences' => 'Кукон',
 'prefsnologin' => 'Ыштәни едаштәнијоне',
-'prefsnologintext' => 'Шымә бәбе <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ыштәни едәштән]</span> бо иштирокәкә пеғәндон дәгиш кардеј.',
 'changepassword' => 'Пароли дәгиш кардеј',
 'skin-preview' => 'Сыфтәнә нишо дој',
 'prefs-user-pages' => 'Иштирокәкә сәһифон',

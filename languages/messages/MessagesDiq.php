@@ -1428,7 +1428,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'mypreferences' => 'Tercihi',
 'prefs-edits' => 'Amarê vurnayışan:',
 'prefsnologin' => 'Şıma cıkewtış nêvıraşto',
-'prefsnologintext' => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
 'changepassword' => 'Parola bıvurne',
 'prefs-skin' => 'Çerme',
 'skin-preview' => 'Verasayış',
@@ -4155,8 +4154,7 @@ enê programiya piya [{{SERVER}}{{SCRIPTPATH}}/COPYING jew kopyay lisans dê GNU
 
 # Special:SpecialPages
 'specialpages' => 'Pelê xısusiy',
-'specialpages-note' => '----
-* Xısusi pelaya normal
+'specialpages-note' => '* Xısusi pelaya normal
 * <span class="mw-specialpagerestricted">Xısusi peleyê keı rê ray nê deyaya.</span>
 * <strong class="mw-specialpagerestricted">Peleya xısusiya ke grota verhefıza.</strong>',
 'specialpages-group-maintenance' => 'Raporê tepıştışi',

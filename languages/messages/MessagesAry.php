@@ -954,7 +954,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'mypreferences' => 'Ḫajaṫ li kanfeḍḍel',
 'prefs-edits' => 'ĝadad ṫ-ṫĝdilaṫ:',
 'prefsnologin' => 'nta mamkoniktich',
-'prefsnologintext' => 'ĥaṣṣk ṫkon  <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} daĥol]</span> baċ ṫĝyyer ṫfḍilaṫ l-moṣṫĥdim.',
 'changepassword' => 'tbdl lmot de passe',
 'prefs-skin' => 'skin',
 'skin-preview' => 'L-Prévizualizasyon',

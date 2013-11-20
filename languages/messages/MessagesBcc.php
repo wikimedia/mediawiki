@@ -990,7 +990,6 @@ $1",
 'mypreferences' => 'منی ترجیحات',
 'prefs-edits' => 'تعداد اصلاحات:',
 'prefsnologin' => 'وارد نهیت',
-'prefsnologintext' => 'شما بایدن  <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} وارد بیت]</span> په تنظیم کتن ترجیحات.',
 'changepassword' => 'کلمه رمز عوض کن',
 'prefs-skin' => 'پوست',
 'skin-preview' => 'بازین',
@@ -3006,8 +3005,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'حاصین صفحات',
-'specialpages-note' => '----
-* نرمال صفحات حاص.
+'specialpages-note' => '* نرمال صفحات حاص.
 *  <strong class="mw-specialpagerestricted">محدودین صفحات حاص.</strong>',
 'specialpages-group-maintenance' => 'گزارشات دارگ',
 'specialpages-group-other' => 'دگر حاصین صفحات',

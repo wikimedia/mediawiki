@@ -2595,8 +2595,7 @@ Tu mazzi dīgi [[Special:EditWatchlist|tērpautun stāndardiskan editōran]].',
 
 # Special:SpecialPages
 'specialpages' => 'Speciālai pāusai',
-'specialpages-note' => '----
-* Nōrmalai speciālai pāusai.
+'specialpages-note' => '* Nōrmalai speciālai pāusai.
 * <strong class="mw-specialpagerestricted">Speciālai pāusai sen arāikintan preiēisenin.</strong>',
 'specialpages-group-maintenance' => 'Kōnserwaciōnis repōrtai',
 'specialpages-group-other' => 'Kitāi speciālai pāusai',

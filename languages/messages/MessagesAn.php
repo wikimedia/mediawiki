@@ -1088,7 +1088,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'mypreferences' => 'Preferencias',
 'prefs-edits' => "Numero d'edicions:",
 'prefsnologin' => 'No ye identificato',
-'prefsnologintext' => 'Ha d\'haber <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} encetato una sesión] </span> ta cambiar as preferencias d\'usuario.',
 'changepassword' => 'Cambiar a clau',
 'prefs-skin' => 'Aparencia',
 'skin-preview' => 'Fer una prebatina',
@@ -3424,8 +3423,7 @@ Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia
 
 # Special:SpecialPages
 'specialpages' => 'Pachinas especials',
-'specialpages-note' => '----
-* Pachinas especials normals.
+'specialpages-note' => '* Pachinas especials normals.
 * <strong class="mw-specialpagerestricted">Pachinas especials restrinchitas.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantenimiento',
 'specialpages-group-other' => 'Atras pachinas especials',

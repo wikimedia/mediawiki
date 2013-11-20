@@ -1265,7 +1265,6 @@ Prašome patikrinti sąrašus.',
 'mypreferences' => 'Nustatymai',
 'prefs-edits' => 'Keitimų skaičius:',
 'prefsnologin' => 'Neprisijungęs',
-'prefsnologintext' => 'Jums reikia būti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
 'changepassword' => 'Pakeisti slaptažodį',
 'prefs-skin' => 'Išvaizda',
 'skin-preview' => 'Peržiūra',
@@ -3749,8 +3748,7 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 
 # Special:SpecialPages
 'specialpages' => 'Specialieji puslapiai',
-'specialpages-note' => '----
- * įprastą specialius puslapius.
+'specialpages-note' => ' * įprastą specialius puslapius.
  * <span class="mw-specialpagerestricted">tik specialius puslapius.</span>
  * <span class="mw-specialpagecached">Talpyklinių specialius puslapius (gali būti pasenusius).</span>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',

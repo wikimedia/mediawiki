@@ -1008,7 +1008,6 @@ $1",
 'mypreferences' => 'میریاں تانگاں',
 'prefs-edits' => 'تبدیلیاں دی گنتی:',
 'prefsnologin' => 'لاگ ان نئیں او',
-'prefsnologintext' => 'تسیں لازمی <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} لاگ ان]</span> ورتن تانگاں سیٹ کرنا.',
 'changepassword' => 'کنجی بدلو',
 'prefs-skin' => 'چھاڑ',
 'skin-preview' => 'کچا کم',
@@ -3370,8 +3369,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 
 # Special:SpecialPages
 'specialpages' => 'خاص صفے',
-'specialpages-note' => '----
-* نارمل خاص صفے.
+'specialpages-note' => '* نارمل خاص صفے.
 * <span class="mw-specialpagerestricted">روکے گۓ خاص صفے.</span>
 * <span class="mw-specialpagecached">کاشے خاص صفے (پرانے ہوگۓ ہون).</span>',
 'specialpages-group-maintenance' => 'مرمت رپورٹ',

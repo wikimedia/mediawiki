@@ -1046,7 +1046,6 @@ Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'mypreferences' => 'Isemyifiyen inu',
 'prefs-edits' => 'Amḍan n ibeddlilen :',
 'prefsnologin' => 'Ur tekcimeḍ ara',
-'prefsnologintext' => 'Ilaq ad iliḍ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} qqeneḍ]</span> iwakken ad beddeleḍ iɣewwaren ik/im n useqdac.',
 'changepassword' => 'Beddel awal n tbaḍnit',
 'prefs-skin' => 'Aglim',
 'skin-preview' => 'Pre-timeẓriwt',

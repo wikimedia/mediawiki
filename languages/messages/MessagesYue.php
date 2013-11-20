@@ -1156,7 +1156,6 @@ $1",
 'mypreferences' => '自訂喜好',
 'prefs-edits' => '編輯數:',
 'prefsnologin' => '重未登入',
-'prefsnologintext' => '你一定要去<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登入]</span>設定好用戶喜好值先。',
 'changepassword' => '改密碼',
 'prefs-skin' => '畫面',
 'skin-preview' => '預覽',
@@ -3229,8 +3228,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 
 # Special:SpecialPages
 'specialpages' => '特別頁',
-'specialpages-note' => '----
-* 標準特別頁。
+'specialpages-note' => '* 標準特別頁。
 * <strong class="mw-specialpagerestricted">有限制嘅特別頁。</strong>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other' => '其它特別頁',

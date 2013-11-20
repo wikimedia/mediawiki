@@ -541,7 +541,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'mypreferences' => 'Ajschdelunga',
 'prefs-edits' => 'So ofd umgmoodld:',
 'prefsnologin' => 'Ned ôôgmäld',
-'prefsnologintext' => 'Ärschd wen\'d <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} ôôgmäld]</span> bisch, ghôôsch dâj âjschdelungn ändârn.',
 'changepassword' => "S'bhaswôrd ändârn",
 'prefs-skin' => 'Schaale',
 'skin-preview' => 'Môôl schbign',

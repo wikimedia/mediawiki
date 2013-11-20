@@ -1463,7 +1463,6 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
 'prefsnologin' => 'Não autenticado',
-'prefsnologintext' => 'É necessário estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'changepassword' => 'Alterar senha',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Pré-visualização',
@@ -4011,8 +4010,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiais',
-'specialpages-note' => '----
-* Páginas especiais normais.
+'specialpages-note' => '* Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other' => 'Outras páginas especiais',

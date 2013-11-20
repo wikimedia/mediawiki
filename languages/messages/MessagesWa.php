@@ -845,7 +845,6 @@ Vos ploz sayî di mete «all:» pa dvant l' tecse a cweri po cweri dins tot l' c
 'mypreferences' => 'Mes preferinces',
 'prefs-edits' => 'Nombe di candjmints:',
 'prefsnologin' => "Vos n' estoz nén elodjî",
-'prefsnologintext' => 'I vs fåt esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} elodjî]</span> po pleur candjî vos preferinces.',
 'changepassword' => "Candjî l' sicret",
 'prefs-skin' => 'Pea',
 'skin-preview' => 'vey divant',

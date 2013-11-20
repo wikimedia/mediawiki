@@ -1586,7 +1586,6 @@ $1",
 'mypreferences' => 'ترجیحات',
 'prefs-edits' => 'تعداد ویرایش‌ها:',
 'prefsnologin' => 'به سامانه وارد نشده‌اید',
-'prefsnologintext' => 'برای تنظیم ترجیحات کاربر باید <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} به سامانه وارد شوید]</span>.',
 'changepassword' => 'تغییر گذرواژه',
 'prefs-skin' => 'پوسته',
 'skin-preview' => 'پیش‌نمایش',
@@ -3150,7 +3149,7 @@ $1',
 'allmessagescurrent' => 'متن کنونی پیغام',
 'allmessagestext' => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
 چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [https://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
-'allmessagesnotsupportedDB' => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
+'allmessagesnotsupportedDB' => "این صفحه نمی‌تواند استفاده شود به این دلیل که <bdi>'''\$wgUseDatabaseMessages'''</bdi> غیرفعال شده‌است.",
 'allmessages-filter-legend' => 'پالایه',
 'allmessages-filter' => 'پالودن بر اساس وضعیت شخصی‌سازی:',
 'allmessages-filter-unmodified' => 'تغییر نیافته',
@@ -4209,8 +4208,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'صفحه‌های ویژه',
-'specialpages-note' => '----
-* صفحه‌های ویژهٔ عادی.
+'specialpages-note' => '* صفحه‌های ویژهٔ عادی.
 * <strong class="mw-specialpagerestricted">صفحه‌های ویژهٔ محدودشده.</strong>',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
 'specialpages-group-other' => 'سایر صفحه‌های ویژه',

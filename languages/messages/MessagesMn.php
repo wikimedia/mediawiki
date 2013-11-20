@@ -1082,7 +1082,6 @@ $1",
 'mypreferences' => 'Миний тохиргоо',
 'prefs-edits' => 'Засваруудын тоо:',
 'prefsnologin' => 'Нэвтрээгүй байна',
-'prefsnologintext' => 'Та хэрэглэгчийн тохиргоогоо тохируулахын тулд <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} нэвтэрсэн байх]</span> ёстой.',
 'changepassword' => 'Нууц үгээ солих',
 'prefs-skin' => 'Арьс',
 'skin-preview' => 'Урьдчилж харах',
@@ -3346,8 +3345,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Тусгай хуудсууд',
-'specialpages-note' => '----
-* Ердийн тусгай хуудсууд.
+'specialpages-note' => '* Ердийн тусгай хуудсууд.
 * <strong class="mw-specialpagerestricted">Хориотой тусгай хуудсууд.</strong>',
 'specialpages-group-maintenance' => 'Засвар үйлчилгээний тайлангууд',
 'specialpages-group-other' => 'Бусад тусгай хуудсууд',

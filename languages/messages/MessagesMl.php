@@ -1449,7 +1449,6 @@ $1",
 'mypreferences' => 'ക്രമീകരണങ്ങൾ',
 'prefs-edits' => 'ആകെ തിരുത്തുകൾ:',
 'prefsnologin' => 'ലോഗിൻ ചെയ്തിട്ടില്ല',
-'prefsnologintext' => 'ഉപയോക്തൃക്രമീകരണങ്ങൾ മാറ്റാൻ താങ്കൾ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ലോഗിൻ]</span> ചെയ്തിരിക്കണം.',
 'changepassword' => 'രഹസ്യവാക്ക് മാറ്റുക',
 'prefs-skin' => 'ദൃശ്യരൂപം',
 'skin-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക',
@@ -3989,8 +3988,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'പ്രത്യേക താളുകൾ',
-'specialpages-note' => '----
-* പൊതുവേ ഉപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.
+'specialpages-note' => '* പൊതുവേ ഉപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.
 * <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</strong>
 * <span class="mw-specialpagecached">പ്രാദേശികമായി സംഭരിച്ചുപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.</span>',
 'specialpages-group-maintenance' => 'പരിചരണം ആവശ്യമായവ',

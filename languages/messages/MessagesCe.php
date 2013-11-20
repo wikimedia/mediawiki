@@ -2435,8 +2435,7 @@ PICT # тайп тайпан
 
 # Special:SpecialPages
 'specialpages' => 'Леррина агlонаш',
-'specialpages-note' => '----
-* Гуттарлера белха агlонаш.
+'specialpages-note' => '* Гуттарлера белха агlонаш.
 * <strong class="mw-specialpagerestricted">Кlеззиг таронаш йолу леррина агlонаш.</strong>',
 'specialpages-group-maintenance' => 'Жамlаш гlирса хьашташ кхочушдар',
 'specialpages-group-other' => 'Кхин гlуллакхан агlонаш',

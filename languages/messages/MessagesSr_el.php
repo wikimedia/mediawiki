@@ -1411,7 +1411,6 @@ Upamtite da njegovi popisi ovog vikija mogu biti zastareli.',
 'mypreferences' => 'Podešavanja',
 'prefs-edits' => 'Broj izmena:',
 'prefsnologin' => 'Niste prijavljeni',
-'prefsnologintext' => 'Morate biti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prijavljeni]</span> da biste podešavali korisničke postavke.',
 'changepassword' => 'Promeni lozinku',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Pregledaj',
@@ -3941,7 +3940,7 @@ Potvrdite da stvarno želite da napravite stranicu.",
 'table_pager_empty' => 'Nema rezultata',
 
 # Auto-summaries
-'autosumm-blank' => 'Uklonjen celokupan sadržaja stranice',
+'autosumm-blank' => 'Uklonjen celokupan sadržaj stranice',
 'autosumm-replace' => 'Zamena sadržaja stranice sa „$1“',
 'autoredircomment' => 'Preusmerenje na [[$1]]',
 'autosumm-new' => 'Nova stranica: $1',
@@ -4111,9 +4110,8 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 
 # Special:SpecialPages
 'specialpages' => 'Posebne stranice',
-'specialpages-note' => '----
-* obične posebne stranice
-* <span class="mw-specialpagerestricted">ograničene posebne stranice</span>',
+'specialpages-note' => '* Normalne posebne stranice
+* <span class="mw-specialpagerestricted">Ograničene posebne stranice</span>',
 'specialpages-group-maintenance' => 'Izveštaji održavanja',
 'specialpages-group-other' => 'Ostale posebne stranice',
 'specialpages-group-login' => 'Prijava/registracija',

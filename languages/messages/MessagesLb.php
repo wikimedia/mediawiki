@@ -1313,7 +1313,6 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'mypreferences' => 'Astellungen',
 'prefs-edits' => 'Zuel vun den Ännerungen:',
 'prefsnologin' => 'Net ageloggt',
-'prefsnologintext' => 'Dir musst <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}ageloggt]</span> sinn, fir Är Astellungen änneren ze kënnen.',
 'changepassword' => 'Passwuert änneren',
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Kucken',
@@ -3815,8 +3814,7 @@ Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsäiten',
-'specialpages-note' => '----
-* Normal Spezialsäiten.
+'specialpages-note' => '* Normal Spezialsäiten.
 * <span class="mw-specialpagerestricted">Spezialsäite fir Benotzer mat méi Rechter.</span>
 * <span class="mw-specialpagecached">Spezialsäiten aus dem Tëschespäicher (ka vereelst sinn).</span>',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',

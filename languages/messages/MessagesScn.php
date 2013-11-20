@@ -1083,7 +1083,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'mypreferences' => 'Li mè prifirenzi',
 'prefs-edits' => 'Nùmmuru di canciamenti:',
 'prefsnologin' => 'Accessu nun effittuatu',
-'prefsnologintext' => 'Pi putiri pirsunalizzari li prifirenzi è nicissariu fari l\'<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} accessu]</span>.',
 'changepassword' => 'Cancia la password',
 'prefs-skin' => 'Aspettu',
 'skin-preview' => 'Antiprima',
@@ -2939,8 +2938,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 
 # Special:SpecialPages
 'specialpages' => 'Pàggini spiciali',
-'specialpages-note' => '----
-* Pàggini spiciali non risirvati.
+'specialpages-note' => '* Pàggini spiciali non risirvati.
 * <strong class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</strong>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other' => 'Autri pàggini spiciali',

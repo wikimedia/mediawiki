@@ -1482,7 +1482,6 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'mypreferences' => 'Nastavení',
 'prefs-edits' => 'Počet editací:',
 'prefsnologin' => 'Nejste přihlášen(a)!',
-'prefsnologintext' => 'Pokud chcete měnit uživatelská nastavení, musíte se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} přihlásit]</span>.',
 'changepassword' => 'Změna hesla',
 'prefs-skin' => 'Vzhled',
 'skin-preview' => 'Náhled',
@@ -4070,8 +4069,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 
 # Special:SpecialPages
 'specialpages' => 'Speciální stránky',
-'specialpages-note' => '----
-* Normální speciální stránky
+'specialpages-note' => '* Normální speciální stránky
 * <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other' => 'Ostatní',

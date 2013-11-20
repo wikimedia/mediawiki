@@ -725,7 +725,8 @@ Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.
 'invalidtitle-knownnamespace' => 'Virheellinen sivunimi, nimiavaruus "$2" ja teksti "$3"',
 'invalidtitle-unknownnamespace' => 'Virheellinen sivunimi, tuntematon nimiavaruus numero $1 ja teksti "$2"',
 'exception-nologin' => 'Et ole kirjautunut sisään',
-'exception-nologin-text' => 'Tämä sivu tai toiminto edellyttää sisäänkirjautumista tähän wikiin.',
+'exception-nologin-text' => 'Ole hyvä ja [[Special:Userlogin|kirjaudu sisään]], niin pääset tälle sivulle tai tähän toimintoon.',
+'exception-nologin-text-manual' => 'Sinun pitää $1 jotta pääset tälle sivulle tai toimintoon.',
 
 # Virus scanner
 'virus-badscanner' => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
@@ -1427,7 +1428,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'mypreferences' => 'Asetukset',
 'prefs-edits' => 'Muokkauksia',
 'prefsnologin' => 'Et ole kirjautunut sisään.',
-'prefsnologintext' => 'Sinun täytyy <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kirjautua sisään]</span>, jotta voisit muuttaa asetuksiasi.',
+'prefsnologintext2' => 'Sinun pitää $1 ennen kuin voit muuttaa käyttäjän asetuksia.',
 'changepassword' => 'Salasanan vaihto',
 'prefs-skin' => 'Ulkoasu',
 'skin-preview' => 'esikatselu',
@@ -1765,7 +1766,7 @@ Tämä tieto on julkinen.',
 'reuploaddesc' => 'Peruuta tallennus ja palaa tallennuslomakkeelle.',
 'upload-tryagain' => 'Lähetä muutettu tiedostokuvaus',
 'uploadnologin' => 'Et ole kirjautunut sisään',
-'uploadnologintext' => 'Sinun pitää $1 tallentaaksesi tiedostoja.',
+'uploadnologintext' => 'Sinun pitää $1, jotta voit tallentaa tiedostoja.',
 'upload_directory_missing' => 'Tallennushakemisto $1 puuttuu, eikä palvelin pysty luomaan sitä.',
 'upload_directory_read_only' => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon $1.',
 'uploaderror' => 'Tallennusvirhe',
@@ -3936,8 +3937,8 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 
 # Special:SpecialPages
 'specialpages' => 'Toimintosivut',
-'specialpages-note' => '----
-* Normaalit toimintosivut.
+'specialpages-note-top' => 'Merkkien selitys',
+'specialpages-note' => '* Normaalit toimintosivut.
 * <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
 'specialpages-group-maintenance' => 'Sivujen huoltaminen',
 'specialpages-group-other' => 'Muut',

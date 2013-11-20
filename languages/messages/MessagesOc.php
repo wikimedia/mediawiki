@@ -1401,7 +1401,6 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'mypreferences' => 'Preferéncias',
 'prefs-edits' => 'Nombre d’edicions :',
 'prefsnologin' => 'Vos sètz pas identificat(ada)',
-'prefsnologintext' => 'Vos cal èsser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} connectat(ada)]</span> per modificar vòstras preferéncias d’utilizaire.',
 'changepassword' => 'Modificacion del senhal',
 'prefs-skin' => 'Aparéncia',
 'skin-preview' => 'Previsualizar',
@@ -3888,8 +3887,7 @@ Ensajatz la previsualizacion normala.',
 
 # Special:SpecialPages
 'specialpages' => 'Paginas especialas',
-'specialpages-note' => '----
-* Paginas especialas normalas.
+'specialpages-note' => '* Paginas especialas normalas.
 * <span class="mw-specialpagerestricted">Paginas especialas restrenchas.</span>
 * <span class="mw-specialpagecached">Paginas especialas solament en escondedor (poirián èsser obsolètas).</span>',
 'specialpages-group-maintenance' => 'Rapòrts de mantenença',

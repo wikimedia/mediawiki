@@ -771,7 +771,6 @@ Google hmangin i lo zawng hrih thei ang.
 'mypreferences' => 'Duhthlanna',
 'prefs-edits' => 'Siamţhat zât',
 'prefsnologin' => 'I la lût lo',
-'prefsnologintext' => 'Hmangtu duhdàn siam tùrin i <span class="plainlinks"> [{{fullurl:{{#Special:UserLogin}}|returnto=$1}} inziah luh] </span> a ngai.',
 'changepassword' => 'Thurûk thlâkna',
 'prefs-skin' => 'Vun',
 'skin-preview' => 'Enchhinna',

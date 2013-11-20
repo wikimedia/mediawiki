@@ -1001,7 +1001,6 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'mypreferences' => 'Ileri tutmalar',
 'prefs-edits' => 'Özgerdiş sany:',
 'prefsnologin' => 'Sessiýa açmansyňyz',
-'prefsnologintext' => 'Ulanyjy ileri tutmalaryny üýtgetmek üçin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sessiýa açmagyňyz gerek]</span>.',
 'changepassword' => 'Paroly üýtget',
 'prefs-skin' => 'Bezeg',
 'skin-preview' => 'Deslapky syn',
@@ -3023,8 +3022,7 @@ Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General P
 
 # Special:SpecialPages
 'specialpages' => 'Ýörite sahypalar',
-'specialpages-note' => '----
-* Adaty ýörite sahypalar.
+'specialpages-note' => '* Adaty ýörite sahypalar.
 * <strong class="mw-specialpagerestricted">Çäklendirilen ýörite sahypalar.</strong>',
 'specialpages-group-maintenance' => 'Tehniki abatlaýyş hasabatlary',
 'specialpages-group-other' => 'Başga ýörite sahypalar',

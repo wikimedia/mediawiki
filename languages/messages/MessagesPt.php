@@ -1470,7 +1470,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
 'prefsnologin' => 'Não autenticado',
-'prefsnologintext' => 'Precisa de estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'changepassword' => 'Alterar palavra-chave',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Antever tema',
@@ -4035,8 +4034,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiais',
-'specialpages-note' => '----
-* Páginas especiais normais.
+'specialpages-note' => '* Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other' => 'Outras páginas especiais',

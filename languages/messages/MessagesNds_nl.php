@@ -1424,7 +1424,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'mypreferences' => 'Mien veurkeuren',
 'prefs-edits' => 'Antal bewarkingen:',
 'prefsnologin' => 'Niet an-meld',
-'prefsnologintext' => 'Je mutten <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} an-emeld]</span> ween um joew veurkeuren in te kunnen stellen.',
 'changepassword' => 'Wachtwoord wiezigen',
 'prefs-skin' => '{{SITENAME}}-uterlik',
 'skin-preview' => 'bekieken',
@@ -3937,8 +3936,7 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 
 # Special:SpecialPages
 'specialpages' => 'Spesiale ziejen',
-'specialpages-note' => '----
-* Normale spesiale ziejen.
+'specialpages-note' => '* Normale spesiale ziejen.
 * <strong class="mw-specialpagerestricted">Beparkt toegankelike spesiale ziejen.</strong>
 * <span class="mw-specialpagecached">Spesiale ziejen mit allinnig gegevens uut t tussengeheugen (kunnen verouwerd ween).</span>',
 'specialpages-group-maintenance' => 'Onderhoudsliesten',

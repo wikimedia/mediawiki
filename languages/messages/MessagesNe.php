@@ -1112,7 +1112,6 @@ $1",
 'mypreferences' => 'प्राथमिकताहरु',
 'prefs-edits' => 'सम्पादन संख्या:',
 'prefsnologin' => 'प्रवेश (लग ईन) नगरिएको',
-'prefsnologintext' => 'प्रयोगकर्ता अभिरूचि निर्धारण गर्न <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ]</span>तपाईंले प्रवेश गरेको हुनुपर्छ।',
 'changepassword' => 'पासवर्ड परिवर्तन गर्नुहोस्',
 'prefs-skin' => 'काँचुली',
 'skin-preview' => 'पूर्वावलोकन',
@@ -3347,8 +3346,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'विशेष पृष्ठ',
-'specialpages-note' => '----
-* साधारण विशेष पृष्ठहरु।
+'specialpages-note' => '* साधारण विशेष पृष्ठहरु।
 * <span class="mw-specialpagerestricted">निषेधित विशेष पृष्ठहरु।</span>
 * <span class="mw-specialpagecached">क्याश गरिएका विशेष पृष्ठहरु (अध्यावधिक नहुन सक्छ)।</span>',
 'specialpages-group-maintenance' => 'मर्मत प्रतिवेदनहरु',

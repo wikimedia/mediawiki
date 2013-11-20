@@ -1325,7 +1325,6 @@ $1",
 'mypreferences' => 'পছন্দসমূহ',
 'prefs-edits' => 'সম্পাদনাৰ সংখ্যা:',
 'prefsnologin' => 'প্ৰৱেশ কৰা নাই',
-'prefsnologintext' => 'আপোনাৰ পছন্দ সলনি কৰিবলৈ হ’লে <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} প্ৰৱেশ]</span> কৰাতো আৱশ্যক।',
 'changepassword' => 'গুপ্তশব্দ সলনি কৰক',
 'prefs-skin' => 'আৱৰণ',
 'skin-preview' => 'খচৰা',
@@ -3846,8 +3845,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
-'specialpages-note' => '----
-* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।
+'specialpages-note' => '* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।
 * <span class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</span>
 * <span class="mw-specialpagecached">কেশ্ব কৰা বিশেষ পৃষ্ঠাসমূহ (অপ্ৰচলিতও হ\'ব পাৰে)।</span>',
 'specialpages-group-maintenance' => 'তত্বাৱধানৰ কাৰ্যবিৱৰণীসমূহ',

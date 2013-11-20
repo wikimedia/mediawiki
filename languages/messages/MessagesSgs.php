@@ -761,7 +761,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'mypreferences' => 'Mona nustatīmā',
 'prefs-edits' => 'Keitėmu skaitlius:',
 'prefsnologin' => 'Naprisėjongis',
-'prefsnologintext' => 'Tamstā rēk būtė <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prisėjongosam]</span>, kū galietomiet keistė sava nustatīmus.',
 'changepassword' => 'Pakeistė slaptažuodė',
 'prefs-skin' => 'Ėšruoda',
 'skin-preview' => 'Parveiza',
@@ -1900,8 +1899,7 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 
 # Special:SpecialPages
 'specialpages' => 'Specēlė̅jė poslapē',
-'specialpages-note' => '----
-* Normalūs specēlė̅jė puslapē.
+'specialpages-note' => '* Normalūs specēlė̅jė puslapē.
 * <strong class="mw-specialpagerestricted">Apribuotė specēlė̅jė puslapē.</strong>',
 'specialpages-group-maintenance' => 'Sėstemas palaikīma pranešėmā',
 'specialpages-group-other' => 'Kėtė specēlė̅jė poslapē',

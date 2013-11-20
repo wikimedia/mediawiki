@@ -830,7 +830,8 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 'invalidtitle-knownnamespace' => 'Ungültiger Titel mit Namensraum „$2“ und Text „$3“',
 'invalidtitle-unknownnamespace' => 'Ungültiger Titel mit unbekannter Namensraumnummer $1 und Text „$2“',
 'exception-nologin' => 'Nicht angemeldet',
-'exception-nologin-text' => 'Diese Seite oder Aktion erfordert, dass du auf diesem Wiki angemeldet bist.',
+'exception-nologin-text' => 'Du musst dich [[Special:Userlogin|anmelden]], um auf diese Seite oder Aktion zugreifen zu können.',
+'exception-nologin-text-manual' => 'Du musst dich $1, um auf diese Seite oder Aktion zugreifen zu können.',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -1542,7 +1543,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'mypreferences' => 'Einstellungen',
 'prefs-edits' => 'Anzahl der Bearbeitungen:',
 'prefsnologin' => 'Nicht angemeldet',
-'prefsnologintext' => 'Du musst <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} angemeldet]</span> sein, um deine Einstellungen ändern zu können.',
+'prefsnologintext2' => 'Du musst dich $1, um Benutzereinstellungen festzulegen.',
 'changepassword' => 'Passwort ändern',
 'prefs-skin' => 'Benutzeroberfläche',
 'skin-preview' => 'Vorschau',
@@ -2568,7 +2569,7 @@ Kontakt zum Bearbeiter:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Bei weiterer Aktivität auf der Seite werden dir so lange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
+Bei weiterer Aktivität auf der Seite werden dir so lange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder angemeldet besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.
 
 Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
@@ -4100,10 +4101,9 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 
 # Special:SpecialPages
 'specialpages' => 'Spezialseiten',
-'specialpages-note' => '----
-* Reguläre Spezialseiten
-* <span class="mw-specialpagerestricted">Zugriffsbeschränkte Spezialseiten</span>
-* <span class="mw-specialpagecached">Gecachte Spezialseiten (Deren Inhalt ist möglicherweise veraltet.)</span>',
+'specialpages-note-top' => 'Legende',
+'specialpages-note' => '* Normale Spezialseiten.
+* <span class="mw-specialpagerestricted">Spezialseiten mit beschränktem Zugang.</span>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other' => 'Andere Spezialseiten',
 'specialpages-group-login' => 'Benutzerkonto',

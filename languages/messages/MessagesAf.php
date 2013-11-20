@@ -1330,7 +1330,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'mypreferences' => 'Voorkeure',
 'prefs-edits' => 'Aantal wysigings:',
 'prefsnologin' => 'Nie ingeteken nie',
-'prefsnologintext' => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aanmeld]</span> om voorkeure te kan verander.',
 'changepassword' => 'Verander wagwoord',
 'prefs-skin' => 'Omslag',
 'skin-preview' => 'Voorskou',
@@ -3864,8 +3863,7 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 
 # Special:SpecialPages
 'specialpages' => 'Spesiale bladsye',
-'specialpages-note' => '----
-* Normale spesiale bladsye.
+'specialpages-note' => '* Normale spesiale bladsye.
 * <span class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</span>
 * <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',

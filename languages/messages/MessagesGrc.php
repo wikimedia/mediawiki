@@ -827,7 +827,6 @@ $1",
 'mypreferences' => 'Αἱ προαιρέσεις μου',
 'prefs-edits' => 'Τοσοῦται αἱ μεταβολαί:',
 'prefsnologin' => 'Μὴ συνδεδεμένος',
-'prefsnologintext' => 'Δεῖ σε <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} συνδεδεμένος εἶναι]</span> πρὸ τοῦ καθορίσειν τὰς ἐσοῦ προαιρέσεις χρωμένου.',
 'changepassword' => 'Ἀλλάττειν σύνθημα',
 'prefs-skin' => 'Ἐμφάνισις',
 'skin-preview' => 'Προεπισκοπεῖν',
@@ -2590,8 +2589,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Εἰδικαὶ δέλτοι',
-'specialpages-note' => '----
-* Κανονικαὶ εἰδικαὶ δέλτοι.
+'specialpages-note' => '* Κανονικαὶ εἰδικαὶ δέλτοι.
 * <strong class="mw-specialpagerestricted">Περιωρισμέναι εἰδικαὶ δἐλτοι.</strong>
 * <span class="mw-specialpagecached">Μόναι δέλτοι ἀποτεταμιευμέναι.</span>',
 'specialpages-group-maintenance' => 'Ἀναφοραὶ συντηρήσεως',

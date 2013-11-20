@@ -1119,7 +1119,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'mypreferences' => 'För mi Instellen',
 'prefs-edits' => 'Wo faken du in dit Wiki Sieden ännert hest:',
 'prefsnologin' => 'Nich anmellt',
-'prefsnologintext' => 'Du musst <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} anmellt]</span> wesen, dat du dien Instellen ännern kannst.',
 'changepassword' => 'Passwoort ännern',
 'prefs-skin' => 'Utsehn vun de Steed',
 'skin-preview' => 'Vörschau',
@@ -3022,8 +3021,7 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 
 # Special:SpecialPages
 'specialpages' => 'Sünnerliche Sieden',
-'specialpages-note' => '----
-* Normale Spezialsieden
+'specialpages-note' => '* Normale Spezialsieden
 * <strong class="mw-specialpagerestricted">Spezialsieden för Brukers mit mehr Rechten</strong>',
 'specialpages-group-maintenance' => 'Pleeglisten',
 'specialpages-group-other' => 'Annere Spezialsieden',

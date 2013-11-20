@@ -1214,7 +1214,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'mypreferences' => 'Preferencies',
 'prefs-edits' => "Númberu d'ediciones:",
 'prefsnologin' => 'Nun anició sesión',
-'prefsnologintext' => 'Necesita <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aniciar sesión]</span> pa camudar la configuración d\'usuariu.',
 'changepassword' => 'Camudar la clave',
 'prefs-skin' => 'Apariencia',
 'skin-preview' => 'Vista previa',
@@ -3784,8 +3783,7 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 
 # Special:SpecialPages
 'specialpages' => 'Páxines especiales',
-'specialpages-note' => '----
-* Páxines especiales normales.
+'specialpages-note' => '* Páxines especiales normales.
 * <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>
 * <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',

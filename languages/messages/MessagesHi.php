@@ -1332,7 +1332,6 @@ $1",
 'mypreferences' => 'पसंद',
 'prefs-edits' => 'संपादन संख्या:',
 'prefsnologin' => 'लॉग इन नहीं किया है',
-'prefsnologintext' => 'वरीयताएँ बदलने के लिए आपको <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} सत्रारंभ]</span> करना होगा।',
 'changepassword' => 'कूटशब्द बदलें',
 'prefs-skin' => 'त्वचा',
 'skin-preview' => 'झलक',
@@ -3904,8 +3903,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'विशेष पृष्ठ',
-'specialpages-note' => '----
-* साधारण विशेष पृष्ठ।
+'specialpages-note' => '* साधारण विशेष पृष्ठ।
 * <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</span>',
 'specialpages-group-maintenance' => 'अनुरक्षण रिपोर्ट',
 'specialpages-group-other' => 'अन्य विशेष पृष्ठ',

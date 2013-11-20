@@ -1095,7 +1095,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'mypreferences' => 'Mga Ginabasehan',
 'prefs-edits' => 'Numero sang mga gin-ilisan:',
 'prefsnologin' => 'Wala naka-sulod',
-'prefsnologintext' => 'Kinahanglan nga ikaw <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakasulod]</span> agod nga mabuhat ang pag-ilis sang mga ginapalabi.',
 'changepassword' => 'Ilisan ang pasword',
 'prefs-skin' => 'Panit',
 'skin-preview' => 'Ipakita subong',

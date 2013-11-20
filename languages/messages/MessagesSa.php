@@ -1305,7 +1305,6 @@ You can still [$1 view this revision]",
 'mypreferences' => 'मम इष्टतमानि',
 'prefs-edits' => 'सम्पादनानां सख्याः',
 'prefsnologin' => 'नैव प्रविष्ट',
-'prefsnologintext' => 'वरीयतां परिवर्तयितुं भवता <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}नामाभिलेखः]</span> करणियः।',
 'changepassword' => 'कूटशब्दः परिवर्त्यताम्',
 'prefs-skin' => 'त्वक्',
 'skin-preview' => 'प्राग्दृश्यम्',
@@ -3728,8 +3727,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'विशेषपृष्ठानि',
-'specialpages-note' => '----
-* साधारणं विशेषपुटम् । 
+'specialpages-note' => '* साधारणं विशेषपुटम् । 
 * <span class="mw-specialpagerestricted">प्रतिद्धं विशेषपुटम् ।</span>',
 'specialpages-group-maintenance' => 'निर्वहणवृत्तानि ।',
 'specialpages-group-other' => 'अन्यविशेषपुटानि ।',

@@ -1167,7 +1167,6 @@ $1",
 'mypreferences' => 'Туруоруулар',
 'prefs-edits' => 'Көннөрүү ахсаана:',
 'prefsnologin' => 'Ааккын эппэтиҥ',
-'prefsnologintext' => 'Эн <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ааккын эттэххинэ]</span> эрэ кыттаачы туруорууларын уларытар кыахтаныаҥ.',
 'changepassword' => 'Киирии тылы уларытарга',
 'prefs-skin' => 'Тас көстүү',
 'skin-preview' => 'Хайдах буолара',
@@ -3690,8 +3689,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 
 # Special:SpecialPages
 'specialpages' => 'Анал сирэйдэр',
-'specialpages-note' => '----
-* Көннөрү анал сирэйдэр.
+'specialpages-note' => '* Көннөрү анал сирэйдэр.
 * <strong class="mw-specialpagerestricted">Хааччахтардаах анал сирэйдэр.</strong>
 * <span class="mw-specialpagecached">Кээстэммит анал сирэйдэр (эргэрбит буолуохтарын сөп).</span>',
 'specialpages-group-maintenance' => 'Техническэй отчуоттар',

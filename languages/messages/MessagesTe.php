@@ -530,7 +530,7 @@ $2',
 'titleprotected' => "సభ్యులు [[User:$1|$1]] ఈ పేజీని సృష్టించనివ్వకుండా నిరోదిస్తున్నారు.
 అందుకు ఇచ్చిన కారణం: ''$2''.",
 'exception-nologin' => 'లోనికి ప్రవేశించిలేరు',
-'exception-nologin-text' => 'ఈ వికీలో ఈ పేజీ లేదా పనికి మీరు తప్పనిసరిగా ప్రవేశించివుండాలి.',
+'exception-nologin-text' => 'ఈ పేజీని చూడడానికి లేదా ఈ చర్యను చెయ్యడానికి దయచేసి [[Special:Userlogin|ప్రవేశించండి]].',
 
 # Virus scanner
 'virus-badscanner' => "తప్పుడు స్వరూపణం: తెలియని వైరస్ స్కానర్: ''$1''",
@@ -1188,7 +1188,6 @@ $1",
 'mypreferences' => 'అభిరుచులు',
 'prefs-edits' => 'దిద్దుబాట్ల సంఖ్య:',
 'prefsnologin' => 'లాగిన్‌ అయిలేరు',
-'prefsnologintext' => 'వాడుకరి అభిరుచులను మార్చుకోడానికి, మీరు <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} లోనికి ప్రవేశించి]</span> ఉండాలి.',
 'changepassword' => 'సంకేతపదాన్ని మార్చండి',
 'prefs-skin' => 'అలంకారం',
 'skin-preview' => 'మునుజూపు/సరిచూడు',
@@ -3451,8 +3450,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'ప్రత్యేక పేజీలు',
-'specialpages-note' => '----
-* మామూలు ప్రత్యేక పుటలు.
+'specialpages-note' => '* మామూలు ప్రత్యేక పుటలు.
 * <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పుటలు.</strong>
 * <span class="mw-specialpagecached">Cached ప్రత్యేక పుటలు (పాతబడి ఉండొచ్చు).</span>',
 'specialpages-group-maintenance' => 'నిర్వహణా నివేదికలు',

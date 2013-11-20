@@ -1043,7 +1043,6 @@ $1',
 'mypreferences' => 'غوره توبونه',
 'prefs-edits' => 'د سمونو شمېر:',
 'prefsnologin' => 'غونډال کې نه ياست ننوتي',
-'prefsnologintext' => 'د دې لپاره چې خپل غوره توبونه مو وټاکی، نو پکار ده چې لومړی تاسو غونډال کې <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ننوځی]</span>.',
 'changepassword' => 'پټنوم بدلول',
 'prefs-skin' => 'پوښۍ',
 'skin-preview' => 'مخکتنه',
@@ -2668,8 +2667,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'ځانگړي مخونه',
-'specialpages-note' => '----
-* نورماله ځانگړي مخونه.
+'specialpages-note' => '* نورماله ځانگړي مخونه.
 * <strong class="mw-specialpagerestricted">محدوده ځانگړي مخونه.</strong>
 * <span class="mw-specialpagecached">رانيولي ځانگړي مخونه (کېدای شي منسوخ شوی وي).</span>',
 'specialpages-group-maintenance' => 'د څارنې راپورونه',

@@ -1431,7 +1431,6 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'mypreferences' => 'Preferințe',
 'prefs-edits' => 'Număr de modificări:',
 'prefsnologin' => 'Neautentificat',
-'prefsnologintext' => 'Trebuie să fiți <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autentificat]</span> pentru a vă putea salva preferințele.',
 'changepassword' => 'Schimbare parolă',
 'prefs-skin' => 'Aspect',
 'skin-preview' => 'Previzualizare',
@@ -3975,8 +3974,7 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 
 # Special:SpecialPages
 'specialpages' => 'Pagini speciale',
-'specialpages-note' => '----
-* Pagini speciale normale.
+'specialpages-note' => '* Pagini speciale normale.
 * <span class="mw-specialpagerestricted">Pagini speciale restricționate.</span>
 * <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache (pot fi neactualizate).</span>',
 'specialpages-group-maintenance' => 'Întreținere',

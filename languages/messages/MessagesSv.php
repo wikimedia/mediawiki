@@ -1294,8 +1294,8 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-hide-user' => 'Redigerarens användarnamn/IP-adress',
 'revdelete-hide-restricted' => 'Undanhåll data från administratörer så väl som från övriga',
 'revdelete-radio-same' => '(låt vara)',
-'revdelete-radio-set' => 'Synlig',
-'revdelete-radio-unset' => 'Dold',
+'revdelete-radio-set' => 'Dold',
+'revdelete-radio-unset' => 'Synlig',
 'revdelete-suppress' => 'Undanhåll data även från administratörer',
 'revdelete-unsuppress' => 'Ta bort begränsningar på återställda versioner',
 'revdelete-log' => 'Anledning:',
@@ -1453,7 +1453,6 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'mypreferences' => 'Inställningar',
 'prefs-edits' => 'Antal redigeringar:',
 'prefsnologin' => 'Inte inloggad',
-'prefsnologintext' => 'Du måste vara <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
 'changepassword' => 'Byt lösenord',
 'prefs-skin' => 'Utseende',
 'skin-preview' => 'förhandsvisning',
@@ -3312,7 +3311,7 @@ Om du kör den kan din dator skadas.",
 'svg-long-desc' => 'SVG-fil, grundstorlek: $1 × $2 pixlar, filstorlek: $3',
 'svg-long-desc-animated' => 'Animerad SVG-fil, standardstorlek $1 × $2 pixlar, filstorlek: $3',
 'svg-long-error' => 'Felaktig SVG-fil: $1',
-'show-big-image' => 'Högupplöst version',
+'show-big-image' => 'Originalfil',
 'show-big-image-preview' => 'Storlek på förhandsvisningen: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Annan upplösning|Andra upplösningar}}: $1.',
 'show-big-image-size' => '$1 × $2 pixlar',
@@ -4007,8 +4006,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 
 # Special:SpecialPages
 'specialpages' => 'Specialsidor',
-'specialpages-note' => '----
-* Normala specialsidor.
+'specialpages-note' => '* Normala specialsidor.
 * <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>
 * <span class="mw-specialpagecached">Cachade specialsidor (kan vara föråldrade).</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',

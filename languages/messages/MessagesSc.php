@@ -653,7 +653,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'mypreferences' => 'Preferèntzias meas',
 'prefs-edits' => 'Nùmeru de acontzos:',
 'prefsnologin' => 'Non ses intrau',
-'prefsnologintext' => 'Depes èsser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} intradu]</span> pro seberare is preferèntzias.',
 'changepassword' => 'Càmbia password',
 'prefs-skin' => 'Bisura',
 'skin-preview' => 'Antiprima',

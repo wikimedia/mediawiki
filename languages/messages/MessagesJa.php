@@ -782,7 +782,8 @@ $2',
 'invalidtitle-knownnamespace' => '名前空間名「$2」と名前「$3」の組み合わせはページ名として無効です',
 'invalidtitle-unknownnamespace' => '不明な名前空間番号 $1 と名前「$2」の組み合わせはページ名として無効です',
 'exception-nologin' => 'ログインしていません',
-'exception-nologin-text' => 'このページまたは操作には、このウィキへのログインが必要です。',
+'exception-nologin-text' => 'このページまたは操作にアクセスできるようにするには[[Special:Userlogin|ログイン]]してください。',
+'exception-nologin-text-manual' => 'このページまたは操作にアクセスできるようにするには$1してください。',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です: 不明なウイルス対策ソフトウェア: ''$1''",
@@ -1535,7 +1536,7 @@ $1",
 'mypreferences' => '個人設定',
 'prefs-edits' => '編集回数:',
 'prefsnologin' => 'ログインしていません',
-'prefsnologintext' => '個人設定を変更するためには<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ログイン]</span>する必要があります。',
+'prefsnologintext2' => '個人設定を変更するには$1してください。',
 'changepassword' => 'パスワードの変更',
 'prefs-skin' => '外装',
 'skin-preview' => 'プレビュー',
@@ -2593,9 +2594,9 @@ $PAGEINTRO $NEWPAGE
 メール: $PAGEEDITOR_EMAIL
 ウィキ: $PAGEEDITOR_WIKI
 
-このページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
+ログインした状態でこのページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
 
-                         {{SITENAME}}通知システム
+{{SITENAME}}通知システム
 
 --
 メール通知の設定は、以下のページで変更してください:
@@ -4286,8 +4287,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:SpecialPages
 'specialpages' => '特別ページ',
-'specialpages-note' => '----
-* 通常の特別ページ
+'specialpages-note' => '* 通常の特別ページ
 * <span class="mw-specialpagerestricted">制限されている特別ページ</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other' => 'その他の特別ページ',

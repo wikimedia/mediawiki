@@ -937,7 +937,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'mypreferences' => 'Parapëlqimet e mija',
 'prefs-edits' => 'Numri i redaktimeve:',
 'prefsnologin' => 'Nuk jeni kyçë',
-'prefsnologintext' => 'Duheni me qenë <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} i kyçun]</span> për me i caktue parapëlqimet.',
 'changepassword' => 'Ndërrimi i fjalëkalimit',
 'prefs-skin' => 'Doka',
 'skin-preview' => 'Parapâmja',

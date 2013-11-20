@@ -1440,7 +1440,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'mypreferences' => 'Tùy chọn',
 'prefs-edits' => 'Số lần sửa đổi:',
 'prefsnologin' => 'Chưa đăng nhập',
-'prefsnologintext' => 'Bạn phải <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
 'changepassword' => 'Đổi mật khẩu',
 'prefs-skin' => 'Hình dạng',
 'skin-preview' => 'Xem trước',
@@ -4105,8 +4104,7 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 
 # Special:SpecialPages
 'specialpages' => 'Các trang đặc biệt',
-'specialpages-note' => '----
-* Trang đặc biệt thông thường.
+'specialpages-note' => '* Trang đặc biệt thông thường.
 * <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>
 * <span class="mw-specialpagecached">Trang đặc biệt được lấy từ vùng nhớ đệm (có thể lỗi thời).</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',

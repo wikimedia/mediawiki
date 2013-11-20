@@ -1098,7 +1098,6 @@ $1",
 'mypreferences' => 'Настройкі',
 'prefs-edits' => 'Колькасць правак:',
 'prefsnologin' => 'Не ўвайшлі',
-'prefsnologintext' => 'Неабходна <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} увайсці ў сістэму]</span>, каб мяняць свае настройкі.',
 'changepassword' => 'Пароль',
 'prefs-skin' => 'Вокладка',
 'skin-preview' => 'перадпаказ',
@@ -3403,8 +3402,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 
 # Special:SpecialPages
 'specialpages' => 'Адмысловыя старонкі',
-'specialpages-note' => '----
-* Звычайныя адмысловыя старонкі.
+'specialpages-note' => '* Звычайныя адмысловыя старонкі.
 * <span class="mw-specialpagerestricted">Адмысловыя старонкі з абмежаваным доступам.</span>
 * <span class="mw-specialpagecached">Закэшаваныя адмысловыя старонкі (могуць быць састарэлымі).</span>',
 'specialpages-group-maintenance' => 'Звесткі аб працы',

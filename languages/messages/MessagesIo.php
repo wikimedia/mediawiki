@@ -692,7 +692,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'mypreferences' => 'Preferaji',
 'prefs-edits' => 'Nombro di redaktaji:',
 'prefsnologin' => 'Vu ne eniris',
-'prefsnologintext' => 'Vu mustas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enirir]</span> por establisar la preferaji.',
 'changepassword' => 'Chanjar pasovorto',
 'prefs-skin' => 'Pelo',
 'skin-preview' => 'Pre-videz',

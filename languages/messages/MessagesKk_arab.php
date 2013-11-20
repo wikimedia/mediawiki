@@ -1128,7 +1128,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'mypreferences' => 'باپتالىمدارىم',
 'prefs-edits' => 'وڭدەمە سانى:',
 'prefsnologin' => 'كىرمەگەنسىز',
-'prefsnologintext' => 'باپتاۋىڭىزدى قويۋ ٴۇشىن [[Special:UserLogin|كىرۋىڭىز]] ٴتىيىستى.',
 'changepassword' => 'قۇپىييا ٴسوزدى وزگەرتۋ',
 'prefs-skin' => 'مانەرلەر',
 'skin-preview' => 'قاراپ شىعۋ',
@@ -2818,8 +2817,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'ارنايى بەتتەر',
-'specialpages-note' => '----
-* كادىمگى ارنايى بەتتەر.
+'specialpages-note' => '* كادىمگى ارنايى بەتتەر.
 * <strong class="mw-specialpagerestricted">شەكتەلگەن ارنايى بەتتەر.</strong>',
 'specialpages-group-maintenance' => 'باپتاۋ باياناتتارى',
 'specialpages-group-other' => 'تاعى باسقا ارنايى بەتتەر',

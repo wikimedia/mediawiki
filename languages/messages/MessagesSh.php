@@ -1332,7 +1332,6 @@ Uzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.',
 'mypreferences' => 'Postavke',
 'prefs-edits' => 'Broj izmjena:',
 'prefsnologin' => 'Niste prijavljeni',
-'prefsnologintext' => 'Da biste mogli podešavati korisničke postavke, morate <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} biti prijavljeni]</span>.',
 'changepassword' => 'Promijeni lozinku',
 'prefs-skin' => 'Izgled (skin)',
 'skin-preview' => 'Pretpregled',
@@ -3847,8 +3846,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 
 # Special:SpecialPages
 'specialpages' => 'Posebne stranice',
-'specialpages-note' => '----
-* Normalne posebne stranice.
+'specialpages-note' => '* Normalne posebne stranice.
 * <span class="mw-specialpagerestricted">Ograničene posebne stranice.</span>
 * <span class="mw-specialpagecached">Keširane posebne stranice (mogu biti zastarjele).</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',

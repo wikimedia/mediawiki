@@ -785,7 +785,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en tekst "$3"',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 'exception-nologin' => 'Niet aangemeld',
-'exception-nologin-text' => 'Om deze pagina te bekijken of deze handeling uit te kunnen voeren moet u aangemeld zijn bij deze wiki.',
+'exception-nologin-text' => 'Om deze pagina te bekijken of deze handeling uit te kunnen voeren moet u [[Special:Userlogin|aangemeld]] zijn bij deze wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
@@ -1534,7 +1534,6 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'mypreferences' => 'Voorkeuren',
 'prefs-edits' => 'Aantal bewerkingen:',
 'prefsnologin' => 'Niet aangemeld',
-'prefsnologintext' => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aangemeld]</span> zijn om uw voorkeuren te kunnen instellen.',
 'changepassword' => 'Wachtwoord wijzigen',
 'prefs-skin' => 'Vormgeving',
 'skin-preview' => 'Voorvertoning',
@@ -4005,6 +4004,9 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Deze pagina verwijderen uit uw volglijst?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
+
 # Multipage image navigation
 'imgmultipageprev' => '← vorige pagina',
 'imgmultipagenext' => 'volgende pagina →',
@@ -4153,8 +4155,7 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 
 # Special:SpecialPages
 'specialpages' => "Speciale pagina's",
-'specialpages-note' => '----
-* Normale speciale pagina\'s
+'specialpages-note' => '* Normale speciale pagina\'s
 * <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>
 * <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache (mogelijk verouderd)</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',

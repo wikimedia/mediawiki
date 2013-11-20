@@ -1180,7 +1180,6 @@ Catatan nang dihaharnya matan isi {{SITENAME}} kawa-ai sudah kadaluarsa.',
 'mypreferences' => 'Nang ulun katuju',
 'prefs-edits' => 'Rikinan babakan-babakan:',
 'prefsnologin' => 'Balum babuat log',
-'prefsnologintext' => 'Pian harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} babuat log]</span> gasat mengeset kakatujuan Pian.',
 'changepassword' => 'Ubah katasunduk',
 'prefs-skin' => 'Kulimbit',
 'skin-preview' => 'Titilikan',
@@ -3584,8 +3583,7 @@ Pian saharusnya [{{SERVER}}{{SCRIPTPATH}}/COPYING sabuting salinan Lisansi Publi
 
 # Special:SpecialPages
 'specialpages' => 'Tungkaran istimiwa',
-'specialpages-note' => '----
-* Tutungkaran istimiwa normal
+'specialpages-note' => '* Tutungkaran istimiwa normal
 * <span class="mw-specialpagerestricted">Tutungkaran istimiwa tabatas.</span>
 * <span class="mw-specialpagecached">Tutungkaran istimiwa timbuluk (pinanya bakulat).</span>',
 'specialpages-group-maintenance' => 'Lapuran pamaliharaan',

@@ -935,7 +935,6 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'mypreferences' => 'Praeferentiae',
 'prefs-edits' => 'Numerus recensionum:',
 'prefsnologin' => 'Conventum non est apertum',
-'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
 'changepassword' => 'Tesseram mutare',
 'prefs-skin' => 'Aspectum',
 'skin-preview' => 'Praevisum',

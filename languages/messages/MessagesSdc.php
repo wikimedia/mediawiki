@@ -788,7 +788,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'mypreferences' => "Li me' prifirenzi",
 'prefs-edits' => 'Mudìfigghi effettuaddi:',
 'prefsnologin' => 'Intradda nò effettuadda',
-'prefsnologintext' => 'Pa mudìfiggà li prifirenzi è nezzessàriu [[Special:UserLogin|intrà]].',
 'changepassword' => "Ciamba paràura d'órdhini",
 'prefs-skin' => 'Aipettu gràficu',
 'skin-preview' => 'antiprimma',

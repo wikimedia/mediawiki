@@ -1220,7 +1220,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'mypreferences' => 'Hobespenak',
 'prefs-edits' => 'Aldaketa kopurua:',
 'prefsnologin' => 'Saioa hasi gabe',
-'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman]</span> behar duzu zure hobespenak ezartzeko.',
 'changepassword' => 'Pasahitza aldatu',
 'prefs-skin' => 'Itxura',
 'skin-preview' => 'Aurrebista',
@@ -3565,8 +3564,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 
 # Special:SpecialPages
 'specialpages' => 'Orri bereziak',
-'specialpages-note' => '----
-* Orri berezi arruntak.
+'specialpages-note' => '* Orri berezi arruntak.
 * <strong class="mw-specialpagerestricted">Mugatutako orri bereziak.</strong>',
 'specialpages-group-maintenance' => 'Mantentze-oharrak',
 'specialpages-group-other' => 'Beste orri berezi batzuk',

@@ -773,7 +773,8 @@ $2',
 'invalidtitle-knownnamespace' => 'כותרת בלתי־תקינה עם מרחב השם "$2" ושם דף "$3"',
 'invalidtitle-unknownnamespace' => 'כותרת בלתי־תקינה עם מרחב שם בלתי־ידוע מספר $1 ושם דף "$2"',
 'exception-nologin' => 'לא בחשבון',
-'exception-nologin-text' => 'כדי לראות את הדף הזה או לבצע את הפעולה הזאת צריך להיכנס לחשבון באתר הוויקי הזה.',
+'exception-nologin-text' => 'אנא [[Special:Userlogin|היכנסו לחשבון]] כדי לראות את הדף הזה או לבצע את הפעולה הזו.',
+'exception-nologin-text-manual' => 'אנא $1 כדי לראות את הדף הזה או לבצע את הפעולה הזו.',
 
 # Virus scanner
 'virus-badscanner' => "הגדרות שגויות: סורק הווירוסים אינו ידוע: ''$1''",
@@ -786,7 +787,7 @@ $2',
 שימו לב כי ייתכן שדפים אחדים ימשיכו להיות מוצגים כאילו אתם עדיין מחוברים לחשבון עד שתנקו את המטמון של הדפדפן שלכם.",
 'welcomeuser' => 'ברוך בואך, $1!',
 'welcomecreation-msg' => 'חשבונך נוצר.
-נא לא לשכוח להתאים את [[Special:Preferences|העדפות המשתמש]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.',
+באפשרותך להתאים את [[Special:Preferences|ההעדפות]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.',
 'yourname' => 'שם משתמש:',
 'userlogin-yourname' => 'שם משתמש',
 'userlogin-yourname-ph' => 'יש להקליד את שם המשתמש',
@@ -1501,7 +1502,7 @@ $1",
 'mypreferences' => 'העדפות',
 'prefs-edits' => 'מספר עריכות:',
 'prefsnologin' => 'לא נכנסת לחשבון',
-'prefsnologintext' => 'עליכם <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
+'prefsnologintext2' => 'אנא $1 כדי לשנות העדפות משתמש.',
 'changepassword' => 'שינוי סיסמה',
 'prefs-skin' => 'עיצוב',
 'skin-preview' => 'תצוגה מקדימה',
@@ -2538,9 +2539,9 @@ $PAGEINTRO $NEWPAGE
 בדואר האלקטרוני: $PAGEEDITOR_EMAIL
 באתר: $PAGEEDITOR_WIKI
 
-לא תהיינה הודעות על פעולות נוספות עד שתבקרו בדף. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
+לא תהיינה הודעות על פעולות נוספות עד שתבקרו בדף כשאתם מחוברים לחשבון. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
 
-             מערכת ההודעות של {{SITENAME}}
+מערכת ההודעות של {{SITENAME}}
 
 --
 כדי לשנות את ההגדרות של הודעות הדוא"ל הנשלחות אליכם, בקרו בדף
@@ -3636,6 +3637,10 @@ $1',
 'exif-compression-2' => 'קידוד הופמן מואתם חד-מימדי לאורך ריצה CCITT קבוצה 3',
 'exif-compression-3' => 'קידוד פקס CCITT קבוצה 3',
 'exif-compression-4' => 'קידוד פקס CCITT קבוצה 4',
+'exif-compression-6' => 'JPEG (ישן)',
+'exif-compression-8' => 'Deflate (של Adobe)',
+'exif-compression-32773' => 'PackBits (של Macintosh RLE)',
+'exif-compression-32946' => 'Deflate (של PKZIP)',
 
 'exif-copyrighted-true' => 'מוגן בזכויות יוצרים',
 'exif-copyrighted-false' => 'מצב זכויות היוצרים לא הוגדר',
@@ -3818,6 +3823,8 @@ $1',
 'exif-rating-rejected' => 'נדחה',
 
 'exif-isospeedratings-overflow' => 'מעל 65535',
+
+'exif-maxaperturevalue-value' => '$1 APEX (יחידות: f/$2)',
 
 'exif-iimcategory-ace' => 'אמנויות, תרבות ובידור',
 'exif-iimcategory-clj' => 'פשע ומשפט',
@@ -4131,8 +4138,8 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'דפים מיוחדים',
-'specialpages-note' => '----
-* דפים מיוחדים רגילים.
+'specialpages-note-top' => 'מקרא',
+'specialpages-note' => '* דפים מיוחדים רגילים.
 * <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other' => 'דפים מיוחדים אחרים',

@@ -1075,7 +1075,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'mypreferences' => 'Préferéns',
 'prefs-edits' => 'Jumlah éditan:',
 'prefsnologin' => 'Can asup log',
-'prefsnologintext' => 'Anjeun kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
 'changepassword' => 'Robah sandi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pramidang',
@@ -2932,8 +2931,7 @@ Coba ku sawangan normal.',
 
 # Special:SpecialPages
 'specialpages' => 'Kaca husus',
-'specialpages-note' => '----
-* Kaca husus bisa di buka ku umum.
+'specialpages-note' => '* Kaca husus bisa di buka ku umum.
 * <strong class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</strong>',
 'specialpages-group-maintenance' => 'Laporan pigawéeun',
 'specialpages-group-other' => 'Kaca husus lainna',

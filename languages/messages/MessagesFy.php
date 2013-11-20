@@ -951,7 +951,6 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'mypreferences' => 'Myn foarkarynstellings',
 'prefs-edits' => 'Tal bewurkings:',
 'prefsnologin' => 'Net oanmeld',
-'prefsnologintext' => 'Jo moatte <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} oanmeld]</span> wêze om jo foarkar-ynstellings te feroarje te kinnen.',
 'changepassword' => 'Wachtwurd feroarje',
 'prefs-skin' => 'Side-oansjen',
 'skin-preview' => 'Proefbyld',
@@ -2291,8 +2290,7 @@ Wolle jo de side wier op 'e nij skriuwe?",
 
 # Special:SpecialPages
 'specialpages' => 'Bysûndere siden',
-'specialpages-note' => '----
-* Normale bysûndere siden.
+'specialpages-note' => '* Normale bysûndere siden.
 * <strong class="mw-specialpagerestricted">Beheinde bysûndere siden.</strong>',
 'specialpages-group-maintenance' => 'Underhâld siden',
 'specialpages-group-other' => 'Oare bysûndere siden',

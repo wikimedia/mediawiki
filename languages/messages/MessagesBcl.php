@@ -1231,7 +1231,6 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'mypreferences' => 'Mga Kamuyahan ko',
 'prefs-edits' => 'Bilang kan mga hirá:',
 'prefsnologin' => 'Dai nakalaog',
-'prefsnologintext' => 'Ika dapat na magin <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakalaog na]</span> tanganing tuytuyon an mga kabotan nin paragamit.',
 'changepassword' => 'Ribayan an sekretong panlaog',
 'prefs-skin' => "''Skin''",
 'skin-preview' => 'Tânawon',
@@ -3760,8 +3759,7 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 
 # Special:SpecialPages
 'specialpages' => 'Mga espesyal na pahina',
-'specialpages-note' => '----
-* Normal espesyal na mga pahina.
+'specialpages-note' => '* Normal espesyal na mga pahina.
 * <span class="mw-specialpagerestricted">Restriktadong espesyal na mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga talaan nin pagpangataman',
 'specialpages-group-other' => 'Iba pang mga espesyal na pahina',

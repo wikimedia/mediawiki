@@ -1164,7 +1164,6 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'mypreferences' => 'Àwọn ìfẹ́ràn',
 'prefs-edits' => 'Iye àwọn àtúnṣe:',
 'prefsnologin' => 'Ẹ kò tíì wọlé',
-'prefsnologintext' => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
 'changepassword' => 'Ìyípadà ọ̀rọ̀ìpamọ́',
 'prefs-skin' => 'Skin (Àwọ̀)',
 'skin-preview' => 'Àkọ́yẹ̀wò',
@@ -3466,8 +3465,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Àwọn ojúewé pàtàkì',
-'specialpages-note' => '----
-* Àwọn ojúewé pàtàkì onídéédé.
+'specialpages-note' => '* Àwọn ojúewé pàtàkì onídéédé.
 * <span class="mw-specialpagerestricted">Àwọn ojúewé pàtàkì àìgbàláyè.</span>',
 'specialpages-group-maintenance' => 'Àwọn ìjábọ̀ ìtọ́jú',
 'specialpages-group-other' => 'Àwọn ojúewé pàtàkì míràn',

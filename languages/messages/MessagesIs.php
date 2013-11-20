@@ -1357,7 +1357,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'mypreferences' => 'Mínar stillingar',
 'prefs-edits' => 'Fjöldi breytinga:',
 'prefsnologin' => 'Ekki innskráður',
-'prefsnologintext' => 'Þú verður að vera <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} skráð(ur) inn]</span> til að breyta notandastillingum.',
 'changepassword' => 'Breyta lykilorði',
 'prefs-skin' => 'Þema',
 'skin-preview' => 'Forskoða',
@@ -3823,8 +3822,7 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 
 # Special:SpecialPages
 'specialpages' => 'Kerfissíður',
-'specialpages-note' => '----
-* Venjulegar kerfisíður.
+'specialpages-note' => '* Venjulegar kerfisíður.
 * <span class="mw-specialpagerestricted">Kerfisíður með takmörkuðum aðgangi.</span>',
 'specialpages-group-maintenance' => 'Viðhaldsskýrslur',
 'specialpages-group-other' => 'Aðrar kerfissíður',

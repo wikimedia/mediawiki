@@ -1217,7 +1217,6 @@ $1",
 'mypreferences' => 'ھەڵبژاردەکان',
 'prefs-edits' => 'ژمارەی گۆڕانکارییەکان:',
 'prefsnologin' => 'لەژوورەوە نیت',
-'prefsnologintext' => 'بۆ دانانی هەڵبژاردەکانی بەکارهێنەر دەبێ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} بچیتە ژوورەوە]</span>.',
 'changepassword' => 'تێپەڕوشە بگۆڕە',
 'prefs-skin' => 'پێستە',
 'skin-preview' => 'پێش بینین',
@@ -3408,8 +3407,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'پەڕە تایبەتەکان',
-'specialpages-note' => '----
-* پەڕە تایبەتە ئاسایییەکان.
+'specialpages-note' => '* پەڕە تایبەتە ئاسایییەکان.
 * <span class="mw-specialpagerestricted">پەڕە تایبەتە بەرگری‌لێکراوەکان.</span>',
 'specialpages-group-maintenance' => 'ڕاپۆرتەکانی چاکسازی',
 'specialpages-group-other' => 'پەڕە تایبەتەکانی دیکە',

@@ -924,7 +924,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'mypreferences' => 'Köylänmälärem',
 'prefs-edits' => 'Üzgärtülär isäbe:',
 'prefsnologin' => 'Kermägänsez',
-'prefsnologintext' => 'Qullanuçı köylänmälärene üzgärtü öçen, sez <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kerergä]</span> tieşsez.',
 'changepassword' => 'Sersüzne üzgärtü',
 'prefs-skin' => 'Küreneş',
 'skin-preview' => 'Aldan qaraw',
@@ -2102,8 +2101,7 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 
 # Special:SpecialPages
 'specialpages' => 'Maxsus bitlär',
-'specialpages-note' => '----
-* Ğädi maxsus bitlär.
+'specialpages-note' => '* Ğädi maxsus bitlär.
 * <strong class="mw-specialpagerestricted">Çiklänelgän ğädi maxsus bitlär</strong>',
 'specialpages-group-maintenance' => 'Texnik qaraw xisapnamäse',
 'specialpages-group-other' => 'Başqa maxsus bitlär',

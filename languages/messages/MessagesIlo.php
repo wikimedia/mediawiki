@@ -1197,7 +1197,6 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 'mypreferences' => 'Kakaykayatan',
 'prefs-edits' => 'Bilang dagiti inurnos:',
 'prefsnologin' => 'Saan a nakastrek',
-'prefsnologintext' => 'Masapul a <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nakastrekka]</span> tapno makapili kadagiti kakaykayatam.',
 'changepassword' => 'Baliwan ti kontrasenias',
 'prefs-skin' => 'Kudil',
 'skin-preview' => 'Ipadas',
@@ -3741,8 +3740,7 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 
 # Special:SpecialPages
 'specialpages' => 'Espesial a pampanid',
-'specialpages-note' => '----
-* Kadawyan nga espesial a pampanid.
+'specialpages-note' => '* Kadawyan nga espesial a pampanid.
 * <span class="mw-specialpagerestricted">Nagawidan nga espesial a pampanid.</span>',
 'specialpages-group-maintenance' => 'Dagiti padamag ti panagtaripato',
 'specialpages-group-other' => 'Sabsabali pay nga espesial a pampanid',

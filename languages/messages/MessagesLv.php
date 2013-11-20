@@ -1027,7 +1027,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'mypreferences' => 'Izvēles',
 'prefs-edits' => 'Izmaiņu skaits:',
 'prefsnologin' => 'Neesi iegājis',
-'prefsnologintext' => 'Tev jābūt <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iegājušam]</span>, lai mainītu lietotāja izvēles.',
 'changepassword' => 'Mainīt paroli',
 'prefs-skin' => 'Apdare',
 'skin-preview' => 'Priekšskats',
@@ -3106,8 +3105,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Special:SpecialPages
 'specialpages' => 'Īpašās lapas',
-'specialpages-note' => '----
-* Normālas īpašās lapas.
+'specialpages-note' => '* Normālas īpašās lapas.
 * <span class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</span>
 * <span class="mw-specialpagecached">Iekešotās īpašās lapas.</span>',
 'specialpages-group-maintenance' => 'Uzturēšanas atskaites',

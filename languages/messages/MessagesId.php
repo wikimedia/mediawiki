@@ -1464,7 +1464,6 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Belum masuk log',
-'prefsnologintext' => 'Anda harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
 'changepassword' => 'Ganti kata sandi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratayang',
@@ -4143,8 +4142,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 
 # Special:SpecialPages
 'specialpages' => 'Halaman istimewa',
-'specialpages-note' => '----
-* Halaman istimewa normal.
+'specialpages-note' => '* Halaman istimewa normal.
 * <span class="mw-specialpagerestricted">Halaman istimewa terlarang.</span>
 * <span class="mw-specialpagecached">Halaman istimewa tersinggah (mungkin usang).</span>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',

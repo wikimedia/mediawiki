@@ -1187,7 +1187,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Licba wobźěłanjow:',
 'prefsnologin' => 'Njejsy pśizjawjony',
-'prefsnologintext' => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
 'changepassword' => 'Šćitne gronidło změniś',
 'prefs-skin' => 'Šat',
 'skin-preview' => 'Pśeglěd',
@@ -3612,8 +3611,7 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 
 # Special:SpecialPages
 'specialpages' => 'Specialne boki',
-'specialpages-note' => '----
-* Normalne specialne boki
+'specialpages-note' => '* Normalne specialne boki
 * <span class="mw-specialpagerestricted">Specialne boki z wobgranicowanym pśistupom.</span>',
 'specialpages-group-maintenance' => 'Wótwardowańske lisćiny',
 'specialpages-group-other' => 'Druge specialne boki',

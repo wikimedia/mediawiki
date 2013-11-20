@@ -890,7 +890,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'mypreferences' => 'Аравтомат',
 'prefs-edits' => 'Зяроксть витнезь-петнезь:',
 'prefsnologin' => 'Эзить сова',
-'prefsnologintext' => 'Эряви <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} совамс]</span> аравтоматнень ладсемга.',
 'changepassword' => 'Салавань валонь полавтома',
 'prefs-skin' => 'Неемань ладсема',
 'skin-preview' => 'Васнянь неевтезэ',

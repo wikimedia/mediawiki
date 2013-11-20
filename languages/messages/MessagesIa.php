@@ -1309,7 +1309,6 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences' => 'Preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologin' => 'Tu non ha aperite un session',
-'prefsnologintext' => 'Tu debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aperir session]</span> pro configurar preferentias de usator.',
 'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
 'skin-preview' => 'Previsualisation',
@@ -3896,8 +3895,7 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 
 # Special:SpecialPages
 'specialpages' => 'Paginas special',
-'specialpages-note' => '----
-* Paginas special normal.
+'specialpages-note' => '* Paginas special normal.
 * <span class="mw-specialpagerestricted">Paginas special restringite.</span>
 * <span class="mw-specialpagecached">Paginas special del cache (poterea esser obsolete).</span>',
 'specialpages-group-maintenance' => 'Reportos de mantenentia',

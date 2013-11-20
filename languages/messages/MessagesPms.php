@@ -1168,7 +1168,6 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'mypreferences' => 'Gust',
 'prefs-edits' => 'Nùmer ëd modìfiche fàite:',
 'prefsnologin' => "A l'é ancó pa rintrà ant ël sistema",
-'prefsnologintext' => 'A deuv esse <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} intrà ant ël sistema]</span> për amposté ij sò gust.',
 'changepassword' => 'Cangé la ciav',
 'prefs-skin' => 'Facia',
 'skin-preview' => 'Preuva',
@@ -3744,8 +3743,7 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 
 # Special:SpecialPages
 'specialpages' => 'Pàgine Speciaj',
-'specialpages-note' => '----
-* Pàgine speciaj normaj.
+'specialpages-note' => '* Pàgine speciaj normaj.
 * <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>
 * <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local (a peulo esse veje).</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',

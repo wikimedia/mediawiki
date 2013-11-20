@@ -1319,7 +1319,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'mypreferences' => 'Preferències',
 'prefs-edits' => "Nombre d'edicions:",
 'prefsnologin' => 'No heu iniciat cap sessió',
-'prefsnologintext' => 'Heu d\'estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticats]</span> per a seleccionar les preferències d\'usuari.',
 'changepassword' => 'Canvia la contrasenya',
 'prefs-skin' => 'Aparença',
 'skin-preview' => 'prova',
@@ -3834,8 +3833,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 
 # Special:SpecialPages
 'specialpages' => 'Pàgines especials',
-'specialpages-note' => '----
-* Pàgines especials normals.
+'specialpages-note' => '* Pàgines especials normals.
 * <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>
 * <span class="mw-specialpagecached">Pàgines especials en memòria cau (poden ser obsoletes).</span>',
 'specialpages-group-maintenance' => 'Informes de manteniment',

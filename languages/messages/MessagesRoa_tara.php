@@ -1188,7 +1188,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'mypreferences' => 'Me piace accussì',
 'prefs-edits' => 'Numere de cangiaminde:',
 'prefsnologin' => 'Non ge sinde colleghete',
-'prefsnologintext' => 'Tu a essere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} colleghete]</span> pe \'mbostà le preferenze de l\'utinde.',
 'changepassword' => "Cange 'a password",
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Andeprime',
@@ -3981,8 +3980,7 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 
 # Special:SpecialPages
 'specialpages' => 'Pàggene speciele',
-'specialpages-note' => '----
-* Pàggene speciale normale.
+'specialpages-note' => '* Pàggene speciale normale.
 * <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>
 * <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
