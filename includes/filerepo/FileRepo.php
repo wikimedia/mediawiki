@@ -1725,12 +1725,24 @@ class FileRepo {
 	 * @since 1.22
 	 */
 	public function getInfo() {
-		return array(
+		$ret = array(
 			'name' => $this->getName(),
 			'displayname' => $this->getDisplayName(),
 			'rootUrl' => $this->getRootUrl(),
 			'local' => $this->isLocal(),
 		);
+
+		$optionalSettings = array(
+			'url', 'thumbUrl', 'initialCapital', 'descBaseUrl', 'scriptDirUrl', 'articleUrl',
+			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension'
+		);
+		foreach ( $optionalSettings as $k ) {
+			if ( isset( $this->$k ) ) {
+				$ret[$k] = $this->$k;
+			}
+		}
+
+		return $ret;
 	}
 }
 

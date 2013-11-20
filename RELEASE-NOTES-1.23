@@ -61,6 +61,8 @@ production.
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
   categories.
+* action=query&meta=filerepoinfo now returns additional information for each
+  repo.
 
 === Languages updated in 1.23===
 
