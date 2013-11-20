@@ -2393,7 +2393,7 @@ class WikiPage implements Page, IDBAccessObject {
 						'pt_namespace' => $this->mTitle->getNamespace(),
 						'pt_title' => $this->mTitle->getDBkey(),
 						'pt_create_perm' => $limit['create'],
-						'pt_timestamp' => $dbw->encodeExpiry( wfTimestampNow() ),
+						'pt_timestamp' => $dbw->timestamp(),
 						'pt_expiry' => $dbw->encodeExpiry( $expiry['create'] ),
 						'pt_user' => $user->getId(),
 						'pt_reason' => $reason,
