@@ -1098,7 +1098,7 @@ The administrator who locked it offered this explanation: "$3".',
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                     => 'Welcome, $1!',
 'welcomecreation-msg'             => 'Your account has been created.
-Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
+You can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish',
 'yourname'                        => 'Username:',
 'userlogin-yourname'              => 'Username',
 'userlogin-yourname-ph'           => 'Enter your username',
@@ -4899,9 +4899,9 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 # Special:SpecialPages
 'specialpages'                   => 'Special pages',
 'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
-'specialpages-note'              => '----
-* Normal special pages.
-* <span class="mw-specialpagerestricted">Restricted special pages.</span>',
+'specialpages-note-top'          => 'Legend',
+'specialpages-note'              => ' * Normal special pages.
+ * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / create account',
