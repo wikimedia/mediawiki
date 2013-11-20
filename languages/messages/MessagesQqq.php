@@ -857,9 +857,9 @@ See also:
 Used as <code>$1</code> in {{msg-mw|Youhavenewmessagesfromusers}}.
 
 Parameters:
-* $1 - 1 or 2:
+* $1 - 1 or 999:
 ** 1 - if there was '''one''' new edit since the last time the user has seen their talk page
-** 2 - if there was '''more than one''' new edit since the last time the user has seen their talk page
+** 999 - if there was '''more than one''' new edit since the last time the user has seen their talk page
 {{Identical|New messages}}",
 'newmessagesdifflinkplural' => 'Parameters:
 * $1 - the number of new edits since the last time the user has seen their talk page: it should be used only for correct [[plural]] as in the source text, as the exact number is not relevant.
