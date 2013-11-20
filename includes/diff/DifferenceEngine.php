@@ -1062,7 +1062,8 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $diff Diff body
 	 * @param string $otitle Old revision header
 	 * @param string $ntitle New revision header
-	 * @param string $multi Notice telling user that there are intermediate revisions between the ones being compared
+	 * @param string $multi Notice telling user that there are intermediate
+	 *   revisions between the ones being compared
 	 * @param string $notice Other notices, e.g. that user is viewing deleted content
 	 *
 	 * @return string
@@ -1193,7 +1194,10 @@ class DifferenceEngine extends ContextSource {
 			$this->mNewid = 0;
 		}
 
-		wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ) );
+		wfRunHooks(
+			'NewDifferenceEngine',
+			array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new )
+		);
 	}
 
 	/**
