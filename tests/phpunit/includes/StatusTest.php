@@ -13,9 +13,6 @@ class StatusTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideValues
 	 * @covers Status::newGood
-	 * @covers Status::getValue
-	 * @covers Status::isGood
-	 * @covers Status::isOK
 	 */
 	public function testNewGood( $value = null ) {
 		$status = Status::newGood( $value );
@@ -36,9 +33,6 @@ class StatusTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Status::newFatal
-	 * @covers Status::isGood
-	 * @covers Status::isOK
-	 * @covers Status::getMessage
 	 */
 	public function testNewFatalWithMessage() {
 		$message = $this->getMockBuilder( 'Message' )
@@ -53,23 +47,18 @@ class StatusTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Status::newFatal
-	 * @covers Status::isGood
-	 * @covers Status::isOK
-	 * @covers Status::getMessage
 	 */
 	public function testNewFatalWithString() {
 		$message = 'foo';
 		$status = Status::newFatal( $message );
 		$this->assertFalse( $status->isGood() );
 		$this->assertFalse( $status->isOK() );
-		$newMessage = $status->getMessage();
-		$this->assertEquals( $message, $newMessage->getKey() );
+		$this->assertEquals( $message, $status->getMessage()->getKey() );
 	}
 
 	/**
 	 * @dataProvider provideSetResult
-	 * @covers Status::getValue
-	 * @covers Status::isOK
+	 * @covers Status::setResult
 	 */
 	public function testSetResult( $ok, $value = null ) {
 		$status = new Status();
@@ -84,6 +73,52 @@ class StatusTest extends MediaWikiTestCase {
 			array( false ),
 			array( true, 'value' ),
 			array( false, 'value' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideIsOk
+	 * @covers Status::isOk
+	 */
+	public function testIsOk( $ok ) {
+		$status = new Status();
+		$status->ok = $ok;
+		$this->assertEquals( $ok, $status->isOK() );
+	}
+
+	public static function provideIsOk() {
+		return array(
+			array( true ),
+			array( false ),
+		);
+	}
+
+	/**
+	 * @covers Status::getValue
+	 */
+	public function testGetValue() {
+		$status = new Status();
+		$status->value = 'foobar';
+		$this->assertEquals( 'foobar', $status->getValue() );
+	}
+
+	/**
+	 * @dataProvider provideIsGood
+	 * @covers Status::isGood
+	 */
+	public function testIsGood( $ok, $errors, $expected ) {
+		$status = new Status();
+		$status->ok = $ok;
+		$status->errors = $errors;
+		$this->assertEquals( $expected, $status->isGood() );
+	}
+
+	public static function provideIsGood() {
+		return array(
+			array( true, array(), true ),
+			array( true, array( 'foo' ), false ),
+			array( false, array(), false ),
+			array( false, array( 'foo' ), false ),
 		);
 	}
 
@@ -185,18 +220,100 @@ class StatusTest extends MediaWikiTestCase {
 		$status->fatal( 'bad' );
 		$this->assertTrue( $status->hasMessage( 'bad' ) );
 		$this->assertFalse( $status->hasMessage( 'good' ) );
-
 	}
 
-	//todo test cleanParams
-	//todo test getWikiText
+	/**
+	 * @dataProvider provideCleanParams
+	 * @covers Status::cleanParams
+	 */
+	public function testCleanParams( $cleanCallback, $params, $expected ) {
+		$method = new ReflectionMethod( 'Status', 'cleanParams' );
+		$method->setAccessible(TRUE);
+		$status = new Status();
+		$status->cleanCallback = $cleanCallback;
+
+		$this->assertEquals( $expected, $method->invoke( $status, $params ) );
+	}
+
+	/**
+	 * @todo test cleanParams with a callback
+	 */
+	public static function provideCleanParams() {
+		return array(
+			array( false, array( 'foo' => 'bar' ), array( 'foo' => 'bar' ) ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetWikiText
+	 * @covers Status::getWikiText
+	 * @todo test long and short context messages generated through this method
+	 *       this can not really be done now due to use of wfMessage()->plain()
+	 *       It is possible to mock such methods but only if namespaces are used
+	 */
+	public function testGetWikiText( Status $status, $expected ) {
+		$this->assertEquals( $expected, $status->getWikiText() );
+	}
+
+	/**
+	 * @return array of arrays with values;
+	 *    0 => status object
+	 *    1 => expected string (with no context)
+	 */
+	public static function provideGetWikiText() {
+		$testCases = array();
+
+		$testCases[ 'GoodStatus' ] = array(
+			new Status(),
+			"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
+		);
+
+		$status = new Status();
+		$status->ok = false;
+		$testCases[ 'GoodButNoError' ] = array(
+			$status,
+			"Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n",
+		);
+
+		$status = new Status();
+		$status->warning( 'fooBar!' );
+		$testCases[ '1StringWarning' ] = array(
+			$status,
+			"<fooBar!>",
+		);
+
+		$status = new Status();
+		$status->warning( 'fooBar!' );
+		$status->warning( 'fooBar2!' );
+		$testCases[ '2StringWarnings' ] = array(
+			$status,
+			"* <fooBar!>\n* <fooBar2!>\n",
+		);
+
+		$status = new Status();
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
+		$testCases[ '1MessageWarning' ] = array(
+			$status,
+			"<fooBar!>",
+		);
+
+		$status = new Status();
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
+		$status->warning( new Message( 'fooBar2!' ) );
+		$testCases[ '2MessageWarnings' ] = array(
+			$status,
+			"* <fooBar!>\n* <fooBar2!>\n",
+		);
+
+		return $testCases;
+	}
+
 	//todo test getMessage
 	//todo test getErrorMessage
 	//todo test getHTML
 	//todo test getErrorMessageArray
 	//todo test getStatusArray
 	//todo test getErrorsByType
-	//todo test replaceMessage
 	//todo test replaceMessage
 
 }
