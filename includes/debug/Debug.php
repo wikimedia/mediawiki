@@ -31,7 +31,6 @@
  * @since 1.19
  */
 class MWDebug {
-
 	/**
 	 * Log lines
 	 *
@@ -185,7 +184,9 @@ class MWDebug {
 	 *    MWDebug::deprecated() (Added in 1.20).
 	 * @return mixed
 	 */
-	public static function deprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
+	public static function deprecated( $function, $version = false,
+		$component = false, $callerOffset = 2
+	) {
 		$callerDescription = self::getCallerDescription( $callerOffset );
 		$callerFunc = $callerDescription['func'];
 
@@ -227,7 +228,11 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
+			self::sendWarning(
+				$msg,
+				$callerDescription,
+				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
+			);
 		}
 
 		if ( self::$enabled ) {
@@ -445,10 +450,15 @@ class MWDebug {
 				$display = "\xc2\xa0";
 			}
 
-			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
+			if ( !$ident
+				&& $diff < 0
+				&& substr( $display, 0, 9 ) != 'Entering '
+				&& substr( $display, 0, 8 ) != 'Exiting '
+			) {
 				$ident = $curIdent;
 				$diff = 0;
-				$display = '<span style="background:yellow;">' . nl2br( htmlspecialchars( $display ) ) . '</span>';
+				$display = '<span style="background:yellow;">' .
+					nl2br( htmlspecialchars( $display ) ) . '</span>';
 			} else {
 				$display = nl2br( htmlspecialchars( $display ) );
 			}
@@ -517,6 +527,7 @@ class MWDebug {
 
 		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
+
 		return array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
