@@ -120,14 +120,14 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	}
 
 	function showForm() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgUser;
 
 		$user = $this->getUser();
 		if ( !$this->mUserName ) {
 			$this->mUserName = $user->getName();
 		}
 		$rememberMe = '';
-		if ( !$user->isLoggedIn() ) {
+		if ( !$wgUser->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
