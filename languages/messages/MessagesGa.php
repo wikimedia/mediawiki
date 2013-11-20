@@ -822,7 +822,6 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'preferences' => 'Sainroghanna',
 'mypreferences' => 'Sainroghanna',
 'prefsnologin' => 'Níl tú logáilte isteach',
-'prefsnologintext' => 'Ní mór duit <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logáil isteach]</span> chun do chuid sainroghanna phearsanta a shocrú.',
 'changepassword' => "Athraigh d'fhocal faire",
 'prefs-skin' => 'Craiceann',
 'skin-preview' => 'Réamhamharc',

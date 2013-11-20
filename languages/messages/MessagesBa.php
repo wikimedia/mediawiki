@@ -1270,7 +1270,6 @@ $1",
 'mypreferences' => 'Көйләүҙәр',
 'prefs-edits' => 'Төҙәтеүҙәр һаны:',
 'prefsnologin' => 'Танылмағанһығыҙ',
-'prefsnologintext' => 'Ҡатнашыусы көйләүҙәрен үҙгәртеү өсөн, һеҙ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}танылырға]</span> тейешһегеҙ.',
 'changepassword' => 'Серһүҙҙе үҙгәртергә',
 'prefs-skin' => 'Күренеш',
 'skin-preview' => 'Алдан байҡау',
@@ -3806,8 +3805,7 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 
 # Special:SpecialPages
 'specialpages' => 'Махсус биттәр',
-'specialpages-note' => '----
-* Ябай махсус биттәр.
+'specialpages-note' => '* Ябай махсус биттәр.
 * <span class="mw-specialpagerestricted">Сикле махсус биттәр.</span>
 * <span class="mw-specialpagecached">Кешланған махсус биттәр (иҫкергән булыуы мөмкин).</span>',
 'specialpages-group-maintenance' => 'Техник хеҙмәтләндереү хисапламалары',

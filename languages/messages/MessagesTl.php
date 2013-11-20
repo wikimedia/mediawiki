@@ -1237,7 +1237,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'mypreferences' => 'Mga nais',
 'prefs-edits' => 'Bilang ng mga pagbabago:',
 'prefsnologin' => 'Hindi nakalagda/nakatala',
-'prefsnologintext' => 'Kailangan mong <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
 'changepassword' => 'Baguhin ang hudyat',
 'prefs-skin' => 'Pabalat',
 'skin-preview' => 'Unang tingin',
@@ -3893,8 +3892,7 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 
 # Special:SpecialPages
 'specialpages' => 'Mga natatanging pahina',
-'specialpages-note' => '----
-* Normal na natatanging mga pahina.
+'specialpages-note' => '* Normal na natatanging mga pahina.
 * <span class="mw-specialpagerestricted">Pinaghihigpitang natatanging mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other' => 'Iba pang natatanging mga pahina',

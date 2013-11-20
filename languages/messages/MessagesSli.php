@@ -799,7 +799,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'mypreferences' => 'Meene Eistellunga',
 'prefs-edits' => 'Oazoahl dar Beoarbeetunga:',
 'prefsnologin' => 'Ne oagemeldet',
-'prefsnologintext' => 'Du mußt <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} oagemeldet]</span> sei, im denne Einstellunga ändern zu kinna.',
 'changepassword' => 'Poaßwurt ändern',
 'prefs-personal' => 'Nutzerdaten',
 'prefs-rc' => 'Letzte Änderunga',
@@ -2280,8 +2279,7 @@ Du koast au de [[Special:EditWatchlist|Standard-Beoarbeetungsseyte]] benutza.',
 
 # Special:SpecialPages
 'specialpages' => 'Spezialseyta',
-'specialpages-note' => '----
-* Spezialseyta fier Jedermoan
+'specialpages-note' => '* Spezialseyta fier Jedermoan
 * <strong class="mw-specialpagerestricted">Spezialseyta fier Nutzer miet erweiterta Rechta</strong>',
 'specialpages-group-other' => 'Andere Spezialseyta',
 'specialpages-group-login' => 'Oamelda',

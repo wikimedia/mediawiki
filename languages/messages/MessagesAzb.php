@@ -1175,7 +1175,6 @@ $1",
 'mypreferences' => 'ترجیحلر',
 'prefs-edits' => 'دَییشمه‌لرین سایی:',
 'prefsnologin' => 'گیرمه‌میسینیز',
-'prefsnologintext' => 'ایستیفاده‌چی تنظیملرینی دَییشمک اوچون، <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} گیرمه‌لیسینیز]</span>.',
 'changepassword' => 'رمزی دَییشدیر',
 'prefs-skin' => 'قابیق',
 'skin-preview' => 'اؤن‌گؤستریش',
@@ -3665,8 +3664,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'اؤزل صحیفه‌لر',
-'specialpages-note' => '----
-* نورمال اؤزل صحیفه‌لر.
+'specialpages-note' => '* نورمال اؤزل صحیفه‌لر.
 * <span class="mw-specialpagerestricted">محدودلاشدیریلمیش اؤزل صحیفه‌لر.</span>',
 'specialpages-group-maintenance' => 'جاری مروزه‌لر',
 'specialpages-group-other' => 'دیگر خصوصی صحیفه‌لر',

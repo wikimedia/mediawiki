@@ -1406,7 +1406,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'mypreferences' => 'Beállítások',
 'prefs-edits' => 'Szerkesztéseid száma:',
 'prefsnologin' => 'Nem jelentkeztél be',
-'prefsnologintext' => 'Saját beállításaid elmentéséhez <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} be kell jelentkezned.] </span>',
 'changepassword' => 'Jelszócsere',
 'prefs-skin' => 'Felület',
 'skin-preview' => 'előnézet',
@@ -2297,7 +2296,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailuser-title-target' => 'E-mail küldése ennek a felhasználónak: $1',
 'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
-'emailpagetext' => '{{GENDER:$1|user}} nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'emailpagetext' => '{{GENDER:$1|felhasználó}}nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror' => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject' => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
@@ -2317,10 +2316,10 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'emailsubject' => 'Tárgy:',
 'emailmessage' => 'Üzenet:',
 'emailsend' => 'Küldés',
-'emailccme' => 'Az üzenet másolatát küldje el nekem is e-mailben.',
+'emailccme' => 'Az üzenet másolatát küldje el nekem is e-mailben',
 'emailccsubject' => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
 'emailsent' => 'E-mail elküldve',
-'emailsenttext' => 'Az e-mail üzenetedet elküldtem.',
+'emailsenttext' => 'E-mail üzenetedet elküldtük.',
 'emailuserfooter' => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # User Messenger
@@ -3877,8 +3876,7 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 
 # Special:SpecialPages
 'specialpages' => 'Speciális lapok',
-'specialpages-note' => '----
-* Mindenki számára elérhető speciális lapok.
+'specialpages-note' => '* Mindenki számára elérhető speciális lapok.
 * <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other' => 'További speciális lapok',

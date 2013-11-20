@@ -898,7 +898,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'preferences' => '偏好設定',
 'mypreferences' => '偏好設定',
 'prefsnologin' => '還吂登入',
-'prefsnologintext' => 'Ngì pit-sî chhai-siên [[Special:UserLogin|tên-ngi̍p]] chhòi-nèn sat-chṳ ke-ngìn chhâm-su.',
 'changepassword' => '更改密碼',
 'prefs-skin' => '外皮',
 'skin-preview' => '預覽',

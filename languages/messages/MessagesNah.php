@@ -1471,8 +1471,7 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 
 # Special:SpecialPages
 'specialpages' => 'Nònkuâkìskàtlaìxtlapaltìn',
-'specialpages-note' => '----
-* Yeliztli nōncuahquīzqui āmatl.
+'specialpages-note' => '* Yeliztli nōncuahquīzqui āmatl.
 * <span class="mw-specialpagerestricted">Tlaquīxtīlli nōncuahquīzqui āmatl.</span>
 * <span class="mw-specialpagecached">Tlatlātīlli nōncuahquīzqui āmatl (aocmo monemitīa).</span>',
 'specialpages-group-other' => 'Oksẻki nònkuâkìskàtlaìxtlapaltìn',

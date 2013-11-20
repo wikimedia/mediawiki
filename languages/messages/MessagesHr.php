@@ -1411,7 +1411,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'mypreferences' => 'Moje postavke',
 'prefs-edits' => 'Broj uređivanja:',
 'prefsnologin' => 'Niste prijavljeni',
-'prefsnologintext' => 'Morate biti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prijavljeni]</span> za podešavanje suradničkih postavki.',
 'changepassword' => 'Promjena lozinke',
 'prefs-skin' => 'Izgled',
 'skin-preview' => 'Pregled',
@@ -3929,8 +3928,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 
 # Special:SpecialPages
 'specialpages' => 'Posebne stranice',
-'specialpages-note' => '----
-* Normalne posebne stranice
+'specialpages-note' => '* Normalne posebne stranice
 * <span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom.</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other' => 'Ostale posebne stranice',

@@ -1335,7 +1335,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'mypreferences' => 'Nastavitve',
 'prefs-edits' => 'Število urejanj:',
 'prefsnologin' => 'Niste prijavljeni',
-'prefsnologintext' => 'Za spreminjanje uporabniških nastavitev morate biti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prijavljeni]</span>.',
 'changepassword' => 'Zamenjava gesla',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Predogled',
@@ -3901,8 +3900,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 
 # Special:SpecialPages
 'specialpages' => 'Posebne strani',
-'specialpages-note' => '----
-* Navadne posebne strani.
+'specialpages-note' => '* Navadne posebne strani.
 * <span class="mw-specialpagerestricted">Omejene posebne strani.</span>
 * <span class="mw-specialpagecached">Predpomnjene posebne strani (morda so zastarele).</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',

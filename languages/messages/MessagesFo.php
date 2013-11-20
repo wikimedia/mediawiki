@@ -1227,7 +1227,6 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal av rættingum:',
 'prefsnologin' => 'Tú hevur ikki ritað inn',
-'prefsnologintext' => 'Tú mást vera <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} innritað/ur]</span> fyri at broyta brúkarainnstillingar.',
 'changepassword' => 'Broyt loyniorð',
 'prefs-skin' => 'Hamur',
 'skin-preview' => 'Forskoðan',

@@ -1057,8 +1057,7 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # Special:SpecialPages
 'specialpages' => 'Paches éspéchiales',
-'specialpages-note' => '----
-* Paches éspéchiales conformes.
+'specialpages-note' => '* Paches éspéchiales conformes.
 * <span class="mw-specialpagerestricted">Paches éspéchiales réstrintes.</span>
 * <span class="mw-specialpagecached">Paches éspéchiales seulemint in muche (pétète des viuseries).</span>',
 'specialpages-group-maintenance' => "Rapports d'maintenanche",

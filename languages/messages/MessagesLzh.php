@@ -1095,7 +1095,6 @@ $1",
 'mypreferences' => '簿註',
 'prefs-edits' => '數計：',
 'prefsnologin' => '未登簿',
-'prefsnologintext' => '註記須<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登簿]</span>。',
 'changepassword' => '易符節',
 'prefs-skin' => '面版',
 'skin-preview' => '草覽',
@@ -2812,8 +2811,7 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 
 # Special:SpecialPages
 'specialpages' => '特查',
-'specialpages-note' => '----
-* 準特查。
+'specialpages-note' => '* 準特查。
 * <strong class="mw-specialpagerestricted">限特查。</strong>',
 'specialpages-group-maintenance' => '護報',
 'specialpages-group-other' => '它之奇頁',

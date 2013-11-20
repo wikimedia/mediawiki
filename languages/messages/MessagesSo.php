@@ -800,7 +800,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'preferences' => 'Dooqyada',
 'mypreferences' => 'Dooqyadeyda',
 'prefsnologin' => 'Gudaha kuma jirtid',
-'prefsnologintext' => 'Waa in aad <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Gudaha ku jirtaa]</span> si aad dooqyadaada u dalbatid.',
 'prefs-skin' => 'Jirka',
 'skin-preview' => 'Horfiirin',
 'datedefault' => "Ma'jiro dooq",

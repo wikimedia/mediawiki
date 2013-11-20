@@ -242,9 +242,15 @@ $messages = array(
 'nov' => 'Nov.',
 'dec' => 'Dez.',
 'january-date' => '$1. Jänner',
+'february-date' => '$1. Februar',
 'march-date' => '$1. Merz',
+'april-date' => '$1. April',
+'may-date' => '$1. Mai',
+'june-date' => '$1. Juni',
+'july-date' => '$1. Juli',
 'august-date' => '$1. Augschte',
 'september-date' => '$1. Septämber',
+'october-date' => '$1. Oktober',
 'november-date' => '$1. Novämber',
 'december-date' => '$1. Dezämber',
 
@@ -306,6 +312,7 @@ $messages = array(
 'namespaces' => 'Namensryym',
 'variants' => 'Variante',
 
+'navigation-heading' => 'Navigationsmenü',
 'errorpagetitle' => 'Fähler',
 'returnto' => 'Zruck zur Syte $1.',
 'tagline' => 'Us {{SITENAME}}',
@@ -462,6 +469,7 @@ Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezials
 Des chennt e Fähler in dr Software aazeige.',
 'databaseerror-textcl' => 'S het e Datebankabfrogfähler gee.',
 'databaseerror-query' => 'Abfrog: $1',
+'databaseerror-function' => 'Funktion: $1',
 'databaseerror-error' => 'Fähler: $1',
 'laggedslavemode' => 'Warnig: di letschte Änderige wäre u. U. nonig aazeigt!',
 'readonly' => 'Datebank isch gsperrt',
@@ -544,8 +552,12 @@ Obacht: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagm�
 'welcomecreation-msg' => 'Dyy Benutzerkonto isch aagleit wore.
 Vergiss nit, Dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] z ändere.',
 'yourname' => 'Dyy Benutzername',
+'userlogin-yourname' => 'Benutzername',
 'userlogin-yourname-ph' => 'Gib Dyy Benutzernamen yy',
+'createacct-another-username-ph' => 'Gib Dyy Benutzernamen yy',
 'yourpassword' => 'Passwort:',
+'userlogin-yourpassword' => 'Passwort',
+'userlogin-yourpassword-ph' => 'Gib Dyy Passwort yy',
 'createacct-yourpassword-ph' => 'Passwort yygee',
 'yourpasswordagain' => 'Passwort no mol yygee:',
 'createacct-yourpasswordagain' => 'Passwort bstetige',
@@ -581,12 +593,27 @@ Bruuch s Formular unte go Di unter eme andere Benutzername aamälde.',
 'createacct-join' => 'Gib unte Dyni Informationen yy.',
 'createacct-another-join' => 'Gib unte d Informatione vum neie Benutzerkonto yy.',
 'createacct-emailrequired' => 'E-Mail-Adräss',
-'createaccountmail' => 'iber E-Mail',
+'createacct-emailoptional' => 'E-Mail-Adräss (optional)',
+'createacct-email-ph' => 'Gib Dyy E-Mail-Adräss yy',
+'createacct-another-email-ph' => 'Gib Dyy E-Mail-Adräss yy',
+'createaccountmail' => 'E temporär Zuefallspasswort bruuchen un an di aagee E-Mail-Adräss schicke',
+'createacct-realname' => 'Richtige Name (optional)',
 'createaccountreason' => 'Grund:',
+'createacct-reason' => 'Grund',
+'createacct-reason-ph' => 'Wurum Du ne ander Benutzerkonto aaleisch',
+'createacct-captcha' => 'Sicherheitspriefig',
+'createacct-imgcaptcha-ph' => 'Gib dr Tekscht yy, wu Du obe siisch',
+'createacct-submit' => 'Dyy Benutzerkonto aalege',
+'createacct-another-submit' => 'En ander Benutzerkonto aalege',
+'createacct-benefit-heading' => '{{SITENAME}} wird vu Mänsche wie Dir gschaffe.',
+'createacct-benefit-body1' => '{{PLURAL:$1|Bearbeitig|Bearbeitige}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|Syte|Syte}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|aktive Autor|aktivi Autore}}',
 'badretype' => 'Di beidi Passwörter stimme nid zämme.',
 'userexists' => 'Dä Benutzername git s scho.
 Bitte nimm e andere.',
 'loginerror' => 'Fähler bir Aamäldig',
+'createacct-error' => 'Fähler bim Aalege vum Benutzerkonto',
 'createaccounterror' => 'Het s Benutzerkonto nit chenne aalege: $1',
 'nocookiesnew' => 'Dr Benutzerzuegang isch aaglait wore, aber Du bisch nid yygloggt. {{SITENAME}} brucht fir die Funktion Cookies, bitte tue die aktiviere un logg Di derno mit Dyynem neje Benutzername un em Passwort, wu drzue ghert, yy.',
 'nocookieslogin' => '{{SITENAME}} brucht Cookies fir e Aamäldig. Du hesch d Cookies deaktiviert. Aktivier si bitte un versuech s no mol.',
@@ -631,7 +658,7 @@ Voreb ass no mee Mails iber d {{SITENAME}}-Mailfunktion an die Adräss gschickt 
 'acct_creation_throttle_hit' => 'Bsuecher vu däm Wiki, wu Dyyni IP-Adräss bruuche, hän innerhalb vum letschte Tag {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonte}} aagleit. Des isch di maximal Aazahl, wu in däm Zytruum erlaubt isch.
 
 Bsuecher, wu die IP-Adräss bruuche, chenne im Momänt kei Benutzerkonte meh aalege.',
-'emailauthenticated' => 'Di E-Mail-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
+'emailauthenticated' => 'Dyy E-Mail-Adräss isch am $2 am $3 Uhr bstetigt wore.',
 'emailnotauthenticated' => 'Dyni E-Mail-Adräss isch nonig bstätigt. Wäg däm gehn di erwyterete E-Mail-Funktione nonig.
 Fir d Bstätigung muesch em Link nogoh, wu Dir gschickt woren isch. Du chasch au e neie sonig Link aafordere:',
 'noemailprefs' => 'Du hesch kei E-Mail-Adrässen aaggä, drum sy di folgende Funktione nid müglech.',
@@ -641,20 +668,23 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'cannotchangeemail' => 'E-Mail-Adrässe chönne in däm Wiki nit gänderet werde.',
 'emaildisabled' => 'Iber die Websyte chenne kei E-Mail verschickt wäre.',
 'accountcreated' => 'S Benutzerkonto isch aagleit wore.',
-'accountcreatedtext' => 'S Benutzerkonto $1 isch aagleit wore.',
+'accountcreatedtext' => 'S Benutzerkonto fir [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|Diskussion]]) isch aagleit wore.',
 'createaccount-title' => 'Aalege vum e Benutzerkonto fir {{SITENAME}}',
 'createaccount-text' => 'Fir Dii isch e Benutzerkonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
 
 Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
 'usernamehasherror' => 'In Benutzernäme derf s kei Rautezeiche din haa',
-'login-throttled' => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
+'login-throttled' => 'Du hesch z vilmol umesuscht versuecht, Di aazmälde. Bitte wart $1, voreb Du s non emol versuechsch.',
 'login-abort-generic' => 'Dyy Aamäldig isch nit erfolgryych gsii – Abbroche',
 'loginlanguagelabel' => 'Sproch: $1',
 'suspicious-userlogout' => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
+'createacct-another-realname-tip' => 'Dr richtig Name isch optional.
+Wänn Du ne aagiisch, wird er bruucht fir d Zueornig vu dr Byytreg.',
 
 # Email sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
 'user-mail-no-addy' => 'Es isch versuecht worde e E-Mail ohni Angab vunere E-Mail-Adräss z verschigge.',
+'user-mail-no-body' => 'S isch versuecht wore, ne E-Mail mit eme lääre oder z churze Tekscht z verschicke.',
 
 # Change password dialog
 'resetpass' => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
@@ -665,7 +695,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'newpassword' => 'Nöis Passwort',
 'retypenew' => 'Nöis Passwort (es zwöits Mal)',
 'resetpass_submit' => 'Passwort ibermittle un aamälde',
-'changepassword-success' => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
+'changepassword-success' => 'Dyy Passwort isch erfolgryych gänderet wore.',
 'resetpass_forbidden' => 'S Passwort cha nid gänderet wäre.',
 'resetpass-no-info' => 'Du muesch Di aamälde zum uf die Syte diräkt zuegryfe z chenne.',
 'resetpass-submit-loggedin' => 'Passwort ändere',
@@ -673,33 +703,41 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'resetpass-wrong-oldpass' => 'S temporär oder aktuäll Passwort isch nimi giltig.
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password' => 'Temporär Passwort:',
+'resetpass-abort-generic' => 'D Passwortänderig isch dur e Erwyterig abbroche wore.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zruggsetze',
+'passwordreset-text-one' => 'Fill des Formular uus go Dy Passwort zrucksetze.',
+'passwordreset-text-many' => '{{PLURAL:$1|Fill eis vu dr Fälder uus go Dy Passwort zrucksetze.}}',
 'passwordreset-legend' => 'Passwort zrucksetze',
 'passwordreset-disabled' => 'S Zrucksetze vu Passwerter isch in däm Wiki deaktiviert wore.',
+'passwordreset-emaildisabled' => 'D E-Mail-Funktione sin uf däm Wiki deaktiviert wore.',
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Die E-Mail aaluege?',
 'passwordreset-capture-help' => 'Wänn du des Chäschtli aachrüüzesch, no wird die E-Mail (mit em temporäre Passwort) dir aazeigt, un au em Benutzer zuegschiggt.',
 'passwordreset-email' => 'E-Mail-Adräss:',
 'passwordreset-emailtitle' => 'Benutzerkontoinformationen uf {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset-emailtext-ip' => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). 
 
-$2
+{{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft: 
+
+$2 
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
-'passwordreset-emailtext-user' => 'Benutzer $1 uf {{SITENAME}} het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset-emailtext-user' => 'Dr Benutzer $1 bi {{SITENAME}} het e Zrucksetzig vu Dym Passwort bi {{SITENAME}} aagforderet ($4). 
 
-$2
+{{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft: 
+
+$2 
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
 'passwordreset-emailelement' => 'Benutzername: $1
 Temporär Passwort: $2',
-'passwordreset-emailsent' => 'E Erinnerig isch per E-Mail verschickt wore.',
-'passwordreset-emailsent-capture' => 'E Erinnerigsmail isch abgschiggt worde, un isch unte aazeigt.',
+'passwordreset-emailsent' => 'E Passwort-Zrucksetzig isch per E-Mail verschickt wore.',
+'passwordreset-emailsent-capture' => 'E Passwort-Zrucksetzigs-Mail isch vergschickt worde, un isch unte aazeigt.',
 'passwordreset-emailerror-capture' => 'Die Erinnerigsmail, wo unte aazeigt isch, isch generiert worde, aber de Versand aa de Benutzer isch gschyyteret: $1',
 
 # Special:ChangeEmail
@@ -1196,7 +1234,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'mypreferences' => 'Yystellige',
 'prefs-edits' => 'Aazahl vu dr Bearbeitige:',
 'prefsnologin' => 'Nid aagmäldet',
-'prefsnologintext' => 'Du muesch <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
 'changepassword' => 'Passwort ändere',
 'prefs-skin' => 'Benutzeroberflechi',
 'skin-preview' => 'Vorschou',

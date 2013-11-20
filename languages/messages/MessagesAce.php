@@ -1681,8 +1681,7 @@ Neuci peudeuih hasé biasa.',
 
 # Special:SpecialPages
 'specialpages' => 'Laman kusuih',
-'specialpages-note' => '----
-* Laman kusuih lagèë biasa.
+'specialpages-note' => '* Laman kusuih lagèë biasa.
 * <span class="mw-specialpagerestricted">Laman kusuih meuhat.</span>',
 'specialpages-group-maintenance' => 'Beuneuri thèë plara',
 'specialpages-group-other' => "La'én-la'én",

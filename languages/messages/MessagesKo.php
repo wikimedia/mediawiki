@@ -1506,7 +1506,6 @@ $1",
 'mypreferences' => '환경 설정',
 'prefs-edits' => '편집 횟수:',
 'prefsnologin' => '로그인하지 않음',
-'prefsnologintext' => '사용자 환경 설정을 바꾸려면 먼저 <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 로그인]</span>해야 합니다.',
 'changepassword' => '비밀번호 바꾸기',
 'prefs-skin' => '스킨',
 'skin-preview' => '미리 보기',
@@ -4117,8 +4116,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => '특수 문서 목록',
-'specialpages-note' => '----
-* 일반 특수 문서입니다.
+'specialpages-note' => '* 일반 특수 문서입니다.
 * <span class="mw-specialpagerestricted">제한된 특수 문서입니다.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other' => '다른 특수 문서',

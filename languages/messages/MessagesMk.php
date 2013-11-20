@@ -1503,7 +1503,6 @@ $1",
 'mypreferences' => 'нагодувања',
 'prefs-edits' => 'Број на уредувања:',
 'prefsnologin' => 'Не сте најавени',
-'prefsnologintext' => 'Мора да бидете <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} најавени]</span> за да ги менувате вашите кориснички нагодувања.',
 'changepassword' => 'Смени лозинка',
 'prefs-skin' => 'Руво',
 'skin-preview' => 'Преглед',
@@ -4251,8 +4250,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Специјални страници',
-'specialpages-note' => '----
-* Нормални специјални страници.
+'specialpages-note' => '* Нормални специјални страници.
 * <span class="mw-specialpagerestricted">Ограничени специјални страници.</span>
 * <span class="mw-specialpagecached">Кеширани специјални страници (може да се застарени).</span>',
 'specialpages-group-maintenance' => 'Извештаи за одржување',

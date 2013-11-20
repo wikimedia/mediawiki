@@ -1129,7 +1129,6 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'mypreferences' => 'Mapendekezo',
 'prefs-edits' => 'Idadi ya marekebisho:',
 'prefsnologin' => 'Hujaingia',
-'prefsnologintext' => 'Inabidi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} uingie akaunti yako]</span> ili ubadilishe mapendekezo yako.',
 'changepassword' => 'Badilisha neno la siri',
 'prefs-skin' => 'Umbo',
 'skin-preview' => 'Hakiki',
@@ -3033,8 +3032,7 @@ Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public Lic
 
 # Special:SpecialPages
 'specialpages' => 'Kurasa maalum',
-'specialpages-note' => '----
-* Kurasa maalum za kawaida.
+'specialpages-note' => '* Kurasa maalum za kawaida.
 * <span class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</span>
 * <span class="mw-specialpagecached">Kurasa maalum zinazotoka "cache" (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',

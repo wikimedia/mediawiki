@@ -879,7 +879,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'mypreferences' => 'Tercihên min',
 'prefs-edits' => 'Hejmarê guherandinan:',
 'prefsnologin' => 'Xwe tomar nekir',
-'prefsnologintext' => 'Tu gireke xwe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} qeydbikê]</span> ji bo guherandina tercihên bikarhêneran.',
 'changepassword' => 'Şîfreyê biguherîne',
 'prefs-skin' => 'Pêste',
 'skin-preview' => 'Pêşdîtin',
@@ -2124,8 +2123,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 
 # Special:SpecialPages
 'specialpages' => 'Rûpelên taybet',
-'specialpages-note' => '----
-* Rûpelên taybetî ji her kesan ra
+'specialpages-note' => '* Rûpelên taybetî ji her kesan ra
 * <strong class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</strong>',
 'specialpages-group-other' => 'Rûpelên taybetî yên din',
 'specialpages-group-login' => 'Têkeve',

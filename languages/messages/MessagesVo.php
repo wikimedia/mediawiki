@@ -1007,7 +1007,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mypreferences' => 'Buükams',
 'prefs-edits' => 'Num redakamas:',
 'prefsnologin' => 'No enunädon oki',
-'prefsnologintext' => 'Nedol <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} nunädön oli]</span> büä kanol votükön gebanabuükamis.',
 'changepassword' => 'Votükön letavödi',
 'prefs-skin' => 'Fomät',
 'skin-preview' => 'Büologed',
@@ -2844,8 +2843,7 @@ Kanol i [[Special:EditWatchlist|gebön redakametodi kösömik]].',
 
 # Special:SpecialPages
 'specialpages' => 'Pads patik',
-'specialpages-note' => '----
-* Pads patik nomik.
+'specialpages-note' => '* Pads patik nomik.
 * <span class="mw-specialpagerestricted">Pads patik pemiedüköl.</span>',
 'specialpages-group-maintenance' => 'Nunods tefü kiped',
 'specialpages-group-other' => 'Pads patik votik',

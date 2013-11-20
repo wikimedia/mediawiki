@@ -1140,7 +1140,6 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'mypreferences' => 'Iinstelangen',
 'prefs-edits' => 'Taal faan feranrangen:',
 'prefsnologin' => 'Ei uunmeldet',
-'prefsnologintext' => 'Dü skel <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} uunmeldet]</span> wees, am din iinstelangen tu feranrin.',
 'changepassword' => 'Paaswurd feranre',
 'prefs-skin' => 'Skak',
 'skin-preview' => 'Föörskau',
@@ -3608,8 +3607,7 @@ An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special
 
 # Special:SpecialPages
 'specialpages' => 'Spezial-sidjen',
-'specialpages-note' => '----
-* Normool spezial-sidjen
+'specialpages-note' => '* Normool spezial-sidjen
 * <span class="mw-specialpagerestricted">Spezial-sidjen mä tugripsrochten</span>
 * <span class="mw-specialpagecached">Spezial-sidjen uun a cache (As ferlicht ei muar aktuel.)</span>',
 'specialpages-group-maintenance' => 'Werksteedsidjen',

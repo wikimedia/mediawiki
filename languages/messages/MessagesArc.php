@@ -1794,8 +1794,7 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ',
-'specialpages-note' => '----
-* ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܥܝܕ̈ܝܬܐ.
+'specialpages-note' => '* ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܥܝܕ̈ܝܬܐ.
 * <span class="mw-specialpagerestricted">ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܕܩܝܘܡ̈ܐ ܒܠܚܘܕ.</span>',
 'specialpages-group-maintenance' => 'ܬܫܪܪ̈ܐ ܕܚܕܬܘܬܐ',
 'specialpages-group-other' => 'ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ ܐܚܪ̈ܢܝܬܐ',

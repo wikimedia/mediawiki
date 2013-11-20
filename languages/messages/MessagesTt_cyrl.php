@@ -1190,7 +1190,6 @@ $1",
 'mypreferences' => 'Көйләнмәләр',
 'prefs-edits' => 'Үзгәртүләр исәбе:',
 'prefsnologin' => 'Кермәгәнсез',
-'prefsnologintext' => 'Кулланучы көйләнмәләрене үзгәртү өчен, сез <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} керергә]</span> тиешсез.',
 'changepassword' => 'Серсүзне үзгәртү',
 'prefs-skin' => 'Күренеш',
 'skin-preview' => 'Алдан карау',
@@ -2452,8 +2451,7 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'Махсус битләр',
-'specialpages-note' => '----
-* Гади махсус битләр.
+'specialpages-note' => '* Гади махсус битләр.
 * <strong class="mw-specialpagerestricted">Чикләнелгән махсус битләр.</strong>
 * <span class="mw-specialpagecached">Кешланган махсус битләр.</span>',
 'specialpages-group-maintenance' => 'Техник карау хисапнамәсе',

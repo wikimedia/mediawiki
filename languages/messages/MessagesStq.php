@@ -1008,7 +1008,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'mypreferences' => 'Ienstaalengen',
 'prefs-edits' => 'Antaal Beoarbaidengen:',
 'prefsnologin' => 'Nit anmälded',
-'prefsnologintext' => 'Du moast <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} anmälded]</span> weese, uum dien Ienstaalengen annerje tou konnen.',
 'changepassword' => 'Paaswoud annerje',
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Foarskau',
@@ -3154,8 +3153,7 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 
 # Special:SpecialPages
 'specialpages' => 'Spezioalsieden',
-'specialpages-note' => '----
-* Reguläre Spezioalsieden
+'specialpages-note' => '* Reguläre Spezioalsieden
 * <span class="mw-specialpagerestricted">Tougriepsbeskränkede Spezioalsieden</span>
 * <span class="mw-specialpagecached">Cachegenerierde Spezioalsieden</span>',
 'specialpages-group-maintenance' => 'Fersuurgengsliesten',

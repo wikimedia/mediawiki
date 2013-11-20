@@ -786,7 +786,6 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'mypreferences' => '↓Deng pinili ku',
 'prefs-edits' => 'Bilang da reng edit:',
 'prefsnologin' => 'ekamaka log',
-'prefsnologintext' => 'Kailangan kang [[Special:UserLogin|maka-login]] ba mong apagana deng pinili ning talagamit (user preferences).',
 'changepassword' => 'Alilan ya ing password',
 'prefs-skin' => 'Balat',
 'skin-preview' => 'I-preview',

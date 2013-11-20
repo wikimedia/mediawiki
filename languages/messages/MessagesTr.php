@@ -1468,7 +1468,6 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'mypreferences' => 'Tercihler',
 'prefs-edits' => 'Değişiklik sayısı:',
 'prefsnologin' => 'Oturum açık değil',
-'prefsnologintext' => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} giriş yapmalısınız]</span>.',
 'changepassword' => 'Parolayı değiştir',
 'prefs-skin' => 'Görünüm',
 'skin-preview' => 'Önizleme',
@@ -3913,8 +3912,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 
 # Special:SpecialPages
 'specialpages' => 'Özel sayfalar',
-'specialpages-note' => '----
-* Normal özel sayfalar.
+'specialpages-note' => '* Normal özel sayfalar.
 * <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>
 * <span class="mw-specialpagecached">Önbelleğe alınan özel sayfalar (eskimiş olabilir)</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',

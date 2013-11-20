@@ -1155,7 +1155,6 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'mypreferences' => 'Mien veurkäöre',
 'prefs-edits' => 'Aantal bewèrkinge:',
 'prefsnologin' => 'Neet aangemèld',
-'prefsnologintext' => 'De mós zeen <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagemeld]</span> óm dien veurkäöre te kónne insjtèlle.',
 'changepassword' => 'Wachwaord verangere',
 'prefs-skin' => '{{SITENAME}}-uterlik',
 'skin-preview' => 'Veurbesjouwing',
@@ -3485,8 +3484,7 @@ Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van d
 
 # Special:SpecialPages
 'specialpages' => "Speciaal pagina's",
-'specialpages-note' => '----
-* Normaal speciaal pagina\'s
+'specialpages-note' => '* Normaal speciaal pagina\'s
 * <strong class="mw-specialpagerestricted">Beperk toegankelike speciaal pagina\'s</strong>
 * <span class="mw-specialpagecached">Speciaal pagina\'s mit allein gegaeves oete cache (meugelik verajerd)</span>',
 'specialpages-group-maintenance' => 'Óngerhajingsrapporter',

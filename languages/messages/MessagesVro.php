@@ -803,7 +803,6 @@ otsisõna iin edejakku ''all:''. Ütest kimmäst nimeruumist otsmisõs pruugiq e
 'mypreferences' => 'Säädmiseq',
 'prefs-edits' => 'Tõimõndamiisi arv:',
 'prefsnologin' => 'Sa olõ-i nimega sisse lännüq',
-'prefsnologintext' => 'Et säädmiisi tetäq, tulõ sul [[Special:UserLogin|nimega sisse minnäq]].',
 'changepassword' => 'Muudaq salasõnna',
 'prefs-skin' => 'Vällänägemine',
 'skin-preview' => 'Kaeminõ',
@@ -2207,8 +2206,7 @@ Prooviq harilikku kaehust.',
 
 # Special:SpecialPages
 'specialpages' => 'Tallitusleheküleq',
-'specialpages-note' => '----
-* Hariliguq tallitusleheq.
+'specialpages-note' => '* Hariliguq tallitusleheq.
 * <strong class="mw-specialpagerestricted">Piiredüq tallitusleheq.</strong>',
 'specialpages-group-maintenance' => 'Kõrranpidämisteedüseq',
 'specialpages-group-other' => 'Muuq tallitusleheq',

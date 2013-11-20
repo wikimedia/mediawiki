@@ -1442,7 +1442,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'mypreferences' => 'Preferoj',
 'prefs-edits' => 'Nombro de redaktoj:',
 'prefsnologin' => 'Ne jam salutis!',
-'prefsnologintext' => 'Vi devas esti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ensalutita]</span> por fari viajn preferojn.',
 'changepassword' => 'Ŝanĝi pasvorton',
 'prefs-skin' => 'Etoso',
 'skin-preview' => 'Antaŭrigardo',
@@ -3983,8 +3982,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 
 # Special:SpecialPages
 'specialpages' => 'Specialaj paĝoj',
-'specialpages-note' => '----
-* Normaj specialaj paĝoj.
+'specialpages-note' => '* Normaj specialaj paĝoj.
 * <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>
 * <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',

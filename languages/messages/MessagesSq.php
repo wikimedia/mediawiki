@@ -1265,7 +1265,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'mypreferences' => 'Parapëlqimet',
 'prefs-edits' => 'Numri i redaktimeve:',
 'prefsnologin' => 'Nuk keni hyrë brenda',
-'prefsnologintext' => 'Duhet të jeni <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} të kyçur]</span> për të caktuar parapëlqimet e përdoruesit.',
 'changepassword' => 'Ndërroni fjalëkalimin',
 'prefs-skin' => 'Pamja',
 'skin-preview' => 'Parapamje',

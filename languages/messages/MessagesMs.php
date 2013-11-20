@@ -1315,7 +1315,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'mypreferences' => 'Keutamaan',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Belum log masuk',
-'prefsnologintext' => 'Anda hendaklah <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
 'changepassword' => 'Tukar kata laluan',
 'prefs-skin' => 'Rupa',
 'skin-preview' => 'Pralihat',
@@ -3852,8 +3851,7 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 
 # Special:SpecialPages
 'specialpages' => 'Laman khas',
-'specialpages-note' => '----
-* Laman khas biasa.
+'specialpages-note' => '* Laman khas biasa.
 * <span class="mw-specialpagerestricted">Laman khas terhad.</span>
 * <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',

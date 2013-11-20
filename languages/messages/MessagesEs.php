@@ -49,6 +49,7 @@
  * @author Hazard-SJ
  * @author Hercule
  * @author Icvav
+ * @author Ihojose
  * @author Imre
  * @author Invadinado
  * @author Jatrobat
@@ -1509,7 +1510,6 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'mypreferences' => 'Preferencias',
 'prefs-edits' => 'Cantidad de ediciones:',
 'prefsnologin' => 'No has iniciado sesión',
-'prefsnologintext' => 'Necesitas <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iniciar sesión]</span> para establecer las preferencias del usuario.',
 'changepassword' => 'Cambiar contraseña',
 'prefs-skin' => 'Apariencia',
 'skin-preview' => 'Previsualizar',
@@ -4057,8 +4057,8 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiales',
-'specialpages-note' => '----
-* Páginas especiales normales
+'specialpages-note-top' => 'Leyenda:',
+'specialpages-note' => '* Páginas especiales normales
 * <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>
 * <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',

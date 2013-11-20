@@ -1027,7 +1027,6 @@ $3 макссь туфталсь - ''$2''",
 'mypreferences' => 'Монь латцемане',
 'prefs-edits' => 'Петнематнень лувсна:',
 'prefsnologin' => 'Апак сувак',
-'prefsnologintext' => 'Тондейть эряви <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} сувамс]</span> тонь арафнематнень латцеманкса.',
 'changepassword' => 'Сувама валть полафтомс',
 'prefs-skin' => 'Ванфонь латцема',
 'skin-preview' => 'Васень няфтема',
@@ -2805,8 +2804,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Башка лопат',
-'specialpages-note' => '----
-* Кърдань башка лопат.
+'specialpages-note' => '* Кърдань башка лопат.
 * <strong class="mw-specialpagerestricted">Кардаф башка лопат.</strong>',
 'specialpages-group-maintenance' => 'Латцема лувоматне',
 'specialpages-group-other' => 'Иля башка тевонь лопатне',

@@ -967,7 +967,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'mypreferences' => 'Järgendused',
 'prefs-edits' => 'Redaktiruindoiden lugu:',
 'prefsnologin' => 'Tö et olgoi kirjutanus sistemha.',
-'prefsnologintext' => 'Teile pidab <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kirjutadas sistemha]</span>, miše toižetada järgendusid.',
 'changepassword' => 'Peitsanan toižetuz',
 'prefs-skin' => 'Irdnägu',
 'skin-preview' => 'Ezikaclend',
@@ -2934,8 +2933,7 @@ Kävutagat normaline ezikacund.',
 
 # Special:SpecialPages
 'specialpages' => 'Specialižed lehtpoled',
-'specialpages-note' => '----
-* Järgeližed specialižed lehtpoled.
+'specialpages-note' => '* Järgeližed specialižed lehtpoled.
 * <span class="mw-specialpagerestricted">Kaitud specialižed lehtpoled.</span>',
 'specialpages-group-maintenance' => 'Tehnižen holitandan satusenladindad',
 'specialpages-group-other' => 'Toižed specialižed lehtpoled',

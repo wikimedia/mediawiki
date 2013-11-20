@@ -699,7 +699,8 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
 'exception-nologin' => 'Accesso non effettuato',
-'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questa wiki.",
+'exception-nologin-text' => "Si prega di [[Special:Userlogin|eseguire l'accesso]] per poter accedere a questa pagina o azione.",
+'exception-nologin-text-manual' => 'Si prega di $1 per poter accedere a questa pagina o azione.',
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -1397,7 +1398,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'mypreferences' => 'preferenze',
 'prefs-edits' => 'Modifiche effettuate:',
 'prefsnologin' => 'Accesso non effettuato',
-'prefsnologintext' => 'Per poter personalizzare le preferenze è necessario effettuare l\'<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} accesso]</span>.',
+'prefsnologintext2' => "Si prega di $1 per impostare le preferenze dell'utente.",
 'changepassword' => 'Cambia password',
 'prefs-skin' => 'Aspetto grafico (skin)',
 'skin-preview' => 'Anteprima',
@@ -3926,8 +3927,7 @@ Esempi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revi
 
 # Special:SpecialPages
 'specialpages' => 'Pagine speciali',
-'specialpages-note' => '----
-* Pagine speciali non riservate.
+'specialpages-note' => '* Pagine speciali non riservate.
 * <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>
 * <span class="mw-specialpagecached">Pagine speciali disponibili in versione cache (potrebbero essere obsolete).</span>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',

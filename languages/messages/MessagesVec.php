@@ -1236,7 +1236,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'mypreferences' => 'Prefarense',
 'prefs-edits' => 'Nùmaro de modifiche:',
 'prefsnologin' => 'No te ghè eseguìo el login',
-'prefsnologintext' => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login]</span> par poder personalixare le to preferense.',
 'changepassword' => 'Cànbia ła password',
 'prefs-skin' => 'Aspeto grafico',
 'skin-preview' => 'Anteprima',
@@ -3687,8 +3686,7 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 
 # Special:SpecialPages
 'specialpages' => 'Pagine speciali',
-'specialpages-note' => '----
-* Pàjine speciałi normałi.
+'specialpages-note' => '* Pàjine speciałi normałi.
 * <span class="mw-specialpagerestricted">Pàjine speciałi a aceso limità.</span>',
 'specialpages-group-maintenance' => 'Resoconti de manutenzion',
 'specialpages-group-other' => 'Altre pagine speciali',

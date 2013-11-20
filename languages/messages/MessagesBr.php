@@ -1289,7 +1289,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'mypreferences' => 'Penndibaboù',
 'prefs-edits' => 'Niver a zegasadennoù :',
 'prefsnologin' => 'Digevreet',
-'prefsnologintext' => 'Ret eo deoc\'h bezañ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kevreet]</span> a-benn gellout cheñch ho tibaboù implijer.',
 'changepassword' => 'Kemmañ ar ger-tremen',
 'prefs-skin' => 'Gwiskadur',
 'skin-preview' => 'Rakwelet',
@@ -3831,8 +3830,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 
 # Special:SpecialPages
 'specialpages' => 'Pajennoù dibar',
-'specialpages-note' => '----
-* Pajennoù dibar boutin.
+'specialpages-note' => '* Pajennoù dibar boutin.
 * <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>
 * <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken (a c\'hellfe bezañ re gozh).</span>',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",

@@ -734,7 +734,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 # Preferences page
 'mypreferences' => 'Ma preferences',
 'prefsnologin' => 'No loggit in',
-'prefsnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] tae set uiser preferences.',
 'changepassword' => 'Chynge password',
 'prefs-skin' => 'Huil',
 'skin-preview' => 'First Leuk',

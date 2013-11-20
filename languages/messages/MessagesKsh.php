@@ -1446,7 +1446,6 @@ dat dänne ehr Daate topaktoell sin,
 'mypreferences' => 'Enstellunge',
 'prefs-edits' => 'Aanzahl Änderunge am Wiki:',
 'prefsnologin' => 'Nit enjelogg',
-'prefsnologintext' => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
 'changepassword' => 'Passwood *',
 'prefs-skin' => 'Et Ussinn',
 'skin-preview' => 'Vör-Ansich',
@@ -4142,8 +4141,7 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 
 # Special:SpecialPages
 'specialpages' => '{{int:nstab-special}}e',
-'specialpages-note' => '----
-* {{int:nstab-special}}e för jede Metmaacher.
+'specialpages-note' => '* {{int:nstab-special}}e för jede Metmaacher.
 * <span class="mw-specialpagerestricted">{{int:nstab-special}}e för Metmaacher met besönder Räächde.</span>
 * <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e. Di künnte ovverhollt sind.</span>',
 'specialpages-group-maintenance' => 'Waadungsleste',

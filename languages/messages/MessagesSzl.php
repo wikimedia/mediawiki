@@ -1035,7 +1035,6 @@ $1',
 'mypreferences' => 'Preferyncyje',
 'prefs-edits' => 'Liczba sprowjyń:',
 'prefsnologin' => 'Ńy ježeś zalůgowany',
-'prefsnologintext' => 'Muśiš śe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} zalůgować]</span> coby štalować swoje preferyncyje.',
 'changepassword' => 'Zmjana hasua',
 'prefs-skin' => 'Skůrka',
 'skin-preview' => 'podglůnd',
@@ -2825,8 +2824,7 @@ Možeš tyž [[Special:EditWatchlist|užyć standardowygo edytora]].',
 
 # Special:SpecialPages
 'specialpages' => 'Szpecjalne zajty',
-'specialpages-note' => '----
-* Ekstra zajty uogůlńy dostympne.
+'specialpages-note' => '* Ekstra zajty uogůlńy dostympne.
 * <strong class="mw-specialpagerestricted">Ekstra zajty do kerych dostymp je uograńiczůny.</strong>',
 'specialpages-group-maintenance' => 'Raporty kůnserwacyjne',
 'specialpages-group-other' => 'Inkše ekstra zajty',

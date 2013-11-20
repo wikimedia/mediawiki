@@ -1405,7 +1405,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'mypreferences' => 'Preferencias',
 'prefs-edits' => 'Número de edicións:',
 'prefsnologin' => 'Non accedeu ao sistema',
-'prefsnologintext' => 'Debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} acceder ao sistema]</span> para modificar as preferencias de usuario.',
 'changepassword' => 'Cambiar o meu contrasinal',
 'prefs-skin' => 'Aparencia',
 'skin-preview' => 'Vista previa',
@@ -3984,8 +3983,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 
 # Special:SpecialPages
 'specialpages' => 'Páxinas especiais',
-'specialpages-note' => '----
-* Páxinas especiais normais.
+'specialpages-note' => '* Páxinas especiais normais.
 * <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other' => 'Outras páxinas especiais',

@@ -1526,7 +1526,6 @@ $1",
 'mypreferences' => 'Подешавања',
 'prefs-edits' => 'Број измена:',
 'prefsnologin' => 'Нисте пријављени',
-'prefsnologintext' => 'Морате бити <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} пријављени]</span> да бисте подешавали корисничке поставке.',
 'changepassword' => 'Промени лозинку',
 'prefs-skin' => 'Тема',
 'skin-preview' => 'Прегледај',
@@ -4100,7 +4099,7 @@ $5
 'table_pager_empty' => 'Нема резултата',
 
 # Auto-summaries
-'autosumm-blank' => 'Уклоњен целокупан садржаја странице',
+'autosumm-blank' => 'Уклоњен целокупан садржај странице',
 'autosumm-replace' => 'Замена садржаја странице са „$1“',
 'autoredircomment' => 'Преусмерење на [[$1]]',
 'autosumm-new' => 'Нова страница: $1',
@@ -4271,9 +4270,8 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Посебне странице',
-'specialpages-note' => '----
-* обичне посебне странице
-* <span class="mw-specialpagerestricted">ограничене посебне странице</span>',
+'specialpages-note' => '* Нормалне посебне странице
+* <span class="mw-specialpagerestricted">Ограничене посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',
 'specialpages-group-other' => 'Остале посебне странице',
 'specialpages-group-login' => 'Пријава/регистрација',

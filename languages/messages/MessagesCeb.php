@@ -725,7 +725,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'mypreferences' => 'Akong preperensiya',
 'prefs-edits' => 'Gidaghanon sa nausab:',
 'prefsnologin' => 'Wala maka-log-in',
-'prefsnologintext' => 'Kinahanglan ikaw <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} naka-log-in]</span> aron ma-set ang imong mga preperensiya.',
 'changepassword' => 'Usba ang pasword',
 'prefs-skin' => 'Panit',
 'skin-preview' => 'Paunang tan-aw',

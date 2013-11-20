@@ -1059,6 +1059,7 @@ Serch hyn, gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Sp
 Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. Fe allant ei ddatguddio trwy ddefnyddio'r dudalen arbennig hon, cyhyd ag nad oes cyfyngiadau ychwanegol wedi eu gosod.",
 'revdelete-confirm' => "Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall yr effaith a gaiff, a'ch bod yn ei wneud yn ôl y [[{{MediaWiki:Policy-url}}|y polisi]].",
 'revdelete-suppress-text' => "'''Dim ond''' yn yr achosion sy'n dilyn y dylech fentro cuddio gwybodaeth:
+* Gwybodaeth a all fod yn enllib
 * Gwybodaeth bersonol anaddas
 *: ''cyfeiriad cartref, rhif ffôn, rhif yswiriant cenedlaethol, ayb.''",
 'revdelete-legend' => 'Gosod cyfyngiadau ar y gallu i weld',
@@ -1227,7 +1228,6 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'mypreferences' => 'Dewisiadau',
 'prefs-edits' => 'Nifer y golygiadau:',
 'prefsnologin' => 'Nid ydych wedi mewngofnodi',
-'prefsnologintext' => 'Rhaid i chi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} fewngofnodi]</span> er mwyn gosod eich dewisiadau defnyddiwr.',
 'changepassword' => 'Newid y cyfrinair',
 'prefs-skin' => 'Gwedd',
 'skin-preview' => 'Rhagolwg',
@@ -3744,8 +3744,7 @@ Defnydd:
 
 # Special:SpecialPages
 'specialpages' => 'Tudalennau arbennig',
-'specialpages-note' => '----
-* Tudalennau arbennig ar gael i bawb.
+'specialpages-note' => '* Tudalennau arbennig ar gael i bawb.
 * <span class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</span>
 * <span class="mw-specialpagecached">Tudalennau arbennig wedi eu cynhyrchu o\'r celc (gallant fod heb eu harfer rhagor).</span>',
 'specialpages-group-maintenance' => 'Adroddiadau cynnal a chadw',

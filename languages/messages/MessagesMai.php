@@ -1023,7 +1023,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 'mypreferences' => 'खासमखास',
 'prefs-edits' => 'सम्पादनक संख्या',
 'prefsnologin' => 'सम्प्रवेशित नै',
-'prefsnologintext' => 'अहाँ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> प्रयोक्ता विकल्प निर्धारण लेल प्रयोग करू।',
 'changepassword' => 'कूटशब्द बदलू',
 'prefs-skin' => 'रूप',
 'skin-preview' => 'पूर्वावलोकन',
@@ -3357,8 +3356,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'विशेष पन्ना',
-'specialpages-note' => '----
-* सामान्य विशिष्ट पन्ना।
+'specialpages-note' => '* सामान्य विशिष्ट पन्ना।
 * <span class="mw-specialpagerestricted">प्रतिबंधित विशिष्ट पन्ना।</span>
 * <span class="mw-specialpagecached">उपस्मृतिक विशिष्ट पन्ना (पुरान भऽ सकैए)।</span>',
 'specialpages-group-maintenance' => 'सुस्थापन प्रतिवेदन',

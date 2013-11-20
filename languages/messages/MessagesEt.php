@@ -1414,7 +1414,6 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'mypreferences' => 'Eelistused',
 'prefs-edits' => 'Redigeerimiste arv:',
 'prefsnologin' => 'Sisse logimata',
-'prefsnologintext' => 'Oma eelistuste määramiseks pead olema <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sisse logitud]</span>.',
 'changepassword' => 'Muuda parool',
 'prefs-skin' => 'Kujundus',
 'skin-preview' => 'eelvaade',
@@ -3894,8 +3893,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 
 # Special:SpecialPages
 'specialpages' => 'Erileheküljed',
-'specialpages-note' => '----
-* Harilikud erileheküljed
+'specialpages-note' => '* Harilikud erileheküljed
 * <span class="mw-specialpagerestricted">Piiranguga erileheküljed</span>
 * <span class="mw-specialpagecached">Uuendamata sisuga erileheküljed (ei pruugi enam kasutuses olla)</span>',
 'specialpages-group-maintenance' => 'Hooldusaruanded',

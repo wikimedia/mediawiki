@@ -1033,7 +1033,7 @@ Endringane dine er ikkje lagra enno!",
 
 '''Dersom dette er eit heilt vanleg forsøk på endring, prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.'''",
 'token_suffix_mismatch' => "'''Endringa di vart avvist fordi klienten/nettlesaren din lagar teiknfeil i teksten. Dette vart gjort for å hindre øydelegging av teksten på sida. Slikt kan av og til hende når ein brukar feilprogrammerte og vevbaserte anonyme proxytenester.'''",
-'edit_form_incomplete' => 'Delar av redigeringsskjemaet nådde ikkje fram til tenaren; dobbelsjekk at redigeringa er korrekt, og prøv om att.',
+'edit_form_incomplete' => 'Delar av endringsskjemaet nådde ikkje fram til tenaren; dobbelsjekk at endringa er korrekt og prøv om att.',
 'editing' => 'Endrar $1',
 'creating' => 'Opprettar $1',
 'editingsection' => 'Endrar $1 (bolk)',
@@ -1095,7 +1095,7 @@ Sletteloggen for sida finn du her:",
 'edit-gone-missing' => 'Kunne ikkje oppdatere sida.
 Det ser ut til at ho er sletta.',
 'edit-conflict' => 'Endringskonflikt.',
-'edit-no-change' => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
+'edit-no-change' => 'Endringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
 'postedit-confirmation' => 'Endringa di vart lagra.',
 'edit-already-exists' => 'Kunne ikkje opprette ny side fordi ho alt eksisterer.',
 'defaultmessagetext' => 'Standard meldingstekst',
@@ -1301,7 +1301,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergehistory-reason' => 'Årsak:',
 
 # Merge log
-'mergelog' => 'Flettingslogg',
+'mergelog' => 'Flettelogg',
 'pagemerge-logentry' => 'fletta [[$1]] til [[$2]] (versjonar fram til $3)',
 'revertmerge' => 'Fjern fletting',
 'mergelogpagetext' => 'Nedanfor finn du ei liste over dei siste flettingane av ein sidehistorikk til ein annan.',
@@ -1393,7 +1393,6 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal på endringar:',
 'prefsnologin' => 'Ikkje innlogga',
-'prefsnologintext' => 'Du må vere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
 'changepassword' => 'Skift passord',
 'prefs-skin' => 'Drakt',
 'skin-preview' => 'førehandsvis',
@@ -3124,7 +3123,7 @@ Vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [/
 'markedaspatrollederror' => 'Kan ikkje merke sida som patruljert',
 'markedaspatrollederrortext' => 'Du må markere ein versjon for å kunne godkjenne.',
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
-'markedaspatrollednotify' => 'Denne endringa på $1 vart merkt som patruljert.',
+'markedaspatrollednotify' => 'Endringa på $1 vart merkt som patruljert.',
 'markedaspatrollederrornotify' => 'Det gjekk ikkje å merkja endringa som patruljert.',
 
 # Patrol log
@@ -3848,8 +3847,7 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 
 # Special:SpecialPages
 'specialpages' => 'Spesialsider',
-'specialpages-note' => '----
-* Vanlege spesialsider.
+'specialpages-note' => '* Vanlege spesialsider.
 * <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
 'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',
 'specialpages-group-other' => 'Andre spesialsider',

@@ -1155,7 +1155,6 @@ $1",
 'mypreferences' => 'விருப்பத்தேர்வுகள்',
 'prefs-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'prefsnologin' => 'புகுபதிகை செய்யப்படவில்லை',
-'prefsnologintext' => 'பயனர் விருப்பத்தேர்வுகளை அமைப்பதற்கு நீங்கள் <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} புகுபதிகை ]</span> செய்திருக்க வேண்டும்.',
 'changepassword' => 'கடவுச்சொல்லை மாற்று',
 'prefs-skin' => 'முகப்புறை',
 'skin-preview' => 'முன்தோற்றம்',
@@ -1180,7 +1179,7 @@ $1",
 'prefs-rendering' => 'தோற்றம்',
 'saveprefs' => 'சேமி',
 'resetprefs' => 'சேமிக்காத மாற்றங்கள் நீக்குக',
-'restoreprefs' => 'எல்லோருக்கும் பொதுவான வடிவமைப்பைத் திரும்பக்கொண்டுவரவும் (எல்லா பிறிவுகளிலும்).',
+'restoreprefs' => 'எல்லோருக்கும் பொதுவான வடிவமைப்பைத் திரும்பக்கொண்டுவரவும் (எல்லா பிரிவுகளிலும்).',
 'prefs-editing' => 'தொகுத்தல்',
 'rows' => 'நிரைகள் (கிடை வரிசைகள்):',
 'columns' => 'நிரல்கள்',
@@ -3507,8 +3506,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'சிறப்புப் பக்கங்கள்',
-'specialpages-note' => '----
- * சராசரி சிறப்புப் பக்கங்கள்.
+'specialpages-note' => ' * சராசரி சிறப்புப் பக்கங்கள்.
  * <span class="mw-specialpagerestricted">வரையறுத்த சிறப்புப் பக்கங்கள்.</span>',
 'specialpages-group-maintenance' => 'பராமரிப்பு அறிக்கைகள்',
 'specialpages-group-other' => 'ஏனைய சிறப்புப் பக்கங்கள்',

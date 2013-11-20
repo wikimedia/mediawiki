@@ -1417,7 +1417,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'mypreferences' => 'Nastavenia',
 'prefs-edits' => 'Počet úprav:',
 'prefsnologin' => 'Nie ste prihlásený/á',
-'prefsnologintext' => 'Aby ste mohli zmeniť svoje nastavenia, musíte byť <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prihlásený]</span>.',
 'changepassword' => 'Zmeniť heslo',
 'prefs-skin' => 'Vzhľad',
 'skin-preview' => 'Náhľad',
@@ -3976,8 +3975,7 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 
 # Special:SpecialPages
 'specialpages' => 'Špeciálne stránky',
-'specialpages-note' => '----
-* Bežné špeciálne stránky.
+'specialpages-note' => '* Bežné špeciálne stránky.
 * <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>
 * <span class="mw-specialpagecached">Špeciálne stránky vo vyrovnávacej pamäti (môže byť neaktuálne).</span>',
 'specialpages-group-maintenance' => 'Údržbové správy',

@@ -1099,7 +1099,6 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'mypreferences' => 'Preferenzas',
 'prefs-edits' => 'Dumber da las modificaziuns:',
 'prefsnologin' => "Betg t'annunzià",
-'prefsnologintext' => 'Ti stos esser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} t\'annunzià]</span> per midar tias preferenzas.',
 'changepassword' => 'Midar pled-clav',
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Prevista',
@@ -3559,8 +3558,7 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 
 # Special:SpecialPages
 'specialpages' => 'Paginas spezialas',
-'specialpages-note' => '----
-* Paginas spezialas normalas.
+'specialpages-note' => '* Paginas spezialas normalas.
 * <span class="mw-specialpagerestricted">Paginas spezialas restrenschidas.</span>
 * <span class="mw-specialpagecached">Paginas spezialas en il cache (pon esser antiquadas).</span>',
 'specialpages-group-maintenance' => 'Rapports da mantegnamant',

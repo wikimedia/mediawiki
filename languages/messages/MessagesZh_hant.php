@@ -1365,7 +1365,6 @@ $1",
 'mypreferences' => '偏好設定',
 'prefs-edits' => '編輯次數：',
 'prefsnologin' => '還未登入',
-'prefsnologintext' => '您必須先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登入]</span>才能設置個人參數。',
 'changepassword' => '變更密碼',
 'prefs-skin' => '外觀',
 'skin-preview' => '預覽',
@@ -3904,8 +3903,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:SpecialPages
 'specialpages' => '特殊頁面',
-'specialpages-note' => '----
-* 標準特殊頁面。
+'specialpages-note' => '* 標準特殊頁面。
 * <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>
 * <span class="mw-specialpagecached">用於重新整理的特殊頁面（可能過時）。</span>',
 'specialpages-group-maintenance' => '維護報告',

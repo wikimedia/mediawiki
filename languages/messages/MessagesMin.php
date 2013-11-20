@@ -1158,7 +1158,6 @@ Ingek indeks Google untuak {{SITENAME}} mungkin lah kadaluarsa.',
 'mypreferences' => 'Pangaturan',
 'prefs-edits' => 'Jumlah suntiangan:',
 'prefsnologin' => 'Alun masuak log',
-'prefsnologintext' => 'Sanak musti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuak log]</span> untuak mengeset pangaturan.',
 'changepassword' => 'Tuka kato sandi',
 'prefs-skin' => 'Kulik',
 'skin-preview' => 'Caliak',
@@ -2551,8 +2550,7 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 
 # Special:SpecialPages
 'specialpages' => 'Laman istimewa',
-'specialpages-note' => '----
-* Laman istimewa normal.
+'specialpages-note' => '* Laman istimewa normal.
 * <span class="mw-specialpagerestricted">Laman istimewa talarang.</span>
 * <span class="mw-specialpagecached">Laman istimewa tasinggah (mungkin usang).</span>',
 'specialpages-group-maintenance' => 'Laporan pamaliharoan',

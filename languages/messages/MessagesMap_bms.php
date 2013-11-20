@@ -979,7 +979,6 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
 'prefsnologin' => 'Durung mlebu log',
-'prefsnologintext' => 'Rika kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log disit]</span> kanggo ngowahi préferènsine Rika.',
 'changepassword' => 'Ganti tembung sandhi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratayang',

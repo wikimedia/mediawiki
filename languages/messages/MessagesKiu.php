@@ -766,7 +766,6 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'mypreferences' => 'Tercihê mı',
 'prefs-edits' => 'Numra vurnaisun:',
 'prefsnologin' => 'Cı nêkota',
-'prefsnologintext' => 'Sıma gunê <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cı kuyê]</span> ke dıma tercihunê karberi bınusnê.',
 'changepassword' => 'Parola bıvurne',
 'prefs-skin' => 'Çerme',
 'skin-preview' => 'Verqayt',
@@ -1529,8 +1528,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 
 # Special:SpecialPages
 'specialpages' => 'Pelê xaşi',
-'specialpages-note' => '----
-* Pelê xususiyê normali.
+'specialpages-note' => '* Pelê xususiyê normali.
 * <span class="mw-specialpagerestricted">Pelê xususiyê mehcuri.</span>',
 'specialpages-group-maintenance' => 'Tebliğê baxımi',
 'specialpages-group-other' => 'Pelê xususiyê bini',

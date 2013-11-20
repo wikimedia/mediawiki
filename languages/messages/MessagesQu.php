@@ -1362,7 +1362,6 @@ Imaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy ha
 'mypreferences' => 'Allinkachinaykuna',
 'prefs-edits' => 'Hukchasqakunap yupaynin:',
 'prefsnologin' => 'Manam yaykurqankichu',
-'prefsnologintext' => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Yaykunaykim]</span> tiyan allinkachinaykikunata hukchanaykipaq.',
 'changepassword' => 'Yaykuna rimata hukchay',
 'prefs-skin' => 'Qara',
 'skin-preview' => 'Ñawpaqta qhaway',
@@ -3806,8 +3805,7 @@ MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIY
 
 # Special:SpecialPages
 'specialpages' => "Sapaq p'anqakuna",
-'specialpages-note' => '----
-* Sapsipaq sapaq p\'anqakuna.
+'specialpages-note' => '* Sapsipaq sapaq p\'anqakuna.
 * <span class="mw-specialpagerestricted">Sapaqkunallapaq sapaq p\'anqakuna.</span>',
 'specialpages-group-maintenance' => 'Hatalliy willaykuna',
 'specialpages-group-other' => "Huk sapaq p'anqakuna",

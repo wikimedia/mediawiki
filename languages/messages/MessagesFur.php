@@ -1625,8 +1625,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Special:SpecialPages
 'specialpages' => 'Pagjinis speciâls',
-'specialpages-note' => '----
-* Pagjinis speciâls no riservadis.
+'specialpages-note' => '* Pagjinis speciâls no riservadis.
 * <strong class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</strong>',
 'specialpages-group-maintenance' => 'Rapuarts di manutenzion',
 'specialpages-group-other' => 'Altris pagjinis speciâls',

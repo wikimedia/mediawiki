@@ -1293,7 +1293,6 @@ $1",
 'mypreferences' => 'การตั้งค่า',
 'prefs-edits' => 'จำนวนการแก้ไข:',
 'prefsnologin' => 'ไม่ได้ล็อกอิน',
-'prefsnologintext' => 'คุณต้อง<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ล็อกอิน]</span>ก่อนเพื่อตั้งค่าส่วนตัว',
 'changepassword' => 'เปลี่ยนรหัสผ่าน',
 'prefs-skin' => 'หน้าตา',
 'skin-preview' => 'แสดงตัวอย่าง',
@@ -3684,8 +3683,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'หน้าพิเศษ',
-'specialpages-note' => '----
-* หน้าพิเศษปกติ
+'specialpages-note' => '* หน้าพิเศษปกติ
 * <span class="mw-specialpagerestricted">หน้าพิเศษที่ถูกจำกัด</span>',
 'specialpages-group-maintenance' => 'รายงานการเก็บกวาด',
 'specialpages-group-other' => 'หน้าพิเศษอื่น ๆ',

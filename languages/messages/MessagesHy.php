@@ -1218,7 +1218,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'mypreferences' => 'Նախընտրություններ',
 'prefs-edits' => 'Խմբագրումների քանակը.',
 'prefsnologin' => 'Դուք չեք մտել համակարգ',
-'prefsnologintext' => 'Մասնակցային նախընտրությունները փոփոխելու համար անհրաժեշտ է <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} մտնել համակարգ]</span>։',
 'changepassword' => 'Փոխել գաղտնաբառը',
 'prefs-skin' => 'Տեսք',
 'skin-preview' => 'նախադիտել',
@@ -2706,8 +2705,7 @@ $3
 
 # Special:SpecialPages
 'specialpages' => 'Սպասարկող էջեր',
-'specialpages-note' => '----
-* Հասարակ հատուկ էջեր։
+'specialpages-note' => '* Հասարակ հատուկ էջեր։
 * <strong class="mw-specialpagerestricted">Սահմանափակված հատուկ էջեր։</strong>',
 'specialpages-group-maintenance' => 'Տեխնիկական սպասարկման տեղեկատուներ',
 'specialpages-group-other' => 'Այլ հատուկ էջեր',

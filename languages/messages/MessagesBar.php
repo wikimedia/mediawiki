@@ -1667,8 +1667,7 @@ Bittscheh d' noraale Vurschau bnutzen.",
 
 # Special:SpecialPages
 'specialpages' => 'Spezialseitn',
-'specialpages-note' => '----
-* Reguläre Speziaalseiten
+'specialpages-note' => '* Reguläre Speziaalseiten
 * <span class="mw-specialpagerestricted">Zuagrifsbschränkde Speziaalseiten</span>
 * <span class="mw-specialpagecached">Cachegenerrirde Speziaalseiten (Da Inhoid is méglicherweis vaoiterd)</span>',
 'specialpages-group-maintenance' => 'Wartungslisten',

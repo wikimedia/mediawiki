@@ -1315,7 +1315,6 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'mypreferences' => 'Indstillinger',
 'prefs-edits' => 'Antal redigeringer:',
 'prefsnologin' => 'Ikke logget på',
-'prefsnologintext' => 'Du skal være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget på]</span> for at ændre brugerindstillinger.',
 'changepassword' => 'Skift adgangskode',
 'prefs-skin' => 'Udseende',
 'skin-preview' => 'Forhåndsvisning',
@@ -3832,8 +3831,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 
 # Special:SpecialPages
 'specialpages' => 'Specialsider',
-'specialpages-note' => '----
-* Normale specialsider.
+'specialpages-note' => '* Normale specialsider.
 * <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other' => 'Andre specialsider',

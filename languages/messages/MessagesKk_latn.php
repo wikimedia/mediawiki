@@ -1091,7 +1091,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'mypreferences' => 'Baptalımdarım',
 'prefs-edits' => 'Öñdeme sanı:',
 'prefsnologin' => 'Kirmegensiz',
-'prefsnologintext' => 'Baptawıñızdı qoyw üşin [[Special:UserLogin|kirwiñiz]] tïisti.',
 'changepassword' => 'Qupïya sözdi özgertw',
 'prefs-skin' => 'Mänerler',
 'skin-preview' => 'Qarap şığw',
@@ -2777,8 +2776,7 @@ Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız
 
 # Special:SpecialPages
 'specialpages' => 'Arnaýı better',
-'specialpages-note' => '----
-* Kädimgi arnaýı better.
+'specialpages-note' => '* Kädimgi arnaýı better.
 * <strong class="mw-specialpagerestricted">Şektelgen arnaýı better.</strong>',
 'specialpages-group-maintenance' => 'Baptaw bayanattarı',
 'specialpages-group-other' => 'Tağı basqa arnaýı better',

@@ -1449,7 +1449,6 @@ Notâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'mypreferences' => 'Prèferences',
 'prefs-edits' => 'Nombro de changements :',
 'prefsnologin' => 'Pas branchiê',
-'prefsnologintext' => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por dèfenir les prèferences utilisator.',
 'changepassword' => 'Changiér lo contresegno',
 'prefs-skin' => 'Habelyâjo',
 'skin-preview' => 'Prèvêre',
@@ -4026,8 +4025,7 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 
 # Special:SpecialPages
 'specialpages' => 'Pâges spèciâles',
-'specialpages-note' => '----
-* Pâges spèciâles normales.
+'specialpages-note' => '* Pâges spèciâles normales.
 * <span class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</span>
 * <span class="mw-specialpagecached">Pâges spèciâles solament en cache (porriant étre dèpassâs).</span>',
 'specialpages-group-maintenance' => 'Rapôrts de mantegnence',

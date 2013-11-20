@@ -912,7 +912,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'mypreferences' => 'Samay tànneef',
 'prefs-edits' => 'Limu coppite yi:',
 'prefsnologin' => 'Duggoo',
-'prefsnologintext' => 'Laaj na nga <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} dugg]</span> ngir soppi say tànneef.',
 'changepassword' => 'Coppiteg baatujàll bi',
 'prefs-skin' => 'Melokaan',
 'skin-preview' => 'Wonendil',
