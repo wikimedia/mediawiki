@@ -902,7 +902,7 @@ class Linker {
 	 * @param MediaOutput $thumb
 	 * @param array $hp image parameters
 	 */
-	protected static function processResponsiveImages( $file, $thumb, $hp ) {
+	public static function processResponsiveImages( $file, $thumb, $hp ) {
 		global $wgResponsiveImages;
 		if ( $wgResponsiveImages ) {
 			$hp15 = $hp;
