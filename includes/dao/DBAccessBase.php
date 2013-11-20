@@ -28,7 +28,6 @@
  * @author Daniel Kinzler
  */
 abstract class DBAccessBase implements IDBAccessObject {
-
 	/**
 	 * @var String|bool $wiki The target wiki's name. This must be an ID
 	 * that LBFactory can understand.
@@ -58,6 +57,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 */
 	protected function getConnection( $id, $groups = array() ) {
 		$loadBalancer = wfGetLB( $this->wiki );
+
 		return $loadBalancer->getConnection( $id, $groups, $this->wiki );
 	}
 
@@ -68,7 +68,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param DatabaseBase  $db the database connection to release.
+	 * @param DatabaseBase $db the database connection to release.
 	 */
 	protected function releaseConnection( DatabaseBase $db ) {
 		if ( $this->wiki !== false ) {
