@@ -561,7 +561,41 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$defaults = $opts->getAllValues();
 		$nondefaults = $opts->getChangedValues();
 
+		$user = $this->getUser();
+		# The legend showing what the letters and stuff mean
+		$legend = Xml::openElement( 'dl', array( 'style' => 'float:right; margin-left:1em; margin-bottom:0.5em; clear:right; font-size: 85%; line-height:1.2em; padding:0.5em; border:1px solid #ddd;', 'id' => 'changes-list-legend' ) ) . "\n";
+		# Iterates through them and gets the messages for both letter and tooltip
+		# Messages:
+		# * minoreditletter
+		# * boteditletter
+		# * newpageletter
+		# * unpatrolledletter
+		# * recentchanges-label-minor
+		# * recentchanges-label-bot
+		# * recentchanges-label-newpage
+		# * recentchanges-label-unpatrolled
+		$legendItems = array( 'newpage' => 'newpage', 'minor' => 'minoredit', 'bot' => 'botedit' );
+		if ( $user->useRCPatrol() ) {
+			$legendItems['unpatrolled'] = 'unpatrolled';
+		}
+		foreach ( $legendItems as $label => $letter ) { # generate items of the legend
+			$legend .= Xml::element( 'dt', array( 'style' => 'float: left;', 'class' => $label ), $this->msg( $letter . 'letter' )->text() ) . "\n";
+			if ( $letter === 'newpage' ) {
+				$legend .= Xml::openElement( 'dd', array( 'style' => 'margin-left: 1.5em; line-height: 1.3em;' ) );
+				$legend .= $this->msg( "recentchanges-label-$label" )->text();
+				$legend .= Xml::tags( 'i', array(), ' ' . $this->msg( 'recentchanges-legend-newpage' )->parse() );
+				$legend .= Xml::closeElement( 'dd' ) . "\n";
+			} else {
+				$legend .= Xml::element( 'dd', array( 'style' => 'margin-left: 1.5em; line-height: 1.3em;' ), $this->msg( "recentchanges-label-$label" )->text() ) . "\n";
+			}
+		}
+		# (+-123)
+		$legend .= Xml::tags( 'dt', array( 'style' => 'float: left; font-weight: normal; font-style: italic;', 'class' => 'mw-plusminus-pos' ), '(&#177; 123)' ) . "\n";
+		$legend .= Xml::element( 'dd', array( 'style' => 'margin-left: 4em; line-height: 1.3em;' ), $this->msg( "recentchanges-label-plusminus" )->text() ) . "\n";
+		$legend .= Xml::closeElement( 'dl' ) . "\n";
+
 		$panel = array();
+		$panel[] = $legend;
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
 		$panel[] = '<hr />';
 
