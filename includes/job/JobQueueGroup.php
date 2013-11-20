@@ -331,7 +331,7 @@ class JobQueueGroup {
 	 * @return bool
 	 */
 	public function isQueueDeprioritized( $type ) {
-		if ( $this->cache->has( 'isDeprioritized', $type, 5 ) ) {
+		if ( $this->cache->has( 'isDeprioritized', $type, 1 ) ) {
 			return $this->cache->get( 'isDeprioritized', $type );
 		}
 		if ( $type === 'refreshLinks2' ) {
