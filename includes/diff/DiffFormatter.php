@@ -74,7 +74,7 @@ abstract class DiffFormatter {
 					} else {
 						if ( $ntrail ) {
 							$context = array_slice( $edit->orig, 0, $ntrail );
-							$block[] = new DiffOp_Copy( $context );
+							$block[] = new DiffOpCopy( $context );
 						}
 						$this->block( $x0, $ntrail + $xi - $x0,
 							$y0, $ntrail + $yi - $y0,
@@ -90,7 +90,7 @@ abstract class DiffFormatter {
 					$y0 = $yi - count( $context );
 					$block = array();
 					if ( $context ) {
-						$block[] = new DiffOp_Copy( $context );
+						$block[] = new DiffOpCopy( $context );
 					}
 				}
 				$block[] = $edit;
