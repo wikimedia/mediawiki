@@ -262,6 +262,7 @@ $wgIgnoredMessages = array(
 	'edithelppage',
 	'autocomment-prefix',
 	'move-redirect-text',
+	'interlanguage-link-title-langonly',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
