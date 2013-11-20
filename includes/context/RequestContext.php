@@ -82,6 +82,7 @@ class RequestContext implements IContextSource {
 			global $wgRequest; # fallback to $wg till we can improve this
 			$this->request = $wgRequest;
 		}
+
 		return $this->request;
 	}
 
@@ -89,6 +90,7 @@ class RequestContext implements IContextSource {
 	 * Set the Title object
 	 *
 	 * @param Title $t
+	 * @throws MWException
 	 */
 	public function setTitle( $t ) {
 		if ( $t !== null && !$t instanceof Title ) {
@@ -109,6 +111,7 @@ class RequestContext implements IContextSource {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
 		}
+
 		return $this->title;
 	}
 
@@ -169,6 +172,7 @@ class RequestContext implements IContextSource {
 			}
 			$this->wikipage = WikiPage::factory( $title );
 		}
+
 		return $this->wikipage;
 	}
 
@@ -188,6 +192,7 @@ class RequestContext implements IContextSource {
 		if ( $this->output === null ) {
 			$this->output = new OutputPage( $this );
 		}
+
 		return $this->output;
 	}
 
@@ -209,6 +214,7 @@ class RequestContext implements IContextSource {
 		if ( $this->user === null ) {
 			$this->user = User::newFromSession( $this->getRequest() );
 		}
+
 		return $this->user;
 	}
 
@@ -269,6 +275,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function getLang() {
 		wfDeprecated( __METHOD__, '1.19' );
+
 		return $this->getLanguage();
 	}
 
@@ -364,6 +371,7 @@ class RequestContext implements IContextSource {
 			$this->skin->setContext( $this );
 			wfProfileOut( __METHOD__ . '-createskin' );
 		}
+
 		return $this->skin;
 	}
 
@@ -377,6 +385,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function msg() {
 		$args = func_get_args();
+
 		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
 
@@ -392,6 +401,7 @@ class RequestContext implements IContextSource {
 		if ( $instance === null ) {
 			$instance = new self;
 		}
+
 		return $instance;
 	}
 
@@ -446,7 +456,7 @@ class RequestContext implements IContextSource {
 			$user = User::newFromName( $params['ip'], false );
 		}
 
-		$importSessionFunction = function( User $user, array $params ) {
+		$importSessionFunction = function ( User $user, array $params ) {
 			global $wgRequest, $wgUser;
 
 			$context = RequestContext::getMain();
@@ -482,7 +492,7 @@ class RequestContext implements IContextSource {
 		$importSessionFunction( $user, $params );
 
 		// Set callback to save and close the new session and reload the old one
-		return new ScopedCallback( function() use ( $importSessionFunction, $oUser, $oParams ) {
+		return new ScopedCallback( function () use ( $importSessionFunction, $oUser, $oParams ) {
 			$importSessionFunction( $oUser, $oParams );
 		} );
 	}
@@ -510,6 +520,7 @@ class RequestContext implements IContextSource {
 			$context->setRequest( new FauxRequest( $request ) );
 		}
 		$context->user = User::newFromName( '127.0.0.1', false );
+
 		return $context;
 	}
 }
