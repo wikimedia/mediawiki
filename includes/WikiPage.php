@@ -2247,7 +2247,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
-		global $wgCascadingRestrictionLevels;
+		global $wgCascadingRestrictionLevels, $wgContLang;
 
 		if ( wfReadOnly() ) {
 			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
@@ -2319,6 +2319,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$revCommentMsg = 'protectedarticle';
 			$logAction = 'protect';
 		}
+
+		// Truncate for whole multibyte characters
+		$reason = $wgContLang->truncate( $reason, 255 );
 
 		if ( $id ) { // Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2421,7 +2424,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Update the protection log
 		$log = new LogPage( 'protect' );
-		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $params, $user );
+		$log->addEntry( $logAction, $this->mTitle, $reason, $params, $user );
 
 		return Status::newGood();
 	}
