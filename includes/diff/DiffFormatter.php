@@ -34,16 +34,14 @@
  * @ingroup DifferenceEngine
  */
 abstract class DiffFormatter {
-	/**
-	 * Number of leading context "lines" to preserve.
+	/** @var int Number of leading context "lines" to preserve.
 	 *
 	 * This should be left at zero for this class, but subclasses
 	 * may want to set this to other values.
 	 */
 	protected $leadingContextLines = 0;
 
-	/**
-	 * Number of trailing context "lines" to preserve.
+	/** @var int Number of trailing context "lines" to preserve.
 	 *
 	 * This should be left at zero for this class, but subclasses
 	 * may want to set this to other values.
@@ -114,6 +112,7 @@ abstract class DiffFormatter {
 
 		$end = $this->endDiff();
 		wfProfileOut( __METHOD__ );
+
 		return $end;
 	}
 
@@ -154,6 +153,7 @@ abstract class DiffFormatter {
 	protected function endDiff() {
 		$val = ob_get_contents();
 		ob_end_clean();
+
 		return $val;
 	}
 

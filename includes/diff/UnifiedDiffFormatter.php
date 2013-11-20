@@ -29,7 +29,10 @@
  * @ingroup DifferenceEngine
  */
 class UnifiedDiffFormatter extends DiffFormatter {
+	/** @var int */
 	protected $leadingContextLines = 2;
+
+	/** @var int */
 	protected $trailingContextLines = 2;
 
 	/**

@@ -144,14 +144,14 @@ class DiffOp_Change extends DiffOp {
  *
  * The algorithm used here is mostly lifted from the perl module
  * Algorithm::Diff (version 1.06) by Ned Konz, which is available at:
- *	 http://www.perl.com/CPAN/authors/id/N/NE/NEDKONZ/Algorithm-Diff-1.06.zip
+ *     http://www.perl.com/CPAN/authors/id/N/NE/NEDKONZ/Algorithm-Diff-1.06.zip
  *
  * More ideas are taken from:
- *	 http://www.ics.uci.edu/~eppstein/161/960229.html
+ *     http://www.ics.uci.edu/~eppstein/161/960229.html
  *
  * Some ideas are (and a bit of code) are from from analyze.c, from GNU
  * diffutils-2.7, which can be found at:
- *	 ftp://gnudist.gnu.org/pub/gnu/diffutils/diffutils-2.7.tar.gz
+ *     ftp://gnudist.gnu.org/pub/gnu/diffutils/diffutils-2.7.tar.gz
  *
  * closingly, some ideas (subdivision by NCHUNKS > 2, and some optimizations)
  * are my own.
@@ -164,7 +164,6 @@ class DiffOp_Change extends DiffOp {
  * @ingroup DifferenceEngine
  */
 class DiffEngine {
-
 	const MAX_XREF_LENGTH = 10000;
 
 	protected $xchanged, $ychanged;
@@ -204,7 +203,8 @@ class DiffEngine {
 			// Skip matching "snake".
 			$copy = array();
 			while ( $xi < $n_from && $yi < $n_to
-			&& !$this->xchanged[$xi] && !$this->ychanged[$yi] ) {
+				&& !$this->xchanged[$xi] && !$this->ychanged[$yi]
+			) {
 				$copy[] = $from_lines[$xi++];
 				++$yi;
 			}
@@ -232,6 +232,7 @@ class DiffEngine {
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $edits;
 	}
 
@@ -373,11 +374,11 @@ class DiffEngine {
 		for ( $chunk = 0; $chunk < $nchunks; $chunk++ ) {
 			if ( $chunk > 0 ) {
 				for ( $i = 0; $i <= $this->lcs; $i++ ) {
-					$ymids[$i][$chunk -1] = $this->seq[$i];
+					$ymids[$i][$chunk - 1] = $this->seq[$i];
 				}
 			}
 
-			$x1 = $xoff + (int)( ( $numer + ( $xlim -$xoff ) * $chunk ) / $nchunks );
+			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
 			for ( ; $x < $x1; $x++ ) {
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
 				if ( empty( $ymatches[$line] ) ) {
@@ -389,12 +390,12 @@ class DiffEngine {
 					if ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->lcsPos( $y );
 						assert( '$k > 0' );
-						$ymids[$k] = $ymids[$k -1];
+						$ymids[$k] = $ymids[$k - 1];
 						break;
 					}
 				}
 				while ( list( , $y ) = each( $matches ) ) {
-					if ( $y > $this->seq[$k -1] ) {
+					if ( $y > $this->seq[$k - 1] ) {
 						assert( '$y < $this->seq[$k]' );
 						// Optimization: this is a common case:
 						//	next match is just replacing previous match.
@@ -404,7 +405,7 @@ class DiffEngine {
 					} elseif ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->lcsPos( $y );
 						assert( '$k > 0' );
-						$ymids[$k] = $ymids[$k -1];
+						$ymids[$k] = $ymids[$k - 1];
 					}
 				}
 			}
@@ -431,6 +432,7 @@ class DiffEngine {
 		if ( $end == 0 || $ypos > $this->seq[$end] ) {
 			$this->seq[++$this->lcs] = $ypos;
 			$this->in_seq[$ypos] = 1;
+
 			return $this->lcs;
 		}
 
@@ -449,6 +451,7 @@ class DiffEngine {
 		$this->in_seq[$this->seq[$end]] = false;
 		$this->seq[$end] = $ypos;
 		$this->in_seq[$ypos] = 1;
+
 		return $end;
 	}
 
@@ -477,7 +480,8 @@ class DiffEngine {
 
 		// Slide up the top initial diagonal.
 		while ( $xlim > $xoff && $ylim > $yoff
-		&& $this->xv[$xlim - 1] == $this->yv[$ylim - 1] ) {
+			&& $this->xv[$xlim - 1] == $this->yv[$ylim - 1]
+		) {
 			--$xlim;
 			--$ylim;
 		}
@@ -550,7 +554,7 @@ class DiffEngine {
 				$j++;
 			}
 
-			while ( $i < $len && ! $changed[$i] ) {
+			while ( $i < $len && !$changed[$i] ) {
 				assert( '$j < $other_len && ! $other_changed[$j]' );
 				$i++;
 				$j++;
@@ -659,7 +663,7 @@ class Diff {
 	 * Computes diff between sequences of strings.
 	 *
 	 * @param $from_lines array An array of strings.
-	 *		  (Typically these are lines from a file.)
+	 *   Typically these are lines from a file.
 	 * @param $to_lines array An array of strings.
 	 */
 	function __construct( $from_lines, $to_lines ) {
@@ -673,10 +677,10 @@ class Diff {
 	 *
 	 * SYNOPSIS:
 	 *
-	 *	$diff = new Diff($lines1, $lines2);
-	 *	$rev = $diff->reverse();
+	 *    $diff = new Diff($lines1, $lines2);
+	 *    $rev = $diff->reverse();
 	 * @return Object A Diff object representing the inverse of the
-	 *				  original diff.
+	 *   original diff.
 	 */
 	function reverse() {
 		$rev = $this;
@@ -685,6 +689,7 @@ class Diff {
 		foreach ( $this->edits as $edit ) {
 			$rev->edits[] = $edit->reverse();
 		}
+
 		return $rev;
 	}
 
@@ -699,6 +704,7 @@ class Diff {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -716,6 +722,7 @@ class Diff {
 				$lcs += count( $edit->orig );
 			}
 		}
+
 		return $lcs;
 	}
 
@@ -735,6 +742,7 @@ class Diff {
 				array_splice( $lines, count( $lines ), 0, $edit->orig );
 			}
 		}
+
 		return $lines;
 	}
 
@@ -754,6 +762,7 @@ class Diff {
 				array_splice( $lines, count( $lines ), 0, $edit->closing );
 			}
 		}
+
 		return $lines;
 	}
 
@@ -811,18 +820,18 @@ class MappedDiff extends Diff {
 	 * changes in white-space.
 	 *
 	 * @param $from_lines array An array of strings.
-	 *	(Typically these are lines from a file.)
+	 *   Typically these are lines from a file.
 	 *
 	 * @param $to_lines array An array of strings.
 	 *
 	 * @param $mapped_from_lines array This array should
-	 *	have the same size number of elements as $from_lines.
-	 *	The elements in $mapped_from_lines and
-	 *	$mapped_to_lines are what is actually compared
-	 *	when computing the diff.
+	 *   have the same size number of elements as $from_lines.
+	 *   The elements in $mapped_from_lines and
+	 *   $mapped_to_lines are what is actually compared
+	 *   when computing the diff.
 	 *
 	 * @param $mapped_to_lines array This array should
-	 *	have the same number of elements as $to_lines.
+	 *   have the same number of elements as $to_lines.
 	 */
 	function __construct( $from_lines, $to_lines,
 		$mapped_from_lines, $mapped_to_lines ) {
@@ -873,10 +882,10 @@ class HWLDF_WordAccumulator {
 		if ( $this->group !== '' ) {
 			if ( $this->tag == 'ins' ) {
 				$this->line .= '<ins class="diffchange diffchange-inline">' .
-						htmlspecialchars( $this->group ) . '</ins>';
+					htmlspecialchars( $this->group ) . '</ins>';
 			} elseif ( $this->tag == 'del' ) {
 				$this->line .= '<del class="diffchange diffchange-inline">' .
-						htmlspecialchars( $this->group ) . '</del>';
+					htmlspecialchars( $this->group ) . '</del>';
 			} else {
 				$this->line .= htmlspecialchars( $this->group );
 			}
@@ -927,6 +936,7 @@ class HWLDF_WordAccumulator {
 	 */
 	public function getLines() {
 		$this->flushLine( '~done' );
+
 		return $this->lines;
 	}
 }
@@ -950,7 +960,7 @@ class WordLevelDiff extends MappedDiff {
 		list( $closing_words, $closing_stripped ) = $this->split( $closing_lines );
 
 		parent::__construct( $orig_words, $closing_words,
-		$orig_stripped, $closing_stripped );
+			$orig_stripped, $closing_stripped );
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -979,8 +989,8 @@ class WordLevelDiff extends MappedDiff {
 			} else {
 				$m = array();
 				if ( preg_match_all( '/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
-					$line, $m ) )
-				{
+					$line, $m )
+				) {
 					foreach ( $m[0] as $word ) {
 						$words[] = $word;
 					}
@@ -991,6 +1001,7 @@ class WordLevelDiff extends MappedDiff {
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
 		return array( $words, $stripped );
 	}
 
@@ -1010,6 +1021,7 @@ class WordLevelDiff extends MappedDiff {
 		}
 		$lines = $orig->getLines();
 		wfProfileOut( __METHOD__ );
+
 		return $lines;
 	}
 
@@ -1029,6 +1041,7 @@ class WordLevelDiff extends MappedDiff {
 		}
 		$lines = $closing->getLines();
 		wfProfileOut( __METHOD__ );
+
 		return $lines;
 	}
 }

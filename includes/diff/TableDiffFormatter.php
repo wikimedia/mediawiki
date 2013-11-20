@@ -45,6 +45,7 @@ class TableDiffFormatter extends DiffFormatter {
 		$msg = preg_replace( '/^ /m', '&#160; ', $msg );
 		$msg = preg_replace( '/ $/m', ' &#160;', $msg );
 		$msg = preg_replace( '/  /', '&#160; ', $msg );
+
 		return $msg;
 	}
 
@@ -58,6 +59,7 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
 		$r = '<tr><td colspan="2" class="diff-lineno"><!--LINE ' . $xbeg . "--></td>\n" .
 			'<td colspan="2" class="diff-lineno"><!--LINE ' . $ybeg . "--></td></tr>\n";
+
 		return $r;
 	}
 
@@ -112,6 +114,7 @@ class TableDiffFormatter extends DiffFormatter {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
 			$line = Xml::tags( 'div', null, $this->escapeWhiteSpace( $line ) );
 		}
+
 		return "<td class='diff-marker'>$marker</td><td class='$class'>$line</td>";
 	}
 
@@ -174,7 +177,7 @@ class TableDiffFormatter extends DiffFormatter {
 			echo '<tr>' . $this->deletedLine( $line ) .
 				$this->addedLine( $aline ) . "</tr>\n";
 		}
-		foreach ( $add as $line ) {	# If any leftovers
+		foreach ( $add as $line ) { # If any leftovers
 			echo '<tr>' . $this->emptyLine() .
 				$this->addedLine( $line ) . "</tr>\n";
 		}
