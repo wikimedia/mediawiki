@@ -31,11 +31,10 @@
  *        the beginTransaction() and commitTransaction() methods.
  */
 abstract class SqlDataUpdate extends DataUpdate {
+	protected $mDb; //!< Database connection reference
+	protected $mOptions; //!< SELECT options to be used (array)
 
-	protected $mDb;            //!< Database connection reference
-	protected $mOptions;       //!< SELECT options to be used (array)
-
-	private   $mHasTransaction; //!< bool whether a transaction is open on this object (internal use only!)
+	private $mHasTransaction; //!< bool whether a transaction is open on this object (internal use only!)
 	protected $mUseTransaction; //!< bool whether this update should be wrapped in a transaction
 
 	/**
@@ -148,5 +147,4 @@ abstract class SqlDataUpdate extends DataUpdate {
 			), __METHOD__
 		);
 	}
-
 }

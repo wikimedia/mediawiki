@@ -85,6 +85,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				|| !$dbw->lock( $lockKey, __METHOD__, 1 ) // 1 sec timeout
 			) {
 				$this->doUpdatePendingDeltas();
+
 				return;
 			}
 			$pd = $this->getPendingDeltas();
@@ -143,6 +144,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			array( 'ss_row_id' => 1 ),
 			__METHOD__
 		);
+
 		return $activeUsers;
 	}
 
@@ -216,8 +218,8 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 		$pending = array();
 		foreach ( array( 'ss_total_views', 'ss_total_edits',
-			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ) as $type )
-		{
+			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ) as $type
+		) {
 			// Get pending increments and pending decrements
 			$pending[$type]['+'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '+' ) );
 			$pending[$type]['-'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '-' ) );
@@ -242,4 +244,3 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		}
 	}
 }
-

@@ -30,7 +30,6 @@
  *        subclasses can override the beginTransaction() and commitTransaction() methods.
  */
 abstract class DataUpdate implements DeferrableUpdate {
-
 	/**
 	 * Constructor
 	 */
@@ -122,5 +121,4 @@ abstract class DataUpdate implements DeferrableUpdate {
 			throw $exception; // rethrow after cleanup
 		}
 	}
-
 }

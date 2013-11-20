@@ -61,7 +61,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		} else { // few backlinks ($count might be off even if 0)
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->onTransactionIdle( function() use ( $job ) {
+			$dbw->onTransactionIdle( function () use ( $job ) {
 				$job->run(); // just do the purge query now
 			} );
 		}
