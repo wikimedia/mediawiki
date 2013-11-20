@@ -2722,6 +2722,7 @@ $wgMessageStructure = array(
 		'tooltip-preferences-save',
 		'tooltip-summary',
 		'interlanguage-link-title',
+		'interlanguage-link-title-langonly',
 	),
 	'stylesheets' => array(
 		'common.css',
