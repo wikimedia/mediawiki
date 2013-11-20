@@ -57,7 +57,7 @@ abstract class DiffOp {
  * @private
  * @ingroup DifferenceEngine
  */
-class DiffOp_Copy extends DiffOp {
+class DiffOpCopy extends DiffOp {
 	public $type = 'copy';
 
 	function __construct( $orig, $closing = false ) {
@@ -69,10 +69,10 @@ class DiffOp_Copy extends DiffOp {
 	}
 
 	/**
-	 * @return DiffOp_Copy
+	 * @return DiffOpCopy
 	 */
 	function reverse() {
-		return new DiffOp_Copy( $this->closing, $this->orig );
+		return new DiffOpCopy( $this->closing, $this->orig );
 	}
 }
 
@@ -81,7 +81,7 @@ class DiffOp_Copy extends DiffOp {
  * @private
  * @ingroup DifferenceEngine
  */
-class DiffOp_Delete extends DiffOp {
+class DiffOpDelete extends DiffOp {
 	public $type = 'delete';
 
 	function __construct( $lines ) {
@@ -90,10 +90,10 @@ class DiffOp_Delete extends DiffOp {
 	}
 
 	/**
-	 * @return DiffOp_Add
+	 * @return DiffOpAdd
 	 */
 	function reverse() {
-		return new DiffOp_Add( $this->orig );
+		return new DiffOpAdd( $this->orig );
 	}
 }
 
@@ -102,7 +102,7 @@ class DiffOp_Delete extends DiffOp {
  * @private
  * @ingroup DifferenceEngine
  */
-class DiffOp_Add extends DiffOp {
+class DiffOpAdd extends DiffOp {
 	public $type = 'add';
 
 	function __construct( $lines ) {
@@ -111,10 +111,10 @@ class DiffOp_Add extends DiffOp {
 	}
 
 	/**
-	 * @return DiffOp_Delete
+	 * @return DiffOpDelete
 	 */
 	function reverse() {
-		return new DiffOp_Delete( $this->closing );
+		return new DiffOpDelete( $this->closing );
 	}
 }
 
@@ -123,7 +123,7 @@ class DiffOp_Add extends DiffOp {
  * @private
  * @ingroup DifferenceEngine
  */
-class DiffOp_Change extends DiffOp {
+class DiffOpChange extends DiffOp {
 	public $type = 'change';
 
 	function __construct( $orig, $closing ) {
@@ -132,10 +132,10 @@ class DiffOp_Change extends DiffOp {
 	}
 
 	/**
-	 * @return DiffOp_Change
+	 * @return DiffOpChange
 	 */
 	function reverse() {
-		return new DiffOp_Change( $this->closing, $this->orig );
+		return new DiffOpChange( $this->closing, $this->orig );
 	}
 }
 
@@ -209,7 +209,7 @@ class DiffEngine {
 				++$yi;
 			}
 			if ( $copy ) {
-				$edits[] = new DiffOp_Copy( $copy );
+				$edits[] = new DiffOpCopy( $copy );
 			}
 
 			// Find deletes & adds.
@@ -224,11 +224,11 @@ class DiffEngine {
 			}
 
 			if ( $delete && $add ) {
-				$edits[] = new DiffOp_Change( $delete, $add );
+				$edits[] = new DiffOpChange( $delete, $add );
 			} elseif ( $delete ) {
-				$edits[] = new DiffOp_Delete( $delete );
+				$edits[] = new DiffOpDelete( $delete );
 			} elseif ( $add ) {
-				$edits[] = new DiffOp_Add( $add );
+				$edits[] = new DiffOpAdd( $add );
 			}
 		}
 		wfProfileOut( __METHOD__ );
