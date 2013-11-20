@@ -96,6 +96,7 @@ class SquidUpdate {
 	public static function newFromTitles( $titles, $urlArr = array() ) {
 		global $wgMaxSquidPurgeTitles;
 		$i = 0;
+		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			$urlArr[] = $title->getInternalURL();
 			if ( $i++ > $wgMaxSquidPurgeTitles ) {

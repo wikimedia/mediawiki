@@ -31,19 +31,25 @@
  *        the beginTransaction() and commitTransaction() methods.
  */
 abstract class SqlDataUpdate extends DataUpdate {
-	protected $mDb; //!< Database connection reference
-	protected $mOptions; //!< SELECT options to be used (array)
+	/** @var DatabaseBase Database connection reference */
+	protected $mDb;
 
-	private $mHasTransaction; //!< bool whether a transaction is open on this object (internal use only!)
-	protected $mUseTransaction; //!< bool whether this update should be wrapped in a transaction
+	/** @var array SELECT options to be used (array) */
+	protected $mOptions;
+
+	/** @var bool Whether a transaction is open on this object (internal use only!) */
+	private $mHasTransaction;
+
+	/** @var  bool Whether this update should be wrapped in a transaction */
+	protected $mUseTransaction;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bool $withTransaction whether this update should be wrapped in a transaction (default: true).
-	 *             A transaction is only started if no transaction is already in progress,
-	 *             see beginTransaction() for details.
-	 **/
+	 * @param bool $withTransaction whether this update should be wrapped in a
+	 *   transaction (default: true). A transaction is only started if no
+	 *   transaction is already in progress, see beginTransaction() for details.
+	 */
 	public function __construct( $withTransaction = true ) {
 		global $wgAntiLockFlags;
 
@@ -55,7 +61,8 @@ abstract class SqlDataUpdate extends DataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 
-		// @todo get connection only when it's needed? make sure that doesn't break anything, especially transactions!
+		// @todo Get connection only when it's needed? Make sure that doesn't
+		// break anything, especially transactions!
 		$this->mDb = wfGetDB( DB_MASTER );
 
 		$this->mWithTransaction = $withTransaction;
@@ -63,10 +70,12 @@ abstract class SqlDataUpdate extends DataUpdate {
 	}
 
 	/**
-	 * Begin a database transaction, if $withTransaction was given as true in the constructor for this SqlDataUpdate.
+	 * Begin a database transaction, if $withTransaction was given as true in
+	 * the constructor for this SqlDataUpdate.
 	 *
-	 * Because nested transactions are not supported by the Database class, this implementation
-	 * checks Database::trxLevel() and only opens a transaction if none is already active.
+	 * Because nested transactions are not supported by the Database class,
+	 * this implementation checks Database::trxLevel() and only opens a
+	 * transaction if none is already active.
 	 */
 	public function beginTransaction() {
 		if ( !$this->mWithTransaction ) {
@@ -104,8 +113,8 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * Invalidate the cache of a list of pages from a single namespace.
 	 * This is intended for use by subclasses.
 	 *
-	 * @param $namespace Integer
-	 * @param $dbkeys Array
+	 * @param int $namespace Namespace number
+	 * @param array $dbkeys
 	 */
 	protected function invalidatePages( $namespace, array $dbkeys ) {
 		if ( $dbkeys === array() ) {

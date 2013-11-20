@@ -5,12 +5,13 @@
  */
 class MWCallableUpdate implements DeferrableUpdate {
 	/**
-	 * @var closure/callabck
+	 * @var closure/callback
 	 */
 	private $callback;
 
 	/**
 	 * @param callable $callback
+	 * @throws MWException
 	 */
 	public function __construct( $callback ) {
 		if ( !is_callable( $callback ) ) {

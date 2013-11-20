@@ -28,12 +28,13 @@
  * from that table to update the 'page_counter' field in a batch operation.
  */
 class ViewCountUpdate implements DeferrableUpdate {
+	/** @var int Page ID to increment the view count */
 	protected $id;
 
 	/**
 	 * Constructor
 	 *
-	 * @param $id Integer: page ID to increment the view count
+	 * @param int $id Page ID to increment the view count
 	 */
 	public function __construct( $id ) {
 		$this->id = intval( $id );
@@ -48,7 +49,11 @@ class ViewCountUpdate implements DeferrableUpdate {
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $wgHitcounterUpdateFreq <= 1 || $dbw->getType() == 'sqlite' ) {
-			$dbw->update( 'page', array( 'page_counter = page_counter + 1' ), array( 'page_id' => $this->id ), __METHOD__ );
+			$dbw->update(
+				'page', array( 'page_counter = page_counter + 1' ),
+				array( 'page_id' => $this->id ),
+				__METHOD__
+			);
 
 			return;
 		}
