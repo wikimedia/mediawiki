@@ -372,7 +372,8 @@ class LoadBalancer {
 	public function waitForAll( $pos ) {
 		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
-		for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
+		$serverCount = count( $this->mServers );
+		for ( $i = 1; $i < $serverCount; $i++ ) {
 			if ( $this->mLoads[$i] > 0 ) {
 				$this->doWait( $i, true );
 			}
@@ -850,7 +851,8 @@ class LoadBalancer {
 		# master (however unlikely that may be), then we can fetch the position from the slave.
 		$masterConn = $this->getAnyOpenConnection( 0 );
 		if ( !$masterConn ) {
-			for ( $i = 1; $i < count( $this->mServers ); $i++ ) {
+			$serverCount = count( $this->mServers );
+			for ( $i = 1; $i < $serverCount; $i++ ) {
 				$conn = $this->getAnyOpenConnection( $i );
 				if ( $conn ) {
 					wfDebug( "Master pos fetched from slave\n" );
