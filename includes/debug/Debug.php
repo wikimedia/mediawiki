@@ -470,7 +470,7 @@ class MWDebug {
 			} else {
 				$ret .= str_repeat( "<ul><li>\n", $diff );
 			}
-			$ret .= "<tt>$display</tt>\n";
+			$ret .= "<code>$display</code>\n";
 
 			$curIdent = $ident;
 		}
