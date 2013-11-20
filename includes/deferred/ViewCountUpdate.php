@@ -49,6 +49,7 @@ class ViewCountUpdate implements DeferrableUpdate {
 
 		if ( $wgHitcounterUpdateFreq <= 1 || $dbw->getType() == 'sqlite' ) {
 			$dbw->update( 'page', array( 'page_counter = page_counter + 1' ), array( 'page_id' => $this->id ), __METHOD__ );
+
 			return;
 		}
 
@@ -59,7 +60,8 @@ class ViewCountUpdate implements DeferrableUpdate {
 			if ( rand() % $checkfreq == 0 && $dbw->lastErrno() == 0 ) {
 				$this->collect();
 			}
-		} catch ( DBError $e ) {}
+		} catch ( DBError $e ) {
+		}
 	}
 
 	protected function collect() {

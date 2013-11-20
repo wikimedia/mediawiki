@@ -26,7 +26,6 @@
  * @ingroup Cache
  */
 class SquidUpdate {
-
 	/**
 	 * Collection of URLs to purge.
 	 * @var array
@@ -83,6 +82,7 @@ class SquidUpdate {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return new SquidUpdate( $blurlArr );
 	}
 
@@ -102,6 +102,7 @@ class SquidUpdate {
 				break;
 			}
 		}
+
 		return new SquidUpdate( $urlArr );
 	}
 
@@ -111,6 +112,7 @@ class SquidUpdate {
 	 */
 	public static function newSimplePurge( Title $title ) {
 		$urlArr = $title->getSquidURLs();
+
 		return new SquidUpdate( $urlArr );
 	}
 
@@ -194,11 +196,12 @@ class SquidUpdate {
 
 		// pfsockopen doesn't work because we need set_sock_opt
 		$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		if ( ! $conn ) {
+		if ( !$conn ) {
 			$errstr = socket_strerror( socket_last_error() );
 			wfDebugLog( 'squid', __METHOD__ .
 				": Error opening UDP socket: $errstr\n" );
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -295,6 +298,7 @@ class SquidUpdate {
 				return $routing;
 			}
 		}
+
 		return false;
 	}
 }

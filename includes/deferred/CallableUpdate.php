@@ -4,7 +4,6 @@
  * Deferrable Update for closure/callback
  */
 class MWCallableUpdate implements DeferrableUpdate {
-
 	/**
 	 * @var closure/callabck
 	 */
@@ -26,5 +25,4 @@ class MWCallableUpdate implements DeferrableUpdate {
 	public function doUpdate() {
 		call_user_func( $this->callback );
 	}
-
 }

@@ -26,22 +26,21 @@
  * @todo document (e.g. one-sentence top-level class description).
  */
 class LinksUpdate extends SqlDataUpdate {
-
 	// @todo make members protected, but make sure extensions don't break
 
-	public $mId,         //!< Page ID of the article linked from
-		$mTitle,         //!< Title object of the article linked from
-		$mParserOutput,  //!< Parser output
-		$mLinks,         //!< Map of title strings to IDs for the links in the document
-		$mImages,        //!< DB keys of the images used, in the array key only
-		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
-		$mExternals,     //!< URLs of external links, array key only
-		$mCategories,    //!< Map of category names to sort keys
-		$mInterlangs,    //!< Map of language codes to titles
-		$mProperties,    //!< Map of arbitrary name to value
-		$mDb,            //!< Database connection reference
-		$mOptions,       //!< SELECT options to be used (array)
-		$mRecursive;     //!< Whether to queue jobs for recursive updates
+	public $mId, //!< Page ID of the article linked from
+		$mTitle, //!< Title object of the article linked from
+		$mParserOutput, //!< Parser output
+		$mLinks, //!< Map of title strings to IDs for the links in the document
+		$mImages, //!< DB keys of the images used, in the array key only
+		$mTemplates, //!< Map of title strings to IDs for the template references, including broken ones
+		$mExternals, //!< URLs of external links, array key only
+		$mCategories, //!< Map of category names to sort keys
+		$mInterlangs, //!< Map of language codes to titles
+		$mProperties, //!< Map of arbitrary name to value
+		$mDb, //!< Database connection reference
+		$mOptions, //!< SELECT options to be used (array)
+		$mRecursive; //!< Whether to queue jobs for recursive updates
 
 	/**
 	 * @var null|array Added links if calculated.
@@ -330,6 +329,7 @@ class LinksUpdate extends SqlDataUpdate {
 				);
 			}
 		}
+
 		return $arr;
 	}
 
@@ -350,6 +350,7 @@ class LinksUpdate extends SqlDataUpdate {
 				);
 			}
 		}
+
 		return $arr;
 	}
 
@@ -368,6 +369,7 @@ class LinksUpdate extends SqlDataUpdate {
 				'il_to' => $iname
 			);
 		}
+
 		return $arr;
 	}
 
@@ -388,6 +390,7 @@ class LinksUpdate extends SqlDataUpdate {
 				);
 			}
 		}
+
 		return $arr;
 	}
 
@@ -432,6 +435,7 @@ class LinksUpdate extends SqlDataUpdate {
 				'cl_type' => $type,
 			);
 		}
+
 		return $arr;
 	}
 
@@ -452,6 +456,7 @@ class LinksUpdate extends SqlDataUpdate {
 				'll_title' => $title
 			);
 		}
+
 		return $arr;
 	}
 
@@ -470,6 +475,7 @@ class LinksUpdate extends SqlDataUpdate {
 				'pp_value' => $value,
 			);
 		}
+
 		return $arr;
 	}
 
@@ -491,6 +497,7 @@ class LinksUpdate extends SqlDataUpdate {
 				);
 			}
 		}
+
 		return $arr;
 	}
 
@@ -509,6 +516,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$del[$ns] = $existing[$ns];
 			}
 		}
+
 		return $del;
 	}
 
@@ -527,6 +535,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$del[$ns] = $existing[$ns];
 			}
 		}
+
 		return $del;
 	}
 
@@ -594,6 +603,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$del[$prefix] = $existing[$prefix];
 			}
 		}
+
 		return $del;
 	}
 
@@ -612,6 +622,7 @@ class LinksUpdate extends SqlDataUpdate {
 			}
 			$arr[$row->pl_namespace][$row->pl_title] = 1;
 		}
+
 		return $arr;
 	}
 
@@ -630,6 +641,7 @@ class LinksUpdate extends SqlDataUpdate {
 			}
 			$arr[$row->tl_namespace][$row->tl_title] = 1;
 		}
+
 		return $arr;
 	}
 
@@ -645,6 +657,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $res as $row ) {
 			$arr[$row->il_to] = 1;
 		}
+
 		return $arr;
 	}
 
@@ -660,6 +673,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $res as $row ) {
 			$arr[$row->el_to] = 1;
 		}
+
 		return $arr;
 	}
 
@@ -675,6 +689,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $res as $row ) {
 			$arr[$row->cl_to] = $row->cl_sortkey_prefix;
 		}
+
 		return $arr;
 	}
 
@@ -691,6 +706,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $res as $row ) {
 			$arr[$row->ll_lang] = $row->ll_title;
 		}
+
 		return $arr;
 	}
 
@@ -708,6 +724,7 @@ class LinksUpdate extends SqlDataUpdate {
 			}
 			$arr[$row->iwl_prefix][$row->iwl_title] = 1;
 		}
+
 		return $arr;
 	}
 
@@ -723,6 +740,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $res as $row ) {
 			$arr[$row->pp_propname] = $row->pp_value;
 		}
+
 		return $arr;
 	}
 
@@ -783,8 +801,9 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 		$result = array();
 		foreach ( $this->linkInsertions as $insertion ) {
-			$result[] = Title::makeTitle( $insertion[ 'pl_namespace' ], $insertion[ 'pl_title' ] );
+			$result[] = Title::makeTitle( $insertion['pl_namespace'], $insertion['pl_title'] );
 		}
+
 		return $result;
 	}
 
@@ -803,6 +822,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$result[] = Title::makeTitle( $ns, $title );
 			}
 		}
+
 		return $result;
 	}
 }
@@ -811,8 +831,7 @@ class LinksUpdate extends SqlDataUpdate {
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
-
-	protected $mPage;     //!< WikiPage the wikipage that was deleted
+	protected $mPage; //!< WikiPage the wikipage that was deleted
 
 	/**
 	 * Constructor

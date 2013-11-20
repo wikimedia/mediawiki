@@ -89,6 +89,7 @@ class DeferredUpdates {
 		// No need to get master connections in case of empty updates array
 		if ( !count( $updates ) ) {
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
