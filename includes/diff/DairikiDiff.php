@@ -379,7 +379,9 @@ class DiffEngine {
 			}
 
 			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
+			// @codingStandardsIgnoreStart Silence 'Space found before semicolon; expected "(;"'
 			for ( ; $x < $x1; $x++ ) {
+				// // @codingStandardsIgnoreEnd
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
 				if ( empty( $ymatches[$line] ) ) {
 					continue;
