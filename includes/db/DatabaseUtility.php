@@ -187,6 +187,7 @@ class ResultWrapper implements Iterator {
 		if ( is_null( $this->currentRow ) ) {
 			$this->next();
 		}
+
 		return $this->currentRow;
 	}
 
@@ -203,6 +204,7 @@ class ResultWrapper implements Iterator {
 	function next() {
 		$this->pos++;
 		$this->currentRow = $this->fetchObject();
+
 		return $this->currentRow;
 	}
 

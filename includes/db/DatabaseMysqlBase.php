@@ -94,6 +94,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
 			wfProfileOut( __METHOD__ );
+
 			return $this->reportConnectionError( $error );
 		}
 
@@ -107,6 +108,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 					"from client host " . wfHostname() . "\n" );
 
 				wfProfileOut( __METHOD__ );
+
 				return $this->reportConnectionError( "Error selecting database $dbName" );
 			}
 		}
@@ -126,6 +128,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		$this->mOpened = true;
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -191,6 +194,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
+
 		return $row;
 	}
 
@@ -223,6 +227,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
+
 		return $row;
 	}
 
@@ -246,6 +251,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		wfSuppressWarnings();
 		$n = $this->mysqlNumRows( $res );
 		wfRestoreWarnings();
+
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
 		// these are no errors mysql_num_rows can cause.
@@ -270,6 +276,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return $this->mysqlNumFields( $res );
 	}
 
@@ -290,6 +297,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return $this->mysqlFieldName( $res, $n );
 	}
 
@@ -311,6 +319,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return $this->mysqlDataSeek( $res, $row );
 	}
 
@@ -341,6 +350,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $error ) {
 			$error .= ' (' . $this->mServer . ')';
 		}
+
 		return $error;
 	}
 
@@ -389,6 +399,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		foreach ( $res as $plan ) {
 			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
 		}
+
 		return $rows;
 	}
 
@@ -410,6 +421,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				return new MySQLField( $meta );
 			}
 		}
+
 		return false;
 	}
 
@@ -452,6 +464,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$result[] = $row;
 			}
 		}
+
 		return empty( $result ) ? false : $result;
 	}
 
@@ -467,6 +480,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$this->ping();
 			$sQuoted = $this->mysqlRealEscapeString( $s );
 		}
+
 		return $sQuoted;
 	}
 
@@ -504,6 +518,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->mOpened = false;
 		$this->mConn = false;
 		$this->open( $this->mServer, $this->mUser, $this->mPassword, $this->mDBname );
+
 		return true;
 	}
 
@@ -524,6 +539,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function getLag() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
+
 			return $this->mFakeSlaveLag;
 		}
 
@@ -577,7 +593,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$row->State != 'Waiting to reconnect after a failed master event read' &&
 				$row->State != 'Reconnecting after a failed master event read' &&
 				$row->State != 'Registering slave on master'
-				) {
+			) {
 				# This is it, return the time (except -ve)
 				if ( $row->Time > 0x7fffffff ) {
 					return false;
@@ -586,6 +602,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -609,6 +626,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$status = parent::masterPosWait( $pos, $timeout );
 			wfProfileOut( __METHOD__ );
+
 			return $status;
 		}
 
@@ -627,6 +645,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -645,6 +664,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		if ( $row ) {
 			$pos = isset( $row->Exec_master_log_pos ) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
+
 			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
 		} else {
 			return false;
@@ -710,6 +730,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$this->delimiter = $m[1];
 			$newLine = '';
 		}
+
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
@@ -725,6 +746,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT IS_FREE_LOCK($lockName) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
+
 		return ( $row->lockstatus == 1 );
 	}
 
@@ -743,6 +765,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return true;
 		} else {
 			wfDebug( __METHOD__ . " failed to acquire lock\n" );
+
 			return false;
 		}
 	}
@@ -757,6 +780,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
+
 		return ( $row->lockstatus == 1 );
 	}
 
@@ -772,8 +796,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		foreach ( $write as $table ) {
 			$tbl = $this->tableName( $table ) .
-					( $lowPriority ? ' LOW_PRIORITY' : '' ) .
-					' WRITE';
+				( $lowPriority ? ' LOW_PRIORITY' : '' ) .
+				' WRITE';
 			$items[] = $tbl;
 		}
 		foreach ( $read as $table ) {
@@ -781,6 +805,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 		$sql = "LOCK TABLES " . implode( ',', $items );
 		$this->query( $sql, $method );
+
 		return true;
 	}
 
@@ -790,6 +815,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
+
 		return true;
 	}
 
@@ -887,6 +913,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	function getServerUptime() {
 		$vars = $this->getMysqlStatus( 'Uptime' );
+
 		return (int)$vars['Uptime'];
 	}
 
@@ -975,6 +1002,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
+
 		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );
 	}
 
@@ -985,6 +1013,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace( 'CHARSET=mysql4', 'CHARSET=binary', $vars['wgDBTableOptions'] );
+
 		return $vars;
 	}
 
@@ -1008,9 +1037,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Lists VIEWs in the database
 	 *
-	 * @param string $prefix   Only show VIEWs with this prefix, eg.
+	 * @param string $prefix Only show VIEWs with this prefix, eg.
 	 * unit_test_, or $wgDBprefix. Default: null, would return all views.
-	 * @param string $fname    Name of calling function
+	 * @param string $fname Name of calling function
 	 * @return array
 	 * @since 1.22
 	 */
@@ -1040,6 +1069,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				array_push( $filteredViews, $viewName );
 			}
 		}
+
 		return $filteredViews;
 	}
 
@@ -1053,10 +1083,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	public function isView( $name, $prefix = null ) {
 		return in_array( $name, $this->listViews( $prefix ) );
 	}
-
 }
-
-
 
 /**
  * Utility class.
@@ -1152,12 +1179,14 @@ class MySQLMasterPos implements DBMasterPos {
 		if ( preg_match( '!\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
 			return array( (int)$m[1], (int)$m[2] );
 		}
+
 		return false;
 	}
 
 	function hasReached( MySQLMasterPos $pos ) {
 		$thisPos = $this->getCoordinates();
 		$thatPos = $pos->getCoordinates();
+
 		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
 	}
 }

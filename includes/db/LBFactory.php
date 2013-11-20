@@ -26,7 +26,6 @@
  * @ingroup Database
  */
 abstract class LBFactory {
-
 	/**
 	 * @var LBFactory
 	 */
@@ -52,6 +51,7 @@ abstract class LBFactory {
 			$class = $wgLBFactoryConf['class'];
 			self::$instance = new $class( $wgLBFactoryConf );
 		}
+
 		return self::$instance;
 	}
 
@@ -210,13 +210,13 @@ class LBFactory_Simple extends LBFactory {
 				'type' => $wgDBtype,
 				'load' => 1,
 				'flags' => $flags
-			));
+			) );
 		}
 
 		return new LoadBalancer( array(
 			'servers' => $servers,
 			'masterWaitTimeout' => $wgMasterWaitTimeout
-		));
+		) );
 	}
 
 	/**
@@ -229,6 +229,7 @@ class LBFactory_Simple extends LBFactory {
 			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
 			$this->chronProt->initLB( $this->mainLB );
 		}
+
 		return $this->mainLB;
 	}
 
@@ -243,9 +244,10 @@ class LBFactory_Simple extends LBFactory {
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
+
 		return new LoadBalancer( array(
 			'servers' => $wgExternalServers[$cluster]
-		));
+		) );
 	}
 
 	/**
@@ -259,6 +261,7 @@ class LBFactory_Simple extends LBFactory {
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
 			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
+
 		return $this->extLBs[$cluster];
 	}
 
