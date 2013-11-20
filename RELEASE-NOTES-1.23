@@ -21,6 +21,8 @@ production.
 * $wgSquidServersNoPurge now supports the use of Classless Inter-Domain
   Routing (CIDR) notation to specify contiguous blocks of IPv4 and/or IPv6
   addresses that should be trusted to provide X-Forwarded-For headers.
+* $wgLBFactoryConf: Class names have had underscores removed. The configuration
+  should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -63,6 +65,14 @@ production.
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
+* Renamed classes:
+  - LBFactory_Fake to LBFactoryFake
+  - LBFactory_Multi to LBFactoryMulti
+  - LBFactory_Simple to LBFactorySimple
+  - LBFactory_Single to LBFactorySingle
+  - LoadBalancer_Single to LoadBalancerSingle
+  - LoadMonitor_MySQL to LoadMonitorMySQL
+  - LoadMonitor_Null to LoadMonitorNull
 
 === Languages updated in 1.23===
 
