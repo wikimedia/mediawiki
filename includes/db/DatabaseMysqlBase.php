@@ -1056,8 +1056,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 }
 
-
-
 /**
  * Utility class.
  * @ingroup Database

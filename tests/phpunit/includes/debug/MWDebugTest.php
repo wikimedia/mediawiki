@@ -2,7 +2,6 @@
 
 class MWDebugTest extends MediaWikiTestCase {
 
-
 	protected function setUp() {
 		parent::setUp();
 		// Make sure MWDebug class is enabled

@@ -137,7 +137,6 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 	}
 
-
 	/**
 	 * Constructs a temporary file that can be used for prefetching
 	 *

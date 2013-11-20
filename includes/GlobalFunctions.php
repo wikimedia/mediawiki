@@ -508,7 +508,6 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 		}
 	}
 
-
 	// Analyze $serverUrl to obtain its protocol
 	$bits = wfParseUrl( $serverUrl );
 	$serverHasProto = $bits && $bits['scheme'] != '';
@@ -2773,9 +2772,9 @@ function wfShellExecDisabled() {
  * @param array $limits optional array with limits(filesize, memory, time, walltime)
  *                 this overwrites the global wgShellMax* limits.
  * @param array $options Array of options:
- *    - duplicateStderr: Set this to true to duplicate stderr to stdout, 
+ *    - duplicateStderr: Set this to true to duplicate stderr to stdout,
  *      including errors from limit.sh
- *      
+ *
  * @return string collected stdout as a string
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(),
@@ -2878,9 +2877,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$logMsg = false;
 
 	// According to the documentation, it is possible for stream_select()
-	// to fail due to EINTR. I haven't managed to induce this in testing 
-	// despite sending various signals. If it did happen, the error 
-	// message would take the form: 
+	// to fail due to EINTR. I haven't managed to induce this in testing
+	// despite sending various signals. If it did happen, the error
+	// message would take the form:
 	//
 	// stream_select(): unable to select [4]: Interrupted system call (max_fd=5)
 	//
@@ -3513,7 +3512,6 @@ function wfResetSessionID() {
 	$newSessionId = session_id();
 	wfRunHooks( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
 }
-
 
 /**
  * Initialise php session

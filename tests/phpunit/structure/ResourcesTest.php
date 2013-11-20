@@ -193,7 +193,6 @@ class ResourcesTest extends MediaWikiTestCase {
 			}
 		}
 
-
 		return $cases;
 	}
 }

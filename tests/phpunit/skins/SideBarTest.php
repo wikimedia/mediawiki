@@ -144,7 +144,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 		);
 	}
 
-
 	#### Attributes for external links ##########################
 	private function getAttribs() {
 		# Sidebar text we will use everytime

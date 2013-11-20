@@ -82,7 +82,6 @@ class TextPassDumper extends BackupDumper {
 	 */
 	protected $db;
 
-
 	/**
 	 * Drop the database connection $this->db and try to get a new one.
 	 *
@@ -123,7 +122,6 @@ class TextPassDumper extends BackupDumper {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
 		}
 
-
 		// 2. The Connection, through the load balancer.
 		try {
 			$this->db = $this->lb->getConnection( DB_SLAVE, 'dump' );
@@ -131,7 +129,6 @@ class TextPassDumper extends BackupDumper {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
 		}
 	}
-
 
 	function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
@@ -555,7 +552,6 @@ class TextPassDumper extends BackupDumper {
 
 		return "";
 	}
-
 
 	/**
 	 * May throw a database error if, say, the server dies during query.

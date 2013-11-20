@@ -180,7 +180,6 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-
 	// Check the source file storage path
 	if ( !$img->exists() ) {
 		$redirectedLocation = false;
@@ -246,7 +245,6 @@ function wfStreamThumb( array $params ) {
 
 	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 	unset( $params['f'] ); // We're done with 'f' parameter.
-
 
 	// Get the normalized thumbnail name from the parameters...
 	try {

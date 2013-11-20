@@ -202,7 +202,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected article not being created if empty"
 		);
 
-
 		$this->assertEdit(
 			'MediaWiki:January',
 			null,

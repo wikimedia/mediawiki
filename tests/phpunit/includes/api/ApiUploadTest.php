@@ -95,7 +95,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertTrue( $exception, "Got exception" );
 	}
 
-
 	/**
 	 * @depends testLogin
 	 */
@@ -147,7 +146,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		unlink( $filePath );
 	}
 
-
 	/**
 	 * @depends testLogin
 	 */
@@ -184,7 +182,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->deleteFileByFilename( $fileName );
 		unlink( $filePath );
 	}
-
 
 	/**
 	 * @depends testLogin
@@ -256,7 +253,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		unlink( $filePaths[0] );
 		unlink( $filePaths[1] );
 	}
-
 
 	/**
 	 * @depends testLogin

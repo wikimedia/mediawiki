@@ -87,7 +87,6 @@ class SpecialRandomInCategory extends SpecialPage {
 			$this->setCategory( $cat );
 		}
 
-
 		if ( !$this->category && $categoryStr ) {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( 'randomincategory-invalidcategory',
