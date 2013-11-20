@@ -28,7 +28,6 @@
  */
 
 interface IORMTable {
-
 	/**
 	 * Returns the name of the database table objects of this type are stored in.
 	 *
@@ -110,7 +109,7 @@ interface IORMTable {
 	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName = null );
+		array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -126,7 +125,7 @@ interface IORMTable {
 	 * @return array of self
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName = null );
+		array $options = array(), $functionName = null );
 
 	/**
 	 * Do the actual select.
@@ -142,7 +141,7 @@ interface IORMTable {
 	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null );
+		array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -167,7 +166,7 @@ interface IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName = null );
+		array $options = array(), $collapse = true, $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the first matching record.
@@ -183,7 +182,7 @@ interface IORMTable {
 	 * @return IORMRow|bool False on failure
 	 */
 	public function selectRow( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null );
+		array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the records matching the provided
@@ -199,7 +198,7 @@ interface IORMTable {
 	 * @return ResultWrapper
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
-								  array $options = array(), $functionName = null );
+		array $options = array(), $functionName = null );
 
 	/**
 	 * Selects the the specified fields of the first record matching the provided
@@ -219,7 +218,7 @@ interface IORMTable {
 	 * @return mixed|array|bool False on failure
 	 */
 	public function selectFieldsRow( $fields = null, array $conditions = array(),
-									 array $options = array(), $collapse = true, $functionName = null );
+		array $options = array(), $collapse = true, $functionName = null );
 
 	/**
 	 * Returns if there is at least one record matching the provided conditions.
@@ -513,5 +512,4 @@ interface IORMTable {
 	 * @return boolean
 	 */
 	public function canHaveField( $name );
-
 }

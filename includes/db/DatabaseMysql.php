@@ -28,7 +28,6 @@
  * @see Database
  */
 class DatabaseMysql extends DatabaseMysqlBase {
-
 	/**
 	 * @param $sql string
 	 * @return resource
@@ -39,6 +38,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		} else {
 			$ret = mysql_unbuffered_query( $sql, $this->mConn );
 		}
+
 		return $ret;
 	}
 
@@ -129,6 +129,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
+
 		return mysql_select_db( $db, $this->mConn );
 	}
 

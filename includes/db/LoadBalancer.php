@@ -101,6 +101,7 @@ class LoadBalancer {
 			$class = $this->mLoadMonitorClass;
 			$this->mLoadMonitor = new $class( $this );
 		}
+
 		return $this->mLoadMonitor;
 	}
 
@@ -212,6 +213,7 @@ class LoadBalancer {
 				# No loads for this group, return false and the caller can use some other group
 				wfDebug( __METHOD__ . ": no loads for group $group\n" );
 				wfProfileOut( __METHOD__ );
+
 				return false;
 			}
 		} else {
@@ -255,6 +257,7 @@ class LoadBalancer {
 					# wants us to return false.
 					wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
 					wfProfileOut( __METHOD__ );
+
 					return false;
 				}
 
@@ -329,6 +332,7 @@ class LoadBalancer {
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $i;
 	}
 
@@ -342,6 +346,7 @@ class LoadBalancer {
 		wfDebug( __METHOD__ . ": waiting $t us\n" );
 		usleep( $t );
 		wfProfileOut( __METHOD__ );
+
 		return $t;
 	}
 
@@ -393,6 +398,7 @@ class LoadBalancer {
 				return reset( $conns[$i] );
 			}
 		}
+
 		return false;
 	}
 
@@ -408,11 +414,13 @@ class LoadBalancer {
 		if ( !$conn ) {
 			if ( !$open ) {
 				wfDebug( __METHOD__ . ": no connection open\n" );
+
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
 					wfDebug( __METHOD__ . ": failed to open connection\n" );
+
 					return false;
 				}
 			}
@@ -424,9 +432,11 @@ class LoadBalancer {
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
 			wfDebug( __METHOD__ . ": Timed out waiting for slave #$index pos {$this->mWaitForPos}\n" );
+
 			return false;
 		} else {
 			wfDebug( __METHOD__ . ": Done\n" );
+
 			return true;
 		}
 	}
@@ -487,6 +497,7 @@ class LoadBalancer {
 			if ( $i === false ) {
 				$this->mLastError = 'No working slave server: ' . $this->mLastError;
 				wfProfileOut( __METHOD__ );
+
 				return $this->reportConnectionError();
 			}
 		}
@@ -495,10 +506,12 @@ class LoadBalancer {
 		$conn = $this->openConnection( $i, $wiki );
 		if ( !$conn ) {
 			wfProfileOut( __METHOD__ );
+
 			return $this->reportConnectionError();
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $conn;
 	}
 
@@ -522,6 +535,7 @@ class LoadBalancer {
 		}
 		if ( $serverIndex === null || $refCount === null ) {
 			wfDebug( __METHOD__ . ": this connection was not opened as a foreign connection\n" );
+
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
@@ -532,6 +546,7 @@ class LoadBalancer {
 			 * When a connection to the local DB is opened in this way, reuseConnection()
 			 * should be ignored
 			 */
+
 			return;
 		}
 		if ( $this->mConns['foreignUsed'][$serverIndex][$wiki] !== $conn ) {
@@ -598,6 +613,7 @@ class LoadBalancer {
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
 			wfProfileOut( __METHOD__ );
+
 			return $conn;
 		}
 		if ( isset( $this->mConns['local'][$i][0] ) ) {
@@ -616,6 +632,7 @@ class LoadBalancer {
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $conn;
 	}
 
@@ -690,6 +707,7 @@ class LoadBalancer {
 			$conn->setLBInfo( 'foreignPoolRefCount', $refCount + 1 );
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $conn;
 	}
 
@@ -704,6 +722,7 @@ class LoadBalancer {
 		if ( !is_integer( $index ) ) {
 			return false;
 		}
+
 		return (bool)$this->getAnyOpenConnection( $index );
 	}
 
@@ -743,6 +762,7 @@ class LoadBalancer {
 		if ( isset( $server['fakeMaster'] ) ) {
 			$db->setFakeMaster( true );
 		}
+
 		return $db;
 	}
 
@@ -764,6 +784,7 @@ class LoadBalancer {
 			wfLogDBError( "Connection error: {$this->mLastError} ({$server})\n" );
 			$conn->reportConnectionError( "{$this->mLastError} ({$server})" ); // throws DBConnectionError
 		}
+
 		return false; /* not reached */
 	}
 
@@ -854,13 +875,16 @@ class LoadBalancer {
 				$conn = $this->getAnyOpenConnection( $i );
 				if ( $conn ) {
 					wfDebug( "Master pos fetched from slave\n" );
+
 					return $conn->getSlavePos();
 				}
 			}
 		} else {
 			wfDebug( "Master pos fetched from master\n" );
+
 			return $masterConn->getMasterPos();
 		}
+
 		return false;
 	}
 
@@ -976,6 +1000,7 @@ class LoadBalancer {
 			return $this->mAllowLagged;
 		}
 		$this->mAllowLagged = $mode;
+
 		return $this->mAllowLagged;
 	}
 
@@ -993,6 +1018,7 @@ class LoadBalancer {
 				}
 			}
 		}
+
 		return $success;
 	}
 
@@ -1046,6 +1072,7 @@ class LoadBalancer {
 				}
 			}
 		}
+
 		return array( $host, $maxLag, $maxIndex );
 	}
 
@@ -1070,6 +1097,7 @@ class LoadBalancer {
 			$this->mLagTimes = $this->getLoadMonitor()->getLagTimes(
 				array_keys( $this->mServers ), $wiki );
 		}
+
 		return $this->mLagTimes;
 	}
 
@@ -1137,6 +1165,7 @@ class DBConnRef implements IDatabase {
 			list( $db, $groups, $wiki ) = $this->params;
 			$this->conn = $this->lb->getConnection( $db, $groups, $wiki );
 		}
+
 		return call_user_func_array( array( $this->conn, $name ), $arguments );
 	}
 

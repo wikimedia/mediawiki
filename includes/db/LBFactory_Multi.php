@@ -117,6 +117,7 @@ class LBFactory_Multi extends LBFactory {
 		}
 		$this->lastSection = $section;
 		$this->lastWiki = $wiki;
+
 		return $section;
 	}
 
@@ -134,6 +135,7 @@ class LBFactory_Multi extends LBFactory {
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
 		}
+
 		return $this->newLoadBalancer( $this->serverTemplate, $this->sectionLoads[$section], $groupLoads );
 	}
 
@@ -149,6 +151,7 @@ class LBFactory_Multi extends LBFactory {
 			$this->chronProt->initLB( $lb );
 			$this->mainLBs[$section] = $lb;
 		}
+
 		return $this->mainLBs[$section];
 	}
 
@@ -169,6 +172,7 @@ class LBFactory_Multi extends LBFactory {
 		if ( isset( $this->templateOverridesByCluster[$cluster] ) ) {
 			$template = $this->templateOverridesByCluster[$cluster] + $template;
 		}
+
 		return $this->newLoadBalancer( $template, $this->externalLoads[$cluster], array() );
 	}
 
@@ -183,6 +187,7 @@ class LBFactory_Multi extends LBFactory {
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
 			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
+
 		return $this->extLBs[$cluster];
 	}
 
@@ -200,7 +205,8 @@ class LBFactory_Multi extends LBFactory {
 		$lb = new LoadBalancer( array(
 			'servers' => $servers,
 			'masterWaitTimeout' => $wgMasterWaitTimeout
-		));
+		) );
+
 		return $lb;
 	}
 
@@ -245,6 +251,7 @@ class LBFactory_Multi extends LBFactory {
 			$serverInfo['load'] = $load;
 			$servers[] = $serverInfo;
 		}
+
 		return $servers;
 	}
 
@@ -260,6 +267,7 @@ class LBFactory_Multi extends LBFactory {
 				$reindexed[$server][$group] = $load;
 			}
 		}
+
 		return $reindexed;
 	}
 
@@ -271,6 +279,7 @@ class LBFactory_Multi extends LBFactory {
 	function getDBNameAndPrefix( $wiki = false ) {
 		if ( $wiki === false ) {
 			global $wgDBname, $wgDBprefix;
+
 			return array( $wgDBname, $wgDBprefix );
 		} else {
 			return wfSplitWikiID( $wiki );

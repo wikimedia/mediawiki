@@ -26,7 +26,6 @@
  * @ingroup Database
  */
 class DatabaseSqlite extends DatabaseBase {
-
 	private static $fulltextEnabled = null;
 
 	var $mAffectedRows;
@@ -104,6 +103,7 @@ class DatabaseSqlite extends DatabaseBase {
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		}
 		$this->openFile( $fileName );
+
 		return $this->mConn;
 	}
 
@@ -137,6 +137,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 			# Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
+
 			return true;
 		}
 	}
@@ -147,6 +148,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	protected function closeConnection() {
 		$this->mConn = null;
+
 		return true;
 	}
 
@@ -174,6 +176,7 @@ class DatabaseSqlite extends DatabaseBase {
 				self::$fulltextEnabled = stristr( $row['sql'], 'fts' ) !== false;
 			}
 		}
+
 		return self::$fulltextEnabled;
 	}
 
@@ -195,6 +198,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$cachedResult = 'FTS3';
 		}
 		$db->close();
+
 		return $cachedResult;
 	}
 
@@ -214,6 +218,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$file = self::generateFileName( $wgSQLiteDataDir, $name );
 		}
 		$file = $this->addQuotes( $file );
+
 		return $this->query( "ATTACH DATABASE $file AS $name", $fname );
 	}
 
@@ -244,6 +249,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$this->mAffectedRows = $r->rowCount();
 			$res = new ResultWrapper( $this, $r->fetchAll() );
 		}
+
 		return $res;
 	}
 
@@ -281,6 +287,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 			return $obj;
 		}
+
 		return false;
 	}
 
@@ -297,8 +304,10 @@ class DatabaseSqlite extends DatabaseBase {
 		$cur = current( $r );
 		if ( is_array( $cur ) ) {
 			next( $r );
+
 			return $cur;
 		}
+
 		return false;
 	}
 
@@ -311,6 +320,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function numRows( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
+
 		return count( $r );
 	}
 
@@ -320,6 +330,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function numFields( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
+
 		return is_array( $r ) ? count( $r[0] ) : 0;
 	}
 
@@ -332,8 +343,10 @@ class DatabaseSqlite extends DatabaseBase {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		if ( is_array( $r ) ) {
 			$keys = array_keys( $r[0] );
+
 			return $keys[$n];
 		}
+
 		return false;
 	}
 
@@ -349,6 +362,7 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( strpos( $name, 'sqlite_' ) === 0 ) {
 			return $name;
 		}
+
 		return str_replace( '"', '', parent::tableName( $name, $format ) );
 	}
 
@@ -399,6 +413,7 @@ class DatabaseSqlite extends DatabaseBase {
 			return "Cannot return last error, no db connection";
 		}
 		$e = $this->mConn->errorInfo();
+
 		return isset( $e[2] ) ? $e[2] : '';
 	}
 
@@ -410,6 +425,7 @@ class DatabaseSqlite extends DatabaseBase {
 			return "Cannot return last error, no db connection";
 		} else {
 			$info = $this->mConn->errorInfo();
+
 			return $info[1];
 		}
 	}
@@ -441,6 +457,7 @@ class DatabaseSqlite extends DatabaseBase {
 		foreach ( $res as $row ) {
 			$info[] = $row->name;
 		}
+
 		return $info;
 	}
 
@@ -467,6 +484,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		$firstPart = substr( $row->sql, 0, $indexPos );
 		$options = explode( ' ', $firstPart );
+
 		return in_array( 'UNIQUE', $options );
 	}
 
@@ -483,6 +501,7 @@ class DatabaseSqlite extends DatabaseBase {
 				$options[$k] = '';
 			}
 		}
+
 		return parent::makeSelectOptions( $options );
 	}
 
@@ -492,6 +511,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function makeUpdateOptions( $options ) {
 		$options = self::fixIgnore( $options );
+
 		return parent::makeUpdateOptions( $options );
 	}
 
@@ -506,6 +526,7 @@ class DatabaseSqlite extends DatabaseBase {
 				$options[$k] = 'OR IGNORE';
 			}
 		}
+
 		return $options;
 	}
 
@@ -515,6 +536,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function makeInsertOptions( $options ) {
 		$options = self::fixIgnore( $options );
+
 		return parent::makeInsertOptions( $options );
 	}
 
@@ -593,6 +615,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function unionQueries( $sqls, $all ) {
 		$glue = $all ? ' UNION ALL ' : ' UNION ';
+
 		return implode( $glue, $sqls );
 	}
 
@@ -629,6 +652,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function getServerVersion() {
 		$ver = $this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
+
 		return $ver;
 	}
 
@@ -656,6 +680,7 @@ class DatabaseSqlite extends DatabaseBase {
 				return new SQLiteField( $row, $tableName );
 			}
 		}
+
 		return false;
 	}
 
@@ -696,7 +721,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return string
 	 */
 	function strencode( $s ) {
-		return substr( $this->addQuotes( $s ), 1, - 1 );
+		return substr( $this->addQuotes( $s ), 1, -1 );
 	}
 
 	/**
@@ -715,6 +740,7 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
 		}
+
 		return $b;
 	}
 
@@ -748,6 +774,7 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
+
 		return parent::buildLike( $params ) . "ESCAPE '\' ";
 	}
 
@@ -765,6 +792,7 @@ class DatabaseSqlite extends DatabaseBase {
 	public function deadlockLoop( /*...*/ ) {
 		$args = func_get_args();
 		$function = array_shift( $args );
+
 		return call_user_func_array( $function, $args );
 	}
 
@@ -814,6 +842,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
 			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
 		}
+
 		return $s;
 	}
 
@@ -832,6 +861,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$delim, $table, $field, $conds = '', $join_conds = array()
 	) {
 		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
+
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
 	}
 
@@ -858,6 +888,7 @@ class DatabaseSqlite extends DatabaseBase {
 				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
 			}
 		}
+
 		return $this->query( $sql, $fname );
 	}
 
@@ -886,13 +917,11 @@ class DatabaseSqlite extends DatabaseBase {
 				if ( strpos( $table, 'sqlite_' ) !== 0 ) {
 					$endArray[] = $table;
 				}
-
 			}
 		}
 
 		return $endArray;
 	}
-
 } // end DatabaseSqlite class
 
 /**
@@ -912,6 +941,7 @@ class DatabaseSqliteStandalone extends DatabaseSqlite {
  */
 class SQLiteField implements Field {
 	private $info, $tableName;
+
 	function __construct( $info, $tableName ) {
 		$this->info = $info;
 		$this->tableName = $tableName;
@@ -932,6 +962,7 @@ class SQLiteField implements Field {
 				return str_replace( "''", "'", $this->info->dflt_value );
 			}
 		}
+
 		return $this->info->dflt_value;
 	}
 
@@ -945,5 +976,4 @@ class SQLiteField implements Field {
 	function type() {
 		return $this->info->type;
 	}
-
 } // end SQLiteField
