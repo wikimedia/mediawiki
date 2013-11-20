@@ -180,6 +180,7 @@ class SearchUpdate implements DeferrableUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		wfProfileOut( __METHOD__ . '-regexps' );
+
 		return $text;
 	}
 }
