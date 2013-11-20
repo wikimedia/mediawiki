@@ -51,9 +51,9 @@ class HTMLCacheUpdateJob extends Job {
 
 	/**
 	 * Construct a job
-	 * @param $title Title: the title linked to
+	 * @param Title $title The title linked to
 	 * @param array $params job parameters (table, start and end page_ids)
-	 * @param $id Integer: job id
+	 * @param int $id Job id
 	 */
 	function __construct( $title, $params, $id = 0 ) {
 		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
@@ -131,9 +131,8 @@ class HTMLCacheUpdateJob extends Job {
 	 * using a pre-calculated title array which gives the links in that range.
 	 * Queue the resulting jobs.
 	 *
-	 * @param $titleArray array
-	 * @param $rootJobParams array
-	 * @return void
+	 * @param array $titleArray
+	 * @param array $rootJobParams
 	 */
 	protected function insertJobsFromTitles( $titleArray, $rootJobParams = array() ) {
 		// Carry over any "root job" information
@@ -184,8 +183,7 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	/**
-	 * @param $rootJobParams array
-	 * @return void
+	 * @param array $rootJobParams
 	 */
 	protected function insertPartitionJobs( $rootJobParams = array() ) {
 		// Carry over any "root job" information
@@ -213,7 +211,7 @@ class HTMLCacheUpdateJob extends Job {
 
 	/**
 	 * Invalidate an array (or iterator) of Title objects, right now
-	 * @param $titleArray array
+	 * @param array $titleArray
 	 */
 	protected function invalidateTitles( $titleArray ) {
 		global $wgUseFileCache, $wgUseSquid;
@@ -223,6 +221,7 @@ class HTMLCacheUpdateJob extends Job {
 
 		# Get all IDs in this query into an array
 		$ids = array();
+		/** @var Title $title */
 		foreach ( $titleArray as $title ) {
 			$ids[] = $title->getArticleID();
 		}
