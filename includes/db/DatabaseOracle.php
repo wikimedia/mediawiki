@@ -57,7 +57,8 @@ class ORAResult {
 	function __construct( &$db, $stmt, $unique = false ) {
 		$this->db =& $db;
 
-		if ( ( $this->nrows = oci_fetch_all( $stmt, $this->rows, 0, -1, OCI_FETCHSTATEMENT_BY_ROW | OCI_NUM ) ) === false ) {
+		$this->nrows = oci_fetch_all( $stmt, $this->rows, 0, -1, OCI_FETCHSTATEMENT_BY_ROW | OCI_NUM );
+		if ( $this->nrows === false ) {
 			$e = oci_error( $stmt );
 			$db->reportQueryError( $e['message'], $e['code'], '', __METHOD__ );
 			$this->free();
@@ -274,7 +275,11 @@ class DatabaseOracle extends DatabaseBase {
 	function open( $server, $user, $password, $dbName ) {
 		global $wgDBOracleDRCP;
 		if ( !function_exists( 'oci_connect' ) ) {
-			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
+			throw new DBConnectionError(
+				$this,
+				"Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n " .
+					"(Note: if you recently installed PHP, you may need to restart your webserver\n " .
+					"and database)\n" );
 		}
 
 		$this->close();
@@ -308,11 +313,29 @@ class DatabaseOracle extends DatabaseBase {
 
 		wfSuppressWarnings();
 		if ( $this->mFlags & DBO_PERSISTENT ) {
-			$this->mConn = oci_pconnect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_pconnect(
+				$this->mUser,
+				$this->mPassword,
+				$this->mServer,
+				$this->defaultCharset,
+				$session_mode
+			);
 		} elseif ( $this->mFlags & DBO_DEFAULT ) {
-			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_new_connect(
+				$this->mUser,
+				$this->mPassword,
+				$this->mServer,
+				$this->defaultCharset,
+				$session_mode
+			);
 		} else {
-			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_connect(
+				$this->mUser,
+				$this->mPassword,
+				$this->mServer,
+				$this->defaultCharset,
+				$session_mode
+			);
 		}
 		wfRestoreWarnings();
 
@@ -367,7 +390,13 @@ class DatabaseOracle extends DatabaseBase {
 		// you have to select data from plan table after explain
 		$explain_id = MWTimestamp::getLocalInstance()->format( 'dmYHis' );
 
-		$sql = preg_replace( '/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \'' . $explain_id . '\' FOR', $sql, 1, $explain_count );
+		$sql = preg_replace(
+			'/^EXPLAIN /',
+			'EXPLAIN PLAN SET STATEMENT_ID = \'' . $explain_id . '\' FOR',
+			$sql,
+			1,
+			$explain_count
+		);
 
 		wfSuppressWarnings();
 
@@ -390,7 +419,8 @@ class DatabaseOracle extends DatabaseBase {
 		wfRestoreWarnings();
 
 		if ( $explain_count > 0 ) {
-			return $this->doQuery( 'SELECT id, cardinality "ROWS" FROM plan_table WHERE statement_id = \'' . $explain_id . '\'' );
+			return $this->doQuery( 'SELECT id, cardinality "ROWS" FROM plan_table ' .
+				'WHERE statement_id = \'' . $explain_id . '\'' );
 		} elseif ( oci_statement_type( $stmt ) == 'SELECT' ) {
 			return new ORAResult( $this, $stmt, $union_unique );
 		} else {
@@ -755,13 +785,18 @@ class DatabaseOracle extends DatabaseBase {
 	private function getSequenceData( $table ) {
 		if ( $this->sequenceData == null ) {
 			$result = $this->doQuery( "SELECT lower(asq.sequence_name),
-				   lower(atc.table_name),
-				   lower(atc.column_name)
-			  FROM all_sequences asq, all_tab_columns atc
-			 WHERE decode(atc.table_name, '{$this->mTablePrefix}MWUSER', '{$this->mTablePrefix}USER', atc.table_name) || '_' ||
-				   atc.column_name || '_SEQ' = '{$this->mTablePrefix}' || asq.sequence_name
-			   AND asq.sequence_owner = upper('{$this->mDBname}')
-			   AND atc.owner = upper('{$this->mDBname}')" );
+				lower(atc.table_name),
+				lower(atc.column_name)
+			FROM all_sequences asq, all_tab_columns atc
+			WHERE decode(
+					atc.table_name,
+					'{$this->mTablePrefix}MWUSER',
+					'{$this->mTablePrefix}USER',
+					atc.table_name
+				) || '_' ||
+				atc.column_name || '_SEQ' = '{$this->mTablePrefix}' || asq.sequence_name
+				AND asq.sequence_owner = upper('{$this->mDBname}')
+				AND atc.owner = upper('{$this->mDBname}')" );
 
 			while ( ( $row = $result->fetchRow() ) !== false ) {
 				$this->sequenceData[$row[1]] = array(
@@ -805,14 +840,17 @@ class DatabaseOracle extends DatabaseBase {
 	function unionQueries( $sqls, $all ) {
 		$glue = ' UNION ALL ';
 
-		return 'SELECT * ' . ( $all ? '' : '/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')';
+		return 'SELECT * ' . ( $all ? '' : '/* UNION_UNIQUE */ ' ) .
+			'FROM (' . implode( $glue, $sqls ) . ')';
 	}
 
 	function wasDeadlock() {
 		return $this->lastErrno() == 'OCI-00060';
 	}
 
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false,
+		$fname = __METHOD__
+	) {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
 
 		$newName = strtoupper( $newName );
@@ -822,7 +860,8 @@ class DatabaseOracle extends DatabaseBase {
 		$oldPrefix = substr( $oldName, 0, strlen( $oldName ) - strlen( $tabName ) );
 		$newPrefix = strtoupper( $this->mTablePrefix );
 
-		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', '$oldPrefix', '$newPrefix', $temporary ); END;" );
+		return $this->doQuery( "BEGIN DUPLICATE_TABLE( '$tabName', " .
+			"'$oldPrefix', '$newPrefix', $temporary ); END;" );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
@@ -832,7 +871,8 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		$owner = strtoupper( $this->mDBname );
-		$result = $this->doQuery( "SELECT table_name FROM all_tables WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX\$_' ESCAPE '!' $listWhere" );
+		$result = $this->doQuery( "SELECT table_name FROM all_tables " .
+			"WHERE owner='$owner' AND table_name NOT LIKE '%!_IDX\$_' ESCAPE '!' $listWhere" );
 
 		// dirty code ... i know
 		$endArray = array();
@@ -895,7 +935,10 @@ class DatabaseOracle extends DatabaseBase {
 	 */
 	function getServerVersion() {
 		//better version number, fallback on driver
-		$rset = $this->doQuery( 'SELECT version FROM product_component_version WHERE UPPER(product) LIKE \'ORACLE DATABASE%\'' );
+		$rset = $this->doQuery(
+			'SELECT version FROM product_component_version ' .
+				'WHERE UPPER(product) LIKE \'ORACLE DATABASE%\''
+		);
 		if ( !( $row = $rset->fetchRow() ) ) {
 			return oci_server_version( $this->mConn );
 		}
@@ -976,7 +1019,11 @@ class DatabaseOracle extends DatabaseBase {
 			$tableWhere = '= \'' . $table . '\'';
 		}
 
-		$fieldInfoStmt = oci_parse( $this->mConn, 'SELECT * FROM wiki_field_info_full WHERE table_name ' . $tableWhere . ' and column_name = \'' . $field . '\'' );
+		$fieldInfoStmt = oci_parse(
+			$this->mConn,
+			'SELECT * FROM wiki_field_info_full WHERE table_name ' .
+				$tableWhere . ' and column_name = \'' . $field . '\''
+		);
 		if ( oci_execute( $fieldInfoStmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $fieldInfoStmt );
 			$this->reportQueryError( $e['message'], $e['code'], 'fieldInfo QUERY', __METHOD__ );
@@ -1202,7 +1249,9 @@ class DatabaseOracle extends DatabaseBase {
 		return $conds2;
 	}
 
-	function selectRow( $table, $vars, $conds, $fname = __METHOD__, $options = array(), $join_conds = array() ) {
+	function selectRow( $table, $vars, $conds, $fname = __METHOD__,
+		$options = array(), $join_conds = array()
+	) {
 		if ( is_array( $conds ) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 		}
@@ -1260,17 +1309,27 @@ class DatabaseOracle extends DatabaseBase {
 		// all deletions on these tables have transactions so final failure rollbacks these updates
 		$table = $this->tableName( $table );
 		if ( $table == $this->tableName( 'user' ) ) {
-			$this->update( 'archive', array( 'ar_user' => 0 ), array( 'ar_user' => $conds['user_id'] ), $fname );
-			$this->update( 'ipblocks', array( 'ipb_user' => 0 ), array( 'ipb_user' => $conds['user_id'] ), $fname );
-			$this->update( 'image', array( 'img_user' => 0 ), array( 'img_user' => $conds['user_id'] ), $fname );
-			$this->update( 'oldimage', array( 'oi_user' => 0 ), array( 'oi_user' => $conds['user_id'] ), $fname );
-			$this->update( 'filearchive', array( 'fa_deleted_user' => 0 ), array( 'fa_deleted_user' => $conds['user_id'] ), $fname );
-			$this->update( 'filearchive', array( 'fa_user' => 0 ), array( 'fa_user' => $conds['user_id'] ), $fname );
-			$this->update( 'uploadstash', array( 'us_user' => 0 ), array( 'us_user' => $conds['user_id'] ), $fname );
-			$this->update( 'recentchanges', array( 'rc_user' => 0 ), array( 'rc_user' => $conds['user_id'] ), $fname );
-			$this->update( 'logging', array( 'log_user' => 0 ), array( 'log_user' => $conds['user_id'] ), $fname );
+			$this->update( 'archive', array( 'ar_user' => 0 ),
+				array( 'ar_user' => $conds['user_id'] ), $fname );
+			$this->update( 'ipblocks', array( 'ipb_user' => 0 ),
+				array( 'ipb_user' => $conds['user_id'] ), $fname );
+			$this->update( 'image', array( 'img_user' => 0 ),
+				array( 'img_user' => $conds['user_id'] ), $fname );
+			$this->update( 'oldimage', array( 'oi_user' => 0 ),
+				array( 'oi_user' => $conds['user_id'] ), $fname );
+			$this->update( 'filearchive', array( 'fa_deleted_user' => 0 ),
+				array( 'fa_deleted_user' => $conds['user_id'] ), $fname );
+			$this->update( 'filearchive', array( 'fa_user' => 0 ),
+				array( 'fa_user' => $conds['user_id'] ), $fname );
+			$this->update( 'uploadstash', array( 'us_user' => 0 ),
+				array( 'us_user' => $conds['user_id'] ), $fname );
+			$this->update( 'recentchanges', array( 'rc_user' => 0 ),
+				array( 'rc_user' => $conds['user_id'] ), $fname );
+			$this->update( 'logging', array( 'log_user' => 0 ),
+				array( 'log_user' => $conds['user_id'] ), $fname );
 		} elseif ( $table == $this->tableName( 'image' ) ) {
-			$this->update( 'oldimage', array( 'oi_name' => 0 ), array( 'oi_name' => $conds['img_name'] ), $fname );
+			$this->update( 'oldimage', array( 'oi_name' => 0 ),
+				array( 'oi_name' => $conds['img_name'] ), $fname );
 		}
 
 		return parent::delete( $table, $conds, $fname );

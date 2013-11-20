@@ -192,7 +192,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// these are the only errors mysql_fetch_object can cause.
 		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
-			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
+			throw new DBUnexpectedError(
+				$this,
+				'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() )
+			);
 		}
 
 		return $row;
@@ -225,7 +228,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// these are the only errors mysql_fetch_array can cause.
 		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
-			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
+			throw new DBUnexpectedError(
+				$this,
+				'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() )
+			);
 		}
 
 		return $row;
@@ -385,7 +391,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param $options string|array
 	 * @return int
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
+	public function estimateRowCount( $table, $vars = '*', $conds = '',
+		$fname = __METHOD__, $options = array()
+	) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false ) {
@@ -663,7 +671,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$row = $this->fetchObject( $res );
 
 		if ( $row ) {
-			$pos = isset( $row->Exec_master_log_pos ) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
+			$pos = isset( $row->Exec_master_log_pos )
+				? $row->Exec_master_log_pos
+				: $row->Exec_Master_Log_Pos;
 
 			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
 		} else {
@@ -771,7 +781,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * FROM MYSQL DOCS:
+	 * http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
 	 * @param $lockName string
 	 * @param $method string
 	 * @return bool
@@ -1012,7 +1023,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	protected function getDefaultSchemaVars() {
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
-		$vars['wgDBTableOptions'] = str_replace( 'CHARSET=mysql4', 'CHARSET=binary', $vars['wgDBTableOptions'] );
+		$vars['wgDBTableOptions'] = str_replace(
+			'CHARSET=mysql4',
+			'CHARSET=binary',
+			$vars['wgDBTableOptions']
+		);
 
 		return $vars;
 	}

@@ -78,12 +78,16 @@ class DatabaseMssql extends DatabaseBase {
 	function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
 		if ( !function_exists( 'sqlsrv_connect' ) ) {
-			throw new DBConnectionError( $this, "MS Sql Server Native (sqlsrv) functions missing. You can download the driver from: http://go.microsoft.com/fwlink/?LinkId=123470\n" );
+			throw new DBConnectionError(
+				$this,
+				"MS Sql Server Native (sqlsrv) functions missing. You can download " .
+					"the driver from: http://go.microsoft.com/fwlink/?LinkId=123470\n" );
 		}
 
 		global $wgDBport;
 
-		if ( !strlen( $user ) ) { # e.g. the class is being loaded
+		# e.g. the class is being loaded
+		if ( !strlen( $user ) ) {
 			return;
 		}
 
@@ -102,9 +106,11 @@ class DatabaseMssql extends DatabaseBase {
 
 		// Start NT Auth Hack
 		// Quick and dirty work around to provide NT Auth designation support.
-		// Current solution requires installer to know to input 'ntauth' for both username and password
-		// to trigger connection via NT Auth. - ugly, ugly, ugly
-		// TO-DO: Make this better and add NT Auth choice to MW installer when SQL Server option is chosen.
+		// Current solution requires installer to know to input 'ntauth' for
+		// both username and password to trigger connection via NT Auth. Ugly,
+		// ugly, ugly!
+		// @todo Make this better and add NT Auth choice to MW installer when
+		// SQL Server option is chosen.
 		$ntAuthUserTest = strtolower( $user );
 		$ntAuthPassTest = strtolower( $password );
 
@@ -123,7 +129,8 @@ class DatabaseMssql extends DatabaseBase {
 
 		if ( $this->mConn === false ) {
 			wfDebug( "DB connection error\n" );
-			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
+			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " .
+				substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
 
 			return false;
@@ -147,10 +154,11 @@ class DatabaseMssql extends DatabaseBase {
 		wfDebug( "SQL: [$sql]\n" );
 		$this->offset = 0;
 
-		// several extensions seem to think that all databases support limits via LIMIT N after the WHERE clause
-		// well, MSSQL uses SELECT TOP N, so to catch any of those extensions we'll do a quick check for a LIMIT
-		// clause and pass $sql through $this->LimitToTopN() which parses the limit clause and passes the result to
-		// $this->limitResult();
+		// several extensions seem to think that all databases support limits
+		// via LIMIT N after the WHERE clause well, MSSQL uses SELECT TOP N,
+		// so to catch any of those extensions we'll do a quick check for a
+		// LIMIT clause and pass $sql through $this->LimitToTopN() which parses
+		// the limit clause and passes the result to $this->limitResult();
 		if ( preg_match( '/\bLIMIT\s*/i', $sql ) ) {
 			// massage LIMIT -> TopN
 			$sql = $this->LimitToTopN( $sql );
@@ -165,7 +173,9 @@ class DatabaseMssql extends DatabaseBase {
 		// perform query
 		$stmt = sqlsrv_query( $this->mConn, $sql );
 		if ( $stmt == false ) {
-			$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+			$message = "A database error has occurred. Did you forget " .
+				"to run maintenance/update.php after upgrading?  See: " .
+				"http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 				"Query: " . htmlentities( $sql ) . "\n" .
 				"Function: " . __METHOD__ . "\n";
 			// process each error (our driver will give us an array of errors unlike other providers)
@@ -178,7 +188,8 @@ class DatabaseMssql extends DatabaseBase {
 		// remember number of rows affected
 		$this->mAffectedRows = sqlsrv_rows_affected( $stmt );
 
-		// if it is a SELECT statement, or an insert with a request to output something we want to return a row.
+		// if it is a SELECT statement, or an insert with a request to output
+		// something we want to return a row.
 		if ( ( preg_match( '#\bSELECT\s#i', $sql ) ) ||
 			( preg_match( '#\bINSERT\s#i', $sql ) && preg_match( '#\bOUTPUT\s+INSERTED\b#i', $sql ) )
 		) {
@@ -302,13 +313,17 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param $vars    Mixed: array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed: array or string, condition(s) for WHERE
 	 * @param $fname   String: calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *                 see Database::makeSelectOptions code for list of supported stuff
-	 * @param $join_conds Array: Associative array of table join conditions (optional)
-	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return Mixed: database result resource (feed to Database::fetchObject or whatever), or false on failure
+	 * @param array $options associative array of options (e.g.
+	 *   array('GROUP BY' => 'page_title')), see Database::makeSelectOptions
+	 *   code for list of supported stuff
+	 * @param $join_conds Array: Associative array of table join conditions
+	 *   (optional) (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 * @return Mixed: database result resource (feed to Database::fetchObject
+	 *   or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
+	function select( $table, $vars, $conds = '', $fname = __METHOD__,
+		$options = array(), $join_conds = array()
+	) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( isset( $options['EXPLAIN'] ) ) {
 			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL ON;" );
@@ -334,7 +349,9 @@ class DatabaseMssql extends DatabaseBase {
 	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return string, the SQL text
 	 */
-	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
+	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
+		$options = array(), $join_conds = array()
+	) {
 		if ( isset( $options['EXPLAIN'] ) ) {
 			unset( $options['EXPLAIN'] );
 		}
@@ -350,7 +367,9 @@ class DatabaseMssql extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
+	function estimateRowCount( $table, $vars = '*', $conds = '',
+		$fname = __METHOD__, $options = array()
+	) {
 		// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
@@ -372,8 +391,9 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return array|bool|null
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
-		# This does not return the same info as MYSQL would, but that's OK because MediaWiki never uses the
-		# returned value except to check for the existance of indexes.
+		# This does not return the same info as MYSQL would, but that's OK
+		# because MediaWiki never uses the returned value except to check for
+		# the existance of indexes.
 		$sql = "sp_helpindex '" . $table . "'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -437,8 +457,12 @@ class DatabaseMssql extends DatabaseBase {
 
 		// We know the table we're inserting into, get its identity column
 		$identity = null;
-		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table ); // strip matching square brackets from table name
-		$res = $this->doQuery( "SELECT NAME AS idColumn FROM SYS.IDENTITY_COLUMNS WHERE OBJECT_NAME(OBJECT_ID)='{$tableRaw}'" );
+		// strip matching square brackets from table name
+		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table );
+		$res = $this->doQuery(
+			"SELECT NAME AS idColumn FROM SYS.IDENTITY_COLUMNS " .
+				"WHERE OBJECT_NAME(OBJECT_ID)='{$tableRaw}'"
+		);
 		if ( $res && $res->numrows() ) {
 			// There is an identity for this table.
 			$identity = array_pop( $res->fetch( SQLSRV_FETCH_ASSOC ) );
@@ -446,7 +470,8 @@ class DatabaseMssql extends DatabaseBase {
 		unset( $res );
 
 		foreach ( $arrToInsert as $a ) {
-			// start out with empty identity column, this is so we can return it as a result of the insert logic
+			// start out with empty identity column, this is so we can return
+			// it as a result of the insert logic
 			$sqlPre = '';
 			$sqlPost = '';
 			$identityClause = '';
@@ -466,7 +491,9 @@ class DatabaseMssql extends DatabaseBase {
 						}
 					}
 				}
-				$identityClause = "OUTPUT INSERTED.$identity "; // we want to output an identity column as result
+
+				// we want to output an identity column as result
+				$identityClause = "OUTPUT INSERTED.$identity ";
 			}
 
 			$keys = array_keys( $a );
@@ -484,7 +511,8 @@ class DatabaseMssql extends DatabaseBase {
 			// translate MySQL INSERT IGNORE to something SQL Server can use
 			// example:
 			// MySQL: INSERT IGNORE INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
-			// MSSQL: IF NOT EXISTS (SELECT * FROM user_groups WHERE ug_user = '1') INSERT INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
+			// MSSQL: IF NOT EXISTS (SELECT * FROM user_groups WHERE ug_user = '1')
+			//        INSERT INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
 			if ( $ignoreClause ) {
 				$prival = $a[$keys[0]];
 				$sqlPre .= "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = '$prival')";
@@ -542,13 +570,12 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
-	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
-	 * $conds may be "*" to copy the whole table
-	 * srcTable may be an array of tables.
+	 * Source items may be literals rather than field names, but strings should
+	 * be quoted with Database::addQuotes().
 	 * @param string $destTable
-	 * @param array|string $srcTable
+	 * @param array|string $srcTable May be an array of tables.
 	 * @param array $varMap
-	 * @param array $conds
+	 * @param array $conds May be "*" to copy the whole table.
 	 * @param string $fname
 	 * @param array $insertOptions
 	 * @param array $selectOptions
@@ -557,7 +584,15 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array() ) {
-		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
+		$ret = parent::insertSelect(
+			$destTable,
+			$srcTable,
+			$varMap,
+			$conds,
+			$fname,
+			$insertOptions,
+			$selectOptions
+		);
 
 		if ( $ret === false ) {
 			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), /*$sql*/ '', $fname );
@@ -577,11 +612,15 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	function nextSequenceValue( $seqName ) {
 		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
-			sqlsrv_query( $this->mConn, "CREATE TABLE [sequence_$seqName] (id INT NOT NULL IDENTITY PRIMARY KEY, junk varchar(10) NULL)" );
+			sqlsrv_query(
+				$this->mConn,
+				"CREATE TABLE [sequence_$seqName] (id INT NOT NULL IDENTITY PRIMARY KEY, junk varchar(10) NULL)"
+			);
 		}
 		sqlsrv_query( $this->mConn, "INSERT INTO [sequence_$seqName] (junk) VALUES ('')" );
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
-		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC ); // KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
+		// KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
+		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC );
 
 		sqlsrv_free_stmt( $ret );
 		$this->mInsertId = $row['id'];
@@ -648,9 +687,11 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	// If there is a limit clause, parse it, strip it, and pass the remaining sql through limitResult()
-	// with the appropriate parameters. Not the prettiest solution, but better than building a whole new parser.
-	// This exists becase there are still too many extensions that don't use dynamic sql generation.
+	// If there is a limit clause, parse it, strip it, and pass the remaining
+	// SQL through limitResult() with the appropriate parameters. Not the
+	// prettiest solution, but better than building a whole new parser. This
+	// exists becase there are still too many extensions that don't use dynamic
+	// sql generation.
 	function LimitToTopN( $sql ) {
 		// Matches: LIMIT {[offset,] row_count | row_count OFFSET offset}
 		$pattern = '/\bLIMIT\s+((([0-9]+)\s*,\s*)?([0-9]+)(\s+OFFSET\s+([0-9]+))?)/i';
@@ -788,7 +829,8 @@ class DatabaseMssql extends DatabaseBase {
 			throw new MWException( "The identifier '$identifier' is too long (max. 128)" );
 		}
 		if ( ( strpos( $identifier, '[' ) !== false ) || ( strpos( $identifier, ']' ) !== false ) ) {
-			// It may be allowed if you quoted with double quotation marks, but that would break if QUOTED_IDENTIFIER is OFF
+			// It may be allowed if you quoted with double quotation marks, but
+			// that would break if QUOTED_IDENTIFIER is OFF
 			throw new MWException( "You can't use square brackers in the identifier '$identifier'" );
 		}
 
@@ -1027,8 +1069,9 @@ class MssqlField implements Field {
 }
 
 /**
- * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows into an array and maintain our
- * own cursor index into that array...This is similar to the way the Oracle driver handles this same issue
+ * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows
+ * into an array and maintain our own cursor index into that array... This is
+ * similar to the way the Oracle driver handles this same issue
  *
  * @ingroup Database
  */

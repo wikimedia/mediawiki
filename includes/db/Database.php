@@ -759,7 +759,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * not restored on unserialize.
 	 */
 	public function __sleep() {
-		throw new MWException( 'Database serialization may cause problems, since the connection is not restored on wakeup.' );
+		throw new MWException( 'Database serialization may cause problems, since ' .
+			'the connection is not restored on wakeup.' );
 	}
 
 	/**
@@ -1202,9 +1203,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				return $arg;
 			case '&':
 				# return $this->addQuotes( file_get_contents( $arg ) );
-				throw new DBUnexpectedError( $this, '& mode is not implemented. If it\'s really needed, uncomment the line above.' );
+				throw new DBUnexpectedError(
+					$this,
+					'& mode is not implemented. If it\'s really needed, uncomment the line above.'
+				);
 			default:
-				throw new DBUnexpectedError( $this, 'Received invalid match. This should never happen!' );
+				throw new DBUnexpectedError(
+					$this,
+					'Received invalid match. This should never happen!'
+				);
 		}
 	}
 
@@ -2192,7 +2199,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			list( $table ) = $dbDetails;
 			if ( $wgSharedDB !== null # We have a shared database
 				&& $this->mForeign == false # We're not working on a foreign database
-				&& !$this->isQuotedIdentifier( $table ) # Paranoia check to prevent shared tables listing '`table`'
+				&& !$this->isQuotedIdentifier( $table ) # Prevent shared tables listing '`table`'
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
 				$database = $wgSharedDB;
@@ -2473,13 +2480,17 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * LIKE statement wrapper, receives a variable-length argument list with parts of pattern to match
-	 * containing either string literals that will be escaped or tokens returned by anyChar() or anyString().
-	 * Alternatively, the function could be provided with an array of aforementioned parameters.
+	 * LIKE statement wrapper, receives a variable-length argument list with
+	 * parts of pattern to match containing either string literals that will be
+	 * escaped or tokens returned by anyChar() or anyString(). Alternatively,
+	 * the function could be provided with an array of aforementioned
+	 * parameters.
 	 *
-	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns a LIKE clause that searches
-	 * for subpages of 'My page title'.
-	 * Alternatively: $pattern = array( 'My_page_title/', $dbr->anyString() ); $query .= $dbr->buildLike( $pattern );
+	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns
+	 * a LIKE clause that searches for subpages of 'My page title'.
+	 * Alternatively:
+	 *   $pattern = array( 'My_page_title/', $dbr->anyString() );
+	 *   $query .= $dbr->buildLike( $pattern );
 	 *
 	 * @since 1.16
 	 * @return String: fully built LIKE statement
@@ -3331,14 +3342,16 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Begin a transaction. If a transaction is already in progress, that transaction will be committed before the
-	 * new transaction is started.
+	 * Begin a transaction. If a transaction is already in progress,
+	 * that transaction will be committed before the new transaction is started.
 	 *
-	 * Note that when the DBO_TRX flag is set (which is usually the case for web requests, but not for maintenance scripts),
-	 * any previous database query will have started a transaction automatically.
+	 * Note that when the DBO_TRX flag is set (which is usually the case for web
+	 * requests, but not for maintenance scripts), any previous database query
+	 * will have started a transaction automatically.
 	 *
-	 * Nesting of transactions is not supported. Attempts to nest transactions will cause a warning, unless the current
-	 * transaction was started automatically because of the DBO_TRX flag.
+	 * Nesting of transactions is not supported. Attempts to nest transactions
+	 * will cause a warning, unless the current transaction was started
+	 * automatically because of the DBO_TRX flag.
 	 *
 	 * @param $fname string
 	 * @throws DBError
@@ -3406,15 +3419,19 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * Nesting of transactions is not supported.
 	 *
 	 * @param $fname string
-	 * @param string $flush Flush flag, set to 'flush' to disable warnings about explicitly committing implicit
-	 *        transactions, or calling commit when no transaction is in progress.
-	 *        This will silently break any ongoing explicit transaction. Only set the flush flag if you are sure
-	 *        that it is safe to ignore these warnings in your context.
+	 * @param string $flush Flush flag, set to 'flush' to disable warnings about
+	 *   explicitly committing implicit transactions, or calling commit when no
+	 *   transaction is in progress. This will silently break any ongoing
+	 *   explicit transaction. Only set the flush flag if you are sure that it
+	 *   is safe to ignore these warnings in your context.
 	 */
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
 		if ( !$this->mTrxAtomicLevels->isEmpty() ) {
 			// There are still atomic sections open. This cannot be ignored
-			throw new DBUnexpectedError( $this, "Attempted to commit transaction while atomic sections are still open" );
+			throw new DBUnexpectedError(
+				$this,
+				"Attempted to commit transaction while atomic sections are still open"
+			);
 		}
 
 		if ( $flush != 'flush' ) {
@@ -3695,8 +3712,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param bool|callable $lineCallback Optional function called before reading each line
 	 * @param bool|callable $resultCallback Optional function called for each MySQL result
 	 * @param bool|string $fname Calling function name or false if name should be
-	 *      generated dynamically using $filename
-	 * @param bool|callable $inputCallback Callback: Optional function called for each complete line sent
+	 *   generated dynamically using $filename
+	 * @param bool|callable $inputCallback Callback: Optional function called
+	 *   for each complete line sent
 	 * @throws MWException
 	 * @throws Exception|MWException
 	 * @return bool|string
