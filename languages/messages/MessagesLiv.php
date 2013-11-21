@@ -736,7 +736,7 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 
 # External editor support
 'edit-externally' => 'Protseššõgid failõ ulīz programmatūraks',
-'edit-externally-help' => '(Vaņ uļļizt redaktōrd adresõs [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] kȭlbatõmiz opātõkst)',
+'edit-externally-help' => '(Vaņ uļļizt redaktōrd adresõs [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] kȭlbatõmiz opātõkst)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tikkiž',

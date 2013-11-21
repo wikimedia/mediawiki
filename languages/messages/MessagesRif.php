@@ -770,7 +770,7 @@ Innḍni ad twaffrn dg umzwar.
 
 # External editor support
 'edit-externally' => 'Ẓṛeg afaylu a s usnas zi baṛṛa',
-'edit-externally-help' => 'Xemm [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] i ktar n tilɣa(informations).',
+'edit-externally-help' => 'Xemm [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] i ktar n tilɣa(informations).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'marra',

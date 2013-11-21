@@ -605,7 +605,7 @@ Goɗɗe maa cuuɗe e sahaa kala.
 
 # External editor support
 'edit-externally' => 'Taƴto ndee fiilde huutoraade jaaɓnirgal jiggangal',
-'edit-externally-help' => '(Yah to [//www.mediawiki.org/wiki/Manual:External_editors/ff tinndinoore teelto] ngam ɓeydude humpito)',
+'edit-externally-help' => '(Yah to [https://www.mediawiki.org/wiki/Manual:External_editors/ff tinndinoore teelto] ngam ɓeydude humpito)',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'fof',
