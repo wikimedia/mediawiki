@@ -1,6 +1,7 @@
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
-	float: right;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* list-items go as wide as their parent element, don't float them inside list items */
