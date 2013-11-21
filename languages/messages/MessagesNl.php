@@ -786,6 +786,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 'exception-nologin' => 'Niet aangemeld',
 'exception-nologin-text' => 'Om deze pagina te bekijken of deze handeling uit te kunnen voeren moet u [[Special:Userlogin|aangemeld]] zijn bij deze wiki.',
+'exception-nologin-text-manual' => 'U moet $1 om deze pagina te kunnen bekijken of de handeling uit te voeren.',
 
 # Virus scanner
 'virus-badscanner' => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
@@ -1534,6 +1535,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'mypreferences' => 'Voorkeuren',
 'prefs-edits' => 'Aantal bewerkingen:',
 'prefsnologin' => 'Niet aangemeld',
+'prefsnologintext2' => 'U moet $1 om voorkeuren in te stellen.',
 'changepassword' => 'Wachtwoord wijzigen',
 'prefs-skin' => 'Vormgeving',
 'skin-preview' => 'Voorvertoning',
@@ -2588,7 +2590,7 @@ Contactgegevens van de auteur:
 E-mailadres: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst kunt u voor alle gevolgde pagina\'s de waarschuwingsinstellingen opschonen.
+Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Als u bent aangemeld, kunt u op uw volglijst voor alle gevolgde pagina\'s de waarschuwingsinstellingen opschonen.
 
 Groet van uw {{SITENAME}}-waarschuwingssysteem.
 
@@ -3351,6 +3353,7 @@ Vul dit veld '''NIET''' in!",
 'pageinfo-length' => 'Paginalengte (in bytes)',
 'pageinfo-article-id' => 'Paginanummer',
 'pageinfo-language' => 'Taal voor de pagina',
+'pageinfo-content-model' => 'Paginainhoudmodel',
 'pageinfo-robot-policy' => 'Indexering door robots',
 'pageinfo-robot-index' => 'Toegestaan',
 'pageinfo-robot-noindex' => 'Niet toegestaan',
@@ -4133,7 +4136,7 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 # Special:Redirect
 'redirect' => 'Doorverwijzen op bestandsnaam, gebruikersnummer of versienummer',
 'redirect-legend' => 'Doorverwijzen naar een bestand of pagina',
-'redirect-summary' => 'Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven).',
+'redirect-summary' => 'Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven). Gebruik: [[{{#Special:Redirect}}/file/Voorbeeld.jpg]], [[{{#Special:Redirect}}/revision/328429]] of [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'OK',
 'redirect-lookup' => 'Opzoeken:',
 'redirect-value' => 'Waarde:',
@@ -4155,9 +4158,9 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 
 # Special:SpecialPages
 'specialpages' => "Speciale pagina's",
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Normale speciale pagina\'s
-* <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>
-* <span class="mw-specialpagecached">Speciale pagina\'s met alleen gegevens uit de cache (mogelijk verouderd)</span>',
+* <span class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other' => "Overige speciale pagina's",
 'specialpages-group-login' => 'Aanmelden / registreren',

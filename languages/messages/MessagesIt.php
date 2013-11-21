@@ -2412,9 +2412,9 @@ Contatta l\'autore:
 via posta elettronica: $PAGEEDITOR_EMAIL
 sul sito: $PAGEEDITOR_WIKI
 
-Non verranno inviate altre notifiche in caso di ulteriori attività, se non visiti la pagina. Inoltre, è possibile modificare le impostazioni di notifica per tutte le pagine nella lista degli osservati speciali.
+Non verranno inviate altre notifiche in caso di ulteriori attività, se non visiti la pagina dopo aver effettuato l\'accesso. Inoltre, è possibile modificare le impostazioni di notifica per tutte le pagine nella lista degli osservati speciali.
 
-             Il sistema di notifica di {{SITENAME}}, al tuo servizio
+Il sistema di notifica di {{SITENAME}}, al tuo servizio
 
 --
 Per modificare le impostazioni delle notifiche via posta elettronica, visita 
@@ -3927,9 +3927,9 @@ Esempi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revi
 
 # Special:SpecialPages
 'specialpages' => 'Pagine speciali',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Pagine speciali non riservate.
-* <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>
-* <span class="mw-specialpagecached">Pagine speciali disponibili in versione cache (potrebbero essere obsolete).</span>',
+* <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other' => 'Altre pagine speciali',
 'specialpages-group-login' => 'Accesso / creazione utenze',

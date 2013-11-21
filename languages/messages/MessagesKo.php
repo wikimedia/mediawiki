@@ -763,7 +763,8 @@ $2',
 'invalidtitle-knownnamespace' => '제목 오류: "$2" 이름공간과 "$3" 텍스트',
 'invalidtitle-unknownnamespace' => '제목 오류: 알 수 없는 $1 이름공간 번호와, "$2" 텍스트',
 'exception-nologin' => '로그인하지 않음',
-'exception-nologin-text' => '이 문서나 행동은 이 위키에 로그인을 해야 합니다.',
+'exception-nologin-text' => '이 행동을 하거나 이 문서에 접근하려면 [[Special:Userlogin|로그인]]하십시오.',
+'exception-nologin-text-manual' => '이 문서에 접근하거나 이 행동을 하려면 $1하십시오.',
 
 # Virus scanner
 'virus-badscanner' => "잘못된 설정: 알 수 없는 바이러스 검사기: '''$1'''",
@@ -1506,6 +1507,7 @@ $1",
 'mypreferences' => '환경 설정',
 'prefs-edits' => '편집 횟수:',
 'prefsnologin' => '로그인하지 않음',
+'prefsnologintext2' => '사용자 환경 설정을 설정하려면 $1하십시오.',
 'changepassword' => '비밀번호 바꾸기',
 'prefs-skin' => '스킨',
 'skin-preview' => '미리 보기',
@@ -2553,7 +2555,7 @@ $PAGEINTRO $NEWPAGE
 이메일: $PAGEEDITOR_EMAIL
 위키: $PAGEEDITOR_WIKI
 
-이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다. 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
+로그인한 상태에서 이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다. 모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
 
 {{SITENAME}} 알림 시스템
 
@@ -3404,7 +3406,7 @@ $1',
 'svg-long-desc' => 'SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
 'svg-long-desc-animated' => '애니메이션 SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기: $3',
 'svg-long-error' => '잘못된 SVG 파일: $1',
-'show-big-image' => '최대 해상도',
+'show-big-image' => '원본 파일',
 'show-big-image-preview' => '미리 보기 크기: $1',
 'show-big-image-other' => '다른 {{PLURAL:$2|해상도}}: $1',
 'show-big-image-size' => '$1 × $2 픽셀',

@@ -1164,9 +1164,9 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR:rodilnik|{{SITENAME}}}} in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo uveljavljene dodatne omejitve.",
 'revdelete-confirm' => 'Prosim potrdite da nameravate to storiti, da se zavedate posledic in da to počnete v skladu s [[{{MediaWiki:Policy-url}}|politiko]].',
 'revdelete-suppress-text' => "Zadrževanje naj bi bilo uporabljeno '''le''' v sledečih primerih:
-* Potencialni klevetniški podatki
+* Morebitni klevetniški podatki
 * Neprimerni osebni podatki
-*: ''domači naslovi in telefonske številke, številke socialnega zavarovanja, etc.''",
+*: ''domači naslovi in telefonske številke, narodne številke istovetnosti itn.''",
 'revdelete-legend' => 'Nastavi omejitve vidnosti',
 'revdelete-hide-text' => 'Besedilo redakcije',
 'revdelete-hide-image' => 'Skrij vsebino datoteke.',
@@ -1175,8 +1175,8 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR
 'revdelete-hide-user' => 'Uporabniško ime/IP-naslov urejevalca',
 'revdelete-hide-restricted' => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-radio-same' => '(ne spremeni)',
-'revdelete-radio-set' => 'Vidno',
-'revdelete-radio-unset' => 'Skrito',
+'revdelete-radio-set' => 'Skrito',
+'revdelete-radio-unset' => 'Vidno',
 'revdelete-suppress' => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-unsuppress' => 'Odpraviti omejitve na obnovljenih redakcijah.',
 'revdelete-log' => 'Razlog:',
@@ -3192,7 +3192,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'svg-long-desc' => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'svg-long-desc-animated' => 'animirana datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'svg-long-error' => 'Neveljavna datoteka SVG: $1',
-'show-big-image' => 'Slika v višji ločljivosti',
+'show-big-image' => 'Izvirna datoteka',
 'show-big-image-preview' => 'Velikost predogleda: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druga ločljivost|Drugi ločljivosti|Druge ločljivosti}}: $1.',
 'show-big-image-size' => '$1 × $2 točk',
@@ -3770,6 +3770,7 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 
 # Separators for various lists, etc.
 'percent' => '$1&#160;%',
+'quotation-marks' => '»$1«',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prejšnja stran',
@@ -3900,9 +3901,9 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 
 # Special:SpecialPages
 'specialpages' => 'Posebne strani',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Navadne posebne strani.
-* <span class="mw-specialpagerestricted">Omejene posebne strani.</span>
-* <span class="mw-specialpagecached">Predpomnjene posebne strani (morda so zastarele).</span>',
+* <span class="mw-specialpagerestricted">Omejene posebne strani.</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',
 'specialpages-group-other' => 'Ostale posebne strani',
 'specialpages-group-login' => 'Prijavite se / ustvarite račun',

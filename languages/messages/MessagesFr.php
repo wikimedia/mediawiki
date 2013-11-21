@@ -4154,9 +4154,9 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 
 # Special:SpecialPages
 'specialpages' => 'Pages spéciales',
+'specialpages-note-top' => 'Légende',
 'specialpages-note' => '* Pages spéciales normales.
-* <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>
-* <span class="mw-specialpagecached">Pages spéciales seulement en cache (pourraient être désuètes).</span>',
+* <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',
 'specialpages-group-other' => 'Autres pages spéciales',
 'specialpages-group-login' => "S'identifier / s'inscrire",

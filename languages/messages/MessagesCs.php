@@ -769,7 +769,8 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 'invalidtitle-knownnamespace' => 'Neplatný název se jmenným prostorem „$2“ a textem „$3“',
 'invalidtitle-unknownnamespace' => 'Neplatný název s neznámým číslem jmenného prostoru $1 a textem „$2“',
 'exception-nologin' => 'Nejste přihlášen(a)',
-'exception-nologin-text' => 'Tato stránka nebo akce vyžaduje, abyste byli na této wiki přihlášeni.',
+'exception-nologin-text' => 'Pro přístup na tuto stránku nebo k této akci se prosím [[Special:Userlogin|přihlaste]].',
+'exception-nologin-text-manual' => 'Pro přístup na tuto stránku nebo k této akci se musíte $1.',
 
 # Virus scanner
 'virus-badscanner' => "Špatná konfigurace: neznámý antivirový program: ''$1''",
@@ -1482,6 +1483,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'mypreferences' => 'Nastavení',
 'prefs-edits' => 'Počet editací:',
 'prefsnologin' => 'Nejste přihlášen(a)!',
+'prefsnologintext2' => 'Pro změnu uživatelských nastavení se musíte $1.',
 'changepassword' => 'Změna hesla',
 'prefs-skin' => 'Vzhled',
 'skin-preview' => 'Náhled',
@@ -2502,9 +2504,9 @@ Uživatele, který změnu provedl, můžete kontaktovat:
 e-mailem: $PAGEEDITOR_EMAIL
 na wiki: $PAGEEDITOR_WIKI
 
-Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky. Případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
+Do doby, než stránku navštívíte jako přihlášený uživatel, vám další oznámení k této stránce nebudou zasílána. Případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
 
-	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
+S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
 --
 Změnit nastavení e-mailových oznámení můžete na
@@ -4069,6 +4071,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 
 # Special:SpecialPages
 'specialpages' => 'Speciální stránky',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Normální speciální stránky
 * <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>',
 'specialpages-group-maintenance' => 'Údržba',

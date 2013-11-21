@@ -475,7 +475,8 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 'invalidtitle-knownnamespace' => "Títulu inválidu col espaciu de nomes «$2» ya'l testu «$3»",
 'invalidtitle-unknownnamespace' => "Títulu inválidu col númberu $1 d'espaciu de nomes desconocíu ya'l testu «$2»",
 'exception-nologin' => 'Nun anició sesión',
-'exception-nologin-text' => "Esta páxina o aición necesita qu'anicies sesión nesta wiki.",
+'exception-nologin-text' => 'Por favor, [[Special:Userlogin|anicie sesión]] pa tener accesu a esta páxina o aición.',
+'exception-nologin-text-manual' => 'Por favor, $1 pa tener accesu a esta páxina o aición.',
 
 # Virus scanner
 'virus-badscanner' => "Fallu de configuración: Escáner de virus desconocíu: ''$1''",
@@ -1214,6 +1215,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'mypreferences' => 'Preferencies',
 'prefs-edits' => "Númberu d'ediciones:",
 'prefsnologin' => 'Nun anició sesión',
+'prefsnologintext2' => "Por favor, $1 pa configurar les preferencies d'usuariu",
 'changepassword' => 'Camudar la clave',
 'prefs-skin' => 'Apariencia',
 'skin-preview' => 'Vista previa',
@@ -2248,7 +2250,7 @@ Ponte en contautu col editor:
 corréu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-En casu de producise más cambios, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes reaniciar na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
+En casu de producise más actividá, nun habrá más notificaciones a nun ser que visites esta páxina teniendo sesión aniciada. Tamién podríes reaniciar na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
 
 El to abertable sistema de notificación de {{SITENAME}}
 
@@ -3783,9 +3785,9 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 
 # Special:SpecialPages
 'specialpages' => 'Páxines especiales',
+'specialpages-note-top' => 'Lleenda',
 'specialpages-note' => '* Páxines especiales normales.
-* <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>
-* <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
+* <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other' => 'Otres páxines especiales',
 'specialpages-group-login' => 'Entrar / crear cuenta',

@@ -729,6 +729,7 @@ O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 'invalidtitle-unknownnamespace' => 'Título inválido com número de espaço nominal $1 desconhecido e texto "$2"',
 'exception-nologin' => 'Não está autenticado',
 'exception-nologin-text' => 'Esta página ou operação requer que esteja autenticado nesta wiki.',
+'exception-nologin-text-manual' => 'Por favor  $1  para poder aceder a esta página ou acção.',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -4034,6 +4035,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiais',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',

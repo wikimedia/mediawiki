@@ -709,7 +709,8 @@ Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 'invalidtitle-knownnamespace' => 'Titlu invalid cu spațiul de nume „$2” și textul „$3”',
 'invalidtitle-unknownnamespace' => 'Titlu invalid cu numărul spațiului de nume $1 necunoscut și textul „$2”',
 'exception-nologin' => 'Neautentificat{{GENDER:||ă}}.',
-'exception-nologin-text' => 'Această pagină sau acțiune necesită ca dumneavoastră să fiți autentificat{{GENDER:||ă}} pe acest wiki.',
+'exception-nologin-text' => 'Vă rugăm să vă [[Special:Userlogin|autentificați]] pentru a accesa această pagină sau acțiune.',
+'exception-nologin-text-manual' => 'Vă rugăm să vă $1 pentru a accesa această pagină sau acțiune.',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -1431,6 +1432,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'mypreferences' => 'Preferințe',
 'prefs-edits' => 'Număr de modificări:',
 'prefsnologin' => 'Neautentificat',
+'prefsnologintext2' => 'Vă rugăm să vă $1 pentru a vă seta preferințele de utilizator.',
 'changepassword' => 'Schimbare parolă',
 'prefs-skin' => 'Aspect',
 'skin-preview' => 'Previzualizare',
@@ -2459,9 +2461,9 @@ Puteți contacta utilizatorul:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Nu veți mai primi notificări în cazul unor viitoare modificări până când nu veți vizitați pagina. Puteți de asemenea reseta notificările pentru toate pagini pe care le urmăriți.
+Nu veți mai primi notificări în cazul unei viitoare activități până când nu veți vizitați pagina ca utilizator autentificat. Puteți de asemenea reseta notificările pentru toate pagini pe care le urmăriți.
 
-             Al dumneavoastră amic, sistemul de notificare de la {{SITENAME}}
+Al dumneavoastră amic, sistemul de notificare de la {{SITENAME}}
 
 --
 Pentru a modifica setările notificării prin e-mail, vizitați
@@ -3974,9 +3976,9 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 
 # Special:SpecialPages
 'specialpages' => 'Pagini speciale',
+'specialpages-note-top' => 'Legendă',
 'specialpages-note' => '* Pagini speciale normale.
-* <span class="mw-specialpagerestricted">Pagini speciale restricționate.</span>
-* <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache (pot fi neactualizate).</span>',
+* <span class="mw-specialpagerestricted">Pagini speciale restricționate.</span>',
 'specialpages-group-maintenance' => 'Întreținere',
 'specialpages-group-other' => 'Alte pagini speciale',
 'specialpages-group-login' => 'Autentificare / creare cont',

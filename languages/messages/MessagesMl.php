@@ -750,7 +750,8 @@ $2',
 'invalidtitle-knownnamespace' => 'നാമമേഖല "$2", എഴുത്ത് "$3" എന്നിവ ഉപയോഗിച്ചുള്ള അസാധുവായ തലക്കെട്ട്',
 'invalidtitle-unknownnamespace' => 'അപരിചിതമായ നാമമേഖലാ സംഖ്യ $1, എഴുത്ത് "$2" എന്നിവ ഉപയോഗിച്ചുള്ള അസാധുവായ തലക്കെട്ട്',
 'exception-nologin' => 'ലോഗിൻ ചെയ്തിട്ടില്ല',
-'exception-nologin-text' => 'ഈ വിക്കിയിൽ ഈ താൾ അല്ലെങ്കിൽ പ്രവൃത്തി ലഭ്യമാകാൻ താങ്കൾ ലോഗിൻ ചെയ്തിരിക്കേണ്ടതാണ്.',
+'exception-nologin-text' => 'ഈ വിക്കിയിൽ ഈ താൾ അല്ലെങ്കിൽ പ്രവൃത്തി ലഭ്യമാകാൻ ദയവായി [[Special:Userlogin|പ്രവേശിക്കുക]].',
+'exception-nologin-text-manual' => 'ഈ താൾ അല്ലെങ്കിൽ പ്രവൃത്തി ഉപയോഗിക്കാൻ ദയവായി $1.',
 
 # Virus scanner
 'virus-badscanner' => "തെറ്റായ ക്രമീകരണങ്ങൾ: അപരിചിതമായ വൈറസ് തിരച്ചിൽ ഉപാധി :  ''$1''",
@@ -1449,6 +1450,7 @@ $1",
 'mypreferences' => 'ക്രമീകരണങ്ങൾ',
 'prefs-edits' => 'ആകെ തിരുത്തുകൾ:',
 'prefsnologin' => 'ലോഗിൻ ചെയ്തിട്ടില്ല',
+'prefsnologintext2' => 'താങ്കളുടെ ഉപയോക്തൃക്രമീകരണങ്ങൾ സജ്ജീകരിക്കാൻ ദയവായി $1.',
 'changepassword' => 'രഹസ്യവാക്ക് മാറ്റുക',
 'prefs-skin' => 'ദൃശ്യരൂപം',
 'skin-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക',
@@ -3988,6 +3990,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'പ്രത്യേക താളുകൾ',
+'specialpages-note-top' => 'സൂചന',
 'specialpages-note' => '* പൊതുവേ ഉപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.
 * <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</strong>
 * <span class="mw-specialpagecached">പ്രാദേശികമായി സംഭരിച്ചുപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.</span>',
