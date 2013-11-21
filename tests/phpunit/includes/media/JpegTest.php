@@ -14,7 +14,6 @@ class JpegTest extends MediaWikiTestCase {
 
 		$this->filePath = __DIR__ . '/../../data/media/';
 
-
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
 		$this->backend = new FSFileBackend( array(

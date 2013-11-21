@@ -51,7 +51,6 @@ class PublishStashedFileJob extends Job {
 				return false;
 			}
 
-
 			UploadBase::setSessionStatus(
 				$this->params['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'publish', 'status' => Status::newGood() )

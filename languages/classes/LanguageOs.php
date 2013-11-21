@@ -67,7 +67,6 @@ class LanguageOs extends Language {
 		# Variable for ending
 		$ending = '';
 
-
 		# CHecking if the $word is in plural form
 		if ( preg_match( '/тæ$/u', $word ) ) {
 			$word = mb_substr( $word, 0, -1 );

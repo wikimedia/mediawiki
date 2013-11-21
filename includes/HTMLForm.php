@@ -745,7 +745,7 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $this->isVForm() ) {
-				// mw-ui-block is necessary because the buttons aren't necessarily in an 
+				// mw-ui-block is necessary because the buttons aren't necessarily in an
 				// immediate child div of the vform.
 				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-primary', 'mw-ui-block' );
 			}

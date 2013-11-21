@@ -1371,7 +1371,6 @@ class LocalFile extends File {
 			$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 		}
 
-
 		wfProfileOut( __METHOD__ . '-edit' );
 
 		# Save to cache and purge the squid

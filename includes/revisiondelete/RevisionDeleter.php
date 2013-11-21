@@ -201,7 +201,6 @@ class RevisionDeleter {
 		return call_user_func( array( self::$allowedTypes[$typeName], 'suggestTarget' ), $target, $ids );
 	}
 
-
 	/**
 	 * Checks if a revision still exists in the revision table.
 	 * If it doesn't, returns the corresponding ar_timestamp field

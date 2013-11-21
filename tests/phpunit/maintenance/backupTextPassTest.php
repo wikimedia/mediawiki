@@ -418,7 +418,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->checkpointHelper( "gzip" );
 	}
 
-
 	/**
 	 * Creates a stub file that is used for testing the text pass of dumps
 	 *

@@ -213,7 +213,6 @@ abstract class ImageHandler extends MediaHandler {
 		return $image->getWidth() * $image->getHeight();
 	}
 
-
 	/**
 	 * @param $file File
 	 * @return string

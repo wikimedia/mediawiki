@@ -1460,7 +1460,6 @@ class SpecialAllMyUploads extends RedirectSpecialPage {
 	}
 }
 
-
 /**
  * Redirect from Special:PermanentLink/### to index.php?oldid=###
  */

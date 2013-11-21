@@ -26,7 +26,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
-
 	/**
 	 * First checks the return code
 	 * of UploadBase::getTitle() and then the actual returned title
