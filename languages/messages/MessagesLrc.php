@@ -561,10 +561,13 @@ $2',
 'revdel-restore-deleted' => 'پاك كردن مراجعيا',
 'revdel-restore-visible' => 'مراجعات ديئنی',
 'pagehist' => 'ويرگار بلگه',
+'deletedhist' => 'ویرگار پاک بیه',
 'revdelete-reasonotherlist' => 'دلیل هنی',
+'revdelete-edit-reasonlist' => 'دلیلیا پاک کردنه نه ویرایشت بکید',
 
 # History merging
 'mergehistory-from' => 'بلگه سرچشمه:',
+'mergehistory-into' => 'بلگه مقصد:',
 'mergehistory-reason' => 'دليل:',
 
 # Merge log
@@ -628,6 +631,7 @@ $2',
 'changepassword' => 'پاسورد نه آلشت بكيت',
 'prefs-skin' => 'پوست',
 'skin-preview' => 'پیش سیل',
+'prefs-watchlist' => 'سیل برگ',
 'prefs-misc' => 'شيوسن',
 'prefs-resetpass' => 'پاسورد نه آلشت بكيت',
 'saveprefs' => 'ذخيره كردن',
@@ -644,6 +648,7 @@ $2',
 'timezoneregion-antarctica' => 'قطو هار ونه',
 'timezoneregion-arctic' => 'قطو شمال',
 'timezoneregion-asia' => 'آسيا',
+'timezoneregion-atlantic' => 'جهون آو آتلانتیک',
 'timezoneregion-australia' => 'استراليا',
 'timezoneregion-europe' => 'اوروپا',
 'timezoneregion-indian' => 'جهوناو هند',
@@ -654,10 +659,21 @@ $2',
 'prefs-files' => 'فايلا',
 'youremail' => 'ايميل:',
 'yourrealname' => 'نوم راستكی:',
+'yourlanguage' => 'زون:',
+'email' => 'پیومک برقی',
 'prefs-help-email' => 'نشونی ایمیل اختیاری هئ.اما سی بازجست پاسورد دش نیاز بوئه.شما باید پاسوردتونه د ویر بوریت',
 'prefs-help-email-others' => 'شما می تونید سی پیوند گرتن تو وا نهایین ایمیل مئن یه هوم پیوند د بلگه کاروری یا بلگه چک چنه تو انتخاو بکید.
 نشونی ایمیلتو وختی که کاروریا هنی وا تو پیوند می گرن دیار نی.',
+'prefs-editor' => 'ويرايشتگر',
 'prefs-preview' => 'پیش سیل',
+
+# User rights
+'userrights-reason' => 'دليل:',
+
+# Groups
+'group' => 'گرو',
+'group-bot' => 'بتیا',
+'group-all' => '(همه)',
 
 # Special:Log/newusers
 'newuserlogpage' => 'راس بیه وا کارور',

@@ -1045,9 +1045,7 @@ $2
 'accmailtitle' => '密码已寄出',
 'accmailtext' => "为[[User talk:$1|$1]]随机生成的密码已送至$2。登录后可以在''[[Special:ChangePassword|更改密码]]''页面中修改。",
 'newarticle' => '（新页面）',
-'newarticletext' => '您进入了一个尚未创建的页面。
-要创建该页面，请在下面的编辑框中输入内容（详情参见[[{{MediaWiki:Helppage}}|帮助页]]）。
-如果您误入此页，请点击浏览器中的“返回”按钮。',
+'newarticletext' => "你点击了一个尚不存在的页面的链接。要创建该页面，请在下面的编辑框中输入内容（更多信息请见[[{{MediaWiki:Helppage}}|帮助页面]]）。如果你是错误地到达这里，请点击你的浏览器的'''返回'''按钮。",
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
 'noarticletext-nopermission' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]，但你没有权限创建本页面。',
@@ -1501,9 +1499,7 @@ $1",
 'gender-unknown' => '我不愿意指明（被称为“他/她”）',
 'gender-male' => '他',
 'gender-female' => '她',
-'prefs-help-gender' => '这是选填项目。
-软件使用其以显示正确的性别称呼。
-该信息将会公开。',
+'prefs-help-gender' => '该设置为可选项目。软件根据它的值在称呼你及对他人提及你时使用适当的语法性别。该信息会被公开。',
 'email' => '电子邮件',
 'prefs-help-realname' => '真实姓名是选填项目。如果你选择提供它，它将会用于贡献署名。',
 'prefs-help-email' => '电子邮件是可选项，但是在您忘记密码时很有用。',
@@ -1918,8 +1914,7 @@ $1',
 'zip-wrong-format' => '指定的文件不是一个 ZIP 文件。',
 'zip-bad' => '该文件是已损坏或以其它方式无法读取的 ZIP 文件。
 不能正确检查安全。',
-'zip-unsupported' => '该文件是 ZIP 文件，其中使用 MediaWiki 不支持的ZIP功能。
-不能正确检查安全。',
+'zip-unsupported' => '该文件是使用MediaWiki不支持的ZIP特性的ZIP文件。无法正确地检查其安全性。',
 
 # Special:UploadStash
 'uploadstash' => '上传隐藏',
