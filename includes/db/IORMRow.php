@@ -32,7 +32,6 @@
  */
 
 interface IORMRow {
-
 	/**
 	 * Load the specified fields from the database.
 	 *
@@ -268,5 +267,4 @@ interface IORMRow {
 	 * @return IORMTable
 	 */
 	public function getTable();
-
 }

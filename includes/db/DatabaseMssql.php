@@ -125,10 +125,12 @@ class DatabaseMssql extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
+
 			return false;
 		}
 
 		$this->mOpened = true;
+
 		return $this->mConn;
 	}
 
@@ -178,7 +180,8 @@ class DatabaseMssql extends DatabaseBase {
 
 		// if it is a SELECT statement, or an insert with a request to output something we want to return a row.
 		if ( ( preg_match( '#\bSELECT\s#i', $sql ) ) ||
-			( preg_match( '#\bINSERT\s#i', $sql ) && preg_match( '#\bOUTPUT\s+INSERTED\b#i', $sql ) ) ) {
+			( preg_match( '#\bINSERT\s#i', $sql ) && preg_match( '#\bOUTPUT\s+INSERTED\b#i', $sql ) )
+		) {
 			// this is essentially a rowset, but Mediawiki calls these 'result'
 			// the rowset owns freeing the statement
 			$res = new MssqlResult( $stmt );
@@ -186,6 +189,7 @@ class DatabaseMssql extends DatabaseBase {
 			// otherwise we simply return it was successful, failure throws an exception
 			$res = true;
 		}
+
 		return $res;
 	}
 
@@ -201,6 +205,7 @@ class DatabaseMssql extends DatabaseBase {
 			$res = $res->result;
 		}
 		$row = $res->fetch( 'OBJECT' );
+
 		return $row;
 	}
 
@@ -216,6 +221,7 @@ class DatabaseMssql extends DatabaseBase {
 		} else {
 			$strRet = "No errors found";
 		}
+
 		return $strRet;
 	}
 
@@ -224,6 +230,7 @@ class DatabaseMssql extends DatabaseBase {
 			$res = $res->result;
 		}
 		$row = $res->fetch( SQLSRV_FETCH_BOTH );
+
 		return $row;
 	}
 
@@ -231,6 +238,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return ( $res ) ? $res->numrows() : 0;
 	}
 
@@ -238,6 +246,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return ( $res ) ? $res->numfields() : 0;
 	}
 
@@ -245,6 +254,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return ( $res ) ? $res->fieldname( $n ) : 0;
 	}
 
@@ -260,6 +270,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return ( $res ) ? $res->seek( $row ) : false;
 	}
 
@@ -294,18 +305,19 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param array $options associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
-	 *						   (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return Mixed: database result resource (feed to Database::fetchObject or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() )
-	{
+	function select( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( isset( $options['EXPLAIN'] ) ) {
 			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL ON;" );
 			$ret = $this->query( $sql, $fname );
 			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL OFF;" );
+
 			return $ret;
 		}
+
 		return $this->query( $sql, $fname );
 	}
 
@@ -316,7 +328,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param $vars    Mixed:  Array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 * @param array $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
@@ -326,6 +338,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( isset( $options['EXPLAIN'] ) ) {
 			unset( $options['EXPLAIN'] );
 		}
+
 		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
@@ -338,7 +351,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array() ) {
-		$options['EXPLAIN'] = true;// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
+		// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
+		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 
 		$rows = -1;
@@ -348,6 +362,7 @@ class DatabaseMssql extends DatabaseBase {
 				$rows = $row['EstimateRows'];
 			}
 		}
+
 		return $rows;
 	}
 
@@ -383,6 +398,7 @@ class DatabaseMssql extends DatabaseBase {
 				}
 			}
 		}
+
 		return empty( $result ) ? false : $result;
 	}
 
@@ -413,8 +429,8 @@ class DatabaseMssql extends DatabaseBase {
 
 		$table = $this->tableName( $table );
 
-		if ( !( isset( $arrToInsert[0] ) && is_array( $arrToInsert[0] ) ) ) {// Not multi row
-			$arrToInsert = array( 0 => $arrToInsert );// make everything multi row compatible
+		if ( !( isset( $arrToInsert[0] ) && is_array( $arrToInsert[0] ) ) ) { // Not multi row
+			$arrToInsert = array( 0 => $arrToInsert ); // make everything multi row compatible
 		}
 
 		$allOk = true;
@@ -444,7 +460,6 @@ class DatabaseMssql extends DatabaseBase {
 							// there is a value being passed to us, we need to turn on and off inserted identity
 							$sqlPre = "SET IDENTITY_INSERT $table ON;";
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
-
 						} else {
 							// we can't insert NULL into an identity column, so remove the column from the insert.
 							unset( $a[$k] );
@@ -520,6 +535,7 @@ class DatabaseMssql extends DatabaseBase {
 			}
 			$allOk = false;
 		}
+
 		return $allOk;
 	}
 
@@ -548,8 +564,10 @@ class DatabaseMssql extends DatabaseBase {
 		} elseif ( $ret != null ) {
 			// remember number of rows affected
 			$this->mAffectedRows = sqlsrv_rows_affected( $ret );
+
 			return $ret;
 		}
+
 		return null;
 	}
 
@@ -563,10 +581,11 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		sqlsrv_query( $this->mConn, "INSERT INTO [sequence_$seqName] (junk) VALUES ('')" );
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
-		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC );// KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
+		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC ); // KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
 
 		sqlsrv_free_stmt( $ret );
 		$this->mInsertId = $row['id'];
+
 		return $row['id'];
 	}
 
@@ -579,6 +598,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $ret !== false ) {
 			$row = sqlsrv_fetch_array( $ret );
 			sqlsrv_free_stmt( $ret );
+
 			return $row['id'];
 		} else {
 			return $this->nextSequenceValue( $seqName );
@@ -596,6 +616,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( strtolower( $row['DATA_TYPE'] ) != 'text' ) {
 			$size = $row['CHARACTER_MAXIMUM_LENGTH'];
 		}
+
 		return $size;
 	}
 
@@ -622,6 +643,7 @@ class DatabaseMssql extends DatabaseBase {
 					) as sub2
 				) AS sub3
 				WHERE line3 BETWEEN ' . ( $offset + 1 ) . ' AND ' . ( $offset + $limit );
+
 			return $sql;
 		}
 	}
@@ -637,13 +659,15 @@ class DatabaseMssql extends DatabaseBase {
 			$row_count = $matches[4];
 			// offset = $matches[3] OR $matches[6]
 			$offset = $matches[3] or
-				$offset = $matches[6] or
-				$offset = false;
+			$offset = $matches[6] or
+			$offset = false;
 
 			// strip the matching LIMIT clause out
 			$sql = str_replace( $matches[0], '', $sql );
+
 			return $this->limitResult( $sql, $row_count, $offset );
 		}
+
 		return $sql;
 	}
 
@@ -667,6 +691,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( isset( $server_info['SQLServerVersion'] ) ) {
 			$version = $server_info['SQLServerVersion'];
 		}
+
 		return $version;
 	}
 
@@ -675,6 +700,7 @@ class DatabaseMssql extends DatabaseBase {
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {
 			print "Error in tableExists query: " . $this->getErrors();
+
 			return false;
 		}
 		if ( sqlsrv_fetch( $res ) ) {
@@ -694,6 +720,7 @@ class DatabaseMssql extends DatabaseBase {
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
 			print "Error in fieldExists query: " . $this->getErrors();
+
 			return false;
 		}
 		if ( sqlsrv_fetch( $res ) ) {
@@ -709,12 +736,14 @@ class DatabaseMssql extends DatabaseBase {
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
 			print "Error in fieldInfo query: " . $this->getErrors();
+
 			return false;
 		}
 		$meta = $this->fetchRow( $res );
 		if ( $meta ) {
 			return new MssqlField( $meta );
 		}
+
 		return false;
 	}
 
@@ -762,6 +791,7 @@ class DatabaseMssql extends DatabaseBase {
 			// It may be allowed if you quoted with double quotation marks, but that would break if QUOTED_IDENTIFIER is OFF
 			throw new MWException( "You can't use square brackers in the identifier '$identifier'" );
 		}
+
 		return "[$identifier]";
 	}
 
@@ -825,13 +855,13 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	function encodeBlob( $b ) {
-	// we can't have zero's and such, this is a simple encoding to make sure we don't barf
+		// we can't have zero's and such, this is a simple encoding to make sure we don't barf
 		return base64_encode( $b );
 	}
 
 	function decodeBlob( $b ) {
-	// we can't have zero's and such, this is a simple encoding to make sure we don't barf
-	return base64_decode( $b );
+		// we can't have zero's and such, this is a simple encoding to make sure we don't barf
+		return base64_decode( $b );
 	}
 
 	/**
@@ -868,6 +898,7 @@ class DatabaseMssql extends DatabaseBase {
 		// We can't separate explicit JOIN clauses with ',', use ' ' for those
 		$straightJoins = !empty( $ret ) ? implode( ',', $ret ) : "";
 		$otherJoins = !empty( $retJOIN ) ? implode( ' ', $retJOIN ) : "";
+
 		// Compile our final table clause
 		return implode( ' ', array( $straightJoins, $otherJoins ) );
 	}
@@ -951,7 +982,6 @@ class DatabaseMssql extends DatabaseBase {
 	public function getInfinity() {
 		return '3000-01-31 00:00:00.000';
 	}
-
 } // end DatabaseMssql class
 
 /**
@@ -961,6 +991,7 @@ class DatabaseMssql extends DatabaseBase {
  */
 class MssqlField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable, $type;
+
 	function __construct( $info ) {
 		$this->name = $info['COLUMN_NAME'];
 		$this->tablename = $info['TABLE_NAME'];
@@ -1014,11 +1045,11 @@ class MssqlResult {
 		foreach ( $rows as $row ) {
 			if ( $row !== null ) {
 				foreach ( $row as $k => $v ) {
-					if ( is_object( $v ) && method_exists( $v, 'format' ) ) {// DateTime Object
+					if ( is_object( $v ) && method_exists( $v, 'format' ) ) { // DateTime Object
 						$row[$k] = $v->format( "Y-m-d\TH:i:s\Z" );
 					}
 				}
-				$this->mRows[] = $row;// read results into memory, cursors are not supported
+				$this->mRows[] = $row; // read results into memory, cursors are not supported
 			}
 		}
 		$this->mRowCount = count( $this->mRows );
@@ -1036,6 +1067,7 @@ class MssqlResult {
 				}
 			}
 		}
+
 		return $obj;
 	}
 
@@ -1067,6 +1099,7 @@ class MssqlResult {
 		}
 
 		$this->mCursor++;
+
 		return $ret;
 	}
 
@@ -1088,6 +1121,7 @@ class MssqlResult {
 
 	public function fieldname( $nr ) {
 		$arrKeys = array_keys( $this->mRows[0] );
+
 		return $arrKeys[$nr];
 	}
 
@@ -1193,6 +1227,7 @@ class MssqlResult {
 			default:
 				$strType = $intType;
 		}
+
 		return $strType;
 	}
 

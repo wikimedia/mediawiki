@@ -79,6 +79,7 @@ SQL;
 		$n->conname = $row->conname;
 		$n->has_default = ( $row->atthasdef === 't' );
 		$n->default = $row->adsrc;
+
 		return $n;
 	}
 
@@ -113,6 +114,7 @@ SQL;
 	function conname() {
 		return $this->conname;
 	}
+
 	/**
 	 * @since 1.19
 	 */
@@ -123,7 +125,6 @@ SQL;
 			return false;
 		}
 	}
-
 }
 
 /**
@@ -181,7 +182,6 @@ class PostgresTransactionState {
 					}
 					$old = next( $this->mCurrentState );
 					$new = next( $this->mNewState );
-
 				}
 			}
 		}
@@ -224,8 +224,8 @@ class SavepointPostgres {
 		$this->didbegin = false;
 		/* If we are not in a transaction, we need to be for savepoint trickery */
 		if ( !$dbw->trxLevel() ) {
-				$dbw->begin( "FOR SAVEPOINT" );
-				$this->didbegin = true;
+			$dbw->begin( "FOR SAVEPOINT" );
+			$this->didbegin = true;
 		}
 	}
 
@@ -247,10 +247,10 @@ class SavepointPostgres {
 		global $wgDebugDBTransactions;
 		if ( $this->dbw->doQuery( $keyword . " " . $this->id ) !== false ) {
 			if ( $wgDebugDBTransactions ) {
-				wfDebug( sprintf ( $msg_ok, $this->id ) );
+				wfDebug( sprintf( $msg_ok, $this->id ) );
 			}
 		} else {
-			wfDebug( sprintf ( $msg_failed, $this->id ) );
+			wfDebug( sprintf( $msg_failed, $this->id ) );
 		}
 	}
 
@@ -296,32 +296,40 @@ class DatabasePostgres extends DatabaseBase {
 	function cascadingDeletes() {
 		return true;
 	}
+
 	function cleanupTriggers() {
 		return true;
 	}
+
 	function strictIPs() {
 		return true;
 	}
+
 	function realTimestamps() {
 		return true;
 	}
+
 	function implicitGroupby() {
 		return false;
 	}
+
 	function implicitOrderby() {
 		return false;
 	}
+
 	function searchableIPs() {
 		return true;
 	}
+
 	function functionalIndexes() {
 		return true;
 	}
 
 	function hasConstraint( $name ) {
 		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" .
-				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
+			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
 		$res = $this->doQuery( $SQL );
+
 		return $this->numRows( $res );
 	}
 
@@ -428,6 +436,7 @@ class DatabasePostgres extends DatabaseBase {
 		foreach ( $vars as $name => $value ) {
 			$s .= "$name='" . str_replace( "'", "\\'", $value ) . "' ";
 		}
+
 		return $s;
 	}
 
@@ -454,22 +463,25 @@ class DatabasePostgres extends DatabaseBase {
 		if ( pg_result_error( $this->mLastResult ) ) {
 			return false;
 		}
+
 		return $this->mLastResult;
 	}
 
 	protected function dumpError() {
-		$diags = array( PGSQL_DIAG_SEVERITY,
-				PGSQL_DIAG_SQLSTATE,
-				PGSQL_DIAG_MESSAGE_PRIMARY,
-				PGSQL_DIAG_MESSAGE_DETAIL,
-				PGSQL_DIAG_MESSAGE_HINT,
-				PGSQL_DIAG_STATEMENT_POSITION,
-				PGSQL_DIAG_INTERNAL_POSITION,
-				PGSQL_DIAG_INTERNAL_QUERY,
-				PGSQL_DIAG_CONTEXT,
-				PGSQL_DIAG_SOURCE_FILE,
-				PGSQL_DIAG_SOURCE_LINE,
-				PGSQL_DIAG_SOURCE_FUNCTION );
+		$diags = array(
+			PGSQL_DIAG_SEVERITY,
+			PGSQL_DIAG_SQLSTATE,
+			PGSQL_DIAG_MESSAGE_PRIMARY,
+			PGSQL_DIAG_MESSAGE_DETAIL,
+			PGSQL_DIAG_MESSAGE_HINT,
+			PGSQL_DIAG_STATEMENT_POSITION,
+			PGSQL_DIAG_INTERNAL_POSITION,
+			PGSQL_DIAG_INTERNAL_QUERY,
+			PGSQL_DIAG_CONTEXT,
+			PGSQL_DIAG_SOURCE_FILE,
+			PGSQL_DIAG_SOURCE_LINE,
+			PGSQL_DIAG_SOURCE_FUNCTION
+		);
 		foreach ( $diags as $d ) {
 			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n", $d, pg_result_error_field( $this->mLastResult, $d ) ) );
 		}
@@ -481,6 +493,7 @@ class DatabasePostgres extends DatabaseBase {
 			/* Check for constraint violation */
 			if ( $errno === '23505' ) {
 				parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
+
 				return;
 			}
 		}
@@ -519,6 +532,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
+
 		return $row;
 	}
 
@@ -532,6 +546,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
+
 		return $row;
 	}
 
@@ -545,6 +560,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError( $this, 'SQL error: ' . htmlspecialchars( pg_last_error( $this->mConn ) ) );
 		}
+
 		return $n;
 	}
 
@@ -552,6 +568,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return pg_num_fields( $res );
 	}
 
@@ -559,6 +576,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return pg_field_name( $res, $n );
 	}
 
@@ -576,6 +594,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return pg_result_seek( $res, $row );
 	}
 
@@ -590,6 +609,7 @@ class DatabasePostgres extends DatabaseBase {
 			return 'No database connection';
 		}
 	}
+
 	function lastErrno() {
 		if ( $this->mLastResult ) {
 			return pg_result_error_field( $this->mLastResult, PGSQL_DIAG_SQLSTATE );
@@ -606,6 +626,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( empty( $this->mLastResult ) ) {
 			return 0;
 		}
+
 		return pg_affected_rows( $this->mLastResult );
 	}
 
@@ -628,6 +649,7 @@ class DatabasePostgres extends DatabaseBase {
 				$rows = $count[1];
 			}
 		}
+
 		return $rows;
 	}
 
@@ -647,6 +669,7 @@ class DatabasePostgres extends DatabaseBase {
 				return $row;
 			}
 		}
+
 		return false;
 	}
 
@@ -709,6 +732,7 @@ __INDEXATTR__;
 		} else {
 			return null;
 		}
+
 		return $a;
 	}
 
@@ -724,6 +748,7 @@ __INDEXATTR__;
 		foreach ( $res as $row ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -858,8 +883,7 @@ __INDEXATTR__;
 	 * @return bool
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array() )
-	{
+		$insertOptions = array(), $selectOptions = array() ) {
 		$destTable = $this->tableName( $destTable );
 
 		if ( !is_array( $insertOptions ) ) {
@@ -889,8 +913,8 @@ __INDEXATTR__;
 		}
 
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-				" SELECT $startOpts " . implode( ',', $varMap ) .
-				" FROM $srcTable $useIndex";
+			" SELECT $startOpts " . implode( ',', $varMap ) .
+			" FROM $srcTable $useIndex";
 
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
@@ -946,6 +970,7 @@ __INDEXATTR__;
 		$res = $this->query( "SELECT nextval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$this->mInsertId = $row[0];
+
 		return $this->mInsertId;
 	}
 
@@ -958,6 +983,7 @@ __INDEXATTR__;
 		$res = $this->query( "SELECT currval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$currval = $row[0];
+
 		return $currval;
 	}
 
@@ -975,6 +1001,7 @@ __INDEXATTR__;
 		} else {
 			$size = $row->size;
 		}
+
 		return $size;
 	}
 
@@ -989,6 +1016,7 @@ __INDEXATTR__;
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
+
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
@@ -1044,8 +1072,8 @@ __INDEXATTR__;
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
 				$output[] = ( '"' != $match[1][0]
-						? $match[1]
-						: stripcslashes( substr( $match[1], 1, -1 ) ) );
+					? $match[1]
+					: stripcslashes( substr( $match[1], 1, -1 ) ) );
 				if ( '},' == $match[3] ) {
 					return $output;
 				}
@@ -1053,6 +1081,7 @@ __INDEXATTR__;
 				$offset = $this->pg_array_parse( $text, $output, $limit, $offset + 1 );
 			}
 		} while ( $limit > $offset );
+
 		return $output;
 	}
 
@@ -1080,6 +1109,7 @@ __INDEXATTR__;
 	function getCurrentSchema() {
 		$res = $this->query( "SELECT current_schema()", __METHOD__ );
 		$row = $this->fetchRow( $res );
+
 		return $row[0];
 	}
 
@@ -1097,7 +1127,9 @@ __INDEXATTR__;
 		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		$schemas = array();
+
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
+
 		return $this->pg_array_parse( $row[0], $schemas );
 	}
 
@@ -1113,7 +1145,9 @@ __INDEXATTR__;
 	function getSearchPath() {
 		$res = $this->query( "SHOW search_path", __METHOD__ );
 		$row = $this->fetchRow( $res );
+
 		/* PostgreSQL returns SHOW values as strings */
+
 		return explode( ",", $row[0] );
 	}
 
@@ -1155,7 +1189,7 @@ __INDEXATTR__;
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path,
-					$this->addIdentifierQuotes( $desired_schema ));
+					$this->addIdentifierQuotes( $desired_schema ) );
 				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desired_schema;
 				wfDebug( "Schema \"" . $desired_schema . "\" added to the search path\n" );
@@ -1195,6 +1229,7 @@ __INDEXATTR__;
 				$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
 			}
 		}
+
 		return $this->numeric_version;
 	}
 
@@ -1218,6 +1253,7 @@ __INDEXATTR__;
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
 		$res = $this->query( $SQL );
 		$count = $res ? $res->numRows() : 0;
+
 		return (bool)$count;
 	}
 
@@ -1253,6 +1289,7 @@ SQL;
 			return null;
 		}
 		$rows = $res->numRows();
+
 		return $rows;
 	}
 
@@ -1264,12 +1301,13 @@ SQL;
 				'schemaname' => $this->getCoreSchema()
 			)
 		);
+
 		return $exists === $rule;
 	}
 
 	function constraintExists( $table, $constraint ) {
 		$SQL = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
-				"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
+			"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
 			$this->addQuotes( $this->getCoreSchema() ),
 			$this->addQuotes( $table ),
 			$this->addQuotes( $constraint )
@@ -1279,6 +1317,7 @@ SQL;
 			return null;
 		}
 		$rows = $res->numRows();
+
 		return $rows;
 	}
 
@@ -1289,6 +1328,7 @@ SQL;
 	function schemaExists( $schema ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_namespace"', 1,
 			array( 'nspname' => $schema ), __METHOD__ );
+
 		return (bool)$exists;
 	}
 
@@ -1299,6 +1339,7 @@ SQL;
 	function roleExists( $roleName ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
 			array( 'rolname' => $roleName ), __METHOD__ );
+
 		return (bool)$exists;
 	}
 
@@ -1314,6 +1355,7 @@ SQL;
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+
 		return pg_field_type( $res, $index );
 	}
 
@@ -1329,6 +1371,7 @@ SQL;
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
 		}
+
 		return pg_unescape_bytea( $b );
 	}
 
@@ -1348,6 +1391,7 @@ SQL;
 		} elseif ( $s instanceof Blob ) {
 			return "'" . $s->fetch( $s ) . "'";
 		}
+
 		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
 	}
 
@@ -1435,6 +1479,7 @@ SQL;
 		$delimiter, $table, $field, $conds = '', $options = array(), $join_conds = array()
 	) {
 		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delimiter ) . ')';
+
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
 	}
 
@@ -1447,11 +1492,11 @@ SQL;
 		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
 			if ( $this->delimiter ) {
 				$this->delimiter = false;
-			}
-			else {
+			} else {
 				$this->delimiter = ';';
 			}
 		}
+
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
@@ -1469,6 +1514,7 @@ SQL;
 		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
 			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
+
 		return ( $row->lockstatus === 't' );
 	}
 
@@ -1492,6 +1538,7 @@ SQL;
 			}
 		}
 		wfDebug( __METHOD__ . " failed to acquire lock\n" );
+
 		return false;
 	}
 
@@ -1505,6 +1552,7 @@ SQL;
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
+
 		return ( $row->lockstatus === 't' );
 	}
 

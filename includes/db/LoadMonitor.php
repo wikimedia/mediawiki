@@ -154,6 +154,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 			if ( mt_rand( 0, $chance ) != 0 ) {
 				unset( $times['timestamp'] ); // hide from caller
 				wfProfileOut( __METHOD__ );
+
 				return $times;
 			}
 			wfIncrStats( 'lag_cache_miss_expired' );
@@ -164,13 +165,14 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		# Cache key missing or expired
 		if ( $wgMemc->add( "$memcKey:lock", 1, 10 ) ) {
 			# Let this process alone update the cache value
-			$unlocker = new ScopedCallback( function() use ( $wgMemc, $memcKey ) {
+			$unlocker = new ScopedCallback( function () use ( $wgMemc, $memcKey ) {
 				$wgMemc->delete( $memcKey );
 			} );
 		} elseif ( is_array( $times ) ) {
 			# Could not acquire lock but an old cache exists, so use it
 			unset( $times['timestamp'] ); // hide from caller
 			wfProfileOut( __METHOD__ );
+
 			return $times;
 		}
 
@@ -191,6 +193,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		unset( $times['timestamp'] ); // hide from caller
 
 		wfProfileOut( __METHOD__ );
+
 		return $times;
 	}
 
@@ -207,6 +210,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		if ( $status['Threads_running'] > $threshold ) {
 			$server = $conn->getProperty( 'mServer' );
 			wfLogDBError( "LB backoff from $server - Threads_running = {$status['Threads_running']}\n" );
+
 			return $status['Threads_connected'];
 		} else {
 			return 0;

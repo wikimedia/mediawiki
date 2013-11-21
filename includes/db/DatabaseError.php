@@ -26,7 +26,6 @@
  * @ingroup Database
  */
 class DBError extends MWException {
-
 	/**
 	 * @var DatabaseBase
 	 */
@@ -129,6 +128,7 @@ class DBConnectionError extends DBError {
 		} else {
 			$message = $fallback;
 		}
+
 		return wfMsgReplaceArgs( $message, $args );
 	}
 
@@ -202,6 +202,7 @@ class DBConnectionError extends DBError {
 
 					// Output cached page with notices on bottom and re-close body
 					echo "{$cache}<hr />{$this->getHTML()}</body></html>";
+
 					return;
 				}
 			} catch ( MWException $e ) {
@@ -246,6 +247,7 @@ class DBConnectionError extends DBError {
 	</p>
 </form>
 EOT;
+
 		return $trygoogle;
 	}
 
@@ -408,12 +410,13 @@ This may indicate a bug in the software.',
 			'databaseerror-function' => 'Function: $1',
 			'databaseerror-error' => 'Error: $1',
 		);
+
 		return $messages[$key];
 	}
-
 }
 
 /**
  * @ingroup Database
  */
-class DBUnexpectedError extends DBError {}
+class DBUnexpectedError extends DBError {
+}
