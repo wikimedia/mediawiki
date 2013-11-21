@@ -1717,7 +1717,6 @@ class FileRepo {
 	 */
 	protected function assertWritableRepo() {}
 
-
 	/**
 	 * Return information about the repository.
 	 *

@@ -67,7 +67,6 @@ class ZipDirectoryReaderTest extends MediaWikiTestCase {
 			'Wrong CD start disk error' );
 	}
 
-
 	public function testCentralDirectoryGap() {
 		$this->readZipAssertError( 'cd-gap.zip', 'zip-bad',
 			'CD gap error' );

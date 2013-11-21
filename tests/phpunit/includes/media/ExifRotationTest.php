@@ -210,7 +210,6 @@ class ExifRotationTest extends MediaWikiTestCase {
 		);
 	}
 
-
 	const TEST_WIDTH = 100;
 	const TEST_HEIGHT = 200;
 

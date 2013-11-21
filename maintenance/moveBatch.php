@@ -99,7 +99,6 @@ class MoveBatch extends Maintenance {
 				continue;
 			}
 
-
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
 			$dbw->begin( __METHOD__ );
 			$err = $source->moveTo( $dest, false, $reason, !$noredirects );

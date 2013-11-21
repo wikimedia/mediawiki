@@ -576,7 +576,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideIsCountable
 	 * @covers WikiPage::isCountable
@@ -677,7 +676,6 @@ just a test
 == foo ==
 more stuff
 ";
-
 
 	public function dataReplaceSection() {
 		//NOTE: assume the Help namespace to contain wikitext

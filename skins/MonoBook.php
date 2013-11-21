@@ -321,5 +321,3 @@ echo $footerEnd;
 <?php
 	}
 } // end of class
-
-

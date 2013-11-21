@@ -394,7 +394,6 @@ abstract class UploadBase {
 		return true;
 	}
 
-
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
@@ -420,7 +419,6 @@ abstract class UploadBase {
 				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
 			}
 		}
-
 
 		$handler = MediaHandler::getHandler( $mime );
 		if ( $handler ) {
@@ -1096,7 +1094,6 @@ abstract class UploadBase {
 		wfProfileOut( __METHOD__ );
 		return false;
 	}
-
 
 	/**
 	 * Check a whitelist of xml encodings that are known not to be interpreted differently

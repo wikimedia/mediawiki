@@ -738,7 +738,6 @@ class ResourceLoader {
 			$blobs = array();
 		}
 
-
 		foreach ( $missing as $name ) {
 			$states[$name] = 'missing';
 		}

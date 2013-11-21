@@ -105,7 +105,6 @@ class LanguageUzTest extends LanguageClassesTestCase {
 		$this->assertConverted( $text, 'uz-cyrl', $msg );
 	}
 
-
 	/** Wrapper for converter::convertTo() method*/
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()->mConverter->convertTo( $text, $variant );

@@ -1134,7 +1134,6 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideFormatDuration
 	 * @covers Language::formatDuration

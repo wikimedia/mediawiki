@@ -787,7 +787,6 @@ abstract class Maintenance {
 			$this->output( "\n" );
 		}
 
-
 		// Script specific parameters not defined on construction by
 		// Maintenance::addDefaultParams()
 		$scriptSpecificParams = array_diff_key(

@@ -527,7 +527,6 @@ class TestFileIterator implements Iterator {
 		return false;
 	}
 
-
 	/**
 	 * Clear section name and its data
 	 */
