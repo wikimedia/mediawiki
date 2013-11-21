@@ -70,6 +70,8 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Support was added for Northern Luri (lrc)
+
 === Other changes in 1.23 ===
 * The rc_type field in the recentchanges table has been superseded by a new
   rc_source field.  The rc_source field is a string representation of the
