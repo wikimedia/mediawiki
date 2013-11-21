@@ -787,7 +787,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getButtons() {
-		$html = '<span class="mw-htmlform-submit-buttons">';
+		$html = '';
 
 		if ( $this->mShowSubmit ) {
 			$attribs = array();
@@ -818,18 +818,18 @@ class HTMLForm extends ContextSource {
 			// but vform wants all elements inside divs to get spaced-out block
 			// styling.
 			if ( $this->isVForm() ) {
-				$html = Html::rawElement( 'div', null, "\n$html\n" );
+				$html = Html::rawElement( 'div', null, "\n$html" ) . "\n";
 			}
 		}
 
 		if ( $this->mShowReset ) {
 			$html .= Html::element(
-					'input',
-					array(
-						'type' => 'reset',
-						'value' => $this->msg( 'htmlform-reset' )->text()
-					)
-				) . "\n";
+				'input',
+				array(
+					'type' => 'reset',
+					'value' => $this->msg( 'htmlform-reset' )->text()
+				)
+			) . "\n";
 		}
 
 		foreach ( $this->mButtons as $button ) {
@@ -850,9 +850,8 @@ class HTMLForm extends ContextSource {
 			$html .= Html::element( 'input', $attrs );
 		}
 
-		$html .= '</span>';
-
-		return $html;
+		return Html::rawElement( 'span',
+			array( 'class' => 'mw-htmlform-submit-buttons' ), "\n$html" );
 	}
 
 	/**
