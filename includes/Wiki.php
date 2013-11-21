@@ -458,6 +458,9 @@ class MediaWiki {
 		try {
 			$this->checkMaxLag();
 			$this->main();
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			}
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );

@@ -78,6 +78,11 @@ DeferredUpdates::doUpdates();
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
 wfProfileOut( 'api.php' );
+
+if ( function_exists( 'fastcgi_finish_request' ) ) {
+	fastcgi_finish_request();
+}
+
 wfLogProfilingData();
 
 // Log the request
