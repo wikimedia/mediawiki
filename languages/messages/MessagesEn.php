@@ -911,7 +911,7 @@ $1',
 'disclaimers'          => 'Disclaimers',
 'disclaimerpage'       => 'Project:General disclaimer',
 'edithelp'             => 'Editing help',
-'edithelppage'         => '//www.mediawiki.org/wiki/Special:MyLanguage/Help:Editing_pages', # do not translate or duplicate this message to other languages
+'edithelppage'         => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Editing_pages', # do not translate or duplicate this message to other languages
 'helppage'             => 'Help:Contents',
 'mainpage'             => 'Main Page',
 'mainpage-description' => 'Main page',
@@ -1081,7 +1081,7 @@ The administrator who locked it offered this explanation: "$3".',
 'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
 'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
 'exception-nologin'             => 'Not logged in',
-'exception-nologin-text'        => 'This page or action requires you to be logged in on this wiki.',
+'exception-nologin-text'        => 'Please [[Special:Userlogin|log in]] to be able to access this page or action.',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1094,7 +1094,7 @@ The administrator who locked it offered this explanation: "$3".',
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomeuser'                     => 'Welcome, $1!',
 'welcomecreation-msg'             => 'Your account has been created.
-Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
+You can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish.',
 'yourname'                        => 'Username:',
 'userlogin-yourname'              => 'Username',
 'userlogin-yourname-ph'           => 'Enter your username',
@@ -1130,7 +1130,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'gotaccount'                      => 'Already have an account? $1.',
 'gotaccountlink'                  => 'Log in',
 'userlogin-resetlink'             => 'Forgotten your login details?',
-'userlogin-resetpassword-link'    => 'Reset your password',
+'userlogin-resetpassword-link'    => 'Forgot your password?',
 'helplogin-url'                   => 'Help:Logging in',
 'userlogin-helplink'              => '[[{{MediaWiki:helplogin-url}}|Help with logging in]]',
 'userlogin-loggedin'              => 'You are already logged in as {{GENDER:$1|$1}}.
@@ -1211,7 +1211,7 @@ continue using your old password.',
 'passwordsent'                    => 'A new password has been sent to the email address registered for "$1".
 Please log in again after you receive it.',
 'blocked-mailpassword'            => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
-'eauthentsent'                    => 'A confirmation email has been sent to the nominated email address.
+'eauthentsent'                    => 'A confirmation email has been sent to the specified email address.
 Before any other email is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.',
 'throttled-mailpassword'          => 'A password reset email has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
 To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hour|$1 hours}}.',
@@ -1224,8 +1224,8 @@ To prevent abuse, only one password reset email will be sent per {{PLURAL:$1|hou
 'mailerror'                       => 'Error sending mail: $1',
 'acct_creation_throttle_hit'      => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
 As a result, visitors using this IP address cannot create any more accounts at the moment.',
-'emailauthenticated'              => 'Your email address was authenticated on $2 at $3.',
-'emailnotauthenticated'           => 'Your email address is not yet authenticated.
+'emailauthenticated'              => 'Your email address was confirmed on $2 at $3.',
+'emailnotauthenticated'           => 'Your email address is not yet confirmed.
 No email will be sent for any of the following features.',
 'noemailprefs'                    => 'Specify an email address in your preferences for these features to work.',
 'emailconfirmlink'                => 'Confirm your email address',
@@ -1704,17 +1704,17 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-suppress-text'     => "Suppression should '''only''' be used for the following cases:
 * Potentially libelous information
 * Inappropriate personal information
-*: ''home addresses and telephone numbers, social security numbers, etc.''",
+*: ''home addresses and telephone numbers, national identification numbers, etc.''",
 'revdelete-legend'            => 'Set visibility restrictions',
-'revdelete-hide-text'         => 'Hide revision text',
+'revdelete-hide-text'         => 'Revision text',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-hide-name'         => 'Hide action and target',
-'revdelete-hide-comment'      => 'Hide edit summary',
-'revdelete-hide-user'         => "Hide editor's username/IP address",
+'revdelete-hide-comment'      => 'Edit summary',
+'revdelete-hide-user'         => "Editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
 'revdelete-radio-same'        => '(do not change)',
-'revdelete-radio-set'         => 'Yes',
-'revdelete-radio-unset'       => 'No',
+'revdelete-radio-set'         => 'Hidden',
+'revdelete-radio-unset'       => 'Visible',
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-log'               => 'Reason:',
@@ -3013,9 +3013,9 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.
 
-			 Your friendly {{SITENAME}} notification system
+Your friendly {{SITENAME}} notification system
 
 --
 To change your email notification settings, visit
@@ -3562,7 +3562,7 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 'allmessagesdefault'            => 'Default message text',
 'allmessagescurrent'            => 'Current message text',
 'allmessagestext'               => 'This is a list of system messages available in the MediaWiki namespace.
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter by customization state:',
@@ -3957,7 +3957,7 @@ By executing it, your system may be compromised.",
 'svg-long-desc'               => 'SVG file, nominally $1 × $2 pixels, file size: $3',
 'svg-long-desc-animated'      => 'Animated SVG file, nominally $1 × $2 pixels, file size: $3',
 'svg-long-error'              => 'Invalid SVG file: $1',
-'show-big-image'              => 'Full resolution',
+'show-big-image'              => 'Original file',
 'show-big-image-preview'      => 'Size of this preview: $1.',
 'show-big-image-other'        => 'Other {{PLURAL:$2|resolution|resolutions}}: $1.',
 'show-big-image-size'         => '$1 × $2 pixels',
@@ -4531,7 +4531,7 @@ $8', # only translate this message to other languages if you have to change it
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
+'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -4845,7 +4845,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-version'                       => '(Version $1)',
 'version-svn-revision'                  => '(r$2)', # only translate this message to other languages if you have to change it
 'version-license'                       => 'License',
-'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'             => "This wiki is powered by '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'              => 'others',
 'version-poweredby-translators'         => 'translatewiki.net translators',
 'version-credits-summary'               => 'We would like to recognize the following persons for their contribution to [[Special:Version|MediaWiki]].',
@@ -4870,7 +4870,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'redirect'            => 'Redirect by file, user, or revision ID',
 'redirect-legend'     => 'Redirect to a file or page',
 'redirect-text'       => '', # do not translate or duplicate this message to other languages
-'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID).',
+'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit'     => 'Go',
 'redirect-lookup'     => 'Lookup:',
 'redirect-value'      => 'Value:',
@@ -4956,8 +4956,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',
-'dberr-problems'    => 'Sorry!
-This site is experiencing technical difficulties.',
+'dberr-problems'    => 'Sorry! This site is experiencing technical difficulties.',
 'dberr-again'       => 'Try waiting a few minutes and reloading.',
 'dberr-info'        => '(Cannot contact the database server: $1)',
 'dberr-info-hidden' => '(Cannot contact the database server)',
