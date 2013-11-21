@@ -407,6 +407,7 @@ $specialPageAliases = array(
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
 	'Export'                    => array( 'Export' ),
+	'ExpandTemplates'           => array( 'ExpandTemplates', 'Expandtemplates' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Filepath'                  => array( 'FilePath' ),
@@ -936,7 +937,7 @@ See [[Special:Version|version page]].',
 'ok'                           => 'OK',
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
-'backlinksubtitle'             => '← $1', # only translate this message to other languages if you have to change it
+'backlinksubtitle'             => 'â†� $1', # only translate this message to other languages if you have to change it
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $1 ($2).',
 'newmessageslink'              => 'new messages',
@@ -975,8 +976,9 @@ See [[Special:Version|version page]].',
 'newsectionheaderdefaultlevel' => '== $1 ==', # do not translate or duplicate this message to other languages
 'red-link-title'               => '$1 (page does not exist)',
 'sort-descending'              => 'Sort descending',
-'sort-ascending'               => 'Sort ascending',
-'tooltip-iwiki'                => '$1 – $2', # only translate this message to other languages if you have to change it
+'sort-ascending'               => 'Sort ascending',-
+'interlanguage-link-title'     => '$1 - $2', # only translate this message to other languages if you have to change it
+'interlanguage-link-title-langonly' => '$1', # do not translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
@@ -1464,10 +1466,10 @@ Please check if you want to create/edit this page.',
 'blocked-notice-logextract'        => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
 'clearyourcache'                   => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes.
-* '''Firefox / Safari:''' Hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''⌘-R'' on a Mac)
-* '''Google Chrome:''' Press ''Ctrl-Shift-R'' (''⌘-Shift-R'' on a Mac)
+* '''Firefox / Safari:''' Hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''âŒ˜-R'' on a Mac)
+* '''Google Chrome:''' Press ''Ctrl-Shift-R'' (''âŒ˜-Shift-R'' on a Mac)
 * '''Internet Explorer:''' Hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''
-* '''Opera:''' Clear the cache in ''Tools → Preferences''",
+* '''Opera:''' Clear the cache in ''Tools â†’ Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new CSS before saving.",
 'userjsyoucanpreview'              => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new JavaScript before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
@@ -1632,8 +1634,8 @@ The reason given by $3 is ''$2''",
 'revision-info'          => 'Revision as of $1 by $2',
 'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)', # do not translate or duplicate this message to other languages
-'previousrevision'       => '← Older revision',
-'nextrevision'           => 'Newer revision →',
+'previousrevision'       => 'â†� Older revision',
+'nextrevision'           => 'Newer revision â†’',
 'currentrevisionlink'    => 'Latest revision',
 'cur'                    => 'cur',
 'next'                   => 'next',
@@ -1946,7 +1948,7 @@ Anyone who knows it will be able to read your watchlist, so do not share it.
 'localtime'                     => 'Local time:',
 'timezoneuseserverdefault'      => 'Use wiki default ($1)',
 'timezoneuseoffset'             => 'Other (specify offset)',
-'timezoneoffset'                => 'Offset¹:',
+'timezoneoffset'                => 'OffsetÂ¹:',
 'servertime'                    => 'Server time:',
 'guesstimezone'                 => 'Fill in from browser',
 'timezoneregion-africa'         => 'Africa',
@@ -3279,7 +3281,7 @@ The latest block log entry is provided below for reference:',
 'isimage'                  => 'file link',
 'whatlinkshere-prev'       => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-links'      => '← links',
+'whatlinkshere-links'      => 'â†� links',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 links',
@@ -3946,27 +3948,27 @@ $1',
 'filedelete-archive-read-only'    => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Older edit',
-'nextdiff'     => 'Newer edit →',
+'previousdiff' => 'â†� Older edit',
+'nextdiff'     => 'Newer edit â†’',
 
 # Media information
 'mediawarning'                => "'''Warning:''' This file type may contain malicious code.
 By executing it, your system may be compromised.",
 'imagemaxsize'                => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'                   => 'Thumbnail size:',
-'widthheight'                 => '$1 × $2', # only translate this message to other languages if you have to change it
-'widthheightpage'             => '$1 × $2, $3 {{PLURAL:$3|page|pages}}',
+'widthheight'                 => '$1 Ã— $2', # only translate this message to other languages if you have to change it
+'widthheightpage'             => '$1 Ã— $2, $3 {{PLURAL:$3|page|pages}}',
 'file-info'                   => 'file size: $1, MIME type: $2',
-'file-info-size'              => '$1 × $2 pixels, file size: $3, MIME type: $4',
-'file-info-size-pages'        => '$1 × $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|page|pages}}',
+'file-info-size'              => '$1 Ã— $2 pixels, file size: $3, MIME type: $4',
+'file-info-size-pages'        => '$1 Ã— $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|page|pages}}',
 'file-nohires'                => 'No higher resolution available.',
-'svg-long-desc'               => 'SVG file, nominally $1 × $2 pixels, file size: $3',
-'svg-long-desc-animated'      => 'Animated SVG file, nominally $1 × $2 pixels, file size: $3',
+'svg-long-desc'               => 'SVG file, nominally $1 Ã— $2 pixels, file size: $3',
+'svg-long-desc-animated'      => 'Animated SVG file, nominally $1 Ã— $2 pixels, file size: $3',
 'svg-long-error'              => 'Invalid SVG file: $1',
 'show-big-image'              => 'Full resolution',
 'show-big-image-preview'      => 'Size of this preview: $1.',
 'show-big-image-other'        => 'Other {{PLURAL:$2|resolution|resolutions}}: $1.',
-'show-big-image-size'         => '$1 × $2 pixels',
+'show-big-image-size'         => '$1 Ã— $2 pixels',
 'file-info-gif-looped'        => 'looped',
 'file-info-gif-frames'        => '$1 {{PLURAL:$1|frame|frames}}',
 'file-info-png-looped'        => 'looped',
@@ -3988,7 +3990,7 @@ By executing it, your system may be compromised.",
 'sp-newimages-showfrom' => 'Show new files starting from $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
+'video-dims'     => '$1, $2 Ã— $3', # only translate this message to other languages if you have to change it
 'seconds-abbrev' => '$1 s', # only translate this message to other languages if you have to change it
 'minutes-abbrev' => '$1 min', # only translate this message to other languages if you have to change it
 'hours-abbrev'   => '$1 h', # only translate this message to other languages if you have to change it
@@ -4216,7 +4218,7 @@ Others will be hidden by default.
 'exif-gpsareainformation'          => 'Name of GPS area',
 'exif-gpsdatestamp'                => 'GPS date',
 'exif-gpsdifferential'             => 'GPS differential correction',
-'exif-coordinate-format'           => '$1° $2′ $3″ $4', # only translate this message to other languages if you have to change it
+'exif-coordinate-format'           => '$1Â° $2â€² $3â€³ $4', # only translate this message to other languages if you have to change it
 'exif-jpegfilecomment'             => 'JPEG file comment',
 'exif-keywords'                    => 'Keywords',
 'exif-worldregioncreated'          => 'World region that the picture was taken in',
@@ -4321,12 +4323,12 @@ $8', # only translate this message to other languages if you have to change it
 
 'exif-orientation-1' => 'Normal',
 'exif-orientation-2' => 'Flipped horizontally',
-'exif-orientation-3' => 'Rotated 180°',
+'exif-orientation-3' => 'Rotated 180Â°',
 'exif-orientation-4' => 'Flipped vertically',
-'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically',
-'exif-orientation-6' => 'Rotated 90° CCW',
-'exif-orientation-7' => 'Rotated 90° CW and flipped vertically',
-'exif-orientation-8' => 'Rotated 90° CW',
+'exif-orientation-5' => 'Rotated 90Â° CCW and flipped vertically',
+'exif-orientation-6' => 'Rotated 90Â° CCW',
+'exif-orientation-7' => 'Rotated 90Â° CW and flipped vertically',
+'exif-orientation-8' => 'Rotated 90Â° CW',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
@@ -4374,10 +4376,10 @@ $8', # only translate this message to other languages if you have to change it
 'exif-lightsource-9'   => 'Fine weather',
 'exif-lightsource-10'  => 'Cloudy weather',
 'exif-lightsource-11'  => 'Shade',
-'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Day white fluorescent (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 â€“ 7100K)',
+'exif-lightsource-13'  => 'Day white fluorescent (N 4600 â€“ 5400K)',
+'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 â€“ 4500K)',
+'exif-lightsource-15'  => 'White fluorescent (WW 3200 â€“ 3700K)',
 'exif-lightsource-17'  => 'Standard light A',
 'exif-lightsource-18'  => 'Standard light B',
 'exif-lightsource-19'  => 'Standard light C',
@@ -4655,8 +4657,8 @@ Please confirm that you really want to recreate this page.",
 'brackets'            => '[$1]', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
-'imgmultipageprev' => '← previous page',
-'imgmultipagenext' => 'next page →',
+'imgmultipageprev' => 'â†� previous page',
+'imgmultipagenext' => 'next page â†’',
 'imgmultigo'       => 'Go!',
 'imgmultigoto'     => 'Go to page $1',
 
@@ -4851,7 +4853,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-version'                       => '(Version $1)',
 'version-svn-revision'                  => '(r$2)', # only translate this message to other languages if you have to change it
 'version-license'                       => 'License',
-'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'             => "This wiki is powered by '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'              => 'others',
 'version-poweredby-translators'         => 'translatewiki.net translators',
 'version-credits-summary'               => 'We would like to recognize the following persons for their contribution to [[Special:Version|MediaWiki]].',
@@ -4891,7 +4893,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'fileduplicatesearch-legend'    => 'Search for a duplicate',
 'fileduplicatesearch-filename'  => 'Filename:',
 'fileduplicatesearch-submit'    => 'Search',
-'fileduplicatesearch-info'      => '$1 × $2 pixel<br />File size: $3<br />MIME type: $4',
+'fileduplicatesearch-info'      => '$1 Ã— $2 pixel<br />File size: $3<br />MIME type: $4',
 'fileduplicatesearch-result-1'  => 'The file "$1" has no identical duplication.',
 'fileduplicatesearch-result-n'  => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 'fileduplicatesearch-noresults' => 'No file named "$1" found.',
@@ -5145,4 +5147,21 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'limitreport-expensivefunctioncount'       => 'Expensive parser function count',
 'limitreport-expensivefunctioncount-value' => '$1/$2', # only translate this message to other languages if you have to change it
 
+# ExpandTemplates
+'expandtemplates'                  => 'Expand templates',
+'expandtemplates-desc'             => '[[Special:ExpandTemplates|Expands templates, parser functions and variables]] to show expanded wikitext and preview rendered page',
+'expand_templates_intro'           => 'This special page takes text and expands all templates in it recursively.
+It also expands supported parser functions like
+<code><nowiki>{{</nowiki>#language:â€¦}}</code> and variables like
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+In fact, it expands pretty much everything in double-braces.',
+'expand_templates_title'           => 'Context title, for {{FULLPAGENAME}}, etc.:',
+'expand_templates_input'           => 'Input text:',
+'expand_templates_output'          => 'Result',
+'expand_templates_xml_output'      => 'XML output',
+'expand_templates_ok'              => 'OK',
+'expand_templates_remove_comments' => 'Remove comments',
+'expand_templates_remove_nowiki'   => 'Suppress <nowiki> tags in result',
+'expand_templates_generate_xml'    => 'Show XML parse tree',
+'expand_templates_preview'         => 'Preview',
 );
