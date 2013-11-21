@@ -1193,18 +1193,26 @@ class LCStoreCDB implements LCStore {
 		if ( !isset( $this->readers[$code] ) ) {
 			$fileName = $this->getFileName( $code );
 
-			if ( !file_exists( $fileName ) ) {
-				$this->readers[$code] = false;
-			} else {
-				$this->readers[$code] = CdbReader::open( $fileName );
+			$this->readers[$code] = false;
+			if ( file_exists( $fileName ) ) {
+				try {
+					$this->readers[$code] = CdbReader::open( $fileName );
+				} catch( CdbException $e ) {
+					wfDebug( __METHOD__ . ": unable to open cdb file for reading" );
+				}
 			}
 		}
 
 		if ( !$this->readers[$code] ) {
 			return null;
 		} else {
-			$value = $this->readers[$code]->get( $key );
-
+			$value = false;
+			try {
+				$value = $this->readers[$code]->get( $key );
+			} catch ( CdbException $e ) {
+				wfDebug( __METHOD__ . ": CdbException caught, error message was "
+					. $e->getMessage() );
+			}
 			if ( $value === false ) {
 				return null;
 			}
@@ -1226,13 +1234,21 @@ class LCStoreCDB implements LCStore {
 			$this->readers[$code]->close();
 		}
 
-		$this->writer = CdbWriter::open( $this->getFileName( $code ) );
+		try {
+			$this->writer = CdbWriter::open( $this->getFileName( $code ) );
+		} catch ( CdbException $e ) {
+			throw new MWException( $e->getMessage() );
+		}
 		$this->currentLang = $code;
 	}
 
 	public function finishWrite() {
 		// Close the writer
-		$this->writer->close();
+		try {
+			$this->writer->close();
+		} catch ( CdbException $e ) {
+			throw new MWException( $e->getMessage() );
+		}
 		$this->writer = null;
 		unset( $this->readers[$this->currentLang] );
 		$this->currentLang = null;
@@ -1242,7 +1258,11 @@ class LCStoreCDB implements LCStore {
 		if ( is_null( $this->writer ) ) {
 			throw new MWException( __CLASS__ . ': must call startWrite() before calling set()' );
 		}
-		$this->writer->set( $key, serialize( $value ) );
+		try {
+			$this->writer->set( $key, serialize( $value ) );
+		} catch ( CdbException $e ) {
+			throw new MWException( $e->getMessage() );
+		}
 	}
 
 	protected function getFileName( $code ) {
