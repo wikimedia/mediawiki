@@ -2248,7 +2248,7 @@ $special: the special page object
   name/URL parameters. Each key maps to an associative array with a 'msg'
   (message key) and a 'default' value.
 
-'SpecialPage_initList': Called when setting up SpecialPage::$mList, use this
+'SpecialPage_initList': Called when setting up SpecialPageFactory::$list, use this
 hook to remove a core special page.
 $list: list (array) of core special pages
 
