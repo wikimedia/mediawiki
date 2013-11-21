@@ -28,14 +28,28 @@
  * Configuration:
  *     sectionsByDB                A map of database names to section names
  *
- *     sectionLoads                A 2-d map. For each section, gives a map of server names to load ratios.
- *                                 For example: array( 'section1' => array( 'db1' => 100, 'db2' => 100 ) )
+ *     sectionLoads                A 2-d map. For each section, gives a map of server names to
+ *                                 load ratios. For example:
+ *                                 array(
+ *                                     'section1' => array(
+ *                                         'db1' => 100,
+ *                                         'db2' => 100
+ *                                     )
+ *                                 )
  *
- *     serverTemplate              A server info associative array as documented for $wgDBservers. The host,
- *                                 hostName and load entries will be overridden.
+ *     serverTemplate              A server info associative array as documented for $wgDBservers.
+ *                                 The host, hostName and load entries will be overridden.
  *
- *     groupLoadsBySection         A 3-d map giving server load ratios for each section and group. For example:
- *                                 array( 'section1' => array( 'group1' => array( 'db1' => 100, 'db2' => 100 ) ) )
+ *     groupLoadsBySection         A 3-d map giving server load ratios for each section and group.
+ *                                 For example:
+ *                                 array(
+ *                                     'section1' => array(
+ *                                         'group1' => array(
+ *                                             'db1' => 100,
+ *                                             'db2' => 100
+ *                                         )
+ *                                     )
+ *                                 )
  *
  *     groupLoadsByDB              A 3-d map giving server load ratios by DB name.
  *
@@ -43,16 +57,19 @@
  *
  *     externalLoads               A map of external storage cluster name to server load map
  *
- *     externalTemplateOverrides   A set of server info keys overriding serverTemplate for external storage
+ *     externalTemplateOverrides   A set of server info keys overriding serverTemplate for external
+ *                                 storage
  *
- *     templateOverridesByServer   A 2-d map overriding serverTemplate and externalTemplateOverrides on a
- *                                 server-by-server basis. Applies to both core and external storage.
+ *     templateOverridesByServer   A 2-d map overriding serverTemplate and
+ *                                 externalTemplateOverrides on a server-by-server basis. Applies
+ *                                 to both core and external storage.
  *
  *     templateOverridesByCluster  A 2-d map overriding the server info by external storage cluster
  *
  *     masterTemplateOverrides     An override array for all master servers.
  *
- *     readOnlyBySection           A map of section name to read-only message. Missing or false for read/write.
+ *     readOnlyBySection           A map of section name to read-only message.
+ *                                 Missing or false for read/write.
  *
  * @ingroup Database
  */
@@ -132,11 +149,16 @@ class LBFactory_Multi extends LBFactory {
 		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {
 			$groupLoads = $this->groupLoadsByDB[$dbName];
 		}
+
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
 		}
 
-		return $this->newLoadBalancer( $this->serverTemplate, $this->sectionLoads[$section], $groupLoads );
+		return $this->newLoadBalancer(
+			$this->serverTemplate,
+			$this->sectionLoads[$section],
+			$groupLoads
+		);
 	}
 
 	/**

@@ -206,8 +206,10 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
 	 *
-	 * @param string $name database name to be used in queries like SELECT foo FROM dbname.table
-	 * @param string $file database file name. If omitted, will be generated using $name and $wgSQLiteDataDir
+	 * @param string $name database name to be used in queries like
+	 *   SELECT foo FROM dbname.table
+	 * @param string $file database file name. If omitted, will be generated
+	 *   using $name and $wgSQLiteDataDir
 	 * @param string $fname calling function name
 	 *
 	 * @return ResultWrapper
@@ -660,7 +662,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return string User-friendly database information
 	 */
 	public function getServerInfo() {
-		return wfMessage( self::getFulltextSearchModule() ? 'sqlite-has-fts' : 'sqlite-no-fts', $this->getServerVersion() )->text();
+		return wfMessage( self::getFulltextSearchModule()
+			? 'sqlite-has-fts'
+			: 'sqlite-no-fts', $this->getServerVersion() )->text();
 	}
 
 	/**
@@ -812,7 +816,11 @@ class DatabaseSqlite extends DatabaseBase {
 			// INT -> INTEGER
 			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\(\s*\d+\s*\)|\b)/i', 'INTEGER', $s );
 			// floating point types -> REAL
-			$s = preg_replace( '/\b(float|double(\s+precision)?)(\s*\(\s*\d+\s*(,\s*\d+\s*)?\)|\b)/i', 'REAL', $s );
+			$s = preg_replace(
+				'/\b(float|double(\s+precision)?)(\s*\(\s*\d+\s*(,\s*\d+\s*)?\)|\b)/i',
+				'REAL',
+				$s
+			);
 			// varchar -> TEXT
 			$s = preg_replace( '/\b(var)?char\s*\(.*?\)/i', 'TEXT', $s );
 			// TEXT normalization
@@ -874,13 +882,19 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return bool|ResultWrapper
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
-		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" . $this->addQuotes( $oldName ) . " AND type='table'", $fname );
+		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" .
+			$this->addQuotes( $oldName ) . " AND type='table'", $fname );
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {
 			throw new MWException( "Couldn't retrieve structure for table $oldName" );
 		}
 		$sql = $obj->sql;
-		$sql = preg_replace( '/(?<=\W)"?' . preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ) ) . '"?(?=\W)/', $this->addIdentifierQuotes( $newName ), $sql, 1 );
+		$sql = preg_replace(
+			'/(?<=\W)"?' . preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ) ) . '"?(?=\W)/',
+			$this->addIdentifierQuotes( $newName ),
+			$sql,
+			1
+		);
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
 				wfDebug( "Table $oldName is virtual, can't create a temporary duplicate.\n" );

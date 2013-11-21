@@ -456,8 +456,9 @@ class ORMRow implements IORMRow {
 
 	/**
 	 * Before removal of an object happens, @see beforeRemove gets called.
-	 * This method loads the fields of which the names have been returned by this one (or all fields if null is returned).
-	 * This allows for loading info needed after removal to get rid of linked data and the like.
+	 * This method loads the fields of which the names have been returned by
+	 * this one (or all fields if null is returned). This allows for loading
+	 * info needed after removal to get rid of linked data and the like.
 	 *
 	 * @since 1.20
 	 *

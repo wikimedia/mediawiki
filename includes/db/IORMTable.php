@@ -62,8 +62,9 @@ interface IORMTable {
 	 * * array
 	 * * blob
 	 *
-	 * TODO: get rid of the id field. Every row instance needs to have
-	 * one so this is just causing hassle at various locations by requiring an extra check for field name.
+	 * @todo Get rid of the id field. Every row instance needs to have one so
+	 *   this is just causing hassle at various locations by requiring an extra
+	 *   check for field name.
 	 *
 	 * @since 1.20
 	 *
@@ -315,14 +316,16 @@ interface IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return String|bool The target wiki, in a form that  LBFactory understands (or false if the local wiki is used)
+	 * @return String|bool The target wiki, in a form that LBFactory
+	 *   understands (or false if the local wiki is used)
 	 */
 	public function getTargetWiki();
 
 	/**
 	 * Set the ID of the any foreign wiki to use as a target for database operations
 	 *
-	 * @param string|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 * @param string|bool $wiki The target wiki, in a form that LBFactory
+	 *   understands (or false if the local wiki shall be used)
 	 *
 	 * @since 1.20
 	 */

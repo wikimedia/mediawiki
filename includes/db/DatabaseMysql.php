@@ -46,7 +46,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !extension_loaded( 'mysql' ) ) {
-			throw new DBConnectionError( $this, "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+			throw new DBConnectionError(
+				$this,
+				"MySQL functions missing, have you compiled PHP with the --with-mysql option?\n"
+			);
 		}
 
 		$connFlags = 0;
