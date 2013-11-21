@@ -610,6 +610,7 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'invalidtitle-unknownnamespace' => 'Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»',
 'exception-nologin' => 'No has iniciat sessió',
 'exception-nologin-text' => 'Aquesta pàgina o acció requereix que iniciïs sessió a aquest wiki.',
+'exception-nologin-text-manual' => 'Si us plau, $1 per poder accedir a aquesta pàgina o acció.',
 
 # Virus scanner
 'virus-badscanner' => "Mala configuració: antivirus desconegut: ''$1''",
@@ -3833,6 +3834,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 
 # Special:SpecialPages
 'specialpages' => 'Pàgines especials',
+'specialpages-note-top' => 'Llegenda',
 'specialpages-note' => '* Pàgines especials normals.
 * <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>
 * <span class="mw-specialpagecached">Pàgines especials en memòria cau (poden ser obsoletes).</span>',

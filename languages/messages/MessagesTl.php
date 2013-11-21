@@ -12,6 +12,7 @@
  * @author Felipe Aira
  * @author Jojit fb
  * @author Kaganer
+ * @author Namayan
  * @author Sky Harbor
  * @author tl.wikipedia.org sysops
  * @author לערי ריינהארט
@@ -2032,7 +2033,7 @@ Pakitandaan lamang na ang iba mga websayt ay maaaring nakakawing sa isang talaks
 'booksources-search-legend' => 'Maghanap ng mapagkukunang aklat',
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => 'Puntahan',
-'booksources-text' => 'Matatagpuan sa ibaba ang isang tala ng mga kawing patungo sa ibang mga websayt na nanininda ng mga bago at gamit na aklat, at maaaring may iba pang impormasyon ito tungkol sa mga aklat na hinahanap mo:',
+'booksources-text' => 'Matatagpuan sa ibaba ang isang tala ng mga kawil patungo sa ibang mga website na nagtitinda ng mga bago at gamit nang aklat, at maaaring may iba pang impormasyon ito tungkol sa mga aklat na hinahanap mo:',
 'booksources-invalid-isbn' => 'Tila mukhang hindi yata katanggap-tanggap ang ibinigay na ISBN; pakisuri kung may mga kamalian ang pagkakasip/pagkakakopya mula sa orihinal na pinagmulan.',
 
 # Special:Log
@@ -2248,7 +2249,7 @@ Tugon at karagdagang tulong:
 'excontentauthor' => "ang nilalaman ay: '$1' (at ang tanging nag-ambag ay si '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => "nilalaman bago nablangko: '$1'",
 'exblank' => 'walang laman ang pahina',
-'delete-confirm' => 'Burahin ang "$1"',
+'delete-confirm' => 'Kaltasin ang "$1"',
 'delete-legend' => 'Burahin',
 'historywarning' => "'''Babala''': May kasaysayan ang pahinang buburahin mo na tinatayang may $1 {{PLURAL:$1|pagbabago|mga pagbabago}}:",
 'confirmdeletetext' => 'Lubos mo nang buburahin ang pahinang ito pati ang kalahatan ng kasaysayan nito.
@@ -2591,8 +2592,8 @@ Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuy
 'proxyblockreason' => 'Hinarang ang IP address mo dahil bukas na proxy ito. Makipag-ugnayan sa iyong tagabigay ng serbisyong Internet o suportang teknikal at ipaalam sa kanila itong seryesong suliranin sa seguridad.',
 'sorbs' => 'DNSBL',
 'sorbsreason' => 'Nakalista ang IP address mo bilang isang bukas na proxy sa DNSBL na ginagamit ng sayt na ito.',
-'sorbs_create_account_reason' => 'Nakatala ang iyong direksiyong IP bilang isang bukas na proxy sa DNSBL na ginagamit ng {{SITENAME}}.
-Hindi ka makakalikha ng kuwenta',
+'sorbs_create_account_reason' => 'Nakatala ang iyong IP address bilang open proxy sa DNSBL na ginagamit ng {{SITENAME}}.
+Hindi ka makakalikha ng account',
 'cant-block-while-blocked' => 'Hindi mo mahahadlangan/mahaharang ang ibang mga tagagamit habang hinahadlangan ka.',
 'cant-see-hidden-user' => 'Ang tagagamit na sinusubukan mong hadlangan ay naharang at naikubli na.
 Dahil wala kang karapatang magkubli ng tagagamit, hindi mo makikita o mababago ang paghadlang sa tagagamit.',
@@ -2740,7 +2741,7 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'allmessagesname' => 'Pangalan',
 'allmessagesdefault' => 'Tinakdang teksto',
 'allmessagescurrent' => 'Kasalukuyang teksto',
-'allmessagestext' => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
+'allmessagestext' => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa namespace ng MediaWiki.
 Pakidalaw ang [https://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [//translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB' => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend' => 'Salain',

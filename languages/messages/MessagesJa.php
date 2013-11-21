@@ -796,7 +796,7 @@ $2',
 ページによっては、ブラウザーのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
 'welcomeuser' => 'ようこそ、$1さん!',
 'welcomecreation-msg' => 'アカウントが作成されました。
-[[Special:Preferences|{{SITENAME}}の個人設定]]の変更も忘れないようにしてください。',
+お好みで[[Special:Preferences|{{SITENAME}}の個人設定]]を変更できます。',
 'yourname' => '利用者名:',
 'userlogin-yourname' => '利用者名',
 'userlogin-yourname-ph' => '利用者名を入力',
@@ -4287,6 +4287,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:SpecialPages
 'specialpages' => '特別ページ',
+'specialpages-note-top' => '凡例',
 'specialpages-note' => '* 通常の特別ページ
 * <span class="mw-specialpagerestricted">制限されている特別ページ</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',

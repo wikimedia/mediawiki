@@ -449,7 +449,8 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 'invalidtitle-knownnamespace' => "Tìtol ch'a va nen bin con lë spassi nominal «$2» e ël test «$3»",
 'invalidtitle-unknownnamespace' => 'Tìtol pa bon con nùmer dë spassi nominal $1 e test «$2» sconossù',
 'exception-nologin' => 'Nen rintrà ant ël sistema',
-'exception-nologin-text' => "Costa pàgina o assion a l'ha damanca ch'a sia rintrà an costa wiki.",
+'exception-nologin-text' => "Për piasì, [[Special:Userlogin|ch'a rintra ant ël sistema]] për podèj acede a costa pàgina o a costa assion.",
+'exception-nologin-text-manual' => "Për piasì, ch'a $1 për podèj acede a costa pàgina o costa assion.",
 
 # Virus scanner
 'virus-badscanner' => "Configurassion falà: antivìrus nen conossù: ''$1''",
@@ -1168,6 +1169,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'mypreferences' => 'Gust',
 'prefs-edits' => 'Nùmer ëd modìfiche fàite:',
 'prefsnologin' => "A l'é ancó pa rintrà ant ël sistema",
+'prefsnologintext2' => "Për piasì, ch'a $1 për definì ij gust d'utent.",
 'changepassword' => 'Cangé la ciav',
 'prefs-skin' => 'Facia',
 'skin-preview' => 'Preuva',
@@ -2203,7 +2205,7 @@ Për contaté l\'editor:
 pòsta eletrònica: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba ch\'as ten sot-euj.
+A-i sarà pì gnun-a notìfica an cas d\'àutre atività se chiel a vìsita nen costa pàgina da colegà. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba ch\'as ten sot-euj.
 
 Comunicassion dël sistema ëd notìfica da {{SITENAME}}
 
@@ -3743,9 +3745,9 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 
 # Special:SpecialPages
 'specialpages' => 'Pàgine Speciaj',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Pàgine speciaj normaj.
-* <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>
-* <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local (a peulo esse veje).</span>',
+* <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other' => 'Àutre pàgine speciaj',
 'specialpages-group-login' => 'Intré ant ël sistema / creé un cont',

@@ -17,6 +17,7 @@
  * @author Gulmammad
  * @author Kaganer
  * @author Khan27
+ * @author Mushviq Abdulla
  * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
@@ -123,6 +124,7 @@ $messages = array(
 'tog-diffonly' => 'Versiyaların müqayisəsi zamanı səhifənin məzmununu göstərmə',
 'tog-showhiddencats' => 'Gizli kateqoriyaları göstər',
 'tog-norollbackdiff' => 'Geri qaytardıqdan sonra, edilmiş dəyişikikləri dəyişikliklər siyahısından sil',
+'tog-useeditwarning' => 'Qeyd edilməmiş dəyişikliyə sahib bir dəyişiklik səhifəsindən çıxarkən məni xəbərdar et',
 
 'underline-always' => 'Həmişə',
 'underline-never' => 'Heç vaxt',
@@ -186,6 +188,18 @@ $messages = array(
 'oct' => 'Oktyabr',
 'nov' => 'Noyabr',
 'dec' => 'Dekabr',
+'january-date' => '$1 Yanvar',
+'february-date' => '$1 Fevral',
+'march-date' => '$1 Mart',
+'april-date' => '$1 Aprel',
+'may-date' => '$1 May',
+'june-date' => '$1 İyun',
+'july-date' => '$1 İyul',
+'august-date' => '$1 Avqust',
+'september-date' => ' $1 Sentyabr',
+'october-date' => '$1 Oktyabr',
+'november-date' => '$1 Noyabr',
+'december-date' => '$1 Dekabr',
 
 # Categories related messages
 'pagecategories' => '$1 {{PLURAL:$1|Kateqoriya|Kateqoriya}}',
@@ -211,6 +225,7 @@ $messages = array(
 'newwindow' => '(yeni pəncərədə açılır)',
 'cancel' => 'Ləğv et',
 'moredotdotdot' => 'Daha...',
+'morenotlisted' => 'Bu siyahı tam deyil.',
 'mypage' => 'Mənim səhifəm',
 'mytalk' => 'Danışıqlarım',
 'anontalk' => 'Bu IP-yə aid müzakirə',
@@ -266,6 +281,7 @@ $messages = array(
 'create-this-page' => 'Bu səhifəni yarat',
 'delete' => 'Sil',
 'deletethispage' => 'Bu səhifəni sil',
+'undeletethispage' => 'Bu səhifənin silmə əməliyyatını geri qaytar',
 'undelete_short' => '$1 {{PLURAL:$1|dəyişikliyi|dəyişiklikləri}} bərpa et',
 'viewdeleted_short' => '{{PLURAL:$1|bir silinmiş redaktəyə|$1 silinmiş redaktəyə}}',
 'protect' => 'Mühafizə et',
@@ -343,6 +359,10 @@ Bax: [[Special:Version|Versiyalar]].',
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',
 'newmessageslink' => 'yeni ismarıclar',
 'newmessagesdifflink' => 'Sonuncu və əvvəlki versiya arasındakı fərq',
+'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başqa bir istifadəçidən|$3 istifadəçidən}} $1 var ($2).',
+'youhavenewmessagesmanyusers' => 'Bir çox istifadəçidən $1 var ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',
+'newmessagesdifflinkplural' => 'son {{PLURAL:$1|dəyişiklik|dəyişikliklər}}',
 'youhavenewmessagesmulti' => '"$1"da yeni mesajınız var.',
 'editsection' => 'redaktə',
 'editold' => 'redaktə',
