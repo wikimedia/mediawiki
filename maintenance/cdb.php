@@ -75,7 +75,10 @@ do {
 			}
 			$file = $args[0];
 			print "Loading cdb file $file...";
-			$fileHandle = CdbReader::open( $file );
+			try {
+				$fileHandle = CdbReader::open( $file );
+			} catch( CdbException $e ) {}
+
 			if ( !$fileHandle ) {
 				print "not a cdb file or unable to read it\n";
 			} else {
@@ -91,7 +94,11 @@ do {
 				print "Need to specify a key, Luke\n";
 				break;
 			}
-			$res = $fileHandle->get( $args[0] );
+			try {
+				$res = $fileHandle->get( $args[0] );
+			} catch ( CdbException $e ) {
+				print "Unable to read key from file\n";
+			}
 			if ( $res === false ) {
 				print "No such key/value pair\n";
 			} elseif ( is_string( $res ) ) {
