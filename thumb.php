@@ -101,6 +101,10 @@ function wfThumbHandle404() {
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
 
+	// Used when redirecting because the image has been moved.
+	// Hopefully this helps avoiding cache fragmentation.
+	$oldParams = $params;
+
 	$section = new ProfileSection( __METHOD__ );
 
 	$headers = array(); // HTTP headers to send
@@ -183,7 +187,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img->exists() ) {
-		$redirectedLocation = false;
+		$targetFile = $redirTarget = false;
 		if ( !$isTemp ) {
 			// Check for file redirect
 			// Since redirects are associated with pages, not versions of files,
@@ -192,16 +196,18 @@ function wfStreamThumb( array $params ) {
 			if ( $possRedirFile && !is_null( $possRedirFile->getRedirected() ) ) {
 				$redirTarget = $possRedirFile->getName();
 				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
-				if ( $targetFile->exists() ) {
-					$newThumbName = $targetFile->thumbName( $params );
-					if ( $isOld ) {
-						$newThumbUrl = $targetFile->getArchiveThumbUrl(
-							$bits[0] . '!' . $targetFile->getName(), $newThumbName );
-					} else {
-						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
-					}
-					$redirectedLocation = wfExpandUrl( $newThumbUrl, PROTO_CURRENT );
+				if ( !$targetFile->exists() ) {
+					$targetFile = false;
 				}
+			}
+		}
+
+		$redirectedLocation = false;
+		if ( $targetFile ) {
+			$oldParams['f'] = $redirTarget;
+			$output = $targetFile->transform($oldParams);
+			if ( $output ) {
+				$redirectedLocation = $output->getUrl();
 			}
 		}
 
