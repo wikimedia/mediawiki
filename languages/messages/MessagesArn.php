@@ -21,8 +21,8 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Miñcewirilpe lasun',
 'tog-justify' => 'Xvrvmpe cijkantvkun',
-'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün (JavaScript duamyengey)',
-'tog-editondblclick' => 'Wirin pakina epu klik mew (JavaScript)',
+'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün',
+'tog-editondblclick' => 'Wirin pakina epu klik mew',
 'tog-rememberpassword' => 'Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})',
 
 'underline-always' => 'Rumel',
@@ -432,7 +432,7 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'powersearch-field' => 'Kintun',
 
 # Preferences page
-'mypreferences' => 'Tami dullin',
+'mypreferences' => 'Dullin',
 'prefs-edits' => 'Rakin Wirin:',
 'prefsnologin' => 'Mülelay Konün',
 'skin-preview' => 'Pen chum müley',
@@ -909,7 +909,7 @@ Ka dungu ellkangeay wünedullin reke.
 
 # External editor support
 'edit-externally' => 'Kümeelün tüfachi eltukawün wekun küdauwe mew',
-'edit-externally-help' => '(Pen feychi [//www.mediawiki.org/wiki/Manual:External_editors adtukünun chumngechi pünengeael]  doy dungungeam)',
+'edit-externally-help' => '(Pen feychi [https://www.mediawiki.org/wiki/Manual:External_editors adtukünun chumngechi pünengeael]  doy dungungeam)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kom',

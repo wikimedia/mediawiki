@@ -1299,7 +1299,7 @@ Altri va esser ocultat per contumacie.
 
 # External editor support
 'edit-externally' => 'Redacter ti file usant un aplication extern',
-'edit-externally-help' => '(Vider li [//www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu information)',
+'edit-externally-help' => '(Vider li [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omni',

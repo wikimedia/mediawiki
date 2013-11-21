@@ -68,6 +68,7 @@
  * @author Lejonel
  * @author Li-sung
  * @author Liangent
+ * @author Liuxinyu970226
  * @author Lloffiwr
  * @author MF-Warburg
  * @author Malafaya
@@ -468,7 +469,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
 {{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special page}}',
-'faq' => "FAQ is short for ''frequently asked questions''.",
+'faq' => "FAQ is short for ''frequently asked questions''.
+{{Identical|FAQ}}",
 'faqpage' => '{{doc-important|Do not translate <code>Project:</code> part.}}
 "FAQ" is short for "frequently asked questions".
 
@@ -1361,7 +1363,7 @@ Parameters:
 * $3 - time',
 'emailnotauthenticated' => 'Message in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
 
-It appears after saving your email address but before it has been authenticated.',
+It appears after saving your email address but before you confirm it.',
 'noemailprefs' => 'Message appearing in the "Email options" section of the "User profile" page in [[Special:Preferences|Preferences]], when no user email address has been entered.',
 'emailconfirmlink' => 'Link to [[Special:ConfirmEmail]].
 
@@ -1820,7 +1822,7 @@ See also:
 Parameters:
 * \$1 - number of categories",
 'edittools' => '{{optional}}
-This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
+This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a JavaScript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
 'edittools-upload' => '{{optional}}
 This text will be shown below upload forms. It will default to the contents of edittools.',
 'nocreatetext' => 'Used as error message.
@@ -2228,14 +2230,14 @@ There are three radio buttons in each row, and the captions above each column re
 * {{msg-mw|Revdelete-radio-same}}
 * {{msg-mw|Revdelete-radio-set}}
 * {{msg-mw|Revdelete-radio-unset}}
-{{Identical|Yes}}',
+{{Identical|Hidden}}',
 'revdelete-radio-unset' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
 There are three radio buttons in each row, and the captions above each column read:
 * {{msg-mw|Revdelete-radio-same}}
 * {{msg-mw|Revdelete-radio-set}}
 * {{msg-mw|Revdelete-radio-unset}}
-{{Identical|No}}',
+{{Identical|Visible}}',
 'revdelete-suppress' => 'Option for oversight; used in [[Special:RevisionDelete]].
 
 See also:
@@ -2803,7 +2805,8 @@ See also:
 * {{msg-mw|prefs-help-email-others|help}}
 * {{msg-mw|prefs-changeemail|link title}}',
 'prefs-email' => 'Used as section name in [[Special:Preferences]].',
-'prefs-rendering' => 'Title of tab in [[Special:Preferences]].',
+'prefs-rendering' => 'Title of tab in [[Special:Preferences]].
+{{Identical|Appearance}}',
 'saveprefs' => 'Button for saving changes in the preferences page.
 
 See also:
@@ -2821,7 +2824,8 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'prefs-edit-boxsize' => 'Used on [[Special:Preferences]].',
 'rows' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset.
 {{Identical|Row}}',
-'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
+'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset.
+{{Identical|Column}}',
 'searchresultshead' => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
@@ -4201,7 +4205,8 @@ See also:
 'file-anchor-link' => '{{Identical|File}}',
 'filehist' => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
 'filehist-help' => 'In file description page',
-'filehist-deleteall' => 'Link in image description page for admins.',
+'filehist-deleteall' => 'Link in image description page for admins.
+{{Identical|Delete all}}',
 'filehist-deleteone' => 'Link description on file description page to delete an earlier version of a file.
 
 {{Identical|Delete}}',
@@ -5604,6 +5609,7 @@ Example (in English):
 {{Identical|View}}
 {{Identical|Restore}}',
 'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}.
+Display name of link to view a deleted page used on [[Special:Log/delete]].
 {{Identical|View}}',
 'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
@@ -7955,7 +7961,8 @@ Non-animated images use {{msg-mw|svg-long-desc}}.',
 * $1 - the error message
 See also:
 * {{msg-mw|Thumbnail error}}',
-'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image' => 'Displayed under the file on file description pages, when a reduced-size thumbnail of the original file is being displayed.
+{{Identical|Original file}}',
 'show-big-image-preview' => 'Message shown under the image description page thumbnail.
 
 Can be followed by {{msg-mw|Show-big-image-other}}.
@@ -7994,7 +8001,9 @@ This message may be overridden by a more specific message:
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
-'imagelisttext' => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message {{msg-mw|Bydate}}.',
+'imagelisttext' => 'This is text on [[Special:NewImages]]. Parameters:
+* $1 - the number of files
+* $2 - the message {{msg-mw|Bydate}}',
 'newimages-summary' => 'This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.',
 'newimages-legend' => 'Caption of the fieldset for the filter on [[Special:NewImages]]
 
@@ -8570,7 +8579,8 @@ See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-originaltransmissionref' => 'This is basically a job ID. This could help an individual keep track of for what reason the image was created.
 
 See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
-'exif-identifier' => 'A formal identifier for the image. Often this is a URL.',
+'exif-identifier' => 'A formal identifier for the image. Often this is a URL.
+{{Identical|Identifier}}',
 'exif-lens' => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-serialnumber' => 'Serial number of camera. See aux:SerialNumber in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-cameraownername' => 'Who owns the camera.',
@@ -9014,7 +9024,8 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html
 'exif-dc-publisher' => 'One or more publisher of resource.
 {{Identical|Publisher}}',
 'exif-dc-relation' => "Something related to this image. Often a list of URL's to related images.",
-'exif-dc-rights' => 'Copyright information about the image/media given in informal language.',
+'exif-dc-rights' => 'Copyright information about the image/media given in informal language.
+{{Identical|Right}}',
 'exif-dc-source' => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',
 'exif-dc-type' => 'Type or genre of image/media. This might be something like painting or photograph.',
 
@@ -9065,7 +9076,7 @@ Parameters:
 
 # External editor support
 'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
-'edit-externally-help' => '{{doc-important|Please leave the link "<code>http://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
+'edit-externally-help' => '{{doc-important|Please leave the link "<code>https://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
 Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
 
 # 'all' in various places, this might be different for inflected languages
@@ -9578,7 +9589,8 @@ Used in [[Special:Version]], preceeding the Subversion revision numbers of the e
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software' => 'Message shown on [[Special:Version]].
 This message is followed by the list of installed software (MediaWiki, PHP and MySQL).',
-'version-software-product' => 'Shown in [[Special:Version]]',
+'version-software-product' => 'Shown in [[Special:Version]].
+{{Identical|Product}}',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
 'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
@@ -9673,7 +9685,8 @@ It appears that the word 'valid' describes 'tags', not 'change'. It also appears
 'tag-filter-submit' => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 
 {{Identical|Filter}}',
-'tags-title' => 'The title of [[Special:Tags]]',
+'tags-title' => 'The title of [[Special:Tags]].
+{{Identical|Tag}}',
 'tags-intro' => 'Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-tag' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',
 'tags-display-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].',

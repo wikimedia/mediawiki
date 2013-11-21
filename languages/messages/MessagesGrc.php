@@ -2478,7 +2478,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Μεταγράφειν τόδε τὸ ἀρχεῖον χρώμενος ἐξώτερήν τινα ἐφαρμογήν.',
-'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [//www.mediawiki.org/wiki/Manual:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] ἴδε.',
+'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [https://www.mediawiki.org/wiki/Manual:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] ἴδε.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ἅπασαι',

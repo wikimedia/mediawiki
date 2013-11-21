@@ -1348,7 +1348,7 @@ Aorre veld'n worr'n verborr'n.
 
 # External editor support
 'edit-externally' => "Dit bestand in 'n extern programma bewark'n",
-'edit-externally-help' => '(zieë de [//www.mediawiki.org/wiki/Manual:External_editors handleidienge vò instelliengen] vò meê informaosie)',
+'edit-externally-help' => '(zieë de [https://www.mediawiki.org/wiki/Manual:External_editors handleidienge vò instelliengen] vò meê informaosie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aol',

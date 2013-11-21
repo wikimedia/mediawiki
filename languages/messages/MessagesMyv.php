@@ -2108,7 +2108,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # External editor support
 'edit-externally' => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
-'edit-externally-help' => '(Вант [//www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень] седе ламо информациянть кис.)',
+'edit-externally-help' => '(Вант [https://www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень] седе ламо информациянть кис.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'весе',

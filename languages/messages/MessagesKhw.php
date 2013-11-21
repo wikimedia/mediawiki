@@ -1095,8 +1095,8 @@ HTML tags لوڑے.',",
 
 # External editor support
 'edit-externally' => 'ھیہ مسلو ایڈیٹ کورے',
-'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
-(مزید معلوماتو بچے ھیہ لنکہ بوغے [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] )',
+'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
+(مزید معلوماتو بچے ھیہ لنکہ بوغے [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سف',

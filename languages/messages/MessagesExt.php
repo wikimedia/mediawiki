@@ -1793,7 +1793,7 @@ Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'allmessagesdefault' => 'Testu pol defeutu',
 'allmessagescurrent' => 'Testu atual',
 'allmessagestext' => 'Esta es una lista e mensahis del sistema disponibris nel espaciu e nombris MediaWiki:
-Pol favol, vesita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [//translatewiki.net translatewiki.net] si quieis colabutal.',
+Pol favol, vesita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [//translatewiki.net translatewiki.net] si quieis colabutal.',
 'allmessagesnotsupportedDB' => "Nu se puei gastal esta páhina polque '''\$wgUseDatabaseMessages''' está desativau.",
 
 # Thumbnails
@@ -2215,7 +2215,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 # External editor support
 'edit-externally' => 'Eital esti archivu gastandu una apricación esterna',
-'edit-externally-help' => 'Pa mas enholmación, lei las [//www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
+'edit-externally-help' => 'Pa mas enholmación, lei las [https://www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tó',

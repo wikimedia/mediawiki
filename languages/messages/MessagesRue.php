@@ -2666,7 +2666,7 @@ $1',
 'allmessagesdefault' => 'Штандартный текст',
 'allmessagescurrent' => 'Актуалный текст',
 'allmessagestext' => 'Тото є список вшыткых повідомлїнь доступных в просторї назв «MediaWiki».
-Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [//www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [//translatewiki.net сервер server translatewiki.net].',
+Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [https://www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [//translatewiki.net сервер server translatewiki.net].',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages не є підпороване, бо wgUseDatabaseMessages є выпнуте.',
 'allmessages-filter-legend' => 'Філтер',
 'allmessages-filter' => 'Філтер за станом:',
@@ -3396,7 +3396,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Едітовати тот файл хоснувчі екстерну аплікацію',
-'edit-externally-help' => '(Веце інформацій найдете в [//www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
+'edit-externally-help' => '(Веце інформацій найдете в [https://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вшыткы',
@@ -3575,7 +3575,7 @@ $5
 'version-hook-subscribedby' => 'Підписаный на',
 'version-version' => '(Верзія $1)',
 'version-license' => 'Ліценція',
-'version-poweredby-credits' => "Тота вікі біжыть на '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Тота вікі біжыть на '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'іншы',
 'version-credits-summary' => 'Слїдуючім людям бы сьме радо подяковали за їх приспівкы [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki є слободный софтвер; можете го шырити або управляти в згодї з условіями GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (як уважыте) будьяка пізнїша верзія.

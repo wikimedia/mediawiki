@@ -1508,7 +1508,7 @@ Iri suai sinandad do poinlisok.
 
 # External editor support
 'edit-externally' => 'Idito pail diti momoguno do kangkaraja pongi-ngidit poinlabus',
-'edit-externally-help' => '(Intaai [//www.mediawiki.org/wiki/Manual:External_editors karalan-ralanon papasang] do lobi gumu kointalangan)',
+'edit-externally-help' => '(Intaai [https://www.mediawiki.org/wiki/Manual:External_editors karalan-ralanon papasang] do lobi gumu kointalangan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'oinsanan',

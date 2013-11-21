@@ -1189,7 +1189,7 @@ jeleń',
 
 # External editor support
 'edit-externally' => 'Noa rẽt tońge joṛao lạgitte bahre reaḱ koejoń  beoharme',
-'edit-externally-help' => '(Nonḍe ńelme [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] bạṛtite baḍay lạgit)',
+'edit-externally-help' => '(Nonḍe ńelme [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] bạṛtite baḍay lạgit)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Sanam, sanamak, sanamko',

@@ -2228,7 +2228,7 @@ Támogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az ala
 
 # Special:ActiveUsers
 'activeusers' => 'Aktív szerkesztők listája',
-'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik csináltak valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
+'activeusers-intro' => 'Ez a lap azon felhasználók listáját tartalmazza, akik végeztek valamilyen tevékenységet az elmúlt {{PLURAL:$1|egy|$1}} napban.',
 'activeusers-count' => '$1 szerkesztés az utolsó $3 napban',
 'activeusers-from' => 'Szerkesztők listázása a következő névtől kezdve:',
 'activeusers-hidebots' => 'Botok elrejtése',
@@ -2261,7 +2261,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailuser-title-target' => 'E-mail küldése ennek a felhasználónak: $1',
 'emailuser-title-notarget' => 'E-mail küldése a felhasználónak',
 'emailpage' => 'E-mail küldése',
-'emailpagetext' => '{{GENDER:$1|user}} nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'emailpagetext' => '{{GENDER:$1|felhasználó}}nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.',
 'usermailererror' => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject' => '{{SITENAME}} e-mail a következő felhasználótól: „$1”',
@@ -2281,10 +2281,10 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 'emailsubject' => 'Tárgy:',
 'emailmessage' => 'Üzenet:',
 'emailsend' => 'Küldés',
-'emailccme' => 'Az üzenet másolatát küldje el nekem is e-mailben.',
+'emailccme' => 'Az üzenet másolatát küldje el nekem is e-mailben',
 'emailccsubject' => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
 'emailsent' => 'E-mail elküldve',
-'emailsenttext' => 'Az e-mail üzenetedet elküldtem.',
+'emailsenttext' => 'E-mail üzenetedet elküldtük.',
 'emailuserfooter' => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # User Messenger
@@ -2873,7 +2873,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesdefault' => 'Alapértelmezett szöveg',
 'allmessagescurrent' => 'Jelenlegi szöveg',
 'allmessagestext' => 'Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.',
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessages-filter-legend' => 'Elemek szűrése',
 'allmessages-filter' => 'Módosítás állapota:',
@@ -3644,7 +3644,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 
 # External editor support
 'edit-externally' => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => '(Lásd a [//www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
+'edit-externally-help' => '(Lásd a [https://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'bármikor',
@@ -3828,7 +3828,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-hook-subscribedby' => 'Használja',
 'version-version' => '(verzió: $1)',
 'version-license' => 'Licenc',
-'version-poweredby-credits' => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ez a wiki '''[https://www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'mások',
 'version-credits-summary' => 'Szeretnénk elismerni a következő személyek hozzájárulását a [[Special:Version|MediaWiki]] szoftverhez.',
 'version-license-info' => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 

@@ -895,7 +895,7 @@ Lebyi n'wana vuxokoxoko bya finiso byitumbetiwile.
 
 # External editor support
 'edit-externally' => 'Lulamisa fayili leyi utirhisa xilulamisi xale handle ka wiki leyi',
-'edit-externally-help' => '(Vona [//www.mediawiki.org/wiki/Manual:External_editors swiletelo swo sungurisa] leswaku ukuma vuxokoxoko lebyi engetelekeke)',
+'edit-externally-help' => '(Vona [https://www.mediawiki.org/wiki/Manual:External_editors swiletelo swo sungurisa] leswaku ukuma vuxokoxoko lebyi engetelekeke)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hinkwawo',

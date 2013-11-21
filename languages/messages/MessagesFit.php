@@ -681,7 +681,7 @@ Kaikki muut linkit samala rivilä.käsitelthään poikkeuksena, eli toisin sanoe
 
 # External editor support
 'edit-externally' => 'Mookkaa tätä fiiliä käyttämällä eksterniä aplikasuunia',
-'edit-externally-help' => '(Katto [//www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lissää tietoja.)',
+'edit-externally-help' => '(Katto [https://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lissää tietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kaikki',

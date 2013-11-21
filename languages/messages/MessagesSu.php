@@ -2833,7 +2833,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 
 # External editor support
 'edit-externally' => 'Édit koropak ieu migunakeun aplikasi éksternal',
-'edit-externally-help' => 'Baca [//www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
+'edit-externally-help' => 'Baca [https://www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sadaya',

@@ -349,7 +349,7 @@ $messages = array(
 'articlepage' => 'Vider pagina de contento',
 'talk' => 'Discussion',
 'views' => 'Representationes',
-'toolbox' => 'Instrumentario',
+'toolbox' => 'Instrumentos',
 'userpage' => 'Vider pagina del usator',
 'projectpage' => 'Vider pagina de projecto',
 'imagepage' => 'Vider le pagina del file',
@@ -628,8 +628,8 @@ e continuar a usar le contrasigno original.',
 'passwordsent' => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
 Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword' => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
-'eauthentsent' => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail specificate.
-Pro poter reciper altere e-mail a iste conto, tu debe sequer le instructiones in iste e-mail pro confirmar que le conto es realmente tue.',
+'eauthentsent' => 'Un message de confirmation ha essite inviate al adresse de e-mail specificate.
+Pro permitter que le systema invia altere messages a iste adresse, tu debe sequer le instructiones in iste message pro confirmar que le adresse es realmente tue.',
 'throttled-mailpassword' => 'Un message pro le reinitialisation del contrasigno ha jam essite inviate intra le ultime {{PLURAL:$1|hora|$1 horas}}.
 Pro prevenir le abuso, solmente un message pro le reinitialisation del contrasigno essera inviate per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Error de inviar e-mail: $1',
@@ -1071,18 +1071,19 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-confirm' => 'Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politica]].',
 'revdelete-suppress-text' => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
-* Informationes personal inappropriate
+* Information potentialmente diffamatori
+* Information personal inappropriate
 *: ''adresses de domicilio e numeros de telephono, numeros de securitate social, etc.''",
 'revdelete-legend' => 'Definir restrictiones de visibilitate',
-'revdelete-hide-text' => 'Celar le texto del version',
+'revdelete-hide-text' => 'Texto del version',
 'revdelete-hide-image' => 'Celar le contento del file',
 'revdelete-hide-name' => 'Celar action e objectivo',
-'revdelete-hide-comment' => 'Celar le summario del modification',
-'revdelete-hide-user' => 'Celar le nomine de usator o adresse IP del modificator',
+'revdelete-hide-comment' => 'Summario del modification',
+'revdelete-hide-user' => 'Nomine de usator o adresse IP del modificator',
 'revdelete-hide-restricted' => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-radio-same' => '(non cambiar)',
-'revdelete-radio-set' => 'Si',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Celate',
+'revdelete-radio-unset' => 'Visibile',
 'revdelete-suppress' => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-unsuppress' => 'Eliminar restrictiones super versiones restaurate',
 'revdelete-log' => 'Motivo:',
@@ -1499,7 +1500,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-reupload' => 'superscriber iste file existente',
 'action-reupload-shared' => 'supplantar iste file in un repositorio commun',
 'action-upload_by_url' => 'incargar iste file ab un adresse URL',
-'action-writeapi' => 'usar le API de scriptura',
+'action-writeapi' => 'usar le API pro modificar le wiki',
 'action-delete' => 'deler iste pagina',
 'action-deleterevision' => 'deler iste version',
 'action-deletedhistory' => 'vider le historia delite de iste pagina',
@@ -2311,10 +2312,12 @@ Tote le horas es in le fuso horari del servitor.',
 'deletecomment' => 'Motivo:',
 'deleteotherreason' => 'Motivo altere/additional:',
 'deletereasonotherlist' => 'Altere motivo',
-'deletereason-dropdown' => '*Motivos habitual pro deler paginas
-** Requesta del autor
+'deletereason-dropdown' => '*Motivos commun pro deler
+** Spam
+** Vandalismo
 ** Violation de copyright
-** Vandalismo',
+** Requesta del autor
+** Redirection rupte',
 'delete-edit-reasonlist' => 'Modificar le motivos pro deletion',
 'delete-toobig' => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de tal paginas ha essite restringite pro impedir le disruption accidental de {{SITENAME}}.',
@@ -2484,7 +2487,7 @@ $1',
 'contributions' => 'Contributiones del {{GENDER:$1|usator}}',
 'contributions-title' => 'Contributiones del usator $1',
 'mycontris' => 'Contributiones',
-'contribsub2' => 'Pro $1 ($2)',
+'contribsub2' => 'De $1 ($2)',
 'nocontribs' => 'Necun modification ha essite trovate secundo iste criterios.',
 'uctop' => '(ultime)',
 'month' => 'A partir del mense (e anterior):',
@@ -2806,7 +2809,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'allmessagesdefault' => 'Texto predefinite',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext' => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
-Per favor visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
+Per favor visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessages-filter-legend' => 'Filtro',
 'allmessages-filter' => 'Filtrar per stato de personalisation:',
@@ -3122,7 +3125,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'svg-long-desc' => 'File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'svg-long-desc-animated' => 'File SVG animate, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'svg-long-error' => 'File SVG invalide: $1',
-'show-big-image' => 'Plen resolution',
+'show-big-image' => 'File original',
 'show-big-image-preview' => ' Dimension de iste previsualisation: $1.',
 'show-big-image-other' => 'Altere {{PLURAL:$2|resolution|resolutiones}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3576,7 +3579,7 @@ Le alteres essera initialmente celate.
 
 # External editor support
 'edit-externally' => 'Modificar iste file con un programma externe',
-'edit-externally-help' => '(Vide le [//www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
+'edit-externally-help' => '(Vide le [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totes',
@@ -3765,7 +3768,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'version-hook-subscribedby' => 'Subscribite per',
 'version-version' => '(Version $1)',
 'version-license' => 'Licentia',
-'version-poweredby-credits' => "Iste wiki es actionate per '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Iste wiki es actionate per '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'alteres',
 'version-credits-summary' => 'Nos vole recognoscer le sequente personas pro lor contribution a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki es software libere; vos pote redistribuer lo e/o modificar lo sub le conditiones del Licentia Public General de GNU publicate per le Free Software Foundation; version 2 del Licentia, o (a vostre option) qualcunque version posterior.

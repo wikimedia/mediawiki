@@ -715,7 +715,7 @@ $2 द्वारा संपादित आखिरी अवतरण क�
 
 # External editor support
 'edit-externally' => 'बाहरी प्रणाली केरॊ इस्तेमाल करतें इ फ़ाईल कॆ संपादित करॊ.',
-'edit-externally-help' => '(आरू जानकारी लेली[//www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखॊ)',
+'edit-externally-help' => '(आरू जानकारी लेली[https://www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखॊ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सब्भे',

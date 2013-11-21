@@ -37,6 +37,7 @@
  * @author Smeira
  * @author ThomasPusch
  * @author Tlustulimu
+ * @author Umbert'
  * @author Urhixidur
  * @author Yekrats
  * @author Александр Сигачёв
@@ -550,7 +551,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Pri {{SITENAME}}',
 'aboutpage' => 'Project:Enkonduko',
-'copyright' => 'La enhavo estas disponebla laŭ $1.',
+'copyright' => 'La enhavo estas disponebla laŭ $1, se ne estas alia indiko.',
 'copyrightpage' => '{{ns:project}}:Aŭtorrajto',
 'currentevents' => 'Aktualaĵoj',
 'currentevents-url' => 'Project:Aktualaĵoj',
@@ -754,7 +755,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'gotaccount' => "Ĉu vi jam havas konton? '''$1'''.",
 'gotaccountlink' => 'Ensaluti',
 'userlogin-resetlink' => 'Ĉu vi forgesis ensalutajn detalojn?',
-'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝto suben',
+'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝta adreso ĉi-suba',
 'createaccountreason' => 'Kialo:',
 'badretype' => 'La pasvortojn kiujn vi tajpis ne egalas.',
 'userexists' => 'Salutnomo enigita jam estas uzata.
@@ -795,7 +796,7 @@ registrita por "$1".
 Bonvolu saluti denove ricevinte ĝin.',
 'blocked-mailpassword' => 'Via IP adreso estas forbarita de redaktado, kaj tial
 ne rajtas uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
-'eauthentsent' => 'Konfirma retmesaĝo estas sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas la via.',
+'eauthentsent' => 'Konfirma retmesaĝo estis sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas via.',
 'throttled-mailpassword' => 'Retpoŝto kun reŝargita pasvorto estis jam sendita ene de la {{PLURAL:$1|lasta horo|lastaj $1 horoj}}.
 Por preventi misuzon, nur unu reŝargita pasvorto estos sendita dum {{PLURAL:$1|horo|$1 horoj}}.',
 'mailerror' => 'Okazis eraro sendante retpoŝtaĵon: $1',
@@ -1232,8 +1233,8 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 'revdelete-hide-user' => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
 'revdelete-hide-restricted' => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
 'revdelete-radio-same' => '(ne ŝanĝi)',
-'revdelete-radio-set' => 'Jes',
-'revdelete-radio-unset' => 'Ne',
+'revdelete-radio-set' => 'Videbla',
+'revdelete-radio-unset' => 'Kaŝita',
 'revdelete-suppress' => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-unsuppress' => 'Forigi limigojn al restarigitaj versioj',
 'revdelete-log' => 'Kialo:',
@@ -1655,7 +1656,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'action-block' => 'forari ĉi tiun uzanton de redaktado',
 'action-protect' => 'ŝanĝi la protektan nivelon por ĉi tiu paĝo',
 'action-rollback' => 'tuj malfari la redaktojn de la lasta uzanto kiu redaktis specifan paĝon',
-'action-import' => 'importi ĉi tiun paĝon de alia vikio',
+'action-import' => 'enporti paĝojn de alia vikio',
 'action-importupload' => 'importi ĉi tiun paĝon de dosiera alŝuto',
 'action-patrol' => 'marki redakton de alia persono kiel patrolitan',
 'action-autopatrol' => 'fari vian redakton markitan kiel patrolitan',
@@ -2905,7 +2906,7 @@ En la lasta okazo, vi ankaŭ povas uzi ligilon, ekz-e [[{{#Special:Export}}/{{Me
 'allmessagesdefault' => 'Defaŭlta teksto',
 'allmessagescurrent' => 'Nuna teksto',
 'allmessagestext' => 'Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.
-Bonvolu aliri [//www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]
+Bonvolu aliri [https://www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]
 se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.',
 'allmessages-filter-legend' => 'Filtri',
@@ -3681,7 +3682,7 @@ Aliaj estos kaŝitaj defaŭlte.
 
 # External editor support
 'edit-externally' => 'Ŝanĝi ĉi tiun dosieron per ekstera programaro',
-'edit-externally-help' => "(Vidu la [//www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
+'edit-externally-help' => "(Vidu la [https://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ĉiuj',
@@ -3921,7 +3922,7 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-hook-subscribedby' => 'Abonita de',
 'version-version' => '(Versio $1)',
 'version-license' => 'Permesilo',
-'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[//www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
+'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[https://www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others' => 'aliaj',
 'version-credits-summary' => 'Ni ŝatus agnoski la sekvajn personojn pro siaj kontribuoj al [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.

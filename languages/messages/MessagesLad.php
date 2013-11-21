@@ -1185,7 +1185,7 @@ Los otros campos se van a guardar por defecto.
 
 # External editor support
 'edit-externally' => 'Trocar esto arxivo usando una aplicación eksterna',
-'edit-externally-help' => '(Melda las [//www.mediawiki.org/wiki/Manual:External_editors enstruksiones de configuración] -en inglés- para saber más)',
+'edit-externally-help' => '(Melda las [https://www.mediawiki.org/wiki/Manual:External_editors enstruksiones de configuración] -en inglés- para saber más)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',

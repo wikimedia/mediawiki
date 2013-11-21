@@ -1033,7 +1033,7 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # External editor support
 'edit-externally' => "Éditer ch'fichié-lo aveuc eune éstérne aplicachon",
-'edit-externally-help' => '(Vir [//www.mediawiki.org/wiki/Manual:External_editors/fr chés instruccions d’installachon] pou pus d’informachons)',
+'edit-externally-help' => '(Vir [https://www.mediawiki.org/wiki/Manual:External_editors/fr chés instruccions d’installachon] pou pus d’informachons)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tertous',

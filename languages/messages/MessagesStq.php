@@ -2425,7 +2425,7 @@ Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mai
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'Dissen Text',
 'allmessagestext' => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.
-Besäik jädden [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
+Besäik jädden [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
 'allmessagesnotsupportedDB' => 'Disse Spezioalsiede stoant nit tou Ferföigenge, deer ju uur dän Parameter <tt>$wgUseDatabaseMessages</tt> deaktivierd wuude.',
 'allmessages-filter-legend' => 'Sieuwe',
 'allmessages-filter' => 'Sieuwe foar anpaaseden Toustand:',
@@ -3001,7 +3001,7 @@ Wiedere wäide standoardmäitich nit anwiesd.
 
 # External editor support
 'edit-externally' => 'Disse Doatäi mäd n extern Program beoarbaidje',
-'edit-externally-help' => '(Sjuch do [//www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
+'edit-externally-help' => '(Sjuch do [https://www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aal',
@@ -3175,7 +3175,7 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:EditWatchlist/raw|Lieste
 'version-hook-subscribedby' => 'Aproup fon',
 'version-version' => '(Version $1)',
 'version-license' => 'Lizenz',
-'version-poweredby-credits' => "Disse Website nutset '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits' => "Disse Website nutset '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'uur',
 'version-license-info' => "MediaWiki is fräie Software, dät hat dät ju ätter do Bedingengen fon ju truch de Free Software Foundation fereepenlikede ''GNU General Public License'', fääreferdeeld un/ of modifizierd wäide kon. Deerbie kon ju version 2, of ätter oainen Uurdeel, älke näiere Version fon ju Lizenz ferwoand wäide.
 

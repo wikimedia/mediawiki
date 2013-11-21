@@ -2366,7 +2366,7 @@ Nan lainnyo akan tasuruak sacaro baku.
 
 # External editor support
 'edit-externally' => 'Suntiang berkas ko jo aplikasi lua',
-'edit-externally-help' => '(Caliak [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] untuak informasi lanjuiknyo)',
+'edit-externally-help' => '(Caliak [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] untuak informasi lanjuiknyo)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kasadonyo',
@@ -2424,7 +2424,7 @@ Sanak dapek juo [[Special:EditWatchlist|manggunoan panyuntiang standarnyo]].',
 'version-other' => 'Lain-lain',
 'version-version' => '(Versi $1)',
 'version-license' => 'Lisensi',
-'version-poweredby-credits' => "Wiki ko didukuang jo '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-credits' => "Wiki ko didukuang jo '''[https://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others' => 'lainnyo',
 'version-credits-summary' => 'Kami nio mangakui urang-urang ko ateh kontribusinyo pado [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki adolah parangkaik lunak bebas; Sanak dapek mandistribusian dan/atau mamodfikasinyo jo syaraik Lisensi Publik Umum GNU nan dikaluaan dek Free Software Foundation; versi 2 atau nan tabaru.

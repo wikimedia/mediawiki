@@ -1187,7 +1187,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 # External editor support
 'edit-externally' => 'Эн боомгиг һаза заклһар чиклх',
-'edit-externally-help' => '([//www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
+'edit-externally-help' => '([https://www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цуг',

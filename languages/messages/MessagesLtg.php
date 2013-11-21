@@ -105,7 +105,7 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Itymā kategorejā ir vīn dūtuo puslopa.|{{PLURAL:$1|Paruodeita $1 puslopa|Paruodeitys $1 puslopys}} nu $2.}}',
 'listingcontinuesabbrev' => '(tuoļuojums)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'Aproksts',
 'article' => 'Rakstīņs',
@@ -870,7 +870,7 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 
 # External editor support
 'edit-externally' => 'Izmaineit itū failu ar uoreju programu',
-'edit-externally-help' => '(Verīs [//www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
+'edit-externally-help' => '(Verīs [https://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vysys',

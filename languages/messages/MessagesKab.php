@@ -2345,7 +2345,7 @@ Anda tebɣiḍ tesmimeḍ "[[:$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken 
 'allmessagesdefault' => 'Aḍris ameslugen',
 'allmessagescurrent' => 'Aḍris n tura',
 'allmessagestext' => 'Wagi d-umuɣ n inzan yestufan deg tallunt MediaWiki.
-Ẓeṛ [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] dɣa [//translatewiki.net translatewiki.net] ma tebɣiḍ ad ɛiweneḍ i usideg imcettel n MediaWiki.',
+Ẓeṛ [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] dɣa [//translatewiki.net translatewiki.net] ma tebɣiḍ ad ɛiweneḍ i usideg imcettel n MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''\$wgUseDatabaseMessages''' yettwakkes.",
 'allmessages-filter-legend' => 'Tastayt',
 'allmessages-filter-unmodified' => 'Ur yebeqqeḍ ara',
@@ -2841,7 +2841,7 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 
 # External editor support
 'edit-externally' => 'Beddel afaylu-yagi s usnas aberrani.',
-'edit-externally-help' => 'Ẓer [//www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
+'edit-externally-help' => 'Ẓer [https://www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'akk',

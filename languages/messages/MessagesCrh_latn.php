@@ -227,7 +227,7 @@ $messages = array(
 'noindex-category' => 'İndekssiz saifeler',
 'broken-file-category' => 'İçinde bozuq fayl bağlantıları olğan saifeler',
 
-'linkprefix' => '/^(.*?)([a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„]+)$/sDu',
+'linkprefix' => '/^((?>.*(?<![a-zâçğıñöşüA-ZÂÇĞİÑÖŞÜa-яёА-ЯЁ«„])))(.+)$/sDu',
 
 'about' => 'Aqqında',
 'article' => 'Saife',
@@ -1705,7 +1705,7 @@ Jurnalnıñ soñki yazısı aşağıda berilgen:",
 'allmessagesdefault' => 'Original metin',
 'allmessagescurrent' => 'Şimdi qullanılğan metin',
 'allmessagestext' => 'İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.
-MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [//translatewiki.net translatewiki.net] saifelerine ziyaret etiñiz.',
+MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [//translatewiki.net translatewiki.net] saifelerine ziyaret etiñiz.',
 
 # Thumbnails
 'thumbnail-more' => 'Büyüt',
@@ -1947,7 +1947,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 
 # External editor support
 'edit-externally' => 'Fayl üzerinde kompyuteriñizde bulunğan programmalar ile deñişiklikler yapıñız',
-'edit-externally-help' => '(Daa ziyade malümat içün [//www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.)',
+'edit-externally-help' => '(Daa ziyade malümat içün [https://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'episini',

@@ -248,7 +248,7 @@ $messages = array(
 'articlepage' => 'Vëdde la pàgina ëd contnù',
 'talk' => 'Discussion',
 'views' => 'Vìsite',
-'toolbox' => "Bòita dj'utiss",
+'toolbox' => 'Utiss',
 'userpage' => 'Che a varda la pàgina Utent',
 'projectpage' => 'Che a varda la pàgina ëd proget',
 'imagepage' => "Vëdde la pàgina dl'archivi",
@@ -440,7 +440,7 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 'invalidtitle-knownnamespace' => "Tìtol ch'a va nen bin con lë spassi nominal «$2» e ël test «$3»",
 'invalidtitle-unknownnamespace' => 'Tìtol pa bon con nùmer dë spassi nominal $1 e test «$2» sconossù',
 'exception-nologin' => 'Nen rintrà ant ël sistema',
-'exception-nologin-text' => "Costa pàgina o assion a l'ha damanca ch'a sia rintrà an costa wiki.",
+'exception-nologin-text' => "Për piasì, [[Special:Userlogin|ch'a rintra ant ël sistema]] për podèj acede a costa pàgina o a costa assion.",
 
 # Virus scanner
 'virus-badscanner' => "Configurassion falà: antivìrus nen conossù: ''$1''",
@@ -525,8 +525,8 @@ Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a 
 'mailerror' => 'Eror ën mandand via un mëssagi ëd pòsta eletrònica: $1',
 'acct_creation_throttle_hit' => "Dij visitador ëd costa wiki, an dovrand soa adrëssa IP a l'han creà {{PLURAL:$1|1 cont|$1 cont}} ant l'ùltim di, che a l'é tut lòn che as peul fesse ant cost temp.
 Ëd conseguensa, ij visitador che a deuvro costa adrëssa IP a peulo pì nen fé dij cont al moment.",
-'emailauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é stàita autenticà ël $2 a $3.",
-'emailnotauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é pa ancó stàita autenticà.
+'emailauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é stàita confirmà ël $2 a $3.",
+'emailnotauthenticated' => "Soa adrëssa ëd pòsta eletrònica a l'é pa ancó stàita confirmà.
 Për qualsëssìa ëd coste funsion a sarà mandà gnun mëssagi.",
 'noemailprefs' => "Che a specìfica n'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.",
 'emailconfirmlink' => 'Che a conferma soa adrëssa ëd pòsta eletrònica',
@@ -777,39 +777,39 @@ L'aministrator che a l'ha fàit ël blocagi a l'ha dàit costa spiegassion: $1",
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'semiprotectedpagewarning' => "'''Nòta:''' Costa pàgina-sì a l'é stàita blocà an manera che mach j'utent registrà a peulo modifichela.
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
-'cascadeprotectedwarning' => "'''Tension:''' sta pàgina-sì a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che {{PLURAL:\$1|a l'é proteta|a-i intra ant le pàgine protete}} col sistema \"a cascada\":",
+'cascadeprotectedwarning' => "'''Tension:''' Sta pàgina a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che a l'é comprèisa an {{PLURAL:$1|costa pàgina-sì|an coste pàgine-sì}} ch'a l'han ël sistema ëd protession a cascada:",
 'titleprotectedwarning' => "'''Avis: sta pàgina-sì a l'é stàita blocà an manera che a-i é dabzògn ëd [[Special:ListGroupRights|drit specìfich]] për creela.'''
 L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
-'templatesused' => '{{PLURAL:$1|Stamp|Stamp}} dovrà dzora a sta pàgina-sì:',
-'templatesusedpreview' => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta preuva-sì:',
-'templatesusedsection' => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta session-sì:',
+'templatesused' => '{{PLURAL:$1|Stamp}} dovrà da costa pàgina-sì:',
+'templatesusedpreview' => '{{PLURAL:$1|Stamp}} dovrà an costa preuva:',
+'templatesusedsection' => '{{PLURAL:$1|Stamp}} dovrà an costa session-sì:',
 'template-protected' => '(protet)',
 'template-semiprotected' => '(mes-protet)',
 'hiddencategories' => 'Sta pàgina-sì a fa part ëd {{PLURAL:$1|na categorìa|$1 categorìe}} stërmà:',
-'edittools' => "<!-- Test ch'a së s-ciàira sot a ij mòduj ëd mòdifica e 'd càrich d'archivi. -->",
-'nocreatetext' => "Cost sit-sì a l'ha limità la possibilità ëd creé dle pàgine neuve.
+'edittools' => "<!-- Test ch'a së s-ciàira sot a ij mòduj ëd modìfica e 'd carie d'archivi. -->",
+'nocreatetext' => "{{SITENAME}} a l'ha limità la possibilità ëd creé dle pàgine neuve.
 A peul torné andaré e modifiché na pàgina che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",
-'nocreate-loggedin' => "A l'ha pa ij përmess për creé dle pàgine neuve.",
-'sectioneditnotsupported-title' => "La modìfica dla session a l'é nen prevëdùa",
-'sectioneditnotsupported-text' => "La modìfica dla session a l'é nen prevëdùa an costa pàgina ëd modìfica.",
+'nocreate-loggedin' => "A l'ha pa ël përmess ëd creé dle pàgine neuve.",
+'sectioneditnotsupported-title' => "La modìfica ëd session a l'é nen mantnùa",
+'sectioneditnotsupported-text' => "La modìfica ëd na session a l'é nen mantnùa për costa pàgina.",
 'permissionserrors' => 'Eror ant ij përmess',
-'permissionserrorstext' => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che|via che}}:",
-'permissionserrorstext-withaction' => "It l'has nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
-'recreate-moveddeleted-warn' => "A l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
+'permissionserrorstext' => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che}}:",
+'permissionserrorstext-withaction' => "A l'ha nen ij përmess për $2, për {{PLURAL:$1|cost motiv|costi motiv}}:",
+'recreate-moveddeleted-warn' => "'''Atension: a l'é an camin ch'a crea torna na pàgina ch'a l'era stàita scancelà.'''
 
 Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé an sna pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
 'moveddeleted-notice' => "Sta pàgina-sì a l'é stàita scancelà.
-Ël registr ëd le scancelassion e dij tramud a l'é arportà sota për arferiment.",
-'log-fulllog' => 'Varda tut ël registr',
+Ël registr ëd le scancelassion e dij tramud a l'é arportà sì-sota për arferiment.",
+'log-fulllog' => 'Vëdde tut ël registr',
 'edit-hook-aborted' => "Modìfica anulà da n'estension.
-A-i é pa gnun-e spiegassion.",
-'edit-gone-missing' => 'As peul nen modifiché la pàgina.
+A-i é pa dë spiegassion.",
+'edit-gone-missing' => 'As peul nen agiornesse la pàgina.
 A smija che a sia stàita scancelà.',
-'edit-conflict' => "Conflit d'edission.",
-'edit-no-change' => "Toa modìfica a l'é stàita ignorà, përchè a l'é pa stàit fàit gnun cambiament al test.",
-'edit-already-exists' => 'As peul nen creesse la pàgina.
-A esist già.',
+'edit-conflict' => 'Conflit ëd modìfiche.',
+'edit-no-change' => "Soa modìfica a l'é stàita ignorà, përchè gnun cambiament a l'é stàit fàit al test.",
+'edit-already-exists' => "La neuva pàgina a l'ha nen podù creesse.
+A esist già.",
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'content-failed-to-parse' => "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
 'invalid-content-data' => 'Dat dël contnù pa bon',
@@ -822,21 +822,21 @@ A esist già.',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
-'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions ëd parser.
+'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions d'anàlisi sintàtica.
 
-A dovrìa essnie men che {{PLURAL:$2|$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1|$1}}.",
-'expensive-parserfunction-category' => 'Pàgine con tròpe ciamà costose a le fonsion parser',
-'post-expand-template-inclusion-warning' => "'''Atension:''' La dimension djë stamp anserì a l'é tròp gròssa.
+A dovrìa essnie men che {{PLURAL:$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1}}.",
+'expensive-parserfunction-category' => "Pàgine con tròpe ciamà costose ëd fonsion ëd l'analisator sintàtich",
+'post-expand-template-inclusion-warning' => "'''Atension:''' La dimension dj'anseriment dë stamp a l'é tròp gròssa.
 Chèich stamp a saran nen anserì.",
-'post-expand-template-inclusion-category' => "Pàgine andoa la dimension djë stamp anserì a l'é tròpa",
+'post-expand-template-inclusion-category' => 'Pàgine con tròpe anclusion dë stamp',
 'post-expand-template-argument-warning' => "'''Atension:''' Costa pàgina a conten almanch un paràmeter dë stamp che a l'ha n'espansion tròp gròssa.
-Costi paràmeter a son stàit lassà fòra.",
-'post-expand-template-argument-category' => 'Pàgine contenente stamp con paràmeter mancant',
+Costi paràmeter a son stàit ignorà.",
+'post-expand-template-argument-category' => 'Pàgine contenente djë stamp con paràmeter mancant',
 'parser-template-loop-warning' => 'Trovà na liassa dlë stamp: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Passà ël lìmit ëd ricorsion dlë stamp ($1)',
-'language-converter-depth-warning' => 'Passà lìmit ëd profondità dël convertidor ëd lenghe ($1)',
-'node-count-exceeded-category' => "Pàgine anté che ël nùmer ëd grop a l'é sorpassà",
-'node-count-exceeded-warning' => "La pàgina a l'ha sorpassà ël nùmer ëd grop",
+'language-converter-depth-warning' => 'Lìmit ëd profondità dël convertidor ëd lenga sorpassà ($1)',
+'node-count-exceeded-category' => "Pàgine anté che ël nùmer ëd neu a l'é sorpassà",
+'node-count-exceeded-warning' => "La pàgina a l'ha sorpassà ël nùmer ëd neu",
 'expansion-depth-exceeded-category' => "Pàgine anté che la profondeur d'espansion a l'é sorpassà",
 'expansion-depth-exceeded-warning' => "La pàgina a l'ha sorpassà la profondità d'espansion",
 'parser-unstrip-loop-warning' => 'Trovà un sicl nen dësmontàbil',
@@ -935,19 +935,20 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-text' => "Le version scancelà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a j'andrà pì nen.'''
 J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen stàita butà na restrission adissional.",
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
-'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà për cost cas:
-* Anformassion përsonaj nen aproprià
+'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:
+* Anformassion ch'a podrìo esse difamatòrie
+* Anformassion përsonaj inapropià
 *: ''adrësse ëd ca e nùmer ëd teléfon, còdes fiscaj, e via fòrt''",
 'revdelete-legend' => 'But-je coste limitassion-sì a le version scancelà:',
-'revdelete-hide-text' => 'Stërma ël test dla revision',
+'revdelete-hide-text' => 'Test dla revision',
 'revdelete-hide-image' => "Stërma ël contnù dl'archivi",
 'revdelete-hide-name' => 'Stërma assion e oget',
-'revdelete-hide-comment' => 'Stërma ël coment a la modìfica',
-'revdelete-hide-user' => "Stërma lë stranòm ò l'adrëssa IP dël contributor",
+'revdelete-hide-comment' => 'Resumé dla modìfica',
+'revdelete-hide-user' => "Stranòm/adrëssa IP dl'utent",
 'revdelete-hide-restricted' => "Stërmé j'anformassion a j'aministrator tan-me a j'àutri",
 'revdelete-radio-same' => '(cambia pa)',
-'revdelete-radio-set' => 'É!',
-'revdelete-radio-unset' => 'Nò',
+'revdelete-radio-set' => 'Stërmà',
+'revdelete-radio-unset' => 'Visìbil',
 'revdelete-suppress' => "Smon-je pa ij dat gnanca a j'aministrator",
 'revdelete-unsuppress' => "Gava le limitassion da 'nt le version ciapà andaré",
 'revdelete-log' => 'Rason:',
@@ -2122,7 +2123,7 @@ Për contaté l\'editor:
 pòsta eletrònica: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba ch\'as ten sot-euj.
+A-i sarà pì gnun-a notìfica an cas d\'àutre atività se chiel a vìsita nen costa pàgina da colegà. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba ch\'as ten sot-euj.
 
 Comunicassion dël sistema ëd notìfica da {{SITENAME}}
 
@@ -2647,7 +2648,7 @@ Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré
 'allmessagesdefault' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'allmessagescurrent' => 'Test corent',
 'allmessagestext' => "Costa-sì a l'é na lista dij mëssagi ëd sistema disponìbij ant lë spassi nominal MediaWiki.
-Për piasì, ch'a vìsita la [//www.mediawiki.org/wiki/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
+Për piasì, ch'a vìsita la [https://www.mediawiki.org/wiki/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
 'allmessagesnotsupportedDB' => "Sta pàgina-sì a peul pa esse dovrà përchè '''\$wgUseDatabaseMessages''' a l'é stàit disabilità.",
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter' => 'Filtré për stat ëd përsonalisassion:',
@@ -2936,7 +2937,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-desc-animated' => "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-error' => 'Archivi SVG nen bon: $1',
-'show-big-image' => 'Version a arzolussion pien-a',
+'show-big-image' => 'Archivi original',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
 'show-big-image-size' => '$1 × $2 pontin',
@@ -3395,7 +3396,7 @@ J'àutri a saran stërmà coma stàndard.
 
 # External editor support
 'edit-externally' => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "(Lese [//www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
+'edit-externally-help' => "(Lese [https://www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',
@@ -3602,7 +3603,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 'version-hook-subscribedby' => 'A son scrivusse',
 'version-version' => '(Version $1)',
 'version-license' => 'Licensa',
-'version-poweredby-credits' => "Costa wiki-sì a marcia mersì a '''[//www.mediawiki.org/ MediaWiki]''', licensa © 2001-$1 $2.",
+'version-poweredby-credits' => "Costa wiki-sì a marcia grassie a '''[https://www.mediawiki.org/ MediaWiki]''', licensa © 2001-$1 $2.",
 'version-poweredby-others' => 'àutri',
 'version-credits-summary' => 'I tnoma a aringrassié le përson-e sì-dapress për soa contribussion a [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki a l'é un programa lìber; a peul passelo an gir o modifichelo sota le condission dla Licensa Pùblica General GNU coma publicà da la Free Software Foundation; o la version 2 dla licensa o (a soa decision) qualsëssìa version apress.

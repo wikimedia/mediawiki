@@ -784,7 +784,7 @@ en blief joew bestaonde wachtwoord gebruken.',
 'noemailcreate' => 'Je mutten n geldig netpostadres opgeven',
 'passwordsent' => 'Der is n niej wachtwoord verstuurd naor t netpostadres van gebruker "$1". Meld an, a\'j t wachtwoord ontvangen.',
 'blocked-mailpassword' => "Dit IP-adres is eblokkeerd. Dit betekent da'j niet bewarken kunnen en dat {{SITENAME}} joew wachtwoord niet weerummehaolen kan, dit wörden edaon um misbruuk tegen te gaon.",
-'eauthentsent' => "Der is n bevestigingsberich naor t op-egeven netpostadres verstuurd. Veurdat der veerdere berichten naor dit netpostadres verstuurd kunnen wörden, mu'j de instruksies volgen in t toe-esturen berich, um te bevestigen da'j joe eigen daodwarkelik an-emeld hebben.",
+'eauthentsent' => "Der is n bevestigingsbericht naor t op-egeven netpostadres verstuurd. Veurdat der veerdere berichten naor dit netpostadres verstuurd kunnen wörden, mu'j de instruksies volgen in t toe-estuurden bericht, um te bevestigen da'j joew eigen daodwarkelik an-emeld hebben.",
 'throttled-mailpassword' => 'In {{PLURAL:$1|t veurbieje ure|de veurbieje $1 uren}} is der al n wachtwoordherinnering estuurd.
 Um misbruuk te veurkoemen wörden der mer één wachtwoordherinnering per {{PLURAL:$1|ure|$1 uren}} verstuurd.',
 'mailerror' => 'Fout bie t versturen van bericht: $1',
@@ -1200,15 +1200,15 @@ Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en t weerummepl
 * Ongepassen persoonlike informasie
 *: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mer deur.''",
 'revdelete-legend' => 'Stel versiebeparkingen in:',
-'revdelete-hide-text' => 'Verbarg de bewarken tekste',
+'revdelete-hide-text' => 'Versietekste',
 'revdelete-hide-image' => 'Verbarg bestaandsinhoud',
 'revdelete-hide-name' => 'Verbarg logboekaksie',
-'revdelete-hide-comment' => 'Verbarg bewarkingssamenvatting',
-'revdelete-hide-user' => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
+'revdelete-hide-comment' => 'Bewarkingssamenvatting',
+'revdelete-hide-user' => 'Gebrukersnaam/IP-adres van disse gebruker',
 'revdelete-hide-restricted' => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-radio-same' => '(niet wiezigen)',
-'revdelete-radio-set' => 'Ja',
-'revdelete-radio-unset' => 'Nee',
+'revdelete-radio-set' => 'Zichtbaor',
+'revdelete-radio-unset' => 'Verbörgen',
 'revdelete-suppress' => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-unsuppress' => 'Beparkingen veur weerummezetten versies vortdoon',
 'revdelete-log' => 'Reden:',
@@ -2404,10 +2404,12 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da'j de gevolgen begriepen
 'deletecomment' => 'Reden:',
 'deleteotherreason' => 'Aandere/extra reden:',
 'deletereasonotherlist' => 'Aandere reden',
-'deletereason-dropdown' => '*Redens veur t vortdoon van ziejen
+'deletereason-dropdown' => '* Redens veur t vortdoon van ziejen
+** Spam
+** Vandalisme
+** Schending van auteursrechten
 ** Op verzeuk van de auteur
-** Schending van auteursrecht
-** Vandalisme',
+** Ebreuken deurverwiezing',
 'delete-edit-reasonlist' => 'Redens veur t vortdoon bewarken',
 'delete-toobig' => 'Disse zied hef n lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 t Vortdoon van dit soort ziejen is mit rechten bepark um t per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.',
@@ -2874,7 +2876,7 @@ A'j dat leste doon willen dan ku'j oek n verwiezing gebruken, bieveurbeeld [[{{#
 'allmessagesdefault' => 'Standardtekste',
 'allmessagescurrent' => 'De leste versie',
 'allmessagestext' => "Hieronder steet n lieste mit alle systeemteksten in de MediaWiki-naamruumte.
-Kiek oek effen bie [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
+Kiek oek effen bie [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
 'allmessagesnotsupportedDB' => "Disse zied kan niet gebruukt wörden umdat '''\$wgUseDatabaseMessages''' uutezet is.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filtreer op wiezigingen:',
@@ -3619,7 +3621,7 @@ Aandere velden wörden verbörgen.
 
 # External editor support
 'edit-externally' => 'Wiezig dit bestaand mit n extern programma',
-'edit-externally-help' => '(Zie de [//www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
+'edit-externally-help' => '(Zie de [https://www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3800,7 +3802,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].',
 'version-hook-subscribedby' => 'In-eschreven deur',
 'version-version' => '(Versie $1)',
 'version-license' => 'Lisensie',
-'version-poweredby-credits' => "Disse wiki wörden an-estuurd deur '''[//www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
+'version-poweredby-credits' => "Disse wiki wörden an-estuurd deur '''[https://www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
 'version-poweredby-others' => 'aanderen',
 'version-credits-summary' => 'Wulen erkennen grege de volgende personen veur der biedrage an [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zo as epubliceerd deur de Free Software Foundation; of versie 2 van de Lisensie, of - naor eigen wuns - n laotere versie.
@@ -3851,7 +3853,7 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'specialpages-group-pagetools' => 'Ziedhulpmiddels',
 'specialpages-group-wiki' => 'Gegevens en hulpmiddels',
 'specialpages-group-redirects' => 'Deurverwiezende spesiale ziejen',
-'specialpages-group-spam' => 'Hulpmiddels tegen ongewunste bewarkingen',
+'specialpages-group-spam' => 'Spam-hulpmiddels',
 
 # Special:BlankPage
 'blankpage' => 'Lege zied',

@@ -671,7 +671,7 @@ $1',
 'nosuchspecialpage' => 'אין דף מיוחד בשם זה',
 'nospecialpagetext' => '<strong>ביקשתם דף מיוחד שאינו קיים.</strong>
 
-ראו גם את [[Special:SpecialPages|רשימת הדפים המיוחדים התקינים]].',
+ראו את [[Special:SpecialPages|רשימת הדפים המיוחדים התקינים]].',
 
 # General errors
 'error' => 'שגיאה',
@@ -756,7 +756,7 @@ $2',
 'invalidtitle-knownnamespace' => 'כותרת בלתי־תקינה עם מרחב השם "$2" ושם דף "$3"',
 'invalidtitle-unknownnamespace' => 'כותרת בלתי־תקינה עם מרחב שם בלתי־ידוע מספר $1 ושם דף "$2"',
 'exception-nologin' => 'לא בחשבון',
-'exception-nologin-text' => 'כדי לראות את הדף הזה או לבצע את הפעולה הזאת צריך להיכנס לחשבון באתר הוויקי הזה.',
+'exception-nologin-text' => 'אנא [[Special:Userlogin|היכנסו לחשבון]] כדי לראות את הדף הזה או לבצע את הפעולה הזו.',
 
 # Virus scanner
 'virus-badscanner' => "הגדרות שגויות: סורק הווירוסים אינו ידוע: ''$1''",
@@ -769,7 +769,7 @@ $2',
 שימו לב כי ייתכן שדפים אחדים ימשיכו להיות מוצגים כאילו אתם עדיין מחוברים לחשבון עד שתנקו את המטמון של הדפדפן שלכם.",
 'welcomeuser' => 'ברוך בואך, $1!',
 'welcomecreation-msg' => 'חשבונך נוצר.
-נא לא לשכוח להתאים את [[Special:Preferences|העדפות המשתמש]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.',
+באפשרותך להתאים את [[Special:Preferences|ההעדפות]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.',
 'yourname' => 'שם משתמש:',
 'yourpassword' => 'סיסמה:',
 'yourpasswordagain' => 'חזרה על הסיסמה:',
@@ -838,7 +838,7 @@ $2',
 'passwordsent' => 'סיסמה חדשה נשלחה לכתובת הדואר האלקטרוני הרשומה עבור "$1".
 אנא היכנסו חזרה לאתר אחרי שתקבלו אותה.',
 'blocked-mailpassword' => 'כתובת ה־IP שלכם חסומה מעריכה, ולפיכך אינכם מורשים להשתמש באפשרות שחזור הסיסמה כדי למנוע ניצול לרעה של התכונה.',
-'eauthentsent' => 'דוא"ל אימות נשלח לכתובת הדוא"ל שקבעת.
+'eauthentsent' => 'דוא"ל אימות נשלח לכתובת הדוא"ל שצוינה.
 לפני שדברי דוא"ל אחרים יישלחו לחשבון הזה, יהיה עליך לפעול לפי ההוראות בדוא"ל, כדי לאשר שהחשבון אכן שייך לך.',
 'throttled-mailpassword' => 'כבר נשלח דוא"ל לאיפוס הסיסמה ב{{PLURAL:$1|שעה האחרונה|שעתיים האחרונות|־$1 השעות האחרונות}}.
 כדי למנוע ניצול לרעה, יכול להישלח רק דוא"ל אחד כזה בכל {{PLURAL:$1|שעה|שעתיים|$1 שעות}}.',
@@ -846,8 +846,8 @@ $2',
 'acct_creation_throttle_hit' => 'מבקרים באתר זה דרך כתובת ה־IP שלכם כבר יצרו {{PLURAL:$1|חשבון אחד|$1 חשבונות}} ביום האחרון. זהו המקסימום המותר בתקופה זו.
 לפיכך, מבקרים דרך כתובת ה־IP הזו לא יכולים ליצור חשבונות נוספים ברגע זה.',
 'emailauthenticated' => 'כתובת הדוא"ל שלך אומתה ב־$3, $2.',
-'emailnotauthenticated' => 'כתובת הדוא"ל שלכם עדיין לא אושרה.
-לא יישלח אליכם דוא"ל עבור אף אחת מהאפשרויות הבאות.',
+'emailnotauthenticated' => 'כתובת הדוא"ל שלכם עדיין לא אומתה.
+לא יישלח אליכם דוא"ל עבור אף אחת מהתכונות הבאות.',
 'noemailprefs' => 'אנא ציינו כתובת דוא"ל בהעדפות שלכם כדי שתכונות אלה יעבדו.',
 'emailconfirmlink' => 'אישור כתובת הדוא"ל שלך',
 'invalidemailaddress' => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון.
@@ -931,7 +931,7 @@ $2
 
 # Special:ChangeEmail
 'changeemail' => 'שינוי כתובת דוא"ל',
-'changeemail-header' => 'שינוי כתוב דוא"ל של חשבון',
+'changeemail-header' => 'שינוי כתובת הדואר האלקטרוני בחשבון',
 'changeemail-text' => 'מלאו טופס זה כדי לשנות את כתובת הדואר האלקטרוני שלכם. יהיה עליכם למלא סיסמה כדי לאשר את השינוי.',
 'changeemail-no-info' => 'עליכם להיכנס לחשבון כדי לגשת לדף זה ישירות.',
 'changeemail-oldemail' => 'כתובת דוא"ל נוכחית:',
@@ -953,7 +953,7 @@ $2
 'headline_sample' => 'כותרת',
 'headline_tip' => 'כותרת – דרגה 2',
 'nowiki_sample' => 'טקסט לא מעוצב',
-'nowiki_tip' => 'טקסט לא מעוצב (התעלם מסימני ויקי)',
+'nowiki_tip' => 'התעלמות מעיצוב ויקי',
 'image_tip' => 'קובץ המוצג בתוך הדף',
 'media_tip' => 'קישור לקובץ מדיה',
 'sig_tip' => 'חתימה + שעה',
@@ -1260,17 +1260,17 @@ $2
 'revdelete-suppress-text' => "יש להשתמש בהסתרה מלאה '''אך ורק''' במקרים הבאים:
 * מידע שעלול להיות לשון הרע
 * חשיפת מידע אישי
-*: '''כתובות בתים ומספרי טלפון, מספרי ביטוח לאומי, וכדומה'''",
+*: '''כתובות בתים ומספרי טלפון, מספרי זיהוי מדינתיים, וכדומה'''",
 'revdelete-legend' => 'הגדרת הגבלות התצוגה',
-'revdelete-hide-text' => 'הסתרת תוכן הגרסה',
+'revdelete-hide-text' => 'תוכן הגרסה',
 'revdelete-hide-image' => 'הסתרת תוכן הקובץ',
 'revdelete-hide-name' => 'הסתרת הפעולה ודף היעד',
-'revdelete-hide-comment' => 'הסתרת תקציר העריכה',
-'revdelete-hide-user' => 'הסתרת שם המשתמש או כתובת ה־IP של העורך',
+'revdelete-hide-comment' => 'תקציר העריכה',
+'revdelete-hide-user' => 'שם המשתמש או כתובת ה־IP של העורך',
 'revdelete-hide-restricted' => 'הסתרת המידע גם ממפעילי המערכת',
 'revdelete-radio-same' => '(ללא שינוי)',
-'revdelete-radio-set' => 'כן',
-'revdelete-radio-unset' => 'לא',
+'revdelete-radio-set' => 'מוסתר',
+'revdelete-radio-unset' => 'גלוי',
 'revdelete-suppress' => 'הסתרת המידע גם ממפעילי המערכת',
 'revdelete-unsuppress' => 'הסרת הגבלות בגרסאות המשוחזרות',
 'revdelete-log' => 'סיבה:',
@@ -1528,9 +1528,9 @@ $1",
 'gender-unknown' => 'איני רוצה לומר',
 'gender-male' => 'הוא עורך דפים בוויקי',
 'gender-female' => 'היא עורכת דפים בוויקי',
-'prefs-help-gender' => 'אין חובה למלא את ההעדפה הזאת.
-התכנה משתמשת במידע הזה כדי לפנות אליך או אלייך ולהזכיר אותך לאחרים במין הדקדוקי הנכון.
-המידע הזה יהיה ציבורי.',
+'prefs-help-gender' => 'אין חובה למלא העדפה זו.
+המערכת משתמשת במידע זה כדי לפנות אליך/אלייך ולציין את שם המשתמש שלך במין הדקדוקי הנכון.
+המידע יהיה ציבורי.',
 'email' => 'דוא"ל',
 'prefs-help-realname' => 'השם האמיתי הוא אופציונאלי.
 אם תבחרו לספקו, הוא ישמש לייחוס עבודתכם אליכם.',
@@ -2160,7 +2160,8 @@ $1',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
 כל שורה מכילה קישור לשתי ההפניות הראשונות, וכן את היעד של ההפניה השנייה, שהיא לרוב היעד ה"אמיתי" של ההפניה, שההפניה הראשונה אמורה להצביע אליו.
 פריטים <del>מחוקים</del> כבר תוקנו.',
-'double-redirect-fixed-move' => '[[$1]] הועבר. כעת הוא הפניה לדף [[$2]].',
+'double-redirect-fixed-move' => '[[$1]] הועבר.
+כעת זו הפניה לדף [[$2]].',
 'double-redirect-fixed-maintenance' => 'תיקון הפניה כפולה מ[[$1]] ל[[$2]].',
 'double-redirect-fixer' => 'מתקן הפניות',
 
@@ -2448,9 +2449,9 @@ $PAGEINTRO $NEWPAGE
 בדואר האלקטרוני: $PAGEEDITOR_EMAIL
 באתר: $PAGEEDITOR_WIKI
 
-לא תהיינה הודעות על פעולות נוספות עד שתבקרו בדף. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
+לא תהיינה הודעות על פעולות נוספות עד שתבקרו בדף כשאתם מחוברים לחשבון. באפשרותכם גם לאפס את דגלי ההודעות בכל הדפים שברשימת המעקב.
 
-             מערכת ההודעות של {{SITENAME}}
+מערכת ההודעות של {{SITENAME}}
 
 --
 כדי לשנות את ההגדרות של הודעות הדוא"ל הנשלחות אליכם, בקרו בדף
@@ -3294,7 +3295,7 @@ $1',
 'svg-long-desc' => 'קובץ SVG, הגודל המקורי: <span dir="ltr">$1 × $2</span> פיקסלים, גודל הקובץ: $3',
 'svg-long-desc-animated' => 'קובץ SVG מונפש, הגודל המקורי: <span dir="ltr">$1 × $2</span> פיקסלים, גודל הקובץ: $3',
 'svg-long-error' => 'קובץ SVG לא תקין: $1',
-'show-big-image' => 'תמונה ברזולוציה גבוהה יותר',
+'show-big-image' => 'לקובץ המקורי',
 'show-big-image-preview' => 'גודל תצוגה זו: $1.',
 'show-big-image-other' => '{{PLURAL:$2|רזולוציה אחרת|רזולוציות אחרות}}: $1.',
 'show-big-image-size' => '<span dir="ltr">$1 × $2</span> פיקסלים',
@@ -3545,6 +3546,10 @@ $1',
 'exif-compression-2' => 'קידוד הופמן מואתם חד-מימדי לאורך ריצה CCITT קבוצה 3',
 'exif-compression-3' => 'קידוד פקס CCITT קבוצה 3',
 'exif-compression-4' => 'קידוד פקס CCITT קבוצה 4',
+'exif-compression-6' => 'JPEG (ישן)',
+'exif-compression-8' => 'Deflate (של Adobe)',
+'exif-compression-32773' => 'PackBits (של Macintosh RLE)',
+'exif-compression-32946' => 'Deflate (של PKZIP)',
 
 'exif-copyrighted-true' => 'מוגן בזכויות יוצרים',
 'exif-copyrighted-false' => 'מצב זכויות היוצרים לא הוגדר',
@@ -3728,6 +3733,8 @@ $1',
 
 'exif-isospeedratings-overflow' => 'מעל 65535',
 
+'exif-maxaperturevalue-value' => '$1 APEX (יחידות: f/$2)',
+
 'exif-iimcategory-ace' => 'אמנויות, תרבות ובידור',
 'exif-iimcategory-clj' => 'פשע ומשפט',
 'exif-iimcategory-dis' => 'אסונות ותאונות',
@@ -3753,7 +3760,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'עריכת קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => '(ראו את [//www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
+'edit-externally-help' => '(ראו את [https://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'הכול',
@@ -4000,7 +4007,7 @@ $5
 'version-hook-subscribedby' => 'הפונקציה הרושמת',
 'version-version' => '(גרסה $1)',
 'version-license' => 'רישיון',
-'version-poweredby-credits' => "אתר הוויקי הזה מופעל על ידי '''[//www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
+'version-poweredby-credits' => "אתר הוויקי הזה מופעל על ידי '''[https://www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
 'version-poweredby-others' => 'אחרים',
 'version-credits-summary' => 'אנו רוצים להודות לאנשים הבאים על תרומתם ל[[Special:Version|מדיה־ויקי]].',
 'version-license-info' => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.

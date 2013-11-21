@@ -1631,7 +1631,7 @@ In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{#Sp
 'allmessagesdefault' => 'Testhu pridifiniddu',
 'allmessagescurrent' => 'Testhu attuari',
 'allmessagestext' => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki.
-Pa piazeri utirizà [//www.mediawiki.org/wiki/Localisation MediaWiki Lucarizazioni] e [//translatewiki.net translatewiki.net] pa l'althri traduzioni.",
+Pa piazeri utirizà [https://www.mediawiki.org/wiki/Localisation MediaWiki Lucarizazioni] e [//translatewiki.net translatewiki.net] pa l'althri traduzioni.",
 'allmessagesnotsupportedDB' => "Chistha pàgina nò è supporthadda parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
 'allmessages-filter-unmodified' => 'Nò mudifiggaddi',
 'allmessages-filter-all' => 'Tutti',
@@ -1905,7 +1905,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 
 # External editor support
 'edit-externally' => 'Mudìfigga chistu file usendi un prugramma esthernu',
-'edit-externally-help' => "Pa maggiori infuimmazioni cunsulthà l'[//www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
+'edit-externally-help' => "Pa maggiori infuimmazioni cunsulthà l'[https://www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutti',

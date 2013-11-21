@@ -17,6 +17,7 @@
  * @author Gulmammad
  * @author Kaganer
  * @author Khan27
+ * @author Mushviq Abdulla
  * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
@@ -209,13 +210,14 @@ $messages = array(
 'noindex-category' => 'İndeksləşdirilməyən səhifələr',
 'broken-file-category' => 'İşləməyən fayl keçidləri olan səhifələr',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'Haqqında',
 'article' => 'Mündəricat',
 'newwindow' => '(yeni pəncərədə açılır)',
 'cancel' => 'Ləğv et',
 'moredotdotdot' => 'Daha...',
+'morenotlisted' => 'Bu siyahı tam deyil.',
 'mypage' => 'Mənim səhifəm',
 'mytalk' => 'Danışıqlarım',
 'anontalk' => 'Bu IP-yə aid müzakirə',
@@ -349,6 +351,10 @@ Bax: [[Special:Version|Versiyalar]].',
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',
 'newmessageslink' => 'yeni ismarıclar',
 'newmessagesdifflink' => 'Sonuncu və əvvəlki versiya arasındakı fərq',
+'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başqa bir istifadəçidən|$3 istifadəçidən}} $1 var ($2).',
+'youhavenewmessagesmanyusers' => 'Bir çox istifadəçidən $1 var ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',
+'newmessagesdifflinkplural' => 'son {{PLURAL:$1|dəyişiklik|dəyişikliklər}}',
 'youhavenewmessagesmulti' => '"$1"da yeni mesajınız var.',
 'editsection' => 'redaktə',
 'editsection-brackets' => '[$1]',
@@ -829,8 +835,8 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-hide-user' => 'Redaktə müəllifinin istifadəçi adını/IP ünvanını gizlə',
 'revdelete-hide-restricted' => 'Məlumatları idarəçilərdən də gizlə',
 'revdelete-radio-same' => '(dəyişdirmə)',
-'revdelete-radio-set' => 'Bəli',
-'revdelete-radio-unset' => 'Xeyr',
+'revdelete-radio-set' => 'Gizli',
+'revdelete-radio-unset' => 'Görünür',
 'revdelete-suppress' => 'Məlumatları idarəçilərdən də gizlə',
 'revdelete-unsuppress' => 'Bərpa olunan versiyalar üzərindən məhdudiyyətləri qaldır',
 'revdelete-log' => 'Səbəb:',
@@ -2162,7 +2168,7 @@ Zəhmət olmasa başqa ad seçin.',
 'allmessagesname' => 'Ad',
 'allmessagesdefault' => 'İlkin mətn',
 'allmessagescurrent' => 'İndiki mətn',
-'allmessagestext' => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.',
+'allmessagestext' => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.',
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter-unmodified' => 'Dəyişdirilməmiş',
 'allmessages-filter-all' => 'Hamısı',
@@ -2796,7 +2802,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => 'Bu faylı kənar proqram vasitəsilə redaktə et.',
-'edit-externally-help' => '(Daha ətraflı məlumat üçün [//www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
+'edit-externally-help' => '(Daha ətraflı məlumat üçün [https://www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hamısını',
@@ -2897,7 +2903,7 @@ Variants for Chinese language
 'version-hook-subscribedby' => 'Abunə olan',
 'version-version' => '(Versiya $1)',
 'version-license' => 'Lisenziya',
-'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
+'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
 'version-poweredby-others' => 'digərləri',
 'version-software-product' => 'Məhsul',
 'version-software-version' => 'Versiya',

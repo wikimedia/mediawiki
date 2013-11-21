@@ -716,7 +716,7 @@ $messages = array(
 
 # External editor support
 'edit-externally' => 'Тӱнӹш программым кычылт, ти файлым тӧрлӓш',
-'edit-externally-help' => '(шукыракым анжал: [//www.mediawiki.org/wiki/Manual:External_editors установкын правилывлӓжӹ])',
+'edit-externally-help' => '(шукыракым анжал: [https://www.mediawiki.org/wiki/Manual:External_editors установкын правилывлӓжӹ])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цилӓ',

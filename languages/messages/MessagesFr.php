@@ -58,6 +58,7 @@
  * @author Louperivois
  * @author Ltrlg
  * @author Lucyin
+ * @author Mattho69
  * @author McDutchie
  * @author Meithal
  * @author Metroitendo
@@ -69,6 +70,7 @@
  * @author Omnipaedista
  * @author Peter17
  * @author PieRRoMaN
+ * @author ProgVal
  * @author Quentinv57
  * @author Rastus Vernon
  * @author Remember the dot
@@ -631,7 +633,7 @@ $1",
 'disclaimers' => 'Avertissements',
 'disclaimerpage' => 'Project:Avertissements généraux',
 'edithelp' => 'Aide',
-'edithelppage' => 'Aide:Édition',
+'edithelppage' => 'Help:Editing/fr',
 'helppage' => 'Help:Accueil',
 'mainpage' => 'Accueil',
 'mainpage-description' => 'Accueil',
@@ -786,8 +788,8 @@ Le motif avancé est « ''$2'' ».",
 L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
-'exception-nologin' => 'Non connecté',
-'exception-nologin-text' => "Cette page ou cette action nécessite d'être connecté sur ce wiki.",
+'exception-nologin' => 'Non connecté(e)',
+'exception-nologin-text' => 'Veuillez [[Special:Userlogin|vous connecter]] pour pouvoir accéder à cette page ou cette action.',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -817,7 +819,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'logout' => 'Se déconnecter',
 'userlogout' => 'Déconnexion',
 'notloggedin' => 'Non connecté',
-'nologin' => "Vous n'êtes pas encore inscrit ? $1.",
+'nologin' => "Vous n'avez pas de compte ? $1.",
 'nologinlink' => 'Créer un compte',
 'createaccount' => 'Créer un compte',
 'gotaccount' => "Vous avez déjà un compte ? '''$1'''.",
@@ -863,14 +865,14 @@ pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
 'noemailcreate' => 'Vous devez fournir une adresse de courriel valide',
 'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse de courriel de l'utilisateur « $1 ». Veuillez vous reconnecter après l'avoir reçu.",
 'blocked-mailpassword' => 'Votre adresse IP est bloquée en écriture, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
-'eauthentsent' => "Un courriel de confirmation a été envoyé à l'adresse indiquée.
-Avant qu'un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.",
+'eauthentsent' => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.
+Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
 'throttled-mailpassword' => "Un courriel de réinitialisation de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d'éviter les abus, un seul courriel de réinitialisation de votre mot de passe sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.",
 'mailerror' => "Erreur lors de l'envoi du courriel : $1",
 'acct_creation_throttle_hit' => "Quelqu'un utilisant votre adresse IP a créé {{PLURAL:$1|un compte|$1 comptes}} au cours des dernières 24 heures, ce qui constitue la limite autorisée dans cet intervalle de temps.
 Par conséquent, la création de compte a été temporairement désactivée pour cette adresse IP.",
-'emailauthenticated' => 'Votre adresse de courriel a été authentifiée le $2 à $3.',
-'emailnotauthenticated' => "Votre adresse de courriel n'est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.",
+'emailauthenticated' => 'Votre adresse de courriel a été confirmée le $2 à $3.',
+'emailnotauthenticated' => "Votre adresse de courriel n'est pas encore confirmée. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.",
 'noemailprefs' => 'Indiquez une adresse de courriel dans vos préférences pour utiliser ces fonctions.',
 'emailconfirmlink' => 'Confirmez votre adresse de courriel',
 'invalidemailaddress' => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.
@@ -908,7 +910,7 @@ Veuillez attendre avant d’essayer à nouveau.',
 'resetpass_success' => 'Votre mot de passe a bien été modifié !
 Vous allez maintenant être connecté…',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
-'resetpass-no-info' => 'Vous devez être connecté pour avoir accès à cette page.',
+'resetpass-no-info' => 'Vous devez être connecté(e) pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',
 'resetpass-submit-cancel' => 'Annuler',
 'resetpass-wrong-oldpass' => 'Mot de passe actuel ou temporaire invalide.
@@ -948,7 +950,7 @@ Mot de passe temporaire : $2",
 'changeemail' => 'Changer l’adresse de courriel',
 'changeemail-header' => 'Changer l’adresse de courriel du compte',
 'changeemail-text' => 'Remplissez ce formulaire pour changer votre adresse de courriel. Vous devrez entrer votre mot de passe pour confirmer ce changement.',
-'changeemail-no-info' => 'Vous devez être connecté pour pouvoir accéder directement à cette page.',
+'changeemail-no-info' => 'Vous devez être connecté(e) pour pouvoir accéder directement à cette page.',
 'changeemail-oldemail' => 'Adresse de courriel actuelle :',
 'changeemail-newemail' => 'Nouvelle adresse de courriel :',
 'changeemail-none' => '(aucune)',
@@ -987,7 +989,7 @@ Mot de passe temporaire : $2",
 'showlivepreview' => 'Aperçu rapide',
 'showdiff' => 'Voir les modifications',
 'anoneditwarning' => "'''Attention :''' vous n'êtes pas identifié(e). Votre adresse IP sera enregistrée dans l'historique de cette page.",
-'anonpreviewwarning' => "''Vous n'êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
+'anonpreviewwarning' => "''Vous n'êtes pas identifié(e). Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
 'missingsummary' => "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.
 Si vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext' => 'Veuillez entrer un commentaire ci-dessous.',
@@ -1036,7 +1038,7 @@ Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette p
 'loginreqpagetext' => 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => "Un mot de passe généré aléatoirement pour [[User talk:$1|$1]] a été envoyé à $2.
-Il peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après s’être connecté.",
+Il peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après s’être connecté{{GENDER:$1||e|(e)}}.",
 'newarticle' => '(Nouveau)',
 'newarticletext' => "Vous avez suivi un lien vers une page qui n'existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d'aide]] pour plus d'informations).
@@ -1108,8 +1110,8 @@ Une solution de rechange a été trouvée pour vous permettre de modifier en tou
 'editingold' => "'''Attention : vous êtes en train de modifier une ancienne version de cette page.
 Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.'''",
 'yourdiff' => 'Différences',
-'copyrightwarning' => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br 
-/>Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning' => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
 'copyrightwarning2' => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br 
 />Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
 '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
@@ -1274,18 +1276,19 @@ Vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#S
 Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soient mises en place.",
 'revdelete-confirm' => 'Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].',
 'revdelete-suppress-text' => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
+* Informations potentiellement diffamatoires
 * Informations personnelles inappropriées
 *: ''adresse, numéro de téléphone, numéro de sécurité sociale, …''",
 'revdelete-legend' => 'Mettre en place des restrictions de visibilité :',
-'revdelete-hide-text' => 'Masquer le texte de la version',
+'revdelete-hide-text' => 'Texte de la révision',
 'revdelete-hide-image' => 'Masquer le contenu du fichier',
 'revdelete-hide-name' => "Masquer l'action et la cible",
-'revdelete-hide-comment' => 'Masquer le commentaire de modification',
-'revdelete-hide-user' => "Masquer le pseudo ou l'adresse IP du contributeur.",
+'revdelete-hide-comment' => 'Modifier le résumé',
+'revdelete-hide-user' => 'Nom d’utilisateur/Adresse IP de l’éditeur',
 'revdelete-hide-restricted' => "Supprimer ces données aux administrateurs ainsi qu'aux autres",
 'revdelete-radio-same' => '(ne pas changer)',
-'revdelete-radio-set' => 'Oui',
-'revdelete-radio-unset' => 'Non',
+'revdelete-radio-set' => 'Masqué',
+'revdelete-radio-unset' => 'Visible',
 'revdelete-suppress' => 'Masquer également les données pour les administrateurs',
 'revdelete-unsuppress' => 'Enlever les restrictions sur les versions restaurées',
 'revdelete-log' => 'Motif :',
@@ -1412,10 +1415,10 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Projets frères',
 'search-interwiki-default' => 'Résultats sur $1 :',
 'search-interwiki-more' => '(plus)',
-'search-relatedarticle' => 'Relaté',
+'search-relatedarticle' => 'Reliés',
 'mwsuggest-disable' => 'Désactiver les suggestions de recherche',
 'searcheverything-enable' => 'Rechercher dans tous les espaces de noms',
-'searchrelated' => 'relaté',
+'searchrelated' => 'reliés',
 'searchall' => 'tout',
 'showingresults' => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du n°<b>$2</b>.',
 'showingresultsnum' => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du n°<b>$2</b>.',
@@ -1769,7 +1772,7 @@ Cette information sera publique.',
 'uploadbtn' => 'Importer le fichier',
 'reuploaddesc' => "Annuler et retourner au formulaire d'import",
 'upload-tryagain' => 'Envoyer la description du fichier modifiée',
-'uploadnologin' => 'Non connecté(e)',
+'uploadnologin' => 'Non connecté{{GENDER:||e|(e)}}',
 'uploadnologintext' => 'Vous devez être [[Special:UserLogin|connecté]] pour importer des fichiers.',
 'upload_directory_missing' => "Le répertoire d'import de fichier ($1) est introuvable et n'a pas pu être créé par le serveur web.",
 'upload_directory_read_only' => "Le répertoire d'import de fichier ($1) n'est pas accessible en écriture depuis le serveur web.",
@@ -1983,7 +1986,7 @@ Voyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir' => "Le chemin demandé n'est pas le répertoire d'import configuré.",
 'img-auth-badtitle' => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL' => "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",
-'img-auth-nofile' => "Le fichier « $1 » n'existe pas.",
+'img-auth-nofile' => "Le fichier « $1 » n'existe pas.",
 'img-auth-isdir' => "Vous essayez d'accéder au répertoire « $1 ».
 Seul l'accès aux fichiers est permis.",
 'img-auth-streaming' => 'Lecture en continu de « $1 ».',
@@ -2160,7 +2163,7 @@ Une page est considérée comme une page d'homonymie si elle utilise un modèle 
 'pageswithprop' => 'Pages avec une propriété de page',
 'pageswithprop-legend' => 'Pages avec une propriété de page',
 'pageswithprop-text' => 'Cette page liste les pages qui utilisent une propriété de page particulière.',
-'pageswithprop-prop' => 'Nom de la propriété:',
+'pageswithprop-prop' => 'Nom de la propriété :',
 'pageswithprop-submit' => 'Aller',
 
 'doubleredirects' => 'Doubles redirections',
@@ -2398,8 +2401,8 @@ L'adresse électronique que vous avez indiquée dans [[Special:Preferences|vos p
 'watchlistfor2' => 'Pour $1 $2',
 'nowatchlist' => 'Votre liste de suivi ne référence aucune page.',
 'watchlistanontext' => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',
-'watchnologin' => 'Non connecté',
-'watchnologintext' => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
+'watchnologin' => 'Non connecté(e)',
+'watchnologintext' => 'Vous devez être [[Special:UserLogin|identifié(e)]] pour modifier votre liste de suivi.',
 'addwatch' => 'Ajouter à la liste de suivi',
 'addedwatchtext' => 'La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
 Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées.',
@@ -2454,9 +2457,9 @@ Contactez ce contributeur :
 courriel : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
-Il n\'y aura pas d\'autres notifications en cas de changements ultérieurs, à moins que vous ne visitiez cette page. Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pages de votre liste de suivi.
+Il n’y aura pas d’autres notifications en cas de changements ultérieurs, à moins que vous ne visitiez cette page une fois connecté. Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pages de votre liste de suivi.
 
-             Votre système de notification de {{SITENAME}}
+Votre système de notification de {{SITENAME}}
 
 --
 Pour modifier les paramètres de notification par courriel, visitez
@@ -2750,7 +2753,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
 Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.',
-'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain de vouloir faire cela ?',
+'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain{{GENDER:||e|(e)}} de vouloir faire cela ?',
 'ipb-confirmhideuser' => "Vous êtes sur le point de bloquer un utilisateur avec « cacher l'utilisateur » activé. Cela supprime le nom de l'utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?",
 'ipb-edit-dropdown' => 'Modifier les motifs de blocage par défaut',
 'ipb-unblock-addr' => 'Débloquer $1',
@@ -2760,8 +2763,8 @@ Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.'
 'unblockip' => 'Débloquer un utilisateur ou une adresse IP',
 'unblockiptext' => "Utilisez le formulaire ci-dessous pour rétablir l'accès aux modifications depuis une adresse IP ou un nom d'utilisateur.",
 'ipusubmit' => 'Supprimer ce blocage',
-'unblocked' => '[[User:$1|$1]] a été débloqué',
-'unblocked-range' => '$1 a été débloqué',
+'unblocked' => '[[User:$1|$1]] a été débloqué{{GENDER:$1||e|(e)}}',
+'unblocked-range' => '$1 a été débloqué{{GENDER:$1||e|(e)}}',
 'unblocked-id' => 'Le blocage $1 a été enlevé',
 'blocklist' => 'Utilisateurs bloqués',
 'ipblocklist' => 'Utilisateurs bloqués',
@@ -2837,7 +2840,7 @@ Vous ne pouvez pas créer un compte.',
 'cant-block-while-blocked' => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
 'cant-see-hidden-user' => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
-'ipbnounblockself' => "Vous n'êtes pas autorisé à vous débloquer vous-même",
+'ipbnounblockself' => "Vous n'êtes pas autorisé{{GENDER:||e|(e)}} à vous débloquer vous-même",
 
 # Developer tools
 'lockdb' => 'Verrouiller la base de données',
@@ -2974,7 +2977,7 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagesdefault' => 'Message par défaut',
 'allmessagescurrent' => 'Message actuel',
 'allmessagestext' => "Ceci est la liste des messages disponibles dans l'espace MediaWiki.
-Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
+Veuillez visiter la [https://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
 'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
 'allmessages-filter-legend' => 'Filtrer',
 'allmessages-filter' => 'Filtrer par état de modification :',
@@ -3302,7 +3305,7 @@ Si vous l'exécutez, votre système peut être compromis.",
 'svg-long-desc' => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'svg-long-desc-animated' => 'Fichier SVG animé, taille $1 x $2 pixels, taille du fichier: $3',
 'svg-long-error' => 'Fichier SVG non valide: $1',
-'show-big-image' => 'Image en plus haute résolution',
+'show-big-image' => "Fichier d'origine",
 'show-big-image-preview' => 'Taille de cet aperçu : $1.',
 'show-big-image-other' => '{{PLURAL:$2|Autre résolution|Autres résolutions}} : $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3760,7 +3763,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # External editor support
 'edit-externally' => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => "(Consulter [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
+'edit-externally-help' => "(Consulter [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',
@@ -3848,7 +3851,7 @@ $5',
 'scarytranscludetoolong' => "[L'URL est trop longue]",
 
 # Delete conflict
-'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous avez commencé à la modifier !",
+'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous ayez commencé à la modifier !",
 'confirmrecreate' => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier, pour le motif suivant :
 : ''$2''
 Veuillez confirmer que vous désirez réellement recréer cette page.",
@@ -4024,7 +4027,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 'version-hook-subscribedby' => 'Abonnés :',
 'version-version' => '(version $1)',
 'version-license' => 'Licence',
-'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
 'version-credits-summary' => 'Nous tenons à remercier les personnes suivantes pour leur contribution à  [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki est un logiciel libre, vous pouvez le redistribuer ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.

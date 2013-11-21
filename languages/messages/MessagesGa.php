@@ -221,7 +221,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'ar lean.',
 'index-category' => 'Leathanaigh innéacsaithe',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'Maidir leis',
 'article' => 'Leathanach ábhair',
@@ -1492,8 +1492,8 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'sp-contributions-submit' => 'Cuardaigh',
 
 # What links here
-'whatlinkshere' => 'Naisc go dtí an lch seo',
-'whatlinkshere-title' => 'Naisc chuig $1',
+'whatlinkshere' => 'Naisc leis an lch seo',
+'whatlinkshere-title' => 'Naisc le $1',
 'whatlinkshere-page' => 'Leathanach:',
 'linkshere' => "Tá nasc chuig '''[[:$1]]''' ar na leathanaigh seo a leanas:",
 'nolinkshere' => "Níl leathanach ar bith ann a bhfuil nasc chuig '''[[:$1]]''' air.",
@@ -1667,7 +1667,7 @@ Sa dara cás, is féidir leat nasc a úsáid, mar shampla [[{{#Special:Export}}/
 'allmessagesdefault' => 'Téacs réamhshocraithe',
 'allmessagescurrent' => 'Téacs reatha',
 'allmessagestext' => 'Is liosta é seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki.
-Tabhair cuairt ar [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.',
+Tabhair cuairt ar [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.',
 'allmessagesnotsupportedDB' => "Ní féidir an leathanach seo a úsáid dá bharr gur díchumasaíodh '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-all' => 'Uile',
 'allmessages-language' => 'Teanga:',
@@ -1786,6 +1786,9 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'spambot_username' => 'MediaWiki turscar glanadh',
+
+# Info page
+'pageinfo-toolboxlink' => 'Faoin leathanach seo',
 
 # Skin names
 'skinname-standard' => 'Clasaiceach',
@@ -2120,7 +2123,7 @@ cúlra i bhfócas)',
 
 # External editor support
 'edit-externally' => 'Athraigh an comhad seo le feidhmchlár seachtrach',
-'edit-externally-help' => '(Féach ar na [//www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
+'edit-externally-help' => '(Féach ar na [https://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'an t-iomlán',

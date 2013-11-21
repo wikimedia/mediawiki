@@ -267,7 +267,7 @@ $messages = array(
 'category-file-count-limited' => "Usı kategoriyada to'mendegi {{PLURAL:$1|fayl|$1 fayl}} bar.",
 'listingcontinuesabbrev' => 'dawamı',
 
-'linkprefix' => '/^(.*?)([a-zıA-Zİ\\x80-\\xff]+)$/sDu',
+'linkprefix' => '/^((?>.*(?<![a-zıA-Zİ\\\\x80-\\\\xff])))(.+)$/sDu',
 
 'about' => 'Haqqında',
 'article' => "Mag'lıwmat beti",
@@ -1677,7 +1677,7 @@ Basqa atama saylan'",
 'allmessagesdefault' => 'Defolt tekst',
 'allmessagescurrent' => "Ha'zirgi tekst",
 'allmessagestext' => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
 
 # Thumbnails
 'thumbnail-more' => "U'lkeytiw",
@@ -1837,7 +1837,7 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 
 # External editor support
 'edit-externally' => "Bul fayldı sırtqı bag'darlama arqalı o'zgertiw",
-'edit-externally-help' => "(Ko'birek mag'lıwmat ushın [//www.mediawiki.org/wiki/Manual:External_editors ornatıw jolların] qaran')",
+'edit-externally-help' => "(Ko'birek mag'lıwmat ushın [https://www.mediawiki.org/wiki/Manual:External_editors ornatıw jolların] qaran')",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => "ha'mmesin",

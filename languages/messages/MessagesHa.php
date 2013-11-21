@@ -751,7 +751,7 @@ Idan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cik
 
 # External editor support
 'edit-externally' => 'Gyara wannan fayil da wani safuwai daban',
-'edit-externally-help' => '(Duba [//www.mediawiki.org/wiki/Manual:External_editors bayannan shimfiɗawa] don ƙarin bayani)',
+'edit-externally-help' => '(Duba [https://www.mediawiki.org/wiki/Manual:External_editors bayannan shimfiɗawa] don ƙarin bayani)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'duka',

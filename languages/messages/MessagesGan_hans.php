@@ -1077,7 +1077,7 @@ $2',
 'unwatchedpages' => '冇眏到𠮶页面',
 
 # List redirects
-'listredirects' => '重定向页面列表',
+'listredirects' => '重定向列表',
 
 # Unused templates
 'unusedtemplates' => '冇使用𠮶模板',
@@ -1089,7 +1089,7 @@ $2',
 'randompage-nopages' => '个只名字空间冇𠮶页面。',
 
 # Random redirect
-'randomredirect' => '随机重定向页面',
+'randomredirect' => '随机重定向',
 'randomredirect-nopages' => '个只名字空间冇重定向页面。',
 
 # Statistics
@@ -1117,7 +1117,7 @@ $2',
 'disambiguations-text' => "底下𠮶页面都有到'''扤清楚页'''𠮶链接, 但系佢俚应当系连到正当𠮶标题。<br />
 如果一只页面系链接自[[MediaWiki:Disambiguationspage]]，佢会拖当成扤清楚页。",
 
-'doubleredirects' => '双重重定向页面',
+'doubleredirects' => '双重重定向',
 'doubleredirectstext' => '底下𠮶重定向链接到别只重定向页面:',
 'double-redirect-fixed-move' => '[[$1]]拕移动正，佢个下拕重定向到[[$2]]。',
 'double-redirect-fixer' => '重定向𠮶修正器',
@@ -1470,7 +1470,7 @@ $1',
 'linkshere' => '下底𠮶页面链接到[[:$1]]：',
 'nolinkshere' => '冇页面链接到[[:$1]]。',
 'nolinkshere-ns' => '选正𠮶空间名内冇页面链接到[[:$1]]。',
-'isredirect' => '重定向页',
+'isredirect' => '重定向页面',
 'istemplate' => '含到',
 'isimage' => '档案连结',
 'whatlinkshere-prev' => '先$1只',
@@ -1636,7 +1636,7 @@ $1',
 'allmessagesdefault' => '默认文字',
 'allmessagescurrent' => '眼前𠮶文字',
 'allmessagestext' => '个首列到全部制定得正𠮶系统界面。
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系统界面功能'''关卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -2105,7 +2105,7 @@ $1',
 
 # External editor support
 'edit-externally' => '用外部程式来编辑个只档案',
-'edit-externally-help' => '请参看[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
+'edit-externally-help' => '请参看[https://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -2230,7 +2230,7 @@ $3
 'version-hook-subscribedby' => '订阅人',
 'version-version' => '（版本 $1）',
 'version-license' => '许可证',
-'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-credits' => "个只 Wiki 由 '''[https://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
 

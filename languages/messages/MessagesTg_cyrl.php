@@ -1864,7 +1864,7 @@ $1',
 'allmessagesdefault' => 'Матни қарордодӣ',
 'allmessagescurrent' => 'Матни кунунӣ',
 'allmessagestext' => 'Ин феҳристи паёмҳои системавии дастрас дар фазои номи MediaWiki мебошад.
-Агар майли ҳиссагузорӣ карданро ба маҳалликунонии MediaWiki доред, пас лутан саҳифаҳои [//www.mediawiki.org/wiki/Localisation Маҳалликунонии MediaWiki] ва [//translatewiki.net translatewiki.net] нигаред.',
+Агар майли ҳиссагузорӣ карданро ба маҳалликунонии MediaWiki доред, пас лутан саҳифаҳои [https://www.mediawiki.org/wiki/Localisation Маҳалликунонии MediaWiki] ва [//translatewiki.net translatewiki.net] нигаред.',
 'allmessagesnotsupportedDB' => "Аз ин саҳифа наметавон истифода бурд, чун '''\$wgUseDatabaseMessages''' ғайрифаъол гардонида шудааст.",
 'allmessages-filter-legend' => 'Филтр',
 'allmessages-filter-all' => 'Ҳама',
@@ -2339,7 +2339,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Ин файлро бо барномаи беруна таҳрир кунед',
-'edit-externally-help' => '(Барои иттилооти бештар [//www.mediawiki.org/wiki/Manual:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред)',
+'edit-externally-help' => '(Барои иттилооти бештар [https://www.mediawiki.org/wiki/Manual:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ҳама',

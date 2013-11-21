@@ -2157,7 +2157,7 @@ MediaWiki جۇيەسىنىڭ [[{{#special:Import}}|سىرتتان الۋ بەت�
 'allmessagesdefault' => 'ادەپكى ٴماتىنى',
 'allmessagescurrent' => 'اعىمدىق ٴماتىنى',
 'allmessagestext' => 'مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.
-ەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [//www.mediawiki.org/wiki/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [//translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.',
+ەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [https://www.mediawiki.org/wiki/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [//translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
 
 # Thumbnails
@@ -2657,7 +2657,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'بۇل فايلدى شەتتىك قوندىرما ارقىلى وڭدەۋ',
-'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [//www.mediawiki.org/wiki/Manual:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
+'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [https://www.mediawiki.org/wiki/Manual:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'بارلىق',

@@ -1375,7 +1375,7 @@ Sielç par plasê un altri non.',
 'allmessagesdefault' => 'Test predeterminât',
 'allmessagescurrent' => 'Test curint',
 'allmessagestext' => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki.
-Par plasê va su [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se tu vuelis contribuî ae traduzion gjeneriche di MediaWiki.',
+Par plasê va su [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se tu vuelis contribuî ae traduzion gjeneriche di MediaWiki.',
 'allmessages-filter-all' => 'Ducj',
 'allmessages-language' => 'Lenghe:',
 'allmessages-filter-submit' => 'Va',
@@ -1562,7 +1562,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # External editor support
 'edit-externally' => 'Modifiche chest file cuntune aplicazion esterne',
-'edit-externally-help' => '(Cjale lis [//www.mediawiki.org/wiki/Manual:External_editors istruzions] par vê altris informazions)',
+'edit-externally-help' => '(Cjale lis [https://www.mediawiki.org/wiki/Manual:External_editors istruzions] par vê altris informazions)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'dutis',

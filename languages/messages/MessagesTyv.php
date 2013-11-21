@@ -112,7 +112,7 @@ $messages = array(
 'tog-watchlisthidebots' => 'Хайгаарал даңзызындан роботтарның эдиглерин чажыр',
 'tog-watchlisthideminor' => 'Хайгаарал даңзызындан бичии эдиглерни чажыр',
 'tog-watchlisthidepatrolled' => 'Хайгаарал даңзындан истээн өскерлиишкиннерны чажырары',
-'tog-showhiddencats' => 'Чажыт бөлүктерни көргүзери',
+'tog-showhiddencats' => 'Чажыт аңгылалдарны көргүзер',
 
 'underline-always' => 'Кезээде',
 'underline-never' => 'Кажан-даа',
@@ -589,7 +589,7 @@ Please check if you want to create/edit this page.',
 'nextn' => 'дараазында {{PLURAL:$1|$1}}',
 'prevn-title' => 'Эрткен $1 {{PLURAL:$1|бижик|бижик}}',
 'nextn-title' => 'Дараазында $1 {{PLURAL:$1|бижик|бижик}}',
-'shown-title' => 'Арынга $1 {{PLURAL:$1|түңнелди|түңнелди}} көргүзери',
+'shown-title' => 'Арынга $1 {{PLURAL:$1|түңнел}} көргүзер',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
 'searchmenu-exists' => "'''Бо викиде \"[[:\$1]]\" деп арын бар.'''",
 'searchmenu-new' => "'''Бо викиде «[[:$1]]» арынны чогаадыры'''",
@@ -745,16 +745,16 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'rcnotefrom' => 'Адаанда <strong>$2</strong> тура (<strong>$1</strong> чедир) өскертилгелерни санаан.',
 'rclistfrom' => '$1 тура чаа өскерилгелерни көргүзер',
 'rcshowhideminor' => 'Бичии өскерлиишкиннерни $1',
-'rcshowhidebots' => 'Роботтарну $1',
-'rcshowhideliu' => 'Кирер ажыглакчыларны $1',
-'rcshowhideanons' => 'Ат эвес ажыглакчыларны $1',
+'rcshowhidebots' => 'Роботтарны $1',
+'rcshowhideliu' => 'Кирген киржикчилерни $1',
+'rcshowhideanons' => 'Ады чок ажыглакчыларны $1',
 'rcshowhidepatr' => 'истээн өскерлиишкиннерни $1',
-'rcshowhidemine' => 'Мээң өскерлиишкинимни $1',
-'rclinks' => '$2 хүнде эрткен $1 өскерлиишкиннерни көргүзери<br />$3',
+'rcshowhidemine' => 'Эдиглеримни $1',
+'rclinks' => 'Сөөлгү $2 хүн иштинде болган $1 өскерлиишкиннерни көргүзер<br />$3',
 'diff' => 'ылгал',
 'hist' => 'төөгү',
-'hide' => 'чажырары',
-'show' => 'көргүзери',
+'hide' => 'Чажырар',
+'show' => 'Көргүзер',
 'minoreditletter' => 'б',
 'newpageletter' => 'Ч',
 'boteditletter' => 'р',
@@ -866,7 +866,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'brokenredirects-delete' => 'ырадыры',
 
 'withoutinterwiki' => 'Дыл холбаалар эвес арыннар',
-'withoutinterwiki-submit' => 'Көргүзери',
+'withoutinterwiki-submit' => 'Көргүзер',
 
 'fewestrevisions' => 'Эң эвээш үндүрери арыннар',
 
@@ -980,7 +980,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'unwatching' => 'Хайгааравайн турар...',
 
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} ажыглакчызы',
-'enotif_anon_editor' => 'ат эвес ажыглакчы $1',
+'enotif_anon_editor' => 'ат чок киржикчи $1',
 'changed' => 'өскертти',
 
 # Delete
@@ -1088,7 +1088,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'contribslink' => 'салыышкыннар',
 'blocklogpage' => 'Кызыгаарлаашкынның журналы',
 'blocklogentry' => ', [[$1]] $2 дургузунда кызыгаарлаттынган: $3',
-'block-log-flags-anononly' => 'чүгле ат эвес ажыглакчылар',
+'block-log-flags-anononly' => 'чүгле адыжок киржикчилер',
 'block-log-flags-nocreate' => 'Кижилер бүрүткээри хоруглуг',
 'block-log-flags-hiddenname' => 'ажыглакчының ады чажырган',
 
@@ -1192,7 +1192,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'tooltip-summary' => 'Кысказы-биле бижиңер',
 
 # Attribution
-'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес {{PLURAL:$1|ажыглакчызы|ажыглакчылары}}',
+'anonymous' => '{{grammar:genitive|{{SITENAME}}}} адыжок {{PLURAL:$1|киржикчизи}}',
 
 # Skin names
 'skinname-standard' => 'Классик',
@@ -1285,7 +1285,7 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 
 # External editor support
 'edit-externally' => 'Бо файлды даштыкы капсырылга-биле эдер',
-'edit-externally-help' => '(Улаштыр тодарадырда бо [//www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
+'edit-externally-help' => '(Улаштыр тодарадырда бо [https://www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'шупту',

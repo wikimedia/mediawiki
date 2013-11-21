@@ -2670,7 +2670,7 @@ $1 آدلی ایستیفاده‌چی‌نین باغلانما سببی: "$2"',
 'allmessagesname' => 'آد',
 'allmessagesdefault' => 'دفالت دانیشیق متنی',
 'allmessagescurrent' => 'ایندیکی متن',
-'allmessagestext' => 'بو مئدیا ویکی-ده اولان سیستئم مئساژلارینین سیاهی‌سی‌دیر. اگر مئدیا ویکی-نی لوکاللاش‌دیرماق ایشینده کؤمک ائتمک ایسییرسینیزسه، لطفاً [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [//translatewiki.net translatewiki.net]-ا باش چکین.',
+'allmessagestext' => 'بو مئدیا ویکی-ده اولان سیستئم مئساژلارینین سیاهی‌سی‌دیر. اگر مئدیا ویکی-نی لوکاللاش‌دیرماق ایشینده کؤمک ائتمک ایسییرسینیزسه، لطفاً [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [//translatewiki.net translatewiki.net]-ا باش چکین.',
 'allmessagesnotsupportedDB' => "'''\$ wgUseDatabaseMessages''' باغ‌لی اولدوغو اوچون '{{ns:special}}: Allmessages ایستیفاده‌یه آچیق دئییل.",
 'allmessages-filter-legend' => 'سۆزگَج',
 'allmessages-filter' => 'خصوصی ائتمک وضعیتینه گؤره فیلترلی:',
@@ -3407,7 +3407,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'بو فایلی خاریجی یازیلیم‌لا دَییشدیر',
-'edit-externally-help' => '(آرتیق بیلگیلر اوچون [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] صحیفه‌سینه باخ)',
+'edit-externally-help' => '(آرتیق بیلگیلر اوچون [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] صحیفه‌سینه باخ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'بوتون',
@@ -3591,7 +3591,7 @@ $5
 'version-hook-subscribedby' => 'طرفیندن گیریش‌‌میش',
 'version-version' => '(نسخه $1)',
 'version-license' => 'لیسانس',
-'version-poweredby-credits' => "بو wیکی ' ''[//www.mediawiki.org/ مئدیاwیکی]'ع' پروقرامی ایستیفاده ائدیله‌رک يارادیلمیشدیر، یاازارلار © 2001-$1 $2.",
+'version-poweredby-credits' => "بو wیکی ' ''[https://www.mediawiki.org/ مئدیاwیکی]'ع' پروقرامی ایستیفاده ائدیله‌رک يارادیلمیشدیر، یاازارلار © 2001-$1 $2.",
 'version-poweredby-others' => 'آیریلار',
 'version-credits-summary' => 'بو ایستفاده چیلر دییشدیر لرینه گوره [[Special:Version|مئدیاویکی]] تانیش ائدیرم.',
 'version-license-info' => 'مئدیاویکی بیر اؤزگور یازیلیم‌دیر؛ سیز اونو، اؤزگور یازیلیم قورولوشو یایان GNU گنل عمومی لیسانسی اساسی‌له یئنی‌دن داغیدیب یوخسا دَییشه بیلرسینیز؛ یا لیسانسین ۲-نجی نوسخه‌سی، یا دا (اؤز سئچدیگینیزله) هر هانکی سونراکی نوسخه‌سی.

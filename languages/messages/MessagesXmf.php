@@ -888,7 +888,7 @@ $messages = array(
 
 # External editor support
 'edit-externally' => 'თე ფაილიშ ორედაქტირაფალო გიმირინეთ გალენ პროგრამა',
-'edit-externally-help' => '(უმოს ინფორმაციაშო ქოძირით [//www.mediawiki.org/wiki/Manual:External_editors])',
+'edit-externally-help' => '(უმოს ინფორმაციაშო ქოძირით [https://www.mediawiki.org/wiki/Manual:External_editors])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'არძა',

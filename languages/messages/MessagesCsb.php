@@ -1101,7 +1101,7 @@ W taczich przëtrôfkach zamkłosc diskùsëji mòże przeniesc blós rãczno.',
 'allmessagesdefault' => 'Domëslny tekst',
 'allmessagescurrent' => 'Aktualny tekst',
 'allmessagestext' => 'To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mionów MediaWiki.
-Proszã zazdrzë na [//www.mediawiki.org/wiki/Localisation Lokalizacëjô MediaWiki] ë [//translatewiki.net translatewiki.net] jeżlë chcesz dolmaczëc softwôrã MediaWiki.',
+Proszã zazdrzë na [https://www.mediawiki.org/wiki/Localisation Lokalizacëjô MediaWiki] ë [//translatewiki.net translatewiki.net] jeżlë chcesz dolmaczëc softwôrã MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nie mòże bëc brëkòwónô, temù że '''\$wgUseDatabaseMessages''' je wëłączony.",
 
 # Thumbnails
@@ -1235,7 +1235,7 @@ Jinszé pòla bãdą domëslno zataconé.
 
 # External editor support
 'edit-externally' => 'Editëjë nen lopk brëkùjąc bùtnowi aplikacëji',
-'edit-externally-help' => '(Zdrzë na [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] dlô dobëcô wicy wëdowiédzë).',
+'edit-externally-help' => '(Zdrzë na [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] dlô dobëcô wicy wëdowiédzë).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wszëtczé',

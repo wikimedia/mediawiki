@@ -1476,7 +1476,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'allmessagesdefault' => 'আদ্যকার টেক্সট',
 'allmessagescurrent' => 'হাদি এহানর ৱাহি',
 'allmessagestext' => 'তলে মিডিয়াউইকির নাঙরথাকে পানা একরের সিস্টেম পৌহানির তালিকাহান দেনা ইল।
-কৃপা করিয়া [//www.mediawiki.org/wiki/Localisation মিডিয়াউইকি অনুবাদর হেইচা পাতাত] বারো [//translatewiki.net translatewiki.net] মিডিয়াউইকি অনুবাদ করানির কা যানা পারর।',
+কৃপা করিয়া [https://www.mediawiki.org/wiki/Localisation মিডিয়াউইকি অনুবাদর হেইচা পাতাত] বারো [//translatewiki.net translatewiki.net] মিডিয়াউইকি অনুবাদ করানির কা যানা পারর।',
 'allmessages-filter-legend' => 'সাক',
 'allmessages-filter-unmodified' => 'নাসিলথাইতে',
 'allmessages-filter-all' => 'হাব্বি',
@@ -1613,7 +1613,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # External editor support
 'edit-externally' => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
-'edit-externally-help' => 'আরাকউ হারপানির কা [//www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
+'edit-externally-help' => 'আরাকউ হারপানির কা [https://www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'হাব্বি',

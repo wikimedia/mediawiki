@@ -177,7 +177,7 @@ $messages = array(
 'index-category' => 'Pàginas indicizadas',
 'noindex-category' => 'Pàginas no indicitzadas',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'A propòsitu de',
 'article' => 'Artìculu',
@@ -1465,7 +1465,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # External editor support
 'edit-externally' => 'Acontza custu file usendi unu programma de foras',
-'edit-externally-help' => '(Pro àteras informatziones càstia is [//www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
+'edit-externally-help' => '(Pro àteras informatziones càstia is [https://www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totu',

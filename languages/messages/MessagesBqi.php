@@ -8,9 +8,11 @@
  * @file
  *
  * @author Behdarvandyani
+ * @author Ebraminio
  * @author GerardM
  * @author Huji
  * @author Meno25
+ * @author Mogoeilor
  */
 
 $fallback = 'fa';
@@ -166,8 +168,7 @@ $messages = array(
 'articlepage' => 'دیدن صفحه محتوا',
 'talk' => 'بحث',
 'views' => 'مشاهدات',
-'toolbox' => '
-جعبه ابزار',
+'toolbox' => 'اوزار گه',
 'userpage' => 'دیدن صفحه کاربر',
 'projectpage' => 'دیدن صفحه پروژه',
 'imagepage' => 'دیدن صفحه مدیا',
@@ -197,7 +198,7 @@ $messages = array(
 'disclaimers' => 'انکار کننده ها',
 'disclaimerpage' => 'Project:انکار کاربران',
 'edithelp' => 'کمک برای اصلاح',
-'edithelppage' => 'Help:اصلاح',
+'edithelppage' => 'Help:مئن ويرايشت',
 'helppage' => 'Help:محتوا',
 'mainpage' => 'صفحه اصلی',
 'mainpage-description' => 'صفحه اصلی',
@@ -546,7 +547,7 @@ $2',
 'allpagesprefix' => 'نشو دادن صفحات همراه با پیشوند:',
 
 # Special:Categories
-'categories' => 'دسته ها',
+'categories' => 'دسته آ',
 
 # Email user
 'emailuser' => 'امیل ای کاربر',
@@ -562,12 +563,12 @@ $2',
 'removedwatchtext' => 'آن صفحه"[[:$1]]" جابجا وابیده زه[[Special:لیست پیگیری|لیست پیگیری ایسا]].',
 'watch' => 'پی‌گیری',
 'watchthispage' => 'پیگیری ای صفحه',
-'unwatch' => 'عدم پیگیری',
+'unwatch' => 'پيگري نبيڎه',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحات}} درلیست پیگیری ایسا, صفحات صحبت حساب نیبوه.',
 'wlshowlast' => 'نمایش آخرین $1 ساعت $2 روز $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'درحال پیگیری...',
+'watching' => 'مئن حالت پي جوري',
 'unwatching' => 'درحالت عدم پیگیری...',
 
 # Delete
@@ -590,7 +591,7 @@ $2',
 'protectlogpage' => 'نمایه حفاظت وحمایت',
 'prot_1movedto2' => '[[$1]] جابجا وابید به[[$2]]',
 'protectcomment' => 'دلیل:',
-'protectexpiry' => 'سپری وابیده ها:',
+'protectexpiry' => 'سپری وابیڎه ا:',
 'protect_expiry_invalid' => 'با سپری وابیدن وقت غیر معتبره.',
 'protect_expiry_old' => 'سپری وابیدن وقت مربوط به گذشته.',
 'protect-text' => "ایسا ممکنه بوینین وتغییر بدین سطح حمایت زه ای صفحه'''$1'''.",
@@ -802,7 +803,7 @@ $2',
 
 # External editor support
 'edit-externally' => 'اصلاح ای صفحه با استفاده زه یه ویرایشگر خارجی',
-'edit-externally-help' => ' سی اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] اصلاح کننده خارجی را بوینین.',
+'edit-externally-help' => ' سی اطلاعات بیشتر [https://www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] اصلاح کننده خارجی را بوینین.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',

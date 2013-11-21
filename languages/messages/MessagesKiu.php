@@ -8,6 +8,7 @@
  * @file
  *
  * @author Erdemaslancan
+ * @author Gorizon
  * @author Mirzali
  */
 
@@ -180,7 +181,7 @@ $messages = array(
 'noindex-category' => 'Pelê bêendeksıni',
 'broken-file-category' => 'Peli be gıreunê dosyeunê sıkıtau',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'Heqa',
 'article' => 'Pela tedeesteyu',
@@ -285,7 +286,7 @@ $1',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Heqa {{SITENAME}} de',
+'aboutsite' => 'Heqdé {{SITENAME}}',
 'aboutpage' => 'Project:Heqa',
 'copyright' => 'Zerrek bınê $1 dero.',
 'copyrightpage' => '{{ns:project}}:Telifheqiye',
@@ -1534,7 +1535,7 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 
 # External editor support
 'edit-externally' => 'Na dosya be mırecaetê de teberi bıvurne',
-'edit-externally-help' => '(Serba daêna melumati qaytê pelga [//www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
+'edit-externally-help' => '(Serba daêna melumati qaytê pelga [https://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pêro',

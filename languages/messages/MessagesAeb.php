@@ -1346,7 +1346,7 @@ $1",
 
 # External editor support
 'edit-externally' => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => '(انظر [//www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
+'edit-externally-help' => '(انظر [https://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',

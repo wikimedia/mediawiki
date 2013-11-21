@@ -906,7 +906,7 @@ Kui faili on muutõttu, siiz detaaľid võivad õlla kahõllaizõd muutõtull fa
 
 # External editor support
 'edit-externally' => 'Muuttaa sitä failia ulkopoolizõõ prograammiikaa.',
-'edit-externally-help' => '(Kattsoga [//www.mediawiki.org/wiki/Manual:External_editors praavilõd], kui tahotta lisäinformaattsia.)',
+'edit-externally-help' => '(Kattsoga [https://www.mediawiki.org/wiki/Manual:External_editors praavilõd], kui tahotta lisäinformaattsia.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'koko istori',

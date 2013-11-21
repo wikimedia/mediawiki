@@ -145,7 +145,7 @@ $messages = array(
 'noindex-category' => 'shat mamfhtsach',
 'broken-file-category' => 'ṣfaḫi fiha wṣlat milffaṫ mhrrsa',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about' => 'ala',
 'article' => 'sfht mohtawa',
@@ -2503,7 +2503,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 
 # External editor support
 'edit-externally' => 'Ṣayeb had l-fiċyé be ċi aplikasyon ĥarijiya',
-'edit-externally-help' => '(Ċof [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] ila ḫṫajiṫi meĝlomaṫ ĥrin)',
+'edit-externally-help' => '(Ċof [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] ila ḫṫajiṫi meĝlomaṫ ĥrin)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kolċi',

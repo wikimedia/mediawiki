@@ -2145,7 +2145,7 @@ Lëkkalekaay yiy toftal, ci wenn rëdd wi, dees leen di jàppee nikiy sette, maa
 
 # External editor support
 'edit-externally' => 'Soppi xët wii ak ab tëriin bu biti',
-'edit-externally-help' => 'Xoolal [//www.mediawiki.org/wiki/Manual:External_editors tegtali camp gi] ngir yeneeni xamle',
+'edit-externally-help' => 'Xoolal [https://www.mediawiki.org/wiki/Manual:External_editors tegtali camp gi] ngir yeneeni xamle',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'yépp',

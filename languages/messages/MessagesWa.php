@@ -1836,7 +1836,7 @@ Dins ç' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{#Special:Export
 'allmessagesdefault' => 'Tecse prémetou',
 'allmessagescurrent' => 'Tecse pol moumint',
 'allmessagestext' => "Çouchal est ene djivêye des messaedjes sistinme k' i gn a dins l' espåce di lomaedje ''MediaWiki:''.
-Loukîz les pådjes sol [//www.mediawiki.org/wiki/Localisation Locålijhaedje di MediaWiki] et 
+Loukîz les pådjes sol [https://www.mediawiki.org/wiki/Localisation Locålijhaedje di MediaWiki] et 
 [//translatewiki.net/ translatewiki.net] si vos vloz pårticiper avou l' ratournaeje djenerike di MediaWiki.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' n' est nén sopoirté paski '''\$wgUseDatabaseMessages''' est dismetou.",
 'allmessages-filter-legend' => 'Passete',
@@ -2161,7 +2161,7 @@ est raptiti. Les ôtes seront catchîs.
 
 # External editor support
 'edit-externally' => "Candjî ç' fitchî ci avou on dfoûtrin programe",
-'edit-externally-help' => "(Loukîz les [//www.mediawiki.org/wiki/Manual:External_editors instruccions d' apontiaedje] po pus di racsegnes)",
+'edit-externally-help' => "(Loukîz les [https://www.mediawiki.org/wiki/Manual:External_editors instruccions d' apontiaedje] po pus di racsegnes)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totafwait',

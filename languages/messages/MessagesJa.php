@@ -767,7 +767,7 @@ $2',
 'invalidtitle-knownnamespace' => '名前空間名「$2」と名前「$3」の組み合わせはページ名として無効です',
 'invalidtitle-unknownnamespace' => '不明な名前空間番号 $1 と名前「$2」の組み合わせはページ名として無効です',
 'exception-nologin' => 'ログインしていません',
-'exception-nologin-text' => 'このページまたは操作には、このウィキへのログインが必要です。',
+'exception-nologin-text' => 'このページまたは操作にアクセスできるようにするには[[Special:Userlogin|ログイン]]してください。',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です: 不明なウイルス対策ソフトウェア: ''$1''",
@@ -780,7 +780,7 @@ $2',
 ページによっては、ブラウザーのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
 'welcomeuser' => 'ようこそ、$1さん!',
 'welcomecreation-msg' => 'アカウントが作成されました。
-[[Special:Preferences|{{SITENAME}}の個人設定]]の変更も忘れないようにしてください。',
+お好みで[[Special:Preferences|{{SITENAME}}の個人設定]]を変更できます。',
 'yourname' => '利用者名:',
 'yourpassword' => 'パスワード:',
 'yourpasswordagain' => 'パスワード再入力:',
@@ -858,9 +858,9 @@ Cookieを有効にしていることを確認して、このページを再読�
 'mailerror' => 'メールを送信する際にエラーが発生しました: $1',
 'acct_creation_throttle_hit' => 'あなたと同じ IP アドレスでこのウィキに訪れた人が、最近 24 時間で {{PLURAL:$1|$1 アカウント}}を作成しており、これはこの期間で作成が許可されている最大数です。
 そのため、現在この IP アドレスではアカウントをこれ以上作成できません。',
-'emailauthenticated' => 'メールアドレスは$2 $3に認証済みです。',
-'emailnotauthenticated' => 'メールアドレスが認証されていません。
-認証されるまで、以下のいかなる機能でもメールは送信されません。',
+'emailauthenticated' => 'メールアドレスは$2 $3に確認済みです。',
+'emailnotauthenticated' => 'メールアドレスが確認されていません。
+確認されるまで、以下のいかなる機能でもメールは送信されません。',
 'noemailprefs' => 'これらの機能を有効にするには、個人設定でメールアドレスを登録してください。',
 'emailconfirmlink' => 'あなたのメールアドレスを確認',
 'invalidemailaddress' => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。
@@ -1296,17 +1296,17 @@ $3が示した理由: ''$2''",
 'revdelete-suppress-text' => "秘匿は、'''以下の場合に限って'''使用すべきです:
 * 名誉毀損のおそれがある記述
 * 非公開個人情報
-*: ''自宅の住所、電話番号、社会保障番号など''",
+*: ''自宅の住所、電話番号、個人を識別できる公的な番号など''",
 'revdelete-legend' => '閲覧レベル制限を設定',
-'revdelete-hide-text' => '版の本文を隠す',
+'revdelete-hide-text' => '版の本文',
 'revdelete-hide-image' => 'ファイル内容を隠す',
 'revdelete-hide-name' => '操作および対象を隠す',
-'revdelete-hide-comment' => '編集の要約を隠す',
-'revdelete-hide-user' => '投稿者の利用者名またはIPを隠す',
+'revdelete-hide-comment' => '編集の要約',
+'revdelete-hide-user' => '投稿者の利用者名/IPアドレス',
 'revdelete-hide-restricted' => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-radio-same' => '(変更しない)',
-'revdelete-radio-set' => 'はい',
-'revdelete-radio-unset' => 'いいえ',
+'revdelete-radio-set' => '非公開',
+'revdelete-radio-unset' => '閲覧可能',
 'revdelete-suppress' => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-unsuppress' => '復元版に対する制限を除去',
 'revdelete-log' => '理由:',
@@ -2507,9 +2507,9 @@ $PAGEINTRO $NEWPAGE
 メール: $PAGEEDITOR_EMAIL
 ウィキ: $PAGEEDITOR_WIKI
 
-このページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
+ログインした状態でこのページを訪れない限り、これ以上の活動に対する通知は送信されません。ウォッチリスト内のすべてのページについて、通知を再設定することもできます。
 
-                         {{SITENAME}}通知システム
+{{SITENAME}}通知システム
 
 --
 メール通知の設定は、以下のページで変更してください:
@@ -3044,7 +3044,7 @@ $1 のブロックの理由は「''$2''」です。",
 'allmessagesdefault' => '既定のメッセージ文',
 'allmessagescurrent' => '現在のメッセージ文',
 'allmessagestext' => 'これは MediaWiki 名前空間で利用できるシステム メッセージの一覧です。
-MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ]や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
+MediaWiki 全般のローカライズ (地域化) に貢献したい場合は、[https://www.mediawiki.org/wiki/Localisation/ja MediaWiki のローカライズ]や [//translatewiki.net?setlang=ja translatewiki.net] をご覧ください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''が無効のため、このページを使用できません。",
 'allmessages-filter-legend' => '絞り込み',
 'allmessages-filter' => '変更状態により絞り込む:',
@@ -3375,7 +3375,7 @@ $1',
 'svg-long-desc' => 'SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-desc-animated' => 'アニメーション SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-error' => '無効な SVG ファイル: $1',
-'show-big-image' => '高解像度での画像',
+'show-big-image' => '元のファイル',
 'show-big-image-preview' => 'このプレビューのサイズ: $1。',
 'show-big-image-other' => 'その他の{{PLURAL:$2|解像度}}: $1。',
 'show-big-image-size' => '$1 × $2 ピクセル',
@@ -3888,7 +3888,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally' => '外部アプリケーションを使用してこのファイルを編集',
-'edit-externally-help' => '(詳しくは[//www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
+'edit-externally-help' => '(詳しくは[https://www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'すべて',
@@ -4156,7 +4156,7 @@ $5
 'version-hook-subscribedby' => '使用個所',
 'version-version' => '(バージョン $1)',
 'version-license' => 'ライセンス',
-'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
+'version-poweredby-credits' => "このウィキは、'''[https://www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
 'version-poweredby-others' => 'その他',
 'version-credits-summary' => '[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。',
 'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License) (バージョン2、またはそれ以降のライセンス) の規約に基づき、このライブラリを再配布および改変できます。

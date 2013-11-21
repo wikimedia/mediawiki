@@ -1887,7 +1887,7 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 
 # External editor support
 'edit-externally' => 'Pawnlam hmanraw hmanga tihdanglamna',
-'edit-externally-help' => '(Hriat chian lehzualnan [//www.mediawiki.org/wiki/Manual:External_editors bundàn kaihhruaina phek] hi en rawh)',
+'edit-externally-help' => '(Hriat chian lehzualnan [https://www.mediawiki.org/wiki/Manual:External_editors bundàn kaihhruaina phek] hi en rawh)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'a vaiin',

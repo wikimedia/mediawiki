@@ -1356,7 +1356,7 @@ $1",
 
 # External editor support
 'edit-externally' => 'Файлыр гъэтэрэзын, нэгъуэщӀ программэ и сэбэпкӀэ',
-'edit-externally-help' => '(нэхъыбу еплъ [//www.mediawiki.org/wiki/Manual:External_editors илъхьэным и тепсэлъыхьыгъуэ])',
+'edit-externally-help' => '(нэхъыбу еплъ [https://www.mediawiki.org/wiki/Manual:External_editors илъхьэным и тепсэлъыхьыгъуэ])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'псори',

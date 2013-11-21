@@ -721,7 +721,7 @@ Se parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curesp
 
 # External editor support
 'edit-externally' => 'Mudèfica ste file cun un prugrama esteran',
-'edit-externally-help' => "(Guèrda e' [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] par avé d'j ètri infurmaziòn) (l'è in inglés)",
+'edit-externally-help' => "(Guèrda e' [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] par avé d'j ètri infurmaziòn) (l'è in inglés)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tòt',

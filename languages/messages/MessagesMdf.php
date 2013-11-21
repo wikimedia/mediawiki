@@ -2186,7 +2186,7 @@ $1',
 'allmessagesdefault' => 'Апак полафтт текст',
 'allmessagescurrent' => 'Тяниень текст',
 'allmessagestext' => 'Тя MediaWiki-са васьфневи системонь пачфтематнень лувомась.
-Эняльттяма, сувак [//www.mediawiki.org/wiki/Localisation MediaWiki Локализациес] ди [//translatewiki.net translatewiki.net-с] кда тонь мяльце тиемс эсь путксце марстонь MediaWiki локализациес.',
+Эняльттяма, сувак [https://www.mediawiki.org/wiki/Localisation MediaWiki Локализациес] ди [//translatewiki.net translatewiki.net-с] кда тонь мяльце тиемс эсь путксце марстонь MediaWiki локализациес.',
 'allmessagesnotsupportedDB' => "Тя лопас аш кода кунцемс сяс мес '''\$wgUseDatabaseMessages'''лоткафоль.",
 'allmessages-language' => 'Кяль:',
 'allmessages-filter-submit' => 'Ётамс',
@@ -2685,7 +2685,7 @@ $1',
 
 # External editor support
 'edit-externally' => 'Петнемс тя файлть ушеширень програмонь вельде',
-'edit-externally-help' => '(Ванк [//www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовалсь] сяда лама содаманкса)',
+'edit-externally-help' => '(Ванк [https://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовалсь] сяда лама содаманкса)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'сембе',

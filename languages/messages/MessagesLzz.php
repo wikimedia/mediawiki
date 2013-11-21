@@ -761,7 +761,7 @@ Ukʼaçxe na mulunan kʼontʼaktʼepe istʼisna oqʼopinot kʼabuli ixvenen. Mes
 
 # External editor support
 'edit-externally' => 'Dosyas, kʼompʼuteris na renan pʼrogramepe kʼala oktirobape doqʼvi.',
-'edit-externally-help' => '(Dido çkina şeni metʼas na renan [//www.mediawiki.org/wiki/Manual:External_editors galeni xvenaş tercihepe] (İngilisuri) butʼkʼa muşis o3ʼkʼedit)',
+'edit-externally-help' => '(Dido çkina şeni metʼas na renan [https://www.mediawiki.org/wiki/Manual:External_editors galeni xvenaş tercihepe] (İngilisuri) butʼkʼa muşis o3ʼkʼedit)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'mteli',

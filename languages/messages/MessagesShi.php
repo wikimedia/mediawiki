@@ -268,7 +268,7 @@ $1',
 Ẓr [[Special:Version|ayyaw tasna]].',
 
 'ok' => 'Waxxa',
-'pagetitle' => '(MediaWiki)$1 - {{SITENAME}}',
+'pagetitle' => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Yurrid z "$1"',
 'youhavenewmessages' => 'Illa dark $1 ($2).',
@@ -1239,7 +1239,7 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 
 # External editor support
 'edit-externally' => 'Bddl asdaw ad s wasnas abrrani',
-'edit-externally-help' => '(Ẓṛ [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
+'edit-externally-help' => '(Ẓṛ [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kraygat (kullu)',

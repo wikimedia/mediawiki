@@ -1358,7 +1358,7 @@ $messages = array(
 
 # External editor support
 'edit-externally' => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
-'edit-externally-help' => '(Τερέστεν τα [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
+'edit-externally-help' => '(Τερέστεν τα [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ούλαι',

@@ -34,6 +34,7 @@
  * @author LuCKY
  * @author Mach
  * @author Manco Capac
+ * @author Meelo
  * @author Metal Militia
  * @author Mirzali
  * @author Mskyrider
@@ -1497,8 +1498,8 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'yourgender' => 'Nasıl açıklamayı tercih edersiniz?',
 'gender-unknown' => 'Söylemek istemiyorsanız',
-'gender-male' => 'Wiki düzenlemelerinde erkek olarak',
-'gender-female' => 'Wiki düzenlemelerinde kadın olarak',
+'gender-male' => 'Viki sayfalarını erkek olarak düzenliyorum',
+'gender-female' => 'Viki sayfalarını kadın olarak düzenliyorum',
 'prefs-help-gender' => 'Bu tercih ayarı isteğe bağlıdır.
 Yazılımda söz değerlerinin başlarında bulunan cinsiyete uygun gramerler için kullanılır.
 Bu bilgiler herkes tarafından görülebilir.',
@@ -1989,12 +1990,14 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'morelinkstoimage' => 'Bu dosyaya [[Special:WhatLinksHere/$1|daha fazla bağlantıları]] gör.',
 'linkstoimage-redirect' => '$1 (dosya yönlendirme) $2',
 'duplicatesoffile' => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyanın kopyası ([[Special:FileDuplicateSearch/$2|daha fazla ayrıntı]]):',
-'sharedupload' => 'Bu dosya $1 deposundan ve diğer projelerde kullanılıyor olabilir.',
+'sharedupload' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.',
 'sharedupload-desc-there' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. Daha fazla bilgi için lütfen [$2 dosya açıklama sayfasına] bakın.',
 'sharedupload-desc-here' => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir.
 Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
-'sharedupload-desc-create' => 'Bu dosya, $1 ve diğer projeler tarafından kullanılıyor olabilir. 
-Dosya açıklamasını düzenlemek isterseniz, [$2 dosya açıklama sayfası] bulunmaktadır.',
+'sharedupload-desc-edit' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.
+Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 buradan] gidebilirsiniz.',
+'sharedupload-desc-create' => 'Bu dosya $1 projesinden olup, diğer projelerde kullanılıyor olabilir.
+Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 buradan] gidebilirsiniz.',
 'filepage-nofile' => 'Bu isimde bir dosya yok.',
 'filepage-nofile-link' => 'Bu isimde bir dosya yok, ama siz [$1 yükleyebilirsiniz].',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
@@ -2877,7 +2880,7 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'allmessagesdefault' => 'Varsayılan mesaj metni',
 'allmessagescurrent' => 'Kullanımdaki metin',
 'allmessagestext' => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
-Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [//www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [//translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
+Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [https://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [//translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
 'allmessages-filter-legend' => 'Filtre',
 'allmessages-filter' => 'Özelleştirme durumuna göre filtrele:',
@@ -3609,7 +3612,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 # External editor support
 'edit-externally' => 'Dosyayı harici bir uygulamayla değiştirin.',
-'edit-externally-help' => '(Daha fazla bilgi için metadaki [//www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
+'edit-externally-help' => '(Daha fazla bilgi için metadaki [https://www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hepsini göster',
@@ -3802,7 +3805,7 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'version-hook-subscribedby' => 'Abone olan',
 'version-version' => '(Sürüm $1)',
 'version-license' => 'Lisans',
-'version-poweredby-credits' => "Bu wiki '''[//www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
+'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
 'version-poweredby-others' => 'diğerleri',
 'version-license-info' => "MediaWiki özgür bir yazılımdır; MediaWiki'yi, Özgür Yazılım Vakfı tarafından yayımlanmış olan GNU Genel Kamu Lisansının 2. veya (seçeceğiniz) daha sonraki bir sürümünün koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
 

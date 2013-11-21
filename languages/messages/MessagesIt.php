@@ -310,7 +310,7 @@ $messages = array(
 'tog-watchdeletion' => 'Aggiungi le pagine e i file cancellati agli osservati speciali',
 'tog-minordefault' => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop' => "Mostra l'anteprima sopra la casella di modifica e non sotto",
-'tog-previewonfirst' => "Mostra l'anteprima per la prima modifica",
+'tog-previewonfirst' => "Mostra l'anteprima almeno una volta prima di salvare",
 'tog-nocache' => 'Disabilita la cache delle pagine del browser',
 'tog-enotifwatchlistpages' => 'Inviami una email quando viene modificata una pagina o un file presente tra gli osservati speciali',
 'tog-enotifusertalkpages' => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
@@ -688,7 +688,7 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 'invalidtitle-knownnamespace' => 'Titolo non valido con namespace "$2" e testo "$3"',
 'invalidtitle-unknownnamespace' => 'Titolo non valido con namespace sconosciuto "$1" e testo "$2"',
 'exception-nologin' => 'Accesso non effettuato',
-'exception-nologin-text' => "Questa pagina o azione richiede che tu abbia effettuato l'accesso su questa wiki.",
+'exception-nologin-text' => "Si prega di [[Special:Userlogin|eseguire l'accesso]] per poter accedere a questa pagina o azione.",
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -759,8 +759,8 @@ Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non 
 'passwordsent' => 'Una nuova password è stata inviata all\'indirizzo e-mail registrato per l\'utente "$1".
 Per favore, effettua un accesso non appena la ricevi.',
 'blocked-mailpassword' => 'Per prevenire abusi, non è consentito usare la funzione "Invia nuova password" da un indirizzo IP bloccato.',
-'eauthentsent' => "Un messaggio e-mail di conferma è stato spedito all'indirizzo indicato.
-Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo",
+'eauthentsent' => "Un messaggio email di conferma è stato spedito all'indirizzo indicato.
+Per abilitare l'invio di messaggi email per questo utente è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo.",
 'throttled-mailpassword' => 'Una email di reimpostazione della password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione di reimpostazione della password può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror' => "Errore nell'invio del messaggio: $1",
@@ -1169,19 +1169,20 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'revdelete-text' => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
 'revdelete-confirm' => 'Per favore conferma che questo è quanto intendi fare, che sei consapevole delle conseguenze, e che stai facendo questo nel rispetto delle [[{{MediaWiki:Policy-url}}|linee guida]].',
-'revdelete-suppress-text' => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
-* Dati personali inopportuni
+'revdelete-suppress-text' => "La rimozione dovrebbe essere utilizzata '''unicamente''' nei seguenti casi:
+* informazioni potenzialmente diffamatorie
+* dati personali inopportuni
 *: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",
 'revdelete-legend' => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
-'revdelete-hide-text' => 'Nascondi il testo della versione',
+'revdelete-hide-text' => 'Testo della versione',
 'revdelete-hide-image' => 'Nascondi i contenuti del file',
 'revdelete-hide-name' => 'Nascondi azione e oggetto della stessa',
-'revdelete-hide-comment' => "Nascondi l'oggetto della modifica o la motivazione dell'azione",
-'revdelete-hide-user' => "Nascondi il nome o l'indirizzo IP dell'autore",
+'revdelete-hide-comment' => "Oggetto della modifica o motivazione dell'azione",
+'revdelete-hide-user' => "Nome o indirizzo IP dell'autore",
 'revdelete-hide-restricted' => 'Nascondi le informazioni indicate anche agli amministratori',
 'revdelete-radio-same' => '(non cambiare)',
-'revdelete-radio-set' => 'Sì',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Nascondi',
+'revdelete-radio-unset' => 'Mostra',
 'revdelete-suppress' => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-unsuppress' => 'Elimina le limitazioni sulle revisioni ripristinate',
 'revdelete-log' => 'Motivo:',
@@ -2328,9 +2329,9 @@ Contatta l\'autore:
 via posta elettronica: $PAGEEDITOR_EMAIL
 sul sito: $PAGEEDITOR_WIKI
 
-Non verranno inviate altre notifiche in caso di ulteriori attività, se non visiti la pagina. Inoltre, è possibile modificare le impostazioni di notifica per tutte le pagine nella lista degli osservati speciali.
+Non verranno inviate altre notifiche in caso di ulteriori attività, se non visiti la pagina dopo aver effettuato l\'accesso. Inoltre, è possibile modificare le impostazioni di notifica per tutte le pagine nella lista degli osservati speciali.
 
-             Il sistema di notifica di {{SITENAME}}, al tuo servizio
+Il sistema di notifica di {{SITENAME}}, al tuo servizio
 
 --
 Per modificare le impostazioni delle notifiche via posta elettronica, visita 
@@ -2826,7 +2827,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#S
 'allmessagesdefault' => 'Testo predefinito',
 'allmessagescurrent' => 'Testo attuale',
 'allmessagestext' => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki.
-Visitare [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se si desidera contribuire alla localizzazione generica di MediaWiki.',
+Visitare [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se si desidera contribuire alla localizzazione generica di MediaWiki.',
 'allmessagesnotsupportedDB' => "Non è possibile utilizzare questa pagina perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
 'allmessages-filter-legend' => 'Filtro',
 'allmessages-filter' => 'Filtra per stato di modifica:',
@@ -3139,7 +3140,7 @@ $1',
 'svg-long-desc' => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'svg-long-desc-animated' => 'file in formato SVG animato, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'svg-long-error' => 'File SVG non valido: $1',
-'show-big-image' => 'Versione ad alta risoluzione',
+'show-big-image' => 'File originale',
 'show-big-image-preview' => 'Dimensioni di questa anteprima: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altra risoluzione|Altre risoluzioni}}: $1.',
 'show-big-image-size' => '$1 × $2 pixel',
@@ -3602,7 +3603,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 # External editor support
 'edit-externally' => 'Modifica questo file usando un programma esterno',
-'edit-externally-help' => '(Per maggiori informazioni consultare le [//www.mediawiki.org/wiki/Manual:External_editors istruzioni])',
+'edit-externally-help' => '(Per maggiori informazioni consultare le [https://www.mediawiki.org/wiki/Manual:External_editors istruzioni])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutte',
@@ -3796,7 +3797,7 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 'version-hook-subscribedby' => 'Sottoscrizioni',
 'version-version' => '(Versione $1)',
 'version-license' => 'Licenza',
-'version-poweredby-credits' => "Questo wiki è realizzato con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Questo wiki è realizzato con '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'altri',
 'version-credits-summary' => 'Siamo lieti di riconoscere le seguenti persone per aver contribuito a [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki è un software libero; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.

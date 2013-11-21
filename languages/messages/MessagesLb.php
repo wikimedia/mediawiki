@@ -389,7 +389,7 @@ $messages = array(
 'articlepage' => 'Säit',
 'talk' => 'Diskussioun',
 'views' => 'Affichagen',
-'toolbox' => 'Geschirkëscht',
+'toolbox' => 'Geschir (Tools)',
 'userpage' => 'Benotzersäit',
 'projectpage' => 'Meta-Text',
 'imagepage' => 'Billersäit kucken',
@@ -533,7 +533,7 @@ Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergie
 'internalerror' => 'Interne Feeler',
 'internalerror_info' => 'Interne Feeler: $1',
 'fileappenderrorread' => '"$1" konnt während dem Derbäisetze net gelies ginn.',
-'fileappenderror' => '"$1" konnt net bäi "$2" derbäigesat ginn.',
+'fileappenderror' => '"$1" konnt net bei "$2" derbäigesat ginn.',
 'filecopyerror' => 'De Fichier "$1" konnt net op "$2" kopéiert ginn.',
 'filerenameerror' => 'De Fichier "$1" konnt net op "$2" ëmbenannt ginn.',
 'filedeleteerror' => 'De Fichier "$1" konnt net geläscht ginn.',
@@ -586,7 +586,7 @@ Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$
 'exception-nologin-text' => 'Dës Säit oder Aktioun erfuerdert datt Dir op dëser Wiki ageloggt sidd.',
 
 # Virus scanner
-'virus-badscanner' => "Schlecht Configuratioun: onbekannte  Virescanner: ''$1''",
+'virus-badscanner' => "Schlecht Konfiguratioun: onbekannte Virescanner: ''$1''",
 'virus-scanfailed' => 'De Scan huet net funktionéiert (Code $1)',
 'virus-unknownscanner' => 'onbekannten Antivirus:',
 
@@ -661,7 +661,8 @@ Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir Iech an der Zwëschen
 'passwordsent' => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
 Mellt Iech w.e.g. domat un, soubal Dir et kritt hutt.',
 'blocked-mailpassword' => "Déi vun Iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
-'eauthentsent' => "Eng Confirmatiouns-E-Mail gouf un déi Adress geschéckt déi Dir uginn hutt.<br />
+'eauthentsent' => "Eng Confirmatiouns-E-Mail gouf un déi Adress geschéckt déi Dir uginn hutt.
+
 Ier iergendeng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, musst Dir als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech Ären eegenen ass.",
 'throttled-mailpassword' => "An {{PLURAL:$1|der leschter Stonn|de leschte(n) $1 Stonnen}} eng E-Mail verschéckt fir d'Passwuert zréckzesetzen.
 Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURAL:$1|Stonn|$1 Stonnen}} sou eng Mail verschéckt ginn.",
@@ -669,10 +670,10 @@ Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURA
 'acct_creation_throttle_hit' => 'Visiteure vun dëser Wiki déi Är IP-Adress hu {{PLURAL:$1|schonn $1 Benotzerkont|scho(nn) $1 Benotzerkonten}} an de leschten Deeg opgemaach, dëst ass déi maximal Zuel déi an dësem Zäitraum erlaabt ass.
 Dofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonten opmaachen.',
 'emailauthenticated' => 'Är E-Mail-Adress gouf den $2 ëm $3 Auer bestätegt.',
-'emailnotauthenticated' => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br />
-Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
+'emailnotauthenticated' => 'Är E-Mail Adress gouf nach net confirméiert.
+Dowéinst gëtt fir keng vun dëse Funktiounen E-Maile geschéckt.',
 'noemailprefs' => 'Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.',
-'emailconfirmlink' => 'Confirméiert är E-Mailadress w.e.g..',
+'emailconfirmlink' => 'Confirméiert Är E-Mailadress w.e.g.',
 'invalidemailaddress' => 'Dës E-Mail-Adress gëtt net akzeptéiert well se en ongëltegt Format (z. B. ongëlteg Zeechen) ze hu schéngt.
 Gitt eng valabel E-Mail-Adress an oder loosst dëst Feld eidel.',
 'cannotchangeemail' => 'Mailadresse vu Benotzerkonte kënnen op dëser Wiki net geännert ginn.',
@@ -689,7 +690,7 @@ Wann dëse Benotzerkont ongewollt ugeluecht gouf, kënnt Dir dës Noriicht einfa
 Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'login-abort-generic' => 'Dir sidd net ageloggt - Aloggen ofgebrach',
 'loginlanguagelabel' => 'Sprooch: $1',
-'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et sou ausgesäit wéi wa se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
+'suspicious-userlogout' => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et sou ausgesäit wéi wa se vun engem futtise Browser oder Proxy-Tëschespäicher kënnt.',
 
 # Email sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Funktioun',
@@ -937,7 +938,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'template-protected' => '(gespaart)',
 'template-semiprotected' => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories' => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
-'edittools' => '<!-- Dësen Text gëtt ënner dem "Ännere"Formulaire esouwéi dem "Eropluede"-Formulaire ugewisen. -->',
+'edittools' => '<!-- Dësen Text gëtt ënner dem "Ännere"-Formulaire souwéi dem "Eropluede"-Formulaire ugewisen. -->',
 'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
@@ -1017,8 +1018,8 @@ De Benotzer $3 huet "$2" als Grond uginn.',
 *k = Kleng Ännerung.",
 'history-fieldset-title' => 'An de Versioune sichen',
 'history-show-deleted' => 'nëmmen déi geläschten',
-'histfirst' => 'eelsten',
-'histlast' => 'neisten',
+'histfirst' => 'eelst',
+'histlast' => 'neist',
 'historysize' => '({{PLURAL:$1|1 Byte|$1 Byten}})',
 'historyempty' => '(eidel)',
 
@@ -1078,18 +1079,19 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-confirm' => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text' => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
+* Informatiounen déi beleidege kéinten
 * Net ubruechte perséinlechen Informatiounen
 *: ''Adressen, Telefonsnummeren, Sozialversécherungsnummeren asw.''",
 'revdelete-legend' => "Limitatioune fir d'Sichtbarkeet festleeën",
-'revdelete-hide-text' => 'Text vun der Versioun verstoppen',
+'revdelete-hide-text' => 'Text vun der Versioun',
 'revdelete-hide-image' => 'Bildinhalt verstoppen',
 'revdelete-hide-name' => 'Logbuch-Aktioun verstoppen',
-'revdelete-hide-comment' => 'Bemierkung verstoppen',
-'revdelete-hide-user' => 'Dem Auteur säi Benotzernumm/IP verstoppen',
+'revdelete-hide-comment' => 'Resumé vun der Ännerung',
+'revdelete-hide-user' => 'Dem Auteur säi Benotzernumm/IP-Adress',
 'revdelete-hide-restricted' => 'Donnéeën och fir Administrateuren suppriméieren geneesou wéi fir déi Aner',
 'revdelete-radio-same' => '(net änneren)',
-'revdelete-radio-set' => 'Jo',
-'revdelete-radio-unset' => 'Neen',
+'revdelete-radio-set' => 'Verstoppt',
+'revdelete-radio-unset' => 'Visibel',
 'revdelete-suppress' => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-unsuppress' => 'Limitatiounen fir restauréiert Versiounen ophiewen',
 'revdelete-log' => 'Grond:',
@@ -1780,7 +1782,7 @@ Kuckt  https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 Nèemmen Datenofruff ass erlaabt.',
 'img-auth-streaming' => '"$1" lueden.',
 'img-auth-public' => "D'Funktioun img_auth.php erlaabt et fir Fichieren vun enger privater Wiki erauszeginn.
-Dës Wiki ass als ëffentlech Wiki configuréiert.
+Dës Wiki ass als ëffentlech Wiki konfiguréiert.
 Fir eng optimal Sécherheet ass img_auth.php ausgeschalt.",
 'img-auth-noread' => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 'img-auth-bad-query-string' => "D'URL huet eng net valabel Rei vun Zeechen.",
@@ -1793,7 +1795,7 @@ Fir eng optimal Sécherheet ass img_auth.php ausgeschalt.",
 'http-timed-out' => 'HTTP-Ufro huet ze laang gebraucht (time out).',
 'http-curl-error' => 'Feeler beim Ofruff vun der URL: $1',
 'http-host-unreachable' => "D'URL konnt net erreecht ginn.",
-'http-bad-status' => 'Et gouf e Problem bäi der HTTP-Ufro: $1 $2',
+'http-bad-status' => 'Et gouf e Problem bei der HTTP-Ufro: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => "URL ass net z'erreechen",
@@ -2139,9 +2141,9 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'listgrouprights-removegroup' => 'Kann {{PLURAL:$2|dëse Gruppe|dës Gruppen}} ewechhuelen: $1',
 'listgrouprights-addgroup-all' => 'Kann all Gruppen derbäisetzen',
 'listgrouprights-removegroup-all' => 'Ka Benotzer aus alle Gruppen eraushuelen',
-'listgrouprights-addgroup-self' => "Däerf {{PLURAL:$2|de Grupp|d'Gruppe}} bäi säin eegene Benotzerkont derbäisetzen: $1",
+'listgrouprights-addgroup-self' => "Däerf {{PLURAL:$2|de Grupp|d'Gruppe}} bei säin eegene Benotzerkont derbäisetzen: $1",
 'listgrouprights-removegroup-self' => "Däerf {{PLURAL:$2|de Grupp|d'Gruppe}} vu sengem eegene Benotzerkont ewechhuelen: $1",
-'listgrouprights-addgroup-self-all' => 'däerf all Gruppe bäi säin eegene Benotzerkont derbäisetzen',
+'listgrouprights-addgroup-self-all' => 'däerf all Gruppe bei säin eegene Benotzerkont derbäisetzen',
 'listgrouprights-removegroup-self-all' => 'Däerf all Gruppe vu sengem eegene Benotzerkont ewechhuelen',
 
 # Email user
@@ -2207,7 +2209,7 @@ All weider Ännerungen op dëser Säit an der associéierter Diskussiounssäit g
 'watchmethod-recent' => 'Rezent Ännerunge ginn op iwwerwaacht Säiten iwwerpréift',
 'watchmethod-list' => 'Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains' => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
-'iteminvalidname' => "Problem mat dem Objet '$1', ongëltegen Numm ...",
+'iteminvalidname' => "Problem mam Element '$1', ongëltegen Numm ...",
 'wlnote' => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}, Stand: $3 ëm $4 Auer.",
 'wlshowlast' => "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 'watchlist-options' => 'Optioune vun der Iwwerwaachungslëscht',
@@ -2322,9 +2324,9 @@ Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Disku
 
 # Edit tokens
 'sessionfailure-title' => 'Setzungsfeeler',
-'sessionfailure' => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
-Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
-Klickt w.e.g. op "Zréck" a lued déi Säit vun där Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+'sessionfailure' => 'Et schéngt e Problem mat Ärer Loginseance ze ginn;
+Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt Är Seance piratéiert ka ginn.
+Klickt w.e.g. op "Zréck" a luet déi Säit vun där Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 
 # Protect
 'protectlogpage' => 'Protektiounslogbuch',
@@ -2766,7 +2768,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagesdefault' => 'Standardtext',
 'allmessagescurrent' => 'Aktuellen Text',
 'allmessagestext' => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
-Besicht w.e.g. [//www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [//translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
+Besicht w.e.g. [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [//translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Filter nom ugepassten Zoustand:',
@@ -2888,7 +2890,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-n-mainpage' => "Besicht d'Haaptsäit",
 'tooltip-n-mainpage-description' => "Besicht d'Haaptsäit",
 'tooltip-n-portal' => 'Iwwer de Portal, wat Dir maache kënnt, wou wat ze fannen ass',
-'tooltip-n-currentevents' => "D'Aktualitéit a wat derhanner ass",
+'tooltip-n-currentevents' => "D'Aktualitéit a wat dohanner ass",
 'tooltip-n-recentchanges' => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',
 'tooltip-n-randompage' => 'Zoufälleg Säit',
 'tooltip-n-help' => 'Hëllefsäiten weisen.',
@@ -3070,7 +3072,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'svg-long-desc' => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
 'svg-long-desc-animated' => 'Animéierten SVG-Fichier, Basisgréisst $1 x $2 Pixel, Gréisst vum Fichier: $3',
 'svg-long-error' => 'Ongëltegen SVG-Fichier: $1',
-'show-big-image' => 'Voll Opléisung',
+'show-big-image' => 'Original Fichier',
 'show-big-image-preview' => 'Gréisst vun dësem Preview: $1.',
 'show-big-image-other' => 'Aner {{PLURAL:$2|Opléisung|Opléisungen}}: $1.',
 'show-big-image-size' => '$1 × $2 Pixel',
@@ -3238,7 +3240,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpsdestlongitude' => 'Längt',
 'exif-gpsdestbearingref' => "Referenz fir d'Motivrichtung",
 'exif-gpsdestbearing' => 'Richtung vum Motiv',
-'exif-gpsdestdistanceref' => "Referenz fir d'Distanz bis bäi den Objet (vun der Foto)",
+'exif-gpsdestdistanceref' => "Referenz fir d'Distanz bis bei den Objet (vun der Foto)",
 'exif-gpsdestdistance' => 'Motivdistanz',
 'exif-gpsprocessingmethod' => 'Numm vun der GPS-Prozedur-Method',
 'exif-gpsareainformation' => 'Numm vun der GPS-Géigend',
@@ -3515,7 +3517,7 @@ Déi aner sinn am Standard verstoppt.
 
 # External editor support
 'edit-externally' => 'Dëse Fichier mat engem externe Programm änneren',
-'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[//www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
+'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[https://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -3688,7 +3690,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-hook-subscribedby' => 'Opruff vum',
 'version-version' => '(Versioun $1)',
 'version-license' => 'Lizenz',
-'version-poweredby-credits' => "Dës Wiki funktionéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Dës Wiki funktionéiert mat '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anerer',
 'version-credits-summary' => "Mir soen dëse Persoune 'Merci' fir hir Mataarbecht u [[Special:Version|MediaWiki]].",
 'version-license-info' => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënner de Bedingunge vun der GNU-General Public License sou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
@@ -3847,7 +3849,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'feedback-message' => 'Message:',
 'feedback-cancel' => 'Ofbriechen',
 'feedback-submit' => 'Feedback schécken',
-'feedback-adding' => "Feedback gëtt bäi d'Säit derbäigesat...",
+'feedback-adding' => "Feedback gëtt bei d'Säit derbäigesat...",
 'feedback-error1' => 'Feeler: Resultat vum API gouf net erkannt',
 'feedback-error2' => "Feeler: D'Ännerung gouf net gespäichert",
 'feedback-error3' => 'Feeler: Keng Äntwert vum API',

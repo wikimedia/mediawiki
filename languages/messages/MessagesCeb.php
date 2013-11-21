@@ -1230,7 +1230,7 @@ Ang uban default nga nakatago.
 
 # External editor support
 'edit-externally' => 'Usba kining payl gamit ang eksternal nga aplikasyon',
-'edit-externally-help' => '(Tan-awa ang [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa dugang nga impormasyon)',
+'edit-externally-help' => '(Tan-awa ang [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',
