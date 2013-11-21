@@ -1629,10 +1629,7 @@ class OutputPage extends ContextSource {
 	 * @param $template QuickTemplate
 	 */
 	public function addTemplate( &$template ) {
-		ob_start();
-		$template->execute();
-		$this->addHTML( ob_get_contents() );
-		ob_end_clean();
+		$this->addHTML( $template->getHTML() );
 	}
 
 	/**

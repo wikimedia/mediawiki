@@ -1457,6 +1457,20 @@ abstract class QuickTemplate {
 	public function getSkin() {
 		return $this->data['skin'];
 	}
+
+	/**
+	 * Fetch the output of a QuickTemplate and return it
+	 *
+	 * @since 1.23
+	 * @return String
+	 */
+	public function getHTML() {
+		ob_start();
+		$this->execute();
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
 }
 
 /**
