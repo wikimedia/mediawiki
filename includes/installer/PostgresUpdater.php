@@ -398,7 +398,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			# end
 			array( 'tsearchFixes' ),
 
-			// 1.22
+			// 1.23
 			array( 'addPgField', 'recentchanges', 'rc_source',            "TEXT NOT NULL DEFAULT ''" ),
 		);
 	}
