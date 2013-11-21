@@ -331,11 +331,11 @@ class GlobalTest extends MediaWikiTestCase {
 		unlink( $wgDebugLogFile );
 
 		wfDebugMem();
-		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		$this->assertGreaterThan( 1000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
 		wfDebugMem( true );
-		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		$this->assertGreaterThan( 1000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
 		$wgDebugLogFile = $old_log_file;
