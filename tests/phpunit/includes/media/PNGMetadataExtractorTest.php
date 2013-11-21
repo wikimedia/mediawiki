@@ -121,7 +121,6 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $meta['bitDepth'] );
 	}
 
-
 	public function testPngIndexColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );

@@ -170,7 +170,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertRevEquals( $orig, $rev );
 	}
 
-
 	/**
 	 * @covers Revision::newFromArchiveRow
 	 */

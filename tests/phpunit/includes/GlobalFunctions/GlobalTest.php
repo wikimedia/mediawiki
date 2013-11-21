@@ -141,7 +141,6 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $result, wfArrayToCgi( $array ) );
 	}
 
-
 	/**
 	 * @covers ::wfArrayToCgi
 	 */

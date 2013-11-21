@@ -302,7 +302,6 @@ class WebInstallerOutput {
 
 </div></div>
 
-
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"

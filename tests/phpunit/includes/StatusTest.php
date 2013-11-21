@@ -228,7 +228,7 @@ class StatusTest extends MediaWikiTestCase {
 	 */
 	public function testCleanParams( $cleanCallback, $params, $expected ) {
 		$method = new ReflectionMethod( 'Status', 'cleanParams' );
-		$method->setAccessible(TRUE);
+		$method->setAccessible( true );
 		$status = new Status();
 		$status->cleanCallback = $cleanCallback;
 

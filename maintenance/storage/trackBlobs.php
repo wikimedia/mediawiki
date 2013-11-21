@@ -24,7 +24,6 @@
 
 require __DIR__ . '/../commandLine.inc';
 
-
 if ( count( $args ) < 1 ) {
 	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";
 	echo "Adds blobs from a given ES cluster to the blob_tracking table\n";

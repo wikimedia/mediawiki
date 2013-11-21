@@ -160,7 +160,6 @@ class Preprocessor_DOM implements Preprocessor {
 			$xml = $this->preprocessToXml( $text, $flags );
 		}
 
-
 		// Fail if the number of elements exceeds acceptable limits
 		// Do not attempt to generate the DOM
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );

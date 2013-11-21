@@ -25,7 +25,6 @@ class SemiMockedFetchText extends FetchText {
 	 */
 	private $mockInvocations = array( 'getStdin' => 0 );
 
-
 	/**
 	 * Data for the fake stdin
 	 *
@@ -82,7 +81,6 @@ class FetchTextTest extends MediaWikiTestCase {
 	private $textId4;
 	private $textId5;
 
-
 	/**
 	 * @var Exception|null As the current MediaWikiTestCase::run is not
 	 * robust enough to recover from thrown exceptions directly, we cannot
@@ -119,7 +117,6 @@ class FetchTextTest extends MediaWikiTestCase {
 		throw new MWException( "Could not determine text id" );
 	}
 
-
 	function addDBData() {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
@@ -145,7 +142,6 @@ class FetchTextTest extends MediaWikiTestCase {
 		}
 	}
 
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -156,7 +152,6 @@ class FetchTextTest extends MediaWikiTestCase {
 
 		$this->fetchText = new SemiMockedFetchText();
 	}
-
 
 	/**
 	 * Helper to relate FetchText's input and output
@@ -169,7 +164,6 @@ class FetchTextTest extends MediaWikiTestCase {
 			"getStdin invocation counter" );
 		$this->expectOutputString( $expectedOutput );
 	}
-
 
 	// Instead of the following functions, a data provider would be great.
 	// However, as data providers are evaluated /before/ addDBData, a data

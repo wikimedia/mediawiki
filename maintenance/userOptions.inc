@@ -49,7 +49,6 @@ class userOptions {
 		}
 	}
 
-
 	/**
 	 * This is used to check options. Only needed on construction
 	 *
@@ -178,7 +177,6 @@ class userOptions {
 			print "\n";
 		}
 	}
-
 
 	/** Change our users options */
 	private function CHANGER() {

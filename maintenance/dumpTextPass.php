@@ -29,7 +29,6 @@ $originalDir = getcwd();
 require_once __DIR__ . '/commandLine.inc';
 require_once __DIR__ . '/backupTextPass.inc';
 
-
 $dumper = new TextPassDumper( $argv );
 
 if ( !isset( $options['help'] ) ) {

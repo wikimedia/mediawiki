@@ -66,7 +66,6 @@ class RandomImageGenerator {
 		)
 	);
 
-
 	public function __construct( $options = array() ) {
 		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight', 'shapesToDraw' ) as $property ) {
 			if ( isset( $options[$property] ) ) {
@@ -111,7 +110,6 @@ class RandomImageGenerator {
 
 		return $filenames;
 	}
-
 
 	/**
 	 * Figure out how we write images. This is a factor of both format and the local system
@@ -158,7 +156,6 @@ class RandomImageGenerator {
 
 		return $filenames;
 	}
-
 
 	/**
 	 * Generate data representing an image of random size (within limits),
@@ -354,7 +351,6 @@ class RandomImageGenerator {
 			'y' => $x * $matrix[1][0] + $y * $matrix[1][1]
 		);
 	}
-
 
 	/**
 	 * Based on an image specification, write such an image to disk, using the command line ImageMagick program ('convert').

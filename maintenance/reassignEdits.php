@@ -174,8 +174,6 @@ class ReassignEdits extends Maintenance {
 		$user->load();
 		return $user;
 	}
-
-
 }
 
 $maintClass = "ReassignEdits";

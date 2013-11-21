@@ -411,7 +411,6 @@ class ImportReporter extends ContextSource {
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
 
-
 	/**
 	 * @param WikiImporter $importer
 	 * @param $upload

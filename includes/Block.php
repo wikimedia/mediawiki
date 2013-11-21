@@ -1083,7 +1083,6 @@ class Block {
 		return null;
 	}
 
-
 	/**
 	 * Get all blocks that match any IP from an array of IP addresses
 	 *
