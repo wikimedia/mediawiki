@@ -3975,6 +3975,20 @@ $wgMessageStructure = array(
 		'limitreport-expensivefunctioncount',
 		'limitreport-expensivefunctioncount-value',
 	),
+	'expandtemplates' => array(
+		'expandtemplates',
+		'expandtemplates-desc',
+		'expand_templates_intro',
+		'expand_templates_title',
+		'expand_templates_input',
+		'expand_templates_output',
+		'expand_templates_xml_output',
+		'expand_templates_ok',
+		'expand_templates_remove_comments',
+		'expand_templates_remove_nowiki',
+		'expand_templates_generate_xml',
+		'expand_templates_preview',
+	),
 );
 
 /** Comments for each block */
@@ -4222,4 +4236,5 @@ Variants for Chinese language",
 	'cachedspecial' => 'SpecialCachedPage',
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
+	'expandtemplates' => 'Special:ExpandTemplates'
 );

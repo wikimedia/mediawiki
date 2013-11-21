@@ -149,6 +149,7 @@ class SpecialPageFactory {
 		'Undelete'                  => 'SpecialUndelete',
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
 		'MergeHistory'              => 'SpecialMergeHistory',
+		'ExpandTemplates'           => 'SpecialExpandTemplates',
 
 		// Other
 		'Booksources'               => 'SpecialBookSources',
