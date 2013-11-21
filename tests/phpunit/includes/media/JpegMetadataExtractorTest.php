@@ -80,7 +80,6 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $res['XMP'] );
 	}
 
-
 	public function testIPTCHashComparisionNoHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-xmp-psir.jpg' );
 		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );

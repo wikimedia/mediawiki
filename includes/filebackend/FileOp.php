@@ -84,7 +84,6 @@ abstract class FileOp {
 		}
 	}
 
-
 	/**
 	 * Normalize a string if it is a valid storage path
 	 *

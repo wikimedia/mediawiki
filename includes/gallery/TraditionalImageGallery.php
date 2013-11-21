@@ -22,7 +22,6 @@
 
 class TraditionalImageGallery extends ImageGalleryBase {
 
-
 	/**
 	 * Return a HTML representation of the image gallery
 	 *
@@ -167,7 +166,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				) . "<br />\n" :
 				'';
 
-
 			$galleryText = $textlink . $text . $fileSize;
 			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
 
@@ -184,7 +182,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 		return $output;
 	}
-
 
 	/**
 	 * Add the wrapper html around the thumb's caption

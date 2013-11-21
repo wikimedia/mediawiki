@@ -68,7 +68,6 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $quoted );
 	}
 
-
 	/**
 	 * Feeds testAddIdentifierQuotes
 	 *

@@ -57,7 +57,6 @@ class ShowCacheStats extends Maintenance {
 		$this->output( sprintf( "without session:   %-10d %6.2f%%\n", $noSession, $noSession / $total * 100 ) );
 		$this->output( sprintf( "total:             %-10d %6.2f%%\n", $total, 100 ) );
 
-
 		$this->output( "\nParser cache\n" );
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );
 		$expired = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_expired' ) ) );

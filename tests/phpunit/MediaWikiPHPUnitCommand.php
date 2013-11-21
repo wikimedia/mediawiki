@@ -100,16 +100,13 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		print <<<EOT
 
 ParserTest-specific options:
-
   --regex="<regex>"        Only run parser tests that match the given regex
   --file="<filename>"      File describing parser tests
   --keep-uploads           Re-use the same upload directory for each test, don't delete it
 
-
 Database options:
   --use-normal-tables      Use normal DB tables.
   --reuse-db               Init DB only if tables are missing and keep after finish.
-
 
 Debugging options:
   --debug-tests            Log testing activity to the PHPUnitCommand log channel.

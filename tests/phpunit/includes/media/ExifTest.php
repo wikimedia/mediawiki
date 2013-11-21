@@ -16,8 +16,6 @@ class ExifTest extends MediaWikiTestCase {
 
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 
-
-
 		$this->setMwGlobals( 'wgShowEXIF', true );
 	}
 

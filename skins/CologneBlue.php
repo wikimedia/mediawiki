@@ -169,7 +169,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
 
-
 			// Second row. Privileged actions.
 			$element = array();
 
@@ -182,7 +181,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			$element[] = $this->processBottomLink( 'move', $content_nav['actions']['move'], 'movethispage' );
 
 			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
-
 
 			// Third row. Language links.
 			$lines[] = $this->otherLanguages();
@@ -467,7 +465,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			$bar = $this->sidebarAdditions( $bar );
 		}
 
-
 		// Fill out special sidebar items with content
 		$orig_bar = $bar;
 		$bar = array();
@@ -480,7 +477,6 @@ class CologneBlueTemplate extends BaseTemplate {
 				$bar[$heading] = $data;
 			}
 		}
-
 
 		// Output the sidebar
 		// CologneBlue uses custom messages for some portlets, but we should keep the ids for consistency

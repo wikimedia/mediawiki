@@ -207,6 +207,5 @@ class RefreshImageMetadata extends Maintenance {
 	}
 }
 
-
 $maintClass = 'RefreshImageMetadata';
 require_once RUN_MAINTENANCE_IF_MAIN;

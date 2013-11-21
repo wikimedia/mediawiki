@@ -708,7 +708,6 @@ class BitmapHandler extends ImageHandler {
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
 
-
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
 	 *

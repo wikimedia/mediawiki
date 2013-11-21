@@ -38,7 +38,6 @@ class ExceptionTest extends MediaWikiTestCase {
 		);
 	}
 
-
 	/**
 	 * Lame JSON schema validation.
 	 *
