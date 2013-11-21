@@ -255,6 +255,8 @@ class SpecialWatchlist extends SpecialPage {
 			array( 'id' => 'mw-watchlist-options' )
 		);
 
+		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
+
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
 		$join_conds = array(
