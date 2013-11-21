@@ -2134,7 +2134,7 @@ $wgStyleVersion = '303';
 /**
  * This will cache static pages for non-logged-in users to reduce
  * database traffic on public sites.
- * Must set $wgShowIPinHeader = false
+ * Automatically sets $wgShowIPinHeader = false
  * ResourceLoader requests to default language and skins are cached
  * as well as single module requests.
  */
