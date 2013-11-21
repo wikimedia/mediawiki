@@ -924,7 +924,7 @@ class DifferenceEngine extends ContextSource {
 		$data[] = wfTimestamp( TS_DB );
 
 		return "<!-- diff generator: " .
-			implode( " ",	array_map( "htmlspecialchars", $data ) ) .
+			implode( " ", array_map( "htmlspecialchars", $data ) ) .
 			" -->\n";
 	}
 
