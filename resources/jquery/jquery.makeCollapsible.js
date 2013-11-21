@@ -26,7 +26,7 @@
 	 * @param {Object|undefined} options
 	 */
 	function toggleElement( $collapsible, action, $defaultToggle, options ) {
-		var $collapsibleContent, $containers, hookCallback;
+		var $collapsibleContent, $containers, hookCallback, collapsibleClass, collapsibleHTML;
 		options = options || {};
 
 		// Validate parameters
@@ -61,10 +61,17 @@
 
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
-			$containers = $collapsible.find( '> tbody > tr' );
+			$containers = $collapsible.find( '> tbody > tr, caption' );
 			if ( $defaultToggle ) {
 				// Exclude table row containing togglelink
 				$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
+			}
+			if ($collapsible.find('caption')[0]) {
+				collapsibleClass = $collapsible.find('caption').attr('class') || '';
+			    collapsibleHTML = $collapsible.find('caption')[0].innerHTML || '';
+				if (collapsibleClass.indexOf('mw-customtoggle') === 0 || collapsibleHTML.indexOf('mw-customtoggle') !== -1) {
+					$containers = $containers.not($defaultToggle.closest('caption'));
+				}
 			}
 
 			if ( action === 'collapse' ) {
