@@ -544,12 +544,13 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Also adds relevant block information
 	 *
 	 * @param bool $showBlockInfo
+	 * @param string $alwaysIpbDeleted Set to 'alwaysIpb_deleted' to select always ipb_deleted
 	 * @return void
 	 */
-	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
+	public function showHiddenUsersAddBlockInfo( $showBlockInfo, $alwaysIpbDeleted = false ) {
 		$userCanViewHiddenUsers = $this->getUser()->isAllowed( 'hideuser' );
 
-		if ( $showBlockInfo || !$userCanViewHiddenUsers ) {
+		if ( $showBlockInfo || !$userCanViewHiddenUsers || $alwaysIpbDeleted === 'alwaysIpb_deleted' ) {
 			$this->addTables( 'ipblocks' );
 			$this->addJoinConds( array(
 				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),

@@ -139,7 +139,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( 'user_editcount > 0' );
 		}
 
-		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
+		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo, 'alwaysIpb_deleted' );
 
 		if ( $fld_groups || $fld_rights ) {
 			// Show the groups the given users belong to

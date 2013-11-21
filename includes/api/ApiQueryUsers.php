@@ -112,7 +112,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			$this->addFields( User::selectFields() );
 			$this->addWhereFld( 'user_name', $goodNames );
 
-			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
+			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ), 'alwaysIpb_deleted' );
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
