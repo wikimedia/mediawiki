@@ -407,6 +407,7 @@ $specialPageAliases = array(
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
 	'Export'                    => array( 'Export' ),
+	'ExpandTemplates'           => array( 'ExpandTemplates', 'Expantemplates' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
 	'Filepath'                  => array( 'FilePath' ),
@@ -5147,4 +5148,21 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'limitreport-expensivefunctioncount'       => 'Expensive parser function count',
 'limitreport-expensivefunctioncount-value' => '$1/$2', # only translate this message to other languages if you have to change it
 
+#ExpandTemplates
+'expandtemplates'                  => 'Expand templates',
+'expandtemplates-desc'             => '[[Special:ExpandTemplates|Expands templates, parser functions and variables]] to show expanded wikitext and preview rendered page',
+'expand_templates_intro'           => 'This special page takes text and expands all templates in it recursively.
+It also expands supported parser functions like
+<code><nowiki>{{</nowiki>#language:…}}</code> and variables like
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+In fact, it expands pretty much everything in double-braces.',
+'expand_templates_title'           => 'Context title, for {{FULLPAGENAME}}, etc.:',
+'expand_templates_input'           => 'Input text:',
+'expand_templates_output'          => 'Result',
+'expand_templates_xml_output'      => 'XML output',
+'expand_templates_ok'              => 'OK',
+'expand_templates_remove_comments' => 'Remove comments',
+'expand_templates_remove_nowiki'   => 'Suppress <nowiki> tags in result',
+'expand_templates_generate_xml'    => 'Show XML parse tree',
+'expand_templates_preview'         => 'Preview',
 );

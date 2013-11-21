@@ -4222,4 +4222,5 @@ Variants for Chinese language",
 	'cachedspecial' => 'SpecialCachedPage',
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
+	'expandtemplates' => 'Special:ExpandTemplates'
 );
