@@ -4789,8 +4789,7 @@ Images are shown in full resolution, other file types are started with their ass
 
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',
-'dberr-problems'    => 'Sorry!
-This site is experiencing technical difficulties.',
+'dberr-problems'    => 'Sorry! This site is experiencing technical difficulties.',
 'dberr-again'       => 'Try waiting a few minutes and reloading.',
 'dberr-info'        => '(Cannot contact the database server: $1)',
 'dberr-usegoogle'   => 'You can try searching via Google in the meantime.',
