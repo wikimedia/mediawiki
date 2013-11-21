@@ -61,10 +61,10 @@
 
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
-			$containers = $collapsible.find( '> tbody > tr' );
+			$containers = $collapsible.find('> tbody > tr');
 			if ( $defaultToggle ) {
-				// Exclude table row containing togglelink
-				$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
+				// Exclude caption containing togglelink
+				$containers = $containers.not( $defaultToggle.closest( 'caption' ) );
 			}
 
 			if ( action === 'collapse' ) {
@@ -300,7 +300,25 @@
 			// Bind the togglers
 			if ( $customTogglers && $customTogglers.length ) {
 				actionHandler = function ( e, opts ) {
-					var defaultOpts = {};
+					// Get class of toggler
+					var togglerClass = $(this).attr('class') || '';
+					var togglerId;
+					var defaultOpts;
+					// Use the class to find the corresponding ID name
+					if (togglerClass.indexOf('mw-customtoggle-') === 0) {
+						togglerId = '#' + togglerClass.replace('mw-customtoggle', 'mw-customcollapsible').split(' ')[0];
+					}
+					// If collapsetext or expandtext is defined, show this text instead of the default
+					if ($(togglerId).data('collapsetext') || $(togglerId).data('expandtext')) {
+						defaultOpts = {
+							toggleClasses: true,
+							toggleText: { collapseText: collapseText, expandText: expandText }
+						};
+					}
+					// Otherwise don't change the text
+					else {
+						defaultOpts = {};
+					}
 					opts = $.extend( defaultOpts, options, opts );
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
@@ -313,8 +331,8 @@
 				// contents and add the toggle link. Different elements are
 				// treated differently.
 				if ( $collapsible.is( 'table' ) ) {
-					// The toggle-link will be in one the the cells (td or th) of the first row
-					$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
+					// The toggle-link will be in the caption
+					$firstItem = $collapsible.find( 'caption' );
 					$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 					// If theres no toggle link, add it to the last cell
