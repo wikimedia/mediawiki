@@ -323,7 +323,7 @@ $messages = array(
 'noindex-category'               => 'සූචිගත නොකළ පිටු',
 'broken-file-category'           => 'භින්න වූ ගොනු සබැඳි සහිත පිටු',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'පිළිබඳ',
 'article'       => 'පටුන',
@@ -2741,7 +2741,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'allmessagesdefault'            => 'සාමාන්‍ය පණිවුඩ පෙළ',
 'allmessagescurrent'            => 'වත්මන් පෙළ',
 'allmessagestext'               => 'මේ මාධ්‍යවිකි නාමඅවකාශයෙහිදී  හමුවන පද්ධති පණිවුඩයන් ලැයිස්තුවකි.
-වර්ගීය මාධ්‍යවිකි ප්‍රාදේශීයකරණයට දායක වීමට ඔබ රිසි නම් කරුණාකර [//www.mediawiki.org/wiki/Localisation මාධ්‍යවිකි ප්‍රාදේශීයකරණය]  සහ [//translatewiki.net බීටාවිකි] වෙත පිවිසෙන්න.',
+වර්ගීය මාධ්‍යවිකි ප්‍රාදේශීයකරණයට දායක වීමට ඔබ රිසි නම් කරුණාකර [https://www.mediawiki.org/wiki/Localisation මාධ්‍යවිකි ප්‍රාදේශීයකරණය]  සහ [//translatewiki.net බීටාවිකි] වෙත පිවිසෙන්න.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' අක්‍රීය කොට ඇති බැවින්, මෙම පිටුව භාවිතා කල නොහැක.",
 'allmessages-filter-legend'     => 'පෙරහන',
 'allmessages-filter'            => 'පාරිභෝගීකරණ තත්ත්වය අනුව පෙරීම:',
@@ -3509,7 +3509,7 @@ Others will be hidden by default.
 
 # External editor support
 'edit-externally'      => 'බාහිර  උපයෝගයක් භාවිතා කරමින් මෙම ගොනුව සංස්කරණය කරන්න',
-'edit-externally-help' => '(වැඩිදුර තොරතුරු සඳහා [//www.mediawiki.org/wiki/Manual:External_editors පිහිටුවීම් උපදෙස්] බලන්න.)',
+'edit-externally-help' => '(වැඩිදුර තොරතුරු සඳහා [https://www.mediawiki.org/wiki/Manual:External_editors පිහිටුවීම් උපදෙස්] බලන්න.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'සියල්ල',
@@ -3763,7 +3763,7 @@ This confirmation code will expire at $4.',
 'version-hook-subscribedby'     => 'දායකවී ඇත්තේ',
 'version-version'               => '(අනුවාදය $1)',
 'version-license'               => 'වරපත',
-'version-poweredby-credits'     => "මෙම විකිය '''[//www.mediawiki.org/ MediaWiki]''' මගින් බලගන්වා ඇත, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "මෙම විකිය '''[https://www.mediawiki.org/ MediaWiki]''' මගින් බලගන්වා ඇත, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'අනෙකුත්',
 'version-license-info'          => 'MediaWiki යනු නිදහස් මෘදුකාංගයකි; නිදහස් මෘදුකාංග පදනමේ (Free Software Foundation) හි GNU General Public License නම් බලපත්‍රයේ වගන්තිවලට අනුව ඔබට එය නැවත බෙදාහැරීම සහ/හෝ සංස්කරණය කළ හැක; ඒ, එම බලපත්‍රයේ 2වන හෝ (ඔබට කැමති නම්) ඉන්පසු එන සංස්කරණයකට අනුවය.
 

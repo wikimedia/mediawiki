@@ -187,7 +187,7 @@ $messages = array(
 'noindex-category'               => 'Mga diri nakatudlokan nga pagkli',
 'broken-file-category'           => 'Mga pakli nga mayda utod nga mga sumpay hin paypay',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'Mahitungod han',
 'article'       => 'Pakli hin sulod',
@@ -2198,7 +2198,7 @@ An iba in daan nakatago.
 
 # External editor support
 'edit-externally'      => 'Igliwat ini nga fayl gamit han gawas nga aplikasyon',
-'edit-externally-help' => '(Kitaa an [//www.mediawiki.org/wiki/Manual:External_editors mga pagtutdo hin pag-ayad] para han dugang nga pananabutan)',
+'edit-externally-help' => '(Kitaa an [https://www.mediawiki.org/wiki/Manual:External_editors mga pagtutdo hin pag-ayad] para han dugang nga pananabutan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ngatanan',
@@ -2299,7 +2299,7 @@ An iba in daan nakatago.
 'version-hook-name'         => 'Ngaran han kawil',
 'version-version'           => '(Bersion $1)',
 'version-license'           => 'Lisensya',
-'version-poweredby-credits' => "Ini nga wiki in pinapaandar han '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ini nga wiki in pinapaandar han '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-software-product'  => 'Produkto',
 'version-software-version'  => 'Bersyon',
 

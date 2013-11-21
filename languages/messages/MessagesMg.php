@@ -1827,6 +1827,8 @@ Rehefa sivanin'ny mpikambana iray izy ity, ny rakitra izay ahitana santiôna vao
 'morelinkstoimage'          => "Hijery [[Special:WhatLinksHere/$1|rohy fanampiny]] makany amin'io rakitra io.",
 'linkstoimage-redirect'     => '$1 (fihodinana) $2',
 'sharedupload'              => "Mety ho rakitra itambarana amin'ny tetikasa hafa ny rakitra $1.",
+'sharedupload-desc-there'   => "Avy amin'i $1 ity rakitr aity ary mety ampiasaina any amin'ny tetikasa hafa.
+Jereo [$2 ny pejy famisavisana ilay rakitra] ho an'ny fampahalalana fanampiny.",
 'sharedupload-desc-here'    => "Avy amin'i $1 io rakitra io ary mety ampiasain'ny tetikasa hafa.
 Aseho eo ambany ny [$2 famisavisana ilay rakitra].",
 'filepage-nofile'           => 'Tsy nahitana rakitra mitondra io anarana io.',
@@ -2246,7 +2248,7 @@ ataovy am-pitandremana ity tao ity.",
 Efa nataon'i [[User:$3|$3]] ([[User talk:$3|dinika]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ny fanovana farany.",
 'editcomment'       => "Toy izao no fanamarihana momba io fanovana io: \"''\$1''\".",
 'revertpage'        => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
-'revertpage-nouser' => "Manala ny fanovana (nataon'ny anaram-pikambana nesorina), miverina any amin'ny santiona farany nataon'i  [[User:$1|$1]]",
+'revertpage-nouser' => "Manala ny fanovana (nataom-pikambana voaafina), miverina any amin'ny filaza faran'i  [[User:$1|$1]]",
 'rollback-success'  => "Fanalàna ny fanovana nataon'i $1 ;
 miverina any amin'ny santiôna farany nataon'i $2.",
 
@@ -2265,7 +2267,7 @@ Ho ann'y fanazavana fanampiny, jereo [[Special:ProtectedPages|ny lisitry ny pejy
 'unprotectedarticle'          => "nanala ny fiarovana an'i « [[$1]] »",
 'movedarticleprotection'      => 'nanova ny safidim-piarovana : « [[$2]] » lasa « [[$1]] »',
 'protect-title'               => "Hanova ny lentam-piarovana ho an'i « $1 »",
-'protect-title-notallowed'    => "Hijery ny lentam-piarovana ho an'i «[[$1]]»",
+'protect-title-notallowed'    => "Hijery ny lentam-piarovana ho an'i «$1»",
 'prot_1movedto2'              => '[[$1]] voaova anarana ho [[$2]]',
 'protect-badnamespace-title'  => 'Anaran-tsehatra tsy azo arovana',
 'protect-badnamespace-text'   => "Tsy afaka arovana ny pejy ao amin'io anaran-tsehatra io.",
@@ -2690,7 +2692,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'allmessagesdefault'            => 'Dikan-teny tany am-boalohany',
 'allmessagescurrent'            => 'Dikan-teny miasa ankehitriny',
 'allmessagestext'               => "Ity dia lisitry ny hafatra hita ao amin'ny anaran-tsehatra MediaWiki.
-Andana vangio ny [//www.mediawiki.org/wiki/Localisation Fandikana an'i Mediawiki] ary [//translatewiki.net/ translatewiki.net] raha tia handray anjara amin'ny fandikana an'i Mediawiki amin'ny ankapobeny.",
+Andana vangio ny [https://www.mediawiki.org/wiki/Localisation Fandikana an'i Mediawiki] ary [//translatewiki.net/ translatewiki.net] raha tia handray anjara amin'ny fandikana an'i Mediawiki amin'ny ankapobeny.",
 'allmessagesnotsupportedDB'     => "Tsy mbola mandeha ny '''{{ns:special}}:Allmessages''' satria tsy mandeha koa ny '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Tantavanina',
 'allmessages-filter'            => 'Hanasivana araka ny satam-panovana :',
@@ -2766,8 +2768,11 @@ Avereno fanindroany.',
 'import-logentry-interwiki' => "nampiditra $1 tamin'ny transwiki",
 
 # JavaScriptTest
-'javascripttest'       => 'Fanandramana JavaScript',
-'javascripttest-title' => 'Mandefa fanandramana $1',
+'javascripttest'                => 'Fanandramana JavaScript',
+'javascripttest-title'          => 'Mandefa fanandramana $1',
+'javascripttest-pagetext-skins' => 'Mifidia skin hanaovana ny fanandramana:',
+'javascripttest-qunit-intro'    => "Jereo ny [$1 fanoroana mikasika ny andrana] eo amin'i mediawiki.org.",
+'javascripttest-qunit-heading'  => "Tohin'andrana QUnit an'i Javascript eo amin'i MediaWiki",
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Ny pejinao',
@@ -2787,7 +2792,7 @@ Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-ca-viewsource'               => 'Voaaro ilay pejy. Fa afaka itanao ny voatotiny.',
 'tooltip-ca-history'                  => "Ny revision natao tamin'ity pejy ity",
 'tooltip-ca-protect'                  => 'Arovy ity pejy ity',
-'tooltip-ca-unprotect'                => "Hanala ny fiarovan'ity pejy ity",
+'tooltip-ca-unprotect'                => "Hanova ny lentam-piarovan'ity pejy ity",
 'tooltip-ca-delete'                   => 'Fafao ity pejy ity',
 'tooltip-ca-undelete'                 => "Hamerina ny fanovana natao tamin'ity pejy ity talohan'ny famafany",
 'tooltip-ca-move'                     => 'Ovay anarana ilay pejy',
@@ -2854,7 +2859,8 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'othercontribs'    => "Mifototra amin'ny asan'i $1.",
 'others'           => 'hafa',
 'siteusers'        => '{{SITENAME}} mpikambana $1 miisa $2{{PLURAL:}}',
-'anonusers'        => "Ny mpikambana tsy nisoratra anarana $1 ao amin'i {{SITENAME}}",
+'anonusers'        => "Ny mpikambana tsy nisoratra anarana $1 ao amin'i {{SITENAME}}{{PLURAL:$2}}",
+'creditspage'      => "Fisaorana ho an'ny pejy",
 
 # Spam protection
 'spamprotectiontitle' => "Sivana mpiaro amin'ny spam",
@@ -3041,7 +3047,12 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpsdestlatitude'           => 'Laharam-pehintany tanjona',
 'exif-gpsareainformation'        => 'Anaram-paritra GPS',
 'exif-gpsdatestamp'              => 'Daty GPS',
+'exif-worldregioncreated'        => 'Faritany nangalana ity ilay sary',
 'exif-countrycreated'            => 'Firenena nangalana ilay sary',
+'exif-countrycodecreated'        => 'Kaontim-pirenena nangalana ilay sary',
+'exif-provinceorstatecreated'    => 'Faritany nangalana ilay sary',
+'exif-citycreated'               => 'Tanàna nangalana ilay sary',
+'exif-sublocationcreated'        => 'Fari-tanàna nangalana ilay sary',
 'exif-worldregiondest'           => 'Faritany aseho',
 'exif-countrydest'               => 'Firenena aseho',
 'exif-countrycodedest'           => 'Kaodim-pirenena aseho',
@@ -3062,6 +3073,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-contact'                   => 'Fampahalalana mikasika ny fifandraisana',
 'exif-writer'                    => 'Mpanoratra',
 'exif-languagecode'              => 'Fiteny',
+'exif-iimversion'                => 'filaza IIM',
 'exif-iimcategory'               => 'Sokajy',
 'exif-iimsupplementalcategory'   => 'Sokajy fanampiny',
 'exif-datetimeexpires'           => 'Asa ampiasaina aoriany',
@@ -3085,9 +3097,15 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-attributionurl'            => "Rehefa mampiasa ity asa ity dia asio rohy mankany amin'i",
 'exif-preferredattributionname'  => 'Rehefa mampiasa ilay asa, isaory',
 'exif-pngfilecomment'            => "Famoahan-kevitra momban'ilay rakitra PNG",
+'exif-disclaimer'                => 'Fampitanremana',
 'exif-contentwarning'            => 'Fampitandremana mikasika ny votoatiny',
 'exif-giffilecomment'            => 'Famoahan-kevitry ny rakirta GIF',
 'exif-intellectualgenre'         => 'Karazan-javatra',
+'exif-subjectnewscode'           => "Kaodin'ny lohahevitra",
+'exif-event'                     => 'Zava-mitranga azo sary',
+'exif-organisationinimage'       => 'Fikambanana azo sary',
+'exif-personinimage'             => 'Olona azo sary',
+'exif-originalimageheight'       => "Haambon-tsary talohan'ny nanovana azy",
 
 'exif-copyrighted-true'  => "Iharan'ny zom-pamorona",
 'exif-copyrighted-false' => "Toetran'ny zom-pamorona tsy voafaritra",
@@ -3095,10 +3113,20 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-unknowndate' => 'Daty tsy fantatra',
 
 'exif-orientation-1' => 'Tsotra',
+'exif-orientation-3' => 'Ahodina 180°',
+'exif-orientation-4' => 'Navadika ambony ambany',
+'exif-orientation-5' => 'Navadika 90° miankavia ary navadika ambony ambany',
+'exif-orientation-6' => 'Navadika 90° miankavia',
+'exif-orientation-7' => 'Navadika 90° miankavanana ary navadika ambony ambany',
+'exif-orientation-8' => 'Navadika 90° miankavanana',
+
+'exif-planarconfiguration-2' => 'Data misaraka',
 
 'exif-componentsconfiguration-0' => 'tsy nahitana',
 
 'exif-exposureprogram-0' => 'Tsy nolazaina',
+'exif-exposureprogram-1' => 'Natao tanana',
+'exif-exposureprogram-2' => 'Fandaharana ara-dalàna',
 
 'exif-subjectdistance-value' => '$1 metatra',
 
@@ -3110,14 +3138,22 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-meteringmode-6'   => 'An-tsilany',
 'exif-meteringmode-255' => 'Hafa',
 
-'exif-lightsource-0'  => 'Tsy fantatra',
-'exif-lightsource-1'  => "Hazavan'andro",
-'exif-lightsource-9'  => "Toetr'andro mazava",
-'exif-lightsource-10' => "Toetr'andro mandrahona",
-'exif-lightsource-11' => 'Haloka',
+'exif-lightsource-0'   => 'Tsy fantatra',
+'exif-lightsource-1'   => "Hazavan'andro",
+'exif-lightsource-9'   => "Toetr'andro mazava",
+'exif-lightsource-10'  => "Toetr'andro mandrahona",
+'exif-lightsource-11'  => 'Haloka',
+'exif-lightsource-17'  => 'Jiro manara-penitra A',
+'exif-lightsource-18'  => 'Jiro manara-penitra B',
+'exif-lightsource-19'  => 'Jiro manara-penitra C',
+'exif-lightsource-24'  => "Tangistenina ISO an'ny studio",
+'exif-lightsource-255' => 'Loharanon-kazavana hafa',
 
 # Flash modes
-'exif-flash-mode-3' => 'Toetra aotômatika',
+'exif-flash-fired-0'  => 'Tsy nirehitra ny flash',
+'exif-flash-fired-1'  => 'Nirehitra ny flash',
+'exif-flash-return-0' => 'Tsy misy stirôbôskôpy mamerina lefa fahitana',
+'exif-flash-mode-3'   => 'Toetra aotômatika',
 
 'exif-focalplaneresolutionunit-2' => 'Posy',
 
@@ -3148,7 +3184,7 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 
 # External editor support
 'edit-externally'      => "Ovao amin'ny alalan'ny fampiasana fitaovana ivelan'ity Wiki ity io rakitra io",
-'edit-externally-help' => "jereo any amin'[//www.mediawiki.org/wiki/Manual:External_editors ny torolalana] ny fanazavana fanampiny,.",
+'edit-externally-help' => "jereo any amin'[https://www.mediawiki.org/wiki/Manual:External_editors ny torolalana] ny fanazavana fanampiny,.",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'rehetra',
@@ -3209,6 +3245,11 @@ Azafady hamafiso fa tena irinao averina hoforonina tokoa ity lahatsoratra ity.",
 'confirm_purge_button' => 'Eka',
 'confirm-purge-top'    => "Fafana ve ny cache-n'ity pejy ity?",
 
+# action=watch/unwatch
+'confirm-watch-top'      => 'Hanaraka ity pejy ity?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => "Hanala ity pejy ity amin'ny lisitry ny pejy arahinao?",
+
 # Multipage image navigation
 'imgmultipageprev' => '← pejy nialoha',
 'imgmultipagenext' => 'pejy manaraka →',
@@ -3223,6 +3264,7 @@ Azafady hamafiso fa tena irinao averina hoforonina tokoa ity lahatsoratra ity.",
 'table_pager_first'        => 'Pejy voalohany',
 'table_pager_last'         => 'Pejy farany',
 'table_pager_limit'        => 'Haneho zavatra $1 isaky ny pejy',
+'table_pager_limit_label'  => 'Valiny isam-pejy:',
 'table_pager_limit_submit' => 'Hitsidika',
 'table_pager_empty'        => 'Tsy nahitana valiny',
 
@@ -3245,16 +3287,20 @@ Andramo ny topi-maso tsotra',
 'lag-warn-high'   => "Noho ny hataraiky ny lohamilin'ny banky angona, tsy hiseho eto ny fanovana natao tao anatin'ny fotoana latsaky ny $1 segondra{{PLURAL:}}.",
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Ny lisitry ny pejy arahanao maso dia misy {{PLURAL:$1|lohateny iray|lohateny $1}}, raha tsy kaontiana ny pejin-dresaka.',
-'watchlistedit-noitems'       => 'Tsy misy lohateny ny lisitrao.',
-'watchlistedit-normal-title'  => 'Hanova ny lisitra ny pejy arahako maso',
-'watchlistedit-normal-legend' => "Hanala lohateny ao amin'ny lisitra",
-'watchlistedit-normal-submit' => 'Hanala ireo lohateny nosafidiana ireo',
-'watchlistedit-raw-title'     => "Hanova ny lisitra ny pejy arahako maso amin'ny fomba akorany",
-'watchlistedit-raw-legend'    => "Fanovana ilay lisitry ny pejy arahina maso amin'ny fomba akorany",
-'watchlistedit-raw-titles'    => 'Lohateny :',
-'watchlistedit-raw-submit'    => 'Havaozina ny lisitra',
-'watchlistedit-raw-done'      => 'Voavao ny lisitrao.',
+'watchlistedit-numitems'       => 'Ny lisitry ny pejy arahanao maso dia misy {{PLURAL:$1|lohateny iray|lohateny $1}}, raha tsy kaontiana ny pejin-dresaka.',
+'watchlistedit-noitems'        => 'Tsy misy lohateny ny lisitrao.',
+'watchlistedit-normal-title'   => 'Hanova ny lisitra ny pejy arahako maso',
+'watchlistedit-normal-legend'  => "Hanala lohateny ao amin'ny lisitra",
+'watchlistedit-normal-explain' => "Aseho eo ambany ny lohateny ao amin'ny lisitry ny pejy arahanao.
+Tsindrio ny boaty eo akaikiny ary tsindrio  « {{int:Watchlistedit-normal-submit}} ».
+Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny akorany]].",
+'watchlistedit-normal-submit'  => 'Hanala ireo lohateny nosafidiana ireo',
+'watchlistedit-normal-done'    => "Afaka tamin'ny lisitry ny pejy arahanao ny lohateny $1{{PLURAL:}}",
+'watchlistedit-raw-title'      => "Hanova ny lisitra ny pejy arahako maso amin'ny fomba akorany",
+'watchlistedit-raw-legend'     => "Fanovana ilay lisitry ny pejy arahina maso amin'ny fomba akorany",
+'watchlistedit-raw-titles'     => 'Lohateny :',
+'watchlistedit-raw-submit'     => 'Havaozina ny lisitra',
+'watchlistedit-raw-done'       => 'Voavao ny lisitrao.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'pejy arahako maso',
@@ -3266,17 +3312,18 @@ Andramo ny topi-maso tsotra',
 'duplicate-defaultsort' => '\'\'\'Tandremo\'\'\' : manitsaka ny sort key taloha "$1" ilay sort key ankehitriny "$2".',
 
 # Special:Version
-'version'                   => 'Santiôna',
-'version-extensions'        => 'Fanitarana nampidirina',
-'version-specialpages'      => 'Pejy manokana',
-'version-variables'         => 'Miova',
-'version-other'             => 'Samihafa',
-'version-hook-subscribedby' => "Nalefan'i",
-'version-version'           => '(Santiôna $1)',
-'version-license'           => 'Lisansy',
-'version-software'          => 'Rindrankahy voapetraka',
-'version-software-product'  => 'Vokatra',
-'version-software-version'  => 'Santiôna',
+'version'                     => 'Santiôna',
+'version-extensions'          => 'Fanitarana nampidirina',
+'version-specialpages'        => 'Pejy manokana',
+'version-variables'           => 'Miova',
+'version-other'               => 'Samihafa',
+'version-extension-functions' => "Lefan'itatra anaty",
+'version-hook-subscribedby'   => "Nalefan'i",
+'version-version'             => '(Santiôna $1)',
+'version-license'             => 'Lisansy',
+'version-software'            => 'Rindrankahy voapetraka',
+'version-software-product'    => 'Vokatra',
+'version-software-version'    => 'Santiôna',
 
 # Special:FilePath
 'filepath'         => "Lalan'ny drakitra",

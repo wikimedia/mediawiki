@@ -1607,7 +1607,7 @@ chhiáng chhai hàng-thung chṳ̂-chhièn siên liáu-kié khì-thâ khó-nèn 
 'allmessagesdefault'        => '默認信息文字',
 'allmessagescurrent'        => 'Tông-chhièn ke vùn-sṳ',
 'allmessagestext'           => 'Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai （wgUseDatabaseMessages）。',
 
 # Thumbnails
@@ -1773,7 +1773,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'file-info-size' => '$1 × $2像素，文件大小：$3，MIME類型：$4',
 'file-nohires'   => '無做得提供嘅還較高分辨率。',
 'svg-long-desc'  => 'SVG文件，尺寸：$1×$2像素，文件大細：$3',
-'show-big-image' => '完全分辨率',
+'show-big-image' => '完整分辨率',
 
 # Special:NewFiles
 'newimages'             => 'Sîn-kien thù-chhiong ke va̍k-lòng',
@@ -1816,7 +1816,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 
 # External editor support
 'edit-externally'      => '用外部應用程序編寫本文件',
-'edit-externally-help' => '（請參詳[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
+'edit-externally-help' => '（請參詳[https://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

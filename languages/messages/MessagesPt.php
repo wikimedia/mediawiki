@@ -1198,15 +1198,15 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 * Informação pessoal imprópria
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'            => 'Definir restrições de visibilidade',
-'revdelete-hide-text'         => 'Ocultar texto da edição',
+'revdelete-hide-text'         => 'Revisão do texto',
 'revdelete-hide-image'        => 'Ocultar conteúdo do ficheiro',
 'revdelete-hide-name'         => 'Ocultar operação e destino',
-'revdelete-hide-comment'      => 'Ocultar resumo da edição',
-'revdelete-hide-user'         => 'Ocultar nome de utilizador/IP',
+'revdelete-hide-comment'      => 'Resumo da edição',
+'revdelete-hide-user'         => 'Nome de utilizador/endereço de IP',
 'revdelete-hide-restricted'   => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-radio-same'        => '(manter)',
-'revdelete-radio-set'         => 'Sim',
-'revdelete-radio-unset'       => 'Não',
+'revdelete-radio-set'         => 'Visível',
+'revdelete-radio-unset'       => 'Escondido',
 'revdelete-suppress'          => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-unsuppress'        => 'Remover restrições das revisões restauradas',
 'revdelete-log'               => 'Motivo:',
@@ -1629,8 +1629,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'action-block'                => 'impedir este utilizador de editar',
 'action-protect'              => 'alterar os níveis de proteção desta página',
 'action-rollback'             => 'reverter rapidamente as edições do último utilizador que editou uma dada página',
-'action-import'               => 'importar esta página a partir de outra wiki',
-'action-importupload'         => 'importar esta página a partir de um ficheiro xml',
+'action-import'               => 'importar páginas a partir de outra wiki',
+'action-importupload'         => 'importar páginas por meio do envio de um ficheiro',
 'action-patrol'               => 'marcar as edições de outros utilizadores como patrulhadas',
 'action-autopatrol'           => 'marcar como patrulhadas as suas próprias edições',
 'action-unwatchedpages'       => 'ver a lista de páginas não-vigiadas',
@@ -2866,7 +2866,7 @@ Se desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWik
 'allmessagesdefault'            => 'Texto padrão',
 'allmessagescurrent'            => 'Texto atual',
 'allmessagestext'               => 'Esta é a lista das mensagens de sistema disponíveis no espaço nominal MediaWiki.
-Se deseja colaborar na localização genérica do MediaWiki, visite [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e a [//translatewiki.net translatewiki.net].',
+Se deseja colaborar na localização genérica do MediaWiki, visite [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e a [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar pelo estado de personalização:',
@@ -3592,7 +3592,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
-'edit-externally-help' => '(Consulte as [//www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informações)',
+'edit-externally-help' => '(Consulte as [https://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',
@@ -3785,7 +3785,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-hook-subscribedby'     => 'Subscrito por',
 'version-version'               => '(Versão $1)',
 'version-license'               => 'Licença',
-'version-poweredby-credits'     => "Esta é uma wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Esta é uma wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'outros',
 'version-license-info'          => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 

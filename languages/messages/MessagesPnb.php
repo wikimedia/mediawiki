@@ -2535,7 +2535,7 @@ $1',
 'allmessagesdefault'            => 'ڈیفالٹ لکھائی',
 'allmessagescurrent'            => 'موجودہ لکھائی',
 'allmessagestext'               => 'ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔
-مہربانی کرکے [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔
+مہربانی کرکے [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔
 اگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔',
 'allmessagesnotsupportedDB'     => "اے صفہ نئیں ورتیا جاسکدا کیوں جے '''\$wgUseDatabaseMessages''' روک دتا گیا اے۔",
 'allmessages-filter-legend'     => 'فلٹر',
@@ -3223,7 +3223,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
-'edit-externally-help' => 'زیادہ معلومات آسطے اے [//www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
+'edit-externally-help' => 'زیادہ معلومات آسطے اے [https://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سارے',
@@ -3407,7 +3407,7 @@ $5
 'version-hook-subscribedby'     => 'جینے لئی',
 'version-version'               => '(ورین $1)',
 'version-license'               => 'لائیسنس',
-'version-poweredby-credits'     => "ایس وکی نوں '''[//www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
+'version-poweredby-credits'     => "ایس وکی نوں '''[https://www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
 'version-poweredby-others'      => 'دوجے',
 'version-license-info'          => 'میڈیاوکی اک مفت سوفٹویر اے؛ تسیں اینوں ونڈ سکدے اوہ تے گنو جنرل پبلک لسنس دیاں شرطاں تے جیہڑیاں فری سوفٹویر فاؤنڈیشن نے چھاپیاں نیں ایدے چ تبدیلی کرسکدے اوہ لسنس دے ورین 2 نال، یا اپنی مرضی نال کسے وی ہور ورین فیر بنن والے ورین نوں۔
 

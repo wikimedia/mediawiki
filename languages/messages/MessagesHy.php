@@ -1350,6 +1350,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'right-upload'           => 'Նիշքերի բեռնում',
 'right-upload_by_url'    => 'Բեռնել նիշքեր ինտերնետային հասցեից',
 'right-delete'           => 'Էջերի ջնջում',
+'right-rollback'         => 'Արագ հետ գլորել տվյալ էջը վերջին անգամ խմբագրած մասնակցի խմբագրումները',
 
 # User rights log
 'rightslog'      => 'Մասնակցի իրավունքների տեղեկամատյան',
@@ -1367,6 +1368,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'action-delete'             => 'Ջնջել այս էջը',
 'action-deleterevision'     => 'Ջնջել այս փոփոխությունը',
 'action-deletedhistory'     => 'Դիտել այս էջի ջնջված պատմությունը',
+'action-rollback'           => 'արագ հետ գլորել էջը վերջին անգամ խմբագրած մասնակցի կատարած փոփոխությունները',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|փոփոխություն|փոփոխություն}}',
@@ -1888,9 +1890,9 @@ $NEWPAGE
 'rollbacklink'      => 'հետ գլորել',
 'rollbackfailed'    => 'Հետ գլորումը ձախողվեց',
 'cantrollback'      => 'Չհաջողվեց հետ շրջել խմբագրումը։ Վերջին ներդրումը կատարվել է էջի միակ հեղինակի կողմից։',
-'alreadyrolled'     => 'Չհաջողվեց հետ գլորել [[:$1]] էջի վերջին խմբագրումները՝ կատարված [[User:$2|$2]] ([[User talk:$2|Քննարկում]]) մասնակցի կողմից։ Մեկ ուրիշը արդեն խմբագրել է կամ հետ է գլորել էջը։
+'alreadyrolled'     => 'Չհաջողվեց հետ գլորել [[:$1]] էջում [[User:$2|$2]] ([[User talk:$2|Քննարկում]]) մասնակցի վերջին խմբագրումները․ մեկ ուրիշն արդեն հետ է գլորել կամ խմբագրել է էջը։
 
-Վերջին խմբագրումը կատարվել է [[User:$3|$3]] ([[User talk:$3|Քննարկում]]) մասնակցի կողմից։',
+Վերջին խմբագրումը կատարել է [[User:$3|$3]] ([[User talk:$3|Քննարկում]]) մասնակիցը։',
 'editcomment'       => "Խմբագրման մեկնաբանումն էր. «''$1''»։",
 'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) մասնակցի խմբագրումները հետ են շրջվել [[User:$1|$1]] մասնակցի վերջին տարբերակին։',
 'revertpage-nouser' => 'Հետ շրջվեց (անունը ջնջված է) մասնակցի խմբագրումը՝ [[User:$1|$1]] մասնակցի տարբերակին',
@@ -2251,7 +2253,7 @@ $1',
 'allmessagesdefault'        => 'Ուղերձի լռելյայն տեքստ',
 'allmessagescurrent'        => 'Ընթացիկ տեքստ',
 'allmessagestext'           => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
 'allmessages-filter-all'    => 'Բոլորը',
 'allmessages-language'      => 'Լեզու',
@@ -2523,7 +2525,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
-'edit-externally-help' => '(Մանրամասնությունների համար տես [//www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
+'edit-externally-help' => '(Մանրամասնությունների համար տես [https://www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'բոլոր',

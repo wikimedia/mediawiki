@@ -921,8 +921,8 @@ $2',
 'mailerror'                  => 'خطا در فرستادن رایانامه: $1',
 'acct_creation_throttle_hit' => 'بازدیدکنندگان این ویکی که از نشانی آی‌پی شما استفاده می‌کنند در روز گذشته {{PLURAL:$1|یک حساب کاربری|$1 حساب کاربری}} ساخته‌اند، که بیشترین تعداد مجاز در آن بازهٔ زمانی است.
 به همین خاطر، بازدیدکنندگانی که از این نشانی آی‌پی استفاده می‌کنند نمی‌توانند در حال حاضر حساب جدیدی بسازند.',
-'emailauthenticated'         => 'نشانی رایانامه شما در $2 ساعت $3 تصدیق شد.',
-'emailnotauthenticated'      => 'نشانی رایانامه شما هنوز تصدیق نشده‌است.
+'emailauthenticated'         => 'نشانی رایانامهٔ شما در $2 ساعت $3 تصدیق شد.',
+'emailnotauthenticated'      => 'نشانی رایانامهٔ شما هنوز تصدیق نشده‌است.
 برای هیچ‌یک از ویژگی‌های زیر رایانامه ارسال نخواهد شد.',
 'noemailprefs'               => 'برای راه‌اندازی این قابلیت‌ها یک نشانی رایانامه مشخص کنید.',
 'emailconfirmlink'           => 'تأیید نشانی رایانامه',
@@ -994,7 +994,7 @@ $2
 شما باید هم‌اکنون وارد شده و یک گذرواژهٔ جدید برگزینید. اگر شخص دیگری این درخواست را داده است، یا اگر گذرواژهٔ اصلی‌تان را به خاطر آوردید و دیگر نمی‌خواهید آن را تغییر دهید، می‌توانید این پیغام را نادیده بگیرید و به استفاده از گذرواژهٔ قبلی‌تان ادامه دهید.',
 'passwordreset-emailelement'       => 'نام کاربری: $1
 گذرواژهٔ موقت: $2',
-'passwordreset-emailsent'          => 'یک نامهٔ بازنشانی گذرواژه فرستاده شده است.',
+'passwordreset-emailsent'          => 'یک نامهٔ بازنشانی گذرواژه فرستاده شده‌است.',
 'passwordreset-emailsent-capture'  => 'یک رایانامهٔ بازنشانی که در پایین نمایش داده شده، فرستاده شده است.',
 'passwordreset-emailerror-capture' => 'رایانامهٔ یادآور همانطور که در زیر مشاهده می‌فرمایید ایجاد شد ولی ارسال آن به کاربر موفقیت‌آمیز نبود: $1',
 
@@ -1172,8 +1172,8 @@ $2
 اگر می‌خواهید متن را در یک پروندهٔ متنی کپی کنید و برای آینده ذخیره‌اش کنید.
 
 مدیری که آن را قفل کرده این توضیح را ارائه کرده‌است: $1",
-'protectedpagewarning'             => "'''هشدار: این صفحه قفل شده است تا فقط کاربران با امتیاز مدیر بتوانند ویرایشش کنند.'''
-آخرین موارد سیاهه در زیر آمده است:",
+'protectedpagewarning'             => "'''هشدار: این صفحه قفل شده‌است تا فقط کاربران با دسترسی مدیریت بتوانند ویرایشش کنند.'''
+آخرین موارد سیاهه در زیر آمده‌است:",
 'semiprotectedpagewarning'         => "'''توجه:''' این صفحه قفل شده‌است تا تنها کاربران ثبت‌نام‌کرده قادر به ویرایش آن باشند.
 آخرین موارد سیاهه در زیر آمده‌است:",
 'cascadeprotectedwarning'          => "'''هشدار:''' این صفحه به علت قرارگرفتن در {{PLURAL:$1|صفحهٔ|صفحه‌های}} آبشاری-محافظت‌شدهٔ زیر قفل شده‌است تا فقط مدیران بتوانند ویرایشش کنند.",
@@ -1323,15 +1323,15 @@ $2
 * اطلاعات نامناسب شخصی
 *: ''نشانی منزل، شماره تلفن، شماره تامین اجتماعی و غیره.''",
 'revdelete-legend'            => 'تنظیم محدودیت‌های پیدایی',
-'revdelete-hide-text'         => 'نهفتن متن نسخه',
+'revdelete-hide-text'         => 'متن نسخه',
 'revdelete-hide-image'        => 'نهفتن محتویات پرونده',
 'revdelete-hide-name'         => 'نهفتن عمل و هدف',
-'revdelete-hide-comment'      => 'نهفتن توضیح ویرایش',
-'revdelete-hide-user'         => 'نام کاربری/نشانی آی‌پی ویراستار پنهان شود',
+'revdelete-hide-comment'      => 'خلاصهٔ ویرایش',
+'revdelete-hide-user'         => 'نام کاربری/نشانی آی‌پی',
 'revdelete-hide-restricted'   => 'فرونشانی اطلاعات برای مدیران به همراه دیگران',
 'revdelete-radio-same'        => '(بدون تغییر)',
-'revdelete-radio-set'         => 'بله',
-'revdelete-radio-unset'       => 'خیر',
+'revdelete-radio-set'         => 'نمایان',
+'revdelete-radio-unset'       => 'مخفی',
 'revdelete-suppress'          => 'از دسترسی مدیران به داده نیز مانند سایر کاربران جلوگیری به عمل آید.',
 'revdelete-unsuppress'        => 'خاتمهٔ محدودیت‌ها در مورد نسخه‌های انتخاب شده',
 'revdelete-log'               => 'دلیل:',
@@ -1430,7 +1430,7 @@ $1",
 'shown-title'                      => 'نمایش $1 {{PLURAL:$1|نتیجه|نتیجه}} در هر صفحه',
 'viewprevnext'                     => 'نمایش ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'گزینه‌های جستجو',
-'searchmenu-exists'                => "'''صفحه‌ای با عنوان \"[[:\$1]]\" در این ویکی وجود دارد.'''",
+'searchmenu-exists'                => "'''صفحه‌ای با عنوان «[[:$1]]» در این ویکی وجود دارد.'''",
 'searchmenu-new'                   => "'''صفحهٔ «[[:$1]]» را در این ویکی بسازید!'''",
 'searchhelp-url'                   => 'Help:محتوا',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|مرور صفحه‌های با این پیشوند]]',
@@ -1696,7 +1696,7 @@ $1",
 'right-ipblock-exempt'        => 'تاثیر نپذیرفتن از قطع دسترسی‌های آی‌پی، خودکار یا فاصله‌ای',
 'right-proxyunbannable'       => 'تاثیر نپذیرفتن از قطع دسترسی خودکار پروکسی‌ها',
 'right-unblockself'           => 'بازکردن دسترسی خود',
-'right-protect'               => 'تغییر میزان محافظت صفحه‌ها و ویرایش صفحه‌های محافظت شده آبشاری',
+'right-protect'               => 'تغییر میزان محافظت صفحه‌ها و ویرایش صفحه‌های محافظت‌شده آبشاری',
 'right-editprotected'         => 'ویرایش صفحه‌های محافظت شده (به شرط نبود محافظت آبشاری)',
 'right-editinterface'         => 'ویرایش واسط کاربری',
 'right-editusercssjs'         => 'ویرایش صفحه‌های CSS و JS دیگر کاربرها',
@@ -1705,12 +1705,12 @@ $1",
 'right-rollback'              => 'واگردانی سریع ویرایش‌های آخرین کاربری که یک صفحه را ویرایش کرده‌است',
 'right-markbotedits'          => 'علامت‌زدن ویرایش‌های واگردانی‌شده به‌عنوان ویرایش ربات',
 'right-noratelimit'           => 'تاثیر نپذیرفتن از محدودیت سرعت',
-'right-import'                => 'وارد کردن صفحه از ویکی‌های دیگر',
-'right-importupload'          => 'وارد کردن صفحه از طریق بارگذاری پرونده',
+'right-import'                => 'واردکردن صفحه از ویکی‌های دیگر',
+'right-importupload'          => 'واردکردن صفحه از طریق بارگذاری پرونده',
 'right-patrol'                => 'گشت زدن به ویرایش‌های دیگران',
 'right-autopatrol'            => 'گشن زدن خودکار به ویرایش‌های خودش',
 'right-patrolmarks'           => 'مشاهدهٔ برچسب گشت تغییرات اخیر',
-'right-unwatchedpages'        => 'مشاهدهٔ فهرست صفحه‌هایی که پیگیری نمی‌شوند',
+'right-unwatchedpages'        => 'مشاهدهٔ فهرست صفحه‌هایی که پی‌گیری نمی‌شوند',
 'right-mergehistory'          => 'ادغام تاریخچهٔ صفحه‌ها',
 'right-userrights'            => 'ویرایش تمام اختیارات کاربرها',
 'right-userrights-interwiki'  => 'ویرایش اختیارات کاربرهای ویکی‌های دیگر',
@@ -1745,14 +1745,14 @@ $1",
 'action-delete'               => 'حذف این صفحه',
 'action-deleterevision'       => 'حذف این نسخه',
 'action-deletedhistory'       => 'مشاهدهٔ تاریخچهٔ حذف شدهٔ این صفحه',
-'action-browsearchive'        => 'جستجوی صفحه‌های حذف شده',
+'action-browsearchive'        => 'جستجوی صفحه‌های حذف‌شده',
 'action-undelete'             => 'احیای این صفحه',
 'action-suppressrevision'     => 'مشاهده و احیای ویرایش‌های حذف شده',
 'action-suppressionlog'       => 'مشاهدهٔ این سیاههٔ خصوصی',
 'action-block'                => 'قطع دسترسی این کاربر از ویرایش‌کردن',
 'action-protect'              => 'تغییر سطح محافظت این صفحه',
 'action-rollback'             => 'واگردانی سریع ویرایش‌های آخرین کاربری که یک صفحه را ویرایش کرده‌است',
-'action-import'               => 'وارد کردن صفحه از ویکی های دیگر',
+'action-import'               => 'واردکردن صفحه از ویکی های دیگر',
 'action-importupload'         => 'واردکردن صفحه از طریق بارگذاری پرونده',
 'action-patrol'               => 'گشت زدن ویرایش دیگران',
 'action-autopatrol'           => 'گشت زدن ویرایش خودتان',
@@ -1999,11 +1999,11 @@ $1',
 # Special:UploadStash
 'uploadstash'          => 'انبار بارگذاری',
 'uploadstash-summary'  => 'این صفحه دسترسی به پرونده‌هایی که بارگذاری شده‌اند (یا در حال بارگذاری هستند) اما هنوز در ویکی منتشر نشده‌اند را فراهم می‌کند. این پرونده‌ها توسط هیچ کاربری به جز کسی که آن‌ها را بارگذاری کرده قابل دیدن نیستند.',
-'uploadstash-clear'    => 'پاک کردن پرونده‌های انبارشده',
+'uploadstash-clear'    => 'پاک‌کردن پرونده‌های انبارشده',
 'uploadstash-nofiles'  => 'شما هیچ پروندهٔ انبارشده‌ای ندارید.',
 'uploadstash-badtoken' => 'انجام این اقدام ناموفق بود، احتمالاً به این دلیل که اعتبار ویرایش شما به اتمام رسیده است. دوباره امتحان کنید.',
-'uploadstash-errclear' => 'پاک کردن پرونده‌ها ناموفق بود.',
-'uploadstash-refresh'  => 'تازه کردن فهرست پرونده‌ها',
+'uploadstash-errclear' => 'پاک‌کردن پرونده‌ها ناموفق بود.',
+'uploadstash-refresh'  => 'تازه‌کردن فهرست پرونده‌ها',
 'invalid-chunk-offset' => 'جابجایی نامعتبر قطعه',
 
 # img_auth script messages
@@ -2137,7 +2137,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'mimesearch-summary' => 'با کمک این صفحه شما می‌توانید پرونده‌هایی که یک نوع MIME به خصوص دارند را پیدا کنید.
 ورودی: به صورت contenttype/subtype ، نظیر <code>image/jpeg</code>.',
 'mimetype'           => 'نوع MIME:',
-'download'           => 'بارگیری',
+'download'           => 'دریافت',
 
 # Unwatched pages
 'unwatchedpages' => 'صفحه‌های پی‌گیری‌نشده',
@@ -2169,7 +2169,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'statistics-articles'          => 'صفحه‌های محتوایی',
 'statistics-pages'             => 'صفحه‌ها',
 'statistics-pages-desc'        => 'تمام صفحه‌های این ویکی، از جمله صفحه‌های بحث، تغییرمسیر و غیره',
-'statistics-files'             => 'پرونده‌های بارگذاری شده',
+'statistics-files'             => 'پرونده‌های بارگذاری‌شده',
 'statistics-edits'             => 'ویرایش صفحه‌ها از هنگامی که {{SITENAME}} راه‌اندازی شده',
 'statistics-edits-average'     => 'متوسط ویرایش‌ها به ازای هر صفحه',
 'statistics-views-total'       => 'مجموع بازدیدها',
@@ -2230,7 +2230,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'wantedpages-badtitle'    => 'عنوان نامجاز در مجموعهٔ نتایج: $1',
 'wantedfiles'             => 'پرونده‌های مورد نیاز',
 'wantedfiletext-cat'      => 'پرونده‌های زیر استفاده می‌شوند اما موجود نیستند. همچنین ممکن است پرونده‌های مخازن خارجی با وجود موجود بودن در اینجا فهرست شوند. هرگونه رتبه مثبت کاذب <del>خط خواهد خورد.</del> علاوه بر این، صفحاتی که پرونده‌هایی ناموجود را در خود جای داده‌اند در [[:$1]] فهرست شده‌اند.',
-'wantedfiletext-nocat'    => 'پرونده‌های زیر استفاده می‌شوند اما موجود نیستند. همچنین ممکن است پرونده‌های مخازن خارجی با وجود موجود بودن در اینجا فهرست شوند. هرگونه رتبه مثبت کاذب <del>خط خواهد خورد.</del>',
+'wantedfiletext-nocat'    => 'پرونده‌های زیر استفاده می‌شوند اما موجود نیستند. همچنین ممکن است پرونده‌های مخازن خارجی با وجود موجود بودن در اینجا فهرست شوند. هرگونه رتبهٔ مثبت کاذب <del>خط خواهد خورد.</del>',
 'wantedtemplates'         => 'الگوهای مورد نیاز',
 'mostlinked'              => 'صفحه‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
 'mostlinkedcategories'    => 'رده‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
@@ -2436,7 +2436,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'iteminvalidname'      => 'مشکل با مورد «$1»، نام نامعتبر است...',
 'wlnote'               => 'در زیر {{PLURAL:$1|تغییری|$1 تغییری}} که در {{PLURAL:$2|ساعت|$2 ساعت}} گذشته انجام شده موجود است، تاریخ آخرین بازیابی: $3، $4',
 'wlshowlast'           => 'نمایش آخرین $1 ساعت $2 روز $3',
-'watchlist-options'    => 'گزینه‌های پیگیری',
+'watchlist-options'    => 'گزینه‌های پی‌گیری',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'پی‌گیری...',
@@ -2644,7 +2644,7 @@ $NEWPAGE
 
 برای دیدن سیاههٔ حذف‌ها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
-'undelete-search-title'        => 'جستجوی صفحه‌های حذف شده',
+'undelete-search-title'        => 'جستجوی صفحه‌های حذف‌شده',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
 'undelete-search-prefix'       => 'نمایش صفحه‌ها با شروع از:',
 'undelete-search-submit'       => 'برو',
@@ -2732,8 +2732,8 @@ $1',
 'ipbreason'                       => 'دلیل:',
 'ipbreasonotherlist'              => 'دلیل دیگر',
 'ipbreason-dropdown'              => '*دلایل متداول قطع دسترسی
-**وارد کردن اطلاعات نادرست
-**پاک کردن اطلاعات مفید از صفحه‌ها
+**واردکردن اطلاعات نادرست
+**پاک‌کردن اطلاعات مفید از صفحه‌ها
 **هرزنگاری از طریق درج مکرر پیوند به وب‌گاه‌ها
 **درج چرندیات یا نوشته‌های بی‌معنا در صفحه‌ها
 **تهدید یا ارعاب دیگر کاربران
@@ -2749,7 +2749,7 @@ $1',
 'ipbotheroption'                  => 'دیگر',
 'ipbotherreason'                  => 'دلیل دیگر/اضافی:',
 'ipbhidename'                     => 'نهفتن نام کاربری از ویرایش‌ها و فهرست‌ها',
-'ipbwatchuser'                    => 'پیگیری صفحهٔ کاربری و بحث این کاربر',
+'ipbwatchuser'                    => 'پی‌گیری صفحهٔ کاربری و بحث این کاربر',
 'ipb-disableusertalk'             => 'جلوگیری از ویرایشی صفحهً بحث توسط خود کاربر در زمانی که بسته است',
 'ipb-change-block'                => 'بستن دوبارهٔ کاربر با این تنظیم‌ها',
 'ipb-confirm'                     => 'تأیید بستن',
@@ -2992,8 +2992,8 @@ $1',
 'allmessagesdefault'            => 'متن پیش‌فرض پیغام',
 'allmessagescurrent'            => 'متن کنونی پیغام',
 'allmessagestext'               => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
-'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
+چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [https://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
+'allmessagesnotsupportedDB'     => "این صفحه نمی‌تواند استفاده شود به این دلیل که <bdi>'''\$wgUseDatabaseMessages'''</bdi> غیرفعال شده‌است.",
 'allmessages-filter-legend'     => 'پالایه',
 'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',
 'allmessages-filter-unmodified' => 'تغییر نیافته',
@@ -3077,7 +3077,7 @@ $1',
 'javascripttest-title'                     => 'در حال اجرای آزمایش‌های $1',
 'javascripttest-pagetext-noframework'      => 'این صفحه برای اجرای آزمایش‌های جاوا اسکریپت کنار گذاشته شده‌است.',
 'javascripttest-pagetext-unknownframework' => 'چارچوب آزمایشی ناشناخته «$1».',
-'javascripttest-pagetext-frameworks'       => 'لطفاً یکی از فریم‌ورک‌های آزمایشی زیر را انتخاب کنید: $1',
+'javascripttest-pagetext-frameworks'       => 'لطفاً یکی از چارچوب‌های آزمایش زیر را انتخاب کنید: $1',
 'javascripttest-pagetext-skins'            => 'پوسته‌ای را برای اجرای آزمایش‌ها انتخاب کنید:',
 'javascripttest-qunit-intro'               => '[$1 مستندات آزمایش] را در mediawiki.org ببینید.',
 'javascripttest-qunit-heading'             => 'مجموعه آزمایش QUnit جاوااسکریپت برای مدیاویکی',
@@ -3270,11 +3270,15 @@ $1',
 'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $2، $1 به بعد',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '{{PLURAL:$1|$1ثانیه| $1  ثانیه}}',
-'minutes' => '{{PLURAL: $1|دقیقه|دقیقه}}',
-'hours'   => '{{PLURAL: $1|ساعت|ساعت}}',
-'days'    => '{{PLURAL: $1|روز|روز}}',
-'ago'     => '$1 پیش',
+'seconds-abbrev' => '$1 ثانیه',
+'minutes-abbrev' => '$1 دقیقه',
+'hours-abbrev'   => '$1 ساعت',
+'days-abbrev'    => '$1 روز',
+'seconds'        => '{{PLURAL:$1|$1ثانیه| $1  ثانیه}}',
+'minutes'        => '{{PLURAL: $1|دقیقه|دقیقه}}',
+'hours'          => '{{PLURAL: $1|ساعت|ساعت}}',
+'days'           => '{{PLURAL: $1|روز|روز}}',
+'ago'            => '$1 پیش',
 
 # Bad image list
 'bad_image_list' => 'اطلاعات را باید اینگونه وارد کنید:
@@ -3662,7 +3666,7 @@ $1',
 
 'exif-dc-contributor' => 'مشارکت‌کنندگان',
 'exif-dc-coverage'    => 'محدوده مکانی و یا زمانی رسانه',
-'exif-dc-date'        => 'تاریخ (ها)',
+'exif-dc-date'        => 'تاریخ(ها)',
 'exif-dc-publisher'   => 'ناشر',
 'exif-dc-relation'    => 'رسانه‌های مرتبط',
 'exif-dc-rights'      => 'حقوق',
@@ -3698,7 +3702,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با یک ویرایشگر بیرونی',
-'edit-externally-help' => '(برای اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
+'edit-externally-help' => '(برای اطلاعات بیشتر [https://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',
@@ -3781,7 +3785,7 @@ $5
 
 # action=purge
 'confirm_purge_button' => 'تأیید',
-'confirm-purge-top'    => 'پاک کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟',
+'confirm-purge-top'    => 'پاک‌کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟',
 'confirm-purge-bottom' => 'خالی کردن میانگیر یک صفحه باعث می‌شود که آخرین نسخهٔ آن نمایش یابد.',
 
 # action=watch/unwatch
@@ -3840,7 +3844,7 @@ $5
 'watchlistedit-noitems'        => 'فهرست پی‌گیری‌های شما خالی است.',
 'watchlistedit-normal-title'   => 'ویرایش فهرست پی‌گیری‌ها',
 'watchlistedit-normal-legend'  => 'حذف عنوان‌ها از فهرست پی‌گیری‌ها',
-'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست پیگیری شما در زیر نشان داده شده‌اند.
+'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست پی‌گیری شما در زیر نشان داده شده‌اند.
 برای حذف هر عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ «{{int:Watchlistedit-normal-submit}}» را بفشارید.
 شما همچنین می‌توانید [[Special:EditWatchlist/raw|فهرست خام را ویرایش کنید]].',
 'watchlistedit-normal-submit'  => 'حذف عنوان‌ها',
@@ -3945,7 +3949,7 @@ $5
 'version-version'               => '(نسخه $1)',
 'version-svn-revision'          => '(&رلم;r$2)',
 'version-license'               => 'اجازه‌نامه',
-'version-poweredby-credits'     => "این ویکی توسط '''[//www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
+'version-poweredby-credits'     => "این ویکی توسط '''[https://www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
 'version-poweredby-others'      => 'دیگران',
 'version-license-info'          => 'مدیاویکی نرم‌افزاری رایگان است؛ می‌توانید آن را تحت شرایط مجوز عمومی همگانی گنو که توسط بنیاد نرم‌افزار رایگان منتشر شده‌است، بازنشر کنید؛ یا نسخهٔ ۲ از این مجوز، یا (بنا به اختیار) نسخه‌های بعدی.
 
@@ -3979,7 +3983,7 @@ $5
 * صفحه‌های ویژهٔ عادی.
 * <strong class="mw-specialpagerestricted">صفحه‌های ویژهٔ محدودشده.</strong>',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
-'specialpages-group-other'       => 'صفحه‌های ویژهٔ دیگر',
+'specialpages-group-other'       => 'سایر صفحه‌های ویژه',
 'specialpages-group-login'       => 'ورود / ثبت نام',
 'specialpages-group-changes'     => 'تغییرات اخیر و سیاهه‌ها',
 'specialpages-group-media'       => 'گزارش بارگذاری رسانه‌ها',

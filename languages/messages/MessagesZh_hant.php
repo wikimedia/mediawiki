@@ -51,6 +51,7 @@
  * @author Xiaomingyan
  * @author Yfdyh000
  * @author Yuyu
+ * @author 乌拉跨氪
  */
 
 $fallback = 'zh-hans';
@@ -425,7 +426,7 @@ $messages = array(
 'articlepage'       => '檢視內容頁面',
 'talk'              => '討論',
 'views'             => '檢視',
-'toolbox'           => '工具箱',
+'toolbox'           => '工具',
 'userpage'          => '檢視用戶頁面',
 'projectpage'       => '檢視計劃頁面',
 'imagepage'         => '檢視檔案頁面',
@@ -680,14 +681,16 @@ $2',
 'passwordsent'               => '用戶「$1」的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword'       => '您的IP地址處於查封狀態而不允許編輯，為了安全起見，密碼恢復功能已被禁用。',
-'eauthentsent'               => '一封確認信已經發送到所示的地址。在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
+'eauthentsent'               => '一封確認信已遞送至您設定的電郵位址。
+在發送其它郵件到此賬戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
 'throttled-mailpassword'     => '密碼提醒已經在前$1小時內發送。
 為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror'                  => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '在這個wiki上的訪客利用您的IP地址在昨天創建了$1個賬戶，是在這段時間中的上限。
 結果利用這個IP地址的訪客在這段時間中不能創建更多的賬戶。',
-'emailauthenticated'         => '您的電子郵件位址已於 $2 $3 確認有效。',
-'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
+'emailauthenticated'         => '您的電子郵件位址已於$2在$3確認。',
+'emailnotauthenticated'      => '您的電郵位址尚未確認。
+將不會發送與以下功能相關的電郵。',
 'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的電子郵件位址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
@@ -1053,19 +1056,20 @@ $2
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-confirm'           => '請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
-'revdelete-suppress-text'     => "壓制'''只'''應在以下的情況下進行:
-* 不合適的個人資料
+'revdelete-suppress-text'     => "禁制應'''僅'''於下述情形之一時使用：
+* 潛在誹謗性資訊
+* 不合適個人資料
 *: ''住家地址、電話號碼、社群保安號碼等。''",
 'revdelete-legend'            => '設定可見性之限制',
-'revdelete-hide-text'         => '隱藏修訂文字',
+'revdelete-hide-text'         => '修訂文字',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-hide-name'         => '隱藏動作和目標',
-'revdelete-hide-comment'      => '隱藏編輯摘要',
-'revdelete-hide-user'         => '隱藏編輯者的用戶名/IP地址',
+'revdelete-hide-comment'      => '編輯摘要',
+'revdelete-hide-user'         => '編輯者的用戶名/IP位址',
 'revdelete-hide-restricted'   => '同時廢止由操作員以及其他用戶的資料',
-'revdelete-radio-same'        => '（不要更改）',
-'revdelete-radio-set'         => '是',
-'revdelete-radio-unset'       => '否',
+'revdelete-radio-same'        => '（不更改）',
+'revdelete-radio-set'         => '隱藏',
+'revdelete-radio-unset'       => '可見',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
 'revdelete-log'               => '理由：',
@@ -1314,7 +1318,7 @@ $1",
 'email'                         => '電子郵件',
 'prefs-help-realname'           => '真實姓名是可選的。
 如果您選擇提供它，它會用於貢獻署名。',
-'prefs-help-email'              => '電子郵件是可選的，但當您忘記您的密碼時需要將新密碼重設，就會用電郵寄回給您。',
+'prefs-help-email'              => '电子邮件是可选项，但是在您忘记密码时很有用。',
 'prefs-help-email-others'       => '您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required'     => '電子郵件地址是必填項目。',
 'prefs-info'                    => '基本資料',
@@ -2009,7 +2013,7 @@ Template:消除歧義',
 'allpagesprev'      => '前',
 'allpagesnext'      => '後',
 'allpagessubmit'    => '提交',
-'allpagesprefix'    => '顯示具有此前綴（名字空間）的頁面:',
+'allpagesprefix'    => '顯示有此前綴的頁面:',
 'allpagesbadtitle'  => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
 'allpages-bad-ns'   => '在{{SITENAME}}中沒有一個叫做「$1」的名字空間。',
 
@@ -2679,7 +2683,7 @@ $1被封禁的理由是“$2”',
 'allmessagesdefault'            => '預設的訊息文字',
 'allmessagescurrent'            => '現時的訊息文字',
 'allmessagestext'               => '這裡列出所有可定製的系統界面。
-如果想貢獻正宗的MediaWiki本地化的話，請參閱[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[//translatewiki.net translatewiki.net]。',
+如果想貢獻正宗的MediaWiki本地化的話，請參閱[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
 'allmessages-filter-legend'     => '搜尋',
 'allmessages-filter'            => '以自定狀況過濾：',
@@ -2953,7 +2957,7 @@ $1',
 'file-info-size-pages'   => '$1 × $2像素，檔案大小: $3，檔案類型: $4, $5 {{PLURAL:$5|頁}}',
 'file-nohires'           => '無更高解像度可提供。',
 'svg-long-desc'          => 'SVG 檔案，表面大小：$1 × $2 像素，檔案大小：$3',
-'show-big-image'         => '完整解像度',
+'show-big-image'         => '原始檔案',
 'show-big-image-preview' => '此預覽的大小：$1.',
 'show-big-image-other'   => '其他{{PLURAL:$2||}}解析度：$1。',
 'show-big-image-size'    => '$1 × $2 像素',
@@ -3424,7 +3428,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程式編輯此檔案',
-'edit-externally-help' => '（請參見[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
+'edit-externally-help' => '（請參見[https://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -3608,7 +3612,7 @@ $5
 'version-hook-subscribedby'     => '利用於',
 'version-version'               => '（版本 $1）',
 'version-license'               => '授權',
-'version-poweredby-credits'     => "此維基由'''[//www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-credits'     => "此維基由'''[https://www.mediawiki.org/ MediaWiki]'''驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款規定，就本程式再為發佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）任一日後發行的版本。
 

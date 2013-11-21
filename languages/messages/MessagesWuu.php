@@ -12,7 +12,9 @@
  * @author O
  * @author Reedy
  * @author Wu-chinese.com
+ * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 乌拉跨氪
  * @author 十弌
  */
 
@@ -785,7 +787,7 @@ $3封禁个原因是''$2''",
 'revdelete-show-file-submit'  => '是',
 'revdelete-selected'          => "'''选取'''[[:$1]]'''个$2趟修订：'''",
 'logdelete-selected'          => "'''选取'''$1'''个日志事件：'''",
-'revdelete-text'              => "'''删脱个修订仍然将显示拉页面历史里向, 不过渠拉个文本内容公众已经弗好访问。'''
+'revdelete-text'              => "'''删脱个修订仍然将显示拉页面历史里向，不过渠拉个文本内容公众已经弗好访问。'''
 垃拉{{SITENAME}}个其他管理员将仍旧好访问隐藏个内容并通过与此相同个界面恢复删除，除非站点工作者添加了附加限制。",
 'revdelete-confirm'           => '假使侬想箇能介做个闲话，请确认侬已经清爽箇能介做个后果，外加箇个程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text'     => "'''只有'''出现下头眼情况再应阻止访问：
@@ -1285,7 +1287,7 @@ $1",
 
 # Book sources
 'booksources'               => '书源',
-'booksources-search-legend' => '搜索网络书源',
+'booksources-search-legend' => '搜索图书来源',
 'booksources-go'            => '去',
 
 # Special:Log
@@ -1387,7 +1389,7 @@ $1",
 # Rollback
 'rollback'       => '恢复编辑',
 'rollback_short' => '恢复',
-'rollbacklink'   => '恢复',
+'rollbacklink'   => '回退',
 'rollbackfailed' => '恢复失败',
 'revertpage'     => '恢复[[Special:Contributions/$2|$2]] （[[User talk:$2|讲张]]）个改动；恢复到[[User:$1|$1]]个上一版本',
 
@@ -1687,7 +1689,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部应用程序来编辑该只文件',
-'edit-externally-help' => '（请参见[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
+'edit-externally-help' => '（请参见[https://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

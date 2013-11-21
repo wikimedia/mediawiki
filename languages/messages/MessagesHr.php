@@ -769,16 +769,16 @@ koristiti staru lozinku.',
 'noemailcreate'              => 'Morate navesti važeću e-mail adresu',
 'passwordsent'               => 'Nova je lozinka poslana na e-mail adresu suradnika "$1"',
 'blocked-mailpassword'       => 'Vašoj IP adresi je blokirano uređivanje stranica, a da bi se spriječila nedopuštena radnja, mogućnost zahtijevanja nove lozinke je također onemogućena.',
-'eauthentsent'               => 'Na navedenu adresu poslan je e-mail s potvrdom.
-Prije nego što pošaljemo daljnje poruke, molimo Vas da otvorite e-mail i slijedite u njemu sadržana uputstva kako biste potvrdili da je e-mail adresa zaista Vaša.',
+'eauthentsent'               => 'Na navedenu adresu poslana je e-poruka s potvrdom.
+Prije nego što pošaljemo daljnje poruke, molimo Vas otvorite e-poruku i slijedite u njemu sadržana uputstva kako biste potvrdili da je adresa e-pošte zaista Vaša.',
 'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu zaporke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu zaporke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror'                  => 'Pogrješka pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetitelji ovog wikija koji rabe Vašu IP adresu napravili su {{PLURAL:$1|1 račun|$1 računa}} u posljednjem danu, što je najveći dopušteni broj u tom vremenskom razdoblju.
 Zbog toga posjetitelji s ove IP adrese trenutačno ne mogu otvoriti nove suradničke račune.',
-'emailauthenticated'         => 'vaša e-mail adresa je ovjerena $2 u $3.',
-'emailnotauthenticated'      => 'Vaša e-mail adresa još nije ovjerena.
-Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
+'emailauthenticated'         => 'Vaša adresa e-pošte potvrđena je $2 u $3.',
+'emailnotauthenticated'      => 'Vaša adresa e-pošte još nije potvrđena.
+Ne možemo poslati e-poruku ni u jednoj od sljedećih naredbi.',
 'noemailprefs'               => 'Nije navedena adresa elektroničke pošte, stoga sljedeće naredbe ne će raditi.',
 'emailconfirmlink'           => 'Potvrdite svoju e-mail adresu',
 'invalidemailaddress'        => 'Ne mogu prihvatiti e-mail adresu jer nije valjano oblikovana.
@@ -2780,7 +2780,7 @@ U potonjem slučaju možete rabiti i poveznicu, npr. [[{{#Special:Export}}/{{Med
 'allmessagesname'               => 'Ime',
 'allmessagesdefault'            => 'Prvotni tekst',
 'allmessagescurrent'            => 'Trenutačni tekst',
-'allmessagestext'               => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [//www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [//translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.',
+'allmessagestext'               => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [https://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [//translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.',
 'allmessagesnotsupportedDB'     => "Ova stranica ne može biti korištena jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Filtriraj',
 'allmessages-filter'            => 'Filtriraj prema prilagođenom obliku:',
@@ -3482,7 +3482,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 # External editor support
 'edit-externally'      => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => '(Vidi [//www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
+'edit-externally-help' => '(Vidi [https://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3722,7 +3722,7 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'version-hook-subscribedby'     => 'Pretplaćeno od',
 'version-version'               => '(Inačica $1)',
 'version-license'               => 'Licencija',
-'version-poweredby-credits'     => "Ovaj wiki pogoni '''[//www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ovaj wiki pogoni '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others'      => 'ostali',
 'version-license-info'          => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.
 

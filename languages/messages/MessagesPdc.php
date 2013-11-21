@@ -9,6 +9,7 @@
  *
  * @author Kaganer
  * @author Krinkle
+ * @author Shirayuki
  * @author Xqt
  * @author לערי ריינהארט
  */

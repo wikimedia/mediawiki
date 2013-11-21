@@ -131,12 +131,12 @@ $messages = array(
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled'   => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
 'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
-'tog-usenewrc'                => 'Sytebezogeni Gruppierig bi dr «letschte Änderige» un uf dr Beobachtigslischte  (brucht JavaScript)',
+'tog-usenewrc'                => 'Änderigen uf „Letschte Änderige“ un dr Beobachtigslischt no Syte gruppiere',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
-'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
-'tog-editondblclick'          => 'Syte ändere mit Doppelklick i d Syte (JavaScript)',
+'tog-showtoolbar'             => 'Wärchzyyglyscht zum Bearbeite aazeige',
+'tog-editondblclick'          => 'Syte ändere mit Doppelklick',
 'tog-editsection'             => 'Links aazeige für ds Bearbeite vo einzelnen Absätz',
-'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick (Javascript)',
+'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick uf d Iberschrifte',
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Mit däm Browser duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',
 'tog-watchcreations'          => 'Sälber gmachti Sytene un uffegladeni Dateie automatisch  beobachte',
@@ -157,7 +157,7 @@ $messages = array(
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [//www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
 'tog-externaldiff'            => 'Extern Programm fir Versionsunterschid als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [//www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
 'tog-showjumplinks'           => '«Wächsle-zu»-Links ermügleche',
-'tog-uselivepreview'          => 'Live-Vorschau bruche (JavaScript) (experimentell)',
+'tog-uselivepreview'          => 'Live-Vorschau bruche (experimentell)',
 'tog-forceeditsummary'        => 'Sag mer s, wänn i s Zämmefassigsfeld läär loss',
 'tog-watchlisthideown'        => 'Eigeni Änderige uf d Beobachtigslischt usblände',
 'tog-watchlisthidebots'       => 'Bot-Änderige in d Beobachtigslischt usblende',
@@ -330,7 +330,7 @@ $messages = array(
 'articlepage'       => 'Syte',
 'talk'              => 'Diskussion',
 'views'             => 'Wievylmol agluegt',
-'toolbox'           => 'Wärkzügkäschtli',
+'toolbox'           => 'Wärchzyyg',
 'userpage'          => 'Benutzersyte',
 'projectpage'       => 'Projektsyte azeige',
 'imagepage'         => 'Dateisyte',
@@ -361,7 +361,7 @@ Di maximal Wartezyt fir e Lock isch umme',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Über {{GRAMMAR:akkusativ|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Über {{UCFIRST:{{GRAMMAR:akkusativ|{{SITENAME}}}}}}',
-'copyright'            => 'Der Inhalt vo dere Syte stoht unter der $1.',
+'copyright'            => 'Dr Inhalt vu dere Syte stoht unter dr Lizänz $1, wänn s nit andersch aagee isch.',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Aktuelli Mäldige',
 'currentevents-url'    => 'Project:Aktuelli Termin',
@@ -593,7 +593,7 @@ Voreb ass no mee Mails iber d {{SITENAME}}-Mailfunktion an die Adräss gschickt 
 'acct_creation_throttle_hit' => 'Bsuecher vu däm Wiki, wu Dyyni IP-Adräss bruuche, hän innerhalb vum letschte Tag {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonte}} aagleit. Des isch di maximal Aazahl, wu in däm Zytruum erlaubt isch.
 
 Bsuecher, wu die IP-Adräss bruuche, chenne im Momänt kei Benutzerkonte meh aalege.',
-'emailauthenticated'         => 'Di E-Mail-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
+'emailauthenticated'         => 'Dyy E-Mail-Adräss isch am $2 am $3 Uhr bstetigt wore.',
 'emailnotauthenticated'      => 'Dyni E-Mail-Adräss isch nonig bstätigt. Wäg däm gehn di erwyterete E-Mail-Funktione nonig.
 Fir d Bstätigung muesch em Link nogoh, wu Dir gschickt woren isch. Du chasch au e neie sonig Link aafordere:',
 'noemailprefs'               => 'Du hesch kei E-Mail-Adrässen aaggä, drum sy di folgende Funktione nid müglech.',
@@ -602,7 +602,7 @@ Fir d Bstätigung muesch em Link nogoh, wu Dir gschickt woren isch. Du chasch au
 Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'cannotchangeemail'          => 'E-Mail-Adrässe chönne in däm Wiki nit gänderet werde.',
 'accountcreated'             => 'S Benutzerkonto isch aagleit wore.',
-'accountcreatedtext'         => 'S Benutzerkonto $1 isch aagleit wore.',
+'accountcreatedtext'         => 'S Benutzerkonto fir [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|Diskussion]]) isch aagleit wore.',
 'createaccount-title'        => 'Aalege vum e Benutzerkonto fir {{SITENAME}}',
 'createaccount-text'         => 'Fir Dii isch e Benutzerkonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
 
@@ -625,6 +625,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'oldpassword'               => 'Alts Passwort',
 'newpassword'               => 'Nöis Passwort',
 'retypenew'                 => 'Nöis Passwort (es zwöits Mal)',
+'resetpass-abort-generic'   => 'D Passwortänderig isch dur e Erwyterig abbroche wore.',
 'resetpass_submit'          => 'Passwort ibermittle un aamälde',
 'resetpass_success'         => 'Dyy Passwort isch erfolgryych gänderet wore. Jetz chunnt d Aamäldig …',
 'resetpass_forbidden'       => 'S Passwort cha nid gänderet wäre.',
@@ -647,22 +648,26 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'passwordreset-capture-help'       => 'Wänn du des Chäschtli aachrüüzesch, no wird die E-Mail (mit em temporäre Passwort) dir aazeigt, un au em Benutzer zuegschiggt.',
 'passwordreset-email'              => 'E-Mail-Adräss:',
 'passwordreset-emailtitle'         => 'Benutzerkontoinformationen uf {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset-emailtext-ip'       => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). 
 
-$2
+{{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft: 
+
+$2 
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
-'passwordreset-emailtext-user'     => 'Benutzer $1 uf {{SITENAME}} het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset-emailtext-user'     => 'Dr Benutzer $1 bi {{SITENAME}} het e Zrucksetzig vu Dym Passwort bi {{SITENAME}} aagforderet ($4). 
 
-$2
+{{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft: 
+
+$2 
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
 'passwordreset-emailelement'       => 'Benutzername: $1
 Temporär Passwort: $2',
-'passwordreset-emailsent'          => 'E Erinnerig isch per E-Mail verschickt wore.',
-'passwordreset-emailsent-capture'  => 'E Erinnerigsmail isch abgschiggt worde, un isch unte aazeigt.',
+'passwordreset-emailsent'          => 'E Passwort-Zrucksetzig isch per E-Mail verschickt wore.',
+'passwordreset-emailsent-capture'  => 'E Passwort-Zrucksetzigs-Mail isch vergschickt worde, un isch unte aazeigt.',
 'passwordreset-emailerror-capture' => 'Die Erinnerigsmail, wo unte aazeigt isch, isch generiert worde, aber de Versand aa de Benutzer isch gschyyteret: $1',
 
 # Special:ChangeEmail
@@ -913,8 +918,8 @@ Erklärig: (aktuell) = Underschid zu jetz,
 (vorane) = Underschid zur alte Version, <strong>K</strong> = chlyni Änderig',
 'history-fieldset-title' => 'Suech in dr Versionsgschicht',
 'history-show-deleted'   => 'nume gleschti Versione',
-'histfirst'              => 'Eltischti',
-'histlast'               => 'Nöischti',
+'histfirst'              => 'eltischti',
+'histlast'               => 'neischti',
 'historysize'            => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'           => '(läär)',
 
@@ -1437,7 +1442,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'rc_categories_any'                 => 'Alli',
 'rc-change-size-new'                => '$1 {{PLURAL:$1|Byte|Byte}} no dr Änderig',
 'newsectionsummary'                 => 'Neje Abschnitt /* $1 */',
-'rc-enhanced-expand'                => 'Detail aazeige (brucht JavaScript)',
+'rc-enhanced-expand'                => 'Detail aazeige',
 'rc-enhanced-hide'                  => 'Detail verstecke',
 'rc-old-title'                      => 'urspringlig aaglait as „$1“',
 
@@ -2569,7 +2574,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'jetzige Tekscht',
 'allmessagestext'               => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
-Lueg au uf [//www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [//translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
+Lueg au uf [https://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [//translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter fir dr aapasst Zuestand:',
@@ -2803,7 +2808,7 @@ $1',
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigreßi: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Syte| Syte}}',
 'file-nohires'           => 'Kei höcheri Uflösig verfüegbar.',
 'svg-long-desc'          => 'SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3',
-'show-big-image'         => 'Originalgrößi',
+'show-big-image'         => 'Originaldatei',
 'show-big-image-preview' => 'Greßi vu däre Vorschau: $1.',
 'show-big-image-other'   => 'Wyteri {{PLURAL:$2|Ufflösig|Ufflösige}}: $1.',
 'show-big-image-size'    => '$1 × $2 Pixel',
@@ -3252,7 +3257,7 @@ Andri wäre standardmäßig nit aazeigt.
 
 # External editor support
 'edit-externally'      => 'Die Datei mit emnen externe Programm bearbeite',
-'edit-externally-help' => '(Lueg d [//www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
+'edit-externally-help' => '(Lueg d [https://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alli',
@@ -3432,7 +3437,7 @@ Du chasch au d [[Special:EditWatchlist|Standard-Bearbeitigssyte]] bruuche.',
 'version-hook-subscribedby'     => 'Ufruef vu',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Lizänz',
-'version-poweredby-credits'     => "Die Websyte nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Die Websyte nutzt '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'anderi',
 'version-license-info'          => 'MediaWiki isch e freji Software, d. h. s cha, no dr Bedingige vu dr GNU General Public-Lizänz, wu vu dr Free Software Foundation vereffentligt woren isch, wyterverteilt un/oder modifiziert wäre. Doderbyy cha d Version 2, oder no eigenem Ermässe, jedi nejeri Version vu dr Lizänz brucht wäre.
 

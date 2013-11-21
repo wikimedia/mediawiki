@@ -10,6 +10,7 @@
  * @author AnakngAraw
  * @author Felipe Aira
  * @author Kaganer
+ * @author Namayan
  * @author Sky Harbor
  * @author tl.wikipedia.org sysops
  * @author לערי ריינהארט
@@ -263,7 +264,7 @@ $messages = array(
 'noindex-category'               => 'Mga pahinang walang talatuntunan',
 'broken-file-category'           => 'Mga pahina na may sirang mga kawing ng talaksan',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'Patungkol',
 'article'       => 'Pahina ng nilalaman',
@@ -1613,9 +1614,9 @@ bumalik at ikarga ang talaksan na ito sa bagong pangalan. [[File:$1|thumb|center
 'uploadscripted'              => 'Naglalaman ang talaksan na ito ng HTML o kodigong script na maaaring mali ang pagkaintindi ng isang web browser.',
 'uploadvirus'                 => 'Naglalaman ng virus ang talaksan! Mga detalye: $1',
 'uploadjava'                  => 'Ang talaksan ay isang talaksang ZIP na naglalaman ng isang .klase ng talaksan. na Java.  Hindi pinapayagan ang pagkakarga ng mga talaksang Java, dahil nakasasanhi sila ng mga paglilimita ng kaligtasan na kailangang lampasan.',
-'upload-source'               => 'Pinagmulang talaksan',
+'upload-source'               => 'Batayang talaksan',
 'sourcefilename'              => 'Pangalan ng panggagalingang talaksan:',
-'sourceurl'                   => 'Pinagmulang URL:',
+'sourceurl'                   => 'Batayang URL:',
 'destfilename'                => 'Pangalan ng patutunguhang talaksan:',
 'upload-maxfilesize'          => 'Pinakamataas na sukat ng talaksan: $1',
 'upload-description'          => 'Paglalarawan ng talaksan',
@@ -1979,12 +1980,11 @@ Pakitandaan lamang na ang iba mga websayt ay maaaring nakakawing sa isang talaks
 'querypage-disabled'      => 'Hindi pinagagana ang natatanging pahinang ito para sa mga dahilan ng pagganap.',
 
 # Book sources
-'booksources'               => 'Mapagkukuhanang mga aklat',
+'booksources'               => 'Mga mapagkukunang aklat',
 'booksources-search-legend' => 'Maghanap ng mapagkukunang aklat',
 'booksources-isbn'          => 'ISBN:',
-'booksources-go'            => 'Punta',
-'booksources-text'          => 'Matatagpuan sa ibaba ang mga tala ng mga ugnay sa ibang mga websayt na nagbebenta ng bago at nagamit na mga aklat, at maaring mayroon din
-na iba pang impormasyon tungkol sa mga aklat na hinahanap mo:',
+'booksources-go'            => 'Puntahan',
+'booksources-text'          => 'Matatagpuan sa ibaba ang isang tala ng mga kawil patungo sa ibang mga website na nagtitinda ng mga bago at gamit nang aklat, at maaaring may iba pang impormasyon ito tungkol sa mga aklat na hinahanap mo:',
 'booksources-invalid-isbn'  => 'Tila mukhang hindi yata katanggap-tanggap ang ibinigay na ISBN; pakisuri kung may mga kamalian ang pagkakasip/pagkakakopya mula sa orihinal na pinagmulan.',
 
 # Special:Log
@@ -2198,7 +2198,7 @@ Tugon at karagdagang tulong:
 'excontentauthor'        => "ang nilalaman ay: '$1' (at ang tanging nag-ambag ay si '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "nilalaman bago nablangko: '$1'",
 'exblank'                => 'walang laman ang pahina',
-'delete-confirm'         => 'Burahin "$1"',
+'delete-confirm'         => 'Kaltasin ang "$1"',
 'delete-legend'          => 'Burahin',
 'historywarning'         => "'''Babala''': May kasaysayan ang pahinang buburahin mo na tinatayang may $1 {{PLURAL:$1|pagbabago|mga pagbabago}}:",
 'confirmdeletetext'      => 'Lubos mo nang buburahin ang pahinang ito pati ang kalahatan ng kasaysayan nito.
@@ -2540,7 +2540,8 @@ Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuy
 'proxyblocksuccess'               => 'Tapos na.',
 'sorbs'                           => 'DNSBL',
 'sorbsreason'                     => 'Nakalista ang IP address mo bilang isang bukas na proxy sa DNSBL na ginagamit ng sayt na ito.',
-'sorbs_create_account_reason'     => 'Nakalista ang IP address mo bilang isang bukas na proxy sa DNSBL na ginagamit ng sayt na ito. Hindi ka makakalikha ng akawnt',
+'sorbs_create_account_reason'     => 'Nakatala ang iyong IP address bilang open proxy sa DNSBL na ginagamit ng {{SITENAME}}.
+Hindi ka makakalikha ng account',
 'cant-block-while-blocked'        => 'Hindi mo mahahadlangan/mahaharang ang ibang mga tagagamit habang hinahadlangan ka.',
 'cant-see-hidden-user'            => 'Ang tagagamit na sinusubukan mong hadlangan ay naharang at naikubli na.
 Dahil wala kang karapatang magkubli ng tagagamit, hindi mo makikita o mababago ang paghadlang sa tagagamit.',
@@ -2688,8 +2689,8 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'allmessagesname'               => 'Pangalan',
 'allmessagesdefault'            => 'Tinakdang teksto',
 'allmessagescurrent'            => 'Kasalukuyang teksto',
-'allmessagestext'               => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
-Pakidalaw ang [//www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [//translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
+'allmessagestext'               => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa namespace ng MediaWiki.
+Pakidalaw ang [https://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [//translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB'     => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Salain',
 'allmessages-filter'            => 'Salain ayon sa katayuan ng pagbabagay:',
@@ -2720,7 +2721,7 @@ Pakidalaw ang [//www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at
 'import-interwiki-text'      => 'Pumili ng isang wiki at pamagat ng pahina na iaangkat.
 Mapapanatili ang mga petsa ng pagbabago at mga pangalan ng patnugot.
 Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwiking aksyon para sa pag-angkat.',
-'import-interwiki-source'    => 'Pinagmulang wiki/pahina:',
+'import-interwiki-source'    => 'Batayang wiki/pahina:',
 'import-interwiki-history'   => 'Kopyahin ang lahat ng mga bersyon ng kasaysayan para sa pahinang ito',
 'import-interwiki-templates' => 'Isama ang lahat ng mga suleras',
 'import-interwiki-submit'    => 'Mag-angkat',
@@ -2851,7 +2852,7 @@ Maaari mong tingnan ang batayan nito.',
 'common.css'              => '/* Ang inilagay na CSS dito ay gagamitin para sa lahat ng mga pabalat */',
 'standard.css'            => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng Karaniwang pabalat */',
 'nostalgia.css'           => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Nostalgia */',
-'cologneblue.css'         => "/* Ang Cascading Style Sheets na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Bughaw na Kolown (''Cologne Blue'') */",
+'cologneblue.css'         => '/* Ang Cascading Style Sheets na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Cologne Blue */',
 'monobook.css'            => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Monobook */',
 'myskin.css'              => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''MySkin'') */",
 'chick.css'               => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na ''Chick'' */",
@@ -2870,7 +2871,7 @@ Maaari mong tingnan ang batayan nito.',
 'common.js'              => '/* Ang anumang JavaScript dito ay ikakarga para sa lahat ng mga tagagamit ng bawat pahinang ikinarga. */',
 'standard.js'            => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Karaniwang pabalat */',
 'nostalgia.js'           => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Nostalgia */',
-'cologneblue.js'         => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit ng pabalat na Cologne Blue o Bughaw na Kolown */',
+'cologneblue.js'         => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit ng pabalat na Cologne Blue */',
 'monobook.js'            => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na MonoBook */',
 'myskin.js'              => '/* Ang anumang JavaScript dito ay ikakarga para sa tagagamit na gumagamit ng pabalat na MySkin o Balat Ko */',
 'chick.js'               => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Chick */',
@@ -2922,8 +2923,8 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 # Skin names
 'skinname-standard'    => 'Klasiko',
 'skinname-nostalgia'   => 'Nostalhiya',
-'skinname-cologneblue' => 'Bughaw na Kolown',
-'skinname-monobook'    => 'MonoAklat ("isang aklat")',
+'skinname-cologneblue' => 'Cologne Blue',
+'skinname-monobook'    => 'MonoBook',
 'skinname-myskin'      => 'PabalatKo',
 'skinname-chick'       => "\"Pambabae\" (''Chick'')",
 'skinname-simple'      => 'Payak',
@@ -3804,7 +3805,7 @@ Maaari mo ring [[Special:EditWatchlist|gamitin ang pangkaraniwang pampatnugot]].
 'version-version'               => '(Bersyon $1)',
 'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Lisensiya',
-'version-poweredby-credits'     => "Ang wiking ito ay pinapatakbo ng '''[//www.mediawiki.org/ MediaWiki]''', karapatang-ari © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ang wiking ito ay pinapatakbo ng '''[https://www.mediawiki.org/ MediaWiki]''', karapatang-ari © 2001-$1 $2.",
 'version-poweredby-others'      => 'iba pa',
 'version-license-info'          => 'Ang MediaWiki ay isang malayang sopwer; maaari mo itong ipamahagi at/o baguhin ito sa ilalim ng mga patakaran ng Pangkalahatang Pangmadlang Lisensiyang GNU ayon sa pagkakalathala ng Pundasyon ng Malayang Sopwer; na maaaring bersyong 2 ng Lisensiya, o (kung nais mo) anumang susunod na bersyon.
 Ang MediaWiki ay ipinamamahagi na umaasang magiging gamitin, subaliut WALANG ANUMANG KATIYAKAN; ni walang pahiwatig ng PAGIGING MABENTA o KAANGKUPAN PARA ISANG TIYAK NA LAYUNIN.  Tingnan ang Pangkalahatang Pangmadlang Lisensiyang GNU para sa mas marami pang mga detalye.

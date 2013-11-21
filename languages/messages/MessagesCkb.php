@@ -1132,7 +1132,7 @@ $1",
 'search-result-size'               => '$1 ({{PLURAL:$2|یەک وشە|$2 وشە}})',
 'search-result-category-size'      => '{{PLURAL:$1|١ ئەندام|$1 ئەندام}} ({{PLURAL:$2|١ ژێرپۆل|$2 ژێرپۆل}}, {{PLURAL:$3|١ پەڕگە|$3 پەڕگە}})',
 'search-result-score'              => 'پەیوەندی: $1%',
-'search-redirect'                  => '(ئاڵوگۆڕ $1)',
+'search-redirect'                  => '(ڕەوانەکەر $1)',
 'search-section'                   => '(بەشی $1)',
 'search-suggest'                   => 'ئایا مەبەستت ئەمە بوو: $1',
 'search-interwiki-caption'         => 'پرۆژە خوشکەکان',
@@ -2555,7 +2555,7 @@ $1',
 'allmessagesdefault'            => 'دەقی بنەڕەتی',
 'allmessagescurrent'            => 'دەقی ھەنووکە',
 'allmessagestext'               => 'ئەمە لیستێکە لە پەیامەکانی بەردەست لە بۆشایی‌ناوی میدیاویکی.
-تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
+تکایە سەردانی [https://www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
 'allmessagesnotsupportedDB'     => "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''\$wgUseDatabaseMessages''' لەکار خستراوە.",
 'allmessages-filter-legend'     => 'پاڵێو',
 'allmessages-filter-unmodified' => 'نەگۆڕدراو',
@@ -3081,7 +3081,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'دەستکاریی ئەم پەڕەیە بکە بە بەکارھێنانی پڕۆگرامێکی دەرەکی',
-'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [//www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
+'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [https://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەموو',

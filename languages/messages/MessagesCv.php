@@ -158,7 +158,7 @@ $messages = array(
 'category-file-count-limited'    => 'Ку категоринче $1 файл.',
 'listingcontinuesabbrev'         => '(малалли)',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff«"])))(.+)$/sD',
 
 'about'         => 'Ăнлантаркăч',
 'article'       => 'Статья',

@@ -1794,7 +1794,7 @@ Sing liyane bakal diumpetna sacara ''default''.
 
 # External editor support
 'edit-externally'      => 'Sunting berkas kiye nganggo aplikasi jaba',
-'edit-externally-help' => '(Deleng [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
+'edit-externally-help' => '(Deleng [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kabèh',

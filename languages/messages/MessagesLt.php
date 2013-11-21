@@ -2680,7 +2680,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{#Special:Expo
 'allmessagesdefault'            => 'Pradinis tekstas',
 'allmessagescurrent'            => 'Dabartinis tekstas',
 'allmessagestext'               => 'Čia pateikiamas sisteminių pranešimų sąrašas, esančių MediaWiki vardų srityje.
-Aplankykite [//www.mediawiki.org/wiki/Localisation „MediaWiki“ lokaliziciją] ir [//translatewiki.net „translatewiki.net“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.',
+Aplankykite [https://www.mediawiki.org/wiki/Localisation „MediaWiki“ lokaliziciją] ir [//translatewiki.net „translatewiki.net“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.',
 'allmessagesnotsupportedDB'     => "Šis puslapis nepalaikomas, nes nuostata '''\$wgUseDatabaseMessages''' yra išjungtas.",
 'allmessages-filter-legend'     => 'Filtras',
 'allmessages-filter'            => 'Filtruoti pagal būseną:',
@@ -3385,7 +3385,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 # External editor support
 'edit-externally'      => 'Atverti išoriniame redaktoriuje',
-'edit-externally-help' => '(Norėdami gauti daugiau informacijos, žiūrėkite [//www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas])',
+'edit-externally-help' => '(Norėdami gauti daugiau informacijos, žiūrėkite [https://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visus',
@@ -3573,7 +3573,7 @@ Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].
 'version-hook-subscribedby'     => 'Užsakyta',
 'version-version'               => '(Versija $1)',
 'version-license'               => 'Licencija',
-'version-poweredby-credits'     => "Šis projektas naudoja '''[//www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
+'version-poweredby-credits'     => "Šis projektas naudoja '''[https://www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
 'version-poweredby-others'      => 'kiti',
 'version-license-info'          => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
 

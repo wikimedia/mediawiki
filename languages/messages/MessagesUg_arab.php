@@ -13,6 +13,7 @@
  * @author Kaganer
  * @author Reedy
  * @author Sahran
+ * @author Tel'et
  */
 
 $rtl = true;
@@ -46,10 +47,10 @@ $messages = array(
 'tog-extendwatchlist'         => 'كۈچەيتىلگەن كۆزەت تىزىملىكىدە يېقىنقى ئۆزگەرتىشنىلا كۆرسەتمەي بەلكى ھەممە ئۆزگەرتىشنى كۆرسەت',
 'tog-usenewrc'                => 'بەت گۇرۇپپىلىنىشىغا ئاساسەن يېقىنقى ئۆزگەرتىش ۋە كۆزەت تىزىمى (JavaScript زۆرۈر)',
 'tog-numberheadings'          => 'ماۋزۇغا ئۆزلۈكىدىن تەرتىپ نومۇرى قوش',
-'tog-showtoolbar'             => 'تەھرىر قورال بالداقنى كۆرسەت (JavaScript زۆرۈر)',
-'tog-editondblclick'          => 'قوش چەككەندە بەت تەھرىرلە (JavaScript زۆرۈر)',
+'tog-showtoolbar'             => 'تەھرىر قورال بالداقنى كۆرسەت',
+'tog-editondblclick'          => 'قوش چەككەندە بەت تەھرىرلە',
 'tog-editsection'             => '[تەھرىر] ئۇلانمىسىنى چېكىپ ئابزاس تەھرىرلەشكە يول قوي',
-'tog-editsectiononrightclick' => 'ماۋزۇنى چاشقىنەكتە ئوڭ چېكىپ ئابزاس تەھرىرلەشكە يول قوي (JavaScript زۆرۈر)',
+'tog-editsectiononrightclick' => 'تېمىنى ئوڭ چېكىپ ئابزاس تەھرىرلەشكە يول قوي',
 'tog-showtoc'                 => 'مەزمۇن جەدۋىلى كۆرسەت (بىر بەتتە 3 تىن ئارتۇق ماۋزۇ بار بەتكە قارىتىلغان)',
 'tog-rememberpassword'        => 'بۇ كومپيۇتېردا كىرگىنىمنى ئەستە ساقلا(ئەڭ ئۇزۇن بولغاندا $1 {{PLURAL:$1|كۈن|كۈن}})',
 'tog-watchcreations'          => 'مەن قۇرغان بەت ۋە يۈكلىگەن ھۆججەتلەرنى كۆزەت تىزىملىكىمگە قوش',
@@ -71,7 +72,7 @@ $messages = array(
 [//www.mediawiki.org/wiki/Manual:External_editors تېخىمۇ كۆپ ئۇچۇر.])',
 'tog-externaldiff'            => 'كۆڭۈلدىكى ئەھۋالدا سىرتقى پەرق تەھلىلى ئىشلىتىدۇ (ئالىي ئىشلەتكۈچىگە تەمىنلىنىدۇ، كومپيۇتېرىڭىزدا بىر قىسىم ئالاھىدە تەڭشەش ئېلىپ بېرىشىڭىز لازىم. [//www.mediawiki.org/wiki/Manual:External_editors تېخىمۇ كۆپ ئۇچۇر.])',
 'tog-showjumplinks'           => '"ئاتلا" زىيارەت ئۇلانمىسىنى قوزغات',
-'tog-uselivepreview'          => 'رىئال ۋاقىتلىق ئالدىن كۆزىتىشنى ئىشلەت (JavaScript زۆرۈر) (سىناق)',
+'tog-uselivepreview'          => 'جانلىق ئالدىن كۆزىتىشنى ئىشلەت (سىناق)',
 'tog-forceeditsummary'        => 'ئۈزۈندە كىرگۈزمىگەندە مېنى ئەسكەرت',
 'tog-watchlisthideown'        => 'كۆزەت تىزىملىكىدىن مېنىڭ تەھرىرلىگىنىمنى يوشۇر',
 'tog-watchlisthidebots'       => 'كۆزەت تىزىملىكىدىن ماشىنا ئادەم تەھرىرلىگەننى يوشۇر',
@@ -167,7 +168,7 @@ $messages = array(
 'noindex-category'               => 'ئىندېكسلانمىغان بەتلەر',
 'broken-file-category'           => 'ھۆججەت ئۇلىنىشى بۇزۇلغان بەتلەر',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'ھەققىدە',
 'article'       => 'مۇندەرىجە',
@@ -245,7 +246,7 @@ $messages = array(
 'articlepage'       => 'مەزمۇن بېتىنى كۆرسەت',
 'talk'              => 'مۇنازىرە',
 'views'             => 'كۆرۈنۈش',
-'toolbox'           => 'قورال ساندۇقى',
+'toolbox'           => 'قوراللار',
 'userpage'          => 'ئىشلەتكۈچى بېتىنى كۆرسەت',
 'projectpage'       => 'قۇرۇلۇش بېتىنى كۆرسەت',
 'imagepage'         => 'ھۆججەت بېتىنى كۆرسەت',
@@ -467,7 +468,7 @@ $2',
 
 [[Special:Preferences|{{SITENAME}} تەڭشىكىڭىزنى تەڭشەشنى ئۇنتۇپ قالماڭ]].',
 'yourname'                   => 'ئىشلەتكۈچى ئاتى:',
-'yourpassword'               => 'ئىم:',
+'yourpassword'               => 'پارول:',
 'yourpasswordagain'          => 'ئاچقۇچنى قايتا بەسىڭ:',
 'remembermypassword'         => 'بۇ كومپيۇتېردا كىرگىنىمنى ئەستە ساقلا(ئەڭ ئۇزۇن بولغاندا $1 {{PLURAL:$1|كۈن|كۈن}})',
 'securelogin-stick-https'    => 'تىزىمغا كىرگەندىن كېيىن HTTPS باغلىنىشنى داۋاملاشتۇر',
@@ -489,7 +490,7 @@ $2',
 'userlogin-resetlink'        => 'تىزىمغا كىرىش تەپسىلاتىنى ئۇنۇتتىڭىز؟',
 'createaccountmail'          => 'ئېلخەتتە',
 'createaccountreason'        => 'سەۋەب:',
-'badretype'                  => 'سىز كىرگۈزگەن ئىم ماس كەلمىدى.',
+'badretype'                  => 'سىز كىرگۈزگەن پارول ماس كەلمىدى.',
 'userexists'                 => 'كىرگۈزگەن ئىشلەتكۈچى ئاتى ئىشلىتىلىۋاتىدۇ.
 باشقا ئاتنى تاللاڭ.',
 'loginerror'                 => 'تىزىمغا كىرىش خاتالىقى',
@@ -519,15 +520,15 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 كىرگۈزگىنىڭىزنى تەكشۈرۈڭ.',
 'nouserspecified'            => 'ئىشلەتكۈچى ئاتىدىن بىرنى بەلگىلەڭ.',
 'login-userblocked'          => 'بۇ ئىشلەتكۈچى چەكلەنگەن. تىزىمغا كىرىشكە يول قويۇلمايدۇ.',
-'wrongpassword'              => 'كىرگۈزگەن ئىم خاتا.
+'wrongpassword'              => 'كىرگۈزگەن پارول خاتا.
 قايتا سىناڭ.',
-'wrongpasswordempty'         => 'ئىم كىرگۈزمىدىڭىز
+'wrongpasswordempty'         => 'پارول كىرگۈزمىدىڭىز
 قايتا سىناڭ.',
 'passwordtooshort'           => 'ئىم ئاز دېگەندە {{PLURAL:$1|1 ھەرپ|$1 ھەرپ}} بولۇشى لازىم.',
-'password-name-match'        => 'ئىم ئىشلەتكۈچى ئاتىڭىزدىن پەرقلىنىشى لازىم.',
-'password-login-forbidden'   => 'بۇ ئىشلەتكۈچى ئاتى ۋە ئىم چەكلەنگەن.',
+'password-name-match'        => 'پارولىڭىز ئىشلەتكۈچى نامىڭىزدىن پەرقلىنىشى لازىم.',
+'password-login-forbidden'   => 'بۇ ئىشلەتكۈچى نامى ۋە پارول چەكلەنگەن.',
 'mailmypassword'             => 'يېڭى ئىمنى ئېخەتكە ئەۋەت',
-'passwordremindertitle'      => '{{SITENAME}} ئۈچۈن يېڭى ۋاقىتلىق ئىم',
+'passwordremindertitle'      => '{{SITENAME}} ئۈچۈن يېڭى ۋاقىتلىق پارول',
 'passwordremindertext'       => 'باشقىلار (بەلكىم سىز، IP ئادرېسى $1)
 {{SITENAME}} بېكەتنىڭ يېڭى ئىم ($4) نى ئىلتىماس قىلدى .
  "$2" ئىشلەتكۈچىنىڭ يېڭى ۋاقىتلىق ئىمنى "$3" غا تەڭشىدى.
@@ -549,7 +550,7 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 'mailerror'                  => 'ئېلخەت يوللىغاندا خاتالىق كۆرۈلدى:$1',
 'acct_creation_throttle_hit' => 'Wiki ئىشلىتىدىغان زىيارەتچى IP ئادرېسىڭىزنى ئىشلىتىپ {{PLURAL:$1|1 ھېسابات|$1 ھېسابات}} قۇردى.
 مۇشۇ پەيتتە يەنە ھېسابات قۇرالمايسىز.',
-'emailauthenticated'         => 'ئېلخەت ئادرېسىڭىز $2 $3 ئىناۋەتلىك ئىكەنلىكى دەلىللەندى.',
+'emailauthenticated'         => 'ئېلخەت ئادرېسىڭىز $2 سائەت $3 دە دەلىللەندى.',
 'emailnotauthenticated'      => 'ئېلخەت ئادرېسىڭىز تېخى دەلىللەنمىدى.
 تۆۋەندىكى ئىقتىدارى ھېچقانداق ئېلخەت ئەۋەتمەيدۇ.',
 'noemailprefs'               => 'بۇ ئىقتىدارنى ئىشلىتىش ئۈچۈن مايىللىق تەڭشىكىڭىزدە ئېلخەت ئادرېسى بەلگىلەڭ.',
@@ -576,25 +577,25 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 'user-mail-no-addy'      => 'ئېلخەت ئادرېسسىز خەت يوللاشنى سىنىدى.',
 
 # Change password dialog
-'resetpass'                 => 'ئىم ئۆزگەرت',
+'resetpass'                 => 'پارولنى ئۆزگەرتىش',
 'resetpass_announce'        => 'سىز ۋاقىتلىق ئېلخەت جەزملەش كودىدا تىزىمغا كىرگەن.
 تىزىمغا كىرىشنى تاماملاشتا، بۇ جايدا يېڭى ئىم بەلگىلىشىڭىز لازىم:',
 'resetpass_text'            => '<!-- بۇ يەرگە تېكست قوشۇڭ -->',
 'resetpass_header'          => 'ھېسابات ئىمنى ئۆزگەرت',
-'oldpassword'               => 'كونا ئىم:',
-'newpassword'               => 'يېڭى ئىم:',
-'retypenew'                 => 'يېڭى ئىمنى قايتا كىرگۈزۈڭ:',
-'resetpass_submit'          => 'ئىم بەلگىلەپ تىزىمغا كىرىڭ',
+'oldpassword'               => 'كونا پارول:',
+'newpassword'               => 'يېڭى پارول:',
+'retypenew'                 => 'يېڭى پارولنى قايتا كىرگۈزۈڭ:',
+'resetpass_submit'          => 'پارول بەلگىلەپ تىزىمغا كىرىڭ',
 'resetpass_success'         => 'سىز ئىمنى مۇۋەپپەقىيەتلىك ئۆزگەرتتىڭىز!
  تىزىمغا كىرىۋاتىسىز…',
 'resetpass_forbidden'       => 'ئىمنى ئۆزگەرتەلمىدى',
 'resetpass-no-info'         => 'سىز تىزىمغا كىرگەندىن كېيىن بىۋاسىتە بۇ بەتكە كىرىشىڭىز لازىم.',
-'resetpass-submit-loggedin' => 'ئىم ئۆزگەرت',
+'resetpass-submit-loggedin' => 'پارولنى ئۆزگەرتىش',
 'resetpass-submit-cancel'   => 'ۋاز كەچ',
 'resetpass-wrong-oldpass'   => 'ۋاقىتلىق ياكى نۆۋەتتىكى ئىم ئىناۋەتسىز.
 
 ئىمنى ئاللىبۇرۇن ئۆزگەرتىپ بولدىڭىز ياكى يېڭى ۋاقىتلىق ئىم ئىلتىماس قىلدىڭىز.',
-'resetpass-temp-password'   => 'ۋاقىتلىق ئىم:',
+'resetpass-temp-password'   => 'ۋاقىتلىق پارول:',
 
 # Special:PasswordReset
 'passwordreset'                    => 'ئىمنى ئەسلىگە قايتۇرماق',
@@ -719,7 +720,7 @@ $2
 'loginreqtitle'                    => 'تىزىمغا كىرىڭ',
 'loginreqlink'                     => 'تىزىمغا كىر',
 'loginreqpagetext'                 => '$1 بولغاندىلا ئاندىن باشقا بەتلەرنى كۆرەلەيسىز.',
-'accmailtitle'                     => 'ئىم يوللاندى.',
+'accmailtitle'                     => 'پارول يوللاندى.',
 'accmailtext'                      => "[[User talk:$1|$1]] ئىختىيارىي قۇرۇلغان ئىم  $2 غا يوللاندى.
 
 يېڭى ھېساباتقا قۇرغان ئىمنى تىزىمغا كىرىپ''[[Special:ChangePassword|ئىم ئۆزگەرت]]'' بېتىدىن ئۆزگەرتەلەيسىز.",
@@ -894,8 +895,8 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
  '''{{int:minoreditletter}}''' ئازراقلا ئۆزگەرتىش.",
 'history-fieldset-title' => 'كۆز يۈگۈرتۈش تارىخى',
 'history-show-deleted'   => 'ئۆچۈرۈلگەنلا',
-'histfirst'              => 'تۇنجى',
-'histlast'               => 'ئاخىرقى',
+'histfirst'              => 'ئەڭ كونا',
+'histlast'               => 'ئەڭ يېڭى',
 'historysize'            => '$1 {{PLURAL:$1|بايت|بايت}}',
 'historyempty'           => '(بوش)',
 
@@ -961,7 +962,7 @@ $3 تەمىنلىگەن چەكلەش سەۋەبى ''$2''",
 'revdelete-hide-image'        => 'ھۆججەت مەزمۇنىنى يوشۇر',
 'revdelete-hide-name'         => 'مەشغۇلات ۋە نىشاننى يوشۇر',
 'revdelete-hide-comment'      => 'تەھرىر ئىزاھاتىنى يوشۇر',
-'revdelete-hide-user'         => 'تەھرىرلىگۈچىنىڭ ئىشلەتكۈچى ئاتى/IP ئادرېس يوشۇر',
+'revdelete-hide-user'         => 'تەھرىرلىگۈچىنىڭ نامى/IP ئادرېسىنى يوشۇر',
 'revdelete-hide-restricted'   => 'مەشغۇلاتچى ۋە باشقا ئىشلەتكۈچىنىڭ سانلىق مەلۇمات كۆرۈشىنىمۇ چەكلە',
 'revdelete-radio-same'        => '(ئۆزگەرتمە)',
 'revdelete-radio-set'         => 'ھەئە',
@@ -1091,7 +1092,7 @@ $1",
 'search-mwsuggest-enabled'         => 'تەكلىپ بار',
 'search-mwsuggest-disabled'        => 'تەكلىپ يوق',
 'search-relatedarticle'            => 'ئالاقىدار',
-'mwsuggest-disable'                => 'AJAX تەكلىپىنى چەكلە',
+'mwsuggest-disable'                => 'ئىزدەش تەكلىپىنى چەكلە',
 'searcheverything-enable'          => 'ھەممە ئات بوشلۇقىدىن ئىزدە',
 'searchrelated'                    => 'ئالاقىدار',
 'searchall'                        => 'ھەممىسى',
@@ -1128,7 +1129,7 @@ $1",
 'prefs-edits'                   => 'تەھرىر سانى:',
 'prefsnologin'                  => 'تىزىمغا كىرمىدى',
 'prefsnologintext'              => 'سىز ئالدى بىلەن <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} تىزىمغا كىر]</span>سىڭىز ئاندىن ئىشلەتكۈچى مايىللىقنى تەڭشىيەلەيسىز.',
-'changepassword'                => 'ئىم ئۆزگەرت',
+'changepassword'                => 'پارولنى ئۆزگەرتىش',
 'prefs-skin'                    => 'تېرە',
 'skin-preview'                  => 'ئالدىن كۆزەت',
 'datedefault'                   => 'مايىللىق يوق',
@@ -1144,7 +1145,7 @@ $1",
 'prefs-watchlist-edits-max'     => 'ئەڭ كۆپ سانى: 1000',
 'prefs-watchlist-token'         => 'كۆزەت تىزىملىك نىشانى:',
 'prefs-misc'                    => 'ئارىلاشما تۈر',
-'prefs-resetpass'               => 'ئىم ئۆزگەرت',
+'prefs-resetpass'               => 'پارولنى ئۆزگەرتىش',
 'prefs-changeemail'             => 'ئېلخەت ئۆزگەرت',
 'prefs-setemail'                => 'ئېلخەت ئادرېس تەڭشەك',
 'prefs-email'                   => 'ئېلخەت تاللانما',
@@ -1436,7 +1437,7 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'rc-change-size'                    => '$1',
 'rc-change-size-new'                => 'ئۆزگەرتكەندىن كېيىن $1 {{PLURAL:$1|بايت}}',
 'newsectionsummary'                 => '* $1 * يېڭى ئابزاس',
-'rc-enhanced-expand'                => 'تەپسىلاتىنى كۆرسەت (JavaScript قوللىشى زۆرۈر)',
+'rc-enhanced-expand'                => 'تەپسىلاتىنى كۆرسەت',
 'rc-enhanced-hide'                  => 'تەپسىلاتىنى يوشۇر',
 'rc-old-title'                      => 'ئەڭ دەسلەپتە "$1" سۈپىتىدە قۇرۇلغان',
 
@@ -2314,7 +2315,7 @@ $1',
 'mycontris'           => 'تۆھپە',
 'contribsub2'         => '$1 نىڭ تۆھپىسى ($2)',
 'nocontribs'          => 'بۇ ئۆلچەمگە ماس كېلىدىغان ئۆزگەرتىش تېپىلمىدى.',
-'uctop'               => '(ئۈستى)',
+'uctop'               => '(نۆۋەتتىكى)',
 'month'               => 'ئايدىن بۇيان (ياكى ئىلگىرى):',
 'year'                => 'يىلدىن بۇيان (ياكى ئىلگىرى):',
 
@@ -2635,7 +2636,7 @@ $1',
 'allmessagesdefault'            => 'كۆڭۈلدىكى ئۇچۇر تېكستى',
 'allmessagescurrent'            => 'نۆۋەتتىكى ئۇچۇر تېكستى',
 'allmessagestext'               => 'بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.
-ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[//www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
+ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[https://www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
 'allmessagesnotsupportedDB'     => "بۇ بەتنى ئىشلەتكىلى بولمايدۇ، سەۋەبى '''\$wgUseDatabaseMessages''' چەكلەنگەن.",
 'allmessages-filter-legend'     => 'سۈزگۈچ',
 'allmessages-filter'            => 'ئىختىيارىچە سۈزگۈچ ھالىتى:',
@@ -3206,7 +3207,7 @@ Variants for Chinese language
 'exif-compression-4' => 'CCITT نىڭ 4-گۇرۇپپا فاكس كودلىنىشى',
 
 'exif-copyrighted-true'  => 'نەشر ھوقۇقى',
-'exif-copyrighted-false' => 'ئاممىۋى دائىرە',
+'exif-copyrighted-false' => 'نەشىر ھوقۇقى ھالىتى بېكىتىلمىگەن',
 
 'exif-unknowndate' => 'نامەلۇم چېسلا',
 
@@ -3412,7 +3413,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'بۇ ھۆججەتنى سىرتقى قوللىنىشچان پروگراممىدا تەھرىرلە',
-'edit-externally-help' => '( [//www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
+'edit-externally-help' => '( [https://www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەممىسى',
@@ -3596,7 +3597,7 @@ $5
 'version-hook-subscribedby'     => 'ئىمزا قويغۇچى',
 'version-version'               => '(نەشرى $1)',
 'version-license'               => 'ئىجازەتنامە',
-'version-poweredby-credits'     => "بۇ ۋىكىنى '''[//www.mediawiki.org/ MediaWiki]''' تېخنىكىلىق قوللايدۇ، نەشر ھوقۇقى © 2001-$1 $2",
+'version-poweredby-credits'     => "بۇ ۋىكىنى '''[https://www.mediawiki.org/ MediaWiki]''' تېخنىكىلىق قوللايدۇ، نەشر ھوقۇقى © 2001-$1 $2",
 'version-poweredby-others'      => 'باشقا',
 'version-license-info'          => 'MediaWiki ئەركىن يۇمشاق دېتال؛ سىز ئەركىن يۇمشاق دېتال ۋەخپىسىنىڭ ئېلان قىلغان GNU ئاممىباپ ئاممىۋى ئىجازەت ماددىلىرىدىكى بەلگىمىلەرگە ئاساسەن، بۇ پىروگراممىنى قايتا تارقىتىپ ياكى ئۆزگەرتەلەيسىز؛ مەيلى سىز مەزكۇر ئىجازەتنامىنىڭ ئىككىنچى نەشرى ياكى (ئۆزىڭىز تاللىغان) خالىغان كۈندە تارقىتىلغان نەشرىنى ئاساس قىلسىڭىز بولۇۋېرىدۇ.
 

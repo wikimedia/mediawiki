@@ -157,7 +157,7 @@ $messages = array(
 'category-subcat-count'    => '{{PLURAL:$2|Сѥи катигорїи тъкъмо сꙗ подъкатигорїꙗ ѥстъ|Сѥи катигорїи {{PLURAL:$1|ѥдина подъкатигорїꙗ ѥстъ|2 подъкатигорїи ѥстє|$1 подъкатигорїѩ сѫтъ}} · а вьсѩ жє подъкатигорїѩ число $2 ѥстъ}}',
 'listingcontinuesabbrev'   => '· вѧщє',
 
-'linkprefix' => '/^(.*?)(„|«)$/sD',
+'linkprefix' => '/^((?>.*(?<!(?:„|«)$)))(.+)$/sDu',
 
 'about'         => 'опьсаниѥ',
 'article'       => 'члѣнъ',
@@ -874,7 +874,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'дѣла иꙁмѣнѥниѥ вънѣщьниимь орѫдиѥмь',
-'edit-externally-help' => '(ꙁьри [//www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
+'edit-externally-help' => '(ꙁьри [https://www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вьсꙗ',

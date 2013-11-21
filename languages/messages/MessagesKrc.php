@@ -2463,7 +2463,7 @@ $1',
 'allmessagesdefault'            => 'Оригинал текст',
 'allmessagescurrent'            => 'Хайырлана тургъан текст',
 'allmessagestext'               => 'Бу тизме MediaWiki ат аламында бар болгъан система билдириулени тизмесиди.
-MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [//www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [//translatewiki.net translatewiki.net] сайтлагъа киригиз.',
+MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [https://www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [//translatewiki.net translatewiki.net] сайтлагъа киригиз.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' джабыкъ болгъаны ючюн '''{{ns:special}}:Allmessages''' хайырланыугъа ачыкъ тюлдю.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Тюрлендириуюне кёре фильтрлендир:',
@@ -3131,7 +3131,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюрлендиригиз',
-'edit-externally-help' => '(толу информациягъа мында къарагъыз: [//www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(толу информациягъа мында къарагъыз: [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бютеу',
@@ -3359,7 +3359,7 @@ $5
 'version-hook-subscribedby'     => 'Абонент болгъан',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лицензия',
-'version-poweredby-credits'     => "Бу вики '''[//www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу вики '''[https://www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'башхала',
 'version-license-info'          => 'MediaWiki эркин программа джазыуду, сиз аны GNU General Public License лицензияны (эркин программа джазыуланы фонду чыгъаргъан; экинчи версиясы неда андан кеч къайсысы да) шартларына кёре джаяргъа эмда/неда тюрлендирирге боллукъсуз.
 

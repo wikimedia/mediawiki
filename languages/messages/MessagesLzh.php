@@ -2221,7 +2221,7 @@ $1',
 'allmessagesdefault'            => '慣話文',
 'allmessagescurrent'            => '今話文',
 'allmessagestext'               => '此列MediaWiki官話。
-如貢正宗MediaWiki本地化，[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[//translatewiki.net translatewiki.net]閱之。',
+如貢正宗MediaWiki本地化，[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[//translatewiki.net translatewiki.net]閱之。',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",
 'allmessages-filter-legend'     => '濾',
 'allmessages-filter'            => '以易濾：',
@@ -2547,7 +2547,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
-'edit-externally-help' => '（請閱[//www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
+'edit-externally-help' => '（請閱[https://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全',
@@ -2700,7 +2700,7 @@ $5
 'version-hook-subscribedby'     => '用於',
 'version-version'               => '（版 $1）',
 'version-license'               => '牌',
-'version-poweredby-credits'     => "此 Wiki 以 '''[//www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
+'version-poweredby-credits'     => "此 Wiki 以 '''[https://www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki乃自由軟件；爾依自由軟件基金會之GNU通用公共授權之款，就此本程序再發佈及／或修；依之二版（自選之）或後之。
 

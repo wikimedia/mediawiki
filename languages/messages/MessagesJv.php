@@ -2495,7 +2495,7 @@ Yèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa ng
 'allmessagesdefault'            => 'Tèks baku',
 'allmessagescurrent'            => 'Tèks saiki',
 'allmessagestext'               => 'Iki dhaptar kabèh pesen saka sistem sing ana ing bilik jeneng MediaWiki.
-Mangga pirsani [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] lan [//translatewiki.net translatewiki.net] yèn panjenengan arep kontribusi ing lokalisasi generik MediaWiki.',
+Mangga pirsani [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] lan [//translatewiki.net translatewiki.net] yèn panjenengan arep kontribusi ing lokalisasi generik MediaWiki.',
 'allmessagesnotsupportedDB'     => "Kaca iki ora bisa dienggo amerga '''\$wgUseDatabaseMessages''' dipatèni.",
 'allmessages-filter-legend'     => 'Penyaring',
 'allmessages-filter'            => 'Saring nganggo kahanan kustomisasi:',
@@ -3177,7 +3177,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 # External editor support
 'edit-externally'      => 'Sunting berkas iki mawa aplikasi jaba',
-'edit-externally-help' => '(Deleng [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
+'edit-externally-help' => '(Deleng [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kabèh',
@@ -3348,7 +3348,7 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-hook-subscribedby'     => 'Dilanggani déning',
 'version-version'               => '(Vèrsi $1)',
 'version-license'               => 'Lisènsi',
-'version-poweredby-credits'     => "Wiki iki disengkuyung déning '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-credits'     => "Wiki iki disengkuyung déning '''[https://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/KRÈDIT liyané]',
 'version-license-info'          => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
 

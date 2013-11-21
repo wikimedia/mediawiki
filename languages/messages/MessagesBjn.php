@@ -2561,7 +2561,7 @@ Dalam kasus pahanyarnya Pian kawa jua mamuruk sabuah tautanm gasan cuntuh [[{{#S
 'allmessagesdefault'            => 'Naskah baku pasan',
 'allmessagescurrent'            => 'Naskah pasan wayahini.',
 'allmessagestext'               => 'Ngini adalah sabuah daptar pasan sistem tasadia dalam ruang-ngaran MediaWiki.
-Muhun ilangi [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] wan [//translatewiki.net translatewiki.net] amun Pian hakun manyumbang palukalan umum MediaWiki.',
+Muhun ilangi [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] wan [//translatewiki.net translatewiki.net] amun Pian hakun manyumbang palukalan umum MediaWiki.',
 'allmessagesnotsupportedDB'     => "Tungkaran ngini kada kawa dipuruk karana '''\$wgUseDatabaseMessages''' sudah dipajahakan.",
 'allmessages-filter-legend'     => 'Saringan',
 'allmessages-filter'            => 'Saringan lawan kaadaan kustom:',
@@ -3238,7 +3238,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 
 # External editor support
 'edit-externally'      => 'Babak barakas ngini puruk sabuah aplikasi luar',
-'edit-externally-help' => '(Lihati [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] untuk panjalasan labih)',
+'edit-externally-help' => '(Lihati [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] untuk panjalasan labih)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'samunyaan',
@@ -3428,7 +3428,7 @@ Pian kawa jua [[Special:EditWatchlist|mamuruk si pambabak standar]].',
 'version-hook-subscribedby'     => 'Dilanggani ulih',
 'version-version'               => '(Pirsi $1)',
 'version-license'               => 'Lisansi',
-'version-poweredby-credits'     => "Wiki ngini disukung ulih '''[//www.mediawiki.org/ MediaWiki]''', hak salin © 2001-$1 $2.",
+'version-poweredby-credits'     => "Wiki ngini disukung ulih '''[https://www.mediawiki.org/ MediaWiki]''', hak salin © 2001-$1 $2.",
 'version-poweredby-others'      => 'lainnya',
 'version-license-info'          => 'MediaWiki adalah parangkat lunak bibas; Pian kawa manyabarakan wan/atawa maubahi ngini di bawah syarat Lisansi Publik Umum sawagai tarbitan ulih Free Software Foundation; apakah Lisansi virsi 2, atawa (pilihan Pian) pahanyarnya.
 

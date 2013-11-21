@@ -565,7 +565,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'ilsubmit'  => 'Dii',
 
 # External editor support
-'edit-externally-help' => '(Kpɔ [//www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.)',
+'edit-externally-help' => '(Kpɔ [https://www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'katã',

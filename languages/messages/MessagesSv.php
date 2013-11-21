@@ -528,7 +528,7 @@ $messages = array(
 'articlepage'       => 'Visa innehållssida',
 'talk'              => 'Diskussion',
 'views'             => 'Visningar',
-'toolbox'           => 'Verktygslåda',
+'toolbox'           => 'Verktyg',
 'userpage'          => 'Visa användarsida',
 'projectpage'       => 'Visa projektsida',
 'imagepage'         => 'Visa filsida',
@@ -782,15 +782,15 @@ fortsätta använda ditt gamla lösenord.',
 'noemailcreate'              => 'Du måste ange en giltig e-postadress',
 'passwordsent'               => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
-'eauthentsent'               => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.
-Innan någon annan e-post kan skickas härifrån till kontot, måste du följa instruktionerna i e-brevet för att bekräfta att kontot verkligen är ditt.',
+'eauthentsent'               => 'Ett e-postmeddelande för bekräftelse har skickats till den angivna e-postadressen.
+Innan någon annan e-post kan skickas till kontot, måste du följa instruktionerna i e-postmeddelandet för att bekräfta att kontot verkligen är ditt.',
 'throttled-mailpassword'     => 'En lösenordsåterställning har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara en lösenordsåterställning per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
 'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under det senaste dygnet, vilket är det maximalt tillåtna inom den tidsperioden.
 Som ett resultat kan besökare som använder den här IP-adressen inte skapa några fler användarkonton just nu.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $2 kl. $3.',
-'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
+'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande funktionerna.',
 'noemailprefs'               => 'Uppge en e-postadress i dina inställningar för att få dessa funktioner att fungera.',
 'emailconfirmlink'           => 'Bekräfta din e-postadress',
 'invalidemailaddress'        => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
@@ -1110,7 +1110,7 @@ Anledningen till blockeringen var "$2".',
 'next'                   => 'nästa',
 'last'                   => 'föregående',
 'page_first'             => 'första',
-'page_last'              => 'senaste',
+'page_last'              => 'sista',
 'histlegend'             => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',
@@ -1181,15 +1181,15 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 * Opassande personlig information
 *: ''hemadresser och telefonnummer, personnummer, etc.''",
 'revdelete-legend'            => 'Ändra synlighet',
-'revdelete-hide-text'         => 'Dölj versionstext',
+'revdelete-hide-text'         => 'Versionstext',
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
-'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
-'revdelete-hide-user'         => 'Dölj skribentens användarnamn/IP-adress',
+'revdelete-hide-comment'      => 'Redigeringssammanfattning',
+'revdelete-hide-user'         => 'Redigerarens användarnamn/IP-adress',
 'revdelete-hide-restricted'   => 'Undanhåll data från administratörer så väl som från övriga',
 'revdelete-radio-same'        => '(låt vara)',
-'revdelete-radio-set'         => 'Ja',
-'revdelete-radio-unset'       => 'Nej',
+'revdelete-radio-set'         => 'Dold',
+'revdelete-radio-unset'       => 'Synlig',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
 'revdelete-log'               => 'Anledning:',
@@ -1446,7 +1446,7 @@ Programvaran använder detta värde för att adressera dig till andra med rätt 
 'prefs-help-realname'           => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'prefs-help-email'              => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.',
-'prefs-help-email-others'       => 'Du kan också välja att låta andra användare kontakta dig genom din användar-eller diskussionssida utan att avslöja din identitet.',
+'prefs-help-email-others'       => 'Du kan också välja att låta andra användare kontakta dig genom din användar- eller diskussionssida utan att avslöja din identitet.',
 'prefs-help-email-required'     => 'E-postadress måste anges.',
 'prefs-info'                    => 'Grundläggande information',
 'prefs-i18n'                    => 'Internationalisering',
@@ -2830,7 +2830,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Nuvarande text',
 'allmessagestext'               => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
-Besök [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [//translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
+Besök [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [//translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
 'allmessagesnotsupportedDB'     => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessages-filter-legend'     => 'Filtrera',
 'allmessages-filter'            => 'Filtrera efter anpassningsgrad:',
@@ -3114,7 +3114,7 @@ Om du kör den kan din dator skadas.",
 'file-info-size-pages'   => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}',
 'file-nohires'           => 'Det finns ingen version med högre upplösning.',
 'svg-long-desc'          => 'SVG-fil, grundstorlek: $1 × $2 pixlar, filstorlek: $3',
-'show-big-image'         => 'Högupplöst version',
+'show-big-image'         => 'Originalfil',
 'show-big-image-preview' => 'Storlek på förhandsvisningen: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Annan upplösning|Andra upplösningar}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixlar',
@@ -3564,7 +3564,7 @@ Andra kommer att gömmas som standard
 
 # External editor support
 'edit-externally'      => 'Redigera denna fil med hjälp av extern programvara',
-'edit-externally-help' => '(Se [//www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
+'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alla',
@@ -3749,7 +3749,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-hook-subscribedby'     => 'Används av',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licens',
-'version-poweredby-credits'     => "Den här wikin drivs av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Den här wikin drivs av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'andra',
 'version-license-info'          => 'MediaWiki är fri programvara; du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation; antingen version 2 av licensen, eller (om du önskar) någon senare version. 
 

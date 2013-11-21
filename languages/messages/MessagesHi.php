@@ -2650,7 +2650,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'allmessagesname'               => 'नाम',
 'allmessagesdefault'            => 'डिफॉल्ट पाठ',
 'allmessagescurrent'            => 'वर्तमान पाठ',
-'allmessagestext'               => 'ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [//www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [//translatewiki.net translatewiki.net] को देखें।',
+'allmessagestext'               => 'ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [https://www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [//translatewiki.net translatewiki.net] को देखें।',
 'allmessagesnotsupportedDB'     => "इस पृष्ठ का इस्तेमाल नहीं कर सकते क्योंकी '''\$wgUseDatabaseMessages''' बंद हैं।",
 'allmessages-filter-legend'     => 'छानें',
 'allmessages-filter'            => 'अनुकूलन स्थिति के आधार पर छानें:',
@@ -3340,7 +3340,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहरी प्रणाली का उपयोग करते हुए इस सञ्चिका को सम्पादित करें ।',
-'edit-externally-help' => '(और जानकारी के लिए [//www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
+'edit-externally-help' => '(और जानकारी के लिए [https://www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सभी',
@@ -3578,7 +3578,7 @@ $5
 'version-hook-subscribedby'     => 'ने सदस्यत्व लिया',
 'version-version'               => '(अवतरण $1)',
 'version-license'               => 'अनुज्ञापत्र',
-'version-poweredby-credits'     => "यह विकि  '''[//www.mediawiki.org/ MediaWiki]''' द्वारा संचालित है, कॉपीराइट © 2001 - $1  $2 ।",
+'version-poweredby-credits'     => "यह विकि  '''[https://www.mediawiki.org/ MediaWiki]''' द्वारा संचालित है, कॉपीराइट © 2001 - $1  $2 ।",
 'version-poweredby-others'      => 'अन्य',
 'version-software'              => 'इन्स्टॉल की हुई प्रणाली',
 'version-software-product'      => 'प्रोडक्ट',

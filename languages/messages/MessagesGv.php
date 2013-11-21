@@ -1425,7 +1425,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 
 # External editor support
 'edit-externally'      => 'Reagh yn coadan shoh lesh sheeyntagh mooie',
-'edit-externally-help' => 'Jeeagh er [//www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
+'edit-externally-help' => 'Jeeagh er [https://www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'yn clane',

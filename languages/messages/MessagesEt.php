@@ -743,15 +743,16 @@ Kui uut parooli palus keegi teine või sulle meenus vana parool ja sa ei soovi s
 'passwordsent'               => 'Uus parool on saadetud kasutaja $1 registreeritud e-postiaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
-'eauthentsent'               => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
-Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead sa e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
+'eauthentsent'               => 'Määratud e-posti aadressile on saadetud kinnituse e-kiri.
+Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
 'throttled-mailpassword'     => 'Parooli lähtestamise e-kiri saadetud viimase {{PLURAL:$1|tunni|$1 tunni}} jooksul.
 Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul ainult üks lähtestamise e-kiri.',
 'mailerror'                  => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'emailauthenticated'         => 'Sinu e-posti aadressi kinnitamisaeg: $2 kell $3.',
-'emailnotauthenticated'      => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. Järgnevate funktsioonidega seotud e-kirju kinnitamata aadressile ei saadeta.',
+'emailnotauthenticated'      => 'Sinu e-posti aadress pole veel kinnitatud.
+Järgnevate funktsioonidega seotud e-kirju ei saadeta.',
 'noemailprefs'               => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
 'invalidemailaddress'        => 'E-posti aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
@@ -1131,24 +1132,25 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-no-file'           => 'Faili ei ole.',
 'revdelete-show-file-confirm' => 'Kas oled kindel, et soovid häha faili "<nowiki>$1</nowiki>" kustutatud redaktsiooni, mis tehti $2 kell $3?',
 'revdelete-show-file-submit'  => 'Jah',
-'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versioon|Valitud versioonid}} artiklist [[:$1]]:'''",
+'revdelete-selected'          => "'''Valitud {{PLURAL:$2|redaktsioon|redaktsioonid}} leheküljest [[:$1]]:'''",
 'logdelete-selected'          => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
-'revdelete-text'              => "'''Kustutatud redaktsioonid kajastuvad endiselt lehe ajaloos ja logides, kuid osa nende sisust pole tavakasutajatele nähtav.'''
-{{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad varjatud sisu siiski vaadata ning seda vajadusel taastada, kui see pole just täiendavalt ära keelatud.",
+'revdelete-text'              => "'''Kustutatud redaktsioonid ja sündmused kajastuvad endiselt lehekülje ajaloos ja logides, kuid osa nende sisust pole avalikult nähtav.'''
+{{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad peidetud sisu siiski vaadata ning seda vajadusel selle liidese kaudu taastada, kui see pole just täiendavalt keelatud.",
 'revdelete-confirm'           => 'Kinnita, et soovid tõesti seda teha ning et saad aru tagajärgedest ja tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinsete kokkulepetega]].',
 'revdelete-suppress-text'     => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
+* Võimalik laim
 * Sobimatu isiklik teave
-*: ''kodune aadress ja telefoninumber, sotsiaalhoolekandenumber jne''",
+*: ''kodune aadress ja telefoninumber, isikukood jne''",
 'revdelete-legend'            => 'Nähtavuse piirangute seadmine',
-'revdelete-hide-text'         => 'Peida redaktsiooni tekst',
+'revdelete-hide-text'         => 'Redaktsiooni tekst',
 'revdelete-hide-image'        => 'Peida faili sisu',
 'revdelete-hide-name'         => 'Peida toiming ja sihtmärk',
-'revdelete-hide-comment'      => 'Peida resümee',
-'revdelete-hide-user'         => 'Peida toimetaja kasutajanimi või IP-aadress',
+'revdelete-hide-comment'      => 'Resümee',
+'revdelete-hide-user'         => 'Toimetaja kasutajanimi või IP-aadress',
 'revdelete-hide-restricted'   => 'Varja andmeid nii administraatorite kui ka teiste eest.',
 'revdelete-radio-same'        => '(ära muuda)',
-'revdelete-radio-set'         => 'Jah',
-'revdelete-radio-unset'       => 'Ei',
+'revdelete-radio-set'         => 'Peidetud',
+'revdelete-radio-unset'       => 'Nähtav',
 'revdelete-suppress'          => 'Varja andmed nii administraatorite kui ka teiste eest',
 'revdelete-unsuppress'        => 'Eemalda taastatud redaktsioonidelt piirangud',
 'revdelete-log'               => 'Põhjus:',
@@ -2734,7 +2736,7 @@ Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'immobile-target-namespace-iw' => 'Keelelink ei ole sobiv koht lehekülje teisaldamiseks.',
 'immobile-source-page'         => 'Lehekülg ei ole teisaldatav.',
 'immobile-target-page'         => 'Soovitud pealkirja alla ei saa teisaldada.',
-'imagenocrossnamespace'        => 'Faili ei saa teisaldada mõnda muusse nimeruumi',
+'imagenocrossnamespace'        => 'Faili ei saa teisaldada mõnda muusse nimeruumi.',
 'nonfile-cannot-move-to-file'  => 'Failinimeruumi saab ainult faile teisaldada.',
 'imagetypemismatch'            => 'Uus faililaiend ei sobi selle tüübiga',
 'imageinvalidfilename'         => 'Sihtmärgi nimi on vigane',
@@ -2777,7 +2779,7 @@ Viimasel juhul saab kasutada ka linki, näiteks lehekülje "[[{{MediaWiki:Mainpa
 'allmessagesdefault'            => 'Vaiketekst',
 'allmessagescurrent'            => 'Praegune tekst',
 'allmessagestext'               => 'See on loend kõikidest olemasolevatest süsteemisõnumitest MediaWiki nimeruumis.
-Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [//www.mediawiki.org/wiki/Localisation MediaWiki lokaliseerimine] ja [//translatewiki.net translatewiki.net].',
+Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [https://www.mediawiki.org/wiki/Localisation MediaWiki lokaliseerimine] ja [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Seda lehekülge ei saa kasutada, sest '''\$wgUseDatabaseMessages''' ei tööta.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Muutmisoleku filter:',
@@ -3037,7 +3039,7 @@ Selle avamine võib su arvutit kahjustada.",
 'file-info-size-pages'   => '$1 × $2 pikslit, faili suurus: $3 , MIME tüüp: $4, $5 {{PLURAL:$5|lehekülg|lehekülge}}',
 'file-nohires'           => 'Sellest suuremat pilti pole.',
 'svg-long-desc'          => 'SVG-fail, algsuurus $1 × $2 pikslit, faili suurus: $3',
-'show-big-image'         => 'Originaalsuurus',
+'show-big-image'         => 'Algfail',
 'show-big-image-preview' => 'Selle eelvaate suurus: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Teine eraldusvõime|Teised eraldusvõimed}}: $1.',
 'show-big-image-size'    => '$1 × $2 pikslit',
@@ -3462,7 +3464,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 # External editor support
 'edit-externally'      => 'Töötle faili välise programmiga',
-'edit-externally-help' => '(Vaata väliste redaktorite [//www.mediawiki.org/wiki/Manual:External_editors kasutusjuhendit])',
+'edit-externally-help' => '(Vaata väliste redaktorite [https://www.mediawiki.org/wiki/Manual:External_editors kasutusjuhendit])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Näita kõiki',
@@ -3636,7 +3638,7 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'version-hook-subscribedby'     => 'Tellijad',
 'version-version'               => '(Versioon $1)',
 'version-license'               => 'Litsents',
-'version-poweredby-credits'     => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001–$1 $2.",
+'version-poweredby-credits'     => "See viki kasutab '''[https://www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001–$1 $2.",
 'version-poweredby-others'      => 'teised',
 'version-license-info'          => "MediaWiki on vaba tarkvara; tohid seda taaslevitada ja/või selle põhjal teisendeid luua vastavalt Vaba Tarkvara Fondi avaldatud GNU Üldise Avaliku Litsentsi versioonis 2 või hilisemas seatud tingimustele.
 

@@ -1672,7 +1672,7 @@ $1',
 'allmessagesdefault'        => '默認文字',
 'allmessagescurrent'        => '眼前嗰文字',
 'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -2141,7 +2141,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式來編輯箇隻檔案',
-'edit-externally-help' => '請參看[//www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
+'edit-externally-help' => '請參看[https://www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -2266,7 +2266,7 @@ $3
 'version-hook-subscribedby'    => '訂閱人',
 'version-version'              => '（版本 $1）',
 'version-license'              => '許可證',
-'version-poweredby-credits'    => "箇隻 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-credits'    => "箇隻 Wiki 由 '''[https://www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
 'version-software'             => '裝正嗰軟件',
 'version-software-version'     => '版本',
 

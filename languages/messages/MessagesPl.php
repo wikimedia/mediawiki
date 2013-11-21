@@ -835,7 +835,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-domain'             => 'Domena',
 'passwordreset-capture'            => 'Czy pokazywać treść wiadomości e‐mail?',
 'passwordreset-capture-help'       => 'Jeśli zaznaczysz to pole, zobaczysz treść wiadomości e‐mail z tymczasowym hasłem, w tej samej formie w jakiej jest wysyłana do użytkownika.',
-'passwordreset-email'              => 'Adres e‐mail',
+'passwordreset-email'              => 'Adres e‐mail:',
 'passwordreset-emailtitle'         => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o zresetowanie twojego hasła w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
@@ -860,8 +860,8 @@ Tymczasowe hasło – $2',
 'changeemail-header'   => 'Zmiana adresu e‐mail',
 'changeemail-text'     => 'Wypełnij formularz, jeśli chcesz zmienić swój adres poczty elektronicznej. Będziesz musiał wprowadzić hasło, aby potwierdzić tę zmianę.',
 'changeemail-no-info'  => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
-'changeemail-oldemail' => 'Obecny adres e‐mail',
-'changeemail-newemail' => 'Nowy adres e-mail',
+'changeemail-oldemail' => 'Obecny adres e‐mail:',
+'changeemail-newemail' => 'Nowy adres e-mail:',
 'changeemail-none'     => '(brak)',
 'changeemail-submit'   => 'Zapisz nowy',
 'changeemail-cancel'   => 'Anuluj',
@@ -1174,7 +1174,7 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'logdelete-selected'          => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
 'revdelete-text'              => "'''Usunięte wersje i czynności będą nadal widoczne w historii strony i rejestrach, ale ich treść nie będzie publicznie dostępna.'''
 Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że nałożono dodatkowe ograniczenia.",
-'revdelete-confirm'           => 'Potwierdź, że chcesz to zrobić, rozumiesz konsekwencje oraz że robisz to zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]].',
+'revdelete-confirm'           => 'Potwierdź, że chcesz to zrobić zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]] i że rozumiesz konsekwencje.',
 'revdelete-suppress-text'     => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
 * Ujawnienie danych osobowych
 *: ''adres domowy, numer telefonu, numer PESEL itp''",
@@ -2839,7 +2839,7 @@ Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}
 'allmessagesdefault'            => 'Tekst domyślny',
 'allmessagescurrent'            => 'Tekst obecny',
 'allmessagestext'               => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
-Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
+Odwiedź [https://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
 'allmessagesnotsupportedDB'     => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter'            => 'Filtrowanie według stanu modyfikacji:',
@@ -3576,7 +3576,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # External editor support
 'edit-externally'      => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => '(Więcej informacji o używaniu [//www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
+'edit-externally-help' => '(Więcej informacji o używaniu [https://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wszystkie',
@@ -3812,7 +3812,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-hook-subscribedby'     => 'Zapotrzebowany przez',
 'version-version'               => '(Wersja $1)',
 'version-license'               => 'Licencja',
-'version-poweredby-credits'     => "Ta wiki korzysta z oprogramowania '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
+'version-poweredby-credits'     => "Ta wiki korzysta z oprogramowania '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others'      => 'inni',
 'version-license-info'          => 'MediaWiki jest wolnym oprogramowaniem – możesz je dystrybuować i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (jeśli wolisz) dowolnej późniejszej.
 
@@ -3878,7 +3878,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'tag-filter'              => 'Filtr [[Special:Tags|wzorców tekstu]]',
 'tag-filter-submit'       => 'Filtr',
 'tags-title'              => 'Znaczniki',
-'tags-intro'              => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje, dodatkowo wskazując ich znaczenie.',
+'tags-intro'              => 'Na tej stronie znajduje się lista znaczników, którymi oprogramowanie może oznaczyć edycje, oraz ich opisów.',
 'tags-tag'                => 'Nazwa znacznika',
 'tags-display-header'     => 'Wystąpienia na listach zmian',
 'tags-description-header' => 'Pełny opis znaczenia',

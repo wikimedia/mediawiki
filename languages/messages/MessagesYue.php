@@ -684,7 +684,7 @@ $1',
 'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword'       => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
-'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
+'throttled-mailpassword'     => '一個密碼提醒已經響$1{{PLURAL:$1|個鐘頭}}之前發送咗。為咗防止濫用，響$1{{PLURAL:$1|個鐘頭}}之內只可以發送一個密碼提醒。',
 'mailerror'                  => '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '利用你呢個IP地址嘅訪客響上一日已經開咗 $1 個戶口，係響呢段時間嘅上限。
 結果，利用呢個IP地址嘅訪客唔可以響呢段時間再開多個戶口。',
@@ -2523,7 +2523,7 @@ $1',
 'allmessagesdefault'            => '預設訊息文字',
 'allmessagescurrent'            => '現時訊息文字',
 'allmessagestext'               => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。
-如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[//translatewiki.net translatewiki.net]。',
+如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "呢一版唔可以用，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
 'allmessages-filter-legend'     => '過濾',
 'allmessages-filter'            => '以自定狀況過濾：',
@@ -2780,6 +2780,9 @@ $1',
 'ilsubmit'              => '搵嘢',
 'bydate'                => '以時間',
 'sp-newimages-showfrom' => '顯示由$1 $2嘅新檔',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours' => '$1{{PLURAL:$1|個鐘}}',
 
 # Bad image list
 'bad_image_list' => '請根據下面嘅格式去寫:
@@ -3087,7 +3090,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-3' => '三維量度',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => '千米/小時',
+'exif-gpsspeed-k' => '公里/小時',
 'exif-gpsspeed-m' => '英里/小時',
 'exif-gpsspeed-n' => '浬/小時',
 
@@ -3102,7 +3105,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外面程式來改呢個檔案',
-'edit-externally-help' => '(去[//www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料)',
+'edit-externally-help' => '(去[https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -3269,7 +3272,7 @@ $5
 'version-hook-subscribedby'     => '利用於',
 'version-version'               => '(版本 $1)',
 'version-license'               => '牌照',
-'version-poweredby-credits'     => "呢個 Wiki 係由 '''[//www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-credits'     => "呢個 Wiki 係由 '''[https://www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki係自由軟件；你可以根據Free Software Foundation所發表嘅GNU General Public License條款規定，就本程式再發佈同／或修改；無論你根據嘅係呢個牌照嘅第二版或（任你揀）任一日之後發行嘅版本。
 

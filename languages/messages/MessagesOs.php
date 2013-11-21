@@ -1582,7 +1582,7 @@ $3',
 
 # External editor support
 'edit-externally'      => 'Ивын ацы файл æддаг программæйæ',
-'edit-externally-help' => '(Кæс [//www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
+'edit-externally-help' => '(Кæс [https://www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'иууылдæр',
@@ -1647,7 +1647,7 @@ $3',
 'version-other'             => 'Æндæр',
 'version-version'           => '(Фæлтæр $1)',
 'version-license'           => 'Лицензи',
-'version-poweredby-credits' => "Ацы викийæн тых радта '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Ацы викийæн тых радта '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'  => 'æндæртæ',
 'version-software-version'  => 'Верси',
 

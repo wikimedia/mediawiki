@@ -861,7 +861,8 @@ Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werd
 
 Besucher, die diese IP-Adresse verwenden, können momentan keine Benutzerkonten mehr erstellen.',
 'emailauthenticated'         => 'Deine E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.',
-'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
+'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt.
+Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs'               => 'Gib eine E-Mail-Adresse in den Einstellungen an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
 'emailconfirmlink'           => 'E-Mail-Adresse bestätigen (authentifizieren).',
 'invalidemailaddress'        => 'Die E-Mail-Adresse wird nicht akzeptiert, weil sie ein ungültiges Format (eventuell ungültige Zeichen) zu haben scheint. Bitte gib eine korrekte Adresse ein oder leere das Feld.',
@@ -1243,18 +1244,19 @@ Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Anga
 Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.",
 'revdelete-confirm'           => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
 'revdelete-suppress-text'     => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
+* Potentiell beleidigende Informationen
 * Unangebrachte persönliche Informationen
 *: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",
 'revdelete-legend'            => 'Setzen der Sichtbarkeitseinschränkungen',
-'revdelete-hide-text'         => 'Text der Version verstecken',
+'revdelete-hide-text'         => 'Text der Version',
 'revdelete-hide-image'        => 'Dateiinhalt verstecken',
 'revdelete-hide-name'         => 'Logbuchaktion und Ziel verstecken',
-'revdelete-hide-comment'      => 'Bearbeitungszusammenfassung verstecken',
-'revdelete-hide-user'         => 'Benutzername/IP-Adresse des Bearbeiters verstecken',
+'revdelete-hide-comment'      => 'Bearbeitungszusammenfassung',
+'revdelete-hide-user'         => 'Benutzername/IP-Adresse des Bearbeiters',
 'revdelete-hide-restricted'   => 'Daten sowohl vor Administratoren als auch anderen Benutzern unterdrücken',
 'revdelete-radio-same'        => '(nicht ändern)',
-'revdelete-radio-set'         => 'Ja',
-'revdelete-radio-unset'       => 'Nein',
+'revdelete-radio-set'         => 'Versteckt',
+'revdelete-radio-unset'       => 'Sichtbar',
 'revdelete-suppress'          => 'Grund der Löschung auch vor Administratoren verstecken',
 'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
 'revdelete-log'               => 'Grund:',
@@ -2882,7 +2884,7 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Aktueller Text',
 'allmessagestext'               => 'Dies ist eine Liste der MediaWiki-Systemtexte.
-Bitte besuche die Seiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], sofern du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
+Bitte besuche die Seiten [https://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], sofern du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB'     => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter für angepassten Zustand:',
@@ -3164,7 +3166,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seiten}}',
 'file-nohires'           => 'Keine höhere Auflösung vorhanden.',
 'svg-long-desc'          => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
-'show-big-image'         => 'Volle Auflösung',
+'show-big-image'         => 'Originaldatei',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other'   => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
 'show-big-image-size'    => '$1 × $2 Pixel',
@@ -3611,7 +3613,7 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => '(weitere Informationen in den [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
+'edit-externally-help' => '(weitere Informationen in den [https://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3814,7 +3816,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-version'               => '(Version $1)',
 'version-svn-revision'          => '(Version $2)',
 'version-license'               => 'Lizenz',
-'version-poweredby-credits'     => "Diese Website nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Diese Website nutzt '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'andere',
 'version-license-info'          => "MediaWiki ist eine Freie Software, d. h. sie kann, gemäß den Bedingungen der von der Free Software Foundation veröffentlichten ''GNU General Public License'', weiterverteilt und/oder modifiziert werden. Dabei kann die Version 2, oder nach eigenem Ermessen, jede neuere Version der Lizenz verwendet werden.
 
@@ -3845,9 +3847,8 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 # Special:SpecialPages
 'specialpages'                   => 'Spezialseiten',
 'specialpages-note'              => '----
-* Reguläre Spezialseiten
-* <span class="mw-specialpagerestricted">Zugriffsbeschränkte Spezialseiten</span>
-* <span class="mw-specialpagecached">Gecachte Spezialseiten (Deren Inhalt ist möglicherweise veraltet.)</span>',
+* Normale Spezialseiten.
+* <span class="mw-specialpagerestricted">Spezialseiten mit beschränktem Zugang.</span>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',
 'specialpages-group-login'       => 'Benutzerkonto',

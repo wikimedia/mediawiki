@@ -11,6 +11,7 @@
  * @author Gott wisst
  * @author JJohnson
  * @author Omnipaedista
+ * @author Shirayuki
  * @author Spacebirdy
  * @author Tsepelcory
  * @author Wōdenhelm
@@ -364,8 +365,8 @@ Cȳþþuhord ageaf wōh "<code>$3: $4</code>"',
 'cascadeprotected'    => 'Þes trament wæs geborgen wiþ adihtunge, for þǣm þe hē is befangen in þissum {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgen settum wyrcende þǣm cyre "cascading": $2',
 
 # Virus scanner
-'virus-badscanner'     => '',
-'virus-unknownscanner' => '',
+'virus-badscanner'     => 'Bad configuration: Unknown virus scanner: $1',
+'virus-unknownscanner' => 'unknown antivirus:',
 
 # Login and logout pages
 'logouttext'                 => "'''Þū eart nū ūtmeldod.'''
@@ -901,7 +902,7 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # Delete
 'deletepage'            => 'Forlēosan tramet',
 'excontent'             => 'innung wæs: "$1"',
-'excontentauthor'       => 'innung wæs: \'$1\' (and se āna forðiend wæs "[[Special:Contributions/$2|$2]")',
+'excontentauthor'       => 'innung wæs: \'$1\' (and se āna forðiend wæs "[[Special:Contributions/$2|$2]]")',
 'exblank'               => 'tramet wæs æmettig',
 'historywarning'        => "'''Warnung''': Se tramet þe þū wilt forlēosan hafaþ stǣr mid nēan $1 {{PLURAL:$1|fadunge|fadunga}}:",
 'actioncomplete'        => 'Dǣd  is fulfyled',
@@ -1212,7 +1213,7 @@ Cēos ōðerne naman lā.',
 'exif-gpsdirection-t' => 'Sōþ rihtung',
 
 # External editor support
-'edit-externally-help' => '(Sēon þā [//www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
+'edit-externally-help' => '(Sēon þā [https://www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eall',

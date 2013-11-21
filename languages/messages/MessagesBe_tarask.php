@@ -718,7 +718,7 @@ $2',
 Калі ласка, увайдзіце ў сыстэму пасьля яго атрыманьня.',
 'blocked-mailpassword'       => 'З Вашага IP-адрасу забароненыя рэдагаваньні, а таму таксама для прадухіленьня шкоды недаступная функцыя аднаўленьня паролю.',
 'eauthentsent'               => 'Пацьверджаньне было дасланае на пазначаны адрас электроннай пошты.
-У лісьце ўтрымліваюцца інструкцыі, па выкананьні якіх, Вы зможаце пацьвердзіць, што адрас сапраўды належыць Вам, і на гэты адрас будзе дасылацца пошта адсюль.',
+У лісьце ўтрымліваюцца інструкцыі, па выкананьні якіх Вы зможаце пацьвердзіць, што адрас сапраўды належыць Вам, і на гэты адрас будзе дасылацца пошта адсюль.',
 'throttled-mailpassword'     => 'Ліст пра скіданьне паролю ўжо было даслана за {{PLURAL:$1|$1 апошнюю гадзіну|$1 апошнія гадзіны|$1 апошніх гадзінаў}}.
 Для прадухіленьня злоўжываньняў напамін будзе дасылацца не часьцей як аднойчы ў $1 {{PLURAL:$1|гадзіну|гадзіны|гадзінаў}}.',
 'mailerror'                  => 'Памылка пры адпраўцы электроннай пошты: $1',
@@ -2761,7 +2761,7 @@ $1',
 'allmessagesdefault'            => 'Тэкст па змоўчаньні',
 'allmessagescurrent'            => 'Цяперашні тэкст',
 'allmessagestext'               => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.
-Калі ласка, наведайце [//www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [//translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
+Калі ласка, наведайце [https://www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [//translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтар',
 'allmessages-filter'            => 'Фільтар па стане зьменаў:',
@@ -3474,7 +3474,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',
-'edit-externally-help' => '(Глядзіце падрабязнасьці ў [//www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
+'edit-externally-help' => '(Глядзіце падрабязнасьці ў [https://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усё',
@@ -3665,7 +3665,7 @@ $5
 'version-version'               => '(Вэрсія $1)',
 'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Ліцэнзія',
-'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',
 'version-license-info'          => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
 

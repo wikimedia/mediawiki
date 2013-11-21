@@ -420,7 +420,7 @@ $messages = array(
 'articlepage'       => 'Aanluure wat op dä Sigg drop steiht',
 'talk'              => 'Klaafe',
 'views'             => 'Aansichte',
-'toolbox'           => 'Werkzüch',
+'toolbox'           => 'Wärkzüsch',
 'userpage'          => 'Däm Metmaacher sing Sigg aanluure',
 'projectpage'       => 'De Projeksigg aanluure',
 'imagepage'         => 'De Sigg övver die Dattei aanluure',
@@ -450,7 +450,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Övver {{GRAMMAR:Akkusativ|{{ucfirst:{{SITENAME}}}}}}',
 'aboutpage'            => 'Project:Övver {{GRAMMAR:Akkusativ|{{ucfirst:{{SITENAME}}}}}}',
-'copyright'            => 'Dä Enhald steiht unger de $1.',
+'copyright'            => 'Dä Enhald steiht unger dä Lezänz $1, ußer wann ußdröklesch jäd anders jesaad es.',
 'copyrightpage'        => '{{ns:project}}:Lizenz',
 'currentevents'        => 'Et Neuste',
 'currentevents-url'    => 'Project:Et Neuste',
@@ -723,7 +723,7 @@ Ene schöne Jroß vun {{GRAMMAR:Dat|{{SITENAME}}}}.
 'noemailcreate'              => 'Do moß en jöltijje Adräß för Ding <i lang="en">e-mail</i> aanjävve',
 'passwordsent'               => 'E neu Passwood es aan de E-Mail Adress vun däm Metmaacher „$1“ ungerwähs. Meld dich domet aan, wann De et häs. Dat ahle Passwood bliev erhalde un kann och noch jebruch wääde, bes dat De Dich et eetste Mol met däm Neue enjelogg häs.',
 'blocked-mailpassword'       => 'Ding IP Adress es blockeet.',
-'eauthentsent'               => 'En <i lang="en">e-mail</i> es jäz ungerwähs aan di Adräß, di en de Enschtällonge schteiht. Ih dat <i lang="en">e-mails</i> övver {{GRAMMAR:Genitiv iere male|{{ucfirst:{{SITENAME}}}}}} <i lang="en">e-mail</i>-Knopp verscheck wääde künne, moß de <i lang="en">e-mail</i>-Adräß eets ens beschtäätesch woode sin. Wat mer doför maache moß, schteiht en dä <i lang="en">e-mail</i> dren, di jrad avjescheck woode es.',
+'eauthentsent'               => 'En <i lang="en">e-mail</i> es jäz ungerwähs aan di Adräß en de Enschtällonge. Ih dat mieh <i lang="en">e-mails</i> verscheck wääde künne, moß mer maache, wat en dä <i lang="en">e-mail</i> dren schteiht, öm ze beschtääteje, dat di Adräß schtemmp.',
 'throttled-mailpassword'     => 'En Erennerung för di Passwood es alld ongerwähs, un mieh wi eimol en {{PLURAL:$1|der Schtond|$1 Schtonde|nidd ens ener Schtond}} dommer kein schecke.',
 'mailerror'                  => 'Fähler beim E-Mail Verschecke: $1.',
 'acct_creation_throttle_hit' => '<b>Schad.</b>
@@ -1619,8 +1619,8 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-block'                => 'hee dämm Metmaacher et Sigge Ändere ze verbeede',
 'action-protect'              => 'hee dä Sigg iere Sigge-Schotz ze ändere',
 'action-rollback'             => 'all de letzte Änderunge fom letzte Metmaacher aan ene beshtemmpte Sigg flöck retur ze maache',
-'action-import'               => 'hee di Sigg uss enem andere Wiki ze empotteere',
-'action-importupload'         => 'hee di Sigg uss ene huhjelaade Datei ze impotteere',
+'action-import'               => 'Sigge uss_enem andere Wiki ze empotteere',
+'action-importupload'         => 'Sigge uss_ene huhjelaade Dattei ze empotteere',
 'action-patrol'               => 'anderlüx Änderunge als „nohjeloort“ ze makeere',
 'action-autopatrol'           => 'Ding eije Änderunge sälver als „nohjeloort“ ze makeere',
 'action-unwatchedpages'       => 'de Leß met de Sigg en kei Oppassleß aanzeloore',
@@ -2437,10 +2437,12 @@ Do kanns hee noh Hölp luure:
 'deletecomment'          => 'Aanlaß odder Jrund:',
 'deleteotherreason'      => 'Ander Jrund oder Zosätzlich:',
 'deletereasonotherlist'  => 'Ander Jrund',
-'deletereason-dropdown'  => '* Alljemein Jrönde
-** dä Schriever wollt et esu
+'deletereason-dropdown'  => '* Alljemein Jrönde för et Fottschmiiße
+** SPAM
+** et wohd jät kapott jemaat
 ** wohr jäje et Urhävverrääsch
-** et wohd jet kapott jemaat',
+** dä Schriever wolld et esu
+** kappodde Ömleidong',
 'delete-edit-reasonlist' => 'De Jrönde för et Fottschmieße beärbeide',
 'delete-toobig'          => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jaa kein Version}}. Dat sinn_er ärsch fill. Domet unsere ẞööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
 'delete-warning-toobig'  => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
@@ -2918,7 +2920,7 @@ zo jroße Lass för dä ẞööver.',
 'allmessagesdefault'            => 'Dä standaadmäßije Tex',
 'allmessagescurrent'            => 'Esu es dä Tex jetz',
 'allmessagestext'               => 'Heh kütt en Liss met Texte, Texstöck, un Nohreechte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit Jede maache.
-Wenn De jenerell aan [//www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [//translatewiki.net translatewiki.net].',
+Wenn De jenerell aan [https://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => '<strong>Dat wor nix!</strong> Mer künne „{{#special:allmessages}}“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
 'allmessages-filter-legend'     => 'Ußsöhke — wat för en Täxte o Nohreeshte aazeije?',
 'allmessages-filter'            => 'Zohshtand:',
@@ -3670,7 +3672,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',
-'edit-externally-help' => '(Luur en de [//www.mediawiki.org/wiki/Manual:External_editors Aanleidong för de Enschtallazjuhn] noh mieh Henwiese)',
+'edit-externally-help' => '(Luur en de [https://www.mediawiki.org/wiki/Manual:External_editors Aanleidong för de Enschtallazjuhn] noh mieh Henwiese)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -3923,7 +3925,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-hook-subscribedby'     => 'Opjeroofe vun',
 'version-version'               => '(Väsjohn $1)',
 'version-license'               => 'Lėzänz',
-'version-poweredby-credits'     => "Dat Wiki heh löp met '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Dat Wiki heh löp met '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'sönß wää',
 'version-license-info'          => 'MediaWiki es e frei Projramm. Mer kann et unmolesteet wigger verdeile, un mer kann et verändere, wi mer löstich es, wam_mer sesch dobei aan de <i lang="en">GNU General Public License</i> (jenerälle öffentlesche Lizänz noh GNU) hallde deiht, wi se vun der <i lang="en">Free Software Foundation</i> (Steftung för frei Soffwäer) veröffentlesch woode es. Dobei kam_mer sesch ußsöhke of mer sesch aan de Version 2 dovun hallde deiht, udder öhnz en späädere Fassung.
 

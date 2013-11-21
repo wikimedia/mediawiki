@@ -1107,7 +1107,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'Йола болхоагIувца паьла гIалатах мукъаяьккха',
-'edit-externally-help' => '(ма даррачунга хьажа [//www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
+'edit-externally-help' => '(ма даррачунга хьажа [https://www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'деррига',

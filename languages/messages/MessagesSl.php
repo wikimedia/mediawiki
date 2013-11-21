@@ -390,7 +390,7 @@ $messages = array(
 'articlepage'       => 'Prikaže članek',
 'talk'              => 'Pogovor',
 'views'             => 'Pogled',
-'toolbox'           => 'Pripomočki',
+'toolbox'           => 'Orodja',
 'userpage'          => 'Prikaži uporabnikovo stran',
 'projectpage'       => 'Prikaži projektno stran',
 'imagepage'         => 'Pokaži stran z datoteko',
@@ -558,7 +558,7 @@ Poizvedba: $2',
 'actionthrottledtext'  => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
 'protectedpagetext'    => 'Ta stran je bila zaklenjena za preprečitev urejanja ali drugih dejanj.',
-'viewsourcetext'       => 'Lahko si ogledate in kopirate vsebino te strani:',
+'viewsourcetext'       => 'Vsebino te strani si lahko ogledate in kopirate:',
 'viewyourtext'         => "Lahko si ogledate in kopirate vsebino '''vaših urejanj''' te strani:",
 'protectedinterface'   => 'Prikazana stran vsebuje besedilo vmesnika programja na tem wikiju in je zaradi preprečevanja zlorab zaščitena.
 
@@ -666,8 +666,8 @@ Za preprečevanje zlorab lahko na {{PLURAL:$1|uro|$1 uri|$1 ure|$1 ur}} pošljem
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
 'emailauthenticated'         => 'Vaš e-poštni naslov je bil potrjen dne $2 ob $3.',
-'emailnotauthenticated'      => 'Vaš e-poštni naslov še ni potrjen. Za navedene
-možnosti se e-pošte ne bo pošiljalo.',
+'emailnotauthenticated'      => 'Vaš e-poštni naslov še ni potrjen.
+Za navedene možnosti e-pošte ne bomo pošiljali.',
 'noemailprefs'               => 'E-poštnega naslova niste vnesli, zato naslednje možnosti ne bodo delovale.',
 'emailconfirmlink'           => 'Potrdite svoj e-poštni naslov',
 'invalidemailaddress'        => 'E-poštni naslov zaradi neveljavne oblike ni sprejemljiv.
@@ -800,17 +800,17 @@ Začasno geslo: $2',
 'summary-preview'                  => 'Predogled povzetka',
 'subject-preview'                  => 'Predogled zadeve/naslova:',
 'blockedtitle'                     => 'Uporabnik je blokiran',
-'blockedtext'                      => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je bilo onemogočeno.'''
+'blockedtext'                      => "'''Urejanje z vašim uporabniškim imenom oziroma IP-naslovom je onemogočeno.'''
 
 Blokiral vas je $1.
-Podan razlog je ''$2''.
+Podani razlog je ''$2''.
 
-* Začetek blokade: $8
-* Potek blokade: $6
-* Namen blokade: $7
+* začetek blokade: $8
+* potek blokade: $6
+* blokirani uporabnik: $7
 
-O blokiranju se lahko pogovorite z $1 ali katerim drugim [[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
-Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov ter le-ta ni bil blokiran.
+O blokiranju se lahko pogovorite z uporabnikom/-co $1 ali katerim drugim [[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
+Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov in ta ni blokiran.
 Vaš IP-naslov je $3, številka blokade pa #$5.
 Prosimo, vključite ju v vse morebitne poizvedbe.",
 'autoblockedtext'                  => "Vaš IP-naslov je bil samodejno blokiran, saj je bil uporabljen s strani drugega uporabnika, ki ga je blokiral $1.
@@ -968,16 +968,16 @@ Naslednji argumenti so bili izpuščeni.",
 'language-converter-depth-warning'        => 'Prekoračena globina pretvorbe jezikov ($1)',
 
 # "Undo" feature
-'undo-success' => 'Urejanje ste razveljavili. Prosim, potrdite in nato shranite spodnje spremembe.',
+'undo-success' => 'Urejanje ste razveljavili. Prosimo, preverite prikazano primerjavo redakcij in, če ustrezajo, shranite spremembe.',
 'undo-failure' => 'Zaradi navzkrižij urejanj, ki so se vmes pojavila, tega urejanja ni moč razveljaviti.',
 'undo-norev'   => 'Urejanja ni mogoče razveljaviti, ker ne obstaja ali je bilo izbrisano.',
 'undo-summary' => 'Redakcija $1 uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) razveljavljena',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Računa ni moč ustvariti',
-'cantcreateaccount-text' => "Registracija novega uporabnika iz tega IP-naslova ('''$1''') je bila blokirana s strani [[User:$3|$3]].
+'cantcreateaccount-text' => "Registracije z IP-naslova ('''$1''') je administrator(ka) [[User:$3|$3]] blokiral(a).
 
-Razlog, ki ga je podal $3, je ''$2''.",
+Razlog, ki ga je $3 podal(a), je ''$2''.",
 
 # History pages
 'viewpagelogs'           => 'Poglej dnevniške zapise o strani',
@@ -1059,19 +1059,19 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR:rodilnik|{{SITENAME}}}} in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo uveljavljene dodatne omejitve.",
 'revdelete-confirm'           => 'Prosim potrdite da nameravate to storiti, da se zavedate posledic in da to počnete v skladu s [[{{MediaWiki:Policy-url}}|politiko]].',
 'revdelete-suppress-text'     => "Zadrževanje naj bi bilo uporabljeno '''le''' v sledečih primerih:
-* Potencialni klevetniški podatki
+* Morebitni klevetniški podatki
 * Neprimerni osebni podatki
-*: ''domači naslovi in telefonske številke, številke socialnega zavarovanja, etc.''",
+*: ''domači naslovi in telefonske številke, narodne številke istovetnosti itn.''",
 'revdelete-legend'            => 'Nastavi omejitve vidnosti',
-'revdelete-hide-text'         => 'Skrij besedilo redakcije',
+'revdelete-hide-text'         => 'Besedilo redakcije',
 'revdelete-hide-image'        => 'Skrij vsebino datoteke.',
 'revdelete-hide-name'         => 'Skrij dejanje in cilj',
-'revdelete-hide-comment'      => 'Skrij povzetek urejanja',
-'revdelete-hide-user'         => 'Skrij uporabniško ime/IP-naslov urejevalca',
+'revdelete-hide-comment'      => 'Povzetek urejanja',
+'revdelete-hide-user'         => 'Uporabniško ime/IP-naslov urejevalca',
 'revdelete-hide-restricted'   => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-radio-same'        => '(ne spremeni)',
-'revdelete-radio-set'         => 'Da',
-'revdelete-radio-unset'       => 'Ne',
+'revdelete-radio-set'         => 'Skrito',
+'revdelete-radio-unset'       => 'Vidno',
 'revdelete-suppress'          => 'Zadrži podatke od administratorjev kakor tudi od ostalih',
 'revdelete-unsuppress'        => 'Odpraviti omejitve na obnovljenih redakcijah.',
 'revdelete-log'               => 'Razlog:',
@@ -1259,7 +1259,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-rendering'               => 'Videz',
 'saveprefs'                     => 'Shrani',
 'resetprefs'                    => 'Počisti neshranjene spremembe',
-'restoreprefs'                  => 'Obnovi vse privzete nastavitve (v vseh razdelkih)',
+'restoreprefs'                  => 'obnova vseh privzetih nastavitev (v vseh razdelkih)',
 'prefs-editing'                 => 'Urejanje',
 'prefs-edit-boxsize'            => 'Velikost okna za urejanje.',
 'rows'                          => 'Vrstic:',
@@ -2525,16 +2525,16 @@ Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 'unblocked-id'                    => 'Blokada $1 je odstranjena',
 'blocklist'                       => 'Blokirani uporabniki',
 'ipblocklist'                     => 'Blokirani uporabniki',
-'ipblocklist-legend'              => 'Najdi blokiranega uporabnika',
-'blocklist-userblocks'            => 'Skrij blokade računov',
-'blocklist-tempblocks'            => 'Skrij začasne blokade',
-'blocklist-addressblocks'         => 'Skrij blokade enega IP-naslova',
-'blocklist-rangeblocks'           => 'Skrij bloke obsegov',
+'ipblocklist-legend'              => 'Poišči blokiranega uporabnika',
+'blocklist-userblocks'            => 'skrij blokade računov',
+'blocklist-tempblocks'            => 'skrij začasne blokade',
+'blocklist-addressblocks'         => 'skrij blokade posameznih IP-naslovov',
+'blocklist-rangeblocks'           => 'skrij blokade razponov',
 'blocklist-timestamp'             => 'Časovni žig',
 'blocklist-target'                => 'Cilj',
 'blocklist-expiry'                => 'Poteče',
-'blocklist-by'                    => 'Administrator, ki je izvedel blokado',
-'blocklist-params'                => 'Parametri blokade',
+'blocklist-by'                    => 'Administrator',
+'blocklist-params'                => 'Parametri',
 'blocklist-reason'                => 'Razlog',
 'ipblocklist-submit'              => 'Išči',
 'ipblocklist-localblock'          => 'Lokalna blokada',
@@ -2542,8 +2542,8 @@ Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 'infiniteblock'                   => 'neomejen čas',
 'expiringblock'                   => 'preteče $1 ob $2',
 'anononlyblock'                   => 'samo brezim.',
-'noautoblockblock'                => 'samodejna blokada je onemogočena',
-'createaccountblock'              => 'ustvarjanje računov onemogočeno',
+'noautoblockblock'                => 'onemogočena samodejna blokada',
+'createaccountblock'              => 'onemogočeno ustvarjanje računov',
 'emailblock'                      => 'e-pošta blokirana',
 'blocklist-nousertalk'            => 'preprečeno urejanje lastne pogovorne strani',
 'ipblocklist-empty'               => 'Seznam blokad je prazen.',
@@ -2561,11 +2561,11 @@ Za sklicevanje so tule navedeni vnosi v dnevniku blokiranja:',
 'blocklog-showsuppresslog'        => 'Ta uporabnik je že bil blokiran in skrit.
 Dnevnik skrivanja je na voljo spodaj:',
 'blocklogentry'                   => '[[$1]] blokiran s časom poteka blokade $2 $3',
-'reblock-logentry'                => 'spremenil nastavitve blokade za [[$1]] z iztekom dne $2 ob $3',
+'reblock-logentry'                => 'je spremenil(a) nastavitve blokade za [[$1]] na čas $2 $3',
 'blocklogtext'                    => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:BlockList|seznamu blokad]].',
 'unblocklogentry'                 => 'je deblokiral(-a) »$1«',
 'block-log-flags-anononly'        => 'samo za brezimne uporabnike',
-'block-log-flags-nocreate'        => 'ustvarjanje uporabniških računov onemogočeno',
+'block-log-flags-nocreate'        => 'onemogočeno ustvarjanje računov',
 'block-log-flags-noautoblock'     => 'samodejno blokiranje onemogočeno',
 'block-log-flags-noemail'         => 'e-naslov blokiran',
 'block-log-flags-nousertalk'      => 'prepreči urejanje lastne pogovorne strani',
@@ -2744,7 +2744,7 @@ stran »[[{{MediaWiki:Mainpage}}]]«.',
 'allmessagesdefault'            => 'Prednastavljeno besedilo',
 'allmessagescurrent'            => 'Trenutno besedilo',
 'allmessagestext'               => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Za lokalizacijo in prevajanje obiščite [//www.mediawiki.org/wiki/Localisation MediaWiki] in [//translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.',
+Za lokalizacijo in prevajanje obiščite [https://www.mediawiki.org/wiki/Localisation MediaWiki] in [//translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.',
 'allmessagesnotsupportedDB'     => "Te strani ni mogoče uporabljati, ker je bilo '''\$wgUseDatabaseMessages''' izključeno.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po prilagoditvenem stanju:',
@@ -2985,7 +2985,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'file-info-size-pages'   => '$1 × $2 točk, velikost datoteke: $3, vrsta MIME: $4, $5 {{PLURAL:$5|stran|strani}}',
 'file-nohires'           => 'Višja ločljivost slike ni na voljo.',
 'svg-long-desc'          => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
-'show-big-image'         => 'Slika v višji ločljivosti',
+'show-big-image'         => 'Izvirna datoteka',
 'show-big-image-preview' => 'Velikost predogleda: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Druga ločljivost|Drugi ločljivosti|Druge ločljivosti}}: $1.',
 'show-big-image-size'    => '$1 × $2 točk',
@@ -3441,7 +3441,7 @@ Druga bodo po privzetem skrita.
 
 # External editor support
 'edit-externally'      => 'Uredite datoteko z uporabo zunanjega orodja',
-'edit-externally-help' => '(Za več informacij glejte [//www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
+'edit-externally-help' => '(Za več informacij glejte [https://www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vse',
@@ -3631,7 +3631,7 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'version-hook-subscribedby'     => 'Naročen s strani',
 'version-version'               => '(Različica $1)',
 'version-license'               => 'Licenca',
-'version-poweredby-credits'     => "Ta wiki poganja '''[//www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ta wiki poganja '''[https://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 'version-poweredby-others'      => 'drugi',
 'version-license-info'          => 'MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katere koli poznejše različice.
 

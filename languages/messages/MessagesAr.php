@@ -21,6 +21,7 @@
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
+ * @author Claw eg
  * @author DRIHEM
  * @author DrFO.Tn
  * @author Elmondo21st
@@ -601,7 +602,7 @@ $messages = array(
 'mypage'        => 'صفحة',
 'mytalk'        => 'نقاش',
 'anontalk'      => 'نقاش عنوان الآي بي',
-'navigation'    => 'إبحار',
+'navigation'    => 'تصفح',
 'and'           => '&#32;و',
 
 # Cologne Blue skin
@@ -669,7 +670,7 @@ $messages = array(
 'articlepage'       => 'اعرض صفحة المحتوى',
 'talk'              => 'نقاش',
 'views'             => 'معاينة',
-'toolbox'           => 'صندوق الأدوات',
+'toolbox'           => 'الأدوات',
 'userpage'          => 'طالع صفحة المستخدم',
 'projectpage'       => 'طالع صفحة المشروع',
 'imagepage'         => 'طالع صفحة الملف',
@@ -937,14 +938,14 @@ $2',
 من فضلك حاول تسجيل الدخول مرة ثانية بعد استلامها.',
 'blocked-mailpassword'       => 'تم منع عنوان الأيبي الخاص بك من التحرير، ولمنع التخريب لا يمكنك أن تستخدم خاصية استرجاع كلمة السر.',
 'eauthentsent'               => 'تم إرسال رسالة تأكيد إلكترونية إلى العنوان المسمى.
-حتى ترسل أي رسالة أخرى لذلك الحساب عليك أن تتبع التعليمات الواردة في الرسالة لتأكيد أن هذا الحساب هو لك بالفعل.',
+قبل إرسال أي رسالة أخرى لذلك الحساب، عليك أن تتبع التعليمات الواردة في الرسالة، لتأكيد أن هذا الحساب هو لك بالفعل.',
 'throttled-mailpassword'     => 'تم بالفعل إرسال تذكير بكلمة السر، في ال{{PLURAL:$1||ساعة الماضية|ساعتين الماضيتين|$1 ساعات الماضية|$1 ساعة الماضية}}.
 لمنع التخريب، سيتم إرسال تذكير واحد كل {{PLURAL:$1||ساعة|ساعتين|$1 ساعات|$1 ساعة}}.',
 'mailerror'                  => 'خطأ أثناء إرسال البريد: $1',
 'acct_creation_throttle_hit' => 'أنشأ زوار هذه الويكي باستخدام عنوان آيبيك {{PLURAL:$1||حسابا واحدا|حسابين|$1 حسابات|$1 حسابا|$1 حساب}} في اليوم الماضي، وهو الحد الأقصى المسموح به في هذه الفترة الزمنية.
 وكنتيجة لذلك، لن يتمكن الزوار الذين يستخدمون عنوان الأيبي هذا من إنشاء أي حسابات أخرى حاليا.',
 'emailauthenticated'         => 'تم تأكيد بريدك الإلكتروني في $2 الساعة $3.',
-'emailnotauthenticated'      => 'لم يتم التحقق من بريدك الإلكتروني.
+'emailnotauthenticated'      => 'لم يؤكد بريدك الإلكتروني حتى الآن.
 لن يتم إرسال رسائل لأي من الميزات التالية.',
 'noemailprefs'               => 'حدد عنوان بريد إلكتروني في تفضيلاتك لتفعيل هذه الخصائص.',
 'emailconfirmlink'           => 'أكد عنوان بريدك الإلكتروني',
@@ -1352,8 +1353,8 @@ $2
 'revdelete-hide-user'         => 'أخف اسم/آيبي المستخدم',
 'revdelete-hide-restricted'   => 'أخف البيانات عن الإداريين إضافة إلى الآخرين',
 'revdelete-radio-same'        => '(لا تغير)',
-'revdelete-radio-set'         => 'نعم',
-'revdelete-radio-unset'       => 'لا',
+'revdelete-radio-set'         => 'مخفي',
+'revdelete-radio-unset'       => 'مرئي',
 'revdelete-suppress'          => 'أخف البيانات عن مديري النظام والبقية',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
 'revdelete-log'               => 'السبب:',
@@ -1775,8 +1776,8 @@ $1",
 'action-block'                => 'منع هذا المستخدم من التعديل',
 'action-protect'              => 'تغيير مستويات الحماية لهذه الصفحة',
 'action-rollback'             => 'استرجاع تعديلات آخر مستخدم عدل صفحة معينة سريعا',
-'action-import'               => 'استيراد هذه الصفحة من ويكي آخر',
-'action-importupload'         => 'استيراد هذه الصفحة من ملف مرفوع',
+'action-import'               => 'استيراد صفحات من ويكي آخر',
+'action-importupload'         => 'استيراد صفحات من ملف مرفوع',
 'action-patrol'               => 'تعليم تعديلات الآخرين بعلامة المراجعة',
 'action-autopatrol'           => 'جعل تعديلك معلم عليه كمراجع',
 'action-unwatchedpages'       => 'رؤية قائمة الصفحات غير المراقبة',
@@ -3023,7 +3024,7 @@ $1',
 'allmessagesdefault'            => 'النص الافتراضي',
 'allmessagescurrent'            => 'النص الحالي',
 'allmessagestext'               => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
-من فضلك زر [//www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
+من فضلك زر [https://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB'     => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
 'allmessages-filter-legend'     => 'المرشح',
 'allmessages-filter'            => 'رشح حسب حالة التخصيص:',
@@ -3791,7 +3792,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => '(انظر [//www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
+'edit-externally-help' => '(انظر [https://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',
@@ -4070,7 +4071,7 @@ $5
 'version-version'               => '(نسخة $1)',
 'version-svn-revision'          => '(r$2)',
 'version-license'               => 'الرخصة',
-'version-poweredby-credits'     => "تدار هذه الويكي بواسطة '''[//www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
+'version-poweredby-credits'     => "تدار هذه الويكي بواسطة '''[https://www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others'      => 'آخرون',
 'version-license-info'          => "ميدياويكي برنامج حر، يحق لك توزيعه و/أو تعديله وفقاً لبنود رخصة غنو العمومية كما نشرتها مؤسسة البرمجيات الحرة، الإصدار الثاني أو (وفقا لاختيارك أنت) أي إصدار لاحق.
 

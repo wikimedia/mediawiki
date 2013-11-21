@@ -2554,7 +2554,7 @@ Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Exp
 'allmessagesdefault'            => 'Default text',
 'allmessagescurrent'            => 'Abhi ke text',
 'allmessagestext'               => 'Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.
-Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [//translatewiki.net translatewiki.net]  pe jao.',
+Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [//translatewiki.net translatewiki.net]  pe jao.',
 'allmessagesnotsupportedDB'     => "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''\$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
 'allmessages-filter-legend'     => 'Chaalo',
 'allmessages-filter'            => 'Customisation state se chhaano',
@@ -3239,7 +3239,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 # External editor support
 'edit-externally'      => 'Ii file ke bahaari program me kaam me laae ke badlo',
-'edit-externally-help' => '(Aur jaankari khatir [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
+'edit-externally-help' => '(Aur jaankari khatir [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sab',

@@ -248,7 +248,7 @@ $messages = array(
 'articlepage'       => 'Ыстатыйаны көр',
 'talk'              => 'Ырытыы',
 'views'             => 'Көрүүлэр',
-'toolbox'           => 'Үнүстүрүмүөннэр',
+'toolbox'           => 'Сэп-сэбиргэл',
 'userpage'          => 'Кыттааччы туһунан сирэй',
 'projectpage'       => 'Бырайыак сирэйэ',
 'imagepage'         => 'Билэ сирэйин көрүү',
@@ -278,7 +278,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} туһунан',
 'aboutpage'            => 'Project:туһунан',
-'copyright'            => 'Маны туһанары $1 көҥүллүүр.',
+'copyright'            => 'Маны туһанары $1 лиссиэнсийэ көҥүллүүр (атын ыйыллыбытах буоллаҕына).',
 'copyrightpage'        => '{{ns:project}}:бас билиитэ',
 'currentevents'        => 'Туох буола турара',
 'currentevents-url'    => 'Project:Сонуннар',
@@ -504,7 +504,7 @@ $2',
 Системаҕа саҥа киирии тылы туһанан киир.',
 'blocked-mailpassword'       => 'Эн IP аадырыскыттан манна тугу эмэ уларытар бобуллубут,
 онон киирии тылы өйдөтөр кыах эмиэ суох.',
-'eauthentsent'               => 'Быстах кэмҥэ туттуллар киирии тыл саҥа кыттааччы эл. почтатыгар ыытылынна.
+'eauthentsent'               => 'Эл. почтаҕар сурук ыытылынна.
 Бу аадырыс эйиэнэ буоларын бигэргэтэргэ өссө тугу гыныахтааҕыҥ туһунан сурукка кэпсэниллэр.',
 'throttled-mailpassword'     => 'Киирии тылы өйдөтөр тэрил бүтэһик {{PLURAL:$1|чаас|$1 чаас}} иһигэр туттулла сылдьыбыт.
 Көмүскэнэр соруктан сылтаан киирии тылы {{PLURAL:$1|чааска|$1 чааска}} биирдэ эрэ ыйытыахха сөп.',
@@ -2556,7 +2556,7 @@ $1',
 'allmessagesdefault'            => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'allmessagescurrent'            => 'Билиҥҥи тиэкис',
 'allmessagestext'               => 'Манна MediaWiki биллэриилэрин испииһэгэ көстөр.
-Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [//translatewiki.net translatewiki.net] киир.',
+Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [//translatewiki.net translatewiki.net] киир.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
 'allmessages-filter-legend'     => 'Сиидэ',
 'allmessages-filter'            => 'Уларытыы көрүҥүнэн наардыыр сиидэ:',
@@ -3258,7 +3258,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
-'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [//www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
+'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [https://www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бары',
@@ -3442,7 +3442,7 @@ $5
 'version-hook-subscribedby'     => 'Суруттарыыта:',
 'version-version'               => '(Торум $1)',
 'version-license'               => 'Лиссиэнзийэ',
-'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'атыттар',
 'version-license-info'          => 'MediaWiki көҥүл тарҕанар бырагырааммаларга киирэр, кинини көмпүүтэр аһаҕас бырагырааммаларын пуондатын GNU General Public License усулуобуйатынан көҥүл тарҕатаргыт уонна/эбэтэр уларытаргыт көҥүллэнэр; иккис эбэтэр онтон хойукку ханнык баҕарар барылыттан саҕалаан.
 

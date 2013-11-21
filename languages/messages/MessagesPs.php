@@ -1629,7 +1629,7 @@ $1',
 'emailsubject'         => 'سکالو:',
 'emailmessage'         => 'پيغام:',
 'emailsend'            => 'لېږل',
-'emailccme'            => 'زما د پيغام يوه بېلګه دې ماته هم برېښليک شي.',
+'emailccme'            => 'زما د پيغام يوه بېلگه دې ماته هم برېښليک شي.',
 'emailccsubject'       => '$1 ته ستاسو د پيغام لمېسه: $2',
 'emailsent'            => 'برېښليک مو ولېږل شو',
 'emailsenttext'        => 'ستاسو برېښليکي پيغام ولېږل شو.',
@@ -2031,7 +2031,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'allmessagesdefault'            => 'تلواليزه پيغام متن',
 'allmessagescurrent'            => 'اوسنی پيغام متن',
 'allmessagestext'               => 'دا د مېډياويکي په نوم-تشيال کې د غونډال د پيغامونو لړليک دی.
-که چېرته تاسې د ميډياويکي په ځايتابه کې ونډې ترسره کول غواړۍ نو لطفاً [//www.mediawiki.org/wiki/Localisation د ميډياويکي ځايتابه] او [//translatewiki.net translatewiki.net] څخه ليدنه وکړۍ.',
+که چېرته تاسې د ميډياويکي په ځايتابه کې ونډې ترسره کول غواړۍ نو لطفاً [https://www.mediawiki.org/wiki/Localisation د ميډياويکي ځايتابه] او [//translatewiki.net translatewiki.net] څخه ليدنه وکړۍ.',
 'allmessagesnotsupportedDB'     => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
 'allmessages-filter-legend'     => 'چاڼگر',
 'allmessages-filter-unmodified' => 'نابدلېدلي',
@@ -2256,7 +2256,7 @@ $1',
 'exif-pixelxdimension'     => 'د انځور جګوالی',
 'exif-usercomment'         => 'د کارن تبصرې',
 'exif-relatedsoundfile'    => 'اړونده غږيزه دوتنه',
-'exif-datetimedigitized'   => 'د ګڼياليز کېدنې وخت او نېټه',
+'exif-datetimedigitized'   => 'د گڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'             => 'F شمېره',
 'exif-lightsource'         => 'د رڼا سرچينه',
 'exif-flash'               => 'فلش',
@@ -2410,7 +2410,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمول',
-'edit-externally-help' => 'د نورو مالوماتو لپاره [//www.mediawiki.org/wiki/Manual:External_editors د امستنو لارښوونې] وگورۍ.',
+'edit-externally-help' => 'د نورو مالوماتو لپاره [https://www.mediawiki.org/wiki/Manual:External_editors د امستنو لارښوونې] وگورۍ.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ټول',
@@ -2487,7 +2487,7 @@ $5
 # Size units
 'size-bytes'      => '$1 بايټ',
 'size-kilobytes'  => '$1 کيلوبايټ',
-'size-megabytes'  => '$1 مېګابايټ',
+'size-megabytes'  => '$1 مېگابايټ',
 'size-gigabytes'  => '$1 ګېګابايټ',
 'size-terabytes'  => '$1 ټېرابايټ',
 'size-petabytes'  => '$1 پېبي بايټ',
@@ -2568,7 +2568,7 @@ $5
 'version-other'             => 'بل',
 'version-version'           => '(بڼه $1)',
 'version-license'           => 'منښتليک',
-'version-poweredby-credits' => "دا ويکي د '''[//www.mediawiki.org/ مېډياويکي]''' په سېک چلېږي، ټولې رښتې خوندي دي © 2001-$1 $2.",
+'version-poweredby-credits' => "دا ويکي د '''[https://www.mediawiki.org/ مېډياويکي]''' په سېک چلېږي، ټولې رښتې خوندي دي © 2001-$1 $2.",
 'version-poweredby-others'  => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS نور]',
 'version-license-info'      => 'مېډياويکي يو وړيا ساوتری دی؛ تاسې يې په ډاډه زړه د GNU د ټولگړو کارېدنو د منښتليک چې د وړيا ساوتريو د بنسټ له مخې خپور شوی، خپرولی او/يا بدلولی شی؛ د منښتليک ۲ بڼه او يا (ستاسې د خوښې) هر يوه وروستۍ بڼه.
 

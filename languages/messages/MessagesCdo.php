@@ -1138,7 +1138,7 @@ If a new page with the same name has been created since the deletion, the restor
 'allmessagesdefault'        => '默認其消息文字',
 'allmessagescurrent'        => '現時其文字',
 'allmessagestext'           => '茲是敆媒體維基命名空間底裏系統消息其蜀萆單單。
-如果汝卜想貢獻通用其媒體維基本地化服務，請訪問[//www.mediawiki.org/wiki/Localisation 媒體維基本地化]共[//translatewiki.net translatewiki.net]。',
+如果汝卜想貢獻通用其媒體維基本地化服務，請訪問[https://www.mediawiki.org/wiki/Localisation 媒體維基本地化]共[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "茲蜀頁𣍐使其，因為'''\$wgUseDatabaseMessages'''已經乞禁止去了。",
 
 # Thumbnails
@@ -1216,7 +1216,7 @@ If a new page with the same name has been created since the deletion, the restor
 
 # External editor support
 'edit-externally'      => '使外程序來編輯茲文件',
-'edit-externally-help' => '（參考[//www.mediawiki.org/wiki/Manual:External_editors setup instructions]來瞭解更価信息）',
+'edit-externally-help' => '（參考[https://www.mediawiki.org/wiki/Manual:External_editors setup instructions]來瞭解更価信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '所有',

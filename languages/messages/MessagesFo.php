@@ -318,7 +318,7 @@ $messages = array(
 'articlepage'       => 'Vís síðu við innihaldi',
 'talk'              => 'Kjak',
 'views'             => 'Skoðanir',
-'toolbox'           => 'Amboðskassi',
+'toolbox'           => 'Tól',
 'userpage'          => 'Vís brúkarasíðu',
 'projectpage'       => 'Vís verkætlanarsíðu',
 'imagepage'         => 'Vís fílusíðuna',
@@ -582,16 +582,16 @@ og tú ikki longur ynskir at broyta tað, so skal tú síggja burtur frá hesum 
 sum er skrásett fyri "$1".
 Vinarliga rita inn eftir at tú hevur fingið hana.',
 'blocked-mailpassword'       => 'Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.',
-'eauthentsent'               => '↓ Ein váttanar t-postur er sendur til givna t-post bústaðin.
-Áðrenn aðrir teldupostar verða sendir til kontuna, mást tú fylgja leiðbeiningunum í t-postinum, fyri at vátta at kontoin veruliga er tín.',
+'eauthentsent'               => 'Ein váttanar teldupostur er sendur til givna teldupost bústaðin.
+Áðrenn nakað annað teldubræv verður sent til kontuna, mást tú fylgja leiðbeiningunum í teldupostinum, fyri at vátta at kontoin veruliga er tín.',
 'throttled-mailpassword'     => 'Ein teldupostur har loyniorðið verður nullstillað er longu sendur fyri bert {{PLURAL:$1|tíma|$1 tímum}} síðan.
 Fyri at fyribyrja misnýtslu, verður bert ein teldupostur við nullstillaðum loyniorði sendur fyri pr. {{PLURAL:$1|tíma|$1 tímar}}.',
 'mailerror'                  => 'Villa tá t-postur var sendur: $1',
 'acct_creation_throttle_hit' => 'Vitjandi á hesi wiki, sum nýta tína IP addressu, hava stovnað {{PLURAL:$1|1 kontu|$1 kontur}} seinastu dagarnar, sum er mest loyvda hetta tíðarskeið.
 Sum eitt úrslit av hesum, kunnu vitjandi sum brúka hesa IP adressuna ikki stovna fleiri kontur í løtuni.',
-'emailauthenticated'         => 'Tín t-post adressa varð váttað hin $2 kl. $3.',
-'emailnotauthenticated'      => 'Tín t-post adressa er enn ikki komin í gildi. Ongin t-postur
-verður sendur fyri nakað av fylgjandi hentleikum.',
+'emailauthenticated'         => 'Tín teldupost adressa varð váttað hin $2 kl. $3.',
+'emailnotauthenticated'      => 'Tín teldupost adressa er enn ikki váttað. Ongin teldupostur
+verður sendur fyri nakran av fylgjandi hentleikum.',
 'noemailprefs'               => 'Skriva eina t-post adressu, so hesar funktiónir fara at virka.',
 'emailconfirmlink'           => 'Vátta tína t-post adressu',
 'invalidemailaddress'        => 'T-post bústaðurin kann ikki verða góðtikin, tí hann sær út til at hava ógyldugt format.
@@ -976,15 +976,15 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'logdelete-selected'          => "'''{{PLURAL:$1|Útvald logghending|Útvaldar logghendingar}}:'''",
 'revdelete-confirm'           => 'Vinarliga vátta, at tú ætlar at gera hetta, at tú skilir avleiðingarnar, og at tú ger hetta í samsvari við [[{{MediaWiki:Policy-url}}|mannagongdirnar]].',
 'revdelete-legend'            => 'Set avmarkinga fyri sjónligheit',
-'revdelete-hide-text'         => 'Goym burtur tekstin á hesi versjónini',
+'revdelete-hide-text'         => 'Versjónstekstur',
 'revdelete-hide-image'        => 'Fjal fílu innihald',
 'revdelete-hide-name'         => 'Fjal handling og mál',
-'revdelete-hide-comment'      => 'Fjal rættingar frágreiðing',
-'revdelete-hide-user'         => 'Fjal brúkaranavn/IP adressu hjá tí sum rættar',
+'revdelete-hide-comment'      => 'Samandráttur um rættingar',
+'revdelete-hide-user'         => 'Brúkaranavn/IP adressa hjá tí sum rættar',
 'revdelete-hide-restricted'   => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
 'revdelete-radio-same'        => '(ikki broyta)',
-'revdelete-radio-set'         => 'Ja',
-'revdelete-radio-unset'       => 'Nei',
+'revdelete-radio-set'         => 'Sjónligt',
+'revdelete-radio-unset'       => 'Fjalt',
 'revdelete-suppress'          => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
 'revdelete-unsuppress'        => 'Tak burtur avmarkingar á endurskaptum versjónum',
 'revdelete-log'               => 'Orsøk:',
@@ -1393,8 +1393,8 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'action-block'                => 'noktað hesum brúkara at rætta',
 'action-protect'              => 'broyt verjustøðuna hjá hesi síðu',
 'action-rollback'             => 'rulla skjótt aftur rættingarnar hjá tí seinasta brúkaranum, sum rættaði eina ávísa síðu',
-'action-import'               => 'innflyt hesa síðu frá aðrari wiki',
-'action-importupload'         => 'innflyt hesa síðuna frá einari fílu sum er løgd út',
+'action-import'               => 'innflyt síður frá aðrari wiki',
+'action-importupload'         => 'innflyt síður frá einari fílu sum er løgd út',
 'action-patrol'               => 'markað rætting hjá øðrum sum eftirhugda',
 'action-autopatrol'           => 'fá tina rætting merkta sum eftirhugda',
 'action-unwatchedpages'       => 'Síggj listan yvir síður sum ikki eru eftiransaðar',
@@ -2073,10 +2073,12 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'deletecomment'          => 'Orsøk:',
 'deleteotherreason'      => 'Onnur orsøk:',
 'deletereasonotherlist'  => 'Onnur orsøk',
-'deletereason-dropdown'  => '*Vanligar orsøkir til striking
-** Umbøn frá høvunda
+'deletereason-dropdown'  => '* Vanligar orsøkir til striking
+** Spamm
+** Herverk (Vandalisma)
 ** Brot á upphavsrættin
-** Herverk (Vandalisma)',
+** Umbøn frá høvunda
+** Brotin víðaristilling',
 'delete-edit-reasonlist' => 'Rætta orsøkir til striking',
 'delete-toobig'          => 'Henda síðan hevur eina langa rættingar søgu, meira enn $1 {{PLURAL:$1|versjón|versjónir}}. 
 Striking av slíkum síðum er avmarkað fyri at forða fyri at onkur av óvart kemur til at forstýra {{SITENAME}}.',
@@ -2094,7 +2096,7 @@ onkur annar hevur longu rættað ella rullað síðuna aftur.
 Seinasta broytingin á síðuni var av [[User:$3|$3]] ([[User talk:$3|kjak]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Rættingarfrágreiðingin var: \"''\$1''\".",
 'revertpage'        => 'Tók burtur rættingar hjá [[Special:Contributions/$2|$2]] ([[User talk:$2|kjak]]) til seinastu versjón hjá [[User:$1|$1]]',
-'revertpage-nouser' => 'Tók burtur rættingar hjá einum fjaldum brúkara til seinastu versjón hjá [[User:$1|$1]]',
+'revertpage-nouser' => 'Tók burtur rættingar hjá einum fjaldum brúkara til seinastu versjón hjá  {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success'  => 'Tók burtur rættingar hjá $1;
 broytti tað aftur til seinastu versjón hjá $2.',
 
@@ -2487,7 +2489,7 @@ Vinarliga vel eitt annað navn.',
 'allmessagesdefault'            => 'Enskur tekstur',
 'allmessagescurrent'            => 'Verandi tekstur',
 'allmessagestext'               => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
-Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
+Vinarliga vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 'allmessages-filter-legend'     => 'Filtur',
 'allmessages-filter-unmodified' => 'Óbroytt',
@@ -2860,7 +2862,7 @@ Onnur metadáta verða fjald sum standard.
 
 # External editor support
 'edit-externally'      => 'Rætta hesa fílu við eksternari applikatión',
-'edit-externally-help' => '(Sí [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] fyri meira kunning)',
+'edit-externally-help' => '(Sí [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] fyri meira kunning)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alt',
@@ -2950,7 +2952,7 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'version-hook-name'         => 'Krókurnavn',
 'version-version'           => '(Útgáva $1)',
 'version-license'           => 'Lisensur',
-'version-poweredby-credits' => "Henda wiki verður rikin av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => "Henda wiki verður rikin av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-software-version'  => 'Útgáva',
 
 # Special:FilePath

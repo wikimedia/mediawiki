@@ -1621,7 +1621,7 @@ To include a file in a page, use a link in one of the following forms:
 
 # External editor support
 'edit-externally'      => 'Бул файлды сырткы программа колдонуу аркылуу оңдоо',
-'edit-externally-help' => '(Толук маалымат алуу үчүн [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] барагына кайрылсаңыз болот)',
+'edit-externally-help' => '(Толук маалымат алуу үчүн [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] барагына кайрылсаңыз болот)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'баары',

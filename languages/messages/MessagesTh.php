@@ -2638,7 +2638,7 @@ $1',
 'allmessagesdefault'            => 'ข้อความตามค่าตั้งต้น',
 'allmessagescurrent'            => 'ข้อความปัจจุบัน',
 'allmessagestext'               => 'นี่คือรายการข้อความของระบบที่อยู่ในเนมสเปซมีเดียวิกิ
-กรุณาอ่านหน้า[//www.mediawiki.org/wiki/Localisation เทศวิวัตน์ของมีเดียวิกิ] และ [//translatewiki.net translatewiki.net] ถ้าคุณอยากที่จะช่วยแปลข้อความของระบบมีเดียวิกิ',
+กรุณาอ่านหน้า[https://www.mediawiki.org/wiki/Localisation เทศวิวัตน์ของมีเดียวิกิ] และ [//translatewiki.net translatewiki.net] ถ้าคุณอยากที่จะช่วยแปลข้อความของระบบมีเดียวิกิ',
 'allmessagesnotsupportedDB'     => "หน้านี้ไม่สามารถใช้งานได้เนื่องจาก '''\$wgUseDatabaseMessages''' ถูกระงับการใช้งาน",
 'allmessages-filter-legend'     => 'กรอง',
 'allmessages-filter'            => 'กรองตามสถานะที่เลือก:',
@@ -3259,7 +3259,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'แก้ไขไฟล์นี้โดยใช้ซอฟต์แวร์ตัวอื่น',
-'edit-externally-help' => '(ดู[//www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า]สำหรับข้อมูลเพิ่มเติม)',
+'edit-externally-help' => '(ดู[https://www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า]สำหรับข้อมูลเพิ่มเติม)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ทั้งหมด',
@@ -3463,7 +3463,7 @@ $5
 'version-hook-subscribedby'     => 'สนับสนุนโดย',
 'version-version'               => '(รุ่น $1)',
 'version-license'               => 'สัญญาอนุญาต',
-'version-poweredby-credits'     => "วิกินี้จัดทำโดย '''[//www.mediawiki.org/ MediaWiki]''', สงวนลิขสิทธิ์ © 2001-$1 โดย $2",
+'version-poweredby-credits'     => "วิกินี้จัดทำโดย '''[https://www.mediawiki.org/ MediaWiki]''', สงวนลิขสิทธิ์ © 2001-$1 โดย $2",
 'version-poweredby-others'      => 'ผู้อื่น',
 'version-license-info'          => 'มีเดียวิกิเป็นซอฟต์แวร์เสรี คุณสามารถแจกจ่าย และ/หรือ แก้ไขได้ภายใต้เงื่อนไขแห่งสัญญาอนุญาตสาธารณะทั่วไปของกนูตามที่เผยแพร่โดยมูลนิธิซอฟต์แวร์เสรี ไม่ว่ารุ่นที่ 2 แห่งสัญญาอนุญาต หรือรุ่นภายหลังอื่นใด (ตามที่คุณเลือก)
 

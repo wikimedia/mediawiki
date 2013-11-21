@@ -535,14 +535,14 @@ usando la contraseña antigua.",
 Por favor vuelvi a aniciar sesión depués de recibila.',
 'blocked-mailpassword'       => 'Ta bloquiada la edición dende la to direición IP, polo que pa evitar abusos nun se pue usar la función de recuperación de contraseña.',
 'eauthentsent'               => "Unvióse un corréu electrónicu de confirmación a la direición indicada.
-Enantes de que s'unvie nengún otru corréu a la cuenta, has de siguir les instrucciones del corréu electrónicu pa confirmar que la cuenta ye de to.",
+Enantes de que s'unvie nengún otru corréu a la cuenta, has de siguir les instrucciones d'esi corréu pa confirmar que la cuenta ye daveres de to.",
 'throttled-mailpassword'     => "Yá s'unvió un corréu de reaniciu la clave {{PLURAL:$1|na postrer hora|nes postreres $1 hores}}.
 Pa evitar abusos, namái s'unviará un corréu de reaniciu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => 'Fallu al unviar el corréu: $1',
 'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
 Poro, los visitantes qu'usen esta direición IP nun puen crear más cuentes de momentu.",
-'emailauthenticated'         => "La to direición de corréu electrónicu confirmóse'l $2 a les $3.",
-'emailnotauthenticated'      => "La to direición de corréu electrónicu inda nun se comprobó.
+'emailauthenticated'         => "La so direición de corréu electrónicu confirmóse'l $2 a les $3.",
+'emailnotauthenticated'      => "La so direición de corréu electrónicu inda nun se confirmó.
 Nun s'unviará corréu pa nenguna de les funciones siguientes.",
 'noemailprefs'               => 'Conseña una direición de corréu electrónicu nes tos preferencies pa que funcionen eses carauterístiques.',
 'emailconfirmlink'           => 'Confirmar la direición de corréu electrónicu',
@@ -944,18 +944,18 @@ Otros alministradores de {{SITENAME}} van siguir pudiendo acceder al conteníu a
 'revdelete-confirm'           => "Confirma que quies facer esto, qu'entiendes les consecuencies, y que vas facer esto d'alcuerdo [[{{MediaWiki:Policy-url}}|cola política]].",
 'revdelete-suppress-text'     => "La supresión '''namái''' tendría d'usase nos casos darréu:
 * Información que pudiere ser bilordiosa
-* Información personal non apropiada
-*: ''direiciones de llares y númberos de teléfonu, númberos de seguridá social, etc.''",
+* Información personal inapropiada
+*: ''direiciones de llares y númberos de teléfonu, númberos d'identidá nacional, etc.''",
 'revdelete-legend'            => 'Establecer torgues de visibilidá',
-'revdelete-hide-text'         => 'Tapecer testu de la revisión',
+'revdelete-hide-text'         => 'Testu de la revisión',
 'revdelete-hide-image'        => 'Tapecer el conteníu del ficheru',
 'revdelete-hide-name'         => 'Tapecer aición y oxetivu',
-'revdelete-hide-comment'      => "Tapecer el resume d'edición",
-'revdelete-hide-user'         => "Tapecer el nome d'usuariu/IP del editor",
+'revdelete-hide-comment'      => "Resume d'edición",
+'revdelete-hide-user'         => 'Nome del editor/Direición IP',
 'revdelete-hide-restricted'   => "Desaniciar datos de los alministradores y d'otros",
 'revdelete-radio-same'        => '(ensin cambeos)',
-'revdelete-radio-set'         => 'Sí',
-'revdelete-radio-unset'       => 'Non',
+'revdelete-radio-set'         => 'Tapecíu',
+'revdelete-radio-unset'       => 'Visible',
 'revdelete-suppress'          => "Desaniciar datos de los alministradores igual que d'otros",
 'revdelete-unsuppress'        => 'Desaniciar les torgues nes revisiones restauraes',
 'revdelete-log'               => 'Motivu:',
@@ -2605,7 +2605,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 'allmessagesdefault'            => 'Testu predetermináu',
 'allmessagescurrent'            => 'Testu actual',
 'allmessagestext'               => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
-Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
+Por favor visita [https://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessages-filter-legend'     => 'Peñerar',
 'allmessages-filter'            => 'Peñerar por estáu de personalización:',
@@ -2884,7 +2884,7 @@ Al executalu pues comprometer el to sistema.",
 'file-info-size-pages'   => '$1 × $2 pixels, tamañu del ficheru: $3, triba MIME: $4, $5 {{PLURAL:$5|páxina|páxines}}',
 'file-nohires'           => 'Nun ta disponible con mayor resolución.',
 'svg-long-desc'          => 'ficheru SVG, $1 × $2 píxels nominales, tamañu de ficheru: $3',
-'show-big-image'         => 'Resolución completa',
+'show-big-image'         => 'Ficheru orixinal',
 'show-big-image-preview' => "Tamañu d'esta previsualización: $1.",
 'show-big-image-other'   => '{{PLURAL:$2|Otra resolución|Otres resoluciones}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixels',
@@ -3337,7 +3337,7 @@ Los demás tarán anubríos de mou predetermináu.
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación esterna',
-'edit-externally-help' => '(Pa más información ver les [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
+'edit-externally-help' => '(Pa más información ver les [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'too',
@@ -3524,7 +3524,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-hook-subscribedby'     => 'Suscritu por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Llicencia',
-'version-poweredby-credits'     => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Esta wiki funciona con '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS otros]',
 'version-license-info'          => "MediaWiki ye software llibre; pue redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 

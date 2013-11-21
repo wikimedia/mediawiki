@@ -2896,7 +2896,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'allmessagesdefault'            => 'Mèssâjo per dèfôt',
 'allmessagescurrent'            => 'Tèxto d’ora',
 'allmessagestext'               => 'O est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
-Volyéd visitar la [//www.mediawiki.org/wiki/Localisation localisacion de MediaWiki] et pués [//translatewiki.net translatewiki.net] se vos voléd contribuar a la localisacion g·ènèrica de MediaWiki.',
+Volyéd visitar la [https://www.mediawiki.org/wiki/Localisation localisacion de MediaWiki] et pués [//translatewiki.net translatewiki.net] se vos voléd contribuar a la localisacion g·ènèrica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''\$wgUseDatabaseMessages''' at étâ dèsactivâ.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar per ètat de changement :',
@@ -3631,7 +3631,7 @@ Los ôtros champs seront cachiês per dèfôt.
 
 # External editor support
 'edit-externally'      => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
-'edit-externally-help' => '(Vêde les [//www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
+'edit-externally-help' => '(Vêde les [https://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',
@@ -3895,7 +3895,7 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'version-version'               => '(Vèrsion $1)',
 'version-svn-revision'          => '(v$2)',
 'version-license'               => 'Licence',
-'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ôtros',
 'version-license-info'          => 'MediaWiki est una programeria libra ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 

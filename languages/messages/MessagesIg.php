@@ -1624,7 +1624,7 @@ Nke ozor gí zonari na áká onwe ha.
 
 # External editor support
 'edit-externally'      => 'Rüo na élú usòrò nke na ngwa ọrụ nsónùsòrò nke ọzȯ',
-'edit-externally-help' => '(Lé nà [//www.mediawiki.org/wiki/Manual:External_editors nkụzí mbídó] màkà nkúzí ozor)',
+'edit-externally-help' => '(Lé nà [https://www.mediawiki.org/wiki/Manual:External_editors nkụzí mbídó] màkà nkúzí ozor)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'nke níle',

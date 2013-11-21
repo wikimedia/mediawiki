@@ -1843,7 +1843,7 @@ Alternativ ies der Export au miet der Syntax [[{{#Special:Export}}/{{MediaWiki:M
 'allmessagesname'           => 'Noame',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagestext'           => 'Dies ies anne Liste dar MediaWiki-Systemtexte.
-Besiche de Seyta [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], wenn du diech oa dar Lokalisierung vu MediaWiki beteiliga mechtest.',
+Besiche de Seyta [https://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [//translatewiki.net translatewiki.net], wenn du diech oa dar Lokalisierung vu MediaWiki beteiliga mechtest.',
 'allmessagesnotsupportedDB' => 'Diese Spezialseyte stieht ne zur Verfigung, do se ieber dann Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessages-filter-all'    => 'Olle',
 'allmessages-language'      => 'Sproache:',
@@ -2182,7 +2182,7 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit annem externen Programm bearbta',
-'edit-externally-help' => '(Siehe de [//www.mediawiki.org/wiki/Manual:External_editors Installationsoaweisunga] fier weitere Informationen)',
+'edit-externally-help' => '(Siehe de [https://www.mediawiki.org/wiki/Manual:External_editors Installationsoaweisunga] fier weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',

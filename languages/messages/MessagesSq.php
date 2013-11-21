@@ -2717,7 +2717,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'allmessagesdefault'            => 'Teksti i parazgjedhur',
 'allmessagescurrent'            => 'Teksti i tanishëshm',
 'allmessagestext'               => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:
-Ju lutemi vizitoni [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] dhe [//translatewiki.net translatewiki.net] nëse dëshironi të kontribuoni në lokalizimin e përgjithshëm MediaWiki',
+Ju lutemi vizitoni [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] dhe [//translatewiki.net translatewiki.net] nëse dëshironi të kontribuoni në lokalizimin e përgjithshëm MediaWiki',
 'allmessagesnotsupportedDB'     => "Kjo faqe nuk mund të përdoret sepse '''\$wgUseDatabaseMessages''' është çaktivizuar.",
 'allmessages-filter-legend'     => 'Filtër',
 'allmessages-filter'            => 'Filtroni nga shteti',
@@ -3411,7 +3411,7 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 
 # External editor support
 'edit-externally'      => 'Ndryshoni këtë skedë me një mjet të jashtëm',
-'edit-externally-help' => '(Shikoni [//www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion)',
+'edit-externally-help' => '(Shikoni [https://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'të gjitha',
@@ -3592,7 +3592,7 @@ Ju gjithashtu mund [[Special:EditWatchlist|të përdorni redaktuesin standart]].
 'version-hook-subscribedby'     => 'Abonuar nga',
 'version-version'               => '(Versioni $1)',
 'version-license'               => 'Licensa',
-'version-poweredby-credits'     => "Ky wiki është mundësuar nga '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ky wiki është mundësuar nga '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'të tjerë',
 'version-license-info'          => 'MediaWiki është një softuer i lirë; ju mund ta shpërndani dhe redakatoni atë nën kushtet GNU General Public License si e publikuar nga fondacioni Free Software; ose versioni 2 i licensës, ose çdo version më i vonshëm.
 

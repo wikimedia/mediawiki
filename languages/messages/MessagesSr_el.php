@@ -436,7 +436,7 @@ $messages = array(
 'noindex-category'               => 'Nepopisane stranice',
 'broken-file-category'           => 'Stranice s neispravnim vezama do datoteka',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'O nama',
 'article'       => 'Stranica sa sadržajem',
@@ -472,7 +472,7 @@ $messages = array(
 'vector-view-edit'               => 'Uredi',
 'vector-view-history'            => 'Istorija',
 'vector-view-view'               => 'Čitaj',
-'vector-view-viewsource'         => 'Izvornik',
+'vector-view-viewsource'         => 'Izvorni kod',
 'actions'                        => 'Radnje',
 'namespaces'                     => 'Imenski prostori',
 'variants'                       => 'Varijante',
@@ -544,10 +544,10 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
 'aboutpage'            => 'Project:O nama',
-'copyright'            => 'Sadržaj je dostupan pod licencom $1.',
+'copyright'            => 'Sadržaj je dostupan pod licencom $1 osim ako je drugačije navedeno.',
 'copyrightpage'        => '{{ns:project}}:Autorska prava',
 'currentevents'        => 'Aktuelnosti',
-'currentevents-url'    => 'Project:Novosti',
+'currentevents-url'    => 'Project:Aktuelnosti',
 'disclaimers'          => 'Odricanje odgovornosti',
 'disclaimerpage'       => 'Project:Odricanje odgovornosti',
 'edithelp'             => 'Pomoć pri uređivanju',
@@ -581,7 +581,7 @@ Pogledajte stranicu za [[Special:Version|izdanje]].',
 'editsection'             => 'uredi',
 'editsection-brackets'    => '[$1]',
 'editold'                 => 'uredi',
-'viewsourceold'           => 'izvornik',
+'viewsourceold'           => 'izvorni kod',
 'editlink'                => 'uredi',
 'viewsourcelink'          => 'Izvor',
 'editsectionhint'         => 'Uredite odeljak „$1“',
@@ -683,11 +683,11 @@ Podaci koji se ovde nalaze mogu biti zastareli.',
 'wrong_wfQuery_params' => 'Neispravni parametri za wfQuery()<br />
 Funkcija: $1<br />
 Upit: $2',
-'viewsource'           => 'Izvornik',
+'viewsource'           => 'Izvorni kod',
 'viewsource-title'     => 'Prikaz izvora stranice $1',
 'actionthrottled'      => 'Radnja je usporena',
 'actionthrottledtext'  => 'U cilju borbe protiv nepoželjnih poruka, ograničene su vam izmene u određenom vremenu, a upravo ste prešli to ograničenje. Pokušajte ponovo za nekoliko minuta.',
-'protectedpagetext'    => 'Ova stranica je zaključana za uređivanja.',
+'protectedpagetext'    => 'Ova stranica je zaključana za izmene i druge radnje.',
 'viewsourcetext'       => 'Možete da pogledate i umnožite izvorni tekst ove stranice:',
 'viewyourtext'         => "Možete da pogledate i umnožite izvor '''vaših izmena''' na ovoj stranici:",
 'protectedinterface'   => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom vikiju i zaštićena je radi sprečavanja zloupotrebe.
@@ -702,8 +702,7 @@ $2',
 'customcssprotected'   => 'Nemate dozvolu da menjate ovu CSS stranicu jer sadrži lične postavke drugog korisnika.',
 'customjsprotected'    => 'Nemate dozvolu da menjate ovu stranicu javaskripta jer sadrži lične postavke drugog korisnika.',
 'ns-specialprotected'  => 'Posebne stranice se ne mogu uređivati.',
-'titleprotected'       => "Ovaj naslov je {{GENDER:$1|zaštitio korisnik|zaštitila korisnica|zaštitio korisnik}} [[User:$1|$1]].
-Navedeni razlog: ''$2''.",
+'titleprotected'       => "Ovaj naziv je [[User:$1|$1]] zaštitio od pravljenja. Razlog: ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -905,7 +904,7 @@ Privremena lozinka: $2',
 'watchthis'                        => 'nadgledaj ovu stranicu',
 'savearticle'                      => 'Sačuvaj stranicu',
 'preview'                          => 'Pregled',
-'showpreview'                      => 'Pregledaj',
+'showpreview'                      => 'Prikaži pretpregled',
 'showlivepreview'                  => 'Trenutni pregled',
 'showdiff'                         => 'Prikaži izmene',
 'anoneditwarning'                  => "'''Upozorenje:''' niste prijavljeni.
@@ -1271,7 +1270,7 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 'mergelog'           => 'Dnevnik spajanja',
 'pagemerge-logentry' => 'stranica [[$1]] je spojena u [[$2]] (sve do izmene $3)',
 'revertmerge'        => 'rastavi',
-'mergelogpagetext'   => 'Ispod se nalazi spisak skorašnjih spajanja istorija stranica.',
+'mergelogpagetext'   => 'Ispod je spisak najskorijih spajanja istorija dveju stranica.',
 
 # Diffs
 'history-title'            => 'Istorija izmena stranice „$1“',
@@ -1438,7 +1437,7 @@ Ova radnja se ne može vratiti.',
 'prefs-textboxsize'             => 'Veličina okvira za uređivanje',
 'youremail'                     => 'E-adresa:',
 'username'                      => 'Korisničko ime:',
-'uid'                           => 'Korisnički IB:',
+'uid'                           => 'Korisnički ID:',
 'prefs-memberingroups'          => 'Član {{PLURAL:$1|grupe|grupa}}:',
 'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'Vreme upisa:',
@@ -1659,7 +1658,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'diff'                              => 'razl',
 'hist'                              => 'ist',
 'hide'                              => 'sakrij',
-'show'                              => 'prikaži',
+'show'                              => 'Prikaži',
 'minoreditletter'                   => ' m',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1996,7 +1995,7 @@ Opis njene [$2 stranice za opis] je prikazan ispod.',
 'filerevert-legend'         => 'Vrati datoteku',
 'filerevert-intro'          => "Vraćate datoteku '''[[Media:$1|$1]]''' na [$4 izdanje od $2; $3].",
 'filerevert-comment'        => 'Razlog:',
-'filerevert-defaultcomment' => 'Vraćeno na izdanje od $1; $2',
+'filerevert-defaultcomment' => 'Vraćeno na verziju od $2, $1',
 'filerevert-submit'         => 'Vrati',
 'filerevert-success'        => "Datoteka '''[[Media:$1|$1]]''' je vraćena na [$4 izdanje od $2; $3].",
 'filerevert-badversion'     => 'Ne postoji ranije lokalno izdanje datoteke s navedenim vremenskim podacima.',
@@ -2383,7 +2382,7 @@ Podrška i dalja pomoć:
 'deletepage'             => 'Obriši stranicu',
 'confirm'                => 'Potvrdi',
 'excontent'              => 'sadržaj je bio: „$1“',
-'excontentauthor'        => 'sadržaj je bio: „$1“ (jedinu izmenu {{GENDER:|napravio je|napravila je|napravio je}} [[Special:Contributions/$2|$2]])',
+'excontentauthor'        => 'sadržaj je bio: „$1“ (a jedini urednik je bio „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank'          => 'sadržaj pre brisanja je bio: „$1“',
 'exblank'                => 'stranica je bila prazna',
 'delete-confirm'         => 'Brisanje stranice „$1“',
@@ -2403,6 +2402,7 @@ Pogledajte ''$2'' za više detalja.",
 'deleteotherreason'      => 'Drugi/dodatni razlog:',
 'deletereasonotherlist'  => 'Drugi razlog',
 'deletereason-dropdown'  => '*Najčešći razlozi za brisanje
+** Spam
 ** Zahtev autora
 ** Kršenje autorskih prava
 ** Vandalizam',
@@ -2423,8 +2423,8 @@ Poslednji autor je ujedno i jedini.',
 
 Poslednju izmenu je {{GENDER:$3|napravio|napravila|napravio}} [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Opis izmene: \"''\$1''\".",
-'revertpage'        => 'Vraćene izmene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju  izmenu korisnika [[User:$1|$1]]',
-'revertpage-nouser' => 'Vraćene su izmene skrivengo korisnika na poslednju izmenu člana [[User:$1|$1]]',
+'revertpage'        => 'Vraćene izmene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu korisnika [[User:$1|$1]]',
+'revertpage-nouser' => 'Vraćene su izmene skrivenog korisnika na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]',
 'rollback-success'  => 'Vraćene su izmene {{GENDER:$1|korisnika|korisnice|korisnika}} $1
 na poslednju izmenu {{GENDER:$2|korisnika|korisnice|korisnika}} $2.',
 
@@ -2463,9 +2463,9 @@ Ovo su trenutne postavke stranice '''$1''':",
 'protect-cascadeon'           => 'Ova stranica je trenutno zaštićena jer se nalazi na {{PLURAL:$1|stranici koja ima|stranicama koje imaju}} prenosivu zaštitu.
 Možete da promenite stepen zaštite, ali to neće uticati na prenosivu zaštitu.',
 'protect-default'             => 'Dozvoli svim korisnicima',
-'protect-fallback'            => 'Potrebno je imati ovlašćenja „$1“',
-'protect-level-autoconfirmed' => 'Blokiraj nove i anonimne korisnike',
-'protect-level-sysop'         => 'Samo administratori',
+'protect-fallback'            => 'Dozvoljeno samo korisnicima sa dozvolom „$1“',
+'protect-level-autoconfirmed' => 'Dopušteno samo automatski potvrđenim korisnicima',
+'protect-level-sysop'         => 'Dopušteno samo administratorima',
 'protect-summary-cascade'     => 'prenosiva zaštita',
 'protect-expiring'            => 'ističe $1 (UTC)',
 'protect-expiring-local'      => 'ističe $1',
@@ -2512,8 +2512,8 @@ Arhiva se povremeno čisti od ovakvih stranica.',
 'undeleteextrahelp'            => "Da biste vratili celu istoriju stranice, ostavite sve kućice neoznačene i kliknite na dugme '''''{{int:undeletebtn}}'''''.
 Ako želite da vratite određene izmene, označite ih i kliknite na '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|izmena je arhivirana|izmene su arhivirane|izmena je arhivirano}}',
-'undeletehistory'              => 'Ako vratite stranicu, sve izmene će biti vraćene njenoj istoriji.
-Ako je u međuvremenu napravljena nova stranica s istim nazivom, vraćene izmene će se pojaviti u ranijom istoriji.',
+'undeletehistory'              => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj istoriji.
+Ako je u međuvremenu napravljena nova stranica s istim nazivom, vraćene izmene će se pojaviti u njenoj ranijoj istoriji.',
 'undeleterevdel'               => 'Vraćanje neće biti izvršeno ako je rezultat toga delimično brisanje poslednje izmene.
 U takvim slučajevima morate isključiti ili otkriti najnovije obrisane izmene.',
 'undeletehistorynoadmin'       => 'Ova stranica je obrisana.
@@ -2886,7 +2886,7 @@ U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{M
 'allmessagesdefault'            => 'Podrazumevani tekst',
 'allmessagescurrent'            => 'Tekst poruke',
 'allmessagestext'               => 'Ovo je spisak svih sistemskih poruka koje su dostupne u imenskom prostoru „Medijaviki“.
-Posetite [//www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i [//translatewiki.net Translejtviki] ako želite da pomognete u prevođenju.',
+Posetite [https://www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i [//translatewiki.net Translejtviki] ako želite da pomognete u prevođenju.',
 'allmessagesnotsupportedDB'     => "Ova stranica ne može da se koristi jer je '''\$wgUseDatabaseMessages''' onemogućen.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po stanju:',
@@ -3724,7 +3724,7 @@ $8',
 
 # External editor support
 'edit-externally'      => 'Izmeni ovu datoteku koristeći spoljašnji program',
-'edit-externally-help' => '(Pogledajte [//www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
+'edit-externally-help' => '(Pogledajte [https://www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3849,10 +3849,10 @@ Potvrdite da stvarno želite da napravite stranicu.",
 'table_pager_empty'        => 'Nema rezultata',
 
 # Auto-summaries
-'autosumm-blank'   => 'Potpuno obrisana stranica',
+'autosumm-blank'   => 'Uklonjen celokupan sadržaj stranice',
 'autosumm-replace' => 'Zamena sadržaja stranice sa „$1“',
 'autoredircomment' => 'Preusmerenje na [[$1]]',
-'autosumm-new'     => 'Napravljena stranica sa: „$1“',
+'autosumm-new'     => 'Nova stranica: $1',
 
 # Size units
 'size-bytes'     => '$1 B',
@@ -3985,7 +3985,7 @@ Možete da [[Special:EditWatchlist|koristite i običan uređivač]].',
 'version-version'               => '(izdanje $1)',
 'version-svn-revision'          => '(izm. $2)',
 'version-license'               => 'Licenca',
-'version-poweredby-credits'     => "Ovaj viki pokreće '''[//www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ovaj viki pokreće '''[https://www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others'      => 'ostali',
 'version-license-info'          => 'Medijaviki je slobodan softver možete ga redistribuirati i/ili modifikovati pod uslovima GNU-ove opšte javne licence verzija 2 ili svake sledeće koju objavi Zadužbina za slobodan softver.
 

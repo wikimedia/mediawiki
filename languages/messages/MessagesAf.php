@@ -220,8 +220,8 @@ $messages = array(
 'tog-extendwatchlist'         => 'Brei dophoulys uit om alle wysigings te wys, nie slegs die nuutste nie',
 'tog-usenewrc'                => 'Groepeer wysigings per bladsy in onlangse wysigings en dophoulys (benodig JavaScript)',
 'tog-numberheadings'          => 'Nommer opskrifte outomaties',
-'tog-showtoolbar'             => 'Wys redigeergereedskap (benodig JavaScript)',
-'tog-editondblclick'          => 'Dubbelkliek om blaaie te wysig (benodig JavaScript)',
+'tog-showtoolbar'             => 'Wys redigeergereedskap',
+'tog-editondblclick'          => 'Dubbelkliek om te wysig',
 'tog-editsection'             => 'Wys [wysig]-skakels vir elke afdeling',
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc'                 => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
@@ -2740,7 +2740,7 @@ In die laaste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:Ex
 'allmessagesdefault'            => 'Verstekteks',
 'allmessagescurrent'            => 'Huidige teks',
 'allmessagestext'               => "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamruimte teenwoordig is.
-Gaan na [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
+Gaan na [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
 'allmessagesnotsupportedDB'     => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtreer op staat van verandering:',
@@ -3440,7 +3440,7 @@ Ander velde sal versteek wees.
 
 # External editor support
 'edit-externally'      => "Wysig hierdie lêer met 'n eksterne program",
-'edit-externally-help' => '(Sien [//www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
+'edit-externally-help' => '(Sien [https://www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3627,7 +3627,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'version-hook-subscribedby'     => 'Gebruik deur',
 'version-version'               => '(Weergawe $1)',
 'version-license'               => 'Lisensie',
-'version-poweredby-credits'     => "Hierdie wiki word aangedryf deur '''[//www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
+'version-poweredby-credits'     => "Hierdie wiki word aangedryf deur '''[https://www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
 'version-poweredby-others'      => 'andere',
 'version-license-info'          => 'MediaWiki is vrye sagteware, u kan MediaWiki versprei en/of wysig onder die voorwaardes van die "GNU Algemene Publieke Lisensie", soos deur die "Free Software Foundation" gepubliseer; óf weergawe 2 van die lisensie, of (as u wil) enige latere weergawe daarvan.
 

@@ -10,11 +10,13 @@
  * @author Annabel
  * @author AvatarTeam
  * @author B4bol4t
+ * @author Breghtje
  * @author DasRakel
  * @author Effeietsanders
  * @author Erwin
  * @author Erwin85
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
+ * @author Flightmare
  * @author Fryed-peach
  * @author Galwaygirl
  * @author Geitost
@@ -842,7 +844,7 @@ Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLUR
 Daarom kunt u vanaf uw IP-adres op dit moment geen nieuwe gebruikers registreren.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $2 om $3.',
 'emailnotauthenticated'      => 'Uw e-mailadres is niet bevestigd.
-U ontvangt geen e-mail voor de onderstaande functies.',
+De volgende functies verzenden nog geen e-mail.',
 'noemailprefs'               => 'Geef een e-mailadres op in uw voorkeuren om deze functies te gebruiken.',
 'emailconfirmlink'           => 'Bevestig uw e-mailadres',
 'invalidemailaddress'        => 'Het e-mailadres is niet aanvaard, omdat het een ongeldige opmaak heeft.
@@ -1116,7 +1118,7 @@ U kunt reeds bestaande pagina's wijzigen of u kunt [[Special:UserLogin|zich aanm
 'sectioneditnotsupported-text'     => 'Het is op deze pagina niet mogelijk om paragrafen te bewerken.',
 'permissionserrors'                => 'Fouten in rechten',
 'permissionserrorstext'            => 'U hebt geen rechten om dit te doen om de volgende {{PLURAL:$1|reden|redenen}}:',
-'permissionserrorstext-withaction' => 'U hebt geen rechten om $2 om de volgende {{PLURAL:$1|reden|redenen}}:',
+'permissionserrorstext-withaction' => 'U hebt geen rechten om $2, {{PLURAL:$1|want}}:',
 'recreate-moveddeleted-warn'       => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina.
@@ -1252,8 +1254,8 @@ Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de ve
 'revdelete-hide-user'         => 'Gebruikersnaam/IP-adres van de gebruiker verbergen',
 'revdelete-hide-restricted'   => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-radio-same'        => '(niet wijzigen)',
-'revdelete-radio-set'         => 'Ja',
-'revdelete-radio-unset'       => 'Nee',
+'revdelete-radio-set'         => 'Verborgen',
+'revdelete-radio-unset'       => 'Zichtbaar',
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-unsuppress'        => 'Beperkingen op teruggeplaatste wijzigingen verwijderen',
 'revdelete-log'               => 'Reden:',
@@ -1526,7 +1528,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-signature'               => 'Ondertekening',
 'prefs-dateformat'              => 'Datumopmaak:',
 'prefs-timeoffset'              => 'Tijdverschil',
-'prefs-advancedediting'         => 'Algemene opties',
+'prefs-advancedediting'         => 'Algemene instellingen',
 'prefs-advancedrc'              => 'Gevorderde instellingen',
 'prefs-advancedrendering'       => 'Gevorderde instellingen',
 'prefs-advancedsearchoptions'   => 'Gevorderde instellingen',
@@ -1608,7 +1610,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-bot'                   => 'Behandeld worden als een geautomatiseerd proces',
 'right-nominornewtalk'        => "Kleine bewerkingen aan een overlegpagina leiden niet tot een melding 'nieuwe berichten'",
 'right-apihighlimits'         => 'Hogere limieten in API-zoekopdrachten gebruiken',
-'right-writeapi'              => 'Bewerken via de API',
+'right-writeapi'              => 'Via de API bewerkingen uitvoeren',
 'right-delete'                => "Pagina's verwijderen",
 'right-bigdelete'             => "Pagina's met een grote geschiedenis verwijderen",
 'right-deleterevision'        => "Versies van pagina's verbergen",
@@ -1630,7 +1632,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-editusercssjs'         => 'De CSS- en JS-bestanden van andere gebruikers bewerken',
 'right-editusercss'           => 'De CSS-bestanden van andere gebruikers bewerken',
 'right-edituserjs'            => 'De JavaScriptbestanden van andere gebruikers bewerken',
-'right-rollback'              => 'Snel de laatste bewerking(en) van een gebruiker van een pagina terugdraaien',
+'right-rollback'              => 'De bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terugdraaien',
 'right-markbotedits'          => 'Teruggedraaide bewerkingen markeren als botbewerkingen',
 'right-noratelimit'           => 'Tijdsafhankelijke beperkingen negeren',
 'right-import'                => "Pagina's uit andere wiki's importeren",
@@ -1669,7 +1671,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'action-reupload'             => 'dit bestaande bestand te overschrijven',
 'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde mediadatabank staat',
 'action-upload_by_url'        => 'dit bestand vanaf een URL te uploaden',
-'action-writeapi'             => 'via de API te bewerken',
+'action-writeapi'             => 'via de API bewerkingen uit te voeren',
 'action-delete'               => 'deze pagina te verwijderen',
 'action-deleterevision'       => 'deze versie te verwijderen',
 'action-deletedhistory'       => 'de verwijderde versies van deze pagina te bekijken',
@@ -1679,7 +1681,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'action-suppressionlog'       => 'dit beschermde logboek te bekijken',
 'action-block'                => 'deze gebruiker een bewerkingsblokkade op te leggen',
 'action-protect'              => 'het beveiligingsniveau van deze pagina aan te passen',
-'action-rollback'             => 'bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terugdraaien',
+'action-rollback'             => 'de bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terug te draaien',
 'action-import'               => "pagina's te importeren van een andere wiki",
 'action-importupload'         => "pagina's te importeren uit een bestandsupload",
 'action-patrol'               => 'bewerkingen van anderen als gecontroleerd te markeren',
@@ -2943,7 +2945,7 @@ In het laatste geval kunt u ook een koppeling gebruiken, bijvoorbeeld [[{{#Speci
 'allmessagesdefault'            => 'Standaardinhoud',
 'allmessagescurrent'            => 'Huidige inhoud',
 'allmessagestext'               => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
-Ga naar [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
+Ga naar [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB'     => "Deze pagina kan niet worden gebruikt, omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filteren op aangepast:',
@@ -3229,7 +3231,7 @@ $1',
 'file-info-size-pages'   => "$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",
 'file-nohires'           => 'Geen hogere resolutie beschikbaar.',
 'svg-long-desc'          => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
-'show-big-image'         => 'Volledige resolutie',
+'show-big-image'         => 'Oorspronkelijk bestand',
 'show-big-image-preview' => 'Grootte van deze voorvertoning: $1.',
 'show-big-image-other'   => 'Andere {{PLURAL:$2|resolutie|resoluties}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixels',
@@ -3679,7 +3681,7 @@ Andere velden worden verborgen.
 
 # External editor support
 'edit-externally'      => 'Dit bestand in een extern programma bewerken',
-'edit-externally-help' => '(zie de [//www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
+'edit-externally-help' => '(zie de [https://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3882,7 +3884,7 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'version-hook-subscribedby'     => 'Geabonneerd door',
 'version-version'               => '(Versie $1)',
 'version-license'               => 'Licentie',
-'version-poweredby-credits'     => "Deze wiki wordt aangedreven door '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Deze wiki wordt aangedreven door '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS anderen]',
 'version-license-info'          => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
 

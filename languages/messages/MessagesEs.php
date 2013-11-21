@@ -830,7 +830,7 @@ Para evitar los abusos, solo se enviará un recordatorio de contraseña cada {{P
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Los visitantes a este wiki usando tu dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
-'emailauthenticated'         => 'Tu dirección de correo electrónico fue autenticada el $2 a $3.',
+'emailauthenticated'         => 'Tu dirección de correo electrónico fue confirmada el $2 a las $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'               => 'Especifica una dirección electrónica para habilitar estas características.',
@@ -1229,15 +1229,15 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 * Información personal inapropiada, tal como:
 *: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
-'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
+'revdelete-hide-text'         => 'Texto de la revisión',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
-'revdelete-hide-comment'      => 'Ocultar el resumen de edición',
-'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
+'revdelete-hide-comment'      => 'Resumen de edición',
+'revdelete-hide-user'         => 'Nombre/IP del editor',
 'revdelete-hide-restricted'   => 'Suprimir datos a los administradores así como al resto',
 'revdelete-radio-same'        => '(no cambiar)',
-'revdelete-radio-set'         => 'Sí',
-'revdelete-radio-unset'       => 'No',
+'revdelete-radio-set'         => 'Visible',
+'revdelete-radio-unset'       => 'Oculto',
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
 'revdelete-log'               => 'Motivo:',
@@ -1439,7 +1439,7 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-help-recentchangescount' => 'Esto incluye cambios recientes, historiales de página, y registros.',
 'prefs-help-watchlist-token'    => 'Rellenar este campo con una clave secreta generará un canal RSS para tu lista de seguimiento.
 Cualquiera que conozca la clave en este campo será capaz de leer tu lista de seguimiento, así que escoge un valor seguro. Aquí hay un valor generado aleatoriamente que puedes usar: $1',
-'savedprefs'                    => 'Tus preferencias han sido guardadas.',
+'savedprefs'                    => 'Se han guardado tus preferencias.',
 'timezonelegend'                => 'Zona horaria:',
 'localtime'                     => 'Hora local:',
 'timezoneuseserverdefault'      => 'Usar la hora del servidor ($1)',
@@ -1486,8 +1486,8 @@ Esto no se puede deshacer.',
 Debe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.',
 'yourgender'                    => '¿Cómo prefieres ser descrito/a?',
 'gender-unknown'                => 'Prefiero no especificar',
-'gender-male'                   => 'Él edita páginas wiki',
-'gender-female'                 => 'Ella edita páginas wiki',
+'gender-male'                   => 'Masculino',
+'gender-female'                 => 'Femenino',
 'prefs-help-gender'             => 'Opcional: empleado para que sea usado correctamente el género por parte del software. Esta información será pública.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
@@ -2872,7 +2872,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagesdefault'            => 'Texto predeterminado',
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
-Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [//translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
+Por favor visita [https://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [//translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB'     => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
@@ -3611,7 +3611,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 
 # External editor support
 'edit-externally'      => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => '(Lee las [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
+'edit-externally-help' => '(Lee las [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',
@@ -3792,7 +3792,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-hook-subscribedby'     => 'Suscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licencia',
-'version-poweredby-credits'     => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Este wiki funciona gracias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'otros',
 'version-license-info'          => 'MediaWiki es software libre; puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia General Pública de GNU como la publica la Free Software Foundation; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 

@@ -1940,7 +1940,7 @@ $1',
 'allmessagesdefault'        => 'የቆየው ጽሕፈት',
 'allmessagescurrent'        => 'ያሁኑ ጽሕፈት',
 'allmessagestext'           => 'በ«MediaWiki» ክፍለ-ዊኪ ያሉት የድረገጽ መልክ መልእክቶች ሙሉ ዝርዝር ይህ ነው።
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' ስለ ተዘጋ '''{{ns:special}}:Allmessages''' ሊጠቀም አይችልም።",
 'allmessages-filter-legend' => 'ማጣሪያ',
 'allmessages-filter-all'    => 'ሁሉ',
@@ -2381,7 +2381,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ይህንን ፋይል በአፍአዊ ሶፍትዌር ለማዘጋጀት',
-'edit-externally-help' => '(ለተጨማሪ መረጃ ይህን ገፅ ተመልከቱ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(ለተጨማሪ መረጃ ይህን ገፅ ተመልከቱ [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ሁሉ',

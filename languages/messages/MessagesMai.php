@@ -2517,7 +2517,7 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'allmessagesdefault'            => 'पूर्वनिर्धारित संदेश पाठ',
 'allmessagescurrent'            => 'अखुनका संदेश पाठ',
 'allmessagestext'               => 'ई मीडियाविकी नामस्थानमे उपलब्ध संस्थागत संदेशक सूची छी।
-कृपा कऽ देखू [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [//translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।',
+कृपा कऽ देखू [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [//translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।',
 'allmessagesnotsupportedDB'     => "ई पन्ना प्रयोगमे नै आनल जा सकैए कारण '''\$wgUseDatabaseMessages''' अशक्त कएल अछि।",
 'allmessages-filter-legend'     => 'चलनी',
 'allmessages-filter'            => 'अपन हिसाबे अनुकूलित कऽ छाँटू:',
@@ -3218,7 +3218,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'ऐ फाइलकेँ बाहरी अनुप्रयोगसँ हटाउ',
-'edit-externally-help' => '(देखू [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] विषेष जानकारी लेल)',
+'edit-externally-help' => '(देखू [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] विषेष जानकारी लेल)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सभ',
@@ -3405,7 +3405,7 @@ $5
 'version-hook-subscribedby'     => 'ई सदस्यता लेलनि',
 'version-version'               => '(संस्करण $1)',
 'version-license'               => 'अधिकार',
-'version-poweredby-credits'     => "ई विकी चालित अछि '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2",
+'version-poweredby-credits'     => "ई विकी चालित अछि '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2",
 'version-poweredby-others'      => 'आन',
 'version-license-info'          => 'मीडियाविकी एकटा मंगनीक तंत्रांश अछि; अहाँ एकरा बाँटि सकै छी आ/ वा संशोधित कऽ सकै छीगी.एन.यू. सामान्य जन लाइसेन्सक अन्तर्गत जेना फ्री सॉफ्टवेयर फाउन्डेशन एकरा प्रकाशित केने अछि; चाहे तँ लाइसेन्सक संस्करण २, वा (अहाँक विकल्पपर) कोनो बादक दोसर संस्करणक अन्तर्गत।
 

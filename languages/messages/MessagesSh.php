@@ -2750,7 +2750,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagesdefault'            => 'Uobičajeni tekst',
 'allmessagescurrent'            => 'Trenutni tekst',
 'allmessagestext'               => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
-Molimo posjetite [//www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
+Molimo posjetite [https://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
 'allmessagesnotsupportedDB'     => "Ova stranica ne može biti korištena jer je '''\$wgUseDatabaseMessages''' isključen.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter po stanju podešavanja:',
@@ -3447,7 +3447,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # External editor support
 'edit-externally'      => 'Izmijeni ovu datoteku/fajl koristeći eksternu aplikaciju',
-'edit-externally-help' => '(Pogledajte [//www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
+'edit-externally-help' => '(Pogledajte [https://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3630,7 +3630,7 @@ Također možete [[Special:EditWatchlist|koristiti standardni uređivač]].',
 'version-hook-subscribedby'     => 'Pretplaćeno od',
 'version-version'               => '(Verzija $1)',
 'version-license'               => 'Licenca',
-'version-poweredby-credits'     => "Ova wiki je zasnovana na '''[//www.mediawiki.org/ MediaWiki]''', autorska prava zadržana © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ova wiki je zasnovana na '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava zadržana © 2001-$1 $2.",
 'version-poweredby-others'      => 'ostali',
 'version-license-info'          => 'Mediawiki je slobodni softver, možete ga redistribuirati i/ili mijenjati pod uslovima GNU opće javne licence kao što je objavljeno od strane Fondacije Slobodnog Softvera, bilo u verziji 2 licence, ili (po vašoj volji) nekoj od kasniji verzija.
 

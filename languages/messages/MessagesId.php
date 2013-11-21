@@ -473,7 +473,7 @@ $messages = array(
 'noindex-category'               => 'Halaman yang tidak diindeks',
 'broken-file-category'           => 'Halaman dengan gambar rusak',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'Tentang',
 'article'       => 'Halaman isi',
@@ -2845,7 +2845,7 @@ Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat den
 'allmessagesdefault'            => 'Teks baku',
 'allmessagescurrent'            => 'Teks sekarang',
 'allmessagestext'               => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
-Silakan kunjungi [//www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [//translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
+Silakan kunjungi [https://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [//translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
 'allmessagesnotsupportedDB'     => "Halaman ini tidak dapat digunakan karena '''\$wgUseDatabaseMessages''' telah dimatikan.",
 'allmessages-filter-legend'     => 'Penyaring',
 'allmessages-filter'            => 'Saring dengan keadaan kustomisasi:',
@@ -3655,7 +3655,7 @@ $8',
 
 # External editor support
 'edit-externally'      => 'Sunting berkas ini dengan aplikasi luar',
-'edit-externally-help' => '(Lihat [//www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut)',
+'edit-externally-help' => '(Lihat [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',
@@ -3893,7 +3893,7 @@ Anda juga dapat [[Special:EditWatchlist|menggunakan penyunting standar Anda]].',
 'version-version'               => '(Versi $1)',
 'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Lisensi',
-'version-poweredby-credits'     => "Wiki ini didukung oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-credits'     => "Wiki ini didukung oleh '''[https://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others'      => 'lainnya',
 'version-license-info'          => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
 

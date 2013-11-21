@@ -173,11 +173,11 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|ဝှက်ထားသော ကဏ္ဍ|ဝှက်ထားသော ကဏ္ဍများ}}',
 'hidden-category-category'       => 'ဝှက်ထားသော ကဏ္ဍများ',
 'category-subcat-count'          => '{{PLURAL:$2|ဤကဏ္ဍတွင် အောက်ပါ ကဏ္ဍခွဲသာ ရှိသည်။ |ဤကဏ္ဍတွင် စုစုပေါင်း $2 ခု အနက်မှ အောက်ပါ {{PLURAL:$1|ကဏ္ဍခွဲ|ကဏ္ဍခွဲ $1 ခု}} ရှိသည်။}}',
-'category-subcat-count-limited'  => 'ဤကဏ္ဍတွင် အောက်ပါ {PLURAL:$1|ကဏ္ဍခွဲ|$1 ကဏ္ဍခွဲများ}} ရှိသည်။',
+'category-subcat-count-limited'  => 'ဤကဏ္ဍတွင် အောက်ပါ {{PLURAL:$1|ကဏ္ဍခွဲ|$1 ကဏ္ဍခွဲများ}} ရှိသည်။',
 'category-article-count'         => '{{PLURAL:$2|ဤကဏ္ဍတွင် အောက်ပါစာမျက်နှာသာ ရှိသည်။|စုစုပေါင်း $2 အနက်မှ အောက်ပါ {{PLURAL:$1|စာမျက်နှာသည်|စာမျက်နှာ $1 ခုသည်}} ဤကဏ္ဍတွင် ရှိသည်။}}',
 'category-article-count-limited' => 'အောက်ပါ{{PLURAL:$1|စာမျက်နှာ|$1 စာမျက်နှာများ}} သည် လက်ရှိကဏ္ဍတွင် ရှိသည်။',
 'category-file-count'            => '{{PLURAL:$2|ဤကဏ္ဍတွင် အောက်ပါဖိုင်သာ ရှိသည်။|စုစုပေါင်း $2 အနက်မှ အောက်ပါ {{PLURAL:$1|ဖိုင် သည်|ဖိုင် $1 ခုသည်}} ဤကဏ္ဍတွင် ရှိသည်။}}',
-'category-file-count-limited'    => 'အောက်ပါ {PLURAL:$1|စာမျက်နှာ|$1 စာမျက်နှာများ}} သည် လက်ရှိစာမျက်နှာတွင် ရှိသည်။',
+'category-file-count-limited'    => 'အောက်ပါ {{PLURAL:$1|စာမျက်နှာ|$1 စာမျက်နှာများ}} သည် လက်ရှိစာမျက်နှာတွင် ရှိသည်။',
 'listingcontinuesabbrev'         => 'ပံ့ပိုး',
 'index-category'                 => 'အက္ခရာစဉ် စာမျက်နှာများ',
 'noindex-category'               => 'အက္ခရာစဉ် စာမျက်နှာများမရှိ',
@@ -1796,7 +1796,7 @@ Your e-mail address is not revealed when other users contact you.
 
 # External editor support
 'edit-externally'      => 'ပြင်ပ application တစ်ခုခုကိုသုံး၍ ဤဖိုင်ကို ပြင်ရန်',
-'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[//www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
+'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[https://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'အားလုံး',

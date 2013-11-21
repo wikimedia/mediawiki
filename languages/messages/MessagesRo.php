@@ -429,7 +429,7 @@ $messages = array(
 'noindex-category'               => 'Pagini neindexate',
 'broken-file-category'           => 'Pagini cu legături invalide către fișiere',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'Despre',
 'article'       => 'Articol',
@@ -507,7 +507,7 @@ $messages = array(
 'articlepage'       => 'Vedeți articolul',
 'talk'              => 'Discuție',
 'views'             => 'Vizualizări',
-'toolbox'           => 'Trusa de unelte',
+'toolbox'           => 'Unelte',
 'userpage'          => 'Vizualizați pagina utilizatorului',
 'projectpage'       => 'Vizualizați pagina proiectului',
 'imagepage'         => 'Vizualizați pagina fișierului',
@@ -765,13 +765,14 @@ să folosiți vechea parolă.',
 'noemailcreate'              => 'Trebuie oferită o adresă e e-mail validă.',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primești.',
 'blocked-mailpassword'       => 'Această adresă IP este blocată la editare, și deci nu este permisă utilizarea funcției de recuperare a parolei pentru a preveni abuzul.',
-'eauthentsent'               => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmați intrucțiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
+'eauthentsent'               => 'Un e-mail de confirmare a fost trimis către adresa specificată.
+Înainte ca orice alt e-mail să mai fie trimis către acel cont, trebuie să urmați instrucțiunile prezente în e-mail pentru a confirma că acest cont este într-adevăr al dumneavoastră.',
 'throttled-mailpassword'     => 'Un e-mail pentru resetarea parolei a fost deja trimis în {{PLURAL:$1|ultima oră|ultimele $1 ore|ultimele $1 de ore}}. Pentru a preveni abuzul, se va trimite doar un e-mail de resetare a parolei la un interval de o {{PLURAL:$1|o oră|$1 ore|$1 de ore}}.',
 'mailerror'                  => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit' => 'De la această adresă IP, vizitatorii sitului au creat {{PLURAL:$1|1 cont|$1 conturi|$1 de conturi}} de utilizator în ultimele zile, acest număr de noi conturi fiind maximul admis în această perioadă de timp.
 Prin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi pentru moment.',
 'emailauthenticated'         => 'Adresa de e-mail a fost autentificată pe $2, la $3.',
-'emailnotauthenticated'      => 'Adresa de email <strong>nu este autentificată încă</strong>. Nici un email nu va fi trimis pentru nici una din întrebuințările următoare.',
+'emailnotauthenticated'      => 'Adresa dumneavoastră de e-mail nu este autentificată încă. Nici un e-mail nu va fi trimis pentru nici una din întrebuințările următoare.',
 'noemailprefs'               => 'Nu a fost specificată o adresă email, următoarele nu vor funcționa.',
 'emailconfirmlink'           => 'Confirmați adresa dvs. de email',
 'invalidemailaddress'        => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceți o adresă bine formatată sau să goliți acel câmp.',
@@ -1163,18 +1164,19 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-text'              => "'''Versiunile șterse vor apărea în istoricul paginii, dar conținutul lor nu va fi accesibil publicului.''' Administratorii {{SITENAME}} pot accesa conținutul șters și îl pot recupera prin aceeași interfață, dacă nu este impusă altă restricție de către operatorii sitului.",
 'revdelete-confirm'           => 'Vă rugăm să confirmați că intenționați să faceți acest lucru, că înțelegeți consecințele și că faceți asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text'     => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
+* Informații potențial calomnioase
 * Informații personale inadecvate
-*: ''adrese și numere de telefon personale, CNP, numere de securitate socială, etc.''",
+*: ''adrese și numere de telefon personale, CNP, numere de securitate socială etc.''",
 'revdelete-legend'            => 'Restricții de afișare',
-'revdelete-hide-text'         => 'Șterge textul versiunii',
+'revdelete-hide-text'         => 'Textul versiunii',
 'revdelete-hide-image'        => 'Șterge conținutul fișierului',
 'revdelete-hide-name'         => 'Șterge operația și obiectul',
-'revdelete-hide-comment'      => 'Șterge descrierea modificării',
-'revdelete-hide-user'         => 'Șterge numele de utilizator sau adresa IP',
+'revdelete-hide-comment'      => 'Descrierea modificării',
+'revdelete-hide-user'         => 'Numele de utilizator sau adresa IP',
 'revdelete-hide-restricted'   => 'Ascunde informațiile față de administratori și față de alți utilizatori',
 'revdelete-radio-same'        => '(nu schimba)',
-'revdelete-radio-set'         => 'Da',
-'revdelete-radio-unset'       => 'Nu',
+'revdelete-radio-set'         => 'Ascuns',
+'revdelete-radio-unset'       => 'Vizibil',
 'revdelete-suppress'          => 'Ascunde versiunile și față de administratori',
 'revdelete-unsuppress'        => 'Anulează restricțiile la versiunile restaurate',
 'revdelete-log'               => 'Motivul ștergerii:',
@@ -2826,7 +2828,7 @@ Pentru a exporta, introduceți titlurile în căsuța de mai jos, unul pe linie,
 'allmessagesdefault'            => 'Textul standard',
 'allmessagescurrent'            => 'Textul curent',
 'allmessagestext'               => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
-Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [//translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
+Vă rugăm să vizitați [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [//translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessages-filter-legend'     => 'Filtru',
 'allmessages-filter'            => 'Filtru după statutul de modificare:',
@@ -3088,7 +3090,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'file-info-size-pages'   => '$1 × $2 pixeli, mărime fișier: $3, tip MIME: $4, $5 {{PLURAL:$5|pagină|pagini}}',
 'file-nohires'           => 'Rezoluții mai mari nu sunt disponibile.',
 'svg-long-desc'          => 'Fișier SVG, cu dimensiunea nominală de $1 × $2 pixeli, mărime fișier: $3',
-'show-big-image'         => 'Rezoluție maximă',
+'show-big-image'         => 'Fișier original',
 'show-big-image-preview' => 'Mărimea acestei previzualizări: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Altă rezoluție|Alte rezoluții}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixeli',
@@ -3540,7 +3542,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally'      => 'Editează acest fișier folosind o aplicație externă.',
-'edit-externally-help' => '(Vedeți [//www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
+'edit-externally-help' => '(Vedeți [https://www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'toate',
@@ -3549,7 +3551,7 @@ Altele vor fi ascunse implicit.
 'limitall'      => 'toate',
 
 # Email address confirmation
-'confirmemail'              => 'Confirmă adresa de e-mail',
+'confirmemail'              => 'Confirmare adresă e-mail',
 'confirmemail_noemail'      => 'Nu aveți o adresă de e-mail validă setată la [[Special:Preferences|preferințe]].',
 'confirmemail_text'         => '{{SITENAME}} solicită validarea adresei de e-mail înaintea utilizării funcțiilor specifice poștei electronice.
 Apăsați butonul de mai jos pentru ca un e-mail de confirmare să fie trimis către adresa dumneavoastră.
@@ -3716,7 +3718,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-hook-subscribedby'     => 'Subscris de',
 'version-version'               => '(Versiune $1)',
 'version-license'               => 'Licență',
-'version-poweredby-credits'     => "Acest wiki este dezvoltat de '''[//www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
+'version-poweredby-credits'     => "Acest wiki este motorizat de '''[https://www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others'      => 'alții',
 'version-license-info'          => 'MediaWiki este un software liber pe care îl puteți redistribui și/sau modifica sub termenii Licenței Publice Generale GNU publicată de Free Software Foundation – fie a doua versiune a acesteia, fie, la alegerea dumneavoastră, orice altă versiune ulterioară. 
 

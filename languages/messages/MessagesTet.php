@@ -929,7 +929,7 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 'exif-urgency-high'   => 'Aas ($1)',
 
 # External editor support
-'edit-externally-help' => "(Haree [//www.mediawiki.org/wiki/Manual:External_editors iha ne'e] ba informasaun barak liu)",
+'edit-externally-help' => "(Haree [https://www.mediawiki.org/wiki/Manual:External_editors iha ne'e] ba informasaun barak liu)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hotu',

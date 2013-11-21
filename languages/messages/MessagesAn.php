@@ -2571,7 +2571,7 @@ En iste zaguer caso tamién puede usar un vinclo, por eixemplo [[{{#Special:Expo
 'allmessagesdefault'            => 'texto por defecto',
 'allmessagescurrent'            => 'texto actual',
 'allmessagestext'               => "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.
-Vesite por favor [//www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [//translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
+Vesite por favor [https://www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [//translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
 'allmessagesnotsupportedDB'     => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.',
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estau de personalización:',
@@ -3299,7 +3299,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 
 # External editor support
 'edit-externally'      => 'Editar iste fichero fendo servir una aplicación externa',
-'edit-externally-help' => '(Ta más información, leiga as [//www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
+'edit-externally-help' => '(Ta más información, leiga as [https://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totz',
@@ -3477,7 +3477,7 @@ Tamién puede fer servir o [[Special:EditWatchlist|editor estándar]].",
 'version-hook-subscribedby'     => 'Suscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licencia',
-'version-poweredby-credits'     => "Iste wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Iste wiki funciona gracias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'atros',
 'version-license-info'          => "MediaWiki ye software libre, puet redistribuyir-lo y/u modificar-lo baixo os terminos d'a Licencia Publica Cheneral GNU publicada por a Free Software Foundation, ya siga d'a suya versión 2 u (a la suya esleción) qualsiquier versión posterior. 
 

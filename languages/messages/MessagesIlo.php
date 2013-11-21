@@ -220,7 +220,7 @@ $messages = array(
 'articlepage'       => 'Kitaen ti naglaon a panid',
 'talk'              => 'Pagtungtungan',
 'views'             => 'Dagiti pangkitaan',
-'toolbox'           => 'Kahon ti ramit',
+'toolbox'           => 'Ramramit',
 'userpage'          => 'Kitaen ti panid ti agar-aramat',
 'projectpage'       => 'Kitaen ti panid ti gandat',
 'imagepage'         => 'Kitaen ti panid ti papeles',
@@ -490,16 +490,16 @@ No sabali ti nagkiddaw, wenno no malagipmo pay ti kontrasenias mo ket dimon kaya
 'passwordsent'               => 'Naipatuloden ti baro a kontrasenias iti esurat a pagtaengan a nairehistro kenni "$1".
 Pangngaasi a sumrekka manen kalpasan ti pannakaawatmo.',
 'blocked-mailpassword'       => 'Ti IP a pagtaengam ket naserraan manipud ti panag-urnos, isunga saan a mapalubosan nga agusar ti annong ti panagipulang ti kontrasenias tapno mapawilan ti panag-abuso.',
-'eauthentsent'               => 'Naipatuloden ti pammasingked nga esurat iti naited nga esurat a pagtaengan.
-Sakbay ti ania man nga esurat ti maipatulod iti pakabilangan, masapul a surotem dagiti maibagbaga iti esurat, tapno mapasingkedan a ti pakabilangan ket agpayso a kukuam.',
+'eauthentsent'               => 'Naipatuloden ti pammatalged nga esurat iti naikeddeng nga esurat a pagtaengan.
+Sakbay a maipatulod ti aniaman nga esurat iti pakabilangan, masapul a surotem dagiti maibagbaga iti esurat, tapno mapatalgedan ti pakabilangan ket agpayso a kukuam.',
 'throttled-mailpassword'     => 'Ti panangiyasentar manen ti kontrasenias ket naipatuloden, iti kaunegan ti napalabas a {{PLURAL:$1|nga oras|$1 nga or-oras}}.
 Tapno maipawilan ti panag-abuso, maysa laeng a panangiyasentar manen ti kontrasenias ti maipatulod iti kada {{PLURAL:$1|nga oras|$1 nga or-oras}}.',
 'mailerror'                  => 'Biddut iti panangipatulod ti surat: $1',
 'acct_creation_throttle_hit' => 'Dagiti sumarungkar ti daytoy a wiki nga agus-usar ti IP a pagtaengan ket nakaaramid {{PLURAL:$1|iti 1 a pakabilangan|kadagiti $1 a pakabilangan}} iti nasakbayan nga aldaw, nga isu laeng ti kaadu a maipalubos iti daytoy a paset ti panawen.
 A kas ti nagbanagan, dagiti agsarsarungkar nga agus-usar ti IP a pagtaengan ket agdama a saanda a mabalin a makaaramid kadagiti pakabilangan.',
-'emailauthenticated'         => 'Napasingkedan ti esurat a pagtaengan idi $2 idi $3.',
-'emailnotauthenticated'      => 'Saan pay a napasingkedan ti esuratmo.
-Awan ti esurat a naipatulod para kadagiti sumaganad a langa.',
+'emailauthenticated'         => 'Ti esurat a pagtaengam ket napatalgedan idi $2 idi $3.',
+'emailnotauthenticated'      => 'Saan pay a napatalgedan ti esuratmo a pagtaengan.
+Awanto ti esurat a maipatulod para kadagiti sumaganad a langa.',
 'noemailprefs'               => 'Ipanaganan ti esurat a pagtaengan tapno agbalin dagitoy a langa.',
 'emailconfirmlink'           => 'Pasingkedam ti esurat a pagtaengam',
 'invalidemailaddress'        => 'Ti esurat a pagtaengan ket saan a maawat ngamin ket kasla adda ti saan a napudno a porma.
@@ -911,15 +911,15 @@ Dagiti sabsabali nga administrador idiay {{SITENAME}} ket mabalinda a serrekan t
 * Di maiparbeng a  kabukbukodan a pakaammo
 * : ''dagiti pagtaengan ken numero ti telepono, numero ti sosial a seguridad, ken dadduma pay.''",
 'revdelete-legend'            => 'Ikabil dagiti panagiparit ti panagkita',
-'revdelete-hide-text'         => 'Ilemmeng ti testo ti binaliwan',
+'revdelete-hide-text'         => 'Testo ti binaliwan',
 'revdelete-hide-image'        => 'Ilemmeng ti linaon ti papeles',
 'revdelete-hide-name'         => 'Ilemmeng ti aramid ken puntaan',
-'revdelete-hide-comment'      => 'Ilemmeng ti pakabuklan ti inurnos',
-'revdelete-hide-user'         => 'Ilemmeng ti nagan ti agar-amat/ti IP a pagtaengan',
+'revdelete-hide-comment'      => 'Pakabuklan ti inurnos',
+'revdelete-hide-user'         => 'Nagan ti agar-amat/ti IP a pagtaengan',
 'revdelete-hide-restricted'   => 'Depdepen ti datos a naggapu kadagiti administrador ken dagiti sabsabali',
 'revdelete-radio-same'        => '(saan a sukatan)',
-'revdelete-radio-set'         => 'Wen',
-'revdelete-radio-unset'       => 'Saan',
+'revdelete-radio-set'         => 'Makita',
+'revdelete-radio-unset'       => 'Nailemmeng',
 'revdelete-suppress'          => 'Depdepen ti datos manipud kadagiti administrador ken dagiti sabsabali',
 'revdelete-unsuppress'        => 'Ikkaten dagiti pannakaiparit kadagiti naisubli a binaliwan',
 'revdelete-log'               => 'Rason:',
@@ -2096,10 +2096,12 @@ Kitaen ti $2 para iti pannakrehistro dagiti naudi a naikkat.',
 'deletecomment'          => 'Rason:',
 'deleteotherreason'      => 'Sabali/maipatinayon a rason:',
 'deletereasonotherlist'  => 'Sabali a rason',
-'deletereason-dropdown'  => '*Kadawyan a rasrason ti panagikkat
-** Kiddaw ti mannurat
+'deletereason-dropdown'  => '* Kadawyan a rasrason ti panagikkat
+** Spam
+** Bandalismo
 ** Panaglabsing iti karbengan ti panagipablaak
-** Bandalismo',
+** Kiddaw ti mannurat
+** Naputed a baw-ing',
 'delete-edit-reasonlist' => 'Urnosen dagiti rason ti panagikkat',
 'delete-toobig'          => 'Daytoy a panid ket dakkel ti pakasaritaanna, sumurok a  $1 {{PLURAL:a panagbaliwan|dagiti panagbaliwan}}.
 Ti panagikkat ti kastoy a pammpanid ket naparitan tapno mapawilan ti saan nga inkarkaro a pannakadadael ti {{SITENAME}}.',
@@ -2582,7 +2584,7 @@ No iti kinaudi a kaso mabalinmo nga usaren ti silpo, a kas pagarigan [[{{#Specia
 'allmessagesdefault'            => 'Kasisigud a testo ti mensahe',
 'allmessagescurrent'            => 'Agdama a testo ti mensahe',
 'allmessagestext'               => 'Daytoy ti listaan dagiti mensahe ti sistema a magun-od idiay MediaWiki a nagan ti espasio.
-Pangngaasi a bisitaen ti [//www.mediawiki.org/wiki/Localisation Lokalisasion ti MediaWiki] ken [//translatewiki.net translatewiki.net] no kayatmo ti agparawad kadagiti sapasap a panagipatarus ti MediaWiki.',
+Pangngaasi a bisitaen ti [https://www.mediawiki.org/wiki/Localisation Lokalisasion ti MediaWiki] ken [//translatewiki.net translatewiki.net] no kayatmo ti agparawad kadagiti sapasap a panagipatarus ti MediaWiki.',
 'allmessagesnotsupportedDB'     => "Saan a mausar daytoy a panid ngamin ket ti '''\$wgUseDatabaseMessages''' ket nabaldado.",
 'allmessages-filter-legend'     => 'Sagat',
 'allmessages-filter'            => 'Sagaten babaen ti naipaduma a kasasaad:',
@@ -3265,7 +3267,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 
 # External editor support
 'edit-externally'      => 'Baliwan daytoy a papeles babaen ti akinruar nga aplikasion',
-'edit-externally-help' => '(Kitaen ti [//www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay a pakaammo).',
+'edit-externally-help' => '(Kitaen ti [https://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay a pakaammo).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'amin',
@@ -3454,7 +3456,7 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'version-hook-subscribedby'     => 'Umanamong babaen ti',
 'version-version'               => '(Bersion $1)',
 'version-license'               => 'Lisensia',
-'version-poweredby-credits'     => "Daytoy a wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
+'version-poweredby-credits'     => "Daytoy a wiki ket pinaandar ti '''[https://www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
 'version-poweredby-others'      => 'dadduma pay',
 'version-license-info'          => 'Ti MediaWiki ket nawaya a sopwer; maiwarasmo ken/wenno mabaliwam babaen ti banag iti GNU General Public License a naipablaak babaen ti Free Software Foundation; nupay iti bersion 2 iti Lisensia, wenno (ti panagpilim) ti  aniaman a bersion.
 

@@ -2902,7 +2902,7 @@ Wiedere warrt standardmatig nich anwiest:
 
 # External editor support
 'edit-externally'      => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '(Lees de [//www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
+'edit-externally-help' => '(Lees de [https://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3047,7 +3047,7 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'version-hook-subscribedby'     => 'Opropen vun',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Lizenz',
-'version-poweredby-credits'     => "Dit Wiki bruukt '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Dit Wiki bruukt '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'annere',
 'version-software'              => 'Installeerte Software',
 'version-software-product'      => 'Produkt',

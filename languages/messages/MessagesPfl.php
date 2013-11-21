@@ -1133,7 +1133,7 @@ Wonn die Dadai vaännad worre isch, donn konns soi, daß zusedzlischi Õgawe fa 
 
 # External editor support
 'edit-externally'      => 'Die Dadai midm õnnare Weagzaisch beawaide',
-'edit-externally-help' => '(Gugg uff [//www.mediawiki.org/wiki/Manual:External_editors Inschdallazionsõwaisunge] fa mea Auskinfd)',
+'edit-externally-help' => '(Gugg uff [https://www.mediawiki.org/wiki/Manual:External_editors Inschdallazionsõwaisunge] fa mea Auskinfd)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

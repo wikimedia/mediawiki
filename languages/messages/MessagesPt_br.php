@@ -57,6 +57,7 @@
  * @author Sir Lestaty de Lioncourt
  * @author Teles
  * @author TheGabrielZaum
+ * @author Titoncio
  * @author Urhixidur
  * @author Vivaelcelta
  * @author Vuln
@@ -2851,7 +2852,7 @@ Para o último caso, é possível obter o XML a partir de um link direto (por ex
 'allmessagesdefault'            => 'Texto padrão',
 'allmessagescurrent'            => 'Texto atual',
 'allmessagestext'               => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
-Acesse [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
+Acesse [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB'     => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalização:',
@@ -3565,7 +3566,7 @@ Por padrão, outros campos estarão ocultos.
 
 # External editor support
 'edit-externally'      => 'Editar este arquivo a partir de um programa externo',
-'edit-externally-help' => '(Consulte as [//www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
+'edit-externally-help' => '(Consulte as [https://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',
@@ -3754,7 +3755,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-hook-subscribedby'     => 'Subscrito por',
 'version-version'               => '(Versão $1)',
 'version-license'               => 'Licença',
-'version-poweredby-credits'     => "Este é um wiki '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Este é um wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'outros',
 'version-license-info'          => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 

@@ -1,5 +1,5 @@
 <?php
-/** Czech (česky)
+/** Czech (čeština)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chmee2
  * @author Danny B.
  * @author Dontlietome7
  * @author Geitost
@@ -823,8 +824,9 @@ a používat staré heslo.',
 Kvůli prevenci zneužívání lze heslo zaslat jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
 'acct_creation_throttle_hit' => 'Uživatelé přicházející z vaší IP adresy už dnes vytvořili $1 {{PLURAL:$1|účet|účty|účtů}}, což je dovolené maximum. Proto v tuto chvíli není dovoleno z této IP adresy další účty zakládat.',
-'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena dne $2 v $3.',
-'emailnotauthenticated'      => 'Vaše e-mailová adresa dosud nebyla ověřena a e-mailové funkce do té doby nejsou dostupné.',
+'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena $2 v $3.',
+'emailnotauthenticated'      => 'Vaše e-mailová adresa dosud nebyla ověřena.
+U následujících funkcí nebudou zasílány žádné e-maily.',
 'noemailprefs'               => 'Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.',
 'emailconfirmlink'           => 'Podvrďte svou e-mailovou adresu',
 'invalidemailaddress'        => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.',
@@ -1211,15 +1213,15 @@ pokud nebyla nastavena další omezení.",
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
 'revdelete-legend'            => 'Nastavit omezení k revizi',
-'revdelete-hide-text'         => 'Skrýt text revize',
+'revdelete-hide-text'         => 'Text revize',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-hide-name'         => 'Skrýt událost a cíl',
-'revdelete-hide-comment'      => 'Skrýt editační komentář',
-'revdelete-hide-user'         => 'Skrýt uživatelské jméno/IP adresu',
+'revdelete-hide-comment'      => 'Editační komentář',
+'revdelete-hide-user'         => 'Uživatelské jméno / IP adresa',
 'revdelete-hide-restricted'   => 'Utajit data i před správci',
 'revdelete-radio-same'        => '(neměnit)',
-'revdelete-radio-set'         => 'Ano',
-'revdelete-radio-unset'       => 'Ne',
+'revdelete-radio-set'         => 'Skrytý',
+'revdelete-radio-unset'       => 'Viditelný',
 'revdelete-suppress'          => 'Utajit data i před správci',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
 'revdelete-log'               => 'Důvod:',
@@ -2840,7 +2842,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'allmessagesdefault'            => 'Původní text',
 'allmessagescurrent'            => 'Aktuální text',
 'allmessagestext'               => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
-Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [//www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [//translatewiki.net server translatewiki.net].',
+Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [https://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [//translatewiki.net server translatewiki.net].',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter'            => 'Filtr podle stavu:',
@@ -3119,7 +3121,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'file-info-size-pages'   => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4, $5 {{PLURAL:$5|stránka|stránky|stránek}}',
 'file-nohires'           => 'Větší rozlišení není k dispozici.',
 'svg-long-desc'          => 'soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3',
-'show-big-image'         => 'Obrázek ve vyšším rozlišení',
+'show-big-image'         => 'Původní soubor',
 'show-big-image-preview' => 'Velikost tohoto náhledu: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Jiné|Jiná}} rozlišení: $1.',
 'show-big-image-size'    => '$1 × $2 pixelů',
@@ -3564,7 +3566,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',
-'edit-externally-help' => '(Více informací najdete v [//www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
+'edit-externally-help' => '(Více informací najdete v [https://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'všechny',
@@ -3811,7 +3813,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'version-hook-subscribedby'     => 'Volán z',
 'version-version'               => '(Verze $1)',
 'version-license'               => 'Licence',
-'version-poweredby-credits'     => "Tato wiki běží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Tato wiki běží na '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'další',
 'version-license-info'          => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
 

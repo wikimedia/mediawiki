@@ -486,7 +486,7 @@ $messages = array(
 'articlepage'       => 'Pogledaj članak',
 'talk'              => 'Razgovor',
 'views'             => 'Pregledi',
-'toolbox'           => 'Traka sa alatima',
+'toolbox'           => 'Alati',
 'userpage'          => 'Pogledaj korisničku stranicu',
 'projectpage'       => 'Pogledaj stranicu projekta',
 'imagepage'         => 'Pogledajte stranicu datoteke',
@@ -516,7 +516,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
 'aboutpage'            => 'Project:O_projektu_{{SITENAME}}',
-'copyright'            => 'Svi sadržaji podliježu "$1" licenci.',
+'copyright'            => 'Sadržaj je dostupan pod licencom $1 osim ako je drugačije navedeno.',
 'copyrightpage'        => '{{ns:project}}:Autorska_prava',
 'currentevents'        => 'Trenutni događaji',
 'currentevents-url'    => 'Project:Novosti',
@@ -742,16 +742,16 @@ Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne
 'passwordsent'               => 'Nova šifra je poslata na adresu e-pošte korisnika "$1".
 Molimo Vas da se prijavite pošto je primite.',
 'blocked-mailpassword'       => 'Da bi se spriječila nedozvoljena akcija, Vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove šifre.',
-'eauthentsent'               => 'Na navedenu adresu poslan je e-mail s potvrdom.
-Prije nego što pošaljemo daljnje poruke, molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva da potvrdite da ste vi kreirali korisnički račun.',
+'eauthentsent'               => 'Na navedenu adresu poslana je e-poruka s potvrdom.
+Prije nego što pošaljemo daljnje poruke, pratite uputstva s e-pošte da biste potvrdili da je račun zaista Vaša.',
 'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu šifre u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi se spriječila zloupotreba, može se poslati samo jedan e-mail za promjenu šifre {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror'                  => 'Greška pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetioci na ovoj wiki koji koriste Vašu IP adresu su već napravili {{PLURAL:$1|$1 račun|$1 računa}} u zadnjih nekoliko dana, što je najveći broj dopuštenih napravljenih računa za ovaj period.
 Kao rezultat, posjetioci koji koriste ovu IP adresu ne mogu trenutno praviti više računa.',
-'emailauthenticated'         => 'Vaša e-mail adresa je autentificirana na $2 u $3.',
-'emailnotauthenticated'      => 'Vaša e-mail adresa još nije autentificirana.
-Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
+'emailauthenticated'         => 'Vaša adresa e-pošte je potvrđena $2 u $3.',
+'emailnotauthenticated'      => 'Vaša adresa e-pošte još nije potvrđena.
+Nijedna e-poruka neće biti poslana za bilo koju uslugu od slijedećih.',
 'noemailprefs'               => 'Unesite e-mail adresu za osposobljavanje slijedećih usluga.',
 'emailconfirmlink'           => 'Potvrdite Vašu e-mail adresu',
 'invalidemailaddress'        => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
@@ -1155,15 +1155,15 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 * Osjetljive korisničke informacije
 *: ''kućne adrese, brojevi telefona, brojevi bankovnih kartica itd.''",
 'revdelete-legend'            => 'Postavi ograničenja vidljivosti',
-'revdelete-hide-text'         => 'Sakrij tekst revizije',
+'revdelete-hide-text'         => 'Tekst revizije',
 'revdelete-hide-image'        => 'Sakrij sadržaj datoteke',
 'revdelete-hide-name'         => 'Sakrij akciju i cilj',
 'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
-'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
+'revdelete-hide-user'         => 'Korisničko ime urednika/IP',
 'revdelete-hide-restricted'   => 'Ograniči podatke za administratore kao i za druge korisnike',
 'revdelete-radio-same'        => '(ne mijenjaj)',
-'revdelete-radio-set'         => 'Da',
-'revdelete-radio-unset'       => 'Ne',
+'revdelete-radio-set'         => 'Vidljivo',
+'revdelete-radio-unset'       => 'Sakriveno',
 'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
 'revdelete-log'               => 'Razlog:',
@@ -2821,7 +2821,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagesdefault'            => 'Uobičajeni tekst',
 'allmessagescurrent'            => 'Trenutni tekst',
 'allmessagestext'               => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
-Molimo posjetite [//www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
+Molimo posjetite [https://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
 'allmessagesnotsupportedDB'     => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter po stanju podešavanja:',
@@ -3546,7 +3546,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu datoteku koristeći vanjski program',
-'edit-externally-help' => '(Pogledajte [//www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
+'edit-externally-help' => '(Pogledajte [https://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3788,7 +3788,7 @@ Također možete [[Special:EditWatchlist|koristiti standardni uređivač]].',
 'version-hook-subscribedby'     => 'Pretplaćeno od',
 'version-version'               => '(Verzija $1)',
 'version-license'               => 'Licenca',
-'version-poweredby-credits'     => "Ova wiki je zasnovana na '''[//www.mediawiki.org/ MediaWiki]''', autorska prava zadržana © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ova wiki je zasnovana na '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava zadržana © 2001-$1 $2.",
 'version-poweredby-others'      => 'ostali',
 'version-license-info'          => 'Mediawiki je slobodni softver, možete ga redistribuirati i/ili mijenjati pod uslovima GNU opće javne licence kao što je objavljeno od strane Fondacije Slobodnog Softvera, bilo u verziji 2 licence, ili (po vašoj volji) nekoj od kasniji verzija.
 

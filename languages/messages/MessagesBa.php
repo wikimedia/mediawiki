@@ -57,7 +57,7 @@ $messages = array(
 'tog-newpageshidepatrolled'   => 'Яңы биттәр исемлегендә тикшерелгән үҙгәртеүҙәрҙе йәшер',
 'tog-extendwatchlist'         => 'Барлыҡ үҙгәртеүҙәрҙе үҙ эсенә алған, киңәйтелгән күҙәтеү исемлеге',
 'tog-usenewrc'                => 'Һуңғы төҙәтеүҙәр һәм күҙәтеү исемлегендәге үҙгәрештәрҙе төркөмдәргә бүлергә',
-'tog-numberheadings'          => 'Башисемдәрҙе автоматик рәүештә номерландыр',
+'tog-numberheadings'          => 'Башисемдәрҙе автоматик рәүештә номерлаe',
 'tog-showtoolbar'             => 'Мөхәррирләгән ваҡытта өҫкө ҡоралдар панелен күрһәтергә (JavaScript кәрәк)',
 'tog-editondblclick'          => 'Биттәрҙе ике сиртеү менән мөхәррирләргә',
 'tog-editsection'             => 'Һәр бүлек өсөн «үҙгәртеү» һылтанмаһын күрһәтергә',
@@ -508,7 +508,7 @@ $2',
 
 Зинһар, серһүҙҙе алғас, системаға яңынан керегеҙ.',
 'blocked-mailpassword'       => 'Һеҙҙең IP-адресығыҙҙан мөхәррирләү тыйылған, шул сәбәпле серһүҙ тергеҙеү ғәмәле лә блокланған.',
-'eauthentsent'               => 'Күрһәтелгән электрон почта адресына адресты үҙгәртеүҙе раҫлауығыҙ өсөн хат ебәрелде. Хатта, был адрес һеҙҙеке булғанын раҫлау өсөн ниндәй ғәмәлдәрҙе үтәү кәрәкле икәне тураһында мәғлүмәт бар.',
+'eauthentsent'               => 'Күрһәтелгән электрон почта адресына адресты үҙгәртеүҙе раҫлауығыҙ өсөн хат ебәрелде. Хатта был адрес һеҙҙеке булғанын раҫлау өсөн ниндәй ғәмәлдәрҙе үтәү кәрәклеге тураһында мәғлүмәт бар.',
 'throttled-mailpassword'     => 'Серһүҙҙе иҫләтеү ғәмәле {{PLURAL:$1|һуңғы $1 сәғәт}} эсенде ҡулланылды инде.
 Насар ниәтле ҡулланыуҙарға ҡаршы, Серһүҙ иҫләтеү ғәмәлен {{PLURAL:$1|сәғәт|$1 сәғәт}} эсендә бер тапҡыр ғына ҡулланырға була.',
 'mailerror'                  => 'Хат ебәреү хатаһы: $1',
@@ -2560,7 +2560,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'allmessagesdefault'            => 'Ғәҙәттәге яҙма',
 'allmessagescurrent'            => 'Хәҙерге яҙма',
 'allmessagestext'               => 'Түбәндә MediaWiki исемдәр арауығында ҡулланылған система хәбәрҙәре исемлеге килтерелгән.
-Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [//www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [//translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
+Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [https://www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [//translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
 'allmessagesnotsupportedDB'     => "Был бит ҡулланыла алмай, сөнки '''\$wgUseDatabaseMessages''' мөмкинлеге һүндерелгән.",
 'allmessages-filter-legend'     => 'Һайлау',
 'allmessages-filter'            => 'Үҙгәртеү торошо буйынса һайлау:',
@@ -3258,7 +3258,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',
-'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
+'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бөтә',
@@ -3443,7 +3443,7 @@ $5
 'version-hook-subscribedby'     => 'Яҙҙырылған',
 'version-version'               => '($1 өлгөһө)',
 'version-license'               => 'Рөхсәтнамә',
-'version-poweredby-credits'     => "Был вики проект '''[//www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Был вики проект '''[https://www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'башҡалар',
 'version-license-info'          => 'MediaWiki — ирекле программа, һеҙ уны Ирекле программалар фонды тарафынан баҫтырылған GNU General Public License рөхсәтнамәһенә ярашлы тарата һәм/йәки үҙгәртә алаһығыҙ (рөхсәтнамәнең йә исенсе өлгөһө, йә унан һуңғы өлгөләре).
 

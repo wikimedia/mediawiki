@@ -184,7 +184,7 @@ $messages = array(
 'noindex-category'               => 'Indekslanmaydigan sahifalar',
 'broken-file-category'           => 'Ishlamaydigan fayl havolalari bor sahifalar',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xffʻʼ«„])))(.+)$/sDu',
 
 'about'         => 'Haqida',
 'article'       => 'Sahifa',
@@ -1583,7 +1583,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 
 # External editor support
 'edit-externally'      => 'Bu faylni tashqi dasturiy ilovalar yordamida tahrirla',
-'edit-externally-help' => "(Batafsil ma'lumotlar uchun [//www.mediawiki.org/wiki/Manual:External_editors bu yerga] qarang)",
+'edit-externally-help' => "(Batafsil ma'lumotlar uchun [https://www.mediawiki.org/wiki/Manual:External_editors bu yerga] qarang)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Barcha',

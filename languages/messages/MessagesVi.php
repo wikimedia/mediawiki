@@ -746,12 +746,12 @@ Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ 
 'noemailcreate'              => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword'       => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh sai phạm.',
-'eauthentsent'               => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
+'eauthentsent'               => 'Thư xác nhận đã được gửi cho địa chỉ thư điện tử được chỉ định. Trước khi bạn có thể nhận thư, bạn cần thực hiện hướng dẫn trong thư để xác nhận tài khoản thuộc về bạn.',
 'throttled-mailpassword'     => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror'                  => 'Lỗi gửi thư : $1',
 'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở {{PLURAL:$1|một tài khoản|$1 tài khoản}} ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.',
 'emailauthenticated'         => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
-'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
+'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Các chức năng sau sẽ không gửi thư điện tử.',
 'noemailprefs'               => 'Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.',
 'emailconfirmlink'           => 'Xác nhận địa chỉ thư điện tử',
 'invalidemailaddress'        => 'Địa chỉ thư điện tử không được chấp nhận vì định dạng thư có vẻ sai.
@@ -923,7 +923,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 'accmailtitle'                     => 'Đã gửi mật khẩu.',
 'accmailtext'                      => "Một mật khẩu được tạo ngẫu nhiên cho [[User talk:$1|$1]] đã được gửi đến $2. Có thể đổi mật khẩu tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle'                       => '(Mới)',
-'newarticletext'                   => '<div style="margin-top: 0px;" class="emptymwmsg mediawiki_newarticletext[[{{MediaWiki:Helppage}}|help page]]"></div>',
+'newarticletext'                   => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (hoặc Trở lại, Quay lại, Back) trong trình duyệt của bạn.",
 'anontalkpagetext'                 => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
@@ -1143,17 +1143,17 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 'revdelete-suppress-text'     => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
 * Thông tin có thể phỉ báng
 * Thông tin cá nhân không thích hợp
-*: ''địa chỉ nhà và số điện thoại, số an sinh xã hội, v.v.''",
+*: ''địa chỉ nhà và số điện thoại, số chứng minh nhân dân, số an sinh xã hội, v.v.''",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
-'revdelete-hide-text'         => 'Ẩn nội dung phiên bản',
+'revdelete-hide-text'         => 'Nội dung phiên bản',
 'revdelete-hide-image'        => 'Ẩn nội dung tập tin',
 'revdelete-hide-name'         => 'Ẩn tác vụ và đích của tác vụ',
-'revdelete-hide-comment'      => 'Ẩn tóm lược sửa đổi',
-'revdelete-hide-user'         => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
+'revdelete-hide-comment'      => 'Tóm lược sửa đổi',
+'revdelete-hide-user'         => 'Tên người dùng hay địa chỉ IP của người viết trang',
 'revdelete-hide-restricted'   => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
 'revdelete-radio-same'        => '(không đổi)',
-'revdelete-radio-set'         => 'Có',
-'revdelete-radio-unset'       => 'Không',
+'revdelete-radio-set'         => 'Ẩn',
+'revdelete-radio-unset'       => 'Hiện',
 'revdelete-suppress'          => 'Che dữ liệu đối với bảo quản viên cũng như các thành viên khác',
 'revdelete-unsuppress'        => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
 'revdelete-log'               => 'Lý do:',
@@ -2323,8 +2323,8 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 'deletereason-dropdown'  => '*Các lý do xóa phổ biến
 ** Đăng tỉ thư rác
 ** Phá hoại
-** Vi phạ bản quyền
-** Thiếu tôn trọng tác giả
+** Vi phạm bản quyền
+** Tác giả yêu cầu
 ** Chuyển hướng sai',
 'delete-edit-reasonlist' => 'Sửa lý do xóa',
 'delete-toobig'          => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
@@ -2540,16 +2540,13 @@ $1',
 'ipbreasonotherlist'              => 'Lý do khác',
 'ipbreason-dropdown'              => '*Một số lý do cấm thường gặp
 ** Phá hoại
-** Thêm thông tin nội dung sai lệch
-** Tẩy trống nội dung trang
-** Quảng cáo vớ vẩn
-** Đăng liên kết thư rác đến trang web bên ngoài
+** Thêm thông tin sai lệch
+** Xóa nội dung trang
+** Đăng liên kết thư rác dẫn đến trang Web bên ngoài
 ** Cho thông tin rác vào trang
 ** Có thái độ dọa dẫm/quấy rối
-** Tên thành viên không được chấp nhận
-** Tạo nhiều trang mới vi phạm bản quyền, bỏ qua thảo luận và cảnh báo
-** Truyền nhiều hình ảnh thiếu nguồn gốc hoặc bản quyền
-** Con rối của thành viên bị cấm',
+** Lạm dụng nhiều tài khoản
+** Tên thành viên không thể chấp nhận',
 'ipb-hardblock'                   => 'Ngăn không cho thành viên đã đăng nhập sửa đổi từ địa chỉ IP này',
 'ipbcreateaccount'                => 'Cấm mở tài khoản',
 'ipbemailban'                     => 'Không cho gửi thư điện tử',
@@ -2792,7 +2789,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagesdefault'            => 'Nội dung mặc định',
 'allmessagescurrent'            => 'Nội dung hiện thời',
 'allmessagestext'               => 'Đây là toàn bộ thông điệp hệ thống có trong không gian tên MediaWiki.
-Mời vào [//www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hóa MediaWiki] và [//translatewiki.net/wiki/?uselang=vi translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
+Mời vào [https://www.mediawiki.org/wiki/Localisation?uselang=vi Địa phương hóa MediaWiki] và [//translatewiki.net/wiki/?uselang=vi translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB'     => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
 'allmessages-filter-legend'     => 'Bộ lọc',
 'allmessages-filter'            => 'Lọc theo tình trạng sửa đổi:',
@@ -3073,7 +3070,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'file-info-size-pages'   => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
 'file-nohires'           => 'Không có độ phân giải cao hơn.',
 'svg-long-desc'          => 'tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3',
-'show-big-image'         => 'Độ phân giải tối đa',
+'show-big-image'         => 'Tập tin gốc',
 'show-big-image-preview' => 'Kích thước của hình xem trước: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Độ phân giải|Các độ phân giải}} khác: $1.',
 'show-big-image-size'    => '$1×$2 điểm ảnh',
@@ -3573,7 +3570,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '(Xem [//www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
+'edit-externally-help' => '(Xem [https://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tất cả',
@@ -3818,7 +3815,7 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'version-hook-subscribedby'     => 'Được theo dõi bởi',
 'version-version'               => '(Phiên bản $1)',
 'version-license'               => 'Giấy phép bản quyền',
-'version-poweredby-credits'     => "Wiki này chạy trên '''[//www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
+'version-poweredby-credits'     => "Wiki này chạy trên '''[https://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
 'version-poweredby-others'      => 'những người khác',
 'version-license-info'          => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
 

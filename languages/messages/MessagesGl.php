@@ -517,7 +517,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páxina',
-'nstab-user'      => 'Páxina de {{GENDER:{{#titleparts:{{BASEPAGENAME}}|1}}|usuario|usuaria}}',
+'nstab-user'      => 'Páxina de {{GENDER:{{ROOTPAGENAME}}|usuario|usuaria}}',
 'nstab-media'     => 'Páxina multimedia',
 'nstab-special'   => 'Páxina especial',
 'nstab-project'   => 'Páxina do proxecto',
@@ -697,15 +697,16 @@ continuar a utilizar o seu contrasinal vello.',
 'passwordsent'               => 'Enviouse un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
 'blocked-mailpassword'       => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
-'eauthentsent'               => 'Envióuselle un correo electrónico de confirmación ao enderezo mencionado.
+'eauthentsent'               => 'Envióuselle un correo electrónico de confirmación ao enderezo especificado.
 Antes de que se lle envíe calquera outro correo a esta conta terá que seguir as instrucións que aparecen nesa mensaxe para confirmar que a conta é realmente súa.',
 'throttled-mailpassword'     => 'Enviouse un correo electrónico de restablecemento do contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para evitar o abuso do sistema só se enviará unha mensaxe de restablecemento cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Produciuse un erro ao enviar o correo electrónico: $1',
 'acct_creation_throttle_hit' => 'Alguén que visitou este wiki co seu enderezo IP creou, no último día, {{PLURAL:$1|unha conta|$1 contas}}, que é o máximo permitido neste período de tempo.
 Como resultado, os visitantes que usen este enderezo IP non poden crear máis contas nestes intres.',
-'emailauthenticated'         => 'O seu enderezo de correo electrónico foi autenticado o $2 ás $3.',
-'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda <strong>non foi autenticado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
+'emailauthenticated'         => 'O seu enderezo de correo electrónico foi confirmado o $2 ás $3.',
+'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda non foi confirmado.
+Non se enviará ningunha mensaxe por ningunha das seguintes características.',
 'noemailprefs'               => 'Especifique un enderezo de correo electrónico se quere que funcione esta opción.',
 'emailconfirmlink'           => 'Confirmar o enderezo de correo electrónico',
 'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque semella ter un formato incorrecto.
@@ -1103,19 +1104,20 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-text'              => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
 'revdelete-confirm'           => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
-'revdelete-suppress-text'     => "A eliminación '''só''' debería ser usada nos seguintes casos:
+'revdelete-suppress-text'     => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:
+* Información potencialmente difamatoria
 * Información persoal inapropiada
-*: ''domicilios e números de teléfono, números da seguridade social, etc.''",
+*: ''domicilios e números de teléfono, números da seguridade social etc.''",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
-'revdelete-hide-text'         => 'Agochar o texto da revisión',
+'revdelete-hide-text'         => 'Texto da revisión',
 'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
 'revdelete-hide-name'         => 'Agochar a acción e o destino',
-'revdelete-hide-comment'      => 'Agochar o resumo de edición',
-'revdelete-hide-user'         => 'Agochar o nome de usuario ou o enderezo IP do editor',
+'revdelete-hide-comment'      => 'Resumo de edición',
+'revdelete-hide-user'         => 'Nome de usuario ou enderezo IP do editor',
 'revdelete-hide-restricted'   => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-radio-same'        => '(non cambiar)',
-'revdelete-radio-set'         => 'Si',
-'revdelete-radio-unset'       => 'Non',
+'revdelete-radio-set'         => 'Agochado',
+'revdelete-radio-unset'       => 'Visible',
 'revdelete-suppress'          => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log'               => 'Motivo:',
@@ -1453,7 +1455,7 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'right-move-rootuserpages'    => 'Mover páxinas de usuario raíz',
 'right-movefile'              => 'Mover ficheiros',
 'right-suppressredirect'      => 'Non crear unha redirección dende o nome vello ao mover unha páxina',
-'right-upload'                => 'Cargar ficheiros',
+'right-upload'                => 'Subir ficheiros',
 'right-reupload'              => 'Sobrescribir ficheiros existentes',
 'right-reupload-own'          => 'Sobrescribir un ficheiro existente cargado polo mesmo usuario',
 'right-reupload-shared'       => 'Sobrescribir localmente ficheiros do repositorio multimedia',
@@ -1594,8 +1596,8 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'recentchangeslinked-to'       => 'Mostrar os cambios relacionados das páxinas que ligan coa dada',
 
 # Upload
-'upload'                      => 'Cargar un ficheiro',
-'uploadbtn'                   => 'Cargar o ficheiro',
+'upload'                      => 'Subir un ficheiro',
+'uploadbtn'                   => 'Subir o ficheiro',
 'reuploaddesc'                => 'Cancelar a carga e volver ao formulario de carga',
 'upload-tryagain'             => 'Enviar a descrición do ficheiro modificada',
 'uploadnologin'               => 'Non accedeu ao sistema',
@@ -2776,7 +2778,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagesdefault'            => 'Texto predeterminado',
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
-Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
+Por favor, visite a páxina de [https://www.mediawiki.org/wiki/Localisation localización de MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñible porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
@@ -2905,7 +2907,7 @@ Pode ver o código fonte.',
 'tooltip-feed-atom'                   => 'Fonte de novas Atom desta páxina',
 'tooltip-t-contributions'             => 'Ver a lista de contribucións {{GENDER:{{BASEPAGENAME}}|deste usuario|desta usuaria}}',
 'tooltip-t-emailuser'                 => 'Enviarlle unha mensaxe a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}} por correo electrónico',
-'tooltip-t-upload'                    => 'Cargar ficheiros',
+'tooltip-t-upload'                    => 'Subir ficheiros',
 'tooltip-t-specialpages'              => 'Lista de todas as páxinas especiais',
 'tooltip-t-print'                     => 'Versión para imprimir da páxina',
 'tooltip-t-permalink'                 => 'Ligazón permanente a esta versión da páxina',
@@ -3058,7 +3060,7 @@ O seu sistema pode quedar comprometido se o executa.",
 'file-info-size-pages'   => '$1 × $2 píxeles; tamaño do ficheiro: $3; tipo MIME: $4; $5 {{PLURAL:$5|páxina|páxinas}}',
 'file-nohires'           => 'Non se dispón dunha resolución máis grande.',
 'svg-long-desc'          => 'ficheiro SVG; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3',
-'show-big-image'         => 'Imaxe na máxima resolución',
+'show-big-image'         => 'Ficheiro orixinal',
 'show-big-image-preview' => 'Tamaño desta vista previa: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Outra resolución|Outras resolucións}}: $1.',
 'show-big-image-size'    => '$1 × $2 píxeles',
@@ -3508,7 +3510,7 @@ Os demais agocharanse por omisión.
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => '(Vexa as seguintes [//www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para obter máis información)',
+'edit-externally-help' => '(Consulte as seguintes [https://www.mediawiki.org/wiki/Manual:External_editors instrucións] para obter máis información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todo',
@@ -3700,7 +3702,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-hook-subscribedby'     => 'Subscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licenza',
-'version-poweredby-credits'     => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
+'version-poweredby-credits'     => "Este wiki está desenvolvido por '''[https://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autoría © 2001-$1 $2.",
 'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS outros]',
 'version-license-info'          => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 

@@ -2423,7 +2423,7 @@ Ukipeleka haririo ya kisasa tu, unaweza kutumia kiungo kinachokwenda ukurasa wa 
 'allmessagesdefault'            => 'Ujumbe uliopo bidhaa pepe',
 'allmessagescurrent'            => 'Ujumbe unapo sasa hivi',
 'allmessagestext'               => 'Hii ni orodha ya jumbe za mfumo zilizopo katika eneo la MediaWiki.
-Ukitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali uende tovuti ya [//www.mediawiki.org/wiki/Localisation Kutohoa MediaWiki Kwenye Lugha Nyingi] na [//translatewiki.net translatewiki.net].',
+Ukitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali uende tovuti ya [https://www.mediawiki.org/wiki/Localisation Kutohoa MediaWiki Kwenye Lugha Nyingi] na [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Ukurasa huu hauwezi kutumika kwa sababu '''\$wgUseDatabaseMessages''' imelemazwa.",
 'allmessages-filter-legend'     => 'Chuja',
 'allmessages-filter'            => 'Zichujwe kwa hali ya kutengenezwa:',
@@ -2838,7 +2838,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
-'edit-externally-help' => '(Ona [//www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
+'edit-externally-help' => '(Ona [https://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'zote',
@@ -3006,7 +3006,7 @@ Pia unaweza [[Special:EditWatchlist|kutumia kihariri cha kawaida]].',
 'version-other'             => 'Zingine',
 'version-version'           => '(Toleo $1)',
 'version-license'           => 'Ruhusa',
-'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[//www.mediawiki.org/ MediaWiki]''', hakimiliki © 2001-$1 $2.",
+'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[https://www.mediawiki.org/ MediaWiki]''', hakimiliki © 2001-$1 $2.",
 'version-poweredby-others'  => 'wengine',
 'version-license-info'      => 'MediaWiki ni bidhaa pepe huru; unaweza kuisambaza pamoja na kuitumia na kuibadilisha kutokana na masharti ya leseni ya GNU General Public License inayotolewa na Free Software Foundation (Shirika la Bidhaa Pepe Huru); ama toleo 2 la hakimiliki, ama (ukitaka) toleo lolote linalofuata.
 

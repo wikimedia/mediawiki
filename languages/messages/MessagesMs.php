@@ -323,7 +323,7 @@ $messages = array(
 'noindex-category'               => 'Laman tak diindeks',
 'broken-file-category'           => 'Laman yang ada pautan fail yang terputus',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'linkprefix' => '/^((?>.*(?<![a-zA-Z\\\\x80-\\\\xff])))(.+)$/sD',
 
 'about'         => 'Perihal',
 'article'       => 'Laman kandungan',
@@ -2699,7 +2699,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 'allmessagesdefault'            => 'Teks mesej asal',
 'allmessagescurrent'            => 'Teks pesanan semasa',
 'allmessagestext'               => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
-Sila lawat [//www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [//translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
+Sila lawat [https://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [//translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessages-filter-legend'     => 'Penapisan',
 'allmessages-filter'            => 'Tapis berdasarkan keadaan penempahan:',
@@ -3411,7 +3411,7 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 
 # External editor support
 'edit-externally'      => 'Sunting fail ini menggunakan perisian luar',
-'edit-externally-help' => '(Lihat [//www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
+'edit-externally-help' => '(Lihat [https://www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',
@@ -3602,7 +3602,7 @@ Anda juga boleh [[Special:EditWatchlist|menggunakan penyunting piawai]].',
 'version-hook-subscribedby'     => 'Dilanggan oleh',
 'version-version'               => '(Versi $1)',
 'version-license'               => 'Lesen',
-'version-poweredby-credits'     => "Wiki ini dikuasakan oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-credits'     => "Wiki ini dikuasakan oleh '''[https://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others'      => 'penyumbang-penyumbang lain',
 'version-license-info'          => 'MediaWiki adalah perisian bebas; anda boleh mengedarkannya semula dan/atau mengubah suainya di bawah terma-terma Lesen Awam GNU sebagai mana yang telah diterbitkan oleh Yayasan Perisian Bebas, sama ada versi 2 bagi Lesen tersebut, atau (berdasarkan pilihan anda) mana-mana versi selepasnya.
 

@@ -2813,7 +2813,7 @@ Ku fail redaktiruidihe s채ndan polhe, erased parametrad voidas erineda n체g체dl�
 
 # External editor support
 'edit-externally'      => 'Redaktiruida nece fail irdprogrammal',
-'edit-externally-help' => '(Kc. [//www.mediawiki.org/wiki/Manual:External_editors sei탑utami탑instrukcijoid])',
+'edit-externally-help' => '(Kc. [https://www.mediawiki.org/wiki/Manual:External_editors sei탑utami탑instrukcijoid])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kaik',

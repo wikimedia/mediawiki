@@ -1010,8 +1010,9 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'columns'                       => 'Simbolu skaits rindiņā:',
 'searchresultshead'             => 'Meklēšana',
 'resultsperpage'                => 'Lappusē parādāmo rezultātu skaits',
+'stub-threshold'                => 'Slieksnis <a href="#" class="stub">aizmetņa saites</a> formatēšanai (baiti):',
 'stub-threshold-disabled'       => 'Atslēgts',
-'recentchangesdays'             => 'Dienu skaits, kuru rādīt pēdējajās izmaiņās:',
+'recentchangesdays'             => 'Dienu skaits, kuru rādīt pēdējās izmaiņās:',
 'recentchangesdays-max'         => 'Ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}',
 'recentchangescount'            => 'Izmaiņu skaits, kuru rāda pēc noklusējuma:',
 'prefs-help-recentchangescount' => 'Šis parametrs attiecas uz pēdējo izmaiņu un hronoloģijas lapām, kā arī uz sistēmas žurnāliem',
@@ -1039,7 +1040,7 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'allowemail'                    => 'Atļaut saņemt e-pastus no citiem lietotājiem',
 'prefs-searchoptions'           => 'Meklēšana',
 'prefs-namespaces'              => 'Vārdtelpas',
-'defaultns'                     => 'Meklēt šajās palīglapās pēc noklusējuma:',
+'defaultns'                     => 'Meklēt šajās vārdtelpās pēc noklusējuma:',
 'default'                       => 'pēc noklusējuma',
 'prefs-files'                   => 'Attēli',
 'prefs-custom-css'              => 'Personīgais CSS',
@@ -1064,13 +1065,12 @@ Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
 'gender-unknown'                => 'Es nevēlos norādīt',
 'gender-male'                   => 'Viņš labo viki lapas',
 'gender-female'                 => 'Viņa labo viki lapas',
-'prefs-help-gender'             => 'Dzimums nav obligāti jānorāda (šo parametru programmatūra izmanto, lai ģenerētu paziņojumus, kas atkarīgi no lietotāja dzimuma).
-Norādītā parametra vērtība būs publiski pieejama.',
+'prefs-help-gender'             => 'Dzimums nav obligāti jānorāda (šo parametru programmatūra izmanto, lai ģenerētu paziņojumus, kas atkarīgi no lietotāja dzimuma). Šī informācija būs publiski pieejama.',
 'email'                         => 'E-pasts',
 'prefs-help-realname'           => 'Īstais vārds nav obligāti jānorāda.
 Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
 'prefs-help-email'              => 'E-pasta adrese nav obligāta, bet ir nepieciešama nozaudētas paroles atjaunošanai.',
-'prefs-help-email-others'       => 'Jus ari variet izvelties ka citi jus var kontaktēt uz jusu lietotajā sarunas lapu, neatklājot jus identitāti.',
+'prefs-help-email-others'       => 'Tu arī vari izvēlēties, ka citi var sazināties ar tevi ar saites tavā lietotāja lapā vai lietotāja diskusijas lapā palīdzību. Citiem lietotājiem netiek atklāta tava e-pasta adrese, kad viņi sazinās ar tevi.',
 'prefs-help-email-required'     => 'E-pasta adrese ir obligāta.',
 'prefs-info'                    => 'Pamatinformācija',
 'prefs-i18n'                    => 'Internacionalizācija',
@@ -1078,10 +1078,10 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'prefs-dateformat'              => 'Datuma formāts',
 'prefs-timeoffset'              => 'Laika nobīde',
 'prefs-advancedediting'         => 'Vispārīgi uzstādījumi',
-'prefs-advancedrc'              => 'Papildus uzstādījumi',
-'prefs-advancedrendering'       => 'Papildus uzstādījumi',
-'prefs-advancedsearchoptions'   => 'Papildus uzstādījumi',
-'prefs-advancedwatchlist'       => 'Papildus uzstādījumi',
+'prefs-advancedrc'              => 'Papildu uzstādījumi',
+'prefs-advancedrendering'       => 'Papildu uzstādījumi',
+'prefs-advancedsearchoptions'   => 'Papildu uzstādījumi',
+'prefs-advancedwatchlist'       => 'Papildu uzstādījumi',
 'prefs-displayrc'               => 'Pamatuzstādījumi',
 'prefs-displaysearchoptions'    => 'Pamatuzstādījumi',
 'prefs-displaywatchlist'        => 'Pamatuzstādījumi',
@@ -1885,10 +1885,12 @@ Papildinformācija:
 'deletecomment'          => 'Iemesls:',
 'deleteotherreason'      => 'Cits/papildu iemesls:',
 'deletereasonotherlist'  => 'Cits iemesls',
-'deletereason-dropdown'  => '*Izplatīti dzēšanas iemesli
-** Autora pieprsījums
+'deletereason-dropdown'  => '* Izplatīti dzēšanas iemesli
+** Spams
+** Vandālisms
 ** Autortiesību pārkāpums
-** Vandālisms',
+** Autora pieprasījums
+** Nederīga pāradresācija',
 'delete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
 'delete-toobig'          => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
 Šādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.',
@@ -2020,9 +2022,10 @@ $1',
 'undelete-show-file-submit' => 'Jā',
 
 # Namespace form on various pages
-'namespace'      => 'Vārdtelpa:',
-'invert'         => 'Izvēlēties pretēji',
-'blanknamespace' => '(Pamatlapa)',
+'namespace'             => 'Vārdtelpa:',
+'invert'                => 'Izvēlēties pretēji',
+'namespace_association' => 'Saistītā vārdtelpa',
+'blanknamespace'        => '(Pamatlapa)',
 
 # Contributions
 'contributions'       => 'Lietotāja devums',
@@ -2296,7 +2299,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'allmessagesdefault'            => 'Noklusētais ziņojuma teksts',
 'allmessagescurrent'            => 'Pašreizējais teksts',
 'allmessagestext'               => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
-Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
+Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB'     => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
 'allmessages-filter-legend'     => 'Filtrs',
 'allmessages-filter'            => 'Filtrēt pēc izmainīšanas statusa:',
@@ -2571,6 +2574,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-imagelength'                 => 'augstums',
 'exif-bitspersample'               => 'biti komponentē',
 'exif-compression'                 => 'Saspiešanas veids',
+'exif-photometricinterpretation'   => 'Pikseļu sastāvs',
 'exif-orientation'                 => 'Orientācija',
 'exif-samplesperpixel'             => 'Komponentu skaits',
 'exif-planarconfiguration'         => 'Datu izkārtojums',
@@ -2859,7 +2863,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 
 # External editor support
 'edit-externally'      => 'Izmainīt šo failu ar ārēju programmu',
-'edit-externally-help' => '(Skat. [//www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
+'edit-externally-help' => '(Skat. [https://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visas',
@@ -3002,7 +3006,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-hook-name'         => 'Aizķeres nosaukums',
 'version-version'           => '(Versija $1)',
 'version-license'           => 'Licence',
-'version-poweredby-credits' => "Šis viki darbojas ar '''[//www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
+'version-poweredby-credits' => "Šis viki darbojas ar '''[https://www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
 'version-poweredby-others'  => 'citi',
 'version-software'          => 'Instalētā programmatūra',
 'version-software-product'  => 'Produkts',

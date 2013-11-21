@@ -602,7 +602,7 @@ $messages = array(
 /*
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
-do not contain | are also discarded, but do not depend on this behavior for
+do not contain | are also discarded, but do not depend on this behaviour for
 future releases. Also note that since each list value is wrapped in a unique
 XHTML id it should only appear once and include characters that are legal
 XHTML id names.
@@ -1270,23 +1270,23 @@ If you click \"{{int:savearticle}}\" again, your edit will be saved without one.
 'summary-preview'                  => 'Summary preview:',
 'subject-preview'                  => 'Subject/headline preview:',
 'blockedtitle'                     => 'User is blocked',
-'blockedtext'                      => "'''Your username or IP address has been blocked.'''
+'blockedtext'                      => '\'\'\'Your username or IP address has been blocked.\'\'\'
 
 The block was made by $1.
-The reason given is ''$2''.
+The reason given is \'\'$2\'\'.
 
 * Start of block: $8
 * Expiry of block: $6
 * Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
-You cannot use the \"email this user\" feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
+You cannot use the "email this user" feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5.
-Please include all above details in any queries you make.",
-'autoblockedtext'                  => "Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
+Please include all above details in any queries you make.',
+'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is:
 
-:''$2''
+:\'\'$2\'\'
 
 * Start of block: $8
 * Expiry of block: $6
@@ -1294,10 +1294,10 @@ The reason given is:
 
 You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
 
-Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
+Note that you may not use the "email this user" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your current IP address is $3, and the block ID is #$5.
-Please include all above details in any queries you make.",
+Please include all above details in any queries you make.',
 'blockednoreason'                  => 'no reason given',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
 'confirmedittext'                  => 'You must confirm your email address before editing pages.
@@ -3739,6 +3739,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 /*
 Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans', # only translate this message to other languages if you have to change it
