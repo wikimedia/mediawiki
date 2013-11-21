@@ -562,6 +562,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 
 		$panel = array();
+		$panel[] = self::makeLegend( $this->getContext() );
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
 		$panel[] = '<hr />';
 
@@ -651,6 +652,60 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		return $extraOpts;
+	}
+
+	/**
+	 * Return the legend displayed within the fieldset
+	 *
+	 * @param $self the object available as $this in non-static functions
+	 * @return string
+	 */
+	public static function makeLegend( $self ) {
+		$user = $self->getUser();
+		# The legend showing what the letters and stuff mean
+		$legend = Xml::openElement( 'dl', array( 'class' => 'mw-changeslist-legend' ) ) . "\n";
+		# Iterates through them and gets the messages for both letter and tooltip
+		# Messages:
+		# * minoreditletter
+		# * boteditletter
+		# * newpageletter
+		# * unpatrolledletter
+		# * recentchanges-label-minor
+		# * recentchanges-label-bot
+		# * recentchanges-label-newpage
+		# * recentchanges-label-unpatrolled
+		$legendItems = array( 'newpage' => 'newpage', 'minor' => 'minoredit', 'bot' => 'botedit' );
+		if ( $user->useRCPatrol() ) {
+			$legendItems['unpatrolled'] = 'unpatrolled';
+		}
+		foreach ( $legendItems as $label => $letter ) { # generate items of the legend
+			$legend .= Xml::element( 'dt',
+				array( 'class' => $label ), $self->msg( $letter . 'letter' )->text()
+			) . "\n";
+			if ( $letter === 'newpage' ) {
+				$legend .= Xml::openElement( 'dd' );
+				$legend .= $self->msg( "recentchanges-label-$label" )->text();
+				$legend .= Xml::tags( 'i', array(),
+					' ' . $self->msg( 'recentchanges-legend-newpage' )->parse()
+				);
+				$legend .= Xml::closeElement( 'dd' ) . "\n";
+			} else {
+				$legend .= Xml::element( 'dd', array(),
+					$self->msg( "recentchanges-label-$label" )->text()
+				) . "\n";
+			}
+		}
+		# (+-123)
+		$legend .= Xml::tags( 'dt',
+			array( 'style' => 'font-style: italic;', 'class' => 'mw-plusminus-pos' ),
+		'(&#177; 123)' ) . "\n";
+		$legend .= Xml::element(
+			'dd',
+			array( 'style' => 'margin-left: 4em;' ),
+			$self->msg( 'recentchanges-label-plusminus' )->text()
+		) . "\n";
+		$legend .= Xml::closeElement( 'dl' ) . "\n";
+		return $legend;
 	}
 
 	/**

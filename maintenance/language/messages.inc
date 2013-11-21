@@ -1331,6 +1331,8 @@ $wgMessageStructure = array(
 		'recentchanges-label-minor',
 		'recentchanges-label-bot',
 		'recentchanges-label-unpatrolled',
+		'recentchanges-label-plusminus',
+		'recentchanges-legend-newpage',
 		'rcnote',
 		'rcnotefrom',
 		'rclistfrom',
