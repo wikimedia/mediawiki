@@ -725,7 +725,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getButtons() {
-		$html = '<span class="mw-htmlform-submit-buttons">';
+		$html = '';
 
 		if ( $this->mShowSubmit ) {
 			$attribs = array();
@@ -745,7 +745,7 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $this->isVForm() ) {
-				// mw-ui-block is necessary because the buttons aren't necessarily in an 
+				// mw-ui-block is necessary because the buttons aren't necessarily in an
 				// immediate child div of the vform.
 				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-primary', 'mw-ui-block' );
 			}
@@ -756,7 +756,7 @@ class HTMLForm extends ContextSource {
 			// but vform wants all elements inside divs to get spaced-out block
 			// styling.
 			if ( $this->isVForm() ) {
-				$html = Html::rawElement( 'div', null, "\n$html\n" );
+				$html = Html::rawElement( 'div', null, "\n$html" ) . "\n";
 			}
 		}
 
@@ -788,9 +788,8 @@ class HTMLForm extends ContextSource {
 			$html .= Html::element( 'input', $attrs );
 		}
 
-		$html .= '</span>';
-
-		return $html;
+		return Html::rawElement( 'span',
+			array( 'class' => 'mw-htmlform-submit-buttons' ), "\n$html" );
 	}
 
 	/**
