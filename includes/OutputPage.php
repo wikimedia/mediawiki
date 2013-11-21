@@ -1636,6 +1636,20 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Fetch the output of a QuickTemplate and return it
+	 *
+	 * @param $template QuickTemplate
+	 * @return String
+	 */
+	public function getTemplateHTML( &$template ) {
+		ob_start();
+		$template->execute();
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
+
+	/**
 	 * Parse wikitext and return the HTML.
 	 *
 	 * @param $text String
