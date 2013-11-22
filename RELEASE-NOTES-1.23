@@ -82,6 +82,7 @@ changes to languages because of Bugzilla reports.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * The global functions addButton and insertTags (for mw.toolbar.addButton and
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
+* User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
 
 == Compatibility ==
 
