@@ -24,7 +24,7 @@
 // Some regex definition to "play" with IP address and IP address blocks
 
 // An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
-define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])' );
+define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' );
 define( 'RE_IP_ADD', RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
 // An IPv4 block is an IP address and a prefix (d1 to d32)
 define( 'RE_IP_PREFIX', '(3[0-2]|[12]?\d)' );
