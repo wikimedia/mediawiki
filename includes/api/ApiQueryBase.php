@@ -547,24 +547,20 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		$userCanViewHiddenUsers = $this->getUser()->isAllowed( 'hideuser' );
+		$this->addTables( 'ipblocks' );
+		$this->addJoinConds( array(
+			'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
+		) );
 
-		if ( $showBlockInfo || !$userCanViewHiddenUsers ) {
-			$this->addTables( 'ipblocks' );
-			$this->addJoinConds( array(
-				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-			) );
+		$this->addFields( 'ipb_deleted' );
 
-			$this->addFields( 'ipb_deleted' );
+		if ( $showBlockInfo ) {
+			$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
+		}
 
-			if ( $showBlockInfo ) {
-				$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
-			}
-
-			// Don't show hidden names
-			if ( !$userCanViewHiddenUsers ) {
-				$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
-			}
+		// Don't show hidden names
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
 		}
 	}
 
