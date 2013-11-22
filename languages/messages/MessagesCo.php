@@ -11,6 +11,8 @@
  * @author Img (on co.wikipedia.org)
  */
 
+$fallback = 'it';
+
 $messages = array(
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
