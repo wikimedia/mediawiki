@@ -1798,7 +1798,7 @@ $wgCompressRevisions = false;
  *
  * CAUTION: Access to database might lead to code execution
  */
-$wgExternalStores = false;
+$wgExternalStores = array();
 
 /**
  * An array of external MySQL servers.
