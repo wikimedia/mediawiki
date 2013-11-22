@@ -45,10 +45,6 @@ production.
   when the email address is already confirmed. Also, consistently use
   "confirmed", rather than "authenticated", when messaging whether or not the
   user has confirmed an email address.
-* (bug 19415) action=render no longer shows section edit links. This affects
-  behavior of several other features where (bogus) section edit links will
-  disappear, such as file description pages loaded via $wgUseInstantCommons or
-  pages transcluded cross-wiki via $wgEnableScaryTranscluding.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
