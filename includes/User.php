@@ -3514,56 +3514,6 @@ class User {
 	}
 
 	/**
-	 * Generate a string which will be different for any combination of
-	 * user options which would produce different parser output.
-	 * This will be used as part of the hash key for the parser cache,
-	 * so users with the same options can share the same cached data
-	 * safely.
-	 *
-	 * Extensions which require it should install 'PageRenderingHash' hook,
-	 * which will give them a chance to modify this key based on their own
-	 * settings.
-	 *
-	 * @deprecated since 1.17 use the ParserOptions object to get the relevant options
-	 * @return string Page rendering hash
-	 */
-	public function getPageRenderingHash() {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		global $wgRenderHashAppend, $wgLang, $wgContLang;
-		if ( $this->mHash ) {
-			return $this->mHash;
-		}
-
-		// stubthreshold is only included below for completeness,
-		// since it disables the parser cache, its value will always
-		// be 0 when this function is called by parsercache.
-
-		$confstr = $this->getOption( 'math' );
-		$confstr .= '!' . $this->getStubThreshold();
-		$confstr .= '!' . ( $this->getOption( 'numberheadings' ) ? '1' : '' );
-		$confstr .= '!' . $wgLang->getCode();
-		$confstr .= '!' . $this->getOption( 'thumbsize' );
-		// add in language specific options, if any
-		$extra = $wgContLang->getExtraHashOptions();
-		$confstr .= $extra;
-
-		// Since the skin could be overloading link(), it should be
-		// included here but in practice, none of our skins do that.
-
-		$confstr .= $wgRenderHashAppend;
-
-		// Give a chance for extensions to modify the hash, if they have
-		// extra options or other effects on the parser cache.
-		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
-
-		// Make it a valid memcached key fragment
-		$confstr = str_replace( ' ', '_', $confstr );
-		$this->mHash = $confstr;
-		return $confstr;
-	}
-
-	/**
 	 * Get whether the user is explicitly blocked from account creation.
 	 * @return bool|Block
 	 */
