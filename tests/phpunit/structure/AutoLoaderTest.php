@@ -11,6 +11,9 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
 			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
 			'TestAutoloadedSerializedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
+			'TestAutoloadedAliasedClass' => 'alias:TestAutoloadedAliasedClassNew',
+			'TestAutoloadedAliasedClassDeprecated' => 'alias:TestAutoloadedAliasedClassNew?v=1.1',
+			'TestAutoloadedAliasedClassNew' => __DIR__ . '/../data/autoloader/TestAutoloadedAliasedClassNew.php',
 		);
 		$this->setMwGlobals( 'wgAutoloadLocalClasses', $this->testLocalClasses + $wgAutoloadLocalClasses );
 		AutoLoader::resetAutoloadLocalClassesLower();
@@ -44,7 +47,21 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
 		$actual = array();
 
-		$files = array_unique( $expected );
+		// Check aliases
+		foreach ( $expected as $class => $file ) {
+			if ( substr( $file, 0, 6 ) !== 'alias:' ) {
+				// Not an alias, so should be an actual file
+				$files[] = $file;
+			} else {
+				$newClass = substr( $file, 6, strcspn( $file, '?', 6 ) );
+				if ( $newClass !== $class && isset( $expected[$newClass] ) ) {
+					// Alias pointing to an existing MediaWiki class
+					$actual[$class] = $file;
+				}
+			}
+		}
+
+		$files = array_unique( $files );
 
 		foreach ( $files as $file ) {
 			// Only prefix $IP if it doesn't have it already.
@@ -91,5 +108,17 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$uncerealized = unserialize( $dummyCereal );
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
 			"unserialize() can load classes case-insensitively." );
+	}
+
+	function testAliasedClass() {
+		$this->assertSame( 'TestAutoloadedAliasedClassNew',
+			get_class( new TestAutoloadedAliasedClass ) );
+	}
+
+	function testAliasedClassDeprecated() {
+		wfSuppressWarnings();
+		$this->assertSame( 'TestAutoloadedAliasedClassNew',
+			get_class( new TestAutoloadedAliasedClassDeprecated ) );
+		wfRestoreWarnings();
 	}
 }
