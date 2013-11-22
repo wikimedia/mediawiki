@@ -553,7 +553,7 @@ class User {
 	 */
 	public static function isIP( $name ) {
 		# Matches if the IP range is actually between 0.0.0.0 and 255.255.255.255
-		return preg_match('/^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:xxx|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/',$name || IP::isIPv6($name));
+		return preg_match('/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:xxx|25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/',$name || IP::isIPv6($name));
 	}
 
 	/**
