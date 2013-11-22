@@ -1202,6 +1202,28 @@ class AutoLoader {
 			return false;
 		}
 
+		if ( substr( $filename, 0, 6 ) === 'alias:' ) {
+			// Found an alias, possibly because the class was renamed. Set it up,
+			// calling this function recursively if necessary to load the class.
+			$newClassName = substr( $filename, 6 );
+			$debugMsg = "Class {$className} was aliased to {$newClassName}";
+
+			if ( !class_exists( $newClassName ) ) {
+				if ( function_exists( 'wfDebug' ) ) {
+					wfDebug( "$debugMsg, which was not found.\n");
+				}
+
+				return false;
+			}
+
+			if ( function_exists( 'wfDebug' ) ) {
+				wfDebug( "$debugMsg.\n" );
+			}
+
+			// class_exists() in case the alias is also defined in the class file
+			return class_exists( $className, false ) || class_alias( $newClassName, $className );
+		}
+
 		# Make an absolute path, this improves performance by avoiding some stat calls
 		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
 			global $IP;
