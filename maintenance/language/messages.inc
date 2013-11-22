@@ -312,8 +312,6 @@ $wgMessageStructure = array(
 		'backlinksubtitle',
 		'retrievedfrom',
 		'youhavenewmessages',
-		'newmessageslink',
-		'newmessagesdifflink',
 		'youhavenewmessagesfromusers',
 		'youhavenewmessagesmanyusers',
 		'newmessageslinkplural',
