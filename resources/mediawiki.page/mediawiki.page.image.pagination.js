@@ -7,7 +7,7 @@
 	// Use jQuery's load function to specifically select and replace table.multipageimage's child
 	// tr with the new page's table.multipageimage's tr element.
 	// table.multipageimage always has only one row.
-	function loadPage( page ) {
+	function loadPage( page, hist ) {
 		var $multipageimage = $( 'table.multipageimage' ),
 			$spinner = $.createSpinner( {
 				size: 'large',
@@ -26,6 +26,15 @@
 			page + ' table.multipageimage tr',
 			ajaxifyPageNavigation
 		);
+
+		// Add new page of image to history.  To preserve the back-forwards chain in the browser,
+		// if the user gets here via the back/forward button, don't update the history.
+		if ( typeof history.pushState !== 'undefined' && !hist ) {
+			history.pushState( { 'url': page }, document.title, page );
+		}
+
+		// Fire hook because the page's content has changed
+		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 	}
 
 	function ajaxifyPageNavigation() {
@@ -46,6 +55,17 @@
 		// The presence of table.multipageimage signifies that this file is a multi-page image
 		if( mw.config.get( 'wgNamespaceNumber' ) === 6 && $( 'table.multipageimage' ).length !== 0 ) {
 			ajaxifyPageNavigation();
+
+			// Set up history.pustState (if available), so that when the user browses to a new page of
+			// the same file, the browser's history is updated. If the user clicks the back/forward button
+			// in the midst of navigating a file's pages, load the page inline.
+			if ( typeof history.pushState !== 'undefined' ) {
+				history.replaceState( { url: window.location.href }, '' );
+				$( window ).on( 'popstate', function ( e ) {
+					var state = e.originalEvent.state;
+					if ( state ) loadPage( state.url, true );
+				});
+			}
 		}
 	} );
 }( mediaWiki, jQuery ) );
