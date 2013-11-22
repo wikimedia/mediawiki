@@ -1147,9 +1147,6 @@ class AutoLoader {
 	 * autoload - take a class name and attempt to load it
 	 *
 	 * @param string $className name of class we're looking for.
-	 * @return bool Returning false is important on failure as
-	 * it allows Zend to try and look in other registered autoloaders
-	 * as well.
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
@@ -1199,7 +1196,33 @@ class AutoLoader {
 			}
 
 			# Give up
-			return false;
+			return;
+		}
+
+		if ( substr( $filename, 0, 6 ) === 'alias:' ) {
+			// Supported alias formats:
+			// - No deprecation warning: alias:MyNewClassName
+			// - Deprecated in MediaWiki 1.1: alias:MyNewClassName?v=1.1
+			// - Deprecated in MyExtension 1.1: alias:MyNewClassName?c=MyExtension&v=1.1
+			$parts = explode( '?', substr( $filename, 6 ), 2 );
+			$newClassName = $parts[0];
+
+			// If necessary, this will make a recursive call to this function to
+			// load the class using its actual, canonical name.
+			class_alias( $newClassName, $className );
+
+			if ( isset( $parts[1] ) && function_exists( 'wfDeprecated' ) ) {
+				$info = wfCgiToArray( $parts[1] );
+				$function = "name $className for class $newClassName";
+				$version = isset( $info['v'] ) ? $info['v'] : false;
+				$component = isset( $info['c'] ) ? $info['c'] : false;
+
+				// https://github.com/facebook/hhvm/issues/1018
+				$callerOffset = wfIsHHVM() ? 2 : 3;
+				wfDeprecated( $function, $version, $component, $callerOffset );
+			}
+
+			return;
 		}
 
 		# Make an absolute path, this improves performance by avoiding some stat calls
@@ -1209,8 +1232,6 @@ class AutoLoader {
 		}
 
 		require $filename;
-
-		return true;
 	}
 
 	/**
