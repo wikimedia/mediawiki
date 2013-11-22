@@ -43,6 +43,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			// backends should at least have "read-after-create" consistency.
 			return $be->getFileContents( array( 'src' => $url ) );
 		}
+
 		return false;
 	}
 
@@ -66,6 +67,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			$be = FileBackendGroup::singleton()->get( $backendName );
 			$blobs = $blobs + $be->getFileContentsMulti( array( 'srcs' => $paths ) );
 		}
+
 		return $blobs;
 	}
 
@@ -90,6 +92,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 				return $url;
 			}
 		}
+
 		return false;
 	}
 }

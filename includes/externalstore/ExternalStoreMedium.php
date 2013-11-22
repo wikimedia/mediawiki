@@ -64,6 +64,7 @@ abstract class ExternalStoreMedium {
 				$retval[$url] = $data;
 			}
 		}
+
 		return $retval;
 	}
 
