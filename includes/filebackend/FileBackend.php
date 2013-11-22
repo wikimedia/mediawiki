@@ -809,10 +809,11 @@ abstract class FileBackend {
 	final protected function getScopedPHPBehaviorForOps() {
 		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
-			return new ScopedCallback( function() use ( $old ) {
+			return new ScopedCallback( function () use ( $old ) {
 				ignore_user_abort( $old );
 			} );
 		}
+
 		return null;
 	}
 
@@ -1137,7 +1138,8 @@ abstract class FileBackend {
 	 * @param array $paths Storage paths
 	 * @return void
 	 */
-	public function preloadCache( array $paths ) {}
+	public function preloadCache( array $paths ) {
+	}
 
 	/**
 	 * Invalidate any in-process file stat and property cache.
@@ -1146,7 +1148,8 @@ abstract class FileBackend {
 	 * @param array $paths Storage paths (optional)
 	 * @return void
 	 */
-	public function clearCache( array $paths = null ) {}
+	public function clearCache( array $paths = null ) {
+	}
 
 	/**
 	 * Lock the files at the given storage paths in the backend.
@@ -1160,6 +1163,7 @@ abstract class FileBackend {
 	 */
 	final public function lockFiles( array $paths, $type ) {
 		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
+
 		return $this->lockManager->lock( $paths, $type );
 	}
 
@@ -1172,6 +1176,7 @@ abstract class FileBackend {
 	 */
 	final public function unlockFiles( array $paths, $type ) {
 		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
+
 		return $this->lockManager->unlock( $paths, $type );
 	}
 
@@ -1198,6 +1203,7 @@ abstract class FileBackend {
 		} else {
 			$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
 		}
+
 		return ScopedLock::factory( $this->lockManager, $paths, $type, $status );
 	}
 
@@ -1281,6 +1287,7 @@ abstract class FileBackend {
 				}
 			}
 		}
+
 		return array( null, null, null );
 	}
 
@@ -1301,6 +1308,7 @@ abstract class FileBackend {
 					: "mwstore://{$backend}/{$container}";
 			}
 		}
+
 		return null;
 	}
 
@@ -1315,6 +1323,7 @@ abstract class FileBackend {
 	final public static function parentStoragePath( $storagePath ) {
 		$storagePath = dirname( $storagePath );
 		list( , , $rel ) = self::splitStoragePath( $storagePath );
+
 		return ( $rel === null ) ? null : $storagePath;
 	}
 
@@ -1326,6 +1335,7 @@ abstract class FileBackend {
 	 */
 	final public static function extensionFromPath( $path ) {
 		$i = strrpos( $path, '.' );
+
 		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
 	}
 
@@ -1395,6 +1405,7 @@ abstract class FileBackend {
 				return null;
 			}
 		}
+
 		return $path;
 	}
 }
@@ -1403,4 +1414,5 @@ abstract class FileBackend {
  * @ingroup FileBackend
  * @since 1.22
  */
-class FileBackendError extends MWException {}
+class FileBackendError extends MWException {
+}

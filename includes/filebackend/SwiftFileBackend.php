@@ -153,7 +153,8 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				try { // look for APC, XCache, WinCache, ect...
 					$this->srvCache = ObjectCache::newAccelerator( array() );
-				} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {
+				}
 			}
 		}
 		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
@@ -169,6 +170,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
 			return null; // too long for Swift
 		}
+
 		return $relStoragePath;
 	}
 
@@ -180,6 +182,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		try {
 			$this->getContainer( $container );
+
 			return true; // container exists
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( CloudFilesException $e ) { // some other exception?
@@ -198,6 +201,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( isset( $headers['Content-Disposition'] ) ) {
 			$headers['Content-Disposition'] = $this->truncDisp( $headers['Content-Disposition'] );
 		}
+
 		return $headers;
 	}
 
@@ -216,6 +220,7 @@ class SwiftFileBackend extends FileBackendStore {
 				break; // too long; sigh
 			}
 		}
+
 		return $res;
 	}
 
@@ -225,6 +230,7 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -233,9 +239,11 @@ class SwiftFileBackend extends FileBackendStore {
 			$dContObj = $this->getContainer( $dstCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
+
 			return $status;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -293,6 +301,7 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -301,9 +310,11 @@ class SwiftFileBackend extends FileBackendStore {
 			$dContObj = $this->getContainer( $dstCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+
 			return $status;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -313,6 +324,7 @@ class SwiftFileBackend extends FileBackendStore {
 		wfRestoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+
 			return $status;
 		}
 		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
@@ -379,12 +391,14 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -396,9 +410,11 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) || isset( $sContObj ) ) {
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			}
+
 			return $status;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -448,12 +464,14 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
 		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -465,9 +483,11 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) || isset( $sContObj ) ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 			}
+
 			return $status;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -520,6 +540,7 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
@@ -572,6 +593,7 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
@@ -605,12 +627,14 @@ class SwiftFileBackend extends FileBackendStore {
 		// (a) Check if container already exists
 		try {
 			$this->getContainer( $fullCont );
+
 			// NoSuchContainerException not thrown: container must exist
 			return $status; // already exists
 		} catch ( NoSuchContainerException $e ) {
 			// NoSuchContainerException thrown: container does not exist
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -631,6 +655,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// CDN not enabled; nothing to see here
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -727,6 +752,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status; // ok, nothing to do
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -740,6 +766,7 @@ class SwiftFileBackend extends FileBackendStore {
 				return $status; // race? consistency delay?
 			} catch ( CloudFilesException $e ) { // some other exception?
 				$this->handleException( $e, $status, __METHOD__, $params );
+
 				return $status;
 			}
 		}
@@ -786,6 +813,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function convertSwiftDate( $ts, $format = TS_MW ) {
 		$timestamp = new MWTimestamp( $ts );
+
 		return $timestamp->getTimestamp( $format );
 	}
 
@@ -813,6 +841,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$obj->setMetadataValues( array( 'Sha1base36' => $hash ) );
 					$obj->sync_metadata(); // save to Swift
 					wfProfileOut( __METHOD__ );
+
 					return true; // success
 				}
 			}
@@ -820,6 +849,7 @@ class SwiftFileBackend extends FileBackendStore {
 		trigger_error( "Unable to set SHA-1 metadata for $path", E_USER_WARNING );
 		$obj->setMetadataValues( array( 'Sha1base36' => false ) );
 		wfProfileOut( __METHOD__ );
+
 		return false; // failed
 	}
 
@@ -899,6 +929,7 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
+
 			return ( count( $container->list_objects( 1, null, $prefix ) ) > 0 );
 		} catch ( NoSuchContainerException $e ) {
 			return false;
@@ -1075,8 +1106,8 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( is_object( $object ) ) {
 				$stat = array(
 					// Convert various random Swift dates to TS_MW
-					'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
-					'size'   => (int)$object->content_length,
+					'mtime' => $this->convertSwiftDate( $object->last_modified, TS_MW ),
+					'size' => (int)$object->content_length,
 					'latest' => false // eventually consistent
 				);
 				$names[] = array( $object->name, $stat );
@@ -1085,6 +1116,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$names[] = array( $object, null );
 			}
 		}
+
 		return $names;
 	}
 
@@ -1107,6 +1139,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$this->clearCache( array( $params['src'] ) );
 				$stat = $this->getFileStat( $params );
 			}
+
 			return $stat['sha1'];
 		} else {
 			return false;
@@ -1125,9 +1158,11 @@ class SwiftFileBackend extends FileBackendStore {
 			$cont = $this->getContainer( $srcCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
+
 			return $status;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
+
 			return $status;
 		}
 
@@ -1215,8 +1250,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 	public function getFileHttpUrl( array $params ) {
 		if ( $this->swiftTempUrlKey != '' ||
-			( $this->rgwS3AccessKey != '' && $this->rgwS3SecretKey != '' ) )
-		{
+			( $this->rgwS3AccessKey != '' && $this->rgwS3SecretKey != '' )
+		) {
 			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 			if ( $srcRel === null ) {
 				return null; // invalid path
@@ -1239,6 +1274,7 @@ class SwiftFileBackend extends FileBackendStore {
 						$this->rgwS3SecretKey,
 						true // raw
 					) );
+
 					// See http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
 					// Note: adding a newline for empty CanonicalizedAmzHeaders does not work.
 					return wfAppendQuery(
@@ -1255,6 +1291,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$this->handleException( $e, null, __METHOD__, $params );
 			}
 		}
+
 		return null;
 	}
 
@@ -1275,6 +1312,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['latest'] ) ) {
 			$hdrs[] = 'X-Newest: true';
 		}
+
 		return $hdrs;
 	}
 
@@ -1413,6 +1451,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 			$this->conn = new CF_Connection( $this->auth );
 		}
+
 		return $this->conn;
 	}
 
@@ -1466,6 +1505,7 @@ class SwiftFileBackend extends FileBackendStore {
 				);
 			}
 		}
+
 		return $this->connContainerCache->get( $container, 'obj' );
 	}
 
@@ -1514,7 +1554,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * This also sets the Status object to have a fatal error.
 	 *
 	 * @param Exception $e
-	 * @param Status $status|null
+	 * @param Status $status null
 	 * @param string $func
 	 * @param array $params
 	 * @return void
@@ -1664,7 +1704,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param string $after|null
+	 * @param string $after null
 	 * @param integer $limit
 	 * @param array $params
 	 * @return Traversable|Array
@@ -1708,6 +1748,7 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 			$storageDir = rtrim( $this->params['dir'], '/' );
 			$this->backend->loadListingStatInternal( "$storageDir/$relPath", $stat );
 		}
+
 		return $relPath;
 	}
 

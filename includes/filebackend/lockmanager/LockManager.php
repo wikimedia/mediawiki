@@ -119,6 +119,7 @@ abstract class LockManager {
 			$elapsed = microtime( true ) - $start;
 		} while ( $elapsed < $timeout && $elapsed >= 0 );
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -145,6 +146,7 @@ abstract class LockManager {
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
 		$status = $this->doUnlockByType( $pathsByType );
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -185,6 +187,7 @@ abstract class LockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$res[$this->lockTypeMap[$type]] = array_unique( $paths );
 		}
+
 		return $res;
 	}
 
@@ -209,6 +212,7 @@ abstract class LockManager {
 				break;
 			}
 		}
+
 		return $status;
 	}
 
@@ -232,6 +236,7 @@ abstract class LockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doUnlock( $paths, $type ) );
 		}
+
 		return $status;
 	}
 

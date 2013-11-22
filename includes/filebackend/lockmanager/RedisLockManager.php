@@ -120,6 +120,7 @@ class RedisLockManager extends QuorumLockManager {
 			foreach ( $paths as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
+
 			return $status;
 		}
 
@@ -204,6 +205,7 @@ LUA;
 			foreach ( $paths as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
+
 			return $status;
 		}
 

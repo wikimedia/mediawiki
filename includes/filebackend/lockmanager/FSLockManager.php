@@ -77,6 +77,7 @@ class FSLockManager extends LockManager {
 			} else {
 				// Abort and unlock everything
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
+
 				return $status;
 			}
 		}
@@ -205,6 +206,7 @@ class FSLockManager extends LockManager {
 				$status->warning( 'lockmanager-fail-closelock', $path );
 			}
 		}
+
 		return $status;
 	}
 
@@ -221,6 +223,7 @@ class FSLockManager extends LockManager {
 			}
 			unset( $this->handles[$path] );
 		}
+
 		return $status;
 	}
 

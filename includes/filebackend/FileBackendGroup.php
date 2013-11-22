@@ -37,7 +37,8 @@ class FileBackendGroup {
 	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
 	protected $backends = array();
 
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * @return FileBackendGroup
@@ -47,6 +48,7 @@ class FileBackendGroup {
 			self::$instance = new self();
 			self::$instance->initFromGlobals();
 		}
+
 		return self::$instance;
 	}
 
@@ -159,6 +161,7 @@ class FileBackendGroup {
 			$config = $this->backends[$name]['config'];
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
+
 		return $this->backends[$name]['instance'];
 	}
 
@@ -174,6 +177,7 @@ class FileBackendGroup {
 			throw new MWException( "No backend defined with the name `$name`." );
 		}
 		$class = $this->backends[$name]['class'];
+
 		return array( 'class' => $class ) + $this->backends[$name]['config'];
 	}
 
@@ -188,6 +192,7 @@ class FileBackendGroup {
 		if ( $backend !== null && isset( $this->backends[$backend] ) ) {
 			return $this->get( $backend );
 		}
+
 		return null;
 	}
 }

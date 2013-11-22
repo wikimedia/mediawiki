@@ -90,6 +90,7 @@ class FSFileBackend extends FileBackendStore {
 				return $relStoragePath;
 			}
 		}
+
 		return null;
 	}
 
@@ -125,6 +126,7 @@ class FSFileBackend extends FileBackendStore {
 		} elseif ( isset( $this->basePath ) ) {
 			return "{$this->basePath}/{$fullCont}";
 		}
+
 		return null; // no container base path defined
 	}
 
@@ -144,6 +146,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( $relPath != '' ) {
 			$fsPath .= "/{$relPath}";
 		}
+
 		return $fsPath;
 	}
 
@@ -174,6 +177,7 @@ class FSFileBackend extends FileBackendStore {
 		$dest = $this->resolveToFSPath( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -181,6 +185,7 @@ class FSFileBackend extends FileBackendStore {
 			$tempFile = TempFSFile::factory( 'create_', 'tmp' );
 			if ( !$tempFile ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
+
 				return $status;
 			}
 			$this->trapWarnings();
@@ -188,6 +193,7 @@ class FSFileBackend extends FileBackendStore {
 			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
+
 				return $status;
 			}
 			$cmd = implode( ' ', array(
@@ -203,6 +209,7 @@ class FSFileBackend extends FileBackendStore {
 			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
+
 				return $status;
 			}
 			$this->chmod( $dest );
@@ -227,6 +234,7 @@ class FSFileBackend extends FileBackendStore {
 		$dest = $this->resolveToFSPath( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -248,6 +256,7 @@ class FSFileBackend extends FileBackendStore {
 					trigger_error( __METHOD__ . ": copy() failed but returned true." );
 				}
 				$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+
 				return $status;
 			}
 			$this->chmod( $dest );
@@ -272,12 +281,14 @@ class FSFileBackend extends FileBackendStore {
 		$source = $this->resolveToFSPath( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
 		$dest = $this->resolveToFSPath( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -285,6 +296,7 @@ class FSFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-copy', $params['src'] );
 			}
+
 			return $status; // do nothing; either OK or bad status
 		}
 
@@ -308,6 +320,7 @@ class FSFileBackend extends FileBackendStore {
 					trigger_error( __METHOD__ . ": copy() failed but returned true." );
 				}
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+
 				return $status;
 			}
 			$this->chmod( $dest );
@@ -332,12 +345,14 @@ class FSFileBackend extends FileBackendStore {
 		$source = $this->resolveToFSPath( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
 		$dest = $this->resolveToFSPath( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -345,6 +360,7 @@ class FSFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-move', $params['src'] );
 			}
+
 			return $status; // do nothing; either OK or bad status
 		}
 
@@ -362,6 +378,7 @@ class FSFileBackend extends FileBackendStore {
 			clearstatcache(); // file no longer at source
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+
 				return $status;
 			}
 		}
@@ -385,6 +402,7 @@ class FSFileBackend extends FileBackendStore {
 		$source = $this->resolveToFSPath( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
@@ -392,6 +410,7 @@ class FSFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 			}
+
 			return $status; // do nothing; either OK or bad status
 		}
 
@@ -407,6 +426,7 @@ class FSFileBackend extends FileBackendStore {
 			$this->untrapWarnings();
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
+
 				return $status;
 			}
 		}
@@ -444,6 +464,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( is_dir( $dir ) && !$existed ) {
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
 		}
+
 		return $status;
 	}
 
@@ -471,6 +492,7 @@ class FSFileBackend extends FileBackendStore {
 				$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
 			}
 		}
+
 		return $status;
 	}
 
@@ -498,6 +520,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 			$this->untrapWarnings();
 		}
+
 		return $status;
 	}
 
@@ -511,6 +534,7 @@ class FSFileBackend extends FileBackendStore {
 			rmdir( $dir ); // remove directory if empty
 		}
 		$this->untrapWarnings();
+
 		return $status;
 	}
 
@@ -566,11 +590,14 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $dir );
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
+
 			return array(); // nothing under this dir
 		} elseif ( !is_readable( $dir ) ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
+
 			return null; // bad permissions?
 		}
+
 		return new FSFileBackendDirList( $dir, $params );
 	}
 
@@ -585,11 +612,14 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $dir );
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
+
 			return array(); // nothing under this dir
 		} elseif ( !is_readable( $dir ) ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
+
 			return null; // bad permissions?
 		}
+
 		return new FSFileBackendFileList( $dir, $params );
 	}
 
@@ -745,6 +775,7 @@ class FSFileBackend extends FileBackendStore {
 	public function handleWarning( $errno, $errstr ) {
 		wfDebugLog( 'FSFileBackend', $errstr ); // more detailed error logging
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
+
 		return true; // suppress from PHP handler
 	}
 }
@@ -823,6 +854,7 @@ abstract class FSFileBackendList implements Iterator {
 			# RecursiveDirectoryIterator extends FilesystemIterator.
 			# FilesystemIterator::SKIP_DOTS default is inconsistent in PHP 5.3.x.
 			$flags = FilesystemIterator::CURRENT_AS_SELF | FilesystemIterator::SKIP_DOTS;
+
 			return new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $dir, $flags ),
 				RecursiveIteratorIterator::CHILD_FIRST // include dirs
@@ -885,7 +917,8 @@ abstract class FSFileBackendList implements Iterator {
 	/**
 	 * Filter out items by advancing to the next ones
 	 */
-	protected function filterViaNext() {}
+	protected function filterViaNext() {
+	}
 
 	/**
 	 * Return only the relative path and normalize slashes to FileBackend-style.
@@ -899,6 +932,7 @@ abstract class FSFileBackendList implements Iterator {
 		if ( $path === false ) {
 			$path = $dir;
 		}
+
 		return strtr( substr( $path, $this->suffixStart ), '\\', '/' );
 	}
 }

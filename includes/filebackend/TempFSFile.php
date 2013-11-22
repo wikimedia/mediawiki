@@ -56,12 +56,14 @@ class TempFSFile extends FSFile {
 			}
 			if ( $attempt >= 5 ) {
 				wfProfileOut( __METHOD__ );
+
 				return null; // give up
 			}
 		}
 		$tmpFile = new self( $path );
 		$tmpFile->canDelete = true; // safely instantiated
 		wfProfileOut( __METHOD__ );
+
 		return $tmpFile;
 	}
 
@@ -75,6 +77,7 @@ class TempFSFile extends FSFile {
 		wfSuppressWarnings();
 		$ok = unlink( $this->path );
 		wfRestoreWarnings();
+
 		return $ok;
 	}
 
@@ -92,6 +95,7 @@ class TempFSFile extends FSFile {
 			}
 			$object->tempFSFileReferences[] = $this;
 		}
+
 		return $this;
 	}
 
@@ -102,6 +106,7 @@ class TempFSFile extends FSFile {
 	 */
 	public function preserve() {
 		$this->canDelete = false;
+
 		return $this;
 	}
 
@@ -112,6 +117,7 @@ class TempFSFile extends FSFile {
 	 */
 	public function autocollect() {
 		$this->canDelete = true;
+
 		return $this;
 	}
 

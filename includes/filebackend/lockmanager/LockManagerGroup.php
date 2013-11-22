@@ -54,6 +54,7 @@ class LockManagerGroup {
 			self::$instances[$domain] = new self( $domain );
 			self::$instances[$domain]->initFromGlobals();
 		}
+
 		return self::$instances[$domain];
 	}
 
@@ -121,6 +122,7 @@ class LockManagerGroup {
 			$config = $this->managers[$name]['config'];
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
+
 		return $this->managers[$name]['instance'];
 	}
 
@@ -136,6 +138,7 @@ class LockManagerGroup {
 			throw new MWException( "No lock manager defined with the name `$name`." );
 		}
 		$class = $this->managers[$name]['class'];
+
 		return array( 'class' => $class ) + $this->managers[$name]['config'];
 	}
 

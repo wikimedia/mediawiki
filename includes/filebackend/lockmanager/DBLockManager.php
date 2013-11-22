@@ -116,6 +116,7 @@ abstract class DBLockManager extends QuorumLockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
 		}
+
 		return $status;
 	}
 
@@ -135,8 +136,10 @@ abstract class DBLockManager extends QuorumLockManager {
 			$this->getConnection( $lockSrv );
 		} catch ( DBError $e ) {
 			$this->cacheRecordFailure( $lockSrv );
+
 			return false; // failed to connect
 		}
+
 		return true;
 	}
 
@@ -175,6 +178,7 @@ abstract class DBLockManager extends QuorumLockManager {
 		if ( !$this->conns[$lockDb]->trxLevel() ) {
 			$this->conns[$lockDb]->begin( __METHOD__ ); // start transaction
 		}
+
 		return $this->conns[$lockDb];
 	}
 
@@ -186,7 +190,8 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * @return void
 	 * @throws DBError
 	 */
-	protected function initConnection( $lockDb, DatabaseBase $db ) {}
+	protected function initConnection( $lockDb, DatabaseBase $db ) {
+	}
 
 	/**
 	 * Checks if the DB has not recently had connection/query errors.
@@ -374,7 +379,7 @@ class PostgreSqlLockManager extends DBLockManager {
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
 		$bigints = array_unique( array_map(
-			function( $key ) {
+			function ( $key ) {
 				return wfBaseConvert( substr( $key, 0, 15 ), 16, 10 );
 			},
 			array_map( array( $this, 'sha1Base16Absolute' ), $paths )

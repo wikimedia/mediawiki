@@ -179,6 +179,7 @@ class LSLockManager extends QuorumLockManager {
 		if ( $response === false ) {
 			return false;
 		}
+
 		return trim( $response );
 	}
 
@@ -203,6 +204,7 @@ class LSLockManager extends QuorumLockManager {
 			stream_set_timeout( $conn, $sec, $usec );
 			$this->conns[$lockSrv] = $conn;
 		}
+
 		return $this->conns[$lockSrv];
 	}
 

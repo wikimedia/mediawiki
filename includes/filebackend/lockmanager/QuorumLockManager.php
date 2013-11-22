@@ -65,6 +65,7 @@ abstract class QuorumLockManager extends LockManager {
 			$status->merge( $this->doLockingRequestBucket( $bucket, $pathsToLockByType ) );
 			if ( !$status->isOK() ) {
 				$status->merge( $this->doUnlockByType( $lockedPaths ) );
+
 				return $status;
 			}
 			// Record these locks as active

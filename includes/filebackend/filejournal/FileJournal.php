@@ -65,6 +65,7 @@ abstract class FileJournal {
 			throw new MWException( "Class given is not an instance of FileJournal." );
 		}
 		$jrn->backend = $backend;
+
 		return $jrn;
 	}
 
@@ -79,6 +80,7 @@ abstract class FileJournal {
 			$s .= mt_rand( 0, 2147483647 );
 		}
 		$s = wfBaseConvert( sha1( $s ), 16, 36, 31 );
+
 		return substr( wfBaseConvert( wfTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
 	}
 
@@ -98,6 +100,7 @@ abstract class FileJournal {
 		if ( !count( $entries ) ) {
 			return Status::newGood();
 		}
+
 		return $this->doLogChangeBatch( $entries, $batchId );
 	}
 
@@ -154,7 +157,6 @@ abstract class FileJournal {
 	 *     path       : affected storage path
 	 *     new_sha1   : base 36 sha1 of the new file had the operation succeeded
 	 *     timestamp  : TS_MW timestamp of the batch change
-
 	 * Also, $next is updated to the ID of the next entry.
 	 *
 	 * @param $start integer Starting change ID or null
@@ -170,6 +172,7 @@ abstract class FileJournal {
 		} else {
 			$next = null; // end of list
 		}
+
 		return $entries;
 	}
 
