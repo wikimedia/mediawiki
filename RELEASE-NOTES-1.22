@@ -8,63 +8,71 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.22 is an alpha-quality branch and is not recommended for use in
 production.
 
-=== Configuration changes in 1.22 ===
-* $wgRedirectScript was removed. It was unused.
-* Removed $wgLocalMessageCacheSerialized, it is now always true.
-* $wgVectorUseIconWatch is now enabled by default.
-* $wgCascadingRestrictionLevels was added.
-* ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
-  have been whitelisted inside of $wgUrlProtocols.
-* $wgDocType and $wgDTD have been removed and are no longer used for the DOCTYPE.
-* $wgHtml5 is no longer used by core. Setting it to false will no longer disable HTML5.
-  It is still set to true for extension compatibility but doing so in extensions is deprecated.
-* $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
-  xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
-* $wgHandheldStyle was removed.
-* $wgHandheldForIPhone was removed.
-* $wgJsMimeType is no longer used by core. Most usage has been removed since
-  HTML output is now exclusively HTML5.
-* $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
-* $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
-  default for $wgLogAutopatrol is true.
-* The 'edit' right no longer allows for editing a user's own CSS and JS.
-* New rights 'editmyusercss', 'editmyuserjs', 'viewmywatchlist',
-  'editmywatchlist', 'viewmyprivateinfo', 'editmyprivateinfo', and
-  'editmyoptions' restrict actions that were formerly allowed by default. They
-  have been added to the default for $wgGroupPermissions['*'].
-* The 'editprotected' right no longer allows bypassing of all page protection
-  restrictions. Any group using it for this purpose will now need to have all
-  the individual rights listed in $wgRestrictionTypes for the same effect.
-* The 'protect' and 'autoconfirmed' rights are no longer used for the default
-  page protection levels. The rights 'editprotected' and 'editsemiprotected'
-  are now used for this purpose instead.
-* (bug 40866) wgOldChangeTagsIndex removed.
-* $wgNoFollowDomainExceptions now only matches entire domains. For example,
-  an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
-* $wgCopyUploadTimeout and $wgCopyUploadAsyncTimeout added to change the timeout times for
-  fetching the file during upload by url.
-* New key added to $wgGalleryOptions - $wgGalleryOptions['mode'] to set
-  default gallery mode.
-* New hook 'GalleryGetModes' to allow extensions to make new gallery modes.
-* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
-  enabled has been removed. Instead, whether the user stays in HTTPS will be determined
-  based on the user's preferences, and whether they came from HTTPS or not.
-* $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort,
-  and $wgRC2UDPPrefix configuration options have been deprecated in favor of a
-  $wgRCFeeds configuration array. $wgRCFeeds makes both the format and
-  destination of recent change notifications customizable, and allows for
-  multiple destinations to be specified.
-* (bug 53862) portal-url, currentevents-url and helppage have been removed from the
-  default Sidebar.
-* The 'vector-simplesearch' preference is now enabled by default. Previously
-  it was only enabled if the Vector extension was installed.
-* The precise format of metric datagrams produced by the UDP profiler and stats counter
-  may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
-  respectively.
-* (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
-  $wgProxyMemcExpiry have been removed, along with the open proxy scanner
-  script they were added for.
-* Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
+* Breaking Changes in 1.22
+* New features in 1.22
+* Configuration changes in 1.22
+* Bug fixes in 1.22
+* API changes in 1.22
+* Languages updated in 1.22
+* Other changes in 1.22
+
+=== Breaking Changes in 1.22 ===
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
+* (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
+  This resolves an infinite loop when using $wgDebugFunctionEntry = true.
+* BREAKING CHANGE: action=parse no longer returns all langlinks for the page
+  with prop=langlinks by default. The new effectivelanglinks parameter will
+  request that the LanguageLinks hook be called to determine the effective
+  language links.
+* BREAKING CHANGE: list=allpages, list=langbacklinks, and prop=langlinks do not
+  apply the new LanguageLinks hook, and thus only consider language links
+  stored in the database.
+* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
+  has changed:
+** MediaWiki no longer supports PHP installations in which the native JSON
+   extension is missing or disabled.
+** XmlJsCode objects can no longer be nested inside objects or arrays.
+   (For Xml::encodeJsCall(), this individually applies to each argument.)
+** The sets of characters escaped by default, along with the precise escape
+   sequences used, have changed (except for the Xml::escapeJsString()
+   function, which is now deprecated).
+* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
+  be sure to upgrade affected extensions at the same time (e.g. Collection).
+* BREAKING CHANGE: Legacy skins Simple, MySkin, Chick, Standard and Nostalgia
+  were all removed. (Nostalgia was moved to an extension.) The SkinLegacy and
+  LegacyTemplate classes that supported them were removed as well and are now a
+  part of the Nostalgia extension.
+* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
+  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf,
+  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
+  use AuthPlugin for external authentication/authorization needs.
+* BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
+  accesskey character is now $6 instead of $5.
+* BREAKING CHANGE: meta keywords are no longer supported. A <meta name="keywords"
+  will no longer be output and OutputPage::addKeyword no longer exists.
+* BREAKING CHANGE: The EditSectionLink hook was removed after being
+  deprecated since MediaWiki 1.14. Use DoEditSectionLink instead.
+* (bug 50310) BREAKING CHANGE: wikibits: Drop support for mwCustomEditButtons.
+  It defaults to an empty array and emits mw.log.warn when accessed.
+* BREAKING CHANGE: Special:Disambiguations has been removed from MediaWiki core.
+  Functions related to disambiguation pages are now handled by the Disambiguator
+  extension (https://www.mediawiki.org/wiki/Extension:Disambiguator) (bug
+  35981).
+* BREAKING CHANGE: The 'mediawiki.legacy.wikiprintable' module has been removed.
+  The skins/common/wikiprintable.css file no longer exists. Return value of
+  Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
+  module instead or base your skin on SkinTemplate.
+* BREAKING CHANGE: The module 'mediawiki.legacy.IEFixes' has been removed as it was
+  unused. The file skins/common/IEFixes.js remains but is only used by wikibits.
+  The file never contained any re-usable components. To use it in a skin, load
+  'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
+  IEFixes automatically if user agent conditions are met.
 
 === New features in 1.22 ===
 * You can now install extensions using Composer.
@@ -101,13 +109,6 @@ production.
   another portlet will work as expected.
 * (bug 6747) {{ROOTPAGENAME}} introduced, contains the name of the topmost
   page without namespace.
-* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
-  change their class name from .editsection to .mw-editsection and place them at
-  the end of the heading element instead of the beginning. Client-side code and
-  screen-scrapers will have to be adjusted to handle both cases (old HTML will
-  still be visible on cached page renders until they are purged); extensions
-  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
-  well.
 * (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
   language links associated with a page before display.
 * Chosen (http://harvesthq.github.io/chosen/) was added as module 'jquery.chosen'
@@ -266,6 +267,64 @@ production.
   prefix. Also fixed PHPUnit test suite when using a MySQL backend containing
   views.
 
+=== Configuration changes in 1.22 ===
+* $wgRedirectScript was removed. It was unused.
+* Removed $wgLocalMessageCacheSerialized, it is now always true.
+* $wgVectorUseIconWatch is now enabled by default.
+* $wgCascadingRestrictionLevels was added.
+* ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
+  have been whitelisted inside of $wgUrlProtocols.
+* $wgDocType and $wgDTD have been removed and are no longer used for the DOCTYPE.
+* $wgHtml5 is no longer used by core. Setting it to false will no longer disable HTML5.
+  It is still set to true for extension compatibility but doing so in extensions is deprecated.
+* $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
+  xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
+* $wgHandheldStyle was removed.
+* $wgHandheldForIPhone was removed.
+* $wgJsMimeType is no longer used by core. Most usage has been removed since
+  HTML output is now exclusively HTML5.
+* $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
+* $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
+  default for $wgLogAutopatrol is true.
+* The 'edit' right no longer allows for editing a user's own CSS and JS.
+* New rights 'editmyusercss', 'editmyuserjs', 'viewmywatchlist',
+  'editmywatchlist', 'viewmyprivateinfo', 'editmyprivateinfo', and
+  'editmyoptions' restrict actions that were formerly allowed by default. They
+  have been added to the default for $wgGroupPermissions['*'].
+* The 'editprotected' right no longer allows bypassing of all page protection
+  restrictions. Any group using it for this purpose will now need to have all
+  the individual rights listed in $wgRestrictionTypes for the same effect.
+* The 'protect' and 'autoconfirmed' rights are no longer used for the default
+  page protection levels. The rights 'editprotected' and 'editsemiprotected'
+  are now used for this purpose instead.
+* (bug 40866) wgOldChangeTagsIndex removed.
+* $wgNoFollowDomainExceptions now only matches entire domains. For example,
+  an entry for 'bar.com' will still match 'foo.bar.com' but not 'foobar.com'.
+* $wgCopyUploadTimeout and $wgCopyUploadAsyncTimeout added to change the timeout times for
+  fetching the file during upload by url.
+* New key added to $wgGalleryOptions - $wgGalleryOptions['mode'] to set
+  default gallery mode.
+* New hook 'GalleryGetModes' to allow extensions to make new gallery modes.
+* The checkbox for staying in HTTPS displayed on the login form when $wgSecureLogin is
+  enabled has been removed. Instead, whether the user stays in HTTPS will be determined
+  based on the user's preferences, and whether they came from HTTPS or not.
+* $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort,
+  and $wgRC2UDPPrefix configuration options have been deprecated in favor of a
+  $wgRCFeeds configuration array. $wgRCFeeds makes both the format and
+  destination of recent change notifications customizable, and allows for
+  multiple destinations to be specified.
+* (bug 53862) portal-url, currentevents-url and helppage have been removed from the
+  default Sidebar.
+* The 'vector-simplesearch' preference is now enabled by default. Previously
+  it was only enabled if the Vector extension was installed.
+* The precise format of metric datagrams produced by the UDP profiler and stats counter
+  may now be specified as $wgUDPProfilerFormatString and $wgStatsFormatString,
+  respectively.
+* (bug 54597) $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath, and
+  $wgProxyMemcExpiry have been removed, along with the open proxy scanner
+  script they were added for.
+* Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
+
 === Bug fixes in 1.22 ===
 * (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
@@ -351,8 +410,6 @@ production.
 * (bug 47191) Fixed "Column 'si_title' cannot be part of FULLTEXT index"
   MySQL error when installing using the binary character set option.
 * (bug 45288) Support mysqli PHP extension
-* (bug 55818) BREAKING CHANGE: Removed undocumented 'Debug' hook in wfDebug.
-  This resolves an infinite loop when using $wgDebugFunctionEntry = true.
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
 * (bug 56770) mw.util.addPortletLink: Check length before access array index.
 
@@ -373,13 +430,6 @@ production.
 * action=opensearch no longer silently ignores the format parameter.
 * action=opensearch now supports format=jsonfm.
 * list=usercontribs&ucprop=ids will now include the parent revision id.
-* BREAKING CHANGE: action=parse no longer returns all langlinks for the page
-  with prop=langlinks by default. The new effectivelanglinks parameter will
-  request that the LanguageLinks hook be called to determine the effective
-  language links.
-* BREAKING CHANGE: list=allpages, list=langbacklinks, and prop=langlinks do not
-  apply the new LanguageLinks hook, and thus only consider language links
-  stored in the database.
 * (bug 47219) Allow specifying change type of Wikipedia feed items
 * prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
 * prop=info now adds the content model and page language of the title.
@@ -417,7 +467,7 @@ production.
   file repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
 * The new query module list=allfileusages to enumerate file usages was added.
 
-=== Languages updated in 1.22===
+=== Languages updated in 1.22 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
@@ -427,38 +477,17 @@ changes to languages because of Bugzilla reports.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
 === Other changes in 1.22 ===
-* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
-  has changed:
-** MediaWiki no longer supports PHP installations in which the native JSON
-   extension is missing or disabled.
-** XmlJsCode objects can no longer be nested inside objects or arrays.
-   (For Xml::encodeJsCall(), this individually applies to each argument.)
-** The sets of characters escaped by default, along with the precise escape
-   sequences used, have changed (except for the Xml::escapeJsString()
-   function, which is now deprecated).
-* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
-  be sure to upgrade affected extensions at the same time (e.g. Collection).
 * redirect.php was removed. It was unused.
 * ClickTracking integration was dropped from the mediaWiki.user.bucket
   JavaScript function. The 'tracked' option is now ignored.
-* BREAKING CHANGE: Legacy skins Simple, MySkin, Chick, Standard and Nostalgia
-  were all removed. (Nostalgia was moved to an extension.) The SkinLegacy and
-  LegacyTemplate classes that supported them were removed as well and are now a
-  part of the Nostalgia extension.
 * Event namespace used by jquery.makeCollapsible has been changed from
   'mw-collapse' to 'mw-collapsible' for consistency with the module name.
-* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
-  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf,
-  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
-  use AuthPlugin for external authentication/authorization needs.
 * The Quickbar feature of the legacy skin model and the last remnants of it
   throughout the code base have been removed.
 * Externaledit/externaldiff preference was removed. Very few users used this
   feature, and improper configuration can actually prevent a user from editing
 * Calling Linker methods using a skin will now output deprecation warnings.
 * (bug 46680) "Return to" links are no longer tagged with rel="next".
-* BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
-  accesskey character is now $6 instead of $5.
 * HipHop compiler (hphpc) support was removed. HipHop VM support (hhvm) was
   added.
 * A new Special:Redirect page was added, providing lookup by revision ID,
@@ -476,8 +505,6 @@ changes to languages because of Bugzilla reports.
 * (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
   properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
   sajax_do_call and wfSupportsAjax.
-* BREAKING CHANGE: meta keywords are no longer supported. A <meta name="keywords"
-  will no longer be output and OutputPage::addKeyword no longer exists.
 * Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
   deprecated since 1.19, have been removed.
 * (bug 50134) Hook functions are no longer required to return a value. When a
@@ -485,8 +512,6 @@ changes to languages because of Bugzilla reports.
   processing continues. To abort the hook, a hook function must return an
   explicit, boolean false or a string error message. Other falsey values are
   tantamount to a 'return true' in earlier versions of MediaWiki.
-* BREAKING CHANGE: The EditSectionLink hook was removed after being
-  deprecated since MediaWiki 1.14. Use DoEditSectionLink instead.
 * (bug 48256) The 'editsection-brackets' optional message was removed.
   Section edit links' brackets can now be customized using CSS by
   styling span.mw-editsection-bracket.
@@ -506,16 +531,6 @@ changes to languages because of Bugzilla reports.
 * SpecialPrefixindex methods namespacePrefixForm() and showPrefixChunk() have
   been made protected. They were accepting form variance arguments, this is now
   using properties in the SpecialPrefixindex class.
-* (bug 50310) BREAKING CHANGE: wikibits: Drop support for mwCustomEditButtons.
-  It defaults to an empty array and emits mw.log.warn when accessed.
-* BREAKING CHANGE: Special:Disambiguations has been removed from MediaWiki core.
-  Functions related to disambiguation pages are now handled by the Disambiguator
-  extension (https://www.mediawiki.org/wiki/Extension:Disambiguator) (bug
-  35981).
-* BREAKING CHANGE: The 'mediawiki.legacy.wikiprintable' module has been removed.
-  The skins/common/wikiprintable.css file no longer exists. Return value of
-  Skin#commonPrintStylesheet is ignored. Please use the 'mediawiki.legacy.commonPrint'
-  module instead or base your skin on SkinTemplate.
 * (bug 49629) The hook ExtractThumbParamaters has been deprecated in favour
   of media handler overriding MediaHandler::parseParamString.
 * (bug 46512) The collapsibleNav feature from the Vector extension has been moved
@@ -526,11 +541,6 @@ changes to languages because of Bugzilla reports.
   object instead of a boolean.
 * Information boxes (CSS classes errorbox, warningbox, successbox) have been
   made more subtle.
-* BREAKING CHANGE: The module 'mediawiki.legacy.IEFixes' has been removed as it was
-  unused. The file skins/common/IEFixes.js remains but is only used by wikibits.
-  The file never contained any re-usable components. To use it in a skin, load
-  'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
-  IEFixes automatically if user agent conditions are met.
 * Code specific to the Math extension was marked as deprecated.
 * mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name
   still works, but is deprecated.)
