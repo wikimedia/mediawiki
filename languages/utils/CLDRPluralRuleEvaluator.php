@@ -29,7 +29,6 @@
  * @file
  * @since 1.20
  */
-
 class CLDRPluralRuleEvaluator {
 	/**
 	 * Evaluate a number against a set of plural rules. If a rule passes,
@@ -48,8 +47,8 @@ class CLDRPluralRuleEvaluator {
 	 * Convert a set of rules to a compiled form which is optimised for
 	 * fast evaluation. The result will be an array of strings, and may be cached.
 	 *
-	 * @param $rules The rules to compile
-	 * @return An array of compile rules.
+	 * @param array $rules The rules to compile
+	 * @return array An array of compile rules.
 	 */
 	public static function compile( array $rules ) {
 		// We can't use array_map() for this because it generates a warning if
@@ -63,6 +62,10 @@ class CLDRPluralRuleEvaluator {
 	/**
 	 * Evaluate a compiled set of rules returned by compile(). Do not allow
 	 * the user to edit the compiled form, or else PHP errors may result.
+	 *
+	 * @param int The number to be evaluated against the rules
+	 * @param array The associative array of plural rules in pluralform => rule format.
+	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluateCompiled( $number, array $rules ) {
 		// The compiled form is RPN, with tokens strictly delimited by
@@ -96,11 +99,11 @@ class CLDRPluralRuleEvaluator {
 	/**
 	 * Do a single operation
 	 *
-	 * @param $token string The token string
-	 * @param $left The left operand. If it is an object, its state may be destroyed.
-	 * @param $right The right operand
+	 * @param string $token The token string
+	 * @param mixed $left The left operand. If it is an object, its state may be destroyed.
+	 * @param mixed $right The right operand
 	 * @throws CLDRPluralRuleError
-	 * @return mixed
+	 * @return mixed The operation result
 	 */
 	private static function doOperation( $token, $left, $right ) {
 		if ( in_array( $token, array( 'in', 'not-in', 'within', 'not-within' ) ) ) {
@@ -150,8 +153,19 @@ class CLDRPluralRuleEvaluator {
  * Evaluator helper class representing a range list.
  */
 class CLDRPluralRuleEvaluator_Range {
+	/**
+	 * The parts
+	 *
+	 * @var array
+	 */
 	public $parts = array();
 
+	/**
+	 * Initialize a new instance of CLDRPluralRuleEvaluator_Range
+	 *
+	 * @param int $start The start of the range
+	 * @param int|bool $end The end of the range, or false if the range is not bounded.
+	 */
 	function __construct( $start, $end = false ) {
 		if ( $end === false ) {
 			$this->parts[] = $start;
@@ -161,9 +175,11 @@ class CLDRPluralRuleEvaluator_Range {
 	}
 
 	/**
-	 * Determine if the given number is inside the range. If $integerConstraint
-	 * is true, the number must additionally be an integer if it is to match
-	 * any interval part.
+	 * Determine if the given number is inside the range.
+	 *
+	 * @param int $number The number to check
+	 * @param bool $integerConstraint If true, also asserts the number is an integer; otherwise, number simply has to be inside the range.
+	 * @return bool True if the number is inside the range; otherwise, false.
 	 */
 	function isNumberIn( $number, $integerConstraint = true ) {
 		foreach ( $this->parts as $part ) {
@@ -185,14 +201,18 @@ class CLDRPluralRuleEvaluator_Range {
 	/**
 	 * Readable alias for isNumberIn( $number, false ), and the implementation
 	 * of the "within" operator.
+	 *
+	 * @param int $number The number to check
+	 * @return bool True if the number is inside the range; otherwise, false.
 	 */
 	function isNumberWithin( $number ) {
 		return $this->isNumberIn( $number, false );
 	}
 
 	/**
-	 * Add another part to this range. The supplied new part may either be a
-	 * range object itself, or a single number.
+	 * Add another part to this range.
+	 *
+	 * @param mixed The part to add, either a range object itself or a single number.
 	 */
 	function add( $other ) {
 		if ( $other instanceof self ) {
@@ -203,7 +223,10 @@ class CLDRPluralRuleEvaluator_Range {
 	}
 
 	/**
-	 * For debugging
+	 * Returns the string representation of the rule evaluator range.
+	 * The purpose of this method is to help debugging.
+	 *
+	 * @return string The string representation of the rule evaluator range
 	 */
 	function __toString() {
 		$s = 'Range(';
@@ -227,8 +250,39 @@ class CLDRPluralRuleEvaluator_Range {
  * Helper class for converting rules to reverse polish notation (RPN).
  */
 class CLDRPluralRuleConverter {
-	public $rule, $pos, $end;
+	/**
+	 * The rule
+	 *
+	 * @var string
+	 */
+	public $rule;
+
+	/**
+	 * The position
+	 *
+	 * @var int
+	 */
+	public $pos;
+
+	/**
+	 * The last position possible
+	 *
+	 * @var int
+	 */
+	public $end;
+
+	/**
+	 * The operators
+	 *
+	 * @var array
+	 */
 	public $operators = array();
+
+	/**
+	 * The operands
+	 *
+	 * @var array
+	 */
 	public $operands = array();
 
 	/**
@@ -268,6 +322,9 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Convert a rule to RPN. This is the only public entry point.
+	 *
+	 * @param $rule The rule to convert
+	 * @return string The RPN representation of the rule
 	 */
 	public static function convert( $rule ) {
 		$parser = new self( $rule );
@@ -285,6 +342,8 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Do the operation.
+	 *
+	 * @return string The RPN representation of the rule (e.g. "5 3 mod n is")
 	 */
 	protected function doConvert() {
 		$expectOperator = true;
@@ -341,8 +400,9 @@ class CLDRPluralRuleConverter {
 	}
 
 	/**
-	 * Fetch the next token from the input string. Return it as a
-	 * CLDRPluralRuleConverter_Fragment object.
+	 * Fetch the next token from the input string.
+	 *
+	 * @return CLDRPluralRuleConverter_Fragment The next token
 	 */
 	protected function nextToken() {
 		if ( $this->pos >= $this->end ) {
@@ -441,6 +501,8 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Create a numerical expression object
+	 *
+	 * @return CLDRPluralRuleConverter_Expression The numerical expression
 	 */
 	protected function newNumber( $text, $pos ) {
 		return new CLDRPluralRuleConverter_Expression( $this, 'number', $text, $pos, strlen( $text ) );
@@ -448,6 +510,8 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Create a binary operator
+	 *
+	 * @return CLDRPluralRuleConverter_Operator The operator
 	 */
 	protected function newOperator( $type, $pos, $length ) {
 		return new CLDRPluralRuleConverter_Operator( $this, $type, $pos, $length );
@@ -517,6 +581,11 @@ class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragmen
  * messages), and the binary operator at that location.
  */
 class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment {
+	/**
+	 * The name
+	 *
+	 * @var string
+	 */
 	public $name;
 
 	/**
@@ -527,6 +596,8 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 	 *   r = range
 	 *
 	 * A number is a kind of range.
+	 *
+	 * @var array
 	 */
 	static $opTypes = array(
 		'or' => 'bbb',
@@ -544,6 +615,8 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 
 	/**
 	 * Map converting from the abbrevation to the full form.
+	 *
+	 * @var array
 	 */
 	static $typeSpecMap = array(
 		'b' => 'boolean',
@@ -551,11 +624,26 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 		'r' => 'range',
 	);
 
+	/**
+	 * Initialize a new instance of a CLDRPluralRuleConverter_Operator object
+	 *
+	 * @param CLDRPluralRuleConverter $parser The parser
+	 * @param string $name The operator name
+	 * @param int $pos The position
+	 * @param int $pos The length
+	 */
 	function __construct( $parser, $name, $pos, $length ) {
 		parent::__construct( $parser, $pos, $length );
 		$this->name = $name;
 	}
 
+	/**
+	 * Compute the operation
+	 *
+	 * @param CLDRPluralRuleConverter_Expression $left The left part of the expression
+	 * @param CLDRPluralRuleConverter_Expression $right The right part of the expression
+	 * @return CLDRPluralRuleConverter_Expression The result of the operation
+	 */
 	public function operate( $left, $right ) {
 		$typeSpec = self::$opTypes[$this->name];
 
