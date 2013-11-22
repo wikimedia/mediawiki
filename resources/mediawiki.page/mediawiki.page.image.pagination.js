@@ -30,7 +30,7 @@
 			ajaxifyPageNavigation
 		);
 
-		wm.hook('wikipage.content').fire($('table.multipageimage'));
+		wm.hook('wikipage.content').fire($multipageimage);
 	}
 
 	function ajaxifyPageNavigation() {
