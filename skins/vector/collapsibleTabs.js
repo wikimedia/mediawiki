@@ -82,7 +82,7 @@
 		},
 		addData: function ( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( $settings !== null ) {
+			if ( !$settings ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
 					expandedContainer: $settings.expandedContainer,
 					collapsedContainer: $settings.collapsedContainer,
@@ -93,7 +93,7 @@
 		},
 		getSettings: function ( $collapsible ) {
 			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
-			if ( $settings === undefined ) {
+			if ( !$settings ) {
 				$.collapsibleTabs.addData( $collapsible );
 				$settings = $collapsible.data( 'collapsibleTabsSettings' );
 			}
@@ -154,11 +154,9 @@
 					$( this ).hide();
 					// add the placeholder
 					$( '<span class="placeholder" style="display: none;"></span>' ).insertAfter( this );
-					// XXX: 'data' is undefined here, should the 'data' from the outer scope have
-					// a different name?
+					data = $.collapsibleTabs.getSettings( $( ele ) );
 					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', data );
 					$( this ).attr( 'style', 'display: list-item;' );
-					data = $.collapsibleTabs.getSettings( $( ele ) );
 					if ( data ) {
 						expContainerSettings = $.collapsibleTabs.getSettings( $( data.expandedContainer ) );
 						if ( expContainerSettings ) {
