@@ -42,6 +42,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( $itemID !== false && $ret !== false ) {
 			return $ret->getItem( $itemID );
 		}
+
 		return $ret;
 	}
 
@@ -66,6 +67,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$ret = array();
 		foreach ( $batched as $cluster => $batchByCluster ) {
 			$res = $this->batchFetchBlobs( $cluster, $batchByCluster );
+			/** @var HistoryBlob $blob */
 			foreach ( $res as $id => $blob ) {
 				foreach ( $batchByCluster[$id] as $itemID ) {
 					$url = $inverseUrlMap[$cluster][$id][$itemID];
@@ -77,6 +79,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				}
 			}
 		}
+
 		return $ret;
 	}
 
@@ -96,6 +99,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( $dbw->getFlag( DBO_TRX ) ) {
 			$dbw->commit( __METHOD__ );
 		}
+
 		return "DB://$cluster/$id";
 	}
 
@@ -142,6 +146,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	function &getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
+
 		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}
 
@@ -156,6 +161,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( is_null( $table ) ) {
 			$table = 'blobs';
 		}
+
 		return $table;
 	}
 
@@ -182,6 +188,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
 			wfDebugLog( 'ExternalStoreDB-cache',
 				"ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
+
 			return $externalBlobCache[$cacheID];
 		}
 
@@ -209,6 +216,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		}
 
 		$externalBlobCache = array( $cacheID => &$ret );
+
 		return $ret;
 	}
 
@@ -217,7 +225,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *
 	 * @param string $cluster A cluster name valid for use with LBFactory
 	 * @param array $ids A map from the blob_id's to look for to the requested itemIDs in the blobs
-	 * @return array A map from the blob_id's requested to their content.  Unlocated ids are not represented
+	 * @return array A map from the blob_id's requested to their content.
+	 *   Unlocated ids are not represented
 	 */
 	function batchFetchBlobs( $cluster, array $ids ) {
 		$dbr = $this->getSlave( $cluster );
@@ -248,6 +257,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				" master on '$cluster' failed locating items: " .
 				implode( ',', array_keys( $ids ) ) . "\n" );
 		}
+
 		return $ret;
 	}
 
@@ -274,6 +284,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 	protected function parseURL( $url ) {
 		$path = explode( '/', $url );
+
 		return array(
 			$path[2], // cluster
 			$path[3], // id
