@@ -171,8 +171,9 @@ class LoginForm extends SpecialPage {
 		if ( $this->mRequest->getProtocol() !== 'https' ) {
 			$title = $this->getFullTitle();
 			$query = array(
-				'returnto' => $this->mReturnTo,
-				'returntoquery' => $this->mReturnToQuery,
+				'returnto' => $this->mReturnTo !== '' ? $this->mReturnTo : null,
+				'returntoquery' => $this->mReturnToQuery !== '' ?
+					$this->mReturnToQuery : null,
 				'title' => null,
 			) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
