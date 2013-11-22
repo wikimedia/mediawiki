@@ -154,7 +154,7 @@
 					$( this ).hide();
 					// add the placeholder
 					$( '<span class="placeholder" style="display: none;"></span>' ).insertAfter( this );
-					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', outerData );
+					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', data );
 					$( this ).attr( 'style', 'display: list-item;' );
 					data = $.collapsibleTabs.getSettings( $( ele ) );
 					if ( data ) {
