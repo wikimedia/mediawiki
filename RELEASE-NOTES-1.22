@@ -355,6 +355,8 @@ production.
   This resolves an infinite loop when using $wgDebugFunctionEntry = true.
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
 * (bug 56770) mw.util.addPortletLink: Check length before access array index.
+* (bug 57289) Logging in with a temporary password is no longer broken when
+  $wgSecureLogin is true.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
