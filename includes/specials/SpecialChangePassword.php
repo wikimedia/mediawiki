@@ -99,7 +99,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 						'wpLoginToken' => $token,
 						'wpPassword' => $request->getVal( 'wpNewPassword' ),
 					) + $request->getValues( 'wpRemember', 'returnto', 'returntoquery' );
-					$login = new LoginForm( new FauxRequest( $data, true ) );
+					$login = new LoginForm( new DerivativeRequest( $request, $data, true ) );
 					$login->setContext( $this->getContext() );
 					$login->execute( null );
 				}
