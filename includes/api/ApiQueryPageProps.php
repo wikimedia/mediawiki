@@ -94,10 +94,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 			$props[$row->pp_propname] = $row->pp_value;
 		}
 
-		if ( count( $props ) ) {
-			# Add any remaining properties to the results
-			$this->addPageProps( $result, $currentPage, $props );
-		}
+		$this->addPageProps( $result, $currentPage, $props );
 	}
 
 	/**
