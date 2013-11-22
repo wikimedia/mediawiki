@@ -15,6 +15,8 @@
 				type: 'block'
 			} );
 
+
+			
 		// Set the spinner's dimensions equal to the table's dimensions so that
 		// the current scroll position is not lost after the table is emptied prior to
 		// its contents being updated
@@ -27,6 +29,8 @@
 			page + ' table.multipageimage tr',
 			ajaxifyPageNavigation
 		);
+
+		wm.hook('wikipage.content').fire($('table.multipageimage'));
 	}
 
 	function ajaxifyPageNavigation() {
