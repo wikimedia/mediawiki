@@ -3644,29 +3644,6 @@ HTML
 	}
 
 	/**
-	 * Produce the stock "your edit contains spam" page
-	 *
-	 * @param string|bool $match Text which triggered one or more filters
-	 * @deprecated since 1.17 Use method spamPageWithContent() instead
-	 */
-	static function spamPage( $match = false ) {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		global $wgOut, $wgTitle;
-
-		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
-
-		$wgOut->addHTML( '<div id="spamprotected">' );
-		$wgOut->addWikiMsg( 'spamprotectiontext' );
-		if ( $match ) {
-			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
-		}
-		$wgOut->addHTML( '</div>' );
-
-		$wgOut->returnToMain( false, $wgTitle );
-	}
-
-	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
 	 * @param $match string|Array|bool Text (or array of texts) which triggered one or more filters
