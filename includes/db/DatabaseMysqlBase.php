@@ -123,7 +123,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
 			$mode = $this->addQuotes( $wgSQLMode );
-			$this->query( "SET sql_mode = $mode", __METHOD__ );
+			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
+			$success = $this->doQuery( "SET sql_mode = $mode", __METHOD__ );
+			if ( !$success ) {
+				wfLogDBError( "Error setting sql_mode to $mode on server {$this->mServer}" );
+				return $this->reportConnectionError( "Error setting sql_mode to $mode" );
+			}
 		}
 
 		$this->mOpened = true;
