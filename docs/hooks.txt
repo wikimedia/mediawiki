@@ -898,7 +898,7 @@ $oldid: oldid (int) being viewed
 'DoEditSectionLink': Override the HTML generated for section edit links
 $skin: Skin object rendering the UI
 $title: Title object for the title being linked to (may not be the same as
-  $wgTitle, if the section is included from a template)
+  the page title, if the section is included from a template)
 $section: The designation of the section being pointed to, to be included in
   the link, like "&section=$section"
 $tooltip: The default tooltip.  Escape before using.
@@ -1369,7 +1369,7 @@ $context: IContextSource object
 &$pageInfo: Array of information
 
 'InitializeArticleMaybeRedirect': MediaWiki check to see if title is a redirect.
-$title: Title object ($wgTitle)
+$title: Title object for the current page
 $request: WebRequest
 $ignoreRedirect: boolean to skip redirect check
 $target: Title/string of redirect target
@@ -1624,7 +1624,7 @@ something completely different, after the basic globals have been set up, but
 before ordinary actions take place.
 $output: $wgOut
 $article: Article on which the action will be performed
-$title: $wgTitle
+$title: Title on which the action will be performed
 $user: $wgUser
 $request: $wgRequest
 $mediaWiki: The $mediawiki object
