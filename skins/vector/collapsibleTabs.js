@@ -82,7 +82,7 @@
 		},
 		addData: function ( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( $settings !== null ) {
+			if ( !$settings ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
 					expandedContainer: $settings.expandedContainer,
 					collapsedContainer: $settings.collapsedContainer,
@@ -93,7 +93,7 @@
 		},
 		getSettings: function ( $collapsible ) {
 			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
-			if ( $settings === undefined ) {
+			if ( !$settings ) {
 				$.collapsibleTabs.addData( $collapsible );
 				$settings = $collapsible.data( 'collapsibleTabsSettings' );
 			}
@@ -132,21 +132,21 @@
 			} );
 		},
 		moveToCollapsed: function ( ele ) {
-			var data, expContainerSettings, target,
+			var outerScopeData, expContainerSettings, target,
 				$moving = $( ele );
 
-			data = $.collapsibleTabs.getSettings( $moving );
-			if ( !data ) {
+			outerScopeData = $.collapsibleTabs.getSettings( $moving );
+			if ( !outerScopeData ) {
 				return;
 			}
-			expContainerSettings = $.collapsibleTabs.getSettings( $( data.expandedContainer ) );
+			expContainerSettings = $.collapsibleTabs.getSettings( $( outerScopeData.expandedContainer ) );
 			if ( !expContainerSettings ) {
 				return;
 			}
 			expContainerSettings.shifting = true;
 
 			// Remove the element from where it's at and put it in the dropdown menu
-			target = data.collapsedContainer;
+			target = outerScopeData.collapsedContainer;
 			$moving.css( 'position', 'relative' )
 				.css( ( rtl ? 'left' : 'right' ), 0 )
 				.animate( { width: '1px' }, 'normal', function () {
@@ -154,9 +154,7 @@
 					$( this ).hide();
 					// add the placeholder
 					$( '<span class="placeholder" style="display: none;"></span>' ).insertAfter( this );
-					// XXX: 'data' is undefined here, should the 'data' from the outer scope have
-					// a different name?
-					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', data );
+					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', outerScopeData );
 					$( this ).attr( 'style', 'display: list-item;' );
 					data = $.collapsibleTabs.getSettings( $( ele ) );
 					if ( data ) {
