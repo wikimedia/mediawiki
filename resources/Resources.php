@@ -268,6 +268,9 @@ return array(
 		'dependencies' => 'jquery.qunit',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'jquery.scroll' => array(
+		'scripts' => 'resources/jquery/jquery.scroll.js',
+	),
 	'jquery.spinner' => array(
 		'scripts' => 'resources/jquery/jquery.spinner.js',
 		'styles' => 'resources/jquery/jquery.spinner.css',
