@@ -216,7 +216,7 @@ class MemcLockManager extends QuorumLockManager {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
 
-			return;
+			return $status;
 		}
 
 		// Fetch all the existing lock records...
