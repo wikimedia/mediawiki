@@ -1899,7 +1899,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'preferences-summary'           => '', # do not translate or duplicate this message to other languages
 'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
-'prefsnologin'                  => 'Not logged in',
 'prefsnologintext2'             => 'Please $1 to set user preferences.',
 'changepassword'                => 'Change password',
 'changepassword-summary'        => '', # do not translate or duplicate this message to other languages

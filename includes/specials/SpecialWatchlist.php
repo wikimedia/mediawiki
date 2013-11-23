@@ -41,7 +41,7 @@ class SpecialWatchlist extends SpecialPage {
 		$output = $this->getOutput();
 
 		# Anons don't get a watchlist
-		$this->requireLogin( 'watchlistanontext', 'watchnologin' );
+		$this->requireLogin( 'watchlistanontext' );
 
 		// Check permissions
 		$this->checkPermissions();

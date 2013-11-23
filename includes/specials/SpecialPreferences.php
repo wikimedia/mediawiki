@@ -37,7 +37,7 @@ class SpecialPreferences extends SpecialPage {
 		$out = $this->getOutput();
 		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
-		$this->requireLogin( 'prefsnologintext2', 'prefsnologin' );
+		$this->requireLogin( 'prefsnologintext2' );
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
