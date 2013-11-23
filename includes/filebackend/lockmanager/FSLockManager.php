@@ -102,7 +102,7 @@ class FSLockManager extends LockManager {
 	/**
 	 * Lock a single resource key
 	 *
-	 * @param array $path
+	 * @param string $path
 	 * @param int $type
 	 * @return Status
 	 */
@@ -147,7 +147,7 @@ class FSLockManager extends LockManager {
 	/**
 	 * Unlock a single resource key
 	 *
-	 * @param array $path
+	 * @param string $path
 	 * @param int $type
 	 * @return Status
 	 */
