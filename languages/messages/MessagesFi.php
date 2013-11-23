@@ -937,9 +937,9 @@ Väliaikainen salasana: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Uudista avaimet',
-'resettokens-text' => 'Tällä sivulla voit uudistaa avaimesi, jotka mahdollistavat pääsyn käyttäjätunnukseesi liittyviin tiettyihin yksityisiin tietoihin.
+'resettokens-text' => "Tällä sivulla voit uudistaa avaimesi (''eng.'' reset tokens), jotka mahdollistavat pääsyn käyttäjätunnukseesi liittyviin tiettyihin yksityisiin tietoihin.
 
-Sinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa tai jos käyttäjätunnuksesi on vaarannettu.',
+Sinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa tai jos käyttäjätunnuksesi on vaarannettu.",
 'resettokens-no-tokens' => 'Avaimia ei ole uudistettavaksi.',
 'resettokens-legend' => 'Uudista avaimet',
 'resettokens-tokens' => 'Avaimet:',
@@ -2965,14 +2965,16 @@ $2',
 
 # Special:Import
 'import' => 'Tuo sivuja',
-'importinterwiki' => 'Tuo sivuja muista wikeistä',
-'import-interwiki-text' => 'Valitse wiki ja sivun nimi. Versioiden päivämäärät ja muokkaajat säilytetään. Kaikki wikienväliset tuonnit kirjataan [[Special:Log/import|tuontilokiin]].',
+'importinterwiki' => 'Tuo sivuja muista wikeistä (transwiki import)',
+'import-interwiki-text' => 'Valitse wiki ja sivun nimi tuontia varten.
+Versioiden päivämäärät ja muokkaajien nimet säilyvät ennallaan. 
+Kaikki wikienväliset tuontitapahtumat kirjataan [[Special:Log/import|tuontilokiin]].',
 'import-interwiki-source' => 'Lähdewiki/sivu:',
-'import-interwiki-history' => 'Kopioi sivun koko historia',
-'import-interwiki-templates' => 'Liitä kaikki mallineet',
+'import-interwiki-history' => 'Kopioi sivun koko historia ja kaikki versiot',
+'import-interwiki-templates' => 'Ota mukaan kaikki mallineet',
 'import-interwiki-submit' => 'Tuo',
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
-'import-interwiki-rootpage' => 'Tuo annetun sivun alasivuiksi (valinnainen):',
+'import-interwiki-rootpage' => 'Kohteessa oleva perussivu (valinnainen):',
 'import-upload-filename' => 'Tiedostonimi:',
 'import-comment' => 'Kommentti:',
 'importtext' => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vientityökalua]].
@@ -2994,7 +2996,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'importuploaderrorpartial' => 'Tuontitiedoston tallennus epäonnistui. Tiedostosta oli lähetetty vain osa.',
 'importuploaderrortemp' => 'Tuontitiedoston tallennus epäonnistui. Väliaikaistiedostojen kansio puuttuu.',
 'import-parse-failure' => 'XML-tuonti epäonnistui jäsennysvirheen takia.',
-'import-noarticle' => 'Ei tuotavaa sivua.',
+'import-noarticle' => 'Ei sivua tuotavaksi!',
 'import-nonewrevisions' => 'Kaikki versiot on tuotu aiemmin.',
 'xml-error-string' => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
 'import-upload' => 'Tallenna XML-tiedosto',
@@ -3007,16 +3009,16 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-error-invalid' => 'Sivua $1 ei tuotu, koska sen nimi ei kelpaa.',
 'import-error-unserialize' => 'Versiota $2 sivusta $1 ei voida jakaa osiin. Version ilmoitettiin käyttävän sisältömallia $3 ja sarjoitusmuotoilua $4.',
 'import-options-wrong' => '{{PLURAL:$2|Väärä asetus|Väärät asetukset}}: <nowiki>$1</nowiki>',
-'import-rootpage-invalid' => 'Annettu sivun nimi ei kelpaa.',
-'import-rootpage-nosubpage' => 'Annetun sivun nimiavaruus $1 ei salli alasivuja.',
+'import-rootpage-invalid' => 'Annettu perussivun nimi ei kelpaa.',
+'import-rootpage-nosubpage' => 'Annetun perussivun nimiavaruus "$1" ei salli alasivuja.',
 
 # Import log
 'importlogpage' => 'Tuontiloki',
-'importlogpagetext' => 'Loki toisista wikeistä tuoduista sivuista.',
-'import-logentry-upload' => 'toi tiedoston [[$1]] tallentamalla sen',
+'importlogpagetext' => 'Loki ylläpitäjien toisista wikeistä tuomista sivuista, joissa on muokkaushistoriaa.',
+'import-logentry-upload' => 'toi sivun [[$1]] tiedostomuodossa',
 'import-logentry-upload-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}}',
 'import-logentry-interwiki' => 'toi toisesta wikistä sivun $1',
-'import-logentry-interwiki-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}} wikistä $2',
+'import-logentry-interwiki-detail' => 'toi {{PLURAL:$1|yhden version|$1 versiota}} wikistä $2',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptin testaus',
@@ -3973,7 +3975,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'tag-filter-submit' => 'Suodata',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Merkintä|Merkinnät}}]]: $2)',
 'tags-title' => 'Merkinnät',
-'tags-intro' => 'Tämä sivu luetteloi merkinnät, joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.',
+'tags-intro' => "Tämä sivu luetteloi ne merkinnät (''eng.'' tags), joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.",
 'tags-tag' => 'Merkintänimi',
 'tags-display-header' => 'Näkyvyys muutosluetteloissa',
 'tags-description-header' => 'Täysi kuvaus tarkoituksesta',

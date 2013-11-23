@@ -317,22 +317,29 @@
 
 	} );
 
-	QUnit.test( 'getUrl', 2, function ( assert ) {
+	QUnit.test( 'getUrl', 3, function ( assert ) {
 		var title;
 
 		// Config
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 		title = new mw.Title( 'Foobar' );
-		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, getUrl uses mw.util.getUrl' );
+		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
+		assert.equal( title.getUrl({ action: 'edit' }), '/wiki/Foobar?action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
-	QUnit.test( 'newFromImg', 36, function ( assert ) {
+	QUnit.test( 'newFromImg', 40, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
+					typeOfUrl: 'Hashed thumb with shortened path',
+					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
+					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
+				},
 				{
 					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
 					typeOfUrl: 'Normal hashed directory thumbnail',

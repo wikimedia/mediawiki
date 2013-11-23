@@ -639,8 +639,8 @@ $1',
 'newmessagesdifflink' => '最后更改',
 'youhavenewmessagesfromusers' => '你有来自{{PLURAL:$3|其他用户|$3个用户}}的$1（$2）。',
 'youhavenewmessagesmanyusers' => '你有来自多个用户的$1（$2）。',
-'newmessageslinkplural' => '{{PLURAL:$1|新信息}}',
-'newmessagesdifflinkplural' => '最后{{PLURAL:$1|更改}}',
+'newmessageslinkplural' => '{{PLURAL:$1|新信息|999=新消息}}',
+'newmessagesdifflinkplural' => '最后{{PLURAL:$1|更改|999=更改}}',
 'youhavenewmessagesmulti' => '你在$1有新信息',
 'editsection' => '编辑',
 'editold' => '编辑',
@@ -764,7 +764,8 @@ $2',
 'invalidtitle-knownnamespace' => '使用名字空间“$2”和文本“$3”的无效标题',
 'invalidtitle-unknownnamespace' => '使用未知名字空间编号$1和文本“$2”的无效标题',
 'exception-nologin' => '未登录',
-'exception-nologin-text' => '该页面或操作需要你登录至本wiki。',
+'exception-nologin-text' => '该页面或操作需要你[[Special:Userlogin|登录]]至本Wiki。',
+'exception-nologin-text-manual' => '查看该页面或进行此操作需要您$1。',
 
 # Virus scanner
 'virus-badscanner' => "错误的配置：未知的病毒扫描程序：''$1''",
@@ -1414,6 +1415,7 @@ $1",
 'mypreferences' => '设置',
 'prefs-edits' => '编辑数：',
 'prefsnologin' => '未登录',
+'prefsnologintext2' => '进行用户设置需要您$1。',
 'changepassword' => '更改密码',
 'prefs-skin' => '皮肤',
 'skin-preview' => '预览',
@@ -2395,7 +2397,7 @@ $PAGEINTRO$NEWPAGE
 电子邮件：$PAGEEDITOR_EMAIL
 用户页面：$PAGEEDITOR_WIKI
 
-在你访问该页面之前，我们不会发送新增更改的通知。
+在你登录并访问该页面之前，我们不会发送新增更改的通知。
 你也可以重设你的监视列表中所有监视页面的通知标志。
 
 {{SITENAME}}通知系统
@@ -3922,8 +3924,9 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 
 # Special:SpecialPages
 'specialpages' => '特殊页面',
+'specialpages-note-top' => '图例',
 'specialpages-note' => '*普通特殊页面。
-*<span class="mw-specialpagerestricted">非公开特殊页面。</span>',
+*<span class="mw-specialpagerestricted">受限特殊页面。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other' => '其它特殊页面',
 'specialpages-group-login' => '登录/创建账户',
@@ -4133,6 +4136,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'limitreport-templateargumentsize' => '模板参数大小',
 'limitreport-templateargumentsize-value' => '$1/$2 字节',
 'limitreport-expansiondepth' => '最高扩展深度',
-'limitreport-expensivefunctioncount' => '高级函数分析器',
+'limitreport-expensivefunctioncount' => '高开销函数分析器',
 
 );

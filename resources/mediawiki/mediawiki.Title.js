@@ -314,10 +314,10 @@
 			thumbPhpRegex = /thumb\.php/,
 			regexes = [
 				// Thumbnails
-				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[^\s\/]+-\1[^\s\/]*$/,
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[^\s\/]+-(?:\1|thumbnail)[^\s\/]*$/,
 
 				// Thumbnails in non-hashed upload directories
-				/\/([^\s\/]+)\/[^\s\/]+-\1[^\s\/]*$/,
+				/\/([^\s\/]+)\/[^\s\/]+-(?:\1|thumbnail)[^\s\/]*$/,
 
 				// Full size images
 				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)$/,
@@ -550,10 +550,12 @@
 		 * Get the URL to this title
 		 *
 		 * @see mw.util#getUrl
+		 * @param {Object} [params] A mapping of query parameter names to values,
+		 *     e.g. `{ action: 'edit' }`.
 		 * @return {string}
 		 */
-		getUrl: function () {
-			return mw.util.getUrl( this.toString() );
+		getUrl: function ( params ) {
+			return mw.util.getUrl( this.toString(), params );
 		},
 
 		/**

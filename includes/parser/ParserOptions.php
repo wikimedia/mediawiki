@@ -493,8 +493,6 @@ class ParserOptions {
 	 * so users sharign the options with vary for the same page share
 	 * the same cached data safely.
 	 *
-	 * Replaces User::getPageRenderingHash()
-	 *
 	 * Extensions which require it should install 'PageRenderingHash' hook,
 	 * which will give them a chance to modify this key based on their own
 	 * settings.

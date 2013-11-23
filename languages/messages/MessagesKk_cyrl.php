@@ -2469,7 +2469,7 @@ $1',
 # Contributions
 'contributions' => '{{GENDER:$1|Қатысушы}} үлестері',
 'contributions-title' => '$1 есімді қатысушының үлесі',
-'mycontris' => 'Үлестер',
+'mycontris' => 'Үлесім',
 'contribsub2' => '$1 ($2) үлесі',
 'nocontribs' => 'Осы іздеу шартына сәйкес өзгерістер табылған жоқ.',
 'uctop' => '(ағымдағы)',

@@ -63,7 +63,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		}
 		$blobs = array();
 		foreach ( $pathsByBackend as $backendName => $paths ) {
-			$be = FileBackendGroup::get( $backendName );
+			$be = FileBackendGroup::singleton()->get( $backendName );
 			$blobs = $blobs + $be->getFileContentsMulti( array( 'srcs' => $paths ) );
 		}
 		return $blobs;
