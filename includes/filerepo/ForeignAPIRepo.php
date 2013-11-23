@@ -110,6 +110,7 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $time ) {
 			return false;
 		}
+
 		return parent::newFile( $title, $time );
 	}
 
@@ -136,8 +137,11 @@ class ForeignAPIRepo extends FileRepo {
 			}
 		}
 
-		$data = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
-											'prop' => 'imageinfo' ) );
+		$data = $this->fetchImageQuery( array(
+			'titles' => implode( $files, '|' ),
+			'prop' => 'imageinfo' )
+		);
+
 		if ( isset( $data['query']['pages'] ) ) {
 			# First, get results from the query. Note we only care whether the image exists,
 			# not whether it has a description page.
@@ -161,6 +165,7 @@ class ForeignAPIRepo extends FileRepo {
 				$results[$key] = $this->mFileExists[$file];
 			}
 		}
+
 		return $results;
 	}
 
@@ -211,6 +216,7 @@ class ForeignAPIRepo extends FileRepo {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -234,6 +240,7 @@ class ForeignAPIRepo extends FileRepo {
 				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_FILE, $img['name'] ), $this, $img );
 			}
 		}
+
 		return $ret;
 	}
 
@@ -258,6 +265,7 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $data && $info && isset( $info['thumburl'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			$result = $info;
+
 			return $info['thumburl'];
 		} else {
 			return false;
@@ -286,6 +294,7 @@ class ForeignAPIRepo extends FileRepo {
 
 		if ( $data && $info && isset( $info['thumberror'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] . "\n" );
+
 			return new MediaTransformError(
 				'thumbnail_error_remote',
 				$width,
@@ -332,6 +341,7 @@ class ForeignAPIRepo extends FileRepo {
 			if ( isset( $knownThumbUrls[$sizekey] ) ) {
 				wfDebug( __METHOD__ . ': Got thumburl from local cache: ' .
 					"{$knownThumbUrls[$sizekey]} \n" );
+
 				return $knownThumbUrls[$sizekey];
 			}
 			/* This size is not yet known */
@@ -342,6 +352,7 @@ class ForeignAPIRepo extends FileRepo {
 
 		if ( !$foreignUrl ) {
 			wfDebug( __METHOD__ . " Could not find thumburl\n" );
+
 			return false;
 		}
 
@@ -349,6 +360,7 @@ class ForeignAPIRepo extends FileRepo {
 		$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
 		if ( !$this->validateFilename( $fileName ) ) {
 			wfDebug( __METHOD__ . " The deduced filename $fileName is not safe\n" );
+
 			return false;
 		}
 		$localPath = $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
@@ -356,7 +368,8 @@ class ForeignAPIRepo extends FileRepo {
 		$localUrl = $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
 		if ( $backend->fileExists( array( 'src' => $localFilename ) )
-			&& isset( $metadata['timestamp'] ) ) {
+			&& isset( $metadata['timestamp'] )
+		) {
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
 			$modified = $backend->getFileTimestamp( array( 'src' => $localFilename ) );
 			$remoteModified = strtotime( $metadata['timestamp'] );
@@ -366,6 +379,7 @@ class ForeignAPIRepo extends FileRepo {
 				/* Use our current and already downloaded thumbnail */
 				$knownThumbUrls[$sizekey] = $localUrl;
 				$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
+
 				return $localUrl;
 			}
 			/* There is a new Commons file, or existing thumbnail older than a month */
@@ -373,6 +387,7 @@ class ForeignAPIRepo extends FileRepo {
 		$thumb = self::httpGet( $foreignUrl );
 		if ( !$thumb ) {
 			wfDebug( __METHOD__ . " Could not download thumb\n" );
+
 			return false;
 		}
 
@@ -381,11 +396,13 @@ class ForeignAPIRepo extends FileRepo {
 		$params = array( 'dst' => $localFilename, 'content' => $thumb );
 		if ( !$backend->quickCreate( $params )->isOK() ) {
 			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
+
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
 		$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
+
 		return $localUrl;
 	}
 
@@ -416,6 +433,7 @@ class ForeignAPIRepo extends FileRepo {
 		if ( in_array( $zone, $supported ) ) {
 			return parent::getZonePath( $zone );
 		}
+
 		return false;
 	}
 

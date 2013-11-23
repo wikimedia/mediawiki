@@ -44,6 +44,7 @@ class OldLocalFile extends LocalFile {
 		if ( $time === null ) {
 			throw new MWException( __METHOD__ . ' got null for $time parameter' );
 		}
+
 		return new self( $title, $repo, $time, null );
 	}
 
@@ -66,6 +67,7 @@ class OldLocalFile extends LocalFile {
 		$title = Title::makeTitle( NS_FILE, $row->oi_name );
 		$file = new self( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );
+
 		return $file;
 	}
 
@@ -150,6 +152,7 @@ class OldLocalFile extends LocalFile {
 		if ( !isset( $this->archive_name ) ) {
 			$this->load();
 		}
+
 		return $this->archive_name;
 	}
 
@@ -233,6 +236,7 @@ class OldLocalFile extends LocalFile {
 		$fields = parent::getCacheFields( $prefix );
 		$fields[] = $prefix . 'archive_name';
 		$fields[] = $prefix . 'deleted';
+
 		return $fields;
 	}
 
@@ -258,6 +262,7 @@ class OldLocalFile extends LocalFile {
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -267,15 +272,15 @@ class OldLocalFile extends LocalFile {
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema\n" );
 		$dbw->update( 'oldimage',
 			array(
-				'oi_size'       => $this->size, // sanity
-				'oi_width'      => $this->width,
-				'oi_height'     => $this->height,
-				'oi_bits'       => $this->bits,
+				'oi_size' => $this->size, // sanity
+				'oi_width' => $this->width,
+				'oi_height' => $this->height,
+				'oi_bits' => $this->bits,
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata'   => $this->metadata,
-				'oi_sha1'       => $this->sha1,
+				'oi_metadata' => $this->metadata,
+				'oi_sha1' => $this->sha1,
 			), array(
 				'oi_name' => $this->getName(),
 				'oi_archive_name' => $this->archive_name ),
@@ -291,6 +296,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	function isDeleted( $field ) {
 		$this->load();
+
 		return ( $this->deleted & $field ) == $field;
 	}
 
@@ -300,6 +306,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	function getVisibility() {
 		$this->load();
+
 		return (int)$this->deleted;
 	}
 
@@ -313,6 +320,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	function userCan( $field, User $user = null ) {
 		$this->load();
+
 		return Revision::userCanBitfield( $this->deleted, $field, $user );
 	}
 
@@ -370,21 +378,21 @@ class OldLocalFile extends LocalFile {
 
 		$dbw->insert( 'oldimage',
 			array(
-				'oi_name'         => $this->getName(),
+				'oi_name' => $this->getName(),
 				'oi_archive_name' => $archiveName,
-				'oi_size'         => $props['size'],
-				'oi_width'        => intval( $props['width'] ),
-				'oi_height'       => intval( $props['height'] ),
-				'oi_bits'         => $props['bits'],
-				'oi_timestamp'    => $dbw->timestamp( $timestamp ),
-				'oi_description'  => $comment,
-				'oi_user'         => $user->getId(),
-				'oi_user_text'    => $user->getName(),
-				'oi_metadata'     => $props['metadata'],
-				'oi_media_type'   => $props['media_type'],
-				'oi_major_mime'   => $props['major_mime'],
-				'oi_minor_mime'   => $props['minor_mime'],
-				'oi_sha1'         => $props['sha1'],
+				'oi_size' => $props['size'],
+				'oi_width' => intval( $props['width'] ),
+				'oi_height' => intval( $props['height'] ),
+				'oi_bits' => $props['bits'],
+				'oi_timestamp' => $dbw->timestamp( $timestamp ),
+				'oi_description' => $comment,
+				'oi_user' => $user->getId(),
+				'oi_user_text' => $user->getName(),
+				'oi_metadata' => $props['metadata'],
+				'oi_media_type' => $props['media_type'],
+				'oi_major_mime' => $props['major_mime'],
+				'oi_minor_mime' => $props['minor_mime'],
+				'oi_sha1' => $props['sha1'],
 			), __METHOD__
 		);
 
@@ -392,5 +400,4 @@ class OldLocalFile extends LocalFile {
 
 		return true;
 	}
-
 }

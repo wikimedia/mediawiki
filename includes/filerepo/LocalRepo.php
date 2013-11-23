@@ -29,12 +29,12 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	var $fileFactory           = array( 'LocalFile'   , 'newFromTitle' );
-	var $fileFactoryKey        = array( 'LocalFile'   , 'newFromKey'   );
-	var $fileFromRowFactory    = array( 'LocalFile'   , 'newFromRow'   );
-	var $oldFileFactory        = array( 'OldLocalFile', 'newFromTitle' );
-	var $oldFileFactoryKey     = array( 'OldLocalFile', 'newFromKey'   );
-	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow'   );
+	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
+	var $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
+	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+	var $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
+	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
 	/**
 	 * @throws MWException
@@ -97,6 +97,7 @@ class LocalRepo extends FileRepo {
 			}
 			$dbw->commit( __METHOD__ );
 		}
+
 		return $status;
 	}
 
@@ -111,6 +112,7 @@ class LocalRepo extends FileRepo {
 		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
 
 		$dbw = $this->getMasterDB();
+
 		return (bool)$dbw->selectField( 'filearchive', '1',
 			array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 			__METHOD__, $options
@@ -131,6 +133,7 @@ class LocalRepo extends FileRepo {
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
 		$dbw = $this->getMasterDB();
+
 		return (bool)$dbw->selectField( 'oldimage', '1',
 			array( 'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
@@ -178,6 +181,7 @@ class LocalRepo extends FileRepo {
 		$id = $this->getArticleID( $title );
 		if ( !$id ) {
 			$wgMemc->add( $memcKey, " ", $expiry );
+
 			return false;
 		}
 		$dbr = $this->getSlaveDB();
@@ -191,9 +195,11 @@ class LocalRepo extends FileRepo {
 		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
 			$wgMemc->add( $memcKey, $targetTitle->getDBkey(), $expiry );
+
 			return $targetTitle;
 		} else {
 			$wgMemc->add( $memcKey, '', $expiry );
+
 			return false;
 		}
 	}
@@ -219,6 +225,7 @@ class LocalRepo extends FileRepo {
 			),
 			__METHOD__ //Function name
 		);
+
 		return $id;
 	}
 
@@ -299,13 +306,14 @@ class LocalRepo extends FileRepo {
 			'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 			__METHOD__,
 			$selectOptions
-			);
+		);
 
 		// Build file objects
 		$files = array();
 		foreach ( $res as $row ) {
 			$files[] = $this->newFileFromRow( $row );
 		}
+
 		return $files;
 	}
 
@@ -334,6 +342,7 @@ class LocalRepo extends FileRepo {
 	 */
 	function getSharedCacheKey( /*...*/ ) {
 		$args = func_get_args();
+
 		return call_user_func_array( 'wfMemcKey', $args );
 	}
 

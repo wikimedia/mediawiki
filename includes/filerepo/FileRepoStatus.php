@@ -37,6 +37,7 @@ class FileRepoStatus extends Status {
 		$result = new self( $repo );
 		call_user_func_array( array( &$result, 'error' ), $params );
 		$result->ok = false;
+
 		return $result;
 	}
 
@@ -48,6 +49,7 @@ class FileRepoStatus extends Status {
 	static function newGood( $repo = false, $value = null ) {
 		$result = new self( $repo );
 		$result->value = $value;
+
 		return $result;
 	}
 

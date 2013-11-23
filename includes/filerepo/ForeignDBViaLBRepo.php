@@ -69,6 +69,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		if ( $this->hasSharedCache() ) {
 			$args = func_get_args();
 			array_unshift( $args, $this->wiki );
+
 			return implode( ':', $args );
 		} else {
 			return false;

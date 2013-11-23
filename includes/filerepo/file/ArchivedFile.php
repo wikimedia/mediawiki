@@ -32,10 +32,10 @@ class ArchivedFile {
 	 */
 	var $id, # filearchive row ID
 		$name, # image name
-		$group,	# FileStore storage group
+		$group, # FileStore storage group
 		$key, # FileStore sha1 key
 		$size, # file dimensions
-		$bits,	# size in bytes
+		$bits, # size in bytes
 		$width, # width
 		$height, # height
 		$metadata, # metadata string
@@ -169,6 +169,7 @@ class ArchivedFile {
 	public static function newFromRow( $row ) {
 		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
 		$file->loadFromRow( $row );
+
 		return $file;
 	}
 
@@ -256,6 +257,7 @@ class ArchivedFile {
 	 */
 	public function getID() {
 		$this->load();
+
 		return $this->id;
 	}
 
@@ -264,6 +266,7 @@ class ArchivedFile {
 	 */
 	public function exists() {
 		$this->load();
+
 		return $this->exists;
 	}
 
@@ -273,6 +276,7 @@ class ArchivedFile {
 	 */
 	public function getKey() {
 		$this->load();
+
 		return $this->key;
 	}
 
@@ -298,6 +302,7 @@ class ArchivedFile {
 	 */
 	public function getWidth() {
 		$this->load();
+
 		return $this->width;
 	}
 
@@ -307,6 +312,7 @@ class ArchivedFile {
 	 */
 	public function getHeight() {
 		$this->load();
+
 		return $this->height;
 	}
 
@@ -316,6 +322,7 @@ class ArchivedFile {
 	 */
 	public function getMetadata() {
 		$this->load();
+
 		return $this->metadata;
 	}
 
@@ -325,6 +332,7 @@ class ArchivedFile {
 	 */
 	public function getSize() {
 		$this->load();
+
 		return $this->size;
 	}
 
@@ -334,6 +342,7 @@ class ArchivedFile {
 	 */
 	public function getBits() {
 		$this->load();
+
 		return $this->bits;
 	}
 
@@ -343,6 +352,7 @@ class ArchivedFile {
 	 */
 	public function getMimeType() {
 		$this->load();
+
 		return $this->mime;
 	}
 
@@ -354,6 +364,7 @@ class ArchivedFile {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
+
 		return $this->handler;
 	}
 
@@ -369,6 +380,7 @@ class ArchivedFile {
 				$this->pageCount = false;
 			}
 		}
+
 		return $this->pageCount;
 	}
 
@@ -379,6 +391,7 @@ class ArchivedFile {
 	 */
 	public function getMediaType() {
 		$this->load();
+
 		return $this->media_type;
 	}
 
@@ -389,6 +402,7 @@ class ArchivedFile {
 	 */
 	public function getTimestamp() {
 		$this->load();
+
 		return wfTimestamp( TS_MW, $this->timestamp );
 	}
 
@@ -400,6 +414,7 @@ class ArchivedFile {
 	 */
 	function getSha1() {
 		$this->load();
+
 		return $this->sha1;
 	}
 
@@ -452,6 +467,7 @@ class ArchivedFile {
 	 */
 	public function getRawUser() {
 		$this->load();
+
 		return $this->user;
 	}
 
@@ -462,6 +478,7 @@ class ArchivedFile {
 	 */
 	public function getRawUserText() {
 		$this->load();
+
 		return $this->user_text;
 	}
 
@@ -472,6 +489,7 @@ class ArchivedFile {
 	 */
 	public function getRawDescription() {
 		$this->load();
+
 		return $this->description;
 	}
 
@@ -481,6 +499,7 @@ class ArchivedFile {
 	 */
 	public function getVisibility() {
 		$this->load();
+
 		return $this->deleted;
 	}
 
@@ -492,6 +511,7 @@ class ArchivedFile {
 	 */
 	public function isDeleted( $field ) {
 		$this->load();
+
 		return ( $this->deleted & $field ) == $field;
 	}
 
@@ -504,6 +524,7 @@ class ArchivedFile {
 	 */
 	public function userCan( $field, User $user = null ) {
 		$this->load();
+
 		return Revision::userCanBitfield( $this->deleted, $field, $user );
 	}
 }

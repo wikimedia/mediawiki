@@ -78,6 +78,7 @@ class ForeignAPIFile extends File {
 			} else {
 				$img = new self( $title, $repo, $info, true );
 			}
+
 			return $img;
 		} else {
 			return null;
@@ -133,6 +134,7 @@ class ForeignAPIFile extends File {
 		);
 		if ( $thumbUrl === false ) {
 			global $wgLang;
+
 			return $this->repo->getThumbError(
 				$this->getName(),
 				$width,
@@ -141,6 +143,7 @@ class ForeignAPIFile extends File {
 				$wgLang->getCode()
 			);
 		}
+
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
 	}
 
@@ -169,6 +172,7 @@ class ForeignAPIFile extends File {
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return serialize( self::parseMetadata( $this->mInfo['metadata'] ) );
 		}
+
 		return null;
 	}
 
@@ -179,6 +183,7 @@ class ForeignAPIFile extends File {
 		if ( isset( $this->mInfo['extmetadata'] ) ) {
 			return $this->mInfo['extmetadata'];
 		}
+
 		return null;
 	}
 
@@ -194,6 +199,7 @@ class ForeignAPIFile extends File {
 		foreach ( $metadata as $meta ) {
 			$ret[$meta['name']] = self::parseMetadata( $meta['value'] );
 		}
+
 		return $ret;
 	}
 
@@ -254,6 +260,7 @@ class ForeignAPIFile extends File {
 			$magic = MimeMagic::singleton();
 			$this->mInfo['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
 		}
+
 		return $this->mInfo['mime'];
 	}
 
@@ -265,6 +272,7 @@ class ForeignAPIFile extends File {
 			return $this->mInfo['mediatype'];
 		}
 		$magic = MimeMagic::singleton();
+
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}
 
@@ -288,6 +296,7 @@ class ForeignAPIFile extends File {
 			if ( $suffix ) {
 				$path = $path . $suffix . '/';
 			}
+
 			return $path;
 		} else {
 			return null;

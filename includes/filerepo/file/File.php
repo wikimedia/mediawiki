@@ -174,6 +174,7 @@ abstract class File {
 		if ( !$ret && $exception !== false ) {
 			throw new MWException( "`$title` is not a valid file title." );
 		}
+
 		return $ret;
 	}
 
@@ -183,6 +184,7 @@ abstract class File {
 			return null;
 		} else {
 			$this->$name = call_user_func( $function );
+
 			return $this->$name;
 		}
 	}
@@ -224,6 +226,7 @@ abstract class File {
 		$n = strrpos( $new, '.' );
 		$newExt = self::normalizeExtension( $n ? substr( $new, $n + 1 ) : '' );
 		$mimeMagic = MimeMagic::singleton();
+
 		return $mimeMagic->isMatchingExtension( $newExt, $oldMime );
 	}
 
@@ -232,7 +235,8 @@ abstract class File {
 	 * Called by ImagePage
 	 * STUB
 	 */
-	function upgradeRow() {}
+	function upgradeRow() {
+	}
 
 	/**
 	 * Split an internet media type into its two components; if not
@@ -271,6 +275,7 @@ abstract class File {
 			$this->assertRepoDefined();
 			$this->name = $this->repo->getNameFromTitle( $this->title );
 		}
+
 		return $this->name;
 	}
 
@@ -285,6 +290,7 @@ abstract class File {
 			$this->extension = self::normalizeExtension(
 				$n ? substr( $this->getName(), $n + 1 ) : '' );
 		}
+
 		return $this->extension;
 	}
 
@@ -306,6 +312,7 @@ abstract class File {
 		if ( $this->redirected ) {
 			return $this->getRedirectedTitle();
 		}
+
 		return $this->title;
 	}
 
@@ -320,6 +327,7 @@ abstract class File {
 			$ext = $this->getExtension();
 			$this->url = $this->repo->getZoneUrl( 'public', $ext ) . '/' . $this->getUrlRel();
 		}
+
 		return $this->url;
 	}
 
@@ -351,6 +359,7 @@ abstract class File {
 			} else {
 				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
 					' (' . $this->getMimeType() . "), but can't!\n" );
+
 				return $this->getURL(); #hm... return NULL?
 			}
 		} else {
@@ -376,6 +385,7 @@ abstract class File {
 			$this->assertRepoDefined();
 			$this->path = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
 		}
+
 		return $this->path;
 	}
 
@@ -394,6 +404,7 @@ abstract class File {
 				$this->fsFile = false; // null => false; cache negative hits
 			}
 		}
+
 		return ( $this->fsFile )
 			? $this->fsFile->getPath()
 			: false;
@@ -520,6 +531,7 @@ abstract class File {
 	 */
 	public function getCommonMetaArray() {
 		$handler = $this->getHandler();
+
 		return $handler->getCommonMetaArray( $this );
 	}
 
@@ -601,6 +613,7 @@ abstract class File {
 		if ( !isset( $this->canRender ) ) {
 			$this->canRender = $this->getHandler() && $this->handler->canRender( $this );
 		}
+
 		return $this->canRender;
 	}
 
@@ -652,6 +665,7 @@ abstract class File {
 		if ( !isset( $this->isSafeFile ) ) {
 			$this->isSafeFile = $this->_getIsSafeFile();
 		}
+
 		return $this->isSafeFile;
 	}
 
@@ -753,6 +767,7 @@ abstract class File {
 				}
 			}
 		}
+
 		return $this->transformScript;
 	}
 
@@ -771,6 +786,7 @@ abstract class File {
 			return $this->iconThumb();
 		}
 		$hp['width'] = $width;
+
 		return $this->transform( $hp );
 	}
 
@@ -787,6 +803,7 @@ abstract class File {
 		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
 			? $this->repo->nameForThumb( $this->getName() )
 			: $this->getName();
+
 		return $this->generateThumbName( $name, $params );
 	}
 
@@ -809,6 +826,7 @@ abstract class File {
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
 		}
+
 		return $thumbName;
 	}
 
@@ -838,6 +856,7 @@ abstract class File {
 		if ( is_null( $thumb ) || $thumb->isError() ) {
 			return '';
 		}
+
 		return $thumb->getUrl();
 	}
 
@@ -986,6 +1005,7 @@ abstract class File {
 		} while ( false );
 
 		wfProfileOut( __METHOD__ );
+
 		return is_object( $thumb ) ? $thumb : false;
 	}
 
@@ -999,6 +1019,7 @@ abstract class File {
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
 			$fileName .= ".$thumbExt";
 		}
+
 		return FileBackend::makeContentDisposition( 'inline', $fileName );
 	}
 
@@ -1007,7 +1028,8 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function migrateThumbFile( $thumbName ) {}
+	function migrateThumbFile( $thumbName ) {
+	}
 
 	/**
 	 * Get a MediaHandler instance for this file
@@ -1018,6 +1040,7 @@ abstract class File {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
+
 		return $this->handler;
 	}
 
@@ -1035,9 +1058,11 @@ abstract class File {
 			$filepath = $wgStyleDirectory . $path;
 			if ( file_exists( $filepath ) ) { // always FS
 				$params = array( 'width' => 120, 'height' => 120 );
+
 				return new ThumbnailImage( $this, $wgStylePath . $path, false, $params );
 			}
 		}
+
 		return null;
 	}
 
@@ -1066,7 +1091,8 @@ abstract class File {
 	 * @param array $options Options, which include:
 	 *     'forThumbRefresh' : The purging is only to refresh thumbnails
 	 */
-	function purgeCache( $options = array() ) {}
+	function purgeCache( $options = array() ) {
+	}
 
 	/**
 	 * Purge the file description page, but don't go after
@@ -1132,7 +1158,8 @@ abstract class File {
 	 * STUB
 	 * Overridden in LocalFile.
 	 */
-	public function resetHistory() {}
+	public function resetHistory() {
+	}
 
 	/**
 	 * Get the filename hash component of the directory including trailing slash,
@@ -1146,6 +1173,7 @@ abstract class File {
 			$this->assertRepoDefined();
 			$this->hashPath = $this->repo->getHashPath( $this->getName() );
 		}
+
 		return $this->hashPath;
 	}
 
@@ -1173,6 +1201,7 @@ abstract class File {
 		} else {
 			$path .= $suffix;
 		}
+
 		return $path;
 	}
 
@@ -1189,6 +1218,7 @@ abstract class File {
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
 		}
+
 		return $path;
 	}
 
@@ -1218,6 +1248,7 @@ abstract class File {
 		} else {
 			$path .= $suffix;
 		}
+
 		return $path;
 	}
 
@@ -1230,6 +1261,7 @@ abstract class File {
 	 */
 	function getArchivePath( $suffix = false ) {
 		$this->assertRepoDefined();
+
 		return $this->repo->getZonePath( 'public' ) . '/' . $this->getArchiveRel( $suffix );
 	}
 
@@ -1243,6 +1275,7 @@ abstract class File {
 	 */
 	function getArchiveThumbPath( $archiveName, $suffix = false ) {
 		$this->assertRepoDefined();
+
 		return $this->repo->getZonePath( 'thumb' ) . '/' .
 			$this->getArchiveThumbRel( $archiveName, $suffix );
 	}
@@ -1256,6 +1289,7 @@ abstract class File {
 	 */
 	function getThumbPath( $suffix = false ) {
 		$this->assertRepoDefined();
+
 		return $this->repo->getZonePath( 'thumb' ) . '/' . $this->getThumbRel( $suffix );
 	}
 
@@ -1268,6 +1302,7 @@ abstract class File {
 	 */
 	function getTranscodedPath( $suffix = false ) {
 		$this->assertRepoDefined();
+
 		return $this->repo->getZonePath( 'transcoded' ) . '/' . $this->getThumbRel( $suffix );
 	}
 
@@ -1287,6 +1322,7 @@ abstract class File {
 		} else {
 			$path .= rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1308,6 +1344,7 @@ abstract class File {
 		} else {
 			$path .= rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1326,6 +1363,7 @@ abstract class File {
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1364,6 +1402,7 @@ abstract class File {
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1382,6 +1421,7 @@ abstract class File {
 		} else {
 			$path .= rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1398,6 +1438,7 @@ abstract class File {
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -1406,6 +1447,7 @@ abstract class File {
 	 */
 	function isHashed() {
 		$this->assertRepoDefined();
+
 		return (bool)$this->repo->getHashLevels();
 	}
 
@@ -1468,6 +1510,7 @@ abstract class File {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
+
 		return $this->getHandler()->formatMetadata( $this, $this->getMetadata() );
 	}
 
@@ -1536,6 +1579,7 @@ abstract class File {
 	 */
 	function wasDeleted() {
 		$title = $this->getTitle();
+
 		return $title && $title->isDeletedQuick();
 	}
 
@@ -1616,6 +1660,7 @@ abstract class File {
 				$this->pageCount = false;
 			}
 		}
+
 		return $this->pageCount;
 	}
 
@@ -1648,6 +1693,7 @@ abstract class File {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
+
 		return $this->handler->getImageSize( $this, $fileName );
 	}
 
@@ -1683,11 +1729,16 @@ abstract class File {
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug( "Attempting to get the description from cache..." );
-				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $lang->getCode(),
-									$this->getName() );
+				$key = $this->repo->getLocalCacheKey(
+					'RemoteFileDescription',
+					'url',
+					$lang->getCode(),
+					$this->getName()
+				);
 				$obj = $wgMemc->get( $key );
 				if ( $obj ) {
 					wfDebug( "success!\n" );
+
 					return $obj;
 				}
 				wfDebug( "miss\n" );
@@ -1697,6 +1748,7 @@ abstract class File {
 			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) {
 				$wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
 			}
+
 			return $res;
 		} else {
 			return false;
@@ -1726,6 +1778,7 @@ abstract class File {
 	 */
 	function getTimestamp() {
 		$this->assertRepoDefined();
+
 		return $this->repo->getFileTimestamp( $this->getPath() );
 	}
 
@@ -1736,6 +1789,7 @@ abstract class File {
 	 */
 	function getSha1() {
 		$this->assertRepoDefined();
+
 		return $this->repo->getFileSha1( $this->getPath() );
 	}
 
@@ -1751,6 +1805,7 @@ abstract class File {
 		}
 		$ext = $this->getExtension();
 		$dotExt = $ext === '' ? '' : ".$ext";
+
 		return $hash . $dotExt;
 	}
 
@@ -1781,6 +1836,7 @@ abstract class File {
 		wfDeprecated( __METHOD__, '1.19' );
 
 		$fsFile = new FSFile( $path );
+
 		return $fsFile->getProps();
 	}
 
@@ -1800,6 +1856,7 @@ abstract class File {
 		wfDeprecated( __METHOD__, '1.19' );
 
 		$fsFile = new FSFile( $path );
+
 		return $fsFile->getSha1Base36();
 	}
 
@@ -1866,8 +1923,10 @@ abstract class File {
 			if ( !$this->redirectTitle ) {
 				$this->redirectTitle = Title::makeTitle( NS_FILE, $this->redirected );
 			}
+
 			return $this->redirectTitle;
 		}
+
 		return null;
 	}
 
