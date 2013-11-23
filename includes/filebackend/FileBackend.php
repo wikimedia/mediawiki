@@ -91,13 +91,13 @@ abstract class FileBackend {
 	 *                   This name should not be changed after use (e.g. with journaling).
 	 *                   Note that the name is *not* used in actual container names.
 	 *   - wikiId      : Prefix to container names that is unique to this backend.
-	 *                   If not provided, this defaults to the current wiki ID.
 	 *                   It should only consist of alphanumberic, '-', and '_' characters.
 	 *                   This ID is what avoids collisions if multiple logical backends
 	 *                   use the same storage system, so this should be set carefully.
-	 *   - lockManager : Registered name of a file lock manager to use.
-	 *   - fileJournal : File journal configuration; see FileJournal::factory().
-	 *                   Journals simply log changes to files stored in the backend.
+	 *   - lockManager : LockManager object to use for any file locking.
+	 *                   If not provided, then no file locking will be enforced.
+	 *   - fileJournal : FileJournal object to use for logging changes to files.
+	 *                   If not provided, then change journaling will be disabled.
 	 *   - readOnly    : Write operations are disallowed if this is a non-empty string.
 	 *                   It should be an explanation for the backend being read-only.
 	 *   - parallelize : When to do file operations in parallel (when possible).
@@ -110,16 +110,12 @@ abstract class FileBackend {
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
 			throw new MWException( "Backend name `{$this->name}` is invalid." );
 		}
-		$this->wikiId = isset( $config['wikiId'] )
-			? $config['wikiId']
-			: wfWikiID(); // e.g. "my_wiki-en_"
-		$this->lockManager = ( $config['lockManager'] instanceof LockManager )
+		$this->wikiId = $config['wikiId']; // e.g. "my_wiki-en_"
+		$this->lockManager = isset( $config['lockManager'] )
 			? $config['lockManager']
-			: LockManagerGroup::singleton( $this->wikiId )->get( $config['lockManager'] );
+			: new NullLockManager( array() );
 		$this->fileJournal = isset( $config['fileJournal'] )
-			? ( ( $config['fileJournal'] instanceof FileJournal )
-				? $config['fileJournal']
-				: FileJournal::factory( $config['fileJournal'], $this->name ) )
+			? $config['fileJournal']
 			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']

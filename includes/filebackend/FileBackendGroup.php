@@ -152,6 +152,14 @@ class FileBackendGroup {
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
 			$class = $this->backends[$name]['class'];
 			$config = $this->backends[$name]['config'];
+			$config['wikiId'] = isset( $config['wikiId'] )
+				? $config['wikiId']
+				: wfWikiID(); // e.g. "my_wiki-en_"
+			$config['lockManager'] =
+				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
+			$config['fileJournal'] = isset( $config['fileJournal'] )
+				? FileJournal::factory( $config['fileJournal'], $name )
+				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
 
