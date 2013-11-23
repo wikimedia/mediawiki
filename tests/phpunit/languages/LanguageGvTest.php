@@ -21,11 +21,12 @@ class LanguageGvTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
 	 * @covers Language::getPluralRuleType
-	 */
+	 *
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->markTestSkipped( "This test won't work since convertPlural for gv doesn't seem to actually follow our plural rules." );
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
+	*/
 
 	public static function providePlural() {
 		return array(
