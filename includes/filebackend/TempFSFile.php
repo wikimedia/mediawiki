@@ -85,7 +85,7 @@ class TempFSFile extends FSFile {
 	/**
 	 * Clean up the temporary file only after an object goes out of scope
 	 *
-	 * @param Object $object
+	 * @param FileBackendStoreOpHandle $object
 	 * @return TempFSFile This object
 	 */
 	public function bind( $object ) {

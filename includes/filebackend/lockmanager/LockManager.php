@@ -204,8 +204,8 @@ abstract class LockManager {
 				$lockedByType[$type] = $paths;
 			} else {
 				// Release the subset of locks that were acquired
-				foreach ( $lockedByType as $type => $paths ) {
-					$status->merge( $this->doUnlock( $paths, $type ) );
+				foreach ( $lockedByType as $lType => $lPaths ) {
+					$status->merge( $this->doUnlock( $lPaths, $lType ) );
 				}
 				break;
 			}
