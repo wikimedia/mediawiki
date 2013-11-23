@@ -433,6 +433,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= $users;
 		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		$r .= '</td></tr>';
 
 		# Sub-entries
 		foreach ( $block as $rcObj ) {
