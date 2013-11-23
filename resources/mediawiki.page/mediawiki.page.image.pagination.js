@@ -8,7 +8,7 @@
 	// tr with the new page's table.multipageimage's tr element.
 	// table.multipageimage always has only one row.
 	function loadPage( page ) {
-		
+		history.pushState({{ 'url': page }, document.title ,page);
 		var $multipageimage = $( 'table.multipageimage' ),
 			$spinner = $.createSpinner( {
 				size: 'large',
@@ -30,7 +30,7 @@
 			ajaxifyPageNavigation
 		);
 
-		
+		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 	}
 
 	function ajaxifyPageNavigation() {
