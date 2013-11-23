@@ -1187,7 +1187,8 @@ table.floatleft {
 }
 
 /* Display editsection links smaller and next to headings */
-.mw-editsection {
+.mw-editsection,
+.mw-editsection-like {
 	font-size: small;
 	font-weight: normal;
 	margin-left: 1em;
