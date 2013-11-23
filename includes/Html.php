@@ -664,7 +664,7 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce an "<input>" element.
+	 * Convenience function to produce a <textarea> element.
 	 *
 	 * This supports leaving out the cols= and rows= which Xml requires and are
 	 * required by HTML4/XHTML but not required by HTML5.
