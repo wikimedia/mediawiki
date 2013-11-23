@@ -3,7 +3,7 @@
 /**
  * @author Adam Shorland
  */
-class StatusTest extends MediaWikiTestCase {
+class StatusTest extends MediaWikiLangTestCase {
 
 	public function testCanConstruct() {
 		new Status();
