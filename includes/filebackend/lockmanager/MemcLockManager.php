@@ -100,8 +100,8 @@ class MemcLockManager extends QuorumLockManager {
 					? array_merge( $lockedPaths[$type], $paths )
 					: $paths;
 			} else {
-				foreach ( $lockedPaths as $type => $paths ) {
-					$status->merge( $this->doFreeLocksOnServer( $lockSrv, $paths, $type ) );
+				foreach ( $lockedPaths as $lType => $lPaths ) {
+					$status->merge( $this->doFreeLocksOnServer( $lockSrv, $lPaths, $lType ) );
 				}
 				break;
 			}

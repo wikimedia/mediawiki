@@ -1090,7 +1090,8 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$container = $this->getContainer( $fullCont );
 			$prefix = ( $dir == '' ) ? null : "{$dir}/";
-			$objects = array(); // list of unfiltered names or CF_Object items
+
+			// $objects will contain a list of unfiltered names or CF_Object items
 			// Non-recursive: only list files right under $dir
 			if ( !empty( $params['topOnly'] ) ) {
 				if ( !empty( $params['adviseStat'] ) ) {
