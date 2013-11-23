@@ -631,7 +631,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Имате $1 од {{PLURAL:$3|еден корисник|$3 корисници}} ($2).',
 'youhavenewmessagesmanyusers' => 'Имате $1 од многу корисници ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|нова порака|нови пораки}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|последна промена|последни промени}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|последна промена|999=последни промени}}',
 'youhavenewmessagesmulti' => 'Имате нови пораки на $1',
 'editsection' => 'уреди',
 'editold' => 'уреди',
@@ -4254,8 +4254,7 @@ $5
 'specialpages' => 'Специјални страници',
 'specialpages-note-top' => 'Легенда',
 'specialpages-note' => '* Нормални специјални страници.
-* <span class="mw-specialpagerestricted">Ограничени специјални страници.</span>
-* <span class="mw-specialpagecached">Кеширани специјални страници (може да се застарени).</span>',
+* <span class="mw-specialpagerestricted">Ограничени специјални страници.</span>',
 'specialpages-group-maintenance' => 'Извештаи за одржување',
 'specialpages-group-other' => 'Други специјални страници',
 'specialpages-group-login' => 'Најава / регистрација',

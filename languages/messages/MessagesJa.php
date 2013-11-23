@@ -4087,6 +4087,7 @@ $5
 'pipe-separator' => '&#32;|&#32;',
 'word-separator' => '&#32;',
 'parentheses' => '($1)',
+'quotation-marks' => '「$1」',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',

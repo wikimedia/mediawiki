@@ -11,6 +11,7 @@
  * @author Espreon
  * @author Gott wisst
  * @author JJohnson
+ * @author JJohnson1701
  * @author Omnipaedista
  * @author Shirayuki
  * @author Spacebirdy
@@ -237,7 +238,7 @@ $messages = array(
 'protect' => 'Beorgan',
 'protect_change' => 'Wendan',
 'protectthispage' => 'Beorgan þisne tramet',
-'unprotect' => 'Andwendan beorgunge',
+'unprotect' => 'Wendan beorgunge',
 'unprotectthispage' => 'Andwendan beorgune þisses trametes',
 'newpage' => 'Nīwe tramet',
 'talkpage' => 'Sprecan ymbe þisne tramet',
@@ -329,6 +330,8 @@ Seoh þone [[Special:Version|fadunge tramet]].',
 'page-rss-feed' => '$1 RSS strēam',
 'page-atom-feed' => '$1 Atom strēam',
 'red-link-title' => '$1 (tramet ne biþ)',
+'sort-descending' => 'sīgende behweorfan',
+'sort-ascending' => 'stīgende behweorfan',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Tramet',
@@ -368,11 +371,13 @@ Getæl gengra syndrigra trameta cann man findan be [[Special:SpecialPages|þǣm 
 'badarticleerror' => 'Þēos dǣd ne cann bēon gefremed on þissum tramete.',
 'badtitle' => 'Nā genge titul',
 'viewsource' => 'Sēon fruman',
+'viewsource-title' => 'Fruman for $1 sēon',
 'cascadeprotected' => 'Þes trament wæs geborgen wiþ adihtunge, for þǣm þe hē is befangen in þissum {{PLURAL:$1|tramente, þe is| tramentum, þe sind}} geborgen settum wyrcende þǣm cyre "cascading": $2',
+'exception-nologin' => 'Ne inloggod',
 
 # Virus scanner
 'virus-badscanner' => 'Bad configuration: Unknown virus scanner: $1',
-'virus-unknownscanner' => 'unknown antivirus:',
+'virus-unknownscanner' => 'uncūþ andgund:',
 
 # Login and logout pages
 'logouttext' => "'''Þū eart nū ūtmeldod.'''
@@ -383,6 +388,7 @@ Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmel
 'yourname' => 'Þīn brūcendnama:',
 'userlogin-yourname' => 'Brūcendnama:',
 'userlogin-yourname-ph' => 'Inwrīt þīnne brūcendnaman',
+'createacct-another-username-ph' => 'Wrīt þone brūcendnaman in',
 'yourpassword' => 'Þafungword:',
 'userlogin-yourpassword' => 'Þafungword',
 'userlogin-yourpassword-ph' => 'Inwrīt þīn þafungword',
@@ -402,13 +408,15 @@ Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmel
 'logout' => 'Ūtmeldian',
 'userlogout' => 'Ūtmeldian',
 'notloggedin' => 'Nā ingemeldod',
-'userlogin-noaccount' => "Don't have an account?",
+'userlogin-noaccount' => 'Næfst þu hordcleofan?',
 'userlogin-joinproject' => 'Join {{SITENAME}}',
 'nologin' => 'Næfst þū reccinge? $1',
 'nologinlink' => 'Scieppan reccinge',
 'createaccount' => 'Scieppan reccinge',
 'gotaccount' => 'Hafast þū reccinge ǣr? $1.',
 'gotaccountlink' => 'Inmeldian',
+'userlogin-resetpassword-link' => 'Forgēate þū þīn gelēafword?',
+'helplogin-url' => 'Help:Inmeldung',
 'createaccountmail' => 'Notian sceortne tīman hlētlic þafungword and sendan hit to þǣm spearcǣrenda naman þe is niðer',
 'createaccountreason' => 'Racu:',
 'badretype' => 'Þā þafungword þe write þū, bēoþ ungelīc.',
@@ -427,7 +435,7 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'nosuchusershort' => 'Þǣr nis nān brūcend mid þǣm naman "$1".  Scēawa þīne wrītunge.',
 'passwordtooshort' => 'Þafungword sculon habban læst {{PLURAL:$1|1 stafan|$1 stafena}}.',
 'mailmypassword' => 'Sendan nīwe þafungword on spearcǣrende',
-'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted {{PLURAL:$1|1 hordcleofan|$1 -}}. Þu ne canst settan ǣnige māran.',
+'acct_creation_throttle_hit' => 'Nēosiende tō þissum wici, þe þīnne IP-Stōwe brȳcþ, hæfþ gesett {{PLURAL:$1|1 hordcleofan|$1 hordcleofan}} in þǣm læsten dæge. Þu ne canst settan ǣnige māran. Þǣrfram ne cunnon Nēosiende, þe þisne IP-Stōwe brȳcþ, settan ǣnige hordcleofan māran on þisse handhwīle.',
 'accountcreated' => 'Scōp reccinge',
 'loginlanguagelabel' => 'Sprǣc: $1',
 
@@ -438,6 +446,9 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'retypenew' => 'Wrīt nīwe þafungword eft:',
 'resetpass-submit-loggedin' => 'Andwendan þafungword',
 'resetpass-submit-cancel' => 'Undōn',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Brūcendnama:',
 
 # Edit page toolbar
 'bold_sample' => 'Þicce traht',
@@ -549,8 +560,8 @@ folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 'revdelete-hide-comment' => 'Hȳdan adihtunge sceortnesse',
 'revdelete-hide-user' => 'Hȳdan adihtendes brūcendnaman/IP address',
 'revdelete-radio-same' => '(nā andwendan)',
-'revdelete-radio-set' => 'Gēa',
-'revdelete-radio-unset' => 'Nese',
+'revdelete-radio-set' => 'Gehȳdd',
+'revdelete-radio-unset' => 'Gesīene',
 'revdel-restore' => 'andwendan īwunge',
 'pagehist' => 'Trametes stǣr',
 'revdelete-reasonotherlist' => 'Ōðru racu',

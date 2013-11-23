@@ -1522,7 +1522,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-help-recentchangescount' => 'Týká se posledních změn, historie stránek a protokolovacích záznamů.',
 'prefs-help-watchlist-token2' => 'Toto je tajný klíč k webovému kanálu vašich sledovaných stránek. Kdokoli, kdo bude tento klíč znát, bude moci váš seznam sledovaných stránek číst, takže ho nešiřte.
 [[Special:ResetTokens|Kliknutím sem ho můžete reinicializovat.]]',
-'savedprefs' => 'Vaše nastavení bylo uloženo.',
+'savedprefs' => 'Nastavení byla uložena.',
 'timezonelegend' => 'Časové pásmo:',
 'localtime' => 'Místní čas:',
 'timezoneuseserverdefault' => 'Použít časové pásmo wiki ($1)',

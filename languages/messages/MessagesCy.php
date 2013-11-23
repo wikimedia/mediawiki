@@ -2245,7 +2245,7 @@ Cysylltu â\'r golygydd:
 e-bost: $PAGEEDITOR_EMAIL
 wici: $PAGEEDITOR_WIKI
 
-Os bydd mwy o drin a thrafod ar y dudalen cyn i chi ymweld â hi, ni chewch ragor o negeseuon hysbysu. Nodwn bod modd i chi ailosod y fflagiau hysbysu ar eich rhestr wylio, ar gyfer y tudalennau rydych yn eu gwylio.
+Os bydd mwy o drin a thrafod ar y dudalen cyn i chi ymweld â hi tra eich bod wedi mewngofnodi, ni chewch ragor o negeseuon hysbysu. Nodwn bod modd i chi ailosod y fflagiau hysbysu ar eich rhestr wylio, ar gyfer y tudalennau rydych yn eu gwylio.
 
              Sustem hysbysu {{SITENAME}}
 
@@ -3744,6 +3744,7 @@ Defnydd:
 
 # Special:SpecialPages
 'specialpages' => 'Tudalennau arbennig',
+'specialpages-note-top' => 'Allwedd',
 'specialpages-note' => '* Tudalennau arbennig ar gael i bawb.
 * <span class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</span>
 * <span class="mw-specialpagecached">Tudalennau arbennig wedi eu cynhyrchu o\'r celc (gallant fod heb eu harfer rhagor).</span>',

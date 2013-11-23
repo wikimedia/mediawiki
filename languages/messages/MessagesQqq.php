@@ -6532,7 +6532,8 @@ See also:
 * {{msg-mw|sp-contributions-logs}}
 * {{msg-mw|sp-contributions-deleted}}
 * {{msg-mw|sp-contributions-userrights}}',
-'contribslink' => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
+'contribslink' => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.
+{{Identical|Contribution}}',
 'emaillink' => 'Used as display name for a link to send an e-mail to a user in the user tool links. Example: "(Talk | contribs | block | send e-mail)".
 
 {{Identical|E-mail}}',

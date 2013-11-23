@@ -556,7 +556,8 @@ Le administrator qui lo blocava offereva iste explication: "$3".',
 'invalidtitle-knownnamespace' => 'Titulo invalide con spatio de nomines "$2" e texto "$3"',
 'invalidtitle-unknownnamespace' => 'Titulo invalide con spatio de nomines incognite $1 e texto "$2"',
 'exception-nologin' => 'Non identificate',
-'exception-nologin-text' => 'Iste pagina o action necessita que tu aperi session in iste wiki.',
+'exception-nologin-text' => '[[Special:Userlogin|Aperi session]] pro poter acceder a iste pagina o action.',
+'exception-nologin-text-manual' => 'Es necessari $1 pro poter acceder a iste pagina o action.',
 
 # Virus scanner
 'virus-badscanner' => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",
@@ -875,7 +876,7 @@ Per favor entra e valida tu adresse de e-mail per medio de tu [[Special:Preferen
 'nosuchsectiontext' => 'Tu ha tentate modificar un section que non existe.
 Illo pote haber essite displaciate o delite durante que tu legeva le pagina.',
 'loginreqtitle' => 'Identification necessari',
-'loginreqlink' => 'aperir un session',
+'loginreqlink' => 'aperir session',
 'loginreqpagetext' => 'Tu debe $1 pro poter vider altere paginas.',
 'accmailtitle' => 'Contrasigno inviate.',
 'accmailtext' => "Un contrasigno generate aleatorimente pro [[User talk:$1|$1]] ha essite inviate a $2. Illo pote esser cambiate in le pagina ''[[Special:ChangePassword|Cambiar contrasigno]]'' post que tu ha aperite un session.",
@@ -1309,6 +1310,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences' => 'Preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologin' => 'Tu non ha aperite un session',
+'prefsnologintext2' => 'Es necessari $1 pro definir le preferentias de usator.',
 'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
 'skin-preview' => 'Previsualisation',
@@ -2350,7 +2352,7 @@ Pro contactar le redactor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tu non recipera altere notificationes de activitate si tu non visita iste pagina. Tu pote anque reinitialisar le optiones de notification pro tote le paginas in tu observatorio.
+Tu non recipera altere notificationes de activitate si tu non visita iste pagina con session aperte. Tu pote anque reinitialisar le optiones de notification pro tote le paginas in tu observatorio.
 
 Le systema de notification de {{SITENAME}}, a tu servicio
 
@@ -3895,9 +3897,9 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 
 # Special:SpecialPages
 'specialpages' => 'Paginas special',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Paginas special normal.
-* <span class="mw-specialpagerestricted">Paginas special restringite.</span>
-* <span class="mw-specialpagecached">Paginas special del cache (poterea esser obsolete).</span>',
+* <span class="mw-specialpagerestricted">Paginas special restringite.</span>',
 'specialpages-group-maintenance' => 'Reportos de mantenentia',
 'specialpages-group-other' => 'Altere paginas special',
 'specialpages-group-login' => 'Aperir session / crear conto',
