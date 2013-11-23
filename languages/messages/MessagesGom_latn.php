@@ -164,7 +164,7 @@ $messages = array(
 'jumptosearch' => 'sod',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => '(Thollachea) babtint',
+'aboutsite' => '{{SITENAME}} babtint',
 'aboutpage' => 'Project:Vixoiavixim',
 'copyrightpage' => '{{ns:project}}:Prat-hokk',
 'currentevents' => 'Chalu ghoddnneo',
@@ -527,7 +527,8 @@ Hachem [$2 failichem vivron panan] asleli vivron khala dilea:',
 'watch' => 'Sadur rav',
 'watchthispage' => 'Hea panar dixtt dovor',
 'unwatch' => 'Nodor kadd',
-'watchlist-details' => '{{PLURAL:$1|$1 pan tujea sadurvollerint asa|$1 panam tujea sadurvollerint asat}} , ulovpachim panam meznastanam.',
+'watchlist-details' => 'Tujea sadurvollerint {{PLURAL:$1|$1 pan asa|$1 panam asat}}, ulovpachim panam mezonastanam.',
+'wlheader-showupdated' => "Tujea fatle bhette san bodol'lean tim panam '''datt''' dakhoileant.",
 'wlshowlast' => 'Xevottchim $1 voram $2 dis $3 dakhoi',
 'watchlist-options' => 'Sadurvollericheo poryay',
 
@@ -681,6 +682,9 @@ Tujean tachem mull pollonv ieta',
 'tooltip-undo' => '"Rodd\' kor" sudharop portita ani sudharopak Zholok ritin ukodta. Tem saran karon zoddunk dita.',
 'tooltip-summary' => 'Mottvo sar ghal',
 
+# Info page
+'pageinfo-toolboxlink' => 'Panachi mahiti',
+
 # Browsing diffs
 'previousdiff' => '←  Adlo sudar',
 'nextdiff' => 'Fuddlem bodlop →',
@@ -689,7 +693,7 @@ Tujean tachem mull pollonv ieta',
 'file-info-size' => '$1 × $2 pixelam, failicho akar: $3, MIME prokar: $4',
 'file-nohires' => 'Odhik bariksai na.',
 'svg-long-desc' => 'SVG fail, nanvak $1 × $2 pixeli, failcho akar: $3',
-'show-big-image' => 'Akhi bariksai',
+'show-big-image' => 'Mull fail',
 
 # Bad image list
 'bad_image_list' => 'Akar oso asa:
@@ -748,5 +752,8 @@ Zori tor hi failik bodol'lam zalear kai mahiti bodololem failik sarkem mell khai
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Dospi]] challni:',
+
+# Search suggestions
+'searchsuggest-search' => 'Sod',
 
 );

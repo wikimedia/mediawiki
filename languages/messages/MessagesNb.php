@@ -881,7 +881,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'resetpass-abort-generic' => 'Endring av passord har blitt avbrutt av en utvidelse.',
 
 # Special:PasswordReset
-'passwordreset' => 'Passordresetting',
+'passwordreset' => 'Tilbakestilling av passord',
 'passwordreset-text-one' => 'Fyll ut skjemaet for å tilbakestille passordet',
 'passwordreset-text-many' => '{{PLURAL:$1|Fyll inn et av datafeltene for å tilbakestille passordet ditt.}}',
 'passwordreset-legend' => 'Nullstill passord',

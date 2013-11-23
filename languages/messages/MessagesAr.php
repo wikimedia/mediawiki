@@ -3507,7 +3507,7 @@ $1',
 'svg-long-desc' => 'ملف SVG، أبعاده $1 × $2 بكسل، حجم الملف: $3',
 'svg-long-desc-animated' => 'ملف SVG متحرك، بمقاسات  $1  ×  $2  بكسل، حجم الملف: $3',
 'svg-long-error' => 'ملف SVG غير صالح: $1',
-'show-big-image' => 'دقة كاملة',
+'show-big-image' => 'الملف الأصلي',
 'show-big-image-preview' => 'حجم هذه المعاينة: $1.',
 'show-big-image-other' => '{{PLURAL:$2||البعد الآخر|البعدان الآخران|الأبعاد الأخرى}}: $1.',
 'show-big-image-size' => '$1 × $2 بكسل',
@@ -4331,6 +4331,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'الصفحات الخاصة',
+'specialpages-note-top' => 'المفتاح',
 'specialpages-note' => '* صفحات خاصة عادية.
 * <span class="mw-specialpagerestricted">صفحات خاصة للمخولين.</span>
 * <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط (قد تكون مهجورة).</span>',

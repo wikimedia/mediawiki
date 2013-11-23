@@ -505,7 +505,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => '찾기',
-'qbbrowse' => '탐색',
+'qbbrowse' => '찾아보기',
 'qbedit' => '편집',
 'qbpageoptions' => '문서 기능',
 'qbmyoptions' => '내 사용자 문서',
@@ -697,9 +697,10 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 관리자가 데이터베이스를 잠글 때 남긴 메시지는 다음과 같습니다: $1',
 'missing-article' => '데이터베이스에서 "$1" 문서의 $2 텍스트를 찾지 못했습니다.
 
-삭제된 문서의 역사/비교 문서를 보려고 시도할 때 이러한 문제가 발생할 수 있습니다.
+삭제된 문서의 오래된 차이나 역사 링크를 보려고 시도할 때 이러한 문제가 발생할 수 있습니다.
 
-또는, 프로그램 버그가 발생했을 수도 있습니다. [[Special:ListUsers/sysop|관리자]]에게 오류가 나는 URL을 알려주세요.',
+그렇지 않다면, 소프트웨어에 버그가 발생했을 수도 있습니다.
+[[Special:ListUsers/sysop|관리자]]에게 URL을 참조하여 알려주세요.',
 'missingarticle-rev' => '(판번호: $1)',
 'missingarticle-diff' => '(차이: $1, $2)',
 'readonly_lag' => '슬레이브 데이터베이스가 마스터 서버의 자료를 새로 고치는 중입니다. 데이터베이스가 자동으로 잠겨 있습니다.',
@@ -1080,9 +1081,9 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 'accmailtitle' => '비밀번호를 보냈습니다',
 'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호가 임의로 만들어져 $2(으)로 보냈습니다. 로그인하고 나서 [[Special:ChangePassword|비밀번호를 바꿀]] 수 있습니다.',
 'newarticle' => '(새 문서)',
-'newarticletext' => "이 문서는 아직 만들어지지 않았습니다.
-새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).
-만약 잘못 찾아온 문서라면 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
+'newarticletext' => "아직 없는 문서의 링크를 따라왔습니다.
+새 문서를 만들려면 아래 상자에 내용을 입력하면 됩니다. (자세한 내용은 [[{{MediaWiki:Helppage}}|도움말 문서]]를 참고하세요)
+만약 잘못 찾아왔다면, 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext' => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다.
 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다.
@@ -1441,7 +1442,7 @@ $1",
 # Search results
 'searchresults' => '검색 결과',
 'searchresults-title' => '"$1"에 대한 검색 결과',
-'searchresulttext' => '{{SITENAME}}의 검색에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고하세요.',
+'searchresulttext' => '{{SITENAME}} 검색에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고하세요.',
 'searchsubtitle' => '\'\'\'[[:$1]]\'\'\' 문서를 검색하고 있습니다. ([[Special:Prefixindex/$1|이름이 "$1" 접두어로 시작하는 문서 목록]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" 문서를 가리키는 문서 목록]])',
 'searchsubtitleinvalid' => "'''$1''' 검색어로 검색했습니다",
 'toomanymatches' => '일치하는 결과가 너무 많습니다. 다른 검색어를 입력해주세요.',
@@ -1486,7 +1487,8 @@ $1",
 'showingresults' => "'''$2'''번 부터의 {{PLURAL:$1|결과 '''1'''개|결과 '''$1'''개}}입니다.",
 'showingresultsnum' => "'''$2'''번 부터의 {{PLURAL:$3|결과 '''1'''개|결과 '''$3'''개}} 입니다.",
 'showingresultsheader' => "'''$4''' 검색어에 대하여 {{PLURAL:$5|결과 '''$3'''개 중 '''$1'''개|결과 '''$3'''개 중 '''$1 - $2'''번째}}를 보여 주고 있습니다",
-'nonefound' => "'''참고''': 몇개의 이름공간만 기본으로 검색하는 범위입니다. 토론이나 틀 등의 모든 자료를 검색하려면 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
+'nonefound' => "'''참고''': 일부 이름공간만 기본으로 검색합니다.
+토론 문서나 틀 등의 모든 내용을 검색하려면 접두어로 '''all:'''를 시도하거나, 원하는 이름공간을 접두어로 사용하세요.",
 'search-nonefound' => '검색어와 일치하는 결과가 없습니다.',
 'powersearch' => '고급 검색',
 'powersearch-legend' => '고급 검색',
@@ -1500,7 +1502,7 @@ $1",
 'searchdisabled' => '{{SITENAME}} 검색이 비활성화되어 있습니다.
 검색이 작동하지 않는 동안에는 Google(구글)을 통해 검색할 수 있습니다.
 검색 엔진의 내용은 최신이 아닐 수 있다는 점을 참고하세요.',
-'search-error' => '찾는 동안 오류가 발생했습니다: $1',
+'search-error' => '검색하는 동안 오류가 발생했습니다: $1',
 
 # Preferences page
 'preferences' => '사용자 환경 설정',
@@ -2139,7 +2141,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-dimensions' => '크기',
 'filehist-filesize' => '파일 크기',
 'filehist-comment' => '덧글',
-'filehist-missing' => '파일을 찾을 수 없음',
+'filehist-missing' => '파일이 없음',
 'imagelinks' => '이 파일을 사용하는 문서',
 'linkstoimage' => '다음 {{PLURAL:$1|문서 $1개}}가 이 파일을 가리키고 있습니다:',
 'linkstoimage-more' => '$1개 이상의 {{PLURAL:$1|문서}}가 이 파일을 가리키고 있습니다.
@@ -2347,7 +2349,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'notargettitle' => '해당하는 문서 없음',
 'notargettext' => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
 'nopagetitle' => '해당하는 문서 없음',
-'nopagetext' => '찾는 문서가 존재하지 않습니다.',
+'nopagetext' => '지정한 대상 문서가 존재하지 않습니다.',
 'pager-newer-n' => '{{PLURAL:$1|다음 1개|다음 $1개}}',
 'pager-older-n' => '{{PLURAL:$1|이전 1개|이전 $1개}}',
 'suppress' => '오버사이트',
@@ -2357,7 +2359,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'booksources' => '책 자료',
 'booksources-search-legend' => '책 원본 검색',
 'booksources-isbn' => 'ISBN:',
-'booksources-go' => '찾기',
+'booksources-go' => '검색',
 'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 바깥 사이트로, 원하는 책의 정보를 얻을 수 있습니다.',
 'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.',
 
@@ -2744,7 +2746,7 @@ $1',
 'undelete-search-box' => '삭제된 문서 검색',
 'undelete-search-prefix' => '다음으로 시작하는 문서 보기:',
 'undelete-search-submit' => '검색',
-'undelete-no-results' => '삭제된 문서 보존에서 일지하는 문서를 찾을 수 없습니다.',
+'undelete-no-results' => '삭제된 문서 보존에서 일치하는 문서를 찾을 수 없습니다.',
 'undelete-filename-mismatch' => '타임스탬프가 $1인 파일의 버전을 되살릴 수 없습니다: 파일 이름이 일치하지 않습니다.',
 'undelete-bad-store-key' => '타임스탬프가 $1인 파일의 버전을 되살릴 수 없습니다: 파일이 삭제되기 전에 사라졌습니다.',
 'undelete-cleanup-error' => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
@@ -3099,7 +3101,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Thumbnails
 'thumbnail-more' => '실제 크기로',
-'filemissing' => '파일 사라짐',
+'filemissing' => '파일이 없음',
 'thumbnail_error' => '섬네일을 만드는 중 오류 발생: $1',
 'thumbnail_error_remote' => '$1에서 반환한 오류 메시지:
 $2',
@@ -3109,7 +3111,7 @@ $2',
 'thumbnail-dest-create' => '대상 경로에 섬네일을 저장할 수 없습니다.',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
 'thumbnail_dest_directory' => '새 목적 디렉터리를 만들 수 없습니다.',
-'thumbnail_image-type' => '해당 파일 형식은 지원하지 않습니다',
+'thumbnail_image-type' => '그림 형식이 지원되지 않습니다',
 'thumbnail_gd-library' => 'GD 라이브러리 설정이 잘못되었습니다: $1 함수를 찾을 수 없습니다.',
 'thumbnail_image-missing' => '파일을 찾을 수 없습니다: $1',
 
@@ -3435,7 +3437,7 @@ $1',
 'minutes' => '$1분',
 'hours' => '$1시간',
 'days' => '$1일',
-'weeks' => '{{PLURAL:$1|$1주}}',
+'weeks' => '$1주',
 'months' => '$1달',
 'years' => '$1년',
 'ago' => '$1 전',
@@ -3470,8 +3472,8 @@ Variants for Chinese language
 
 # Metadata
 'metadata' => '메타데이터',
-'metadata-help' => '이 파일은 카메라나 스캐너에서 기록한 부가 정보를 가지고 있습니다.
-프로그램에서 파일을 편집할 경우, 새로 저장한 그림 파일에 일부 부가 정보가 빠질 수 있습니다.',
+'metadata-help' => '이 파일은 그 파일을 만들거나 디지털화하는 데 사용되는 카메라나 스캐너에서 기록한 부가 정보를 가지고 있습니다.
+프로그램에서 파일을 편집할 경우, 새로 저장한 파일에 일부 부가 정보가 빠질 수 있습니다.',
 'metadata-expand' => '자세한 정보 보이기',
 'metadata-collapse' => '자세한 정보 숨기기',
 'metadata-fields' => '파일 메타데이터 표가 접혀 있을 때, 이 메시지에 올라와 있는 다음 속성값만이 기본적으로 보이게 됩니다.
@@ -3884,7 +3886,7 @@ Variants for Chinese language
 'exif-urgency-other' => '사용자 정의 ($1)',
 
 # External editor support
-'edit-externally' => '이 파일을 바깥 프로그램을 사용해서 편집하기',
+'edit-externally' => '이 파일을 바깥 어플리케이션을 사용해 편집하기',
 'edit-externally-help' => '(자세한 정보는 [https://www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하세요)',
 
 # 'all' in various places, this might be different for inflected languages
@@ -3905,7 +3907,7 @@ Variants for Chinese language
 'confirmemail_send' => '인증 코드를 메일로 보내기',
 'confirmemail_sent' => '인증 이메일을 보냈습니다.',
 'confirmemail_oncreate' => '확인 이메일을 보냈습니다.
-이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키 프로그램에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
+이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
 'confirmemail_sendfailed' => '{{SITENAME}}에서 인증 이메일을 보낼 수 없습니다.
 이메일 주소를 잘못 입력했는지 확인해주세요.
 
@@ -3987,6 +3989,9 @@ $5
 'confirm-watch-top' => '이 문서를 주시문서 목록에 추가할까요?',
 'confirm-unwatch-button' => '확인',
 'confirm-unwatch-top' => '이 문서를 주시문서 목록에서 뺄까요?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '“$1”',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 페이지',
@@ -4078,13 +4083,13 @@ $5
 'version-poweredby-credits' => "이 위키는 '''[https://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
 'version-poweredby-translators' => 'translatewiki.net 번역자',
-'version-credits-summary' => '[[Special:Version|미디어위키]]에 기여한 다음 사람한테 감사드립니다.',
+'version-credits-summary' => '[[Special:Version|미디어위키]]에 기여한 다음 사람에게 감사드립니다.',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
 당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다. 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인으로 읽어보시기] 바랍니다.",
-'version-software' => '설치된 프로그램',
+'version-software' => '설치된 소프트웨어',
 'version-software-product' => '제품',
 'version-software-version' => '버전',
 'version-entrypoints' => 'URL 진입점',
@@ -4118,6 +4123,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => '특수 문서 목록',
+'specialpages-note-top' => '범례',
 'specialpages-note' => '* 일반 특수 문서입니다.
 * <span class="mw-specialpagerestricted">제한된 특수 문서입니다.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
@@ -4203,7 +4209,7 @@ $5
 
 # SQLite database support
 'sqlite-has-fts' => '$1 (본문 전체 검색 지원)',
-'sqlite-no-fts' => '$1 (본문은 찾기에서 제외)',
+'sqlite-no-fts' => '$1 (본문 전체 검색 지원 제외)',
 
 # New logging system
 'logentry-delete-delete' => '$1 사용자가 $3 문서를 {{GENDER:$2|삭제했습니다}}',

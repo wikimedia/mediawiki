@@ -125,6 +125,7 @@ $messages = array(
 'tog-showhiddencats' => 'Gizli kateqoriyaları göstər',
 'tog-norollbackdiff' => 'Geri qaytardıqdan sonra, edilmiş dəyişikikləri dəyişikliklər siyahısından sil',
 'tog-useeditwarning' => 'Qeyd edilməmiş dəyişikliyə sahib bir dəyişiklik səhifəsindən çıxarkən məni xəbərdar et',
+'tog-prefershttps' => 'Sessiya aaçarkən hər zaman etibarlı bağlantıdan istifadə et.',
 
 'underline-always' => 'Həmişə',
 'underline-never' => 'Heç vaxt',
@@ -416,6 +417,12 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error' => 'Xəta',
 'databaseerror' => 'Verilənlər bazası xətası',
+'databaseerror-text' => 'Bir verilənlər bazası sorğu xətası baş verdi.
+Bu proqramdan qaynaqlanan bir xətanı göstərmiş ola bilər.',
+'databaseerror-textcl' => 'Bir verilənlər bazası sorğu xətası baş verdi.',
+'databaseerror-query' => 'Sorğu: $1',
+'databaseerror-function' => 'Funksiya: $1',
+'databaseerror-error' => 'Xəta: $1',
 'laggedslavemode' => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly' => 'Verilənlər bazası bloklanıb',
 'enterlockreason' => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
@@ -446,6 +453,9 @@ Xahiş edirik bunu bir [[Special:ListUsers/sysop|İdarəçilərə]], URL not ed�
 'cannotdelete' => 'İstədiyiniz "$1" səhifə və ya faylını silmək mümkün deyil.
 Bu səhifə və ya fayl başqa bir istifadəçi tərəfindən silinmiş ola bilər.',
 'cannotdelete-title' => '"$1" səhifəsinin silinməsi mümkünsüzdür.',
+'delete-hook-aborted' => 'Silmə əməliyyatı qarmaq tərəfindən dayandırıldı. 
+Heç bir açıqlama edilmədi.',
+'no-null-revision' => '"$1" səhifəsi üçün yeni boş bir versiya yaradıla bilmədi',
 'badtitle' => 'Səhv başlıq',
 'badtitletext' => 'Axtarılan səhifə adı səhvdir və ya boşdur, ya da düzgün olmayan dillərarası, yaxud vikilərarası keçid istifadə edilib.
 Başlıqlarda istifadə edilməsi qadağan olunan bir və ya daha çox simvol istifadə edilmiş ola bilər.',
@@ -461,6 +471,7 @@ Sorğu: $2',
 'actionthrottledtext' => 'Anti-spam hərəkətləri səbəbilə, bir hərəkəti qısa bir zaman aralığında çoxetməniz əngəlləndi, və siz həddi aşmısınız. Lütfən bir neçə dəqiqə sonra yenidən yoxlayın.',
 'protectedpagetext' => 'Bu səhifə redaktə üçün bağlıdır.',
 'viewsourcetext' => 'Siz bu səhifənin məzmununu görə və köçürə bilərsiniz:',
+'viewyourtext' => "Bu səhifəyə '''etdiyiniz dəyişikliklərin''' mənbəyini görüntüləyib köçürə bilərsiniz:",
 'protectedinterface' => 'Bu səhifədə proqram təminatı üçün sistem məlumatları var və sui-istifadənin qarşısını almaq üçün mühafizə olunmalıdır.',
 'editinginterface' => "'''Diqqət!''' Siz proqram təminatı interfeysinin mətn olan səhifəsini redaktə edirsiniz.
 Onun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərir.
@@ -468,9 +479,23 @@ Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün ol
 'cascadeprotected' => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
 'namespaceprotected' => 'Sizin adlarında $1 olan məqalələrdə redaktə etməyə icazəniz yoxdur.',
+'customcssprotected' => 'Bu səhifəni redaktə etmə izniniz yoxdur, çünki bu səhifə başqa bir istifadəçinin fərdi parametrlərinə sahibdir.',
+'customjsprotected' => 'Bu Java Script səhifəsini redaktə etmə izniniz yoxdur, çünki bu səhifə başqa bir istifadəçinin fərdi parametrlərinə sahibdir.',
+'mycustomcssprotected' => 'Bu CSS ssəhifəsini redaktə etmə izniniz yoxdur.',
+'mycustomjsprotected' => 'Bu JavaScript səhifəsini redaktə etmə izniniz yoxdur.',
+'myprivateinfoprotected' => 'Sizin özəl məlumatlarınızı redaktə etmə izniniz yoxdur.',
+'mypreferencesprotected' => 'Seçimlərinizi redaktə etmək üçün izniniz yoxdur.',
 'ns-specialprotected' => 'Xüsusi səhifələr redaktə oluna bilməz.',
 'titleprotected' => 'Bu adda səhifənin yaradılması istifadəçi [[User:$1|$1]] tərəfindən qadağan edilmişdir.
 Göstərilən səbəb: "\'\'$2\'\'".',
+'filereadonlyerror' => '"$2" fayl deposundakı "$1" faylı ancaq oxunula bilən rejimdə olduğuna görə dəyişdirmək üçün açıla bimir.
+
+Rejimi qoyan nəzarətçinin izahı: "$3".',
+'invalidtitle-knownnamespace' => '"$2" sahə adı üçün "$3" mətni keçərsiz bir başlıq',
+'invalidtitle-unknownnamespace' => 'Naməlum $1 ad sahəsi miqdarı və keçərsiz "$2" başlıq',
+'exception-nologin' => 'Giriş edilməmişdir',
+'exception-nologin-text' => 'Bu səhifəyə daxi olmaq üçün [[Special:Userlogin|özünüzü təqdim]], edin.',
+'exception-nologin-text-manual' => ' bu səhifəyə və ya hərəkətə daxil olmaq üçün $1 lazımdır.',
 
 # Virus scanner
 'virus-badscanner' => "Düzgün olmayan konfiqurasiya: naməlum ''$1'' virus yoxlayanı",
@@ -485,9 +510,19 @@ Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər v�
 'welcomecreation-msg' => 'Hesabınız yaradıldı.
 [[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
 'yourname' => 'İstifadəçi adı',
+'userlogin-yourname' => 'İstifadəçi adı',
+'userlogin-yourname-ph' => 'İstifadəçi adınızı daxil edin',
+'createacct-another-username-ph' => 'İstifadəçi adınızı daxil edin:',
 'yourpassword' => 'Parol:',
+'userlogin-yourpassword' => 'Parol',
+'userlogin-yourpassword-ph' => 'Parolunuzu daxil edin',
+'createacct-yourpassword-ph' => 'Parol daxil edin',
 'yourpasswordagain' => 'Parolu təkrar yazın:',
+'createacct-yourpasswordagain' => 'Parolu təsdiqlə',
+'createacct-yourpasswordagain-ph' => 'Parolu təkrar daxil edin',
 'remembermypassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
+'userlogin-remembermypassword' => 'Sistemdə qal',
+'userlogin-signwithsecure' => 'Etibarlı bağlantıdan istifadə edin',
 'yourdomainname' => 'Sizin domain',
 'password-change-forbidden' => 'Bu vikidə parolunuzu dəyişdirə bilməzsiniz.',
 'externaldberror' => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
@@ -499,18 +534,44 @@ Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər v�
 'logout' => 'Çıxış',
 'userlogout' => 'Çıxış',
 'notloggedin' => 'Daxil olmamısınız',
+'userlogin-noaccount' => 'İstifadəçi hesabınız yoxdur?',
+'userlogin-joinproject' => '{{SITENAME}} qoşulun',
 'nologin' => "İstifadəçi hesabınız yoxdur? '''$1'''.",
 'nologinlink' => 'hesab açın',
 'createaccount' => 'Hesab aç',
 'gotaccount' => "Giriş hesabınız varsa '''$1'''.",
 'gotaccountlink' => 'Daxil olun',
 'userlogin-resetlink' => 'Daxilolma məlumatlarınızı unutmusunuz?',
-'createaccountmail' => 'e-məktub ilə',
+'userlogin-resetpassword-link' => 'Parolu unutdunuzmu?',
+'helplogin-url' => 'Help:Sistemə daxil ol',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|daxil olma haqqında yardım alın]]',
+'userlogin-loggedin' => 'Siz artıq {{GENDER:$1|$1}} kimi daxil olmusunuz.
+Aşağıdakı formadan istifadə edərək, bağqa bir istifadəçi kimi daxil ola bilərsiniz.',
+'userlogin-createanother' => 'Başqa bir istifadəçi hesabı yarat',
+'createacct-join' => 'Aşağıda məlumatlarınızı daxil edin.',
+'createacct-another-join' => 'Aşağıda yeni hesabınızın məlumatlarını daxil edin.',
+'createacct-emailrequired' => 'E-poçt ünvanı',
+'createacct-emailoptional' => 'E-poçt ünvanı (istəyə bağlı)',
+'createacct-email-ph' => 'E-poçt ünvanınızı daxil edin',
+'createacct-another-email-ph' => 'E-poçt ünvanını daxil edin',
+'createaccountmail' => 'Müvəqqəti təsadüfi bir paroldan istifadə edə bilər və bu parolu göstərilən e-poçt ünvanına göndərə bilərsiniz',
+'createacct-realname' => 'Gərçək adı (istəyə bağlı)',
 'createaccountreason' => 'Səbəb:',
+'createacct-reason' => 'Səbəb',
+'createacct-reason-ph' => 'Niyə başqa bir hesab yaradırsınız',
+'createacct-captcha' => 'Təhlükəsizlik nəzarəti',
+'createacct-imgcaptcha-ph' => 'Yuxarıda gördüyünüz mətni daxil edin',
+'createacct-submit' => 'İstifadəçi hesabı yarat',
+'createacct-another-submit' => 'Başqa bir istifadəçi hesabı yarat',
+'createacct-benefit-heading' => '{{SITENAME}} sizin kimi insanlar tərəfindən yaradılır.',
+'createacct-benefit-body1' => '$1 {{PLURAL:$1|redaktə}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|səhifə|səhifə}}',
+'createacct-benefit-body3' => 'ən son {{PLURAL:$1|iştirakçılar|iştirakçılar}}',
 'badretype' => 'Daxil etdiyiniz parol uyğun gəlmir.',
 'userexists' => 'Daxil edilmiş ad artıq istifadədədir.
 Lütfən başqa ad seçin.',
 'loginerror' => 'Daxil olma xətası',
+'createacct-error' => 'Hesab yaratma xətası',
 'createaccounterror' => 'Bu istifadəçi adını yaratmaq mümkün olmadı: $1',
 'nocookiesnew' => 'İstifadəçi qeydiyyatı yaradıldı, lakin daxil ola bilmədiniz.
 {{SITENAME}} iştirakçıların təqdim olunması üçün "cookie"lərdən istifadə edir.
@@ -537,11 +598,16 @@ Düzgün yazdığına əmin ol.',
 'password-login-forbidden' => 'Bu istifadəçi adından və paroldan istifadə qadağan olunub.',
 'mailmypassword' => 'E-mail ilə yeni parol göndər',
 'passwordremindertitle' => '{{SITENAME}} parol xatırladıcı',
+'passwordremindertext' => 'Birisi (yəqin ki siz, $1 IP ünvanından) {{SITENAME}} ($4) üçün yeni bir parol göndərilməsini istədi. "$2" istifadəçisinə müvəqqəti olaraq "$3" parolu yaradıldı. Əgər bu sizin istyinizdirsə, hesab açıb yeni bir parol yaratmağınız vacibdir. Müvəqqəti parolunuzun müddəti {{PLURAL:$5|1 gün|$5 gün}} içində dolacaqdır.
+
+Parol dəyişdirməni siz istəməmisinizsə və ya parolunuzu xatırladınızsa və artıq parolunuzu dəyişdirmək isteəmirsinizsə; bu mesaja əhəmiyyət vermədən əski parolunuzdan istifadə etməyə davam edə bilərsiniz.',
 'noemail' => '"$1" adlı istifadəçi e-poçt ünvanını qeyd etməmişdir.',
 'noemailcreate' => 'Düzgün e-poçt ünvanı qeyd etməlisiniz',
 'passwordsent' => 'Yeni parol "$1" üçün qeydiyyata alınan e-poçt ünvanına göndərilmişdir.
 Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 'blocked-mailpassword' => 'İP ünvanınız bloklu olduğuna görə, yeni parol göndərmə mümkün deyil.',
+'eauthentsent' => 'Göstərilən bu e-poçt ünvanına məktub göndərildi. 
+Gələcəkdə e-poçt almaq üçün,bu e-poçtun sizə aid olması haqqındakı qaydalarla tanış olun.',
 'mailerror' => 'Məktub göndərmə xətası: $1',
 'acct_creation_throttle_hit' => 'Sizin IP ünvanınızdan bu viki-də son bir gün ərzində {{PLURAL:$1|1 hesab|$1 hesab}} açılmışdır. Bu bir gün ərzində icazə verilən maksimum say olduğu üçün, indiki anda daha çox hesab aça bilməzsiniz.',
 'emailauthenticated' => 'E-poçt ünvanınız $2 saat $3 tarixində təsdiq edilib.',

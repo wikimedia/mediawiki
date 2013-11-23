@@ -734,7 +734,7 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ogiltig titel med namnrymden "$2" och texten "$3"',
 'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
 'exception-nologin' => 'Inte inloggad',
-'exception-nologin-text' => 'Denna sida eller åtgärd kräver att du måste vara inloggad på denna wiki.',
+'exception-nologin-text' => 'Var god [[Special:Userlogin|logga in]] för att komma åt denna sida eller åtgärd.',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",
@@ -4007,8 +4007,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 # Special:SpecialPages
 'specialpages' => 'Specialsidor',
 'specialpages-note' => '* Normala specialsidor.
-* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>
-* <span class="mw-specialpagecached">Cachade specialsidor (kan vara föråldrade).</span>',
+* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other' => 'Övriga specialsidor',
 'specialpages-group-login' => 'Logga in / skapa konto',

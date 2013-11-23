@@ -2467,6 +2467,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 
 # Search suggestions
 'searchsuggest-search' => 'Quaerere',
+'searchsuggest-containing' => 'continens...',
 
 # API errors
 'api-error-empty-file' => 'Fasciculus inmissus vacuus est.',

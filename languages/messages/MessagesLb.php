@@ -1138,8 +1138,8 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Gewielt Versioun|Gewielt Versioune}} vu(n) [[:$1]] :'''",
 'logdelete-selected' => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
-'revdelete-text' => "'''Geläschte Versiounen oder aner geläschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
-Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
+'revdelete-text' => "'''Geläscht Versiounen oder aner geläscht Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
+Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläscht Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-confirm' => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text' => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
 * Informatiounen déi beleidege kéinten
@@ -1193,7 +1193,7 @@ Kuckt w.e.g. an de Logbicher no.",
 
 # Suppression log
 'suppressionlog' => 'Lëscht vun de verstoppten a geläschte Säiten',
-'suppressionlogtext' => 'Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären a vun den Administrateuren verstopptem Inhalt.
+'suppressionlogtext' => 'Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären an Inhalt dee vun den Administrateure verstoppt gouf.
 Kuckt [[Special:BlockList|Lëscht vun Späre]] fir déi aktuell Spären.',
 
 # History merging
@@ -1660,9 +1660,9 @@ Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 
 Hei fannt Dir en Extrait aus dem Läsch- a Réckel-Logbuch fir dëse Fichier.",
 'uploadtext' => "Benotzt dëse Formulaire, fir nei Fichieren eropzelueden.
-Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropluedunge fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
+Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropluedunge fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläscht Fichiere stinn am [[Special:Log/delete|Läschlog]].
 
-Fir e '''Bild''' op enger Säit zu benotzen, schreift amplaz vum Bild eng vun dëse Formelen:
+Fir e '''Bild''' op enger Säit ze benotzen, schreift amplaz vum Bild eng vun dëse Formelen:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></code>''' fir déi ganz Versioun vum Fichier ze benotzen
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></code>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></code>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
@@ -2481,10 +2481,10 @@ Fir nëmmen eng bestëmmte Versioun vun der Säit ze restauréieren, markéiert 
 'undeleterevisions' => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} archivéiert',
 'undeletehistory' => 'Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert.
 Wann zanter dem Läschen eng nei Säit mat dem selwechten Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedroen.',
-'undeleterevdel' => "D'Restauratioun gëtt net gemaach wann dëst dozou féiert datt déi aktuell Versioun vun der Säit oder vum Fichier deelweis geläscht gëtt.
-A sou Fäll däerf déi neiste Versioun net markéiert ginn oder déi neiste geläschte Versioun muss nees ugewise ginn.",
+'undeleterevdel' => "D'Restauratioun gëtt net gemaach wann dat dozou féiert datt déi aktuell Versioun vun der Säit oder vum Fichier deelweis geläscht gëtt.
+A sou Fäll däerf déi neist Versioun net markéiert ginn oder déi neist geläscht Versioun muss nees ugewise ginn.",
 'undeletehistorynoadmin' => "Dës Säit gouf geläscht. De Grond fir d'Läsche gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. Déi verschidden Textversioune kënnen awer just vun Administrateure gekuckt a restauréiert ginn.",
-'undelete-revision' => 'Geläschte Versioun vu(n) $1 (Versioun vum $4 um $5 Auer) vum $3:',
+'undelete-revision' => 'Geläscht Versioun vu(n) $1 (Versioun vum $4 um $5 Auer) vum $3:',
 'undeleterevision-missing' => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
 'undelete-nodiff' => 'Et si keng méi al Versiounen do.',
 'undeletebtn' => 'Restauréieren',
@@ -2516,7 +2516,7 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-error-long' => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
 $1',
-'undelete-show-file-confirm' => '!Sidd Dir sécher, datt dir eng geläschte Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 ëm $3 Auer gesi wëllt?',
+'undelete-show-file-confirm' => 'Sidd Dir sécher, datt dir eng geläscht Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 um $3 Auer gesi wëllt?',
 'undelete-show-file-submit' => 'Jo',
 
 # Namespace form on various pages
@@ -3111,7 +3111,7 @@ Fëllt dëst '''NET''' aus!",
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion
-'deletedrevision' => 'Al, geläschte Versioun $1',
+'deletedrevision' => 'Al, geläscht Versioun vu(n) $1',
 'filedeleteerror-short' => 'Feeler beim Läsche vum Fichier: $1',
 'filedeleteerror-long' => 'Bäim Läsche vum Fichier si Feeler festgestallt ginn:
 

@@ -2320,7 +2320,7 @@ $1',
 
 'sp-contributions-newbies' => 'تەنھا بەشدارییەکانی بەکارھێنەرە تازەکان نیشان بدە',
 'sp-contributions-newbies-sub' => 'لە بەکارھێنەرە تازەکانەوە',
-'sp-contributions-newbies-title' => 'هاوبەشیەکانی بەکارهێنەر بۆ هەژمارە نوێکان',
+'sp-contributions-newbies-title' => 'بەشدارییەکانی بەکارھێنەر بۆ ھەژمارە نوێکان',
 'sp-contributions-blocklog' => 'لۆگی بەربەستن',
 'sp-contributions-deleted' => 'بەشدارییە سڕاوەکان',
 'sp-contributions-uploads' => 'بارکردنەکان',
