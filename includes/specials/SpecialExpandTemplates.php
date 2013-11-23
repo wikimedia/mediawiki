@@ -191,7 +191,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	private function makeOutput( $output, $heading = 'expand_templates_output' ) {
 		$out = "<h2>" . $this->msg( $heading )->escaped() . "</h2>\n";
 		$out .= Xml::textarea(
-			'output',
+			'',
 			$output,
 			10,
 			10,
