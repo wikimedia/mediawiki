@@ -222,10 +222,10 @@ class LocalSettingsGenerator {
 			}
 		}
 
-		$wgServerSetting = "";
+		$serverSetting = "";
 		if ( array_key_exists( 'wgServer', $this->values ) && $this->values['wgServer'] !== null ) {
-			$wgServerSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
-			$wgServerSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
+			$serverSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
+			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
 		}
 
 		switch ( $this->values['wgMainCacheType'] ) {
@@ -271,7 +271,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## http://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
-${wgServerSetting}
+${serverSetting}
 ## The relative URL path to the skins directory
 \$wgStylePath = \"\$wgScriptPath/skins\";
 
