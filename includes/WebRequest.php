@@ -54,7 +54,7 @@ class WebRequest {
 	 * Cached URL protocol
 	 * @var string
 	 */
-	private $protocol;
+	protected $protocol;
 
 	public function __construct() {
 		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
