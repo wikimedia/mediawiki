@@ -532,6 +532,7 @@ $wgAutoloadLocalClasses = array(
 	'FileBackendGroup' => 'includes/filebackend/FileBackendGroup.php',
 	'FileBackend' => 'includes/filebackend/FileBackend.php',
 	'FileBackendError' => 'includes/filebackend/FileBackend.php',
+	'FileBackendException' => 'includes/filebackend/FileBackend.php',
 	'FileBackendStore' => 'includes/filebackend/FileBackendStore.php',
 	'FileBackendStoreShardListIterator' => 'includes/filebackend/FileBackendStore.php',
 	'FileBackendStoreShardDirIterator' => 'includes/filebackend/FileBackendStore.php',

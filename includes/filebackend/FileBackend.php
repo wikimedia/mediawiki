@@ -103,12 +103,12 @@ abstract class FileBackend {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
-	 * @throws MWException
+	 * @throws FileBackendException
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
-			throw new MWException( "Backend name `{$this->name}` is invalid." );
+			throw new FileBackendException( "Backend name `{$this->name}` is invalid." );
 		}
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
@@ -1337,7 +1337,7 @@ abstract class FileBackend {
 	 *
 	 * @param string $type One of (attachment, inline)
 	 * @param string $filename Suggested file name (should not contain slashes)
-	 * @throws MWException
+	 * @throws FileBackendError
 	 * @return string
 	 * @since 1.20
 	 */
@@ -1346,7 +1346,7 @@ abstract class FileBackend {
 
 		$type = strtolower( $type );
 		if ( !in_array( $type, array( 'inline', 'attachment' ) ) ) {
-			throw new MWException( "Invalid Content-Disposition type '$type'." );
+			throw new FileBackendError( "Invalid Content-Disposition type '$type'." );
 		}
 		$parts[] = $type;
 
@@ -1393,8 +1393,19 @@ abstract class FileBackend {
 }
 
 /**
+ * Generic file backend exception for checked and unexpected (e.g. config) exceptions
+ *
+ * @ingroup FileBackend
+ * @since 1.23
+ */
+class FileBackendException extends MWException {
+}
+
+/**
+ * File backend exception for checked exceptions (e.g. I/O errors)
+ *
  * @ingroup FileBackend
  * @since 1.22
  */
-class FileBackendError extends MWException {
+class FileBackendError extends FileBackendException {
 }

@@ -113,18 +113,18 @@ class FileBackendGroup {
 	 * Register an array of file backend configurations
 	 *
 	 * @param array $configs
-	 * @throws MWException
+	 * @throws FileBackendException
 	 */
 	protected function register( array $configs ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
-				throw new MWException( "Cannot register a backend with no name." );
+				throw new FileBackendException( "Cannot register a backend with no name." );
 			}
 			$name = $config['name'];
 			if ( isset( $this->backends[$name] ) ) {
-				throw new MWException( "Backend with name `{$name}` already registered." );
+				throw new FileBackendException( "Backend with name `{$name}` already registered." );
 			} elseif ( !isset( $config['class'] ) ) {
-				throw new MWException( "Cannot register backend `{$name}` with no class." );
+				throw new FileBackendException( "Backend with name `{$name}` has no class." );
 			}
 			$class = $config['class'];
 
@@ -142,11 +142,11 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return FileBackend
-	 * @throws MWException
+	 * @throws FileBackendException
 	 */
 	public function get( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new MWException( "No backend defined with the name `$name`." );
+			throw new FileBackendException( "No backend defined with the name `$name`." );
 		}
 		// Lazy-load the actual backend instance
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
@@ -163,11 +163,11 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return array
-	 * @throws MWException
+	 * @throws FileBackendException
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new MWException( "No backend defined with the name `$name`." );
+			throw new FileBackendException( "No backend defined with the name `$name`." );
 		}
 		$class = $this->backends[$name]['class'];
 

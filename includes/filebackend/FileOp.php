@@ -74,7 +74,7 @@ abstract class FileOp {
 	 *
 	 * @param FileBackendStore $backend
 	 * @param array $params
-	 * @throws MWException
+	 * @throws FileBackendError
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
 		$this->backend = $backend;
@@ -83,7 +83,7 @@ abstract class FileOp {
 			if ( isset( $params[$name] ) ) {
 				$this->params[$name] = $params[$name];
 			} else {
-				throw new MWException( "File operation missing parameter '$name'." );
+				throw new FileBackendError( "File operation missing parameter '$name'." );
 			}
 		}
 		foreach ( $optional as $name ) {
