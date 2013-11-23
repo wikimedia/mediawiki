@@ -30,7 +30,7 @@ require_once __DIR__ . '/commandLine.inc';
 /**
  * @ingroup Maintenance
  */
-class userOptions {
+class UserOptions {
 	public $mQuick;
 	public $mQuiet;
 	public $mDry;
@@ -43,7 +43,7 @@ class userOptions {
 	/** Constructor. Will show usage and exit if script options are not correct */
 	function __construct( $opts, $args ) {
 		if ( !$this->checkOpts( $opts, $args ) ) {
-			userOptions::showUsageAndExit();
+			UserOptions::showUsageAndExit();
 		} else {
 			$this->mReady = $this->initializeOpts( $opts, $args );
 		}
