@@ -3047,6 +3047,12 @@ $wgVectorUseSimpleSearch = true;
 $wgVectorUseIconWatch = true;
 
 /**
+ * Display the signupstart and signupend messages that were in the old account creation UX.
+ * See https://meta.wikimedia.org/wiki/Research:ACUX.
+ */
+$wgCleanLoginUX = false;
+
+/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;

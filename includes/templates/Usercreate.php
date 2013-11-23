@@ -38,7 +38,7 @@ class UsercreateTemplate extends BaseTemplate {
 	}
 
 	function execute() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgCleanLoginUX;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
@@ -46,6 +46,9 @@ class UsercreateTemplate extends BaseTemplate {
 		<div id="languagelinks">
 			<p><?php $this->html( 'languages' ); ?></p>
 		</div>
+	<?php } ?>
+	<?php if ( $wgCleanLoginUX === false ) { ?>
+		<div id="signupstart"><?php $this->msgWiki( 'signupstart' ); ?></div>
 	<?php } ?>
 	<div id="userloginForm">
 		<h2 class="createaccount-join">
@@ -262,6 +265,9 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 			<?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpCreateaccountToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 		</form>
+		<?php if ( $wgCleanLoginUX === false ) { ?>
+			<div id="signupend"><?php $this->html( 'signupend' ); ?></div>
+		<?php } ?>
 	</div>
 	<div class="mw-createacct-benefits-container">
 		<h2><?php $this->msg( 'createacct-benefit-heading' ); ?></h2>
