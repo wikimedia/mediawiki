@@ -1727,7 +1727,7 @@ class FileRepo {
 		$ret = array(
 			'name' => $this->getName(),
 			'displayname' => $this->getDisplayName(),
-			'rootUrl' => $this->getRootUrl(),
+			'rootUrl' => $this->getZoneUrl( 'public' ),
 			'local' => $this->isLocal(),
 		);
 
