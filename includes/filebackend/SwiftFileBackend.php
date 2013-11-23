@@ -309,7 +309,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseCreate( CF_Async_Op $cfOp, Status $status, array $params ) {
+	protected function getResponseCreate( CF_Async_Op $cfOp, Status $status, array $params ) {
 		try {
 			$cfOp->getLastResponse();
 		} catch ( BadContentTypeException $e ) {
@@ -397,7 +397,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseStore( CF_Async_Op $cfOp, Status $status, array $params ) {
+	protected function getResponseStore( CF_Async_Op $cfOp, Status $status, array $params ) {
 		try {
 			$cfOp->getLastResponse();
 		} catch ( BadContentTypeException $e ) {
@@ -472,7 +472,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseCopy( CF_Async_Op $cfOp, Status $status, array $params ) {
+	protected function getResponseCopy( CF_Async_Op $cfOp, Status $status, array $params ) {
 		try {
 			$cfOp->getLastResponse();
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
@@ -548,7 +548,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseMove( CF_Async_Op $cfOp, Status $status, array $params ) {
+	protected function getResponseMove( CF_Async_Op $cfOp, Status $status, array $params ) {
 		try {
 			$cfOp->getLastResponse();
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
@@ -597,7 +597,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseDelete( CF_Async_Op $cfOp, Status $status, array $params ) {
+	protected function getResponseDelete( CF_Async_Op $cfOp, Status $status, array $params ) {
 		try {
 			$cfOp->getLastResponse();
 		} catch ( NoSuchContainerException $e ) {
@@ -1364,7 +1364,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$cfOps = $batch->execute();
 		foreach ( $cfOps as $index => $cfOp ) {
 			$status = Status::newGood();
-			$function = '_getResponse' . $fileOpHandles[$index]->call;
+			$function = 'getResponse' . $fileOpHandles[$index]->call;
 			try { // catch exceptions; update status
 				$this->$function( $cfOp, $status, $fileOpHandles[$index]->params );
 				$this->purgeCDNCache( $fileOpHandles[$index]->affectedObjects );
