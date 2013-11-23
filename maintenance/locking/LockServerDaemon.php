@@ -149,7 +149,7 @@ class LockServerDaemon {
 		$socketArray->addSocket( $this->sock ); // add listening socket
 		do {
 			list( $read, $write ) = $socketArray->socketsForSelect();
-			if ( socket_select( $read, $write, $except = NULL, NULL ) < 1 ) {
+			if ( socket_select( $read, $write, $except = null, null ) < 1 ) {
 				continue; // wait
 			}
 			// Check if there is a client trying to connect...

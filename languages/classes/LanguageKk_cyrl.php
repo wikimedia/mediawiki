@@ -54,7 +54,8 @@ class LanguageKk_cyrl extends Language {
 		// Preceding letters
 		$Nasals = array( "м", "н", "ң" );
 		$Sonants = array( "и", "й", "л", "р", "у", "ю" );
-		$Consonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" );
+		$Consonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ",
+			"б", "в", "г", "д" );
 		$Sibilants = array( "ж", "з" );
 		$Sonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з" );
 
@@ -77,13 +78,15 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "тың";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "нің";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "ның";
 					}
-				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $Sonants )
+					|| in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "дің";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -99,7 +102,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "қа";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "ге";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -153,7 +157,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc31":
 			case "possessive accusative": # täweldık + tabıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "ді";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -171,7 +176,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "та";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "де";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -181,7 +187,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc41":
 			case "possessive locative": # täweldık + jatıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "де";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -203,7 +210,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "тан";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "ден";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -219,7 +227,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc51":
 			case "possessive ablative": # täweldık + şığıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $thirdPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "нен";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -236,21 +245,23 @@ class LanguageKk_cyrl extends Language {
 			case "dc6":
 			case "comitative": # kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "пен";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "мен";
+					$word = $word . "пен";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "мен";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "бен";
+					$word = $word . "бен";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": # täweldık + kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "пенен";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "менен";
+					$word = $word . "пенен";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "менен";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "бенен";
+					$word = $word . "бенен";
 				}
 				break;
 			default: # dc0 #nominative #ataw
@@ -279,7 +290,8 @@ class LanguageKk_cyrl extends Language {
 		// Preceding letters
 		$Nasals = array( "m", "n", "ñ" );
 		$Sonants = array( "ï", "y", "ý", "l", "r", "w" );
-		$Consonants = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç", "b", "v", "g", "d" );
+		$Consonants = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç",
+			"b", "v", "g", "d" );
 		$Sibilants = array( "j", "z" );
 		$Sonorants = array( "ï", "y", "ý", "l", "r", "w", "m", "n", "ñ", "j", "z" );
 
@@ -302,13 +314,15 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "tıñ";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "niñ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "nıñ";
 					}
-				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $Sonants )
+					|| in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "diñ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -324,7 +338,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "qa";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "ge";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -378,14 +393,15 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc31":
 			case "possessive accusative": # täweldık + tabıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "di";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "dı";
 					}
 				} elseif ( in_array( $wordEnding, $thirdPerson ) ) {
-						$word = $word . "n";
+					$word = $word . "n";
 				}
 				break;
 			case "dc4":
@@ -396,7 +412,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "ta";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "de";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -406,7 +423,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc41":
 			case "possessive locative": # täweldık + jatıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "de";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -428,7 +446,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "tan";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "den";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -444,7 +463,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc51":
 			case "possessive ablative": # täweldık + şığıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $thirdPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "nen";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -461,21 +481,23 @@ class LanguageKk_cyrl extends Language {
 			case "dc6":
 			case "comitative": # kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "pen";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "men";
+					$word = $word . "pen";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "men";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "ben";
+					$word = $word . "ben";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": # täweldık + kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "penen";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "menen";
+					$word = $word . "penen";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "menen";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "benen";
+					$word = $word . "benen";
 				}
 				break;
 			default: # dc0 #nominative #ataw
@@ -504,7 +526,8 @@ class LanguageKk_cyrl extends Language {
 		// Preceding letters
 		$Nasals = array( "م", "ن", "ڭ" );
 		$Sonants = array( "ي", "ي", "ل", "ر", "ۋ" );
-		$Consonants = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ", "ب", "ۆ", "گ", "د" );
+		$Consonants = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ",
+			"ب", "ۆ", "گ", "د" );
 		$Sibilants = array( "ج", "ز" );
 		$Sonorants = array( "ي", "ي", "ل", "ر", "ۋ", "م", "ن", "ڭ", "ج", "ز" );
 
@@ -527,13 +550,15 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "تىڭ";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "نٸڭ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "نىڭ";
 					}
-				} elseif ( in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $Sonants )
+					|| in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "دٸڭ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -549,7 +574,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "قا";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "گە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -603,14 +629,15 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc31":
 			case "possessive accusative": # täweldık + tabıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "دٸ";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "دى";
 					}
 				} elseif ( in_array( $wordEnding, $thirdPerson ) ) {
-						$word = $word . "ن";
+					$word = $word . "ن";
 				}
 				break;
 			case "dc4":
@@ -621,7 +648,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "تا";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonorants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonorants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "دە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -631,7 +659,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc41":
 			case "possessive locative": # täweldık + jatıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $secondPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $secondPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "دە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -653,7 +682,8 @@ class LanguageKk_cyrl extends Language {
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "تان";
 					}
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Sonants ) || in_array( $wordEnding, $Sibilants ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "دەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -669,7 +699,8 @@ class LanguageKk_cyrl extends Language {
 				break;
 			case "dc51":
 			case "possessive ablative": # täweldık + şığıs
-				if ( in_array( $wordEnding, $firstPerson ) || in_array( $wordEnding, $thirdPerson ) ) {
+				if ( in_array( $wordEnding, $firstPerson )
+					|| in_array( $wordEnding, $thirdPerson ) ) {
 					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "نەن";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
@@ -686,21 +717,23 @@ class LanguageKk_cyrl extends Language {
 			case "dc6":
 			case "comitative": # kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "پەن";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "مەن";
+					$word = $word . "پەن";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "مەن";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "بەن";
+					$word = $word . "بەن";
 				}
 				break;
 			case "dc61":
 			case "possessive comitative": # täweldık + kömektes
 				if ( in_array( $wordEnding, $Consonants ) ) {
-						$word = $word . "پەنەن";
-				} elseif ( in_array( $wordEnding, $allVowels ) || in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
-						$word = $word . "مەنەن";
+					$word = $word . "پەنەن";
+				} elseif ( in_array( $wordEnding, $allVowels )
+					|| in_array( $wordEnding, $Nasals ) || in_array( $wordEnding, $Sonants ) ) {
+					$word = $word . "مەنەن";
 				} elseif ( in_array( $wordEnding, $Sibilants ) ) {
-						$word = $word . "بەنەن";
+					$word = $word . "بەنەن";
 				}
 				break;
 			default: # dc0 #nominative #ataw
@@ -727,7 +760,7 @@ class LanguageKk_cyrl extends Language {
 		$lastLetter[0] = $ar[count( $ar ) - 1];
 
 		// Find the last vowel in the word
-		$lastLetter[1] = NULL;
+		$lastLetter[1] = null;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
 				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
@@ -737,7 +770,7 @@ class LanguageKk_cyrl extends Language {
 					continue;
 				}
 			}
-			if ( $lastLetter[1] !== NULL ) {
+			if ( $lastLetter[1] !== null ) {
 				break;
 			} else {
 				continue;
@@ -756,7 +789,8 @@ class LanguageKk_cyrl extends Language {
 	 */
 	function commafy( $_ ) {
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,',
+				strrev( $_ ) ) );
 		} else {
 			return $_;
 		}

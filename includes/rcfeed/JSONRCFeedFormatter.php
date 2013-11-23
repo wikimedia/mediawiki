@@ -39,13 +39,15 @@ class JSONRCFeedFormatter implements RCFeedFormatter {
 
 		switch ( $type ) {
 			case RC_EDIT:
-				$packet['length'] = array( 'old' => $attrib['rc_old_len'], 'new' => $attrib['rc_new_len'] );
-				$packet['revision'] = array( 'old' => $attrib['rc_last_oldid'], 'new' => $attrib['rc_this_oldid'] );
+				$packet['length'] = array( 'old' => $attrib['rc_old_len'],
+					'new' => $attrib['rc_new_len'] );
+				$packet['revision'] = array( 'old' => $attrib['rc_last_oldid'],
+					'new' => $attrib['rc_this_oldid'] );
 				break;
 
 			case RC_NEW:
-				$packet['length'] = array( 'old' => NULL, 'new' => $attrib['rc_new_len'] );
-				$packet['revision'] = array( 'old' => NULL, 'new' => $attrib['rc_this_oldid'] );
+				$packet['length'] = array( 'old' => null, 'new' => $attrib['rc_new_len'] );
+				$packet['revision'] = array( 'old' => null, 'new' => $attrib['rc_this_oldid'] );
 				break;
 
 			case RC_LOG:
@@ -63,7 +65,8 @@ class JSONRCFeedFormatter implements RCFeedFormatter {
 					) {
 						// From ApiQueryLogEvents::addLogParams
 						$logParams = array();
-						// Keys like "4::paramname" can't be used for output so we change them to "paramname"
+						// Keys like "4::paramname" can't be used for output
+						// so we change them to "paramname"
 						foreach ( $params as $key => $value ) {
 							if ( strpos( $key, ':' ) === false ) {
 								$logParams[$key] = $value;
