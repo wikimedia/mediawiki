@@ -27,19 +27,30 @@
  *
  * Read-only.
  *
- * TODO: Currently it doesn't really work in the repository role, there are
+ * @todo Currently it doesn't really work in the repository role, there are
  * lots of functions missing. It is used by the WebStore extension in the
  * standalone role.
  *
  * @ingroup FileAbstraction
  */
 class UnregisteredLocalFile extends File {
-	var $title, $path, $mime, $dims, $metadata;
+	/** @var Title  */
+	protected $title;
 
-	/**
-	 * @var MediaHandler
-	 */
-	var $handler;
+	/** @var string */
+	protected $path;
+
+	/** @var bool|string */
+	protected $mime;
+
+	/** @var array Dimension data */
+	protected $dims;
+
+	/** @var bool|string Handler-specific metadata which will be saved in the img_metadata field */
+	protected $metadata;
+
+	/** @var MediaHandler */
+	public $handler;
 
 	/**
 	 * @param string $path Storage path
