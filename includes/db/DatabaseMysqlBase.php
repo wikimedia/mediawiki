@@ -127,6 +127,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$success = $this->doQuery( "SET sql_mode = $mode", __METHOD__ );
 			if ( !$success ) {
 				wfLogDBError( "Error setting sql_mode to $mode on server {$this->mServer}" );
+				wfProfileOut( __METHOD__ );
 				return $this->reportConnectionError( "Error setting sql_mode to $mode" );
 			}
 		}
