@@ -28,7 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class nextJobDB extends Maintenance {
+class NextJobDB extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Pick a database that has pending jobs";
@@ -115,5 +115,5 @@ class nextJobDB extends Maintenance {
 	}
 }
 
-$maintClass = "nextJobDb";
+$maintClass = "NextJobDb";
 require_once RUN_MAINTENANCE_IF_MAIN;
