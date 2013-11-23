@@ -8,7 +8,7 @@
 	// tr with the new page's table.multipageimage's tr element.
 	// table.multipageimage always has only one row.
 	function loadPage( page ) {
-		history.pushState({foo:"bar"},"foo",page);
+		history.pushState({foo:'bar'},'foo',page);
 		var $multipageimage = $( 'table.multipageimage' ),
 			$spinner = $.createSpinner( {
 				size: 'large',
@@ -54,3 +54,5 @@
 		}
 	} );
 }( mediaWiki, jQuery ) );
+
+
