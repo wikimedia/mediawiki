@@ -113,16 +113,15 @@ class UserloginTemplate extends BaseTemplate {
 
 			<?php
 			if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
-				$doms = "";
+				$select = new XmlSelect( 'wpDomain', false, $this->data['domain'] );
+				$select->setAttribute( 'tabindex', 3 );
 				foreach ( $this->data['domainnames'] as $dom ) {
-					$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
+					$select->addOption( $dom );
 				}
 			?>
 				<div id="mw-user-domain-section">
 					<label for='wpDomain'><?php $this->msg( 'yourdomainname' ); ?></label>
-					<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>" tabindex="3">
-						<?php echo $doms; ?>
-					</select>
+					<?php echo $select->getHTML(); ?>
 				</div>
 			<?php } ?>
 
