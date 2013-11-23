@@ -1473,7 +1473,9 @@ abstract class File {
 	 * @return bool
 	 * @throws MWException
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false, $timestamp = false, User $user = null ) {
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+		$watch = false, $timestamp = false, User $user = null
+	) {
 		$this->readOnlyError();
 	}
 

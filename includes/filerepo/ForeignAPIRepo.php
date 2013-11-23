@@ -316,7 +316,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $name is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param string $params Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @param string $params Other rendering parameters (page number, etc)
+	 *   from handler's makeParamString.
 	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
@@ -365,7 +366,8 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		$localPath = $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
 		$localFilename = $localPath . "/" . $fileName;
-		$localUrl = $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
+		$localUrl = $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) .
+			rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
 		if ( $backend->fileExists( array( 'src' => $localFilename ) )
 			&& isset( $metadata['timestamp'] )

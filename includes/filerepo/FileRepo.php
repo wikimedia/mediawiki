@@ -72,7 +72,8 @@ class FileRepo {
 			|| !array_key_exists( 'name', $info )
 			|| !array_key_exists( 'backend', $info )
 		) {
-			throw new MWException( __CLASS__ . " requires an array of options having both 'name' and 'backend' keys.\n" );
+			throw new MWException( __CLASS__ .
+				" requires an array of options having both 'name' and 'backend' keys.\n" );
 		}
 
 		// Required settings
@@ -206,11 +207,14 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) { // standard public zones
+		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) {
+			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
-				return $this->zones[$zone]['urlsByExt'][$ext]; // custom URL for extension/zone
+				// custom URL for extension/zone
+				return $this->zones[$zone]['urlsByExt'][$ext];
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
-				return $this->zones[$zone]['url']; // custom URL for zone
+				// custom URL for zone
+				return $this->zones[$zone]['url'];
 			}
 		}
 		switch ( $zone ) {
