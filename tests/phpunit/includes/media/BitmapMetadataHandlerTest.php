@@ -19,12 +19,8 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * @covers BitmapMetadataHandler::Jpeg
 	 */
 	public function testMultilingualCascade() {
-		if ( !extension_loaded( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
-		if ( !extension_loaded( 'xml' ) ) {
-			$this->markTestSkipped( "This test needs the xml extension." );
-		}
+		$this->checkPHPExtension( 'exif' );
+		$this->checkPHPExtension( 'xml' );
 
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
