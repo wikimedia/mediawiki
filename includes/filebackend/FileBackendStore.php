@@ -1161,7 +1161,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return array List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
-		foreach ( $fileOpHandles as $fileOpHandle ) { // OK if empty
+		if ( count( $fileOpHandles ) ) {
 			throw new MWException( "This backend supports no asynchronous operations." );
 		}
 
