@@ -965,7 +965,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param array $ops Same format as doOperations()
 	 * @return array List of FileOp objects
-	 * @throws MWException
+	 * @throws FileBackendError
 	 */
 	final public function getOperationsInternal( array $ops ) {
 		$supportedOps = array(
@@ -989,7 +989,7 @@ abstract class FileBackendStore extends FileBackend {
 				// Append the FileOp class
 				$performOps[] = new $class( $this, $params );
 			} else {
-				throw new MWException( "Operation '$opName' is not supported." );
+				throw new FileBackendError( "Operation '$opName' is not supported." );
 			}
 		}
 
@@ -1091,7 +1091,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Perform the sync-only ops and build up op handles for the async ops...
 		foreach ( $ops as $index => $params ) {
 			if ( !in_array( $params['op'], $supportedOps ) ) {
-				throw new MWException( "Operation '{$params['op']}' is not supported." );
+				throw new FileBackendError( "Operation '{$params['op']}' is not supported." );
 			}
 			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
 			$subStatus = $this->$method( array( 'async' => $async ) + $params );
@@ -1133,17 +1133,18 @@ abstract class FileBackendStore extends FileBackend {
 	 * to the order in which the handles where given.
 	 *
 	 * @param array $fileOpHandles
-	 * @throws MWException
+	 * @throws FileBackendError
 	 * @internal param array $handles List of FileBackendStoreOpHandle objects
 	 * @return array Map of Status objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
-				throw new MWException( "Given a non-FileBackendStoreOpHandle object." );
+				throw new FileBackendError( "Given a non-FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
-				throw new MWException( "Given a FileBackendStoreOpHandle for the wrong backend." );
+				throw new FileBackendError( "Given a FileBackendStoreOpHandle for the wrong backend." );
 			}
 		}
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
@@ -1157,12 +1158,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::executeOpHandlesInternal()
 	 * @param array $fileOpHandles
-	 * @throws MWException
+	 * @throws FileBackendError
 	 * @return array List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		if ( count( $fileOpHandles ) ) {
-			throw new MWException( "This backend supports no asynchronous operations." );
+			throw new FileBackendError( "This backend supports no asynchronous operations." );
 		}
 
 		return array();

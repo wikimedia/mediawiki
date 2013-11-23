@@ -92,7 +92,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
 	 * @param array $config
-	 * @throws MWException
+	 * @throws FileBackendError
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -119,7 +119,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 			$name = $config['name'];
 			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
-				throw new MWException( "Two or more backends defined with the name $name." );
+				throw new FileBackendError( "Two or more backends defined with the name $name." );
 			}
 			$namesUsed[$name] = 1;
 			// Alter certain sub-backend settings for sanity
@@ -129,20 +129,20 @@ class FileBackendMultiWrite extends FileBackend {
 			$config['lockManager'] = 'nullLockManager'; // lock under proxy backend
 			if ( !empty( $config['isMultiMaster'] ) ) {
 				if ( $this->masterIndex >= 0 ) {
-					throw new MWException( 'More than one master backend defined.' );
+					throw new FileBackendError( 'More than one master backend defined.' );
 				}
 				$this->masterIndex = $index; // this is the "master"
 				$config['fileJournal'] = $this->fileJournal; // log under proxy backend
 			}
 			// Create sub-backend object
 			if ( !isset( $config['class'] ) ) {
-				throw new MWException( 'No class given for a backend config.' );
+				throw new FileBackendError( 'No class given for a backend config.' );
 			}
 			$class = $config['class'];
 			$this->backends[$index] = new $class( $config );
 		}
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
-			throw new MWException( 'No master backend defined.' );
+			throw new FileBackendError( 'No master backend defined.' );
 		}
 	}
 

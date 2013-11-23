@@ -37,12 +37,8 @@ class FSFile {
 	 * Sets up the file object
 	 *
 	 * @param string $path Path to temporary file on local disk
-	 * @throws MWException
 	 */
 	public function __construct( $path ) {
-		if ( FileBackend::isStoragePath( $path ) ) {
-			throw new MWException( __METHOD__ . " given storage path `$path`." );
-		}
 		$this->path = $path;
 	}
 
