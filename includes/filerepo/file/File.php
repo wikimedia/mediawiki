@@ -663,7 +663,7 @@ abstract class File {
 	 */
 	function isSafeFile() {
 		if ( !isset( $this->isSafeFile ) ) {
-			$this->isSafeFile = $this->_getIsSafeFile();
+			$this->isSafeFile = $this->getIsSafeFileUncached();
 		}
 
 		return $this->isSafeFile;
@@ -683,7 +683,7 @@ abstract class File {
 	 *
 	 * @return bool
 	 */
-	protected function _getIsSafeFile() {
+	protected function getIsSafeFileUncached() {
 		global $wgTrustedMediaFormats;
 
 		if ( $this->allowInlineDisplay() ) {
