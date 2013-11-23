@@ -51,7 +51,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var int Bitfield */
 	protected $syncChecks = 0;
 
-	/** @var bool */
+	/** @var string|bool */
 	protected $autoResync = false;
 
 	/** @var array */
