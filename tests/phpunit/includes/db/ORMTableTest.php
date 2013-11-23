@@ -22,15 +22,14 @@
  *
  * @ingroup Test
  *
- * @group ORM
- * @group Database
- *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Daniel Kinzler
  */
 
 /**
+ * @group ORM
+ * @group Database
  * @covers PageORMTableForTesting
  */
 class ORMTableTest extends MediaWikiTestCase {
