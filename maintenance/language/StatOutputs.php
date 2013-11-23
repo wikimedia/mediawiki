@@ -50,7 +50,7 @@ class StatsOutput {
 }
 
 /** Outputs WikiText */
-class WikiStatsOutput extends statsOutput {
+class WikiStatsOutput extends StatsOutput {
 	function heading() {
 		global $wgDummyLanguageCodes;
 		$version = SpecialVersion::getVersion( 'nodb' );
@@ -123,7 +123,7 @@ class WikiStatsOutput extends statsOutput {
 }
 
 /** Output text. To be used on a terminal for example. */
-class TextStatsOutput extends statsOutput {
+class TextStatsOutput extends StatsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . "\t";
 	}
@@ -134,7 +134,7 @@ class TextStatsOutput extends statsOutput {
 }
 
 /** csv output. Some people love excel */
-class CsvStatsOutput extends statsOutput {
+class CsvStatsOutput extends StatsOutput {
 	function element( $in, $heading = false ) {
 		echo $in . ";";
 	}
