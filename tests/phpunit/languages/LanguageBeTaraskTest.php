@@ -1,6 +1,6 @@
 <?php
 
-class LanguageBe_taraskTest extends LanguageClassesTestCase {
+class LanguageBeTaraskTest extends LanguageClassesTestCase {
 	/**
 	 * Make sure the language code we are given is indeed
 	 * be-tarask. This is to ensure LanguageClassesTestCase
