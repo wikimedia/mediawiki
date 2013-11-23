@@ -43,7 +43,7 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var ProcessCacheLRU Map of paths to large (RAM/disk) cache items */
 	protected $expensiveCache;
 
-	/** @var Array Map of container names to sharding config */
+	/** @var array Map of container names to sharding config */
 	protected $shardViaHashLevels = array();
 
 	/** @var callback Method to get the MIME type of files */
@@ -82,7 +82,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * medium restrictions and basic performance constraints.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
-	 * @return integer Bytes
+	 * @return int Bytes
 	 */
 	final public function maxFileSizeInternal() {
 		return $this->maxFileSize;
@@ -135,6 +135,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::createInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	abstract protected function doCreateInternal( array $params );
@@ -175,6 +176,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::storeInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	abstract protected function doStoreInternal( array $params );
@@ -211,6 +213,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::copyInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	abstract protected function doCopyInternal( array $params );
@@ -239,6 +242,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::deleteInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	abstract protected function doDeleteInternal( array $params );
@@ -276,6 +280,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::moveInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doMoveInternal( array $params ) {
@@ -322,6 +327,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::describeInternal()
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doDescribeInternal( array $params ) {
@@ -361,6 +367,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::concatenate()
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doConcatenate( array $params ) {
@@ -457,6 +464,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPrepare()
+	 * @param $container
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
@@ -489,6 +499,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doSecure()
+	 * @param $container
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
@@ -521,6 +534,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPublish()
+	 * @param $container
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doPublishInternal( $container, $dir, array $params ) {
@@ -574,6 +590,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doClean()
+	 * @param $container
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doCleanInternal( $container, $dir, array $params ) {
@@ -664,7 +683,8 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileContentsMulti()
-	 * @return Array
+	 * @param array $params
+	 * @return array
 	 */
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = array();
@@ -702,6 +722,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileSha1Base36()
+	 * @param array $params
 	 * @return bool|string
 	 */
 	protected function doGetFileSha1Base36( array $params ) {
@@ -757,7 +778,8 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getLocalReferenceMulti()
-	 * @return Array
+	 * @param array $params
+	 * @return array
 	 */
 	protected function doGetLocalReferenceMulti( array $params ) {
 		return $this->doGetLocalCopyMulti( $params );
@@ -774,12 +796,14 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getLocalCopyMulti()
-	 * @return Array
+	 * @param array $params
+	 * @return array
 	 */
 	abstract protected function doGetLocalCopyMulti( array $params );
 
 	/**
 	 * @see FileBackend::getFileHttpUrl()
+	 * @param array $params
 	 * @return string|null
 	 */
 	public function getFileHttpUrl( array $params ) {
@@ -821,6 +845,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::streamFile()
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doStreamFile( array $params ) {
@@ -939,7 +964,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * An exception is thrown if an unsupported operation is requested.
 	 *
 	 * @param array $ops Same format as doOperations()
-	 * @return Array List of FileOp objects
+	 * @return array List of FileOp objects
 	 * @throws MWException
 	 */
 	final public function getOperationsInternal( array $ops ) {
@@ -979,7 +1004,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * normalized.
 	 *
 	 * @param array $performOps List of FileOp objects
-	 * @return Array (LockManager::LOCK_UW => path list, LockManager::LOCK_EX => path list)
+	 * @return array (LockManager::LOCK_UW => path list, LockManager::LOCK_EX => path list)
 	 */
 	final public function getPathsToLockForOpsInternal( array $performOps ) {
 		// Build up a list of files to lock...
@@ -1107,9 +1132,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * The resulting Status object fields will correspond
 	 * to the order in which the handles where given.
 	 *
-	 * @param array $handles List of FileBackendStoreOpHandle objects
-	 * @return Array Map of Status objects
+	 * @param array $fileOpHandles
 	 * @throws MWException
+	 * @internal param array $handles List of FileBackendStoreOpHandle objects
+	 * @return array Map of Status objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1132,7 +1158,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @see FileBackendStore::executeOpHandlesInternal()
 	 * @param array $fileOpHandles
 	 * @throws MWException
-	 * @return Array List of corresponding Status objects
+	 * @return array List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		foreach ( $fileOpHandles as $fileOpHandle ) { // OK if empty
@@ -1149,7 +1175,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * specific errors, especially in the middle of batch file operations.
 	 *
 	 * @param array $op Same format as doOperation()
-	 * @return Array
+	 * @return array
 	 */
 	protected function stripInvalidHeadersFromOp( array $op ) {
 		static $longs = array( 'Content-Disposition' );
@@ -1202,7 +1228,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * @see FileBackend::clearCache()
 	 *
 	 * @param array $paths Storage paths (optional)
-	 * @return void
 	 */
 	protected function doClearCache( array $paths = null ) {
 	}
@@ -1243,7 +1268,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * be scanned by looking in all the container shards.
 	 *
 	 * @param string $storagePath
-	 * @return Array (container, path, container suffix) or (null, null, null) if invalid
+	 * @return array (container, path, container suffix) or (null, null, null) if invalid
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
 		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
@@ -1284,7 +1309,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @see FileBackendStore::resolveStoragePath()
 	 *
 	 * @param string $storagePath
-	 * @return Array (container, path) or (null, null) if invalid
+	 * @return array (container, path) or (null, null) if invalid
 	 */
 	final protected function resolveStoragePathReal( $storagePath ) {
 		list( $container, $relPath, $cShard ) = $this->resolveStoragePath( $storagePath );
@@ -1353,7 +1378,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * the container are required to be hashed accordingly.
 	 *
 	 * @param string $container
-	 * @return Array (integer levels, integer base, repeat flag) or (0, 0, false)
+	 * @return array (integer levels, integer base, repeat flag) or (0, 0, false)
 	 */
 	final protected function getContainerHashLevels( $container ) {
 		if ( isset( $this->shardViaHashLevels[$container] ) ) {
@@ -1374,7 +1399,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Get a list of full container shard suffixes for a container
 	 *
 	 * @param string $container
-	 * @return Array
+	 * @return array
 	 */
 	final protected function getContainerSuffixes( $container ) {
 		$shards = array();
@@ -1444,7 +1469,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string $container Resolved container name
 	 * @param array $val Information to cache
-	 * @return void
 	 */
 	final protected function setContainerCache( $container, array $val ) {
 		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14 * 86400 );
@@ -1455,7 +1479,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * The cache key is salted for a while to prevent race conditions.
 	 *
 	 * @param string $container Resolved container name
-	 * @return void
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
@@ -1468,8 +1491,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * used in a list of container names, storage paths, or FileOp objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
-	 * @param Array $items
-	 * @return void
+	 * @param array $items
 	 */
 	final protected function primeContainerCache( array $items ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1512,7 +1534,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * Only containers that actually exist should appear in the map.
 	 *
 	 * @param array $containerInfo Map of resolved container names to cached info
-	 * @return void
 	 */
 	protected function doPrimeContainerCache( array $containerInfo ) {
 	}
@@ -1534,7 +1555,6 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string $path Storage path
 	 * @param array $val Stat information to cache
-	 * @return void
 	 */
 	final protected function setFileCache( $path, array $val ) {
 		$path = FileBackend::normalizeStoragePath( $path );
@@ -1553,7 +1573,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * a file is created at a path were there was none before.
 	 *
 	 * @param string $path Storage path
-	 * @return void
 	 */
 	final protected function deleteFileCache( $path ) {
 		$path = FileBackend::normalizeStoragePath( $path );
@@ -1571,7 +1590,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * This loads the persistent cache values into the process cache.
 	 *
 	 * @param array $items List of storage paths or FileOps
-	 * @return void
 	 */
 	final protected function primeFileCache( array $items ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1614,7 +1632,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Set the 'concurrency' option from a list of operation options
 	 *
 	 * @param array $opts Map of operation options
-	 * @return Array
+	 * @return array
 	 */
 	final protected function setConcurrencyFlags( array $opts ) {
 		$opts['concurrency'] = 1; // off
@@ -1653,19 +1671,17 @@ abstract class FileBackendStore extends FileBackend {
  * passed to FileBackendStore::executeOpHandlesInternal().
  */
 abstract class FileBackendStoreOpHandle {
-	/** @var Array */
+	/** @var array */
 	public $params = array(); // params to caller functions
 	/** @var FileBackendStore */
 	public $backend;
-	/** @var Array */
+	/** @var array */
 	public $resourcesToClose = array();
 
 	public $call; // string; name that identifies the function called
 
 	/**
 	 * Close all open file handles
-	 *
-	 * @return void
 	 */
 	public function closeResources() {
 		array_map( 'fclose', $this->resourcesToClose );
@@ -1681,13 +1697,17 @@ abstract class FileBackendStoreOpHandle {
 abstract class FileBackendStoreShardListIterator extends FilterIterator {
 	/** @var FileBackendStore */
 	protected $backend;
-	/** @var Array */
+
+	/** @var array */
 	protected $params;
 
-	protected $container; // string; full container name
-	protected $directory; // string; resolved relative path
+	/** @var string Full container name */
+	protected $container;
 
-	/** @var Array */
+	/** @var string Resolved relative path */
+	protected $directory;
+
+	/** @var array */
 	protected $multiShardPaths = array(); // (rel path => 1)
 
 	/**

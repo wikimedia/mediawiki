@@ -38,7 +38,7 @@
  * @since 1.22
  */
 class RedisLockManager extends QuorumLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
@@ -47,21 +47,21 @@ class RedisLockManager extends QuorumLockManager {
 
 	/** @var RedisConnectionPool */
 	protected $redisPool;
-	/** @var Array Map server names to hostname/IP and port numbers */
+
+	/** @var array Map server names to hostname/IP and port numbers */
 	protected $lockServers = array();
 
-	protected $session = ''; // string; random UUID
+	/** @var string random UUID */
+	protected $session = '';
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * $config paramaters include:
+	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
 	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - redisConfig  : Configuration for RedisConnectionPool::__construct().
-	 *
-	 * @param Array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -100,7 +100,7 @@ class RedisLockManager extends QuorumLockManager {
 		return $status;
 	}
 
-	// @TODO: change this code to work in one batch
+	// @todo Change this code to work in one batch
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 
@@ -269,7 +269,7 @@ LUA;
 	}
 
 	/**
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected function recordKeyForPath( $path ) {

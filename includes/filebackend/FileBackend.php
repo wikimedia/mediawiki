@@ -60,14 +60,24 @@
  * @since 1.19
  */
 abstract class FileBackend {
-	protected $name; // string; unique backend name
-	protected $wikiId; // string; unique wiki name
-	protected $readOnly; // string; read-only explanation message
-	protected $parallelize; // string; when to do operations in parallel
-	protected $concurrency; // integer; how many operations can be done in parallel
+	/** @var  string Unique backend name */
+	protected $name;
+
+	/** @var string Unique wiki name */
+	protected $wikiId;
+
+	/** @var string Read-only explanation message */
+	protected $readOnly;
+
+	/** @var string When to do operations in parallel */
+	protected $parallelize;
+
+	/** @var int How many operations can be done in parallel */
+	protected $concurrency;
 
 	/** @var LockManager */
 	protected $lockManager;
+
 	/** @var FileJournal */
 	protected $fileJournal;
 
@@ -75,7 +85,7 @@ abstract class FileBackend {
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
 	 *
-	 * $config includes:
+	 * @param array $config Parameters include:
 	 *   - name        : The unique name of this backend.
 	 *                   This should consist of alphanumberic, '-', and '_' characters.
 	 *                   This name should not be changed after use (e.g. with journaling).
@@ -93,8 +103,6 @@ abstract class FileBackend {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *                   Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
-	 *
-	 * @param array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -671,8 +679,7 @@ abstract class FileBackend {
 	 * otherwise safe from modification from other processes. Normally,
 	 * the file will be a new temp file, which should be adequate.
 	 *
-	 * @param array $params Operation parameters
-	 * $params include:
+	 * @param array $params Operation parameters, include:
 	 *   - srcs        : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *   - dst         : file system path to 0-byte temp file
 	 *   - parallelize : try to do operations in parallel when possible
@@ -691,8 +698,7 @@ abstract class FileBackend {
 	 * However, setting them is not guaranteed to actually do anything.
 	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access (since 1.20)
 	 *   - noListing      : try to deny file listing (since 1.20)
@@ -721,8 +727,7 @@ abstract class FileBackend {
 	 * This is not guaranteed to actually make files or listings publically hidden.
 	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir            : storage directory
 	 *   - noAccess       : try to deny file access
 	 *   - noListing      : try to deny file listing
@@ -752,8 +757,7 @@ abstract class FileBackend {
 	 * This is not guaranteed to actually make files or listings publically viewable.
 	 * Additional server configuration may be needed to achieve the desired effect.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir            : storage directory
 	 *   - access         : try to allow file access
 	 *   - listing        : try to allow file listing
@@ -779,8 +783,7 @@ abstract class FileBackend {
 	 * Backends using key/value stores may do nothing unless the directory
 	 * is that of an empty container, in which case it will be deleted.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir            : storage directory
 	 *   - recursive      : recursively delete empty subdirectories first (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
@@ -821,8 +824,7 @@ abstract class FileBackend {
 	 * Check if a file exists at a storage path in the backend.
 	 * This returns false if only a directory exists at the path.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return bool|null Returns null on failure
@@ -832,8 +834,7 @@ abstract class FileBackend {
 	/**
 	 * Get the last-modified timestamp of the file at a storage path.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return string|bool TS_MW timestamp or false on failure
@@ -844,8 +845,7 @@ abstract class FileBackend {
 	 * Get the contents of a file at a storage path in the backend.
 	 * This should be avoided for potentially large files.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return string|bool Returns false on failure
@@ -864,12 +864,11 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getFileContents()
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return Array Map of (path name => string or false on failure)
+	 * @return array Map of (path name => string or false on failure)
 	 * @since 1.20
 	 */
 	abstract public function getFileContentsMulti( array $params );
@@ -877,11 +876,10 @@ abstract class FileBackend {
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return integer|bool Returns false on failure
+	 * @return int|bool Returns false on failure
 	 */
 	abstract public function getFileSize( array $params );
 
@@ -893,19 +891,17 @@ abstract class FileBackend {
 	 *   - size   : the file size (bytes)
 	 * Additional values may be included for internal use only.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return Array|bool|null Returns null on failure
+	 * @return array|bool|null Returns null on failure
 	 */
 	abstract public function getFileStat( array $params );
 
 	/**
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return string|bool Hash string or false on failure
@@ -916,11 +912,10 @@ abstract class FileBackend {
 	 * Get the properties of the file at a storage path in the backend.
 	 * This gives the result of FSFile::getProps() on a local copy of the file.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return Array Returns FSFile::placeholderProps() on failure
+	 * @return array Returns FSFile::placeholderProps() on failure
 	 */
 	abstract public function getFileProps( array $params );
 
@@ -931,8 +926,7 @@ abstract class FileBackend {
 	 * will be sent if streaming began, while none will be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src     : source storage path
 	 *   - headers : list of additional HTTP headers to send on success
 	 *   - latest  : use the latest available data
@@ -953,8 +947,7 @@ abstract class FileBackend {
 	 * In that later case, there are copies of the file that must stay in sync.
 	 * Additionally, further calls to this function may return the same file.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return FSFile|null Returns null on failure
@@ -973,12 +966,11 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getLocalReference()
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return Array Map of (path name => FSFile or null on failure)
+	 * @return array Map of (path name => FSFile or null on failure)
 	 * @since 1.20
 	 */
 	abstract public function getLocalReferenceMulti( array $params );
@@ -988,8 +980,7 @@ abstract class FileBackend {
 	 * The temporary copy will have the same file extension as the source.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
 	 * @return TempFSFile|null Returns null on failure
@@ -1008,12 +999,11 @@ abstract class FileBackend {
 	 *
 	 * @see FileBackend::getLocalCopy()
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
 	 *   - parallelize : try to do operations in parallel when possible
-	 * @return Array Map of (path name => TempFSFile or null on failure)
+	 * @return array Map of (path name => TempFSFile or null on failure)
 	 * @since 1.20
 	 */
 	abstract public function getLocalCopyMulti( array $params );
@@ -1028,8 +1018,7 @@ abstract class FileBackend {
 	 * Otherwise, one would need to use getLocalReference(), which involves loading
 	 * the entire file on to local disk.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - src : source storage path
 	 *   - ttl : lifetime (seconds) if pre-authenticated; default is 1 day
 	 * @return string|null
@@ -1044,8 +1033,7 @@ abstract class FileBackend {
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir : storage directory
 	 * @return bool|null Returns null on failure
 	 * @since 1.20
@@ -1064,8 +1052,7 @@ abstract class FileBackend {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
 	 * @return Traversable|Array|null Returns null on failure
@@ -1081,8 +1068,7 @@ abstract class FileBackend {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir : storage directory
 	 * @return Traversable|Array|null Returns null on failure
 	 * @since 1.20
@@ -1103,8 +1089,7 @@ abstract class FileBackend {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
@@ -1120,8 +1105,7 @@ abstract class FileBackend {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
-	 * @param array $params
-	 * $params include:
+	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
 	 * @return Traversable|Array|null Returns null on failure
@@ -1136,7 +1120,6 @@ abstract class FileBackend {
 	 * This should be used when stat calls will be made on a known list of a many files.
 	 *
 	 * @param array $paths Storage paths
-	 * @return void
 	 */
 	public function preloadCache( array $paths ) {
 	}
@@ -1146,7 +1129,6 @@ abstract class FileBackend {
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
 	 * @param array $paths Storage paths (optional)
-	 * @return void
 	 */
 	public function clearCache( array $paths = null ) {
 	}
@@ -1158,7 +1140,7 @@ abstract class FileBackend {
 	 * Callers should consider using getScopedFileLocks() instead.
 	 *
 	 * @param array $paths Storage paths
-	 * @param integer $type LockManager::LOCK_* constant
+	 * @param int $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function lockFiles( array $paths, $type ) {
@@ -1171,7 +1153,7 @@ abstract class FileBackend {
 	 * Unlock the files at the given storage paths in the backend.
 	 *
 	 * @param array $paths Storage paths
-	 * @param integer $type LockManager::LOCK_* constant
+	 * @param int $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function unlockFiles( array $paths, $type ) {
@@ -1191,7 +1173,7 @@ abstract class FileBackend {
 	 * @see ScopedLock::factory()
 	 *
 	 * @param array $paths List of storage paths or map of lock types to path lists
-	 * @param integer|string $type LockManager::LOCK_* constant or "mixed"
+	 * @param int|string $type LockManager::LOCK_* constant or "mixed"
 	 * @param Status $status Status to update on lock/unlock
 	 * @return ScopedLock|null Returns null on failure
 	 */
@@ -1220,7 +1202,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $ops List of file operations to FileBackend::doOperations()
 	 * @param Status $status Status to update on lock/unlock
-	 * @return Array List of ScopedFileLocks or null values
+	 * @return array List of ScopedFileLocks or null values
 	 * @since 1.20
 	 */
 	abstract public function getScopedLocksForOps( array $ops, Status $status );
@@ -1273,7 +1255,7 @@ abstract class FileBackend {
 	 * This does not do any path normalization or traversal checks.
 	 *
 	 * @param string $storagePath
-	 * @return Array (backend, container, rel object) or (null, null, null)
+	 * @return array (backend, container, rel object) or (null, null, null)
 	 */
 	final public static function splitStoragePath( $storagePath ) {
 		if ( self::isStoragePath( $storagePath ) ) {

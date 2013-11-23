@@ -37,26 +37,45 @@
  * @since 1.19
  */
 class SwiftFileBackend extends FileBackendStore {
-	/** @var CF_Authentication */
-	protected $auth; // Swift authentication handler
-	protected $authTTL; // integer seconds
-	protected $swiftTempUrlKey; // string; shared secret value for making temp urls
-	protected $swiftAnonUser; // string; username to handle unauthenticated requests
-	protected $swiftUseCDN; // boolean; whether CloudFiles CDN is enabled
-	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
-	protected $swiftCDNPurgable; // boolean; whether object CDN purging is enabled
+	/** @var CF_Authentication Swift authentication handler */
+	protected $auth;
+
+	/** @var int TTL in seconds */
+	protected $authTTL;
+
+	/** @var string Shared secret value for making temp URLs */
+	protected $swiftTempUrlKey;
+
+	/** @var string Username to handle unauthenticated requests */
+	protected $swiftAnonUser;
+
+	/** @var bool Whether CloudFiles CDN is enabled */
+	protected $swiftUseCDN;
+
+	/** @var int How long to cache things in the CDN */
+	protected $swiftCDNExpiry;
+
+	/** @var bool Whether object CDN purging is enabled */
+	protected $swiftCDNPurgable;
 
 	// Rados Gateway specific options
-	protected $rgwS3AccessKey; // string; S3 access key
-	protected $rgwS3SecretKey; // string; S3 authentication key
+	/** @var string S3 access key */
+	protected $rgwS3AccessKey;
 
-	/** @var CF_Connection */
-	protected $conn; // Swift connection handle
-	protected $sessionStarted = 0; // integer UNIX timestamp
+	/** @var string S3 authentication key */
+	protected $rgwS3SecretKey;
+
+	/** @var CF_Connection Swift connection handle*/
+	protected $conn;
+
+	/** @var int UNIX timestamp */
+	protected $sessionStarted = 0;
 
 	/** @var CloudFilesException */
 	protected $connException;
-	protected $connErrorTime = 0; // UNIX timestamp
+
+	/** @var int UNIX timestamp */
+	protected $connErrorTime = 0;
 
 	/** @var BagOStuff */
 	protected $srvCache;
@@ -162,7 +181,10 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
-	 * @return null
+	 * @param string $container
+	 * @param string $relStoragePath
+	 * @return string|null Returns null when the URL encoded storage path is
+	 *   longer than 1024 characters or not UTF-8 encoded.
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) { // mb_string required by CF
@@ -664,6 +686,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doSecureInternal()
+	 * @param string $fullCont
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
@@ -699,6 +724,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPublishInternal()
+	 * @param string $fullCont
+	 * @param string $dir
+	 * @param array $params
 	 * @return Status
 	 */
 	protected function doPublishInternal( $fullCont, $dir, array $params ) {
@@ -923,6 +951,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDirectoryExists()
+	 * @param string $fullCont
+	 * @param string $dir
+	 * @param array $params
 	 * @return bool|null
 	 */
 	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
@@ -943,6 +974,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getDirectoryListInternal()
+	 * @param string $fullCont
+	 * @param string $dir
+	 * @param array $params
 	 * @return SwiftFileBackendDirList
 	 */
 	public function getDirectoryListInternal( $fullCont, $dir, array $params ) {
@@ -951,6 +985,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
+	 * @param string $fullCont
+	 * @param string $dir
+	 * @param array $params
 	 * @return SwiftFileBackendFileList
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
@@ -963,9 +1000,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Resolved container relative path to list items after
-	 * @param integer $limit Max number of items to list
+	 * @param int $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
-	 * @return Array List of container relative resolved paths of directories directly under $dir
+	 * @return array List of container relative resolved paths of directories directly under $dir
 	 * @throws FileBackendError
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1038,9 +1075,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null $after Resolved container relative path of file to list items after
-	 * @param integer $limit Max number of items to list
+	 * @param int $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
-	 * @return Array List of resolved container relative paths of files under $dir
+	 * @return array List of resolved container relative paths of files under $dir
 	 * @throws FileBackendError
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1125,7 +1162,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $path Storage path
 	 * @param array $val Stat value
-	 * @return void
 	 */
 	public function loadListingStatInternal( $path, array $val ) {
 		$this->cheapCache->set( $path, 'stat', $val );
@@ -1305,7 +1341,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * $params is currently only checked for a 'latest' flag.
 	 *
 	 * @param array $params
-	 * @return Array
+	 * @return array
 	 */
 	protected function headersFromParams( array $params ) {
 		$hdrs = array();
@@ -1345,7 +1381,13 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Set read/write permissions for a Swift container.
 	 *
-	 * $readGrps is a list of the possible criteria for a request to have
+	 * @see http://swift.openstack.org/misc.html#acls
+	 *
+	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
+	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
+	 *
+	 * @param CF_Container $contObj Swift container
+	 * @param array $readGrps List of the possible criteria for a request to have
 	 * access to read a container. Each item is one of the following formats:
 	 *   - account:user        : Grants access if the request is by the given user
 	 *   - ".r:<regex>"        : Grants access if the request is from a referrer host that
@@ -1353,19 +1395,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                           Setting this to '*' effectively makes a container public.
 	 *   -".rlistings:<regex>" : Grants access if the request is from a referrer host that
 	 *                           matches the expression and the request is for a listing.
-	 *
-	 * $writeGrps is a list of the possible criteria for a request to have
+	 * @param array $writeGrps A list of the possible criteria for a request to have
 	 * access to write to a container. Each item is of the following format:
 	 *   - account:user       : Grants access if the request is by the given user
-	 *
-	 * @see http://swift.openstack.org/misc.html#acls
-	 *
-	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
-	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
-	 *
-	 * @param CF_Container $contObj Swift container
-	 * @param array $readGrps List of read access routes
-	 * @param array $writeGrps List of write access routes
 	 * @return Status
 	 */
 	protected function setContainerAccess(
@@ -1389,7 +1421,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 * This is for Rackspace/Akamai CDNs.
 	 *
 	 * @param array $objects List of CF_Object items
-	 * @return void
 	 */
 	public function purgeCDNCache( array $objects ) {
 		if ( $this->swiftUseCDN && $this->swiftCDNPurgable ) {
@@ -1457,8 +1488,6 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Close the connection to the Swift proxy
-	 *
-	 * @return void
 	 */
 	protected function closeConnection() {
 		if ( $this->conn ) {
@@ -1527,7 +1556,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Delete a Swift container
 	 *
 	 * @param string $container Container name
-	 * @return void
 	 * @throws CloudFilesException
 	 */
 	protected function deleteContainer( $container ) {
@@ -1557,7 +1585,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param Status $status null
 	 * @param string $func
 	 * @param array $params
-	 * @return void
 	 */
 	protected function handleException( Exception $e, $status, $func, array $params ) {
 		if ( $status instanceof Status ) {
@@ -1587,7 +1614,8 @@ class SwiftFileBackend extends FileBackendStore {
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var CF_Async_Op */
 	public $cfOp;
-	/** @var Array */
+
+	/** @var array */
 	public $affectedObjects = array();
 
 	/**
@@ -1614,18 +1642,29 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
  * @ingroup FileBackend
  */
 abstract class SwiftFileBackendList implements Iterator {
-	/** @var Array List of path or (path,stat array) entries */
+	/** @var array List of path or (path,stat array) entries */
 	protected $bufferIter = array();
-	protected $bufferAfter = null; // string; list items *after* this path
-	protected $pos = 0; // integer
-	/** @var Array */
+
+	/** @var string List items *after* this path */
+	protected $bufferAfter = null;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var array */
 	protected $params = array();
 
 	/** @var SwiftFileBackend */
 	protected $backend;
-	protected $container; // string; container name
-	protected $dir; // string; storage directory
-	protected $suffixStart; // integer
+
+	/** @var string Container name */
+	protected $container;
+
+	/** @var string Storage directory */
+	protected $dir;
+
+	/** @var int */
+	protected $suffixStart;
 
 	const PAGE_SIZE = 9000; // file listing buffer size
 
@@ -1652,7 +1691,7 @@ abstract class SwiftFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::key()
-	 * @return integer
+	 * @return int
 	 */
 	public function key() {
 		return $this->pos;
@@ -1660,7 +1699,6 @@ abstract class SwiftFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::next()
-	 * @return void
 	 */
 	public function next() {
 		// Advance to the next file in the page
@@ -1677,7 +1715,6 @@ abstract class SwiftFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::rewind()
-	 * @return void
 	 */
 	public function rewind() {
 		$this->pos = 0;
@@ -1705,9 +1742,9 @@ abstract class SwiftFileBackendList implements Iterator {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param string $after null
-	 * @param integer $limit
+	 * @param int $limit
 	 * @param array $params
-	 * @return Traversable|Array
+	 * @return Traversable|array
 	 */
 	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
 }
@@ -1726,7 +1763,12 @@ class SwiftFileBackendDirList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array
+	 * @param string $container
+	 * @param string $dir
+	 * @param string $after
+	 * @param int $limit
+	 * @param array $params
+	 * @return array
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getDirListPageInternal( $container, $dir, $after, $limit, $params );
@@ -1754,7 +1796,12 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 
 	/**
 	 * @see SwiftFileBackendList::pageFromList()
-	 * @return Array
+	 * @param string $container
+	 * @param string $dir
+	 * @param string $after
+	 * @param int $limit
+	 * @param array $params
+	 * @return array
 	 */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );

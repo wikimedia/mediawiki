@@ -37,17 +37,17 @@
  * @since 1.19
  */
 class LSLockManager extends QuorumLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map of server names to server config */
+	/** @var array Map of server names to server config */
 	protected $lockServers; // (server name => server config array)
 
-	/** @var Array Map Server connections (server name => resource) */
+	/** @var array Map Server connections (server name => resource) */
 	protected $conns = array();
 
 	protected $connTimeout; // float number of seconds
@@ -56,7 +56,7 @@ class LSLockManager extends QuorumLockManager {
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * $config paramaters include:
+	 * @param array $config Paramaters include:
 	 *   - lockServers  : Associative array of server names to configuration.
 	 *                    Configuration is an associative array that includes:
 	 *                      - host    : IP address/hostname
@@ -65,8 +65,6 @@ class LSLockManager extends QuorumLockManager {
 	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - connTimeout  : Lock server connection attempt timeout. [optional]
-	 *
-	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -87,6 +85,9 @@ class LSLockManager extends QuorumLockManager {
 
 	/**
 	 * @see QuorumLockManager::getLocksOnServer()
+	 * @param string $lockSrv
+	 * @param array $paths
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function getLocksOnServer( $lockSrv, array $paths, $type ) {
@@ -108,6 +109,9 @@ class LSLockManager extends QuorumLockManager {
 
 	/**
 	 * @see QuorumLockManager::freeLocksOnServer()
+	 * @param string $lockSrv
+	 * @param array $paths
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function freeLocksOnServer( $lockSrv, array $paths, $type ) {
@@ -146,6 +150,7 @@ class LSLockManager extends QuorumLockManager {
 
 	/**
 	 * @see QuorumLockManager::isServerUp()
+	 * @param string $lockSrv
 	 * @return bool
 	 */
 	protected function isServerUp( $lockSrv ) {
@@ -155,10 +160,10 @@ class LSLockManager extends QuorumLockManager {
 	/**
 	 * Send a command and get back the response
 	 *
-	 * @param $lockSrv string
-	 * @param $action string
-	 * @param $type string
-	 * @param $values Array
+	 * @param string $lockSrv
+	 * @param string $action
+	 * @param string $type
+	 * @param array $values
 	 * @return string|bool
 	 */
 	protected function sendCommand( $lockSrv, $action, $type, $values ) {
@@ -186,7 +191,7 @@ class LSLockManager extends QuorumLockManager {
 	/**
 	 * Get (or reuse) a connection to a lock server
 	 *
-	 * @param $lockSrv string
+	 * @param string $lockSrv
 	 * @return resource
 	 */
 	protected function getConnection( $lockSrv ) {

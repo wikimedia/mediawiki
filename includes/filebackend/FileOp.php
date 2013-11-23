@@ -34,20 +34,35 @@
  * @since 1.19
  */
 abstract class FileOp {
-	/** @var Array */
+	/** @var array */
 	protected $params = array();
+
 	/** @var FileBackendStore */
 	protected $backend;
 
-	protected $state = self::STATE_NEW; // integer
-	protected $failed = false; // boolean
-	protected $async = false; // boolean
-	protected $batchId; // string
+	/** @var int */
+	protected $state = self::STATE_NEW;
 
-	protected $doOperation = true; // boolean; operation is not a no-op
-	protected $sourceSha1; // string
-	protected $overwriteSameCase; // boolean
-	protected $destExists; // boolean
+	/** @var bool */
+	protected $failed = false;
+
+	/** @var bool */
+	protected $async = false;
+
+	/** @var string */
+	protected $batchId;
+
+	/** @var bool Operation is not a no-op */
+	protected $doOperation = true;
+
+	/** @var string */
+	protected $sourceSha1;
+
+	/** @var bool */
+	protected $overwriteSameCase;
+
+	/** @var bool */
+	protected $destExists;
 
 	/* Object life-cycle */
 	const STATE_NEW = 1;
@@ -58,7 +73,7 @@ abstract class FileOp {
 	 * Build a new batch file operation transaction
 	 *
 	 * @param FileBackendStore $backend
-	 * @param Array $params
+	 * @param array $params
 	 * @throws MWException
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
@@ -104,7 +119,6 @@ abstract class FileOp {
 	 * Set the batch UUID this operation belongs to
 	 *
 	 * @param string $batchId
-	 * @return void
 	 */
 	final public function setBatchId( $batchId ) {
 		$this->batchId = $batchId;
@@ -132,7 +146,7 @@ abstract class FileOp {
 	/**
 	 * Get a new empty predicates array for precheck()
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	final public static function newPredicates() {
 		return array( 'exists' => array(), 'sha1' => array() );
@@ -141,7 +155,7 @@ abstract class FileOp {
 	/**
 	 * Get a new empty dependency tracking array for paths read/written to
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	final public static function newDependencies() {
 		return array( 'read' => array(), 'write' => array() );
@@ -151,7 +165,7 @@ abstract class FileOp {
 	 * Update a dependency tracking array to account for this operation
 	 *
 	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
-	 * @return Array
+	 * @return array
 	 */
 	final public function applyDependencies( array $deps ) {
 		$deps['read'] += array_fill_keys( $this->storagePathsRead(), 1 );
@@ -163,7 +177,7 @@ abstract class FileOp {
 	/**
 	 * Check if this operation changes files listed in $paths
 	 *
-	 * @param array $paths Prior path reads/writes; format of FileOp::newPredicates()
+	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
 	 * @return boolean
 	 */
 	final public function dependsOn( array $deps ) {
@@ -186,7 +200,7 @@ abstract class FileOp {
 	 *
 	 * @param array $oPredicates Pre-op info about files (format of FileOp::newPredicates)
 	 * @param array $nPredicates Post-op info about files (format of FileOp::newPredicates)
-	 * @return Array
+	 * @return array
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
 		if ( !$this->doOperation ) {
@@ -227,7 +241,7 @@ abstract class FileOp {
 	 * This must update $predicates for each path that the op can change
 	 * except when a failing status object is returned.
 	 *
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return Status
 	 */
 	final public function precheck( array &$predicates ) {
@@ -244,6 +258,7 @@ abstract class FileOp {
 	}
 
 	/**
+	 * @param array $predicates
 	 * @return Status
 	 */
 	protected function doPrecheck( array &$predicates ) {
@@ -298,7 +313,7 @@ abstract class FileOp {
 	/**
 	 * Get the file operation parameters
 	 *
-	 * @return Array (required params list, optional params list, list of params that are paths)
+	 * @return array (required params list, optional params list, list of params that are paths)
 	 */
 	protected function allowedParams() {
 		return array( array(), array(), array() );
@@ -307,8 +322,8 @@ abstract class FileOp {
 	/**
 	 * Adjust params to FileBackendStore internal file calls
 	 *
-	 * @param Array $params
-	 * @return Array (required params list, optional params list)
+	 * @param array $params
+	 * @return array (required params list, optional params list)
 	 */
 	protected function setFlags( array $params ) {
 		return array( 'async' => $this->async ) + $params;
@@ -317,7 +332,7 @@ abstract class FileOp {
 	/**
 	 * Get a list of storage paths read from for this operation
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function storagePathsRead() {
 		return array();
@@ -326,7 +341,7 @@ abstract class FileOp {
 	/**
 	 * Get a list of storage paths written to for this operation
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function storagePathsChanged() {
 		return array();
@@ -337,7 +352,7 @@ abstract class FileOp {
 	 * Also set the destExists, overwriteSameCase and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
 	 *
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return Status
 	 */
 	protected function precheckDestExistence( array $predicates ) {
@@ -389,7 +404,7 @@ abstract class FileOp {
 	 * Check if a file will exist in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return bool
 	 */
 	final protected function fileExists( $source, array $predicates ) {
@@ -406,7 +421,7 @@ abstract class FileOp {
 	 * Get the SHA-1 of a file in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return string|bool False on failure
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
@@ -434,7 +449,6 @@ abstract class FileOp {
 	 * Log a file operation failure and preserve any temp files
 	 *
 	 * @param string $action
-	 * @return void
 	 */
 	final public function logFailure( $action ) {
 		$params = $this->params;
