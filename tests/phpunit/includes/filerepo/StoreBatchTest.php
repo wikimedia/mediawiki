@@ -25,13 +25,14 @@ class StoreBatchTest extends MediaWikiTestCase {
 					$useConfig = $conf;
 				}
 			}
+			$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
 			$useConfig['name'] = 'local-testing'; // swap name
 			$class = $useConfig['class'];
 			$backend = new $class( $useConfig );
 		} else {
 			$backend = new FSFileBackend( array(
 				'name' => 'local-testing',
-				'lockManager' => 'nullLockManager',
+				'wikiId' => wfWikiID(),
 				'containerPaths' => array(
 					'unittests-public' => "{$tmpPrefix}-public",
 					'unittests-thumb' => "{$tmpPrefix}-thumb",

@@ -37,6 +37,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				$useConfig['shardViaHashLevels'] = array( // test sharding
 					'unittest-cont1' => array( 'levels' => 1, 'base' => 16, 'repeat' => 1 )
 				);
+				$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
@@ -44,9 +45,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		} else {
 			$this->singleBackend = new FSFileBackend( array(
 				'name' => 'localtesting',
-				'lockManager' => 'fsLockManager',
-				#'parallelize' => 'implicit',
-				'wikiId' => wfWikiID() . $uniqueId,
+				'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
+				'wikiId' => wfWikiID(),
 				'containerPaths' => array(
 					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
 					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
@@ -54,14 +54,13 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
 			'name' => 'localtesting',
-			'lockManager' => 'fsLockManager',
+			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
 			'wikiId' => wfWikiId() . $uniqueId,
 			'backends' => array(
 				array(
 					'name' => 'localmultitesting1',
 					'class' => 'FSFileBackend',
-					'lockManager' => 'nullLockManager',
 					'containerPaths' => array(
 						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti1-cont1",
 						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti1-cont2" ),
@@ -70,7 +69,6 @@ class FileBackendTest extends MediaWikiTestCase {
 				array(
 					'name' => 'localmultitesting2',
 					'class' => 'FSFileBackend',
-					'lockManager' => 'nullLockManager',
 					'containerPaths' => array(
 						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti2-cont1",
 						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti2-cont2" ),
