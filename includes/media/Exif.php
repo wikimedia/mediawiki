@@ -319,7 +319,7 @@ class Exif {
 	 * Make $this->mFilteredExifData
 	 */
 	function makeFilteredData() {
-		$this->mFilteredExifData = Array();
+		$this->mFilteredExifData = array();
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
 			if ( !in_array( $section, array_keys( $this->mExifTags ) ) ) {

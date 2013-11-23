@@ -44,8 +44,8 @@ class JSONRCFeedFormatter implements RCFeedFormatter {
 				break;
 
 			case RC_NEW:
-				$packet['length'] = array( 'old' => NULL, 'new' => $attrib['rc_new_len'] );
-				$packet['revision'] = array( 'old' => NULL, 'new' => $attrib['rc_this_oldid'] );
+				$packet['length'] = array( 'old' => null, 'new' => $attrib['rc_new_len'] );
+				$packet['revision'] = array( 'old' => null, 'new' => $attrib['rc_this_oldid'] );
 				break;
 
 			case RC_LOG:

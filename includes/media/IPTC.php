@@ -40,7 +40,7 @@ class IPTC {
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
-		$data = Array();
+		$data = array();
 		if ( !is_array( $parsed ) ) {
 				return $data;
 		}
@@ -225,7 +225,7 @@ class IPTC {
 					if ( isset( $parsed['2#060'] ) ) {
 						$time = $parsed['2#060'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -239,7 +239,7 @@ class IPTC {
 					if ( isset( $parsed['2#063'] ) ) {
 						$time = $parsed['2#063'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -252,7 +252,7 @@ class IPTC {
 					if ( isset( $parsed['2#035'] ) ) {
 						$time = $parsed['2#035'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -265,7 +265,7 @@ class IPTC {
 					if ( isset( $parsed['2#038'] ) ) {
 						$time = $parsed['2#038'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {

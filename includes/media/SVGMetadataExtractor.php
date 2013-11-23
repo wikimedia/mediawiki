@@ -45,7 +45,7 @@ class SVGReader {
 
 	private $reader = null;
 	private $mDebug = false;
-	private $metadata = Array();
+	private $metadata = array();
 
 	/**
 	 * Constructor
