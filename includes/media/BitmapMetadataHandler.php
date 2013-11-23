@@ -116,7 +116,7 @@ class BitmapMetadataHandler {
 	function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recomendation.
-		$temp = Array();
+		$temp = array();
 		krsort( $this->metaPriority );
 		foreach ( $this->metaPriority as $pri ) {
 			foreach ( $pri as $type ) {
@@ -153,7 +153,7 @@ class BitmapMetadataHandler {
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
-			$meta->addMetadata( Array( 'JPEGFileComment' => $seg['COM'] ), 'native' );
+			$meta->addMetadata( array( 'JPEGFileComment' => $seg['COM'] ), 'native' );
 		}
 		if ( isset( $seg['PSIR'] ) && count( $seg['PSIR'] ) > 0 ) {
 			foreach ( $seg['PSIR'] as $curPSIRValue ) {

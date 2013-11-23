@@ -105,7 +105,7 @@ class FormatMetadata extends ContextSource {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
 			if ( !is_array( $tags[$tag] ) ) {
-				$vals = Array( $vals );
+				$vals = array( $vals );
 			}
 
 			// _type is a special value to say what array type
