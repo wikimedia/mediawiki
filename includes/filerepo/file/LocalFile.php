@@ -291,7 +291,8 @@ class LocalFile extends File {
 	 */
 	function getCacheFields( $prefix = 'img_' ) {
 		static $fields = array( 'size', 'width', 'height', 'bits', 'media_type',
-			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user', 'user_text', 'description' );
+			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user',
+			'user_text', 'description' );
 		static $results = array();
 
 		if ( $prefix == '' ) {
@@ -1090,7 +1091,9 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false, $user = null ) {
+	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false,
+		$timestamp = false, $user = null
+	) {
 		global $wgContLang;
 
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1369,7 +1372,13 @@ class LocalFile extends File {
 			# There's already a log entry, so don't make a second RC entry
 			# Squid and file cache for the description page are purged by doEditContent.
 			$content = ContentHandler::makeContent( $pageText, $descTitle );
-			$status = $wikiPage->doEditContent( $content, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
+			$status = $wikiPage->doEditContent(
+				$content,
+				$comment,
+				EDIT_NEW | EDIT_SUPPRESS_RC,
+				false,
+				$user
+			);
 
 			$dbw->begin( __METHOD__ ); // XXX; doEdit() uses a transaction
 			// Now that the page exists, make an RC entry.
@@ -2291,7 +2300,8 @@ class LocalFileRestoreBatch {
 				continue;
 			}
 
-			$deletedRel = $this->file->repo->getDeletedHashPath( $row->fa_storage_key ) . $row->fa_storage_key;
+			$deletedRel = $this->file->repo->getDeletedHashPath( $row->fa_storage_key ) .
+				$row->fa_storage_key;
 			$deletedUrl = $this->file->repo->getVirtualUrl() . '/deleted/' . $deletedRel;
 
 			if ( isset( $row->fa_sha1 ) ) {
@@ -2671,13 +2681,15 @@ class LocalFileMoveBatch {
 
 			return $statusDb;
 		}
-		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
+		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: " .
+			"{$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 
 		// Copy the files into their new location.
 		// If a prior process fataled copying or cleaning up files we tolerate any
 		// of the existing files if they are identical to the ones being stored.
 		$statusMove = $repo->storeBatch( $triplets, FileRepo::OVERWRITE_SAME );
-		wfDebugLog( 'imagemove', "Moved files for {$this->file->getName()}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
+		wfDebugLog( 'imagemove', "Moved files for {$this->file->getName()}: " .
+			"{$statusMove->successCount} successes, {$statusMove->failCount} failures" );
 		if ( !$statusMove->isGood() ) {
 			// Delete any files copied over (while the destination is still locked)
 			$this->cleanupTarget( $triplets );
@@ -2764,7 +2776,10 @@ class LocalFileMoveBatch {
 			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = array( $srcUrl, 'public', $move[1] );
-			wfDebugLog( 'imagemove', "Generated move triplet for {$this->file->getName()}: {$srcUrl} :: public :: {$move[1]}" );
+			wfDebugLog(
+				'imagemove',
+				"Generated move triplet for {$this->file->getName()}: {$srcUrl} :: public :: {$move[1]}"
+			);
 		}
 
 		return $triplets;
