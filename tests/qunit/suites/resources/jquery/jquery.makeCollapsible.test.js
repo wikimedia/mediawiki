@@ -107,6 +107,46 @@
 		$toggle.trigger( 'click' );
 	} );
 
+	QUnit.asyncTest( 'basic operation (<table> with caption)', 10, function ( assert ) {
+		var $collapsible, $caption, $contentRow, $toggle;
+		$collapsible = prepareCollapsible(
+			'<table class="mw-collapsible">' +
+				'<caption>' + loremIpsum + '</caption>' +
+				'<tr><th>' + loremIpsum + '</th><th>' + loremIpsum + '</th></tr>' +
+				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
+			'</table>'
+		);
+		$caption = $collapsible.find( 'caption' );
+		$headerRow = $collapsible.find( 'tr:first' );
+		$contentRow = $collapsible.find( 'tr:last' );
+
+		$toggle = $caption.find( '.mw-collapsible-toggle' );
+		assert.equal( $toggle.length, 1, 'toggle is added to the end of the caption' );
+
+		assert.assertTrue( $caption.is( ':visible' ), 'caption is visible' );
+		assert.assertTrue( $headerRow.is( ':visible' ), 'headerRow is visible' );
+		assert.assertTrue( $contentRow.is( ':visible' ), 'contentRow is visible' );
+
+		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $caption.is( ':visible' ), 'after collapsing: caption is still visible' );
+			assert.assertTrue( $headerRow.is( ':hidden' ), 'after collapsing: headerRow is hidden' );
+			assert.assertTrue( $contentRow.is( ':hidden' ), 'after collapsing: contentRow is hidden' );
+
+			$collapsible.on( 'afterExpand.mw-collapsible', function () {
+				assert.assertTrue( $caption.is( ':visible' ), 'after expanding: caption is still visible' );
+				assert.assertTrue( $headerRow.is( ':visible' ), 'after expanding: headerRow is visible' );
+				assert.assertTrue( $contentRow.is( ':visible' ), 'after expanding: contentRow is visible' );
+				QUnit.start();
+			} );
+
+			$toggle.trigger( 'click' );
+		} );
+
+		$toggle.trigger( 'click' );
+	} );
+
+
 	function listTest( listType, assert ) {
 		var $collapsible, $toggleItem, $contentItem, $toggle;
 		$collapsible = prepareCollapsible(
