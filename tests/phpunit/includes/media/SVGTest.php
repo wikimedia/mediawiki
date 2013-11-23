@@ -1,5 +1,6 @@
 <?php
-class SVGTest extends MediaWikiTestCase {
+
+class SvgTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
@@ -19,7 +20,7 @@ class SVGTest extends MediaWikiTestCase {
 			'backend' => $this->backend
 		) );
 
-		$this->handler = new SVGHandler;
+		$this->handler = new SvgHandler;
 	}
 
 	/**
