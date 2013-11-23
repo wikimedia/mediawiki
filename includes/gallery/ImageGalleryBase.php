@@ -74,7 +74,7 @@ abstract class ImageGalleryBase extends ContextSource {
 		}
 	}
 
-	static private function loadModes() {
+	private static function loadModes() {
 		if ( self::$modeMapping === false ) {
 			self::$modeMapping = array(
 				'traditional' => 'TraditionalImageGallery',

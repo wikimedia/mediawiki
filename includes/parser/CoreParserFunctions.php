@@ -427,7 +427,7 @@ class CoreParserFunctions {
 	 * @param mixed $value value to match
 	 * @return boolean true on successful match
 	 */
-	static private function matchAgainstMagicword( $magicword, $value ) {
+	private static function matchAgainstMagicword( $magicword, $value ) {
 		if ( strval( $value ) === '' ) {
 			return false;
 		}
