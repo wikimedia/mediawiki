@@ -821,24 +821,13 @@ Parameters:
 * $1 - a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}',
 'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
 
-The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"
+The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslinkplural/{{SUBPAGENAME}}|{{int:newmessageslinkplural}}]] |[[MediaWiki:Newmessagesdifflinkplural/{{SUBPAGENAME}}|{{int:newmessagesdifflinkplural}}]]}}"
 
 Parameters:
-* $1 - a link points to new messages. Its text is {{msg-mw|Newmessageslink}}
-* $2 - a link points to new messages diff. Its text is {{msg-mw|Newmessagesdifflink}}
+* $1 - a link points to new messages. Its text is {{msg-mw|Newmessageslinkplural}}
+* $2 - a link points to new messages diff. Its text is {{msg-mw|Newmessagesdifflinkplural}}
 See also:
 * {{msg-mw|Youhavenewmessagesmanyusers}}',
-'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on their talk page.
-
-Used as <code>$1</code> in message {{msg-mw|Youhavenewmessages}}.
-{{Identical|New messages}}',
-'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page.
-
-Used as <code>$2</code> in message {{msg-mw|Youhavenewmessages}}.
-
-See also:
-* {{msg-mw|Newmessagesdifflinkplural}}
-{{Identical|Last change}}',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Parameters:
 * $1 - defined as {{msg-mw|newmessageslinkplural}}
 * $2 - defined as {{msg-mw|newmessagesdifflinkplural}}
@@ -852,18 +841,18 @@ Parameters:
 * $2 - {{msg-mw|newmessagesdifflinkplural}}
 See also:
 * {{msg-mw|Youhavenewmessages}}',
-'newmessageslinkplural' => "Like {{msg-mw|Newmessageslink}} but supporting pluralization.
+'newmessageslinkplural' => "This is the first link displayed in an orange rectangle when a user gets a message on their talk page.
 
-Used as <code>$1</code> in {{msg-mw|Youhavenewmessagesfromusers}}.
+Used as <code>$1</code> in messages {{msg-mw|youhavenewmessagesfromusers}}, {{msg-mw|youhavenewmessagesmanyusers}}, {{msg-mw|youhavenewmessages}}.
 
 Parameters:
 * $1 - 1 or 999:
 ** 1 - if there was '''one''' new edit since the last time the user has seen their talk page
 ** 999 - if there was '''more than one''' new edit since the last time the user has seen their talk page
 {{Identical|New messages}}",
-'newmessagesdifflinkplural' => "Like {{msg-mw|Newmessagesdifflink}} but supporting pluralization.
+'newmessagesdifflinkplural' => "This is the second link displayed in an orange rectangle when a user gets a message on his talk page.
 
-Used as <code>$2</code> in message {{msg-mw|Youhavenewmessagesfromusers}}.
+Used as <code>$2</code> in messages {{msg-mw|youhavenewmessagesfromusers}}, {{msg-mw|youhavenewmessagesmanyusers}}, {{msg-mw|youhavenewmessages}}.
 
 Parameters:
 * $1 - 1 or 999:
@@ -872,10 +861,10 @@ Parameters:
 {{Identical|Last change}}",
 'youhavenewmessagesmulti' => 'The alternative of {{msg-mw|youhavenewmessages}} as used on wikis with a special setup so they can receive the "new message" notice on other wikis as well. Used on [http://www.wikia.com/ Wikia].
 
-The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]]}}"
+The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslinkplural/{{SUBPAGENAME}}|{{int:newmessageslinkplural}}]]}}"
 
 Parameters:
-* $1 - a link points to new messages. Its text is {{msg-mw|Newmessageslink}}',
+* $1 - a link points to new messages. Its text is {{msg-mw|Newmessageslinkplural}}',
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
 
 {{Identical|Edit}}',
