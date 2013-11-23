@@ -932,12 +932,23 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.21
 	 */
 	protected function checkPHPExtension( $extName ) {
-		$loaded = extension_loaded( $extName );
-		if ( !$loaded ) {
+		static $loadedExtensions = array();
+
+		if ( !isset( $loadedExtensions[$extName] ) ) {
+			$loaded = extension_loaded( $extName );
+			if ( !$loaded ) {
+				wfSuppressWarnings();
+				$loaded = dl( $extName . '.' . PHP_SHLIB_SUFFIX );
+				wfRestoreWarnings();
+			}
+			$loadedExtensions[$extName] = $loaded;
+		}
+
+		if ( !$loadedExtensions[$extName] ) {
 			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
 		}
 
-		return $loaded;
+		return $loadedExtensions[$extName];
 	}
 
 	/**
