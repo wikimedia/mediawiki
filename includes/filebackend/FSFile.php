@@ -27,8 +27,11 @@
  * @ingroup FileBackend
  */
 class FSFile {
-	protected $path; // path to file
-	protected $sha1Base36; // file SHA-1 in base 36
+	/** @var string Path to file */
+	protected $path;
+
+	/** @var string File SHA-1 in base 36  */
+	protected $sha1Base36;
 
 	/**
 	 * Sets up the file object
@@ -155,7 +158,7 @@ class FSFile {
 	/**
 	 * Placeholder file properties to use for files that don't exist
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public static function placeholderProps() {
 		$info = array();
@@ -175,7 +178,7 @@ class FSFile {
 	 * Exract image size information
 	 *
 	 * @param array $gis
-	 * @return Array
+	 * @return array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {
 		$info = array();
@@ -240,7 +243,7 @@ class FSFile {
 	 *
 	 * @param string $path absolute local filesystem path
 	 * @param mixed $ext The file extension, or true to extract it from the filename.
-	 *             Set it to false to ignore the extension.
+	 *   Set it to false to ignore the extension.
 	 * @return array
 	 */
 	public static function getPropsFromPath( $path, $ext = true ) {

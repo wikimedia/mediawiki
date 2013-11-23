@@ -29,12 +29,10 @@
  * @since 1.19
  */
 class FileBackendGroup {
-	/**
-	 * @var FileBackendGroup
-	 */
+	/** @var FileBackendGroup */
 	protected static $instance = null;
 
-	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
+	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
 	protected $backends = array();
 
 	protected function __construct() {
@@ -54,8 +52,6 @@ class FileBackendGroup {
 
 	/**
 	 * Destroy the singleton instance
-	 *
-	 * @return void
 	 */
 	public static function destroySingleton() {
 		self::$instance = null;
@@ -63,8 +59,6 @@ class FileBackendGroup {
 
 	/**
 	 * Register file backends from the global variables
-	 *
-	 * @return void
 	 */
 	protected function initFromGlobals() {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
@@ -118,8 +112,7 @@ class FileBackendGroup {
 	/**
 	 * Register an array of file backend configurations
 	 *
-	 * @param Array $configs
-	 * @return void
+	 * @param array $configs
 	 * @throws MWException
 	 */
 	protected function register( array $configs ) {
@@ -169,7 +162,7 @@ class FileBackendGroup {
 	 * Get the config array for a backend object with a given name
 	 *
 	 * @param string $name
-	 * @return Array
+	 * @return array
 	 * @throws MWException
 	 */
 	public function config( $name ) {

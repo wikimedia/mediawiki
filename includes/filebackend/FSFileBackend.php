@@ -39,14 +39,22 @@
  * @since 1.19
  */
 class FSFileBackend extends FileBackendStore {
-	protected $basePath; // string; directory holding the container directories
-	/** @var Array Map of container names to root paths */
-	protected $containerPaths = array(); // for custom container paths
-	protected $fileMode; // integer; file permission mode
-	protected $fileOwner; // string; required OS username to own files
-	protected $currentUser; // string; OS username running this script
+	/** @var string Directory holding the container directories */
+	protected $basePath;
 
-	/** @var Array */
+	/** @var array Map of container names to root paths for custom container paths */
+	protected $containerPaths = array();
+
+	/** @var int File permission mode */
+	protected $fileMode;
+
+	/** @var string Required OS username to own files */
+	protected $fileOwner;
+
+	/** @var string OS username running this script */
+	protected $currentUser;
+
+	/** @var array */
 	protected $hadWarningErrors = array();
 
 	/**
@@ -444,6 +452,12 @@ class FSFileBackend extends FileBackendStore {
 		}
 	}
 
+	/**
+	 * @param string $fullCont
+	 * @param $dirRel
+	 * @param array $params
+	 * @return Status
+	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
@@ -581,7 +595,10 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getDirectoryListInternal()
-	 * @return Array|null
+	 * @param string $fullCont
+	 * @param string $dirRel
+	 * @param array $params
+	 * @return array|null
 	 */
 	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
@@ -603,7 +620,10 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
-	 * @return Array|FSFileBackendFileList|null
+	 * @param string $fullCont
+	 * @param string $dirRel
+	 * @param array $params
+	 * @return array|FSFileBackendFileList|null
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
@@ -748,8 +768,6 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * Listen for E_WARNING errors and track whether any happen
-	 *
-	 * @return void
 	 */
 	protected function trapWarnings() {
 		$this->hadWarningErrors[] = false; // push to stack
@@ -767,7 +785,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param integer $errno
+	 * @param int $errno
 	 * @param string $errstr
 	 * @return bool
 	 * @access private
@@ -792,7 +810,7 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
 	 * @param array $params
 	 * @param string $call
 	 * @param string $cmd
-	 * @param integer|null $chmodPath
+	 * @param int|null $chmodPath
 	 */
 	public function __construct(
 		FSFileBackend $backend, array $params, $call, $cmd, $chmodPath = null
@@ -815,9 +833,14 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
 abstract class FSFileBackendList implements Iterator {
 	/** @var Iterator */
 	protected $iter;
-	protected $suffixStart; // integer
-	protected $pos = 0; // integer
-	/** @var Array */
+
+	/** @var int */
+	protected $suffixStart;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var array */
 	protected $params = array();
 
 	/**
@@ -864,7 +887,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::key()
-	 * @return integer
+	 * @return int
 	 */
 	public function key() {
 		return $this->pos;
@@ -880,7 +903,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::next()
-	 * @return void
+	 * @throws FileBackendError
 	 */
 	public function next() {
 		try {
@@ -894,7 +917,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::rewind()
-	 * @return void
+	 * @throws FileBackendError
 	 */
 	public function rewind() {
 		$this->pos = 0;
@@ -924,7 +947,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * Return only the relative path and normalize slashes to FileBackend-style.
 	 * Uses the "real path" since the suffix is based upon that.
 	 *
-	 * @param string $path
+	 * @param string $dir
 	 * @return string
 	 */
 	protected function getRelPath( $dir ) {

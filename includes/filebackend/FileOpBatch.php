@@ -149,7 +149,7 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param Array $pPerformOps
+	 * @param array $pPerformOps
 	 * @param Status $status
 	 * @return bool Success
 	 */
