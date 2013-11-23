@@ -124,7 +124,7 @@ class SwiftFileBackend extends FileBackendStore {
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 		if ( !class_exists( 'CF_Constants' ) ) {
-			throw new MWException( 'SwiftCloudFiles extension not installed.' );
+			throw new FileBackendException( 'SwiftCloudFiles extension not installed.' );
 		}
 		// Required settings
 		$this->auth = new CF_Authentication(
@@ -837,12 +837,15 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $ts
 	 * @param int $format Output format (TS_* constant)
 	 * @return string
-	 * @throws MWException
+	 * @throws FileBackendError
 	 */
 	protected function convertSwiftDate( $ts, $format = TS_MW ) {
-		$timestamp = new MWTimestamp( $ts );
-
-		return $timestamp->getTimestamp( $format );
+		try {
+			$timestamp = new MWTimestamp( $ts );
+			return $timestamp->getTimestamp( $format );
+		} catch ( MWException $e ) {
+			throw new FileBackendError( $e->getMessage() );
+		}
 	}
 
 	/**
