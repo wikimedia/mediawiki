@@ -5,7 +5,7 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
-class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
+class WikiPageContentHandlerUseDBTest extends WikiPageTest {
 
 	protected function setUp() {
 		parent::setUp();

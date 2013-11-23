@@ -5,7 +5,7 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
-class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
+class RevisionContentHandlerUseDBTest extends RevisionStorageTest {
 
 	protected function setUp() {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
