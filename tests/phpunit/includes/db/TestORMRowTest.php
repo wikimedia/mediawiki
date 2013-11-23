@@ -24,7 +24,12 @@
  *
  * @ingroup Test
  *
- * @group ORM
+ * @licence GNU GPL v2+
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
+require_once __DIR__ . "/ORMRowTest.php";
+
+/**
  *
  * The database group has as a side effect that temporal database tables are created. This makes
  * it possible to test without poisoning a production database.
@@ -35,13 +40,7 @@
  * that hold the first tests in a pending state awaiting access to the database.
  * @group medium
  *
- * @licence GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
- */
-require_once __DIR__ . "/ORMRowTest.php";
-
-/**
- * @covers TestORMRow
+ * @group ORM
  */
 class TestORMRowTest extends ORMRowTest {
 
