@@ -31,7 +31,6 @@
  * @deprecated since 1.19
  */
 class FSRepo extends FileRepo {
-
 	/**
 	 * @param $info array
 	 * @throws MWException

@@ -53,6 +53,7 @@ class RepoGroup {
 		}
 		global $wgLocalFileRepo, $wgForeignFileRepos;
 		self::$instance = new RepoGroup( $wgLocalFileRepo, $wgForeignFileRepos );
+
 		return self::$instance;
 	}
 
@@ -126,14 +127,15 @@ class RepoGroup {
 		# Check the cache
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
-			&& empty( $options['bypassCache'] ) )
-		{
+			&& empty( $options['bypassCache'] )
+		) {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			$dbkey = $title->getDBkey();
 			if ( isset( $this->cache[$dbkey][$time] ) ) {
 				wfDebug( __METHOD__ . ": got File:$dbkey from process cache\n" );
 				# Move it to the end of the list so that we can delete the LRU entry later
 				$this->pingCache( $dbkey );
+
 				# Return the entry
 				return $this->cache[$dbkey][$time];
 			}
@@ -195,6 +197,7 @@ class RepoGroup {
 
 			$images = array_merge( $images, $repo->findFiles( $items ) );
 		}
+
 		return $images;
 	}
 
@@ -218,6 +221,7 @@ class RepoGroup {
 				return $redir;
 			}
 		}
+
 		return false;
 	}
 
@@ -243,6 +247,7 @@ class RepoGroup {
 				}
 			}
 		}
+
 		return $file;
 	}
 
@@ -262,6 +267,7 @@ class RepoGroup {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
 		usort( $result, 'File::compare' );
+
 		return $result;
 	}
 
@@ -284,6 +290,7 @@ class RepoGroup {
 		foreach ( $result as $hash => $files ) {
 			usort( $result[$hash], 'File::compare' );
 		}
+
 		return $result;
 	}
 
@@ -319,6 +326,7 @@ class RepoGroup {
 				return $repo;
 			}
 		}
+
 		return false;
 	}
 
@@ -347,6 +355,7 @@ class RepoGroup {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -379,6 +388,7 @@ class RepoGroup {
 	 */
 	protected function newRepo( $info ) {
 		$class = $info['class'];
+
 		return new $class( $info );
 	}
 
@@ -397,6 +407,7 @@ class RepoGroup {
 		if ( count( $bits ) != 3 ) {
 			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
+
 		return $bits;
 	}
 
@@ -411,6 +422,7 @@ class RepoGroup {
 				$repoName = 'local';
 			}
 			$repo = $this->getRepo( $repoName );
+
 			return $repo->getFileProps( $fileName );
 		} else {
 			return FSFile::getPropsFromPath( $fileName );

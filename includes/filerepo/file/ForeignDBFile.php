@@ -27,7 +27,6 @@
  * @ingroup FileAbstraction
  */
 class ForeignDBFile extends LocalFile {
-
 	/**
 	 * @param $title
 	 * @param $repo
@@ -51,6 +50,7 @@ class ForeignDBFile extends LocalFile {
 		$title = Title::makeTitle( NS_FILE, $row->img_name );
 		$file = new self( $title, $repo );
 		$file->loadFromRow( $row );
+
 		return $file;
 	}
 

@@ -72,7 +72,8 @@ class FileRepo {
 			|| !array_key_exists( 'name', $info )
 			|| !array_key_exists( 'backend', $info )
 		) {
-			throw new MWException( __CLASS__ . " requires an array of options having both 'name' and 'backend' keys.\n" );
+			throw new MWException( __CLASS__ .
+				" requires an array of options having both 'name' and 'backend' keys.\n" );
 		}
 
 		// Required settings
@@ -167,6 +168,7 @@ class FileRepo {
 				throw new MWException( "No '$zone' zone defined in the {$this->name} repo." );
 			}
 		}
+
 		return $status;
 	}
 
@@ -193,6 +195,7 @@ class FileRepo {
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
+
 		return $path;
 	}
 
@@ -204,11 +207,14 @@ class FileRepo {
 	 * @return String or false
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) { // standard public zones
+		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) {
+			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
-				return $this->zones[$zone]['urlsByExt'][$ext]; // custom URL for extension/zone
+				// custom URL for extension/zone
+				return $this->zones[$zone]['urlsByExt'][$ext];
 			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
-				return $this->zones[$zone]['url']; // custom URL for zone
+				// custom URL for zone
+				return $this->zones[$zone]['url'];
 			}
 		}
 		switch ( $zone ) {
@@ -242,10 +248,11 @@ class FileRepo {
 	 */
 	public function getZoneHandlerUrl( $zone ) {
 		if ( isset( $this->zones[$zone]['handlerUrl'] )
-			&& in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) )
-		{
+			&& in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) )
+		) {
 			return $this->zones[$zone]['handlerUrl'];
 		}
+
 		return false;
 	}
 
@@ -273,6 +280,7 @@ class FileRepo {
 		if ( !$base ) {
 			throw new MWException( __METHOD__ . ": invalid zone: $zone" );
 		}
+
 		return $base . '/' . rawurldecode( $rel );
 	}
 
@@ -286,6 +294,7 @@ class FileRepo {
 		if ( !isset( $this->zones[$zone] ) ) {
 			return array( null, null ); // bogus
 		}
+
 		return array( $this->zones[$zone]['container'], $this->zones[$zone]['directory'] );
 	}
 
@@ -304,6 +313,7 @@ class FileRepo {
 		if ( $base != '' ) { // may not be set
 			$base = "/{$base}";
 		}
+
 		return "mwstore://$backendName/{$container}{$base}";
 	}
 
@@ -390,9 +400,11 @@ class FileRepo {
 			}
 			if ( $img->exists() ) {
 				$img->redirectedFrom( $title->getDBkey() );
+
 				return $img;
 			}
 		}
+
 		return false;
 	}
 
@@ -423,6 +435,7 @@ class FileRepo {
 				$result[$file->getTitle()->getDBkey()] = $file;
 			}
 		}
+
 		return $result;
 	}
 
@@ -457,6 +470,7 @@ class FileRepo {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -487,6 +501,7 @@ class FileRepo {
 				$result[$hash] = $files;
 			}
 		}
+
 		return $result;
 	}
 
@@ -546,6 +561,7 @@ class FileRepo {
 		} else {
 			$name = $title->getDBkey();
 		}
+
 		return $name;
 	}
 
@@ -596,6 +612,7 @@ class FileRepo {
 			for ( $i = 1; $i <= $levels; $i++ ) {
 				$path .= substr( $hash, 0, $i ) . '/';
 			}
+
 			return $path;
 		}
 	}
@@ -628,8 +645,10 @@ class FileRepo {
 	public function makeUrl( $query = '', $entry = 'index' ) {
 		if ( isset( $this->scriptDirUrl ) ) {
 			$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
+
 			return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query );
 		}
+
 		return false;
 	}
 
@@ -667,6 +686,7 @@ class FileRepo {
 			# and just sort of hope index.php is right. ;)
 			return $this->makeUrl( "title=Image:$encName" );
 		}
+
 		return false;
 	}
 
@@ -710,6 +730,7 @@ class FileRepo {
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&' .
 				wfArrayToCgi( Skin::getDynamicStylesheetQuery() ) );
 		}
+
 		return false;
 	}
 
@@ -988,6 +1009,7 @@ class FileRepo {
 		$temp = $this->getVirtualUrl( 'temp' );
 		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
 			wfDebug( __METHOD__ . ": Invalid temp virtual URL\n" );
+
 			return false;
 		}
 
@@ -1238,6 +1260,7 @@ class FileRepo {
 	 */
 	public function fileExists( $file ) {
 		$result = $this->fileExistsBatch( array( $file ) );
+
 		return $result[0];
 	}
 
@@ -1253,6 +1276,7 @@ class FileRepo {
 			$file = $this->resolveToStoragePath( $file );
 			$result[$key] = $this->backend->fileExists( array( 'src' => $file ) );
 		}
+
 		return $result;
 	}
 
@@ -1367,6 +1391,7 @@ class FileRepo {
 		for ( $i = 0; $i < $this->deletedHashLevels; $i++ ) {
 			$path .= $key[$i] . '/';
 		}
+
 		return $path;
 	}
 
@@ -1382,6 +1407,7 @@ class FileRepo {
 		if ( $this->isVirtualUrl( $path ) ) {
 			return $this->resolveVirtualUrl( $path );
 		}
+
 		return $path;
 	}
 
@@ -1394,6 +1420,7 @@ class FileRepo {
 	 */
 	public function getLocalCopy( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getLocalCopy( array( 'src' => $path ) );
 	}
 
@@ -1407,6 +1434,7 @@ class FileRepo {
 	 */
 	public function getLocalReference( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getLocalReference( array( 'src' => $path ) );
 	}
 
@@ -1419,6 +1447,7 @@ class FileRepo {
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getFileProps( array( 'src' => $path ) );
 	}
 
@@ -1430,6 +1459,7 @@ class FileRepo {
 	 */
 	public function getFileTimestamp( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getFileTimestamp( array( 'src' => $path ) );
 	}
 
@@ -1441,6 +1471,7 @@ class FileRepo {
 	 */
 	public function getFileSize( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getFileSize( array( 'src' => $path ) );
 	}
 
@@ -1452,6 +1483,7 @@ class FileRepo {
 	 */
 	public function getFileSha1( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
+
 		return $this->backend->getFileSha1Base36( array( 'src' => $path ) );
 	}
 
@@ -1465,6 +1497,7 @@ class FileRepo {
 	public function streamFile( $virtualUrl, $headers = array() ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
 		$params = array( 'src' => $path, 'headers' => $headers );
+
 		return $this->backend->streamFile( $params )->isOK();
 	}
 
@@ -1516,6 +1549,7 @@ class FileRepo {
 		if ( strval( $filename ) == '' ) {
 			return false;
 		}
+
 		return FileBackend::isPathTraversalFree( $filename );
 	}
 
@@ -1564,6 +1598,7 @@ class FileRepo {
 	public function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
 		array_unshift( $params, $this );
+
 		return call_user_func_array( array( 'FileRepoStatus', 'newFatal' ), $params );
 	}
 
@@ -1596,7 +1631,8 @@ class FileRepo {
 	 * STUB
 	 * @param $title Title of image
 	 */
-	public function invalidateImageRedirect( Title $title ) {}
+	public function invalidateImageRedirect( Title $title ) {
+	}
 
 	/**
 	 * Get the human-readable name of the repo
@@ -1608,6 +1644,7 @@ class FileRepo {
 		if ( $this->isLocal() ) {
 			return null;
 		}
+
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
 		return wfMessageFallback( 'shared-repo-name-' . $this->name, 'shared-repo' )->text();
 	}
@@ -1624,6 +1661,7 @@ class FileRepo {
 			$ext = FileBackend::extensionFromPath( $name );
 			$name = ( $ext == '' ) ? 'thumbnail' : "thumbnail.$ext";
 		}
+
 		return $name;
 	}
 
@@ -1658,6 +1696,7 @@ class FileRepo {
 	public function getLocalCacheKey( /*...*/ ) {
 		$args = func_get_args();
 		array_unshift( $args, 'filerepo', $this->getName() );
+
 		return call_user_func_array( 'wfMemcKey', $args );
 	}
 
@@ -1680,13 +1719,13 @@ class FileRepo {
 				),
 				'thumb' => array(
 					'container' => $this->zones['thumb']['container'],
-					'directory' => ( $this->zones['thumb']['directory'] == '' )
+					'directory' => $this->zones['thumb']['directory'] == ''
 						? 'temp'
 						: $this->zones['thumb']['directory'] . '/temp'
 				),
 				'transcoded' => array(
 					'container' => $this->zones['transcoded']['container'],
-					'directory' => ( $this->zones['transcoded']['directory'] == '' )
+					'directory' => $this->zones['transcoded']['directory'] == ''
 						? 'temp'
 						: $this->zones['transcoded']['directory'] . '/temp'
 				)
@@ -1715,7 +1754,8 @@ class FileRepo {
 	 * @return void
 	 * @throws MWException
 	 */
-	protected function assertWritableRepo() {}
+	protected function assertWritableRepo() {
+	}
 
 	/**
 	 * Return information about the repository.

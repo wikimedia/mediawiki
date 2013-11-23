@@ -30,7 +30,8 @@ class NullRepo extends FileRepo {
 	/**
 	 * @param $info array|null
 	 */
-	function __construct( $info ) {}
+	function __construct( $info ) {
+	}
 
 	protected function assertWritableRepo() {
 		throw new MWException( get_class( $this ) . ': write operations are not supported.' );

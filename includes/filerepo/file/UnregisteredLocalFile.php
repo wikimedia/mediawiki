@@ -71,7 +71,8 @@ class UnregisteredLocalFile extends File {
 	 */
 	function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
-			throw new MWException( __METHOD__ . ': not enough parameters, must specify title and repo, or a full path' );
+			throw new MWException( __METHOD__ .
+				': not enough parameters, must specify title and repo, or a full path' );
 		}
 		if ( $title instanceof Title ) {
 			$this->title = File::normalizeTitle( $title, 'exception' );
@@ -105,6 +106,7 @@ class UnregisteredLocalFile extends File {
 			}
 			$this->dims[$page] = $this->handler->getPageDimensions( $this, $page );
 		}
+
 		return $this->dims[$page];
 	}
 
@@ -114,6 +116,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getWidth( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
+
 		return $dim['width'];
 	}
 
@@ -123,6 +126,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getHeight( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
+
 		return $dim['height'];
 	}
 
@@ -134,6 +138,7 @@ class UnregisteredLocalFile extends File {
 			$magic = MimeMagic::singleton();
 			$this->mime = $magic->guessMimeType( $this->getLocalRefPath() );
 		}
+
 		return $this->mime;
 	}
 
@@ -145,6 +150,7 @@ class UnregisteredLocalFile extends File {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
+
 		return $this->handler->getImageSize( $this, $this->getLocalRefPath() );
 	}
 
@@ -159,6 +165,7 @@ class UnregisteredLocalFile extends File {
 				$this->metadata = $this->handler->getMetadata( $this, $this->getLocalRefPath() );
 			}
 		}
+
 		return $this->metadata;
 	}
 
@@ -179,6 +186,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getSize() {
 		$this->assertRepoDefined();
+
 		return $this->repo->getFileSize( $this->path );
 	}
 

@@ -68,6 +68,7 @@ class ForeignDBRepo extends LocalRepo {
 				)
 			);
 		}
+
 		return $this->dbConn;
 	}
 
@@ -95,6 +96,7 @@ class ForeignDBRepo extends LocalRepo {
 		if ( $this->hasSharedCache() ) {
 			$args = func_get_args();
 			array_unshift( $args, $this->dbName, $this->tablePrefix );
+
 			return call_user_func_array( 'wfForeignMemcKey', $args );
 		} else {
 			return false;
