@@ -74,6 +74,7 @@ class ScopedLock {
 		if ( $lockStatus->isOK() ) {
 			return new self( $manager, $pathsByType, $status );
 		}
+
 		return null;
 	}
 

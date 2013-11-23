@@ -56,6 +56,7 @@ class DBFileJournal extends FileJournal {
 			$dbw = $this->getMasterDB();
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
+
 			return $status;
 		}
 
@@ -80,6 +81,7 @@ class DBFileJournal extends FileJournal {
 			}
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
+
 			return $status;
 		}
 
@@ -108,6 +110,7 @@ class DBFileJournal extends FileJournal {
 		$dbw = $this->getMasterDB();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
+
 		return $dbw->selectField( 'filejournal', 'fj_id',
 			array( 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ),
 			__METHOD__,
@@ -179,6 +182,7 @@ class DBFileJournal extends FileJournal {
 			$this->dbw = $lb->getConnection( DB_MASTER, array(), $this->wiki );
 			$this->dbw->clearFlag( DBO_TRX );
 		}
+
 		return $this->dbw;
 	}
 }

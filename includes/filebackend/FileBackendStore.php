@@ -68,9 +68,9 @@ abstract class FileBackendStore extends FileBackend {
 		parent::__construct( $config );
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
-			: function( $storagePath, $content, $fsPath ) {
+			: function ( $storagePath, $content, $fsPath ) {
 				// @TODO: handle the case of extension-less files using the contents
-				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
+				return StreamFile::contentTypeFromPath( $storagePath ) ? : 'unknown/unknown';
 			};
 		$this->memCache = new EmptyBagOStuff(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
@@ -129,6 +129,7 @@ abstract class FileBackendStore extends FileBackend {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
+
 		return $status;
 	}
 
@@ -168,6 +169,7 @@ abstract class FileBackendStore extends FileBackend {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
+
 		return $status;
 	}
 
@@ -203,6 +205,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
+
 		return $status;
 	}
 
@@ -267,6 +270,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
+
 		return $status;
 	}
 
@@ -285,6 +289,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->deleteInternal( array( 'src' => $params['src'] ) ) );
 			$status->setResult( true, $status->value ); // ignore delete() errors
 		}
+
 		return $status;
 	}
 
@@ -311,6 +316,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = Status::newGood(); // nothing to do
 		}
+
 		return $status;
 	}
 
@@ -368,6 +374,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfRestoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+
 			return $status;
 		}
 
@@ -378,6 +385,7 @@ abstract class FileBackendStore extends FileBackend {
 				$fsFile = $this->getLocalReference( array( 'src' => $path ) );
 				if ( !$fsFile ) { // retry failed?
 					$status->fatal( 'backend-fail-read', $path );
+
 					return $status;
 				}
 			}
@@ -388,6 +396,7 @@ abstract class FileBackendStore extends FileBackend {
 		$tmpHandle = fopen( $tmpPath, 'ab' );
 		if ( $tmpHandle === false ) {
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+
 			return $status;
 		}
 
@@ -398,6 +407,7 @@ abstract class FileBackendStore extends FileBackend {
 			if ( $sourceHandle === false ) {
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-read', $virtualSource );
+
 				return $status;
 			}
 			// Append chunk to file (pass chunk size to avoid magic quotes)
@@ -405,12 +415,14 @@ abstract class FileBackendStore extends FileBackend {
 				fclose( $sourceHandle );
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-writetemp', $tmpPath );
+
 				return $status;
 			}
 			fclose( $sourceHandle );
 		}
 		if ( !fclose( $tmpHandle ) ) {
 			$status->fatal( 'backend-fail-closetemp', $tmpPath );
+
 			return $status;
 		}
 
@@ -426,6 +438,7 @@ abstract class FileBackendStore extends FileBackend {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+
 			return $status; // invalid storage path
 		}
 
@@ -457,6 +470,7 @@ abstract class FileBackendStore extends FileBackend {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+
 			return $status; // invalid storage path
 		}
 
@@ -488,6 +502,7 @@ abstract class FileBackendStore extends FileBackend {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+
 			return $status; // invalid storage path
 		}
 
@@ -531,6 +546,7 @@ abstract class FileBackendStore extends FileBackend {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+
 			return $status; // invalid storage path
 		}
 
@@ -567,18 +583,21 @@ abstract class FileBackendStore extends FileBackend {
 	final public function fileExists( array $params ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
+
 		return ( $stat === null ) ? null : (bool)$stat; // null => failure
 	}
 
 	final public function getFileTimestamp( array $params ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
+
 		return $stat ? $stat['mtime'] : false;
 	}
 
 	final public function getFileSize( array $params ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
+
 		return $stat ? $stat['size'] : false;
 	}
 
@@ -625,6 +644,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else { // an error occurred
 			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
 		}
+
 		return $stat;
 	}
 
@@ -653,6 +673,7 @@ abstract class FileBackendStore extends FileBackend {
 			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
 			wfRestoreWarnings();
 		}
+
 		return $contents;
 	}
 
@@ -675,6 +696,7 @@ abstract class FileBackendStore extends FileBackend {
 		$hash = $this->doGetFileSha1Base36( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		$this->cheapCache->set( $path, 'sha1', array( 'hash' => $hash, 'latest' => $latest ) );
+
 		return $hash;
 	}
 
@@ -695,6 +717,7 @@ abstract class FileBackendStore extends FileBackend {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$fsFile = $this->getLocalReference( $params );
 		$props = $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
+
 		return $props;
 	}
 
@@ -833,6 +856,7 @@ abstract class FileBackendStore extends FileBackend {
 					$res = null; // if we don't find anything, it is indeterminate
 				}
 			}
+
 			return $res;
 		}
 	}
@@ -859,6 +883,7 @@ abstract class FileBackendStore extends FileBackend {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
+
 			return new FileBackendStoreShardDirIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
@@ -888,6 +913,7 @@ abstract class FileBackendStore extends FileBackend {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
+
 			return new FileBackendStoreShardFileIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
@@ -975,6 +1001,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
+
 		return array( $this->getScopedFileLocks( $paths, 'mixed', $status ) );
 	}
 
@@ -1097,6 +1124,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			$fileOpHandle->closeResources();
 		}
+
 		return $res;
 	}
 
@@ -1110,6 +1138,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $fileOpHandles as $fileOpHandle ) { // OK if empty
 			throw new MWException( "This backend supports no asynchronous operations." );
 		}
+
 		return array();
 	}
 
@@ -1135,6 +1164,7 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
+
 		return $op;
 	}
 
@@ -1174,7 +1204,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $paths Storage paths (optional)
 	 * @return void
 	 */
-	protected function doClearCache( array $paths = null ) {}
+	protected function doClearCache( array $paths = null ) {
+	}
 
 	/**
 	 * Is this a key/value store where directories are just virtual?
@@ -1236,6 +1267,7 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
+
 		return array( null, null, null );
 	}
 
@@ -1259,6 +1291,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $cShard !== null && substr( $relPath, -1 ) !== '/' ) {
 			return array( $container, $relPath );
 		}
+
 		return array( null, null );
 	}
 
@@ -1293,8 +1326,10 @@ abstract class FileBackendStore extends FileBackend {
 			if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
 				return '.' . implode( '', array_slice( $m, 1 ) );
 			}
+
 			return null; // failed to match
 		}
+
 		return ''; // no sharding
 	}
 
@@ -1308,6 +1343,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final public function isSingleShardPathInternal( $storagePath ) {
 		list( , , $shard ) = $this->resolveStoragePath( $storagePath );
+
 		return ( $shard !== null );
 	}
 
@@ -1330,6 +1366,7 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
+
 		return array( 0, 0, false ); // no sharding
 	}
 
@@ -1348,6 +1385,7 @@ abstract class FileBackendStore extends FileBackend {
 				$shards[] = '.' . wfBaseConvert( $index, 10, $base, $digits );
 			}
 		}
+
 		return $shards;
 	}
 
@@ -1476,7 +1514,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $containerInfo Map of resolved container names to cached info
 	 * @return void
 	 */
-	protected function doPrimeContainerCache( array $containerInfo ) {}
+	protected function doPrimeContainerCache( array $containerInfo ) {
+	}
 
 	/**
 	 * Get the cache key for a file path
@@ -1588,6 +1627,7 @@ abstract class FileBackendStore extends FileBackend {
 				$opts['concurrency'] = $this->concurrency;
 			}
 		}
+
 		return $opts;
 	}
 
@@ -1683,6 +1723,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 			return false;
 		} else {
 			$this->multiShardPaths[$rel] = 1;
+
 			return true;
 		}
 	}

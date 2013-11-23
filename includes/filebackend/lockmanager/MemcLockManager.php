@@ -136,6 +136,7 @@ class MemcLockManager extends QuorumLockManager {
 			foreach ( $paths as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
+
 			return $status;
 		}
 
@@ -208,6 +209,7 @@ class MemcLockManager extends QuorumLockManager {
 			foreach ( $paths as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
+
 			return;
 		}
 
@@ -280,6 +282,7 @@ class MemcLockManager extends QuorumLockManager {
 				return null; // server appears to be down
 			}
 		}
+
 		return $memc;
 	}
 
@@ -307,6 +310,7 @@ class MemcLockManager extends QuorumLockManager {
 			return $a;
 		} else {
 			trigger_error( __METHOD__ . ": reset invalid lock array.", E_USER_WARNING );
+
 			return self::newLockArray();
 		}
 	}
