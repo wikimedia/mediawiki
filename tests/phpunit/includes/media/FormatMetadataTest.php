@@ -10,9 +10,7 @@ class FormatMetadataTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		if ( !extension_loaded( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
+		$this->checkPHPExtension( 'exif' );
 		$filePath = __DIR__ . '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name' => 'localtesting',

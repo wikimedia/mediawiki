@@ -7,9 +7,7 @@ class XMPTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'xml' ) ) {
-			$this->markTestSkipped( 'Requires libxml to do XMP parsing' );
-		}
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
 	}
 
 	/**
