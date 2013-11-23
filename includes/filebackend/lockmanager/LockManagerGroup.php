@@ -29,12 +29,12 @@
  * @since 1.19
  */
 class LockManagerGroup {
-	/** @var Array (domain => LockManager) */
+	/** @var array (domain => LockManager) */
 	protected static $instances = array();
 
 	protected $domain; // string; domain (usually wiki ID)
 
-	/** @var Array of (name => ('class' => ..., 'config' => ..., 'instance' => ...)) */
+	/** @var array of (name => ('class' => ..., 'config' => ..., 'instance' => ...)) */
 	protected $managers = array();
 
 	/**
@@ -45,7 +45,7 @@ class LockManagerGroup {
 	}
 
 	/**
-	 * @param string $domain Domain (usually wiki ID)
+	 * @param bool|string $domain Domain (usually wiki ID). Default: false.
 	 * @return LockManagerGroup
 	 */
 	public static function singleton( $domain = false ) {
@@ -60,8 +60,6 @@ class LockManagerGroup {
 
 	/**
 	 * Destroy the singleton instances
-	 *
-	 * @return void
 	 */
 	public static function destroySingletons() {
 		self::$instances = array();
@@ -69,8 +67,6 @@ class LockManagerGroup {
 
 	/**
 	 * Register lock managers from the global variables
-	 *
-	 * @return void
 	 */
 	protected function initFromGlobals() {
 		global $wgLockManagers;
@@ -81,8 +77,7 @@ class LockManagerGroup {
 	/**
 	 * Register an array of file lock manager configurations
 	 *
-	 * @param $configs Array
-	 * @return void
+	 * @param array $configs
 	 * @throws MWException
 	 */
 	protected function register( array $configs ) {
@@ -108,7 +103,7 @@ class LockManagerGroup {
 	/**
 	 * Get the lock manager object with a given name
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return LockManager
 	 * @throws MWException
 	 */
@@ -129,8 +124,8 @@ class LockManagerGroup {
 	/**
 	 * Get the config array for a lock manager object with a given name
 	 *
-	 * @param $name string
-	 * @return Array
+	 * @param string $name
+	 * @return array
 	 * @throws MWException
 	 */
 	public function config( $name ) {

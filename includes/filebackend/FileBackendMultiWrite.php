@@ -40,15 +40,25 @@
  * @since 1.19
  */
 class FileBackendMultiWrite extends FileBackend {
-	/** @var Array Prioritized list of FileBackendStore objects */
-	protected $backends = array(); // array of (backend index => backends)
-	protected $masterIndex = -1; // integer; index of master backend
-	protected $syncChecks = 0; // integer; bitfield
-	protected $autoResync = false; // boolean
+	/** @var array Prioritized list of FileBackendStore objects.
+	 * array of (backend index => backends)
+	 */
+	protected $backends = array();
 
-	/** @var Array */
+	/** @var int Index of master backend  */
+	protected $masterIndex = -1;
+
+	/** @var int Bitfield */
+	protected $syncChecks = 0;
+
+	/** @var bool */
+	protected $autoResync = false;
+
+	/** @var array */
 	protected $noPushDirConts = array();
-	protected $noPushQuickOps = false; // boolean
+
+	/** @var bool */
+	protected $noPushQuickOps = false;
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
@@ -81,7 +91,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
-	 * @param Array $config
+	 * @param array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -349,7 +359,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Get a list of file storage paths to read or write for a list of operations
 	 *
 	 * @param array $ops Same format as doOperations()
-	 * @return Array List of storage paths to files (does not include directories)
+	 * @return array List of storage paths to files (does not include directories)
 	 */
 	protected function fileStoragePathsForOps( array $ops ) {
 		$paths = array();
@@ -380,7 +390,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array $ops List of file operation arrays
 	 * @param FileBackendStore $backend
-	 * @return Array
+	 * @return array
 	 */
 	protected function substOpBatchPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = array(); // operations
@@ -402,7 +412,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array $ops File operation array
 	 * @param FileBackendStore $backend
-	 * @return Array
+	 * @return array
 	 */
 	protected function substOpPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = $this->substOpBatchPaths( array( $ops ), $backend );
@@ -415,7 +425,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array|string $paths List of paths or single string path
 	 * @param FileBackendStore $backend
-	 * @return Array|string
+	 * @return array|string
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
@@ -429,7 +439,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
 	 * @param array|string $paths List of paths or single string path
-	 * @return Array|string
+	 * @return array|string
 	 */
 	protected function unsubstPaths( $paths ) {
 		return preg_replace(

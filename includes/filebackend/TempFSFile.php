@@ -28,9 +28,10 @@
  * @ingroup FileBackend
  */
 class TempFSFile extends FSFile {
-	protected $canDelete = false; // bool; garbage collect the temp file
+	/** @var bool Garbage collect the temp file */
+	protected $canDelete = false;
 
-	/** @var Array of active temp files to purge on shutdown */
+	/** @var array Active temp files to purge on shutdown */
 	protected static $instances = array();
 
 	/**
