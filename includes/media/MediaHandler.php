@@ -39,7 +39,7 @@ abstract class MediaHandler {
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
-	 * @param $type string
+	 * @param string $type
 	 *
 	 * @return MediaHandler
 	 */
@@ -70,7 +70,7 @@ abstract class MediaHandler {
 	 * Return true to accept the parameter, and false to reject it.
 	 * If you return false, the parser will do something quiet and forgiving.
 	 *
-	 * @param $name
+	 * @param string $name
 	 * @param $value
 	 */
 	abstract function validateParam( $name, $value );
@@ -78,16 +78,16 @@ abstract class MediaHandler {
 	/**
 	 * Merge a parameter array into a string appropriate for inclusion in filenames
 	 *
-	 * @param $params array Array of parameters that have been through normaliseParams.
-	 * @return String
+	 * @param array $params Array of parameters that have been through normaliseParams.
+	 * @return string
 	 */
 	abstract function makeParamString( $params );
 
 	/**
 	 * Parse a param string made with makeParamString back into an array
 	 *
-	 * @param $str string The parameter string without file name (e.g. 122px)
-	 * @return Array|Boolean Array of parameters or false on failure.
+	 * @param string $str The parameter string without file name (e.g. 122px)
+	 * @return array|bool Array of parameters or false on failure.
 	 */
 	abstract function parseParamString( $str );
 
@@ -104,19 +104,19 @@ abstract class MediaHandler {
 	 * Get an image size array like that returned by getimagesize(), or false if it
 	 * can't be determined.
 	 *
-	 * @param $image File: the image object, or false if there isn't one
+	 * @param File $image The image object, or false if there isn't one
 	 * @param string $path the filename
-	 * @return Array Follow the format of PHP getimagesize() internal function. See http://www.php.net/getimagesize
+	 * @return array Follow the format of PHP getimagesize() internal function. See http://www.php.net/getimagesize
 	 */
 	abstract function getImageSize( $image, $path );
 
 	/**
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
 	 *
-	 * @param $image File: the image object, or false if there isn't one.
+	 * @param File $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
-	 * @param string $path the filename
-	 * @return String
+	 * @param string $path The filename
+	 * @return string
 	 */
 	function getMetadata( $image, $path ) {
 		return '';
@@ -135,7 +135,7 @@ abstract class MediaHandler {
 	 * version 3 it might add to the end of the array the element 'foo=3'. if the core metadata
 	 * version is 2, the end version string would look like '2;foo=3'.
 	 *
-	 * @return string version string
+	 * @return string Version string
 	 */
 	static function getMetadataVersion() {
 		$version = array( '2' ); // core metadata version
@@ -149,9 +149,9 @@ abstract class MediaHandler {
 	 * By default just returns $metadata, but can be used to allow
 	 * media handlers to convert between metadata versions.
 	 *
-	 * @param $metadata Mixed String or Array metadata array (serialized if string)
-	 * @param $version Integer target version
-	 * @return Array serialized metadata in specified version, or $metadata on fail.
+	 * @param mixed|string|array $metadata Metadata array (serialized if string)
+	 * @param int $version Target version
+	 * @return array Serialized metadata in specified version, or $metadata on fail.
 	 */
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
@@ -167,7 +167,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a string describing the type of metadata, for display purposes.
-	 *
+	 * @param $image
 	 * @return string
 	 */
 	function getMetadataType( $image ) {
@@ -217,7 +217,7 @@ abstract class MediaHandler {
 	 *
 	 * @param File $file
 	 *
-	 * @return Array or false if interface not supported
+	 * @return array|bool False if interface not supported
 	 * @since 1.23
 	 */
 	public function getCommonMetaArray( File $file ) {
@@ -241,7 +241,7 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does not
 	 * actually do the transform.
 	 *
-	 * @param $image File: the image object
+	 * @param File $image The image object
 	 * @param string $dstPath filesystem destination path
 	 * @param string $dstUrl Destination URL to use in output HTML
 	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
@@ -255,12 +255,12 @@ abstract class MediaHandler {
 	 * Get a MediaTransformOutput object representing the transformed output. Does the
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
-	 * @param $image File: the image object
+	 * @param File $image The image object
 	 * @param string $dstPath filesystem destination path
 	 * @param string $dstUrl destination URL to use in output HTML
 	 * @param array $params arbitrary set of parameters validated by $this->validateParam()
 	 *   Note: These parameters have *not* gone through $this->normaliseParams()
-	 * @param $flags Integer: a bitfield, may contain self::TRANSFORM_LATER
+	 * @param int $flags A bitfield, may contain self::TRANSFORM_LATER
 	 *
 	 * @return MediaTransformOutput
 	 */
@@ -269,9 +269,9 @@ abstract class MediaHandler {
 	/**
 	 * Get the thumbnail extension and MIME type for a given source MIME type
 	 *
-	 * @param String $ext Extension of original file
-	 * @param String $mime Mime type of original file
-	 * @param Array $params Handler specific rendering parameters
+	 * @param string $ext Extension of original file
+	 * @param string $mime Mime type of original file
+	 * @param array $params Handler specific rendering parameters
 	 * @return array thumbnail extension and MIME type
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
@@ -292,8 +292,8 @@ abstract class MediaHandler {
 
 	/**
 	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
-	 * @param $metadata mixed Result of the getMetadata() function of this handler for a file
-	 * @return Array
+	 * @param mixed $metadata Result of the getMetadata() function of this handler for a file
+	 * @return array
 	 */
 	public function getStreamHeaders( $metadata ) {
 		return array();
