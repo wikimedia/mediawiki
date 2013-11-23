@@ -235,7 +235,7 @@
 		}
 
 		return this.each( function () {
-			var $collapsible, collapseText, expandText, $toggle, actionHandler, buildDefaultToggleLink,
+			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler, buildDefaultToggleLink,
 				premadeToggleHandler, $toggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
 
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
@@ -313,16 +313,32 @@
 				// contents and add the toggle link. Different elements are
 				// treated differently.
 				if ( $collapsible.is( 'table' ) ) {
-					// The toggle-link will be in one the the cells (td or th) of the first row
-					$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
-					$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
-					// If theres no toggle link, add it to the last cell
-					if ( !$toggle.length ) {
-						$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
+					// If the table has a caption, collapse to the caption
+					// as opposed to the first row
+					$caption = $collapsible.find( 'caption' );
+					if ( $caption.length ) {
+						$toggle = $caption.find( '> .mw-collapsible-toggle' );
+
+						// If there is no toggle link, add it to the end of the caption
+						if ( !$toggle.length ) {
+							$toggleLink = buildDefaultToggleLink().appendTo( $caption );
+						} else {
+							actionHandler = premadeToggleHandler;
+							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+						}
 					} else {
-						actionHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+						// The toggle-link will be in one the the cells (td or th) of the first row
+						$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
+						$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
+
+						// If theres no toggle link, add it to the last cell
+						if ( !$toggle.length ) {
+							$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
+						} else {
+							actionHandler = premadeToggleHandler;
+							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+						}
 					}
 
 				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
