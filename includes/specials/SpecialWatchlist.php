@@ -136,8 +136,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 
 		$user = $this->getUser();
 		$output = $this->getOutput();
-		$output->addModuleStyles( 'mediawiki.special.changeslist' );
-		$output->addModules( 'mediawiki.special.changeslist.js' );
 
 		# Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
