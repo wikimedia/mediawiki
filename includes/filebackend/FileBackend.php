@@ -47,11 +47,34 @@
  * For legacy reasons, the FSFileBackend class allows manually setting the paths of
  * containers to ones that do not respect the "wiki ID".
  *
- * In key/value stores, the container is the only hierarchy (the rest is emulated).
+ * In key/value (object) stores, containers are the only hierarchy (the rest is emulated).
  * FS-based backends are somewhat more restrictive due to the existence of real
  * directory files; a regular file cannot have the same name as a directory. Other
  * backends with virtual directories may not have this limitation. Callers should
  * store files in such a way that no files and directories are under the same path.
+ *
+ * In general, this class allows for callers to access storage through the same
+ * interface, without regard to the underlying storage system. However, calling code
+ * must follow certain patterns and be aware of certain things to ensure compatibility:
+ *   - a) Always call prepare() on the parent directory before trying to put a file there;
+ *        key/value stores only need the container to exist first, but filesystems need
+ *        all the parent directories to exist first (prepare() is aware of all this)
+ *   - b) Always call clean() on a directory when it might become empty to avoid empty
+ *        directory buildup on filesystems; key/value stores never have empty directories,
+ *        so doing this helps preserve consistency in both cases
+ *   - c) Likewise, do not rely on the existence of empty directories for anything;
+ *        calling directoryExists() on a path that prepare() was previously called on
+ *        will return false for key/value stores if there are no files under that path
+ *   - d) Never alter the resulting FSFile returned from getLocalReference(), as it could
+ *        either be a copy of the source file in /tmp or the original source file itself
+ *   - e) Use a file layout that results in never attempting to store files over directories
+ *        or directories over files; key/value stores allow this but filesystems do not
+ *   - f) Use ASCII file names (e.g. base32, IDs, hashes) to avoid Unicode issues in Windows
+ *   - g) Do not assume that move operations are atomic (difficult with key/value stores)
+ *   - h) Do not assume that file stat or read operations always have immediate consistency;
+ *        various methods have a "latest" flag that should always be used if up-to-date
+ *        information is required (this trades performance for correctness as needed)
+ *   - i) Do not assume that directory listings have immediate consistency
  *
  * Methods of subclasses should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
@@ -60,7 +83,7 @@
  * @since 1.19
  */
 abstract class FileBackend {
-	/** @var  string Unique backend name */
+	/** @var string Unique backend name */
 	protected $name;
 
 	/** @var string Unique wiki name */
