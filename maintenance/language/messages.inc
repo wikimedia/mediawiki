@@ -3977,7 +3977,6 @@ $wgMessageStructure = array(
 	),
 	'expandtemplates' => array(
 		'expandtemplates',
-		'expandtemplates-desc',
 		'expand_templates_intro',
 		'expand_templates_title',
 		'expand_templates_input',

@@ -5150,10 +5150,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 
 # ExpandTemplates
 'expandtemplates'                  => 'Expand templates',
-'expandtemplates-desc'             => '[[Special:ExpandTemplates|Expands templates, parser functions
- and variables]] to show expanded wikitext and preview rendered page',
-'expand_templates_intro'           => 'This special page takes text and expands all templates in it 
-recursively.
+'expand_templates_intro'           => 'This special page takes text and expands all templates in it recursively.
 It also expands supported parser functions like
 <code><nowiki>{{</nowiki>#language:…}}</code> and variables like
 <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
