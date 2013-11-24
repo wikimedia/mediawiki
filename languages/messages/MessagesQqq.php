@@ -118,6 +118,7 @@
  * @author SPQRobin
  * @author Sanbec
  * @author Sborsody
+ * @author Scimonster
  * @author Se4598
  * @author Seb35
  * @author Sherbrooke
@@ -3589,6 +3590,9 @@ See also:
 'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
+'recentchanges-label-plusminus' => 'Legend item for plus/minus',
+'recentchanges-legend-newpage' => 'A link to [[Special:NewPages]]',
+'recentchanges-legend-plusminus' => 'A plus/minus sign with a number for the legend.',
 'rcnote' => 'Used on [[Special:RecentChanges]].
 
 Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
