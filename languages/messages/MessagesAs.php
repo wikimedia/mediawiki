@@ -456,8 +456,6 @@ $1',
 'ok' => 'ঠিক আছে',
 'retrievedfrom' => '"$1"ৰ পৰা সংকলিত',
 'youhavenewmessages' => 'আপোনাৰ কাৰণে $1 আছে। ($2)',
-'newmessageslink' => 'নতুন সংবাদ',
-'newmessagesdifflink' => 'শেহতীয়া সাল-সলনি',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|আন এজন সদস্য|$3 জন সদস্য}}ৰ পৰা আপোনালৈ $1 আহিছে ($2)।',
 'youhavenewmessagesmanyusers' => 'কেইবাজনো সদস্যৰ পৰা আপোনালৈ $1 আহিছে ($2)।',
 'newmessageslinkplural' => '{{PLURAL:$1|এটা নতুন বাৰ্তা|নতুন বাৰ্তা}}',
@@ -1324,7 +1322,6 @@ $1",
 'preferences' => 'পছন্দসমূহ',
 'mypreferences' => 'পছন্দসমূহ',
 'prefs-edits' => 'সম্পাদনাৰ সংখ্যা:',
-'prefsnologin' => 'প্ৰৱেশ কৰা নাই',
 'changepassword' => 'গুপ্তশব্দ সলনি কৰক',
 'prefs-skin' => 'আৱৰণ',
 'skin-preview' => 'খচৰা',
@@ -4043,5 +4040,13 @@ $5
 
 # Image rotation
 'rotate-comment' => 'ছবিখন ঘড়ীৰ কাটাৰ দিশত $1 {{PLURAL:$1|ডিগ্ৰী}} ঘূৰোৱা হৈছে।',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'সাঁচবোৰ বহলাওক',
+'expand_templates_input' => 'পাঠ্য ভৰাওক',
+'expand_templates_output' => 'ফলাফল',
+'expand_templates_ok' => 'ওকে',
+'expand_templates_remove_comments' => 'মন্তব্য গু়চাওক',
+'expand_templates_preview' => 'খচৰা',
 
 );

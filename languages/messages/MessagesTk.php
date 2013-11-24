@@ -296,8 +296,6 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 'ok' => 'OK',
 'retrievedfrom' => '"$1" adresinden alyndy.',
 'youhavenewmessages' => 'Size $1 bar. ($2)',
-'newmessageslink' => 'täze habar',
-'newmessagesdifflink' => 'soňky üýtgeşme',
 'youhavenewmessagesmulti' => 'Size $1-de täze habar bar.',
 'editsection' => 'redaktirle',
 'editold' => 'redaktirle',
@@ -1000,7 +998,6 @@ Emma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.',
 'preferences' => 'Ileri tutmalar',
 'mypreferences' => 'Ileri tutmalar',
 'prefs-edits' => 'Özgerdiş sany:',
-'prefsnologin' => 'Sessiýa açmansyňyz',
 'changepassword' => 'Paroly üýtget',
 'prefs-skin' => 'Bezeg',
 'skin-preview' => 'Deslapky syn',
@@ -1260,6 +1257,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'recentchanges-label-minor' => 'Bu bir ujypsyzja özgerdiş',
 'recentchanges-label-bot' => 'Bu özgerdiş bir bot tarapyndan amala aşyryldy',
 'recentchanges-label-unpatrolled' => 'Bu özgerdişe heniz patrullyk edilmändir',
+'recentchanges-legend-newpage' => '$1 - täze sahypa',
 'rcnote' => "Aşakda $5, $4 senesinden başlap, soňky {{PLURAL:$2|1 günde|'''$2''' günde}} edilen {{PLURAL:$1|'''1''' üýtgeşme|'''$1''' üýtgeşme}} görkezilýär.",
 'rcnotefrom' => '<b>$2</b> senesinden bäri edilen özgerdişler aşakda görkezilýär (<b>$1</b> sanysyna çenli).',
 'rclistfrom' => '$1 senesinden bäri edilen özgerdişleri görkez',
@@ -3106,5 +3104,22 @@ Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General P
 # Search suggestions
 'searchsuggest-search' => 'Gözleg',
 'searchsuggest-containing' => 'öz içine alýar...',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Şablonlary giňelt',
+'expand_templates_intro' => 'Bu ýörite sahypa birazajyk tekst alýar we onuň içindäki ähli şablonlary rekursiw giňeldýär.
+Şeýlede şu hili parser funksiýalaryny hem giňeldýär
+<nowiki>{{</nowiki>#language:…}} we şuňa meňzeş üýtgeýänleri
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;aslynda jübüt ýaýly ähli zatlary diýen ýaly.
+Ol muny degişli parser sepgidini MediaWikiniň özünden çagyryp edýär.',
+'expand_templates_title' => 'Kontekst ady, {{FULLPAGENAME}} we ş.m. üçin:',
+'expand_templates_input' => 'Giriş teksti:',
+'expand_templates_output' => 'Netije',
+'expand_templates_xml_output' => 'XML önümi',
+'expand_templates_ok' => 'Bolýar',
+'expand_templates_remove_comments' => 'Teswirleri aýyr',
+'expand_templates_remove_nowiki' => 'Netijelerde <nowiki> teglerini bökdäň',
+'expand_templates_generate_xml' => 'XML ýygnama agajyny görkez',
+'expand_templates_preview' => 'Deslapky syn',
 
 );

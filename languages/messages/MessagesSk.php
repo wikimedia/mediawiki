@@ -558,8 +558,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Zdroj: „$1“',
 'youhavenewmessages' => 'Máte $1 ($2).',
-'newmessageslink' => 'nové správy',
-'newmessagesdifflink' => 'posledná zmena',
 'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|iného používateľa|$3 iných používateľov}} ($2).',
 'youhavenewmessagesmanyusers' => 'Máte $1 od viacerých ďalších používateľov ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novú správu|nové správy}}',
@@ -1416,7 +1414,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'preferences' => 'Nastavenia',
 'mypreferences' => 'Nastavenia',
 'prefs-edits' => 'Počet úprav:',
-'prefsnologin' => 'Nie ste prihlásený/á',
 'changepassword' => 'Zmeniť heslo',
 'prefs-skin' => 'Vzhľad',
 'skin-preview' => 'Náhľad',
@@ -1713,6 +1710,7 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'recentchanges-label-minor' => 'Toto je drobná úprava',
 'recentchanges-label-bot' => 'Túto úpravy vykonal robot',
 'recentchanges-label-unpatrolled' => 'Táto úprava zatiaľ nebola strážená',
+'recentchanges-legend-newpage' => '$1 - nová stránka',
 'rcnote' => "Tu {{PLURAL:$1|je posledná úprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} z $4, $5.",
 'rcnotefrom' => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
@@ -4189,5 +4187,25 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtov}}',
 'limitreport-expansiondepth' => 'Najväčšia hĺbka expanzie',
 'limitreport-expensivefunctioncount' => 'Počet náročných funkcií parseru',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Substituovať šablóny',
+'expand_templates_intro' => 'Táto špeciálna stránka prijme na
+vstup text a rekurzívne substituuje všetky šablóny,
+ktoré sú v ňom použité. Tiež expanduje funkcie
+syntaktického analyzátora ako <nowiki>{{</nowiki>#language:...}}
+a premenné ako <nowiki>{{</nowiki>CURRENTDAY}}—v podstate
+takmer všetko v zložených zátvorkách. Robí to pomocou
+volania relevantnej fázy syntaktického analyzátora
+samotného MediaWiki.',
+'expand_templates_title' => 'Názov kontextu pre {{FULLPAGENAME}} atď.:',
+'expand_templates_input' => 'Vstupný text:',
+'expand_templates_output' => 'Výsledok',
+'expand_templates_xml_output' => 'XML výstup',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Odstrániť komentáre',
+'expand_templates_remove_nowiki' => 'Potlačiť značky <nowiki> vo výsledku',
+'expand_templates_generate_xml' => 'Zobraziť strom XML',
+'expand_templates_preview' => 'Náhľad',
 
 );

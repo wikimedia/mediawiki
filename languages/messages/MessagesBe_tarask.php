@@ -538,8 +538,6 @@ $1',
 'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => 'Атрымана з «$1»',
 'youhavenewmessages' => 'Вы атрымалі $1 ($2).',
-'newmessageslink' => 'новыя паведамленьні',
-'newmessagesdifflink' => 'апошняя зьмена',
 'youhavenewmessagesfromusers' => 'Вы атрымалі $1 ад {{PLURAL:$3|іншага ўдзельніка|$3 удзельнікаў}} ($2).',
 'youhavenewmessagesmanyusers' => 'Вы атрымалі $1 ад некалькіх удзельнікаў ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|новае паведамленьне|новыя паведамленьні}}',
@@ -1388,7 +1386,6 @@ $1",
 'preferences' => 'Налады',
 'mypreferences' => 'Налады',
 'prefs-edits' => 'Колькасьць рэдагаваньняў:',
-'prefsnologin' => 'Вы не ўвайшлі ў сыстэму',
 'changepassword' => 'Зьмяніць пароль',
 'prefs-skin' => 'Афармленьне',
 'skin-preview' => 'Папярэдні прагляд',
@@ -1688,6 +1685,7 @@ $1",
 'recentchanges-label-minor' => 'Гэтае рэдагаваньне — дробнае',
 'recentchanges-label-bot' => 'Гэтае рэдагаваньне зробленае робатам',
 'recentchanges-label-unpatrolled' => 'Гэтае рэдагаваньне яшчэ не было адпатруляванае',
+'recentchanges-legend-newpage' => '$1 — новая старонка',
 'rcnote' => "Ніжэй {{PLURAL:$1|пададзена '''$1''' апошняя зьмена|пададзеныя '''$1''' апошнія зьмены|пададзеныя '''$1''' апошніх зьменаў}} за {{PLURAL:$2|апошні '''$2''' дзень|апошнія '''$2''' дні|апошнія '''$2''' дзён}}, па стане на $5, $4.",
 'rcnotefrom' => "Ніжэй знаходзяцца зьмены з '''$2''' (да '''$1''' на старонку).",
 'rclistfrom' => 'Паказаць зьмены з $1',
@@ -4142,5 +4140,22 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|байт}}',
 'limitreport-expansiondepth' => 'Найбольшая глыбіня разгортваньня',
 'limitreport-expensivefunctioncount' => 'Колькасьць дарагіх функцыяў парсэра',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Разгортваньне шаблёнаў',
+'expand_templates_intro' => 'Гэтая спэцыяльная старонка пераўтварае тэкст і разгортвае ўсе шаблёны рэкурсіўна.
+Адначасова разгортваюцца функцыі парсэра накшталт
+<code><nowiki>{{</nowiki>#language:…}}</code>, і зьменныя накшталт
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>
+Фактычна, гэтая старонка разгортвае амаль усё ўнутры падвойных фігурных дужак.',
+'expand_templates_title' => 'Загаловак старонкі, для {{FULLPAGENAME}} і г.д.:',
+'expand_templates_input' => 'Крынічны тэкст:',
+'expand_templates_output' => 'Вынік',
+'expand_templates_xml_output' => 'вынік у фармаце XML',
+'expand_templates_ok' => 'Добра',
+'expand_templates_remove_comments' => 'Выдаліць камэнтары',
+'expand_templates_remove_nowiki' => 'Падаўляць тэгі <nowiki> у выніку',
+'expand_templates_generate_xml' => 'Паказаць дрэва аналізу XML',
+'expand_templates_preview' => 'Папярэдні прагляд',
 
 );

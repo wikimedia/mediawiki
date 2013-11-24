@@ -591,8 +591,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Henta frå «$1»',
 'youhavenewmessages' => 'Du har $1 ($2).',
-'newmessageslink' => 'nye meldingar',
-'newmessagesdifflink' => 'sjå skilnad',
 'youhavenewmessagesfromusers' => 'Du har $1 frå {{PLURAL:$3|ein annan brukar| $3 brukarar}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du har $1 frå mange brukarar ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ei ny melding|nye meldingar}}',
@@ -1392,7 +1390,6 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal på endringar:',
-'prefsnologin' => 'Ikkje innlogga',
 'changepassword' => 'Skift passord',
 'prefs-skin' => 'Drakt',
 'skin-preview' => 'førehandsvis',
@@ -1675,6 +1672,7 @@ Denne informasjonen vil vera offentleg.',
 'recentchanges-label-minor' => 'Endringa er småplukk',
 'recentchanges-label-bot' => 'Denne endringa vart gjort av ein bot',
 'recentchanges-label-unpatrolled' => 'Endringa er ikkje patruljert enno',
+'recentchanges-legend-newpage' => '$1 – ny side',
 'rcnote' => "Nedanfor er {{PLURAL:$1|den siste endringa gjord|dei siste '''$1''' endringane gjorde}} {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
 'rcnotefrom' => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom' => 'Vis nye endringar sidan $1',
@@ -4056,5 +4054,22 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
 'limitreport-expansiondepth' => 'Største utvidingsdjupna',
 'limitreport-expensivefunctioncount' => 'Tal på dyre analysefunksjonar',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Utvid malar',
+'expand_templates_intro' => 'Denne sida tek ein tekst og utvider alle malar som er bruka i teksten.
+Ho utvider òg alle funksjonar som
+<nowiki>{{</nowiki>#language:…}}, og variablar som
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash; bortimot alt som står i dobbelte klammeparentesar.
+Dette gjer ho ved å kalla dei relevante parsersetega frå MediaWiki sjølv.',
+'expand_templates_title' => 'Konteksttittel, for {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Inntekst:',
+'expand_templates_output' => 'Resultat',
+'expand_templates_xml_output' => 'XML-resultat',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Fjern kommentarar',
+'expand_templates_remove_nowiki' => 'Ikkje vis <nowiki>-merke i resultatet',
+'expand_templates_generate_xml' => 'Vis parsertre som XML',
+'expand_templates_preview' => 'Førehandsvising',
 
 );

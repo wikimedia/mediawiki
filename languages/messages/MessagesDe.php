@@ -694,8 +694,6 @@ Siehe die [[Special:Version|Versionsseite]]',
 'pagetitle' => '$1 – {{SITENAME}}',
 'retrievedfrom' => 'Von „$1“',
 'youhavenewmessages' => 'Du hast $1 ($2).',
-'newmessageslink' => 'neue Nachrichten',
-'newmessagesdifflink' => 'Letzte Änderung',
 'youhavenewmessagesfromusers' => 'Du hast $1 von {{PLURAL:$3|einem anderen Benutzer|$3 Benutzern}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du hast $1 von vielen Benutzern ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|eine neue Nachricht|999=neue Nachrichten}}',
@@ -1542,7 +1540,6 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'preferences' => 'Einstellungen',
 'mypreferences' => 'Einstellungen',
 'prefs-edits' => 'Anzahl der Bearbeitungen:',
-'prefsnologin' => 'Nicht angemeldet',
 'prefsnologintext2' => 'Du musst dich $1, um Benutzereinstellungen festzulegen.',
 'changepassword' => 'Passwort ändern',
 'prefs-skin' => 'Benutzeroberfläche',
@@ -1844,6 +1841,9 @@ Diese Information ist öffentlich.',
 'recentchanges-label-minor' => 'Kleine Änderung',
 'recentchanges-label-bot' => 'Änderung durch einen Bot',
 'recentchanges-label-unpatrolled' => 'Nicht-kontrollierte Änderung',
+'recentchanges-label-plusminus' => 'Die geänderte Seitengröße (Anzahl in Bytes)',
+'recentchanges-legend-newpage' => '(siehe auch die [[Special:NewPages|Liste neuer Seiten]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "{{PLURAL:$1|'''1''' Änderung|'''$1''' Änderungen}} in den {{PLURAL:$2|letzten 24 Stunden|letzten '''$2''' Tagen}}.
 Stand: $4, $5 Uhr.",
 'rcnotefrom' => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
@@ -4304,7 +4304,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'rotate-comment' => 'Bild um $1 {{PLURAL:$1|Grad}} im Uhrzeigersinn gedreht',
 
 # Limit report
-'limitreport-title' => 'Parser-Profiling-Daten:',
+'limitreport-title' => 'Profilingdaten des Parsers:',
 'limitreport-cputime' => 'CPU-Zeit-Nutzung',
 'limitreport-cputime-value' => '{{PLURAL:$1|Eine Sekunde|$1 Sekunden}}',
 'limitreport-walltime' => 'Echtzeitnutzung',
@@ -4320,5 +4320,22 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'limitreport-expansiondepth' => 'Höchste Expansionstiefe',
 'limitreport-expansiondepth-value' => '$1/$2',
 'limitreport-expensivefunctioncount' => 'Anzahl aufwändiger Parserfunktionen',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Vorlagen expandieren',
+'expand_templates_intro' => 'Auf dieser Spezialseite kann Text eingegeben werden. Alle enthaltenen Vorlagen werden dabei rekursiv expandiert.
+Auch Parserfunktionen wie
+<code><nowiki>{{</nowiki>#language:…}}</code> und Variablen wie
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code> werden ausgewertet –
+faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
+'expand_templates_title' => 'Kontexttitel, für {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Eingabefeld:',
+'expand_templates_output' => 'Ergebnis',
+'expand_templates_xml_output' => 'XML-Ausgabe',
+'expand_templates_ok' => 'Okay',
+'expand_templates_remove_comments' => 'Kommentare entfernen',
+'expand_templates_remove_nowiki' => '<nowiki>-Tags in der Ausgabe unterdrücken',
+'expand_templates_generate_xml' => 'XML-Parser-Baum zeigen',
+'expand_templates_preview' => 'Vorschau',
 
 );

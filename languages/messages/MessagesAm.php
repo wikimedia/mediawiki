@@ -294,8 +294,6 @@ $1',
 'ok' => 'እሺ',
 'retrievedfrom' => 'ከ «$1» የተወሰደ',
 'youhavenewmessages' => '$1 አሉዎት ($2)።',
-'newmessageslink' => 'አዲስ መልእክቶች',
-'newmessagesdifflink' => 'የመጨረሻ ለውጥ',
 'youhavenewmessagesfromusers' => 'ከ{{PLURAL:$3|ሌላ አባል|$3 አባላት}} $1 {{PLURAL:$1|አለዎት|አሉልዎ}}። ($2).',
 'youhavenewmessagesmanyusers' => 'ከአሥር አባላት በላይ $1 አሉልዎ! ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|፩ አዲስ መልዕክት|አዲስ መልእክቶች}}',
@@ -864,7 +862,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'preferences' => 'ምርጫዎች፤',
 'mypreferences' => 'ምርጫዎች፤',
 'prefs-edits' => 'የለውጦች ቁጥር:',
-'prefsnologin' => 'ገና አልገቡም',
 'changepassword' => 'መግቢያ ቃልዎን ለመቀየር',
 'prefs-skin' => 'የድህረ-ገጽ መልክ',
 'skin-preview' => 'ቅድመ-ዕይታ',
@@ -1071,6 +1068,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'recentchanges-label-minor' => 'ይህ ለውጥ ጥቃቅን ነው።',
 'recentchanges-label-bot' => 'ይኸው ለውጥ በሎሌ ተደረገ።',
 'recentchanges-label-unpatrolled' => 'ይህ እርማት ገና አልተገመገመም',
+'recentchanges-legend-newpage' => '$1 - አዲስ ገጽ',
 'rcnote' => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውጥ እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom' => "ከ'''$2''' ጀምሮ የተቀየሩት ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
 'rclistfrom' => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
@@ -2599,5 +2597,8 @@ $3
 'api-error-unknownerror' => 'ያልታወቀ ስህተት: "$1"',
 'api-error-uploaddisabled' => 'ፋይል መላክ በዚህ ውኪ ላይ አልተፈቀደም።',
 'api-error-verification-error' => 'ይህ ፋይል የተበላሸ ወይም ትክክል ያልሆነ ቅጥያ ያለው ሊሆን ይችላል።',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'እሺ',
 
 );

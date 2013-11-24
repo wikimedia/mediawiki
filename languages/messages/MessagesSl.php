@@ -462,8 +462,6 @@ $1',
 'pagetitle' => '$1 – {{SITENAME}}',
 'retrievedfrom' => 'Vzpostavljeno iz »$1«',
 'youhavenewmessages' => 'Imate $1 ($2)',
-'newmessageslink' => 'nova sporočila',
-'newmessagesdifflink' => 'zadnja sprememba',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugega uporabnika|$3 uporabnikov}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od veliko uporabnikov ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|nova sporočila}}',
@@ -1334,7 +1332,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'preferences' => 'Nastavitve',
 'mypreferences' => 'Nastavitve',
 'prefs-edits' => 'Število urejanj:',
-'prefsnologin' => 'Niste prijavljeni',
 'changepassword' => 'Zamenjava gesla',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Predogled',
@@ -1634,6 +1631,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-label-minor' => 'Manjše urejanje',
 'recentchanges-label-bot' => 'To urejanje je bilo izvedeno z botom',
 'recentchanges-label-unpatrolled' => 'Urejanje še ni bilo pregledano',
+'recentchanges-legend-newpage' => '$1 - nova stran',
 'rcnote' => "Prikazujem {{PLURAL:$1|zadnjo spremembo|zadnji '''$1''' spremembi|zadnje '''$1''' spremembe|zadnjih '''$1''' sprememb|zadnjih '''$1''' sprememb}} v {{PLURAL:$2|zadnjem|zadnjih|zadnjih|zadnjih|zadnjih}} '''$2''' {{PLURAL:$2|dnevu|dneh|dneh|dneh|dneh}}, od $5, $4.",
 'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
@@ -4115,5 +4113,22 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|zlog|zloga|zloge|zlogov}}',
 'limitreport-expansiondepth' => 'Največja globina razširitve',
 'limitreport-expensivefunctioncount' => 'Število dragih funkcij razčlenjevalnika',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Razširi predloge',
+'expand_templates_intro' => 'Ta posebna stran nekaj vnesenega besedila predela tako, da klice predlog v njem zamenja z njihovo vsebino.
+Prav tako razreši izraze kot
+<code><nowiki>{{</nowiki>#language:…}}</code> in spremenljivke kot
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Pravzaprav razširi skoraj vse v dvojnih zavitih oklepajih.',
+'expand_templates_title' => 'Naslov sobesedila, za {{FULLPAGENAME}} ipd.:',
+'expand_templates_input' => 'Vhodno besedilo:',
+'expand_templates_output' => 'Rezultat',
+'expand_templates_xml_output' => 'Izhod XML',
+'expand_templates_ok' => 'V redu',
+'expand_templates_remove_comments' => 'Odstrani komentarje',
+'expand_templates_remove_nowiki' => 'V rezultatu odstrani oznake <nowiki>',
+'expand_templates_generate_xml' => 'Pokaži razčlenitveno drevo XML',
+'expand_templates_preview' => 'Predogled',
 
 );

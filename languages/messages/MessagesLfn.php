@@ -228,8 +228,6 @@ $messages = array(
 'ok' => 'Oce',
 'retrievedfrom' => 'Retraeda de "$1"',
 'youhavenewmessages' => 'Tu ave $1 ($2).',
-'newmessageslink' => 'mesajes nova',
-'newmessagesdifflink' => 'cambia presedente',
 'youhavenewmessagesmulti' => 'Tu ave mesajes nova en $1',
 'editsection' => 'cambia',
 'editold' => 'edita',
@@ -954,5 +952,8 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # Special:SpecialPages
 'specialpages' => 'Pajes spesial',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Oce',
 
 );

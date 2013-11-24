@@ -191,7 +191,6 @@ $messages = array(
 
 'ok' => 'Fai ā',
 'youhavenewmessages' => 'ʻOku ʻi ai haʻo $1 ($2).',
-'newmessageslink' => 'ngaahi tala foʻou',
 'youhavenewmessagesmulti' => 'ʻOku ʻi ai haʻo tala foʻou ʻi $1',
 'editsection' => 'fatuʻi vahe',
 'editold' => 'fatu',
@@ -443,7 +442,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 # Preferences page
 'preferences' => 'Faʻiteliha',
 'mypreferences' => 'faʻiteliha ʻaʻaku',
-'prefsnologin' => 'ʻOku ʻikai kau ki ai',
 'changepassword' => 'Liliu hoʻo leatapu',
 'prefs-skin' => 'Kili',
 'skin-preview' => 'Vakai pē',
@@ -1219,5 +1217,8 @@ Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 
 # New logging system
 'rightsnone' => '(hala)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Fakalahiange ʻa e ngaahi sīpinga',
 
 );

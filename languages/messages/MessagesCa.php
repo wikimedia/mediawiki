@@ -15,6 +15,7 @@
  * @author Cedric31
  * @author Davidpar
  * @author El libre
+ * @author Fitoschido
  * @author Gemmaa
  * @author Grondin
  * @author Iradigalesc
@@ -477,8 +478,6 @@ $1",
 'ok' => 'OK',
 'retrievedfrom' => 'Obtingut de «$1»',
 'youhavenewmessages' => 'Tens $1 ($2).',
-'newmessageslink' => 'nous missatges',
-'newmessagesdifflink' => 'últims canvis',
 'youhavenewmessagesfromusers' => "Tens $1 {{PLURAL:$3|d'un altre usuari|de $3 usuaris}} ($2).",
 'youhavenewmessagesmanyusers' => 'Tens $1 de molts usuaris ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un nou missatge|nous missatges}}',
@@ -587,7 +586,7 @@ Consulta: $2',
 'actionthrottled' => 'Acció limitada',
 'actionthrottledtext' => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext' => "S'ha protegit la pàgina per evitar-hi modificacions.",
-'viewsourcetext' => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
+'viewsourcetext' => 'Podeu visualitzar i copiar el codi font d’aquesta pàgina:',
 'viewyourtext' => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
 Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
@@ -1319,7 +1318,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'preferences' => 'Preferències',
 'mypreferences' => 'Preferències',
 'prefs-edits' => "Nombre d'edicions:",
-'prefsnologin' => 'No heu iniciat cap sessió',
 'changepassword' => 'Canvia la contrasenya',
 'prefs-skin' => 'Aparença',
 'skin-preview' => 'prova',
@@ -1359,7 +1357,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'prefs-help-watchlist-token2' => 'Aquesta és la clau secreta pel canal de continguts de la vostra llista de seguiment.
 Qualsevol que la conegui podria llegir la vostra llista de seguiment, així que no la compartiu.
 [[Special:ResetTokens|Cliqueu aquí si voleu restaurar-la]].',
-'savedprefs' => "S'han desat les vostres preferències",
+'savedprefs' => 'S’han desat les vostres preferències.',
 'timezonelegend' => 'Fus horari:',
 'localtime' => 'Hora local:',
 'timezoneuseserverdefault' => "Utilitza l'hora per defecte del wiki ($1)",
@@ -1616,6 +1614,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'recentchanges-label-minor' => 'Aquesta és una modificació menor',
 'recentchanges-label-bot' => 'Aquesta modificació fou feta per un bot',
 'recentchanges-label-unpatrolled' => 'Aquesta modificació encara no ha estat patrullada',
+'recentchanges-legend-newpage' => '$1 - nova pàgina',
 'rcnote' => 'A continuació hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|el darrer dia|els darrers <strong>$2</strong> dies}}, actualitzats a les $5 del $4.',
 'rcnotefrom' => 'A sota hi ha els canvis des de <b>$2</b> (es mostren fins <b>$1</b>).',
 'rclistfrom' => 'Mostra els canvis nous des de $1',
@@ -4048,5 +4047,19 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => "Profunditat màxima d'expansió",
 'limitreport-expensivefunctioncount' => "Número de funcions d'anàlisi dispendioses",
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expansió de plantilles',
+'expand_templates_intro' => "Aquesta pàgina especial expandeix de forma recursiva totes les plantilles d'un text donat.
+També expandeix les funcions sintàctiques, com ara <code><nowiki>{{</nowiki>#language:…}}</code>, i les variables predefinides, com <code><nowiki>{{</nowiki>CURRENTDAY}}</code> &mdash;de fet, gairebé tot que estigui entre claus dobles.",
+'expand_templates_title' => 'Títol per contextualitzar ({{FULLPAGENAME}}, etc):',
+'expand_templates_input' => 'El vostre text:',
+'expand_templates_output' => 'Resultat:',
+'expand_templates_xml_output' => 'Sortida XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Elimina els comentaris',
+'expand_templates_remove_nowiki' => "Suprimeix l'etiqueta <nowiki> en el resultat",
+'expand_templates_generate_xml' => "Mostra l'arbre XML",
+'expand_templates_preview' => 'Previsualitza',
 
 );

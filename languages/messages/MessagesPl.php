@@ -584,12 +584,10 @@ $1',
 'pagetitle' => '$1 – {{SITENAME}}',
 'retrievedfrom' => 'Źródło „$1”',
 'youhavenewmessages' => 'Masz $1 ($2).',
-'newmessageslink' => 'nowe wiadomości',
-'newmessagesdifflink' => 'różnica z poprzednią wersją',
 'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 użytkowników}} ($2).',
 'youhavenewmessagesmanyusers' => 'Masz $1 od wielu użytkowników ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|nowe wiadomości}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie zmiany}}',
+'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|999=nowe wiadomości}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|999=ostatnie zmiany}}',
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości na $1',
 'editsection' => 'edytuj',
 'editold' => 'edytuj',
@@ -719,7 +717,8 @@ Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Nieprawidłowa nazwa w obszarze nazw "$2" o treści "$3"',
 'invalidtitle-unknownnamespace' => 'Nieprawidłowa nazwa z nieznaną liczbą przestrzeni nazw  $1  o treści "$2"',
 'exception-nologin' => 'Nie jesteś zalogowany/a',
-'exception-nologin-text' => 'Ta strona lub akcja wymaga bycia zalogowanym na tej wiki.',
+'exception-nologin-text' => 'Proszę [[Special:Userlogin|zaloguj się]] aby mieć dostęp do tej strony lub akcji.',
+'exception-nologin-text-manual' => 'Musisz $1 aby mieć dostęp do tej strony lub akcji.',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -1283,6 +1282,7 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że nałożono dodatkowe ograniczenia.",
 'revdelete-confirm' => 'Potwierdź, że chcesz to zrobić zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]] i że rozumiesz konsekwencje.',
 'revdelete-suppress-text' => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
+* Informacji, która może być zniesławieniem
 * Ujawnienie danych osobowych
 *: ''adres domowy, numer telefonu, numer PESEL itp''",
 'revdelete-legend' => 'Ustaw ograniczenia widoczności',
@@ -1293,8 +1293,8 @@ Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do
 'revdelete-hide-user' => 'Ukryj nazwę użytkownika/adres IP',
 'revdelete-hide-restricted' => 'Ukryj informacje przed administratorami tak samo jak przed innymi',
 'revdelete-radio-same' => '(bez zmian)',
-'revdelete-radio-set' => 'Tak',
-'revdelete-radio-unset' => 'Nie',
+'revdelete-radio-set' => 'Ukryty',
+'revdelete-radio-unset' => 'Widoczny',
 'revdelete-suppress' => 'Utajnij informacje przed administratorami, tak samo jak przed innymi',
 'revdelete-unsuppress' => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
 'revdelete-log' => 'Powód',
@@ -1448,7 +1448,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'preferences' => 'Preferencje',
 'mypreferences' => 'Preferencje',
 'prefs-edits' => 'Liczba edycji',
-'prefsnologin' => 'Nie jesteś zalogowany',
+'prefsnologintext2' => 'Musisz $1 aby ustawić preferencje.',
 'changepassword' => 'Zmiana hasła',
 'prefs-skin' => 'Skórka',
 'skin-preview' => 'podgląd',
@@ -1746,6 +1746,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'recentchanges-label-minor' => 'To jest drobna zmiana',
 'recentchanges-label-bot' => 'Ta edycja została wykonana przez bota',
 'recentchanges-label-unpatrolled' => 'Ta edycja nie została jeszcze sprawdzona',
+'recentchanges-legend-newpage' => '$1 – nowa strona',
 'rcnote' => "Poniżej {{PLURAL:$1|znajduje się '''1''' ostatnia zmiana wykonana|znajdują się ostatnie '''$1''' zmiany wykonane|znajduje się ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniego dnia|ostatnich '''$2''' dni}}, licząc od $5 dnia $4.",
 'rcnotefrom' => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 'rclistfrom' => 'Pokaż nowe zmiany od $1',
@@ -2481,9 +2482,9 @@ Kontakt do autora:
 mail – $PAGEEDITOR_EMAIL
 wiki – $PAGEEDITOR_WIKI
 
-W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony. Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
+W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony jako zalogowany. Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
-	Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
+Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
@@ -3313,7 +3314,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'svg-long-desc' => 'Plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
 'svg-long-desc-animated' => 'Animowany plik SVG, nominalnie $1 × $2 pikseli, rozmiar pliku: $3',
 'svg-long-error' => 'Nieprawidłowy plik SVG:$1',
-'show-big-image' => 'Pełna rozdzielczość',
+'show-big-image' => 'Rozmiar pierwotny',
 'show-big-image-preview' => 'Rozmiar podglądu – $1.',
 'show-big-image-other' => '{{PLURAL:$2|Inna rozdzielczość|Inne rozdzielczości}}: $1.',
 'show-big-image-size' => '$1 x $2 pikseli',
@@ -4066,6 +4067,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 
 # Special:SpecialPages
 'specialpages' => 'Strony specjalne',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Normalne strony specjalne.
 * <span class="mw-specialpagerestricted">Zastrzeżone strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
@@ -4279,5 +4281,22 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtów}}',
 'limitreport-expansiondepth' => 'Największa głębokość ekspansji',
 'limitreport-expensivefunctioncount' => 'Liczba wywołań kosztownych funkcji parsera',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Rozwijanie szablonów',
+'expand_templates_intro' => 'We wprowadzonym na tej stronie tekście źródłowym zostaną rozwinięte rekurencyjnie wszystkie szablony.
+Rozwinięte także zostaną funkcje parsera takie jak
+<code><nowiki>{{</nowiki>#language:…}}</code> i zmienne jak
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
+'expand_templates_title' => 'Pozorny tytuł strony dla zmiennych takich jak {{FULLPAGENAME}}',
+'expand_templates_input' => 'Tekst wejściowy',
+'expand_templates_output' => 'Rezultat',
+'expand_templates_xml_output' => 'wynik w formacie XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Usuń komentarze',
+'expand_templates_remove_nowiki' => 'Ukrywaj w wyniku znaczniki <nowiki>',
+'expand_templates_generate_xml' => 'Pokaż drzewo analizatora składni w formacie XML',
+'expand_templates_preview' => 'Podgląd',
 
 );

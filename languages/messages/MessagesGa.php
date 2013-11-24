@@ -344,8 +344,6 @@ $messages = array(
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Aisghabháil ó "$1"',
 'youhavenewmessages' => 'Tá $1 agat ($2).',
-'newmessageslink' => 'teachtaireachtaí nua',
-'newmessagesdifflink' => 'difear ón leasú leathdhéanach',
 'youhavenewmessagesmulti' => 'Tá teachtaireachtaí nua agat ar $1',
 'editsection' => 'athraigh',
 'editold' => 'athraigh',
@@ -821,7 +819,6 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 # Preferences page
 'preferences' => 'Sainroghanna',
 'mypreferences' => 'Sainroghanna',
-'prefsnologin' => 'Níl tú logáilte isteach',
 'changepassword' => "Athraigh d'fhocal faire",
 'prefs-skin' => 'Craiceann',
 'skin-preview' => 'Réamhamharc',
@@ -959,6 +956,7 @@ do chuid dreachtaí a chur i leith tusa.',
 'recentchanges-feed-description' => 'Rianaigh na n-athruite vicí is déanaí sa fotha seo.',
 'recentchanges-label-minor' => 'Mionathrú é seo',
 'recentchanges-label-bot' => 'Chomhlíon róbó an t-athrú seo',
+'recentchanges-legend-newpage' => '$1 - leathanach nua',
 'rcnote' => "Is {{PLURAL:$1|é seo a leanas <strong>an t-athrú amháin</strong>|iad seo a leanas na <strong>$1</strong> athruithe is déanaí}} {{PLURAL:$2|ar feadh an lae dheireanaigh|ar feadh na '''$2''' lá deireanacha}}, as $5, $4.",
 'rcnotefrom' => 'Is iad seo a leanas na hathruithe ó <b>$2</b> (go dti <b>$1</b> taispeánaithe).',
 'rclistfrom' => 'Taispeáin athruithe nua ó $1 anuas.',
@@ -2214,5 +2212,9 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 
 # Search suggestions
 'searchsuggest-search' => 'Cuardaigh',
+
+# Special:ExpandTemplates
+'expand_templates_remove_comments' => 'Scrios nótaí tráchta',
+'expand_templates_preview' => 'Réamhamharc',
 
 );

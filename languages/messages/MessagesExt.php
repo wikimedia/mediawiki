@@ -254,8 +254,6 @@ $messages = array(
 'ok' => 'Dalcuerdu',
 'retrievedfrom' => 'Arrecuperau dendi "$1"',
 'youhavenewmessages' => 'Tiinis $1 ($2).',
-'newmessageslink' => 'nuevus mensahis',
-'newmessagesdifflink' => 'úrtimu chambu',
 'youhavenewmessagesmulti' => 'Tiinis nuevus mensahis en $1',
 'editsection' => 'eital',
 'editold' => 'eital',
@@ -784,7 +782,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'preferences' => 'Preferéncias',
 'mypreferences' => 'Las mis preferéncias',
 'prefs-edits' => "Númiru d'eicionis:",
-'prefsnologin' => "Nu t'alcuentras rustriu",
 'changepassword' => 'Chambal consínia',
 'prefs-skin' => 'Aparéncia',
 'skin-preview' => 'Previsoreal',
@@ -2361,5 +2358,8 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'revdelete-restricted' => 'las restricionis a los çahorilis án siu apricás',
 'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
 'rightsnone' => '(dengunu)',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'Previsoreal',
 
 );

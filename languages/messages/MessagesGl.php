@@ -527,8 +527,6 @@ $1',
 'ok' => 'Aceptar',
 'retrievedfrom' => 'Traído desde "$1"',
 'youhavenewmessages' => 'Ten $1 ($2).',
-'newmessageslink' => 'mensaxes novas',
-'newmessagesdifflink' => 'diferenzas coa revisión anterior',
 'youhavenewmessagesfromusers' => 'Ten $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ten $1 de moitos usuarios ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|mensaxes novas}}',
@@ -1404,7 +1402,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'preferences' => 'Preferencias',
 'mypreferences' => 'Preferencias',
 'prefs-edits' => 'Número de edicións:',
-'prefsnologin' => 'Non accedeu ao sistema',
 'changepassword' => 'Cambiar o meu contrasinal',
 'prefs-skin' => 'Aparencia',
 'skin-preview' => 'Vista previa',
@@ -1704,6 +1701,7 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'recentchanges-label-minor' => 'Esta é unha edición pequena',
 'recentchanges-label-bot' => 'Esta edición foi realizada por un bot',
 'recentchanges-label-unpatrolled' => 'Esta edición aínda non foi comprobada',
+'recentchanges-legend-newpage' => '$1 - nova páxina',
 'rcnote' => "A continuación {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata o $4 ás $5.",
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
 'rclistfrom' => 'Mostrar os cambios novos desde o $1',
@@ -4196,5 +4194,22 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansión',
 'limitreport-expensivefunctioncount' => 'Número de funcións de análise custosas',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expandir os modelos',
+'expand_templates_intro' => 'Esta páxina especial toma texto e expande todos os modelos dentro del recursivamente.
+Tamén expande as funcións de análise como
+<code><nowiki>{{</nowiki>#language:…}}</code> e variables como
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+De feito, expande case calquera cousa entre dúas chaves.',
+'expand_templates_title' => 'Título do contexto, para {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Texto de entrada:',
+'expand_templates_output' => 'Resultado',
+'expand_templates_xml_output' => 'Saída XML',
+'expand_templates_ok' => 'Aceptar',
+'expand_templates_remove_comments' => 'Eliminar os comentarios',
+'expand_templates_remove_nowiki' => 'Suprimir as etiquetas <nowiki> no resultado',
+'expand_templates_generate_xml' => 'Mostrar as árbores de análise XML',
+'expand_templates_preview' => 'Vista previa',
 
 );

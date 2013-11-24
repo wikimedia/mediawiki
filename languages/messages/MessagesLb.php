@@ -460,12 +460,10 @@ Kuckt d'[[Special:Version|Versiounssäit]].",
 'ok' => 'OK',
 'retrievedfrom' => 'Vun „$1“',
 'youhavenewmessages' => 'Dir hutt $1 ($2).',
-'newmessageslink' => 'nei Messagen',
-'newmessagesdifflink' => 'Lescht Ännerung',
 'youhavenewmessagesfromusers' => 'Dir hutt $1 vu(n) {{PLURAL:$3|engem anere Benotzer|$3 anere Benotzer}} ($2).',
 'youhavenewmessagesmanyusers' => 'Dir hutt $1 vu ville Benotzer ($2)',
-'newmessageslinkplural' => '{{PLURAL:$1|een neie Message|nei Message}}',
-'newmessagesdifflinkplural' => 'lescht {{PLURAL:$1|Ännerung|Ännerungen}}',
+'newmessageslinkplural' => '{{PLURAL:$1|een neie Message|999=nei Messagen}}',
+'newmessagesdifflinkplural' => 'lescht {{PLURAL:$1|Ännerung|999=Ännerungen}}',
 'youhavenewmessagesmulti' => 'Dir hutt nei Messagen op $1',
 'editsection' => 'änneren',
 'editold' => 'änneren',
@@ -594,7 +592,7 @@ Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$
 'invalidtitle-knownnamespace' => 'Net valabelen Titel mam Nummraum "$2" a mam Text "$3"',
 'invalidtitle-unknownnamespace' => 'Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text "$2"',
 'exception-nologin' => 'Net ageloggt',
-'exception-nologin-text' => 'Dës Säit oder Aktioun erfuerdert datt Dir op dëser Wiki ageloggt sidd.',
+'exception-nologin-text' => '[[Special:Userlogin|Loggt Iech w.e.g. a]] fir op dës Säit oder dës Aktioun zougräifen ze kënnen.',
 
 # Virus scanner
 'virus-badscanner' => "Schlecht Konfiguratioun: onbekannte Virescanner: ''$1''",
@@ -1312,7 +1310,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'preferences' => 'Astellungen',
 'mypreferences' => 'Astellungen',
 'prefs-edits' => 'Zuel vun den Ännerungen:',
-'prefsnologin' => 'Net ageloggt',
+'prefsnologintext2' => 'Dir musst Iech $1 fir Är Benotzerastellunge festzeleeën',
 'changepassword' => 'Passwuert änneren',
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Kucken',
@@ -1422,6 +1420,7 @@ Dës Informatioun ass ëffentlech.",
 'prefs-displayrc' => 'Optioune vun deem wat gewise gëtt',
 'prefs-displaysearchoptions' => 'Optioune vum Affichage',
 'prefs-displaywatchlist' => 'Optioune vun deem wat gewise gëtt',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Ënnerscheeder',
 'prefs-help-prefershttps' => 'Dës Astellung gëtt déi nächste Kéier wierksam wou Dir Iech ageloggt.',
 
@@ -1609,6 +1608,7 @@ Dës Informatioun ass ëffentlech.",
 'recentchanges-label-minor' => 'Dëst ass eng kleng Ännerung',
 'recentchanges-label-bot' => 'Dës Ännerung gouf vun engem Bot gemaacht',
 'recentchanges-label-unpatrolled' => 'Dës Ännerung gouf nach net nogekuckt',
+'recentchanges-legend-newpage' => '$1 - nei Säit',
 'rcnote' => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
 'rcnotefrom' => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
 'rclistfrom' => 'Nei Ännerunge vu(n) $1 u weisen',
@@ -2318,7 +2318,7 @@ Den Editeur kontaktéieren:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt.
+Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt wärend deem Dir ageloggt sidd.
 Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zErécksetzen.
 
 
@@ -2330,7 +2330,7 @@ Fir d\'Astellungen op Ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Fir d\'Astellungen vun Ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
+Fir d\'Astellunge vun Ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
 {{canonicalurl:Special:Watchlist/edit}}
 
 Feedback a weider Hëllef:
@@ -3814,9 +3814,9 @@ Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsäiten',
+'specialpages-note-top' => 'Erklärung',
 'specialpages-note' => '* Normal Spezialsäiten.
-* <span class="mw-specialpagerestricted">Spezialsäite fir Benotzer mat méi Rechter.</span>
-* <span class="mw-specialpagecached">Spezialsäiten aus dem Tëschespäicher (ka vereelst sinn).</span>',
+* <span class="mw-specialpagerestricted">Spezialsäite fir Benotzer mat méi Rechter.</span>',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other' => 'Aner Spezialsäiten',
 'specialpages-group-login' => 'Aloggen / Benotzerkont uleeën',
@@ -4021,5 +4021,21 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|Byte|Byten}}',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|Byte|Byten}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Schablounen expandéieren',
+'expand_templates_intro' => 'Op dëser Spezialsäit kann Text agesat ginn an all Schablounen doran gi rekursiv expandéiert.
+Och Parserfonctioune wéi<code><nowiki>{{</nowiki>#language:…}}</code> a Variabele wéi
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>, ginn ausgewäert.
+Faktesch alles wat tëscht duebelen Accolade steet gëtt ausgewäert.',
+'expand_templates_title' => 'Titel vun der Säit, dëst kann nëtzlech si wa(nn) {{FULLPAGENAME}} benotzt gëtt:',
+'expand_templates_input' => 'Gitt ären Text hei an:',
+'expand_templates_output' => 'Resultat',
+'expand_templates_xml_output' => 'Resultat als XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Bemierkunge läschen',
+'expand_templates_remove_nowiki' => '<nowiki>-Taggen am Resultat suppriméieren',
+'expand_templates_generate_xml' => "Weis d'Struktur vum XML",
+'expand_templates_preview' => 'Kucken ouni ofzespäicheren',
 
 );

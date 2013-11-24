@@ -488,8 +488,6 @@ $1',
 'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => 'Di Sigg heh stamp vun „$1“.',
 'youhavenewmessages' => 'Do häs $1 ($2).',
-'newmessageslink' => 'neu Metdeilunge op Dinger Klaafsigg',
-'newmessagesdifflink' => 'Ungerscheid zor vürletzte Version',
 'youhavenewmessagesfromusers' => 'Do häs $1 vun {{PLURAL:$3|enem|$3|keinem}} andere Metmaacher ($2)',
 'youhavenewmessagesmanyusers' => 'Do häs $1 vun andere Metmaacher ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|en neuje Nohreesch|neu Nohreeschte|kein neuje Nohreeschte}}',
@@ -1445,7 +1443,6 @@ dat dänne ehr Daate topaktoell sin,
 'preferences' => 'ming Enstellunge',
 'mypreferences' => 'Enstellunge',
 'prefs-edits' => 'Aanzahl Änderunge am Wiki:',
-'prefsnologin' => 'Nit enjelogg',
 'changepassword' => 'Passwood *',
 'prefs-skin' => 'Et Ussinn',
 'skin-preview' => 'Vör-Ansich',
@@ -1731,6 +1728,7 @@ dat dänne ehr Daate topaktoell sin,
 'recentchanges-label-minor' => 'Heh dat es en Mini-Änderung',
 'recentchanges-label-bot' => 'Di Änderung es fun enem Bot jemaat woode',
 'recentchanges-label-unpatrolled' => 'Heh di Änderung es noch nit nohjeloort',
+'recentchanges-legend-newpage' => '$1 - neu Sigg',
 'rcnote' => '{{PLURAL:$1|Heh es de letzte Änderung us|Heh sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Daach|de letzte <strong>$2</strong> Dääsch|dä Zick}} vum <strong>$4</strong> aff <strong>$5</strong> Uhr beß jetz.',
 'rcnotefrom' => 'Hee {{PLURAL:$1|es ein|sin bes op <strong>$1</strong>|es keine}} fun de Änderunge zick dem <strong>$3</strong> öm <strong>$4</strong> Uhr opjelėß.',
 'rclistfrom' => 'Zeich de Änderunge vum $1 aan',
@@ -4363,5 +4361,22 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'limitreport-expansiondepth-value' => '$1 vun $2',
 'limitreport-expensivefunctioncount' => 'Oproofe vun „düüre“ Fonxjuhne em Paaser',
 'limitreport-expensivefunctioncount-value' => '$1 vun $2',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Schablone üvverpröfe',
+'expand_templates_intro' => 'Heh di Extrasigg nemmp Täx aan un lühß alle Oproofe vun <code lang="en"><nowiki>{{</nowiki>&nbsp;…&nbsp;}}</code> Klammere op.
+Och verschaachtelte.
+Derbei jehüüere enschtalleete Paaserfunxjuhne, alsu esu jät wi
+<code lang="en"><nowiki>{{</nowiki>#language:…}}</code>, udder Varijaable, dat es esu jät wi
+<code lang="en"><nowiki>{{</nowiki>CURRENTDAY}}</code>.',
+'expand_templates_title' => 'Dä Siggetitel, also wat för {{FULLPAGENAME}} uew. enjeföllt weed:',
+'expand_templates_input' => 'Wat De üvverpröfe wells:',
+'expand_templates_output' => 'Wat erus kütt es',
+'expand_templates_xml_output' => 'XML ußjevve',
+'expand_templates_ok' => 'Lohß Jonn!',
+'expand_templates_remove_comments' => 'De ėnner Kommentare fottloohße',
+'expand_templates_remove_nowiki' => 'Donn de <nowiki>-Befähle ongerdröcke en dämm, wadd_eruß kütt',
+'expand_templates_generate_xml' => 'Och dä XML-Parser-Boum zeije',
+'expand_templates_preview' => 'Vör-Aansich',
 
 );

@@ -294,8 +294,6 @@ $messages = array(
 'ok' => 'ຕົກລົງ',
 'retrievedfrom' => 'ຖອນມາຈາກ "$1"',
 'youhavenewmessages' => 'ທ່ານ ມີ $1 ($2).',
-'newmessageslink' => 'ຂໍ້ຄວາມໃໝ່',
-'newmessagesdifflink' => 'ການປ່ຽນແປງຫຼ້າສຸດ',
 'youhavenewmessagesmulti' => 'ທ່ານມີຂໍ້ຄວາມໃໝ່ ຢູ່ $1',
 'editsection' => 'ດັດແກ້',
 'editold' => 'ດັດແກ້',
@@ -953,5 +951,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:SpecialPages
 'specialpages' => 'ໜ້າພິເສດ',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'ຂະຫຍາຍແມ່ແບບ',
 
 );

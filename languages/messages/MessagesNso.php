@@ -253,8 +253,6 @@ $messages = array(
 
 'retrievedfrom' => 'Le tšwa go "$1"',
 'youhavenewmessages' => 'O na le $1 ($2).',
-'newmessageslink' => 'ya melaetša ye mefsa',
-'newmessagesdifflink' => 'phetogo ya mafelelo',
 'newmessagesdifflinkplural' => 'l{{PLURAL:$1|Phetogo tša|Diphetogo ya}}go feta',
 'youhavenewmessagesmulti' => 'O nale melaetša ye mefsa go $1',
 'editsection' => 'lokiša',
@@ -596,7 +594,6 @@ Leka go fetleka ka go ngwala ''all:'' go fetleka mateng ka moka, goba o šumiše
 'preferences' => 'Dikgatlhegelo',
 'mypreferences' => 'Dikgatlhegelo tša ka',
 'prefs-edits' => 'Palo ya diphetogo:',
-'prefsnologin' => 'Ga wa tsena',
 'changepassword' => 'Fetola ditlhaka-tša-siphiri',
 'skin-preview' => 'Ponopele',
 'prefs-datetime' => 'Tšatšikgwedi le nako',
@@ -1271,5 +1268,8 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] "filter":',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Phetho',
 
 );

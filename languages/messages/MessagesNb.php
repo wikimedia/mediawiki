@@ -590,8 +590,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Hentet fra «$1»',
 'youhavenewmessages' => 'Du har $1 ($2).',
-'newmessageslink' => 'nye meldinger',
-'newmessagesdifflink' => 'siste endring',
 'youhavenewmessagesfromusers' => 'Du har $1 fra {{PLURAL:$3|en annen bruker| $3 brukere}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du har $1 fra mange brukere ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|en ny melding|nye meldinger}}',
@@ -1436,7 +1434,6 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'preferences' => 'Innstillinger',
 'mypreferences' => 'Innstillinger',
 'prefs-edits' => 'Antall redigeringer:',
-'prefsnologin' => 'Ikke logget inn',
 'changepassword' => 'Endre passord',
 'prefs-skin' => 'Utseende',
 'skin-preview' => 'Forhåndsvisning',
@@ -1735,6 +1732,7 @@ Informasjonen vil være offentlig.',
 'recentchanges-label-minor' => 'Dette er en mindre endring',
 'recentchanges-label-bot' => 'Denne redigeringen ble gjort av en bot',
 'recentchanges-label-unpatrolled' => 'Denne redigeringen har ikke blitt patruljert ennå',
+'recentchanges-legend-newpage' => '$1 – ny side',
 'rcnote' => "Nedenfor vises {{PLURAL:$1|'''1''' endring|de siste '''$1''' endringene}} fra {{PLURAL:$2|det siste døgnet|de siste '''$2''' døgnene}}, per $5 $4.",
 'rcnotefrom' => "Nedenfor er endringene siden '''$2''' (opp til '''$1''' vises).",
 'rclistfrom' => 'Vis nye endringer med start fra $1',
@@ -4189,5 +4187,22 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
 'limitreport-expansiondepth' => 'Største ekspansjonsdybde',
 'limitreport-expensivefunctioncount' => 'Antall kostbare parserfunksjoner',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Utvid maler',
+'expand_templates_intro' => 'Denne spesialsiden tar tekst og utvider rekusivt alle maler brukt i teksten. 
+Den utvider også alle parserfunksjoner som 
+<code><nowiki>{{</nowiki>#language:…}}</code>, og variabler som 
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Faktisk utvider den det meste innkapslet i doble krøllparenteser.',
+'expand_templates_title' => 'Konteksttittel, for {{FULLPAGENAME}}, etc.:',
+'expand_templates_input' => 'Skriv inn tekst:',
+'expand_templates_output' => 'Resultat',
+'expand_templates_xml_output' => 'XML-resultat',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Fjern kommentarer',
+'expand_templates_remove_nowiki' => 'Ikke vis <nowiki>-merkelapper i resultatet',
+'expand_templates_generate_xml' => 'Vis parsetre som XML',
+'expand_templates_preview' => 'Forhåndsvisning',
 
 );

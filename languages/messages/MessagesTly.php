@@ -364,8 +364,6 @@ $messages = array(
 'ok' => 'OK',
 'retrievedfrom' => 'Сәвон "$1"',
 'youhavenewmessages' => 'Шымә сәјоне $1 ($2).',
-'newmessageslink' => 'нујә хәбон',
-'newmessagesdifflink' => 'охонә дәгиши',
 'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|охонә дәгиши|охонә дәгишон}}',
 'editsection' => 'Sərost kardey',
 'editold' => 'Сәрост кардеј',
@@ -616,7 +614,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Кукон',
 'mypreferences' => 'Кукон',
-'prefsnologin' => 'Ыштәни едаштәнијоне',
 'changepassword' => 'Пароли дәгиш кардеј',
 'skin-preview' => 'Сыфтәнә нишо дој',
 'prefs-user-pages' => 'Иштирокәкә сәһифон',

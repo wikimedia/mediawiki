@@ -431,8 +431,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Cavà fora da "$1"',
 'youhavenewmessages' => 'Te ghè $1 ($2).',
-'newmessageslink' => 'dei mesagi novi',
-'newmessagesdifflink' => 'ultimo canbiamento',
 'youhavenewmessagesfromusers' => "Te ghè $1 da {{PLURAL:$3|n'altro utente|$3 utenti}} ($2).",
 'youhavenewmessagesmanyusers' => 'Te ghè $1 da vari utenti ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un messagio novo|dei messagi novi}}',
@@ -1235,7 +1233,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'preferences' => 'Prefarense',
 'mypreferences' => 'Prefarense',
 'prefs-edits' => 'Nùmaro de modifiche:',
-'prefsnologin' => 'No te ghè eseguìo el login',
 'changepassword' => 'Cànbia ła password',
 'prefs-skin' => 'Aspeto grafico',
 'skin-preview' => 'Anteprima',
@@ -1512,6 +1509,7 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'recentchanges-label-minor' => 'Sto qua el xe un canbiamento picenin',
 'recentchanges-label-bot' => 'Sta modifica el la ga fata un bot',
 'recentchanges-label-unpatrolled' => 'Sta modifica no la xe stà gnancora verificà',
+'recentchanges-legend-newpage' => '$1 - pagina nova',
 'rcnote' => "Qua soto se vede {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} {{PLURAL:$2|in te l'ultimo zorno|in tei ultimi '''$2''' zorni}}, fin a le $5 del $4.",
 'rcnotefrom' => "Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom' => 'Fà védar i canbiamenti fati dal $1',
@@ -3879,5 +3877,18 @@ Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Public
 
 # Image rotation
 'rotate-comment' => 'Imagine girà de $1 {{PLURAL:$1|grado|gradi}} in senso orario',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Espansion dei template',
+'expand_templates_intro' => 'Sta pagina speciale la elabora un testo espandendo tuti i template presenti. La calcola inoltre el risultato de le funzion suportàe dal parser come <nowiki>{{</nowiki>#language:...}} e de le variabili de sistema quali <nowiki>{{</nowiki>CURRENTDAY}}, overo in pratica tuto quel che se cata tra dopie parentesi grafe. La funsiona riciamando le oportune funzion del parser de MediaWiki.',
+'expand_templates_title' => 'Contesto (par {{FULLPAGENAME}} ecc.):',
+'expand_templates_input' => 'Testo da espàndar:',
+'expand_templates_output' => 'Risultato',
+'expand_templates_xml_output' => 'Output in formato XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Ignora i comenti',
+'expand_templates_remove_nowiki' => 'Cava i tag <nowiki> dal risultato',
+'expand_templates_generate_xml' => 'Mostra àlbaro sintàtico XML',
+'expand_templates_preview' => 'Anteprima',
 
 );

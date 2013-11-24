@@ -546,8 +546,6 @@ $1",
 'ok' => 'OK',
 'retrievedfrom' => 'Miġjub minn "$1"',
 'youhavenewmessages' => 'Għandek $1 ($2).',
-'newmessageslink' => 'messaġġi ġodda',
-'newmessagesdifflink' => 'l-aħħar bidla',
 'youhavenewmessagesmanyusers' => 'Għandek $1 mingħand ħafna utenti ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|messaġġ ġdid|messaġġi ġodda}}',
 'newmessagesdifflinkplural' => 'l-aħħar {{PLURAL:$1|bidla|bidliet}}',
@@ -1318,7 +1316,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'preferences' => 'Preferenzi',
 'mypreferences' => 'Preferenzi',
 'prefs-edits' => "Numru ta' modifiki:",
-'prefsnologin' => 'Għadek ma dħaltx ġewwa',
 'changepassword' => 'Ibdel il-password',
 'prefs-skin' => 'Aspett grafiku (skin)',
 'skin-preview' => 'dehra proviżorja',
@@ -1590,6 +1587,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-label-minor' => 'Din hi modifika minuri',
 'recentchanges-label-bot' => 'Din il-modifika ġiet effettwata minn bot',
 'recentchanges-label-unpatrolled' => 'Din il-modifika għadha ma ġietx verifikata',
+'recentchanges-legend-newpage' => '$1 - paġna ġdida',
 'rcnote' => "Hawn taħt {{PLURAL:$1|tinsab l-aktar modifika riċenti|jinsabu l-'''$1''' modifiki riċenti}} għas-sit fl-aħħar {{PLURAL:$2|24 siegħa|'''$2''' ġranet}}, id-dati ġew aġġornati fil-$5 ta' $4.",
 'rcnotefrom' => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 'rclistfrom' => 'Uri l-modifiki ġodda jibdew minn $1',
@@ -3840,5 +3838,22 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'duration-decades' => '$1 {{PLURAL:$1|deċennju|deċennji}}',
 'duration-centuries' => '$1 {{PLURAL:$1|seklu|sekli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennju|millennji}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Espandi l-mudelli',
+'expand_templates_intro' => "!Din il-paġna speċjali tieħu test u tkabbar il-mudelli kollha preżenti.
+Barra minn hekk, din tikkalkola r-riżultat tal-funzjonijiet ''parser'' bħal
+<code><nowiki>{{</nowiki>#language:…}}</code>, u varjabbli bħal
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Fil-fatt, din tespandi kważi dak kollu bejn żewġ parentesi.",
+'expand_templates_title' => 'Kuntest (għal {{FULLPAGENAME}} etċ.):',
+'expand_templates_input' => "Test ta' ''input'':",
+'expand_templates_output' => 'Riżultat',
+'expand_templates_xml_output' => "Riżultat f'format XML",
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Neħħi l-kummenti',
+'expand_templates_remove_nowiki' => "Ħassar it-''tags'' <nowiki> fir-riżultat",
+'expand_templates_generate_xml' => 'Uri siġra sintattika XML',
+'expand_templates_preview' => 'Dehra proviżorja',
 
 );

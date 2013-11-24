@@ -266,8 +266,6 @@ $messages = array(
 'ok' => 'OK',
 'retrievedfrom' => 'Feddynit ass "$1"',
 'youhavenewmessages' => 'Ta $1 ayd ($2).',
-'newmessageslink' => 'çhaghteraghtyn noa',
-'newmessagesdifflink' => "caghlaa s'jerree",
 'youhavenewmessagesmulti' => 'Ta çhaghteraghtyn noa ayd er $1',
 'editsection' => 'reagh',
 'editold' => 'reagh',
@@ -609,7 +607,6 @@ My t'ou uss son ronsaghey dagh cooid (as shen goaill stiagh duillagyn resooney, 
 'preferences' => 'Tosheeaghtyn',
 'mypreferences' => 'My hosheeaghtyn',
 'prefs-edits' => 'Earroo caghlaaghyn:',
-'prefsnologin' => 'Cha nel oo loggit stiagh',
 'changepassword' => 'Fockle yn arrey y cheaghley',
 'prefs-skin' => 'Crackan',
 'skin-preview' => 'Roie-haishbynys',
@@ -1477,5 +1474,9 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 # Search suggestions
 'searchsuggest-search' => 'Ronsaghey',
 'searchsuggest-containing' => 'goaill stiagh...',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'OK',
+'expand_templates_preview' => 'Roie-haishbynys',
 
 );

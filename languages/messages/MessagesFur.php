@@ -340,8 +340,6 @@ $messages = array(
 'ok' => 'Va ben',
 'retrievedfrom' => 'Cjapât fûr di $1',
 'youhavenewmessages' => 'Tu âs $1 ($2).',
-'newmessageslink' => 'gnûfs messaçs',
-'newmessagesdifflink' => 'difarencis cu la penultime revision',
 'youhavenewmessagesmulti' => 'Tu âs gnûfs messaçs su $1',
 'editsection' => 'cambie',
 'editold' => 'cambie',
@@ -705,7 +703,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'preferences' => 'Preferencis',
 'mypreferences' => 'Preferencis',
 'prefs-edits' => 'Numar di cambiaments fats:',
-'prefsnologin' => 'No tu sês jentrât',
 'changepassword' => 'Gambie peraule clâf',
 'prefs-skin' => 'Mascare',
 'skin-preview' => 'Anteprime',
@@ -1675,5 +1672,12 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # API errors
 'api-error-unclassified' => 'Al è capitât un erôr no cognossût',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Espant i modei',
+'expand_templates_output' => 'Risultât',
+'expand_templates_ok' => 'Va ben',
+'expand_templates_remove_comments' => 'Gjave i coments',
+'expand_templates_preview' => 'Anteprime',
 
 );

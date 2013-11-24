@@ -430,8 +430,6 @@ $1',
 'ok' => 'મંજૂર',
 'retrievedfrom' => '"$1"થી લીધેલું',
 'youhavenewmessages' => 'તમારા માટે $1 ($2).',
-'newmessageslink' => 'નવીન સંદેશાઓ',
-'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'youhavenewmessagesfromusers' => 'આપને માટે {{PLURAL:$3|અન્ય સભ્ય|$3 અન્ય સભ્યો}} તરફથી $1 છે. ($2).',
 'youhavenewmessagesmanyusers' => 'આપને માટે ઘણાં સભ્યો તરફથી $1 છે ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|નવો સંદેશો|નવા સંદેશા}}',
@@ -1281,7 +1279,6 @@ $1",
 'preferences' => 'પસંદ',
 'mypreferences' => 'પસંદગીઓ',
 'prefs-edits' => 'સંપાદનોની સંખ્યા',
-'prefsnologin' => 'પ્રવેશ કરેલ નથી',
 'prefsnologintext2' => 'તમારી પસંદગીઓ પસંદ કરવા માટે કૃપયા $1.',
 'changepassword' => 'ગુપ્તસંજ્ઞા બદલો',
 'prefs-skin' => 'ફલક',
@@ -3972,5 +3969,9 @@ $5
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|સેકંડ|સેકંડો}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|બાઇટ|બાઇટ્સ}}',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|બાઇટ|બાઇટ્સ}}',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'પરિણામ:',
+'expand_templates_ok' => 'મંજૂર',
 
 );

@@ -386,8 +386,6 @@ Sí [[Special:Version|versjón síða]].',
 'ok' => 'Í lagi',
 'retrievedfrom' => 'Heintað frá "$1"',
 'youhavenewmessages' => 'Tú hevur $1 ($2).',
-'newmessageslink' => 'nýggj boð',
-'newmessagesdifflink' => 'seinasta broyting',
 'youhavenewmessagesfromusers' => 'Tú hevur $1 frá {{PLURAL:$3|øðrum brúkara|$3 brúkarum}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tú hevur $1 frá fleiri brúkarum ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|eini nýggj boð|nýggj boð}}',
@@ -1226,7 +1224,6 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal av rættingum:',
-'prefsnologin' => 'Tú hevur ikki ritað inn',
 'changepassword' => 'Broyt loyniorð',
 'prefs-skin' => 'Hamur',
 'skin-preview' => 'Forskoðan',
@@ -3231,5 +3228,10 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'duration-years' => '$1 {{PLURAL:$1|ár}}',
 'duration-decades' => '$1 {{PLURAL:$1|áratíggju}}',
 'duration-centuries' => '$1 {{PLURAL:$1|øld|øldir}}',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Úrslit',
+'expand_templates_ok' => 'Í lagi',
+'expand_templates_preview' => 'Forskoðan',
 
 );

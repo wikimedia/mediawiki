@@ -159,8 +159,6 @@ $messages = array(
 
 'retrievedfrom' => 'Ulzõ vȯtštõd "$1"',
 'youhavenewmessages' => 'Täddõn um $1 ($2)',
-'newmessageslink' => 'ūži tīeūţidi',
-'newmessagesdifflink' => 'perri mõitõks',
 'editsection' => 'redigīer',
 'editold' => 'redigīerõgid',
 'viewsourceold' => 'vaņ ovāt-tekstõ',

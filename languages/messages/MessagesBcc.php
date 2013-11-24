@@ -382,8 +382,6 @@ $1',
 'ok' => 'هوبنت',
 'retrievedfrom' => 'درگیجگ بیت چه  "$1"',
 'youhavenewmessages' => 'شما هست  $1 ($2).',
-'newmessageslink' => 'نوکین کوله یان',
-'newmessagesdifflink' => 'اهری تغییر',
 'youhavenewmessagesmulti' => 'شما را نوکین کوله یان هست ته   $1',
 'editsection' => 'اصلاح',
 'editold' => 'اصلاح',
@@ -989,7 +987,6 @@ $1",
 'preferences' => 'ترجیحات',
 'mypreferences' => 'منی ترجیحات',
 'prefs-edits' => 'تعداد اصلاحات:',
-'prefsnologin' => 'وارد نهیت',
 'changepassword' => 'کلمه رمز عوض کن',
 'prefs-skin' => 'پوست',
 'skin-preview' => 'بازین',
@@ -3070,5 +3067,21 @@ $5
 'revdelete-restricted' => 'محدودیت آن په مدیران سیستم بوت',
 'revdelete-unrestricted' => 'به زور چه مدیران سیستم محدودیتان',
 'rightsnone' => '(هچ یک)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'پچ کن تمپلیت آنء',
+'expand_templates_intro' => 'ای صفحه حاص لهتی متنء گریت و کل تمپلتان ته آییء برگشتی مزنش کنت.
+آیی هنچوش عمگر تجزیه کنوکء مزن کنت په داب
+<nowiki>{{</nowiki>#language:…}}, و متغییرانی په داب
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash; در حقیقت هر چیزی که ته دو براکتن.
+آیی ای کارء گون توار کنگ تجزیه کنوک مناسب چه مدیا وی کی وت انجام دنت.',
+'expand_templates_title' => 'عنوان متن په {{FULLPAGENAME}} و دگه.:',
+'expand_templates_input' => 'ورودی متن',
+'expand_templates_output' => 'نتیجه',
+'expand_templates_xml_output' => 'خروجی XML',
+'expand_templates_ok' => 'هوبنت',
+'expand_templates_remove_comments' => 'بزور نظرات',
+'expand_templates_generate_xml' => 'پیش دار درچک تجزیه XMLء',
+'expand_templates_preview' => 'بازبین',
 
 );

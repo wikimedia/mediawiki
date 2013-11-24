@@ -332,8 +332,6 @@ $messages = array(
 'ok' => 'ಸರಿ',
 'retrievedfrom' => '"$1" ಇಂದ ಪಡೆಯಲ್ಪಟ್ಟಿದೆ',
 'youhavenewmessages' => 'ನಿಮಗೆ $1 ಇವೆ ($2).',
-'newmessageslink' => 'ಹೊಸ ಸಂದೇಶಗಳು',
-'newmessagesdifflink' => 'ಕೊನೆಯ ಬದಲಾವಣೆ',
 'newmessagesdifflinkplural' => 'ಕಡೆಯ {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',
 'youhavenewmessagesmulti' => '$1 ಅಲ್ಲಿ ನಿಮಗೆ ಹೊಸ ಸಂದೇಶಗಳಿವೆ',
 'editsection' => 'ಬದಲಾಯಿಸಿ',
@@ -918,7 +916,6 @@ $2',
 'preferences' => 'ಪ್ರಾಶಸ್ತ್ಯಗಳು',
 'mypreferences' => 'ಪ್ರಾಶಸ್ತ್ಯಗಳು',
 'prefs-edits' => 'ಸಂಪಾದನೆಗಳ ಸಂಖ್ಯೆ:',
-'prefsnologin' => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'changepassword' => 'ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ',
 'prefs-skin' => 'ಚರ್ಮ',
 'skin-preview' => 'ಮುನ್ನೋಟ',
@@ -2208,5 +2205,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|ದಶಕ|ದಶಕಗಳು}}',
 'duration-centuries' => '$1 {{PLURAL:$1|ಶತಮಾನ|ಶತಮಾನಗಳು}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ಸಹಸ್ರಮಾನ|ಸಹಸ್ರಮಾನಗಳು}}',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'ಮುನ್ನೋಟ',
 
 );

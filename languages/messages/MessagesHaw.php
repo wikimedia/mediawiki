@@ -276,8 +276,6 @@ $messages = array(
 'ok' => 'Hiki nō',
 'retrievedfrom' => 'Kiʻi ʻia mai "$1"',
 'youhavenewmessages' => 'He $1 ($2) kāu.',
-'newmessageslink' => 'mau memo hou',
-'newmessagesdifflink' => 'loli hope',
 'youhavenewmessagesmulti' => 'He mau memo kou ma $1',
 'editsection' => 'e ho‘ololi',
 'editold' => 'e ho‘ololi',
@@ -856,5 +854,9 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 
 # Special:Tags
 'tags-edit' => 'e hoʻololi',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Hiki nō',
+'expand_templates_preview' => 'Nāmua',
 
 );

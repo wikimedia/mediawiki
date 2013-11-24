@@ -298,8 +298,6 @@ $messages = array(
 'ok' => 'Йӧра',
 'retrievedfrom' => 'Налме вер — "$1"',
 'youhavenewmessages' => 'Тендан $1 уло ($2).',
-'newmessageslink' => 'У серыш',
-'newmessagesdifflink' => 'пытартыш тӧрлатымаш',
 'editsection' => 'тӧрлаташ',
 'editold' => 'тӧрлаташ',
 'viewsourceold' => 'тӱҥалтыш текстым ончалаш',
@@ -654,6 +652,7 @@ $messages = array(
 'recentchanges-label-minor' => 'Тиде изи тӧрлатымаш',
 'recentchanges-label-bot' => 'Тиде тӧрлатымашым бот ыштен',
 'recentchanges-label-unpatrolled' => 'Тиде тӧрлатымашым нигӧ терген огыл',
+'recentchanges-legend-newpage' => '$1 - у лаштык',
 'rcnote' => "Ӱлнӧ {{PLURAL:$1|'''1'''|'''$1'''}} вашталтыш пытартыш {{PLURAL:$2||'''$2'''}} кечылан, $5-лан, $4-лан.",
 'rcnotefrom' => "Ниже перечислены изменения с '''$2''' (не более '''$1''').",
 'rclistfrom' => '$1 гыч тӱҥалын у вашталтымашым ончыкташ',
@@ -1157,5 +1156,9 @@ $messages = array(
 #Строки не чувствительны к регистру
 
 #Размещайте фрагменты регулярных выражений над этой строчкой. Оставьте эту строчку такой, как она есть.</pre>',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Йӧра',
+'expand_templates_preview' => 'Ончылгоч ончымаш',
 
 );

@@ -293,8 +293,6 @@ $messages = array(
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Bogau dae  "$1"',
 'youhavenewmessages' => 'Tenes $1 ($2).',
-'newmessageslink' => 'messàgios noos',
-'newmessagesdifflink' => 'ùrtima mudàntzia',
 'youhavenewmessagesmulti' => 'Tenes messàgios noos in $1',
 'editsection' => 'acontza',
 'editold' => 'acontza',
@@ -652,7 +650,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'preferences' => 'Preferèntzias',
 'mypreferences' => 'Preferèntzias meas',
 'prefs-edits' => 'Nùmeru de acontzos:',
-'prefsnologin' => 'Non ses intrau',
 'changepassword' => 'Càmbia password',
 'prefs-skin' => 'Bisura',
 'skin-preview' => 'Antiprima',
@@ -774,6 +771,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'recentchanges-label-newpage' => 'Custu acontzu at creadu una pàgina noa',
 'recentchanges-label-minor' => 'Custu est unu acontzu minore',
 'recentchanges-label-bot' => 'Custu acontzu est stadu fatu dae unu bot',
+'recentchanges-legend-newpage' => '$1 - pàgina noa',
 'rcnote' => "Inoghe sighende {{PLURAL:$1|b'est s'ùrtima mudàntzia|bi sunt is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|in is ùrtimas '''$2''' dies}}; is datos sunt agiornados a  $5, $4.",
 'rcnotefrom' => "Sas chi sighint sunt sas mudàntzias dae '''$2''' (fintzas a '''$1''').",
 'rclistfrom' => 'Ammustra mudàntzias dae $1',
@@ -1523,5 +1521,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # Search suggestions
 'searchsuggest-search' => 'Chirca',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'Antiprima',
 
 );

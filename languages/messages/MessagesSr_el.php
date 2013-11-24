@@ -581,8 +581,6 @@ Pogledajte stranicu za [[Special:Version|izdanje]].',
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Preuzeto iz „$1“',
 'youhavenewmessages' => 'Imate $1 ($2).',
-'newmessageslink' => 'novih poruka',
-'newmessagesdifflink' => 'poslednju izmenu',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika|$3 korisnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od mnogo korisnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|nove poruke}}',
@@ -1410,7 +1408,6 @@ Upamtite da njegovi popisi ovog vikija mogu biti zastareli.',
 'preferences' => 'Podešavanja',
 'mypreferences' => 'Podešavanja',
 'prefs-edits' => 'Broj izmena:',
-'prefsnologin' => 'Niste prijavljeni',
 'changepassword' => 'Promeni lozinku',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Pregledaj',
@@ -1690,6 +1687,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'recentchanges-label-minor' => 'Manja izmena',
 'recentchanges-label-bot' => 'Ovu izmenu je napravio bot',
 'recentchanges-label-unpatrolled' => 'Ova izmena još nije pregledana',
+'recentchanges-legend-newpage' => '$1 - nova stranica',
 'rcnote' => "Ispod {{PLURAL:$1|je '''1''' izmena|su poslednje '''$1''' izmene|su poslednjih '''$1''' izmena}} {{PLURAL:$2|prethodni dan|u poslednja '''$2''' dana|u poslednjih '''$2''' dana}}, od $4; $5.",
 'rcnotefrom' => 'Ispod su izmene od <b>$3; $4</b> (do <b>$1</b> izmena).',
 'rclistfrom' => 'Prikaži nove izmene počev od $1',
@@ -4225,6 +4223,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'logentry-newusers-newusers' => '$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog',
 'logentry-newusers-create' => '$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog',
 'logentry-newusers-create2' => '$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog $3',
+'logentry-newusers-byemail' => 'Korisnički nalog $3 je {{GENDER:$2|napravljen}} od strane $1 i lozinka je poslata na e-poštu',
 'logentry-newusers-autocreate' => 'Korisnički nalog $1 je automatski {{GENDER:$2|otvoren}}',
 'logentry-rights-rights' => '$1 je {{GENDER:$1|promenio|promenila}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|promenio|promenila}} čalnstvo grupe za $3',
@@ -4305,5 +4304,20 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 
 # Image rotation
 'rotate-comment' => 'Slika je rotirana za $1° u smeru kazaljke na satu',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Zamena šablona',
+'expand_templates_intro' => 'Ova posebna stranica uzima tekst i menja sve šablone u njemu rekurzivno.
+Takođe menja funkcije parsera kao što je <code><nowiki>{{</nowiki>#language:…}}</code> i promenljive kao što je <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Zapravo praktično sve što se nalazi između vitičastih zagrada.',
+'expand_templates_title' => 'Naziv konteksta; za {{STRANICA}} itd.:',
+'expand_templates_input' => 'Unos:',
+'expand_templates_output' => 'Rezultat',
+'expand_templates_xml_output' => 'XML izlaz',
+'expand_templates_ok' => 'U redu',
+'expand_templates_remove_comments' => 'Ukloni komentare',
+'expand_templates_remove_nowiki' => 'Poništava efekat <nowiki> tagova u prikazu članaka',
+'expand_templates_generate_xml' => 'prikaži XML stablo',
+'expand_templates_preview' => 'Prikaz',
 
 );

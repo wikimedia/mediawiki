@@ -315,8 +315,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Sumber artikel iki saka kaca situs web: "$1"',
 'youhavenewmessages' => 'Panjenengan kagungan $1 ($2).',
-'newmessageslink' => 'warta énggal',
-'newmessagesdifflink' => 'mirsani bédané saka révisi sadurungé',
 'youhavenewmessagesfromusers' => 'Sampéyan nduwé $1 saka  {{PLURAL:$3|panganggo liya|$3 panganggo}} ($2).',
 'youhavenewmessagesmanyusers' => 'Sampéyang nduwé $1 saka akèh panganggo ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|layang anyar|layang anyar}}',
@@ -1064,7 +1062,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'preferences' => 'Preferensi (pilihan)',
 'mypreferences' => 'Préferènsi',
 'prefs-edits' => 'Gunggungé suntingan:',
-'prefsnologin' => 'Durung mlebu log',
 'changepassword' => 'Ganti tembung sandi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratilik',
@@ -1339,6 +1336,7 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'recentchanges-label-minor' => 'Iki suntingan sithik',
 'recentchanges-label-bot' => 'Suntingan iki diayahi déning bot',
 'recentchanges-label-unpatrolled' => 'Suntingan iki durung dipatroli',
+'recentchanges-legend-newpage' => '$1 - kaca anyar',
 'rcnote' => 'Ing ngisor iki kapacak {{PLURAL:$1|pangowahan|owah-owahan}} pungkasan ing  <strong>$2</strong> dina pungkasan ing $5, $4.',
 'rcnotefrom' => 'Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
 'rclistfrom' => 'Saiki nuduhaké owah-owahan wiwit tanggal $1',
@@ -3661,5 +3659,22 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 
 # Image rotation
 'rotate-comment' => 'Gambar diubengaké $1 {{PLURAL:$1|drajat|drajat}} sak arah domé jam',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Cithakan dikembangaké',
+'expand_templates_intro' => 'Kaca astaméwa iki njupuk sawetara tèks lan ngembangaké kabèh cithakan sajroning iku sacara rékursif.
+Kaca iki uga ngembangaké fungsi parser kaya ta
+<nowiki>{{</nowiki>#language:…}}, lan variabel kaya ta
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;sajatiné mèh kabèh sing ana ing antara rong tandha kurung akolade.
+Perkara iki dilakokaké caranémawa nyeluk tahapan parser sing rélévan saka MediaWiki dhéwé.',
+'expand_templates_title' => 'Irah-irahan kontèks, kanggo {{FULLPAGENAME}} lan sabanjuré:',
+'expand_templates_input' => 'Tèks sumber:',
+'expand_templates_output' => 'Pituwas (kasil)',
+'expand_templates_xml_output' => 'Pituwas XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Busaken komentar',
+'expand_templates_remove_nowiki' => 'Brèdèl tag <nowiki> nèng asilé',
+'expand_templates_generate_xml' => 'Tuduhna uwit parser XML',
+'expand_templates_preview' => 'Pratayang',
 
 );

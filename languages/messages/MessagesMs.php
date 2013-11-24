@@ -474,8 +474,6 @@ $1',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Diambil daripada "$1"',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
-'newmessageslink' => 'pesanan baru',
-'newmessagesdifflink' => 'perubahan terakhir',
 'youhavenewmessagesfromusers' => 'Anda menerima $1 daripada {{PLURAL:$3|seorang|$3 orang}} pengguna lain ($2).',
 'youhavenewmessagesmanyusers' => 'Anda menerima $1 daripada ramai pengguna ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|pesanan|pesanan-pesanan}} baru',
@@ -1314,7 +1312,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'preferences' => 'Keutamaan',
 'mypreferences' => 'Keutamaan',
 'prefs-edits' => 'Jumlah suntingan:',
-'prefsnologin' => 'Belum log masuk',
 'changepassword' => 'Tukar kata laluan',
 'prefs-skin' => 'Rupa',
 'skin-preview' => 'Pralihat',
@@ -1612,6 +1609,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'recentchanges-label-minor' => 'Ini ialah suntingan kecil',
 'recentchanges-label-bot' => 'Suntingan ini dilakukan oleh bot',
 'recentchanges-label-unpatrolled' => 'Suntingan ini belum dirondai',
+'recentchanges-legend-newpage' => '$1 - laman baru',
 'rcnote' => "Yang berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
 'rcnotefrom' => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom' => 'Papar perubahan sejak $1',
@@ -4062,5 +4060,22 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bait}}',
 'limitreport-expansiondepth' => 'Kedalaman peluasan terjauh',
 'limitreport-expensivefunctioncount' => 'Kiraan fungsi penghurai muatan tinggi',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Kembangkan templat',
+'expand_templates_intro' => 'Halaman khas ini mengambil teks dan mengembangkan semua templat di dalamnya secara rekursif.
+Ia juga mengembangkan fungsi-fungsi penghurai seperti
+<code><nowiki>{{</nowiki>#language:…}}</code>, dan pembolehubah-pembolehubah seperti
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Sebenarnya, ia mengembangkan segalanya dalam tanda kurung panah berganda.',
+'expand_templates_title' => 'Tajuk konteks, untuk {{FULLPAGENAME}} dan sebagainya:',
+'expand_templates_input' => 'Teks input:',
+'expand_templates_output' => 'Hasil',
+'expand_templates_xml_output' => 'Output XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Buang ulasan',
+'expand_templates_remove_nowiki' => 'Sekat tag <nowiki> dalam hasil',
+'expand_templates_generate_xml' => 'Papar pepohon hurai XML',
+'expand_templates_preview' => 'Pralihat',
 
 );

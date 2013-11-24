@@ -358,8 +358,6 @@ Bax: [[Special:Version|Versiyalar]].',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Mənbə — "$1"',
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',
-'newmessageslink' => 'yeni ismarıclar',
-'newmessagesdifflink' => 'Sonuncu və əvvəlki versiya arasındakı fərq',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başqa bir istifadəçidən|$3 istifadəçidən}} $1 var ($2).',
 'youhavenewmessagesmanyusers' => 'Bir çox istifadəçidən $1 var ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',
@@ -608,6 +606,7 @@ Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 'blocked-mailpassword' => 'İP ünvanınız bloklu olduğuna görə, yeni parol göndərmə mümkün deyil.',
 'eauthentsent' => 'Göstərilən bu e-poçt ünvanına məktub göndərildi. 
 Gələcəkdə e-poçt almaq üçün,bu e-poçtun sizə aid olması haqqındakı qaydalarla tanış olun.',
+'throttled-mailpassword' => 'Bir parol sıfırlama e-poçtu son {{PLURAL:$1|bir saat|$1 saat}} içində zatən göndərildi. Xidməti pis niyyətlə istifadə etməyi önləmək üçün, hər {{PLURAL:$1|bir saatda|$1 saatda}} sadəcə bir parol sıfırlama e-poçtu göndəriləcəkdir.',
 'mailerror' => 'Məktub göndərmə xətası: $1',
 'acct_creation_throttle_hit' => 'Sizin IP ünvanınızdan bu viki-də son bir gün ərzində {{PLURAL:$1|1 hesab|$1 hesab}} açılmışdır. Bu bir gün ərzində icazə verilən maksimum say olduğu üçün, indiki anda daha çox hesab aça bilməzsiniz.',
 'emailauthenticated' => 'E-poçt ünvanınız $2 saat $3 tarixində təsdiq edilib.',
@@ -617,19 +616,29 @@ Aşağıdakı xidmətlərin heç biri üçün Sizə e-məktub göndərilməyəc�
 'emailconfirmlink' => 'E-poçt ünvanını təsdiq et',
 'invalidemailaddress' => 'E-poçt ünvanınızı qeyri-düzgün formatda olduğu üçün qəbul edə bilmirik.
 Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
+'cannotchangeemail' => 'Hesabın e-poçt ünvanı bu wiki üzərindən dəyişdirilə bilməz.',
 'emaildisabled' => 'Bu saytdan e-poçt göndərə bilməzsiniz.',
 'accountcreated' => 'Hesab yaradıldı',
 'accountcreatedtext' => '$1 üçün istifadəçi hesabı yaradıldı.',
 'createaccount-title' => '{{SITENAME}} hesabın yaradılması',
+'createaccount-text' => 'Biriləri {{SITENAME}} saytında ($4) sizin e-poçt ünvanınızdan istifadə edərək, parolu "$3" olan, "$2" adlı bir hesab yaratdı.
+
+Sayta daxil olmalı və parolunuzu dəyişdirməlisiniz.
+
+Əgər istifadəçi hesabını səhvən yaratmısınızsa, bu mesajı gözardı edə bilərsiniz.',
 'usernamehasherror' => 'İstifadəçi adında "diyez" simvolunun istifadəsi mümkün deyil',
 'login-throttled' => 'Sistemə daxil olmaq üçün həddən artıq cəhd etmisiniz.
 Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'login-abort-generic' => 'Giriş uğursuz alındı - Rədd',
 'loginlanguagelabel' => 'Dil: $1',
 'suspicious-userlogout' => 'Sizin çıxış üçün cəhdiniz uğursuz alındı. Bu, brouzerin yaxud proksi-keşləmənin düzgün işləməməsindən qaynaqlanır.',
+'createacct-another-realname-tip' => 'Gərçək adınız istəyə bağlıdır.
+Əgər gərçək adınızı göstərsəniz, çalışmalarınıza müraciət etmək üçün istifadə ediləcəkdir.',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP-nin mail() funksiyasında naməlum xəta',
+'user-mail-no-addy' => 'Bir e-poçt ünvanı olmadan e-poçt göndərməyə çalışdı.',
+'user-mail-no-body' => 'Boş və ya keçərli olmayan bir şəkildə e-poçt göndərilməyə çalışıldı.',
 
 # Change password dialog
 'resetpass' => 'Parolu dəyiş',
@@ -649,11 +658,15 @@ Sistemə daxil olmanı yekunlaşdırmaq üçün yeni parolu bura yazmalısınız
 'resetpass-wrong-oldpass' => 'Müvəqqəti və ya daimi parolda yanlışlıq var.
 Ola bilər siz parolu müvəffəqiyyətlə dəyişmisiniz yaxud müvəqqəti parol üçün müraciət etmisiniz.',
 'resetpass-temp-password' => 'Müvəqqəti parol:',
+'resetpass-abort-generic' => 'Parol dəyişikliyi bir genişlənmə tərəfindən ləğv edildi.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parolu yenilə',
+'passwordreset-text-one' => 'Parolunuzu sıfırlamaq üçün bu formanı doldurun.',
+'passwordreset-text-many' => '{{PLURAL:$1|Parolunuzu sıfırlamaq üçün sahələrdən birini doldurun.}}',
 'passwordreset-legend' => 'Parolu yenilə',
 'passwordreset-disabled' => 'Yenidən qurulma parolu bu vikidə işləmir',
+'passwordreset-emaildisabled' => 'Bu wiki-dəki e-poçt özəllikləri bağlandı.',
 'passwordreset-username' => 'İstifadəçi adı:',
 'passwordreset-domain' => 'Domen:',
 'passwordreset-email' => 'E-mail ünvanı:',
@@ -1021,7 +1034,6 @@ $1",
 'preferences' => 'Nizamlamalar',
 'mypreferences' => 'Nizamlamalar',
 'prefs-edits' => 'Redaktələrin sayı:',
-'prefsnologin' => 'Daxil olmamısınız',
 'changepassword' => 'Parolu dəyiş',
 'prefs-skin' => 'Cild',
 'skin-preview' => 'Sınaq görüntüsü',
@@ -1280,6 +1292,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'recentchanges-label-minor' => 'Bu kiçik redaktədir',
 'recentchanges-label-bot' => 'Bu redaktə bot tərəfindən edilmişdir',
 'recentchanges-label-unpatrolled' => 'Bu redaktə hələ nəzərdən keçirilməmişdir',
+'recentchanges-legend-newpage' => '$1 - yeni səhifə',
 'rcnote' => "Aşağıdakı {{PLURAL:$1|'''1''' dəyişiklik|'''$1''' dəyişiklik}} saat $5, $4 tarixinə qədər son {{PLURAL:$2|gün|'''$2''' gün}} ərzində edilmişdir.",
 'rcnotefrom' => "Aşağıda '''$2'''-dən ('''$1'''-ə qədər) dəyişikliklər sadalanmışdır.",
 'rclistfrom' => '$1 vaxtından başlayaraq yeni dəyişiklikləri göstər',
@@ -1540,8 +1553,12 @@ $1',
 # Random page
 'randompage' => 'İxtiyari səhifə',
 
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Keç',
+
 # Random redirect
 'randomredirect' => 'İxtiyari istiqamətləndirmə',
+'randomredirect-nopages' => '"$1" ad sahəsində heç bir yönləndirmə yoxdur.',
 
 # Statistics
 'statistics' => 'Statistika',
@@ -3043,5 +3060,9 @@ Variants for Chinese language
 'duration-decades' => '$1 {{PLURAL:$1|onillik|onillik}}',
 'duration-centuries' => '$1 {{PLURAL:$1|əsr|əsr}}',
 'duration-millennia' => '$1 {{PLURAL:$1|minillik|minillik}}',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Nəticə',
+'expand_templates_ok' => 'OK',
 
 );

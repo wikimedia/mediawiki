@@ -419,8 +419,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Obtenite de "$1"',
 'youhavenewmessages' => 'Tu ha $1 ($2).',
-'newmessageslink' => 'nove messages',
-'newmessagesdifflink' => 'ultime modification',
 'youhavenewmessagesfromusers' => 'Tu ha $1 de {{PLURAL:$3|un altere usator|$3 usatores}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tu ha $1 de multe usatores ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un nove message|$1 nove messages}}',
@@ -1309,7 +1307,6 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'preferences' => 'Preferentias',
 'mypreferences' => 'Preferentias',
 'prefs-edits' => 'Numero de modificationes:',
-'prefsnologin' => 'Tu non ha aperite un session',
 'prefsnologintext2' => 'Es necessari $1 pro definir le preferentias de usator.',
 'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
@@ -1610,6 +1607,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchanges-label-minor' => 'Isto es un modification minor',
 'recentchanges-label-bot' => 'Iste modification ha essite effectuate per un robot',
 'recentchanges-label-unpatrolled' => 'Iste modification non ha ancora essite patruliate',
+'recentchanges-legend-newpage' => '$1 - nove pagina',
 'rcnote' => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
 'rcnotefrom' => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom' => 'Monstrar nove modificationes a partir de $1',
@@ -4111,5 +4109,22 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Maxime profunditate de expansion',
 'limitreport-expensivefunctioncount' => 'Numero de functiones analysator costose',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expander patronos',
+'expand_templates_intro' => 'Iste pagina special prende texto e expande recursivemente tote le patronos in illo.
+Illo expande etiam le functiones del analysator syntactic como
+<code><nowiki>{{</nowiki>#language:…}}</code>, e variabiles como
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+De facto, illo expande quasi toto inter accolladas duple.',
+'expand_templates_title' => 'Titulo de contexto, pro {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Texto de entrata:',
+'expand_templates_output' => 'Resultato',
+'expand_templates_xml_output' => 'Output XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Eliminar commentos',
+'expand_templates_remove_nowiki' => 'Supprimer le etiquettas <nowiki> in le resultato',
+'expand_templates_generate_xml' => 'Monstrar arbore syntactic XML',
+'expand_templates_preview' => 'Previsualisation',
 
 );

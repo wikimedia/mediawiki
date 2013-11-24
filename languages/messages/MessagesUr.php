@@ -22,6 +22,7 @@
  * @author زكريا
  * @author سمرقندی
  * @author محبوب عالم
+ * @author පසිඳු කාවින්ද
  */
 
 $fallback8bitEncoding = 'windows-1256';
@@ -417,8 +418,6 @@ $1',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '‘‘$1’’ مستعادہ منجانب',
 'youhavenewmessages' => 'آپکے لیۓ ایک $1 ہے۔ ($2)',
-'newmessageslink' => 'نئے پیغامات',
-'newmessagesdifflink' => 'تـجـدیـد مـاقـبل آخـر سے فـرق',
 'newmessagesdifflinkplural' => 'آخری {{PLURAL:$1|تبدیلی|تبدیلیاں}}',
 'youhavenewmessagesmulti' => 'ء$1 پر آپ کیلئے نئے پیغامات ہیں',
 'editsection' => 'ترمیم',
@@ -958,7 +957,6 @@ $1",
 'preferences' => 'ترجیحات',
 'mypreferences' => 'میری ترجیہات',
 'prefs-edits' => 'تدوینات کی تعداد:',
-'prefsnologin' => 'نا داخل شدہ حالت',
 'changepassword' => 'کلمۂ شناخت تبدیل کریں',
 'prefs-skin' => 'جِلد',
 'skin-preview' => 'پیش منظر',
@@ -1642,5 +1640,13 @@ $1 × $2 عکصر (پکسلز)، حجم ملف: $3، MIME قسم: $4',
 
 # Search suggestions
 'searchsuggest-search' => 'تلاش',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'سانچے کو وسیع کریں',
+'expand_templates_input' => 'ان پٹ متن:',
+'expand_templates_output' => 'نتیجہ',
+'expand_templates_ok' => 'ٹھیک ہے',
+'expand_templates_remove_comments' => 'تبصرے حذف کریں',
+'expand_templates_preview' => 'پیش نظارہ',
 
 );

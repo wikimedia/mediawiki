@@ -750,8 +750,6 @@ $1',
 'ok' => 'موافق',
 'retrievedfrom' => 'مجلوبة من "$1"',
 'youhavenewmessages' => 'لك $1 ($2).',
-'newmessageslink' => 'رسائل جديدة',
-'newmessagesdifflink' => 'أحدث تغيير',
 'youhavenewmessagesfromusers' => 'لديك $1 من {{PLURAL:$3|مستخدم واحد|مستخدم واحد|مستخدمين اثنين|$3 مستخدمين|$3 مستخدما|$3 مستخدم}} ($2).',
 'youhavenewmessagesmanyusers' => 'لديك $1 من مستخدمين كثر ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|رسالة جديدة|رسائل جديدة}}',
@@ -1624,7 +1622,6 @@ $1",
 'preferences' => 'تفضيلات',
 'mypreferences' => 'تفضيلات',
 'prefs-edits' => 'عدد التعديلات:',
-'prefsnologin' => 'غير مسجل الدخول',
 'changepassword' => 'غير كلمة السر',
 'prefs-skin' => 'واجهة',
 'skin-preview' => 'عرض مسبق',
@@ -1922,6 +1919,7 @@ $1",
 'recentchanges-label-minor' => 'هذا تعديل طفيف',
 'recentchanges-label-bot' => 'أُجْرِيَ هذا التعديل بواسطة بوت',
 'recentchanges-label-unpatrolled' => 'لم يراجع هذا التعديل إلى الآن',
+'recentchanges-legend-newpage' => '$1 - صفحة جديدة',
 'rcnote' => "بالأسفل {{PLURAL:$1|لا توجد تغييرات|التغيير الأخير|آخر تغييرين|آخر '''$1''' تغييرات|آخر '''$1''' تغييرا|آخر '''$1''' تغيير}} في {{PLURAL:$2||'''اليوم''' الماضي|'''اليومين''' الماضيين|ال'''$2''' أيام الماضية|ال'''$2''' يوما الماضيا|ال'''$2''' يوم الماضي}}، كما في $5، $4.",
 'rcnotefrom' => "بالأسفل التغييرات منذ '''$2''' (إلى '''$1''' معروضة).",
 'rclistfrom' => 'أظهر التغييرات بدءا من $1',
@@ -4539,5 +4537,22 @@ $5
 'limitreport-walltime-value' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوان|$1 ثانية}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 بايت',
 'limitreport-templateargumentsize-value' => '$1/$2 بايت',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'فرد القوالب',
+'expand_templates_intro' => 'تتعامل هذه الصفحة الخاصة مع نصوص الويكي وتقوم بفرد كل القوالب الموجودة به.
+وتقوم أيضا بفرد دوال القوالب مثل
+<nowiki>{{</nowiki>#language:...}}، والمتغيرات مثل
+<nowiki>{{</nowiki>يوم}}-- وتقوم التعامل مع كل ما بين الأقواس المزدوجة.
+تقوم بفعل هذا عن طريق استدعاء المعالج المناسب من الميدياويكي.',
+'expand_templates_title' => 'عنوان صفحة هذا النص، لأجل معالجة {{FULLPAGENAME}} إلخ.:',
+'expand_templates_input' => 'النص المدخل:',
+'expand_templates_output' => 'النتيجة',
+'expand_templates_xml_output' => 'خرج XML',
+'expand_templates_ok' => 'موافق',
+'expand_templates_remove_comments' => 'أزل التعليقات',
+'expand_templates_remove_nowiki' => 'أخفِ وسوم <nowiki> في الناتج',
+'expand_templates_generate_xml' => 'اعرض شجرة XML parse',
+'expand_templates_preview' => 'عرض مسبق',
 
 );

@@ -469,8 +469,6 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Hentet fra "$1"',
 'youhavenewmessages' => 'Du har $1 ($2).',
-'newmessageslink' => 'nye beskeder',
-'newmessagesdifflink' => 'ændringer siden sidste visning',
 'youhavenewmessagesfromusers' => 'Du har $1 fra {{PLURAL:$3|en anden bruger| $3 brugere}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du har $1 fra mange brugere ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|en ny besked|nye beskeder}}',
@@ -1314,7 +1312,6 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'preferences' => 'Indstillinger',
 'mypreferences' => 'Indstillinger',
 'prefs-edits' => 'Antal redigeringer:',
-'prefsnologin' => 'Ikke logget på',
 'changepassword' => 'Skift adgangskode',
 'prefs-skin' => 'Udseende',
 'skin-preview' => 'Forhåndsvisning',
@@ -1614,6 +1611,7 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'recentchanges-label-minor' => 'Dette er en mindre ændring',
 'recentchanges-label-bot' => 'Denne redigering blev udført af en bot',
 'recentchanges-label-unpatrolled' => 'Denne redigering er endnu ikke blevet patruljeret',
+'recentchanges-legend-newpage' => '$1 – ny side',
 'rcnote' => "Herunder ses {{PLURAL:$1|'''1''' ændring|de sidste '''$1''' ændringer}} fra {{PLURAL:$2|i dag|de sidste '''$2''' dage}} fra den $4, kl. $5.",
 'rcnotefrom' => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
 'rclistfrom' => 'Vis nye ændringer startende fra $1',
@@ -2665,7 +2663,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipblocklist-no-results' => 'Den angivene IP-addresse eller brugernavn er ikke blokeret.',
 'blocklink' => 'bloker',
 'unblocklink' => 'ophæv blokering',
-'change-blocklink' => 'ændr blokering',
+'change-blocklink' => 'ændring af blokering',
 'contribslink' => 'bidrag',
 'emaillink' => 'send e-mail',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
@@ -4041,5 +4039,22 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'limitreport-templateargumentsize' => 'Skabelon argumentstørrelse',
 'limitreport-expansiondepth' => 'Største udvidelsesdybde',
 'limitreport-expensivefunctioncount' => 'Antal dyre parserfunktioner',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Udfold skabeloner',
+'expand_templates_intro' => 'Denne specialside tager en tekst og udfolder alle benyttede skabeloner rekursivt.
+Den udfolder også understøttede parserfunktioner så som
+<code><nowiki>{{</nowiki>#language:…}}</code> og variabler så som 
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>
+Faktisk udfolder den stort set alt i dobbelte tuborgklammer.',
+'expand_templates_title' => 'Sammenhængstitel, for {{FULLPAGENAME}} osv.:',
+'expand_templates_input' => 'Inputtekst:',
+'expand_templates_output' => 'Resultat',
+'expand_templates_xml_output' => 'XML-kode',
+'expand_templates_ok' => 'Udfold',
+'expand_templates_remove_comments' => 'Fjern kommentarer',
+'expand_templates_remove_nowiki' => 'Undertryk <nowiki>-tags i resultatet',
+'expand_templates_generate_xml' => 'Vis analysetræ som XML',
+'expand_templates_preview' => 'Forhåndsvisning',
 
 );

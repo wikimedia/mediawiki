@@ -263,8 +263,6 @@ $1",
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Bargirifta az "$1"',
 'youhavenewmessages' => 'Şumo $1 ($2) dored.',
-'newmessageslink' => 'pajjomhoi nav',
-'newmessagesdifflink' => 'taƣjiroti oxirin',
 'youhavenewmessagesmulti' => 'Şumo nomahoi nav dar $1 dored.',
 'editsection' => 'viroiş',
 'editold' => 'viroiş',
@@ -725,7 +723,6 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'preferences' => 'Tarçihot',
 'mypreferences' => 'Tarçihoti man',
 'prefs-edits' => 'Şumorai viroişho:',
-'prefsnologin' => 'Ba sistem vorid naşudaed',
 'changepassword' => 'Ivaz namudani kalimai ubur',
 'prefs-skin' => 'Pūst',
 'skin-preview' => 'Peşnamoiş',
@@ -2296,5 +2293,20 @@ Tavaççūh kuned, ki şumo metavoned az [[Special:EditWatchlist|viroişgari sta
 'revdelete-restricted' => 'mahdudijatho ba mudiron amalī şudand',
 'revdelete-unrestricted' => 'mahdudijatho az mudiron bardoşta şudand',
 'rightsnone' => '(heç)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Bastdodani şablonho',
+'expand_templates_intro' => "In sahifai viƶa matnero darjoft karda va tamomi şablonhoi ba kor rafta dar onro ba tavri bozgaşte bast medihad. Hamcunin tobehoi taçzeh
+<nowiki>{{</nowiki>#language:...}}, va mutaƣjirhoe cun
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;ro ham bast medihad – dar voqe' taqriban har ciro ki doxili du akulot boşad.
+In kor bo sado zadani marhilai taçzehi marbut dar xudi MediaViki surat megirad.",
+'expand_templates_title' => "Unvoni mavzū', baroi {{FULLPAGENAME}} va ƣajra.:",
+'expand_templates_input' => 'Matni vurudī:',
+'expand_templates_output' => 'Natiça',
+'expand_templates_xml_output' => 'Xuruçī XML',
+'expand_templates_ok' => "Ta'jid",
+'expand_templates_remove_comments' => 'Hazfi tavzehot',
+'expand_templates_generate_xml' => 'Namoişi daraxti taçzehi XML',
+'expand_templates_preview' => 'Peşnamoiş',
 
 );

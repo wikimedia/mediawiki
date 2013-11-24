@@ -322,8 +322,6 @@ $1',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Баргирифта аз "$1"',
 'youhavenewmessages' => 'Шумо $1 ($2) доред.',
-'newmessageslink' => 'пайёмҳои нав',
-'newmessagesdifflink' => 'тағйироти охирин',
 'youhavenewmessagesmulti' => 'Шумо номаҳои нав дар $1 доред.',
 'editsection' => 'вироиш',
 'editold' => 'вироиш',
@@ -851,7 +849,6 @@ $1',
 'preferences' => 'Тарҷиҳот',
 'mypreferences' => 'Танзимот',
 'prefs-edits' => 'Шумораи вироишҳо:',
-'prefsnologin' => 'Ба систем ворид нашудаед',
 'changepassword' => 'Иваз намудани калимаи убур',
 'prefs-skin' => 'Пӯст',
 'skin-preview' => 'Пешнамоиш',
@@ -2518,5 +2515,20 @@ $5
 'revdelete-restricted' => 'маҳдудиятҳо ба мудирон амалӣ шуданд',
 'revdelete-unrestricted' => 'маҳдудиятҳо аз мудирон бардошта шуданд',
 'rightsnone' => '(ҳеҷ)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Бастдодани шаблонҳо',
+'expand_templates_intro' => 'Ин саҳифаи вижа матнеро дарёфт карда ва тамоми шаблонҳои ба кор рафта дар онро ба таври бозгаште баст медиҳад. Ҳамчунин тобеҳои таҷзеҳ
+<nowiki>{{</nowiki>#language:...}}, ва мутағйирҳое чун
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;ро ҳам баст медиҳад – дар воқеъ тақрибан ҳар чиро ки дохили ду акулот бошад.
+Ин кор бо садо задани марҳилаи таҷзеҳи марбут дар худи МедиаВики сурат мегирад.',
+'expand_templates_title' => 'Унвони мавзӯъ, барои {{FULLPAGENAME}} ва ғайра.:',
+'expand_templates_input' => 'Матни вурудӣ:',
+'expand_templates_output' => 'Натиҷа',
+'expand_templates_xml_output' => 'Хуруҷӣ XML',
+'expand_templates_ok' => 'Таъйид',
+'expand_templates_remove_comments' => 'Ҳазфи тавзеҳот',
+'expand_templates_generate_xml' => 'Намоиши дарахти таҷзеҳи XML',
+'expand_templates_preview' => 'Пешнамоиш',
 
 );

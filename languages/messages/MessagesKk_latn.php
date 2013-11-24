@@ -569,8 +569,6 @@ $messages = array(
 'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => '«$1» betinen alınğan',
 'youhavenewmessages' => 'Sizge $1 bar ($2).',
-'newmessageslink' => 'jaña xabarlar',
-'newmessagesdifflink' => 'soñğı özgerisine',
 'youhavenewmessagesmulti' => '$1 degende jaña xabarlar bar',
 'editsection' => 'öñdew',
 'editold' => 'öñdew',
@@ -1090,7 +1088,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'preferences' => 'Baptalımdar',
 'mypreferences' => 'Baptalımdarım',
 'prefs-edits' => 'Öñdeme sanı:',
-'prefsnologin' => 'Kirmegensiz',
 'changepassword' => 'Qupïya sözdi özgertw',
 'prefs-skin' => 'Mänerler',
 'skin-preview' => 'Qarap şığw',
@@ -2795,5 +2792,21 @@ Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız
 'revdelete-restricted' => 'äkimşilerge tïımdar qoldadı',
 'revdelete-unrestricted' => 'äkimşilerden tïımdardı alastadı',
 'rightsnone' => '(eşqandaý)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Ülgilerdi ulğaýtw',
+'expand_templates_intro' => 'Osı qural arnaýı beti äldebir mätindi aladı da,
+bunıñ işindegi barlıq kiriktelgen ülgilerdi meýlinşe ulğaýtadı.
+Mına <nowiki>{{</nowiki>#language:...}} sïyaqtı jöñdetw fwnkcïyaların da, jäne <nowiki>{{</nowiki>CURRENTDAY}}
+sïyaqtı aýnamalıların da ulğaýtadı (naqtı aýtqanda, qos qabat sadaq jaqşalar arasındağı barlığın).
+Bunı öz MediaWiki bağdarlamasınan qatıstı jöñdetw satın şaqırıp istelinedi.',
+'expand_templates_title' => 'Mätin aralıq atawı ({{FULLPAGENAME}} t.b. better üşin):',
+'expand_templates_input' => 'Kiris mätini:',
+'expand_templates_output' => 'Nätïjesi',
+'expand_templates_xml_output' => 'XML şığarwı',
+'expand_templates_ok' => 'Jaraýdı',
+'expand_templates_remove_comments' => 'Mändemelerin alastatıp?',
+'expand_templates_generate_xml' => 'XML öñdetw butaqtarın körset',
+'expand_templates_preview' => 'Qarap şığw',
 
 );

@@ -539,12 +539,10 @@ $1',
 'ok' => '確定',
 'retrievedfrom' => '取自「$1」',
 'youhavenewmessages' => '您有$1（$2）。',
-'newmessageslink' => '新訊息',
-'newmessagesdifflink' => '最新變更',
 'youhavenewmessagesfromusers' => '你有來自{{PLURAL:$3|另一位使用者|$3 位使用者}}的$1（$2）。',
 'youhavenewmessagesmanyusers' => '你有來自多位使用者的$1（ $2 ）。',
-'newmessageslinkplural' => '{{PLURAL:$1|一項新訊息|新訊息}}',
-'newmessagesdifflinkplural' => '最新{{PLURAL:$1|變更}}',
+'newmessageslinkplural' => '{{PLURAL:$1|一個新訊息|999=新訊息}}',
+'newmessagesdifflinkplural' => '新近{{PLURAL:$1|變更}}',
 'youhavenewmessagesmulti' => '您在 $1 有新訊息',
 'editsection' => '編輯',
 'editold' => '編輯',
@@ -675,7 +673,8 @@ $2',
 'invalidtitle-knownnamespace' => '使用名字空間「$2」和文本「$3」的無效標題',
 'invalidtitle-unknownnamespace' => '使用未知名字空間編號$1和文本“$2”的無效標題',
 'exception-nologin' => '未登入',
-'exception-nologin-text' => '你需要登錄此wiki查閲此頁或進行操作。',
+'exception-nologin-text' => '你需要[[Special:Userlogin|登錄]]此wiki查閲此頁或進行操作。',
+'exception-nologin-text-manual' => '請$1以便能夠訪問此頁或行動。',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知的病毒掃瞄器: ''$1''",
@@ -1364,12 +1363,12 @@ $1",
 'preferences' => '偏好設定',
 'mypreferences' => '偏好設定',
 'prefs-edits' => '編輯次數：',
-'prefsnologin' => '還未登入',
+'prefsnologintext2' => '請$1以進入用戶設定。',
 'changepassword' => '變更密碼',
 'prefs-skin' => '外觀',
 'skin-preview' => '預覽',
 'datedefault' => '預設值',
-'prefs-beta' => 'Beta 功能',
+'prefs-beta' => '測試功能',
 'prefs-datetime' => '日期和時間',
 'prefs-labs' => '實驗中的功能',
 'prefs-user-pages' => '使用者頁面',
@@ -1662,6 +1661,7 @@ $1",
 'recentchanges-label-minor' => '這是一個小編輯',
 'recentchanges-label-bot' => '這次編輯是由機器人進行',
 'recentchanges-label-unpatrolled' => '這次編輯尚未巡查過',
+'recentchanges-legend-newpage' => '$1 - 新頁面',
 'rcnote' => "以下是在$4 $5，最近 '''$2''' 天內的 '''$1''' 次最近更改記錄。",
 'rcnotefrom' => "下面是自'''$2'''（最多顯示'''$1'''）:",
 'rclistfrom' => '顯示自 $1 以來的新變更',
@@ -2356,13 +2356,13 @@ $1',
 'enotif_lastvisited' => '請參閱 $1 檢視你上次訪問後的所有更改。',
 'enotif_lastdiff' => '請參閱 $1 檢視該更改。',
 'enotif_anon_editor' => '匿名用戶$1',
-'enotif_body' => '$WATCHINGUSERNAME：
+'enotif_body' => '$WATCHINGUSERNAME閣下，
 
 $PAGEINTRO $NEWPAGE
 
 編輯摘要：$PAGESUMMARY $PAGEMINOREDIT
 
-聯繫此編輯者：
+聯絡此編輯者：
 
 郵件：$PAGEEDITOR_EMAIL
 本站：$PAGEEDITOR_WIKI
@@ -3903,9 +3903,9 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:SpecialPages
 'specialpages' => '特殊頁面',
+'specialpages-note-top' => '圖例',
 'specialpages-note' => '* 標準特殊頁面。
-* <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>
-* <span class="mw-specialpagecached">用於重新整理的特殊頁面（可能過時）。</span>',
+* <span class="mw-specialpagerestricted">用於重新整理的特殊頁面（可能過時）。</span>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other' => '其它特殊頁面',
 'specialpages-group-login' => '登入/建立新帳號',
@@ -4116,5 +4116,18 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'limitreport-templateargumentsize-value' => '$1/$2 個{{PLURAL:$2|位元組}}',
 'limitreport-expansiondepth' => '最高展開深度',
 'limitreport-expensivefunctioncount' => '昂貴分析器函數計數',
+
+# Special:ExpandTemplates
+'expandtemplates' => '展開模板',
+'expand_templates_intro' => '本特殊頁面用於將一些文字中的模版展開，包括模版中引用的模版。同時也展開解譯器函數如<nowiki>{{</nowiki>#language:...}}，以及變數如<nowiki>{{</nowiki>CURRENTDAY}}&mdash;實際上，幾乎所有在雙括弧中的內容都被展開。',
+'expand_templates_title' => '上下文標題，用於 {{FULLPAGENAME}} 等：',
+'expand_templates_input' => '輸入文字：',
+'expand_templates_output' => '結果：',
+'expand_templates_xml_output' => 'XML輸出',
+'expand_templates_ok' => '確定',
+'expand_templates_remove_comments' => '移除注釋',
+'expand_templates_remove_nowiki' => '在結果中隱藏<nowiki>標記',
+'expand_templates_generate_xml' => '顯示XML語法樹',
+'expand_templates_preview' => '預覽',
 
 );

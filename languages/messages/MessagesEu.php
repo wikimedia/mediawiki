@@ -398,8 +398,6 @@ $1',
 'ok' => 'Ados',
 'retrievedfrom' => '"$1"(e)tik jasota',
 'youhavenewmessages' => '$1 dauzkazu ($2).',
-'newmessageslink' => 'Mezu berriak',
-'newmessagesdifflink' => 'azken aldaketa ikusi',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|Beste erabiltzaile baten|$3 erabiltzaileren}} $1 ($2).',
 'youhavenewmessagesmanyusers' => 'Hainbat erabiltzaileren $1 ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|Mezu berri bat duzu|Mezu berriak dituzu}}',
@@ -1219,7 +1217,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'preferences' => 'Hobespenak',
 'mypreferences' => 'Hobespenak',
 'prefs-edits' => 'Aldaketa kopurua:',
-'prefsnologin' => 'Saioa hasi gabe',
 'changepassword' => 'Pasahitza aldatu',
 'prefs-skin' => 'Itxura',
 'skin-preview' => 'Aurrebista',
@@ -1501,6 +1498,7 @@ Informazio hau publikoa da.',
 'recentchanges-label-minor' => 'Hau aldaketa txikia da',
 'recentchanges-label-bot' => 'Aldaketa hau bot batek egin du',
 'recentchanges-label-unpatrolled' => 'Aldaketa hau ez da oraindik patruilatua izan',
+'recentchanges-legend-newpage' => '$1 - orrialde berria',
 'rcnote' => "Beheko azken {{PLURAL:$2|eguneko|'''$2''' egunetako}} azken {{PLURAL:$1|aldaketa|'''$1''' aldaketak}} hurrengo datan egin ziren: $5, $4.",
 'rcnotefrom' => 'Jarraian azaltzen diren aldaketak data honetatik aurrerakoak dira: <b>$2</b> (gehienez <b>$1</b> erakusten dira).',
 'rclistfrom' => 'Erakutsi $1 ondorengo aldaketa berriak',
@@ -3726,5 +3724,21 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 
 # Image rotation
 'rotate-comment' => 'Irudia erlojuaren norantzan {{PLURAL:$1|gradu 1|$1 gradu}} biratua izan da',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Txantiloi ordezkatzailea',
+'expand_templates_intro' => 'Aparteko orrialde honek modu errekurtsiboan txantiloiak ordezkatu egiten ditu.
+Funtzioak ere ordezkatu egiten ditu, hala nola
+<code><nowiki>{{</nowiki>#language:…}}</code>, eta
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code> bezalako aldagaiak ere.
+Kortxete bikoitzarekin hobeto egiten da lan.',
+'expand_templates_title' => 'Izenburua ({{FULLPAGENAME}} ordezkatzeko, eta abar):',
+'expand_templates_input' => 'Sarrerako testua:',
+'expand_templates_output' => 'Emaitza',
+'expand_templates_xml_output' => 'XML irteera',
+'expand_templates_ok' => 'Ados',
+'expand_templates_remove_comments' => 'Iruzkinak kendu',
+'expand_templates_generate_xml' => 'Erakutsi XML parse zuhaitza',
+'expand_templates_preview' => 'Aurreikusi',
 
 );

@@ -554,8 +554,6 @@ $1',
 'ok' => 'U redu',
 'retrievedfrom' => 'Dobavljeno iz "$1"',
 'youhavenewmessages' => 'Imate $1 ($2).',
-'newmessageslink' => 'novih poruka',
-'newmessagesdifflink' => 'posljednja promjena',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od mnogo korisnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|nove poruke}}',
@@ -1398,7 +1396,6 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'preferences' => 'Postavke',
 'mypreferences' => 'Postavke',
 'prefs-edits' => 'Broj izmjena:',
-'prefsnologin' => 'Niste prijavljeni',
 'changepassword' => 'Promijeni šifru',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Pregled',
@@ -1690,6 +1687,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'recentchanges-label-minor' => 'Ovo je mala izmjena',
 'recentchanges-label-bot' => 'Ova izmjenu je načinio bot',
 'recentchanges-label-unpatrolled' => 'Ova izmjena još nije patrolirana',
+'recentchanges-legend-newpage' => '$1 - nova stranica',
 'rcnote' => "Ispod {{PLURAL:$1|je '''$1''' promjena|su '''$1''' zadnje promjene|su '''$1''' zadnjih promjena}} u {{PLURAL:$2|posljednjem '''$2''' danu|posljednja '''$2''' dana|posljednjih '''$2''' dana}}, od $4, $5.",
 'rcnotefrom' => 'Ispod su izmjene od <b>$2</b> (do <b>$1</b> prikazano).',
 'rclistfrom' => 'Prikaži nove izmjene počev od $1',
@@ -4176,5 +4174,22 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 
 # Limit report
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Proširi šablone',
+'expand_templates_intro' => 'Ova posebna stranica uzima neki tekst i proširuje sve šablone u njemu rekurzivno.
+Ona također proširuje parserske funkcije poput
+<nowiki>{{</nowiki>#language:…}} i varijable poput
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;u principu gotovo sve između dvostrukih zagrada.
+Ovo se uradi putem poziva relevantnog parserskog nivoa iz same MediaWiki.',
+'expand_templates_title' => 'Naslov konteksta, za {{FULLPAGENAME}} itd.:',
+'expand_templates_input' => 'Tekst unosa:',
+'expand_templates_output' => 'Rezultat',
+'expand_templates_xml_output' => 'XML izlaz',
+'expand_templates_ok' => 'U redu',
+'expand_templates_remove_comments' => 'Ukloni komentare',
+'expand_templates_remove_nowiki' => 'Onemogući oznake <nowiki> u rezultatima',
+'expand_templates_generate_xml' => 'Prikaži XML stablo parsera',
+'expand_templates_preview' => 'Pregled',
 
 );

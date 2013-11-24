@@ -637,8 +637,6 @@ $1',
 'ok' => 'Εντάξει',
 'retrievedfrom' => 'Ανακτήθηκε από «$1»',
 'youhavenewmessages' => 'Έχετε $1 ($2).',
-'newmessageslink' => 'νέα μηνύματα',
-'newmessagesdifflink' => 'τελευταία αλλαγή',
 'youhavenewmessagesfromusers' => 'Έχετε $1 από {{PLURAL:$3|έναν άλλο χρήστη|$3 χρήστες}} ($2).',
 'youhavenewmessagesmanyusers' => 'Έχετε $1 από πολλούς χρήστες ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ένα νέο μήνυμα|νέα μηνύματα}}',
@@ -1464,7 +1462,6 @@ $1",
 'preferences' => 'Προτιμήσεις',
 'mypreferences' => 'Προτιμήσεις',
 'prefs-edits' => 'Αριθμός επεξεργασιών:',
-'prefsnologin' => 'Δεν έχετε συνδεθεί.',
 'changepassword' => 'Αλλαγή κωδικού',
 'prefs-skin' => 'Οπτική οργάνωση (skin)',
 'skin-preview' => 'Προεπισκόπηση',
@@ -1758,6 +1755,7 @@ $1",
 'recentchanges-label-minor' => 'Αυτή είναι μια μικροαλλαγή',
 'recentchanges-label-bot' => 'Αυτή η επεξεργασία έγινε από ένα ρομπότ',
 'recentchanges-label-unpatrolled' => 'Αυτή η επεξεργασία δεν έχει ελεγχθεί ακόμα',
+'recentchanges-legend-newpage' => '$1 - νέα σελίδα',
 'rcnote' => "Παρακάτω {{PLURAL:$1|υπάρχει '''1''' αλλαγή|υπάρχουν οι τελευταίες '''$1''' αλλαγές}} στο διάστημα {{PLURAL:$2|της τελευταίας ημέρας|των τελευταίων '''$2''' ημερών}}, από τις $5, $4 και εξής.",
 'rcnotefrom' => "Παρακάτω είναι οι αλλαγές από τις '''$2''' (εμφανίζονται μέχρι '''$1''').",
 'rclistfrom' => 'Εμφάνιση νέων αλλαγών αρχίζοντας από $1',
@@ -4179,5 +4177,22 @@ $5
 'limitreport-templateargumentsize' => 'Μέγεθος ορισμάτων προτύπων',
 'limitreport-expansiondepth' => 'Μεγαλύτερο βάθος ανάπτυξης',
 'limitreport-expensivefunctioncount' => 'Πλήθος ακριβών συναρτήσεων συντακτικού αναλυτή',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Επέκτεινε τα πρότυπα',
+'expand_templates_intro' => 'Αυτή η ειδική σελίδα παίρνει κείμενο και αναπτύσσει όλα τα πρότυπα σε αυτό αναδρομικά. 
+Επίσης αναπτύσσει συναρτήσεις συντακτικού αναλυτή όπως η
+<nowiki>{{</nowiki>#language:…}}, και μεταβλητές όπως η
+<nowiki>{{</nowiki>CURRENTDAY}}.
+Ουσιαστικά επεκτείνει οτιδήποτε βρίσκεται σε διπλές αγκύλες.',
+'expand_templates_title' => 'Τίτλων συμφραζόμενων, για την {{FULLPAGENAME}} κ.τ.λ.:',
+'expand_templates_input' => 'Κείμενο εισόδου:',
+'expand_templates_output' => 'Αποτέλεσμα',
+'expand_templates_xml_output' => 'Έξοδος XML',
+'expand_templates_ok' => 'Εντάξει',
+'expand_templates_remove_comments' => 'Αφαίρεση σχολίων',
+'expand_templates_remove_nowiki' => 'Απόκρυψη της ετικέτας <nowiki> στο αποτέλεσμα',
+'expand_templates_generate_xml' => 'Εμφάνιση δέντρου συντακτικής ανάλυσης XML',
+'expand_templates_preview' => 'Προεπισκόπηση',
 
 );

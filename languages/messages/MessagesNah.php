@@ -302,8 +302,6 @@ $messages = array(
 'ok' => 'Nopan iti',
 'retrievedfrom' => 'Ōquīzqui ītech  "$1"',
 'youhavenewmessages' => 'Tiquimpiya $1 ($2).',
-'newmessageslink' => 'yancuīc tlahcuilōltzintli',
-'newmessagesdifflink' => 'achto tlapatlaliztli',
 'youhavenewmessagesmulti' => 'Tiquimpiya yancuīc tlahcuilōlli īpan $1',
 'editsection' => 'ticpatlāz',
 'editold' => 'ticpatlāz',
@@ -630,7 +628,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'preferences' => 'Tlaēlēhuiliztli',
 'mypreferences' => 'Notlaēlēhuiliz',
 'prefs-edits' => 'Tlapatlaliztli tlapōhualli:',
-'prefsnologin' => 'Ahmo ōtimocalac',
 'changepassword' => 'Ticpatlāz motlahtōlichtacāyo',
 'skin-preview' => 'Xiquitta quemeh yez',
 'datedefault' => 'Ayāc tlanequiliztli',
@@ -1506,5 +1503,9 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 'api-error-unknownerror' => 'Âmò ìxmatkàyo îtlakawilistli: "$1".',
 'api-error-uploaddisabled' => 'Sèuhtok in êkawilistli ìpan inìn wiki.',
 'api-error-verification-error' => 'Inìn èwalli welis îtlakauhtok, noso âmò kualli motzòwîtok.',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Cualli',
+'expand_templates_preview' => 'Xiquitta achtochīhualiztli',
 
 );

@@ -244,8 +244,6 @@ See [[Special:Version|version page]].',
 'ok' => 'Hiswona',
 'retrievedfrom' => 'ku suka e "$1"',
 'youhavenewmessages' => 'U na $1 ($2).',
-'newmessageslink' => 'Marungula mantswa',
-'newmessagesdifflink' => 'last change',
 'youhavenewmessagesmulti' => 'Una marungula mantswa hi $1',
 'editsection' => 'Lulamisa',
 'editold' => 'Lulamisa',
@@ -907,5 +905,9 @@ Lebyi n'wana vuxokoxoko bya finiso byitumbetiwile.
 
 # Special:Tags
 'tag-filter' => 'Xihluti xa [[Special:Tags|Xi angi]]:',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Hiswona',
+'expand_templates_preview' => 'Ringanisa',
 
 );

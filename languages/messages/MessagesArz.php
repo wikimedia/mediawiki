@@ -559,8 +559,6 @@ $1',
 'ok' => 'موافئ',
 'retrievedfrom' => 'اتجابت من "$1"',
 'youhavenewmessages' => 'عندك $1 ($2).',
-'newmessageslink' => 'رسايل جديده',
-'newmessagesdifflink' => 'اخر تعديل',
 'youhavenewmessagesmulti' => 'عندك ميسيدج جديدة فى $1',
 'editsection' => 'تعديل',
 'editold' => 'تعديل',
@@ -1236,7 +1234,6 @@ $1",
 'preferences' => 'تفضيلات',
 'mypreferences' => 'تفضيلاتى',
 'prefs-edits' => 'عدد التعديلات:',
-'prefsnologin' => 'مش متسجل',
 'changepassword' => 'غير الباسورد',
 'prefs-skin' => 'الوش',
 'skin-preview' => 'بروفه',
@@ -1503,6 +1500,7 @@ $1",
 'recentchanges-label-minor' => 'ده تعديل صغير',
 'recentchanges-label-bot' => 'التعديل ده عمله بوت',
 'recentchanges-label-unpatrolled' => 'التعديل ده مإتراجعش لسه',
+'recentchanges-legend-newpage' => '$1 - صفحه جديده',
 'rcnote' => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} فى آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom' => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom' => 'اظهر التعديلات بدايه من $1',
@@ -3418,5 +3416,21 @@ $5
 # Search suggestions
 'searchsuggest-search' => 'تدوير',
 'searchsuggest-containing' => 'جوّاه...',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'تكبير القوالب',
+'expand_templates_intro' => 'الصفحة المخصوصة دى بتاخد بعض النصوص و بتفرد كل القوالب اللى موجودة فيها.
+و كمان بتفرد دوال القوالب زي
+<nowiki>{{</nowiki>#language:…}}, و المتغيرات زي
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;فى الحقيقة كل حاجة بين قوسين مزدوجين.
+و بتعمل دا عن طريق استعداء المعالج المناسب من الميدياويكى نفسها..',
+'expand_templates_title' => 'عنوان السياق, لـ {{FULLPAGENAME}} الخ.:',
+'expand_templates_input' => 'النص المدخل:',
+'expand_templates_output' => 'النتيجه',
+'expand_templates_xml_output' => 'خرج XML',
+'expand_templates_ok' => 'موافق',
+'expand_templates_remove_comments' => 'امسح التعليقات',
+'expand_templates_generate_xml' => 'اعرض شجرة XML',
+'expand_templates_preview' => 'بروفه',
 
 );

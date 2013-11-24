@@ -646,8 +646,6 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'ok' => 'OK',
 'retrievedfrom' => 'Overgenomen van "$1"',
 'youhavenewmessages' => 'U hebt $1 ($2).',
-'newmessageslink' => 'nieuwe berichten',
-'newmessagesdifflink' => 'laatste wijziging',
 'youhavenewmessagesfromusers' => 'U heeft $1 van {{PLURAL:$3|een andere gebruiker|$3 gebruikers}} ($2).',
 'youhavenewmessagesmanyusers' => 'U heeft $1 van een groot aantal gebruikers ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|een nieuw bericht|nieuwe berichten}}',
@@ -1534,7 +1532,6 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'preferences' => 'Voorkeuren',
 'mypreferences' => 'Voorkeuren',
 'prefs-edits' => 'Aantal bewerkingen:',
-'prefsnologin' => 'Niet aangemeld',
 'prefsnologintext2' => 'U moet $1 om voorkeuren in te stellen.',
 'changepassword' => 'Wachtwoord wijzigen',
 'prefs-skin' => 'Vormgeving',
@@ -1838,6 +1835,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchanges-label-minor' => 'Dit is een kleine bewerking',
 'recentchanges-label-bot' => 'Deze bewerking is uitgevoerd door een bot',
 'recentchanges-label-unpatrolled' => 'Deze bewerking is nog niet gecontroleerd',
+'recentchanges-legend-newpage' => '$1 - nieuwe pagina',
 'rcnote' => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $4 om $5.",
 'rcnotefrom' => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom' => 'Wijzigingen bekijken vanaf $1',
@@ -4372,5 +4370,22 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'limitreport-templateargumentsize-value' => '$1 / $2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Hoogste uitbreidingsdiepte',
 'limitreport-expensivefunctioncount' => 'Aantal kostbare parserfuncties',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Sjablonen substitueren',
+'expand_templates_intro' => 'Deze speciale pagina leest de opgegeven tekst in en substitueert recursief alle sjablonen in de tekst.
+Het substitueert ook alle parserfuncties zoals
+<code><nowiki>{{</nowiki>#language:…}}</code> en
+variabelen als <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Vrijwel alle tekst tussen dubbele accolades wordt gesubstitueerd.',
+'expand_templates_title' => 'Contexttitel, voor {{FULLPAGENAME}}, enzovoort:',
+'expand_templates_input' => 'Invoertekst:',
+'expand_templates_output' => 'Resultaat',
+'expand_templates_xml_output' => 'XML-uitvoer',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Opmerkingen verwijderen',
+'expand_templates_remove_nowiki' => 'Tags <nowiki> in resultaat onderdrukken',
+'expand_templates_generate_xml' => 'XML-parserboom bekijken',
+'expand_templates_preview' => 'Voorvertoning',
 
 );

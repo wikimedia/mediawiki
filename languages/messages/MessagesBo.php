@@ -9,6 +9,7 @@
  *
  * @author Freeyak
  * @author Jason (on bo.wikipedia.org)
+ * @author Phurbutsering
  * @author Shirayuki
  * @author YeshiTuhden
  */
@@ -136,7 +137,7 @@ $messages = array(
 'cancel' => 'རྩིས་མེད།',
 'moredotdotdot' => 'དེ་ལས་མང་བ་་་',
 'mypage' => 'ངའི་ཤོག་ངོས།',
-'mytalk' => 'ངའི་གླེང་མོལ།',
+'mytalk' => 'གཏམ་གླེང།',
 'anontalk' => 'IP གནས་ཡུལ་འདི་ལ་གླེང་མོལ།',
 'navigation' => 'ཕྱོགས་ཁྲིད།',
 'and' => '&#32;དང་',
@@ -202,7 +203,7 @@ $messages = array(
 'articlepage' => 'ནང་དོན་ཤོག་ངོས་ལ་ལྟ་བ།',
 'talk' => 'གྲོས་བསྡུར།',
 'views' => 'མཐོང་རིས།',
-'toolbox' => 'ལག་ཆའི་སྒྲོམ།',
+'toolbox' => 'ལག་ཆའི་སྒམ།',
 'userpage' => 'སྤྱོད་མིའི་ཤོག་ངོས་ལ་ལྟ་བ།',
 'projectpage' => 'ལས་འཆར་ཤོག་ངོས་ལ་ལྟ་བ།',
 'imagepage' => 'ཡིག་ཆའི་ཤོག་ངོས་ལ་ལྟ་བ།',
@@ -244,8 +245,6 @@ $messages = array(
 'ok' => 'འགྲིག',
 'retrievedfrom' => '"$1"ལས་རྙེད་པ།',
 'youhavenewmessages' => 'ཁྱེད་ལ་འཕྲིན་གསར་$1($2)ཡོད།',
-'newmessageslink' => 'འཕྲིན་གསར།',
-'newmessagesdifflink' => 'བཟོ་བཅོས་མཐའ་མ།',
 'youhavenewmessagesmulti' => 'ཁྱེད་ལ་ $1 སྟེང་དུ་འཕྲིན་ཡིག་འདུག',
 'editsection' => 'རྩོམ་སྒྲིག',
 'editold' => 'རྩོམ་སྒྲིག',
@@ -389,7 +388,7 @@ $messages = array(
 'loginreqpagetext' => 'ཤོག་ངོས་གཞན་རྣམས་ལྟ་བར་ངེས་པར་དུ་$1བྱ་དགོས།',
 'accmailtitle' => 'ལམ་ཡིག་བཏང་ཟིན།',
 'newarticle' => '(གསར་བ)',
-'previewnote' => '༼འདི་ནི་སྔོན་ལྟ་ཙམ་ཡིན་པ་མ་བརྗེད།༽ ཁྱེད་ཀྱི་བཟོ་བཅོས་ད་དུང་ཉར་ཚགས་བྱས་མི་འདུག',
+'previewnote' => '"འདི་ནི་སྔོན་ལྟ་ཙམ་ཡིན་པ་ཡིད་ལ་འཇགས་རོགས། "ཁྱེད་ཀྱི་བཟོ་བཅོས་ད་དུང་ཉར་ཚགས་བྱས་མི་འདུག',
 'editing' => '$1རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',
 'editingsection' => ' $1 (སྡེ་ཚན) ལ་རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',
 'yourtext' => 'ཁྱོད་ཀྱི་ཡིག་འབྲུ།',
@@ -411,8 +410,8 @@ $messages = array(
 'page_last' => 'མཐའ་མ།',
 'history-fieldset-title' => 'ལོ་རྒྱུས་བཤར་ལྟ།',
 'history-show-deleted' => 'དོར་ཟིན་ཁོ་ན།',
-'histfirst' => 'སྔ་ཤོས།',
-'histlast' => 'ཕྱི་ཤོས།',
+'histfirst' => 'ཆེས་སྔ་ཤོས།',
+'histlast' => 'ཆེས་ཕྱི་ཤོས།',
 'historyempty' => '༼སྟོང་པ།༽',
 
 # Revision deletion
@@ -447,6 +446,7 @@ $messages = array(
 'notextmatches' => 'ཤོག་ངོས་ཡིག་འབྲུ་མཚུངས་པ་མི་འདུག',
 'prevn' => 'སྔོན་མ་{{PLURAL:$1|$1}}',
 'nextn' => 'རྗེས་མ་{{PLURAL:$1|$1}}',
+'shown-title' => 'མིག་སྔར་སྟོན་པ། $1{{PLURAL:$1|གྲུབ་འབྲས།}}ཤོག་ངོས་ལྟར།',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3)ལ་ལྟ་བ།',
 'searchmenu-legend' => 'འཚོལ་ཞིབ་འདེམས་ཚན།',
 'searchmenu-new' => 'ལྦེ་ཁེ་སྟེང་ལ་ཤོག་ལེ་ [[:$1]]བཟོས།',
@@ -476,9 +476,8 @@ $messages = array(
 'powersearch-togglenone' => 'མེད།',
 
 # Preferences page
-'mypreferences' => 'ངའི་ལེགས་སྒྲིག',
+'mypreferences' => 'དགའ་འདེམས།',
 'prefs-edits' => 'རྩོམ་སྒྲིག་གྲངས་ཚད།',
-'prefsnologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'changepassword' => 'ལམ་ཡིག་བརྗེ་བ།',
 'skin-preview' => 'སྔོན་ལྟ།',
 'prefs-personal' => 'སྤྱོད་མིའི་སྤྱི་ཁོག',
@@ -567,7 +566,7 @@ $messages = array(
 'minoreditletter' => 'སྒྲིག་ཆུང་།',
 'newpageletter' => 'ཤོག་གསར།',
 'rc_categories_any' => 'གང་རུང་།',
-'rc-enhanced-expand' => 'ཞིབ་ཕྲ་སྟོན།',
+'rc-enhanced-expand' => 'ཞིབ་ཕྲར་སྟོན།',
 'rc-enhanced-hide' => 'ཞིབ་ཕྲ་སྦས་བ།',
 
 # Recent changes linked
@@ -625,7 +624,7 @@ $messages = array(
 'filehist-filesize' => 'ཡིག་ཆའི་ཆེ་ཆུང་།',
 'filehist-comment' => 'བསམ་ཚུལ།',
 'filehist-missing' => 'ཡིག་ཆ་ཆད་པ།',
-'imagelinks' => 'གང་ལ་སྦྲེལ་བ།',
+'imagelinks' => 'ཡིག་ཆ་བེད་སྤྱོད་ཁུལ།',
 'linkstoimage' => '{{PLURAL:$1|pagelinks|$1pagelink}} འདི་ལ་སྦྲེལ་ཡོད།',
 'shared-repo-from' => '$1 ནས།',
 
@@ -685,8 +684,8 @@ $messages = array(
 'emailmessage' => 'སྐད་ཆ།',
 
 # Watchlist
-'watchlist' => 'ངའི་མཉམ་འཇོག་ཐོ།',
-'mywatchlist' => 'ངའི་མཉམ་འཇོག་ཐོ།',
+'watchlist' => 'ལྟ་ཞིབ་ཐོ།',
+'mywatchlist' => 'ལྟ་ཞིབ་ཐོ།',
 'watchnologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'watch' => 'མཉམ་འཇོག་ཐོ།',
 'watchthispage' => 'དྲ་ངོས་འདི་ལ་གཟིགས།',
@@ -748,8 +747,8 @@ $messages = array(
 'blanknamespace' => '༼གཙོ་ངོས།༽',
 
 # Contributions
-'contributions' => 'སྤྱོད་མིའི་བྱས་རྗེས།',
-'mycontris' => 'ངའི་བྱས་རྗེས།',
+'contributions' => 'མཐུན་འགྱུར།',
+'mycontris' => 'མཐུན་འགྱུར།',
 'month' => 'ཟླ་བ་འདི་ནས།',
 'year' => 'ལོ་འདི་ནས།',
 
@@ -761,7 +760,7 @@ $messages = array(
 'whatlinkshere-title' => '"$1" ལ སྦྲེལ་ཡོད་པའི་ཤོག་ངོས།',
 'whatlinkshere-page' => 'ཤོག་ངོས།',
 'linkshere' => "གཤམ་གྱི་ཤོག་ངོས་རྣམས་ '''[[:$1]]''': ལ་སྦྲེལ་ཡོད།",
-'isimage' => 'བརྙན་རིས་སྦྲེལ་མཐུད།',
+'isimage' => 'ཡིག་རིས་སྦྲེལ་མཐུད།',
 'whatlinkshere-links' => '← སྦྲེལ་མཐུད།',
 'whatlinkshere-hidelinks' => '$1 སྦྲེལ་མཐུད།',
 'whatlinkshere-filters' => 'ཡིག་ཚགས།',
@@ -855,7 +854,7 @@ $messages = array(
 'nextdiff' => 'རྩོམ་སྒྲིག་གསར་གྲས། →',
 
 # Media information
-'show-big-image' => 'གཏན་འབེབ་ཆ་ཚང་།',
+'show-big-image' => 'ཐོག་མའི་ཡིག་ཆ།',
 
 # Special:NewFiles
 'ilsubmit' => 'འཚོལ།',

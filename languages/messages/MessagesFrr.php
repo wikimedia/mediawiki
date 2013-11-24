@@ -297,12 +297,10 @@ Luke efter bi't [[Special:Version|werjuunssidj]]",
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Faan „$1“',
 'youhavenewmessages' => 'Dü heest $1 ($2).',
-'newmessageslink' => 'nei bööd',
-'newmessagesdifflink' => 'Leest änring',
 'youhavenewmessagesfromusers' => 'Dü heest $1 faan {{PLURAL:$3|en öödern brüker|$3 ööder brükern}} ($2).',
 'youhavenewmessagesmanyusers' => 'Dü heest $1 faan flook ööder brükern ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|ian nei nooracht|nei noorachten}}',
-'newmessagesdifflinkplural' => 'leetst {{PLURAL:$1|feranrang|feranrangen}}',
+'newmessageslinkplural' => '{{PLURAL:$1|ian nei bööd|999=nei bööd}}',
+'newmessagesdifflinkplural' => 'leetst {{PLURAL:$1|feranrang|999=feranrangen}}',
 'youhavenewmessagesmulti' => 'Dü heest nei bööd üüb $1',
 'editsection' => 'Bewerke',
 'editold' => 'Bewerke',
@@ -432,7 +430,8 @@ Di grünj faan di administraator as: „$3“.',
 'invalidtitle-knownnamespace' => 'Ferkiard auerskraft uun di nöömrüm „$2“ an tekst „$3“',
 'invalidtitle-unknownnamespace' => 'Ferkiard auerskraft uun di ünbekäänd nöömrüm „$1“ an tekst „$2“',
 'exception-nologin' => 'Ei uunmeldet',
-'exception-nologin-text' => 'Det könst dü bluas bewerke, wan dü uunmeldet beest.',
+'exception-nologin-text' => 'Wees so gud an [[Special:Userlogin|melde di uun]], am detdiar sidj of aktjuun ütjtufeeren.',
+'exception-nologin-text-manual' => 'Wees so gud an $1 , am detdiar sidj of aktjuun ütjtufeeren.',
 
 # Virus scanner
 'virus-badscanner' => "Ferkiard iinstelang: Ünbekäänd wiirenscanner: ''$1''",
@@ -985,8 +984,8 @@ Dü könst di ferskeel uunluke. Wan dü muar wed wel, luke iin uun't [{{fullurl:
 'revdelete-hide-user' => 'Brükernööm/IP-adres faan di brüker',
 'revdelete-hide-restricted' => 'Dooten uk för administratooren an öödern fersteeg',
 'revdelete-radio-same' => '(ei feranre)',
-'revdelete-radio-set' => 'Tu sen',
-'revdelete-radio-unset' => 'Ferbürgen',
+'revdelete-radio-set' => 'Ferbürgen',
+'revdelete-radio-unset' => 'Tu sen',
 'revdelete-suppress' => "Grünj för't striken uk för administratooren an öödern fersteeg",
 'revdelete-unsuppress' => 'Weder iinsteld werjuunen luasmaage',
 'revdelete-log' => 'Grünj:',
@@ -1139,7 +1138,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'preferences' => 'Iinstelangen',
 'mypreferences' => 'Iinstelangen',
 'prefs-edits' => 'Taal faan feranrangen:',
-'prefsnologin' => 'Ei uunmeldet',
+'prefsnologintext2' => 'Wees so gud an $1 , am din brüker-iinstelangen fäästtuleien.',
 'changepassword' => 'Paaswurd feranre',
 'prefs-skin' => 'Skak',
 'skin-preview' => 'Föörskau',
@@ -2139,7 +2138,7 @@ Kontakt tu di bewerker:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Di wurd iarst ans nian e-mails muar tu detdiar sidj schüürd, bit dü det sidj weder beschükst. Üüb din list faan sidjen, diar dü uun\'t uug behual wel, könst dü a noorachtenkääntiaken weder turagsaat.
+Di wurd iarst ans nian e-mails muar tu detdiar sidj schüürd, bit dü det sidj weder uunmeldet beschükst. Üüb din list faan sidjen, diar dü uun\'t uug behual wel, könst dü a noorachtenkääntiaken weder turagsaat.
 
 Dan frinjelk {{SITENAME}}-noorachten siinst
 
@@ -2920,7 +2919,7 @@ $1",
 'svg-long-desc' => 'SVG-datei, grate: $1 × $2 pixel, dateigrate: $3',
 'svg-long-desc-animated' => 'Animiaret SVG-datei, grate $1 × $2 pixel, dateigrate: $3',
 'svg-long-error' => 'Ferkiard SVG-datei: $1',
-'show-big-image' => 'Huuger apliasang',
+'show-big-image' => 'Originaal datei',
 'show-big-image-preview' => 'Grate faan detdiar föörskaubil: $1.',
 'show-big-image-other' => 'Ööder {{PLURAL:$2|apliasang|apliasangen}}: $1.',
 'show-big-image-size' => '$1 × $2 pixel',
@@ -3607,9 +3606,9 @@ An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special
 
 # Special:SpecialPages
 'specialpages' => 'Spezial-sidjen',
+'specialpages-note-top' => 'Legend',
 'specialpages-note' => '* Normool spezial-sidjen
-* <span class="mw-specialpagerestricted">Spezial-sidjen mä tugripsrochten</span>
-* <span class="mw-specialpagecached">Spezial-sidjen uun a cache (As ferlicht ei muar aktuel.)</span>',
+* <span class="mw-specialpagerestricted">Spezial-sidjen mä tugripsrochten</span>',
 'specialpages-group-maintenance' => 'Werksteedsidjen',
 'specialpages-group-other' => 'Ööder spezial-sidjen',
 'specialpages-group-login' => 'Melde di uun of skriiw di iin',
@@ -3822,5 +3821,8 @@ An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Maksimaal ütjwidjangsjipde',
 'limitreport-expensivefunctioncount' => 'Taal faan apwendag parser-funktjuunen',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Föörlaagen ütjwidje',
 
 );

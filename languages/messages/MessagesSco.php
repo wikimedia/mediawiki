@@ -259,8 +259,6 @@ $messages = array(
 'ok' => 'Okay',
 'retrievedfrom' => 'Taen frae "$1"',
 'youhavenewmessages' => 'Ye hae $1 ($2).',
-'newmessageslink' => 'new messages',
-'newmessagesdifflink' => 'diff wi last-but-ane reveision',
 'youhavenewmessagesmulti' => 'Ye hae neow messages on $1',
 'editsection' => 'edit',
 'editold' => 'edit',
@@ -733,7 +731,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 
 # Preferences page
 'mypreferences' => 'Ma preferences',
-'prefsnologin' => 'No loggit in',
 'changepassword' => 'Chynge password',
 'prefs-skin' => 'Huil',
 'skin-preview' => 'First Leuk',
