@@ -323,9 +323,4 @@ abstract class ImageGalleryBase extends ContextSource {
 			? $this->mParser->getTargetLanguage()
 			: $this->getLanguage();
 	}
-	/* Old constants no longer used.
-	const THUMB_PADDING = 30;
-	const GB_PADDING = 5;
-	const GB_BORDERS = 8;
-	*/
 }
