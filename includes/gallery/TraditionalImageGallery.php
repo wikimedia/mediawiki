@@ -60,6 +60,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$lang = $this->getRenderLang();
 		# Output each image...
 		foreach ( $this->mImages as $pair ) {
+			/** @var Title $nt */
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
 			$alt = $pair[2];
@@ -114,6 +115,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
+				/** @var MediaTransformOutput $thumb */
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
 				$imageParameters = array(
@@ -143,8 +145,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
-				if ( $this->mParser && $img->getHandler() ) {
-					$img->getHandler()->parserTransformHook( $this->mParser, $img );
+				/** @var MediaHandler $handler */
+				$handler = $img->getHandler();
+				if ( $this->mParser && $handler ) {
+					$handler->parserTransformHook( $this->mParser, $img );
 				}
 			}
 
