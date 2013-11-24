@@ -2770,7 +2770,7 @@ function wfShellExecDisabled() {
  * @param array $environ optional environment variables which should be
  *                 added to the executed command environment.
  * @param array $limits optional array with limits(filesize, memory, time, walltime)
- *                 this overwrites the global wgShellMax* limits.
+ *                 this overwrites the global wgMaxShell* limits.
  * @param array $options Array of options:
  *    - duplicateStderr: Set this to true to duplicate stderr to stdout,
  *      including errors from limit.sh
