@@ -103,12 +103,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
 					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
-					Linker::link(
+					Linker::linkKnown(
 						$nt,
-						htmlspecialchars( $nt->getText() ),
-						array(),
-						array(),
-						array( 'known', 'noclasses' )
+						htmlspecialchars( $nt->getText() )
 					) .
 					'</div>';
 			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
@@ -168,12 +165,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$textlink = $this->mShowFilename ?
-				Linker::link(
+				Linker::linkKnown(
 					$nt,
-					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) ),
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
+					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) )
 				) . "<br />\n" :
 				'';
 
