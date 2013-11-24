@@ -52,13 +52,17 @@ class ForeignAPIRepo extends FileRepo {
 		'timestamp',
 	);
 
-	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
-	/* Check back with Commons after a day */
-	var $apiThumbCacheExpiry = 86400; /* 24*60*60 */
-	/* Redownload thumbnail files after a month */
-	var $fileCacheExpiry = 2592000; /* 86400*30 */
+	protected $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
+	/** @var int Check back with Commons after a day (24*60*60) */
+	protected $apiThumbCacheExpiry = 86400;
 
-	protected $mQueryCache = array();
+	/** @var int Redownload thumbnail files after a month (86400*30) */
+	protected $fileCacheExpiry = 2592000;
+
+	/** @var array  */
+	private $mQueryCache = array();
+
+	/** @var array  */
 	protected $mFileExists = array();
 
 	/**

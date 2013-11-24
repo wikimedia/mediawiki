@@ -27,19 +27,24 @@
  * @ingroup FileRepo
  */
 class RepoGroup {
-	/**
-	 * @var LocalRepo
-	 */
-	var $localRepo;
+	/** @var LocalRepo */
+	protected $localRepo;
 
-	var $foreignRepos, $reposInitialised = false;
-	var $localInfo, $foreignInfo;
-	var $cache;
+	protected $foreignRepos;
 
-	/**
-	 * @var RepoGroup
-	 */
+	/** @var bool */
+	protected $reposInitialised = false;
+
+	protected $localInfo;
+	protected $foreignInfo;
+
+	/** @var array  */
+	protected $cache;
+
+	/** @var RepoGroup */
 	protected static $instance;
+
+	/** Maximum number of cache items */
 	const MAX_CACHE_SIZE = 500;
 
 	/**
