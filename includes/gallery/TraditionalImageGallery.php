@@ -36,8 +36,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
-			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
-			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
+			# _width is ignored by any sane browser. IE6 doesn't know max-width
+			# so it uses _width instead
+			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" .
+				$oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
@@ -88,15 +90,19 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
+					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 
 				if ( $this->mParser instanceof Parser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
-			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
+			} elseif ( $this->mHideBadImages
+				&& wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() )
+			) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
+					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
 					Linker::link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -107,7 +113,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					'</div>';
 			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
+					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
@@ -118,7 +125,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					'alt' => $alt,
 					'custom-url-link' => $link
 				);
-				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
+
+				// In the absence of both alt text and caption, fall back on
+				// providing screen readers with the filename as alt text
 				if ( $alt == '' && $text == '' ) {
 					$imageParameters['alt'] = $nt->getText();
 				}
@@ -126,11 +135,13 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$this->adjustImageParameters( $thumb, $imageParameters );
 
 				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t" .
-					'<div class="thumb" style="width: ' . $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
-					# Auto-margin centering for block-level elements. Needed now that we have video
-					# handlers since they may emit block-level elements as opposed to simple <img> tags.
-					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
+				$thumbhtml = "\n\t\t\t"
+					. '<div class="thumb" style="width: '
+					. $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
+					# Auto-margin centering for block-level elements. Needed
+					# now that we have video handlers since they may emit block-
+					# level elements as opposed to simple <img> tags. ref
+					# http://css-discuss.incutio.com/?page=CenteringBlockElement
 					. '<div style="margin:' . $vpad . 'px auto;">'
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
@@ -140,8 +151,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				}
 			}
 
-			//TODO
-			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
+			// @todo Code is incomplete.
+			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) .
+			// ":{$ut}" );
 			// $ul = Linker::link( $linkTarget, $ut );
 
 			if ( $this->mShowBytes ) {
@@ -170,7 +182,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
-			$output .= "\n\t\t" . '<li class="gallerybox" style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
+			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
+				. $this->getGBWidth( $thumb ) . 'px">'
 				. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
 				. $thumbhtml
 				. $galleryText
@@ -185,12 +198,14 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * Add the wrapper html around the thumb's caption
 	 *
 	 * @param String $galleryText The caption
-	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for or false for bad image.
+	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for
+	 *   or false for bad image.
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
-		# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-		# in version 4.8.6 generated crackpot html in its absence, see:
-		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+		# ATTENTION: The newline after <div class="gallerytext"> is needed to
+		# accommodate htmltidy which in version 4.8.6 generated crackpot html in
+		# its absence, see: http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+		# -Ævar
 
 		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
 			. $galleryText
@@ -208,7 +223,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	}
 
 	/**
-	 *
 	 * @note GB stands for gallerybox (as in the <li class="gallerybox"> element)
 	 *
 	 * @return int

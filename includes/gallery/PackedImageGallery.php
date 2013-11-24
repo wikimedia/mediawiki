@@ -75,7 +75,8 @@ class PackedImageGallery extends TraditionalImageGallery {
 	}
 
 	/**
-	 * @param MediaTransformOutput|bool $thumb the thumbnail, or false if no thumb (which can happen)
+	 * @param MediaTransformOutput|bool $thumb the thumbnail, or false if no
+	 *   thumb (which can happen)
 	 */
 	protected function getGBWidth( $thumb ) {
 		$thumbWidth = $thumb ? $thumb->getWidth() : $this->mWidths * self::SCALE_FACTOR;
