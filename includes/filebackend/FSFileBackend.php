@@ -229,7 +229,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FSFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseCreate( $errors, Status $status, array $params, $cmd ) {
+	protected function getResponseCreate( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -276,7 +276,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FSFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseStore( $errors, Status $status, array $params, $cmd ) {
+	protected function getResponseStore( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -340,7 +340,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FSFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseCopy( $errors, Status $status, array $params, $cmd ) {
+	protected function getResponseCopy( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -397,7 +397,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FSFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseMove( $errors, Status $status, array $params, $cmd ) {
+	protected function getResponseMove( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -445,7 +445,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @see FSFileBackend::doExecuteOpHandlesInternal()
 	 */
-	protected function _getResponseDelete( $errors, Status $status, array $params, $cmd ) {
+	protected function getResponseDelete( $errors, Status $status, array $params, $cmd ) {
 		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
 			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -712,7 +712,7 @@ class FSFileBackend extends FileBackendStore {
 
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
 			$status = Status::newGood();
-			$function = '_getResponse' . $fileOpHandle->call;
+			$function = 'getResponse' . $fileOpHandle->call;
 			$this->$function( $errs[$index], $status, $fileOpHandle->params, $fileOpHandle->cmd );
 			$statuses[$index] = $status;
 			if ( $status->isOK() && $fileOpHandle->chmodPath ) {
