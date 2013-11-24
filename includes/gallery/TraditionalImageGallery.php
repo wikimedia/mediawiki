@@ -66,6 +66,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$link = $pair[3];
 
 			$descQuery = false;
+			/** @var Title $nt */
 			if ( $nt->getNamespace() === NS_FILE ) {
 				# Get the file...
 				if ( $this->mParser instanceof Parser ) {
@@ -114,6 +115,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
+				/** @var MediaTransformOutput $thumb */
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
 				$imageParameters = array(
@@ -143,8 +145,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
-				if ( $this->mParser && $img->getHandler() ) {
-					$img->getHandler()->parserTransformHook( $this->mParser, $img );
+				$handler = $img->getHandler();
+				if ( $this->mParser && $handler ) {
+					/** @var MediaHandler $handler */
+					$handler->parserTransformHook( $this->mParser, $img );
 				}
 			}
 
