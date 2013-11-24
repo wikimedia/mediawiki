@@ -3,6 +3,11 @@
 	float: right;
 }
 
+/* collapse links in captions should be inline */
+caption .mw-collapsible-toggle {
+	float: none;
+}
+
 /* list-items go as wide as their parent element, don't float them inside list items */
 li .mw-collapsible-toggle {
 	float: none;
