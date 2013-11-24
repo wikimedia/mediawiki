@@ -48,6 +48,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 
 	/**
 	 * @param File $img The file being transformed. May be false
+	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
 		if ( $img && $img->getMediaType() === MEDIATYPE_AUDIO ) {
@@ -77,6 +78,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	/**
 	 * @param MediaTransformOutput|bool $thumb the thumbnail, or false if no
 	 *   thumb (which can happen)
+	 * @return float
 	 */
 	protected function getGBWidth( $thumb ) {
 		$thumbWidth = $thumb ? $thumb->getWidth() : $this->mWidths * self::SCALE_FACTOR;

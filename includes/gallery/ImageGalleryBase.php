@@ -32,31 +32,33 @@ abstract class ImageGalleryBase extends ContextSource {
 	var $mCaption = false;
 
 	/**
-	 * Hide blacklisted images?
+	 * @var bool Hide blacklisted images?
 	 */
 	var $mHideBadImages;
 
 	/**
-	 * Registered parser object for output callbacks
-	 * @var Parser
+	 * @var Parser Registered parser object for output callbacks
 	 */
 	var $mParser;
 
 	/**
-	 * Contextual title, used when images are being screened
-	 * against the bad image list
+	 * @var Title Contextual title, used when images are being screened against
+	 *   the bad image list
 	 */
 	protected $contextTitle = false;
 
+	/** @var array */
 	protected $mAttribs = array();
 
+	/** @var bool */
 	static private $modeMapping = false;
 
 	/**
 	 * Get a new image gallery. This is the method other callers
 	 * should use to get a gallery.
 	 *
-	 * @param String|bool $mode Mode to use. False to use the default.
+	 * @param string|bool $mode Mode to use. False to use the default.
+	 * @throws MWException
 	 */
 	static function factory( $mode = false ) {
 		global $wgGalleryOptions, $wgContLang;
@@ -150,8 +152,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how many images will be displayed per row.
 	 *
-	 * @param $num Integer >= 0; If perrow=0 the gallery layout will adapt to screensize
-	 * invalid numbers will be rejected
+	 * @param int $num Integer >= 0; If perrow=0 the gallery layout will adapt
+	 *   to screensize invalid numbers will be rejected
 	 */
 	public function setPerRow( $num ) {
 		if ( $num >= 0 ) {
@@ -162,7 +164,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how wide each image will be, in pixels.
 	 *
-	 * @param $num Integer > 0; invalid numbers will be ignored
+	 * @param int $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setWidths( $num ) {
 		if ( $num > 0 ) {
@@ -173,7 +175,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how high each image will be, in pixels.
 	 *
-	 * @param $num Integer > 0; invalid numbers will be ignored
+	 * @param int $num Integer > 0; invalid numbers will be ignored
 	 */
 	public function setHeights( $num ) {
 		if ( $num > 0 ) {
@@ -186,7 +188,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * to allow extensions to add additional parameters to
 	 * <gallery> parser tag.
 	 *
-	 * @param Array $options Attributes of gallery tag.
+	 * @param array $options Attributes of gallery tag.
 	 */
 	public function setAdditionalOptions( $options ) {
 	}
@@ -194,7 +196,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Instruct the class to use a specific skin for rendering
 	 *
-	 * @param $skin Skin object
+	 * @param Skin $skin
 	 * @deprecated since 1.18 Not used anymore
 	 */
 	function useSkin( $skin ) {
@@ -205,12 +207,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Add an image to the gallery.
 	 *
-	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html  String: Additional HTML text to be shown. The name and
-	 *   size of the image are always shown.
-	 * @param $alt   String: Alt text for the image
-	 * @param $link  String: Override image link (optional)
-	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
+	 * @param Title $title Title object of the image that is added to the gallery
+	 * @param string $html Additional HTML text to be shown. The name and size
+	 *   of the image are always shown.
+	 * @param string $alt Alt text for the image
+	 * @param string $link Override image link (optional)
+	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
 	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
 		if ( $title instanceof File ) {
@@ -224,12 +226,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Add an image at the beginning of the gallery.
 	 *
-	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html  String: Additional HTML text to be shown. The name and
-	 *   size of the image are always shown.
-	 * @param $alt   String: Alt text for the image
-	 * @param $link  String: Override image link (optional)
-	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
+	 * @param Title $title Title object of the image that is added to the gallery
+	 * @param string $html Additional HTML text to be shown. The name and size
+	 *   of the image are always shown.
+	 * @param string $alt Alt text for the image
+	 * @param string $link  Override image link (optional)
+	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
 	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
 		if ( $title instanceof File ) {
@@ -251,7 +253,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the file size of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param $f Boolean: set to false to disable.
+	 * @param bool $f Set to false to disable.
 	 */
 	function setShowBytes( $f ) {
 		$this->mShowBytes = (bool)$f;
@@ -261,7 +263,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the filename of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param $f Boolean: set to false to disable.
+	 * @param bool $f Set to false to disable.
 	 */
 	function setShowFilename( $f ) {
 		$this->mShowFilename = (bool)$f;
@@ -274,7 +276,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Note -- if taking from user input, you should probably run through
 	 * Sanitizer::validateAttributes() first.
 	 *
-	 * @param array $attribs of HTML attribute pairs
+	 * @param array $attribs Array of HTML attribute pairs
 	 */
 	function setAttributes( $attribs ) {
 		$this->mAttribs = $attribs;
@@ -283,12 +285,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Display an html representation of the gallery
 	 *
-	 * @return String The html
+	 * @return string The html
 	 */
 	abstract public function toHTML();
 
 	/**
-	 * @return Integer: number of images in the gallery
+	 * @return int Number of images in the gallery
 	 */
 	public function count() {
 		return count( $this->mImages );
@@ -297,7 +299,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set the contextual title
 	 *
-	 * @param $title Title: contextual title
+	 * @param Title $title Contextual title
 	 */
 	public function setContextTitle( $title ) {
 		$this->contextTitle = $title;
@@ -306,7 +308,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Get the contextual title, if applicable
 	 *
-	 * @return mixed Title or false
+	 * @return Title|bool Title or false
 	 */
 	public function getContextTitle() {
 		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
@@ -316,7 +318,7 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * Determines the correct language to be used for this image gallery
-	 * @return Language object
+	 * @return Language
 	 */
 	protected function getRenderLang() {
 		return $this->mParser
