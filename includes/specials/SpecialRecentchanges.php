@@ -978,9 +978,11 @@ class SpecialRecentChanges extends SpecialPage {
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
-		$this->getOutput()->addModules( array(
-			'mediawiki.special.recentchanges',
-		) );
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.recentchanges' );
+		// This modules include styles and behavior for the legend box, load it unconditionally
+		$out->addModuleStyles( 'mediawiki.special.changeslist' );
+		$out->addModules( 'mediawiki.special.changeslist.js' );
 	}
 
 	protected function getGroupName() {
