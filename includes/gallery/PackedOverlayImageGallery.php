@@ -22,7 +22,6 @@
  */
 
 class PackedOverlayImageGallery extends PackedImageGallery {
-
 	/**
 	 * Add the wrapper html around the thumb's caption
 	 *
@@ -45,9 +44,10 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 		$captionWidth = ceil( $thumbWidth - 20 );
 
 		$outerWrapper = '<div class="gallerytextwrapper" style="width: ' . $captionWidth . 'px">';
+
 		return "\n\t\t\t" . $outerWrapper . '<div class="gallerytext">' . "\n"
-					. $galleryText
-					. "\n\t\t\t</div>";
+			. $galleryText
+			. "\n\t\t\t</div>";
 	}
 }
 
@@ -57,4 +57,5 @@ class PackedOverlayImageGallery extends PackedImageGallery {
  * falls back to PackedHoverGallery. Degrades gracefully for
  * screen readers.
  */
-class PackedHoverImageGallery extends PackedOverlayImageGallery { }
+class PackedHoverImageGallery extends PackedOverlayImageGallery {
+}

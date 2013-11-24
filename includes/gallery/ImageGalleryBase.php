@@ -188,7 +188,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param Array $options Attributes of gallery tag.
 	 */
-	public function setAdditionalOptions( $options ) { }
+	public function setAdditionalOptions( $options ) {
+	}
 
 	/**
 	 * Instruct the class to use a specific skin for rendering
@@ -320,12 +321,10 @@ abstract class ImageGalleryBase extends ContextSource {
 			? $this->mParser->getTargetLanguage()
 			: $this->getLanguage();
 	}
-
 	/* Old constants no longer used.
 	const THUMB_PADDING = 30;
 	const GB_PADDING = 5;
 	const GB_BORDERS = 8;
 	*/
-
 }
 

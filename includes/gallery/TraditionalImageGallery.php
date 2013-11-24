@@ -21,7 +21,6 @@
  */
 
 class TraditionalImageGallery extends ImageGalleryBase {
-
 	/**
 	 * Return a HTML representation of the image gallery
 	 *
@@ -171,12 +170,11 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
-			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
-					. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
-					. $thumbhtml
-					. $galleryText
-					. "\n\t\t</div></li>";
+			$output .= "\n\t\t" . '<li class="gallerybox" style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
+				. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
+				. $thumbhtml
+				. $galleryText
+				. "\n\t\t</div></li>";
 		}
 		$output .= "\n</ul>";
 
@@ -195,8 +193,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 
 		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-					. $galleryText
-					. "\n\t\t\t</div>";
+			. $galleryText
+			. "\n\t\t\t</div>";
 	}
 
 	/**
@@ -307,7 +305,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @param MediaTransformOutput $thumb The thumbnail
 	 * @param Array $imageParameters Array of options
 	 */
-	protected function adjustImageParameters( $thumb, &$imageParameters ) { }
+	protected function adjustImageParameters( $thumb, &$imageParameters ) {
+	}
 }
 
 /**
