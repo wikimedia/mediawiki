@@ -27,40 +27,73 @@
  * @ingroup FileAbstraction
  */
 class ArchivedFile {
-	/**#@+
-	 * @private
-	 */
-	var $id, # filearchive row ID
-		$name, # image name
-		$group, # FileStore storage group
-		$key, # FileStore sha1 key
-		$size, # file dimensions
-		$bits, # size in bytes
-		$width, # width
-		$height, # height
-		$metadata, # metadata string
-		$mime, # mime type
-		$media_type, # media type
-		$description, # upload description
-		$user, # user ID of uploader
-		$user_text, # user name of uploader
-		$timestamp, # time of upload
-		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
-		$deleted, # Bitfield akin to rev_deleted
-		$sha1, # sha1 hash of file content
-		$pageCount,
-		$archive_name;
+	/** @var int filearchive row ID */
+	private $id;
 
-	/**
-	 * @var MediaHandler
-	 */
-	var $handler;
-	/**
-	 * @var Title
-	 */
-	var $title; # image title
+	/** @var string File name */
+	private $name;
 
-	/**#@-*/
+	/** @var string FileStore storage group */
+	private $group;
+
+	/** @var string FileStore SHA-1 key */
+	private $key;
+
+	/** @var int File size in bytes */
+	private $size;
+
+	/** @var int size in bytes */
+	private $bits;
+
+	/** @var int Width */
+	private $width;
+
+	/** @var int Height */
+	private $height;
+
+	/** @var string Metadata string */
+	private $metadata;
+
+	/** @var string MIME type */
+	private $mime;
+
+	/** @var string Media type */
+	private $media_type;
+
+	/** @var string Upload description */
+	private $description;
+
+	/** @var int User ID of uploader */
+	private $user;
+
+	/** @var string User name of uploader */
+	private $user_text;
+
+	/** @var string Time of upload */
+	private $timestamp;
+
+	/** @var bool Whether or not all this has been loaded from the database (loadFromXxx) */
+	private $dataLoaded;
+
+	/** @var int Bitfield akin to rev_deleted */
+	private $deleted;
+
+	/** @var string SHA-1 hash of file content */
+	private $sha1;
+
+	/** @var string Number of pages of a multipage document, or false for
+	 * documents which aren't multipage documents
+	 */
+	private $pageCount;
+
+	/** @var string Original base filename */
+	private $archive_name;
+
+	/** @var MediaHandler */
+	protected $handler;
+
+	/** @var Title */
+	protected $title; # image title
 
 	/**
 	 * @throws MWException
