@@ -42,24 +42,80 @@ class FileRepo {
 
 	/** @var FileBackend */
 	protected $backend;
+
 	/** @var Array Map of zones to config */
 	protected $zones = array();
 
-	var $thumbScriptUrl, $transformVia404;
-	var $descBaseUrl, $scriptDirUrl, $scriptExtension, $articleUrl;
-	var $fetchDescription, $initialCapital;
-	var $pathDisclosureProtection = 'simple'; // 'paranoid'
-	var $descriptionCacheExpiry, $url, $thumbUrl;
-	var $hashLevels, $deletedHashLevels;
+	/** @var string URL of thumb.php  */
+	protected $thumbScriptUrl;
+
+	/** @var bool Whether to skip media file transformation on parse and rely
+	 *    on a 404 handler instead. */
+	protected $transformVia404;
+
+	/** @var string URL of image description pages, e.g.
+	 *    http://en.wikipedia.org/wiki/File:
+	 */
+	protected $descBaseUrl;
+
+	/** @var string URL of the MediaWiki installation, equivalent to
+	 *    $wgScriptPath, e.g. https://en.wikipedia.org/w
+	 */
+	protected $scriptDirUrl;
+
+	/** @var string Script extension of the MediaWiki installation, equivalent
+	 *    to $wgScriptExtension, e.g. .php5 defaults to .php */
+	protected $scriptExtension;
+
+	/** @var string Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1 */
+	protected $articleUrl;
+
+	/** @var bool Whether to fetch commons image description pages and display them on the local wiki */
+	protected $fetchDescription;
+
+	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
+	 *    determines whether filenames implicitly start with a capital letter.
+	 *    The current implementation may give incorrect description page links
+	 *    when the local $wgCapitalLinks and initialCapital are mismatched.
+	 */
+	protected $initialCapital;
+
+	/** @var string May be 'paranoid' to remove all parameters from error
+	 *    messages, 'none' to leave the paths in unchanged, or 'simple' to
+	 *    replace paths with placeholders. Default for LocalRepo is
+	 *    'simple'.
+	 */
+	protected $pathDisclosureProtection = 'simple';
+
+	/** @var int */
+	protected $descriptionCacheExpiry;
+
+	/** @var bool Public zone URL. */
+	protected $url;
+
+	/** @var string The base thumbnail URL. Defaults to "<url>/thumb". */
+	protected $thumbUrl;
+
+	/** @var int The number of directory levels for hash-based division of files */
+	protected $hashLevels;
+
+	/** @var int The number of directory levels for hash-based division of deleted files */
+	protected $deletedHashLevels;
+
+	/** @var int File names over this size will use the short form of thumbnail
+	 *    names. Short thumbnail names only have the width, parameters, and the
+	 *    extension.
+	 */
 	protected $abbrvThreshold;
 
 	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
 	 */
-	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
-	var $oldFileFactory = false;
-	var $fileFactoryKey = false, $oldFileFactoryKey = false;
+	protected $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
+	protected $oldFileFactory = false;
+	protected $fileFactoryKey = false;
+	protected $oldFileFactoryKey = false;
 
 	/**
 	 * @param $info array|null
@@ -667,7 +723,7 @@ class FileRepo {
 	public function getDescriptionUrl( $name ) {
 		$encName = wfUrlencode( $name );
 		if ( !is_null( $this->descBaseUrl ) ) {
-			# "http://example.com/wiki/Image:"
+			# "http://example.com/wiki/File:"
 			return $this->descBaseUrl . $encName;
 		}
 		if ( !is_null( $this->articleUrl ) ) {
