@@ -626,8 +626,6 @@ $1',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Преземено од „$1“',
 'youhavenewmessages' => 'Имате $1 ($2).',
-'newmessageslink' => 'нови пораки',
-'newmessagesdifflink' => 'скорешна промена',
 'youhavenewmessagesfromusers' => 'Имате $1 од {{PLURAL:$3|еден корисник|$3 корисници}} ($2).',
 'youhavenewmessagesmanyusers' => 'Имате $1 од многу корисници ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|нова порака|нови пораки}}',
@@ -1503,7 +1501,6 @@ $1",
 'preferences' => 'Нагодувања',
 'mypreferences' => 'нагодувања',
 'prefs-edits' => 'Број на уредувања:',
-'prefsnologin' => 'Не сте најавени',
 'prefsnologintext2' => 'Треба да сте $1 за да можете да ги поставувате корисничките нагодувања.',
 'changepassword' => 'Смени лозинка',
 'prefs-skin' => 'Руво',
@@ -1805,6 +1802,7 @@ $1",
 'recentchanges-label-minor' => 'Ова е ситна промена',
 'recentchanges-label-bot' => 'Ова уредување е направено од бот',
 'recentchanges-label-unpatrolled' => 'Ова уредување сè уште не е испатролирано',
+'recentchanges-legend-newpage' => '$1 - нова страница',
 'rcnote' => "Подолу {{PLURAL:$1|е прикажана '''1''' промена|се прикажани последните '''$1''' промени}} {{PLURAL:$2|за денес|во последниве '''$2''' дена}}, заклучно со $5, $4.",
 'rcnotefrom' => 'Подолу се промените од <b>$2</b> (се прикажуваат до <b>$1</b>).',
 'rclistfrom' => 'Прикажи нови промени почнувајќи од $1',
@@ -4465,5 +4463,22 @@ $5
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|бајт|бајти}}',
 'limitreport-expansiondepth' => 'Најголема длабочина на проширувањето',
 'limitreport-expensivefunctioncount' => 'Бр. на сложени парсерски функции',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Прошири шаблони',
+'expand_templates_intro' => 'Оваа специјална страница зема еден текст и рекурзивно ги проширува сите шаблони во него.
+Исто така проширува и парсерски функции како
+<code><nowiki>{{</nowiki>#language:…}}</code> и променливи како
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Всушност, го проширува сето она што стои во двојни аглести загради.',
+'expand_templates_title' => 'Наслов на контекстот, за {{FULLPAGENAME}} и тн.:',
+'expand_templates_input' => 'Влезен текст:',
+'expand_templates_output' => 'Извод',
+'expand_templates_xml_output' => 'XML излез',
+'expand_templates_ok' => 'ОК',
+'expand_templates_remove_comments' => 'Отстрани коментари',
+'expand_templates_remove_nowiki' => 'Притаи <nowiki> ознаки во резултатот',
+'expand_templates_generate_xml' => 'Прикажи XML дрво на парсирање',
+'expand_templates_preview' => 'Преглед',
 
 );

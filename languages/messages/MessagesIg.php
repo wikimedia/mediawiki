@@ -331,8 +331,6 @@ Lé [[Special:Version|ụdì ihü]].',
 'ok' => 'Ngwanu',
 'retrievedfrom' => "Wefụtàrà ya shí ''$1''",
 'youhavenewmessages' => 'I nwèrè $1 ($2).',
-'newmessageslink' => 'Ozi ohúrù',
-'newmessagesdifflink' => 'mkpete azu ihe gbanwere',
 'youhavenewmessagesmulti' => 'Inwere eziohu na $1',
 'editsection' => 'mèzi',
 'editold' => 'mèzi',
@@ -746,7 +744,6 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 # Preferences page
 'preferences' => 'Otu ha dosẹrẹ ihe',
 'mypreferences' => 'Otú m shị na dose ihem',
-'prefsnologin' => 'I bátà bò',
 'changepassword' => 'Gbanwe okwu éjị à gáfe',
 'prefs-skin' => 'Akpụkpọ',
 'skin-preview' => 'Lètú',
@@ -865,6 +862,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'recentchanges-legend' => 'Nràlụ màkà Ihe gbanwere ubwá',
 'recentchanges-feed-description' => 'Chóputà ihe ógẹ ǹsò na wiki ímé órírí nke á.',
 'recentchanges-label-minor' => 'Ihe bu orü ntakírí',
+'recentchanges-legend-newpage' => '$1 - ihü ohúrù',
 'rcnote' => "Na àlà {{PLURAL:$1|bu gbanwere '''1'''|bu gbanwere mgbèdè nke '''$1'''}} na mgbèdè {{PLURAL:$2|chi|chi '''$2'''}}, na mgbe $5, $4.",
 'rclistfrom' => 'Zìrí ihe gbanwere ọhúrù shí $1',
 'rcshowhideminor' => 'orü ntákírí $1',
@@ -1737,5 +1735,8 @@ Nke ozor gí zonari na áká onwe ha.
 
 # Search suggestions
 'searchsuggest-search' => 'Chọwa',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Ngwanu',
 
 );

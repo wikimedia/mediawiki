@@ -317,8 +317,6 @@ $1',
 'ok' => 'Сөп',
 'retrievedfrom' => '"$1" -н кэллэ',
 'youhavenewmessages' => '$1 ($2) кэллэ',
-'newmessageslink' => 'саҥа суруктар',
-'newmessagesdifflink' => 'кэлиҥҥи уларытыы',
 'youhavenewmessagesfromusers' => 'Маны $1 {{PLURAL:$3|соҕотох кыттааччыттан|$3 кыттааччыттан}} туппуккун ($2).',
 'youhavenewmessagesmanyusers' => 'Маны $1 элбэх кыттааччыттан туппуккун ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|саҥа этии|саҥа этии}}',
@@ -1166,7 +1164,6 @@ $1",
 'preferences' => 'Уларытыылар',
 'mypreferences' => 'Туруоруулар',
 'prefs-edits' => 'Көннөрүү ахсаана:',
-'prefsnologin' => 'Ааккын эппэтиҥ',
 'changepassword' => 'Киирии тылы уларытарга',
 'prefs-skin' => 'Тас көстүү',
 'skin-preview' => 'Хайдах буолара',
@@ -1459,6 +1456,7 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'recentchanges-label-minor' => 'Бу улахан суолтата суох уларытыы',
 'recentchanges-label-bot' => 'Бу уларытыыны робот оҥорбут',
 'recentchanges-label-unpatrolled' => 'Бу уларытыы өссө ботурууллана илик',
+'recentchanges-legend-newpage' => '$1 — саҥа сирэй',
 'rcnote' => "{{PLURAL:$2|хонук|'''$2''' хонуктар}} иһинэн бүтэһик {{PLURAL:$1|'''1''' уларыйыы|'''$1''' уларыйыылар}}, $5, $4.",
 'rcnotefrom' => "Мантан '''$2''' маныаха '''$1''' дылы уларыыйылар көрдөрүлүннүлэр.",
 'rclistfrom' => 'Бу кэм $1 кэнниттэн оҥоһуллубуттары көрдөр',
@@ -3885,5 +3883,20 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 
 # Image rotation
 'rotate-comment' => 'Ойуу $1 кыраадыс чаһы хоту эргитиллибит',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Халыыптары тэнитии',
+'expand_templates_intro' => 'Бу аналлаах сирэй тиэкиһи уларытарытарыгар туох баар халыыптары тэнитэн көрдөрөр.
+Парсер функциялара эмиэ тэнитиллэллэр. Холобур, <nowiki>{{</nowiki>#language:...}} уонна переменнайдар <nowiki>{{</nowiki>CURRENTDAY}} уо.&nbsp;д.&nbsp;а. — уопсайынан, хос фигурнай скобка иһигэр баар барыта.
+Бу дьайыы сыыһата суох, MediaWiki көмөтүнэн оҥоһуллар.',
+'expand_templates_title' => '{{FULLPAGENAME}} сирэй аата уонна да атын сибидиэнньэлэр:',
+'expand_templates_input' => 'Киирэр сурук:',
+'expand_templates_output' => 'Түмүк',
+'expand_templates_xml_output' => 'XML тахсыыта',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Ырытыылары сот',
+'expand_templates_remove_nowiki' => 'Түмүккэ <nowiki> бэлиэни аахсыма',
+'expand_templates_generate_xml' => 'XML-ы мас курдук көрдөр',
+'expand_templates_preview' => 'Холоон көрүү',
 
 );

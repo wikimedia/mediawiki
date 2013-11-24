@@ -592,8 +592,6 @@ $1',
 'pagetitle' => '$1 – {{SITENAME}}',
 'retrievedfrom' => 'Haettu osoitteesta $1',
 'youhavenewmessages' => 'Sinulle on $1 ($2).',
-'newmessageslink' => 'uusia viestejä',
-'newmessagesdifflink' => 'viimeisin muutos',
 'youhavenewmessagesfromusers' => 'Sinulle on $1 {{PLURAL:$3|toiselta käyttäjältä|$3 käyttäjältä}} ($2).',
 'youhavenewmessagesmanyusers' => 'Sinulle on $1 uusia viestejä useilta käyttäjiltä ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|uusi viesti|uusia viestejä}}',
@@ -1427,7 +1425,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'preferences' => 'Asetukset',
 'mypreferences' => 'Asetukset',
 'prefs-edits' => 'Muokkauksia',
-'prefsnologin' => 'Et ole kirjautunut sisään.',
 'prefsnologintext2' => 'Sinun pitää $1 ennen kuin voit muuttaa käyttäjän asetuksia.',
 'changepassword' => 'Salasanan vaihto',
 'prefs-skin' => 'Ulkoasu',
@@ -1725,6 +1722,7 @@ Tämä tieto on julkinen.',
 'recentchanges-label-minor' => 'Tämä on pieni muutos',
 'recentchanges-label-bot' => 'Tämän muutoksen suoritti botti',
 'recentchanges-label-unpatrolled' => 'Tätä muutosta ei ole vielä tarkastettu',
+'recentchanges-legend-newpage' => '$1 – uusi sivu',
 'rcnote' => 'Alla on {{PLURAL:$1|yksi muutos|$1 tuoreinta muutosta}} {{PLURAL:$2|yhden päivän|$2 viime päivän}} ajalta $4 kello $5 asti.',
 'rcnotefrom' => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom' => 'Näytä uudet muutokset $1 alkaen',
@@ -3018,7 +3016,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-logentry-upload' => 'toi sivun [[$1]] tiedostomuodossa',
 'import-logentry-upload-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}}',
 'import-logentry-interwiki' => 'toi toisesta wikistä sivun $1',
-'import-logentry-interwiki-detail' => 'toi {{PLURAL:$1|yhden version|$1 versiota}} wikistä $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versio|versiota}} tuotiin wikistä $2',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptin testaus',
@@ -4149,5 +4147,21 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-expansiondepth' => 'Suurin laajennussyvyys',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Mallineiden laajennus',
+'expand_templates_intro' => 'Tämä toimintosivu ottaa syötteekseen tekstiä ja laajentaa kaikki mallineet rekursiivisesti sekä jäsenninfunktiot, kuten
+<code><nowiki>{{</nowiki>#language:...}}</code>, ja -muuttujat, kuten
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Toisin sanoen melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.',
+'expand_templates_title' => 'Otsikko (esimerkiksi muuttujaa {{FULLPAGENAME}} varten)',
+'expand_templates_input' => 'Teksti',
+'expand_templates_output' => 'Tulos',
+'expand_templates_xml_output' => 'XML-tuloste',
+'expand_templates_ok' => 'Laajenna',
+'expand_templates_remove_comments' => 'Poista kommentit',
+'expand_templates_remove_nowiki' => 'Poista <nowiki>-tagit tulosteesta',
+'expand_templates_generate_xml' => 'Näytä XML-jäsennyspuu',
+'expand_templates_preview' => 'Esikatselu',
 
 );

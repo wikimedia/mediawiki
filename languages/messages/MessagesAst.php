@@ -337,8 +337,6 @@ $1",
 'ok' => 'Aceutar',
 'retrievedfrom' => 'Sacáu de «$1»',
 'youhavenewmessages' => 'Tienes $1 ($2).',
-'newmessageslink' => 'mensaxes nuevos',
-'newmessagesdifflink' => 'cambéu postreru',
 'youhavenewmessagesfromusers' => "Tienes $1 {{PLURAL:$3|d'otru usuariu|de $3 usuarios}} ($2).",
 'youhavenewmessagesmanyusers' => 'Tienes $1 de munchos usuarios ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un mensaxe nuevu|$1 mensaxes nuevos}}',
@@ -1214,7 +1212,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'preferences' => 'Preferencies',
 'mypreferences' => 'Preferencies',
 'prefs-edits' => "Númberu d'ediciones:",
-'prefsnologin' => 'Nun anició sesión',
 'prefsnologintext2' => "Por favor, $1 pa configurar les preferencies d'usuariu",
 'changepassword' => 'Camudar la clave',
 'prefs-skin' => 'Apariencia',
@@ -1513,6 +1510,7 @@ Esta información sedrá pública.',
 'recentchanges-label-minor' => 'Esta ye una edición menor',
 'recentchanges-label-bot' => 'Esta edición ta fecha por un bot',
 'recentchanges-label-unpatrolled' => 'Esta edición ta ensin patrullar entá',
+'recentchanges-legend-newpage' => '$1 - páxina nueva',
 'rcnote' => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambiu|puen vese los caberos '''$1''' cambios}} {{PLURAL:$2|del caberu día|de los caberos '''$2''' díes}}, a fecha de $5, $4.",
 'rcnotefrom' => "Abaxo tan los cambeos dende '''$2''' (s'amuesen fasta '''$1''').",
 'rclistfrom' => 'Amosar los nuevos cambios dende $1',
@@ -3999,5 +3997,22 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => "Máxima fondura d'espansión",
 'limitreport-expensivefunctioncount' => "Cuenta de funciones d'analís costoses",
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Esparder plantíes',
+'expand_templates_intro' => "Esta páxina especial toma un testu y espande toles plantíes del mesmu de forma recursiva.
+ Tamién espande les funciones d'análisis sintáuticu como
+<code><nowiki>{{</nowiki>#language:...}}</code>, y variables como
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+En realidá cuasi tolo qu'apaeza ente llaves dobles.",
+'expand_templates_title' => 'Títulu del contestu, pa {{FULLPAGENAME}}, etc.:',
+'expand_templates_input' => "Testu d'entrada:",
+'expand_templates_output' => 'Resultáu',
+'expand_templates_xml_output' => 'Salida XML',
+'expand_templates_ok' => 'Aceutar',
+'expand_templates_remove_comments' => 'Eliminar comentarios',
+'expand_templates_remove_nowiki' => 'Quitar les etiquetes <nowiki> nos resultaos',
+'expand_templates_generate_xml' => "Amosar l'árbole d'análisis sintáuticu XML",
+'expand_templates_preview' => 'Vista previa',
 
 );

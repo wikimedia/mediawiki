@@ -473,8 +473,6 @@ $1",
 'ok' => 'OK',
 'retrievedfrom' => 'Vun „$1“',
 'youhavenewmessages' => 'Du hest $1 ($2).',
-'newmessageslink' => 'Ne’e Narichten',
-'newmessagesdifflink' => 'Ünnerscheed to vörher',
 'youhavenewmessagesmulti' => 'Du hest ne’e Narichten op $1',
 'editsection' => 'ännern',
 'editold' => 'ännern',
@@ -1118,7 +1116,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'preferences' => 'Instellen',
 'mypreferences' => 'För mi Instellen',
 'prefs-edits' => 'Wo faken du in dit Wiki Sieden ännert hest:',
-'prefsnologin' => 'Nich anmellt',
 'changepassword' => 'Passwoort ännern',
 'prefs-skin' => 'Utsehn vun de Steed',
 'skin-preview' => 'Vörschau',
@@ -3102,5 +3099,21 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'revdelete-restricted' => 'Inschränkungen för Administraters instellt',
 'revdelete-unrestricted' => 'Inschränkungen för Administraters rutnahmen',
 'rightsnone' => '(kene)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Vörlagen oplösen',
+'expand_templates_intro' => 'Mit disse Spezialsied köönt Vörlagen in ingeven Text in Wikitext ümwannelt warrn.
+Ok Parserfunkschonen so as
+<nowiki>{{</nowiki>#language:…}}, un Variabeln so as
+<nowiki>{{</nowiki>CURRENTDAY}} warrt ümwannelt. Also so temlich allens, wat twischen swiefte Klammern steit.
+Dorto warrt de nödigen Parser-Phasen in MediaWiki direkt opropen.',
+'expand_templates_title' => 'Kontexttitel, för {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Inputtext:',
+'expand_templates_output' => 'Resultat',
+'expand_templates_xml_output' => 'XML-Utgaav',
+'expand_templates_ok' => 'Los',
+'expand_templates_remove_comments' => 'Kommentaren rutnehmen',
+'expand_templates_generate_xml' => 'XML-Parser-Boom wiesen',
+'expand_templates_preview' => 'Vörschau',
 
 );

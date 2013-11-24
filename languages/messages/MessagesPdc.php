@@ -233,8 +233,6 @@ Guck aa [[Special:Version|Versionsblatt]]',
 'ok' => 'OK',
 'retrievedfrom' => 'Vun „$1“',
 'youhavenewmessages' => 'Du hast $1 uff deinem $2.',
-'newmessageslink' => 'Neiichkeede',
-'newmessagesdifflink' => 'Gschwetz-Blatt',
 'youhavenewmessagesmulti' => 'Du hascht neie Comments: $1',
 'editsection' => 'Ennere',
 'editold' => 'Ennere',
@@ -499,6 +497,7 @@ Paesswatt fer nau: $2',
 'recentchanges' => 'Was mer letscht geduh henn',
 'recentchanges-label-minor' => 'Gleene Ennering',
 'recentchanges-label-bot' => 'Ennering vun em Waddefresser',
+'recentchanges-legend-newpage' => '$1 - neies Blatt',
 'rcshowhideminor' => 'Gleene Enneringe $1',
 'rcshowhidebots' => 'Bots $1',
 'rcshowhideanons' => 'IP-Yuuser $1',
@@ -1008,5 +1007,11 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Search suggestions
 'searchsuggest-search' => 'Uffgucke',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Result',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Anmaerrickinge lösche',
+'expand_templates_preview' => 'Aagucke',
 
 );

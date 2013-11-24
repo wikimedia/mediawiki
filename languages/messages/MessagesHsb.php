@@ -428,12 +428,10 @@ $1',
 'ok' => 'W porjadku',
 'retrievedfrom' => 'Z "$1"',
 'youhavenewmessages' => 'Maš $1 ($2).',
-'newmessageslink' => 'nowe powěsće',
-'newmessagesdifflink' => 'poslednja změna',
 'youhavenewmessagesfromusers' => 'Maš $1 wot {{PLURAL:$3|druheho wužiwarja|$3 wužiwarjow|$3 wužiwarjow|$3 wužiwarjow}} ($2).',
 'youhavenewmessagesmanyusers' => 'Maš $1 wot wjele wužiwarjow ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|nowu powěsć|nowej powěsći|nowe powěsće}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|poslednja změna|poslednjej změnje|poslednje změny|poslednje změny}}',
+'newmessageslinkplural' => '{{PLURAL:$1|nowu powěsć|999=nowej powěsći|999=nowe powěsći}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|poslednja změna|999=poslednjej změnje|999=poslednje změny}}',
 'youhavenewmessagesmulti' => 'Maš nowe powěsće: $1',
 'editsection' => 'wobdźěłać',
 'editold' => 'wobdźěłać',
@@ -485,6 +483,9 @@ Płaćiwe specialne strony hodźa so pod [[Special:SpecialPages|lisćinu special
 # General errors
 'error' => 'Zmylk',
 'databaseerror' => 'Zmylk w datowej bance',
+'databaseerror-text' => 'Zmylk w datowej bance je wustupił.
+To móže na programowy zmylk w softwarje pokazać.',
+'databaseerror-textcl' => 'Zmylk w datowej bance je wustupił.',
 'databaseerror-query' => 'Wotprašenje: $1',
 'databaseerror-function' => 'Funkcija: $1',
 'databaseerror-error' => 'Zmylk: $1',
@@ -521,6 +522,7 @@ Móže być, zo je hižo wot někoho druheho wušmórnjena.',
 'cannotdelete-title' => 'Strona "$1" njehodźi so zhašeć',
 'delete-hook-aborted' => 'Zhašenje přez hoku přetorhnjene.
 Njeje žane wujasnjenje podała.',
+'no-null-revision' => 'Nowa nulowa wersija za stronu "$1" njeda so wutworić',
 'badtitle' => 'Wopačny titul',
 'badtitletext' => 'Požadane mjeno strony běše njepłaćiwy, prózdny abo njekorektny titul z mjezyrěčneho abo interwikijoweho wotkaza. Snano wobsahuje jedne znamješko abo wjacore znamješka, kotrež w titulach dowolene njejsu.',
 'perfcached' => 'Slědowace daty pochadźeja z pufrowaka a njejsu snano cyle aktualne. Maksimalnje {{PLURAL:$1|jedyn wuslědk|$1 wuslědkaj|$1 wuslědki|$1 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$1|steji|stejitej|steja|steji}}.',
@@ -688,6 +690,8 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'login-abort-generic' => 'Twoje přizjewjenje njebě wuspěšne - přetorhnjene',
 'loginlanguagelabel' => 'Rěč: $1',
 'suspicious-userlogout' => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
+'createacct-another-realname-tip' => '* Woprawdźite mjeno je opcionalne.
+Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
 
 # Email sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
@@ -758,6 +762,12 @@ Nachwilne hesło: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Tokeny wróćo stajić',
+'resettokens-no-tokens' => 'Tokeny za wróćostajenje njejsu.',
+'resettokens-legend' => 'Tokeny wróćo stajić',
+'resettokens-tokens' => 'Tokeny:',
+'resettokens-token-label' => '$1 (aktualna hódnota: $2)',
+'resettokens-done' => 'Tokeny wróćostajene.',
+'resettokens-resetbutton' => 'Wubrane tokeny wróćo stajić',
 
 # Edit page toolbar
 'bold_sample' => 'Tučny tekst',
@@ -1070,8 +1080,9 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.",
 'revdelete-confirm' => 'Prošu potwjerdź, zo chceš to činić, zo rozumiš konsekwency a zo činiš to po [[{{MediaWiki:Policy-url}}|prawidłach]].',
 'revdelete-suppress-text' => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
+* Potencielnje křiwdźace informacije
 * Njepřihódne wosobinske informacije
-*: ''bydlenske adresy a telefonowe čisła, čisła socialneho zawěsćenja atd.''",
+*: ''Bydlenske adresy a telefonowe čisła, čisła socialneho zawěsćenja atd.''",
 'revdelete-legend' => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text' => 'Tekst wersije',
 'revdelete-hide-image' => 'Wobsah wobraza schować',
@@ -1236,7 +1247,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'preferences' => 'Nastajenja',
 'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Ličba změnow:',
-'prefsnologin' => 'Njepřizjewjeny',
+'prefsnologintext2' => 'Dyrbiš so $1, zo by wužiwarske nastajenja postajił.',
 'changepassword' => 'Hesło změnić',
 'prefs-skin' => 'Drasta',
 'skin-preview' => 'Přehlad',
@@ -1321,7 +1332,9 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'gender-unknown' => 'Nochcu ničo wo tym podać',
 'gender-male' => 'Wón wobdźěłuje wikistrony',
 'gender-female' => 'Wona wobdźěłuje wikistrony',
-'prefs-help-gender' => 'Opcionalny: wužiwa so za po splahu specifiske narěčenje přez softwaru. Tuta informacija budźe zjawna.',
+'prefs-help-gender' => 'Tute podaće je opcionalne:
+Softwara wužiwa jeho hódnotu, zo by će z pomocu wotpowědneho gramatikaliskeho roda narěčała a druhich na tebje pokazała.
+Tuta informacija budźe zjawna.',
 'email' => 'E-mejl',
 'prefs-help-realname' => '* Woprawdźite mjeno (opcionalne): jeli so rozsudźiš to zapodać, budźe to so wužiwać, zo by tebi woprawnjenje za twoje dźěło dało.',
 'prefs-help-email' => 'E-mejlowa adresa je opcionalna, ale zmóžnja ći nowe hesło emejlować, jeli sy swoje hesło zabył.',
@@ -1415,7 +1428,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-reupload-shared' => 'Dataje w hromadźe wužiwanej repozitoriju lokalnje přepisać',
 'right-upload_by_url' => 'Dataju z URL-adresy nahrać',
 'right-purge' => 'Pufrowak sydła za stronu bjez wobkrućenskeje strony wuprózdnić',
-'right-autoconfirmed' => 'Połzaškitane strony wobdźěłać',
+'right-autoconfirmed' => 'Žane wobmjezowanje přez IP-bazowane limity',
 'right-bot' => 'Ma so jako awtomatiski proces wobjednać',
 'right-nominornewtalk' => 'Snadne změny k diskusijnym stronam zwobraznjenje nowych powěsćow wuwołać njedać',
 'right-apihighlimits' => 'Wyše limity wi API-naprašowanjach wužiwać',
@@ -1436,7 +1449,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-ipblock-exempt' => 'Blokowanja IP, awtomatiske blokowanje a blokowanja wobwodow wobeńć',
 'right-proxyunbannable' => 'Automatiske blokowanja proksyjow wobeńć',
 'right-unblockself' => 'Swójske blokowanje zběhnyć',
-'right-protect' => 'Škitowe schodźenki změnić a škitanu stronu wobdźěłać',
+'right-protect' => 'Škitowe schodźenki změnić a z kaskadami škitane strony wobdźěłać',
 'right-editprotected' => 'Strony wobdźěłać, kotrež su přez "{{int:protect-level-sysop}}" škitane',
 'right-editsemiprotected' => 'Strony wobdźěłać, kotrež su přez "{{int:protect-level-autoconfirmed}}" škitane',
 'right-editinterface' => 'Wužiwarski powjerch wobdźěłać',
@@ -1529,6 +1542,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'recentchanges-label-minor' => 'To je snadna změna',
 'recentchanges-label-bot' => 'Tuta změna bu přez roboćik přewjedźena',
 'recentchanges-label-unpatrolled' => 'Tuta změnu hišće njebu přepruwowana',
+'recentchanges-legend-newpage' => '$1 - nowa strona',
 'rcnote' => "Deleka {{PLURAL:$1|je '''1''' změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} za {{PLURAL:$2|posledni dźeń|poslednjej '''$2''' dnjej|poslednje '''$2''' dny|poslednich '''$2''' dnjow}}, staw wot $4, $5.",
 'rcnotefrom' => "Deleka so změny wot '''$2''' pokazuja (hač k '''$1''').",
 'rclistfrom' => 'Nowe změny pokazać, započinajo z $1',
@@ -1924,6 +1938,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'randomincategory' => 'Připadna strona w kategoriji',
 'randomincategory-invalidcategory' => '"$1" płaćiwe kategorijowe mjeno njeje.',
 'randomincategory-nopages' => 'W kategoriji [[:Category:$1|$1]] žane strony njejsu.',
+'randomincategory-selectcategory' => 'Připadna strona z kategorija: $1 $2',
 'randomincategory-selectcategory-submit' => 'Wotesłać',
 
 # Random redirect
@@ -1956,6 +1971,8 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'pageswithprop-text' => 'Tuta strona nalistuje strony, kotrež wěstu kajkosć strony wužiwaja.',
 'pageswithprop-prop' => 'Mjeno kajkosće:',
 'pageswithprop-submit' => 'Wotpósłać',
+'pageswithprop-prophidden-long' => 'Hódnota kajkosće dołheho teksta schowana ($1)',
+'pageswithprop-prophidden-binary' => 'binarna kajkostna hódnota schowana ($1)',
 
 'doubleredirects' => 'Dwójne daleposrědkowanja',
 'doubleredirectstext' => 'Tuta strona nalistuje strony, kotrež k druhim daleposrědkowanskim stronam dale posrědkuja.
@@ -2012,6 +2029,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'mostrevisions' => 'Nastawki z najwjace wersijemi',
 'prefixindex' => 'Wšě strony z prefiksom',
 'prefixindex-namespace' => 'Wšě strony z prefiksom (mjenowy rum $1)',
+'prefixindex-strip' => 'Prefiks w lisćinje wotrězać',
 'shortpages' => 'Krótke nastawki',
 'longpages' => 'Dołhe nastawki',
 'deadendpages' => 'Nastawki bjez wotkazow',
@@ -2245,7 +2263,7 @@ Staj so z wobdźěłarjom do zwiska:
 e-mejl: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Njebudu žane druhe zdźělenki w padźe dalšich změnow, chibazo wopytaš tutu stronu.
+Njebudu žane druhe zdźělenki w padźe dalšeje aktiwity, chibazo wopytaš tutu stronu. mjeztym zo sy přizjewjeny.
 Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich wobkedźbowankach wróćo stajić.
 
 Twój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
@@ -2311,7 +2329,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Zjeće wobdźěłanja bě: \"''\$1''\".",
 'revertpage' => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
-'revertpage-nouser' => 'Staji změny wot (wužiwarske mjeno wotstronjene) na předchadnu wersiju wot [[User:$1|$1]] wróćo',
+'revertpage-nouser' => 'Změny su so wot schowaneho wužiwarja anulowali a předchadna wersija wužiwarja {{GENDER:$1|[[User:$1|$1]]}} je so wobnowiła',
 'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
 
 # Edit tokens
@@ -3545,7 +3563,7 @@ Tute wobkrućenski kod spadnje $4.',
 'confirmemail_body_set' => 'Něchtó, najskerje ty, wot IP-adresy $1,
 je e-mejlowu adresu konta "$2" na {{GRAMMAR:lokatiw|{{SITENAME}}}} na tutu adresu stajił.
 
-Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{SITENAME}}}} znowa aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
+Zo by wobkrućił, zo tute konto ći woprawdźe słuša a zo bychu so e-mejlowe funkcije na {{GRAMMAR:lokatiw|{{SITENAME}}}} aktiwizowali, wočiń tutón wotkaz w swojim wobhladowaku:
 
 $3
 
@@ -3753,7 +3771,7 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'tags' => 'Płaćiwe taflički změnow',
 'tag-filter' => 'Filter [[Special:Tags|tafličkow]]:',
 'tag-filter-submit' => 'Filter',
-'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Značka|Značce|Znački}]]: $2)',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Značka|Značce|Znački}}]]: $2)',
 'tags-title' => 'Taflički',
 'tags-intro' => 'Tuta strona nalistuje taflički, z kotrymiž softwara móže změnu markěrować a jich woznam.',
 'tags-tag' => 'Mjeno taflički',
@@ -3920,6 +3938,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'rotate-comment' => 'Wobraz wo $1 {{PLURAL:$1|stopjeń|stopnjej|stopnje|stopnjow}} w směrje časnika wjerćany',
 
 # Limit report
+'limitreport-title' => 'Profilowanske daty parsera:',
 'limitreport-cputime' => 'Časowe wužiwanje CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunda|sekundźe|sekundy|sekundow}}',
 'limitreport-walltime' => 'Wužiwanje woprawdźiteho časa',
@@ -3931,5 +3950,19 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'limitreport-templateargumentsize' => 'Wulkosć předłohoweho argumenta',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajtaj|bajty|bajtow}}',
 'limitreport-expansiondepth' => 'Najwyša ekspansijowa hłubokosć',
+'limitreport-expensivefunctioncount' => 'Ličba naročnych parserowych funkcijow',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Předłohi ekspandować',
+'expand_templates_intro' => 'Na tutej specialnej stronje móžeš tekst zapodać a wšitke do njeje zapřijate předłohi so rekursiwnje ekspanduja. Tež funkcije parsera kaž <code><nowiki>{{</nowiki>#language:...}}</code> a wariable kaž <code><nowiki>{{</nowiki>CURRENTDAY}}</code> so wuhódnočeja – faktisce wšo, štož steji mjezy dwójnymaj wopušatymaj spinkomaj.',
+'expand_templates_title' => 'Kontekstowy titul, za {{FULLPAGENAME}} atd.:',
+'expand_templates_input' => 'Tekst zapodać:',
+'expand_templates_output' => 'Wuslědk',
+'expand_templates_xml_output' => 'Wudaće XML',
+'expand_templates_ok' => 'W porjadku',
+'expand_templates_remove_comments' => 'Komentary wotstronić',
+'expand_templates_remove_nowiki' => 'Taflički <nowiki> we wuslědku potłóčić',
+'expand_templates_generate_xml' => 'Analyzowy štom XML pokazać',
+'expand_templates_preview' => 'Přehlad',
 
 );

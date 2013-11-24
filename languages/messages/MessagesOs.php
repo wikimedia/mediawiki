@@ -447,8 +447,6 @@ $1',
 'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => 'Ист æрцыд {{grammar:ablative|"$1"}}',
 'youhavenewmessages' => 'Райстай $1 ($2).',
-'newmessageslink' => 'ног фыстæгтæ',
-'newmessagesdifflink' => 'фæстаг ивд',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|Æндæр архайæгæй|$3 архайæгæй}} дæм $1 æрцыд ($2).',
 'youhavenewmessagesmanyusers' => 'Бирæ архайæгæй дæм $1 æрцыдис ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ног фыстæг|ног фыстæджытæ}}',
@@ -1073,7 +1071,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'preferences' => 'Уагæвæрдтæ',
 'mypreferences' => 'Уагæвæрдтæ',
 'prefs-edits' => 'Ивдтыты нымæц:',
-'prefsnologin' => 'Системæйы нæ дæ',
 'changepassword' => 'Пароль ивæн',
 'prefs-skin' => 'Цъар',
 'skin-preview' => 'Разæркаст',
@@ -1867,5 +1864,9 @@ $3',
 'duration-decades' => '$1 {{PLURAL:$1|дæсадз|дæсадзы}}',
 'duration-centuries' => '$1 {{PLURAL:$1|æнус|æнусы}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мин аз|мин азы}}',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Афтæ уæд!',
+'expand_templates_preview' => 'Разæркаст',
 
 );

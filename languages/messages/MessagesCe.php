@@ -594,8 +594,6 @@ $1',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Хьост — «$1»',
 'youhavenewmessages' => 'Хьуна кхечи $1 ($2).',
-'newmessageslink' => 'керла хаамаш',
-'newmessagesdifflink' => 'тӀаьххьара хийцамаш',
 'youhavenewmessagesfromusers' => 'Хьуна кхачанна $1 {{PLURAL:$3|$3 декъашхочунгара|$3 декъашхошкара|$3 декъашхошкара}} ($2).',
 'youhavenewmessagesmanyusers' => 'Хьона еъна $1 дукху декъашхошкар ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|керла хаам}}',
@@ -1360,6 +1358,7 @@ $1',
 'recentchanges-label-minor' => 'Хlара нисдинарг къастийна жимо долушсан',
 'recentchanges-label-bot' => 'ХӀара нисдар шаболх бечо дина',
 'recentchanges-label-unpatrolled' => 'ХӀара нисдар хӀинца цхьано патрулировать дина дац',
+'recentchanges-legend-newpage' => '$1 — керла агlо',
 'rcnote' => "{{PLURAL:$1|Тlаьххьара '''$1''' хийцам|Тlаьххьара '''$1''' хийцамаш|Тlаьххьара '''$1''' хийцамаш}} за '''$2''' {{PLURAL:$2|де|дийнахь|дийнахь}}, оцу хан чохь $5 $4.",
 'rcnotefrom' => "Лахахь гайтина тӀера '''$2''' хийцамаш ('''$1''' къезиг).",
 'rclistfrom' => 'Гайта хийцам оцу $1.',
@@ -2525,5 +2524,11 @@ PICT # тайп тайпан
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|байт|байташ}}',
 'limitreport-expansiondepth' => 'Шордаларан уггар йокха кӀоргалла',
 'limitreport-expensivefunctioncount' => 'АгӀона хӀоттам къасторан «еза» функцеш',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Кепаш схьаястар',
+'expand_templates_output' => 'Хилам',
+'expand_templates_remove_comments' => 'ДӀаяха комментареш',
+'expand_templates_preview' => 'Хьалха муха ю хьажа',
 
 );

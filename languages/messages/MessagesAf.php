@@ -483,8 +483,6 @@ $1",
 'ok' => 'OK',
 'retrievedfrom' => 'Ontsluit van "$1"',
 'youhavenewmessages' => 'U het $1 (sien $2).',
-'newmessageslink' => 'nuwe boodskappe',
-'newmessagesdifflink' => 'die laaste wysiging',
 'youhavenewmessagesfromusers' => "U het $1 van {{PLURAL:$3|'n ander gebruiker|$3 gebruikers}} ($2).",
 'youhavenewmessagesmanyusers' => 'U het $1 van baie gebruikers ($2).',
 'newmessageslinkplural' => "{{PLURAL:$1|'n nuwe boodskap|nuwe boodskappe}}",
@@ -1329,7 +1327,6 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'preferences' => 'Voorkeure',
 'mypreferences' => 'Voorkeure',
 'prefs-edits' => 'Aantal wysigings:',
-'prefsnologin' => 'Nie ingeteken nie',
 'changepassword' => 'Verander wagwoord',
 'prefs-skin' => 'Omslag',
 'skin-preview' => 'Voorskou',
@@ -1624,6 +1621,7 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'recentchanges-label-minor' => "Hierdie is 'n klein wysiging",
 'recentchanges-label-bot' => "Hierdie wysiging was deur 'n bot uitgevoer",
 'recentchanges-label-unpatrolled' => 'Die wysiging is nog nie gekontroleer nie',
+'recentchanges-legend-newpage' => '$1 - nuwe bladsy',
 'rcnote' => "Hier volg die laaste {{PLURAL:$1|'''$1''' wysiging|'''$1''' wysigings}} gedurende die afgelope {{PLURAL:$2|dag|'''$2''' dae}}, soos vanaf $4 om $5.",
 'rcnotefrom' => "Hier volg wysigings sedert '''$2''' (maksimum van '''$1''' word gewys).",
 'rclistfrom' => 'Vertoon wysigings vanaf $1',
@@ -4075,5 +4073,22 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|greep|grepe}}',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|greep|grepe}}',
 'limitreport-expansiondepth' => 'Hoogste uitbreidingsdiepte',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Brei sjablone uit',
+'expand_templates_intro' => 'Hierdie spesiale bladsy lees die invoerteks en vervang al die sjablone rekursief.
+Dit vervang ook ontlederfunksies soos
+<nowiki>{{</nowiki>#language:…}}, en veranderlikes soos
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash; omtrent alles tussen dubbele krulhakkies word vervang.
+Dit word gedoen deur die relevante funksies in die MediaWiki-ontleder te roep.',
+'expand_templates_title' => 'Kontekstitel, vir {{FULLPAGENAME}}, ensovoorts:',
+'expand_templates_input' => 'Invoerteks:',
+'expand_templates_output' => 'Resultaat',
+'expand_templates_xml_output' => 'XML-afvoer',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Verwyder kommentaar',
+'expand_templates_remove_nowiki' => 'Onderdruk <nowiki> etikette in die resultaat',
+'expand_templates_generate_xml' => 'Wys XML-ontledingsboom',
+'expand_templates_preview' => 'Voorskou',
 
 );

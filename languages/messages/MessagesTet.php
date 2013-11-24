@@ -256,8 +256,6 @@ $messages = array(
 'ok' => 'OK',
 'retrievedfrom' => 'Husi "$1"',
 'youhavenewmessages' => 'Ó iha $1 ($2).',
-'newmessageslink' => 'mensajen foun',
-'newmessagesdifflink' => 'diferensa foun liu hotu',
 'youhavenewmessagesmulti' => 'Ó iha mensajen foun sira iha $1',
 'editsection' => 'edita',
 'editold' => 'edita',
@@ -991,5 +989,8 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 
 # Search suggestions
 'searchsuggest-search' => 'Buka',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'OK',
 
 );

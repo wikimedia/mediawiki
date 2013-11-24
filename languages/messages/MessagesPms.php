@@ -316,12 +316,10 @@ $1",
 'ok' => 'Va bin',
 'retrievedfrom' => 'Pijàit da «$1»',
 'youhavenewmessages' => "A l'ha $1 ($2).",
-'newmessageslink' => 'ëd mëssagi neuv',
-'newmessagesdifflink' => 'ùltima modìfica',
 'youhavenewmessagesfromusers' => "A l'ha $1 da {{PLURAL:$3|n'autr utent|$3 utent}} ($2).",
 'youhavenewmessagesmanyusers' => "A l'ha $1 da vàire utent ($2).",
-'newmessageslinkplural' => '{{PLURAL:$1|un mëssagi neuv|$1 mëssagi neuv}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|ùltima modìfica|ùltime modìfiche}}',
+'newmessageslinkplural' => '{{PLURAL:$1|un mëssagi neuv|999=dij mëssagi neuv}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ùltima modìfica|999=ùltime modìfiche}}',
 'youhavenewmessagesmulti' => "A l'ha dij neuv mëssagi an $1",
 'editsection' => 'modifiché',
 'editold' => 'modifiché',
@@ -1168,7 +1166,6 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'preferences' => 'Mè gust',
 'mypreferences' => 'Gust',
 'prefs-edits' => 'Nùmer ëd modìfiche fàite:',
-'prefsnologin' => "A l'é ancó pa rintrà ant ël sistema",
 'prefsnologintext2' => "Për piasì, ch'a $1 për definì ij gust d'utent.",
 'changepassword' => 'Cangé la ciav',
 'prefs-skin' => 'Facia',
@@ -1471,6 +1468,7 @@ Costa anformassion a sarà pùblica.",
 'recentchanges-label-minor' => "Costa a l'é na modìfica cita",
 'recentchanges-label-bot' => "Sa modìfica a l'é stàita fàita da un trigomiro",
 'recentchanges-label-unpatrolled' => "Sta modìfica-sì a l'é pa ancó stàita verificà",
+'recentchanges-legend-newpage' => '$1 - pàgina neuva',
 'rcnote' => "Ambelessì sota a-i {{PLURAL:$1|é '''1''' modìfica|son j'ùltime '''$1''' modìfiche}} ant j'ùltim {{PLURAL:$2|di|'''$2''' di}}, a parte da $5 dël $4.",
 'rcnotefrom' => ' Ambelessì sota a-i é la lista dle modìfiche da <b>$2</b> (fin-a a <b>$1</b>).',
 'rclistfrom' => 'Mostré le modìfiche a parte da $1',
@@ -3959,5 +3957,22 @@ Dësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà gi
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => "Pi granda përfondità d'espansion",
 'limitreport-expensivefunctioncount' => "Cont ëd le fonsion d'anàlisi care",
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Anàlisi djë stamp',
+'expand_templates_intro' => "Sta pàgina special-sì a pija dël test e a-i fa n'anàlisi arcorenta ëd tuti jë stamp ch'a l'ha andrinta.
+A l'analisa ëdcò le fonsion anterpretà coma
+<code><nowiki>{{</nowiki>#language:…}}</code>, e le variàbij coma
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+An efet, a espand praticament tut lòn ch'a-i é antrames dle grafe dobie.",
+'expand_templates_title' => 'Tìtol ëd contest për {{FULLPAGENAME}} e via fòrt:',
+'expand_templates_input' => 'Test da analisé:',
+'expand_templates_output' => 'Arzultà',
+'expand_templates_xml_output' => 'Output an XML',
+'expand_templates_ok' => 'Bin parèj',
+'expand_templates_remove_comments' => 'Gava via ij coment',
+'expand_templates_remove_nowiki' => "Gava ij tag <nowiki> ant l'arzultà",
+'expand_templates_generate_xml' => "Mosta l'erbo ëd parse XML",
+'expand_templates_preview' => 'Preuva',
 
 );

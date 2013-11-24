@@ -588,8 +588,6 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'ok' => 'OK',
 'retrievedfrom' => 'A lap eredeti címe: „$1”',
 'youhavenewmessages' => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
-'newmessageslink' => 'új üzenet vár',
-'newmessagesdifflink' => 'az utolsó üzenetet',
 'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
 'youhavenewmessagesmanyusers' => '$2 kaptál több szerkesztőtől $1.',
 'newmessageslinkplural' => '{{PLURAL:$1||}}a vitalapodon',
@@ -1405,7 +1403,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'preferences' => 'Beállítások',
 'mypreferences' => 'Beállítások',
 'prefs-edits' => 'Szerkesztéseid száma:',
-'prefsnologin' => 'Nem jelentkeztél be',
 'changepassword' => 'Jelszócsere',
 'prefs-skin' => 'Felület',
 'skin-preview' => 'előnézet',
@@ -1686,6 +1683,7 @@ A műveletet nem lehet visszavonni.',
 'recentchanges-label-minor' => 'Ez egy apró szerkesztés',
 'recentchanges-label-bot' => 'Ezt a szerkesztést egy bot hajtotta végre',
 'recentchanges-label-unpatrolled' => 'Ezt a szerkesztést még nem ellenőrizték',
+'recentchanges-legend-newpage' => '$1 – új lap',
 'rcnote' => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' nap utolsó '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának időpontja $4, $5.",
 'rcnotefrom' => 'Alább a <b>$2</b> óta történt változtatások láthatóak (<b>$1</b> db).',
 'rclistfrom' => '$1 után történt változtatások megtekintése',
@@ -4067,5 +4065,19 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 
 # Image rotation
 'rotate-comment' => 'Elforgattam a képet $1 fokkal, az óramutató járásával megegyező irányban',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Sablonok kibontása',
+'expand_templates_intro' => 'Ez a speciális lap a bevitt szövegekben megkeresi a sablonokat és rekurzívan kibontja őket.
+Kibontja az elemző függvényeket (pl. <nowiki>{{</nowiki>#language:...}}), és a változókat (pl. <nowiki>{{</nowiki>CURRENTDAY}}) is – mindent, ami a kettős kapcsos zárójelek között van.',
+'expand_templates_title' => 'Szöveg címe, például {{FULLPAGENAME}} sablonhoz:',
+'expand_templates_input' => 'Vizsgálandó szöveg',
+'expand_templates_output' => 'Eredmény',
+'expand_templates_xml_output' => 'XML kimenet',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Megjegyzések eltávolítása',
+'expand_templates_remove_nowiki' => '<nowiki> tagek mellőzése az eredményben',
+'expand_templates_generate_xml' => 'XML elemzési fa mutatása',
+'expand_templates_preview' => 'Előnézet',
 
 );

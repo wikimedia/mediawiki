@@ -489,17 +489,17 @@ $messages = array(
 'vector-action-undelete' => 'Esterıtışi peyser bıgê',
 'vector-action-unprotect' => 'Starkerdışi bıvurne',
 'vector-simplesearch-preference' => 'Çuweya cı geyreyış de rehater aktiv ke (Tenya vector skin de)',
-'vector-view-create' => 'İycad ke',
-'vector-view-edit' => 'Timar ke',
-'vector-view-history' => 'Veréni bıvin',
-'vector-view-view' => 'Buwan',
-'vector-view-viewsource' => 'Çımi bıvin',
+'vector-view-create' => 'Qeyd bike',
+'vector-view-edit' => 'Binusî',
+'vector-view-history' => 'Versîyonê Verênî',
+'vector-view-view' => 'Biwanî',
+'vector-view-viewsource' => 'Çimeyî Bivînî',
 'actions' => 'Hereketi',
 'namespaces' => 'Cayê namey',
 'variants' => 'Varyanti',
 
 'navigation-heading' => 'Menuya Navigasyoni',
-'errorpagetitle' => 'Ğeta',
+'errorpagetitle' => 'Heta',
 'returnto' => 'Peyser şo $1.',
 'tagline' => '{{SITENAME}} ra',
 'help' => 'Desteg',
@@ -513,9 +513,9 @@ $messages = array(
 'printableversion' => 'Asayışê çapkerdışi',
 'permalink' => 'Gıreyo jûqere',
 'print' => 'Nusten ke',
-'view' => 'Bıvin',
+'view' => 'Bivînî',
 'edit' => 'Bıvurnên',
-'create' => 'İycad ke',
+'create' => 'Binusî',
 'editthispage' => 'Ena pele bıvurne',
 'create-this-page' => 'Na pele bınuse',
 'delete' => 'Bestere',
@@ -597,12 +597,10 @@ $1',
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => '"$1" ra ard',
 'youhavenewmessages' => 'To rê $1 esto ($2).',
-'newmessageslink' => 'mesacê şıma',
-'newmessagesdifflink' => 'vurnayışo peyên',
 'youhavenewmessagesfromusers' => 'Zey $1 ra {{PLURAL:$3|zewbi karber|$3 karberi}} ($2) esto.',
 'youhavenewmessagesmanyusers' => '$1 ra tay karberi ($2) dı estê.',
-'newmessageslinkplural' => '{{PLURAL:$1|yew mesac|mesacê newey}}',
-'newmessagesdifflinkplural' => 'peyni {{PLURAL:$1|vurnayış|vurnayışi}}',
+'newmessageslinkplural' => '{{PLURAL:$1|zew mesac|999=mesacê newey}}',
+'newmessagesdifflinkplural' => 'Peyén {{PLURAL:$1|vurnayış|999=vurnayışi}}',
 'youhavenewmessagesmulti' => '$1 mesaco newe esto',
 'editsection' => 'bıvurne',
 'editold' => 'bıvurne',
@@ -729,7 +727,7 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 'invalidtitle-knownnamespace' => 'Canemey "$2" u metnê "$3" xırabo',
 'invalidtitle-unknownnamespace' => 'Sernameye nêşınasiya yana amraiya canameyo  $1 u metno "$2" xırab',
 'exception-nologin' => 'Şıma cıkewtış nêvıraşto',
-'exception-nologin-text' => 'Na pele ya zi nê karkerdışi rê nê wiki de cıkewtış icab keno.',
+'exception-nologin-text' => 'Na pera ya zi na karkerdışi de  na wiki de [[Special:Userlogin|cıkewtış]] icab keno.',
 
 # Virus scanner
 'virus-badscanner' => "Eyaro şaş: no virus-cıgerayox nêzanyeno: ''$1''",
@@ -740,7 +738,7 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 'logouttext' => "'''Şıma hesabra newke vicyay.'''
 
 Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de hesabe şıma akerde aseno.",
-'welcomeuser' => 'Ğeyr amey, $1!',
+'welcomeuser' => 'Xeyr amey, $1!',
 'welcomecreation-msg' => 'Hesabê şıma abiyo.
 [[Special:Preferences|{{SITENAME}} vurnayişê tercihanê xo]], xo vir ra mekere.',
 'yourname' => 'Nameyê karberi:',
@@ -776,7 +774,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'gotaccount' => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink' => 'Cı kewe',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
-'userlogin-resetpassword-link' => 'To parola ke ğo vira?',
+'userlogin-resetpassword-link' => 'To parola ke xo vira?',
 'helplogin-url' => 'Help:Qeydbiyayış',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Desteg be qeydbiyayış ra]]',
 'userlogin-createanother' => 'Zewbi hesab vıraz',
@@ -1427,7 +1425,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'preferences' => 'Tercihi',
 'mypreferences' => 'Tercihi',
 'prefs-edits' => 'Amarê vurnayışan:',
-'prefsnologin' => 'Şıma cıkewtış nêvıraşto',
 'changepassword' => 'Parola bıvurne',
 'prefs-skin' => 'Çerme',
 'skin-preview' => 'Verasayış',
@@ -1720,6 +1717,7 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'recentchanges-label-minor' => 'Eno yew vurnayışo qıckeko',
 'recentchanges-label-bot' => 'Yew boti xo het ra no vurnayış vıraşto',
 'recentchanges-label-unpatrolled' => 'Eno vurnayış hewna dewriya nêbiyo',
+'recentchanges-legend-newpage' => '$1 - pela newi',
 'rcnote' => "Bıni dı  {{PLURAL:$2|roc|'''$2''' rocan}}  ra {{PLURAL:$1|'''1''' vurnayış|'''$1''' vurnayışi}} éyé cér de yé , $5 ra hetana $4.",
 'rcnotefrom' => "Cêr de '''$2''' ra nata vurnayışiyê asenê (tewr vêşi <b> '''$1'''</b> asenê).",
 'rclistfrom' => '$1 ra tepya vırnayışané newan bıasne',
@@ -2435,14 +2433,12 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni.',
 'enotif_anon_editor' => 'karbero anonim $1',
 'enotif_body' => 'Erciyayê $WATCHINGUSERNAME,
 
-{{SITENAME}} keyepel de no $PAGETITLE pelo sernameyın re $PAGEEDITDATE no tarix de $PAGEEDITOR no karberi $CHANGEDORCREATED. şıma eşkeni bıresi halê no peli re $PAGETITLE_URL na adresi ra.
+$PAGEINTRO $NEWPAGE
 
-$NEWPAGE
+eniya timaroği: $PAGESUMMARY $PAGEMINOREDIT
 
-beyanatê karber o ke vurnayiş kerdo: $PAGESUMMARY $PAGEMINOREDIT
-
-cıresayişê karber o ke vurnayiş kerdo:
-e-posta: $PAGEEDITOR_EMAIL
+Timaroğiya irtibat:
+mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 no pel o ke behs beno heta ziyaret kerdışê yewna heli, mesajê vuriyayişi nêşawiyeno.
@@ -4154,9 +4150,9 @@ enê programiya piya [{{SERVER}}{{SCRIPTPATH}}/COPYING jew kopyay lisans dê GNU
 
 # Special:SpecialPages
 'specialpages' => 'Pelê xısusiy',
-'specialpages-note' => '* Xısusi pelaya normal
-* <span class="mw-specialpagerestricted">Xısusi peleyê keı rê ray nê deyaya.</span>
-* <strong class="mw-specialpagerestricted">Peleya xısusiya ke grota verhefıza.</strong>',
+'specialpages-note-top' => 'Lecand',
+'specialpages-note' => '*Normal pera bağsi.
+* <span class="mw-specialpagerestricted">Peré bağseyé ke groté ver hafıza.</span>',
 'specialpages-group-maintenance' => 'Raporê tepıştışi',
 'specialpages-group-other' => 'Pelê xasiyê bini',
 'specialpages-group-login' => 'Cı kewe / hesab vıraze',
@@ -4367,5 +4363,22 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bayt|bayti}}',
 'limitreport-expansiondepth' => 'Tewr veşi herayina dergbiyayışi',
 'limitreport-expensivefunctioncount' => 'Amoriya fonksiyonde vay agozni',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'şablonan hêra ker',
+'expand_templates_intro' => 'Na pela xususi metın geno u şablonê ke tedeyê reyna reyna hêra keno.
+U hem zi nê fonksiyonan hêra keno
+<nowiki>{{</nowiki>#language:…}}</code>, u zey nê parametreyan
+<nowiki>{{</nowiki>CURRENTDAY}}</code>
+Eneri Medya wiki sera xo keno.',
+'expand_templates_title' => 'Sernameyê weziyeti, misal qandê {{FULLPAGENAME}}.:',
+'expand_templates_input' => 'sernameyê cıkewtışi:',
+'expand_templates_output' => 'netice',
+'expand_templates_xml_output' => 'XML vıraştış',
+'expand_templates_ok' => 'temam',
+'expand_templates_remove_comments' => 'Tefsiran wedare',
+'expand_templates_remove_nowiki' => 'neticeyan de etiketê <nowiki> yan çap bıker',
+'expand_templates_generate_xml' => 'Dara XML arêdayoği bımocne',
+'expand_templates_preview' => 'Verqayt',
 
 );

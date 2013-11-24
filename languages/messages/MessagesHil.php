@@ -277,8 +277,6 @@ Lantawa ang [[Special:Version|panid sang mga bersiyon]].',
 'ok' => 'Sige',
 'retrievedfrom' => 'Ginkuha halin sa "$1"',
 'youhavenewmessages' => 'Ikaw may $1 ($2).',
-'newmessageslink' => 'mga bag-ong mensahe',
-'newmessagesdifflink' => 'nagligad nga ginbag-o',
 'youhavenewmessagesfromusers' => 'May yara ka sang $1 halin sa {{PLURAL:$3|lain nga manuggamit|$3 mga manuggamit}} ($2).',
 'youhavenewmessagesmanyusers' => 'May yara ka sang $1 halin sa madamo nga manuggamit ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|isa ka bag-o nga mensahe|bag-o nga mga mensahe}}',
@@ -1094,7 +1092,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'preferences' => 'Mga Ginabasehan',
 'mypreferences' => 'Mga Ginabasehan',
 'prefs-edits' => 'Numero sang mga gin-ilisan:',
-'prefsnologin' => 'Wala naka-sulod',
 'changepassword' => 'Ilisan ang pasword',
 'prefs-skin' => 'Panit',
 'skin-preview' => 'Ipakita subong',
@@ -1930,5 +1927,8 @@ Ang iban ay pagataguon sang default.
 'revdelete-restricted' => 'ginapatuman nga pagbawal sa mga administrador',
 'revdelete-unrestricted' => 'ginkakas nga pagbawal sa mga administrador',
 'rightsnone' => '(wala)',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'Ipakita subong',
 
 );

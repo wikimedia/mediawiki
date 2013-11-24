@@ -597,8 +597,6 @@ $1',
 'ok' => 'Ek!',
 'retrievedfrom' => 'Elŝutita el  "$1"',
 'youhavenewmessages' => 'Por vi estas $1 ($2).',
-'newmessageslink' => 'novaj mesaĝoj',
-'newmessagesdifflink' => 'ŝanĝoj kompare kun antaŭlasta versio',
 'youhavenewmessagesfromusers' => 'Riceviĝis $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).',
 'youhavenewmessagesmanyusers' => 'Riceviĝis $1 de multaj uzantoj ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|novaj mesaĝoj}}',
@@ -1441,7 +1439,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'preferences' => 'Preferoj',
 'mypreferences' => 'Preferoj',
 'prefs-edits' => 'Nombro de redaktoj:',
-'prefsnologin' => 'Ne jam salutis!',
 'changepassword' => 'Ŝanĝi pasvorton',
 'prefs-skin' => 'Etoso',
 'skin-preview' => 'Antaŭrigardo',
@@ -1730,6 +1727,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchanges-label-minor' => 'Ĉi tiu estas eta redakto',
 'recentchanges-label-bot' => 'Ĉi tiu redakto estis farita per roboto.',
 'recentchanges-label-unpatrolled' => 'Ĉi tiu redakto ne jam estis patrolata.',
+'recentchanges-legend-newpage' => '$1 - nova paĝo',
 'rcnote' => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $5, $4.",
 'rcnotefrom' => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
 'rclistfrom' => 'Montri novajn ŝanĝojn ekde "$1"',
@@ -4172,5 +4170,21 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-decades' => '$1 {{PLURAL:$1|jardeko|jardekoj}}',
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Ampleksigi ŝablonojn',
+'expand_templates_intro' => 'Ĉi tiu speciala paĝo traktas tekston kaj ampleksigas ĉiujn ŝablonojn en ĝi rekursie.
+Ĝi ankaŭ ampleksigas sintaksajn funkciojn kiel
+<code><nowiki>{{</nowiki>#language:…}}</code> kaj variablojn kiel
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>. Fakte preskaŭ iujn ajn en duoblaj krampoj.',
+'expand_templates_title' => 'Kunteksta titolo, por {{FULLPAGENAME}}, ktp.:',
+'expand_templates_input' => 'Enigita teksto:',
+'expand_templates_output' => 'Rezulto',
+'expand_templates_xml_output' => 'XML-eligo',
+'expand_templates_ok' => 'Ek!',
+'expand_templates_remove_comments' => 'Forigi komentojn',
+'expand_templates_remove_nowiki' => 'Nuligi <nowiki> etikedojn en rezulto',
+'expand_templates_generate_xml' => 'Montri XML-sintaksarbon',
+'expand_templates_preview' => 'Antaŭrigardo',
 
 );

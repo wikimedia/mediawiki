@@ -333,12 +333,10 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => 'Zdrzůdło "$1"',
 'youhavenewmessages' => 'Mosz $1 ($2).',
-'newmessageslink' => 'nowe powjadůmjyńa',
-'newmessagesdifflink' => 'uostatńe pomjyńyńy',
 'youhavenewmessagesfromusers' => 'Mosz $1 uod {{PLURAL:$3|inszygo używocza|$3 używoczy}} ($2).',
 'youhavenewmessagesmanyusers' => 'Mosz $1 uod wjelu używoczy ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|jydno nowina|nowiny}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|uostatńe sprowjyńe|uostatńe sprowjyńa}}',
+'newmessageslinkplural' => '{{PLURAL:$1|jedno nowina|999=nowiny}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|uostatńe sprowjyńe|999=uostatńe sprowjyńa}}',
 'youhavenewmessagesmulti' => 'Mosz nowe powjadůmjyńa: $1',
 'editsection' => 'Sprowjej',
 'editold' => 'sprowjej',
@@ -456,7 +454,7 @@ Powůd zawarćo: ''$2''.",
 Administrator kery zawarł wćepał kůmyntorz: "$3".',
 'invalidtitle-knownnamespace' => 'Felerne mjano "$3" w przestrzeńy "$2".',
 'exception-nologin' => 'Ńy jest żeś zalogůwany',
-'exception-nologin-text' => 'Ta zajta abo akcyja wymogo byćo zalogůwanym na tyj wiki.',
+'exception-nologin-text' => 'Prosza [[Special:Userlogin|zaloguj śe]] coby mjeć mogebność przejśćo do tyj zajty abo akcyji.',
 
 # Virus scanner
 'virus-badscanner' => "Felerno konfiguracyjo – ńyznany skaner antywirusowy ''$1''",
@@ -739,7 +737,9 @@ Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśćach inkszyc
 'previewnote' => "'''To je ino podglůnd - artikel jeszcze ńy je spamjyntany!'''",
 'continue-editing' => 'Przyndź do pola sprowjańo',
 'previewconflict' => 'Wersyjo podglůndano uodnośi śe do tekstu ze pola edycyje na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecydujesz śe jům naszkryflać.',
-'session_fail_preview' => "'''Przepraszomy! Serwer ńy może przetworzić tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj jeszcze roz. Kejby to ńy pomogło - wyloguj śe a zalogůj uod nowa.'''",
+'session_fail_preview' => "'''Pozůr! Serwer ńy może przetworzić tyj edycyji, beztuż co dane sesyji uostoły utracůne.
+Poprůbuj jeszcze roz.
+Eli to tyż ńy do podpory – [[Special:UserLogout|wyloguj śe]] a zaloguj jeszcze roz.'''",
 'session_fail_preview_html' => "'''Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.'''
 
 ''Jako iže na {{GRAMMAR:MS.lp|{{SITENAME}}}} wuůnčono zostoua uopcyjo \"raw HTML\", podglůnd zostou schrůńony coby zabezpječyć před atakami JavaScript.''
@@ -751,11 +751,12 @@ Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśćach inkszyc
 'editingsection' => 'Sprowjosz $1 (sekcyjo)',
 'editingcomment' => 'Sprowjosz "$1" (nowy kůmyntorz)',
 'editconflict' => 'Kůnflikt sprowjyń: $1',
-'explainconflict' => "Ktoś zdůnžyu wćepać swoja wersyjo artikla ńim žeś naškryflou sprowjyńy.
-We polu edycyji na wjyrchu moš tekst zajty aktůalńy naškryflany w baźe danych.
-Twoje pomjyńańo sům we polu edycyji půnižyj.
-By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
-'''Tylko''' tekst z pola na wjyrchu bydźe naškryflany we baźe jak wciśńeš \"{{int:savearticle}}\".",
+'explainconflict' => "Ftoś zdůnżůł wćepać swoja wersyjo artikla ńim żeś naszkryflou sprowjyńy.
+We polu edycyji na wjyrchu mosz tekst zajty aktuelńy naszkryflany we baźe danych.
+Twoje pomjyńańo sům we polu edycyji půńiżyj.
+By wćepać swoje pomjyńańo muśisz pomjyńać tekst we polu na wjyrchu.
+'''Ino''' tekst ze pola na wjyrchu bydźe naszkryflany we baźe jak 
+wciśńesz knefel \"{{int:savearticle}}\".",
 'yourtext' => 'Twůj tekst',
 'storedversion' => 'Naszkryflano wersyjo',
 'nonunicodebrowser' => "'''Pozůr! Twoja přeglůndorka ńy umje poprowńy rozpoznować kodowańo UTF-8 (Unicode). Bestož wšyjske znoki, kerych Twoja přeglůndorka ńy umje rozpoznować, zamjeńůno na jejich kody heksadecymalne.'''",
@@ -777,25 +778,25 @@ Uostotńy wpis w rejerze je ńyżej.",
 'cascadeprotectedwarning' => "'''Dej pozůr:''' Ta zajta zostoła zawarto a ino użytkowńicy ze uprawńyńami admińistratora mogům jům sprowjać. Zajta ta je podpjynto pod {{PLURAL:$1|nastympujůnco zajta, kero zostoła zawarto|nastympujůncych zajtach, kere zostouy zawarte}} ze załůnczonům uopcjům dźedźiczyńo:",
 'titleprotectedwarning' => "'''Dej pozůr: Zajta uo tym titlu zostoła zawarto a ino [[Special:ListGroupRights|ńykerzi użytkowńicy]] mogům jům wćepać.'''
 Uostatńy wpis z rejera je ńyżej.",
-'templatesused' => '{{PLURAL:$1|Szablon|Szablůny}} użyte na tyj zajće:',
-'templatesusedpreview' => '{{PLURAL:$1|Szablon|Szablůny}} użyte na tyj zajće:',
-'templatesusedsection' => '{{PLURAL:$1|Szablon|Szablůny}} użyte w tyj tajli:',
+'templatesused' => '{{PLURAL:$1|Muster|Mustry}} użyte na tyj zajće:',
+'templatesusedpreview' => '{{PLURAL:$1|Muster|Mustry}} użyte na tyj zajće:',
+'templatesusedsection' => '{{PLURAL:$1|Szablon|Szablůny}} użyte we tyj tajli:',
 'template-protected' => '(zawrzity uod sprowjańo)',
 'template-semiprotected' => '(tajlowo zawarte)',
-'hiddencategories' => 'Ta zajta je {{PLURAL:$1|w jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
+'hiddencategories' => 'Ta zajta je {{PLURAL:$1|we jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
 'nocreatetext' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno.
 Možeš sprowjać te co juž sům, abo [[Special:UserLogin|zalogować śe, abo zauožyć konto]].',
-'nocreate-loggedin' => 'Ńy moš uprowńyń do twořyńo nowych zajtůw.',
+'nocreate-loggedin' => 'Ńy mosz uprowńyń do tworzyńo nowych zajtůw.',
 'sectioneditnotsupported-title' => 'Sprowjańy tajli ńymogebne',
 'sectioneditnotsupported-text' => 'Sprowjańy tajli ńymogebne na tyj zajće.',
 'permissionserrors' => 'Felerne uprawńyńo',
-'permissionserrorstext' => 'Ńy moš uprowńyń do takij akcyje {{PLURAL:$1|skuli tego, co:|bestůž, co:}}',
+'permissionserrorstext' => 'Ńy mosz uprowńyń do takij akcyje {{PLURAL:$1|skuli tego, co:|bestůż, co:}}',
 'permissionserrorstext-withaction' => 'Ńy mogesz $2, ze {{PLURAL:$1|takigo powodu|takich powodůw}}:',
 'recreate-moveddeleted-warn' => "'''ůostrzeżyńy: Wćepujesz samo zajta, kery bůu poprzedńo wyćepany.'''
 
 Zastanůw śe, czy powinno śe go sam wćepywać.
 Rejer wyćepań tyj zajty je podany půńiżej, cobyś mioł wygoda:",
-'moveddeleted-notice' => 'Ta zajta zostoua wyćepńynto. Rejer wyćepań tyj zajty je pokozany půńižyj.',
+'moveddeleted-notice' => 'Ta zajta zostoła wyćepńynto. Rejer wyćepań tyj zajty je pokozany půńiżyj.',
 'log-fulllog' => 'Ukoż rejer',
 'edit-hook-aborted' => 'Sprowjyńy štopńynte skiž hoka.
 Ńy je wjadůme pů jakymu.',
@@ -893,8 +894,8 @@ Inkśi admińistratorzi {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-hide-user' => 'Schrůń mjano użytkowńika/adres IP',
 'revdelete-hide-restricted' => 'Schrůń informacyje zarůwno przed admińistratorůma jak i przed inkszymi',
 'revdelete-radio-same' => '(byz pomjyń)',
-'revdelete-radio-set' => 'Ja',
-'revdelete-radio-unset' => 'Ńy',
+'revdelete-radio-set' => 'Zakryty',
+'revdelete-radio-unset' => 'Widoczny',
 'revdelete-suppress' => 'Schrůń informacyje zarůwno před admińistratorůma jak i před inkšymi',
 'revdelete-unsuppress' => 'Usůń uograńičyńo lo wćepanej nazod historyje pomjyńań',
 'revdelete-log' => 'Czymu:',
@@ -1034,7 +1035,6 @@ $1',
 'preferences' => 'Preferyncyje',
 'mypreferences' => 'Preferyncyje',
 'prefs-edits' => 'Liczba sprowjyń:',
-'prefsnologin' => 'Ńy ježeś zalůgowany',
 'changepassword' => 'Zmjana hasua',
 'prefs-skin' => 'Skůrka',
 'skin-preview' => 'podglůnd',
@@ -1097,7 +1097,7 @@ $1',
 'prefs-files' => 'Pliki',
 'youremail' => 'E-brif:',
 'username' => '{{GENDER:$1|Mjano używocza}}:',
-'uid' => 'ID używocza:',
+'uid' => '{{GENDER:$1|ID używocza}}:',
 'prefs-memberingroups' => 'Należy do {{PLURAL:$1|grupy|grup:}}',
 'prefs-registration' => 'Czas twůrzyńa kůnta:',
 'yourrealname' => 'Prawdźiwe mjano',
@@ -2365,7 +2365,7 @@ $1',
 'file-info-size' => '$1 × $2 pikselůw, wjelgość plika: $3, zorta MIME: $4',
 'file-nohires' => 'Wjynksze wymjyry ńy sům dostympne',
 'svg-long-desc' => 'Plik SVG, nůminalńe $1 × $2 pixelůw, rozmior plika: $3',
-'show-big-image' => 'Pełne wymjyry',
+'show-big-image' => 'Pjyrwy wymjor',
 
 # Special:NewFiles
 'newimages' => 'Galerjo nowych uobrozkůw',
@@ -2859,5 +2859,8 @@ Možeš tyž [[Special:EditWatchlist|užyć standardowygo edytora]].',
 'revdelete-restricted' => 'naštaluj uograničyńo do administratorůw',
 'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
 'rightsnone' => 'podstawowo',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'OK',
 
 );

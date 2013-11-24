@@ -666,11 +666,9 @@ $1",
 'ok' => 'Valider',
 'retrievedfrom' => 'Récupérée de « $1 »',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
-'newmessageslink' => 'de nouveaux messages',
-'newmessagesdifflink' => 'dernière modification',
 'youhavenewmessagesfromusers' => "Vous avez $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
 'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|un message|de nouveaux messages}}',
+'newmessageslinkplural' => '{{PLURAL:$1|un nouveau message|de nouveaux messages}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|dernière modification|dernières modifications}}',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection' => 'modifier',
@@ -765,7 +763,7 @@ Aucune explication n'a été fournie.",
 'badtitle' => 'Mauvais titre',
 'badtitletext' => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal formé. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
-'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois à $1. Un maximum de {{PLURAL:$4|un résultat|$4 résultats}} est disponible dans le cache.',
+'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois le $1. Un maximum de {{PLURAL:$4|un résultat est disponible|$4 résultats sont disponibles}} dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
 'wrong_wfQuery_params' => 'Paramètres incorrects sur wfQuery()<br />
 Fonction : $1<br />
@@ -1508,7 +1506,6 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'preferences' => 'Préférences',
 'mypreferences' => 'Préférences',
 'prefs-edits' => 'Nombre de modifications :',
-'prefsnologin' => 'Non connecté',
 'prefsnologintext2' => 'Veuillez $1 pour définir les préférences utilisateur.',
 'changepassword' => 'Changer de mot de passe',
 'prefs-skin' => 'Habillage',
@@ -1808,6 +1805,7 @@ Cette information sera publique.',
 'recentchanges-label-minor' => 'Cette modification est mineure',
 'recentchanges-label-bot' => 'Cette modification a été effectuée par un robot.',
 'recentchanges-label-unpatrolled' => "Cette modification n'a pas encore été patrouillée.",
+'recentchanges-legend-newpage' => '$1 - nouvelle page',
 'rcnote' => "Voici {{PLURAL:$1|la dernière modification effectuée|les $1 dernières modifications effectuées}} durant {{PLURAL:$2|la dernière journée|les <b>$2</b> derniers jours}} jusqu'à $5 le $4.",
 'rcnotefrom' => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
 'rclistfrom' => 'Afficher les nouvelles modifications depuis le $1.',
@@ -4368,5 +4366,22 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|octet|octets}}',
 'limitreport-expansiondepth' => 'Plus grande profondeur d’expansion',
 'limitreport-expensivefunctioncount' => 'Nombre de fonctions d’analyse coûteuses',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expansion des modèles',
+'expand_templates_intro' => "Cette page spéciale accepte un texte wiki source et permet de réaliser récursivement l’expansion des modèles qu’il contient.
+Elle réalise aussi l’expansion des fonctions du parseur telles que
+<code><nowiki>{{</nowiki>#language:...}}</code> et des variables telles que
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+En fait, elle réalise l'expansion de pratiquement tout ce qui est encadré par des doubles accolades.",
+'expand_templates_title' => 'Titre de la page, si le code utilise {{FULLPAGENAME}}, etc. :',
+'expand_templates_input' => 'Texte wiki source :',
+'expand_templates_output' => 'Texte wiki obtenu après expansion',
+'expand_templates_xml_output' => 'Résultat intermédiaire de l’analyse, au format XML',
+'expand_templates_ok' => 'Valider',
+'expand_templates_remove_comments' => 'Supprimer les commentaires',
+'expand_templates_remove_nowiki' => 'Supprime les marqueurs <nowiki> dans le résultat',
+'expand_templates_generate_xml' => 'Voir l’arborescence d’analyse XML',
+'expand_templates_preview' => 'Aperçu du rendu',
 
 );

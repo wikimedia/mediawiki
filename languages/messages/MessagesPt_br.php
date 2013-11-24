@@ -602,8 +602,6 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'ok' => 'OK',
 'retrievedfrom' => 'Disponível em "$1"',
 'youhavenewmessages' => 'Você tem $1 ($2).',
-'newmessageslink' => 'novas mensagens',
-'newmessagesdifflink' => 'última alteração',
 'youhavenewmessagesfromusers' => 'Você tem $1 de {{PLURAL:$3|outro usuário|$3 usuários}} ($2)',
 'youhavenewmessagesmanyusers' => 'Você tem $1 de muitos usuários ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
@@ -1462,7 +1460,6 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'preferences' => 'Preferências',
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
-'prefsnologin' => 'Não autenticado',
 'changepassword' => 'Alterar senha',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Pré-visualização',
@@ -1761,6 +1758,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-minor' => 'Esta é uma edição menor',
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
+'recentchanges-legend-newpage' => '$1 - nova página',
 'rcnote' => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
@@ -4223,5 +4221,22 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
 'limitreport-expensivefunctioncount' => 'Conta da função expansiva do analizador',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expandir predefinições',
+'expand_templates_intro' => 'Esta página especial pega algum texto e expande todas as predefinições nela existentes recursivamente. 
+Também expande funções do analisador (parser) como 
+<code><nowiki>{{</nowiki>#language:…}}</code>, e variáveis como 
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Na verdade, expande tudo que está entre chaves duplas.',
+'expand_templates_title' => 'Título de contexto para {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Texto de entrada:',
+'expand_templates_output' => 'Resultado',
+'expand_templates_xml_output' => 'Resultado XML',
+'expand_templates_ok' => 'Expandir',
+'expand_templates_remove_comments' => 'Remover comentários',
+'expand_templates_remove_nowiki' => 'Suprima marcações <nowiki> no resultado',
+'expand_templates_generate_xml' => 'Mostrar árvore de análise (parse) do XML',
+'expand_templates_preview' => 'Pré-visualização',
 
 );

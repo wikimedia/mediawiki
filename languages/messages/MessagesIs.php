@@ -507,8 +507,6 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'ok' => 'Í lagi',
 'retrievedfrom' => 'Sótt frá „$1“',
 'youhavenewmessages' => 'Þú hefur fengið $1 ($2).',
-'newmessageslink' => 'ný skilaboð',
-'newmessagesdifflink' => 'síðasta breyting',
 'youhavenewmessagesfromusers' => 'Þú hefur $1 frá {{PLURAL:$3|öðrum notanda|$3 notendum}} ($2)',
 'youhavenewmessagesmanyusers' => 'Þú hefur $1 frá mörgum notendum ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|ein|}} ný skilaboð',
@@ -1356,7 +1354,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'preferences' => 'Stillingar',
 'mypreferences' => 'Mínar stillingar',
 'prefs-edits' => 'Fjöldi breytinga:',
-'prefsnologin' => 'Ekki innskráður',
 'changepassword' => 'Breyta lykilorði',
 'prefs-skin' => 'Þema',
 'skin-preview' => 'Forskoða',
@@ -1652,6 +1649,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',
 'recentchanges-label-bot' => 'Þessi breytingar var gerð af vélmenni',
 'recentchanges-label-unpatrolled' => 'Þessi breyting hefur ekki verið yfirfarin',
+'recentchanges-legend-newpage' => '$1 - ný síða',
 'rcnote' => "Að neðan {{PLURAL:$1|er '''1''' breyting|eru síðustu '''$1''' breytingar}} síðast {{PLURAL:$2|liðinn dag|liðna '''$2''' daga}}, frá $5, $4.",
 'rcnotefrom' => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",
 'rclistfrom' => 'Sýna breytingar frá og með $1',
@@ -3711,6 +3709,9 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.',
 'confirm-unwatch-button' => 'Í lagi',
 'confirm-unwatch-top' => 'Fjarlægja þessa síðu af vaktlistanum þínum?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '„$1”',
+
 # Multipage image navigation
 'imgmultipageprev' => '← fyrri síða',
 'imgmultipagenext' => 'næsta síða →',
@@ -4023,5 +4024,13 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 # Limit report
 'limitreport-walltime' => 'Rauntímanotkun',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekúnda|sekúndur}}',
+
+# Special:ExpandTemplates
+'expand_templates_input' => 'Inntakstexti:',
+'expand_templates_output' => 'Útkoma',
+'expand_templates_xml_output' => 'XML-úttak',
+'expand_templates_ok' => 'Í lagi',
+'expand_templates_remove_comments' => 'Fjarlægja athugasemdir',
+'expand_templates_preview' => 'Forskoða',
 
 );

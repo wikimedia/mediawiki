@@ -251,8 +251,6 @@ $1',
 'ok' => 'خوئه',
 'retrievedfrom' => 'بازيافته د"$1"',
 'youhavenewmessages' => 'شما داريت $1($2)',
-'newmessageslink' => 'پيغوما تازه',
-'newmessagesdifflink' => 'آلشت آخری',
 'youhavenewmessagesmanyusers' => 'شما $1 د خيلی كاروريا داريت ($2).',
 'newmessagesdifflinkplural' => 'آخر {{PLURAL:$1|change|changes}}',
 'youhavenewmessagesmulti' => 'شما یه گل پیغوم تازه د $1 داریتو',
@@ -430,6 +428,8 @@ $1',
 # Special:PasswordReset
 'passwordreset-legend' => 'د نۈ وارد كردن رمز',
 'passwordreset-username' => 'نوم كاروری:',
+'passwordreset-domain' => 'پوشگیر',
+'passwordreset-capture' => 'ایمیل نتیجه نه بوینیتو؟',
 'passwordreset-email' => 'نشونی ايميل',
 'passwordreset-emailsent' => 'پاسورد هنی سی ایمیل کل بیه.',
 
@@ -439,6 +439,7 @@ $1',
 'changeemail-oldemail' => 'نشونی ایمیل تازه باو:',
 'changeemail-newemail' => 'نشونی ایمیل تازه',
 'changeemail-none' => '(هيش كوم)',
+'changeemail-password' => 'شما {{SITENAME}} پاسورد:',
 'changeemail-submit' => 'آلشت کردن ایمیل',
 'changeemail-cancel' => 'رد كردن',
 
@@ -512,6 +513,7 @@ $1',
 پاک بیئن و جمشت سی ای بلگه سی راحتی تو فراهم بیه:",
 'moveddeleted-notice' => 'ای بلگه پاک بیه.
 پاک بین و جمشت ای بلگه سی سرچشمه دئین فراهم بیه',
+'edit-conflict' => 'مخالفت نه ویرایشت بکید',
 'postedit-confirmation' => 'ویرایشتتو ذخیره بی',
 
 # Content models
@@ -554,14 +556,17 @@ $2',
 'rev-delundel' => 'آلشت وضئيت ديئن',
 'rev-showdeleted' => 'نشو دائن',
 'revdelete-show-file-submit' => 'هری',
-'revdelete-radio-set' => 'هری',
-'revdelete-radio-unset' => 'نه',
+'revdelete-hide-comment' => 'چکسه نه ویرایشت بکید',
+'revdelete-radio-same' => 'آلشت نکید',
+'revdelete-radio-set' => 'قام بیه',
+'revdelete-radio-unset' => 'دیینی',
 'revdelete-log' => 'دلیل:',
 'revdel-restore' => 'آلشت وضئيت ديئن',
 'revdel-restore-deleted' => 'پاك كردن مراجعيا',
 'revdel-restore-visible' => 'مراجعات ديئنی',
 'pagehist' => 'ويرگار بلگه',
 'deletedhist' => 'ویرگار پاک بیه',
+'revdelete-otherreason' => 'دلیل هنی:',
 'revdelete-reasonotherlist' => 'دلیل هنی',
 'revdelete-edit-reasonlist' => 'دلیلیا پاک کردنه نه ویرایشت بکید',
 
@@ -585,6 +590,7 @@ $2',
 'searchresults' => 'نتيجه يا پی جوری',
 'searchresults-title' => 'نتيجه يا پی جوری سی "$1"',
 'searchsubtitleinvalid' => 'شما پی جوریت سی',
+'titlematches' => 'عنوان بلگه مطاوقت داره',
 'prevn' => 'وادما {{PLURAL:$1|$1}}',
 'nextn' => 'نيايی {{PLURAL:$1|$1}}',
 'prevn-title' => 'پيشتر $1 {{PLURAL:$1|نتيجه|نتيجيا}}',
@@ -627,21 +633,27 @@ $2',
 'preferences' => 'خصوصيات هنی',
 'mypreferences' => 'خصوصيات هنی',
 'prefs-edits' => 'شماره ویرایشتا:',
-'prefsnologin' => 'نبوئه وارد بوئيد',
 'changepassword' => 'پاسورد نه آلشت بكيت',
 'prefs-skin' => 'پوست',
 'skin-preview' => 'پیش سیل',
+'prefs-datetime' => 'وخت و زمون',
+'prefs-user-pages' => 'بلگیا كارور',
+'prefs-personal' => 'پروفایل کارور',
+'prefs-rc' => 'آلشتیا تازه باو',
 'prefs-watchlist' => 'سیل برگ',
 'prefs-misc' => 'شيوسن',
 'prefs-resetpass' => 'پاسورد نه آلشت بكيت',
+'prefs-changeemail' => 'نشونی ایمیل تو نه آلشت بکید',
 'saveprefs' => 'ذخيره كردن',
 'prefs-editing' => 'د حالت ويرايشت',
 'rows' => 'رديفيا:',
 'columns' => 'ستينا:',
 'searchresultshead' => 'پی جوری',
+'stub-threshold-disabled' => 'د كار ونن',
 'timezonelegend' => 'وخت راساگه',
 'localtime' => 'وخت ولاتی:',
 'timezoneuseserverdefault' => 'وخت راساگه',
+'timezoneoffset' => 'آفست:',
 'servertime' => 'وخت سرور:',
 'timezoneregion-africa' => 'افرقا',
 'timezoneregion-america' => 'امركا',
@@ -660,14 +672,17 @@ $2',
 'youremail' => 'ايميل:',
 'yourrealname' => 'نوم راستكی:',
 'yourlanguage' => 'زون:',
+'yournick' => 'امضا تازه:',
 'email' => 'پیومک برقی',
 'prefs-help-email' => 'نشونی ایمیل اختیاری هئ.اما سی بازجست پاسورد دش نیاز بوئه.شما باید پاسوردتونه د ویر بوریت',
 'prefs-help-email-others' => 'شما می تونید سی پیوند گرتن تو وا نهایین ایمیل مئن یه هوم پیوند د بلگه کاروری یا بلگه چک چنه تو انتخاو بکید.
 نشونی ایمیلتو وختی که کاروریا هنی وا تو پیوند می گرن دیار نی.',
 'prefs-editor' => 'ويرايشتگر',
 'prefs-preview' => 'پیش سیل',
+'prefs-diffs' => 'فرخیا',
 
 # User rights
+'userrights-user-editname' => 'نوم كاروری ته وارد كو',
 'userrights-reason' => 'دليل:',
 
 # Groups
@@ -680,9 +695,14 @@ $2',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ای بلگه نه ويرايشت بكيد',
+'action-delete' => 'ای بلگه نه پاک کو',
+'action-deleterevision' => 'ای بازدئین پاک کو',
+'action-undelete' => 'ای بلگه نه پاک نکو',
+'action-sendemail' => 'ایمیلیانه کل کو',
 
 # Recent changes
 'nchanges' => '$1 {{جمی:$1|آلشت|آلشتیا}}',
+'enhancedrc-history' => 'ويرگار',
 'recentchanges' => 'تغيريا تازه',
 'recentchanges-legend' => 'گزينه يا آلشتيا تازه',
 'recentchanges-feed-description' => 'دو بیشتر آلشتیا تازباو نه د ویکی که ها د هوال حون پیگری کو.',
@@ -707,6 +727,7 @@ $2',
 'minoreditletter' => 'م',
 'newpageletter' => 'ن',
 'boteditletter' => 'ب',
+'rc_categories_any' => 'هرکوم',
 'rc-enhanced-expand' => 'جزيات نشون بيئه',
 'rc-enhanced-hide' => 'جزياته قام كو',
 
@@ -722,16 +743,37 @@ $2',
 # Upload
 'upload' => 'بلم گير كردن فايلا',
 'uploadlogpage' => 'سوارکرد',
+'filename' => 'نوم فایل',
 'filedesc' => 'چكسته',
+'fileuploadsummary' => 'چکسه',
+'filesource' => 'سرچشمه:',
 'uploadedimage' => 'سوارکرد"[[$1]]"',
+'upload-source' => 'سرچشمه فایل',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'دسرسی منع بی',
 
 'license' => 'ليانس دار بيئن',
 'license-header' => 'د شكل ليسانس دار بيئن',
+
+# Special:ListFiles
+'imgfile' => 'فايل',
+'listfiles_thumb' => 'بن کلکی',
+'listfiles_date' => 'تاريخ',
+'listfiles_name' => 'نوم',
+'listfiles_user' => 'كارور',
+'listfiles_size' => 'انازه',
+'listfiles_count' => 'نسقیا',
+'listfiles-latestversion' => 'نسقه تازه',
+'listfiles-latestversion-yes' => 'هری',
+'listfiles-latestversion-no' => 'نه',
 
 # File description page
 'file-anchor-link' => 'فايل',
 'filehist' => 'ويرگار فايل',
 'filehist-help' => 'ری  ويرگاريا بپورنيت تا نسقه مرتوط بونيت.',
+'filehist-deleteall' => 'همه نه پاک کو',
+'filehist-deleteone' => 'پاك كردن',
 'filehist-revert' => 'ورگنین',
 'filehist-current' => 'تازه باو',
 'filehist-datetime' => 'ويرگار/وخت',
@@ -739,6 +781,7 @@ $2',
 'filehist-thumbtext' => 'كؤچك كردن سی  نسقه چی $1',
 'filehist-user' => 'كارور',
 'filehist-dimensions' => 'بعديا',
+'filehist-filesize' => 'انازه فایل',
 'filehist-comment' => 'نظر',
 'imagelinks' => 'استفاده د فايل',
 'linkstoimage' => 'دمال بيه {{PLURAL:$1|ديس ونيا بلگه|$1 ديس ون بلگيا}} دای فایل:',
@@ -746,11 +789,34 @@ $2',
 'sharedupload-desc-here' => 'فایلی که د $1 شایت د مئن پروجیا هنی استفاده بیه.
 توضی دباره[$2 file description page] د هار نشو دئئه بیه',
 
+# File deletion
+'filedelete-comment' => 'دليل:',
+'filedelete-submit' => 'پاك كردن',
+
+# MIME search
+'download' => 'گرتن',
+
+# Unused templates
+'unusedtemplateswlh' => 'هوم پیوندیا هنی',
+
 # Random page
 'randompage' => 'بلگه بختكی',
 
+# Random page in category
+'randomincategory-selectcategory-submit' => 'رو',
+
 # Statistics
 'statistics' => 'آماريا',
+'statistics-pages' => 'بلگیا',
+'statistics-users-active' => 'کاروریا کارکو',
+
+'pageswithprop-submit' => 'رو',
+
+'brokenredirects-edit' => 'ویرایشت',
+'brokenredirects-delete' => 'پاك كردن',
+
+'withoutinterwiki-legend' => 'پیشون',
+'withoutinterwiki-submit' => 'نشون دائن',
 
 # Miscellaneous special pages
 'nbytes' => '$1{{PLURAL:$1|كلی|بايت|بايت}}',

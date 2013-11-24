@@ -454,8 +454,6 @@ $1',
 'ok' => 'Mat eo',
 'retrievedfrom' => 'Adtapet diwar « $1 »',
 'youhavenewmessages' => "$1 zo ganeoc'h ($2).",
-'newmessageslink' => 'Kemennoù nevez',
-'newmessagesdifflink' => "Diforc'hioù e-keñver ar stumm kent",
 'youhavenewmessagesfromusers' => '$1 ho peus eus {{PLURAL:$3|un implijer all|$3 implijer}} ($2).',
 'youhavenewmessagesmanyusers' => ' $1 ho peus implijerien a-leizh  ($2).',
 'newmessageslinkplural' => "{{PLURAL:$1ur c'hemennad nevez|kemennadoù nevez}}",
@@ -1288,7 +1286,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'preferences' => 'Penndibaboù',
 'mypreferences' => 'Penndibaboù',
 'prefs-edits' => 'Niver a zegasadennoù :',
-'prefsnologin' => 'Digevreet',
 'changepassword' => 'Kemmañ ar ger-tremen',
 'prefs-skin' => 'Gwiskadur',
 'skin-preview' => 'Rakwelet',
@@ -1581,6 +1578,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-minor' => "Ur c'hemm dister eo hemañ",
 'recentchanges-label-bot' => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-label-unpatrolled' => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
+'recentchanges-legend-newpage' => '$1 - pajenn nevez',
 'rcnote' => "Setu aze an {{PLURAL:$1|'''1''' change|'''$1''' kemm diwezhañ}} bet c'hoarvezet e-pad an {{PLURAL:$2|deiz|'''$2''' deiz}} diwezhañ, savet d'an $4 da $5.",
 'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
@@ -4032,5 +4030,22 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|okted}}',
 'limitreport-templateargumentsize' => 'Ment arguzenn ar patrom',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|okted}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Emled ar patromoù',
+'expand_templates_intro' => "Kemer a ra ar bajenn dibar-mañ tammoù testenn hag astenn a ra an holl batromoù enni en un doare azkizat.
+Astenn a ra ivez an arc'hwelioù parser evel
+<nowiki>{{</nowiki>#language:…}}, hag an argemmoù evel
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash; e gwirionez, koulz lavaret kement tra zo etre briataennoù.
+Ober a ra kement-mañ dre c'hervel ar bazenn a zegouezh digant parser MediaWiki e-unan.",
+'expand_templates_title' => 'Titl ar gendestenn, evit {{FULLPAGENAME}} h.a. :',
+'expand_templates_input' => 'Merkañ ho testenn amañ :',
+'expand_templates_output' => "Disoc'h",
+'expand_templates_xml_output' => 'Ezvont XML',
+'expand_templates_ok' => 'Mat eo',
+'expand_templates_remove_comments' => 'Lemel an notennoù kuit',
+'expand_templates_remove_nowiki' => "Diverkañ a ra ar balizennoù <nowiki> en disoc'h",
+'expand_templates_generate_xml' => 'Gwelet ar gwezennadur XML',
+'expand_templates_preview' => 'Rakwelet',
 
 );

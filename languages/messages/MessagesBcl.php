@@ -370,8 +370,6 @@ $1',
 'ok' => 'Sige',
 'retrievedfrom' => 'Pinaghugot gikan sa "$1"',
 'youhavenewmessages' => 'Ika igwa nin $1 ($2).',
-'newmessageslink' => 'bàgong mga mensahe',
-'newmessagesdifflink' => 'huring kaliwatan',
 'youhavenewmessagesfromusers' => 'Ika igwa nin $1 gikan sa {{PLURAL:$3|ibang paragamit|$3 mga paragamit}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ika igwa nin $1 gikan sa kadakol na mga paragamit ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|sarong bagong mensahe|bagong mga mensahe}}',
@@ -1230,7 +1228,6 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'preferences' => 'Mga kabòtan',
 'mypreferences' => 'Mga Kamuyahan ko',
 'prefs-edits' => 'Bilang kan mga hirá:',
-'prefsnologin' => 'Dai nakalaog',
 'changepassword' => 'Ribayan an sekretong panlaog',
 'prefs-skin' => "''Skin''",
 'skin-preview' => 'Tânawon',
@@ -3972,5 +3969,10 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'limitreport-templateargumentsize-value' => '$1/$2{{PLURAL:$2|bayta|mga bayta}}',
 'limitreport-expansiondepth' => 'Kinatugmadan kan pinakahalangkaw na kahiwasan',
 'limitreport-expensivefunctioncount' => 'Bilang kan hiro nin mamahalon na parabangay',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Resulta',
+'expand_templates_remove_comments' => 'Tanggalon an mga komento',
+'expand_templates_preview' => 'Patânaw',
 
 );

@@ -386,8 +386,6 @@ $1',
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Didapek dari "$1"',
 'youhavenewmessages' => 'Sanak punyo $1 ($2).',
-'newmessageslink' => 'pasan baru',
-'newmessagesdifflink' => 'parubahan tarakhia',
 'youhavenewmessagesfromusers' => 'Sanak mandapek $1 dari {{PLURAL:$3|$3 pangguno}} ($2)',
 'youhavenewmessagesmanyusers' => 'Sanak mandapek $1 dari banyak pangguno ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|pasan baru}}',
@@ -1157,7 +1155,6 @@ Ingek indeks Google untuak {{SITENAME}} mungkin lah kadaluarsa.',
 'preferences' => 'Pangaturan',
 'mypreferences' => 'Pangaturan',
 'prefs-edits' => 'Jumlah suntiangan:',
-'prefsnologin' => 'Alun masuak log',
 'changepassword' => 'Tuka kato sandi',
 'prefs-skin' => 'Kulik',
 'skin-preview' => 'Caliak',
@@ -2647,5 +2644,14 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 
 # Image rotation
 'rotate-comment' => 'Gambar diputa $1 {{PLURAL:$1|darajaik}} saarah jarum jam',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Pangambangan templat',
+'expand_templates_input' => 'Teks masuakan:',
+'expand_templates_output' => 'Hasil',
+'expand_templates_xml_output' => 'Hasil XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Hapuih komentar',
+'expand_templates_preview' => 'Pratonton',
 
 );

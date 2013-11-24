@@ -594,8 +594,6 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'ok' => 'OK',
 'retrievedfrom' => 'Obtida de "$1"',
 'youhavenewmessages' => 'Tem $1 ($2).',
-'newmessageslink' => 'mensagens novas',
-'newmessagesdifflink' => 'comparar com a penúltima revisão',
 'youhavenewmessagesfromusers' => 'Tem $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tem $1 de muitos utilizadores ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
@@ -1470,7 +1468,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'preferences' => 'Preferências',
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
-'prefsnologin' => 'Não autenticado',
 'changepassword' => 'Alterar palavra-chave',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Antever tema',
@@ -1771,6 +1768,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-minor' => 'Esta é uma edição menor',
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
+'recentchanges-legend-newpage' => '$1 - página nova',
 'rcnote' => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
@@ -4242,5 +4240,22 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Tamanho dos argumentos da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Expandir predefinições',
+'expand_templates_intro' => "Esta página especial recebe um texto e expande recursivamente todas as predefinições nele existentes.
+Também expande funções do analisador sintático ''(parser)'', tais como
+<nowiki>{{</nowiki>#language:...}}, e variáveis, tais como
+<nowiki>{{</nowiki>CURRENTDAY}}.
+De fato, expande tudo o que estiver entre chaves duplas.",
+'expand_templates_title' => 'Título de contexto para {{FULLPAGENAME}} etc.:',
+'expand_templates_input' => 'Texto a expandir:',
+'expand_templates_output' => 'Resultado',
+'expand_templates_xml_output' => 'Resultado XML',
+'expand_templates_ok' => 'Expandir',
+'expand_templates_remove_comments' => 'Remover comentários',
+'expand_templates_remove_nowiki' => "Suprimir ''tags'' <nowiki> no resultado",
+'expand_templates_generate_xml' => 'Mostrar a árvore de análise sintáctica do XML',
+'expand_templates_preview' => 'Antevisão do resultado',
 
 );

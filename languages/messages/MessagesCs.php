@@ -637,12 +637,10 @@ $1',
 'pagetitle' => '$1 – {{SITENAME}}',
 'retrievedfrom' => 'Citováno z „$1“',
 'youhavenewmessages' => 'Máte $1 ($2).',
-'newmessageslink' => 'nové zprávy',
-'newmessagesdifflink' => 'rozdíl oproti předchozí verzi',
 'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|jiného uživatele|$3 jiných uživatelů}} ($2).',
 'youhavenewmessagesmanyusers' => 'Máte $1 od mnoha dalších uživatelů ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|novou zprávu|nové zprávy}}',
-'newmessagesdifflinkplural' => 'poslední {{PLURAL:$1|změna|změny}}',
+'newmessageslinkplural' => '{{PLURAL:$1|novou zprávu|999=nové zprávy}}',
+'newmessagesdifflinkplural' => 'poslední {{PLURAL:$1|změna|999=změny}}',
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
 'editsection' => 'editovat',
 'editold' => 'editovat',
@@ -1482,7 +1480,6 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'preferences' => 'Nastavení',
 'mypreferences' => 'Nastavení',
 'prefs-edits' => 'Počet editací:',
-'prefsnologin' => 'Nejste přihlášen(a)!',
 'prefsnologintext2' => 'Pro změnu uživatelských nastavení se musíte $1.',
 'changepassword' => 'Změna hesla',
 'prefs-skin' => 'Vzhled',
@@ -1782,6 +1779,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'recentchanges-label-minor' => 'Toto je malá editace',
 'recentchanges-label-bot' => 'Tuto editaci provedl bot',
 'recentchanges-label-unpatrolled' => 'Tato změna dosud nebyla prověřena',
+'recentchanges-legend-newpage' => '$1 – nová stránka',
 'rcnote' => 'Níže {{plural:$1|je poslední|jsou poslední|je posledních}} <strong>$1</strong> {{plural:$1|změna|změny|změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <strong>$2</strong> {{plural:$2|den|dny|dnů}} před $4, $5.',
 'rcnotefrom' => 'Níže {{PLURAL:$1|je|jsou|je}} nejvýše <b>$1</b> {{PLURAL:$1|změna|změny|změn}} od <b>$2</b>.',
 'rclistfrom' => 'Ukázat nové změny, počínaje od $1',
@@ -4285,5 +4283,22 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajty|bajtů}}',
 'limitreport-expansiondepth' => 'Největší hloubka expanze',
 'limitreport-expensivefunctioncount' => 'Počet náročných funkcí parseru',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Substituce šablon',
+'expand_templates_intro' => 'Tato speciální stránka vezme text a rekurzivně rozbalí všechny použité šablony.
+Také rozbalí podporované funkce parseru jako
+<code><nowiki>{{</nowiki>#language:…}}</code> a proměnné jako
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+V podstatě rozbalí prakticky všechno v dvojitých složených závorkách.',
+'expand_templates_title' => 'Název stránky kvůli kontextu pro {{FULLPAGENAME}} apod.:',
+'expand_templates_input' => 'Vstupní text:',
+'expand_templates_output' => 'Výstup',
+'expand_templates_xml_output' => 'Výstup XML',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Odstranit komentáře',
+'expand_templates_remove_nowiki' => 'Potlačit ve výsledku značky <nowiki>',
+'expand_templates_generate_xml' => 'Zobrazit syntaktický strom v XML',
+'expand_templates_preview' => 'Náhled',
 
 );

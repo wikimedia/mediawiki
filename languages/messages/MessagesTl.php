@@ -422,8 +422,6 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Ikinuha mula sa "$1"',
 'youhavenewmessages' => 'Mayroon kang $1 ($2).',
-'newmessageslink' => 'mga bagong mensahe',
-'newmessagesdifflink' => 'huling pagbabago',
 'youhavenewmessagesfromusers' => 'Mayroon kang $1 magmula sa {{PLURAL:$3|ibang tagagamit|$3 mga tagagamit}} ($2).',
 'youhavenewmessagesmanyusers' => 'Mayroon kang $1 magmula sa maraming mga tagagamit ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|isang bagong mensahe|bagong mga mensahe}}',
@@ -1237,7 +1235,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'preferences' => 'Mga kagustuhan',
 'mypreferences' => 'Mga nais',
 'prefs-edits' => 'Bilang ng mga pagbabago:',
-'prefsnologin' => 'Hindi nakalagda/nakatala',
 'changepassword' => 'Baguhin ang hudyat',
 'prefs-skin' => 'Pabalat',
 'skin-preview' => 'Unang tingin',
@@ -1517,6 +1514,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'recentchanges-label-minor' => 'Isa itong munting pagbabago',
 'recentchanges-label-bot' => 'Gawa ng isang bot ang pagbabagong ito',
 'recentchanges-label-unpatrolled' => 'Hindi pa napapatrulyahan ang pagbabagong ito',
+'recentchanges-legend-newpage' => '$1 - bagong pahina',
 'rcnote' => "Nasa ibaba {{PLURAL:$1|ang '''1''' pagbabago|ang pinakahuling '''$1''' mga pagbabago}} sa huling {{PLURAL:$2|araw|'''$2''' mga araw}}, mula noong $5, $4.",
 'rcnotefrom' => "Nasa ibaba ang mga pagbabago mula pa noong '''$2''' (ipinapakita ang magpahanggang sa '''$1''').",
 'rclistfrom' => 'Ipakita ang bagong mga pagbabago simula sa $1',
@@ -4074,5 +4072,22 @@ O kaya, maaari mo ring gamitin ang pinadaling pormularyo sa ibaba.  Madadagdagan
 'duration-decades' => '$1 {{PLURAL:$1|dekada|mga dekada}}',
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Palaparin (palawakin) ang mga suleras',
+'expand_templates_intro' => 'Ang natatanging pahinang ito ay kumukuha ng ilang mga teksto at nagbubuka ng lahat ng mga suleras sa loob nito sa kaparaanang tinatawag ang sarili o rekursibo.
+Nagbubuka rin ito ng mga tungkuling pambanghay na katulad ng
+<nowiki>{{</nowiki>#kung:…}}, at pabagubagong mga halagang katulad ng
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Sa katunayan, pinabubuka nito ang halos lahat ng mga bagay-bagay na may dalawang mga bantas na pansalalay o brakete.',
+'expand_templates_title' => 'Pamagat na pampaunawa (ng konteksto), para sa {{FULLPAGENAME}} atbp.:',
+'expand_templates_input' => 'Tekstong ipinasok:',
+'expand_templates_output' => 'Kinalabasan',
+'expand_templates_xml_output' => 'kinalabasang XML',
+'expand_templates_ok' => "Sige/Ayos 'yan",
+'expand_templates_remove_comments' => 'Tanggalin ang mga puna (kumento)',
+'expand_templates_remove_nowiki' => 'Pigilin ang mga tatak na <nowiki> sa loob ng resulta',
+'expand_templates_generate_xml' => 'Ipakita ang puno na pambanghay ng XML',
+'expand_templates_preview' => 'Paunang tingin',
 
 );

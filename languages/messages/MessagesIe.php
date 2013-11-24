@@ -359,8 +359,6 @@ Vider [[Special:Version|págine de version]].',
 
 'retrievedfrom' => 'Recuperat de "$1"',
 'youhavenewmessages' => 'Vu have $1 ($2).',
-'newmessageslink' => 'nov missages',
-'newmessagesdifflink' => 'vider missages antiqui',
 'youhavenewmessagesmulti' => 'Vu have nov missages in $1',
 'editsection' => 'redacter',
 'editold' => 'redacter',
@@ -646,7 +644,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 # Preferences page
 'preferences' => 'Preferenties',
 'mypreferences' => 'Mi preferenties',
-'prefsnologin' => 'Vu ne ha intrat',
 'changepassword' => 'Modificar passa-parol',
 'skin-preview' => 'Prevision',
 'saveprefs' => 'Conservar',

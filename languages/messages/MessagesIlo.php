@@ -309,8 +309,6 @@ Kitaen ti [[Special:Version|panid ti bersion]].',
 'ok' => 'Sige',
 'retrievedfrom' => 'Naala manipud idiay "$1"',
 'youhavenewmessages' => 'Addaanka ti $1 ($2).',
-'newmessageslink' => 'dagiti baro a mensahe',
-'newmessagesdifflink' => 'naudi a sinukatan',
 'youhavenewmessagesfromusers' => 'Adda $1 manipud {{PLURAL:$3|ti sabali nga agar-aramat|kadagiti $3 a sabsabali nga agar-aramat}} ($2).',
 'youhavenewmessagesmanyusers' => 'Adda $1 manipud kadagiti adu nga agar-aramat ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|baro a mensahem|dagiti baro a mensahem}}',
@@ -1196,7 +1194,6 @@ Laglagipem laeng a dagiti pagsurotan nagyan ti {{SITENAME}} ket baka baak.',
 'preferences' => 'Kakaykayatan',
 'mypreferences' => 'Kakaykayatan',
 'prefs-edits' => 'Bilang dagiti inurnos:',
-'prefsnologin' => 'Saan a nakastrek',
 'changepassword' => 'Baliwan ti kontrasenias',
 'prefs-skin' => 'Kudil',
 'skin-preview' => 'Ipadas',
@@ -3953,5 +3950,22 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|a byte|kadagiti byte}}',
 'limitreport-expansiondepth' => 'Kangatuan a panagpadakkel ti kauneg',
 'limitreport-expensivefunctioncount' => 'Bilang ti nangina nga annong ti parser',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Palawaen dagiti plantilia',
+'expand_templates_intro' => 'Daytoy nga espesial a panid ket agala ti testo ken palawaenna amin dagiti plantilia iti unegna a minaig iti daytoy.
+Palawaenna pay dagiti nasuportaran a parser a pamay-an a kas ti
+<code><nowiki>{{</nowiki>#language:…}}</code> ken dagiti nadumaduma a kita a kas ti
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>. 
+Iti kinapudno, palawaenna amin dagiti adda ti doble a tukol.',
+'expand_templates_title' => 'Titulo ti kontesto, para iti {{FULLPAGENAME}} kdpy.:',
+'expand_templates_input' => 'Maikabil a testo:',
+'expand_templates_output' => 'Nagbanagan',
+'expand_templates_xml_output' => 'XML a maiparang',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Ikkaten dagiti komentario',
+'expand_templates_remove_nowiki' => 'Parmeken dagiti <nowiki> nga etiketa kadagiti nagbanagan',
+'expand_templates_generate_xml' => 'Iparang ti XML parse a kayo',
+'expand_templates_preview' => 'Pamadasan',
 
 );

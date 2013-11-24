@@ -303,8 +303,6 @@ $1',
 'ok' => 'Gerā',
 'retrievedfrom' => 'Gautė ėš „$1“',
 'youhavenewmessages' => 'Tamsta toret $1 ($2).',
-'newmessageslink' => 'naujū žėnotiu',
-'newmessagesdifflink' => 'paskotinis pakeitėms',
 'youhavenewmessagesmulti' => 'Toret naujū žėnotiu $1',
 'editsection' => 'taisītė',
 'editold' => 'taisītė',
@@ -760,7 +758,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'preferences' => 'Nustatīmā',
 'mypreferences' => 'Mona nustatīmā',
 'prefs-edits' => 'Keitėmu skaitlius:',
-'prefsnologin' => 'Naprisėjongis',
 'changepassword' => 'Pakeistė slaptažuodė',
 'prefs-skin' => 'Ėšruoda',
 'skin-preview' => 'Parveiza',
@@ -1940,5 +1937,8 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'logentry-newusers-create2' => '$1 padėrba nauduotuojė paskīra $3',
 'logentry-newusers-autocreate' => 'Paskīra $1 bova padėrbta autuomatėškā',
 'rightsnone' => '(juokiū)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Ėšskeistė šabluonus',
 
 );

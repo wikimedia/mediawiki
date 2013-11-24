@@ -303,8 +303,6 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'backlinksubtitle' => '← $1',
 'retrievedfrom' => 'Pigghjete da "$1"',
 'youhavenewmessages' => 'Tu tine $1 ($2).',
-'newmessageslink' => 'messàgge nuève',
-'newmessagesdifflink' => 'urteme cangiaminde',
 'youhavenewmessagesfromusers' => "Tu è $1 da {{PLURAL:$3|'n'otre utende|$3 utinde}} ($2).",
 'youhavenewmessagesmanyusers' => 'Tu è $1 da assaije utinde ($2).',
 'newmessageslinkplural' => "{{PLURAL:$1|'nu messàgge nuève|messàgge nuève}}",
@@ -1187,7 +1185,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'preferences' => 'Me piece accussì',
 'mypreferences' => 'Me piace accussì',
 'prefs-edits' => 'Numere de cangiaminde:',
-'prefsnologin' => 'Non ge sinde colleghete',
 'changepassword' => "Cange 'a password",
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Andeprime',
@@ -1489,6 +1486,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchanges-label-minor' => "Quiste ète 'nu cangiamende stuèdeche",
 'recentchanges-label-bot' => "Stu cangiamende ha state fatte da 'nu bot",
 'recentchanges-label-unpatrolled' => "Stu cangiamende non g'à state angore condrollate",
+'recentchanges-legend-newpage' => '$1 - pàgena nove',
 'rcnote' => "Sotte {{PLURAL:$1|jè '''1''' cangiamende|sonde le urteme '''$1''' cangiaminde}} jndr'à l'urteme{{PLURAL:$2|sciurne|'''$2''' sciurne}}, jndr'à $5, $4.",
 'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' (fine a '''$1''' mustrete).",
 'rclistfrom' => 'Fà vedè le urteme cangiaminde partenne da $1',
@@ -4191,5 +4189,22 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-expansiondepth' => 'Espanzione massime de profonnetà',
 'limitreport-expensivefunctioncount' => "Analizzatore d'u cunde d'a funzione ca coste assaije",
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Template spannute',
+'expand_templates_intro' => "Sta pàgena speciale pigghie quacche teste e spanne tutte le template jndr'à jidde recorsivamende.<br />
+Jidde spanne pure le funziune de analise cumme<br />
+<code><nowiki>{{</nowiki>#language:…}}</code>, e variabbele cumme <br />
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.<br />
+In pratiche tutte quidde ca stè jndr'à le doppie parendesi graffe.<br />",
+'expand_templates_title' => 'Titele condestuale, pe {{FULLPAGENAME}} ecc.:',
+'expand_templates_input' => 'Teste de input:',
+'expand_templates_output' => 'Resultete',
+'expand_templates_xml_output' => 'XML de output',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Live le commende',
+'expand_templates_remove_nowiki' => "No fà vede le tag <nowiki> jndr'à 'u resultate",
+'expand_templates_generate_xml' => "Fà vedè l'arvule de l'analisi XML",
+'expand_templates_preview' => 'Andeprime',
 
 );

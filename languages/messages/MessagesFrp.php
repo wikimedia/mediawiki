@@ -582,8 +582,6 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 'ok' => 'D’acôrd',
 'retrievedfrom' => 'Rècupèrâye de « $1 »',
 'youhavenewmessages' => 'Vos éd de $1 ($2).',
-'newmessageslink' => 'mèssâjos novéls',
-'newmessagesdifflink' => 'dèrriér changement',
 'youhavenewmessagesfromusers' => 'Vos éd $1 {{PLURAL:$3|d’un ôtr’utilisator|de $3 ôtros utilisators}} ($2).',
 'youhavenewmessagesmanyusers' => 'Vos éd $1 d’un mouél d’utilisators ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un mèssâjo novél|de mèssâjos novéls}}',
@@ -1448,7 +1446,6 @@ Notâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'preferences' => 'Prèferences',
 'mypreferences' => 'Prèferences',
 'prefs-edits' => 'Nombro de changements :',
-'prefsnologin' => 'Pas branchiê',
 'changepassword' => 'Changiér lo contresegno',
 'prefs-skin' => 'Habelyâjo',
 'skin-preview' => 'Prèvêre',
@@ -1724,6 +1721,7 @@ Se vos chouèsésséd de lo balyér, serat empleyê por vos atribuar voutres ôv
 'recentchanges-label-minor' => 'O est un petiôt changement',
 'recentchanges-label-bot' => 'Ceti changement est étâ fêt per un robot',
 'recentchanges-label-unpatrolled' => 'Ceti changement est p’oncor étâ gouardâ',
+'recentchanges-legend-newpage' => '$1 - pâge novèla',
 'rcnote' => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|lo jorn passâ|los '''$2''' jorns passâs}} tant qu’a $5 lo $4.",
 'rcnotefrom' => "Vê-que los changements fêts dês lo '''$2''' (tant qu’a '''$1''' montrâs).",
 'rclistfrom' => 'Montrar los novéls changements dês lo $1',
@@ -4209,5 +4207,22 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 'duration-decades' => '$1 dècèni{{PLURAL:$1|a|es}}',
 'duration-centuries' => '$1 sièclo{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Èxpension des modèlos',
+'expand_templates_intro' => 'Ceta pâge spèciâla accèpte un vouiquitèxto sôrsa et pèrmèt de rèalisar rècursivament l’èxpension des modèlos que contint.
+Rèalise asse-ben l’èxpension de les fonccions du parsor coment
+<code><nowiki>{{</nowiki>#language:...<nowiki>}}</nowiki></code> et de les variâbles prèdèfenies coment
+<code><nowiki>{{</nowiki>CURRENTDAY<nowiki>}}</nowiki></code> — en veré praticament tot cen qu’est encâdrâ per des dobles colâdes.
+Rèalise cen en apelent los étâjos succèssifs que vont avouéc du parsor de MediaWiki lui-mémo.',
+'expand_templates_title' => 'Titro de la pâge, se lo code utilise {{FULLPAGENAME}}, etc. :',
+'expand_templates_input' => 'Vouiquitèxto sôrsa :',
+'expand_templates_output' => 'Rèsultat',
+'expand_templates_xml_output' => 'Rèsultat u format XML',
+'expand_templates_ok' => 'D’acôrd',
+'expand_templates_remove_comments' => 'Suprimar los comentèros',
+'expand_templates_remove_nowiki' => 'Suprime les balises <nowiki> dens lo rèsultat',
+'expand_templates_generate_xml' => 'Fâre vêre l’âbro du parsor u format XML',
+'expand_templates_preview' => 'Prèvisualisacion du rendu',
 
 );

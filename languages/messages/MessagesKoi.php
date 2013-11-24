@@ -165,8 +165,6 @@ $messages = array(
 
 'retrievedfrom' => 'Öшмöс "$1"',
 'youhavenewmessages' => 'Тэныт локтiс $1 ($2).',
-'newmessageslink' => 'виль юöррез',
-'newmessagesdifflink' => 'медбöрьяись вильмöтöм',
 'youhavenewmessagesmulti' => '$1 юкöтын тэ понда мыйкö эм',
 'editsection' => 'мöдкодьсьöтны',
 'editold' => 'мöдкодьсьöтны',

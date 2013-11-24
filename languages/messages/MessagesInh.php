@@ -264,8 +264,6 @@ $messages = array(
 'ok' => 'ХӀаа',
 'retrievedfrom' => '"$1" ГӀувам',
 'youhavenewmessages' => 'Оаш $1 ($2) дӀайийцад',
-'newmessageslink' => 'керда хоамаш',
-'newmessagesdifflink' => 'тӀехьара хувцамаш',
 'youhavenewmessagesmulti' => 'Оаш $1чу керда хоамаш дӀайийцад',
 'editsection' => 'хувца',
 'editold' => 'хувца',
@@ -555,7 +553,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Оттамаш',
 'mypreferences' => 'Оттамаш',
-'prefsnologin' => 'Шо чудаьнна дац',
 'changepassword' => 'КъайладIоaгIа дIахувцар',
 'prefs-skin' => 'БIагала куц',
 'skin-preview' => 'Хьажа',

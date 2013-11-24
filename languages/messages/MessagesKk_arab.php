@@ -606,8 +606,6 @@ $messages = array(
 'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => '«$1» بەتىنەن الىنعان',
 'youhavenewmessages' => 'سىزگە $1 بار ($2).',
-'newmessageslink' => 'جاڭا حابارلار',
-'newmessagesdifflink' => 'سوڭعى وزگەرىسىنە',
 'youhavenewmessagesmulti' => '$1 دەگەندە جاڭا حابارلار بار',
 'editsection' => 'وڭدەۋ',
 'editold' => 'وڭدەۋ',
@@ -1127,7 +1125,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'preferences' => 'باپتالىمدار',
 'mypreferences' => 'باپتالىمدارىم',
 'prefs-edits' => 'وڭدەمە سانى:',
-'prefsnologin' => 'كىرمەگەنسىز',
 'changepassword' => 'قۇپىييا ٴسوزدى وزگەرتۋ',
 'prefs-skin' => 'مانەرلەر',
 'skin-preview' => 'قاراپ شىعۋ',
@@ -2836,5 +2833,21 @@ $5
 'revdelete-restricted' => 'اكىمشىلەرگە تىيىمدار قولدادى',
 'revdelete-unrestricted' => 'اكىمشىلەردەن تىيىمداردى الاستادى',
 'rightsnone' => '(ەشقانداي)',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'ۇلگىلەردى ۇلعايتۋ',
+'expand_templates_intro' => 'وسى قۇرال ارنايى بەتى الدەبىر ٴماتىندى الادى دا,
+بۇنىڭ ىشىندەگى بارلىق كىرىكتەلگەن ۇلگىلەردى مەيلىنشە ۇلعايتادى.
+مىنا <nowiki>{{#language:...}} سىيياقتى جوڭدەتۋ فۋنكتسىييالارىن دا, جانە {{CURRENTDAY}}
+سىيياقتى اينامالىلارىن دا ۇلعايتادى (ناقتى ايتقاندا, قوس قابات ساداق جاقشالار اراسىنداعى بارلىعىن).
+بۇنى ٴوز MediaWiki باعدارلاماسىنان قاتىستى جوڭدەتۋ ساتىن شاقىرىپ ىستەلىنەدى.',
+'expand_templates_title' => 'ٴماتىن ارالىق اتاۋى ({{FULLPAGENAME}} ت.ب. بەتتەر ٴۇشىن):',
+'expand_templates_input' => 'كىرىس ٴماتىنى:',
+'expand_templates_output' => 'ناتىيجەسى',
+'expand_templates_xml_output' => 'XML شىعارۋى',
+'expand_templates_ok' => 'جارايدى',
+'expand_templates_remove_comments' => 'ماندەمەلەرىن الاستاتىپ?',
+'expand_templates_generate_xml' => 'XML وڭدەتۋ بۇتاقتارىن كورسەت',
+'expand_templates_preview' => 'قاراپ شىعۋ',
 
 );

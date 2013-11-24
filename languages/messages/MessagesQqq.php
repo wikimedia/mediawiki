@@ -814,8 +814,8 @@ Parameters:
 ** {{msg-mw|Sp-contributions-newbies-title}}",
 'pagetitle-view-mainpage' => '{{optional}}',
 'backlinksubtitle' => '{{optional}}
-Appears in subtitle
-* $1 is a link to the page (HTML)',
+Appears in subtitle. Parameters:
+* $1 - a link to the page (HTML)',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing.
 
 Parameters:
@@ -1439,7 +1439,7 @@ Parameters:
 {{Identical|Login error}}',
 'createacct-error' => 'Used as heading for the error message.',
 'createaccounterror' => 'Parameters:
-* $1 is an error message',
+* $1 - an error message',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin' => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew' => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
@@ -1842,7 +1842,7 @@ See also:
 * {{msg-mw|cantcreateaccount-text}}.
 {{Identical|No reason given}}',
 'whitelistedittext' => 'Used as error message. Parameters:
-* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description
+* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description
 See also:
 * {{msg-mw|Nocreatetext}}
 * {{msg-mw|Uploadnologintext}}
@@ -1898,8 +1898,10 @@ Parameters:
 
 Parameters:
 * $1 - a possible username that has not been registered',
-'userpage-userdoesnotexist-view' => 'Shown in user pages of non existing users. See for example [{{canonicalurl:User:Foo}} User:Foo]. Parameters:
-* $1 is a username.',
+'userpage-userdoesnotexist-view' => 'Shown in user pages of non existing users. See for example [{{canonicalurl:User:Foo}} User:Foo].
+
+Parameters:
+* $1 - a username',
 'blocked-notice-logextract' => '{{gender}}
 Parameters:
 * $1 - (Optional) the name of the blocked user. Can be used for GENDER.',
@@ -2045,7 +2047,9 @@ See also:
 * {{msg-mw|loginreqtitle}}
 {{Identical|Permission error}}',
 'permissionserrorstext' => "This message is \"without action\" version of {{msg-mw|Permissionserrorstext-withaction}}.
-* \$1 is the number of reasons that were found why ''the action'' cannot be performed.",
+
+Parameters:
+* \$1 - the number of reasons that were found why ''the action'' cannot be performed",
 'permissionserrorstext-withaction' => 'This message is "with action" version of {{msg-mw|Permissionserrorstext}}.
 
 Parameters:
@@ -2140,8 +2144,10 @@ This message is substituted in:
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
-* $1 is the current number of parser function calls.
-* $2 is the allowed number of parser function calls.
+
+Parameters:
+* $1 - the current number of parser function calls
+* $2 - the allowed number of parser function calls
 See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].
 
 See also:
@@ -2256,10 +2262,14 @@ See the error message:
 * {{msg-mw|history-feed-empty}}',
 'currentrev' => 'Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.
 {{Identical|Current revision}}',
-'currentrev-asof' => 'Used on a difference page when comparing the current versions of a page with each other. See {{msg-mw|Revisionasof}} for the message for non-current version.
-* $1 is a date and time
-* $2 is a date (optional)
-* $3 is a time (optional)',
+'currentrev-asof' => 'Used on a difference page when comparing the current versions of a page with each other.
+
+See {{msg-mw|Revisionasof}} for the message for non-current version.
+
+Parameters:
+* $1 - a date and time
+* $2 - (Optional) a date
+* $3 - (Optional) a time',
 'revisionasof' => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page.
 
 See {{msg-mw|Currentrev-asof}} for the message for the current version.
@@ -2506,30 +2516,37 @@ Links to page history at Special:RevisionDelete header together with links to th
 Links to [[Special:Undelete]] at [[Special:RevisionDelete]] header together with links to the logs and page history.',
 'revdelete-hide-current' => '{{RevisionDelete}}
 Parameters:
-* $1 is a date
-* $2 is a time',
+* $1 - a date
+* $2 - a time
+{{Related|Revdelete}}',
 'revdelete-show-no-access' => '{{RevisionDelete}}
 Parameters:
-* $1 is a date
-* $2 is a time',
+* $1 - a date
+* $2 - a time
+{{Related|Revdelete}}',
 'revdelete-modify-no-access' => '{{RevisionDelete}}
 Parameters:
-* $1 is a date
-* $2 is a time',
+* $1 - a date
+* $2 - a time
+{{Related|Revdelete}}',
 'revdelete-modify-missing' => '{{RevisionDelete}}
-* $1 is a revision ID',
+* $1 - a revision ID
+{{Related|Revdelete}}',
 'revdelete-no-change' => '{{RevisionDelete}}
 Parameters:
-* $1 is a date
-* $2 is a time',
+* $1 - a date
+* $2 - a time
+{{Related|Revdelete}}',
 'revdelete-concurrent-change' => '{{RevisionDelete}}
 Parameters:
-* $1 is a date
-* $2 is a time',
+* $1 - a date
+* $2 - a time
+{{Related|Revdelete}}',
 'revdelete-only-restricted' => '{{RevisionDelete}}
 Parameters:
 *$1 - date
-*$2 - time',
+*$2 - time
+{{Related|Revdelete}}',
 'revdelete-reason-dropdown' => '{{RevisionDelete}}
 Used as item list for dropdown.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
@@ -2743,8 +2760,9 @@ See also:
 
 Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
 
-* $1 is the list of missing revisions IDs
-* $2 is the number of items in $1 (one or two)',
+Parameters:
+* $1 - the list of missing revisions IDs
+* $2 - the number of items in $1 (one or two)',
 
 # Search results
 'searchresults' => 'This is the title of the page that contains the results of a search.
@@ -2945,8 +2963,8 @@ See also:
 In this sentence, "their indexes" refers to "Google\'s indexes".
 
 Shown on [[Special:Search]] when the internal search is disabled.',
-'search-error' => 'Shown when an error has occurred when performing a search
-* $1 is the localized error that was returned',
+'search-error' => 'Shown when an error has occurred when performing a search. Parameters:
+* $1 - the localized error that was returned',
 
 # Preferences page
 'preferences' => 'Title of the [[Special:Preferences]] page.
@@ -3111,8 +3129,8 @@ See also:
 * {{msg-mw|Prefs-memberingroups-type}}',
 'prefs-memberingroups-type' => '{{optional}}
 Parameters:
-* $1 is list of group names
-* $2 is list of group member names. Label for these is {{msg-mw|prefs-memberingroups}}.',
+* $1 - list of group names
+* $2 - list of group member names. Label for these is {{msg-mw|Prefs-memberingroups}}',
 'prefs-registration' => 'Used in [[Special:Preferences]].',
 'prefs-registration-date-time' => '{{optional}}
 Used in [[Special:Preferences]]. Parameters are:
@@ -3264,8 +3282,8 @@ Parameters:
 * $2 - (Optional) the user name, for GENDER',
 'userrights-groupsmember-type' => '{{optional}}
 Parameters:
-* $1 is list of group names.
-* $2 is list of group member names. Used with labels {{msg-mw|userrights-groupsmember}} and {{msg-mw|userrights-groupsmember-auto}}',
+* $1 - list of group names
+* $2 - list of group member names. Used with labels {{msg-mw|Userrights-groupsmember}} and {{msg-mw|Userrights-groupsmember-auto}}',
 'userrights-groups-help' => 'Instructions displayed on [[Special:UserRights]]. Parameters:
 * $1 - (Optional) a username, can be used for GENDER',
 'userrights-reason' => 'Text beside log field when editing user groups
@@ -10527,5 +10545,20 @@ Format for the "Expensive parser function count" row in the limit report table.
 Parameters:
 * $1 - the usage
 * $2 - the maximum',
+
+# Special:ExpandTemplates
+'expandtemplates' => '{{doc-special|ExpandTemplates}}
+The name of the [[mw:Extension:ExpandTemplates|Expand Templates extension]].',
+'expand_templates_intro' => 'This is the explanation given in the heading of the [[Special:ExpandTemplates]] page; it describes its functionality to the users.
+For more information, see [[mw:Extension:ExpandTemplates]]',
+'expand_templates_title' => 'The label of the input box for the context title on the form displayed at [[Special:ExpandTemplates]] page.',
+'expand_templates_input' => '{{Identical|Input text}}',
+'expand_templates_output' => '{{Identical|Result}}',
+'expand_templates_xml_output' => 'Used as HTML <code><nowiki><h2></nowiki></code> heading.',
+'expand_templates_ok' => '{{Identical|OK}}',
+'expand_templates_remove_comments' => 'Check box to tell [[mw:Extension:ExpandTemplates]] to not show comments in the expanded template.',
+'expand_templates_remove_nowiki' => 'Option on [[Special:Expandtemplates]]',
+'expand_templates_generate_xml' => 'Used as checkbox label.',
+'expand_templates_preview' => '{{Identical|Preview}}',
 
 );

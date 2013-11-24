@@ -590,8 +590,6 @@ $1',
 'ok' => 'U redu',
 'retrievedfrom' => 'Dobavljeno iz "$1"',
 'youhavenewmessages' => 'Imate $1 ($2).',
-'newmessageslink' => 'nove poruke',
-'newmessagesdifflink' => 'zadnja promjena na stranici za razgovor',
 'youhavenewmessagesfromusers' => 'Imate $1 {{PLURAL:$3||od $3 suradnika|od $3 suradnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od više suradnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|$1 nove poruke|$1 novih poruka}}',
@@ -1410,7 +1408,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'preferences' => 'Postavke',
 'mypreferences' => 'Moje postavke',
 'prefs-edits' => 'Broj uređivanja:',
-'prefsnologin' => 'Niste prijavljeni',
 'changepassword' => 'Promjena lozinke',
 'prefs-skin' => 'Izgled',
 'skin-preview' => 'Pregled',
@@ -1695,6 +1692,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'recentchanges-label-minor' => 'Ovo je manja izmjena',
 'recentchanges-label-bot' => 'Ovu izmjenu napravio je bot',
 'recentchanges-label-unpatrolled' => 'Ova izmjena još nije pregledana',
+'recentchanges-legend-newpage' => '$1 - nova stranica',
 'rcnote' => "{{PLURAL:$1|Slijedi zadnja '''$1''' promjena|Slijede zadnje '''$1''' promjene|Slijedi zadnjih '''$1''' promjena}} u {{PLURAL:$2|zadnjem '''$2''' danu|zadnja '''$2''' dana|zadnjih '''$2''' dana}}, od $5, $4.",
 'rcnotefrom' => 'Slijede promjene od <b>$2</b> (prikazano ih je do <b>$1</b>).',
 'rclistfrom' => 'Prikaži nove promjene počevši od $1',
@@ -4125,5 +4123,21 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 
 # Image rotation
 'rotate-comment' => 'Sliku je $1 zaokrenuo za {{PLURAL:$1|stupanj|stupnja|stupnjeva}} u smjeru kazaljke na satu.',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Prikaz sadržaja predložaka',
+'expand_templates_intro' => 'Ova posebna stranica omogućuje unos wikiteksta i prikazuje njegov rezultat,
+uključujući i (rekurzivno, tj. potpuno) sve uključene predloške u wikitekstu.
+Prikazuje i rezultate funkcija kao <nowiki>{{</nowiki>#language:...}} i varijabli
+kao <nowiki>{{</nowiki>CURRENTDAY}}. Funkcionira pozivanjem parsera same MedijeWiki.',
+'expand_templates_title' => 'Kontekstni naslov stranice, za {{FULLPAGENAME}} i sl.:',
+'expand_templates_input' => 'Ulazni tekst:',
+'expand_templates_output' => 'Rezultat',
+'expand_templates_xml_output' => 'XML kod',
+'expand_templates_ok' => 'Prikaži',
+'expand_templates_remove_comments' => 'Ukloni komentare',
+'expand_templates_remove_nowiki' => 'Ukloni <nowiki> tagove u rezultatima.',
+'expand_templates_generate_xml' => 'Prikaži XML stablo',
+'expand_templates_preview' => 'Vidi kako će izgledati',
 
 );
