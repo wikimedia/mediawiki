@@ -56,7 +56,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		parent::tearDown();

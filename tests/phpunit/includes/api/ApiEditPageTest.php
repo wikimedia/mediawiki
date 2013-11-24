@@ -13,7 +13,7 @@
  */
 class ApiEditPageTest extends ApiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		parent::setUp();
@@ -30,7 +30,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		unset( $wgExtraNamespaces[12312] );
