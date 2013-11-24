@@ -7,7 +7,7 @@
 	// Use jQuery's load function to specifically select and replace table.multipageimage's child
 	// tr with the new page's table.multipageimage's tr element.
 	// table.multipageimage always has only one row.
-	function loadPage( page, hist ) {
+	function loadPage( page) {
 		var $multipageimage = $( 'table.multipageimage' ),
 			$spinner = $.createSpinner( {
 				size: 'large',
@@ -64,7 +64,7 @@
 				$( window ).on( 'popstate', function ( e ) {
 					var state = e.originalEvent.state;
 					if ( state ) {
-						loadPage( state.url, true );
+						loadPage( state.url);
 					}
 				});
 			
