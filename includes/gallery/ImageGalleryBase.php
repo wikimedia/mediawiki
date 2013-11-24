@@ -28,18 +28,30 @@
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
-	var $mImages, $mShowBytes, $mShowFilename, $mMode;
-	var $mCaption = false;
+	/** @var array Gallery images  */
+	protected $mImages;
+
+	/** @var bool Whether to show the filesize in bytes in categories   */
+	protected $mShowBytes;
+
+	/** @var bool Whether to show the filename. Default: true */
+	protected $mShowFilename;
+
+	/** @var string Gallery mode. Default: traditional */
+	protected $mMode;
+
+	/** @var bool|string Gallery caption. Default: false */
+	protected $mCaption = false;
 
 	/**
 	 * @var bool Hide blacklisted images?
 	 */
-	var $mHideBadImages;
+	protected $mHideBadImages;
 
 	/**
 	 * @var Parser Registered parser object for output callbacks
 	 */
-	var $mParser;
+	protected $mParser;
 
 	/**
 	 * @var Title Contextual title, used when images are being screened against
