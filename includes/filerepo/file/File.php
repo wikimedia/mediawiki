@@ -91,43 +91,62 @@ abstract class File {
 	 * The following member variables are not lazy-initialised
 	 */
 
-	/**
-	 * @var FileRepo|bool
-	 */
-	var $repo;
+	/** @var FileRepo|bool */
+	public $repo;
 
-	/**
-	 * @var Title
-	 */
-	var $title;
+	/** @var Title|string|bool */
+	protected $title;
 
-	var $lastError, $redirected, $redirectedTitle;
+	/** @var string Text of last error  */
+	protected $lastError;
 
-	/**
-	 * @var FSFile|bool False if undefined
-	 */
+	/** @var string Main part of the title, with underscores (Title::getDBkey)  */
+	protected $redirected;
+
+	/** @var Title */
+	protected $redirectedTitle;
+
+	/** @var FSFile|bool False if undefined */
 	protected $fsFile;
 
-	/**
-	 * @var MediaHandler
-	 */
+	/** @var MediaHandler */
 	protected $handler;
 
-	/**
-	 * @var string
-	 */
-	protected $url, $extension, $name, $path, $hashPath, $pageCount, $transformScript;
+	/** @var string The URL corresponding to one of the four basic zones */
+	protected $url;
 
+	/** @var string File extension */
+	protected $extension;
+
+	/** @var string The name of a file from its title object */
+	protected $name;
+
+	/** @var string The storage path corresponding to one of the zones */
+	protected $path;
+
+	/** @var string Relative path including trailing slash */
+	protected $hashPath;
+
+	/** @var string number of pages of a multipage document, or false for
+	 *    documents which aren't multipage documents
+	 */
+	protected $pageCount;
+
+	/** @var string URL of transformscript (for example thumb.php) */
+	protected $transformScript;
+
+	/** @var Title */
 	protected $redirectTitle;
 
-	/**
-	 * @var bool
-	 */
-	protected $canRender, $isSafeFile;
+	/** @var bool Wether the output of transform() for this file is likely to be valid. */
+	protected $canRender;
 
-	/**
-	 * @var string Required Repository class type
+	/** @var bool Wether this media file is in a format that is unlikely to
+	 *    contain viruses or malicious content
 	 */
+	protected $isSafeFile;
+
+	/** @var string Required Repository class type */
 	protected $repoClass = 'FileRepo';
 
 	/**
@@ -1933,7 +1952,7 @@ abstract class File {
 	}
 
 	/**
-	 * @param  $from
+	 * @param $from
 	 * @return void
 	 */
 	function redirectedFrom( $from ) {
