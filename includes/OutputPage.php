@@ -2670,6 +2670,8 @@ class OutputPage extends ContextSource {
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
+		$htmlAttrs = array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' );
+		wfRunHooks( 'OutputPageHtmlAttributes', array( $this, $sk, &$htmlAttrs ) );
 		$ret = Html::htmlHeader( $sk->getHtmlElementAttributes() );
 
 		if ( $this->getHTMLTitle() == '' ) {
