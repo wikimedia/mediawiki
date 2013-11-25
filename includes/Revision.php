@@ -1453,7 +1453,7 @@ class Revision implements IDBAccessObject {
 				$t = $title->getPrefixedDBkey();
 
 				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: "
-										. "model is $model , default for $t is $defaultModel" );
+										. "model is $model, default for $t is $defaultModel" );
 			}
 
 			if ( $this->getContentFormat() != $defaultFormat ) {
