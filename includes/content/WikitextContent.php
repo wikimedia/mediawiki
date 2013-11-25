@@ -73,11 +73,14 @@ class WikitextContent extends TextContent {
 
 		if ( $section === '' ) {
 			wfProfileOut( __METHOD__ );
+
 			return $with; # XXX: copy first?
-		} if ( $section == 'new' ) {
+		}
+
+		if ( $section == 'new' ) {
 			# Inserting a new section
 			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
-				->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
+					->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 			if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
 				$text = strlen( trim( $oldtext ) ) > 0
 					? "{$oldtext}\n\n{$subject}{$text}"
@@ -93,6 +96,7 @@ class WikitextContent extends TextContent {
 		$newContent = new WikitextContent( $text );
 
 		wfProfileOut( __METHOD__ );
+
 		return $newContent;
 	}
 
@@ -183,9 +187,11 @@ class WikitextContent extends TextContent {
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
 					return null;
 				}
+
 				return $title;
 			}
 		}
+
 		return null;
 	}
 
@@ -220,7 +226,7 @@ class WikitextContent extends TextContent {
 	 * Returns true if this content is not a redirect, and this content's text
 	 * is countable according to the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param bool $hasLinks  if it is known whether this content contains
+	 * @param bool $hasLinks if it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out (default: null).
 	 * @param $title Title: (default: null)
@@ -298,6 +304,7 @@ class WikitextContent extends TextContent {
 		}
 
 		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+
 		return $po;
 	}
 

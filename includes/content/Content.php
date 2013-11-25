@@ -267,6 +267,7 @@ interface Content {
 	public function getParserOutput( Title $title,
 		$revId = null,
 		ParserOptions $options = null, $generateHtml = true );
+
 	// TODO: make RenderOutput and RenderOptions base classes
 
 	/**
@@ -446,9 +447,9 @@ interface Content {
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page The page to be saved.
-	 * @param int      $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
-	 * @param int      $baseRevId the ID of the current revision
-	 * @param User     $user
+	 * @param int $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
+	 * @param int $baseRevId the ID of the current revision
+	 * @param User $user
 	 *
 	 * @return Status A status object indicating whether the content was successfully prepared for saving.
 	 *                If the returned status indicates an error, a rollback will be performed and the
@@ -491,17 +492,16 @@ interface Content {
 	 * Converts this content object into another content object with the given content model,
 	 * if that is possible.
 	 *
-	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * @param string $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
 	 * not allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
 	 * that conversion is not supported.
 	 */
 	public function convert( $toModel, $lossy = '' );
-
-		// TODO: ImagePage and CategoryPage interfere with per-content action handlers
-	// TODO: nice&sane integration of GeSHi syntax highlighting
+	// @todo ImagePage and CategoryPage interfere with per-content action handlers
+	// @todo nice&sane integration of GeSHi syntax highlighting
 	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a
 	//   config to set the class which handles syntax highlighting
 	//   [12:00] <vvv> And default it to a DummyHighlighter
