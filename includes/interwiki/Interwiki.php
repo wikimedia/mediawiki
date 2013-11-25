@@ -31,7 +31,25 @@ class Interwiki {
 	protected static $smCache = array();
 	const CACHE_LIMIT = 100; // 0 means unlimited, any other value is max number of entries.
 
-	protected $mPrefix, $mURL, $mAPI, $mWikiID, $mLocal, $mTrans;
+	/** @var string The interwiki prefix, (e.g. "Meatball", or the language prefix "de") */
+	protected $mPrefix;
+
+	/** @var string The URL of the wiki, with "$1" as a placeholder for an article name. */
+	protected $mURL;
+
+	/** @var string The URL of the file api.php  */
+	protected $mAPI;
+
+	/** @var string The name of the database (for a connection to be established
+	 *    with wfGetLB( 'wikiid' ))
+	 */
+	protected $mWikiID;
+
+	/** @var bool whether the wiki is in this project */
+	protected $mLocal;
+
+	/** @var bool Whether interwiki transclusions are allowed */
+	protected $mTrans;
 
 	public function __construct( $prefix = null, $url = '', $api = '', $wikiId = '', $local = 0,
 		$trans = 0
@@ -52,6 +70,7 @@ class Interwiki {
 	 */
 	public static function isValidInterwiki( $prefix ) {
 		$result = self::fetch( $prefix );
+
 		return (bool)$result;
 	}
 
@@ -63,13 +82,16 @@ class Interwiki {
 	 */
 	public static function fetch( $prefix ) {
 		global $wgContLang;
+
 		if ( $prefix == '' ) {
 			return null;
 		}
+
 		$prefix = $wgContLang->lc( $prefix );
 		if ( isset( self::$smCache[$prefix] ) ) {
 			return self::$smCache[$prefix];
 		}
+
 		global $wgInterwikiCache;
 		if ( $wgInterwikiCache ) {
 			$iw = Interwiki::getInterwikiCached( $prefix );
@@ -79,11 +101,14 @@ class Interwiki {
 				$iw = false;
 			}
 		}
+
 		if ( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ) {
 			reset( self::$smCache );
 			unset( self::$smCache[key( self::$smCache )] );
 		}
+
 		self::$smCache[$prefix] = $iw;
+
 		return $iw;
 	}
 
@@ -107,6 +132,7 @@ class Interwiki {
 		} else {
 			$s = false;
 		}
+
 		return $s;
 	}
 
@@ -126,6 +152,7 @@ class Interwiki {
 		if ( !$db ) {
 			$db = CdbReader::open( $wgInterwikiCache );
 		}
+
 		/* Resolve site name */
 		if ( $wgInterwikiScopes >= 3 && !$site ) {
 			$site = $db->get( '__sites:' . wfWikiID() );
@@ -139,10 +166,12 @@ class Interwiki {
 		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
 			$value = $db->get( "_{$site}:{$prefix}" );
 		}
+
 		// Global Level
 		if ( $value == '' && $wgInterwikiScopes >= 2 ) {
 			$value = $db->get( "__global:{$prefix}" );
 		}
+
 		if ( $value == 'undef' ) {
 			$value = '';
 		}
@@ -154,12 +183,12 @@ class Interwiki {
 	 * Load the interwiki, trying first memcached then the DB
 	 *
 	 * @param string $prefix The interwiki prefix
-	 * @return bool If $prefix is valid
+	 * @return Interwiki|bool Interwiki if $prefix is valid, otherwise false
 	 */
 	protected static function load( $prefix ) {
 		global $wgMemc, $wgInterwikiExpiry;
 
-		$iwData = false;
+		$iwData = array();
 		if ( !wfRunHooks( 'InterwikiLoadPrefix', array( $prefix, &$iwData ) ) ) {
 			return Interwiki::loadFromArray( $iwData );
 		}
@@ -168,11 +197,13 @@ class Interwiki {
 			$key = wfMemcKey( 'interwiki', $prefix );
 			$iwData = $wgMemc->get( $key );
 			if ( $iwData === '!NONEXISTENT' ) {
-				return false; // negative cache hit
+				// negative cache hit
+				return false;
 			}
 		}
 
-		if ( $iwData && is_array( $iwData ) ) { // is_array is hack for old keys
+		// is_array is hack for old keys
+		if ( $iwData && is_array( $iwData ) ) {
 			$iw = Interwiki::loadFromArray( $iwData );
 			if ( $iw ) {
 				return $iw;
@@ -181,8 +212,13 @@ class Interwiki {
 
 		$db = wfGetDB( DB_SLAVE );
 
-		$row = $db->fetchRow( $db->select( 'interwiki', self::selectFields(), array( 'iw_prefix' => $prefix ),
-			__METHOD__ ) );
+		$row = $db->fetchRow( $db->select(
+			'interwiki',
+			self::selectFields(),
+			array( 'iw_prefix' => $prefix ),
+			__METHOD__
+		) );
+
 		$iw = Interwiki::loadFromArray( $row );
 		if ( $iw ) {
 			$mc = array(
@@ -192,10 +228,12 @@ class Interwiki {
 				'iw_trans' => $iw->mTrans
 			);
 			$wgMemc->add( $key, $mc, $wgInterwikiExpiry );
+
 			return $iw;
-		} else {
-			$wgMemc->add( $key, '!NONEXISTENT', $wgInterwikiExpiry ); // negative cache hit
 		}
+
+		// negative cache hit
+		$wgMemc->add( $key, '!NONEXISTENT', $wgInterwikiExpiry );
 
 		return false;
 	}
@@ -217,6 +255,7 @@ class Interwiki {
 
 			return $iw;
 		}
+
 		return false;
 	}
 
@@ -235,6 +274,7 @@ class Interwiki {
 		if ( !$db ) {
 			$db = CdbReader::open( $wgInterwikiCache );
 		}
+
 		/* Resolve site name */
 		if ( $wgInterwikiScopes >= 3 && !$site ) {
 			$site = $db->get( '__sites:' . wfWikiID() );
@@ -245,16 +285,18 @@ class Interwiki {
 
 		// List of interwiki sources
 		$sources = array();
+
 		// Global Level
 		if ( $wgInterwikiScopes >= 2 ) {
 			$sources[] = '__global';
 		}
+
 		// Site level
 		if ( $wgInterwikiScopes >= 3 ) {
 			$sources[] = '_' . $site;
 		}
-		$sources[] = wfWikiID();
 
+		$sources[] = wfWikiID();
 		$data = array();
 
 		foreach ( $sources as $source ) {
@@ -308,10 +350,12 @@ class Interwiki {
 			self::selectFields(),
 			$where, __METHOD__, array( 'ORDER BY' => 'iw_prefix' )
 		);
+
 		$retval = array();
 		foreach ( $res as $row ) {
 			$retval[] = (array)$row;
 		}
+
 		return $retval;
 	}
 
@@ -327,9 +371,9 @@ class Interwiki {
 
 		if ( $wgInterwikiCache ) {
 			return self::getAllPrefixesCached( $local );
-		} else {
-			return self::getAllPrefixesDB( $local );
 		}
+
+		return self::getAllPrefixesDB( $local );
 	}
 
 	/**
@@ -346,6 +390,7 @@ class Interwiki {
 		if ( $title !== null ) {
 			$url = str_replace( "$1", wfUrlencode( $title ), $url );
 		}
+
 		return $url;
 	}
 
@@ -394,6 +439,7 @@ class Interwiki {
 	 */
 	public function getName() {
 		$msg = wfMessage( 'interwiki-name-' . $this->mPrefix )->inContentLanguage();
+
 		return !$msg->exists() ? '' : $msg;
 	}
 
@@ -404,6 +450,7 @@ class Interwiki {
 	 */
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
+
 		return !$msg->exists() ? '' : $msg;
 	}
 
