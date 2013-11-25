@@ -27,12 +27,18 @@
  * @ingroup JobQueue
  */
 class DoubleRedirectJob extends Job {
-	var $reason, $redirTitle;
-
-	/**
-	 * @var User
+	/** @var string Reason for the change, 'maintenance' or 'move'. Suffix fo
+	 *    message key 'double-redirect-fixed-'.
 	 */
-	static $user;
+	private $reason;
+
+	/** @var Title The title which has changed, redirects pointing to this
+	 *    title are fixed
+	 */
+	private $redirTitle;
+
+	/** @var User */
+	private static $user;
 
 	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
