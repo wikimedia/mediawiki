@@ -47,10 +47,10 @@
  * @since 1.22
  */
 class JobQueueFederated extends JobQueue {
-	/** @var Array (partition name => weight) reverse sorted by weight */
+	/** @var array (partition name => weight) reverse sorted by weight */
 	protected $partitionMap = array();
 
-	/** @var Array (partition name => JobQueue) reverse sorted by weight */
+	/** @var array (partition name => JobQueue) reverse sorted by weight */
 	protected $partitionQueues = array();
 
 	/** @var HashRing */
@@ -82,6 +82,7 @@ class JobQueueFederated extends JobQueue {
 	 *                          during failure, at the cost of added latency and somewhat
 	 *                          less reliable job de-duplication mechanisms.
 	 * @param array $params
+	 * @throws MWException
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
@@ -184,7 +185,7 @@ class JobQueueFederated extends JobQueue {
 	/**
 	 * @param string $type
 	 * @param string $method
-	 * @return integer
+	 * @return int
 	 */
 	protected function getCrossPartitionSum( $type, $method ) {
 		$key = $this->getCacheKey( $type );
@@ -228,7 +229,8 @@ class JobQueueFederated extends JobQueue {
 	/**
 	 * @param array $jobs
 	 * @param HashRing $partitionRing
-	 * @param integer $flags
+	 * @param int $flags
+	 * @throws JobQueueError
 	 * @return array List of Job object that could not be inserted
 	 */
 	protected function tryJobInsertions( array $jobs, HashRing &$partitionRing, $flags ) {
@@ -238,6 +240,7 @@ class JobQueueFederated extends JobQueue {
 		// to use a consistent hash to avoid allowing duplicate jobs per partition.
 		// When inserting a batch of de-duplicated jobs, QOS_ATOMIC is disregarded.
 		$uJobsByPartition = array(); // (partition name => job list)
+		/** @var Job $job */
 		foreach ( $jobs as $key => $job ) {
 			if ( $job->ignoreDuplicates() ) {
 				$sha1 = sha1( serialize( $job->getDeduplicationInfo() ) );
@@ -257,6 +260,7 @@ class JobQueueFederated extends JobQueue {
 
 		// Insert the de-duplicated jobs into the queues...
 		foreach ( $uJobsByPartition as $partition => $jobBatch ) {
+			/** @var JobQueue $queue */
 			$queue = $this->partitionQueues[$partition];
 			try {
 				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
@@ -316,6 +320,8 @@ class JobQueueFederated extends JobQueue {
 			if ( $partition === false ) {
 				break; // all partitions at 0 weight
 			}
+
+			/** @var JobQueue $queue */
 			$queue = $this->partitionQueues[$partition];
 			try {
 				$job = $queue->pop();
@@ -374,6 +380,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doDelete() {
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			try {
 				$queue->doDelete();
@@ -384,6 +391,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doWaitForBackups() {
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			try {
 				$queue->waitForBackups();
@@ -395,6 +403,7 @@ class JobQueueFederated extends JobQueue {
 
 	protected function doGetPeriodicTasks() {
 		$tasks = array();
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $partition => $queue ) {
 			foreach ( $queue->getPeriodicTasks() as $task => $def ) {
 				$tasks["{$partition}:{$task}"] = $def;
@@ -412,9 +421,12 @@ class JobQueueFederated extends JobQueue {
 			'delayedcount',
 			'abandonedcount'
 		);
+
 		foreach ( $types as $type ) {
 			$this->cache->delete( $this->getCacheKey( $type ) );
 		}
+
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->doFlushCaches();
 		}
@@ -422,6 +434,8 @@ class JobQueueFederated extends JobQueue {
 
 	public function getAllQueuedJobs() {
 		$iterator = new AppendIterator();
+
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$iterator->append( $queue->getAllQueuedJobs() );
 		}
@@ -431,6 +445,8 @@ class JobQueueFederated extends JobQueue {
 
 	public function getAllDelayedJobs() {
 		$iterator = new AppendIterator();
+
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$iterator->append( $queue->getAllDelayedJobs() );
 		}
@@ -445,6 +461,8 @@ class JobQueueFederated extends JobQueue {
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
 		$result = array();
+
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			try {
 				$nonEmpty = $queue->doGetSiblingQueuesWithJobs( $types );
@@ -466,6 +484,8 @@ class JobQueueFederated extends JobQueue {
 
 	protected function doGetSiblingQueueSizes( array $types ) {
 		$result = array();
+
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			try {
 				$sizes = $queue->doGetSiblingQueueSizes( $types );
@@ -485,12 +505,14 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	public function setTestingPrefix( $key ) {
+		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->setTestingPrefix( $key );
 		}
 	}
 
 	/**
+	 * @param $property
 	 * @return string
 	 */
 	private function getCacheKey( $property ) {

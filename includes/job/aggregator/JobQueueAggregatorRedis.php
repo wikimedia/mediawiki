@@ -32,7 +32,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 
-	/** @var Array List of Redis server addresses */
+	/** @var array List of Redis server addresses */
 	protected $servers;
 
 	/**

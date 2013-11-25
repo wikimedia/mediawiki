@@ -47,7 +47,11 @@ class HTMLCacheUpdateJob extends Job {
 	/** @var BacklinkCache */
 	protected $blCache;
 
-	protected $rowsPerJob, $rowsPerQuery;
+	/** @var int Number of rows to update per job, see $wgUpdateRowsPerJob */
+	protected $rowsPerJob;
+
+	/** @var int Number of rows to update per query, see $wgUpdateRowsPerQuery */
+	protected $rowsPerQuery;
 
 	/**
 	 * Construct a job
@@ -133,7 +137,7 @@ class HTMLCacheUpdateJob extends Job {
 	 * using a pre-calculated title array which gives the links in that range.
 	 * Queue the resulting jobs.
 	 *
-	 * @param array $titleArray
+	 * @param array|TitleArrayFromResult $titleArray
 	 * @param array $rootJobParams
 	 */
 	protected function insertJobsFromTitles( $titleArray, $rootJobParams = array() ) {
@@ -145,6 +149,7 @@ class HTMLCacheUpdateJob extends Job {
 		$jobs = array();
 		$start = $this->params['start']; # start of the current job
 		$numTitles = 0;
+		/** @var Title $title */
 		foreach ( $titleArray as $title ) {
 			$id = $title->getArticleID();
 			# $numTitles is now the number of titles in the current job not
@@ -213,7 +218,7 @@ class HTMLCacheUpdateJob extends Job {
 
 	/**
 	 * Invalidate an array (or iterator) of Title objects, right now
-	 * @param array $titleArray
+	 * @param array|TitleArrayFromResult $titleArray
 	 */
 	protected function invalidateTitles( $titleArray ) {
 		global $wgUseFileCache, $wgUseSquid;

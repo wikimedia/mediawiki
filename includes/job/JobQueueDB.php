@@ -37,7 +37,8 @@ class JobQueueDB extends JobQueue {
 	/** @var BagOStuff */
 	protected $cache;
 
-	protected $cluster = false; // string; name of an external DB cluster
+	/** @var bool|string Name of an external DB cluster. False if not set */
+	protected $cluster = false;
 
 	/**
 	 * Additional parameters include:
@@ -45,7 +46,7 @@ class JobQueueDB extends JobQueue {
 	 *               If not specified, the primary DB cluster for the wiki will be used.
 	 *               This can be overridden with a custom cluster so that DB handles will
 	 *               be retrieved via LBFactory::getExternalLB() and getConnection().
-	 * @param $params array
+	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		global $wgMemc;
@@ -94,7 +95,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetSize()
-	 * @return integer
+	 * @return int
 	 */
 	protected function doGetSize() {
 		$key = $this->getCacheKey( 'size' );
@@ -120,7 +121,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetAcquiredCount()
-	 * @return integer
+	 * @return int
 	 */
 	protected function doGetAcquiredCount() {
 		if ( $this->claimTTL <= 0 ) {
@@ -150,7 +151,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetAbandonedCount()
-	 * @return integer
+	 * @return int
 	 * @throws MWException
 	 */
 	protected function doGetAbandonedCount() {
@@ -209,12 +210,12 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * This function should *not* be called outside of JobQueueDB
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param DatabaseBase|IDatabase $dbw
 	 * @param array $jobs
 	 * @param int $flags
 	 * @param string $method
+	 * @throws DBError|Exception
 	 * @return boolean
-	 * @throws type
 	 */
 	public function doBatchPushInternal( IDatabase $dbw, array $jobs, $flags, $method ) {
 		if ( !count( $jobs ) ) {
@@ -336,7 +337,7 @@ class JobQueueDB extends JobQueue {
 	 * @param string $uuid 32 char hex string
 	 * @param $rand integer Random unsigned integer (31 bits)
 	 * @param bool $gte Search for job_random >= $random (otherwise job_random <= $random)
-	 * @return Row|false
+	 * @return stdClass|bool Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
 		$dbw = $this->getMasterDB();
@@ -386,6 +387,7 @@ class JobQueueDB extends JobQueue {
 					continue; // use job_random
 				}
 			}
+
 			if ( $row ) { // claim the job
 				$dbw->update( 'job', // update by PK
 					array(
@@ -412,7 +414,7 @@ class JobQueueDB extends JobQueue {
 	 * Reserve a row with a single UPDATE without holding row locks over RTTs...
 	 *
 	 * @param string $uuid 32 char hex string
-	 * @return Row|false
+	 * @return stdClass|bool Row|false
 	 */
 	protected function claimOldest( $uuid ) {
 		$dbw = $this->getMasterDB();
@@ -557,7 +559,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	protected function doGetPeriodicTasks() {
 		return array(
@@ -639,7 +641,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * Recycle or destroy any jobs that have been claimed for too long
 	 *
-	 * @return integer Number of jobs recycled/deleted
+	 * @return int Number of jobs recycled/deleted
 	 */
 	public function recycleAndDeleteStaleJobs() {
 		$now = time();
@@ -721,7 +723,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param $job Job
+	 * @param Job $job
 	 * @return array
 	 */
 	protected function insertFields( Job $job ) {
@@ -745,6 +747,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @throws JobQueueConnectionError
 	 * @return DBConnRef
 	 */
 	protected function getSlaveDB() {
@@ -756,6 +759,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @throws JobQueueConnectionError
 	 * @return DBConnRef
 	 */
 	protected function getMasterDB() {
@@ -779,6 +783,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @param $property
 	 * @return string
 	 */
 	private function getCacheKey( $property ) {
