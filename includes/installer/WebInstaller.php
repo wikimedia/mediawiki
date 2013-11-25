@@ -326,6 +326,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Start the PHP session. This may be called before execute() to start the PHP session.
 	 *
+	 * @throws Exception
 	 * @return bool
 	 */
 	public function startSession() {

@@ -247,6 +247,7 @@ class OracleInstaller extends DatabaseInstaller {
 				return $status;
 			}
 		}
+
 		$this->db = $status->value;
 		$this->setupSchemaVars();
 
