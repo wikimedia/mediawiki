@@ -33,14 +33,10 @@
 class UploadFromUrlJob extends Job {
 	const SESSION_KEYNAME = 'wsUploadFromUrlJobData';
 
-	/**
-	 * @var UploadFromUrl
-	 */
+	/** @var UploadFromUrl */
 	public $upload;
 
-	/**
-	 * @var User
-	 */
+	/** @var User */
 	protected $user;
 
 	public function __construct( $title, $params, $id = 0 ) {
@@ -87,6 +83,8 @@ class UploadFromUrlJob extends Job {
 				# Stash the upload
 				$key = $this->upload->stashFile();
 
+				// @todo FIXME: This has been broken for a while.
+				// User::leaveUserMessage() does not exist.
 				if ( $this->params['leaveMessage'] ) {
 					$this->user->leaveUserMessage(
 						wfMessage( 'upload-warning-subj' )->text(),
@@ -121,17 +119,19 @@ class UploadFromUrlJob extends Job {
 	 * Leave a message on the user talk page or in the session according to
 	 * $params['leaveMessage'].
 	 *
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	protected function leaveMessage( $status ) {
 		if ( $this->params['leaveMessage'] ) {
 			if ( $status->isGood() ) {
+				// @todo FIXME: user->leaveUserMessage does not exist.
 				$this->user->leaveUserMessage( wfMessage( 'upload-success-subj' )->text(),
 					wfMessage( 'upload-success-msg',
 						$this->upload->getTitle()->getText(),
 						$this->params['url']
 					)->text() );
 			} else {
+				// @todo FIXME: user->leaveUserMessage does not exist.
 				$this->user->leaveUserMessage( wfMessage( 'upload-failure-subj' )->text(),
 					wfMessage( 'upload-failure-msg',
 						$status->getWikiText(),
@@ -157,7 +157,7 @@ class UploadFromUrlJob extends Job {
 	 *
 	 * @param string $result the result (Success|Warning|Failure)
 	 * @param string $dataKey the key of the extra data
-	 * @param $dataValue Mixed: the extra data itself
+	 * @param mixed $dataValue The extra data itself
 	 */
 	protected function storeResultInSession( $result, $dataKey, $dataValue ) {
 		$session =& self::getSessionData( $this->params['sessionKey'] );

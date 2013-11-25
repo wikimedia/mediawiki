@@ -55,7 +55,7 @@ abstract class Job {
 
 	/**
 	 * Run the job
-	 * @return boolean success
+	 * @return bool Success
 	 */
 	abstract public function run();
 
@@ -67,7 +67,7 @@ abstract class Job {
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param string $command Job command
-	 * @param $title Title: Associated title
+	 * @param Title $title Associated title
 	 * @param array|bool $params Job parameters
 	 * @param int $id Job identifier
 	 * @throws MWException
@@ -130,7 +130,7 @@ abstract class Job {
 	 * Pop a job off the front of the queue.
 	 * This is subject to $wgJobTypesExcludedFromDefaultQueue.
 	 *
-	 * @return Job or false if there's no jobs
+	 * @return Job|bool False if there are no jobs
 	 * @deprecated since 1.21
 	 */
 	public static function pop() {
@@ -153,11 +153,12 @@ abstract class Job {
 		$this->params = $params;
 		$this->id = $id;
 
-		$this->removeDuplicates = false; // expensive jobs may set this to true
+		// expensive jobs may set this to true
+		$this->removeDuplicates = false;
 	}
 
 	/**
-	 * @return integer May be 0 for jobs stored outside the DB
+	 * @return int May be 0 for jobs stored outside the DB
 	 * @deprecated since 1.22
 	 */
 	public function getId() {
@@ -186,7 +187,7 @@ abstract class Job {
 	}
 
 	/**
-	 * @return integer|null UNIX timestamp to delay running this job until, otherwise null
+	 * @return int|null UNIX timestamp to delay running this job until, otherwise null
 	 * @since 1.22
 	 */
 	public function getReleaseTimestamp() {
@@ -216,7 +217,7 @@ abstract class Job {
 	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
 	 * jobs are supposed to be ignored.
 	 *
-	 * @return Array Map of key/values
+	 * @return array Map of key/values
 	 * @since 1.21
 	 */
 	public function getDeduplicationInfo() {
@@ -240,7 +241,7 @@ abstract class Job {
 	/**
 	 * @see JobQueue::deduplicateRootJob()
 	 * @param string $key A key that identifies the task
-	 * @return Array
+	 * @return array
 	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {
@@ -252,7 +253,7 @@ abstract class Job {
 
 	/**
 	 * @see JobQueue::deduplicateRootJob()
-	 * @return Array
+	 * @return array
 	 * @since 1.21
 	 */
 	public function getRootJobParams() {
