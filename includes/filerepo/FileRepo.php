@@ -260,7 +260,7 @@ class FileRepo {
 	 *
 	 * @param string $zone One of: public, deleted, temp, thumb
 	 * @param string|null $ext Optional file extension
-	 * @return String or false
+	 * @return string|bool
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
 		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) {
@@ -602,7 +602,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Get the name of an image from its title object
+	 * Get the name of a file from its title object
 	 *
 	 * @param $title Title
 	 * @return String
