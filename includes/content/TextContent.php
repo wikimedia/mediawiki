@@ -39,7 +39,7 @@ class TextContent extends AbstractContent {
 
 		if ( $text === null || $text === false ) {
 			wfWarn( "TextContent constructed with \$text = " . var_export( $text, true ) . "! "
-					. "This may indicate an error in the caller's scope." );
+				. "This may indicate an error in the caller's scope." );
 
 			$text = '';
 		}
@@ -74,6 +74,7 @@ class TextContent extends AbstractContent {
 	 */
 	public function getSize() {
 		$text = $this->getNativeData();
+
 		return strlen( $text );
 	}
 
@@ -107,6 +108,7 @@ class TextContent extends AbstractContent {
 	 */
 	public function getNativeData() {
 		$text = $this->mText;
+
 		return $text;
 	}
 
@@ -185,6 +187,7 @@ class TextContent extends AbstractContent {
 		$nta = explode( "\n", $lang->segmentForDiff( $ntext ) );
 
 		$diff = new Diff( $ota, $nta );
+
 		return $diff;
 	}
 
@@ -224,6 +227,7 @@ class TextContent extends AbstractContent {
 		}
 
 		$po->setText( $html );
+
 		return $po;
 	}
 
@@ -259,8 +263,8 @@ class TextContent extends AbstractContent {
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
-	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
+	 * @param string $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
 	 * not allowed, full round-trip conversion is expected to work without losing information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
