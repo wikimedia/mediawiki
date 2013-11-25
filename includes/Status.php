@@ -38,17 +38,27 @@
  * so that a lack of error-handling will be explicit.
  */
 class Status {
+	/** @var bool */
 	public $ok = true;
+
+	/** @var mixed  */
 	public $value;
 
 	/** Counters for batch operations */
+	/** @var int */
 	public $successCount = 0;
+
+	/** @var int */
 	public $failCount = 0;
 
 	/** Array to indicate which items of the batch operations were successful */
+	/** @var array  */
 	public $success = array();
 
+	/** @var array */
 	public $errors = array();
+
+	/** @var callable */
 	public $cleanCallback = false;
 
 	/**
