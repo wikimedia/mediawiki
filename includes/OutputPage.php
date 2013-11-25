@@ -2485,7 +2485,9 @@ $templates
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
-		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
+		$htmlAttrs = array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' );
+		wfRunHooks( 'OutputPageHtmlAttributes', array( $this, $sk, &$htmlAttrs ) );
+		$ret = Html::htmlHeader( $htmlAttrs );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
