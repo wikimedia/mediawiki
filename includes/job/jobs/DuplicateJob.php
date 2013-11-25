@@ -30,7 +30,7 @@ final class DuplicateJob extends Job {
 	/**
 	 * Callers should use DuplicateJob::newFromJob() instead
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @param array $params job parameters
 	 * @param $id Integer: job id
 	 */

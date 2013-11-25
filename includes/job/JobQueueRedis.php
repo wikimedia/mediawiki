@@ -60,12 +60,16 @@ class JobQueueRedis extends JobQueue {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 
-	protected $server; // string; server address
-	protected $compression; // string; compression method to use
+	/** @var string Server address */
+	protected $server;
+
+	/** @var string Compression method to use */
+	protected $compression;
 
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
 
-	protected $key; // string; key to prefix the queue keys with (used for testing)
+	/** @var string Key to prefix the queue keys with (used for testing) */
+	protected $key;
 
 	/**
 	 * @params include:
@@ -108,7 +112,7 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetSize()
-	 * @return integer
+	 * @return int
 	 * @throws MWException
 	 */
 	protected function doGetSize() {
@@ -122,8 +126,8 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetAcquiredCount()
-	 * @return integer
-	 * @throws MWException
+	 * @return int
+	 * @throws JobQueueError
 	 */
 	protected function doGetAcquiredCount() {
 		if ( $this->claimTTL <= 0 ) {
@@ -143,8 +147,8 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetDelayedCount()
-	 * @return integer
-	 * @throws MWException
+	 * @return int
+	 * @throws JobQueueError
 	 */
 	protected function doGetDelayedCount() {
 		if ( !$this->checkDelay ) {
@@ -160,8 +164,8 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doGetAbandonedCount()
-	 * @return integer
-	 * @throws MWException
+	 * @return int
+	 * @throws JobQueueError
 	 */
 	protected function doGetAbandonedCount() {
 		if ( $this->claimTTL <= 0 ) {
@@ -180,7 +184,7 @@ class JobQueueRedis extends JobQueue {
 	 * @param array $jobs
 	 * @param $flags
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
 		// Convert the jobs into field maps (de-duplicated against each other)
@@ -234,7 +238,7 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @param RedisConnRef $conn
 	 * @param array $items List of results from JobQueueRedis::getNewJobFields()
-	 * @return integer Number of jobs inserted (duplicates are ignored)
+	 * @return int Number of jobs inserted (duplicates are ignored)
 	 * @throws RedisException
 	 */
 	protected function pushBlobs( RedisConnRef $conn, array $items ) {
@@ -287,7 +291,7 @@ LUA;
 	/**
 	 * @see JobQueue::doPop()
 	 * @return Job|bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	protected function doPop() {
 		$job = false;
@@ -401,7 +405,7 @@ LUA;
 	 * @see JobQueue::doAck()
 	 * @param Job $job
 	 * @return Job|bool
-	 * @throws MWException
+	 * @throws MWException|JobQueueError
 	 */
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['uuid'] ) ) {
@@ -445,7 +449,7 @@ LUA;
 	 * @see JobQueue::doDeduplicateRootJob()
 	 * @param Job $job
 	 * @return bool
-	 * @throws MWException
+	 * @throws MWException|JobQueueError
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
 		if ( !$job->hasRootJobParams() ) {
@@ -473,6 +477,7 @@ LUA;
 	 * @see JobQueue::doIsRootJobOldDuplicate()
 	 * @param Job $job
 	 * @return bool
+	 * @throws JobQueueError
 	 */
 	protected function doIsRootJobOldDuplicate( Job $job ) {
 		if ( !$job->hasRootJobParams() ) {
@@ -495,6 +500,7 @@ LUA;
 	/**
 	 * @see JobQueue::doDelete()
 	 * @return bool
+	 * @throws JobQueueError
 	 */
 	protected function doDelete() {
 		static $props = array( 'l-unclaimed', 'z-claimed', 'z-abandoned',
@@ -595,7 +601,7 @@ LUA;
 	 * @param $uid string
 	 * @param $conn RedisConnRef
 	 * @return Job|bool Returns false if the job does not exist
-	 * @throws MWException
+	 * @throws MWException|JobQueueError
 	 */
 	public function getJobFromUidInternal( $uid, RedisConnRef $conn ) {
 		try {
@@ -620,8 +626,8 @@ LUA;
 	/**
 	 * Release any ready delayed jobs into the queue
 	 *
-	 * @return integer Number of jobs released
-	 * @throws MWException
+	 * @return int Number of jobs released
+	 * @throws JobQueueError
 	 */
 	public function releaseReadyDelayedJobs() {
 		$count = 0;
@@ -657,8 +663,8 @@ LUA;
 	/**
 	 * Recycle or destroy any jobs that have been claimed for too long
 	 *
-	 * @return integer Number of jobs recycled/deleted
-	 * @throws MWException
+	 * @return int Number of jobs recycled/deleted
+	 * @throws MWException|JobQueueError
 	 */
 	public function recycleAndDeleteStaleJobs() {
 		if ( $this->claimTTL <= 0 ) { // sanity
@@ -732,7 +738,7 @@ LUA;
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	protected function doGetPeriodicTasks() {
 		$tasks = array();
@@ -753,7 +759,7 @@ LUA;
 	}
 
 	/**
-	 * @param $job Job
+	 * @param Job $job
 	 * @return array
 	 */
 	protected function getNewJobFields( Job $job ) {
@@ -829,8 +835,8 @@ LUA;
 	/**
 	 * Get a connection to the server that handles all sub-queues for this queue
 	 *
-	 * @return Array (server name, Redis instance)
-	 * @throws MWException
+	 * @return RedisConnRef
+	 * @throws JobQueueConnectionError
 	 */
 	protected function getConnection() {
 		$conn = $this->redisPool->getConnection( $this->server );
@@ -845,7 +851,7 @@ LUA;
 	 * @param $server string
 	 * @param $conn RedisConnRef
 	 * @param $e RedisException
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	protected function throwRedisException( $server, RedisConnRef $conn, $e ) {
 		$this->redisPool->handleException( $server, $conn, $e );

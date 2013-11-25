@@ -81,6 +81,11 @@ class DoubleRedirectJob extends Job {
 		JobQueueGroup::singleton()->push( $jobs );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param array|bool $params
+	 * @param int $id
+	 */
 	function __construct( $title, $params = false, $id = 0 ) {
 		parent::__construct( 'fixDoubleRedirect', $title, $params, $id );
 		$this->reason = $params['reason'];
