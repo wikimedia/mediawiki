@@ -71,7 +71,7 @@ class FileRepo {
 	protected $articleUrl;
 
 	/** @var bool Whether to fetch commons image description pages and display them on the local wiki */
-	protected $fetchDescription;
+	public $fetchDescription;
 
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
 	 *    determines whether filenames implicitly start with a capital letter.
@@ -88,7 +88,7 @@ class FileRepo {
 	protected $pathDisclosureProtection = 'simple';
 
 	/** @var int */
-	protected $descriptionCacheExpiry;
+	public $descriptionCacheExpiry;
 
 	/** @var bool Public zone URL. */
 	protected $url;
