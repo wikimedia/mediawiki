@@ -245,7 +245,7 @@ class StatusTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetWikiText
+	 * @dataProvider provideGetWikiTextAndHtml
 	 * @covers Status::getWikiText
 	 * @todo test long and short context messages generated through this method
 	 *       this can not really be done now due to use of wfMessage()->plain()
@@ -256,11 +256,22 @@ class StatusTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetWikiTextAndHtml
+	 * @covers Status::getHtml
+	 * @todo test long and short context messages generated through this method
+	 *       this can not really be done now due to use of $this->getWikiText using wfMessage()->plain()
+	 *       It is possible to mock such methods but only if namespaces are used
+	 */
+	public function testGetHtml( Status $status, $expected ) {
+		$this->assertEquals( $expected, $status->getHTML() );
+	}
+
+	/**
 	 * @return array of arrays with values;
 	 *    0 => status object
 	 *    1 => expected string (with no context)
 	 */
-	public static function provideGetWikiText() {
+	public static function provideGetWikiTextAndHtml() {
 		$testCases = array();
 
 		$testCases[ 'GoodStatus' ] = array(
@@ -308,12 +319,96 @@ class StatusTest extends MediaWikiTestCase {
 		return $testCases;
 	}
 
-	//todo test getMessage
+	/**
+	 * @dataProvider provideGetMessage
+	 * @covers Status::getMessage
+	 * @todo test long and short context messages generated through this method
+	 */
+	public function testGetMessage( Status $status, $expectedParams = array(), $expectedKey ) {
+		$message = $status->getMessage();
+		$this->assertInstanceOf( 'Message', $message );
+		$this->assertEquals( $expectedParams, $message->getParams() );
+		$this->assertEquals( $expectedKey, $message->getKey() );
+	}
+
+	/**
+	 * @return array of arrays with values;
+	 *    0 => status object
+	 *    1 => expected Message Params (with no context)
+	 */
+	public static function provideGetMessage() {
+		$testCases = array();
+
+		$testCases[ 'GoodStatus' ] = array(
+			new Status(),
+			array( "Status::getMessage called for a good result, this is incorrect\n" ),
+			'internalerror_info'
+		);
+
+		$status = new Status();
+		$status->ok = false;
+		$testCases[ 'GoodButNoError' ] = array(
+			$status,
+			array( "Status::getMessage: Invalid result object: no error text but not OK\n" ),
+			'internalerror_info'
+		);
+
+		$status = new Status();
+		$status->warning( 'fooBar!' );
+		$testCases[ '1StringWarning' ] = array(
+			$status,
+			array(),
+			"fooBar!"
+		);
+
+		//NOTE: this seems to return a string instead of a Message object...
+//		$status = new Status();
+//		$status->warning( 'fooBar!' );
+//		$status->warning( 'fooBar2!' );
+//		$testCases[ '2StringWarnings' ] = array(
+//			$status,
+//			array(),
+//			''
+//		);
+
+		$status = new Status();
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
+		$testCases[ '1MessageWarning' ] = array(
+			$status,
+			array( 'foo', 'bar' ),
+			"fooBar!",
+		);
+
+		//NOTE: this seems to return a string instead of a Message object...
+//		$status = new Status();
+//		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
+//		$status->warning( new Message( 'fooBar2!' ) );
+//		$testCases[ '2MessageWarnings' ] = array(
+//			$status,
+//			array(),
+//			"",
+//		);
+
+		return $testCases;
+	}
+
+	/**
+	 * @covers Status::replaceMessage
+	 */
+	public function testReplaceMessage() {
+		$status = new Status();
+		$message = new Message( 'key1', array( 'foo1', 'bar1' ) );
+		$status->error( $message );
+		$newMessage = new Message( 'key2', array( 'foo2', 'bar2' ) );
+
+		$status->replaceMessage( $message, $newMessage );
+
+		$this->assertEquals( $newMessage, $status->errors[0]['message'] );
+	}
+
 	//todo test getErrorMessage
-	//todo test getHTML
 	//todo test getErrorMessageArray
 	//todo test getStatusArray
 	//todo test getErrorsByType
-	//todo test replaceMessage
 
 }
