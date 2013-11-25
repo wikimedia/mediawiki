@@ -2756,10 +2756,15 @@ class OutputPage extends ContextSource {
 		$sitedir = $wgContLang->getDir();
 
 		$pieces = [];
-		$pieces[] = Html::htmlHeader( Sanitizer::mergeAttributes(
+
+		// Attributes for the HTML element. Extensions etc. can add any extra they require.
+		$htmlAttrs = Sanitizer::mergeAttributes(
 			$this->getRlClient()->getDocumentAttributes(),
 			$sk->getHtmlElementAttributes()
-		) );
+		);
+		Hooks::run( 'OutputPageHtmlAttributes', [ $this, $sk, &$htmlAttrs ] );
+		$pieces[] = Html::htmlHeader( $htmlAttrs );
+
 		$pieces[] = Html::openElement( 'head' );
 
 		if ( $this->getHTMLTitle() == '' ) {
