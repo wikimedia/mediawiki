@@ -50,6 +50,7 @@ final class DuplicateJob extends Job {
 		$djob->params = is_array( $djob->params ) ? $djob->params : array();
 		$djob->params = array( 'isDuplicate' => true ) + $djob->params;
 		$djob->metadata = $job->metadata;
+
 		return $djob;
 	}
 

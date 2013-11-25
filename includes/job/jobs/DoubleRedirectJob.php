@@ -85,18 +85,21 @@ class DoubleRedirectJob extends Job {
 	function run() {
 		if ( !$this->redirTitle ) {
 			$this->setLastError( 'Invalid title' );
+
 			return false;
 		}
 
 		$targetRev = Revision::newFromTitle( $this->title, false, Revision::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring\n" );
+
 			return true;
 		}
 		$content = $targetRev->getContent();
 		$currentDest = $content ? $content->getRedirectTarget() : null;
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
 			wfDebug( __METHOD__ . ": Redirect has changed since the job was queued\n" );
+
 			return true;
 		}
 
@@ -104,6 +107,7 @@ class DoubleRedirectJob extends Job {
 		$mw = MagicWord::get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__\n" );
+
 			return true;
 		}
 
@@ -111,6 +115,7 @@ class DoubleRedirectJob extends Job {
 		$newTitle = self::getFinalDestination( $this->redirTitle );
 		if ( !$newTitle ) {
 			wfDebug( __METHOD__ . ": skipping: single redirect, circular redirect or invalid redirect destination\n" );
+
 			return true;
 		}
 		if ( $newTitle->equals( $this->redirTitle ) ) {
@@ -128,12 +133,14 @@ class DoubleRedirectJob extends Job {
 
 		if ( $newContent->equals( $content ) ) {
 			$this->setLastError( 'Content unchanged???' );
+
 			return false;
 		}
 
 		$user = $this->getUser();
 		if ( !$user ) {
 			$this->setLastError( 'Invalid user' );
+
 			return false;
 		}
 
@@ -171,6 +178,7 @@ class DoubleRedirectJob extends Job {
 			$titleText = $title->getPrefixedDBkey();
 			if ( isset( $seenTitles[$titleText] ) ) {
 				wfDebug( __METHOD__, "Circular redirect detected, aborting\n" );
+
 				return false;
 			}
 			$seenTitles[$titleText] = true;
@@ -198,6 +206,7 @@ class DoubleRedirectJob extends Job {
 				$dest = $title = Title::makeTitle( $row->rd_namespace, $row->rd_title, '', $row->rd_interwiki );
 			}
 		}
+
 		return $dest;
 	}
 
@@ -216,6 +225,7 @@ class DoubleRedirectJob extends Job {
 				self::$user->addToDatabase();
 			}
 		}
+
 		return self::$user;
 	}
 }

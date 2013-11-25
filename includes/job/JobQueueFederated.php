@@ -49,14 +49,17 @@
 class JobQueueFederated extends JobQueue {
 	/** @var Array (partition name => weight) reverse sorted by weight */
 	protected $partitionMap = array();
+
 	/** @var Array (partition name => JobQueue) reverse sorted by weight */
 	protected $partitionQueues = array();
+
 	/** @var HashRing */
 	protected $partitionPushRing;
+
 	/** @var BagOStuff */
 	protected $cache;
 
-	protected $maxPartitionsTry;  // integer; maximum number of partitions to try
+	protected $maxPartitionsTry; // integer; maximum number of partitions to try
 
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
 	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
@@ -104,8 +107,8 @@ class JobQueueFederated extends JobQueue {
 		// Get the config to pass to merge into each partition queue config
 		$baseConfig = $params;
 		foreach ( array( 'class', 'sectionsByWiki', 'maxPartitionsTry',
-			'partitionsBySection', 'configByPartition', 'partitionsNoPush' ) as $o )
-		{
+			'partitionsBySection', 'configByPartition', 'partitionsNoPush' ) as $o
+		) {
 			unset( $baseConfig[$o] ); // partition queue doesn't care about this
 		}
 		// Get the partition queue objects
@@ -149,6 +152,7 @@ class JobQueueFederated extends JobQueue {
 			try {
 				if ( !$queue->doIsEmpty() ) {
 					$this->cache->add( $key, 'false', self::CACHE_TTL_LONG );
+
 					return false;
 				}
 			} catch ( JobQueueError $e ) {
@@ -157,6 +161,7 @@ class JobQueueFederated extends JobQueue {
 		}
 
 		$this->cache->add( $key, 'true', self::CACHE_TTL_LONG );
+
 		return true;
 	}
 
@@ -199,6 +204,7 @@ class JobQueueFederated extends JobQueue {
 		}
 
 		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
+
 		return $count;
 	}
 
@@ -215,6 +221,7 @@ class JobQueueFederated extends JobQueue {
 			throw new JobQueueError(
 				"Could not insert job(s), {$this->maxPartitionsTry} partitions tried." );
 		}
+
 		return true;
 	}
 
@@ -318,6 +325,7 @@ class JobQueueFederated extends JobQueue {
 			}
 			if ( $job ) {
 				$job->metadata['QueuePartition'] = $partition;
+
 				return $job;
 			} else {
 				unset( $partitionsTry[$partition] ); // blacklist partition
@@ -325,6 +333,7 @@ class JobQueueFederated extends JobQueue {
 		}
 
 		$this->cache->set( $key, 'true', JobQueueDB::CACHE_TTL_LONG );
+
 		return false;
 	}
 
@@ -332,6 +341,7 @@ class JobQueueFederated extends JobQueue {
 		if ( !isset( $job->metadata['QueuePartition'] ) ) {
 			throw new MWException( "The given job has no defined partition name." );
 		}
+
 		return $this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
 	}
 
@@ -345,6 +355,7 @@ class JobQueueFederated extends JobQueue {
 				return $this->partitionQueues[$partitions[1]]->doIsRootJobOldDuplicate( $job );
 			}
 		}
+
 		return false;
 	}
 
@@ -358,6 +369,7 @@ class JobQueueFederated extends JobQueue {
 				return $this->partitionQueues[$partitions[1]]->doDeduplicateRootJob( $job );
 			}
 		}
+
 		return false;
 	}
 
@@ -388,6 +400,7 @@ class JobQueueFederated extends JobQueue {
 				$tasks["{$partition}:{$task}"] = $def;
 			}
 		}
+
 		return $tasks;
 	}
 
@@ -412,6 +425,7 @@ class JobQueueFederated extends JobQueue {
 		foreach ( $this->partitionQueues as $queue ) {
 			$iterator->append( $queue->getAllQueuedJobs() );
 		}
+
 		return $iterator;
 	}
 
@@ -420,6 +434,7 @@ class JobQueueFederated extends JobQueue {
 		foreach ( $this->partitionQueues as $queue ) {
 			$iterator->append( $queue->getAllDelayedJobs() );
 		}
+
 		return $iterator;
 	}
 
@@ -445,6 +460,7 @@ class JobQueueFederated extends JobQueue {
 				MWExceptionHandler::logException( $e );
 			}
 		}
+
 		return array_values( $result );
 	}
 
@@ -464,6 +480,7 @@ class JobQueueFederated extends JobQueue {
 				MWExceptionHandler::logException( $e );
 			}
 		}
+
 		return $result;
 	}
 
@@ -478,6 +495,7 @@ class JobQueueFederated extends JobQueue {
 	 */
 	private function getCacheKey( $property ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+
 		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $property );
 	}
 }

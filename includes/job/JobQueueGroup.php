@@ -66,6 +66,7 @@ class JobQueueGroup {
 		if ( !isset( self::$instances[$wiki] ) ) {
 			self::$instances[$wiki] = new self( $wiki );
 		}
+
 		return self::$instances[$wiki];
 	}
 
@@ -157,6 +158,7 @@ class JobQueueGroup {
 			if ( !$job ) {
 				JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
 			}
+
 			return $job;
 		} else { // any job in the "default" jobs types
 			if ( $flags & self::USE_CACHE ) {
@@ -269,6 +271,7 @@ class JobQueueGroup {
 				}
 			}
 		}
+
 		return $types;
 	}
 
@@ -289,6 +292,7 @@ class JobQueueGroup {
 				}
 			}
 		}
+
 		return $sizeMap;
 	}
 
@@ -339,8 +343,10 @@ class JobQueueGroup {
 			// later jobs have not been done yet. This helps throttle queue spam.
 			$deprioritized = !$this->get( 'refreshLinks' )->isEmpty();
 			$this->cache->set( 'isDeprioritized', $type, $deprioritized );
+
 			return $deprioritized;
 		}
+
 		return false;
 	}
 
@@ -368,8 +374,8 @@ class JobQueueGroup {
 				if ( $definition['period'] <= 0 ) {
 					continue; // disabled
 				} elseif ( !isset( $lastRuns[$type][$task] )
-					|| $lastRuns[$type][$task] < ( time() - $definition['period'] ) )
-				{
+					|| $lastRuns[$type][$task] < ( time() - $definition['period'] )
+				) {
 					try {
 						if ( call_user_func( $definition['callback'] ) !== null ) {
 							$tasksRun[$type][$task] = time();
@@ -382,13 +388,13 @@ class JobQueueGroup {
 			}
 		}
 
-		$wgMemc->merge( $key, function( $cache, $key, $lastRuns ) use ( $tasksRun ) {
+		$wgMemc->merge( $key, function ( $cache, $key, $lastRuns ) use ( $tasksRun ) {
 			if ( is_array( $lastRuns ) ) {
 				foreach ( $tasksRun as $type => $tasks ) {
 					foreach ( $tasks as $task => $timestamp ) {
 						if ( !isset( $lastRuns[$type][$task] )
-							|| $timestamp > $lastRuns[$type][$task] )
-						{
+							|| $timestamp > $lastRuns[$type][$task]
+						) {
 							$lastRuns[$type][$task] = $timestamp;
 						}
 					}
@@ -396,6 +402,7 @@ class JobQueueGroup {
 			} else {
 				$lastRuns = $tasksRun;
 			}
+
 			return $lastRuns;
 		} );
 
@@ -420,6 +427,7 @@ class JobQueueGroup {
 			} else {
 				$value = $wgConf->getConfig( $this->wiki, $name );
 				$wgMemc->set( $key, array( 'v' => $value ), 86400 + mt_rand( 0, 86400 ) );
+
 				return $value;
 			}
 		}

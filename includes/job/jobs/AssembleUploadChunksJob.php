@@ -39,6 +39,7 @@ class AssembleUploadChunksJob extends Job {
 			$user = $context->getUser();
 			if ( !$user->isLoggedIn() ) {
 				$this->setLastError( "Could not load the author user from session." );
+
 				return false;
 			}
 
@@ -48,6 +49,7 @@ class AssembleUploadChunksJob extends Job {
 				// the user does not necessarily mean the session was loaded.
 				// Most likely cause by suhosin.session.encrypt = On.
 				$this->setLastError( "Error associating with user session. Try setting suhosin.session.encrypt = Off" );
+
 				return false;
 			}
 
@@ -71,6 +73,7 @@ class AssembleUploadChunksJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
 				);
 				$this->setLastError( $status->getWikiText() );
+
 				return false;
 			}
 
@@ -108,8 +111,10 @@ class AssembleUploadChunksJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -118,6 +123,7 @@ class AssembleUploadChunksJob extends Job {
 		if ( is_array( $info['params'] ) ) {
 			$info['params'] = array( 'filekey' => $info['params']['filekey'] );
 		}
+
 		return $info;
 	}
 

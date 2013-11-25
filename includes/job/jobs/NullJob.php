@@ -71,6 +71,7 @@ class NullJob extends Job {
 			$job = new self( $this->title, $params );
 			JobQueueGroup::singleton()->push( $job );
 		}
+
 		return true;
 	}
 }

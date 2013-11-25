@@ -134,6 +134,7 @@ class JobQueueRedis extends JobQueue {
 			$conn->multi( Redis::PIPELINE );
 			$conn->zSize( $this->getQueueKey( 'z-claimed' ) );
 			$conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
+
 			return array_sum( $conn->exec() );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -217,6 +218,7 @@ class JobQueueRedis extends JobQueue {
 			}
 			if ( $failed > 0 ) {
 				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
+
 				return false;
 			}
 			JobQueue::incrStats( 'job-insert', $this->type, count( $items ) );
@@ -428,12 +430,14 @@ LUA;
 
 				if ( !$res ) {
 					wfDebugLog( 'JobQueueRedis', "Could not acknowledge {$this->type} job." );
+
 					return false;
 				}
 			} catch ( RedisException $e ) {
 				$this->throwRedisException( $this->server, $conn, $e );
 			}
 		}
+
 		return true;
 	}
 
@@ -457,6 +461,7 @@ LUA;
 			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 				return true; // a newer version of this root job was enqueued
 			}
+
 			// Update the timestamp of the last root job started at the location...
 			return $conn->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL ); // 2 weeks
 		} catch ( RedisException $e ) {
@@ -501,6 +506,7 @@ LUA;
 			foreach ( $props as $prop ) {
 				$keys[] = $this->getQueueKey( $prop );
 			}
+
 			return ( $conn->delete( $keys ) !== false );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -515,12 +521,15 @@ LUA;
 		$conn = $this->getConnection();
 		try {
 			$that = $this;
+
 			return new MappedIterator(
 				$conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 ),
-				function( $uid ) use ( $that, $conn ) {
+				function ( $uid ) use ( $that, $conn ) {
 					return $that->getJobFromUidInternal( $uid, $conn );
 				},
-				array( 'accept' => function ( $job ) { return is_object( $job ); } )
+				array( 'accept' => function ( $job ) {
+					return is_object( $job );
+				} )
 			);
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -535,12 +544,15 @@ LUA;
 		$conn = $this->getConnection();
 		try {
 			$that = $this;
+
 			return new MappedIterator( // delayed jobs
 				$conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 ),
-				function( $uid ) use ( $that, $conn ) {
+				function ( $uid ) use ( $that, $conn ) {
 					return $that->getJobFromUidInternal( $uid, $conn );
 				},
-				array( 'accept' => function ( $job ) { return is_object( $job ); } )
+				array( 'accept' => function ( $job ) {
+					return is_object( $job );
+				} )
 			);
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -573,6 +585,7 @@ LUA;
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
 		}
+
 		return $sizes;
 	}
 
@@ -597,6 +610,7 @@ LUA;
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
 			$job->metadata['uuid'] = $item['uuid'];
+
 			return $job;
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $this->server, $conn, $e );
@@ -734,6 +748,7 @@ LUA;
 				'period' => 300 // 5 minutes
 			);
 		}
+
 		return $tasks;
 	}
 
@@ -744,18 +759,18 @@ LUA;
 	protected function getNewJobFields( Job $job ) {
 		return array(
 			// Fields that describe the nature of the job
-			'type'       => $job->getType(),
-			'namespace'  => $job->getTitle()->getNamespace(),
-			'title'      => $job->getTitle()->getDBkey(),
-			'params'     => $job->getParams(),
+			'type' => $job->getType(),
+			'namespace' => $job->getTitle()->getNamespace(),
+			'title' => $job->getTitle()->getDBkey(),
+			'params' => $job->getParams(),
 			// Some jobs cannot run until a "release timestamp"
-			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
+			'rtimestamp' => $job->getReleaseTimestamp() ? : 0,
 			// Additional job metadata
-			'uuid'       => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
-			'sha1'       => $job->ignoreDuplicates()
-				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
-				: '',
-			'timestamp'  => time() // UNIX timestamp
+			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
+			'sha1' => $job->ignoreDuplicates()
+					? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
+					: '',
+			'timestamp' => time() // UNIX timestamp
 		);
 	}
 
@@ -768,8 +783,10 @@ LUA;
 		if ( $title ) {
 			$job = Job::factory( $fields['type'], $title, $fields['params'] );
 			$job->metadata['uuid'] = $fields['uuid'];
+
 			return $job;
 		}
+
 		return false;
 	}
 
@@ -780,10 +797,12 @@ LUA;
 	protected function serialize( array $fields ) {
 		$blob = serialize( $fields );
 		if ( $this->compression === 'gzip'
-			&& strlen( $blob ) >= 1024 && function_exists( 'gzdeflate' ) )
-		{
+			&& strlen( $blob ) >= 1024
+			&& function_exists( 'gzdeflate' )
+		) {
 			$object = (object)array( 'blob' => gzdeflate( $blob ), 'enc' => 'gzip' );
 			$blobz = serialize( $object );
+
 			return ( strlen( $blobz ) < strlen( $blob ) ) ? $blobz : $blob;
 		} else {
 			return $blob;
@@ -803,6 +822,7 @@ LUA;
 				$fields = false;
 			}
 		}
+
 		return is_array( $fields ) ? $fields : false;
 	}
 
@@ -817,6 +837,7 @@ LUA;
 		if ( !$conn ) {
 			throw new JobQueueConnectionError( "Unable to connect to redis server." );
 		}
+
 		return $conn;
 	}
 

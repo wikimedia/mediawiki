@@ -65,6 +65,7 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 			}
 			$this->cache->delete( "$key:lock" ); // unlock
 		}
+
 		return true;
 	}
 
@@ -103,6 +104,7 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 				$this->cache->delete( "$key:rebuild" ); // unlock
 			}
 		}
+
 		return is_array( $pendingDbInfo )
 			? $pendingDbInfo['pendingDBs']
 			: array(); // cache is both empty and locked

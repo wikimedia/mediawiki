@@ -86,6 +86,7 @@ class HTMLCacheUpdateJob extends Job {
 		$numRows = $this->blCache->getNumLinks( $this->params['table'], $max );
 		if ( $wgMaxBacklinksInvalidate !== false && $numRows > $wgMaxBacklinksInvalidate ) {
 			wfDebug( "Skipped HTML cache invalidation of {$this->title->getPrefixedText()}." );
+
 			return true;
 		}
 
@@ -123,6 +124,7 @@ class HTMLCacheUpdateJob extends Job {
 			# period of time, say by updating a heavily-used template.
 			$this->insertJobsFromTitles( $titleArray );
 		}
+
 		return true;
 	}
 
