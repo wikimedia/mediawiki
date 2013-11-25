@@ -28,19 +28,26 @@
  * @ingroup JobQueue
  */
 abstract class Job {
-	/**
-	 * @var Title
-	 */
-	var $title;
+	/** @var string */
+	public $command;
 
-	var $command,
-		$params,
-		$id,
-		$removeDuplicates,
-		$error;
+	/** @var array|bool Array of job parameters or false if none */
+	public $params;
 
-	/** @var Array Additional queue metadata */
+	/** @var array Additional queue metadata */
 	public $metadata = array();
+
+	/** @var Title */
+	protected $title;
+
+	/** @var int Job identifier */
+	protected $id;
+
+	/** @var bool Expensive jobs may set this to true */
+	protected $removeDuplicates;
+
+	/** @var string Text for error that occurrect last */
+	protected $error;
 
 	/*-------------------------------------------------------------------------
 	 * Abstract functions
