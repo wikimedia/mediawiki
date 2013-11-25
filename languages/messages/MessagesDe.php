@@ -1843,7 +1843,7 @@ Diese Information ist öffentlich.',
 'recentchanges-label-unpatrolled' => 'Nicht-kontrollierte Änderung',
 'recentchanges-label-plusminus' => 'Die geänderte Seitengröße (Anzahl in Bytes)',
 'recentchanges-legend-newpage' => '(siehe auch die [[Special:NewPages|Liste neuer Seiten]])',
-'recentchanges-legend-plusminus' => "(''±123'')",
+'recentchanges-legend-plusminus' => "''(±123)''",
 'rcnote' => "{{PLURAL:$1|'''1''' Änderung|'''$1''' Änderungen}} in den {{PLURAL:$2|letzten 24 Stunden|letzten '''$2''' Tagen}}.
 Stand: $4, $5 Uhr.",
 'rcnotefrom' => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",

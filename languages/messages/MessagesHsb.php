@@ -762,10 +762,14 @@ Nachwilne hesło: $2',
 
 # Special:ResetTokens
 'resettokens' => 'Tokeny wróćo stajić',
+'resettokens-text' => 'Móžeš tokeny wróćo stajić, kotrež přistup na wěste priwatne daty dowoleja, kotrež su z twojim kontom zwjazane.
+
+Ty dyrbjał zo činić, jeli sy je zmylnje z někim dźělił abo jelic twoje konto je so napadało.',
 'resettokens-no-tokens' => 'Tokeny za wróćostajenje njejsu.',
 'resettokens-legend' => 'Tokeny wróćo stajić',
 'resettokens-tokens' => 'Tokeny:',
 'resettokens-token-label' => '$1 (aktualna hódnota: $2)',
+'resettokens-watchlist-token' => 'Token za webkanal (Atom/RSS) [[Special:Watchlist|změnow na stronach w twojich wobkedźbowankach]]',
 'resettokens-done' => 'Tokeny wróćostajene.',
 'resettokens-resetbutton' => 'Wubrane tokeny wróćo stajić',
 
@@ -1284,6 +1288,9 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'recentchangesdays-max' => '(Maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'recentchangescount' => 'Ličba stronow, kotraž ma so po standardźe pokazać:',
 'prefs-help-recentchangescount' => 'To zapřijima aktualne změny, stawizny stronow a protokole.',
+'prefs-help-watchlist-token2' => 'To je tajny kluč k webkanalej twojich wobkedźbowankow.
+Něchtó, kotryž jón znaje, móže twoje wobkedźbowanki čitać, njedźěl jón tohodla.
+[[Special:ResetTokens|Klikń tu, jeli dybiš jón wróćo stajić]].',
 'savedprefs' => 'Nastajenja buchu składowane.',
 'timezonelegend' => 'Časowe pasmo:',
 'localtime' => 'Lokalny čas:',
@@ -1355,6 +1362,7 @@ Tuta informacija budźe zjawna.',
 'prefs-displayrc' => 'Zwobraznjenske opcije',
 'prefs-displaysearchoptions' => 'Zwobraznjenske opcije',
 'prefs-displaywatchlist' => 'Zwobraznjenske opcije',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Rozdźěle',
 'prefs-help-prefershttps' => 'Tute nastajenje so po twojim přichodnym přizjewjenju wuskutkuje.',
 
@@ -1542,7 +1550,9 @@ Tuta informacija budźe zjawna.',
 'recentchanges-label-minor' => 'To je snadna změna',
 'recentchanges-label-bot' => 'Tuta změna bu přez roboćik přewjedźena',
 'recentchanges-label-unpatrolled' => 'Tuta změnu hišće njebu přepruwowana',
-'recentchanges-legend-newpage' => '$1 - nowa strona',
+'recentchanges-label-plusminus' => 'Změnjena wulkosć strony (w bajtach)',
+'recentchanges-legend-newpage' => '(hlej tež [[Special:NewPages|lisćinu nowych stronow]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Deleka {{PLURAL:$1|je '''1''' změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} za {{PLURAL:$2|posledni dźeń|poslednjej '''$2''' dnjej|poslednje '''$2''' dny|poslednich '''$2''' dnjow}}, staw wot $4, $5.",
 'rcnotefrom' => "Deleka so změny wot '''$2''' pokazuja (hač k '''$1''').",
 'rclistfrom' => 'Nowe změny pokazać, započinajo z $1',
@@ -2914,6 +2924,7 @@ $2',
 'tooltip-undo' => 'anuluje tutu změnu a wočinja wobdźěłowanski formular w přehladowym modusu. Zmóžnja přičinu w zjeću přidać.',
 'tooltip-preferences-save' => 'Nastajenja składować',
 'tooltip-summary' => 'Zapodaj krótke zjeće',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* CSS w tutej dataji budźe so na wšěch stronow wuskutkować. */',

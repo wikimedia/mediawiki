@@ -1513,7 +1513,7 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-skin' => 'Apariencia',
 'skin-preview' => 'Previsualizar',
 'datedefault' => 'Sin preferencia',
-'prefs-beta' => 'Características de prueba',
+'prefs-beta' => 'Funciones en pruebas',
 'prefs-datetime' => 'Fecha y hora',
 'prefs-labs' => 'Características de los laboratorios',
 'prefs-user-pages' => 'Páginas de usuario',

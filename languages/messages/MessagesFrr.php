@@ -1436,6 +1436,9 @@ Arken koon det lees.',
 'recentchanges-label-minor' => 'Letj feranrang',
 'recentchanges-label-bot' => 'Feranrang faan en bot',
 'recentchanges-label-unpatrolled' => 'Detdiar feranrang as noch ei efterluket wurden',
+'recentchanges-label-plusminus' => 'Feranert sidjengrate (am soföl bytes)',
+'recentchanges-legend-newpage' => "(luke uk bi't [[Special:NewPages|list mä nei sidjen]])",
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Diar {{PLURAL:$1|stäänt det leetst feranrang|stun a leetst '''$1''' feranrangen}} faan a leetst {{PLURAL:$2|dai|'''$2''' daar}}. Stant: $4, am a klook $5.",
 'rcnotefrom' => "Diar wurd a feranrangen sant '''$2'''uunwiset (ei muar üs '''$1''' feranrangen).",
 'rclistfrom' => 'Bluas feranrangen sant $1 wise.',
@@ -3824,5 +3827,16 @@ An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Föörlaagen ütjwidje',
+'expand_templates_intro' => 'Üüb detdiar spezial-sidj wurd a föörlaagen faan di tekst rekursiif ütjwidjet.
+Uk parser-funktjuunen liküs <code><nowiki>{{</nowiki>#language:…}}</code> an wariaabeln liküs <code><nowiki>{{</nowiki>CURRENTDAY}}</code> wurd ferwerket - det ment ales, wat tesken dobelt sleufen stäänt.',
+'expand_templates_title' => 'Kontekst-tiitel, för {{FULLPAGENAME}} asw.:',
+'expand_templates_input' => 'Skriiwfial:',
+'expand_templates_output' => 'Resultaat',
+'expand_templates_xml_output' => 'XML-resultaat',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Komentaaren wechnem',
+'expand_templates_remove_nowiki' => "<nowiki>-tags uun't resultaat ei uunwise",
+'expand_templates_generate_xml' => 'XML-parser-buum uunwise',
+'expand_templates_preview' => 'Föörskau',
 
 );

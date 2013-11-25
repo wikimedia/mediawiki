@@ -363,7 +363,7 @@ $messages = array(
 'vector-action-move' => 'Flyt',
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
-'vector-action-unprotect' => 'Ændre beskyttelse',
+'vector-action-unprotect' => 'Ændr beskyttelse',
 'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
@@ -400,9 +400,9 @@ $messages = array(
 'undelete_short' => 'Fortryd sletning af {{PLURAL:$1|én version|$1 versioner}}',
 'viewdeleted_short' => 'Vis {{PLURAL:$1|en slettet redigering|$1 slettede redigeringer}}',
 'protect' => 'Beskyt',
-'protect_change' => 'ændre',
+'protect_change' => 'ændr',
 'protectthispage' => 'Beskyt side',
-'unprotect' => 'Ændre beskyttelse',
+'unprotect' => 'Ændr beskyttelse',
 'unprotectthispage' => 'Ændre beskyttelsen af denne side',
 'newpage' => 'Ny side',
 'talkpage' => 'Diskussion',
@@ -580,7 +580,7 @@ Forespørgsel: $2',
 'viewsourcetext' => 'Du kan se og kopiere kildekoden til siden:',
 'viewyourtext' => "Du kan se og kopiere kildekoden for '''dine redigeringer''' til denne side:",
 'protectedinterface' => 'Denne side indeholder teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.
-Hvis du vil tilføje eller ændre oversættelser til alle wiki-websteder, brug venligst [//translatewiki.net/ translatewiki.net], MediaWiki lokalisering projektet.',
+Hvis du vil tilføje eller ændre oversættelser for alle wiki-websteder, så brug venligst [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.',
 'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere af denne wiki.
 For at tilføje eller ændre oversættelser på alle wikier bedes du benytte [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",
 'cascadeprotected' => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
@@ -999,7 +999,7 @@ Den seneste logpost vises nedenfor:",
 'template-protected' => '(skrivebeskyttet)',
 'template-semiprotected' => '(delvist beskyttet)',
 'hiddencategories' => 'Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:',
-'edittools' => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
+'edittools' => '<!-- Denne tekst vises under formularen "Redigér" samt "Læg en fil op". -->',
 'nocreatetext' => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:UserLogin|logge på]].',
 'nocreate-loggedin' => 'Du har ikke rettigheder til at oprette nye sider.',
 'sectioneditnotsupported-title' => 'Afsnitsredigering understøttes ikke',
@@ -1153,7 +1153,7 @@ Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det s
 'revdelete-hide-comment' => 'Redigeringssammendrag',
 'revdelete-hide-user' => 'Brugerens brugernavn/IP-adrsse',
 'revdelete-hide-restricted' => 'Skjul også informationen for administratorer',
-'revdelete-radio-same' => '(ikke ændre)',
+'revdelete-radio-same' => '(ingen ændring)',
 'revdelete-radio-set' => 'Skjult',
 'revdelete-radio-unset' => 'Synligt',
 'revdelete-suppress' => 'Skjul også informationen for administratorer',
@@ -1166,7 +1166,7 @@ $1",
 'logdelete-success' => "'''Synlighed ændret med success.'''",
 'logdelete-failure' => "'''Kunne ikke ændre logsynligheden.'''
 $1",
-'revdel-restore' => 'Ændre synlighed',
+'revdel-restore' => 'ændre synlighed',
 'revdel-restore-deleted' => 'slettede redigeringer',
 'revdel-restore-visible' => 'synlige ændringer',
 'pagehist' => 'Sidehistorik',
@@ -1445,9 +1445,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 * Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.
 * En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.',
 'userrights-reason' => 'Årsag:',
-'userrights-no-interwiki' => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
+'userrights-no-interwiki' => 'Du har ikke tilladelse til at redigere brugerrettigheder på andre wikier.',
 'userrights-nodatabase' => 'Databasen $1 eksisterer ikke lokalt.',
-'userrights-nologin' => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
+'userrights-nologin' => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerrettigheder.',
 'userrights-notallowed' => 'Du har ikke tilladelse til at tilføje eller fjerne brugerrettigheder.',
 'userrights-changeable-col' => 'Redigerbare grupper',
 'userrights-unchangeable-col' => 'Uredigerbare grupper',
@@ -1708,7 +1708,7 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'largefileserver' => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile' => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
 'windows-nonascii-filename' => 'Denne wiki understøtter ikke filnavne, der indeholder specialtegn.',
-'fileexists' => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
+'fileexists' => 'En fil med det navn findes allerede, tjek venligst <strong>[[:$1]]</strong> om du er sikker på du vil ændre den.
 [[$1|thumb]]',
 'filepageexists' => 'Siden med beskrivelse af denne fil er allerede oprettet på <strong>[[:$1]]</strong>, men der eksisterer ikke en fil med dette navn.
 Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt.
@@ -2465,7 +2465,7 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'pagesize' => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'ændre',
+'restriction-edit' => 'Redigér',
 'restriction-move' => 'flytte',
 'restriction-create' => 'oprette',
 'restriction-upload' => 'oplægge',
@@ -2625,7 +2625,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself' => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser' => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
-'ipb-edit-dropdown' => 'Ændre spærreårsager',
+'ipb-edit-dropdown' => 'Rediger blokeringsbegrundelser',
 'ipb-unblock-addr' => 'Ophæv blokeringen af "$1"',
 'ipb-unblock' => 'Frigive IP-adresse/bruger',
 'ipb-blocklist' => 'Vis alle blokeringer som er i kraft',
@@ -2691,7 +2691,7 @@ Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle 
 'ipb_expiry_temp' => 'Brugernavnet kan kun skjules ved permanente blokeringer.',
 'ipb_hide_invalid' => 'Kan ikke skjule denne konto; den kan have for mange redigeringer.',
 'ipb_already_blocked' => '„$1“ er allerede blokeret',
-'ipb-needreblock' => '$1 er allerede blokkeret. Vil du ændre indstillingene?',
+'ipb-needreblock' => '$1 er allerede blokeret. Vil du ændre indstillingerne?',
 'ipb-otherblocks-header' => 'Yderligere {{PLURAL:$1|blokering|blokeringer}}',
 'unblock-hideuser' => 'Du kan ikke ophæve denne brugers blokering, da brugernavnet er blevet skjult.',
 'ipb_cant_unblock' => 'Fejl: Spærre-ID $1 ikke fundet. Spærringen er allerede ophævet.',
@@ -3683,10 +3683,10 @@ Denne bekræftelseskode vil udløbe den $4.',
 'scarytranscludetoolong' => "[URL'en er for lang]",
 
 # Delete conflict
-'deletedwhileediting' => 'Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den!
+'deletedwhileediting' => "'''Advarsel:''' Denne side er blevet slettet efter du begyndte at redigere den!
 Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen],
-hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.',
-'confirmrecreate' => "Bruger [[User:$1|$1]] ([[User talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
+hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.",
+'confirmrecreate' => "Brugeren [[User:$1|$1]] ([[User talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at redigere den. Begrundelsen lyder:
 : ''$2''
 Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'confirmrecreate-noreason' => '[[User:$1|$1]] ([[User talk:$1|diskussion]]) har slettet denne side, efter du begyndte at redigere. Bekræft venligst, at du gerne vil genoprette siden.',

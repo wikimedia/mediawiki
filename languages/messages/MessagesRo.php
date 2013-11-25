@@ -1729,7 +1729,9 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-label-minor' => 'Aceasta este o modificare minoră',
 'recentchanges-label-bot' => 'Această modificare a fost efectuată de un robot',
 'recentchanges-label-unpatrolled' => 'Această modificare nu a fost încă verificată',
-'recentchanges-legend-newpage' => '$1 - pagină nouă',
+'recentchanges-label-plusminus' => 'Dimensiunea paginii s-a modificat corespunzător acestui număr de octeți',
+'recentchanges-legend-newpage' => '(vezi și [[Special:NewPages|lista cu pagini noi]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Mai jos se află {{PLURAL:\$|ultima modificare|ultimele '''\$1''' modificări|ultimele '''\$1''' de modificări}} din {{PLURAL:\$2|ultima zi|ultimele '''\$2''' zile|ultimele '''\$2''' de zile}}, începând cu \$5, \$4.",
 'rcnotefrom' => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom' => 'Se arată modificările începând cu $1',
@@ -4190,15 +4192,16 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'limitreport-expensivefunctioncount' => 'Număr de funcții de analiză costisitoare',
 
 # Special:ExpandTemplates
-'expandtemplates' => 'Extindere formate',
-'expand_templates_title' => 'Titlul paginii, pentru {{FULLPAGENAME}} etc.:',
-'expand_templates_input' => 'Text sursă:',
+'expandtemplates' => 'Expandare formate',
+'expand_templates_intro' => "Această pagină specială servește la expandarea recursivă a tuturor formatelor dintr-un text. Ea acționează și asupra funcțiilor de analiză (''parser'') de tipul <nowiki>{{</nowiki>#if:...}}, a variabilelor precum <nowiki>{{</nowiki>CURRENTDAY}} și în general asupra oricăror coduri cuprinse între acolade duble.",
+'expand_templates_title' => 'Titlul contextului (de exemplu pentru {{PAGENAME}}):',
+'expand_templates_input' => 'Introduceți textul aici:',
 'expand_templates_output' => 'Rezultat',
 'expand_templates_xml_output' => 'Ieșire XML',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Elimină comentariile',
 'expand_templates_remove_nowiki' => 'Suprimă etichetele <nowiki> în rezultat',
-'expand_templates_generate_xml' => 'Arată arborele analiză XML',
+'expand_templates_generate_xml' => 'Arată arborele de analiză XML',
 'expand_templates_preview' => 'Previzualizare',
 
 );

@@ -1525,7 +1525,9 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'recentchanges-label-minor' => 'Mân olygiad',
 'recentchanges-label-bot' => 'Golygwyd gan fot',
 'recentchanges-label-unpatrolled' => "Nid yw'r golygiad hwn wedi derbyn ymweliad patrôl eto",
-'recentchanges-legend-newpage' => '$1 - tudalen newydd',
+'recentchanges-label-plusminus' => "Newidiodd maint y dudalen o'r nifer hwn o feitiau",
+'recentchanges-legend-newpage' => '(gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
 'rcnotefrom' => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
 'rclistfrom' => 'Dangos newidiadau newydd, gan ddechrau ers $1',
@@ -3957,5 +3959,13 @@ Defnydd:
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|beit|beit|feit|beit}}',
 'limitreport-expansiondepth' => 'Uchafswm dyfnder yr ehangu',
 'limitreport-expensivefunctioncount' => "Nifer y ffwythiannau dosrannu sy'n dreth ar adnoddau",
+
+# Special:ExpandTemplates
+'expandtemplates' => "Ehangu'r nodynnau",
+'expand_templates_input' => 'Cynnwys y mewnbwn:',
+'expand_templates_output' => 'Y canlyniad',
+'expand_templates_xml_output' => 'Yr allbwn XML',
+'expand_templates_ok' => 'Iawn',
+'expand_templates_preview' => 'Rhagolwg',
 
 );

@@ -1676,6 +1676,10 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-editusercssjs' => 'Diğer kullanıcıların CSS ve JS dosyalarında değişiklik yap',
 'right-editusercss' => 'Diğer kullanıcıların CSS dosyalarında değişiklik yap',
 'right-edituserjs' => 'Diğer kullanıcıların JS dosyalarında değişiklik yap',
+'right-viewmywatchlist' => 'Kendi izleme listeni gör',
+'right-editmywatchlist' => 'Kendi izleme listeni düzenle. Not, bazı eylemler bu yetki olmadan da sayfa ekleyebilir.',
+'right-viewmyprivateinfo' => 'Kendi özel bilgilerini görüntüle (e-posta adresi, gerçek isim vb.)',
+'right-editmyprivateinfo' => 'Kendi özel bilgilerini değiştir (e-posta adresi, gerçek isim vb.)',
 'right-editmyoptions' => 'tercihlerini düzenle',
 'right-rollback' => 'Belirli bir sayfayı değiştiren son kullanıcının değişikliklerini hızlıca geri döndür',
 'right-markbotedits' => 'Geri döndürülen değişiklikleri, bot değişiklikleri olarak işaretle',
@@ -1740,6 +1744,8 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'action-sendemail' => 'e-posta gönder',
 'action-editmywatchlist' => 'izleme listeni düzenle',
 'action-viewmywatchlist' => 'izleme listeni gör',
+'action-viewmyprivateinfo' => 'kendi özel bilgilerinizi görmeye',
+'action-editmyprivateinfo' => 'kendi özel bilgilerinizi değiştirmeye',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
@@ -1935,13 +1941,18 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'upload-too-many-redirects' => 'URL çok fazla yönlendirme içeriyor',
 'upload-unknown-size' => 'Bilinmeyen boyut',
 'upload-http-error' => 'Bir HTTP hatası oluştu: $1',
+'upload-copy-upload-invalid-domain' => 'Kopya yüklemeler bu etki alanında mevcut değil.',
 
 # File backend
 'backend-fail-stream' => '$1 dosyası okunamadı.',
+'backend-fail-backup' => '"$1" dosyası yedeklenemedi.',
 'backend-fail-notexists' => '$1 dosyası mevcut değil.',
+'backend-fail-notsame' => 'Aynı olmayan bir dosya "$1" konumunda zaten var.',
 'backend-fail-invalidpath' => '"$1" geçerli bir depolama yolu değil.',
 'backend-fail-delete' => '"$1" dosyası silinemedi.',
+'backend-fail-describe' => '"$1" dosyası için üstveri değiştirilemiyor.',
 'backend-fail-alreadyexists' => '"$1" dosyası zaten mevcut.',
+'backend-fail-store' => '"$1" dosyası "$2" konumuna saklanamadı.',
 'backend-fail-copy' => '"$1" dosyası, "$2" dosyasına kopyalanamadı.',
 'backend-fail-move' => '"$1" dosyası, "$2" dosyasına taşınamadı.',
 'backend-fail-opentemp' => 'Geçici dosya açılamadı.',
@@ -1950,6 +1961,17 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'backend-fail-read' => '$1 dosyası okunamadı.',
 'backend-fail-create' => '$1 dosyası yazılamadı.',
 'backend-fail-maxsize' => 'Dosya {{PLURAL:$2|bir bayt|$2 bayt}} daha büyük olduğu için "$1" dosyasına yazılamadı.',
+
+# Lock manager
+'lockmanager-notlocked' => '"$1" kilidi açılamıyor; kilitli değil.',
+'lockmanager-fail-closelock' => '"$1" için kilit dosyası kapatılamıyor.',
+'lockmanager-fail-deletelock' => '"$1" için kilit dosyası silinemiyor.',
+'lockmanager-fail-acquirelock' => '"$1" için kilit alınamıyor.',
+'lockmanager-fail-openlock' => '"$1" için kilit dosyası açılamıyor.',
+'lockmanager-fail-releaselock' => '"$1" için kilit serbest bırakılamıyor.',
+'lockmanager-fail-db-release' => '$1 veritabanında kilitler serbest bırakılamıyor.',
+'lockmanager-fail-svr-acquire' => '$1 sunucusunda kilitler alınamıyor.',
+'lockmanager-fail-svr-release' => '$1 sunucusunda kilitler serbest bırakılamıyor.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Dosya ZIP denetimleri için açılırken bir hata ile karşılaşıldı.',
@@ -2025,6 +2047,7 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'listfiles_size' => 'Boyut (bayt)',
 'listfiles_description' => 'Tanım',
 'listfiles_count' => 'Sürümler',
+'listfiles-show-all' => 'Görüntülerin eski sürümlerini içer',
 'listfiles-latestversion' => 'Geçerli sürüm',
 'listfiles-latestversion-yes' => 'Evet',
 'listfiles-latestversion-no' => 'Hayır',
@@ -2068,6 +2091,7 @@ Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 bu
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
 'shared-repo-from' => "$1'dan",
 'shared-repo' => 'ortak bir havuz',
+'upload-disallowed-here' => 'Bu dosyanın üzerine yazamazsınız.',
 
 # File reversion
 'filerevert' => '$1 dosyasını eski haline döndür',
@@ -2122,6 +2146,8 @@ Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 bu
 
 # Random page in category
 'randomincategory' => 'Kategoriye göre rastgele sayfa',
+'randomincategory-invalidcategory' => '"$1" geçerli bir kategori adı değil.',
+'randomincategory-nopages' => '[[:Category:$1|$1]] kategorisinde hiç sayfa yok.',
 'randomincategory-selectcategory' => 'Rastgele sayfa alınacak kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Getir',
 
@@ -2151,8 +2177,12 @@ Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 bu
 'statistics-mostpopular' => 'En çok ziyaret edilen sayfalar',
 
 'pageswithprop' => 'Bir sayfa özelliğine sahip sayfalar',
+'pageswithprop-legend' => 'Bir sayfa özelliğine sahip sayfalar',
 'pageswithprop-text' => 'Bu sayfa belirli bir sayfa özelliğini kullanan sayfaları listeler.',
+'pageswithprop-prop' => 'Özellik adı:',
 'pageswithprop-submit' => 'Git',
+'pageswithprop-prophidden-long' => 'uzun metin özellik değeri gizlendi ($1)',
+'pageswithprop-prophidden-binary' => 'ikili özellik değeri gizlendi ($1)',
 
 'doubleredirects' => 'Çift yönlendirmeler',
 'doubleredirectstext' => 'Bu sayfa diğer yönlendirme sayfalarına yönlendirme yapan sayfaları listeler.
@@ -2207,6 +2237,8 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'mostinterwikis' => "En çok interwiki'ye sahip sayfalar",
 'mostrevisions' => 'En çok değişikliğe uğramış sayfalar',
 'prefixindex' => 'Önek ile tüm sayfalar',
+'prefixindex-namespace' => 'Önek ile tüm sayfalar ($1 ad alanında)',
+'prefixindex-strip' => 'Listede öneki kırp',
 'shortpages' => 'Kısa sayfalar',
 'longpages' => 'Uzun sayfalar',
 'deadendpages' => 'Başka sayfalara bağlantısı olmayan sayfalar',
@@ -2222,6 +2254,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'listusers' => 'Kullanıcı listesi',
 'listusers-editsonly' => 'Sadece değişiklik yapan kullanıcıları göster',
 'listusers-creationsort' => 'Oluşturma tarihine göre sırala',
+'listusers-desc' => 'Azalan sırada sırala',
 'usereditcount' => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 'usercreated' => "$1 tarihinde $2'de {{GENDER:$3|oluşturuldu}}.",
 'newpages' => 'Yeni sayfalar',
@@ -2257,6 +2290,7 @@ Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile ba�
 Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etkilenen sayfayı (yine büyük-küçük harf duyarlı) seçerek görünümü daraltabilirsiniz.',
 'logempty' => 'Kayıtlarda eşleşen bilgi yok.',
 'log-title-wildcard' => 'Bu metinle başlayan başlıklar ara',
+'showhideselectedlogentries' => 'Seçili günlük girdilerinin görünürlüğünü değiştir',
 
 # Special:AllPages
 'allpages' => 'Tüm sayfalar',
@@ -2277,6 +2311,8 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 'allpages-hide-redirects' => 'Yönlendirmeleri gizle',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Bu sayfanın önbelleğe alınan bir sürümünü görüntülüyorsunuz, $1 eski olabilir.',
+'cachedspecial-viewing-cached-ts' => 'Bu sayfanın önbelleğe alınan bir sürümünü görüntülüyorsunuz, tam olarak güncel olmayabilir.',
 'cachedspecial-refresh-now' => 'En son görünüm.',
 
 # Special:Categories
@@ -2527,6 +2563,7 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 'protect-title-notallowed' => '"$1" için koruma seviyesini görüntüleyin',
 'prot_1movedto2' => '[[$1]] sayfasının yeni adı: [[$2]]',
 'protect-badnamespace-text' => 'Bu ad alanındaki sayfalar korunamaz.',
+'protect-norestrictiontypes-title' => 'Korumaya alınamayan sayfa',
 'protect-legend' => 'Korumayı onayla',
 'protectcomment' => 'Sebep:',
 'protectexpiry' => 'Bitiş tarihi:',
@@ -3434,6 +3471,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-iimversion' => 'IIM sürümü',
 'exif-iimcategory' => 'Kategori',
 'exif-datetimeexpires' => 'Bu tarihten sonra kullanmayın:',
+'exif-datetimereleased' => 'Tarihinde yayınlandı',
 'exif-identifier' => 'Tanımlayıcı',
 'exif-lens' => 'Kullanılan objektif',
 'exif-serialnumber' => 'Kameranın seri numarası',

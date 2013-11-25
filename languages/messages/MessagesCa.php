@@ -480,8 +480,8 @@ $1",
 'youhavenewmessages' => 'Tens $1 ($2).',
 'youhavenewmessagesfromusers' => "Tens $1 {{PLURAL:$3|d'un altre usuari|de $3 usuaris}} ($2).",
 'youhavenewmessagesmanyusers' => 'Tens $1 de molts usuaris ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|un nou missatge|nous missatges}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|darrer canvi|darrers canvis}}',
+'newmessageslinkplural' => '{{PLURAL:$1|un nou missatge|999=nous missatges}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|darrer canvi|999=darrers canvis}}',
 'youhavenewmessagesmulti' => 'Teniu nous missatges a $1',
 'editsection' => 'modifica',
 'editold' => 'modifica',
@@ -608,7 +608,7 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 'invalidtitle-knownnamespace' => "El títol amb l'espai de noms «$2» i text «$3» no és vàlid",
 'invalidtitle-unknownnamespace' => 'Títol no vàlid amb espai de noms desconegut de número «$1» i text «$2»',
 'exception-nologin' => 'No has iniciat sessió',
-'exception-nologin-text' => 'Aquesta pàgina o acció requereix que iniciïs sessió a aquest wiki.',
+'exception-nologin-text' => '[[Special:Userlogin|Inicieu sessió]] per poder accedir a aquesta pàgina o acció.',
 'exception-nologin-text-manual' => 'Si us plau, $1 per poder accedir a aquesta pàgina o acció.',
 
 # Virus scanner
@@ -1153,8 +1153,9 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.",
 'revdelete-confirm' => "Si us plau, confirmeu que és això el que desitgeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
 'revdelete-suppress-text' => "Les supressions '''només''' han de ser portades a terme en els següents casos:
+* Informació potencialment difamatòria
 * Informació personal inapropiada
-*: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
+*: ''adreces personals, números de telèfon, números d'identificació nacional, etc.''",
 'revdelete-legend' => 'Defineix restriccions en la visibilitat',
 'revdelete-hide-text' => 'Text de la revisió',
 'revdelete-hide-image' => 'Amaga el contingut del fitxer',
@@ -1163,8 +1164,8 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-hide-user' => "Nom d'usuari / adreça IP de l'editor",
 'revdelete-hide-restricted' => 'Suprimir les dades als administradors així com a la resta.',
 'revdelete-radio-same' => '(no modificar)',
-'revdelete-radio-set' => 'Visible',
-'revdelete-radio-unset' => 'Oculta',
+'revdelete-radio-set' => 'Oculta',
+'revdelete-radio-unset' => 'Visible',
 'revdelete-suppress' => 'Suprimeix també les dades dels administradors',
 'revdelete-unsuppress' => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log' => 'Motiu:',
@@ -1318,6 +1319,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'preferences' => 'Preferències',
 'mypreferences' => 'Preferències',
 'prefs-edits' => "Nombre d'edicions:",
+'prefsnologintext2' => "Useu $1 per configurar preferències d'usuari.",
 'changepassword' => 'Canvia la contrasenya',
 'prefs-skin' => 'Aparença',
 'skin-preview' => 'prova',
@@ -1614,7 +1616,9 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'recentchanges-label-minor' => 'Aquesta és una modificació menor',
 'recentchanges-label-bot' => 'Aquesta modificació fou feta per un bot',
 'recentchanges-label-unpatrolled' => 'Aquesta modificació encara no ha estat patrullada',
-'recentchanges-legend-newpage' => '$1 - nova pàgina',
+'recentchanges-label-plusminus' => 'La mida de la pàgina ha canviat aquest nombre de bytes',
+'recentchanges-legend-newpage' => '(vegeu també la  [[Special:NewPages|llista de pàgines noves]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => 'A continuació hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|el darrer dia|els darrers <strong>$2</strong> dies}}, actualitzats a les $5 del $4.',
 'rcnotefrom' => 'A sota hi ha els canvis des de <b>$2</b> (es mostren fins <b>$1</b>).',
 'rclistfrom' => 'Mostra els canvis nous des de $1',
@@ -2319,7 +2323,7 @@ Contacteu amb l\'editor:
 correu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-No rebreu més notificacions de futurs canvis si no visiteu la pàgina.
+No rebreu més notificacions en cas de més activitat a menys que visiteu aquesta pàgina havent iniciat sessió.
 També podeu canviar el mode de notificació de les pàgines que vigileu en la vostra llista de seguiment.
 
 El servei de notificacions del projecte {{SITENAME}}
@@ -3135,7 +3139,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'svg-long-desc' => 'fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3',
 'svg-long-desc-animated' => 'Fitxer SVG animat, nominalment $1 × $2 píxels, mida del fitxer: $3',
 'svg-long-error' => 'El fitxer SVG no és vàlid: $1',
-'show-big-image' => 'Imatge en màxima resolució',
+'show-big-image' => 'Fitxer original',
 'show-big-image-preview' => "Mida d'aquesta previsualització: $1.",
 'show-big-image-other' => '{{PLURAL:$2|Altra resolució|Altres resolucions}}: $1.',
 'show-big-image-size' => '$1 × $2 píxels',
@@ -3706,6 +3710,9 @@ Confirmeu que realment voleu tornar-la a crear.",
 'confirm-unwatch-button' => "D'acord",
 'confirm-unwatch-top' => 'Voleu treure aquesta pàgina de la llista de seguiment?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '«$1»',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina anterior',
 'imgmultipagenext' => 'pàgina següent →',
@@ -3835,8 +3842,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'specialpages' => 'Pàgines especials',
 'specialpages-note-top' => 'Llegenda',
 'specialpages-note' => '* Pàgines especials normals.
-* <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>
-* <span class="mw-specialpagecached">Pàgines especials en memòria cau (poden ser obsoletes).</span>',
+* <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other' => 'Altres pàgines especials',
 'specialpages-group-login' => 'Iniciar sessió / Crear un compte',

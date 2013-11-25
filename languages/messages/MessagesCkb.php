@@ -277,7 +277,7 @@ $messages = array(
 'category-empty' => "''ئەم پۆلە ھەنووکە ھیچ پەڕە یان پەڕگەیەک لە خۆ ناگرێت.‌''",
 'hidden-categories' => '{{PLURAL:$1|پۆلی شارداوە|پۆلە شارداوەکان}}',
 'hidden-category-category' => 'پۆلە شاردراوەکان',
-'category-subcat-count' => '{{PLURAL:$2|ئەم پۆلە تەنھا ژێرپۆلی خوارەوەی تێدایە.| ئەم پۆلە ئەم {{PLURAL:$1|ژێرپۆلەی|$1 ژێرپۆلانەی}} خوارەوەی تێدایە، لە کۆی سەرجەم $2 دانە.}}',
+'category-subcat-count' => '{{PLURAL:$2|ئەم پۆلە تەنیا ژێرپۆلی ژێرەوەی تێدایە.| ئەم پۆلە ئەم {{PLURAL:$1|ژێرپۆلەی|$1 ژێرپۆلانەی}} ژێرەوەی تێدایە، لە کۆی سەرجەم $2 دانە.}}',
 'category-subcat-count-limited' => 'ئەم هاوپۆلە {{PLURAL:$1|ژێرهاوپۆلی}} لەخۆ گرتووە.',
 'category-article-count' => '{{PLURAL:$2|ئەم پۆلە تەنھا ئەم پەڕەی لەخۆگرتووە.|{{PLURAL:$1|پەڕە|$1 پەڕە}} لەم پۆلەدا، لە سەرجەم $2 پەڕە.}}',
 'category-article-count-limited' => 'ئەم {{PLURAL:$1|لاپەڕە|$1 لاپەڕانە}}، لەم هاوپۆلەدان.',
@@ -367,7 +367,7 @@ $messages = array(
 'articlepage' => 'پەڕەی ناوەرۆک ببینە',
 'talk' => 'وتووێژ',
 'views' => 'بینینەکان',
-'toolbox' => 'ئامرازدان',
+'toolbox' => 'ئامرازەکان',
 'userpage' => 'بینینی پەڕەی بەکارھێنەر',
 'projectpage' => 'په‌ڕه‌ی پرۆژه‌ نیشانبده‌',
 'imagepage' => 'پەڕەی پەڕگە نیشان بدە',
@@ -2316,8 +2316,8 @@ $1',
 'month' => 'لە مانگی (و پێشترەوە):',
 'year' => 'لە ساڵی (و پێشترەوە):',
 
-'sp-contributions-newbies' => 'تەنھا بەشدارییەکانی بەکارھێنەرە تازەکان نیشان بدە',
-'sp-contributions-newbies-sub' => 'لە بەکارھێنەرە تازەکانەوە',
+'sp-contributions-newbies' => 'تەنیا بەشدارییەکانی ھەژمارە نوێکان نیشان بدە',
+'sp-contributions-newbies-sub' => 'بۆ ھەژمارە نوێکان',
 'sp-contributions-newbies-title' => 'بەشدارییەکانی بەکارھێنەر بۆ ھەژمارە نوێکان',
 'sp-contributions-blocklog' => 'لۆگی بەربەستن',
 'sp-contributions-deleted' => 'بەشدارییە سڕاوەکان',
@@ -2807,6 +2807,7 @@ $1',
 'pageinfo-authors' => 'ژمارەی نووسەرە جیاوازەکان',
 'pageinfo-recent-edits' => 'ژمارەی دوایین دەستکارییەکان (لە $1ی ڕابردوودا)',
 'pageinfo-recent-authors' => 'ژمارەی دوایین نووسەرە جیاوازەکان',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|پۆلی شاردراوە|پۆلە شاردراوەکان}} ($1)',
 'pageinfo-templates' => 'داڕێژە{{PLURAL:$1|ی بەکارگیراو| بەکارگیراوەکان}} ($1)',
 'pageinfo-toolboxlink' => 'زانیاریی پەڕە',
 'pageinfo-redirectsto-info' => 'زانیاری',
@@ -3444,6 +3445,8 @@ $5
 'tags-display-header' => 'دیمەن لەسەر لیستەکانی گۆڕان',
 'tags-description-header' => 'پێناسەی تەواوی مەبەست',
 'tags-hitcount-header' => 'گۆڕانکاریە تاگ‌کراوەکان',
+'tags-active-yes' => 'بەڵێ',
+'tags-active-no' => 'نا',
 'tags-edit' => 'دەستکاری',
 'tags-hitcount' => '$1 {{PLURAL:$1|گۆڕان|گۆڕانکاری}}',
 
@@ -3476,6 +3479,8 @@ $5
 'htmlform-submit' => 'ناردن',
 'htmlform-reset' => 'پووچەڵکردنەوەی دەستکارییەکان',
 'htmlform-selectorother-other' => 'دیکە',
+'htmlform-no' => 'نا',
+'htmlform-yes' => 'بەڵێ',
 
 # New logging system
 'logentry-delete-delete' => '$1 پەڕەی $3ی {{GENDER:$2|سڕییەوە}}',
@@ -3535,5 +3540,8 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|دەیە|دەیە}}',
 'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'باشە',
 
 );

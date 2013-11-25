@@ -715,8 +715,8 @@ $1',
 'youhavenewmessages' => '$1 دارید ($2).',
 'youhavenewmessagesfromusers' => 'شما از {{PLURAL:$3|یک کاربر دیگر|$3  کاربر}} $1 دارید ($2).',
 'youhavenewmessagesmanyusers' => 'شما از تعدادی کاربر $1 دارید ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|پیام جدید}}',
-'newmessagesdifflinkplural' => '{{formatnum:$1}} {{PLURAL:$1|تغییر|تغییر}} اخیر',
+'newmessageslinkplural' => '{{PLURAL:$1|پیام جدید|999=پیام‌های جدید}}',
+'newmessagesdifflinkplural' => '{{formatnum:$1}} {{PLURAL:$1|تغییر|999=تغییر}} اخیر',
 'youhavenewmessagesmulti' => 'پیام‌های جدیدی در $1 دارید.',
 'editsection' => 'ویرایش',
 'editold' => 'ویرایش',
@@ -851,7 +851,8 @@ $2',
 'invalidtitle-knownnamespace' => 'عنوان نامعتبر با فضای نام «$2» و متن «$3»',
 'invalidtitle-unknownnamespace' => 'عنوان نامعتبر با فضای نام ناشناختهٔ شمارهٔ $1 و متن «$2»',
 'exception-nologin' => 'به سامانه وارد نشده‌اید',
-'exception-nologin-text' => 'دسترسی به این صفحه یا انجام این عمل در این ویکی نیازمند وارد شدن به سیستم  است.',
+'exception-nologin-text' => 'لطفاً به سامانه [[Special:Userlogin|وارد شوید]] تا بتوانید به این صفحه دسترسی داشته باشید.',
+'exception-nologin-text-manual' => 'لطفاً  $1  تا بتوانید به این صفحه یا عمل دسترسی داشته باشید.',
 
 # Virus scanner
 'virus-badscanner' => "پیکربندی بد: پویشگر ویروس ناشناخته: ''$1''",
@@ -1417,7 +1418,7 @@ $2
 'revdelete-suppress-text' => "فرونشانی باید '''تنها''' برای موارد زیر استفاده شود:
 * اطلاعات به طور بالقوه افتراآمیز
 * اطلاعات نامناسب شخصی
-*: ''نشانی منزل، شماره تلفن، شماره تامین اجتماعی و غیره.''",
+*: ''نشانی منزل، شماره تلفن، کد ملی و غیره.''",
 'revdelete-legend' => 'تنظیم محدودیت‌های پیدایی',
 'revdelete-hide-text' => 'متن نسخه',
 'revdelete-hide-image' => 'نهفتن محتویات پرونده',
@@ -1426,8 +1427,8 @@ $2
 'revdelete-hide-user' => 'نام کاربری/نشانی آی‌پی',
 'revdelete-hide-restricted' => 'فرونشانی اطلاعات برای مدیران به همراه دیگران',
 'revdelete-radio-same' => '(بدون تغییر)',
-'revdelete-radio-set' => 'نمایان',
-'revdelete-radio-unset' => 'مخفی',
+'revdelete-radio-set' => 'پنهان',
+'revdelete-radio-unset' => 'نمایان',
 'revdelete-suppress' => 'از دسترسی مدیران به داده نیز مانند سایر کاربران جلوگیری به عمل آید.',
 'revdelete-unsuppress' => 'خاتمهٔ محدودیت‌ها در مورد نسخه‌های انتخاب شده',
 'revdelete-log' => 'دلیل:',
@@ -1583,6 +1584,7 @@ $1",
 'preferences' => 'ترجیحات',
 'mypreferences' => 'ترجیحات',
 'prefs-edits' => 'تعداد ویرایش‌ها:',
+'prefsnologintext2' => 'لطفاً  $1  برای تنظیم ترجیحات کاربر.',
 'changepassword' => 'تغییر گذرواژه',
 'prefs-skin' => 'پوسته',
 'skin-preview' => 'پیش‌نمایش',
@@ -1757,7 +1759,7 @@ $1",
 'right-createpage' => 'ایجاد صفحه (در مورد صفحه‌های غیر بحث)',
 'right-createtalk' => 'ایجاد صفحه‌های بحث',
 'right-createaccount' => 'ایجاد حساب‌های کاربری',
-'right-minoredit' => 'علامت‌زدن ویرایش‌ها به عنوان جزئی',
+'right-minoredit' => 'علامت‌زدن ویرایش‌ها به‌عنوان جزئی',
 'right-move' => 'انتقال صفحه',
 'right-move-subpages' => 'انتقال صفحه‌ها به همراه زیر‌صفحه‌هایشان',
 'right-move-rootuserpages' => 'انتقال صفحه‌های کاربری سرشاخه',
@@ -1883,7 +1885,9 @@ $1",
 'recentchanges-label-minor' => 'این ویرایش جزئی‌است',
 'recentchanges-label-bot' => 'این ویرایش را یک ربات انجام داده‌است',
 'recentchanges-label-unpatrolled' => 'این ویرایش هنوز گشت‌زنی نشده‌است',
-'recentchanges-legend-newpage' => '$1 - صفحهٔ جدید',
+'recentchanges-label-plusminus' => 'حجم صفحه به اندازه این بایت‌ها تغییر یافته‌است',
+'recentchanges-legend-newpage' => '(همچنین به [[Special:NewPages|فهرست صفحات جدید]] نگاه کنید)',
+'recentchanges-legend-plusminus' => "('' ±۱۲۳'')",
 'rcnote' => "در زیر {{PLURAL:$1|'''۱''' تغییر|آخرین '''$1''' تغییر}} در آخرین {{PLURAL:$2|روز|'''$2''' روز}} را، تا $4 ساعت $5 می‌بینید.",
 'rcnotefrom' => 'در زیر تغییرات از تاریخ <b>$2</b> آمده‌اند (تا <b>$1</b> مورد نشان داده می‌شود).',
 'rclistfrom' => 'نمایش تغییرات جدید با شروع از $1',
@@ -2614,7 +2618,7 @@ $PAGEINTRO $NEWPAGE
 نامه: $PAGEEDITOR_EMAIL
 ویکی: $PAGEEDITOR_WIKI
 
-تا هنگامی که به صفحه سر نزده‌اید، در صورت رخ‌دادنِ احتمالیِ تغییراتِ بیشتر، اعلانیه‌ای برای شما فرستاده نخواهد شد.
+تا هنگامی که به صفحه سر نزده‌اید، در صورت رخ‌دادنِ احتمالیِ فعالیت بیشتر، تا زمانی که در با کاربریتان در سیستم هستید، اعلانیه‌ای برای شما فرستاده نخواهد شد.
 شما همچنین می‌توانید در صفحهٔ پی‌گیری‌های خود پرچم‌های مربوط به آگاهی‌رسانی را صفر کنید همچنین می‌توانید پرچم‌های آگاهی‌سازی را بازنشانی کنید.
 
 دوستدار شما، سامانهٔ آگاهی‌رسانی {{SITENAME}}
@@ -3311,6 +3315,7 @@ $2',
 'tooltip-undo' => '«خنثی‌سازی» این ویرایش را خنثی می‌کند و جعبهٔ ویرایش را در حالت پیش‌نمایش باز می‌کند تا افزودن دلیل در خلاصهٔ ویرایش ممکن شود.',
 'tooltip-preferences-save' => 'ذخیره کردن ترجیحات',
 'tooltip-summary' => 'خلاصه‌ای وارد کنید',
+'interlanguage-link-title' => '$1–$2',
 
 # Stylesheets
 'common.css' => '/* دستورات این بخش همهٔ کاربران را تحت تاثیر قرار می‌دهند. */',
@@ -3355,6 +3360,7 @@ $2',
 'pageinfo-length' => 'حجم صفحه  (بایت)',
 'pageinfo-article-id' => 'شناسهٔ صفحه',
 'pageinfo-language' => 'زبان محتوای صفحه',
+'pageinfo-content-model' => 'ساختار محتوای صفحه',
 'pageinfo-robot-policy' => '‌فهرست‌کردن توسط ربات‌ها',
 'pageinfo-robot-index' => 'مجاز',
 'pageinfo-robot-noindex' => 'نامجاز',
@@ -3442,7 +3448,7 @@ $1',
 'svg-long-desc' => 'پروندهٔ اس‌وی‌جی، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
 'svg-long-desc-animated' => 'پروندهٔ اس‌وی‌جی متحرک، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
 'svg-long-error' => 'پرونده SVG نامجاز: $1',
-'show-big-image' => 'تصویر با تفکیک‌پذیری بالاتر',
+'show-big-image' => 'پروندهٔ اصلی',
 'show-big-image-preview' => 'اندازهٔ این پیش‌نمایش: $1.',
 'show-big-image-other' => '{{PLURAL:$2|کیفیت|کیفیت‌های}} دیگر: $1.',
 'show-big-image-size' => '<span dir="ltr">$1 × $2</span> پیکسل',
@@ -4013,6 +4019,7 @@ $5
 'semicolon-separator' => '؛&#32;',
 'comma-separator' => '،&#32;',
 'percent' => '$1٪',
+'quotation-marks' => '$1',
 
 # Multipage image navigation
 'imgmultipageprev' => '&rarr; صفحهٔ پیشین',
@@ -4206,8 +4213,9 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'صفحه‌های ویژه',
+'specialpages-note-top' => 'شرح علائم',
 'specialpages-note' => '* صفحه‌های ویژهٔ عادی.
-* <strong class="mw-specialpagerestricted">صفحه‌های ویژهٔ محدودشده.</strong>',
+* <span class="mw-specialpagerestricted">صفحه‌های ویژهٔ محدودشده.</span>',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
 'specialpages-group-other' => 'سایر صفحه‌های ویژه',
 'specialpages-group-login' => 'ورود / ثبت نام',

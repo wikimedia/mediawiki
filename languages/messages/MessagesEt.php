@@ -569,8 +569,8 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'youhavenewmessages' => 'Sulle on $1 ($2).',
 'youhavenewmessagesfromusers' => 'Sulle on $1 {{PLURAL:$3|ühelt|$3}} kasutajalt ($2).',
 'youhavenewmessagesmanyusers' => 'Sulle on $1 paljudelt kasutajatelt ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|uus sõnum|uusi sõnumeid}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|viimane muudatus|viimased muudatused}}',
+'newmessageslinkplural' => '{{PLURAL:$1|uus sõnum|999=uusi sõnumeid}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|viimane muudatus|999=viimased muudatused}}',
 'youhavenewmessagesmulti' => 'Sulle on uusi sõnumeid $1',
 'editsection' => 'muuda',
 'editold' => 'redigeeri',
@@ -698,7 +698,8 @@ Administraator lukustas selle järgmisel põhjusel: "$3".',
 'invalidtitle-knownnamespace' => 'Vigane pealkiri nimeruumis "$2" tekstiga "$3"',
 'invalidtitle-unknownnamespace' => 'Vigane pealkiri nimeruuminumbriga $1 ja tekstiga "$2"',
 'exception-nologin' => 'Sisse logimata',
-'exception-nologin-text' => 'Selle lehekülje või toimingu jaoks pead selles vikis olema sisse loginud.',
+'exception-nologin-text' => 'Selle lehekülje või toimingu jaoks [[Special:Userlogin|logi]] palun sisse.',
+'exception-nologin-text-manual' => 'Pead $1, et sellele leheküljele või toimingule ligi pääseda.',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -1118,6 +1119,7 @@ Tundub, et see on kustutatud.',
 'edit-already-exists' => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
 'defaultmessagetext' => 'Sõnumi vaiketekst',
+'content-failed-to-parse' => 'Ebaõnnestus $1i mudeli $2-tüüpi sisu liigendamine: $3',
 'invalid-content-data' => 'Vigased sisuandmed',
 'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1i.',
 'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
@@ -1410,6 +1412,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'preferences' => 'Eelistused',
 'mypreferences' => 'Eelistused',
 'prefs-edits' => 'Redigeerimiste arv:',
+'prefsnologintext2' => 'Pead $1, et oma eelistusi muuta.',
 'changepassword' => 'Muuda parool',
 'prefs-skin' => 'Kujundus',
 'skin-preview' => 'eelvaade',
@@ -1705,11 +1708,12 @@ See teave on avalik.',
 'recentchanges-summary' => 'Jälgi sellel leheküljel viimaseid muudatusi.',
 'recentchanges-noresult' => 'Selles ajavahemikus pole tehtud neile kriteeriumitele vastavaid muudatusi.',
 'recentchanges-feed-description' => 'Jälgi vikisse tehtud viimaseid muudatusi.',
-'recentchanges-label-newpage' => 'See muudatus lõi uue lehekülje',
+'recentchanges-label-newpage' => 'Selle muudatusega alustati uut lehekülge',
 'recentchanges-label-minor' => 'See on pisiparandus',
 'recentchanges-label-bot' => 'Selle muudatuse tegi robot',
 'recentchanges-label-unpatrolled' => 'Seda muudatust ei ole veel kontrollitud',
-'recentchanges-legend-newpage' => '$1 – uus lehekülg',
+'recentchanges-label-plusminus' => 'Lehekülje suuruse muutus baitides',
+'recentchanges-legend-newpage' => '(vaata ka [[Special:NewPages|uute lehekülgede loendit]])',
 'rcnote' => "Allpool on esitatud {{PLURAL:$1|'''1''' muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|päeva|'''$2''' päeva}} jooksul seisuga $4, kell $5.",
 'rcnotefrom' => "Allpool on toodud muudatused alates: '''$2''' (näidatakse kuni '''$1''' muudatust)",
 'rclistfrom' => 'Näita muudatusi alates: $1',
@@ -2413,7 +2417,7 @@ Redigeerijaga ühenduse võtmine:
 e-post: $PAGEEDITOR_EMAIL
 viki: $PAGEEDITOR_WIKI
 
-Seni kuni sa seda lehte ei külasta, selle lehega seotud toimingute kohta sulle uusi teavitus-e-kirju ei saadeta. Jälgimisloendis saaksid kõigi jälgitavate lehekülgedega seotud teavitussätted ka lähtestada.
+Seni kuni sa sisselogituna seda lehekülge ei külasta, selle leheküljega seotud toimingute kohta sulle uusi teavituse e-kirju ei saadeta. Jälgimisloendis saaksid kõigi jälgitavate lehekülgedega seotud teavitussätted ka lähtestada.
 
 Abivalmilt
 {{GRAMMAR:genitive|{{SITENAME}}}} teavitussüsteem
@@ -3890,9 +3894,8 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 
 # Special:SpecialPages
 'specialpages' => 'Erileheküljed',
-'specialpages-note' => '* Harilikud erileheküljed
-* <span class="mw-specialpagerestricted">Piiranguga erileheküljed</span>
-* <span class="mw-specialpagecached">Uuendamata sisuga erileheküljed (ei pruugi enam kasutuses olla)</span>',
+'specialpages-note' => '* Harilikud erileheküljed.
+* <span class="mw-specialpagerestricted">Piiranguga erileheküljed.</span>',
 'specialpages-group-maintenance' => 'Hooldusaruanded',
 'specialpages-group-other' => 'Teised erileheküljed',
 'specialpages-group-login' => 'Sisselogimine ja konto loomine',
