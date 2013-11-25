@@ -27,7 +27,11 @@
  * @ingroup FileAbstraction
  */
 class OldLocalFile extends LocalFile {
-	var $requestedTime, $archive_name;
+	/** @var string Timestamp */
+	protected $requestedTime;
+
+	/** @var string Archive name */
+	protected $archive_name;
 
 	const CACHE_VERSION = 1;
 	const MAX_CACHE_ROWS = 20;
