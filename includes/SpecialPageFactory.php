@@ -37,7 +37,7 @@
  * and bails out if not.
  *
  * To add a core special page, use the similar static list in
- * SpecialPage::$mList. To remove a core static special page at runtime, use
+ * SpecialPageFactory::$list. To remove a core static special page at runtime, use
  * a SpecialPage_initList hook.
  *
  * @ingroup SpecialPage
@@ -48,7 +48,7 @@ class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
-	private static $mList = array(
+	private static $list = array(
 		// Maintenance Reports
 		'BrokenRedirects'           => 'BrokenRedirectsPage',
 		'Deadendpages'              => 'DeadendpagesPage',
@@ -170,11 +170,10 @@ class SpecialPageFactory {
 		'Userlogout'                => 'SpecialUserlogout',
 	);
 
-	private static $mAliases;
+	private static $aliases;
 
 	/**
-	 * Initialise the special page list
-	 * This must be called before accessing SpecialPage::$mList
+	 * Get the special page list
 	 *
 	 * @return array
 	 */
@@ -183,43 +182,43 @@ class SpecialPageFactory {
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
 
-		if ( !is_object( self::$mList ) ) {
+		if ( !is_object( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
 
 			if ( !$wgDisableCounters ) {
-				self::$mList['Popularpages'] = 'PopularpagesPage';
+				self::$list['Popularpages'] = 'PopularpagesPage';
 			}
 
 			if ( !$wgDisableInternalSearch ) {
-				self::$mList['Search'] = 'SpecialSearch';
+				self::$list['Search'] = 'SpecialSearch';
 			}
 
 			if ( $wgEmailAuthentication ) {
-				self::$mList['Confirmemail'] = 'EmailConfirmation';
-				self::$mList['Invalidateemail'] = 'EmailInvalidation';
+				self::$list['Confirmemail'] = 'EmailConfirmation';
+				self::$list['Invalidateemail'] = 'EmailInvalidation';
 			}
 
 			if ( $wgEnableEmail ) {
-				self::$mList['ChangeEmail'] = 'SpecialChangeEmail';
+				self::$list['ChangeEmail'] = 'SpecialChangeEmail';
 			}
 
 			if ( $wgEnableJavaScriptTest ) {
-				self::$mList['JavaScriptTest'] = 'SpecialJavaScriptTest';
+				self::$list['JavaScriptTest'] = 'SpecialJavaScriptTest';
 			}
 
 			// Add extension special pages
-			self::$mList = array_merge( self::$mList, $wgSpecialPages );
+			self::$list = array_merge( self::$list, $wgSpecialPages );
 
 			// Run hooks
 			// This hook can be used to remove undesired built-in special pages
-			wfRunHooks( 'SpecialPage_initList', array( &self::$mList ) );
+			wfRunHooks( 'SpecialPage_initList', array( &self::$list ) );
 
 			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			settype( self::$mList, 'object' );
+			settype( self::$list, 'object' );
 
 			wfProfileOut( __METHOD__ );
 		}
-		return self::$mList;
+		return self::$list;
 	}
 
 	/**
@@ -231,28 +230,28 @@ class SpecialPageFactory {
 	 * @return Object
 	 */
 	static function getAliasList() {
-		if ( !is_object( self::$mAliases ) ) {
+		if ( !is_object( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
 			// Objects are passed by reference by default, need to create a copy
 			$missingPages = clone self::getList();
 
-			self::$mAliases = array();
+			self::$aliases = array();
 			foreach ( $aliases as $realName => $aliasList ) {
 				foreach ( $aliasList as $alias ) {
-					self::$mAliases[$wgContLang->caseFold( $alias )] = $realName;
+					self::$aliases[$wgContLang->caseFold( $alias )] = $realName;
 				}
 				unset( $missingPages->$realName );
 			}
 			foreach ( $missingPages as $name => $stuff ) {
-				self::$mAliases[$wgContLang->caseFold( $name )] = $name;
+				self::$aliases[$wgContLang->caseFold( $name )] = $name;
 			}
 
 			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			self::$mAliases = (object)self::$mAliases;
+			self::$aliases = (object)self::$aliases;
 		}
-		return self::$mAliases;
+		return self::$aliases;
 	}
 
 	/**
