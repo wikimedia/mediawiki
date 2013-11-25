@@ -41,8 +41,8 @@ class MessageContent extends AbstractContent {
 	protected $mMessage;
 
 	/**
-	 * @param Message|String $msg    A Message object, or a message key
-	 * @param array|null     $params An optional array of message parameters
+	 * @param Message|String $msg A Message object, or a message key
+	 * @param array|null $params An optional array of message parameters
 	 */
 	public function __construct( $msg, $params = null ) {
 		# XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
@@ -153,6 +153,7 @@ class MessageContent extends AbstractContent {
 		}
 
 		$po = new ParserOutput( $html );
+
 		return $po;
 	}
 }
