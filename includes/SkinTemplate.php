@@ -139,7 +139,7 @@ class SkinTemplate extends Skin {
 		if ( !$wgHideInterlanguageLinks ) {
 			foreach ( $out->getLanguageLinks() as $languageLinkText ) {
 				$languageLinkParts = explode( ':', $languageLinkText, 2 );
-				$class = 'interwiki-' . $languageLinkParts[0];
+				$class = 'interlanguage-link interwiki-' . $languageLinkParts[0];
 				unset( $languageLinkParts );
 				$languageLinkTitle = Title::newFromText( $languageLinkText );
 				if ( $languageLinkTitle ) {
