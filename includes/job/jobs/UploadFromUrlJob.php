@@ -66,6 +66,7 @@ class UploadFromUrlJob extends Job {
 		$status = $this->upload->fetchFile( $opts );
 		if ( !$status->isOk() ) {
 			$this->leaveMessage( $status );
+
 			return true;
 		}
 
@@ -74,6 +75,7 @@ class UploadFromUrlJob extends Job {
 		if ( $result['status'] != UploadBase::OK ) {
 			$status = $this->upload->convertVerifyErrorToStatus( $result );
 			$this->leaveMessage( $status );
+
 			return true;
 		}
 
@@ -111,8 +113,8 @@ class UploadFromUrlJob extends Job {
 			$this->user
 		);
 		$this->leaveMessage( $status );
-		return true;
 
+		return true;
 	}
 
 	/**
@@ -179,6 +181,7 @@ class UploadFromUrlJob extends Job {
 		if ( !isset( $_SESSION[self::SESSION_KEYNAME][$key] ) ) {
 			$_SESSION[self::SESSION_KEYNAME][$key] = array();
 		}
+
 		return $_SESSION[self::SESSION_KEYNAME][$key];
 	}
 }

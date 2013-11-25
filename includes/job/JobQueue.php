@@ -106,6 +106,7 @@ abstract class JobQueue {
 		if ( !( $obj instanceof self ) ) {
 			throw new MWException( "Class '$class' is not a " . __CLASS__ . " class." );
 		}
+
 		return $obj;
 	}
 
@@ -177,6 +178,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doIsEmpty();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -199,6 +201,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doGetSize();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -221,6 +224,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAcquiredCount();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -244,6 +248,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doGetDelayedCount();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -268,6 +273,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAbandonedCount();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -321,6 +327,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doBatchPush( $jobs, $flags );
 		wfProfileOut( __METHOD__ );
+
 		return $ok;
 	}
 
@@ -358,7 +365,9 @@ abstract class JobQueue {
 				JobQueue::incrStats( 'job-pop-duplicate', $this->type );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
-		} catch ( MWException $e ) {} // don't lose jobs over this
+		} catch ( MWException $e ) {
+			// don't lose jobs over this
+		}
 
 		return $job;
 	}
@@ -386,6 +395,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doAck( $job );
 		wfProfileOut( __METHOD__ );
+
 		return $ok;
 	}
 
@@ -433,6 +443,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doDeduplicateRootJob( $job );
 		wfProfileOut( __METHOD__ );
+
 		return $ok;
 	}
 
@@ -476,6 +487,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$isDuplicate = $this->doIsRootJobOldDuplicate( $job );
 		wfProfileOut( __METHOD__ );
+
 		return $isDuplicate;
 	}
 
@@ -504,6 +516,7 @@ abstract class JobQueue {
 	 */
 	protected function getRootJobCacheKey( $signature ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+
 		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, 'rootjob', $signature );
 	}
 
@@ -518,6 +531,7 @@ abstract class JobQueue {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doDelete();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -547,7 +561,8 @@ abstract class JobQueue {
 	 * @see JobQueue::waitForBackups()
 	 * @return void
 	 */
-	protected function doWaitForBackups() {}
+	protected function doWaitForBackups() {
+	}
 
 	/**
 	 * Return a map of task names to task definition maps.
@@ -566,6 +581,7 @@ abstract class JobQueue {
 		foreach ( $tasks as $name => &$def ) {
 			$def['name'] = $name;
 		}
+
 		return $tasks;
 	}
 
@@ -592,7 +608,8 @@ abstract class JobQueue {
 	 * @see JobQueue::flushCaches()
 	 * @return void
 	 */
-	protected function doFlushCaches() {}
+	protected function doFlushCaches() {
+	}
 
 	/**
 	 * Get an iterator to traverse over all available jobs in this queue.
@@ -637,6 +654,7 @@ abstract class JobQueue {
 	 */
 	final public function getSiblingQueuesWithJobs( array $types ) {
 		$section = new ProfileSection( __METHOD__ );
+
 		return $this->doGetSiblingQueuesWithJobs( $types );
 	}
 
@@ -661,6 +679,7 @@ abstract class JobQueue {
 	 */
 	final public function getSiblingQueueSizes( array $types ) {
 		$section = new ProfileSection( __METHOD__ );
+
 		return $this->doGetSiblingQueueSizes( $types );
 	}
 
@@ -702,5 +721,8 @@ abstract class JobQueue {
  * @ingroup JobQueue
  * @since 1.22
  */
-class JobQueueError extends MWException {}
-class JobQueueConnectionError extends JobQueueError {}
+class JobQueueError extends MWException {
+}
+
+class JobQueueConnectionError extends JobQueueError {
+}

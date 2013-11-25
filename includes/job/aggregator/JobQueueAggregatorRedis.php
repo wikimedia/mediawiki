@@ -60,9 +60,11 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 		try {
 			$conn->hDel( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ) );
+
 			return true;
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
+
 			return false;
 		}
 	}
@@ -74,9 +76,11 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 		try {
 			$conn->hSet( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ), time() );
+
 			return true;
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
+
 			return false;
 		}
 	}
@@ -124,6 +128,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 			return $pendingDBs;
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
+
 			return array();
 		}
 	}
@@ -137,8 +142,10 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 			$conn->delete( $this->getReadyQueueKey() );
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -156,6 +163,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 				break;
 			}
 		}
+
 		return $conn;
 	}
 
@@ -190,6 +198,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 */
 	private function dencQueueName( $name ) {
 		list( $type, $wiki ) = explode( '/', $name, 2 );
+
 		return array( rawurldecode( $type ), rawurldecode( $wiki ) );
 	}
 }

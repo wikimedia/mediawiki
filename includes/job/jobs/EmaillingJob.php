@@ -43,5 +43,4 @@ class EmaillingJob extends Job {
 
 		return $status->isOK();
 	}
-
 }

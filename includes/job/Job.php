@@ -70,6 +70,7 @@ abstract class Job {
 		global $wgJobClasses;
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
+
 			return new $class( $title, $params, $id );
 		}
 		throw new MWException( "Invalid job command `{$command}`" );
@@ -225,6 +226,7 @@ abstract class Job {
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
 		}
+
 		return $info;
 	}
 
@@ -305,6 +307,7 @@ abstract class Job {
 			if ( $paramString !== '' ) {
 				$s .= ' ' . $paramString;
 			}
+
 			return $s;
 		} else {
 			return "{$this->command} $paramString";

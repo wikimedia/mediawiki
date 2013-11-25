@@ -198,7 +198,7 @@ class JobQueueDB extends JobQueue {
 		$that = $this;
 		$method = __METHOD__;
 		$dbw->onTransactionIdle(
-			function() use ( $dbw, $that, $jobs, $flags, $method ) {
+			function () use ( $dbw, $that, $jobs, $flags, $method ) {
 				$that->doBatchPushInternal( $dbw, $jobs, $flags, $method );
 			}
 		);
@@ -289,7 +289,7 @@ class JobQueueDB extends JobQueue {
 			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
 			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-			$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+			$scopedReset = new ScopedCallback( function () use ( $dbw, $autoTrx ) {
 				$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
 			} );
 
@@ -485,7 +485,7 @@ class JobQueueDB extends JobQueue {
 			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 			$autoTrx = $dbw->getFlag( DBO_TRX ); // get current setting
 			$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
-			$scopedReset = new ScopedCallback( function() use ( $dbw, $autoTrx ) {
+			$scopedReset = new ScopedCallback( function () use ( $dbw, $autoTrx ) {
 				$dbw->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore old setting
 			} );
 
@@ -520,7 +520,7 @@ class JobQueueDB extends JobQueue {
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		$dbw = $this->getMasterDB();
 		$cache = $this->dupCache;
-		$dbw->onTransactionIdle( function() use ( $cache, $params, $key, $dbw ) {
+		$dbw->onTransactionIdle( function () use ( $cache, $params, $key, $dbw ) {
 			$timestamp = $cache->get( $key ); // current last timestamp of this job
 			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 				return true; // a newer version of this root job was enqueued
@@ -544,6 +544,7 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
+
 		return true;
 	}
 
@@ -586,7 +587,7 @@ class JobQueueDB extends JobQueue {
 			return new MappedIterator(
 				$dbr->select( 'job', '*',
 					array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
-				function( $row ) use ( $dbr ) {
+				function ( $row ) use ( $dbr ) {
 					$job = Job::factory(
 						$row->job_cmd,
 						Title::makeTitle( $row->job_namespace, $row->job_title ),
@@ -618,6 +619,7 @@ class JobQueueDB extends JobQueue {
 		foreach ( $res as $row ) {
 			$types[] = $row->job_cmd;
 		}
+
 		return $types;
 	}
 
@@ -630,6 +632,7 @@ class JobQueueDB extends JobQueue {
 		foreach ( $res as $row ) {
 			$sizes[$row->job_cmd] = (int)$row->count;
 		}
+
 		return $sizes;
 	}
 
@@ -663,7 +666,7 @@ class JobQueueDB extends JobQueue {
 					__METHOD__
 				);
 				$ids = array_map(
-					function( $o ) {
+					function ( $o ) {
 						return $o->job_id;
 					}, iterator_to_array( $res )
 				);
@@ -699,7 +702,7 @@ class JobQueueDB extends JobQueue {
 			// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
 			$res = $dbw->select( 'job', 'job_id', $conds, __METHOD__ );
 			$ids = array_map(
-				function( $o ) {
+				function ( $o ) {
 					return $o->job_id;
 				}, iterator_to_array( $res )
 			);
@@ -723,20 +726,21 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function insertFields( Job $job ) {
 		$dbw = $this->getMasterDB();
+
 		return array(
 			// Fields that describe the nature of the job
-			'job_cmd'       => $job->getType(),
+			'job_cmd' => $job->getType(),
 			'job_namespace' => $job->getTitle()->getNamespace(),
-			'job_title'     => $job->getTitle()->getDBkey(),
-			'job_params'    => self::makeBlob( $job->getParams() ),
+			'job_title' => $job->getTitle()->getDBkey(),
+			'job_params' => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
-			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
+			'job_id' => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_timestamp' => $dbw->timestamp(),
-			'job_sha1'      => wfBaseConvert(
+			'job_sha1' => wfBaseConvert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
 			),
-			'job_random'    => mt_rand( 0, self::MAX_JOB_RANDOM )
+			'job_random' => mt_rand( 0, self::MAX_JOB_RANDOM )
 		);
 	}
 
@@ -770,6 +774,7 @@ class JobQueueDB extends JobQueue {
 		$lb = ( $this->cluster !== false )
 			? wfGetLBFactory()->getExternalLB( $this->cluster, $this->wiki )
 			: wfGetLB( $this->wiki );
+
 		return $lb->getConnectionRef( $index, array(), $this->wiki );
 	}
 
@@ -779,6 +784,7 @@ class JobQueueDB extends JobQueue {
 	private function getCacheKey( $property ) {
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 		$cluster = is_string( $this->cluster ) ? $this->cluster : 'main';
+
 		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $cluster, $this->type, $property );
 	}
 

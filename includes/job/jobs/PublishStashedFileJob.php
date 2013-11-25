@@ -39,6 +39,7 @@ class PublishStashedFileJob extends Job {
 			$user = $context->getUser();
 			if ( !$user->isLoggedIn() ) {
 				$this->setLastError( "Could not load the author user from session." );
+
 				return false;
 			}
 
@@ -48,6 +49,7 @@ class PublishStashedFileJob extends Job {
 				// the user does not necessarily mean the session was loaded.
 				// Most likely cause by suhosin.session.encrypt = On.
 				$this->setLastError( "Error associating with user session. Try setting suhosin.session.encrypt = Off" );
+
 				return false;
 			}
 
@@ -73,6 +75,7 @@ class PublishStashedFileJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->setLastError( "Could not verify upload." );
+
 				return false;
 			}
 
@@ -89,6 +92,7 @@ class PublishStashedFileJob extends Job {
 					array( 'result' => 'Failure', 'stage' => 'publish', 'status' => $status )
 				);
 				$this->setLastError( $status->getWikiText() );
+
 				return false;
 			}
 
@@ -120,8 +124,10 @@ class PublishStashedFileJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -130,6 +136,7 @@ class PublishStashedFileJob extends Job {
 		if ( is_array( $info['params'] ) ) {
 			$info['params'] = array( 'filekey' => $info['params']['filekey'] );
 		}
+
 		return $info;
 	}
 

@@ -34,7 +34,8 @@ abstract class JobQueueAggregator {
 	/**
 	 * @param array $params
 	 */
-	protected function __construct( array $params ) {}
+	protected function __construct( array $params ) {
+	}
 
 	/**
 	 * @return JobQueueAggregator
@@ -74,6 +75,7 @@ abstract class JobQueueAggregator {
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doNotifyQueueEmpty( $wiki, $type );
 		wfProfileOut( __METHOD__ );
+
 		return $ok;
 	}
 
@@ -93,6 +95,7 @@ abstract class JobQueueAggregator {
 		wfProfileIn( __METHOD__ );
 		$ok = $this->doNotifyQueueNonEmpty( $wiki, $type );
 		wfProfileOut( __METHOD__ );
+
 		return $ok;
 	}
 
@@ -110,6 +113,7 @@ abstract class JobQueueAggregator {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAllReadyWikiQueues();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -127,6 +131,7 @@ abstract class JobQueueAggregator {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doPurge();
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 

@@ -42,6 +42,7 @@ class RefreshLinksJob extends Job {
 
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks: Invalid title";
+
 			return false;
 		}
 
@@ -56,6 +57,7 @@ class RefreshLinksJob extends Job {
 		if ( !$revision ) {
 			$this->error = 'refreshLinks: Article not found "' .
 				$this->title->getPrefixedDBkey() . '"';
+
 			return false; // XXX: what if it was just deleted?
 		}
 
@@ -73,6 +75,7 @@ class RefreshLinksJob extends Job {
 		if ( is_array( $info['params'] ) ) {
 			unset( $info['params']['masterPos'] );
 		}
+
 		return $info;
 	}
 
@@ -128,6 +131,7 @@ class RefreshLinksJob2 extends Job {
 
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks2: Invalid title";
+
 			return false;
 		}
 
@@ -205,6 +209,7 @@ class RefreshLinksJob2 extends Job {
 				array( 'masterPos' => $masterPos ) + $this->getRootJobParams()
 			); // carry over information for de-duplication
 		}
+
 		return $jobs;
 	}
 
@@ -217,6 +222,7 @@ class RefreshLinksJob2 extends Job {
 		if ( is_array( $info['params'] ) ) {
 			unset( $info['params']['masterPos'] );
 		}
+
 		return $info;
 	}
 }
