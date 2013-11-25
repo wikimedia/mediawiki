@@ -48,7 +48,8 @@ class AssembleUploadChunksJob extends Job {
 				// with the session correctly. Note that being able to load
 				// the user does not necessarily mean the session was loaded.
 				// Most likely cause by suhosin.session.encrypt = On.
-				$this->setLastError( "Error associating with user session. Try setting suhosin.session.encrypt = Off" );
+				$this->setLastError( "Error associating with user session. " .
+					"Try setting suhosin.session.encrypt = Off" );
 
 				return false;
 			}

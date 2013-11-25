@@ -36,8 +36,10 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
-	 * @param string $reason the reason for the fix, see message "double-redirect-fixed-<reason>"
-	 * @param $redirTitle Title: the title which has changed, redirects pointing to this title are fixed
+	 * @param string $reason the reason for the fix, see message
+	 *   "double-redirect-fixed-<reason>"
+	 * @param $redirTitle Title: the title which has changed, redirects
+	 *   pointing to this title are fixed
 	 * @param bool $destTitle Not used
 	 */
 	public static function fixRedirects( $reason, $redirTitle, $destTitle = false ) {
@@ -114,7 +116,8 @@ class DoubleRedirectJob extends Job {
 		// Find the current final destination
 		$newTitle = self::getFinalDestination( $this->redirTitle );
 		if ( !$newTitle ) {
-			wfDebug( __METHOD__ . ": skipping: single redirect, circular redirect or invalid redirect destination\n" );
+			wfDebug( __METHOD__ .
+				": skipping: single redirect, circular redirect or invalid redirect destination\n" );
 
 			return true;
 		}
@@ -203,7 +206,12 @@ class DoubleRedirectJob extends Job {
 				# No redirect from here, chain terminates
 				break;
 			} else {
-				$dest = $title = Title::makeTitle( $row->rd_namespace, $row->rd_title, '', $row->rd_interwiki );
+				$dest = $title = Title::makeTitle(
+					$row->rd_namespace,
+					$row->rd_title,
+					'',
+					$row->rd_interwiki
+				);
 			}
 		}
 
@@ -219,7 +227,8 @@ class DoubleRedirectJob extends Job {
 	 */
 	function getUser() {
 		if ( !self::$user ) {
-			self::$user = User::newFromName( wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text() );
+			$username = wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text();
+			self::$user = User::newFromName( $username );
 			# User::newFromName() can return false on a badly configured wiki.
 			if ( self::$user && !self::$user->isLoggedIn() ) {
 				self::$user->addToDatabase();
