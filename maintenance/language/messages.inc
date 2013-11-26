@@ -2207,7 +2207,7 @@ $wgMessageStructure = array(
 		'undelete-error-long',
 		'undelete-show-file-confirm',
 		'undelete-show-file-submit',
-		'undelete-revisionrow',
+		'undelete-revision-row',
 	),
 	'nsform' => array(
 		'namespace',

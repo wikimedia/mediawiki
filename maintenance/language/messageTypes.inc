@@ -477,7 +477,7 @@ $wgOptionalMessages = array(
 	'version-entrypoints-scriptpath',
 	'mergehistory-revisionrow',
 	'categoryviewer-pagedlinks',
-	'undelete-revisionrow',
+	'undelete-revision-row',
 	'pageinfo-redirects-value',
 	'created', // @deprecated. Remove in MediaWiki 1.23.
 	'changed', // @deprecated. Remove in MediaWiki 1.23.

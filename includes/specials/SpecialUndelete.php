@@ -124,6 +124,8 @@ class PageArchive {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
+		$tables = array( 'archive' );
+
 		$fields = array(
 			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
 			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
@@ -134,12 +136,27 @@ class PageArchive {
 			$fields[] = 'ar_content_model';
 		}
 
-		$res = $dbr->select( 'archive',
+		$conds = array( 'ar_namespace' => $this->title->getNamespace(),
+				'ar_title' => $this->title->getDBkey() );
+
+		$options = array( 'ORDER BY' => 'ar_timestamp DESC' );
+
+		$join_conds = array( );
+
+		ChangeTags::modifyDisplayQuery(
+			$tables,
 			$fields,
-			array( 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() ),
+			$conds,
+			$join_conds,
+			$options
+		);
+
+		$res = $dbr->select( $tables,
+			$fields,
+			$conds,
 			__METHOD__,
-			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
+			$options,
+			$join_conds );
 
 		return $dbr->resultObject( $res );
 	}
@@ -1083,6 +1100,16 @@ class SpecialUndelete extends SpecialPage {
 			$rdel = " $rdel";
 		}
 
+		$minor = $rev->isMinor() ? ChangesList::flag( 'minor' ) : '';
+
+		$tags = wfGetDB( DB_SLAVE )->selectField(
+			'tag_summary',
+			'ts_tags',
+			array( 'ts_rev_id' => $rev->getId() ),
+			__METHOD__
+		);
+		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff' );
+
 		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 			Linker::link(
 				$targetPage,
@@ -1100,7 +1127,10 @@ class SpecialUndelete extends SpecialPage {
 			Linker::revUserTools( $rev ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title3">' .
-			Linker::revComment( $rev ) . $rdel . '<br />' .
+			$minor . Linker::revComment( $rev ) . $rdel . '<br />' .
+			'</div>' .
+			'<div id="mw-diff-' . $prefix . 'title5">' .
+			$tagSummary[0] . '<br />' .
 			'</div>';
 	}
 
@@ -1367,6 +1397,9 @@ class SpecialUndelete extends SpecialPage {
 		// User links
 		$userLink = Linker::revUserTools( $rev );
 
+		// Minor edit
+		$minor = $rev->isMinor() ? ChangesList::flag( 'minor' ) : '';
+
 		// Revision text size
 		$size = $row->ar_len;
 		if ( !is_null( $size ) ) {
@@ -1376,14 +1409,21 @@ class SpecialUndelete extends SpecialPage {
 		// Edit summary
 		$comment = Linker::revComment( $rev );
 
+		// Tags
+		$attribs = array( );
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'deletedhistory' );
+		if ( $classes ) {
+			$attribs['class'] = implode( ' ', $classes );
+		}
+
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 
-		$revisionRow = $this->msg( 'undelete-revisionrow' )
-			->rawParams( $checkBox, $revdlink, $last, $pageLink, $userLink, $revTextSize, $comment )
+		$revisionRow = $this->msg( 'undelete-revision-row' )
+			->rawParams( $checkBox, $revdlink, $last, $pageLink, $userLink, $minor, $revTextSize, $comment, $tagSummary )
 			->escaped();
 
-		return "<li>$revisionRow</li>";
+		return Xml::tags( 'li', $attribs, $revisionRow ) . "\n";
 	}
 
 	private function formatFileRow( $row ) {
