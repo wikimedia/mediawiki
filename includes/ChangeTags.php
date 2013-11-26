@@ -184,17 +184,19 @@ class ChangeTags {
 
 		// Figure out which conditions can be done.
 		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'rc_id';
+			$join_cond = 'ct_rc_id=rc_id';
 		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = 'log_id';
+			$join_cond = 'ct_log_id=log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = 'rev_id';
+			$join_cond = 'ct_rev_id=rev_id';
+		} elseif ( in_array( 'archive', $tables ) ) {
+			$join_cond = 'ct_rev_id=ar_rev_id';
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
 		$fields['ts_tags'] = wfGetDB( DB_SLAVE )->buildGroupConcatField(
-			',', 'change_tag', 'ct_tag', "ct_$join_cond=$join_cond"
+			',', 'change_tag', 'ct_tag', $join_cond
 		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
@@ -202,7 +204,7 @@ class ChangeTags {
 			// Add an INNER JOIN on change_tag
 
 			$tables[] = 'change_tag';
-			$join_conds['change_tag'] = array( 'INNER JOIN', "ct_$join_cond=$join_cond" );
+			$join_conds['change_tag'] = array( 'INNER JOIN', $join_cond );
 			$conds['ct_tag'] = $filter_tag;
 		}
 	}
