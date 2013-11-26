@@ -130,51 +130,53 @@ class SkinTemplate extends Skin {
 	 */
 	public function getLanguages() {
 		global $wgHideInterlanguageLinks;
+		if ( $wgHideInterlanguageLinks ) {
+			return array();
+		}
+
 		$out = $this->getOutput();
 		$userLang = $this->getLanguage();
 
-		# Language links
-		$language_urls = array();
+		$languageLinks = array();
 
-		if ( !$wgHideInterlanguageLinks ) {
-			foreach ( $out->getLanguageLinks() as $languageLinkText ) {
-				$languageLinkParts = explode( ':', $languageLinkText, 2 );
-				$class = 'interlanguage-link interwiki-' . $languageLinkParts[0];
-				unset( $languageLinkParts );
-				$languageLinkTitle = Title::newFromText( $languageLinkText );
-				if ( $languageLinkTitle ) {
-					$ilInterwikiCode = $languageLinkTitle->getInterwiki();
-					$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
+		foreach ( $out->getLanguageLinks() as $languageLinkText ) {
+			$languageLinkParts = explode( ':', $languageLinkText, 2 );
+			$class = 'interlanguage-link interwiki-' . $languageLinkParts[0];
+			unset( $languageLinkParts );
+			$languageLinkTitle = Title::newFromText( $languageLinkText );
+			if ( $languageLinkTitle ) {
+				$ilInterwikiCode = $languageLinkTitle->getInterwiki();
+				$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
 
-					if ( strval( $ilLangName ) === '' ) {
-						$ilLangName = $languageLinkText;
-					} else {
-						$ilLangName = $this->formatLanguageName( $ilLangName );
-					}
-
-					// CLDR extension or similar is required to localize the language name;
-					// otherwise we'll end up with the autonym again.
-					$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
-
-					if ( $languageLinkTitle->getText() === '' ) {
-						$ilTitle = wfMessage( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
-					} else {
-						$ilTitle = wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(),
-							$ilLangLocalName )->text();
-					}
-
-					$language_urls[] = array(
-						'href' => $languageLinkTitle->getFullURL(),
-						'text' => $ilLangName,
-						'title' => $ilTitle,
-						'class' => $class,
-						'lang' => wfBCP47( $ilInterwikiCode ),
-						'hreflang' => wfBCP47( $ilInterwikiCode ),
-					);
+				if ( strval( $ilLangName ) === '' ) {
+					$ilLangName = $languageLinkText;
+				} else {
+					$ilLangName = $this->formatLanguageName( $ilLangName );
 				}
+
+				// CLDR extension or similar is required to localize the language name;
+				// otherwise we'll end up with the autonym again.
+				$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
+
+				if ( $languageLinkTitle->getText() === '' ) {
+					$ilTitle = wfMessage( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
+				} else {
+					$ilTitle = wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(),
+						$ilLangLocalName )->text();
+				}
+
+				$languageLinks[] = array(
+					'href' => $languageLinkTitle->getFullURL(),
+					'text' => $ilLangName,
+					'title' => $ilTitle,
+					'class' => $class,
+					'lang' => wfBCP47( $ilInterwikiCode ),
+					'hreflang' => wfBCP47( $ilInterwikiCode ),
+				);
 			}
 		}
-		return $language_urls;
+
+		return $languageLinks;
 	}
 
 	protected function setupTemplateForOutput() {
