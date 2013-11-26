@@ -167,7 +167,7 @@ class MimeMagic {
 
 	/** The singleton instance
 	 */
-	private static $instance;
+	private static $instance = null;
 
 	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
 	 *
@@ -336,7 +336,7 @@ class MimeMagic {
 	 * Get an instance of this class
 	 * @return MimeMagic
 	 */
-	public static function &singleton() {
+	public static function singleton() {
 		if ( self::$instance === null ) {
 			self::$instance = new MimeMagic;
 		}
