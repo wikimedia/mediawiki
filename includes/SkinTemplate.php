@@ -134,15 +134,14 @@ class SkinTemplate extends Skin {
 			return array();
 		}
 
-		$out = $this->getOutput();
 		$userLang = $this->getLanguage();
-
 		$languageLinks = array();
 
-		foreach ( $out->getLanguageLinks() as $languageLinkText ) {
+		foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
 			$languageLinkParts = explode( ':', $languageLinkText, 2 );
 			$class = 'interlanguage-link interwiki-' . $languageLinkParts[0];
 			unset( $languageLinkParts );
+
 			$languageLinkTitle = Title::newFromText( $languageLinkText );
 			if ( $languageLinkTitle ) {
 				$ilInterwikiCode = $languageLinkTitle->getInterwiki();
@@ -156,22 +155,33 @@ class SkinTemplate extends Skin {
 
 				// CLDR extension or similar is required to localize the language name;
 				// otherwise we'll end up with the autonym again.
-				$ilLangLocalName = Language::fetchLanguageName( $ilInterwikiCode, $userLang->getCode() );
+				$ilLangLocalName = Language::fetchLanguageName(
+					$ilInterwikiCode,
+					$userLang->getCode()
+				);
 
-				if ( $languageLinkTitle->getText() === '' ) {
-					$ilTitle = wfMessage( 'interlanguage-link-title-langonly', $ilLangLocalName )->text();
+				$languageLinkTitleText = $languageLinkTitle->getText();
+				if ( $languageLinkTitleText === '' ) {
+					$ilTitle = wfMessage(
+						'interlanguage-link-title-langonly',
+						$ilLangLocalName
+					)->text();
 				} else {
-					$ilTitle = wfMessage( 'interlanguage-link-title', $languageLinkTitle->getText(),
-						$ilLangLocalName )->text();
+					$ilTitle = wfMessage(
+						'interlanguage-link-title',
+						$languageLinkTitleText,
+						$ilLangLocalName
+					)->text();
 				}
 
+				$ilInterwikiCodeBCP47 = wfBCP47( $ilInterwikiCode );
 				$languageLinks[] = array(
 					'href' => $languageLinkTitle->getFullURL(),
 					'text' => $ilLangName,
 					'title' => $ilTitle,
 					'class' => $class,
-					'lang' => wfBCP47( $ilInterwikiCode ),
-					'hreflang' => wfBCP47( $ilInterwikiCode ),
+					'lang' => $ilInterwikiCodeBCP47,
+					'hreflang' => $ilInterwikiCodeBCP47,
 				);
 			}
 		}
