@@ -38,6 +38,7 @@ abstract class JobQueueAggregator {
 	}
 
 	/**
+	 * @throws MWException
 	 * @return JobQueueAggregator
 	 */
 	final public static function singleton() {
@@ -107,7 +108,7 @@ abstract class JobQueueAggregator {
 	/**
 	 * Get the list of all of the queues with jobs
 	 *
-	 * @return Array (job type => (list of wiki IDs))
+	 * @return array (job type => (list of wiki IDs))
 	 */
 	final public function getAllReadyWikiQueues() {
 		wfProfileIn( __METHOD__ );
@@ -144,7 +145,7 @@ abstract class JobQueueAggregator {
 	 * Get all databases that have a pending job.
 	 * This poll all the queues and is this expensive.
 	 *
-	 * @return Array (job type => (list of wiki IDs))
+	 * @return array (job type => (list of wiki IDs))
 	 */
 	protected function findPendingWikiQueues() {
 		global $wgLocalDatabases;

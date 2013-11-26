@@ -28,13 +28,14 @@
  * @since 1.21
  */
 class JobQueueGroup {
-	/** @var Array */
+	/** @var array */
 	protected static $instances = array();
 
 	/** @var ProcessCacheLRU */
 	protected $cache;
 
-	protected $wiki; // string; wiki ID
+	/** @var string Wiki ID */
+	protected $wiki;
 
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
@@ -58,7 +59,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @param string $wiki Wiki ID
+	 * @param bool|string $wiki Wiki ID
 	 * @return JobQueueGroup
 	 */
 	public static function singleton( $wiki = false ) {
@@ -82,7 +83,7 @@ class JobQueueGroup {
 	/**
 	 * Get the job queue object for a given queue type
 	 *
-	 * @param $type string
+	 * @param string $type
 	 * @return JobQueue
 	 */
 	public function get( $type ) {
@@ -104,7 +105,7 @@ class JobQueueGroup {
 	 * This inserts the jobs into the queue specified by $wgJobTypeConf
 	 * and updates the aggregate job queue information cache as needed.
 	 *
-	 * @param $jobs Job|array A single Job or a list of Jobs
+	 * @param Job|array $jobs A single Job or a list of Jobs
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -145,8 +146,8 @@ class JobQueueGroup {
 	 * This pops a job off a queue as specified by $wgJobTypeConf and
 	 * updates the aggregate job queue information cache as needed.
 	 *
-	 * @param $qtype integer|string JobQueueGroup::TYPE_DEFAULT or type string
-	 * @param $flags integer Bitfield of JobQueueGroup::USE_* constants
+	 * @param int|string $qtype JobQueueGroup::TYPE_DEFAULT or type string
+	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
 	 * @return Job|bool Returns false on failure
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0 ) {
@@ -195,7 +196,7 @@ class JobQueueGroup {
 	/**
 	 * Acknowledge that a job was completed
 	 *
-	 * @param $job Job
+	 * @param Job $job
 	 * @return bool
 	 */
 	public function ack( Job $job ) {
@@ -206,7 +207,7 @@ class JobQueueGroup {
 	 * Register the "root job" of a given job into the queue for de-duplication.
 	 * This should only be called right *after* all the new jobs have been inserted.
 	 *
-	 * @param $job Job
+	 * @param Job $job
 	 * @return bool
 	 */
 	public function deduplicateRootJob( Job $job ) {
@@ -255,7 +256,7 @@ class JobQueueGroup {
 	/**
 	 * Get the list of job types that have non-empty queues
 	 *
-	 * @return Array List of job types that have non-empty queues
+	 * @return array List of job types that have non-empty queues
 	 */
 	public function getQueuesWithJobs() {
 		$types = array();
@@ -278,7 +279,7 @@ class JobQueueGroup {
 	/**
 	 * Get the size of the queus for a list of job types
 	 *
-	 * @return Array Map of (job type => size)
+	 * @return array Map of (job type => size)
 	 */
 	public function getQueueSizes() {
 		$sizeMap = array();
@@ -331,7 +332,7 @@ class JobQueueGroup {
 	 * This is only used for performance, such as to avoid spamming
 	 * the queue with many sub-jobs before they actually get run.
 	 *
-	 * @param $type string
+	 * @param string $type
 	 * @return bool
 	 */
 	public function isQueueDeprioritized( $type ) {
@@ -357,7 +358,7 @@ class JobQueueGroup {
 	 * the defined run period. Concurrent calls to this function will cause tasks
 	 * to be attempted twice, so they may need their own methods of mutual exclusion.
 	 *
-	 * @return integer Number of tasks run
+	 * @return int Number of tasks run
 	 */
 	public function executeReadyPeriodicTasks() {
 		global $wgMemc;

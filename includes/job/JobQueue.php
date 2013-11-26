@@ -29,12 +29,23 @@
  * @since 1.21
  */
 abstract class JobQueue {
-	protected $wiki; // string; wiki ID
-	protected $type; // string; job type
-	protected $order; // string; job priority for pop()
-	protected $claimTTL; // integer; seconds
-	protected $maxTries; // integer; maximum number of times to try a job
-	protected $checkDelay; // boolean; allow delayed jobs
+	/** @var string Wiki ID */
+	protected $wiki;
+
+	/** @var string Job type */
+	protected $type;
+
+	/** @var string Job priority for pop() */
+	protected $order;
+
+	/** @var int Time to live in seconds */
+	protected $claimTTL;
+
+	/** @var int Maximum number of times to try a job */
+	protected $maxTries;
+
+	/** @var bool Allow delayed jobs */
+	protected $checkDelay;
 
 	/** @var BagOStuff */
 	protected $dupCache;
@@ -44,7 +55,8 @@ abstract class JobQueue {
 	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
 	/**
-	 * @param $params array
+	 * @param array $params
+	 * @throws MWException
 	 */
 	protected function __construct( array $params ) {
 		$this->wiki = $params['wiki'];
@@ -93,7 +105,7 @@ abstract class JobQueue {
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * @return JobQueue
 	 * @throws MWException
 	 */
@@ -142,7 +154,7 @@ abstract class JobQueue {
 	/**
 	 * Get the allowed queue orders for configuration validation
 	 *
-	 * @return Array Subset of (random, timestamp, fifo, undefined)
+	 * @return array Subset of (random, timestamp, fifo, undefined)
 	 */
 	abstract protected function supportedOrders();
 
@@ -156,7 +168,7 @@ abstract class JobQueue {
 	/**
 	 * Find out if delayed jobs are supported for configuration validation
 	 *
-	 * @return boolean Whether delayed jobs are supported
+	 * @return bool Whether delayed jobs are supported
 	 */
 	protected function supportsDelayedJobs() {
 		return false; // not implemented
@@ -194,7 +206,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this number might be out of date for a minute.
 	 *
-	 * @return integer
+	 * @return int
 	 * @throws JobQueueError
 	 */
 	final public function getSize() {
@@ -207,7 +219,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::getSize()
-	 * @return integer
+	 * @return int
 	 */
 	abstract protected function doGetSize();
 
@@ -217,7 +229,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this number might be out of date for a minute.
 	 *
-	 * @return integer
+	 * @return int
 	 * @throws JobQueueError
 	 */
 	final public function getAcquiredCount() {
@@ -230,7 +242,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::getAcquiredCount()
-	 * @return integer
+	 * @return int
 	 */
 	abstract protected function doGetAcquiredCount();
 
@@ -240,7 +252,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this number might be out of date for a minute.
 	 *
-	 * @return integer
+	 * @return int
 	 * @throws JobQueueError
 	 * @since 1.22
 	 */
@@ -254,7 +266,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::getDelayedCount()
-	 * @return integer
+	 * @return int
 	 */
 	protected function doGetDelayedCount() {
 		return 0; // not implemented
@@ -266,7 +278,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this number might be out of date for a minute.
 	 *
-	 * @return integer
+	 * @return int
 	 * @throws JobQueueError
 	 */
 	final public function getAbandonedCount() {
@@ -279,7 +291,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::getAbandonedCount()
-	 * @return integer
+	 * @return int
 	 */
 	protected function doGetAbandonedCount() {
 		return 0; // not implemented
@@ -290,8 +302,8 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param $jobs Job|Array
-	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
+	 * @param Job|array $jobs A single job or an array of Jobs
+	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return bool Returns false on failure
 	 * @throws JobQueueError
 	 */
@@ -305,9 +317,9 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
 	 * @param array $jobs List of Jobs
-	 * @param $flags integer Bitfield (supports JobQueue::QOS_ATOMIC)
+	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
+	 * @throws MWException
 	 * @return bool Returns false on failure
-	 * @throws JobQueueError
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		if ( !count( $jobs ) ) {
@@ -333,6 +345,8 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::batchPush()
+	 * @param array $jobs
+	 * @param $flags
 	 * @return bool
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
@@ -342,8 +356,8 @@ abstract class JobQueue {
 	 * This requires $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::pop() instead of this function.
 	 *
+	 * @throws MWException
 	 * @return Job|bool Returns false if there are no jobs
-	 * @throws JobQueueError
 	 */
 	final public function pop() {
 		global $wgJobClasses;
@@ -384,9 +398,9 @@ abstract class JobQueue {
 	 * This does nothing for certain queue classes or if "claimTTL" is not set.
 	 * Outside callers should use JobQueueGroup::ack() instead of this function.
 	 *
-	 * @param $job Job
+	 * @param Job $job
+	 * @throws MWException
 	 * @return bool
-	 * @throws JobQueueError
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -401,6 +415,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::ack()
+	 * @param Job $job
 	 * @return bool
 	 */
 	abstract protected function doAck( Job $job );
@@ -432,9 +447,9 @@ abstract class JobQueue {
 	 *
 	 * This does nothing for certain queue classes.
 	 *
-	 * @param $job Job
+	 * @param Job $job
+	 * @throws MWException
 	 * @return bool
-	 * @throws JobQueueError
 	 */
 	final public function deduplicateRootJob( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -449,7 +464,8 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::deduplicateRootJob()
-	 * @param $job Job
+	 * @param Job $job
+	 * @throws MWException
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
@@ -476,9 +492,9 @@ abstract class JobQueue {
 	/**
 	 * Check if the "root" job of a given job has been superseded by a newer one
 	 *
-	 * @param $job Job
+	 * @param Job $job
+	 * @throws MWException
 	 * @return bool
-	 * @throws JobQueueError
 	 */
 	final protected function isRootJobOldDuplicate( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
@@ -537,6 +553,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::delete()
+	 * @throws MWException
 	 * @return bool Success
 	 */
 	protected function doDelete() {
@@ -574,7 +591,7 @@ abstract class JobQueue {
 	 *   - callback : a PHP callable that performs the task
 	 *   - period   : the period in seconds corresponding to the task frequency
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	final public function getPeriodicTasks() {
 		$tasks = $this->doGetPeriodicTasks();
@@ -587,7 +604,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::getPeriodicTasks()
-	 * @return Array
+	 * @return array
 	 */
 	protected function doGetPeriodicTasks() {
 		return array();
@@ -697,7 +714,7 @@ abstract class JobQueue {
 	 *
 	 * @param string $key Event type
 	 * @param string $type Job type
-	 * @param integer $delta
+	 * @param int $delta
 	 * @since 1.22
 	 */
 	public static function incrStats( $key, $type, $delta = 1 ) {
@@ -708,7 +725,7 @@ abstract class JobQueue {
 	/**
 	 * Namespace the queue with a key to isolate it for testing
 	 *
-	 * @param $key string
+	 * @param string $key
 	 * @return void
 	 * @throws MWException
 	 */
