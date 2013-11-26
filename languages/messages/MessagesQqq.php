@@ -2223,6 +2223,8 @@ Parameters:
 See also:
 * {{msg-mw|Parser-unstrip-loop-warning}}',
 'converter-manual-rule-error' => "Used as error message when a manual conversion rule for the [[mw:Language_converter|language converter]] has errors. For example it's not using the correct syntax, or not supplying text in all variants.",
+'editpage-notsupportedcontentformat-title'=> 'Page title of special page, witch appears when some try to submit a content that is not encoded in a supported format.',
+'editpage-notsupportedcontentformat-text' => 'Body of special page, witch appears when some try to submit a content that is not encoded in a supported format. $1 is the content format and $2 the content model of the edited page.',
 
 # "Undo" feature
 'undo-success' => 'Text on special page to confirm edit revert. You arrive on this page by clicking on the "undo" link on a revision history special page.

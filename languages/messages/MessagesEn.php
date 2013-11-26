@@ -1608,6 +1608,8 @@ These arguments have been omitted.",
 'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
 'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
 'converter-manual-rule-error'             => 'Error detected in manual language conversion rule',
+'editpage-notsupportedcontentformat-title'=> 'The content format is not supported',
+'editpage-notsupportedcontentformat-text' => 'The content format $1 is not supported by the content model $2.',
 
 # "Undo" feature
 'undo-success'                 => 'The edit can be undone.
