@@ -162,7 +162,7 @@ class ChangesList extends ContextSource {
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
 
-		return '';
+		return '<div class="mw-changeslist">';
 	}
 
 	/**
@@ -246,11 +246,9 @@ class ChangesList extends ContextSource {
 	 * @return String
 	 */
 	public function endRecentChangesList() {
-		if ( $this->rclistOpen ) {
-			return "</ul>\n";
-		} else {
-			return '';
-		}
+		$out = $this->rclistOpen ? "</ul>\n" : '';
+		$out .= '</div>';
+		return $out;
 	}
 
 	/**
