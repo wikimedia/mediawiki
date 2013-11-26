@@ -41,12 +41,6 @@ class SpecialPage {
 	// Listed in Special:Specialpages?
 	private $mListed;
 
-	// Function name called by the default execute()
-	private $mFunction;
-
-	// File which needs to be included before the function above can be called
-	private $mFile;
-
 	// Whether or not this special page is being included from an article
 	protected $mIncluding;
 
@@ -303,17 +297,17 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
+	 * @param bool|Callback $unused This parameter was previously for a callback,
+	 * but now we just use execute(). This is unused.
 	 * @param string $file File which is included by execute(). It is also
 	 * constructed from $name by default
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
 		$name = '', $restriction = '', $listed = true,
-		$function = false, $file = 'default', $includable = false
+		$unused = false, $file = 'default', $includable = false
 	) {
-		$this->init( $name, $restriction, $listed, $function, $file, $includable );
+		$this->init( $name, $restriction, $listed, $unused, $file, $includable );
 	}
 
 	/**
@@ -322,27 +316,17 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
+	 * @param bool|Callback $unused This parameter was previously for a callback,
+	 * but now we just use execute(). This is unused.
 	 * @param string $file File which is included by execute(). It is also
 	 * constructed from $name by default
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
-	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
+	private function init( $name, $restriction, $listed, $unused, $file, $includable ) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
 		$this->mIncludable = $includable;
-		if ( !$function ) {
-			$this->mFunction = 'wfSpecial' . $name;
-		} else {
-			$this->mFunction = $function;
-		}
-		if ( $file === 'default' ) {
-			$this->mFile = __DIR__ . "/specials/Special$name.php";
-		} else {
-			$this->mFile = $file;
-		}
 	}
 
 	/**
@@ -387,18 +371,6 @@ class SpecialPage {
 	 */
 	function getRestriction() {
 		return $this->mRestriction;
-	}
-
-	/**
-	 * Get the file which will be included by SpecialPage::execute() if your extension is
-	 * still stuck in the past and hasn't overridden the execute() method.  No modern code
-	 * should want or need to know this.
-	 * @return String
-	 * @deprecated since 1.18
-	 */
-	function getFile() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return $this->mFile;
 	}
 
 	// @todo FIXME: Decide which syntax to use for this, and stick to it
@@ -459,18 +431,6 @@ class SpecialPage {
 	function restriction( $x = null ) {
 		wfDeprecated( __METHOD__, '1.18' );
 		return wfSetVar( $this->mRestriction, $x );
-	}
-
-	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function func( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mFunction, $x );
 	}
 
 	/**
@@ -704,25 +664,12 @@ class SpecialPage {
 	}
 
 	/**
-	 * Default execute method
-	 * Checks user permissions, calls the function given in mFunction
-	 *
-	 * This must be overridden by subclasses; it will be made abstract in a future version
+	 * Default execute method. Do all your logic, output and so forth from
+	 * here
 	 *
 	 * @param $subPage string|null
 	 */
-	public function execute( $subPage ) {
-		$this->setHeaders();
-		$this->checkPermissions();
-
-		$func = $this->mFunction;
-		// only load file if the function does not exist
-		if ( !is_callable( $func ) && $this->mFile ) {
-			require_once $this->mFile;
-		}
-		$this->outputHeader();
-		call_user_func( $func, $subPage, $this );
-	}
+	abstract public function execute( $subPage );
 
 	/**
 	 * Outputs a summary message on top of special pages
