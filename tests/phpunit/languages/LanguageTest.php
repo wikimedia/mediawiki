@@ -1486,13 +1486,14 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function provideCommafyData() {
 		return array(
-			array( 1, '1' ),
+			array( -1, '-1' ),
 			array( 10, '10' ),
 			array( 100, '100' ),
 			array( 1000, '1,000' ),
 			array( 10000, '10,000' ),
 			array( 100000, '100,000' ),
 			array( 1000000, '1,000,000' ),
+			array( -1.0001, '-1.0001' ),
 			array( 1.0001, '1.0001' ),
 			array( 10.0001, '10.0001' ),
 			array( 100.0001, '100.0001' ),
@@ -1500,6 +1501,8 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 10000.0001, '10,000.0001' ),
 			array( 100000.0001, '100,000.0001' ),
 			array( 1000000.0001, '1,000,000.0001' ),
+			array( '200000000000000000000', '200,000,000,000,000,000,000' ),
+			array( '-200000000000000000000', '-200,000,000,000,000,000,000' ),
 		);
 	}
 
