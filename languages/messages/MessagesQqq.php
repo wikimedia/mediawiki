@@ -6021,8 +6021,10 @@ A revision row in the undelete page. Parameters:
 * $3 is a link to the last revision of a page ({{msg-mw|last}})
 * $4 is a link to the page
 * $5 is a link to the revision's user
-* $6 is the revision size
-* $7 is the revision comment",
+* $6 is the revision's minor edit identifier
+* $7 is the revision size
+* $8 is the revision comment
+* $9 is the revision's tags",
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].
