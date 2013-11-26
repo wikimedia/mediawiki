@@ -6022,7 +6022,8 @@ A revision row in the undelete page. Parameters:
 * $4 is a link to the page
 * $5 is a link to the revision's user
 * $6 is the revision size
-* $7 is the revision comment",
+* $7 is the revision comment
+* $8 is the revision's tags",
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].
