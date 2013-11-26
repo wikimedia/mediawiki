@@ -400,6 +400,7 @@ $wgAutoloadLocalClasses = array(
 	'EnhancedChangesList' => 'includes/changes/EnhancedChangesList.php',
 	'OldChangesList' => 'includes/changes/OldChangesList.php',
 	'RCCacheEntry' => 'includes/changes/RCCacheEntry.php',
+	'RCCacheEntryFactory' => 'includes/changes/RCCacheEntryFactory.php',
 	'RecentChange' => 'includes/changes/RecentChange.php',
 
 	# includes/clientpool
