@@ -3828,6 +3828,7 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 
 # Special:SpecialPages
 'specialpages' => 'Pajennoù dibar',
+'specialpages-note-top' => "Alc'hwez",
 'specialpages-note' => '* Pajennoù dibar boutin.
 * <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>
 * <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken (a c\'hellfe bezañ re gozh).</span>',

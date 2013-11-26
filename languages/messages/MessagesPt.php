@@ -596,8 +596,8 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'youhavenewmessages' => 'Tem $1 ($2).',
 'youhavenewmessagesfromusers' => 'Tem $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tem $1 de muitos utilizadores ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|últimas alterações}}',
+'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|999=mensagens novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|999=últimas alterações}}',
 'youhavenewmessagesmulti' => 'Tem mensagens novas em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -726,7 +726,7 @@ O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 'invalidtitle-knownnamespace' => 'Título inválido com o espaço nominal "$2" e texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título inválido com número de espaço nominal $1 desconhecido e texto "$2"',
 'exception-nologin' => 'Não está autenticado',
-'exception-nologin-text' => 'Esta página ou operação requer que esteja autenticado nesta wiki.',
+'exception-nologin-text' => 'Por favor, [[Special:Userlogin|entre]] para poder acessar esta página ou acção.',
 'exception-nologin-text-manual' => 'Por favor  $1  para poder aceder a esta página ou acção.',
 
 # Virus scanner
@@ -774,7 +774,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccount' => "Já possui uma conta? '''$1'''.",
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
-'userlogin-resetpassword-link' => 'Recuperar palavra-chave',
+'userlogin-resetpassword-link' => 'Esqueceu a sua palavra-chave?',
 'helplogin-url' => 'Help:Autenticação',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'userlogin-loggedin' => 'Já está {{GENDER:$1|autenticado|autenticada|autenticado}} com o nome $1.
@@ -848,9 +848,9 @@ Para prevenir abusos, só um email de recuperação de palavra-chave pode ser en
 'mailerror' => 'Erro ao enviar correio: $1',
 'acct_creation_throttle_hit' => 'Visitantes desta wiki com o seu endereço IP criaram $1 {{PLURAL:$1|conta|contas}} no último dia, o que é o máximo permitido neste período de tempo.
 Em resultado, visitantes com este endereço IP não podem criar mais nenhuma conta neste momento.',
-'emailauthenticated' => 'O seu endereço de correio electrónico foi autenticado a $2 às $3.',
-'emailnotauthenticated' => 'O seu endereço de correio electrónico ainda não foi autenticado.
-Não serão enviados correios de nenhuma das seguintes funcionalidades.',
+'emailauthenticated' => 'O seu endereço de correio electrónico foi confirmado a $2, às $3.',
+'emailnotauthenticated' => 'O seu endereço de correio electrónico ainda não foi confirmado.
+Não serão enviados emails de nenhuma das seguintes funcionalidades.',
 'noemailprefs' => 'Especifique um endereço de correio eletrónico nas suas preferências para ativar estas funcionalidades.',
 'emailconfirmlink' => 'Confirme o seu endereço de correio electrónico',
 'invalidemailaddress' => 'O endereço de correio eletrónico não pode ser aceite porque parece ter um formato inválido.
@@ -1299,7 +1299,7 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-suppress-text' => "A supressão '''só''' deverá ser usada nos seguintes casos:
 * Informação potencialmente caluniosa, difamatória ou injuriosa
 * Informação pessoal imprópria
-*: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
+*: ''endereços de domicílio e números de telefone, números de identificação nacional, etc''",
 'revdelete-legend' => 'Definir restrições de visibilidade',
 'revdelete-hide-text' => 'Revisão do texto',
 'revdelete-hide-image' => 'Ocultar conteúdo do ficheiro',
@@ -1308,8 +1308,8 @@ Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo 
 'revdelete-hide-user' => 'Nome de utilizador/endereço de IP',
 'revdelete-hide-restricted' => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-radio-same' => '(manter)',
-'revdelete-radio-set' => 'Visível',
-'revdelete-radio-unset' => 'Escondido',
+'revdelete-radio-set' => 'Escondido',
+'revdelete-radio-unset' => 'Visível',
 'revdelete-suppress' => 'Ocultar dados dos administradores e de todos os outros',
 'revdelete-unsuppress' => 'Remover restrições das revisões restauradas',
 'revdelete-log' => 'Motivo:',
@@ -1468,6 +1468,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'preferences' => 'Preferências',
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
+'prefsnologintext2' => 'Por favor, precisa de $1 para definir as suas preferências.',
 'changepassword' => 'Alterar palavra-chave',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Antever tema',
@@ -1768,7 +1769,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-minor' => 'Esta é uma edição menor',
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
-'recentchanges-legend-newpage' => '$1 - página nova',
+'recentchanges-legend-newpage' => '(ver também a [[Special:NewPages|lista de páginas novas]])',
 'rcnote' => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',

@@ -98,9 +98,9 @@ $messages = array(
 'tog-usenewrc' => 'Kävutagat paremboitud tantoižed toižetused (pidab otta radho JavaScript)',
 'tog-numberheadings' => 'Nomeruida avtomatižikš pälkirjutesed',
 'tog-showtoolbar' => "Ozutada azegiden üläpanel' redaktiruindan aigan (JavaScript)",
-'tog-editondblclick' => 'Redaktiruida lehtpoled kaksitadud plokul (JavaScript)',
+'tog-editondblclick' => 'Redaktiruida lehtpoled kaksitadud plokul',
 'tog-editsection' => 'Ozutada "Redaktiruida"-kosketuz kaikuččen sekcijan täht',
-'tog-editsectiononrightclick' => 'Redaktiruida sekcijad hiren oiktal plokul pälkirjutesele (JavaScript)',
+'tog-editsectiononrightclick' => 'Redaktiruida sekcijad hiren oiktal plokul pälkirjutesele',
 'tog-showtoc' => 'Ozutada südäiolend (lehtpoled, kudambil om enamba, mi 3 pälkirjutest)',
 'tog-rememberpassword' => 'Muštta minun kävutajan nimi neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations' => 'Ližata kaik minai sätud lehtpoled minun kaclendkirjuteshe',
@@ -193,6 +193,18 @@ $messages = array(
 'oct' => 'reduku',
 'nov' => 'kül’mku',
 'dec' => 'tal’vku',
+'january-date' => '$1. viluku',
+'february-date' => '$1. uhoku',
+'march-date' => "$1. keväz'ku",
+'april-date' => '$1. sulaku',
+'may-date' => '$1. semendku',
+'june-date' => '$1. kezaku',
+'july-date' => '$1. heinku',
+'august-date' => '$1. eloku',
+'september-date' => "$1. sügüz'ku",
+'october-date' => '$1. reduku',
+'november-date' => "$1. kül'mku",
+'december-date' => "$1. tal'vku",
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorii|Kategorijad}}',
@@ -218,7 +230,7 @@ $messages = array(
 'newwindow' => '(avaidase udes iknas)',
 'cancel' => 'Heitta pätand',
 'moredotdotdot' => 'Edeleze...',
-'mypage' => "Minun lehtpol'",
+'mypage' => "Lehtpol'",
 'mytalk' => 'Lodud',
 'anontalk' => 'Lodud neciš IP-adresas',
 'navigation' => 'Navigacii',
@@ -251,6 +263,7 @@ $messages = array(
 'namespaces' => 'Nimiavaruded',
 'variants' => 'Variantad',
 
+'navigation-heading' => 'Navigacii',
 'errorpagetitle' => 'Petuz',
 'returnto' => 'Pörttas lehtpolele $1.',
 'tagline' => '{{SITENAME}}',
@@ -288,7 +301,7 @@ $messages = array(
 'articlepage' => "Kacu südäimišton lehtpol'",
 'talk' => 'Diskussii',
 'views' => 'Kacundad',
-'toolbox' => 'Azegišt',
+'toolbox' => 'Instrumentad',
 'userpage' => "Kacu kävutajan lehtpol'",
 'projectpage' => "Kacu projektan lehtpol'",
 'imagepage' => "Kacu fajlan lehtpol'",
@@ -397,6 +410,7 @@ Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 # General errors
 'error' => 'Petuz',
 'databaseerror' => 'Andmusiden bazan petuz',
+'databaseerror-error' => 'Petuz: $1',
 'laggedslavemode' => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 'readonly' => 'Andmusiden baz om luklostadud',
 'enterlockreason' => 'Kirjutagat sü da pandud blokiruindan strok',
@@ -461,10 +475,18 @@ Sü om "\'\'$2\'\'".',
 
 Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai <span class='plainlinks'>[$1 kirjutagatoiš udes]</span> sil-žo vai toižel kävutajan nimel.
 Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel teiden lähtendad sistemaspäi. Miše vajehtada niiden nägu, puhtastagat teiden kaclimen keš.",
+'welcomeuser' => 'Tulgat tervhin, $1!',
 'yourname' => 'Kävutajan nimi:',
+'userlogin-yourname' => 'Kävutajannimi',
+'createacct-another-username-ph' => 'Kirjutagat kävutajannimi',
 'yourpassword' => 'Peitsana:',
+'userlogin-yourpassword' => 'Peitsana',
+'createacct-yourpassword-ph' => 'Kirjutagat peitsana',
 'yourpasswordagain' => 'Kirjutagat peitsana udes:',
+'createacct-yourpasswordagain' => 'Peitsanan vahvištoituz',
+'createacct-yourpasswordagain-ph' => 'Kirjutagat peitsana toškerdan',
 'remembermypassword' => 'Panda muštho minun tulendandmused neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
+'userlogin-remembermypassword' => 'Jäda sistemha',
 'yourdomainname' => 'Teiden domen:',
 'externaldberror' => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
 'login' => 'Kirjutadas sistemha',
@@ -483,6 +505,12 @@ Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel te
 'userlogin-resetlink' => 'Unohtid-ik andmused tulendan täht?',
 'createaccountmail' => 'e-počtaiči',
 'createaccountreason' => 'Sü:',
+'createacct-reason' => 'Sü',
+'createacct-reason-ph' => 'Mikš sädad kävutajanprofilid?',
+'createacct-captcha' => 'Varuitomuden kodvind',
+'createacct-imgcaptcha-ph' => 'Kirjutagat tekst pälpäi',
+'createacct-submit' => "Säta kävutajanprofil'",
+'createacct-another-submit' => "Säta toine kävutajanprofil'",
 'badretype' => 'Teil kirjutadud peitsanad ei kožugoi toine toižhe.',
 'userexists' => 'Kirjutadud kävutajan nimi om jo kävutamižes.
 Olgat hüväd, valikat toine kävutajan nimi.',
@@ -573,6 +601,9 @@ Aigaline peitsana: $2',
 'changeemail-none' => '(ei ole)',
 'changeemail-submit' => 'Toižetada e-počtan adres',
 'changeemail-cancel' => 'Heitta',
+
+# Special:ResetTokens
+'resettokens-tokens' => 'Tokenad:',
 
 # Edit page toolbar
 'bold_sample' => 'Lihavoitud tekst',
@@ -1044,7 +1075,7 @@ Kodvgat HTML-virgad.',
 Pidab tehta se $1 {{PLURAL:$1|simvolaspäi|simvoloišpäi}}.",
 'yourgender' => 'Sugu:',
 'gender-unknown' => 'Ei ole ozutadud',
-'gender-male' => 'Mez’',
+'gender-male' => "Mez'",
 'gender-female' => 'Naine',
 'prefs-help-gender' => 'Opcionaline: kävutadas likutimen erasiš tedotusiš, miše ozutada kävutajan sugu oikti. Nece informacii om avoin.',
 'email' => 'E-počt',
@@ -1059,6 +1090,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'prefs-dateformat' => 'Datan format',
 'prefs-timeoffset' => 'Aigan sirdand',
 'prefs-advancedediting' => 'Ližaopcijad',
+'prefs-preview' => 'Ezikacund',
 'prefs-advancedrc' => 'Ližaopcijad',
 'prefs-advancedrendering' => 'Ližaopcijad',
 'prefs-advancedsearchoptions' => 'Ližaopcijad',
@@ -1066,6 +1098,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'prefs-displayrc' => 'Nägun opcijad',
 'prefs-displaysearchoptions' => 'Nägun opcijad',
 'prefs-displaywatchlist' => 'Nägun opcijad',
+'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Erod',
 
 # User preference: email validation using jQuery
@@ -1216,6 +1249,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|toižetuz|toižetust}}',
+'enhancedrc-history' => 'istorii',
 'recentchanges' => 'Tantoižed toižetused',
 'recentchanges-legend' => 'Tantoižiden toižetusiden järgendused',
 'recentchanges-summary' => 'Necil lehtpolil om tantoižid toižetusid {{SITENAME}}-saital.',
@@ -1410,6 +1444,7 @@ Ku valitas vaiše ühten kävutajan failad, ka ozutadas vaiše necen kävutajan 
 'listfiles_size' => 'Suruz’',
 'listfiles_description' => 'Ümbrikirjutand',
 'listfiles_count' => 'Versijad',
+'listfiles-latestversion-yes' => 'Ka',
 
 # File description page
 'file-anchor-link' => 'Fail',
@@ -1488,6 +1523,9 @@ Informacijad sen [$2 andmusiden lehtpolelpäi] om anttud alemba.',
 # Random page
 'randompage' => "Statjaline lehtpol'",
 'randompage-nopages' => '"$1"-{{PLURAL:$2|Nimiavarudes|Nimiavaruziš}} ei ole lehtpolid.',
+
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Mäne',
 
 # Random redirect
 'randomredirect' => 'Statjaline läbikosketuz',
@@ -1933,7 +1971,7 @@ $1',
 'contributions' => '{{GENDER:$1|Kävutajan}} tond',
 'contributions-title' => '$1-kävutajan tond',
 'mycontris' => 'Minun tond',
-'contribsub2' => '$1-kävutajan ($2) tond',
+'contribsub2' => '{{GENDER:$3|$1}}-kävutajan ($2) tond',
 'uctop' => '(nügüdläine)',
 'month' => 'Ku:',
 'year' => 'Voz’:',
@@ -2336,6 +2374,8 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'pageinfo-watchers' => 'Lehtpolen kaclijoiden lugu',
 'pageinfo-edits' => 'Redakcijoiden lugumär',
 'pageinfo-authors' => 'Erazvuiččiden avtoroiden lugu',
+'pageinfo-contentpage-yes' => 'Ka',
+'pageinfo-protect-cascading-yes' => 'Ka',
 
 # Skin names
 'skinname-cologneblue' => "Köl'nan sinine",
@@ -2378,7 +2418,7 @@ $1',
 'file-info-size' => '$1 × $2 pikselad, failan suruz: $3, MIME-tip: $4',
 'file-nohires' => 'Ei ole versijad paremban tarkoiktusenke.',
 'svg-long-desc' => 'SVG-fail, nominaližikš $1 × $2 pikselid, failan suruz: $3',
-'show-big-image' => 'Korgedtarkoiktuseline kuvan versii',
+'show-big-image' => 'Originaline fail',
 'show-big-image-preview' => 'Ezikacundan suruz: $1.',
 'show-big-image-size' => '$1 × $2 pikselid',
 'file-info-gif-looped' => 'toštase',
@@ -2736,6 +2776,9 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-dc-publisher' => 'Pästai',
 'exif-dc-rights' => 'Oiktused',
 
+'exif-isospeedratings-overflow' => 'Более 65535',
+
+'exif-iimcategory-ace' => "Čomamaht, kul'tur da bobuštused",
 'exif-iimcategory-clj' => 'Ogerantegend da käskuz',
 'exif-iimcategory-dis' => 'Katastrofad da avarijad',
 'exif-iimcategory-fin' => 'Ekonomik da biznes',
@@ -2815,6 +2858,9 @@ Necen vahvištoitandkodan kävutamižen lopstrok om $4.',
 # action=watch/unwatch
 'confirm-watch-button' => 'OK',
 'confirm-unwatch-button' => 'OK',
+
+# Separators for various lists, etc.
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => "← edeline lehtpol'",
@@ -2969,7 +3015,9 @@ Kävutagat normaline ezikacund.',
 'tags-tag' => 'Tegan (virgan) nimi',
 'tags-display-header' => 'Nägu toižetisiden aigkirjoiš',
 'tags-description-header' => "Znamoičendan täuz' ümbrikirjutand",
+'tags-active-header' => 'Aktivine-ik?',
 'tags-hitcount-header' => 'Virgastadud redakcijad',
+'tags-active-yes' => 'Ka',
 'tags-edit' => 'redaktiruida',
 'tags-hitcount' => '$1 {{PLURAL:$1|toižetuz|toižetust}}',
 
@@ -3002,6 +3050,7 @@ Kävutagat normaline ezikacund.',
 'htmlform-submit' => 'Oigeta',
 'htmlform-reset' => 'Tühjitada toižetused',
 'htmlform-selectorother-other' => 'Toine',
+'htmlform-yes' => 'Ka',
 
 # SQLite database support
 'sqlite-has-fts' => " $1 täuz'tekstaižen ecindan tügedamiženke",

@@ -3604,12 +3604,17 @@ See also:
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
 'recentchanges-noresult' => 'Used in [[Special:RecentChanges]], [[Special:RecentChangesLinked]], and [[Special:Watchlist]] when there are no changes to be shown.',
 'recentchanges-feed-description' => 'Used in feed of RecentChanges. See example [{{canonicalurl:Special:RecentChanges|feed=atom}} feed].',
-'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
-'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
-'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
+'recentchanges-label-newpage' => '# Used as tooltip for {{msg-mw|Newpageletter}}.
+# Also used as legend. Preceded by {{msg-mw|Newpageletter}} and followed by {{msg-mw|Recentchanges-legend-newpage}}.',
+'recentchanges-label-minor' => '# Used as tooltip for {{msg-mw|Minoreditletter}}
+# Also used as legend. Preceded by {{msg-mw|Minoreditletter}}',
+'recentchanges-label-bot' => '# Used as tooltip for {{msg-mw|Boteditletter}}
+# Also used as legend. Preceded by {{msg-mw|Boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
-'recentchanges-label-plusminus' => 'Legend item for plus/minus',
-'recentchanges-legend-newpage' => 'A link to [[Special:NewPages]]',
+'recentchanges-label-plusminus' => 'Legend item for plus/minus.
+
+Preceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.',
+'recentchanges-legend-newpage' => 'Used as legend in [[Special:RecentChanges]]. Preceded by {{msg-mw|Recentchanges-label-newpage}}.',
 'recentchanges-legend-plusminus' => 'A plus/minus sign with a number for the legend.',
 'rcnote' => 'Used on [[Special:RecentChanges]].
 
@@ -3643,22 +3648,22 @@ Parameters:
 * $1 - a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
 The corresponding message is {{msg-mw|Rcnotefrom}}.',
-'rcshowhideminor' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
-'rcshowhidebots' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
-{{Identical|$1 bots}}",
+'rcshowhideminor' => 'Option text in [[Special:RecentChanges]]. Parameters:
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
+'rcshowhidebots' => 'Option text in [[Special:RecentChanges]]. Parameters:
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}
+{{Identical|$1 bots}}',
 'rcshowhideliu' => 'Option text in [[Special:RecentChanges]]. Parameters:
 * $1 - any one of the following messages:
 ** {{msg-mw|Show}}
 ** {{msg-mw|Hide}}',
-'rcshowhideanons' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
-{{Identical|Anonymous user}}",
-'rcshowhidepatr' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
-'rcshowhidemine' => "Option text in [[Special:RecentChanges]]. Parameters:
-* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
+'rcshowhideanons' => 'Option text in [[Special:RecentChanges]]. Parameters:
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}
+{{Identical|Anonymous user}}',
+'rcshowhidepatr' => 'Option text in [[Special:RecentChanges]]. Parameters:
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
+'rcshowhidemine' => 'Option text in [[Special:RecentChanges]]. Parameters:
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
 'rclinks' => "Used on [[Special:RecentChanges]].
 * \$1 - a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
 * \$2 - a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
@@ -3849,8 +3854,8 @@ See also:
 'badfilename' => 'Parameters:
 * $1 - filename',
 'filetype-mime-mismatch' => 'Upload error. Parameters:
-* $1 is the extension of the uploaded file
-* $2 is the MIME type of the uploaded file',
+* $1 - the extension of the uploaded file
+* $2 - the MIME type of the uploaded file',
 'filetype-badmime' => 'Parameters:
 * $1 - string representing the MIME type',
 'filetype-bad-ie-mime' => 'Parameters:
@@ -4176,11 +4181,10 @@ See also:
 * {{msg-mw|upload-warning-subj|subject}}
 * {{msg-mw|upload-warning-msg|message}}',
 'upload-warning-msg' => 'Used as warning body which is posted on the user talk page. Parameters:
-* $1 is the URL the file was uploaded from, when using upload-by-URL
-* $2 is the session key for the upload
+* $1 - the URL the file was uploaded from, when using upload-by-URL
+* $2 - the session key for the upload
 See also:
-* {{msg-mw|upload-warning-subj|subject}}
-* {{msg-mw|upload-warning-msg|message}}',
+* {{msg-mw|Upload-warning-subj|subject}}',
 
 'upload-proto-error' => 'See also:
 * {{msg-mw|Upload-proto-error|title}}

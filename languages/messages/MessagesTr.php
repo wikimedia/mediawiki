@@ -1607,6 +1607,8 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'userrights-notallowed' => 'Kullanıcı hakları eklemek veya kaldırmak için izniniz yok.',
 'userrights-changeable-col' => 'Değiştirebildiğiniz gruplar',
 'userrights-unchangeable-col' => 'Değiştirebilmediğiniz gruplar',
+'userrights-conflict' => 'Kullanıcı hakları değişikliklerinde çakışma! Lütfen değişikliklerinizi gözden geçirin ve onaylayın.',
+'userrights-removed-self' => 'Kendi haklarınız başarıyla kaldırıldı. Bu nedenle, artık bu sayfaya erişemeyeceksiniz.',
 
 # Groups
 'group' => 'Grup:',
@@ -1657,6 +1659,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-writeapi' => 'API yaz kullanımı',
 'right-delete' => 'Sayfaları sil',
 'right-bigdelete' => 'Uzun tarihli sayfaları sil',
+'right-deletelogentry' => 'Belirli günlük girdilerini sil ve geri getir',
 'right-deleterevision' => 'Sayfaların belirli revizyonlarını sil ve geri yükle',
 'right-deletedhistory' => 'Silinmiş geçmiş girdilerini gör, ilgili metinleri olmadan',
 'right-deletedtext' => 'Silinmiş metni ve silinmiş revizyonlar arasındaki değişiklikleri gör',
@@ -1672,10 +1675,13 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-unblockself' => 'Kendi engellemesini kaldır',
 'right-protect' => 'Koruma düzeylerini değiştir ve kademeli korumalı sayfaları düzenle',
 'right-editprotected' => '"{{int:protect-level-sysop}}" olarak korunan sayfalarda değişiklik yap',
+'right-editsemiprotected' => '"{{int:protect-level-autoconfirmed}}" olarak korunan sayfalarda değişiklik yap',
 'right-editinterface' => 'Kullanıcı arayüzünü değiştirmek',
 'right-editusercssjs' => 'Diğer kullanıcıların CSS ve JS dosyalarında değişiklik yap',
 'right-editusercss' => 'Diğer kullanıcıların CSS dosyalarında değişiklik yap',
 'right-edituserjs' => 'Diğer kullanıcıların JS dosyalarında değişiklik yap',
+'right-editmyusercss' => 'Kendi kullanıcı CSS dosyaları düzenle',
+'right-editmyuserjs' => 'Kendi kullanıcı JavaScript dosyalarını düzenle',
 'right-viewmywatchlist' => 'Kendi izleme listeni gör',
 'right-editmywatchlist' => 'Kendi izleme listeni düzenle. Not, bazı eylemler bu yetki olmadan da sayfa ekleyebilir.',
 'right-viewmyprivateinfo' => 'Kendi özel bilgilerini görüntüle (e-posta adresi, gerçek isim vb.)',
@@ -1803,7 +1809,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'reuploaddesc' => 'Yükleme formuna geri dön.',
 'upload-tryagain' => 'Değiştirilmiş dosya açıklamasını gönder',
 'uploadnologin' => 'Oturum açık değil',
-'uploadnologintext' => 'Dosya yükleyebilmek için [[$1|oturum aç]]manız gerekiyor.',
+'uploadnologintext' => 'Dosya yükleyebilmek için $1manız gerekiyor.',
 'upload_directory_missing' => 'Yükleme dizini ($1) kayıp ve websunucusu tarafından oluşturulamıyor.',
 'upload_directory_read_only' => 'Dosya yükleme dizinine ($1) web sunucusunun yazma izni yok.',
 'uploaderror' => 'Yükleme hatası',
@@ -1947,6 +1953,7 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'backend-fail-stream' => '$1 dosyası okunamadı.',
 'backend-fail-backup' => '"$1" dosyası yedeklenemedi.',
 'backend-fail-notexists' => '$1 dosyası mevcut değil.',
+'backend-fail-hashes' => 'Karşılaştırma için dosya sağlamaları alınamadı.',
 'backend-fail-notsame' => 'Aynı olmayan bir dosya "$1" konumunda zaten var.',
 'backend-fail-invalidpath' => '"$1" geçerli bir depolama yolu değil.',
 'backend-fail-delete' => '"$1" dosyası silinemedi.',
@@ -1961,6 +1968,15 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'backend-fail-read' => '$1 dosyası okunamadı.',
 'backend-fail-create' => '$1 dosyası yazılamadı.',
 'backend-fail-maxsize' => 'Dosya {{PLURAL:$2|bir bayt|$2 bayt}} daha büyük olduğu için "$1" dosyasına yazılamadı.',
+'backend-fail-readonly' => 'Depolama arkaplan uygulaması "$1" şu anda salt okunur. Verilen gerekçe: "\'\'$2\'\'"',
+'backend-fail-connect' => '"$1" depolama arkaplan uygulamasına bağlanılamıyor.',
+'backend-fail-internal' => '"$1" depolama arkaplan uygulamasında bilinmeyen bir hata oluştu.',
+'backend-fail-contenttype' => '"$1" konumunda saklanan dosyanın içerik türü belirlenemiyor.',
+'backend-fail-usable' => 'Yetersiz izinlerden ya da eksik dizin/konteynerlerden dolayı "$1" dosyası okunup yazılamıyor.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => '"$1" depolama arkaplan uygulaması için günlük veri tabanına erişilemiyor.',
+'filejournal-fail-dbquery' => '"$1" depolama arkaplan uygulaması için günlük veri tabanı güncellenemiyor.',
 
 # Lock manager
 'lockmanager-notlocked' => '"$1" kilidi açılamıyor; kilitli değil.',
@@ -2473,7 +2489,7 @@ Editörün iletişim bilgileri:
 e-posta: $PAGEEDITOR_EMAIL
 viki: $PAGEEDITOR_WIKI
 
-Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka bildirim gönderilmeyecektir. Ayrıca izleme listenizdeki tüm sayfaların bildirim durumlarını sıfırlayabilirsiniz.
+Bahsi geçen sayfayı oturum açarak ziyaret edinceye kadar sayfayla ilgili başka bildirim gönderilmeyecektir. Ayrıca izleme listenizdeki tüm sayfaların bildirim durumlarını sıfırlayabilirsiniz.
 
 {{SITENAME}} bildirim sistemi
 
@@ -2533,6 +2549,7 @@ dikkatle devam edin.',
 'rollback_short' => 'geri al',
 'rollbacklink' => 'geri döndür',
 'rollbacklinkcount' => '$1 {{PLURAL:$1|değişikliği|değişikliği}} geri döndür',
+'rollbacklinkcount-morethan' => '$1 {{PLURAL:$1|değişiklikten|değişiklikten}} fazla geri döndür',
 'rollbackfailed' => 'geri alma işlemi başarısız',
 'cantrollback' => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
 'alreadyrolled' => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
@@ -2541,7 +2558,7 @@ başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Değişiklik özeti: \"''\$1''\" idi.",
 'revertpage' => '[[Special:Contributions/$2|$2]] [[User talk:$2|mesaj]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
-'revertpage-nouser' => '(kullanıcı adı çıkarılmış) tarafından yapılan değişiklikler [[User:$1|$1]] tarafından yapılan son revizyona geri alındı',
+'revertpage-nouser' => 'Gizli bir kullanıcı tarafından yapılan değişiklikler geri alınarak {{GENDER:$1|[[User:$1|$1]]}} tarafından yapılan son revizyon geri getirildi',
 'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
 
@@ -2562,7 +2579,9 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 'protect-title' => '"$1" için bir koruma seviyesi seçiniz',
 'protect-title-notallowed' => '"$1" için koruma seviyesini görüntüleyin',
 'prot_1movedto2' => '[[$1]] sayfasının yeni adı: [[$2]]',
+'protect-badnamespace-title' => 'Korumaya alınamayan ad alanı',
 'protect-badnamespace-text' => 'Bu ad alanındaki sayfalar korunamaz.',
+'protect-norestrictiontypes-text' => 'Bu sayfa mevcut kısıtlama türü bulunmadığı için korumaya alınamıyor.',
 'protect-norestrictiontypes-title' => 'Korumaya alınamayan sayfa',
 'protect-legend' => 'Korumayı onayla',
 'protectcomment' => 'Sebep:',
@@ -2626,7 +2645,8 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'undeletepagetext' => 'Aşağıdaki {{PLURAL:$1|sayfa|$1 sayfa}} silinmiştir ama hala arşivdedir ve geri getirilebilir.
 Arşiv düzenli olarak temizlenebilir.',
 'undelete-fieldset-title' => 'Revizyonları geri yükle',
-'undeleteextrahelp' => "Sayfalarla birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve neden alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
+'undeleteextrahelp' => "Sayfanın tüm geçmişini geri getirmek için onay kutularını boş bırakarak '''''{{int:undeletebtn}}''''' tuşuna tıklayın.
+Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''''{{int:undeletebtn}}''''' tuşuna tıklayın.",
 'undeleterevisions' => '$1 {{PLURAL:$1|revizyon|revizyon}} arşivlendi',
 'undeletehistory' => 'Eğer sayfayı geri getirirseniz, tüm revizyonlar geçmişe geri getirilecektir.
 Silindikten sonra aynı isimle yeni bir sayfa oluşturulmuşsa, geri gelen revizyonlar varolan sayfanın geçmişinde görünecektir.',
@@ -2996,8 +3016,12 @@ Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [https:
 'thumbnail-more' => 'Büyüt',
 'filemissing' => 'Dosya bulunmadı',
 'thumbnail_error' => 'Küçük resim oluşturmada hata: $1',
+'thumbnail_error_remote' => '$1 için hata mesajı:
+$2',
 'djvu_page_error' => 'DjVu sayfası kapsamdışı',
 'djvu_no_xml' => 'DjVu dosyası için XML alınamıyor',
+'thumbnail-temp-create' => 'Geçici küçük resim dosyası oluşturulamıyor',
+'thumbnail-dest-create' => 'Küçük resim hedefe kaydedilemiyor',
 'thumbnail_invalid_params' => 'Geçersiz küçük resim parametreleri',
 'thumbnail_dest_directory' => 'Hedef dizini oluşturulamıyor',
 'thumbnail_image-type' => 'Görüntü türü desteklenmiyor',
@@ -3046,6 +3070,14 @@ Geçici dosya kayıp.',
 'import-upload' => 'XML bilgileri yükle',
 'import-token-mismatch' => 'Oturum verisi kaybı. Lütfen yeniden deneyin.',
 'import-invalid-interwiki' => 'Belirtilen vikiden içe aktarım yapılamaz.',
+'import-error-edit' => '"$1" sayfası içe aktarılamadı çünkü sayfayı değiştirmeye yetkiniz yok.',
+'import-error-create' => '"$1" sayfası içe aktarılamadı çünkü sayfayı oluşturmaya yetkiniz yok.',
+'import-error-interwiki' => '"$1" sayfası içe aktarılamadı çünkü sayfanın adı dış bağlantı için ayrılmış (vikilerarası).',
+'import-error-special' => '"$1" sayfası içe aktarılamadı çünkü sayfalara izin vermeyen özel bir ad alanına ait.',
+'import-error-invalid' => '"$1" sayfası içe aktarılamadı çünkü sayfa adı geçersiz.',
+'import-options-wrong' => 'Yanlış {{PLURAL:$2|seçenek|seçenek}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Verilen kök sayfa geçersiz bir başlık.',
+'import-rootpage-nosubpage' => 'Kök sayfanın "$1" ad alanı alt sayfalara izin vermiyor.',
 
 # Import log
 'importlogpage' => 'Aktarım günlüğü',
@@ -3058,6 +3090,10 @@ Geçici dosya kayıp.',
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
 'javascripttest-title' => '$1 testleri çalışıyor',
+'javascripttest-pagetext-noframework' => 'Bu sayfa JavaScript testleri çalıştırmak için ayrılmıştır.',
+'javascripttest-pagetext-unknownframework' => 'Bilinmeyen test çerçevesi "$1".',
+'javascripttest-pagetext-frameworks' => 'Lütfen aşağıdaki test çerçevelerinden birini seçin: $1',
+'javascripttest-pagetext-skins' => 'Testleri koşmak için bir tema seçin:',
 'javascripttest-qunit-intro' => 'mediawiki.org üzerinden [$1 deneme belgelerine] bakınız.',
 'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit deneme paketi',
 
@@ -3159,11 +3195,13 @@ Geçici dosya kayıp.',
 'spambot_username' => 'Medyaviki spam temizleme',
 'spam_reverting' => '$1 ile bağlantı içermeyen son sürüme geri dönülüyor',
 'spam_blanking' => 'Tüm revizyonlar $1 sayfasına bağlantı içeriyor, boşaltılıyor',
+'spam_deleting' => 'Tüm revizyonlar $1 sayfasına bağlantı içeriyor, siliniyor',
 'simpleantispam-label' => "Anti-spam denetimi.
-Bunu '''doldurmayın'''!",
+Bunu '''doldurMAyın'''!",
 
 # Info page
 'pageinfo-title' => 'Bilgi için "$1"',
+'pageinfo-not-current' => 'Üzgünüz, eski sürümler için bu bilgileri sağlamamız mümkün değildir.',
 'pageinfo-header-basic' => 'Temel bilgiler',
 'pageinfo-header-edits' => 'Düzenleme geçmişi',
 'pageinfo-header-restrictions' => 'Sayfa koruması',
@@ -3178,9 +3216,11 @@ Bunu '''doldurmayın'''!",
 'pageinfo-robot-noindex' => 'İzin verilmedi',
 'pageinfo-views' => 'Görüntülenme sayısı',
 'pageinfo-watchers' => 'Sayfanın izleyici sayısı',
+'pageinfo-few-watchers' => '$1 {{PLURAL:$1|izleyiciden|izleyiciden}} az',
 'pageinfo-redirects-name' => 'Bu sayfaya yönlendirme sayısı',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Bu sayfanın alt sayfaları',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|yönlendirme|yönlendirme}}; $3 {{PLURAL:$3|yönlendirme olmayan|non-yönlendirme olmayan}})',
 'pageinfo-firstuser' => 'Sayfa oluşturucu',
 'pageinfo-firsttime' => 'Sayfa oluşturulma tarihi',
 'pageinfo-lastuser' => 'En son düzenleyici',
@@ -3217,6 +3257,8 @@ Bunu '''doldurmayın'''!",
 'markedaspatrollederror' => 'Kontrol edilmedi',
 'markedaspatrollederrortext' => 'Gözlenmiş olarak işaretlemek için bir revizyon belirtmelisiniz.',
 'markedaspatrollederror-noautopatrol' => 'Kendi değişikliklerinizi kontrol edilmiş olarak işaretleyemezsiniz.',
+'markedaspatrollednotify' => '$1 için bu değişiklik kontrol edildi olarak işaretlendi.',
+'markedaspatrollederrornotify' => 'Kontrol edildi olarak işaretleme başarısız oldu.',
 
 # Patrol log
 'patrol-log-page' => 'Kontrol kaydı',
@@ -3260,6 +3302,8 @@ Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'file-info-png-looped' => 'döngüye girdi',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|defa|defa}} oynatıldı',
 'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'file-no-thumb-animation' => "'''Not: Teknik sınırlamalar nedeniyle, bu dosyanın küçük resimlerinde animasyon yoktur.'''",
+'file-no-thumb-animation-gif' => "'''Not: Teknik sınırlamalar nedeniyle, bu gibi yüksek çözünürlüklü GIF resimlerinin küçük resimlerinde animasyon yoktur.'''",
 
 # Special:NewFiles
 'newimages' => 'Yeni dosya galerisi',
@@ -3449,13 +3493,18 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdifferential' => 'GPS differential correction',
 'exif-jpegfilecomment' => 'JPEG dosyası yorumu',
 'exif-keywords' => 'Anahtar kelimeler',
+'exif-worldregioncreated' => 'Resmin çekildiği dünya bölgesi',
 'exif-countrycreated' => 'Resmin alındığı ülke',
+'exif-countrycodecreated' => 'Resmin çekildiği ülke kodu',
+'exif-provinceorstatecreated' => 'Resmin çekildiği eyalet ya da il',
 'exif-citycreated' => 'Resmin alındığı şehir',
+'exif-sublocationcreated' => 'Resmin çekildiği şehrin alt bölgesi',
 'exif-worldregiondest' => 'Gösterilen bölge',
 'exif-countrydest' => 'Gösterilen ülke',
 'exif-countrycodedest' => 'Gösterilen ülke kodu',
 'exif-provinceorstatedest' => 'Gösterilen il ya da devlet/eyalet',
 'exif-citydest' => 'Gösterilen Şehir',
+'exif-sublocationdest' => 'Şehrin alt bölgesi gösteriliyor',
 'exif-objectname' => 'Kısa başlık',
 'exif-specialinstructions' => 'Özel talimatlar',
 'exif-headline' => 'Başlık',
@@ -3465,27 +3514,35 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-urgency' => 'Aciliyet',
 'exif-fixtureidentifier' => 'Fikstür adı',
 'exif-locationdest' => 'Yerin konumu',
+'exif-locationdestcode' => 'Konumun kodu tanımlandı',
+'exif-objectcycle' => 'Ortamın planlandığı günün saati',
 'exif-contact' => 'İletişim bilgileri',
 'exif-writer' => 'Yazar',
 'exif-languagecode' => 'Dil',
 'exif-iimversion' => 'IIM sürümü',
 'exif-iimcategory' => 'Kategori',
+'exif-iimsupplementalcategory' => 'Tamamlayıcı kategoriler',
 'exif-datetimeexpires' => 'Bu tarihten sonra kullanmayın:',
 'exif-datetimereleased' => 'Tarihinde yayınlandı',
+'exif-originaltransmissionref' => 'Orijinal iletim konum kodu',
 'exif-identifier' => 'Tanımlayıcı',
 'exif-lens' => 'Kullanılan objektif',
 'exif-serialnumber' => 'Kameranın seri numarası',
 'exif-cameraownername' => 'Kameranın sahibi',
 'exif-label' => 'Etiket',
+'exif-datetimemetadata' => 'Üstveri son değişim tarihi',
 'exif-nickname' => 'Görüntünün resmî olmayan adı',
 'exif-rating' => 'Oylama (5 üzerinden)',
+'exif-rightscertificate' => 'Hak yönetimi sertifikası',
 'exif-copyrighted' => 'Telif hakkı durumu',
 'exif-copyrightowner' => 'Telif hakkı sahibi',
 'exif-usageterms' => 'Kullanım şartları',
 'exif-webstatement' => 'Çevrimiçi telif hakkı bildirimi',
+'exif-originaldocumentid' => 'Özgün belgenin benzersiz kimliği',
 'exif-licenseurl' => 'Telif hakkı lisansı için URL',
 'exif-morepermissionsurl' => 'Alternatif lisans bilgileri',
 'exif-attributionurl' => 'Bu çalışmayı yeniden kullanırken lütfen bağlantı verin',
+'exif-preferredattributionname' => 'Bu çalışmayı yeniden kullanırken, lütfen atıf verin',
 'exif-pngfilecomment' => 'PNG dosyası yorumu',
 'exif-disclaimer' => 'Sorumluluk reddi',
 'exif-contentwarning' => 'İçerik uyarısı',
@@ -3501,6 +3558,8 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 # Exif attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
+'exif-compression-3' => 'CCITT Grup 3 faks kodlaması',
+'exif-compression-4' => 'CCITT Grup 4 faks kodlaması',
 'exif-compression-6' => 'JPEG',
 
 'exif-copyrighted-true' => 'Telif hakkı',
@@ -3784,13 +3843,13 @@ iptal etmek için aşağıdaki bağlantıyı takip edin:
 $5
 
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
-'confirmemail_body_set' => 'Birisi $1 IP adresiyle {{SITENAME}} sitesinde "$2" kullanıcı hesabının e-posta adresi olarak bu e-posta adresini belirtti.
+'confirmemail_body_set' => 'Birisi, muhtemelen siz, $1 IP adresiyle {{SITENAME}} sitesinde "$2" kullanıcı hesabının e-posta adresi olarak bu e-posta adresini belirtti.
 
-Eğer bu işlemi yapan sizseniz ve {{SITENAME}} sitesindeki e-posta işlevlerini tekrar aktif etmek istiyorsanız alttaki bağlantıyı tarayıcınızda açmanız gerekiyor:
+Bu hesabın gerçekten size ait olduğunu onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif etmek için alttaki bağlantıyı tarayıcınızda açmanız gerekiyor:
 
 $3
 
-Eğer bu işlemi yapan siz değilseniz ve böyle bir üyeliğiniz yoksa e-posta onay işlemini iptal etmek için alttaki bağlantıyı tarayıcınızda açmanız gerekiyor:
+Eğer bu hesap size ait değilse, e-posta adresi onayını iptal etmek için alttaki bağlantıyı takip edin:
 
 $5
 
@@ -3920,6 +3979,7 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'version-license' => 'Lisans',
 'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
 'version-poweredby-others' => 'diğerleri',
+'version-poweredby-translators' => 'translatewiki.net çevirmenleri',
 'version-license-info' => "MediaWiki özgür bir yazılımdır; MediaWiki'yi, Özgür Yazılım Vakfı tarafından yayımlanmış olan GNU Genel Kamu Lisansının 2. veya (seçeceğiniz) daha sonraki bir sürümünün koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
 
 MediaWiki yazılımı faydalı olacağı ümidiyle dağıtılmaktadır; ancak kastedilen SATILABİLİRLİK veya BELİRLİ BİR AMACA UYGUNLUK garantisi hariç HİÇBİR GARANTİSİ YOKTUR. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakınız.
@@ -3937,8 +3997,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'redirect-legend' => 'Bir dosya veya sayfaya yönlendirme',
 'redirect-summary' => "Bu özel sayfa sizi bir dosya (dosya adı verilen), bir sayfa (bir revizyon ID'si verilen) veya bir kullanıcı sayfasının (sayısal kullanıcı kimliği verilen) adresine yönlendirir. Kullanım: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ya da  [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Git',
+'redirect-lookup' => 'Ara:',
 'redirect-value' => 'Değer:',
 'redirect-user' => 'Kullanıcı kimliği',
+'redirect-revision' => 'Sayfa revizyonu',
 'redirect-file' => 'Dosya adı',
 'redirect-not-exists' => 'Değer bulunamadı',
 
@@ -3989,6 +4051,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'tags' => 'Geçerli değişiklik etiketleri',
 'tag-filter' => '[[Special:Tags|Etiket]] süzgeci:',
 'tag-filter-submit' => 'Süzgeç',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etiket|Etiketler}}]]: $2)',
 'tags-title' => 'Etiketler',
 'tags-intro' => 'Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.',
 'tags-tag' => 'Etiket adı',
@@ -4018,6 +4081,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'dberr-problems' => 'Üzgünüz! Bu site teknik zorluklar yaşıyor.',
 'dberr-again' => 'Bir kaç dakika bekleyip tekrar yüklemeyi deneyin.',
 'dberr-info' => '(Veritabanı sunucusuyla irtibat kurulamıyor: $1)',
+'dberr-info-hidden' => '(Veritabanı sunucusuna bağlantı kurulamıyor)',
 'dberr-usegoogle' => 'Bu zaman zarfında Google ile aramayı deneyebilirsiniz.',
 'dberr-outofdate' => 'İçeriğimizin onların dizinlerinde güncel olmayabileceğini dikkate alın.',
 'dberr-cachederror' => 'Aşağıdaki istenen sayfanın önbellekteki bir kopyasıdır, ve güncel olmayabilir.',
@@ -4035,6 +4099,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'htmlform-selectorother-other' => 'Diğer',
 'htmlform-no' => 'Hayır',
 'htmlform-yes' => 'Evet',
+'htmlform-chosen-placeholder' => 'Bir seçenek seçin',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
@@ -4043,10 +4108,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 # New logging system
 'logentry-delete-delete' => '$1 $3 sayfasını {{GENDER:$2|sildi}}',
 'logentry-delete-restore' => '$1 $3 sayfasını {{GENDER:$2|geri getirdi}}',
-'logentry-delete-revision' => '$1 $3: $4 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü değiştirdi',
-'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü değiştirdi',
-'logentry-suppress-revision' => '$1 $3: $4 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü gizlice değiştirdi',
-'logentry-suppress-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü değiştirdi',
+'logentry-delete-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4',
+'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü {{GENDER:$2|değiştirdi}}',
+'logentry-suppress-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}: $4',
+'logentry-suppress-revision-legacy' => '$1, $3 sayfasındaki sürümlerin görünürlüğünü {{GENDER:$2|değiştirdi}}',
 'revdelete-content-hid' => 'Gizli içerik',
 'revdelete-summary-hid' => 'değişiklik özeti gizlenmiş',
 'revdelete-uname-hid' => 'kullanıcı adı gizli',
@@ -4055,10 +4120,10 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'revdelete-uname-unhid' => 'kullanıcı adı gösterildi',
 'revdelete-restricted' => 'hizmetliler için uygulanmış kısıtlamalar',
 'revdelete-unrestricted' => 'hizmetliler için kaldırılmış kısıtlamalar',
-'logentry-move-move' => '$1 $3 sayfasını $4 sayfasına taşıdı',
-'logentry-move-move-noredirect' => '$1 $3 sayfasını $4 sayfasına yönlendirme olmaksızın taşıdı',
-'logentry-move-move_redir' => '$1 $3 sayfasını $4 sayfasına yönlendirme üzerinden taşıdı',
-'logentry-patrol-patrol-auto' => '$1 $3 sayfasını $4 sürümü ile kontrol etti',
+'logentry-move-move' => '$1, $3 sayfasını $4 sayfasına {{GENDER:$2|taşıdı}}',
+'logentry-move-move-noredirect' => '$1, $3 sayfasını $4 sayfasına yönlendirme olmaksızın {{GENDER:$2|taşıdı}}',
+'logentry-move-move_redir' => '$1, $3 sayfasını $4 sayfasına yönlendirme üzerinden {{GENDER:$2|taşıdı}}',
+'logentry-patrol-patrol-auto' => '$1, $3 sayfasının $4 sürümümü otomatik olarak {{GENDER:$2|kontrol etti}}',
 'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
 'logentry-newusers-create' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
 'logentry-newusers-create2' => '$3 kullanıcı hesabı $1 tarafından {{GENDER:$2|oluşturuldu}}',
@@ -4094,7 +4159,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'api-error-file-too-large' => 'Gönderdiğiniz dosya çok büyük.',
 'api-error-filename-tooshort' => 'Dosya adı çok kısa.',
 'api-error-filetype-banned' => 'Bu dosya biçimi yasaklanmıştır.',
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|izin verilen bir dosya türü değil|izin verilen bir dosya türü değil}}. İzin verilen {{PLURAL:$3|dosya türü|dosya türleri}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|izin verilen bir dosya türü değil|izin verilen dosya türleri değil}}. İzin verilen {{PLURAL:$3|dosya türü|dosya türleri}} $2.',
 'api-error-filetype-missing' => 'Dosya uzantısı eksik.',
 'api-error-hookaborted' => 'Yapmaya çalıştığınız değişiklik bir eklenti tarafından iptal edildi.',
 'api-error-http' => 'İç hata: sunucu ile bağlantı kurulamıyor.',
@@ -4110,6 +4175,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'api-error-ok-but-empty' => 'İç hata: Sunucu yanıt vermiyor.',
 'api-error-overwrite' => 'Varolan dosyanın üzerine yazmaya izin verilmiyor.',
 'api-error-stashfailed' => 'İç hata: Sunucu, geçici dosyaları kaybetti.',
+'api-error-publishfailed' => 'İç hata: Sunucu geçici dosyayı yayınlarken başarısız oldu.',
 'api-error-timeout' => 'Sunucu beklenen süre içinde yanıt vermedi.',
 'api-error-unclassified' => 'Bilinmeyen bir hata oluştu.',
 'api-error-unknown-code' => 'Bilinmeyen hata: "$1"',
@@ -4130,16 +4196,21 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'duration-centuries' => '$1 {{PLURAL:$1|yüzyıl|yüzyıl}}',
 'duration-millennia' => '$1 {{PLURAL:$1|bin yıl|bin yıl}}',
 
+# Image rotation
+'rotate-comment' => 'Resim saat yönünde $1 {{PLURAL:$1|derece|derece}} çevrildi',
+
 # Limit report
 'limitreport-title' => 'Ayrıştırıcı profil verileri:',
 'limitreport-cputime' => 'CPU süresi kullanımı',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|saniye|saniye}}',
 'limitreport-walltime' => 'Gerçek süre kullanımı',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|saniye|saniye}}',
 'limitreport-ppvisitednodes' => 'Önişlemci düğümü ziyaret sayısı',
 'limitreport-ppgeneratednodes' => 'Önişlemcinin ürettiği düğüm sayısı',
 'limitreport-postexpandincludesize' => 'Gönderi genişliği boyutu dahil',
-'limitreport-postexpandincludesize-value' => '$1/$2 bayt',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bayt|bayt}}',
 'limitreport-templateargumentsize' => 'Şablon değişkeni boyutu',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bayt|bayt}}',
 'limitreport-expansiondepth' => 'En yüksek genişleme derinliği',
 'limitreport-expensivefunctioncount' => 'Daha fazla ayrıştırıcı işlev sayısı',
 
