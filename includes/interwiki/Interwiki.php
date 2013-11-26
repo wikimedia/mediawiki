@@ -123,28 +123,34 @@ class Interwiki {
 		static $db, $site;
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
-		if ( !$db ) {
-			$db = CdbReader::open( $wgInterwikiCache );
-		}
-		/* Resolve site name */
-		if ( $wgInterwikiScopes >= 3 && !$site ) {
-			$site = $db->get( '__sites:' . wfWikiID() );
-			if ( $site == '' ) {
-				$site = $wgInterwikiFallbackSite;
+		try {
+			if ( !$db ) {
+				$db = CdbReader::open( $wgInterwikiCache );
 			}
-		}
+			/* Resolve site name */
+			if ( $wgInterwikiScopes >= 3 && !$site ) {
+				$site = $db->get( '__sites:' . wfWikiID() );
+				if ( $site == '' ) {
+					$site = $wgInterwikiFallbackSite;
+				}
+			}
 
-		$value = $db->get( wfMemcKey( $prefix ) );
-		// Site level
-		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
-			$value = $db->get( "_{$site}:{$prefix}" );
-		}
-		// Global Level
-		if ( $value == '' && $wgInterwikiScopes >= 2 ) {
-			$value = $db->get( "__global:{$prefix}" );
-		}
-		if ( $value == 'undef' ) {
+			$value = $db->get( wfMemcKey( $prefix ) );
+			// Site level
+			if ( $value == '' && $wgInterwikiScopes >= 3 ) {
+				$value = $db->get( "_{$site}:{$prefix}" );
+			}
+			// Global Level
+			if ( $value == '' && $wgInterwikiScopes >= 2 ) {
+				$value = $db->get( "__global:{$prefix}" );
+			}
+			if ( $value == 'undef' ) {
+				$value = '';
+			}
+		} catch ( CdbException $e ) {
 			$value = '';
+			wfDebug( __METHOD__ . ": CdbException caught, error message was "
+				. $e->getMessage() );
 		}
 
 		return $value;
@@ -232,51 +238,55 @@ class Interwiki {
 		static $db, $site;
 
 		wfDebug( __METHOD__ . "()\n" );
-		if ( !$db ) {
-			$db = CdbReader::open( $wgInterwikiCache );
-		}
-		/* Resolve site name */
-		if ( $wgInterwikiScopes >= 3 && !$site ) {
-			$site = $db->get( '__sites:' . wfWikiID() );
-			if ( $site == '' ) {
-				$site = $wgInterwikiFallbackSite;
-			}
-		}
-
-		// List of interwiki sources
-		$sources = array();
-		// Global Level
-		if ( $wgInterwikiScopes >= 2 ) {
-			$sources[] = '__global';
-		}
-		// Site level
-		if ( $wgInterwikiScopes >= 3 ) {
-			$sources[] = '_' . $site;
-		}
-		$sources[] = wfWikiID();
-
 		$data = array();
-
-		foreach ( $sources as $source ) {
-			$list = $db->get( "__list:{$source}" );
-			foreach ( explode( ' ', $list ) as $iw_prefix ) {
-				$row = $db->get( "{$source}:{$iw_prefix}" );
-				if ( !$row ) {
-					continue;
-				}
-
-				list( $iw_local, $iw_url ) = explode( ' ', $row );
-
-				if ( $local !== null && $local != $iw_local ) {
-					continue;
-				}
-
-				$data[$iw_prefix] = array(
-					'iw_prefix' => $iw_prefix,
-					'iw_url' => $iw_url,
-					'iw_local' => $iw_local,
-				);
+		try {
+			if ( !$db ) {
+				$db = CdbReader::open( $wgInterwikiCache );
 			}
+			/* Resolve site name */
+			if ( $wgInterwikiScopes >= 3 && !$site ) {
+				$site = $db->get( '__sites:' . wfWikiID() );
+				if ( $site == '' ) {
+					$site = $wgInterwikiFallbackSite;
+				}
+			}
+
+			// List of interwiki sources
+			$sources = array();
+			// Global Level
+			if ( $wgInterwikiScopes >= 2 ) {
+				$sources[] = '__global';
+			}
+			// Site level
+			if ( $wgInterwikiScopes >= 3 ) {
+				$sources[] = '_' . $site;
+			}
+			$sources[] = wfWikiID();
+
+			foreach ( $sources as $source ) {
+				$list = $db->get( "__list:{$source}" );
+				foreach ( explode( ' ', $list ) as $iw_prefix ) {
+					$row = $db->get( "{$source}:{$iw_prefix}" );
+					if ( !$row ) {
+						continue;
+					}
+
+					list( $iw_local, $iw_url ) = explode( ' ', $row );
+
+					if ( $local !== null && $local != $iw_local ) {
+						continue;
+					}
+
+					$data[$iw_prefix] = array(
+						'iw_prefix' => $iw_prefix,
+						'iw_url' => $iw_url,
+						'iw_local' => $iw_local,
+					);
+				}
+			}
+		} catch ( CdbException $e ) {
+			wfDebug( __METHOD__ . ": CdbException caught, error message was "
+				. $e->getMessage() );
 		}
 
 		ksort( $data );
