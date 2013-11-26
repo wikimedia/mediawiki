@@ -57,11 +57,6 @@ class EnhancedChangesList extends ChangesList {
 	public function recentChangesLine( &$baseRC, $watched = false ) {
 		wfProfileIn( __METHOD__ );
 
-		# Create a specialised object
-		$cacheEntry = RCCacheEntry::newFromParent( $baseRC );
-
-		$curIdEq = array( 'curid' => $cacheEntry->mAttribs['rc_cur_id'] );
-
 		# If it's a new day, add the headline and flush the cache
 		$date = $this->getLanguage()->userDate(
 			$baseRC->mAttribs['rc_timestamp'],
@@ -77,6 +72,11 @@ class EnhancedChangesList extends ChangesList {
 			$ret .= Xml::element( 'h4', null, $date ) . "\n";
 			$this->lastdate = $date;
 		}
+
+		# Create a specialised object
+		$cacheEntry = RCCacheEntry::newFromParent( $baseRC );
+
+		$curIdEq = array( 'curid' => $cacheEntry->mAttribs['rc_cur_id'] );
 
 		# Should patrol-related stuff be shown?
 		$cacheEntry->unpatrolled = $this->showAsUnpatrolled( $cacheEntry );
