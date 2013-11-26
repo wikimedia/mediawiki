@@ -64,7 +64,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# If it's a new day, add the headline and flush the cache
 		$date = $this->getLanguage()->userDate(
-			$cacheEntry->mAttribs['rc_timestamp'],
+			$baseRC->mAttribs['rc_timestamp'],
 			$this->getUser()
 		);
 
