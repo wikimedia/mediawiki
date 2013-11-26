@@ -12,6 +12,7 @@
  * @author Geitost
  * @author Helix84
  * @author Kaganer
+ * @author KuboF
  * @author Kusavica
  * @author Liso
  * @author Maros
@@ -1260,8 +1261,8 @@ Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupov
 'revdelete-hide-user' => 'Používateľské meno/IP redaktora',
 'revdelete-hide-restricted' => 'Zatajiť údaje pred všetkými, aj pred správcami',
 'revdelete-radio-same' => '(nezmeniť)',
-'revdelete-radio-set' => 'Viditeľné',
-'revdelete-radio-unset' => 'Skryté',
+'revdelete-radio-set' => 'Skrytý',
+'revdelete-radio-unset' => 'Viditeľný',
 'revdelete-suppress' => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-unsuppress' => 'Odstrániť obmedzenia obnovených revízií',
 'revdelete-log' => 'Dôvod:',
@@ -1710,7 +1711,7 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'recentchanges-label-minor' => 'Toto je drobná úprava',
 'recentchanges-label-bot' => 'Túto úpravy vykonal robot',
 'recentchanges-label-unpatrolled' => 'Táto úprava zatiaľ nebola strážená',
-'recentchanges-legend-newpage' => '$1 - nová stránka',
+'recentchanges-legend-newpage' => '(pozri tiež [[Special:NewPages|zoznam nových stránok]])',
 'rcnote' => "Tu {{PLURAL:$1|je posledná úprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} z $4, $5.",
 'rcnotefrom' => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
@@ -3270,7 +3271,7 @@ Jeho spustením môžete kompromitovať svoj systém.",
 'svg-long-desc' => 'SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3',
 'svg-long-desc-animated' => 'Animovaný súbor SVG, nominálne $1 × $2 pixlov, veľkosť súboru: $3',
 'svg-long-error' => 'Neplatný súbor SVG: $1',
-'show-big-image' => 'Obrázok vo vyššom rozlíšení',
+'show-big-image' => 'Pôvodný súbor',
 'show-big-image-preview' => 'Veľkosť tohto náhľadu: $1.',
 'show-big-image-other' => 'Iné {{PLURAL:$2|rozlíšenie|rozlíšenia}}: $1 .',
 'show-big-image-size' => '$1 × $2 pixlov',

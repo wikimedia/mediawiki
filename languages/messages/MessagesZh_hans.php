@@ -1055,10 +1055,10 @@ $2
 'userpage-userdoesnotexist' => '用户账户“$1”没有注册。请在创建/编辑本页前检查。',
 'userpage-userdoesnotexist-view' => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract' => '这位用户目前已被封禁。以下提供最近的封禁日志以供参考：',
-'clearyourcache' => "'''注意：'''保存之后，你必须清除浏览器缓存才能看到做出的更改。
-* '''火狐（Firefox）/Safari：'''按住“Shift”，同时单击“刷新”，或按“Ctrl-F5”或“Ctrl-R”（Mac为“⌘-R”）
+'clearyourcache' => "'''注意：'''在保存之后，你可能需要清除你的浏览器的缓存以查看更改。
+* '''Firefox/Safari：'''按住“Shift”的同时单击“刷新”，或按“Ctrl-F5”或“Ctrl-R”（Mac为“⌘-R”）
 * '''Google Chrome：'''按“Ctrl-Shift-R”（Mac为“⌘-Shift-R”）
-* '''Internet Explorer：'''按住“Ctrl”，同时单击“刷新”，或按“Ctrl-F5”
+* '''Internet Explorer：'''按住“Ctrl”的同时单击“刷新”，或按“Ctrl-F5”
 * '''Opera：'''在“工具→首选项”中清除缓存",
 'usercssyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
@@ -1519,7 +1519,7 @@ $1",
 'prefs-displaywatchlist' => '显示',
 'prefs-tokenwatchlist' => '密钥',
 'prefs-diffs' => '差异对比',
-'prefs-help-prefershttps' => '此首选项将在您下次登录时生效。',
+'prefs-help-prefershttps' => '该设置将在你下次登录时生效。',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '电子邮件地址有效',
