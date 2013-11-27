@@ -10,7 +10,7 @@
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgContLang;
 		parent::setUp();
 
@@ -38,7 +38,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgContLang;
 
 		// Reset namespace cache

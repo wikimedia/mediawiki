@@ -16,7 +16,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 
 	private static $revisions;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$title = $this->getTitle();

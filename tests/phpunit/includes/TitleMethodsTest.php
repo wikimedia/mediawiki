@@ -9,7 +9,7 @@
  */
 class TitleMethodsTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgContLang;
 
 		parent::setUp();
@@ -33,7 +33,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgContLang;
 
 		parent::tearDown();
