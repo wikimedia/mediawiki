@@ -72,9 +72,9 @@ class LoadBalancer {
 		} else {
 			$master = reset( $params['servers'] );
 			if ( isset( $master['type'] ) && $master['type'] === 'mysql' ) {
-				$this->mLoadMonitorClass = 'LoadMonitor_MySQL';
+				$this->mLoadMonitorClass = 'LoadMonitorMySQL';
 			} else {
-				$this->mLoadMonitorClass = 'LoadMonitor_Null';
+				$this->mLoadMonitorClass = 'LoadMonitorNull';
 			}
 		}
 
