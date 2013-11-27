@@ -473,7 +473,9 @@ class FileRepo {
 	 *     $findItem = array( 'title' => $title, 'private' => true );
 	 *     $findBatch = array( $findItem );
 	 *     $repo->findFiles( $findBatch );
-	 * @return array
+	 *
+	 *    No title should appear in $items twice, as the result use titles as keys
+	 * @return array (Map of file names => File objects) for matches
 	 */
 	public function findFiles( array $items ) {
 		$result = array();
