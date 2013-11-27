@@ -73,7 +73,7 @@
  *
  * @ingroup Database
  */
-class LBFactory_Multi extends LBFactory {
+class LBFactoryMulti extends LBFactory {
 	// Required settings
 	var $sectionsByDB, $sectionLoads, $serverTemplate;
 	// Optional settings

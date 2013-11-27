@@ -24,7 +24,7 @@
 /**
  * An LBFactory class that always returns a single database object.
  */
-class LBFactory_Single extends LBFactory {
+class LBFactorySingle extends LBFactory {
 	protected $lb;
 
 	/**
@@ -32,13 +32,13 @@ class LBFactory_Single extends LBFactory {
 	 *  - connection: The DatabaseBase connection object
 	 */
 	function __construct( $conf ) {
-		$this->lb = new LoadBalancer_Single( $conf );
+		$this->lb = new LoadBalancerSingle( $conf );
 	}
 
 	/**
 	 * @param $wiki bool|string
 	 *
-	 * @return LoadBalancer_Single
+	 * @return LoadBalancerSingle
 	 */
 	function newMainLB( $wiki = false ) {
 		return $this->lb;
@@ -47,7 +47,7 @@ class LBFactory_Single extends LBFactory {
 	/**
 	 * @param $wiki bool|string
 	 *
-	 * @return LoadBalancer_Single
+	 * @return LoadBalancerSingle
 	 */
 	function getMainLB( $wiki = false ) {
 		return $this->lb;
@@ -57,7 +57,7 @@ class LBFactory_Single extends LBFactory {
 	 * @param $cluster
 	 * @param $wiki bool|string
 	 *
-	 * @return LoadBalancer_Single
+	 * @return LoadBalancerSingle
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
@@ -67,7 +67,7 @@ class LBFactory_Single extends LBFactory {
 	 * @param $cluster
 	 * @param $wiki bool|string
 	 *
-	 * @return LoadBalancer_Single
+	 * @return LoadBalancerSingle
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
@@ -83,9 +83,9 @@ class LBFactory_Single extends LBFactory {
 }
 
 /**
- * Helper class for LBFactory_Single.
+ * Helper class for LBFactorySingle.
  */
-class LoadBalancer_Single extends LoadBalancer {
+class LoadBalancerSingle extends LoadBalancer {
 
 	/**
 	 * @var DatabaseBase

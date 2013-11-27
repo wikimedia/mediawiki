@@ -24,6 +24,8 @@ production.
 * Preferences 'watchcreations' and 'watchdefault' ("Add pages I create and files
   I upload to my watchlist", "Add pages and files I edit to my watchlist") are
   now enabled by default.
+* $wgLBFactoryConf: Class names have had underscores removed. The configuration
+  should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -90,6 +92,14 @@ production.
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
+* Renamed classes:
+  - LBFactory_Fake to LBFactoryFake
+  - LBFactory_Multi to LBFactoryMulti
+  - LBFactory_Simple to LBFactorySimple
+  - LBFactory_Single to LBFactorySingle
+  - LoadBalancer_Single to LoadBalancerSingle
+  - LoadMonitor_MySQL to LoadMonitorMySQL
+  - LoadMonitor_Null to LoadMonitorNull
 
 === Languages updated in 1.23 ===
 

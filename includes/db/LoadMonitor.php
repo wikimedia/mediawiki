@@ -71,11 +71,7 @@ interface LoadMonitor {
 	function getLagTimes( $serverIndexes, $wiki );
 }
 
-/**
- * @todo FIXME: Should be  LoadMonitorNull per naming conventions.
- * PHP CodeSniffer Squiz.Classes.ValidClassName.NotCamelCaps
- */
-class LoadMonitor_Null implements LoadMonitor {
+class LoadMonitorNull implements LoadMonitor {
 	function __construct( $parent ) {
 	}
 
@@ -100,10 +96,8 @@ class LoadMonitor_Null implements LoadMonitor {
  * Uses memcached to cache the replication lag for a short time
  *
  * @ingroup Database
- * @todo FIXME: Should be  LoadMonitorMySQL per naming conventions.
- * PHP CodeSniffer Squiz.Classes.ValidClassName.NotCamelCaps
  */
-class LoadMonitor_MySQL implements LoadMonitor {
+class LoadMonitorMySQL implements LoadMonitor {
 	/**
 	 * @var LoadBalancer
 	 */
