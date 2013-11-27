@@ -116,7 +116,7 @@ class UserrightsPage extends SpecialPage {
 				// message that it can't anymore use this page instead of an error
 				$this->setHeaders();
 				$out = $this->getOutput();
-				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
+				$out->wrapWikiMsg( "<div class=\"successbox\">$1</div>", 'userrights-removed-self' );
 				$out->returnToMain();
 				return;
 			}
