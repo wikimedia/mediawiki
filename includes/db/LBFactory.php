@@ -37,7 +37,7 @@ abstract class LBFactory {
 	 */
 	public static function disableBackend() {
 		global $wgLBFactoryConf;
-		self::$instance = new LBFactory_Fake( $wgLBFactoryConf );
+		self::$instance = new LBFactoryFake( $wgLBFactoryConf );
 	}
 
 	/**
@@ -48,7 +48,21 @@ abstract class LBFactory {
 	static function &singleton() {
 		if ( is_null( self::$instance ) ) {
 			global $wgLBFactoryConf;
+
+			// For configuration backward compatibility after removing
+			// underscores from class names in MediaWiki 1.23.
+			$bcClasses = array(
+				'LBFactory_Single' => 'LBFactorySingle',
+				'LBFactory_Multi' => 'LBFactoryMulti',
+				'LBFactory_Fake' => 'LBFactoryFake',
+			);
+
 			$class = $wgLBFactoryConf['class'];
+
+			if( in_array( $class, $bcClasses ) ) {
+				$class = $bcClasses[$class];
+			}
+
 			self::$instance = new $class( $wgLBFactoryConf );
 		}
 
@@ -167,7 +181,7 @@ abstract class LBFactory {
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
-class LBFactory_Simple extends LBFactory {
+class LBFactorySimple extends LBFactory {
 
 	/**
 	 * @var LoadBalancer
@@ -299,7 +313,7 @@ class LBFactory_Simple extends LBFactory {
  * Call LBFactory::disableBackend() to start using this, and
  * LBFactory::enableBackend() to return to normal behavior
  */
-class LBFactory_Fake extends LBFactory {
+class LBFactoryFake extends LBFactory {
 	function __construct( $conf ) {
 	}
 
