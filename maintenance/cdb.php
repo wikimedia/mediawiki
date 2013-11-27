@@ -52,7 +52,7 @@ do {
 	$bad = false;
 	$showhelp = false;
 	$quit = false;
-	static $fileHandle;
+	static $fileHandle = false;
 
 	$line = Maintenance::readconsole();
 	if ( $line === false ) {
@@ -98,6 +98,7 @@ do {
 				$res = $fileHandle->get( $args[0] );
 			} catch ( CdbException $e ) {
 				print "Unable to read key from file\n";
+				break;
 			}
 			if ( $res === false ) {
 				print "No such key/value pair\n";
