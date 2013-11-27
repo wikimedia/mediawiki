@@ -1152,11 +1152,11 @@ abstract class Installer {
 			return chr( 0xC0 | $c >> 6 ) . chr( 0x80 | $c & 0x3F );
 		} elseif ( $c <= 0xFFFF ) {
 			return chr( 0xE0 | $c >> 12 ) . chr( 0x80 | $c >> 6 & 0x3F )
-				. chr( 0x80 | $c & 0x3F );
+			. chr( 0x80 | $c & 0x3F );
 		} elseif ( $c <= 0x10FFFF ) {
 			return chr( 0xF0 | $c >> 18 ) . chr( 0x80 | $c >> 12 & 0x3F )
-				. chr( 0x80 | $c >> 6 & 0x3F )
-				. chr( 0x80 | $c & 0x3F );
+			. chr( 0x80 | $c >> 6 & 0x3F )
+			. chr( 0x80 | $c & 0x3F );
 		} else {
 			return false;
 		}
@@ -1744,7 +1744,7 @@ abstract class Installer {
 		$GLOBALS['wgMaxShellMemory'] = 0;
 
 		// Don't bother embedding images into generated CSS, which is not cached
-		$GLOBALS['wgResourceLoaderLESSFunctions']['embeddable'] = function( $frame, $less ) {
+		$GLOBALS['wgResourceLoaderLESSFunctions']['embeddable'] = function ( $frame, $less ) {
 			return $less->toBool( false );
 		};
 	}

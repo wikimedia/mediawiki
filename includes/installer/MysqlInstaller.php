@@ -268,9 +268,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		/**
-		 * @var $conn DatabaseBase
-		 */
+		/** @var $conn DatabaseBase */
 		$conn = $status->value;
 
 		// Get current account name
@@ -436,13 +434,14 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				$db = DatabaseBase::factory( 'mysql', array(
+				DatabaseBase::factory( 'mysql', array(
 					'host' => $this->getVar( 'wgDBserver' ),
 					'user' => $this->getVar( 'wgDBuser' ),
 					'password' => $this->getVar( 'wgDBpassword' ),
 					'dbname' => false,
 					'flags' => 0,
-					'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
+					'tablePrefix' => $this->getVar( 'wgDBprefix' )
+				) );
 			} catch ( DBConnectionError $e ) {
 				return Status::newFatal( 'config-connection-error', $e->getMessage() );
 			}
@@ -479,6 +478,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/** @var DatabaseBase $conn */
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if ( !$conn->selectDB( $dbName ) ) {
@@ -516,13 +516,14 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( $this->getVar( '_CreateDBAccount' ) ) {
 			// Before we blindly try to create a user that already has access,
 			try { // first attempt to connect to the database
-				$db = DatabaseBase::factory( 'mysql', array(
+				DatabaseBase::factory( 'mysql', array(
 					'host' => $server,
 					'user' => $dbUser,
 					'password' => $password,
 					'dbname' => false,
 					'flags' => 0,
-					'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
+					'tablePrefix' => $this->getVar( 'wgDBprefix' )
+				) );
 				$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
 				$tryToCreate = false;
 			} catch ( DBConnectionError $e ) {

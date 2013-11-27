@@ -124,9 +124,9 @@ class WebInstallerOutput {
 		$prepend = '';
 		$css = '';
 
-		$cssFileNames = array();
 		$resourceLoader = new ResourceLoader();
 		foreach ( $moduleNames as $moduleName ) {
+			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
 			$cssFileNames = $module->getAllStyleFiles();
 
@@ -138,7 +138,8 @@ class WebInstallerOutput {
 				}
 
 				if ( !is_readable( $cssFileName ) ) {
-					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. Please check file permissions." );
+					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. " .
+						"Please check file permissions." );
 					continue;
 				}
 
@@ -170,7 +171,6 @@ class WebInstallerOutput {
 					} else {
 						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
 					}
-
 				} catch ( Exception $e ) {
 					$prepend .= ResourceLoader::formatException( $e );
 				}
