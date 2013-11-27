@@ -676,7 +676,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
-'tog-nocache'                 => 'Disable browser page caching',
 'tog-enotifwatchlistpages'    => 'Email me when a page or file on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'Email me when my user talk page is changed',
 'tog-enotifminoredits'        => 'Email me also for minor edits of pages and files',
