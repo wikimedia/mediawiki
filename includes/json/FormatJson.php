@@ -24,7 +24,6 @@
  * JSON formatter wrapper class
  */
 class FormatJson {
-
 	/**
 	 * Skip escaping most characters above U+007F for readability and compactness.
 	 * This encoding option saves 3 to 8 bytes (uncompressed) for each such character;
@@ -104,6 +103,7 @@ class FormatJson {
 		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
 			return self::encode54( $value, $pretty, $escaping );
 		}
+
 		return self::encode53( $value, $pretty, $escaping );
 	}
 
@@ -113,7 +113,7 @@ class FormatJson {
 	 * @param string $value The JSON string being decoded
 	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
 	 *
-	 * @return mixed: the value encoded in JSON in appropriate PHP type.
+	 * @return mixed The value encoded in JSON in appropriate PHP type.
 	 * `null` is returned if the JSON cannot be decoded or if the encoded data is deeper than
 	 * the recursion limit.
 	 */
@@ -150,6 +150,7 @@ class FormatJson {
 		if ( $escaping & self::UTF8_OK ) {
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
 		}
+
 		return $json;
 	}
 
@@ -190,6 +191,7 @@ class FormatJson {
 		if ( $pretty ) {
 			return self::prettyPrint( $json );
 		}
+
 		return $json;
 	}
 
@@ -231,6 +233,7 @@ class FormatJson {
 			}
 		}
 		$buf = preg_replace( self::WS_CLEANUP_REGEX, '', $buf );
+
 		return str_replace( "\x01", '\"', $buf );
 	}
 }
