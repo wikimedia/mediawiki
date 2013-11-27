@@ -6539,6 +6539,7 @@ $wgDebugAPI = false;
  * @todo Describe each of the variables, group them and add examples
  */
 $wgAPIModules = array();
+$wgAPIFormatModules = array();
 $wgAPIMetaModules = array();
 $wgAPIPropModules = array();
 $wgAPIListModules = array();

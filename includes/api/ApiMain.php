@@ -185,11 +185,12 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgAPIModules;
+		global $wgAPIModules, $wgAPIFormatModules;
 		$this->mModuleMgr = new ApiModuleManager( $this );
 		$this->mModuleMgr->addModules( self::$Modules, 'action' );
 		$this->mModuleMgr->addModules( $wgAPIModules, 'action' );
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
+		$this->mModuleMgr->addModules( $wgAPIFormatModules, 'format' );
 
 		$this->mResult = new ApiResult( $this );
 		$this->mEnableWrite = $enableWrite;
