@@ -229,6 +229,100 @@ class LocalRepo extends FileRepo {
 		return $id;
 	}
 
+	public function findFiles( array $items ) {
+		$finalFiles = array(); // map of ($items key => corresponding File) for matches
+
+		$searchSet = array(); // normalized version of $items
+		foreach ( $items as $item ) {
+			$title = is_array( $item )
+				? File::normalizeTitle( $item['title'] )
+				: File::normalizeTitle( $item );
+			if ( $title ) { // valid title
+				$searchSet[] = array( 'title' => $title->getDbKey() ) +
+					is_array( $item ) ? $item : array();
+			}
+		}
+
+		$fileMatchesSearch = function( File $file, array $search ) {
+			// Note: file name comparison done elsewhere (to handle redirects)
+			return (
+				$file->exists() &&
+				(
+					( empty( $search['time'] ) && !$file->isOld() ) ||
+					( !empty( $search['time'] ) && $search['time'] === $file->getTimestamp() )
+				) &&
+				( !empty( $search['private'] ) || !$file->isDeleted( File::DELETED_FILE ) ) &&
+				$file->userCan( File::DELETED_FILE )
+			);
+		};
+
+		$applyMatchingFiles = function(
+			ResultWrapper $res, &$searchSet, &$finalFiles ) use ( $fileMatchesSearch )
+		{
+			$possFiles = array();
+			foreach ( $res as $row ) {
+				$file = $this->newFileFromRow( $row );
+				$possFiles[$file->getName()][] = $file;
+			}
+			foreach ( $searchSet as $k => $search ) {
+				$dbKey = $search['title'];
+				if ( isset( $possFiles[$dbKey] ) ) {
+					foreach ( $possFiles[$dbKey] as $possFile ) {
+						if ( $fileMatchesSearch( $possFile, $search ) ) {
+							$finalFiles[$dbKey] = $possFile;
+							unset( $searchSet[$k] );
+						}
+					}
+				}
+			}
+		};
+
+		$dbr = $this->getSlaveDB();
+
+		// Query image table
+		$imgConds = array(); // WHERE clause array for each file
+		foreach ( $searchSet as $search ) {
+			$imgConds[] = $dbr->makeList( array( 'img_name' => $search['title'] ), LIST_AND );
+		}
+		if ( count( $imgConds ) ) {
+			$res = $dbr->select( 'image',
+				LocalFile::selectFields(), $dbr->makeList( $imgConds, LIST_OR ), __METHOD__ );
+			$applyMatchingFiles( $res, $searchSet, $finalFiles );
+		}
+
+		// Query old image table
+		$oiConds = array(); // WHERE clause array for each file
+		foreach ( $searchSet as $search ) {
+			if ( isset( $search['params']['time'] ) ) {
+				$oiConds[] = $dbr->makeList( array( 'oi_name' => $dbKey,
+					'oi_timestamp' => $dbr->timestamp( $search['params']['time'] ) ), LIST_AND );
+			}
+		}
+		if ( count( $oiConds ) ) {
+			$res = $dbr->select( 'oldimage',
+				OldLocalFile::selectFields(), $dbr->makeList( $oiConds, LIST_OR ), __METHOD__ );
+			$applyMatchingFiles( $res, $searchSet, $finalFiles );
+		}
+
+		// Check for redirects...
+		foreach ( $searchSet as $k => $search ) {
+			if ( !empty( $search['ignoreRedirect'] ) ) {
+				continue;
+			}
+			$title = File::normalizeTitle( $search['title'] );
+			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
+			if ( $redir && $redir->getNamespace() == NS_FILE ) {
+				$possFile = $this->newFile( $redir );
+				if ( $possFile && $fileMatchesSearch( $possFile, $search ) ) {
+					$possFile->redirectedFrom( $title->getDBkey() );
+					$finalFiles[$title->getDBkey()] = $possFile;
+				}
+			}
+		}
+
+		return $finalFiles;
+	}
+
 	/**
 	 * Get an array or iterator of file objects for files that have a given
 	 * SHA-1 content hash.
