@@ -602,8 +602,8 @@ $1',
 'youhavenewmessages' => 'Du har $1 ($2).',
 'youhavenewmessagesfromusers' => 'Du har $1 från {{PLURAL:$3|en annan användare|$3 användare}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du har $1 från många användare ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|ett nytt meddelande|nya meddelanden}}',
-'newmessagesdifflinkplural' => 'senaste {{PLURAL:$1|ändring|ändringar}}',
+'newmessageslinkplural' => '{{PLURAL:$1|ett nytt meddelande|999=nya meddelanden}}',
+'newmessagesdifflinkplural' => 'senaste {{PLURAL:$1|ändring|999=ändringar}}',
 'youhavenewmessagesmulti' => 'Du har nya meddelanden på $1',
 'editsection' => 'redigera',
 'editold' => 'redigera',
@@ -733,6 +733,7 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
 'exception-nologin' => 'Inte inloggad',
 'exception-nologin-text' => 'Var god [[Special:Userlogin|logga in]] för att komma åt denna sida eller åtgärd.',
+'exception-nologin-text-manual' => 'Var god $1 för att få tillgång till denna sida eller åtgärd.',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",
@@ -1282,6 +1283,7 @@ eller så försöker du gömma den senaste versionen av sidan.',
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
 'revdelete-confirm' => 'Var god bekräfta att du vill göra detta, och att du förstår konsekvenserna, och att du gör så i enlighet med [[{{MediaWiki:Policy-url}}|policyn]].',
 'revdelete-suppress-text' => "Undanhållande ska '''bara''' användas i följande fall:
+* Eventuell förolämpande information
 * Opassande personlig information
 *: ''hemadresser och telefonnummer, personnummer, etc.''",
 'revdelete-legend' => 'Ändra synlighet',
@@ -1450,6 +1452,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'preferences' => 'Inställningar',
 'mypreferences' => 'Inställningar',
 'prefs-edits' => 'Antal redigeringar:',
+'prefsnologintext2' => 'Var god $1 för att ändra användarinställningar.',
 'changepassword' => 'Byt lösenord',
 'prefs-skin' => 'Utseende',
 'skin-preview' => 'förhandsvisning',
@@ -1748,7 +1751,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges-label-minor' => 'Detta är en mindre ändring',
 'recentchanges-label-bot' => 'Denna redigering gjordes av en bot',
 'recentchanges-label-unpatrolled' => 'Denna redigering har inte blivit kontrollerad ännu',
-'recentchanges-legend-newpage' => '$1 - ny sida',
+'recentchanges-legend-newpage' => '(se även [[Special:NewPages|listan över nya sidor]])',
 'rcnote' => "Nedan visas {{PLURAL:$1|'''1''' ändring|de senaste '''$1''' ändringarna}} från {{PLURAL:$2|det senaste dygnet|de senaste '''$2''' dygnen}}, per $4, kl. $5.",
 'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
 'rclistfrom' => 'Visa ändringar efter $1',
@@ -2477,8 +2480,7 @@ Kontakta användaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om aktivitet på sidan.
-Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
+Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om aktivitet på sidan när du är inloggad. Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
 
 Hälsningar från {{SITENAME}}s meddelandesystem
 
@@ -4004,6 +4006,7 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 
 # Special:SpecialPages
 'specialpages' => 'Specialsidor',
+'specialpages-note-top' => 'Teckenförklaring',
 'specialpages-note' => '* Normala specialsidor.
 * <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',

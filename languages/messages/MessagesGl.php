@@ -529,8 +529,8 @@ $1',
 'youhavenewmessages' => 'Ten $1 ($2).',
 'youhavenewmessagesfromusers' => 'Ten $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ten $1 de moitos usuarios ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|mensaxes novas}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimas modificacións}}',
+'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|999=mensaxes novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|999=últimas modificacións}}',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -662,7 +662,8 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 'invalidtitle-knownnamespace' => 'Título inválido co espazo de nomes "$2" e o texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título inválido cun número de espazo de nomes, $1, descoñecido e o texto "$2"',
 'exception-nologin' => 'Non accedeu ao sistema',
-'exception-nologin-text' => 'Esta páxina ou acción necesita que vostede acceda ao sistema neste wiki.',
+'exception-nologin-text' => '[[Special:Userlogin|Acceda ao sistema]] para poder realizar esa acción ou acceder a esa páxina.',
+'exception-nologin-text-manual' => 'Debe $1 para poder realizar esa acción ou acceder a esa páxina.',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -1402,7 +1403,8 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'preferences' => 'Preferencias',
 'mypreferences' => 'Preferencias',
 'prefs-edits' => 'Número de edicións:',
-'changepassword' => 'Cambiar o meu contrasinal',
+'prefsnologintext2' => 'Debe $1 para definir as preferencias de usuario.',
+'changepassword' => 'Cambiar o contrasinal',
 'prefs-skin' => 'Aparencia',
 'skin-preview' => 'Vista previa',
 'datedefault' => 'Ningunha preferencia',
@@ -1701,7 +1703,9 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'recentchanges-label-minor' => 'Esta é unha edición pequena',
 'recentchanges-label-bot' => 'Esta edición foi realizada por un bot',
 'recentchanges-label-unpatrolled' => 'Esta edición aínda non foi comprobada',
-'recentchanges-legend-newpage' => '$1 - nova páxina',
+'recentchanges-label-plusminus' => 'O tamaño da páxina variou este número de bytes',
+'recentchanges-legend-newpage' => '(véxase tamén a [[Special:NewPages|lista de páxinas novas]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "A continuación {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata o $4 ás $5.",
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
 'rclistfrom' => 'Mostrar os cambios novos desde o $1',
@@ -2385,7 +2389,7 @@ O enderezo de correo electrónico que inseriu [[Special:Preferences|nas súas pr
 'mywatchlist' => 'Lista de vixilancia',
 'watchlistfor2' => 'De $1 $2',
 'nowatchlist' => 'Non ten elementos na súa lista de vixilancia.',
-'watchlistanontext' => 'Faga o favor de $1 ao sistema para ver ou editar os elementos da súa lista de vixilancia.',
+'watchlistanontext' => 'Debe $1 para ver ou editar os elementos da súa lista de vixilancia.',
 'watchnologin' => 'Non accedeu ao sistema',
 'watchnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
 'addwatch' => 'Engadir á lista vixilancia',
@@ -2441,9 +2445,9 @@ Pode contactar co editor:
 por correo electrónico: $PAGEEDITOR_EMAIL
 no wiki: $PAGEEDITOR_WIKI
 
-Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
+Non se producirán máis notificacións en caso de que haxa actividade nova ata que acceda ao sistema e visite a páxina. Pode restablecer os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
 
-	O sistema de avisos de {{SITENAME}}
+O sistema de avisos de {{SITENAME}}
 
 --
 Para cambiar as notificacións por correo electrónico, visite
@@ -3772,7 +3776,7 @@ Por favor, comprobe que no enderezo de correo electrónico non haxa caracteres i
 O programa de correo informa do seguinte: $1',
 'confirmemail_invalid' => 'O código de confirmación non é válido.
 Pode ser que caducase.',
-'confirmemail_needlogin' => 'Necesita $1 para confirmar o seu enderezo de correo electrónico.',
+'confirmemail_needlogin' => 'Debe $1 para confirmar o seu enderezo de correo electrónico.',
 'confirmemail_success' => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
 'confirmemail_loggedin' => 'Xa se confirmou o seu enderezo de correo electrónico.',
 'confirmemail_error' => 'Houbo un problema ao gardar a súa confirmación.',
@@ -3849,6 +3853,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 
 # Separators for various lists, etc.
 'colon-separator' => ':&#32;',
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
@@ -3981,6 +3986,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 
 # Special:SpecialPages
 'specialpages' => 'Páxinas especiais',
+'specialpages-note-top' => 'Lenda',
 'specialpages-note' => '* Páxinas especiais normais.
 * <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
 'specialpages-group-maintenance' => 'Informes de mantemento',

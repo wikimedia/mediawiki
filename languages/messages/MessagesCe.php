@@ -1127,7 +1127,7 @@ $1',
 'prefs-skin' => 'Кечяран тема',
 'skin-preview' => 'Хьалха муха ю хьажа',
 'datedefault' => 'Iад йитарца',
-'prefs-beta' => 'Гlоле таронаш',
+'prefs-beta' => 'Бета-таронаш',
 'prefs-datetime' => 'Терахь а хан а',
 'prefs-labs' => 'Муха ю хьажарна таронаш',
 'prefs-user-pages' => 'Декъашхочун агӀо',
@@ -2192,6 +2192,8 @@ PICT # тайп тайпан
 'pageinfo-header-basic' => 'Коьрта хаам',
 'pageinfo-language' => 'АгӀона мотт',
 'pageinfo-toolboxlink' => 'Агlонах болу бовзам',
+'pageinfo-redirectsto-info' => 'Хаам',
+'pageinfo-category-info' => 'Категорех лаьцна хаам',
 
 # Skin names
 'skinname-cologneblue' => 'Кёльнин сингаттам',
@@ -2235,12 +2237,12 @@ PICT # тайп тайпан
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '$1оцу',
-'hours' => '{{PLURAL:$1|1 сахьат}}',
+'hours' => '{{PLURAL:$1|1 сахьт}}',
 'days' => '{{PLURAL:$1|$1 де}}',
 'ago' => '$1 хьалха',
 
 # Human-readable timestamps
-'hours-ago' => '$1 {{PLURAL:$1|сахьат}} хьалха',
+'hours-ago' => '$1 {{PLURAL:$1|сахьт}} хьалха',
 'minutes-ago' => '$1 {{PLURAL:$1|минут}} хьалха',
 'yesterday-at' => 'селхана $1 даьлча',
 
@@ -2509,7 +2511,7 @@ PICT # тайп тайпан
 'searchsuggest-search' => 'Лаха',
 
 # Durations
-'duration-hours' => '$1 {{PLURAL:$1|сахьат}}',
+'duration-hours' => '$1 {{PLURAL:$1|сахьт}}',
 'duration-days' => '$1 {{PLURAL:$1|де}}',
 
 # Limit report

@@ -855,6 +855,8 @@ $2',
 'userlogin-resetpassword-link' => 'Заборавили сте лозинку?',
 'helplogin-url' => 'Help:Logging in',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помоћ при пријављивању]]',
+'userlogin-loggedin' => 'Већ сте пријављени као {{GENDER:$1|$1}}.
+Користите доњи образац да бисте се пријавили као други корисник.',
 'userlogin-createanother' => 'Отвори још један налог',
 'createacct-join' => 'Унесите своје податке испод',
 'createacct-another-join' => 'Унесите податке за нови налог испод.',
@@ -1811,7 +1813,7 @@ $1",
 'recentchanges-label-minor' => 'Мања измена',
 'recentchanges-label-bot' => 'Ову измену је направио бот',
 'recentchanges-label-unpatrolled' => 'Ова измена још није прегледана',
-'recentchanges-legend-newpage' => '$1 - нова страница',
+'recentchanges-legend-newpage' => '(такође погледајте [[Special:NewPages|списак нових страница]])',
 'rcnote' => "Испод {{PLURAL:$1|је '''1''' измена|су последње '''$1''' измене|су последњих '''$1''' измена}} {{PLURAL:$2|претходни дан|у последњa '''$2''' дана|у последњих '''$2''' дана}}, од $4; $5.",
 'rcnotefrom' => 'Испод су измене од <b>$3; $4</b> (до <b>$1</b> измена).',
 'rclistfrom' => 'Прикажи нове измене почев од $1',
@@ -4077,6 +4079,7 @@ $5
 'ellipsis' => '…',
 'percent' => '$1%',
 'parentheses' => '($1)',
+'quotation-marks' => '„$1“',
 
 # Multipage image navigation
 'imgmultipageprev' => '← претходна страница',
@@ -4268,6 +4271,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'Посебне странице',
+'specialpages-note-top' => 'Легенда',
 'specialpages-note' => '* Нормалне посебне странице
 * <span class="mw-specialpagerestricted">Ограничене посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',

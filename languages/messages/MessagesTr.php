@@ -1766,7 +1766,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'recentchanges-label-minor' => 'Bu küçük bir değişiklik',
 'recentchanges-label-bot' => 'Bu değişiklik bir bot tarafından yapıldı',
 'recentchanges-label-unpatrolled' => 'Bu değişiklik henüz gözlenmemiş',
-'recentchanges-legend-newpage' => '$1 - yeni sayfa',
+'recentchanges-legend-newpage' => '(ayrıca bakınız [[Special:NewPages|yeni sayfalar listesi]])',
 'rcnote' => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom' => "'''$2''' tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> tanesi gösterilmektedir).",
 'rclistfrom' => '$1 tarihinden itibaren yeni değişiklikleri göster',
@@ -2889,12 +2889,16 @@ Bu, veritabanını kilitleyip açabilmek için, web sunucusu tarafından yazıla
 # Move page
 'move-page' => '$1 taşınıyor',
 'move-page-legend' => 'İsim değişikliği',
-'movepagetext' => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz. Bu işlemi otomatik yapmak istemezseniz tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kendiniz düzeltmeniz gerekecek. Yapacağınız bu değişikllikle tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
+'movepagetext' => "Aşağıdaki formu kullanmak sayfanın adını değiştirir, tüm geçmiş kayıtlarını da yeni isme aktarır.
+Eski başlık yeni başlığa yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz.
+Eğer istemezseniz, tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kontrol ettiğinizden emin olun.
+Tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
 
-Eğer yeni isimde bir madde zaten varsa isim değişikliği '''yapılmayacaktır'''. Ayrıca, isim değişikliğinden pişman olursanız değişikliği geri alabilir ve başka hiçbir sayfaya da dokunmamış olursunuz.
+Eğer yeni isimde bir madde zaten varsa isim değişikliği '''yapılmayacaktır''', sonraki bir yönlendirme olup geçmiş değişiklik geçmişi olmadığı müddetçe.
+Bu şu anlama gelir ki, eğer bir hata yaparsanız sayfayı değiştirildiği isme geri isimlendirebilirsiniz, ve mevcut bir sayfanın üstüne yazmazsınız.
 
 '''UYARI!'''
-Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir; lütfen değişikliği yapmadan önce olabilecekleri göz önünde bulundurun.",
+Bu değişim popüler bir sayfa için etkili ve beklenmeyen sonuçlar doğurabilir; lütfen devam etmeden önce olabilecekleri anladığınızdan emin olun.",
 'movepagetext-noredirectfixer' => "Aşağıdaki formu doldurmak bir sayfayı yeniden adlandırır, tüm geçmişini yeni ada taşır.
 Eski başlık yeni başlığa bir yönlendirme sayfası olur.
 [[Special:DoubleRedirects|Çift]] ya da [[Special:BrokenRedirects|nozuk yönlendirmeler]] sayfalarını kontrol edin.
@@ -4018,8 +4022,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 # Special:SpecialPages
 'specialpages' => 'Özel sayfalar',
 'specialpages-note' => '* Normal özel sayfalar.
-* <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>
-* <span class="mw-specialpagecached">Önbelleğe alınan özel sayfalar (eskimiş olabilir)</span>',
+* <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other' => 'Diğer özel sayfalar',
 'specialpages-group-login' => 'Oturum aç / hesap edin',

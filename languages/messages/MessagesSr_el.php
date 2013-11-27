@@ -1250,8 +1250,8 @@ Drugi administratori na ovom vikiju će i dalje imati pristup sakrivenom sadrža
 'revdelete-hide-user' => 'sakrij ime uređivača',
 'revdelete-hide-restricted' => 'Sakrij podatke od administratora i drugih korisnika',
 'revdelete-radio-same' => '(ne menjaj)',
-'revdelete-radio-set' => 'da',
-'revdelete-radio-unset' => 'ne',
+'revdelete-radio-set' => 'Sakriveno',
+'revdelete-radio-unset' => 'Vidljivo',
 'revdelete-suppress' => 'Sakrij podatke od administratora i drugih korisnika',
 'revdelete-unsuppress' => 'Ukloni ograničenja na vraćenim izmenama',
 'revdelete-log' => 'Razlog:',
@@ -3918,6 +3918,7 @@ Potvrdite da stvarno želite da napravite stranicu.",
 'ellipsis' => '…',
 'percent' => '$1%',
 'parentheses' => '($1)',
+'quotation-marks' => '„$1“',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
