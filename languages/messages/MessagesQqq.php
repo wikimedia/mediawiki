@@ -1593,7 +1593,7 @@ Used on the account creation form when creating another user's account. Similar 
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
-'changepassword-success' => 'Used in [[Special:ChangePassword]].',
+'changepassword-success' => 'Used in [[Special:ChangePassword]]. This should be a short message, not a list.',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
@@ -1692,7 +1692,7 @@ In this case "token" may be translated as "key", or similar.
 * $1 - short information about the token (for example {{msg-mw|resettokens-watchlist-token}})
 * $2 - its current value',
 'resettokens-watchlist-token' => 'Label for watchlist token checkbox on [[Special:ResetTokens]] (see {{msg-mw|prefs-watchlist-token}} at [[Special:Preferences#mw-prefsection-watchlist]]).',
-'resettokens-done' => 'Message shown on [[Special:ResetTokens]] after the tokens have been reset successfully.',
+'resettokens-done' => 'Message shown on [[Special:ResetTokens]] after the tokens have been reset successfully. This should be a short message, not a list.',
 'resettokens-resetbutton' => 'Form submit button on [[Special:ResetTokens]].',
 
 # Edit page toolbar
@@ -3063,7 +3063,7 @@ See also:
 'recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-watchlist-token2' => 'Used in [[Special:Preferences]], tab Watchlist. (Formerly in {{msg-mw|prefs-help-watchlist-token}}.)',
-'savedprefs' => 'This message appears after saving changes to your user preferences.',
+'savedprefs' => 'This message appears after saving changes to your user preferences. This should be a short message, not a list.',
 'timezonelegend' => '{{Identical|Time zone}}',
 'localtime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
 'timezoneuseserverdefault' => '[[Special:Preferences]] > Date and time > Time zone
@@ -3316,7 +3316,7 @@ Parameters:
 Parameters:
 * $1 - group member',
 'userrights-conflict' => "Shown on [[Special:UserRights]] if the target's rights have been changed since the form was loaded.",
-'userrights-removed-self' => 'Shown on [[Special:UserRights]] in a green box after the user removed its own rights to access that page.',
+'userrights-removed-self' => 'Shown on [[Special:UserRights]] after the user removed their own rights to access that page. This should be a short message, not a list.',
 
 # Groups
 'group' => '{{Identical|Group}}',

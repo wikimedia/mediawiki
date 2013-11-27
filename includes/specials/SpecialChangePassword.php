@@ -85,7 +85,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 				if ( $user->isLoggedIn() ) {
 					$this->getOutput()->wrapWikiMsg(
-							"<div class=\"successbox\">\n$1\n</div>",
+							"<div class=\"successbox\">$1</div>",
 							'changepassword-success'
 					);
 					$this->getOutput()->returnToMain();
