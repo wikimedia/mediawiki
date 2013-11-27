@@ -94,14 +94,14 @@ class SpecialContributions extends SpecialPage {
 			$out->setHTMLTitle( $this->msg(
 				'pagetitle',
 				$this->msg( 'contributions-title', $target )->plain()
-			) );
+			)->inContentLanguage() );
 			$this->getSkin()->setRelevantUser( $userObj );
 		} else {
 			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
-			$out->setHTMLTitle( $this->msg(
-				'pagetitle',
-				$this->msg( 'sp-contributions-newbies-title' )->plain()
-			) );
+			$out->setHTMLTitle(
+				$this->msg( 'pagetitle', $this->msg( 'sp-contributions-newbies-title' ) )
+					->inContentLanguage()->plain()
+			);
 		}
 
 		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
