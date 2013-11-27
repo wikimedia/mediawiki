@@ -79,12 +79,19 @@ changes to languages because of Bugzilla reports.
    review the sql and comments in maintenance/archives/patch-rc_source.sql.
 ** The rc_type field of recentchanges will be deprecated in a future point
    release.
+<<<<<<< HEAD
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * The global functions addButton and insertTags (for mw.toolbar.addButton and
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
 * User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
 * The ExpandTemplates extension has been moved into MediaWiki core.
 
+=======
+* The global variable $wgArticle has been removed after a lengthy deprecation
+* mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name still
+  works, but is deprecated.)
+*(bug 52809) Removed 'Disable browser page caching" from user preference
+>>>>>>> Removed 'Disable browser page caching" user preference
 == Compatibility ==
 
 MediaWiki 1.23 requires PHP 5.3.2 or later.
