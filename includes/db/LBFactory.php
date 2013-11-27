@@ -37,7 +37,7 @@ abstract class LBFactory {
 	 */
 	public static function disableBackend() {
 		global $wgLBFactoryConf;
-		self::$instance = new LBFactory_Fake( $wgLBFactoryConf );
+		self::$instance = new LBFactoryFake( $wgLBFactoryConf );
 	}
 
 	/**
@@ -47,12 +47,42 @@ abstract class LBFactory {
 	 */
 	static function &singleton() {
 		if ( is_null( self::$instance ) ) {
-			global $wgLBFactoryConf;
-			$class = $wgLBFactoryConf['class'];
-			self::$instance = new $class( $wgLBFactoryConf );
+			$LBFactoryConf = self::getLBFactoryClass();
+
+			self::$instance = new $LBFactoryConf[0]( $LBFactoryConf[1] );
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Returns the LBFactory class to use and the load balancer configuration.
+	 *
+	 * @return array ( factory class, $wgLBFactoryConf )
+	 */
+	static function getLBFactoryClass() {
+		global $wgLBFactoryConf;
+
+		// For configuration backward compatibility after removing
+		// underscores from class names in MediaWiki 1.23.
+		$bcClasses = array(
+			'LBFactory_Simple' => 'LBFactorySimple',
+			'LBFactory_Single' => 'LBFactorySingle',
+			'LBFactory_Multi' => 'LBFactoryMulti',
+			'LBFactory_Fake' => 'LBFactoryFake',
+		);
+
+		$class = $wgLBFactoryConf['class'];
+
+		if ( in_array( $class, array_keys( $bcClasses ) ) ) {
+			$class = $bcClasses[$class];
+			wfDeprecated(
+				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
+				'1.23'
+			);
+		}
+
+		return array( $class, $wgLBFactoryConf );
 	}
 
 	/**
@@ -167,7 +197,7 @@ abstract class LBFactory {
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
-class LBFactory_Simple extends LBFactory {
+class LBFactorySimple extends LBFactory {
 
 	/**
 	 * @var LoadBalancer
@@ -299,7 +329,7 @@ class LBFactory_Simple extends LBFactory {
  * Call LBFactory::disableBackend() to start using this, and
  * LBFactory::enableBackend() to return to normal behavior
  */
-class LBFactory_Fake extends LBFactory {
+class LBFactoryFake extends LBFactory {
 	function __construct( $conf ) {
 	}
 

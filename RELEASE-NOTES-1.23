@@ -24,6 +24,8 @@ production.
 * Preferences 'watchcreations' and 'watchdefault' ("Add pages I create and files
   I upload to my watchlist", "Add pages and files I edit to my watchlist") are
   now enabled by default.
+* $wgLBFactoryConf: Class names have had underscores removed. The configuration
+  should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -81,10 +83,21 @@ production.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
 * EditPage::spamPage() was deprecated since 1.17 and has been removed.
+<<<<<<< HEAD
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
 * action=parse now has disabletoc flag to disable table of contents in output.
 * SpecialRecentChanges::feedSetup() was removed.
+=======
+* Renamed classes:
+  - LBFactory_Fake to LBFactoryFake
+  - LBFactory_Multi to LBFactoryMulti
+  - LBFactory_Simple to LBFactorySimple
+  - LBFactory_Single to LBFactorySingle
+  - LoadBalancer_Single to LoadBalancerSingle
+  - LoadMonitor_MySQL to LoadMonitorMySQL
+  - LoadMonitor_Null to LoadMonitorNull
+>>>>>>> aa9ab06... Remove underscore from classes LBFactory_*, LoadBalancer_*, LoadMonitor_*
 
 === Languages updated in 1.23 ===
 

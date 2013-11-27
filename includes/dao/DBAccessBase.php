@@ -2,7 +2,7 @@
 
 /**
  * Base class for objects that allow access to other wiki's databases using
- * the foreign database access mechanism implemented by LBFactory_multi.
+ * the foreign database access mechanism implemented by LBFactoryMulti.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
