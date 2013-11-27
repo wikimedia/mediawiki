@@ -229,6 +229,111 @@ class LocalRepo extends FileRepo {
 		return $id;
 	}
 
+	public function findFiles( array $items ) {
+		$dbr = $this->getSlaveDB();
+
+		$searchSet = array();
+		$imgConds = array(); // WHERE clause array for each file
+		$oiConds = array(); // WHERE clause array for each file
+		// Get query conditions to find all files with these (title,time) combinations...
+		foreach ( $items as $item ) {
+			if ( is_array( $item ) ) {
+				$dbKey = File::normalizeTitle( $item['title'] )->getDbKey();
+				$searchSet[] = array( 'title' => $dbKey ) + $item;
+			} else {
+				$dbKey = File::normalizeTitle( $item )->getDbKey();
+				$searchSet[] = array( 'title' => $dbKey );
+			}
+			if ( isset( $item['params']['time'] ) ) {
+				$imgConds[] = array( 'img_name' => $dbKey,
+					'img_timestamp' => $dbr->timestamp( $item['params']['time'] ) );
+				$oiConds[] = array( 'oi_name' => $dbKey,
+					'oi_timestamp' => $dbr->timestamp( $item['params']['time'] ) );
+			} else {
+				$imgConds[] = array( 'img_name' => $dbKey );
+			}
+		}
+
+		$results = array();
+		// Query image table
+		if ( count( $imgConds ) ) {
+			$results[] = $dbr->select(
+				'image',
+				LocalFile::selectFields(),
+				$dbr->makeList(
+					array_map( array( $dbr, 'makeList' ), $imgConds, array( LIST_AND ) ),
+					LIST_OR
+				),
+				__METHOD__
+			);
+		}
+		// Query old image table
+		if ( count( $oiConds ) ) {
+			$results[] = $dbr->select(
+				'oldimage',
+				OldLocalFile::selectFields(),
+				$dbr->makeList(
+					array_map( array( $dbr, 'makeList' ), $oiConds, array( LIST_AND ) ),
+					LIST_OR
+				),
+				__METHOD__
+			);
+		}
+
+		$possFiles = array();
+		foreach ( $results as $res ) {
+			foreach ( $res as $row ) {
+				$file = $this->newFileFromRow( $row );
+				$possFiles[$file->getName()][] = $file;
+			}
+		}
+
+		// Note: file name checked elsewhere (to handle redirects)
+		$fileMatchesSearch = function( File $file, array $search ) {
+			return (
+				$file->exists() &&
+				(
+					( empty( $search['time'] ) && !$file->isOld() ) ||
+					( !empty( $search['time'] ) && $search['time'] === $file->getTimestamp() )
+				) &&
+				( !empty( $search['private'] ) || !$file->isDeleted( File::DELETED_FILE ) ) &&
+				$file->userCan( File::DELETED_FILE )
+			);
+		};
+
+		$finalFiles = array();
+		foreach ( $searchSet as $k => $search ) {
+			$name = $search['title'];
+			if ( !isset( $possFiles[$name] ) ) {
+				continue;
+			}
+			foreach ( $possFiles[$name] as $possFile ) {
+				if ( $fileMatchesSearch( $possFile, $search ) ) {
+					$finalFiles[$k] = $possFile;
+					unset( $searchSet[$k] );
+				}
+			}
+		}
+
+		// Check for redirects...
+		foreach ( $searchSet as $k => $search ) {
+			if ( !empty( $search['ignoreRedirect'] ) ) {
+				continue;
+			}
+			$title = File::normalizeTitle( $search['title'] );
+			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
+			if ( $redir && $title->getNamespace() == NS_FILE ) {
+				$possFile = $this->newFile( $redir );
+				if ( $possFile && $fileMatchesSearch( $possFile, $search ) ) {
+					$possFile->redirectedFrom( $title->getDBkey() );
+					$finalFiles[$k] = $possFile;
+				}
+			}
+		}
+
+		return $finalFiles;
+	}
+
 	/**
 	 * Get an array or iterator of file objects for files that have a given
 	 * SHA-1 content hash.
