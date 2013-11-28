@@ -4833,6 +4833,15 @@ Nonexistent special page link with fragment
 !! end
 
 !! test
+Self-link with empty fragment (probably not the best behavior... bug 58647)
+!! input
+[[#|Stay here]]
+!! result
+<p><a href="/wiki/">Stay here</a>
+</p>
+!! end
+
+!! test
 Link with prefix
 !! input
 xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
