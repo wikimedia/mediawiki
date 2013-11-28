@@ -132,7 +132,7 @@ class Cookie {
 
 			if ( substr( $domain, 0, 1 ) == '.'
 				&& substr_compare( $originDomain, $domain, -strlen( $domain ),
-								   strlen( $domain ), true ) != 0 ) {
+					strlen( $domain ), true ) != 0 ) {
 				return false;
 			}
 		}

@@ -143,8 +143,7 @@ class GitInfo {
 		} else {
 			return (int)$commitDate;
 		}
-
-	 }
+	}
 
 	/**
 	 * Return the name of the current branch, or HEAD if not found

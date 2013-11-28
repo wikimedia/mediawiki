@@ -102,8 +102,7 @@ class LanguageConverter {
 			'R' => 'R',	  // raw content
 			'D' => 'D',	  // convert description (subclass implement)
 			'-' => '-',	  // remove convert (not implement)
-			'H' => 'H',	  // add rule for convert code
-						  // (but no display in placed code)
+			'H' => 'H',	  // add rule for convert code (but no display in placed code)
 			'N' => 'N'	  // current variant name
 		);
 		$this->mFlags = array_merge( $defaultflags, $flags );
@@ -777,13 +776,12 @@ class LanguageConverter {
 
 		$ns = NS_MAIN;
 
-		if ( $disableLinkConversion ||
-			 ( !$ignoreOtherCond &&
-			   ( $isredir == 'no'
-				 || $action == 'edit'
-				 || $action == 'submit'
-				 || $linkconvert == 'no'
-				 || $wgUser->getOption( 'noconvertlink' ) == 1 ) ) ) {
+		if ( $disableLinkConversion || ( !$ignoreOtherCond &&
+				( $isredir == 'no'
+					|| $action == 'edit'
+					|| $action == 'submit'
+					|| $linkconvert == 'no'
+					|| $wgUser->getOption( 'noconvertlink' ) == 1 ) ) ) {
 			return;
 		}
 
@@ -876,8 +874,7 @@ class LanguageConverter {
 			$this->mTables = $wgLangConvMemc->get( $this->mCacheKey );
 			wfProfileOut( __METHOD__ . '-cache' );
 		}
-		if ( !$this->mTables
-			 || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
+		if ( !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
 			wfProfileIn( __METHOD__ . '-recache' );
 			// not in cache, or we need a fresh reload.
 			// We will first load the default tables
@@ -1004,8 +1001,7 @@ class LanguageConverter {
 				continue;
 			}
 			$mappings = explode( '}-', $block, 2 );
-			$stripped = str_replace( array( "'", '"', '*', '#' ), '',
-									 $mappings[0] );
+			$stripped = str_replace( array( "'", '"', '*', '#' ), '', $mappings[0] );
 			$table = StringUtils::explode( ';', $stripped );
 			foreach ( $table as $t ) {
 				$m = explode( '=>', $t, 3 );
@@ -1285,9 +1281,9 @@ class ConverterRule {
 				$from = trim( $u[0] );
 				$v = trim( $u[1] );
 				if ( array_key_exists( $v, $unidtable )
-					 && !is_array( $unidtable[$v] )
-					 && $to
-					 && in_array( $v, $variants ) ) {
+					&& !is_array( $unidtable[$v] )
+					&& $to
+					&& in_array( $v, $variants ) ) {
 					$unidtable[$v] = array( $from => $to );
 				} elseif ( $to && in_array( $v, $variants ) ) {
 					$unidtable[$v][$from] = $to;
@@ -1353,8 +1349,7 @@ class ConverterRule {
 				$disp = $disp[0];
 			}
 			// or display frist text under disable manual convert
-			if ( !$disp
-				 && $this->mConverter->mManualLevel[$variant] == 'disable' ) {
+			if ( !$disp && $this->mConverter->mManualLevel[$variant] == 'disable' ) {
 				if ( count( $bidtable ) > 0 ) {
 					$disp = array_values( $bidtable );
 					$disp = $disp[0];
@@ -1477,8 +1472,9 @@ class ConverterRule {
 				// then convert <text to convert> to current language
 				$this->mRules = $this->mConverter->autoConvert( $this->mRules,
 					$variant );
-			} else { // if current variant no in flags,
-				   // then we check its fallback variants.
+			} else {
+				// if current variant no in flags,
+				// then we check its fallback variants.
 				$variantFallbacks =
 					$this->mConverter->getVariantFallbacks( $variant );
 				if ( is_array( $variantFallbacks ) ) {

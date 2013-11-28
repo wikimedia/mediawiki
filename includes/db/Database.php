@@ -1105,7 +1105,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			wfDebug( "SQL ERROR (ignored): $error\n" );
 			$this->ignoreErrors( $ignore );
 		} else {
-			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5*1024 );
+			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 			wfLogDBError( "$fname\t{$this->mServer}\t$errno\t$error\t$sql1line\n" );
 			wfDebug( "SQL ERROR: " . $error . "\n" );
 			throw new DBQueryError( $this, $error, $errno, $sql, $fname );

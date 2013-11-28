@@ -153,9 +153,9 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
 				array_map( function ( $v ) {
-						return $v['title'];
-					},
-					$q[$moduleName] ) ) . ']';
+					return $v['title'];
+				},
+				$q[$moduleName] ) ) . ']';
 		}
 	}
 

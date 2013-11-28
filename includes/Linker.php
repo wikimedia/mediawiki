@@ -850,10 +850,10 @@ class Linker {
 		if ( $page ) {
 			$url = wfAppendQuery( $url, array( 'page' => $page ) );
 		}
-		if ( $manualthumb &&
-		     !isset( $fp['link-title'] ) &&
-		     !isset( $fp['link-url'] ) &&
-		     !isset( $fp['no-link'] ) ) {
+		if ( $manualthumb
+			&& !isset( $fp['link-title'] )
+			&& !isset( $fp['link-url'] )
+			&& !isset( $fp['no-link'] ) ) {
 			$fp['link-url'] = $url;
 		}
 

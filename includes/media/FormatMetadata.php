@@ -1617,13 +1617,10 @@ class FormatMetadata extends ContextSource {
 	 * @return mixed value in best language, null if there were no languages at all
 	 * @since 1.23
 	 */
-	protected function resolveMultilangValue( $value )
-	{
-		if (
-			!is_array( $value )
+	protected function resolveMultilangValue( $value ) {
+		if ( !is_array( $value )
 			|| !isset( $value['_type'] )
-			|| $value['_type'] != 'lang'
-		) {
+			|| $value['_type'] != 'lang' ) {
 			return $value; // do nothing if not a multilang array
 		}
 
