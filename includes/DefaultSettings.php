@@ -3817,7 +3817,7 @@ $wgNoFollowNsExceptions = array();
  * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
  * etc.
  */
-$wgNoFollowDomainExceptions = array();
+$wgNoFollowDomainExceptions = array( 'mediawiki.org' );
 
 /**
  * Allow DISPLAYTITLE to change title display
