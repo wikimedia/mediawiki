@@ -728,11 +728,17 @@ class MessageCache {
 
 		// Normalise title-case input (with some inlining)
 		$lckey = strtr( $key, ' ', '_' );
-		if ( ord( $key ) < 128 ) {
+		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
-			$uckey = ucfirst( $lckey );
 		} else {
 			$lckey = $wgContLang->lcfirst( $lckey );
+		}
+
+		wfRunHooks( 'MessageCache::get', array( &$lckey ) );
+
+		if ( ord( $lckey ) < 128 ) {
+			$uckey = ucfirst( $lckey );
+		} else {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
