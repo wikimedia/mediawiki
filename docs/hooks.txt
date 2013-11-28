@@ -1633,6 +1633,12 @@ $mediaWiki: The $mediawiki object
 $title: title of the message (string)
 $message: value (string), change it to the message you want to define
 
+'MessageCache::get': When fetching a message. Can be used to override the key
+for customisations. Given and returned message key must be in special format:
+1) first letter must be in lower case according to the content language.
+2) spaces must be replaced with underscores
+&$key: message key (string)
+
 'MessageCacheReplace': When a message page is changed. Useful for updating
 caches.
 $title: name of the page changed.

@@ -39,6 +39,8 @@ production.
   hide their (unrelated) log entries.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
+* Added MessageCache::get hook as a new way to customize messages across
+  multiple sites.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
