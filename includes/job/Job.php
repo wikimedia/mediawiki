@@ -241,7 +241,9 @@ abstract class Job {
 	/**
 	 * @see JobQueue::deduplicateRootJob()
 	 * @param string $key A key that identifies the task
-	 * @return array
+	 * @return array Map of:
+	 *   - rootJobSignature : hash (e.g. SHA1) that identifies the task
+	 *   - rootJobTimestamp : TS_MW timestamp of this instance of the task
 	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {
