@@ -21,6 +21,11 @@ production.
 * $wgSquidServersNoPurge now supports the use of Classless Inter-Domain
   Routing (CIDR) notation to specify contiguous blocks of IPv4 and/or IPv6
   addresses that should be trusted to provide X-Forwarded-For headers.
+* A new configuration variable, $wgShowSigButtonInContentNamespaces, controls
+  whether users see a "signature" button on the edit toolbar in content
+  namespaces. It is set to false by default - wikis that use signatures on
+  content pages (in the vein of MeatballWiki) should set it to true to preserve
+  the old behavior.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
