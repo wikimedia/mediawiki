@@ -21,7 +21,6 @@
  */
 
 class PackedImageGallery extends TraditionalImageGallery {
-
 	function __construct( $mode = 'traditional' ) {
 		parent::__construct( $mode );
 		// Does not support per row option.
@@ -58,6 +57,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 			// factor, so use random big number.
 			$width = $this->mHeights * 10 + 100;
 		}
+
 		// self::SCALE_FACTOR so the js has some room to manipulate sizes.
 		return array(
 			'width' => $width * self::SCALE_FACTOR,
@@ -70,14 +70,17 @@ class PackedImageGallery extends TraditionalImageGallery {
 		if ( $thumbWidth < 60 * self::SCALE_FACTOR ) {
 			$thumbWidth = 60 * self::SCALE_FACTOR;
 		}
+
 		return $thumbWidth / self::SCALE_FACTOR + $this->getThumbPadding();
 	}
 
 	/**
-	 * @param MediaTransformOutput|bool $thumb the thumbnail, or false if no thumb (which can happen)
+	 * @param MediaTransformOutput|bool $thumb the thumbnail, or false if no
+	 *   thumb (which can happen)
 	 */
 	protected function getGBWidth( $thumb ) {
 		$thumbWidth = $thumb ? $thumb->getWidth() : $this->mWidths * self::SCALE_FACTOR;
+
 		return $this->getThumbDivWidth( $thumbWidth ) + $this->getGBPadding();
 	}
 

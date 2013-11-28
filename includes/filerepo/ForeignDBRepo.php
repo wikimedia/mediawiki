@@ -28,13 +28,19 @@
  */
 class ForeignDBRepo extends LocalRepo {
 	# Settings
-	var $dbType, $dbServer, $dbUser, $dbPassword, $dbName, $dbFlags,
-		$tablePrefix, $hasSharedCache;
+	protected $dbType;
+	protected $dbServer;
+	protected $dbUser;
+	protected $dbPassword;
+	protected $dbName;
+	protected $dbFlags;
+	protected $tablePrefix;
+	protected $hasSharedCache;
 
 	# Other stuff
-	var $dbConn;
-	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
-	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
+	protected $dbConn;
+	protected $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
+	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	/**
 	 * @param $info array|null

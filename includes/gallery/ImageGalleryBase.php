@@ -188,7 +188,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param Array $options Attributes of gallery tag.
 	 */
-	public function setAdditionalOptions( $options ) { }
+	public function setAdditionalOptions( $options ) {
+	}
 
 	/**
 	 * Instruct the class to use a specific skin for rendering
@@ -205,7 +206,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Add an image to the gallery.
 	 *
 	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $html  String: Additional HTML text to be shown. The name and
+	 *   size of the image are always shown.
 	 * @param $alt   String: Alt text for the image
 	 * @param $link  String: Override image link (optional)
 	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
@@ -223,7 +225,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Add an image at the beginning of the gallery.
 	 *
 	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $html  String: Additional HTML text to be shown. The name and
+	 *   size of the image are always shown.
 	 * @param $alt   String: Alt text for the image
 	 * @param $link  String: Override image link (optional)
 	 * @param $handlerOpts Array: Array of options for image handler (aka page number)
@@ -320,12 +323,4 @@ abstract class ImageGalleryBase extends ContextSource {
 			? $this->mParser->getTargetLanguage()
 			: $this->getLanguage();
 	}
-
-	/* Old constants no longer used.
-	const THUMB_PADDING = 30;
-	const GB_PADDING = 5;
-	const GB_BORDERS = 8;
-	*/
-
 }
-
