@@ -726,6 +726,8 @@ class MessageCache {
 			$key = substr( $key, 0, $pos );
 		}
 
+		wfRunHooks( 'MessageCache::get', array( &$key ) );
+
 		// Normalise title-case input (with some inlining)
 		$lckey = strtr( $key, ' ', '_' );
 		if ( ord( $key ) < 128 ) {
