@@ -22,244 +22,137 @@
  */
 
 /**
- * Job wrapper for HTMLCacheUpdate. Gets run whenever a related
- * job gets called from the queue.
+ * Job to purge the cache for all pages that link to or use another page or file
  *
- * This class is designed to work efficiently with small numbers of links, and
- * to work reasonably well with up to ~10^5 links. Above ~10^6 links, the memory
- * and time requirements of loading all backlinked IDs in doUpdate() might become
- * prohibitive. The requirements measured at Wikimedia are approximately:
- *
- *   memory: 48 bytes per row
- *   time: 16us per row for the query plus processing
- *
- * The reason this query is done is to support partitioning of the job
- * by backlinked ID. The memory issue could be allieviated by doing this query in
- * batches, but of course LIMIT with an offset is inefficient on the DB side.
- *
- * The class is nevertheless a vast improvement on the previous method of using
- * File::getLinksTo() and Title::touchArray(), which uses about 2KB of memory per
- * link.
+ * This job comes in a few variants:
+ *   - a) Recursive jobs to purge caches for backlink pages for a given title.
+ *        These jobs have have (recursive:true,table:<table>) set.
+ *   - b) Jobs to purge caches for a set of titles (the job title is ignored).
+ *	      These jobs have have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *
  * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {
-	/** @var BacklinkCache */
-	protected $blCache;
-
-	/** @var int Number of rows to update per job, see $wgUpdateRowsPerJob */
-	protected $rowsPerJob;
-
-	/** @var int Number of rows to update per query, see $wgUpdateRowsPerQuery */
-	protected $rowsPerQuery;
-
-	/**
-	 * Construct a job
-	 * @param Title $title The title linked to
-	 * @param array $params job parameters (table, start and end page_ids)
-	 * @param int $id Job id
-	 */
-	function __construct( $title, $params, $id = 0 ) {
-		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
-
+	function __construct( $title, $params = '', $id = 0 ) {
 		parent::__construct( 'htmlCacheUpdate', $title, $params, $id );
-
-		$this->rowsPerJob = $wgUpdateRowsPerJob;
-		$this->rowsPerQuery = $wgUpdateRowsPerQuery;
-		$this->blCache = $title->getBacklinkCache();
+		// Base backlink purge jobs can be de-duplicated
+		$this->removeDuplicates = ( !isset( $params['range'] ) && !isset( $params['pages'] ) );
 	}
 
-	public function run() {
-		if ( isset( $this->params['start'] ) && isset( $this->params['end'] ) ) {
-			# This is hit when a job is actually performed
-			return $this->doPartialUpdate();
-		} else {
-			# This is hit when the jobs have to be inserted
-			return $this->doFullUpdate();
-		}
-	}
+	function run() {
+		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery, $wgMaxBacklinksInvalidate;
 
-	/**
-	 * Update all of the backlinks
-	 */
-	protected function doFullUpdate() {
-		global $wgMaxBacklinksInvalidate;
-
-		# Get an estimate of the number of rows from the BacklinkCache
-		$max = max( $this->rowsPerJob * 2, $wgMaxBacklinksInvalidate ) + 1;
-		$numRows = $this->blCache->getNumLinks( $this->params['table'], $max );
-		if ( $wgMaxBacklinksInvalidate !== false && $numRows > $wgMaxBacklinksInvalidate ) {
-			wfDebug( "Skipped HTML cache invalidation of {$this->title->getPrefixedText()}." );
-
-			return true;
+		if ( is_null( $this->title ) ) {
+			$this->setLastError( "Invalid page title" );
+			return false;
 		}
 
-		if ( $numRows > $this->rowsPerJob * 2 ) {
-			# Do fast cached partition
-			$this->insertPartitionJobs();
-		} else {
-			# Get the links from the DB
-			$titleArray = $this->blCache->getLinks( $this->params['table'] );
-			# Check if the row count estimate was correct
-			if ( $titleArray->count() > $this->rowsPerJob * 2 ) {
-				# Not correct, do accurate partition
-				wfDebug( __METHOD__ . ": row count estimate was incorrect, repartitioning\n" );
-				$this->insertJobsFromTitles( $titleArray );
+		static $expected = array( 'recursive', 'pages' ); // new jobs have one of these
+
+		$oldRangeJob = false;
+		if ( !array_intersect( array_keys( $this->params ), $expected ) ) {
+			// B/C for older job params formats that lack these fields:
+			// a) base jobs with just ("table") and b) range jobs with ("table","start","end")
+			if ( isset( $this->params['start'] ) && isset( $this->params['end'] ) ) {
+				$oldRangeJob = true;
 			} else {
-				$this->invalidateTitles( $titleArray ); // just do the query
+				$this->params['recursive'] = true; // base job
 			}
 		}
 
-		return true;
-	}
+		// Job to purge all (or a range of) backlink pages for a page
+		if ( !empty( $this->params['recursive'] ) ) {
+			// @TODO: try to use delayed jobs if possible?
+			if ( !isset( $this->params['range'] ) && $wgMaxBacklinksInvalidate !== false ) {
+				$numRows = $this->title->getBacklinkCache()->getNumLinks(
+					$this->params['table'], $wgMaxBacklinksInvalidate );
+				if ( $numRows > $wgMaxBacklinksInvalidate ) {
+					return true;
+				}
+			}
+			// Convert this into no more than $wgUpdateRowsPerJob HTMLCacheUpdateJob per-title
+			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
+			$jobs = BacklinkJobUtils::partitionBacklinkJob(
+				$this,
+				$wgUpdateRowsPerJob,
+				$wgUpdateRowsPerQuery, // jobs-per-title
+				// Carry over information for de-duplication
+				array( 'params' => $this->getRootJobParams() )
+			);
+			JobQueueGroup::singleton()->push( $jobs );
+		// Job to purge pages for for a set of titles
+		} elseif ( isset( $this->params['pages'] ) ) {
+			$this->invalidateTitles( $this->params['pages'] );
+		// B/C for job to purge a range of backlink pages for a given page
+		} elseif ( $oldRangeJob ) {
+			$titleArray = $this->title->getBacklinkCache()->getLinks(
+				$this->params['table'], $this->params['start'], $this->params['end'] );
 
-	/**
-	 * Update some of the backlinks, defined by a page ID range
-	 */
-	protected function doPartialUpdate() {
-		$titleArray = $this->blCache->getLinks(
-			$this->params['table'], $this->params['start'], $this->params['end'] );
-		if ( $titleArray->count() <= $this->rowsPerJob * 2 ) {
-			# This partition is small enough, do the update
-			$this->invalidateTitles( $titleArray );
-		} else {
-			# Partitioning was excessively inaccurate. Divide the job further.
-			# This can occur when a large number of links are added in a short
-			# period of time, say by updating a heavily-used template.
-			$this->insertJobsFromTitles( $titleArray );
-		}
+			$pages = array(); // same format BacklinkJobUtils uses
+			foreach ( $titleArray as $tl ) {
+				$pages[$tl->getArticleId()] = array( $tl->getNamespace(), $tl->getDbKey() );
+			}
 
-		return true;
-	}
-
-	/**
-	 * Partition the current range given by $this->params['start'] and $this->params['end'],
-	 * using a pre-calculated title array which gives the links in that range.
-	 * Queue the resulting jobs.
-	 *
-	 * @param array|TitleArrayFromResult $titleArray
-	 * @param array $rootJobParams
-	 */
-	protected function insertJobsFromTitles( $titleArray, $rootJobParams = array() ) {
-		// Carry over any "root job" information
-		$rootJobParams = $this->getRootJobParams();
-		# We make subpartitions in the sense that the start of the first job
-		# will be the start of the parent partition, and the end of the last
-		# job will be the end of the parent partition.
-		$jobs = array();
-		$start = $this->params['start']; # start of the current job
-		$numTitles = 0;
-		/** @var Title $title */
-		foreach ( $titleArray as $title ) {
-			$id = $title->getArticleID();
-			# $numTitles is now the number of titles in the current job not
-			# including the current ID
-			if ( $numTitles >= $this->rowsPerJob ) {
-				# Add a job up to but not including the current ID
+			$jobs = array();
+			foreach ( array_chunk( $wgUpdateRowsPerJob, $pages ) as $pageChunk ) {
 				$jobs[] = new HTMLCacheUpdateJob( $this->title,
 					array(
-						'table' => $this->params['table'],
-						'start' => $start,
-						'end' => $id - 1
-					) + $rootJobParams // carry over information for de-duplication
+						'table' => $this->table,
+						'pages' => $pageChunk
+					) + $this->getRootJobParams() // carry over information for de-duplication
 				);
-				$start = $id;
-				$numTitles = 0;
 			}
-			$numTitles++;
-		}
-		# Last job
-		$jobs[] = new HTMLCacheUpdateJob( $this->title,
-			array(
-				'table' => $this->params['table'],
-				'start' => $start,
-				'end' => $this->params['end']
-			) + $rootJobParams // carry over information for de-duplication
-		);
-		wfDebug( __METHOD__ . ": repartitioning into " . count( $jobs ) . " jobs\n" );
-
-		if ( count( $jobs ) < 2 ) {
-			# I don't think this is possible at present, but handling this case
-			# makes the code a bit more robust against future code updates and
-			# avoids a potential infinite loop of repartitioning
-			wfDebug( __METHOD__ . ": repartitioning failed!\n" );
-			$this->invalidateTitles( $titleArray );
-		} else {
 			JobQueueGroup::singleton()->push( $jobs );
 		}
+
+		return true;
 	}
 
 	/**
-	 * @param array $rootJobParams
+	 * @param array $pages Map of (page ID => (namespace, DB key)) entries
 	 */
-	protected function insertPartitionJobs( $rootJobParams = array() ) {
-		// Carry over any "root job" information
-		$rootJobParams = $this->getRootJobParams();
+	protected function invalidateTitles( array $pages ) {
+		global $wgUpdateRowsPerQuery, $wgUseFileCache, $wgUseSquid;
 
-		$batches = $this->blCache->partition( $this->params['table'], $this->rowsPerJob );
-		if ( !count( $batches ) ) {
-			return; // no jobs to insert
+		// Get all page IDs in this query into an array
+		$pageIds = array_keys( $pages );
+		if ( !$pageIds ) {
+			return;
 		}
-
-		$jobs = array();
-		foreach ( $batches as $batch ) {
-			list( $start, $end ) = $batch;
-			$jobs[] = new HTMLCacheUpdateJob( $this->title,
-				array(
-					'table' => $this->params['table'],
-					'start' => $start,
-					'end' => $end,
-				) + $rootJobParams // carry over information for de-duplication
-			);
-		}
-
-		JobQueueGroup::singleton()->push( $jobs );
-	}
-
-	/**
-	 * Invalidate an array (or iterator) of Title objects, right now
-	 * @param array|TitleArrayFromResult $titleArray
-	 */
-	protected function invalidateTitles( $titleArray ) {
-		global $wgUseFileCache, $wgUseSquid;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$timestamp = $dbw->timestamp();
 
-		# Get all IDs in this query into an array
-		$ids = array();
-		/** @var Title $title */
-		foreach ( $titleArray as $title ) {
-			$ids[] = $title->getArticleID();
-		}
-
-		if ( !$ids ) {
-			return;
-		}
-
-		# Don't invalidated pages that were already invalidated
+		// Don't invalidated pages that were already invalidated
 		$touchedCond = isset( $this->params['rootJobTimestamp'] )
 			? array( "page_touched < " .
 				$dbw->addQuotes( $dbw->timestamp( $this->params['rootJobTimestamp'] ) ) )
 			: array();
 
-		# Update page_touched
-		$batches = array_chunk( $ids, $this->rowsPerQuery );
-		foreach ( $batches as $batch ) {
+		// Update page_touched (skipping pages already touched since the root job).
+		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
+		foreach ( array_chunk( $pageIds, $wgUpdateRowsPerQuery ) as $batch ) {
 			$dbw->update( 'page',
 				array( 'page_touched' => $timestamp ),
 				array( 'page_id' => $batch ) + $touchedCond,
 				__METHOD__
 			);
 		}
+		// Get the list of affected pages (races only mean something else did the purge)
+		$titleArray = TitleArray::newFromResult( $dbw->select(
+			'page',
+			array( 'page_namespace', 'page_title' ),
+			array( 'page_id' => $pageIds, 'page_touched' => $timestamp ),
+			__METHOD__
+		) );
 
-		# Update squid
+		// Update squid
 		if ( $wgUseSquid ) {
 			$u = SquidUpdate::newFromTitles( $titleArray );
 			$u->doUpdate();
 		}
 
-		# Update file cache
+		// Update file cache
 		if ( $wgUseFileCache ) {
 			foreach ( $titleArray as $title ) {
 				HTMLFileCache::clearFileCache( $title );

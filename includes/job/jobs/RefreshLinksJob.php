@@ -25,18 +25,18 @@
  * Job to update link tables for pages
  *
  * This job comes in a few variants:
- *   - a) Recursive jobs to update links for backlink pages for a given title
- *   - b) Jobs to update links for a set of titles (the job title is ignored)
- *   - c) Jobs to update links for a single title (the job title)
+ *   - a) Recursive jobs to update links for backlink pages for a given title.
+ *        These jobs have have (recursive:true,table:<table>) set.
+ *   - b) Jobs to update links for a set of pages (the job title is ignored).
+ *	      These jobs have have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *   - c) Jobs to update links for a single page (the job title)
+ *        These jobs need no extra fields set.
  *
  * @ingroup JobQueue
  */
 class RefreshLinksJob extends Job {
-	const VERSION = 1;
-
 	function __construct( $title, $params = '', $id = 0 ) {
 		parent::__construct( 'refreshLinks', $title, $params, $id );
-		$this->params['version'] = self::VERSION;
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
 		// If template A changes twice before any jobs run, a clean queue will have:
 		//		(A base, A base)
@@ -65,7 +65,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		// Job to update all (or a range of) backlink pages for a page
-		if ( isset( $this->params['recursive'] ) ) {
+		if ( !empty( $this->params['recursive'] ) ) {
 			// Carry over information for de-duplication
 			$extraParams = $this->getRootJobParams();
 			// Avoid slave lag when fetching templates.
