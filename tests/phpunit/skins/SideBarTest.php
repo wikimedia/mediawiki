@@ -90,6 +90,11 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */
 	public function testExternalUrlsRequireADescription() {
+		$this->setMwGlobals( array(
+			'wgNoFollowLinks' => true,
+			'wgNoFollowDomainExceptions' => array(),
+			'wgNoFollowNsExceptions' => array(),
+		) );
 		$this->assertSidebar(
 			array( 'Title' => array(
 				# ** http://www.mediawiki.org/| Home
@@ -162,6 +167,8 @@ class SideBarTest extends MediaWikiLangTestCase {
 	public function testTestAttributesAssertionHelper() {
 		$this->setMwGlobals( array(
 			'wgNoFollowLinks' => true,
+			'wgNoFollowDomainExceptions' => array(),
+			'wgNoFollowNsExceptions' => array(),
 			'wgExternalLinkTarget' => false,
 		) );
 		$attribs = $this->getAttribs();
