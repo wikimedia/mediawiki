@@ -3811,13 +3811,16 @@ $wgNoFollowNsExceptions = array();
  * (or any subdomains) will not be set to rel="nofollow" regardless of the
  * value of $wgNoFollowLinks.  For instance:
  *
- * $wgNoFollowDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org' );
+ * $wgNoFollowDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org',
+ * 'mediawiki.org' );
  *
  * This would add rel="nofollow" to links to de.wikipedia.org, but not
  * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
  * etc.
+ *
+ * Defaults to mediawiki.org for the links included in the software by default.
  */
-$wgNoFollowDomainExceptions = array();
+$wgNoFollowDomainExceptions = array( 'mediawiki.org' );
 
 /**
  * Allow DISPLAYTITLE to change title display
