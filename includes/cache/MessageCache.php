@@ -708,6 +708,8 @@ class MessageCache {
 
 		$section = new ProfileSection( __METHOD__ );
 
+		wfRunHooks( 'MessageCache::get', array( &$key ) );
+
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
 			// on their way here
