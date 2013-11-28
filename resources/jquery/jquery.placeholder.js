@@ -5,90 +5,216 @@
  *
  * @author Trevor Parscal <tparscal@wikimedia.org>, 2012
  * @author Krinkle <krinklemail@gmail.com>, 2012
- * @version 0.2.0
+ * @author Mathias Bynens <http://mathiasbynens.be/>
+ * @author Alex Ivanov <alexivanov97@gmail.com>, 2013
+ * @version 0.3.0
  * @license MIT
  */
-( function ( $ ) {
+(function(window, document, $) {
 
-	$.fn.placeholder = function ( text ) {
-		var hasArg = arguments.length;
+	var isInputSupported = 'placeholder' in document.createElement('input'),
+	  isTextareaSupported = 'placeholder' in document.createElement('textarea'),
+	  prototype = $.fn,
+	  valHooks = $.valHooks,
+	  propHooks = $.propHooks,
+	  hooks,
+	  placeholder;
 
-		return this.each( function () {
-			var placeholder, $input;
+	if (isInputSupported && isTextareaSupported) {
 
-			if ( hasArg ) {
-				this.setAttribute( 'placeholder', text );
+		placeholder = prototype.placeholder = function( text ) {
+			var hasArgs = arguments.length;
+
+			if( hasArgs ) {
+				changePlaceholder.call(this, text);
 			}
 
-			// If the HTML5 placeholder attribute is supported, use it
-			if ( this.placeholder && 'placeholder' in document.createElement( this.tagName ) ) {
-				return;
+			return this;
+		};
+
+		placeholder.input = placeholder.textarea = true;
+
+	} else {
+
+		placeholder = prototype.placeholder = function( text ) {
+			var $this = this,
+			 hasArgs = arguments.length;
+
+			if( hasArgs ) {
+				changePlaceholder.call(this, text);
 			}
 
-			placeholder = hasArg ? text : this.getAttribute( 'placeholder' );
-			$input = $(this);
 
-			// Show initially, if empty
-			if ( this.value === '' || this.value === placeholder ) {
-				$input.addClass( 'placeholder' ).val( placeholder );
-			}
+			$this
+				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
+				.not('.placeholder-enabled')
+				.bind({
+					'focus.placeholder drop.placeholder': clearPlaceholder,
+					'blur.placeholder': setPlaceholder
+				})
+				.addClass('placeholder-enabled')
+				.trigger('blur.placeholder');
+			return $this;
+		};
 
-			$input
-				// Show on blur if empty
-				.blur( function () {
-					if ( this.value === '' ) {
-						this.value = placeholder;
-						$input.addClass( 'placeholder' );
+		placeholder.input = isInputSupported;
+		placeholder.textarea = isTextareaSupported;
+
+		hooks = {
+			'get': function(element) {
+				var $element = $(element),
+				  $passwordInput = $element.data('placeholder-password');
+				if ($passwordInput) {
+					return $passwordInput[0].value;
+				}
+
+				return $element.hasClass('placeholder-enabled') && $element.hasClass('placeholder') ? '' : element.value;
+			},
+			'set': function(element, value) {
+				var $element = $(element),
+				  $passwordInput = $element.data('placeholder-password');
+				if ($passwordInput) {
+					result = $passwordInput[0].value = value;
+					return result;
+				}
+
+				if (!$element.hasClass('placeholder-enabled')) {
+					result = element.value = value;
+					return result;
+				}
+				if (value === '') {
+					element.value = value;
+					// Issue #56: Setting the placeholder causes problems if the element continues to have focus.
+					if (element !== safeActiveElement()) {
+						// We can't use `triggerHandler` here because of dummy text/password inputs :(
+						setPlaceholder.call(element);
 					}
-				} )
-
-				// Hide on focus
-				// Also listen for other events in case $input was
-				// already focused when the events were bound
-				.on( 'focus drop keydown paste', function ( e ) {
-					if ( $input.hasClass( 'placeholder' ) ) {
-						if ( e.type === 'drop' && e.originalEvent.dataTransfer ) {
-							// Support for drag&drop. Instead of inserting the dropped
-							// text somewhere in the middle of the placeholder string,
-							// we want to set the contents of the search box to the
-							// dropped text.
-
-							// IE wants getData( 'text' ) but Firefox wants getData( 'text/plain' )
-							// Firefox fails gracefully with an empty string, IE barfs with an error
-							try {
-								// Try the Firefox way
-								this.value = e.originalEvent.dataTransfer.getData( 'text/plain' );
-							} catch ( exception ) {
-								// Got an exception, so use the IE way
-								this.value = e.originalEvent.dataTransfer.getData( 'text' );
-							}
-
-							// On Firefox, drop fires after the dropped text has been inserted,
-							// but on IE it fires before. If we don't prevent the default action,
-							// IE will insert the dropped text twice.
-							e.preventDefault();
-						} else {
-							this.value = '';
-						}
-						$input.removeClass( 'placeholder' );
-					}
-				} );
-
-			// Blank on submit -- prevents submitting with unintended value
-			if ( this.form ) {
-				$( this.form ).submit( function () {
-					// $input.trigger( 'focus' ); would be problematic
-					// because it actually focuses $input, leading
-					// to nasty behavior in mobile browsers
-					if ( $input.hasClass( 'placeholder' ) ) {
-						$input
-							.val( '' )
-							.removeClass( 'placeholder' );
-					}
-				});
+				} else if ($element.hasClass('placeholder')) {
+					result = clearPlaceholder.call(element, true, value) || (element.value = value);
+				} else {
+					element.value = value;
+				}
+				// `set` can not return `undefined`; see http://jsapi.info/jquery/1.7.1/val#L2363
+				return $element;
 			}
+		};
 
+		if (!isInputSupported) {
+			valHooks.input = hooks;
+			propHooks.value = hooks;
+		}
+		if (!isTextareaSupported) {
+			valHooks.textarea = hooks;
+			propHooks.value = hooks;
+		}
+
+		$(function() {
+			// Look for forms
+			$(document).delegate('form', 'submit.placeholder', function() {
+				// Clear the placeholder values so they don't get submitted
+				var $inputs = $('.placeholder', this).each(clearPlaceholder);
+				setTimeout(function() {
+					$inputs.each(setPlaceholder);
+				}, 10);
+			});
 		});
-	};
 
-}( jQuery ) );
+		// Clear placeholder values upon page reload
+		$(window).bind('beforeunload.placeholder', function() {
+			$('.placeholder').each(function() {
+				this.value = '';
+			});
+		});
+
+	}
+
+	function args(elem) {
+		// Return an object of element attributes
+		var newAttrs = {};
+		var rinlinejQuery = /^jQuery\d+$/;
+		$.each(elem.attributes, function(i, attr) {
+			if (attr.specified && !rinlinejQuery.test(attr.name)) {
+				newAttrs[attr.name] = attr.value;
+			}
+		});
+		return newAttrs;
+	}
+
+	function clearPlaceholder(event, value) {
+		var input = this;
+		var $input = $(input);
+		if (input.value === $input.attr('placeholder') && $input.hasClass('placeholder')) {
+			if ($input.data('placeholder-password')) {
+				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
+				// If `clearPlaceholder` was called from `$.valHooks.input.set`
+				if (event === true) {
+					return $input[0].value = value;
+				}
+				$input.focus();
+			} else {
+				input.value = '';
+				$input.removeClass('placeholder');
+				input === safeActiveElement() && input.select();
+			}
+		}
+	}
+
+	function setPlaceholder() {
+		var $replacement,
+		  input = this,
+		  $input = $(input),
+		  id = this.id;
+		if (input.value === '') {
+			if (input.type === 'password') {
+				if (!$input.data('placeholder-textinput')) {
+					try {
+						$replacement = $input.clone().attr({ 'type': 'text' });
+					} catch(e) {
+						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
+					}
+					$replacement
+						.removeAttr('name')
+						.data({
+							'placeholder-password': $input,
+							'placeholder-id': id
+						})
+						.bind('focus.placeholder drop.placeholder', clearPlaceholder);
+					$input
+						.data({
+							'placeholder-textinput': $replacement,
+							'placeholder-id': id
+						})
+						.before($replacement);
+				}
+				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
+				// Note: `$input[0] != input` now!
+			}
+			$input.addClass('placeholder');
+			$input[0].value = $input.attr('placeholder');
+		} else {
+			$input.removeClass('placeholder');
+		}
+	}
+
+	function safeActiveElement() {
+		// Avoid IE9 `document.activeElement` of death
+		// https://github.com/mathiasbynens/jquery-placeholder/pull/99
+		try {
+			return document.activeElement;
+		} catch (err) {}
+	}
+
+	function changePlaceholder( text ) {
+		var hasArgs = arguments.length,
+		  $input = this;
+		if( hasArgs ) {
+			if($input.attr('placeholder') !== text) {
+				$input.prop('placeholder', text);
+				if($input.hasClass('placeholder')) {
+					$input[0].value = text;
+				}
+			}
+		}
+	}
+
+}(this, document, jQuery));
