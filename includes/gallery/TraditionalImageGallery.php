@@ -191,9 +191,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	/**
 	 * Add the wrapper html around the thumb's caption
 	 *
-	 * @param String $galleryText The caption
-	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for
+	 * @param string $galleryText The caption
+	 * @param MediaTransformOutput|bool $thumb The thumb this caption is for
 	 *   or false for bad image.
+	 * @return string
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
 		# ATTENTION: The newline after <div class="gallerytext"> is needed to
@@ -239,7 +240,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	/**
 	 * Get total padding.
 	 *
-	 * @return int How many pixels of whitespace surround the thumbnail.
+	 * @return int Number of pixels of whitespace surrounding the thumbnail.
 	 */
 	protected function getAllPadding() {
 		return $this->getThumbPadding() + $this->getGBPadding() + $this->getGBBorders();
@@ -252,7 +253,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * @param int $boxHeight How high we want the box to be.
 	 * @param int $thumbHeight How high the thumbnail is.
-	 * @return int How many vertical padding to add on each side.
+	 * @return int Vertical padding to add on each side.
 	 */
 	protected function getVPad( $boxHeight, $thumbHeight ) {
 		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight ) / 2;
@@ -262,6 +263,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * Get the transform parameters for a thumbnail.
 	 *
 	 * @param File $img The file in question. May be false for invalid image
+	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
 		return array(
@@ -288,8 +290,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * plus padding on gallerybox.
 	 *
 	 * @note Important: parameter will be false if no thumb used.
-	 * @param Mixed $thumb MediaTransformObject object or false.
-	 * @return int width of gallerybox element
+	 * @param MediaTransformOutput|bool $thumb MediaTransformObject object or false.
+	 * @return int Width of gallerybox element
 	 */
 	protected function getGBWidth( $thumb ) {
 		return $this->mWidths + $this->getThumbPadding() + $this->getGBPadding();
@@ -300,7 +302,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * Primarily intended for subclasses.
 	 *
-	 * @return Array modules to include
+	 * @return array Modules to include
 	 */
 	protected function getModules() {
 		return array();
@@ -311,7 +313,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * Used by a subclass to insert extra high resolution images.
 	 * @param MediaTransformOutput $thumb The thumbnail
-	 * @param Array $imageParameters Array of options
+	 * @param array $imageParameters Array of options
 	 */
 	protected function adjustImageParameters( $thumb, &$imageParameters ) {
 	}
