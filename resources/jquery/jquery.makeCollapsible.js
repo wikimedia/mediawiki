@@ -15,8 +15,6 @@
  * @license GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  */
 ( function ( $, mw ) {
-	var lpx = 'jquery.makeCollapsible> ';
-
 	/**
 	 * Handler for a click on a collapsible toggler.
 	 *
@@ -292,17 +290,11 @@
 			} else {
 				collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
-					mw.log( lpx + 'Found custom collapsible: #' + collapsibleId );
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-
-					// Double check that there is actually a customtoggle link
-					if ( !$customTogglers.length ) {
-						mw.log( lpx + '#' + collapsibleId + ': Missing toggler!' );
-					}
 				}
 			}
 
-			// Bind the togglers
+			// Add event handlers to custom togglers or create our own ones
 			if ( $customTogglers && $customTogglers.length ) {
 				actionHandler = function ( e, opts ) {
 					var defaultOpts = {};
