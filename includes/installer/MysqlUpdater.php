@@ -245,6 +245,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.23
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			array( 'addField', 'page_restrictions', 'pr_timestamp', 'patch-pr_timestamp.sql' ),
 		);
 	}
 
