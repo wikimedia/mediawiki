@@ -84,6 +84,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
+			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( array_unique( $wgFileExtensions ) ),
 			'wgDBname' => $wgDBname,
