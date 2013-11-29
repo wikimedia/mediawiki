@@ -994,11 +994,7 @@ class LocalFile extends File {
 		$r = array();
 
 		foreach ( $res as $row ) {
-			if ( $this->repo->oldFileFromRowFactory ) {
-				$r[] = call_user_func( $this->repo->oldFileFromRowFactory, $row, $this->repo );
-			} else {
-				$r[] = OldLocalFile::newFromRow( $row, $this->repo );
-			}
+			$r[] = $this->repo->newFileFromRow( $row );
 		}
 
 		if ( $order == 'ASC' ) {
