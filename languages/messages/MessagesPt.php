@@ -57,6 +57,7 @@
  * @author Teles
  * @author Urhixidur
  * @author Villate
+ * @author Vitorvicentevalente
  * @author Waldir
  * @author Yves Marques Junqueira
  * @author לערי ריינהארט
@@ -2502,16 +2503,16 @@ $PAGEINTRO $NEWPAGE
 Resumo da edição: $PAGESUMMARY $PAGEMINOREDIT
 
 Contacte o editor:
-correio eletrónico: $PAGEEDITOR_EMAIL
+correio electrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Até que visite esta página, não receberá mais notificações das alterações futuras.
-Pode também reativar as notificações para todas páginas na sua lista de páginas vigiadas.
+Até que visite novamente esta página com a sua conta ligada, não receberá mais notificações das alterações futuras.
+Pode também reactivar as notificações para todas páginas na sua lista de páginas vigiadas.
 
-             O seu sistema de notificação amigável da {{SITENAME}}
+O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências das notificações por correio eletrónico, visite
+Para alterar as suas preferências das notificações por correio electrónico, visite
 {{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite

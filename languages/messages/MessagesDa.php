@@ -3775,7 +3775,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'duplicate-defaultsort' => 'Advarsel: Standardsorteringsnøglen "$2" tilsidesætter den tidligere sorteringsnøgle "$1".',
 
 # Special:Version
-'version' => 'Version',
+'version' => 'Information om MediaWiki',
 'version-extensions' => 'Installerede udvidelser',
 'version-specialpages' => 'Specialsider',
 'version-parserhooks' => 'Oversætter-funktioner',

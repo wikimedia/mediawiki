@@ -593,6 +593,7 @@ Den Administrateur den d\'Schreiwe gespaart huet, huet dës Erklärung uginn: "$
 'invalidtitle-unknownnamespace' => 'Net valabelen Titel mat der onbekannter Nummraum-Zuel $1 a mam Text "$2"',
 'exception-nologin' => 'Net ageloggt',
 'exception-nologin-text' => '[[Special:Userlogin|Loggt Iech w.e.g. a]] fir op dës Säit oder dës Aktioun zougräifen ze kënnen.',
+'exception-nologin-text-manual' => 'Dir musst Iech $1 fir dës Säit kucken ze kënne respektiv fir dës Aktioun ze maachen.',
 
 # Virus scanner
 'virus-badscanner' => "Schlecht Konfiguratioun: onbekannte Virescanner: ''$1''",

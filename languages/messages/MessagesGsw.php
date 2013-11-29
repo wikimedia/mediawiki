@@ -410,8 +410,8 @@ Di maximal Wartezyt fir e Lock isch umme',
 'youhavenewmessages' => 'Du hesch $1 ($2).',
 'youhavenewmessagesfromusers' => 'Du hesch $1 vu {{PLURAL:$3|eme andere Benutzer|$3 Benutzer}} ($2).',
 'youhavenewmessagesmanyusers' => 'Du hesch $1 vu vil Benutzer ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|e neji Nochricht|neji Nochrichte}}',
-'newmessagesdifflinkplural' => 'letschti {{PLURAL:$1|Änderig|Änderige}}',
+'newmessageslinkplural' => '{{PLURAL:$1|e neji Nochricht|999=neji Nochrichte}}',
+'newmessagesdifflinkplural' => 'letschti {{PLURAL:$1|Änderig|999=Änderige}}',
 'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
 'editsection' => 'ändere',
 'editold' => 'Ändre',
@@ -535,7 +535,8 @@ Dr Administrator, wu dr Schrybzuegriff gsperrt het, het dää Grund aagee: „$3
 'invalidtitle-knownnamespace' => 'Nit-gültige Titel mit Namensruum „$2“ un Text „$3“',
 'invalidtitle-unknownnamespace' => 'Ungültige Titel mit unbekannte Namensruumnummer $1 un Text „$2“',
 'exception-nologin' => 'Nit aagmäldet',
-'exception-nologin-text' => 'Fir die Syte oder Aktion muesch aagmäldet syy.',
+'exception-nologin-text' => 'Du muesch Di [[Special:Userlogin|aamälde]] go die Syte oder Aktion ufruefe chenne.',
+'exception-nologin-text-manual' => 'Du muesch Di $1 go die Syte oder Aktion ufruefe chenne.',
 
 # Virus scanner
 'virus-badscanner' => "Fählerhafti Konfiguration: Virescanner, wu nid bekannt isch: ''$1''",
@@ -736,7 +737,7 @@ Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gs
 Temporär Passwort: $2',
 'passwordreset-emailsent' => 'E Passwort-Zrucksetzig isch per E-Mail verschickt wore.',
 'passwordreset-emailsent-capture' => 'E Passwort-Zrucksetzigs-Mail isch vergschickt worde, un isch unte aazeigt.',
-'passwordreset-emailerror-capture' => 'Die Erinnerigsmail, wo unte aazeigt isch, isch generiert worde, aber de Versand aa de Benutzer isch gschyyteret: $1',
+'passwordreset-emailerror-capture' => 'Die unten angezeigte Passwortzrucksetzigsmail, wu unten aazeigt wird, isch generiert wore, aber dr Versand an {{GENDER:$2|dr Benutzer|d Benutzeri}} het nit funktioniert: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-Mail-Adräss ändre',
@@ -746,8 +747,22 @@ Temporär Passwort: $2',
 'changeemail-oldemail' => 'Aktuelli E-Mail-Adräss',
 'changeemail-newemail' => 'Nöii E-Mail-Adräss:',
 'changeemail-none' => '(nyt)',
+'changeemail-password' => 'Dy {{SITENAME}}-Passwort:',
 'changeemail-submit' => 'E-Mail Adräss ändre',
 'changeemail-cancel' => 'Abbräche',
+
+# Special:ResetTokens
+'resettokens' => 'Token zrucksetze',
+'resettokens-text' => 'Du chasch Token zrucksetze, wu Dir dr Zuegriff uf bstimmti privati Date megli mache, wu mit Dym Benutzerkonto do verchnipft sin.
+
+Des sottsch nume mache, wänn Du d Token us Versää mit eberem teilt hesch oder Dy Konto gfehrdet isch.',
+'resettokens-no-tokens' => 'S git kei Token zum Zrucksetze.',
+'resettokens-legend' => 'Token zrucksetze',
+'resettokens-tokens' => 'Token:',
+'resettokens-token-label' => '$1 (aktuälle Wärt: $2)',
+'resettokens-watchlist-token' => 'Token fir dr Webfeed (Atom/RSS) vu dr [[Special:Watchlist|Änderigen an Syten uf Dyre Beobachtuislischt]]',
+'resettokens-done' => 'Token zruckgsetzt.',
+'resettokens-resetbutton' => 'Uusgwehlti Token zrucksetze',
 
 # Edit page toolbar
 'bold_sample' => 'fetti Schrift',
@@ -906,7 +921,7 @@ Hiemit gisch du zue, das du dä Tekscht '''sälber gschribe''' hesch, das der Te
 Si verspräche uns usserdäm, dass Si des alles selber gschribe oder vo nere Quälle kopiert hen, wo Public Domain odr sunscht frei isch (lueg $1 für Details).
 '''SETZE SI DO OHNI ERLAUBNIS KEINI URHEBERRÄCHTLICH GSCHÜTZTI WÄRK INE!'''",
 'longpageerror' => "'''Fähler: Dä Täxt, wu Du spychere wit, isch {{PLURAL:$1|ei Kilobyte|$1 Kilobyte}} groß. Des isch greßer wie s erlaubt Maximum vu {{PLURAL:$2|eim Kilobyte|$2 Kilobyte}}.''' S Spychere isch nit megli.",
-'readonlywarning' => "'''Achtung: Die Datebank isch fir Wartigsarbete gesperrt. Wäge däm chenne Dyyni Änderige im Momänt nid gspicheret wäre.
+'readonlywarning' => "'''Achtig: D Datebank isch fir Wartigsarbete gesperrt. Wäge däm chenne Dyyni Änderige im Momänt nit gspycheret wäre.
 Sichere de Täxt bitte lokal uf Dyynem Computer un versuech speter nomol, d Änderige z ibertrage.'''
 
 Grund fir d Sperri: $1",
@@ -944,13 +959,14 @@ Zue Dyyre Information sihsch do s Lesch-Logbuech vo däre Syte:",
 Si isch schyns glescht wore.',
 'edit-conflict' => 'Bearbeitigskonflikt.',
 'edit-no-change' => 'Dyyni Bearbeitig isch ignoriert wore, wel kei Änderig am Täxt gmacht woren isch.',
+'postedit-confirmation' => 'Dyy Bearbeitig isch gspycheret wore.',
 'edit-already-exists' => 'Di nej Syte het nid chenne aaglait wäre, wel s si scho git.',
 'defaultmessagetext' => 'Standardtext',
 'content-failed-to-parse' => 'Parse vum Inhalt $2 fir Modell $1 fählgschlaa: $3',
 'invalid-content-data' => 'Uugiltigi Inhaltsdate',
 'content-not-allowed-here' => 'Dr Inhalt „$1“ isch uf dr Syte [[$2]] nit erlaubt',
 'editwarning-warning' => 'Wänn Du die Syte verlosch, cha s syy, ass Du alli Bearbeitige verliersch, wu Du do dra gmacht hesch.
-Wänn Du aagmäldet bisch, chasch s Anzeige vu däre Warnig im „{{int:prefs-editing}}“-Beryych vu Dyyne Yystelligen abstelle.',
+Wänn Du aagmäldet bisch, chasch s Anzeige vu däre Warnig im „Bearbeite“-Beryych vu Dyyne Yystelligen abstelle.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',
@@ -983,6 +999,7 @@ S {{PLURAL:$2|derf nid meh wie ein Ufruef|derfe nid meh wie $1 Ufruef}} gee.',
 'undo-failure' => 'D Änderig het nid chenne ruckgängig gmacht wäre, wel dää Abschnitt mittlerwyli gänderet woren isch.',
 'undo-norev' => 'D Bearbeitig het nid chenne ruckgängig gmacht wäre, wel si nid vorhande oder glescht isch.',
 'undo-summary' => 'D Änderig $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) isch ruckgängig gmacht wore.',
+'undo-summary-username-hidden' => 'Änderig $1 vun eme versteckte Benutzer ruckgängig gmacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto cha nid aagleit wäre.',

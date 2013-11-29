@@ -3972,7 +3972,7 @@ Da biste uklonili naslov, označite kućicu do njega i kliknite na „{{int:Watc
 Možete i da [[Special:EditWatchlist/raw|uredite sirov spisak]].',
 'watchlistedit-normal-submit' => 'Ukloni',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Jedna stranica je uklonjena|$1 stranice su uklonjene|$1 stranica je uklonjeno}} s vašeg spiska nadgledanja:',
-'watchlistedit-raw-title' => 'Napredno uređivanje spiska nadgledanja',
+'watchlistedit-raw-title' => 'Izmeni sirov spisak nadgledanja',
 'watchlistedit-raw-legend' => 'Napredno uređivanje spiska nadgledanja',
 'watchlistedit-raw-explain' => 'Naslovi sa spiska nadgledanja su prikazani ispod i mogu se uređivati dodavanjem ili uklanjanjem stavki sa spiska;
 jedan naslov po redu.

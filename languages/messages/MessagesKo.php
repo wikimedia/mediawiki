@@ -2355,7 +2355,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'querypage-disabled' => '이 특수 문서는 성능상의 이유로 비활성화되었습니다.',
 
 # Book sources
-'booksources' => '책 자료',
+'booksources' => '책 찾기',
 'booksources-search-legend' => '책 원본 검색',
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => '검색',
@@ -3658,7 +3658,7 @@ Variants for Chinese language
 'exif-preferredattributionname' => '이 저작물을 이용할 때 보일 저작자 이름',
 'exif-pngfilecomment' => 'PNG 파일 주석',
 'exif-disclaimer' => '면책 조항',
-'exif-contentwarning' => '콘텐츠 경고',
+'exif-contentwarning' => '내용 경고',
 'exif-giffilecomment' => 'GIF 파일 주석',
 'exif-intellectualgenre' => '항목 종류',
 'exif-subjectnewscode' => '주제 코드',

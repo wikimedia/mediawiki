@@ -46,6 +46,7 @@ $messages = array(
 
 'underline-always' => 'هميشه',
 'underline-never' => 'هيژوخت',
+'underline-default' => 'پوسه یا مرورگر پیش فرض',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'راساگه فونت شلک نه ویرایشت کو',
@@ -530,6 +531,7 @@ $1',
 پاک بین و جمشت ای بلگه سی سرچشمه دئین فراهم بیه',
 'edit-conflict' => 'مخالفت نه ویرایشت بکید',
 'postedit-confirmation' => 'ویرایشتتو ذخیره بی',
+'defaultmessagetext' => 'متن پیغوم پیش فرض',
 
 # Content models
 'content-model-wikitext' => 'ويكی متن',
@@ -546,6 +548,7 @@ $1',
 
 # History pages
 'viewpagelogs' => 'سی ای بلگه بوینتو.',
+'currentrev' => 'آخرین دوواره دیئن',
 'currentrev-asof' => 'آخرين دووار ديئن چی $1',
 'revisionasof' => 'دوواره ديئن $1',
 'revision-info' => 'دوواره سیل بیه چی $1 وا $2',
@@ -564,6 +567,7 @@ $1',
 'historyempty' => '(حالی)',
 
 # Revision feed
+'history-feed-title' => 'ویرگار دوواره دیئن',
 'history-feed-item-nocomment' => '$1 د
 $2',
 
@@ -698,18 +702,33 @@ $2',
 
 # User rights
 'userrights-user-editname' => 'نوم كاروری ته وارد كو',
+'editusergroup' => 'ویرایشت گرویا کاروری',
+'userrights-editusergroup' => 'ویرایشت گرویا کاروری',
+'saveusergroups' => 'ذخیره کرد گرویا کاروری',
+'userrights-groupsmember' => 'اندوم:',
 'userrights-reason' => 'دليل:',
 
 # Groups
 'group' => 'گرو',
+'group-user' => 'کاروریا',
+'group-autoconfirmed' => 'کاروریا خودوادار',
 'group-bot' => 'بتیا',
+'group-sysop' => 'مدیریا',
+'group-bureaucrat' => 'بروکراتیا',
 'group-all' => '(همه)',
+
+# Rights
+'right-read' => 'حنن بلگیا',
+'right-edit' => 'ویرایشت بلگیا',
 
 # Special:Log/newusers
 'newuserlogpage' => 'راس بیه وا کارور',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read' => 'ای بلگه نه بحون',
 'action-edit' => 'ای بلگه نه ويرايشت بكيد',
+'action-createpage' => 'راس کردن بلگیا',
+'action-move' => 'لی بلگه جا وه جا کو',
 'action-delete' => 'ای بلگه نه پاک کو',
 'action-deleterevision' => 'ای بازدئین پاک کو',
 'action-undelete' => 'ای بلگه نه پاک نکو',

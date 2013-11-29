@@ -1549,7 +1549,7 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 Cualquier persona que la conozca podría leer tu lista, así que no la compartas.
 [[Special:ResetTokens|Pulsa aquí si necesitas restablecerla]].',
 'savedprefs' => 'Se han guardado tus preferencias.',
-'timezonelegend' => 'Zona horaria:',
+'timezonelegend' => 'Huso horario:',
 'localtime' => 'Hora local:',
 'timezoneuseserverdefault' => 'Usar la hora del servidor ($1)',
 'timezoneuseoffset' => 'Otra (especifica la diferencia horaria)',
@@ -4060,7 +4060,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiales',
-'specialpages-note-top' => 'Leyenda:',
+'specialpages-note-top' => 'Leyenda',
 'specialpages-note' => '* Páginas especiales normales
 * <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>
 * <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',

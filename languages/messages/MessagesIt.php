@@ -792,7 +792,7 @@ Assicurati di avere attivato i cookie, ricarica questa pagina e riprova.",
 'passwordtooshort' => 'Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
 'password-name-match' => 'La password deve essere diversa dal nome utente.',
 'password-login-forbidden' => "L'uso di questo nome utente e password è stato proibito.",
-'mailmypassword' => 'Invia una nuova password al mio indirizzo e-mail',
+'mailmypassword' => 'Invia una nuova password al mio indirizzo email',
 'passwordremindertitle' => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext' => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
 Una password temporanea per l\'utente "$2" è stata impostata a "$3".
@@ -2318,9 +2318,9 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'mailnologin' => 'Nessun indirizzo cui inviare il messaggio',
 'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
 'emailuser' => "Scrivi all'utente",
-'emailuser-title-target' => 'Invia una e-mail a questo {{GENDER:$1|utente}}',
-'emailuser-title-notarget' => 'Invia una e-mail a un utente',
-'emailpage' => "Invia un messaggio e-mail all'utente",
+'emailuser-title-target' => 'Invia una email a questo {{GENDER:$1|utente}}',
+'emailuser-title-notarget' => 'Invia una email a un utente',
+'emailpage' => "Invia un messaggio email all'utente",
 'emailpagetext' => 'Usare il modulo sottostante per inviare un messaggio e-mail all\'{{GENDER:$1|utente}} indicato. L\'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
 'usermailererror' => "L'oggetto mail ha restituito l'errore:",
 'defemailsubject' => 'Messaggio da {{SITENAME}} dall\'utente "$1"',
@@ -2344,7 +2344,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'emailccsubject' => 'Copia del messaggio inviato a $1: $2',
 'emailsent' => 'Messaggio inviato',
 'emailsenttext' => 'Il messaggio e-mail è stato inviato.',
-'emailuserfooter' => 'Questa e-mail è stata inviata da $1 a $2 attraverso la funzione "Invia un messaggio e-mail all\'utente" su {{SITENAME}}.',
+'emailuserfooter' => 'Questa email è stata inviata da $1 a $2 attraverso la funzione "Invia un messaggio email all\'utente" su {{SITENAME}}.',
 
 # User Messenger
 'usermessage-summary' => 'Messaggio di sistema',
@@ -2678,7 +2678,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 ** Nome utente non consono',
 'ipb-hardblock' => 'Impedisci agli utenti registrati di contribuire da questo indirizzo IP',
 'ipbcreateaccount' => 'Impedisci la registrazione',
-'ipbemailban' => "Impedisci all'utente l'invio di e-mail",
+'ipbemailban' => "Impedisci all'utente l'invio di email",
 'ipbenableautoblock' => "Blocca automaticamente l'ultimo indirizzo IP usato dall'utente e i successivi con cui vengono tentate modifiche",
 'ipbsubmit' => "Blocca l'utente",
 'ipbother' => 'Durata non in elenco:',
@@ -3040,7 +3040,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-feed-rss' => 'Feed RSS per questa pagina',
 'tooltip-feed-atom' => 'Feed Atom per questa pagina',
 'tooltip-t-contributions' => 'Lista dei contributi di questo utente',
-'tooltip-t-emailuser' => 'Invia un messaggio e-mail a questo utente',
+'tooltip-t-emailuser' => 'Invia un messaggio email a questo utente',
 'tooltip-t-upload' => 'Carica file multimediali',
 'tooltip-t-specialpages' => 'Lista di tutte le pagine speciali',
 'tooltip-t-print' => 'Versione stampabile di questa pagina',
@@ -3704,7 +3704,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'confirmemail_pending' => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato
 creato di recente, si prega di attendere l'arrivo del codice per qualche minuto prima
 di tentare di richiederne uno nuovo.",
-'confirmemail_send' => 'Invia un codice di conferma via e-mail.',
+'confirmemail_send' => 'Invia un codice di conferma via email.',
 'confirmemail_sent' => 'Messaggio e-mail di conferma inviato.',
 'confirmemail_oncreate' => "Un codice di conferma è stato spedito all'indirizzo
 di posta elettronica indicato. Il codice non è necessario per accedere al sito,

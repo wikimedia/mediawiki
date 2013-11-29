@@ -863,9 +863,9 @@ $2',
 {{SITENAME}}では利用者のログインに Cookie を使用します。
 ご使用のブラウザーでは Cookie が無効になっています。
 Cookie を有効にしてから、新しい利用者名とパスワードでログインしてください。',
-'nocookieslogin' => '{{SITENAME}}ではログインにCookieを使用します。
-Cookieを無効にしているようです。
-Cookieを有効にしてから、もう一度試してください。',
+'nocookieslogin' => '{{SITENAME}}ではログインに Cookie を使用します。
+Cookie を無効にしているようです。
+Cookie を有効にしてから、もう一度試してください。',
 'nocookiesfornew' => '発信元を確認できなかったため、アカウントは作成されませんでした。
 Cookieを有効にしていることを確認して、このページを再読込してもう一度試してください。',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
