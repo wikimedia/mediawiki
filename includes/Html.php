@@ -449,8 +449,8 @@ class Html {
 			// numbers to be entered in 'type="number"' fields, allow
 			// the special case 'step="any"'.
 
-			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required' ) ) ||
-				 $key === 'step' && $value !== 'any' ) {
+			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required' ) )
+				|| $key === 'step' && $value !== 'any' ) {
 				continue;
 			}
 

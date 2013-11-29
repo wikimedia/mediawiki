@@ -33,8 +33,8 @@ if ( !isset( $wgVersion ) ) {
 $matches = array();
 $ext = 'php';
 $path = '/';
-foreach( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
-	if( !preg_match( '/\.(php5?)$/', $part, $matches ) ) {
+foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
+	if ( !preg_match( '/\.(php5?)$/', $part, $matches ) ) {
 		$path .= "$part/";
 	} else {
 		$ext = $matches[1] == 'php5' ? 'php5' : 'php';

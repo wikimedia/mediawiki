@@ -1197,7 +1197,7 @@ class LCStoreCDB implements LCStore {
 			if ( file_exists( $fileName ) ) {
 				try {
 					$this->readers[$code] = CdbReader::open( $fileName );
-				} catch( CdbException $e ) {
+				} catch ( CdbException $e ) {
 					wfDebug( __METHOD__ . ": unable to open cdb file for reading" );
 				}
 			}
