@@ -2357,6 +2357,9 @@ class WikiPage implements Page, IDBAccessObject {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
 
+			$userId = $user->getId();
+			$timestamp = $dbw->timestamp();
+
 			// Update restrictions table
 			foreach ( $limit as $action => $restrictions ) {
 				if ( $restrictions != '' ) {
@@ -2365,7 +2368,10 @@ class WikiPage implements Page, IDBAccessObject {
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
 							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-							'pr_expiry' => $dbw->encodeExpiry( $expiry[$action] )
+							'pr_expiry' => $dbw->encodeExpiry( $expiry[$action] ),
+							'pr_timestamp' => $timestamp,
+							'pr_performer' => $userId,
+							'pr_reason' => $reason,
 						),
 						__METHOD__
 					);
