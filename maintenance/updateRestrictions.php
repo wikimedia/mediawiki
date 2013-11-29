@@ -87,7 +87,11 @@ class UpdateRestrictions extends Maintenance {
 						'pr_type' => $action,
 						'pr_level' => $restrictions,
 						'pr_cascade' => 0,
-						'pr_expiry' => $encodedExpiry
+						'pr_expiry' => $encodedExpiry,
+						# No information available to populate these fields
+						'pr_timestamp' => null,
+						'pr_performer' => null,
+						'pr_reason' => null,
 					);
 				}
 			}

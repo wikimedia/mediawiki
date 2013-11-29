@@ -3781,22 +3781,7 @@ class Title {
 		$redirid = $this->getArticleID();
 
 		if ( $protected ) {
-			# Protect the redirect title as the title used to be...
-			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
-				array(
-					'pr_page' => $redirid,
-					'pr_type' => 'pr_type',
-					'pr_level' => 'pr_level',
-					'pr_cascade' => 'pr_cascade',
-					'pr_user' => 'pr_user',
-					'pr_expiry' => 'pr_expiry'
-				),
-				array( 'pr_page' => $pageid ),
-				__METHOD__,
-				array( 'IGNORE' )
-			);
-			# Update the protection log
-			$log = new LogPage( 'protect' );
+			# Build the comment
 			$comment = wfMessage(
 				'prot_1movedto2',
 				$this->getPrefixedText(),
@@ -3805,6 +3790,28 @@ class Title {
 			if ( $reason ) {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
+			# Truncate for whole multibyte characters
+			$comment = $wgContLang->truncate( $comment, 255 );
+
+			# Protect the redirect title as the title used to be...
+			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
+				array(
+					'pr_page' => $redirid,
+					'pr_type' => 'pr_type',
+					'pr_level' => 'pr_level',
+					'pr_cascade' => 'pr_cascade',
+					'pr_user' => 'pr_user',
+					'pr_expiry' => 'pr_expiry',
+					'pr_timestamp' => $dbw->timestamp(),
+					'pr_performer' => $wgUser->getId(),
+					'pr_reason' => $dbw->addQuotes( $comment ),
+				),
+				array( 'pr_page' => $pageid ),
+				__METHOD__,
+				array( 'IGNORE' )
+			);
+			# Update the protection log
+			$log = new LogPage( 'protect' );
 			// @todo FIXME: $params?
 			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
 		}

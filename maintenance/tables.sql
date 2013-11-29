@@ -1391,7 +1391,13 @@ CREATE TABLE /*_*/page_restrictions (
   -- Field for future support of per-user restriction.
   pr_user int NULL,
   -- Field for time-limited protection.
-  pr_expiry varbinary(14) NULL
+  pr_expiry varbinary(14) NULL,
+  -- For time of protection
+  pr_timestamp binary(14) NULL,
+  -- Key to user.user_id of the user who perform this protection.
+  pr_performer int unsigned NULL,
+  -- Reason for the protection
+  pr_reason tinyblob NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions (pr_page,pr_type);
