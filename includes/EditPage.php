@@ -2299,7 +2299,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
 		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
-			$wgOut->addHTML( EditPage::getEditToolbar() );
+			$wgOut->addHTML( EditPage::getEditToolbar( $this->mTitle ) );
 		}
 
 		if ( $this->isConflict ) {
@@ -3301,13 +3301,18 @@ HTML
 	 * It can be disabled in the user preferences.
 	 * The necessary JavaScript code can be found in skins/common/edit.js.
 	 *
+	 * @param $title Title object for the page being edited (optional)
 	 * @return string
 	 */
-	static function getEditToolbar() {
+	static function getEditToolbar( $title = false ) {
 		global $wgStylePath, $wgContLang, $wgLang, $wgOut;
-		global $wgUseTeX, $wgEnableUploads, $wgForeignFileRepos;
+		global $wgUseTeX, $wgEnableUploads, $wgForeignFileRepos, $wgShowSigButtonInContentNamespaces;
 
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
+		$showSignature = true;
+		if ( $title ) {
+			 $showSignature = $wgShowSigButtonInContentNamespaces || !( $title->isContentPage() );
+		}
 
 		/**
 		 * $toolarray is an array of arrays each of which includes the
@@ -3404,7 +3409,7 @@ HTML
 				'tip'    => wfMessage( 'nowiki_tip' )->text(),
 				'key'    => 'N'
 			),
-			array(
+			$showSignature ? array(
 				'image'  => $wgLang->getImageFile( 'button-sig' ),
 				'id'     => 'mw-editbutton-signature',
 				'open'   => '--~~~~',
@@ -3412,7 +3417,7 @@ HTML
 				'sample' => '',
 				'tip'    => wfMessage( 'sig_tip' )->text(),
 				'key'    => 'Y'
-			),
+			) : false,
 			array(
 				'image'  => $wgLang->getImageFile( 'button-hr' ),
 				'id'     => 'mw-editbutton-hr',
