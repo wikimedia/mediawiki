@@ -1218,9 +1218,10 @@
 			'</tbody></table>' );
 
 			$table.tablesorter();
-			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'),
+			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').data('headerIndex'),
 				2,
-				'Incorrect index of sort header' );
+				'Incorrect index of sort header'
+			);
 		}
 	);
 
