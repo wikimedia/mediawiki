@@ -640,11 +640,15 @@ class SpecialPage {
 
 	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
+	 *
+	 * @param string $robotPolicy the robot policy for the page. This is the literal string
+	 *   to output as the contents of the meta tag. Will be parsed according to the spec and
+	 *   output in standardized form.
 	 */
-	function setHeaders() {
+	function setHeaders( $robotPolicy = "noindex,nofollow" ) {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
-		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setRobotPolicy( $robotPolicy );
 		$out->setPageTitle( $this->getDescription() );
 	}
 
