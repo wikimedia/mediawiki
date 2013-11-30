@@ -640,11 +640,17 @@ class SpecialPage {
 
 	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
+	 * @param string|array $robotPolicy string such as "noindex,nofollow" or an array in this
+	 *   format:
+	 *   array(
+	 *	'index' => 'noindex' // or 'index'
+	 *	'follow' => 'nofollow' // or 'follow'
+	 *   );
 	 */
-	function setHeaders() {
+	function setHeaders( $robotPolicy = "noindex,nofollow" ) {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
-		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setRobotPolicy( $robotPolicy );
 		$out->setPageTitle( $this->getDescription() );
 	}
 
