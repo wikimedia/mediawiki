@@ -687,10 +687,6 @@ class OutputPage extends ContextSource {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
 			return false;
 		}
-		if ( $this->getUser()->getOption( 'nocache' ) ) {
-			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
-			return false;
-		}
 
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
 		$modifiedTimes = array(
