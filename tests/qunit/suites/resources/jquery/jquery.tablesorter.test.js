@@ -1160,11 +1160,11 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		assert.equal( $table.find( '#A2' ).prop( 'headerIndex' ),
+		assert.equal( $table.find( '#A2' ).data( 'headerIndex' ),
 			undefined,
 			'A2 should not be a sort header'
 		);
-		assert.equal( $table.find( '#C1' ).prop( 'headerIndex' ),
+		assert.equal( $table.find( '#C1' ).data( 'headerIndex' ),
 			2,
 			'C1 should be a sort header'
 		);
@@ -1181,11 +1181,11 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		assert.equal( $table.find( '#C2' ).prop( 'headerIndex' ),
+		assert.equal( $table.find( '#C2' ).data( 'headerIndex' ),
 			2,
 			'C2 should be a sort header'
 		);
-		assert.equal( $table.find( '#C1' ).prop( 'headerIndex' ),
+		assert.equal( $table.find( '#C1' ).data( 'headerIndex' ),
 			undefined,
 			'C1 should not be a sort header'
 		);
@@ -1218,9 +1218,10 @@
 			'</tbody></table>' );
 
 			$table.tablesorter();
-			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'),
+			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').data('headerIndex'),
 				2,
-				'Incorrect index of sort header' );
+				'Incorrect index of sort header'
+			);
 		}
 	);
 
