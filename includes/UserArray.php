@@ -47,8 +47,12 @@ abstract class UserArray implements Iterator {
 			return new ArrayIterator( array() );
 		}
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'user', '*', array( 'user_id' => $ids ),
-			__METHOD__ );
+		$res = $dbr->select(
+			'user',
+			User::selectFields(),
+			array( 'user_id' => array_unique( $ids ) ),
+			__METHOD__
+		);
 		return self::newFromResult( $res );
 	}
 
