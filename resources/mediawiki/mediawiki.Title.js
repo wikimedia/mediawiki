@@ -193,8 +193,8 @@
 				title.indexOf( '../' ) === 0 ||
 				title.indexOf( '/./' ) !== -1 ||
 				title.indexOf( '/../' ) !== -1 ||
-				title.substr( -2 ) === '/.' ||
-				title.substr( -3 ) === '/..'
+				title.substr( title.length - 2 ) === '/.' ||
+				title.substr( title.length - 3 ) === '/..'
 			)
 		) {
 			return false;
