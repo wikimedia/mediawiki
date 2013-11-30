@@ -264,6 +264,13 @@ td.mw-statistics-numbers {
 	text-align: right;
 }
 
+/**** Special:ProtectedTitles ****/
+table.mw-protectedtitles span.mw-usertoollinks,
+span.mw-protectedtitles-actions{
+	white-space: nowrap;
+	font-size: 90%;
+}
+
 /**** Special:UserRights ****/
 .mw-userrights-disabled {
 	color: #888;
