@@ -224,11 +224,6 @@ class AjaxResponse {
 			return false;
 		}
 
-		if ( $wgUser->getOption( 'nocache' ) ) {
-			wfDebug( "$fname: USER DISABLED CACHE\n", false );
-			return false;
-		}
-
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
 		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->getTouched(), $wgCacheEpoch ) );
 
