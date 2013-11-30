@@ -142,7 +142,7 @@ $messages = array(
 'december-date' => '12月 $1',
 
 # Categories related messages
-'pagecategories' => '$1个分类',
+'pagecategories' => '{{PLURAL:$1|分类}}',
 'category_header' => '“$1”分類裏個頁',
 'subcategories' => '兒分類',
 'category-media-header' => '"$1"分类里个媒体',

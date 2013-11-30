@@ -11,6 +11,7 @@
  * @author E.shijir
  * @author Kaganer
  * @author Meno25
+ * @author MongolWiki
  * @author Wisdom
  * @author לערי ריינהארט
  */
@@ -149,9 +150,9 @@ $messages = array(
 'dec' => '12-р сар',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Ангилал|Ангиллууд}}',
+'pagecategories' => '{{PLURAL:$1|Ангилал|Ангилал}}',
 'category_header' => '"$1" ангилал дахь хуудсууд',
-'subcategories' => 'Дэд ангиллууд',
+'subcategories' => 'Ангийн бүлэг',
 'category-media-header' => '"$1" ангилал дахь медиа файлууд',
 'category-empty' => "''Одоогийн байдлаар энэ ангилалд хуудас, медиа файл байхгүй байна.''",
 'hidden-categories' => '{{PLURAL:$1|Нуугдсан ангилал|Нуугдсан ангиллууд}}',
@@ -1797,10 +1798,10 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'lonelypages' => 'Өнчин хуудсууд',
 'lonelypagestext' => 'Энэ хуудсууд {{SITENAME}}-дахь бусад хуудсуудтай холбогдоогүй эсвэл заагаас хэтэрсэн байна.',
 'uncategorizedpages' => 'Ангилагдаагүй хуудсууд',
-'uncategorizedcategories' => 'Ангилагдаагүй ангиллууд',
+'uncategorizedcategories' => 'Ангилагдаагүй анги',
 'uncategorizedimages' => 'Ангилагдаагүй зургууд',
 'uncategorizedtemplates' => 'Ангилагдаагүй загварууд',
-'unusedcategories' => 'Ашиглагдаагүй ангиллууд',
+'unusedcategories' => 'Ашиглагдаагүй ангилал',
 'unusedimages' => 'Ашиглагдаагүй файлууд',
 'popularpages' => 'Эрэлттэй хуудсууд',
 'wantedcategories' => 'Хэрэгцээт ангиллууд',
@@ -1887,7 +1888,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'cachedspecial-refresh-now' => 'Саяханы хуудсыг харах',
 
 # Special:Categories
-'categories' => 'Ангиллууд',
+'categories' => 'Ангилал',
 'categoriespagetext' => 'Дараах {{PLURAL:$1|ангилалд|ангиллуудад}} хуудас эсвэл медиа файл агуулагдаж байна.
 [[Special:UnusedCategories|Хэрэглэгдэхгүй байгаа]] ангиллуудыг энд харуулсангүй.
 [[Special:WantedCategories|Хэрэгтэй ангиллууд]] гэдгийг харна уу.',

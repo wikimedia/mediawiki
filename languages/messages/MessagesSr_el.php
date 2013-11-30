@@ -1055,8 +1055,9 @@ Moraćete da unesete svoje promene u postojeći tekst.
 'storedversion' => 'Uskladištena izmena',
 'nonunicodebrowser' => "'''Upozorenje: vaš pregledač ne podržava unikod.'''
 Promenite ga pre nego što počnete s uređivanjem.",
-'editingold' => "'''Upozorenje: uređujete zastarelu izmenu ove stranice.
-Ako je sačuvate, sve novije izmene će biti izgubljene.'''",
+'editingold' => '<div style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; font-weight: bold; margin: 2em 0 1em; padding: .5em 1em; vertical-align: middle; clear: both;">Upozorenje: Vi uređujete stariju reviziju ove stranice.<br />
+Ako je sačuvate, sve promene učinjene od ove revizije biće izgubljene.
+</div>',
 'yourdiff' => 'Razlike',
 'copyrightwarning' => "Imajte na umu da se svi doprinosi na ovom vikiju smatraju kao objavljeni pod licencom $2 (više na $1).
 Ako ne želite da se vaši tekstovi menjaju i razmenjuju bez ograničenja, onda ih ne šaljite ovde.<br />

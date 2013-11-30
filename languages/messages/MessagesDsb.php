@@ -564,6 +564,7 @@ Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 'invalidtitle-unknownnamespace' => 'Njepłaśiwy titel z njeznatym mjenjowym rumom $1 a tekstom "$2"',
 'exception-nologin' => 'Njejsy se pśizjawił',
 'exception-nologin-text' => 'Pšosym [[Special:Userlogin|pśizjaw se]], aby pśistup na toś ten bok abo akciju měł.',
+'exception-nologin-text-manual' => 'Aby pśistup na toś ten bok abo akciju měł, musyš $1.',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
@@ -1249,6 +1250,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'preferences' => 'Nastajenja',
 'mypreferences' => 'Nastajenja',
 'prefs-edits' => 'Licba wobźěłanjow:',
+'prefsnologintext2' => 'Musyš $1, aby wužywarske nastajenja póstajił.',
 'changepassword' => 'Šćitne gronidło změniś',
 'prefs-skin' => 'Šat',
 'skin-preview' => 'Pśeglěd',
@@ -1536,11 +1538,13 @@ Toś ta informacija buźo zjawna.',
 'recentchanges' => 'Aktualne změny',
 'recentchanges-legend' => 'Opcije aktualnych změnow',
 'recentchanges-summary' => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
+'recentchanges-noresult' => 'Žedne změny za dany cas njewótpowědujo toś tym kriterijam.',
 'recentchanges-feed-description' => 'Slěduj z toś tym zapódaśim nejaktualnjejše změny we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'recentchanges-label-newpage' => 'Toś ta změna jo nowy bok napórała.',
 'recentchanges-label-minor' => 'To jo snadna změna',
 'recentchanges-label-bot' => 'Toś ta změna jo se pśez bośik wuwjadła.',
 'recentchanges-label-unpatrolled' => 'Toś ta změna hyšći njejo se pśekontrolěrowała',
+'recentchanges-label-plusminus' => 'Změnjona wjelikosc boka (licba bajtow)',
 'recentchanges-legend-newpage' => '(glej teke [[Special:NewPages|lisćinu nowych bokow]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Dołojce {{PLURAL:$1|jo '''1''' změna|stej slědnej '''$1''' změnje|su slědne '''$1''' změny}} w {{PLURAL:$2|slědnem dnju|slědnyma '''$2''' dnjoma|slědnych '''$2''' dnjach}}, staw wót $4, $5.",
@@ -3728,6 +3732,8 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 # Special:Redirect
 'redirect' => 'Pó datajowem mjenju, wužywarju abo wersijowem ID dalej pósrědniś',
 'redirect-legend' => 'Do dataje abo boka dalej pósrědniś',
+'redirect-summary' => 'Toś ten specialny bok pósrědnja se do dataje (datajowe mě jo pódane), boka (wersijowy ID jo pódany) abo wužywarskego boka (numeriski wužywarski ID jo pódany) dalej. Wužyśe:
+[[{{#Special:Redirect}}/file/Pśikład.jpg]], [[{{#Special:Redirect}}/revision/328429]] abo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Pytaś',
 'redirect-lookup' => 'Pytaś:',
 'redirect-value' => 'Gódnota:',
@@ -3749,6 +3755,7 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 
 # Special:SpecialPages
 'specialpages' => 'Specialne boki',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Normalne specialne boki.
 * <span class="mw-specialpagerestricted">Specialne boki z wobgranicowanym pśistupom.</span>',
 'specialpages-group-maintenance' => 'Wótwardowańske lisćiny',
@@ -3955,9 +3962,12 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'limitreport-walltime' => 'Wužywanje napšawdnego casa',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunda|sekunźe|sekundy|sekundow}}',
 'limitreport-ppvisitednodes' => 'Licba woglědanych sukow preprocesora',
+'limitreport-ppgeneratednodes' => 'Napórana licba sukow  preprocesora',
+'limitreport-postexpandincludesize' => 'Wjelikosć zapśěgowanja pó ekspanděrowanju',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bajt|bajtaj|bajty|bajtow}}',
 'limitreport-templateargumentsize' => 'Wjelikosć pśedłogowego argumenta',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajtaj|bajty|bajtow}}',
+'limitreport-expansiondepth' => 'Nejwuša ekspansijowa dłymokosć',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Pśedłogi ekspanděrowaś',

@@ -3168,6 +3168,7 @@ Brak katalogu dla plików tymczasowych.',
 Pozwala na wpisanie powodu w opisie zmian.',
 'tooltip-preferences-save' => 'Zapisz preferencje',
 'tooltip-summary' => 'Wpisz krótki opis',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',

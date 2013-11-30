@@ -213,7 +213,7 @@ $messages = array(
 'articlepage' => 'Йоазув тӀа бӀаргтасса',
 'talk' => 'Дувцам',
 'views' => 'БӀаргтассамаш',
-'toolbox' => 'ГӀорсаш',
+'toolbox' => 'ГӀирсаш',
 'userpage' => 'Дакъалаьцачунна оагӀуве бӀаргтасса',
 'projectpage' => 'Хьахьоадайтама оагӀуве бӀаргтасса',
 'imagepage' => 'Паьла оагӀув тӀа бӀаргтасса',
@@ -462,7 +462,7 @@ $messages = array(
 'history-fieldset-title' => 'Искара бӀаргтасса',
 'history-show-deleted' => 'ДӀадаьккхараш мара',
 'histfirst' => 'къаьнараш',
-'histlast' => 'ха яннараш',
+'histlast' => 'кердараш',
 'historyempty' => '(даьсса)',
 
 # Revision feed
@@ -861,8 +861,8 @@ $messages = array(
 'contributions' => '{{GENDER:$1|Дакъалаьцархочунна}} къахьегам',
 'contributions-title' => '$1 дакъалаьцархочунна къахьегам',
 'mycontris' => 'Са къахьегам',
-'contribsub2' => '$1 ($2) баь болх',
-'uctop' => '(тIехьара)',
+'contribsub2' => '{{GENDER:$3|$1}} ($2) баь болх',
+'uctop' => '(xIанзара)',
 'month' => 'Цхьа бутт хьалхагIа (кхы хьалхагIа)',
 'year' => 'Цхьа шу хьалхагIа (кхы хьалхагIа):',
 
@@ -1024,7 +1024,7 @@ $messages = array(
 'file-info-size' => '$1 × $2 фихсам, паьла дустам: $3, MIME-тайп: $4',
 'file-nohires' => 'Укхал доккхагIа доржам дац',
 'svg-long-desc' => 'SVG-паьл, $1 × $2 фихелашца, паьла дустам: $3',
-'show-big-image' => 'Хьадоккхадаь сурт',
+'show-big-image' => 'ХьалхагIара сурт',
 
 # Special:NewFiles
 'noimages' => 'Суртaш бIаргагуш дац.',

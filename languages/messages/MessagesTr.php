@@ -3988,6 +3988,7 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'version-poweredby-credits' => "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' programı kullanılarak oluşturulmuştur, telif © 2001-$1 $2.",
 'version-poweredby-others' => 'diğerleri',
 'version-poweredby-translators' => 'translatewiki.net çevirmenleri',
+'version-credits-summary' => "Aşağıdaki kişileri [[Special:Version|MediaWiki]]'ye katkılarından dolayı takdir ediyoruz.",
 'version-license-info' => "MediaWiki özgür bir yazılımdır; MediaWiki'yi, Özgür Yazılım Vakfı tarafından yayımlanmış olan GNU Genel Kamu Lisansının 2. veya (seçeceğiniz) daha sonraki bir sürümünün koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
 
 MediaWiki yazılımı faydalı olacağı ümidiyle dağıtılmaktadır; ancak kastedilen SATILABİLİRLİK veya BELİRLİ BİR AMACA UYGUNLUK garantisi hariç HİÇBİR GARANTİSİ YOKTUR. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakınız.
@@ -4115,9 +4116,13 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 # New logging system
 'logentry-delete-delete' => '$1 $3 sayfasını {{GENDER:$2|sildi}}',
 'logentry-delete-restore' => '$1 $3 sayfasını {{GENDER:$2|geri getirdi}}',
+'logentry-delete-event' => '$1, $3 sayfasında {{PLURAL:$5|bir günlük girdisinin |$5 günlük girdisinin}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4',
 'logentry-delete-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4',
+'logentry-delete-event-legacy' => '$1, $3 sayfasında günlük girdilerinin görünürlüğünü  {{GENDER:$2|değiştirdi}}',
 'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü {{GENDER:$2|değiştirdi}}',
+'logentry-suppress-event' => '$1, $3 sayfasında {{PLURAL:$5|bir günlük girdisinin |$5 günlük girdisinin}} görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}: $4',
 'logentry-suppress-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}: $4',
+'logentry-suppress-event-legacy' => '$1, $3 sayfasında günlük girdilerinin görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}',
 'logentry-suppress-revision-legacy' => '$1, $3 sayfasındaki sürümlerin görünürlüğünü {{GENDER:$2|değiştirdi}}',
 'revdelete-content-hid' => 'Gizli içerik',
 'revdelete-summary-hid' => 'değişiklik özeti gizlenmiş',
@@ -4158,6 +4163,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 # API errors
 'api-error-badaccess-groups' => 'Bu wiki için dosya yüklemenize izin verilmiyor.',
 'api-error-badtoken' => 'İç hata: Bozuk anahtar.',
+'api-error-copyuploaddisabled' => 'URL ile yükleme bu sunucuda devre dışı bırakılmıştır.',
 'api-error-duplicate-popup-title' => 'Çift {{PLURAL:$1|dosya|dosya}}',
 'api-error-empty-file' => 'Gönderdiğiniz dosya boş.',
 'api-error-emptypage' => 'Yeni, boş bir sayfa oluşturmaya izin verilmez.',

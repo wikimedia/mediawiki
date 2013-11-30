@@ -372,8 +372,8 @@ $1',
 'youhavenewmessages' => 'Ika igwa nin $1 ($2).',
 'youhavenewmessagesfromusers' => 'Ika igwa nin $1 gikan sa {{PLURAL:$3|ibang paragamit|$3 mga paragamit}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ika igwa nin $1 gikan sa kadakol na mga paragamit ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|sarong bagong mensahe|bagong mga mensahe}}',
-'newmessagesdifflinkplural' => 'huring {{PLURAL:$1|kaliwatan|mga kaliwatan}}',
+'newmessageslinkplural' => '{{PLURAL:$1|sarong baguhong mensahe|999=baguhong mga mensahe}}',
+'newmessagesdifflinkplural' => 'kahurihan na {{PLURAL:$1|kaliwatan|999=mga kaliwatan}}',
 'youhavenewmessagesmulti' => 'Igwa ka nin mga bàgong mensahe sa $1',
 'editsection' => 'liwatón',
 'editold' => 'Liwatón',
@@ -506,7 +506,8 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 'invalidtitle-knownnamespace' => 'Imbalidong titulo na igwang espasyadong ngaran na "$2" asin teksto na "$3"',
 'invalidtitle-unknownnamespace' => 'Imbalidong titulo na igwang nin bakong bistado na bilang kan espasyadong ngaran na $1 asin teksto na "$2"',
 'exception-nologin' => 'Dae ka nakalaog',
-'exception-nologin-text' => 'Ining pahina o aksyon minakaipo saimo na maglaog kaining wiki.',
+'exception-nologin-text' => 'Tabi man [[Special:Userlogin|maglaog]]na tanganing makalangkay sa pahinang ini o aksyon.',
+'exception-nologin-text-manual' => 'Tabi man $1 na tanganing makalangkay sa pahinang ini o aksyon.',
 
 # Virus scanner
 'virus-badscanner' => "Raot na kasalansanan: Bakong bistadong virus scanner: ''$1''",
@@ -1228,6 +1229,7 @@ Prubaran na panigmitan an saimong kahaputan nin ''all:'' sa paghanap kan gabos n
 'preferences' => 'Mga kabòtan',
 'mypreferences' => 'Mga Kamuyahan ko',
 'prefs-edits' => 'Bilang kan mga hirá:',
+'prefsnologintext2' => 'Tabi man $1 tanganing maikaag an mga kamuyahan nin paragamit.',
 'changepassword' => 'Ribayan an sekretong panlaog',
 'prefs-skin' => "''Skin''",
 'skin-preview' => 'Tânawon',
@@ -1527,6 +1529,8 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'recentchanges-label-minor' => 'Ini saro sanang menor na pagliwat',
 'recentchanges-label-bot' => 'Ining pagliwat pinaghimo bilang sarong bot',
 'recentchanges-label-unpatrolled' => 'Ining pagliwat dae pa tabi pinagpatrolyahan',
+'recentchanges-label-plusminus' => 'An kadakulaan nin pahina pinagliwat sa paagi kaining numero nin mga bayta',
+'recentchanges-legend-newpage' => '(hilngon man [[Special:NewPages|listahan kan mga baguhong pahina]])',
 'rcnote' => "Yaon sa ibaba iyo {{PLURAL:$1|an '''1''' pagbabago|an mga huring '''$1''' mga pagbabago}} kan nakaaging huring {{PLURAL:$2|aldaw|'''$2''' mga aldaw}}, poon pa kan $5, $4.",
 'rcnotefrom' => "Sa ibaba iyo an mga kaliwatan poon kan '''$2''' (sagkod sa '''$1''' na ipinapahiling).",
 'rclistfrom' => 'Ipahiling an baguhon na mga kaliwatan magpoon kan $1',
@@ -2245,20 +2249,16 @@ Kontaka an paraliwat:
 e-surat: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Dae na magkakaigwa pa nin ibang pagpapaisi sa kaso na may kadagdagan pang mga pagbabago laen lang kun ika magbisita sa pahinang ini.
-Ika mapuwede man na makapagbago kan bandera nin pagpapaisi para sa gabos mong pinagbabantayan na mga pahina na yaon sa saimong bantay-listahan.
+Dae na magkakaigwa pa nin ibang pagpapaisi sa kaso na may kadagdagan pang aktibidad laen lang kun ika magbisita sa pahinang ini mantang ika nakalaog. Ika mapuwede man na makapagbago kan bandera nin pagpapaisi para sa gabos mong pinagbabantayan na mga pahina na yaon sa saimong bantay-listahan.
 
 An saimong mainamigong {{SITENAME}} sistema nin pagpapaisi
 
 --
-Sa pagbabago kan saimong e-surat na pagpapaising panuytoy, magbisita sa
-{{canonicalurl:{{#special:Mga Kagustuhan}}}}
+Sa pagbabago kan saimong e-surat na pagpapaising panuytoy, magbisita sa {{canonicalurl:{{#special:Mga Kagustuhan}}}}
 
-Sa pagbabago kan saimong bantay-listahang panuytoy, magbisita sa
-{{canonicalurl:{{#special:EditWatchlist}}}}
+Sa pagbabago kan saimong bantay-listahang panuytoy, magbisita sa {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Sa pagpura ka pahina gikan sa saimong bantay-listahan, magbisita sa
-$UNWATCHURL
+Sa pagpura ka pahina gikan sa saimong bantay-listahan, magbisita sa $UNWATCHURL
 
 Balik-simbag asin kadagdagang asistensiya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
@@ -3062,7 +3062,7 @@ Sa pagpapa-andar kaini, an saimong sistema mapupuwedeng makompromiso.",
 'svg-long-desc' => 'SVG na sagunson, nangangaranan nin $1 x $2 na mga piksel, sukol nin sagunson: $3',
 'svg-long-desc-animated' => 'Animatadong SVG na sagunson, nangangaranang $1 x $2 piksel, kadakulaan nin sagunson: $3',
 'svg-long-error' => 'Imbalidong SVG na sagunson: $1',
-'show-big-image' => 'Todong resolusyon',
+'show-big-image' => 'Orihinal na sagunson',
 'show-big-image-preview' => 'Sukol kaining patanaw: $1.',
 'show-big-image-other' => 'Ibang {{PLURAL:$2|resolusyon|mga resoluyon}}: $1.',
 'show-big-image-size' => '$1 × $2 piksel',
