@@ -39,6 +39,8 @@ production.
   hide their (unrelated) log entries.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
+* Special:ProtectedTitles shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
