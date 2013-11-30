@@ -1177,7 +1177,7 @@
 			'</tbody></table>' );
 
 			$table.tablesorter();
-			assert.equal( 2, $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'), 'Incorrect index of sort header' );
+			assert.equal( 2, $table.find( 'tr:eq(1) th:eq(1)').data('headerIndex'), 'Incorrect index of sort header' );
 		}
 	);
 

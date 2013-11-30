@@ -193,7 +193,8 @@
 	function buildCache( table ) {
 		var totalRows = ( table.tBodies[0] && table.tBodies[0].rows.length ) || 0,
 			totalCells = ( table.tBodies[0].rows[0] && table.tBodies[0].rows[0].cells.length ) || 0,
-			parsers = table.config.parsers,
+			config = $( table ).data( 'tablesorter' ).config,
+			parsers = config.parsers,
 			cache = {
 				row: [],
 				normalized: []
@@ -207,7 +208,7 @@
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
-			if ( $row.hasClass( table.config.cssChildRow ) ) {
+			if ( $row.hasClass( config.cssChildRow ) ) {
 				cache.row[cache.row.length - 1] = cache.row[cache.row.length - 1].add( $row );
 				// go to the next for loop
 				continue;
@@ -287,10 +288,12 @@
 	}
 
 	function buildHeaders( table, msg ) {
-		var maxSeen = 0,
+		var config = $( table ).data( 'tablesorter' ).config,
+			maxSeen = 0,
 			colspanOffset = 0,
 			columns,
 			i,
+			$cell,
 			$tableHeaders = $( [] ),
 			$tableRows = $( 'thead:eq(0) > tr', table );
 		if ( $tableRows.length <= 1 ) {
@@ -343,30 +346,31 @@
 
 		// as each header can span over multiple columns (using colspan=N),
 		// we have to bidirectionally map headers to their columns and columns to their headers
-		table.headerToColumns = [];
-		table.columnToHeader = [];
-
 		$tableHeaders.each( function ( headerIndex ) {
+			$cell = $(this);
 			columns = [];
+
 			for ( i = 0; i < this.colSpan; i++ ) {
-				table.columnToHeader[ colspanOffset + i ] = headerIndex;
+				config.columnToHeader[ colspanOffset + i ] = headerIndex;
 				columns.push( colspanOffset + i );
 			}
 
-			table.headerToColumns[ headerIndex ] = columns;
+			config.headerToColumns[ headerIndex ] = columns;
 			colspanOffset += this.colSpan;
 
-			this.headerIndex = headerIndex;
-			this.order = 0;
-			this.count = 0;
+			$cell.data( {
+				headerIndex: headerIndex,
+				order: 0,
+				count: 0
+			});
 
-			if ( $( this ).hasClass( table.config.unsortableClass ) ) {
-				this.sortDisabled = true;
+			if ( $cell.hasClass( config.unsortableClass ) ) {
+				$cell.data( 'sortDisabled', true );
 			}
 
-			if ( !this.sortDisabled ) {
-				$( this )
-					.addClass( table.config.cssHeader )
+			if ( !$cell.data( 'sortDisabled' ) ) {
+				$cell
+					.addClass( config.cssHeader )
 					.prop( 'tabIndex', 0 )
 					.attr( {
 						role: 'columnheader button',
@@ -375,7 +379,7 @@
 			}
 
 			// add cell to headerList
-			table.config.headerList[headerIndex] = this;
+			config.headerList[headerIndex] = this;
 		} );
 
 		return $tableHeaders;
@@ -395,18 +399,23 @@
 		$.each( headerToColumns, function( headerIndex, columns ) {
 
 			$.each( columns, function( i, columnIndex ) {
-				var header = $headers[headerIndex];
+				var header = $headers[headerIndex],
+					$header = $( header );
 
 				if ( !isValueInArray( columnIndex, sortList ) ) {
 					// Column shall not be sorted: Reset header count and order.
-					header.order = 0;
-					header.count = 0;
+					$header.data( {
+						order: 0,
+						count: 0
+					} );
 				} else {
 					// Column shall be sorted: Apply designated count and order.
 					$.each( sortList, function( j, sortColumn ) {
 						if ( sortColumn[0] === i ) {
-							header.order = sortColumn[1];
-							header.count = sortColumn[1] + 1;
+							$header.data( {
+								order: sortColumn[1],
+								count: sortColumn[1] + 1
+							} );
 							return false;
 						}
 					} );
@@ -557,8 +566,11 @@
 			var col = 0;
 			var l = this.cells.length;
 			for ( var i = 0; i < l; i++ ) {
-				this.cells[i].realCellIndex = col;
-				this.cells[i].realRowIndex = this.rowIndex;
+				$( this.cells[i] ).data( 'tablesorter', {
+					realCellIndex: col,
+					realRowIndex: this.rowIndex,
+					needResort: false
+				} );
 				col += this.cells[i].colSpan;
 			}
 		} );
@@ -568,46 +580,56 @@
 		// Re-sort whenever a rowspanned cell's realCellIndex is changed, because it
 		// might change the sort order.
 		function resortCells() {
+			var cellAData,
+			    cellBData,
+			    ret;
 			rowspanCells = rowspanCells.sort( function ( a, b ) {
-				var ret = a.realCellIndex - b.realCellIndex;
+				cellAData = $.data( a, 'tablesorter' );
+				cellBData = $.data( b, 'tablesorter' );
+				ret = cellAData.realCellIndex - cellBData.realCellIndex;
 				if ( !ret ) {
-					ret = a.realRowIndex - b.realRowIndex;
+					ret = cellAData.realRowIndex - cellBData.realRowIndex;
 				}
 				return ret;
 			} );
 			$.each( rowspanCells, function () {
-				this.needResort = false;
+				$.data( this, 'tablesorter' ).needResort = false;
 			} );
 		}
 		resortCells();
 
 		var spanningRealCellIndex, rowSpan, colSpan;
 		function filterfunc() {
-			return this.realCellIndex >= spanningRealCellIndex;
+			return $.data( this, 'tablesorter' ).realCellIndex >= spanningRealCellIndex;
 		}
 
 		function fixTdCellIndex() {
-			this.realCellIndex += colSpan;
+			$.data( this, 'tablesorter' ).realCellIndex += colSpan;
 			if ( this.rowSpan > 1 ) {
-				this.needResort = true;
+				$.data( this, 'tablesorter' ).needResort = true;
 			}
 		}
 
 		while ( rowspanCells.length ) {
-			if ( rowspanCells[0].needResort ) {
+			if ( $.data( rowspanCells[0], 'tablesorter' ).needResort ) {
 				resortCells();
 			}
 
-			var cell = rowspanCells.shift();
+			var cell = rowspanCells.shift(),
+			    cellData = $.data( cell, 'tablesorter' );
 			rowSpan = cell.rowSpan;
 			colSpan = cell.colSpan;
-			spanningRealCellIndex = cell.realCellIndex;
+			spanningRealCellIndex = cellData.realCellIndex;
 			cell.rowSpan = 1;
 			var $nextRows = $( cell ).parent().nextAll();
 			for ( var i = 0; i < rowSpan - 1; i++ ) {
 				var $tds = $( $nextRows[i].cells ).filter( filterfunc );
 				var $clone = $( cell ).clone();
-				$clone[0].realCellIndex = spanningRealCellIndex;
+				$clone.data( 'tablesorter', {
+					realCellIndex: spanningRealCellIndex,
+					realRowIndex: cellData.realRowIndex + i,
+					needResort: true
+				} );
 				if ( $tds.length ) {
 					$tds.each( fixTdCellIndex );
 					$tds.first().before( $clone );
@@ -702,6 +724,8 @@
 				cancelSelection: true,
 				sortList: [],
 				headerList: [],
+				headerToColumns: [],
+				columnToHeader: [],
 				selectorHeaders: 'thead tr:eq(0) th',
 				debug: false
 			},
@@ -736,12 +760,8 @@
 					}
 					$table.addClass( 'jquery-tablesorter' );
 
-					// FIXME config should probably not be stored in the plain table node
-					// New config object.
-					table.config = {};
-
 					// Merge and extend.
-					config = $.extend( table.config, $.tablesorter.defaultOptions, settings );
+					config = $.extend( {}, $.tablesorter.defaultOptions, settings );
 
 					// Save the settings where they read
 					$.data( table, 'tablesorter', { config: config } );
@@ -786,12 +806,12 @@
 						explodeRowspans( $table );
 
 						// try to auto detect column type, and store in tables config
-						table.config.parsers = buildParserCache( table, $headers );
+						config.parsers = buildParserCache( table, $headers );
 					}
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.not( '.' + table.config.unsortableClass ).on( 'keypress click', function ( e ) {
+					$headers.not( '.' + config.unsortableClass ).on( 'keypress click', function ( e ) {
 						if ( e.type === 'click' && e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header.
 							// Do nothing and let the default link click action continue.
@@ -817,16 +837,20 @@
 
 						var totalRows = ( $table[0].tBodies[0] && $table[0].tBodies[0].rows.length ) || 0;
 						if ( !table.sortDisabled && totalRows > 0 ) {
-							// Get current column sort order
-							this.order = this.count % 2;
-							this.count++;
+							var cell = this,
+								$cell = $( cell );
 
-							var cell = this;
+							// Get current column sort order
+							$cell.data( {
+								order: $cell.data( 'count' ) % 2,
+								count: $cell.data( 'count' ) + 1
+							} );
+
 							// Get current column index
-							var columns = table.headerToColumns[ this.headerIndex ];
+							var columns = config.headerToColumns[ $cell.data('headerIndex') ];
 							var newSortList = $.map( columns, function (c) {
 								// jQuery "helpfully" flattens the arrays...
-								return [[c, cell.order]];
+								return [[c, $cell.data( 'order' )]];
 							});
 							// Index of first column belonging to this header
 							var i = columns[0];
@@ -846,9 +870,8 @@
 										var s = config.sortList[j],
 											o = config.headerList[s[0]];
 										if ( isValueInArray( s[0], newSortList ) ) {
-											o.count = s[1];
-											o.count++;
-											s[1] = o.count % 2;
+											$(o).data( 'count', s[1] + 1 );
+											s[1] = $( o ).data( 'count' ) % 2;
 										}
 									}
 								} else {
@@ -858,10 +881,10 @@
 							}
 
 							// Reset order/counts of cells not affected by sorting
-							setHeadersOrder( $headers, config.sortList, table.headerToColumns );
+							setHeadersOrder( $headers, config.sortList, config.headerToColumns );
 
 							// Set CSS for headers
-							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, table.columnToHeader );
+							setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg, config.columnToHeader );
 							appendToTable(
 								$table[0], multisort( $table[0], config.sortList, cache )
 							);
@@ -902,13 +925,13 @@
 
 						// Set each column's sort count to be able to determine the correct sort
 						// order when clicking on a header cell the next time
-						setHeadersOrder( $headers, sortList, table.headerToColumns );
+						setHeadersOrder( $headers, sortList, config.headerToColumns );
 
 						// re-build the cache for the tbody cells
 						cache = buildCache( table );
 
 						// set css for headers
-						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg, table.columnToHeader );
+						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg, config.columnToHeader );
 
 						// sort the table and append it to the dom
 						appendToTable( table, multisort( table, sortList, cache ) );
