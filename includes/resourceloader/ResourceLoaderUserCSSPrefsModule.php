@@ -89,6 +89,8 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
 			}
 		}
+		// !important is to overide the inline styles
+		$rules[] = "#p-logo a { background-image:url($wgLogo) !important; }";
 		$style = implode( "\n", $rules );
 		if ( $this->getFlip( $context ) ) {
 			$style = CSSJanus::transform( $style, true, false );
