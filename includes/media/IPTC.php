@@ -315,9 +315,7 @@ class IPTC {
 					foreach ( $codes as $ic ) {
 						$fields = explode( ':', $ic, 3 );
 
-						if ( count( $fields ) < 2 ||
-							$fields[0] !== 'IPTC' )
-						{
+						if ( count( $fields ) < 2 || $fields[0] !== 'IPTC' ) {
 							wfDebugLog( 'IPTC', 'IPTC: '
 								. 'Invalid 2:12 - ' . $ic );
 							break;

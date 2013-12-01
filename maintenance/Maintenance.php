@@ -1273,9 +1273,9 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$db = $this->getDB( DB_MASTER );
 		$key = $this->getUpdateKey();
 
-		if ( !$this->hasOption( 'force' ) &&
-			$db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ ) )
-		{
+		if ( !$this->hasOption( 'force' )
+			&& $db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ )
+		) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
 			return true;
 		}
@@ -1284,9 +1284,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		if (
-			$db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) )
-		{
+		if ( $db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) ) {
 			return true;
 		} else {
 			$this->output( $this->updatelogFailedMessage() . "\n" );

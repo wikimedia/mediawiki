@@ -95,8 +95,8 @@ class MediaWiki {
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if ( count( $wgContLang->getVariants() ) > 1
-				&& !is_null( $ret ) && $ret->getArticleID() == 0 )
-			{
+				&& !is_null( $ret ) && $ret->getArticleID() == 0
+			) {
 				$wgContLang->findVariantLink( $title, $ret );
 			}
 		}
@@ -197,9 +197,9 @@ class MediaWiki {
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
-			$title->isSpecial( 'Badtitle' ) )
-		{
+		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' )
+			|| $title->isSpecial( 'Badtitle' )
+		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			wfProfileOut( __METHOD__ );
 			throw new BadTitleError();
@@ -242,8 +242,8 @@ class MediaWiki {
 			}
 			// Check for a redirect loop
 			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url )
-				&& $title->isLocal() )
-			{
+				&& $title->isLocal()
+			) {
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
@@ -253,11 +253,11 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null ||
-				$title->getPrefixedDBkey() != $request->getVal( 'title' ) )
+			&& ( $request->getVal( 'title' ) === null
+				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
-		{
+			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+		) {
 			if ( $title->isSpecialPage() ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 				if ( $name ) {
@@ -358,12 +358,12 @@ class MediaWiki {
 		$action = $request->getVal( 'action', 'view' );
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
-			&& !$request->getVal( 'oldid' ) && // ... and are not old revisions
-			!$request->getVal( 'diff' ) && // ... and not when showing diff
-			$request->getVal( 'redirect' ) != 'no' && // ... unless explicitly told not to
+			&& !$request->getVal( 'oldid' ) // ... and are not old revisions
+			&& !$request->getVal( 'diff' ) // ... and not when showing diff
+			&& $request->getVal( 'redirect' ) != 'no' // ... unless explicitly told not to
 			// ... and the article is not a non-redirect image page with associated file
-			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
-		{
+			&& !( is_object( $file ) && $file->exists() && !$file->getRedirected() )
+		) {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
@@ -420,8 +420,8 @@ class MediaWiki {
 		$user = $this->context->getUser();
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction',
-			array( $output, $page, $title, $user, $request, $this ) ) )
-		{
+				array( $output, $page, $title, $user, $request, $this ) )
+		) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}

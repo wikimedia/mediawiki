@@ -63,8 +63,8 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
-	{
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = ''
+	) {
 		if ( $timestamp === 0 ) {
 			$timestamp = wfTimestampNow();
 		}

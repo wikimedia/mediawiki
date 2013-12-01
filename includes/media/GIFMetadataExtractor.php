@@ -163,8 +163,8 @@ class GIFMetadataExtractor {
 
 					$commentCount = count( $comment );
 					if ( $commentCount === 0
-						|| $comment[$commentCount - 1] !== $data )
-					{
+						|| $comment[$commentCount - 1] !== $data
+					) {
 						// Some applications repeat the same comment on each
 						// frame of an animated GIF image, so if this comment
 						// is identical to the last, only extract once.
@@ -217,8 +217,8 @@ class GIFMetadataExtractor {
 						$xmp = self::readBlock( $fh, true );
 
 						if ( substr( $xmp, -257, 3 ) !== "\x01\xFF\xFE"
-							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00" )
-						{
+							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00"
+						) {
 							// this is just a sanity check.
 							throw new Exception( "XMP does not have magic trailer!" );
 						}

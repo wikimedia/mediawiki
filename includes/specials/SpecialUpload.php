@@ -328,10 +328,10 @@ class SpecialUpload extends SpecialPage {
 		# mDestWarningAck is set when some javascript has shown the warning
 		# to the user. mForReUpload is set when the user clicks the "upload a
 		# new version" link.
-		if ( !$warnings || ( count( $warnings ) == 1 &&
-			isset( $warnings['exists'] ) &&
-			( $this->mDestWarningAck || $this->mForReUpload ) ) )
-		{
+		if ( !$warnings || ( count( $warnings ) == 1
+			&& isset( $warnings['exists'] )
+			&& ( $this->mDestWarningAck || $this->mForReUpload ) )
+		) {
 			return false;
 		}
 

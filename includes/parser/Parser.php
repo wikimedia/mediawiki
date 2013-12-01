@@ -420,8 +420,8 @@ class Parser {
 		 * d) it is an interface message (which is in the user language)
 		 */
 		if ( !( $options->getDisableContentConversion()
-				|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) ) )
-		{
+			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
+		) {
 			if ( !$this->mOptions->getInterfaceMessage() ) {
 				# The position of the convert() call should not be changed. it
 				# assumes that the links are all replaced and the only thing left
@@ -438,10 +438,10 @@ class Parser {
 		 * automatic link conversion.
 		 */
 		if ( !( $options->getDisableTitleConversion()
-				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
-				|| $this->mOutput->getDisplayTitle() !== false ) )
-		{
+			|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
+			|| isset( $this->mDoubleUnderscores['notitleconvert'] )
+			|| $this->mOutput->getDisplayTitle() !== false )
+		) {
 			$convruletitle = $this->getConverterLanguage()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
@@ -1696,9 +1696,9 @@ class Parser {
 	public static function getExternalLinkRel( $url = false, $title = null ) {
 		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
 		$ns = $title ? $title->getNamespace() : false;
-		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions ) &&
-				!wfMatchesDomainList( $url, $wgNoFollowDomainExceptions ) )
-		{
+		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions )
+			&& !wfMatchesDomainList( $url, $wgNoFollowDomainExceptions )
+		) {
 			return 'nofollow';
 		}
 		return null;
@@ -1928,11 +1928,10 @@ class Parser {
 				# Still some problems for cases where the ] is meant to be outside punctuation,
 				# and no image is in sight. See bug 2095.
 				#
-				if ( $text !== '' &&
-					substr( $m[3], 0, 1 ) === ']' &&
-					strpos( $text, '[' ) !== false
-				)
-				{
+				if ( $text !== ''
+					&& substr( $m[3], 0, 1 ) === ']'
+					&& strpos( $text, '[' ) !== false
+				) {
 					$text .= ']'; # so that replaceExternalLinks($text) works later
 					$m[3] = substr( $m[3], 1 );
 				}
@@ -3387,8 +3386,8 @@ class Parser {
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
 					&& $this->mOptions->getAllowSpecialInclusion()
-					&& $this->ot['html'] )
-				{
+					&& $this->ot['html']
+				) {
 					// Pass the template arguments as URL parameters.
 					// "uselang" will have no effect since the Language object
 					// is forced to the one defined in ParserOptions.
@@ -3506,8 +3505,8 @@ class Parser {
 			$text = wfEscapeWikiText( $text );
 		} elseif ( is_string( $text )
 			&& !$piece['lineStart']
-			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text ) )
-		{
+			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text )
+		) {
 			# Bug 529: if the template begins with a table or block-level
 			# element, it should be treated as beginning a new line.
 			# This behavior is somewhat controversial.

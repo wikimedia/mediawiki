@@ -630,11 +630,11 @@ class EmailNotification {
 				// Send updates to watchers other than the current editor
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) &&
-						( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) ) &&
-						$watchingUser->isEmailConfirmed() &&
-						$watchingUser->getID() != $userTalkId )
-					{
+					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
+						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
+						&& $watchingUser->isEmailConfirmed()
+						&& $watchingUser->getID() != $userTalkId
+					) {
 						$this->compose( $watchingUser );
 					}
 				}
@@ -672,9 +672,9 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
 				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-			} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
-				( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
-			{
+			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
+				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
+			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
 				} elseif ( !wfRunHooks( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
@@ -782,8 +782,8 @@ class EmailNotification {
 		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
 		if ( $wgEnotifRevealEditorAddress
 			&& ( $this->editor->getEmail() != '' )
-			&& $this->editor->getOption( 'enotifrevealaddr' ) )
-		{
+			&& $this->editor->getOption( 'enotifrevealaddr' )
+		) {
 			$editorAddress = new MailAddress( $this->editor );
 			if ( $wgEnotifFromEditor ) {
 				$this->from = $editorAddress;

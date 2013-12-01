@@ -1548,9 +1548,9 @@ class Title {
 				$url = false;
 				$matches = array();
 
-				if ( !empty( $wgActionPaths ) &&
-					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) )
-				{
+				if ( !empty( $wgActionPaths )
+					&& preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches )
+				) {
 					$action = urldecode( $matches[2] );
 					if ( isset( $wgActionPaths[$action] ) ) {
 						$query = $matches[1];
@@ -1564,12 +1564,12 @@ class Title {
 					}
 				}
 
-				if ( $url === false &&
-					$wgVariantArticlePath &&
-					$wgContLang->getCode() === $this->getPageLanguage()->getCode() &&
-					$this->getPageLanguage()->hasVariants() &&
-					preg_match( '/^variant=([^&]*)$/', $query, $matches ) )
-				{
+				if ( $url === false
+					&& $wgVariantArticlePath
+					&& $wgContLang->getCode() === $this->getPageLanguage()->getCode()
+					&& $this->getPageLanguage()->hasVariants()
+					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
+				) {
 					$variant = urldecode( $matches[1] );
 					if ( $this->getPageLanguage()->hasVariant( $variant ) ) {
 						// Only do the variant replacement if the given variant is a valid
@@ -2125,9 +2125,9 @@ class Title {
 				if ( $title_protection['pt_create_perm'] == 'autoconfirmed' ) {
 					$title_protection['pt_create_perm'] = 'editsemiprotected'; // B/C
 				}
-				if ( $title_protection['pt_create_perm'] == '' ||
-					!$user->isAllowed( $title_protection['pt_create_perm'] ) )
-				{
+				if ( $title_protection['pt_create_perm'] == ''
+					|| !$user->isAllowed( $title_protection['pt_create_perm'] )
+				) {
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
 			}
@@ -2148,8 +2148,8 @@ class Title {
 			}
 		} elseif ( $action == 'delete' ) {
 			if ( $doExpensiveQueries && $wgDeleteRevisionsLimit
-				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion() )
-			{
+				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion()
+			) {
 				$errors[] = array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) );
 			}
 		}
@@ -3216,8 +3216,8 @@ class Title {
 
 					# Redundant interwiki prefix to the local wiki
 					if ( $wgLocalInterwiki !== false
-						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) )
-					{
+						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki )
+					) {
 						if ( $dbkey == '' ) {
 							# Can't have an empty self-link
 							return false;
@@ -3995,9 +3995,9 @@ class Title {
 			// We don't know whether this function was called before
 			// or after moving the root page, so check both
 			// $this and $nt
-			if ( $oldSubpage->getArticleID() == $this->getArticleID() ||
-					$oldSubpage->getArticleID() == $nt->getArticleID() )
-			{
+			if ( $oldSubpage->getArticleID() == $this->getArticleID()
+				|| $oldSubpage->getArticleID() == $nt->getArticleID()
+			) {
 				// When moving a page to a subpage of itself,
 				// don't move it twice
 				continue;

@@ -213,8 +213,8 @@ class Language {
 	protected static function newFromCode( $code ) {
 		// Protect against path traversal below
 		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
-		{
+			|| strcspn( $code, ":/\\\000" ) !== strlen( $code )
+		) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
@@ -1502,8 +1502,7 @@ class Language {
 		if (
 			( $zy > 1582 ) || ( ( $zy == 1582 ) && ( $zm > 10 ) ) ||
 			( ( $zy == 1582 ) && ( $zm == 10 ) && ( $zd > 14 ) )
-		)
-		{
+		) {
 			$zjd = (int)( ( 1461 * ( $zy + 4800 + (int)( ( $zm - 14 ) / 12 ) ) ) / 4 ) +
 					(int)( ( 367 * ( $zm - 2 - 12 * ( (int)( ( $zm - 14 ) / 12 ) ) ) ) / 12 ) -
 					(int)( ( 3 * (int)( ( ( $zy + 4900 + (int)( ( $zm - 14 ) / 12 ) ) / 100 ) ) ) / 4 ) +
@@ -1753,8 +1752,7 @@ class Language {
 				( ( $gy > 1912 ) && ( $gy < 1926 ) ) ||
 				( ( $gy == 1926 ) && ( $gm < 12 ) ) ||
 				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd < 26 ) )
-			)
-			{
+			) {
 				# Taishō period
 				$gy_gannen = $gy - 1912 + 1;
 				$gy_offset = $gy_gannen;
@@ -1766,8 +1764,7 @@ class Language {
 				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd >= 26 ) ) ||
 				( ( $gy > 1926 ) && ( $gy < 1989 ) ) ||
 				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd < 8 ) )
-			)
-			{
+			) {
 				# Shōwa period
 				$gy_gannen = $gy - 1926 + 1;
 				$gy_offset = $gy_gannen;
@@ -4048,8 +4045,8 @@ class Language {
 	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		// Protect against path traversal
 		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
-		{
+			|| strcspn( $code, ":/\\\000" ) !== strlen( $code )
+		) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 

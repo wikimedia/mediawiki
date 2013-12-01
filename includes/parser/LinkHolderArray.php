@@ -160,8 +160,8 @@ class LinkHolderArray {
 		$pos = 0;
 		while ( $pos < strlen( $text ) ) {
 			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/',
-				$text, $m, PREG_OFFSET_CAPTURE, $pos ) )
-			{
+				$text, $m, PREG_OFFSET_CAPTURE, $pos )
+			) {
 				break;
 			}
 			$ns = $m[1][0];

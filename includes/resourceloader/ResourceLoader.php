@@ -141,9 +141,7 @@ class ResourceLoader {
 
 		// For empty/whitespace-only data or for unknown filters, don't perform
 		// any caching or processing
-		if ( trim( $data ) === ''
-			|| !in_array( $filter, array( 'minify-js', 'minify-css' ) ) )
-		{
+		if ( trim( $data ) === '' || !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $data;
 		}

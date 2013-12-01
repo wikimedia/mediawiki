@@ -1552,8 +1552,8 @@ class Article implements Page {
 		}
 
 		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
-			array( 'delete', $this->getTitle()->getPrefixedText() ) ) )
-		{
+			array( 'delete', $this->getTitle()->getPrefixedText() ) )
+		) {
 			# Flag to hide all contents of the archived revisions
 			$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
 

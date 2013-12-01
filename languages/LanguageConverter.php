@@ -401,9 +401,9 @@ class LanguageConverter {
 			$startPos = $elementPos + strlen( $element );
 
 			// Translate any alt or title attributes inside the matched element
-			if ( $element !== '' && preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element,
-				$elementMatches ) )
-			{
+			if ( $element !== ''
+				&& preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element, $elementMatches )
+			) {
 				$attrs = Sanitizer::decodeTagAttributes( $elementMatches[2] );
 				$changed = false;
 				foreach ( array( 'title', 'alt' ) as $attrName ) {
@@ -1442,8 +1442,8 @@ class ConverterRule {
 			}
 			/* for unidirectional array fill to convert tables */
 			if ( ( $manLevel[$v] == 'bidirectional' || $manLevel[$v] == 'unidirectional' )
-				&& isset( $unidtable[$v] ) )
-			{
+				&& isset( $unidtable[$v] )
+			) {
 				if ( isset( $this->mConvTable[$v] ) ) {
 					$this->mConvTable[$v] = array_merge( $this->mConvTable[$v], $unidtable[$v] );
 				} else {

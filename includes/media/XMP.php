@@ -608,8 +608,8 @@ class XMPReader {
 	function endElement( $parser, $elm ) {
 		if ( $elm === ( self::NS_RDF . ' RDF' )
 			|| $elm === 'adobe:ns:meta/ xmpmeta'
-			|| $elm === 'adobe:ns:meta/ xapmeta' )
-		{
+			|| $elm === 'adobe:ns:meta/ xapmeta'
+		) {
 			// ignore these.
 			return;
 		}
@@ -897,8 +897,8 @@ class XMPReader {
 
 			if ( isset( $this->items[$ns][$tag] ) ) {
 				if ( isset( $this->items[$ns][$this->ancestorStruct]['children'] )
-					&& !isset( $this->items[$ns][$this->ancestorStruct]['children'][$tag] ) )
-				{
+					&& !isset( $this->items[$ns][$this->ancestorStruct]['children'][$tag] )
+				) {
 					// This assumes that we don't have inter-namespace nesting
 					// which we don't in all the properties we're interested in.
 					throw new MWException( " <$tag> appeared nested in <" . $this->ancestorStruct
@@ -996,8 +996,8 @@ class XMPReader {
 			throw new MWException( __METHOD__ . " <rdf:li> expected but got $elm." );
 		}
 		if ( !isset( $attribs[self::NS_XML . ' lang'] )
-			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[self::NS_XML . ' lang'] ) )
-		{
+			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[self::NS_XML . ' lang'] )
+		) {
 			throw new MWException( __METHOD__
 				. " <rdf:li> did not contain, or has invalid xml:lang attribute in lang alternative" );
 		}
@@ -1026,8 +1026,8 @@ class XMPReader {
 
 		if ( $elm === self::NS_RDF . ' RDF'
 			|| $elm === 'adobe:ns:meta/ xmpmeta'
-			|| $elm === 'adobe:ns:meta/ xapmeta' )
-		{
+			|| $elm === 'adobe:ns:meta/ xapmeta'
+		) {
 			/* ignore. */
 			return;
 		} elseif ( $elm === self::NS_RDF . ' Description' ) {
@@ -1119,8 +1119,8 @@ class XMPReader {
 
 		if ( isset( $attribs[self::NS_RDF . ' parseType'] )
 			&& $attribs[self::NS_RDF . ' parseType'] === 'Resource'
-			&& $this->mode[0] === self::MODE_SIMPLE )
-		{
+			&& $this->mode[0] === self::MODE_SIMPLE
+		) {
 			// this is equivalent to having an inner rdf:Description
 			$this->mode[0] = self::MODE_QDESC;
 		}

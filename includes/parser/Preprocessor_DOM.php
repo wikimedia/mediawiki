@@ -399,14 +399,14 @@ class Preprocessor_DOM implements Preprocessor {
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
-							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
-						{
+							&& substr( $text, $wsEnd + 1, 1 ) == "\n"
+						) {
 							// Remove leading whitespace from the end of the accumulator
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
 							if ( $wsLength > 0
-								&& strspn( $accum, " \t", -$wsLength ) === $wsLength )
-							{
+								&& strspn( $accum, " \t", -$wsLength ) === $wsLength
+							) {
 								$accum = substr( $accum, 0, -$wsLength );
 							}
 
@@ -475,8 +475,8 @@ class Preprocessor_DOM implements Preprocessor {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
 					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) )
-					{
+							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
+					) {
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
 						$close = '<close>' . htmlspecialchars( $matches[0][0] ) . '</close>';
@@ -1141,8 +1141,8 @@ class PPFrame_DOM implements PPFrame {
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 					if ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
-						|| ( $flags & PPFrame::STRIP_COMMENTS ) )
-					{
+						|| ( $flags & PPFrame::STRIP_COMMENTS )
+					) {
 						$out .= '';
 					}
 					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result

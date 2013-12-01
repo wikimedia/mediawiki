@@ -102,10 +102,10 @@ if ( isset( $wgFileStore['deleted']['directory'] ) ) {
 	$wgDeletedDirectory = $wgFileStore['deleted']['directory'];
 }
 
-if ( isset( $wgFooterIcons['copyright'] ) &&
-	isset( $wgFooterIcons['copyright']['copyright'] ) &&
-	$wgFooterIcons['copyright']['copyright'] === array() )
-{
+if ( isset( $wgFooterIcons['copyright'] )
+	&& isset( $wgFooterIcons['copyright']['copyright'] )
+	&& $wgFooterIcons['copyright']['copyright'] === array()
+) {
 	if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
 		$wgFooterIcons['copyright']['copyright'] = $wgCopyrightIcon;
 	} elseif ( $wgRightsIcon || $wgRightsText ) {
@@ -119,10 +119,10 @@ if ( isset( $wgFooterIcons['copyright'] ) &&
 	}
 }
 
-if ( isset( $wgFooterIcons['poweredby'] ) &&
-	isset( $wgFooterIcons['poweredby']['mediawiki'] ) &&
-	$wgFooterIcons['poweredby']['mediawiki']['src'] === null )
-{
+if ( isset( $wgFooterIcons['poweredby'] )
+	&& isset( $wgFooterIcons['poweredby']['mediawiki'] )
+	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
+) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] = "$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
 }
 

@@ -1307,8 +1307,8 @@ class User {
 
 		// Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist ) )
-		{
+			&& !in_array( $ip, $wgProxyWhitelist )
+		) {
 			// Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$block = new Block;
@@ -3078,9 +3078,7 @@ class User {
 		// and when it does have to be executed, it can be on a slave
 		// If this is the user's newtalk page, we always update the timestamp
 		$force = '';
-		if ( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $this->getName() )
-		{
+		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
 			$force = 'force';
 		}
 
@@ -3612,9 +3610,9 @@ class User {
 			// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			// Check for this with iconv
 			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password &&
-				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
-			{
+			if ( $cp1252Password != $password
+				&& self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId )
+			) {
 				return true;
 			}
 		}

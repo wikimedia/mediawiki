@@ -107,8 +107,8 @@ class SpecialSearch extends SpecialPage {
 
 		if ( $request->getVal( 'fulltext' )
 			|| !is_null( $request->getVal( 'offset' ) )
-			|| !is_null( $request->getVal( 'searchx' ) ) )
-		{
+			|| !is_null( $request->getVal( 'searchx' ) )
+		) {
 			$this->showResults( $search );
 		} else {
 			$this->goResult( $search );

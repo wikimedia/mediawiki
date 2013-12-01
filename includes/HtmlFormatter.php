@@ -306,14 +306,10 @@ class HtmlFormatter {
 		} elseif ( strpos( $selector, '#' ) === 0 ) {
 			$type = 'ID';
 			$rawName = substr( $selector, 1 );
-		} elseif ( strpos( $selector, '.' ) !== 0 &&
-			strpos( $selector, '.' ) !== false )
-		{
+		} elseif ( strpos( $selector, '.' ) !== 0 && strpos( $selector, '.' ) !== false ) {
 			$type = 'TAG_CLASS';
 			$rawName = $selector;
-		} elseif ( strpos( $selector, '[' ) === false
-			&& strpos( $selector, ']' ) === false )
-		{
+		} elseif ( strpos( $selector, '[' ) === false && strpos( $selector, ']' ) === false ) {
 			$type = 'TAG';
 			$rawName = $selector;
 		} else {

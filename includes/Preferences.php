@@ -682,8 +682,8 @@ class Preferences {
 			$minDiff = $tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
 		} elseif ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
-			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) ) )
-		{
+			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
+		) {
 			# Timezone offset can vary with DST
 			$userTZ = timezone_open( $tz[2] );
 			if ( $userTZ !== false ) {

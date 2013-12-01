@@ -965,8 +965,8 @@ function wfIsDebugRawPage() {
 		|| (
 			isset( $_SERVER['SCRIPT_NAME'] )
 			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php'
-		) )
-	{
+		)
+	) {
 		$cache = true;
 	} else {
 		$cache = false;
@@ -1463,9 +1463,9 @@ function wfMsgForContent( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
 	$forcontent = true;
-	if ( is_array( $wgForceUIMsgAsContentMsg ) &&
-		in_array( $key, $wgForceUIMsgAsContentMsg ) )
-	{
+	if ( is_array( $wgForceUIMsgAsContentMsg )
+		&& in_array( $key, $wgForceUIMsgAsContentMsg )
+	) {
 		$forcontent = false;
 	}
 	return wfMsgReal( $key, $args, true, $forcontent );
@@ -1486,9 +1486,9 @@ function wfMsgForContentNoTrans( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
 	$forcontent = true;
-	if ( is_array( $wgForceUIMsgAsContentMsg ) &&
-		in_array( $key, $wgForceUIMsgAsContentMsg ) )
-	{
+	if ( is_array( $wgForceUIMsgAsContentMsg )
+		&& in_array( $key, $wgForceUIMsgAsContentMsg )
+	) {
 		$forcontent = false;
 	}
 	return wfMsgReal( $key, $args, true, $forcontent, false );
@@ -1993,11 +1993,11 @@ function wfClientAcceptsGzip( $force = false ) {
 			# @todo FIXME: We may want to blacklist some broken browsers
 			$m = array();
 			if ( preg_match(
-				'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-				$_SERVER['HTTP_ACCEPT_ENCODING'],
-				$m )
-			)
-			{
+					'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+					$_SERVER['HTTP_ACCEPT_ENCODING'],
+					$m
+				)
+			) {
 				if ( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) {
 					$result = false;
 					return $result;

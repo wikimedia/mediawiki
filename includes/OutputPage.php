@@ -447,8 +447,8 @@ class OutputPage extends ContextSource {
 			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 				&& ( is_null( $position ) || $module->getPosition() == $position )
-				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) ) )
-			{
+				&& ( !$this->mTarget || in_array( $this->mTarget, $module->getTargets() ) )
+			) {
 				$filteredModules[] = $val;
 			}
 		}

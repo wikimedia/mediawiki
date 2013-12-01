@@ -97,12 +97,12 @@ class ExifBitmapHandler extends BitmapHandler {
 		wfSuppressWarnings();
 		$exif = unserialize( $metadata );
 		wfRestoreWarnings();
-		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) ||
-			$exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version() )
-		{
-			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) &&
-				$exif['MEDIAWIKI_EXIF_VERSION'] == 1 )
-			{
+		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
+			|| $exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version()
+		) {
+			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
+				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
+			) {
 				//back-compatible but old
 				wfDebug( __METHOD__ . ": back-compat version\n" );
 				return self::METADATA_COMPATIBLE;
@@ -129,10 +129,10 @@ class ExifBitmapHandler extends BitmapHandler {
 
 	public function getCommonMetaArray( File $file ) {
 		$metadata = $file->getMetadata();
-		if ( $metadata === self::OLD_BROKEN_FILE ||
-			$metadata === self::BROKEN_FILE ||
-			$this->isMetadataValid( $file, $metadata ) === self::METADATA_BAD )
-		{
+		if ( $metadata === self::OLD_BROKEN_FILE
+			|| $metadata === self::BROKEN_FILE
+			|| $this->isMetadataValid( $file, $metadata ) === self::METADATA_BAD
+		) {
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
 			return array();

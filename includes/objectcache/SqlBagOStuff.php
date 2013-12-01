@@ -114,8 +114,8 @@ class SqlBagOStuff extends BagOStuff {
 
 			# Don't keep timing out trying to connect for each call if the DB is down
 			if ( isset( $this->connFailureErrors[$serverIndex] )
-				&& ( time() - $this->connFailureTimes[$serverIndex] ) < 60 )
-			{
+				&& ( time() - $this->connFailureTimes[$serverIndex] ) < 60
+			) {
 				throw $this->connFailureErrors[$serverIndex];
 			}
 
@@ -678,8 +678,8 @@ class SqlBagOStuff extends BagOStuff {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = $this->getDB( $serverIndex );
 			if ( $db->getType() !== 'mysql'
-				|| version_compare( $db->getServerVersion(), '4.1.0', '<' ) )
-			{
+				|| version_compare( $db->getServerVersion(), '4.1.0', '<' )
+			) {
 				throw new MWException( __METHOD__ . ' is not supported on this DB server' );
 			}
 

@@ -264,8 +264,8 @@ class Linker {
 	 */
 	public static function linkKnown(
 		$target, $html = null, $customAttribs = array(),
-		$query = array(), $options = array( 'known', 'noclasses' ) )
-	{
+		$query = array(), $options = array( 'known', 'noclasses' )
+	) {
 		return self::link( $target, $html, $customAttribs, $query, $options );
 	}
 
@@ -562,8 +562,8 @@ class Linker {
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
 	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
-		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
-	{
+		$handlerParams = array(), $time = false, $query = "", $widthOption = null
+	) {
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$dummy, &$title,
@@ -749,8 +749,8 @@ class Linker {
 	 * @return mixed
 	 */
 	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
-		$align = 'right', $params = array(), $framed = false, $manualthumb = "" )
-	{
+		$align = 'right', $params = array(), $framed = false, $manualthumb = ""
+	) {
 		$frameParams = array(
 			'alt' => $alt,
 			'caption' => $label,
@@ -775,8 +775,8 @@ class Linker {
 	 * @return mixed
 	 */
 	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
-		$handlerParams = array(), $time = false, $query = "" )
-	{
+		$handlerParams = array(), $time = false, $query = ""
+	) {
 		global $wgStylePath, $wgContLang;
 		$exists = $file && $file->exists();
 
@@ -1470,8 +1470,8 @@ class Linker {
 			$target = Title::newFromText( $linkTarget );
 			if ( $target ) {
 				if ( $target->getText() == '' && $target->getInterwiki() === ''
-					&& !self::$commentLocal && self::$commentContextTitle )
-				{
+					&& !self::$commentLocal && self::$commentContextTitle
+				) {
 					$newTarget = clone ( self::$commentContextTitle );
 					$newTarget->setFragment( '#' . $target->getFragment() );
 					$target = $newTarget;

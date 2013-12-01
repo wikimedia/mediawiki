@@ -538,8 +538,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return $list[$key];
 		} elseif ( is_string( $fallback )
 			&& isset( $list[$fallback] )
-			&& is_array( $list[$fallback] ) )
-		{
+			&& is_array( $list[$fallback] )
+		) {
 			return $list[$fallback];
 		}
 		return array();
