@@ -56,6 +56,37 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	/* Methods */
 
 	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
+	public function getStyles( ResourceLoaderContext $context ) {
+		global $wgLogo;
+		$styles = parent::getStyles( $context );
+		$styles['all'][] =
+			".mw-wiki-logo { background-image: url('" .
+			str_replace( "'" , "", str_replace( "\\", "", $wgLogo ) ) .
+			"'); }";
+		return $styles;
+	}
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return boolean
+	 */
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		return false;
+	}
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return int|mixed
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		$parentMTime = parent::getModifiedTime( $context );
+		return max( $parentMTime, $this->getHashMtime( $context ) );
+	}
+
+	/**
 	 * Gets group name
 	 *
 	 * @return String: Name of group
