@@ -117,8 +117,7 @@ class MonoBookTemplate extends BaseTemplate {
 	<div class="portlet" id="p-logo" role="banner">
 <?php
 			echo Html::element( 'a', array(
-				'href' => $this->data['nav_urls']['mainpage']['href'],
-				'style' => "background-image: url({$this->data['logopath']});" )
+				'href' => $this->data['nav_urls']['mainpage']['href'] )
 				+ Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>
 
 	</div>

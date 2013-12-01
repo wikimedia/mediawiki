@@ -3432,6 +3432,9 @@ $templates
 			$moduleStyles[] = 'user.cssprefs';
 		}
 
+		// Add style for logo
+		$moduleStyles[] = 'logo';
+
 		foreach ( $moduleStyles as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			if ( !$module ) {

@@ -36,6 +36,7 @@ return array(
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
 	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
+	'logo' => array( 'class' => 'ResourceLoaderLogoModule' ),
 
 	// Scripts managed by the current user (stored in their user space)
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
