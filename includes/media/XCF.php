@@ -103,12 +103,12 @@ class XCFHandler extends BitmapHandler {
 		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
 		try {
 			$header = wfUnpack(
-				  "A9magic"     # A: space padded
-				. "/a5version"  # a: zero padded
-				. "/Nwidth"     # \
-				. "/Nheight"    # N: unsigned long 32bit big endian
-				. "/Nbase_type" # /
-			, $binaryHeader
+				"A9magic" .        # A: space padded
+					"/a5version" . # a: zero padded
+					"/Nwidth" .    # \
+					"/Nheight" .   # N: unsigned long 32bit big endian
+					"/Nbase_type", # /
+				$binaryHeader
 			);
 		} catch ( MWException $mwe ) {
 			return false;

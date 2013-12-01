@@ -1788,14 +1788,14 @@ class Parser {
 			$imagematch = false;
 		}
 		if ( $this->mOptions->getAllowExternalImages()
-			 || ( $imagesexception && $imagematch ) ) {
+			|| ( $imagesexception && $imagematch ) ) {
 			if ( preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
 				$text = Linker::makeExternalImage( $url );
 			}
 		}
 		if ( !$text && $this->mOptions->getEnableImageWhitelist()
-			 && preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
+			&& preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
 			$whitelist = explode( "\n", wfMessage( 'external_image_whitelist' )->inContentLanguage()->text() );
 			foreach ( $whitelist as $entry ) {
 				# Sanitize the regex fragment, make it case-insensitive, ignore blank entries/comments
@@ -3947,11 +3947,10 @@ class Parser {
 		$object = false;
 		$text = $frame->getArgument( $argName );
 		if ( $text === false && $parts->getLength() > 0
-		  && (
-			$this->ot['html']
-			|| $this->ot['pre']
-			|| ( $this->ot['wiki'] && $frame->isTemplate() )
-		  )
+			&& ( $this->ot['html']
+				|| $this->ot['pre']
+				|| ( $this->ot['wiki'] && $frame->isTemplate() )
+			)
 		) {
 			# No match in frame, use the supplied default
 			$object = $parts->item( 0 )->getChildren();
@@ -5432,10 +5431,10 @@ class Parser {
 		$params['frame']['caption'] = $caption;
 
 		# Will the image be presented in a frame, with the caption below?
-		$imageIsFramed = isset( $params['frame']['frame'] ) ||
-						 isset( $params['frame']['framed'] ) ||
-						 isset( $params['frame']['thumbnail'] ) ||
-						 isset( $params['frame']['manualthumb'] );
+		$imageIsFramed = isset( $params['frame']['frame'] )
+			|| isset( $params['frame']['framed'] )
+			|| isset( $params['frame']['thumbnail'] )
+			|| isset( $params['frame']['manualthumb'] );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
 		# came to also set the caption, ordinary text after the image -- which

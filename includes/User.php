@@ -1632,8 +1632,8 @@ class User {
 		$blocked = $this->isBlocked( $bFromSlave );
 		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
 		// If a user's name is suppressed, they cannot make edits anywhere
-		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName() &&
-		  $title->getNamespace() == NS_USER_TALK ) {
+		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName()
+			&& $title->getNamespace() == NS_USER_TALK ) {
 			$blocked = false;
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}

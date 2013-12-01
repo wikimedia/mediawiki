@@ -1617,8 +1617,7 @@ class FormatMetadata extends ContextSource {
 	 * @return mixed value in best language, null if there were no languages at all
 	 * @since 1.23
 	 */
-	protected function resolveMultilangValue( $value )
-	{
+	protected function resolveMultilangValue( $value ) {
 		if (
 			!is_array( $value )
 			|| !isset( $value['_type'] )
@@ -1732,8 +1731,7 @@ class FormatMetadata extends ContextSource {
 	 * @return array
 	 * @since 1.23
 	 */
-	protected function getPriorityLanguages()
-	{
+	protected function getPriorityLanguages() {
 		$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
 		$priorityLanguages = array_merge( (array) $this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
 		return $priorityLanguages;

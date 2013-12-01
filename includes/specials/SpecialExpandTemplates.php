@@ -93,7 +93,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$out->addWikiMsg( 'expand_templates_intro' );
 		$out->addHTML( $this->makeForm( $titleStr, $input ) );
 
-		if( $output !== false ) {
+		if ( $output !== false ) {
 			if ( $this->generateXML && strlen( $output ) > 0 ) {
 				$out->addHTML( $this->makeOutput( $xml, 'expand_templates_xml_output' ) );
 			}
@@ -108,7 +108,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				);
 			}
 
-			if( ( $wgUseTidy && $options->getTidy() ) || $wgAlwaysUseTidy ) {
+			if ( ( $wgUseTidy && $options->getTidy() ) || $wgAlwaysUseTidy ) {
 				$tmp = MWTidy::tidy( $tmp );
 			}
 
@@ -127,7 +127,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeForm( $title, $input ) {
 		$self = $this->getTitle();
-		$form  = Xml::openElement(
+		$form = Xml::openElement(
 			'form',
 			array( 'method' => 'post', 'action' => $self->getLocalUrl() )
 		);
