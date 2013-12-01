@@ -2037,7 +2037,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'imagelinks' => 'Uso do ficheiro',
 'linkstoimage' => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
 'linkstoimage-more' => 'Máis {{PLURAL:$1|dunha páxina liga|de $1 páxinas ligan}} con este ficheiro.
-A seguinte lista só amosa {{PLURAL:$1|a primeira páxina que liga|as primeiras $1 páxina que ligan}} con el.
+A seguinte lista só mostra {{PLURAL:$1|a primeira páxina que liga|as primeiras $1 páxina que ligan}} con el.
 Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'nolinkstoimage' => 'Ningunha páxina liga con este ficheiro.',
 'morelinkstoimage' => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
@@ -4010,7 +4010,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'external_image_whitelist' => ' #Deixe esta liña tal e como está<pre>
 #Poña embaixo fragmentos de expresións regulares (tan só a parte que vai entre //)
 #Isto coincidirá cos enderezos URL das imaxes externas (hotlinked)
-#Aquelas que coincidan serán amosadas como imaxes, senón, só será amosada unha ligazón cara a esta
+#Aquelas que coincidan mostraranse como imaxes, senón, só se mostrará unha ligazón cara a esta
 #As liñas que comecen por "#" son comentarios
 #Non diferencia entre maiúsculas e minúsculas
 

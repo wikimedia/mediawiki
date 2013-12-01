@@ -602,7 +602,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Bạn có $1 từ {{PLURAL:$3|người dùng khác|$3 người dùng}} ($2).',
 'youhavenewmessagesmanyusers' => 'Bạn có $1 từ nhiều người dùng ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1}}tin nhắn mới',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|thay đổi|các thay đổi}} gần đây',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|thay đổi|999=các thay đổi}} gần đây',
 'youhavenewmessagesmulti' => 'Bạn có tin nhắn mới ở $1',
 'editsection' => 'sửa',
 'editold' => 'sửa',
@@ -728,7 +728,8 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 'invalidtitle-knownnamespace' => 'Tựa trang không hợp lệ có không gian tên “$2” và văn bản “$3”',
 'invalidtitle-unknownnamespace' => 'Tựa trang không hợp lệ có không gian tên số $1 không rõ và văn bản “$2”',
 'exception-nologin' => 'Chưa đăng nhập',
-'exception-nologin-text' => 'Bạn cần phải đăng nhập để truy cập trang hoặc thực hiện tác vụ này tại wiki này.',
+'exception-nologin-text' => 'Xin vui lòng [[Special:Userlogin|đăng nhập]] để truy cập trang hoặc tác vụ này.',
+'exception-nologin-text-manual' => 'Xin vui lòng $1 để truy cập trang hoặc tác vụ này.',
 
 # Virus scanner
 'virus-badscanner' => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
@@ -1437,6 +1438,7 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'preferences' => 'Tùy chọn',
 'mypreferences' => 'Tùy chọn',
 'prefs-edits' => 'Số lần sửa đổi:',
+'prefsnologintext2' => 'Xin vui lòng $1 để thay đổi tùy chọn.',
 'changepassword' => 'Đổi mật khẩu',
 'prefs-skin' => 'Hình dạng',
 'skin-preview' => 'Xem trước',
@@ -1736,7 +1738,9 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchanges-label-minor' => 'Đây là một sửa đổi nhỏ',
 'recentchanges-label-bot' => 'Sửa đổi này do bot thực hiện',
 'recentchanges-label-unpatrolled' => 'Sửa đổi này chưa được tuần tra',
-'recentchanges-legend-newpage' => '$1 - trang mới',
+'recentchanges-label-plusminus' => 'Kích cỡ trang đã thay đổi bằng số byte này',
+'recentchanges-legend-newpage' => '(xem thêm [[Special:NewPages|danh sách các trang mới]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Dưới đây là {{PLURAL:$1|thay đổi '''duy nhất'''|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5 lúc $4.",
 'rcnotefrom' => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom' => 'Hiển thị các thay đổi từ $1.',
@@ -2464,9 +2468,9 @@ Liên lạc với người viết trang qua:
 thư: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
+Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó lúc khi đăng nhập. Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
 
-              Hệ thống báo tin {{SITENAME}} thân thiện của bạn
+Hệ thống báo tin {{SITENAME}} thân thiện của bạn
 
 --
 Để thay đổi các thiết lập thư điện tử thông báo, mời xem:
@@ -4102,9 +4106,9 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 
 # Special:SpecialPages
 'specialpages' => 'Các trang đặc biệt',
+'specialpages-note-top' => 'Chú giải',
 'specialpages-note' => '* Trang đặc biệt thông thường.
-* <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>
-* <span class="mw-specialpagecached">Trang đặc biệt được lấy từ vùng nhớ đệm (có thể lỗi thời).</span>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other' => 'Trang đặc biệt khác',
 'specialpages-group-login' => 'Đăng nhập / Mở tài khoản',

@@ -515,8 +515,8 @@ $1',
 'youhavenewmessages' => 'Имате $1 ($2).',
 'youhavenewmessagesfromusers' => 'Имате $1 от {{PLURAL:$3|друг потребител|$3 потребители}} ($2).',
 'youhavenewmessagesmanyusers' => 'Имате $1 от много потребители ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|ново съобщение|нови съобщения}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|последна промяна|последни промени}}',
+'newmessageslinkplural' => '{{PLURAL:$1|ново съобщение|999=нови съобщения}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|последна промяна|999=последни промени}}',
 'youhavenewmessagesmulti' => 'Имате нови съобщения в $1',
 'editsection' => 'редактиране',
 'editold' => 'редактиране',
@@ -1604,7 +1604,7 @@ $1",
 'recentchanges-label-minor' => 'Това е малка промяна',
 'recentchanges-label-bot' => 'Тази редакция е извършена от робот',
 'recentchanges-label-unpatrolled' => 'Тази редакция все още не е проверена',
-'recentchanges-legend-newpage' => '$1 - нова страница',
+'recentchanges-legend-newpage' => '(вижте също [[Special:NewPages|списъка с нови страници]])',
 'rcnote' => "{{PLURAL:$1|Показана е '''1''' промяна|Показани са последните '''$1''' промени}} през {{PLURAL:$2|последния ден|последните '''$2''' дни}}, към $5, $4.",
 'rcnotefrom' => 'Дадени са промените от <strong>$2</strong> (до <strong>$1</strong> показани).',
 'rclistfrom' => 'Показване на промени, като се започва от $1.',
@@ -1835,8 +1835,7 @@ $1',
 'upload_source_file' => ' (файл на вашия компютър)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Тази специална страница показва всички качени файлове.
-При филтриране от потребителя се показват само файловете, за които потребителят е качил последната версия.',
+'listfiles-summary' => 'Тази специална страница показва всички качени файлове.',
 'listfiles_search_for' => 'Търсене по име на файла:',
 'imgfile' => 'файл',
 'listfiles' => 'Списък на файловете',
@@ -2139,7 +2138,8 @@ $1',
 # Special:ListGroupRights
 'listgrouprights' => 'Права по потребителски групи',
 'listgrouprights-summary' => 'По-долу на тази страница е показан списък на групите потребители в това уики с асоциираните им права за достъп. Допълнителна информация за отделните права може да бъде намерена [[{{MediaWiki:Listgrouprights-helppage}}|тук]].',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">Поверено право</span>
+'listgrouprights-key' => 'Легенда:
+* <span class="listgrouprights-granted">Поверено право</span>
 * <span class="listgrouprights-revoked">Отнето право</span>',
 'listgrouprights-group' => 'Група',
 'listgrouprights-rights' => 'Права',
@@ -3496,7 +3496,7 @@ $5
 
 Валидността на този код за потвърждение ще важи до $4.',
 'confirmemail_body_set' => 'Някой, вероятно вие, от IP адрес $1,
-е посочил този адрес за електронната поща, свързан с потребителска сметка "$2" в {{SITENAME}}.
+е посочил този адрес за електронната поща, свързан с потребителска сметка „$2“ в {{SITENAME}}.
 
 За потвърждаване, че тази потребителска сметка наистина ви принадлежи и за да активирате отново функциите, свързани с електронна поща в {{SITENAME}}, необходимо е да отворите във вашия браузър следната препратка:
 

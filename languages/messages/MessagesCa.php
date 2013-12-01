@@ -1899,6 +1899,7 @@ Si filtreu per usuari només es mostraran els fitxers la versió més recent del
 'listfiles-show-all' => 'Inclou versions antigues de les imatges',
 'listfiles-latestversion' => 'Versió actual',
 'listfiles-latestversion-yes' => 'Sí',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link' => 'Fitxer',
@@ -3009,6 +3010,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 Permet afegir un motiu al resum.',
 'tooltip-preferences-save' => 'Desa preferències',
 'tooltip-summary' => 'Afegiu un breu resum',
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => '/* Editeu aquest fitxer per personalitzar totes les aparences per al lloc sencer */',
@@ -3884,6 +3886,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'tags-active-header' => 'Actiu?',
 'tags-hitcount-header' => 'Canvis etiquetats',
 'tags-active-yes' => 'Sí',
+'tags-active-no' => 'No',
 'tags-edit' => 'modifica',
 'tags-hitcount' => '$1 {{PLURAL:$1|canvi|canvis}}',
 

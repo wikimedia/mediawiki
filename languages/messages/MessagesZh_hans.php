@@ -3282,7 +3282,7 @@ Variants for Chinese language
 'variantname-kk-cyrl' => 'kk-cyrl',
 
 # Metadata
-'metadata' => '原始数据',
+'metadata' => '元数据',
 'metadata-help' => '此文件中包含有扩展的信息。这些信息可能是由数码相机或扫描仪在创建或数字化过程中所添加的。
 
 如果此文件的源文件已经被修改，一些信息在修改后的文件中将不能完全反映出来。',

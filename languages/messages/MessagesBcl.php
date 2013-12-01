@@ -3756,8 +3756,8 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 
 # Special:SpecialPages
 'specialpages' => 'Mga espesyal na pahina',
-'specialpages-note' => '* Normal espesyal na mga pahina.
-* <span class="mw-specialpagerestricted">Restriktadong espesyal na mga pahina.</span>',
+'specialpages-note-top' => 'Balaynan',
+'specialpages-note' => '* Normal na espesyal na mga pahina. * <span class="mw-specialpagerestricted">Restriktadong espesyal na mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga talaan nin pagpangataman',
 'specialpages-group-other' => 'Iba pang mga espesyal na pahina',
 'specialpages-group-login' => 'Maglaog / magmukna nin panindog',
@@ -3971,6 +3971,7 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'limitreport-expensivefunctioncount' => 'Bilang kan hiro nin mamahalon na parabangay',
 
 # Special:ExpandTemplates
+'expandtemplates' => 'Bigakon an panguyog',
 'expand_templates_output' => 'Resulta',
 'expand_templates_remove_comments' => 'Tanggalon an mga komento',
 'expand_templates_preview' => 'Patânaw',

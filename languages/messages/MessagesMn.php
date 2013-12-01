@@ -150,16 +150,16 @@ $messages = array(
 'dec' => '12-р сар',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Ангилал|Ангилал}}',
-'category_header' => '"$1" ангилал дахь хуудсууд',
+'pagecategories' => '{{PLURAL:$1|Анги|Ангилал}}',
+'category_header' => '"$1" ангийн бүрэлдэхүүн',
 'subcategories' => 'Ангийн бүлэг',
-'category-media-header' => '"$1" ангилал дахь медиа файлууд',
+'category-media-header' => '"$1" ангийн файл',
 'category-empty' => "''Одоогийн байдлаар энэ ангилалд хуудас, медиа файл байхгүй байна.''",
 'hidden-categories' => '{{PLURAL:$1|Нуугдсан ангилал|Нуугдсан ангиллууд}}',
 'hidden-category-category' => 'Нуугдсан ангиллууд',
-'category-subcat-count' => '{{PLURAL:$2|Энэ ангилалд дараах дэд ангилал л байна.|Энэ ангилалд нийт $2-с $1 дэд ангилал байна.}}',
+'category-subcat-count' => '{{PLURAL:$2|Энэ ангилалд дараах дэд ангилал л байна.|Энэ анги дотор $2 анги ангилагдснаас $1 нь ил харагдаж байна.}}',
 'category-subcat-count-limited' => 'Энэ ангилалд {{PLURAL:$1| дэд ангилал|$1-н дэд ангилалууд}} байна.',
-'category-article-count' => '{{PLURAL:$2|Энэ ангилалд дараах хуудас л байна.|Энэ ангилалд нийт $2-с дараах $1 хуудас байна.}}',
+'category-article-count' => '{{PLURAL:$2|Энэ ангид нэг хуудас байна.|Энд $2 хуудас ангилагдан орсноос $1 холбоос ил харагдаж байна.}}',
 'category-article-count-limited' => 'Энэ ангилалд дараах {{PLURAL:$1|хуудас|$1 хуудаснууд}} байна.',
 'category-file-count' => '{{PLURAL:$2|Энэ ангилалд дараах файл л байна.|Энэ ангилалд нийт $2-с дараах $1 файл байна.}}',
 'category-file-count-limited' => 'Энэ ангилалд дараах {{PLURAL:$1|файл|$1 файлнууд}} байна.',
@@ -342,7 +342,7 @@ $1',
 'nstab-mediawiki' => 'Мэдэгдэл',
 'nstab-template' => 'Загвар',
 'nstab-help' => 'Тусламж',
-'nstab-category' => 'Ангилал',
+'nstab-category' => 'Анги',
 
 # Main script and global functions
 'nosuchaction' => 'Тийм үйлдэл байхгүй байна',
@@ -1788,7 +1788,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 
 # Miscellaneous special pages
 'nbytes' => '$1 байт',
-'ncategories' => '$1 ангилал',
+'ncategories' => '$1 анги',
 'nlinks' => '$1 линк',
 'nmembers' => '$1 гишүүн',
 'nrevisions' => '$1 засвар',
@@ -1796,12 +1796,12 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'nimagelinks' => '$1 {{PLURAL:$1|хуудсанд|хуудсанд}} ашигласан',
 'specialpage-empty' => 'Энэ мэдүүлэгт үр дүн гарсангүй.',
 'lonelypages' => 'Өнчин хуудсууд',
-'lonelypagestext' => 'Энэ хуудсууд {{SITENAME}}-дахь бусад хуудсуудтай холбогдоогүй эсвэл заагаас хэтэрсэн байна.',
+'lonelypagestext' => 'Энэ хуудсууд {{SITENAME}}-дахь бусад хуудастай холбогдоогүй эсвэл заагаас хэтэрсэн байна.',
 'uncategorizedpages' => 'Ангилагдаагүй хуудсууд',
 'uncategorizedcategories' => 'Ангилагдаагүй анги',
 'uncategorizedimages' => 'Ангилагдаагүй зургууд',
 'uncategorizedtemplates' => 'Ангилагдаагүй загварууд',
-'unusedcategories' => 'Ашиглагдаагүй ангилал',
+'unusedcategories' => 'Хоосон анги',
 'unusedimages' => 'Ашиглагдаагүй файлууд',
 'popularpages' => 'Эрэлттэй хуудсууд',
 'wantedcategories' => 'Хэрэгцээт ангиллууд',
@@ -1888,11 +1888,11 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'cachedspecial-refresh-now' => 'Саяханы хуудсыг харах',
 
 # Special:Categories
-'categories' => 'Ангилал',
+'categories' => 'Анги',
 'categoriespagetext' => 'Дараах {{PLURAL:$1|ангилалд|ангиллуудад}} хуудас эсвэл медиа файл агуулагдаж байна.
 [[Special:UnusedCategories|Хэрэглэгдэхгүй байгаа]] ангиллуудыг энд харуулсангүй.
 [[Special:WantedCategories|Хэрэгтэй ангиллууд]] гэдгийг харна уу.',
-'categoriesfrom' => 'Хамгийн эхэлж харуулах ангилал:',
+'categoriesfrom' => 'Эхний ангилал:',
 'special-categories-sort-count' => 'тоогоор ялгах',
 'special-categories-sort-abc' => 'үсгийн дарааллаар ялгах',
 
@@ -2973,7 +2973,7 @@ $1',
 'exif-writer' => 'Бичсэн',
 'exif-languagecode' => 'Хэл',
 'exif-iimversion' => 'IIM хувилбар',
-'exif-iimcategory' => 'Ангилал',
+'exif-iimcategory' => 'Анги',
 'exif-datetimeexpires' => 'түүний дараа бүү хэрэглэ',
 'exif-datetimereleased' => 'Гарсан өдөр',
 'exif-originaltransmissionref' => '',
