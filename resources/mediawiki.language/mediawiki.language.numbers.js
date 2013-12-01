@@ -1,23 +1,22 @@
-/*
- * Number related utilities for mediawiki.language
- */
 ( function ( mw, $ ) {
 
-	/**
+	/*
 	 * Pad a string to guarantee that it is at least `size` length by
 	 * filling with the character `ch` at either the start or end of the
 	 * string. Pads at the start, by default.
-	 * example:
-	 * Fill the string to length 10 with '+' characters on the right. Yields 'blah++++++'.
-	 *  pad('blah', 10, '+', true);
+	 *
+	 * Example: Fill the string to length 10 with '+' characters on the right.
+   *
+	 *     pad('blah', 10, '+', true); // => 'blah++++++'
 	 *
 	 * @param {string} text The string to pad
-	 * @param {Number} size To provide padding
-	 * @param {string} ch Character to pad, defaults to '0'
-	 * @param {Boolean} end Adds padding at the end if true, otherwise pads at start
+	 * @param {number} size The length to pad to
+	 * @param {string} [ch='0'] Character to pad with
+	 * @param {boolean} [end=false] Adds padding at the end if true, otherwise pads at start
 	 * @return {string}
+	 * @private
 	 */
-	function pad ( text, size, ch, end ) {
+	function pad( text, size, ch, end ) {
 		if ( !ch ) {
 			ch = '0';
 		}
@@ -28,14 +27,15 @@
 		return end ? out + padStr : padStr + out;
 	}
 
-	/**
-	 * Efficiently replicate a string n times.
+	/*
+	 * Efficiently replicate a string `n` times.
 	 *
 	 * @param {string} str The string to replicate
-	 * @param {Number} num Number of times to replicate the string
+	 * @param {number} num Number of times to replicate the string
 	 * @return {string}
+	 * @private
 	 */
-	function replicate ( str, num ) {
+	function replicate( str, num ) {
 		if ( num <= 0 || !str ) {
 			return '';
 		}
@@ -48,19 +48,20 @@
 		return buf.join( '' );
 	}
 
-	/**
+	/*
 	 * Apply numeric pattern to absolute value using options. Gives no
 	 * consideration to local customs.
 	 *
 	 * Adapted from dojo/number library with thanks
 	 * http://dojotoolkit.org/reference-guide/1.8/dojo/number.html
 	 *
-	 * @param {Number} value the number to be formatted, ignores sign
+	 * @param {number} value the number to be formatted, ignores sign
 	 * @param {string} pattern the number portion of a pattern (e.g. `#,##0.00`)
-	 * @param {string} options.decimalThe decimal separator
+	 * @param {Object} [options]
+	 * @param {string} options.decimal The decimal separator
 	 * @param {string} options.group The group separator
-	 *
 	 * @return {string}
+	 * @private
 	 */
 	function commafyNumber( value, pattern, options ) {
 		options = options || {
@@ -149,14 +150,19 @@
 		return valueParts.join( options.decimal );
 	}
 
+	/**
+	 * Number-related utilities for mediawiki.language.
+	 *
+	 * @class mw.language
+	 */
 	$.extend( mw.language, {
 
 		/**
-		 * Converts a number using digitTransformTable.
+		 * Converts a number using #getDigitTransformTable.
 		 *
-		 * @param {Number} num Value to be converted
-		 * @param {boolean} integer Convert the return value to an integer
-		 * @return {Number|string} Formatted number
+		 * @param {number} num Value to be converted
+		 * @param {boolean} [integer=false] Whether to convert the return value to an integer
+		 * @return {number|string} Formatted number
 		 */
 		convertNumber: function ( num, integer ) {
 			var i, tmp, transformTable, numberString, convertedNumber, pattern;
@@ -197,24 +203,32 @@
 			return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
 		},
 
+		/**
+		 * Returns a digit transform table for current UI language.
+		 * @return {Object|Array|undefined}
+		 */
 		getDigitTransformTable: function () {
 			return mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 				'digitTransformTable' ) || [];
 		},
 
+		/**
+		 * Returns a separator transform table for current UI language.
+		 * @return {Object|Array|undefined}
+		 */
 		getSeparatorTransformTable: function () {
 			return mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 				'separatorTransformTable' ) || [];
 		},
 
 		/**
-		 * Apply pattern to format value as a string using as per
-		 * unicode.org TR35 - http://www.unicode.org/reports/tr35/#Number_Format_Patterns.
+		 * Apply pattern to format value as a string using as per Unicode TR35
+		 * (http://www.unicode.org/reports/tr35/#Number_Format_Patterns).
 		 *
-		 * @param {Number} value
+		 * @param {number} value
 		 * @param {string} pattern Pattern string as described by Unicode TR35
-		 * @throws Error
-		 * @returns {String}
+		 * @throws {Error}
+		 * @return {string}
 		 */
 		commafy: function ( value, pattern ) {
 			var numberPattern,

@@ -1,8 +1,3 @@
-/**
- * Transfer of month names from messages into mw.language.
- *
- * Loading this module also ensures the availability of appropriate messages via mw.msg.
- */
 ( function ( mw, $ ) {
 	var
 		monthMessages = [
@@ -28,27 +23,37 @@
 	}
 
 	/**
-	 * Information about month names in current UI language.
+	 * Transfer of month names from messages into mw.language.
 	 *
-	 * Object keys:
-	 * - `names`: array of month names (in nominative case in languages which have the distinction),
-	 *   zero-indexed
-	 * - `genitive`: array of month names in genitive case, zero-indexed
-	 * - `abbrev`: array of three-letter-long abbreviated month names, zero-indexed
-	 * - `keys`: object with three keys like the above, containing zero-indexed arrays of message keys
-	 *   for appropriate messages which can be passed to mw.msg.
+	 * Loading this module also ensures the availability of appropriate messages via mw.msg.
 	 *
-	 * @property
+	 * @class mw.language
 	 */
-	mw.language.months = {
-		keys: {
-			names: monthMessages,
-			genitive: monthGenMessages,
-			abbrev: monthAbbrevMessages
-		},
-		names: $.map( monthMessages, mwMsgMapper ),
-		genitive: $.map( monthGenMessages, mwMsgMapper ),
-		abbrev: $.map( monthAbbrevMessages, mwMsgMapper )
-	};
+	$.extend( mw.language, {
+		/**
+		 * Information about month names in current UI language.
+		 *
+		 * Object keys:
+		 *
+		 * - `names`: array of month names (in nominative case in languages which have the distinction),
+		 *   zero-indexed
+		 * - `genitive`: array of month names in genitive case, zero-indexed
+		 * - `abbrev`: array of three-letter-long abbreviated month names, zero-indexed
+		 * - `keys`: object with three keys like the above, containing zero-indexed arrays of message keys
+		 *   for appropriate messages which can be passed to mw.msg.
+		 *
+		 * @property
+		 */
+		months: {
+			keys: {
+				names: monthMessages,
+				genitive: monthGenMessages,
+				abbrev: monthAbbrevMessages
+			},
+			names: $.map( monthMessages, mwMsgMapper ),
+			genitive: $.map( monthGenMessages, mwMsgMapper ),
+			abbrev: $.map( monthAbbrevMessages, mwMsgMapper )
+		}
+	} );
 
 }( mediaWiki, jQuery ) );
