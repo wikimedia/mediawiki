@@ -681,8 +681,7 @@ class Linker {
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false,
 				'img-class' => $fp['class'] );
 			if ( isset( $fp['border'] ) ) {
-				// TODO: BUG? Both values are identical
-				$params['img-class'] .= ( $params['img-class'] !== '' ) ? ' thumbborder' : 'thumbborder';
+				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
 			}
 			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
 
@@ -871,7 +870,7 @@ class Linker {
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
-				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== '' ) ? $fp['class'] . ' thumbimage' : 'thumbimage'
+				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== '' ? $fp['class'] . ' ' : '' ) . 'thumbimage'
 			);
 			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
 			$s .= $thumb->toHtml( $params );
