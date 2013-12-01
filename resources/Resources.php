@@ -1087,6 +1087,16 @@ return array(
 		'dependencies' => 'mediawiki.jqueryMsg',
 		'position' => 'top',
 	),
+	'mediawiki.special.signin.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.signin.js',
+		'messages' => array(
+			'createacct-captcha',
+			'createacct-emailrequired',
+			'createacct-imgcaptcha-ph'
+		),
+		'dependencies' => 'mediawiki.jqueryMsg',
+		'position' => 'top',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(
