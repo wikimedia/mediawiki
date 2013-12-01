@@ -2,7 +2,6 @@
  * JavaScript for Create account form (Special:UserLogin?type=signup).
  */
 ( function ( mw, $ ) {
-
 	// When sending password by email, hide the password input fields.
 	// This function doesn't need to be loaded early by ResourceLoader, but is tiny.
 	function hidePasswordOnEmail() {
@@ -34,9 +33,8 @@
 
 	// Move the FancyCaptcha image into a more attractive container.
 	// This function does need to be run early by ResourceLoader.
-	function adjustFancyCaptcha() {
-		var $content = $( '#mw-content-text' ),
-			$submit = $content.find( '#wpCreateaccount' ),
+	function adjustFancyCaptcha($content, buttonSubmit) {
+		var $submit = $content.find( buttonSubmit ),
 			tabIndex,
 			$captchaStuff,
 			$captchaImageContainer,
@@ -105,8 +103,19 @@
 	}
 
 	$( function () {
-		adjustFancyCaptcha();
-		hidePasswordOnEmail();
+		//Checks if the current page is Special:UserLogin
+		var isLogin = false;
+		var $content = $( '#mw-content-text' );
+		var buttonSubmit = '#wpCreateaccount';
+		if ( $content.find( buttonSubmit ).length==0 ){
+			buttonSubmit = "#wpLoginAttempt";
+			isLogin = true;
+		}
+
+		adjustFancyCaptcha($content, buttonSubmit);
+		if( !isLogin ){
+			hidePasswordOnEmail();
+		}
 	} );
 
 }( mediaWiki, jQuery ) );
