@@ -274,8 +274,6 @@ class BacklinkCache {
 	protected function getConditions( $table ) {
 		$prefix = $this->getPrefix( $table );
 
-		// @todo FIXME: imagelinks and categorylinks do not rely on getNamespace,
-		// they could be moved up for nicer case statements
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
@@ -297,14 +295,9 @@ class BacklinkCache {
 				);
 				break;
 			case 'imagelinks':
-				$conds = array(
-					'il_to' => $this->title->getDBkey(),
-					"page_id={$prefix}_from"
-				);
-				break;
 			case 'categorylinks':
 				$conds = array(
-					'cl_to' => $this->title->getDBkey(),
+					"{$prefix}_to" => $this->title->getDBkey(),
 					"page_id={$prefix}_from"
 				);
 				break;
