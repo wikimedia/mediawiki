@@ -119,20 +119,38 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
-		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-		if ( !$revision ) {
-			$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
-			return false; // XXX: what if it was just deleted?
+		$parserOutput = false;
+		// If page_touched changed after this root job (with a good slave lag skew factor),
+		// then it is likely that any views of the pages already resulted in re-parses which
+		// are now in cache. This can be reused to avoid expensive parsing in some cases.
+		if ( isset( $this->params['rootJobTimestamp'] ) ) {
+			$page = WikiPage::factory( $title );
+			$skewedTimestamp = wfTimestamp( TS_UNIX, $this->params['rootJobTimestamp'] ) + 5;
+			if ( $page->getTouched() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
+				$parserOptions = $page->makeParserOptions( 'canonical' );
+				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
+				if ( $parserOutput->getCacheTime() <= $skewedTimestamp ) {
+					$parserOutput = false; // too stale
+				}
+			}
 		}
+		// Fetch the current revision and parse it if necessary...
+		if ( $parserOutput == false ) {
+			$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			if ( !$revision ) {
+				$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
+				return false; // XXX: what if it was just deleted?
+			}
 
-		$content = $revision->getContent( Revision::RAW );
-		if ( !$content ) {
-			// If there is no content, pretend the content is empty
-			$content = $revision->getContentHandler()->makeEmptyContent();
+			$content = $revision->getContent( Revision::RAW );
+			if ( !$content ) {
+				// If there is no content, pretend the content is empty
+				$content = $revision->getContentHandler()->makeEmptyContent();
+			}
+
+			// Revision ID must be passed to the parser output to get revision variables correct
+			$parserOutput = $content->getParserOutput( $title, $revision->getId(), null, false );
 		}
-
-		// Revision ID must be passed to the parser output to get revision variables correct
-		$parserOutput = $content->getParserOutput( $title, $revision->getId(), null, false );
 
 		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
 		DataUpdate::runUpdates( $updates );

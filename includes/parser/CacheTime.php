@@ -37,14 +37,17 @@ class CacheTime {
 		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
 		$mContainsOldMagic;           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
 
-	function getCacheTime()              { return $this->mCacheTime; }
+	/**
+	 * @return string TS_MW timestamp
+	 */
+	function getCacheTime()              { return wfTimestamp( TS_MW, $this->mCacheTime ); }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
-	 * This doesn not control expiry, see updateCacheExpiry() for that!
+	 * This does not control expiry, see updateCacheExpiry() for that!
 	 * @param $t string
 	 * @return string
 	 */
