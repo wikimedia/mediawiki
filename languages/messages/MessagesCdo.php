@@ -11,6 +11,8 @@
  * @author Yejianfei
  */
 
+$fallback = 'nan, zh-hant';
+
 $namespaceNames = array(
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特殊',

@@ -16,6 +16,8 @@
  * @author Xiaomingyan
  */
 
+$fallback = 'zh-hant';
+
 $messages = array(
 # User preference toggles
 'tog-underline' => '鏈接加底線：',
