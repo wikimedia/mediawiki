@@ -54,7 +54,6 @@ $specialPageAliases = array(
 	'Categories'                => array( 'Kategoriyalar' ),
 	'Contributions'             => array( 'Paydalanıwshı u\'lesi' ),
 	'Deadendpages'              => array( 'Hesh betke siltemeytug\'ın betler' ),
-	'Disambiguations'           => array( 'Ko\'p ma\'nisliler' ),
 	'DoubleRedirects'           => array( 'Qos burıwshılar' ),
 	'Emailuser'                 => array( 'Xat jiberiw' ),
 	'Export'                    => array( 'Eksport' ),

@@ -70,7 +70,6 @@ $specialPageAliases = array(
 	'Ancientpages'              => array( 'FaqetAntike' ),
 	'Blankpage'                 => array( 'FaqeBosh' ),
 	'Block'                     => array( 'BllokoIP' ),
-	'Blockme'                   => array( 'BllokomMua' ),
 	'Booksources'               => array( 'BurimeteLibrave' ),
 	'Categories'                => array( 'Kategori' ),
 	'ChangeEmail'               => array( 'NdryshoEmail' ),

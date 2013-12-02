@@ -44,7 +44,6 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'NgatananngaPakli' ),
 	'Categories'                => array( 'Mga_kaarangay' ),
 	'Contributions'             => array( 'Mga_ámot' ),
-	'Disambiguations'           => array( 'Mga_pansayod' ),
 	'Longpages'                 => array( 'HaglabangamgaPakli' ),
 	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
 	'Movepage'                  => array( 'BalhinaAnPakli' ),

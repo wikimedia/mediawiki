@@ -55,7 +55,6 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Tûtte e paggine' ),
 	'Ancientpages'              => array( 'Paggine meno reçenti' ),
 	'Block'                     => array( 'Blocca' ),
-	'Blockme'                   => array( 'BloccaProxy' ),
 	'Booksources'               => array( 'RiçercaISBN' ),
 	'Categories'                => array( 'Categorîe' ),
 	'ChangePassword'            => array( 'Rimposta paròlla d\'ordine' ),

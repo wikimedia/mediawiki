@@ -34,7 +34,6 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( '增簿' ),
 	'Deadendpages'              => array( '此無路也' ),
 	'DeletedContributions'      => array( '已刪之積' ),
-	'Disambiguations'           => array( '釋義' ),
 	'DoubleRedirects'           => array( '窮渡' ),
 	'EditWatchlist'             => array( '治哨站' ),
 	'Emailuser'                 => array( '遺書' ),

@@ -59,7 +59,6 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'ܒܪܝ_ܚܘܫܒܢܐ' ),
 	'Deadendpages'              => array( 'ܦܐܬܬ̈ܐ_ܥܡ_ܚܪܬܐ_ܡܝܬܬܐ' ),
 	'DeletedContributions'      => array( 'ܫܘܬܦܘ̈ܬܐ_ܫܝ̈ܦܬܐ' ),
-	'Disambiguations'           => array( 'ܬܘܚܡ̈ܐ_ܐܚܪ̈ܢܐ' ),
 	'DoubleRedirects'           => array( 'ܨܘܝܒ̈ܐ_ܥܦܝ̈ܦܐ' ),
 	'EditWatchlist'             => array( 'ܫܚܠܦ_ܪ̈ܗܝܬܐ' ),
 	'Emailuser'                 => array( 'ܫܕܪ_ܒܝܠܕܪܐ_ܐܠܩܛܪܘܢܝܐ_ܠܡܦܠܚܢܐ' ),

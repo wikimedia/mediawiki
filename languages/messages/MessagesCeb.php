@@ -48,7 +48,6 @@ $specialPageAliases = array(
 	'Categories'                => array( 'Mga Kategoriya' ),
 	'Contributions'             => array( 'Mga Tampo' ),
 	'CreateAccount'             => array( 'Paghimo\'gAkawnt' ),
-	'Disambiguations'           => array( 'Mga Pagklaro' ),
 	'DoubleRedirects'           => array( 'DoblengRedirekta' ),
 	'Listfiles'                 => array( 'Listahan sa Imahen' ),
 	'Lonelypages'               => array( 'Nag-inusarangPanid', 'Sinagop nga Panid' ),

@@ -93,6 +93,7 @@ $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Шалха_дӀасахьажийнарш' ),
 	'EditWatchlist'             => array( 'Табе_тергаме_могӀам' ),
 	'Emailuser'                 => array( 'Декъашхочунга_кехат' ),
+	'ExpandTemplates'           => array( 'Кепаш_схьаястар' ),
 	'Export'                    => array( 'Экспорт' ),
 	'Fewestrevisions'           => array( 'Наггахь_беш_болу_хийцамаш' ),
 	'FileDuplicateSearch'       => array( 'Цхьатера_файлаш_лахар' ),

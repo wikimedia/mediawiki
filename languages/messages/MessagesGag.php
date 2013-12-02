@@ -61,7 +61,6 @@ $specialPageAliases = array(
 	'Contributions'             => array( 'Katılmaklar' ),
 	'CreateAccount'             => array( 'EsapYarat', 'EsapAç' ),
 	'Deadendpages'              => array( 'BaalantısızYazılar', 'BaalantısızSayfalar', 'BaalantısızYapraklar' ),
-	'Disambiguations'           => array( 'MaanaAydınnatmak', 'MaanaAydınnatma' ),
 	'DoubleRedirects'           => array( 'İkiKeräYönnendirmäler', 'İkiKeräYönnendirmeler' ),
 	'Listadmins'                => array( 'İzmetliListası' ),
 	'Listbots'                  => array( 'BotListası' ),

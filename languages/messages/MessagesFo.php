@@ -59,7 +59,6 @@ $specialPageAliases = array(
 	'Categories'                => array( 'Bólkar' ),
 	'Contributions'             => array( 'Brúkaraíkast' ),
 	'Deadendpages'              => array( 'Gøtubotns síður' ),
-	'Disambiguations'           => array( 'Síður við fleirfaldum týdningi' ),
 	'DoubleRedirects'           => array( 'Tvífaldað ávísing' ),
 	'Emailuser'                 => array( 'Send t-post til brúkara' ),
 	'Export'                    => array( 'Útflutningssíður' ),

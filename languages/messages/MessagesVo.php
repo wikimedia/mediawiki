@@ -68,7 +68,6 @@ $specialPageAliases = array(
 	'Categories'                => array( 'Klads' ),
 	'Confirmemail'              => array( 'Fümedönladeti' ),
 	'Contributions'             => array( 'Keblünots' ),
-	'Disambiguations'           => array( 'Telplänovs', 'Telplänovapads' ),
 	'DoubleRedirects'           => array( 'Lüodükömstelik', 'Lüodüköms telik' ),
 	'Listfiles'                 => array( 'Ragivalised', 'Magodalised' ),
 	'Listusers'                 => array( 'Gebanalised' ),

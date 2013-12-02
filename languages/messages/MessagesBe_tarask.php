@@ -65,7 +65,6 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'Стварыць_рахунак' ),
 	'Deadendpages'              => array( 'Тупіковыя_старонкі' ),
 	'DeletedContributions'      => array( 'Выдалены_ўнёсак' ),
-	'Disambiguations'           => array( 'Неадназначнасьці' ),
 	'DoubleRedirects'           => array( 'Двайныя_перанакіраваньні' ),
 	'Emailuser'                 => array( 'Даслаць_ліст' ),
 	'Export'                    => array( 'Экспарт' ),

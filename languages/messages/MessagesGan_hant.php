@@ -32,7 +32,6 @@ $specialPageAliases = array(
 	'Ancientpages'              => array( '老早嗰頁面' ),
 	'BrokenRedirects'           => array( '壞吥嗰重定向頁' ),
 	'CreateAccount'             => array( '新建隻帳戶' ),
-	'Disambiguations'           => array( '多義項' ),
 	'Fewestrevisions'           => array( '最少改動嗰頁面' ),
 	'Longpages'                 => array( '莽文章' ),
 	'Mostcategories'            => array( '最多分類嗰頁面' ),

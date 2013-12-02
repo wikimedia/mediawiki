@@ -75,7 +75,6 @@ $specialPageAliases = array(
 	'BrokenRedirects'           => array( 'RedirezionS-cepada' ),
 	'Categories'                => array( 'Categurij' ),
 	'CreateAccount'             => array( 'CreaCünt' ),
-	'Disambiguations'           => array( 'Desambiguazion' ),
 	'DoubleRedirects'           => array( 'RedirezionDubia' ),
 	'Listadmins'                => array( 'ListaAministradur' ),
 	'Listfiles'                 => array( 'Imagin' ),

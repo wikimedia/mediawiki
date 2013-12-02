@@ -42,7 +42,6 @@ $specialPageAliases = array(
 	'Contributions'             => array( 'ການປະກອບສ່ວນ' ),
 	'CreateAccount'             => array( 'ສ້າງບັນຊີ' ),
 	'Deadendpages'              => array( 'ໜ້າທີ່ບໍ່ມີໜ້າໃດໂຍງມາ' ),
-	'Disambiguations'           => array( 'ແກ້ຄວາມກຳກວມ' ),
 	'DoubleRedirects'           => array( 'ໂອນຊ້ອນ' ),
 	'Listadmins'                => array( 'ລາຍຊື່ຜູ້ບໍລິຫານລະບົບ' ),
 	'Listbots'                  => array( 'ລາຍຊື່ບອຕ' ),

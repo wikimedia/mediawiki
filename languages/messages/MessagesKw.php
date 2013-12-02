@@ -60,14 +60,13 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Activeusers'               => array( 'DevnydhyoryonByw' ),
+	'Activeusers'               => array( 'DevnydhyoryonVyw' ),
 	'Allmessages'               => array( 'OllMessajys' ),
 	'Allpages'                  => array( 'OllFolennow' ),
 	'Ancientpages'              => array( 'FolennowKoth' ),
 	'Badtitle'                  => array( 'TitelDrog' ),
 	'Blankpage'                 => array( 'FolenWag' ),
 	'Block'                     => array( 'Difenna' ),
-	'Blockme'                   => array( 'GulOwDifen' ),
 	'Booksources'               => array( 'PennfentynyowLyver' ),
 	'BrokenRedirects'           => array( 'DaskedyansowTerrys' ),
 	'Categories'                => array( 'Klassys' ),
@@ -79,10 +78,10 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'FormyaAkont' ),
 	'Deadendpages'              => array( 'FolennowFordhDhall' ),
 	'DeletedContributions'      => array( 'KevrohowDiles' ),
-	'Disambiguations'           => array( 'Diamstyryansow' ),
 	'DoubleRedirects'           => array( 'DaswedyansowDewblek' ),
-	'EditWatchlist'             => array( 'ChanjyaOwRolGolya' ),
+	'EditWatchlist'             => array( 'ChanjyaOwRolWolya' ),
 	'Emailuser'                 => array( 'EbostyaDevnydhyer' ),
+	'ExpandTemplates'           => array( 'BrasheSkantlyns' ),
 	'Export'                    => array( 'Esperthi' ),
 	'Fewestrevisions'           => array( 'AnLyhaAmendyansow' ),
 	'Filepath'                  => array( 'HynsAnFolen' ),
@@ -153,7 +152,7 @@ $specialPageAliases = array(
 	'Wantedfiles'               => array( 'RestrennowHwansus' ),
 	'Wantedpages'               => array( 'FolennowHwansus' ),
 	'Wantedtemplates'           => array( 'SkantlynsHwansus' ),
-	'Watchlist'                 => array( 'Rol_golya' ),
+	'Watchlist'                 => array( 'Rol_wolya' ),
 	'Whatlinkshere'             => array( 'OwKevrennaOmma' ),
 	'Withoutinterwiki'          => array( 'HebInterwiki' ),
 );
