@@ -12,6 +12,8 @@
  * @author Kaihsu
  */
 
+$fallback = 'cdo, zh-hant';
+
 $datePreferences = array(
 	'default',
 	'ISO 8601',
