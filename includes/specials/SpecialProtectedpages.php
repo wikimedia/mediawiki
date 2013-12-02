@@ -38,6 +38,7 @@ class SpecialProtectedpages extends SpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		// Purge expired entries on one in every 10 queries
 		if ( !mt_rand( 0, 10 ) ) {
@@ -78,111 +79,12 @@ class SpecialProtectedpages extends SpecialPage {
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML(
 				$pager->getNavigationBar() .
-					'<ul>' . $pager->getBody() . '</ul>' .
+					$pager->getBody() .
 					$pager->getNavigationBar()
 			);
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedpagesempty' );
 		}
-	}
-
-	/**
-	 * Callback function to output a restriction
-	 * @param Title $row Protected title
-	 * @return string Formatted "<li>" element
-	 */
-	public function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
-
-		static $infinity = null;
-
-		if ( is_null( $infinity ) ) {
-			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
-		}
-
-		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-		if ( !$title ) {
-			wfProfileOut( __METHOD__ );
-
-			return Html::rawElement(
-				'li',
-				array(),
-				Html::element(
-					'span',
-					array( 'class' => 'mw-invalidtitle' ),
-					Linker::getInvalidTitleDescription(
-						$this->getContext(),
-						$row->page_namespace,
-						$row->page_title
-					)
-				)
-			) . "\n";
-		}
-
-		$link = Linker::link( $title );
-
-		$description_items = array();
-
-		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-		$protType = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
-
-		$description_items[] = $protType;
-
-		if ( $row->pr_cascade ) {
-			$description_items[] = $this->msg( 'protect-summary-cascade' )->text();
-		}
-
-		$stxt = '';
-		$lang = $this->getLanguage();
-
-		$expiry = $lang->formatExpiry( $row->pr_expiry, TS_MW );
-		if ( $expiry != $infinity ) {
-			$user = $this->getUser();
-			$description_items[] = $this->msg(
-				'protect-expiring-local',
-				$lang->userTimeAndDate( $expiry, $user ),
-				$lang->userDate( $expiry, $user ),
-				$lang->userTime( $expiry, $user )
-			)->escaped();
-		}
-
-		if ( !is_null( $size = $row->page_len ) ) {
-			$stxt = $lang->getDirMark() . ' ' . Linker::formatRevisionSize( $size );
-		}
-
-		// Show a link to the change protection form for allowed users otherwise
-		// a link to the protection log
-		if ( $this->getUser()->isAllowed( 'protect' ) ) {
-			$changeProtection = Linker::linkKnown(
-				$title,
-				$this->msg( 'protect_change' )->escaped(),
-				array(),
-				array( 'action' => 'unprotect' )
-			);
-		} else {
-			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$changeProtection = Linker::linkKnown(
-				$ltitle,
-				$this->msg( 'protectlogpage' )->escaped(),
-				array(),
-				array(
-					'type' => 'protect',
-					'page' => $title->getPrefixedText()
-				)
-			);
-		}
-
-		$changeProtection = ' ' . $this->msg( 'parentheses' )->rawParams( $changeProtection )
-			->escaped();
-
-		wfProfileOut( __METHOD__ );
-
-		return Html::rawElement(
-			'li',
-			array(),
-			$lang->specialList( $link . $stxt, $lang->commaList( $description_items ), false ) .
-				$changeProtection
-		) . "\n";
 	}
 
 	/**
@@ -370,7 +272,7 @@ class SpecialProtectedpages extends SpecialPage {
  * @todo document
  * @ingroup Pager
  */
-class ProtectedPagesPager extends AlphabeticPager {
+class ProtectedPagesPager extends TablePager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
@@ -389,19 +291,166 @@ class ProtectedPagesPager extends AlphabeticPager {
 		parent::__construct( $form->getContext() );
 	}
 
-	function getStartBody() {
+	function preprocessResults( $result ) {
 		# Do a link batch query
 		$lb = new LinkBatch;
-		foreach ( $this->mResult as $row ) {
-			$lb->add( $row->page_namespace, $row->page_title );
-		}
-		$lb->execute();
+		$userids = array();
 
-		return '';
+		foreach ( $result as $row ) {
+			$lb->add( $row->page_namespace, $row->page_title );
+			// field is nullable, maybe null on old protections
+			if ( $row->pr_performer !== null ) {
+				$userids[] = $row->pr_performer;
+			}
+		}
+
+		// fill LinkBatch with user page and user talk
+		if ( count( $userids ) ) {
+			$userCache = UserCache::singleton();
+			$userCache->doQuery( $userids, array(), __METHOD__ );
+			foreach ( $userids as $userid ) {
+				$name = $userCache->getProp( $userid, 'name' );
+				if ( $name !== false ) {
+					$lb->add( NS_USER, $name );
+					$lb->add( NS_USER_TALK, $name );
+				}
+			}
+		}
+
+		$lb->execute();
 	}
 
-	function formatRow( $row ) {
-		return $this->mForm->formatRow( $row );
+	function getFieldNames() {
+		static $headers = null;
+
+		if ( $headers == array() ) {
+			$headers = array(
+				'pr_timestamp' => 'protectedpages-timestamp',
+				'pr_page' => 'protectedpages-page',
+				'pr_expiry' => 'protectedpages-expiry',
+				'pr_performer' => 'protectedpages-performer',
+				'pr_params' => 'protectedpages-params',
+				'pr_reason' => 'protectedpages-reason',
+			);
+			foreach ( $headers as $key => $val ) {
+				$headers[$key] = $this->msg( $val )->text();
+			}
+		}
+
+		return $headers;
+	}
+
+	function formatValue( $name, $value ) {
+		/** @var $row object */
+		$row = $this->mCurrentRow;
+
+		$formatted = '';
+
+		switch ( $name ) {
+			case 'pr_timestamp':
+				// when timestamp is null, this is a old protection row
+				if ( $value === null ) {
+					$formatted = Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedpages-unknown' ),
+						$this->msg( 'protectedpages-unknown-timestamp' )
+					);
+				} else {
+					$formatted = $this->getLanguage()->userTimeAndDate( $value, $this->getUser() );
+				}
+				break;
+
+			case 'pr_page':
+				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+				if ( !$title ) {
+					$formatted = Html::element(
+						'span',
+						array( 'class' => 'mw-invalidtitle' ),
+						Linker::getInvalidTitleDescription(
+							$this->getContext(),
+							$row->page_namespace,
+							$row->page_title
+						)
+					);
+				} else {
+					$formatted = Linker::link( $title );
+				}
+				if ( !is_null( $row->page_len ) ) {
+					$formatted .= $this->getLanguage()->getDirMark() .
+						' ' . Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedpages-length' ),
+						Linker::formatRevisionSize( $row->page_len )
+					);
+				}
+				break;
+
+			case 'pr_expiry':
+				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */true );
+				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
+					$changeProtection = Linker::linkKnown(
+						$title,
+						$this->msg( 'protect_change' )->escaped(),
+						array(),
+						array( 'action' => 'unprotect' )
+					);
+					$formatted .= ' ' . Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedpages-actions' ),
+						$this->msg( 'parentheses' )->rawParams( $changeProtection )->escaped()
+					);
+				}
+				break;
+
+			case 'pr_performer':
+				// when timestamp is null, this is a old protection row
+				if ( $row->pr_timestamp === null ) {
+					$formatted = Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedpages-unknown' ),
+						$this->msg( 'protectedpages-unknown-performer' )
+					);
+				} else {
+					$username = UserCache::singleton()->getProp( $value, 'name' );
+					if ( $username === false ) {
+						$formatted = htmlspecialchars( $value );
+					} else {
+						$formatted = Linker::userLink( $value, $username )
+							. Linker::userToolLinks( $value, $username );
+					}
+				}
+				break;
+
+			case 'pr_params':
+				$params = array();
+				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
+				$params[] = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
+				if ( $row->pr_cascade ) {
+					$params[] = $this->msg( 'protect-summary-cascade' )->text();
+				}
+				$formatted = $this->getLanguage()->commaList( $params );
+				break;
+
+			case 'pr_reason':
+				// when timestamp is null, this is a old protection row
+				if ( $row->pr_timestamp === null ) {
+					$formatted = Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedpages-unknown' ),
+						$this->msg( 'protectedpages-unknown-reason' )
+					);
+				} else {
+					$formatted = Linker::formatComment( $value !== null ? $value : '' );
+				}
+				break;
+
+			default:
+				$formatted = "Unable to format $name";
+				break;
+		}
+
+		return $formatted;
 	}
 
 	function getQueryInfo() {
@@ -434,13 +483,37 @@ class ProtectedPagesPager extends AlphabeticPager {
 
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => array( 'pr_id', 'page_namespace', 'page_title', 'page_len',
-				'pr_type', 'pr_level', 'pr_expiry', 'pr_cascade' ),
+			'fields' => array(
+				'pr_id',
+				'page_namespace',
+				'page_title',
+				'page_len',
+				'pr_type',
+				'pr_level',
+				'pr_expiry',
+				'pr_cascade',
+				'pr_timestamp',
+				'pr_performer',
+				'pr_reason',
+			),
 			'conds' => $conds
 		);
 	}
 
+	public function getTableClass() {
+		return 'TablePager mw-protectedpages';
+	}
+
 	function getIndexField() {
 		return 'pr_id';
+	}
+
+	function getDefaultSort() {
+		return 'pr_id';
+	}
+
+	function isFieldSortable( $name ) {
+		// no index for sorting exists
+		return false;
 	}
 }

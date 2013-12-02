@@ -180,6 +180,7 @@ $wgIgnoredMessages = array(
 	'brokenredirects-summary',
 	'deadendpages-summary',
 	'protectedpages-summary',
+	'protectedpages-unknown-reason',
 	'disambiguations-summary',
 	'pageswithprop-summary',
 	'doubleredirects-summary',

@@ -21,6 +21,8 @@ production.
 * $wgSquidServersNoPurge now supports the use of Classless Inter-Domain
   Routing (CIDR) notation to specify contiguous blocks of IPv4 and/or IPv6
   addresses that should be trusted to provide X-Forwarded-For headers.
+* Special:ProtectedPages shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
