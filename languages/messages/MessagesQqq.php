@@ -4961,6 +4961,15 @@ See the following search results:
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
+'protectedtitles-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:ProtectedTitles]].
+{{Identical|Timestamp}}',
+'protectedtitles-page' => 'This is a column header in the table on the page [[Special:ProtectedTitles]].',
+'protectedtitles-expiry' => 'This is a column header in the table on the page [[Special:ProtectedTitles]].
+{{Identical|Expire}}',
+'protectedtitles-user' => 'This is a column header in the table on the page [[Special:ProtectedTitles]].',
+'protectedtitles-params' => 'This is a column header in the table on the page [[Special:ProtectedTitles]].',
+'protectedtitles-reason' => 'This is a column header in the table on the page [[Special:ProtectedTitles]].
+{{Identical|Reason}}',
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'listusers-creationsort' => 'Option in [[Special:ListUsers]].',
