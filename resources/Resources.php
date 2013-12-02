@@ -1089,28 +1089,39 @@ return array(
 			'mediawiki.util',
 		),
 	),
-	'mediawiki.special.userlogin' => array(
+	'mediawiki.special.userlogin.common.styles' => array(
 		'styles' => array(
-			'resources/mediawiki.special/mediawiki.special.vforms.css',
-			'resources/mediawiki.special/mediawiki.special.userLogin.css',
+			'resources/mediawiki.special/mediawiki.special.userlogin.common.css',
 		),
 		'position' => 'top',
 	),
-	'mediawiki.special.createaccount' => array(
+	'mediawiki.special.userlogin.signup.styles' => array(
 		'styles' => array(
-			'resources/mediawiki.special/mediawiki.special.vforms.css',
-			'resources/mediawiki.special/mediawiki.special.createAccount.css',
+			'resources/mediawiki.special/mediawiki.special.userlogin.signup.css',
 		),
+		'position' => 'top',
 	),
-	'mediawiki.special.createaccount.js' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.createAccount.js',
+	'mediawiki.special.userlogin.login.styles' => array(
+		'styles' => array(
+			'resources/mediawiki.special/mediawiki.special.userlogin.login.css',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.special.userlogin.common.js' => array(
+		'scripts' => array(
+			'resources/mediawiki.special/mediawiki.special.userlogin.common.js',
+		),
 		'messages' => array(
 			'createacct-captcha',
+			'createacct-imgcaptcha-ph',
+		),
+	),
+	'mediawiki.special.userlogin.signup.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.userlogin.signup.js',
+		'messages' => array(
 			'createacct-emailrequired',
-			'createacct-imgcaptcha-ph'
 		),
 		'dependencies' => 'mediawiki.jqueryMsg',
-		'position' => 'top',
 	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
