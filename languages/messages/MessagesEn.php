@@ -1200,7 +1200,7 @@ Please try again.',
 'passwordtooshort'                => 'Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.',
 'password-name-match'             => 'Your password must be different from your username.',
 'password-login-forbidden'        => 'The use of this username and password has been forbidden.',
-'mailmypassword'                  => 'Email new password',
+'mailmypassword'                  => 'Reset password',
 'passwordremindertitle'           => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'            => 'Someone (probably you, from IP address $1) requested a new
 password for {{SITENAME}} ($4). A temporary password for user
@@ -1290,8 +1290,8 @@ You may have already successfully changed your password or requested a new tempo
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
-'passwordreset-text-one'           => 'Complete this form to reset your password.',
-'passwordreset-text-many'          => '{{PLURAL:$1|Fill one of the fields to reset your password.}}',
+'passwordreset-text-one'           => 'Complete this form to receive a temporary password via email.',
+'passwordreset-text-many'          => '{{PLURAL:$1|Fill in one of the fields to receive a temporary password via email.}}',
 'passwordreset-legend'             => 'Reset password',
 'passwordreset-disabled'           => 'Password resets have been disabled on this wiki.',
 'passwordreset-emaildisabled'      => 'Email features have been disabled on this wiki.',
