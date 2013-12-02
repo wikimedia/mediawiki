@@ -153,6 +153,13 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'InterwikiIndakAdo' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#ALIAH', '#ALIH', '#REDIRECT' ),
+	'pagesincategory_all'       => array( '0', 'sado', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'laman', 'pages' ),
+	'pagesincategory_files'     => array( '0', 'berkas', 'files' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garih bawahi tautan:',

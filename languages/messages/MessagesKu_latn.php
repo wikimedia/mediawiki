@@ -83,7 +83,7 @@ $magicWords = array(
 	'notoc'                     => array( '0', '_NAVEROKTUNE_', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '_GALERÎTUNE_', '__NOGALLERY__' ),
 	'toc'                       => array( '0', '_NAVEROK_', '__TOC__' ),
-	'currentmonth1'             => array( '1', 'MEHANIHA1', 'CURRENTMONTH1' ),
+	'currentmonth1'             => array( '1', 'MEHA_NIHA_1', 'CURRENTMONTH1' ),
 	'currentday'                => array( '1', 'ROJA_NIHA', 'CURRENTDAY' ),
 	'currentday2'               => array( '1', 'ROJA_NIHA2', 'CURRENTDAY2' ),
 	'currenttime'               => array( '1', 'DEMA_NIHA', 'CURRENTTIME' ),
@@ -105,6 +105,8 @@ $magicWords = array(
 	'language'                  => array( '0', '#ZIMAN', '#LANGUAGE:' ),
 	'numberofadmins'            => array( '1', 'HEJMARA_RÊVEBERAN', 'NUMBEROFADMINS' ),
 	'special'                   => array( '0', 'taybet', 'special' ),
+	'pagesincategory_all'       => array( '0', 'hemû', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'rûpel', 'pages' ),
 );
 
 $messages = array(

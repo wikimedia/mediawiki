@@ -152,7 +152,7 @@ $magicWords = array(
 	'img_center'                => array( '1', 'куншкасо', 'центр', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'кундсо', 'обрамить', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'кундовтомо', 'безрамки', 'frameless' ),
-	'img_page'                  => array( '1', 'лопа=$1', 'лопа $1', 'страница=$1', 'страница $1', 'страница $1', 'page=$1', 'page $1' ),
+	'img_page'                  => array( '1', 'лопа=$1', 'лопа_$1', 'страница=$1', 'страница_$1', 'страница $1', 'page=$1', 'page $1' ),
 	'img_top'                   => array( '1', 'верькс', 'сверху', 'top' ),
 	'img_text_top'              => array( '1', 'текст-верькс', 'текст-сверху', 'text-top' ),
 	'img_middle'                => array( '1', 'куншка', 'посередине', 'middle' ),

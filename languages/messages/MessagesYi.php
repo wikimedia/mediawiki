@@ -160,6 +160,7 @@ $magicWords = array(
 	'numberofarticles'          => array( '1', 'צאל_ארטיקלען', 'מספר ערכים', 'NUMBEROFARTICLES' ),
 	'numberoffiles'             => array( '1', 'צאל_טעקעס', 'מספר קבצים', 'NUMBEROFFILES' ),
 	'numberofusers'             => array( '1', 'צאל_באניצער', 'מספר משתמשים', 'NUMBEROFUSERS' ),
+	'numberofedits'             => array( '1', 'צאל_רעדאקטירונגען', 'מספר עריכות', 'NUMBEROFEDITS' ),
 	'pagename'                  => array( '1', 'בלאטנאמען', 'שם הדף', 'PAGENAME' ),
 	'namespace'                 => array( '1', 'נאמענטייל', 'מרחב השם', 'NAMESPACE' ),
 	'fullpagename'              => array( '1', 'פולבלאטנאמען', 'שם הדף המלא', 'FULLPAGENAME' ),
@@ -176,6 +177,7 @@ $magicWords = array(
 	'img_sub'                   => array( '1', 'אונטער', 'תחתי', 'sub' ),
 	'img_super'                 => array( '1', 'איבער', 'עילי', 'super', 'sup' ),
 	'img_top'                   => array( '1', 'אויבן', 'למעלה', 'top' ),
+	'img_middle'                => array( '1', 'אינמיטן', 'באמצע', 'middle' ),
 	'img_bottom'                => array( '1', 'אונטן', 'למטה', 'bottom' ),
 	'img_link'                  => array( '1', 'לינק=$1', 'קישור=$1', 'link=$1' ),
 	'img_alt'                   => array( '1', 'טעקסט=$1', 'טקסט=$1', 'alt=$1' ),
@@ -190,6 +192,7 @@ $magicWords = array(
 	'hiddencat'                 => array( '1', '__באהאלטענע_קאטעגאריע__', '__באהאלטענע_קאט__', '__קטגוריה_מוסתרת__', '__HIDDENCAT__' ),
 	'pagesize'                  => array( '1', 'בלאטגרייס', 'גודל דף', 'PAGESIZE' ),
 	'url_wiki'                  => array( '0', 'וויקי', 'ויקי', 'WIKI' ),
+	'pagesincategory_pages'     => array( '0', 'בלעטער', 'דפים', 'pages' ),
 );
 
 $messages = array(

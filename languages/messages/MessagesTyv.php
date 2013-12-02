@@ -73,7 +73,7 @@ $magicWords = array(
 	'pagename'                  => array( '1', 'АРЫННЫҢАДЫ', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ),
 	'namespace'                 => array( '1', 'АТТАРДЕЛГЕМИ', 'ПРОСТРАНСТВО_ИМЁН', 'NAMESPACE' ),
 	'namespacee'                => array( '1', 'АТТАРДЕЛГЕМИ2', 'ПРОСТРАНСТВО_ИМЁН_2', 'NAMESPACEE' ),
-	'namespacenumber'           => array( '1', 'АТТАРДЕЛГЕМИНИҢСАНЫ', 'NAMESPACENUMBER' ),
+	'namespacenumber'           => array( '1', 'АТТАРДЕЛГЕМИНИҢСАНЫ', 'НОМЕР_ПРОСТРАНСТВА_ИМЁН', 'NAMESPACENUMBER' ),
 	'talkspace'                 => array( '1', 'ЧУГААДЕЛГЕМИ', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ', 'TALKSPACE' ),
 	'talkspacee'                => array( '1', 'ЧУГААДЕЛГЕМИ2', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ_2', 'TALKSPACEE' ),
 	'img_right'                 => array( '1', 'оң', 'справа', 'right' ),
@@ -90,9 +90,9 @@ $magicWords = array(
 	'tag'                       => array( '0', 'демдек', 'метка', 'тег', 'тэг', 'tag' ),
 	'hiddencat'                 => array( '1', '__ЧАЖЫТ_АҢГЫЛАЛ__', '__СКРЫТАЯ_КАТЕГОРИЯ__', '__HIDDENCAT__' ),
 	'pagesincategory'           => array( '1', '__АҢГЫЛАЛ_АРЫННАРЫ__', 'СТРАНИЦ_В_КАТЕГОРИИ', 'PAGESINCATEGORY', 'PAGESINCAT' ),
-	'pagesincategory_all'       => array( '0', 'шупту', 'all' ),
-	'pagesincategory_pages'     => array( '0', 'арыннар', 'pages' ),
-	'pagesincategory_files'     => array( '0', 'файлдар', 'files' ),
+	'pagesincategory_all'       => array( '0', 'шупту', 'все', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'арыннар', 'страницы', 'pages' ),
+	'pagesincategory_files'     => array( '0', 'файлдар', 'файлы', 'files' ),
 );
 
 $bookstoreList = array(

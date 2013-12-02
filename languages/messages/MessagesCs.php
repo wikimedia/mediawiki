@@ -229,7 +229,8 @@ $magicWords = array(
 	'img_center'                => array( '1', 'střed', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'rám', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'bezrámu', 'frameless' ),
-	'img_page'                  => array( '1', 'strana=$1', 'strana $1', 'page=$1', 'page $1' ),
+	'img_lang'                  => array( '1', 'jazyk=$1', 'lang=$1' ),
+	'img_page'                  => array( '1', 'strana=$1', 'strana_$1', 'page=$1', 'page $1' ),
 	'img_border'                => array( '1', 'okraj', 'border' ),
 	'sitename'                  => array( '1', 'NÁZEVWEBU', 'SITENAME' ),
 	'ns'                        => array( '0', 'JMENNÝPROSTOR:', 'NS:' ),
@@ -281,6 +282,7 @@ $magicWords = array(
 	'noindex'                   => array( '1', '__NEINDEXOVAT__', '__NOINDEX__' ),
 	'staticredirect'            => array( '1', '__STATICKÉPŘESMĚROVÁNÍ__', '__STATICREDIRECT__' ),
 	'protectionlevel'           => array( '1', 'ÚROVEŇZAMČENÍ', 'PROTECTIONLEVEL' ),
+	'pagesincategory_files'     => array( '0', 'soubory', 'files' ),
 );
 
 /**

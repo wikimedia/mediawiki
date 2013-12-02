@@ -159,7 +159,6 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', 'পুণঃনিৰ্দেশ', '#REDIRECT' ),
 	'special'                   => array( '0', 'বিশেষ', 'special' ),
 	'hiddencat'                 => array( '1', '__গোপন_শ্ৰেণী__', '__HIDDENCAT__' ),
 	'pagesize'                  => array( '1', 'পৃষ্ঠাৰ_আকাৰ', 'PAGESIZE' ),

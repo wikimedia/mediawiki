@@ -190,7 +190,7 @@ $magicWords = array(
 	'img_center'                => array( '1', 'chawpi', 'centro', 'centrado', 'centrada', 'centrar', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'inchuyuq', 'inchu', 'marco', 'enmarcado', 'enmarcada', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'inchunnaq', 'sinmarco', 'sin_embarcar', 'sinenmarcar', 'sin_enmarcar', 'frameless' ),
-	'img_page'                  => array( '1', 'panqa=$1', 'pagina=$1', 'página=$1', 'pagina $1', 'página $1', 'pagina_$1', 'página_$1', 'page=$1', 'page $1' ),
+	'img_page'                  => array( '1', 'panqa=$1', 'pagina=$1', 'página=$1', 'pagina_$1', 'página_$1', 'page=$1', 'page $1' ),
 	'img_upright'               => array( '1', 'sayaq', 'sayaq=$1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'                => array( '1', 'saywa', 'borde', 'border' ),
 	'img_baseline'              => array( '1', 'tiksisiqi', 'baseline' ),
