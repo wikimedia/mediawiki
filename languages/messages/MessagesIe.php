@@ -766,7 +766,7 @@ Tui adresse de e-mail ne es revelat quande altri usatores contacter vu.',
 'rcshowhidepatr' => '$1 redactiones vigilat',
 'rcshowhidemine' => '$1 mi redactiones',
 'rclinks' => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br />$3.',
-'diff' => 'differenties',
+'diff' => 'dif',
 'hist' => 'hist',
 'hide' => 'Celar',
 'show' => 'Monstrar',
@@ -1317,7 +1317,7 @@ Altri va esser ocultat per contumacie.
 
 # External editor support
 'edit-externally' => 'Redacter ti file usant un aplication extern',
-'edit-externally-help' => '(Vider li [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu mult information)',
+'edit-externally-help' => '(Vide li [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu mult information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omni',

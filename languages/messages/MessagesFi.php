@@ -4147,7 +4147,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
-'limitreport-expansiondepth' => 'Suurin laajennussyvyys',
+'limitreport-expansiondepth' => 'Highest expansion depth',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Mallineiden laajennus',

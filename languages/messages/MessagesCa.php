@@ -737,7 +737,7 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'createaccount-text' => "Algú ha creat un compte d'usuari anomenat $2 al projecte {{SITENAME}}
 ($4) amb la vostra adreça de correu electrònic. La contrasenya per a l'usuari «$2» és «$3». Hauríeu d'accedir al compte i canviar-vos aquesta contrasenya quan abans millor.
 
-Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement ignoreu el missatge.",
+Si no hi teniu cap relació i aquest compte s'ha creat per error, simplement ignoreu el missatge.",
 'usernamehasherror' => "El nom d'usuari no pot contenir caràcters hash",
 'login-throttled' => "Heu realitzat massa intents d'accés a la sessió.
 Espereu $1 abans de tornar-ho a provar.",
@@ -1008,7 +1008,7 @@ Podeu modificar les planes ja existents o bé [[Special:UserLogin|entrar en un c
 'permissionserrors' => 'Error de permisos',
 'permissionserrorstext' => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
-'recreate-moveddeleted-warn' => "'''Avís: Esteu creant una pàgina que ha estat prèviament esborrada.'''
+'recreate-moveddeleted-warn' => "'''Avís: esteu creant una pàgina que ha estat prèviament suprimida.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
 A continuació s'ofereix el registre d'esborraments i de reanomenaments de la pàgina:",
@@ -1100,9 +1100,9 @@ El motiu donat per $3 és ''$2''",
 'history-feed-title' => 'Historial de revisió',
 'history-feed-description' => 'Historial de revisió per a aquesta pàgina del wiki',
 'history-feed-item-nocomment' => '$1 a $2',
-'history-feed-empty' => 'La pàgina demanada no existeix.
-Potser ha estat esborrada o reanomenada.
-Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevants.',
+'history-feed-empty' => "La pàgina demanada no existeix.
+Potser s'ha suprimit o reanomenat.
+Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevants.",
 
 # Revision deletion
 'rev-deleted-comment' => "(resum d'edició eliminat)",
@@ -1111,26 +1111,26 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-user-contribs' => "[nom d'usuari o adreça IP esborrada - modificació ocultada de les contribucions]",
 'rev-deleted-text-permission' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-text-unhide' => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
+'rev-deleted-text-unhide' => "S'ha '''suprimit''' la revisió d'aquesta pàgina.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
-'rev-suppressed-text-unhide' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+'rev-suppressed-text-unhide' => "S'ha '''suprimit''' aquesta versió de la pàgina.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
-'rev-deleted-text-view' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+'rev-deleted-text-view' => "S'ha '''suprimit''' aquesta versió de la pàgina.
 Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-suppressed-text-view' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-no-diff' => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
+'rev-deleted-no-diff' => "No podeu veure aquesta comparativa perquè s'ha '''suprimit''' una de les versions.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-suppressed-no-diff' => "No podeu veure aquesta diferència perquè s'ha '''suprimit''' una de les revisions.",
 'rev-deleted-unhide-diff' => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
-'rev-suppressed-unhide-diff' => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
+'rev-suppressed-unhide-diff' => "S¡ha '''suprimit''' una de les revisions d'aquesta comparativa.
 Podeu veure'n més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].
 Podeu seguir [$1 veient aquesta comparativa] si així ho desitgeu.",
-'rev-deleted-diff-view' => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
+'rev-deleted-diff-view' => "S'ha '''suprimit'' una de les revisions d'aquesta comparativa.
 Podeu veure aquesta comparativa; poden haver-hi més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborraments].",
 'rev-suppressed-diff-view' => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
 Podeu veure aquesta comparativa; pot haver-hi més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].",
@@ -1185,8 +1185,8 @@ $1",
 No es pot amagar.",
 'revdelete-show-no-access' => "Error en mostrar l'element del $1 a les $2: està marcat com a ''restringit''.
 No hi tens accés.",
-'revdelete-modify-no-access' => "Error en modificar l'element del $1 a les $2: aquest element ha estat marcat com a ''restringit''.
-No hi tens accés.",
+'revdelete-modify-no-access' => "S'ha produït un error en modificar l'element del $1 a les $2: aquest element s'ha marcat com a 'restringit''.
+No hi teniu accés.",
 'revdelete-modify-missing' => "Error en modificar l'element ID $1: no figura a la base de dades!",
 'revdelete-no-change' => "'''Atenció:''' la revisió del $1 a les $2 ja té les restriccions de visibilitat sol·licitades.",
 'revdelete-concurrent-change' => "Error en modificar l'element del $1 a les $2: el seu estat sembla haver estat canviat per algú altre quan intentaves modificar-lo.
@@ -1250,7 +1250,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'diff-multi-manyusers' => "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",
 'difference-missing-revision' => "{{PLURAL:$2|Una revisió|$2 revisions}} d'aquesta diferència ($1) no {{PLURAL:$2|s'ha|s'han}} trobat.
 
-Això passa generalment en seguir un enllaç obsolet de diferències a una pàgina que ha estat esborrada.
+Això passa generalment en seguir un enllaç obsolet de diferències a una pàgina que s'ha suprimit.
 Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
 
 # Search results
@@ -2389,7 +2389,7 @@ Vegeu $2 per a un registre dels esborrats més recents.",
 'alreadyrolled' => "No es pot revertir la darrera modificació de [[:$1]]
 de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Algú altre ja ha modificat o revertit la pàgina.
 
-La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+La darrera modificació l'ha fet l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "El resum d'edició és: «$1».",
 'revertpage' => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]) a l'última versió de [[User:$1|$1]]",
 'revertpage-nouser' => "Edicions revertides per un usuari ocult a l'última revisió de {{GENDER:$1|[[User:$1|$1]]}}",
@@ -2693,7 +2693,7 @@ Per més detalls, a sota es mostra el registre de supressions:",
 'ip_range_invalid' => 'Rang de IP no vàlid.',
 'ip_range_toolarge' => 'No estan permesos el bloquejos de rangs més grans que /$1.',
 'proxyblocker' => 'Bloqueig de proxy',
-'proxyblockreason' => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
+'proxyblockreason' => "S'ha blocat la vostra adreça IP perquè és un proxy obert. Contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
 'sorbsreason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert dins la llista negra de DNS que fa servir el projecte {{SITENAME}}.",
 'sorbs_create_account_reason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
 'xffblockreason' => "Una adreça IP present en la capçalera X-Forwarded-For, ja sigui vostra o la d'un servidor proxy que esteu utilitzant, ha estat blocada. El motiu inicial del bloqueig és: $1",

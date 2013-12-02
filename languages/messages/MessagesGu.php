@@ -432,8 +432,8 @@ $1',
 'youhavenewmessages' => 'તમારા માટે $1 ($2).',
 'youhavenewmessagesfromusers' => 'આપને માટે {{PLURAL:$3|અન્ય સભ્ય|$3 અન્ય સભ્યો}} તરફથી $1 છે. ($2).',
 'youhavenewmessagesmanyusers' => 'આપને માટે ઘણાં સભ્યો તરફથી $1 છે ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|નવો સંદેશો|નવા સંદેશા}}',
-'newmessagesdifflinkplural' => 'છેલ્લા {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
+'newmessageslinkplural' => '{{PLURAL:$1|નવો સંદેશો|૯૯૯=નવા સંદેશા}}',
+'newmessagesdifflinkplural' => 'છેલ્લા {{PLURAL:$1|ફેરફાર|૯૯૯=ફેરફારો}}',
 'youhavenewmessagesmulti' => 'તમારા માટે $1 ઉપર નવા સંદેશાઓ છે',
 'editsection' => 'ફેરફાર કરો',
 'editold' => 'ફેરફાર કરો',
@@ -2279,13 +2279,14 @@ $PAGEINTRO $NEWPAGE
 ઇ-મેલ: $PAGEEDITOR_EMAIL
 વિકિ: $PAGEEDITOR_WIKI
 
-જ્યાં સુધી તમે આ પાનાની મુલાકાત નહી લો ત્યાં સુધી તેમાં ભવિષ્યમાં થનાર કોઇ પણ ફેરફારની સૂચના તમને મળશે નહિ.
+જ્યાં સુધી તમે લોગઈન થઈ આ પાનાની મુલાકાત નહી લો ત્યાં સુધી તેમાં ભવિષ્યમાં થનાર કોઇ પણ ફેરફારની સૂચના તમને મળશે નહિ.
 તમે તમારી ધ્યાન સૂચિમાં તમે જોયેલા પાના સંબંધી સૂચનાને લાગતા વિલપોમાં ફેરફાર કરી શકો છો.
+
 
 આપની વિશ્વાસુ {{SITENAME}} સૂચના પ્રણાલી   
  
 --
-e-mail notification settings બદલવા માટે મુલાકાત લો
+email notification settings બદલવા માટે મુલાકાત લો
 {{canonicalurl:{{#special:Preferences}}}}
 
 તમારી ધ્યાનસૂચિના  વિક્લ્પ ગોઠવણ માટે મુલાકાત લો
@@ -3666,7 +3667,7 @@ $5
 'autosumm-blank' => 'પાનું ખાલી કરી દેવાયું',
 'autosumm-replace' => 'માહિતીને "$1" થી બદલી',
 'autoredircomment' => '[[$1]] પર દિશાનિર્દેશિત',
-'autosumm-new' => '$1થી શરૂ થતું નવું પાનું બાનવ્યું',
+'autosumm-new' => '$1થી શરૂ થતું નવું પાનું બનાવ્યું',
 
 # Live preview
 'livepreview-loading' => 'લવાઇ રહ્યું છે...',
@@ -3875,7 +3876,7 @@ $5
 'revdelete-uname-unhid' => 'વપરાશકર્તા નામ છુપાવેલ નથીં',
 'revdelete-restricted' => 'પ્રબઁધકોના ફેરફાર કરવા પર પ્રતિબંધ મુકાયો',
 'revdelete-unrestricted' => 'પ્રબંધકોના ફેરફાર કરવા પર પ્રતિબંધ હટાવાયો.',
-'logentry-move-move' => '$1એ {{GENDER:$2|ખસેડાયું }} પાના $3ને $4 પર ખસેડ્યું',
+'logentry-move-move' => '$1એ $3ને $4 પર {{GENDER:$2|ખસેડ્યું}}',
 'logentry-move-move-noredirect' => '$1 એ દિશાનિર્દેશન છોડ્યા વગર પાના $3ને $4 પર {{GENDER:$2|વાળ્યું}}',
 'logentry-move-move_redir' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર {{GENDER:$2|ખસેડ્યું}}',
 'logentry-move-move_redir-noredirect' => '$1એ દિશાનિર્દેશન કરીને પાના $3ને $4 પર {{GENDER:$2|વાળ્યું}} પણ પાછળ દિશાનિર્દેશન છોડ્યું નહી',

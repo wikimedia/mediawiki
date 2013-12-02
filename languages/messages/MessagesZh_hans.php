@@ -507,7 +507,7 @@ $messages = array(
 'subcategories' => '子分类',
 'category-media-header' => '分类“$1”中的媒体文件',
 'category-empty' => "''本分类目前未包含页面或媒体文件。''",
-'hidden-categories' => '$1个隐藏分类',
+'hidden-categories' => '{{PLURAL:$1|隐藏分类}}',
 'hidden-category-category' => '隐藏分类',
 'category-subcat-count' => '{{PLURAL:$2|本分类只有以下子分类。|本分类有以下$1个子分类，共有$2个子分类。}}',
 'category-subcat-count-limited' => '本分类有以下{{PLURAL:$1|子分类|$1个子分类}}。',
@@ -2453,11 +2453,11 @@ $UNWATCHURL
 'deleteotherreason' => '其他/附加原因：',
 'deletereasonotherlist' => '其他原因',
 'deletereason-dropdown' => '*常见删除原因
-** 广告
-** 破坏行为
-** 侵犯著作权
-** 作者申请
-** 损坏的重定向',
+**广告
+**破坏行为
+**侵犯著作权
+**作者申请
+**受损重定向',
 'delete-edit-reasonlist' => '编辑删除原因',
 'delete-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',

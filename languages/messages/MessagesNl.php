@@ -788,7 +788,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en tekst "$3"',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekend naamruimtenummer $1 en tekst "$2"',
 'exception-nologin' => 'Niet aangemeld',
-'exception-nologin-text' => 'Om deze pagina te bekijken of deze handeling uit te kunnen voeren moet u [[Special:Userlogin|aangemeld]] zijn bij deze wiki.',
+'exception-nologin-text' => '[[Special:Userlogin|Meld u aan]] om deze pagina te bekijken of deze handeling uit te voeren.',
 'exception-nologin-text-manual' => 'U moet $1 om deze pagina te kunnen bekijken of de handeling uit te voeren.',
 
 # Virus scanner
@@ -836,7 +836,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccount' => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
-'userlogin-resetpassword-link' => 'Uw wachtwoord opnieuw instellen',
+'userlogin-resetpassword-link' => 'Wachtwoord vergeten?',
 'helplogin-url' => 'Help:Aanmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp bij aanmelden]]',
 'userlogin-loggedin' => 'U bent al aangemeld als {{GENDER:$1|$1}}.
@@ -1364,15 +1364,16 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 'revdelete-text' => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
 'revdelete-confirm' => 'Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].',
-'revdelete-suppress-text' => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
-* Ongepaste persoonlijke informatie
-*: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
+'revdelete-suppress-text' => "Gebruik versies verbergen '''alleen''' in de volgende gevallen:
+* Mogelijk smadelijke informatie;
+* Ongepaste persoonlijke gegevens, zoals:
+*: ''adres, telefoonnummers, Burger Service Nummers, enzovoort.''",
 'revdelete-legend' => 'Zichtbaarheidsbeperkingen instellen',
-'revdelete-hide-text' => 'Bewerkte tekst verbergen',
+'revdelete-hide-text' => 'Versietekst',
 'revdelete-hide-image' => 'Bestandsinhoud verbergen',
 'revdelete-hide-name' => 'Handeling en doel verbergen',
-'revdelete-hide-comment' => 'Bewerkingssamenvatting verbergen',
-'revdelete-hide-user' => 'Gebruikersnaam/IP-adres van de gebruiker verbergen',
+'revdelete-hide-comment' => 'Bewerkingssamenvatting',
+'revdelete-hide-user' => 'Gebruikersnaam of IP-adres van de gebruiker',
 'revdelete-hide-restricted' => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-radio-same' => '(niet wijzigen)',
 'revdelete-radio-set' => 'Verborgen',

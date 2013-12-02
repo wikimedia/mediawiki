@@ -760,6 +760,7 @@ Kilitleyen hizmetlinin bu konudaki nedeni: "$3".',
 'invalidtitle-unknownnamespace' => 'Bilinmeyen $1 ad alanı sayısı ve geçersiz "$2" başlık',
 'exception-nologin' => 'Giriş yapılmamış',
 'exception-nologin-text' => 'Bu sayfaya ya da eyleme erişmek için lütfen [[Special:Userlogin|oturum açın]].',
+'exception-nologin-text-manual' => 'Bu sayfaya ya da eyleme erişebilmek için lütfen $1ın.',
 
 # Virus scanner
 'virus-badscanner' => "Yanlış ayarlama: bilinmeyen virüs tarayıcı: ''$1''",
@@ -1402,6 +1403,10 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'diff-empty' => '(Fark yok)',
 'diff-multi' => '({{PLURAL:$2|Bir kullanıcı|$2 kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
 'diff-multi-manyusers' => '($2 kullancıdan fazla {{PLURAL:$2|kullanıcı|kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
+'difference-missing-revision' => 'Bu farkın {{PLURAL:$2|bir revizyonu|$2 revizyonu}} ($1) {{PLURAL:$2|bulunamadı|bulunamadı}}.
+
+Bu genellikle, silinen bir sayfaya olan eski tarihli bir fark sayfasına bağlantılardan dolayı olur.
+Ayrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] bulunabilir.',
 
 # Search results
 'searchresults' => 'Arama sonuçları',
@@ -1470,6 +1475,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'preferences' => 'Tercihler',
 'mypreferences' => 'Tercihler',
 'prefs-edits' => 'Değişiklik sayısı:',
+'prefsnologintext2' => 'Kullanıcı tercihlerini ayarlamak için lütfen $1ın.',
 'changepassword' => 'Parolayı değiştir',
 'prefs-skin' => 'Görünüm',
 'skin-preview' => 'Önizleme',
@@ -1766,6 +1772,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'recentchanges-label-minor' => 'Bu küçük bir değişiklik',
 'recentchanges-label-bot' => 'Bu değişiklik bir bot tarafından yapıldı',
 'recentchanges-label-unpatrolled' => 'Bu değişiklik henüz gözlenmemiş',
+'recentchanges-label-plusminus' => 'Sayfa boyutu bu bayt sayısı kadar değişti',
 'recentchanges-legend-newpage' => '(ayrıca bakınız [[Special:NewPages|yeni sayfalar listesi]])',
 'rcnote' => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom' => "'''$2''' tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> tanesi gösterilmektedir).",
@@ -1969,9 +1976,11 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'backend-fail-create' => '$1 dosyası yazılamadı.',
 'backend-fail-maxsize' => 'Dosya {{PLURAL:$2|bir bayt|$2 bayt}} daha büyük olduğu için "$1" dosyasına yazılamadı.',
 'backend-fail-readonly' => 'Depolama arkaplan uygulaması "$1" şu anda salt okunur. Verilen gerekçe: "\'\'$2\'\'"',
+'backend-fail-synced' => '"$1" dosyası dahili depolama arkaplan uygulamaları içinde tutarsız bir durumda',
 'backend-fail-connect' => '"$1" depolama arkaplan uygulamasına bağlanılamıyor.',
 'backend-fail-internal' => '"$1" depolama arkaplan uygulamasında bilinmeyen bir hata oluştu.',
 'backend-fail-contenttype' => '"$1" konumunda saklanan dosyanın içerik türü belirlenemiyor.',
+'backend-fail-batchsize' => 'Depolama arkaplan uygulamasına $1 dosya {{PLURAL:$1|işlemi|işlemi}} yığını verildi; sınır $2 {{PLURAL:$1|işlem|işlem}}.',
 'backend-fail-usable' => 'Yetersiz izinlerden ya da eksik dizin/konteynerlerden dolayı "$1" dosyası okunup yazılamıyor.',
 
 # File journal errors
@@ -1985,6 +1994,7 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'lockmanager-fail-acquirelock' => '"$1" için kilit alınamıyor.',
 'lockmanager-fail-openlock' => '"$1" için kilit dosyası açılamıyor.',
 'lockmanager-fail-releaselock' => '"$1" için kilit serbest bırakılamıyor.',
+'lockmanager-fail-db-bucket' => '$1 kovasında yeterli kilit veri tabanına iletişim sağlanamadı.',
 'lockmanager-fail-db-release' => '$1 veritabanında kilitler serbest bırakılamıyor.',
 'lockmanager-fail-svr-acquire' => '$1 sunucusunda kilitler alınamıyor.',
 'lockmanager-fail-svr-release' => '$1 sunucusunda kilitler serbest bırakılamıyor.',
@@ -2244,6 +2254,8 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'wantedpages' => 'İstenen sayfalar',
 'wantedpages-badtitle' => 'Sonuç kümesinde geçersiz başlık: $1',
 'wantedfiles' => 'İstenen dosyalar',
+'wantedfiletext-cat' => 'Aşağıdaki dosyalar kullanılıyor ama mevcut değil. Yabancı depolardaki dosyalar, varolsalar bile gösterilebilir. Böyle yanlış pozitiflerin <del>üstü çizilecektir</del>. Ek olarak, varolmayan dosyaları gömen sayfalar [[:$1]] sayfasında listelenmiştir.',
+'wantedfiletext-nocat' => 'Aşağıdaki dosyalar kullanılıyor ama mevcut değil. Yabancı depolardaki dosyalar, varolsalar bile gösterilebilir. Böyle yanlış pozitiflerin <del>üstü çizilecektir</del>.',
 'wantedtemplates' => 'İstenen şablonlar',
 'mostlinked' => 'Kendisine en fazla bağlantı verilmiş sayfalar',
 'mostlinkedcategories' => 'En çok maddeye sahip kategoriler',
@@ -2693,7 +2705,9 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Ad alanı:',
 'invert' => 'Seçili haricindekileri göster',
+'tooltip-invert' => 'Seçili ad alanındaki sayfalara olan değişiklikleri gizlemek için bu kutucuğu işaretleyin (ve ilgili ad alanı, eğer seçiliyse)',
 'namespace_association' => 'İlişkili ad alanı',
+'tooltip-namespace_association' => 'Seçili ad alanıyla ilgili tartışma ya da madde ad alanlarını da eklemek için bu kutucuğu işaretleyin',
 'blanknamespace' => '(Ana)',
 
 # Contributions
@@ -3083,6 +3097,7 @@ Geçici dosya kayıp.',
 'import-error-interwiki' => '"$1" sayfası içe aktarılamadı çünkü sayfanın adı dış bağlantı için ayrılmış (vikilerarası).',
 'import-error-special' => '"$1" sayfası içe aktarılamadı çünkü sayfalara izin vermeyen özel bir ad alanına ait.',
 'import-error-invalid' => '"$1" sayfası içe aktarılamadı çünkü sayfa adı geçersiz.',
+'import-error-unserialize' => '"$1" sayfasının $2 revizyonu serileştirilmesi geri alınamıyor. Revizyonun $4 olarak serileştirilmiş $3 içerik modelini kullandığı raporlandı.',
 'import-options-wrong' => 'Yanlış {{PLURAL:$2|seçenek|seçenek}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Verilen kök sayfa geçersiz bir başlık.',
 'import-rootpage-nosubpage' => 'Kök sayfanın "$1" ad alanı alt sayfalara izin vermiyor.',
@@ -3219,6 +3234,7 @@ Bunu '''doldurMAyın'''!",
 'pageinfo-length' => 'Sayfa uzunluğu (bayt cinsinden)',
 'pageinfo-article-id' => 'Sayfa ID',
 'pageinfo-language' => 'Sayfa içeriğinin dili',
+'pageinfo-content-model' => 'Sayfa içerik modeli',
 'pageinfo-robot-policy' => 'Robotlar tarafından endeksleniyor',
 'pageinfo-robot-index' => 'İzin verilmiş',
 'pageinfo-robot-noindex' => 'İzin verilmedi',
@@ -3240,11 +3256,13 @@ Bunu '''doldurMAyın'''!",
 'pageinfo-magic-words' => 'Sihirli {{PLURAL:$1|kelimeler|kelimeler}} ($1)',
 'pageinfo-hidden-categories' => 'Gizli {{PLURAL:$1|kategori|kategoriler}} ($1)',
 'pageinfo-templates' => 'Görüntülenen {{PLURAL:$1|şablon|şablonlar}} ($1)',
+'pageinfo-transclusions' => 'Çapraz eklenen {{PLURAL:$1|sayfa|sayfalar}} ($1)',
 'pageinfo-toolboxlink' => 'Sayfa bilgisi',
 'pageinfo-redirectsto' => 'Yönlendirilen',
 'pageinfo-redirectsto-info' => 'bilgi',
 'pageinfo-contentpage' => 'Bir içerik sayfası sayılır',
 'pageinfo-contentpage-yes' => 'Evet',
+'pageinfo-protect-cascading' => 'korumalar buradan kademelendiriliyor',
 'pageinfo-protect-cascading-yes' => 'Evet',
 'pageinfo-protect-cascading-from' => 'Korumalar üzerinden geçiş',
 'pageinfo-category-info' => 'Kategori bilgileri',
@@ -3566,6 +3584,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 # Exif attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
+'exif-compression-2' => 'CCITT Grup 3 1-Boyutlu Değiştirilmiş Huffman koşu uzunluğu kodlaması',
 'exif-compression-3' => 'CCITT Grup 3 faks kodlaması',
 'exif-compression-4' => 'CCITT Grup 4 faks kodlaması',
 'exif-compression-6' => 'JPEG',
@@ -3754,6 +3773,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdirection-m' => 'Manyetik yönü',
 
 'exif-ycbcrpositioning-1' => 'Ortalanmış',
+'exif-ycbcrpositioning-2' => 'Eş-yerleştirilmiş',
 
 'exif-dc-contributor' => 'Katkıda bulunanlar',
 'exif-dc-coverage' => 'Medyanın konumsal ya da zamansal kapsamı',
@@ -3868,6 +3888,7 @@ Bu onay kodu $4 tarihine kadar geçerlidir.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Vikilerarası çapraz ekleme devre dışı]',
 'scarytranscludefailed' => '[$1 için şablon alımı başarısız oldu]',
+'scarytranscludefailed-httpstatus' => '[$1 için şablon alımı başarısız oldu: HTTP $2]',
 'scarytranscludetoolong' => '[URL çok uzun]',
 
 # Delete conflict
@@ -4026,6 +4047,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 
 # Special:SpecialPages
 'specialpages' => 'Özel sayfalar',
+'specialpages-note-top' => 'Gösterge',
 'specialpages-note' => '* Normal özel sayfalar.
 * <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
@@ -4120,6 +4142,7 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'logentry-delete-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4',
 'logentry-delete-event-legacy' => '$1, $3 sayfasında günlük girdilerinin görünürlüğünü  {{GENDER:$2|değiştirdi}}',
 'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü {{GENDER:$2|değiştirdi}}',
+'logentry-suppress-delete' => '$1, $3 sayfasını {{GENDER:$2|bastırdı}}',
 'logentry-suppress-event' => '$1, $3 sayfasında {{PLURAL:$5|bir günlük girdisinin |$5 günlük girdisinin}} görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}: $4',
 'logentry-suppress-revision' => '$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}: $4',
 'logentry-suppress-event-legacy' => '$1, $3 sayfasında günlük girdilerinin görünürlüğünü gizlice {{GENDER:$2|değiştirdi}}',
@@ -4135,14 +4158,21 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'logentry-move-move' => '$1, $3 sayfasını $4 sayfasına {{GENDER:$2|taşıdı}}',
 'logentry-move-move-noredirect' => '$1, $3 sayfasını $4 sayfasına yönlendirme olmaksızın {{GENDER:$2|taşıdı}}',
 'logentry-move-move_redir' => '$1, $3 sayfasını $4 sayfasına yönlendirme üzerinden {{GENDER:$2|taşıdı}}',
+'logentry-move-move_redir-noredirect' => '$1, $3 sayfasını bir yönlendirme üzerine yönlendirme bırakmadan $4 olarak {{GENDER:$2|taşıdı}}',
+'logentry-patrol-patrol' => '$1, $3 sayfasının $4 revizyonunu kontrol edildi olarak {{GENDER:$2|işaretledi}}',
 'logentry-patrol-patrol-auto' => '$1, $3 sayfasının $4 sürümümü otomatik olarak {{GENDER:$2|kontrol etti}}',
 'logentry-newusers-newusers' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
 'logentry-newusers-create' => 'Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}',
 'logentry-newusers-create2' => '$3 kullanıcı hesabı $1 tarafından {{GENDER:$2|oluşturuldu}}',
+'logentry-newusers-byemail' => '$3 kullanıcı hesabı $1 tarafından {{GENDER:$2|oluşturuldu}} ve şifre e-posta ile gönderildi',
 'logentry-newusers-autocreate' => '$1 kullanıcı hesabı otomatik olarak {{GENDER:$2|oluşturuldu}}',
+'logentry-rights-rights' => '$1, $3 için grup üyeliğini $4 iken $5 olarak {{GENDER:$2|değiştirdi}}',
+'logentry-rights-rights-legacy' => '$1, $3 için grup üyeliğini {{GENDER:$2|değiştirdi}}',
+'logentry-rights-autopromote' => '$1, $4 iken $5 olarak otomatik {{GENDER:$2|terfi edildi}}',
 'rightsnone' => '(hiçbiri)',
 
 # Feedback
+'feedback-bugornote' => 'Eğer teknik bir problemi detaylarıyla açıklamaya hazırsanız lütfen [$1 bir hata raporlayın]. Diğer taraftan, aşağıdaki kolay formu kullanabilirsiniz. Yorumunuz, kullanıcı adınızla beraber "[$3 $2]" sayfasına eklenecektir.',
 'feedback-subject' => 'Konu:',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel' => 'İptal',
@@ -4164,11 +4194,15 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'api-error-badaccess-groups' => 'Bu wiki için dosya yüklemenize izin verilmiyor.',
 'api-error-badtoken' => 'İç hata: Bozuk anahtar.',
 'api-error-copyuploaddisabled' => 'URL ile yükleme bu sunucuda devre dışı bırakılmıştır.',
+'api-error-duplicate' => 'Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} var.',
+'api-error-duplicate-archive' => 'Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} vardı, ama {{PLURAL:$1|silindi|silindiler}}.',
+'api-error-duplicate-archive-popup-title' => 'Zaten silinmiş çift {{PLURAL:$1|sayfa|sayfalar}}.',
 'api-error-duplicate-popup-title' => 'Çift {{PLURAL:$1|dosya|dosya}}',
 'api-error-empty-file' => 'Gönderdiğiniz dosya boş.',
 'api-error-emptypage' => 'Yeni, boş bir sayfa oluşturmaya izin verilmez.',
 'api-error-fetchfileerror' => 'İç hata: Dosya alınırken bir hata oluştu.',
 'api-error-fileexists-forbidden' => '"$1" adıyla bir dosya zaten mevcut dolayısıyla üzerine yazamazsınız.',
+'api-error-fileexists-shared-forbidden' => '"$1" adında bir dosya ortak havuzda zaten var, ve üzerine yazılamaz.',
 'api-error-file-too-large' => 'Gönderdiğiniz dosya çok büyük.',
 'api-error-filename-tooshort' => 'Dosya adı çok kısa.',
 'api-error-filetype-banned' => 'Bu dosya biçimi yasaklanmıştır.',
@@ -4230,10 +4264,8 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 # Special:ExpandTemplates
 'expandtemplates' => 'Şablonları genişlet',
 'expand_templates_intro' => 'Bu özel sayfa biraz metni alır ve içindeki tüm şablonları yinelemeli olarak genişletir.
-Ayrıca şu gibi derleyici fonksiyonlarını da genişletir
-<nowiki>{{</nowiki>#language:…}}, ve şu gibi değişkenleri
-<nowiki>{{</nowiki>CURRENTDAY}}&mdash;aslında çift-bağlı hemen her şey.
-Bunu, ilgili derleyici aşamasını MedyaVikinin kendisinden çağırarak yapar.',
+Ayrıca <code><nowiki>{{</nowiki>#language:…}}</code> gibi desteklenen derleyici fonksiyonlarını ve <code><nowiki>{{</nowiki>CURRENTDAY}}</code> gibi değişkenleri de genişletir.
+Aslında, çift ayraçlı hemen hemen her şeyi genişletir.',
 'expand_templates_title' => 'Durum başlığı, ör {{FULLPAGENAME}} için.:',
 'expand_templates_input' => 'Giriş metni:',
 'expand_templates_output' => 'Sonuç',

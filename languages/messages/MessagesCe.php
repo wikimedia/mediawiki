@@ -2241,11 +2241,14 @@ PICT # тайп тайпан
 'seconds-abbrev' => '$1оцу',
 'hours' => '{{PLURAL:$1|1 сахьт}}',
 'days' => '{{PLURAL:$1|$1 де}}',
+'weeks' => '{{PLURAL:$1|$1 кӀира}}',
+'years' => '$1 {{PLURAL:$1|шо}}',
 'ago' => '$1 хьалха',
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|сахьт}} хьалха',
 'minutes-ago' => '$1 {{PLURAL:$1|минут}} хьалха',
+'seconds-ago' => '$1 {{PLURAL:$1|секунд}} хьалха',
 'yesterday-at' => 'селхана $1 даьлча',
 
 # Bad image list
