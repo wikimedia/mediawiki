@@ -413,7 +413,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetErrorMessage() {
 		$method = new ReflectionMethod( 'Status', 'getErrorMessage' );
-		$method->setAccessible(true);
+		$method->setAccessible( true );
 		$status = new Status();
 		$key = 'foo';
 		$params = array( 'bar' );
@@ -430,7 +430,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetErrorMessageArray() {
 		$method = new ReflectionMethod( 'Status', 'getErrorMessageArray' );
-		$method->setAccessible(true);
+		$method->setAccessible( true );
 		$status = new Status();
 		$key = 'foo';
 		$params = array( 'bar' );
@@ -446,7 +446,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$this->assertInternalType( 'array', $messageArray );
 		$this->assertCount( 2, $messageArray );
-		foreach( $messageArray as $message ) {
+		foreach ( $messageArray as $message ) {
 			$this->assertInstanceOf( 'Message', $message );
 			$this->assertEquals( $key, $message->getKey() );
 			$this->assertEquals( $params, $message->getParams() );

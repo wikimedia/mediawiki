@@ -503,7 +503,8 @@ class XmlDumpWriter {
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
-			                        "http://www.mediawiki.org/xml/export-$ver.xsd", #TODO: how do we get a new version up there?
+				#TODO: how do we get a new version up there?
+				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
 			'xml:lang'           => $wgLanguageCode ),
 			null ) .

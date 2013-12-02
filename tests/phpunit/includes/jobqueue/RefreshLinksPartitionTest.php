@@ -33,13 +33,13 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 		$title->getBacklinkCache()->clear();
 		$this->assertEquals( 20, $title->getBacklinkCache()->getNumLinks( 'pagelinks' ), 'Correct number of backlinks' );
 
-		$job = new RefreshLinksJob( $title, array( 'recursive' => true, 'table' => 'pagelinks' ) 
+		$job = new RefreshLinksJob( $title, array( 'recursive' => true, 'table' => 'pagelinks' )
 			+ Job::newRootJobParams( "refreshlinks:pagelinks:{$title->getPrefixedText()}" ) );
 		$extraParams = $job->getRootJobParams();
 		$jobs = BacklinkJobUtils::partitionBacklinkJob( $job, 9, 1, array( 'params' => $extraParams ) );
 
 		$this->assertEquals( 10, count( $jobs ), 'Correct number of sub-jobs' );
-		$this->assertEquals( $pages[0], current( $jobs[0]->params['pages'] ), 
+		$this->assertEquals( $pages[0], current( $jobs[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[8], current( $jobs[8]->params['pages'] ),
 			'Last leaf job is leaf job with proper title' );
@@ -49,19 +49,19 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			'Last job is recursive sub-job' );
 		$this->assertEquals( true, is_array( $jobs[9]->params['range'] ),
 			'Last job is recursive sub-job' );
-		$this->assertEquals( $title->getPrefixedText(), $jobs[0]->getTitle()->getPrefixedText(), 
+		$this->assertEquals( $title->getPrefixedText(), $jobs[0]->getTitle()->getPrefixedText(),
 			'Base job title retainend in leaf job' );
-		$this->assertEquals( $title->getPrefixedText(), $jobs[9]->getTitle()->getPrefixedText(), 
+		$this->assertEquals( $title->getPrefixedText(), $jobs[9]->getTitle()->getPrefixedText(),
 			'Base job title retainend recursive sub-job' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs[0]->params['rootJobSignature'],
 			'Leaf job has root params' );
-		$this->assertEquals( $extraParams['rootJobSignature'], $jobs[9]->params['rootJobSignature'], 
+		$this->assertEquals( $extraParams['rootJobSignature'], $jobs[9]->params['rootJobSignature'],
 			'Recursive sub-job has root params' );
 
 		$jobs2 = BacklinkJobUtils::partitionBacklinkJob( $jobs[9], 9, 1, array( 'params' => $extraParams ) );
 
 		$this->assertEquals( 10, count( $jobs2 ), 'Correct number of sub-jobs' );
-		$this->assertEquals( $pages[9], current( $jobs2[0]->params['pages'] ), 
+		$this->assertEquals( $pages[9], current( $jobs2[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[17], current( $jobs2[8]->params['pages'] ),
 			'Last leaf job is leaf job with proper title' );
@@ -73,17 +73,17 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			'Last job is recursive sub-job' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs2[0]->params['rootJobSignature'],
 			'Leaf job has root params' );
-		$this->assertEquals( $extraParams['rootJobSignature'], $jobs2[9]->params['rootJobSignature'], 
+		$this->assertEquals( $extraParams['rootJobSignature'], $jobs2[9]->params['rootJobSignature'],
 			'Recursive sub-job has root params' );
 
 		$jobs3 = BacklinkJobUtils::partitionBacklinkJob( $jobs2[9], 9, 1, array( 'params' => $extraParams ) );
 
 		$this->assertEquals( 2, count( $jobs3 ), 'Correct number of sub-jobs' );
-		$this->assertEquals( $pages[18], current( $jobs3[0]->params['pages'] ), 
+		$this->assertEquals( $pages[18], current( $jobs3[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs3[0]->params['rootJobSignature'],
 			'Leaf job has root params' );
-		$this->assertEquals( $pages[19], current( $jobs3[1]->params['pages'] ), 
+		$this->assertEquals( $pages[19], current( $jobs3[1]->params['pages'] ),
 			'Last job is leaf job with proper title' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs3[1]->params['rootJobSignature'],
 			'Last leaf job has root params' );
@@ -91,7 +91,7 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 
 	public static function provider_backlinks() {
 		$pages = array();
-		for ( $i=0; $i<20; ++$i ) {
+		for ( $i = 0; $i < 20; ++$i ) {
 			$pages[] = array( 0, "Page-$i" );
 		}
 		return array(

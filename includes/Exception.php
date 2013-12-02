@@ -619,9 +619,9 @@ class MWExceptionHandler {
 
 				if ( $wgShowExceptionDetails ) {
 					$message .= 'Original exception: ' . self::getLogMessage( $e ) .
-						 "\nBacktrace:\n" . self::getRedactedTraceAsString( $e ) .
-						 "\n\nException caught inside exception handler: " . self::getLogMessage( $e2 ) .
-						 "\nBacktrace:\n" . self::getRedactedTraceAsString( $e2 );
+						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e ) .
+						"\n\nException caught inside exception handler: " . self::getLogMessage( $e2 ) .
+						"\nBacktrace:\n" . self::getRedactedTraceAsString( $e2 );
 				} else {
 					$message .= "Exception caught inside exception handler.\n\n" .
 						"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .

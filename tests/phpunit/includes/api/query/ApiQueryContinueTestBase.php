@@ -152,7 +152,8 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	private static function GetItems( $q, $moduleName, $name, &$print ) {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
-				array_map( function ( $v ) {
+				array_map(
+					function ( $v ) {
 						return $v['title'];
 					},
 					$q[$moduleName] ) ) . ']';

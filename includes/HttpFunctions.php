@@ -842,8 +842,8 @@ class PhpHttpRequest extends MWHttpRequest {
 			$this->postData = wfArrayToCgi( $this->postData );
 		}
 
-		if ( $this->parsedUrl['scheme'] != 'http' &&
-			 $this->parsedUrl['scheme'] != 'https' ) {
+		if ( $this->parsedUrl['scheme'] != 'http'
+			&& $this->parsedUrl['scheme'] != 'https' ) {
 			$this->status->fatal( 'http-invalid-scheme', $this->parsedUrl['scheme'] );
 		}
 

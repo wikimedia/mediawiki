@@ -655,8 +655,7 @@ class HTMLForm extends ContextSource {
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
-			. $this->mFooter
-		;
+			. $this->mFooter;
 
 		$html = $this->wrapForm( $html );
 

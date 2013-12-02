@@ -417,8 +417,8 @@ class TextPassDumper extends BackupDumper {
 		$text = false; // The candidate for a good text. false if no proper value.
 		$failures = 0; // The number of times, this invocation of getText already failed.
 
-		static $consecutiveFailedTextRetrievals = 0; // The number of times getText failed without
-		                                             // yielding a good text in between.
+		// The number of times getText failed without yielding a good text in between.
+		static $consecutiveFailedTextRetrievals = 0;
 
 		$this->fetchCount++;
 

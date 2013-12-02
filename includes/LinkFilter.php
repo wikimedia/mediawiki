@@ -123,7 +123,7 @@ class LinkFilter {
 			$bits['host'] = $domainpart . '@' . $mailparts[0];
 		} elseif ( $bits['scheme'] === 'mailto' ) {
 			// domainpart of email address only, do not add '.'
-			$bits['host'] = strtolower( implode( '.', array_reverse( explode( '.', $bits['host']) ) ) );
+			$bits['host'] = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 		} else {
 			$bits['host'] = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 			if ( substr( $bits['host'], -1, 1 ) !== '.' ) {
