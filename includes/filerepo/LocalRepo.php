@@ -29,11 +29,10 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	public $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
-
 	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
 	protected $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
 	protected $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+	protected $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 	protected $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
 	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
 
