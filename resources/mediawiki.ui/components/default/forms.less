@@ -60,9 +60,10 @@
 
 	}
 
-	// HTMLForm uses error, SpecialUserlogin (login and create account) uses
-	// errorbox.
-	// TODO move errorbox from mediawiki.special.vforms.css into here.
+	// Styles for information boxes
+
+	// Regular HTMLForm uses .error class, some special pages like
+	// SpecialUserlogin (login and create account) use .errorbox.
 	.error {
 		.box-sizing(border-box);
 		font-size: 0.9em;
@@ -74,6 +75,17 @@
 		text-shadow: 0 1px #fae3e3;
 		word-wrap: break-word;
 	}
+
+	.errorbox,
+	.warningbox,
+	.successbox {
+		.box-sizing(border-box);
+		font-size: 0.9em;
+		margin: 0 0 1em 0;
+		padding: 0.5em;
+		word-wrap: break-word;
+	}
+
 }
 
 // --------------------------------------------------------------------------
