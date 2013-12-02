@@ -1091,20 +1091,31 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
-		if ( $this->mType == 'signup' ) {
-			$template = new UsercreateTemplate();
+		// Generic styles and scripts for both login and signup form
+		$out->addModuleStyles( array(
+			'mediawiki.ui',
+			'mediawiki.special.userlogin.css'
+		) );
+		$out->addModules( array(
+			'mediawiki.special.userlogin.js'
+		) );
 
-			$out->addModuleStyles( array(
-				'mediawiki.ui',
-				'mediawiki.special.createaccount'
-			) );
+		if ( $this->mType == 'signup' ) {
 			// XXX hack pending RL or JS parse() support for complex content messages
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
 			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
 				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
+
+			// Additional styles and scripts for signup form
 			$out->addModules( array(
-				'mediawiki.special.createaccount.js'
+				'mediawiki.special.userlogin.signup.js'
 			) );
+			$out->addModuleStyles( array(
+				'mediawiki.special.userlogin.signup.css'
+			) );
+
+			$template = new UsercreateTemplate();
+
 			// Must match number of benefits defined in messages
 			$template->set( 'benefitCount', 3 );
 
@@ -1112,15 +1123,6 @@ class LoginForm extends SpecialPage {
 			$linkq = 'type=login';
 		} else {
 			$template = new UserloginTemplate();
-
-			$out->addModuleStyles( array(
-				'mediawiki.ui',
-				'mediawiki.special.userlogin'
-			) );
-
-			$out->addModules( array(
-				'mediawiki.special.createaccount.js'
-			) );
 
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
