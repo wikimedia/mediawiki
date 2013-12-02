@@ -115,11 +115,13 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'page_props', 'pp_propname_page',
 				'patch-page_props-propname-page-index.sql' ),
 			array( 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ),
+
+			// 1.22
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-from-title-index.sql' ),
 			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
 			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
 
-			// 1.22
+			// 1.23
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 		);
 	}
