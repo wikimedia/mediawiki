@@ -453,10 +453,15 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
-	 * @access private
+	 * Tags a parser option for use in the cache key for this parser output.
+	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 *
+	 * @see ParserCache::getKey
+	 * @see ParserCache::save
+	 * @see ParserOptions::addExtraKey
+	 * @see ParserOptions::optionsHash
 	 */
-	function recordOption( $option ) {
+	public function recordOption( $option ) {
 		$this->mAccessedOptions[$option] = true;
 	}
 
