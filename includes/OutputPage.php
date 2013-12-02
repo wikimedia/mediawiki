@@ -774,12 +774,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
 	 *
-	 * @param string|array $policy string such as "noindex,nofollow" or an array in this
-	 *   format:
-	 *   array(
-	 *	'index' => 'noindex' // or 'index'
-	 *	'follow' => 'nofollow' // or 'follow'
-	 *   )
+	 * @param string $policy the literal string to output as the contents of
+	 *   the meta tag.  Will be parsed according to the spec and output in
+	 *   standardized form.
 	 * @return null
 	 */
 	public function setRobotPolicy( $policy ) {
