@@ -74,7 +74,7 @@ This program is free software; you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but '''without any warranty'''; without even the implied warranty of '''merchantability''' or '''fitness for a particular purpose'''.
 See the GNU General Public License for more details.
 
-You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
+You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, or [http://www.gnu.org/copyleft/gpl.html read it online].",
 	'config-sidebar'                  => "* [//www.mediawiki.org MediaWiki home]
 * [//www.mediawiki.org/wiki/Help:Contents User's Guide]
 * [//www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
@@ -224,7 +224,7 @@ In '''binary mode''', MediaWiki stores UTF-8 text to the database in binary fiel
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately,
 but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
-	'config-mysql-old'                => 'MySQL $1 or later is required, you have $2.',
+	'config-mysql-old'                => 'MySQL $1 or later is required. You have $2.',
 	'config-db-port'                  => 'Database port:',
 	'config-db-schema'                => 'Schema for MediaWiki:',
 	'config-db-schema-help'           => 'This schema will usually be fine.
@@ -277,7 +277,7 @@ Check the host, username and password and try again.',
 Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-db-sys-create-oracle' => 'Installer only supports using a SYSDBA account for creating a new account.',
 	'config-db-sys-user-exists-oracle' => 'User account "$1" already exists. SYSDBA can only be used for creating of a new account!',
-	'config-postgres-old'             => 'PostgreSQL $1 or later is required, you have $2.',
+	'config-postgres-old'             => 'PostgreSQL $1 or later is required. You have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
 Do not use spaces or hyphens.
 This will be used for the SQLite data file name.',
@@ -340,7 +340,7 @@ The account you specify here must already exist.',
 
 If your MySQL installation supports InnoDB, it is highly recommended that you choose that instead.
 If your MySQL installation does not support InnoDB, maybe it's time for an upgrade.",
-	'config-mysql-only-myisam-dep'    => "'''Warning:''' MyISAM is the only available storage engine for MySQL, which is not recommended for use with MediaWiki, because:
+	'config-mysql-only-myisam-dep'    => "'''Warning:''' MyISAM is the only available storage engine for MySQL on this machine, and this is not recommended for use with MediaWiki, because:
 * it barely supports concurrency due to table locking
 * it is more prone to corruption than other engines
 * the MediaWiki codebase does not always handle MyISAM as it should
@@ -499,7 +499,7 @@ If you do not know the port, the default is 11211.',
 	'config-extensions'               => 'Extensions',
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
-They may require additional configuration, but you can enable them now',
+They may require additional configuration, but you can enable them now.',
 	'config-install-alreadydone'      => "'''Warning:''' You seem to have already installed MediaWiki and are trying to install it again.
 Please proceed to the next page.",
 	'config-install-begin'            => 'By pressing "{{int:config-continue}}", you will begin the installation of MediaWiki.
