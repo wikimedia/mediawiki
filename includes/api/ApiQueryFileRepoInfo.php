@@ -35,11 +35,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 	protected function getInitialisedRepoGroup() {
 		$repoGroup = RepoGroup::singleton();
-
-		if ( !$repoGroup->reposInitialised ) {
-			$repoGroup->initialiseRepos();
-		}
-
+		$repoGroup->initialiseRepos();
 		return $repoGroup;
 	}
 
@@ -55,7 +51,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 			$repos[] = array_intersect_key( $repo->getInfo(), $props );
 		} );
 
-		$repos[] = array_intersect_key( $repoGroup->localRepo->getInfo(), $props );
+		$repos[] = array_intersect_key( $repoGroup->getLocalRepo()->getInfo(), $props );
 
 		$result = $this->getResult();
 		$result->setIndexedTagName( $repos, 'repo' );
@@ -88,7 +84,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		return array_values( array_unique( array_merge(
 			$props,
-			array_keys( $repoGroup->localRepo->getInfo() )
+			array_keys( $repoGroup->getLocalRepo()->getInfo() )
 		) ) );
 	}
 
