@@ -695,7 +695,7 @@ LUA;
 				local attempts = redis.call('hGet',kAttempts,id)
 				if attempts < ARGV[3] then
 					-- Claim expired and retries left: re-enqueue the job
-					redis.call('lPush',kUclaimed,id)
+					redis.call('lPush',kUnclaimed,id)
 					redis.call('hIncrBy',kAttempts,id,1)
 					released = released + 1
 				else
