@@ -13,22 +13,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Medya',
-	NS_SPECIAL          => 'Spesial',
-	NS_TALK             => 'Nkɔmbɔ',
-	NS_USER             => 'User',
-	NS_USER_TALK        => 'User_nkɔmbɔ',
-	NS_PROJECT_TALK     => '$1_nkɔmbɔ',
-	NS_FILE             => 'Fayl',
-	NS_FILE_TALK        => 'Fayl_nkɔmbɔ',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Soronko',
+	NS_TALK             => 'Nkɔmmɔ',
+	NS_USER             => 'Odwumanyɛni',
+	NS_USER_TALK        => 'Odwumanyɛni_nkɔmmɔbea',
+	NS_PROJECT_TALK     => '$1_nkɔmmɔ',
+	NS_FILE             => 'File',
+	NS_FILE_TALK        => 'File_nkɔmmɔ',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_nkɔmbɔ',
-	NS_TEMPLATE         => 'Şablon',
-	NS_TEMPLATE_TALK    => 'Şablon_nkɔmbɔ',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help_nkɔmbɔ',
-	NS_CATEGORY         => 'Kategori',
-	NS_CATEGORY_TALK    => 'Kategori_nkɔmbɔ',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nkɔmmɔ',
+	NS_TEMPLATE         => 'Nhwɛsode',
+	NS_TEMPLATE_TALK    => 'Nhwɛsode_nkɔmmɔbea',
+	NS_HELP             => 'Boa',
+	NS_HELP_TALK        => 'Mmoa_nkɔmmɔbea',
+	NS_CATEGORY         => 'Nkyekyem',
+	NS_CATEGORY_TALK    => 'Nkyekyem_nkɔmmɔbea',
 );
 
 $messages = array(

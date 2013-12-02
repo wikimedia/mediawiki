@@ -41,7 +41,7 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => '미디어',
-	NS_SPECIAL          => '특수기능',
+	NS_SPECIAL          => '특수',
 	NS_TALK             => '토론',
 	NS_USER             => '사용자',
 	NS_USER_TALK        => '사용자토론',
@@ -59,7 +59,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'특'  => NS_SPECIAL,
+	'특' => NS_SPECIAL,
+	'특수기능' => NS_SPECIAL,
 	'MediaWiki토론' => NS_MEDIAWIKI_TALK,
 	'그림' => NS_FILE,
 	'파일토론' => NS_FILE_TALK,

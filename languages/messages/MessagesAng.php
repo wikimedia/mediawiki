@@ -21,15 +21,23 @@
 
 $namespaceNames = array(
 	NS_SPECIAL          => 'Syndrig',
-	NS_TALK             => 'Gesprec',
+	NS_TALK             => 'Mōtung',
 	NS_FILE             => 'Biliþ',
-	NS_FILE_TALK        => 'Biliþgesprec',
+	NS_FILE_TALK        => 'Biliþmōtung',
 	NS_TEMPLATE         => 'Bysen',
-	NS_TEMPLATE_TALK    => 'Bysengesprec',
+	NS_TEMPLATE_TALK    => 'Bysenmōtung',
 	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Helpgesprec',
+	NS_HELP_TALK        => 'Helpmōtung',
 	NS_CATEGORY         => 'Flocc',
-	NS_CATEGORY_TALK    => 'Floccgesprec',
+	NS_CATEGORY_TALK    => 'Floccmōtung',
+);
+
+$namespaceAliases = array(
+	'Gesprec'      => NS_TALK,
+	'Biliþgesprec' => NS_FILE_TALK,
+	'Bysengesprec' => NS_TEMPLATE_TALK,
+	'Helpgesprec'  => NS_HELP_TALK,
+	'Floccgesprec' => NS_CATEGORY_TALK,
 );
 
 $messages = array(

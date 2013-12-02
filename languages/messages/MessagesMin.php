@@ -21,7 +21,7 @@ $fallback = 'id';
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Istimewa',
-	NS_TALK             => 'Maota',
+	NS_TALK             => 'Rundiang',
 	NS_USER             => 'Pangguno',
 	NS_USER_TALK        => 'Rundiang_Pangguno',
 	NS_PROJECT_TALK     => 'Rundiang_$1',
@@ -53,6 +53,8 @@ $namespaceAliases = array(
 	'Pembicaraan_Bantuan'   => NS_HELP_TALK,
 	'Kategori'              => NS_CATEGORY,
 	'Pembicaraan_Kategori'  => NS_CATEGORY_TALK,
+
+	'Maota'                 => NS_TALK,
 );
 
 $specialPageAliases = array(

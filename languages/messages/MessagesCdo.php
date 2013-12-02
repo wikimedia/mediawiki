@@ -11,6 +11,25 @@
  * @author Yejianfei
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => '媒體',
+	NS_SPECIAL          => '特殊',
+	NS_TALK             => '討論',
+	NS_USER             => '用戶',
+	NS_USER_TALK        => '用戶討論',
+	NS_PROJECT_TALK     => '$1討論',
+	NS_FILE             => '文件',
+	NS_FILE_TALK        => '文件討論',
+	NS_MEDIAWIKI        => '媒體維基',
+	NS_MEDIAWIKI_TALK   => '媒體維基討論',
+	NS_TEMPLATE         => '模板',
+	NS_TEMPLATE_TALK    => '模板討論',
+	NS_HELP             => '幫助',
+	NS_HELP_TALK        => '幫助討論',
+	NS_CATEGORY         => '分類',
+	NS_CATEGORY_TALK    => '分類討論',
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( '活動用戶' ),
 	'Allmessages'               => array( '全部信息' ),

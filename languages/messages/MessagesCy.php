@@ -33,7 +33,7 @@ $namespaceNames = array(
 	NS_TEMPLATE         => 'Nodyn',
 	NS_TEMPLATE_TALK    => 'Sgwrs_Nodyn',
 	NS_HELP             => 'Cymorth',
-	NS_HELP_TALK        => 'Sgwrs Cymorth',
+	NS_HELP_TALK        => 'Sgwrs_Cymorth',
 	NS_CATEGORY         => 'Categori',
 	NS_CATEGORY_TALK    => 'Sgwrs_Categori',
 );
