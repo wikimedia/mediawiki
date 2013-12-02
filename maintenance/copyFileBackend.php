@@ -239,8 +239,8 @@ class CopyFileBackend extends Maintenance {
 				$this->error( "$wikiId: Detected illegal (non-UTF8) path for $srcPath." );
 				continue;
 			} elseif ( !$this->hasOption( 'missingonly' )
-				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) )
-			{
+				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath )
+			) {
 				$this->output( "\tAlready have $srcPathRel.\n" );
 				continue; // assume already copied...
 			}

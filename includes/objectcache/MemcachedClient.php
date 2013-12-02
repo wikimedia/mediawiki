@@ -1026,9 +1026,9 @@ class MWMemcached {
 
 		$len = strlen( $val );
 
-		if ( $this->_have_zlib && $this->_compress_enable &&
-			$this->_compress_threshold && $len >= $this->_compress_threshold )
-		{
+		if ( $this->_have_zlib && $this->_compress_enable
+			&& $this->_compress_threshold && $len >= $this->_compress_threshold
+		) {
 			$c_val = gzcompress( $val, 9 );
 			$c_len = strlen( $c_val );
 

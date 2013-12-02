@@ -103,8 +103,7 @@ class FindHooks extends Maintenance {
 		$this->printArray( 'Documented and not found', $deprecated );
 		$this->printArray( 'Unclear hook calls', $bad );
 
-		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 )
-		{
+		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 ) {
 			$this->output( "Looks good!\n" );
 		}
 	}

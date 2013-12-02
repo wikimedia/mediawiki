@@ -283,8 +283,8 @@ class Profiler {
 			return; // short-circuit
 		// @TODO: hardcoded check is a tad janky (what about FOR UPDATE?)
 		} elseif ( !preg_match( '/^query-m: (?!SELECT)/', $method )
-			&& $realtime < $this->mDBLockThreshold )
-		{
+			&& $realtime < $this->mDBLockThreshold
+		) {
 			return; // not a DB master query nor slow enough
 		}
 		$now = microtime( true );

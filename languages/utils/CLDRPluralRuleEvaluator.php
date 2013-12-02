@@ -185,8 +185,8 @@ class CLDRPluralRuleEvaluator_Range {
 		foreach ( $this->parts as $part ) {
 			if ( is_array( $part ) ) {
 				if ( ( !$integerConstraint || floor( $number ) === (float)$number )
-					&& $number >= $part[0] && $number <= $part[1] )
-				{
+					&& $number >= $part[0] && $number <= $part[1]
+				) {
 					return true;
 				}
 			} else {
@@ -450,8 +450,8 @@ class CLDRPluralRuleConverter {
 			// Look ahead one word
 			$nextTokenPos += strspn( $this->rule, self::WHITESPACE_CLASS, $nextTokenPos );
 			if ( $nextTokenPos < $this->end
-					&& preg_match( self::WORD_REGEX, $this->rule, $m, 0, $nextTokenPos ) )
-			{
+				&& preg_match( self::WORD_REGEX, $this->rule, $m, 0, $nextTokenPos )
+			) {
 				$word2 = strtolower( $m[0] );
 				$nextTokenPos += strlen( $word2 );
 			}

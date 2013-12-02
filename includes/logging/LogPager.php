@@ -245,8 +245,8 @@ class LogPager extends ReverseChronologicalPager {
 			$index['log_search'] = 'ls_field_val';
 			$index['logging'] = 'PRIMARY';
 			if ( !$this->hasEqualsClause( 'ls_field' )
-				|| !$this->hasEqualsClause( 'ls_value' ) )
-			{
+				|| !$this->hasEqualsClause( 'ls_value' )
+			) {
 				# Since (ls_field,ls_value,ls_logid) is unique, if the condition is
 				# to match a specific (ls_field,ls_value) tuple, then there will be
 				# no duplicate log rows. Otherwise, we need to remove the duplicates.

@@ -457,9 +457,9 @@ class EditPage {
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = array();
 		foreach ( $permErrors as $error ) {
-			if ( ( $this->preview || $this->diff ) &&
-				( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' ) )
-			{
+			if ( ( $this->preview || $this->diff )
+				&& ( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' )
+			) {
 				$remove[] = $error;
 			}
 		}
@@ -567,10 +567,10 @@ class EditPage {
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
 			// Standard preference behavior
 			return true;
-		} elseif ( !$this->mTitle->exists() &&
-			isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] ) &&
-			$wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
-		{
+		} elseif ( !$this->mTitle->exists()
+			&& isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+			&& $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()]
+		) {
 			// Categories are special
 			return true;
 		} else {
@@ -728,9 +728,9 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) &&
-				$this->mTitle->getText() == $wgUser->getName() )
-			{
+			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
+				&& $this->mTitle->getText() == $wgUser->getName()
+			) {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' ) || !$wgUser->getOption( 'forceeditsummary' );
@@ -1792,9 +1792,9 @@ class EditPage {
 			// Show the edit conflict page for certain recognized errors from doEdit(),
 			// but don't show it for errors from extension hooks
 			$errors = $doEditStatus->getErrorsArray();
-			if ( in_array( $errors[0][0], array( 'edit-gone-missing', 'edit-conflict',
-				'edit-already-exists' ) ) )
-			{
+			if ( in_array( $errors[0][0],
+					array( 'edit-gone-missing', 'edit-conflict', 'edit-already-exists' ) )
+			) {
 				$this->isConflict = true;
 				// Destroys data doEdit() put in $status->value but who cares
 				$doEditStatus->value = self::AS_END;

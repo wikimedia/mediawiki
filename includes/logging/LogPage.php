@@ -233,8 +233,8 @@ class LogPage {
 	 * @return HTML string
 	 */
 	public static function actionText( $type, $action, $title = null, $skin = null,
-		$params = array(), $filterWikilinks = false )
-	{
+		$params = array(), $filterWikilinks = false
+	) {
 		global $wgLang, $wgContLang, $wgLogActions;
 
 		if ( is_null( $skin ) ) {

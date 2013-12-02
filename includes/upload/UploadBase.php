@@ -322,8 +322,8 @@ abstract class UploadBase {
 
 		$error = '';
 		if ( !wfRunHooks( 'UploadVerification',
-			array( $this->mDestName, $this->mTempPath, &$error ) ) )
-		{
+			array( $this->mDestName, $this->mTempPath, &$error ) )
+		) {
 			wfProfileOut( __METHOD__ );
 			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
 		}

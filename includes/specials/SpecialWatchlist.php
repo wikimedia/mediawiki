@@ -154,9 +154,9 @@ class SpecialWatchlist extends SpecialPage {
 			wfAppendToArrayIfNotDefault( $name, $values[$name], $defaults, $nondefaults );
 		}
 
-		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
-			$request->wasPosted() )
-		{
+		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' )
+			&& $request->wasPosted()
+		) {
 			$user->clearAllNotifications();
 			$output->redirect( $this->getTitle()->getFullURL( $nondefaults ) );
 			return;

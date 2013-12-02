@@ -205,9 +205,16 @@ class ImageBuilder extends Maintenance {
 		}
 		if ( !$this->dryrun ) {
 			$file = wfLocalFile( $filename );
-			if ( !$file->recordUpload( '', '(recovered file, missing upload log entry)', '', '', '',
-				false, $timestamp ) )
-			{
+			if ( !$file->recordUpload(
+					'',
+					'(recovered file, missing upload log entry)',
+					'',
+					'',
+					'',
+					false,
+					$timestamp
+				)
+			) {
 				$this->output( "Error uploading file $fullpath\n" );
 				return;
 			}
