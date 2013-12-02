@@ -1,4 +1,4 @@
-/* Styles just for VForm user login */
+/* Styles for user login and signup forms */
 #mw-userlogin-help {
 	text-align: center;
 }
@@ -38,6 +38,29 @@
 	display: inline-block;
 }
 
+/*
+ * When inside the VForm style, disable the border that Vector and other skins
+ * put on the div surrounding the login/create account form.
+ * Also disable the margin and padding that Vector puts around the form.
+ */
+.mw-ui-container #userloginForm,
+.mw-ui-container #userlogin {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Reposition and resize language links, which appear on a per-wiki basis */
+.mw-ui-container #languagelinks {
+	margin-bottom: 2em;
+	font-size: 0.8em;
+}
+
+/* Put some space under template's header, which may contain CAPTCHA HTML.*/
+section.mw-form-header {
+	margin-bottom: 10px;
+}
+
 /**** shuffled CAPTCHA ****/
 #wpCaptchaWord {
 	margin-top: 6px;
@@ -58,13 +81,13 @@
 /* Put a border around the fancycaptcha-image-container. */
 .mw-createacct-captcha-and-reload {
 	border: 1px solid #c9c9c9;
-	display: table-cell; /* Other display formats end up too wide */
+	/* Other display formats end up too wide */
+	display: table-cell;
 	width: 270px;
 	background-color: #FFF;
 }
 
-/* Make the fancycaptcha-image-container full-width within its parent.  */
-.fancycaptcha-image-container
-{
+/* Make the fancycaptcha-image-container full-width within its parent. */
+.fancycaptcha-image-container {
 	width: 100%;
 }
