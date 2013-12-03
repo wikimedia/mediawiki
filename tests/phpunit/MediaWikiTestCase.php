@@ -966,4 +966,51 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
+
+	/**
+	 * Asserts that the given string is a valid HTML snippet.
+	 * Wraps the given string in the required top level tags and
+	 * then calls assertValidHtmlDocument().
+	 * The snippet is expected to be HTML 5.
+	 *
+	 * @note: always passes if the "tidy" module is not installed.
+	 *
+	 * @param string $html An HTML snippet (treated as the contents of the body tag).
+	 */
+	protected function assertValidHtmlSnippet( $html ) {
+		$html = '<!DOCTYPE html><html><head><title>test</title></head><body>' . $html . '</body></html>';
+		$this->assertValidHtmlDocument( $html );
+	}
+
+	/**
+	 * Asserts that the given string is valid HTML document.
+	 *
+	 * @note: always passes if the "tidy" module is not installed.
+	 *
+	 * @param string $html A complete HTML document
+	 */
+	protected function assertValidHtmlDocument( $html ) {
+		if ( !class_exists( 'tidy' ) ) {
+			// dummy assertion
+			$this->assertTrue( true );
+			return;
+		}
+
+		$tidy = new tidy();
+		$config = array(
+			'doctype' => 'auto',
+		);
+
+		$tidy->parseString( $html, $config, 'utf8' );
+
+		$allErrors = preg_split( '/[\r\n]+/', $tidy->errorBuffer );
+
+		$errors = preg_grep(
+			'/^(.*Warning: (trimming empty|.* lacks ".*?" attribute).*|\s*)$/m',
+			$allErrors, PREG_GREP_INVERT
+		);
+
+		$this->assertEmpty( $errors, implode( "\n", $errors ) );
+		$this->assertLessThan( 2, $tidy->getStatus(), 'HTML errors found: ' . implode( "\n", $allErrors ) );
+	}
 }

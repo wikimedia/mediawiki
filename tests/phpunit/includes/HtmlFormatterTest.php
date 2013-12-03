@@ -16,6 +16,8 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 		}
 		$formatter->filterContent();
 		$html = $formatter->getText();
+
+		$this->assertValidHtmlSnippet( $html );
 		$this->assertEquals( self::normalize( $expected ), self::normalize( $html ) );
 	}
 
