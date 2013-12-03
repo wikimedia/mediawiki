@@ -6014,15 +6014,17 @@ Parameters:
 * $3 - the time of the displayed revision
 {{Identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit' => '{{Identical|Yes}}',
-'undelete-revisionrow' => "{{Optional}}
+'undelete-revision-row' => "{{Optional}}
 A revision row in the undelete page. Parameters:
 * $1 is a checkBox to indicate whether to restore this specific revision
 * $2 is a link to the revision
 * $3 is a link to the last revision of a page ({{msg-mw|last}})
 * $4 is a link to the page
 * $5 is a link to the revision's user
-* $6 is the revision size
-* $7 is the revision comment",
+* $6 is the revision's minor edit identifier
+* $7 is the revision size
+* $8 is the revision comment
+* $9 is the revision's tags",
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].
