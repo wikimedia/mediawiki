@@ -35,6 +35,10 @@ class LanguageGv extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
 		if ( !count( $forms ) ) {
 			return '';
 		}
