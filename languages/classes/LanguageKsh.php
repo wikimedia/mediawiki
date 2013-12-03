@@ -189,7 +189,14 @@ class LanguageKsh extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+		if ( !count( $forms ) ) {
+			return '';
+		}
+
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == 1 ) {

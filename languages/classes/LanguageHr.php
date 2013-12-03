@@ -34,7 +34,14 @@ class LanguageHr extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+		if ( !count( $forms ) ) {
+			return '';
+		}
+
 		// @todo FIXME: CLDR defines 4 plural forms instead of 3. Plural for for decimals is missing.
 		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
 		$forms = $this->preConvertPlural( $forms, 3 );

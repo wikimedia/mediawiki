@@ -55,14 +55,18 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 		);
 	}
 
-	/** @dataProvider providePluralTwoForms */
-	function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'several' );
+	/**
+	 * @dataProvider providePluralTwoForms
+	 * @covers Language::convertPlural
+	 */
+	public function testPluralTwoForms( $result, $value ) {
+		$forms = array( 'one', 'other', '0=one' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralTwoForms() {
 		return array(
+			array( 'one', 0 ),
 			array( 'one', 1 ),
 			array( 'several', 11 ),
 			array( 'several', 91 ),

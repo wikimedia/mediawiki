@@ -91,7 +91,13 @@ class LanguageUk extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
+		if ( !count( $forms ) ) {
+			return '';
+		}
 
 		// If the actual number is not mentioned in the expression, then just two forms are enough:
 		// singular for $count == 1

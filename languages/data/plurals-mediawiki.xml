@@ -32,5 +32,11 @@
 			<pluralRule count="two">n mod 10 is 2 and n mod 100 is not 12</pluralRule>
 			<pluralRule count="few">n is 0 or n mod 100 is 0 or n mod 100 in 10..19</pluralRule>
 		</pluralRules>
+		<!-- Override as per https://bugzilla.wikimedia.org/show_bug.cgi?id=47099, porting from CLDR 24 -->
+		<pluralRules locales="gv">
+			<pluralRule count="one">n mod 10 is 1</pluralRule>
+			<pluralRule count="two">n mod 10 is 2</pluralRule>
+			<pluralRule count="few">n mod 100 in 0,20,40,60</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>
