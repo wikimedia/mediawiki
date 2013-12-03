@@ -16,7 +16,7 @@ class GIFHandlerTest extends MediaWikiTestCase {
 		$this->filePath = __DIR__ . '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name' => 'localtesting',
-			'lockManager' => 'nullLockManager',
+			'wikiId' => wfWikiId(),
 			'containerPaths' => array( 'data' => $this->filePath )
 		) );
 		$this->repo = new FSRepo( array(

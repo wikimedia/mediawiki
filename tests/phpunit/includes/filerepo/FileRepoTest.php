@@ -46,7 +46,7 @@ class FileRepoTest extends MediaWikiTestCase {
 			'name' => 'FileRepoTestRepository',
 			'backend' => new FSFileBackend( array(
 				'name' => 'local-testing',
-				'lockManager' => 'nullLockManager',
+				'wikiId' => 'test_wiki',
 				'containerPaths' => array()
 			) )
 		) );
