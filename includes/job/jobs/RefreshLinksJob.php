@@ -97,7 +97,7 @@ class RefreshLinksJob extends Job {
 			}
 		// Job to update link tables for a given title
 		} else {
-			$this->runForTitle( $this->mTitle );
+			$this->runForTitle( $this->title );
 		}
 
 		return true;
