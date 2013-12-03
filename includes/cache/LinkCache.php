@@ -78,6 +78,7 @@ class LinkCache {
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 *
+	 * @param $update
 	 * @return bool
 	 */
 	public function forUpdate( $update = null ) {

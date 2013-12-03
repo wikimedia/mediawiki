@@ -153,6 +153,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Save and compress text to the cache
+	 * @param string $text
 	 * @return string compressed text
 	 */
 	public function saveText( $text ) {

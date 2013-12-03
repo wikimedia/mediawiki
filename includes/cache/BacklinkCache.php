@@ -156,10 +156,10 @@ class BacklinkCache {
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
-	 * @param $table String
-	 * @param $startId Integer|false
-	 * @param $endId Integer|false
-	 * @param $max Integer|INF
+	 * @param string $table
+	 * @param int|bool $startId
+	 * @param int|bool $endId
+	 * @param int|INF $max
 	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
