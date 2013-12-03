@@ -70,7 +70,8 @@ class FileRepo {
 	/** @var string Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
-	/** @var bool Whether to fetch commons image description pages and display them on the local wiki */
+	/** @var bool Whether to fetch commons image description pages and display
+	 *    them on the local wiki */
 	public $fetchDescription;
 
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
