@@ -5164,4 +5164,12 @@ In fact, it expands pretty much everything in double-braces.',
 'expand_templates_remove_nowiki'   => 'Suppress <nowiki> tags in result',
 'expand_templates_generate_xml'    => 'Show XML parse tree',
 'expand_templates_preview'         => 'Preview',
+
+# OOJS
+'ooui-dialog-action-close' => 'Close',
+'ooui-outline-control-move-down' => 'Move item down',
+'ooui-outline-control-move-up' => 'Move item up',
+'ooui-toggle-on' => 'On',
+'ooui-toggle-off' => 'Off',
+'ooui-toolbar-more' => 'More',
 );
