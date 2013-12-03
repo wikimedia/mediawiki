@@ -1176,4 +1176,15 @@ return array(
 		),
 		'position' => 'top',
 	),
+
+	/* OOJS */
+	// WARNING: oojs is NOT COMPATIBLE with older browsers and
+	// WILL BREAK if loaded in browsers that don't support ES5
+	'oojs' => array(
+		'scripts' => array(
+			'resources/oojs/oojs.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 );
