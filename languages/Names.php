@@ -104,7 +104,7 @@
 	'crh-cyrl' => "къырымтатарджа (Кирилл)\xE2\x80\x8E",       # Crimean Tatar (Cyrillic)
 	'cs' => 'čeština',	# Czech
 	'csb' => 'kaszëbsczi',	# Cassubian
-	'cu' => 'словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
+	'cu' => 'словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
 	'cv' => 'Чӑвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'dansk',		# Danish
