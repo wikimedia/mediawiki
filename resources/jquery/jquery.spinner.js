@@ -49,16 +49,13 @@
 		 *
 		 * @static
 		 * @inheritable
-		 * @param {Object|string} [opts] Options. An object with the following keys:
-		 *
-		 * - id: If given, spinner will be given an id of "mw-spinner-{id}"
-		 * - size: 'small' (default) or 'large' for a 20-pixel or 32-pixel spinner
-		 * - type: 'inline' (default) or 'block'. Inline creates an inline-block with width and
-		 *   height equal to spinner size. Block is a block-level element with width 100%, height
-		 *   equal to spinner size.
-		 *
-		 * If a string is given, it will be treated as the value of the 'id' option.
-		 *
+		 * @param {Object|string} [opts] Options. If a string is given, it will be treated as the value
+		 *     of the `id` option. If an object is given, the possible option keys are:
+		 * @param {string} [opts.id] If given, spinner will be given an id of "mw-spinner-{id}".
+		 * @param {string} [opts.size='small'] 'small' or 'large' for a 20-pixel or 32-pixel spinner.
+		 * @param {string} [opts.type='inline'] 'inline' or 'block'. Inline creates an inline-block with
+		 *     width and height equal to spinner size. Block is a block-level element with width 100%,
+		 *     height equal to spinner size.
 		 * @return {jQuery}
 		 */
 		createSpinner: function ( opts ) {
