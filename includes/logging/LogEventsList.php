@@ -99,8 +99,9 @@ class LogEventsList extends ContextSource {
 	 * @param array $filter
 	 * @param string $tagFilter Tag to select by default
 	 */
-	public function showOptions( $types = array(), $user = '', $page = '', $pattern = '', $year = '',
-		$month = '', $filter = null, $tagFilter = '' ) {
+	public function showOptions( $types = array(), $user = '', $page = '', $pattern = '', $year = 0,
+		$month = 0, $filter = null, $tagFilter = ''
+	) {
 		global $wgScript, $wgMiserMode;
 
 		$title = SpecialPage::getTitleFor( 'Log' );
@@ -124,7 +125,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// date menu
-		$html .= Xml::tags( 'p', null, Xml::dateMenu( $year, $month ) );
+		$html .= Xml::tags( 'p', null, Xml::dateMenu( (int)$year, (int)$month ) );
 
 		// Tag filter
 		if ( $tagSelector ) {
