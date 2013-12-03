@@ -289,7 +289,11 @@ class LogPage {
 
 						// Cascading flag...
 						if ( $params[2] ) {
-							$details .= ' [' . wfMessage( 'protect-summary-cascade' )->inLanguage( $langObj )->text() . ']';
+							$text = wfMessage( 'protect-summary-cascade' )
+								->inLanguage( $langObj )->text();
+							$details .= ' ';
+							$details .= wfMessage( 'brackets', $text )->inLanguage( $langObj )->text();
+
 						}
 					}
 
