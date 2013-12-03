@@ -2685,7 +2685,6 @@ Lihat [[Special:Log/delete|log penghapusan]] untuk data penghapusan dan pengemba
 $1',
 'undelete-show-file-confirm' => 'Apakah Anda yakin ingin melihat revisi yang telah dihapus dari berkas "<nowiki>$1</nowiki>" per $3, $2?',
 'undelete-show-file-submit' => 'Ya',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Ruang nama:',

@@ -547,7 +547,7 @@ Che a preuva torna, për piasì.",
 'passwordtooshort' => 'Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match' => 'Soa ciav a dev esse diferenta da sò stranòm.',
 'password-login-forbidden' => "L'usagi ëd së stranòm d'utent e ëd sa ciav a son ëstàit proibì.",
-'mailmypassword' => 'Mandeme na neuva ciav për pòsta eletrònica',
+'mailmypassword' => 'Riamposté la ciav',
 'passwordremindertitle' => 'Neuva ciav provisòria për {{SITENAME}}',
 'passwordremindertext' => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP $1) a l'ha ciamà na neuva
 ciav për rintré ant ël sistema ëd {{SITENAME}} ($4).
@@ -619,7 +619,7 @@ Peul desse ch'a l'ha già cambià la ciav o a l'ha ciamà na neuva ciav provisò
 # Special:PasswordReset
 'passwordreset' => 'Ri-inissialisassion ëd la ciav',
 'passwordreset-text-one' => "Ch'a completa 's formolari për reimposté soa ciav.",
-'passwordreset-text-many' => "{{PLURAL:$1|Ch'a compila un dij camp për riamposté soa ciav.}}",
+'passwordreset-text-many' => "{{PLURAL:$1|Ch'a compila un dij camp për arsèive na ciav provisòria për pòsta eletrònica.}}",
 'passwordreset-legend' => 'Riampostassion ëd la ciav',
 'passwordreset-disabled' => "La reinissialisassion ëd le ciav a l'é stàita disabilità su sta wiki.",
 'passwordreset-emaildisabled' => 'Le fonsionalità ëd pòsta eletrònica a son ëstàite disativà su sta wiki.',

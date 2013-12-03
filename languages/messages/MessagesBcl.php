@@ -3757,7 +3757,7 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 # Special:SpecialPages
 'specialpages' => 'Mga espesyal na pahina',
 'specialpages-note-top' => 'Balaynan',
-'specialpages-note' => '* Normal espesyal na mga pahina.
+'specialpages-note' => '* Normal na espesyal na mga pahina.
 * <span class="mw-specialpagerestricted">Restriktadong espesyal na mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga talaan nin pagpangataman',
 'specialpages-group-other' => 'Iba pang mga espesyal na pahina',
@@ -3972,9 +3972,16 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 'limitreport-expensivefunctioncount' => 'Bilang kan hiro nin mamahalon na parabangay',
 
 # Special:ExpandTemplates
-'expandtemplates' => 'Bigwakon na mga panguyog',
+'expandtemplates' => 'Bigwakon an mga panguyog',
+'expand_templates_intro' => 'Ining espesyal na pahina minakua nin teksto asin minabigwak kan gabos na mga panguyog na yaon kaini na paoro-otro.
+Ini man minabigwak sa punksyon kan suportadong parabangay na arog kan <code><nowiki>{{</nowiki>#language:…}}</code> asin mga kapilyangan arog kan <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+Sa katunayan, ini minapabigwak kan gabos na bagay na yaon sa mga dobleng panandayan.',
+'expand_templates_title' => 'Kontekstong titulo, para sa {{FULLPAGENAME}}, ibpa.:',
+'expand_templates_input' => 'Ikaag an teksto:',
 'expand_templates_output' => 'Resulta',
+'expand_templates_xml_output' => 'Kinaluwasan na XML',
 'expand_templates_remove_comments' => 'Tanggalon an mga komento',
+'expand_templates_remove_nowiki' => 'Pugulan an mga taktak na <nowiki> kan resulta',
 'expand_templates_preview' => 'Patânaw',
 
 );

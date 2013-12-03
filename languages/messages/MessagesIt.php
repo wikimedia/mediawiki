@@ -793,7 +793,7 @@ Assicurati di avere attivato i cookie, ricarica questa pagina e riprova.",
 'passwordtooshort' => 'Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
 'password-name-match' => 'La password deve essere diversa dal nome utente.',
 'password-login-forbidden' => "L'uso di questo nome utente e password è stato proibito.",
-'mailmypassword' => 'Invia una nuova password al mio indirizzo email',
+'mailmypassword' => 'Reimposta password',
 'passwordremindertitle' => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext' => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
 Una password temporanea per l\'utente "$2" è stata impostata a "$3".
@@ -862,7 +862,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',
 'passwordreset-text-one' => 'Compila questo modulo per reimpostare la tua password.',
-'passwordreset-text-many' => '{{PLURAL:$1|Compila uno dei campi per reimpostare la tua password.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Compila uno dei campi per ricevere una password temporanea tramite email.}}',
 'passwordreset-legend' => 'Reimposta password',
 'passwordreset-disabled' => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-emaildisabled' => 'Le funzionalità di posta elettronica sono state disabilitate su questa wiki.',

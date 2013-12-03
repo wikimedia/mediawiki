@@ -2402,7 +2402,6 @@ $1',
 $1',
 'undelete-show-file-confirm' => '$2 $3 دىكى \\"<nowiki>$1</nowiki>\\" نىڭ ئۆچۈرۈلگەن تۈزىتىلگەن نەشرىنى راستىنلا كۆرەمسىز؟',
 'undelete-show-file-submit' => 'ھەئە',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'ئات بوشلۇقى',

@@ -283,8 +283,6 @@ Chhiáⁿ khoàⁿ [[Special:Version|pán-pún ia̍h]].',
 'ok' => 'Hó ah',
 'retrievedfrom' => 'Lâi-goân: "$1"',
 'youhavenewmessages' => 'Lí ū $1 ($2).',
-'newmessageslink' => 'sin sìn-sit',
-'newmessagesdifflink' => 'chêng 2 ê siu-tēng-pún ê diff',
 'youhavenewmessagesmulti' => 'Lí tī $1 ū sin sìn-sit',
 'editsection' => 'siu-kái',
 'editold' => 'siu-kái',
@@ -602,8 +600,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 # Preferences page
 'preferences' => 'Siat-tēng',
 'mypreferences' => 'Góa ê siat-tēng',
-'prefsnologin' => 'Bô teng-ji̍p',
-'prefsnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng chhiâu iōng-chiá ê siat-tēng.',
 'changepassword' => 'Oāⁿ bi̍t-bé',
 'prefs-skin' => 'Phôe',
 'skin-preview' => 'Chhì khoàⁿ',
@@ -1170,5 +1166,11 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 
 # Special:SpecialPages
 'specialpages' => 'Te̍k-sû-ia̍h',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Khok-chhiong pang-bô͘',
+'expand_templates_input' => 'Su-ji̍p bûn-jī:',
+'expand_templates_output' => 'Kiat-kó:',
+'expand_templates_remove_comments' => 'Comments the̍h tiāu',
 
 );

@@ -798,7 +798,7 @@ Por favor, inténteo de novo.',
 'passwordtooshort' => 'Os contrasinais deben conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.',
 'password-name-match' => 'O seu contrasinal debe ser diferente do seu nome de usuario.',
 'password-login-forbidden' => 'O uso deste nome de usuario e contrasinal foi prohibido.',
-'mailmypassword' => 'Enviádeme un contrasinal novo por correo',
+'mailmypassword' => 'Restablecer o contrasinal',
 'passwordremindertitle' => 'Novo contrasinal temporal para {{SITENAME}}',
 'passwordremindertext' => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un novo
 contrasinal para acceder a {{SITENAME}} ($4). Un contrasinal temporal para o usuario
@@ -873,7 +873,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
 'passwordreset-text-one' => 'Encha este formulario para restablecer o seu contrasinal.',
-'passwordreset-text-many' => '{{PLURAL:$1|Encha un dos campos para restablecer o seu contrasinal.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Encha un dos campos para recibir por correo electrónico un contrasinal temporal.}}',
 'passwordreset-legend' => 'Restablecer o contrasinal',
 'passwordreset-disabled' => 'O restablecemento de contrasinais está desactivado neste wiki.',
 'passwordreset-emaildisabled' => 'As funcións do correo electrónico están desactivadas neste wiki.',
@@ -1475,10 +1475,10 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 Calquera persoa que a saiba poderá ler a súa lista de vixilancia; non comparta esta clave.
 [[Special:ResetTokens|Prema aquí se necesita restablecela]].',
 'savedprefs' => 'Gardáronse as súas preferencias.',
-'timezonelegend' => 'Zona horaria:',
+'timezonelegend' => 'Fuso horario:',
 'localtime' => 'Hora local:',
 'timezoneuseserverdefault' => 'Usar a hora do servidor por defecto ($1)',
-'timezoneuseoffset' => 'Outra (especifique o desprazamento)',
+'timezoneuseoffset' => 'Outro (especifique o desprazamento)',
 'timezoneoffset' => 'Desprazamento¹:',
 'servertime' => 'Hora do servidor:',
 'guesstimezone' => 'Encher desde o navegador',

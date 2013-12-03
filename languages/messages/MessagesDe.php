@@ -928,7 +928,7 @@ Es muss sichergestellt sein, dass Cookies aktiviert sind. Danach diese Seite ern
 'passwordtooshort' => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
 'password-name-match' => 'Dein Passwort muss sich von deinem Benutzernamen unterscheiden.',
 'password-login-forbidden' => 'Die Verwendung dieses Benutzernamens und Passwortes ist nicht erlaubt.',
-'mailmypassword' => 'Neues Passwort zusenden',
+'mailmypassword' => 'Passwort zurücksetzen',
 'passwordremindertitle' => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
 'passwordremindertext' => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
@@ -1001,7 +1001,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',
 'passwordreset-text-one' => 'Fülle dieses Formular aus, um dein Passwort zurückzusetzen.',
-'passwordreset-text-many' => '{{PLURAL:$1|Füll eines der Felder aus, um dein Passwort zurückzusetzen.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Füll eines der Felder aus, um ein temporäres Passwort per E-Mail zugesandt zu bekommen.}}',
 'passwordreset-legend' => 'Passwort zurücksetzen',
 'passwordreset-disabled' => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
 'passwordreset-emaildisabled' => 'Die E-Mail-Funktionen wurden auf diesem Wiki deaktiviert.',

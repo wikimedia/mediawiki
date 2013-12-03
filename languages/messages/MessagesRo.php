@@ -803,7 +803,7 @@ Verificați ortografierea.',
 'passwordtooshort' => 'Parola trebuie să aibă cel puțin {{PLURAL:$1|1 caracter|$1 caractere|$1 de caractere}}.',
 'password-name-match' => 'Parola dumneavoastră trebuie să fie diferită de numele de utilizator.',
 'password-login-forbidden' => 'Utilizarea acestui nume de utilizator și a acestei parole este interzisă.',
-'mailmypassword' => 'Trimite-mi parola pe e-mail!',
+'mailmypassword' => 'Resetează parola',
 'passwordremindertitle' => 'Noua parolă temporară la {{SITENAME}}',
 'passwordremindertext' => 'Cineva (probabil dumneavoastră, de la adresa $1)
 a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
@@ -873,7 +873,7 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',
 'passwordreset-text-one' => 'Completați acest formular pentru a vă reseta parola.',
-'passwordreset-text-many' => '{{PLURAL:$1|Completați unul din câmpuri pentru a vă reseta parola.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Completați unul din câmpuri pentru a primi o parolă temporară prin e-mail.}}',
 'passwordreset-legend' => 'Resetare parolă',
 'passwordreset-disabled' => 'Resetarea parolei a fost dezactivată pe acest wiki.',
 'passwordreset-emaildisabled' => 'Funcțiile de e-mail au fost dezactivate de pe acest wiki.',

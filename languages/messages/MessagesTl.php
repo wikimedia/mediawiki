@@ -2413,7 +2413,6 @@ Tingnan ang [[Special:Log/delete|talaan ng pagbubura]] para sa isang talaan ng m
 $1',
 'undelete-show-file-confirm' => 'Nakatitiyak ka bang ibig mong tanawin ang isang nabura nang pagbabago ng talaksang "<nowiki>$1</nowiki>" mula $2 noong $3?',
 'undelete-show-file-submit' => 'Oo',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Ngalan-espasyo:',

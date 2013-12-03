@@ -254,7 +254,6 @@ $messages = array(
 'ok' => 'OK',
 'retrievedfrom' => 'Ikam long "$1"',
 'youhavenewmessages' => '$1 i kam ($2).',
-'newmessageslink' => 'Ol nupela toksave',
 'editsection' => 'senisim',
 'editold' => 'senisim',
 'viewsourceold' => 'lukim as tok',
@@ -876,5 +875,8 @@ Yu inap lukim as tok bilong em',
 
 # Search suggestions
 'searchsuggest-search' => 'Painim',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'OK',
 
 );

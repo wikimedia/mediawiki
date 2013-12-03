@@ -578,7 +578,7 @@ Vuelvi a intentalo.',
 'passwordtooshort' => 'Les contraseñes han de tener polo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}}.',
 'password-name-match' => "La contraseña tien de ser distinta del nome d'usuariu.",
 'password-login-forbidden' => "Ta torgao usar esti nome d'usuariu y contraseña.",
-'mailmypassword' => 'Unviar la clave nueva per corréu',
+'mailmypassword' => 'Reaniciar contraseña',
 'passwordremindertitle' => 'Nueva contraseña provisional pa {{SITENAME}}',
 'passwordremindertext' => "Daquién (seique tu, dende la direición IP $1) solicitó una contraseña
 nueva pa {{SITENAME}} ($4). Creóse una contraseña provisional
@@ -654,7 +654,7 @@ Seique yá camudaras correutamente la contraseña o que pidieras una nueva contr
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
 'passwordreset-text-one' => 'Complete esti formulariu pa reaniciar la contraseña.',
-'passwordreset-text-many' => '{{PLURAL:$1|Rellene unu de los campos pa reaniciar la contraseña.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Rellene unu de los campos pa recibir una contraseña temporal per corréu.}}',
 'passwordreset-legend' => 'Reaniciar contraseña',
 'passwordreset-disabled' => 'Los reanicios de contraseña tán desactivaos nesta wiki.',
 'passwordreset-emaildisabled' => 'Les funciones de corréu electrónicu tan desactivaes nesta wiki.',
@@ -1512,6 +1512,7 @@ Esta información sedrá pública.',
 'recentchanges-label-unpatrolled' => 'Esta edición ta ensin patrullar entá',
 'recentchanges-label-plusminus' => "El tamañu d'esta páxina cambió nesti númberu de bytes",
 'recentchanges-legend-newpage' => '(ver tamién la  [[Special:NewPages|llista de páxines nueves]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnote' => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambiu|puen vese los caberos '''$1''' cambios}} {{PLURAL:$2|del caberu día|de los caberos '''$2''' díes}}, a fecha de $5, $4.",
 'rcnotefrom' => "Abaxo tan los cambeos dende '''$2''' (s'amuesen fasta '''$1''').",
 'rclistfrom' => 'Amosar los nuevos cambios dende $1',
@@ -2932,6 +2933,7 @@ Pues ver el so códigu fonte.',
 'tooltip-undo' => '"Esfacer" revierte esta edición y abre\'l formulariu d\'edición en mou de vista previa. Permite añader un motivu nel resume.',
 'tooltip-preferences-save' => 'Guardar les preferencies',
 'tooltip-summary' => 'Escribi un resume curtiu',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => "/* Los CSS allugaos equí s'aplicarán a tolos aspeutos */",

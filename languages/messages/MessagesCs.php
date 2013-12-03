@@ -1317,7 +1317,7 @@ pokud nebyla nastavena další omezení.",
 * Potenciálně pomlouvačné informace
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
-'revdelete-legend' => 'Nastavit omezení k revizi',
+'revdelete-legend' => 'Nastavit omezení viditelnosti',
 'revdelete-hide-text' => 'Text revize',
 'revdelete-hide-image' => 'Skrýt obsah souboru',
 'revdelete-hide-name' => 'Skrýt událost a cíl',

@@ -2437,7 +2437,6 @@ Pò essere ca già ha state scangellate.",
 $1",
 'undelete-show-file-confirm' => 'Sì secure ca tu vuè ccu vide \'na revisiona scangellate d\'u file "<nowiki>$1</nowiki>" d\'u $2 a le $3?',
 'undelete-show-file-submit' => 'Sine',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
