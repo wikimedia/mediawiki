@@ -820,19 +820,27 @@ Appears in subtitle. Parameters:
 
 Parameters:
 * $1 - a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}',
-'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
+'youhavenewmessages' => "The yellow message appearing when someone edited your user talk page.
 
-The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslinkplural/{{SUBPAGENAME}}|{{int:newmessageslinkplural}}]] |[[MediaWiki:Newmessagesdifflinkplural/{{SUBPAGENAME}}|{{int:newmessagesdifflinkplural}}]]}}"
+The format is: {{int:youhavenewmessages| [[MediaWiki:Newmessageslinkplural/{{SUBPAGENAME}}|{{int:newmessageslinkplural}}]] |[[MediaWiki:Newmessagesdifflinkplural/{{SUBPAGENAME}}|{{int:newmessagesdifflinkplural}}]]}}
 
 Parameters:
 * $1 - a link points to new messages. Its text is {{msg-mw|Newmessageslinkplural}}
 * $2 - a link points to new messages diff. Its text is {{msg-mw|Newmessagesdifflinkplural}}
+* $3 - 1 or 999:
+** 1 if there was '''one''' new edit since the last time the user has seen their talk page
+** 999 - if there was '''more than one''' new edit since the last time the user has seen their talk page
 See also:
-* {{msg-mw|Youhavenewmessagesmanyusers}}',
-'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Parameters:
+* {{msg-mw|Youhavenewmessagesmanyusers}}",
+'youhavenewmessagesfromusers' => "New talk indicator message: the message appearing when someone edited your user talk page.
+
+Parameters:
 * $1 - defined as {{msg-mw|newmessageslinkplural}}
 * $2 - defined as {{msg-mw|newmessagesdifflinkplural}}
-* $3 - the number of authors who have edited the talk page since the owning user last viewed it',
+* $3 - the number of authors who have edited the talk page since the owning user last viewed it
+* $4 - 1 or 999:
+** 1 if there was '''one''' new edit since the last time the user has seen their talk page
+** 999 - if there was '''more than one''' new edit since the last time the user has seen their talk page",
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
 
 Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to {{msg-mw|youhavenewmessages}}.
