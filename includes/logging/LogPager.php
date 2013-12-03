@@ -67,6 +67,7 @@ class LogPager extends ReverseChronologicalPager {
 		$query['user'] = $this->performer;
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
+
 		return $query;
 	}
 
@@ -87,6 +88,7 @@ class LogPager extends ReverseChronologicalPager {
 				}
 			}
 		}
+
 		return $filters;
 	}
 
@@ -269,6 +271,7 @@ class LogPager extends ReverseChronologicalPager {
 		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
 			$info['join_conds'], $info['options'], $this->mTagFilter );
+
 		return $info;
 	}
 
@@ -306,6 +309,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mResult->seek( 0 );
 		}
 		wfProfileOut( __METHOD__ );
+
 		return '';
 	}
 

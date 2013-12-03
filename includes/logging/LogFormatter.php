@@ -154,6 +154,7 @@ class LogFormatter {
 		$this->plaintext = true;
 		$text = $this->getActionText();
 		$this->plaintext = false;
+
 		return $text;
 	}
 
@@ -226,7 +227,7 @@ class LogFormatter {
 						break;
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
-						// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
+					// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
 					//default:
 				}
 				break;
@@ -247,18 +248,18 @@ class LogFormatter {
 
 			case 'protect':
 				switch ( $entry->getSubtype() ) {
-				case 'protect':
-					$text = wfMessage( 'protectedarticle' )
-						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
-					break;
-				case 'unprotect':
-					$text = wfMessage( 'unprotectedarticle' )
-						->rawParams( $target )->inContentLanguage()->escaped();
-					break;
-				case 'modify':
-					$text = wfMessage( 'modifiedarticleprotection' )
-						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
-					break;
+					case 'protect':
+						$text = wfMessage( 'protectedarticle' )
+							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+						break;
+					case 'unprotect':
+						$text = wfMessage( 'unprotectedarticle' )
+							->rawParams( $target )->inContentLanguage()->escaped();
+						break;
+					case 'modify':
+						$text = wfMessage( 'modifiedarticleprotection' )
+							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+						break;
 				}
 				break;
 
@@ -316,7 +317,6 @@ class LogFormatter {
 						break;
 				}
 				break;
-
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
 		}
@@ -326,6 +326,7 @@ class LogFormatter {
 
 		$this->plaintext = false;
 		$this->irctext = false;
+
 		return $text;
 	}
 
@@ -359,6 +360,7 @@ class LogFormatter {
 	protected function getActionMessage() {
 		$message = $this->msg( $this->getMessageKey() );
 		$message->params( $this->getMessageParameters() );
+
 		return $message;
 	}
 
@@ -421,6 +423,7 @@ class LogFormatter {
 				}
 			}
 		}
+
 		return $params;
 	}
 
@@ -446,6 +449,7 @@ class LogFormatter {
 
 		// Bad things happens if the numbers are not in correct order
 		ksort( $params );
+
 		return $this->parsedParameters = $params;
 	}
 
@@ -538,6 +542,7 @@ class LogFormatter {
 			}
 			$link = '[[' . $title->getPrefixedText() . ']]';
 		}
+
 		return $link;
 	}
 
@@ -592,6 +597,7 @@ class LogFormatter {
 
 		$content = $this->msg( $message )->escaped();
 		$attribs = array( 'class' => 'history-deleted' );
+
 		return Html::rawElement( 'span', $attribs, $content );
 	}
 
@@ -605,6 +611,7 @@ class LogFormatter {
 			return $content;
 		}
 		$attribs = array( 'class' => 'history-deleted' );
+
 		return Html::rawElement( 'span', $attribs, $content );
 	}
 
@@ -635,6 +642,7 @@ class LogFormatter {
 				);
 			}
 		}
+
 		return $element;
 	}
 
@@ -654,7 +662,6 @@ class LogFormatter {
 		// problems with extensions
 		return $this->getMessageParameters();
 	}
-
 }
 
 /**
@@ -750,6 +757,7 @@ class LegacyLogFormatter extends LogFormatter {
 					$this->msg( 'change-blocklink' )->escaped()
 				)
 			);
+
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
 		// Show change protection link
@@ -772,6 +780,7 @@ class LegacyLogFormatter extends LogFormatter {
 					array( 'action' => 'protect' )
 				);
 			}
+
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
 		// Show unmerge link
@@ -791,6 +800,7 @@ class LegacyLogFormatter extends LogFormatter {
 					'mergepoint' => $params[4]
 				)
 			);
+
 			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		}
 
@@ -813,4 +823,3 @@ class LegacyLogFormatter extends LogFormatter {
 		return $this->revert;
 	}
 }
-

@@ -27,7 +27,6 @@
  * logs of patrol events
  */
 class PatrolLog {
-
 	/**
 	 * Record a log event for a change being patrolled
 	 *
@@ -65,6 +64,7 @@ class PatrolLog {
 		if ( !$auto ) {
 			$entry->publish( $logid, 'udp' );
 		}
+
 		return true;
 	}
 
@@ -82,5 +82,4 @@ class PatrolLog {
 			'6::auto' => (int)$auto
 		);
 	}
-
 }

@@ -118,6 +118,7 @@ class LogPage {
 			);
 			$rc->notifyRC2UDP();
 		}
+
 		return $newId;
 	}
 
@@ -175,6 +176,7 @@ class LogPage {
 	 */
 	public static function validTypes() {
 		global $wgLogTypes;
+
 		return $wgLogTypes;
 	}
 
@@ -216,6 +218,7 @@ class LogPage {
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
+
 		return wfMessage( $wgLogHeaders[$type] )->parse();
 	}
 
@@ -532,6 +535,7 @@ class LogPage {
 		for ( $i = 0; $i < count( $flags ); $i++ ) {
 			$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
 		}
+
 		return wfMessage( 'parentheses' )->inLanguage( $lang )
 			->rawParams( $lang->commaList( $flags ) )->escaped();
 	}
@@ -598,6 +602,7 @@ class LogPage {
 		} else {
 			$key = 'log-description-' . $this->type;
 		}
+
 		return wfMessage( $key );
 	}
 
@@ -614,6 +619,7 @@ class LogPage {
 			// '' always returns true with $user->isAllowed()
 			$restriction = '';
 		}
+
 		return $restriction;
 	}
 
@@ -624,7 +630,7 @@ class LogPage {
 	 */
 	public function isRestricted() {
 		$restriction = $this->getRestriction();
+
 		return $restriction !== '' && $restriction !== '*';
 	}
-
 }
