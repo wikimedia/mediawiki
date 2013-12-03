@@ -306,6 +306,8 @@ class NewParserTest extends MediaWikiTestCase {
 					}
 				}
 				$useConfig['name'] = 'local-backend'; // swap name
+				unset( $useConfig['lockManager'] );
+				unset( $useConfig['fileJournal'] );
 				$class = $conf['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$backend = self::$backendToUse;
@@ -316,7 +318,7 @@ class NewParserTest extends MediaWikiTestCase {
 			# informations.
 			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
-				'lockManager' => 'nullLockManager',
+				'wikiId' => wfWikiId(),
 				'containerPaths' => array(
 					'local-public' => "$uploadDir",
 					'local-thumb' => "$uploadDir/thumb",
