@@ -136,7 +136,7 @@ class LogPage {
 				$this->type, $this->action, $this->target, $this->comment,
 				$this->params, $newId, $this->getRcCommentIRC()
 			);
-			$rc->notifyRC2UDP();
+			$rc->notifyRCFeeds();
 		}
 
 		return $newId;
