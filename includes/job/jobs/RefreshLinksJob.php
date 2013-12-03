@@ -119,6 +119,18 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
+		// Fetch the current revision...
+		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+		if ( !$revision ) {
+			$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
+			return false; // XXX: what if it was just deleted?
+		}
+		$content = $revision->getContent( Revision::RAW );
+		if ( !$content ) {
+			// If there is no content, pretend the content is empty
+			$content = $revision->getContentHandler()->makeEmptyContent();
+		}
+
 		$parserOutput = false;
 		// If page_touched changed after this root job (with a good slave lag skew factor),
 		// then it is likely that any views of the pages already resulted in re-parses which
@@ -136,18 +148,6 @@ class RefreshLinksJob extends Job {
 		}
 		// Fetch the current revision and parse it if necessary...
 		if ( $parserOutput == false ) {
-			$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			if ( !$revision ) {
-				$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
-				return false; // XXX: what if it was just deleted?
-			}
-
-			$content = $revision->getContent( Revision::RAW );
-			if ( !$content ) {
-				// If there is no content, pretend the content is empty
-				$content = $revision->getContentHandler()->makeEmptyContent();
-			}
-
 			// Revision ID must be passed to the parser output to get revision variables correct
 			$parserOutput = $content->getParserOutput( $title, $revision->getId(), null, false );
 		}
