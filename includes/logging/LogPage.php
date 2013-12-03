@@ -200,6 +200,8 @@ class LogPage {
 	public static function logName( $type ) {
 		global $wgLogNames;
 
+		wfDeprecated( __METHOD__, '1.21' );
+
 		if ( isset( $wgLogNames[$type] ) ) {
 			return str_replace( '_', ' ', wfMessage( $wgLogNames[$type] )->text() );
 		} else {
@@ -218,6 +220,8 @@ class LogPage {
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
+
+		wfDeprecated( __METHOD__, '1.21' );
 
 		return wfMessage( $wgLogHeaders[$type] )->parse();
 	}

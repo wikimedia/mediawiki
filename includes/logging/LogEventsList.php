@@ -63,6 +63,7 @@ class LogEventsList extends ContextSource {
 	 * @return Title object
 	 */
 	public function getDisplayTitle() {
+		wfDeprecated( __METHOD__, '1.20' );
 		return $this->getTitle();
 	}
 
