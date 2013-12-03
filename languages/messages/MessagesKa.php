@@ -2498,7 +2498,6 @@ $1',
 $1',
 'undelete-show-file-confirm' => 'დარწმუნებული ხართ, რომ გსურთ ფაილ <nowiki>$1</nowiki>-ის წაშლილი ვერსიის ხილვა $2 $3-დან?',
 'undelete-show-file-submit' => 'ჰო',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'სახელთა სივრცე:',

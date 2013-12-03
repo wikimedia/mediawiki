@@ -877,7 +877,7 @@ $1',
 'passwordtooshort' => 'Ваш пароль закороткий, він має містити принаймні $1 {{PLURAL:$1|символ|символи|символів}}.',
 'password-name-match' => 'Уведений пароль має відрізнятися від імені користувача.',
 'password-login-forbidden' => 'Використання цього імені користувача і пароля заборонено.',
-'mailmypassword' => 'Надіслати новий пароль',
+'mailmypassword' => 'Перевстановити пароль',
 'passwordremindertitle' => "Пам'ятка пароля користувача {{grammar:genitive|{{SITENAME}}}}",
 'passwordremindertext' => 'Хтось (можливо, ви, з IP-адреси $1) зробив запит
 на надсилання вам нового пароля користувача {{grammar:genitive|{{SITENAME}}}} ($4). Для користувача
@@ -950,7 +950,7 @@ $1',
 # Special:PasswordReset
 'passwordreset' => 'Скинути пароль',
 'passwordreset-text-one' => 'Заповніть цю форму для відновлення пароля.',
-'passwordreset-text-many' => '{{PLURAL:$1|Заповніть одне з полів для скидання пароля.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Заповніть одне з полів для отримання тимчасового паролю через електронну пошту.}}',
 'passwordreset-legend' => 'Перевстановити пароль',
 'passwordreset-disabled' => 'У цій вікі вимкнена можливість скидання пароля.',
 'passwordreset-emaildisabled' => 'Функції електронної пошти вимкнуто в цій вікі.',

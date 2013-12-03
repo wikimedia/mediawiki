@@ -837,7 +837,7 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'passwordtooshort' => 'Mật khẩu phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.',
 'password-name-match' => 'Mật khẩu của bạn phải khác với tên người dùng của bạn.',
 'password-login-forbidden' => 'Tên đăng nhập và mật khẩu này đã bị cấm không được sử dụng.',
-'mailmypassword' => 'Gửi mật khẩu mới qua thư điện tử',
+'mailmypassword' => 'Tái tạo mật khẩu',
 'passwordremindertitle' => 'Mật khẩu tạm thời cho {{SITENAME}}',
 'passwordremindertext' => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi mật khẩu mới của {{SITENAME}} ($4). Chúng tôi đã tạo một mật khẩu tạm “$3” cho thành viên “$2”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
 
@@ -900,7 +900,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
 'passwordreset-text-one' => 'Hãy điền mẫu đơn này để tái tạo mật khẩu.',
-'passwordreset-text-many' => '{{PLURAL:$1|Điền vào một hộp sau để tái tạo mật khẩu.}}',
+'passwordreset-text-many' => 'Điền vào {{PLURAL:$1}}một hộp sau để nhận một mật khẩu tạm thời qua thư điện tử.',
 'passwordreset-legend' => 'Tái tạo mật khẩu',
 'passwordreset-disabled' => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
 'passwordreset-emaildisabled' => 'Tính năng gửi thư điện tử không được kích hoạt trên wiki này.',

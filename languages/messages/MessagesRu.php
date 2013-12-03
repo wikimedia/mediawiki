@@ -944,7 +944,7 @@ $2',
 'passwordtooshort' => 'Пароль должен состоять не менее чем из $1 {{PLURAL:$1|символа|символов|символов}}.',
 'password-name-match' => 'Введённый пароль должен отличаться от имени участника.',
 'password-login-forbidden' => 'Использование этого имени участника и пароля запрещено.',
-'mailmypassword' => 'Выслать новый пароль по электронной почте',
+'mailmypassword' => 'Сбросить пароль',
 'passwordremindertitle' => 'Напоминание пароля участника {{grammar:genitive|{{SITENAME}}}}',
 'passwordremindertext' => 'Кто-то (вероятно, вы, с IP-адреса $1) запросил создать
 новый пароль для {{grammar:genitive|{{SITENAME}}}} ($4). Для участника $2
@@ -1021,7 +1021,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => 'Сброс пароля',
 'passwordreset-text-one' => 'Заполните эту форму, чтобы сбросить свой пароль.',
-'passwordreset-text-many' => '{{PLURAL:$1|Заполните одно из полей для сброса пароля.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Заполните одно из полей для получения временного пароля на e-mail.}}',
 'passwordreset-legend' => 'Сбросить пароль',
 'passwordreset-disabled' => 'Сбросы пароля отключены на этой вики.',
 'passwordreset-emaildisabled' => 'Функции электронной почты отключены в этой вики.',

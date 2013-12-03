@@ -2510,7 +2510,6 @@ $UNWATCHURL
 $1',
 'undelete-show-file-confirm' => 'צי זענט איר זעכער איר ווילט באַקוקן די אויסגעמעקטע רעוויזיע פון דער טעקע "<nowiki>$1</nowiki>" פון $2 בשעה $3?',
 'undelete-show-file-submit' => 'יא',
-'undelete-revisionrow' => '$1 $2 $3 $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'נאמענטייל:',

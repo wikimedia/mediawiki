@@ -1285,6 +1285,9 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'recentchangesdays-max' => '(maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'recentchangescount' => 'Licba změnow, kótaraž ma se pó standarźe pokazaś:',
 'prefs-help-recentchangescount' => 'To wopśimujo aktualne změny, stawizny bokow a protokole.',
+'prefs-help-watchlist-token2' => 'To jo pótajmny kluc k webkanaloju twójich wobglědowańkow.
+Něchten, kótaryž jen znajo, móžo twóje wobglědowańki cytaś, njeźěl jen togodla.
+[[Special:ResetTokens|Klikni how, jolic musyš jen slědk stajiś]].',
 'savedprefs' => 'Twóje nastajenja su se składowali.',
 'timezonelegend' => 'Casowa cona:',
 'localtime' => 'Městny cas:',
@@ -1460,6 +1463,7 @@ Toś ta informacija buźo zjawna.',
 'right-editmyusercss' => 'Twóje swójske wužywarske CSS-dataje wobźěłaś',
 'right-editmyuserjs' => 'Twóje swójske wužywarske JavaScript-dataje wobźěłaś',
 'right-viewmywatchlist' => 'Se swójske wobglědowańki woglědaś',
+'right-editmywatchlist' => 'Swóje wobglědowańki wobźěłaś. Wobglěduj, až někotare akcije hyšći pśidawaju boki bźez toś togo pšawa.',
 'right-viewmyprivateinfo' => 'Swójske priwatne daty se woglědaś (na pś. e-mailowu adresu, napšawdne mě)',
 'right-editmyprivateinfo' => 'Swójske priwatne daty wobźěłaś (na pś. e-mailowu adresu, napšawdne mě)',
 'right-editmyoptions' => 'Swójske nastajenja wobźěłaś',
@@ -2008,7 +2012,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'uncategorizedpages' => 'Boki bźez kategorijow',
 'uncategorizedcategories' => 'Njekategorizěrowane kategorije',
-'uncategorizedimages' => 'Njekategorizěrowane dataje.',
+'uncategorizedimages' => 'Njekategorizěrowane dataje',
 'uncategorizedtemplates' => 'Njekategorizěrowane pśedłogi',
 'unusedcategories' => 'Njewužywane kategorije',
 'unusedimages' => 'Njewužywane dataje',
@@ -3966,6 +3970,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'limitreport-templateargumentsize' => 'Wjelikosć pśedłogowego argumenta',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bajt|bajtaj|bajty|bajtow}}',
 'limitreport-expansiondepth' => 'Nejwuša ekspansijowa dłymokosć',
+'limitreport-expensivefunctioncount' => 'Licba wupominańskich parserowych funkcijow',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Pśedłogi ekspanděrowaś',

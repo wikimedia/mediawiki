@@ -988,7 +988,7 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|aperir u
 'permissionserrors' => 'Error de permission',
 'permissionserrorstext' => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
 'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-moveddeleted-warn' => "'''Attention: Tu es sur le puncto de recrear un pagina que esseva anteriormente delite.'''
+'recreate-moveddeleted-warn' => "'''Attention: Tu es sur le puncto de recrear un pagina que ha essite delite anteriormente.'''
 
 Tu deberea considerar si il es appropriate continuar a modificar iste pagina.
 Ecce le registro de deletiones e de renominationes pro iste pagina:",

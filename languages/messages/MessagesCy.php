@@ -3967,6 +3967,7 @@ Defnydd:
 'expand_templates_xml_output' => 'Yr allbwn XML',
 'expand_templates_ok' => 'Iawn',
 'expand_templates_remove_comments' => 'Peidio â dangos sylwadau',
+'expand_templates_remove_nowiki' => "Cuddio'r tagiau <nowiki> wrth ehangu",
 'expand_templates_preview' => 'Rhagolwg',
 
 );

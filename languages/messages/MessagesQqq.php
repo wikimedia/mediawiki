@@ -1483,7 +1483,8 @@ Parameters:
 * $1 - the minimum number of characters in the password',
 'password-name-match' => 'Used as error message when password validity check failed.',
 'password-login-forbidden' => 'Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)',
-'mailmypassword' => 'Heading in [[Special:PasswordReset]]',
+'mailmypassword' => 'Used as label for Submit button in [[Special:PasswordReset]].
+{{Identical|Reset password}}',
 'passwordremindertitle' => 'Title of email which contains temporary password',
 'passwordremindertext' => 'This text is used in an email sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by email.
 
@@ -10563,7 +10564,24 @@ For more information, see [[mw:Extension:ExpandTemplates]]',
 'expand_templates_xml_output' => 'Used as HTML <code><nowiki><h2></nowiki></code> heading.',
 'expand_templates_ok' => '{{Identical|OK}}',
 'expand_templates_remove_comments' => 'Check box to tell [[mw:Extension:ExpandTemplates]] to not show comments in the expanded template.',
-'expand_templates_remove_nowiki' => 'Option on [[Special:Expandtemplates]]',
+'expand_templates_remove_nowiki' => "Option on [[Special:Expandtemplates]]
+
+Here's what the tick box does:
+
+For:
+<pre>
+&lt;nowiki>test&lt;/nowiki>
+</pre>
+
+Not ticked:
+<pre>
+&lt;nowiki>test&lt;/nowiki>
+</pre>
+
+Ticked:
+<pre>
+test
+</pre>",
 'expand_templates_generate_xml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 

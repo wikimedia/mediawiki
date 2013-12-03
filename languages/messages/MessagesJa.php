@@ -887,7 +887,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'passwordtooshort' => 'パスワードは {{PLURAL:$1|$1 文字}}以上にしてください。',
 'password-name-match' => 'パスワードは利用者名とは異なる必要があります。',
 'password-login-forbidden' => 'この利用者名とパスワードの使用は禁止されています。',
-'mailmypassword' => '新しいパスワードをメールで送信',
+'mailmypassword' => 'パスワードを再設定',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
 'passwordremindertext' => '誰か (おそらくあなた) が IP アドレス $1 から{{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。
 利用者「$2」の仮パスワードが作成され「$3」に設定されました。
@@ -961,8 +961,8 @@ $1待ってから再度試してください。',
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',
-'passwordreset-text-one' => 'パスワードを再設定するにはこのフォームに記入してください。',
-'passwordreset-text-many' => '{{PLURAL:$1|パスワードを再設定するにはいずれかの欄に記入してください。}}',
+'passwordreset-text-one' => '仮パスワードをメールで受け取るにはこのフォームに記入してください。',
+'passwordreset-text-many' => '{{PLURAL:$1|仮パスワードをメールで受け取るにはいずれかの欄に記入してください。}}',
 'passwordreset-legend' => 'パスワードの再設定',
 'passwordreset-disabled' => 'パスワードの再設定は、このウィキでは無効になっています。',
 'passwordreset-emaildisabled' => 'メール機能は、このウィキでは無効化されています。',

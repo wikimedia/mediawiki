@@ -771,7 +771,7 @@ $2',
 'passwordtooshort' => '您的密碼不能少於$1個字元。',
 'password-name-match' => '您的密碼必須跟您的用戶名不相同。',
 'password-login-forbidden' => '這個用戶名稱及密碼的使用是被禁止的。',
-'mailmypassword' => '將新密碼寄給我',
+'mailmypassword' => '重設密碼',
 'passwordremindertitle' => '{{SITENAME}}的新臨時密碼',
 'passwordremindertext' => '有人（可能是您，來自IP位址$1）已請求{{SITENAME}}的新密碼 （$4）。
 用戶"$2"的一個新臨時密碼現在已被設定好為"$3"。
@@ -842,7 +842,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',
 'passwordreset-text-one' => '完成此表格以重新設定您的密碼。',
-'passwordreset-text-many' => '{{PLURAL:$1|輸入其中一項以重新設定您的密碼。}}',
+'passwordreset-text-many' => '{{PLURAL:$1|鍵入一個電郵位址以便遞送新密碼。}}',
 'passwordreset-legend' => '重設密碼',
 'passwordreset-disabled' => '此圍記（Wiki）已禁用重設密碼。',
 'passwordreset-emaildisabled' => '此圍記（Wiki）已禁用電子郵件功能。',

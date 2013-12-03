@@ -878,7 +878,7 @@ $2',
 'passwordtooshort' => 'סיסמאות חייבות להיות באורך {{PLURAL:$1|תו אחד|$1 תווים}} לפחות.',
 'password-name-match' => 'סיסמתכם חייבת להיות שונה משם המשתמש שלכם.',
 'password-login-forbidden' => 'השימוש בשם המשתמש והסיסמה האלה נאסר.',
-'mailmypassword' => 'שלחו לי סיסמה חדשה',
+'mailmypassword' => 'איפוס סיסמה',
 'passwordremindertitle' => 'סיסמה זמנית חדשה מ{{grammar:תחילית|{{SITENAME}}}}',
 'passwordremindertext' => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש סיסמה
 חדשה לכניסה לחשבון ב{{GRAMMAR:תחילית|{{SITENAME}}}} ($4). נוצרה סיסמה זמנית למשתמש "$2",
@@ -950,8 +950,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'איפוס סיסמה',
-'passwordreset-text-one' => 'מלאו טופס זה כדי לאפס את הסיסמה.',
-'passwordreset-text-many' => '{{PLURAL:$1||מלאו אחד מהשדות הבאים כדי לאפס את הסיסמה.}}',
+'passwordreset-text-one' => 'מלאו טופס זה כדי לקבל סיסמה זמנית בדוא"ל.',
+'passwordreset-text-many' => '{{PLURAL:$1||מלאו אחד מהשדות הבאים כדי לקבל סיסמה זמנית בדוא"ל.}}',
 'passwordreset-legend' => 'איפוס סיסמה',
 'passwordreset-disabled' => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
 'passwordreset-emaildisabled' => 'שירותי הדוא"ל בוטלו באתר ויקי זה.',
@@ -2746,7 +2746,7 @@ $1',
 
 # Contributions
 'contributions' => 'תרומות {{GENDER:$1|המשתמש|המשתמשת}}',
-'contributions-title' => 'תרומות של המשתמש $1',
+'contributions-title' => 'תרומות של ה{{GENDER:$1|משתמש|משתמשת}} $1',
 'mycontris' => 'תרומות',
 'contribsub2' => 'עבור {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.',
@@ -3864,7 +3864,7 @@ $1',
 
 # Email address confirmation
 'confirmemail' => 'אימות כתובת דוא"ל',
-'confirmemail_noemail' => 'אין לכם כתובת דוא"ל תקפה המוגדרת ב[[Special:Preferences|העדפות המשתמש]] שלכם.',
+'confirmemail_noemail' => 'אין לך כתובת דוא"ל תקפה המוגדרת ב[[Special:Preferences|העדפות המשתמש]] שלך.',
 'confirmemail_text' => 'אתר זה דורש שתאמתו את כתובת הדוא"ל שלכם לפני שתשתמשו בשירותי הדוא"ל. לחצו על הכפתור למטה כדי לשלוח דוא"ל עם קוד אימות לכתובת הדוא"ל שהזנתם. טענו את הקישור בדפדפן שלכם כדי לאשר שכתובת הדוא"ל תקפה.',
 'confirmemail_pending' => 'קוד אימות דוא"ל כבר נשלח אליכם; אם יצרתם את החשבון לאחרונה, ייתכן שתרצו לחכות מספר דקות עד שיגיע לפני שתנסו לבקש קוד חדש.',
 'confirmemail_send' => 'לשלוח קוד אימות',
@@ -3876,9 +3876,9 @@ $1',
 תוכנת שליחת הדוא"ל החזירה את ההודעה הבאה: $1',
 'confirmemail_invalid' => 'קוד האימות שגוי. ייתכן שפג תוקפו.',
 'confirmemail_needlogin' => 'עליכם לבצע $1 כדי לאמת את כתובת הדוא"ל שלכם.',
-'confirmemail_success' => 'כתובת הדוא"ל שלכם אושרה.
-כעת באפשרותכם [[Special:UserLogin|להיכנס לחשבון שלכם]] וליהנות מהאתר.',
-'confirmemail_loggedin' => 'כתובת הדוא"ל שלכם אושרה כעת.',
+'confirmemail_success' => 'כתובת הדוא"ל שלך אושרה.
+כעת באפשרותך [[Special:UserLogin|להיכנס לחשבון שלך]] וליהנות מהאתר.',
+'confirmemail_loggedin' => 'כתובת הדוא"ל שלך אושרה כעת.',
 'confirmemail_error' => 'שגיאה בשמירת קוד האימות.',
 'confirmemail_subject' => 'קוד אימות דוא"ל מ{{grammar:תחילית|{{SITENAME}}}}',
 'confirmemail_body' => 'מישהו, כנראה אתם (מכתובת ה־IP הזו: $1),
@@ -4196,9 +4196,9 @@ $5
 'compare-rev1' => 'גרסה 1',
 'compare-rev2' => 'גרסה 2',
 'compare-submit' => 'השוואה',
-'compare-invalid-title' => 'שם הדף שציינתם אינו תקין.',
-'compare-title-not-exists' => 'הדף שציינתם אינו קיים.',
-'compare-revision-not-exists' => 'הגרסה שציינתם אינה קיימת.',
+'compare-invalid-title' => 'שם הדף שציינת אינו תקין.',
+'compare-title-not-exists' => 'הדף שציינת אינו קיים.',
+'compare-revision-not-exists' => 'הגרסה שציינת אינה קיימת.',
 
 # Database error messages
 'dberr-header' => 'בעיה בוויקי',

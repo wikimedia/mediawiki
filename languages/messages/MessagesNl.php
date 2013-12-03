@@ -828,7 +828,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'logout' => 'Afmelden',
 'userlogout' => 'Afmelden',
 'notloggedin' => 'Niet aangemeld',
-'userlogin-noaccount' => 'Hebt u geen geregistreerde gebruiker?',
+'userlogin-noaccount' => 'Hebt u geen account?',
 'userlogin-joinproject' => 'Word lid van {{SITENAME}}',
 'nologin' => 'Nog geen gebruikersnaam? $1.',
 'nologinlink' => 'Registreren',

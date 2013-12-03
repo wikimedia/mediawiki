@@ -2669,7 +2669,6 @@ belka cıwa ver hewn a biyo..',
 $1',
 'undelete-show-file-confirm' => '"<nowiki>$1</nowiki>" şıma emin î dosyaya revizyonê no $2 $3 tarixi bıvini?',
 'undelete-show-file-submit' => 'E',
-'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Heruna naman:',

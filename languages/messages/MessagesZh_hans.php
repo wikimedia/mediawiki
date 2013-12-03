@@ -872,7 +872,7 @@ $2',
 'passwordtooshort' => '您的密码至少需要$1个字符。',
 'password-name-match' => '您的密码必须和您的用户名不相同。',
 'password-login-forbidden' => '这个用户名称及密码的使用是被禁止的。',
-'mailmypassword' => '电子邮件发送新密码',
+'mailmypassword' => '重置密码',
 'passwordremindertitle' => '{{SITENAME}}的新临时密码',
 'passwordremindertext' => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
 用户“$2”的一个新临时密码现在已被设置好为“$3”。
@@ -939,7 +939,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => '重置密码',
 'passwordreset-text-one' => '请输入你要重置的用户名。',
-'passwordreset-text-many' => '{{PLURAL:$1|填充部分字段以重置您的密码。}}',
+'passwordreset-text-many' => '{{PLURAL:$1|在此键入您希望接收临时密码的邮件地址。}}',
 'passwordreset-legend' => '重置密码',
 'passwordreset-disabled' => '此Wiki已经禁用密码重置。',
 'passwordreset-emaildisabled' => '此Wiki上无法使用邮件功能。',

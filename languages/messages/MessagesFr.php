@@ -910,7 +910,7 @@ Vérifiez l'orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]
 'passwordtooshort' => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'password-name-match' => "Votre mot de passe doit être différent de votre nom d'utilisateur.",
 'password-login-forbidden' => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
-'mailmypassword' => 'Recevoir un nouveau mot de passe par courriel',
+'mailmypassword' => 'Réinitialiser le mot de passe',
 'passwordremindertitle' => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext' => "Quelqu'un (probablement vous, ayant l'adresse IP $1) a demandé un nouveau mot de
 passe pour {{SITENAME}} ($4 ). Un mot de passe temporaire a été créé pour
@@ -982,7 +982,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',
 'passwordreset-text-one' => 'Remplissez ce formulaire pour réinitialiser votre mot de passe.',
-'passwordreset-text-many' => '{{PLURAL:$1|Remplissez un des champs pour réinitialiser votre mot de passe.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Remplissez un des champs pour recevoir un mot de passe temporaire par courriel.}}',
 'passwordreset-legend' => 'Remise à zéro du mot de passe',
 'passwordreset-disabled' => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-emaildisabled' => 'Les fonctionnalités e-mail ont été désactivées sur ce wiki.',
