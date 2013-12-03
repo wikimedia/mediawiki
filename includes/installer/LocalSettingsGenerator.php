@@ -220,6 +220,17 @@ class LocalSettingsGenerator {
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
+			$noFollow = '';
+			if ( $this->groupPermissions['*']['edit'] === false
+				&& $this->groupPermissions['*']['createaccount'] === false
+				&& $this->groupPermissions['*']['read'] !== false ) {
+				$noFollow = "# Set \$wgNoFollowLinks to true if you open up your wiki to editing by\n"
+					. "# the general public and wish to apply nofollow to external links as a\n"
+					. "# deterrent to spammers. Nofollow is not a comprehensive anti-spam solution\n"
+					. "# and open wikis will generally require other anti-spam measures; for more\n"
+					. "# information, see https://www.mediawiki.org/wiki/Manual:Combating_spam\n"
+					. "\$wgNoFollowLinks = false;";
+			}
 		}
 
 		$serverSetting = "";
@@ -353,6 +364,7 @@ ${serverSetting}
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
-{$groupRights}";
+{$groupRights}
+{$noFollow}";
 	}
 }
