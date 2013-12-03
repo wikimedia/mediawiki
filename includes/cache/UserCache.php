@@ -66,6 +66,7 @@ class UserCache {
 	 *
 	 * @param integer $userId
 	 * @param string $ip
+	 * @return string
 	 * @since 1.22
 	 */
 	public function getUserName( $userId, $ip ) {
