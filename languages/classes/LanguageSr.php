@@ -246,6 +246,10 @@ class LanguageSr extends LanguageSr_ec {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
+		$forms = $this->handleExplicitPluralForms( $count, $forms );
+		if ( is_string( $forms ) ) {
+			return $forms;
+		}
 		if ( !count( $forms ) ) {
 			return '';
 		}
