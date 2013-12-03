@@ -1185,4 +1185,12 @@ return array(
 		),
 		'position' => 'top',
 	),
+	// Lightweight module for button styles
+	'mediawiki.ui.button' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/components/default/buttons.less',
+			'vector' => 'resources/mediawiki.ui/components/vector/buttons.less',
+		),
+		'position' => 'top',
+	),
 );
