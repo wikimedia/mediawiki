@@ -198,7 +198,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			// Check permissions
-			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) || isset( $show['unpatrolled'] ) ) {
+			if ( isset( $show['patrolled'] )
+				|| isset( $show['!patrolled'] )
+				|| isset( $show['unpatrolled'] )
+			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieUsage(
 						'You need the patrol right to request the patrolled flag',
