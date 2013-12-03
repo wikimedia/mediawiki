@@ -274,6 +274,9 @@ return array(
 	'jquery.form' => array(
 		'scripts' => 'resources/jquery/jquery.form.js',
 	),
+	'jquery.fullscreen' => array(
+		'scripts' => 'resources/jquery/jquery.fullscreen.js',
+	),
 	'jquery.getAttrs' => array(
 		'scripts' => 'resources/jquery/jquery.getAttrs.js',
 		'targets' => array( 'desktop', 'mobile' ),
