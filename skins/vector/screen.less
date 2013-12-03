@@ -627,7 +627,7 @@ pre, .mw-code {
 	margin-top: -0.8em !ie;
 	height: 0;
 	overflow: hidden;
-	.background-image('images/watch-icons.png');
+	.background-image-svg('images/watch-icons.svg', 'images/watch-icons.png');
 }
 #ca-unwatch.icon a {
 	background-position: -43px 60%;
@@ -645,8 +645,11 @@ pre, .mw-code {
 }
 #ca-unwatch.icon a.loading,
 #ca-watch.icon a.loading {
-	.background-image('images/watch-icon-loading.gif');
-	background-position: 5px 60%;
+	.background-image-svg('images/watch-icon-loading.svg', 'images/watch-icon-loading.gif');
+	.rotation(650ms);
+	background-position: 50% 60%;
+	-webkit-transform-origin: 50% 57%;
+	transform-origin: 50% 57%;
 }
 #ca-unwatch.icon a span,
 #ca-watch.icon a span {
