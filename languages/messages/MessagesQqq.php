@@ -10567,4 +10567,30 @@ For more information, see [[mw:Extension:ExpandTemplates]]',
 'expand_templates_generate_xml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
+# OOJS
+'ooui-dialog-action-close' => 'Label text for button to exit from dialog.
+
+{{Identical|Close}}',
+'ooui-inspector-close-tooltip' => 'Used as tooltip for the Close button.
+
+Followed by the Remove button which has tooltip {{msg-mw|Ooui-inspector-remove-tooltip}}.
+{{Identical|Close}}',
+'ooui-inspector-remove-tooltip' => 'Used as tooltip for the Remove button.
+
+Preceded by the Close button which has tooltip {{msg-mw|Ooui-inspector-close-tooltip}}.
+{{Identical|Remove}}',
+'ooui-outline-control-move-down' => 'Tool tip for a button that moves items in a list down one place',
+'ooui-outline-control-move-up' => 'Tool tip for a button that moves items in a list up one place',
+'ooui-toggle-on' => 'Label for toggle on state.
+
+See also:
+* {{msg-mw|Ooui-toggle-off}}
+{{Identical|On}}',
+'ooui-toggle-off' => 'Label for toggle off state.
+
+See also:
+* {{msg-mw|Ooui-toggle-on}}
+{{Identical|Off}}',
+'ooui-toolbar-more' => 'Label for the toolbar group that contains a list of all other available tools.
+{{Identical|More}}',
 );
