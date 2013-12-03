@@ -176,7 +176,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * (For the block and rights logs, this is a user page.)
 	 *
 	 * @param string $page or Title object: Title name
-	 * @param $pattern String
+	 * @param string $pattern
 	 * @return bool
 	 */
 	private function limitTitle( $page, $pattern ) {
