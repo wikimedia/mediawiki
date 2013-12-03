@@ -40,31 +40,37 @@ class LogPage {
 	const SUPPRESSED_ACTION = 9;
 
 	/** @var bool */
-	var $updateRecentChanges;
+	public $updateRecentChanges;
 
 	/** @var bool */
-	var $sendToUDP;
+	public $sendToUDP;
+
+	/** @var string Plaintext version of the message for IRC */
+	private $ircActionText;
+
+	/** @var string Plaintext version of the message */
+	private $actionText;
 
 	/** @var string One of '', 'block', 'protect', 'rights', 'delete',
 	 *    'upload', 'move'
 	 */
-	var $type;
+	private $type;
 
 	/** @var string One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move', 'move_redir' */
-	var $action;
+	private $action;
 
 	/** @var string Comment associated with action */
-	var $comment;
+	private $comment;
 
 	/** @var string Blob made of a parameters array */
-	var $params;
+	private $params;
 
 	/** @var User The user doing the action */
-	var $doer;
+	private $doer;
 
 	/** @var Title */
-	var $target;
+	private $target;
 
 	/**
 	 * Constructor
@@ -89,6 +95,7 @@ class LogPage {
 		$dbw = wfGetDB( DB_MASTER );
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
+		// @todo FIXME private/protected/public property?
 		$this->timestamp = $now = wfTimestampNow();
 		$data = array(
 			'log_id' => $log_id,
