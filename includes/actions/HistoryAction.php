@@ -558,7 +558,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
-	 * @param stdObject $row The database row corresponding to the previous line.
+	 * @param stdClass $row The database row corresponding to the previous line.
 	 * @param mixed $next The database row corresponding to the next line
 	 *   (chronologically previous)
 	 * @param bool|string $notificationtimestamp
