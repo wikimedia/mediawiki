@@ -1185,4 +1185,14 @@ return array(
 		),
 		'position' => 'top',
 	),
+	// Light-weight module for button styles
+	// This module is for situations in which only button styling is needed. These styles
+	// are already included in mediawiki.ui, so there is no need to load both.
+	'mediawiki.ui.button' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/components/default/buttons.less',
+			'vector' => 'resources/mediawiki.ui/components/vector/buttons.less',
+		),
+		'position' => 'top',
+	),
 );
