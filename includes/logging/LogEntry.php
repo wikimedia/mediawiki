@@ -99,7 +99,6 @@ interface LogEntry {
  * @since 1.19
  */
 abstract class LogEntryBase implements LogEntry {
-
 	public function getFullType() {
 		return $this->getType() . '/' . $this->getSubtype();
 	}
@@ -171,8 +170,10 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	// Non-static->
 
-	/// Database result row.
+	/** @var array Database result row. */
 	protected $row;
+
+	/** @var User */
 	protected $performer;
 
 	protected function __construct( $row ) {
@@ -333,15 +334,32 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
  * @since 1.19
  */
 class ManualLogEntry extends LogEntryBase {
-	protected $type; ///!< @var string
-	protected $subtype; ///!< @var string
-	protected $parameters = array(); ///!< @var array
-	protected $relations = array(); ///!< @var array
-	protected $performer; ///!< @var User
-	protected $target; ///!< @var Title
-	protected $timestamp; ///!< @var string
-	protected $comment = ''; ///!< @var string
-	protected $deleted; ///!< @var int
+	/** @var string Type of log entry */
+	protected $type;
+
+	/** @var string Sub type of log entry */
+	protected $subtype;
+
+	/** @var array Parameters for log entry */
+	protected $parameters = array();
+
+	/** @var array */
+	protected $relations = array();
+
+	/** @var User Performer of the action for the log entry */
+	protected $performer;
+
+	/** @var Title Target title for the log entry */
+	protected $target;
+
+	/** @var string Timestamp of creation of the log entry */
+	protected $timestamp;
+
+	/** @var string Comment for the log entry */
+	protected $comment = '';
+
+	/** @var int Deletion state of the log entry */
+	protected $deleted;
 
 	/**
 	 * Constructor.
@@ -380,7 +398,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * Declare arbitrary tag/value relations to this log entry.
 	 * These can be used to filter log entries later on.
 	 *
-	 * @param array Map of (tag => (list of values))
+	 * @param array $relations Map of (tag => (list of values))
 	 * @since 1.22
 	 */
 	public function setRelations( array $relations ) {
@@ -445,7 +463,8 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Inserts the entry into the logging table.
 	 * @param IDatabase $dbw
-	 * @return int If of the log entry
+	 * @return int ID of the log entry
+	 * @throws MWException
 	 */
 	public function insert( IDatabase $dbw = null ) {
 		global $wgContLang;

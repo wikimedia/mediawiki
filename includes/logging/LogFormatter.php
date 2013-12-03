@@ -39,7 +39,7 @@ class LogFormatter {
 
 	/**
 	 * Constructs a new formatter suitable for given entry.
-	 * @param $entry LogEntry
+	 * @param LogEntry $entry
 	 * @return LogFormatter
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
@@ -74,7 +74,7 @@ class LogFormatter {
 
 	// Nonstatic->
 
-	/// @var LogEntry
+	/** @var LogEntryBase */
 	protected $entry;
 
 	/// Integer constant for handling log_deleted
@@ -88,10 +88,11 @@ class LogFormatter {
 	 * be included in page history or send to IRC feed. Links are replaced
 	 * with plaintext or with [[pagename]] kind of syntax, that is parsed
 	 * by page histories and IRC feeds.
-	 * @var boolean
+	 * @var string
 	 */
 	protected $plaintext = false;
 
+	/** @var string */
 	protected $irctext = false;
 
 	protected function __construct( LogEntry $entry ) {
@@ -101,7 +102,7 @@ class LogFormatter {
 
 	/**
 	 * Replace the default context
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->context = $context;
@@ -111,7 +112,7 @@ class LogFormatter {
 	 * Set the visibility restrictions for displaying content.
 	 * If set to public, and an item is deleted, then it will be replaced
 	 * with a placeholder even if the context user is allowed to view it.
-	 * @param $audience integer self::FOR_THIS_USER or self::FOR_PUBLIC
+	 * @param int $audience self::FOR_THIS_USER or self::FOR_PUBLIC
 	 */
 	public function setAudience( $audience ) {
 		$this->audience = ( $audience == self::FOR_THIS_USER )
@@ -121,7 +122,7 @@ class LogFormatter {
 
 	/**
 	 * Check if a log item can be displayed
-	 * @param $field integer LogPage::DELETED_* constant
+	 * @param int $field LogPage::DELETED_* constant
 	 * @return bool
 	 */
 	protected function canView( $field ) {
@@ -137,7 +138,7 @@ class LogFormatter {
 	 * If set to true, will produce user tool links after
 	 * the user name. This should be replaced with generic
 	 * CSS/JS solution.
-	 * @param $value boolean
+	 * @param bool $value
 	 */
 	public function setShowUserToolLinks( $value ) {
 		$this->linkFlood = $value;
@@ -148,7 +149,7 @@ class LogFormatter {
 	 * Usually you also want to set extraneous request context
 	 * to avoid formatting for any particular user.
 	 * @see getActionText()
-	 * @return string text
+	 * @return string Plain text
 	 */
 	public function getPlainActionText() {
 		$this->plaintext = true;
@@ -358,8 +359,8 @@ class LogFormatter {
 	/**
 	 * Returns a sentence describing the log action. Usually
 	 * a Message object is returned, but old style log types
-	 * and entries might return pre-escaped html string.
-	 * @return Message|string pre-escaped html
+	 * and entries might return pre-escaped HTML string.
+	 * @return Message|string Pre-escaped HTML
 	 */
 	protected function getActionMessage() {
 		$message = $this->msg( $this->getMessageKey() );
@@ -373,7 +374,7 @@ class LogFormatter {
 	 * Default is logentry-TYPE-SUBTYPE for modern logs. Legacy log
 	 * types will use custom keys, and subclasses can also alter the
 	 * key depending on the entry itself.
-	 * @return string message key
+	 * @return string Message key
 	 */
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
@@ -480,7 +481,7 @@ class LogFormatter {
 	 *     * number: Format value as number
 	 * @param string $value The parameter value that should
 	 *                      be formated
-	 * @return string or Message::numParam or Message::rawParam
+	 * @return string|Message::numParam|Message::rawParam
 	 *         Formated value
 	 * @since 1.21
 	 */
@@ -532,10 +533,10 @@ class LogFormatter {
 	/**
 	 * Helper to make a link to the page, taking the plaintext
 	 * value in consideration.
-	 * @param $title Title the page
-	 * @param array $parameters query parameters
+	 * @param Title $title The page
+	 * @param array $parameters Query parameters
 	 * @throws MWException
-	 * @return String
+	 * @return string
 	 */
 	protected function makePageLink( Title $title = null, $parameters = array() ) {
 		if ( !$this->plaintext ) {
@@ -554,7 +555,7 @@ class LogFormatter {
 	 * Provides the name of the user who performed the log action.
 	 * Used as part of log action message or standalone, depending
 	 * which parts of the log entry has been hidden.
-	 * @return String
+	 * @return string
 	 */
 	public function getPerformerElement() {
 		if ( $this->canView( LogPage::DELETED_USER ) ) {
@@ -591,8 +592,8 @@ class LogFormatter {
 
 	/**
 	 * Helper method for displaying restricted element.
-	 * @param $message string
-	 * @return string HTML or wikitext
+	 * @param string $message
+	 * @return string HTML or wiki text
 	 */
 	protected function getRestrictedElement( $message ) {
 		if ( $this->plaintext ) {
@@ -607,8 +608,8 @@ class LogFormatter {
 
 	/**
 	 * Helper method for styling restricted element.
-	 * @param $content string
-	 * @return string HTML or wikitext
+	 * @param string $content
+	 * @return string HTML or wiki text
 	 */
 	protected function styleRestricedElement( $content ) {
 		if ( $this->plaintext ) {
@@ -621,8 +622,7 @@ class LogFormatter {
 
 	/**
 	 * Shortcut for wfMessage which honors local context.
-	 * @todo Would it be better to require replacing the global context instead?
-	 * @param $key string
+	 * @param string $key
 	 * @return Message
 	 */
 	protected function msg( $key ) {
@@ -651,14 +651,14 @@ class LogFormatter {
 	}
 
 	/**
-	 * @return Array of titles that should be preloaded with LinkBatch.
+	 * @return array of titles that should be preloaded with LinkBatch.
 	 */
 	public function getPreloadTitles() {
 		return array();
 	}
 
 	/**
-	 * @return Output of getMessageParameters() for testing
+	 * @return array Output of getMessageParameters() for testing
 	 */
 	public function getMessageParametersForTesting() {
 		// This function was added because getMessageParameters() is
@@ -678,7 +678,6 @@ class LogFormatter {
  * @since 1.19
  */
 class LegacyLogFormatter extends LogFormatter {
-
 	/**
 	 * Backward compatibility for extension changing the comment from
 	 * the LogLine hook. This will be set by the first call on getComment(),
