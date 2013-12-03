@@ -24,7 +24,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 			'url' => 'http://localhost/thumbtest',
 			'backend' => new FSFileBackend( array(
 				'name' => 'localtesting',
-				'wikiId' => wfWikiId(),
+				'lockManager' => 'nullLockManager',
 				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
 			) )
 		) );
