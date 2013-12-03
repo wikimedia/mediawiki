@@ -1185,4 +1185,14 @@ return array(
 		),
 		'position' => 'top',
 	),
+	// Lightweight module for button styles
+	// This module is loaded by default in SkinTemplate.php so these styles are available
+	// everywhere.
+	'mediawiki.ui.button' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/components/default/buttons.less',
+			'vector' => 'resources/mediawiki.ui/components/vector/buttons.less',
+		),
+		'position' => 'top',
+	),
 );
