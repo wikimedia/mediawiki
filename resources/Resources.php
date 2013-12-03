@@ -1185,4 +1185,33 @@ return array(
 		),
 		'position' => 'top',
 	),
+
+	/* OOJS */
+	'oojs' => array(
+		'scripts' => array(
+			'resources/oojs/oojs.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'oojs-ui' => array(
+		'scripts' => array(
+			'resources/oojs/oojs-ui.js',
+		),
+		'styles' => array(
+			'resouces/oojs/oojs-ui.css',
+		),
+		'messages' => array(
+			'ooui-dialog-action-close',
+			'ooui-outline-control-move-down',
+			'ooui-outline-control-move-up',
+			'ooui-toggle-on',
+			'ooui-toggle-off',
+			'ooui-toolbar-more',
+		),
+		'dependencies' => array(
+			'oojs'
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 );
