@@ -1188,6 +1188,14 @@ return array(
 		),
 		'position' => 'top',
 	),
+	// Lightweight module for button styles
+	'mediawiki.ui.button' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/components/default/buttons.less',
+			'vector' => 'resources/mediawiki.ui/components/vector/buttons.less',
+		),
+		'position' => 'top',
+	),
 
 	/* OOJS */
 	// WARNING: oojs is NOT COMPATIBLE with older browsers and
@@ -1198,5 +1206,4 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-
 );
