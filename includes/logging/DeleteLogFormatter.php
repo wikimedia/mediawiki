@@ -48,11 +48,14 @@ class DeleteLogFormatter extends LogFormatter {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
 		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
-			// $params[3] here is 'revision' for page revisions, 'oldimage' for file versions, or a comma-separated list of log_ids for log entries.
-			// $subtype here is 'revision' for page revisions and file versions, or 'event' for log entries.
-			if (
-				( $subtype === 'event' && count( $params ) === 6 ) ||
-				( $subtype === 'revision' && isset( $params[3] ) && ( $params[3] === 'revision' || $params[3] === 'oldimage' ) )
+			// $params[3] here is 'revision' for page revisions, 'oldimage' for
+			// file versions, or a comma-separated list of log_ids for log
+			// entries. $subtype here is 'revision' for page revisions and file
+			// versions, or 'event' for log entries.
+			if ( ( $subtype === 'event' && count( $params ) === 6 )
+				|| ( $subtype === 'revision' && isset( $params[3] )
+					&& ( $params[3] === 'revision' || $params[3] === 'oldimage' )
+				)
 			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
@@ -98,7 +101,9 @@ class DeleteLogFormatter extends LogFormatter {
 
 	public function getActionLinks() {
 		$user = $this->context->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) || $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+		if ( !$user->isAllowed( 'deletedhistory' )
+			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
+		) {
 			return '';
 		}
 

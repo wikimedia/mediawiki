@@ -225,15 +225,19 @@ class LogFormatter {
 						$text = wfMessage( 'undeletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
+					// @codingStandardsIgnoreStart Long line
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
 					// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
 					//default:
+					// @codingStandardsIgnoreEnd
 				}
 				break;
 
 			case 'patrol':
+				// @codingStandardsIgnoreStart Long line
 				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
+				// @codingStandardsIgnoreEnd
 				// Create a diff link to the patrolled revision
 				if ( $entry->getSubtype() === 'patrol' ) {
 					$diffLink = htmlspecialchars(
@@ -317,7 +321,7 @@ class LogFormatter {
 						break;
 				}
 				break;
-			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
+			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
 		if ( is_null( $text ) ) {
@@ -742,7 +746,9 @@ class LegacyLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 
 		// Show unblock/change block link
-		if ( ( $type == 'block' || $type == 'suppress' ) && ( $subtype == 'block' || $subtype == 'reblock' ) ) {
+		if ( ( $type == 'block' || $type == 'suppress' )
+			&& ( $subtype == 'block' || $subtype == 'reblock' )
+		) {
 			if ( !$this->context->getUser()->isAllowed( 'block' ) ) {
 				return '';
 			}
@@ -761,7 +767,9 @@ class LegacyLogFormatter extends LogFormatter {
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
 		// Show change protection link
-		} elseif ( $type == 'protect' && ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' ) ) {
+		} elseif ( $type == 'protect'
+			&& ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' )
+		) {
 			$links = array(
 				Linker::link( $title,
 					$this->msg( 'hist' )->escaped(),

@@ -245,9 +245,15 @@ class LogEventsList extends ContextSource {
 	 * @return String: Formatted HTML
 	 */
 	private function getUserInput( $user ) {
-		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( $this->msg( 'specialloguserlabel' )->text(), 'user', 'mw-log-user', 15, $user ) .
-			'</span>';
+		$label = Xml::inputLabel(
+			$this->msg( 'specialloguserlabel' )->text(),
+			'user',
+			'mw-log-user',
+			15,
+			$user
+		);
+
+		return '<span style="white-space: nowrap">' . $label . '</span>';
 	}
 
 	/**
@@ -255,9 +261,15 @@ class LogEventsList extends ContextSource {
 	 * @return String: Formatted HTML
 	 */
 	private function getTitleInput( $title ) {
-		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( $this->msg( 'speciallogtitlelabel' )->text(), 'page', 'mw-log-page', 20, $title ) .
-			'</span>';
+		$label = Xml::inputLabel(
+			$this->msg( 'speciallogtitlelabel' )->text(),
+			'page',
+			'mw-log-page',
+			20,
+			$title
+		);
+
+		return '<span style="white-space: nowrap">' . $label .	'</span>';
 	}
 
 	/**
@@ -360,14 +372,21 @@ class LogEventsList extends ContextSource {
 		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$canHide = $user->isAllowed( 'deletelogentry' );
 			if ( $row->log_deleted || $canHide ) {
-				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+				// Show checkboxes instead of links.
+				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) {
+					// If event was hidden from sysops
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 					} else {
-						$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+						$del = Xml::check(
+							'showhiderevisions',
+							false,
+							array( 'name' => 'ids[' . $row->log_id . ']' )
+						);
 					}
 				} else {
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+					// If event was hidden from sysops
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Linker::revDeleteLinkDisabled( $canHide );
 					} else {
 						$query = array(
@@ -375,7 +394,11 @@ class LogEventsList extends ContextSource {
 							'type' => 'logging',
 							'ids' => $row->log_id,
 						);
-						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+						$del = Linker::revDeleteLink(
+							$query,
+							self::isDeleted( $row, LogPage::DELETED_RESTRICTED ),
+							$canHide
+						);
 					}
 				}
 			}
