@@ -966,4 +966,36 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
+
+	/**
+	 * Asserts that the given string is valid HTML
+	 *
+	 * @note: does nothing if the "tidy" module is not installed.
+	 *
+	 * @param string $html An HTML snippet (treated as the contents of the body tag).
+	 */
+	protected function assertValidHtml( $html ) {
+		if ( !class_exists( 'tidy' ) ) {
+			// dummy assertion
+			$this->assertTrue( true );
+			return;
+		}
+
+		// wrap the html
+		$html = '<!DOCTYPE html><html><head><title>test</title></head><body>' . $html . '</body></html>';
+
+		$tidy = new tidy;
+		$config = array();
+
+		$tidy->parseString( $html, $config, 'utf8' );
+		$errors = $tidy->errorBuffer;
+
+		if ( $errors ) {
+			// trim unimportant warnings.
+			$errors = preg_replace( '/^.*Warning: (trimming empty|.* lacks ".*?" attribute).*$/m', '',  $errors );
+		}
+
+		$errors = trim( $errors );
+		$this->assertTrue( empty( $errors ), $errors );
+	}
 }
