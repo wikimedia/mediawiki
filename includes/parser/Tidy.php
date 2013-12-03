@@ -206,6 +206,9 @@ class MWTidy {
 		$process = proc_open(
 			"$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
 
+		//NOTE: At least on linux, the process will be created even if tidy is not installed.
+		//      This means that missing tidy will be treated as a validation failure.
+
 		if ( is_resource( $process ) ) {
 			// Theoretically, this style of communication could cause a deadlock
 			// here. If the stdout buffer fills up, then writes to stdin could

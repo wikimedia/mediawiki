@@ -966,4 +966,44 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf( $expected, $pokemons, $message );
 	}
+
+	/**
+	 * Asserts that the given string is a valid HTML snippet.
+	 * Wraps the given string in the required top level tags and
+	 * then calls assertValidHtmlDocument().
+	 * The snippet is expected to be HTML 5.
+	 *
+	 * @note: Will mark the test as skipped if the "tidy" module is not installed.
+	 * @note: This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
+	 *        when automatic tidying is disabled.
+	 *
+	 * @param string $html An HTML snippet (treated as the contents of the body tag).
+	 */
+	protected function assertValidHtmlSnippet( $html ) {
+		$html = '<!DOCTYPE html><html><head><title>test</title></head><body>' . $html . '</body></html>';
+		$this->assertValidHtmlDocument( $html );
+	}
+
+	/**
+	 * Asserts that the given string is valid HTML document.
+	 *
+	 * @note: Will mark the test as skipped if the "tidy" module is not installed.
+	 * @note: This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
+	 *        when automatic tidying is disabled.
+	 *
+	 * @param string $html A complete HTML document
+	 */
+	protected function assertValidHtmlDocument( $html ) {
+		// Note: we only validate if the tidy PHP extension is available.
+		// In case wgTidyInternal is false, MWTidy would fall back to the command line version
+		// of tidy. In that case however, we can not reliably detect whether a failing validation
+		// is due to malformed HTML, or caused by tidy not being installed as a command line tool.
+		// That would cause all HTML assertions to fail on a system that has no tidy installed.
+		if ( !$GLOBALS['wgTidyInternal'] ) {
+			$this->markTestSkipped( 'Tidy extension not installed' );
+		}
+
+		$ok = MWTidy::checkErrors( $html, $errors );
+		$this->assertTrue( $ok, 'HTML validation errors: ' . $errors );
+	}
 }
