@@ -1187,7 +1187,7 @@ return array(
 	),
 
 	/* OOJS */
-	// WARNING: oojs is NOT COMPATIBLE with older browsers and
+	// WARNING: oojs and oojs-ui are NOT COMPATIBLE with older browsers and
 	// WILL BREAK if loaded in browsers that don't support ES5
 	'oojs' => array(
 		'scripts' => array(
@@ -1196,4 +1196,24 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'oojs-ui' => array(
+		'scripts' => array(
+			'resources/oojs/oojs-ui.js',
+		),
+		'styles' => array(
+			'resources/oojs/oojs-ui.svg.css',
+		),
+		'messages' => array(
+			'ooui-dialog-action-close',
+			'ooui-outline-control-move-down',
+			'ooui-outline-control-move-up',
+			'ooui-toggle-on',
+			'ooui-toggle-off',
+			'ooui-toolbar-more',
+		),
+		'dependencies' => array(
+			'oojs'
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 );
