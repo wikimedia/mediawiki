@@ -21,7 +21,7 @@ class LocalFileTest extends MediaWikiTestCase {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( array(
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
+				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
 					'cont1' => "/testdir/local-backend/tempimages/cont1",
 					'cont2' => "/testdir/local-backend/tempimages/cont2"

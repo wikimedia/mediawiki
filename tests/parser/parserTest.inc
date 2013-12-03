@@ -170,7 +170,7 @@ class ParserTest {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( array(
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
+				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
 					'local-public' => wfTempDir() . '/test-repo/public',
 					'local-thumb' => wfTempDir() . '/test-repo/thumb',
@@ -738,7 +738,7 @@ class ParserTest {
 				'transformVia404' => false,
 				'backend' => new FSFileBackend( array(
 					'name' => 'local-backend',
-					'wikiId' => wfWikiId(),
+					'lockManager' => 'fsLockManager',
 					'containerPaths' => array(
 						'local-public' => $this->uploadDir,
 						'local-thumb' => $this->uploadDir . '/thumb',

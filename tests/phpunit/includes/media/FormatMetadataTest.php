@@ -16,7 +16,7 @@ class FormatMetadataTest extends MediaWikiTestCase {
 		$filePath = __DIR__ . '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
+			'lockManager' => 'nullLockManager',
 			'containerPaths' => array( 'data' => $filePath )
 		) );
 		$this->repo = new FSRepo( array(
