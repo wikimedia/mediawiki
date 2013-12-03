@@ -467,9 +467,9 @@ class LogEventsList extends ContextSource {
 			}
 
 			return $user->isAllowed( $permission );
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
 	/**
