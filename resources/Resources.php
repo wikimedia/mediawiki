@@ -1183,6 +1183,17 @@ return array(
 			'default' => 'resources/mediawiki.ui/default.less',
 			'vector' => 'resources/mediawiki.ui/vector.less',
 		),
+		'dependencies' => array( 'mediawiki.ui.button' ),
+		'position' => 'top',
+	),
+	// Light-weight module for button styles
+	// This module is for situations in which only button styling is needed and not all of
+	// mediawiki.ui.
+	'mediawiki.ui.button' => array(
+		'skinStyles' => array(
+			'default' => 'resources/mediawiki.ui/components/default/buttons.less',
+			'vector' => 'resources/mediawiki.ui/components/vector/buttons.less',
+		),
 		'position' => 'top',
 	),
 );
