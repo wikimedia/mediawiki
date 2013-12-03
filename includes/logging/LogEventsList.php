@@ -176,6 +176,7 @@ class LogEventsList extends ContextSource {
 			$links[$type] = $this->msg( "log-show-hide-{$type}" )->rawParams( $link )->escaped();
 			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
 		}
+
 		// Build links
 		return '<small>' . $this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
 	}
@@ -191,6 +192,7 @@ class LogEventsList extends ContextSource {
 			unset( $this->mDefaultQuery['month'] );
 			unset( $this->mDefaultQuery['year'] );
 		}
+
 		return $this->mDefaultQuery;
 	}
 
@@ -202,6 +204,7 @@ class LogEventsList extends ContextSource {
 		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
 		$selector = $this->getTypeSelector();
 		$selector->setDefault( $queryType );
+
 		return $selector->getHtml();
 	}
 
@@ -242,9 +245,15 @@ class LogEventsList extends ContextSource {
 	 * @return String: Formatted HTML
 	 */
 	private function getUserInput( $user ) {
-		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( $this->msg( 'specialloguserlabel' )->text(), 'user', 'mw-log-user', 15, $user ) .
-			'</span>';
+		$label = Xml::inputLabel(
+			$this->msg( 'specialloguserlabel' )->text(),
+			'user',
+			'mw-log-user',
+			15,
+			$user
+		);
+
+		return '<span style="white-space: nowrap">' . $label . '</span>';
 	}
 
 	/**
@@ -252,9 +261,15 @@ class LogEventsList extends ContextSource {
 	 * @return String: Formatted HTML
 	 */
 	private function getTitleInput( $title ) {
-		return '<span style="white-space: nowrap">' .
-			Xml::inputLabel( $this->msg( 'speciallogtitlelabel' )->text(), 'page', 'mw-log-page', 20, $title ) .
-			'</span>';
+		$label = Xml::inputLabel(
+			$this->msg( 'speciallogtitlelabel' )->text(),
+			'page',
+			'mw-log-page',
+			20,
+			$title
+		);
+
+		return '<span style="white-space: nowrap">' . $label .	'</span>';
 	}
 
 	/**
@@ -281,6 +296,7 @@ class LogEventsList extends ContextSource {
 			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
 				'mw-log-offender', 20, $offender );
 		}
+
 		return '';
 	}
 
@@ -343,8 +359,11 @@ class LogEventsList extends ContextSource {
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
-		if ( ( $this->flags == self::NO_ACTION_LINK ) // we don't want to see the links
-			|| $row->log_type == 'suppress' ) { // no one can hide items from the suppress log
+		// We don't want to see the links and
+		// no one can hide items from the suppress log.
+		if ( ( $this->flags == self::NO_ACTION_LINK )
+			|| $row->log_type == 'suppress'
+		) {
 			return '';
 		}
 		$del = '';
@@ -353,14 +372,21 @@ class LogEventsList extends ContextSource {
 		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$canHide = $user->isAllowed( 'deletelogentry' );
 			if ( $row->log_deleted || $canHide ) {
-				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) { // Show checkboxes instead of links.
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+				// Show checkboxes instead of links.
+				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) {
+					// If event was hidden from sysops
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 					} else {
-						$del = Xml::check( 'showhiderevisions', false, array( 'name' => 'ids[' . $row->log_id . ']' ) );
+						$del = Xml::check(
+							'showhiderevisions',
+							false,
+							array( 'name' => 'ids[' . $row->log_id . ']' )
+						);
 					}
 				} else {
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) { // If event was hidden from sysops
+					// If event was hidden from sysops
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Linker::revDeleteLinkDisabled( $canHide );
 					} else {
 						$query = array(
@@ -368,11 +394,16 @@ class LogEventsList extends ContextSource {
 							'type' => 'logging',
 							'ids' => $row->log_id,
 						);
-						$del = Linker::revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ), $canHide );
+						$del = Linker::revDeleteLink(
+							$query,
+							self::isDeleted( $row, LogPage::DELETED_RESTRICTED ),
+							$canHide
+						);
 					}
 				}
 			}
 		}
+
 		return $del;
 	}
 
@@ -394,6 +425,7 @@ class LogEventsList extends ContextSource {
 				$match = $wgUser->isAllowed( $right );
 			}
 		}
+
 		return $match;
 	}
 
@@ -431,6 +463,7 @@ class LogEventsList extends ContextSource {
 				global $wgUser;
 				$user = $wgUser;
 			}
+
 			return $user->isAllowed( $permission );
 		} else {
 			return true;
@@ -613,6 +646,7 @@ class LogEventsList extends ContextSource {
 		} elseif ( $hiddenLogs ) {
 			return 'log_type NOT IN (' . $db->makeList( $hiddenLogs ) . ')';
 		}
+
 		return false;
 	}
 }

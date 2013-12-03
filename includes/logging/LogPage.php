@@ -118,6 +118,7 @@ class LogPage {
 			);
 			$rc->notifyRC2UDP();
 		}
+
 		return $newId;
 	}
 
@@ -175,6 +176,7 @@ class LogPage {
 	 */
 	public static function validTypes() {
 		global $wgLogTypes;
+
 		return $wgLogTypes;
 	}
 
@@ -216,6 +218,7 @@ class LogPage {
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
+
 		return wfMessage( $wgLogHeaders[$type] )->parse();
 	}
 
@@ -254,7 +257,8 @@ class LogPage {
 				$titleLink = self::getTitleLink( $type, $langObjOrNull, $title, $params );
 
 				if ( count( $params ) == 0 ) {
-					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )->inLanguage( $langObj )->escaped();
+					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )
+						->inLanguage( $langObj )->escaped();
 				} else {
 					$details = '';
 					array_unshift( $params, $titleLink );
@@ -286,11 +290,16 @@ class LogPage {
 
 						// Cascading flag...
 						if ( $params[2] ) {
-							$details .= ' [' . wfMessage( 'protect-summary-cascade' )->inLanguage( $langObj )->text() . ']';
+							$text = wfMessage( 'protect-summary-cascade' )
+								->inLanguage( $langObj )->text();
+							$details .= ' ';
+							$details .= wfMessage( 'brackets', $text )->inLanguage( $langObj )->text();
+
 						}
 					}
 
-					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $params )->inLanguage( $langObj )->escaped() . $details;
+					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $params )
+							->inLanguage( $langObj )->escaped() . $details;
 				}
 			}
 		} else {
@@ -407,7 +416,8 @@ class LogPage {
 	/**
 	 * Add a log entry
 	 *
-	 * @param string $action one of '', 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
+	 * @param string $action one of '', 'block', 'protect', 'rights', 'delete',
+	 *   'upload', 'move', 'move_redir'
 	 * @param $target Title object
 	 * @param string $comment description associated
 	 * @param array $params parameters passed later to wfMessage function
@@ -528,10 +538,12 @@ class LogPage {
 			return ''; //nothing to do
 		}
 		$flags = explode( ',', $flags );
+		$flagsCount = count( $flags );
 
-		for ( $i = 0; $i < count( $flags ); $i++ ) {
+		for ( $i = 0; $i < $flagsCount; $i++ ) {
 			$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
 		}
+
 		return wfMessage( 'parentheses' )->inLanguage( $lang )
 			->rawParams( $lang->commaList( $flags ) )->escaped();
 	}
@@ -598,6 +610,7 @@ class LogPage {
 		} else {
 			$key = 'log-description-' . $this->type;
 		}
+
 		return wfMessage( $key );
 	}
 
@@ -614,6 +627,7 @@ class LogPage {
 			// '' always returns true with $user->isAllowed()
 			$restriction = '';
 		}
+
 		return $restriction;
 	}
 
@@ -624,7 +638,7 @@ class LogPage {
 	 */
 	public function isRestricted() {
 		$restriction = $this->getRestriction();
+
 		return $restriction !== '' && $restriction !== '*';
 	}
-
 }

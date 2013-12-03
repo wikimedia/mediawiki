@@ -36,6 +36,7 @@ class DeleteLogFormatter extends LogFormatter {
 				return "$key-legacy";
 			}
 		}
+
 		return $key;
 	}
 
@@ -47,11 +48,14 @@ class DeleteLogFormatter extends LogFormatter {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
 		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
-			// $params[3] here is 'revision' for page revisions, 'oldimage' for file versions, or a comma-separated list of log_ids for log entries.
-			// $subtype here is 'revision' for page revisions and file versions, or 'event' for log entries.
-			if (
-				( $subtype === 'event' && count( $params ) === 6 ) ||
-				( $subtype === 'revision' && isset( $params[3] ) && ( $params[3] === 'revision' || $params[3] === 'oldimage' ) )
+			// $params[3] here is 'revision' for page revisions, 'oldimage' for
+			// file versions, or a comma-separated list of log_ids for log
+			// entries. $subtype here is 'revision' for page revisions and file
+			// versions, or 'event' for log entries.
+			if ( ( $subtype === 'event' && count( $params ) === 6 )
+				|| ( $subtype === 'revision' && isset( $params[3] )
+					&& ( $params[3] === 'revision' || $params[3] === 'oldimage' )
+				)
 			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
@@ -74,6 +78,7 @@ class DeleteLogFormatter extends LogFormatter {
 				$newParams[3] = $changeText;
 				$count = count( explode( ',', $params[$paramStart] ) );
 				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
+
 				return $this->parsedParametersDeleteLog = $newParams;
 			} else {
 				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
@@ -87,6 +92,7 @@ class DeleteLogFormatter extends LogFormatter {
 		// Input is like ofield=2134 or just the number
 		if ( strpos( $string, 'field=' ) === 1 ) {
 			list( , $field ) = explode( '=', $string );
+
 			return (int)$field;
 		} else {
 			return (int)$string;
@@ -95,102 +101,106 @@ class DeleteLogFormatter extends LogFormatter {
 
 	public function getActionLinks() {
 		$user = $this->context->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) || $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+		if ( !$user->isAllowed( 'deletedhistory' )
+			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
+		) {
 			return '';
 		}
 
 		switch ( $this->entry->getSubtype() ) {
-		case 'delete': // Show undelete link
-			if ( $user->isAllowed( 'undelete' ) ) {
-				$message = 'undeletelink';
-			} else {
-				$message = 'undeleteviewlink';
-			}
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Undelete' ),
-				$this->msg( $message )->escaped(),
-				array(),
-				array( 'target' => $this->entry->getTarget()->getPrefixedDBkey() )
-			);
-			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-
-		case 'revision': // If an edit was hidden from a page give a review link to the history
-			$params = $this->extractParameters();
-			if ( !isset( $params[3] ) || !isset( $params[4] ) ) {
-				return '';
-			}
-
-			// Different revision types use different URL params...
-			$key = $params[3];
-			// This is a CSV of the IDs
-			$ids = explode( ',', $params[4] );
-
-			$links = array();
-
-			// If there's only one item, we can show a diff link
-			if ( count( $ids ) == 1 ) {
-				// Live revision diffs...
-				if ( $key == 'oldid' || $key == 'revision' ) {
-					$links[] = Linker::linkKnown(
-						$this->entry->getTarget(),
-						$this->msg( 'diff' )->escaped(),
-						array(),
-						array(
-							'diff' => intval( $ids[0] ),
-							'unhide' => 1
-						)
-					);
-				// Deleted revision diffs...
-				} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
-					$links[] = Linker::linkKnown(
-						SpecialPage::getTitleFor( 'Undelete' ),
-						$this->msg( 'diff' )->escaped(),
-						array(),
-						array(
-							'target' => $this->entry->getTarget()->getPrefixedDBkey(),
-							'diff' => 'prev',
-							'timestamp' => $ids[0]
-						)
-					);
+			case 'delete': // Show undelete link
+				if ( $user->isAllowed( 'undelete' ) ) {
+					$message = 'undeletelink';
+				} else {
+					$message = 'undeleteviewlink';
 				}
-			}
+				$revert = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Undelete' ),
+					$this->msg( $message )->escaped(),
+					array(),
+					array( 'target' => $this->entry->getTarget()->getPrefixedDBkey() )
+				);
 
-			// View/modify link...
-			$links[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Revisiondelete' ),
-				$this->msg( 'revdel-restore' )->escaped(),
-				array(),
-				array(
-					'target' => $this->entry->getTarget()->getPrefixedText(),
-					'type' => $key,
-					'ids' => implode( ',', $ids ),
-				)
-			);
+				return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 
-			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+			case 'revision': // If an edit was hidden from a page give a review link to the history
+				$params = $this->extractParameters();
+				if ( !isset( $params[3] ) || !isset( $params[4] ) ) {
+					return '';
+				}
 
-		case 'event': // Hidden log items, give review link
-			$params = $this->extractParameters();
-			if ( !isset( $params[3] ) ) {
+				// Different revision types use different URL params...
+				$key = $params[3];
+				// This is a CSV of the IDs
+				$ids = explode( ',', $params[4] );
+
+				$links = array();
+
+				// If there's only one item, we can show a diff link
+				if ( count( $ids ) == 1 ) {
+					// Live revision diffs...
+					if ( $key == 'oldid' || $key == 'revision' ) {
+						$links[] = Linker::linkKnown(
+							$this->entry->getTarget(),
+							$this->msg( 'diff' )->escaped(),
+							array(),
+							array(
+								'diff' => intval( $ids[0] ),
+								'unhide' => 1
+							)
+						);
+						// Deleted revision diffs...
+					} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
+						$links[] = Linker::linkKnown(
+							SpecialPage::getTitleFor( 'Undelete' ),
+							$this->msg( 'diff' )->escaped(),
+							array(),
+							array(
+								'target' => $this->entry->getTarget()->getPrefixedDBkey(),
+								'diff' => 'prev',
+								'timestamp' => $ids[0]
+							)
+						);
+					}
+				}
+
+				// View/modify link...
+				$links[] = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
+					$this->msg( 'revdel-restore' )->escaped(),
+					array(),
+					array(
+						'target' => $this->entry->getTarget()->getPrefixedText(),
+						'type' => $key,
+						'ids' => implode( ',', $ids ),
+					)
+				);
+
+				return $this->msg( 'parentheses' )->rawParams(
+					$this->context->getLanguage()->pipeList( $links ) )->escaped();
+
+			case 'event': // Hidden log items, give review link
+				$params = $this->extractParameters();
+				if ( !isset( $params[3] ) ) {
+					return '';
+				}
+				// This is a CSV of the IDs
+				$query = $params[3];
+				// Link to each hidden object ID, $params[1] is the url param
+				$revert = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
+					$this->msg( 'revdel-restore' )->escaped(),
+					array(),
+					array(
+						'target' => $this->entry->getTarget()->getPrefixedText(),
+						'type' => 'logging',
+						'ids' => $query
+					)
+				);
+
+				return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
+			default:
 				return '';
-			}
-			// This is a CSV of the IDs
-			$query = $params[3];
-			// Link to each hidden object ID, $params[1] is the url param
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Revisiondelete' ),
-				$this->msg( 'revdel-restore' )->escaped(),
-				array(),
-				array(
-					'target' => $this->entry->getTarget()->getPrefixedText(),
-					'type' => 'logging',
-					'ids' => $query
-				)
-			);
-			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		default:
-			return '';
 		}
 	}
 }

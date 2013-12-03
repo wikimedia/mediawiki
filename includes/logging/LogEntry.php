@@ -33,7 +33,6 @@
  * @since 1.19
  */
 interface LogEntry {
-
 	/**
 	 * The main log type.
 	 * @return string
@@ -117,7 +116,6 @@ abstract class LogEntryBase implements LogEntry {
 	public function isLegacy() {
 		return false;
 	}
-
 }
 
 /**
@@ -202,6 +200,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function isLegacy() {
 		// This does the check
 		$this->getParameters();
+
 		return $this->legacy;
 	}
 
@@ -229,6 +228,7 @@ class DatabaseLogEntry extends LogEntryBase {
 				$this->legacy = true;
 			}
 		}
+
 		return $this->params;
 	}
 
@@ -246,6 +246,7 @@ class DatabaseLogEntry extends LogEntryBase {
 				$this->performer = User::newFromName( $userText, false );
 			}
 		}
+
 		return $this->performer;
 	}
 
@@ -253,6 +254,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		$namespace = $this->row->log_namespace;
 		$page = $this->row->log_title;
 		$title = Title::makeTitle( $namespace, $page );
+
 		return $title;
 	}
 
@@ -267,7 +269,6 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getDeleted() {
 		return $this->row->log_deleted;
 	}
-
 }
 
 class RCDatabaseLogEntry extends DatabaseLogEntry {
@@ -301,6 +302,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 				$this->performer = User::newFromName( $userText, false );
 			}
 		}
+
 		return $this->performer;
 	}
 
@@ -308,6 +310,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		$namespace = $this->row->rc_namespace;
 		$page = $this->row->rc_title;
 		$title = Title::makeTitle( $namespace, $page );
+
 		return $title;
 	}
 
@@ -322,7 +325,6 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	public function getDeleted() {
 		return $this->row->rc_deleted;
 	}
-
 }
 
 /**
@@ -448,7 +450,7 @@ class ManualLogEntry extends LogEntryBase {
 	public function insert( IDatabase $dbw = null ) {
 		global $wgContLang;
 
-		$dbw = $dbw ?: wfGetDB( DB_MASTER );
+		$dbw = $dbw ? : wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {
@@ -484,8 +486,8 @@ class ManualLogEntry extends LogEntryBase {
 			}
 			foreach ( $values as $value ) {
 				$rows[] = array(
-					'ls_field'  => $tag,
-					'ls_value'  => $value,
+					'ls_field' => $tag,
+					'ls_value' => $value,
 					'ls_log_id' => $this->id
 				);
 			}
@@ -520,6 +522,7 @@ class ManualLogEntry extends LogEntryBase {
 				$ip = $user->getName();
 			}
 		}
+
 		return RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
@@ -534,7 +537,6 @@ class ManualLogEntry extends LogEntryBase {
 			$newId,
 			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
-
 	}
 
 	/**
@@ -589,6 +591,7 @@ class ManualLogEntry extends LogEntryBase {
 
 	public function getTimestamp() {
 		$ts = $this->timestamp !== null ? $this->timestamp : wfTimestampNow();
+
 		return wfTimestamp( TS_MW, $ts );
 	}
 
@@ -599,5 +602,4 @@ class ManualLogEntry extends LogEntryBase {
 	public function getDeleted() {
 		return (int)$this->deleted;
 	}
-
 }
