@@ -28,6 +28,7 @@
  *
  * @see ProcessCacheLRU
  * @ingroup Cache
+ * @since 1.23
  */
 class MapCacheLRU {
 	/** @var Array */

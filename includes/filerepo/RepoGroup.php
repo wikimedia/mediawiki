@@ -38,7 +38,7 @@ class RepoGroup {
 	protected $localInfo;
 	protected $foreignInfo;
 
-	/** @var array  */
+	/** @var ProcessCacheLRU  */
 	protected $cache;
 
 	/** @var RepoGroup */
@@ -94,7 +94,7 @@ class RepoGroup {
 	function __construct( $localInfo, $foreignInfo ) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
-		$this->cache = array();
+		$this->cache = new ProcessCacheLRU( self::MAX_CACHE_SIZE );
 	}
 
 	/**
@@ -136,13 +136,8 @@ class RepoGroup {
 		) {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			$dbkey = $title->getDBkey();
-			if ( isset( $this->cache[$dbkey][$time] ) ) {
-				wfDebug( __METHOD__ . ": got File:$dbkey from process cache\n" );
-				# Move it to the end of the list so that we can delete the LRU entry later
-				$this->pingCache( $dbkey );
-
-				# Return the entry
-				return $this->cache[$dbkey][$time];
+			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
+				return $this->cache->get( $dbkey, $time );
 			}
 			$useCache = true;
 		} else {
@@ -165,8 +160,7 @@ class RepoGroup {
 		$image = $image ? $image : false; // type sanity
 		# Cache file existence or non-existence
 		if ( $useCache && ( !$image || $image->isCacheable() ) ) {
-			$this->trimCache();
-			$this->cache[$dbkey][$time] = $image;
+			$this->cache->set( $dbkey, $time, $image );
 		}
 
 		return $image;
@@ -435,40 +429,14 @@ class RepoGroup {
 	}
 
 	/**
-	 * Move a cache entry to the top (such as when accessed)
-	 */
-	protected function pingCache( $key ) {
-		if ( isset( $this->cache[$key] ) ) {
-			$tmp = $this->cache[$key];
-			unset( $this->cache[$key] );
-			$this->cache[$key] = $tmp;
-		}
-	}
-
-	/**
-	 * Limit cache memory
-	 */
-	protected function trimCache() {
-		while ( count( $this->cache ) >= self::MAX_CACHE_SIZE ) {
-			reset( $this->cache );
-			$key = key( $this->cache );
-			wfDebug( __METHOD__ . ": evicting $key\n" );
-			unset( $this->cache[$key] );
-		}
-	}
-
-	/**
 	 * Clear RepoGroup process cache used for finding a file
 	 * @param $title Title|null Title of the file or null to clear all files
 	 */
 	public function clearCache( Title $title = null ) {
 		if ( $title == null ) {
-			$this->cache = array();
+			$this->cache->clear();
 		} else {
-			$dbKey = $title->getDBkey();
-			if ( isset( $this->cache[$dbKey] ) ) {
-				unset( $this->cache[$dbKey] );
-			}
+			$this->cache->clear( $title->getDBkey() );
 		}
 	}
 }
