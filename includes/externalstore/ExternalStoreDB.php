@@ -37,7 +37,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function fetchFromURL( $url ) {
 		list( $cluster, $id, $itemID ) = $this->parseURL( $url );
-		$ret =& $this->fetchBlob( $cluster, $id, $itemID );
+		$ret = $this->fetchBlob( $cluster, $id, $itemID );
 
 		if ( $itemID !== false && $ret !== false ) {
 			return $ret->getItem( $itemID );
@@ -109,7 +109,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster cluster name
 	 * @return LoadBalancer object
 	 */
-	function &getLoadBalancer( $cluster ) {
+	function getLoadBalancer( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 
 		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
@@ -121,11 +121,11 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster cluster name
 	 * @return DatabaseBase object
 	 */
-	function &getSlave( $cluster ) {
+	function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
-		$lb =& $this->getLoadBalancer( $cluster );
+		$lb = $this->getLoadBalancer( $cluster );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
 			wfDebug( "read only external store" );
@@ -143,9 +143,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster cluster name
 	 * @return DatabaseBase object
 	 */
-	function &getMaster( $cluster ) {
+	function getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
-		$lb =& $this->getLoadBalancer( $cluster );
+		$lb = $this->getLoadBalancer( $cluster );
 
 		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}
@@ -156,7 +156,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param $db DatabaseBase
 	 * @return String: table name ('blobs' by default)
 	 */
-	function getTable( &$db ) {
+	function getTable( $db ) {
 		$table = $db->getLBInfo( 'blobs table' );
 		if ( is_null( $table ) ) {
 			$table = 'blobs';
@@ -175,7 +175,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return mixed
 	 * @private
 	 */
-	function &fetchBlob( $cluster, $id, $itemID ) {
+	function fetchBlob( $cluster, $id, $itemID ) {
 		/**
 		 * One-step cache variable to hold base blobs; operations that
 		 * pull multiple revisions may often pull multiple times from
@@ -195,14 +195,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		wfDebugLog( 'ExternalStoreDB-cache',
 			"ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
 
-		$dbr =& $this->getSlave( $cluster );
+		$dbr = $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ),
 			'blob_text', array( 'blob_id' => $id ), __METHOD__ );
 		if ( $ret === false ) {
 			wfDebugLog( 'ExternalStoreDB',
 				"ExternalStoreDB::fetchBlob master fallback on $cacheID\n" );
 			// Try the master
-			$dbw =& $this->getMaster( $cluster );
+			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ),
 				'blob_text', array( 'blob_id' => $id ), __METHOD__ );
 			if ( $ret === false ) {
@@ -215,7 +215,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$ret = unserialize( $ret );
 		}
 
-		$externalBlobCache = array( $cacheID => &$ret );
+		$externalBlobCache = array( $cacheID => $ret );
 
 		return $ret;
 	}
