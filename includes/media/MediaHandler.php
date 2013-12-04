@@ -692,4 +692,20 @@ abstract class MediaHandler {
 		return 0;
 	}
 
+	/**
+	 * Log an error that occurred in an external process
+	 *
+	 * Moved from BitmapHandler to MediaHandler with MediaWiki 1.23
+	 *
+	 * @since 1.23
+	 * @param $retval int
+	 * @param $err int
+	 * @param $cmd string
+	 */
+	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
+		wfDebugLog( 'thumbnail',
+			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
+					wfHostname(), $retval, trim( $err ), $cmd ) );
+	}
+
 }

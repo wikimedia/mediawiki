@@ -204,8 +204,7 @@ class SvgHandler extends ImageHandler {
 		}
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
-			wfDebugLog( 'thumbnail', sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
+			$this->logErrorForExternalProcess( $retval, $err, $cmd );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		}
 		return true;
