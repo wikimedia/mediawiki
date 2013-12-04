@@ -31,6 +31,10 @@ abstract class MediaHandler {
 	const METADATA_GOOD = true;
 	const METADATA_BAD = false;
 	const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
+	/**
+	 * Max length of error logged by logErrorForExternalProcess()
+	 */
+	const MAX_ERR_LOG_SIZE = 65535;
 
 	/** @var MediaHandler[] Instance cache with array of MediaHandler */
 	protected static $handlers = array();
@@ -711,13 +715,17 @@ abstract class MediaHandler {
 	 *
 	 * @since 1.23
 	 * @param $retval int
-	 * @param $err int
+	 * @param $err string Error reported by command. Anything longer than
+	 * MediaHandler::MAX_ERR_LOG_SIZE is stripped off.
 	 * @param $cmd string
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
+		# Keep error output limited (bug 57985)
+		$errMessage = trim( substr( $err, 0, self::MAX_ERR_LOG_SIZE ) );
+
 		wfDebugLog( 'thumbnail',
 			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
+					wfHostname(), $retval, $errMessage, $cmd ) );
 	}
 
 }
