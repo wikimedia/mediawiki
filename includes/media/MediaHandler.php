@@ -379,8 +379,8 @@ abstract class MediaHandler {
 	 *
 	 * @note For non-paged media, use getImageSize.
 	 *
-	 * @param $image File
-	 * @param $page What page to get dimensions of
+	 * @param File $image
+	 * @param int $page What page to get dimensions of
 	 * @return array|bool
 	 */
 	function getPageDimensions( $image, $page ) {
