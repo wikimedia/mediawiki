@@ -1231,13 +1231,13 @@ class SearchHighlighter {
 			} elseif ( $last + 1 == $index && $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] ) ) {
 				$extract .= " " . $line; // continous lines
 			} else {
-				$extract .= '<b> ... </b>' . $line;
+				$extract .= '<strong> ... </strong>' . $line;
 			}
 
 			$last = $index;
 		}
 		if ( $extract ) {
-			$extract .= '<b> ... </b>';
+			$extract .= '<strong> ... </strong>';
 		}
 
 		$processed = array();

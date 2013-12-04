@@ -55,7 +55,7 @@ if ( !$wgRequest->checkUrlExtension() ) {
 if ( !$wgEnableAPI ) {
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
 	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
-		. '<pre><b>$wgEnableAPI=true;</b></pre>';
+		. '<pre><strong>$wgEnableAPI=true;</strong></pre>';
 	die( 1 );
 }
 

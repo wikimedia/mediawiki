@@ -200,7 +200,7 @@ class FeedUtils {
 				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {
-				$diffText = '<p><b>' . wfMessage( 'newpage' )->text() . '</b></p>' .
+				$diffText = '<p><strong>' . wfMessage( 'newpage' )->text() . '</strong></p>' .
 					'<div>' . $html . '</div>';
 			}
 		}

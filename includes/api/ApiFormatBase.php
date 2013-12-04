@@ -275,7 +275,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		$text = preg_replace( "#api\\.php\\?[^ <\n\t]+#", '<a href="\\0">\\0</a>', $text );
 		if ( $this->mHelp ) {
 			// make strings inside * bold
-			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
+			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<strong>\\0</strong>', $text );
 		}
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
