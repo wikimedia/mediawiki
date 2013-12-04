@@ -313,9 +313,9 @@ class RepoGroup {
 			return $this->localRepo;
 		} elseif ( isset( $this->foreignRepos[$index] ) ) {
 			return $this->foreignRepos[$index];
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -430,9 +430,9 @@ class RepoGroup {
 			$repo = $this->getRepo( $repoName );
 
 			return $repo->getFileProps( $fileName );
-		} else {
-			return FSFile::getPropsFromPath( $fileName );
 		}
+
+		return FSFile::getPropsFromPath( $fileName );
 	}
 
 	/**

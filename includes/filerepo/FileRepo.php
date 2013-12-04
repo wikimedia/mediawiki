@@ -390,15 +390,16 @@ class FileRepo {
 		if ( !$title ) {
 			return null;
 		}
+
 		if ( $time ) {
 			if ( $this->oldFileFactory ) {
 				return call_user_func( $this->oldFileFactory, $title, $this, $time );
-			} else {
-				return false;
 			}
-		} else {
-			return call_user_func( $this->fileFactory, $title, $this );
+
+			return false;
 		}
+
+		return call_user_func( $this->fileFactory, $title, $this );
 	}
 
 	/**
@@ -422,15 +423,18 @@ class FileRepo {
 		if ( !$title ) {
 			return false;
 		}
+
 		$time = isset( $options['time'] ) ? $options['time'] : false;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
 			return false;
 		}
+
 		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
 			return $img;
 		}
+
 		# Now try an old version of the file
 		if ( $time !== false ) {
 			$img = $this->newFile( $title, $time );
@@ -447,6 +451,7 @@ class FileRepo {
 		if ( !empty( $options['ignoreRedirect'] ) ) {
 			return false;
 		}
+
 		$redir = $this->checkRedirect( $title );
 		if ( $redir && $title->getNamespace() == NS_FILE ) {
 			$img = $this->newFile( $redir );
@@ -769,9 +774,9 @@ class FileRepo {
 			$descUrl = $this->getDescriptionUrl( $name );
 			if ( $descUrl ) {
 				return wfAppendQuery( $descUrl, $query );
-			} else {
-				return false;
 			}
+
+			return false;
 		}
 	}
 

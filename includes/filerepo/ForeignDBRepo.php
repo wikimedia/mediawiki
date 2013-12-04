@@ -118,9 +118,9 @@ class ForeignDBRepo extends LocalRepo {
 			array_unshift( $args, $this->dbName, $this->tablePrefix );
 
 			return call_user_func_array( 'wfForeignMemcKey', $args );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	protected function assertWritableRepo() {

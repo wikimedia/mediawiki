@@ -80,9 +80,9 @@ class ForeignAPIFile extends File {
 			}
 
 			return $img;
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**
@@ -301,9 +301,9 @@ class ForeignAPIFile extends File {
 			}
 
 			return $path;
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**

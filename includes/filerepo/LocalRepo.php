@@ -57,9 +57,9 @@ class LocalRepo extends FileRepo {
 			return call_user_func( $this->fileFromRowFactory, $row, $this );
 		} elseif ( isset( $row->oi_name ) ) {
 			return call_user_func( $this->oldFileFromRowFactory, $row, $this );
-		} else {
-			throw new MWException( __METHOD__ . ': invalid row' );
 		}
+
+		throw new MWException( __METHOD__ . ': invalid row' );
 	}
 
 	/**
@@ -208,11 +208,11 @@ class LocalRepo extends FileRepo {
 			$wgMemc->add( $memcKey, $targetTitle->getDBkey(), $expiry );
 
 			return $targetTitle;
-		} else {
-			$wgMemc->add( $memcKey, '', $expiry );
-
-			return false;
 		}
+
+		$wgMemc->add( $memcKey, '', $expiry );
+
+		return false;
 	}
 
 	/**

@@ -201,11 +201,11 @@ abstract class File {
 		$function = array( $this, 'get' . ucfirst( $name ) );
 		if ( !is_callable( $function ) ) {
 			return null;
-		} else {
-			$this->$name = call_user_func( $function );
-
-			return $this->$name;
 		}
+
+		$this->$name = call_user_func( $function );
+
+		return $this->$name;
 	}
 
 	/**
@@ -227,9 +227,9 @@ abstract class File {
 			return $squish[$lower];
 		} elseif ( preg_match( '/^[0-9a-z]+$/', $lower ) ) {
 			return $lower;
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 
 	/**
@@ -267,9 +267,9 @@ abstract class File {
 	public static function splitMime( $mime ) {
 		if ( strpos( $mime, '/' ) !== false ) {
 			return explode( '/', $mime, 2 );
-		} else {
-			return array( $mime, 'unknown' );
 		}
+
+		return array( $mime, 'unknown' );
 	}
 
 	/**
@@ -374,15 +374,15 @@ abstract class File {
 		if ( $this->mustRender() ) {
 			if ( $this->canRender() ) {
 				return $this->createThumb( $this->getWidth() );
-			} else {
-				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
-					' (' . $this->getMimeType() . "), but can't!\n" );
-
-				return $this->getURL(); #hm... return NULL?
 			}
-		} else {
-			return $this->getURL();
+
+			wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
+				' (' . $this->getMimeType() . "), but can't!\n" );
+
+			return $this->getURL(); #hm... return NULL?
 		}
+
+		return $this->getURL();
 	}
 
 	/**
@@ -476,9 +476,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getLength( $this );
-		} else {
-			return 0;
 		}
+
+		return 0;
 	}
 
 	/**
@@ -490,9 +490,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->isVectorized( $this );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -512,20 +512,20 @@ abstract class File {
 			// one would not expect it to be animated
 			// so true.
 			return true;
-		} else {
-			if ( $this->allowInlineDisplay()
-				&& $handler->isAnimatedImage( $this )
-				&& !$handler->canAnimateThumbnail( $this )
-			) {
-				// Image is animated, but thumbnail isn't.
-				// This is unexpected to the user.
-				return false;
-			} else {
-				// Image is not animated, so one would
-				// not expect thumb to be
-				return true;
-			}
 		}
+
+		if ( $this->allowInlineDisplay()
+			&& $handler->isAnimatedImage( $this )
+			&& !$handler->canAnimateThumbnail( $this )
+		) {
+			// Image is animated, but thumbnail isn't.
+			// This is unexpected to the user.
+			return false;
+		}
+
+		// Image is not animated, so one would
+		// not expect thumb to be
+		return true;
 	}
 
 	/**
@@ -564,11 +564,12 @@ abstract class File {
 			// Just to make the return type consistent
 			$metadata = unserialize( $metadata );
 		}
+
 		if ( $handler ) {
 			return $handler->convertMetadataVersion( $metadata, $version );
-		} else {
-			return $metadata;
 		}
+
+		return $metadata;
 	}
 
 	/**
@@ -890,10 +891,10 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler && $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
 			return $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-		} else {
-			return new MediaTransformError( 'thumbnail_error',
-				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
 		}
+
+		return new MediaTransformError( 'thumbnail_error',
+			$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
 	}
 
 	/**
@@ -1679,9 +1680,9 @@ abstract class File {
 		// Exact integer multiply followed by division
 		if ( $srcWidth == 0 ) {
 			return 0;
-		} else {
-			return round( $srcHeight * $dstWidth / $srcWidth );
 		}
+
+		return round( $srcHeight * $dstWidth / $srcWidth );
 	}
 
 	/**
@@ -1708,9 +1709,9 @@ abstract class File {
 	function getDescriptionUrl() {
 		if ( $this->repo ) {
 			return $this->repo->getDescriptionUrl( $this->getName() );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -1724,9 +1725,11 @@ abstract class File {
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
 		}
+
 		if ( !$lang ) {
 			$lang = $wgLang;
 		}
+
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
@@ -1752,9 +1755,9 @@ abstract class File {
 			}
 
 			return $res;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -1868,9 +1871,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getStreamHeaders( $this->getMetadata() );
-		} else {
-			return array();
 		}
+
+		return array();
 	}
 
 	/**
@@ -1880,9 +1883,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getLongDesc( $this );
-		} else {
-			return MediaHandler::getGeneralLongDesc( $this );
 		}
+
+		return MediaHandler::getGeneralLongDesc( $this );
 	}
 
 	/**
@@ -1892,9 +1895,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getShortDesc( $this );
-		} else {
-			return MediaHandler::getGeneralShortDesc( $this );
 		}
+
+		return MediaHandler::getGeneralShortDesc( $this );
 	}
 
 	/**
@@ -1904,9 +1907,9 @@ abstract class File {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getDimensionsString( $this );
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 
 	/**

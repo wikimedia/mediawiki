@@ -187,9 +187,9 @@ class UnregisteredLocalFile extends File {
 		if ( $this->repo ) {
 			return $this->repo->getZoneUrl( 'public' ) . '/' .
 				$this->repo->getHashPath( $this->name ) . rawurlencode( $this->name );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
