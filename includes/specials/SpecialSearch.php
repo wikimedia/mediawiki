@@ -376,7 +376,7 @@ class SpecialSearch extends SpecialPage {
 		// prev/next links
 		if ( $num || $this->offset ) {
 			// Show the create link ahead
-			$this->showCreateLink( $t );
+			$this->showCreateLink( $t, $num );
 			$prevnext = $this->getLanguage()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
@@ -422,7 +422,7 @@ class SpecialSearch extends SpecialPage {
 			} else {
 				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
 					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
-				$this->showCreateLink( $t );
+				$this->showCreateLink( $t, $num );
 			}
 		}
 		$out->addHtml( "</div>" );
@@ -436,8 +436,9 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @param $t Title
+	 * @param int $num The number of search results found
 	 */
-	protected function showCreateLink( $t ) {
+	protected function showCreateLink( $t, $num ) {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
@@ -455,7 +456,7 @@ class SpecialSearch extends SpecialPage {
 		} else {
 			$messageName = 'searchmenu-new-nocreate';
 		}
-		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
+		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ), Message::numParam( $num ) );
 		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ) );
 
 		// Extensions using the hook might still return an empty $messageName
