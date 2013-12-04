@@ -26,6 +26,9 @@ production.
   now enabled by default.
 * $wgLBFactoryConf: Class names have had underscores removed. The configuration
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
+* $wgPasswordSenderName has been deprecated. To set a custom mailer name,
+  the system message 'emailsender' should be modified (default: "{{SITENAME}}").
+* $wgDBAhandler was removed as the only class using it was also removed
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -42,6 +45,8 @@ production.
 * (bug 56033) Add content model to the page information.
 * Added Article::MissingArticleConditions hook to give extensions a chance to
   hide their (unrelated) log entries.
+* Added LonelyPagesQuery hook to let extensions modify the query used to
+  generate Special:LonelyPages.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
 * For namespaces with $wgNamespaceProtection (including the MediaWiki
@@ -59,6 +64,17 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* The jquery.client module now performs a component-wise version comparison in
+  its #test method when strings are used in the browser map: version '1.10' is
+  now correctly considered larger than '1.2'. Using numbers in the version map
+  is not affected.
+* All API modules now support an assert parameter, which can either be
+  'user' or 'bot'. The API will throw an error if the user is not logged
+  in (user) or does not have the 'bot' userright (bot). Based off of the
+  AssertEdit extension by Steve Sanbeg.
+* WikitextContent will now render redirects with the expected "redirect"
+  header, rather than as an ordered list. Code calling Article::viewRedirect
+  can probably be changed to no longer special-case redirects.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -76,30 +92,57 @@ production.
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
 * (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds.
+* (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
+  to appear blank or with missing text.
+* (bug 56931) Updated the plural rules to CLDR 24. They are in new format
+  which is detailed in UTS 35 Rev 33. The PHP parser and evaluator as well as
+  the JavaScript evaluator were updated to support the new format. Plural rules
+  for some languages have changed, most notably Russian. Affected software
+  messages have been updated and marked for review at translatewiki.net.
+* (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
+  remaining page content.
+* (bug 23542) imagelinks now stores both the redirect and target (as
+  templatelinks does).
+* (bug 58167) The web installer no longer throws an exception when PHP is
+  compiled without support for MySQL yet with support for another DBMS.
+* (bug 56199) Raw option of parser functions must now match complete word,
+  to take effect.
 
-=== API changes in 1.23 ===
+=== Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
-* EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
 * action=parse now has disabletoc flag to disable table of contents in output.
-* SpecialRecentChanges::feedSetup() was removed.
 * (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
   list=deletedrevs and list=filearchive did not handle case-sensitivity
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
-* Renamed classes:
-  - LBFactory_Fake to LBFactoryFake
-  - LBFactory_Multi to LBFactoryMulti
-  - LBFactory_Simple to LBFactorySimple
-  - LBFactory_Single to LBFactorySingle
-  - LoadBalancer_Single to LoadBalancerSingle
-  - LoadMonitor_MySQL to LoadMonitorMySQL
-  - LoadMonitor_Null to LoadMonitorNull
+* (bug 57874) action=feedcontributions no longer has one item more than limit.
+* All API modules now support an assert parameter. See the new features section
+  for more details.
+* Added prop=contributors to fetch the list of contributors to the page.
+* The following API modules will now return entries where fields have been
+  revision-deleted: list=deletedrevs, list=filearchive, list=recentchanges,
+  list=watchlist. "hidden" indicators will be included, in the same style as is
+  already done for prop=revisions.
+* The following API modules will now return the content of revision-deleted
+  fields, in addition to the "hidden" indicators, if the querying user has the
+  necessary rights: list=logevents, list=usercontribs, prop=imageinfo,
+  prop=revisions.
+* The above modules, where applicable, will now return entries filtered by
+  revision-deleted fields if the querying user has the necessary rights. For
+  example, prop=revisions with rvuser or rvexcludeuser will no longer skip
+  revisions where the user was revision-deleted if the current user has the
+  deletedhistory right.
+* The 'hideuser' right, used when blocking, is no longer necessary or
+  sufficient for seeing contributions with revision-deleted in
+  list=usercontribs.
+* list=watchlist now uses the querying user's rights rather than the wlowner's
+  rights when checking whether wlprop=patrol is allowed.
 
 === Languages updated in 1.23 ===
 
@@ -107,7 +150,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* Support was added for Northern Luri (lrc)
+* Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===
 * The rc_type field in the recentchanges table has been superseded by a new
@@ -122,7 +165,6 @@ changes to languages because of Bugzilla reports.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * The global functions addButton and insertTags (for mw.toolbar.addButton and
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
-* User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
 * The ExpandTemplates extension has been moved into MediaWiki core.
 * (bug 52812) Removed "Disable search suggestions" from Preference.
 * (bug 52809) Removed "Disable browser page caching" from Preference.
@@ -138,6 +180,121 @@ changes to languages because of Bugzilla reports.
 * A page_links_updated field has been added to the page table.
 * SpecialPage::getTitle has been deprecated in favor of
   SpecialPage::getPageTitle.
+* BREAKING CHANGE: Two potentially backwards-incompatible changes have been made
+  to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
+  the hook more consistent with the 'SpecialRecentChangesQuery' one:
+** Several array keys have been renamed: hideMinor → hideminor,
+   hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
+   hidePatrolled → hidepatrolled, hideOwn → hidemyself.
+** The parameter value is now a FormOptions object, not a plain array (array
+   access operators should continue to work, as it implements the ArrayAccess
+   interface).
+* Option to mark hooks as deprecated has been added.
+* (bug 52811) Removed "Enable section editing via [edit] links" from Preference.
+
+==== Removed classes ====
+* TitleDependency (unused)
+* TitleListDependency (unused)
+* WikiError (deprecated in 1.17)
+* WikiXmlError (deprecated in 1.17)
+* WikiErrorMsg (deprecated in 1.17)
+
+==== Renamed classes ====
+* CdbReader_DBA to CdbReaderDBA
+* CdbReader_PHP to CdbReaderPHP
+* CdbWriter_DBA to CdbWriterDBA
+* CdbWriter_PHP to CdbWriterPHP
+* DiffOp_Add to DiffOpAdd
+* DiffOp_Change to DiffOpChange
+* DiffOp_Copy to DiffOpCopy
+* DiffOp_Delete to DiffOpDelete
+* HWLDF_WordAccumulator to HWLDFWordAccumulator
+* LBFactory_Fake to LBFactoryFake
+* LBFactory_Multi to LBFactoryMulti
+* LBFactory_Simple to LBFactorySimple
+* LBFactory_Single to LBFactorySingle
+* LCStore_Accel to LCStoreAccel
+* LCStore_CDB to LCStoreCDB
+* LCStore_DB to LCStoreDB
+* LCStore_Null to LCStoreNull
+* LoadBalancer_Single to LoadBalancerSingle
+* LoadMonitor_MySQL to LoadMonitorMySQL
+* LoadMonitor_Null to LoadMonitorNull
+* LocalisationCache_BulkLoad to LocalisationCacheBulkLoad
+* csvStatsOutput to CsvStatsOutput
+* extensionLanguages to ExtensionLanguages
+* languages to Languages
+* statsOutput to StatsOutput
+* textStatsOutput to TextStatsOutput
+* wikiStatsOutput to WikiStatsOutput
+
+==== Removed methods ====
+* ApiBase::getValidNamespaces() (deprecated in 1.17)
+* ApiMain::setCachePrivate() (deprecated in 1.17)
+* ApiMain::setVaryCookie (deprecated in 1.17)
+* Article::doRedirect() (deprecated in 1.18)
+* Article::doUnwatch() (deprecated in 1.18)
+* Article::doWatch() (deprecated in 1.18)
+* Article::forUpdate() (deprecated in 1.18)
+* Article::markpatrolled() (deprecated in 1.18)
+* Article::unwatch() (deprecated in 1.18)
+* Article::watch() (deprecated in 1.18)
+* Block::clear() (deprecated in 1.18)
+* Block::decodeExpiry() (deprecated in 1.18)
+* Block::encodeExpiry() (deprecated in 1.18)
+* Block::forUpdate() (deprecated in 1.18)
+* Block::infinity() (deprecated in 1.18)
+* Block::load() (deprecated in 1.18)
+* Block::newFromDB() (deprecated in 1.18)
+* Block::normaliseRange() (deprecated in 1.18)
+* Block::parseExpiryInput() (deprecated in 1.18)
+* CategoryViewer::addSubcategory() (deprecated in 1.17)
+* EditPage::spamPage() (deprecated since 1.17)
+* Exif::getFormattedData() (deprecated in 1.18)
+* Exif::makeFormattedData() (deprecated in 1.18)
+* Language::convertLinkToAllVariants() (deprecated in 1.17)
+* LanguageConverter::convertLinkToAllVariants() (deprecated in 1.17)
+* Linker::makeBrokenLink() (deprecated in 1.16)
+* Linker::makeBrokenLinkObj() (deprecated in 1.16)
+* Linker::makeColouredLinkObj() (deprecated in 1.16)
+* Linker::makeSizeLinkObj() (deprecated in 1.17)
+* ProfilerSimple::getCpuTime (deprecated in 1.20)
+* Revision::revText() (deprecated in 1.17)
+* SkinTemplate::jstext() (deprecated in 1.21)
+* SpecialPage::__call() (deprecated in 1.17)
+* SpecialPage::executePath() (deprecated in 1.18)
+* SpecialPage::exists() (deprecated in 1.18)
+* SpecialPage::file() (deprecated in 1.18)
+* SpecialPage::func() (deprecated in 1.18)
+* SpecialPage::getGroup() (deprecated in 1.18)
+* SpecialPage::getPage() (deprecated in 1.18)
+* SpecialPage::getPageByAlias() (deprecated in 1.18)
+* SpecialPage::getLocalNameFor() (deprecated in 1.18)
+* SpecialPage::getRegularPages() (deprecated in 1.18)
+* SpecialPage::getRestrictedPages() (deprecated in 1.18)
+* SpecialPage::getTitleForAlias() (deprecated in 1.18)
+* SpecialPage::getUsablePages() (deprecated in 1.18)
+* SpecialPage::includable() (deprecated in 1.18)
+* SpecialPage::init()
+* SpecialPage::initAliasList() (deprecated in 1.18)
+* SpecialPage::initList() (deprecated in 1.18)
+* SpecialPage::name() (deprecated in 1.18)
+* SpecialPage::removePage() (deprecated in 1.18)
+* SpecialPage::resolveAlias() (deprecated in 1.18)
+* SpecialPage::resolveAliasWithSubpage() (deprecated in 1.18)
+* SpecialPage::restriction() (deprecated in 1.18)
+* SpecialPage::setGroup() (deprecated in 1.18)
+* SpecialRecentChanges::feedSetup()
+* SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
+* User::getPageRenderingHash() (deprecated in 1.17)
+* WebRequest::getFileSize() (deprecated in 1.17)
+* WebRequest::isPathInfoBad() (deprecated in 1.17)
+* WikiPage::quickEdit() (deprecated in 1.18)
+* WikiPage::useParserCache() (deprecated in 1.18)
+* WikiPage::viewUpdates() (deprecated in 1.18)
+
+==== Removed globals ====
+* $wgBetterDirectionality (deprecated in 1.18)
 
 == Compatibility ==
 

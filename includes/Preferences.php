@@ -748,7 +748,7 @@ class Preferences {
 		}
 
 		$defaultPreferences['stubthreshold'] = array(
-			'type' => 'selectorother',
+			'type' => 'select',
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
 			'size' => 20,
@@ -792,13 +792,6 @@ class Preferences {
 		global $wgAllowUserCssPrefs;
 
 		## Editing #####################################
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['editsection'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-editsection',
-			);
-		}
 		$defaultPreferences['editsectiononrightclick'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -1046,14 +1039,6 @@ class Preferences {
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgContLang, $wgVectorUseSimpleSearch;
-
-		## Search #####################################
-		$defaultPreferences['searchlimit'] = array(
-			'type' => 'int',
-			'label-message' => 'resultsperpage',
-			'section' => 'searchoptions/displaysearchoptions',
-			'min' => 0,
-		);
 
 		if ( $wgVectorUseSimpleSearch ) {
 			$defaultPreferences['vector-simplesearch'] = array(
@@ -1463,7 +1448,6 @@ class Preferences {
 			# If users have saved a value for a preference which has subsequently been disabled
 			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
 			# is subsequently re-enabled
-			# TODO: maintenance script to actually delete these
 			foreach ( $wgHiddenPrefs as $pref ) {
 				# If the user has not set a non-default value here, the default will be returned
 				# and subsequently discarded

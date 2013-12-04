@@ -363,6 +363,7 @@ $magicWords = array(
 	'numberingroup'           => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'          => array( 1,    '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( 1,    'PROTECTIONLEVEL' ),
+	'cascadingsources'        => array( 1,    'CASCADINGSOURCES' ),
 	'formatdate'              => array( 0,    'formatdate', 'dateformat' ),
 	'url_path'                => array( 0,    'PATH' ),
 	'url_wiki'                => array( 0,    'WIKI' ),
@@ -666,7 +667,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-numberheadings'          => 'Auto-number headings',
 'tog-showtoolbar'             => 'Show edit toolbar',
 'tog-editondblclick'          => 'Edit pages on double click',
-'tog-editsection'             => 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
@@ -1233,6 +1233,7 @@ No email will be sent for any of the following features.',
 Please enter a well-formatted address or empty that field.',
 'cannotchangeemail'               => 'Account email addresses cannot be changed on this wiki.',
 'emaildisabled'                   => 'This site cannot send emails.',
+'emailsender'                     => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'accountcreated'                  => 'Account created',
 'accountcreatedtext'              => 'The user account for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) has been created.',
 'createaccount-title'             => 'Account creation for {{SITENAME}}',
@@ -1576,6 +1577,8 @@ It already exists.',
 'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
 'editwarning-warning'              => 'Leaving this page may cause you to lose any changes you have made.
 If you are logged in, you can disable this warning in the "Editing" section of your preferences.',
+'editpage-notsupportedcontentformat-title'=> 'Content format not supported',
+'editpage-notsupportedcontentformat-text' => 'The content format $1 is not supported by the content model $2.',
 
 # Content models
 'content-model-wikitext'   => 'wikitext',
@@ -1835,6 +1838,7 @@ Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-result-score'              => 'Relevance: $1%',
 'search-redirect'                  => '(redirect $1)',
 'search-section'                   => '(section $1)',
+'search-file-match'                => '(matches file content)',
 'search-suggest'                   => 'Did you mean: $1',
 'search-interwiki-caption'         => 'Sister projects',
 'search-interwiki-default'         => '$1 results:',
@@ -1909,7 +1913,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'rows'                          => 'Rows:',
 'columns'                       => 'Columns:',
 'searchresultshead'             => 'Search',
-'resultsperpage'                => 'Hits per page:',
 'stub-threshold'                => 'Threshold for <a href="#" class="stub">stub link</a> formatting (bytes):',
 'stub-threshold-disabled'       => 'Disabled',
 'recentchangesdays'             => 'Days to show in recent changes:',
@@ -2326,6 +2329,8 @@ If you still want to upload your file, please go back and use a new name.
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[:$1]]) has previously been deleted.
 You should check that file's deletion history before proceeding to re-upload it.",
+'file-deleted-duplicate-notitle' => "A file identical to this file has previously been deleted, and the title has been suppressed.
+You should ask someone with the ability to view suppressed file data to review the situation before proceeding to re-upload it.",
 'uploadwarning'               => 'Upload warning',
 'uploadwarning-text'          => 'Please modify the file description below and try again.',
 'savefile'                    => 'Save file',
@@ -2338,6 +2343,7 @@ You should check that file's deletion history before proceeding to re-upload it.
 'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
+'uploadinvalidxml'            => 'The XML in the uploaded file could not be parsed.',
 'uploadvirus'                 => 'The file contains a virus!
 Details: $1',
 'uploadjava'                  => 'The file is a ZIP file that contains a Java .class file.
@@ -2752,6 +2758,7 @@ It now redirects to [[$2]].',
 'protectedpages-indef'            => 'Indefinite protections only',
 'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
 'protectedpages-cascade'          => 'Cascading protections only',
+'protectedpages-noredirect'       => 'Hide redirects',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
 'protectedtitles'                 => 'Protected titles',
 'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
@@ -3026,6 +3033,7 @@ Feedback and further assistance:
 'historywarning'         => "'''Warning:''' The page you are about to delete has a history with approximately $1 {{PLURAL:$1|revision|revisions}}:",
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
+'deleting-backlinks-warning' => "'''Warning:''' Other pages link to or transclude from the page you are about to delete.",
 'actioncomplete'         => 'Action complete',
 'actionfailed'           => 'Action failed',
 'deletedtext'            => '"$1" has been deleted.
@@ -3301,6 +3309,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 See the [[Special:BlockList|block list]] to review blocks.',
 'ipb-blockingself'                => 'You are about to block yourself! Are you sure you want to do that?',
 'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled. This will suppress the user\'s name in all lists and log entries. Are you sure you want to do that?',
+'ipb-confirmaction'               => 'If you are sure you really want to do it, please check the "{{int:ipb-confirm}}" field at the bottom.',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
@@ -3366,7 +3375,7 @@ See the [[Special:BlockList|block list]] for the list of currently operational b
 'range_block_disabled'            => 'The administrator ability to create range blocks is disabled.',
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
-'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
+'ipb_hide_invalid'                => 'Unable to suppress this account; it has more than {{PLURAL:$1|one edit|$1 edits}}.',
 'ipb_already_blocked'             => '"$1" is already blocked.',
 'ipb-needreblock'                 => '$1 is already blocked. Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
@@ -4817,10 +4826,20 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-parser-function-hooks'         => 'Parser function hooks',
 'version-hook-name'                     => 'Hook name',
 'version-hook-subscribedby'             => 'Subscribed by',
-'version-version'                       => '(Version $1)',
-'version-svn-revision'                  => '(r$2)', # only translate this message to other languages if you have to change it
-'version-license'                       => 'License',
-'version-poweredby-credits'             => "This wiki is powered by '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-version'                       => '($1)',
+'version-svn-revision'                  => 'r$1', # only translate this message to other languages if you have to change it
+'version-license'                       => 'MediaWiki License',
+'version-license-title'                 => 'License for $1',
+'version-license-not-found'             => 'No detailed license information was found for this extension.',
+'version-credits-title'                 => 'Credits for $1',
+'version-credits-not-found'             => 'No detailed credits information was found for this extension.',
+'version-ext-license'                   => 'License',
+'version-ext-colheader-name'            => 'Extension',
+'version-ext-colheader-version'         => 'Version',
+'version-ext-colheader-license'         => 'License',
+'version-ext-colheader-description'     => 'Description',
+'version-ext-colheader-credits'         => 'Authors',
+'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'              => 'others',
 'version-poweredby-translators'         => 'translatewiki.net translators',
 'version-credits-summary'               => 'We would like to recognize the following persons for their contribution to [[Special:Version|MediaWiki]].',
@@ -4832,6 +4851,13 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-software'                      => 'Installed software',
 'version-software-product'              => 'Product',
 'version-software-version'              => 'Version',
+'version-db-mysql-url'                  => 'http://www.mysql.com/', # do not translate or duplicate this message to other languages
+'version-db-mariadb-url'                => 'http://mariadb.org/', # do not translate or duplicate this message to other languages
+'version-db-percona-url'                => 'http://www.percona.com/software/percona-server', # do not translate or duplicate this message to other languages
+'version-db-postgres-url'               => 'http://www.postgresql.org/', # do not translate or duplicate this message to other languages
+'version-db-oracle-url'                 => 'http://www.oracle.com/database/', # do not translate or duplicate this message to other languages
+'version-db-sqlite-url'                 => 'http://www.sqlite.org/', # do not translate or duplicate this message to other languages
+'version-db-mssql-url'                  => 'http://www.microsoft.com/sql/', # do not translate or duplicate this message to other languages
 'version-entrypoints'                   => 'Entry point URLs',
 'version-entrypoints-header-entrypoint' => 'Entry point',
 'version-entrypoints-header-url'        => 'URL',
@@ -5080,6 +5106,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+'api-error-stasherror'                    => 'There was an error while uploading the file to stash.',
 
 # Durations
 'duration-seconds'   => '$1 {{PLURAL:$1|second|seconds}}',
