@@ -791,13 +791,6 @@ class Preferences {
 		global $wgAllowUserCssPrefs;
 
 		## Editing #####################################
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['editsection'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-editsection',
-			);
-		}
 		$defaultPreferences['editsectiononrightclick'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
