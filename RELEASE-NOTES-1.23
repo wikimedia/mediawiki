@@ -104,6 +104,7 @@ changes to languages because of Bugzilla reports.
 * The ExpandTemplates extension has been moved into MediaWiki core.
 * (bug 52812) Removed "Disable search suggestions" from Preference.
 * (bug 52809) Removed "Disable browser page caching" from Preference.
+* (bug 52811) Removed "Enable section editing via [edit] links" from Preference.
 
 == Compatibility ==
 
