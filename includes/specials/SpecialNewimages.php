@@ -145,9 +145,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 		$this->gallery->add(
 			$title,
-			"$ul<br />\n<i>"
+			"$ul<br />\n<em>"
 				. htmlspecialchars( $time )
-				. "</i><br />\n"
+				. "</em><br />\n"
 		);
 	}
 

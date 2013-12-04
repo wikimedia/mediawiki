@@ -285,7 +285,7 @@
 		$collapsible = prepareCollapsible(
 			'<div class="mw-collapsible">' +
 				'<div class="mw-collapsible-toggle">' +
-					'Toggle <a href="#top">toggle</a> toggle <b>toggle</b>' +
+					'Toggle <a href="#top">toggle</a> toggle <strong>toggle</strong>' +
 				'</div>' +
 				'<div class="mw-collapsible-content">' + loremIpsum + '</div>' +
 			'</div>',
