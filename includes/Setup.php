@@ -31,8 +31,72 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # The main wiki script and things like database
 # conversion and maintenance scripts all share a
 # common setup of including lots of classes and
-# setting up a few globals.
-#
+# setting up a few globals
+global $messageMemc;
+global $parserMemc;
+global $wgActionPaths;
+global $wgActions;
+global $wgActions;
+global $wgAjaxExportList;
+global $wgArticleCountMethod;
+global $wgArticlePath;
+global $wgAuth;
+global $wgCacheEpoch;
+global $wgCanonicalNamespaceNames;
+global $wgCanonicalServer;
+global $wgContLang;
+global $wgContLanguageCode;
+global $wgCookiePrefix;
+global $wgCookieSecure;
+global $wgDebugToolbar;
+global $wgDeferredUpdateList;
+global $wgDeletedDirectory;
+global $wgEnableAutoRotation;
+global $wgExtensionAssetsPath;
+global $wgFileCacheDirectory;
+global $wgFileExtensions;
+global $wgFooterIcons;
+global $wgForeignFileRepos;
+global $wgFullyInitialised;
+global $wgHiddenPrefs;
+global $wgHtml5Version;
+global $wgLang;
+global $wgLoadScript;
+global $wgLocalFileRepo;
+global $wgLocalStylePath;
+global $wgLocalTZoffset;
+global $wgLocaltimezone;
+global $wgLockManagers;
+global $wgLogActionsHandlers;
+global $wgLogHeaders;
+global $wgLogNames;
+global $wgLogTypes;
+global $wgLogo;
+global $wgMemc;
+global $wgMetaNamespace;
+global $wgMimeType;
+global $wgNamespaceAliases;
+global $wgNamespaceProtection;
+global $wgOut;
+global $wgParser;
+global $wgRCLinkDays;
+global $wgReadOnlyFile;
+global $wgRedirectScript;
+global $wgRequest;
+global $wgScript;
+global $wgSessionStarted;
+global $wgSharedPrefix;
+global $wgShowIPinHeader;
+global $wgSkipSkins;
+global $wgStyleDirectory;
+global $wgStylePath;
+global $wgTitle;
+global $wgTmpDirectory;
+global $wgUploadDirectory;
+global $wgUploadPath;
+global $wgUseEnotif;
+global $wgUser;
+
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );

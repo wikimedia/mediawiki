@@ -62,6 +62,12 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
+global $IP;
+global $wgEnableSelenium;
+global $wgProfiler;
+global $wgRequestTime;
+global $wgRUstart;
+
 $wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
@@ -83,6 +89,8 @@ define( 'MEDIAWIKI', true );
 # __DIR__ breaks symlinked includes, but realpath() returns false
 # if we don't have permissions on parent directories.
 $IP = getenv( 'MW_INSTALL_PATH' );
+$IP = "/usr/share/mediawiki";
+define('MW_CONFIG_FILE', "$IP/LocalSettings.php" );
 if ( $IP === false ) {
 	if ( realpath( '.' ) ) {
 		$IP = realpath( '.' );

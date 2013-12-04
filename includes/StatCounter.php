@@ -142,7 +142,7 @@ class StatCounter {
 
 		foreach ( $deltas as $key => $count ) {
 			$ckey = wfMemcKey( 'stats', $key );
-			if ( $wgMemc->incr( $ckey, $count ) === null ) {
+			if ( $wgMemc != false && $wgMemc->incr( $ckey, $count ) === null ) {
 				$wgMemc->add( $ckey, $count );
 			}
 		}

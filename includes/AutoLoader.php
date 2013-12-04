@@ -1208,8 +1208,8 @@ class AutoLoader {
 		}
 
 		# Make an absolute path, this improves performance by avoiding some stat calls
-		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
-			global $IP;
+		global $IP;
+		if ( $IP != null && substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
 			$filename = "$IP/$filename";
 		}
 

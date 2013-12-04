@@ -190,6 +190,17 @@ class OutputPage extends ContextSource {
 	 */
 	var $mArticleBodyOnly = false;
 
+	/**
+	 * Flag if output should be written to #outputBuffer instead of
+	 * being flushed.
+	 */
+	private $mOutputToBuffer = false;
+
+	/**
+	 * The buffer to hold the output, when #mOutputToBuffer is true
+	 */
+	private $outputBuffer = "";
+
 	var $mNewSectionLink = false;
 	var $mHideNewSectionLink = false;
 
@@ -663,6 +674,37 @@ class OutputPage extends ContextSource {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Set whether the output should be written to outputBuffer during
+	 * a call to #output(), instead of being flushed with ob_end_flush.
+	 *
+	 * @param $toBuffer Boolean: whether to output into the buffer outputBuffer
+	 */
+	public function setOutputToBuffer( $toBuffer ) {
+		$this->mOutputToBuffer = $toBuffer;
+	}
+
+	/**
+	 * Return whether the output should be written to outputBuffer during
+	 * a call to #output(), instead of being flushed with ob_end_flush.
+	 *
+	 * @return Boolean
+	 */
+	public function getOutputToBuffer() {
+		return $this->mOutputToBuffer;
+	}
+
+	/**
+	 * When #mOutputToBuffer was true during the last call to #output,
+	 * this function returns the rendered output. When #mOutputToBuffer
+	 * was false (the default), an empty String is returned.
+	 *
+	 * @return String
+	 */
+	public function getOutput() {
+		return $this->outputBuffer;
 	}
 
 	/**
@@ -1974,7 +2016,14 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Finally, all the text has been munged and accumulated into
-	 * the object, let's actually output it:
+	 * the object, let's actually output it.
+	 *
+	 * If #mDoNothing is true, this function returns immediately.
+	 *
+	 * If #mOutputToBuffer is true, the rendered page is NOT flushed
+	 * into the response, but kept in #outputBuffer for later
+	 * retrieval with #getOutputBuffer().
+	 *
 	 */
 	public function output() {
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP,
@@ -2084,7 +2133,13 @@ class OutputPage extends ContextSource {
 
 		$this->sendCacheControl();
 
-		ob_end_flush();
+                // should we write out into the response or into outputBuffer?
+		if($this->mOutputToBuffer) {
+			$this->outputBuffer = ob_get_contents();
+			ob_end_clean();
+		} else {
+			ob_end_flush();
+		}
 
 		wfProfileOut( __METHOD__ );
 	}
