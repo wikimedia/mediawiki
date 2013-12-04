@@ -1825,8 +1825,8 @@ Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'shown-title'                      => 'Show $1 {{PLURAL:$1|result|results}} per page',
 'viewprevnext'                     => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Search options',
-'searchmenu-exists'                => "'''There is a page named \"[[:\$1]]\" on this wiki.'''",
-'searchmenu-new'                   => "'''Create the page \"[[:\$1]]\" on this wiki!'''",
+'searchmenu-exists'                => "'''There is a page named \"[[:\$1]]\" on this wiki.''' {{PLURAL:$2|1=|See also the other search results found.}}",
+'searchmenu-new'                   => "'''Create the page \"[[:\$1]]\" on this wiki!''' {{PLURAL:$2|0=|See also the page found with your search.|See also the search results found.}}",
 'searchmenu-new-nocreate'          => '', # do not translate or duplicate this message to other languages
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Browse pages with this prefix]]',
 'searchprofile-articles'           => 'Content pages',
