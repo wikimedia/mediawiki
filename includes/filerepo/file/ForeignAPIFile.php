@@ -34,7 +34,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @param $title
-	 * @param $repo ForeignApiRepo
+	 * @param ForeignApiRepo $repo
 	 * @param $info
 	 * @param bool $exists
 	 */
@@ -48,8 +48,8 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param $title Title
-	 * @param $repo ForeignApiRepo
+	 * @param Title $title
+	 * @param ForeignApiRepo $repo
 	 * @return ForeignAPIFile|null
 	 */
 	static function newFromTitle( Title $title, $repo ) {
@@ -150,7 +150,7 @@ class ForeignAPIFile extends File {
 	// Info we can get from API...
 
 	/**
-	 * @param $page int
+	 * @param int $page
 	 * @return int|number
 	 */
 	public function getWidth( $page = 1 ) {
@@ -158,7 +158,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param $page int
+	 * @param int $page
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
@@ -177,7 +177,8 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return array|null extended metadata (see imageinfo API for format) or null on error
+	 * @return array|null Extended metadata (see imageinfo API for format) or
+	 *   null on error
 	 */
 	public function getExtendedMetadata() {
 		if ( isset( $this->mInfo['extmetadata'] ) ) {
@@ -188,7 +189,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param $metadata array
+	 * @param array $metadata
 	 * @return array
 	 */
 	public static function parseMetadata( $metadata ) {
@@ -226,6 +227,8 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * @param int $audience
+	 * @param User $user
 	 * @return null|string
 	 */
 	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -242,7 +245,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return bool|Mixed|string
+	 * @return bool|string
 	 */
 	function getTimestamp() {
 		return wfTimestamp( TS_MW,
@@ -287,7 +290,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Only useful if we're locally caching thumbs anyway...
-	 * @param $suffix string
+	 * @param string $suffix
 	 * @return null|string
 	 */
 	function getThumbPath( $suffix = '' ) {
@@ -336,7 +339,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param $options array
+	 * @param array $options
 	 */
 	function purgeThumbnails( $options = array() ) {
 		global $wgMemc;

@@ -26,9 +26,8 @@
  * @ingroup FileRepo
  */
 class NullRepo extends FileRepo {
-
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 	}

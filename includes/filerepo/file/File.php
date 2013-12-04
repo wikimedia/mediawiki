@@ -156,8 +156,8 @@ abstract class File {
 	 * may return false or throw exceptions if they are not set.
 	 * Most subclasses will want to call assertRepoDefined() here.
 	 *
-	 * @param $title Title|string|bool
-	 * @param $repo FileRepo|bool
+	 * @param Title|string|bool $title
+	 * @param FileRepo|bool $repo
 	 */
 	function __construct( $title, $repo ) {
 		if ( $title !== false ) { // subclasses may not use MW titles
@@ -171,7 +171,7 @@ abstract class File {
 	 * Given a string or Title object return either a
 	 * valid Title object with namespace NS_FILE or null
 	 *
-	 * @param $title Title|string
+	 * @param Title|string $title
 	 * @param string|bool $exception Use 'exception' to throw an error on bad titles
 	 * @throws MWException
 	 * @return Title|null
@@ -235,7 +235,7 @@ abstract class File {
 	/**
 	 * Checks if file extensions are compatible
 	 *
-	 * @param $old File Old file
+	 * @param File $old Old file
 	 * @param string $new New name
 	 *
 	 * @return bool|null
@@ -275,10 +275,9 @@ abstract class File {
 	/**
 	 * Callback for usort() to do file sorts by name
 	 *
-	 * @param $a File
-	 * @param $b File
-	 *
-	 * @return Integer: result of name comparison
+	 * @param File $a
+	 * @param File $b
+	 * @return int Result of name comparison
 	 */
 	public static function compare( File $a, File $b ) {
 		return strcmp( $a->getName(), $b->getName() );
@@ -355,7 +354,7 @@ abstract class File {
 	 * Upload URL paths _may or may not_ be fully qualified, so
 	 * we check. Local paths are assumed to belong on $wgServer.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getFullUrl() {
 		return wfExpandUrl( $this->getUrl(), PROTO_RELATIVE );
@@ -436,9 +435,8 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 *
-	 * @param $page int
-	 *
-	 * @return number
+	 * @param int $page
+	 * @return int|bool
 	 */
 	public function getWidth( $page = 1 ) {
 		return false;
@@ -451,9 +449,8 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 *
-	 * @param $page int
-	 *
-	 * @return bool|number False on failure
+	 * @param int $page
+	 * @return bool|int False on failure
 	 */
 	public function getHeight( $page = 1 ) {
 		return false;
@@ -464,7 +461,6 @@ abstract class File {
 	 * STUB
 	 *
 	 * @param string $type 'text' or 'id'
-	 *
 	 * @return string|int
 	 */
 	public function getUser( $type = 'text' ) {
@@ -474,7 +470,7 @@ abstract class File {
 	/**
 	 * Get the duration of a media file in seconds
 	 *
-	 * @return number
+	 * @return int
 	 */
 	public function getLength() {
 		$handler = $this->getHandler();
@@ -545,7 +541,7 @@ abstract class File {
 	/**
 	 * Like getMetadata but returns a handler independent array of common values.
 	 * @see MediaHandler::getCommonMetaArray()
-	 * @return Array or false if not supported
+	 * @return array|bool Array or false if not supported
 	 * @since 1.23
 	 */
 	public function getCommonMetaArray() {
@@ -557,9 +553,10 @@ abstract class File {
 	/**
 	 * get versioned metadata
 	 *
-	 * @param $metadata Mixed Array or String of (serialized) metadata
-	 * @param $version integer version number.
-	 * @return Array containing metadata, or what was passed to it on fail (unserializing if not array)
+	 * @param array|string $metadata Array or string of (serialized) metadata
+	 * @param int $version Version number.
+	 * @return array Array containing metadata, or what was passed to it on fail
+	 *   (unserializing if not array)
 	 */
 	public function convertMetadataVersion( $metadata, $version ) {
 		$handler = $this->getHandler();
@@ -757,7 +754,7 @@ abstract class File {
 	 *
 	 * Overridden by LocalFile to avoid unnecessary stat calls.
 	 *
-	 * @return boolean Whether file exists in the repository.
+	 * @return bool Whether file exists in the repository.
 	 */
 	public function exists() {
 		return $this->getPath() && $this->repo->fileExists( $this->path );
@@ -767,7 +764,7 @@ abstract class File {
 	 * Returns true if file exists in the repository and can be included in a page.
 	 * It would be unsafe to include private images, making public thumbnails inadvertently
 	 *
-	 * @return boolean Whether file exists in the repository and is includable.
+	 * @return bool Whether file exists in the repository and is includable.
 	 */
 	public function isVisible() {
 		return $this->exists();
@@ -793,7 +790,7 @@ abstract class File {
 	/**
 	 * Get a ThumbnailImage which is the same size as the source
 	 *
-	 * @param $handlerParams array
+	 * @param array $handlerParams
 	 *
 	 * @return string
 	 */
@@ -815,7 +812,7 @@ abstract class File {
 	 * Otherwise, the format may be "<params>-<source>" or "<params>-thumbnail.<ext>".
 	 *
 	 * @param array $params handler-specific parameters
-	 * @param $flags integer Bitfield that supports THUMB_* constants
+	 * @param int $flags Bitfield that supports THUMB_* constants
 	 * @return string
 	 */
 	public function thumbName( $params, $flags = 0 ) {
@@ -831,7 +828,6 @@ abstract class File {
 	 *
 	 * @param string $name
 	 * @param array $params Parameters which will be passed to MediaHandler::makeParamString
-	 *
 	 * @return string
 	 */
 	public function generateThumbName( $name, $params ) {
@@ -861,8 +857,8 @@ abstract class File {
 	 * specified, the generated image will be no bigger than width x height,
 	 * and will also have correct aspect ratio.
 	 *
-	 * @param $width Integer: maximum width of the generated thumbnail
-	 * @param $height Integer: maximum height of the image (optional)
+	 * @param int $width Maximum width of the generated thumbnail
+	 * @param int $height Maximum height of the image (optional)
 	 *
 	 * @return string
 	 */
@@ -884,8 +880,8 @@ abstract class File {
 	 *
 	 * @param string $thumbPath Thumbnail storage path
 	 * @param string $thumbUrl Thumbnail URL
-	 * @param $params Array
-	 * @param $flags integer
+	 * @param array $params
+	 * @param int $flags
 	 * @return MediaTransformOutput
 	 */
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
@@ -904,8 +900,8 @@ abstract class File {
 	 * Transform a media file
 	 *
 	 * @param array $params an associative array of handler-specific parameters.
-	 *                Typical keys are width, height and page.
-	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
+	 *   Typical keys are width, height and page.
+	 * @param int $flags A bitfield, may contain self::RENDER_NOW to force rendering
 	 * @return MediaTransformOutput|bool False on failure
 	 */
 	function transform( $params, $flags = 0 ) {
@@ -1053,7 +1049,8 @@ abstract class File {
 	/**
 	 * Get a MediaHandler instance for this file
 	 *
-	 * @return MediaHandler|boolean Registered MediaHandler for file's mime type or false if none found
+	 * @return MediaHandler|bool Registered MediaHandler for file's MIME type
+	 *   or false if none found
 	 */
 	function getHandler() {
 		if ( !isset( $this->handler ) ) {
@@ -1108,7 +1105,7 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 * @param array $options Options, which include:
-	 *     'forThumbRefresh' : The purging is only to refresh thumbnails
+	 *   'forThumbRefresh' : The purging is only to refresh thumbnails
 	 */
 	function purgeCache( $options = array() ) {
 	}
@@ -1147,7 +1144,7 @@ abstract class File {
 	 * Return a fragment of the history of file.
 	 *
 	 * STUB
-	 * @param $limit integer Limit of rows to return
+	 * @param int $limit Limit of rows to return
 	 * @param string $start timestamp Only revisions older than $start will be returned
 	 * @param string $end timestamp Only revisions newer than $end will be returned
 	 * @param bool $inc Include the endpoints of the time range
@@ -1229,7 +1226,6 @@ abstract class File {
 	 * thumbnail directory or a particular file if $suffix is specified
 	 *
 	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
 	 * @return string
 	 */
 	function getThumbRel( $suffix = false ) {
@@ -1257,7 +1253,6 @@ abstract class File {
 	 *
 	 * @param string $archiveName the timestamped name of an archived image
 	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
 	 * @return string
 	 */
 	function getArchiveThumbRel( $archiveName, $suffix = false ) {
@@ -1275,7 +1270,6 @@ abstract class File {
 	 * Get the path of the archived file.
 	 *
 	 * @param bool|string $suffix if not false, the name of an archived file.
-	 *
 	 * @return string
 	 */
 	function getArchivePath( $suffix = false ) {
@@ -1289,7 +1283,6 @@ abstract class File {
 	 *
 	 * @param string $archiveName the timestamped name of an archived image
 	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
 	 * @return string
 	 */
 	function getArchiveThumbPath( $archiveName, $suffix = false ) {
@@ -1302,8 +1295,7 @@ abstract class File {
 	/**
 	 * Get the path of the thumbnail directory, or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getThumbPath( $suffix = false ) {
@@ -1315,8 +1307,7 @@ abstract class File {
 	/**
 	 * Get the path of the transcoded directory, or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of a media file
-	 *
+	 * @param bool|string $suffix If not false, the name of a media file
 	 * @return string
 	 */
 	function getTranscodedPath( $suffix = false ) {
@@ -1328,8 +1319,7 @@ abstract class File {
 	/**
 	 * Get the URL of the archive directory, or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of an archived file
-	 *
+	 * @param bool|string $suffix If not false, the name of an archived file
 	 * @return string
 	 */
 	function getArchiveUrl( $suffix = false ) {
@@ -1349,8 +1339,7 @@ abstract class File {
 	 * Get the URL of the archived file's thumbs, or a particular thumb if $suffix is specified
 	 *
 	 * @param string $archiveName the timestamped name of an archived image
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getArchiveThumbUrl( $archiveName, $suffix = false ) {
@@ -1371,8 +1360,7 @@ abstract class File {
 	 * Get the URL of the zone directory, or a particular file if $suffix is specified
 	 *
 	 * @param string $zone name of requested zone
-	 * @param bool|string $suffix if not false, the name of a file in zone
-	 *
+	 * @param bool|string $suffix If not false, the name of a file in zone
 	 * @return string path
 	 */
 	function getZoneUrl( $zone, $suffix = false ) {
@@ -1390,7 +1378,6 @@ abstract class File {
 	 * Get the URL of the thumbnail directory, or a particular file if $suffix is specified
 	 *
 	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
 	 * @return string path
 	 */
 	function getThumbUrl( $suffix = false ) {
@@ -1400,8 +1387,7 @@ abstract class File {
 	/**
 	 * Get the URL of the transcoded directory, or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of a media file
-	 *
+	 * @param bool|string $suffix If not false, the name of a media file
 	 * @return string path
 	 */
 	function getTranscodedUrl( $suffix = false ) {
@@ -1411,8 +1397,7 @@ abstract class File {
 	/**
 	 * Get the public zone virtual URL for a current version source file
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getVirtualUrl( $suffix = false ) {
@@ -1428,8 +1413,7 @@ abstract class File {
 	/**
 	 * Get the public zone virtual URL for an archived version source file
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getArchiveVirtualUrl( $suffix = false ) {
@@ -1447,8 +1431,7 @@ abstract class File {
 	/**
 	 * Get the virtual URL for a thumbnail file or directory
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
-	 *
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getThumbVirtualUrl( $suffix = false ) {
@@ -1483,12 +1466,12 @@ abstract class File {
 	 * Overridden by LocalFile
 	 * @param $oldver
 	 * @param $desc
-	 * @param $license string
-	 * @param $copyStatus string
-	 * @param $source string
-	 * @param $watch bool
-	 * @param $timestamp string|bool
-	 * @param $user User object or null to use $wgUser
+	 * @param string $license
+	 * @param string $copyStatus
+	 * @param string $source
+	 * @param bool $watch
+	 * @param string|bool $timestamp
+	 * @param null|User $user User object or null to use $wgUser
 	 * @return bool
 	 * @throws MWException
 	 */
@@ -1510,12 +1493,11 @@ abstract class File {
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
 	 * @param string $srcPath local filesystem path to the source image
-	 * @param $flags Integer: a bitwise combination of:
-	 *     File::DELETE_SOURCE    Delete the source file, i.e. move
-	 *         rather than copy
+	 * @param int $flags A bitwise combination of:
+	 *   File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
 	 * @return FileRepoStatus object. On success, the value member contains the
-	 *     archive name, or an empty string if it was a new file.
+	 *   archive name, or an empty string if it was a new file.
 	 *
 	 * STUB
 	 * Overridden by LocalFile
@@ -1576,8 +1558,7 @@ abstract class File {
 	 * Is this file a "deleted" file in a private archive?
 	 * STUB
 	 *
-	 * @param integer $field one of DELETED_* bitfield constants
-	 *
+	 * @param int $field one of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
@@ -1613,7 +1594,7 @@ abstract class File {
 	 * Cache purging is done; checks for validity
 	 * and logging are caller's responsibility
 	 *
-	 * @param $target Title New file name
+	 * @param Title $target New file name
 	 * @return FileRepoStatus object.
 	 */
 	function move( $target ) {
@@ -1628,8 +1609,8 @@ abstract class File {
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason String
-	 * @param $suppress Boolean: hide content from sysops?
+	 * @param string $reason
+	 * @param bool $suppress Hide content from sysops?
 	 * @return bool on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
@@ -1645,10 +1626,10 @@ abstract class File {
 	 * May throw database exceptions on error.
 	 *
 	 * @param array $versions set of record ids of deleted items to restore,
-	 *                    or empty to restore all revisions.
+	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress remove restrictions on content upon restoration?
 	 * @return int|bool the number of file revisions restored if successful,
-	 *         or false on failure
+	 *   or false on failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
@@ -1661,7 +1642,7 @@ abstract class File {
 	 * e.g. DJVU or PDF. Note that this may be true even if the file in
 	 * question only has a single page.
 	 *
-	 * @return Bool
+	 * @return bool
 	 */
 	function isMultipage() {
 		return $this->getHandler() && $this->handler->isMultiPage( $this );
@@ -1688,9 +1669,9 @@ abstract class File {
 	/**
 	 * Calculate the height of a thumbnail using the source and destination width
 	 *
-	 * @param $srcWidth
-	 * @param $srcHeight
-	 * @param $dstWidth
+	 * @param int $srcWidth
+	 * @param int $srcHeight
+	 * @param int $dstWidth
 	 *
 	 * @return int
 	 */
@@ -1708,7 +1689,7 @@ abstract class File {
 	 * can't be determined.
 	 *
 	 * @param string $fileName The filename
-	 * @return Array
+	 * @return array
 	 */
 	function getImageSize( $fileName ) {
 		if ( !$this->getHandler() ) {
@@ -1735,7 +1716,7 @@ abstract class File {
 	/**
 	 * Get the HTML text of the description page, if available
 	 *
-	 * @param $lang Language Optional language to fetch description in
+	 * @param bool|Language $lang Optional language to fetch description in
 	 * @return string
 	 */
 	function getDescriptionText( $lang = false ) {
@@ -1780,12 +1761,12 @@ abstract class File {
 	 * Get description of file revision
 	 * STUB
 	 *
-	 * @param $audience Integer: one of:
-	 *      File::FOR_PUBLIC       to be displayed to all users
-	 *      File::FOR_THIS_USER    to be displayed to the given user
-	 *      File::RAW              get the description regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
 	 * @return string
 	 */
 	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -1834,9 +1815,9 @@ abstract class File {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this file, if it's marked as deleted.
 	 * STUB
-	 * @param $field Integer
-	 * @param $user User object to check, or null to use $wgUser
-	 * @return Boolean
+	 * @param int $field
+	 * @param User $user User object to check, or null to use $wgUser
+	 * @return bool
 	 */
 	function userCan( $field, User $user = null ) {
 		return true;
@@ -1846,8 +1827,8 @@ abstract class File {
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
 	 * @param string $path absolute local filesystem path
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
-	 *             Set it to false to ignore the extension.
+	 * @param string|bool $ext The file extension, or true to extract it from
+	 *   the filename. Set it to false to ignore the extension.
 	 *
 	 * @return array
 	 * @deprecated since 1.19
@@ -1869,7 +1850,6 @@ abstract class File {
 	 * fairly neatly.
 	 *
 	 * @param $path string
-	 *
 	 * @return bool|string False on failure
 	 * @deprecated since 1.19
 	 */
@@ -1882,7 +1862,7 @@ abstract class File {
 	}
 
 	/**
-	 * @return Array HTTP header name/value map to use for HEAD/GET request responses
+	 * @return array HTTP header name/value map to use for HEAD/GET request responses
 	 */
 	function getStreamHeaders() {
 		$handler = $this->getHandler();
@@ -1930,7 +1910,7 @@ abstract class File {
 	}
 
 	/**
-	 * @return
+	 * @return string
 	 */
 	function getRedirected() {
 		return $this->redirected;
@@ -1952,7 +1932,7 @@ abstract class File {
 	}
 
 	/**
-	 * @param $from
+	 * @param string $from
 	 * @return void
 	 */
 	function redirectedFrom( $from ) {
@@ -1968,7 +1948,7 @@ abstract class File {
 
 	/**
 	 * Check if this file object is small and can be cached
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isCacheable() {
 		return true;
