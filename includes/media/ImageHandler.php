@@ -29,6 +29,11 @@
 abstract class ImageHandler extends MediaHandler {
 
 	/**
+	 * Max length of error logged by logErrorForExternalProcess()
+	 */
+	const MAX_ERR_LOG_SIZE = 65535;
+
+	/**
 	 * @param $file File
 	 * @return bool
 	 */
@@ -262,13 +267,19 @@ abstract class ImageHandler extends MediaHandler {
 	 * Log an error that occurred in an external process
 	 *
 	 * @param $retval int
-	 * @param $err int
+	 * @param $err string Error reported by command. Anything longer than
+	 * ImageHandler::MAX_ERR_LOG_SIZE is
+	 * stripped of.
 	 * @param $cmd string
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
+
+		# Keep error output limited bug 57985
+		$errMessage = trim( substr( $err, 0, self::MAX_ERR_LOG_SIZE ) );
+
 		wfDebugLog( 'thumbnail',
 			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
+					wfHostname(), $retval, $errMessage, $cmd ) );
 	}
 
 }
