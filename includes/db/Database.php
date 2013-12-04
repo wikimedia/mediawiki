@@ -1622,7 +1622,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string|array $options Query options
 	 * @param $join_conds array|string Join conditions
 	 *
-	 * @return object|bool
+	 * @return stdClass|bool
 	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = array(), $join_conds = array()
