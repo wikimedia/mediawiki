@@ -257,4 +257,18 @@ abstract class ImageHandler extends MediaHandler {
 			return wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
 	}
+
+	/**
+	 * Log an error that occurred in an external process
+	 *
+	 * @param $retval int
+	 * @param $err int
+	 * @param $cmd string
+	 */
+	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
+		wfDebugLog( 'thumbnail',
+			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
+					wfHostname(), $retval, trim( $err ), $cmd ) );
+	}
+
 }
