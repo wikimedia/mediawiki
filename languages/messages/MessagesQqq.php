@@ -2832,7 +2832,8 @@ Parameters:
 'searchmenu-new' => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).
 
 Parameters:
-* $1 - page title',
+* $1 - page title
+* $2 - the number of search results found',
 'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
 Parameters:
 * $1 - prefix string',
