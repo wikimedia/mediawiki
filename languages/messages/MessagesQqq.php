@@ -2812,11 +2812,16 @@ Refers to {{msg-mw|Pipe-separator}}.',
 'searchmenu-exists' => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).
 
 Parameters:
-* $1 - page title',
+* $1 - page title
+* $2 - the number of search results found',
 'searchmenu-new' => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).
 
 Parameters:
-* $1 - page title',
+* $1 - page title
+* $2 - the number of search results found',
+'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
+Parameters:
+* $1 - prefix string',
 'searchprofile-articles' => "A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
