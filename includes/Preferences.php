@@ -1062,12 +1062,6 @@ class Preferences {
 			);
 		}
 
-		$defaultPreferences['disablesuggest'] = array(
-			'type' => 'toggle',
-			'label-message' => 'mwsuggest-disable',
-			'section' => 'searchoptions/displaysearchoptions',
-		);
-
 		$defaultPreferences['searcheverything'] = array(
 			'type' => 'toggle',
 			'label-message' => 'searcheverything-enable',

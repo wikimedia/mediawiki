@@ -243,9 +243,7 @@ abstract class Skin extends ContextSource {
 					$modules['watch'][] = 'mediawiki.page.watch.ajax';
 				}
 
-				if ( !$user->getOption( 'disablesuggest', false ) ) {
-					$modules['search'][] = 'mediawiki.searchSuggest';
-				}
+				$modules['search'][] = 'mediawiki.searchSuggest';
 			}
 		}
 
