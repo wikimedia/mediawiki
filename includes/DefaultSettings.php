@@ -3995,7 +3995,6 @@ $wgDefaultUserOptions = array(
 	'disablemail' => 0,
 	'editfont' => 'default',
 	'editondblclick' => 0,
-	'editsection' => 1,
 	'editsectiononrightclick' => 0,
 	'enotifminoredits' => 0,
 	'enotifrevealaddr' => 0,
