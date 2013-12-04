@@ -62,6 +62,8 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
+global $wgRUstart;
+global $wgRequestTime;
 $wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
@@ -82,6 +84,7 @@ define( 'MEDIAWIKI', true );
 # Makes it possible to for example to have effective exclude path in apc.
 # __DIR__ breaks symlinked includes, but realpath() returns false
 # if we don't have permissions on parent directories.
+global $IP;
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	if ( realpath( '.' ) ) {
@@ -108,8 +111,19 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 
 wfProfileIn( 'WebStart.php-conf' );
 
+# If this file is loaded in the scope of a function in another
+# PHP application, the vars in DefaultSettings are not global.
+# We take a snapshot of the defined vars before loading
+# DefaultSettings, then globalize the newly defined vars
+# explicitly.
+$varsBeforeRequire = get_defined_vars();
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
+$varsDiff = array_diff_key(get_defined_vars(), $varsBeforeRequire);
+foreach ( $varsDiff as $name => $value ) {
+	$GLOBALS[$name] = $value;
+	global $$name;
+}
 
 # Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
@@ -150,5 +164,15 @@ if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ob_get_level() == 0 ) {
 wfProfileOut( 'WebStart.php-ob_start' );
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
+	$varsBeforeRequire = get_defined_vars();
+	# Load default settings
 	require_once "$IP/includes/Setup.php";
+	$varsDiff = array_diff_key(get_defined_vars(), $varsBeforeRequire);
+	foreach ( $varsDiff as $name => $value ) {
+		$GLOBALS[$name] = $value;
+		global $$name;
+	}
 }
+# don't pollute the global namespace if this file is loaded
+# normally
+unset( $varsDiff, $varsBeforeRequire );

@@ -1977,6 +1977,13 @@ class OutputPage extends ContextSource {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
+		echo $this->getOutput();
+	}
+
+	/**
+	 * Returns the accumulated page text as a string
+	 */
+	public function getOutput() {
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP,
 			$wgUseAjax, $wgResponsiveImages;
 
@@ -2084,9 +2091,10 @@ class OutputPage extends ContextSource {
 
 		$this->sendCacheControl();
 
-		ob_end_flush();
-
+		$text = ob_get_contents();
+		ob_end_clean();
 		wfProfileOut( __METHOD__ );
+		return $text;
 	}
 
 	/**
