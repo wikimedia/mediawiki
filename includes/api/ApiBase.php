@@ -2282,7 +2282,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param bool $backtrace If true, print a backtrace
 	 */
 	public static function debugPrint( $value, $name = 'unknown', $backtrace = false ) {
-		print "\n\n<pre><b>Debugging value '$name':</b>\n\n";
+		print "\n\n<pre><strong>Debugging value '$name':</strong>\n\n";
 		var_export( $value );
 		if ( $backtrace ) {
 			print "\n" . wfBacktrace();

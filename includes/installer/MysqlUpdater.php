@@ -421,8 +421,8 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		if ( $rows->numRows() > 0 ) {
 			$this->output( wfTimestamp( TS_DB ) );
-			$this->output( "......<b>Found duplicate entries</b>\n" );
-			$this->output( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
+			$this->output( "......<strong>Found duplicate entries</strong>\n" );
+			$this->output( sprintf( "<strong>      %-60s %3s %5s</strong>\n", 'Title', 'NS', 'Count' ) );
 			$duplicate = array();
 			foreach ( $rows as $row ) {
 				if ( !isset( $duplicate[$row->cur_namespace] ) ) {
@@ -475,7 +475,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
 			$this->db->query( $sql, __METHOD__ );
 			$this->output( wfTimestamp( TS_DB ) );
-			$this->output( "......<b>Deleted</b> " . $this->db->affectedRows() . " records.\n" );
+			$this->output( "......<strong>Deleted</strong> " . $this->db->affectedRows() . " records.\n" );
 		}
 
 		$this->output( wfTimestamp( TS_DB ) );
