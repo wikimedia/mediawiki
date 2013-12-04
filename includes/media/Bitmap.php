@@ -496,19 +496,6 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Log an error that occurred in an external process
-	 *
-	 * @param $retval int
-	 * @param $err int
-	 * @param $cmd string
-	 */
-	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
-		wfDebugLog( 'thumbnail',
-			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-				wfHostname(), $retval, trim( $err ), $cmd ) );
-	}
-
-	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
 	 *
 	 * @param array $params Parameter array as passed to the transform* functions
