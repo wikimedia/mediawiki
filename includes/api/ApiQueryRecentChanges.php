@@ -324,7 +324,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rc_id=ct_rc_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
 		}
 
 		$this->token = $params['token'];

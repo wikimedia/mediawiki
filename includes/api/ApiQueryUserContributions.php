@@ -282,7 +282,6 @@ class ApiQueryContributions extends ApiQueryBase {
 				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
 			);
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
 		}
 
 		if ( $this->params['toponly'] ) {

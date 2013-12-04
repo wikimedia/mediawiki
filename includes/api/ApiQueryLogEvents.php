@@ -102,7 +102,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN',
 				array( 'log_id=ct_log_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
 		}
 
 		if ( !is_null( $params['action'] ) ) {

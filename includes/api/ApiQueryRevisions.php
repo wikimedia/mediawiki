@@ -180,9 +180,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->contentFormat = $params['contentformat'];
 		}
 
-		// Possible indexes used
-		$index = array();
-
 		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
 		$botMax = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
 		$limit = $params['limit'];
@@ -210,7 +207,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
 			);
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
 		}
 
 		if ( isset( $prop['content'] ) || !is_null( $this->difftotext ) ) {
@@ -379,7 +375,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'USE INDEX', $index );
 
 		$count = 0;
 		$res = $this->select( __METHOD__ );
