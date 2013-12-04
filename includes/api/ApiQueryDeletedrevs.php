@@ -59,6 +59,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_content = isset( $prop['content'] );
 		$fld_token = isset( $prop['token'] );
+		$fld_tags = isset( $prop['tags'] );
 
 		// If we're in JSON callback mode, no tokens can be obtained
 		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
@@ -111,6 +112,23 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
+
+		if ( $fld_tags ) {
+			$this->addTables( 'tag_summary' );
+			$this->addJoinConds(
+				array( 'tag_summary' => array( 'LEFT JOIN', array( 'ar_rev_id=ts_rev_id' ) ) )
+			);
+			$this->addFields( 'ts_tags' );
+		}
+
+		if ( !is_null( $params['tag'] ) ) {
+			$this->addTables( 'change_tag' );
+			$this->addJoinConds(
+				array( 'change_tag' => array( 'INNER JOIN', array( 'ar_rev_id=ct_rev_id' ) ) )
+			);
+			$this->addWhereFld( 'ct_tag', $params['tag'] );
+			$this->addOption( 'USE INDEX', 'change_tag_tag_id' );
+		}
 
 		if ( $fld_content ) {
 			$this->addTables( 'text' );
@@ -264,6 +282,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
 			}
 
+			if ( $fld_tags ) {
+				if ( $row->ts_tags ) {
+					$tags = explode( ',', $row->ts_tags );
+					$this->getResult()->setIndexedTagName( $tags, 'tag' );
+					$rev['tags'] = $tags;
+				} else {
+					$rev['tags'] = array();
+				}
+			}
+
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
@@ -313,6 +341,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'prefix' => null,
 			'continue' => null,
 			'unique' => false,
+			'tag' => null,
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
@@ -343,7 +372,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'len',
 					'sha1',
 					'content',
-					'token'
+					'token',
+					'tags'
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
@@ -372,12 +402,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				' sha1           - Adds the SHA-1 (base 16) of the revision',
 				' content        - Adds the content of the revision',
 				' token          - Gives the edit token',
+				' tags           - Tags for the revision',
 			),
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
 			'excludeuser' => 'Don\'t list revisions by this user',
 			'continue' => 'When more results are available, use this to continue (1, 3)',
 			'unique' => 'List only one revision for each page (3)',
+			'tag' => 'Only list revisions tagged with this tag',
 		);
 	}
 
