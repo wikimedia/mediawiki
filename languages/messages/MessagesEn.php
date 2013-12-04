@@ -1050,9 +1050,6 @@ It may contain one or more characters that cannot be used in titles.',
 'perfcachedts'                  => 'The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates'          => 'Updates for this page are currently disabled.
 Data here will not presently be refreshed.',
-'wrong_wfQuery_params'          => 'Incorrect parameters to wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource'                    => 'View source',
 'viewsource-title'              => 'View source for $1',
 'actionthrottled'               => 'Action throttled',
