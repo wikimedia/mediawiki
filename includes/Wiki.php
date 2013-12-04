@@ -469,7 +469,7 @@ class MediaWiki {
 	 * for given maxlag parameter.
 	 * @return bool
 	 */
-	private function checkMaxLag() {
+	public function checkMaxLag() {
 		global $wgShowHostnames;
 
 		wfProfileIn( __METHOD__ );
@@ -497,7 +497,7 @@ class MediaWiki {
 		return true;
 	}
 
-	private function main() {
+	public function main() {
 		global $wgUseFileCache, $wgTitle, $wgUseAjax;
 
 		wfProfileIn( __METHOD__ );
