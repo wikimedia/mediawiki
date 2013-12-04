@@ -44,6 +44,8 @@ production.
   levels available that would restrict editing beyond what
   $wgNamespaceProtection already applies. The protection form will offer only
   those protection levels.
+* Added $wgAPIFormatModules, allowing extensions to add additional output
+  formatting modules for the API.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
