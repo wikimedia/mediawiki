@@ -190,6 +190,7 @@ changes to languages because of Bugzilla reports.
    access operators should continue to work, as it implements the ArrayAccess
    interface).
 * Option to mark hooks as deprecated has been added.
+* (bug 52811) Removed "Enable section editing via [edit] links" from Preference.
 
 ==== Removed classes ====
 * TitleDependency (unused)
