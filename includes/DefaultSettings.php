@@ -1319,6 +1319,8 @@ unset( $serverName ); # Don't leak local variables to global scope
 
 /**
  * Password reminder name
+ *
+ * @deprecated since 1.23; use the system message 'emailsender' instead.
  */
 $wgPasswordSenderName = 'MediaWiki Mail';
 
@@ -1943,9 +1945,6 @@ $wgCacheDirectory = false;
  *   - CACHE_DB:         Store cache objects in the DB
  *   - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
  *   - CACHE_ACCEL:      APC, XCache or WinCache
- *   - CACHE_DBA:        Use PHP's DBA extension to store in a DBM-style
- *                       database. This is slow, and is not recommended for
- *                       anything other than debugging.
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgObjectCaches.
  *
@@ -1998,15 +1997,10 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  * the value is an associative array of parameters. The "class" parameter is the
  * class name which will be used. Alternatively, a "factory" parameter may be
  * given, giving a callable function which will generate a suitable cache object.
- *
- * The other parameters are dependent on the class used.
- * - CACHE_DBA uses $wgTmpDirectory by default. The 'dir' parameter let you
- *   overrides that.
  */
 $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'table' => 'objectcache' ),
-	CACHE_DBA => array( 'class' => 'DBABagOStuff' ),
 
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
@@ -2025,12 +2019,6 @@ $wgObjectCaches = array(
  * The default is 86400 (one day).
  */
 $wgParserCacheExpireTime = 86400;
-
-/**
- * Select which DBA handler <http://www.php.net/manual/en/dba.requirements.php>
- * to use as CACHE_DBA backend.
- */
-$wgDBAhandler = 'db3';
 
 /**
  * Deprecated alias for $wgSessionsInObjectCache.
@@ -3069,14 +3057,6 @@ $wgVectorUseIconWatch = true;
 $wgEdititis = false;
 
 /**
- * Better directionality support (bug 6100 and related).
- * Removed in 1.18, still kept here for LiquidThreads backwards compatibility.
- *
- * @deprecated since 1.18
- */
-$wgBetterDirectionality = true;
-
-/**
  * Some web hosts attempt to rewrite all responses with a 404 (not found)
  * status code, mangling or hiding MediaWiki's output. If you are using such a
  * host, you should start looking for a better one. While you're doing that,
@@ -3986,8 +3966,8 @@ $wgReservedUsernames = array(
 /**
  * Settings added to this array will override the default globals for the user
  * preferences used by anonymous visitors and newly created accounts.
- * For instance, to disable section editing links:
- * $wgDefaultUserOptions ['editsection'] = 0;
+ * For instance, to disable editing on double clicks:
+ * $wgDefaultUserOptions ['editondblclick'] = 0;
  */
 $wgDefaultUserOptions = array(
 	'ccmeonemails' => 0,
@@ -3997,7 +3977,6 @@ $wgDefaultUserOptions = array(
 	'disablemail' => 0,
 	'editfont' => 'default',
 	'editondblclick' => 0,
-	'editsection' => 1,
 	'editsectiononrightclick' => 0,
 	'enotifminoredits' => 0,
 	'enotifrevealaddr' => 0,
@@ -4024,7 +4003,6 @@ $wgDefaultUserOptions = array(
 	'rclimit' => 50,
 	'rememberpassword' => 0,
 	'rows' => 25,
-	'searchlimit' => 20,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showtoc' => 1,
@@ -4575,6 +4553,15 @@ $wgAvailableRights = array();
  * to users with the 'bigdelete' permission. (Default given to sysops.)
  */
 $wgDeleteRevisionsLimit = 0;
+
+/**
+ * The maximum number of edits a user can have and
+ * can still be hidden by users with the hideuser permission.
+ * This is limited for performance reason.
+ * Set to false to disable the limit.
+ * @since 1.23
+ */
+$wgHideUserContribLimit = 1000;
 
 /**
  * Number of accounts each IP address may create, 0 to disable.
