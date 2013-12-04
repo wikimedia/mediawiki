@@ -40,6 +40,13 @@ class FileRepo {
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
 
+	/** @var bool Whether to fetch commons image description pages and display
+	 *    them on the local wiki */
+	public $fetchDescription;
+
+	/** @var int */
+	public $descriptionCacheExpiry;
+
 	/** @var FileBackend */
 	protected $backend;
 
@@ -70,10 +77,6 @@ class FileRepo {
 	/** @var string Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
-	/** @var bool Whether to fetch commons image description pages and display
-	 *    them on the local wiki */
-	public $fetchDescription;
-
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
 	 *    determines whether filenames implicitly start with a capital letter.
 	 *    The current implementation may give incorrect description page links
@@ -87,9 +90,6 @@ class FileRepo {
 	 *    'simple'.
 	 */
 	protected $pathDisclosureProtection = 'simple';
-
-	/** @var int */
-	public $descriptionCacheExpiry;
 
 	/** @var bool Public zone URL. */
 	protected $url;
