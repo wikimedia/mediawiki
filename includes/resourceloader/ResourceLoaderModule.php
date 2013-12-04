@@ -407,7 +407,7 @@ abstract class ResourceLoaderModule {
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName() );
+		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName(), $hash );
 
 		$data = $cache->get( $key );
 		if ( is_array( $data ) && $data['hash'] === $hash ) {
