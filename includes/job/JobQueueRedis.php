@@ -776,7 +776,7 @@ LUA;
 			'title' => $job->getTitle()->getDBkey(),
 			'params' => $job->getParams(),
 			// Some jobs cannot run until a "release timestamp"
-			'rtimestamp' => $job->getReleaseTimestamp() ? : 0,
+			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
 			// Additional job metadata
 			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
 			'sha1' => $job->ignoreDuplicates()
