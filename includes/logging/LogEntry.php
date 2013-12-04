@@ -450,7 +450,7 @@ class ManualLogEntry extends LogEntryBase {
 	public function insert( IDatabase $dbw = null ) {
 		global $wgContLang;
 
-		$dbw = $dbw ? : wfGetDB( DB_MASTER );
+		$dbw = $dbw ?: wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {

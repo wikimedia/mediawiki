@@ -645,7 +645,7 @@ class CopyFileOp extends FileOp {
 			$status = Status::newGood(); // nothing to do
 		} elseif ( $this->params['src'] === $this->params['dst'] ) {
 			// Just update the destination file headers
-			$headers = $this->getParam( 'headers' ) ? : array();
+			$headers = $this->getParam( 'headers' ) ?: array();
 			$status = $this->backend->describeInternal( $this->setFlags( array(
 				'src' => $this->params['dst'], 'headers' => $headers
 			) ) );
