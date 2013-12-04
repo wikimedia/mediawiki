@@ -1,6 +1,6 @@
 /**
  * This script provides a function which is run to evaluate whether or not to
- * continue loading the jquery and mediawiki modules. This code should work on
+ * continue loading the jQuery and MediaWiki modules. This code should work on
  * even the most ancient of browsers, so be very careful when editing.
  */
 
