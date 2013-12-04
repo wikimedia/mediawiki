@@ -31,10 +31,8 @@
  * @internal documentation reviewed 15 Mar 2010
  */
 class Title {
-	/** @name Static cache variables */
-	// @{
-	static private $titleCache = array();
-	// @}
+	/** @var MapCacheLRU */
+	static private $titleCache = null;
 
 	/**
 	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
@@ -130,6 +128,8 @@ class Title {
 			throw new MWException( 'Title::newFromText given an object' );
 		}
 
+		$cache = self::getTitleCache();
+
 		/**
 		 * Wiki pages often contain multiple links to the same page.
 		 * Title normalization and parsing can become expensive on
@@ -138,8 +138,8 @@ class Title {
 		 *
 		 * In theory these are value objects and won't get changed...
 		 */
-		if ( $defaultNamespace == NS_MAIN && isset( Title::$titleCache[$text] ) ) {
-			return Title::$titleCache[$text];
+		if ( $defaultNamespace == NS_MAIN && $cache->has( $text ) ) {
+			return $cache->get( $text );
 		}
 
 		# Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
@@ -149,16 +149,9 @@ class Title {
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = $defaultNamespace;
 
-		static $cachedcount = 0;
 		if ( $t->secureAndSplit() ) {
 			if ( $defaultNamespace == NS_MAIN ) {
-				if ( $cachedcount >= self::CACHE_MAX ) {
-					# Avoid memory leaks on mass operations...
-					Title::$titleCache = array();
-					$cachedcount = 0;
-				}
-				$cachedcount++;
-				Title::$titleCache[$text] =& $t;
+				$cache->set( $text, $t );
 			}
 			return $t;
 		} else {
@@ -198,6 +191,16 @@ class Title {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * @return MapCacheLRU
+	 */
+	private static function getTitleCache() {
+		if ( self::$titleCache == null ) {
+			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
+		}
+		return self::$titleCache;
 	}
 
 	/**
