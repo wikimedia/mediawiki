@@ -1220,8 +1220,8 @@ class LocalFile extends File {
 	 * @param null|User $user
 	 * @return bool
 	 */
-	function recordUpload2(
-		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
+	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false,
+		$user = null
 	) {
 		wfProfileIn( __METHOD__ );
 
