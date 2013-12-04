@@ -303,7 +303,6 @@ $messages = array(
 'qbedit' => 'Baguhin',
 'qbpageoptions' => 'Itong pahina',
 'qbmyoptions' => 'Mga pahina ko',
-'qbspecialpages' => 'Mga natatanging pahina',
 'faq' => "Mga karaniwang itinatanong (''FAQ'')",
 'faqpage' => "Project:Mga karaniwang itinatanong (''FAQ'')",
 
@@ -519,9 +518,6 @@ Maaaring naglalaman ito ng isa o higit pang mga panitik (karakter) na hindi maaa
 'perfcachedts' => 'Ang sumusunod na mga dato ay nakaligpit, at dating isinapanahon noong $1. Isang pinakamataas na {{PLURAL:$4|isang resulta ang|$4 mga resulta ang}} makukuha mula sa taguan.',
 'querypage-no-updates' => 'Kasulukuyang hindi gumagana ang mga pagbabago para sa pahinang ito.
 Ang mga dato dito ay hindi pa masasariwa sa kasalukuyan.',
-'wrong_wfQuery_params' => 'Maling mga parametro sa wfQuery()<br />
-Tungkulin: $1<br />
-Tanong: $2',
 'viewsource' => 'Tingnan ang batayan',
 'viewsource-title' => 'Tingnan ang pinagmulan para sa $1',
 'actionthrottled' => 'Hinadlangan ang gawain',
@@ -3582,10 +3578,6 @@ $8',
 'exif-urgency-low' => 'Mababa ( $1 )',
 'exif-urgency-high' => 'Mataas ($1)',
 'exif-urgency-other' => 'Pagkakauna-unang tinukoy ng tagagamit ($1)',
-
-# External editor support
-'edit-externally' => 'Baguhin ang talaksang ito sa pamamagitan ng isang panlabas na aplikasyon',
-'edit-externally-help' => 'Tingnan ang [//meta.wikimedia.org/wiki/Help:External_editors mga kaalaman/paraan sa paghahanda at pagaayos] para sa mas marami pang kabatiran.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'lahat',

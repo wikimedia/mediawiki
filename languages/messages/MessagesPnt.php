@@ -161,7 +161,6 @@ $messages = array(
 'qbedit' => 'Άλλαξον',
 'qbpageoptions' => 'Ατή η σελίδαν',
 'qbmyoptions' => "Τ' εμά τα σελίδας",
-'qbspecialpages' => 'Ειδικά σελίδας',
 'faq' => 'Πολλά ερωτήσεις (FAQ)',
 'faqpage' => 'Project:Πολλά ερωτήσεις (FAQ)',
 
@@ -1343,10 +1342,6 @@ $messages = array(
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-m' => 'Μίλιαν την ώραν',
 'exif-gpsspeed-n' => 'Κορδίλαι',
-
-# External editor support
-'edit-externally' => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
-'edit-externally-help' => '(Τερέστεν τα [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ούλαι',

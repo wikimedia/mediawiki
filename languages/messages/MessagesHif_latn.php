@@ -192,7 +192,6 @@ $messages = array(
 'qbedit' => 'Badlo',
 'qbpageoptions' => 'Ii panna',
 'qbmyoptions' => 'Hamar panna',
-'qbspecialpages' => 'Khaas panna',
 'faq' => 'Sab time puchhe waala sawal',
 'faqpage' => 'Project:Sab time puchhe waala sawal',
 
@@ -407,9 +406,6 @@ Uu koi kaaran nai dis hae.',
 'perfcached' => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. Jaada se jaada {{PLURAL:$1|ek result |$1 results}} cache me hae.',
 'perfcachedts' => 'Niche likha data ke cache kar dewa gais rahaa, aur pichhle time $1 ke badlaa gais rahaa. Jaada se jaada {{PLURAL:$4|ek result |$4 results}} cache me hae.',
 'querypage-no-updates' => 'Ii panna me badlao abhi band hai. Data ke abhi nawaa nai karaa jaai.',
-'wrong_wfQuery_params' => 'Galat parameters to wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'Source dekho',
 'viewsource-title' => '"$1" ke source dekho',
 'actionthrottled' => 'Kaam ke band kar dewa gais hai',
@@ -3458,10 +3454,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-urgency-low' => 'Kamti ($1)',
 'exif-urgency-high' => 'Jaada ($1)',
 'exif-urgency-other' => 'Sadasya-defined priority ($1)',
-
-# External editor support
-'edit-externally' => 'Ii file ke bahaari program me kaam me laae ke badlo',
-'edit-externally-help' => '(Aur jaankari khatir [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sab',

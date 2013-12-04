@@ -210,7 +210,6 @@ $messages = array(
 'qbedit' => 'Redakto',
 'qbpageoptions' => 'Kjo faqe',
 'qbmyoptions' => 'Faqet e mija',
-'qbspecialpages' => 'Faqet speciale',
 'faq' => 'Pyetjet e shpeshta',
 'faqpage' => 'Project:Pyetjet e shpeshta',
 
@@ -405,9 +404,6 @@ Ndodh që ka shêja që nuk munden me u përdorë në titull.',
 'perfcachedts' => 'Shenimi i mâposhtëm âsht kopje e memorizueme dhe âsht rifreskue së fundit me $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Redaktimi i kësaj faqeje âsht ndalue për momentin.
 Shenimet këtu nuk do të rifreskohen.',
-'wrong_wfQuery_params' => 'Parametra gabim te wfQuery()<br />
-Funksioni: $1<br />
-Kërkesa: $2',
 'viewsource' => 'Shih kodin',
 'actionthrottled' => 'Veprimi âsht i kufizuem',
 'actionthrottledtext' => 'Si masë kunder spamit, jeni të kufizuem me kry këtë veprim shumë herë për nji kohë shumë të shkurtë, dhe e keni tejkalue këtë kufizim.
@@ -1551,10 +1547,6 @@ Tjerat kanë me mbetë të mshefuna.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Ndryshoni kët figurë/skedë me një mjet të jashtëm',
-'edit-externally-help' => '(Shih [https://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për mâ shumë informata)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'krejt',

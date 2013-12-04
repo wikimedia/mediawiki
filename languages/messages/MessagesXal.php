@@ -197,7 +197,6 @@ $messages = array(
 'qbedit' => 'Чиклх',
 'qbpageoptions' => 'Тер халх',
 'qbmyoptions' => 'Тана халхс',
-'qbspecialpages' => 'Көдлхнә халхс',
 'faq' => 'Юм би',
 'faqpage' => 'Project:Юм би',
 
@@ -1160,10 +1159,6 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 'exif-orientation-1' => 'Кирин',
 'exif-orientation-2' => 'Теңгрин хормаһар туссн',
-
-# External editor support
-'edit-externally' => 'Эн боомгиг һаза заклһар чиклх',
-'edit-externally-help' => '([https://www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цуг',

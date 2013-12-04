@@ -511,7 +511,6 @@ $messages = array(
 'qbedit' => 'Уреди',
 'qbpageoptions' => 'Оваа страница',
 'qbmyoptions' => 'Мои страници',
-'qbspecialpages' => 'Специјални страници',
 'faq' => 'ЧПП',
 'faqpage' => 'Project:ЧПП',
 
@@ -732,9 +731,6 @@ $1',
 'perfcachedts' => 'Следните податоци се кеширани, последен пат подновени на $1. Во кешот {{PLURAL:$4|е достапен највеќе еден резултат|се достапни највеќе $4 резултати}}.',
 'querypage-no-updates' => 'Подновите на оваа страница моментално се оневозможени.
 Податоците овде во моментов нема да се подновуваат.',
-'wrong_wfQuery_params' => 'Грешни параметри до wfQuery()<br />
-Функција: $1<br />
-Барање: $2',
 'viewsource' => 'Преглед',
 'viewsource-title' => 'Преглед на кодот на $1',
 'actionthrottled' => 'Дејството е успорено',
@@ -3933,10 +3929,6 @@ Variants for Chinese language
 'exif-urgency-low' => 'Мала ($1)',
 'exif-urgency-high' => 'Голема ($1)',
 'exif-urgency-other' => 'Кориснички-зададен приоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Уреди ја податотеката со надворешен програм',
-'edit-externally-help' => '(Видете [https://www.mediawiki.org/wiki/Manual:External_editors повеќе напатствија] за нагодувањето).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'сите',

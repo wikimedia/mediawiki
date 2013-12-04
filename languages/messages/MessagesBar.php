@@ -202,7 +202,6 @@ $messages = array(
 'qbedit' => 'werkeln',
 'qbpageoptions' => 'Seitenopzionen',
 'qbmyoptions' => 'Meine Seiten',
-'qbspecialpages' => 'Speziaalseiten',
 'faq' => 'Oft gstejte Frong',
 'faqpage' => 'Project:FAQ',
 
@@ -403,9 +402,6 @@ Méglicherweis iss schoh vohram åndern gléschd worn.',
 'perfcached' => "Dé fóigernden Daaten staummern aus'm Cache und san méglicherweis nimmer aktuö. Maximoi {{PLURAL:$1|oah Ergebnis is|$1 Ergebniss san}} im Cache vafiagbor.",
 'perfcachedts' => "Dé Daaten staummern aus 'm Cache. Da Zeidbunkt voh da létzden Aktualisiarung: $1. Maximoi {{PLURAL:$4|oah Ergebnis is|$4 Ergebniss san}} im Cache vafiagbor.",
 'querypage-no-updates' => "'''Dé Aktualisiarungsfunkzión voh derer Seiten is derzeid deaktivird. Dé Daaten wern bis auf Weiders néd daneiert.'''",
-'wrong_wfQuery_params' => 'Foische Parameeter fyr wfQuery()<br />
-Funkzión: $1<br />
-Obfrog: $2',
 'viewsource' => 'Quejtext ozoagn',
 'viewsource-title' => 'Quöntext voh da Seiten $1 auhschauh',
 'actionthrottled' => 'Akziónszoi limitird',
@@ -1562,10 +1558,6 @@ Weidane wean standardmassi ned ozoagt.
 'exif-gpsspeed' => 'Gschwindigkeid vom GPS-Empfänger',
 
 'exif-componentsconfiguration-0' => 'Gibts néd',
-
-# External editor support
-'edit-externally' => 'De Datei mid am externa Programm beorbatn',
-'edit-externally-help' => '(Schaug unter [https://www.mediawiki.org/wiki/Manual:External_editors Installationsoweisunga] fia weidane Infos)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',

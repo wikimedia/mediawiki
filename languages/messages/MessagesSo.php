@@ -154,7 +154,6 @@ $messages = array(
 'qbedit' => 'Wax ka bedel',
 'qbpageoptions' => 'Boggaan',
 'qbmyoptions' => 'Boggageyga',
-'qbspecialpages' => 'Bogaga qaaska ah',
 'faq' => 'SIL',
 'faqpage' => 'Project:SIL',
 
@@ -1429,10 +1428,6 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 
 # Exif tags
 'exif-iimcategory' => 'Qeybta',
-
-# External editor support
-'edit-externally' => 'wax ka bedel faylkaan adiga oo isticmaalaya brogram dheeraad ah',
-'edit-externally-help' => '(Ka fiiri wax war ah oo kale  [https://www.mediawiki.org/wiki/Manual:External_editors sidii oo wax ugu habeysmi lahaa] )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'dhamaan',

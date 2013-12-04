@@ -228,7 +228,6 @@ $messages = array(
 'qbedit' => 'Betara',
 'qbpageoptions' => 'Ikatcuksbu',
 'qbmyoptions' => 'Jinaf ikatcukseem',
-'qbspecialpages' => 'Aptaf bueem',
 'faq' => 'NEB',
 'faqpage' => 'Project:FAQ',
 
@@ -404,9 +403,6 @@ Rotir artan ixam al sular.',
 'perfcached' => 'Vlevef orig yo tid koe palsexo nume me zo ronusked. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Vlevef orig yo tid koe palsexo, ise ironokafa nuskera tir $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Nuskera va batu bu me noelon flir. Acum origeem me zo divneditir.',
-'wrong_wfQuery_params' => 'Mewadaf dor koe wfQuery() dirgara<br />
-Fliok : $1<br />
-Erura : $2',
 'viewsource' => 'Wira va klitakrent',
 'viewsource-title' => 'Wira va klita ke $1',
 'actionthrottled' => 'Tulokaliana tegira',
@@ -2185,10 +2181,6 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ageltania',
 'exif-gpsdirection-m' => 'Zatnia',
-
-# External editor support
-'edit-externally' => 'Betara va bat iyeltak faveson va divef talpey',
-'edit-externally-help' => '(Ta lo giva va [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] disukel !)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kot',

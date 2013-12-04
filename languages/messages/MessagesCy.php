@@ -274,7 +274,6 @@ $messages = array(
 'qbedit' => 'Golygu',
 'qbpageoptions' => 'Y dudalen hon',
 'qbmyoptions' => 'Fy nhudalennau',
-'qbspecialpages' => 'Tudalennau arbennig',
 'faq' => 'Cwestiynau cyffredin',
 'faqpage' => 'Project:Cwestiynau cyffredin',
 
@@ -490,9 +489,6 @@ Ni roddodd eglurhad.',
 'perfcached' => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw. Cedwir hyd at {{PLURAL:$1||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$1 chanlyniad|$1 canlyniad}} yn y copi cadw.",
 'perfcachedts' => 'Rhoddwyd y data canlynol ar gadw mewn celc a ddiweddarwyd ddiwethaf am $1. Cedwir hyd at {{PLURAL:$4||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$4 chanlyniad|$4 canlyniad}} yn y celc.',
 'querypage-no-updates' => "Ar hyn o bryd, nid yw'r meddalwedd wedi ei osod i ddiweddaru data'r dudalen hon.",
-'wrong_wfQuery_params' => 'Paramedrau anghywir i wfQuery()<br />
-Ffwythiant: $1<br />
-Gofyniad: $2',
 'viewsource' => 'Dangos côd y dudalen',
 'viewsource-title' => 'Gweld cod y dudalen $1',
 'actionthrottled' => 'Tagwyd y weithred',
@@ -3525,10 +3521,6 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-urgency-low' => 'Isel ($1)',
 'exif-urgency-high' => 'Uchel ($1)',
 'exif-urgency-other' => 'Blaenoriaeth yn ôl y defnyddiwr ($1)',
-
-# External editor support
-'edit-externally' => 'Golygwch y ffeil gyda rhaglen allanol',
-'edit-externally-help' => '(Gwelwch y [https://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'holl',

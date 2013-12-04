@@ -226,7 +226,6 @@ $messages = array(
 'qbedit' => 'Mudifigga',
 'qbpageoptions' => 'Prifirenzi pàgina',
 'qbmyoptions' => "Li me' pàgini",
-'qbspecialpages' => 'Pàgini ippiziari',
 'faq' => 'FAQ (infuimmazioni e aggiuddu)',
 'faqpage' => 'Project:FAQ (infuimmazioni e aggiuddu)',
 
@@ -394,9 +393,6 @@ Si priga di cuntattà un'[[Special:ListUsers/sysop|amministhradore]], ippizzific
 'perfcached' => "Li dati chi seghini so cabaddi da una còpia i' la mimória cache di la bancadati, no aggiornaddi in tempu riari. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => "Li dati chi seghini so cabaddi da una còpia i' la mimória cache di la bancadati. Ulthimu aggiornamentu: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => "L'aggiornamenti di la pàgina so timpuraniamenti suippesi. Li dati in edda cuntinuddi no sarani aggiornaddi.",
-'wrong_wfQuery_params' => "Errori i' li parametri inviaddi a la funzioni wfQuery()<br />
-funzioni: $1<br />
-Interrogazioni: $2",
 'viewsource' => 'Vèdi còdizi',
 'actionthrottled' => 'Azioni limitadda',
 'actionthrottledtext' => "Cumenti rimédiu anti-spam, v'è un lìmiti a l'azioni ch'è pussìbiri eseguì i'nu tempu isthabiriddu, e abà suparaddu. Pògu tèmpu e pói riprubà.",
@@ -1862,10 +1858,6 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'Nodi',
-
-# External editor support
-'edit-externally' => 'Mudìfigga chistu file usendi un prugramma esthernu',
-'edit-externally-help' => "Pa maggiori infuimmazioni cunsulthà l'[https://www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutti',

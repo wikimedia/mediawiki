@@ -164,7 +164,6 @@ $messages = array(
 'qbedit' => 'ترمیم',
 'qbpageoptions' => 'ھیہ صفحہ',
 'qbmyoptions' => 'مہ صفحات',
-'qbspecialpages' => 'خاص صفحات',
 'faq' => 'عام معلومات',
 'faqpage' => 'Project:معلوماتِ عامہ',
 
@@ -1077,11 +1076,6 @@ HTML tags لوڑے.',",
 * gpsaltitude',
 
 'exif-dc-date' => 'تاریخ',
-
-# External editor support
-'edit-externally' => 'ھیہ مسلو ایڈیٹ کورے',
-'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
-(مزید معلوماتو بچے ھیہ لنکہ بوغے [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سف',

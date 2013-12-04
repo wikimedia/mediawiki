@@ -173,7 +173,6 @@ $messages = array(
 'qbedit' => 'Ändrn',
 'qbpageoptions' => 'Sajdn-âjschdelungn',
 'qbmyoptions' => 'Mâj sajdn',
-'qbspecialpages' => 'Sondâr-sajdn',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -1003,10 +1002,6 @@ Bloos  dsajln, dii mi´m dsajchn * ôôfanga, wärn berigsichdichd. Un dä ärsc
 # Exif tags
 'exif-imagewidth' => 'brajdn',
 'exif-imagelength' => 'Heen',
-
-# External editor support
-'edit-externally' => 'Dii dadaj mid an ägsdärna brogram ändârn',
-'edit-externally-help' => '(Määr un genauârs dâdsuu baj den [https://www.mediawiki.org/wiki/Manual:External_editors Inschdaladsjoonsanwajsungn])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ale',

@@ -266,7 +266,6 @@ $messages = array(
 'qbedit' => 'Тюрлендир',
 'qbpageoptions' => 'Бу бет',
 'qbmyoptions' => 'Бетлерим',
-'qbspecialpages' => 'Къуллукъчу бетле',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -474,9 +473,6 @@ $1',
 'perfcachedts' => 'Бу кэшден алыннган информацияды, ахыр кере ол $1 джангыртылыннганды. Кэшде эм кёбю бла  {{PLURAL:$4|джазыу|джазыу}} сакъланады.',
 'querypage-no-updates' => 'Бу бетни бусагъатда джангыртыргъа болмайды.
 Мында келтирилген информация къабыл этилинник тюйюлдю.',
-'wrong_wfQuery_params' => 'wfQuery()<br /> функциягъа джарамагъан параметрле<br />
-Функция: $1<br />
-Соруу: $2',
 'viewsource' => 'Къарау',
 'viewsource-title' => '$1 бетни чыкъгъан текстине къарау',
 'actionthrottled' => 'Терклик чекленнгенди',
@@ -3271,10 +3267,6 @@ $1',
 'exif-urgency-low' => 'Алаша ($1)',
 'exif-urgency-high' => 'Мийик ($1)',
 'exif-urgency-other' => 'Къошулуучу салгъан приоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Бу файлны тыш программа бла тюрлендиригиз',
-'edit-externally-help' => '(толу информациягъа мында къарагъыз: [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бютеу',

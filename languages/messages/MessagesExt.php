@@ -151,7 +151,6 @@ $messages = array(
 'qbedit' => 'Eital',
 'qbpageoptions' => 'Esta páhina',
 'qbmyoptions' => 'Las mis páhinas',
-'qbspecialpages' => 'Páhinas especialis',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -335,7 +334,6 @@ Pol favol, contauta con un [[Special:ListUsers/sysop|çajoril]], mentandu la URL
 'perfcached' => "Los siguientis datus s'alcuentran nel caché i es posibri que nu estén atualizaus. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => 'Estus datus están emburacaus. La su úrtima atualización hue el $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "Las atualiçacionis desta páhina s'alcuentran atualmenti desativás. Los datus nu sedrán atualizaus a cortu praçu.",
-'wrong_wfQuery_params' => 'Parametrus a wfQuery()<br /> Hunción: $1<br /> Pregunta: $2 encorretus',
 'viewsource' => 'Vel coigu huenti',
 'actionthrottled' => 'Ación ilimitá',
 'actionthrottledtext' => 'Cumu miia pa prevenil el spam, solu pueis hazel esta ación un limitau númeru e vezis nun cortu praçu e tiempu, i as pasau esti límiti. Pol favol, enténtalu otra vezi endrentu angunus minutus.',
@@ -2173,10 +2171,6 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direción verdaera',
 'exif-gpsdirection-m' => 'Direción manética',
-
-# External editor support
-'edit-externally' => 'Eital esti archivu gastandu una apricación esterna',
-'edit-externally-help' => 'Pa mas enholmación, lei las [https://www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tó',

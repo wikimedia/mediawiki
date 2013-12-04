@@ -171,7 +171,6 @@ $messages = array(
 'qbedit' => 'Тӳрлет',
 'qbpageoptions' => 'Страница ĕнерлевĕсем',
 'qbmyoptions' => 'Сирĕн ĕнĕрлевсем',
-'qbspecialpages' => 'Ятарлӑ страницӑсем',
 'faq' => 'ЫйХу',
 'faqpage' => 'Project:ЫйХу',
 
@@ -342,9 +341,6 @@ $1',
 'perfcached' => 'Ку даннăйсене кэшран илнĕ, çавна май унта юлашки улшăнусем палăрмасăр пултараççĕ. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Ку даннăйсене кэшран илнĕ, юлашки хут вăл $1 вăхăтра çĕнелнĕ. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ку страницăна хальхи вăхăтра улăштарма чарнă. Ку даннăйсене хальхи вăхăтра çĕнетме май çук.',
-'wrong_wfQuery_params' => 'wfQuery() функцине тĕрĕс мар параметрсем панă<br />
-Функци: $1<br />
-Ыйту: $2',
 'viewsource' => 'Курăм',
 'actionthrottled' => 'Хăвăртлăха чакарнă',
 'actionthrottledtext' => 'Спампа кĕрешнине пула ку ĕçе пĕчĕк вăхăт хушшинче ытла нумай тума чарнă. Темиçе минутран тепре туса пăхма пултаратăр.',
@@ -1112,9 +1108,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/сех',
-
-# External editor support
-'edit-externally' => 'Ку файла тулашри программăна усă курса тӳрлет',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'пурте',

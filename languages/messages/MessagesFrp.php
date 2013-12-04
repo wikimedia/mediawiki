@@ -465,7 +465,6 @@ $messages = array(
 'qbedit' => 'Changiér',
 'qbpageoptions' => 'Ceta pâge',
 'qbmyoptions' => 'Mes pâges',
-'qbspecialpages' => 'Pâges spèciâles',
 'faq' => 'Quèstions sovent posâyes',
 'faqpage' => 'Project:Quèstions sovent posâyes',
 
@@ -677,9 +676,6 @@ Contint de sûr yon ou ben un mouél de caractèros que pôvont pas étre empley
 'perfcachedts' => 'Cetes balyês sont en cacho et sont étâyes betâyes a jorn por lo dèrriér côp a $1. Por lo més {{PLURAL:$1|un rèsultat est disponiblo|$1 rèsultats sont disponiblos}} dedens lo cacho.',
 'querypage-no-updates' => 'Ora les mêses a jorn por ceta pâge sont dèsactivâyes.
 Les balyês ique seront pas betâyes a jorn.',
-'wrong_wfQuery_params' => 'Paramètros fôx dessus wfQuery()<br />
-Fonccion : $1<br />
-Demanda : $2',
 'viewsource' => 'Vêre lo tèxto sôrsa',
 'viewsource-title' => 'Vêre lo tèxto sôrsa de $1',
 'actionthrottled' => 'Accion limitâye',
@@ -3731,10 +3727,6 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-urgency-low' => 'Fêbla ($1)',
 'exif-urgency-high' => 'Hôta ($1)',
 'exif-urgency-other' => 'Prioritât dèfenia per l’usanciér ($1)',
-
-# External editor support
-'edit-externally' => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
-'edit-externally-help' => '(Vêde les [https://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',

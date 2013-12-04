@@ -421,7 +421,6 @@ $messages = array(
 'qbedit' => "Llamk'apuy",
 'qbpageoptions' => "P'anqap akllanankuna",
 'qbmyoptions' => 'Akllanaykuna',
-'qbspecialpages' => "Sapaq p'anqakuna",
 'faq' => 'Pasaq tapuykuna',
 'faqpage' => 'Project:Pasaq tapuykuna',
 
@@ -636,9 +635,6 @@ Manam nirqanchu imarayku.",
 'perfcached' => "Kay qatiq willakunaqa ''cache'' nisqa pakasqa hallch'apim kachkan, chayrayku manañachá musuqchasqachu. {{PLURAL:$1|Huklla|$1-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
 'perfcachedts' => "Kay willakunaqa hallch'asqam. Qhipaq musuqchasqaqa $1 karqan. {{PLURAL:$4|Huklla|$4-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
 'querypage-no-updates' => "Kay p'anqata musuqchayqa manam atichkanchu. Kunanqa kaypi willakuna manam musuqchasqachu kanqa.",
-'wrong_wfQuery_params' => 'Kaypa pantasqa kuskanachina tupunkuna: wfQuery()<br />
-Ruray paqtachi: $1<br />
-Tapuna: $2',
 'viewsource' => 'Pukyu qillqata qhaway',
 'viewsource-title' => "$1 sutiyuq p'anqap pukyu qillqanta qhaway",
 'actionthrottled' => "Rurayniykiqa hark'asqam",
@@ -3588,10 +3584,6 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-urgency-low' => 'Aslla ($1)',
 'exif-urgency-high' => 'Hatun ($1)',
 'exif-urgency-other' => 'Ruraqpa churasqan ñawpaqchay ($1)',
-
-# External editor support
-'edit-externally' => "Kay willañiqita hawa rurana wakichiwan llamk'apuy",
-'edit-externally-help' => 'Astawan willasunaykipaqqa [https://www.mediawiki.org/wiki/Manual:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'lliw',

@@ -210,7 +210,6 @@ $messages = array(
 'qbedit' => 'Izmainīšana',
 'qbpageoptions' => 'Šī lapa',
 'qbmyoptions' => 'Manas lapas',
-'qbspecialpages' => 'Īpašās lapas',
 'faq' => 'BUJ',
 'faqpage' => 'Project:BUJ',
 
@@ -413,9 +412,6 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'perfcached' => 'Šie dati ir no servera kešatmiņas un var būt novecojuši. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Šīs lapas atjaunošana pagaidām ir atslēgta. Te esošie dati tuvākajā laikā netiks atjaunoti.',
-'wrong_wfQuery_params' => 'Nekorekti wfQuery() parametri<br />
-Funkcija: $1<br />
-Vaicājums: $2',
 'viewsource' => 'Aplūkot kodu',
 'viewsource-title' => 'Apskatīt $1 izejas kodu',
 'actionthrottled' => 'Darbība netika atļauta',
@@ -2930,10 +2926,6 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-urgency-low' => 'Zema ($1)',
 'exif-urgency-high' => 'Augsta ($1)',
 'exif-urgency-other' => 'Lietotāja definēta prioritāte ($1)',
-
-# External editor support
-'edit-externally' => 'Izmainīt šo failu ar ārēju programmu',
-'edit-externally-help' => '(Skat. [https://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visas',

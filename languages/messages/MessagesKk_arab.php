@@ -516,7 +516,6 @@ $messages = array(
 'qbedit' => 'وڭدەۋ',
 'qbpageoptions' => 'بۇل بەت',
 'qbmyoptions' => 'بەتتەرىم',
-'qbspecialpages' => 'ارنايى بەتتەر',
 'faq' => 'ٴجىيى قويىلعان ساۋالدار',
 'faqpage' => 'Project:ٴجىيى قويىلعان ساۋالدار',
 
@@ -681,9 +680,6 @@ $messages = array(
 'perfcached' => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوندىقتان تولىقتاي جاڭالانماعان بولۋى مۇمكىن. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوڭعى جاڭالانلعان كەزى: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'بۇل بەتتىڭ جاڭارتىلۋى اعىمدا وشىرىلگەن. دەرەكتەرى قازىر وزگەرتىلمەيدى.',
-'wrong_wfQuery_params' => 'wfQuery() فۋنكتسىيياسى ٴۇشىن بۇرىس باپتالىمدارى بار<br />
-جەتە: $1<br />
-سۇرانىم: $2',
 'viewsource' => 'قاينار كوزىن قاراۋ',
 'actionthrottled' => 'ارەكەت باسەڭدەتىلدى',
 'actionthrottledtext' => 'سپامعا قارسى كۇرەس ەسەبىندە, وسى ارەكەتتى قىسقا ۋاقىتتا تىم كوپ رەت ورىنداۋىڭىز شەكتەلىندى, جانە بۇل شەكتەۋ شاماسىنان اسىپ كەتكەنسىز.
@@ -2597,10 +2593,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'شىن باعىت',
 'exif-gpsdirection-m' => 'ماگنىيتتى باعىت',
-
-# External editor support
-'edit-externally' => 'بۇل فايلدى شەتتىك قوندىرما ارقىلى وڭدەۋ',
-'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [https://www.mediawiki.org/wiki/Manual:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'بارلىق',

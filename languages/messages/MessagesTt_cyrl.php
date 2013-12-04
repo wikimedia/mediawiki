@@ -366,7 +366,6 @@ $messages = array(
 'qbedit' => 'Үзгәртү',
 'qbpageoptions' => 'Бу бит',
 'qbmyoptions' => 'Битләрем',
-'qbspecialpages' => 'Махсус битләр',
 'faq' => 'ЕБС',
 'faqpage' => 'Project:ЕБС',
 
@@ -577,9 +576,6 @@ $1',
 'perfcached' => 'Бу мәгълүматлар кэштан алынган, аларда соңгы үзгәртүләр булмаска мөмкин. Кэшта иң күбе {{PLURAL:$1|язма}} саклана.',
 'perfcachedts' => 'Бу мәгълүматлар кэштан алынган, ул соңгы тапкыр $1 яңартылды. Кэшта иң күбе  {{PLURAL:$4|язма}} саклана',
 'querypage-no-updates' => 'Хәзер бу битне яңартып булмый. Монда күрсәтелгән мәгълүматлар кабул ителмәячәк.',
-'wrong_wfQuery_params' => 'wfQuery() функция өчен ярамаган параметрлар<br />
-Функция: $1<br />
-Сорау: $2',
 'viewsource' => 'Карау',
 'viewsource-title' => '$1 битенең яхма текстын карау',
 'actionthrottled' => 'Тизлек киметелгән',
@@ -2370,10 +2366,6 @@ $1',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/сәг',
 'exif-gpsspeed-m' => 'миля/сәг',
-
-# External editor support
-'edit-externally' => 'Бу файлны тышкы кушымтаны кулланып үзгәртү',
-'edit-externally-help' => '(тулырак мәгълүмат өчен [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлык',

@@ -214,7 +214,6 @@ $messages = array(
 'qbedit' => 'ပြင်​ဆင်​ရန်​',
 'qbpageoptions' => 'ဤစာမျက်နှာ',
 'qbmyoptions' => 'ကျွန်ုပ် စာမျက်နှာများ',
-'qbspecialpages' => 'အ​ထူး​စာ​မျက်​နှာ​',
 'faq' => 'မေးလေ့ရှိကြသည်များ',
 'faqpage' => 'Project:မေးလေ့ရှိကြသည်များ',
 
@@ -1777,10 +1776,6 @@ Your e-mail address is not revealed when other users contact you.
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-m' => 'တစ်နာရီလျှင် ရှိသည့် မိုင်နှုန်း',
-
-# External editor support
-'edit-externally' => 'ပြင်ပ application တစ်ခုခုကိုသုံး၍ ဤဖိုင်ကို ပြင်ရန်',
-'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[https://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'အားလုံး',

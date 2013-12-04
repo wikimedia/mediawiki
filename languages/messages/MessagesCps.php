@@ -155,7 +155,6 @@ $messages = array(
 'qbedit' => 'Ilisan',
 'qbpageoptions' => 'Mini nga pahina',
 'qbmyoptions' => 'Akon mga pahina',
-'qbspecialpages' => 'Pinasahi nga mga pahina',
 'faq' => 'Mga perme napamangkot ("FAQ")',
 'faqpage' => "Project:Mga perme napamangkot (''FAQ'')",
 
@@ -359,9 +358,6 @@ Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede
 'perfcachedts' => 'Nakacache ang gasunod nga datos, kag nagligad nga ginsapanahon sang $1. {{PLURAL:$4|ang|$4 ang}} pinakamataas nga bakante nga cache.',
 'querypage-no-updates' => 'Ginbawalan yanda ang mga update sa mini nga pahina .
 Ang data diya wala napreskuhan sang aktwal.',
-'wrong_wfQuery_params' => 'Sala nga mga parametro sa wfQuery()<br />
-Pulos: $1<br />
-Pamangkot: $2',
 'viewsource' => 'Tan-awon ang ginhalinan',
 'viewsource-title' => 'Tan-awon ang ginhalinan para sa $1',
 'actionthrottled' => 'Ginpunggan ang ulubrahon',
@@ -948,10 +944,6 @@ Ang iban ay pagataguon sang default.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Islan ang mini nga file gamit ang panluwas nga aplikasyon',
-'edit-externally-help' => '(Tan-awa ang [https://www.mediawiki.org/wiki/Manual:External_editors mga pama-agi sa paghanda kag pag-ayos] para sa mga dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',

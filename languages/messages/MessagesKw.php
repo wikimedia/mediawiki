@@ -344,7 +344,6 @@ $messages = array(
 'qbedit' => 'Chanjya',
 'qbpageoptions' => 'An folen-ma',
 'qbmyoptions' => 'Ow folennow',
-'qbspecialpages' => 'Folennow arbennek',
 'faq' => 'FAQ',
 
 # Vector skin
@@ -1439,9 +1438,6 @@ Hwi a yll gweles hy fennfenten.',
 'exif-sharpness-2' => 'Kales',
 
 'exif-subjectdistancerange-0' => 'Ankoth',
-
-# External editor support
-'edit-externally' => 'Chanjya an restren-ma dre dowlen a-ves',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'puptra',

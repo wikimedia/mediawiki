@@ -122,7 +122,6 @@ $messages = array(
 'qbedit' => "Hloli ye ng'i",
 'qbpageoptions' => 'Bye petulo',
 'qbmyoptions' => 'Zwa petulona',
-'qbspecialpages' => 'Petulo zwenti',
 'faq' => 'Alabile',
 'faqpage' => 'Project:Alabile',
 
@@ -256,9 +255,6 @@ $messages = array(
 'formerror' => 'Bufosi: ni bulukezi form',
 'badtitle' => 'Sebu sa bani',
 'badtitletext' => "Bufosi di petulo sigirikisize, kusize, interling'ki. A sa selt di bufosi.",
-'wrong_wfQuery_params' => "Inkorrekt parameteri di wfQuery()<br />
-Fung'ksyun: $1<br />
-Query: $2",
 'viewsource' => "Kamukile ng'i",
 'viewsourcetext' => 'A sa kamukile wiki-selt di bye petulo:',
 
@@ -1005,10 +1001,6 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 
 # Exif tags
 'exif-imagedescription' => 'Sebu di imegi',
-
-# External editor support
-'edit-externally' => 'Kenki imegi sebilize pagini lakusi',
-'edit-externally-help' => 'Boniselelize [https://www.mediawiki.org/wiki/Manual:External_editors instruksi setup] kwa informasi.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'xeti',

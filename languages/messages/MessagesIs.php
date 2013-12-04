@@ -388,7 +388,6 @@ $messages = array(
 'qbedit' => 'Breyta',
 'qbpageoptions' => 'Þessi síða',
 'qbmyoptions' => 'Mínar síður',
-'qbspecialpages' => 'Kerfissíður',
 'faq' => 'Algengar spurningar',
 'faqpage' => 'Project:Algengar spurningar',
 
@@ -598,9 +597,6 @@ Engin skýring gefin.',
 'perfcached' => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar. Allt að {{PLURAL:$1|ein niðurstaða er aðgengileg|$1 niðurstöður eru aðgengilegar}} í skyndiminninu.',
 'perfcachedts' => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. Allt að {{PLURAL:$4|ein niðurstaða er aðgengileg|$4 niðurstöður eru aðgengilegar}} í skyndiminninu.',
 'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
-'wrong_wfQuery_params' => 'Röng færibreyta fyrir wfQuery()<br />
-Virkni: $1<br />
-Spurn: $2',
 'viewsource' => 'Skoða efni',
 'viewsource-title' => 'Skoða efni $1',
 'actionthrottled' => 'Aðgerðin kafnaði',
@@ -3615,10 +3611,6 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-urgency-low' => 'Lítið ($1)',
 'exif-urgency-high' => 'Hátt ($1)',
 'exif-urgency-other' => 'Mikilvægi ákveðið af notanda ($1)',
-
-# External editor support
-'edit-externally' => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
-'edit-externally-help' => '(Sjá [https://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'allt',

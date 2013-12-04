@@ -9,6 +9,7 @@
  *
  * @author Erdemaslancan
  * @author Gorizon
+ * @author Marmase
  * @author Mirzali
  */
 
@@ -193,9 +194,8 @@ $messages = array(
 'qbfind' => 'Bıvêne',
 'qbbrowse' => 'Çım ra viarne',
 'qbedit' => 'Bıvurne',
-'qbpageoptions' => 'Na pele',
+'qbpageoptions' => 'Na per',
 'qbmyoptions' => 'Pelê mı',
-'qbspecialpages' => 'Pelê xısusiy',
 'faq' => 'PZP (Persê ke zaf perşinê)',
 'faqpage' => 'Project:PZP',
 
@@ -398,9 +398,6 @@ Beno ke, tede jü ya ki jêdê isareti estê ke sernameu de nêgurinê.",
 'perfcachedts' => 'Ni daey nımıteyê, u tewr peyên $1 de biyê rocaniy. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Rocane-biyaena na pele nıka cadaiyê.
 Daey ita nıka newe nêbenê.',
-'wrong_wfQuery_params' => 'Parametreo ğelet serba wfPers()<br />
-Fonksiyon: $1<br />
-Pers: $2',
 'viewsource' => 'Çımey bıvêne',
 'actionthrottled' => 'Faeliyet xenekıt',
 'actionthrottledtext' => "Berqestiya tedbirê ''anti-spam''i ra vırastena ni faeliyeti rê sıma zafê rey zemano senık de  sindor viarna ra.
@@ -1496,10 +1493,6 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 'exif-imagelength' => 'Berzêni',
 
 'exif-meteringmode-255' => 'Bin',
-
-# External editor support
-'edit-externally' => 'Na dosya be mırecaetê de teberi bıvurne',
-'edit-externally-help' => '(Serba daêna melumati qaytê pelga [https://www.mediawiki.org/wiki/Manual:External_editors ayarê gurenaena teberi] be)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pêro',

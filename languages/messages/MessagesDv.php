@@ -185,7 +185,6 @@ $messages = array(
 'qbedit' => 'އުނިއިތުރުގެންނަވާ',
 'qbpageoptions' => 'މި ޞަފްޙާ',
 'qbmyoptions' => 'މަގޭ ސަފްހާ ތައް',
-'qbspecialpages' => 'ޚާއްޞަ ޞަފްޙާތައް',
 'faq' => 'އެފް.އޭ.ކިއު',
 'faqpage' => 'Project:އެފް.އޭ.ކިއު',
 

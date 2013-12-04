@@ -219,7 +219,6 @@ $messages = array(
 'qbedit' => 'Sprowjej',
 'qbpageoptions' => 'Ta zajta',
 'qbmyoptions' => 'Moje zajty',
-'qbspecialpages' => 'Szpecyjolne zajty',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -427,9 +426,6 @@ Eli tak ńy je, możno śe trefił feler we softwaru MediaWiki. Kej ja, pedz uo 
 'perfcached' => 'To co sam je naszkryflane, to ino kopja ze pamjyńći podryncznyj a może ńy być aktualne. Nojwjyncyj {{PLURAL:$1|jydyn wynik je|$1 wyniki sům}} we tyj pamjyńći.',
 'perfcachedts' => 'To co sam je naszkryflane, to ino kopja s pamjyńći podryncznyj a bůło uaktualńůne $1. Nojwjyncyj {{PLURAL:$4|jeden wynik je|$4 wyniki sům}} dostympne.',
 'querypage-no-updates' => 'Uaktualńyńo lo tyj zajty sům terozki zawarte. Dane, kere sam sům, ńy zostouy uodśwjyżůne.',
-'wrong_wfQuery_params' => 'Felerne parametry przekozane do wfQuery()<br />
-Funkcyjo: $1<br />
-Zapytańy: $2',
 'viewsource' => 'Zdrzůdłowy tekst',
 'viewsource-title' => 'Uobocz zdrzůdło lo $1',
 'actionthrottled' => 'Akcyjo wstrzimano',
@@ -2663,10 +2659,6 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'kerůnek geůgrafičny',
 'exif-gpsdirection-m' => 'kerůnek magnetyčny',
-
-# External editor support
-'edit-externally' => 'Sprowjej tyn plik bez eksterno aplikacyjo',
-'edit-externally-help' => '(Zobocz [https://www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo eksternych edytorůw], kaj je uo tym wjyncy naszkryflůne)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'do kupy',

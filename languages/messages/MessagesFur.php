@@ -238,7 +238,6 @@ $messages = array(
 'qbedit' => 'Cambie',
 'qbpageoptions' => 'Cheste pagjine',
 'qbmyoptions' => 'Mês pagjinis',
-'qbspecialpages' => 'Pagjinis speciâls',
 'faq' => 'Domandis plui frecuentis',
 
 # Vector skin
@@ -1536,10 +1535,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'exif-unknowndate' => 'Date no cognossude',
 
 'exif-orientation-1' => 'Normâl',
-
-# External editor support
-'edit-externally' => 'Modifiche chest file cuntune aplicazion esterne',
-'edit-externally-help' => '(Cjale lis [https://www.mediawiki.org/wiki/Manual:External_editors istruzions] par vê altris informazions)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'dutis',

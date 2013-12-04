@@ -221,7 +221,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta páxina',
 'qbmyoptions' => 'Les mios páxines',
-'qbspecialpages' => 'Páxines especiales',
 'faq' => 'EMF (entrugues más frecuentes)',
 'faqpage' => 'Project:FAQ',
 
@@ -439,9 +438,6 @@ Pue contener un caráuter o más que nun puen usase nos títulos.',
 'perfcachedts' => "Los datos siguientes tán na caché y anovaronse por última vegada'l $1. Hai un máximu {{PLURAL:$4|d'un resultáu disponible|de $4 resultaos disponibles}} na caché.",
 'querypage-no-updates' => "Anguaño los anovamientos d'esta páxina tán desactivaos.
 Estos datos nun van refrescase nestos momentos.",
-'wrong_wfQuery_params' => 'Parámetros incorreutos pa wfQuery()<br />
-Función: $1<br />
-Consulta: $2',
 'viewsource' => 'Ver fonte',
 'viewsource-title' => 'Ver la fonte de $1',
 'actionthrottled' => 'Aición llendada',
@@ -3552,10 +3548,6 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-urgency-low' => 'Baxa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Prioridá definía pol usuariu ($1)',
-
-# External editor support
-'edit-externally' => 'Editar esti ficheru usando una aplicación esterna',
-'edit-externally-help' => '(Pa más información ver les [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'too',

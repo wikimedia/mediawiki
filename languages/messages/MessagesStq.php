@@ -186,7 +186,6 @@ $messages = array(
 'qbedit' => 'Annerje',
 'qbpageoptions' => 'Disse Siede',
 'qbmyoptions' => 'Mien Sieden',
-'qbspecialpages' => 'Spezialsieden',
 'faq' => 'Oafte stoalde Froagen',
 'faqpage' => 'Project:FAQ',
 
@@ -387,9 +386,6 @@ Fielicht is ju al fon uurswál läsked wuuden.',
 'perfcached' => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl. Maximoal {{PLURAL:$1|een Resultoat is|$1 Resultoate sunt}} ferföigboar in dän Cache.',
 'perfcachedts' => 'Disse Doaten stamme uut dän Cache, lääste Update: $2, $3 Uure. Maximoal {{PLURAL:$4|een Resultoat is|$4 Resultoate sunt}} ferfïgboar in dän Cache.',
 'querypage-no-updates' => "'''Ju Aktualisierengsfunktion foar disse Siede is apstuuns deaktivierd. Do Doaten wäide toueerst nit fernäierd.'''",
-'wrong_wfQuery_params' => 'Falske Parameter foar wfQuery()<br />
-Funktion: $1<br />
-Oufroage: $2',
 'viewsource' => 'Wältext betrachtje',
 'viewsource-title' => 'Wältext fon Siede $1 bekiekje',
 'actionthrottled' => 'Aktionsantaal limitierd',
@@ -2951,10 +2947,6 @@ Wiedere wäide standoardmäitich nit anwiesd.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wuddelke Gjuchte',
 'exif-gpsdirection-m' => 'Magnetiske Gjuchte',
-
-# External editor support
-'edit-externally' => 'Disse Doatäi mäd n extern Program beoarbaidje',
-'edit-externally-help' => '(Sjuch do [https://www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aal',

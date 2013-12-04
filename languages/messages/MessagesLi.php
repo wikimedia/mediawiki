@@ -298,7 +298,6 @@ $messages = array(
 'qbedit' => 'Bewirke',
 'qbpageoptions' => 'Pagina-opties',
 'qbmyoptions' => 'mien opties',
-'qbspecialpages' => "Speciaal pagina's",
 'faq' => 'FAQ (väölgesjtèlde vraoge)',
 'faqpage' => 'Project:Väölgestjèlde vraoge',
 
@@ -502,9 +501,6 @@ D'r is gein toelichting besjikbaar.",
 'perfcached' => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel. 't Geuf {{PLURAL:$1|maximaal ei rizzeltaot|maximaal $1 rizzeltaote}} inne cache.",
 'perfcachedts' => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1. Maximaal guuef 't {{PLURAL:$4|ei rizzeltaot|$4 rizzeltaote}} inne cache.",
 'querypage-no-updates' => "Deze pagina kin op 't memènt neet biegewirk waere. Deze gegaeves waere neet verfrisj.",
-'wrong_wfQuery_params' => 'Verkeerde paramaeters veur wfQuery()<br />
-Funksie: $1<br />
-Query: $2',
 'viewsource' => 'Bekiek brónteks',
 'viewsource-title' => 'Bekiek brón van $1',
 'actionthrottled' => 'Hanjeling taengegehauwe',
@@ -3270,10 +3266,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-urgency-low' => 'Lieg ($1)',
 'exif-urgency-high' => 'Hoeg ($1)',
 'exif-urgency-other' => 'Door gebroeker gedefinieerde prioriteit ($1)',
-
-# External editor support
-'edit-externally' => "Bewirk dit bestand mit 'n extern toepassing",
-'edit-externally-help' => '(zuug de [https://www.mediawiki.org/wiki/Manual:External_editors setupinsjtructies] veur mie informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'al',

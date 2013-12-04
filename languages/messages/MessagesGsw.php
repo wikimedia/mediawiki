@@ -291,7 +291,6 @@ $messages = array(
 'qbedit' => 'Ändere',
 'qbpageoptions' => 'Sytenoptione',
 'qbmyoptions' => 'Ystellige',
-'qbspecialpages' => 'Spezialsytene',
 'faq' => 'Froge, wo vilmol gstellt wäre',
 'faqpage' => 'Project:FAQ',
 
@@ -505,9 +504,6 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'perfcached' => 'Die Informatione chemme us em Zwischespycher un sin derwyl villicht nit aktuäll. Maximal {{PLURAL:$1|ei Ergebnis isch|$1 Ergebnis sin}} im Cache verfiegbar.',
 'perfcachedts' => 'Die Date stamme us em Zwischespycher un sin am $1 s letscht Mol aktualisiert wore. Maximal {{PLURAL:$4|ei Ergebnis isch|$4 Ergebnis sin}} im Zwischespycher verfiegbar.',
 'querypage-no-updates' => "'''D Aktualisierigsfunktion fir die Syte isch im Momänt deaktiviert. D Date wäre vorerscht nit ernejert.'''",
-'wrong_wfQuery_params' => 'Falschi Parameter fir wfQuery()<br />
-Funktion: $1<br />
-Abfrog: $2',
 'viewsource' => 'Quelltext aaluege',
 'viewsource-title' => 'Quälltext vu $1 aaluege',
 'actionthrottled' => 'Aktionsaazahl limitiert',
@@ -3400,10 +3396,6 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-urgency-low' => 'Nider ($1)',
 'exif-urgency-high' => 'Hoch ($1)',
 'exif-urgency-other' => 'Benutzerdefinierti Prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Die Datei mit emnen externe Programm bearbeite',
-'edit-externally-help' => '(Lueg d [https://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fir witeri Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alli',

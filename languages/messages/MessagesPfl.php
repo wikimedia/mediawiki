@@ -165,7 +165,6 @@ $messages = array(
 'qbedit' => 'Beawaide',
 'qbpageoptions' => 'Die Said',
 'qbmyoptions' => 'Moi Saide',
-'qbspecialpages' => 'Schbezialsaide',
 'faq' => 'Ofd gschdeldi Froche',
 
 # Vector skin
@@ -1176,10 +1175,6 @@ Wonn die Dadai vaännad worre isch, donn konns soi, daß zusedzlischi Õgawe fa 
 'exif-iimsupplementalcategory' => 'Ergenzndi Sachgrubbe',
 
 'exif-gaincontrol-0' => 'Kään',
-
-# External editor support
-'edit-externally' => 'Die Dadai midm õnnare Weagzaisch beawaide',
-'edit-externally-help' => '(Gugg uff [https://www.mediawiki.org/wiki/Manual:External_editors Inschdallazionsõwaisunge] fa mea Auskinfd)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

@@ -442,7 +442,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta páxina',
 'qbmyoptions' => 'As miñas páxinas',
-'qbspecialpages' => 'Páxinas especiais',
 'faq' => 'Preguntas máis frecuentes',
 'faqpage' => 'Project:FAQ',
 
@@ -659,9 +658,6 @@ Poida que conteña un ou máis caracteres dos que non se poden empregar nos tít
 'perfcached' => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.',
 'perfcachedts' => 'Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
-'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
-Función: $1<br />
-Pescuda: $2',
 'viewsource' => 'Ver o código fonte',
 'viewsource-title' => 'Ver o código fonte de "$1"',
 'actionthrottled' => 'Acción limitada',
@@ -3778,10 +3774,6 @@ Os demais agocharanse por omisión.
 'exif-urgency-low' => 'Baixa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Prioridade definida polo usuario ($1)',
-
-# External editor support
-'edit-externally' => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => '(Consulte as seguintes [https://www.mediawiki.org/wiki/Manual:External_editors instrucións] para obter máis información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todo',

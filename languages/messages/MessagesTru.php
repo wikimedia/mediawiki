@@ -97,7 +97,6 @@ $messages = array(
 'qbedit' => 'Mşaḥlaf',
 'qbpageoptions' => 'iFaṭaṭe',
 'qbmyoptions' => 'aFaṭoṭayḍi',
-'qbspecialpages' => 'Faṭoṭe dilonoye',
 'faq' => 'Şuwole',
 'faqpage' => 'Project:FAQ',
 
@@ -799,10 +798,6 @@ Others will be hidden by default.
 'exif-writer' => 'Kaṭowo',
 'exif-languagecode' => 'Leşono',
 'exif-cameraownername' => 'uMoro diQamera',
-
-# External editor support
-'edit-externally' => 'Edit this file using an external application',
-'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kulle',

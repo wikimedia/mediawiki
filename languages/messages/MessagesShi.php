@@ -155,7 +155,6 @@ $messages = array(
 'qbedit' => 'Sbadl',
 'qbpageoptions' => 'Tasnat ad',
 'qbmyoptions' => 'Tisnatin inu',
-'qbspecialpages' => 'Tisnatin timzlay',
 'faq' => 'Isqsitn li bdda tsutulnin',
 'faqpage' => 'Project: Isqqsit li bdda',
 
@@ -1209,10 +1208,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'Knots',
-
-# External editor support
-'edit-externally' => 'Bddl asdaw ad s wasnas abrrani',
-'edit-externally-help' => '(Ẓṛ [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kraygat (kullu)',

@@ -192,7 +192,6 @@ $messages = array(
 'qbedit' => 'Urnosen',
 'qbpageoptions' => 'Daytoy a panid',
 'qbmyoptions' => 'Pampanidko',
-'qbspecialpages' => 'Espesial a pampanid',
 'faq' => 'MAS',
 'faqpage' => 'Project:MAS',
 
@@ -412,9 +411,6 @@ Mabalin nga aglaon ti a maysa wenno ad-adu a karakter a saan a mausar kadagiti t
 'perfcachedts' => 'Ti sumaganad a datos ket naidulin, ken naudi a napabaro idi $1. Ti kaadu a {{PLURAL:$4|iti maysa a nagbanagan |dagiti $4 nagbanagan}} ket magun-od idiay pagidulinan.',
 'querypage-no-updates' => 'Dagiti panangpabaro iti daytoy a panid ket agdama a nabaldado. 
 Saan a mipasaradiwa ita dagiti datos ditoy.',
-'wrong_wfQuery_params' => 'Kamali a parametro iti wfQuery()<br />
-Pamay-an: $1<br />
-Panagsapul: $2',
 'viewsource' => 'Kitaen ti taudan',
 'viewsource-title' => 'Kitaen ti taudan para iti $1',
 'actionthrottled' => 'Napabuntog ti aramid',
@@ -3501,10 +3497,6 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-urgency-low' => 'Nababa ($1)',
 'exif-urgency-high' => 'Nangato ($1)',
 'exif-urgency-other' => 'Inpalawag ti agar-aramat a prioridad ($1)',
-
-# External editor support
-'edit-externally' => 'Baliwan daytoy a papeles babaen ti akinruar nga aplikasion',
-'edit-externally-help' => '(Kitaen ti [https://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay a pakaammo).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'amin',

@@ -194,7 +194,6 @@ $messages = array(
 'qbedit' => 'Acontza',
 'qbpageoptions' => 'Possibilidades de sa pàgina',
 'qbmyoptions' => 'Is preferèntzias meas',
-'qbspecialpages' => 'Pàginas spetziales',
 'faq' => 'Pregontas/Respostas (FAQ)',
 'faqpage' => 'Project:FAQ',
 
@@ -1435,10 +1434,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'exif-contrast-0' => 'Normale',
 
 'exif-sharpness-0' => 'Normale',
-
-# External editor support
-'edit-externally' => 'Acontza custu file usendi unu programma de foras',
-'edit-externally-help' => '(Pro àteras informatziones càstia is [https://www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totu',

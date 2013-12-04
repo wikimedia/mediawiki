@@ -175,7 +175,6 @@ $messages = array(
 'qbedit' => 'Senisim',
 'qbpageoptions' => 'Dispela pes',
 'qbmyoptions' => 'Ol pes bilong mi',
-'qbspecialpages' => 'Ol sipesol pes',
 
 # Vector skin
 'vector-action-delete' => 'Rausim',

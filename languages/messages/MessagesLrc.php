@@ -152,7 +152,6 @@ $messages = array(
 'qbedit' => 'ويرايشت',
 'qbpageoptions' => 'ای بلگه',
 'qbmyoptions' => 'بلگيا مه',
-'qbspecialpages' => 'بلگيا ويجه',
 'faq' => 'اف ای كيو',
 'faqpage' => 'پروجه:اف اي كيو',
 
@@ -1068,10 +1067,6 @@ $2',
 *حالت جی پی اس 
 *جی پی اس گپ حالت
 *جی پی اس همه حالت',
-
-# External editor support
-'edit-externally' => 'ای فایل سی ویرایشت وه در دیئن کاربردش استفاده بکید',
-'edit-externally-help' => '(بوینیت [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه شو',

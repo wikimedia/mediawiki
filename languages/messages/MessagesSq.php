@@ -371,7 +371,6 @@ $messages = array(
 'qbedit' => 'Redaktoni',
 'qbpageoptions' => 'Kjo faqe',
 'qbmyoptions' => 'Faqet e mia',
-'qbspecialpages' => 'Faqet speciale',
 'faq' => 'Pyetje që bëhen shpesh',
 'faqpage' => 'Project: Pyetje që bëhen shpesh',
 
@@ -581,9 +580,6 @@ Mund të përmbajë një ose më shumë germa, të cilat nuk mund të përdoren 
 'perfcachedts' => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1. E shumta  {{PLURAL:$4|një rezultat është|$4 rezultate janë}} ruajtur në kopje.',
 'querypage-no-updates' => "Përditësimet për këtë faqe për momentin janë të ç'aktivizuara.
 Këtu informacioni nuk do të jetë i përditësuar.",
-'wrong_wfQuery_params' => 'Parametrat gabim tek wfQuery()<br />
-Funksioni: $1<br />
-Query: $2',
 'viewsource' => 'Shiko tekstin',
 'viewsource-title' => 'Shiko tekstin për $1',
 'actionthrottled' => 'Veprim u ndalua',
@@ -3430,10 +3426,6 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 'exif-urgency-low' => 'Ulët ( $1 )',
 'exif-urgency-high' => 'E Lartë ( $1 )',
 'exif-urgency-other' => 'Prioritet i përcaktuar nga përdoruesi ( $1 )',
-
-# External editor support
-'edit-externally' => 'Ndryshoni këtë skedë me një mjet të jashtëm',
-'edit-externally-help' => '(Shikoni [https://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'të gjitha',

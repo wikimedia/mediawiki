@@ -340,7 +340,6 @@ $messages = array(
 'qbedit' => 'Taisyti',
 'qbpageoptions' => 'Šis puslapis',
 'qbmyoptions' => 'Mano puslapiai',
-'qbspecialpages' => 'Specialieji puslapiai',
 'faq' => 'DUK',
 'faqpage' => 'Project:DUK',
 
@@ -551,9 +550,6 @@ Nebuvo duotas joks paaiškinimas.',
 'perfcached' => 'Rodoma išsaugota duomenų kopija, todėl duomenys gali būti ne patys naujausi. Maksimaliai $1 {{PLURAL:$1|rezultatas|rezultatai|rezultatų}} yra saugoma.',
 'perfcachedts' => 'Rodoma išsaugota duomenų kopija, kuri buvo atnaujinta $2 $3. Maksimaliai $4 {{PLURAL:$4|rezultatas|rezultatai|rezultatų}} yra saugoma.',
 'querypage-no-updates' => 'Atnaujinimai šiam puslapiui dabar yra išjungti. Duomenys čia dabar nebus atnaujinti.',
-'wrong_wfQuery_params' => 'Neteisingi parametrai į funkciją wfQuery()<br />
-Funkcija: $1<br />
-Užklausa: $2',
 'viewsource' => 'Žiūrėti kodą',
 'viewsource-title' => 'Peržiūrėti šaltinį $1',
 'actionthrottled' => 'Veiksmas apribotas',
@@ -3514,10 +3510,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-urgency-low' => 'Žemas ( $1 )',
 'exif-urgency-high' => 'Aukštas ( $1 )',
 'exif-urgency-other' => 'Vartotojo nustatyta pirmenybė ($1)',
-
-# External editor support
-'edit-externally' => 'Atverti išoriniame redaktoriuje',
-'edit-externally-help' => '(Norėdami gauti daugiau informacijos, žiūrėkite [https://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visus',

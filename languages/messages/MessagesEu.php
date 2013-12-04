@@ -280,7 +280,6 @@ $messages = array(
 'qbedit' => 'Aldatu',
 'qbpageoptions' => 'Orrialde hau',
 'qbmyoptions' => 'Nire orrialdeak',
-'qbspecialpages' => 'Aparteko orrialdeak',
 'faq' => 'Maiz egindako galderak',
 'faqpage' => 'Project:Maiz egindako galderak',
 
@@ -494,9 +493,6 @@ Ez du arrazoirik eman.',
 'perfcached' => 'Hurrengo datuak katxean gordeta daude eta litekeena da guztiz eguneratuta ez egotea. Gehienez {{PLURAL:$1|emaitza 1 dago|$1 emaitza daude}} eskuragarri katxean.',
 'perfcachedts' => 'Hurrengo datuak katxean daude, $1 eguneratu zen azkenekoz. {{PLURAL:$4|emaitza 1 dago|$4 emaitza daude}} eskuragarri katxean.',
 'querypage-no-updates' => 'Orrialde honen berritzeak ez dira baimentzen. Hemen dagoen data ez da zuzenean berrituko.',
-'wrong_wfQuery_params' => 'Baliogabeko parametroak eman zaizkio wfQuery() funtzioari<br />
-Funtzioa: $1<br />
-Kontsulta: $2',
 'viewsource' => 'Kodea ikusi',
 'viewsource-title' => '$1-en iturria ikusi',
 'actionthrottled' => 'Ekintzaren gainetik pasa da',
@@ -3380,10 +3376,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-urgency-low' => 'Baxua ($1)',
 'exif-urgency-high' => 'Altua ($1)',
 'exif-urgency-other' => 'Definitutako lehentasuna ($1)',
-
-# External editor support
-'edit-externally' => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',
-'edit-externally-help' => '(Ikus [https://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'guztiak',

@@ -448,7 +448,6 @@ $messages = array(
 'qbedit' => 'Modificar',
 'qbpageoptions' => 'Opcions de la pagina',
 'qbmyoptions' => 'Mas opcions',
-'qbspecialpages' => 'Paginas especialas',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -663,9 +662,6 @@ Cap d'explicacion es pas estada provesida.",
 'perfcached' => "Las donadas seguendas son en escondedor e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins l'escondedor.",
 'perfcachedts' => "Las donadas seguendas son en escondedor e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins l'escondedor.",
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
-'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
-Foncion : $1<br />
-Requèsta : $2',
 'viewsource' => 'Vejatz lo tèxte font',
 'viewsource-title' => 'Veire la font de $1',
 'actionthrottled' => 'Accion limitada',
@@ -3666,10 +3662,6 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-urgency-low' => 'Febla ($1)',
 'exif-urgency-high' => 'Nauta ($1)',
 'exif-urgency-other' => "Urgéncia definida per l'utilizaire ($1)",
-
-# External editor support
-'edit-externally' => 'Modificar aqueste fichièr en utilizant una aplicacion extèrna',
-'edit-externally-help' => "(Consultatz [https://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',

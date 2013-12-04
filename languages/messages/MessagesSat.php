@@ -162,7 +162,6 @@ $messages = array(
 'qbedit' => 'Tońge',
 'qbpageoptions' => 'Noa sakam',
 'qbmyoptions' => 'In̕anḱ sakamko',
-'qbspecialpages' => 'Asokay teaḱ sakamko',
 'faq' => 'Baḍae kupuliko',
 'faqpage' => 'Project:FAQ',
 
@@ -358,9 +357,6 @@ Pasec eṭaḱ hoṛ noa do lahareko get giḍi akada.',
 'badtitletext' => 'Amaḱ nehorakaḱ sakam ńutum do bań puraoa, bạnuka, se be sudhrạo joṛao bhitri katha se bhitri wiki ńutum.
 Noa re do mit se aema bisó menaḱa oka do ńutumre bań beoharok.',
 'querypage-no-updates' => 'Noa sakam reaḱ nahaḱ halot bondo gea. Nonḍe doho akana ḍaṭako do baṅ saphaḱa.',
-'wrong_wfQuery_params' => 'wfQuery ()-re vul perameṭar em hoeakana<br />
-Fańson: $1<br />
-Query: $2',
 'viewsource' => 'Vitrireaḱ ńelme',
 'viewsource-title' => '$1 renaḱ ńamoḱ ṭhại ńelmẽ',
 'actionthrottled' => 'Kạmi reaḱ dhara bại',
@@ -1157,10 +1153,6 @@ jeleń',
 'exif-imagelength' => 'Usul',
 'exif-datetime' => 'Rẽt bodol reaḱ tạrikh ar okte',
 'exif-artist' => 'Onoliạ',
-
-# External editor support
-'edit-externally' => 'Noa rẽt tońge joṛao lạgitte bahre reaḱ koejoń  beoharme',
-'edit-externally-help' => '(Nonḍe ńelme [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] bạṛtite baḍay lạgit)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Sanam, sanamak, sanamko',

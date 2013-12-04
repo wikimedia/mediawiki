@@ -235,7 +235,6 @@ $messages = array(
 'qbedit' => 'Cuir in eagar',
 'qbpageoptions' => 'An leathanach seo',
 'qbmyoptions' => 'Mo chuid leathanaigh',
-'qbspecialpages' => 'Leathanaigh speisialta',
 'faq' => 'Ceisteanna Coiteanta',
 'faqpage' => 'Project:Ceisteanna_Coiteanta',
 
@@ -433,9 +432,6 @@ B\'fhéidir gur scrios duine eile é cheana féin.',
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 'perfcached' => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'wrong_wfQuery_params' => 'Paraiméadair mhíchearta don wfQuery()<br />
-Feidhm: $1<br />
-Iarratas: $2',
 'viewsource' => 'Féach ar fhoinse',
 'actionthrottled' => 'Gníomh scóigthe',
 'actionthrottledtext' => 'Mar theicníc frithurscair, ní féidir lear an gníomh seo a dhéanamh barraíocht taobh istigh de thréimhse ghairid ama, agus tá an méid sáraithe agat.
@@ -2084,10 +2080,6 @@ cúlra i bhfócas)',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Fíorthreo',
 'exif-gpsdirection-m' => 'Treo maighnéadach',
-
-# External editor support
-'edit-externally' => 'Athraigh an comhad seo le feidhmchlár seachtrach',
-'edit-externally-help' => '(Féach ar na [https://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'an t-iomlán',

@@ -302,7 +302,6 @@ $messages = array(
 'qbedit' => 'ترمیم',
 'qbpageoptions' => 'صفحۂ ہٰذا',
 'qbmyoptions' => 'میرے صفحات',
-'qbspecialpages' => 'خاص صفحات',
 'faq' => 'معلوماتِ عامہ',
 'faqpage' => 'Project:معلوماتِ عامہ',
 

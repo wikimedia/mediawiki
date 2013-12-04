@@ -216,7 +216,6 @@ $messages = array(
 'qbedit' => 'Mèzi',
 'qbpageoptions' => 'Ihü nka',
 'qbmyoptions' => 'Ihüm',
-'qbspecialpages' => 'Ihü mkpà',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -409,9 +408,6 @@ Biko chi ihe á na áká [[Special:ListUsers/sysop|onye íshí]], dètú URL.',
 'badtitletext' => 'Íshí ihü Í chọrọ à díghị ézíbóté, efù, mà ȯ dị jikodo di jikodo nke ojö na nke íshí asụsụ-mmékotárí ma wiki-mmékotárí.
 O nwèríkí nwé édé ótù ma nke ozor nke ékwéghị na íshí ihü.',
 'perfcached' => 'Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'wrong_wfQuery_params' => 'Okè nke défiere gá Ájújúwf()<br />
-Orürü: $1<br />
-Ájújú: $2',
 'viewsource' => 'Zi mkpurụ',
 'actionthrottled' => 'Mmèmé a puziélé',
 'protectedpagetext' => 'Ihüá cedolụ maka orürü ạ gáa bá.',
@@ -1602,10 +1598,6 @@ Nke ozor gí zonari na áká onwe ha.
 'exif-urgency-normal' => 'Nkịtị ($1)',
 'exif-urgency-low' => 'Nàlà ($1)',
 'exif-urgency-high' => 'Nélú ($1)',
-
-# External editor support
-'edit-externally' => 'Rüo na élú usòrò nke na ngwa ọrụ nsónùsòrò nke ọzȯ',
-'edit-externally-help' => '(Lé nà [https://www.mediawiki.org/wiki/Manual:External_editors nkụzí mbídó] màkà nkúzí ozor)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'nke níle',

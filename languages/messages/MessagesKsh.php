@@ -369,7 +369,6 @@ $messages = array(
 'qbedit' => 'Ändere',
 'qbpageoptions' => 'Sigge Enstellunge',
 'qbmyoptions' => 'Ming Sigge',
-'qbspecialpages' => 'Spezial Sigge',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -588,9 +587,6 @@ Muss De repareere.',
 'perfcachedts' => 'De Daate heenoh kumme usem Zweschespeicher (<i lang="en">cache</i>) un woodte aam $2 öm $3 opjenumme. Se künnte nit janz de allerneuste sin.
 {{PLURAL:$4|Bloß ein Antwoot es|Nit mieh wi $4 Antwoote sind|Kein Antwoot es}} doh ze han.',
 'querypage-no-updates' => "'''Heh die Sigg weed nit mieh op ene neue Stand jebraat.'''",
-'wrong_wfQuery_params' => 'Verkihrte Parameter för: <strong><code>wfQuery()</code></strong><br />
-De Funktion es: „<code>$1</code>“<br />
-De Aanfroch es: „<code>$2</code>“<br />',
 'viewsource' => 'Wikitex aanluure',
 'viewsource-title' => 'Der Wikitäx vun dä Sigg „$1“ belooere.',
 'actionthrottled' => "Dat ka'mer nit esu öff maache",
@@ -3839,10 +3835,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-urgency-low' => 'Klein ($1)',
 'exif-urgency-high' => 'Huh ($1)',
 'exif-urgency-other' => 'Selfs faßjelaat ($1)',
-
-# External editor support
-'edit-externally' => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',
-'edit-externally-help' => '(Luur en de [https://www.mediawiki.org/wiki/Manual:External_editors Aanleidong för de Enschtallazjuhn] noh mieh Henwiese)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',

@@ -304,7 +304,6 @@ $messages = array(
 'qbedit' => 'Үҙгәртергә',
 'qbpageoptions' => 'Был бит',
 'qbmyoptions' => 'Биттәрем',
-'qbspecialpages' => 'Махсус биттәр',
 'faq' => 'ЙБҺ',
 'faqpage' => 'Project:ЙБҺ',
 
@@ -523,9 +522,6 @@ $1',
 'perfcachedts' => 'Был мәғлүмәттәр кэштан алынған, ул һуңғы тапҡыр $1 яңыртылды.  Кэшта иң күбе  {{PLURAL:$4|язма}} һаҡлана',
 'querypage-no-updates' => 'Был битте яңыртыу хәҙер тыйылған.
 Бында күрһәтелгән мәғлүмәттәр яңыртылмаясаҡ.',
-'wrong_wfQuery_params' => 'wfQuery() функцияһы өсөн рөхсәт ителмәгән параметрҙар<br />
-Функция: $1<br />
-Һоратыу: $2',
 'viewsource' => 'Сығанаҡты ҡарау',
 'viewsource-title' => '$1 битенең сығанаҡ текстын ҡарарға',
 'actionthrottled' => 'Тиҙлек сикләнгән',
@@ -3572,10 +3568,6 @@ $1',
 'exif-urgency-low' => 'Түбән ($1)',
 'exif-urgency-high' => 'Юғары ($1)',
 'exif-urgency-other' => 'Ҡулланыусы билдәләгән өҫтөнлөк ($1)',
-
-# External editor support
-'edit-externally' => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',
-'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бөтә',

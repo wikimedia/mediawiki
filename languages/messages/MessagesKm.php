@@ -418,7 +418,6 @@ $messages = array(
 'qbedit' => 'កែប្រែ',
 'qbpageoptions' => 'ទំព័រនេះ',
 'qbmyoptions' => 'ទំព័ររបស់ខ្ញុំ',
-'qbspecialpages' => 'ទំព័រពិសេសៗ',
 'faq' => 'សំណួរដែលសួរញឹកញាប់',
 'faqpage' => 'Project:សំណួរដែលសួរញឹកញាប់',
 
@@ -635,9 +634,6 @@ $1',
 'querypage-no-updates' => 'ការបន្ទាន់សម័យសម្រាប់ទំព័រនេះគឺមិនអាចធ្វើទៅរួចទេនាពេលឥឡូវទេ។
 
 ទិន្នន័យនៅទីនេះនឹងមិនត្រូវផ្លាស់ប្ដូរថ្មីនាពេលបច្ចុប្បន្នទេ។',
-'wrong_wfQuery_params' => 'ប៉ារ៉ា​មែត្រ​មិន​ត្រឹម​ត្រូវ​ចំពោះ​ wfQuery()<br />
-មុខងារ​៖ $1<br />
-អង្កេត​៖ $2',
 'viewsource' => 'មើល​កូដ',
 'viewsource-title' => 'មើលកូដរបស់ $1',
 'actionthrottled' => 'សកម្មភាពត្រូវបានកម្រិត',
@@ -3439,10 +3435,6 @@ $1',
 'exif-urgency-low' => 'ទាប ($1)',
 'exif-urgency-high' => 'ខ្ពស់ ($1)',
 'exif-urgency-other' => 'តាមការកំណត់របស់អ្នកប្រើប្រាស់ ($1)',
-
-# External editor support
-'edit-externally' => 'កែប្រែ​ឯកសារ​នេះដោយប្រើប្រាស់​កម្មវិធី​ខាងក្រៅ',
-'edit-externally-help' => '(សូមមើល[https://www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ទាំងអស់',

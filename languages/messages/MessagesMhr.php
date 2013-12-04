@@ -208,7 +208,6 @@ $messages = array(
 'qbedit' => 'Тӧрлаташ',
 'qbpageoptions' => 'Тиде лаштык',
 'qbmyoptions' => 'Мыйын лаштык-влак',
-'qbspecialpages' => 'Лӱмын ыштыме лаштык-влак',
 'faq' => 'ЧӱВаЙо (Чӱчкыдын вашлиялтше йодыш-влак)',
 
 # Vector skin
@@ -1097,10 +1096,6 @@ $messages = array(
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Файлым ӧрдыж программыште тӧрлаташ',
-'edit-externally-help' => '(Сайрак палашлан ончал [https://www.mediawiki.org/wiki/Manual:External_editors шындымаш нерген туныктымашым])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'чыла',

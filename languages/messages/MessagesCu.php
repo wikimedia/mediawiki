@@ -194,7 +194,6 @@ $messages = array(
 'qbedit' => 'исправи',
 'qbpageoptions' => 'сꙗ страница',
 'qbmyoptions' => 'моꙗ страницѧ',
-'qbspecialpages' => 'нарочьнꙑ страницѧ',
 'faq' => 'чѧстꙑ въпроси',
 'faqpage' => 'Project:Чѧстꙑ въпроси',
 
@@ -922,10 +921,6 @@ $messages = array(
 'exif-iimcategory-rel' => 'вѣра',
 'exif-iimcategory-sci' => 'оучєниѥ и тєхнологїꙗ',
 'exif-iimcategory-spo' => 'аѳлитїка',
-
-# External editor support
-'edit-externally' => 'дѣла иꙁмѣнѥниѥ вънѣщьниимь орѫдиѥмь',
-'edit-externally-help' => '(ꙁьри [https://www.mediawiki.org/wiki/Manual:External_editors помощь] вѧщєи плирофорїѩ дѣлꙗ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вьсꙗ',

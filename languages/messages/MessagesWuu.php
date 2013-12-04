@@ -178,7 +178,6 @@ $messages = array(
 'qbedit' => '編',
 'qbpageoptions' => '箇頁',
 'qbmyoptions' => '我頁',
-'qbspecialpages' => '特殊頁',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -385,9 +384,6 @@ $1',
 'perfcached' => '下向是缓存数据，呒数弗是最新个。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => '下头是缓存数据，压末一趟更新辰光是$1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '当前禁止对此页面进行更新。箇搭个数据弗好立即刷新。',
-'wrong_wfQuery_params' => '错误个参数拨传递到 wfQuery（）<br />
-函数：$1<br />
-查询：$2',
 'viewsource' => '望源码',
 'actionthrottled' => '动作已压制',
 'actionthrottledtext' => '基于反垃圾链接个考量，限制垃拉短时间内多趟重复箇只操作。请过脱几分钟再试试看。',
@@ -1734,10 +1730,6 @@ Variants for Chinese language
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => '公里每小时',
 'exif-gpsspeed-m' => '英里每小时',
-
-# External editor support
-'edit-externally' => '用外部应用程序来编辑该只文件',
-'edit-externally-help' => '（请参见[https://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

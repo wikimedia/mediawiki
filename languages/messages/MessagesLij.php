@@ -272,7 +272,6 @@ $messages = array(
 'qbedit' => 'Cangia',
 'qbpageoptions' => "Opsioîn de 'sta paggina",
 'qbmyoptions' => 'E mæ paggine',
-'qbspecialpages' => 'Pagine speçiä',
 'faq' => 'Domande frequenti',
 'faqpage' => 'Project:Domande frequente',
 
@@ -1383,10 +1382,6 @@ I inganci sucescivi, in scia mæxima riga, van conscideræ comme eceçioìn (pag
 'exif-copyright' => "Diritti d'autô de",
 'exif-filesource' => 'Reixe do papê',
 'exif-languagecode' => 'Lengua',
-
-# External editor support
-'edit-externally' => 'Càngia sto file co-in programma esterno',
-'edit-externally-help' => 'Pe avéi ciù informaçioìn amia e [https://www.mediawiki.org/wiki/Manual:External_editors istruçioìn] (in ingléize)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Tùtti',

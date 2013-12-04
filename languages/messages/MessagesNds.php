@@ -356,7 +356,6 @@ $messages = array(
 'qbedit' => 'Ännern',
 'qbpageoptions' => 'Disse Sied',
 'qbmyoptions' => 'Instellen',
-'qbspecialpages' => 'Spezialsieten',
 'faq' => 'Faken stellte Fragen',
 'faqpage' => 'Project:Faken stellte Fragen',
 
@@ -556,9 +555,6 @@ Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen.
 'perfcached' => "Disse Daten kamen ut den Cache un sünd mööglicherwies nich aktuell. Op't Höögst {{PLURAL:$1|en Resultat is|$1 Resultaten sünd}} in'n Cache verföögbor.",
 'perfcachedts' => "Disse Daten sünd ut’n Cache, tolest aktuell maakt worrn sünd se $1. Op't Höögst {{PLURAL:$4|en Resultat is|$4 Resultaten sünd}} in'n Cache verföögbor.",
 'querypage-no-updates' => "'''Dat aktuell Maken vun disse Siet is opstunns utstellt. De Daten warrt för’t Eerste veröllert blieven.'''",
-'wrong_wfQuery_params' => 'Falschen Parameter för wfQuery()<br />
-Funktschoon: $1<br />
-Query: $2',
 'viewsource' => 'Dokmentborn ankieken',
 'viewsource-title' => 'De Born vun $1 wiesen.',
 'actionthrottled' => 'Akschoon in de Tall begrenzt',
@@ -2850,10 +2846,6 @@ Wiedere warrt standardmatig nich anwiest:
 'exif-iimcategory-sci' => 'Wetenschap un Technologie',
 'exif-iimcategory-spo' => 'Sport',
 'exif-iimcategory-wea' => 'Wedder',
-
-# External editor support
-'edit-externally' => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '(Lees de [https://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

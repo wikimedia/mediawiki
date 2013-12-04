@@ -264,7 +264,6 @@ $messages = array(
 'qbedit' => 'Сәрост кардеј',
 'qbpageoptions' => 'Ым сәһифә',
 'qbmyoptions' => 'Чымы сәһифон',
-'qbspecialpages' => 'Хысусијә сәһифон',
 'faq' => 'РАП',
 'faqpage' => 'Project:РАП',
 
@@ -995,10 +994,6 @@ $messages = array(
 'exif-saturation-0' => 'Ади',
 
 'exif-dc-publisher' => 'Нәшрәкә',
-
-# External editor support
-'edit-externally' => 'Редактә кардеј ым фајли де заһири програм',
-'edit-externally-help' => '(Bo mıffəssələ məlumoton bə [https://www.mediawiki.org/wiki/Manual:External_editors dərsəvon bo soxtəy] diyə bıkən)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'һәммәј',

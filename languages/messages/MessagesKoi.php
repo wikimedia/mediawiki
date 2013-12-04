@@ -99,7 +99,6 @@ $messages = array(
 'qbedit' => 'Мöдкодьсьöтны',
 'qbpageoptions' => 'Этiя листбок',
 'qbmyoptions' => 'Листбоккезö',
-'qbspecialpages' => 'Тодильнöй листбоккез',
 'faq' => 'Отир сё юасьö',
 'faqpage' => 'Project:отир сё юасьö',
 
@@ -737,10 +736,6 @@ $messages = array(
 # Exif tags
 'exif-imagewidth' => 'Пасьта',
 'exif-imagelength' => 'Вылына',
-
-# External editor support
-'edit-externally' => 'Редактируйтны этiйö файлсö мöд программа пыр',
-'edit-externally-help' => '(унажык видзöт: [https://www.mediawiki.org/wiki/Manual:External_editors удж кежö лöсьöтны туйдöтан])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'быдöс',

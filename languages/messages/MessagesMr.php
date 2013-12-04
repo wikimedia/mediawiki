@@ -486,7 +486,6 @@ $messages = array(
 'qbedit' => 'संपादन',
 'qbpageoptions' => 'हे पान',
 'qbmyoptions' => 'माझी पाने',
-'qbspecialpages' => 'विशेष पाने',
 'faq' => 'नेहमी विचारण्यात येणारे प्रश्न',
 'faqpage' => 'Project:प्रश्नावली',
 
@@ -701,9 +700,6 @@ $1',
 'perfcached' => 'खालील माहिती सयीमधील (कॅशे) असल्यामुळे ती अद्ययावत् नाही.जास्तीतजास्त {{PLURAL:$1|एक प्रतिफळ |$1 प्रतिफळे }} सयीमध्ये असतात.',
 'perfcachedts' => 'खालील माहिती सयीमधील (कॅशे) आहे व ती  $1 पर्यंत अद्ययावत् आहे. जास्तीतजास्त {{PLURAL:$4|एक प्रतिफळ |$4 प्रतिफळे}} सयीमध्ये असतात.',
 'querypage-no-updates' => 'सध्या या पानाकरिता नवी अद्यतने अनुपलब्ध केली आहेत.आत्ताच येथील विदा तरोताजा होणार नाही.',
-'wrong_wfQuery_params' => 'wfQuery()साठी चुकिची प्राचले दिलेली आहेत<br />
-(कार्य) function: $1<br />
-(पृच्छा)Query: $2',
 'viewsource' => 'स्रोत पहा',
 'viewsource-title' => '$1 चा उगम बघा',
 'actionthrottled' => 'कृती नियामक(थ्रॉटल) केली',
@@ -3669,10 +3665,6 @@ $1',
 'exif-urgency-low' => 'नीचतम ($1)',
 'exif-urgency-high' => 'उच्चतम ($1)',
 'exif-urgency-other' => '($1) उपयोगकर्ता-निश्चित  प्राधान्य',
-
-# External editor support
-'edit-externally' => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादित करा.',
-'edit-externally-help' => 'अधिक माहितीसाठी  [https://www.mediawiki.org/wiki/Manual:External_editors स्थापन करण्याच्या सूचना] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्व',

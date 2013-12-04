@@ -255,7 +255,6 @@ $messages = array(
 'qbedit' => 'Tahrirlash',
 'qbpageoptions' => 'Ushbu sahifa moslamalari',
 'qbmyoptions' => 'Moslamalarim',
-'qbspecialpages' => 'Maxsus sahifalar',
 'faq' => 'TSS',
 'faqpage' => 'Project:TSS',
 
@@ -1651,10 +1650,6 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'exif-iimcategory-sci' => 'Fan va texnologiyalar',
 'exif-iimcategory-spo' => 'Sport',
 'exif-iimcategory-wea' => 'Ob-havo',
-
-# External editor support
-'edit-externally' => 'Bu faylni tashqi dasturiy ilovalar yordamida tahrirla',
-'edit-externally-help' => "(Batafsil ma'lumotlar uchun [https://www.mediawiki.org/wiki/Manual:External_editors bu yerga] qarang)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Barcha',

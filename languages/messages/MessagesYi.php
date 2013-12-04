@@ -354,7 +354,6 @@ $messages = array(
 'qbedit' => 'ענדערן',
 'qbpageoptions' => 'דער בלאט',
 'qbmyoptions' => 'מיינע בלעטער',
-'qbspecialpages' => 'ספעציעלע בלעטער',
 'faq' => 'מערסטע געפרעגטע פראגעס',
 'faqpage' => 'Project:מערסטע געפרעגט פראגעס',
 
@@ -575,9 +574,6 @@ $1',
 'perfcachedts' => 'די פאלגנדע דאטן זענען פונעם זאַפאַס, וואס איז לעצט געווארן דערהײַנטיגט $1. מאקסימום {{PLURAL:$4|איין רעזולטאט איז|$4 רעזולטאטן זענען}} פאראן אין זאפאס',
 'querypage-no-updates' => 'דערהיינטיגן דעם בלאט איז איצט אומערמעגלעכט.
 דאטן דא וועט נישט דערווייל ווערן באנייט.',
-'wrong_wfQuery_params' => 'די פארעמעטערס אריינגפיטערט צו wfQuery() זענען נישט ריכטיג:<br />
-פֿונקיציע: $1<br />
-פֿארלאנג: $2',
 'viewsource' => 'ווײַזן מקור',
 'viewsource-title' => 'באקוקן מקור פֿון $1',
 'actionthrottled' => 'די אַקציע איז באַגרענעצט',
@@ -3531,10 +3527,6 @@ $1',
 'exif-urgency-low' => 'נידעריק ($1)',
 'exif-urgency-high' => 'הויך ($1)',
 'exif-urgency-other' => 'באניצער־דעפינירטע פריאריטעט ($1)',
-
-# External editor support
-'edit-externally' => 'רעדאַקטירט די טעקע מיט א דרויסנדיגער אַפליקאַציע',
-'edit-externally-help' => 'זעט די [https://www.mediawiki.org/wiki/Manual:External_editors אויפֿשטעל אנווייזונגען] פאר מער אינפארמאציע.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'אַלע',

@@ -413,7 +413,6 @@ $messages = array(
 'qbedit' => 'ସମ୍ପାଦନା (Edit)',
 'qbpageoptions' => 'ଏହି ପୃଷ୍ଠାଟି',
 'qbmyoptions' => 'ମୋ ପୃଷ୍ଠାଗୁଡ଼ିକ',
-'qbspecialpages' => 'ବିଶେଷ ପୃଷ୍ଠା',
 'faq' => 'ବାରମ୍ବାର ପଚରାଯାଉଥିବା ପ୍ରଶ୍ନ',
 'faqpage' => 'Project:ବାରମ୍ବାର ପଚରାଯାଉଥିବା ପ୍ରଶ୍ନ',
 
@@ -622,9 +621,6 @@ $1',
 'perfcachedts' => 'ତଳଲିଖିତ ତଥ୍ୟଗୁଡିକୁ ଅସ୍ଥାୟୀ ଭାବେ ରଖାଗଲା ଏବଂ  $1ରେ ଶେଷଥର ଅପଡେଟ ହୋଇଥିଲା । ଅତିବେଶିରେ {{PLURAL:$1|ଫଳ|$1ଫଳଗୁଡିକ }} ଅସ୍ଥାୟୀ ରୂପେ ରହି ପାରିବ ।',
 'querypage-no-updates' => 'ଏହି ପୃଷ୍ଠାଟି ପାଇଁ ଅପଡେଟସବୁ ଏବେ ଅଚଳ କରାଯାଇଅଛି ।
 ଏଠାରେ ଥିବା ତଥ୍ୟ ସବୁ ଏବେ ସତେଜ ହୋଇପାରିବ ନାହିଁ ।',
-'wrong_wfQuery_params' => 'wfQuery() ପାଇଁ ଭୁଲ ପାରାମିଟର<br />
-କାମ: $1<br />
-ଖୋଜା ପ୍ରଶ୍ନ: $2',
 'viewsource' => 'ମୂଳାଧାର ଦେଖିବେ',
 'viewsource-title' => '$1 ନିମନ୍ତେ ଆଧାର ଦେଖିବେ',
 'actionthrottled' => 'କାମଟି ବନ୍ଦ କରିଦିଆଗଲା',
@@ -3624,10 +3620,6 @@ $1',
 'exif-urgency-low' => 'ଉଣା ($1)',
 'exif-urgency-high' => 'ଅଧିକ ($1)',
 'exif-urgency-other' => 'ବ୍ୟବହାରକାରୀ ଦେଇ ଦିଆହୋଇଥିବା ଗୁରୁତ୍ଵ ($1)',
-
-# External editor support
-'edit-externally' => 'ଏକ ବାହାର ଆପ୍ଲିକେସନ ବ୍ୟବହାର କରି ଏହି ଫାଇଲଟିକୁ ବଦଳାଇବା',
-'edit-externally-help' => '(ଆହୁରି ବି [https://www.mediawiki.org/wiki/Manual:External_editors ସଜାଡିବା ନିର୍ଦେଶ] ଦେଖନ୍ତୁ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ସବୁ',

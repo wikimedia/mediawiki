@@ -209,7 +209,6 @@ $messages = array(
 'qbedit' => 'Eiditar',
 'qbpageoptions' => 'Esta páigina',
 'qbmyoptions' => 'Mies páiginas',
-'qbspecialpages' => 'Páiginas speciales',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -1149,10 +1148,6 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 'exif-sharpness-2' => 'Duro',
 
 'exif-subjectdistancerange-0' => 'Çcoincido',
-
-# External editor support
-'edit-externally' => 'Eiditar este fexeiro outelizando ua aplicaçon sterna',
-'edit-externally-help' => '(Bei las [https://www.mediawiki.org/wiki/Manual:External_editors anstruçones de anstalaçon] pa mais anformaçon).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

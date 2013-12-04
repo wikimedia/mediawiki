@@ -344,7 +344,6 @@ $messages = array(
 'qbedit' => 'सम्पादन',
 'qbpageoptions' => 'यह पृष्ठ',
 'qbmyoptions' => 'मेरे पृष्ठ',
-'qbspecialpages' => 'विशेष पृष्ठ',
 'faq' => 'बहुधा पूछे प्रश्न',
 'faqpage' => 'Project:अक्सर पूछे जाने वाले सवाल',
 
@@ -563,9 +562,6 @@ $1',
 'perfcached' => 'नीचे दिया हुआ डेटा कैशे मेमोरी से लिया हुआ है, अतः हो सकता है कि इसका पूर्ण अद्यतन न हुआ हो। कैशे मेमोरी में अधिकतम {{PLURAL:$1|एक  नतीजा|$1 नतीजे}} उपलब्ध हैं।',
 'perfcachedts' => 'नीचे दिया हुआ डेटा कैशे मेमोरी से है, और इसका अंतिम अद्यतन $1 को हुआ था। कैशे मेमोरी में अधिकतम {{PLURAL:$4|एक  नतीजा|$4 नतीजे}} उपलब्ध हैं।',
 'querypage-no-updates' => 'इस पृष्ठ का नवीनीकरण करना मना है। अभी यहाँ के डाटा को ताज़ा नहीं कर सकते।',
-'wrong_wfQuery_params' => 'wfQuery() के लिये गलत मापदण्ड दिये हैं<br />
-फ़ंक्शन: $1<br />
-पृच्छा: $2',
 'viewsource' => 'स्रोत देखें',
 'viewsource-title' => '$1 का स्रोत देखें',
 'actionthrottled' => 'कार्य समाप्त कर दिया गया है',
@@ -3635,10 +3631,6 @@ $1',
 'exif-urgency-low' => 'न्यूनतम ($1)',
 'exif-urgency-high' => 'उच्चतम ($1)',
 'exif-urgency-other' => 'यूज़र-डिफ़ाइंड प्राथमिकता ( $1 )',
-
-# External editor support
-'edit-externally' => 'बाहरी प्रणाली का उपयोग करते हुए इस सञ्चिका को सम्पादित करें ।',
-'edit-externally-help' => '(और जानकारी के लिए [https://www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सभी',

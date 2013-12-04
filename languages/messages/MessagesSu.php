@@ -271,7 +271,6 @@ $messages = array(
 'qbedit' => 'Édit',
 'qbpageoptions' => 'Kaca ieu',
 'qbmyoptions' => 'Kaca kuring',
-'qbspecialpages' => 'Kaca husus',
 'faq' => 'NLD',
 'faqpage' => 'Project:NLD',
 
@@ -471,7 +470,6 @@ Sigana geus dihapus ku nu séjén.',
 'perfcached' => "Data di handap ieu mangrupa 'cache' sahingga bisa jadi henteu mutahir. 'Cache' nyadiakeun paling loba {{PLURAL:$1|hiji hasil|$1 hasil}}.",
 'perfcachedts' => "Data di handap mangrupa 'cache' anu panungtungan diropéa $1. 'Cache' nyadiakeun paling loba {{PLURAL:$4|hiji hasil|$4 hasil}}.",
 'querypage-no-updates' => 'Pangrobahan ahir ti kaca ieu keur dipaéhkeun. Data anu aya di dieu ayeuna moal dimuat deui.',
-'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamenta: $2',
 'viewsource' => 'Témbongkeun sumber',
 'viewsource-title' => 'Témbongkeun sumber pikeun $1',
 'actionthrottled' => 'Peta diwates',
@@ -2784,10 +2782,6 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 'exif-iimcategory-wea' => 'Cuaca',
 
 'exif-urgency-normal' => 'Normal ($1)',
-
-# External editor support
-'edit-externally' => 'Édit koropak ieu migunakeun aplikasi éksternal',
-'edit-externally-help' => 'Baca [https://www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sadaya',

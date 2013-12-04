@@ -196,7 +196,6 @@ $messages = array(
 'qbedit' => 'Гъэтэрэзын',
 'qbpageoptions' => 'НапэкӀуэцӀым и зэгъэзэхуэгъуэр',
 'qbmyoptions' => 'Уи зэгъэзэхуэгъуэхэр',
-'qbspecialpages' => 'Специал напэкӀуэцӀхэр',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -396,9 +395,6 @@ $1',
 'perfcachedts' => 'Мы Ӏохугъуэхэр кэшым къыхахэ, яужыреуэ къыщыгъэщӀэрэщӀыжар $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Мы напэкӀуэцӀым и къэгъэщӀэрэщӀыныр джыпсту теубыдауэ щытщ.
 Ӏохугъуэ мыде хэтхэр актуализациэ хъунукъым.',
-'wrong_wfQuery_params' => 'Параметыр емыкӀу wfQuery-м()<br /> 
-Функциэ: $1<br />
-ЩӀэлъэуэгъуэ: $2',
 'viewsource' => 'Хэплъэн',
 'viewsource-title' => 'НапэкӀуэцӀ $1 и япэрей тхыгъэ щытыкӀэм ухуоплъэщ',
 'actionthrottled' => 'ЩӀэхыгъэм убыдыгъэ иӀэ',
@@ -1331,10 +1327,6 @@ $1",
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Файлыр гъэтэрэзын, нэгъуэщӀ программэ и сэбэпкӀэ',
-'edit-externally-help' => '(нэхъыбу еплъ [https://www.mediawiki.org/wiki/Manual:External_editors илъхьэным и тепсэлъыхьыгъуэ])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'псори',

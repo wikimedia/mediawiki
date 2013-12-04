@@ -174,7 +174,6 @@ $messages = array(
 'qbedit' => '编写',
 'qbpageoptions' => '个页',
 'qbmyoptions' => '偶𠮶选项',
-'qbspecialpages' => '特殊页',
 'faq' => 'FAQ',
 'faqpage' => 'Project:问得蛮多𠮶问题',
 
@@ -361,9 +360,6 @@ $1',
 'perfcached' => '底下系缓存资料，可能伓系最新𠮶。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => '底下系缓存资料，佢最晏更新𠮶时间系 $1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '个页目前改伓正，佢𠮶资料伓能仰上更新。',
-'wrong_wfQuery_params' => '参数错误斢到嘞 wfQuery()<br />
-函数： $1<br />
-查询： $2',
 'viewsource' => '源代码',
 'protectedpagetext' => '个页锁到嘞，改伓正。',
 'viewsourcetext' => '倷可以眵吖或复制个页𠮶源代码：',
@@ -2063,10 +2059,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真实方位',
 'exif-gpsdirection-m' => '地磁方位',
-
-# External editor support
-'edit-externally' => '用外部程式来编辑个只档案',
-'edit-externally-help' => '请参看[https://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

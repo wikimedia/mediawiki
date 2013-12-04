@@ -273,7 +273,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Ista pachina',
 'qbmyoptions' => 'Pachinas propias',
-'qbspecialpages' => 'Pachinas especials',
 'faq' => 'Preguntas freqüents (FAQ)',
 'faqpage' => 'Project:Preguntas freqüents',
 
@@ -474,9 +473,6 @@ Por favor, comunique-lo a un [[Special:ListUsers/sysop|almenistrador]] indicando
 'perfcached' => 'Os datos siguients son en caché, y talment no son esviellatos. I hai un maximo de {{PLURAL:$1|un resultau disponible|$1 resultaus disponibles}} en a caché.',
 'perfcachedts' => "Os datos siguients se troban en a caché, que estió esviellata por zaguer vegada o $1. I hai un maximo {{PLURAL:$4|d'un resultau disponible|de $4 resultaus disponibles}} en a caché.",
 'querypage-no-updates' => "S'han desactivato as actualizacions d'ista pachina. Por ixo, no s'esta esviellando os datos.",
-'wrong_wfQuery_params' => 'Parametros incorrectos ta wfQuery()<br />
-Función: $1<br />
-Consulta: $2',
 'viewsource' => 'Veyer o codigo fuent',
 'viewsource-title' => 'Veyer o codigo fuent de «$1»',
 'actionthrottled' => 'acción afogata',
@@ -3215,10 +3211,6 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-urgency-low' => 'Baixo ($1)',
 'exif-urgency-high' => 'Alto ($1)',
 'exif-urgency-other' => "Prioridat definida por l'usuario ($1)",
-
-# External editor support
-'edit-externally' => 'Editar iste fichero fendo servir una aplicación externa',
-'edit-externally-help' => '(Ta más información, leiga as [https://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totz',

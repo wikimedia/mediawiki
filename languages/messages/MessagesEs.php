@@ -539,7 +539,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Opciones de página',
 'qbmyoptions' => 'Mis páginas',
-'qbspecialpages' => 'Páginas especiales',
 'faq' => 'Preguntas más frecuentes',
 'faqpage' => 'Project:P+F',
 
@@ -755,9 +754,6 @@ Puede que contenga uno o más caracteres que no se pueden usar en los títulos.'
 'perfcached' => 'Los siguientes datos provienen de la caché y pueden no estar actualizados. La caché puede contener {{PLURAL:$1|un resultado|$1 resultados}} como máximo.',
 'perfcachedts' => 'Los siguientes datos provienen de la caché y su última fecha y hora de actualización es: $1. La caché puede contener {{PLURAL:$4|un resultado|$4 resultados}} como máximo.',
 'querypage-no-updates' => 'Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.',
-'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
-Función: $1<br />
-Consulta: $2',
 'viewsource' => 'Ver código',
 'viewsource-title' => 'Ver el código de «$1»',
 'actionthrottled' => 'Acción limitada',
@@ -882,13 +878,13 @@ Revisa la ortografía, o [[Special:UserLogin/signup|crea una cuenta nueva]].',
 'nouserspecified' => 'Debes especificar un nombre de usuario.',
 'login-userblocked' => 'Este usuario está bloqueado. Inicio de sesión no permitido.',
 'wrongpassword' => 'La contraseña indicada es incorrecta.
-Por favor, inténtalo de nuevo.',
+Inténtalo de nuevo.',
 'wrongpasswordempty' => 'No has escrito una contraseña.
-Por favor, inténtalo de nuevo.',
+Inténtalo de nuevo.',
 'passwordtooshort' => 'Las contraseñas deben tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
 'password-name-match' => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
 'password-login-forbidden' => 'El uso de este nombre de usuario y contraseña han sido prohibidos.',
-'mailmypassword' => 'Enviar una nueva contraseña por correo electrónico',
+'mailmypassword' => 'Restablecer la contraseña',
 'passwordremindertitle' => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext' => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
 Se ha creado la siguiente contraseña temporal para el usuario «$2»: «$3»
@@ -959,7 +955,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 # Special:PasswordReset
 'passwordreset' => 'Restablecimiento de contraseña',
 'passwordreset-text-one' => 'Completa este formulario para restablecer tu contraseña.',
-'passwordreset-text-many' => '{{PLURAL:$1|Completa uno de los campos para restablecer tu contraseña.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Rellena uno de los campos para restablecer la contraseña.}}',
 'passwordreset-legend' => 'Restablecer contraseña',
 'passwordreset-disabled' => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
 'passwordreset-emaildisabled' => 'Las funciones de correo electrónico han sido desactivadas en esta wiki.',
@@ -1110,10 +1106,10 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otra
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.',
-'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
+'missing-revision' => 'La revisión n.º $1 de la página llamada «{{PAGENAME}}» no existe.
 
-Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.
-Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
+Normalmente esto ocurre cuando se sigue un enlace de historial obsoleto que apunta a una página ya borrada.
+Puedes encontrar detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].',
 'userpage-userdoesnotexist' => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view' => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract' => 'Este usuario está actualmente bloqueado.
@@ -1140,8 +1136,8 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 ¡Tus cambios aún no se han guardado!",
 'continue-editing' => 'Ir al área de edición',
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
-'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
-Por favor, inténtalo de nuevo.
+'session_fail_preview' => "'''No se pudo procesar la edición debido a una pérdida de los datos de sesión.'''
+Inténtalo de nuevo.
 Si el problema persiste, [[Special:UserLogout|cierra la sesión]] y vuelve a identificarte.",
 'session_fail_preview_html' => "'''Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.'''
 
@@ -1812,7 +1808,8 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchanges-label-minor' => 'Esta es una edición menor',
 'recentchanges-label-bot' => 'Esta edición fue realizada por un robot',
 'recentchanges-label-unpatrolled' => 'Esta edición todavía no se ha patrullado',
-'recentchanges-legend-newpage' => '$1 - página nueva',
+'recentchanges-label-plusminus' => 'El tamaño de la página cambió esta cantidad de bytes',
+'recentchanges-legend-newpage' => '(véase también la [[Special:NewPages|lista de páginas nuevas]])',
 'rcnote' => "Debajo {{PLURAL:$1|hay '''1''' cambio efectuado|están los últimos '''$1''' cambios efectuados}} en  {{PLURAL:$2|el último día|los últimos '''$2''' días}}, hasta el $4, $5.",
 'rcnotefrom' => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom' => 'Mostrar nuevos cambios desde $1',
@@ -2189,7 +2186,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 'filedelete-maintenance-title' => 'No se puede eliminar el archivo',
 
 # MIME search
-'mimesearch' => 'Búsqueda MIME',
+'mimesearch' => 'Búsqueda por MIME',
 'mimesearch-summary' => 'Esta página permite el filtrado de ficheros por su tipo MIME.
 Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'mimetype' => 'Tipo MIME:',
@@ -2517,11 +2514,11 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'enotif_mailer' => 'Notificación por correo de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas las páginas como visitadas',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'enotif_subject_deleted' => 'La página $1 de {{SITENAME}} ha sido eliminada por {{gender:$2|$2}}',
-'enotif_subject_created' => 'La página $1 de {{SITENAME}} ha sido creada por {{GENDER:$2|$2}}',
-'enotif_subject_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada por {{GENDER:$2|$2}}',
-'enotif_subject_restored' => 'La página $1 de {{SITENAME}} ha sido restaurada por {{GENDER:$2|$2}}',
-'enotif_subject_changed' => 'La página $1 de {{SITENAME}} ha sido cambiada por {{GENDER:$2|$2}}',
+'enotif_subject_deleted' => '$2 ha borrado la página $1 de {{SITENAME}}',
+'enotif_subject_created' => '$2 ha creado la página $1 en {{SITENAME}}',
+'enotif_subject_moved' => '$2 ha trasladado la página $1 de {{SITENAME}}',
+'enotif_subject_restored' => '$2 ha restaurado la página $1 de {{SITENAME}}',
+'enotif_subject_changed' => '$2 ha modificado la página $1 de {{SITENAME}}',
 'enotif_body_intro_deleted' => 'La página $1 de {{SITENAME}} ha sido borrada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3.',
 'enotif_body_intro_created' => 'La página $1 de {{SITENAME}} ha sido creada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
 'enotif_body_intro_moved' => 'La página $1 de {{SITENAME}} ha sido trasladada el $PAGEEDITDATE por {{GENDER:$2|$2}}, véase $3 para la revisión actual.',
@@ -2530,28 +2527,31 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'enotif_lastvisited' => 'Consulta $1 para ver todos los cambios realizados desde tu última visita.',
 'enotif_lastdiff' => 'Consulta $1 para ver este cambio.',
 'enotif_anon_editor' => 'usuario anónimo $1',
-'enotif_body' => 'Estimado/a $WATCHINGUSERNAME,
+'enotif_body' => 'Hola, $WATCHINGUSERNAME:
 
 $PAGEINTRO $NEWPAGE
 
-Resumen de edición: $PAGESUMMARY $PAGEMINOREDIT
+Resumen del editor: $PAGESUMMARY $PAGEMINOREDIT
 
-Contacta con el editor:
-Correo electrónico: $PAGEEDITOR_EMAIL
-Wiki: $PAGEEDITOR_WIKI
+Contacta al editor:
+correo: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
-No habrá otras notificaciones en caso de cambios adicionales, a menos que visites esta página nuevamente. También puedes reestablecer las notificaciones de todas tus páginas que sigas en tu página de vigilancia.
+No enviaremos más notificaciones si ocurre más actividad, a menos que visites esta página con la sesión iniciada. También puedes restablecer los estados de notificación para todas las páginas en tu lista de seguimiento.
 
-El sistema de notificaciones de {{SITENAME}}.
+Atentamente, el sistema de notificaciones de {{SITENAME}}
 
 --
-Para cambiar las opciones de tu lista de seguimiento, visita:
+Para cambiar tus ajustes de notificación por correo, visita
+{{canonicalurl:{{#special:Preferences}}}}
+
+Para cambiar los ajustes de tu lista de seguimiento, visita
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Para borrar la página de tu lista de seguimiento visita:
+Para quitar la página de tu lista de seguimiento, visita
 $UNWATCHURL
 
-Comentarios y asistencia adicional:
+Para ayuda y comentarios:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'creada',
 'changed' => 'modificada',
@@ -3838,10 +3838,6 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-urgency-low' => 'Bajo ($1)',
 'exif-urgency-high' => 'Alto ($1)',
 'exif-urgency-other' => 'Prioridad definida por el usuario ($1)',
-
-# External editor support
-'edit-externally' => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => '(Lee las [https://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',

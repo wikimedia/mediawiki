@@ -149,7 +149,6 @@ $messages = array(
 'qbedit' => 'Ennere',
 'qbpageoptions' => 'Des Blatt',
 'qbmyoptions' => 'Mei Bledder',
-'qbspecialpages' => 'Besunnere Bledder',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 

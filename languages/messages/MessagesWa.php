@@ -219,7 +219,6 @@ $messages = array(
 'qbedit' => 'Candjî',
 'qbpageoptions' => 'Cisse pådje ci',
 'qbmyoptions' => 'Mes pådjes',
-'qbspecialpages' => 'Pådjes sipeciåles',
 
 # Vector skin
 'vector-action-addsection' => 'Radjouter on sudjet',
@@ -390,9 +389,6 @@ Adon dijhoz l' a on [[Special:ListUsers/sysop|manaedjeu]], sins rovyî d' mete l
 'badtitletext' => "Li tite del pådje dimandêye n' esteut nén valide, il estet vude, oudonbén c' esteut on cron loyén eterlingaedje ou eterwiki. Ça s' pout k' il åye onk ou sacwants caracteres ki n' polèt nén esse eployîs dins les tites.",
 'perfcached' => "Les dnêyes ki shuvèt c' est ene copeye e muchete, et ça s' pout ki ça n' soeye nén ttafwaitmint a djoû. Li muchete a-st on macsimom {{PLURAL:$1|d' on rzultat|di $1 rizultats}}.",
 'perfcachedts' => "Les dnêyes ki shuvèt c' est ene copeye e muchete, ey elle ont stî metowes a djoû pol dierin côp li $1. Li muchete a-st on macsimom {{PLURAL:$4|d' on rzultat|di $4 rizultats}}.",
-'wrong_wfQuery_params' => 'Parametes incoreks po wfQuery()<br />
-Fonccion: $1<br />
-Cweraedje: $2',
 'viewsource' => 'Vey côde sourdant',
 'viewsource-title' => 'Côde sourdant di «$1»',
 'viewsourcetext' => "Loukîz li contnou d' l’ årtike, et s’ li rcopyî si vos vloz, por vos bouter dsu foû des fyis:",
@@ -2121,10 +2117,6 @@ est raptiti. Les ôtes seront catchîs.
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'miles/h',
 'exif-gpsspeed-n' => 'nuks',
-
-# External editor support
-'edit-externally' => "Candjî ç' fitchî ci avou on dfoûtrin programe",
-'edit-externally-help' => "(Loukîz les [https://www.mediawiki.org/wiki/Manual:External_editors instruccions d' apontiaedje] po pus di racsegnes)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totafwait',

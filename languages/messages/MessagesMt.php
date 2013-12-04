@@ -430,7 +430,6 @@ $messages = array(
 'qbedit' => 'Immodifika',
 'qbpageoptions' => 'Din il-paġna',
 'qbmyoptions' => 'Il-paġni tiegħi',
-'qbspecialpages' => 'Paġni speċjali',
 'faq' => 'Mistoqsijiet komuni',
 'faqpage' => 'Project:FAQ',
 
@@ -634,9 +633,6 @@ Jista\' jkun li diġà ġie mħassar minn xi ħaddieħor.',
 'perfcached' => "L-informazzjoni li jmiss huwa kopja ''cache'' u jista' ma jkunx aġġornat. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => "Id-dati segwenti huma estratt ta' kopja cache tad-database. L-aħħar aġġornament: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Aġġornamenti għal din il-paġna huma temporalment sospesi. L-Informazzjoni hawnhekk preżentament mhux qiegħed jiġi aġġornat.',
-'wrong_wfQuery_params' => 'Parametri skoretti għal wfQuery()<br />
-Funżjoni: $1<br />
-Rikjesta: $2',
 'viewsource' => 'Ara s-sors',
 'viewsource-title' => "Ara s-sors ta' $1",
 'actionthrottled' => 'Azzjoni miżmuma',
@@ -3459,10 +3455,6 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 'exif-urgency-low' => 'Baxx ($1)',
 'exif-urgency-high' => 'Għoli ($1)',
 'exif-urgency-other' => 'Prijorità definita mill-utent ($1)',
-
-# External editor support
-'edit-externally' => "Immodifika dan il-fajl b'użu ta' applikazzjoni esterna",
-'edit-externally-help' => '(Għal aktar informazzjoni ara l-[https://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kollha',

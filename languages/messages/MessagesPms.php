@@ -200,7 +200,6 @@ $messages = array(
 'qbedit' => 'Modifiché',
 'qbpageoptions' => 'Costa pàgina',
 'qbmyoptions' => 'Mie pàgine',
-'qbspecialpages' => 'Pàgine speciaj',
 'faq' => 'Chestion frequente',
 'faqpage' => 'Project:Soèns An Ciamo',
 
@@ -415,9 +414,6 @@ A l'ha smonù gnun-e spiegassion.",
 'perfcached' => "Ij dat sì-dapress a sòn ëstàit memorisà an local e a peulo esse nen agiornà. Al pi {{PLURAL:$1|n'arzultà a l'é disponìbil|$1 arzultà a son disponìbij}} ant la memòria local.",
 'perfcachedts' => "Ij dat sì-dapress a son ëstàit memorisà an local, e a son ëstàit agiornà l'ùltima vira ël $1. Al pi {{PLURAL:$4|n'arzultà a l'é disponìbil|$4 arzultà a son disponìbij}} ant la memòria local.",
 'querypage-no-updates' => "J'agiornament për sta pàgina-sì për adess a marcio nen. Ij dat ambelessì a saran nen agiornà.",
-'wrong_wfQuery_params' => 'Paràmetro nen giust për wfQuery()<br />
-Funsion: $1<br />
-Arcesta: $2',
 'viewsource' => 'Vardé la sorgiss',
 'viewsource-title' => 'Vëdde la sorgiss ëd $1',
 'actionthrottled' => 'Assion limità',
@@ -3491,10 +3487,6 @@ J'àutri a saran stërmà coma stàndard.
 'exif-urgency-low' => 'Bassa ($1)',
 'exif-urgency-high' => 'Àuta ($1)',
 'exif-urgency-other' => "Priorità definìa da l'utent ($1)",
-
-# External editor support
-'edit-externally' => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "(Lese [https://www.mediawiki.org/wiki/Manual:External_editors j'anstrussion d'anstalassion] për avèj pì d'anformassion)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',

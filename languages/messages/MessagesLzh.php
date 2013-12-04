@@ -306,7 +306,6 @@ $messages = array(
 'qbedit' => '纂',
 'qbpageoptions' => '此頁',
 'qbmyoptions' => '吾好',
-'qbspecialpages' => '非凡',
 'faq' => '頻答問',
 'faqpage' => 'Project:頻答問',
 
@@ -504,9 +503,6 @@ $1',
 'badtitletext' => '或別、或缺、或違、或他山謬鏈，此題不存也。',
 'perfcached' => '下為謄本，恐不新也。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => '下為謄本，$1新之。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'wrong_wfQuery_params' => 'wfQuery（）參數謬然<br />
-函式： $1<br />
-問語： $2',
 'viewsource' => '覽源',
 'viewsource-title' => '查$1之案',
 'actionthrottled' => '無為',
@@ -2630,10 +2626,6 @@ $1',
 'exif-gpsdestdistance-k' => '千米',
 'exif-gpsdestdistance-m' => '哩',
 'exif-gpsdestdistance-n' => '浬',
-
-# External editor support
-'edit-externally' => '以外部程式修此文',
-'edit-externally-help' => '（請閱[https://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全',

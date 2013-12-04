@@ -238,7 +238,6 @@ $messages = array(
 'qbedit' => 'دَییشدیر',
 'qbpageoptions' => 'بو صحیفه‌‌',
 'qbmyoptions' => 'منیم صحیفه‌‌لریم',
-'qbspecialpages' => 'اؤزل صحیفه‌لر',
 'faq' => 'چوخ سوروشولان سواللار',
 'faqpage' => 'Project:چوخلو سوروشولان سورغولار',
 
@@ -449,9 +448,6 @@ $1',
 'perfcachedts' => 'بو بیلگی کَش اولوب‌دور، سون دفعه $1 واختیندا گونجلیب‌دیر. چوخو {{PLURAL:$4|بیر نتیجه|$4 نتیجه}} کَش‌ده‌دیر.',
 'querypage-no-updates' => 'بو یارپاق‌دا گونجل‌له‌مک ایندی باغلانیب‌دیر.
 بورداکی بیلگیلر یئنی‌لشمیه‌جکلر.',
-'wrong_wfQuery_params' => 'wfQuery() اوچون یانلیش پارامئترلر وئریلیب‌دیر<br />
-فونکسیا: $1<br />
-سورغو: $2',
 'viewsource' => 'قایناغا باخ',
 'viewsource-title' => '$1 اوچون قایناغا باخین',
 'actionthrottled' => 'سیزین چالیشمانیزین قاباغی آلیندی',
@@ -3435,10 +3431,6 @@ $1',
 'exif-urgency-low' => 'آز ($1)',
 'exif-urgency-high' => 'چوخ($1)',
 'exif-urgency-other' => 'ایستیفاده‌چی طرفین‌دن مویین اولونموش بیرینجی‌لیک ($1)',
-
-# External editor support
-'edit-externally' => 'بو فایلی خاریجی یازیلیم‌لا دَییشدیر',
-'edit-externally-help' => '(آرتیق بیلگیلر اوچون [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] صحیفه‌سینه باخ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'بوتون',

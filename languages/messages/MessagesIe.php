@@ -138,6 +138,7 @@ $messages = array(
 'tog-hideminor' => 'Ocultar redactiones minori in nov changes',
 'tog-hidepatrolled' => 'Ocultar redactiones vigilat in nov changes',
 'tog-newpageshidepatrolled' => 'Ocultar págines vigilat de liste de nov págines',
+'tog-extendwatchlist' => 'Expander li liste de vigilantie a omni changes, ne solmen li max nov',
 'tog-usenewrc' => 'Ordinar changes in «Recent changes» e li liste de vigila secun págines',
 'tog-numberheadings' => 'Auto-numerar rublicas',
 'tog-showtoolbar' => 'Monstrar barre de redactional utensiles',
@@ -149,13 +150,14 @@ $messages = array(
 'tog-watchcreations' => 'Automaticmen viligar págines e files, queles yo ha creat.',
 'tog-watchdefault' => 'Automaticmen vigilar págines e files, queles yo ha redactet.',
 'tog-watchmoves' => 'Automaticmen vigilar págines e files, queles yo move.',
-'tog-watchdeletion' => 'Adjunter págines que yo deleter por mi liste de págines vigilat',
+'tog-watchdeletion' => 'Adjunter págines e dossieres, queles yo ha deleet a mi liste de vigilantie',
 'tog-minordefault' => 'Marcar omni li redactiones minori per contumacie',
 'tog-previewontop' => 'Monstrar prevision ante de buxe de redaction',
 'tog-previewonfirst' => 'Monstrar prevision in prim redaction',
 'tog-nocache' => 'Desvalidar caching de págine',
-'tog-enotifwatchlistpages' => 'Inviar me e-mail quande un págine de mi liste de págines vigilat es changeat',
+'tog-enotifwatchlistpages' => 'Inviar me un e-mail quande un págine o dossiere de mi liste de págines vigilantie es changeat',
 'tog-enotifusertalkpages' => 'Inviar me e-mail quande mi págine de discussion es changeat',
+'tog-enotifminoredits' => 'Inviar me un e-mail anc por minor redactiones de págines a dossieres',
 'tog-enotifrevealaddr' => 'Revelar mi adresse de e-mail in notificationes de e-mail',
 'tog-shownumberswatching' => 'Monstrar li númere de usatores vigilant',
 'tog-oldsig' => 'Existent subscrition:',
@@ -173,6 +175,7 @@ $messages = array(
 'tog-showhiddencats' => 'Monstrar categories ne visibil',
 'tog-noconvertlink' => 'Desvalidar conversion de titul de catenun',
 'tog-norollbackdiff' => 'Omisser change pos de efectuar un rollback',
+'tog-useeditwarning' => 'Averti me, si yo abandona un págine con ínconservat changes',
 'tog-prefershttps' => 'Sempre usar un secur connection, si tui session es activ.',
 
 'underline-always' => 'Sempre',
@@ -287,7 +290,6 @@ $messages = array(
 'qbedit' => 'Redacter',
 'qbpageoptions' => 'Págine de optiones',
 'qbmyoptions' => 'Mi optiones',
-'qbspecialpages' => 'Págines special',
 'faq' => 'FAQ',
 
 # Vector skin
@@ -369,6 +371,9 @@ Anc mult usatores es provant vider ti págine.
 Pleser atende un témpor quelc ante que vu prova accesser ti págine denov.
 
 $1',
+'pool-timeout' => 'Temporal límite attiņit, attendente li clusion.',
+'pool-queuefull' => 'Range de petitiones es plen.',
+'pool-errorunknown' => 'Ínconosset erra',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Concernent {{SITENAME}}',
@@ -383,10 +388,15 @@ $1',
 'helppage' => 'Help:Contenete',
 'mainpage' => 'Principal págine',
 'mainpage-description' => 'Principal págine',
+'policy-url' => 'Project:Regulariumes',
 'portal' => 'Portale del communité',
 'portal-url' => 'Project:Portale del communité',
 'privacy' => 'Politica de privatie',
 'privacypage' => 'Project:Politica de privatie',
+
+'badaccess' => 'Tu ne have sufficent jures',
+'badaccess-group0' => 'Tu ne have li necessi jures por ti action',
+'badaccess-groups' => 'Ti action es limitat a usatores in {{PLURAL:$2|li gruppe|un del secuent gruppes:}} $1',
 
 'versionrequired' => 'Version $1 de MediaWiki exiget',
 'versionrequiredtext' => 'Version $1 de MediaWiki es exiget por usar ti págine.
@@ -394,6 +404,10 @@ Vider [[Special:Version|págine de version]].',
 
 'retrievedfrom' => 'Cargat de «$1»',
 'youhavenewmessages' => 'Vu have $1 ($2).',
+'youhavenewmessagesfromusers' => 'Tu have $1 de {{PLURAL:$3|un altri usator|$3 usatores}} ($2).',
+'youhavenewmessagesmanyusers' => 'Tu have $1 de mult usatores ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un nov missagie|999=nov missagies}}',
+'newmessagesdifflinkplural' => 'ultim {{PLURAL:$1|change|999=changes}}',
 'youhavenewmessagesmulti' => 'Vu have nov missages in $1',
 'editsection' => 'redacter',
 'editold' => 'redacter',
@@ -404,15 +418,25 @@ Vider [[Special:Version|págine de version]].',
 'toc' => 'Contenete',
 'showtoc' => 'monstrar',
 'hidetoc' => 'ocultar',
+'collapsible-collapse' => 'Celar',
+'collapsible-expand' => 'Monstrar',
 'thisisdeleted' => 'Vider o restaurar $1?',
 'viewdeleted' => 'Vider $1?',
+'restorelink' => '{{PLURAL:$1|un deleet version|$1 deleet versiones}}',
+'feed-invalid' => 'Ínvalid typ de feed-abonnament.',
+'feed-unavailable' => 'Null feeds es attiņibil',
+'site-rss-feed' => 'RSS-feed por «$1»',
 'site-atom-feed' => '$1 Atom feed',
+'page-rss-feed' => 'RSS-feed por «$1»',
 'page-atom-feed' => '"$1" Atom feed',
 'red-link-title' => '$1 (págine ne existe)',
+'sort-descending' => 'Descendent ordination',
+'sort-ascending' => 'Ascendent ordination',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Págine',
 'nstab-user' => 'Págine de usator',
+'nstab-media' => 'Págine de medies',
 'nstab-special' => 'Special págine',
 'nstab-project' => 'Págine de projecte',
 'nstab-image' => 'Figura',
@@ -421,8 +445,19 @@ Vider [[Special:Version|págine de version]].',
 'nstab-help' => 'Auxilie',
 'nstab-category' => 'Categorie',
 
+# Main script and global functions
+'nosuchaction' => 'Null tal action existe',
+'nosuchactiontext' => 'Li action indicat in li URL es ínvalid.
+Forsan tu ha mistypat li URL o secuet un íncorrect ligament.
+Forsan it indica un erra in li programma usat de {{SITENAME}}.',
+'nosuchspecialpage' => 'Null tal special págine',
+'nospecialpagetext' => '<strong>Tu ha petit un ínvalid special págine.</strong>
+
+Omni existent special págines trova se in li [[Special:Specialpages|{{int:specialpagines}}]].',
+
 # General errors
 'error' => 'Erra',
+'databaseerror' => 'Erra del data-base',
 'missing-article' => 'Li textu de «$1» $2 ne ha esset trovat in li data-base.
 
 It es possibil, que ti págine ha esset deleet o movet.
@@ -435,9 +470,6 @@ Ples raporta it a un [[Special:ListUsers/sysop|administrator]], notante li URL.'
 'badtitle' => 'Titul mal',
 'badtitletext' => 'Li titul de págine solicitat esset ínvalid, vacui, o íncorectmen ligat inter-lingue o un titul inter-wiki.
 It posse contene un o plu carácteres quel ne posse esser usat in titules.',
-'wrong_wfQuery_params' => 'Normes íncorect por wfQuery()<br />
-Function: $1<br />
-Question: $2',
 'viewsource' => 'Vider fonte',
 'viewsourcetext' => 'Vu posse vider e copiar li contenete de ti págine:',
 'titleprotected' => 'Ti titul ha esset gardat de creation per [[User:$1|$1]]. 
@@ -482,7 +514,7 @@ Pleser opta por un nómine diferent.',
 Pleser prova denov.',
 'wrongpasswordempty' => 'Parol-clave inscrit esset nud.
 Pleser prova denov.',
-'mailmypassword' => 'Nov parol-clave per e-mail',
+'mailmypassword' => 'Re-initialisar li passaparol',
 'throttled-mailpassword' => 'Un parol-clave amemora ha ja esset inviat, intra li ultim {{PLURAL:$1|hor|$1 hores}}.
 Por preventer misusa, solmen un parol-clave amemora va esser inviat per {{PLURAL:$1|hor|$1 hores}}.',
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
@@ -1314,10 +1346,6 @@ Altri va esser ocultat per contumacie.
 * latitúdine
 * longitúdine
 * altitudine',
-
-# External editor support
-'edit-externally' => 'Redacter ti file usant un aplication extern',
-'edit-externally-help' => '(Vide li [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu mult information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omni',

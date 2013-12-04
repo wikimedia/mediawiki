@@ -462,7 +462,6 @@ $messages = array(
 'qbedit' => 'Redigeeri',
 'qbpageoptions' => 'Lehekülje suvandid',
 'qbmyoptions' => 'Minu leheküljed',
-'qbspecialpages' => 'Erileheküljed',
 'faq' => 'KKK',
 'faqpage' => 'Project:KKK',
 
@@ -676,9 +675,6 @@ See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.
 'perfcached' => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad. Puhvris on saadaval kuni {{PLURAL:$1|üks tulemus|$1 tulemust}}.',
 'perfcachedts' => 'Järgmised andmed on vahemälus. Viimane uuendamisaeg: $2, kell $3. Puhvris on saadaval kuni {{PLURAL:$4|üks tulemus|$4 tulemust}}.',
 'querypage-no-updates' => 'Lehekülje uuendamine ei ole hetkel lubatud ning andmeid ei värskendata.',
-'wrong_wfQuery_params' => 'Valed parameeterid funktsioonile wfQuery()<br />
-Funktsioon: $1<br />
-Päring: $2',
 'viewsource' => 'Vaata lähteteksti',
 'viewsource-title' => 'Lehekülje $1 lähteteksti vaatamine',
 'actionthrottled' => 'Toiming nurjus',
@@ -3717,10 +3713,6 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-urgency-low' => 'Madal ($1)',
 'exif-urgency-high' => 'Kõrge ($1)',
 'exif-urgency-other' => 'Kasutaja määratud tähtsus ($1)',
-
-# External editor support
-'edit-externally' => 'Töötle faili välise programmiga',
-'edit-externally-help' => '(Vaata väliste redaktorite [https://www.mediawiki.org/wiki/Manual:External_editors kasutusjuhendit])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Näita kõiki',

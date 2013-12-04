@@ -220,7 +220,6 @@ $messages = array(
 'qbedit' => 'ಸಂಪಾದಿಸು',
 'qbpageoptions' => 'ಈ ಪುಟ',
 'qbmyoptions' => 'ನನ್ನ ಪುಟಗಳು',
-'qbspecialpages' => 'ವಿಶೇಷ ಪುಟಗಳು',
 'faq' => 'ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
 'faqpage' => 'Project:ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
 
@@ -2035,10 +2034,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ನಿಜ ದಿಕ್ಕು',
 'exif-gpsdirection-m' => 'ಆಯಸ್ಕಾಂತೀಯ ದಿಕ್ಕು',
-
-# External editor support
-'edit-externally' => 'ಬಾಹ್ಯ ತಂತ್ರಾಂಶವನ್ನು ಉಪಯೋಗಿಸಿ ಇದನ್ನು ಸಂಪಾದಿಸಿ',
-'edit-externally-help' => '(ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [https://www.mediawiki.org/wiki/Manual:External_editors ಸ್ಥಾಪನೆಯ ನಿರ್ದೇಶಗಳನ್ನು] ನೋಡಿ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ಎಲ್ಲಾ',

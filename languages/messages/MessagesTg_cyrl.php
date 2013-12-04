@@ -212,7 +212,6 @@ $messages = array(
 'qbedit' => 'Вироиш',
 'qbpageoptions' => 'Ин саҳифа',
 'qbmyoptions' => 'Саҳифаҳои ман',
-'qbspecialpages' => 'Саҳифаҳои вижа',
 'faq' => 'Саволҳои тез-тез пурсидашуда',
 'faqpage' => 'Project:Саволҳои тез-тез пурсидашуда',
 
@@ -402,9 +401,6 @@ $1',
 'perfcached' => 'Додаҳои зерин аз ҳофизаи муваққатӣ фарохонӣ шудаанд ва мумкин аст, комилан ба рӯз нашудаанд. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Додаҳои зерин аз ҳофизаи муваққатӣ фарохонӣ шудаанд ва мумкин аст, охирин ба рӯзрасонӣ $1 аст. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Имкони ба рӯзрасонии ин саҳифа феълан ғайрифаъол шудааст.',
-'wrong_wfQuery_params' => 'Параметрҳои нодуруст ба wfQuery()<br />
-Амал: $1<br />
-Пурсуҷӯ: $2',
 'viewsource' => 'Намоиши матни вики',
 'actionthrottled' => 'Ҷилави амали шумо гирифта шуд',
 'actionthrottledtext' => 'Ба манзури ҷилавгирӣ аз спам, шумо иҷоза надоред, ки чунин амалеро беш аз чанд бор дар як муддати замони кӯтоҳ анҷом бидиҳед. Лутфан пас аз чанд дақиқа дубора талош кунед.',
@@ -2297,10 +2293,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Раванди дуруст',
 'exif-gpsdirection-m' => 'Раванди магнетикӣ',
-
-# External editor support
-'edit-externally' => 'Ин файлро бо барномаи беруна таҳрир кунед',
-'edit-externally-help' => '(Барои иттилооти бештар [https://www.mediawiki.org/wiki/Manual:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ҳама',

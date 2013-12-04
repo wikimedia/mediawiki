@@ -199,7 +199,6 @@ $messages = array(
 'qbedit' => 'Засварлах',
 'qbpageoptions' => 'Энэ хуудас',
 'qbmyoptions' => 'Миний хуудсууд',
-'qbspecialpages' => 'Тусгай хуудсууд',
 'faq' => 'Тогтмол тавигддаг асуултууд',
 'faqpage' => 'Project:Тогтмол тавигддаг асуултууд',
 
@@ -409,9 +408,6 @@ $1',
 'perfcached' => 'Дараах тоо баримт нь нөөц хуулбар учраас хуучирсан мэдээлэлтэй байж магадгүй. Дээд тал нь {{PLURAL:$1|нэг илэрц|$1 илэрцүүд}} нөөцөд бэлэн байна.',
 'perfcachedts' => 'Дараах тоо баримт нь нөөц хуулбар учраас хуучирсан мэдээлэлтэй байж магадгүй. Дээд тал нь {{PLURAL:$1|нэг илэрц|$1 илэрцүүд}} нөөцөд бэлэн байна.',
 'querypage-no-updates' => 'Одоогийн байдлаар энэ хуудсанд шинэчлэлүүд хаагдсан байна. Энд байгаа тоо баримт одоохондоо сэргээгдэхгүй.',
-'wrong_wfQuery_params' => 'wfQuery()-д буруу параметр оруулсан байна<br />
-Функц: $1<br />
-Асуудал: $2',
 'viewsource' => 'Кодыг харах',
 'viewsource-title' => '$1 хуудсын эх сурвалжийг харах',
 'actionthrottled' => 'Үйлдэл хязгаарлагдлаа',
@@ -3191,10 +3187,6 @@ $1',
 'exif-iimcategory-spo' => 'Спорт',
 'exif-iimcategory-war' => 'Дайн, мөргөлдөөн ба үймээн самуун',
 'exif-iimcategory-wea' => 'Цаг агаар',
-
-# External editor support
-'edit-externally' => 'Гадны программыг ашиглан энэ файлыг засварлах',
-'edit-externally-help' => '(Нэмэлт мэдээллийг [https://www.mediawiki.org/wiki/Manual:External_editors тохируулгын зааврын] хуудаснаас харна уу)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бүгдийг',

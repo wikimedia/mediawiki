@@ -471,7 +471,6 @@ $messages = array(
 'qbedit' => 'Szerkesztés',
 'qbpageoptions' => 'Lapbeállítások',
 'qbmyoptions' => 'Lapjaim',
-'qbspecialpages' => 'Speciális lapok',
 'faq' => 'GyIK',
 'faqpage' => 'Project:GyIK',
 
@@ -687,9 +686,6 @@ Nem lett magyarázat csatolva.',
 'perfcached' => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják. Legfeljebb {{PLURAL:$1|egy|$1 }} eredmény áll rendelkezésre a gyorsítótárban.",
 'perfcachedts' => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1. Legfeljebb {{PLURAL:$4|egy|$4}} eredmény áll rendelkezésre a gyorsítótárban.",
 'querypage-no-updates' => 'Az oldal frissítése jelenleg le van tiltva. Az itt szereplő adatok nem frissülnek azonnal.',
-'wrong_wfQuery_params' => 'A wfQuery() függvény paraméterei hibásak<br />
-Függvény: $1<br />
-Lekérdezés: $2',
 'viewsource' => 'Lapforrás',
 'viewsource-title' => '$1 forrásának megtekintése',
 'actionthrottled' => 'Művelet megszakítva',
@@ -3658,10 +3654,6 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-urgency-low' => 'Alacsony ($1)',
 'exif-urgency-high' => 'Magas ($1)',
 'exif-urgency-other' => 'Egyedi prioritás ($1)',
-
-# External editor support
-'edit-externally' => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => '(Lásd a [https://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'bármikor',

@@ -303,7 +303,6 @@ $messages = array(
 'qbedit' => 'Modificar',
 'qbpageoptions' => 'Iste pagina',
 'qbmyoptions' => 'Mi paginas',
-'qbspecialpages' => 'Paginas special',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -521,9 +520,6 @@ Es possibile que illo contine un o plure characteres que non pote esser usate in
 'perfcached' => 'Le sequente datos esseva recuperate del cache e possibilemente non es actual. Un maximo de {{PLURAL:$1|un resultato|$1 resultatos}} es disponibile in le cache.',
 'perfcachedts' => 'Le sequente datos esseva recuperate del cache e ha essite actualisate le $3 a $4. Un maximo de {{PLURAL:$4|un resultato|$4 resultatos}} es disponibile in le cache.',
 'querypage-no-updates' => 'Le actualisationes pro iste pagina es disactivate. Pro le momento, le datos hic non se cambiara.',
-'wrong_wfQuery_params' => 'Parametros incorrecte a wfQuery()<br />
-Function: $1<br />
-Consulta: $2',
 'viewsource' => 'Vider codice-fonte',
 'viewsource-title' => 'Le texto fonte de $1',
 'actionthrottled' => 'Action limitate',
@@ -3659,10 +3655,6 @@ Le alteres essera initialmente celate.
 'exif-urgency-low' => 'Basse ($1)',
 'exif-urgency-high' => 'Alte ($1)',
 'exif-urgency-other' => 'Prioritate definite per usator ($1)',
-
-# External editor support
-'edit-externally' => 'Modificar iste file con un programma externe',
-'edit-externally-help' => '(Vide le [https://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totes',

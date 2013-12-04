@@ -320,7 +320,6 @@ $messages = array(
 'qbedit' => 'Andam',
 'qbpageoptions' => 'Laman nyoe',
 'qbmyoptions' => 'Laman lôn',
-'qbspecialpages' => 'Laman kusuih',
 'faq' => 'Teunanyöng Umom',
 'faqpage' => 'Project:FAQ',
 
@@ -533,9 +532,6 @@ Hana jeuneulaih.",
 'perfcachedts' => 'Data di yup nyoe geupeusom, ngön geupeubarô seuneulheueh bak $1. {{PLURAL:$4|saboh hase|$4 hase}} paléng le na lam beujana.',
 'querypage-no-updates' => "Beunarô keu laman nyoe hat nyoe teungöh h'an jeuët.
 Data sinoe h'an geupasoe ulang.",
-'wrong_wfQuery_params' => 'Parameter salah u wfQuery()<br />
-Meunafaat: $1<br />
-Neulakee: $2',
 'viewsource' => 'Eu nè',
 'viewsource-title' => 'Eu ne keu $1',
 'actionthrottled' => 'Buet geupeubataih',
@@ -1629,10 +1625,6 @@ Data nyang la'én eunteuk teupeusom keudroë.
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => 'Andam beureukah nyoë ngön aplikasi luwa',
-'edit-externally-help' => '(Ngiëng [//meta.wikimedia.org/wiki/Help:External_editors peurintah atô] keu haba leubèh lanjôt)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ban dum',

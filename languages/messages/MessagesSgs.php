@@ -196,7 +196,6 @@ $messages = array(
 'qbedit' => 'Taisītė',
 'qbpageoptions' => 'Tas poslapis',
 'qbmyoptions' => 'Mona poslapē',
-'qbspecialpages' => 'Specēlė̅jė poslapē',
 'faq' => 'DOK',
 'faqpage' => 'Project:DOK',
 
@@ -371,9 +370,6 @@ Prašuom aple šėtā paskelbtė [[Special:ListUsers/sysop|adminėstratoriō]], 
 'badtitletext' => 'Nuruodīts poslapė pavadėnėms bova neleistėns, toščės a neteisėngā sojongts terpkalbinis a terppruojektėnis pavadėnėms. Anamė gal būtė vėins a daugiau sėmbuoliu, neleistėnū pavadėnėmūs',
 'perfcachedts' => 'Ruodoma ėšsauguota doumenū kopėjė, katra bova atnaujėnta $1. Daugiausē $4 {{PLURAL:$4|rezoltats|rezoltatā|rezoltatu}} īr sauguoma.',
 'querypage-no-updates' => 'Atnaujėnėmā tam poslapiō nūnā ėšjongtė īr. Doumenīs nūnā čė nebus atnaujėntė.',
-'wrong_wfQuery_params' => 'Netaisingė parametrā i funkcėjė wfQuery()<br />
-Funkcėjė: $1<br />
-Ožklausėms: $2',
 'viewsource' => 'Veizėtė kuoda',
 'protectedpagetext' => 'Šėts poslapis īr ožrakints, saugont anū nū redagavėma.',
 'viewsourcetext' => 'Tomsta galėt veizietė ėr kopėjoutė poslapė kuoda:',
@@ -1785,10 +1781,6 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'exif-contrast-0' => 'Paprasts',
 'exif-contrast-1' => 'Mažos',
 'exif-contrast-2' => 'Dėdlis',
-
-# External editor support
-'edit-externally' => 'Atdarītė ėšuoriniam redaktuorio',
-'edit-externally-help' => 'Nuoriedamė gautė daugiau infuormacėjės, veiziekėt [https://www.mediawiki.org/wiki/Manual:External_editors kruovėma instrokcėjės].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vėsos',

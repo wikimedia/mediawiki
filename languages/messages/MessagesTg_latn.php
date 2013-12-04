@@ -153,7 +153,6 @@ $messages = array(
 'qbedit' => 'Viroiş',
 'qbpageoptions' => 'In sahifa',
 'qbmyoptions' => 'Sahifahoi man',
-'qbspecialpages' => 'Sahifahoi viƶa',
 'faq' => 'Savolhoi tez-tez pursidaşuda',
 'faqpage' => 'Project:Savolhoi tez-tez pursidaşuda',
 
@@ -342,9 +341,6 @@ Lutfan inro ba [[Special:ListUsers/sysop|mudir]] bo işora kardani nişonai URL 
 'perfcached' => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, komilan ba rūz naşudaand. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, oxirin ba rūzrasonī $1 ast. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "Imkoni ba rūzrasoniji in sahifa fe'lan ƣajrifa'ol şudaast.",
-'wrong_wfQuery_params' => 'Parametrhoi nodurust ba wfQuery()<br />
-Amal: $1<br />
-Pursuçū: $2',
 'viewsource' => 'Namoişi matni viki',
 'actionthrottled' => 'Çilavi amali şumo girifta şud',
 'actionthrottledtext' => 'Ba manzuri çilavgirī az spam, şumo içoza nadored, ki cunin amalero beş az cand bor dar jak muddati zamoni kūtoh ançom bidihed. Lutfan pas az cand daqiqa dubora taloş kuned.',
@@ -2082,10 +2078,6 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ravandi durust',
 'exif-gpsdirection-m' => 'Ravandi magnetikī',
-
-# External editor support
-'edit-externally' => 'In fajlro bo barnomai beruna tahrir kuned',
-'edit-externally-help' => '(Baroi ittilooti beştar [https://www.mediawiki.org/wiki/Manual:External_editors rohnamoi tanzimotro oidi viroişgaroni beruna] nigared)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hama',

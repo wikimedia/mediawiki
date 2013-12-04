@@ -204,7 +204,6 @@ $messages = array(
 'qbedit' => 'تەھرىر',
 'qbpageoptions' => 'بۇ بەت',
 'qbmyoptions' => 'بەتلەرىم',
-'qbspecialpages' => 'ئالاھىدە بەتلەر',
 'faq' => 'كۆپ كۆرۈلىدىغان مەسىلىلەر',
 'faqpage' => 'Project:كۆپ كۆرۈلىدىغان مەسىلىلەر',
 
@@ -298,7 +297,7 @@ $1',
 'copyrightpage' => '{{ns:project}}:نەشر ئۇچۇرى',
 'currentevents' => 'نۆۋەتتىكى ھادىسە',
 'currentevents-url' => 'Project:نۆۋەتتىكى ھادىسە',
-'disclaimers' => 'جاۋابكارلىقنى كەچۈرۈم قىلىش باياناتى',
+'disclaimers' => 'ئاگاھلاندۇرۇشلار',
 'disclaimerpage' => 'Project:ئادەتتىكى جاۋابكارلىقنى كەچۈرۈم قىلىش باياناتى',
 'edithelp' => 'تەھرىرلەش ياردىمى',
 'helppage' => 'Help:مەزمۇنلار',
@@ -385,6 +384,7 @@ URL نى خاتا كىرگۈزۈپ قالدىڭىز ياكى خاتا ئۇلان
 # General errors
 'error' => 'خاتالىق',
 'databaseerror' => 'ساندان خاتالىقى',
+'databaseerror-query' => 'سوراق: $1',
 'databaseerror-function' => 'فۇنكىسىيە: $1',
 'databaseerror-error' => 'خاتا: $1',
 'laggedslavemode' => 'ئاگاھلاندۇرۇش: بەت يېقىنقى يېڭىلاشنى ئۆز ئىچىگە ئالمىغان بولۇشى مۇمكىن.',
@@ -430,11 +430,6 @@ URL نى خاتا كىرگۈزۈپ قالدىڭىز ياكى خاتا ئۇلان
 'querypage-no-updates' => 'نۆۋەتتە مەزكۇر بەتنى يېڭىلاش چەكلەندى.
 
 بۇ جايدىكى سانلىق مەلۇماتنى دەرھال يېڭىلىغىلى بولمايدۇ.',
-'wrong_wfQuery_params' => 'خاتا پارامېتىر  wfQuery()<br />غا يوللاندى
-
-فونكسىيە: $1<br />
-
-سۈرۈشتۈرۈش: $2',
 'viewsource' => 'مەنبەنى كۆرسەت',
 'viewsource-title' => '$1 نىڭ ئەسلى كودىنى كۆرسەت',
 'actionthrottled' => 'مەشغۇلات چەكلەندى',
@@ -577,7 +572,7 @@ cookies نى قوزغاتقانلىقىڭىزنى جەزملەڭ، بۇ بەتن
 'passwordtooshort' => 'ئىم ئاز دېگەندە {{PLURAL:$1|1 ھەرپ|$1 ھەرپ}} بولۇشى لازىم.',
 'password-name-match' => 'پارولىڭىز ئىشلەتكۈچى نامىڭىزدىن پەرقلىنىشى لازىم.',
 'password-login-forbidden' => 'بۇ ئىشلەتكۈچى نامى ۋە پارول چەكلەنگەن.',
-'mailmypassword' => 'يېڭى ئىمنى ئېخەتكە ئەۋەت',
+'mailmypassword' => 'پارولنى ئەسلىگە قايتۇرماق',
 'passwordremindertitle' => '{{SITENAME}} ئۈچۈن يېڭى ۋاقىتلىق پارول',
 'passwordremindertext' => 'باشقىلار (بەلكىم سىز، IP ئادرېسى $1)
 {{SITENAME}} بېكەتنىڭ يېڭى ئىم ($4) نى ئىلتىماس قىلدى .
@@ -3051,7 +3046,7 @@ $1',
 'svg-long-desc' => 'SVG ھۆججىتى، ئاتاقتىكى چوڭلۇقى $1 × $2 نۇقتا، ھۆججەت چوڭلۇقى: $3',
 'svg-long-desc-animated' => 'جانلاندۇرۇم SVG ھۆججەت، سۈرەت چوڭلۇقى $1×$2 پىكسېل، ھۆججەت چوڭلۇقى: $3',
 'svg-long-error' => 'ئۈنۈمسىز SVG ھۈججەت:$1',
-'show-big-image' => 'تولۇق ئېنىقلىق دەرىجىسى',
+'show-big-image' => 'ئەسلى ھۆججەت',
 'show-big-image-preview' => 'بۇ ئالدىن كۆزىتىشنىڭ چوڭلۇقى: $1.',
 'show-big-image-other' => 'باشقا {{PLURAL:$2|چوڭلۇقى}}: $1.',
 'show-big-image-size' => '$1 × $2 پىكسېل',
@@ -3550,10 +3545,6 @@ Variants for Chinese language
 'exif-urgency-low' => 'تۆۋەن ($1)',
 'exif-urgency-high' => 'يۇقىرى ($1)',
 'exif-urgency-other' => 'ئىشلەتكۈچى بەلگىلىگەن ئالدىنلىق ($1)',
-
-# External editor support
-'edit-externally' => 'بۇ ھۆججەتنى سىرتقى قوللىنىشچان پروگراممىدا تەھرىرلە',
-'edit-externally-help' => '( [https://www.mediawiki.org/wiki/Manual:External_editors تەڭشەك قەدىمى] نى كۆرۈپ تەپسىلاتىنى چۈشىنىڭ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەممىسى',

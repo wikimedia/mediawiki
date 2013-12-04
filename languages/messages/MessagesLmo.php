@@ -234,7 +234,6 @@ süi titul dai sezziún (JavaScript)',
 'qbedit' => 'Mudifega',
 'qbpageoptions' => 'Opzión de la pagina',
 'qbmyoptions' => 'I mè paginn',
-'qbspecialpages' => 'Paginn special',
 'faq' => 'FAQ',
 'faqpage' => 'Project:Dumand frequent',
 
@@ -1320,10 +1319,6 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Redatá chest archivi cunt un prugramari da fö',
-'edit-externally-help' => 'Varda [https://www.mediawiki.org/wiki/Manual:External_editors i istrüzión] per avègh püssee infurmazión (in ingles).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tücc',

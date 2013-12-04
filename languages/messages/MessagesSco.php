@@ -158,7 +158,6 @@ $messages = array(
 'qbedit' => 'Edit',
 'qbpageoptions' => 'This page',
 'qbmyoptions' => 'Ma pages',
-'qbspecialpages' => 'Byordinar pages',
 'faq' => 'ASQ',
 'faqpage' => 'Project:ASQ',
 
@@ -339,9 +338,6 @@ Please lat an [[Special:ListUsers/sysop|administrator]] ken aboot this, makin no
 'perfcached' => 'The follaeing data is cached an michtna be richt up tae date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'The followin data is cached, an wis hindermaist chynged $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page ar disablit at the meenit. Data here wilnae be refreshit at the meenit.',
-'wrong_wfQuery_params' => 'Wrang parameters tae wfQuery()<br />
-Exerce: $1<br />
-Aks: $2',
 'viewsource' => 'View soorce',
 'actionthrottled' => 'Action devalit',
 'actionthrottledtext' => 'As an anti-spam meisur, ye ar limitit frae daein this action ower mony times in a ower short tid, an ye hae exceedit this limit. Please try again in a wee.',
@@ -1444,10 +1440,6 @@ If th' file haes bin modified frae tis original state, some details kin nae full
 'exif-gaincontrol-0' => 'Nane',
 
 'exif-contrast-1' => 'Saft',
-
-# External editor support
-'edit-externally' => 'Edit this file uisin an external application',
-'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for mair guidance.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aw',

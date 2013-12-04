@@ -438,7 +438,6 @@ $messages = array(
 'qbedit' => 'Uredi',
 'qbpageoptions' => 'Opcije stranice',
 'qbmyoptions' => 'Moje opcije',
-'qbspecialpages' => 'Posebne stranice',
 'faq' => 'ČPP',
 'faqpage' => 'Project:NPP',
 
@@ -651,9 +650,6 @@ Nije ponuđeno nikakvo objašnjenje.',
 'perfcachedts' => 'Slijedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
 Podaci koji se ovdje nalaze ne moraju biti aktuelni.',
-'wrong_wfQuery_params' => 'Netačni parametri za wfQuery()<br />
-Funkcija: $1<br />
-Pretraga: $2',
 'viewsource' => 'Pogledaj izvor',
 'viewsource-title' => 'Prikaz izvora stranice $1',
 'actionthrottled' => 'Akcija je usporena',
@@ -3693,10 +3689,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-urgency-low' => 'Nisko ( $1 )',
 'exif-urgency-high' => 'Visoko ($1)',
 'exif-urgency-other' => 'Korisnički određen prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Izmjeni ovu datoteku koristeći vanjski program',
-'edit-externally-help' => '(Pogledajte [https://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',

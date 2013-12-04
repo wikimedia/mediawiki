@@ -183,7 +183,6 @@ $messages = array(
 'qbedit' => 'Cange',
 'qbpageoptions' => 'Pàgene currende',
 'qbmyoptions' => 'Pàggene mije',
-'qbspecialpages' => 'Pàggene speciale',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -407,9 +406,6 @@ Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à
 'perfcachedts' => "'U date seguende stè jndr'à cache e, l'urteme aggiornamende ha state $1. 'Nu massime de {{PLURAL:$4|'nu resultate ste|$4 resultate stonne}} disponibbile jndr'à cache.",
 'querypage-no-updates' => "L'aggiornaminde pe sta pàgene sonde, pe mò, disabbilitete.
 Le date ca stonne aqquà jndre non ge sonde aggiornete.",
-'wrong_wfQuery_params' => "Parametre incorrette sus 'a wfQuery()<br />
-Function: $1<br />
-Query: $2",
 'viewsource' => "Vide 'u sorgende",
 'viewsource-title' => "Vide 'a sorgende pe $1",
 'actionthrottled' => 'Azione inderrotte',
@@ -3654,10 +3650,6 @@ $8',
 'exif-urgency-low' => 'Vasce  ($1)',
 'exif-urgency-high' => 'Ierte ($1)',
 'exif-urgency-other' => "Priorità definite da l'utende ($1)",
-
-# External editor support
-'edit-externally' => "Cange stu fail usanne n'applicazione esterne",
-'edit-externally-help' => "(Vide le [https://www.mediawiki.org/wiki/Manual:External_editors 'struzione de configurazione] pe avèje cchiù dettaglie)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutte',

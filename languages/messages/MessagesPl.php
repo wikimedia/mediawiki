@@ -471,7 +471,6 @@ $messages = array(
 'qbedit' => 'Edycja',
 'qbpageoptions' => 'Ta strona',
 'qbmyoptions' => 'Moje strony',
-'qbspecialpages' => 'strony specjalne',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -688,9 +687,6 @@ Przyczyna nieokreślona.',
 'perfcached' => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. Maksymalnie {{PLURAL:$1|jeden wynik jest|$1 wyniki są|$1 wyników jest}} w pamięci podręcznej.',
 'perfcachedts' => 'Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się $1. Maksymalnie {{PLURAL:$4|jeden wynik jest|$4 wyniki są|$4 wyników jest}} w pamięci podręcznej.',
 'querypage-no-updates' => 'Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.',
-'wrong_wfQuery_params' => 'Nieprawidłowe parametry przekazane do wfQuery()<br />
-Funkcja: $1<br />
-Zapytanie: $2',
 'viewsource' => 'Tekst źródłowy',
 'viewsource-title' => 'Tekst źródłowy strony $1',
 'actionthrottled' => 'Akcja wstrzymana',
@@ -824,7 +820,7 @@ Sprawdź poprawność pisowni.',
 'passwordtooshort' => 'Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'password-name-match' => 'Hasło musi być inne niż nazwa użytkownika.',
 'password-login-forbidden' => 'Wykorzystanie tej nazwy użytkownika lub hasła zostało zabronione.',
-'mailmypassword' => 'Wyślij mi nowe hasło poprzez e‐mail',
+'mailmypassword' => 'Zresetuj hasło',
 'passwordremindertitle' => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'passwordremindertext' => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1)
 poprosił o przesłanie nowego hasła do {{GRAMMAR:D.lp|{{SITENAME}}}} ($4).
@@ -898,7 +894,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
 'passwordreset-text-one' => 'Wypełnij ten formularz, aby zresetować hasło.',
-'passwordreset-text-many' => '{{PLURAL:$1|Wypełnij jedno z poniższych pól, aby zresetować hasło.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Wypełnij jedno z poniższych pól, aby otrzymać tymczasowe hasło przez e-mail.}}',
 'passwordreset-legend' => 'Zresetuj hasło',
 'passwordreset-disabled' => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-emaildisabled' => 'Wysyłanie emaili zostało wyłączone na tej wiki',
@@ -3793,10 +3789,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-urgency-low' => 'Niski ($1)',
 'exif-urgency-high' => 'Wysoki ($1)',
 'exif-urgency-other' => 'Priorytet zdefiniowany przez użytkownika ($1)',
-
-# External editor support
-'edit-externally' => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => '(Więcej informacji o używaniu [https://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wszystkie',

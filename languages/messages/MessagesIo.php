@@ -235,7 +235,6 @@ $messages = array(
 'qbedit' => 'Redaktar',
 'qbpageoptions' => 'Ica pagino',
 'qbmyoptions' => 'Mea pagini',
-'qbspecialpages' => 'Specala pagini',
 
 # Vector skin
 'vector-action-addsection' => 'Adjuntar topiko',
@@ -1448,9 +1447,6 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri per horo',
 'exif-gpsspeed-m' => 'Milii per horo',
-
-# External editor support
-'edit-externally' => 'Chanjez ta arkivo per externa programo',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omna',

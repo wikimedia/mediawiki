@@ -176,7 +176,6 @@ $messages = array(
 'qbedit' => '編寫',
 'qbpageoptions' => '頁面選項',
 'qbmyoptions' => '𠊎嘅頁面',
-'qbspecialpages' => '特殊頁面',
 'faq' => '常見問題解答',
 'faqpage' => 'Project:常見問題解答',
 
@@ -387,9 +386,6 @@ $1',
 'perfcachedts' => '下列係緩存數據，其最後更新時間係$1。單淨有{{PLURAL:$4|一嘅結果|$4嘅結果}}會畀顯示。',
 'querypage-no-updates' => '當前禁止對邇頁面進行更新。
 邇位嘅數據將做毋得分立即重新整理。',
-'wrong_wfQuery_params' => '有錯嘅參數分傳遞到wfQuery（）<br />
-函數：$1<br />
-查詢：$2',
 'viewsource' => '查看源碼',
 'viewsource-title' => '查看$1嘅源代碼',
 'actionthrottled' => '動作已經壓制',
@@ -1848,10 +1844,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => '用外部應用程序編寫本文件',
-'edit-externally-help' => '（請參詳[https://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

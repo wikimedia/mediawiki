@@ -343,7 +343,6 @@ $messages = array(
 'qbedit' => 'Uredi',
 'qbpageoptions' => 'Možnosti strani',
 'qbmyoptions' => 'Moje strani',
-'qbspecialpages' => 'Posebne strani',
 'faq' => 'Najpogostejša vprašanja',
 'faqpage' => 'Project:Najpogostejša vprašanja',
 
@@ -462,8 +461,8 @@ $1',
 'youhavenewmessages' => 'Imate $1 ($2)',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugega uporabnika|$3 uporabnikov}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od veliko uporabnikov ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|nova sporočila}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnja sprememba|zadnji spremembi|zadnje spremembe}}',
+'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|999=nova sporočila}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnja sprememba|999=zadnje spremembe}}',
 'youhavenewmessagesmulti' => 'Na $1 imate novo sporočilo',
 'editsection' => 'uredi',
 'editold' => 'spremeni',
@@ -561,9 +560,6 @@ Morda vsebuje enega ali več nepodprtih znakov.',
 'perfcached' => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na razpolago največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
 'perfcachedts' => 'Prikazani podatki so shranjeni v predpomnilniku in so bili zadnjič osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na razpolago največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.',
 'querypage-no-updates' => 'Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.',
-'wrong_wfQuery_params' => 'Nepravilni parametri za wfQuery()<br />
-Funkcija: $1<br />
-Poizvedba: $2',
 'viewsource' => 'Izvorno besedilo',
 'viewsource-title' => 'Ogled vira $1',
 'actionthrottled' => 'Dejanje zaustavljeno',
@@ -596,7 +592,8 @@ Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 'invalidtitle-knownnamespace' => 'Neveljaven naslov z imenskim prostorom »$2« in besedilom »$3«',
 'invalidtitle-unknownnamespace' => 'Neveljaven naslov z neznano številko imenskega prostora $1 in besedilom »$2«',
 'exception-nologin' => 'Niste prijavljeni',
-'exception-nologin-text' => 'Izbrana stran ali dejanje zahteva, da ste na tem wikiju prijavljeni.',
+'exception-nologin-text' => 'Prosimo, [[Special:Userlogin|prijavite se]], da lahko dostopate do strani ali dejanja.',
+'exception-nologin-text-manual' => 'Da lahko dostopate do strani ali dejanja, se morate $1.',
 
 # Virus scanner
 'virus-badscanner' => "Slaba konfiguracija: neznani virus skener: ''$1''",
@@ -696,7 +693,7 @@ Preverite črkovanje.',
 'passwordtooshort' => 'Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.',
 'password-name-match' => 'Vaše geslo se mora razlikovati od vašega uporabniškega imena.',
 'password-login-forbidden' => 'Uporaba tega uporabniškega imena in gesla je prepovedana.',
-'mailmypassword' => 'Pošlji mi novo geslo',
+'mailmypassword' => 'Ponastavitev gesla',
 'passwordremindertitle' => 'Novo začasno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
 'passwordremindertext' => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval novo
 prijavno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}} ($4). Ustvarjeno je
@@ -774,7 +771,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
 'passwordreset-text-one' => 'Da ponastavite svoje geslo, izpolnite naslednji obrazec.',
-'passwordreset-text-many' => '{{PLURAL:$1|Da ponastavite svoje geslo, izpolnite eno od polj.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Da po e-pošti prejmete začasno geslo, izpolnite eno od polj.}}',
 'passwordreset-legend' => 'Ponastavitev gesla',
 'passwordreset-disabled' => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-emaildisabled' => 'Na tem wikiju so možnosti e-pošte onemogočene.',
@@ -1330,6 +1327,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'preferences' => 'Nastavitve',
 'mypreferences' => 'Nastavitve',
 'prefs-edits' => 'Število urejanj:',
+'prefsnologintext2' => 'Za nastavljanje uporabniških nastavitev se morate $1.',
 'changepassword' => 'Zamenjava gesla',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Predogled',
@@ -1625,11 +1623,12 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-summary' => 'Na tej strani lahko spremljate najnovejše spremembe wikija.',
 'recentchanges-noresult' => 'V podanem obdobju nobena sprememba ne ustreza tem merilom.',
 'recentchanges-feed-description' => 'Spremljajte zadnje spremembe wikija prek tega vira.',
-'recentchanges-label-newpage' => 'S tem urejanjem je bila ustvarjena nova stran',
+'recentchanges-label-newpage' => 'S tem urejanjem je uporabnik ustvaril novo stran',
 'recentchanges-label-minor' => 'Manjše urejanje',
-'recentchanges-label-bot' => 'To urejanje je bilo izvedeno z botom',
+'recentchanges-label-bot' => 'Urejanje je izvedel bot',
 'recentchanges-label-unpatrolled' => 'Urejanje še ni bilo pregledano',
-'recentchanges-legend-newpage' => '$1 - nova stran',
+'recentchanges-label-plusminus' => 'Uporabnik je velikost strani spremenil za tolikšno število bajtov.',
+'recentchanges-legend-newpage' => '(glej tudi [[Special:NewPages|seznam novih strani]])',
 'rcnote' => "Prikazujem {{PLURAL:$1|zadnjo spremembo|zadnji '''$1''' spremembi|zadnje '''$1''' spremembe|zadnjih '''$1''' sprememb|zadnjih '''$1''' sprememb}} v {{PLURAL:$2|zadnjem|zadnjih|zadnjih|zadnjih|zadnjih}} '''$2''' {{PLURAL:$2|dnevu|dneh|dneh|dneh|dneh}}, od $5, $4.",
 'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
@@ -2370,9 +2369,9 @@ Navežite stik z urejevalcem:
 e-pošta: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Nadaljnjih obvestil do obiska strani ne boste prejemali. Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljane strani.
+Medtem ko ste prijavljeni, nadaljnjih obvestil ne boste prejemali. Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljane strani.
 
-             Vaš opozorilni sistem {{GRAMMAR:rodilnik|{{SITENAME}}}}
+Vaš opozorilni sistem {{GRAMMAR:rodilnik|{{SITENAME}}}}
 
 --
 Za spremembo nastavitev e-poštnih obvestil obiščite
@@ -3660,10 +3659,6 @@ Druga bodo po privzetem skrita.
 'exif-urgency-low' => 'Nizko ($1)',
 'exif-urgency-high' => 'Visoko ($1)',
 'exif-urgency-other' => 'Uporabniško določena prednost ($1)',
-
-# External editor support
-'edit-externally' => 'Uredite datoteko z uporabo zunanjega orodja',
-'edit-externally-help' => '(Za več informacij glejte [https://www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vse',

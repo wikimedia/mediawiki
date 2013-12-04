@@ -268,7 +268,6 @@ $messages = array(
 'qbedit' => 'Rætta',
 'qbpageoptions' => 'Henda síðan',
 'qbmyoptions' => 'Mínar síður',
-'qbspecialpages' => 'Serstakar síður',
 'faq' => 'OSS',
 'faqpage' => 'Project:OSS',
 
@@ -483,9 +482,6 @@ Ongin frágreiðing varð givin.',
 'perfcachedts' => 'Fylgjandi dáta er "fangað" (cached), og var seinast dagført $1. Í mesta lagi {{PLURAL:$4|eitt úrslit er|$4 úrslit eru}} tøk í cache.',
 'querypage-no-updates' => 'Tað ber í løtuni ikki til at dagføra hesa síðuna.
 Dáta higani verður í løtuni ikki endurnýggjað.',
-'wrong_wfQuery_params' => '↓ Skeiv parametir til wfQuery()<br />
-Funktión: $1<br />
-Fyrispurningur: $2',
 'viewsource' => 'Vís keldu',
 'viewsource-title' => 'Sí keldu fyri $1',
 'actionthrottled' => 'Hendingin kvaldist',
@@ -3058,10 +3054,6 @@ Onnur metadáta verða fjald sum standard.
 'exif-iimcategory-wea' => 'Veðrið',
 
 'exif-urgency-normal' => 'Vanligt ($1)',
-
-# External editor support
-'edit-externally' => 'Rætta hesa fílu við eksternari applikatión',
-'edit-externally-help' => '(Sí [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] fyri meira kunning)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alt',

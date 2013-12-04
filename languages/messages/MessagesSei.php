@@ -131,7 +131,6 @@ $messages = array(
 'qbedit' => 'Ticpatlöx',
 'qbpageoptions' => 'Jan páhina',
 'qbmyoptions' => 'Hepáhinám',
-'qbspecialpages' => 'Páhinám extravám',
 'faq' => 'Cocmíiit cmaa',
 'faqpage' => 'Project:Cocmíiit cmaa',
 
@@ -281,9 +280,6 @@ Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlen�
 'perfcached' => 'Jan data coccebj cache ö necoccebj updatenom. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => "Jan data coccebj cache ö coccebjöx updatenom $1 'de. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Updatenámde jan páhina coccebj disablenöx cmaa. Jan data necanj cmaa.',
-'wrong_wfQuery_params' => 'Parameterám incorrectámde wfQuery()<br />
-Funccion: $1<br />
-Query: $2',
 'viewsource' => 'Cohuatlöx sourcenam',
 'protectedpagetext' => 'Jan páhina coccebj lockom neticpatlöx pos-poop.',
 'viewsourcetext' => 'Mecohuatlöx ö copynom sourcenam zode jan páhina:',

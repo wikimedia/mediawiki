@@ -153,7 +153,6 @@ $messages = array(
 'qbedit' => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
 'qbpageoptions' => 'ಈ ಪುಟ',
 'qbmyoptions' => 'ಎನ್ನ ಪುಟೊಲು',
-'qbspecialpages' => 'ವಿಶೇಷ ಪುಟೊಲು',
 'faq' => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 'faqpage' => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 
@@ -960,10 +959,6 @@ $messages = array(
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'ಬಾಹ್ಯ(ಪಿದಯಿದ) ತಂತ್ರಾಶೊನು ಉಪಯೋಗ ಮಲ್ತ್’ದ್ ಇಂದೆನ್ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
-'edit-externally-help' => 'ನನಲ ಮಾಹಿತಿಗ್ [https://www.mediawiki.org/wiki/Manual:External_editors ಸೆಟ್-ಅಪ್ ನಿರ್ದೇಶನೊಲೆನ್] ತೂಲೆ.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ಪೂರ',

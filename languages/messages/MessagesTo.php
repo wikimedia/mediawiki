@@ -115,7 +115,6 @@ $messages = array(
 'qbedit' => 'Fatu',
 'qbpageoptions' => 'Peesi koʻeni',
 'qbmyoptions' => 'Peesi ʻaʻaku',
-'qbspecialpages' => 'Ngaahi peesi makehe',
 'faq' => 'Fehuʻi faʻa eke',
 'faqpage' => 'Project:Fehuʻi faʻa eke',
 
@@ -245,9 +244,6 @@ Ko e pule, naʻe lokaʻi ia, ʻoku pehē: $1',
 'badtitletext' => "Naʻe taʻeʻaonga ʻa e hingoa ʻo e peesi naʻa ke fili, pe naʻe ʻi ai ha fehokotaki māhehei fakalea kehe pe fehokotaki māhehei faka''wiki'' kehe. Mahalo pe ʻoku ʻi loto ha ʻū mataʻitohi ʻoku ʻikai lava ngāueʻaki ʻi ha hingoa.",
 'perfcached' => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, pea mahalo pē ʻoku ʻikai fakafoʻoua. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, naʻe fakaonopooni fakamuimui ia $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
-'wrong_wfQuery_params' => "Ngaahi mahuʻinga ʻikai totonu ki he ''wfQuery()''<br />
-Lakanga: $1<br />
-Eke: $2",
 'viewsource' => 'Vakai ki he tupunga',
 'protectedinterface' => 'Ko e peesi ʻeni ʻoku fakaai ia ʻa e potutohi maʻa e founga fakakomipiuta, ʻoku maluʻi ia ʻo taʻofi leakovi.',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
@@ -1139,10 +1135,6 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tūkufua moʻoni',
 'exif-gpsdirection-m' => 'Tūkufua fakamakineti',
-
-# External editor support
-'edit-externally' => 'Fatuʻi ʻa e failé ni ngāueʻaki mo e polokalama ʻi tuʻa',
-'edit-externally-help' => 'Vakai ki he [https://www.mediawiki.org/wiki/Manual:External_editors fakahinohino ki he fokotuʻu] maʻa toe fakamatala.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kātoa',

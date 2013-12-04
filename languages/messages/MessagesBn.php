@@ -228,7 +228,6 @@ $messages = array(
 'qbedit' => 'সম্পাদনা',
 'qbpageoptions' => 'এই পাতা',
 'qbmyoptions' => 'আমার পাতাসমূহ',
-'qbspecialpages' => 'বিশেষ পাতাসমূহ',
 'faq' => 'সম্ভাব্য প্রশ্নসমূহ',
 'faqpage' => 'Project:প্রাজিপ্র',
 
@@ -445,9 +444,6 @@ $1',
 'perfcached' => 'নিচের উপাত্তগুলো ক্যাশ থেকে নেয়া এবং সম্পূর্ণ হালনাগাদকৃত না-ও হতে পারে। সর্বোচ্চ {{PLURAL:$1|একটি ফলাফল|$1 টি ফলাফল}} ক্যাশে থাকতে পারে।',
 'perfcachedts' => 'নিচের উপাত্তগুলো ক্যাশ থেকে নেয়া এবং $1 তারিখে হালনাগাদ করা হয়েছে। সর্বোচ্চ {{PLURAL:$4|একটি ফলাফল|$4 টি ফলাফল}} ক্যাশে থাকতে পারে।',
 'querypage-no-updates' => 'এই পাতার জন্য হালনাগাদ নিষ্ক্রিয় করা হয়েছে। এখানে রাখা উপাত্ত এ মুহূর্তে রিফ্রেশ করা হবে না।',
-'wrong_wfQuery_params' => 'wfQuery()-তে ভুল প্যারামিটার দেয়া হয়েছে<br />
-ফাংশন: $1<br />
-কোয়েরি: $2',
 'viewsource' => 'উৎস দেখুন',
 'viewsource-title' => '$1 এর উৎস দেখুন',
 'actionthrottled' => 'কাজের গতি ধীরকরণ',
@@ -3469,10 +3465,6 @@ $1',
 'exif-urgency-low' => 'নিম্ন ($1)',
 'exif-urgency-high' => 'উচ্চ ($1)',
 'exif-urgency-other' => 'ব্যবহারকারী নির্ধারিত অগ্রাধিকার ক্রম ($1)',
-
-# External editor support
-'edit-externally' => 'ফাইলটি অন্য কোন সফটওয়্যার দিয়ে সম্পাদনা করুন',
-'edit-externally-help' => 'আরও তথ্যের জন্য [https://www.mediawiki.org/wiki/Manual:External_editors সেটআপ নির্দেশমালা] দেখুন।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সবগুলো',

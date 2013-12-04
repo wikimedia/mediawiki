@@ -290,7 +290,6 @@ $messages = array(
 'qbedit' => '修改',
 'qbpageoptions' => '茲蜀頁',
 'qbmyoptions' => '我其頁面',
-'qbspecialpages' => '特殊頁',
 'faq' => '經稠碰著其問題',
 'faqpage' => 'Project:經稠碰著其問題',
 
@@ -487,9 +486,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'perfcachedts' => '下底其數據已經緩存過了，最後更新遘$1。{{PLURAL:$4|$4條結果}}會敆緩存臺中討著。',
 'querypage-no-updates' => '茲蜀頁其更新乞禁止了。
 數據嚽塊現刻時𣍐更新了。',
-'wrong_wfQuery_params' => '敆wfQuery()其鄭其參數<br />
-函數：$1<br />
-查詢：$2',
 'viewsource' => '看源代碼',
 'viewsource-title' => '覷蜀覷$1其源代碼',
 'actionthrottled' => '行動乞取消咯',
@@ -1371,10 +1367,6 @@ If a new page with the same name has been created since the deletion, the restor
 'exif-lightsource-0' => '𣍐八',
 
 'exif-subjectdistancerange-0' => '𣍐八',
-
-# External editor support
-'edit-externally' => '使外程序來編輯茲文件',
-'edit-externally-help' => '（參考[https://www.mediawiki.org/wiki/Manual:External_editors setup instructions]來瞭解更価信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '所有',

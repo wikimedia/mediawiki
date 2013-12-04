@@ -185,7 +185,6 @@ $messages = array(
 'qbedit' => 'Modifitgar',
 'qbpageoptions' => 'Questa pagina',
 'qbmyoptions' => 'Mia pagina',
-'qbspecialpages' => 'paginas spezialas',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -397,9 +396,6 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 'perfcachedts' => 'Las suandantas datas derivan dal cache, ultima actualisaziun ils $2 las $3. Maximalmain {{PLURAL:$4|in resultat è disponibel|$4 resultats èn disponibels}} en il cache.',
 'querypage-no-updates' => 'Las actualisaziuns da questa pagina èn deactivadas. 
 Las datas qua vegnan da preschent betg actualisadas.',
-'wrong_wfQuery_params' => 'Parameters fauss per wfQuery()<br />
-Funcziun: $1<br />
-Query: $2',
 'viewsource' => 'Mussar il code da fontauna',
 'viewsource-title' => 'Vesair il code da funtauna da $1',
 'actionthrottled' => 'Acziun limitada',
@@ -3338,10 +3334,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-urgency-low' => 'Bass ($1)',
 'exif-urgency-high' => 'Aut ($1)',
 'exif-urgency-other' => "Prioritad definida da l'utilisader ($1)",
-
-# External editor support
-'edit-externally' => 'Modifitgar questa datoteca cun in program extern',
-'edit-externally-help' => "(Legia [https://www.mediawiki.org/wiki/Manual:External_editors instrucziuns d'installaziun] per ulteriuras infurmaziuns)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tut',

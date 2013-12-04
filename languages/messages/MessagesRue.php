@@ -273,7 +273,6 @@ $messages = array(
 'qbedit' => 'Едітовати',
 'qbpageoptions' => 'Тота сторінка',
 'qbmyoptions' => 'Мої сторінкы',
-'qbspecialpages' => 'Шпеціалны сторінкы',
 'faq' => 'Часты звідованя',
 'faqpage' => 'Project:Часты звідованя',
 
@@ -489,9 +488,6 @@ $1',
 'perfcached' => 'Слїдуючі дата суть взяты з кешу і не мусять быти актуалны. Кеш може обсяговати не веце як {{PLURAL:$1|єден резултат|$1 резултаты|$1 резултатів}}.',
 'perfcachedts' => 'Слїдуючі дата суть взяты з кешу, яка была остатнїй раз актуалізована $1. Кеш може обсяговати не веце як {{PLURAL:$4|єден резултат|$4 резултаты|$4 резултатів}}.',
 'querypage-no-updates' => 'Зміны той сторінкы заборонены. Дата нынї не можуть быти обновлены.',
-'wrong_wfQuery_params' => 'Неправилны параметры функцій wfQuery()<br />
-Функція: $1<br />
-Запрос: $2',
 'viewsource' => 'Видїти код',
 'viewsource-title' => 'Видїти жрідло сторінкы $1',
 'actionthrottled' => 'Акція была придушена',
@@ -3478,10 +3474,6 @@ $1',
 'exif-urgency-low' => 'Низка ($1)',
 'exif-urgency-high' => 'Высока ($1)',
 'exif-urgency-other' => 'Хоснователём дефінована пріоріта ($1)',
-
-# External editor support
-'edit-externally' => 'Едітовати тот файл хоснувчі екстерну аплікацію',
-'edit-externally-help' => '(Веце інформацій найдете в [https://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вшыткы',

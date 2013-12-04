@@ -309,7 +309,6 @@ $messages = array(
 'qbedit' => 'Cancia',
 'qbpageoptions' => 'Opzioni pàggina',
 'qbmyoptions' => 'Li mè pàggini',
-'qbspecialpages' => 'Pàggini spiciali',
 'faq' => 'Dumanni cumuni',
 'faqpage' => 'Project:Dumanni comuni',
 
@@ -513,9 +512,6 @@ Nun desi nudda spiecazzioni.",
 'perfcached' => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => 'Li dati ccà sutta foru attruvati e sunnu aggiurnati ô $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "L'aggiurnamenti dâ pàggina sunnu timpuraniamenti suspisi. Li dati 'n chidda cuntinuti nun vèninu aggiurnati.",
-'wrong_wfQuery_params' => 'Paràmitri errati pi wfQuery()<br />
-Funzioni: $1<br />
-Query: $2',
 'viewsource' => 'Talìa la fonti',
 'viewsource-title' => 'Visualizza la surgenti di $1',
 'actionthrottled' => 'Azzioni ritardata',
@@ -2783,10 +2779,6 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzzioni riali',
 'exif-gpsdirection-m' => 'Direzzioni magnètica',
-
-# External editor support
-'edit-externally' => 'Cancia stu file usannu un prugramma sternu',
-'edit-externally-help' => "Pi chiossai nfurmazzioni cunzurtari l'[https://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutti',

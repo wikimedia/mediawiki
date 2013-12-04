@@ -161,7 +161,6 @@ $messages = array(
 'qbedit' => 'Ilisan',
 'qbpageoptions' => 'Ining panid',
 'qbmyoptions' => 'Akon mga panid',
-'qbspecialpages' => 'Pinasahi nga mga panid',
 'faq' => 'Mga masami pamangkoton',
 'faqpage' => 'Project:MMP',
 
@@ -372,9 +371,6 @@ Siguro may-ara ini sang isa ukon madamo nga karakter nga indi ginabaton kag gina
 'perfcachedts' => 'Ang masunod nga datos nakatago lamang, kag pinaka-ulihe nga ginbag-o sang $1. May maksimum nga {{PLURAL:$4|isa ka resulta nga|$4 mga resulta nga}} ara sa nakatago nga datos.',
 'querypage-no-updates' => 'Ang mga pagbag-o sa sini nga panid karon ginpa-untat.
 Ang datos nga yari diri indi pagliwaton.',
-'wrong_wfQuery_params' => 'Indi insakto nga mga parametro sa wfQuery()<br />
-Kapuslanan: $1<br />
-Pagpamangkot: $2',
 'viewsource' => 'Lantawon ang ginhalinan',
 'viewsource-title' => 'Lantawon ang ginhalinan sang $1',
 'actionthrottled' => 'Ang paghulag ginpunggan',
@@ -1877,10 +1873,6 @@ Ang iban ay pagataguon sang default.
 'exif-digitalzoomratio' => 'Antas sang digital zoom',
 'exif-focallengthin35mmfilm' => 'Laba sang pokus sang film nga 35 mm',
 'exif-scenecapturetype' => 'Tipo sang pag-kuha sang litrato',
-
-# External editor support
-'edit-externally' => 'Islan ini nga file gamit ang eksternal nga aplikasyon',
-'edit-externally-help' => '(Lantawa ang [https://www.mediawiki.org/wiki/Manual:External_editors tudlo sa pag panugod] para sa mga dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',

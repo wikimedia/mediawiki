@@ -280,7 +280,6 @@ $messages = array(
 'qbedit' => 'Bewurkje',
 'qbpageoptions' => 'Side-opsjes',
 'qbmyoptions' => 'Myn Opsjes',
-'qbspecialpages' => 'Bysûndere siden',
 'faq' => 'FAQ (faak stelde fragen)',
 'faqpage' => 'Project:Faak stelde fragen',
 
@@ -463,9 +462,6 @@ Meitsje dêr melding fan by in [[Special:ListUsers/sysop|systeembehearder]] fan 
 'perfcached' => "Dit is bewarre ynformaasje dy't mooglik ferâldere is. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.',
-'wrong_wfQuery_params' => 'Ferkearde parameters foar wfQuery()<br />
-Funksje: $1<br />
-Query: $2',
 'viewsource' => 'Besjoch de boarne',
 'actionthrottled' => 'Hanneling opkeard',
 'actionthrottledtext' => 'As maatregel tsjin spam is it tal kearen per tiidsienheid beheind dat jo dizze hanneling ferrjochtsje kinne. Jo binne oer de limyt. Besykje it in tal minuten letter wer.',
@@ -2187,10 +2183,6 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 
 'exif-subjectdistancerange-0' => 'Unbekend',
 'exif-subjectdistancerange-2' => 'Tichtby',
-
-# External editor support
-'edit-externally' => 'Wizigje dizze triem mei in ekstern programma',
-'edit-externally-help' => 'Sjoch de [https://www.mediawiki.org/wiki/Manual:External_editors ynstel-hantlieding] foar mear ynformaasje.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',

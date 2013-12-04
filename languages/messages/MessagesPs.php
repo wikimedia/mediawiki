@@ -315,7 +315,6 @@ $messages = array(
 'qbedit' => 'سمول',
 'qbpageoptions' => 'همدا مخ',
 'qbmyoptions' => 'زما پاڼې',
-'qbspecialpages' => 'ځانگړي مخونه',
 'faq' => 'ډ-ځ-پ',
 'faqpage' => 'Project:ډ-ځ-پ',
 
@@ -2488,10 +2487,6 @@ $1',
 'exif-urgency-normal' => 'نورمال ($1)',
 'exif-urgency-low' => 'لږ ($1)',
 'exif-urgency-high' => 'ډېر ($1)',
-
-# External editor support
-'edit-externally' => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمول',
-'edit-externally-help' => 'د نورو مالوماتو لپاره [https://www.mediawiki.org/wiki/Manual:External_editors د امستنو لارښوونې] وگورۍ.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ټول',

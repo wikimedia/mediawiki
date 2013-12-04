@@ -150,7 +150,6 @@ Pāusai en kategōrijai "$1"',
 'qbedit' => 'Redigīs',
 'qbpageoptions' => 'Šin pāusan',
 'qbmyoptions' => 'Majāi pāusai',
-'qbspecialpages' => 'Speciālai pāusai',
 'faq' => 'Ukadeznai prasīsenei',
 'faqpage' => 'Project:Ukadeznai prasīsenei',
 
@@ -330,9 +329,6 @@ Mazīngi, kāi pastāi jāu āupausintan pra ainuntan kittan.',
 'perfcached' => 'Šin dātan ast rānkas minīsnas kōpija be mazzi būtwei niaktuālin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Šin dātan ast rānkas minīsnas kōpija. Panzdaums ernaunīnsenis bēi en $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Šisse pāusan etnaunīnsna tēntiskai ast izklāutan. Sēnti stwi dātan ni wīrst pastāwun etnaunīntan.',
-'wrong_wfQuery_params' => 'Nitikrōmiskai parāmeterei perlaīstan wfQuery()<br />
-Funkciōni: $1<br />
-Prasīsenis: $2',
 'viewsource' => 'Wīdais appun',
 'actionthrottled' => 'Dīlasenis stalīntan',
 'protectedpagetext' => 'Redigīsnas mazīngisku per šin pāusan pastāi izklāutan.',
@@ -2446,10 +2442,6 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arwis līnkis',
 'exif-gpsdirection-m' => 'Magnetiskas līnkis',
-
-# External editor support
-'edit-externally' => 'Redigīs šin pāusan tērpawintei izwinaīnan prōgraman',
-'edit-externally-help' => '(Skaitāis [https://www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wisāi',

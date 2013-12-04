@@ -528,7 +528,6 @@ $messages = array(
 'qbedit' => 'Επεξεργασία',
 'qbpageoptions' => 'Αυτή η σελίδα',
 'qbmyoptions' => 'Οι σελίδες μου',
-'qbspecialpages' => 'Ειδικές σελίδες',
 'faq' => 'Συχνές ερωτήσεις',
 'faqpage' => 'Project:Συχνές ερωτήσεις',
 
@@ -738,9 +737,6 @@ $1',
 'perfcached' => 'Τα δεδομένα που ακολουθούν είναι cached και είναι πιθανόν να μην είναι επικαιροποιημένα. Ένα μέγιστο των  {{PLURAL:$1|one result is|$1 results are}} διαθέσιμο στην cache.',
 'perfcachedts' => 'Τα ακόλουθα δεδομένα είναι αποθηκευμένα στην προσωρινή μνήμη και ενημερώθηκαν τελευταία φορά στις $2 στις $3. Υπάρχει διαθέσιμο ένα μέγιστο {{PLURAL:$4|ενός αποτελέσματος|$4 αποτελεσμάτων}} στην προσωρινή μνήμη.',
 'querypage-no-updates' => 'Οι ενημερώσεις για αυτή τη σελίδα είναι απενεργοποιημένες. Τα δεδομένα εδώ δεν θα ανανεωθούν προς το παρόν.',
-'wrong_wfQuery_params' => 'Λανθασμένες παράμετροι στο wfQuery()<br />
-Λειτουργία: $1<br />
-Αίτημα: $2',
 'viewsource' => 'Προβολή κώδικα',
 'viewsource-title' => 'Προβολή πηγαίου κώδικα για τη σελίδα $1',
 'actionthrottled' => 'Περιορισμένη ενέργεια',
@@ -3748,10 +3744,6 @@ $1',
 'exif-urgency-low' => 'Χαμηλή ($1)',
 'exif-urgency-high' => 'Υψηλή ($1)',
 'exif-urgency-other' => 'Προτεραιότητα που ορίστηκε από το χρήστη ($1)',
-
-# External editor support
-'edit-externally' => 'Επεξεργαστείτε αυτό το αρχείο χρησιμοποιώντας κάποια εξωτερική εφαρμογή',
-'edit-externally-help' => '(Βλ. [https://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης] για περισσότερες πληροφορίες)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'όλες',

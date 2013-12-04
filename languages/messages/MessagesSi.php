@@ -347,7 +347,6 @@ $messages = array(
 'qbedit' => 'සංස්කරණය',
 'qbpageoptions' => 'මෙම පිටුව',
 'qbmyoptions' => 'මගේ පිටු',
-'qbspecialpages' => 'විශේෂ පිටු',
 'faq' => 'නිවිප්‍ර',
 'faqpage' => 'Project:නිවිප්‍ර',
 
@@ -561,9 +560,6 @@ URL  සඳහන් කරමින්, මෙම කරුණ [[Special:ListUs
 'perfcachedts' => 'පහත දත්ත පූර්වාපේක්‍ෂීව සංචිත කෙරී ඇති (කෑෂ් කෙරී ඇති) අතර, අවසන් වරට යාවත්කාලීන කර ඇත්තේ  $1 දීය. {{PLURAL:$4|එක් ප්‍රතිඵලයක|ප්‍රතිඵල $4 ක}} උපරිමයකට යටත්ව පූර්වාපේක්‍ෂීව සංචිත කෙරී ඇත.',
 'querypage-no-updates' => 'මෙම පිටුව සඳහා යාවත්කාල කිරීම් දැනට අක්‍රීය කොට ඇත.
 දැනට මෙහිදී දත්ත පුනස්ථාපනය සිදු නොවේ.',
-'wrong_wfQuery_params' => ' wfQuery() සඳහා සාවද්‍ය පරාමිතිකයන්<br />
-ශ්‍රිතය: $1<br />
-විමසුම: $2',
 'viewsource' => 'මූලාශ්‍රය නරඹන්න',
 'viewsource-title' => '$1 සඳහා මුලාශ්‍රය නරඹන්න',
 'actionthrottled' => 'ක්‍රියාව අවකරණය කරන ලදි',
@@ -3531,10 +3527,6 @@ Others will be hidden by default.
 'exif-urgency-low' => 'අඩුයි ($1)',
 'exif-urgency-high' => 'ඉහළයි ($1)',
 'exif-urgency-other' => 'පරිශීලක-අර්ථ දැක්වූ ප්‍රමුඛත්වය ($1)',
-
-# External editor support
-'edit-externally' => 'බාහිර  උපයෝගයක් භාවිතා කරමින් මෙම ගොනුව සංස්කරණය කරන්න',
-'edit-externally-help' => '(වැඩිදුර තොරතුරු සඳහා [https://www.mediawiki.org/wiki/Manual:External_editors පිහිටුවීම් උපදෙස්] බලන්න.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'සියල්ල',

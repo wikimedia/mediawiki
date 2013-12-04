@@ -481,7 +481,6 @@ $messages = array(
 'qbedit' => 'Bewark',
 'qbpageoptions' => 'Disse zied',
 'qbmyoptions' => 'Veurkeuren',
-'qbspecialpages' => 'Spesiale ziejen',
 'faq' => 'Vragen die vake esteld wörden',
 'faqpage' => 'Project:Vragen die vake esteld wörden',
 
@@ -695,9 +694,6 @@ Der is gien veerdere informasie beschikbaor.',
 'perfcached' => 'Disse gegevens koemen uut t tussengeheugen en bin misschien niet aktueel. Der {{PLURAL:$1|is hooguut een resultaot|bin hooguut $1 resultaoten}} beschikbaor in t tussengeheugen.',
 'perfcachedts' => 'Disse gegevens koemen uut t tussengeheugen die veur t lest bie-ewörken is op $2 um $3. Der {{PLURAL:$4|is hooguut een resultaot|bin hooguut $4 resultaoten}} beschikbaor in t tussengeheugen.',
 'querypage-no-updates' => "'''Disse zied wörden niet meer bie-ewörken.'''",
-'wrong_wfQuery_params' => 'Parameters veur wfQuery() waren verkeerd<br />
-Funksie: $1<br />
-Zeukopdrachte: $2',
 'viewsource' => 'Brontekste bekieken',
 'viewsource-title' => 'Bron bekieken van $1',
 'actionthrottled' => 'Haandeling tegenehöllen',
@@ -3723,10 +3719,6 @@ Aandere velden wörden verbörgen.
 'exif-urgency-low' => 'Leeg ($1)',
 'exif-urgency-high' => 'Hoog ($1)',
 'exif-urgency-other' => 'Deur gebruker in-estelde prioriteit ($1)',
-
-# External editor support
-'edit-externally' => 'Wiezig dit bestaand mit n extern programma',
-'edit-externally-help' => '(Zie de [https://www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',

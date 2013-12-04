@@ -120,7 +120,6 @@ $messages = array(
 'qbedit' => 'Pataiseit',
 'qbpageoptions' => 'Ita puslopa',
 'qbmyoptions' => 'Munys puslopys',
-'qbspecialpages' => 'Specialuos puslopys',
 'faq' => 'BUV',
 'faqpage' => 'Project:BUV',
 
@@ -860,10 +859,6 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Izmaineit itū failu ar uoreju programu',
-'edit-externally-help' => '(Verīs [https://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vysys',

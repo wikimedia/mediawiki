@@ -430,7 +430,6 @@ $messages = array(
 'qbedit' => 'Խմբագրել',
 'qbpageoptions' => 'Այս էջը',
 'qbmyoptions' => 'Իմ էջերը',
-'qbspecialpages' => 'Սպասարկող էջեր',
 'faq' => 'ՀՏՀ',
 'faqpage' => 'Project:ՀՏՀ',
 
@@ -642,9 +641,6 @@ $1',
 'perfcached' => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։ Առավելագույն {{PLURAL:$1|արդյունք|$1 արդյունք}} է հասանելի քեշում։',
 'perfcachedts' => 'Հետևյալ տվյալները վերցված են քեշից և վերջին անգամ թարմացվել են $1։ A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Այս էջի փոփոխությունները ներկայումս արգելված են։ Այստեղի տվյալները այժմ չեն թարմացվի։',
-'wrong_wfQuery_params' => 'Անթույլատրելի պարամետրեր wfQuery() ֆունկցիայի համար<br />
-Ֆունկցիա՝ $1<br />
-Հայցում՝ $2',
 'viewsource' => 'Դիտել վիքիկոդը',
 'viewsource-title' => 'Դիտել $1 էջի աղբյուրը',
 'actionthrottled' => 'Գործողությունը արգելափակվեց',
@@ -2576,10 +2572,6 @@ $1',
 'exif-urgency-normal' => 'Նորմալ ($1)',
 'exif-urgency-low' => 'Թույլ ($1)',
 'exif-urgency-high' => 'Ուժեղ ($1)',
-
-# External editor support
-'edit-externally' => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
-'edit-externally-help' => '(Մանրամասնությունների համար տես [https://www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'բոլոր',

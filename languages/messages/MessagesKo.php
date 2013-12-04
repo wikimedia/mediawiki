@@ -514,7 +514,6 @@ $messages = array(
 'qbedit' => '편집',
 'qbpageoptions' => '문서 기능',
 'qbmyoptions' => '내 사용자 문서',
-'qbspecialpages' => '특수 문서',
 'faq' => '자주 묻는 질문',
 'faqpage' => 'Project:FAQ',
 
@@ -733,9 +732,6 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'perfcachedts' => '다음 자료는 캐시된 것으로, $1에 마지막으로 새로 고쳐졌습니다.  캐시에 최대 {{PLURAL:$4|결과 $4개}}가 있습니다.',
 'querypage-no-updates' => '이 문서의 새로 고침이 현재 비활성화되어 있습니다.
 자료가 잠시 새로 고치지 않을 것입니다.',
-'wrong_wfQuery_params' => 'wfQuery()에서 잘못된 매개변수 발생<br />
-함수: $1<br />
-쿼리: $2',
 'viewsource' => '원본 보기',
 'viewsource-title' => '$1 문서 원본 보기',
 'actionthrottled' => '동작 중지',
@@ -871,7 +867,7 @@ $2',
 'passwordtooshort' => '비밀번호는 {{PLURAL:$1|$1 글자}} 이상이어야 합니다.',
 'password-name-match' => '비밀번호는 사용자 이름과 반드시 달라야 합니다.',
 'password-login-forbidden' => '이 사용자 이름과 비밀번호는 사용할 수 없습니다.',
-'mailmypassword' => '비밀번호 초기화',
+'mailmypassword' => '비밀번호 재설정',
 'passwordremindertitle' => '{{SITENAME}}의 새 임시 비밀번호',
 'passwordremindertext' => '$1 IP 주소에서 누군가가 아마 자신이 {{SITENAME}} ($4)의 새 비밀번호를 요청했습니다.
 "$2" 사용자의 임시 비밀번호는 "$3"로 설정되었습니다. 이것이 자신이 의도한 바라면
@@ -3888,10 +3884,6 @@ Variants for Chinese language
 'exif-urgency-low' => '낮음 ($1)',
 'exif-urgency-high' => '높음 ($1)',
 'exif-urgency-other' => '사용자 정의 ($1)',
-
-# External editor support
-'edit-externally' => '이 파일을 바깥 어플리케이션을 사용해 편집하기',
-'edit-externally-help' => '(자세한 정보는 [https://www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하세요)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '모두',

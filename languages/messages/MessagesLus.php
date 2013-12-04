@@ -156,7 +156,6 @@ $messages = array(
 'qbedit' => 'Siamṭhatna',
 'qbpageoptions' => 'He phêk hi',
 'qbmyoptions' => 'Ka phêkte',
-'qbspecialpages' => 'Phêk vohbîkte',
 'faq' => 'Zawhzin',
 'faqpage' => 'Project: Zawhzin',
 
@@ -359,9 +358,6 @@ Tu emawin a nuaibo tawh a ni ang.',
 Phêk hminga hman theih loh hawrawp pahnih-khat a awm a ni mai thei bawk.',
 'querypage-no-updates' => 'He phêk tihdanglamna hi khàr hrih a ni.
 Heta châk (hmanrua) reng reng thlâk thar a ni hrih mai lo vang.',
-'wrong_wfQuery_params' => 'wfQuery()<br />-ah châkkhai dik lo a awm.
-Hnathawh: $1<br />
-Thil zawn: $2',
 'viewsource' => 'A hnar enna',
 'viewsource-title' => '$1 hnar en rawh',
 'actionthrottled' => 'Thiltih upbeh a ni.',
@@ -1851,10 +1847,6 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'exif-languagecode' => 'Ţawng',
 'exif-iimversion' => 'IIM chhuah',
 'exif-iimcategory' => 'Pawl',
-
-# External editor support
-'edit-externally' => 'Pawnlam hmanraw hmanga tihdanglamna',
-'edit-externally-help' => '(Hriat chian lehzualnan [https://www.mediawiki.org/wiki/Manual:External_editors bundàn kaihhruaina phek] hi en rawh)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'a vaiin',

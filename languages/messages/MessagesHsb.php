@@ -310,7 +310,6 @@ $messages = array(
 'qbedit' => 'Wobdźěłać',
 'qbpageoptions' => 'Tuta strona',
 'qbmyoptions' => 'Moje strony',
-'qbspecialpages' => 'Specialne strony',
 'faq' => 'Husto stajene prašenja (FAQ)',
 'faqpage' => 'Project:Husto stajene prašenja (FAQ)',
 
@@ -526,9 +525,6 @@ Njeje žane wujasnjenje podała.',
 'perfcached' => 'Slědowace daty pochadźeja z pufrowaka a njejsu snano cyle aktualne. Maksimalnje {{PLURAL:$1|jedyn wuslědk|$1 wuslědkaj|$1 wuslědki|$1 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$1|steji|stejitej|steja|steji}}.',
 'perfcachedts' => 'Slědowace daty su z pufrowaka a buchu $1 posledni raz zaktualizowane. Maksimalnje {{PLURAL:$4|jedyn wuslědk|$4 wuslědkaj|$4 wuslědki|$4 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$4|steji|stejitej|steja|steji}}.',
 'querypage-no-updates' => 'Aktualizacije za tutu stronu su tuchwilu znjemóžnjene. Daty so hač na dalše njewobnowja.',
-'wrong_wfQuery_params' => 'Njeprawe parametry za wfQuery()<br />
-Funkcija: $1<br />
-Wotprašenje: $2',
 'viewsource' => 'žórło wobhladać',
 'viewsource-title' => 'Žórłowy tekst za $1 sej wobhladać',
 'actionthrottled' => 'Akcije wobmjezowane',
@@ -655,7 +651,7 @@ Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'passwordtooshort' => 'Hesła dyrbja znajmjeńša {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} měć.',
 'password-name-match' => 'Twoje hesło dyrbi so wot twojeho wužiwarskeho mjena rozeznać.',
 'password-login-forbidden' => 'Wužiwanje tutoho wužiwarskeho mjena a heska je zakazane.',
-'mailmypassword' => 'Nowe hesło e-mejlować',
+'mailmypassword' => 'Hesło wróćo stajić',
 'passwordremindertitle' => 'Nowe nachwilne hesło za {{GRAMMAR:akuzatiw|{{SITENAME}}}}',
 'passwordremindertext' => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a nowe hesło wubrać. Twoje nachwilne hesło spadnje za {{PLURAL:$5|jeden dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
 
@@ -718,7 +714,7 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 # Special:PasswordReset
 'passwordreset' => 'Hesło wróćo stajić',
 'passwordreset-text-one' => 'Wupjelń tutón formular, zo by swoje hesło anulował.',
-'passwordreset-text-many' => '{{PLURAL:$1|Zapodaj jedne z polow, zo by swoje hesło wróćo stajił.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Wupjelń jedne z polow, zo by nachwilne hesło přez e-mejl dóstał.}}',
 'passwordreset-legend' => 'Hesło wróćo stajić',
 'passwordreset-disabled' => 'Wróćostajenje hesłow je so na  tutym wikiju znjemóžniło.',
 'passwordreset-emaildisabled' => 'E-mejlowe funkcije su so na tutym wikiju znjemóžnili.',
@@ -3519,10 +3515,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-urgency-low' => 'Niska ($1)',
 'exif-urgency-high' => 'Wysoka ($1)',
 'exif-urgency-other' => 'Swójska priorita ($1)',
-
-# External editor support
-'edit-externally' => 'Dataju z eksternym programom wobdźěłać',
-'edit-externally-help' => '(Hlej [https://www.mediawiki.org/wiki/Manual:External_editors pokiwy za instalaciju] za dalše informacije)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wšě',

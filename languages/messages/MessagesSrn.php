@@ -275,7 +275,6 @@ $messages = array(
 'qbedit' => 'Kenki',
 'qbpageoptions' => 'A papira disi',
 'qbmyoptions' => 'Mi papira',
-'qbspecialpages' => 'Spesrutu papira',
 'faq' => 'FAQ (Sani di ben aksi furu)',
 'faqpage' => 'Project:Sani di ben aksi furu',
 
@@ -1180,10 +1179,6 @@ Trawan o kibri.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Kenki a file disi ini wan dorosey wrokosani.',
-'edit-externally-help' => 'Luku ini a [https://www.mediawiki.org/wiki/Manual:External_editors skorobuku fu den seti] gi moro yepi.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ala',

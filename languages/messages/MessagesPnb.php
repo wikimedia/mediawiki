@@ -164,7 +164,6 @@ $messages = array(
 'qbedit' => 'لکھو',
 'qbpageoptions' => 'اے صفہ',
 'qbmyoptions' => 'میرے صفے',
-'qbspecialpages' => 'خاص صفے',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -362,9 +361,6 @@ $messages = array(
 'perfcachedts' => 'تھلے دتا گیا ڈیٹا کاشیڈ اے تے  $1 نوں نواں کیتا گیا۔ زیادہ توں زیادہ {{PLURAL:$4|اک نتیجہ ہووے|$4 نتیجے ہوون}} نتیجے کاشے چ ہیگے نیں .',
 'querypage-no-updates' => 'اس صفحے نوں اپڈیٹ فلحال نئیں کیتا جا سکدا۔
 ایدا مال ہلے نواں نئیں کیتا جاۓ گا۔',
-'wrong_wfQuery_params' => 'غلط پیرامیٹرز وفکویریدے()<br />
-فنکشن: $1<br />
-کویری: $2',
 'viewsource' => 'ویکھو',
 'viewsource-title' => '$1 لئی سورس ویکھو',
 'actionthrottled' => 'اے کم کئی واری کیتا گیا اے',
@@ -3155,10 +3151,6 @@ $1',
 'exif-urgency-low' => 'تھلے کرکے ($1)',
 'exif-urgency-high' => 'اچا ($1)',
 'exif-urgency-other' => '($1)  ورتن ڈیفائینڈ پراورٹی',
-
-# External editor support
-'edit-externally' => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
-'edit-externally-help' => 'زیادہ معلومات آسطے اے [https://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سارے',

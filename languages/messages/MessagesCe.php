@@ -477,7 +477,6 @@ $messages = array(
 'qbedit' => 'Нисйé',
 'qbpageoptions' => 'Агlо нисйар',
 'qbmyoptions' => 'Хьан нисдарш',
-'qbspecialpages' => 'Леррина агlонаш',
 'faq' => 'СиХХ',
 'faqpage' => 'Project:СиХХ',
 
@@ -686,9 +685,6 @@ $1',
 'perfcachedts' => 'Лахара хаам схьаэца кэша чура иза тӀаьхьара карла ялла $1. Кэша чохь латта до оцул $4 кӀезиг {{PLURAL:$4|дӀаяздар|дӀаяздарш}}.',
 'querypage-no-updates' => 'ХӀинца хӀара агӀо карлаякхар дӀадайина ду.
 Кхузахь гайтина болу хаамаш карла боккхур бац.',
-'wrong_wfQuery_params' => 'Хилийта йиш йоцу параметраш хӀокху функцин wfQuery()<br />
-Функци: $1<br />
-Жоп дехар: $2',
 'viewsource' => 'Хьажар',
 'viewsource-title' => 'Агӏона $1 дуьххьарлера йозане хьажар',
 'actionthrottled' => 'Сиххалин доза тохар',
@@ -2349,10 +2345,6 @@ PICT # тайп тайпан
 
 'exif-dc-date' => 'Терахь(ш)',
 
-# External editor support
-'edit-externally' => 'Рéдаккха хlокху хlуман, арахьара диллагlарам лелош',
-'edit-externally-help' => '(мадарра хьажа. оцу [https://www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
-
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'массо',
 'namespacesall' => 'массо',
@@ -2502,6 +2494,8 @@ PICT # тайп тайпан
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаяьккхина}} агӀо $3',
 'logentry-delete-restore' => '$1 {{GENDER:$2|меттахӀоттайина|меттахӀоттайина}} агӀо $3',
+'revdelete-content-hid' => 'чулацам къайлабаьккхина',
+'revdelete-content-unhid' => 'чулацам гучубаьккхина',
 'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажийнарг цаюьтуш',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул',
@@ -2518,6 +2512,7 @@ PICT # тайп тайпан
 
 # Search suggestions
 'searchsuggest-search' => 'Лаха',
+'searchsuggest-containing' => 'чуьраниг…',
 
 # Durations
 'duration-hours' => '$1 {{PLURAL:$1|сахьт}}',

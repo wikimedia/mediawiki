@@ -477,7 +477,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta página',
 'qbmyoptions' => 'As minhas páginas',
-'qbspecialpages' => 'Páginas especiais',
 'faq' => 'Perguntas frequentes',
 'faqpage' => 'Project:FAQ',
 
@@ -530,7 +529,7 @@ $messages = array(
 'unprotectthispage' => 'Alterar a proteção desta página',
 'newpage' => 'Página nova',
 'talkpage' => 'Discutir esta página',
-'talkpagelinktext' => 'discussão',
+'talkpagelinktext' => 'Discussão',
 'specialpage' => 'Página especial',
 'personaltools' => 'Ferramentas pessoais',
 'postcomment' => 'Seção nova',
@@ -696,9 +695,6 @@ Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcachedts' => "Os seguintes dados encontram-se armazenados na ''cache'' e foram atualizados pela última vez a $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} na ''cache''.",
 'querypage-no-updates' => 'As atualizações estão presentemente desativadas para esta página.
 Por enquanto, os dados aqui presentes não poderão ser atualizados.',
-'wrong_wfQuery_params' => 'Parâmetros incorretos para wfQuery()<br />
-Função: $1<br />
-Consulta: $2',
 'viewsource' => 'Ver código-fonte',
 'viewsource-title' => 'Mostrar código-fonte de $1',
 'actionthrottled' => 'Operação limitada',
@@ -3798,10 +3794,6 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-urgency-low' => 'Baixa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Prioridade definida pelo utilizador ($1)',
-
-# External editor support
-'edit-externally' => 'Editar este ficheiro utilizando uma aplicação externa',
-'edit-externally-help' => '(Consulte as [https://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

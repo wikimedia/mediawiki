@@ -205,7 +205,6 @@ $messages = array(
 'qbedit' => 'Ticpatlāz',
 'qbpageoptions' => 'Inīn zāzanilli',
 'qbmyoptions' => 'Nozāzanil',
-'qbspecialpages' => 'Nònkuâkìskàtlaìxtlapaltìn',
 'faq' => 'Zan īc tētlatlanīliztli',
 'faqpage' => 'Project:FAQ',
 

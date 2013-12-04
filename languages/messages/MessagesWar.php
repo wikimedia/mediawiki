@@ -220,7 +220,6 @@ $messages = array(
 'qbedit' => 'Igliwat',
 'qbpageoptions' => 'Ini nga pakli',
 'qbmyoptions' => 'Akon mga pakli',
-'qbspecialpages' => 'Mga pinaurog nga pakli',
 'faq' => 'AGG',
 'faqpage' => 'Project:AGG',
 
@@ -440,9 +439,6 @@ Bangin mayda usa o damo nga mga agi nga diri puyde magamit ha mga titulo.',
 'perfcachedts' => 'An nasunod nga data gin-cache, ngan kataposan ginbag-o dida han $1. In maximum hin {{PLURAL:$4|usa ka resulta|$4 ka resulta}} aada hit cache.',
 'querypage-no-updates' => 'An mga kabag-ohan para hini nga pakli ha yana diri mahihimo.
 An data dini diri mahihimo nga bag-o.',
-'wrong_wfQuery_params' => 'Sayop nga mga parameter ha wfQuery()<br />
-Funsyon: $1<br />
-Kweri: $2',
 'viewsource' => 'Kitaa an ginkuhaan',
 'viewsource-title' => 'Kitaa an tinikangan para han $1',
 'actionthrottled' => 'Ginpahinay an ginbuhat',
@@ -2334,10 +2330,6 @@ An iba in daan nakatago.
 'exif-urgency-normal' => 'Normal ($1)',
 'exif-urgency-low' => 'Hamubo ($1)',
 'exif-urgency-high' => 'Hataas ($1)',
-
-# External editor support
-'edit-externally' => 'Igliwat ini nga fayl gamit han gawas nga aplikasyon',
-'edit-externally-help' => '(Kitaa an [https://www.mediawiki.org/wiki/Manual:External_editors mga pagtutdo hin pag-ayad] para han dugang nga pananabutan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ngatanan',

@@ -355,7 +355,6 @@ $messages = array(
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Laman ini',
 'qbmyoptions' => 'Laman-laman saya',
-'qbspecialpages' => 'Laman khas',
 'faq' => 'Soalan Lazim',
 'faqpage' => 'Project:Soalan Lazim',
 
@@ -575,9 +574,6 @@ Tiada sebab diberikan.',
 'perfcachedts' => 'Data yang berikut disimpan dalam cache dan kali terakhir dikemaskinikan pada $1. Semaksimum {{PLURAL:$4|satu hasil|$4 hasil}} terdapat dalam cache.',
 'querypage-no-updates' => 'Buat masa ini, pengkemaskinian laman ini telah dilumpuhkan.
 Data yang ada di sini tidak akan disegarkan semula sekarang.',
-'wrong_wfQuery_params' => 'Parameter salah bagi wfQuery()<br />
-Fungsi: $1<br />
-Pertanyaan: $2',
 'viewsource' => 'Lihat sumber',
 'viewsource-title' => 'Lihat sumber bagi $1',
 'actionthrottled' => 'Tindakan didikitkan',
@@ -3611,10 +3607,6 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'exif-urgency-low' => 'Rendah ($1)',
 'exif-urgency-high' => 'Tinggi ($1)',
 'exif-urgency-other' => 'Keutamaan tentuan pengguna ($1)',
-
-# External editor support
-'edit-externally' => 'Sunting fail ini menggunakan perisian luar',
-'edit-externally-help' => '(Lihat [https://www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',

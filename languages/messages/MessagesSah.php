@@ -201,7 +201,6 @@ $messages = array(
 'qbedit' => 'Уларыт',
 'qbpageoptions' => 'Бу сирэй',
 'qbmyoptions' => 'Мин сирэйдэрим',
-'qbspecialpages' => 'Аналлаах сирэйдэр',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -413,9 +412,6 @@ $1',
 'perfcached' => 'Бу кээстэн ылыллыбыт онон бүтэһик уларыйыылары аахсымыан сөп. Кээскэ {{PLURAL:$1|соҕотох суруктан|$1 суруктан}} ордук хараллыбат.',
 'perfcachedts' => 'Бу билии кээстэн ылыллыбыт, бүтэһигин $1 уларыйбыт. Кээскэ {{PLURAL:$4|соҕотох суруктан|$4 суруктан}} ордук хараллыбат.',
 'querypage-no-updates' => 'Бу сирэй уларыйыыта бобуллан турар. Билиитэ билигин кыайан уларыйбат.',
-'wrong_wfQuery_params' => 'wfQuery() сыыһа киллэриилээх<br />
-Пуунсуйата: $1<br />
-Ыйытыга: $2',
 'viewsource' => 'Көрүү',
 'viewsource-title' => 'Бу сирэй $1 исходнигын көрүү',
 'actionthrottled' => 'Түргэнин хааччахтааһын',
@@ -3460,10 +3456,6 @@ $1',
 'exif-urgency-low' => 'Намыһах ($1)',
 'exif-urgency-high' => 'Үрдүк ($1)',
 'exif-urgency-other' => 'Кыттааччы эппит приоритета ($1)',
-
-# External editor support
-'edit-externally' => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
-'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [https://www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бары',

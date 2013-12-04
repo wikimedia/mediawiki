@@ -247,7 +247,6 @@ $messages = array(
 'qbedit' => 'Правіць',
 'qbpageoptions' => 'Гэтая старонка',
 'qbmyoptions' => 'Свае старонкі',
-'qbspecialpages' => 'Адмысловыя старонкі',
 'faq' => 'ЧАПЫ',
 'faqpage' => 'Project:ЧАПЫ',
 
@@ -451,10 +450,6 @@ $1',
 'perfcached' => 'Гэта ўзятыя з кэшу звесткі, і яны могуць не быць актуальнымі. У кэшы захоўваецца не больш за {{PLURAL:$1|адзін вынік|$1 вынікі|$1 вынікаў}}.',
 'perfcachedts' => 'Наступныя звесткі кэшаваныя і апошні раз былі абноўленыя $1. У кэшы {{PLURAL:$4|даступны|даступныя}} не больш за $4 {{PLURAL:$4|вынік|вынікі|вынікаў}}.',
 'querypage-no-updates' => 'Немагчыма абнавіць паказаныя звесткі, таму што зараз абнаўленні гэтай старонкі не дазволены.',
-'wrong_wfQuery_params' => 'Недапушчальныя параметры wfQuery()<br />
-
-Функцыя: $1<br />
-Зварот: $2',
 'viewsource' => 'Паказаць зыходны тэкст',
 'viewsource-title' => 'Прагляд зыходнага тэксту старонкі $1',
 'actionthrottled' => 'Дзеянне прыгашана',
@@ -3202,10 +3197,6 @@ $1',
 'exif-urgency-low' => 'Нізкая ($1)',
 'exif-urgency-high' => 'Высокая ($1)',
 'exif-urgency-other' => 'Вызначаны карыстальнікам прыярытэт ($1)',
-
-# External editor support
-'edit-externally' => 'Правіць файл у вонкавай праграме',
-'edit-externally-help' => '(Гл. падрабязней [https://www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усе',

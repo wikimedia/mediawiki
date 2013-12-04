@@ -351,7 +351,6 @@ $messages = array(
 'qbedit' => 'Redigér',
 'qbpageoptions' => 'Indstillinger for side',
 'qbmyoptions' => 'Mine indstillinger',
-'qbspecialpages' => 'Specielle sider',
 'faq' => 'OSS',
 'faqpage' => 'Project:OSS',
 
@@ -567,9 +566,6 @@ Den kan indeholde et eller flere tegn, som ikke kan anvendes i titler.',
 'perfcached' => 'Følgende data er gemt i cachen, der muligvis ikke er helt opdateret. Der gemmes højst {{PLURAL:$1|ét resultat|$1 resultater}} i cachen.',
 'perfcachedts' => 'Disse data stammer fra cachen, som senest blev opdateret $1. Der gemmes højst {{PLURAL:$4|ét resultat|$4 resultater}} i cachen.',
 'querypage-no-updates' => "'''Opdateringer til denne side er deaktiveret for øjeblikket. Dataene bliver indtil videre ikke fornyet.'''",
-'wrong_wfQuery_params' => 'Ugyldig parameter til wfQuery()<br />
-Funktion: $1<br />
-Forespørgsel: $2',
 'viewsource' => 'Vis kildetekst',
 'viewsource-title' => 'Se kildekoden til $1',
 'actionthrottled' => 'Begrænsning af handling',
@@ -3607,10 +3603,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-urgency-low' => 'Lav ($1)',
 'exif-urgency-high' => 'Høj ($1)',
 'exif-urgency-other' => 'Bruger-defineret prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Rediger denne fil med en ekstern editor',
-'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

@@ -511,7 +511,6 @@ $messages = array(
 'qbedit' => 'Değiştir',
 'qbpageoptions' => 'Bu sayfa',
 'qbmyoptions' => 'Sayfalarım',
-'qbspecialpages' => 'Özel sayfalar',
 'faq' => 'SSS',
 'faqpage' => 'Project:SSS',
 
@@ -728,9 +727,6 @@ Hiçbir açıklama yapılmadı.',
 'perfcached' => 'Aşağıdaki veriler önbellekten alınmıştır ve güncel olmayabilir. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$1 sonuç}} mevcut.',
 'perfcachedts' => 'Aşağıdaki veri önbelleklenmiştir, son güncelleme tarihi: $1. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$4 sonuç}} mevcut.',
 'querypage-no-updates' => 'Şu an için güncellemeler devre dışı bırakıldı. Buradaki veri hemen yenilenmeyecektir.',
-'wrong_wfQuery_params' => 'wfQuery() ye yanlış parametre<br />
-Fonksiyon: $1<br />
-Sorgu: $2',
 'viewsource' => 'Kaynağı gör',
 'viewsource-title' => '$1 sayfasının kaynağını görüntüle',
 'actionthrottled' => 'Eylem kısılmışdır',
@@ -859,7 +855,7 @@ Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]
 'passwordtooshort' => 'Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.',
 'password-name-match' => 'Şifreniz kullanıcı adınızdan farklı olmalıdır.',
 'password-login-forbidden' => 'Bu kullanıcı adı ve şifre kullanımı yasaklanmıştır',
-'mailmypassword' => 'Bana e-posta ile yeni parola gönder',
+'mailmypassword' => 'Parolayı sıfırla',
 'passwordremindertitle' => '{{SITENAME}} için yeni geçici şifre',
 'passwordremindertext' => 'Birisi (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için yeni bir parola gönderilmesi istedi. "$2" kullanıcısına geçici olarak "$3" parolası oluşturuldu. Eğer bu sizin isteğiniz ise, oturum açıp yeni bir parola oluşturmanız gerekmektedir. Geçici parolanızın süresi {{PLURAL:$5|1 gün|$5 gün}} içinde dolacaktır.
 
@@ -928,7 +924,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 # Special:PasswordReset
 'passwordreset' => 'Parola sıfırlama',
 'passwordreset-text-one' => 'Parolanızı sıfırlamak için bu formu doldurun.',
-'passwordreset-text-many' => '{{PLURAL:$1|Parolanızı sıfırlamak için alanlardan birini doldurun.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|E-posta ile geçici bir parola almak için alanlardan birini doldurun.}}',
 'passwordreset-legend' => 'Şifreyi sıfırla',
 'passwordreset-disabled' => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
 'passwordreset-emaildisabled' => "Bu wiki'deki e-posta özellikleri devre dışı bırakıldı.",
@@ -3810,10 +3806,6 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-urgency-low' => 'Düşük ( $1 )',
 'exif-urgency-high' => 'Yüksek ( $1 )',
 'exif-urgency-other' => 'Kullanıcı tanımlı öncelik ($1)',
-
-# External editor support
-'edit-externally' => 'Dosyayı harici bir uygulamayla değiştirin.',
-'edit-externally-help' => '(Daha fazla bilgi için metadaki [https://www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hepsini göster',

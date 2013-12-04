@@ -178,7 +178,6 @@ $messages = array(
 'qbedit' => 'Μεταγράφειν',
 'qbpageoptions' => 'Ἥδε ἡ δέλτος',
 'qbmyoptions' => 'Οἱ δέλτοι μου',
-'qbspecialpages' => 'Εἰδικαὶ δέλτοι',
 'faq' => 'Τὰ πολλάκις αἰτηθέντα',
 'faqpage' => 'Project:Πολλάκις αἰτηθέντα',
 
@@ -371,9 +370,6 @@ $1',
 'perfcachedts' => 'Τὸ ἀκόλουθα δεδομένα εἰσὶ λανθάνοντα καὶ ὑστάτως ἐνημερωμένα ἐν $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Αἱ ἐνημερώσεις τῆσδε τῆς δέλτου ἀπενεργοποιηθεῖσαι εἰσίν.
 Τὰ δεδομένα ἐνταῦθα μὴ ἀνανεώσιμα ἔσονται ἐπὶ τοῦ παρόντος.',
-'wrong_wfQuery_params' => 'Ἐσφαλμέναι παράμετροι εἰς τὸ wfQuery()<br />
-Ἐνέργεια: $1<br />
-Πεῦσις: $2',
 'viewsource' => 'Πηγὴν ἐπισκοπεῖν',
 'actionthrottled' => 'Δρᾶσις ἠγχθεῖσα',
 'protectedpagetext' => 'Ἥδε ἡ δέλτος ἀποκεκλῃμένη ἐστὶν εἰς ἀποτροπὴν τοῦ μεταγράφειν.',
@@ -2437,10 +2433,6 @@ $1',
 
 'exif-iimcategory-pol' => 'Πολιτική',
 'exif-iimcategory-spo' => 'Άθλοπαιδιαί',
-
-# External editor support
-'edit-externally' => 'Μεταγράφειν τόδε τὸ ἀρχεῖον χρώμενος ἐξώτερήν τινα ἐφαρμογήν.',
-'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [https://www.mediawiki.org/wiki/Manual:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] ἴδε.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ἅπασαι',

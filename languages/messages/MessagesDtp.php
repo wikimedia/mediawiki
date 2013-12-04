@@ -157,7 +157,6 @@ $messages = array(
 'qbedit' => 'Idito',
 'qbpageoptions' => 'Bolikon diti',
 'qbmyoptions' => 'Bobolikonku ngawi',
-'qbspecialpages' => 'Bobolikon suaikowokon',
 'faq' => 'Ponguhatan Koinsoruan om Poninimbar',
 'faqpage' => 'Project:Ponguhatan Koinsoruan om Pininimbar',
 
@@ -368,9 +367,6 @@ Haro kaanto sokukuri do iso pimato it awu milo gunoon id pongkotuluhon.',
 'perfcachedts' => 'Data sumusuhut namadangkob, om nopinwoguan ontok $1. Sokiginumu {{PLURAL:$4|iso asil|$4 tangahasil nopo nga}} haro id dangkob diti.',
 'querypage-no-updates' => 'Pinisok ponginwoguan id bolikon diti.
 Awu nodi posikapon do popointalang iri data kawawagu.',
-'wrong_wfQuery_params' => 'Nokosilap tangaparamito mongoi wfQuery()<br />
-Kopomogunoon: $1<br />
-Pongimuhatan: $2',
 'viewsource' => 'Intaai wowonod',
 'viewsource-title' => 'Intaai wowonod montok do $1',
 'actionthrottled' => 'Momilos',
@@ -1471,10 +1467,6 @@ Iri suai sinandad do poinlisok.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Idito pail diti momoguno do kangkaraja pongi-ngidit poinlabus',
-'edit-externally-help' => '(Intaai [https://www.mediawiki.org/wiki/Manual:External_editors karalan-ralanon papasang] do lobi gumu kointalangan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'oinsanan',

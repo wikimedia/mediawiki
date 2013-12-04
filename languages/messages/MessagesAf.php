@@ -365,7 +365,6 @@ $messages = array(
 'qbedit' => 'Wysig',
 'qbpageoptions' => 'Bladsyopsies',
 'qbmyoptions' => 'My bladsye',
-'qbspecialpages' => 'Spesiale bladsye',
 'faq' => 'Gewilde vrae',
 'faqpage' => 'Project:GewildeVrae',
 
@@ -580,9 +579,6 @@ Geen verduideliking is verskaf nie.",
 'perfcached' => "Die volgende inligting is gekas en mag dalk nie op datum wees nie. 'n Maksimum van {{PLURAL:$1|een resultaat|$1 resultate}} is in die kas beskikbaar.",
 'perfcachedts' => "Die volgende data is gekas en is laas op $2 om $3 bygewerk. 'n Maksimum van {{PLURAL:$4|een resultaat|$4 resultate}} is in die kas beskikbaar.",
 'querypage-no-updates' => 'Opdatering van hierdie bladsy is huidiglik afgeskakel. Inligting hier sal nie tans verfris word nie.',
-'wrong_wfQuery_params' => 'Foutiewe parameters na wfQuery()<br />
-Funksie: $1<br />
-Navraag: $2',
 'viewsource' => 'Wys bronteks',
 'viewsource-title' => 'Wys bron van $1',
 'actionthrottled' => 'Outo-rem op aksie uitgevoer',
@@ -3628,10 +3624,6 @@ Ander velde sal versteek wees.
 'exif-urgency-low' => 'Laag ( $1 )',
 'exif-urgency-high' => 'Hoog ($1)',
 'exif-urgency-other' => 'Gebruiker-gedefinieerde prioriteit ($1)',
-
-# External editor support
-'edit-externally' => "Wysig hierdie lêer met 'n eksterne program",
-'edit-externally-help' => '(Sien [https://www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',

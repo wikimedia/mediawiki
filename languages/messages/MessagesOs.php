@@ -328,7 +328,6 @@ $messages = array(
 'qbedit' => 'Ивын',
 'qbpageoptions' => 'Ацы фарс',
 'qbmyoptions' => 'Мæ фæрстæ',
-'qbspecialpages' => 'Сæрмагонд фæрстæ',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -540,9 +539,6 @@ $1',
 'perfcachedts' => 'Бындæр цы рардтæ ис, уыдон сты кешгонд æмæ фæстаг хатт нæуæггонд æрцыдысты $1. Кешы гæнæн ис уа æппæты фылдæр {{PLURAL:$4|иу фæстиуæг|$4 фæстиуæджы}}.',
 'querypage-no-updates' => 'Ацы фарсы нæуæгкæнын ныртæккæ хицæн у.
 Цы рардтæ дзы ис, уыдон нæуæг нæ кæндзысты.',
-'wrong_wfQuery_params' => 'Рæдыд параметртæ wfQuery() функцийæн<br />
-Функци: $1<br />
-Домæн: $2',
 'viewsource' => 'Код кæсын',
 'viewsource-title' => 'Фенын {{grammar:genitive|$1}} равзæрæн текст',
 'actionthrottled' => 'Архайд урæд æрцыд',
@@ -1716,10 +1712,6 @@ $3',
 'exif-identifier' => 'Бæрæггæнæн',
 
 'exif-gaincontrol-0' => 'Нæй',
-
-# External editor support
-'edit-externally' => 'Ивын ацы файл æддаг программæйæ',
-'edit-externally-help' => '(Кæс [https://www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'иууылдæр',

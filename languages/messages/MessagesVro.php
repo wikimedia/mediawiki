@@ -184,7 +184,6 @@ $messages = array(
 'qbedit' => 'Toimõndaq',
 'qbpageoptions' => 'Leheküle säädmine',
 'qbmyoptions' => 'Mu säädmiseq',
-'qbspecialpages' => 'Tallitusleheküleq',
 'faq' => 'Sagõhõhe küsüdüq küsümiseq',
 'faqpage' => 'Project:KKK',
 
@@ -381,9 +380,6 @@ võlssi näüdät kiili- vai wikidevaihõlinõ päälkiri.",
 'perfcached' => 'Järgmäne teedüs om puhvõrdõt ja pruugi ei ollaq kõgõ värskimb. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Järgmäne teedüs om puhvõrdõt ja om viimäte muudõt $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Taad lehe teedüst parhilla värskis ei tetäq.',
-'wrong_wfQuery_params' => 'Võlss suurusõq tallitusõlõ wfQuery()<br />
-Tallitus: $1<br />
-Perräküsümine: $2',
 'viewsource' => 'Kaeq lätteteksti',
 'actionthrottled' => 'Tallitusõ kibõhus piirõt',
 'actionthrottledtext' => "Taa tallitusõ mitmit kõrdo tegemine om prahipandjidõ peräst ärq keelet. Olõt taad lühkü ao seen pall'o hulga tennüq. Prooviq veidükese ao peräst vahtsõst.",
@@ -2098,10 +2094,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Peris tsiht',
 'exif-gpsdirection-m' => 'Magnõttsiht',
-
-# External editor support
-'edit-externally' => 'Toimõndaq taad teedüstüt välidse programmiga',
-'edit-externally-help' => '(Lisateedüst loeq [https://www.mediawiki.org/wiki/Manual:External_editors pruukmisoppusõ lehe päält])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => ', terveq aolugu',

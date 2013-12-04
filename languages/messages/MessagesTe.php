@@ -298,7 +298,6 @@ $messages = array(
 'qbedit' => 'సవరించు',
 'qbpageoptions' => 'ఈ పేజీ',
 'qbmyoptions' => 'నా పేజీలు',
-'qbspecialpages' => 'ప్రత్యేక పేజీలు',
 'faq' => 'తరచూ అడిగే ప్రశ్నలు',
 'faqpage' => 'Project:తరచూ అడిగే ప్రశ్నలు',
 
@@ -505,9 +504,6 @@ $1',
 'perfcachedts' => 'కింది సమాచారం ముందే సేకరించి పెట్టుకున్నది. దీన్ని $1న చివరిసారిగా తాజాకరించారు. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'ప్రస్తుతం ఈ పుటకి తాజాకరణలని అచేతనం చేసారు.
 ఇక్కడున్న భోగట్టా కూడా తాజాకరించబడదు.',
-'wrong_wfQuery_params' => 'wfQuery()కి తప్పుడు పారామీటర్లు వచ్చాయి<br />
-ఫంక్షను: $1<br />
-క్వీరీ: $2',
 'viewsource' => 'మూలాన్ని చూపించు',
 'viewsource-title' => '$1 యొక్క సోర్సు చూడండి',
 'actionthrottled' => 'కార్యాన్ని ఆపేసారు',
@@ -3242,10 +3238,6 @@ $1',
 'exif-urgency-low' => 'తక్కువ ($1)',
 'exif-urgency-high' => 'ఎక్కువ ($1)',
 'exif-urgency-other' => 'వాడుకరి-నిర్వచిత ప్రాథాన్యత ($1)',
-
-# External editor support
-'edit-externally' => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
-'edit-externally-help' => '(మరింత సమాచారం కొరకు [https://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'అన్నీ',

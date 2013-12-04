@@ -279,7 +279,6 @@ $messages = array(
 'qbedit' => 'Hariri',
 'qbpageoptions' => 'Ukurasa huu',
 'qbmyoptions' => 'Kurasa zangu',
-'qbspecialpages' => 'Kurasa za pekee',
 'faq' => 'Maswali ya kawaida',
 'faqpage' => 'Project:Maswali Yaulizwayo Marakwamara',
 
@@ -488,9 +487,6 @@ Huenda likawa tayari lishafutwa na mtu mwingine.',
 'perfcachedts' => 'Data zifuatazo zimetoka kwenye kache iliobadilishwa mara ya mwisho saa $3, tarehe $2. Mwisho wa {{PLURAL:$4|jibu moja linapatikana|majibu $4 yanapatikana}} katika kache.',
 'querypage-no-updates' => 'Mabadiliko kwa ajili ya ukurasa huu yamesimamishwa.
 Data za hapa haziwezi kunawirishwa kwa sasa.',
-'wrong_wfQuery_params' => 'Parameta za ulizio zilizoingizwa wfQuery() na zisizo sahihi ni<br />
-Kitenda: $1<br />
-Ulizio: $2',
 'viewsource' => 'Tazama msimbo',
 'viewsource-title' => 'Tazama chanzo cha $1',
 'actionthrottled' => 'Tendo limesimamishwa',
@@ -2847,10 +2843,6 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-urgency-low' => 'Chini ($1)',
 'exif-urgency-high' => 'Juu ($1)',
 'exif-urgency-other' => 'Upaumbele uliotajwa na mtumiaji ($1)',
-
-# External editor support
-'edit-externally' => 'Tumia programu ya nje kuhariri faili hii',
-'edit-externally-help' => '(Ona [https://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'zote',

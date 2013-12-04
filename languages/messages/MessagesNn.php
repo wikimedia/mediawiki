@@ -477,7 +477,6 @@ $messages = array(
 'qbedit' => 'Endre',
 'qbpageoptions' => 'Denne sida',
 'qbmyoptions' => 'Sidene mine',
-'qbspecialpages' => 'Spesialsider',
 'faq' => 'OSS',
 'faqpage' => 'Project:OSS',
 
@@ -684,7 +683,6 @@ Funksjonen oppgav inga årsak.',
 'perfcached' => 'Dei følgjande dataa er frå mellomlageret åt tenaren og er ikkje utan vidare oppdatert. Høgst {{PLURAL:$1|eitt resultat er tilgjengeleg|$1 resultat er tilgjengelege}} i mellomlageret.',
 'perfcachedts' => 'Desse dataa er mellomlagra, og vart sist oppdaterte $1. Høgst {{PLURAL:$4|eitt resultat er tilgjengeleg|$4 resultat er tilgjengelege}} i mellomlageret.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',
-'wrong_wfQuery_params' => 'Feil parameter gjevne til wfQuery()<br />Funksjon: $1<br />Førespurnad: $2',
 'viewsource' => 'Sjå kjelda',
 'viewsource-title' => 'Sjå kjelda til $1',
 'actionthrottled' => 'Handlinga vart stoppa',
@@ -3623,10 +3621,6 @@ Andre er gøymde som standard.
 'exif-urgency-low' => 'Låg ($1)',
 'exif-urgency-high' => 'Høg ($1)',
 'exif-urgency-other' => 'Brukardefinert prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Endre denne fila med eit eksternt program',
-'edit-externally-help' => '(Sjå [https://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonane] for meir informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

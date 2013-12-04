@@ -182,7 +182,6 @@ $messages = array(
 'qbedit' => 'Оңдоо',
 'qbpageoptions' => 'Бул барак',
 'qbmyoptions' => 'Барактарым',
-'qbspecialpages' => 'Кызматтык барактар',
 'faq' => 'КБС',
 'faqpage' => 'Project:КБС',
 
@@ -371,9 +370,6 @@ $1',
 'badtitle' => 'Туура эмес аталыш',
 'badtitletext' => 'Талап кылынган барактын аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
 Балким аталышта колдонулбай турган бир же андан көп белги камтылган.',
-'wrong_wfQuery_params' => 'wfQuery() функциясы үчүн жарабай турган параметрлер<br />
-Функция: $1<br />
-Суроо: $2',
 'viewsource' => 'Кайнарын кароо',
 'viewsource-title' => '$1 барагынын баштапкы кодун көрүү',
 'actionthrottled' => 'Аралык боюнча чектөө',
@@ -1670,10 +1666,6 @@ To include a file in a page, use a link in one of the following forms:
 'exif-iimcategory-soi' => 'Социалдык маселелер',
 'exif-iimcategory-spo' => 'Спорт',
 'exif-iimcategory-wea' => 'Аба-ырайы',
-
-# External editor support
-'edit-externally' => 'Бул файлды сырткы программа колдонуу аркылуу оңдоо',
-'edit-externally-help' => '(Толук маалымат алуу үчүн [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] барагына кайрылсаңыз болот)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'баары',

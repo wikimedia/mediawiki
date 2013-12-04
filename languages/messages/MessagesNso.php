@@ -155,7 +155,6 @@ $messages = array(
 'qbedit' => 'Fetola',
 'qbpageoptions' => 'Letlakala le',
 'qbmyoptions' => 'Matlakala a ka',
-'qbspecialpages' => 'Matlakala a kgethegilego',
 'faq' => '"FAQ"',
 
 # Vector skin
@@ -1208,10 +1207,6 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'exif-subjectdistance-value' => '$1 metara',
 
 'exif-meteringmode-1' => 'Palogare',
-
-# External editor support
-'edit-externally' => 'Fetola faele ye o šumiša thulusi ya ka ntle',
-'edit-externally-help' => '(Lebelela [https://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ka moka',

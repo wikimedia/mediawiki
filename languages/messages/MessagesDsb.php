@@ -316,7 +316,6 @@ $messages = array(
 'qbedit' => 'Pśeměniś',
 'qbpageoptions' => 'Toś ten bok',
 'qbmyoptions' => 'Móje boki',
-'qbspecialpages' => 'Specialne boki',
 'faq' => 'FAQ (pšašanja a wótegrona)',
 'faqpage' => 'Project:FAQ (pšašanja a wótegrona)',
 
@@ -531,9 +530,6 @@ Njejo žedno wujasnjenje.',
 'perfcached' => 'Toś te daty póchadaju z pufrowaka a mógu snaź njeaktualne byś. Maksimalnje {{PLURAL:$1|jaden wuslědk stoj|$1 wuslědka stojtej|$1 wuslědki stoje|$1 wuslědkow stoj}} w pufrowaku k dispoziciji.',
 'perfcachedts' => 'Toś te daty póchadaju z pufrowaka a su se $1 slědny raz aktualizěrowali. Maksimalnje {{PLURAL:$4|jaden wuslědk stoj|$4 wuslědka stojtej|$4 wuslědki stoje|$4 wuslědkow stoj}} w pufrowaku k dispoziciji.',
 'querypage-no-updates' => 'Aktualizěrowanje toś togo boka jo se znjemóžniło. Daty how se nejžpjerwjej raz njeaktualizěruju.',
-'wrong_wfQuery_params' => 'Njedobre parametery za wfQuery()<br />
-Funkcija: $1<br />
-Wótpšašanje: $2',
 'viewsource' => 'Žrědło se wobglědaś',
 'viewsource-title' => 'Žrědłowy tekst za $1 se woglědaś',
 'actionthrottled' => 'Akcije limitowane',
@@ -655,7 +651,7 @@ Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
 'passwordtooshort' => 'Gronidła deje nanejmjenjej {{PLURAL:$1|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
 'password-name-match' => 'Twójo gronidło musy se wót swójogo wužywarskego mjenja rozeznaś.',
 'password-login-forbidden' => 'Wužywanje toś togo wužywarskego mjenja a gronidła jo zakazane.',
-'mailmypassword' => 'Nowe gronidło pśipósłaś',
+'mailmypassword' => 'Gronidło slědk stajiś',
 'passwordremindertitle' => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
 'passwordremindertext' => 'Něchten z IP-adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
 Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło. Twójo nachylne gronidło pśepadnjo za {{PLURAL:$5|jadyn źeń|$5 dnja|$5 dny|$5 dnjow}}.
@@ -719,7 +715,7 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 # Special:PasswordReset
 'passwordreset' => 'Gronidło slědk stajiś',
 'passwordreset-text-one' => 'Wupołni toś ten formular, aby swójo gronidło anulěrował.',
-'passwordreset-text-many' => '{{PLURAL:$1|Zapódaj jadne z pólow, aby swójo gronidło slědk stajił.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Wupołni jadne z pólow, aby nachylne gronidło pśez e-mail dostał.}}',
 'passwordreset-legend' => 'Gronidło slědk stajiś',
 'passwordreset-disabled' => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
 'passwordreset-emaildisabled' => 'E-mailowe funkcije su se na toś tom wikiju znjemóžnili.',
@@ -3525,10 +3521,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-urgency-low' => 'Niska ($1)',
 'exif-urgency-high' => 'Wusoka ($1)',
 'exif-urgency-other' => 'Swójska priorita ($1)',
-
-# External editor support
-'edit-externally' => 'Dataje z eksternym programom wobźěłaś',
-'edit-externally-help' => '(Za dalšne informacije glědaj [https://www.mediawiki.org/wiki/Manual:External_editors instalaciske instrukcije]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wšykne',

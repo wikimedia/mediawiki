@@ -159,7 +159,6 @@ $messages = array(
 'qbedit' => 'Ĝedel',
 'qbpageoptions' => "Had 'ṣ-ṣefḫa",
 'qbmyoptions' => "'Ṣ-Ṣefḫaṫ dyawli",
-'qbspecialpages' => 'Ṣefḫaṫ ĥaṣṣin',
 'faq' => 'asaila kaytaawdo bzaf',
 'faqpage' => 'Project:asaila kaytaawdo',
 
@@ -364,9 +363,6 @@ ymkn ikon ċi waḫd aĥor ḫdfo.',
 'perfcachedts' => 'l-bayanaṫ ṫ-ṫalia kayna f-lcache, o-ṫḫddṫaṫ aĥir mrra f-$1.',
 'querypage-no-updates' => 'ṫḫdiṫad dial had ṣfḫa ma ĥḍḍamaċ daba.
 l-bayanaṫ lli kayna hna daba maĥadiċ ṫṫḫḍḍṫ.',
-'wrong_wfQuery_params' => 'parametrat ġalta l-wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'Ċof l-ĝin',
 'actionthrottled' => 'had l-feĝl ṫṫḫbs',
 'actionthrottledtext' => 'baċ nṫfadaw ṣ-ṣpam, ĝadad l-mṛṛaṫ lli ymkn ddir fiha had l-feĝl f-modda qṣiṛa rah mḫdod, o-nta rak fṫṫi had l-ĝadar.
@@ -2450,10 +2446,6 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-urgency-low' => 'mnĥafḍa ($1)',
 'exif-urgency-high' => 'ĝalia ($1)',
 'exif-urgency-other' => 'l-awlawiyya lli ḫddadha l-mosṫĥdim ($1)',
-
-# External editor support
-'edit-externally' => 'Ṣayeb had l-fiċyé be ċi aplikasyon ĥarijiya',
-'edit-externally-help' => '(Ċof [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] ila ḫṫajiṫi meĝlomaṫ ĥrin)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kolċi',

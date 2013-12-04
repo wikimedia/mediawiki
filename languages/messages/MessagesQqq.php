@@ -483,7 +483,6 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|This page}}',
 'qbmyoptions' => 'Heading in the Cologne Blue skin user menu containing links to user (talk) page, preferences, watchlist, etc.
 {{Identical|My pages}}',
-'qbspecialpages' => '{{Identical|Special page}}',
 'faq' => "FAQ is short for ''frequently asked questions''.
 {{Identical|FAQ}}",
 'faqpage' => '{{doc-important|Do not translate <code>Project:</code> part.}}
@@ -1154,9 +1153,6 @@ Parameters:
 * $3 - a time (optional)
 * $4 - the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
-'wrong_wfQuery_params' => 'Used as error message. Parameters:
-* $1 - function name
-* $2 - query',
 'viewsource' => 'The text displayed in place of the {{msg-mw|Edit}} tab when the user has no permission to edit the page.
 
 See also:
@@ -4224,22 +4220,22 @@ See also:
 
 # File backend
 'backend-fail-stream' => 'Parameters:
-* $1 is a filename.',
+* $1 - a filename',
 'backend-fail-backup' => 'Parameters:
-* $1 is a filename.',
+* $1 - a filename',
 'backend-fail-notexists' => 'Parameters:
-* $1 is a filename.',
+* $1 - a filename',
 'backend-fail-hashes' => 'Definition of "[[w:en:Hash_function|hashes]]".',
 'backend-fail-notsame' => 'Parametreler:
 * $1 bir dosya ismi.',
 'backend-fail-invalidpath' => 'Parameters:
-* $1 is a storage path.',
+* $1 - a storage path',
 'backend-fail-delete' => 'Parameters:
-* $1 is a file path.',
+* $1 - a file path',
 'backend-fail-describe' => 'Parameters:
-* $1 is a file path.',
+* $1 - a file path',
 'backend-fail-alreadyexists' => 'Parameters:
-* $1 is a filename.',
+* $1 - a filename',
 'backend-fail-store' => 'Parameters:
 * $1 - a filename
 * $2 - a storage path',
@@ -4259,7 +4255,7 @@ See also:
 * $1 - filename
 {{Related|Backend-fail}}',
 'backend-fail-create' => 'Parameters:
-* $1 is a filename.',
+* $1 - a filename',
 'backend-fail-maxsize' => 'Parameters:
 * $1 - destination storage path
 * $2 - max file size (in bytes)',
@@ -4291,7 +4287,7 @@ Parameters:
 
 A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-usable' => 'Parameters:
-* $1 is the file name, including the path, formatted for the storage backend used',
+* $1 - the file name, including the path, formatted for the storage backend used',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Parameters:
@@ -9446,11 +9442,6 @@ Parameters:
 'exif-urgency-other' => 'Parameters:
 * $1 - numeric priority. Most specs define 0 and 9 to either be reserved or not allowed. However the exiftool documentation defines 0 to be reserved and 9 to be user-defined priority.
 {{Related|Exif-urgency}}',
-
-# External editor support
-'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
-'edit-externally-help' => '{{doc-important|Please leave the link "<code>https://www.mediawiki.org/wiki/Manual:External_editors</code>" exactly as it is.}}
-Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Appears on [[Special:Watchlist]].

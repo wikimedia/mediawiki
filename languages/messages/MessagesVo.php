@@ -262,7 +262,6 @@ $messages = array(
 'qbedit' => 'Redakön',
 'qbpageoptions' => 'Pad at',
 'qbmyoptions' => 'Pads obik',
-'qbspecialpages' => 'Pads patik',
 'faq' => 'Säks suvo pasäköls',
 'faqpage' => 'Project:FAQ',
 
@@ -453,9 +452,6 @@ Ba ya pemoükon fa geban votik.',
 'perfcached' => 'Nüns sököl ekömons se el caché e ba no binons anuik. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Atimükam pada at penemögükon. Nünods isik no poflifedükons suno.',
-'wrong_wfQuery_params' => 'Paramets neverätik lü wfQuery()<br />
-Dun: $1<br />
-Beg: $2',
 'viewsource' => 'Logön fonäti',
 'viewsource-title' => 'Logön fonäti pada: "$1"',
 'actionthrottled' => 'Dun pemiedükon',
@@ -2688,10 +2684,6 @@ Nünabinets votik poklänedons.
 
 'exif-iimcategory-spo' => 'Spots',
 'exif-iimcategory-wea' => 'Stom',
-
-# External editor support
-'edit-externally' => 'Votükön ragivi at me nünömaprogram plödik',
-'edit-externally-help' => '(Reidolös eli [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] [in Linglänapük] ad tuvön nünis pluik)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'valikis',

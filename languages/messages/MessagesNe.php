@@ -211,7 +211,6 @@ $messages = array(
 'qbedit' => 'सम्पादन गर्ने',
 'qbpageoptions' => 'यो पेज',
 'qbmyoptions' => 'मेरो पेज',
-'qbspecialpages' => 'विशेष पृष्ठहरु',
 'faq' => 'धैरै सोधिएका प्रश्नहरु',
 'faqpage' => 'Project:FAQ',
 
@@ -432,9 +431,6 @@ $1',
 'perfcachedts' => 'निम्न आँकडा क्याच हो र $1 पहिला अद्यतन गरिएको थियो।  यस क्याचमा उपलब्ध {{PLURAL:$4|एउटा कारण हो|$4 कारणहरु हुन्}}।',
 'querypage-no-updates' => 'यो पृष्ठको अद्यतन कार्य निस्क्रिय गरिएको छ।
 यहाँको डेटा हालमा ताजा पारिने  छैन।',
-'wrong_wfQuery_params' => ' wfQuery()को लागि गलत प्यारामेटर<br />
-कार्य: $1<br />
-खोज: $2',
 'viewsource' => 'स्रोत हेर्नुहोस',
 'viewsource-title' => ' $1 को स्रोत हेर्नुहोस',
 'actionthrottled' => 'कार्य रोकियो',
@@ -3071,10 +3067,6 @@ $8',
 'exif-urgency-low' => 'न्युन ($1)',
 'exif-urgency-high' => 'उच्च ($1)',
 'exif-urgency-other' => 'प्रयोगकर्ताले निर्धारण गरेको प्राथमिकता ($1)',
-
-# External editor support
-'edit-externally' => 'यो फाइललाई बाह्य अनुप्रयोग प्रयोग गरेर सम्पादन गर्ने',
-'edit-externally-help' => '(थप जानकारीको लागि [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] मा हेर्नुहोस् )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सबै',

@@ -526,7 +526,6 @@ $messages = array(
 'qbedit' => '編集',
 'qbpageoptions' => 'このページについて',
 'qbmyoptions' => '自分のページ',
-'qbspecialpages' => '特別ページ',
 'faq' => 'よくある質問と回答',
 'faqpage' => 'Project:よくある質問と回答',
 
@@ -747,9 +746,6 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'perfcachedts' => '以下のデータはキャッシュされており、最終更新日時は $1 です。最大 $4 {{PLURAL:$4|件の結果}}がキャッシュされます。',
 'querypage-no-updates' => 'ページの更新は無効になっています。
 以下のデータの更新は現在行われていません。',
-'wrong_wfQuery_params' => 'wfQuery() のパラメーターが無効です<br />
-関数: $1<br />
-クエリ: $2',
 'viewsource' => 'ソースを表示',
 'viewsource-title' => '$1のソースを表示',
 'actionthrottled' => '操作が速度規制されました',
@@ -3975,10 +3971,6 @@ Variants for Chinese language
 'exif-urgency-low' => '低 ($1)',
 'exif-urgency-high' => '高 ($1)',
 'exif-urgency-other' => '利用者定義の優先度 ($1)',
-
-# External editor support
-'edit-externally' => '外部アプリケーションを使用してこのファイルを編集',
-'edit-externally-help' => '(詳しくは[https://www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'すべて',

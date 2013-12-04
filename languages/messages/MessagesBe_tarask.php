@@ -419,7 +419,6 @@ $messages = array(
 'qbedit' => 'Рэдагаваць',
 'qbpageoptions' => 'Гэтая старонка',
 'qbmyoptions' => 'Мае старонкі',
-'qbspecialpages' => 'Спэцыяльныя старонкі',
 'faq' => 'Частыя пытаньні',
 'faqpage' => 'Project:Частыя пытаньні',
 
@@ -636,9 +635,6 @@ $1',
 'perfcached' => 'Наступныя зьвесткі кэшаваныя і могуць быць састарэлымі. У кэшы {{PLURAL:$1|даступны|даступныя}} ня больш за $1 {{PLURAL:$1|вынік|вынікі|вынікаў}}.',
 'perfcachedts' => 'Наступныя зьвесткі кэшаваныя і апошні раз былі абноўленыя $1. У кэшы {{PLURAL:$4|даступны|даступныя}} ня больш за $4 {{PLURAL:$4|вынік|вынікі|вынікаў}}.',
 'querypage-no-updates' => 'Абнаўленьні гэтай старонкі цяпер адключаныя. Зьвесткі ня будуць абнаўляцца.',
-'wrong_wfQuery_params' => 'Няслушныя парамэтры для wfQuery()<br />
-Функцыя: $1<br />
-Запыт: $2',
 'viewsource' => 'Паказаць крыніцу',
 'viewsource-title' => 'Прагляд крыніцы для $1',
 'actionthrottled' => 'Дзеяньне прытрыманае',
@@ -3688,10 +3684,6 @@ $1',
 'exif-urgency-low' => 'Нізкая ($1)',
 'exif-urgency-high' => 'Высокая ($1)',
 'exif-urgency-other' => 'Прыярытэт вызначаны карыстальнікам ($1)',
-
-# External editor support
-'edit-externally' => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',
-'edit-externally-help' => '(Глядзіце падрабязнасьці ў [https://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усё',

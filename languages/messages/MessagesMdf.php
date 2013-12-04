@@ -283,7 +283,6 @@ $messages = array(
 'qbedit' => 'Петнема',
 'qbpageoptions' => 'Тя лопась',
 'qbmyoptions' => 'Монь лопане',
-'qbspecialpages' => 'Башка тевонь лопат',
 'faq' => 'Сидеста Кеподеви Кизефксне',
 'faqpage' => 'Project:Сидеста Кеподеви Кизефксне',
 
@@ -489,9 +488,6 @@ $1',
 'perfcached' => 'Вешф програмонь информациесь сёрматфоль эслек ванфневи файлхнень эса ди, улема, сирелгодсь. Сяда {{PLURAL:$1|фкя муфкс|$1 муфкст}} эслек ванфневи файлань кярьксса.',
 'perfcachedts' => 'Тя програмонь информациесь сёрматфоль эслек ванфневи файлхнень эса ди мекольцеда одонзаф $1. Сяда {{PLURAL:$4|фкя муфкс|$4 муфкст}} эслек ванфневи файлонь кярьксса.',
 'querypage-no-updates' => 'Тя лопать одонзапне тяни аф тиевихть. Информациесь тяса тяни аф одонзави.',
-'wrong_wfQuery_params' => 'Аф кондясти параметратне функцияса wfQuery()<br />
-Функцие: $1<br />
-Вешфкс: $2',
 'viewsource' => 'Ваномс лисьмоть',
 'viewsource-title' => 'Ванк $1 лисьмаста',
 'actionthrottled' => 'Куроксшись кирьфтаф',
@@ -2638,10 +2634,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Виде ён',
 'exif-gpsdirection-m' => 'Магнитонь ён',
-
-# External editor support
-'edit-externally' => 'Петнемс тя файлть ушеширень програмонь вельде',
-'edit-externally-help' => '(Ванк [https://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовалсь] сяда лама содаманкса)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'сембе',

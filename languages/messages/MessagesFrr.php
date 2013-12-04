@@ -177,7 +177,6 @@ $messages = array(
 'qbedit' => 'Bewerke',
 'qbpageoptions' => 'Detdiar sidj',
 'qbmyoptions' => 'Min sidjen',
-'qbspecialpages' => 'Spezial-sidjen',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -397,9 +396,6 @@ Det as ferlicht al faan hoker ööders stregen wurden.',
 'perfcached' => 'Jodiar dooten kem faan a cache an san ferlicht ei muar aktuel. Ei muar üs {{PLURAL:$1|ian resultoot as|$1 resultooten san}} uun a cache.',
 'perfcachedts' => 'Jodiar dooten kem faan a cache, leetst tooch nei: $1. Ei muar üs {{PLURAL:$4|ian resultoot as|$4 resultooten san}} uun a cache.',
 'querypage-no-updates' => 'Dü könst detdiar sidj uun uugenblak ei aktualisiare. A dooten wurd iarst ans ei iinsteld.',
-'wrong_wfQuery_params' => 'Ferkiard dooten för wfQuery()<br />
-Funktjuun: $1<br />
-Uffraag: $2',
 'viewsource' => 'Kweltekst uunluke',
 'viewsource-title' => 'Code faan sidj $1 uunluke',
 'actionthrottled' => 'Taal faan aktjuunen limitiaret',
@@ -3385,10 +3381,6 @@ Ferwisangen uun det salew rä wurd üs ütjnoomen uunsen, huar det datei dach uu
 'exif-urgency-low' => 'Liach ($1)',
 'exif-urgency-high' => 'Huuch ($1)',
 'exif-urgency-other' => 'Faan a brüker fäästlaanj prioriteet ($1)',
-
-# External editor support
-'edit-externally' => 'Detdiar datei mä en ekstern program bewerke',
-'edit-externally-help' => "(Luk efter uun't [https://www.mediawiki.org/wiki/Manual:External_editors hoonbuk] am muar diartu)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aaltumaal',

@@ -180,7 +180,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'qbedit' => 'Redaktirle',
 'qbpageoptions' => 'Bu sahypa',
 'qbmyoptions' => 'Meniň sahypalarym',
-'qbspecialpages' => 'Ýörite sahypalar',
 'faq' => 'KSS',
 'faqpage' => 'Project:KSS',
 
@@ -381,9 +380,6 @@ Başga biri tarapyndan eýýäm öçürilen bolmagy mümkin.',
 'perfcached' => 'Aşakdaky maglumatlar keşirlenen bolup, könelişen bolmaklary mümkin! A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Aşakdaky maglumat keşirlenen bolup, iň soňky täzelenen wagty: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Häzirlikçe bu sahypanyň täzelenmegi togtadyldy. Bu ýerdäki maglumatlar häzirlikçe täzelenmeýär.',
-'wrong_wfQuery_params' => 'wfQuery() funksiýasyna nädogry parametrler<br />
-Funksiýa: $1<br />
-Talap: $2',
 'viewsource' => 'Çeşmäni gör',
 'actionthrottled' => 'Hereket çäklendirildi',
 'actionthrottledtext' => 'Anti-spam çäresi hökmünde, bu işi az salymyň içinde köp gezek amala aşyrmagyňyz çäklendirildi, we siz bu çäklendirmeden öte geçdiňiz.
@@ -2832,10 +2828,6 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hakyky ugur',
 'exif-gpsdirection-m' => 'Magnit ugur',
-
-# External editor support
-'edit-externally' => 'Bu faýly daşarky programmalary ulanyp redaktirläň',
-'edit-externally-help' => '(Has köp maglumat üçin metadaky [https://www.mediawiki.org/wiki/Manual:External_editors gurmak boýunça gollanma] sahypasyna göz aýlaň)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Ählisini görkez',

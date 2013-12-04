@@ -372,7 +372,6 @@ $messages = array(
 'qbedit' => 'Hanova',
 'qbpageoptions' => 'Ity pejy ity',
 'qbmyoptions' => 'Ny pejiko',
-'qbspecialpages' => 'Pejy manokana',
 'faq' => 'FMM',
 'faqpage' => 'Project:FMM',
 
@@ -589,9 +588,6 @@ Tsy nanome fanazavana.",
 'perfcachedts' => "Ao amin'ny voatakona (cache) ny data aseho, ary tamin'ny $1 izy no navaozina farany. $4{{PLURAL:}} no isan'ny valim-pikarohana ao amin'ilay voatakona.",
 'querypage-no-updates' => "Tsy nalefa ny ''mise à jour'' (update) hoan'ity pejy ity.
 Mety tsy misy fifandraisana amin'ny zavamisy ankehitriny ny zavamisy ao anatin'ity pejy ity..",
-'wrong_wfQuery_params' => "Misy tsy fetezana amin'ny wfQuery()<br />
-Asa : $1<br />
-fangatahana : $2",
 'viewsource' => 'Hijery fango',
 'viewsource-title' => "Hijery ny fangon'i $1",
 'actionthrottled' => 'Tao voafetra',
@@ -3362,10 +3358,6 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-m' => "Avaratra arak'andriamby",
-
-# External editor support
-'edit-externally' => "Ovao amin'ny alalan'ny fampiasana fitaovana ivelan'ity Wiki ity io rakitra io",
-'edit-externally-help' => "jereo any amin'[https://www.mediawiki.org/wiki/Manual:External_editors ny torolalana] ny fanazavana fanampiny,.",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'rehetra',

@@ -253,7 +253,6 @@ $messages = array(
 'qbedit' => 'Rievdat',
 'qbpageoptions' => 'Siidoásahusat',
 'qbmyoptions' => 'Ásahusat',
-'qbspecialpages' => 'Doaibmasiiddut',
 
 # Vector skin
 'vector-action-addsection' => 'Lasit fáttá',

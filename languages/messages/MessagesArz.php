@@ -460,7 +460,6 @@ $messages = array(
 'qbedit' => 'عدل',
 'qbpageoptions' => ' الصفحه دى',
 'qbmyoptions' => 'صفحاتى',
-'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'اسئله بتتسئل كتير',
 'faqpage' => 'Project:اسئله بتتسئل كتير',
 
@@ -669,9 +668,6 @@ $1',
 'perfcachedts' => 'البيانات  دى معمول لها كاش , و اخر تحديث ليها كان فى $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'التحديثات بتاعة الصفحه دى متعطله دلوقتى.
 البيانات (الـ data) اللى هنا مش ح تتحدث فى الوقت الحاضر.',
-'wrong_wfQuery_params' => 'محددات غلط فى wfQuery()<br />
-الخاصّيه: $1<br />
-الاستعلام: $2',
 'viewsource' => 'عرض المصدر',
 'actionthrottled' => 'العمليه دى اتزنقت',
 'actionthrottledtext' => 'علشان نمنع ال سبام ،أنت ممنوع تعمل  الفعل دا عدد كبير من المرات فى فترة زمنية قصيرة، و انت ا تجاوزت  الحد دا . لو سمحت تحاول مرة ثانية بعد دقائق.',
@@ -3130,10 +3126,6 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'الاتجاه الحقيقي',
 'exif-gpsdirection-m' => 'الاتجاه المغناطيسي',
-
-# External editor support
-'edit-externally' => 'استعمل تطبيق من بره علشان تعدل الملف دا',
-'edit-externally-help' => '(بص على [https://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',

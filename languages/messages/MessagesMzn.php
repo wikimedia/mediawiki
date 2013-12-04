@@ -268,7 +268,6 @@ $messages = array(
 'qbedit' => 'دچی‌ین',
 'qbpageoptions' => 'این صفحه',
 'qbmyoptions' => 'مه صفحه‌ئون',
-'qbspecialpages' => 'شا صفحه‌ئون',
 'faq' => 'معمولی سوالا',
 'faqpage' => 'Project:FAQ',
 
@@ -472,9 +471,6 @@ $2، $1',
 'perfcached' => 'این چیون ثبت بَیی حافظه جه انّه و ممکنه آپدیت نَوائن. حداکثر {{PLURAL:$1|اتا نتیجه|$1تا نتیجه}} قدیمی حافظه دله دره.',
 'querypage-no-updates' => 'این صفحه فعلاً نَونه آپدیت بَواشه.
 همینسه ونه دله بنویشته‌ئون شاید قدیمی بائن.',
-'wrong_wfQuery_params' => 'پارامترون wfQuery()‎ غلطه<br />
-تابع: $1<br />
-پرس‌وجو: $2',
 'viewsource' => 'منبع ره بدی‌ین',
 'viewsource-title' => '$1 مبدأ ره سِراق هدائِن',
 'actionthrottled' => 'شمه پیش ره بیتنه',
@@ -1021,9 +1017,6 @@ $2، $1',
 'exif-orientation-1' => 'معمولی',
 'exif-orientation-3' => '180 درجه چرخ بزوئن',
 'exif-orientation-4' => 'عمودی په‌شت ئو روبئی',
-
-# External editor support
-'edit-externally' => 'ای فـایـل ره، أتـا دأیـا بـه‌رنـومـه هـه‌مـرا، دأچـیـه‌نـیـن',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',

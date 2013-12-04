@@ -148,7 +148,6 @@ $messages = array(
 'qbedit' => 'རྩོམ་སྒྲིག',
 'qbpageoptions' => 'ཤོག་ངོས་འདི།',
 'qbmyoptions' => 'ངའི་ཤོག་ངོས།',
-'qbspecialpages' => 'དམིཊ་བསལ་གྱི་བཟོ་བཅོས།',
 'faq' => 'རྒྱུན་ལྡན་དྲི་བ།',
 'faqpage' => 'Project: རྒྱུན་ལྡན་དྲི་བ།',
 

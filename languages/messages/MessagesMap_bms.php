@@ -172,7 +172,6 @@ $messages = array(
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Kaca kiye',
 'qbmyoptions' => 'Kaca-ne inyong',
-'qbspecialpages' => 'Kaca-kaca astamiwa',
 'faq' => 'FAQ (Pitakonan sing sering ditakokna)',
 'faqpage' => 'Project:FAQ',
 
@@ -387,9 +386,6 @@ Kiya ndeyane ana siji utawa lewih karakter sing ora teyeng digunakna nang judul.
 'perfcachedts' => "Data kiye dijikot sekang singgahan (''cache''), lan dianyarna keri dhewek dong $1. Paling akeh ana  {{PLURAL:$4|siji asil|$4 asil}} disediakna nang papan singgahan.",
 'querypage-no-updates' => 'Update nggo kaca kiye lagi dipateni.
 Data sing ana nang kene sekiye ora teyeng dibaleni unggah maning.',
-'wrong_wfQuery_params' => 'Parameter salah maring wfQuery()<br />
-Fungsi: $1<br />
-Panyuwunan: $2',
 'viewsource' => 'Deleng sumbere',
 'viewsource-title' => 'Deleng sumbere nggo $1',
 'actionthrottled' => 'Tindakan diwatesi',
@@ -1814,10 +1810,6 @@ Sing liyane bakal diumpetna sacara ''default''.
 'exif-lightsource-17' => 'Cahya standar A',
 'exif-lightsource-18' => 'Cahya standar B',
 'exif-lightsource-19' => 'Cahya standar C',
-
-# External editor support
-'edit-externally' => 'Sunting berkas kiye nganggo aplikasi jaba',
-'edit-externally-help' => '(Deleng [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kabèh',

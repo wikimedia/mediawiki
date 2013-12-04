@@ -463,7 +463,6 @@ $messages = array(
 'qbedit' => 'Uredi',
 'qbpageoptions' => 'Postavke stranice',
 'qbmyoptions' => 'Moje stranice',
-'qbspecialpages' => 'Posebne stranice',
 'faq' => 'NPP',
 'faqpage' => 'Project:NPP',
 
@@ -678,9 +677,6 @@ Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
 'perfcachedts' => 'Sledeći podaci su keširani, a poslednji put su ažurirani $2 u $3. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata|$4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je trenutno onemogućeno.
 Podaci koji se ovde nalaze mogu biti zastareli.',
-'wrong_wfQuery_params' => 'Neispravni parametri za wfQuery()<br />
-Funkcija: $1<br />
-Upit: $2',
 'viewsource' => 'Izvorni kod',
 'viewsource-title' => 'Prikaz izvora stranice $1',
 'actionthrottled' => 'Radnja je usporena',
@@ -3811,10 +3807,6 @@ $8',
 'exif-urgency-low' => 'Nisko ($1)',
 'exif-urgency-high' => 'Visoko ($1)',
 'exif-urgency-other' => 'Prilagođeni prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Izmeni ovu datoteku koristeći spoljašnji program',
-'edit-externally-help' => '(Pogledajte [https://www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',

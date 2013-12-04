@@ -472,7 +472,6 @@ $messages = array(
 'qbedit' => 'Uredi',
 'qbpageoptions' => 'Postavke stranice',
 'qbmyoptions' => 'Moje stranice',
-'qbspecialpages' => 'Posebne stranice',
 'faq' => 'Najčešća pitanja',
 'faqpage' => 'Project:FAQ',
 
@@ -681,9 +680,6 @@ Nema obrazloženja ili poruke o pogrješci.',
 'perfcached' => 'Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji. Međuspremnik sadrži $1 {{PLURAL:$1|rezultat|rezultata}} pretraživanja.',
 'perfcachedts' => 'Sljedeći podaci su iz međuspremnika i zadnji puta su ažurirani u $1. Međuspremnik sadrži $4 {{PLURAL:$4|rezultat|rezultata}} pretraživanja.',
 'querypage-no-updates' => 'Osvježavanje ove stranice je trenutačno onemogućeno. Nove promjene neće biti vidljive.',
-'wrong_wfQuery_params' => 'Neispravni parametri poslani u wfQuery()<br />
-Funkcija: $1<br />
-Upit: $2',
 'viewsource' => 'Vidi izvornik',
 'viewsource-title' => 'Vidi kôd stranice $1',
 'actionthrottled' => 'Uređivanje je usporeno',
@@ -3647,10 +3643,6 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-urgency-low' => 'Nisko ( $1 )',
 'exif-urgency-high' => 'Visoko ($1)',
 'exif-urgency-other' => 'Suradnički definiran prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => '(Vidi [https://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',

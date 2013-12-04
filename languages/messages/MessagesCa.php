@@ -362,7 +362,6 @@ $messages = array(
 'qbedit' => 'Modifica',
 'qbpageoptions' => 'Opcions de pàgina',
 'qbmyoptions' => 'Pàgines pròpies',
-'qbspecialpages' => 'Pàgines especials',
 'faq' => 'PMF',
 'faqpage' => 'Project:PMF',
 
@@ -578,9 +577,6 @@ No ha donat cap explicació.',
 'perfcached' => "Les dades següents es troben a la memòria cau i podrien no estar al dia. Hi ha un màxim {{PLURAL:$1|d'un resultat|de $1 resultats}} disponibles a la memòria cau.",
 'perfcachedts' => "Les dades següents es troben a la memòria cau i es van actualitzar per darrera vegada el $1. Hi ha un màxim {{PLURAL:$4|d'un resultat|de $4 resultats}} disponibles a la memòria cau.",
 'querypage-no-updates' => "S'ha inhabilitat l'actualització d'aquesta pàgina. Les dades que hi contenen podrien no estar al dia.",
-'wrong_wfQuery_params' => 'Paràmetres incorrectes per a wfQuery()<br />
-Funció: $1<br />
-Consulta: $2',
 'viewsource' => 'Mostra el codi',
 'viewsource-title' => 'Mostra la font per a $1',
 'actionthrottled' => 'Acció limitada',
@@ -918,10 +914,10 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 'noarticletext-nopermission' => 'Actualment no hi ha text en aquesta pàgina.
 Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>, però no teniu permisos per crear la pàgina.',
-'missing-revision' => 'La revisió # $1  de la pàgina anomenada "{{PAGENAME}}" no existeix.
+'missing-revision' => 'La revisió núm. $1 de la pàgina anomenada «{{PAGENAME}}» no existeix.
 
-Això és normalment provocat per després d\'un enllaç d\'història antiquat a una pàgina que s\'ha suprimit.
-Detalls es poden trobar en el [{{fullurl: {{# especial: registre}} / delete|page = {{FULLPAGENAMEE}}}} registre de supressió].',
+Normalment això ocorre quan seguiu un enllaç d’historial desactualitzat que apunta a una pàgina que s’ha suprimit.
+Podeu trobar detalls en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].',
 'userpage-userdoesnotexist' => "Atenció: El compte d'usuari «<nowiki>$1</nowiki>» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'userpage-userdoesnotexist-view' => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract' => "En aquests moments aquest compte d'usuari es troba blocat.
@@ -3607,10 +3603,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-urgency-low' => 'Baixa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => "Prioritat definida per l'usuari ($1)",
-
-# External editor support
-'edit-externally' => 'Edita aquest fitxer fent servir una aplicació externa',
-'edit-externally-help' => '(Vegeu les [https://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuració] per a més informació)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totes',

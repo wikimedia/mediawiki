@@ -243,7 +243,6 @@ $messages = array(
 'qbedit' => 'Deñiştir',
 'qbpageoptions' => 'Bu saife',
 'qbmyoptions' => 'Saifelerim',
-'qbspecialpages' => 'Mahsus saifeler',
 'faq' => 'Sıq berilgen sualler',
 'faqpage' => 'Project:Sıq berilgen sualler',
 
@@ -448,9 +447,6 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|idarecige]] haber beriñiz.
 'perfcached' => 'Aşağıdaki malümat keşten alındı ve eskirgen ola bilir! Keşte eñ çoq {{PLURAL:$1|bir netice|$1 netice}} saqlanıp tura.',
 'perfcachedts' => 'Aşağıdaki malümat keşten alındı, keşniñ soñki yañartılğan vaqtı: $1. Keşte eñ çoq {{PLURAL:$1|bir netice|$1 netice}} saqlanıp tura.',
 'querypage-no-updates' => 'Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaq.',
-'wrong_wfQuery_params' => 'wrong_wfQuery_params - wfQuery() funktsiyası içün izinsiz parametrler<br />
-Funktsiya: $1<br />
-Soratma: $2',
 'viewsource' => 'menba kodunı köster',
 'viewsource-title' => '$1 saifesiniñ menba kodu',
 'actionthrottled' => 'Areket toqtaldı',
@@ -1905,10 +1901,6 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 
 'exif-subjectdistancerange-0' => 'Bilinmey',
 'exif-subjectdistancerange-1' => 'Makro',
-
-# External editor support
-'edit-externally' => 'Fayl üzerinde kompyuteriñizde bulunğan programmalar ile deñişiklikler yapıñız',
-'edit-externally-help' => '(Daa ziyade malümat içün [https://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'episini',

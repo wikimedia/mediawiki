@@ -185,7 +185,6 @@ $messages = array(
 'qbedit' => 'Bewerk',
 'qbpageoptions' => 'Paginaopties',
 'qbmyoptions' => 'Mien opties',
-'qbspecialpages' => 'Speciaole pahina’s',
 'faq' => 'FAQ (veehestelde vraehen)',
 'faqpage' => 'Project:Veehestelde vraehen',
 
@@ -375,9 +374,6 @@ Maek hiervon maldienge bie 'n [[Special:ListUsers/sysop|beheêrder]] von {{SITEN
 'perfcached' => "De hehevens komm'n uut een cache en zien meuhlijk nie actueel. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 'perfcachedts' => "De hehevens komm'n uut een cache en zien voe 't lèst biehewerkt op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Deêze pagina kan nie biehewerkt worn. Deêze hehevens worn nie ververst.',
-'wrong_wfQuery_params' => 'Foute parameters voe wfQuery()<br />
-Functie: $1<br />
-Zoekopdracht: $2',
 'viewsource' => 'brontekst bekieken',
 'actionthrottled' => 'Handelienge tehenehouwen',
 'actionthrottledtext' => "As maetrehel tehen spam is 't antal keern per tiedseêneid da je deêze handelienge kan verrichen beperkt.
@@ -1312,10 +1308,6 @@ Aorre veld'n worr'n verborr'n.
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => "Dit bestand in 'n extern programma bewark'n",
-'edit-externally-help' => '(zieë de [https://www.mediawiki.org/wiki/Manual:External_editors handleidienge vò instelliengen] vò meê informaosie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aol',

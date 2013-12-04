@@ -480,7 +480,6 @@ $messages = array(
 'qbedit' => 'Redakti',
 'qbpageoptions' => 'Paĝagado',
 'qbmyoptions' => 'Personaĵoj',
-'qbspecialpages' => 'Specialaj paĝoj',
 'faq' => 'Oftaj demandoj',
 'faqpage' => 'Project:Oftaj demandoj',
 
@@ -696,9 +695,6 @@ Eble ĝi estis jam forigita de iu alia.',
 'perfcachedts' => 'La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$4|unu rezulto estas disponebla|$4 rezultoj estas disponeblaj}} en la kaŝmemoro.',
 'querypage-no-updates' => 'Ĝisdatigoj por ĉi paĝo estas nune neebligitaj.
 Datenoj ĉi tie ne estos nune refreŝigitaj.',
-'wrong_wfQuery_params' => 'Malĝustaj parametroj por wfQuery()<br />
-Funkcio: $1<br />
-Peto: $2',
 'viewsource' => 'Rigardi vikitekston',
 'viewsource-title' => 'Vidi fonton por $1',
 'actionthrottled' => 'Agado limigita',
@@ -3709,10 +3705,6 @@ Aliaj estos kaŝitaj defaŭlte.
 'exif-urgency-low' => 'Malalta ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Prioritato difinita de uzanto ($1)',
-
-# External editor support
-'edit-externally' => 'Ŝanĝi ĉi tiun dosieron per ekstera programaro',
-'edit-externally-help' => "(Vidu la [https://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ĉiuj',

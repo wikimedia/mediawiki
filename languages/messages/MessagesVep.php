@@ -242,7 +242,6 @@ $messages = array(
 'qbedit' => 'Redaktiruida',
 'qbpageoptions' => 'Necen lehtpolen järgendused',
 'qbmyoptions' => 'Minun järgendused',
-'qbspecialpages' => 'Specialižed lehtpoled',
 'faq' => 'PPK',
 'faqpage' => 'Project:PPK',
 
@@ -446,9 +445,6 @@ Siš voib olda simvoloid, kudambid ei sa panda nimihe.',
 'perfcachedts' => "Nened andmused oma kešespäi, ned oma uzištadud jäl'gmäižel kerdal siloi: $1. Kešas ei ole enambad mi {{PLURAL:$1|rezul'tat|$1 rezul'tatad}}.",
 'querypage-no-updates' => "Necen lehtpolen udištand ei ole nügüd' kävutamas.
 Anttud naku andmused ei udištugoi.",
-'wrong_wfQuery_params' => 'Värad parametrad necen funkcijan täht: wfQuery()<br />
-Funkcii: $1<br />
-Ecind: $2',
 'viewsource' => 'Kc. purde',
 'viewsource-title' => 'Ozutada $1-lehtpolen lähtmižtekst',
 'actionthrottled' => 'Tegendan piguz om kaidetud',
@@ -2799,10 +2795,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-urgency-normal' => 'Normaline ($1)',
 'exif-urgency-low' => 'Madal ($1)',
 'exif-urgency-high' => 'Korged ($1)',
-
-# External editor support
-'edit-externally' => 'Redaktiruida nece fail irdprogrammal',
-'edit-externally-help' => '(Kc. [https://www.mediawiki.org/wiki/Manual:External_editors seižutamižinstrukcijoid])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kaik',

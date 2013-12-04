@@ -608,7 +608,6 @@ $messages = array(
 'qbedit' => 'ویرایش',
 'qbpageoptions' => 'این صفحه',
 'qbmyoptions' => 'صفحه‌های من',
-'qbspecialpages' => 'صفحه‌های ویژه',
 'faq' => 'پرسش‌های متداول',
 'faqpage' => 'Project:پرسش‌های متداول',
 
@@ -830,9 +829,6 @@ $1',
 'perfcachedts' => 'داده‌های زیر از حافظهٔ نهانی فراخوانی شده‌اند و آخرین بار در $1 به‌روزرسانی شدند. حداکثر {{PLURAL:$4|یک نتیجه|$4 نتیجه}} در حافظهٔ نهانی قابل دسترس است.',
 'querypage-no-updates' => 'امکان به‌روزرسانی این صفحه فعلاً غیرفعال شده‌است.
 اطلاعات این صفحه ممکن است به‌روز نباشد.',
-'wrong_wfQuery_params' => 'پارامترهای wfQuery()‎ نادرست است<br />
-تابع: $1<br />
-پرس‌وجو: $2',
 'viewsource' => 'نمایش مبدأ',
 'viewsource-title' => 'نمایش مبدأ برای $1',
 'actionthrottled' => 'جلوی عمل شما گرفته شد',
@@ -3932,10 +3928,6 @@ $1',
 'exif-urgency-low' => 'کم ($1)',
 'exif-urgency-high' => 'زیاد ($1)',
 'exif-urgency-other' => 'اولویت تعریف شده توسط کاربر ($1)',
-
-# External editor support
-'edit-externally' => 'ویرایش این پرونده با یک ویرایشگر بیرونی',
-'edit-externally-help' => '(برای اطلاعات بیشتر [https://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',

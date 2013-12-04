@@ -219,7 +219,6 @@ $messages = array(
 'qbedit' => 'Soppi',
 'qbpageoptions' => 'Xëtuw tànneef',
 'qbmyoptions' => 'Samay tànneef',
-'qbspecialpages' => 'Xëti jagleel',
 'faq' => 'Laaj yi ëpp',
 'faqpage' => 'Project:FAQ',
 
@@ -407,9 +406,6 @@ Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan
 'perfcached' => 'Lii ab duppitu ndencitu sumb mi la, kon xéj-na beesul. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Njoxe yii di toftal ab duppitu nëbbitu dàttub njoxe bi la, te yeesalam gu mujj mi ngi am ci: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Yeesal yu xët wii dañ leen a doxadil fi mu ne nii. Xibaar yi ne fii ci suuf beesuñu.',
-'wrong_wfQuery_params' => 'Njuumte ci xibaar yi ci wfQuery()<br />
-Solo : $1<br />
-Laaj : $2',
 'viewsource' => 'Xool gongikuwaayam',
 'actionthrottled' => 'Jëf jees digal',
 'actionthrottledtext' => 'Ngir xeex spam yi, jëf ji nga namm a def dañ kaa digal ci yoon yoo ko man ci benn diir bu gatt. Te mel na ne romb nga boobu dig. Jéemaatal fii aki simili.',
@@ -2091,10 +2087,6 @@ Lëkkalekaay yiy toftal, ci wenn rëdd wi, dees leen di jàppee nikiy sette, maa
 'exif-usercomment' => 'Kadduy jëfëndikookat bi',
 
 'exif-componentsconfiguration-0' => 'Amul',
-
-# External editor support
-'edit-externally' => 'Soppi xët wii ak ab tëriin bu biti',
-'edit-externally-help' => 'Xoolal [https://www.mediawiki.org/wiki/Manual:External_editors tegtali camp gi] ngir yeneeni xamle',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'yépp',

@@ -475,7 +475,6 @@ $messages = array(
 'qbedit' => 'Muokkaa',
 'qbpageoptions' => 'Sivuasetukset',
 'qbmyoptions' => 'Omat sivut',
-'qbspecialpages' => 'Toimintosivut',
 'faq' => 'Usein kysytyt kysymykset',
 'faqpage' => 'Project:Usein kysytyt kysymykset',
 
@@ -692,7 +691,6 @@ Siinä saattaa olla yksi tai useampi sellainen merkki, jota ei voi käyttää si
 'perfcached' => 'Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.',
 'perfcachedts' => 'Nämä tiedot ovat välimuistista, ja ne on päivitetty viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
-'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
 'viewsource' => 'Näytä wikiteksti',
 'viewsource-title' => 'Lähdekoodi sivulle $1',
 'actionthrottled' => 'Toiminto nopeusrajoitettu',
@@ -3712,10 +3710,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-urgency-low' => 'Matala ($1)',
 'exif-urgency-high' => 'Korkea ($1)',
 'exif-urgency-other' => 'Käyttäjän määrittelemä prioriteetti ($1)',
-
-# External editor support
-'edit-externally' => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
-'edit-externally-help' => '(Katso [https://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'koko historia',

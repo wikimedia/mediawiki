@@ -175,7 +175,6 @@ $messages = array(
 'qbedit' => 'Edicëjô',
 'qbpageoptions' => 'Òptacëje starnë',
 'qbmyoptions' => 'Mòje òptacëje',
-'qbspecialpages' => 'Specjalné starnë',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -1218,10 +1217,6 @@ Jinszé pòla bãdą domëslno zataconé.
 'exif-languagecode' => 'Jãzëk',
 
 'exif-iimcategory-spo' => 'Szpòrt',
-
-# External editor support
-'edit-externally' => 'Editëjë nen lopk brëkùjąc bùtnowi aplikacëji',
-'edit-externally-help' => '(Zdrzë na [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] dlô dobëcô wicy wëdowiédzë).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wszëtczé',

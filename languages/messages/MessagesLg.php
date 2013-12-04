@@ -152,7 +152,6 @@ $messages = array(
 'qbbrowse' => 'Lambula',
 'qbedit' => 'Kyusa',
 'qbmyoptions' => 'Empapula zange',
-'qbspecialpages' => 'Empapula enjawule',
 'faq' => 'Ebitera okubuuzibwa',
 'faqpage' => 'Project:Ebitera okubuuzibwa ku',
 
@@ -353,9 +352,6 @@ Erinnya eryo liyinza ate okubaamu ennukuta oba obubonero ebitakkirizibwa mu mann
 'perfcachedts' => "Data eddako wano eva mu ggwanika zzibizi, yasemba okutuukanizibwa n'ey'ennono ku saawa $3, nga $2. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Ku ssaawa eno olupapula luno terukkiriza kukyusibwamu.<br />
 Data eruliko ejjakugira nga tekyuka.',
-'wrong_wfQuery_params' => 'wfQuery() kirimu paramita ensobu zino<br />
-Mukolo: $1<br />
-Ekiragiro ekinoonyeza mu ggwanika lya data: $2',
 'viewsource' => "Kebera obulambike obw'ennono obw'olupapula luno",
 'actionthrottled' => 'Ekikolwa kigaanidwa',
 'actionthrottledtext' => "Okulwanyisa abasindika obubaka kiyaaye, twateekawo ekkomo ery'emirundi omuntu gy'ayinza okukola ekikolwa ekyo.<br />
@@ -1304,10 +1300,6 @@ Ebirala biyinza butalabika okujjako ng'okiragidde.
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => 'Fayiro eno gikolereko mu pulogulamu endala',
-'edit-externally-help' => '[https://www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Zonna',

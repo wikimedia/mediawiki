@@ -516,7 +516,6 @@ $messages = array(
 'qbedit' => 'Өңдеу',
 'qbpageoptions' => 'Бұл бет',
 'qbmyoptions' => 'Беттерім',
-'qbspecialpages' => 'Арнайы беттер',
 'faq' => 'Жиі қойылатын сұрақтар',
 'faqpage' => 'Project:Жиі қойылатын сұрақтар',
 
@@ -729,9 +728,6 @@ $1',
 'perfcached' => 'Келесі дерек бүркемеленген, сондықтан толықтай жаңаланбаған болуы мүмкін. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Келесі дерек бүркемеленген, соңғы жаңаланған кезі: $1. Кэште {{PLURAL:$4|жазбалардан}} артық сақталмайды..',
 'querypage-no-updates' => 'Бұл беттің жаңартылуы ағымда өшірілген. Деректері қазір өзгертілмейді.',
-'wrong_wfQuery_params' => 'wfQuery() функциясы үшін бұрыс бапталымдары бар<br />
-Жете: $1<br />
-Сұраным: $2',
 'viewsource' => 'Қайнарын қарау',
 'viewsource-title' => '$1 бетінің бастапқы мәтінін қарау',
 'actionthrottled' => 'Әрекет бәсеңдетілді',
@@ -3396,10 +3392,6 @@ $1',
 'exif-urgency-normal' => 'Қалыпты ($1)',
 'exif-urgency-low' => 'Төмен ($1)',
 'exif-urgency-high' => 'Жоғары ($1)',
-
-# External editor support
-'edit-externally' => 'Бұл файлды шеттік қондырма арқылы өңдеу',
-'edit-externally-help' => '(көбірек ақпарат үшін [https://www.mediawiki.org/wiki/Manual:External_editors орнату нұсқауларын] қараңыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлық',

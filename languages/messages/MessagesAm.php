@@ -185,7 +185,6 @@ $messages = array(
 'qbedit' => 'አርም',
 'qbpageoptions' => 'ይህ ገጽ',
 'qbmyoptions' => 'የኔ ገጾች',
-'qbspecialpages' => 'ልዩ ገጾች',
 'faq' => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
 'faqpage' => 'Project:ብጊየጥ',
 
@@ -375,9 +374,6 @@ $1',
 'perfcached' => 'ማስታወቂያ፡ ይህ መረጃ በየጊዜ የሚታደስ ስለሆነ ዘመናዊ ሳይሆን የቆየ ሊሆን ይችላል። A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'የሚቀጥለው መረጃ ተቆጥቧል፣ መጨረሻ የታደሠው $1 እ.ኤ.አ. ነው።',
 'querypage-no-updates' => 'ይህ ገጽ አሁን የታደሠ አይደለም። ወደፊትም መታደሱ ቀርቷል። በቅርብ ግዜ አይታደስም።',
-'wrong_wfQuery_params' => 'ለwfQuery() ትክክለኛ ያልሆነ ግቤት<br />
-ተግባር፦ $1<br />
-ጥያቄ፦ $2',
 'viewsource' => 'ምንጩን ተመልከት',
 'viewsource-title' => 'ጥሬ ኮዱን ለ$1 ለማየት',
 'actionthrottled' => 'ተግባሩ ተቋረጠ',
@@ -2391,10 +2387,6 @@ $1',
 'exif-iimcategory-war' => 'ጦርነት፣ ግጭት ወይም ሁከት',
 
 'exif-urgency-high' => 'ከፍተኛ ($1)',
-
-# External editor support
-'edit-externally' => 'ይህንን ፋይል በአፍአዊ ሶፍትዌር ለማዘጋጀት',
-'edit-externally-help' => '(ለተጨማሪ መረጃ ይህን ገፅ ተመልከቱ [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ሁሉ',

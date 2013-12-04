@@ -246,7 +246,6 @@ $messages = array(
 'qbedit' => 'سنواريو',
 'qbpageoptions' => 'هيءُ صفحو',
 'qbmyoptions' => 'منهنجا صفحا',
-'qbspecialpages' => 'خاص صفحا',
 'faq' => 'ڪپوس',
 'faqpage' => 'Project:ڪپوس',
 
@@ -947,10 +946,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'exif-gpsspeed-k' => 'ڪلوميٽر في ڪلاڪ',
 'exif-gpsspeed-m' => 'ميل في ڪلاڪ',
 'exif-gpsspeed-n' => 'ڳنڍيون',
-
-# External editor support
-'edit-externally' => 'هيءُ فائيل ڪنهن خارجي منتقڪريءَ سان سنواريو',
-'edit-externally-help' => 'وڌيڪ معلومات لاءِ [https://www.mediawiki.org/wiki/Manual:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سڀ',

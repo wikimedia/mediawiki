@@ -233,7 +233,6 @@ $messages = array(
 'qbedit' => 'Üzgärtü',
 'qbpageoptions' => 'Bu bit',
 'qbmyoptions' => 'Bitlärem',
-'qbspecialpages' => 'Maxsus bitlär',
 'faq' => 'YBS',
 'faqpage' => 'Project:YBS',
 
@@ -430,9 +429,6 @@ Zinhar öçen, URLnı kürsätep, bu turıda [[Special:ListUsers/sysop|idaräçe
 'perfcached' => 'Bu mäğlümatlar keştan alınğan, alarda soñğı üzgärtülär bulmasqa mömkin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Bu mäğlümatlar keştan alınğan, ul soñğı tapqır $1 yañartıldı. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Xäzer bu bitne yañartıp bulmıy. Monda kürsätelgän mäğlümatlar qabul itelmäyäçäk.',
-'wrong_wfQuery_params' => 'wfQuery() funksiä öçen yaramağan parametrlar<br />
-Funksiä: $1<br />
-Soraw: $2',
 'viewsource' => 'Qaraw',
 'actionthrottled' => 'Tizlek kimetelgän',
 'actionthrottledtext' => 'Spamğa qarşı köräş öçen az waqıt eçendä bu ğämälne yış qullanu tıyılğan. Zinhar, soñaraq qabatlağız.',
@@ -2031,10 +2027,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/säğ',
 'exif-gpsspeed-m' => 'milya/säğ',
-
-# External editor support
-'edit-externally' => 'Bu faylnı tışqı quşımtanı qullanıp üzgärtü',
-'edit-externally-help' => '(tulıraq mäğlümat öçen [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'barlıq',

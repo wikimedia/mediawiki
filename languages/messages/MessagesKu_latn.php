@@ -246,7 +246,6 @@ $messages = array(
 'qbedit' => 'Biguherîne',
 'qbpageoptions' => 'Ev rûpel',
 'qbmyoptions' => 'Rûpelên min',
-'qbspecialpages' => 'Rûpelên taybet',
 'faq' => 'PGP',
 'faqpage' => 'Project:PGP',
 
@@ -430,9 +429,6 @@ Dibe ku di sernavê de karakterên nayên bikaranîn hatibin nivîsandin.',
 'perfcached' => 'Ev dane hatine veşartin û belkî ne rojane bin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Ev dane hatiye veşartin û cara paşîn $1 hatiye rojanekirin. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Fonksiyona rojanekirinê ya vê rûpelê hatiye sekinandin. Daneyên vir nayên rojanekirin.',
-'wrong_wfQuery_params' => 'Parametreyên şaş ji bo wfQuery()<br />
-Fonksiyon: $1<br />
-Pirs: $2',
 'viewsource' => 'Çavkaniyê bibîne',
 'actionthrottled' => 'Hejmara guherandinên hatine hesibandin',
 'actionthrottledtext' => 'Te ev tişt di demeke gelekî kin de kir. Ji kerema xwe çend xulekan bisekine û carekî din biceribîne.',
@@ -2022,9 +2018,6 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'exif-iimcategory-spo' => 'Werzîş',
 'exif-iimcategory-war' => 'Şer, pevçûn û alozî',
 'exif-iimcategory-wea' => 'Hewa',
-
-# External editor support
-'edit-externally-help' => '(Ji bo agahîyên zav [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hemû',

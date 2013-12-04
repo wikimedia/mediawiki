@@ -215,7 +215,6 @@ $messages = array(
 'qbedit' => 'Diiştir',
 'qbpageoptions' => 'Bu sayfa',
 'qbmyoptions' => 'Sayfalarım',
-'qbspecialpages' => 'Maasus sayfalar',
 'faq' => 'SSS',
 'faqpage' => 'Project:SSS',
 
@@ -1055,10 +1054,6 @@ Herliim fayl diiştirildi yaratılıştan sora, bir takım parametrlär var nic�
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Kompyuterinizdäki uygulamaklarlan faylı düz',
-'edit-externally-help' => 'Taa çok bilgi için var nicä bakmaa metadaki [https://www.mediawiki.org/wiki/Manual:External_editors dış uygulama instrumentläri] (angliyça) sayfasına.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hepsini göster',

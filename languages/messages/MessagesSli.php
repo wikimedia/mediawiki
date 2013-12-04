@@ -159,7 +159,6 @@ $messages = array(
 'qbedit' => 'Ändern',
 'qbpageoptions' => 'Seytaoptiona',
 'qbmyoptions' => 'Menne Seyta',
-'qbspecialpages' => 'Spezialseyta',
 'faq' => 'FAQ',
 
 # Vector skin
@@ -320,9 +319,6 @@ Meeglicherweise wurde se bereits vu jemand anders entfernt.',
 'perfcached' => 'De folgenden Daten stomma oaus damm Cache und sein meegliecherweise nee aktuell. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Diese Daten stomma oaus damm Cache, letztes Update: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "'''De Aktualisierungsfunktion fier diese Seite ies zurzeit deaktiviert. De Daten waan bis uff Weiteres nee erneuert.'''",
-'wrong_wfQuery_params' => 'Foalsche Parameter fier wfQuery()<br />
-Funksjonn: $1<br />
-Abfroage: $2',
 'viewsource' => 'Quelltext oasahn',
 'actionthrottled' => 'Aksjonszoahl limmetiert',
 'actionthrottledtext' => 'Du host diese Aksjonn zu uffte innerholb annes korza Zeitraums ausgeführt. Bitte woarte a poar Minuta und probiere is doann erneut.',
@@ -2134,10 +2130,6 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-subjectdistancerange-0' => 'Unbekennt',
 
 'exif-gpsstatus-v' => 'Interoperabilität vu Messunga',
-
-# External editor support
-'edit-externally' => 'Diese Datei mit annem externen Programm bearbta',
-'edit-externally-help' => '(Siehe de [https://www.mediawiki.org/wiki/Manual:External_editors Installationsoaweisunga] fier weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',

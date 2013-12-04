@@ -494,7 +494,6 @@ $messages = array(
 'qbedit' => 'Sửa đổi',
 'qbpageoptions' => 'Trang này',
 'qbmyoptions' => 'Trang cá nhân',
-'qbspecialpages' => 'Trang đặc biệt',
 'faq' => 'Câu hỏi thường gặp',
 'faqpage' => 'Project:Các câu hỏi thường gặp',
 
@@ -710,9 +709,6 @@ Không có lý do nào được đưa ra.',
 'perfcached' => 'Dữ liệu sau được lấy từ bộ nhớ đệm và có thể đã lỗi thời. Tối đa có sẵn {{PLURAL:$1|một kết quả|$1 kết quả}} trong bộ nhớ đệm.',
 'perfcachedts' => 'Dữ liệu dưới đây được đưa vào vùng nhớ đệm và được cập nhật lần cuối lúc $1. Tối đa có sẵn {{PLURAL:$4|một kết quả|$4 kết quả}} trong vùng nhớ đệm.',
 'querypage-no-updates' => 'Việc cập nhật trang này hiện đã bị tắt. Dữ liệu ở đây có thể bị lỗi thời.',
-'wrong_wfQuery_params' => 'Tham số sai trong wfQuery()<br />
-Hàm: $1<br />
-Truy vấn: $2',
 'viewsource' => 'Xem mã nguồn',
 'viewsource-title' => 'Xem mã nguồn của $1',
 'actionthrottled' => 'Thao tác bị giới hạn',
@@ -3822,10 +3818,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-urgency-low' => 'Thấp ($1)',
 'exif-urgency-high' => 'Cao ($1)',
 'exif-urgency-other' => 'Ưu tiên người dùng định nghĩa ($1)',
-
-# External editor support
-'edit-externally' => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '(Xem [https://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tất cả',

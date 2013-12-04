@@ -127,7 +127,6 @@ $messages = array(
 'qbedit' => 'რედაქტირება',
 'qbpageoptions' => 'თე ხასჷლა',
 'qbmyoptions' => 'ჩქიმი ხასჷლეფი',
-'qbspecialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
 'faq' => 'ბხშირი კითხვეფი',
 
 # Vector skin
@@ -878,10 +877,6 @@ $messages = array(
 # Exif tags
 'exif-imagewidth' => 'სიგანე',
 'exif-imagelength' => 'სიმაღალე',
-
-# External editor support
-'edit-externally' => 'თე ფაილიშ ორედაქტირაფალო გიმირინეთ გალენ პროგრამა',
-'edit-externally-help' => '(უმოს ინფორმაციაშო ქოძირით [https://www.mediawiki.org/wiki/Manual:External_editors])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'არძა',

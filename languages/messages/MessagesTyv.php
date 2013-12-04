@@ -221,7 +221,6 @@ $messages = array(
 'qbedit' => 'Өскертири',
 'qbpageoptions' => 'Бо арын',
 'qbmyoptions' => 'Мээң арыннарым',
-'qbspecialpages' => 'Тускай арыннар',
 'faq' => 'Бо-ла салыр айтырыглар (БлСА)',
 'faqpage' => 'Project:БлСА',
 
@@ -1283,10 +1282,6 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'exif-iimcategory-sci' => 'Эртем база техника',
 'exif-iimcategory-spo' => 'Спорт',
 'exif-iimcategory-wea' => 'Агаар',
-
-# External editor support
-'edit-externally' => 'Бо файлды даштыкы капсырылга-биле эдер',
-'edit-externally-help' => '(Улаштыр тодарадырда бо [https://www.mediawiki.org/wiki/Manual:External_editors кыстып алыр саавырны] көрүңер)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'шупту',

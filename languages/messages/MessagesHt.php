@@ -282,7 +282,6 @@ $messages = array(
 'qbedit' => 'Modifye',
 'qbpageoptions' => 'Paj sa a',
 'qbmyoptions' => 'Paj mwen yo',
-'qbspecialpages' => 'Paj espesyal',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -480,9 +479,6 @@ Yon lòt moun te gendwa efase l anvan ou.',
 'perfcached' => 'Sa se yon vèsyon ki sòti nan kach sistèm nou an. Li gendwa pa a jou. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Done sa yo sòti nan sistèm kach la, yo gendwa pa a jou. Dènye fwa nou mete yo a jou se te $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Nou pa kapab mete paj sa yo a jou paske fonksyon mizajou dezaktive. Done w ap jwenn pi ba pap rafrechi.',
-'wrong_wfQuery_params' => 'Paramèt sa yo pa bon sou wfQuery()<br />
-Fonksyon : $1<br />
-Demann : $2',
 'viewsource' => 'Wè kòd paj la',
 'actionthrottled' => 'Aksyon sa limite',
 'actionthrottledtext' => 'Nan batay kont pouryèl, aksyon sa ou tapral fè limite nan kantite itilizasyon l pandan yon tan ki kout. Li sanble ou depase kantite sa. Eseye ankò nan kèk minit.',
@@ -1335,10 +1331,6 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Modifye fichye sa a nan aplikasyon pa ou (ki pa nan sistèm an, sou machin ou pa egzanp).',
-'edit-externally-help' => '(Gade [https://www.mediawiki.org/wiki/Manual:External_editors komand ak enstriksyon yo] pou plis enfòmasyon oubyen pou konnen plis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',

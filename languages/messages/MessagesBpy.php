@@ -189,7 +189,6 @@ $messages = array(
 'qbedit' => 'পতানি',
 'qbpageoptions' => 'পাতা এহানর সারুক',
 'qbmyoptions' => 'মর পছন',
-'qbspecialpages' => 'বিশেষ পাতাহানি',
 'faq' => 'আঙলাক',
 'faqpage' => 'Project:আঙলাক',
 
@@ -390,9 +389,6 @@ $1',
 'perfcachedts' => 'তলর পৌ অতা ক্যাশেত্ত দেহাদেরতা বারো $1 তারিখে হালনাগাদ করানি ইসে। A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'পাতা এহানর হালনাগাদ বন্ধ করানি অসে।
 এহানাত থুৱাসি পৌ এ খেন্তামে রিফ্রেশ করানি নাইব।',
-'wrong_wfQuery_params' => 'wfQuery()-ত দিয়াসি প্যারামিটার অতা লালুইসে<br />
-ফাংশন: $1<br />
-কোয়েরি: $2',
 'viewsource' => 'উৎসহান চা',
 'actionthrottled' => 'কামর গতিহান তাপকরানি',
 'actionthrottledtext' => 'স্প্যাম থেত করানির কা কাম এহান কম মিকুপে বপ করে পতানির সময়র সিমাহান লেপ করানি অসে। তি সীমা অহান লালুইলে। কৃপা করিয়া খানি থায়া হৎনা কর।',
@@ -1581,10 +1577,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'গাথিগি',
-
-# External editor support
-'edit-externally' => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
-'edit-externally-help' => 'আরাকউ হারপানির কা [https://www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'হাব্বি',

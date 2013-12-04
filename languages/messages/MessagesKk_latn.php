@@ -479,7 +479,6 @@ $messages = array(
 'qbedit' => 'Öñdew',
 'qbpageoptions' => 'Bul bet',
 'qbmyoptions' => 'Betterim',
-'qbspecialpages' => 'Arnaýı better',
 'faq' => 'Jïi qoýılğan sawaldar',
 'faqpage' => 'Project:Jïi qoýılğan sawaldar',
 
@@ -644,9 +643,6 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 'perfcached' => 'Kelesi derek bürkemelengen, sondıqtan tolıqtaý jañalanmağan bolwı mümkin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Kelesi derek bürkemelengen, soñğı jañalanlğan kezi: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Bul bettiñ jañartılwı ağımda öşirilgen. Derekteri qazir özgertilmeýdi.',
-'wrong_wfQuery_params' => 'wfQuery() fwnkcïyası üşin burıs baptalımdarı bar<br />
-Jete: $1<br />
-Suranım: $2',
 'viewsource' => 'Qaýnar közin qaraw',
 'actionthrottled' => 'Äreket bäseñdetildi',
 'actionthrottledtext' => 'Spamğa qarsı küres esebinde, osı äreketti qısqa waqıtta tım köp ret orındawıñız şektelindi, jäne bul şektew şamasınan asıp ketkensiz.
@@ -2560,10 +2556,6 @@ Basqaları ädepkiden jasırıladı.
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Şın bağıt',
 'exif-gpsdirection-m' => 'Magnïttı bağıt',
-
-# External editor support
-'edit-externally' => 'Bul faýldı şettik qondırma arqılı öñdew',
-'edit-externally-help' => 'Köbirek aqparat üşin [https://www.mediawiki.org/wiki/Manual:External_editors ornatw nusqamaların] qarañız.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'barlıq',

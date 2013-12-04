@@ -165,7 +165,6 @@ $messages = array(
 'qbedit' => 'Reagh',
 'qbpageoptions' => 'Yn duillag shoh',
 'qbmyoptions' => 'My ghuillagyn',
-'qbspecialpages' => 'Duillagyn er lheh',
 'faq' => 'FC',
 'faqpage' => 'Project:FC',
 
@@ -1404,10 +1403,6 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => "Kilometeryn 'syn oor",
 'exif-gpsspeed-m' => "Meeillaghyn 'syn oor",
-
-# External editor support
-'edit-externally' => 'Reagh yn coadan shoh lesh sheeyntagh mooie',
-'edit-externally-help' => 'Jeeagh er [https://www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'yn clane',

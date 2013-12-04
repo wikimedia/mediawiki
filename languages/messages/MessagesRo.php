@@ -454,7 +454,6 @@ $messages = array(
 'qbedit' => 'Modificare',
 'qbpageoptions' => 'Opțiuni ale paginii',
 'qbmyoptions' => 'Paginile mele',
-'qbspecialpages' => 'Pagini speciale',
 'faq' => 'Întrebări frecvente',
 'faqpage' => 'Project:Întrebări frecvente',
 
@@ -671,9 +670,6 @@ Poate conține unul sau mai multe caractere ce nu pot fi folosite în titluri.',
 'perfcached' => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie actualizate. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
 'perfcachedts' => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$4|un rezultat este disponibil|$4 rezultate sunt disponibile}} în cache.',
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informațiile de aici nu sunt împrospătate.',
-'wrong_wfQuery_params' => 'Număr incorect de parametri pentru wfQuery()<br />
-Funcția: $1<br />
-Interogarea: $2',
 'viewsource' => 'Sursă pagină',
 'viewsource-title' => 'Vizualizare sursă pentru $1',
 'actionthrottled' => 'Acțiune limitată',
@@ -3751,10 +3747,6 @@ Altele vor fi ascunse implicit.
 'exif-urgency-low' => 'Scăzut ($1)',
 'exif-urgency-high' => 'Ridicat ($1)',
 'exif-urgency-other' => 'Prioritate definită de utilizator ($1)',
-
-# External editor support
-'edit-externally' => 'Editează acest fișier folosind o aplicație externă.',
-'edit-externally-help' => '(Vedeți [https://www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'toate',

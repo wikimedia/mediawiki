@@ -483,7 +483,6 @@ $messages = array(
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta página',
 'qbmyoptions' => 'Minhas páginas',
-'qbspecialpages' => 'Páginas especiais',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -701,9 +700,6 @@ Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcached' => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar atualizados. No máximo {{PLURAL:$1|um resultado está disponível|$1 resultados estão disponíveis}} na ''cache''.",
 'perfcachedts' => "Os seguintes dados encontram-se armazenados no ''cache'' e foram atualizados as $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} no ''cache''.",
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
-'wrong_wfQuery_params' => 'Parâmetros incorretos para wfQuery()<br />
-Função: $1<br />
-Consulta: $2',
 'viewsource' => 'Ver código-fonte',
 'viewsource-title' => 'Exibir código-fonte para $1',
 'actionthrottled' => 'Ação controlada',
@@ -3773,10 +3769,6 @@ Por padrão, outros campos estarão ocultos.
 'exif-urgency-low' => 'Baixa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Prioridade definida pelo usuário ($1)',
-
-# External editor support
-'edit-externally' => 'Editar este arquivo a partir de um programa externo',
-'edit-externally-help' => '(Consulte as [https://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

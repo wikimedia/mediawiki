@@ -205,7 +205,6 @@ $messages = array(
 'qbedit' => 'Usba',
 'qbpageoptions' => 'Kini nga panid',
 'qbmyoptions' => 'Akong mga panid',
-'qbspecialpages' => 'Mga espesyal nga panid',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -394,9 +393,6 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
 'perfcachedts' => 'Ang mosunod nga data naka-cache, ug kataposang nabag-o sa $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ang mga update alang sa kining panid naka-disable sa kasamtangan.
 Dili karon dayon ma-refresh ang data dinhi.',
-'wrong_wfQuery_params' => 'Sayop nga mga parametro sa wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'Tan-awa ang ginikanan',
 'viewsource-title' => 'Tan-awa ang ginikanan para sa $1',
 'actionthrottled' => 'Na-throttle ang lihok',
@@ -1195,10 +1191,6 @@ Ang uban default nga nakatago.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Usba kining payl gamit ang eksternal nga aplikasyon',
-'edit-externally-help' => '(Tan-awa ang [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',

@@ -309,7 +309,6 @@ $messages = array(
 'qbedit' => 'Recensere',
 'qbpageoptions' => 'Optiones paginae',
 'qbmyoptions' => 'Paginae meae',
-'qbspecialpages' => 'Paginae speciales',
 'faq' => 'Quaestiones frequentes',
 'faqpage' => 'Project:Quaestiones frequentes',
 
@@ -484,9 +483,6 @@ Fortasse usor alius iam deleverat.',
 'cannotdelete-title' => 'Paginam "$1" delere non contigit',
 'badtitle' => 'Titulus malus',
 'badtitletext' => 'Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
-'wrong_wfQuery_params' => 'Parametri incorrectae pro wfQuery()<br />
-Functio: $1<br />
-Inquisitio: $2',
 'viewsource' => 'Fontem inspicere',
 'viewsource-title' => 'Fontem paginae $1 inspicere',
 'actionthrottled' => 'Actio strangulata',
@@ -2287,10 +2283,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Directio vera',
 'exif-gpsdirection-m' => 'Directio magnetica',
-
-# External editor support
-'edit-externally' => 'Hunc fasciculum in programmate externali recensere',
-'edit-externally-help' => '(Vide et [https://www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omnes',

@@ -199,7 +199,6 @@ $messages = array(
 'qbedit' => 'Adihtan',
 'qbpageoptions' => 'Þes tramet',
 'qbmyoptions' => 'Mīne trametas',
-'qbspecialpages' => 'Syndrige trametas',
 'faq' => 'Oftost ascoda ascunga',
 'faqpage' => 'Project:FAQ',
 
@@ -1233,9 +1232,6 @@ Cēos ōðerne naman lā.',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sōþ rihtung',
-
-# External editor support
-'edit-externally-help' => '(Sēon þā [https://www.mediawiki.org/wiki/Manual:External_editors gearwunge gewissunga] ymb mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eall',

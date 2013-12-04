@@ -340,7 +340,6 @@ $messages = array(
 'qbedit' => 'Витнеме-петнеме',
 'qbpageoptions' => 'Те лопась',
 'qbmyoptions' => 'Монь лопан',
-'qbspecialpages' => 'Башка тевень лопат',
 'faq' => 'Сеедьстэ кепедень кевкстемат',
 'faqpage' => 'Project:Сеедьстэ кепедень кевкстемат',
 
@@ -2115,10 +2114,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-urgency-normal' => 'Куншка видень ($1)',
 'exif-urgency-low' => 'Аламо ($1)',
 'exif-urgency-high' => 'Ламо ($1)',
-
-# External editor support
-'edit-externally' => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
-'edit-externally-help' => '(Вант [https://www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень] седе ламо информациянть кис.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'весе',

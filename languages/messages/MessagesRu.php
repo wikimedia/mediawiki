@@ -597,7 +597,6 @@ $messages = array(
 'qbedit' => 'Править',
 'qbpageoptions' => 'Настройки страницы',
 'qbmyoptions' => 'Ваши настройки',
-'qbspecialpages' => 'Специальные страницы',
 'faq' => 'ЧаВО',
 'faqpage' => 'Project:ЧаВО',
 
@@ -814,9 +813,6 @@ $1',
 'perfcachedts' => 'Следующие данные взяты из кэша, последний раз он обновлялся в $1. В кэше хранится не более $4 {{PLURAL:$4|записи|записей|записей}}.',
 'querypage-no-updates' => 'Обновление этой страницы сейчас отключено.
 Представленные здесь данные не будут обновляться.',
-'wrong_wfQuery_params' => 'Недопустимые параметры для функции wfQuery()<br />
-Функция: $1<br />
-Запрос: $2',
 'viewsource' => 'Просмотр',
 'viewsource-title' => 'Просмотр исходного текста страницы $1',
 'actionthrottled' => 'Ограничение по скорости',
@@ -3914,10 +3910,6 @@ $1',
 'exif-urgency-low' => 'Низкая ($1)',
 'exif-urgency-high' => 'Высокая ($1)',
 'exif-urgency-other' => 'Определённый пользователем приоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Редактировать этот файл, используя внешнюю программу',
-'edit-externally-help' => '(подробнее см. в [https://www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'все',

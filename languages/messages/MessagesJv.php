@@ -199,7 +199,6 @@ $messages = array(
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Kaca iki',
 'qbmyoptions' => 'Opsiku',
-'qbspecialpages' => 'Kaca-kaca astaméwa',
 'faq' => 'FAQ (Pitakonan sing kerep diajokaké)',
 'faqpage' => 'Project:FAQ',
 
@@ -401,7 +400,6 @@ Ora ana alesané.",
 'perfcached' => 'Data iki mung dijupuk saka papan singgahan lan mungkin ora kaanyaran. Maksimum {{PLURAL:$1|sak asil|$1 asil}} sumadhiya nèng papan singgahan.',
 'perfcachedts' => 'Data iki mung dijupuk saka papan singgahan lan mungkin dianyari pungkasan $1. Maksimum {{PLURAL:$4|sak asil|$4 asil}} sumadhiya nèng papan singgahan.',
 'querypage-no-updates' => 'Update saka kaca iki lagi dipatèni. Data sing ana ing kéné saiki ora bisa bakal dibalèni unggah manèh.',
-'wrong_wfQuery_params' => 'Parameter salah menyang wfQuery()<br />Fungsi: $1<br />Panyuwunan: $2',
 'viewsource' => 'Tuduhna sumber',
 'viewsource-title' => 'Delok sumberé $1',
 'actionthrottled' => 'Tindakan diwatesi',
@@ -3268,10 +3266,6 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-urgency-low' => 'Cendhèk ($1)',
 'exif-urgency-high' => 'Dhuwur ($1)',
 'exif-urgency-other' => 'Prioritas sing ditetepaké panganggo ($1)',
-
-# External editor support
-'edit-externally' => 'Sunting berkas iki mawa aplikasi jaba',
-'edit-externally-help' => '(Deleng [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kabèh',

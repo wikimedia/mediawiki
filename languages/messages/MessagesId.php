@@ -503,7 +503,6 @@ $messages = array(
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Halaman ini',
 'qbmyoptions' => 'Halaman saya',
-'qbspecialpages' => 'Halaman istimewa',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -720,7 +719,6 @@ Tidak ada keterangan.',
 'perfcached' => 'Data berikut ini diambil dari singgahan dan mungkin bukan data mutakhir. {{PLURAL:$1||}}$1 hasil maksimal tersedia di tembolok.',
 'perfcachedts' => 'Data berikut ini diambil dari singgahan dan terakhir diperbarui pada $1. {{PLURAL:$1||}}$1 hasil maksimal tersedia di tembolok.',
 'querypage-no-updates' => 'Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.',
-'wrong_wfQuery_params' => 'Parameter salah ke wfQuery()<br />Fungsi: $1<br />Permintaan: $2',
 'viewsource' => 'Lihat sumber',
 'viewsource-title' => 'Lihat sumber untuk $1',
 'actionthrottled' => 'Tindakan dibatasi',
@@ -3860,10 +3858,6 @@ $8',
 'exif-urgency-low' => 'Rendah ($1)',
 'exif-urgency-high' => 'Tinggi ($1)',
 'exif-urgency-other' => 'Prioritas ubahsuaian ($1)',
-
-# External editor support
-'edit-externally' => 'Sunting berkas ini dengan aplikasi luar',
-'edit-externally-help' => '(Lihat [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',

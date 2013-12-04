@@ -158,7 +158,6 @@ $messages = array(
 'qbedit' => 'modifi el page (baddelha)',
 'qbpageoptions' => 'هذه الصفحة',
 'qbmyoptions' => 'صفحاتي',
-'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'الأسئلة الأكثر تكرارا',
 'faqpage' => 'Project:أسئلة متكررة',
 
@@ -363,9 +362,6 @@ mahouwech mobarrar',
 'perfcachedts' => 'البيانات التالية مختزنة وكان آخر تحديث لها في $1. {{PLURAL:$4||نتيجة واحدة|نتيجتان|$4 نتائج|$4 نتيجة}} على الأكثر {{PLURAL:$4||مختزنة|مختزنتان|مختزنة}}.',
 'querypage-no-updates' => 'التحديثات لهذه الصفحة معطلة حاليا.
 البيانات هنا لن يتم تحديثها حاليا.',
-'wrong_wfQuery_params' => 'محددات خاطئة في wfQuery()<br />
-الدالة: $1<br />
-الاستعلام: $2',
 'viewsource' => 'اعرض المصدر',
 'viewsource-title' => 'إظهار مصدر $1',
 'actionthrottled' => 'لا يمكن عمل المزيد من هذا الفعل',
@@ -1319,10 +1315,6 @@ $1",
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => '(انظر [https://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',

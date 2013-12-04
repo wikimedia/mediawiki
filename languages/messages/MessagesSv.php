@@ -483,7 +483,6 @@ $messages = array(
 'qbedit' => 'Redigera',
 'qbpageoptions' => 'Denna sida',
 'qbmyoptions' => 'Mina inställningar',
-'qbspecialpages' => 'Specialsidor',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -700,7 +699,6 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'perfcached' => 'Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} resultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.',
 'perfcachedts' => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} resultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
-'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource' => 'Visa wikitext',
 'viewsource-title' => 'Visa källkod för $1',
 'actionthrottled' => 'Åtgärden stoppades',
@@ -3776,10 +3774,6 @@ Andra kommer att gömmas som standard
 'exif-urgency-low' => 'Låg ($1)',
 'exif-urgency-high' => 'Hög ($1)',
 'exif-urgency-other' => 'Användardefinierad prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Redigera denna fil med hjälp av extern programvara',
-'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alla',

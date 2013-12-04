@@ -147,7 +147,6 @@ $messages = array(
 'qbedit' => 'Tulaika',
 'qbpageoptions' => 'Este na pahina',
 'qbmyoptions' => 'Påhina-hu siha',
-'qbspecialpages' => 'Manespesiat na påhina',
 
 'errorpagetitle' => 'Linachi',
 'returnto' => 'Hånao tåtte para $1.',
@@ -1080,10 +1079,6 @@ Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påh
 'metadata' => 'Metadata',
 'metadata-expand' => "Na'annok todu i infotmasion-ña",
 'metadata-collapse' => "Na'atok patte i infotmasion-ña",
-
-# External editor support
-'edit-externally' => 'Tulaika i atkibu yan un aplikasion sanhiyong',
-'edit-externally-help' => 'Hånao para [https://www.mediawiki.org/wiki/Manual:External_editors i plantan chinachalani] para mas infotmasion.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todu',

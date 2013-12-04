@@ -522,7 +522,6 @@ $messages = array(
 'qbedit' => 'עריכה',
 'qbpageoptions' => 'אפשרויות דף',
 'qbmyoptions' => 'האפשרויות שלי',
-'qbspecialpages' => 'דפים מיוחדים',
 'faq' => 'שאלות ותשובות',
 'faqpage' => 'Project:שאלות ותשובות',
 
@@ -741,9 +740,6 @@ $1',
 'perfcached' => 'המידע הבא הוא עותק שמור בזיכרון המטמון של המידע, ועשוי שלא להיות מעודכן. לכל היותר {{PLURAL:$1|תוצאה אחת נשמרת|$1 תוצאות נשמרות}} בזיכרון המטמון.',
 'perfcachedts' => 'המידע הבא הוא עותק שמור בזיכרון המטמון של המידע, שעודכן לאחרונה ב־$1. לכל היותר {{PLURAL:$4|תוצאה אחת נשמרת|$4 תוצאות נשמרות}} בזיכרון המטמון.',
 'querypage-no-updates' => 'העדכונים לדף זה כרגע מופסקים, והמידע לא יעודכן באופן שוטף.',
-'wrong_wfQuery_params' => 'הפרמטרים שהוזנו ל־wfQuery()‎ אינם נכונים:<br />
-פונקציה: $1<br />
-שאילתה: $2',
 'viewsource' => 'הצגת מקור',
 'viewsource-title' => 'הצגת המקור של $1',
 'actionthrottled' => 'הפעולה הוגבלה',
@@ -893,7 +889,7 @@ $2',
 אנא היכנסו חזרה לאתר אחרי שתקבלו אותה.',
 'blocked-mailpassword' => 'כתובת ה־IP שלכם חסומה מעריכה, ולפיכך אינכם מורשים להשתמש באפשרות שחזור הסיסמה כדי למנוע ניצול לרעה של התכונה.',
 'eauthentsent' => 'דוא"ל אימות נשלח לכתובת הדוא"ל שצוינה.
-לפני שדברי דוא"ל אחרים יישלחו לחשבון הזה, יהיה עליך לפעול לפי ההוראות בדוא"ל, כדי לאשר שהחשבון אכן שייך לך.',
+לפני שדברי דוא"ל אחרים יישלחו לחשבון הזה, יהיה עליכם לפעול לפי ההוראות בדוא"ל, כדי לאשר שהחשבון אכן שייך לכם.',
 'throttled-mailpassword' => 'כבר נשלח דוא"ל לאיפוס הסיסמה ב{{PLURAL:$1|שעה האחרונה|שעתיים האחרונות|־$1 השעות האחרונות}}.
 כדי למנוע ניצול לרעה, יכול להישלח רק דוא"ל אחד כזה בכל {{PLURAL:$1|שעה|שעתיים|$1 שעות}}.',
 'mailerror' => 'שגיאה בשליחת דואר: $1',
@@ -1621,8 +1617,8 @@ $1",
 'prefs-help-prefershttps' => 'העדפה זו תיכנס לתוקף בכניסה הבאה לחשבון.',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => 'כתובת הדואר האלקטרוני נראית תקינה',
-'email-address-validity-invalid' => 'יש להקליד כתובת דואר אלקטרוני תקינה',
+'email-address-validity-valid' => 'כתובת הדוא"ל נראית תקינה',
+'email-address-validity-invalid' => 'יש להקליד כתובת דוא"ל תקינה',
 
 # User rights
 'userrights' => 'ניהול הרשאות משתמש',
@@ -2565,7 +2561,7 @@ $UNWATCHURL
 'deletepage' => 'מחיקה',
 'confirm' => 'אישור',
 'excontent' => 'התוכן היה: "$1"',
-'excontentauthor' => 'התוכן היה: "$1" ({{gender:$2|והתורם היחיד היה|והתורמת היחידה הייתה}} "[[Special:Contributions/$2|$2]]")',
+'excontentauthor' => 'התוכן היה: "$1" (וה{{gender:$2|תורם היחיד היה|תורמת היחידה הייתה}} "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank' => 'התוכן לפני שרוקן היה: "$1"',
 'exblank' => 'הדף היה ריק',
 'delete-confirm' => 'מחיקת $1',
@@ -3515,7 +3511,7 @@ $1',
 'exif-lightsource' => 'מקור אור',
 'exif-flash' => 'מַבזק',
 'exif-focallength' => 'אורך מוקדי העדשות',
-'exif-focallength-format' => '$1 מ"מ',
+'exif-focallength-format' => '{{PLURAL:$1|מילימטר אחד|$1 מילימטרים}}',
 'exif-subjectarea' => 'נושא האזור',
 'exif-flashenergy' => 'אנרגיית המַבזק',
 'exif-focalplanexresolution' => 'משטח הפוקוס ברזולוציה האופקית',
@@ -3851,10 +3847,6 @@ $1',
 'exif-urgency-low' => 'נמוכה ($1)',
 'exif-urgency-high' => 'גבוהה ($1)',
 'exif-urgency-other' => 'מותאמת אישית ($1)',
-
-# External editor support
-'edit-externally' => 'עריכת קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => '(ראו את [https://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'הכול',

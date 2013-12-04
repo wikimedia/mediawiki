@@ -524,7 +524,6 @@ $messages = array(
 'qbedit' => 'Редагувати',
 'qbpageoptions' => 'Налаштування сторінки',
 'qbmyoptions' => 'Мої налаштування',
-'qbspecialpages' => 'Спеціальні сторінки',
 'faq' => 'Часті питання',
 'faqpage' => 'Project:Часті питання',
 
@@ -745,9 +744,6 @@ $1',
 'perfcached' => 'Наступні дані взяті з кешу і можуть бути застарілими. В кеші зберігається не більше  {{PLURAL:$1| запису| записів}}.',
 'perfcachedts' => 'Наступні дані взяті з кешу, востаннє він оновлювався о $1. У кеші зберігається не більше $4 {{PLURAL:$4|запису|записів}}.',
 'querypage-no-updates' => 'Зміни цієї сторінки зараз заборонені. Дані тут не можуть бути оновлені зараз.',
-'wrong_wfQuery_params' => 'Неприпустима параметри функцій wfQuery()<br />
-Функція: $1<br />
-Запит: $2',
 'viewsource' => 'Перегляд',
 'viewsource-title' => 'Перегляд вихідного коду сторінки $1',
 'actionthrottled' => 'Обмеження за швидкістю',
@@ -3942,10 +3938,6 @@ $8',
 'exif-urgency-low' => 'Низька ($1)',
 'exif-urgency-high' => 'Висока ($1)',
 'exif-urgency-other' => 'Визначений користувачем пріоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Редагувати цей файл, використовуючи зовнішню програму',
-'edit-externally-help' => '(Подробиці див. на сторінці [https://www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всі',

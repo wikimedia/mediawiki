@@ -155,7 +155,6 @@ Lef aaf dif afta pofaamin ruolbak',
 'qbedit' => 'Edit',
 'qbpageoptions' => 'Dis piej',
 'qbmyoptions' => 'Mi piejdem',
-'qbspecialpages' => 'Peshal piejdem',
 'faq' => 'FAK',
 'faqpage' => 'Project:FAK',
 
@@ -357,9 +356,6 @@ Imaita aredi diliit bai smadi els.',
 'perfcachedts' => 'Di falarin dieta kiash, ahn laas opdiet $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Opdiet fi dis piej korantli disiebl.
 Dieta ya no go rifresh fi nou.',
-'wrong_wfQuery_params' => 'Inkarek paramita tu wfQuery()<br />
-Fongshan: $1<br />
-Kwieri: $2',
 'viewsource' => 'Vyuu Suos',
 'actionthrottled' => 'Akshan chratl',
 'actionthrottledtext' => 'Az anti-spam meja, yu limit frahn pofaam dis akshan tomoch taim ina shaat spies a taim, ahn yu exiid di limit.
@@ -1062,10 +1058,6 @@ Ada wandem wi aid bai difaalt.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Yuuz extoernal aplikieshan fi edit dis fail',
-'edit-externally-help' => '(Si di [https://www.mediawiki.org/wiki/Manual:External_editors setop inschrokshan] fi muo infamieshan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aal',

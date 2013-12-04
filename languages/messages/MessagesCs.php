@@ -521,7 +521,6 @@ $messages = array(
 'qbedit' => 'Editování',
 'qbpageoptions' => 'Tato stránka',
 'qbmyoptions' => 'Moje stránky',
-'qbspecialpages' => 'Speciální stránky',
 'faq' => 'Často kladené otázky',
 'faqpage' => 'Project:Často kladené otázky',
 
@@ -736,9 +735,6 @@ Možná už byl(a) smazán(a) někým jiným.',
 'perfcached' => 'Následující data jsou z cache a nemusí být plně aktuální. Cache může obsahovat maximálně {{PLURAL:$1|jeden výsledek|$1 výsledky|$1 výsledků}}.',
 'perfcachedts' => 'Následující data jsou z cache, která byla naposledy aktualizována $1. Cache může obsahovat maximálně {{PLURAL:$4|jeden výsledek|$4 výsledky|$4 výsledků}}.',
 'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data nyní nebudou obnovována.',
-'wrong_wfQuery_params' => 'Nesprávné parametry do wfQuery()<br />
-Funkce: $1<br />
-Dotaz: $2',
 'viewsource' => 'Zobrazit zdroj',
 'viewsource-title' => 'Zobrazení zdroje stránky $1',
 'actionthrottled' => 'Akce byla pozastavena',
@@ -3779,10 +3775,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-urgency-low' => 'Nízká ($1)',
 'exif-urgency-high' => 'Vysoká ($1)',
 'exif-urgency-other' => 'Uživatelsky definovaná ($1)',
-
-# External editor support
-'edit-externally' => 'Editovat tento soubor v externím programu',
-'edit-externally-help' => '(Více informací najdete v [https://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'všechny',

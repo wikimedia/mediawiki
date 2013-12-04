@@ -426,7 +426,6 @@ $messages = array(
 'qbedit' => '編輯',
 'qbpageoptions' => '頁面選項',
 'qbmyoptions' => '我的選項',
-'qbspecialpages' => '特殊頁面',
 'faq' => '常見問題解答',
 'faqpage' => 'Project:常見問題解答',
 
@@ -643,9 +642,6 @@ $1',
 'perfcachedts' => '下列是快取資料，其最後更新時間是$1。只有{{PLURAL:$4|一個結果|$4個結果}}會被顯示。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '目前禁止對此頁面進行更新。
 此處的資料將不能被立即重新整理。',
-'wrong_wfQuery_params' => '錯誤的參數被傳遞到 wfQuery（）<br />
-函數：$1<br />
-查詢：$2',
 'viewsource' => '檢視原始碼',
 'viewsource-title' => '檢視 $1 的原始碼',
 'actionthrottled' => '動作已壓制',
@@ -3677,10 +3673,6 @@ Variants for Chinese language
 'exif-urgency-low' => '低（ $1 ）',
 'exif-urgency-high' => '高（ $1 ）',
 'exif-urgency-other' => '用戶定義（ $1 ）',
-
-# External editor support
-'edit-externally' => '用外部程式編輯此檔案',
-'edit-externally-help' => '（請參見[https://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

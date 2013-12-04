@@ -337,7 +337,6 @@ $messages = array(
 'qbedit' => 'Kemmañ',
 'qbpageoptions' => 'Pajenn an dibaboù',
 'qbmyoptions' => 'Ma dibaboù',
-'qbspecialpages' => 'Pajennoù dibar',
 'faq' => 'FAG',
 'faqpage' => 'Project:FAG',
 
@@ -553,9 +552,6 @@ Marteze ez eus ennañ arouezennoù n'haller ket degemer en titloù.",
 'perfcached' => "Krubuilhet eo ar roadennoù da-heul ha marteze n'int ket bet hizivaet. D'ar muiañ e c'haller kaout {{PLURAL:$1|un disoc'h|$1 disoc'h}} er grubuilh.",
 'perfcachedts' => "Krubuilhet eo ar roadennoù da-heul hag hizivaet int bet da ziwezhañ d'an $1. D'ar muiañ e c'haller kaout {{PLURAL:$4|un disoc'h|$4 disoc'h}} er grubuilh.",
 'querypage-no-updates' => 'Diweredekaet eo an hizivaat evit ar bajenn-mañ. Evit poent ne vo ket nevesaet ar roadennoù amañ.',
-'wrong_wfQuery_params' => "Arventennoù faziek war an urzhiad wfQuery()<br />
-Arc'hwel : $1<br />
-Goulenn : $2",
 'viewsource' => 'Sellet ouzh tarzh an destenn',
 'viewsource-title' => 'Gwelet an tarzh evit $1',
 'actionthrottled' => 'Ober daleet',
@@ -3583,10 +3579,6 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-urgency-low' => 'Izel ($1)',
 'exif-urgency-high' => 'Uhel ($1)',
 'exif-urgency-other' => 'Priorelezh termenet gant an aozer ($1)',
-
-# External editor support
-'edit-externally' => 'Kemmañ ar restr-mañ dre un arload diavaez',
-'edit-externally-help' => "(Gwelet [https://www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pep tra',

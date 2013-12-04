@@ -239,7 +239,6 @@ $messages = array(
 'qbedit' => 'Redaktə',
 'qbpageoptions' => 'Bu səhifə',
 'qbmyoptions' => 'Mənim səhifələrim',
-'qbspecialpages' => 'Xüsusi səhifələr',
 'faq' => 'TSS',
 'faqpage' => 'Project:TSS',
 
@@ -460,9 +459,6 @@ Başlıqlarda istifadə edilməsi qadağan olunan bir və ya daha çox simvol is
 'perfcached' => 'Aşağıdakı məlumatlar keş yaddaşdan götürülmüşdür və bu səbəbdən aktual olmaya bilər. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Aşağıdakı məlumatlar keş yaddaşdan götürülmüşdür və sonuncu dəfə $1 tarixində yenilənmişdir. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Bu an üçün güncəlləmələr sıradan çıxdı. Buradakı məlumat dərhal yenilənməyəcək.',
-'wrong_wfQuery_params' => 'wfQuery() funksiyası üçün qəbuledilməz parametrlər <br />
-Funksiya: $1<br />
-Sorğu: $2',
 'viewsource' => 'Mənbə göstər',
 'viewsource-title' => '$1 üçün mənbəyə bax',
 'actionthrottled' => 'Sürət məhdudiyyəti',
@@ -2835,10 +2831,6 @@ Variants for Chinese language
 'exif-urgency-low' => 'Aşağı ($1)',
 'exif-urgency-high' => 'Yüksək ($1)',
 'exif-urgency-other' => 'İstifadəçi tərəfindən müəyyən olunmuş birincilik ($1)',
-
-# External editor support
-'edit-externally' => 'Bu faylı kənar proqram vasitəsilə redaktə et.',
-'edit-externally-help' => '(Daha ətraflı məlumat üçün [https://www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hamısını',

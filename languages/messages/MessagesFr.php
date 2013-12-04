@@ -565,7 +565,6 @@ $messages = array(
 'qbedit' => 'Modifier',
 'qbpageoptions' => 'Cette page',
 'qbmyoptions' => 'Mes pages',
-'qbspecialpages' => 'Pages spéciales',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -780,9 +779,6 @@ Aucune explication n'a été fournie.",
 'perfcached' => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
 'perfcachedts' => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois le $1. Un maximum de {{PLURAL:$4|un résultat est disponible|$4 résultats sont disponibles}} dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
-'wrong_wfQuery_params' => 'Paramètres incorrects sur wfQuery()<br />
-Fonction : $1<br />
-Requête : $2',
 'viewsource' => 'Voir le texte source',
 'viewsource-title' => 'Voir la source de $1',
 'actionthrottled' => 'Action limitée',
@@ -3860,10 +3856,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-urgency-low' => 'Faible ($1)',
 'exif-urgency-high' => 'Haute ($1)',
 'exif-urgency-other' => "Urgence définie par l'utilisateur ($1)",
-
-# External editor support
-'edit-externally' => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => "(Consulter [https://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d'installation] pour plus d'informations)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',

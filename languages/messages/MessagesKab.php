@@ -186,7 +186,6 @@ $messages = array(
 'qbedit' => 'Beddel',
 'qbpageoptions' => 'Asebter-agi',
 'qbmyoptions' => 'isebtar inu',
-'qbspecialpages' => 'isebtar usligen',
 'faq' => 'Isteqsiyen',
 'faqpage' => 'Project:Isteqsiyen',
 
@@ -389,9 +388,6 @@ Ulac asefru ɣef wagi.',
 'perfcached' => 'Talɣut deg ukessar seg lkac u waqila mačči d tasiwelt taneggarut. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Talɣut deg ukessar seg lkac, tasiwelt taneggarut n wass $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ibeddlen n usebter-agi ur ttbanen ara tura. Tilɣa ines qrib a d-banen.',
-'wrong_wfQuery_params' => 'Imsektayen mačči ṣaḥiḥ deg wfQuery()<br />
-Tawuri: $1<br />
-Query: $2',
 'viewsource' => 'Ẓer aɣbalu',
 'viewsource-title' => 'Ẓeṛ aɣbalu n $1',
 'actionthrottled' => 'Tigawt tesɛa talast',
@@ -2804,10 +2800,6 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 'exif-urgency-normal' => 'Alugen ($1)',
 'exif-urgency-low' => 'Anammum ($1)',
 'exif-urgency-high' => 'Afella ($1)',
-
-# External editor support
-'edit-externally' => 'Beddel afaylu-yagi s usnas aberrani.',
-'edit-externally-help' => 'Ẓer [https://www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'akk',

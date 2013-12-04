@@ -184,7 +184,6 @@ $messages = array(
 'qbedit' => 'Дегишарун',
 'qbpageoptions' => 'Ччинин низамарунар',
 'qbmyoptions' => 'Зи ччинар',
-'qbspecialpages' => 'КьетӀен хъувун',
 'faq' => 'Фад-фад гузвай жузунар (ФГЖ)',
 'faqpage' => 'Project:ФГС',
 
@@ -1260,10 +1259,6 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'exif-contrast-1' => 'Жими',
 
 'exif-sharpness-1' => 'Жими',
-
-# External editor support
-'edit-externally' => 'И файл патан программа куьмекдалди дуьзар хъувун',
-'edit-externally-help' => '(Алава малумат патал [https://www.mediawiki.org/wiki/Manual:External_editors эцигунин регьбервилиз] килига)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',

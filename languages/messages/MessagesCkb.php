@@ -307,7 +307,6 @@ $messages = array(
 'qbedit' => 'دەستکاری',
 'qbpageoptions' => 'ئەم پەڕەیە',
 'qbmyoptions' => 'پەڕەکانم',
-'qbspecialpages' => 'پەڕە تایبەتەکان',
 'faq' => 'پرسیار و وەڵام (FAQ)',
 'faqpage' => 'Project:پرسیار و وەڵام',
 
@@ -520,9 +519,6 @@ $1',
 'perfcachedts' => 'داتای خوارەوە cacheکراوە و دوایین جار لە $1 نوێ کراوەتەوە. لە cacheدا لانی زۆر {{PLURAL:$4|یەک ئەنجام|$4 ئەنجام}} لەبەردەستە.',
 'querypage-no-updates' => 'تازەکردنەوەکان بۆ ئەم پەڕە لە حاڵی ئێستادا ناچالاک کراوەتەوە.
 داتای ئێرە دەسبەجێ تازە ناکرێتەوە.',
-'wrong_wfQuery_params' => 'پارامێتری ھەڵە بۆ wfQuery()<br />
-کردار: $1<br />
-داواکاری: $2',
 'viewsource' => 'سەرچاوەکەی ببینە',
 'viewsource-title' => 'سەرچاوەی $1 ببینە',
 'actionthrottled' => 'چالاکی پێشی پێ گیرا',
@@ -3170,10 +3166,6 @@ $1',
 'exif-urgency-normal' => 'ئاسایی ($1)',
 'exif-urgency-low' => 'کەم ($1)',
 'exif-urgency-high' => 'زۆر ($1)',
-
-# External editor support
-'edit-externally' => 'دەستکاریی ئەم پەڕەیە بکە بە بەکارھێنانی پڕۆگرامێکی دەرەکی',
-'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [https://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەموو',

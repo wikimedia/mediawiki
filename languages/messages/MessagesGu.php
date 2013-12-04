@@ -309,7 +309,6 @@ $messages = array(
 'qbedit' => 'ફેરફાર કરો',
 'qbpageoptions' => 'આ પાનું',
 'qbmyoptions' => 'મારાં પાનાં',
-'qbspecialpages' => 'ખાસ પાનાં',
 'faq' => 'FAQ
 વારંવાર પુછાતા પ્રશ્નો',
 'faqpage' => 'Project:વારંવાર પુછાતા પ્રશ્નો',
@@ -531,9 +530,6 @@ $1',
 'perfcachedts' => 'નીચેની વિગતો જૂના સંગ્રહમાથી છે અને તે છેલ્લે $1એ તાજી કરવામાં આવી હતી. વધુમાં વધુ {{PLURAL:$4|એક પરિણામ|$4 પરિણામો}} આ સંગ્રહમાં ઉપલબ્ધ છે.',
 'querypage-no-updates' => 'આ પાનાની નવી આવૃત્તિઓ હાલમાં અક્રિય છે.
 અહીંની વિગતો હાલમાં રિફ્રેશ કરવામાં નહી આવે.',
-'wrong_wfQuery_params' => 'wfQuery() માટે અયોગ્ય વિકલ્પો<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'સ્રોત જુઓ',
 'viewsource-title' => '$1 માટે સ્રોત જુઓ',
 'actionthrottled' => 'અકાળે અટાકાવી દીધેલી ક્રિયા',
@@ -3548,10 +3544,6 @@ $2',
 'exif-urgency-low' => 'નિમ્ન ($1)',
 'exif-urgency-high' => 'ઉચ્ચ ($1)',
 'exif-urgency-other' => 'વપરાશકર્તા-વ્યાખ્યાયિત અગ્રતા ($1)',
-
-# External editor support
-'edit-externally' => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
-'edit-externally-help' => '(વધુ માહિતી માટે [https://www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સૂચનાઓ] જુઓ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'બધા',

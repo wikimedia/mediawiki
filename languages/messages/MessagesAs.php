@@ -338,7 +338,6 @@ $messages = array(
 'qbedit' => 'সম্পাদনা',
 'qbpageoptions' => 'এই পৃষ্ঠা',
 'qbmyoptions' => 'মোৰ পৃষ্ঠাসমূহ',
-'qbspecialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
 'faq' => 'সততে উদিত প্ৰশ্নসমূহ (FAQ)',
 'faqpage' => 'Project:সততে উদিত প্ৰশ্নসমূহ',
 
@@ -554,8 +553,6 @@ $1',
 'perfcached' => "তলত দিয়া তথ্যখিনি আগতে জমা কৰি থোৱা (cached) আৰু সাম্প্ৰতিক নহ'ব পাৰে। এই তথ্যখিনিত সৰ্বোচ্চ {{PLURAL:$1|এটা ফলাফল|$1টা ফলাফল}} উপলব্ধ।",
 'perfcachedts' => 'তলত দিয়া তথ্য খিনি আগতে জমা কৰি থোৱা (cached) আৰু শেষবাৰৰ কাৰণে $1 ত নবীকৰণ কৰা হৈছিল। সৰ্বাধিক {{PLURAL:$4|এটা ফলাফল|$4 টা ফলাফল}} এই কেশ্বত পাব।',
 'querypage-no-updates' => 'এই পৃষ্ঠাটো নৱীকৰণ কৰা ৰোধ কৰা হৈছে। ইয়াৰ তথ্য এতিয়া সতেজ কৰিব নোৱাৰি।',
-'wrong_wfQuery_params' => 'wfQuery() ৰ কাৰণে ভুল মাপদণ্ড দিয়া হৈছে <br />
-কাৰ্য: $1<br />পৃষ্ঠা: $2',
 'viewsource' => 'উৎস চাওক',
 'viewsource-title' => '$1ৰ উৎস চাওক',
 'actionthrottled' => 'কাৰ্য লেহেম কৰা হৈছে',
@@ -3606,10 +3603,6 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-urgency-low' => 'নিম্ন ($1)',
 'exif-urgency-high' => 'উচ্চ ($1)',
 'exif-urgency-other' => 'ব্যৱহাৰকাৰী-বিৱৰিত প্ৰাথমিকতা ($1)',
-
-# External editor support
-'edit-externally' => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক ।',
-'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [https://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',

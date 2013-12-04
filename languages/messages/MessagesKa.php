@@ -326,7 +326,6 @@ $messages = array(
 'qbedit' => 'რედაქტირება',
 'qbpageoptions' => 'ეს გვერდი',
 'qbmyoptions' => 'ჩემი გვერდები',
-'qbspecialpages' => 'სპეციალური გვერდები',
 'faq' => 'ხშირი შეკითხვები',
 'faqpage' => 'Project:ხშირი შეკითხვები',
 
@@ -544,9 +543,6 @@ $1',
 'perfcachedts' => 'შემდეგი მონაცემები აღებულია ქეშიდან, უკანასკნელად ის განახლდა $1. ქეშში ინახება მაქსიმუმ $4 {{PLURAL:$4|ჩანაწერი}}.',
 'querypage-no-updates' => 'ამ გვერდის განახლება გათიშულია.
 წარმოდგენილი მონაცემები არ განახლდება.',
-'wrong_wfQuery_params' => 'არასწორი პარამეტრები ფუნქციისათვის wfQuery()<br />
-ფუნქცია: $1<br />
-მოთხოვნა: $2',
 'viewsource' => 'იხილე წყარო',
 'viewsource-title' => 'იხილეთ წყარო გვერდისთვის $1',
 'actionthrottled' => 'სიჩქარის შეზღუდვა.',
@@ -3625,10 +3621,6 @@ $8',
 'exif-urgency-low' => 'დაბალი ($1)',
 'exif-urgency-high' => 'მაღალი ($1)',
 'exif-urgency-other' => 'მომხმარებლის მიერ განსაზღვრული პრიორიტეტი ($1)',
-
-# External editor support
-'edit-externally' => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
-'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [https://www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ყველა',

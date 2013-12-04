@@ -163,7 +163,6 @@ $messages = array(
 'qbedit' => 'Killkana',
 'qbpageoptions' => 'Pankapak akllanakuna',
 'qbmyoptions' => 'Ñukapak pankakuna',
-'qbspecialpages' => 'mans shukkunashina pankakuna',
 'faq' => 'Ashtawan tapushkaka tapunakuna',
 'faqpage' => 'Project:ashta ministishka tapuykuna',
 
@@ -862,10 +861,6 @@ Shuk aspipi, shukniki tinkika ima tinkita wichkashkami kanka nin, kay aspipi shu
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Kay archiwuta shuk hawa antanawan llankana',
-'edit-externally-help' => 'Ashtawan yachakunkakak [https://www.mediawiki.org/wiki/Manual:External_editors kay yanapata] (inlish shimipi) killkakatipay',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tukuy',

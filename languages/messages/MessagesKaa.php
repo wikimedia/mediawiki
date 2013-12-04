@@ -281,7 +281,6 @@ $messages = array(
 'qbedit' => "O'zgertiw",
 'qbpageoptions' => 'Usı bet',
 'qbmyoptions' => "Menin' betlerim",
-'qbspecialpages' => 'Arnawlı betler',
 'faq' => 'KBS',
 'faqpage' => 'Project:KBS',
 
@@ -466,9 +465,6 @@ Bunı basqa birew aldınlaw o\'shigen bolıwı mu\'mkin.',
 'perfcachedts' => "To'mendegi mag'lıwmat keshlengen, aqırg'ı keshlengen waqtı: $1. Keshte en' ko'bi menen {{PLURAL:$4|juwap|$4 juwap}} saqalanadı.",
 'querypage-no-updates' => "Bul bettin' jan'alanıwı ha'zirshe o'shirilgen.
 Bul jerde keltirilgen mag'lıwmatlar o'zgertilmeydi.",
-'wrong_wfQuery_params' => 'wfQuery() funktsiyası ushın natuwrı parametrler berilgen<br />
-Funktsiya: $1<br />
-Soraw: $2',
 'viewsource' => "Deregin ko'riw",
 'actionthrottled' => "Ha'reket toqtatıldı",
 'actionthrottledtext' => "Spamg'a qarsı gu'res esabında, bunday ha'reketti qısqa waqıtta dım ko'p ma'rte bejeriwin'iz sheklenedi, ha'mde siz usı limitten o'tip ketkensiz.
@@ -1797,10 +1793,6 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'exif-imagelength' => "Uzunlıg'ı",
 'exif-imagedescription' => "Su'wret ataması",
 'exif-artist' => 'Avtor',
-
-# External editor support
-'edit-externally' => "Bul fayldı sırtqı bag'darlama arqalı o'zgertiw",
-'edit-externally-help' => "(Ko'birek mag'lıwmat ushın [https://www.mediawiki.org/wiki/Manual:External_editors ornatıw jolların] qaran')",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => "ha'mmesin",

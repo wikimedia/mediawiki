@@ -343,7 +343,6 @@ $messages = array(
 'qbedit' => 'Änneren',
 'qbpageoptions' => 'Säitenoptiounen',
 'qbmyoptions' => 'Meng Säiten',
-'qbspecialpages' => 'Spezialsäiten',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -559,9 +558,6 @@ Eng Erklärung gouf net ginn.",
 'perfcached' => 'Dës Date kommen aus dem Tëschespäicher a si méiglecherweis net aktuell. Maximal {{PLURAL:$1|ee Resultat ass|$1 Resultater sinn}} am Tësche späicher disponibel.',
 'perfcachedts' => "Dës Donnéeë kommen aus dem Tëschespäicher, a goufe fir d'lescht den $1 aktualiséiert. Maximal {{PLURAL:$4|ee Resultat ass|$4 Resultater sinn}} am Tëschespäicher disponibel.",
 'querypage-no-updates' => "D'Aktualiséierung vun dëser Säit ass zur Zäit ausgeschalt. D'Date gi bis op weideres net aktualiséiert.'''",
-'wrong_wfQuery_params' => 'Falsche Parameter fir wfQuery()<br />
-Funktioun: $1<br />
-Ufro: $2',
 'viewsource' => 'Quelltext kucken',
 'viewsource-title' => 'Quelltext vun der Säit $1 weisen',
 'actionthrottled' => 'Dës Aktioun gouf gebremst',
@@ -696,7 +692,7 @@ Probéiert w.e.g. nach eng Kéier.",
 'passwordtooshort' => 'Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
 'password-name-match' => 'Äert Passwuert muss verschidde vun Ärem Benotzernumm sinn.',
 'password-login-forbidden' => "D'Benotze vun dësem Benotzernumm a Passwuert gouf verbueden.",
-'mailmypassword' => 'Neit Passwuert per E-Mail kréien',
+'mailmypassword' => 'Passwuert zrécksetzen',
 'passwordremindertitle' => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkont',
 'passwordremindertext' => 'Iergendeen (waarscheinlech Dir, mat der IP-Adress $1) huet en neit Passwuert fir {{SITENAME}} ($4) gefrot. Een temporäert Passwuert fir de Benotzer $2 gouf ugeluecht an et ass: $3. Wann et dat ass, wat Dir wollt, da sollt Dir Iech elo aloggen an en neit Passwuert eraussichen. Äert temporäert Passwuert leeft a(n) {{PLURAL:$5|engem Dag| $5 Deeg}} of.
 
@@ -768,7 +764,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
 'passwordreset-text-one' => 'Fëllt dëse Formulaire aus fir Äert Passwuert zréckzesetzen.',
-'passwordreset-text-many' => '{{PLURAL:$1|Fëllt eent vun de Felder aus fir Äert Passwuert zeréckzesetzen.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Fëllt eent vun de Felder aus fir en temporäert Passwuert per E-Mail ze kréien.}}',
 'passwordreset-legend' => 'Passwuert zrécksetzen',
 'passwordreset-disabled' => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-emaildisabled' => "D'E-Mail-Funktioune goufen op dëser Wiki ausgeschalt.",
@@ -3596,10 +3592,6 @@ Déi aner sinn am Standard verstoppt.
 'exif-urgency-low' => 'Niddreg ($1)',
 'exif-urgency-high' => 'Héich ($1)',
 'exif-urgency-other' => 'Benotzerdefinéiert Prioritéit ($1)',
-
-# External editor support
-'edit-externally' => 'Dëse Fichier mat engem externe Programm änneren',
-'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[https://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',

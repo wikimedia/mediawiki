@@ -353,7 +353,6 @@ $messages = array(
 'qbedit' => 'แก้ไข',
 'qbpageoptions' => 'หน้านี้',
 'qbmyoptions' => 'หน้าของฉัน',
-'qbspecialpages' => 'หน้าพิเศษ',
 'faq' => 'คำถามถามบ่อย',
 'faqpage' => 'Project:คำถามถามบ่อย',
 
@@ -562,9 +561,6 @@ $1',
 'perfcached' => 'ข้อมูลต่อไปนี้ถูกเก็บในแคช และอาจล้าสมัย มีผลการค้นหาสูงสุด $1 รายการในแคช',
 'perfcachedts' => 'ข้อมูลต่อไปนี้ถูกเก็บในแคช และได้รับการปรับล่าสุดเมื่อ $1 ผลลัพธ์สูงสุด $4 รายการสามารถเก็บในแคชได้',
 'querypage-no-updates' => 'ขณะนี้การปรับปรุงหน้านี้ถูกระงับ ข้อมูลในที่นี้จะไม่รีเฟรชเป็นปัจจุบัน',
-'wrong_wfQuery_params' => 'พารามิเตอร์ที่ส่งไป wfQuery() ไม่ถูกต้อง<br />
-ฟังก์ชั่น: $1<br />
-คำค้น: $2',
 'viewsource' => 'ดูโค้ด',
 'viewsource-title' => 'ดูโค้ดสำหรับ $1',
 'actionthrottled' => 'การกระทำนี้ถูกระงับไว้ชั่วคราว',
@@ -3434,10 +3430,6 @@ $1',
 'exif-iimcategory-sci' => 'วิทยาศาสตร์และเทคโนโลยี',
 'exif-iimcategory-spo' => 'กีฬา',
 'exif-iimcategory-wea' => 'ภูมิอากาศ',
-
-# External editor support
-'edit-externally' => 'แก้ไขไฟล์นี้โดยใช้ซอฟต์แวร์ตัวอื่น',
-'edit-externally-help' => '(ดู[https://www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า]สำหรับข้อมูลเพิ่มเติม)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ทั้งหมด',

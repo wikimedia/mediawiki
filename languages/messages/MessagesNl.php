@@ -534,7 +534,6 @@ $messages = array(
 'qbedit' => 'Bewerken',
 'qbpageoptions' => 'Deze pagina',
 'qbmyoptions' => "Mijn pagina's",
-'qbspecialpages' => 'Speciale pagina’s',
 'faq' => 'Veel gestelde vragen',
 'faqpage' => 'Project:Veelgestelde vragen',
 
@@ -753,9 +752,6 @@ Wellicht bevat de paginanaam niet toegestane tekens.',
 'perfcachedts' => 'Deze gegevens komen uit een cache die voor het laatst is bijgewerkt op $2 om $3. Er {{PLURAL:$4|is maximaal één resultaat|zijn maximaal $4 resultaten}} beschikbaar in de cache.',
 'querypage-no-updates' => 'Deze pagina wordt niet bijgewerkt.
 Gegevens op deze pagina worden niet ververst.',
-'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
-Functie: $1<br />
-Zoekopdracht: $2',
 'viewsource' => 'Brontekst bekijken',
 'viewsource-title' => 'Brontekst bekijken van $1',
 'actionthrottled' => 'Handeling tegengehouden',
@@ -3480,7 +3476,7 @@ $1',
 'months' => '{{PLURAL:$1|één maand|$1 maanden}}',
 'years' => '{{PLURAL:$1|één jaar|$1 jaar}}',
 'ago' => '$1 geleden',
-'just-now' => 'Daarnet',
+'just-now' => 'Zojuist',
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|uur}} geleden',
@@ -3912,10 +3908,6 @@ Andere velden worden verborgen.
 'exif-urgency-low' => 'Laag ($1)',
 'exif-urgency-high' => 'Hoog ($1)',
 'exif-urgency-other' => 'Door gebruiker gedefinieerde prioriteit ($1)',
-
-# External editor support
-'edit-externally' => 'Dit bestand in een extern programma bewerken',
-'edit-externally-help' => '(zie de [https://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',

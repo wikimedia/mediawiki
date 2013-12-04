@@ -449,7 +449,6 @@ $messages = array(
 'qbedit' => 'Modifica',
 'qbpageoptions' => 'Opzioni pagina',
 'qbmyoptions' => 'Le mie pagine',
-'qbspecialpages' => 'Pagine speciali',
 'faq' => 'Domande frequenti',
 'faqpage' => 'Project:Domande frequenti',
 
@@ -666,9 +665,6 @@ Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei ti
 'perfcached' => "I dati che seguono sono estratti da una copia ''cache'' del database, e potrebbero non essere aggiornati. Un massimo di {{PLURAL:$1|un risultato è disponibile|$1 risultati sono disponibili}} in cache.",
 'perfcachedts' => "I dati che seguono sono estratti da una copia ''cache'' del database, il cui ultimo aggiornamento risale al $1. Un massimo di {{PLURAL:$4|un risultato è disponibile|$4 risultati sono disponibili}} in cache.",
 'querypage-no-updates' => 'Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.',
-'wrong_wfQuery_params' => 'Errore nei parametri inviati alla funzione wfQuery()<br />
-Funzione: $1<br />
-Query: $2',
 'viewsource' => 'Visualizza sorgente',
 'viewsource-title' => 'Visualizza sorgente di $1',
 'actionthrottled' => 'Azione ritardata',
@@ -3687,10 +3683,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-urgency-low' => 'Bassa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => "Priorità definite dal'utente ($1)",
-
-# External editor support
-'edit-externally' => 'Modifica questo file usando un programma esterno',
-'edit-externally-help' => '(Per maggiori informazioni consultare le [https://www.mediawiki.org/wiki/Manual:External_editors istruzioni])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutte',

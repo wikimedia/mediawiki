@@ -155,7 +155,6 @@ $messages = array(
 'qbedit' => 'Хувца',
 'qbpageoptions' => 'ОагӀува оттамаш',
 'qbmyoptions' => 'Са оттамаш',
-'qbspecialpages' => 'ГӀулакхий оагӀувнаш',
 'faq' => 'Каст-каста хаттараш',
 'faqpage' => 'Project:Каст-каста хаттараш',
 
@@ -1082,10 +1081,6 @@ $messages = array(
 'exif-iimcategory-spo' => 'Нидзоамал',
 'exif-iimcategory-war' => 'ТIемаш, кховсамаши латтараши',
 'exif-iimcategory-wea' => 'Хаоттам',
-
-# External editor support
-'edit-externally' => 'Йола болхоагIувца паьла гIалатах мукъаяьккха',
-'edit-externally-help' => '(ма даррачунга хьажа [https://www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'деррига',

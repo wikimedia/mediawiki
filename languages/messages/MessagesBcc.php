@@ -272,7 +272,6 @@ $messages = array(
 'qbedit' => 'اصلاح',
 'qbpageoptions' => 'صفحه',
 'qbmyoptions' => 'منی صفحات',
-'qbspecialpages' => 'حاصین صفحات',
 'faq' => 'ب.ج.س',
 'faqpage' => 'Project:ب.ج.س',
 
@@ -462,9 +461,6 @@ $1',
 'perfcached' => 'جهلیگین دیتا ذخیره بیتگنت و شاید نوک می بنت. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'جهلیگین دیتا ذخیره بیتگنت و اهرین په روچ بیگ $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'په روچ بیگان په ای صفحه الان غیر فعالنت. دیتا ادان الان نوکین نهنت.',
-'wrong_wfQuery_params' => 'اشتباهین پارامتر به wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'به گند منبع آ',
 'actionthrottled' => 'کار گیر نت',
 'actionthrottledtext' => 'په خاطر یک معیار ضد اسپم شما چه انجام ای کار ته یک کمی زمان محدود بیتگیت، و شما چه ای محدودیت رد بیتگیت.
@@ -2780,10 +2776,6 @@ Variants for Chinese language
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',
 'exif-gpsdirection-m' => 'مسیر آهن ربایی',
-
-# External editor support
-'edit-externally' => 'ای صفحه یا اصلاح کن گون یک درآین برنامه ای',
-'edit-externally-help' => '(په گیشترین اطلاعات بچار[https://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'کل',

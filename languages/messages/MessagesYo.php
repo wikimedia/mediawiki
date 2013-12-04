@@ -209,7 +209,6 @@ $messages = array(
 'qbedit' => 'Àtúnṣe',
 'qbpageoptions' => 'Ojúewé yi',
 'qbmyoptions' => 'Àwọn ojúewé mi',
-'qbspecialpages' => 'Àwọn ojúewé pàtàkì',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -421,9 +420,6 @@ Kò ṣe àlàyé kankan.',
 'perfcachedts' => 'Ìwònyí jẹ́ dátà láti inú cache, ọjọ́ tí a ṣe àtúnṣe rẹ̀ gbẹ̀yìn ni $1. Ó pọ̀jùlọ {{PLURAL:$4|èsì kan|èsì $4}} wà nínú cache.',
 'querypage-no-updates' => 'Àtúnṣe sí ojúewé yìí kò ṣe é ṣe lọ́wọ́lọ́wọ́.
 Àwọn ìpèsè tuntun kò ní hàn báyìí ná.',
-'wrong_wfQuery_params' => 'Àwọn pàrámítà àìtọ́ sí wfQuery()<br />
-Ìlò: $1<br />
-Ìtọrọ: $2',
 'viewsource' => 'Wo àmìọ̀rọ̀',
 'viewsource-title' => 'Ẹ wo ìsun fún $1',
 'actionthrottled' => 'Ìgbése bíntín',
@@ -3275,10 +3271,6 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'exif-urgency-normal' => 'Déédé ($1)',
 'exif-urgency-low' => 'Kúkúrú ($1)',
 'exif-urgency-high' => 'Gíga ($1)',
-
-# External editor support
-'edit-externally' => "Ẹ lo ìmúlò òde láti ṣ'àtúnṣe fáìlì yìí",
-'edit-externally-help' => '(Ẹ wo [https://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gbogbo',

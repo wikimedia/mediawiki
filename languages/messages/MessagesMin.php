@@ -319,7 +319,6 @@ $messages = array(
 'qbedit' => 'Suntiang',
 'qbpageoptions' => 'Laman ko',
 'qbmyoptions' => 'Laman denai',
-'qbspecialpages' => 'Laman istimewa',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -526,7 +525,6 @@ Indak ado keterangan.',
 'perfcached' => 'Data barikuik ko diambiak dari singgahan dan mungkin indak data nan baru. Nan tabanyak dari {{PLURAL:$1|$1 hasilnyo}} ado di singgahan.',
 'perfcachedts' => 'Data barikuik ko singgahan, dan tarakhia dipabarui tanggal $1. Nan tabanyak dari tanggal {{PLURAL:$1|$1}}, hasilnyo ado di singgahan.',
 'querypage-no-updates' => 'Pamutakhiran dari laman ko sadang dimatian. Data nan ado di siko kini ko indak akan dimuaik ulang.',
-'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamintaan: $2',
 'viewsource' => 'Caliak sumber',
 'viewsource-title' => 'Caliak sumber untuak $1',
 'actionthrottled' => 'Tindakan tabateh',
@@ -2514,10 +2512,6 @@ Nan lainnyo akan tasuruak sacaro baku.
 'exif-pixelxdimension' => 'Tinggi gamba',
 'exif-usercomment' => 'Komen pangguno',
 'exif-relatedsoundfile' => 'Berkas audio nan bahubuangan',
-
-# External editor support
-'edit-externally' => 'Suntiang berkas ko jo aplikasi lua',
-'edit-externally-help' => '(Caliak [https://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] untuak informasi lanjuiknyo)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kasadonyo',

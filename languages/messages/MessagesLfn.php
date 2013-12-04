@@ -152,7 +152,6 @@ $messages = array(
 'qbedit' => 'Edita',
 'qbpageoptions' => 'Esta paje',
 'qbmyoptions' => 'Me pajes',
-'qbspecialpages' => 'Pajes spesial',
 
 'errorpagetitle' => 'Era',
 'returnto' => 'Restora a $1.',
@@ -925,10 +924,6 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # Exif tags
 'exif-exposuretime-format' => '$1 sec. ($2)',
-
-# External editor support
-'edit-externally' => 'Edita esta fix con un programa esterna',
-'edit-externally-help' => '(Vide la [https://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tota',

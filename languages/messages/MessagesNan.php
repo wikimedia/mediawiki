@@ -168,7 +168,6 @@ $messages = array(
 'qbedit' => 'Siu-kái',
 'qbpageoptions' => 'Chit ia̍h',
 'qbmyoptions' => 'Goá ê ia̍h',
-'qbspecialpages' => 'Te̍k-sû-ia̍h',
 'faq' => 'Būn-tah',
 'faqpage' => 'Project:Būn-tah',
 
@@ -362,9 +361,6 @@ Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chh
 'perfcachedts' => 'Ē-kha ê chu-liāu tùi lâi--ê, tī $1 keng-sin--koè. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Chit-má bē-sái kái chit ia̍h.
 Chia ê chu-liāu bē-tàng sui tiông-sin chéng-lí.',
-'wrong_wfQuery_params' => 'Chhò-ngō͘ ê chham-sò͘ chhoân hō͘ wfQuery（）<br />
-Hâm-sò͘: $1<br />
-Cha-sûn: $2',
 'viewsource' => 'Khoàⁿ goân-sú lōe-iông',
 'actionthrottled' => 'Tōng-chok hông tóng leh.',
 'actionthrottledtext' => 'Ūi-tio̍h thê-hông lah-sap ê chhú-tì,  lí ū hông hān-chè tī té sî-kan lāi chò siuⁿ chē pái chit ê tōng-chok,  taⁿ lí í-keng chhiau-koè hān-chè.
@@ -1082,10 +1078,6 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 # Metadata
 'metadata-expand' => 'Hián-sī iù-chiat',
 'metadata-collapse' => 'Am iù-chiat',
-
-# External editor support
-'edit-externally' => 'Iōng gōa-pō· èng-iōng nńg-thé pian-chi̍p chit-ê tóng-àn',
-'edit-externally-help' => 'Chham-khó [http://www.mediawiki.org/wiki/Manual:External_editors Help:External_editors] ê soat-bêng.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'choân-pō͘',

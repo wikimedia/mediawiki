@@ -170,7 +170,6 @@ $messages = array(
 'qbedit' => 'सम्पादन करू',
 'qbpageoptions' => 'ई पन्ना',
 'qbmyoptions' => 'हमर पन्ना सभ',
-'qbspecialpages' => 'विशेष पन्ना सभ',
 'faq' => 'त्वरित प्रश्नोत्तरी',
 'faqpage' => 'Project: त्वरित प्रश्नोत्तरी',
 
@@ -372,9 +371,6 @@ $1',
 'perfcachedts' => 'ई दत्तांश उपस्मृतिमे अछि, आ एकर अन्तिम परिवर्धन भेल अछि $1 केँ। A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'ऐ पन्नाक नवीनीकरण अखन बन्न अछि।
 एतुक्का दत्तांश अखन नवीकरण नै कएल जाएत।',
-'wrong_wfQuery_params' => 'अमान्य परिमिति ऐ लेल wfQuery()<br />
-क्रिया : $1<br />
-अभ्यर्थना: $2',
 'viewsource' => 'जड़ि देखू',
 'viewsource-title' => '"$1" लेल जड़ि देखू',
 'actionthrottled' => 'क्रियाकेँ मोकल गेल',
@@ -3140,10 +3136,6 @@ Variants for Chinese language
 'exif-urgency-low' => 'कम ($1)',
 'exif-urgency-high' => 'बेशी ($1)',
 'exif-urgency-other' => 'प्रयोक्ता परिभाषित प्राथमिकता ($1)',
-
-# External editor support
-'edit-externally' => 'ऐ फाइलकेँ बाहरी अनुप्रयोगसँ हटाउ',
-'edit-externally-help' => '(देखू [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] विषेष जानकारी लेल)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सभ',

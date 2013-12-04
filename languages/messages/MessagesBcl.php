@@ -254,7 +254,6 @@ $messages = array(
 'qbedit' => 'Liwata',
 'qbpageoptions' => 'Ining pahina',
 'qbmyoptions' => 'Sakong mga pahina',
-'qbspecialpages' => 'Espesyal na mga pahina',
 'faq' => 'PPK (Pirmihang Pighahapot na mga kahaputan)',
 'faqpage' => 'Project:PPK (Pirmihang Pighahapot na mga Kahaputan)',
 
@@ -472,9 +471,6 @@ Ini gayod may laog nin o dakol na mga karakter na dae pinaggagamit sa mga titulo
 'perfcached' => 'An minasunod na datos pinagtago asin bakong gayo napapanahon. An maximum na {{PLURAL:$1|sarong resulta na|$1 mga resulta na}} yaon sana sa pinagtago.',
 'perfcachedts' => 'An minasunod na datos pinagtago, asin huring pinagdagdagan kan $1. An maximum na {{PLURAL:$4|sarong result na |$4 mga resulta na }} yaon sana sa pinagtago.',
 'querypage-no-updates' => 'Pigpopogol mùna an mga pagbabàgo sa pahinang ini. Dai mùna mababàgo an mga datos digdi.',
-'wrong_wfQuery_params' => 'Salâ na parámetro sa wfQuery()<br />
-Acción: $1<br />
-Hapót: $2',
 'viewsource' => 'Hilingón an ginikanan',
 'viewsource-title' => 'Hilnga an piggikanan para sa $1',
 'actionthrottled' => 'An aksyon pinagpugulan',
@@ -3529,10 +3525,6 @@ Sublokas kan siyudad na ipinahiling',
 'exif-urgency-high' => 'Halangkawon ($1)',
 'exif-urgency-other' => 'Prayoridad na pakahulugan nin paragamit ($1)',
 
-# External editor support
-'edit-externally' => 'Liwaton ining sagunson na pinaggagamit an panluwasan na aplikasyon',
-'edit-externally-help' => '(Hilngon an [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa kadagdagang impormasyon)',
-
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gabos',
 'namespacesall' => 'gabós',
@@ -3757,8 +3749,8 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 # Special:SpecialPages
 'specialpages' => 'Mga espesyal na pahina',
 'specialpages-note-top' => 'Balaynan',
-'specialpages-note' => '* Normal na espesyal na mga pahina.
-* <span class="mw-specialpagerestricted">Restriktadong espesyal na mga pahina.</span>',
+'specialpages-note' => '* Normal sa espesyal na mga pahina.
+* <span class="mw-specialpagerestricted"> Restriktadong espesyal na mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga talaan nin pagpangataman',
 'specialpages-group-other' => 'Iba pang mga espesyal na pahina',
 'specialpages-group-login' => 'Maglaog / magmukna nin panindog',
@@ -3977,11 +3969,11 @@ Kun bako man, ika makakagamit nin sayon na porma sa ibaba. An saimong komento id
 Ini man minabigwak sa punksyon kan suportadong parabangay na arog kan <code><nowiki>{{</nowiki>#language:…}}</code> asin mga kapilyangan arog kan <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
 Sa katunayan, ini minapabigwak kan gabos na bagay na yaon sa mga dobleng panandayan.',
 'expand_templates_title' => 'Kontekstong titulo, para sa {{FULLPAGENAME}}, ibpa.:',
-'expand_templates_input' => 'Ikaag an teksto:',
+'expand_templates_input' => 'Ikaag an teksto.',
 'expand_templates_output' => 'Resulta',
 'expand_templates_xml_output' => 'Kinaluwasan na XML',
 'expand_templates_remove_comments' => 'Tanggalon an mga komento',
-'expand_templates_remove_nowiki' => 'Pugulan an mga taktak na <nowiki> kan resulta',
+'expand_templates_remove_nowiki' => 'Pugulan an mga taktak na <nowiki> sa resulta',
 'expand_templates_preview' => 'Patânaw',
 
 );

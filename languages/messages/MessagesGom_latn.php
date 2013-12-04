@@ -103,7 +103,6 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Sod',
 'qbedit' => 'Bodol',
-'qbspecialpages' => 'Khaxelim panam',
 'faq' => 'Choddxe vicharlole prosn',
 
 # Vector skin
@@ -717,10 +716,6 @@ Zori tor hi failik bodol'lam zalear kai mahiti bodololem failik sarkem mell khai
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Hea failik bhaili program uzar korun bodol.',
-'edit-externally-help' => '(Odhik mahite khatir [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] polloi)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'soglle',

@@ -192,7 +192,6 @@ $messages = array(
 'qbedit' => 'Deasaich',
 'qbpageoptions' => 'An duilleag seo',
 'qbmyoptions' => 'Na duilleagan agam',
-'qbspecialpages' => 'Duilleagan sònraichte',
 'faq' => 'CÀBHA',
 'faqpage' => 'Project:CÀBHA',
 
@@ -411,9 +410,6 @@ Faodaidh gu bheil aon no barrachd charactairean ann nach urrainn dhut a chleachd
 'perfcachedts' => "Chaidh an dàta a leanas a thasgadh agus chaidh ùrachadh $1 turas mu dheireadh. Tha {{PLURAL:$4|$4 toradh|$4 thoradh|$4 toraidhean|$4 toradh}} ri fhaighinn san tasgadan air a' char as motha.",
 'querypage-no-updates' => 'Tha ùrachadh air a chur à comas air an duilleag seo an-dràsta.
 Cha dèid an dàta an-seo ùrachadh aig an àm seo.',
-'wrong_wfQuery_params' => 'Paramatairean mì-cheart airson wfQuery()<br />
-Foincsean: $1<br />
-Iarrtas: $2',
 'viewsource' => 'Seall an tùs',
 'viewsource-title' => 'Seall an tùs aig $1',
 'actionthrottled' => 'Gnìomh air a mhùchadh',
@@ -1828,10 +1824,6 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => 'Deasaich am faidhle le prògram on taobh a-muigh',
-'edit-externally-help' => '(Seall air [https://www.mediawiki.org/wiki/Manual:External_editors mìneachadh an t-suidheachaidh] airson barrachd fiosrachaidh)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'a h-uile',

@@ -287,7 +287,6 @@ $messages = array(
 'qbedit' => 'Babak',
 'qbpageoptions' => 'Tungkaran ini',
 'qbmyoptions' => 'Tungkaran ulun',
-'qbspecialpages' => 'Tungkaran istimiwa',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -495,9 +494,6 @@ Nangini kawa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
 'perfcached' => 'Data barikut adalah timbuluk wan pina kada mutakhir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Data nang dudi ni adalah timbuluk, wan tauncit dihahanyari pada $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pamugaan matan tungkaran ngini rahat dipajahkan. Data nang ada di sia wayahini kada akan dimuat ulang.',
-'wrong_wfQuery_params' => 'Kada bujur ukuran ka wfQuery ()<br />
-Pungsi: $1<br />
-Parmintaan: $2',
 'viewsource' => 'Tiringi asal mulanya',
 'viewsource-title' => 'Tiringi asalmula matan $1',
 'actionthrottled' => 'Kalakuan dikiripi',
@@ -3363,10 +3359,6 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-urgency-low' => 'Randah ($1)',
 'exif-urgency-high' => 'Pancau ($1)',
 'exif-urgency-other' => 'Ganti-suai utamaan ($1)',
-
-# External editor support
-'edit-externally' => 'Babak barakas ngini puruk sabuah aplikasi luar',
-'edit-externally-help' => '(Lihati [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] untuk panjalasan labih)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'samunyaan',

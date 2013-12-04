@@ -396,7 +396,6 @@ $messages = array(
 'qbedit' => 'Редактиране',
 'qbpageoptions' => 'Тази страница',
 'qbmyoptions' => 'Моите страници',
-'qbspecialpages' => 'Специални страници',
 'faq' => 'ЧЗВ',
 'faqpage' => 'Project:ЧЗВ',
 
@@ -610,9 +609,6 @@ $1',
 'perfcached' => 'Следните данни са извлечени от склада и затова може да не отговарят на текущото състояние. В складираното копие {{PLURAL:$1|е допустим най-много един резултат|са допустими най-много $1 резултата}}.',
 'perfcachedts' => 'Данните са складирани и обновени за последно на $1. Най-много {{PLURAL:$4|един резултат е допустим и наличен|$4 резултата са допустими и налични}} в складираното копие.',
 'querypage-no-updates' => 'Обновяването на тази страница в момента е изключено. Засега данните тук няма да бъдат обновявани.',
-'wrong_wfQuery_params' => 'Невалидни аргументи за wfQuery()<br />
-Функция: $1<br />
-Заявка: $2',
 'viewsource' => 'Преглед на кода',
 'viewsource-title' => 'Преглеждане на кода на $1',
 'actionthrottled' => 'Ограничение в скоростта',
@@ -3444,10 +3440,6 @@ $1',
 'exif-urgency-low' => 'Ниска ($1)',
 'exif-urgency-high' => 'Висока ($1)',
 'exif-urgency-other' => 'Зададен от потребителя приоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Редактиране на файла чрез външно приложение',
-'edit-externally-help' => '(За повече информация прегледайте [https://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всички',

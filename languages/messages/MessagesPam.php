@@ -146,7 +146,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'qbedit' => 'Mag-edit',
 'qbpageoptions' => 'Ining bulung',
 'qbmyoptions' => 'Deng kakung bulung',
-'qbspecialpages' => 'Bulung a makabukud',
 'faq' => 'Maralas a Kukutang (MAK)',
 'faqpage' => 'Project:MAK',
 
@@ -328,9 +327,6 @@ Pakisabi ya iti king metung a  [[Special:ListUsers/sysop|administrator]], at pak
 'perfcachedts' => 'Makasimpan (cached) ya ing makatuking data, at tauli yang mibayu kanitang $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page are currently disabled. Data here will not presently be refreshed.
 Kasalungsungan yang makapatda ing pamagbayu (update) king bulung a ini. E la miyalilan ketang pekatauli (refreshed) deng makabiling data keti.',
-'wrong_wfQuery_params' => 'E la ustu deng sukad (parameter) king wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'Lon ya ing pikuanan',
 'actionthrottled' => 'Mepigil ing pamangimut',
 'actionthrottledtext' => 'Metung ya kareng paralan ba yang sabatan ing spam ing pamaglimita king pamanulit king kimut (action) a iti kilub ning makuyad a panaun, at alagpusan mu ne itang angganan.
@@ -2168,10 +2164,6 @@ Detang aliwa tambing (by default) lang makasalikut.
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tutung direksiun',
-
-# External editor support
-'edit-externally' => 'I-edit me ing simpan a ini kapamilatan ning aplikasiun o program a ibat king kilual.',
-'edit-externally-help' => '(Lon me ing [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para king karagdagang informacion)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eganagana',

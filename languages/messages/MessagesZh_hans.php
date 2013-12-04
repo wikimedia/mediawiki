@@ -539,7 +539,6 @@ $messages = array(
 'qbedit' => '编辑',
 'qbpageoptions' => '该页面',
 'qbmyoptions' => '我的页面',
-'qbspecialpages' => '特殊页面',
 'faq' => '常见问题',
 'faqpage' => 'Project:常见问题',
 
@@ -749,9 +748,6 @@ $1',
 'perfcached' => '以下是缓存的数据，可能不是最新的数据。缓存中最多有{{PLURAL:$1|$1条结果}}。',
 'perfcachedts' => '以下是缓存的数据，最后更新于$1。缓存中最多有{{PLURAL:$4|$4条结果}}。',
 'querypage-no-updates' => '该页面的更新目前停用。这里的数据不会马上刷新。',
-'wrong_wfQuery_params' => '错误的参数被传递到 wfQuery（）<br />
-函数：$1<br />
-查询：$2',
 'viewsource' => '查看源代码',
 'viewsource-title' => '查看$1的源代码',
 'actionthrottled' => '操作被限制',
@@ -3712,10 +3708,6 @@ Variants for Chinese language
 'exif-urgency-low' => '低（$1）',
 'exif-urgency-high' => '高（$1）',
 'exif-urgency-other' => '用户定义的优先级（$1）',
-
-# External editor support
-'edit-externally' => '用外部应用程序编辑本文件',
-'edit-externally-help' => '（更多信息请见[https://www.mediawiki.org/wiki/Manual:External_editors 安装说明]）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '所有',

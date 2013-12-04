@@ -580,7 +580,6 @@ $messages = array(
 'qbedit' => 'Bearbeiten',
 'qbpageoptions' => 'Seitenoptionen',
 'qbmyoptions' => 'Meine Seiten',
-'qbspecialpages' => 'Spezialseiten',
 'faq' => 'Häufig gestellte Fragen',
 'faqpage' => 'Project:FAQ',
 
@@ -798,9 +797,6 @@ Es ist hierzu keine Erklärung verfügbar.',
 'perfcachedts' => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $2, $3 Uhr. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
 'querypage-no-updates' => 'Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert.
 Die Daten werden bis auf Weiteres nicht erneuert.',
-'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
-Funktion: $1<br />
-Abfrage: $2',
 'viewsource' => 'Quelltext anzeigen',
 'viewsource-title' => 'Quelltext der Seite $1',
 'actionthrottled' => 'Aktionsanzahl limitiert',
@@ -3855,10 +3851,6 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-urgency-low' => 'Niedrig ($1)',
 'exif-urgency-high' => 'Hoch ($1)',
 'exif-urgency-other' => 'Benutzerdefinierte Priorität ($1)',
-
-# External editor support
-'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => '(weitere Informationen in den [https://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

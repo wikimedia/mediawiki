@@ -216,7 +216,6 @@ $messages = array(
 'qbedit' => 'ດັດແກ້',
 'qbpageoptions' => 'ໜ້ານີ້',
 'qbmyoptions' => 'ໝ້າຂ້ອຍ',
-'qbspecialpages' => 'ໜ້າພິເສດ',
 
 'errorpagetitle' => 'ຜິດພາດ',
 'returnto' => 'ກັບໄປ  $1.',
@@ -893,10 +892,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exif-imagedescription' => 'ຫົວຂໍ້ຮູບ',
 'exif-artist' => 'ຜູ້ຂຽນ',
 'exif-copyright' => 'ເຈົ້າຂອງລິຂະສິດ',
-
-# External editor support
-'edit-externally' => 'ດັດແກ້ໄຟລ໌ນີ້ໂດຍໂປແກຣມພາຍນອກ',
-'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ທັງໝົດ',

@@ -137,7 +137,6 @@ $messages = array(
 'qbedit' => 'Lulamisa',
 'qbpageoptions' => 'Tluka leri',
 'qbmyoptions' => 'Matluka ya mina',
-'qbspecialpages' => 'Matluka yohlawuleka',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -331,9 +330,6 @@ It may have already been deleted by someone else.',
 It may contain one or more characters which cannot be used in titles.',
 'querypage-no-updates' => 'Updates for this page are currently disabled.
 Data here will not presently be refreshed.',
-'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
-Function: $1<br />
-Query: $2',
 'viewsource' => 'Vona tsalwa-tumbuluxa',
 'viewsource-title' => 'vona xihlovo xa $1',
 'protectedpagetext' => 'Tluka leri riserheleriwile kusivele ndzulamiso.',
@@ -872,10 +868,6 @@ Lebyi n'wana vuxokoxoko bya finiso byitumbetiwile.
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => 'Lulamisa fayili leyi utirhisa xilulamisi xale handle ka wiki leyi',
-'edit-externally-help' => '(Vona [https://www.mediawiki.org/wiki/Manual:External_editors swiletelo swo sungurisa] leswaku ukuma vuxokoxoko lebyi engetelekeke)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Hinkwawo',

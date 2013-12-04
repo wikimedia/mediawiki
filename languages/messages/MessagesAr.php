@@ -641,7 +641,6 @@ $messages = array(
 'qbedit' => 'عدل',
 'qbpageoptions' => 'هذه الصفحة',
 'qbmyoptions' => 'صفحاتي',
-'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'الأسئلة المتكررة',
 'faqpage' => 'Project:أسئلة متكررة',
 
@@ -860,9 +859,6 @@ $1',
 'perfcachedts' => 'البيانات التالية مخبّأة وكان آخر تحديث لها في $1. {{PLURAL:$4||نتيجة واحدة|نتيجتان|$4 نتائج|$4 نتيجة}} على الأكثر {{PLURAL:$4||مخبّأة|مخبّأتان|مخبّأة}}.',
 'querypage-no-updates' => 'تحديثات هذه الصفحة معطلة حاليا.
 البيانات هنا لن يتم تحديثها حاليا.',
-'wrong_wfQuery_params' => 'معاملات خاطئة في wfQuery()<br />
-الدالة: $1<br />
-الاستعلام: $2',
 'viewsource' => 'اعرض المصدر',
 'viewsource-title' => 'استعرض مصدر $1',
 'actionthrottled' => 'تم كبح الفعل',
@@ -4015,10 +4011,6 @@ $1',
 'exif-urgency-low' => 'منخفض ( $1 )',
 'exif-urgency-high' => 'عالي ( $1 )',
 'exif-urgency-other' => 'الأولوية محددة من قبل المستخدم ($1)',
-
-# External editor support
-'edit-externally' => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => '(انظر [https://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',

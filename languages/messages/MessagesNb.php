@@ -474,7 +474,6 @@ $messages = array(
 'qbedit' => 'Rediger',
 'qbpageoptions' => 'Sideinnstillinger',
 'qbmyoptions' => 'Egne innstillinger',
-'qbspecialpages' => 'Spesialsider',
 'faq' => 'Ofte stilte spørsmål',
 'faqpage' => 'Project:Ofte stilte spørsmål',
 
@@ -685,9 +684,6 @@ Den inneholder kanskje ett eller flere tegn som ikke kan brukes i titler.',
 'perfcached' => 'Følgende data er en tidligere kopi og ikke nødvendigvis den siste versjonen i databasen. Maksimalt {{PLURAL:$1|ett resultat|$1 resultater}} er {{PLURAL:$1|tilgjengelig|tilgjengelige}} som tidligere kopier.',
 'perfcachedts' => 'Følgende data er en tidligere kopi, og ble sist oppdatert $1. Maksimalt {{PLURAL:$4|ett resultat|$4 resultater}} er {{PLURAL:$4|tilgjengelig|tilgjengelige}} som tidligere kopier.',
 'querypage-no-updates' => 'Oppdateringer for denne siden er slått av. Data her blir ikke gjenoppfrisket.',
-'wrong_wfQuery_params' => 'Gale paramtere til wfQuery()<br />
-Funksjon: $1<br />
-Spørring: $2',
 'viewsource' => 'Vis kilde',
 'viewsource-title' => 'Vis kilden til $1',
 'actionthrottled' => 'Handlingsgrense overskredet',
@@ -3731,10 +3727,6 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-urgency-low' => 'Lav ($1)',
 'exif-urgency-high' => 'Høy ($1)',
 'exif-urgency-other' => 'Brukerdefinert prioritet ($1)',
-
-# External editor support
-'edit-externally' => 'Rediger denne filen med et eksternt program',
-'edit-externally-help' => '(Se [https://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

@@ -552,7 +552,6 @@ $messages = array(
 'qbedit' => 'Уреди',
 'qbpageoptions' => 'Поставке странице',
 'qbmyoptions' => 'Моје странице',
-'qbspecialpages' => 'Посебне странице',
 'faq' => 'НПП',
 'faqpage' => 'Project:НПП',
 
@@ -771,9 +770,6 @@ $1',
 'perfcachedts' => 'Следећи подаци су кеширани, а последњи пут су ажурирани $2 у $3. Кеш садржи највише {{PLURAL:$4|један резултат|$4 резултата|$4 резултата}}.',
 'querypage-no-updates' => 'Ажурирање ове странице је тренутно онемогућено.
 Подаци који се овде налазе могу бити застарели.',
-'wrong_wfQuery_params' => 'Неисправни параметри за wfQuery()<br />
-Функција: $1<br />
-Упит: $2',
 'viewsource' => 'Изворни код',
 'viewsource-title' => 'Приказ извора странице $1',
 'actionthrottled' => 'Радња је успорена',
@@ -3969,10 +3965,6 @@ $8',
 'exif-urgency-low' => 'Ниско ($1)',
 'exif-urgency-high' => 'Високо ($1)',
 'exif-urgency-other' => 'Прилагођени приоритет ($1)',
-
-# External editor support
-'edit-externally' => 'Измени ову датотеку користећи спољашњи програм',
-'edit-externally-help' => '(Погледајте [https://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'све',

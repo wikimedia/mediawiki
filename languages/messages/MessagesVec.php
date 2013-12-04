@@ -315,7 +315,6 @@ $messages = array(
 'qbedit' => 'Canbia',
 'qbpageoptions' => 'Opsion pajina',
 'qbmyoptions' => 'Łe me pajine',
-'qbspecialpages' => 'Pagine speciali',
 'faq' => 'Domande frequenti',
 'faqpage' => 'Project:Domande frequenti',
 
@@ -525,9 +524,6 @@ No xe stà dà nisuna spiegasion in merito.',
 'perfcachedts' => "Sti dati cua xe stà ajornadi l'ultima volta el $1. Inte ła cache xe disponibiłe al masimo {{PLURAL:$4|on rexultado|$4 rexultadi}}.",
 'querypage-no-updates' => "L'azornamento periodico de sta pagina el xe sospeso. 
 I dati che ghè qua drento no i xe azornà.",
-'wrong_wfQuery_params' => 'Erore ne i parametri invià a ła funsion wfQuery()<br />
-Funsion: $1<br />
-Query: $2',
 'viewsource' => 'Varda el testo',
 'viewsource-title' => 'Varda el testo de $1',
 'actionthrottled' => 'Asion ritardà',
@@ -3464,10 +3460,6 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'exif-urgency-low' => 'Basa ($1)',
 'exif-urgency-high' => 'Alta ($1)',
 'exif-urgency-other' => 'Priorità definie dal utente ($1)',
-
-# External editor support
-'edit-externally' => 'Modifega sto file usando on programa foresto',
-'edit-externally-help' => '(Par saverghene de pì consultare łe [https://www.mediawiki.org/wiki/Manual:External_editors istrusion])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',

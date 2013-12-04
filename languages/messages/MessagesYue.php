@@ -376,7 +376,6 @@ $messages = array(
 'qbedit' => '編輯',
 'qbpageoptions' => '呢一頁',
 'qbmyoptions' => '我嘅選項',
-'qbspecialpages' => '特別頁',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -574,9 +573,6 @@ $1',
 'perfcached' => '以下嘅資料係嚟自快取，可能唔係最新嘅。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => '以下嘅資料係嚟自快取，上一次嘅更新喺$1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '響呢一頁嘅更新現時停用。啲資料將唔會即時更新。',
-'wrong_wfQuery_params' => 'wfQuery() 嘅參數錯誤<br />
-函數： $1<br />
-查詢： $2',
 'viewsource' => '睇吓原始碼',
 'actionthrottled' => '動作已壓制',
 'actionthrottledtext' => '基於反垃圾嘢嘅考量，你而家響呢段短時間之內限制咗去做呢一個動作，而你已經超過咗個上限。請響幾分鐘之後再試過。',
@@ -3031,10 +3027,6 @@ Variants for Chinese language
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真實方向',
 'exif-gpsdirection-m' => '地磁方向',
-
-# External editor support
-'edit-externally' => '用外面程式來改呢個檔案',
-'edit-externally-help' => '(去[https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

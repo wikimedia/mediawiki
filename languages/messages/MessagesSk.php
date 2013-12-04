@@ -441,7 +441,6 @@ $messages = array(
 'qbedit' => 'Upraviť',
 'qbpageoptions' => 'Táto stránka',
 'qbmyoptions' => 'Moje stránky',
-'qbspecialpages' => 'Špeciálne stránky',
 'faq' => 'Často kladené otázky',
 'faqpage' => 'Project:Často kladené otázky',
 
@@ -657,9 +656,6 @@ Neudala vysvetlenie.',
 'perfcached' => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a nemusia byť úplne aktuálne. Vo vyrovnávacej pamäti {{PLURAL:$1|je dostupný|sú dostupné|je dostupných}} najviac {{PLURAL:$1|jeden výsledok|$1 výsledky|$1 výsledkov}}.',
 'perfcachedts' => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a naposledy boli aktualizované $1. Vo vyrovnávacej pamäti {{PLURAL:$4|je dostupný|sú dostupné|je dostupných}} najviac {{PLURAL:$4|jeden výsledok|$4 výsledky|$4 výsledkov}}.',
 'querypage-no-updates' => 'Aktualizácie tejto stránky sú momentálne vypnuté. Tieto dáta sa v súčasnosti nebudú obnovovať.',
-'wrong_wfQuery_params' => 'Nesprávny parameter pre wfQuery()<br />
-Funkcia: $1<br />
-Požiadavka: $2',
 'viewsource' => 'Zobraziť zdroj',
 'viewsource-title' => 'Zobrazenie zdroja stránky $1',
 'actionthrottled' => 'Činnosť bola spomalená',
@@ -3732,10 +3728,6 @@ Ostatné budú predvolene skryté.
 'exif-urgency-low' => 'Nízka ( $1 )',
 'exif-urgency-high' => 'Vysoká ( $1 )',
 'exif-urgency-other' => 'Používateľom definovaná priorita ($1)',
-
-# External editor support
-'edit-externally' => 'Upraviť tento súbor pomocou externého programu',
-'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [https://www.mediawiki.org/wiki/Manual:External_editors externého editora])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'všetky',
