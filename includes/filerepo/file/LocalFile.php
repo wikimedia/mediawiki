@@ -931,8 +931,8 @@ class LocalFile extends File {
 		// Delete thumbnails
 		$files = $this->getThumbnails();
 		// Always purge all files from squid regardless of handler filters
+		$urls = array();
 		if ( $wgUseSquid ) {
-			$urls = array();
 			foreach ( $files as $file ) {
 				$urls[] = $this->getThumbUrl( $file );
 			}
