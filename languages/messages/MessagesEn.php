@@ -4533,10 +4533,6 @@ $8', # only translate this message to other languages if you have to change it
 'exif-urgency-high'   => 'High ($1)',
 'exif-urgency-other'  => 'User-defined priority ($1)',
 
-# External editor support
-'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => '(See the [https://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
-
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
 'namespacesall' => 'all',

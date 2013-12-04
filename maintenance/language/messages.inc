@@ -3451,10 +3451,6 @@ $wgMessageStructure = array(
 		'exif-urgency-high',
 		'exif-urgency-other',
 	),
-	'edit-externally' => array(
-		'edit-externally',
-		'edit-externally-help',
-	),
 	'all' => array(
 		'watchlistall2',
 		'namespacesall',
@@ -4189,7 +4185,6 @@ Variants for Chinese language",
 	'exif-maxaperturevalue' => '',
 	'exif-iimcategory' => '',
 	'exif-urgency' => '',
-	'edit-externally' => 'External editor support',
 	'all' => "'all' in various places, this might be different for inflected languages",
 	'confirmemail' => 'Email address confirmation',
 	'scarytransclusion' => 'Scary transclusion',
