@@ -815,7 +815,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'qbedit'         => 'Edit',
 'qbpageoptions'  => 'This page',
 'qbmyoptions'    => 'My pages',
-'qbspecialpages' => 'Special pages',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
