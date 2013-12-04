@@ -196,7 +196,6 @@ class ArchivedFile {
 	 * Loads a file object from the filearchive table
 	 *
 	 * @param $row
-	 *
 	 * @return ArchivedFile
 	 */
 	public static function newFromRow( $row ) {
@@ -238,7 +237,7 @@ class ArchivedFile {
 	/**
 	 * Load ArchivedFile object fields from a DB row.
 	 *
-	 * @param $row Object database row
+	 * @param stdClass $row Object database row
 	 * @since 1.21
 	 */
 	public function loadFromRow( $row ) {
@@ -539,7 +538,7 @@ class ArchivedFile {
 	/**
 	 * for file or revision rows
 	 *
-	 * @param $field Integer: one of DELETED_* bitfield constants
+	 * @param int $field One of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	public function isDeleted( $field ) {
@@ -551,8 +550,8 @@ class ArchivedFile {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
-	 * @param $field Integer
-	 * @param $user User object to check, or null to use $wgUser
+	 * @param int $field
+	 * @param null|User $user User object to check, or null to use $wgUser
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {

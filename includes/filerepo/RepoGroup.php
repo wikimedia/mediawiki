@@ -30,12 +30,16 @@ class RepoGroup {
 	/** @var LocalRepo */
 	protected $localRepo;
 
+	/** @var array */
 	protected $foreignRepos;
 
 	/** @var bool */
 	protected $reposInitialised = false;
 
+	/** @var array */
 	protected $localInfo;
+
+	/** @var array */
 	protected $foreignInfo;
 
 	/** @var array  */
@@ -76,7 +80,7 @@ class RepoGroup {
 	 * It's not enough to just create a superclass ... you have
 	 * to get people to call into it even though all they know is RepoGroup::singleton()
 	 *
-	 * @param $instance RepoGroup
+	 * @param RepoGroup $instance
 	 */
 	static function setSingleton( $instance ) {
 		self::$instance = $instance;
@@ -87,9 +91,9 @@ class RepoGroup {
 	 *
 	 * @param array $localInfo Associative array for local repo's info
 	 * @param array $foreignInfo of repository info arrays.
-	 *     Each info array is an associative array with the 'class' member
-	 *     giving the class name. The entire array is passed to the repository
-	 *     constructor as the first parameter.
+	 *   Each info array is an associative array with the 'class' member
+	 *   giving the class name. The entire array is passed to the repository
+	 *   constructor as the first parameter.
 	 */
 	function __construct( $localInfo, $foreignInfo ) {
 		$this->localInfo = $localInfo;
@@ -103,18 +107,15 @@ class RepoGroup {
 	 *
 	 * @param $title Title|string Title object or string
 	 * @param array $options Associative array of options:
-	 *     time:           requested time for an archived image, or false for the
-	 *                     current version. An image object will be returned which was
-	 *                     created at the specified time.
-	 *
-	 *     ignoreRedirect: If true, do not follow file redirects
-	 *
-	 *     private:        If true, return restricted (deleted) files if the current
-	 *                     user is allowed to view them. Otherwise, such files will not
-	 *                     be found.
-	 *
-	 *     bypassCache:    If true, do not use the process-local cache of File objects
-	 * @return File object or false if it is not found
+	 *   time:           requested time for an archived image, or false for the
+	 *                   current version. An image object will be returned which was
+	 *                   created at the specified time.
+	 *   ignoreRedirect: If true, do not follow file redirects
+	 *   private:        If true, return restricted (deleted) files if the current
+	 *                   user is allowed to view them. Otherwise, such files will not
+	 *                   be found.
+	 *   bypassCache:    If true, do not use the process-local cache of File objects
+	 * @return File|bool False if title is not found
 	 */
 	function findFile( $title, $options = array() ) {
 		if ( !is_array( $options ) ) {
@@ -173,7 +174,7 @@ class RepoGroup {
 	}
 
 	/**
-	 * @param $inputItems array
+	 * @param array $inputItems
 	 * @return array
 	 */
 	function findFiles( $inputItems ) {
@@ -280,7 +281,7 @@ class RepoGroup {
 	 * Find all instances of files with this keys
 	 *
 	 * @param array $hashes base 36 SHA-1 hashes
-	 * @return Array of array of File objects
+	 * @return array of array of File objects
 	 */
 	function findBySha1s( array $hashes ) {
 		if ( !$this->reposInitialised ) {
@@ -301,7 +302,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance with a given key.
-	 * @param $index string|int
+	 * @param string|int $index
 	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
@@ -319,7 +320,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance by its name
-	 * @param $name string
+	 * @param string $name
 	 * @return bool
 	 */
 	function getRepoByName( $name ) {
@@ -349,8 +350,8 @@ class RepoGroup {
 	 * Call a function for each foreign repo, with the repo object as the
 	 * first parameter.
 	 *
-	 * @param $callback Callback: the function to call
-	 * @param array $params optional additional parameters to pass to the function
+	 * @param Callback $callback The function to call
+	 * @param array $params Optional additional parameters to pass to the function
 	 * @return bool
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
@@ -366,7 +367,7 @@ class RepoGroup {
 
 	/**
 	 * Does the installation have any foreign repos set up?
-	 * @return Boolean
+	 * @return bool
 	 */
 	function hasForeignRepos() {
 		return (bool)$this->foreignRepos;
@@ -399,7 +400,7 @@ class RepoGroup {
 
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
-	 * @param $url string
+	 * @param string $url
 	 * @throws MWException
 	 * @return array containing repo, zone and rel
 	 */
@@ -417,7 +418,7 @@ class RepoGroup {
 	}
 
 	/**
-	 * @param $fileName string
+	 * @param string $fileName
 	 * @return array
 	 */
 	function getFileProps( $fileName ) {
@@ -459,7 +460,7 @@ class RepoGroup {
 
 	/**
 	 * Clear RepoGroup process cache used for finding a file
-	 * @param $title Title|null Title of the file or null to clear all files
+	 * @param Title|null $title Title of the file or null to clear all files
 	 */
 	public function clearCache( Title $title = null ) {
 		if ( $title == null ) {

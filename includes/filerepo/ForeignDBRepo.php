@@ -27,14 +27,28 @@
  * @ingroup FileRepo
  */
 class ForeignDBRepo extends LocalRepo {
-	# Settings
+	/** @var string */
 	protected $dbType;
+
+	/** @var string */
 	protected $dbServer;
+
+	/** @var string */
 	protected $dbUser;
+
+	/** @var string */
 	protected $dbPassword;
+
+	/** @var string */
 	protected $dbName;
+
+	/** @var string */
 	protected $dbFlags;
+
+	/** @var string */
 	protected $tablePrefix;
+
+	/** @var bool */
 	protected $hasSharedCache;
 
 	# Other stuff
@@ -43,7 +57,7 @@ class ForeignDBRepo extends LocalRepo {
 	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 		parent::__construct( $info );

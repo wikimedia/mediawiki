@@ -54,7 +54,7 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @param string $path Storage path
-	 * @param $mime string
+	 * @param string $mime
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromPath( $path, $mime ) {
@@ -62,8 +62,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $title
-	 * @param $repo
+	 * @param Title $title
+	 * @param FileRepo $repo
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromTitle( $title, $repo ) {
@@ -75,10 +75,10 @@ class UnregisteredLocalFile extends File {
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 *
 	 * @throws MWException
-	 * @param $title Title|bool
-	 * @param $repo FileRepo|bool
-	 * @param $path string|bool
-	 * @param $mime string|bool
+	 * @param Title|bool $title 
+	 * @param FileRepo|bool $repo 
+	 * @param string|bool $path 
+	 * @param string|bool $mime 
 	 */
 	function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
@@ -107,7 +107,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $page int
+	 * @param int $page
 	 * @return bool
 	 */
 	private function cachePageDimensions( $page = 1 ) {
@@ -122,8 +122,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $page int
-	 * @return number
+	 * @param int $page 
+	 * @return int
 	 */
 	function getWidth( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
@@ -132,8 +132,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $page int
-	 * @return number
+	 * @param int $page 
+	 * @return int
 	 */
 	function getHeight( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
@@ -154,8 +154,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $filename String
-	 * @return Array|bool
+	 * @param string $filename
+	 * @return array|bool
 	 */
 	function getImageSize( $filename ) {
 		if ( !$this->getHandler() ) {
@@ -206,7 +206,7 @@ class UnregisteredLocalFile extends File {
 	 * The file at the path of $fsFile should not be deleted (or at least
 	 * not until the end of the request). This is mostly a performance hack.
 	 *
-	 * @param $fsFile FSFile
+	 * @param FSFile $fsFile
 	 * @return void
 	 */
 	public function setLocalReference( FSFile $fsFile ) {

@@ -54,7 +54,7 @@ class FileRepoStatus extends Status {
 	}
 
 	/**
-	 * @param $repo FileRepo
+	 * @param bool|FileRepo $repo
 	 */
 	function __construct( $repo = false ) {
 		if ( $repo ) {

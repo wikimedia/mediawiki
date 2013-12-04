@@ -29,16 +29,27 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
+	/** @var array */
 	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
+
+	/** @var array */
 	protected $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
+
+	/** @var array */
 	protected $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+
+	/** @var array */
 	protected $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
+
+	/** @var array */
 	protected $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+
+	/** @var array */
 	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
 
 	/**
 	 * @throws MWException
-	 * @param $row
+	 * @param array $row
 	 * @return LocalFile
 	 */
 	function newFileFromRow( $row ) {
@@ -52,8 +63,8 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $title
-	 * @param $archiveName
+	 * @param Title $title
+	 * @param string $archiveName
 	 * @return OldLocalFile
 	 */
 	function newFromArchiveName( $title, $archiveName ) {
@@ -66,7 +77,7 @@ class LocalRepo extends FileRepo {
 	 * interleave database locks with file operations, which is potentially a
 	 * remote operation.
 	 *
-	 * @param $storageKeys array
+	 * @param array $storageKeys
 	 *
 	 * @return FileRepoStatus
 	 */
@@ -155,7 +166,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
-	 * @param $title Title of file
+	 * @param Title $title Title of file
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -208,7 +219,7 @@ class LocalRepo extends FileRepo {
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @return bool|int|mixed
 	 */
 	protected function getArticleID( $title ) {
@@ -234,7 +245,7 @@ class LocalRepo extends FileRepo {
 	 * SHA-1 content hash.
 	 *
 	 * @param string $hash a sha1 hash to look for
-	 * @return Array
+	 * @return array
 	 */
 	function findBySha1( $hash ) {
 		$dbr = $this->getSlaveDB();
@@ -349,7 +360,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Invalidates image redirect cache related to that image
 	 *
-	 * @param $title Title of page
+	 * @param Title $title Title of page
 	 * @return void
 	 */
 	function invalidateImageRedirect( Title $title ) {
