@@ -138,6 +138,7 @@ changes to languages because of Bugzilla reports.
 * A page_links_updated field has been added to the page table.
 * SpecialPage::getTitle has been deprecated in favor of
   SpecialPage::getPageTitle.
+* (bug 52811) Removed "Enable section editing via [edit] links" from Preference.
 
 == Compatibility ==
 
