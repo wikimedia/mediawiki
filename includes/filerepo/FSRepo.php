@@ -32,7 +32,7 @@
  */
 class FSRepo extends FileRepo {
 	/**
-	 * @param $info array
+	 * @param array $info
 	 * @throws MWException
 	 */
 	function __construct( array $info ) {

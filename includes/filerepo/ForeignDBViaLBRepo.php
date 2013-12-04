@@ -27,14 +27,23 @@
  * @ingroup FileRepo
  */
 class ForeignDBViaLBRepo extends LocalRepo {
+	/** @var string */
 	protected $wiki;
+
+	/** @var string */
 	protected $dbName;
+
+	/** @var string */
 	protected $tablePrefix;
+
+	/** @var array */
 	protected $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
+
+	/** @var array */
 	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 		parent::__construct( $info );

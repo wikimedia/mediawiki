@@ -129,8 +129,8 @@ class LocalFile extends File {
 	 *
 	 * Note: $unused param is only here to avoid an E_STRICT
 	 *
-	 * @param $title
-	 * @param $repo
+	 * @param Title $title
+	 * @param FileRepo $repo
 	 * @param $unused
 	 *
 	 * @return LocalFile
@@ -143,8 +143,8 @@ class LocalFile extends File {
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param $row
-	 * @param $repo
+	 * @param stdClass $row
+	 * @param FileRepo $repo
 	 *
 	 * @return LocalFile
 	 */
@@ -161,9 +161,8 @@ class LocalFile extends File {
 	 * Do not call this except from inside a repo class.
 	 *
 	 * @param string $sha1 base-36 SHA-1
-	 * @param $repo LocalRepo
+	 * @param LocalRepo $repo
 	 * @param string|bool $timestamp MW_timestamp (optional)
-	 *
 	 * @return bool|LocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
@@ -348,6 +347,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @param string $prefix
 	 * @return array
 	 */
 	function getLazyCacheFields( $prefix = 'img_' ) {
@@ -430,9 +430,10 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param Row $row
-	 * @param $prefix string
-	 * @return Array
+	 * @param array $row Row
+	 * @param string $prefix
+	 * @throws MWException
+	 * @return array
 	 */
 	protected function unprefixRow( $row, $prefix = 'img_' ) {
 		$array = (array)$row;
@@ -647,7 +648,7 @@ class LocalFile extends File {
 	/**
 	 * Return the width of the image
 	 *
-	 * @param $page int
+	 * @param int $page
 	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
@@ -674,7 +675,7 @@ class LocalFile extends File {
 	/**
 	 * Return the height of the image
 	 *
-	 * @param $page int
+	 * @param int $page
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
@@ -733,7 +734,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Return the size of the image file, in bytes
+	 * Returns the size of the image file, in bytes
 	 * @return int
 	 */
 	public function getSize() {
@@ -753,7 +754,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Return the type of the media in the file.
+	 * Returns the type of the media in the file.
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
 	 * @return string
 	 */
@@ -771,7 +772,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns true if the file exists on disk.
-	 * @return boolean Whether file exist on disk.
+	 * @return bool Whether file exist on disk.
 	 */
 	public function exists() {
 		$this->load();
@@ -787,9 +788,9 @@ class LocalFile extends File {
 
 	/**
 	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
-	 * @todo : do we still care about this? Perhaps a maintenance script
-	 *        can be made instead. Enabling this code results in a serious
-	 *        RTT regression for wikis without 404 handling.
+	 * @todo Do we still care about this? Perhaps a maintenance script
+	 *   can be made instead. Enabling this code results in a serious
+	 *   RTT regression for wikis without 404 handling.
 	 */
 	function migrateThumbFile( $thumbName ) {
 		/* Old code for bug 2532
@@ -875,7 +876,7 @@ class LocalFile extends File {
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid.
 	 *
-	 * @param Array $options An array potentially with the key forThumbRefresh.
+	 * @param array $options An array potentially with the key forThumbRefresh.
 	 *
 	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
@@ -894,7 +895,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete cached transformed files for an archived version only.
-	 * @param string $archiveName name of the archived file
+	 * @param string $archiveName Name of the archived file
 	 */
 	function purgeOldThumbnails( $archiveName ) {
 		global $wgUseSquid;
@@ -962,8 +963,8 @@ class LocalFile extends File {
 
 	/**
 	 * Delete a list of thumbnails visible at urls
-	 * @param string $dir base dir of the files.
-	 * @param array $files of strings: relative filenames (to $dir)
+	 * @param string $dir Base dir of the files.
+	 * @param array $files Array of strings: relative filenames (to $dir)
 	 */
 	protected function purgeThumbList( $dir, $files ) {
 		$fileListDebug = strtr(
@@ -993,10 +994,10 @@ class LocalFile extends File {
 	/** purgeEverything inherited */
 
 	/**
-	 * @param $limit null
-	 * @param $start null
-	 * @param $end null
-	 * @param $inc bool
+	 * @param int $limit Optional: Limit to number of results
+	 * @param int $start Optional: Timestamp, start from
+	 * @param int $end Optional: Timestamp, end at
+	 * @param bool $inc
 	 * @return array
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
@@ -1042,7 +1043,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Return the history of this file, line by line.
+	 * Returns the history of this file, line by line.
 	 * starts with current version, then old versions.
 	 * uses $this->historyLine to check which line to return:
 	 *  0      return line for current version
@@ -1110,16 +1111,17 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param string $srcPath source storage path, virtual URL, or filesystem path
-	 * @param string $comment upload description
-	 * @param string $pageText text to use for the new description page,
-	 *                  if a new description page is created
-	 * @param $flags Integer|bool: flags for publish()
-	 * @param array|bool $props File properties, if known. This can be used to reduce the
-	 *               upload time when uploading virtual URLs for which the file info
-	 *               is already known
-	 * @param string|bool $timestamp timestamp for img_timestamp, or false to use the current time
-	 * @param $user User|null: User object or null to use $wgUser
+	 * @param string $srcPath Source storage path, virtual URL, or filesystem path
+	 * @param string $comment Upload description
+	 * @param string $pageText Text to use for the new description page,
+	 *   if a new description page is created
+	 * @param int|bool $flags Flags for publish()
+	 * @param array|bool $props File properties, if known. This can be used to
+	 *   reduce the upload time when uploading virtual URLs for which the file
+	 *   info is already known
+	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
+	 *   current time
+	 * @param User|null $user User object or null to use $wgUser
 	 *
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
@@ -1178,14 +1180,14 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @param $oldver
-	 * @param $desc string
-	 * @param $license string
-	 * @param $copyStatus string
-	 * @param $source string
-	 * @param $watch bool
-	 * @param $timestamp string|bool
-	 * @param $user User object or null to use $wgUser
+	 * @param string $oldver
+	 * @param string $desc
+	 * @param string $license
+	 * @param string $copyStatus
+	 * @param string $source
+	 * @param bool $watch
+	 * @param string|bool $timestamp
+	 * @param User|null $user User object or null to use $wgUser
 	 * @return bool
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
@@ -1210,12 +1212,12 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @param $oldver
-	 * @param $comment string
-	 * @param $pageText string
-	 * @param $props bool|array
-	 * @param $timestamp bool|string
-	 * @param $user null|User
+	 * @param string $oldver
+	 * @param string $comment
+	 * @param string $pageText
+	 * @param bool|array $props
+	 * @param string|bool $timestamp
+	 * @param null|User $user
 	 * @return bool
 	 */
 	function recordUpload2(
@@ -1480,11 +1482,11 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $srcPath local filesystem path to the source image
-	 * @param $flags Integer: a bitwise combination of:
+	 * @param string $srcPath Local filesystem path to the source image
+	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus object. On success, the value member contains the
+	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publish( $srcPath, $flags = 0, array $options = array() ) {
@@ -1498,12 +1500,12 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
-	 * @param string $srcPath local filesystem path to the source image
-	 * @param string $dstRel target relative path
-	 * @param $flags Integer: a bitwise combination of:
+	 * @param string $srcPath Local filesystem path to the source image
+	 * @param string $dstRel Target relative path
+	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus object. On success, the value member contains the
+	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publishTo( $srcPath, $dstRel, $flags = 0, array $options = array() ) {
@@ -1543,8 +1545,8 @@ class LocalFile extends File {
 	 * Cache purging is done; checks for validity
 	 * and logging are caller's responsibility
 	 *
-	 * @param $target Title New file name
-	 * @return FileRepoStatus object.
+	 * @param Title $target New file name
+	 * @return FileRepoStatus
 	 */
 	function move( $target ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1596,9 +1598,9 @@ class LocalFile extends File {
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason
-	 * @param $suppress
-	 * @return FileRepoStatus object.
+	 * @param string $reason
+	 * @param bool $suppress
+	 * @return FileRepoStatus
 	 */
 	function delete( $reason, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1652,11 +1654,11 @@ class LocalFile extends File {
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $archiveName String
-	 * @param $reason String
-	 * @param $suppress Boolean
-	 * @throws MWException or FSException on database or file store failure
-	 * @return FileRepoStatus object.
+	 * @param string $archiveName
+	 * @param string $reason
+	 * @param bool $suppress
+	 * @throws MWException Exception on database or file store failure
+	 * @return FileRepoStatus
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false ) {
 		global $wgUseSquid;
@@ -1692,8 +1694,8 @@ class LocalFile extends File {
 	 * May throw database exceptions on error.
 	 *
 	 * @param array $versions set of record ids of deleted items to restore,
-	 *                    or empty to restore all revisions.
-	 * @param $unsuppress Boolean
+	 *   or empty to restore all revisions.
+	 * @param bool $unsuppress
 	 * @return FileRepoStatus
 	 */
 	function restore( $versions = array(), $unsuppress = false ) {
@@ -1728,7 +1730,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get the URL of the file description page.
-	 * @return String
+	 * @return string
 	 */
 	function getDescriptionUrl() {
 		return $this->title->getLocalURL();
@@ -1739,7 +1741,7 @@ class LocalFile extends File {
 	 * This is not used by ImagePage for local files, since (among other things)
 	 * it skips the parser cache.
 	 *
-	 * @param $lang Language What language to get description in (Optional)
+	 * @param Language $lang What language to get description in (Optional)
 	 * @return bool|mixed
 	 */
 	function getDescriptionText( $lang = null ) {
@@ -1757,6 +1759,8 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @param int $audience
+	 * @param User $user
 	 * @return string
 	 */
 	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -1820,7 +1824,8 @@ class LocalFile extends File {
 	/**
 	 * Start a transaction and lock the image for update
 	 * Increments a reference counter if the lock is already held
-	 * @return boolean True if the image exists, false otherwise
+	 * @throws MWException
+	 * @return bool True if the image exists, false otherwise
 	 */
 	function lock() {
 		$dbw = $this->repo->getMasterDB();
@@ -1888,7 +1893,6 @@ class LocalFile extends File {
  * @ingroup FileAbstraction
  */
 class LocalFileDeleteBatch {
-
 	/** @var LocalFile */
 	private $file;
 
@@ -1911,9 +1915,9 @@ class LocalFileDeleteBatch {
 	private $status;
 
 	/**
-	 * @param $file File
-	 * @param $reason string
-	 * @param $suppress bool
+	 * @param File $file
+	 * @param string $reason
+	 * @param bool $suppress
 	 */
 	function __construct( File $file, $reason = '', $suppress = false ) {
 		$this->file = $file;
@@ -1927,7 +1931,7 @@ class LocalFileDeleteBatch {
 	}
 
 	/**
-	 * @param $oldName string
+	 * @param string $oldName
 	 */
 	function addOld( $oldName ) {
 		$this->srcRels[$oldName] = $this->file->getArchiveRel( $oldName );
@@ -1936,7 +1940,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Add the old versions of the image to the batch
-	 * @return Array List of archive names from old versions
+	 * @return array List of archive names from old versions
 	 */
 	function addOlds() {
 		$archiveNames = array();
@@ -2263,8 +2267,8 @@ class LocalFileRestoreBatch {
 	private $unsuppress = false;
 
 	/**
-	 * @param $file File
-	 * @param $unsuppress bool
+	 * @param File $file
+	 * @param bool $unsuppress
 	 */
 	function __construct( File $file, $unsuppress = false ) {
 		$this->file = $file;
@@ -2530,7 +2534,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a store batch.
-	 * @param $triplets array
+	 * @param array $triplets
 	 * @return array
 	 */
 	function removeNonexistentFiles( $triplets ) {
@@ -2552,7 +2556,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a cleanup batch.
-	 * @param $batch array
+	 * @param array $batch
 	 * @return array
 	 */
 	function removeNonexistentFromCleanup( $batch ) {
@@ -2639,9 +2643,7 @@ class LocalFileMoveBatch {
 	/** @var   */
 	protected $archive;
 
-	/**
-	 * @var DatabaseBase
-	 */
+	/** @var DatabaseBase */
 	protected $db;
 
 	/**
@@ -2669,7 +2671,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Add the old versions of the image to the batch
-	 * @return Array List of archive names from old versions
+	 * @return array List of archive names from old versions
 	 */
 	function addOlds() {
 		$archiveBase = 'archive';
@@ -2846,7 +2848,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Removes non-existent files from move batch.
-	 * @param $triplets array
+	 * @param array $triplets
 	 * @return array
 	 */
 	function removeNonexistentFiles( $triplets ) {

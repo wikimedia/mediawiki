@@ -106,8 +106,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
-	 * @param $title Title
-	 * @param $time string|bool
+	 * @param Title $title
+	 * @param string|bool $time
 	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
@@ -119,7 +119,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $files array
+	 * @param array $files
 	 * @return array
 	 */
 	function fileExistsBatch( array $files ) {
@@ -174,7 +174,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $virtualUrl string
+	 * @param string $virtualUrl
 	 * @return bool
 	 */
 	function getFileProps( $virtualUrl ) {
@@ -182,7 +182,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $query array
+	 * @param array $query
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
@@ -209,7 +209,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $data array
+	 * @param array $data
 	 * @return bool|array
 	 */
 	function getImageInfo( $data ) {
@@ -225,7 +225,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $hash string
+	 * @param string $hash
 	 * @return array
 	 */
 	function findBySha1( $hash ) {
@@ -249,11 +249,11 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $name string
-	 * @param $width int
-	 * @param $height int
-	 * @param $result null
-	 * @param $otherParams string
+	 * @param string $name
+	 * @param int $width
+	 * @param int $height
+	 * @param null $result
+	 * @param string $otherParams
 	 * @return bool
 	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
@@ -277,10 +277,11 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $name string
-	 * @param $width int
-	 * @param $height int
-	 * @param $otherParams string
+	 * @param string $name
+	 * @param int $width
+	 * @param int $height
+	 * @param string $otherParams
+	 * @param string $lang Language code for language of error
 	 * @return bool|MediaTransformError
 	 * @since 1.22
 	 */
@@ -318,8 +319,8 @@ class ForeignAPIRepo extends FileRepo {
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
 	 * @param string $name is a dbkey form of a title
-	 * @param $width
-	 * @param $height
+	 * @param int $width
+	 * @param int $height
 	 * @param string $params Other rendering parameters (page number, etc)
 	 *   from handler's makeParamString.
 	 * @return bool|string
@@ -414,7 +415,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @see FileRepo::getZoneUrl()
-	 * @param $zone String
+	 * @param string $zone
 	 * @param string|null $ext Optional file extension
 	 * @return String
 	 */
@@ -431,7 +432,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * Get the local directory corresponding to one of the basic zones
-	 * @param $zone string
+	 * @param string $zone
 	 * @return bool|null|string
 	 */
 	function getZonePath( $zone ) {
@@ -492,9 +493,9 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * Like a Http:get request, but with custom User-Agent.
 	 * @see Http:get
-	 * @param $url string
-	 * @param $timeout string
-	 * @param $options array
+	 * @param string $url
+	 * @param string $timeout
+	 * @param array $options
 	 * @return bool|String
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
@@ -529,9 +530,10 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * HTTP GET request to a mediawiki API (with caching)
-	 * @param $target string Used in cache key creation, mostly
-	 * @param $query array The query parameters for the API request
-	 * @param $cacheTTL int Time to live for the memcached caching
+	 * @param string $target Used in cache key creation, mostly
+	 * @param array $query The query parameters for the API request
+	 * @param int $cacheTTL Time to live for the memcached caching
+	 * @return null
 	 */
 	public function httpGetCached( $target, $query, $cacheTTL = 3600 ) {
 		if ( $this->mApiBase ) {
@@ -568,7 +570,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $callback Array|string
+	 * @param array|string $callback
 	 * @throws MWException
 	 */
 	function enumFiles( $callback ) {
