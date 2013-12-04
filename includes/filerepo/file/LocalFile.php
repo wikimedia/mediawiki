@@ -46,43 +46,80 @@ define( 'MW_FILE_VERSION', 9 );
 class LocalFile extends File {
 	const CACHE_FIELD_MAX_LEN = 1000;
 
-	/**#@+
-	 * @private
-	 */
-	var
-		$fileExists,       # does the file exist on disk? (loadFromXxx)
-		$historyLine,      # Number of line to return by nextHistoryLine() (constructor)
-		$historyRes,       # result of the query for the file's history (nextHistoryLine)
-		$width,            # \
-		$height,           #  |
-		$bits,             #   --- returned by getimagesize (loadFromXxx)
-		$attr,             # /
-		$media_type,       # MEDIATYPE_xxx (bitmap, drawing, audio...)
-		$mime,             # MIME type, determined by MimeMagic::guessMimeType
-		$major_mime,       # Major mime type
-		$minor_mime,       # Minor mime type
-		$size,             # Size in bytes (loadFromXxx)
-		$metadata,         # Handler-specific metadata
-		$timestamp,        # Upload timestamp
-		$sha1,             # SHA-1 base 36 content hash
-		$user, $user_text, # User, who uploaded the file
-		$description,      # Description of current revision of the file
-		$dataLoaded,       # Whether or not core data has been loaded from the database (loadFromXxx)
-		$extraDataLoaded,  # Whether or not lazy-loaded data has been loaded from the database
-		$upgraded,         # Whether the row was upgraded on load
-		$locked,           # True if the image row is locked
-		$lockedOwnTrx,     # True if the image row is locked with a lock initiated transaction
-		$missing,          # True if file is not present in file system. Not to be cached in memcached
-		$deleted;          # Bitfield akin to rev_deleted
+	/** @var bool Does the file exist on disk? (loadFromXxx) */
+	protected $fileExists;
 
-	/**#@-*/
+	/** @var int image width */
+	protected $width;
 
-	/**
-	 * @var LocalRepo
-	 */
-	var $repo;
+	/** @var int image height */
+	protected $height;
 
+	/** @var int Returned by getimagesize (loadFromXxx) */
+	protected $bits;
+
+	/** @var string MEDIATYPE_xxx (bitmap, drawing, audio...) */
+	protected $media_type;
+
+	/** @var string MIME type, determined by MimeMagic::guessMimeType */
+	protected $mime;
+
+	/** @var int Size in bytes (loadFromXxx) */
+	protected $size;
+
+	/** @var string Handler-specific metadata */
+	protected $metadata;
+
+	/** @var string SHA-1 base 36 content hash */
+	protected $sha1;
+
+	/** @var bool Whether or not core data has been loaded from the database (loadFromXxx) */
+	protected $dataLoaded;
+
+	/** @var bool Whether or not lazy-loaded data has been loaded from the database */
+	protected $extraDataLoaded;
+
+	/** @var int Bitfield akin to rev_deleted */
+	protected $deleted;
+
+	/** @var string */
 	protected $repoClass = 'LocalRepo';
+
+	/** @var int Number of line to return by nextHistoryLine() (constructor) */
+	private $historyLine;
+
+	/** @var int Result of the query for the file's history (nextHistoryLine) */
+	private $historyRes;
+
+	/** @var string Major mime type */
+	private $major_mime;
+
+	/** @var string Minor mime type */
+	private $minor_mime;
+
+	/** @var string Upload timestamp */
+	private $timestamp;
+
+	/** @var int User ID of uploader */
+	private $user;
+
+	/** @var string User name of uploader */
+	private $user_text;
+
+	/** @var string Description of current revision of the file */
+	private $description;
+
+	/** @var bool Whether the row was upgraded on load */
+	private $upgraded;
+
+	/** @var bool True if the image row is locked */
+	private $locked;
+
+	/** @var bool True if the image row is locked with a lock initiated transaction */
+	private $lockedOwnTrx;
+
+	/** @var bool True if file is not present in file system. Not to be cached in memcached */
+	private $missing;
 
 	const LOAD_ALL = 1; // integer; load all the lazy fields too (like metadata)
 
@@ -1852,13 +1889,26 @@ class LocalFile extends File {
  */
 class LocalFileDeleteBatch {
 
-	/**
-	 * @var LocalFile
-	 */
-	var $file;
+	/** @var LocalFile */
+	private $file;
 
-	var $reason, $srcRels = array(), $archiveUrls = array(), $deletionBatch, $suppress;
-	var $status;
+	/** @var string */
+	private $reason;
+
+	/** @var array */
+	private $srcRels = array();
+
+	/** @var array */
+	private $archiveUrls = array();
+
+	/** @var array Items to be processed in the deletion batch */
+	private $deletionBatch;
+
+	/** @var bool Wether to suppress all suppressable fields when deleting */
+	private $suppress;
+
+	/** @var FileRepoStatus */
+	private $status;
 
 	/**
 	 * @param $file File
@@ -2197,12 +2247,20 @@ class LocalFileDeleteBatch {
  * @ingroup FileAbstraction
  */
 class LocalFileRestoreBatch {
-	/**
-	 * @var LocalFile
-	 */
-	var $file;
+	/** @var LocalFile */
+	private $file;
 
-	var $cleanupBatch, $ids, $all, $unsuppress = false;
+	/** @var array List of file IDs to restore */
+	private $cleanupBatch;
+
+	/** @var array List of file IDs to restore */
+	private $ids;
+
+	/** @var bool Add all revisions of the file  */
+	private $all;
+
+	/** @var bool Wether to remove all settings for suppressed fields  */
+	private $unsuppress = false;
 
 	/**
 	 * @param $file File
@@ -2563,23 +2621,28 @@ class LocalFileRestoreBatch {
  * @ingroup FileAbstraction
  */
 class LocalFileMoveBatch {
+	/** @var LocalFile */
+	protected $file;
 
-	/**
-	 * @var LocalFile
-	 */
-	var $file;
+	/** @var Title */
+	protected $target;
 
-	/**
-	 * @var Title
-	 */
-	var $target;
+	/** @var   */
+	protected $cur;
 
-	var $cur, $olds, $oldCount, $archive;
+	/** @var   */
+	protected $olds;
+
+	/** @var   */
+	protected $oldCount;
+
+	/** @var   */
+	protected $archive;
 
 	/**
 	 * @var DatabaseBase
 	 */
-	var $db;
+	protected $db;
 
 	/**
 	 * @param File $file
