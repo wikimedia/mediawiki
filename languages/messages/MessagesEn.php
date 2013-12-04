@@ -667,7 +667,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-numberheadings'          => 'Auto-number headings',
 'tog-showtoolbar'             => 'Show edit toolbar',
 'tog-editondblclick'          => 'Edit pages on double click',
-'tog-editsection'             => 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
