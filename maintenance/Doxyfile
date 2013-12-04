@@ -47,10 +47,10 @@ MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
-ALIASES =	"type{1}=<b> \1 </b>:" \
-		"types{2}=<b> \1 </b> or <b> \2 </b>:" \
-		"types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
-		"arrayof{2}=<b> Array </b> of \2" \
+ALIASES =	"type{1}=<strong> \1 </strong>:" \
+		"types{2}=<strong> \1 </strong> or <strong> \2 </strong>:" \
+		"types{3}=<strong> \1 </strong>, <strong> \2 </strong>, or <strong> \3 </strong>:" \
+		"arrayof{2}=<strong> Array </strong> of \2" \
 		"null=\type{Null}" \
 		"boolean=\type{Boolean}" \
 		"bool=\type{Boolean}" \

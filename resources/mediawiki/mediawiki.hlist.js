@@ -14,9 +14,9 @@ jQuery( function( $ ) {
 			$hlists.find( 'dt:not(:last-child)' )
 				.append( ': ' );
 			$hlists.find( 'dd:not(:last-child)' )
-				.append( '<b>·</b> ' );
+				.append( '<strong>·</strong> ' );
 			$hlists.find( 'li:not(:last-child)' )
-				.append( '<b>·</b> ' );
+				.append( '<strong>·</strong> ' );
 			$hlists.find( 'dl dl, dl ol, dl ul, ol dl, ol ol, ol ul, ul dl, ul ol, ul ul' )
 				.prepend( '( ' ).append( ') ' );
 		}

@@ -444,7 +444,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				list( $message, $name, $field ) = $item;
 				$innerHTML = Xml::checkLabel( $this->msg( $message )->text(), $name, $name, $bitfield & $field );
 				if ( $field == Revision::DELETED_RESTRICTED ) {
-					$innerHTML = "<b>$innerHTML</b>";
+					$innerHTML = "<strong>$innerHTML</strong>";
 				}
 				$line = Xml::tags( 'td', array( 'class' => 'mw-input' ), $innerHTML );
 				$html .= "<tr>$line</tr>\n";
@@ -469,7 +469,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 1, $selected == 1 ) . '</td>';
 				$label = $this->msg( $message )->escaped();
 				if ( $field == Revision::DELETED_RESTRICTED ) {
-					$label = "<b>$label</b>";
+					$label = "<strong>$label</strong>";
 				}
 				$line .= "<td>$label</td>";
 				$html .= "<tr>$line</tr>\n";
