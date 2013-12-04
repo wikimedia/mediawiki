@@ -82,9 +82,9 @@ class ForeignDBViaLBRepo extends LocalRepo {
 			array_unshift( $args, $this->wiki );
 
 			return implode( ':', $args );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	protected function assertWritableRepo() {

@@ -176,9 +176,9 @@ class LocalFile extends File {
 		$row = $dbr->selectRow( 'image', self::selectFields(), $conds, __METHOD__ );
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -662,14 +662,14 @@ class LocalFile extends File {
 			$dim = $handler->getPageDimensions( $this, $page );
 			if ( $dim ) {
 				return $dim['width'];
-			} else {
-				// For non-paged media, the false goes through an
-				// intval, turning failure into 0, so do same here.
-				return 0;
 			}
-		} else {
-			return $this->width;
+
+			// For non-paged media, the false goes through an
+			// intval, turning failure into 0, so do same here.
+			return 0;
 		}
+
+		return $this->width;
 	}
 
 	/**
@@ -686,17 +686,17 @@ class LocalFile extends File {
 			if ( !$handler ) {
 				return 0;
 			}
+
 			$dim = $handler->getPageDimensions( $this, $page );
 			if ( $dim ) {
 				return $dim['height'];
-			} else {
-				// For non-paged media, the false goes through an
-				// intval, turning failure into 0, so do same here.
-				return 0;
 			}
-		} else {
-			return $this->height;
+			// For non-paged media, the false goes through an
+			// intval, turning failure into 0, so do same here.
+			return 0;
 		}
+
+		return $this->height;
 	}
 
 	/**
@@ -1771,9 +1771,9 @@ class LocalFile extends File {
 			&& !$this->userCan( self::DELETED_COMMENT, $user )
 		) {
 			return '';
-		} else {
-			return $this->description;
 		}
+
+		return $this->description;
 	}
 
 	/**

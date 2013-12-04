@@ -459,9 +459,9 @@ class ArchivedFile {
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
-		} else {
-			return $this->user;
 		}
+
+		return $this->user;
 	}
 
 	/**
@@ -473,9 +473,9 @@ class ArchivedFile {
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
-		} else {
-			return $this->user_text;
 		}
+
+		return $this->user_text;
 	}
 
 	/**
@@ -487,9 +487,9 @@ class ArchivedFile {
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_COMMENT ) ) {
 			return 0;
-		} else {
-			return $this->description;
 		}
+
+		return $this->description;
 	}
 
 	/**

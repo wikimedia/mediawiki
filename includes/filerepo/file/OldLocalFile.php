@@ -96,9 +96,9 @@ class OldLocalFile extends LocalFile {
 		$row = $dbr->selectRow( 'oldimage', self::selectFields(), $conds, __METHOD__ );
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**

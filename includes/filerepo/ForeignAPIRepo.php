@@ -203,9 +203,9 @@ class ForeignAPIRepo extends FileRepo {
 
 		if ( $data ) {
 			return FormatJson::decode( $data, true );
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**
@@ -271,9 +271,9 @@ class ForeignAPIRepo extends FileRepo {
 			$result = $info;
 
 			return $info['thumburl'];
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -515,9 +515,9 @@ class ForeignAPIRepo extends FileRepo {
 
 		if ( $status->isOK() ) {
 			return $req->getContent();
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
