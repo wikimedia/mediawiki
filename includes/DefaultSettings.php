@@ -4017,7 +4017,6 @@ $wgDefaultUserOptions = array(
 	'underline' => 2,
 	'uselivepreview' => 0,
 	'usenewrc' => 0,
-	'vector-simplesearch' => 1,
 	'watchcreations' => 1,
 	'watchdefault' => 1,
 	'watchdeletion' => 0,
