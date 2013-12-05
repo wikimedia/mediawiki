@@ -742,8 +742,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 # Search results
 'searchresults' => 'Resultati da reçerca',
 'searchresults-title' => 'Rezoltati da riçerca de "$1"',
-'searchsubtitle' => "Ti t'è çercoö '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Ti t'è çercoö '''$1'''",
 'prevn' => 'Precedenti {{PLURAL:$1|$1}}',
 'nextn' => 'Proscima {{PLURAL:$1|$1}}',
 'prevn-title' => '{{PLURAL:$1|rezoltato precedénte|rezoltati precedénti}}',
@@ -771,7 +769,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'searchall' => 'tùtti',
 'showingresultsheader' => "{{PLURAL:$5|Rizoltato '''$1''' di '''$3'''|Rizoltati '''$1 - $2''' de '''$3'''}} pe '''$4'''",
 'search-nonefound' => "Mi n'ho atrovòu ninte",
-'powersearch' => 'Çerca',
 
 # Preferences page
 'preferences' => 'Preferençe',

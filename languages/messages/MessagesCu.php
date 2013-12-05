@@ -1,5 +1,5 @@
 <?php
-/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+/** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -461,7 +461,6 @@ $messages = array(
 'search-interwiki-more' => '(вѧщє)',
 'searchall' => 'вьсꙗ',
 'search-nonefound' => 'исканиѥ сꙗ слова ничєсо жє нє авило ѥстъ',
-'powersearch' => 'вѧщєѥ исканиѥ',
 'powersearch-redir' => 'прѣнаправлѥниꙗ',
 
 # Preferences page

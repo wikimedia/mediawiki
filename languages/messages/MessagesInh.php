@@ -503,10 +503,6 @@ $messages = array(
 # Search results
 'searchresults' => 'Тохкама гIулакхахилар',
 'searchresults-title' => '"$1" тохка',
-'searchresulttext' => 'Хьахьоадайтама оагIувнаш тIа тохкамах лаьца лоаца маIандар эца [[{{MediaWiki:Helppage}}|новкъостала декъамага]] хьажа.',
-'searchsubtitle' => 'Хоаттамах лаьца «[[:$1]]» ([[Special:Prefixindex/$1|цу цIерах ювалу оагIувнаш]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|цу цIерах Iинкаш еш йола]])',
-'searchsubtitleinvalid' => "'''$1''' хаттара",
-'notitlematches' => 'ОагIувни цIераш вIашагIа кхеташ яц',
 'notextmatches' => 'ОагIувнаша яздамий вIашагIакхетараш дац',
 'prevn' => '{{PLURAL:$1|хьалхйоаг|ар $1|хьалхйоаг|араш $1|хьалхйоаг|араш $1}}',
 'nextn' => '{{PLURAL:$1|тlехьайоагlар $1|тlехьайоагlараш $1|тlехьайоагlараш $1}}',
@@ -538,14 +534,10 @@ $messages = array(
 'searchrelated' => 'гаргара',
 'searchall' => 'деррига',
 'showingresultsheader' => "{{PLURAL:$5|'''$1''' толамче укх '''$3''' долачарах|'''$1 — $2''' толамчаш укх '''$3''' долачарах}} '''$4'''а",
-'nonefound' => "'''Зем лаца.''' Цхьа дола цIера аренаш мара лахалац.
-''all:'' яха тIаоттарга пайдабе, массадола цIеран аренашкахь (дакъалаьцархой дуцамаш а, куцкепаш а, кхы дара а чулоацаш), е деза цIера аренаш Iочуязаде.",
 'search-nonefound' => 'ДIахаттама нийсамаш корадаьдац.',
-'powersearch' => ' Доккха тахкар',
 'powersearch-legend' => ' Доккха тахкар',
 'powersearch-ns' => ' ЦIерий аренашкахь лахар',
 'powersearch-redir' => 'ДIа-хьа оагIувнаш гойта',
-'powersearch-field' => 'Лахар',
 'powersearch-toggleall' => 'Деррига',
 'powersearch-togglenone' => 'Цхьаккха',
 

@@ -726,7 +726,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'prefs-changeemail' => 'E-mail ṭhikạna bodolme',
 'prefs-setemail' => 'E-mail ṭhikana benaome',
 'saveprefs' => 'Rukhiyạymẽ',
-'resetprefs' => 'Baṅ rukhiyạaḱ ocogmẽ',
 'rows' => 'Sạrko:',
 'searchresultshead' => 'Sendra',
 'timezoneregion-africa' => 'Aphrika',

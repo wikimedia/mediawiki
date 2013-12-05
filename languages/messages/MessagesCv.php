@@ -555,14 +555,12 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # Search results
 'searchresults' => 'Тупрăмăр',
-'notitlematches' => 'Статьясен ячĕсем пĕр пек мар',
 'textmatches' => 'Статьясенчи текст пĕрпеклĕхĕ',
 'prevn' => 'малтанхи {{PLURAL:$1|$1}}',
 'nextn' => 'малалли {{PLURAL:$1|$1}}',
 'search-result-size' => '$1 ({{PLURAL:$2|1 сăмах|$2 сăмах}})',
 'showingresults' => 'Аяларах эсир <b>#$2</b> пуçласа кăтартнă <b>$1</b> йĕркене куратăр.',
 'showingresultsheader' => "{{PLURAL:$5|Результат '''$1'''  '''$3''' хушшинчен|Результатсем'''$1 - $2''' '''$3''' хушшинчен}}  '''$4''' валли",
-'powersearch' => 'Анлă шырав',
 'powersearch-legend' => 'Анлă шырав',
 
 # Preferences page

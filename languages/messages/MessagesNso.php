@@ -545,10 +545,6 @@ fetola tshenolo',
 # Search results
 'searchresults' => 'Sephetho sa go fetleka',
 'searchresults-title' => 'Diphetho tša go fetleka "$1"',
-'searchresulttext' => 'Go hwetša sedi ka go fetleka {{SITENAME}}, lebelela [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'O fetleka o nyaka \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|matlaka ka moka ago thoma ka "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|matlakala ka moka a go hlamaganya go  "$1"]])',
-'searchsubtitleinvalid' => "O fetlekile o nyaka  '''$1'''",
-'notitlematches' => 'Gago letlakala la thaetlele yago swana',
 'notextmatches' => 'Gago mangwalo letlakaleng a go swana',
 'prevn' => 'gofeta {{PLURAL:$1|$1}}',
 'nextn' => 'latela {{PLURAL:$1|$1}}',
@@ -579,15 +575,10 @@ fetola tshenolo',
 'searchrelated' => 'tswalana',
 'searchall' => 'tšohle',
 'showingresultsheader' => "{{PLURAL:$5|Sepheto '''$1''' tša '''$3'''|Dipheto '''$1 - $2''' tša '''$3'''}} tša '''$4'''",
-'nonefound' => "'''Hloko''': Ke di \"namespace\" tše dingwe tšeo di  fetlekwago go \"default.\"
-
-Leka go fetleka ka go ngwala ''all:'' go fetleka mateng ka moka, goba o šumiše \"namespace\" yeo o nyakago go e fetleka.",
 'search-nonefound' => 'Gago dipheto tšago sepelelana le "query".',
-'powersearch' => 'Fetleka ka tlhoko',
 'powersearch-legend' => 'Fetleka ya tšwetše',
 'powersearch-ns' => 'Fetleka go di "namespace"',
 'powersearch-redir' => 'Lenano la di "redirect"',
-'powersearch-field' => 'Fetleka',
 
 # Preferences page
 'preferences' => 'Dikgatlhegelo',

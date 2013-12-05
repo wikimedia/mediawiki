@@ -2769,25 +2769,10 @@ Parameters:
 
 Parameters:
 * $1 - the search term',
-'searchresulttext' => '{{doc-important|Do not translate <code><nowiki>[[{{MediaWiki:Helppage}}|{{int:help}}]]</nowiki></code>.}}
-See also:
-* {{msg-mw|Helppage}}
-* {{msg-mw|Help}}',
-'searchsubtitle' => 'Refers to {{msg-mw|Pipe-separator}}.
-
-Parameters:
-* $1 - search term
-See also:
-* {{msg-mw|Searchsubtitleinvalid}}',
-'searchsubtitleinvalid' => 'Parameters:
-* $1 - search term
-See also:
-* {{msg-mw|Searchsubtitle}}',
 'toomanymatches' => 'Used as section header in [[Special:Search]], when there are too many hits.',
 'titlematches' => 'Used as section header in [[Special:Search]].
 
 This message is followed by search results.',
-'notitlematches' => 'Header of results page after a search for a title for which no page exists',
 'textmatches' => 'When displaying search results',
 'notextmatches' => 'Error message when there are no results',
 'prevn' => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the first argument of {{msg-mw|Viewprevnext}}.
@@ -2824,7 +2809,6 @@ For Special pages, the navigation bar is prefixed by "({{msg-mw|Page first}} | {
 Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|Showingresultsnum}} message (for Special pages) or by the {{msg-mw|Linkshere}} message (for Whatlinkshere pages).
 
 Refers to {{msg-mw|Pipe-separator}}.',
-'searchmenu-legend' => '{{Identical|Search options}}',
 'searchmenu-exists' => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).
 
 Parameters:
@@ -2833,9 +2817,6 @@ Parameters:
 
 Parameters:
 * $1 - page title',
-'searchmenu-prefix' => '{{doc-important|Do not translate "Special:PrefixIndex"}}
-Parameters:
-* $1 - prefix string',
 'searchprofile-articles' => "A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].
@@ -2937,18 +2918,12 @@ See also:
 * $3 - total number of results
 * $4 - the search term
 * $5 - number of results',
-'nonefound' => 'This message appears on the search results page if no results are found.
-{{doc-important|Do not translate "all:".}}',
 'search-nonefound' => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
-'powersearch' => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
-
-{{Identical|Advanced search}}',
 'powersearch-legend' => 'Advanced search
 
 {{Identical|Advanced search}}',
 'powersearch-ns' => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-redir' => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-field' => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-togglelabel' => 'Used in [{{canonicalurl:Special:Search|advanced=1}} Advanced search]. Synonym: "Select" as verb.
 {{Identical|Check}}',
 'powersearch-toggleall' => '"All" refers to namespaces. It is used in Advanced search: {{canonicalurl:Special:Search|advanced=1}}
@@ -3034,7 +3009,6 @@ See also:
 * {{msg-mw|Accesskey-preferences-save}}
 * {{msg-mw|Tooltip-preferences-save}}
 {{Identical|Save}}',
-'resetprefs' => 'Button for resetting changes in the preferences page.',
 'restoreprefs' => 'Used as link text in [[Special:Preferences]]. The link points to [[Special:Preferences/reset]] which shows the "Restore all default settings" form.
 
 Also used as label for the Submit button in [[Special:Preferences/reset]].',
@@ -3070,7 +3044,6 @@ This option lets your time zone setting use the one that is used on the wiki (of
 Parameters:
 * $1 - timezone name, or timezone offset (in "%+03d:%02d" format)',
 'timezoneuseoffset' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.',
-'timezoneoffset' => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'servertime' => 'Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].',
 'guesstimezone' => 'Option to fill in the timezone from the browser setting',
 'timezoneregion-africa' => 'Used in "Time zone" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], "date and time" tab.
@@ -4953,10 +4926,8 @@ See the following search results:
 'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
-'protectedpagestext' => 'Shown on top of [[Special:ProtectedPages]]',
 'protectedpagesempty' => 'Used in [[Special:ProtectedPages]], when there are no protected pages with the specified parameters.',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
-'protectedtitlestext' => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',

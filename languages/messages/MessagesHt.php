@@ -859,10 +859,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 # Search results
 'searchresults' => 'Rezilta yo pou rechèch la',
 'searchresults-title' => 'Rezilta rechèch yo pou « $1 »',
-'searchresulttext' => 'Pou ou kapab konenn plis sou rechèch nan {{SITENAME}}, gade [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Ou chache « '''[[:$1]]''' » ([[Special:Prefixindex/$1|tout paj yo ki komanse pa« $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tout paj yo ki genyen lyen vè « $1 »]])",
-'searchsubtitleinvalid' => "Ou chache « '''$1''' »",
-'notitlematches' => 'Pa gen paj nan sistèm ki genyen tit ou bay nan rechèch ou an.',
 'notextmatches' => 'Pa genyen pyès tèks nan paj yo ki ap koresponn ak rechèch ou fè a',
 'prevn' => '{{PLURAL:$1|$1}} anvan yo',
 'nextn' => '{{PLURAL:$1|$1}} swivan yo',
@@ -875,13 +871,9 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'search-interwiki-caption' => 'Pwojè frè, ki ansanm oubyen ki ap deplwaye ansanm',
 'search-interwiki-default' => 'Rezilta yo pou $1 :',
 'search-interwiki-more' => '(plis)',
-'nonefound' => "'''Remak''' : sèl kèk espas non chache nan sityasyon nòmal.
-Eseye mete prefiks ''all:'' devan tèm rechèche ou an pou chache nan tout kontni a (sa conprann paj diskisyon yo, modèl yo, etc.) oubyen itilize espas non ou ta renmen pou prefiks.",
-'powersearch' => 'Fouye fon',
 'powersearch-legend' => 'Fouye fon',
 'powersearch-ns' => 'Chache nan espas non sa yo:',
 'powersearch-redir' => 'Montre redireksyon yo',
-'powersearch-field' => 'Chache',
 
 # Preferences page
 'preferences' => 'Preferans yo',

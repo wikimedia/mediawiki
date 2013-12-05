@@ -468,10 +468,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Search results
 'searchresults' => 'Tracher chés résultats',
 'searchresults-title' => 'Tracher chés résultats pou "$1"',
-'searchresulttext' => "Pou pus d'informachons quant qu'vos trachez {{SITENAME}}, vir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle' => "Vos trachez  « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes chés paches aroutant pèr « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes chés paches qu'ont un loïen dsus « $1 »]])",
-'searchsubtitleinvalid' => "vos trachez apreu '''$1'''",
-'notitlematches' => "Éj déniche mie d'pache aveuc ch'tite-lo",
 'textmatches' => 'Teske del pache déniché',
 'notextmatches' => "I n'y o poin d'pache aveuc ch'teske-lo",
 'prevn' => 'dvant {{PLURAL:$1|$1}}',
@@ -503,13 +499,10 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 'searchrelated' => 'relaté',
 'searchall' => 'tout',
 'showingresultsheader' => "{{PLURAL:$5|Résultat '''$1'''|Résultats '''$1–$2'''}} éd '''$3''' pour '''$4'''",
-'nonefound' => "'''Note''': il y o tasseulemint quéques éspaces éd noms éq sont trachés pèr défeut. <br /> Pou tracher din tous chés contnus (paches éd pérlache, modéles, etc... comprins) insséyer in imploéyant ch'préfixe ''all:'' o bin imploéyer echl éspace éd noms édmindé conme préfixe.",
 'search-nonefound' => 'Y a autchun résultat pour chol dmanne.',
-'powersearch' => 'Érvue avanchée',
 'powersearch-legend' => 'Érvue avanchée',
 'powersearch-ns' => 'Tracher din chés éspaches éd chés noms:',
 'powersearch-redir' => "Lisse d'chés érdirécchons",
-'powersearch-field' => 'Tracher pou',
 
 # Preferences page
 'preferences' => 'Préférinches',

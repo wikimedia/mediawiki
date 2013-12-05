@@ -584,7 +584,6 @@ $messages = array(
 'nextn-title' => 'Думотоно шә $1 {{PLURAL:$1|нывыштәј|нывыштәјон}}',
 'shown-title' => 'Нишо дој $1 {{PLURAL:$1|нывыштәј|нывыштәјон}} сәһифәдә',
 'viewprevnext' => 'Дијә кардеј ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-legend' => 'Бо нәве кукон',
 'searchmenu-exists' => "'''Бы вики-нәхшәдә һесте сәһифә «[[:$1]]»'''",
 'searchmenu-new' => "'''Сәһифә офәјеј «[[:$1]]» бә ым вики-нахшәдә!'''",
 'searchprofile-articles' => 'Әсосә сәһифон',
@@ -607,7 +606,6 @@ $messages = array(
 'searchall' => 'Һәммәј',
 'showingresultsheader' => "{{PLURAL:$5|Нәтиҹә'''$1''' из '''$3'''|Нәтиҹон '''$1 — $2''' че '''$3'''}} бо '''$4'''",
 'search-nonefound' => 'Бә шымә хәбәсә ујғун омә сәкыштә пәјдо ныбе.',
-'powersearch-field' => 'Нәве',
 'powersearch-toggleall' => 'Һәммәј',
 
 # Preferences page

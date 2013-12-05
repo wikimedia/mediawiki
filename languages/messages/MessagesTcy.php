@@ -549,15 +549,10 @@ $messages = array(
 # Search results
 'searchresults' => 'ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
 'searchresults-title' => '"$1" ಕ್ ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
-'searchresulttext' => '{{SITENAME}} ಡ್ ನಾಡಟ ಮಲ್ಪುನ ಬಗ್ಗೆ ಜಾಸ್ತಿ ಮಾಹಿತಿಗ್ [[{{MediaWiki:Helppage}}|{{int:help}}]] ನ್ ತೂಲೆ.',
-'searchsubtitle' => 'ಈರ್ \'\'\'[[:$1]]\'\'\' ನ್ ನಾಡಿಯರ್ ([[Special:Prefixindex/$1|"$1" ರ್ದ್ ಶುರುವಾಪುನ ಪೂರ ಪುಟೊಲು]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ಗ್ ಲಿಂಕ್ ಕೊರ್ಪುನ ಪೂರ ಪುಟೊಲು]])',
-'searchsubtitleinvalid' => "'''$1''' ನ್ ಈರ್ ನಾಡಿಯರ್.",
-'notitlematches' => 'ವಾ ಪುಟೊತ ಶಿರ್ಷಿಕೆಲಾ ಹೊಂದಿಕೆ ಆವೊಂದಿಜ್ಜಿ',
 'notextmatches' => 'ವಾ ಪುಟೊತ ಪಠ್ಯೊಡುಲಾ ಹೋಲಿಕೆ ಇಜ್ಜಿ',
 'prevn' => 'ದುಂಬುದ {{PLURAL:$1|$1}}',
 'nextn' => 'ಬೊಕ್ಕದ {{PLURAL:$1|$1}}',
 'viewprevnext' => 'ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-legend' => 'ನಾಡಾಟದ ಆಯ್ಕೆಲು',
 'searchprofile-articles' => 'ಲೇಖನ ಪುಟೊ',
 'searchprofile-images' => 'ಬಹುಮಾಧ್ಯಮ',
 'searchprofile-everything' => 'ಪ್ರತಿಯೊಂಜಿ',
@@ -574,10 +569,8 @@ $messages = array(
 'search-interwiki-more' => '(ಮಸ್ತ್)',
 'searchrelated' => 'ಸ೦ಬ೦ಧ ಇತ್ತಿನ',
 'searchall' => 'ಮಾತಾ',
-'powersearch' => 'ನಾಡ್’ಲೆ',
 'powersearch-legend' => 'ಅಡ್ವಾನ್ಸ್’ಡ್ ಸರ್ಚ್',
 'powersearch-ns' => 'ನೇಮ್-ಸ್ಪೇಸ್’ಲೆಡ್ ನಾಡ್ಲೆ',
-'powersearch-field' => 'ನಾಡ್ಲೆ:',
 'powersearch-toggleall' => 'ಮಾತಾ',
 
 # Preferences page

@@ -570,9 +570,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 # Search results
 'searchresults' => 'Kiám-sek kiat-kó',
 'searchresults-title' => 'Chhoé "$1" ê kiat-kó',
-'searchresulttext' => 'Koan-hē kiám-sek {{SITENAME}} ê siông-sè pō·-sò·, chhiáⁿ chham-khó [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'titlematches' => 'Phiau-tê ū-tùi ê bûn-chiuⁿ',
-'notitlematches' => 'Bô sio-tùi ê ia̍h-piau-tê',
 'textmatches' => 'Lōe-iông ū-tùi ê bûn-chiuⁿ',
 'notextmatches' => 'Bô sio-tùi ê bûn-chiuⁿ lōe-iông',
 'prevn' => 'chêng {{PLURAL:$1|$1}} hāng',
@@ -590,7 +588,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'searchall' => 'choân-pō·',
 'showingresults' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
-'powersearch' => 'Kiám-sek',
 'powersearch-legend' => 'Kiám-sek',
 
 # Preferences page
@@ -608,7 +605,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'prefs-watchlist-edits' => 'Khok-chhiong ê kàm-sī-toaⁿ tio̍h hián-sī kúi hāng pian-chi̍p:',
 'prefs-misc' => 'Kî-thaⁿ ê siat-tēng',
 'saveprefs' => 'Pó-chûn siat-tēng',
-'resetprefs' => 'Têng siat-tēng',
 'prefs-editing' => 'Pian-chi̍p',
 'rows' => 'Chōa:',
 'columns' => 'Nôa',
@@ -620,7 +616,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'savedprefs' => 'Lí ê iōng-chiá siat-tēng í-keng pó-chûn khí lâi ah.',
 'timezonelegend' => 'Sî-khu',
 'localtime' => 'Chāi-tē sî-kan sī',
-'timezoneoffset' => 'Sî-chha¹',
 'servertime' => 'Server sî-kan hiān-chāi sī',
 'guesstimezone' => 'Tùi liû-lám-khì chhau--lâi',
 'allowemail' => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
@@ -777,7 +772,6 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'deadendpages' => 'Khu̍t-thâu-ia̍h',
 'deadendpagestext' => 'Ē-kha ê ia̍h bô liân kàu wiki lāi-té ê kî-thaⁿ ia̍h.',
 'protectedpages' => 'Siū pó-hō͘ ê ia̍h',
-'protectedpagestext' => 'Ē-kha ê ia̍h siū pó-hō͘, bē-tit soá-ūi ia̍h pian-chi̍p',
 'listusers' => 'Iōng-chiá lia̍t-toaⁿ',
 'newpages' => 'Sin ia̍h',
 'newpages-username' => 'Iōng-chiá miâ-chheng:',

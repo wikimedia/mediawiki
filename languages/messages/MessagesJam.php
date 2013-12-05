@@ -682,10 +682,6 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 # Search results
 'searchresults' => 'Saach rizolt',
 'searchresults-title' => 'Saach rizolt fi "$1"',
-'searchresulttext' => 'Fi muo infamieshan bout saachin {{SITENAME}}, si [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'Yu saach fi \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|aal piej taat wid "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|aal piej wa lingk tu "$1"]])',
-'searchsubtitleinvalid' => "Yu saach fi '''$1'''",
-'notitlematches' => 'No piej taikl mach',
 'notextmatches' => 'No piej tex mach',
 'prevn' => 'priivos {{PLURAL:$1|$1}}',
 'nextn' => 'nex {{PLURAL:$1|$1}}',
@@ -697,13 +693,9 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 'search-interwiki-caption' => 'Sista prajek',
 'search-interwiki-default' => '$1 rizoltdem:',
 'search-interwiki-more' => '(muo)',
-'nonefound' => "'''Nuot''': Onggl som niemspies saach bai difaalt.
-Chrai priifix yu kwieri wid ''all:'' fi saach aal kantent (inkluudn taak piej, templit, esechra), ar yuuz di dizaya niemspies fi priifix.",
-'powersearch' => 'Advans saach',
 'powersearch-legend' => 'Advans saach',
 'powersearch-ns' => 'Saach ina niemspies:',
 'powersearch-redir' => 'Lis riidirek',
-'powersearch-field' => 'Saach fi',
 
 # Preferences page
 'preferences' => 'Prefrens',

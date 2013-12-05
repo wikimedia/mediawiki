@@ -453,10 +453,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Search results
 'searchresults' => 'Nā hualoaʻa',
 'searchresults-title' => 'Nā hualoaʻa no "$1"',
-'searchresulttext' => 'No kekahi ʻike hou aku e pili ana i ka huli ʻana iā {{SITENAME}}, kele i [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'Ua huli ʻoe no \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|nā ʻaoʻao a pau i hoʻomaka me "$1"]]{{int:pipe-separator}} [[Special:WhatLinksHere/$1|nā ʻaoʻao a pau e loulou ai i "$1"]])',
-'searchsubtitleinvalid' => "Ua huli ʻoe iā '''$1'''",
-'notitlematches' => 'ʻAʻohe inoa ʻaoʻao e like me ka huli ʻana',
 'prevn' => '{{PLURAL:$1|$1}} ma mua',
 'nextn' => '{{PLURAL:$1|$1}} ma hope',
 'viewprevnext' => 'Nānā i nā ($1 {{int:pipe-separator}} $2) ($3)',
@@ -465,10 +461,8 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'search-suggest' => 'ʻO kēia paha kou manaʻo: $1',
 'search-interwiki-caption' => 'Nā pāhana ʻē aʻe',
 'searchall' => 'apau',
-'powersearch' => 'Hulina kūlana kiʻekiʻe',
 'powersearch-legend' => 'Hulina kūlana kiʻekiʻe',
 'powersearch-ns' => 'Huli i loko o nā wahi inoa:',
-'powersearch-field' => 'Huli no',
 
 # Preferences page
 'preferences' => 'Kaʻu makemake',

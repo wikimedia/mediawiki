@@ -386,14 +386,12 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 # Search results
 'searchresults' => 'Nafqe duKruxyayḍux',
 'searchresults-title' => 'Nafqe duKruxyo l"$1"',
-'searchsubtitleinvalid' => "Karixat '''$1'''",
 'prevn' => '{{PLURAL:$1|$1}} meqımtır',
 'nextn' => '{{PLURAL:$1 ḥaṭtır| $1 ḥaṭtır }}',
 'prevn-title' => '{{PLURAL:$1 Nafqo meqımtır|$1 Nafqe meqımtır}}',
 'nextn-title' => '{{PLURAL:$1|Nafqo ḥreno|$1 Nafqe ḥrene}}',
 'shown-title' => 'maḥway $1 {{PLURAL:$1|Nafqo|Nafqe}} bḥḍo Faṭo',
 'viewprevnext' => 'Maḥway ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-legend' => '3ayar duKruxyo',
 'searchmenu-exists' => "'''Kito Faṭo herke Işma \"[[:\$1]]\"yo'''",
 'searchmenu-new' => 'Kṭaw iFaṭaṭe "[[:$1]]" buWiki.',
 'searchprofile-articles' => 'Faṭoṭe daḤbişoṭo',
@@ -416,7 +414,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'searchall' => 'kulle',
 'showingresultsheader' => "{{PLURAL:$5|Nafqo '''$1''' of '''$3'''|Nafqe '''$1 - $2''' men '''$3'''}} l'''$4'''",
 'search-nonefound' => 'Für deine Suchanfrage wurden keine Ergebnisse gefunden.',
-'powersearch-field' => 'Krax',
 'powersearch-togglelabel' => 'Sım Qontrol:',
 'powersearch-toggleall' => 'Kulle',
 

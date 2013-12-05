@@ -1022,7 +1022,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'searchresults' => 'Агуырды фæстиуджытæ',
 'searchresults-title' => 'Агуырды фæстиуæг: «$1»',
 'titlematches' => 'Уацы ном æмбæлы',
-'notitlematches' => 'Никæцы фарсы ном æмбæлы',
 'textmatches' => 'Уацты æмцаутæ',
 'prevn' => 'рæздæры {{PLURAL:$1|$1}}',
 'nextn' => 'иннæ {{PLURAL:$1|$1}}',
@@ -1055,10 +1054,8 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'searchall' => 'иууылдæр',
 'showingresultsheader' => "{{PLURAL:$5|Фæстиуæг '''$1''' '''$3'''-йæ|Фæстиуджытæ '''$1 - $2''' '''$3'''-йæ}} '''{{grammar:dative|$4}}'''",
 'search-nonefound' => 'Ницы разындис домæнæн',
-'powersearch' => 'Сæрмагонд агуырд',
 'powersearch-legend' => 'Сæрмагонд агуырд',
 'powersearch-redir' => 'Рарвыстытæ æвдисын',
-'powersearch-field' => 'Агуырд',
 'powersearch-toggleall' => 'Иууылдæр',
 
 # Preferences page
@@ -1086,7 +1083,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'localtime' => 'Бынæттон рæстæг:',
 'timezoneuseserverdefault' => 'Архайын серверы æвæрдæй ($1)',
 'timezoneuseoffset' => 'Æндæр (бацамон гæпп)',
-'timezoneoffset' => 'Гæпп¹:',
 'servertime' => 'Серверы рæстæг:',
 'guesstimezone' => 'Райсын браузерæй',
 'timezoneregion-africa' => 'Африкæ',

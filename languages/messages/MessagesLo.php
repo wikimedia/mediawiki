@@ -464,8 +464,6 @@ $messages = array(
 'editundo' => 'ກັບຄືນ',
 
 # Search results
-'searchresulttext' => 'ສຳຫຼັບ ຂໍ້ມູນເພີ່ມເຕີມ ກ່ຽວກັບ ການຊອກຫາ ຢູ່ {{SITENAME}}, ກະລຸນາເບິ່ງ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "ທ່ານ ຊອກຫາ '''[[:$1]]'''",
 'prevn' => '{{PLURAL:$1|$1}} ກ່ອນໜ້າ',
 'nextn' => '{{PLURAL:$1|$1}} ຕໍ່ໄປ',
 'viewprevnext' => 'ເບິ່ງ ($1 {{int:pipe-separator}} $2) ($3).',
@@ -478,9 +476,6 @@ $messages = array(
 'searchall' => 'ທັງໜົດ',
 'showingresults' => "ສະແດງທາງລຸ່ມ ຮອດ {{PLURAL:$1|'''1''' ຜົນ|'''$1''' ຜົນ}} ເລີ່ມຈາກ  #'''$2'''.",
 'showingresultsnum' => "ສະແດງທາງລຸ່ມ  {{PLURAL:$3|'''1''' ຜົນ|'''$3''' ຜົນ}} ເລີ່ມຈາກ #'''$2'''.",
-'nonefound' => "'''ໜາຍເຫດ''': ຈະຄົ້ນຫາແຕ່ໃນ ບາງຂອບເຂດຊື່ ຖ້າບໍ່ມີການຕັ້ງຄ່າ.
-ທົດລອງ ໃຊ້ຄຳນຳໝ້າ ''all:'' ໃນຂໍ້ຄວາມຊອກຫາ ຂອງ ທ່ານ ເພື່ອ ຄົ້ນຫາ ທຸກໆເນື້ອໃນ (ລວມທັງໝ້າສົນທະນາ, ແມ່ແບບ ແລະອື່ນໆ), ຫຼື ໃຊ້ ຂອບເຂດຊື່ໃດໝຶ່ງເປັນ ຄຳນຳໝ້າເລີຍ.",
-'powersearch' => 'ຊອກຫາ',
 
 # Preferences page
 'preferences' => 'ການຕັ້ງຄ່າ',
@@ -498,7 +493,6 @@ $messages = array(
 'prefs-watchlist-edits' => 'ຈຳນວນການດັດແກ້ ສະແດງ ໃນ ລາຍການຕິດຕາມທີ່ຂະຫຍາຍອອກ:',
 'prefs-misc' => 'ແລະອື່ນໆ',
 'saveprefs' => 'ບັນທຶກ',
-'resetprefs' => 'ເລີ່ມຄືນໃໝ່',
 'prefs-editing' => 'ການດັດແກ້',
 'rows' => 'ແຖວ:',
 'columns' => 'ຖັນ:',
@@ -509,7 +503,6 @@ $messages = array(
 'savedprefs' => 'ການຕັ້ງຄ່າຂອງທ່ານໄດ້ຖືກບັນທຶກແລ້ວ.',
 'timezonelegend' => 'ເຂດເວລາ',
 'localtime' => 'ເວລາທ້ອງຖິ່ນ',
-'timezoneoffset' => 'ຫ່າງກັນ¹',
 'servertime' => 'ເວລາເຊີເວີ',
 'guesstimezone' => 'ເອົາເວລາຈາກໂປຣແກຣມທ່ອງເວັບ',
 'allowemail' => 'ອະນຸຍາດ ໃຫ້ຜູ້ໃຊ້ອື່ນ ສົ່ງອີເມລຫາຂ້ອຍ',

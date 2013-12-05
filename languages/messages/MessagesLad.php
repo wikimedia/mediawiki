@@ -651,10 +651,6 @@ Leyenda: (act) = diferencias con la versión actual,
 # Search results
 'searchresults' => 'Resultados de la búsquida',
 'searchresults-title' => 'Resultados de la búsquida de «$1»',
-'searchresulttext' => 'Para saber más encima de buscar en {{SITENAME}}, mira la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'Buscates \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|todas las hojas que empeçan con "$1"]] {{int:pipe-separator}} [[Special:WhatLinksHere/$1|todas las hojas que dan link a «$1»]])',
-'searchsubtitleinvalid' => "Buscates '''$1'''",
-'notitlematches' => 'No se pudo topar en dingún título.',
 'notextmatches' => 'No se pudo topar en dinguna hoja.',
 'prevn' => '{{PLURAL:$1|$1}} de antes',
 'nextn' => '{{PLURAL:$1|$1}} venideras',
@@ -685,16 +681,10 @@ Leyenda: (act) = diferencias con la versión actual,
 'searchrelated' => 'lisionado',
 'searchall' => 'todos',
 'showingresultsheader' => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
-'nonefound' => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
-Proba a usar el prefixo ''all:'' para buscar en todo el contenido (incluyendo las hojas de diskussión, xabblones, etc.) o usa el espacio de nombre que queres como prefixo. También puedes usar el formulario de búsqueda adelantada que aparece abaxo.
-
-Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de», que no están en el índice, o por especificar más de una palabra a buscar (sólo las hojas que contienen todos los términos de búsqueda van aparecer en el resultado).",
 'search-nonefound' => 'No ay resultados que acumplan los criterios de la búsqueda.',
-'powersearch' => 'Búsqueda adelantada',
 'powersearch-legend' => 'Búsqueda adelantada',
 'powersearch-ns' => 'Busca en los espacios de nombres:',
 'powersearch-redir' => 'Mostra las redirecciones',
-'powersearch-field' => 'Busca por',
 'powersearch-toggleall' => 'Todos',
 'search-external' => 'Búsqueda eksterna',
 

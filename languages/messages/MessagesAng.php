@@ -588,10 +588,6 @@ folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 # Search results
 'searchresults' => 'Sōcne wæstmas',
 'searchresults-title' => 'Sōcne wæstmas for "$1"',
-'searchresulttext' => 'Gif þū wille mā leornian ymbe þā sēcunge on {{SITENAME}}, seoh [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Þū sōhtest '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Þū sōhtest '''$1'''",
-'notitlematches' => 'Nis þǣr nǣnig swilc tramet mid þǣm naman',
 'notextmatches' => 'Nis þǣr nǣnig swilc traht on nǣngum trametum',
 'prevn' => 'ǣror {{PLURAL:$1|$1}}',
 'nextn' => 'nīehst {{PLURAL:$1|$1}}',
@@ -615,11 +611,9 @@ folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 'searchall' => 'eall',
 'showingresults' => 'Īewan under oþ <b>$1</b> tōhīgunga onginnenda mid #<b>$2</b>.',
 'showingresultsnum' => 'Under sind <b>$3</b> tóhígunga onginnende mid #<b>$2</b>.',
-'powersearch' => 'Sēcan forþ',
 'powersearch-legend' => 'Manigfeald sēcung',
 'powersearch-ns' => 'Sēcan in namstedum:',
 'powersearch-redir' => 'Settan edlǣdunge on getæle',
-'powersearch-field' => 'Sēcan',
 'search-external' => 'Ūtanweard sōcn',
 
 # Preferences page

@@ -624,7 +624,6 @@ Please check if you want to create/edit this page.',
 'searchall' => 'шупту',
 'showingresultsheader' => "«'''$4'''» дилээниниң {{PLURAL:$5|'''$3''' одуругдан '''$1''' түңнели|'''$3''' одуругдан '''$1—$2''' түңнелдери}}",
 'search-nonefound' => 'Айыткан негелдениң түңнели чок',
-'powersearch' => 'Advanced search',
 'powersearch-ns' => 'Аттар делгемнеринден дилээри:',
 'powersearch-toggleall' => 'Шупту',
 

@@ -369,8 +369,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Search results
 'searchresults' => 'Ol painim',
 'searchresults-title' => 'Ol painim long "$1"',
-'searchresulttext' => 'Long moa infomesen bilong painim {{SITENAME}}, lukim [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitleinvalid' => "Yu painim '''$1'''",
 'viewprevnext' => 'Lukim ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-images' => 'Media',
 'searchprofile-everything' => 'Olgeta',
@@ -383,11 +381,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'search-interwiki-default' => '$1 ol painim:',
 'search-interwiki-more' => '(moa)',
 'searchall' => 'olgeta',
-'powersearch' => 'Mobeta Painim',
 'powersearch-legend' => 'Mobeta Painim',
 'powersearch-ns' => 'Painim long ol nem',
 'powersearch-redir' => 'Soim ol nupela rot',
-'powersearch-field' => 'Painim long',
 'powersearch-toggleall' => 'Olgeta',
 'powersearch-togglenone' => 'I nogat wanpela',
 

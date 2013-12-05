@@ -321,10 +321,6 @@ $messages = array(
 # Search results
 'searchresults' => 'Адззöм то мый:',
 'searchresults-title' => '"$1" сьöртi адззöм то мый:',
-'searchresulttext' => 'Унажык информация {{SITENAME}} кошшикö, видзöт [[{{MediaWiki:Helppage}}|{{int:help}}]] вылö.',
-'searchsubtitle' => 'Тэ кошшан \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|быдöс листбоккез, кöдна пондöтчöны "$1"-öн]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|быдöс листбоккез, кöдна ыстiсьöны "$1" вылö]])',
-'searchsubtitleinvalid' => '«$1» кошшикö',
-'notitlematches' => 'Листбоккез ниммезын абу öткодь торрез',
 'notextmatches' => 'Листбоккез тексттэзын абу öткодь торрез',
 'prevn' => '{{PLURAL:$1|одзжыкся $1}}',
 'nextn' => '{{PLURAL:$1|одзланься $1}}',
@@ -340,12 +336,9 @@ $messages = array(
 'search-interwiki-default' => '$1 результат:',
 'search-interwiki-more' => '(унажык)',
 'searchall' => 'быдöс',
-'nonefound' => "'''Пасйöт.''' Он кö нагладь шуан,  кытiсь кошшыны,  шедасö не быдöс тексттэз, кытöн пантасьö колан кылыс. Мед кошшыны быдöс тексттэзiсь (уджкериссез листбоккезiсь,  шаболоннэзiсь дмд.), гиж ''all:'',  нето утлянно мыччав,  кытiсь кошшыны.",
-'powersearch' => 'Паськытжыка кошшан',
 'powersearch-legend' => 'Паськытжыка кошшан',
 'powersearch-ns' => 'Ним чукöррезiсь кошшан:',
 'powersearch-redir' => 'Мöдлаö иньдöтöммез ним сьöртi',
-'powersearch-field' => 'Кошшан',
 'powersearch-toggleall' => 'Быдöс',
 'powersearch-togglenone' => 'Нем',
 

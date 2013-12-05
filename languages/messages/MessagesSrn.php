@@ -623,13 +623,9 @@ A kan ben trowe efu dribi.
 
 # Search results
 'searchresults' => 'Sukuleysi',
-'searchresulttext' => 'Fu pasa infrumasi abra suku opo {{SITENAME}}, leysi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Y ben o suku na '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Yu ben o suku na '''$1'''",
 'prevn' => '{{PLURAL:$1|$1}} di psa',
 'nextn' => '{{PLURAL:$1|$1}} trawan',
 'viewprevnext' => 'Luku ($1 {{int:pipe-separator}} $2) ($3).',
-'powersearch' => 'Suku moro dipi',
 
 # Preferences page
 'preferences' => 'Seti',
@@ -647,7 +643,6 @@ A kan ben trowe efu dribi.
 'prefs-watchlist-edits' => 'Maximum teki fu dey ini mi granmeki sirey:',
 'prefs-misc' => 'Diversi',
 'saveprefs' => 'Oponaki',
-'resetprefs' => 'Bakadray na owru si',
 'prefs-editing' => 'Kenki',
 'rows' => 'Rei:',
 'columns' => 'Kolum:',
@@ -659,7 +654,6 @@ A kan ben trowe efu dribi.
 'savedprefs' => 'Yu masi ben oponaki.',
 'timezonelegend' => 'Gron fu ten',
 'localtime' => 'Lokali ten',
-'timezoneoffset' => 'Ski ini ten¹',
 'servertime' => 'Serverten',
 'guesstimezone' => 'Fu a browser presi',
 'allowemail' => 'E-mail fu trawan masyin adu',
@@ -874,7 +868,6 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'deadendpages' => 'Papira sondro miti',
 'deadendpagestext' => 'Den ondroben peprewoysi abi no skaki na trawan peprewoysi ini {{SITENAME}}.',
 'protectedpages' => 'Papira di sroto',
-'protectedpagestext' => 'Da ondroben peprewoysi ben tapu nanga kan no kenki abi efru e dribi ben',
 'listusers' => 'Réy fu kebroikiman',
 'newpages' => 'Nyun papira',
 'newpages-username' => 'Masyinnen:',

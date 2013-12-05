@@ -516,7 +516,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'showingresults' => "Kombisa e hansi kufika eka {{PLURAL:$1|'''1''' mbuyelo|'''$1''' mimbuyelo}} Kusungula hi#'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|nkutlunya '''$1''' wa '''$3''' lowu|minkutlunya '''$1 - $2''' ya '''$3''' leyi}} yelanaka na '''$4'''",
 'search-nonefound' => 'Kuhava mimbuyelo leyi yelanaka xikombelo lexi.',
-'powersearch' => 'Ndzavisiso',
 
 # Preferences page
 'mypreferences' => 'Minhlawulo ya mina',
@@ -525,7 +524,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'prefs-datetime' => 'Siku na nkarhi',
 'prefs-watchlist' => 'Nxaxamelo wa Leswivoniwaka',
 'saveprefs' => 'Hlayisa',
-'resetprefs' => 'sula kucinca lokungahlayisiwangiki',
 'prefs-editing' => 'Kululamisa',
 'youremail' => 'E-mail:',
 'yourrealname' => 'Vito ra ntiyiso:',

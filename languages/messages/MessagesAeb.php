@@ -978,7 +978,6 @@ $1",
 # Search results
 'searchresults' => 'el resultats',
 'searchresults-title' => 'نتائج البحث عن "$1"',
-'searchresulttext' => 'للمزيد من المعلومات حول البحث في {{SITENAME}}، انظر [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'prevn' => '{{PLURAL:$1|$1}} السابقة',
 'nextn' => '{{PLURAL:$1|$1}} التالية',
 'prevn-title' => '$1 {{PLURAL:$1|نتيجة|نتيجة}} سابقة',

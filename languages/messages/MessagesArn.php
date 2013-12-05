@@ -423,8 +423,6 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'searchall' => 'kom',
 'showingresultsheader' => "{{PLURAL:$5|'''$1''' ñi tripalu '''$3''' mew|'''$1-$2''' ñi tripalu '''$3''' mew}} '''$4''' ngealu",
 'search-nonefound' => 'Tripalu dungu falilay chumngechi kintuael.',
-'powersearch' => 'Kintun',
-'powersearch-field' => 'Kintun',
 
 # Preferences page
 'mypreferences' => 'Dullin',

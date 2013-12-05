@@ -379,7 +379,6 @@ Vivron: '''({{int:cur}})''' = halinchi uzollnie borobor forok, '''({{int:last}})
 'searchall' => 'soglle',
 'showingresultsheader' => "{{PLURAL:$5|'''$3''' hantlem '''$1''' porinam|'''$3''' hantlim '''$1 - $2''' porinam}}, '''$4''' haka",
 'search-nonefound' => 'Tujea sodak mell khata toslem kai porinam nan.',
-'powersearch-field' => 'Hachea khatir sodha',
 
 # Preferences page
 'preferences' => 'Posondeo',

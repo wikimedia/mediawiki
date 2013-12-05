@@ -673,10 +673,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 # Search results
 'searchresults' => 'Suachergebniss',
 'searchresults-title' => 'Suacheagebniss fia „$1“',
-'searchresulttext' => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
-'searchsubtitle' => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
-'searchsubtitleinvalid' => 'Dei Suachãnfråg: „$1“.',
-'notitlematches' => 'Koane Üwareinstimmungen mid de Seitntitl',
 'notextmatches' => 'Ka Üwareinstimmung mid dem Inhåit gfundn',
 'prevn' => '{{PLURAL:$1|vorheriga|vorherige $1}}',
 'nextn' => '{{PLURAL:$1|naxta|naxte $1}}',
@@ -707,13 +703,10 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'searchrelated' => 'vawandt',
 'searchall' => 'olle',
 'showingresultsheader' => "{{PLURAL:$5|Ergebnis '''$1''' vo '''$3'''|Ergebniss '''$1–$2''' vo '''$3'''}} fia '''$4'''",
-'nonefound' => "'''Hiwais:''' Es wern standardmässig nur oanige Nåmensraim durchsuacht. Setz ''all:'' vur dain Suachbegrif, um olle Saiten (inkl. Dischkrirsaiten, Vurlong usw.) z' durchsuacha oder züid 'n Nåmen vom z' durchsuachanden Nåmensraum.",
 'search-nonefound' => 'Fia dei Suachofrog gibts koa Ergebnis',
-'powersearch' => 'Suach',
 'powersearch-legend' => 'Daweiterde Suach',
 'powersearch-ns' => 'Suach in Nåmensraim:',
 'powersearch-redir' => 'Weiderloattung åzoang',
-'powersearch-field' => 'Suach noch:',
 'search-external' => 'Externe Suach',
 
 # Preferences page

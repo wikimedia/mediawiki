@@ -1033,14 +1033,14 @@ Heta ke werte de qısım çıniyo, ca çıniyo ke tı raştkerdışê xo qeyd b�
 
 Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[Special:ChangePassword|parola bıvurn]]'' bıvurni.",
 'newarticle' => '(Newe)',
-'newarticletext' => "Ena pele, database ma de hona çiniyo.
-Eka tı wazene yew bıvırazi, bınê eno nuşte de yew quti esto u uca de bınuse (bıvinin [[{{MediaWiki:Helppage}}|help page]] qe informasyonê zafyeri).
-Eka tı ita semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
+'newarticletext' => 'Ena per erdmaluamti miyan de çıniya.
+Şıma qayıle ena perer vırazese dora metini bıkarne. (yana  [[{{MediaWiki:Helppage}}|Pera destegi]] ra malumat bıgire).
+Nara ke şıma ğamğamde ameyé tiya se butonda peyseri bıploğne u şıré cado verén.',
 'anontalkpagetext' => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
-'noarticletext' => 'Ena pele de hewna theba çıniyo.
-Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernamey ena pele cı geyre]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cıkewtışê aidi rê cı geyre],
-ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurne]</span>.',
+'noarticletext' => 'Na per enewke venga.
+Tı şenay na perer, peran de [[Special:Search/{{PAGENAME}}|binan miyan de bıgeyrè]],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}  qeyda miyande bıgeyre],
+ya na [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena perer vırazé]</span>.',
 'noarticletext-nopermission' => 'Na pela dı eno metin enewke vengo
 Na sernuşteya şıma [[Special:Search/{{PAGENAME}}|pelanê binan de şeni bıgeyri]]
 ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara şeni bıgeyri cı].</span> feqet şıma nişeni biizın teba bıkeri.',
@@ -1375,12 +1375,8 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 # Search results
 'searchresults' => 'Neticeya geyrayışi',
 'searchresults-title' => 'Qandê "$1" neticeyê geyrayışi',
-'searchresulttext' => 'Zerrey {{SITENAME}} de heqa cıgeyrayışi de seba melumat gırewtışi, şenay qaytê [[{{MediaWiki:Helppage}}|{{int:help}}]] ke.',
-'searchsubtitle' => 'Tı semedê \'\'\'[[:$1]]\'\'\' cıgeyra. ([[Special:Prefixindex/$1|pelê ke pêro be "$1" ra dest niyaê pıra]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|pelê ke pêro be "$1"\' ra gırê xo esto]])',
-'searchsubtitleinvalid' => "Tı cıgeyra qe '''$1'''",
 'toomanymatches' => 'Zêde teki (zewci) peyser çarnay, şıma rê zehmet, be persê do bin ra bıcerrebnên.',
 'titlematches' => 'Tekê (zewcê) sernameyê pele',
-'notitlematches' => 'Tekê (zewcê) sernameyê pele çıniyê.',
 'textmatches' => 'Tekê (zewcê) nuştey pele',
 'notextmatches' => 'tekê (zewcê) nuştey pele çıniyê',
 'prevn' => '{{PLURAL:$1|$1}} verên',
@@ -1389,10 +1385,8 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'nextn-title' => '$1o ke yeno {{PLURAL:$1|netice|neticey}}',
 'shown-title' => 'bimocne $1î  {{PLURAL:$1|netice|neticeyan}} ser her pel',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) bıvênên',
-'searchmenu-legend' => 'bıgeyre tercihan (sae bıke)',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
 'searchmenu-new' => "''Na Wiki de pelay \"[[:\$1]]\" vıraze!'''",
-'searchmenu-prefix' => '[[Special:PrefixIndex/$1|pê eno prefix ser pelan de bigêre]]',
 'searchprofile-articles' => 'Perré muhteway',
 'searchprofile-project' => 'Pera Destegi uw Procan',
 'searchprofile-images' => 'Multimedya',
@@ -1420,14 +1414,10 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'showingresults' => "#$2 netican ra {{PLURAL:$1|'''1''' netica|'''$1''' neticey}} cêr deyê.",
 'showingresultsnum' => "'''$2''' netican ra nata  {{PLURAL:$3|'''1''' netice|'''$3''' neticeyê}} cêrde liste biyê.",
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' hetê '''$3'''}} qe '''$4'''",
-'nonefound' => "'''Teme''': Teyna tay namecayan cıgeyro beno.
-Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mınaqeşe, templatenan, ucb.) ya zi cıgeyro ser namecay ki tı wazeni.",
 'search-nonefound' => 'Zey perskerdışê şıma netice nêvêniya.',
-'powersearch' => 'Cıgeyrayışo hera',
 'powersearch-legend' => 'Cıgeyrayışo hera',
 'powersearch-ns' => 'Cayanê nameyan de cıgeyrayış:',
 'powersearch-redir' => 'Listeya hetenayışan',
-'powersearch-field' => 'Seba cı seyr ke',
 'powersearch-togglelabel' => 'Qontrol ke:',
 'powersearch-toggleall' => 'Pêro',
 'powersearch-togglenone' => 'Çıniyo',
@@ -1462,7 +1452,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-email' => 'Tercihê e-maili',
 'prefs-rendering' => 'Asayış',
 'saveprefs' => 'Qeyd ke',
-'resetprefs' => 'Vurnayışê ke qeyd nêbiy, pak ke',
 'restoreprefs' => 'Sazanê hesıbyaya pêron newe ke',
 'prefs-editing' => 'Cay pela nustısi',
 'rows' => 'Xeti:',
@@ -1483,7 +1472,6 @@ Oke kıliti zano şeno listeya tamaşann bıvino. Poğta coy ra kesiya me hesır
 'localtime' => 'saeta mehelliye:',
 'timezoneuseserverdefault' => 'Zey karkerdışê Wiki ($1)',
 'timezoneuseoffset' => 'Zewbina (offseti beli bıke)',
-'timezoneoffset' => 'Offset¹:',
 'servertime' => 'Wextê serveri:',
 'guesstimezone' => 'Browser ra pırr ke',
 'timezoneregion-africa' => 'Afrika',
@@ -2240,10 +2228,8 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'protectedpages' => 'Pelê pawıtiyey',
 'protectedpages-indef' => 'têna pawıteyê bêmuddeti',
 'protectedpages-cascade' => 'Kilit biyaye ke teyna cascadiye',
-'protectedpagestext' => 'pelê cêrınî pawiyenê',
 'protectedpagesempty' => 'pê ney parametreyan pelê pawiteyi çinî',
 'protectedtitles' => 'Sernameyê pawıtiyey',
-'protectedtitlestext' => 'sernameyê cêrıni pawıte yî',
 'protectedtitlesempty' => 'pê ney parametreyan sernuşteyê pawite çinê',
 'listusers' => 'Listeyê Karberan',
 'listusers-editsonly' => 'Teyna karberan bimucne ke ey nuştê',

@@ -704,7 +704,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'searchall' => 'omni',
 'showingresultsheader' => "{{PLURAL:$5|Resultate '''$1''' de '''$3'''|Resultates '''$1 – $2''' de '''$3'''}} por '''$4'''",
 'search-nonefound' => 'Tu sercha ne ha trovat un resultate.',
-'powersearch' => 'Serchar avansat',
 
 # Preferences page
 'preferences' => 'Preferenties',
@@ -717,7 +716,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'timezonelegend' => 'Zone de témpor:',
 'timezoneuseserverdefault' => 'Usar wiki de contumacie ($1)',
 'timezoneuseoffset' => 'Altri (specificar compensation)',
-'timezoneoffset' => 'Compensation¹:',
 'timezoneregion-africa' => 'Africa',
 'timezoneregion-america' => 'America',
 'timezoneregion-antarctica' => 'Antarctica',

@@ -437,7 +437,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'search-interwiki-default' => 'Resultas de $1:',
 'search-interwiki-more' => '(plu)',
 'searchall' => 'tota',
-'powersearch' => 'Xerca avansada',
 
 # Preferences page
 'preferences' => 'Preferis',

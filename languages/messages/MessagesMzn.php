@@ -641,8 +641,6 @@ $2، $1',
 
 # Search results
 'searchresults' => 'بچرخستن ِجوابون',
-'searchsubtitle' => "شما '''[[:$1]]''' دمبال بگردستنی ([[Special:Prefixindex/$1|صفحه‌ئونی که با «$1» شروع وانّه]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|صفحه‌ئونی که به «$1» لینک هدانه]])",
-'notitlematches' => 'هیچ صفحه‌یی شمه گپ واری نیّه',
 'prevn' => 'پـیـشـیـن {{PLURAL:$1|$1}}',
 'nextn' => 'تا پَس‌تر {{PLURAL:$1|$1}}',
 'viewprevnext' => 'هارشائن ($1 {{int:pipe-separator}} $2) ($3)',
@@ -653,11 +651,9 @@ $2، $1',
 'search-suggest' => 'شما اینتا ره نخاسنی: $1',
 'search-interwiki-caption' => 'خاخر پروژه‌ئون',
 'search-interwiki-more' => '(ویشتر)',
-'powersearch' => 'ململ بَیی دور هایتن',
 'powersearch-legend' => 'ململ بَیی دور هایتن',
 'powersearch-ns' => 'بچرخستن اینان دله:',
 'powersearch-redir' => '',
-'powersearch-field' => 'دور هایتن اینتا وسه:',
 
 # Preferences page
 'mypreferences' => 'مه خاستنی‌ئون',

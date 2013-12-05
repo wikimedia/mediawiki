@@ -394,10 +394,6 @@ $messages = array(
 # Search results
 'searchresults' => 'გორუაშ მოღალირობეფ',
 'searchresults-title' => '"$1"–იშ გორუაშ მოღალირობეფ',
-'searchresulttext' => '{{SITENAME}}–იშ ოგორალო უმოს იმფორმაციოაშო  ქოძირით  [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'თქვა დოგორით \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ირი ხასილა, დოჭყაფილი "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ირი ხასილა, გინორცხილ "$1"-შა]])',
-'searchsubtitleinvalid' => "თქვა გორუნდით '''$1'''",
-'notitlematches' => 'ვა უხუჯანს ნამუთინი ხასილაშ ჯოხო',
 'notextmatches' => 'ნამთინ ხასილაშ ტექსტი ვა უხუჯანს',
 'prevn' => 'წოხლენ $1',
 'nextn' => 'უკულიან {{PLURAL:$1|$1}}',
@@ -428,14 +424,10 @@ $messages = array(
 'searchrelated' => 'მათანგეფ',
 'searchall' => 'არძო',
 'showingresultsheader' => "{{PLURAL:$5|მოღალუ '''$1''' '''$3'''-შე|მოღალუეფ '''$1 - $2''' '''$3'''-შე}} '''$4'''-შო",
-'nonefound' => "'''გეთოლწონით''': სტანდარტულო ხვალე ნამთინე ჯოხოთ ოფირჩას მეურს გორუა.
-ოგორალი ზიტყვას ვარა ზიტყვეფიშ ბუნას წოხოლე ქეწუყ’უნეთ ''all:'' ირდიხას იგორასინ თიშენ (სხუნუაშ ხასილეფიშ, თანგეფიშ დო ა.უ. მეკოროცხუათ,), ვარ-და პრეფიქსო გიმირინეთ კორნებულ ჯოხოთ ოფირჩა.",
 'search-nonefound' => 'თქვანი მოგორაფილიშ მუთუნნერ მანგი მოღალუქ ვეძირჷ.',
-'powersearch' => 'გოძინელ გორუა',
 'powersearch-legend' => 'გოძინელ გორუა',
 'powersearch-ns' => 'დოგორ ჯოხოეფიშ ოფირჩას:',
 'powersearch-redir' => 'გინოწურაფეფიშ ერკებულიშ ძირაფა',
-'powersearch-field' => 'დოგორი ათენა',
 
 # Preferences page
 'preferences' => 'კონფიგურაცია',

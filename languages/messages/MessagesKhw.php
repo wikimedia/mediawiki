@@ -614,11 +614,6 @@ $1 (صفحہ موجود نیکی)',
 # Search results
 'searchresults' => 'تلاشو نتیجہ',
 'searchresults-title' => 'نتائجِ تلاش برائے "$1"',
-'searchresulttext' => 'ویکیپیڈیا تلاشو باریا مزید معلوماتو بچے، ویکیپیڈیا تلاشو صفحہو لوڑے۔{{SITENAME}}, [[{{MediaWiki:Helppage}}|{{int:help}}]].
-{{SITENAME}}, [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => 'تہ تلاش برائے \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" شروع باک تمام صفحات]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" مربوط تمام صفحات]])',
-'searchsubtitleinvalid' => "تہ تلاش براۓ '''$1'''",
-'notitlematches' => 'کیہ دی مماثل عنوان صفحہ ملاو نو ھوی',
 'notextmatches' => 'ھیہ عنوانو سورا کیہ دی صفحہ موجود نیکی',
 'prevn' => 'آچھو{{PLURAL:$1|$1}}',
 'nextn' => 'پروشٹیو{{PLURAL:$1|$1}}',
@@ -649,14 +644,10 @@ $1 (صفحہ موجود نیکی)',
 'searchrelated' => 'متعلقہ',
 'searchall' => 'کھل',
 'showingresultsheader' => "{{PLURAL:$5|نتیجہ'''$1''' of '''$3'''|نتیجہ'''$1 - $2''' of '''$3'''}} بچے'''$4'''",
-'nonefound' => "'''یاددہانی''': عموماً صرف ای کما نامان تلاش کورونو بونیان۔
-تمام مواد (بشمول تبادلۂ خیال صفحات، سانچہ جات وغیران) تلاش کوریکو بچے تان استفساراری پروشٹی ''all:'' لیگاوے، یا تان پسندو نامو بطور سابقہ استعمال کورے",
 'search-nonefound' => 'استفسارو مطابقا نتائج ملاو نو ھونی.',
-'powersearch' => 'ایڈوانس تلاش',
 'powersearch-legend' => 'ایڈوانس سرچ',
 'powersearch-ns' => 'جائے ناما تلاش:',
 'powersearch-redir' => 'فہرستِ رجوع مکرر',
-'powersearch-field' => 'تلاش برائے',
 'powersearch-toggleall' => 'سف',
 
 # Preferences page
