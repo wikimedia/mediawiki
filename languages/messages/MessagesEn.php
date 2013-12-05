@@ -3815,6 +3815,7 @@ You can view its source',
 'print.css'               => '/* CSS placed here will affect the print output */', # only translate this message to other languages if you have to change it
 'noscript.css'            => '/* CSS placed here will affect users with JavaScript disabled */', # only translate this message to other languages if you have to change it
 'group-autoconfirmed.css' => '/* CSS placed here will affect autoconfirmed users only */', # only translate this message to other languages if you have to change it
+'group-user.css'          => '/* CSS placed here will affect users only */', # only translate this message to other languages if you have to change it
 'group-bot.css'           => '/* CSS placed here will affect bots only */', # only translate this message to other languages if you have to change it
 'group-sysop.css'         => '/* CSS placed here will affect sysops only */', # only translate this message to other languages if you have to change it
 'group-bureaucrat.css'    => '/* CSS placed here will affect bureaucrats only */', # only translate this message to other languages if you have to change it
@@ -3826,6 +3827,7 @@ You can view its source',
 'modern.js'              => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
 'vector.js'              => '/* Any JavaScript here will be loaded for users using the Vector skin */', # only translate this message to other languages if you have to change it
 'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */', # only translate this message to other languages if you have to change it
+'group-user.js'          => '/* Any JavaScript here will be loaded for users only */', # only translate this message to other languages if you have to change it
 'group-bot.js'           => '/* Any JavaScript here will be loaded for bots only */', # only translate this message to other languages if you have to change it
 'group-sysop.js'         => '/* Any JavaScript here will be loaded for sysops only */', # only translate this message to other languages if you have to change it
 'group-bureaucrat.js'    => '/* Any JavaScript here will be loaded for bureaucrats only */', # only translate this message to other languages if you have to change it
