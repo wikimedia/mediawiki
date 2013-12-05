@@ -27,9 +27,8 @@
  * @ingroup Media
  */
 abstract class MediaTransformOutput {
-	/**
-	 * @var array Associative array mapping optional supplementary image files
-	 * from pixel density (eg 1.5 or 2) to additional URLs.
+	/** @var array Associative array mapping optional supplementary image files
+	 *  from pixel density (eg 1.5 or 2) to additional URLs.
 	 */
 	public $responsiveUrls = array();
 
@@ -58,14 +57,14 @@ abstract class MediaTransformOutput {
 	protected $storagePath = false;
 
 	/**
-	 * @return integer Width of the output box
+	 * @return int Width of the output box
 	 */
 	public function getWidth() {
 		return $this->width;
 	}
 
 	/**
-	 * @return integer Height of the output box
+	 * @return int Height of the output box
 	 */
 	public function getHeight() {
 		return $this->height;
@@ -138,7 +137,7 @@ abstract class MediaTransformOutput {
 	 * thumbnail is to be handled client-side only, or if
 	 * transformation was deferred via TRANSFORM_LATER.
 	 *
-	 * @return Bool
+	 * @return bool
 	 */
 	public function hasFile() {
 		// If TRANSFORM_LATER, $this->path will be false.
@@ -150,7 +149,7 @@ abstract class MediaTransformOutput {
 	 * Check if the output thumbnail is the same as the source.
 	 * This can occur if the requested width was bigger than the source.
 	 *
-	 * @return Bool
+	 * @return bool
 	 */
 	public function fileIsSource() {
 		return ( !$this->isError() && $this->path === null );
@@ -182,7 +181,7 @@ abstract class MediaTransformOutput {
 	 * Stream the file if there were no errors
 	 *
 	 * @param array $headers Additional HTTP headers to send on success
-	 * @return Bool success
+	 * @return bool Success
 	 */
 	public function streamFile( $headers = array() ) {
 		if ( !$this->path ) {
@@ -199,9 +198,8 @@ abstract class MediaTransformOutput {
 	/**
 	 * Wrap some XHTML text in an anchor tag with the given attributes
 	 *
-	 * @param $linkAttribs array
-	 * @param $contents string
-	 *
+	 * @param array $linkAttribs
+	 * @param string $contents
 	 * @return string
 	 */
 	protected function linkWrap( $linkAttribs, $contents ) {
@@ -214,7 +212,7 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * @param $title string
-	 * @param $params string|array Query parameters to add
+	 * @param string|array $params Query parameters to add
 	 * @return array
 	 */
 	public function getDescLinkAttribs( $title = null, $params = array() ) {
@@ -259,11 +257,10 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * $parameters should include, as a minimum, (file) 'width' and 'height'.
 	 * It may also include a 'page' parameter for multipage files.
 	 *
-	 * @param $file File object
+	 * @param File $file
 	 * @param string $url URL path to the thumb
-	 * @param $path String|bool|null: filesystem path to the thumb
+	 * @param string|bool $path Filesystem path to the thumb
 	 * @param array $parameters Associative array of parameters
-	 * @private
 	 */
 	function __construct( $file, $url, $path = false, $parameters = array() ) {
 		# Previous parameters:
@@ -356,6 +353,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				$linkAttribs['rel'] = $options['parser-extlink-rel'];
 			}
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
+			/** @var Title $title */
 			$title = $options['custom-title-link'];
 			$linkAttribs = array(
 				'href' => $title->getLinkURL(),

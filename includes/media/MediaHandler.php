@@ -43,7 +43,6 @@ abstract class MediaHandler {
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
 	 * @param string $type
-	 *
 	 * @return MediaHandler
 	 */
 	static function getHandler( $type ) {
@@ -76,7 +75,7 @@ abstract class MediaHandler {
 	 * If you return false, the parser will do something quiet and forgiving.
 	 *
 	 * @param string $name
-	 * @param $value
+	 * @param mixed $value
 	 */
 	abstract function validateParam( $name, $value );
 
@@ -100,8 +99,8 @@ abstract class MediaHandler {
 	 * Changes the parameter array as necessary, ready for transformation.
 	 * Should be idempotent.
 	 * Returns false if the parameters are unacceptable and the transform should fail
-	 * @param $image
-	 * @param $params
+	 * @param File $image
+	 * @param array $params
 	 */
 	abstract function normaliseParams( $image, &$params );
 
@@ -111,7 +110,8 @@ abstract class MediaHandler {
 	 *
 	 * @param File $image The image object, or false if there isn't one
 	 * @param string $path the filename
-	 * @return array Follow the format of PHP getimagesize() internal function. See http://www.php.net/getimagesize
+	 * @return array Follow the format of PHP getimagesize() internal function.
+	 *   See http://www.php.net/getimagesize
 	 */
 	abstract function getImageSize( $image, $path );
 
@@ -155,7 +155,7 @@ abstract class MediaHandler {
 	 * By default just returns $metadata, but can be used to allow
 	 * media handlers to convert between metadata versions.
 	 *
-	 * @param mixed|string|array $metadata Metadata array (serialized if string)
+	 * @param string|array $metadata Metadata array (serialized if string)
 	 * @param int $version Target version
 	 * @return array Serialized metadata in specified version, or $metadata on fail.
 	 */
@@ -175,7 +175,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a string describing the type of metadata, for display purposes.
-	 * @param $image
+	 * @param File $image
 	 * @return string
 	 */
 	function getMetadataType( $image ) {
@@ -189,6 +189,8 @@ abstract class MediaHandler {
 	 * MediaHandler::METADATA_GOOD for if the metadata is a-ok,
 	 * MediaHanlder::METADATA_COMPATIBLE if metadata is old but backwards
 	 * compatible (which may or may not trigger a metadata reload).
+	 * @param File $image
+	 * @param array $metadata
 	 * @return bool
 	 */
 	function isMetadataValid( $image, $metadata ) {
@@ -224,7 +226,6 @@ abstract class MediaHandler {
 	 * this interface, it should return an empty array, not false.
 	 *
 	 * @param File $file
-	 *
 	 * @return array|bool False if interface not supported
 	 * @since 1.23
 	 */
@@ -239,7 +240,10 @@ abstract class MediaHandler {
 	 * Used when the repository has a thumbnailScriptUrl option configured.
 	 *
 	 * Return false to fall back to the regular getTransform().
-	 * @return bool
+	 * @param File $image
+	 * @param string $script
+	 * @param array $params
+	 * @return bool|ThumbnailImage
 	 */
 	function getScriptedTransform( $image, $script, $params ) {
 		return false;
@@ -250,7 +254,7 @@ abstract class MediaHandler {
 	 * actually do the transform.
 	 *
 	 * @param File $image The image object
-	 * @param string $dstPath filesystem destination path
+	 * @param string $dstPath Filesystem destination path
 	 * @param string $dstUrl Destination URL to use in output HTML
 	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
 	 * @return MediaTransformOutput
@@ -264,12 +268,11 @@ abstract class MediaHandler {
 	 * transform unless $flags contains self::TRANSFORM_LATER.
 	 *
 	 * @param File $image The image object
-	 * @param string $dstPath filesystem destination path
-	 * @param string $dstUrl destination URL to use in output HTML
-	 * @param array $params arbitrary set of parameters validated by $this->validateParam()
+	 * @param string $dstPath Filesystem destination path
+	 * @param string $dstUrl Destination URL to use in output HTML
+	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
 	 *   Note: These parameters have *not* gone through $this->normaliseParams()
 	 * @param int $flags A bitfield, may contain self::TRANSFORM_LATER
-	 *
 	 * @return MediaTransformOutput
 	 */
 	abstract function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 );
@@ -278,7 +281,7 @@ abstract class MediaHandler {
 	 * Get the thumbnail extension and MIME type for a given source MIME type
 	 *
 	 * @param string $ext Extension of original file
-	 * @param string $mime Mime type of original file
+	 * @param string $mime MIME type of original file
 	 * @param array $params Handler specific rendering parameters
 	 * @return array thumbnail extension and MIME type
 	 */
@@ -300,6 +303,7 @@ abstract class MediaHandler {
 
 	/**
 	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
+	 *
 	 * @param mixed $metadata Result of the getMetadata() function of this handler for a file
 	 * @return array
 	 */
@@ -309,6 +313,8 @@ abstract class MediaHandler {
 
 	/**
 	 * True if the handled types can be transformed
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function canRender( $file ) {
@@ -318,6 +324,8 @@ abstract class MediaHandler {
 	/**
 	 * True if handled types cannot be displayed directly in a browser
 	 * but can be rendered
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -326,6 +334,8 @@ abstract class MediaHandler {
 
 	/**
 	 * True if the type has multi-page capabilities
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function isMultiPage( $file ) {
@@ -334,6 +344,8 @@ abstract class MediaHandler {
 
 	/**
 	 * Page count for a multi-page document, false if unsupported or unknown
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function pageCount( $file ) {
@@ -342,6 +354,8 @@ abstract class MediaHandler {
 
 	/**
 	 * The material is vectorized and thus scaling is lossless
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function isVectorized( $file ) {
@@ -352,6 +366,8 @@ abstract class MediaHandler {
 	 * The material is an image, and is animated.
 	 * In particular, video material need not return true.
 	 * @note Before 1.20, this was a method of ImageHandler only
+	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function isAnimatedImage( $file ) {
@@ -361,6 +377,8 @@ abstract class MediaHandler {
 	/**
 	 * If the material is animated, we can animate the thumbnail
 	 * @since 1.20
+	 *
+	 * @param File $file
 	 * @return bool If material is not animated, handler may return any value.
 	 */
 	function canAnimateThumbnail( $file ) {
@@ -406,7 +424,9 @@ abstract class MediaHandler {
 	/**
 	 * Generic getter for text layer.
 	 * Currently overloaded by PDF and DjVu handlers
-	 * @return bool
+	 * @param File $image
+	 * @param int $page Page number to get information for
+	 * @return bool|string Page text or false when no text found.
 	 */
 	function getPageText( $image, $page ) {
 		return false;
@@ -432,12 +452,12 @@ abstract class MediaHandler {
 	 */
 
 	/**
-	 * @todo FIXME: I don't really like this interface, it's not very flexible
-	 * I think the media handler should generate HTML instead. It can do
-	 * all the formatting according to some standard. That makes it possible
-	 * to do things like visual indication of grouped and chained streams
-	 * in ogg container files.
-	 * @return bool
+	 * @todo FIXME: This interface is not very flexible. The media handler
+	 * should generate HTML instead. It can do all the formatting according
+	 * to some standard. That makes it possible to do things like visual
+	 * indication of grouped and chained streams in ogg container files.
+	 * @param File $image
+	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
 		return false;
@@ -449,7 +469,7 @@ abstract class MediaHandler {
 	 *
 	 * This is used by the media handlers that use the FormatMetadata class
 	 *
-	 * @param array $metadataArray metadata array
+	 * @param array $metadataArray Metadata array
 	 * @return array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray ) {
@@ -479,7 +499,6 @@ abstract class MediaHandler {
 	 * the metadata table is collapsed.
 	 *
 	 * @return array of strings
-	 * @access protected
 	 */
 	function visibleMetadataFields() {
 		return FormatMetadata::getVisibleFields();
@@ -490,21 +509,21 @@ abstract class MediaHandler {
 	 * That array is then used to generate the table of metadata values
 	 * on the image page
 	 *
-	 * @param &$array Array An array containing elements for each type of visibility
-	 * and each of those elements being an array of metadata items. This function adds
-	 * a value to that array.
+	 * @param array &$array An array containing elements for each type of visibility
+	 *   and each of those elements being an array of metadata items. This function adds
+	 *   a value to that array.
 	 * @param string $visibility ('visible' or 'collapsed') if this value is hidden
-	 * by default.
-	 * @param string $type type of metadata tag (currently always 'exif')
-	 * @param string $id the name of the metadata tag (like 'artist' for example).
-	 * its name in the table displayed is the message "$type-$id" (Ex exif-artist ).
-	 * @param string $value thingy goes into a wikitext table; it used to be escaped but
-	 * that was incompatible with previous practise of customized display
-	 * with wikitext formatting via messages such as 'exif-model-value'.
-	 * So the escaping is taken back out, but generally this seems a confusing
-	 * interface.
-	 * @param string $param value to pass to the message for the name of the field
-	 * as $1. Currently this parameter doesn't seem to ever be used.
+	 *   by default.
+	 * @param string $type Type of metadata tag (currently always 'exif')
+	 * @param string $id The name of the metadata tag (like 'artist' for example).
+	 *   its name in the table displayed is the message "$type-$id" (Ex exif-artist ).
+	 * @param string $value Thingy goes into a wikitext table; it used to be escaped but
+	 *   that was incompatible with previous practise of customized display
+	 *   with wikitext formatting via messages such as 'exif-model-value'.
+	 *   So the escaping is taken back out, but generally this seems a confusing
+	 *   interface.
+	 * @param bool|string $param Value to pass to the message for the name of the field
+	 *   as $1. Currently this parameter doesn't seem to ever be used.
 	 *
 	 * Note, everything here is passed through the parser later on (!)
 	 */
@@ -531,7 +550,7 @@ abstract class MediaHandler {
 	/**
 	 * Used instead of getLongDesc if there is no handler registered for file.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
@@ -543,7 +562,7 @@ abstract class MediaHandler {
 	/**
 	 * Short description. Shown on Special:Search results.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
@@ -556,7 +575,7 @@ abstract class MediaHandler {
 	/**
 	 * Long description. Shown under image on image description page surounded by ().
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	static function getGeneralShortDesc( $file ) {
@@ -568,7 +587,7 @@ abstract class MediaHandler {
 	/**
 	 * Used instead of getShortDesc if there is no handler registered for file.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	static function getGeneralLongDesc( $file ) {
@@ -581,10 +600,10 @@ abstract class MediaHandler {
 	/**
 	 * Calculate the largest thumbnail width for a given original file size
 	 * such that the thumbnail's height is at most $maxHeight.
-	 * @param $boxWidth Integer Width of the thumbnail box.
-	 * @param $boxHeight Integer Height of the thumbnail box.
-	 * @param $maxHeight Integer Maximum height expected for the thumbnail.
-	 * @return Integer.
+	 * @param int $boxWidth Width of the thumbnail box.
+	 * @param int $boxHeight Height of the thumbnail box.
+	 * @param int $maxHeight Maximum height expected for the thumbnail.
+	 * @return int
 	 */
 	public static function fitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
 		$idealWidth = $boxWidth * $maxHeight / $boxHeight;
@@ -701,7 +720,7 @@ abstract class MediaHandler {
 	 *
 	 * For files we don't know, we return 0.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {
@@ -714,10 +733,10 @@ abstract class MediaHandler {
 	 * Moved from BitmapHandler to MediaHandler with MediaWiki 1.23
 	 *
 	 * @since 1.23
-	 * @param $retval int
-	 * @param $err string Error reported by command. Anything longer than
+	 * @param int $retval
+	 * @param string $err Error reported by command. Anything longer than
 	 * MediaHandler::MAX_ERR_LOG_SIZE is stripped off.
-	 * @param $cmd string
+	 * @param string $cmd
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
 		# Keep error output limited (bug 57985)

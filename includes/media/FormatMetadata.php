@@ -49,7 +49,7 @@
 class FormatMetadata extends ContextSource {
 	/**
 	 * Only output a single language for multi-language fields
-	 * @var boolean
+	 * @var bool
 	 * @since 1.23
 	 */
 	protected $singleLang = false;
@@ -57,7 +57,7 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Trigger only outputting single language for multilanguage fields
 	 *
-	 * @param Boolean $val
+	 * @param bool $val
 	 * @since 1.23
 	 */
 	public function setSingleLanguage( $val ) {
@@ -73,8 +73,8 @@ class FormatMetadata extends ContextSource {
 	 * This is the usual entry point for this class.
 	 *
 	 * @param array $tags the Exif data to format ( as returned by
-	 *                    Exif::getFilteredData() or BitmapMetadataHandler )
-	 * @param IContextSource $context Context to use (optional)
+	 *   Exif::getFilteredData() or BitmapMetadataHandler )
+	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array
 	 */
 	public static function getFormattedData( $tags, $context = false ) {
@@ -93,7 +93,7 @@ class FormatMetadata extends ContextSource {
 	 * formats Exif (and other metadata) values into human readable form.
 	 *
 	 * @param array $tags the Exif data to format ( as returned by
-	 *                    Exif::getFilteredData() or BitmapMetadataHandler )
+	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
 	 * @since 1.23
 	 */
@@ -977,14 +977,14 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Flatten an array, using the content language for any messages.
 	 *
-	 * @param array $vals array of values
+	 * @param array $vals Array of values
 	 * @param string $type Type of array (either lang, ul, ol).
-	 *     lang = language assoc array with keys being the lang code
-	 *     ul = unordered list, ol = ordered list
-	 *     type can also come from the '_type' member of $vals.
-	 * @param $noHtml Boolean If to avoid returning anything resembling
-	 *     html. (Ugly hack for backwards compatibility with old mediawiki).
-	 * @param IContextSource $context
+	 *   lang = language assoc array with keys being the lang code
+	 *   ul = unordered list, ol = ordered list
+	 *   type can also come from the '_type' member of $vals.
+	 * @param bool $noHtml If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old MediaWiki).
+	 * @param bool|IContextSource $context
 	 * @return String single value (in wiki-syntax).
 	 * @since 1.23
 	 */
@@ -1008,13 +1008,13 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * @param array $vals array of values
 	 * @param string $type Type of array (either lang, ul, ol).
-	 *     lang = language assoc array with keys being the lang code
-	 *     ul = unordered list, ol = ordered list
-	 *     type can also come from the '_type' member of $vals.
-	 * @param $noHtml Boolean If to avoid returning anything resembling
-	 *     html. (Ugly hack for backwards compatibility with old mediawiki).
-	 * @param IContextSource $context
-	 * @return String single value (in wiki-syntax).
+	 *   lang = language assoc array with keys being the lang code
+	 *   ul = unordered list, ol = ordered list
+	 *   type can also come from the '_type' member of $vals.
+	 * @param bool $noHtml If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old MediaWiki).
+	 * @param bool|IContextSource $context
+	 * @return string Single value (in wiki-syntax).
 	 */
 	public static function flattenArray( $vals, $type = 'ul', $noHtml = false, $context = false ) {
 		$obj = new FormatMetadata;
@@ -1036,8 +1036,8 @@ class FormatMetadata extends ContextSource {
 	 *     lang = language assoc array with keys being the lang code
 	 *     ul = unordered list, ol = ordered list
 	 *     type can also come from the '_type' member of $vals.
-	 * @param $noHtml Boolean If to avoid returning anything resembling
-	 *     html. (Ugly hack for backwards compatibility with old mediawiki).
+	 * @param $noHtml Boolean If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old mediawiki).
 	 * @return String single value (in wiki-syntax).
 	 * @since 1.23
 	 */
@@ -1158,11 +1158,11 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * @param string $value value (this is not escaped)
 	 * @param string $lang lang code of item or false
-	 * @param $default Boolean if it is default value.
-	 * @param $noHtml Boolean If to avoid html (for back-compat)
+	 * @param bool $default If it is default value.
+	 * @param bool $noHtml If to avoid html (for back-compat)
 	 * @throws MWException
-	 * @return string language item (Note: despite how this looks,
-	 * this is treated as wikitext not html).
+	 * @return string Language item (Note: despite how this looks, this is
+	 *   treated as wikitext, not as HTML).
 	 */
 	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
@@ -1221,12 +1221,10 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Convenience function for getFormattedData()
 	 *
-	 * @private
-	 *
-	 * @param string $tag the tag name to pass on
-	 * @param string $val the value of the tag
-	 * @param string $arg an argument to pass ($1)
-	 * @param string $arg2 a 2nd argument to pass ($2)
+	 * @param string $tag The tag name to pass on
+	 * @param string $val The value of the tag
+	 * @param string $arg An argument to pass ($1)
+	 * @param string $arg2 A 2nd argument to pass ($2)
 	 * @return string The text content of "exif-$tag-$val" message in lower case
 	 */
 	private function exifMsg( $tag, $val, $arg = null, $arg2 = null ) {
@@ -1243,8 +1241,8 @@ class FormatMetadata extends ContextSource {
 	 * Format a number, convert numbers from fractions into floating point
 	 * numbers, joins arrays of numbers with commas.
 	 *
-	 * @param $num Mixed: the value to format
-	 * @param $round float|int|bool digits to round to or false.
+	 * @param mixed $num The value to format
+	 * @param float|int|bool $round Digits to round to or false.
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	private function formatNum( $num, $round = false ) {
@@ -1280,9 +1278,7 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Format a rational number, reducing fractions
 	 *
-	 * @private
-	 *
-	 * @param $num Mixed: the value to format
+	 * @param mixed $num The value to format
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	private function formatFraction( $num ) {
@@ -1303,8 +1299,8 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Calculate the greatest common divisor of two integers.
 	 *
-	 * @param $a Integer: Numerator
-	 * @param $b Integer: Denominator
+	 * @param int $a Numerator
+	 * @param int $b Denominator
 	 * @return int
 	 * @private
 	 */
@@ -1411,8 +1407,8 @@ class FormatMetadata extends ContextSource {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param int $coord degrees, minutes and seconds
-	 * @param string $type latitude or longitude (for if its a NWS or E)
+	 * @param int $coord Degrees, minutes and seconds
+	 * @param string $type Latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	private function formatCoords( $coord, $type ) {
@@ -1447,16 +1443,15 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Format the contact info field into a single value.
 	 *
-	 * @param array $vals array with fields of the ContactInfo
-	 *    struct defined in the IPTC4XMP spec. Or potentially
-	 *    an array with one element that is a free form text
-	 *    value from the older iptc iim 1:118 prop.
-	 *
 	 * This function might be called from
 	 * JpegHandler::convertMetadataVersion which is why it is
 	 * public.
 	 *
-	 * @return String of html-ish looking wikitext
+	 * @param array $vals Array with fields of the ContactInfo
+	 *    struct defined in the IPTC4XMP spec. Or potentially
+	 *    an array with one element that is a free form text
+	 *    value from the older iptc iim 1:118 prop.
+	 * @return string HTML-ish looking wikitext
 	 * @since 1.23 no longer static
 	 */
 	public function collapseContactInfo( $vals ) {
@@ -1888,7 +1883,7 @@ class FormatExif {
 	private $meta;
 
 	/**
-	 * @param $meta array
+	 * @param array $meta
 	 */
 	function __construct( $meta ) {
 		wfDeprecated( __METHOD__, '1.18' );

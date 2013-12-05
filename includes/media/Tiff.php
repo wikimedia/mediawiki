@@ -35,8 +35,7 @@ class TiffHandler extends ExifBitmapHandler {
 	 * InstantCommons will have thumbnails managed from the remote instance,
 	 * so we can skip this check.
 	 *
-	 * @param $file
-	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function canRender( $file ) {
@@ -50,8 +49,7 @@ class TiffHandler extends ExifBitmapHandler {
 	 * Browsers don't support TIFF inline generally...
 	 * For inline display, we need to convert to PNG.
 	 *
-	 * @param $file
-	 *
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -59,9 +57,9 @@ class TiffHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * @param $ext
-	 * @param $mime
-	 * @param $params
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array $params
 	 * @return bool
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {

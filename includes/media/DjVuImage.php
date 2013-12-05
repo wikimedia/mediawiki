@@ -35,6 +35,11 @@
  */
 class DjVuImage {
 	/**
+	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 */
+	const DJVUTXT_MEMORY_LIMIT = 300000;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $filename The DjVu file name.
@@ -42,11 +47,6 @@ class DjVuImage {
 	function __construct( $filename ) {
 		$this->mFilename = $filename;
 	}
-
-	/**
-	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
-	 */
-	const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/**
 	 * Check if the given file is indeed a valid DjVu image file
@@ -87,6 +87,8 @@ class DjVuImage {
 		// @todo FIXME: Would be good to replace this extract() call with
 		// something that explicitly initializes local variables.
 		extract( unpack( 'a4magic/a4chunk/NchunkLength', $header ) );
+		/** @var string $chunk
+		 *  @var string $chunkLength */
 		echo "$chunk $chunkLength\n";
 		$this->dumpForm( $file, $chunkLength, 1 );
 		fclose( $file );
@@ -104,6 +106,8 @@ class DjVuImage {
 			// @todo FIXME: Would be good to replace this extract() call with
 			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
+			/** @var string $chunk
+			 *  @var string $chunkLength */
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
 
 			if ( $chunk == 'FORM' ) {
@@ -138,6 +142,10 @@ class DjVuImage {
 			// something that explicitly initializes local variables.
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
 
+			/** @var string $magic
+			 *  @var string $subtype
+			 *  @var string $formLength
+			 *  @var string $formType */
 			if ( $magic != 'AT&T' ) {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
 			} elseif ( $subtype == 'DJVU' ) {
@@ -164,6 +172,8 @@ class DjVuImage {
 			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/Nlength', $header ) );
 
+			/** @var string $chunk
+			 *  @var string $length */
 			return array( $chunk, $length );
 		}
 	}
@@ -238,6 +248,13 @@ class DjVuImage {
 
 		# Newer files have rotation info in byte 10, but we don't use it yet.
 
+		/** @var string $width
+		 *  @var string $height
+		 *  @var string $major
+		 *  @var string $minor
+		 *  @var string $resolution
+		 *  @var string $length
+		 *  @var string $gamma */
 		return array(
 			'width' => $width,
 			'height' => $height,
@@ -311,7 +328,8 @@ EOR;
 
 	/**
 	 * Hack to temporarily work around djvutoxml bug
-	 * @return bool|string
+	 * @param $dump
+	 * @return string
 	 */
 	function convertDumpToXML( $dump ) {
 		if ( strval( $dump ) == '' ) {

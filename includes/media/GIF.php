@@ -43,7 +43,7 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
@@ -76,8 +76,9 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @todo unittests
+	 * @todo Add unit tests
+	 *
+	 * @param File$image
 	 * @return bool
 	 */
 	function getImageArea( $image ) {
@@ -92,7 +93,7 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return bool
 	 */
 	function isAnimatedImage( $image ) {
@@ -151,7 +152,7 @@ class GIFHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return string
 	 */
 	function getLongDesc( $image ) {
