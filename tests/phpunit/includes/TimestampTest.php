@@ -84,6 +84,7 @@ class TimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
+		$this->markTestSkipped("Bug 55886: It should perhaps be clarified what the getHumanTimestamp is expected to return.");
 		$user = $this->getMock( 'User' );
 		$user->expects( $this->any() )
 			->method( 'getOption' )
