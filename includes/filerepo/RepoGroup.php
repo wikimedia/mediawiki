@@ -155,6 +155,7 @@ class RepoGroup {
 
 		# Check the foreign repos
 		if ( !$image ) {
+			/** @var FileRepo $repo */
 			foreach ( $this->foreignRepos as $repo ) {
 				$image = $repo->findFile( $title, $options );
 				if ( $image ) {
@@ -195,6 +196,7 @@ class RepoGroup {
 
 		$images = $this->localRepo->findFiles( $items );
 
+		/** @var FileRepo $repo */
 		foreach ( $this->foreignRepos as $repo ) {
 			// Remove found files from $items
 			foreach ( $images as $name => $image ) {
@@ -221,6 +223,8 @@ class RepoGroup {
 		if ( $redir ) {
 			return $redir;
 		}
+
+		/** @var FileRepo $repo */
 		foreach ( $this->foreignRepos as $repo ) {
 			$redir = $repo->checkRedirect( $title );
 			if ( $redir ) {
@@ -246,6 +250,7 @@ class RepoGroup {
 
 		$file = $this->localRepo->findFileFromKey( $hash, $options );
 		if ( !$file ) {
+			/** @var FileRepo $repo */
 			foreach ( $this->foreignRepos as $repo ) {
 				$file = $repo->findFileFromKey( $hash, $options );
 				if ( $file ) {
@@ -269,6 +274,7 @@ class RepoGroup {
 		}
 
 		$result = $this->localRepo->findBySha1( $hash );
+		/** @var FileRepo $repo */
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
@@ -289,6 +295,7 @@ class RepoGroup {
 		}
 
 		$result = $this->localRepo->findBySha1s( $hashes );
+		/** @var FileRepo $repo */
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge_recursive( $result, $repo->findBySha1s( $hashes ) );
 		}

@@ -1462,6 +1462,7 @@ class LocalFile extends File {
 		$redirs = $this->getTitle()->getRedirectsHere();
 
 		foreach ( $redirs as $redir ) {
+			/** @var Title $redir */
 			if ( !$reupload && $redir->getNamespace() === NS_FILE ) {
 				LinksUpdate::queueRecursiveJobsForTable( $redir, 'imagelinks' );
 			}
