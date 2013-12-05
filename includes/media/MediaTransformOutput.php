@@ -28,18 +28,33 @@
  */
 abstract class MediaTransformOutput {
 	/**
-	 * @var File
-	 */
-	var $file;
-
-	var $width, $height, $url, $page, $path, $lang;
-
-	/**
 	 * @var array Associative array mapping optional supplementary image files
 	 * from pixel density (eg 1.5 or 2) to additional URLs.
 	 */
 	public $responsiveUrls = array();
 
+	/** @var File object */
+	protected $file;
+
+	/** @var int Image width */
+	protected $width;
+
+	/** @var int Image height */
+	protected $height;
+
+	/** @var string URL path to the thumb */
+	protected $url;
+
+	/** @var bool|string */
+	protected $page;
+
+	/** @var bool|string Filesystem path to the thumb  */
+	protected $path;
+
+	/** @var bool|string Language code, false if not set */
+	protected $lang;
+
+	/** @var bool|string Permanent storage path  */
 	protected $storagePath = false;
 
 	/**
@@ -391,7 +406,11 @@ class ThumbnailImage extends MediaTransformOutput {
  * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
-	var $htmlMsg, $textMsg, $width, $height, $url, $path;
+	/** @var string HTML formatted version of the error */
+	private $htmlMsg;
+
+	/** @var string Plain text formatted version of the error */
+	private $textMsg;
 
 	function __construct( $msg, $width, $height /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
