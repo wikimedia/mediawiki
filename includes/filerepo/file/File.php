@@ -91,7 +91,7 @@ abstract class File {
 	 * The following member variables are not lazy-initialised
 	 */
 
-	/** @var FileRepo|bool */
+	/** @var FileRepo|LocalRepo|ForeignAPIRepo|bool */
 	public $repo;
 
 	/** @var Title|string|bool */
@@ -1538,7 +1538,7 @@ abstract class File {
 	/**
 	 * Returns the repository
 	 *
-	 * @return FileRepo|bool
+	 * @return FileRepo|LocalRepo|bool
 	 */
 	function getRepo() {
 		return $this->repo;
