@@ -63,7 +63,7 @@ class BitmapHandler extends ImageHandler {
 
 			if ( $srcWidth * $srcHeight > $wgMaxImageArea
 				&& !( $image->getMimeType() == 'image/jpeg'
-				&& self::getScalerType( false, false ) == 'im' )
+					&& self::getScalerType( false, false ) == 'im' )
 			) {
 				# Only ImageMagick can efficiently downsize jpg images without loading
 				# the entire file in memory
