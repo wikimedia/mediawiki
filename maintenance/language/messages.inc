@@ -39,7 +39,6 @@ $wgMessageStructure = array(
 		'tog-editondblclick',
 		'tog-editsection',
 		'tog-editsectiononrightclick',
-		'tog-showtoc',
 		'tog-rememberpassword',
 		'tog-watchcreations',
 		'tog-watchdefault',
