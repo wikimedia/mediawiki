@@ -1635,8 +1635,8 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Change the state of one or more modules.
 				 *
-				 * @param {string|Object} module module name or object of module name/state pairs
-				 * @param {string} state state name
+				 * @param {string|Object} module Module name or object of module name/state pairs
+				 * @param {string} state State name
 				 */
 				state: function ( module, state ) {
 					var m;
@@ -1684,7 +1684,7 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Get the state of a module.
 				 *
-				 * @param {string} module name of module to get state for
+				 * @param {string} module Name of module to get state for
 				 */
 				getState: function ( module ) {
 					if ( registry[module] !== undefined && registry[module].state !== undefined ) {
@@ -1791,30 +1791,33 @@ var mw = ( function ( $, undefined ) {
 					},
 
 					/**
-					 * Initialize the store by retrieving it from localStorage and (if successfully
-					 * retrieved) decoding the stored JSON value to a plain object.
+					 * Initialize the store.
+					 *
+					 * Retrieves store from localStorage and (if successfully retrieved) decoding
+					 * the stored JSON value to a plain object.
 					 *
 					 * The try / catch block is used for JSON & localStorage feature detection.
 					 * See the in-line documentation for Modernizr's localStorage feature detection
-					 * code for a full account of why we need a try / catch: <http://git.io/4NEwKg>.
+					 * code for a full account of why we need a try / catch:
+					 * https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796
 					 */
 					init: function () {
 						var raw, data;
 
 						if ( mw.loader.store.enabled !== null ) {
-							// #init already ran.
+							// Init already ran
 							return;
 						}
 
 						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) || mw.config.get( 'debug' ) ) {
-							// Disabled by configuration, or because debug mode is set.
+							// Disabled by configuration, or because debug mode is set
 							mw.loader.store.enabled = false;
 							return;
 						}
 
 						try {
 							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-							// If we get here, localStorage is available; mark enabled.
+							// If we get here, localStorage is available; mark enabled
 							mw.loader.store.enabled = true;
 							data = JSON.parse( raw );
 							if ( data && typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
@@ -1824,7 +1827,8 @@ var mw = ( function ( $, undefined ) {
 						} catch (e) {}
 
 						if ( raw === undefined ) {
-							mw.loader.store.enabled = false;  // localStorage failed; disable store.
+							// localStorage failed; disable store
+							mw.loader.store.enabled = false;
 						} else {
 							mw.loader.store.update();
 						}
@@ -1839,7 +1843,7 @@ var mw = ( function ( $, undefined ) {
 					get: function ( module ) {
 						var key;
 
-						if ( mw.loader.store.enabled !== true ) {
+						if ( !mw.loader.store.enabled ) {
 							return false;
 						}
 
@@ -1861,29 +1865,23 @@ var mw = ( function ( $, undefined ) {
 					set: function ( module, descriptor ) {
 						var args, key;
 
-						if ( mw.loader.store.enabled !== true ) {
+						if ( !mw.loader.store.enabled ) {
 							return false;
 						}
 
 						key = mw.loader.store.getModuleKey( module );
 
-						if ( key in mw.loader.store.items ) {
-							// Already set; decline to store.
-							return false;
-						}
-
-						if ( descriptor.state !== 'ready' ) {
-							// Module failed to load; decline to store.
-							return false;
-						}
-
-						if ( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user', 'site' ] ) !== -1 ) {
-							// Unversioned, private, or site-/user-specific; decline to store.
-							return false;
-						}
-
-						if ( $.inArray( undefined, [ descriptor.script, descriptor.style, descriptor.messages ] ) !== -1 ) {
-							// Partial descriptor; decline to store.
+						if (
+							// Already stored a copy of this exact version
+							key in mw.loader.store.items ||
+							// Module failed to load
+							descriptor.state !== 'ready' ||
+							// Unversioned, private, or site-/user-specific
+							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user', 'site' ] ) !== -1 ) ||
+							// Partial descriptor
+							$.inArray( undefined, [ descriptor.script, descriptor.style, descriptor.messages ] ) !== -1
+						) {
+							// Decline to store
 							return false;
 						}
 
@@ -1891,13 +1889,15 @@ var mw = ( function ( $, undefined ) {
 							args = [
 								JSON.stringify( module ),
 								typeof descriptor.script === 'function' ?
-									String( descriptor.script ) : JSON.stringify( descriptor.script ),
+									String( descriptor.script ) :
+									JSON.stringify( descriptor.script ),
 								JSON.stringify( descriptor.style ),
 								JSON.stringify( descriptor.messages )
 							];
-						} catch (e) {
+						} catch ( e ) {
 							return;
 						}
+
 						mw.loader.store.items[key] = 'mw.loader.implement(' + args.join(',') + ');';
 						mw.loader.store.update();
 					},
@@ -1909,7 +1909,7 @@ var mw = ( function ( $, undefined ) {
 					prune: function () {
 						var key, module;
 
-						if ( mw.loader.store.enabled !== true ) {
+						if ( !mw.loader.store.enabled ) {
 							return false;
 						}
 
@@ -1940,8 +1940,10 @@ var mw = ( function ( $, undefined ) {
 						var timer;
 
 						function flush() {
-							var data, key = mw.loader.store.getStoreKey();
-							if ( mw.loader.store.enabled !== true ) {
+							var data,
+								key = mw.loader.store.getStoreKey();
+
+							if ( !mw.loader.store.enabled ) {
 								return false;
 							}
 							mw.loader.store.prune();
@@ -1953,7 +1955,7 @@ var mw = ( function ( $, undefined ) {
 								localStorage.removeItem( key );
 								data = JSON.stringify( mw.loader.store );
 								localStorage.setItem( key, data );
-							} catch (e) {}
+							} catch ( e ) {}
 						}
 
 						return function () {
