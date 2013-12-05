@@ -240,7 +240,7 @@ class LocalRepo extends FileRepo {
 		return $id;
 	}
 
-	public function findFiles( array $items ) {
+	public function findFiles( array $items, $flags = 0 ) {
 		$finalFiles = array(); // map of (DB key => corresponding File) for matches
 
 		$searchSet = array(); // map of (DB key => normalized search params)
@@ -268,14 +268,15 @@ class LocalRepo extends FileRepo {
 
 		$repo = $this;
 		$applyMatchingFiles = function( ResultWrapper $res, &$searchSet, &$finalFiles )
-			use ( $repo, $fileMatchesSearch )
+			use ( $repo, $fileMatchesSearch, $flags )
 		{
 			foreach ( $res as $row ) {
-				$possFile = $repo->newFileFromRow( $row );
-				$dbKey = $possFile->getName();
+				$file = $repo->newFileFromRow( $row );
+				$dbKey = $file->getName();
 				// There must have been a search for this DB Key
-				if ( $fileMatchesSearch( $possFile, $searchSet[$dbKey] ) ) {
-					$finalFiles[$dbKey] = $possFile;
+				if ( $fileMatchesSearch( $file, $searchSet[$dbKey] ) ) {
+					$finalFiles[$dbKey] =
+						( $flags & FileRepo::TIME_ONLY ) ? $file->getTimestamp() : $file;
 					unset( $searchSet[$dbKey] );
 				}
 			}
@@ -313,10 +314,11 @@ class LocalRepo extends FileRepo {
 			$title = File::normalizeTitle( $dbKey );
 			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
 			if ( $redir && $redir->getNamespace() == NS_FILE ) {
-				$possFile = $this->newFile( $redir );
-				if ( $possFile && $fileMatchesSearch( $possFile, $search ) ) {
-					$possFile->redirectedFrom( $title->getDBkey() );
-					$finalFiles[$dbKey] = $possFile;
+				$file = $this->newFile( $redir );
+				if ( $file && $fileMatchesSearch( $file, $search ) ) {
+					$file->redirectedFrom( $title->getDBkey() );
+					$finalFiles[$dbKey] =
+						( $flags & FileRepo::TIME_ONLY ) ? $file->getTimestamp() : $file;
 				}
 			}
 		}
