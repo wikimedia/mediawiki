@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 class PNGHandler extends BitmapHandler {
-
 	const BROKEN_FILE = '0';
 
 	/**
@@ -41,6 +40,7 @@ class PNGHandler extends BitmapHandler {
 		} catch ( Exception $e ) {
 			// Broken file?
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+
 			return self::BROKEN_FILE;
 		}
 
@@ -77,6 +77,7 @@ class PNGHandler extends BitmapHandler {
 			return array();
 		}
 		unset( $meta['metadata']['_MW_PNG_VERSION'] );
+
 		return $meta['metadata'];
 	}
 
@@ -92,8 +93,10 @@ class PNGHandler extends BitmapHandler {
 				return true;
 			}
 		}
+
 		return false;
 	}
+
 	/**
 	 * We do not support making APNG thumbnails, so always false
 	 * @param $image File
@@ -120,14 +123,18 @@ class PNGHandler extends BitmapHandler {
 
 		if ( !$data || !is_array( $data ) ) {
 			wfDebug( __METHOD__ . " invalid png metadata\n" );
+
 			return self::METADATA_BAD;
 		}
 
 		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
-			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION ) {
+			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION
+		) {
 			wfDebug( __METHOD__ . " old but compatible png metadata\n" );
+
 			return self::METADATA_COMPATIBLE;
 		}
+
 		return self::METADATA_GOOD;
 	}
 
@@ -166,5 +173,4 @@ class PNGHandler extends BitmapHandler {
 
 		return $wgLang->commaList( $info );
 	}
-
 }

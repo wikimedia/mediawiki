@@ -30,8 +30,8 @@
  * @ingroup Media
  */
 class JpegMetadataExtractor {
-
 	const MAX_JPEG_SEGMENTS = 200;
+
 	// the max segment is a sanity check.
 	// A jpeg file should never even remotely have
 	// that many segments. Your average file has about 10.
@@ -113,7 +113,6 @@ class JpegMetadataExtractor {
 				} else {
 					wfDebug( __METHOD__ . " Ignoring JPEG comment as is garbage.\n" );
 				}
-
 			} elseif ( $buffer === "\xE1" ) {
 				// APP1 section (Exif, XMP, and XMP extended)
 				// only extract if XMP is enabled.
@@ -160,7 +159,6 @@ class JpegMetadataExtractor {
 				}
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
 			}
-
 		}
 		// shouldn't get here.
 		throw new MWException( "Reached end of jpeg file unexpectedly" );
@@ -181,6 +179,7 @@ class JpegMetadataExtractor {
 		if ( strlen( $segment ) !== $size['int'] - 2 ) {
 			throw new MWException( "Segment shorter than expected" );
 		}
+
 		return $segment;
 	}
 
@@ -275,7 +274,6 @@ class JpegMetadataExtractor {
 				$lenData['len']++;
 			}
 			$offset += $lenData['len'];
-
 		}
 
 		if ( !$realHash || !$recordedHash ) {

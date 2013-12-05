@@ -33,7 +33,6 @@
  * @ingroup Media
  */
 class XCFHandler extends BitmapHandler {
-
 	/**
 	 * @param $file
 	 * @return bool
@@ -103,10 +102,10 @@ class XCFHandler extends BitmapHandler {
 		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
 		try {
 			$header = wfUnpack(
-				"A9magic" .        # A: space padded
+				"A9magic" . # A: space padded
 					"/a5version" . # a: zero padded
-					"/Nwidth" .    # \
-					"/Nheight" .   # N: unsigned long 32bit big endian
+					"/Nwidth" . # \
+					"/Nheight" . # N: unsigned long 32bit big endian
 					"/Nbase_type", # /
 				$binaryHeader
 			);
@@ -117,6 +116,7 @@ class XCFHandler extends BitmapHandler {
 		# Check values
 		if ( $header['magic'] !== 'gimp xcf' ) {
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
+
 			return false;
 		}
 		# TODO: we might want to check for sane values of width and height
@@ -128,13 +128,13 @@ class XCFHandler extends BitmapHandler {
 		$metadata = array();
 		$metadata[0] = $header['width'];
 		$metadata[1] = $header['height'];
-		$metadata[2] = null;   # IMAGETYPE constant, none exist for XCF.
+		$metadata[2] = null; # IMAGETYPE constant, none exist for XCF.
 		$metadata[3] = sprintf(
 			'height="%s" width="%s"', $header['height'], $header['width']
 		);
 		$metadata['mime'] = 'image/x-xcf';
 		$metadata['channels'] = null;
-		$metadata['bits'] = 8;  # Always 8-bits per color
+		$metadata['bits'] = 8; # Always 8-bits per color
 
 		assert( '7 == count($metadata); # return array must contains 7 elements just like getimagesize() return' );
 

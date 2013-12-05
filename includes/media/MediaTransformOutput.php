@@ -156,6 +156,7 @@ abstract class MediaTransformOutput {
 			$be = $this->file->getRepo()->getBackend();
 			// The temp file will be process cached by FileBackend
 			$fsFile = $be->getLocalReference( array( 'src' => $this->path ) );
+
 			return $fsFile ? $fsFile->getPath() : false;
 		} else {
 			return $this->path; // may return false
@@ -173,6 +174,7 @@ abstract class MediaTransformOutput {
 			return false;
 		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
 			$be = $this->file->getRepo()->getBackend();
+
 			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) )->isOK();
 		} else { // FS-file
 			return StreamFile::stream( $this->getLocalCopyPath(), $headers );
@@ -224,6 +226,7 @@ abstract class MediaTransformOutput {
 		if ( $title ) {
 			$attribs['title'] = $title;
 		}
+
 		return $attribs;
 	}
 }
@@ -377,7 +380,6 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}
-
 }
 
 /**

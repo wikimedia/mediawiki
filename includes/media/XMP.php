@@ -34,12 +34,12 @@
  *
  * The public methods one would call in this class are
  * - parse( $content )
- *	Reads in xmp content.
- *	Can potentially be called multiple times with partial data each time.
+ *    Reads in xmp content.
+ *    Can potentially be called multiple times with partial data each time.
  * - parseExtended( $content )
- *	Reads XMPExtended blocks (jpeg files only).
+ *    Reads XMPExtended blocks (jpeg files only).
  * - getResults
- *	Outputs a results array.
+ *    Outputs a results array.
  *
  * Note XMP kind of looks like rdf. They are not the same thing - XMP is
  * encoded as a specific subset of rdf. This class can read XMP. It cannot
@@ -47,17 +47,24 @@
  *
  */
 class XMPReader {
+	private $curItem = array(); // array to hold the current element (and previous element, and so on)
 
-	private $curItem = array();        // array to hold the current element (and previous element, and so on)
-	private $ancestorStruct = false;   // the structure name when processing nested structures.
-	private $charContent = false;      // temporary holder for character data that appears in xmp doc.
-	private $mode = array();           // stores the state the xmpreader is in (see MODE_FOO constants)
-	private $results = array();        // array to hold results
-	private $processingArray = false;  // if we're doing a seq or bag.
-	private $itemLang = false;         // used for lang alts only
+	private $ancestorStruct = false; // the structure name when processing nested structures.
+
+	private $charContent = false; // temporary holder for character data that appears in xmp doc.
+
+	private $mode = array(); // stores the state the xmpreader is in (see MODE_FOO constants)
+
+	private $results = array(); // array to hold results
+
+	private $processingArray = false; // if we're doing a seq or bag.
+
+	private $itemLang = false; // used for lang alts only
 
 	private $xmlParser;
+
 	private $charset = false;
+
 	private $extendedXMPOffset = 0;
 
 	protected $items;
@@ -105,8 +112,8 @@ class XMPReader {
 		$this->items = XMPInfo::getItems();
 
 		$this->resetXMLParser();
-
 	}
+
 	/**
 	 * Main use is if a single item has multiple xmp documents describing it.
 	 * For example in jpeg's with extendedXMP
@@ -142,7 +149,7 @@ class XMPReader {
 	 * the array, and transform any metadata that is special-cased.
 	 *
 	 * @return Array array of results as an array of arrays suitable for
-	 *	FormatMetadata::getFormattedData().
+	 *    FormatMetadata::getFormattedData().
 	 */
 	public function getResults() {
 		// xmp-special is for metadata that affects how stuff
@@ -301,8 +308,10 @@ class XMPReader {
 		} catch ( MWException $e ) {
 			wfDebugLog( 'XMP', 'XMP parse error: ' . $e );
 			$this->results = array();
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -318,14 +327,17 @@ class XMPReader {
 		// or programs that make such files..
 		$guid = substr( $content, 0, 32 );
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
-			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid ) {
+			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid
+		) {
 			wfDebugLog( 'XMP', __METHOD__ . " Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
+
 			return false;
 		}
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
 		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
 			wfDebugLog( 'XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+
 			return false;
 		}
 
@@ -341,6 +353,7 @@ class XMPReader {
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
 			wfDebugLog( 'XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
 				. $len['offset'] . ' but expected ' . $this->extendedXMPOffset . ')' );
+
 			return false;
 		}
 
@@ -361,6 +374,7 @@ class XMPReader {
 		}
 
 		wfDebugLog( 'XMP', __METHOD__ . 'Parsing a XMPExtended block' );
+
 		return $this->parse( $actualContent, $atEnd );
 	}
 
@@ -407,7 +421,6 @@ class XMPReader {
 		} else {
 			$this->charContent .= $data;
 		}
-
 	}
 
 	/** When we hit a closing element in MODE_IGNORE
@@ -453,7 +466,6 @@ class XMPReader {
 		}
 		array_shift( $this->curItem );
 		array_shift( $this->mode );
-
 	}
 
 	/**
@@ -499,7 +511,6 @@ class XMPReader {
 			if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
 				// This can happen if all the members of the struct failed validation.
 				wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> has no valid members." );
-
 			} elseif ( is_callable( $validate ) ) {
 				$val =& $this->results['xmp-' . $info['map_group']][$finalName];
 				call_user_func_array( $validate, array( $info, &$val, false ) );
@@ -552,6 +563,7 @@ class XMPReader {
 
 		if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
 			wfDebugLog( 'XMP', __METHOD__ . " Empty compund element $finalName." );
+
 			return;
 		}
 
@@ -564,7 +576,6 @@ class XMPReader {
 			if ( $info['mode'] === self::MODE_LANG ) {
 				$this->results['xmp-' . $info['map_group']][$finalName]['_type'] = 'lang';
 			}
-
 		} else {
 			throw new MWException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
 		}
@@ -585,6 +596,7 @@ class XMPReader {
 		if ( $elm === self::NS_RDF . ' value' ) {
 			list( $ns, $tag ) = explode( ' ', $this->curItem[0], 2 );
 			$this->saveValue( $ns, $tag, $this->charContent );
+
 			return;
 		} else {
 			array_shift( $this->mode );
@@ -626,6 +638,7 @@ class XMPReader {
 			// that forgets the namespace on some things.
 			// (Luckily they are unimportant things).
 			wfDebugLog( 'XMP', __METHOD__ . " Encountered </$elm> which has no namespace. Skipping." );
+
 			return;
 		}
 
@@ -706,7 +719,6 @@ class XMPReader {
 		} else {
 			throw new MWException( "Expected <rdf:Bag> but got $elm." );
 		}
-
 	}
 
 	/**
@@ -727,7 +739,6 @@ class XMPReader {
 		} else {
 			throw new MWException( "Expected <rdf:Seq> but got $elm." );
 		}
-
 	}
 
 	/**
@@ -750,7 +761,6 @@ class XMPReader {
 		} else {
 			throw new MWException( "Expected <rdf:Seq> but got $elm." );
 		}
-
 	}
 
 	/**
@@ -784,15 +794,12 @@ class XMPReader {
 		} elseif ( $elm === self::NS_RDF . ' value' ) {
 			// This should not be here.
 			throw new MWException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
-
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
 			wfDebugLog( 'XMP', __METHOD__ . " Encountered element <$elm> where only expecting character data as value of " . $this->curItem[0] );
 			array_unshift( $this->mode, self::MODE_IGNORE );
 			array_unshift( $this->curItem, $elm );
-
 		}
-
 	}
 
 	/**
@@ -846,6 +853,7 @@ class XMPReader {
 
 					array_unshift( $this->mode, self::MODE_IGNORE );
 					array_unshift( $this->curItem, $ns . ' ' . $tag );
+
 					return;
 				}
 				$mode = $this->items[$ns][$tag]['mode'];
@@ -865,9 +873,9 @@ class XMPReader {
 				wfDebugLog( 'XMP', __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
 				array_unshift( $this->mode, self::MODE_IGNORE );
 				array_unshift( $this->curItem, $ns . ' ' . $tag );
+
 				return;
 			}
-
 		}
 		// process attributes
 		$this->doAttribs( $attribs );
@@ -914,9 +922,9 @@ class XMPReader {
 			} else {
 				array_unshift( $this->mode, self::MODE_IGNORE );
 				array_unshift( $this->curItem, $elm );
+
 				return;
 			}
-
 		}
 
 		if ( $ns === self::NS_RDF && $tag === 'Description' ) {
@@ -965,7 +973,6 @@ class XMPReader {
 				? $this->items[$curNS][$curTag]['map_name'] : $curTag;
 
 			$this->doAttribs( $attribs );
-
 		} else {
 			// Normal BAG or SEQ containing simple values.
 			array_unshift( $this->mode, self::MODE_SIMPLE );
@@ -974,7 +981,6 @@ class XMPReader {
 			array_unshift( $this->curItem, $this->curItem[0] );
 			$this->processingArray = true;
 		}
-
 	}
 
 	/**
@@ -1049,6 +1055,7 @@ class XMPReader {
 		if ( strpos( $elm, ' ' ) === false ) {
 			// This probably shouldn't happen.
 			wfDebugLog( 'XMP', __METHOD__ . " Encountered <$elm> which has no namespace. Skipping." );
+
 			return;
 		}
 
@@ -1177,6 +1184,7 @@ class XMPReader {
 				// is to be consistent between here and validating structures.
 				if ( is_null( $val ) ) {
 					wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> failed validation." );
+
 					return;
 				}
 			} else {

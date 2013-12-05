@@ -28,7 +28,6 @@
  * @ingroup Media
  */
 class ExifBitmapHandler extends BitmapHandler {
-
 	const BROKEN_FILE = '-1'; // error extracting metadata
 	const OLD_BROKEN_FILE = '0'; // outdated error extracting metadata.
 
@@ -76,6 +75,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
+
 		return $metadata;
 	}
 
@@ -89,6 +89,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			# Old special value indicating that there is no Exif data in the file.
 			# or that there was an error well extracting the metadata.
 			wfDebug( __METHOD__ . ": back-compat version\n" );
+
 			return self::METADATA_COMPATIBLE;
 		}
 		if ( $metadata === self::BROKEN_FILE ) {
@@ -105,12 +106,15 @@ class ExifBitmapHandler extends BitmapHandler {
 			) {
 				//back-compatible but old
 				wfDebug( __METHOD__ . ": back-compat version\n" );
+
 				return self::METADATA_COMPATIBLE;
 			}
 			# Wrong (non-compatible) version
 			wfDebug( __METHOD__ . ": wrong version\n" );
+
 			return self::METADATA_BAD;
 		}
+
 		return self::METADATA_GOOD;
 	}
 
@@ -177,6 +181,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			$gis[0] = $gis[1];
 			$gis[1] = $width;
 		}
+
 		return $gis;
 	}
 
@@ -199,6 +204,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		}
 
 		$data = $file->getMetadata();
+
 		return $this->getRotationForExif( $data );
 	}
 
@@ -231,6 +237,7 @@ class ExifBitmapHandler extends BitmapHandler {
 					return 0;
 			}
 		}
+
 		return 0;
 	}
 }

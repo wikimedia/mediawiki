@@ -31,6 +31,7 @@
 class SVGMetadataExtractor {
 	static function getMetadata( $filename ) {
 		$svg = new SVGReader( $filename );
+
 		return $svg->getMetadata();
 	}
 }
@@ -44,7 +45,9 @@ class SVGReader {
 	const NS_SVG = 'http://www.w3.org/2000/svg';
 
 	private $reader = null;
+
 	private $mDebug = false;
+
 	private $metadata = array();
 
 	/**
@@ -238,7 +241,8 @@ class SVGReader {
 		$keepReading = $this->reader->read();
 		while ( $keepReading ) {
 			if ( $this->reader->localName == $name && $this->reader->depth <= $exitDepth
-				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
+				&& $this->reader->nodeType == XmlReader::END_ELEMENT
+			) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
 				switch ( $this->reader->localName ) {
@@ -333,7 +337,7 @@ class SVGReader {
 	 * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
 	 *
 	 * @param string $length CSS/SVG length.
-	 * @param $viewportSize: Float optional scale for percentage units...
+	 * @param $viewportSize : Float optional scale for percentage units...
 	 * @return float: length in pixels
 	 */
 	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
@@ -347,7 +351,7 @@ class SVGReader {
 			'em' => 16.0, // fake it?
 			'ex' => 12.0, // fake it?
 			'' => 1.0, // "User units" pixels by default
-			);
+		);
 		$matches = array();
 		if ( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
 			$length = floatval( $matches[1] );
