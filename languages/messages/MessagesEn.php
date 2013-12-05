@@ -669,7 +669,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-editondblclick'          => 'Edit pages on double click',
 'tog-editsection'             => 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles',
-'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Add pages I create and files I upload to my watchlist',
 'tog-watchdefault'            => 'Add pages and files I edit to my watchlist',

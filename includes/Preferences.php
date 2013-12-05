@@ -755,13 +755,6 @@ class Preferences {
 			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
 		);
 
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['showtoc'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label-message' => 'tog-showtoc',
-			);
-		}
 		$defaultPreferences['showhiddencats'] = array(
 			'type' => 'toggle',
 			'section' => 'rendering/advancedrendering',

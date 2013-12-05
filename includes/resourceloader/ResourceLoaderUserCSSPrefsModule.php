@@ -77,9 +77,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		if ( $options['justify'] ) {
 			$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
 		}
-		if ( !$options['showtoc'] ) {
-			$rules[] = "#toc { display: none; }\n";
-		}
 		if ( !$options['editsection'] ) {
 			$rules[] = ".mw-editsection { display: none; }\n";
 		}
