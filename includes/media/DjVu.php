@@ -229,6 +229,30 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
+	 * Get metadata, unserializing it if neccessary.
+	 *
+	 * @param File $file The DjVu file in question
+	 * @return String XML metadata as a string.
+	 */
+	private function getUnserializedMetadata( File $file ) {
+		$metadata = $file->getMetadata();
+		if ( substr( $metadata, 0, 3 ) === '<?xml' ) {
+			// Old style. Not serialized but instead just a raw string of XML.
+			return $metadata;
+		}
+
+		wfSuppressWarnings();
+		$unser = unserialize( $metadata );
+		wfRestoreWarnings();
+		if ( is_array( $unser ) ) {
+			return $unser['xml'];
+		}
+
+		// unserialize failed. Guess it wasn't really serialized after all,
+		return $metadata;
+	}
+
+	/**
 	 * Cache a document tree for the DjVu XML metadata
 	 * @param $image File
 	 * @param $gettext Boolean: DOCUMENT (Default: false)
@@ -239,7 +263,7 @@ class DjVuHandler extends ImageHandler {
 			return $image->dejaMetaTree;
 		}
 
-		$metadata = $image->getMetadata();
+		$metadata = $this->getUnserializedMetadata( $image );
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
 			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
 
@@ -294,7 +318,8 @@ class DjVuHandler extends ImageHandler {
 	function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path\n" );
 
-		return $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		return serialize( array( 'xml' => $xml ) );
 	}
 
 	function getMetadataType( $image ) {
