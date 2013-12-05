@@ -101,15 +101,14 @@ class Exif {
 	/**
 	 * Constructor
 	 *
-	 * @param string $file filename.
+	 * @param string $file Filename.
 	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian)
 	 *   or 'LE' (Little Endian). Default ''.
 	 * @throws MWException
 	 * @todo FIXME: The following are broke:
-	 * SubjectArea. Need to test the more obscure tags.
-	 *
-	 * DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.
-	 * possibly should treat 0/0 = 0. need to read exif spec on that.
+	 *   SubjectArea. Need to test the more obscure tags.
+	 *   DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.
+	 *   Possibly should treat 0/0 = 0. need to read exif spec on that.
 	 */
 	function __construct( $file, $byteOrder = '' ) {
 		/**
@@ -167,7 +166,7 @@ class Exif {
 
 			# Exif IFD Attribute Information (p30-31)
 			'EXIF' => array(
-				# TODO: NOTE: Nonexistence of this field is taken to mean nonconformance
+				# @todo NOTE: Nonexistence of this field is taken to mean nonconformance
 				# to the Exif 2.1 AND 2.2 standards
 				'ExifVersion' => Exif::UNDEFINED, # Exif version
 				'FlashPixVersion' => Exif::UNDEFINED, # Supported Flashpix version #p32
@@ -510,7 +509,7 @@ class Exif {
 	 * Convert an Exif::UNDEFINED from a raw binary string
 	 * to its value. This is sometimes needed depending on
 	 * the type of UNDEFINED field
-	 * @param string $prop name of property
+	 * @param string $prop Name of property
 	 */
 	private function exifPropToOrd( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
@@ -521,7 +520,7 @@ class Exif {
 	/**
 	 * Convert gps in exif form to a single floating point number
 	 * for example 10 degress 20`40`` S -> -10.34444
-	 * @param string $prop a gps coordinate exif tag name (like GPSLongitude)
+	 * @param string $prop A GPS coordinate exif tag name (like GPSLongitude)
 	 */
 	private function exifGPStoNumber( $prop ) {
 		$loc =& $this->mFilteredExifData[$prop];
@@ -624,9 +623,7 @@ class Exif {
 	/**#@+
 	 * Validates if a tag value is of the type it should be according to the Exif spec
 	 *
-	 * @private
-	 *
-	 * @param $in Mixed: the input value to check
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isByte( $in ) {
@@ -642,7 +639,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isASCII( $in ) {
@@ -666,7 +663,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isShort( $in ) {
@@ -682,7 +679,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isLong( $in ) {
@@ -698,7 +695,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isRational( $in ) {
@@ -717,7 +714,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isUndefined( $in ) {
@@ -727,7 +724,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isSlong( $in ) {
@@ -743,7 +740,7 @@ class Exif {
 	}
 
 	/**
-	 * @param $in
+	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
 	private function isSrational( $in ) {
@@ -766,11 +763,10 @@ class Exif {
 	/**
 	 * Validates if a tag has a legal value according to the Exif spec
 	 *
-	 * @private
 	 * @param string $section section where tag is located.
 	 * @param string $tag the tag to check.
-	 * @param $val Mixed: the value of the tag.
-	 * @param $recursive Boolean: true if called recursively for array types.
+	 * @param mixed $val The value of the tag.
+	 * @param bool $recursive True if called recursively for array types.
 	 * @return bool
 	 */
 	private function validate( $section, $tag, $val, $recursive = false ) {
@@ -850,11 +846,9 @@ class Exif {
 	/**
 	 * Convenience function for debugging output
 	 *
-	 * @private
-	 *
-	 * @param $in Mixed:
-	 * @param $fname String:
-	 * @param $action Mixed: , default NULL.
+	 * @param mixed $in Arrays will be processed with print_r().
+	 * @param string $fname Function name to log.
+	 * @param string|bool|null $action Default null.
 	 */
 	private function debug( $in, $fname, $action = null ) {
 		if ( !$this->log ) {
@@ -880,10 +874,8 @@ class Exif {
 	/**
 	 * Convenience function for debugging output
 	 *
-	 * @private
-	 *
 	 * @param string $fname the name of the function calling this function
-	 * @param $io Boolean: Specify whether we're beginning or ending
+	 * @param bool $io Specify whether we're beginning or ending
 	 */
 	private function debugFile( $fname, $io ) {
 		if ( !$this->log ) {

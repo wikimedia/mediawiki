@@ -40,10 +40,10 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return ThumbnailImage|TransformParameterError
 	 */

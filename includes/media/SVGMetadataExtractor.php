@@ -44,10 +44,13 @@ class SVGReader {
 	const DEFAULT_HEIGHT = 512;
 	const NS_SVG = 'http://www.w3.org/2000/svg';
 
+	/** @var null|XMLReader */
 	private $reader = null;
 
+	/** @var bool */
 	private $mDebug = false;
 
+	/** @var array */
 	private $metadata = array();
 
 	/**
@@ -187,8 +190,8 @@ class SVGReader {
 	/**
 	 * Read a textelement from an element
 	 *
-	 * @param string $name of the element that we are reading from
-	 * @param string $metafield that we will fill with the result
+	 * @param string $name Name of the element that we are reading from
+	 * @param string $metafield Field that we will fill with the result
 	 */
 	private function readField( $name, $metafield = null ) {
 		$this->debug( "Read field $metafield" );
@@ -212,7 +215,7 @@ class SVGReader {
 	/**
 	 * Read an XML snippet from an element
 	 *
-	 * @param string $metafield that we will fill with the result
+	 * @param string $metafield Field that we will fill with the result
 	 * @throws MWException
 	 */
 	private function readXml( $metafield = null ) {
@@ -220,7 +223,7 @@ class SVGReader {
 		if ( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
-		// TODO: find and store type of xml snippet. metadata['metadataType'] = "rdf"
+		// @todo Find and store type of xml snippet. metadata['metadataType'] = "rdf"
 		if ( method_exists( $this->reader, 'readInnerXML' ) ) {
 			$this->metadata[$metafield] = trim( $this->reader->readInnerXML() );
 		} else {
@@ -234,7 +237,7 @@ class SVGReader {
 	/**
 	 * Filter all children, looking for animate elements
 	 *
-	 * @param string $name of the element that we are reading from
+	 * @param string $name Name of the element that we are reading from
 	 */
 	private function animateFilter( $name ) {
 		$this->debug( "animate filter for tag $name" );
@@ -274,6 +277,7 @@ class SVGReader {
 		}
 	}
 
+	// @todo FIXME: Unused, remove?
 	private function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
 		wfDebug( "SVGReader XML error: $err\n" );
@@ -285,10 +289,12 @@ class SVGReader {
 		}
 	}
 
+	// @todo FIXME: Unused, remove?
 	private function warn( $data ) {
 		wfDebug( "SVGReader: $data\n" );
 	}
 
+	// @todo FIXME: Unused, remove?
 	private function notice( $data ) {
 		wfDebug( "SVGReader WARN: $data\n" );
 	}
@@ -346,8 +352,8 @@ class SVGReader {
 	 * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
 	 *
 	 * @param string $length CSS/SVG length.
-	 * @param $viewportSize : Float optional scale for percentage units...
-	 * @return float: length in pixels
+	 * @param float|int $viewportSize Optional scale for percentage units...
+	 * @return float Length in pixels
 	 */
 	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
 		static $unitLength = array(

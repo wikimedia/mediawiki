@@ -50,7 +50,7 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @throws Exception
-	 * @param $filename string
+	 * @param string $filename
 	 * @return array
 	 */
 	static function getMetadata( $filename ) {
@@ -261,8 +261,8 @@ class GIFMetadataExtractor {
 	}
 
 	/**
-	 * @param $fh
-	 * @param $bpp
+	 * @param resource $fh
+	 * @param int $bpp
 	 * @return void
 	 */
 	static function readGCT( $fh, $bpp ) {
@@ -274,7 +274,7 @@ class GIFMetadataExtractor {
 	}
 
 	/**
-	 * @param $data
+	 * @param string $data
 	 * @throws Exception
 	 * @return int
 	 */
@@ -293,7 +293,7 @@ class GIFMetadataExtractor {
 	}
 
 	/**
-	 * @param $fh
+	 * @param resource $fh
 	 * @throws Exception
 	 */
 	static function skipBlock( $fh ) {
@@ -317,8 +317,8 @@ class GIFMetadataExtractor {
 	 * saying how long the sub-block is, followed by the sub-block.
 	 * The entire block is terminated by a sub-block of length
 	 * 0.
-	 * @param $fh FileHandle
-	 * @param $includeLengths Boolean Include the length bytes of the
+	 * @param resource $fh File handle
+	 * @param bool $includeLengths Include the length bytes of the
 	 *  sub-blocks in the returned value. Normally this is false,
 	 *  except XMP is weird and does a hack where you need to keep
 	 *  these length bytes.

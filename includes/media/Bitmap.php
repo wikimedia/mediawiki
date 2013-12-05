@@ -28,7 +28,7 @@
  */
 class BitmapHandler extends ImageHandler {
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @param array $params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
@@ -106,10 +106,10 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
@@ -201,6 +201,7 @@ class BitmapHandler extends ImageHandler {
 		switch ( $scaler ) {
 			case 'hookaborted':
 				# Handled by the hook above
+				/** @var MediaTransformOutput $mto */
 				$err = $mto->isError() ? $mto : false;
 				break;
 			case 'im':
@@ -243,7 +244,9 @@ class BitmapHandler extends ImageHandler {
 	 * Returns which scaler type should be used. Creates parent directories
 	 * for $dstPath and returns 'client' on error
 	 *
-	 * @return string client,im,custom,gd
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
+	 * @return string One of client, im, custom, gd, imext
 	 */
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
 		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;
@@ -272,11 +275,11 @@ class BitmapHandler extends ImageHandler {
 	 * Get a ThumbnailImage that respresents an image that will be scaled
 	 * client side
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
 	 *
-	 * @todo fixme: no rotation support
+	 * @todo FIXME: No rotation support
 	 */
 	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
 		$params = array(
@@ -290,7 +293,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Transform an image using ImageMagick
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -388,7 +391,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Transform an image using the Imagick PHP extension
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -464,7 +467,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Transform an image using a custom command
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -498,9 +501,9 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Log an error that occurred in an external process
 	 *
-	 * @param $retval int
-	 * @param $err int
-	 * @param $cmd string
+	 * @param int $retval
+	 * @param int $err
+	 * @param string $cmd
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
 		wfDebugLog( 'thumbnail',
@@ -523,7 +526,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Transform an image using the built in GD library
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -611,7 +614,8 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's property input (e.g. -set -comment)
 	 * See InterpretImageProperties() in magick/property.c
-	 * @return mixed|string
+	 * @param string $s
+	 * @return string
 	 */
 	function escapeMagickProperty( $s ) {
 		// Double the backslashes
@@ -659,6 +663,8 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's output filename. See
 	 * InterpretImageFilename() in magick/image.c.
+	 * @param string $path The file path
+	 * @param bool|string $scene The scene specification, or false if there is none
 	 * @return string
 	 */
 	function escapeMagickOutput( $path, $scene = false ) {
@@ -705,7 +711,7 @@ class BitmapHandler extends ImageHandler {
 	 * Retrieve the version of the installed ImageMagick
 	 * You can use PHPs version_compare() to use this value
 	 * Value is cached for one hour.
-	 * @return String representing the IM version.
+	 * @return string Representing the IM version.
 	 */
 	protected function getMagickVersion() {
 		global $wgMemc;
@@ -761,9 +767,9 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @param array $params Rotate parameters.
-	 *    'rotation' clockwise rotation in degrees, allowed are multiples of 90
+	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return bool
 	 */
@@ -783,6 +789,7 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
+				// @todo FIXME: Undefined variable %env
 				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
@@ -816,7 +823,7 @@ class BitmapHandler extends ImageHandler {
 	 * Rerurns whether the file needs to be rendered. Returns true if the
 	 * file requires rotation and we are able to rotate it.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return bool
 	 */
 	public function mustRender( $file ) {

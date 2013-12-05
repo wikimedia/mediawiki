@@ -29,10 +29,9 @@
 class SvgHandler extends ImageHandler {
 	const SVG_METADATA_VERSION = 2;
 
-	/**
-	 * A list of metadata tags that can be converted
-	 * to the commonly used exif tags. This allows messages
-	 * to be reused, and consistent tag names for {{#formatmetadata:..}}
+	/** @var array A list of metadata tags that can be converted
+	 *  to the commonly used exif tags. This allows messages
+	 *  to be reused, and consistent tag names for {{#formatmetadata:..}}
 	 */
 	private static $metaConversion = array(
 		'originalwidth' => 'ImageWidth',
@@ -61,11 +60,11 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return bool
 	 */
 	function isAnimatedImage( $file ) {
-		# TODO: detect animated SVGs
+		# @todo Detect animated SVGs
 		$metadata = $file->getMetadata();
 		if ( $metadata ) {
 			$metadata = $this->unpackMetadata( $metadata );
@@ -85,8 +84,8 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $params
+	 * @param File $image
+	 * @param array $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -115,10 +114,10 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
@@ -164,7 +163,7 @@ class SvgHandler extends ImageHandler {
 	 * @param string $dstPath
 	 * @param string $width
 	 * @param string $height
-	 * @param string $lang Language code of the language to render the SVG in
+	 * @param bool|string $lang Language code of the language to render the SVG in
 	 * @throws MWException
 	 * @return bool|MediaTransformError
 	 */
@@ -232,9 +231,9 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file File
-	 * @param  $path
-	 * @param bool $metadata
+	 * @param File $file
+	 * @param string $path Unused
+	 * @param bool|array $metadata
 	 * @return array
 	 */
 	function getImageSize( $file, $path, $metadata = false ) {
@@ -261,7 +260,7 @@ class SvgHandler extends ImageHandler {
 	 * a "nominal" resolution, and not a fixed one,
 	 * as well as so animation can be denoted.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
@@ -285,6 +284,11 @@ class SvgHandler extends ImageHandler {
 		return $msg->parse();
 	}
 
+	/**
+	 * @param File $file
+	 * @param string $filename
+	 * @return string Serialised metadata
+	 */
 	function getMetadata( $file, $filename ) {
 		$metadata = array( 'version' => self::SVG_METADATA_VERSION );
 		try {
@@ -336,7 +340,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return array|bool
 	 */
 	function formatMetadata( $file ) {
@@ -353,7 +357,7 @@ class SvgHandler extends ImageHandler {
 			return false;
 		}
 
-		/* TODO: add a formatter
+		/* @todo Add a formatter
 		$format = new FormatSVG( $metadata );
 		$formatted = $format->getFormattedData();
 		*/
@@ -384,7 +388,7 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * @param string $name Parameter name
-	 * @param $string $value Parameter value
+	 * @param mixed $value Parameter value
 	 * @return bool Validity
 	 */
 	function validateParam( $name, $value ) {
@@ -439,7 +443,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 * @return array
 	 */
 	function getScriptParams( $params ) {

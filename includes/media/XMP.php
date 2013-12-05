@@ -47,27 +47,38 @@
  *
  */
 class XMPReader {
-	private $curItem = array(); // array to hold the current element (and previous element, and so on)
+	/** @var array XMP item configuration array */
+	protected $items;
 
-	private $ancestorStruct = false; // the structure name when processing nested structures.
+	/** @var array Array to hold the current element (and previous element, and so on) */
+	private $curItem = array();
 
-	private $charContent = false; // temporary holder for character data that appears in xmp doc.
+	/** @var bool|string The structure name when processing nested structures. */
+	private $ancestorStruct = false;
 
-	private $mode = array(); // stores the state the xmpreader is in (see MODE_FOO constants)
+	/** @var bool|string Temporary holder for character data that appears in xmp doc. */
+	private $charContent = false;
 
-	private $results = array(); // array to hold results
+	/** @var array Stores the state the xmpreader is in (see MODE_FOO constants) */
+	private $mode = array();
 
-	private $processingArray = false; // if we're doing a seq or bag.
+	/** @var array Array to hold results */
+	private $results = array();
 
-	private $itemLang = false; // used for lang alts only
+	/** @var bool If we're doing a seq or bag. */
+	private $processingArray = false;
 
+	/** @var bool|string Used for lang alts only */
+	private $itemLang = false;
+
+	/** @var resource A resource handle for the XML parser */
 	private $xmlParser;
 
+	/** @var bool|string Character set like 'UTF-8' */
 	private $charset = false;
 
+	/** @var int */
 	private $extendedXMPOffset = 0;
-
-	protected $items;
 
 	/**
 	 * These are various mode constants.
@@ -244,10 +255,10 @@ class XMPReader {
 	 * debug log, blanks result array and returns false.
 	 *
 	 * @param string $content XMP data
-	 * @param $allOfIt Boolean: If this is all the data (true) or if its split up (false). Default true
-	 * @param $reset Boolean: does xml parser need to be reset. Default false
+	 * @param bool $allOfIt If this is all the data (true) or if its split up (false). Default true
+	 * @param bool $reset Does xml parser need to be reset. Default false
 	 * @throws MWException
-	 * @return Boolean success.
+	 * @return bool Success.
 	 */
 	public function parse( $content, $allOfIt = true, $reset = false ) {
 		if ( $reset ) {
@@ -320,7 +331,7 @@ class XMPReader {
 	 * @todo In serious need of testing
 	 * @see http://www.adobe.ge/devnet/xmp/pdfs/XMPSpecificationPart3.pdf XMP spec part 3 page 20
 	 * @param string $content XMPExtended block minus the namespace signature
-	 * @return Boolean If it succeeded.
+	 * @return bool If it succeeded.
 	 */
 	public function parseExtended( $content ) {
 		// @todo FIXME: This is untested. Hard to find example files
@@ -393,7 +404,7 @@ class XMPReader {
 	 * <exif:DigitalZoomRatio>0/10</exif:DigitalZoomRatio>
 	 * and are processing the 0/10 bit.
 	 *
-	 * @param $parser XMLParser reference to the xml parser
+	 * @param XMLParser $parser XMLParser reference to the xml parser
 	 * @param string $data Character data
 	 * @throws MWException on invalid data
 	 */
@@ -452,7 +463,7 @@ class XMPReader {
 	 * Or it could be if we hit the end element of a property
 	 * of a compound data structure (like a member of an array).
 	 *
-	 * @param string $elm namespace, space, and tag name.
+	 * @param string $elm Namespace, space, and tag name.
 	 */
 	private function endElementModeSimple( $elm ) {
 		if ( $this->charContent !== false ) {
@@ -486,7 +497,7 @@ class XMPReader {
 	 *
 	 * This method is called when we hit the "</exif:ISOSpeedRatings>" tag.
 	 *
-	 * @param string $elm namespace . space . tag name.
+	 * @param string $elm Namespace . space . tag name.
 	 * @throws MWException
 	 */
 	private function endElementNested( $elm ) {
@@ -553,7 +564,7 @@ class XMPReader {
 	 * (For comparison, we call endElementModeSimple when we
 	 * hit the "</rdf:li>")
 	 *
-	 * @param string $elm namespace . ' ' . element name
+	 * @param string $elm Namespace . ' ' . element name
 	 * @throws MWException
 	 */
 	private function endElementModeLi( $elm ) {
@@ -593,7 +604,7 @@ class XMPReader {
 	 * Qualifiers aren't all that common, and we don't do anything
 	 * with them.
 	 *
-	 * @param string $elm namespace and element
+	 * @param string $elm Namespace and element
 	 */
 	private function endElementModeQDesc( $elm ) {
 
@@ -617,8 +628,8 @@ class XMPReader {
 	 * Ignores the outer wrapping elements that are optional in
 	 * xmp and have no meaning.
 	 *
-	 * @param $parser XMLParser
-	 * @param string $elm namespace . ' ' . element name
+	 * @param XMLParser $parser
+	 * @param string $elm Namespace . ' ' . element name
 	 * @throws MWException
 	 */
 	function endElement( $parser, $elm ) {
@@ -701,7 +712,7 @@ class XMPReader {
 	 * in which case we add it to the item stack, so we can ignore things
 	 * that are nested, correctly.
 	 *
-	 * @param string $elm namespace . ' ' . tag name
+	 * @param string $elm Namespace . ' ' . tag name
 	 */
 	private function startElementModeIgnore( $elm ) {
 		if ( $elm === $this->curItem[0] ) {
@@ -714,7 +725,7 @@ class XMPReader {
 	 *  Start element in MODE_BAG (unordered array)
 	 * this should always be <rdf:Bag>
 	 *
-	 * @param string $elm namespace . ' ' . tag
+	 * @param string $elm Namespace . ' ' . tag
 	 * @throws MWException if we have an element that's not <rdf:Bag>
 	 */
 	private function startElementModeBag( $elm ) {
@@ -729,7 +740,7 @@ class XMPReader {
 	 * Start element in MODE_SEQ (ordered array)
 	 * this should always be <rdf:Seq>
 	 *
-	 * @param string $elm namespace . ' ' . tag
+	 * @param string $elm Namespace . ' ' . tag
 	 * @throws MWException if we have an element that's not <rdf:Seq>
 	 */
 	private function startElementModeSeq( $elm ) {
@@ -756,7 +767,7 @@ class XMPReader {
 	 * which are really only used for thumbnails, which
 	 * we don't care about.
 	 *
-	 * @param string $elm namespace . ' ' . tag
+	 * @param string $elm Namespace . ' ' . tag
 	 * @throws MWException if we have an element that's not <rdf:Alt>
 	 */
 	private function startElementModeLang( $elm ) {
@@ -781,7 +792,7 @@ class XMPReader {
 	 *
 	 * This method is called when processing the <rdf:Description> element
 	 *
-	 * @param string $elm namespace and tag names separated by space.
+	 * @param string $elm Namespace and tag names separated by space.
 	 * @param array $attribs Attributes of the element.
 	 * @throws MWException
 	 */
@@ -819,7 +830,7 @@ class XMPReader {
 	 *   </exif:DigitalZoomRatio>
 	 * Called when processing the <rdf:value> or <foo:someQualifier>.
 	 *
-	 * @param string $elm namespace and tag name separated by a space.
+	 * @param string $elm Namespace and tag name separated by a space.
 	 *
 	 */
 	private function startElementModeQDesc( $elm ) {
@@ -901,9 +912,9 @@ class XMPReader {
 	 * <exif:Flash rdf:parseType='Resource'> <exif:Fired>True</exif:Fired>
 	 *  <exif:Mode>1</exif:Mode></exif:Flash>
 	 *
-	 * @param string $ns namespace
-	 * @param string $tag tag name (no ns)
-	 * @param array $attribs array of attribs w/ values.
+	 * @param string $ns Namespace
+	 * @param string $tag Tag name (no ns)
+	 * @param array $attribs Array of attribs w/ values.
 	 * @throws MWException
 	 */
 	private function startElementModeStruct( $ns, $tag, $attribs ) {
@@ -950,7 +961,7 @@ class XMPReader {
 	 *   </rdf:Seq> </exif:ISOSpeedRatings>
 	 * This method is called when we hit the <rdf:li> element.
 	 *
-	 * @param string $elm namespace . ' ' . tagname
+	 * @param string $elm Namespace . ' ' . tagname
 	 * @param array $attribs Attributes. (needed for BAGSTRUCTS)
 	 * @throws MWException if gets a tag other than <rdf:li>
 	 */
@@ -1000,9 +1011,9 @@ class XMPReader {
 	 *
 	 * This method is called when we hit the <rdf:li> element.
 	 *
-	 * @param string $elm namespace . ' ' . tag
-	 * @param array $attribs array of elements (most importantly xml:lang)
-	 * @throws MWException if gets a tag other than <rdf:li> or if no xml:lang
+	 * @param string $elm Namespace . ' ' . tag
+	 * @param array $attribs Array of elements (most importantly xml:lang)
+	 * @throws MWException If gets a tag other than <rdf:li> or if no xml:lang
 	 */
 	private function startElementModeLiLang( $elm, $attribs ) {
 		if ( $elm !== self::NS_RDF . ' li' ) {
@@ -1031,8 +1042,8 @@ class XMPReader {
 	 * Also does some initial set up for the wrapper element
 	 *
 	 * @param $parser XMLParser
-	 * @param string $elm namespace "<space>" element
-	 * @param array $attribs attribute name => value
+	 * @param string $elm Namespace "<space>" element
+	 * @param array $attribs Attribute name => value
 	 * @throws MWException
 	 */
 	function startElement( $parser, $elm, $attribs ) {
@@ -1124,7 +1135,7 @@ class XMPReader {
 	 * <rdf:Description rdf:about="" xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:DigitalZoomRatio="0/10">
 	 * @endcode
 	 *
-	 * @param array $attribs attribute=>value array.
+	 * @param array $attribs Array attribute=>value
 	 * @throws MWException
 	 */
 	// @codingStandardsIgnoreEnd
@@ -1173,9 +1184,9 @@ class XMPReader {
 	 * $this->processingArray to determine what name to
 	 * save the value under. (in addition to $tag).
 	 *
-	 * @param string $ns namespace of tag this is for
-	 * @param string $tag tag name
-	 * @param string $val value to save
+	 * @param string $ns Namespace of tag this is for
+	 * @param string $tag Tag name
+	 * @param string $val Value to save
 	 */
 	private function saveValue( $ns, $tag, $val ) {
 

@@ -44,7 +44,7 @@ class JpegMetadataExtractor {
 	 * and those can't extract xmp on files containing both exif and xmp data
 	 *
 	 * @param string $filename name of jpeg file
-	 * @return Array of interesting segments.
+	 * @return array of interesting segments.
 	 * @throws MWException if given invalid file.
 	 */
 	static function segmentSplitter( $filename ) {
@@ -167,9 +167,9 @@ class JpegMetadataExtractor {
 
 	/**
 	 * Helper function for jpegSegmentSplitter
-	 * @param &$fh FileHandle for jpeg file
+	 * @param resource &$fh File handle for JPEG file
 	 * @throws MWException
-	 * @return string data content of segment.
+	 * @return string Data content of segment.
 	 */
 	private static function jpegExtractMarker( &$fh ) {
 		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
@@ -195,7 +195,8 @@ class JpegMetadataExtractor {
 	 *
 	 * @param string $app13 photoshop psir app13 block from jpg.
 	 * @throws MWException (It gets caught next level up though)
-	 * @return String if the iptc hash is good or not.
+	 * @return string If the iptc hash is good or not. One of 'iptc-no-hash',
+	 *   'iptc-good-hash', 'iptc-bad-hash'.
 	 */
 	public static function doPSIR( $app13 ) {
 		if ( !$app13 ) {

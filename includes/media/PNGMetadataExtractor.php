@@ -411,10 +411,10 @@ class PNGMetadataExtractor {
 	/**
 	 * Read a chunk, checking to make sure its not too big.
 	 *
-	 * @param $fh resource The file handle
-	 * @param $size Integer size in bytes.
+	 * @param resource $fh The file handle
+	 * @param int $size Size in bytes.
 	 * @throws Exception if too big.
-	 * @return String The chunk.
+	 * @return string The chunk.
 	 */
 	private static function read( $fh, $size ) {
 		if ( $size > self::MAX_CHUNK_SIZE ) {

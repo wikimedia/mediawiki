@@ -61,7 +61,7 @@ class JpegHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @param array $params Rotate parameters.
 	 *    'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
@@ -80,6 +80,7 @@ class JpegHandler extends ExifBitmapHandler {
 			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
 			wfProfileIn( 'jpegtran' );
 			$retval = 0;
+			// @todo FIXME Undefined variable $env
 			$err = wfShellExecWithStderr( $cmd, $retval, $env );
 			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {

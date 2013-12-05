@@ -29,7 +29,7 @@
  */
 class BmpHandler extends BitmapHandler {
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -39,9 +39,9 @@ class BmpHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param $text
-	 * @param $mime
-	 * @param $params
+	 * @param string $text
+	 * @param string $mime
+	 * @param array $params
 	 * @return array
 	 */
 	function getThumbType( $text, $mime, $params = null ) {
@@ -52,7 +52,7 @@ class BmpHandler extends BitmapHandler {
 	 * Get width and height from the bmp header.
 	 *
 	 * @param $image
-	 * @param $filename
+	 * @param string $filename
 	 * @return array
 	 */
 	function getImageSize( $image, $filename ) {

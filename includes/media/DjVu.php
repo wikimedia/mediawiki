@@ -42,7 +42,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -50,7 +50,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function isMultiPage( $file ) {
@@ -68,8 +68,8 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 * @return bool
 	 */
 	function validateParam( $name, $value ) {
@@ -85,7 +85,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 * @return bool|string
 	 */
 	function makeParamString( $params ) {
@@ -98,7 +98,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $str
+	 * @param string $str
 	 * @return array|bool
 	 */
 	function parseParamString( $str ) {
@@ -111,7 +111,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 * @return array
 	 */
 	function getScriptParams( $params ) {
@@ -122,10 +122,10 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
@@ -214,6 +214,8 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * Cache an instance of DjVuImage in an Image object, return that instance
 	 *
+	 * @param File $image
+	 * @param string $path
 	 * @return DjVuImage
 	 */
 	function getDjVuImage( $image, $path ) {
@@ -230,9 +232,9 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Cache a document tree for the DjVu XML metadata
-	 * @param $image File
-	 * @param $gettext Boolean: DOCUMENT (Default: false)
-	 * @return bool
+	 * @param File $image
+	 * @param bool $gettext DOCUMENT (Default: false)
+	 * @return bool|SimpleXMLElement
 	 */
 	function getMetaTree( $image, $gettext = false ) {
 		if ( isset( $image->dejaMetaTree ) ) {
@@ -254,8 +256,11 @@ class DjVuHandler extends ImageHandler {
 			$image->djvuTextTree = false;
 			$tree = new SimpleXMLElement( $metadata );
 			if ( $tree->getName() == 'mw-djvu' ) {
+				/** @var SimpleXMLElement $b */
 				foreach ( $tree->children() as $b ) {
 					if ( $b->getName() == 'DjVuTxt' ) {
+						// @todo File::djvuTextTree and File::dejaMetaTree are declared
+						// dynamically. Add a public File::$data to facilitate this?
 						$image->djvuTextTree = $b;
 					} elseif ( $b->getName() == 'DjVuXML' ) {
 						$image->dejaMetaTree = $b;
@@ -276,6 +281,11 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param File $image
+	 * @param string $path
+	 * @return bool|array False on failure
+	 */
 	function getImageSize( $image, $path ) {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
@@ -331,6 +341,11 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param File $image
+	 * @param int $page Page number to get information for
+	 * @return bool|string Page text or false when no text found.
+	 */
 	function getPageText( $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {

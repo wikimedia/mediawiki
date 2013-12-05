@@ -28,7 +28,7 @@
  */
 abstract class ImageHandler extends MediaHandler {
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return bool
 	 */
 	function canRender( $file ) {
@@ -79,8 +79,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $params
+	 * @param File $image
+	 * @param array $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -151,11 +151,11 @@ abstract class ImageHandler extends MediaHandler {
 	/**
 	 * Validate thumbnail parameters and fill in the correct height
 	 *
-	 * @param $width Integer: specified width (input/output)
-	 * @param $height Integer: height (output only)
-	 * @param $srcWidth Integer: width of the source image
-	 * @param $srcHeight Integer: height of the source image
-	 * @param $mimeType
+	 * @param int $width Specified width (input/output)
+	 * @param int $height Height (output only)
+	 * @param int $srcWidth Width of the source image
+	 * @param int $srcHeight Height of the source image
+	 * @param string $mimeType Unused
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
@@ -183,10 +183,10 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $script
-	 * @param  $params
-	 * @return bool|ThumbnailImage
+	 * @param File $image
+	 * @param string $script
+	 * @param array $params
+	 * @return bool|MediaTransformOutput
 	 */
 	function getScriptedTransform( $image, $script, $params ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
@@ -221,7 +221,7 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
@@ -234,7 +234,7 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
@@ -255,7 +255,7 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getDimensionsString( $file ) {

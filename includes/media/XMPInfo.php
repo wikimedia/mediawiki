@@ -27,8 +27,8 @@
  * extract.
  */
 class XMPInfo {
-	/** get the items array
-	 * @return Array XMP item configuration array.
+	/** Get the items array
+	 * @return array XMP item configuration array.
 	 */
 	public static function getItems() {
 		if ( !self::$ranHooks ) {
@@ -66,7 +66,7 @@ class XMPInfo {
 	 *     * children - for MODE_STRUCT items, allowed children.
 	 *   * structPart - Indicates that this element can only appear as a member of a structure.
 	 *
-	 * currently this just has a bunch of exif values as this class is only half-done
+	 * Currently this just has a bunch of exif values as this class is only half-done
 	 */
 	static private $items = array(
 		'http://ns.adobe.com/exif/1.0/' => array(

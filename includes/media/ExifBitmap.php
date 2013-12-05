@@ -79,6 +79,11 @@ class ExifBitmapHandler extends BitmapHandler {
 		return $metadata;
 	}
 
+	/**
+	 * @param $image
+	 * @param array $metadata
+	 * @return bool|int
+	 */
 	function isMetadataValid( $image, $metadata ) {
 		global $wgShowEXIF;
 		if ( !$wgShowEXIF ) {
@@ -119,7 +124,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
@@ -214,8 +219,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 *
 	 * @param string $data
 	 * @return int 0, 90, 180 or 270
-	 * @todo FIXME orientation can include flipping as well; see if this is an
-	 * issue!
+	 * @todo FIXME: Orientation can include flipping as well; see if this is an issue!
 	 */
 	protected function getRotationForExif( $data ) {
 		if ( !$data ) {

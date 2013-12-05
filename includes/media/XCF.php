@@ -34,7 +34,7 @@
  */
 class XCFHandler extends BitmapHandler {
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -44,9 +44,9 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param $ext
-	 * @param $mime
-	 * @param $params
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array $params
 	 * @return array
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
@@ -56,8 +56,8 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Get width and height from the XCF header.
 	 *
-	 * @param $image
-	 * @param $filename
+	 * @param File $image
+	 * @param string $filename
 	 * @return array
 	 */
 	function getImageSize( $image, $filename ) {
@@ -146,6 +146,8 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Must use "im" for XCF
 	 *
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
 	 * @return string
 	 */
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {

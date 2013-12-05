@@ -35,7 +35,7 @@ class IPTC {
 	 * @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
 	 *
 	 * @param string $rawData app13 block from jpeg containing iptc/iim data
-	 * @return Array iptc metadata array
+	 * @return array IPTC metadata array
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
@@ -353,8 +353,8 @@ class IPTC {
 	 * @todo Potentially this should also capture the timezone offset.
 	 * @param array $date The date tag
 	 * @param array $time The time tag
-	 * @param $c
-	 * @return String Date in exif format.
+	 * @param string $c The charset
+	 * @return string Date in EXIF format.
 	 */
 	private static function timeHelper( $date, $time, $c ) {
 		if ( count( $date ) === 1 ) {
@@ -438,7 +438,7 @@ class IPTC {
 
 	/**
 	 * Helper function of a helper function to convert charset for iptc values.
-	 * @param $data Mixed String or Array: The iptc string
+	 * @param string|array $data The IPTC string
 	 * @param string $charset The charset
 	 *
 	 * @return string

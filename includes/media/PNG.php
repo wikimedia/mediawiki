@@ -48,7 +48,7 @@ class PNGHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
@@ -63,7 +63,7 @@ class PNGHandler extends BitmapHandler {
 	/**
 	 * Get a file type independent array of metadata.
 	 *
-	 * @param $image File
+	 * @param File $image
 	 * @return array The metadata array
 	 */
 	public function getCommonMetaArray( File $image ) {
@@ -82,7 +82,7 @@ class PNGHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return bool
 	 */
 	function isAnimatedImage( $image ) {
@@ -99,7 +99,7 @@ class PNGHandler extends BitmapHandler {
 
 	/**
 	 * We do not support making APNG thumbnails, so always false
-	 * @param $image File
+	 * @param File $image
 	 * @return bool false
 	 */
 	function canAnimateThumbnail( $image ) {
@@ -139,7 +139,7 @@ class PNGHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return string
 	 */
 	function getLongDesc( $image ) {
