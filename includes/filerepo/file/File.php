@@ -532,7 +532,7 @@ abstract class File {
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @return bool
+	 * @return bool|array
 	 */
 	public function getMetadata() {
 		return false;
