@@ -337,7 +337,7 @@ class Exif {
 		 * when somebody uploads a file called something.jpeg
 		 * containing random gibberish.
 		 */
-		$this->mRawExifData = $data ? $data : array();
+		$this->mRawExifData = $data ?: array();
 		$this->makeFilteredData();
 		$this->collapseData();
 		$this->debugFile( __FUNCTION__, false );
