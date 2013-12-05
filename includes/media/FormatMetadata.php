@@ -1884,7 +1884,8 @@ class FormatMetadata extends ContextSource {
  *
  */
 class FormatExif {
-	var $meta;
+	/** @var array */
+	private $meta;
 
 	/**
 	 * @param $meta array

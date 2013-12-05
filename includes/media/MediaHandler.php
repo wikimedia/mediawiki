@@ -32,10 +32,8 @@ abstract class MediaHandler {
 	const METADATA_BAD = false;
 	const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
 
-	/**
-	 * Instance cache
-	 */
-	static $handlers = array();
+	/** @var MediaHandler[] Instance cache with array of MediaHandler */
+	protected static $handlers = array();
 
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
