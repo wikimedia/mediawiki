@@ -204,7 +204,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			if ( $numericIds ) {
 				ksort( $results, SORT_NUMERIC );
 			} elseif ( $sort !== null && $sort !== false ) {
-				uasort( $results, $sort );
+				usort( $results, $sort );
 			}
 		}
 	}
