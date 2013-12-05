@@ -477,7 +477,7 @@ abstract class MediaHandler {
 	 * @return array of strings
 	 * @access protected
 	 */
-	function visibleMetadataFields() {
+	protected function visibleMetadataFields() {
 		return FormatMetadata::getVisibleFields();
 	}
 

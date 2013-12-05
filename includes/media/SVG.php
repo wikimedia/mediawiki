@@ -329,7 +329,7 @@ class SvgHandler extends ImageHandler {
 		return self::METADATA_GOOD;
 	}
 
-	function visibleMetadataFields() {
+	protected function visibleMetadataFields() {
 		$fields = array( 'objectname', 'imagedescription' );
 
 		return $fields;
