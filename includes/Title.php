@@ -4696,7 +4696,7 @@ class Title {
 	 * Get all extant redirects to this Title
 	 *
 	 * @param int|Null $ns Single namespace to consider; NULL to consider all namespaces
-	 * @return Array of Title redirects to this title
+	 * @return Title[] Array of Title redirects to this title
 	 */
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = array();

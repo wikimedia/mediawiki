@@ -30,7 +30,7 @@ class RepoGroup {
 	/** @var LocalRepo */
 	protected $localRepo;
 
-	/** @var array */
+	/** @var FileRepo[] */
 	protected $foreignRepos;
 
 	/** @var bool */
@@ -221,6 +221,7 @@ class RepoGroup {
 		if ( $redir ) {
 			return $redir;
 		}
+
 		foreach ( $this->foreignRepos as $repo ) {
 			$redir = $repo->checkRedirect( $title );
 			if ( $redir ) {
