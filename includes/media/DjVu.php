@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
-
 	/**
 	 * @return bool
 	 */
@@ -35,6 +34,7 @@ class DjVuHandler extends ImageHandler {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
+
 			return false;
 		} else {
 			return true;
@@ -93,6 +93,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
+
 		return "page{$page}-{$params['width']}px";
 	}
 
@@ -137,6 +138,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !$xml ) {
 			$width = isset( $params['width'] ) ? $params['width'] : 0;
 			$height = isset( $params['height'] ) ? $params['height'] : 0;
+
 			return new MediaTransformError( 'thumbnail_error', $width, $height,
 				wfMessage( 'djvu_no_xml' )->text() );
 		}
@@ -162,6 +164,7 @@ class DjVuHandler extends ImageHandler {
 				'height' => $height,
 				'page' => $page
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
@@ -195,6 +198,7 @@ class DjVuHandler extends ImageHandler {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
 					wfHostname(), $retval, trim( $err ), $cmd ) );
+
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
 			$params = array(
@@ -202,6 +206,7 @@ class DjVuHandler extends ImageHandler {
 				'height' => $height,
 				'page' => $page
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
@@ -219,6 +224,7 @@ class DjVuHandler extends ImageHandler {
 		} else {
 			$deja = $image->dejaImage;
 		}
+
 		return $deja;
 	}
 
@@ -236,6 +242,7 @@ class DjVuHandler extends ImageHandler {
 		$metadata = $image->getMetadata();
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
 			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
+
 			return false;
 		}
 		wfProfileIn( __METHOD__ );
@@ -280,11 +287,13 @@ class DjVuHandler extends ImageHandler {
 			$magic = MimeMagic::singleton();
 			$mime = $magic->guessTypesForExtension( $wgDjvuOutputExtension );
 		}
+
 		return array( $wgDjvuOutputExtension, $mime );
 	}
 
 	function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path\n" );
+
 		return $this->getDjVuImage( $image, $path )->retrieveMetaData();
 	}
 
@@ -301,6 +310,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !$tree ) {
 			return false;
 		}
+
 		return count( $tree->xpath( '//OBJECT' ) );
 	}
 
@@ -330,11 +340,10 @@ class DjVuHandler extends ImageHandler {
 		$o = $tree->BODY[0]->PAGE[$page - 1];
 		if ( $o ) {
 			$txt = $o['value'];
+
 			return $txt;
 		} else {
 			return false;
 		}
-
 	}
-
 }

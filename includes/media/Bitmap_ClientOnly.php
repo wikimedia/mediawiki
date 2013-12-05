@@ -30,7 +30,6 @@
  * @ingroup Media
  */
 class BitmapHandler_ClientOnly extends BitmapHandler {
-
 	/**
 	 * @param $image File
 	 * @param  $params
@@ -52,6 +51,7 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
 		return new ThumbnailImage( $image, $image->getURL(), $image->getLocalRefPath(), $params );
 	}
 }

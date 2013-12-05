@@ -28,7 +28,7 @@
  * Each of these functions take the same parameters
  * * an info array which is a subset of the XMPInfo::items array
  * * A value (passed as reference) to validate. This can be either a
- *	simple value or an array
+ *    simple value or an array
  * * A boolean to determine if this is validating a simple or complex values
  *
  * It should be noted that when an array is being validated, typically the validation
@@ -57,7 +57,6 @@ class XMPValidate {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected True or False but got $val" );
 			$val = null;
 		}
-
 	}
 
 	/**
@@ -76,7 +75,6 @@ class XMPValidate {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected rational but got $val" );
 			$val = null;
 		}
-
 	}
 
 	/**
@@ -99,6 +97,7 @@ class XMPValidate {
 		) {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected rating but got $val" );
 			$val = null;
+
 			return;
 		} else {
 			$nVal = (float)$val;
@@ -108,11 +107,13 @@ class XMPValidate {
 				// as -1 is meant as a special reject rating.
 				wfDebugLog( 'XMP', __METHOD__ . " Rating too low, setting to -1 (Rejected)" );
 				$val = '-1';
+
 				return;
 			}
 			if ( $nVal > 5 ) {
 				wfDebugLog( 'XMP', __METHOD__ . " Rating too high, setting to 5" );
 				$val = '5';
+
 				return;
 			}
 		}
@@ -134,7 +135,6 @@ class XMPValidate {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected integer but got $val" );
 			$val = null;
 		}
-
 	}
 
 	/**
@@ -219,7 +219,6 @@ class XMPValidate {
 			wfDebugLog( 'XMP', __METHOD__ . " Expected Lang code but got $val" );
 			$val = null;
 		}
-
 	}
 
 	/**
@@ -235,8 +234,8 @@ class XMPValidate {
 	 *
 	 * @param array $info information about current property
 	 * @param &$val Mixed current value to validate. Converts to TS_EXIF as a side-effect.
-	 *	in cases where there's only a partial date, it will give things like
-	 *	2011:04.
+	 *    in cases where there's only a partial date, it will give things like
+	 *    2011:04.
 	 * @param $standalone Boolean if this is a simple property or array
 	 */
 	public static function validateDate( $info, &$val, $standalone ) {
@@ -270,6 +269,7 @@ class XMPValidate {
 			if ( $res[1] === '0000' ) {
 				wfDebugLog( 'XMP', __METHOD__ . " Invalid date (year 0): $val" );
 				$val = null;
+
 				return;
 			}
 
@@ -282,6 +282,7 @@ class XMPValidate {
 				if ( isset( $res[3] ) ) {
 					$val .= ':' . $res[3];
 				}
+
 				return;
 			}
 
@@ -292,6 +293,7 @@ class XMPValidate {
 				if ( isset( $res[6] ) && $res[6] !== '' ) {
 					$val .= ':' . $res[6];
 				}
+
 				return;
 			}
 
@@ -320,7 +322,6 @@ class XMPValidate {
 				$val = substr( $val, 0, -3 );
 			}
 		}
-
 	}
 
 	/** function to validate, and more importantly
@@ -352,6 +353,7 @@ class XMPValidate {
 				$coord = -$coord;
 			}
 			$val = $coord;
+
 			return;
 		} elseif ( preg_match(
 			'/(\d{1,3}),(\d{1,2}(?:.\d*)?)([NWSE])/D',
@@ -363,12 +365,13 @@ class XMPValidate {
 				$coord = -$coord;
 			}
 			$val = $coord;
-			return;
 
+			return;
 		} else {
 			wfDebugLog( 'XMP', __METHOD__
 				. " Expected GPSCoordinate, but got $val." );
 			$val = null;
+
 			return;
 		}
 	}

@@ -28,7 +28,6 @@
  * @ingroup Media
  */
 class BmpHandler extends BitmapHandler {
-
 	/**
 	 * @param $file
 	 * @return bool
@@ -75,6 +74,7 @@ class BmpHandler extends BitmapHandler {
 		} catch ( MWException $e ) {
 			return false;
 		}
+
 		return array( $w[1], $h[1] );
 	}
 }

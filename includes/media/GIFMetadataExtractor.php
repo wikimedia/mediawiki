@@ -33,7 +33,9 @@
  */
 class GIFMetadataExtractor {
 	static $gif_frame_sep;
+
 	static $gif_extension_sep;
+
 	static $gif_term;
 
 	const VERSION = 1;
@@ -225,7 +227,6 @@ class GIFMetadataExtractor {
 
 						// strip out trailer.
 						$xmp = substr( $xmp, 0, -257 );
-
 					} else {
 						// unrecognized extension block
 						fseek( $fh, -( $blockLength + 1 ), SEEK_CUR );
@@ -341,7 +342,7 @@ class GIFMetadataExtractor {
 			$data .= fread( $fh, ord( $subLength ) );
 			$subLength = fread( $fh, 1 );
 		}
+
 		return $data;
 	}
-
 }

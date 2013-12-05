@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 class IPTC {
-
 	/**
 	 * This takes the results of iptcparse() and puts it into a
 	 * form that can be handled by mediawiki. Generally called from
@@ -42,7 +41,7 @@ class IPTC {
 		$parsed = iptcparse( $rawData );
 		$data = array();
 		if ( !is_array( $parsed ) ) {
-				return $data;
+			return $data;
 		}
 
 		$c = '';
@@ -300,7 +299,7 @@ class IPTC {
 						wfDebugLog( 'iptc', 'IPTC: '
 							. '2:04 too short. '
 							. 'Ignoring.' );
-							break;
+						break;
 					}
 					$extracted = substr( $con[0], 4 );
 					$data['IntellectualGenre'] = $extracted;
@@ -339,11 +338,11 @@ class IPTC {
 					break;
 
 				default:
-					wfDebugLog( 'iptc', "Unsupported iptc tag: $tag. Value: " . implode( ',', $val ));
+					wfDebugLog( 'iptc', "Unsupported iptc tag: $tag. Value: " . implode( ',', $val ) );
 					break;
 			}
-
 		}
+
 		return $data;
 	}
 
@@ -385,12 +384,14 @@ class IPTC {
 			// April, but the year and day is unknown. We don't process these
 			// types of incomplete dates atm.
 			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )" );
+
 			return null;
 		}
 
-		$unixTS = wfTimestamp( TS_UNIX, $date . substr( $time, 0, 6 ));
+		$unixTS = wfTimestamp( TS_UNIX, $date . substr( $time, 0, 6 ) );
 		if ( $unixTS === false ) {
 			wfDebugLog( 'iptc', "IPTC: can't convert date to TS_UNIX: $date $time." );
+
 			return null;
 		}
 
@@ -398,12 +399,13 @@ class IPTC {
 			+ ( intval( substr( $time, 9, 2 ) ) * 60 );
 
 		if ( substr( $time, 6, 1 ) === '-' ) {
-			$tz = - $tz;
+			$tz = -$tz;
 		}
 
 		$finalTimestamp = wfTimestamp( TS_EXIF, $unixTS + $tz );
 		if ( $finalTimestamp === false ) {
 			wfDebugLog( 'iptc', "IPTC: can't make final timestamp. Date: " . ( $unixTS + $tz ) );
+
 			return null;
 		}
 		if ( $dateOnly ) {
@@ -432,6 +434,7 @@ class IPTC {
 
 		return $data;
 	}
+
 	/**
 	 * Helper function of a helper function to convert charset for iptc values.
 	 * @param $data Mixed String or Array: The iptc string
@@ -459,6 +462,7 @@ class IPTC {
 				return self::convIPTCHelper( $oldData, 'Windows-1252' );
 			}
 		}
+
 		return trim( $data );
 	}
 

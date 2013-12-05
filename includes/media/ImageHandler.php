@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 abstract class ImageHandler extends MediaHandler {
-
 	/**
 	 * @param $file File
 	 * @return bool
@@ -60,6 +59,7 @@ abstract class ImageHandler extends MediaHandler {
 		} else {
 			throw new MWException( 'No width specified to ' . __METHOD__ );
 		}
+
 		# Removed for ProofreadPage
 		#$width = intval( $width );
 		return "{$width}px";
@@ -140,9 +140,11 @@ abstract class ImageHandler extends MediaHandler {
 		}
 
 		if ( !$this->validateThumbParams( $params['physicalWidth'],
-				$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType ) ) {
+			$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType )
+		) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -162,10 +164,12 @@ abstract class ImageHandler extends MediaHandler {
 		# Sanity check $width
 		if ( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
+
 			return false;
 		}
 		if ( $srcWidth <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid source width: $srcWidth\n" );
+
 			return false;
 		}
 
@@ -174,6 +178,7 @@ abstract class ImageHandler extends MediaHandler {
 			# Force height to be at least 1 pixel
 			$height = 1;
 		}
+
 		return true;
 	}
 
@@ -198,8 +203,10 @@ abstract class ImageHandler extends MediaHandler {
 		wfSuppressWarnings();
 		$gis = getimagesize( $path );
 		wfRestoreWarnings();
+
 		return $gis;
 	}
+
 	/**
 	 * Function that returns the number of pixels to be thumbnailed.
 	 * Intended for animated GIFs to multiply by the number of frames.
@@ -236,12 +243,13 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $pages === false || $pages <= 1 ) {
 			$msg = wfMessage( 'file-info-size' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-				$file->getMimeType() )->parse();
+					$file->getMimeType() )->parse();
 		} else {
 			$msg = wfMessage( 'file-info-size-pages' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-				$file->getMimeType() )->numParams( $pages )->parse();
+					$file->getMimeType() )->numParams( $pages )->parse();
 		}
+
 		return $msg;
 	}
 

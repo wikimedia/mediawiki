@@ -32,8 +32,8 @@
  * @ingroup Media
  */
 class BitmapMetadataHandler {
-
 	private $metadata = array();
+
 	private $metaPriority = array(
 		20 => array( 'other' ),
 		40 => array( 'native' ),
@@ -44,6 +44,7 @@ class BitmapMetadataHandler {
 		100 => array( 'iptc-bad-hash' ),
 		120 => array( 'exif' ),
 	);
+
 	private $iptcType = 'iptc-no-hash';
 
 	/**
@@ -89,6 +90,7 @@ class BitmapMetadataHandler {
 			}
 		}
 	}
+
 	/** Add misc metadata. Warning: atm if the metadata category
 	 * doesn't have a priority, it will be silently discarded.
 	 *
@@ -138,6 +140,7 @@ class BitmapMetadataHandler {
 				}
 			}
 		}
+
 		return $temp;
 	}
 
@@ -168,7 +171,6 @@ class BitmapMetadataHandler {
 				 * is not well tested and a bit fragile.
 				 */
 				$xmp->parseExtended( $xmpExt );
-
 			}
 			$res = $xmp->getResults();
 			foreach ( $res as $type => $array ) {
@@ -178,6 +180,7 @@ class BitmapMetadataHandler {
 		if ( isset( $seg['byteOrder'] ) ) {
 			$meta->getExif( $filename, $seg['byteOrder'] );
 		}
+
 		return $meta->getMetadataArray();
 	}
 
@@ -207,6 +210,7 @@ class BitmapMetadataHandler {
 		unset( $array['text'] );
 		$array['metadata'] = $meta->getMetadataArray();
 		$array['metadata']['_MW_PNG_VERSION'] = PNGMetadataExtractor::VERSION;
+
 		return $array;
 	}
 
@@ -234,7 +238,6 @@ class BitmapMetadataHandler {
 			foreach ( $xmpRes as $type => $xmpSection ) {
 				$meta->addMetadata( $xmpSection, $type );
 			}
-
 		}
 
 		unset( $baseArray['comment'] );
@@ -242,6 +245,7 @@ class BitmapMetadataHandler {
 
 		$baseArray['metadata'] = $meta->getMetadataArray();
 		$baseArray['metadata']['_MW_GIF_VERSION'] = GIFMetadataExtractor::VERSION;
+
 		return $baseArray;
 	}
 
@@ -269,6 +273,7 @@ class BitmapMetadataHandler {
 			$data = $exif->getFilteredData();
 			if ( $data ) {
 				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+
 				return $data;
 			} else {
 				throw new MWException( "Could not extract data from tiff file $filename" );
@@ -277,6 +282,7 @@ class BitmapMetadataHandler {
 			throw new MWException( "File doesn't exist - $filename" );
 		}
 	}
+
 	/**
 	 * Read the first 2 bytes of a tiff file to figure out
 	 * Little Endian or Big Endian. Needed for exif stuff.

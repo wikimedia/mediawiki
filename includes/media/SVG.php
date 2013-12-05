@@ -45,6 +45,7 @@ class SvgHandler extends ImageHandler {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
+
 			return false;
 		} else {
 			return true;
@@ -72,6 +73,7 @@ class SvgHandler extends ImageHandler {
 				return $metadata['animated'];
 			}
 		}
+
 		return false;
 	}
 
@@ -108,6 +110,7 @@ class SvgHandler extends ImageHandler {
 				$params['physicalHeight'] = $wgSVGMaxSize;
 			}
 		}
+
 		return true;
 	}
 
@@ -136,6 +139,7 @@ class SvgHandler extends ImageHandler {
 		$metadata = $this->unpackMetadata( $image->getMetadata() );
 		if ( isset( $metadata['error'] ) ) { // sanity check
 			$err = wfMessage( 'svg-long-error', $metadata['error']['message'] )->text();
+
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		}
 
@@ -205,9 +209,11 @@ class SvgHandler extends ImageHandler {
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail', sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
+				wfHostname(), $retval, trim( $err ), $cmd ) );
+
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		}
+
 		return true;
 	}
 
@@ -239,7 +245,7 @@ class SvgHandler extends ImageHandler {
 
 		if ( isset( $metadata['width'] ) && isset( $metadata['height'] ) ) {
 			return array( $metadata['width'], $metadata['height'], 'SVG',
-					"width=\"{$metadata['width']}\" height=\"{$metadata['height']}\"" );
+				"width=\"{$metadata['width']}\" height=\"{$metadata['height']}\"" );
 		} else { // error
 			return array( 0, 0, 'SVG', "width=\"0\" height=\"0\"" );
 		}
@@ -291,6 +297,7 @@ class SvgHandler extends ImageHandler {
 			);
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 		}
+
 		return serialize( $metadata );
 	}
 
@@ -318,11 +325,13 @@ class SvgHandler extends ImageHandler {
 			// Old but compatible
 			return self::METADATA_COMPATIBLE;
 		}
+
 		return self::METADATA_GOOD;
 	}
 
 	function visibleMetadataFields() {
 		$fields = array( 'objectname', 'imagedescription' );
+
 		return $fields;
 	}
 
@@ -369,6 +378,7 @@ class SvgHandler extends ImageHandler {
 				$value
 			);
 		}
+
 		return $showMeta ? $result : false;
 	}
 
@@ -385,10 +395,13 @@ class SvgHandler extends ImageHandler {
 			// Validate $code
 			if ( !Language::isValidBuiltinCode( $value ) ) {
 				wfDebug( "Invalid user language code\n" );
+
 				return false;
 			}
+
 			return true;
 		}
+
 		// Only lang, width and height are acceptable keys
 		return false;
 	}
@@ -406,6 +419,7 @@ class SvgHandler extends ImageHandler {
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
+
 		return "$lang{$params['width']}px";
 	}
 
@@ -457,6 +471,7 @@ class SvgHandler extends ImageHandler {
 				$stdMetadata[$tag] = $value;
 			}
 		}
+
 		return $stdMetadata;
 	}
 }

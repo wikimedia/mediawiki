@@ -31,6 +31,7 @@ abstract class MediaHandler {
 	const METADATA_GOOD = true;
 	const METADATA_BAD = false;
 	const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
+
 	/**
 	 * Instance cache
 	 */
@@ -47,6 +48,7 @@ abstract class MediaHandler {
 		global $wgMediaHandlers;
 		if ( !isset( $wgMediaHandlers[$type] ) ) {
 			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
+
 			return false;
 		}
 		$class = $wgMediaHandlers[$type];
@@ -56,6 +58,7 @@ abstract class MediaHandler {
 				self::$handlers[$class] = false;
 			}
 		}
+
 		return self::$handlers[$class];
 	}
 
@@ -140,6 +143,7 @@ abstract class MediaHandler {
 	static function getMetadataVersion() {
 		$version = array( '2' ); // core metadata version
 		wfRunHooks( 'GetMetadataVersion', array( &$version ) );
+
 		return implode( ';', $version );
 	}
 
@@ -160,8 +164,10 @@ abstract class MediaHandler {
 			wfSuppressWarnings();
 			$ret = unserialize( $metadata );
 			wfRestoreWarnings();
+
 			return $ret;
 		}
+
 		return $metadata;
 	}
 
@@ -462,6 +468,7 @@ abstract class MediaHandler {
 				$value
 			);
 		}
+
 		return $result;
 	}
 
@@ -527,6 +534,7 @@ abstract class MediaHandler {
 	 */
 	function getShortDesc( $file ) {
 		global $wgLang;
+
 		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
 	}
 
@@ -538,6 +546,7 @@ abstract class MediaHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
+
 		return wfMessage( 'file-info', htmlspecialchars( $wgLang->formatSize( $file->getSize() ) ),
 			$file->getMimeType() )->parse();
 	}
@@ -550,6 +559,7 @@ abstract class MediaHandler {
 	 */
 	static function getGeneralShortDesc( $file ) {
 		global $wgLang;
+
 		return $wgLang->formatSize( $file->getSize() );
 	}
 
@@ -561,6 +571,7 @@ abstract class MediaHandler {
 	 */
 	static function getGeneralLongDesc( $file ) {
 		global $wgLang;
+
 		return wfMessage( 'file-info', $wgLang->formatSize( $file->getSize() ),
 			$file->getMimeType() )->parse();
 	}
@@ -603,7 +614,8 @@ abstract class MediaHandler {
 	 * @param Parser $parser
 	 * @param File $file
 	 */
-	function parserTransformHook( $parser, $file ) {}
+	function parserTransformHook( $parser, $file ) {
+	}
 
 	/**
 	 * File validation hook called on upload.
@@ -642,9 +654,11 @@ abstract class MediaHandler {
 						sprintf( 'Removing bad %d-byte thumbnail "%s". unlink() failed',
 							$thumbstat['size'], $dstPath ) );
 				}
+
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -691,5 +705,4 @@ abstract class MediaHandler {
 	public function getRotation( $file ) {
 		return 0;
 	}
-
 }

@@ -31,7 +31,6 @@
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
-
 	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
@@ -40,9 +39,9 @@ class JpegHandler extends ExifBitmapHandler {
 				throw new MWException( 'Metadata array is not an array' );
 			}
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+
 			return serialize( $meta );
-		}
-		catch ( MWException $e ) {
+		} catch ( MWException $e ) {
 			// BitmapMetadataHandler throws an exception in certain exceptional cases like if file does not exist.
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 
@@ -55,6 +54,7 @@ class JpegHandler extends ExifBitmapHandler {
 			 * Thus switch to using -1 to denote only a broken file, and use an array with only
 			 * MEDIAWIKI_EXIF_VERSION to denote no props.
 			 */
+
 			return ExifBitmapHandler::BROKEN_FILE;
 		}
 	}
@@ -62,7 +62,7 @@ class JpegHandler extends ExifBitmapHandler {
 	/**
 	 * @param $file File
 	 * @param array $params Rotate parameters.
-	 *	'rotation' clockwise rotation in degrees, allowed are multiples of 90
+	 *    'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return bool
 	 */
@@ -83,12 +83,13 @@ class JpegHandler extends ExifBitmapHandler {
 			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {
 				$this->logErrorForExternalProcess( $retval, $err, $cmd );
+
 				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
 			}
+
 			return false;
 		} else {
 			return parent::rotate( $file, $params );
 		}
 	}
-
 }
