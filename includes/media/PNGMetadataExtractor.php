@@ -31,22 +31,25 @@
  * @ingroup Media
  */
 class PNGMetadataExtractor {
-	static $png_sig;
+	/** @var string */
+	private static $pngSig;
 
-	static $CRC_size;
+	/** @var int */
+	private static $crcSize;
 
-	static $text_chunks;
+	/** @var array */
+	private static $textChunks;
 
 	const VERSION = 1;
 	const MAX_CHUNK_SIZE = 3145728; // 3 megabytes
 
 	static function getMetadata( $filename ) {
-		self::$png_sig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
-		self::$CRC_size = 4;
+		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
+		self::$crcSize = 4;
 		/* based on list at http://owl.phy.queensu.ca/~phil/exiftool/TagNames/PNG.html#TextualData
 		 * and http://www.w3.org/TR/PNG/#11keywords
 		 */
-		self::$text_chunks = array(
+		self::$textChunks = array(
 			'xml:com.adobe.xmp' => 'xmp',
 			# Artist is unofficial. Author is the recommended
 			# keyword in the PNG spec. However some people output
@@ -92,7 +95,7 @@ class PNGMetadataExtractor {
 
 		// Check for the PNG header
 		$buf = fread( $fh, 8 );
-		if ( $buf != self::$png_sig ) {
+		if ( $buf != self::$pngSig ) {
 			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
@@ -183,9 +186,9 @@ class PNGMetadataExtractor {
 
 					// Theoretically should be case-sensitive, but in practise...
 					$items[1] = strtolower( $items[1] );
-					if ( !isset( self::$text_chunks[$items[1]] ) ) {
+					if ( !isset( self::$textChunks[$items[1]] ) ) {
 						// Only extract textual chunks on our list.
-						fseek( $fh, self::$CRC_size, SEEK_CUR );
+						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -205,17 +208,17 @@ class PNGMetadataExtractor {
 							if ( $items[5] === false ) {
 								// decompression failed
 								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n" );
-								fseek( $fh, self::$CRC_size, SEEK_CUR );
+								fseek( $fh, self::$crcSize, SEEK_CUR );
 								continue;
 							}
 						} else {
 							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
 								. " or potentially invalid compression method\n" );
-							fseek( $fh, self::$CRC_size, SEEK_CUR );
+							fseek( $fh, self::$crcSize, SEEK_CUR );
 							continue;
 						}
 					}
-					$finalKeyword = self::$text_chunks[$items[1]];
+					$finalKeyword = self::$textChunks[$items[1]];
 					$text[$finalKeyword][$items[3]] = $items[5];
 					$text[$finalKeyword]['_type'] = 'lang';
 				} else {
@@ -237,9 +240,9 @@ class PNGMetadataExtractor {
 
 				// Theoretically should be case-sensitive, but in practise...
 				$keyword = strtolower( $keyword );
-				if ( !isset( self::$text_chunks[$keyword] ) ) {
+				if ( !isset( self::$textChunks[$keyword] ) ) {
 					// Don't recognize chunk, so skip.
-					fseek( $fh, self::$CRC_size, SEEK_CUR );
+					fseek( $fh, self::$crcSize, SEEK_CUR );
 					continue;
 				}
 				wfSuppressWarnings();
@@ -250,7 +253,7 @@ class PNGMetadataExtractor {
 					throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 				}
 
-				$finalKeyword = self::$text_chunks[$keyword];
+				$finalKeyword = self::$textChunks[$keyword];
 				$text[$finalKeyword]['x-default'] = $content;
 				$text[$finalKeyword]['_type'] = 'lang';
 			} elseif ( $chunk_type == 'zTXt' ) {
@@ -269,16 +272,16 @@ class PNGMetadataExtractor {
 					// Theoretically should be case-sensitive, but in practise...
 					$keyword = strtolower( $keyword );
 
-					if ( !isset( self::$text_chunks[$keyword] ) ) {
+					if ( !isset( self::$textChunks[$keyword] ) ) {
 						// Don't recognize chunk, so skip.
-						fseek( $fh, self::$CRC_size, SEEK_CUR );
+						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 					$compression = substr( $postKeyword, 0, 1 );
 					$content = substr( $postKeyword, 1 );
 					if ( $compression !== "\x00" ) {
 						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping.\n" );
-						fseek( $fh, self::$CRC_size, SEEK_CUR );
+						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -289,7 +292,7 @@ class PNGMetadataExtractor {
 					if ( $content === false ) {
 						// decompression failed
 						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n" );
-						fseek( $fh, self::$CRC_size, SEEK_CUR );
+						fseek( $fh, self::$crcSize, SEEK_CUR );
 						continue;
 					}
 
@@ -301,7 +304,7 @@ class PNGMetadataExtractor {
 						throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 					}
 
-					$finalKeyword = self::$text_chunks[$keyword];
+					$finalKeyword = self::$textChunks[$keyword];
 					$text[$finalKeyword]['x-default'] = $content;
 					$text[$finalKeyword]['_type'] = 'lang';
 				} else {
@@ -360,7 +363,7 @@ class PNGMetadataExtractor {
 			} else {
 				fseek( $fh, $chunk_size, SEEK_CUR );
 			}
-			fseek( $fh, self::$CRC_size, SEEK_CUR );
+			fseek( $fh, self::$crcSize, SEEK_CUR );
 		}
 		fclose( $fh );
 
