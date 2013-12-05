@@ -141,7 +141,7 @@ class RefreshLinksJob extends Job {
 			if ( $page->getTouched() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
 				$parserOptions = $page->makeParserOptions( 'canonical' );
 				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
-				if ( $parserOutput->getCacheTime() <= $skewedTimestamp ) {
+				if ( $parserOutput && $parserOutput->getCacheTime() <= $skewedTimestamp ) {
 					$parserOutput = false; // too stale
 				}
 			}
