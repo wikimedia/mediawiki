@@ -151,7 +151,9 @@ class SVGReader {
 
 			$this->debug( "$tag" );
 
-			if ( $isSVG && $tag == 'svg' && $type == XmlReader::END_ELEMENT && $this->reader->depth <= $exitDepth ) {
+			if ( $isSVG && $tag == 'svg' && $type == XmlReader::END_ELEMENT
+				&& $this->reader->depth <= $exitDepth
+			) {
 				break;
 			} elseif ( $isSVG && $tag == 'title' ) {
 				$this->readField( $tag, 'title' );
@@ -195,7 +197,10 @@ class SVGReader {
 		}
 		$keepReading = $this->reader->read();
 		while ( $keepReading ) {
-			if ( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
+			if ( $this->reader->localName == $name
+				&& $this->reader->namespaceURI == self::NS_SVG
+				&& $this->reader->nodeType == XmlReader::END_ELEMENT
+			) {
 				break;
 			} elseif ( $this->reader->nodeType == XmlReader::TEXT ) {
 				$this->metadata[$metafield] = trim( $this->reader->value );
@@ -219,7 +224,9 @@ class SVGReader {
 		if ( method_exists( $this->reader, 'readInnerXML' ) ) {
 			$this->metadata[$metafield] = trim( $this->reader->readInnerXML() );
 		} else {
-			throw new MWException( "The PHP XMLReader extension does not come with readInnerXML() method. Your libxml is probably out of date (need 2.6.20 or later)." );
+			throw new MWException( "The PHP XMLReader extension does not come " .
+				"with readInnerXML() method. Your libxml is probably out of " .
+				"date (need 2.6.20 or later)." );
 		}
 		$this->reader->next();
 	}
@@ -244,7 +251,9 @@ class SVGReader {
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT
 			) {
 				break;
-			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
+			} elseif ( $this->reader->namespaceURI ==
+				self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT
+			) {
 				switch ( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with

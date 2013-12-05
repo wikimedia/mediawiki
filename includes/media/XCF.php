@@ -121,7 +121,8 @@ class XCFHandler extends BitmapHandler {
 		}
 		# TODO: we might want to check for sane values of width and height
 
-		wfDebug( __METHOD__ . ": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
+		wfDebug( __METHOD__ .
+			": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
@@ -136,7 +137,8 @@ class XCFHandler extends BitmapHandler {
 		$metadata['channels'] = null;
 		$metadata['bits'] = 8; # Always 8-bits per color
 
-		assert( '7 == count($metadata); # return array must contains 7 elements just like getimagesize() return' );
+		assert( '7 == count($metadata); ' .
+			'# return array must contains 7 elements just like getimagesize() return' );
 
 		return $metadata;
 	}

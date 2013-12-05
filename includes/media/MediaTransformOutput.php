@@ -345,7 +345,10 @@ class ThumbnailImage extends MediaTransformOutput {
 				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
 			);
 		} elseif ( !empty( $options['desc-link'] ) ) {
-			$linkAttribs = $this->getDescLinkAttribs( empty( $options['title'] ) ? null : $options['title'], $query );
+			$linkAttribs = $this->getDescLinkAttribs(
+				empty( $options['title'] ) ? null : $options['title'],
+				$query
+			);
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = array( 'href' => $this->file->getURL() );
 		} else {

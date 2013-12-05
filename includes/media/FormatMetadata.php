@@ -43,7 +43,8 @@
  * is already a large number of messages using the 'exif' prefix.
  *
  * @ingroup Media
- * @since 1.23 the class extends ContextSource and various formerly-public internal methods are private
+ * @since 1.23 the class extends ContextSource and various formerly-public
+ *   internal methods are private
  */
 class FormatMetadata extends ContextSource {
 	/**
@@ -302,7 +303,10 @@ class FormatMetadata extends ContextSource {
 					case 'DateTimeMetadata':
 						if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
 							$val = $this->msg( 'exif-unknowndate' )->text();
-						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D', $val ) ) {
+						} elseif ( preg_match(
+							'/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D',
+							$val
+						) ) {
 							// Full date.
 							$time = wfTimestamp( TS_MW, $val );
 							if ( $time && intval( $time ) > 0 ) {
@@ -984,7 +988,9 @@ class FormatMetadata extends ContextSource {
 	 * @return String single value (in wiki-syntax).
 	 * @since 1.23
 	 */
-	public static function flattenArrayContentLang( $vals, $type = 'ul', $noHtml = false, $context = false ) {
+	public static function flattenArrayContentLang( $vals, $type = 'ul',
+		$noHtml = false, $context = false
+	) {
 		global $wgContLang;
 		$obj = new FormatMetadata;
 		if ( $context ) {
@@ -1651,7 +1657,8 @@ class FormatMetadata extends ContextSource {
 		// If this is a remote file accessed via an API request, we already
 		// have remote metadata so we just ignore any local one
 		if ( $file instanceof ForeignAPIFile ) {
-			// in case of error we pretend no metadata - this will get cached. Might or might not be a good idea.
+			// In case of error we pretend no metadata - this will get cached.
+			// Might or might not be a good idea.
 			return $file->getExtendedMetadata() ?: array();
 		}
 
@@ -1710,7 +1717,9 @@ class FormatMetadata extends ContextSource {
 	 * @return array [<property name> => ['value' => <value>]], or [] on error
 	 * @since 1.23
 	 */
-	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata, &$maxCacheTime ) {
+	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
+		&$maxCacheTime
+	) {
 		wfProfileIn( __METHOD__ );
 
 		wfRunHooks( 'GetExtendedMetadata', array(
@@ -1856,8 +1865,13 @@ class FormatMetadata extends ContextSource {
 	 * @since 1.23
 	 */
 	protected function getPriorityLanguages() {
-		$priorityLanguages = Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
-		$priorityLanguages = array_merge( (array)$this->getLanguage()->getCode(), $priorityLanguages[0], $priorityLanguages[1] );
+		$priorityLanguages =
+			Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+		$priorityLanguages = array_merge(
+			(array)$this->getLanguage()->getCode(),
+			$priorityLanguages[0],
+			$priorityLanguages[1]
+		);
 
 		return $priorityLanguages;
 	}

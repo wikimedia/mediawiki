@@ -57,7 +57,11 @@ class BitmapHandler extends ImageHandler {
 
 		# Check if the file is smaller than the maximum image area for thumbnailing
 		$checkImageAreaHookResult = null;
-		wfRunHooks( 'BitmapHandlerCheckImageArea', array( $image, &$params, &$checkImageAreaHookResult ) );
+		wfRunHooks(
+			'BitmapHandlerCheckImageArea',
+			array( $image, &$params, &$checkImageAreaHookResult )
+		);
+
 		if ( is_null( $checkImageAreaHookResult ) ) {
 			global $wgMaxImageArea;
 
@@ -137,7 +141,8 @@ class BitmapHandler extends ImageHandler {
 		# Determine scaler type
 		$scaler = self::getScalerType( $dstPath );
 
-		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath using scaler $scaler\n" );
+		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} " .
+			"thumbnail at $dstPath using scaler $scaler\n" );
 
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
@@ -168,7 +173,8 @@ class BitmapHandler extends ImageHandler {
 
 		# Try to make a target path for the thumbnail
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
-			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
+			wfDebug( __METHOD__ . ": Unable to create thumbnail destination " .
+				"directory, falling back to client scaling\n" );
 
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
@@ -530,7 +536,8 @@ class BitmapHandler extends ImageHandler {
 
 		$typemap = array(
 			'image/gif' => array( 'imagecreatefromgif', 'palette', 'imagegif' ),
-			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor', array( __CLASS__, 'imageJpegWrapper' ) ),
+			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor',
+				array( __CLASS__, 'imageJpegWrapper' ) ),
 			'image/png' => array( 'imagecreatefrompng', 'bits', 'imagepng' ),
 			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette', 'imagewbmp' ),
 			'image/xbm' => array( 'imagecreatefromxbm', 'palette', 'imagexbm' ),
