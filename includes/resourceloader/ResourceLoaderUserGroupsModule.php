@@ -59,7 +59,7 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
 		$pages = array();
 		foreach ( $user->getEffectiveGroups() as $group ) {
-			if ( in_array( $group, array( '*', 'user' ) ) ) {
+			if ( in_array( $group, array( '*' ) ) ) {
 				continue;
 			}
 			if ( $wgUseSiteJs ) {
