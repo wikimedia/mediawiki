@@ -348,6 +348,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->setMwGlobals( $name, $merged );
 	}
 
+	/**
+	 * Remove the given key from a MW global array variable.
+	 *
+	 * @param String $name The name of the global, as in wgFooBar
+	 * @param String $arraykey Array key to be removed
+	 */
+	protected function removeMWGlobalArrayValue( $globalname, $arraykey ) {
+		if ( isset( $GLOBALS[$globalname] ) ) {
+			$merged = array();
+			foreach ( $GLOBALS[$globalname] as $name => $value ) {
+				if( $name != $arraykey ) {
+					$merged[$name] = $value;
+				}
+			}
+			$this->setMwGlobals( $globalname, $merged );
+		}
+	}
+
+	/**
+	 * Temporarily uninstall the hook.
+	 *
+	 * @param String $hookname The name of the hook to be uinstalled
+	 */
+	protected function uninstallHook( $hookname ) {
+		$this->removeMWGlobalArrayValue( "wgHooks", $hookname );
+	}
+
 	function dbPrefix() {
 		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
