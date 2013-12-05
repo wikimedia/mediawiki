@@ -1690,10 +1690,6 @@ You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/
 'revdelete-nooldid-title'     => 'Invalid target revision',
 'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-nologtype-title'   => 'No log type given',
-'revdelete-nologtype-text'    => 'You have not specified a log type to perform this action on.',
-'revdelete-nologid-title'     => 'Invalid log entry',
-'revdelete-nologid-text'      => 'You have either not specified a target log event to perform this function or the specified entry does not exist.',
 'revdelete-no-file'           => 'The file specified does not exist.',
 'revdelete-show-file-confirm' => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'revdelete-show-file-submit'  => 'Yes',
@@ -1727,8 +1723,6 @@ $1",
 'logdelete-failure'           => "'''Log visibility could not be set:'''
 $1",
 'revdel-restore'              => 'change visibility',
-'revdel-restore-deleted'      => 'deleted revisions',
-'revdel-restore-visible'      => 'visible revisions',
 'pagehist'                    => 'Page history',
 'deletedhist'                 => 'Deleted history',
 'revdelete-hide-current'      => 'Error hiding the item dated $2, $1: This is the current revision.
