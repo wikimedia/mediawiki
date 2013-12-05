@@ -1111,6 +1111,7 @@ class XMPReader {
 		}
 	}
 
+	// @codingStandardsIgnoreStart Long line that cannot be broken
 	/**
 	 * Process attributes.
 	 * Simple values can be stored as either a tag or attribute
@@ -1126,6 +1127,7 @@ class XMPReader {
 	 * @param array $attribs attribute=>value array.
 	 * @throws MWException
 	 */
+	// @codingStandardsIgnoreEnd
 	private function doAttribs( $attribs ) {
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.
