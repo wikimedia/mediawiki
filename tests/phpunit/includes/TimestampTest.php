@@ -9,6 +9,7 @@ class TimestampTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		RequestContext::getMain()->setLanguage( Language::factory( 'en' ) );
+		$this->uninstallHook( "GetHumanTimestamp" );
 	}
 
 	/**
