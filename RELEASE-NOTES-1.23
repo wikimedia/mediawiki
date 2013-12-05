@@ -191,6 +191,8 @@ changes to languages because of Bugzilla reports.
    interface).
 * Option to mark hooks as deprecated has been added.
 * (bug 52811) Preference "Enable section editing via [edit] links" was removed.
+* (bug 52813) Preference "Show table of contents (for pages with more than
+  3 headings)" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
