@@ -76,6 +76,17 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
+	'skins.common' => array(
+		// Used in the web installer. Test it after modifying this definition!
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	// FIXME: Remove in favour of skins.monobook.styles when cache expires
 	'skins.monobook' => array(
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
@@ -86,8 +97,8 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
+	// FIXME: Remove in favour of skins.vector.styles when cache expires
 	'skins.vector' => array(
-		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
 			'common/commonContent.css' => array( 'media' => 'screen' ),
@@ -97,13 +108,17 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	'skins.vector.beta' => array(
-		// Keep in sync with skins.vector
+	'skins.vector.styles' => array(
+		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/styles-beta.less',
+			'vector/styles.less',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.monobook.styles' => array(
+		'styles' => array(
+			'monobook/main.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],

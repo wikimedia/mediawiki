@@ -45,7 +45,7 @@ class SkinMonoBook extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$out->addModuleStyles( 'skins.monobook' );
+		$out->addModuleStyles( array( 'skins.common', 'skins.monobook.styles' ) );
 
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );

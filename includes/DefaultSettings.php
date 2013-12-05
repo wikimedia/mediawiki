@@ -3343,6 +3343,7 @@ $wgResourceLoaderLESSFunctions = array(
  */
 $wgResourceLoaderLESSImportPaths = array(
 	"$IP/resources/mediawiki.less/",
+	"$IP/skins/vector/",
 );
 
 /**
