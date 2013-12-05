@@ -83,7 +83,8 @@ class JpegMetadataExtractor {
 				throw new MWException( 'Too many jpeg segments. Aborting' );
 			}
 			if ( $buffer !== "\xFF" ) {
-				throw new MWException( "Error reading jpeg file marker. Expected 0xFF but got " . bin2hex( $buffer ) );
+				throw new MWException( "Error reading jpeg file marker. " .
+					"Expected 0xFF but got " . bin2hex( $buffer ) );
 			}
 
 			$buffer = fread( $fh, 1 );

@@ -30,16 +30,41 @@
  * @ingroup Media
  */
 class Exif {
-	const BYTE = 1; //!< An 8-bit (1-byte) unsigned integer.
-	const ASCII = 2; //!< An 8-bit byte containing one 7-bit ASCII code. The final byte is terminated with NULL.
-	const SHORT = 3; //!< A 16-bit (2-byte) unsigned integer.
-	const LONG = 4; //!< A 32-bit (4-byte) unsigned integer.
-	const RATIONAL = 5; //!< Two LONGs. The first LONG is the numerator and the second LONG expresses the denominator
-	const SHORT_OR_LONG = 6; //!< A 16-bit (2-byte) or 32-bit (4-byte) unsigned integer.
-	const UNDEFINED = 7; //!< An 8-bit byte that can take any value depending on the field definition
-	const SLONG = 9; //!< A 32-bit (4-byte) signed integer (2's complement notation),
-	const SRATIONAL = 10; //!< Two SLONGs. The first SLONG is the numerator and the second SLONG is the denominator.
-	const IGNORE = -1; // A fake value for things we don't want or don't support.
+	/** An 8-bit (1-byte) unsigned integer. */
+	const BYTE = 1;
+
+	/** An 8-bit byte containing one 7-bit ASCII code.
+	 *  The final byte is terminated with NULL.
+	 */
+	const ASCII = 2;
+
+	/** A 16-bit (2-byte) unsigned integer. */
+	const SHORT = 3;
+
+	/** A 32-bit (4-byte) unsigned integer. */
+	const LONG = 4;
+
+	/** Two LONGs. The first LONG is the numerator and the second LONG expresses
+	 *  the denominator
+	 */
+	const RATIONAL = 5;
+
+	/** A 16-bit (2-byte) or 32-bit (4-byte) unsigned integer. */
+	const SHORT_OR_LONG = 6;
+
+	/** An 8-bit byte that can take any value depending on the field definition */
+	const UNDEFINED = 7;
+
+	/** A 32-bit (4-byte) signed integer (2's complement notation), */
+	const SLONG = 9;
+
+	/** Two SLONGs. The first SLONG is the numerator and the second SLONG is
+	 *  the denominator.
+	 */
+	const SRATIONAL = 10;
+
+	/** A fake value for things we don't want or don't support. */
+	const IGNORE = -1;
 
 	//@{
 	/* @var array
@@ -104,7 +129,8 @@ class Exif {
 	 * Constructor
 	 *
 	 * @param string $file filename.
-	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian) or 'LE' (Little Endian). Default ''.
+	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian)
+	 *   or 'LE' (Little Endian). Default ''.
 	 * @throws MWException
 	 * @todo FIXME: The following are broke:
 	 * SubjectArea. Need to test the more obscure tags.
@@ -152,7 +178,8 @@ class Exif {
 				'TransferFunction' => Exif::IGNORE, # Transfer function
 				'WhitePoint' => array( Exif::RATIONAL, 2 ), # White point chromaticity
 				'PrimaryChromaticities' => array( Exif::RATIONAL, 6 ), # Chromaticities of primarities
-				'YCbCrCoefficients' => array( Exif::RATIONAL, 3 ), # Color space transformation matrix coefficients #p27
+				# Color space transformation matrix coefficients #p27
+				'YCbCrCoefficients' => array( Exif::RATIONAL, 3 ),
 				'ReferenceBlackWhite' => array( Exif::RATIONAL, 6 ), # Pair of black and white reference values
 
 				# Other tags
@@ -302,7 +329,8 @@ class Exif {
 			$data = exif_read_data( $this->file, 0, true );
 			wfRestoreWarnings();
 		} else {
-			throw new MWException( "Internal error: exif_read_data not present. \$wgShowEXIF may be incorrectly set or not checked by an extension." );
+			throw new MWException( "Internal error: exif_read_data not present. " .
+				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
 		}
 		/**
 		 * exif_read_data() will return false on invalid input, such as
@@ -371,10 +399,12 @@ class Exif {
 		$this->exifGPStoNumber( 'GPSLongitude' );
 		$this->exifGPStoNumber( 'GPSDestLongitude' );
 
-		if ( isset( $this->mFilteredExifData['GPSAltitude'] ) && isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
-
-			// We know altitude data is a <num>/<denom> from the validation functions ran earlier.
-			// But multiplying such a string by -1 doesn't work well, so convert.
+		if ( isset( $this->mFilteredExifData['GPSAltitude'] )
+			&& isset( $this->mFilteredExifData['GPSAltitudeRef'] )
+		) {
+			// We know altitude data is a <num>/<denom> from the validation
+			// functions ran earlier. But multiplying such a string by -1
+			// doesn't work well, so convert.
 			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'] );
 			$this->mFilteredExifData['GPSAltitude'] = $num / $denom;
 
@@ -420,6 +450,7 @@ class Exif {
 				}
 				$newVal .= ord( substr( $val, $i, 1 ) );
 			}
+
 			if ( $this->byteOrder === 'LE' ) {
 				// Need to reverse the string
 				$newVal2 = '';
@@ -520,7 +551,9 @@ class Exif {
 		$dir =& $this->mFilteredExifData[$prop . 'Ref'];
 		$res = false;
 
-		if ( isset( $loc ) && isset( $dir ) && ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' ) ) {
+		if ( isset( $loc ) && isset( $dir )
+			&& ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' )
+		) {
 			list( $num, $denom ) = explode( '/', $loc[0] );
 			$res = $num / $denom;
 			list( $num, $denom ) = explode( '/', $loc[1] );
@@ -693,7 +726,11 @@ class Exif {
 	 */
 	private function isRational( $in ) {
 		$m = array();
-		if ( !is_array( $in ) && preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
+
+		# Avoid division by zero
+		if ( !is_array( $in )
+			&& preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
+		) {
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
 		} else {
 			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
@@ -734,7 +771,11 @@ class Exif {
 	 */
 	private function isSrational( $in ) {
 		$m = array();
-		if ( !is_array( $in ) && preg_match( '/^(-?\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
+
+		# Avoid division by zero
+		if ( !is_array( $in ) &&
+			preg_match( '/^(-?\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
+		) {
 			return $this->isSlong( $m[0] ) && $this->isSlong( $m[1] );
 		} else {
 			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );

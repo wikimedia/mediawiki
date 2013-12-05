@@ -42,7 +42,8 @@ class JpegHandler extends ExifBitmapHandler {
 
 			return serialize( $meta );
 		} catch ( MWException $e ) {
-			// BitmapMetadataHandler throws an exception in certain exceptional cases like if file does not exist.
+			// BitmapMetadataHandler throws an exception in certain exceptional
+			// cases like if file does not exist.
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 
 			/* This used to use 0 (ExifBitmapHandler::OLD_BROKEN_FILE) for the cases

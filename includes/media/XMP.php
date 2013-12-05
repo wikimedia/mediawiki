@@ -329,7 +329,8 @@ class XMPReader {
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
 			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid
 		) {
-			wfDebugLog( 'XMP', __METHOD__ . " Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
+			wfDebugLog( 'XMP', __METHOD__ .
+				" Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
 
 			return false;
 		}
@@ -341,14 +342,16 @@ class XMPReader {
 			return false;
 		}
 
-		// we're not very robust here. we should accept it in the wrong order. To quote
-		// the xmp standard:
-		// "A JPEG writer should write the ExtendedXMP marker segments in order, immediately following the
-		// StandardXMP. However, the JPEG standard does not require preservation of marker segment order. A
-		// robust JPEG reader should tolerate the marker segments in any order."
+		// we're not very robust here. we should accept it in the wrong order.
+		// To quote the XMP standard:
+		// "A JPEG writer should write the ExtendedXMP marker segments in order,
+		// immediately following the StandardXMP. However, the JPEG standard
+		// does not require preservation of marker segment order. A robust JPEG
+		// reader should tolerate the marker segments in any order."
 		//
-		// otoh the probability that an image will have more than 128k of metadata is rather low...
-		// so the probability that it will have > 128k, and be in the wrong order is very low...
+		// otoh the probability that an image will have more than 128k of
+		// metadata is rather low... so the probability that it will have
+		// > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
 			wfDebugLog( 'XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
@@ -494,7 +497,8 @@ class XMPReader {
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )
 		) {
-			throw new MWException( "nesting mismatch. got a </$elm> but expected a </" . $this->curItem[0] . '>' );
+			throw new MWException( "nesting mismatch. got a </$elm> but expected a </" .
+				$this->curItem[0] . '>' );
 		}
 
 		// Validate structures.
@@ -796,7 +800,9 @@ class XMPReader {
 			throw new MWException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
-			wfDebugLog( 'XMP', __METHOD__ . " Encountered element <$elm> where only expecting character data as value of " . $this->curItem[0] );
+			wfDebugLog( 'XMP', __METHOD__ .
+				" Encountered element <$elm> where only expecting character data as value of " .
+				$this->curItem[0] );
 			array_unshift( $this->mode, self::MODE_IGNORE );
 			array_unshift( $this->curItem, $elm );
 		}
@@ -917,7 +923,8 @@ class XMPReader {
 				if ( $this->charContent !== false ) {
 					// Something weird.
 					// Should not happen in valid XMP.
-					throw new MWException( "tag <$tag> nested in non-whitespace characters (" . $this->charContent . ")." );
+					throw new MWException( "tag <$tag> nested in non-whitespace characters (" .
+						$this->charContent . ")." );
 				}
 			} else {
 				array_unshift( $this->mode, self::MODE_IGNORE );
@@ -1120,7 +1127,6 @@ class XMPReader {
 	 * @throws MWException
 	 */
 	private function doAttribs( $attribs ) {
-
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.
 

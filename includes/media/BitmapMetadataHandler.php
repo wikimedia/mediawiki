@@ -197,7 +197,9 @@ class BitmapMetadataHandler {
 
 		$meta = new self();
 		$array = PNGMetadataExtractor::getMetadata( $filename );
-		if ( isset( $array['text']['xmp']['x-default'] ) && $array['text']['xmp']['x-default'] !== '' && $showXMP ) {
+		if ( isset( $array['text']['xmp']['x-default'] )
+			&& $array['text']['xmp']['x-default'] !== '' && $showXMP
+		) {
 			$xmp = new XMPReader();
 			$xmp->parse( $array['text']['xmp']['x-default'] );
 			$xmpRes = $xmp->getResults();

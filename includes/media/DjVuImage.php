@@ -84,7 +84,8 @@ class DjVuImage {
 	function dump() {
 		$file = fopen( $this->mFilename, 'rb' );
 		$header = fread( $file, 12 );
-		// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		// @todo FIXME: Would be good to replace this extract() call with
+		// something that explicitly initializes local variables.
 		extract( unpack( 'a4magic/a4chunk/NchunkLength', $header ) );
 		echo "$chunk $chunkLength\n";
 		$this->dumpForm( $file, $chunkLength, 1 );
@@ -100,7 +101,8 @@ class DjVuImage {
 			if ( $chunkHeader == '' ) {
 				break;
 			}
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
 
@@ -132,7 +134,8 @@ class DjVuImage {
 		if ( strlen( $header ) < 16 ) {
 			wfDebug( __METHOD__ . ": too short file header\n" );
 		} else {
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
 
 			if ( $magic != 'AT&T' ) {
@@ -157,7 +160,8 @@ class DjVuImage {
 		if ( strlen( $header ) < 8 ) {
 			return array( false, 0 );
 		} else {
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/Nlength', $header ) );
 
 			return array( $chunk, $length );
@@ -222,7 +226,8 @@ class DjVuImage {
 			return false;
 		}
 
-		// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		// @todo FIXME: Would be good to replace this extract() call with
+		// something that explicitly initializes local variables.
 		extract( unpack(
 			'nwidth/' .
 			'nheight/' .
@@ -381,7 +386,11 @@ EOT;
 				break;
 			}
 
-			if ( preg_match( '/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/', $line, $m ) ) {
+			if ( preg_match(
+				'/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/',
+				$line,
+				$m
+			) ) {
 				$xml .= Xml::tags(
 					'OBJECT',
 					array(

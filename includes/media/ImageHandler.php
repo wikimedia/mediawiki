@@ -227,7 +227,8 @@ abstract class ImageHandler extends MediaHandler {
 	function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
-		$widthheight = wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->escaped();
+		$widthheight = wfMessage( 'widthheight' )
+			->numParams( $file->getWidth(), $file->getHeight() )->escaped();
 
 		return "$widthheight ($nbytes)";
 	}
@@ -260,9 +261,11 @@ abstract class ImageHandler extends MediaHandler {
 	function getDimensionsString( $file ) {
 		$pages = $file->pageCount();
 		if ( $pages > 1 ) {
-			return wfMessage( 'widthheightpage' )->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
+			return wfMessage( 'widthheightpage' )
+				->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
 		} else {
-			return wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->text();
+			return wfMessage( 'widthheight' )
+				->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
 	}
 }
