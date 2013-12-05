@@ -200,7 +200,6 @@ $wgMessageStructure = array(
 		'vector-action-protect',
 		'vector-action-undelete',
 		'vector-action-unprotect',
-		'vector-simplesearch-preference',
 		'vector-view-create',
 		'vector-view-edit',
 		'vector-view-history',
