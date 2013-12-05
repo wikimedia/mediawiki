@@ -181,7 +181,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param $res ResultWrapper
-	 * @return object|bool
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
 	function fetchObject( $res ) {
