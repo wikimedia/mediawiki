@@ -3045,7 +3045,7 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 {{Identical|Row}}',
 'columns' => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset.
 {{Identical|Column}}',
-'searchresultshead' => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
+'searchresultshead' => 'Replaced by {{msg-mw|prefs-searchoptions}}, though may still be used in some extensions. DEPRECATED.
 
 {{Identical|Search}}',
 'resultsperpage' => "Option on the 'Search options' tab of [[Special:Preferences]]",
