@@ -24,6 +24,7 @@ resources/jquery.tipsy/
 resources/jquery.ui/
 resources/mediawiki.libs/
 resources/jquery.chosen/chosen.jquery.js
+resources/oojs/
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
