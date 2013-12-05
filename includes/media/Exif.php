@@ -427,7 +427,9 @@ class Exif {
 		if ( isset( $this->mFilteredExifData['ComponentsConfiguration'] ) ) {
 			$val = $this->mFilteredExifData['ComponentsConfiguration'];
 			$ccVals = array();
-			for ( $i = 0; $i < strlen( $val ); $i++ ) {
+
+			$strLen = strlen( $val );
+			for ( $i = 0; $i < $strLen; $i++ ) {
 				$ccVals[$i] = ord( substr( $val, $i, 1 ) );
 			}
 			$ccVals['_type'] = 'ol'; //this is for formatting later.
@@ -444,7 +446,9 @@ class Exif {
 		if ( isset( $this->mFilteredExifData['GPSVersion'] ) ) {
 			$val = $this->mFilteredExifData['GPSVersion'];
 			$newVal = '';
-			for ( $i = 0; $i < strlen( $val ); $i++ ) {
+
+			$strLen = strlen( $val );
+			for ( $i = 0; $i < $strLen; $i++ ) {
 				if ( $i !== 0 ) {
 					$newVal .= '.';
 				}
