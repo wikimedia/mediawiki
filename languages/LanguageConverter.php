@@ -754,6 +754,9 @@ class LanguageConverter {
 		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
+		if ( $action == 'edit' && $wgRequest->getBool( 'redlink' ) ) {
+			$action = 'view';
+		}
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
 		$disableLinkConversion = $wgDisableLangConversion
 			|| $wgDisableTitleConversion;
