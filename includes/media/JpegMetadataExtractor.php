@@ -282,8 +282,9 @@ class JpegMetadataExtractor {
 			return 'iptc-no-hash';
 		} elseif ( $realHash === $recordedHash ) {
 			return 'iptc-good-hash';
-		} else { /*$realHash !== $recordedHash */
-			return 'iptc-bad-hash';
 		}
+
+		/*$realHash !== $recordedHash */
+		return 'iptc-bad-hash';
 	}
 }

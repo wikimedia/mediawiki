@@ -273,18 +273,19 @@ class BitmapMetadataHandler {
 			if ( !$byteOrder ) {
 				throw new MWException( "Error determining byte order of $filename" );
 			}
+
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
 			if ( $data ) {
 				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 
 				return $data;
-			} else {
-				throw new MWException( "Could not extract data from tiff file $filename" );
 			}
-		} else {
-			throw new MWException( "File doesn't exist - $filename" );
+
+			throw new MWException( "Could not extract data from tiff file $filename" );
 		}
+
+		throw new MWException( "File doesn't exist - $filename" );
 	}
 
 	/**

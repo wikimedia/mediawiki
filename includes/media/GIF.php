@@ -87,9 +87,9 @@ class GIFHandler extends BitmapHandler {
 			$metadata = unserialize( $ser );
 
 			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
-		} else {
-			return $image->getWidth() * $image->getHeight();
 		}
+
+		return $image->getWidth() * $image->getHeight();
 	}
 
 	/**

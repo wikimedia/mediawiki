@@ -90,8 +90,8 @@ class JpegHandler extends ExifBitmapHandler {
 			}
 
 			return false;
-		} else {
-			return parent::rotate( $file, $params );
 		}
+
+		return parent::rotate( $file, $params );
 	}
 }

@@ -141,6 +141,7 @@ class GIFMetadataExtractor {
 					if ( strlen( $term ) < 1 ) {
 						throw new Exception( "Ran out of input" );
 					}
+
 					$term = unpack( 'C', $term );
 					$term = $term[1];
 					if ( $term != 0 ) {
@@ -283,6 +284,7 @@ class GIFMetadataExtractor {
 		if ( strlen( $data ) < 1 ) {
 			throw new Exception( "Ran out of input" );
 		}
+
 		$buf = unpack( 'C', $data );
 		$buf = $buf[1];
 		$bpp = ( $buf & 7 ) + 1;
@@ -303,6 +305,7 @@ class GIFMetadataExtractor {
 			if ( strlen( $buf ) < 1 ) {
 				throw new Exception( "Ran out of input" );
 			}
+
 			$block_len = unpack( 'C', $buf );
 			$block_len = $block_len[1];
 			if ( $block_len == 0 ) {
@@ -333,12 +336,15 @@ class GIFMetadataExtractor {
 
 		while ( $subLength !== "\0" ) {
 			$blocks++;
+
 			if ( $blocks > self::MAX_SUBBLOCKS ) {
 				throw new Exception( "MAX_SUBBLOCKS exceeded (over $blocks sub-blocks)" );
 			}
+
 			if ( feof( $fh ) ) {
 				throw new Exception( "Read error: Unexpected EOF." );
 			}
+
 			if ( $includeLengths ) {
 				$data .= $subLength;
 			}

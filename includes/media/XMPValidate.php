@@ -370,12 +370,12 @@ class XMPValidate {
 			$val = $coord;
 
 			return;
-		} else {
-			wfDebugLog( 'XMP', __METHOD__
-				. " Expected GPSCoordinate, but got $val." );
-			$val = null;
-
-			return;
 		}
+
+		wfDebugLog( 'XMP', __METHOD__
+			. " Expected GPSCoordinate, but got $val." );
+		$val = null;
+
+		return;
 	}
 }

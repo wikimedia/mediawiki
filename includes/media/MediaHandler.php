@@ -416,9 +416,9 @@ abstract class MediaHandler {
 				'width' => $gis[0],
 				'height' => $gis[1]
 			);
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -540,6 +540,7 @@ abstract class MediaHandler {
 			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
 			$name = wfEscapeWikiText( $id );
 		}
+
 		$array[$visibility][] = array(
 			'id' => "$type-$id",
 			'name' => $name,
@@ -610,9 +611,9 @@ abstract class MediaHandler {
 		$roundedUp = ceil( $idealWidth );
 		if ( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
 			return floor( $idealWidth );
-		} else {
-			return $roundedUp;
 		}
+
+		return $roundedUp;
 	}
 
 	/**

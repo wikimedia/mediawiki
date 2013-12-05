@@ -172,9 +172,9 @@ abstract class MediaTransformOutput {
 			$fsFile = $be->getLocalReference( array( 'src' => $this->path ) );
 
 			return $fsFile ? $fsFile->getPath() : false;
-		} else {
-			return $this->path; // may return false
 		}
+
+		return $this->path; // may return false
 	}
 
 	/**
@@ -190,9 +190,10 @@ abstract class MediaTransformOutput {
 			$be = $this->file->getRepo()->getBackend();
 
 			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) )->isOK();
-		} else { // FS-file
-			return StreamFile::stream( $this->getLocalCopyPath(), $headers );
 		}
+
+		// FS-file
+		return StreamFile::stream( $this->getLocalCopyPath(), $headers );
 	}
 
 	/**
@@ -205,9 +206,9 @@ abstract class MediaTransformOutput {
 	protected function linkWrap( $linkAttribs, $contents ) {
 		if ( $linkAttribs ) {
 			return Xml::tags( 'a', $linkAttribs, $contents );
-		} else {
-			return $contents;
 		}
+
+		return $contents;
 	}
 
 	/**

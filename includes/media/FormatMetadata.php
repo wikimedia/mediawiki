@@ -1478,92 +1478,92 @@ class FormatMetadata extends ContextSource {
 			}
 
 			return $this->flattenArrayReal( $vals );
-		} else {
-			// We have a real ContactInfo field.
-			// Its unclear if all these fields have to be
-			// set, so assume they do not.
-			$url = $tel = $street = $city = $country = '';
-			$email = $postal = $region = '';
+		}
 
-			// Also note, some of the class names this uses
-			// are similar to those used by hCard. This is
-			// mostly because they're sensible names. This
-			// does not (and does not attempt to) output
-			// stuff in the hCard microformat. However it
-			// might output in the adr microformat.
+		// We have a real ContactInfo field.
+		// Its unclear if all these fields have to be
+		// set, so assume they do not.
+		$url = $tel = $street = $city = $country = '';
+		$email = $postal = $region = '';
 
-			if ( isset( $vals['CiAdrExtadr'] ) ) {
-				// Todo: This can potentially be multi-line.
-				// Need to check how that works in XMP.
-				$street = '<span class="extended-address">'
-					. htmlspecialchars(
-						$vals['CiAdrExtadr'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrCity'] ) ) {
-				$city = '<span class="locality">'
-					. htmlspecialchars( $vals['CiAdrCity'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrCtry'] ) ) {
-				$country = '<span class="country-name">'
-					. htmlspecialchars( $vals['CiAdrCtry'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiEmailWork'] ) ) {
-				$emails = array();
-				// Have to split multiple emails at commas/new lines.
-				$splitEmails = explode( "\n", $vals['CiEmailWork'] );
-				foreach ( $splitEmails as $e1 ) {
-					// Also split on comma
-					foreach ( explode( ',', $e1 ) as $e2 ) {
-						$finalEmail = trim( $e2 );
-						if ( $finalEmail == ',' || $finalEmail == '' ) {
-							continue;
-						}
-						if ( strpos( $finalEmail, '<' ) !== false ) {
-							// Don't do fancy formatting to
-							// "My name" <foo@bar.com> style stuff
-							$emails[] = $finalEmail;
-						} else {
-							$emails[] = '[mailto:'
-								. $finalEmail
-								. ' <span class="email">'
-								. $finalEmail
-								. '</span>]';
-						}
+		// Also note, some of the class names this uses
+		// are similar to those used by hCard. This is
+		// mostly because they're sensible names. This
+		// does not (and does not attempt to) output
+		// stuff in the hCard microformat. However it
+		// might output in the adr microformat.
+
+		if ( isset( $vals['CiAdrExtadr'] ) ) {
+			// @todo This can potentially be multi-line.
+			// Need to check how that works in XMP.
+			$street = '<span class="extended-address">'
+				. htmlspecialchars(
+					$vals['CiAdrExtadr'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrCity'] ) ) {
+			$city = '<span class="locality">'
+				. htmlspecialchars( $vals['CiAdrCity'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrCtry'] ) ) {
+			$country = '<span class="country-name">'
+				. htmlspecialchars( $vals['CiAdrCtry'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiEmailWork'] ) ) {
+			$emails = array();
+			// Have to split multiple emails at commas/new lines.
+			$splitEmails = explode( "\n", $vals['CiEmailWork'] );
+			foreach ( $splitEmails as $e1 ) {
+				// Also split on comma
+				foreach ( explode( ',', $e1 ) as $e2 ) {
+					$finalEmail = trim( $e2 );
+					if ( $finalEmail == ',' || $finalEmail == '' ) {
+						continue;
+					}
+					if ( strpos( $finalEmail, '<' ) !== false ) {
+						// Don't do fancy formatting to
+						// "My name" <foo@bar.com> style stuff
+						$emails[] = $finalEmail;
+					} else {
+						$emails[] = '[mailto:'
+							. $finalEmail
+							. ' <span class="email">'
+							. $finalEmail
+							. '</span>]';
 					}
 				}
-				$email = implode( ', ', $emails );
 			}
-			if ( isset( $vals['CiTelWork'] ) ) {
-				$tel = '<span class="tel">'
-					. htmlspecialchars( $vals['CiTelWork'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrPcode'] ) ) {
-				$postal = '<span class="postal-code">'
-					. htmlspecialchars(
-						$vals['CiAdrPcode'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrRegion'] ) ) {
-				// Note this is province/state.
-				$region = '<span class="region">'
-					. htmlspecialchars(
-						$vals['CiAdrRegion'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiUrlWork'] ) ) {
-				$url = '<span class="url">'
-					. htmlspecialchars( $vals['CiUrlWork'] )
-					. '</span>';
-			}
-
-			return $this->msg( 'exif-contact-value', $email, $url,
-				$street, $city, $region, $postal, $country,
-				$tel )->text();
+			$email = implode( ', ', $emails );
 		}
+		if ( isset( $vals['CiTelWork'] ) ) {
+			$tel = '<span class="tel">'
+				. htmlspecialchars( $vals['CiTelWork'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrPcode'] ) ) {
+			$postal = '<span class="postal-code">'
+				. htmlspecialchars(
+					$vals['CiAdrPcode'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrRegion'] ) ) {
+			// Note this is province/state.
+			$region = '<span class="region">'
+				. htmlspecialchars(
+					$vals['CiAdrRegion'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiUrlWork'] ) ) {
+			$url = '<span class="url">'
+				. htmlspecialchars( $vals['CiUrlWork'] )
+				. '</span>';
+		}
+
+		return $this->msg( 'exif-contact-value', $email, $url,
+			$street, $city, $region, $postal, $country,
+			$tel )->text();
 	}
 
 	/**

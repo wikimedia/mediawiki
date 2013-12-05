@@ -46,9 +46,9 @@ class SvgHandler extends ImageHandler {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
 
 			return false;
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
 	function mustRender( $file ) {
@@ -151,9 +151,9 @@ class SvgHandler extends ImageHandler {
 		$status = $this->rasterize( $srcPath, $dstPath, $physicalWidth, $physicalHeight, $lang );
 		if ( $status === true ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
-		} else {
-			return $status; // MediaTransformError
 		}
+
+		return $status; // MediaTransformError
 	}
 
 	/**
@@ -223,6 +223,7 @@ class SvgHandler extends ImageHandler {
 		if ( !$im->thumbnailImage( intval( $width ), intval( $height ), /* fit */ false ) ) {
 			return 'Could not resize image';
 		}
+
 		if ( !$im->writeImage( $dstPath ) ) {
 			return "Could not write to $dstPath";
 		}
@@ -309,9 +310,9 @@ class SvgHandler extends ImageHandler {
 		wfRestoreWarnings();
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
 			return $unser;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	function getMetadataType( $image ) {
@@ -323,6 +324,7 @@ class SvgHandler extends ImageHandler {
 		if ( $meta === false ) {
 			return self::METADATA_BAD;
 		}
+
 		if ( !isset( $meta['originalWidth'] ) ) {
 			// Old but compatible
 			return self::METADATA_COMPATIBLE;
@@ -431,9 +433,9 @@ class SvgHandler extends ImageHandler {
 			return array( 'width' => array_pop( $m ), 'lang' => $m[1] );
 		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[1], 'lang' => 'en' );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	function getParamMap() {
