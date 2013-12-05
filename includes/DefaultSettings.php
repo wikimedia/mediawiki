@@ -3993,7 +3993,6 @@ $wgDefaultUserOptions = array(
 	'date' => 'default',
 	'diffonly' => 0,
 	'disablemail' => 0,
-	'disablesuggest' => 0,
 	'editfont' => 'default',
 	'editondblclick' => 0,
 	'editsection' => 1,

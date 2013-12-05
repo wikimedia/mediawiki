@@ -987,7 +987,6 @@ $wgMessageStructure = array(
 		'search-interwiki-custom',
 		'search-interwiki-more',
 		'search-relatedarticle',
-		'mwsuggest-disable',
 		'searcheverything-enable',
 		'searchrelated',
 		'searchall',
