@@ -32,11 +32,14 @@
  * @ingroup Media
  */
 class GIFMetadataExtractor {
-	static $gif_frame_sep;
+	/** @var string */
+	private static $gifFrameSep;
 
-	static $gif_extension_sep;
+	/** @var string */
+	private static $gifExtensionSep;
 
-	static $gif_term;
+	/** @var string */
+	private static $gifTerm;
 
 	const VERSION = 1;
 
@@ -51,9 +54,9 @@ class GIFMetadataExtractor {
 	 * @return array
 	 */
 	static function getMetadata( $filename ) {
-		self::$gif_frame_sep = pack( "C", ord( "," ) );
-		self::$gif_extension_sep = pack( "C", ord( "!" ) );
-		self::$gif_term = pack( "C", ord( ";" ) );
+		self::$gifFrameSep = pack( "C", ord( "," ) );
+		self::$gifExtensionSep = pack( "C", ord( "!" ) );
+		self::$gifTerm = pack( "C", ord( ";" ) );
 
 		$frameCount = 0;
 		$duration = 0.0;
@@ -95,7 +98,7 @@ class GIFMetadataExtractor {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 
-			if ( $buf == self::$gif_frame_sep ) {
+			if ( $buf == self::$gifFrameSep ) {
 				// Found a frame
 				$frameCount++;
 
@@ -110,7 +113,7 @@ class GIFMetadataExtractor {
 				self::readGCT( $fh, $bpp );
 				fread( $fh, 1 );
 				self::skipBlock( $fh );
-			} elseif ( $buf == self::$gif_extension_sep ) {
+			} elseif ( $buf == self::$gifExtensionSep ) {
 				$buf = fread( $fh, 1 );
 				if ( strlen( $buf ) < 1 ) {
 					throw new Exception( "Ran out of input" );
@@ -236,7 +239,7 @@ class GIFMetadataExtractor {
 				} else {
 					self::skipBlock( $fh );
 				}
-			} elseif ( $buf == self::$gif_term ) {
+			} elseif ( $buf == self::$gifTerm ) {
 				break;
 			} else {
 				if ( strlen( $buf ) < 1 ) {
