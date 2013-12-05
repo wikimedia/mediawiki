@@ -84,7 +84,8 @@ class IPTC {
 						$titles = array();
 					}
 
-					for ( $i = 0; $i < count( $titles ); $i++ ) {
+					$titleCount = count( $titles );
+					for ( $i = 0; $i < $titleCount; $i++ ) {
 						if ( isset( $bylines[$i] ) ) {
 							// theoretically this should always be set
 							// but doesn't hurt to be careful.
