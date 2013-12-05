@@ -412,9 +412,9 @@ class IPTC {
 		if ( $dateOnly ) {
 			//return the date only
 			return substr( $finalTimestamp, 0, 10 );
-		} else {
-			return $finalTimestamp;
 		}
+
+		return $finalTimestamp;
 	}
 
 	/**
@@ -452,19 +452,19 @@ class IPTC {
 				$data = "";
 				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );
 			}
-		} else {
-			//treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
-			// most of the time if there is no 1:90 tag, it is either ascii, latin1, or utf-8
-			$oldData = $data;
-			UtfNormal::quickIsNFCVerify( $data ); //make $data valid utf-8
-			if ( $data === $oldData ) {
-				return $data; //if validation didn't change $data
-			} else {
-				return self::convIPTCHelper( $oldData, 'Windows-1252' );
-			}
+
+			return trim( $data );
 		}
 
-		return trim( $data );
+		//treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
+		// most of the time if there is no 1:90 tag, it is either ascii, latin1, or utf-8
+		$oldData = $data;
+		UtfNormal::quickIsNFCVerify( $data ); //make $data valid utf-8
+		if ( $data === $oldData ) {
+			return $data; //if validation didn't change $data
+		}
+
+		return self::convIPTCHelper( $oldData, 'Windows-1252' );
 	}
 
 	/**
@@ -476,7 +476,6 @@ class IPTC {
 	 * only code that seems to have wide use. It does detect that code.
 	 */
 	static function getCharset( $tag ) {
-
 		//According to iim standard, charset is defined by the tag 1:90.
 		//in which there are iso 2022 escape sequences to specify the character set.
 		//the iim standard seems to encourage that all necessary escape sequences are

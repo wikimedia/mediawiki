@@ -365,7 +365,6 @@ class Exif {
 	 * if we make up our own types like Exif::DATE.
 	 */
 	function collapseData() {
-
 		$this->exifGPStoNumber( 'GPSLatitude' );
 		$this->exifGPStoNumber( 'GPSDestLatitude' );
 		$this->exifGPStoNumber( 'GPSLongitude' );
@@ -631,11 +630,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -671,11 +670,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -687,11 +686,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -706,11 +705,11 @@ class Exif {
 			&& preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
 		) {
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
-		} else {
-			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+
+		return false;
 	}
 
 	/**
@@ -732,11 +731,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -751,11 +750,11 @@ class Exif {
 			preg_match( '/^(-?\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
 		) {
 			return $this->isSlong( $m[0] ) && $this->isSlong( $m[1] );
-		} else {
-			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+
+		return false;
 	}
 
 	/**#@-*/

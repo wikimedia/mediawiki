@@ -36,9 +36,9 @@ class DjVuHandler extends ImageHandler {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
 
 			return false;
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
 	/**
@@ -76,12 +76,12 @@ class DjVuHandler extends ImageHandler {
 		if ( in_array( $name, array( 'width', 'height', 'page' ) ) ) {
 			if ( $value <= 0 ) {
 				return false;
-			} else {
-				return true;
 			}
-		} else {
-			return false;
+
+			return true;
 		}
+
+		return false;
 	}
 
 	/**
@@ -105,9 +105,9 @@ class DjVuHandler extends ImageHandler {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[2], 'page' => $m[1] );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -146,6 +146,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
 		$width = $params['width'];
 		$height = $params['height'];
 		$page = $params['page'];
@@ -200,15 +201,15 @@ class DjVuHandler extends ImageHandler {
 					wfHostname(), $retval, trim( $err ), $cmd ) );
 
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
-		} else {
-			$params = array(
-				'width' => $width,
-				'height' => $height,
-				'page' => $page
-			);
-
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
+
+		$params = array(
+			'width' => $width,
+			'height' => $height,
+			'page' => $page
+		);
+
+		return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 	}
 
 	/**
@@ -276,9 +277,9 @@ class DjVuHandler extends ImageHandler {
 		wfProfileOut( __METHOD__ );
 		if ( $gettext ) {
 			return $image->djvuTextTree;
-		} else {
-			return $image->dejaMetaTree;
 		}
+
+		return $image->dejaMetaTree;
 	}
 
 	/**
@@ -336,9 +337,9 @@ class DjVuHandler extends ImageHandler {
 				'width' => intval( $o['width'] ),
 				'height' => intval( $o['height'] )
 			);
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -357,8 +358,8 @@ class DjVuHandler extends ImageHandler {
 			$txt = $o['value'];
 
 			return $txt;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 }

@@ -230,14 +230,14 @@ class BitmapHandler extends ImageHandler {
 				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
 		} elseif ( $mto ) {
 			return $mto;
-		} else {
-			$params = array(
-				'width' => $scalerParams['clientWidth'],
-				'height' => $scalerParams['clientHeight']
-			);
-
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
+
+		$params = array(
+			'width' => $scalerParams['clientWidth'],
+			'height' => $scalerParams['clientHeight']
+		);
+
+		return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 	}
 
 	/**

@@ -93,8 +93,8 @@ class TiffHandler extends ExifBitmapHandler {
 
 				return ExifBitmapHandler::BROKEN_FILE;
 			}
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 }

@@ -373,12 +373,12 @@ class SVGReader {
 			$unit = $matches[2];
 			if ( $unit == '%' ) {
 				return $length * 0.01 * $viewportSize;
-			} else {
-				return $length * $unitLength[$unit];
 			}
-		} else {
-			// Assume pixels
-			return floatval( $length );
+
+			return $length * $unitLength[$unit];
 		}
+
+		// Assume pixels
+		return floatval( $length );
 	}
 }

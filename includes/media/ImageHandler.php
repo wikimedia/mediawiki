@@ -43,12 +43,12 @@ abstract class ImageHandler extends MediaHandler {
 		if ( in_array( $name, array( 'width', 'height' ) ) ) {
 			if ( $value <= 0 ) {
 				return false;
-			} else {
-				return true;
 			}
-		} else {
-			return false;
+
+			return true;
 		}
+
+		return false;
 	}
 
 	function makeParamString( $params ) {
@@ -69,9 +69,9 @@ abstract class ImageHandler extends MediaHandler {
 		$m = false;
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[1] );
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	function getScriptParams( $params ) {
@@ -263,9 +263,9 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $pages > 1 ) {
 			return wfMessage( 'widthheightpage' )
 				->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
-		} else {
-			return wfMessage( 'widthheight' )
-				->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
+
+		return wfMessage( 'widthheight' )
+			->numParams( $file->getWidth(), $file->getHeight() )->text();
 	}
 }
