@@ -180,8 +180,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	abstract protected function mysqlFreeResult( $res );
 
 	/**
-	 * @param $res ResultWrapper
-	 * @return object|bool
+	 * @param ResultWrapper $res
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
 	function fetchObject( $res ) {
@@ -210,7 +210,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Fetch a result row as an object
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return stdClass
 	 */
 	abstract protected function mysqlFetchObject( $res );

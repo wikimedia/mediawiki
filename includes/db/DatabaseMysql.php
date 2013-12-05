@@ -147,6 +147,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_free_result( $res );
 	}
 
+	/**
+	 * @param resource $res
+	 * @return stdClass
+	 */
 	protected function mysqlFetchObject( $res ) {
 		return mysql_fetch_object( $res );
 	}

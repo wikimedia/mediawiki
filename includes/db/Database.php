@@ -57,8 +57,8 @@ interface DatabaseType {
 	 * member variables.
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param $res ResultWrapper|object as returned from DatabaseBase::query(), etc.
-	 * @return object|bool
+	 * @param ResultWrapper|stdClass $res Object as returned from DatabaseBase::query(), etc.
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject( $res );
@@ -68,7 +68,7 @@ interface DatabaseType {
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param $res ResultWrapper result object as returned from DatabaseBase::query(), etc.
+	 * @param ResultWrapper $res ResultWrapper Result object as returned from DatabaseBase::query(), etc.
 	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */

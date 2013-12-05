@@ -145,6 +145,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return true;
 	}
 
+	/**
+	 * @param resource $res
+	 * @return bool|stdClass
+	 */
 	protected function mysqlFetchObject( $res ) {
 		$object = $res->fetch_object();
 		if ( $object === null ) {
