@@ -748,14 +748,6 @@ class Preferences {
 			'size' => 20,
 			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
 		);
-
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['showtoc'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label-message' => 'tog-showtoc',
-			);
-		}
 		$defaultPreferences['nocache'] = array(
 			'type' => 'toggle',
 			'label-message' => 'tog-nocache',
