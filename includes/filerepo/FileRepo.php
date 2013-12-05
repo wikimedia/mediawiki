@@ -40,6 +40,8 @@ class FileRepo {
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
 
+	const TIME_ONLY = 1;
+
 	/** @var bool Whether to fetch commons image description pages and display
 	 *    them on the local wiki */
 	public $fetchDescription;
@@ -474,9 +476,11 @@ class FileRepo {
 	 *     $repo->findFiles( $findBatch );
 	 *
 	 *    No title should appear in $items twice, as the result use titles as keys
-	 * @return array (Map of file names => File objects) for matches
+	 * @param int $flags Supports:
+	 *     - FileRepo::TIME_ONLY : return a (file name => timestamp) map instead
+	 * @return array Map of (file name => File objects) for matches
 	 */
-	public function findFiles( array $items ) {
+	public function findFiles( array $items, $flags = 0 ) {
 		$result = array();
 		foreach ( $items as $item ) {
 			if ( is_array( $item ) ) {
@@ -489,7 +493,8 @@ class FileRepo {
 			}
 			$file = $this->findFile( $title, $options );
 			if ( $file ) {
-				$result[$file->getTitle()->getDBkey()] = $file;
+				$result[$file->getTitle()->getDBkey()] =
+					( $flags & self::TIME_ONLY ) ? $file->getTimestamp() : $file;
 			}
 		}
 
