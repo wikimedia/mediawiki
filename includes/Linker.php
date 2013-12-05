@@ -898,7 +898,7 @@ class Linker {
 	 * applicable.
 	 *
 	 * @param File $file
-	 * @param MediaOutput $thumb
+	 * @param MediaTransformOutput $thumb
 	 * @param array $hp image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
@@ -915,11 +915,11 @@ class Linker {
 
 			$thumb15 = $file->transform( $hp15 );
 			$thumb20 = $file->transform( $hp20 );
-			if ( $thumb15->url !== $thumb->url ) {
-				$thumb->responsiveUrls['1.5'] = $thumb15->url;
+			if ( $thumb15->getUrl() !== $thumb->getUrl() ) {
+				$thumb->responsiveUrls['1.5'] = $thumb15->getUrl();
 			}
-			if ( $thumb20->url !== $thumb->url ) {
-				$thumb->responsiveUrls['2'] = $thumb20->url;
+			if ( $thumb20->getUrl() !== $thumb->getUrl() ) {
+				$thumb->responsiveUrls['2'] = $thumb20->getUrl();
 			}
 		}
 	}
