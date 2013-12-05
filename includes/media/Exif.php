@@ -66,64 +66,37 @@ class Exif {
 	/** A fake value for things we don't want or don't support. */
 	const IGNORE = -1;
 
-	//@{
-	/* @var array
-	 * @private
+	/** @var array Exif tags grouped by category, the tagname itself is the key
+	 *    and the type is the value, in the case of more than one possible value
+	 *    type they are separated by commas.
 	 */
+	private $mExifTags;
 
-	/**
-	 * Exif tags grouped by category, the tagname itself is the key and the type
-	 * is the value, in the case of more than one possible value type they are
-	 * separated by commas.
+	/** @var array The raw Exif data returned by exif_read_data() */
+	private $mRawExifData;
+
+	/** @var array A Filtered version of $mRawExifData that has been pruned
+	 *    of invalid tags and tags that contain content they shouldn't contain
+	 *    according to the Exif specification
 	 */
-	var $mExifTags;
+	private $mFilteredExifData;
 
-	/**
-	 * The raw Exif data returned by exif_read_data()
-	 */
-	var $mRawExifData;
+	/** @var array Filtered and formatted Exif data, see FormatMetadata::getFormattedData() */
+	private $mFormattedExifData;
 
-	/**
-	 * A Filtered version of $mRawExifData that has been pruned of invalid
-	 * tags and tags that contain content they shouldn't contain according
-	 * to the Exif specification
-	 */
-	var $mFilteredExifData;
+	/** @var string The file being processed */
+	private $file;
 
-	/**
-	 * Filtered and formatted Exif data, see FormatMetadata::getFormattedData()
-	 */
-	var $mFormattedExifData;
+	/** @var string The basename of the file being processed */
+	private $basename;
 
-	//@}
+	/** @var string The private log to log to, e.g. 'exif' */
+	private $log = false;
 
-	//@{
-	/* @var string
-	 * @private
-	 */
-
-	/**
-	 * The file being processed
-	 */
-	var $file;
-
-	/**
-	 * The basename of the file being processed
-	 */
-	var $basename;
-
-	/**
-	 * The private log to log to, e.g. 'exif'
-	 */
-	var $log = false;
-
-	/**
-	 * The byte order of the file. Needed because php's
-	 * extension doesn't fully process some obscure props.
+	/** @var string The byte order of the file. Needed because php's extension
+	 *    doesn't fully process some obscure props.
 	 */
 	private $byteOrder;
-
-	//@}
 
 	/**
 	 * Constructor
