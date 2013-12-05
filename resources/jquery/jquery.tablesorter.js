@@ -460,11 +460,13 @@
 
 			// Construct regex for number identification
 			for ( var i = 0; i < ascii.length; i++ ) {
-				ts.transformTable[localised[i]] = ascii[i];
-				digits.push( $.escapeRE( localised[i] ) );
+				if( ascii[i] !== '' && localised[i] !== '') {
+					ts.transformTable[localised[i]] = ascii[i];
+					digits.push( localised[i] );
+				}
 			}
 		}
-		var digitClass = '[' + digits.join( '', digits ) + ']';
+		var digitClass = '[' + $.escapeRE( digits.join( '', digits ) ) + ']';
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
@@ -935,6 +937,15 @@
 
 			clearTableBody: function ( table ) {
 				$( table.tBodies[0] ).empty();
+			},
+
+			getParser: function ( id ) {
+				buildTransformTable();
+				buildDateTable();
+				cacheRegexs();
+				buildCollationTable();
+
+				return getParserById( id );
 			}
 		};
 
