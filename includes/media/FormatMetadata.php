@@ -1875,7 +1875,7 @@ class FormatExif {
 	/**
 	 * @param $meta array
 	 */
-	function FormatExif( $meta ) {
+	function __construct( $meta ) {
 		wfDeprecated( __METHOD__, '1.18' );
 		$this->meta = $meta;
 	}
