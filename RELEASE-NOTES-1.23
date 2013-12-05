@@ -239,6 +239,8 @@ changes to languages because of Bugzilla reports.
   altered to reset all rate-limited thumbnails at once.
 * (bug 56572) Builds of the OOjs and OOjs UI libraries are now available.
 * mw.loader.go and mw.loader.version have been removed.
+* (bug 52815) Preference "Enable simplified search bar (Vector skin only)"
+  was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

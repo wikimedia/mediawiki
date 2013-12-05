@@ -1030,15 +1030,7 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgContLang, $wgVectorUseSimpleSearch;
-
-		if ( $wgVectorUseSimpleSearch ) {
-			$defaultPreferences['vector-simplesearch'] = array(
-				'type' => 'toggle',
-				'label-message' => 'vector-simplesearch-preference',
-				'section' => 'searchoptions/displaysearchoptions',
-			);
-		}
+		global $wgContLang;
 
 		$defaultPreferences['searcheverything'] = array(
 			'type' => 'toggle',
