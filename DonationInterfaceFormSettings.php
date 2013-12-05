@@ -333,6 +333,17 @@ $forms_whitelist['cc'] = array(
 	'countries' => array('-' => 'VN')
 );
 
+/* Special case for Vietnam while GC is still having problems.
+ * In the meantime: Visa & Mastercard, USD-only.
+ */
+$forms_whitelist['cc-vietnam'] = array (
+	'file' => $form_dirs['gc'] . '/cc/cc-vm.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array ( 'cc' => array ( 'visa', 'mc' ) ),
+	'countries' => array ( '+' => 'VN' ),
+	'currencies' => array ( '+' => 'USD' ),
+);
+
 
 /****************************
  * Name and Email-Only Test *
