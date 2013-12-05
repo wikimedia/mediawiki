@@ -74,9 +74,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 			$rules[] = 'a:lang(ar), a:lang(kk-arab), a:lang(mzn), ' .
 			'a:lang(ps), a:lang(ur) { text-decoration: none; }';
 		}
-		if ( $options['justify'] ) {
-			$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
-		}
 		if ( !$options['showtoc'] ) {
 			$rules[] = "#toc { display: none; }\n";
 		}

@@ -658,7 +658,6 @@ future releases. Also note that since each list value is wrapped in a unique
 
 # User preference toggles
 'tog-underline'               => 'Link underlining:',
-'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
 'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list',
