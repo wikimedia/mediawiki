@@ -106,6 +106,8 @@ class UpdateMediaWiki extends Maintenance {
 		$wgLang = Language::factory( 'en' );
 		$wgTitle = Title::newFromText( "MediaWiki database updater" );
 
+		define( 'MW_UPDATER', true );
+
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
 		wfWaitForSlaves( 5 ); // let's not kill databases, shall we? ;) --tor
