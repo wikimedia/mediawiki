@@ -1135,7 +1135,11 @@ __INDEXATTR__;
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
-			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
+			"(LIKE $oldName INCLUDING ALL)", $fname );
+	}
+
+	public function recreateReferences( ) {
+		$this->sourceFile( $this->patchPath( "refs.sql" ) );
 	}
 
 	function listTables( $prefix = null, $fname = __METHOD__ ) {

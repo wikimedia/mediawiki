@@ -105,6 +105,7 @@ class CloneDatabase {
 			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName\n" );
 			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
 		}
+		$this->db->recreateReferences();
 	}
 
 	/**
