@@ -426,9 +426,34 @@ abstract class MediaHandler {
 	 * Currently overloaded by PDF and DjVu handlers
 	 * @param File $image
 	 * @param int $page Page number to get information for
-	 * @return bool|string Page text or false when no text found.
+	 * @return bool|string Page text or false when no text found or if
+	 *   unsupported.
 	 */
 	function getPageText( $image, $page ) {
+		return false;
+	}
+
+	/**
+	 * Get the text of the entire document.
+	 * @param File $file
+	 * @return bool|string The text of the document or false if unsupported.
+	 */
+	public function getEntireText( File $file ) {
+		$numPages = $file->pageCount();
+		if ( !$numPages ) {
+			// Not a multipage document
+			return $this->getPageText( $file, 1 );
+		}
+		$document = '';
+		for( $i = 1; $i <= $numPages; $i++ ) {
+			$curPage = $this->getPageText( $file, $i );
+			if ( is_string( $curPage ) ) {
+				$document .= $curPage . "\n";
+			}
+		}
+		if ( $document !== '' ) {
+			return $document;
+		}
 		return false;
 	}
 
