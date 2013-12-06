@@ -1265,7 +1265,8 @@ If you choose to provide it, this will be used for giving the user attribution f
 'user-mail-no-body'      => 'Tried to send email with an empty or unreasonably short body.',
 
 # Change password dialog
-'resetpass'                 => 'Change password',
+'changepassword'            => 'Change password',
+'changepassword-summary'    => '', # do not translate or duplicate this message to other languages
 'resetpass_announce'        => 'You logged in with a temporary emailed code.
 To finish logging in, you must set a new password here:',
 'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
@@ -1879,8 +1880,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'mypreferences'                 => 'Preferences',
 'prefs-edits'                   => 'Number of edits:',
 'prefsnologintext2'             => 'Please $1 to set user preferences.',
-'changepassword'                => 'Change password',
-'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Preview',
 'datedefault'                   => 'No preference',
