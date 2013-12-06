@@ -2813,9 +2813,6 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'allpagesto'              => 'Display pages ending at:',
 'allarticles'             => 'All pages',
 'allinnamespace'          => 'All pages ($1 namespace)',
-'allnotinnamespace'       => 'All pages (not in $1 namespace)',
-'allpagesprev'            => 'Previous',
-'allpagesnext'            => 'Next',
 'allpagessubmit'          => 'Go',
 'allpagesprefix'          => 'Display pages with prefix:',
 'allpagesbadtitle'        => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
