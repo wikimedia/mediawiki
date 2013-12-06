@@ -12,7 +12,7 @@
 			$table = $( '#mw_metadata' ),
 			$tbody = $table.find( 'tbody' );
 
-		if ( !$tbody.length ) {
+		if ( !$tbody.length || !$tbody.find( '.collapsable' ).length ) {
 			return;
 		}
 
