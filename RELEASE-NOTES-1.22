@@ -256,7 +256,7 @@ production.
 * The 'UnwatchArticle' and 'WatchArticle' hooks now support a Status object
   instead of just a boolean return value to abort the hook.
 * Added a hook, SpecialWatchlistGetNonRevisionTypes, to allow extensions
-  with custom recentchanges entries to hook into the Watchlist without 
+  with custom recentchanges entries to hook into the Watchlist without
   clobbering each other.
 * A hidden, empty input field was added to the edit form, and any edit that fills
   it in will be rejected. This prevents against the simplest form of spambots.
@@ -326,6 +326,7 @@ production.
 * Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
 
 === Bug fixes in 1.22 ===
+* (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
   could still navigate to the page by entering the URL directly.
 * (bug 47138) Fixed a fatal error when a blocked user tries to automatically
@@ -411,8 +412,6 @@ production.
 * (bug 45288) Support mysqli PHP extension
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
 * (bug 56770) mw.util.addPortletLink: Check length before access array index.
-* (bug 57289) Logging in with a temporary password is no longer broken when
-  $wgSecureLogin is true.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
@@ -543,8 +542,8 @@ changes to languages because of Bugzilla reports.
 * Information boxes (CSS classes errorbox, warningbox, successbox) have been
   made more subtle.
 * Code specific to the Math extension was marked as deprecated.
-* mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name still
-  works, but is deprecated.)
+* mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name
+  still works, but is deprecated.)
 
 == Compatibility ==
 
