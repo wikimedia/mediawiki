@@ -232,7 +232,10 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool
 	 */
 	function getMetaTree( $image, $gettext = false ) {
-		if ( isset( $image->dejaMetaTree ) ) {
+		if ( $gettext && isset( $image->djvuTextTree ) ) {
+			return $image->djvuTextTree;
+		}
+		if ( !$gettext && isset( $image->dejaMetaTree ) ) {
 			return $image->dejaMetaTree;
 		}
 
