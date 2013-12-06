@@ -27,11 +27,22 @@
  * @ingroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
+	/** @var array Log types */
 	private $types = array();
+
+	/** @var string Events limited to those by performer when set */
 	private $performer = '';
+
+	/** @var string|Title Events limited to those about Title when set */
 	private $title = '';
+
+	/** @var string */
 	private $pattern = '';
+
+	/** @var string */
 	private $typeCGI = '';
+
+	/** @var LogEventsList  */
 	public $mLogEventsList;
 
 	/**
@@ -96,7 +107,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
 	 *
-	 * @param string $types or array: Log types ('upload', 'delete', etc);
+	 * @param string|array $types Log types ('upload', 'delete', etc);
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
@@ -175,8 +186,8 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
 	 *
-	 * @param string $page or Title object: Title name
-	 * @param $pattern String
+	 * @param string|Title $page Title name
+	 * @param string $pattern
 	 * @return bool
 	 */
 	private function limitTitle( $page, $pattern ) {
