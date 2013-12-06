@@ -87,7 +87,11 @@
 			// Deprecated: Use mw.hook instead
 			$( mw ).trigger( 'LivePreviewDone', [copySelectors] );
 
-			mw.hook( 'wikipage.content' ).fire( $wikiPreview );
+			// Fire the hook for any updated elements inside #mw-content-text.
+			// Most importantly this includes the preview and the collapsible lists below textarea.
+			mw.hook( 'wikipage.content' ).fire(
+				$( '#mw-content-text' ).find( copySelectors.join( ',' ) )
+			);
 
 			$spinner.remove();
 			$copyElements.animate( {
