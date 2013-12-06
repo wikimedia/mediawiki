@@ -3163,10 +3163,6 @@ class Title {
 		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
 
-		if ( $dbkey == '' ) {
-			return false;
-		}
-
 		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			return false;
@@ -3176,10 +3172,14 @@ class Title {
 
 		# Initial colon indicates main namespace rather than specified default
 		# but should not create invalid {ns,title} pairs such as {0,Project:Foo}
-		if ( ':' == $dbkey[0] ) {
+		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
 			$this->mNamespace = NS_MAIN;
 			$dbkey = substr( $dbkey, 1 ); # remove the colon but continue processing
 			$dbkey = trim( $dbkey, '_' ); # remove any subsequent whitespace
+		}
+
+		if ( $dbkey == '' ) {
+			return false;
 		}
 
 		# Namespace or interwiki prefix

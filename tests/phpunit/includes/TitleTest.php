@@ -66,6 +66,7 @@ class TitleTest extends MediaWikiTestCase {
 		// Invalid
 		foreach ( array(
 			'',
+			':',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
