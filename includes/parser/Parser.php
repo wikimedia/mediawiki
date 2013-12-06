@@ -617,13 +617,15 @@ class Parser {
 	/**
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
+	 * Do not call this function recursively.
 	 * @param string $text
 	 * @param Title $title
 	 * @param ParserOptions $options
 	 * @param int|null $revid
+	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null ) {
+	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
@@ -632,7 +634,7 @@ class Parser {
 		}
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
-		$text = $this->replaceVariables( $text );
+		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
