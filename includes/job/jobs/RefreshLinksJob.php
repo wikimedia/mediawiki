@@ -59,11 +59,6 @@ class RefreshLinksJob extends Job {
 	function run() {
 		global $wgUpdateRowsPerJob;
 
-		if ( is_null( $this->title ) ) {
-			$this->setLastError( "Invalid page title" );
-			return false;
-		}
-
 		// Job to update all (or a range of) backlink pages for a page
 		if ( isset( $this->params['recursive'] ) ) {
 			// Carry over information for de-duplication
