@@ -161,6 +161,26 @@ interface PPFrame {
 	function isTemplate();
 
 	/**
+	 * Get the "volatile" flag.
+	 *
+	 * If multiple invocations of $this->expand() with the same input might
+	 * give different output (e.g. for Cite.php's <references/>) or have other
+	 * side effects, the volatile flag should be set. Callers should avoid
+	 * caching the result if the volatile flag is set after an expansion.
+	 *
+	 * @return bool
+	 */
+	function isVolatile();
+
+	/**
+	 * Set the "volatile" flag.
+	 *
+	 * @see self::isVolatile()
+	 * @param bool $flag
+	 */
+	function setVolatile( $flag = true );
+
+	/**
 	 * Get a title of frame
 	 *
 	 * @return Title
