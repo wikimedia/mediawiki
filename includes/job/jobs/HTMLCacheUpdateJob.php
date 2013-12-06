@@ -66,7 +66,7 @@ class HTMLCacheUpdateJob extends Job {
 				}
 			}
 			// Convert this into no more than $wgUpdateRowsPerJob HTMLCacheUpdateJob per-title
-			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
+			// jobs and possibly a recursive HTMLCacheUpdateJob job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
 				$wgUpdateRowsPerJob,
