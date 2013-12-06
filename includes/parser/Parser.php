@@ -3478,7 +3478,9 @@ class Parser {
 					$text = $this->mTplExpandCache[$titleText];
 				} else {
 					$text = $newFrame->expand( $text );
-					$this->mTplExpandCache[$titleText] = $text;
+					if ( !$newFrame->isVolatile() ) {
+						$this->mTplExpandCache[$titleText] = $text;
+					}
 				}
 			} else {
 				# Uncached expansion

@@ -69,6 +69,9 @@ production.
   'user' or 'bot'. The API will throw an error if the user is not logged
   in (user) or does not have the 'bot' userright (bot). Based off of the
   AssertEdit extension by Steve Sanbeg.
+* New methods setVolatile and isVolatile are added to PPFrame, so that
+  extensions such as Cite.php can mark that their output is volatile and
+  shouldn't be cached.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
