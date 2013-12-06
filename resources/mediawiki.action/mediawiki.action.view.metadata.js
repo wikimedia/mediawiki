@@ -3,6 +3,10 @@
  *
  * Add an expand/collapse link and collapse by default if set to
  * (with JS disabled, user will see all items)
+ *
+ * See also:
+ * - ImagePage.php#makeMetadataTable (creates the HTML)
+ * - skins/common/shared.css (hides tr.collapsable inside table.collapsed)
  */
 ( function ( mw, $ ) {
 	$( function () {
@@ -12,7 +16,7 @@
 			$table = $( '#mw_metadata' ),
 			$tbody = $table.find( 'tbody' );
 
-		if ( !$tbody.length ) {
+		if ( !$tbody.length || !$tbody.find( '.collapsable' ).length ) {
 			return;
 		}
 
