@@ -126,12 +126,8 @@
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 
-		if ( title === '' ) {
-			return false;
-		}
-
 		// Process initial colon
-		if ( title.charAt( 0 ) === ':' ) {
+		if ( title !== '' && title.charAt( 0 ) === ':' ) {
 			// Initial colon means main namespace instead of specified default
 			namespace = NS_MAIN;
 			title = title
@@ -139,6 +135,10 @@
 				.substr( 1 )
 				// Trim underscores
 				.replace( rUnderscoreTrim, '' );
+		}
+
+		if ( title === '' ) {
+			return false;
 		}
 
 		// Process namespace prefix (if any)

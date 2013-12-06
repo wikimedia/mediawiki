@@ -80,6 +80,7 @@
 		],
 		invalid: [
 			'',
+			':',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
