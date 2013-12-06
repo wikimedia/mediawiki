@@ -209,6 +209,7 @@ class LocalSettingsGenerator {
 			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
 		}
 
+		$noFollow = '';
 		$groupRights = '';
 		if ( $this->groupPermissions ) {
 			$groupRights .= "# The following permissions were set based on your choice in the installer\n";
@@ -220,7 +221,6 @@ class LocalSettingsGenerator {
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
-			$noFollow = '';
 			if ( $this->groupPermissions['*']['edit'] === false
 				&& $this->groupPermissions['*']['createaccount'] === false
 				&& $this->groupPermissions['*']['read'] !== false ) {
