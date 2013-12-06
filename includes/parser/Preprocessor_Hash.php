@@ -919,6 +919,8 @@ class PPFrame_Hash implements PPFrame {
 	 */
 	var $depth;
 
+	private $volatile = false;
+
 	/**
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
@@ -1372,6 +1374,24 @@ class PPFrame_Hash implements PPFrame {
 	function getTitle() {
 		return $this->title;
 	}
+
+	/**
+	 * Set the volatile flag
+	 *
+	 * @param bool $flag
+	 */
+	function setVolatile( $flag = true ) {
+		$this->volatile = $flag;
+	}
+
+	/**
+	 * Get the volatile flag
+	 *
+	 * @return bool
+	 */
+	function isVolatile() {
+		return $this->volatile;
+	}
 }
 
 /**
@@ -1523,6 +1543,11 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	function isTemplate() {
 		return true;
+	}
+
+	function setVolatile( $flag = true ) {
+		parent::setVolatile( $flag );
+		$this->parent->setVolatile( $flag );
 	}
 }
 
