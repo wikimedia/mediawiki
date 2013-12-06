@@ -301,14 +301,15 @@ class Status {
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error
 	 * message.
-	 *
-	 * @note: this does not perform a full wikitext to HTML conversion, it merely applies
-	 *        a message transformation.
-	 * @todo figure out whether that is actually The Right Thing.
+	 * @param string $shortContext a short enclosing context message name, to
+	 *        be used when there is a single error
+	 * @param string $longContext a long enclosing context message name, for a list
+	 * @return String
 	 */
 	public function getHTML( $shortContext = false, $longContext = false ) {
 		$text = $this->getWikiText( $shortContext, $longContext );
-		return MessageCache::singleton()->transform( $text, true );
+		$out = MessageCache::singleton()->parse( $text, null, true, true );
+		return is_object( $out ) ? $out->getText() : $out;
 	}
 
 	/**
