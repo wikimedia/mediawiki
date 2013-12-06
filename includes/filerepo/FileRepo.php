@@ -489,7 +489,7 @@ class FileRepo {
 			}
 			$file = $this->findFile( $title, $options );
 			if ( $file ) {
-				$result[$file->getTitle()->getDBkey()] = $file;
+				$result[$title->getDBkey()] = $file;
 			}
 		}
 
