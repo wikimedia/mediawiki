@@ -306,7 +306,8 @@ EOR;
 
 	function pageTextCallback( $matches ) {
 		# Get rid of invalid UTF-8, strip control characters
-		return '<PAGE value="' . htmlspecialchars( UtfNormal::cleanUp( $matches[1] ) ) . '" />';
+		$val = htmlspecialchars( UtfNormal::cleanUp( $matches[1] ) );
+		return '<PAGE value="' . str_replace( '\n', '&#10;', $val ) . '" />';
 	}
 
 	/**
