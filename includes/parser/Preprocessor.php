@@ -161,6 +161,32 @@ interface PPFrame {
 	function isTemplate();
 
 	/**
+	 * Get the "volatile" flag.
+	 *
+	 * If multiple invocations of $this->expand() with the same input might
+	 * give different output (e.g. for Cite.php's <references/>) or have other
+	 * side effects, the volatile flag should be set. Callers should avoid
+	 * caching the result if the volatile flag is set after an expansion.
+	 *
+	 * @return bool
+	 */
+	function isVolatile();
+
+	/**
+	 * Set the "volatile" flag.
+	 *
+	 * This is somewhat of a "hack" in order to make extensions with side
+	 * effects (such as Cite) work with the PHP parser. New extensions
+	 * should be written in a way that they do not need this function,
+	 * because other parsers (such as Parsoid) are not guaranteed to respect
+	 * it, and it may be removed in the future.
+	 *
+	 * @see self::isVolatile()
+	 * @param bool $flag
+	 */
+	function setVolatile( $flag = true );
+
+	/**
 	 * Get a title of frame
 	 *
 	 * @return Title
