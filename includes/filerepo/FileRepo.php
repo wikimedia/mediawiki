@@ -493,7 +493,7 @@ class FileRepo {
 			}
 			$file = $this->findFile( $title, $options );
 			if ( $file ) {
-				$result[$file->getTitle()->getDBkey()] =
+				$result[$title->getDBkey()] =
 					( $flags & self::TIME_ONLY ) ? $file->getTimestamp() : $file;
 			}
 		}
