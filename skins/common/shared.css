@@ -533,7 +533,11 @@ table.wikitable > caption {
 	font-weight: bold;
 }
 
-/* hide initially collapsed collapsable tables */
+/**
+ * Hide collapsable rows in a collapsed table.
+ *
+ * Used by ImagePage and the mediawiki.action.view.metadata module.
+ */
 table.collapsed tr.collapsable {
 	display: none;
 }
