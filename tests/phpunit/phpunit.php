@@ -31,13 +31,9 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
-		global $wgDevelopmentWarnings;
 
 		// Inject test autoloader
 		require_once __DIR__ . '/../TestsAutoLoader.php';
-
-		// wfWarn should cause tests to fail
-		$wgDevelopmentWarnings = true;
 
 		$wgMainCacheType = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
