@@ -571,7 +571,8 @@ $wgMessageStructure = array(
 		'user-mail-no-body',
 	),
 	'resetpass' => array(
-		'resetpass',
+		'changepassword',
+		'changepassword-summary',
 		'resetpass_announce',
 		'resetpass_text',
 		'resetpass_header',
@@ -1008,8 +1009,6 @@ $wgMessageStructure = array(
 		'mypreferences',
 		'prefs-edits',
 		'prefsnologintext2',
-		'changepassword',
-		'changepassword-summary',
 		'prefs-skin',
 		'skin-preview',
 		'datedefault',

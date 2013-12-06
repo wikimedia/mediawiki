@@ -1593,10 +1593,10 @@ Used on the account creation form when creating another user's account. Similar 
 'changepassword-success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
-'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
+'resetpass-submit-loggedin' => 'Button on [[Special:ChangePassword]] to submit new password.
 
 {{Identical|Change password}}',
-'resetpass-submit-cancel' => 'Used on [[Special:ResetPass]].
+'resetpass-submit-cancel' => 'Used on [[Special:ChangePassword]].
 {{Identical|Cancel}}',
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
@@ -2951,8 +2951,8 @@ See also:
 'prefs-edits' => 'In user preferences.',
 'prefsnologintext2' => 'Parameters:
 * $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.
-{{Identical|Change password}}",
+'changepassword' => 'Title of [[Special:ChangePassword]].
+{{Identical|Change password}}',
 'prefs-skin' => 'Used in user preferences.
 {{Identical|Skin}}',
 'skin-preview' => '{{doc-actionlink}}
@@ -2982,7 +2982,7 @@ See also:
 'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'prefs-misc' => 'Tab used on the [[Special:Preferences|user preferences]] special page.',
-'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
+'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ChangePassword]].
 
 {{Identical|Change password}}',
 'prefs-changeemail' => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].
