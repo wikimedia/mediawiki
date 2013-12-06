@@ -3525,6 +3525,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
 
+	public function recreateReferences( ) {
+	}
+
 	/**
 	 * List all tables on the database
 	 *
