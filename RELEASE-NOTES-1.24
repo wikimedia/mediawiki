@@ -47,6 +47,9 @@ production.
   to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
   since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
   ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+* New methods setVolatile and isVolatile are added to PPFrame, so that
+  extensions such as Cite.php can mark that their output is volatile and
+  shouldn't be cached.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
