@@ -445,10 +445,12 @@ class SvgHandler extends ImageHandler {
 	 * @return array
 	 */
 	function getScriptParams( $params ) {
-		return array(
-			'width' => $params['width'],
-			'lang' => $params['lang'],
-		);
+		$scriptParams = array( 'width' => $params['width'] );
+		if ( isset( $params['lang'] ) ) {
+			$scriptParams['lang'] = $params['lang'];
+		}
+
+		return $scriptParams;
 	}
 
 	public function getCommonMetaArray( File $file ) {
