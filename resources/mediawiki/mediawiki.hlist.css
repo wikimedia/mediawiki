@@ -2,11 +2,6 @@
 	Stylesheet for mediawiki.hlist module
 	@author [[User:Edokter]]
  */
-.skin-monobook .hlist dl,
-.skin-modern .hlist dl,
-.skin-vector .hlist dl {
-	line-height: 1.5em;
-}
 .hlist dl,
 .hlist ol,
 .hlist ul {
