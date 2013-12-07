@@ -120,16 +120,27 @@ define( 'CACHE_DBA', 4 );        // Use PHP's DBA extension to store in a DBM-st
  * Media types.
  * This defines constants for the value returned by File::getMediaType()
  */
-define( 'MEDIATYPE_UNKNOWN',    'UNKNOWN' );     // unknown format
-define( 'MEDIATYPE_BITMAP',     'BITMAP' );      // some bitmap image or image source (like psd, etc). Can't scale up.
-define( 'MEDIATYPE_DRAWING',    'DRAWING' );     // some vector drawing (SVG, WMF, PS, ...) or image source (oo-draw, etc). Can scale up.
-define( 'MEDIATYPE_AUDIO',      'AUDIO' );       // simple audio file (ogg, mp3, wav, midi, whatever)
-define( 'MEDIATYPE_VIDEO',      'VIDEO' );       // simple video file (ogg, mpg, etc; no not include formats here that may contain executable sections or scripts!)
-define( 'MEDIATYPE_MULTIMEDIA', 'MULTIMEDIA' );  // Scriptable Multimedia (flash, advanced video container formats, etc)
-define( 'MEDIATYPE_OFFICE',     'OFFICE' );      // Office Documents, Spreadsheets (office formats possibly containing apples, scripts, etc)
-define( 'MEDIATYPE_TEXT',       'TEXT' );        // Plain text (possibly containing program code or scripts)
-define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );  // binary executable
-define( 'MEDIATYPE_ARCHIVE',    'ARCHIVE' );     // archive file (zip, tar, etc)
+// unknown format
+define( 'MEDIATYPE_UNKNOWN', 'UNKNOWN' );
+// some bitmap image or image source (like psd, etc). Can't scale up.
+define( 'MEDIATYPE_BITMAP', 'BITMAP' );
+// some vector drawing (SVG, WMF, PS, ...) or image source (oo-draw, etc). Can scale up.
+define( 'MEDIATYPE_DRAWING', 'DRAWING' );
+// simple audio file (ogg, mp3, wav, midi, whatever)
+define( 'MEDIATYPE_AUDIO', 'AUDIO' );
+// simple video file (ogg, mpg, etc;
+// no not include formats here that may contain executable sections or scripts!)
+define( 'MEDIATYPE_VIDEO', 'VIDEO' );
+// Scriptable Multimedia (flash, advanced video container formats, etc)
+define( 'MEDIATYPE_MULTIMEDIA', 'MULTIMEDIA' );
+// Office Documents, Spreadsheets (office formats possibly containing apples, scripts, etc)
+define( 'MEDIATYPE_OFFICE', 'OFFICE' );
+// Plain text (possibly containing program code or scripts)
+define( 'MEDIATYPE_TEXT', 'TEXT' );
+// binary executable
+define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );
+// archive file (zip, tar, etc)
+define( 'MEDIATYPE_ARCHIVE', 'ARCHIVE' );
 /**@}*/
 
 /**@{
@@ -288,12 +299,20 @@ define( 'CONTENT_MODEL_TEXT', 'text' );
  * Extensions are free to use the below formats, or define their own.
  * It is recommended to stick with the conventions for MIME types.
  */
-define( 'CONTENT_FORMAT_WIKITEXT', 'text/x-wiki' ); // wikitext
-define( 'CONTENT_FORMAT_JAVASCRIPT', 'text/javascript' ); // for js pages
-define( 'CONTENT_FORMAT_CSS', 'text/css' );  // for css pages
-define( 'CONTENT_FORMAT_TEXT', 'text/plain' ); // for future use, e.g. with some plain-html messages.
-define( 'CONTENT_FORMAT_HTML', 'text/html' ); // for future use, e.g. with some plain-html messages.
-define( 'CONTENT_FORMAT_SERIALIZED', 'application/vnd.php.serialized' ); // for future use with the api and for extensions
-define( 'CONTENT_FORMAT_JSON', 'application/json' ); // for future use with the api, and for use by extensions
-define( 'CONTENT_FORMAT_XML', 'application/xml' ); // for future use with the api, and for use by extensions
+// wikitext
+define( 'CONTENT_FORMAT_WIKITEXT', 'text/x-wiki' );
+// for js pages
+define( 'CONTENT_FORMAT_JAVASCRIPT', 'text/javascript' );
+// for css pages
+define( 'CONTENT_FORMAT_CSS', 'text/css' );
+// for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_TEXT', 'text/plain' );
+// for future use, e.g. with some plain-html messages.
+define( 'CONTENT_FORMAT_HTML', 'text/html' );
+// for future use with the api and for extensions
+define( 'CONTENT_FORMAT_SERIALIZED', 'application/vnd.php.serialized' );
+// for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_JSON', 'application/json' );
+// for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_XML', 'application/xml' );
 /**@}*/
