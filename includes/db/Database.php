@@ -1763,20 +1763,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * mysql_field_type() wrapper
-	 * @param $res
-	 * @param $index
-	 * @return string
-	 */
-	public function fieldType( $res, $index ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return mysql_field_type( $res, $index );
-	}
-
-	/**
 	 * Determines if a given index is unique
 	 *
 	 * @param $table string

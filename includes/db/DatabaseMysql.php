@@ -171,6 +171,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_field_name( $res, $n );
 	}
 
+	protected function mysqlFieldType( $res, $n ) {
+		return mysql_field_type( $res, $n );
+	}
+
 	protected function mysqlDataSeek( $res, $row ) {
 		return mysql_data_seek( $res, $row );
 	}

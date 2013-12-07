@@ -44,6 +44,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function mysqlNumRows( $res ) {}
 	protected function mysqlNumFields( $res ) {}
 	protected function mysqlFieldName( $res, $n ) {}
+	protected function mysqlFieldType( $res, $n ) {}
 	protected function mysqlDataSeek( $res, $row ) {}
 	protected function mysqlError( $conn = null ) {}
 	protected function mysqlFetchField( $res, $n ) {}
