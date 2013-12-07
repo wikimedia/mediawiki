@@ -265,6 +265,9 @@ changes to languages because of Bugzilla reports.
 * The jquery.delayedBind ResourceLoader module was deprecated in favor of the
   jquery.throttle-debounce module. It will be removed in MediaWiki 1.24.
 * mw.user.bucket has been deprecated.
+* On Special:PrefixIndex, a table#mw-prefixindex-list-table was changed to
+  table.mw-prefixindex-list-table to avoid duplicate ids when the special page
+  is transcluded.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
