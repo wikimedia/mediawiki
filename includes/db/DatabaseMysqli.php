@@ -188,6 +188,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $field->name;
 	}
 
+	protected function mysqlFieldType( $res, $n ) {
+		$field = $res->fetch_field_direct( $n );
+		return $field->type;
+	}
+
 	protected function mysqlDataSeek( $res, $row ) {
 		return $res->data_seek( $row );
 	}
