@@ -10,9 +10,6 @@
 
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.orgMwLangauge = mw.language;
-			mw.language = $.extend( true, {}, this.orgMwLangauge );
-
 			// Messages that are reused in multiple tests
 			mw.messages.set( {
 				// The values for gender are not significant,
@@ -54,9 +51,6 @@
 				format: 'parse'
 			} );
 		},
-		teardown: function () {
-			mw.language = this.orgMwLangauge;
-		}
 	} ) );
 
 	function getMwLanguage( langCode, cb ) {

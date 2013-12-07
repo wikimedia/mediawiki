@@ -36,6 +36,13 @@
 			{
 				"name": "API",
 				"classes": ["mw.Api*"]
+			},
+			{
+				"name": "Language",
+				"classes": [
+					"mw.language*",
+					"mw.cldr"
+				]
 			}
 		]
 	},
