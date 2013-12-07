@@ -4510,7 +4510,6 @@ $8', # only translate this message to other languages if you have to change it
 'watchlistall2' => 'all',
 'namespacesall' => 'all',
 'monthsall'     => 'all',
-'limitall'      => 'all',
 
 # Email address confirmation
 'confirmemail'              => 'Confirm email address',

@@ -3430,7 +3430,6 @@ $wgMessageStructure = array(
 		'watchlistall2',
 		'namespacesall',
 		'monthsall',
-		'limitall',
 	),
 	'confirmemail' => array(
 		'confirmemail',
