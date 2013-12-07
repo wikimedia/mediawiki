@@ -4923,7 +4923,6 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 # Special:ComparePages
 'comparepages'                => 'Compare pages',
 'comparepages-summary'        => '', # do not translate or duplicate this message to other languages
-'compare-selector'            => 'Compare page revisions',
 'compare-page1'               => 'Page 1',
 'compare-page2'               => 'Page 2',
 'compare-rev1'                => 'Revision 1',
