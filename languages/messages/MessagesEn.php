@@ -4527,7 +4527,6 @@ The code may have expired.',
 'confirmemail_success'      => 'Your email address has been confirmed.
 You may now [[Special:UserLogin|log in]] and enjoy the wiki.',
 'confirmemail_loggedin'     => 'Your email address has now been confirmed.',
-'confirmemail_error'        => 'Something went wrong saving your confirmation.',
 'confirmemail_subject'      => '{{SITENAME}} email address confirmation',
 'confirmemail_body'         => 'Someone, probably you, from IP address $1,
 has registered an account "$2" with this email address on {{SITENAME}}.
