@@ -3263,7 +3263,6 @@ The latest block log entry is provided below for reference:',
 'unblock'                         => 'Unblock user',
 'unblock-summary'                 => '', # do not translate or duplicate this message to other languages
 'blockip'                         => 'Block user',
-'blockip-title'                   => 'Block user',
 'blockip-legend'                  => 'Block user',
 'blockiptext'                     => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
@@ -3271,7 +3270,6 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipadressorusername'              => 'IP address or username:',
 'ipbexpiry'                       => 'Expiry:',
 'ipbreason'                       => 'Reason:',
-'ipbreasonotherlist'              => 'Other reason',
 'ipbreason-dropdown'              => '*Common block reasons
 ** Inserting false information
 ** Removing content from pages
@@ -3287,8 +3285,6 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
 'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
-'ipbotheroption'                  => 'other',
-'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from edits and lists',
 'ipbwatchuser'                    => "Watch this user's user and talk pages",
 'ipb-disableusertalk'             => 'Prevent this user from editing their own talk page while blocked',
@@ -3383,7 +3379,6 @@ Please contact your Internet service provider or technical support of your organ
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
 You cannot create an account',
 'xffblockreason'                  => 'An IP address present in the X-Forwarded-For header, either yours or that of a proxy server you are using, has been blocked. The original block reason was: $1',
-'cant-block-while-blocked'        => 'You cannot block other users while you are blocked.',
 'cant-see-hidden-user'            => "The user you are trying to block has already been blocked and hidden.
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
 'ipbblocked'                      => 'You cannot block or unblock other users because you are yourself blocked',
