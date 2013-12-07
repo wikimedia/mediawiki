@@ -530,14 +530,14 @@ class Revision implements IDBAccessObject {
 	 */
 	function __construct( $row ) {
 		if ( is_object( $row ) ) {
-			$this->mId        = intval( $row->rev_id );
-			$this->mPage      = intval( $row->rev_page );
-			$this->mTextId    = intval( $row->rev_text_id );
-			$this->mComment   =         $row->rev_comment;
-			$this->mUser      = intval( $row->rev_user );
+			$this->mId = intval( $row->rev_id );
+			$this->mPage = intval( $row->rev_page );
+			$this->mTextId = intval( $row->rev_text_id );
+			$this->mComment = $row->rev_comment;
+			$this->mUser = intval( $row->rev_user );
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
-			$this->mTimestamp =         $row->rev_timestamp;
-			$this->mDeleted   = intval( $row->rev_deleted );
+			$this->mTimestamp = $row->rev_timestamp;
+			$this->mDeleted = intval( $row->rev_deleted );
 
 			if ( !isset( $row->rev_parent_id ) ) {
 				$this->mParentId = null;
@@ -612,27 +612,31 @@ class Revision implements IDBAccessObject {
 				# also set text to null?
 			}
 
-			$this->mId        = isset( $row['id']         ) ? intval( $row['id']         ) : null;
-			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
-			$this->mTextId    = isset( $row['text_id']    ) ? intval( $row['text_id']    ) : null;
-			$this->mUserText  = isset( $row['user_text']  ) ? strval( $row['user_text']  ) : $wgUser->getName();
-			$this->mUser      = isset( $row['user']       ) ? intval( $row['user']       ) : $wgUser->getId();
+			$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
+			$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
+			$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
+			$this->mUserText = isset( $row['user_text'] )
+				? strval( $row['user_text'] ) : $wgUser->getName();
+			$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
-			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestampNow();
-			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
-			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : null;
-			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
-			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
+			$this->mTimestamp = isset( $row['timestamp'] )
+				? strval( $row['timestamp'] ) : wfTimestampNow();
+			$this->mDeleted = isset( $row['deleted'] ) ? intval( $row['deleted'] ) : 0;
+			$this->mSize = isset( $row['len'] ) ? intval( $row['len'] ) : null;
+			$this->mParentId = isset( $row['parent_id'] ) ? intval( $row['parent_id'] ) : null;
+			$this->mSha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
 
-			$this->mContentModel   = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
-			$this->mContentFormat  = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
+			$this->mContentModel = isset( $row['content_model'] )
+				? strval( $row['content_model'] ) : null;
+			$this->mContentFormat = isset( $row['content_format'] )
+				? strval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
-			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
-			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
-			$this->mTextRow   = null;
+			$this->mComment = isset( $row['comment'] ) ? trim( strval( $row['comment'] ) ) : null;
+			$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
+			$this->mTextRow = null;
 
-			$this->mTitle     = isset( $row['title']      ) ? $row['title'] : null;
+			$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
@@ -757,7 +761,8 @@ class Revision implements IDBAccessObject {
 		if ( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		if ( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
+		//rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
+		if ( !is_null( $this->mId ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
@@ -1081,7 +1086,8 @@ class Revision implements IDBAccessObject {
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
-	 * @return String the content model id associated with this revision, see the CONTENT_MODEL_XXX constants.
+	 * @return String the content model id associated with this revision,
+	 *     see the CONTENT_MODEL_XXX constants.
 	 **/
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
@@ -1100,7 +1106,8 @@ class Revision implements IDBAccessObject {
 	 * If no content format was stored in the database, the default format for this
 	 * revision's content model is returned.
 	 *
-	 * @return String the content format id associated with this revision, see the CONTENT_FORMAT_XXX constants.
+	 * @return String the content format id associated with this revision,
+	 *     see the CONTENT_FORMAT_XXX constants.
 	 **/
 	public function getContentFormat() {
 		if ( !$this->mContentFormat ) {
@@ -1127,7 +1134,8 @@ class Revision implements IDBAccessObject {
 			$format = $this->getContentFormat();
 
 			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
-				throw new MWException( "Oops, the content format $format is not supported for this content model, $model" );
+				throw new MWException( "Oops, the content format $format is not supported for "
+					. "this content model, $model" );
 			}
 		}
 
@@ -1398,7 +1406,8 @@ class Revision implements IDBAccessObject {
 
 		if ( $wgContentHandlerUseDB ) {
 			//NOTE: Store null for the default model and format, to save space.
-			//XXX: Makes the DB sensitive to changed defaults. Make this behavior optional? Only in miser mode?
+			//XXX: Makes the DB sensitive to changed defaults.
+			// Make this behavior optional? Only in miser mode?
 
 			$model = $this->getContentModel();
 			$format = $this->getContentFormat();
@@ -1407,7 +1416,8 @@ class Revision implements IDBAccessObject {
 
 			if ( $title === null ) {
 				wfProfileOut( __METHOD__ );
-				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
+				throw new MWException( "Insufficient information to determine the title of the "
+					. "revision's page!" );
 			}
 
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
@@ -1443,7 +1453,8 @@ class Revision implements IDBAccessObject {
 		}
 
 		if ( !$wgContentHandlerUseDB && $title ) {
-			// if $wgContentHandlerUseDB is not set, all revisions must use the default content model and format.
+			// if $wgContentHandlerUseDB is not set,
+			// all revisions must use the default content model and format.
 
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
@@ -1452,15 +1463,17 @@ class Revision implements IDBAccessObject {
 			if ( $this->getContentModel() != $defaultModel ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: "
-					. "model is $model, default for $t is $defaultModel" );
+				throw new MWException( "Can't save non-default content model with "
+					. "\$wgContentHandlerUseDB disabled: model is $model, "
+					. "default for $t is $defaultModel" );
 			}
 
 			if ( $this->getContentFormat() != $defaultFormat ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: "
-					. "format is $format, default for $t is $defaultFormat" );
+				throw new MWException( "Can't use non-default content format with "
+					. "\$wgContentHandlerUseDB disabled: format is $format, "
+					. "default for $t is $defaultFormat" );
 			}
 		}
 
@@ -1722,8 +1735,8 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @since 1.20
 	 *
-	 * @param DatabaseBase|int $db the Database to perform the check on. May be given as a Database object or
-	 *        a database identifier usable with wfGetDB.
+	 * @param DatabaseBase|int $db the Database to perform the check on. May be given as a
+	 *        Database object or a database identifier usable with wfGetDB.
 	 * @param int $pageId the ID of the page in question
 	 * @param int $userId the ID of the user in question
 	 * @param string $since look at edits since this time
