@@ -203,7 +203,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-list-table' ) );
+				$out = Xml::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
