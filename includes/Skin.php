@@ -1417,14 +1417,14 @@ abstract class Skin extends ContextSource {
 					'youhavenewmessagesfromusers',
 					$newMessagesLink,
 					$newMessagesDiffLink
-				)->numParams( $nofAuthors );
+				)->numParams( $nofAuthors, $plural );
 			} else {
 				// $nofAuthors === 11 signifies "11 or more" ("more than 10")
 				$newMessagesAlert = $this->msg(
 					$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
 					$newMessagesLink,
 					$newMessagesDiffLink
-				);
+				)->numParams( $plural );
 			}
 			$newMessagesAlert = $newMessagesAlert->text();
 			# Disable Squid cache

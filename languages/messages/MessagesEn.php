@@ -938,8 +938,8 @@ See [[Special:Version|version page]].',
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
 'backlinksubtitle'             => '← $1', # only translate this message to other languages if you have to change it
 'retrievedfrom'                => 'Retrieved from "$1"',
-'youhavenewmessages'           => 'You have $1 ($2).',
-'youhavenewmessagesfromusers'  => 'You have $1 from {{PLURAL:$3|another user|$3 users}} ($2).',
+'youhavenewmessages'           => '{{PLURAL:$3|You have}} $1 ($2).',
+'youhavenewmessagesfromusers'  => '{{PLURAL:$4|You have}} $1 from {{PLURAL:$3|another user|$3 users}} ($2).',
 'youhavenewmessagesmanyusers'  => 'You have $1 from many users ($2).',
 'newmessageslinkplural'        => '{{PLURAL:$1|a new message|999=new messages}}',
 'newmessagesdifflinkplural'    => 'last {{PLURAL:$1|change|999=changes}}',
