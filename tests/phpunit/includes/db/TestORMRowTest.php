@@ -142,6 +142,40 @@ class TestORMRowTest extends ORMRowTest {
 }
 
 class TestORMRow extends ORMRow {
+	/**
+	 * Testing for bug 37601:
+	 *
+	 * Expose protected ORMTable::getWritableValues()
+	 * We are NOT interested in ORMRow::getWritableValues(),
+	 * since it is apparently not used.
+	 *
+	 * We need this to successfully test that method.
+	 * @since 1.22
+	 *
+	 * @return string
+	 */
+	public function exposeTableWriteValues() {
+		return $this->table->exposeWriteValues( $this );
+	}
+
+	/**
+	 * Testing for bug 37601:
+	 *
+	 * Expose ORMTable::getPrefixedField()
+	 * ORMRow does not have this information and should not
+	 * have it since prefix is table-dependent
+	 *
+	 * We need this to successfully test ORMTable::getWritableValues()
+	 * @since 1.22
+	 *
+	 * @param string $field_name virtual (i.e. ORM'd) name of the field
+	 *                           for example: "id" should yield "page_id"
+	 *                           for table "page"
+	 * @return string
+	 */
+	public function exposeTablePrefixedField( $field_name ) {
+		return $this->table->getPrefixedField( $field_name );
+	}
 }
 
 class TestORMTable extends ORMTable {
@@ -203,5 +237,20 @@ class TestORMTable extends ORMTable {
 			'moarstuff' => 'blob',
 			'time' => 'str', // TS_MW
 		);
+	}
+
+	/**
+	 * Testing for bug 37601:
+	 *
+	 * Expose protected ORMTable::getWritableValues()
+	 * since it is apparently not used.
+	 *
+	 * We need this to successfully test that method.
+	 * @since 1.22
+	 *
+	 * @return string
+	 */
+	public function exposeWriteValues( $row ) {
+		return $this->getWriteValues( $row );
 	}
 }

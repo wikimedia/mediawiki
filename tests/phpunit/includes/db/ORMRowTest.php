@@ -134,6 +134,28 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Test for bug 37601:
+	 *
+	 * ID values should not be written to the database with INSERTs and UPDATEs
+	 *
+	 * @dataProvider constructorTestProvider
+	 */
+	public function testPrimaryKeyNotWritten( array $data, $loadDefaults ) {
+		$rowundertest = $this->getRowInstance( $data, $loadDefaults );
+
+		$real_id_name = $rowundertest->exposeTablePrefixedField( "id" ); 
+		/* $real_id_field_name should return something like "page_id" */
+
+		/*
+		 * As ORMTable::getWriteValues() determines what actually
+		 * ends up in INSERTs and UPDATEs, we make sure primary key
+		 * is not there
+		 */
+		$this->assertArrayNotHasKey( $real_id_name,
+			$rowundertest->exposeTableWriteValues() );
+	}
+
+	/**
 	 * @dataProvider constructorTestProvider
 	 */
 	public function testSaveAndRemove( array $data, $loadDefaults ) {
