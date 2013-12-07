@@ -955,6 +955,20 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	}
 
 	/**
+	 * Return the names of the primary key sequence
+	 * Current implementation is PostgreSQL only
+	 *
+	 * @since 1.22
+	 *
+	 * @return array
+	 */
+	public function getPrimaryKeySequenceName() {
+		return sprintf( "%s_%s_seq",
+			$this->getName(),
+			$this->getPrefixedField( "id" ) );
+	}
+
+	/**
 	 * Gets if the object can take a certain field.
 	 *
 	 * @since 1.20
@@ -1007,9 +1021,15 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	public function insertRow( IORMRow $row, $functionName = null, array $options = null ) {
 		$dbw = $this->getWriteDbConnection();
 
+		// this is null for databases that do not have sequences (e.g. MySQL)
+		$idval = $dbw->nextSequenceValue( $this->getPrimaryKeySequenceName() );
+
+		$values = $this->getWriteValues( $row );
+		$values[$this->getPrefixedField( "id" )] = $idval;
+
 		$success = $dbw->insert(
 			$this->getName(),
-			$this->getWriteValues( $row ),
+			$values,
 			is_null( $functionName ) ? __METHOD__ : $functionName,
 			$options
 		);
@@ -1018,7 +1038,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		$success = $success !== false;
 
 		if ( $success ) {
-			$row->setField( 'id', $dbw->insertId() );
+			$row->setField( 'id', (int)$dbw->insertId() );
 		}
 
 		$this->releaseConnection( $dbw );
@@ -1043,6 +1063,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		foreach ( $this->getFields() as $name => $type ) {
 			if ( array_key_exists( $name, $rowFields ) ) {
 				$value = $rowFields[$name];
+
+				// Skip null id fields so that the DBMS can set the default.
+				if ( $name === 'id' && is_null( $value ) ) {
+					continue;
+				}
 
 				switch ( $type ) {
 					case 'array':
