@@ -474,6 +474,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		// create revisions -----------------------------
 		$page = WikiPage::factory( Title::newFromText(
 			'RevisionStorageTest_testUserWasLastToEdit', $ns ) );
+		$page->insertOn( $dbw );
 
 		# zero
 		$revisions[0] = new Revision( array(
