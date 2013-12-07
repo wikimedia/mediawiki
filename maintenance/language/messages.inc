@@ -3445,7 +3445,6 @@ $wgMessageStructure = array(
 		'confirmemail_needlogin',
 		'confirmemail_success',
 		'confirmemail_loggedin',
-		'confirmemail_error',
 		'confirmemail_subject',
 		'confirmemail_body',
 		'confirmemail_body_changed',
