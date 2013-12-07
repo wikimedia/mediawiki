@@ -3609,9 +3609,7 @@ Parameters:
 * $1 - the maximum number of changes that are displayed
 * $2 - a date and time
 * $3 - (Optional) a date
-* $4 - (Optional) a time
-See also:
-* {{msg-mw|Rcnote}}',
+* $4 - (Optional) a time',
 'rclistfrom' => 'Used on [[Special:RecentChanges]].
 
 Parameters:
@@ -5401,9 +5399,7 @@ See also:
 * {{msg-mw|Watchlist-details}}',
 'iteminvalidname' => 'Parameters:
 * $1 - item name',
-'wlnote' => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
-
-Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
+'wlnote' => 'Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.
 
 Parameters:
 * $1 - the number of changes shown

@@ -1310,7 +1310,6 @@ $wgMessageStructure = array(
 		'recentchanges-label-plusminus',
 		'recentchanges-legend-newpage',
 		'recentchanges-legend-plusminus',
-		'rcnote',
 		'rcnotefrom',
 		'rclistfrom',
 		'rcshowhideminor',
