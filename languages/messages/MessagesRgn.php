@@ -44,7 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
 'tog-oldsig' => 'Anteprèma dla fírma bona',
 'tog-fancysig' => "Tràta la firma cumpagna e' test int'la wiki (senza nissön ligam automatich)",
-'tog-showjumplinks' => "Fa' funzionè j leghèm d'acesibilitè tipo \"Va' a\"",
 'tog-uselivepreview' => 'Drova la funziòn "Anteprèma dal viv" (u j vo Javascript; sperimentêl)',
 'tog-forceeditsummary' => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
 'tog-watchlisthideown' => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
@@ -156,7 +155,6 @@ $messages = array(
 'qbedit' => 'Mudèfica',
 'qbpageoptions' => 'Upziòn dla pàgina',
 'qbmyoptions' => 'Al mi pàgin',
-'qbspecialpages' => 'Pàgin particulèri',
 'faq' => 'Question frequenti',
 'faqpage' => 'Prugèt:Question frequenti',
 
@@ -200,7 +198,7 @@ $messages = array(
 'jumptonavigation' => 'navgaziòn',
 'jumptosearch' => 'zerca',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'A prupòsit de {{SITENAME}}',
 'aboutpage' => 'Project: A pruposit',
 'copyright' => "Oci! T'an fèga e' patàca. Sora 'ste scrètt u j è e' brevet $1.",
@@ -208,7 +206,6 @@ $messages = array(
 'disclaimers' => 'Infurmaziòn legêli',
 'disclaimerpage' => 'Project: Avìs generèl',
 'edithelp' => 'Livar dal spiegaziòn',
-'edithelppage' => 'Help: Scrivar un artècul',
 'helppage' => 'Help:Tòt j argumént',
 'mainpage' => 'Prèma Pagina',
 'privacy' => 'Léz sora agli infurmaziòn persunèli',
@@ -218,8 +215,6 @@ $messages = array(
 
 'retrievedfrom' => 'Tiré fora da "$1"',
 'youhavenewmessages' => "A j ò fët ch't'epa $1 ($2).",
-'newmessageslink' => 'mesàz nuv',
-'newmessagesdifflink' => "U j è una quèlca diferenza cun l'ultma versiòn",
 'editsection' => 'Mudèfica',
 'editold' => 'mudèfica',
 'editlink' => 'mudèfiga',
@@ -346,10 +341,6 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 # Search results
 'searchresults' => 'I tu risulté',
 'searchresults-title' => 'I tu risulté par "$1"',
-'searchresulttext' => "A vut una mân par zarchè dagl'infurmaziòn sora {{SITENAME}}? Và a vdé [[{{MediaWiki:Helppage}}|zerca int é {{SITENAME}}]].",
-'searchsubtitle' => 'T\'e\' zarchè \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toti al pàgin chj cminzèpia cun "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toti al pàgin chj è atachedi a "$1"]])',
-'searchsubtitleinvalid' => "T'ë zarchè '''$1'''",
-'notitlematches' => "T'é zarchè un'artècul, ma guèrda che u'gn'è brisa 'ste nom. Si't sicur t'épa scrètt ben?",
 'notextmatches' => "T'e' zarché un quel ch'u'n à purté a gninto. U'n's trova gninto int'j parol dal pàgin.",
 'prevn' => "{{PLURAL:quel prèma|i $1 prèma}} d'sti què",
 'nextn' => "{{PLURAL:quél dòp|i $1 dòp}} d'sti què",
@@ -361,12 +352,9 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 'search-interwiki-caption' => 'I prugèt fradel',
 'search-interwiki-default' => 'Arsultèd da $1:',
 'search-interwiki-more' => '(ad piò)',
-'nonefound' => "'''Oci''': la rizerca l'a vèn fata in automatico sol in zert spàzi di nòm. S't'vù zirchè fra tot al pàgin (cumpresi al pàgin d'cunversaziòn, i template, ecc) próva a metar \"all:\", in inglés, dadnenz a é nòm ch't'é scrètt, piotòst scriv é spàzi di nòm, s't'al sé, e pu é nòm.",
-'powersearch' => 'Scandaja a fònd',
 'powersearch-legend' => 'Scandaja a fònd',
 'powersearch-ns' => "Zerca int'j spàzi d'nom:",
 'powersearch-redir' => "Fà una lèsta d'al ri-direziòn",
-'powersearch-field' => 'Zerca par',
 
 # Preferences page
 'preferences' => 'I mì gost',
@@ -611,9 +599,6 @@ In tot sti chès, s'et pazienzia, t'pù spustè a man tot quel c'u j è scrètt 
 'movepage-moved' => "'''\"\$1\" l'à cambié post a \"\$2\"'''",
 'articleexists' => "La j è za una pàgina ch'la s-cjama acsè. O e nom ch'ta j e dë un va brisa ben.
 Par piaser, daij un ètar nom.",
-'talkexists' => "'''La pàgina l'è stëda spusteda ben, invezi la pàgina d'cunversaziòn l'è andëda a cuzè cun òna ch'l'à ê stes nom. Csa fasègna?
-Par piasé, met insem al du pàgin te, fasend copia e incola.",
-'movedto' => 'Spusté vers:',
 'movetalk' => "Sposta ènca la pàgina d'cunversaziòn",
 'movelogpage' => "Regéstar d'j muvimént",
 'movereason' => 'Rasòn:',
@@ -716,10 +701,6 @@ Se parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curesp
 * gpslatitude
 * gpslongitude
 * gpsaltitude",
-
-# External editor support
-'edit-externally' => 'Mudèfica ste file cun un prugrama esteran',
-'edit-externally-help' => "(Guèrda e' [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] par avé d'j ètri infurmaziòn) (l'è in inglés)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tòt',

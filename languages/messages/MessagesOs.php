@@ -710,7 +710,7 @@ $2',
 'user-mail-no-body' => 'Фæлварста афтид кæнæ æнæбары мидисимæ фыстæг арвитын.',
 
 # Change password dialog
-'resetpass' => 'Пароль фæивын',
+'changepassword' => 'Пароль ивæн',
 'resetpass_announce' => 'Ды бахызтæ e-mail-æй æрвыст рæстæгмæ паролæй.
 Цæмæй кæронмæ бахизай системæмæ, уый тыххæй ам хъуамæ сæвæрай ног пароль.',
 'resetpass_text' => '<!-- Бахæсс дæ текст ам -->',
@@ -994,8 +994,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'revdelete-radio-set' => 'О',
 'revdelete-radio-unset' => 'Нæ',
 'revdel-restore' => 'ивын зынæн',
-'revdel-restore-deleted' => 'хафт ивдтытæ',
-'revdel-restore-visible' => 'зынгæ ивдтытæ',
 'pagehist' => 'Фарсы истори',
 'revdelete-reason-dropdown' => '*Хафыны арæхдæр бындуртæ
 ** Сфæлдисæгы барты æфхæрд
@@ -1062,7 +1060,6 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'preferences' => 'Уагæвæрдтæ',
 'mypreferences' => 'Уагæвæрдтæ',
 'prefs-edits' => 'Ивдтыты нымæц:',
-'changepassword' => 'Пароль ивæн',
 'prefs-skin' => 'Цъар',
 'skin-preview' => 'Разæркаст',
 'prefs-beta' => 'Бета уагæвæрдтæ',
@@ -1373,8 +1370,6 @@ $3',
 'nextpage' => 'Фæдылдзог фарс ($1)',
 'prevpage' => 'Раздæры фарс ($1)',
 'allarticles' => 'Иууылдæр фæрстæ',
-'allpagesprev' => 'фæстæмæ',
-'allpagesnext' => 'дарддæр',
 'allpagessubmit' => 'Ацæуын',
 
 # Special:Categories
@@ -1542,7 +1537,6 @@ $3',
 
 # Move page
 'movearticle' => 'Номивгæ фарс:',
-'movenologin' => 'Системæйæн дæхи нæ бацамыдтай',
 'newtitle' => 'Ног ном:',
 'move-watch' => 'Зæронд æмæ нæуæг фæрстæм цæст æрдарын',
 'movepagebtn' => 'Фарсы ном ивын',

@@ -547,7 +547,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'user-mail-no-body' => "T'hæ çercou de mandâ un'e-mail troppo curta o proppio voeua",
 
 # Change password dialog
-'resetpass' => 'Cangia a pòula segretta',
+'changepassword' => 'Cangiâ a pòula segretta',
 'resetpass_announce' => "T'ê introu co in codiçe temporanio de l'e-mail.Pe completâ l'accesso ti devi çerne 'na neuva poula segretta chì:",
 'resetpass_header' => 'Cangia a pòula segretta do conto',
 'oldpassword' => 'Vegia poula segretta',
@@ -726,8 +726,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'rev-delundel' => 'fanni védde/ascondi',
 'revdelete-radio-set' => 'Sci',
 'revdel-restore' => 'càngia a vixibilitæ',
-'revdel-restore-deleted' => 'Revixioìn scancelæ',
-'revdel-restore-visible' => 'revixioìn che se peuan védde',
 
 # Merge log
 'revertmerge' => 'Anùlla union',
@@ -773,7 +771,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 # Preferences page
 'preferences' => 'Preferençe',
 'mypreferences' => 'Preferençe',
-'changepassword' => 'Cangiâ a pòula segretta',
 'skin-preview' => 'Anteprimma',
 'prefs-datetime' => 'Data e oùa',
 'saveprefs' => 'Sarva',
@@ -993,9 +990,6 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'allpagesfrom' => 'Fanni vedde e paggine comensando da:',
 'allarticles' => 'Tùtte e pàgine',
 'allinnamespace' => 'Tutte e pagine ($1 namespace)',
-'allnotinnamespace' => 'Tutte e pagine (non in $1)',
-'allpagesprev' => 'De primma',
-'allpagesnext' => 'De dòppo',
 'allpagessubmit' => 'Vanni',
 'allpagesprefix' => 'Fanni vedde e paggine che inissian con:',
 'allpagesbadtitle' => 'O titolo pe a pagina o non va ben, o o tegne de i prefissi interlingua o interwiki. O peu tegne un o ciù caratteri non permissi in ti titoli ascì.',
@@ -1222,8 +1216,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'movepagebtn' => 'Stramûâ a paggina',
 'pagemovedsub' => 'Remescio fæto',
 'articleexists' => "Ghe n'æmmo zà 'na paggina con 'sto nomme, oppûre quello che ti g'hæ scelto o no l'è permisso. Cangia nomme.",
-'talkexists' => "'''A paggina a l'è stæta stramûâa correttamente, ma o no l'è stæto poscibbile stramûâ a paggina de discûxon perché ghe n'è zà 'n'âtra co-o nêuvo tittolo. O se deive inserî manualmente i contegnûi de tûtte e doe.'''",
-'movedto' => 'Stramûâa a',
 'movetalk' => 'Stramûâ anche a paggina de discûxon',
 'movelogpage' => 'Lista di stramûi',
 'movereason' => 'Raxon',

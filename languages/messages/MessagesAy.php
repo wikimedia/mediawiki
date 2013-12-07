@@ -45,9 +45,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Yatiyawita chaski jalayirinakana chaski jalayirit untjäwija uñachayaña',
 'tog-shownumberswatching' => "Qawqha apnaqirinaka uñch'ukiskar uñacht'ayaña",
 'tog-fancysig' => "Mayaxta rixt'a (sipitarachayatawisa)",
-'tog-externaleditor' => "Anqa askiptiri mirq'iriña (yatxiritakiwa, jasanchirina ajalla jamuqawi wakiskiriwa)",
-'tog-externaldiff' => "Anqa diff-iri mirq'iriña (yatxiritakiwa, jasanchirina ajalla jamuqawi wakiskiriwa)",
-'tog-showjumplinks' => 'Usutataki sipitata "khänaru thuqtaña" uñachayaña',
 'tog-uselivepreview' => "Uñtawikach'ukix mirq'iña (JavaScript munawiwa) (yant'awiwaki)",
 'tog-forceeditsummary' => "Nayaru yatiyaña ukja ch'usa askiptawit juk'aptayawi apantaskaña",
 'tog-watchlisthideown' => "Unch'ukit waruchatana askiptawijax imantaña",
@@ -127,7 +124,6 @@ $messages = array(
 'qbbrowse' => 'Wampuña',
 'qbedit' => 'Turkaña',
 'qbpageoptions' => 'Uñstawitaki ajllita',
-'qbpageinfo' => "Uñstawxat uñt'ayawi",
 'qbmyoptions' => 'Ajllitanakaja',
 
 'errorpagetitle' => 'Pantja',
@@ -160,7 +156,7 @@ $messages = array(
 'jumptonavigation' => 'wampuña',
 'jumptosearch' => 'thaqaña',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Jichha pacha',
 'currentevents-url' => 'Project:Jichha pacha',
 'mainpage' => 'Nayriri Uñstawi',
@@ -204,7 +200,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Amtajarjama',
 'prefs-rc' => 'Jichha kutikiptatanaka',
-'timezoneoffset' => 'Jalaqtata',
 'yourlanguage' => 'Aru:',
 'email' => 'Chaski jalayiri',
 
@@ -254,7 +249,6 @@ $messages = array(
 
 # Block/unblock
 'ipblocklist-submit' => 'Thaqaña',
-'proxyblocksuccess' => 'Kamachawi',
 
 # Tooltip help for the actions
 'tooltip-p-logo' => 'Nayriri Uñstawi',

@@ -347,7 +347,7 @@ $messages = array(
 'loginlanguagelabel' => 'ѩꙁꙑкъ : $1',
 
 # Change password dialog
-'resetpass' => 'таина словєсє иꙁмѣнѥниѥ',
+'changepassword' => 'таина словєсє иꙁмѣнѥниѥ',
 'resetpass_header' => 'таина слова иꙁмѣнѥниѥ',
 'oldpassword' => 'старо таино слово :',
 'newpassword' => 'ново таино слово :',
@@ -467,7 +467,6 @@ $messages = array(
 'preferences' => 'строи',
 'mypreferences' => 'строи',
 'prefs-edits' => 'мѣнъ число :',
-'changepassword' => 'таина словєсє иꙁмѣнѥниѥ',
 'prefs-datetime' => 'дьнь и врѣмѧ',
 'prefs-rc' => 'послѣдьнѩ мѣнꙑ',
 'prefs-watchlist' => 'блюдєниꙗ',
@@ -822,7 +821,6 @@ $messages = array(
 'pagemovedsub' => 'прѣимєнованиѥ сътворѥно ѥстъ',
 'movepage-moved' => "'''⁖ $1 ⁖ нарєчєнъ ⁖ $2⁖ ѥстъ'''",
 'movepage-moved-redirect' => 'прѣнаправлѥниѥ сътворѥно бѣ',
-'movedto' => 'прѣимєновано въ',
 'movetalk' => 'си страницѧ бєсѣдꙑ прѣимєнованиѥ',
 'movelogpage' => 'прѣимєнованиꙗ їсторїꙗ',
 'movereason' => 'какъ съмꙑслъ :',

@@ -480,7 +480,6 @@ oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 'php-mail-error-unknown' => "Wazzewo kiremya atategeerese mu mukolo mail() ogw'omu PHP",
 
 # Change password dialog
-'resetpass' => 'Kyusa ekigambo ekikuumi',
 'resetpass_announce' => "Weyambisa ekyama eky'ekiseerabuseera okuyingira.<br />
 Okuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",
 'resetpass_header' => "Kyusa ekigambo ekikuumi eky'oku akawunti eno",
@@ -970,7 +969,6 @@ oba ku gano agali ku lupapula luno.<br />
 'allpagesto' => 'Laga empapula okutuuka ku:',
 'allarticles' => 'Empapula zonna',
 'allinnamespace' => 'Empapula zonna (mu kkunngaanizo erya $1)',
-'allnotinnamespace' => 'Empapula zonna (ezitali mu kkunngaanizo erya $1)',
 'allpagessubmit' => 'Nona',
 'allpagesprefix' => 'Ndaga empapula eziriko akatandikwa kano:',
 
@@ -1153,9 +1151,6 @@ Ekimu ku ebyo ebibiri bwe kibawo, olwo gwe oba olina okwekyusiza olwa yogera nan
 'movepage-moved' => '\'\'\'"$1" kati luyitibwa "$2"\'\'\'',
 'articleexists' => 'Erinnya eryo waliwo olupapula olulala olulirina. Oba ssi ekyo, olonze erinnya eritakkirizibwa.
 Londayo eddala.',
-'talkexists' => "'''Olupapula lukyusidwa erinnya. Wabula tekisobose okukyusizako ne yogera nange, olwokubanga wasangidwawo yogera nange endala ku linnya eppya.
-Yogera nange gwe olina okugyegattira ku eyo esangidwawo.'''",
-'movedto' => 'kati lutumidwa',
 'movetalk' => "N'olupapula olwa yogera nange lwakwo lusimbulize",
 'movelogpage' => 'Ebikyusidwa manya',
 'movereason' => 'Nsonga:',

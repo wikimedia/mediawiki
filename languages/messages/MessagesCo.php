@@ -84,7 +84,6 @@ $messages = array(
 # Cologne Blue skin
 'qbpageoptions' => 'Issa pagina',
 'qbmyoptions' => 'E mo pagine',
-'qbspecialpages' => 'Pagine spiciale',
 
 # Vector skin
 'vector-action-delete' => 'Supprimà',
@@ -120,7 +119,7 @@ $messages = array(
 'jumptonavigation' => 'navigazione',
 'jumptosearch' => 'ricerca',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'À prupositu di {{SITENAME}}',
 'aboutpage' => 'Project:À prupositu',
 'currentevents' => 'Ultimi evenimenti',
@@ -136,7 +135,6 @@ $messages = array(
 
 'versionrequired' => 'A version $1 di MediaWiki hè necessaria',
 
-'newmessagesdifflink' => 'ultima mudifica',
 'editsection' => 'mudificà',
 'editold' => 'mudificà',
 'editlink' => 'mudificà',
@@ -223,7 +221,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Search results
 'searchresults' => 'Risultati di a ricerca',
-'powersearch' => 'Ricerca',
 
 # Preferences page
 'preferences' => 'Preferenze',
@@ -342,9 +339,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'allpagesfrom' => 'Mustrà e pagine à parte da:',
 'allarticles' => "Tutti l'articuli",
 'allinnamespace' => 'Tutte e pagine di u spaziu $1',
-'allnotinnamespace' => 'Tutte e pagine micca di u spaziu $1',
-'allpagesprev' => 'Precedenti',
-'allpagesnext' => 'Seguenti',
 'allpagessubmit' => 'Và',
 'allpagesprefix' => 'Mustrà e pagine chì cumincianu cù:',
 'allpages-bad-ns' => 'U spaziu "$1" ùn esiste micca nant\'à {{SITENAME}}',
@@ -429,14 +423,12 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'contribslink' => 'cuntribuzioni',
 'block-log-flags-anononly' => 'solu cuntributori anonimi',
 'block-log-flags-nocreate' => 'registramentu pruibitu',
-'proxyblocksuccess' => 'Hè fattu.',
 
 # Move page
 'move-page-legend' => 'Move a pagina',
 'movearticle' => 'Move a pagina',
 'move-watch' => 'Fighjulà issa pagina',
 'movepagebtn' => 'Move a pagina',
-'movedto' => 'mossu à',
 'movelogpagetext' => 'Elencu di e pagine mosse.',
 'movereason' => 'Mutivu:',
 'delete_and_move_confirm' => 'Iè, supprimà issa pagina',
@@ -537,5 +529,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Special:Tags
 'tags-edit' => 'mudificà',
+
+# Special:ExpandTemplates
+'expand_templates_output' => 'Risultatu',
 
 );

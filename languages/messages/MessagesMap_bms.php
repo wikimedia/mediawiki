@@ -570,7 +570,7 @@ Angger Rika milih arep ngaweh, kiye bakal digunakna nggo aweh atribut maring kas
 'user-mail-no-body' => 'Njajal ngirim imel sing kosong urawa isine sithik thok.',
 
 # Change password dialog
-'resetpass' => 'Ganti tembung sandhi',
+'changepassword' => 'Ganti tembung sandhi',
 'resetpass_announce' => 'Rika wis mlebu log karo kode sementara sing dikirim maring imel.
 Nggo nerusna, Rika kudu nglebokna tembung sandhi anyar nang kene:',
 'resetpass_header' => 'Ganti tembung sandhine akun',
@@ -832,10 +832,6 @@ Rinciane teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'rev-showdeleted' => 'tidokna',
 'revisiondelete' => 'Busek/ora-sida mbusek revisi',
 'revdelete-nooldid-title' => 'Target revisi ora ditemokna',
-'revdelete-nologtype-title' => 'Tipe log ora diwenehna',
-'revdelete-nologtype-text' => 'Rika ora aweh tipe log kanggo nglakokna tindakan kiye.',
-'revdelete-nologid-title' => 'Entri log ora valid',
-'revdelete-nologid-text' => 'Rika ndeyan durung nyebutna log prastawa target kanggo nglakokna fungsi kiye utawa entri sing dimaksudna pancen ora ana.',
 'revdelete-no-file' => 'Berkas sing dituju ora ana.',
 'revdelete-show-file-confirm' => 'Apa rika wis mantep arep ndeleng revisi sing wis dibusek nggone berkas "<nowiki>$1</nowiki>" sekang tanggal $2 jam $3?',
 'revdelete-show-file-submit' => 'Ya',
@@ -858,8 +854,6 @@ Rinciane teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'revdelete-failure' => "'''Tampilan revisi ora teyeng dianyari:'''
 $1",
 'revdel-restore' => 'Ngowahi visiblitas (pangatonan)',
-'revdel-restore-deleted' => 'suntingan sing wis dibusak',
-'revdel-restore-visible' => 'tampilan revisi',
 'pagehist' => 'Sajarah kaca',
 'deletedhist' => 'Sajarah sing dibusak',
 'revdelete-hide-current' => 'Gagal ngumpetna revisi tanggal $1, jam $2: kiye kuwe revisi paling anyar.
@@ -939,7 +933,6 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(terusane)',
 'search-relatedarticle' => 'Kagandhèng',
-'mwsuggest-disable' => 'Non-aktifna saran AJAX',
 'searcheverything-enable' => 'Goleti nang kabeh bilik jeneng',
 'searchrelated' => 'kagandhèng',
 'searchall' => 'kabèh',
@@ -962,7 +955,6 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 'preferences' => 'Preferensi',
 'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
-'changepassword' => 'Ganti tembung sandhi',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratayang',
 'datedefault' => 'Ora ana préferènsi',
@@ -1462,7 +1454,6 @@ Rika teyeng mbatesi tampilan kanthi milih jinis log, jeneng panganggo (sensitif 
 'allpagesto' => 'Tidokna kaca-kaca sing dipungkasi gutul:',
 'allarticles' => 'Kabèh kaca',
 'allinnamespace' => 'Kabeh kaca ($1 namespace)',
-'allnotinnamespace' => 'Kabeh kaca (ora nang ruang jeneng $1)',
 'allpagessubmit' => 'Goleti',
 
 # Special:Categories

@@ -57,7 +57,7 @@ $messages = array(
 'talkpagelinktext' => 'Ихтилат',
 'talk' => 'Ихтилат',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Нанисса ишру',
 'currentevents-url' => 'Project:Нанисса ишру',
 'mainpage' => 'Агьаммур лажин',
@@ -99,7 +99,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'Гьурттучув:',
 
-# E-mail user
+# Email user
 'emailuser' => 'ГьурттучувначӀансса чагьар',
 
 # Watchlist

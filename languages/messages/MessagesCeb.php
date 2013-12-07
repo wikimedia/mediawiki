@@ -464,6 +464,9 @@ Palihog sulayi'g usab.",
 'mailmypassword' => 'I-email ang bag-ong pasword',
 'loginlanguagelabel' => 'Pinulongan: $1',
 
+# Change password dialog
+'changepassword' => 'Usba ang pasword',
+
 # Edit page toolbar
 'bold_sample' => 'Gilugom nga teksto',
 'bold_tip' => 'Gilugom nga teksto',
@@ -605,10 +608,6 @@ Isip tagdumala, puyde nimo [$1 tan-awon ang diff] kon gusto ka magpadayon.",
 'revisiondelete' => 'Papasa/ayaw papasa ang mga rebisyon',
 'revdelete-nooldid-title' => 'Dili sakto ang target nga rebisyon',
 'revdelete-nooldid-text' => 'Puyde nga wala nimo ma-specify ang target nga (mga) rebisyon aron mahimo kini, ang naka-specify nga rebisyon wala pa mahimo, o kaha imo gisulayan og tago ang kasamtangang rebisyon.',
-'revdelete-nologtype-title' => 'Walay gihatag nga klase sa log',
-'revdelete-nologtype-text' => 'Wala ka mag-specify og klase sa log aron mahimo ang kining lihok.',
-'revdelete-nologid-title' => 'Dili saktong entrada sa log',
-'revdelete-nologid-text' => 'Wala ka mag-specify og target log event aron mahimo ang kining lihok o kaha ang gi-specify nga entrada wala pa.',
 'revdelete-no-file' => 'Ang gi-specify nga payl wala pa.',
 'revdelete-show-file-confirm' => 'Sigurado ka nga gusto nimong tan-awon ang napapas nga rebisyon sa payl "<nowiki>$1</nowiki>" sugod sa $2 sa $3?',
 'revdelete-show-file-submit' => 'Oo',
@@ -709,7 +708,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'preferences' => 'Mga preperensiya',
 'mypreferences' => 'Akong preperensiya',
 'prefs-edits' => 'Gidaghanon sa nausab:',
-'changepassword' => 'Usba ang pasword',
 'prefs-skin' => 'Panit',
 'skin-preview' => 'Paunang tan-aw',
 'datedefault' => 'Walay preperensiya',
@@ -1072,9 +1070,6 @@ Sa maong mga kaso, manwal nga imo ibalhin o i-merge ang panid kon gustohon.",
 'movepage-moved' => 'Ang \'\'\'"$1" nabalhin na ngadto sa "$2"\'\'\'',
 'articleexists' => 'May panid na sa maong ngalan, o ang ngalan nga imong napili ginadili.
 Palihog pagpili og laing ngalan.',
-'talkexists' => "'''Ang panid mismo malamposon nga nabalhin, pero ang panid sa hisgot dili mabalhin tungod kay duna nay sulod ang panid sa hisgot sa bag-ong titulo.
-Palihog imanwal ang pag-merge nila.'''",
-'movedto' => 'nabalhin ngadto',
 'movetalk' => 'Ibalhin ang kaubang panid sa hisgot',
 'movelogpage' => 'Log sa pagbalhin',
 'movereason' => 'Rason:',

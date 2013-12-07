@@ -45,10 +45,6 @@ $messages = array(
 'article' => 'ᎤᏓᏡᎬ',
 'navigation' => 'ᎠᏂᎩᏍᏗ ᏥᏳ',
 
-# Cologne Blue skin
-'qbpageinfo' => 'ᎦᎷᎯᏍᏗ',
-'qbspecialpages' => 'ᎤᏤᎵᏛ',
-
 'help' => 'ᎠᎵᏍᏕᎸᏗ',
 'search' => 'ᎠᏯᏍᏗ',
 'searchbutton' => 'ᎠᏯᏍᏗ',
@@ -63,7 +59,7 @@ $messages = array(
 'otherlanguages' => 'ᎭᏫᎾᏗᏢ ᏐᎢ ᏗᎦᏬᏂᎯᏍᏗ',
 'jumptosearch' => 'ᎡᏗt',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutpage' => 'Project:ᎬᏩᏚᏫᏛ',
 'currentevents' => 'ᏗᏤᎢ',
 'mainpage' => 'ᎤᎵᎮᎵᏍᏗ',
@@ -82,9 +78,6 @@ $messages = array(
 
 # Diffs
 'editundo' => 'IᎬᎾᏕᏍᏗ',
-
-# Search results
-'powersearch' => 'ᎠᏯᏍᏗ',
 
 # Preferences page
 'searchresultshead' => 'ᎠᏯᏍᏗ',
@@ -113,9 +106,6 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'ᎦᏙ ᎤᏍᏗ ᏗᏕᎬᏔᏛ ᎠᎭᏂ',
-
-# Block/unblock
-'proxyblocksuccess' => 'ᎠᏍᏆᏛᎯ.',
 
 # Special:NewFiles
 'ilsubmit' => 'ᎠᏯᏍᏗ',

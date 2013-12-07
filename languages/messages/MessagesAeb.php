@@ -501,7 +501,6 @@ $2',
 'user-mail-no-addy' => 'لقد حاولت إرسال بريد إلكتروني دون عنوان بريد إلكتروني.',
 
 # Change password dialog
-'resetpass' => 'تغيير كلمة السر',
 'resetpass_announce' => 'تم تسجيل دخولك بكلمة سر مؤقتة.
 للدخول بشكل نهائي، يجب عليك ضبط كلمة سر جديدة هنا:',
 'resetpass_header' => 'غير كلمة سر الحساب',
@@ -866,10 +865,6 @@ $2
 'revisiondelete' => 'حذف/استرجاع المراجعات',
 'revdelete-nooldid-title' => 'مراجعة هدف غير صحيحة',
 'revdelete-nooldid-text' => 'إما أنك لم تحدد مراجعة (أو مراجعات) معينة هدفا لهذه الوظيفة، أو أن المراجعة المحددة غير موجودة، أو أنك تحاول إخفاء المراجعة الحالية.',
-'revdelete-nologtype-title' => 'لا نوع سجل تم إعطاؤه',
-'revdelete-nologtype-text' => 'أنت لم تحدد نوع سجل لعمل هذا الفعل عليه.',
-'revdelete-nologid-title' => 'مدخلة سجل غير صحيحة',
-'revdelete-nologid-text' => 'أنت إما أنك لم تحدد حدث سجل مستهدف لعمل هذه الوظيفة أو أن المدخلة المحددة غير موجودة.',
 'revdelete-no-file' => 'الملف المحدد غير موجود.',
 'revdelete-show-file-confirm' => 'هل أنت متأكد أنك تريد رؤية مراجعة محذوفة للملف "<nowiki>$1</nowiki>" بتاريخ $2 الساعة $3؟',
 'revdelete-show-file-submit' => 'نعم',
@@ -903,8 +898,6 @@ $1",
 'logdelete-failure' => "'''تعذر ضبط رؤية السجل:'''
 $1",
 'revdel-restore' => 'تغيير الرؤية',
-'revdel-restore-deleted' => 'مراجعات محذوفة',
-'revdel-restore-visible' => 'مراجعات مرئية',
 'pagehist' => 'تاريخ الصفحة',
 'deletedhist' => 'التاريخ المحذوف',
 'revdelete-hide-current' => 'خطأ عند إحفاء العنصر المؤرخ في $2 $1: هذه هي المراجعة الحالية.

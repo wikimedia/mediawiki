@@ -400,7 +400,7 @@ $messages = array(
 'loginlanguagelabel' => 'Йылме: $1',
 
 # Change password dialog
-'resetpass' => 'Шолыпмутым вашталташ',
+'changepassword' => 'Шолыпмутым вашталташ',
 'oldpassword' => 'Тошто шолыпмут:',
 'newpassword' => 'У шолыпмут:',
 'retypenew' => 'Пеҥгыдемдыза у шолыпмутым:',
@@ -564,7 +564,6 @@ $messages = array(
 'preferences' => 'Келыштарымаш',
 'mypreferences' => 'Келыштарымаш',
 'prefs-edits' => 'Тӧрлатымаш чот:',
-'changepassword' => 'Шолыпмутым вашталташ',
 'prefs-skin' => 'Сӧрастарыме йӧн',
 'skin-preview' => 'Ончылгоч ончымаш',
 'prefs-datetime' => 'Кече да жап',
@@ -969,8 +968,6 @@ $messages = array(
 'movepage-moved-redirect' => 'Вес вере колтымаш ыштыме.',
 'movepage-moved-noredirect' => 'Вес вере колтымаш ыштыме огыл.',
 'articleexists' => 'Тыгай лӱман лаштык уло але тиде лӱмым кучылташ огеш лий. Вес лӱмым ойыро.',
-'talkexists' => "'''Лаштыкым кусарыме гынат, тудын каҥашымаш лаштыкшым тыгай лӱман лаштык улмылан кӧра кусараш огеш лий. Нуным шке кидет дене иктыш ушно.'''",
-'movedto' => 'лаштыкыш кусарыме',
 'movetalk' => 'Каҥашымаш лаштыкым кусараш',
 'movelogpage' => 'Кусарыме нерген журнал',
 'movereason' => 'Амал:',

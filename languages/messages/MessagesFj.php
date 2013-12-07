@@ -85,7 +85,7 @@ $messages = array(
 'jumptonavigation' => 'Vakatasosoko',
 'jumptosearch' => 'Vaqaqara',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Tukutuku kuruvaki',
 'currentevents-url' => 'Project:Tukutuku kuruvaki',
 'edithelp' => 'Veivukei',
@@ -119,9 +119,6 @@ $messages = array(
 'showpreview' => 'Vakaraitaka na kenai yaloyalo',
 'showdiff' => 'Vakaritaka na veisau',
 'loginreqlink' => 'Curu mai',
-
-# Search results
-'powersearch' => 'Vaqaqara',
 
 # Preferences page
 'mypreferences' => 'Ulutaga taleitaki',
@@ -159,7 +156,7 @@ $messages = array(
 # Special:AllPages
 'allpagessubmit' => 'Lako',
 
-# E-mail user
+# Email user
 'defemailsubject' => '{{SITENAME}} I vola livaliva',
 
 # Watchlist

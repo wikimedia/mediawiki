@@ -12,6 +12,7 @@
  * @author MF-Warburg
  * @author MONARCH79
  * @author Phoebe
+ * @author Умар
  */
 
 $fallback = 'ru';
@@ -29,6 +30,9 @@ $messages = array(
 'mytalk' => 'Дур бахlс',
 'and' => '&#32;ва',
 
+# Vector skin
+'vector-view-edit' => 'Хисизабизе',
+
 'errorpagetitle' => 'Гъалатl',
 'help' => 'Кумек',
 'history' => 'Хиса-басазул тарих',
@@ -41,7 +45,7 @@ $messages = array(
 'userpage' => 'ГӀахьалчиясул гьумер',
 'otherlanguages' => 'Цойги мацӀазда',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Жакъасел лъугьа-бахъинал',
 'mainpage' => 'БетӀераб гьумер',
 'mainpage-description' => 'БетӀераб гьумер',

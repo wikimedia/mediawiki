@@ -424,7 +424,7 @@ Malyari meng e pansinan ining mensahi, nung pamagkamali ing pamaglalang na nitin
 'loginlanguagelabel' => 'Amanu: $1',
 
 # Change password dialog
-'resetpass' => 'Alilan ya ing account password',
+'changepassword' => 'Alilan ya ing password',
 'resetpass_announce' => 'Gagamit kang pansamantalang code a me e-mail keka aniang mig-login ka.
 Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password keni:',
 'resetpass_header' => 'Alilan ya ing password',
@@ -676,8 +676,6 @@ Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang lam
 'revdelete-success' => "'''Mituldu na ing pamagbayu ning sala/kalinawan.'''",
 'logdelete-success' => "'''Mituldu na ing sala/lino (visibility) ning tala (log).'''",
 'revdel-restore' => 'Alilan ya ing mayayakit',
-'revdel-restore-deleted' => '↓meburang meyalili',
-'revdel-restore-visible' => '↓mayayakit a meyalili',
 'pagehist' => 'Amlat ning bulung',
 'deletedhist' => 'Meburang amlat',
 'revdelete-edit-reasonlist' => 'I-edit la reng sangkan king pamamura',
@@ -755,7 +753,6 @@ Tutuking $1 {{PLURAL:$1|result|results}}',
 'search-interwiki-default' => '$1 linual/resulta:',
 'search-interwiki-more' => '(dakal pa)',
 'search-relatedarticle' => 'Kamaganak',
-'mwsuggest-disable' => 'Patdan la reng munikalang AJAX',
 'searchrelated' => 'kaugne',
 'searchall' => 'eganagana',
 'showingresults' => "Ing/ding {{PLURAL:$1|'''1''' a resulta|'''$1''' resulta}} manibatan king #'''$2'''.",
@@ -772,7 +769,6 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'preferences' => 'Pinili',
 'mypreferences' => '↓Deng pinili ku',
 'prefs-edits' => 'Bilang da reng edit:',
-'changepassword' => 'Alilan ya ing password',
 'prefs-skin' => 'Balat',
 'skin-preview' => 'I-preview',
 'datedefault' => 'Alang mepili',
@@ -1245,9 +1241,6 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 'allpagesto' => 'Ipakit la reng bulung a mayayari king:',
 'allarticles' => 'Deng eganaganang artikulu',
 'allinnamespace' => 'Deng eganaganang bulung ($1 lagyungpilatan)',
-'allnotinnamespace' => 'Deng eganaganang bulung (ala king $1 lagyungpilatan)',
-'allpagesprev' => 'Dati',
-'allpagesnext' => 'Tutuki',
 'allpagessubmit' => 'Sulung',
 'allpagesprefix' => 'Ipakit la reng bulung a atin prefix:',
 'allpagesbadtitle' => 'E matatanggap ing mibyeng bansag ning bulung o mekad maki mumuna yang panyaping (prefix) inter-language o inter-wiki. Mapalyaring atin yang metung o maygit pang letra o kulit a bawal gamitan kareng bansag.',
@@ -1684,7 +1677,6 @@ sana siguraduan mung aintindian mung mayap ing kabaldugan na niti bayu mu isundu
 
 Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung a saparadu nung ita ing buri mung gawan.",
 'movearticle' => 'Ialis ya ing bulung',
-'movenologin' => 'E maka-login',
 'movenologintext' => 'Kailangan, metung kang talagamit a makarehistru at [[Special:UserLogin|maka-login]] ka ba kang makapanalis bulung.',
 'movenotallowed' => 'Ala kang paintulut a manalis bulung king {{SITENAME}}.',
 'newtitle' => 'King bayung bansag:',
@@ -1696,9 +1688,6 @@ Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung
 ing lagyu ginamit mu e malyari.
 Gumamit na kang aliwang lagyu.',
 'cantmove-titleprotected' => 'E ka maliaring manalis bulung keni uling protektadu/makakambil ya king pangalalang ing bayung bansag',
-'talkexists' => "'''Melaus ing pamanalis na ning mismung bulung, oneng e miyalis ing bulung-pisasabian (talk page) uling atin nang sadya ketang bayung bansag.
-Nung malyari, tunggal-tunggal mu lang piyabe/piyanib.'''",
-'movedto' => 'miyalis ya king',
 'movetalk' => 'Iyalis me ing kayabe nang bulung-pisasabian (talk page)',
 'movelogpage' => 'Iyalis ya ing tala/log',
 'movelogpagetext' => 'Makabili ya king lalam ing tala (list) da reng bulung a miyalis.',

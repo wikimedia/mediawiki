@@ -749,7 +749,7 @@ Prosimo, počakajte $1, preden poskusite znova.',
 'user-mail-no-body' => 'Poskušali ste poslati e-pošto s prazno ali nerazumno kratko vsebino.',
 
 # Change password dialog
-'resetpass' => 'Spremeni geslo',
+'changepassword' => 'Zamenjava gesla',
 'resetpass_announce' => 'Trenutno ste prijavljeni z začasno e-poštno kodo.
 Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
 'resetpass_text' => '<!-- Namesto te vrstice vstavite besedilo -->',
@@ -1144,10 +1144,6 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 'revisiondelete' => 'Izbriši/obnovi redakcije',
 'revdelete-nooldid-title' => 'Napačna ciljna redakcija',
 'revdelete-nooldid-text' => 'Bodisi niste navedli ciljne spremembe, navedena sprememba ne obstaja, ali pa poskušate skriti trenutno spremembo.',
-'revdelete-nologtype-title' => 'Tip dnevnik ni podan',
-'revdelete-nologtype-text' => 'Niste navedli vrste dnevnika za prikaz.',
-'revdelete-nologid-title' => 'Neveljaven dnevniški vnos',
-'revdelete-nologid-text' => 'Bodisi niste navedli ciljnega dnevniškega dogodka za izvedbo funkcije, ali pa naveden vnos ne obstaja.',
 'revdelete-no-file' => 'Navedena datoteka ne obstaja.',
 'revdelete-show-file-confirm' => 'Ali ste prepričani da si želite ogledati izbrisano verzijo datoteke "<nowiki>$1</nowiki>" od $2 ob $3?',
 'revdelete-show-file-submit' => 'Da',
@@ -1181,8 +1177,6 @@ $1",
 'logdelete-failure' => "'''Vidnost dnevnika ne more biti nastavljena!:'''
 $1",
 'revdel-restore' => 'Spremeni vidnost',
-'revdel-restore-deleted' => 'izbrisane redakcije',
-'revdel-restore-visible' => 'vidne redakcije',
 'pagehist' => 'Zgodovina strani',
 'deletedhist' => 'Zgodovina brisanja',
 'revdelete-hide-current' => 'Napaka pri skrivanju predmeta z dne $1, $2: gre za trenutno redakcijo.
@@ -1294,7 +1288,6 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-interwiki-default' => '$1 zadetkov:',
 'search-interwiki-more' => '(več)',
 'search-relatedarticle' => 'Podobno',
-'mwsuggest-disable' => 'Onemogoči iskalne predloge',
 'searcheverything-enable' => 'Iskanje po vseh imenskih prostorih',
 'searchrelated' => 'povezano',
 'searchall' => 'vse',
@@ -1319,7 +1312,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'mypreferences' => 'Nastavitve',
 'prefs-edits' => 'Število urejanj:',
 'prefsnologintext2' => 'Za nastavljanje uporabniških nastavitev se morate $1.',
-'changepassword' => 'Zamenjava gesla',
 'prefs-skin' => 'Koža',
 'skin-preview' => 'Predogled',
 'datedefault' => 'Kakor koli',
@@ -2183,9 +2175,6 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'allpagesto' => 'Prikaži strani, ki se končajo na:',
 'allarticles' => 'Vsi članki',
 'allinnamespace' => 'Vse strani (imenski prostor $1)',
-'allnotinnamespace' => 'Vse strani (brez imenskega prostora $1)',
-'allpagesprev' => 'Predhodna',
-'allpagesnext' => 'Naslednja',
 'allpagessubmit' => 'Pojdi',
 'allpagesprefix' => 'Prikaži strani z začetnimi črkami:',
 'allpagesbadtitle' => 'Podan naslov strani je neveljaven oz. ima predpono interjezik ali interwiki.
@@ -2794,7 +2783,6 @@ prosimo, pred nadaljevanjem se prepričajte, da razumete posledice tega dejanja.
 Če je tako, boste morali pogovorno stran, če želite, prestaviti ali povezati ročno.",
 'movearticle' => 'Prestavi stran:',
 'moveuserpage-warning' => "'''Opozorilo:''' Premikate uporabniško stran. To pomeni, da bo premaknjena samo stran in uporabnik ''ne'' bo preimenovan.",
-'movenologin' => 'Niste prijavljeni',
 'movenologintext' => 'Za prestavljanje strani morate biti registrirani in [[Special:UserLogin|prijavljeni]].',
 'movenotallowed' => 'Za prestavljanje strani nimate dovoljenja.',
 'movenotallowedfile' => 'Nimate dovoljenja, da premikate datoteke.',
@@ -2810,9 +2798,6 @@ prosimo, pred nadaljevanjem se prepričajte, da razumete posledice tega dejanja.
 'articleexists' => 'Izbrano ime je že zasedeno ali pa ni veljavno.
 Prosimo, izberite drugo ime.',
 'cantmove-titleprotected' => 'Strani ne morete premakniti na slednjo lokacijo, saj je nov naslov zaščiten pred ustvarjanjem',
-'talkexists' => "'''Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu.
-Prosimo, združite ju ročno.'''",
-'movedto' => 'prestavljeno na',
 'movetalk' => 'Prestavi tudi pogovorno stran',
 'move-subpages' => 'Premakni podstrani (do $1)',
 'move-talk-subpages' => 'Premakni podstrani pogovorne strani (do $1)',

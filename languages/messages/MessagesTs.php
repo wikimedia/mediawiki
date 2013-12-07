@@ -468,8 +468,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 # Revision deletion
 'rev-delundel' => 'Komba/Tumbeta',
 'revdel-restore' => 'Cinca kuvoniwa',
-'revdel-restore-deleted' => 'Mindzulamiso leyi suriweke',
-'revdel-restore-visible' => 'mindzulamiso leyi voniwaka himani na mani',
 'pagehist' => 'Matimu ya tluka',
 'deletedhist' => 'Matimu lamasuriweke',
 

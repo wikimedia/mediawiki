@@ -493,7 +493,6 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
 
 # Change password dialog
-'resetpass' => 'Bedel ereysirka',
 'resetpass_announce' => 'waxaa ku soo geshay eraysir ku meelgaar ah  oo e-mail laguugu soo diray.
 Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qortaa eraysir oo cusub:',
 'resetpass_header' => 'bedel  ereyga sirta ee akoon-ka',
@@ -729,8 +728,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdelete-radio-unset' => 'Maya',
 'revdelete-log' => 'Sababta:',
 'revdel-restore' => 'badal muuqaalka',
-'revdel-restore-deleted' => 'kuwii la tirtiray badalyadooda',
-'revdel-restore-visible' => 'bedelyadka la arki karo',
 'pagehist' => 'Taariikhda bogga',
 'revdelete-reasonotherlist' => 'sabababaha kale',
 
@@ -1055,9 +1052,6 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'allpagesfrom' => 'Soosaar boggaga ka bilaawda:',
 'allarticles' => 'Dhamaan bogagga',
 'allinnamespace' => 'Dhamaan bogagga ($1 namespace)',
-'allnotinnamespace' => 'Dhamaan bogagga (aan ku jirin xarun magaceedka $1)',
-'allpagesprev' => 'ka hore',
-'allpagesnext' => 'Ku xiga',
 'allpagessubmit' => 'Soco',
 'allpagesprefix' => 'Soo saar boggaga leh horgalaha:',
 'allpagesbadtitle' => "Cinwaanka bogga xaq ma'aha ama waa ereyo u gaar ah isdhaafka-luqadaha ama isdhaafka-wiki. Waxaa ku jirikara xuruufo aanan loo isticmaalikarin cinwaan ahaan.",
@@ -1292,8 +1286,6 @@ Eeg [[Special:BlockList|Mamnuucyada]] si aad u aragto liiska mamnuucyada ee hadd
 'ipb-needreblock' => '$1 mar hore aa la mamnuucay. marabtaa in aad wax ka bedesho habka?',
 
 # Move page
-'movenologin' => 'Gudaha kuma jirtid',
-'movedto' => 'loo wareejiyey',
 'movetalk' => "Wareejiyey bogga wadahadalka la'xiriira",
 'movelogpage' => 'Wareejinta guda galaheeda',
 'revertmove' => 'celi',

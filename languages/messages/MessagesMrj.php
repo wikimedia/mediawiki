@@ -75,7 +75,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Манярын ӹлӹштӓшӹм вӓнгӹмӹ списокышкышты пыртенӹт, анжыкташ',
 'tog-oldsig' => 'Ылшы сирӹмӹ подписьӹм анзыцок анжен лӓктӓш',
 'tog-fancysig' => 'Вики-пӓлӹкӹн ӹшке подписьшӹ (автоматический ажедмӓш гӹц пасна)',
-'tog-showjumplinks' => '«ванжаш» палшышы ажедмӓшвлӓм чӱктӓш',
 'tog-uselivepreview' => 'Текстӹм пӹсӹн анзыц анжен лӓкмӹм кычылташ (эксперимент семӹнь JavaScript)',
 'tog-forceeditsummary' => 'Мам тӧрлӹмӹ тӹ «нырын» охыр ылмыжы гишӓн пӓлдӹртӓш',
 'tog-watchlisthideown' => 'Мам тӧрленӓм, тӹдӹм вӓнгӹмӹ спискышты шӹлтӓш, анжыкташ агыл',
@@ -211,7 +210,7 @@ $messages = array(
 'jumptonavigation' => 'навигаци',
 'jumptosearch' => 'кӹчӓлӓш',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Тидӹ гишӓн сирӹмӓш {{grammar:genitive|{{SITENAME}}}}',
 'aboutpage' => 'Project:Сирӹмӓш',
 'copyright' => 'Тидӹ, тидӹ семӹнь ылеш $1.',
@@ -219,7 +218,6 @@ $messages = array(
 'disclaimers' => 'Вӓшештӹмӹ шая (ответственность) гӹц карангмаш',
 'disclaimerpage' => 'Project:Вӓшештӹмӓш (ответственность) гӹц карангмаш',
 'edithelp' => 'Тӧрлӓш манын палшык',
-'edithelppage' => 'Help:Тӧрлӓш манын палшык',
 'helppage' => 'Help:Палшык',
 'mainpage' => 'Тӹнг ӹлӹштӓш',
 'mainpage-description' => 'Тӹнг ӹлӹштӓш',
@@ -230,8 +228,6 @@ $messages = array(
 
 'retrievedfrom' => 'Кышец нӓлмӹ «$1»',
 'youhavenewmessages' => 'Тӓ нӓлӹндӓ $1 ($2).',
-'newmessageslink' => 'у увервлӓ',
-'newmessagesdifflink' => 'пӹтӓртӹш вашталтымаш',
 'editsection' => 'тӧрлӓш',
 'editold' => 'тӧрлӓш',
 'editlink' => 'тӧрлӓш',
@@ -354,10 +350,6 @@ $messages = array(
 # Search results
 'searchresults' => 'Кӹчӓлмӓшӹн результатшы',
 'searchresults-title' => 'Кӹчӓлӓш «$1»',
-'searchresulttext' => 'Ӹлӹштӓшӹшты шукырак информацим нӓлӓш манын [[{{MediaWiki:Helppage}}| палшыкым анжал]]',
-'searchsubtitle' => 'Кӹчӓлмӹ годым«[[:$1]]» ([[Special:Prefixindex/$1|кыды, ти лӹм доно тӹнгӓлӓлтеш]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|кыдывлӓ ти лӹмӹм анжыктенӹт]])',
-'searchsubtitleinvalid' => 'Ядмы семӹнь «$1»',
-'notitlematches' => 'Ӹлӹштӓшвлӓн лӹм икань агыл',
 'notextmatches' => 'Ӹлӹштӓшӹн текствлӓ доно икань агыл',
 'prevn' => '{{PLURAL:$1|анзылнышы $1|анзылнышывлӓ $1|анзылнышывлӓ $1}}',
 'nextn' => '{{PLURAL:$1|паштек кешӹ $1|паштек кешӹвлӓ $1|паштек кешӹвлӓ $1}}',
@@ -369,12 +361,9 @@ $messages = array(
 'search-interwiki-caption' => 'Техеньок проектвлӓ',
 'search-interwiki-default' => '$1 результ.:',
 'search-interwiki-more' => '(эче)',
-'nonefound' => "'''Шотыш нӓлдӓ.''' Нимат ак лиӓлт гӹнь, керӓл шамакым цилӓ вӓреок кӹчӓлӓш ак тӹнгӓл. Кӹчӓлжӹ манын,   ''all:'' префиксӹм кычылтда.  Тенге тӓ лӹмвлӓм мода (кӱ тишкӹ сирӓ, нӹнӹн Кӓнгӓшӹмӓшвлӓштӹмӓт, шаблонвлӓмӓт дӓ молымат), уке гӹнь, шукырак лӹмӹм анжыктыда",
-'powersearch' => 'Кымдан кӹчӓлмӓш',
 'powersearch-legend' => 'Кымдан кӹчӓлмӓш',
 'powersearch-ns' => 'Кымдецвлӓштӹ лӹмвлӓм кӹчӓлмӓш:',
 'powersearch-redir' => 'Ажедмӓшвлӓм анжыкташ',
-'powersearch-field' => 'Кӹчӓлӓш',
 
 # Preferences page
 'preferences' => 'Настройкывлӓ',
@@ -608,8 +597,6 @@ $messages = array(
 'pagemovedsub' => 'Ӹлӹштӓшӹн лӹмжӹм вашталтымы',
 'movepage-moved' => "'''Ӹлӹштӓшӹн  «$1» лӹмжӹ ӹнде«$2»'''",
 'articleexists' => 'Техень лӹмӓн ӹлӹштӓш тӹтежӓт улы. Пуры лидӓ, вес лӹмӹм айырыда.',
-'talkexists' => "'''Ӹлӹштӓш лӹм вашталтымы, но техень лӹмӓн ӹлӹштӓш тӹтежӓт улы, кӓнгӓшӹмӓш ӹлӹштӓшӹн лӹмжӹм вашталташ ак ли. Пуры лидӓ, кид доно нӹнӹм ушыда.'''",
-'movedto' => 'техеньӹш вашталтымы',
 'movetalk' => 'Ти кӓнгӓшӹмӓш ӹлӹштӓшӹн лӹмжӹм вашталташ',
 'movelogpage' => 'Лӹмвлӓм вашталтымы журнал',
 'movereason' => 'Ӓмӓлжӹ:',
@@ -711,10 +698,6 @@ $messages = array(
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Тӱнӹш программым кычылт, ти файлым тӧрлӓш',
-'edit-externally-help' => '(шукыракым анжал: [//www.mediawiki.org/wiki/Manual:External_editors установкын правилывлӓжӹ])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цилӓ',

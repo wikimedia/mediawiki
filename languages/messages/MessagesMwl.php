@@ -411,7 +411,6 @@ de modo a cunfirmar que la cuonta ye mesmo la tue.',
 'loginlanguagelabel' => 'Lhéngua: $1',
 
 # Change password dialog
-'resetpass' => 'Demudar palabra-chabe',
 'retypenew' => 'Pon outra beç la nuoba palabra chabe:',
 
 # Edit page toolbar
@@ -989,8 +988,6 @@ Nestes causos, tu terás que arrastrar ou ajuntar la páigina a la mano, se assi
 'movepage-moved' => '\'\'\'"$1" fui arrastrado pa "$2"\'\'\'',
 'articleexists' => 'Yá eisiste ua páigina cun este títalo, ou l títalo que scolhiste ye ambálido.
 Por fabor, scuolhe outro nome.',
-'talkexists' => "'''La páigina an si fui arrastrada cun éisito. Inda assi, la páigina de çcusson nun fui arrastrada, ua beç que yá eisistie ua cun este títalo. Por fabor, ajunta-las a la mano.'''",
-'movedto' => 'arrastrado pa',
 'movetalk' => 'Arrastrar tamien la páigina de çcusson associada.',
 'movelogpage' => "Registro d'arrastros",
 'movereason' => 'Rezon:',

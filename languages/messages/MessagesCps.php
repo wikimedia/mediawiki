@@ -433,7 +433,6 @@ Palihog tistingan liwat.',
 'loginlanguagelabel' => 'Lingguahe:',
 
 # Change password dialog
-'resetpass' => 'Islan ang password',
 'resetpass_header' => 'Islan ang password sang account',
 'oldpassword' => 'Luma nga password:',
 'newpassword' => 'Bag-ong password:',
@@ -520,8 +519,6 @@ Indi pag-ilakip ang pila ka mga suleras.',
 # Revision deletion
 'rev-delundel' => 'ipakita/itago',
 'revdel-restore' => 'Bag-uhon ang lebel sang pagpakita',
-'revdel-restore-deleted' => 'ginpanas nga mga pagbag-o',
-'revdel-restore-visible' => 'makit-an nga mga ginpangbag-o',
 
 # Merge log
 'revertmerge' => 'Sipaksipakon',
@@ -827,9 +824,6 @@ Sa mga mini nga kaso, kinahanglan mo hulagon ang pahina nga ikaw mismo, kung gus
 'movepage-moved' => '\'\'\'"Nasaylo na ang "$1" pakadto sa "$2"\'\'\'',
 'articleexists' => 'May-ara na sang pahina nga kapareho sang imo titulo, ukon ang ngalan nga imo ginpili indi pwede.
 Palihog pili liwat sang bag-o nga ngalan.',
-'talkexists' => "'''Nasaylo na mismo ang mina nga pahina, pero ang pahina sang istoryahanay indi masaylo kay may ara na sang nakakuha sang bag-o nga titulo.
-Palihog pakikombinar sa ila sang manomano.'''",
-'movedto' => 'ginsaylo sa',
 'movetalk' => 'Isaylo ang kaangot nga pahina sang istoryahanay',
 'movelogpage' => 'Lista sang pagsaylo',
 'movereason' => 'Rason:',

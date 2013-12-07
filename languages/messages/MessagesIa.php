@@ -708,7 +708,7 @@ Si tu opta pro dar lo, isto essera usate pro dar al usator attribution pro su co
 'user-mail-no-body' => 'Tentava inviar e-mail con texto vacue o multo curte.',
 
 # Change password dialog
-'resetpass' => 'Cambiar contrasigno',
+'changepassword' => 'Cambiar contrasigno',
 'resetpass_announce' => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'resetpass_text' => '<!-- Adde texto hic -->',
@@ -1119,10 +1119,6 @@ Tu pote vider iste diff; detalios se trova in le [{{fullurl:{{#Special:Log}}/sup
 'revdelete-nooldid-title' => 'Le version de destination es invalide',
 'revdelete-nooldid-text' => 'O tu non ha specificate alcun version(es) de destination pro executar iste
 function, o le version specificate non existe, o tu essaya celar le version actual.',
-'revdelete-nologtype-title' => 'Typo de registro non specificate',
-'revdelete-nologtype-text' => 'Tu non ha specificate un typo de registro super le qual iste action debe esser executate.',
-'revdelete-nologid-title' => 'Entrata de registro invalide',
-'revdelete-nologid-text' => 'O tu non ha specificate un evento de registro de destination super le qual iste action debe esser executate, o le entrata specificate non existe.',
 'revdelete-no-file' => 'Le file specificate non existe.',
 'revdelete-show-file-confirm' => 'Es tu secur de voler vider un version delite del file  "<nowiki>$1</nowiki>" del $2 a $3?',
 'revdelete-show-file-submit' => 'Si',
@@ -1156,8 +1152,6 @@ $1",
 'logdelete-failure' => "'''Le visibilitate del registro non poteva esser cambiate:'''
 $1",
 'revdel-restore' => 'Cambiar visibilitate',
-'revdel-restore-deleted' => 'versiones delite',
-'revdel-restore-visible' => 'versiones visibile',
 'pagehist' => 'Historia del pagina',
 'deletedhist' => 'Historia delite',
 'revdelete-hide-current' => 'Error de celar le entrata del $2 a $1: iste es le version actual.
@@ -1269,7 +1263,6 @@ Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-default' => 'Resultatos de $1:',
 'search-interwiki-more' => '(plus)',
 'search-relatedarticle' => 'Connexe',
-'mwsuggest-disable' => 'Disactivar suggestiones de recerca',
 'searcheverything-enable' => 'Cercar in tote le spatios de nomines',
 'searchrelated' => 'connexe',
 'searchall' => 'totes',
@@ -1294,7 +1287,6 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences' => 'Preferentias',
 'prefs-edits' => 'Numero de modificationes:',
 'prefsnologintext2' => 'Es necessari $1 pro definir le preferentias de usator.',
-'changepassword' => 'Cambiar contrasigno',
 'prefs-skin' => 'Apparentia',
 'skin-preview' => 'Previsualisation',
 'datedefault' => 'Nulle preferentia',
@@ -2157,9 +2149,6 @@ Pro restringer le presentation, selige un typo de registro, le nomine de usator 
 'allpagesto' => 'Monstrar le paginas usque a:',
 'allarticles' => 'Tote le paginas',
 'allinnamespace' => 'Tote le paginas (del spatio de nomines $1)',
-'allnotinnamespace' => 'Tote le paginas (non in le spatio de nomines $1)',
-'allpagesprev' => 'Previe',
-'allpagesnext' => 'Sequente',
 'allpagessubmit' => 'Va',
 'allpagesprefix' => 'Monstrar le paginas con prefixo:',
 'allpagesbadtitle' => 'Le titulo de pagina date es invalide o ha un prefixo interlingual o interwiki.
@@ -2783,7 +2772,6 @@ per favor assecura te de haber comprendite le consequentias de isto ante de cont
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle' => 'Renominar pagina:',
 'moveuserpage-warning' => "'''Attention:''' Tu es super le puncto de renominar un pagina de usator. Nota ben que solmente le pagina, e ''non'' le usator, essera renominate.",
-'movenologin' => 'Tu non ha aperite un session',
 'movenologintext' => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]] pro poter renominar un pagina.',
 'movenotallowed' => 'Tu non ha le permission de renominar paginas.',
 'movenotallowedfile' => 'Tu non ha le permission de renominar files.',
@@ -2799,9 +2787,6 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'articleexists' => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',
 'cantmove-titleprotected' => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',
-'talkexists' => "'''Le pagina mesme ha essite renominate con successo, ma su pagina de discussion non poteva esser renominate proque il ja existe un con le nove titulo.
-Per favor fusiona los manualmente.'''",
-'movedto' => 'renominate a',
 'movetalk' => 'Renominar le pagina de discussion associate',
 'move-subpages' => 'Renominar le subpaginas (usque a $1)',
 'move-talk-subpages' => 'Renominar le subpaginas del pagina de discussion (usque a $1)',

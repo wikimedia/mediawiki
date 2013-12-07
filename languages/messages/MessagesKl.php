@@ -169,13 +169,12 @@ $messages = array(
 'jumptonavigation' => 'sumiissusersiuut',
 'jumptosearch' => 'ujarlerit',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} pillugu',
 'aboutpage' => 'Project:Pillugu',
 'currentevents' => 'Maannakkut pisut',
 'disclaimers' => 'Aalajangersagaq',
 'edithelp' => 'Ikiuutit',
-'edithelppage' => 'Help:Aaqqissuussineq',
 'helppage' => 'Help:Ikiuutit',
 'mainpage' => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
@@ -184,8 +183,6 @@ $messages = array(
 
 'retrievedfrom' => 'Uannga aaneqartoq "$1"',
 'youhavenewmessages' => '<!-- This sentence shall be empty because of kl grammar. --> $1 ($2)',
-'newmessageslink' => 'Allagarsivutit',
-'newmessagesdifflink' => 'allannguutini kingullerniit',
 'editsection' => 'aaqqissoruk',
 'editold' => 'aaqqissoruk',
 'viewsourceold' => 'toqqavia takuuk',
@@ -315,7 +312,6 @@ Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 'viewprevnext' => 'Takuuk ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Qupperneqarpoq \"[[:\$1]]\" -mik atilimmik maani wikimi'''",
 'searchmenu-new' => "'''Qupperneq [[:$1]] pilersiguk maani wikimi'''",
-'searchhelp-url' => 'Help:Ikiuutit',
 'searchprofile-articles' => 'Imarisai',
 'searchprofile-project' => 'Ikiuutit suliniutillu imaat',
 'searchprofile-everything' => 'Tamarmik',
@@ -325,7 +321,6 @@ Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 'search-suggest' => 'Una piviuk: $1',
 'showingresultsheader' => "{{PLURAL:$5|Inernera '''$1''' '''$3'''|Inerneri '''$1 - $2''' '''$3'''}}-suni '''$4'''-mut",
 'search-nonefound' => 'Ujaasineq inerneqanngilaq',
-'powersearch' => 'Ujarlerit',
 
 # Preferences page
 'mypreferences' => 'Inissiffissat',
@@ -343,6 +338,7 @@ Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 'recentchanges-label-newpage' => 'Tassaavoq qupperneq nutaaq',
 'recentchanges-label-minor' => 'Tassaavoq allannguut annikitsoq',
 'recentchanges-label-bot' => 'Bot-ip allannguutaa',
+'recentchanges-legend-newpage' => '$1 - qupperneq nutaaq',
 'rclistfrom' => 'Allannguutit kingulliit takukkit $1 -nngaanniit',
 'rcshowhideminor' => '$1 allannguutit annikitsut',
 'rcshowhidebots' => '$1 robottit',
@@ -400,8 +396,6 @@ Peersinermut nuutsinermullu nalunaarsuutit ataani takuneqarsinnaapput.',
 
 # Special:AllPages
 'allarticles' => 'Quppernerit tamarmik',
-'allpagesprev' => 'Siulii',
-'allpagesnext' => 'Tullii',
 'allpagessubmit' => 'Tassunngarit',
 
 # Special:Categories

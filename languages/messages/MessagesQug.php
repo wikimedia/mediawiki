@@ -448,8 +448,6 @@ Kay (kaykunachu) kachashkakunaka cunkashkami kashka.",
 # Revision deletion
 'rev-delundel' => 'Rikuchiy/pakay',
 'revdel-restore' => 'Rikuyukkunata shukchina',
-'revdel-restore-deleted' => 'pichashka shukchiykuna',
-'revdel-restore-visible' => 'Mana pakashka shukchiykuna',
 
 # Merge log
 'revertmerge' => 'Shukllachiyta kutichina',
@@ -745,8 +743,6 @@ $2 rikpika, ima pankakunaka pichashkami kan yachakupanki.',
 'movepage-moved' => '\'\'\'"$1" pankaka "$2"shutiman apakushka\'\'\'',
 'articleexists' => 'Shuk pankaka ñami kay shutita charin, icha kay shutiyuk man alli kan.
 Shuk shutita akllapay.',
-'talkexists' => 'Kay pankapa shutita ñami shukchishkami kan, shinapash paypa rimanakuyta shuk rimanakuyka ñami tiyakpika mana apamushkami kan : makillawan kay ishkay rimanakuykunata tantachipay.',
-'movedto' => 'Kayman apakushka :',
 'movetalk' => 'Tinkishka rimanakuyta shinalla apakuna',
 'movelogpage' => 'Shutikunata shukchiykunapa kamu',
 'movereason' => 'Imashpa:',

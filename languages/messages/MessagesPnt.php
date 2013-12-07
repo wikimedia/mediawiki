@@ -403,7 +403,7 @@ $messages = array(
 'loginlanguagelabel' => 'Γλώσσαν: $1',
 
 # Change password dialog
-'resetpass' => 'Νέον σημάδιν',
+'changepassword' => 'Άλλαξον σημάδιν',
 'resetpass_header' => "Άλλαξον σημάδ'",
 'oldpassword' => 'Παλαιόν σημάδιν:',
 'newpassword' => 'Καινούρεον σημάδιν:',
@@ -605,7 +605,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Αγαπεμένα',
 'mypreferences' => "Τ' εμά τ' αγαπεμένα",
-'changepassword' => 'Άλλαξον σημάδιν',
 'prefs-skin' => 'Όψην',
 'skin-preview' => 'Πρώτον τέρεμαν',
 'prefs-datetime' => 'Ημερομηνίαν και ώραν',
@@ -902,8 +901,6 @@ $messages = array(
 'allpagesfrom' => "Τέρεμαν σελιδίων ντ' εσκαλών'νε ασό:",
 'allpagesto' => "Δείξον τα σελίδας π' τελειών'νε σε:",
 'allarticles' => 'Όλεα τα σελίδας',
-'allpagesprev' => 'Προτεσνά',
-'allpagesnext' => 'Επόμενα',
 'allpagessubmit' => 'Δέβα',
 'allpagesprefix' => 'Τέρεμαν σελιδίων με πρόθεμαν:',
 
@@ -1135,9 +1132,6 @@ $messages = array(
 'articleexists' => 'Σελίδαν με αΐκον όνεμαν υπάρχει.
 Βαλέστεν άλλο όνεμαν.',
 'cantmove-titleprotected' => "'Κ επορείτε ν' εφτάτε σελίδαν με τ' αβούτον τ' όνεμαν επειδή εσπάλισανατο.",
-'talkexists' => "'''Η σελίδαν ετερχλαεύτεν, άμαν η σελίδαν καλατσεματί επέμνεν επειδή σο καινούρεον τίτλον έχ' άλλον σελίδα.
-Ποισέστεν τα έναν.'''",
-'movedto' => 'ετεροχλαεύτεν σο',
 'movetalk' => 'Ετεροχλάεμαν τη σελίδας καλατσεματί',
 'movelogpage' => 'Αρχείον ετεροχλαεματί',
 'movereason' => 'Λόγον:',

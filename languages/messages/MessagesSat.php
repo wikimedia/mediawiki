@@ -456,7 +456,7 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'user-mail-no-addy' => 'Jahan e-mail ṭhikana bạgi kate e-mail kul kurumuṭu hoena.',
 
 # Change password dialog
-'resetpass' => 'Oku nambar bodol',
+'changepassword' => 'Uku nombor bodolme',
 'resetpass_header' => 'Ekaunṭ oku namber bodol',
 'oldpassword' => 'Mare uku nombor',
 'newpassword' => 'Nãwã oku nomber',
@@ -646,8 +646,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'rev-delundel' => 'ńeloḱ/danaṅ',
 'rev-showdeleted' => 'Uduḱme',
 'revisiondelete' => 'Get giḍi/nãwã aro baṅ getgiḍi',
-'revdelete-nologtype-title' => 'Jahan cạbi ṭayep baṅ em emakana',
-'revdelete-nologtype-text' => 'Am do paseć noa kạmie lạgit́te jahan cạbi bam bachao akada.',
 'revdelete-show-file-submit' => 'Hẽ',
 'revdelete-hide-text' => 'Nãwã aroe olko ukuemẽ',
 'revdelete-hide-image' => 'Rẽt reaḱ babotko ukue mẽ',
@@ -659,8 +657,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'revdelete-radio-unset' => 'Baṅ',
 'revdelete-log' => 'Babot:',
 'revdel-restore' => 'Judạ lekate ńel',
-'revdel-restore-deleted' => 'giḍikaḱ ńel ruạṛ',
-'revdel-restore-visible' => 'Ńeloḱ leka paṛhao ruạṛ',
 'pagehist' => 'Sakam reaḱ jạṛ',
 'deletedhist' => 'Get giḍi jạṛ',
 'revdelete-reasonotherlist' => 'Eṭaḱak karon',
@@ -718,7 +714,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 # Preferences page
 'preferences' => 'Pạsindko',
 'mypreferences' => 'Iñaḱ pạsindko',
-'changepassword' => 'Uku nombor bodolme',
 'prefs-skin' => 'Harta',
 'skin-preview' => 'Ńel, Unuduḱ',
 'datedefault' => 'Pạsind banuḱa',
@@ -894,8 +889,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'allpages' => 'joto sakam',
 'alphaindexline' => '$1 hạbić $2',
 'allarticles' => 'Sanam sakam',
-'allpagesprev' => 'Tayom sećaḱ',
-'allpagesnext' => 'Laha seć',
 'allpagessubmit' => 'Calaḱme',
 
 # Special:Categories

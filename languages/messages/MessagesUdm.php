@@ -63,7 +63,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Cекциосты шырлэн бур кнопкаез заголовок вылын зӥбиськыкуз тупатыны (JavaScript кулэ)',
 'tog-showtoc' => 'Пуштросэз возьматоно (2-лэсь трос заголовокъем бамъёс понна)',
 'tog-rememberpassword' => 'Мынам пыроннимме та браузерлэн тодаз возьыны ($1 яке $1-лэсь ӧжытгес нунал ӵоже гинэ)',
-'tog-watchcreations' => 'Бамъёсты, кудъёстэс мон кылдытӥсько, мынам чаклкан списокам пыртыны',
+'tog-watchcreations' => 'Мынэсьтым кылдытэм бамъёсме но ӝуткам файлъёсме чаклан списокам пыртыны',
 'tog-watchdefault' => 'Бамъёсты, кудъёстэс мон тупатӥсько, мынам чаклкан списокам пыртыны',
 'tog-watchmoves' => 'Бамъёсты, кудъёстэс мон мукет интые выжтӥсько, мынам чаклкан списокам пыртыны',
 'tog-watchdeletion' => 'Бамъёсты, кудъёстэс мон ӵушисько, мынам чаклкан списоке пыртыны',
@@ -135,7 +135,7 @@ $messages = array(
 'dec' => 'тст',
 
 # Categories related messages
-'pagecategories' => '$1 категория',
+'pagecategories' => '{{PLURAL:$1|Категория|Категориос}}',
 'category_header' => '«$1» категориысь бамъёс',
 'subcategories' => 'Подкатегориос',
 'category-media-header' => '«$1» категориысь файлъёс',
@@ -161,7 +161,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbpageoptions' => 'Бамлэн настройкаосыз',
-'qbspecialpages' => 'Ваньмыз панельёс',
 'faq' => 'Юан-веран',
 'faqpage' => 'Project:Юан-веран',
 
@@ -196,7 +195,7 @@ $messages = array(
 'jumptonavigation' => 'навигация',
 'jumptosearch' => 'утчан',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Выль иворъёс',
 'currentevents-url' => 'Project:Выль иворъёс',
 'helppage' => 'Help:Валэктон',
@@ -208,6 +207,8 @@ $messages = array(
 'retrievedfrom' => '«$1»-лэсь басьтэмын',
 'editsection' => 'тупатыны',
 'editsectionhint' => '$1 секциез тупатоно',
+'showtoc' => 'возьматоно',
+'hidetoc' => 'ватоно',
 'site-rss-feed' => '$1 — RSS-лента',
 'site-atom-feed' => '$1 — Atom-лента',
 'red-link-title' => '$1 (со бам ӧвӧл на)',
@@ -220,9 +221,10 @@ $messages = array(
 'viewsource' => 'Кодзэ учкыны',
 
 # Login and logout pages
-'login' => 'Википедие пырон',
+'login' => 'Пырон',
 'nav-login-createaccount' => 'Нимдэс вераны / Регистрациез ортчытыны',
 'userlogin' => 'Регистрациез ортчытыны яке Википедие пырыны',
+'userloginnocreate' => 'Пырон',
 'logout' => 'Кошкыны',
 'userlogout' => 'Кошкыны',
 'createaccount' => 'выль вики-авторлэн регистрациез',
@@ -241,8 +243,6 @@ $messages = array(
 
 # Search results
 'searchresults' => 'Шедьтэмын',
-'searchresulttext' => 'Проектлэн бамъёстӥз утчан сярысь тыро-быдогес тодэмды потӥз ке, учке [[{{MediaWiki:Helppage}}|«Юан-веран» люкетэз]].',
-'searchhelp-url' => 'Help:Валэктон',
 'search-result-size' => '$1 кыл({{PLURAL:$2|1 word|$2 words}})',
 
 # Preferences page
@@ -272,7 +272,7 @@ $messages = array(
 'nbytes' => '$1 байт',
 'move' => 'Мукет интые выжтыны',
 
-# E-mail user
+# Email user
 'emailmessage' => 'Ивортон:',
 
 # Watchlist
@@ -305,6 +305,9 @@ $messages = array(
 'tooltip-n-randompage' => 'Олокыӵе бамез учконо',
 'tooltip-t-whatlinkshere' => 'Ваньмыз бамъёс, кудъёсаз та бамлы линксы вань',
 'tooltip-t-specialpages' => 'Специальной бамъёслэн списоксы',
+
+# Info page
+'pageinfo-toolboxlink' => 'Бам сярысь тодэтъёс',
 
 # Special:SpecialPages
 'specialpages' => 'Ваньмыз панельёс',

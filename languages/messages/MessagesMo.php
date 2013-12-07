@@ -108,7 +108,7 @@ $messages = array(
 'jumptonavigation' => 'навигацие',
 'jumptosearch' => 'кэутаре',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Деспре {{SITENAME}}',
 'aboutpage' => 'Project:Деспре',
 'copyright' => 'Концинутул есте диспонибил суб $1.',
@@ -116,7 +116,6 @@ $messages = array(
 'disclaimers' => 'Деклараций',
 'disclaimerpage' => 'Project:Декларацие ӂенералэ',
 'edithelp' => 'Ажутор пентру едитаре',
-'edithelppage' => 'Help:Едитаре',
 'helppage' => 'Help:Купринс',
 'mainpage' => 'Прима паӂина',
 'mainpage-description' => 'Прима паӂина',
@@ -127,7 +126,6 @@ $messages = array(
 
 'retrievedfrom' => 'Адус де ла «$1»',
 'youhavenewmessages' => 'Ай $1 ($2).',
-'newmessageslink' => 'месаже ной',
 'editsection' => 'едитязэ',
 'editold' => 'едитязэ',
 'editlink' => 'едитязэ',
@@ -242,10 +240,6 @@ $messages = array(
 # Search results
 'searchresults' => 'Резултателе кэутэрий',
 'searchresults-title' => 'Резултателе кэутэрий пентру «$1»',
-'searchresulttext' => 'Пентру май мулте деталий деспре кэутаря ын {{SITENAME}}, везь [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Ай кэутат '''[[:$1]]''' ([[Special:Prefixindex/$1|тоате паӂиниле каре ынчеп ку «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|тоате паӂиниле каре се лягэ де «$1»]])",
-'searchsubtitleinvalid' => "Ай каутат '''$1'''",
-'notitlematches' => 'Ничь ун резултат ын титлуриле артиколелор',
 'notextmatches' => 'Ничь ун резултат ын текстеле артиколелор',
 'prevn' => 'антериоареле {{PLURAL:$1|$1}}',
 'nextn' => 'урмэтоареле {{PLURAL:$1|$1}}',
@@ -257,13 +251,9 @@ $messages = array(
 'search-interwiki-caption' => 'Проекте ынрудите',
 'search-interwiki-default' => '$1 резултате:',
 'search-interwiki-more' => '(май мулт)',
-'nonefound' => "'''Нотэ''': Нумай унеле спаций де нуме сынт кэутате импличит.
-Ынчеркэ сэ пуй ка ши префикс ал кэутэрий ''all:'' пентру а кэута ын тот концинутул (инклузынд ши паӂиниле де дискуций, формате, етч), сау фолосеште спациул де нуме дорит ка ши префикс.",
-'powersearch' => 'Кэутаре авансатэ',
 'powersearch-legend' => 'Кэутаре авансатэ',
 'powersearch-ns' => 'Кэутаре ын спацииле де нуме:',
 'powersearch-redir' => 'Афишазэ редиректэриле',
-'powersearch-field' => 'Каутэ дупэ',
 
 # Preferences page
 'preferences' => 'Преферинце',
@@ -556,10 +546,6 @@ $messages = array(
 Дакэ фишиерул а фост модификат ынтре тимп, есте посибил ка унеле деталий сэ ну май фие валабиле.',
 'metadata-expand' => 'Афишазэ деталий суплиментаре',
 'metadata-collapse' => 'Аскунде деталий суплиментаре',
-
-# External editor support
-'edit-externally' => 'Едитязэ ачест фишиер фолосинд о апликацие екстернэ',
-'edit-externally-help' => '(Везь [//www.mediawiki.org/wiki/Manual:External_editors инструкциунь де инсталаре] пентру май мулте информаций)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'тоате',

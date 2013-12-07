@@ -454,7 +454,7 @@ $1',
 'loginlanguagelabel' => 'ဘာသာ: $1',
 
 # Change password dialog
-'resetpass' => 'စကားဝှက်ပြောင်းရန်',
+'changepassword' => 'စကားဝှက် ပြောင်းရန်',
 'resetpass_announce' => 'သင်သည် ယာယီ စကားဝှက်ဖြင့် ဝင်ရောက်ခြင်းဖြစ်သည်။
 စကားဝှက် အသစ်အား ဤနေရာတွင်ရိုက်ပါ :',
 'resetpass_header' => 'အကောင့်စကားဝှက်ပြောင်းရန်',
@@ -608,8 +608,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'rev-showdeleted' => 'ပြ',
 'revisiondelete' => 'မူများကို ဖျက်ရန်/မဖျက်တော့ရန်',
 'revdelete-nooldid-title' => 'တရားမဝင်သော မူအမည်',
-'revdelete-nologtype-title' => 'မှတ်တမ်းအမျိုးအစား ပေးမထားပါ',
-'revdelete-nologid-title' => 'တရားမဝင်သော မှတ်တမ်းရေးသွင်းချက်',
 'revdelete-no-file' => 'ဖော်ပြထားသောဖိုင် မရှိပါ။',
 'revdelete-show-file-submit' => 'မှန်',
 'revdelete-legend' => 'မြင်နိုင်စွမ်းရှိမှုတို့အား ကန့်သတ်ခြင်းကို သတ်မှတ်ရန်',
@@ -625,8 +623,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-submit' => 'ရွေးချယ်ထားသော {{PLURAL:$1|မူ|မူများ}}ကို သက်ရောက်စေရန်',
 'revdelete-success' => "'''မူမြင်နိုင်စွမ်းရှိမှုကို အောင်မြင်စွာ update လုပ်ပြီးပါပြီ။'''",
 'revdel-restore' => 'မည်မျှ ရှုမြင်နိုင်သည်ကို ပြောင်းရန်',
-'revdel-restore-deleted' => 'ဖျက်ပစ်လိုက်သောမူများ',
-'revdel-restore-visible' => 'မြင်နိုင်သော မူများ',
 'pagehist' => 'စာမျက်နှာ မှတ်တမ်း',
 'deletedhist' => 'ဖျက်ပစ်လိုက်သော မှတ်တမ်း',
 'revdelete-otherreason' => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
@@ -701,7 +697,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'search-interwiki-default' => 'ရလဒ် $1 ခု -',
 'search-interwiki-more' => '(နောက်ထပ်)',
 'search-relatedarticle' => 'ဆက်နွယ်သော',
-'mwsuggest-disable' => 'AJAX အကြံပြုချက်များကို ပိတ်ထားရန်',
 'searcheverything-enable' => 'အမည်ညွှန်းအားလုံးတွင် ရှာရန်',
 'searchrelated' => 'ဆက်နွယ်သော',
 'searchall' => 'အားလုံး',
@@ -721,7 +716,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'preferences' => '​ရွေး​ချယ်​စ​ရာ​များ​',
 'mypreferences' => '​ရွေး​ချယ်​စ​ရာ​များ​',
 'prefs-edits' => 'တည်းဖြတ်မှုအရေအတွက် -',
-'changepassword' => 'စကားဝှက် ပြောင်းရန်',
 'prefs-skin' => 'အသွင်အပြင်',
 'skin-preview' => 'နမူနာ',
 'datedefault' => 'မရွေးချယ်',
@@ -1218,9 +1212,6 @@ Your e-mail address is not revealed when other users contact you.
 'allpagesto' => 'ဤသည်တွင်ဆုံးသော စာမျက်နှာများကို ပြရန် -',
 'allarticles' => 'စာမျက်နှာအားလုံး',
 'allinnamespace' => 'စာမျက်နှာအားလုံး (အမည်ညွှန်း $1)',
-'allnotinnamespace' => 'စာမျက်နှာအားလုံး (အမည်ညွှန်း $1 တွင်မဟုတ်)',
-'allpagesprev' => 'နောက်',
-'allpagesnext' => 'ရှေ့',
 'allpagessubmit' => 'သွား​ပါ​',
 
 # Special:Categories
@@ -1514,7 +1505,6 @@ Your e-mail address is not revealed when other users contact you.
 
 ဤကိစ္စမျိုး ကြုံလာခဲ့ပါက သင် ဆန္ဒရှိလျှင် စာမျက်နှာကို မိမိကိုယ်တိုင် သွားရောက်ရွှေ့ပြောင်း ပေါင်းစပ်နိုင်သည်။",
 'movearticle' => 'စာ​မျက်​နှာ​ကို ရွှေ့ပြောင်းရန် -',
-'movenologin' => 'logged in ဝင်မထားပါ',
 'newtitle' => 'ခေါင်းစဉ်အသစ်သို့:',
 'move-watch' => 'မူရင်းစာမျက်နှာနှင့် ဦးတည်ထားသော စာမျက်နှာတို့ကို စောင့်ကြည့်ရန်',
 'movepagebtn' => 'စာ​မျက်​နှာ​ကို ရွှေ့ပြောင်းရန်',
@@ -1523,9 +1513,6 @@ Your e-mail address is not revealed when other users contact you.
 'movepage-moved-redirect' => 'ပြန်ညွှန်းတစ်ခုကို ဖန်တီးပြီးဖြစ်သည်။',
 'articleexists' => 'ထိုအမည်ဖြင့် စာမျက်နှာတစ်ခု ရှိနှင့်ပြီးဖြစ်သည် (သို့) သင်ရွေးလိုက်သော အမည်သည် တရားမဝင်ပါ။
 ကျေးဇူးပြု၍ အခြားအမည်တစ်ခုကို ရွေးပေးပါ။',
-'talkexists' => "'''စာမျက်နှာကို အောင်မြင်စွာ ရွှေ့ပြီးဖြစ်သည်။ သို့သော် ဆွေးနွေးချက် စာမျက်နှာကိုမူ ရွေ့မရနိုင်ပါ။ အကြောင်းမှာ ခေါင်းစဉ်အသစ်တွင် ရှိပြီးဖြစ်သောကြောင့် ဖြစ်သည်။
-ကျေးဇူးပြု၍ ယင်းတို့ကို မိမိဘာသာ ပြန်ပေါင်းပေးပါ။'''",
-'movedto' => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',
 'movetalk' => 'ယှက်နွယ်နေသော ဆွေးနွေးချက်စာမျက်နှာများကို ရွှေ့ရန်',
 'movepage-page-moved' => 'စာမျက်နှာ $1 ကို $2 သို့ ရွှေ့ပြီးပြီ ဖြစ်သည်။',
 'movepage-page-unmoved' => 'စာမျက်နှာ $1 ကို $2 သို့ ရွှေ့မရနိုင်ပါ။',

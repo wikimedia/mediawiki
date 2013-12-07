@@ -41,7 +41,6 @@ $messages = array(
 'tog-shownumberswatching' => "A nuna adadin ma'aikata masu bin sawun wannan shafi",
 'tog-oldsig' => 'Rigya-ganin sa-hannu da ake da shi',
 'tog-fancysig' => 'A ɗauki matanin sa-hannu a matsayin matanin Wiki (ba tare da mahaɗin otomatik ba)',
-'tog-showjumplinks' => 'A lamunta mahaɗan "a tsallaka zuwa"',
 'tog-uselivepreview' => 'A yi amfani da rigya-gani mai sauƙi (ana buƙatar JavaScript) (hajar gwaji)',
 'tog-forceeditsummary' => 'A gargaɗe ni idan na ajiye kangon fili na taƙaitawa',
 'tog-watchlisthideown' => 'A ɓoye sauye-sauyena daga jerin bin sawu',
@@ -135,7 +134,6 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Nemo',
 'qbedit' => 'Gyarawa',
-'qbspecialpages' => 'Shafuna na musamman',
 
 # Vector skin
 'vector-action-delete' => 'Soke',
@@ -175,7 +173,7 @@ $messages = array(
 'jumptonavigation' => 'Shawagi',
 'jumptosearch' => 'nema',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Game da {{SITENAME}}',
 'aboutpage' => 'Project:Game da',
 'copyright' => 'Bayannai sun samu a ƙarƙashin $1.',
@@ -183,7 +181,6 @@ $messages = array(
 'disclaimers' => 'Hattara',
 'disclaimerpage' => 'Project:Babban gargaɗi',
 'edithelp' => 'Taimako kan gyara',
-'edithelppage' => 'Help:Gyarawa',
 'helppage' => 'Help:Tsaraba',
 'mainpage' => 'Marhabin',
 'privacy' => 'Manufar kare sirri',
@@ -193,8 +190,6 @@ $messages = array(
 
 'retrievedfrom' => 'Daga "$1"',
 'youhavenewmessages' => 'Kuna da $1 ($2).',
-'newmessageslink' => 'sabbin saƙonni',
-'newmessagesdifflink' => 'sauyin ƙarshe',
 'editsection' => 'gyarawa',
 'editold' => 'gyarawa',
 'editlink' => 'gyarawa',
@@ -334,10 +329,6 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 # Search results
 'searchresults' => 'Sakamakon bincike',
 'searchresults-title' => 'Sakamakon bincike na "$1"',
-'searchresulttext' => 'Don ƙarin bayani kan binciken {{SITENAME}}, duba [[{{MediaWiki:Helppage}}|{{int:help}}]]',
-'searchsubtitle' => 'Kun nemi \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|duka shafuna masu farawa da "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|duka shafuna masu mahaɗi zuwa "$1"]])',
-'searchsubtitleinvalid' => "Kun nemi '''$1'''",
-'notitlematches' => 'Babu kan shafin da ya dace',
 'notextmatches' => 'Babu wani matanin da ya dace',
 'prevn' => 'baya {{PLURAL:$1|$1}}',
 'nextn' => 'gaba {{PLURAL:$1|$1}}',
@@ -350,13 +341,9 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 'search-interwiki-default' => 'Sakamakon $1:',
 'search-interwiki-more' => '(ƙari)',
 'searchall' => 'duka',
-'nonefound' => "'''Hattara''': Galibi wasu sararen suna ƙalilan kawai ake nemowa.
-Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan muhawara, mulaye, d.s.), ko kuma ku yi amfani da sararin sunan da kuke so.",
-'powersearch' => 'Sahihin nema',
 'powersearch-legend' => 'Sahihin nema',
 'powersearch-ns' => 'Binciki sararen sunaye:',
 'powersearch-redir' => 'Nuna turawa gaba',
-'powersearch-field' => 'Neemo',
 'powersearch-toggleall' => 'Duka',
 
 # Preferences page
@@ -634,9 +621,6 @@ A waɗannan halaye, dole ku gusar ko ku game shafin da hannu, idan kuna so.",
 'movepage-moved' => '\'\'\'"$1" an gusar da shi zuwa "$2"\'\'\'',
 'articleexists' => 'Akwai wani shafi mai wannan suna, koko sunan da kuka zaɓa ba shi da tasiri.
 Don Allah ku zaɓi wani suna.',
-'talkexists' => "'''An gusar da shafin shi kansa, amma an kasa gusar da dangantaccen shafin muhawarar, don akwai wani sahfin mai amfani da sunansa.
-Don Allah ku game su da hannu.'''",
-'movedto' => 'an gusar zuwa',
 'movetalk' => 'Gusar da shafin mahawara mai alaƙa',
 'movelogpage' => 'Rajistan gushe-gushe',
 'movereason' => 'Dalili:',
@@ -746,10 +730,6 @@ Idan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cik
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Gyara wannan fayil da wani safuwai daban',
-'edit-externally-help' => '(Duba [//www.mediawiki.org/wiki/Manual:External_editors bayannan shimfiɗawa] don ƙarin bayani)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'duka',

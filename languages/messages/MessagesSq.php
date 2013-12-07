@@ -724,7 +724,7 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 'user-mail-no-addy' => 'Provuat të dërgoni një korrespondencë pa adresë elektronike',
 
 # Change password dialog
-'resetpass' => 'Ndrysho fjalëkalimin',
+'changepassword' => 'Ndërroni fjalëkalimin',
 'resetpass_announce' => 'Ju keni hyrë me një kod të përkohshëm.
 Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'resetpass_header' => 'Ndrysho fjalëkalimin e llogarisë',
@@ -1084,10 +1084,6 @@ Ju mund ta shikoni këtë ndryshim; detajet mund të gjenden te [{{fullurl:{{#Sp
 'revisiondelete' => 'Shlyj/Reparo versionet',
 'revdelete-nooldid-title' => 'Version i dëshiruar i pavfleshëm',
 'revdelete-nooldid-text' => 'Ose nuk keni përcaktuar një version(e) të dëshiruar për veprimin, ose versioni nuk ekziston, ose po mundoheni të fshihni versionin e tanishëm.',
-'revdelete-nologtype-title' => 'Nuk është dhënë asnjë lloj i të dhënave',
-'revdelete-nologtype-text' => 'Nuk keni caktuar llojin e të dhënave për të realizuar veprimin.',
-'revdelete-nologid-title' => 'Regjistër i pavlefshëm',
-'revdelete-nologid-text' => 'Ju ose nuk keni specifikuar një ngjarje target kyçje për të kryer këtë funksion ose hyrja e specifikuar nuk ekziston.',
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
 'revdelete-show-file-confirm' => 'Jeni i/e sigurt se dëshironi të shikoni një version të grisur të skedës "<nowiki>$1</nowiki>" nga $2 tek $3?',
 'revdelete-show-file-submit' => 'Po',
@@ -1120,8 +1116,6 @@ Ju mund ta shikoni këtë ndryshim; detajet mund të gjenden te [{{fullurl:{{#Sp
 'logdelete-failure' => "'''Dukshmëria nuk u vendos:'''
 $1",
 'revdel-restore' => 'Ndrysho dukshmërinë',
-'revdel-restore-deleted' => 'fshij rivizonet',
-'revdel-restore-visible' => 'rivizionet e dukshme',
 'pagehist' => 'Historiku i faqes',
 'deletedhist' => 'Historiku i grisjeve',
 'revdelete-hide-current' => 'Gabim në fshehje të pikës me datë $2, $1: ky është rivizioni i tanishëm. 
@@ -1227,7 +1221,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-default' => '$1 përfundime:',
 'search-interwiki-more' => '(më shumë)',
 'search-relatedarticle' => 'Të ngjashme',
-'mwsuggest-disable' => 'Çmundësoi sugjerimet AJAX',
 'searcheverything-enable' => 'Kërko në të gjitha hapësirat',
 'searchrelated' => 'të ngjashme',
 'searchall' => 'të gjitha',
@@ -1248,7 +1241,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'preferences' => 'Parapëlqimet',
 'mypreferences' => 'Parapëlqimet',
 'prefs-edits' => 'Numri i redaktimeve:',
-'changepassword' => 'Ndërroni fjalëkalimin',
 'prefs-skin' => 'Pamja',
 'skin-preview' => 'Parapamje',
 'datedefault' => 'Parazgjedhje',
@@ -2033,9 +2025,6 @@ Ju mund të kufizoni pamje sipas tipit të regjistrit, emrit të përdoruesit (s
 'allpagesto' => 'Shfaq faqet që mbarojnë në:',
 'allarticles' => 'Të gjithë artikujt',
 'allinnamespace' => 'Të gjitha faqet (hapësira $1)',
-'allnotinnamespace' => 'Të gjitha faqet (jo në hapësirën $1)',
-'allpagesprev' => 'Më para',
-'allpagesnext' => 'Më pas',
 'allpagessubmit' => 'Shko',
 'allpagesprefix' => 'Trego faqet me parashtesë:',
 'allpagesbadtitle' => 'Titulli i dhënë ishte i pavlefshë ose kishte një parashtesë ndër-gjuhe ose ndër-wiki.
@@ -2645,7 +2634,6 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
 'movearticle' => 'Zhvendose faqen',
 'moveuserpage-warning' => "'''Kujdes:''' Ju po zhvendosni një faqe përdoruesi. Ju lutemi, kujtoni se vetëm faqja do të zhvendoset dhe përdoruesi ''nuk'' do të ndryshojë emrin.",
-'movenologin' => 'Nuk keni hyrë brenda',
 'movenologintext' => 'Duhet të keni hapur një llogari dhe të keni [[Special:UserLogin|hyrë brenda]] për të zhvendosur një faqe.',
 'movenotallowed' => 'Nuk ju lejohet të zhvendosni faqe.',
 'movenotallowedfile' => 'Nuk keni leje për të lëvizur skeda.',
@@ -2660,8 +2648,6 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movepage-moved-noredirect' => 'Krijimi i një përcjellimi është prishur.',
 'articleexists' => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
 'cantmove-titleprotected' => 'Nuk mund të zhvendosni një faqe në këtë titull pasi ky titull është mbrojtur kundrejt krijimit',
-'talkexists' => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',
-'movedto' => 'zhvendosur tek',
 'movetalk' => 'Zhvendos edhe faqen e diskutimeve, në qoftë se është e mundur.',
 'move-subpages' => 'Zhvendosni nën-faqet (deri në $1)',
 'move-talk-subpages' => 'Zhvendosni nën-faqet e faqes së diskutimit (deri në $1)',

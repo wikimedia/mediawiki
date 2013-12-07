@@ -39,7 +39,6 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Nyini',
 'qbedit' => 'Yɛlɛma',
-'qbspecialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 
 'help' => 'Dɛmɛ',
 'search' => 'Nyini',
@@ -59,7 +58,7 @@ $messages = array(
 'otherlanguages' => 'Kanw wɛrɛ',
 'jumptosearch' => 'Nyini',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Kunnafoni',
 'currentevents-url' => 'Project:Kunnafoni',
 'disclaimers' => 'Kangari',
@@ -84,9 +83,6 @@ $messages = array(
 'editing' => '$1 ka yɛlɛmali',
 'editingsection' => '$1 ka yɛlɛmali (section)',
 'editingcomment' => '$1 ka yɛlɛmali (baro)',
-
-# Search results
-'powersearch' => 'Nyini',
 
 # Preferences page
 'preferences' => 'Fisayali',

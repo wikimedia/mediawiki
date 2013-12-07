@@ -8,6 +8,7 @@
  * @file
  *
  * @author Hugo.arg
+ * @author P. S. F. Freitas
  * @author Perla
  */
 
@@ -112,7 +113,6 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Heka',
 'qbedit' => 'Jehaijey',
-'qbspecialpages' => 'Kuatiarogue hekochĩchĩva',
 
 'tagline' => '{{SITENAME}}megua',
 'help' => 'Pytyvõhára',
@@ -144,7 +144,7 @@ $messages = array(
 'jumptonavigation' => 'kundaharã',
 'jumptosearch' => 'Jeheka',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Ári {{SITENAME}}',
 'aboutpage' => 'Project:Rehegua',
 'copyright' => "Tembikuaa'aty ikatu ojepuru <i>$1</i> rekópe",
@@ -157,11 +157,8 @@ $messages = array(
 'privacy' => 'Polítika marandu ñeñangareko rehegua',
 'privacypage' => 'Project:Polítika marandu ñeñangareko rehegua',
 
-'newmessageslink' => 'marandu pyahu',
-'newmessagesdifflink' => 'Joavy oĩva mokõive jehai paha apytépe',
 'youhavenewmessagesmulti' => 'Reguereko marandu pyahu $1',
 'editsection' => 'jehaijey',
-'editsection-brackets' => '($1)',
 'editold' => 'jehaijey',
 'editsectionhint' => 'Jehaijey vore: $1',
 'toc' => "Tembikuaa'aty rechaukaha",
@@ -254,12 +251,10 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 
 # Search results
 'searchresults' => 'Ojejuhúva jeheka',
-'searchsubtitle' => "Nde reporandúkuri: '''[[:$1]]-re'''",
 'prevn' => '{{PLURAL:$1|$1}} mboyvegua',
 'viewprevnext' => 'Hecha ($1 {{int:pipe-separator}} $2) ($3).',
 'showingresults' => "Abajo se muestran hasta '''$1''' resultados empezando por el nº '''$2'''.",
 'showingresultsnum' => "Abajo se muestran los '''$3''' resultados empezando por el nº '''$2'''.",
-'powersearch' => 'Jeheka',
 
 # Preferences page
 'preferences' => 'Mbohoryha',
@@ -268,6 +263,8 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 'searchresultshead' => 'Jeheka',
 'youremail' => "Ñe'ẽveve",
 'yourlanguage' => "Ñe'ẽ:",
+'gender-male' => "Ha'e ohaijey wiki kuatiarogue kuéra",
+'gender-female' => "Ha'e ohaijey wiki kuatiarogue kuéra",
 'email' => 'Pareha eleytróniko',
 
 # User rights
@@ -347,9 +344,6 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Statistics
 'statistics' => 'Papyrekokuaa',
 
-'disambiguations' => 'Kuatiarogue mohesakãporãha',
-'disambiguationspage' => 'Template:Disambig',
-
 'doubleredirects' => "Ñembohapejey jo'apyre",
 
 'brokenredirects' => "Ñembohapejey hekopegua'ỹva",
@@ -409,9 +403,6 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'allpagesto' => 'Ehechauka kuatia rogue opáva:  -pe',
 'allarticles' => 'Opa kuatia rogue',
 'allinnamespace' => "Opa kuatia rogue (pa'ũ $1)",
-'allnotinnamespace' => 'Opaite kuatiarogue (fuera del espacio $1)',
-'allpagesprev' => 'Mboyvegua',
-'allpagesnext' => 'Upeigua',
 'allpagessubmit' => 'Hechauka',
 
 # Special:Categories

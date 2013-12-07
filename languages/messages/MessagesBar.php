@@ -476,7 +476,7 @@ Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seit
 'loginlanguagelabel' => 'Sproch: $1',
 
 # Change password dialog
-'resetpass' => 'Posswort ändern',
+'changepassword' => 'Posswort ändern',
 'oldpassword' => 'Oids Posswort:',
 'newpassword' => 'Neichs Posswort:',
 'retypenew' => 'Neichs Posswort (nuamoi):',
@@ -654,8 +654,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'revdelete-text' => "'''Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.'''
 {{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.",
 'revdel-restore' => 'Siachtborkeit endan',
-'revdel-restore-deleted' => 'gleschte Versiona',
-'revdel-restore-visible' => 'sichtbore Versiona',
 'pagehist' => 'Versiónsgschicht',
 'deletedhist' => 'Gléschde Versiónen',
 
@@ -712,7 +710,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 # Preferences page
 'preferences' => 'Eihstellungen',
 'mypreferences' => 'Mei Preferenz',
-'changepassword' => 'Posswort ändern',
 'prefs-editing' => 'Beorweiten',
 'rows' => 'Zeiln:',
 'columns' => 'Spoiten',
@@ -1023,9 +1020,6 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'allpagesto' => 'Seiten auhzoang bis:',
 'allarticles' => 'Olle Seitn',
 'allinnamespace' => 'Olle Seiten (Naumensraum: $1)',
-'allnotinnamespace' => 'Ollte Seiten  (néd im $1 Naumensraum)',
-'allpagesprev' => 'Vurige',
-'allpagesnext' => 'Naxde',
 'allpagessubmit' => 'Owendn',
 'allpagesprefix' => 'Seiten zoang mid Präfix:',
 'allpagesbadtitle' => "Da eihgeewerne Seitennaum is néd gütig: Er hod éntwéder a vurauhgstöds Sprooch-, a Interwiki-Kyrzel óder enthoitt oah óder mererne Zeichen, dé in d' Seitennaumen néd vawendt wern derffm.",
@@ -1381,7 +1375,6 @@ In de zwoa Fälle miaßadst, fåis des gwünscht is, de Seitn händisch vaschiam
 
 Bittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib kuaz '''wieso'''<nowiki>'st</nowiki> de Seitn vaschiam mechst.",
 'movearticle' => 'Seitn vaschiam:',
-'movenologin' => 'Du bist néd ågmödt',
 'movenologintext' => 'Zum Vaschiam muaßt a registriada und [[Special:UserLogin|ãngmöideta Benutza]] sei.',
 'movenotallowed' => 'Du håst ka Berechtigung zum Vaschiam vu Seitn.',
 'movenotallowedfile' => 'Du håst ka Berechtigung zum Vaschiam vu Datein.',
@@ -1394,8 +1387,6 @@ Bittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib ku
 'movepage-moved' => "'''D'Seitn „$1“ is nåch „$2“ vaschom woan.'''",
 'movepage-moved-redirect' => 'Es is a Weiderloatung erstöd worn.',
 'articleexists' => 'Unter dém Naum existierd schoh a Seiten. Bittscheh nimm an aundern Naumen her.',
-'talkexists' => "D' Seiten söwer is erfóigreich vaschóm worn, ower d' zuagherige Dischkrierseiten néd, weis mid dém Titel schoh oane gibt. Bittscheh kymmerd dé händisch ums zaummfyrn.",
-'movedto' => 'vaschóm auf',
 'movetalk' => "Waunns geet, d' Dischkrierseiten aa midvaschiam",
 'movelogpage' => 'Vaschiabungs-Logbuach',
 'movereason' => 'Grund:',

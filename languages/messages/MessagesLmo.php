@@ -470,6 +470,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'loginlanguagelabel' => 'Lengua: $1',
 
 # Change password dialog
+'changepassword' => "Mudifega la paròla d'urdin",
 'oldpassword' => "Paròla d'urdin végja:",
 'newpassword' => "Paròla d'urdin növa:",
 'retypenew' => "Scriv ancamò la paròla d'urdin növa:",
@@ -621,7 +622,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'preferences' => 'Preferenz',
 'mypreferences' => 'i mè preferenz',
 'prefs-edits' => 'Quantità de mudifegh faa:',
-'changepassword' => "Mudifega la paròla d'urdin",
 'prefs-skin' => "Aspett de l'interfacia",
 'datedefault' => 'Nissüna preferenza',
 'prefs-datetime' => 'Data e urari',
@@ -901,8 +901,6 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'allpagesfrom' => 'Fàm vedè i paginn a partì da:',
 'allpagesto' => 'Fàm ved i paginn fín a:',
 'allarticles' => 'Tucc i artícoj',
-'allpagesprev' => 'Precedent',
-'allpagesnext' => 'Pròssim',
 'allpagessubmit' => 'Inanz',
 'allpagesprefix' => "Varda i pagin ch'i scumenza per:",
 
@@ -1181,8 +1179,6 @@ In quij cas chì, se'l var la pena, ghe sarà de spustà a man i infurmazión de
 'movepage-moved-redirect' => "L'è staa creaa un redirect.",
 'articleexists' => "Una pagina che la se ciama cumpagn la gh'è giamò, opüra el nom che hii scernüü al va minga ben. <br />
 Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
-'talkexists' => "'''La pagina a l'è stada spustada ben, ma'l s'è pudüü minga spustà la pagina de discüssión perchè gh'en è giamò un altra cun l'istess nom. Per piasè met insema i cuntegnüü di dò paginn a man'''",
-'movedto' => 'spustaa vers:',
 'movetalk' => 'Sposta anca la pagina de discüssión',
 'movelogpage' => 'Register di San Martin',
 'movereason' => 'Resón:',

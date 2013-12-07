@@ -325,7 +325,7 @@ $messages = array(
 'loginlanguagelabel' => 'སྐད་རིགས། $1',
 
 # Change password dialog
-'resetpass' => 'ལམ་ཡིག་བརྗེ་བ།',
+'changepassword' => 'ལམ་ཡིག་བརྗེ་བ།',
 'resetpass_announce' => 'ཁྱེད་ཀྱིས་ང་ཚོས་བཏང་བའི་གནས་སྐབས་ལམ་ཡིག་ལ་བརྟེན་ནས་ནང་འཛུལ་བྱས་འདུག ནང་འཛུལ་ཆ་ཚང་བ་བྱེད་པར་འདིར་ངེས་པར་དུ་ལམ་ཡིག་གསར་བ་འཇུག་དགོས།',
 'oldpassword' => 'ལམ་ཡིག་རྙིང་བ།',
 'newpassword' => 'ལམ་ཡིག་གསར་བ།',
@@ -471,7 +471,6 @@ $messages = array(
 # Preferences page
 'mypreferences' => 'དགའ་འདེམས།',
 'prefs-edits' => 'རྩོམ་སྒྲིག་གྲངས་ཚད།',
-'changepassword' => 'ལམ་ཡིག་བརྗེ་བ།',
 'skin-preview' => 'སྔོན་ལྟ།',
 'prefs-personal' => 'སྤྱོད་མིའི་སྤྱི་ཁོག',
 'prefs-rc' => 'ཉེ་བའི་བཟོ་བཅོས།',
@@ -770,12 +769,10 @@ $messages = array(
 
 # Move page
 'movearticle' => 'ཤོག་ངོས་སྤོར་བ།',
-'movenologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'newtitle' => 'ཁ་བྱང་གསར་བ་ལ།',
 'move-watch' => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 'movepagebtn' => 'ཤོག་ངོས་སྤོ་བ།',
 'pagemovedsub' => 'སྤོར་བ་ལེགས་གྲུབ།',
-'movedto' => 'སྤོར་ཟིན་ཡུལ།',
 'movelogpage' => 'རྩོམ་ཡིག་སྤོ་བ།',
 'movereason' => 'རྒྱུ་མཚན།',
 'revertmove' => 'ཕྱིར་ལོག',

@@ -298,8 +298,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 # Revision deletion
 'rev-delundel' => 'nägţ/vaŗ jarā',
 'revdel-restore' => 'Mõitiņt nǟdõbõzt',
-'revdel-restore-deleted' => 'jarā kištāntõd redaktsijõd',
-'revdel-restore-visible' => 'nǟdõbõd redaktsijõd',
 
 # Merge log
 'revertmerge' => 'Kīeld jarā kubbõ vieddimi',
@@ -613,8 +611,6 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'pagemovedsub' => 'Lēḑ um jeddõpēḑõn sōtõd',
 'movepage-moved' => '\'\'\'"$1" um jeddõpēḑõn sōtõd "$2"alā\'\'\'',
 'articleexists' => 'Sīe nimkõks kēratõks um jubā vȯlmizõs agā täd vēļdõt nim um äbkȭlbatõb. Pōlaks vēļõgid ūž nim.',
-'talkexists' => "'''Lēḑ um jeddõpēḑõn sōtõd, bet nõvpidāmiz-līedtõ äb sōnd jeddõpēḑõn sōtõ, sīestõ ku ūd nim allõ um nõvpidāmiz-lēḑ jubā vȯlmizõs. Pōlaks viedāgid nõvpidāmiz-lēḑõd īž kubbõ.'''",
-'movedto' => 'Jeddõpēḑõn sōtõd pēļizkēra alā:',
 'movetalk' => 'Sōtõgid jeddõpēḑõn ka nõvpidāmiz lēḑ',
 'movelogpage' => 'Jarā vīmiz log',
 'movereason' => 'Sī:',

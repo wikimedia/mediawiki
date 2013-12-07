@@ -862,7 +862,7 @@ Se vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontrib
 'user-mail-no-body' => 'Provo sendi malplenan aŭ sensence mallongan retpošton.',
 
 # Change password dialog
-'resetpass' => 'Ŝanĝi pasvorton',
+'changepassword' => 'Ŝanĝi pasvorton',
 'resetpass_announce' => 'Vi ensalutis kun provizora retpoŝtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton ĉi tien:',
 'resetpass_text' => '<!-- Aldonu tekston ĉi tien -->',
 'resetpass_header' => 'Ŝanĝi kontan pasvorton',
@@ -1254,10 +1254,6 @@ Kiel administranto, vi povas rigardi ĉi tiun diferencon, eble estas detaloj en 
 'revdelete-nooldid-title' => 'Nevalida cela revizio',
 'revdelete-nooldid-text' => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun
 funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
-'revdelete-nologtype-title' => 'Neniu protokol-tipo estis donita',
-'revdelete-nologtype-text' => 'Vi ne specifis protokolan tipon por fari ĉi tiun funkcion.',
-'revdelete-nologid-title' => 'Malvalida protokolero',
-'revdelete-nologid-text' => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
 'revdelete-no-file' => 'La specifita dosiero ne ekzistas.',
 'revdelete-show-file-confirm' => 'Ĉu vi certas ke vi volas vidi forigitan revizion de la dosiero "<nowiki>$1</nowiki>" de $2, $3?',
 'revdelete-show-file-submit' => 'Jes',
@@ -1290,8 +1286,6 @@ $1",
 'logdelete-failure' => "'''Protokola videbleco ne estis akordebla:'''
 $1",
 'revdel-restore' => 'Ŝanĝi videblecon',
-'revdel-restore-deleted' => 'forigitaj revizioj',
-'revdel-restore-visible' => 'videblaj revizioj',
 'pagehist' => 'Paĝa historio',
 'deletedhist' => 'Forigita historio',
 'revdelete-hide-current' => 'Eraro kaŝante la aĵon de $2, $1: ĉi tiu estas la nuna revizio.
@@ -1401,7 +1395,6 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-default' => '$1 rezultoj:',
 'search-interwiki-more' => '(plu)',
 'search-relatedarticle' => 'Relataj',
-'mwsuggest-disable' => 'Malŝalti serĉajn sugestojn',
 'searcheverything-enable' => 'Traserĉi ĉiujn nomspacojn',
 'searchrelated' => 'rilataj',
 'searchall' => 'ĉiuj',
@@ -1424,7 +1417,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'preferences' => 'Preferoj',
 'mypreferences' => 'Preferoj',
 'prefs-edits' => 'Nombro de redaktoj:',
-'changepassword' => 'Ŝanĝi pasvorton',
 'prefs-skin' => 'Etoso',
 'skin-preview' => 'Antaŭrigardo',
 'datedefault' => 'Nenia prefero',
@@ -2238,9 +2230,6 @@ Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (in
 'allpagesto' => 'Montri paĝoj finante de:',
 'allarticles' => 'Ĉiuj paĝoj',
 'allinnamespace' => 'Ĉiuj paĝoj ($1 nomspaco)',
-'allnotinnamespace' => 'Ĉiuj paĝoj (ne en nomspaco $1)',
-'allpagesprev' => 'Antaŭen',
-'allpagesnext' => 'Sekven',
 'allpagessubmit' => 'Ek!',
 'allpagesprefix' => 'Montri paĝojn kun prefikso:',
 'allpagesbadtitle' => 'La donata paĝo estis nevalida aŭ havis interlingvan aŭ intervikian prefikson. Ĝi eble enhavas unu aŭ plurajn signojn kiu ne povas esti uzataj en titoloj.',
@@ -2836,7 +2825,6 @@ Antaŭ daŭrigi, bonvolu certiĝi, ke vi komprenas la konsekvencojn de tiuj ĉi 
 Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movearticle' => 'Alinomigi paĝon',
 'moveuserpage-warning' => "'''Averto:''' Vi preskaŭ alinomigas paĝon de uzanto. Bonvolu noti ke nur la paĝo estos alinomigita kaj la uzanto mem ''ne'' estos alinomigita.",
-'movenologin' => 'Ne ensalutinta',
 'movenologintext' => 'Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.',
 'movenotallowed' => 'Vi ne rajtas movi paĝojn.',
 'movenotallowedfile' => 'Vi ne havas rajton alinomigi dosierojn.',
@@ -2852,10 +2840,6 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'articleexists' => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
 'cantmove-titleprotected' => 'Vi ne povas movi paĝo al ĉi loko, ĉar la nova titolo estis protektita kontraŭ kreado',
-'talkexists' => 'Oni ja sukcesis movi la paĝon mem, sed
-ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
-Bonvolu permane kunigi ilin.',
-'movedto' => 'alinomita al',
 'movetalk' => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
 'move-subpages' => 'Alinomigi ĉiujn subpaĝojn (maksimume $1)',
 'move-talk-subpages' => 'Alinomigi subpaĝojn de diskuto-paĝo (ĝis $1)',

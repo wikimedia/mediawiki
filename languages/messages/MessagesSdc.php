@@ -478,7 +478,7 @@ Si la registhrazioni è isthadda criadda pa un\'errori, pói ignorà chisth\'imb
 'loginlanguagelabel' => 'Linga: $1',
 
 # Change password dialog
-'resetpass' => "Ciamba paràura d'órdhini",
+'changepassword' => "Ciamba paràura d'órdhini",
 'resetpass_announce' => "L'intradda è isthadda effettuadda cun un còdizi timpuràniu, inviaddu via postha erettrònica.
 
 Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'órdhini inogghi:",
@@ -771,7 +771,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'preferences' => 'Prifirenzi',
 'mypreferences' => "Li me' prifirenzi",
 'prefs-edits' => 'Mudìfigghi effettuaddi:',
-'changepassword' => "Ciamba paràura d'órdhini",
 'prefs-skin' => 'Aipettu gràficu',
 'skin-preview' => 'antiprimma',
 'datedefault' => 'Nisciuna prifirènzia',
@@ -1167,9 +1166,6 @@ Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla.
 'allpagesto' => "Musthra li pagini finz'a:",
 'allarticles' => 'Tutti li pàgini',
 'allinnamespace' => 'Tutti li pàgini di lu namespace $1',
-'allnotinnamespace' => 'Tutti lì pàgini, eschrusu lu namespace $1',
-'allpagesprev' => 'Prizzidenti',
-'allpagesnext' => 'Sighenti',
 'allpagessubmit' => 'Vai',
 'allpagesprefix' => "Musthra li pàgini ch'ischuminzani cun:",
 'allpagesbadtitle' => "Lu tìturu indicaddu pa la pàgina nò è vàriddu o cunteni prefissi interlinga o interwiki. Pudia puru cuntinì unu o più caràtteri chi nò si pudiani usà i' li tìturi.",
@@ -1529,7 +1525,6 @@ azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
 
 In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuimmazioni cuntinuddi i' la pàgina di dischussioni.",
 'movearticle' => 'Ippustha la pàgina',
-'movenologin' => 'Intradda nò effettuadda',
 'movenologintext' => "L'ippusthamentu di li pàgini è cunsintiddu soru a l'utenti registhraddi chi so [[Special:UserLogin|intraddi]] i' lu situ.",
 'movenotallowed' => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini.",
 'newtitle' => 'Nobu tìturu:',
@@ -1539,8 +1534,6 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'movepage-moved' => '\'\'\'"$1" è isthadda ippusthadda a "$2"\'\'\'',
 'articleexists' => "Una pàgina cun chisth'innòmmu isisthi già, oppuru l'innòmmu sciubaraddu no à vàriddu. Sciubarà un'althru tìturu.",
 'cantmove-titleprotected' => "L'ippusthamentu di la pàgina nò è pussìbiri parchí lu nobu tìturu è isthaddu prutiggiddu pa impidinni la criazioni",
-'talkexists' => "'''La pàgina è isthadda ippusthadda currettamenti, ma nò è isthaddu pussìbiri ippusthà la pàgina di dischussioni parchí ni isisthi già un'althra cu' lu nobu tìturu. Aggiugnì a manu li cuntiniddi di li dui pàgini.'''",
-'movedto' => 'ippusthadda a',
 'movetalk' => 'Ippustha puru la pàgina di dischussioni.',
 'movelogpage' => 'Ippusthamenti',
 'movelogpagetext' => "Chisthu è l'erencu di li pàgini ippusthaddi.",

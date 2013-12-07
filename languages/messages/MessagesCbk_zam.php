@@ -56,7 +56,7 @@ $messages = array(
 'otherlanguages' => 'na otro maga lenguaje',
 'lastmodifiedat' => 'Ya modifica con este pagina por ultimo vez en hora $2 del $1.',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Acerca de {{SITENAME}}',
 'aboutpage' => 'Project:Acerca de',
 'copyright' => 'Obtenible el maga texto de este Wikipedia bajo los terminos y maga condicion del <i>$1</i>.',
@@ -82,6 +82,9 @@ $messages = array(
 'accountcreated' => 'El cuenta registro del usuario es creando',
 'accountcreatedtext' => 'Creao ya el cuenta registro por usuario $1.',
 
+# Change password dialog
+'changepassword' => 'Cambia con el contraseña',
+
 # Edit pages
 'blockedtitle' => 'El usuario es prohibido o bloqueado',
 'accmailtitle' => 'Enviao ya el contraseña.',
@@ -91,9 +94,6 @@ El contraseña de este nuevo cuenta puede cambia na pagina ''[[Special:ChangePas
 
 # Search results
 'search-result-size' => '$1 ({{PLURAL:$2|1 palabra|$2 maga palabra}})',
-
-# Preferences page
-'changepassword' => 'Cambia con el contraseña',
 
 # Recent changes
 'recentchanges' => 'Maga Reciente Cambio',
@@ -115,8 +115,8 @@ Por favor mira tambien el maga [[Special:WantedCategories|categoria requeridas]]
 # Watchlist
 'watch' => 'Vicia',
 
-'changed' => 'cambiao',
 'created' => 'creao',
+'changed' => 'cambiao',
 
 # Delete
 'actioncomplete' => 'Completo el accion',

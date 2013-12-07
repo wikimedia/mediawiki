@@ -358,6 +358,7 @@ E ʻoluʻolu, e kūlia hou.',
 'loginlanguagelabel' => "Kou 'ōlelo: $1",
 
 # Change password dialog
+'changepassword' => 'E loli i ka palapala hua‘ōlelo',
 'newpassword' => 'ʻŌlelo hūnā hou:',
 'changepassword-success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
 
@@ -467,7 +468,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Preferences page
 'preferences' => 'Kaʻu makemake',
 'mypreferences' => 'Ka‘u makemake',
-'changepassword' => 'E loli i ka palapala hua‘ōlelo',
 'prefs-skin' => 'ʻIli',
 'skin-preview' => 'Nāmua',
 'datedefault' => 'ʻAʻohe makemake',
@@ -607,8 +607,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'nextpage' => 'Mea aʻe ($1)',
 'prevpage' => 'Mea ma mua aʻe ($1)',
 'allarticles' => 'Nā mo‘olelo apau loa',
-'allpagesprev' => 'Mua',
-'allpagesnext' => 'Hope',
 'allpagessubmit' => 'E huli',
 
 # Special:Categories
@@ -736,7 +734,6 @@ E ʻike iā $2 no ka papa o nā kāpae ʻana hou.',
 'movepagebtn' => 'Hoʻoneʻe i ka ʻaoʻao',
 'pagemovedsub' => 'Kūleʻa ka hoʻoneʻe ʻana',
 'movepage-moved' => '\'\'\'Ua hoʻoneʻe ʻia ʻo "$1" iā "$2"\'\'\'',
-'movedto' => 'ua neʻe ʻia i/iā',
 'movereason' => 'Kumu:',
 'delete_and_move' => 'E kāpae a e ho‘ololi i ka inoa',
 'delete_and_move_confirm' => '‘Ae, e kāpae i ka ‘ao‘ao',

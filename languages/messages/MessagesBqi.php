@@ -8,9 +8,11 @@
  * @file
  *
  * @author Behdarvandyani
+ * @author Ebraminio
  * @author GerardM
  * @author Huji
  * @author Meno25
+ * @author Mogoeilor
  */
 
 $fallback = 'fa';
@@ -45,7 +47,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'نشودادن امیل مو درامیلهای آگاهی-خبری',
 'tog-shownumberswatching' => 'نشودادن شماره کاربران درحال کار یاتماشا',
 'tog-fancysig' => 'امضاهای ناتمام - بدون لینکهای اتوماتیک',
-'tog-showjumplinks' => 'قادر ساختن "پرش به" لینکهای دردسترس',
 'tog-uselivepreview' => 'استفاده زه پیش نمایش زنده(جاوااسکریپ) (تجربی )',
 'tog-forceeditsummary' => 'یادآوری سریع به مو هنگام اصلاح عقیم وخلاصه',
 'tog-watchlisthideown' => 'قایم کردن اصلاحات مو  زه لیست پیگیریها',
@@ -164,8 +165,7 @@ $messages = array(
 'articlepage' => 'دیدن صفحه محتوا',
 'talk' => 'بحث',
 'views' => 'مشاهدات',
-'toolbox' => '
-جعبه ابزار',
+'toolbox' => 'اوزار گه',
 'userpage' => 'دیدن صفحه کاربر',
 'projectpage' => 'دیدن صفحه پروژه',
 'imagepage' => 'دیدن صفحه مدیا',
@@ -184,7 +184,7 @@ $messages = array(
 'jumptonavigation' => 'راندن یا هدایت کردن',
 'jumptosearch' => 'جستن',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'درباره {{SITENAME}}',
 'aboutpage' => 'Project:درباره',
 'copyright' => 'محتوا باای شماره قابل دسترسیه
@@ -195,7 +195,6 @@ $messages = array(
 'disclaimers' => 'انکار کننده ها',
 'disclaimerpage' => 'Project:انکار کاربران',
 'edithelp' => 'کمک برای اصلاح',
-'edithelppage' => 'Help:اصلاح',
 'helppage' => 'Help:محتوا',
 'mainpage' => 'صفحه اصلی',
 'mainpage-description' => 'صفحه اصلی',
@@ -219,8 +218,6 @@ $1',
 'pagetitle-view-mainpage' => 'سرصفحه',
 'retrievedfrom' => 'بازیافت از"$1"',
 'youhavenewmessages' => 'پیام تاره داری $1 ($2).',
-'newmessageslink' => 'پیام تازه',
-'newmessagesdifflink' => 'تغییر آخری',
 'youhavenewmessagesmulti' => 'ایسا پیام تازه دارین منه
 $1',
 'editsection' => 'اصلاح',
@@ -395,8 +392,6 @@ $1',
 'prevn' => 'قبلی {{PLURAL:$1|$1}}',
 'nextn' => 'بعدی {{PLURAL:$1|$1}}',
 'viewprevnext' => 'مشاهده ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:محتوا',
-'powersearch' => 'جستجوی کاملتر',
 
 # Preferences page
 'preferences' => 'اولویتها',
@@ -436,7 +431,6 @@ $1',
 'recentchangeslinked-feed' => 'تغییرات مرتبط',
 'recentchangeslinked-toolbox' => 'تغییرات مرتبط',
 'recentchangeslinked-title' => 'تغییرهای مرتبط با $1',
-'recentchangeslinked-noresult' => 'در دوره زمانی داده‌شده تغییری در صفحه‌های لینک داده رخ نداده‌',
 'recentchangeslinked-summary' => " ای صفحه خاص تغییرات اخیر در صفحه‌های لینک داده شده به این صفحه را نشو اده.
 صفحه‌هایی که در لیست پی‌گیریهای ایسا بون به شکل '''سیاه''' نشو داده ابون.",
 
@@ -482,8 +476,6 @@ $1',
 
 # Statistics
 'statistics' => 'آمار',
-
-'disambiguations' => 'صفحات رفع ابهام',
 
 'doubleredirects' => 'تغییر مسیر دوبله',
 
@@ -544,7 +536,7 @@ $2',
 'allpagesprefix' => 'نشو دادن صفحات همراه با پیشوند:',
 
 # Special:Categories
-'categories' => 'دسته ها',
+'categories' => 'دسته آ',
 
 # Email user
 'emailuser' => 'امیل ای کاربر',
@@ -560,12 +552,12 @@ $2',
 'removedwatchtext' => 'آن صفحه"[[:$1]]" جابجا وابیده زه[[Special:لیست پیگیری|لیست پیگیری ایسا]].',
 'watch' => 'پی‌گیری',
 'watchthispage' => 'پیگیری ای صفحه',
-'unwatch' => 'عدم پیگیری',
+'unwatch' => 'پيگري نبيڎه',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحات}} درلیست پیگیری ایسا, صفحات صحبت حساب نیبوه.',
 'wlshowlast' => 'نمایش آخرین $1 ساعت $2 روز $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'درحال پیگیری...',
+'watching' => 'مئن حالت پي جوري',
 'unwatching' => 'درحالت عدم پیگیری...',
 
 # Delete
@@ -588,7 +580,7 @@ $2',
 'protectlogpage' => 'نمایه حفاظت وحمایت',
 'prot_1movedto2' => '[[$1]] جابجا وابید به[[$2]]',
 'protectcomment' => 'دلیل:',
-'protectexpiry' => 'سپری وابیده ها:',
+'protectexpiry' => 'سپری وابیڎه ا:',
 'protect_expiry_invalid' => 'با سپری وابیدن وقت غیر معتبره.',
 'protect_expiry_old' => 'سپری وابیدن وقت مربوط به گذشته.',
 'protect-text' => "ایسا ممکنه بوینین وتغییر بدین سطح حمایت زه ای صفحه'''$1'''.",
@@ -683,9 +675,6 @@ $2',
 'movepage-moved' => '\'\'\'"$1" جابجا وابیده به "$2"\'\'\'',
 'articleexists' => 'یه صفحه زه ای  نوم تقریبا موجوده, یا نومی که ایسا انتخاب کردین غیر  معتبره
 لطفا نوم دیه انتخاب کنین.',
-'talkexists' => "'''آن صفحه خوس با بخت وتوفیق جابجا وابید, ولی صفحه صحبت نتره جابجا بوه چونکه یکی تقریبا موجوده درعنوان تازه
-لطفا به صورت دستی آنها را ترکیب کنین.'''",
-'movedto' => 'جابجا وابید به',
 'movetalk' => 'جابجایی صفحه صحبت مربوطه',
 'movelogpage' => 'نمایه جابجایی',
 'movereason' => 'دلیل:',
@@ -797,10 +786,6 @@ $2',
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'اصلاح ای صفحه با استفاده زه یه ویرایشگر خارجی',
-'edit-externally-help' => ' سی اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] اصلاح کننده خارجی را بوینین.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',

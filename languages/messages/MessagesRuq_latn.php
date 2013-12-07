@@ -97,7 +97,7 @@ $messages = array(
 'jumptonavigation' => 'navigacion',
 'jumptosearch' => 'kaută',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Dajpul {{SITENAME}}',
 'aboutpage' => 'Project:Dajpul {{SITENAME}}',
 'copyrightpage' => "{{ns:project}}:Prava d'autoru",
@@ -106,7 +106,6 @@ $messages = array(
 'disclaimers' => 'tǎmenuls',
 'disclaimerpage' => 'Project:tǎmenul',
 'edithelp' => 'Ajutor pentru editaere',
-'edithelppage' => 'Help:Editaere',
 'helppage' => 'Help:Ajutor',
 'mainpage' => 'Pažu principu',
 'mainpage-description' => 'Pažu principu',
@@ -115,7 +114,6 @@ $messages = array(
 
 'retrievedfrom' => 'Aduse de "$1"',
 'youhavenewmessages' => 'Veses $1 ($2).',
-'newmessageslink' => 'mesages noves',
 'editsection' => 'Editaere',
 'editold' => 'edita',
 'editsectionhint' => 'Editaere ţisecion: $1',
@@ -191,8 +189,6 @@ Te rog notari la din kontribuţi al {{SITENAME}} sunt konsideraere relesavat sup
 
 # Search results
 'viewprevnext' => 'Vu ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Ajutor',
-'powersearch' => 'kaută avansata',
 
 # Preferences page
 'mypreferences' => 'Maj prefirenţu',

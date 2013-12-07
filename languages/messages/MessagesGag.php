@@ -928,8 +928,6 @@ Bu hallerdä läazım kendiniz ellän sayfaları aktarmaa yaki birleştirmää."
 'movepage-moved' => '\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'',
 'articleexists' => 'Bu adda bir sayfa bulunêr yaki o ad geçersiz angısını seçtiniz.
 Yalvarêrêz başka bir ad seçmää.',
-'talkexists' => "'''Bu sayfa kendisi başarılan aktarıldı, ama konuşmaa sayfası aktarılamadı neçin ki eni ad altında bulunêr taa birisi. Yalvarêrêz onnarı ellän birleştirmää.'''",
-'movedto' => 'taşındı:',
 'movetalk' => 'Varsa hem aktar "konuşmaa" sayfasını.',
 'movelogpage' => 'Ad diişmäk jurnalı',
 'movereason' => 'Sebep',

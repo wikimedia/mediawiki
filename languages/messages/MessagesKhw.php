@@ -454,7 +454,6 @@ $1 (صفحہ موجود نیکی)',
 'loginlanguagelabel' => 'زبان: $1',
 
 # Change password dialog
-'resetpass' => 'پاسورڈو چینج کورے',
 'resetpass_announce' => 'تو ای برقی ارسال کردہ عارضی کوڈ ورڈو سوم جستہ داخل بیتی آسوس.
 داخلِ نوشتہ بیکو عملو مکمل کوریکو بچے تہ ھیارا نوغ پاسورڈ متعین کوریلک بوی:',
 'resetpass_header' => 'کھاتو پاسورڈو تبدیل کورے',
@@ -595,8 +594,6 @@ $1 (صفحہ موجود نیکی)',
 'revdelete-radio-set' => 'Yes/دی',
 'revdelete-radio-unset' => 'نو',
 'revdel-restore' => 'ظاہریتو تبدیل کورے',
-'revdel-restore-deleted' => 'حذف شدہ رویژنز',
-'revdel-restore-visible' => 'ویزیبل رویژنز',
 
 # History merging
 'mergehistory-revisionrow' => '$1 ($2) $3 . . $4 $5 $6',
@@ -812,8 +809,6 @@ HTML tags لوڑے.',",
 'allpagesfrom' => 'مطلوبہ حرفاری شروع باک صفحاتن نمائش:',
 'allpagesto' => 'مطلوبہ حرفاری ختم باک صفحاتن نمائش:',
 'allarticles' => 'تمام مقالات',
-'allpagesprev' => 'آچھو',
-'allpagesnext' => 'پروشٹیو',
 'allpagessubmit' => 'بوغے لا',
 
 # Special:Categories
@@ -953,7 +948,6 @@ HTML tags لوڑے.',",
 'pagemovedsub' => 'انتقال کامیاب',
 'movepage-moved' => '\'\'\'"$1" ھیہ ووشکی منتقل کورونو ھوی "$2"\'\'\'',
 'articleexists' => 'ھیہ عنوانو سورا کیہ صفحہ پروشٹیاری موجودشیر یا تہ درخواست کاردو  نام مستعمل نیکی براۓ مہربانی خور نامو منتخب کورے۔',
-'movedto' => 'آلونو ھوی',
 'movelogpage' => 'نوشتۂ منتقلی',
 'movereason' => 'واجھہ',
 'revertmove' => 'رجوغ',

@@ -31,7 +31,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbpageoptions' => 'Ayan bolong',
-'qbspecialpages' => 'Niduma ran Bolobolong',
 
 'returnto' => 'Impawel ed $1.',
 'help' => 'Tolong',
@@ -65,7 +64,7 @@ $messages = array(
 'protectedpage' => 'Iyayagel yan bolong',
 'jumptosearch' => 'anapen',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Nipakar ed {{SITENAME}}',
 'aboutpage' => 'Project:Nipaakar',
 'currentevents' => 'Saray nagagawa natan',
@@ -80,8 +79,6 @@ $messages = array(
 'badaccess-group0' => 'Agmo sarag ya gaween so action ya kekerewen mo.',
 
 'youhavenewmessages' => 'Walay $1 ($2).',
-'newmessageslink' => 'balo ran pakabat',
-'newmessagesdifflink' => 'sampot ya binalo',
 'youhavenewmessagesmulti' => 'Walay balo ran pakabat mo ed $1',
 'viewdeleted' => 'Nengnengen so $1?',
 
@@ -109,6 +106,7 @@ $messages = array(
 'accountcreatedtext' => 'Agawa la so user account para $1.',
 
 # Change password dialog
+'changepassword' => 'Salatan so password',
 'newpassword' => 'Balon password:',
 
 # Edit page toolbar
@@ -144,18 +142,8 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'histfirst' => 'Sankaunaan',
 'histlast' => 'Sankautetan',
 
-# Search results
-'searchsubtitle' => "'''[[:$1]]''' so inanap mo.",
-'searchsubtitleinvalid' => "'''$1''' so inanap mo.",
-'searchhelp-url' => 'Help:Saray Laman',
-'powersearch' => 'Anapen',
-
-# Quickbar
-'qbsettings-none' => 'Anggapo',
-
 # Preferences page
 'mypreferences' => 'Saray preference ko',
-'changepassword' => 'Salatan so password',
 'datedefault' => 'Anggapoy preference',
 'prefs-datetime' => 'Bilang na agew san oras',
 'prefs-rc' => 'Sampot ran binalo',
@@ -230,9 +218,6 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'allpagesfrom' => 'Ipanengneng ray bolobolong ya manlapod:',
 'allarticles' => 'Amin ran bolobolong',
 'allinnamespace' => 'Amin ya bolobolong ($1 namespace)',
-'allnotinnamespace' => 'Amin ya bolobolong (anggapo ed namespace ya $1)',
-'allpagesprev' => 'Enbeneg',
-'allpagesnext' => 'Ontombok',
 'allpagessubmit' => 'Ula',
 'allpagesprefix' => 'Ipanengneng so saray bolobolong ya walay prefix:',
 
@@ -241,7 +226,7 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'linksearch-pat' => 'Anapen so pattern:',
 'linksearch-ok' => 'Anapen',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail so ayan user',
 'emailfrom' => 'Manlapud',
 'emailto' => 'Para ed',
@@ -262,9 +247,8 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Babantayan...',
 
-'enotif_newpagetext' => 'Balo yan bolong.',
-'changed' => 'asalatan',
 'created' => 'agawa',
+'changed' => 'asalatan',
 
 # Delete
 'deletepage' => 'Buralen so bolong',
@@ -355,7 +339,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 # Special:NewFiles
 'ilsubmit' => 'Anapen',
 
-# EXIF tags
+# Exif tags
 'exif-filesource' => 'File na pinanlapuan',
 
 # 'all' in various places, this might be different for inflected languages
@@ -363,7 +347,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'namespacesall' => 'amin',
 'monthsall' => 'amin',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Kumpirmaen so E-mail address',
 'confirmemail_sent' => 'Empawet so confirmation e-mail.',
 'confirmemail_needlogin' => 'Nakaukulan mo ya $1 umpian nakompirma so email address mo.',

@@ -102,7 +102,6 @@ $messages = array(
 'qbedit' => 'Kobɔngisa',
 'qbpageoptions' => 'Lonkásá óyo',
 'qbmyoptions' => 'Lonkásá na ngáí',
-'qbspecialpages' => 'Nkásá gudi',
 'faq' => 'Mitúná Mizóngelaka (MM)',
 
 # Vector skin
@@ -169,7 +168,7 @@ $messages = array(
 'jumptonavigation' => 'bolúki',
 'jumptosearch' => 'boluki',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Elɔ́kɔ elobí {{SITENAME}}',
 'aboutpage' => 'Project:Etalí',
 'copyright' => 'Maloba ma nkomá mazalí na ndingisa ya $1.',
@@ -178,7 +177,6 @@ $messages = array(
 'disclaimers' => 'Ndelo ya boyanoli',
 'disclaimerpage' => 'Project:Boyanoli ndelo',
 'edithelp' => 'Kobimisela bosálisi',
-'edithelppage' => 'Help:Libɔngeli',
 'mainpage' => 'Lonkásá ya libosó',
 'mainpage-description' => 'Lokásá ya libosó',
 'portal' => 'Bísó na bísó',
@@ -188,7 +186,6 @@ $messages = array(
 'ok' => 'Nandimi',
 'retrievedfrom' => 'Ezwámí úta «$1»',
 'youhavenewmessages' => 'Ozweí $1 ($2).',
-'newmessageslink' => 'nsango ya sika',
 'editsection' => 'kobɔngisa',
 'editold' => 'kobɔngisa',
 'viewsourceold' => 'Komɔ́nisa mosólo',
@@ -346,10 +343,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Search results
 'searchresults' => 'Bozwi bwa boluki',
 'searchresults-title' => 'Bozwi bwa boluka bwa «$1»',
-'searchresulttext' => 'Mpɔ̂ na liyébísí lya {{SITENAME}}, ótala [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Olukákí '''[[:$1]]'''  ([[Special:Prefixindex/$1|nkásá yɔ́nsɔ ibandí na « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|nkásá yɔ́nsɔ ikangísí na « $1 »]])",
-'searchsubtitleinvalid' => "Olukákí « '''$1''' »",
-'notitlematches' => 'Títɛlɛ yɔ̌kɔ́ tɛ́ ekokánísí',
 'notextmatches' => 'Nkomá ya nkásá yɔ̌kɔ́ tɛ́ ekokánísí',
 'prevn' => '{{PLURAL:$1|$1}} ya libosó',
 'nextn' => 'bolɛngɛli {{PLURAL:$1|$1}}',
@@ -367,13 +360,9 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'search-interwiki-default' => 'Bozwi bwa $1 :',
 'search-interwiki-more' => '(elekí)',
 'searchall' => 'nyɔ́nsɔ',
-'nonefound' => "'''Notí''' : Boluki bwa likwá bosálí na ndámbo ya ntáká ya nkómbó.
-Ómeka kobakisa ''all:'' o libóso lya esɛ́ngi mpɔ̂ na koluka maloba ma nkomá mánsɔ (ekɔ́tí ntembe, bimekisele, b.n.b.), tǒ kobakisa ntáka ya nkómbó eye olingí o libóso.",
-'powersearch' => 'Boluki',
 'powersearch-legend' => 'Boluki bopúsání',
 'powersearch-ns' => 'Koluka o ntáká ya nkómbó :',
 'powersearch-redir' => 'Kotíya molɔngɔ́ mwa mayendisi',
-'powersearch-field' => 'Koluka',
 'powersearch-toggleall' => 'Nyɔ́nsɔ',
 'powersearch-togglenone' => 'Mɔ́kɔ́ tɛ́',
 
@@ -484,8 +473,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Statistics
 'statistics' => 'Mitúya',
 
-'disambiguations' => 'Bokokani',
-
 'doubleredirects' => 'Boyendisi mbala míbalé',
 
 # Miscellaneous special pages
@@ -516,8 +503,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'nextpage' => 'Lonkásá ya nsima ($1)',
 'prevpage' => 'Lonkasá o libosó ($1)',
 'allarticles' => 'Nkásá ínsɔ',
-'allpagesprev' => '< ya libosó',
-'allpagesnext' => 'bolɛngɛli >',
 'allpagessubmit' => 'kokɛndɛ',
 
 # Special:Categories
@@ -629,7 +614,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'movearticle' => 'Kobóngola nkómbó ya ekakoli :',
 'move-watch' => 'Kolánda lonkásá la líziba mpé lonkásá la tíndamelo',
 'movepagebtn' => 'Kobóngola lonkásá',
-'movedto' => 'nkómbó ya sika',
 'movelogpage' => 'Zuluná ya bobóngoli nkómbó',
 'movereason' => 'Ntína :',
 'revertmove' => 'kozóngela',

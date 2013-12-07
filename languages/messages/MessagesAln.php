@@ -524,7 +524,7 @@ Ju lutemi pritni pak për me provue prap.',
 'suspicious-userlogout' => 'Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy',
 
 # Change password dialog
-'resetpass' => 'Ndrysho fjalëkalimin',
+'changepassword' => 'Ndërrimi i fjalëkalimit',
 'resetpass_announce' => 'Jeni kyçë me nji kod të përkohshëm të dërguem me email.
 Për me krye kyçjen, specifikoni fjalëkalimin e ri këtu:',
 'resetpass_text' => '<!-- Shto tekst këtu -->',
@@ -798,8 +798,6 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revisiondelete' => 'Fshij/kthe verzionet',
 'revdelete-nooldid-title' => 'Version i dëshiruar i pavfleshëm',
 'revdelete-nooldid-text' => 'Ose nuk keni përcaktuar një version(e) të dëshiruar për veprimin, ose versioni nuk ekziston, ose po mundoheni të fshihni versionin e tanishëm.',
-'revdelete-nologtype-title' => 'Nuk është dhënë asnjë lloj i të dhënave',
-'revdelete-nologtype-text' => 'Nuk keni caktuar llojin e të dhënave për të realizuar veprimin.',
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
 'revdelete-selected' => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
@@ -897,7 +895,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mâ shumë)',
 'search-relatedarticle' => 'Të ngjajshme',
-'mwsuggest-disable' => 'Deaktivizo sygjerimet me AJAX',
 'searcheverything-enable' => 'Kërko në tâna hapësinat',
 'searchrelated' => 'të ngjajshme',
 'searchall' => 'tâna',
@@ -920,7 +917,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'preferences' => 'Parapëlqimet',
 'mypreferences' => 'Parapëlqimet e mija',
 'prefs-edits' => 'Numri i redaktimeve:',
-'changepassword' => 'Ndërrimi i fjalëkalimit',
 'prefs-skin' => 'Doka',
 'skin-preview' => 'Parapâmja',
 'datedefault' => "S'ka parapëlqim",
@@ -1380,9 +1376,6 @@ Në këto raste, duheni me i bashkue manualisht këto faqe nëse dëshironi.",
 'movepage-moved' => '\'\'\'"$1" âsht zhvendosë te "$2"\'\'\'',
 'articleexists' => 'Nji faqe me këtë titull tashmâ ekziston, apo keni zgjedhë nji titull të pavlefshëm.
 Ju lutemi zgjedhni nji titull tjetër.',
-'talkexists' => "'''Vetë faqja u zhvendos me sukses, por faqja e diskutimit nuk mujti me u zhvendosë sepse tashmâ ekziston te titulli i ri.
-Ju lutemi bashkoni manualisht.'''",
-'movedto' => 'zhvendosur te',
 'movetalk' => 'Zhvendos faqen gjegjëse të diskutimeve',
 'movelogpage' => 'Regjistri i zhvendosjeve',
 'movereason' => 'Arsyeja:',

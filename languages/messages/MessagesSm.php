@@ -84,7 +84,7 @@ $messages = array(
 'jumptonavigation' => 'Ulifolau',
 'jumptosearch' => "Su'e",
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Tala Fou',
 'currentevents-url' => 'Project:Tala Fou',
 'edithelp' => 'Fesoasoani e teuteu',
@@ -94,7 +94,6 @@ $messages = array(
 'portal-url' => 'Project:Vaega mo Tagata Lautele',
 
 'youhavenewmessages' => "'Ua iai lau $1 ($2).",
-'newmessageslink' => "Poloa'i fou",
 'youhavenewmessagesmulti' => "'Ua iai au fe'au fou i le $1",
 'editsection' => 'Teuteu',
 'editold' => 'Teuteu',
@@ -125,9 +124,6 @@ $messages = array(
 'showpreview' => "Fa'aali teuteuga",
 'showdiff' => "Fa'aali suiga",
 'loginreqlink' => "Fa'aola",
-
-# Search results
-'powersearch' => "Su'e",
 
 # Preferences page
 'mypreferences' => "Mea 'ou te fiafia i ai",
@@ -167,7 +163,7 @@ $messages = array(
 # Special:AllPages
 'allpagessubmit' => 'Alu',
 
-# E-mail user
+# Email user
 'emailuser' => "'Imeli mai le tagata lenei",
 'emailmessage' => "Fe'au",
 
@@ -190,13 +186,9 @@ $messages = array(
 # What links here
 'whatlinkshere' => "Nofoaga e soso'o mai",
 
-# Block/unblock
-'proxyblocksuccess' => "Mae'a.",
-
 # Move page
 'move-page-legend' => "Si'i le itulau",
 'movearticle' => "Si'i le itulau",
-'movenologin' => "Le'i fa'aolaina",
 'newtitle' => "'I le ulutala fou",
 'move-watch' => 'Matau lenei itulau',
 'movepagebtn' => "Si'i le itulau",

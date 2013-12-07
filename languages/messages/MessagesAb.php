@@ -136,7 +136,6 @@ $messages = array(
 'qbfind' => 'Аҧшаара',
 'qbedit' => 'Ариашара',
 'qbpageoptions' => 'Ари адаҟьа',
-'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
 'vector-action-move' => 'Ахьӡ аҧсахра',
@@ -167,7 +166,7 @@ $messages = array(
 'jumptonavigation' => 'Анавигациа',
 'jumptosearch' => 'Аҧшаара',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} иазкны',
 'currentevents' => 'Ииасуа ахҭысқәа',
 'mainpage' => 'Ихадоу Адаҟьа',
@@ -176,8 +175,6 @@ $messages = array(
 'privacypage' => 'Project: Аконфиденциалтә аполитика',
 
 'youhavenewmessages' => 'Уара $1 уауит ($2).',
-'newmessageslink' => 'адырра ҿыцқәа',
-'newmessagesdifflink' => 'аҵыхәтәатәи аҽеиҭакра',
 'editsection' => 'ариашамҭа',
 'editold' => 'ариашара',
 'editlink' => 'ариашара',
@@ -227,6 +224,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges' => 'Арҽеира ҿыцқәа',
+'recentchanges-legend-newpage' => '$1 — адаҟьа ҿыц',
 'newpageletter' => 'Ҿ',
 
 # Recent changes linked

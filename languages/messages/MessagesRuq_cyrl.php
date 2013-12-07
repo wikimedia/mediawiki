@@ -97,7 +97,7 @@ $messages = array(
 'jumptonavigation' => 'навигацион',
 'jumptosearch' => 'каутај',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'дајпул {{SITENAME}}',
 'aboutpage' => 'Project:дајпул {{SITENAME}}',
 'copyrightpage' => '{{ns:project}}:Права даутору',
@@ -106,7 +106,6 @@ $messages = array(
 'disclaimers' => 'Тајменулс',
 'disclaimerpage' => 'Project:тајменул',
 'edithelp' => 'Ајутор пентре едитаере',
-'edithelppage' => 'Help:Едитаере',
 'helppage' => 'Help:Ајутор',
 'mainpage' => 'Пажу принципу',
 'mainpage-description' => 'Пажу принципу',
@@ -115,7 +114,6 @@ $messages = array(
 
 'retrievedfrom' => 'адусе де "$1"',
 'youhavenewmessages' => 'Весес $1 ($2).',
-'newmessageslink' => 'Месагес новес',
 'editsection' => 'едитаере',
 'editold' => 'едита',
 'editsectionhint' => 'Едитаере ћисецион: $1',
@@ -191,8 +189,6 @@ $messages = array(
 
 # Search results
 'viewprevnext' => 'Ву ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Ајутор',
-'powersearch' => 'каутај авансата',
 
 # Preferences page
 'mypreferences' => 'Мај префиренћу',

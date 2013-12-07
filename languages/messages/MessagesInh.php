@@ -352,7 +352,7 @@ $messages = array(
 'loginlanguagelabel' => 'Мотт: $1',
 
 # Change password dialog
-'resetpass' => 'КъайладIоагIа дIахувцар',
+'changepassword' => 'КъайладIоaгIа дIахувцар',
 'oldpassword' => 'Къаьна къайладIоагӀа:',
 'newpassword' => 'Керда къайладIоагӀа:',
 'retypenew' => 'Керда къайладIоагӀа юха Ӏоязаде:',
@@ -477,8 +477,6 @@ $messages = array(
 'revdelete-radio-unset' => 'A',
 'revdelete-log' => 'Бахьан',
 'revdel-restore' => 'Кустгойтам хувца',
-'revdel-restore-deleted' => 'дӀадаьккха доржамаш',
-'revdel-restore-visible' => 'бӀаргагушдола доржамаш',
 'pagehist' => 'ОагӀува искар',
 'deletedhist' => 'ДӀадаккхамий искар',
 'revdelete-reasonotherlist' => 'Кхыдола бахьан',
@@ -544,7 +542,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Оттамаш',
 'mypreferences' => 'Оттамаш',
-'changepassword' => 'КъайладIоaгIа дIахувцар',
 'prefs-skin' => 'БIагала куц',
 'skin-preview' => 'Хьажа',
 'prefs-datetime' => 'Таьрахьи сахьати',
@@ -927,8 +924,6 @@ $messages = array(
 'movepage-moved' => '\'\'\'"$1" оагув "$2" хьийца я\'\'\'',
 'articleexists' => 'Изза мо цIи йола оагIув, йолаш я е оаш тила цIи мегаш яц.
 Дехар да, кхыйола цIи хьаржа.',
-'talkexists' => "'''ОагIувни цIи хьийца хиннай, амма дувцама оагIувни цIи хувца мегаш яц, изза мо цIи йолаш оагIув йоландаь. Дехар да, кулга новкъосталца цхьанна вIашагIатоха уш.'''",
-'movedto' => 'керда цIи тилла я',
 'movetalk' => 'МаIан чулоаца дувцама оагIувни цIи хувца',
 'movelogpage' => 'Хувцама тептар',
 'movereason' => 'Бахьан',

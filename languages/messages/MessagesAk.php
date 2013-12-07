@@ -10,6 +10,7 @@
  * @author Kasahorow
  * @author Natsubee
  * @author Paa.kwesi
+ * @author Riches4christ
  */
 
 $namespaceNames = array(
@@ -78,13 +79,16 @@ $messages = array(
 'talk' => 'Nkɔmbɔ',
 'jumptosearch' => 'hwehwɛ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Fa {{SITENAME}} ho',
 'mainpage' => 'Krataafa Titiriw',
 
 'editsection' => 'sesa',
 'editsectionhint' => 'Sesa sɛkhyɛn: $1',
 'red-link-title' => '$1 (krataafa nni hɔ)',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'kratafa',
 
 # Login and logout pages
 'login' => 'Bra mu',
@@ -94,9 +98,6 @@ $messages = array(
 'userlogout' => 'Pue',
 'notloggedin' => 'Mmbaa mu',
 'nologin' => 'Wo nni akawnt anaa? $1.',
-
-# Search results
-'powersearch' => 'Hwehwɛ',
 
 # Preferences page
 'searchresultshead' => 'Hwehwɛ',
@@ -108,5 +109,8 @@ $messages = array(
 'watch' => 'Hwɛ',
 
 'sp-contributions-talk' => 'Kasa',
+
+# Block/unblock
+'contribslink' => 'ntoboa',
 
 );

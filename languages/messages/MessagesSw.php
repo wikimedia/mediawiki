@@ -633,7 +633,7 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'user-mail-no-addy' => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
 
 # Change password dialog
-'resetpass' => 'Kubadilisha neno la siri',
+'changepassword' => 'Badilisha neno la siri',
 'resetpass_announce' => 'Umeingia na msimbo wa barua pepe wa muda tu.
 Kumalizia kuingia ndani, ni lazima urekebishe neno la siri jipya hapa:',
 'resetpass_header' => 'Kubadilisha neno la siri la akaunti',
@@ -971,8 +971,6 @@ Unaweza masasisho; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delet
 'rev-delundel' => 'onyesha/ficha',
 'rev-showdeleted' => 'onyesha',
 'revisiondelete' => 'Kufuta/kurudisha mapitio',
-'revdelete-nologtype-title' => 'Aina ya kumbukumbu haikutajwa',
-'revdelete-nologid-title' => 'Kumbukumbu batili',
 'revdelete-no-file' => 'Faili ulilotaja halipatikani.',
 'revdelete-show-file-confirm' => 'Ni kweli kwamba unataka kulitazama pitio lililofutwa la faili linaloitwa "<nowiki>$1</nowiki>" la tarehe $2 na saa $3?',
 'revdelete-show-file-submit' => 'Ndiyo',
@@ -1006,8 +1004,6 @@ $1",
 'logdelete-failure' => "'''Kubadilisha uwezo wa kuona kumbukumbu ulifaulu:'''
 $1",
 'revdel-restore' => 'badilisha mwonekano',
-'revdel-restore-deleted' => 'mapitio yaliyofutwa',
-'revdel-restore-visible' => 'mapitio yanayoonekana',
 'pagehist' => 'Historia ya ukurasa',
 'deletedhist' => 'Historia iliyofutwa',
 'revdelete-hide-current' => 'Hitilafu ya kuficha pitio lililotengenezwa saa $2, tarehe $1: hilo ndilo pitio la sasa hivi.
@@ -1095,7 +1091,6 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'search-interwiki-default' => 'Matokeo toka $1:',
 'search-interwiki-more' => '(zaidi)',
 'search-relatedarticle' => 'Zingine zinazofanana',
-'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya kutafuta',
 'searcheverything-enable' => 'Tafuta katika maeneo yote ya wiki',
 'searchrelated' => 'zingine zinazofanana',
 'searchall' => 'zote',
@@ -1118,7 +1113,6 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'preferences' => 'Mapendekezo',
 'mypreferences' => 'Mapendekezo',
 'prefs-edits' => 'Idadi ya marekebisho:',
-'changepassword' => 'Badilisha neno la siri',
 'prefs-skin' => 'Umbo',
 'skin-preview' => 'Hakiki',
 'datedefault' => 'Chaguo-msingi',
@@ -1844,9 +1838,6 @@ Unaweza kuona baadhi yao tu kwa kuchagua aina fulani ya kumbukumbu, jina la mtum
 'allpagesto' => 'Onyesha kurasa zinazoishia na:',
 'allarticles' => 'Kurasa zote',
 'allinnamespace' => 'Kurasa zote (eneo la wiki $1)',
-'allnotinnamespace' => 'Kurasa zote (zisizo katika eneo la wiki ya $1)',
-'allpagesprev' => 'Iliyotangulia',
-'allpagesnext' => 'Ijayo',
 'allpagessubmit' => 'Nenda',
 'allpagesprefix' => 'Onyesha kurasa zenye kiambishi awali:',
 'allpagesbadtitle' => 'Jina la ukurasa ni batili au linatumia kiambishi awali cha mradi mwingine.
@@ -2330,7 +2321,6 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 
 Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa kwa mkono ukitaka.",
 'moveuserpage-warning' => "'''Ilani:''' Unatarajia kuhamisha ukurasa wa mtumiaji. Tafadhali kumbuka kwamba ni ukurasa tu utakaohamishwa; jina la mtumiaji ''haitabadilishwa''.",
-'movenologin' => 'Hujaingia',
 'movenologintext' => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
 'movenotallowed' => 'Huna ruhusa ya kuhamisha kurasa.',
 'movenotallowedfile' => 'Huna ruhusa ya kuhamisha mafaili.',
@@ -2345,8 +2335,6 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'articleexists' => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
-'talkexists' => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
-'movedto' => 'imesogezwa hadi',
 'movetalk' => 'Hamisha ukurasa wake wa majadiliano',
 'move-subpages' => 'Hamisha kurasa ndogo (hadi $1)',
 'move-talk-subpages' => 'Hamisha kurasa ndogo za ukurasa wa majadiliano (hadi $1)',

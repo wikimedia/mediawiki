@@ -8,6 +8,7 @@
  * @file
  *
  * @author Imdadb
+ * @author Southparkfan
  */
 
 $messages = array(
@@ -113,6 +114,7 @@ $messages = array(
 'delete' => 'Mesa',
 'protect' => 'Rakk',
 'protect_change' => 'badal kar',
+'protectthispage' => '',
 'newpage' => 'Púskuno panna',
 'talkpage' => 'Dá panna ná bárav aŧ ítgap kabo',
 'talkpagelinktext' => 'Ítgap',
@@ -128,7 +130,7 @@ $messages = array(
 'jumptonavigation' => 'kasarşoní',
 'jumptosearch' => 'paŧŧopol',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ná bárav aŧ',
 'aboutpage' => 'Project:Bárav',
 'copyright' => 'Mađđí $1 aná rid aŧ rasenging e.',
@@ -138,7 +140,6 @@ $messages = array(
 'disclaimers' => 'Dazkaşşík',
 'disclaimerpage' => 'Project:Las dazkaşşí',
 'edithelp' => 'Radbadal ráhşoní',
-'edithelppage' => 'Help:Radbadal',
 'helppage' => 'Help:Ridoband',
 'mainpage' => 'Monpanna',
 'mainpage-description' => 'Monpanna',
@@ -151,8 +152,6 @@ $messages = array(
 
 'retrievedfrom' => '"$1" án alok',
 'youhavenewmessages' => 'Nekin $1 ($2) are.',
-'newmessageslink' => 'púskuno kulav',
-'newmessagesdifflink' => 'guđđíko radbadal',
 'editsection' => 'radbadal',
 'editold' => 'radbadal',
 'viewsourceold' => 'bumpad e ur',
@@ -269,8 +268,6 @@ Ná radbadal ák deskáne atíko matano.",
 # Revision deletion
 'rev-delundel' => 'páş/aodem',
 'revdel-restore' => 'páşí e badal kar',
-'revdel-restore-deleted' => 'mesok badaldroşumk',
-'revdel-restore-visible' => 'páş badaldroşumk',
 
 # Merge log
 'revertmerge' => 'Jitá',
@@ -283,10 +280,6 @@ Ná radbadal ák deskáne atíko matano.",
 # Search results
 'searchresults' => 'Paŧŧopol ná kaŧŧiá',
 'searchresults-title' => '$1 kin paŧŧopol ná kaŧŧiá',
-'searchresulttext' => '{{SITENAME}} ŧí paŧŧopol ná bábat cáindárí kin [[{{MediaWiki:Helppage}}|{{int:help}}]] e ur.',
-'searchsubtitle' => 'Ní \'\'\'[[:$1]]\'\'\' kin paŧpol kares ([[Special:Prefixindex/$1|"$1" án biná maroká ģuŧ panna ģák]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ton gańđok ģuŧ panna ģák]])',
-'searchsubtitleinvalid' => "Ní '''$1''' akin paŧŧopol kares",
-'notitlematches' => 'Dá pin aná icco panna ná sarhál allav',
 'notextmatches' => 'Icco panna nivişt dá vaŕ aná allav',
 'prevn' => 'gidrengoká {{PLURAL:$1|$1}}',
 'nextn' => 'mon aná {{PLURAL:$1|$1}}',
@@ -311,15 +304,10 @@ Ná radbadal ák deskáne atíko matano.",
 'search-interwiki-more' => '(pen)',
 'searchrelated' => 'amrang',
 'searchall' => 'ģuŧŧ',
-'nonefound' => "'''Xiáldárí''': Bunyádí vaŕ aŧ bíra giŕás pinjága áteŧí paŧpol marek.
-
-Ģuŧŧ mađđí ŧí paŧpol kin (ítgap panna, kálib, dá-e teton aviŕda) tená just átá avalsar aŧí sarlaoz ''all:'' xaļ, yá bakár pinjága e sarlaoz ná jága ģá xaļ.",
 'search-nonefound' => 'Just aná icc kaŧŧiá allav',
-'powersearch' => 'Xúŕt paŧŧopol',
 'powersearch-legend' => 'Xúŕt paŧŧopol',
 'powersearch-ns' => 'Pin-jága ģáteŧí paŧŧopol:',
 'powersearch-redir' => 'Aŕsoká panna ģátá cirr e nişán et',
-'powersearch-field' => 'Dáŕkin paŧŧopol',
 
 # Preferences page
 'preferences' => 'Gicenk',
@@ -545,7 +533,6 @@ Zút áteaŧ mesing átá lekav kin $2 e ur.',
 'movepage-moved' => '\'\'\'"$1" e "$2"\'\'\' á surifingáne',
 'articleexists' => 'Anná pin aná panna málav án sáŕí e, yá ná tiroká pin ravá aff.
 Pen pin as gicen kar.',
-'movedto' => 'dáng surifingá',
 'movetalk' => 'Aviŕda ģá ítgap panna e surif',
 'movelogpage' => 'Surifing ná hisáb',
 'movereason' => 'Dalíl:',
@@ -621,9 +608,6 @@ Dáná bumpad e unning kesa',
 # Metadata
 'metadata-expand' => 'Vaddíko hál e nişán et',
 'metadata-collapse' => 'Vaddíko hál e đakka',
-
-# External editor support
-'edit-externally-help' => '(Pen cáindárí kin [//www.mediawiki.org/wiki/Manual:External_editors joŕ kanning ná sarsoj] e ur)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ģuŧŧ',

@@ -170,7 +170,6 @@ $messages = array(
 'qbedit' => 'Edita',
 'qbpageoptions' => "Pájina ne'e",
 'qbmyoptions' => "Ha'u-nia pájina sira",
-'qbspecialpages' => 'Pájina espesiál sira',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -399,7 +398,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 # Search results
 'searchresults' => 'Rezultadu sira',
 'searchresults-title' => 'Rezultadu sira ba buka "$1"',
-'searchsubtitleinvalid' => "Ita buka tiha ona '''$1'''",
 'prevn' => 'molok {{PLURAL:$1|$1}}',
 'nextn' => 'oinmai {{PLURAL:$1|$1}}',
 'shown-title' => 'Hatudu {{PLURAL:$1|rezultadu|rezultadu}} $1 kada pájina',
@@ -414,8 +412,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 'search-suggest' => 'Parese Ita buka: $1',
 'search-interwiki-caption' => 'Projetu seluseluk sira',
 'searchall' => 'hotu',
-'powersearch' => 'Buka',
-'powersearch-field' => 'Buka',
 'powersearch-toggleall' => 'Hotu',
 
 # Preferences page
@@ -613,9 +609,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 'allpagesto' => 'Hatudu pájina sira; para iha:',
 'allarticles' => 'Pájina hotu',
 'allinnamespace' => 'Pájina hotu (iha espasu $1)',
-'allnotinnamespace' => 'Pájina hotu (la iha espasu $1)',
-'allpagesprev' => 'Molok',
-'allpagesnext' => 'Oinmai',
 'allpagessubmit' => 'Bá',
 'allpagesprefix' => 'Hatudu pájina sira ho prefiksu:',
 
@@ -781,7 +774,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 'newtitle' => 'Naran foun:',
 'move-watch' => "Hateke pájina ne'e",
 'movepagebtn' => 'Book pájina',
-'movedto' => 'book tiha ba',
 'movetalk' => 'Book pájina diskusaun mós',
 'movelogpage' => 'Lista book',
 'movereason' => 'Motivu:',
@@ -911,9 +903,6 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 'exif-urgency-normal' => 'Normál ($1)',
 'exif-urgency-low' => 'Kraik ($1)',
 'exif-urgency-high' => 'Aas ($1)',
-
-# External editor support
-'edit-externally-help' => "(Haree [https://www.mediawiki.org/wiki/Manual:External_editors iha ne'e] ba informasaun barak liu)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hotu',

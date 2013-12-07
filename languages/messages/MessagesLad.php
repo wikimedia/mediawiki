@@ -499,6 +499,7 @@ Si puede ser, escoge un otro nombre.',
 'loginlanguagelabel' => 'Lingua: $1',
 
 # Change password dialog
+'changepassword' => 'Trocar el kóddiche',
 'oldpassword' => 'Kóddiche viejo:',
 'newpassword' => 'Kóddiche muevo:',
 'resetpass-submit-cancel' => 'Anular',
@@ -630,8 +631,6 @@ Leyenda: (act) = diferencias con la versión actual,
 'revdelete-radio-unset' => 'No',
 'revdelete-log' => 'Razón:',
 'revdel-restore' => 'troca la visibilitá',
-'revdel-restore-deleted' => 'enderechamientos efaçados',
-'revdel-restore-visible' => 'enderechamientos visivles',
 'pagehist' => 'La storia de la hoja',
 'revdelete-reasonotherlist' => 'Otra razón',
 
@@ -691,7 +690,6 @@ Leyenda: (act) = diferencias con la versión actual,
 # Preferences page
 'preferences' => 'Preferencias',
 'mypreferences' => 'Las mis preferensias',
-'changepassword' => 'Trocar el kóddiche',
 'prefs-skin' => 'Vista',
 'skin-preview' => 'Previstear',
 'prefs-rc' => 'Los Trocamientos de Alcabo',
@@ -851,7 +849,6 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'allpagesto' => 'Mostrar hojas escapadas con:',
 'allarticles' => 'Todos los artikolos',
 'allinnamespace' => 'Todas las pajinas (espasio $1)',
-'allpagesnext' => 'Siguiente',
 'allpagessubmit' => 'Àmostrar la lista',
 
 # Special:Categories
@@ -1020,8 +1017,6 @@ En estos casos, va deber trasladar manualmente el contenido de la hoja de diskus
 'movepage-moved' => '\'\'\'"$1" fue renombrado a "$2".\'\'\'',
 'articleexists' => 'Una hoja con este nombre ya egziste, o el nombre que escogites no es valable.
 Si puede ser, escoge otro nombre.',
-'talkexists' => 'La hoja fue renombrada con reuxito, ma la diskussión no se pudo renombrar porque ya egziste una en el título nuevo. Si puede ser, házelo manualmente.',
-'movedto' => 'renombrado a',
 'movetalk' => 'Renombrar la hoja de diskussión también, si es possible.',
 'movelogpage' => 'Registro de traslados',
 'movereason' => 'Razón:',

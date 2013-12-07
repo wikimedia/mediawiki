@@ -122,7 +122,7 @@ $messages = array(
 'jumptonavigation' => 'འཛུལ་འགྱོ་',
 'jumptosearch' => 'འཚོལ་ཞིབ།',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} གི་སྐོར་ལས།',
 'aboutpage' => 'Project:སྐོར་ལས།',
 'copyrightpage' => '{{ns:project}}:འདྲ་བཤུས་འབད་ཆ།',
@@ -131,7 +131,6 @@ $messages = array(
 'disclaimers' => 'ཁས་མི་ལེན་པ།',
 'disclaimerpage' => 'Project: སྤྱིར་བཏང་ཁས་མི་ལེན་པ།',
 'edithelp' => 'ཞུན་དག་གྲོགས་རམ།',
-'edithelppage' => 'Help: ཞུན་དག།',
 'helppage' => 'Help:ནང་དོན།',
 'mainpage' => 'མ་ཤོག།',
 'mainpage-description' => 'མ་ཤོག།',
@@ -142,8 +141,6 @@ $messages = array(
 
 'retrievedfrom' => '"$1" ལས་ སླར་འདྲེན་འབད་ཡོདཔ།',
 'youhavenewmessages' => 'ཁྱོད་ལུ་ $1 ($2) འདུག།',
-'newmessageslink' => 'འཕྲིན་དོན་གསརཔ།',
-'newmessagesdifflink' => 'བསྒྱུར་བཅོས་མཇུག།',
 'editsection' => 'ཞུན་དག།',
 'editold' => 'ཞུན་དག།',
 'editsectionhint' => 'དབྱེ་ཚན་:$1 ཞུན་དག་འབད།',
@@ -306,8 +303,6 @@ $messages = array(
 'prevn' => 'ཧེ་མའི་ {{PLURAL:$1|$1}}',
 'nextn' => 'ཤུལ་མའི་ {{PLURAL:$1|$1}}',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) སྟོན།',
-'searchhelp-url' => 'Help:ནང་དོན།',
-'powersearch' => 'མཐོ་རིམ་ཅན་གྱི་འཚོལ་ཞིབ།',
 
 # Preferences page
 'preferences' => 'དགའ་གདམ།',
@@ -347,7 +342,6 @@ $messages = array(
 'recentchangeslinked-feed' => 'འབྲེལ་བ་ཅན་གྱི་བསྒྱུར་བཅོས།',
 'recentchangeslinked-toolbox' => 'འབྲེལ་བ་ཅན་གྱི་བསྒྱུར་བཅོས།',
 'recentchangeslinked-title' => '"$1" དང་འབྲེལ་བ་ཡོད་པའི་བསྒྱུར་བཅོས་ཚུ།',
-'recentchangeslinked-noresult' => 'དུས་བཀོད་ཀྱི་སྐབས་ལུ་ འབྲེལ་མཐུད་ཅན་གྱི་ཤོག་ལེབ་ལུ་བསྒྱུར་བཅོས་མེད།',
 'recentchangeslinked-summary' => "དམིགས་བསལ་ཤོག་ལེབ་འདི་གིས་ འབྲེལ་མཐུད་ཅན་གྱི་ཤོག་ལེབ་གུ་ མཇུག་ཀྱི་བསྒྱུར་བཅོས་ཚུ་ ཐོ་བཀོད་འབདཝ་ཨིན།
 ཁྱོད་ཀྱི་བལྟ་ཞིབ་ཐོ་ཡིག་གུ་འི་ཤོག་ལེབ་ཚུ་ '''མངོན་གསལ་ཅན་ཨིན།'''",
 
@@ -393,8 +387,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'ཚད་རྩིས།',
-
-'disambiguations' => 'ངེས་པ་ཡོད་པའི་བརྡ་དོན་ཤོག་ལེབ།',
 
 'doubleredirects' => 'སླར་ལོག་གཉིས་ལྡན།',
 
@@ -579,9 +571,6 @@ $messages = array(
 'movepage-moved' => '\'\'\'"$1" འདི་ "$2"\'\'\' ལུ་ སྤོ་བཤུད་འབད་ནུག།',
 'articleexists' => 'ཤོག་ལེབ་མིང་འདི་ཧེ་མ་ལས་ཡོདཔ་ཨིནམ་དང་ ཡང་ན་ ཁྱོད་ཀྱིས་གདམ་ཁ་བརྐྱབས་མི་མིང་འདི་ ནུས་མེད་ཨིན་པས།
 མིང་གཞན་ཅིག་ གདམ་ཁ་རྐྱབས།',
-'talkexists' => "'''ཤོག་ལེབ་འདི་ལེགས་ཤོམ་པས་སྤོ་བཤུད་འབད་ཡོད་རུང་ གཅིག་ཧེ་མ་ལས་ར་ མགོ་མིང་གསརཔ་གུ་ཡོདཔ་ལས་ བློ་ཤོག་འདི་སྤོ་བཤུད་འབད་མ་ཚུགས།
-དེ་ཚུ་ ལག་ཐོག་ལས་མཉམ་བསྡོམས་འབད་གནང་།'''",
-'movedto' => 'ལུ་སྤོ་བཤུད་འབད།',
 'movetalk' => 'འབྲེལ་བ་ཡོད་པའི་ཁ་སླབ་ཤོག་ལེབ་ སྤོ་བཤུད་འབད།',
 'movelogpage' => 'ལོག་སྤོ་བཤུད་འབད།',
 'movereason' => 'རྒྱུ་མཚན:',
@@ -683,10 +672,6 @@ $messages = array(
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'ཕྱིའི་གློག་རིམ་ལག་ལེན་འཐབ་ཐོག་ལས་ ཡིག་སྣོད་འདི་ཞུན་དག་འབད།',
-'edit-externally-help' => 'བརྡ་དོན་ཁ་གསལ་གྱི་དོན་ལུ་ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ལུ་ལྟ།',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ཆ་མཉམ།',

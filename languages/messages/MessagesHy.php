@@ -14,6 +14,7 @@
  * @author Pandukht
  * @author Reedy
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
+ * @author Shirayuki
  * @author Teak
  * @author Togaed
  * @author Vacio
@@ -792,7 +793,7 @@ $2',
 'user-mail-no-addy' => 'Փորձվեց ուղարկել էլ․ նամակ առանց էլ․ հասցեի։',
 
 # Change password dialog
-'resetpass' => 'Փոխել գաղտնաբառը',
+'changepassword' => 'Փոխել գաղտնաբառը',
 'resetpass_announce' => 'Դուք ներկայացել եք էլ-փոստով ստացված ժամանակավոր գաղտնաբառով։ Համակարգ մուտքի համար անհրաժեշտ է նոր գաղտնաբառ ընտրել այստեղ.',
 'resetpass_text' => '<!-- Ավելացնել տեքստը այստեղ -->',
 'resetpass_header' => 'Փոխել մասնակցային հաշվի գաղտնաբառը',
@@ -918,14 +919,11 @@ $2',
 Նոր էջ ստեղծելու համար ներքևում գտնվող խմբագրման դաշտում ավելացրեք ձեր տեքստը, այնուհետև սեղմեք '''Հիշել էջը''' (այցելեք [[{{MediaWiki:Helppage}}|օգնության էջը]]՝ մանրամասն տեղեկությունների համար)։ 
 
 Եթե դուք սխալմամբ եք այստեղ հայտնվել, ապա սեղմեք ձեր զննարկիչի '''հետ''' (back) կոճակը։",
-'anontalkpagetext' => "{| style=\"background-repeat:no-repeat; background-position:800px -20px; margin:0.5em 0 0.5em 0; clear:both;\" width=100% class=toccolours
-|- 
-| <span class=\"plainlinksneverexpand\">''Այս քննարկման էջը պատկանում է չգրանցված կամ համակարգ չմտած մասնակցի, ով խմբագրում կատարելիս օգտվել է {{BASEPAGENAME}} ԱյՓի հասցեից։''
-Քանի որ միևնույն ԱյՓի հասցեից տարբեր մարդիկ կարող են օգտվել, հնարավոր է որ այստեղ գտնեք զգուշացումներ և հաղորդագրություններ, որոնք ձեզ չեն վերաբերում։ Դրանից խուսափելու համար առաջարկում ենք [[Special:UserLogin/signup|գրանցվել]] կամ, եթե արդեն գրանցված եք, պարզապես [[Special:UserLogin|մուտք գործել համակարգ]]։''
-----
-Հավելյալ տեղեկություններ ԱյՓիի մասին. [http://toolserver.org/~overlordq/cgi-bin/whois.cgi?lookup={{BASEPAGENAME}} WHOIS] · [http://www.robtex.com/ip/{{BASEPAGENAME}}.html#ip rDNS] · [http://www.dnsstuff.com/tools/tracert/?tool_id=68&ip={{BASEPAGENAME}} Traceroute] · [http://whatismyipaddress.com/ip/{{BASEPAGENAME}} Geolocate] · [http://toolserver.org/~luxo/contributions/contributions.php?user={{BASEPAGENAME}}&blocks=true Գլոբալ ներդրումներ] · [http://hy.wikipedia.org/wiki/Սպասարկող:DeletedContributions/{{BASEPAGENAME}} Ջնջված ներդրումներ] · [http://hy.wikipedia.org/w/index.php?title=Special:BlockList&ip={{BASEPAGENAME}} Արգելափակումներ]
-</small></span>
-|}",
+'anontalkpagetext' => "----
+''Այս քննարկման էջը պատկանում է անանուն մասնակցին, որը դեռ չի ստեղծել մասնակցային հաշիվ կամ չի մտել համակարգ մասնակցի անունով։''
+Այդ իսկ պատճառով օգտագործվում է թվային IP-հասցեն։
+Նման IP-հասցեից կարող են օգտվել մի քանի մասնակիցներ։
+Եթե դուք անանուն մասնակից եք, բայց կարծում եք, որ ուրիշներին վերաբերող դիտողությունները արվում են ձեր հասցեով, ապա խնդրում ենք պարզապես [[Special:UserLogin/signup|գրանցվել]] կամ [[Special:UserLogin|մտնել համակարգ]], որպեսզի հետագայում ձեզ չշփոթեն այլ անանուն մասնակիցների հետ։",
 'noarticletext' => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission' => 'Ներկայումս այս էջում որևէ տեքստ չկա։
@@ -1138,8 +1136,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revdelete-success' => "'''Տարբերակի տեսանելիությունը բարեհաջող թարմացված է։'''",
 'logdelete-success' => "'''Իրադարձության տեսանելիությունը փոփոխված է։'''",
 'revdel-restore' => 'Փոխել տեսանելիությունը',
-'revdel-restore-deleted' => 'ջնջված խմբագրումներ',
-'revdel-restore-visible' => 'տեսանելի խմբագրումներ',
 'pagehist' => 'Էջի պատմություն',
 'deletedhist' => 'Ջնջումների պատմություն',
 'revdelete-otherreason' => 'Ուրիշ/հավելյալ պատճառ՝',
@@ -1195,7 +1191,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'search-interwiki-default' => '$1 արդյունք.',
 'search-interwiki-more' => '(էլի)',
 'search-relatedarticle' => 'Հարակից',
-'mwsuggest-disable' => 'Անջատել AJAX հուշումներ',
 'searcheverything-enable' => 'Որոնել բոլոր անվանատարածքներում',
 'searchrelated' => 'հարակից',
 'searchall' => 'բոլոր',
@@ -1217,7 +1212,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'mypreferences' => 'Նախընտրություններ',
 'prefs-edits' => 'Խմբագրումների քանակը.',
 'prefsnologintext2' => 'Նախընտրությունները փոփոխելու համար անհրաժեշտ է $1։',
-'changepassword' => 'Փոխել գաղտնաբառը',
 'prefs-skin' => 'Տեսք',
 'skin-preview' => 'նախադիտել',
 'datedefault' => 'Առանց նախընտրության',
@@ -1735,9 +1729,6 @@ $1 {{PLURAL:$1|խմբագրում|խմբագրումներ}}',
 'allpagesto' => 'Ցույց տալ էջերը, որոնք ավարտվում են՝',
 'allarticles' => 'Բոլոր հոդվածները',
 'allinnamespace' => 'Բոլոր էջերը ($1 անվանատարածք)',
-'allnotinnamespace' => 'Բոլոր էջերը (ոչ $1 անվանատարածքում)',
-'allpagesprev' => 'Նախորդ',
-'allpagesnext' => 'Հաջորդ',
 'allpagessubmit' => 'Անցնել',
 'allpagesprefix' => 'Ցույց տալ հետևյալ նախածանցով էջերը՝',
 'allpagesbadtitle' => 'Տվյալ էջի անվանումը անթույլատրելի է։ Այն պարունակում է միջ-լեզվական կամ ինտերվիքի նախածանց, կամ էլ անվանումներում այնթույլատրելի սիմվոլներ։',
@@ -2214,7 +2205,6 @@ $1',
 Այսպիսի դեպքերում հարկավոր է տեղափոխել կամ միաձուլել էջերը ձեռքով, եթե դա ցանկանաք։",
 'movearticle' => 'Տեղափոխել էջը',
 'moveuserpage-warning' => "'''Զգուշացո՜ւմ՝ '''You are about to move a user page. Please note that only the page will be moved and the user will ''not'' be renamed.",
-'movenologin' => 'Դուք չեք մտել համակարգ',
 'movenologintext' => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]]՝ էջը տեղափոխելու համար։',
 'movenotallowed' => 'Դուք չունեք էջերի տեղափոխման իրավունք։',
 'newtitle' => 'Նոր անվանում.',
@@ -2226,8 +2216,6 @@ $1',
 'movepage-moved-noredirect' => 'Վերահղման ստեղծում թույլ չի տրվել',
 'articleexists' => 'Այդ անվանմամբ էջ արդեն գոյություն ունի կամ ձեր ընտրած անվանումը անթույլատրելի է։
 Խնդրում ենք ընտրել այլ անվանում։',
-'talkexists' => "'''Էջը հաջողությամբ տեղափոխվեց, սակայն կցված քննարկման էջը հնարավոր չէր տեղափոխել, քանի որ նոր անվանմամբ էջ արդեն գոյություն ուներ։ Խնդրում ենք միաձուլել դրանք ձեռքով։'''",
-'movedto' => 'վերանվանված է',
 'movetalk' => 'Վերանվանել կից քննարկման էջը',
 'move-subpages' => 'Վերանվանել նաև ենթաէջերը (առավելագունը $1)',
 'move-talk-subpages' => 'Վերանվանել նաև քննարկման ենթաէջերը (առավելագունը $1)',

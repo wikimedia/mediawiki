@@ -49,9 +49,6 @@ $messages = array(
 'mypage' => 'Inqaku yam',
 'mytalk' => 'Inthetho yam',
 
-# Cologne Blue skin
-'qbspecialpages' => 'Amaphepha Abalulekileyo',
-
 # Vector skin
 'vector-view-edit' => 'Tshintsha',
 
@@ -67,13 +64,12 @@ $messages = array(
 'talk' => 'Ingxoxo',
 'otherlanguages' => 'Kwezinye Ilwimi',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Imisebenzi Eyenzekayo',
 'edithelp' => 'Uncedo ngoTshintsho',
 'mainpage' => 'Iphepha Elingundoqo',
 'mainpage-description' => 'Iphepha Elingundoqo',
 
-'newmessageslink' => 'imiyalezo emitsha',
 'youhavenewmessagesmulti' => 'Unemiyalezo emitsha ku $1',
 'editsection' => 'tshintsha',
 'editold' => 'tshintsha',
@@ -86,9 +82,6 @@ $messages = array(
 'viewsource' => 'Jonga i Source',
 
 # Login and logout pages
-'welcomecreation' => '== Wamkelekile, $1! ==
-
-I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENAME}}.',
 'yourname' => 'Igama lelungu:',
 'yourpassword' => 'Igama elifihlakeleyo lelungu:',
 'yourpasswordagain' => 'Faka kwakhona igama elifihlakeleyo:',
@@ -103,9 +96,6 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'savearticle' => 'Gcina eliphepha',
 'showpreview' => 'Bonisa Utshintsho',
 'showdiff' => 'Gcina Utshitshi',
-
-# Search results
-'powersearch' => 'Khangela',
 
 # Preferences page
 'mypreferences' => 'Ezithandwa ndim',
@@ -156,7 +146,6 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 # Move page
 'move-page-legend' => 'Dlulisa eliphepha',
 'movepagebtn' => 'DLulisa eliphepha',
-'movedto' => 'Lidluliselwe',
 'movereason' => 'Isizathu',
 
 # Special:NewFiles

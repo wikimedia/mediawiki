@@ -84,7 +84,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'Editisar',
-'qbspecialpages' => 'Uzalutne patrya',
 
 'errorpagetitle' => 'Dosh',
 'returnto' => 'Ja palpale kai $1.',
@@ -120,7 +119,7 @@ $messages = array(
 'jumptonavigation' => 'phiripen',
 'jumptosearch' => 'rodipen',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Andar {{SITENAME}}',
 'aboutpage' => 'Project:Andar',
 'copyright' => 'Ander dino tar o $1.',
@@ -130,7 +129,6 @@ $messages = array(
 'disclaimers' => 'Termenurya',
 'disclaimerpage' => 'Project:Termenurya',
 'edithelp' => 'Editisaripnasko zhutipen',
-'edithelppage' => 'Help:Sar te editisares ek patrin',
 'helppage' => 'Help:Zhutipen',
 'mainpage' => 'Sherutni patrin',
 'mainpage-description' => 'Sherutni patrin',
@@ -161,7 +159,6 @@ $messages = array(
 'nospecialpagetext' => 'Manglyas ekh [[Special:SpecialPages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
 
 # General errors
-'wrong_wfQuery_params' => 'Doshalo gin le parametrengo ko wfQuery()<br />I function: $1<br />Query: $2',
 'viewsource' => 'Dikh i sursa',
 
 # Login and logout pages
@@ -208,6 +205,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'accountcreatedtext' => 'Kerdo o akonto le jenesko ko $1.',
 
 # Change password dialog
+'changepassword' => 'Paruv o nakhavipnasko lav',
 'oldpassword' => 'Purano nakahvipnasko lav',
 'newpassword' => 'Nevo nakhavipnasko lav:',
 
@@ -256,23 +254,18 @@ Kana avilyan kathe doshatar, ja palpale.',
 'prevn' => 'mai neve {{PLURAL:$1|$1}}',
 'nextn' => 'mai purane {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Dikh ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:Zhutipen',
 'showingresults' => 'Tele si <b>$1</b> rezultaturya shirdindoi le ginestar <b>$2</b>.',
 'showingresultsnum' => 'Tele si <b>$3</b> rezultaturya shirdindoi le ginestar <b>$2</b>.',
-'powersearch' => 'Rod',
 
 # Preferences page
 'preferences' => 'Kamimata',
-'changepassword' => 'Paruv o nakhavipnasko lav',
 'prefs-skin' => 'Dikhimos',
 'datedefault' => 'Ni ekh kamipen',
 'prefs-datetime' => 'Dives thai chaso',
 'prefs-rc' => 'Neve paruvimata',
 'saveprefs' => 'Uxtav le kamimata',
-'resetprefs' => 'Thov le kamimata sar ko shirdipen',
 'columns' => 'Uche vortorina:',
 'localtime' => 'Thanutno vaxt',
-'timezoneoffset' => 'Ververipen',
 'guesstimezone' => 'Le les katar o browser',
 'allowemail' => 'De drom te aven e-mailurya katar aver jene',
 'defaultns' => 'Rod savaxt vi kai kadale riga:',
@@ -440,7 +433,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'movearticle' => 'Inger i patrin',
 'movepagebtn' => 'Inger i patrin',
 'pagemovedsub' => 'I patrin sas bićhaldi.',
-'movedto' => 'ingerdi kai',
 'delete_and_move' => 'Khos thai inger',
 
 # Export

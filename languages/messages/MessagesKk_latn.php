@@ -743,7 +743,7 @@ Eger bul tirkelgi qatelikpen jasalsa, osı xabarğa elemewiñiz mümkin.',
 'loginlanguagelabel' => 'Til: $1',
 
 # Change password dialog
-'resetpass' => 'Tirkelginiñ qupïya sözin özgertw',
+'changepassword' => 'Qupïya sözdi özgertw',
 'resetpass_announce' => 'Xatpen jiberilgen waqıtşa kodımen kirgensiz.
 Kirwiñizdi bitirw üşin, jaña qupïya söziñizdi mında engizwiñiz jön:',
 'resetpass_header' => 'Qupïya sözdi özgertw',
@@ -1058,7 +1058,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'search-interwiki-default' => '$1 nätïje:',
 'search-interwiki-more' => '(köbirek)',
 'search-relatedarticle' => 'Qatıstı',
-'mwsuggest-disable' => 'AJAX usınımdarın öşir',
 'searchrelated' => 'qatıstı',
 'searchall' => 'barlıq',
 'showingresults' => "Tömende nömir '''$2''' ornınan bastap barınşa '''$1''' nätïje körsetiledi.",
@@ -1075,7 +1074,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'preferences' => 'Baptalımdar',
 'mypreferences' => 'Baptalımdarım',
 'prefs-edits' => 'Öñdeme sanı:',
-'changepassword' => 'Qupïya sözdi özgertw',
 'prefs-skin' => 'Mänerler',
 'skin-preview' => 'Qarap şığw',
 'datedefault' => 'Eş qalawsız',
@@ -1558,9 +1556,6 @@ Jwrnal türin, qatıswşı atın, ne tïisti betin bölektep, tarıltıp qaraý 
 'allpagesfrom' => 'Mına betten bastap körsetw:',
 'allarticles' => 'Barlıq bet tizimi',
 'allinnamespace' => 'Barlıq bet ($1 esim ayası)',
-'allnotinnamespace' => 'Barlıq bet ($1 esim ayasınan tıs)',
-'allpagesprev' => 'Aldıñğığa',
-'allpagesnext' => 'Kelesige',
 'allpagessubmit' => 'Ötw',
 'allpagesprefix' => 'Mınadan bastalğan betterdi körsetw:',
 'allpagesbadtitle' => 'Keltirilgen bet taqırıbın atı jaramsız bolğan, nemese til-aralıq ne wïkï-aralıq bastawı bar boldı.
@@ -2005,7 +2000,6 @@ osınıñ saldarın baýımdawıñızdı ärekettiñ aldınan batıl bolıñız.
 
 Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'movearticle' => 'Jıljıtpaq bet:',
-'movenologin' => 'Jüýege kirmegensiz',
 'movenologintext' => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{#special:UserLogin}}|kirwiñiz]] jön.',
 'movenotallowed' => '{{SITENAME}} jobasında betterdi jıljıtw rwqsatıñız joq.',
 'newtitle' => 'Jaña taqırıp atına:',
@@ -2016,9 +2010,6 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'articleexists' => 'Osılaý atalğan bet aldaqaşan bar, ne tañdağan atawıñız jaramdı emes.
 Özge atawdı tañdañız',
 'cantmove-titleprotected' => 'Betti osı orınğa jıljıta almaýsız, sebebi jaña taqırıp atı bastawdan qorğalğan',
-'talkexists' => "'''Bettiñ özi sätti jıljıtıldı, biraq talqılaw beti birge jıljıtılmadı, onıñ sebebi jaña taqırıp atında birewi aldaqaşan bar.
-Bunı qolmen qosıñız.'''",
-'movedto' => 'mınağan jıljıtıldı:',
 'movetalk' => 'Qawımdastı talqılaw betin jıljıtw',
 'move-subpages' => 'Barlıq betşelerin jıljıtw',
 'move-talk-subpages' => 'Talqılaw betiniñ barlıq betşelerin jıljıtw',

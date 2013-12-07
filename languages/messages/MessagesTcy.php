@@ -408,7 +408,7 @@ $messages = array(
 'loginlanguagelabel' => 'ಭಾಷೆ: $1',
 
 # Change password dialog
-'resetpass' => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
+'changepassword' => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'resetpass_header' => 'ಈ ಖಾತೆದ ಪ್ರವೇಶಪದ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'oldpassword' => 'ಪರ ಪ್ರವೇಶಪದ',
 'newpassword' => 'ಪೊಸ ಪ್ರವೇಶಪದ',
@@ -576,7 +576,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'ಪ್ರಾಶಸ್ತ್ಯೊಲು',
 'mypreferences' => 'ಎನ್ನ ಪ್ರಾಶಸ್ತ್ಯಲು',
-'changepassword' => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'prefs-datetime' => 'ದಿನ ಬೊಕ್ಕ ಸಮಯ',
 'prefs-rc' => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು',
 'prefs-resetpass' => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',

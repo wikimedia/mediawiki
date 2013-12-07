@@ -38,9 +38,6 @@ $messages = array(
 
 'mytalk' => 'I mê discussiòun',
 
-# Cologne Blue skin
-'qbspecialpages' => 'Pagini specièli',
-
 'returnto' => 'Tórna a $1.',
 'help' => 'Per quî rivê da pôch',
 'history_short' => 'Stôria',
@@ -53,7 +50,7 @@ $messages = array(
 'talk' => 'Discussiòun',
 'jumptosearch' => 'Zerca',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Fât e prugèt ed tót',
 'currentevents-url' => 'Project:Prugèt_ed_tót',
 'helppage' => 'Help:Introduzione',
@@ -91,13 +88,13 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 'yourdiff' => 'Differèinzi',
 'templatesused' => '{{PLURAL:$1|Modêl|Modêl}} usèdi in sta pàgina:',
 
-# Search results
-'searchhelp-url' => 'Help:Introduzione',
-
 # Preferences page
 'mypreferences' => 'AL mê preferèinzi',
 'yourrealname' => 'Al tô vér nàmm:',
 'yourlanguage' => 'Léngua:',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Regestér di nōv utèint',
 
 # Recent changes
 'recentchanges' => 'Ûltem cambiamèint',
@@ -128,9 +125,6 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 
 # Special:AllPages
 'allpages' => 'Tôt al pàgin',
-
-# Special:Log/newusers
-'newuserlogpage' => 'Regestér di nōv utèint',
 
 # Watchlist
 'watchlist' => 'Al còsi ca guèrd',

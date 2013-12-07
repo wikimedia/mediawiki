@@ -474,7 +474,7 @@ Tapez ene adresse emile sicrîte comifåt oudobén vudîz l' tchamp, s' i vs pla
 'loginlanguagelabel' => 'Lingaedje: $1',
 
 # Change password dialog
-'resetpass' => "Candjî l' sicret",
+'changepassword' => "Candjî l' sicret",
 'resetpass_announce' => "Vos vs avoz elodjî avou on scret timporaire ki vos a stî emilé.
 Por vos fini l' elodjaedje, vos dvoz defini on novea scret:",
 'resetpass_header' => "Candjî l' sicret do conte",
@@ -759,8 +759,6 @@ Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l'
 'revdelete-log' => 'Råjhon:',
 'revdelete-submit' => 'Apliker {{PLURAL:$1|al modêye tchoezeye|åzès modêyes tchoezeyes}}',
 'revdel-restore' => "candjî l' veyåvisté",
-'revdel-restore-deleted' => 'disfacêyès modêyes',
-'revdel-restore-visible' => 'veyåvès modêyes',
 'deletedhist' => 'Istwere disfacêye',
 
 # History merging
@@ -829,7 +827,6 @@ Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l'
 'preferences' => 'Preferinces',
 'mypreferences' => 'Mes preferinces',
 'prefs-edits' => 'Nombe di candjmints:',
-'changepassword' => "Candjî l' sicret",
 'prefs-skin' => 'Pea',
 'skin-preview' => 'vey divant',
 'datedefault' => 'Nole preferince',
@@ -1334,9 +1331,6 @@ Vos ploz defini l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' u
 'allpagesto' => "Håyner les pådjes disk' a:",
 'allarticles' => 'Tos les årtikes',
 'allinnamespace' => 'Totes les pådjes (espåce di lomaedje $1)',
-'allnotinnamespace' => "Totes les pådjes (foû d' l' espåce di lomaedje $1)",
-'allpagesprev' => 'Di dvant',
-'allpagesnext' => 'Shuvant',
 'allpagessubmit' => 'I va',
 'allpagesprefix' => "Håyner les pådjes avou l' betchete:",
 'allpagesbadtitle' => "Li tite di pådje diné n' est nén valide oudonbén il a-st ene betchete di loyén eterlingaedje ou eterwiki. Ça s' pout k' il åye onk ou d' pus d' caracteres ki n' si polèt nén eployî dins les tites.",
@@ -1738,7 +1732,6 @@ Dins ces cas la, vos dvroz displaecî l' pådje di copene al mwin, ou rcopyî
 si contnou, si vos l' vloz mete adlé l' novea no
 d' l' årtike.",
 'movearticle' => 'Displaecî di',
-'movenologin' => 'Nén elodjî',
 'movenologintext' => 'I vs fåt esse èn uzeu eredjîstré eyet esse [[Special:UserLogin|elodjî]] por vos pleur displaecî ene pådje.',
 'newtitle' => "Viè l' novea tite",
 'move-watch' => 'Shuve cisse pådje cial',
@@ -1747,8 +1740,6 @@ d' l' årtike.",
 'articleexists' => "Ene pådje egzistêye dedja avou ç' no la, oudonbén
 li no k' vos avoz tchoezi n' est nén valide.
 Tchoezixhoz è èn ôte s' i vs plait.",
-'talkexists' => "'''Li pådje leye minme a stî displaeceye comifåt, mins nén li pådje di copene, ca i gn aveut ddja ene pådje di copene k' egzistéve al novele plaece. I vs fårè copyî l' tecse del pådje di copene al mwin.'''",
-'movedto' => 'displaecî viè',
 'movetalk' => 'Displaecî li pådje di copene avou, si ça astchait.',
 'movelogpage' => 'Djournå des displaeçaedjes',
 'movelogpagetext' => "Chal pa dzo c' est ene djivêye des pådjes k' on stî displaceyes.",

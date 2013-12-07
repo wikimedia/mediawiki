@@ -58,9 +58,6 @@ $messages = array(
 'navigation' => 'mianirivaa',
 'and' => '&#32;amma',
 
-# Cologne Blue skin
-'qbspecialpages' => 'piji mappitaq',
-
 # Vector skin
 'vector-view-edit' => 'Suqusiqpaa',
 
@@ -87,13 +84,12 @@ $messages = array(
 'jumptonavigation' => 'mianirivaa',
 'jumptosearch' => 'ivaaqpuq',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'miksaani {{SITENAME}}',
 'aboutpage' => 'Project:miksaani',
 'currentevents' => 'pigivuq piusiq',
 'currentevents-url' => 'Project:pigivuq piusiq',
 'edithelp' => 'ikurripaa suqusiqpaa',
-'edithelppage' => 'Help:suqusiqpaa',
 'mainpage' => 'amiq',
 'mainpage-description' => 'amiq',
 'portal' => 'qaggiq',
@@ -102,8 +98,6 @@ $messages = array(
 'privacypage' => 'Project:namminiq pilirivviqauqtunut aulataujut atuagaq, pinasuarniq',
 
 'youhavenewmessages' => 'ilissu pigivaa $1 ($2).',
-'newmessageslink' => 'pigivuk kiggapaa',
-'newmessagesdifflink' => 'annitujuq asiaNngutuq',
 'editsection' => 'suqusiqpaa',
 'editold' => 'suqusiqpaa',
 'editlink' => 'suqusiqpaa',
@@ -127,8 +121,6 @@ $messages = array(
 'editinginterface' => "'''iniqtiruti—''' aaha suqusiqpaa iqiak mappitaq atuinnasivuq iijatsaq qarasaujaq taqsaliqpaa ikiaq aqittuq qaritaujaup titirarvinga. asiaNngutuq ikiaq mappitaq inuktitut uikipitia allanguqtuaq nakimaqpuq qatannguti.",
 
 # Login and logout pages
-'welcomecreation' => "== ariunngaipaa, $1! ==
-pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiqpa{{SITENAME}} inniatuq—«''nipi ami''»",
 'yourname' => 'uikipitia atiq',
 'yourpassword' => 'uikipitia palanngasauti',
 'yourpasswordagain' => 'tamatumaniiqpaa iksigaqtuq uikipitia palanngasauti',
@@ -181,7 +173,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 
 # Search results
 'nextn' => 'tagga {{PLURAL:$1|$1}}',
-'powersearch' => 'ivaaqpuq',
 
 # Preferences page
 'mypreferences' => 'mi pikkumaniqpaaq',
@@ -203,7 +194,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'recentchangeslinked' => 'asiaNngutuq mitsaasijuq',
 'recentchangeslinked-feed' => 'asiaNngutuq mitsaasijuq',
 'recentchangeslinked-toolbox' => 'asiaNngutuq mitsaasijuq',
-'recentchangeslinked-noresult' => '0 asiaNngutuq itsivimmiusiqpaa mappitaq takuvallatuq sulluk tamatumani tumiku',
 
 # Upload
 'upload' => 'mappipaa nalinaijatit',
@@ -243,14 +233,12 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Special:AllPages
 'allpages' => 'sunamittuq mappitaq',
 'nextpage' => 'tagga mappitaq ($1)',
-'allpagesprev' => 'tunullipaaq',
-'allpagesnext' => 'tagga',
 'allpagessubmit' => 'aivuk',
 
 # Special:Categories
 'categories' => 'nuapput',
 
-# E-mail user
+# Email user
 'emailfrom' => 'nakit',
 'emailmessage' => 'kiggapaa',
 'emailsend' => 'qiutsavigivaa',
@@ -309,7 +297,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Move page
 'move-page-legend' => 'uajuq mappitaq',
 'movearticle' => 'uajuq mappitaq',
-'movedto' => 'uajuq',
 'movelogpage' => 'uajuq nipi',
 'delete_and_move' => 'nipaqtipaa amma uajuq',
 
@@ -346,7 +333,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'variantname-ike-latn' => 'ilisautik',
 'variantname-iu' => 'disable',
 
-# EXIF tags
+# Exif tags
 'exif-imagelength' => 'qutsingniq',
 'exif-imagedescription' => 'inunnguaq atiq',
 'exif-colorspace' => 'minguarutimitiqpaa',

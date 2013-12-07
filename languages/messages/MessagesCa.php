@@ -700,7 +700,7 @@ Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscu
 'passwordtooshort' => "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
 'password-name-match' => "La contrasenya ha de ser diferent al vostre nom d'usuari.",
 'password-login-forbidden' => "No és permès d'utilitzar aquest nom d'usuari i contrasenya.",
-'mailmypassword' => "Envia'm una nova contrasenya per correu electrònic",
+'mailmypassword' => 'Restableix la contrasenya',
 'passwordremindertitle' => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext' => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
 La nova contrasenya temporal per a l'usuari «$2» és ara «$3». Si aquesta fou la vostra intenció, ara hauríeu d'iniciar la sessió i canviar-la. Tingueu present que és temporal i caducarà d'aquí {{PLURAL:$5|un dia|$5 dies}}.
@@ -749,7 +749,7 @@ Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu tr
 'user-mail-no-body' => 'Vas intentar enviar un correu electrònic amb un cos buit o excessivament curt.',
 
 # Change password dialog
-'resetpass' => 'Canvia la contrasenya',
+'changepassword' => 'Canvia la contrasenya',
 'resetpass_announce' => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
 'resetpass_text' => '<!-- Afegiu-hi un text -->',
 'resetpass_header' => 'Canvia la contrasenya del compte',
@@ -770,7 +770,7 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 # Special:PasswordReset
 'passwordreset' => 'Restablir contrasenya',
 'passwordreset-text-one' => 'Cal completar aquest formulari per reiniciar la contrasenya',
-'passwordreset-text-many' => '{{PLURAL:$1|Ompliu un dels camps per a reiniciar la vostra contrasenya.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Ompliu un dels camps per a rebre una contrasenya temporal al vostre correu electrònic.}}',
 'passwordreset-legend' => 'Restablir contrasenya',
 'passwordreset-disabled' => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
 'passwordreset-emaildisabled' => 'Les opcions de correu electrònic no estan habilitades en aquest wiki.',
@@ -1136,10 +1136,6 @@ Podeu veure aquesta comparativa; pot haver-hi més detalls al [{{fullurl:{{#Spec
 'revdelete-nooldid-title' => 'La revisió objectiu no és vàlida',
 'revdelete-nooldid-text' => "No heu especificat unes revisions objectius per a realitzar aquesta
 funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
-'revdelete-nologtype-title' => "No s'ha donat el tipus de registre",
-'revdelete-nologtype-text' => 'No heu especificat un tipus de registre on dur a terme aquesta acció.',
-'revdelete-nologid-title' => 'Entrada de registre no vàlida',
-'revdelete-nologid-text' => 'Heu especificat un esdeveniment del registre que no existeix o al que no se li pot aplicar aquesta funció.',
 'revdelete-no-file' => 'El fitxer especificat no existeix.',
 'revdelete-show-file-confirm' => 'Esteu segurs que voleu veure una revisió esborrada del fitxer «<nowiki>$1</nowiki>» de $2 a $3?',
 'revdelete-show-file-submit' => 'Sí',
@@ -1173,8 +1169,6 @@ $1",
 'logdelete-failure' => "'''No s'ha pogut establir la visibilitat del registre:'''
 $1",
 'revdel-restore' => "Canvia'n la visibilitat",
-'revdel-restore-deleted' => 'revisions esborrades',
-'revdel-restore-visible' => 'revisions visibles',
 'pagehist' => 'Historial',
 'deletedhist' => "Historial d'esborrat",
 'revdelete-hide-current' => "Error en amagar l'edició del $1 a les $2: és la revisió actual.
@@ -1284,7 +1278,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(més)',
 'search-relatedarticle' => 'Relacionat',
-'mwsuggest-disable' => 'Desactivar suggeriments de cerca',
 'searcheverything-enable' => 'Cerca a tots els espais de noms',
 'searchrelated' => 'relacionat',
 'searchall' => 'tots',
@@ -1307,7 +1300,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'mypreferences' => 'Preferències',
 'prefs-edits' => "Nombre d'edicions:",
 'prefsnologintext2' => "Useu $1 per configurar preferències d'usuari.",
-'changepassword' => 'Canvia la contrasenya',
 'prefs-skin' => 'Aparença',
 'skin-preview' => 'prova',
 'datedefault' => 'Cap preferència',
@@ -2135,9 +2127,6 @@ Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari real
 'allpagesto' => 'Mostra pàgines que acabin en:',
 'allarticles' => 'Totes les pàgines',
 'allinnamespace' => "Totes les pàgines (de l'espai de noms $1)",
-'allnotinnamespace' => "Totes les pàgines (que no són a l'espai de noms $1)",
-'allpagesprev' => 'Anterior',
-'allpagesnext' => 'Següent',
 'allpagessubmit' => 'Vés-hi',
 'allpagesprefix' => 'Mostra les pàgines amb prefix:',
 'allpagesbadtitle' => "El títol de la pàgina que heu inserit no és vàlid o conté un prefix d'enllaç amb un altre projecte. També pot passar que contingui un o més caràcters que no es puguin fer servir en títols de pàgina.",
@@ -2741,7 +2730,6 @@ assegureu-vos que sabeu el que feu abans de continuar.",
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle' => 'Reanomena la pàgina',
 'moveuserpage-warning' => "'''Atenció:''' Esteu a punt de moure una pàgina d'usuari. Tingueu en compte que només la pàgina es desplaçarà i que el compte d'usuari ''no'' canviarà de nom.",
-'movenologin' => "No sou a dins d'una sessió",
 'movenologintext' => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
 per reanomenar una pàgina.",
 'movenotallowed' => 'No teniu permís per a moure pàgines.',
@@ -2758,10 +2746,6 @@ per reanomenar una pàgina.",
 'articleexists' => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
 Trieu-ne un altre, si us plau.',
 'cantmove-titleprotected' => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
-'talkexists' => "S'ha reanomenat la pàgina amb èxit, però la pàgina de discussió no s'ha pogut moure car ja no existeix en el títol nou.
-
-Incorporeu-les manualment, si us plau.",
-'movedto' => 'reanomenat a',
 'movetalk' => 'Mou la pàgina de discussió associada',
 'move-subpages' => "Desplaça'n també les subpàgines (fins a $1)",
 'move-talk-subpages' => 'Desplaça també les subpàgines de la pàgina de discussió (fins un màxim de $1)',

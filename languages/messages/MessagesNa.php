@@ -38,11 +38,10 @@ $messages = array(
 'unprotect' => 'Eab oberei',
 'toolbox' => 'Dabadi n bwait makur',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Imwin',
 'currentevents-url' => 'Project:Imwin',
 'edithelp' => 'Oomo/edar Ipuok',
-'edithelppage' => 'Help:Oomo/edar',
 'helppage' => 'Help:Oangan',
 'mainpage' => 'Bwiema peij',
 'mainpage-description' => 'Bwiema peij',
@@ -73,10 +72,6 @@ $messages = array(
 'editing' => 'Oomo/edar $1',
 'editingsection' => 'Oomo/edar $1 (itubwang)',
 
-# Search results
-'searchhelp-url' => 'Help:Oangan',
-'powersearch' => 'Anani ko',
-
 # Preferences page
 'prefs-skin' => 'Witsin',
 'searchresultshead' => 'Anani ko',
@@ -97,7 +92,7 @@ $messages = array(
 # Special:AllPages
 'allpagessubmit' => 'nuwa ko',
 
-# E-mail user
+# Email user
 'emailuser' => 'Emaileiy amune',
 'emailfrom' => 'Atsiu',
 'emailto' => 'Animwen',

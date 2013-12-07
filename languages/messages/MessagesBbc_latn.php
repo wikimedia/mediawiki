@@ -210,8 +210,6 @@ $messages = array(
 'ok' => 'OK',
 'retrievedfrom' => 'Dijalo sian "$1"',
 'youhavenewmessages' => 'Adong di ho $1 ($2).',
-'newmessageslink' => 'Tona na imbaru',
-'newmessagesdifflink' => 'Parubaan na parpudi',
 'youhavenewmessagesmulti' => 'Adong tu ho tona na imbaru di $1',
 'editsection' => 'Patota',
 'editold' => 'patota',
@@ -291,7 +289,6 @@ $messages = array(
 'loginlanguagelabel' => 'Hata: $1',
 
 # Change password dialog
-'resetpass' => 'Pauba hata hinsu',
 'oldpassword' => 'Hata hinsu na leleng',
 'newpassword' => 'Password naimbaru',
 'resetpass-submit-loggedin' => 'Pauba hata hinsu',
@@ -376,8 +373,6 @@ Parubaan na binahenmu dang di simpan dope!",
 'rev-showdeleted' => 'Paida',
 'revdelete-log' => 'Alana',
 'revdel-restore' => 'Pauba pardompahan',
-'revdel-restore-deleted' => 'Patota naung di sesa',
-'revdel-restore-visible' => 'revisi na tarbereng',
 
 # Merge log
 'revertmerge' => 'Sundati Pardomuan',
@@ -713,9 +708,6 @@ Holan daftar (baris na dimulai dohot tanda *) na masuk etongan. Pangait na parjo
 # Exif tags
 'exif-imagewidth' => 'Bolak',
 'exif-imagelength' => 'Timbo',
-
-# External editor support
-'edit-externally' => 'Patota berkas on mamarhaseanghon ulaula parduru',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Sasude',

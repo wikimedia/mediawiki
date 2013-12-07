@@ -56,7 +56,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'Uzgartish',
-'qbspecialpages' => 'Alahida tor batleri',
 
 'help' => 'Yardem',
 'search' => 'Izdash',
@@ -75,7 +74,7 @@ $messages = array(
 'otherlanguages' => 'Bashqa tillarda',
 'jumptosearch' => 'izdash',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Hazirqi weqeler',
 'edithelp' => 'Uzgartish yardemi',
 'mainpage' => 'Bash Bet',
@@ -119,7 +118,6 @@ $messages = array(
 # Search results
 'prevn' => 'aldinqi {{PLURAL:$1|$1}}',
 'nextn' => 'kéyinki {{PLURAL:$1|$1}}',
-'powersearch' => 'Izdash',
 
 # Preferences page
 'prefs-rc' => 'Yengi uzgurush',
@@ -231,5 +229,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'Alahide tor betleri',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'Maqul',
 
 );

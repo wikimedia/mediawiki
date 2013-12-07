@@ -54,7 +54,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'Fakahakohako',
-'qbspecialpages' => 'Tau Lau Mahuiga',
 
 'help' => 'Lagomatai',
 'search' => 'Kumi',
@@ -74,7 +73,7 @@ $messages = array(
 'jumptonavigation' => 'navikati',
 'jumptosearch' => 'kumi',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Hagaao ke he {{SITENAME}}',
 'aboutpage' => 'Project: Hagaao',
 'currentevents' => 'Tau Fakaholoaga Mogonei',
@@ -87,7 +86,6 @@ $messages = array(
 'privacy' => 'Ko e puipuiaga ke he tau talahauaga mo e talahauaga fakatagata',
 
 'youhavenewmessages' => 'Fai $1 ($2).',
-'newmessageslink' => 'tau tohi foou',
 'youhavenewmessagesmulti' => 'Fai tohi foou a koe he $1',
 'editsection' => 'fakahakohako',
 'editold' => 'fakahakohako',
@@ -102,9 +100,6 @@ $messages = array(
 'viewsource' => 'Kitekite ke mouaga',
 
 # Login and logout pages
-'welcomecreation' => '== Fakalofa atu, kua fiafia ke hu mai $1 ==
-Kua talaga e haau a poko.
-Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 'yourname' => 'Matahigoa he tagata:',
 'yourpassword' => 'Kupu fufu:',
 'yourpasswordagain' => 'Liu lolomi e kupu fufu:',
@@ -139,7 +134,6 @@ Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 
 # Preferences page
 'mypreferences' => 'Haaku a tau manako',
-'prefsnologin' => 'Ai la hu ki loto',
 'prefs-rc' => 'Hikihikiaga mogoia',
 'searchresultshead' => 'Kumi',
 'youremail' => 'Meli hila:',
@@ -220,9 +214,7 @@ Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 'ipblocklist-submit' => 'Kumi',
 
 # Move page
-'movenologin' => 'Ai la hu ki loto',
 'move-watch' => 'Onoono e lau e',
-'movedto' => 'kua une ke he',
 'movereason' => 'Kakano:',
 
 # Namespace 8 related

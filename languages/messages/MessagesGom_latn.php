@@ -336,8 +336,6 @@ Vivron: '''({{int:cur}})''' = halinchi uzollnie borobor forok, '''({{int:last}})
 # Revision deletion
 'rev-delundel' => 'dakhoi/lipoi',
 'revdel-restore' => 'Disnnem bodol',
-'revdel-restore-deleted' => "rod'd kelelo uzollnneo",
-'revdel-restore-visible' => 'Dispi uzollnneo',
 
 # Merge log
 'revertmerge' => 'Doxim kor',

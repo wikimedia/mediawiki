@@ -256,7 +256,6 @@ Mjarab Naqla ḥreto.',
 'loginlanguagelabel' => 'Leşono: $1',
 
 # Change password dialog
-'resetpass' => 'Mşaḥlaf uQliḍo.',
 'oldpassword' => 'Qliḍo 3atiqo:',
 'newpassword' => 'Qliḍo ḥaṭo:',
 'retypenew' => 'Qliḍo ḥaṭo (disa):',
@@ -369,8 +368,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'revdelete-radio-set' => 'Eh',
 'revdelete-radio-unset' => 'Lo',
 'revdel-restore' => 'change visibility',
-'revdel-restore-deleted' => 'deleted revisions',
-'revdel-restore-visible' => 'visible revisions',
 'pagehist' => 'Maktabzabno diFaṭo',
 
 # Merge log
@@ -559,7 +556,6 @@ The description on its [$2 file description page] there is shown below.',
 'allpages' => 'aFaṭaṭe kulle',
 'alphaindexline' => '$1  l$2',
 'allarticles' => 'aFaṭaṭe kulle',
-'allpagesnext' => 'Ḥreto',
 'allpagessubmit' => 'Zux',
 
 # Special:Categories

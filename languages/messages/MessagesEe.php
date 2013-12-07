@@ -14,11 +14,12 @@
 $messages = array(
 # User preference toggles
 'tog-hideminor' => 'Ɣla tɔtrɔ suewo le tɔtrɔ yeyeawo me',
-'tog-watchcreations' => 'Tsɔ axa siwo gɔme medze la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
-'tog-watchdefault' => 'Tsɔ axa siwo ŋu metrɔ asi le la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
-'tog-watchmoves' => 'Tsɔ axa siwo ƒe nɔƒe meɖɔli la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
-'tog-watchdeletion' => 'Tsɔ axa siwo metutu la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
-'tog-enotifwatchlistpages' => 'Ɖo du nam ne axa aɖe si ŋu nyeƒe ŋku le la trɔ',
+'tog-watchcreations' => 'Tsɔ axa siwo gɔme medze kpakple axa siwo meda ɖe afisia la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchdefault' => 'Tsɔ axawo kpakple nutatawo siwo ŋu metrɔ asi le la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchmoves' => 'Tsɔ  axawo kpakple nutatawo siwo ƒe nɔƒe meɖɔli la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchdeletion' => 'Tsɔ  axawo kpakple nutatawo siwo metutu la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-enotifwatchlistpages' => 'Ɖo du nam ne axa aɖe alo nutata aɖe si ŋu nyeƒe ŋku le la trɔ',
+'tog-useeditwarning' => 'Na nyanyam ne mele asiɖem le axa si ŋu wome dzra tɔtrɔwo ɖo vɔ la o.',
 
 'underline-always' => 'Ɣesiaɣi',
 'underline-never' => 'Gbeɖe',
@@ -74,6 +75,18 @@ $messages = array(
 'oct' => 'Kel',
 'nov' => 'Ade',
 'dec' => 'Dzom',
+'january-date' => 'Dzove $1',
+'february-date' => 'Dzodze $1',
+'march-date' => 'Tedoxe $1',
+'april-date' => 'Afɔfiɛ $1',
+'may-date' => 'Damɛ $1',
+'june-date' => 'Masa $1',
+'july-date' => 'Siamlɔm $1',
+'august-date' => 'Dasiamime $1',
+'september-date' => 'Anyɔnyɔ $1',
+'october-date' => 'Kele $1',
+'november-date' => 'Adeɛmekpɔxe $1',
+'december-date' => 'Dzome $1',
 
 # Categories related messages
 'listingcontinuesabbrev' => 'yi dzi',
@@ -88,10 +101,10 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Di',
+'qbbrowse' => 'To eme',
 'qbedit' => 'Trɔ asi le eŋu',
 'qbpageoptions' => 'Axa sia',
 'qbmyoptions' => 'Nyeƒe axawo',
-'qbspecialpages' => 'Axa tɔxewo',
 
 # Vector skin
 'vector-action-delete' => 'Tutui',
@@ -112,6 +125,7 @@ $messages = array(
 'searcharticle' => 'Yi',
 'history' => 'Axa sia ƒe tata xoxoawo',
 'history_short' => 'Xoxoawo',
+'view' => 'Tata',
 'edit' => 'Trɔ asi le eŋu',
 'create' => 'Dze egɔme',
 'editthispage' => 'Ðɔ axa sia ɖo',
@@ -136,7 +150,7 @@ $messages = array(
 'jumptonavigation' => 'kuɖɔɖoɖo',
 'jumptosearch' => 'dii',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} ŋutinya',
 'aboutpage' => 'Project:Ŋutinya',
 'copyright' => 'Nusiwo le afii le $1 mɔɖeɖea te.',
@@ -155,8 +169,6 @@ $messages = array(
 
 'retrievedfrom' => 'Nuŋɔŋlɔ sia tso "$1"',
 'youhavenewmessages' => '$1 le asiwo ($2).',
-'newmessageslink' => 'du yeyewo',
-'newmessagesdifflink' => 'tɔtrɔ mamlea',
 'youhavenewmessagesmulti' => 'Du yeyewo le asiwo le $1',
 'editsection' => 'trɔ asi le eŋu',
 'editold' => 'trɔ asi le eŋu',
@@ -267,9 +279,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 # Search results
 'searchresults' => 'Nusiwo wòdi',
 'searchresults-title' => 'Nusiwo wofɔ le "$1" didi me',
-'searchsubtitle' => 'Nusi wòdi enye \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|axawo katã siwo dze egɔme kple "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|axawo katã siwo kuɖe "$1" ŋu]]).',
-'searchsubtitleinvalid' => "Wòdi '''$1'''",
-'notitlematches' => 'Mesɔ axa aɖeke ƒe tanya o',
 'notextmatches' => 'Axa aɖeke ƒe nyawo mesɔ kple nyasiawo o.',
 'prevn' => '{{PLURAL:$1|$1}} do ŋgɔ',
 'nextn' => '{{PLURAL:$1|$1}} yometɔwo',
@@ -283,8 +292,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'search-suggest' => 'Ɖe wò be: $1',
 'search-interwiki-more' => '(kɔ kpe ɖe eŋu)',
 'searchall' => 'wokatã',
-'powersearch' => 'Dii de eme',
-'powersearch-field' => 'Di',
 'powersearch-toggleall' => 'Wokatã',
 
 # Preferences page
@@ -403,7 +410,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'allpagesto' => 'Fia axawo vaseɖe:',
 'allarticles' => 'Axawo katã',
 'allinnamespace' => 'Axawo katã ($1 namespace)',
-'allpagesnext' => 'Eyome',
 'allpagessubmit' => 'Yi',
 
 # Special:LinkSearch
@@ -505,7 +511,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'articleexists' => 'Tanya alo ŋkɔ sia nye axa bubu aɖe tɔ xoxo, alo eda se dzi.
 Tia ŋkɔ alo tanya bubu.',
 'cantmove-titleprotected' => 'Wòmateŋu ahe axa aɖeke va afii o, elabena wo xemɔ na tanya sia ƒe ŋɔŋlɔ',
-'movedto' => 'wohee yi',
 
 # Export
 'export' => 'Ɖo axa siawo ɖa',
@@ -561,9 +566,6 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'newimages' => 'Nutata yeyewo',
 'ilsubmit' => 'Dii',
 
-# External editor support
-'edit-externally-help' => '(Kpɔ [//www.mediawiki.org/wiki/Manual:External_editors gɔmedzedze sewo] na kpekpeɖeŋu bubuwo.)',
-
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'katã',
 'namespacesall' => 'wokatã',
@@ -596,5 +598,8 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 
 # Special:Tags
 'tags-edit' => 'trɔ asi le eŋu',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'Kpɔe do ŋgɔ',
 
 );

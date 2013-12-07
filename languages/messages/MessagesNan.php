@@ -430,7 +430,7 @@ Tùi khoàⁿ-māi,  lí phah--ê.',
 'user-mail-no-addy' => 'Siūⁿ beh kià tiān-chú-phoe, m̄-koh bô siá tē-chí.',
 
 # Change password dialog
-'resetpass' => 'Kái bi̍t-bé',
+'changepassword' => 'Oāⁿ bi̍t-bé',
 'resetpass_header' => 'Kái káu-chō ê bi̍t-bé.',
 'oldpassword' => 'Kū bi̍t-bé:',
 'newpassword' => 'Sin bi̍t-bé:',
@@ -593,7 +593,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 # Preferences page
 'preferences' => 'Siat-tēng',
 'mypreferences' => 'Góa ê siat-tēng',
-'changepassword' => 'Oāⁿ bi̍t-bé',
 'prefs-skin' => 'Phôe',
 'skin-preview' => 'Chhì khoàⁿ',
 'datedefault' => 'Chhìn-chhái',
@@ -798,9 +797,6 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'allpagesfrom' => 'Tùi chit ia̍h khai-sí hián-sī:',
 'allarticles' => 'Só·-ū ê bûn-chiuⁿ',
 'allinnamespace' => 'Só·-ū ê ia̍h ($1 miâ-khong-kan)',
-'allnotinnamespace' => 'Só·-ū ê ia̍h (bô tī $1 miâ-khong-kan)',
-'allpagesprev' => 'Téng 1 ê',
-'allpagesnext' => 'ē 1 ê',
 'allpagessubmit' => 'Lâi-khì',
 
 # Special:Categories
@@ -961,15 +957,12 @@ Tùi chē lâng tha̍k ê ia̍h lâi kóng, soá-ūi sī toā tiâu tāi-chì.
 Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chiah-ê hiō-kó.",
 'movepagetalktext' => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
 'movearticle' => 'Sóa ia̍h:',
-'movenologin' => 'Bô teng-ji̍p',
 'movenologintext' => 'Lí it-tēng ài sī chù-chheh ê iōng-chiá jī-chhiáⁿ ū [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng sóa ia̍h.',
 'newtitle' => 'Khì sin piau-tê:',
 'move-watch' => 'Kàm-sī chit ia̍h',
 'movepagebtn' => 'Sóa ia̍h',
 'pagemovedsub' => 'Sóa-ūi sêng-kong',
 'articleexists' => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
-'talkexists' => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
-'movedto' => 'sóa khì tī',
 'movetalk' => 'Sūn-sòa sóa thó-lūn-ia̍h',
 'movepage-page-moved' => '$1 í-keng sóa khì tī $2.',
 'movelogpagetext' => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',

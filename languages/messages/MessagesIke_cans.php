@@ -74,7 +74,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'ᓱᖁᓯᖅᐹ',
-'qbspecialpages' => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
 
 'errorpagetitle' => 'ᑕᒻᒪᓇᖅᑐᖅ',
 'help' => 'ᖃᔭᓕᑉᐹ',
@@ -101,13 +100,12 @@ $messages = array(
 'jumptonavigation' => 'ᒥᐊᓂᕆᕚ',
 'jumptosearch' => 'ᐃᕚᖅᐳᖅ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ᒥᒃᓵᓂ {{SITENAME}}',
 'aboutpage' => 'Project:ᒥᒃᓵᓂ',
 'currentevents' => 'ᐱᒋᕗᖅ ᐱᐅᓯᖅ',
 'currentevents-url' => 'Project:ᐱᒋᕗᖅ ᐱᐅᓯᖅ',
 'edithelp' => 'ᓱᖁᓯᖅᐹ ᐃᑯᕐᕆᐹ',
-'edithelppage' => 'Help:ᐃᑯᕐᕆᐹ',
 'mainpage' => 'ᐊᒥᖅ',
 'mainpage-description' => 'ᐊᒥᖅ',
 'portal' => 'ᖃᒡᒋᖅ',
@@ -116,8 +114,6 @@ $messages = array(
 'privacypage' => 'Project:ᓇᒻᒥᓂᖅ ᐱᓕᕆᕝᕕᖃᐅᖅᑐᓄᑦ ᐊᐅᓚᑕᐅᔪᑦ ᐊᑐᐊᒐᖅ, ᐱᓇᓱᐊᕐᓂᖅ',
 
 'youhavenewmessages' => 'ᐃᓕᔅᓯ ᐱᒋᕚ $1 ($2).',
-'newmessageslink' => 'ᐱᒋᕗᖅ ᑭᒡᒐᐹ',
-'newmessagesdifflink' => 'ᐊᓐᓂᑐᔪᖅ ᐊᓯᐊᙳᑐᖅ',
 'editsection' => 'ᓱᖁᓯᖅᐹ ᐃᓚ',
 'editold' => 'ᓱᖁᓯᖅᐹ',
 'editsectionhint' => 'ᓱᖁᓯᖅᐹ ᐃᓚᖏᐅᑎᑎᑦᓯᒍᑎ: $1',
@@ -143,8 +139,6 @@ $messages = array(
 'editinginterface' => "'''ᐃᓂᖅᑎᕈᑎ—''' ᐋᕼᐊ ᓱᖁᓯᖅᐹ ᐃᑭᐊᖅ ᒪᑉᐱᑕᖅ ᐊᑐᐃᓐᓇᓯᕗᖅ ᐄᔭᑦᓴᖅ ᖃᕋᓴᐅᔭᖅ ᑕᖅᓴᓕᖅᐹ ᐃᑭᐊᖅ ᐊᕿᑦᑐᖅ ᖃᕆᑕᐅᔭᐅᑉ ᑎᑎᕋᕐᕕᖓ. ᐊᓯᐊᙳᑐᖅ ᐃᑭᐊᖅ ᒪᑉᐱᑕᖅ ᐃᓄᒃᑎᑐᑦ ᐅᐃᑭᐱᑎᐊ ᐊᓪᓚᖑᖅᑐᐊᖅ ᓇᑭᒪᖅᐳᖅ ᖃᑕᙳᑎ.",
 
 # Login and logout pages
-'welcomecreation' => "== ᐊᕆᐅᙵᐃᐹ, $1! ==
-ᐱᒋᕗᖅ ᖃᑕᙳᑎ ᐅᐃᑭᐱᑎᐊ ᑮᓇᐅᔭᖁᑎᖃᕐᕕᒃ ᐃᓱᐃᓪᓕᖓᐃᑦᔭᐹ. ᐃᖅᑑ ᓱᖁᓯᖅᐹ {{SITENAME}} ᐃᓐᓂᐊᑐᖅ «''ᓂᐱ ᐊᒥ''»",
 'yourname' => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ',
 'yourpassword' => 'ᐅᐃᑭᐱᑎᐊ ᐸᓚᙵᓴᐅᑎ',
 'yourpasswordagain' => 'ᑕᒪᑐᒪᓃᖅᐹ ᐃᒃᓯᒐᖅᑐᖅ ᐅᐃᑭᐱᑎᐊ ᐸᓚᙵᓴᐅᑎ',
@@ -200,7 +194,6 @@ $messages = array(
 
 # Search results
 'nextn' => 'ᑕᒡᒐ {{PLURAL:$1|$1}}',
-'powersearch' => 'ᕿᓐᓇᕆᒃᓴᕐᓂᖅ',
 
 # Preferences page
 'mypreferences' => 'ᐊᒥ ᐱᒃᑯᒪᓂᖅᐹᖅ',
@@ -227,7 +220,6 @@ $messages = array(
 'recentchangeslinked' => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
 'recentchangeslinked-feed' => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
 'recentchangeslinked-toolbox' => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
-'recentchangeslinked-noresult' => '0 ᐊᓯᐊᙳᑐᖅ ᐃᑦᓯᕕᒻᒥᐅᓯᖅᐹ ᒪᑉᐱᑕᖅ ᑕᑯᕙᓪᓚᑐᖅ ᓱᓪᓗᒃ ᑕᒪᑐᒪᓂ ᑐᒥᑯ',
 
 # Upload
 'upload' => 'ᒪᑉᐱᐹ ᓇᓗᓇᐃᔭᐅᑎᑦ',
@@ -270,14 +262,12 @@ $messages = array(
 # Special:AllPages
 'allpages' => 'ᓱᓇᒥᑦᑐᖅ ᒪᑉᐱᑕᖅ',
 'nextpage' => 'ᑕᒡᒐ ᒪᑉᐱᑕᖅ ($1)',
-'allpagesprev' => 'ᑐᓄᓪᓕᐹᖅ',
-'allpagesnext' => 'ᑕᒡᒐ',
 'allpagessubmit' => 'ᐊᐃᕗᖅ',
 
 # Special:Categories
 'categories' => 'ᓄᐊᑉᐳᑦ',
 
-# E-mail user
+# Email user
 'emailuser' => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ ᐃᓄᒃ',
 'emailfrom' => 'ᓇᑭᑦ',
 'emailmessage' => 'ᑭᒡᒐᐹ',
@@ -337,7 +327,6 @@ $messages = array(
 # Move page
 'move-page-legend' => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
 'movearticle' => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
-'movedto' => 'ᐅᐊᔪᖅ',
 'movelogpage' => 'ᐅᐊᔪᖅ ᓂᐱ',
 'movereason' => 'ᐃᓱᒪᒃᓴᖅᓯᐅᕈᓐᓇᑦᑎᐊᕐᓂᖅ:',
 'delete_and_move' => 'ᓂᐸᖅᑎᐹ  ᐊᒻᒪ ᐅᐊᔪᖅ',
@@ -378,7 +367,7 @@ $messages = array(
 'variantname-ike-latn' => 'ilisautik',
 'variantname-iu' => 'disable',
 
-# EXIF tags
+# Exif tags
 'exif-imagelength' => 'ᖁᑦᓯᖕᓂᖅ',
 'exif-imagedescription' => 'ᐃᓄᙳᐊᖅ ᐊᑎᖅ',
 'exif-colorspace' => 'ᒥᖑᐊᕈᑎᒥᑎᖅᐹ',

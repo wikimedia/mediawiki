@@ -1578,9 +1578,8 @@ Used on the account creation form when creating another user's account. Similar 
 'user-mail-no-body' => 'This is the error message in case an email has an empty or unreasonably short body.',
 
 # Change password dialog
-'resetpass' => 'The caption of [[Special:ChangePassword]]
-
-{{Identical|Change password}}',
+'changepassword' => "Section heading on [[Special:Preferences]], tab 'User profile'.
+{{Identical|Change password}}",
 'resetpass_announce' => 'Used in [[Special:UserLogin]].',
 'resetpass_text' => '{{optional}}',
 'resetpass_header' => 'Header on box on special page [[Special:ChangePassword]].
@@ -1593,10 +1592,10 @@ Used on the account creation form when creating another user's account. Similar 
 'changepassword-success' => 'Used in [[Special:ChangePassword]].',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].',
-'resetpass-submit-loggedin' => 'Button on [[Special:ChangePassword]] to submit new password.
+'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
 
 {{Identical|Change password}}',
-'resetpass-submit-cancel' => 'Used on [[Special:ChangePassword]].
+'resetpass-submit-cancel' => 'Used on [[Special:ResetPass]].
 {{Identical|Cancel}}',
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
@@ -2375,14 +2374,6 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 {{doc-special|RevisionDelete|unlisted=1}}',
 'revdelete-nooldid-title' => '{{RevisionDelete}}',
 'revdelete-nooldid-text' => '{{RevisionDelete}}',
-'revdelete-nologtype-title' => 'See also:
-* {{msg-mw|Revdelete-nologtype-text}}',
-'revdelete-nologtype-text' => 'See also:
-* {{msg-mw|Revdelete-nologtype-title}}',
-'revdelete-nologid-title' => 'See also:
-* {{msg-mw|Revdelete-nologid-text}}',
-'revdelete-nologid-text' => 'See also:
-* {{msg-mw|Revdelete-nologid-title}}',
 'revdelete-no-file' => 'Used as error message in [[Special:RevisionDelete]].',
 'revdelete-show-file-confirm' => 'A confirmation message shown on [[Special:Revisiondelete]] when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 
@@ -2504,8 +2495,6 @@ Possible alternative message - "Restrictions could not be set on the visibility 
 Parameters:
 * $1 - ...',
 'revdel-restore' => '{{RevisionDelete}}',
-'revdel-restore-deleted' => '{{RevisionDelete}}',
-'revdel-restore-visible' => '{{RevisionDelete}}',
 'pagehist' => '{{RevisionDelete}}
 Links to page history at Special:RevisionDelete header together with links to the logs and [[Special:Undelete]].
 {{Identical|Page history}}',
@@ -2896,7 +2885,6 @@ Parameters:
 'search-interwiki-more' => '{{Identical|More}}',
 'search-relatedarticle' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
-'mwsuggest-disable' => "The text of an option on the 'search options' tab of a user's Preferences.",
 'searcheverything-enable' => 'Used in [[Special:Preferences]], tab "Search".',
 'searchrelated' => 'This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]
 {{Identical|Related}}',
@@ -2951,8 +2939,6 @@ See also:
 'prefs-edits' => 'In user preferences.',
 'prefsnologintext2' => 'Parameters:
 * $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'changepassword' => 'Title of [[Special:ChangePassword]].
-{{Identical|Change password}}',
 'prefs-skin' => 'Used in user preferences.
 {{Identical|Skin}}',
 'skin-preview' => '{{doc-actionlink}}
@@ -2982,7 +2968,7 @@ See also:
 'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-token' => 'Used in [[Special:Preferences]], tab Watchlist.',
 'prefs-misc' => 'Tab used on the [[Special:Preferences|user preferences]] special page.',
-'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ChangePassword]].
+'prefs-resetpass' => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
 
 {{Identical|Change password}}',
 'prefs-changeemail' => 'Link on [[Special:Preferences]] to [[Special:ChangeEmail]].
@@ -5051,19 +5037,6 @@ Parameters:
 See also:
 * {{msg-mw|Allnotinnamespace}}
 {{Identical|All pages}}',
-'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.
-
-Parameters:
-* $1 - namespace name
-See also:
-* {{msg-mw|Allinnamespace}}
-{{Identical|All pages}}',
-'allpagesprev' => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
-
-{{Identical|Previous}}",
-'allpagesnext' => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
-
-{{Identical|Next}}",
 'allpagessubmit' => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:ListUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
 
 {{Identical|Go}}',
@@ -6781,7 +6754,6 @@ See also:
 * {{msg-mw|move-watch|label for checkbox}}
 {{Identical|Move page}}',
 'moveuserpage-warning' => 'Used as warning in [[Special:MovePage]], when moving a user page.',
-'movenologin' => '{{Identical|Not logged in}}',
 'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
 
 See also:
@@ -9573,6 +9545,7 @@ See also:
 See also:
 * {{msg-mw|Imgmultigo|Submit button text}}',
 
+# Language selector for translatable SVGs
 'img-lang-opt' => '{{optional}} Items in the language drop down on the image page for a translated SVG file. For an example see [[:File:Gerrit patchset 25838 test.svg]]. See also {{msg-mw|img-lang-info}}
 
 * $1 Language code

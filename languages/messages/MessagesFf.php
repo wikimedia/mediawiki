@@ -170,7 +170,7 @@ Tiiɗno sabbo seeɗa hade maa etaade naatde e hello ngoo kadi.',
 'pool-queuefull' => 'Doggol golle ko keewngol',
 'pool-errorunknown' => 'Juumre nde heftinaaka',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Baɗte {{SITENAME}}',
 'aboutpage' => 'Project:Baɗte',
 'copyright' => 'Loowdi ena heɓoo les $1.',
@@ -180,7 +180,6 @@ Tiiɗno sabbo seeɗa hade maa etaade naatde e hello ngoo kadi.',
 'disclaimers' => 'Deentine',
 'disclaimerpage' => 'Project:Deentine kuuɓtidinɗe',
 'edithelp' => 'Ballal Taƴtagol',
-'edithelppage' => 'Help:Taƴtagol',
 'helppage' => 'Help:Loowdi',
 'mainpage' => 'Hello jaɓɓorgo',
 'mainpage-description' => 'Hello jaɓɓorgo',
@@ -196,8 +195,6 @@ Tiiɗno sabbo seeɗa hade maa etaade naatde e hello ngoo kadi.',
 'ok' => 'OK',
 'retrievedfrom' => 'Ittaa ko to "$1"',
 'youhavenewmessages' => 'A heɓii $1 ($2).',
-'newmessageslink' => 'ɓatakuuje kese',
-'newmessagesdifflink' => 'baylol cakkitiingol',
 'youhavenewmessagesmulti' => 'A heɓii ɓatakuuje kese e $1',
 'editsection' => 'taƴto',
 'editold' => 'taƴto',
@@ -247,12 +244,6 @@ Doggol kelle ɗe moƴƴaani ena tawee to [[Special:SpecialPages|{{int:specialpag
 # General errors
 'error' => 'Faljere',
 'databaseerror' => 'Juumre ruttorde keɓe',
-'dberrortext' => 'Juumre lelngo ɗaɓɓitannde keɓe waɗii.
-Ɗuum kadi ena waawi wonde buggere e topirde ndee.
-Ɗaɓɓitannde keɓe sakkitiinde eteede wonnoo ko:
-<blockquote><code>$1</code></blockquote>
-iwde e golloore "<code>$2</code>".
-Ruttorde keɓe ruttinii juumre "<samp>$3: $4</samp>".',
 'missing-article' => 'Ruttorde keɓe ndee yiytaani loowdi hello ndi nde fotnoo yiytude, ena inniraa "$1" $2.
 
 Heewi waɗde noon ko diff nayeejo walla jokkol aslol fayde e hello momtaango.
@@ -331,8 +322,6 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 
 # Revision deletion
 'revdel-restore' => 'waylu jiyagol',
-'revdel-restore-deleted' => 'baylitte momtaaɗe',
-'revdel-restore-visible' => 'baylitte jiyotooɗe',
 
 # Merge log
 'revertmerge' => 'Ittu renndino',
@@ -394,7 +383,6 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} taƴto hello ngoo]</span>.',
 'recentchangeslinked' => 'Bayle toɗɗiiɗe ɗum',
 'recentchangeslinked-toolbox' => 'Bayle toɗɗiiɗe ɗee',
 'recentchangeslinked-title' => 'Bayle toɗɗiiɗe "$1"',
-'recentchangeslinked-noresult' => 'Alaa bayle ngoni e hello jokkiingo ngoo e dumunna joopaaɗo oo.',
 'recentchangeslinked-summary' => 'Ɗuum ko doggol bayle baɗaaɗe sakket e kelle jokkiiɗe e hello heeriingo (walla e terɗe fedde heeriinde).
 Kelle e [[Special:Watchlist|your watchlist]] ko ngoni ko e ""ɓuutol"".',
 'recentchangeslinked-page' => 'Innde hello:',
@@ -602,10 +590,6 @@ Goɗɗe maa cuuɗe e sahaa kala.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Taƴto ndee fiilde huutoraade jaaɓnirgal jiggangal',
-'edit-externally-help' => '(Yah to [//www.mediawiki.org/wiki/Manual:External_editors/ff tinndinoore teelto] ngam ɓeydude humpito)',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'fof',

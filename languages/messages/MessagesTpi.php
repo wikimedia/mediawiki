@@ -301,6 +301,9 @@ $messages = array(
 'mailmypassword' => 'E-mel nupela paswot',
 'loginlanguagelabel' => 'Tokples: $1',
 
+# Change password dialog
+'changepassword' => 'Senis paswot',
+
 # Edit page toolbar
 'link_sample' => 'Link taitel',
 'extlink_sample' => 'http://www.example.com link taitel',
@@ -391,7 +394,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'preferences' => 'Ol laik',
 'mypreferences' => 'Ol laik bilong mi',
 'prefs-edits' => 'Hamas senis:',
-'changepassword' => 'Senis paswot',
 'prefs-skin' => 'Skin',
 'skin-preview' => 'pes mi senisim, pastaim long raitim',
 'datedefault' => 'Nogat laik',
@@ -723,8 +725,6 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'movepage-moved' => '\'\'\'"$1" i surikim pinis long "$2"\'\'\'',
 'articleexists' => 'Wanpela pes wantaim dispela nem i stap pinis, o dispela nem i no stret.
 Yu mas painim narapela nem.',
-'talkexists' => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
-'movedto' => 'i surik i go long',
 'movetalk' => 'Surikim pes bilong toktok wantaim',
 'movelogpage' => 'Buk bilong ol surik',
 'movelogpagetext' => 'Hia yumi lukim ol pes i surik pinis.',

@@ -33,7 +33,7 @@ $messages = array(
 'edit' => 'Edet',
 'talk' => 'diskushun',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Dem Kurent Iwent',
 'currentevents-url' => 'Project:Dem Kurent Iwent',
 'helppage' => 'Help:Dem Kontent',
@@ -46,9 +46,6 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Artikal',
 'nstab-help' => 'Hiiwp Paij',
-
-# Search results
-'searchhelp-url' => 'Help:Dem Kontent',
 
 # Preferences page
 'prefs-rc' => 'Dem Riisent Chayng',

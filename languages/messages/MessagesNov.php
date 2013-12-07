@@ -89,7 +89,6 @@ $messages = array(
 'qbedit' => 'Modifika',
 'qbpageoptions' => 'Disi pagine',
 'qbmyoptions' => 'Men pagines',
-'qbspecialpages' => 'Spesial pagines',
 
 # Vector skin
 'vector-action-delete' => 'Ekarta',
@@ -131,7 +130,7 @@ $messages = array(
 'jumptonavigation' => 'navigatione',
 'jumptosearch' => 'sercha',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Pri {{SITENAME}}',
 'aboutpage' => 'Project:Pri',
 'currentevents' => 'Nuni eventes',
@@ -146,8 +145,6 @@ $messages = array(
 'badaccess' => 'Permisione erore',
 
 'youhavenewmessages' => 'Vu have $1 ($2).',
-'newmessageslink' => 'novi mesajes',
-'newmessagesdifflink' => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
 'editsection' => 'modifika',
 'editold' => 'modifika',
@@ -231,23 +228,16 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Search results
 'searchresults' => 'Resultes de sercho',
-'searchresulttext' => 'Por plu multi informatione pri sercho {{SITENAME}}, vida [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Vu serchad '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Vu serchad '''$1'''",
 'prevn' => 'lasti {{PLURAL:$1|$1}}',
 'nextn' => 'sekuenti {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Vida ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:Kontenaje',
 'search-result-size' => '$1 ({{PLURAL:$2|1 vorde|$2 vordes}})',
 'showingresults' => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
 'showingresultsnum' => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
-'powersearch' => 'Sercha',
 
 # Preferences page
 'preferences' => 'Preferos',
 'mypreferences' => 'Men preferos',
-'prefsnologin' => 'Non ensignatat',
-'prefsnologintext' => 'Vu mus es <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ensignatat] por determina useren preferos.',
 'prefs-rc' => 'Resenti chanjos',
 'searchresultshead' => 'Sercha',
 'timezoneregion-africa' => 'Afrika',
@@ -330,9 +320,6 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'alphaindexline' => '$1 a $2',
 'allarticles' => 'Omni artikles',
 'allinnamespace' => 'Omni pagines ($1 nome-spatie)',
-'allnotinnamespace' => 'Omni pagines (non in $1 nome-spatie)',
-'allpagesprev' => 'Antei',
-'allpagesnext' => 'Sekuenti',
 'allpagessubmit' => 'Vada',
 
 # Special:Categories
@@ -404,9 +391,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Move page
 'movearticle' => 'Mova pagine',
-'movenologin' => 'Non ensignatat',
 'move-watch' => 'Observa disi pagine',
-'movedto' => 'movat a',
 'movereason' => 'Resone:',
 'delete_and_move' => 'Ekarta e mova',
 'delete_and_move_confirm' => 'Yes, ekarta li pagine',

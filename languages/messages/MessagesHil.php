@@ -518,7 +518,7 @@ Palihog maghulat anay bag-o tilawan liwat.',
 'user-mail-no-body' => 'Nakatilaw magpadala sang email nga waay unod ukon malip-ot katama ang unod sang mensahe.',
 
 # Change password dialog
-'resetpass' => 'Ilisan ang pasword',
+'changepassword' => 'Ilisan ang pasword',
 'resetpass_announce' => 'Nagsulod ka paagi sang temporary nga kod nga gin-email.
 Agod nga makatapos ka sa pagsulod, kinahanglan mo magbutang sang bag-o nga pasword dire:',
 'resetpass_header' => 'Ilisan ang pasword sang akawnt',
@@ -906,10 +906,6 @@ Makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/de
 'revdelete-nooldid-title' => 'Sala nga natuyo bag-ohon',
 'revdelete-nooldid-text' => 'Basi nga wala mo ginplastar kon ano ang natuyo mo bag-ohon agod mahimo ini nga buluhaton,
 ang ini nga buluhaton wala, ukon gahimakas ka nga taguon ang karon nga pagbag-o.',
-'revdelete-nologtype-title' => 'Wala sang sahi sang log nga ginhatag',
-'revdelete-nologtype-text' => 'Wala ka naghatag sang sahi sang log agod mahimo ang ini nga buluhaton.',
-'revdelete-nologid-title' => 'Sala nga inugbutang sa log',
-'revdelete-nologid-text' => 'Basi nga wala ka nagbutang sang natuyo mo nga hinatabo sa log agod nga mahimo ini nga buluhaton ukon ang gintumod nga inugbutang wala naga-eksister.',
 'revdelete-no-file' => 'Ang ginatumod nga hilera wala naga-eksister.',
 'revdelete-show-file-confirm' => 'Sigurado ka bala nga luyag mo makita ang ginpanas nga pagbag-o sang hilera nga "<nowiki>$1</nowiki>" halin sang $2 sa $3?',
 'revdelete-show-file-submit' => 'Huo',
@@ -943,8 +939,6 @@ $1",
 'logdelete-failure' => "'''Ang pagkakitaon sang log indi mahimo nga maplastar:'''
 $1",
 'revdel-restore' => 'pagbag-o sang makita',
-'revdel-restore-deleted' => 'mga ginpanas nga pagbag-o',
-'revdel-restore-visible' => 'mga makita nga pagbag-o',
 'pagehist' => 'Kasaysayan sang panid',
 'deletedhist' => 'Ginpanas nga kasaysayan',
 'revdelete-hide-current' => 'May sala sa pagtago sang bagay nga may petsa nga $2, $1: amo ini ang pagbag-o karon.
@@ -1055,7 +1049,6 @@ Ang mga detalye mahimo nga makita sa [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(damu)',
 'search-relatedarticle' => 'Konektado',
-'mwsuggest-disable' => 'Untaton ang mga suhestiyon sang AJAX',
 'searcheverything-enable' => 'Pangitaon sa tanan nga espasyo sang pangalan',
 'searchrelated' => 'konektado',
 'searchall' => 'tanan',
@@ -1078,7 +1071,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'preferences' => 'Mga Ginabasehan',
 'mypreferences' => 'Mga Ginabasehan',
 'prefs-edits' => 'Numero sang mga gin-ilisan:',
-'changepassword' => 'Ilisan ang pasword',
 'prefs-skin' => 'Panit',
 'skin-preview' => 'Ipakita subong',
 'datedefault' => 'Wala sang pagpalabi',
@@ -1496,8 +1488,6 @@ Ang gusto nga {{PLURAL:\$3|tipo sang file amo|mga tipo sang file amo ang}} \$2."
 'allpagesfrom' => 'Ipakita ang mga pahina sugod sa:',
 'allpagesto' => 'Ipakita ang mga pahina nga nagakatapos sa:',
 'allarticles' => 'Tanan nga mga pahina',
-'allpagesprev' => 'Nagligad',
-'allpagesnext' => 'Dason',
 'allpagessubmit' => 'Sige',
 
 # Special:Categories
@@ -1676,7 +1666,6 @@ palihog siguradohon mo nga naintindihan ang resulta antes mo ini pagahimuon.",
 
 Sa sini nga mga kaso, kilanlan mo gid isaylo o isahon ang pahina sang pag-amat amat kun gusto mo gid ini himuon.",
 'movearticle' => 'Saylohon ining panid:',
-'movenologin' => 'Wala naka-sulod',
 'newtitle' => 'Sa bag-o nga titulo:',
 'move-watch' => 'Bantayan ining panid',
 'movepagebtn' => 'Saylohon ining panid',
@@ -1684,9 +1673,6 @@ Sa sini nga mga kaso, kilanlan mo gid isaylo o isahon ang pahina sang pag-amat a
 'movepage-moved' => '\'\'\'"$1" nasaylo na didto sa "$2"\'\'\'',
 'articleexists' => 'May-ara na sang ngalan nga amu na, ukon ang ginpili mo na ngalan ay indi mabatunan.
 Palihog lang pili sang lain nga ngalan. Salamat.',
-'talkexists' => "'''Nasaylo na mismo ang ina nga pahina, pero ang hisayranay nga pahina indi masaylo kay man may ara na sang nakakuha sang bag-o nga titulo.
-Palihog lang sang pagkombinar sa ila sang ensakto.'''",
-'movedto' => 'gin saylo sa',
 'movetalk' => 'Isaylo ang upod mga nga pahina hambal',
 'movelogpage' => 'Giho log',
 'movereason' => 'Rason:',

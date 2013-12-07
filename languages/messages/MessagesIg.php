@@ -476,7 +476,7 @@ Biko meríáríá ya.',
 'loginlanguagelabel' => 'Asụsụ: $1',
 
 # Change password dialog
-'resetpass' => 'Gbanwe okwu éjị à gáfe',
+'changepassword' => 'Gbanwe okwu éjị à gáfe',
 'resetpass_header' => 'Gbanwe okwúngáfè nke bùwá',
 'oldpassword' => 'Mkpurụ okwu ejị a gafẹ ochië:',
 'newpassword' => 'Mkpurụ okwu ejị a gafẹ nke ohúrù',
@@ -656,7 +656,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'revdelete-radio-unset' => 'Mbà',
 'revdelete-log' => 'Mgbághapụtà:',
 'revdel-restore' => 'gbanwe ọtù ọ gị zí',
-'revdel-restore-deleted' => 'orürü gbakashịrị',
 'pagehist' => 'Ịta ihüá',
 'deletedhist' => 'Ákíkó mbu bakashịrị',
 'revdelete-reasonotherlist' => 'Mgbághàpụtá ozor',
@@ -731,7 +730,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 # Preferences page
 'preferences' => 'Otu ha dosẹrẹ ihe',
 'mypreferences' => 'Otú m shị na dose ihem',
-'changepassword' => 'Gbanwe okwu éjị à gáfe',
 'prefs-skin' => 'Akpụkpọ',
 'skin-preview' => 'Lètú',
 'datedefault' => 'Otú é shị na dose ihe efù',
@@ -1050,9 +1048,6 @@ Ubwa, o na ga [[$2]].',
 'allpagesto' => 'Zi na ihu ihü ná kwúshí nà:',
 'allarticles' => 'Ihü níle',
 'allinnamespace' => 'Ihü níle (ámááhạ $1)',
-'allnotinnamespace' => 'Ihü níle (a noghị ime ámááhạ $1)',
-'allpagesprev' => 'Nke gafèrè',
-'allpagesnext' => 'Nàíhú',
 'allpagessubmit' => 'Gá',
 
 # Special:Categories
@@ -1296,7 +1291,6 @@ Biko kpàchá kwa ánya Í mà na ihe í ne mé na ógè gbárá mbu mgbè Í g�
 
 Na nke, Í gi páfù na Í mékȯtá ihü nà onwé gi ọ bu nà Í chọrọ.",
 'movearticle' => 'Páfù ihü:',
-'movenologin' => 'I bátà bò',
 'newtitle' => 'Gá íshí édémédé nke:',
 'move-watch' => 'Lèmá ihü ó shị na ihü ȯ na gá',
 'movepagebtn' => 'Páfù ihü',
@@ -1304,9 +1298,6 @@ Na nke, Í gi páfù na Í mékȯtá ihü nà onwé gi ọ bu nà Í chọrọ."
 'movepage-moved' => '\'\'\'"$1" páfùrù Í gá "$2"\'\'\'',
 'articleexists' => ' Ihü ótù nwèkwàrà áhà nke áhù, mà áhà Í chọrọ à búghị ézíboté.
 Biko wèré áhà ozor.',
-'talkexists' => "'''Ihü na onwe ya páfùrù ǹkè ómá, mànà hè nweríkí puzié ihü okwu ya  màkà ótù ya dìkwà na íshí ihü nke òhúhru.
-Biko tinyé ha nà áká gi.'''",
-'movedto' => 'ó shifụrụ gá',
 'movetalk' => 'Páfù ihü okwu nke ya',
 'move-subpages' => 'Páfù ihü-n-ímé (nè rú $1)',
 'move-talk-subpages' => 'Páfù ihü-n-ímé nke ihü okwu (nè rú $1)',

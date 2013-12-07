@@ -64,7 +64,7 @@ $messages = array(
 'toolbox' => 'Lebokoso la dithulusu',
 'otherlanguages' => 'Ka dipuo di sele',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Ditiragalo tsa sešeng',
 'disclaimers' => 'Tlhapa diatla',
 'edithelp' => 'Thuso ya go fetola',
@@ -75,7 +75,6 @@ $messages = array(
 'privacy' => 'Melawana ya sephiri',
 
 'youhavenewmessages' => 'O na le $1 ($2).',
-'newmessageslink' => 'molaetsa o moša',
 'youhavenewmessagesmulti' => 'O na le molaetsa o moša mo $1',
 'editsection' => 'baakanya',
 'editold' => 'baakanya',
@@ -88,9 +87,6 @@ $messages = array(
 'viewsource' => 'Lebelela motswedi',
 
 # Login and logout pages
-'welcomecreation' => '== Amogelesega, $1! ==
-
-O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago tsa {{SITENAME}}.',
 'yourname' => 'Leina la modirisi:',
 'yourpassword' => 'Selotlolo sa sephiri:',
 'yourpasswordagain' => 'Kwala selotlolo sa gago sa sephiri gape:',
@@ -160,9 +156,7 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 # Move page
 'move-page-legend' => 'Sutisa tsebe',
 'movearticle' => 'Sutisa tsebe:',
-'movenologin' => 'Ga o a ikwadisa',
 'movepagebtn' => 'Sutisa tsebe',
-'movedto' => 'sutela kwa',
 'movereason' => 'Lebaka:',
 
 # Namespace 8 related

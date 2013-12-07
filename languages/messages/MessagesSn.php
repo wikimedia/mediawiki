@@ -50,7 +50,6 @@ $messages = array(
 
 # Cologne Blue skin
 'qbedit' => 'Chinja',
-'qbspecialpages' => 'Mapeji akakosha',
 
 'help' => 'Rubatsiro',
 'search' => 'Tsvaga',
@@ -67,7 +66,7 @@ $messages = array(
 'toolbox' => 'Maturuzi',
 'otherlanguages' => 'Mimwe Mitauro',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'Zvirikuitika',
 'currentevents-url' => 'Project:Zvirikuitika',
 'disclaimers' => 'Matandanyadzi',
@@ -76,7 +75,6 @@ $messages = array(
 'mainpage-description' => 'Peji Rekutanga',
 'portal' => 'Mukova wegutse',
 
-'newmessageslink' => 'mashoko matsva',
 'youhavenewmessagesmulti' => 'Une mashoko matsva pa$1',
 'editsection' => 'chinja',
 'editold' => 'chinja',
@@ -88,9 +86,6 @@ $messages = array(
 'viewsource' => 'Wona mabviro',
 
 # Login and logout pages
-'welcomecreation' => '== Tigashire, $1! ==
-Akaunzi yako yagadzirwa.
-Usakanganwe kuchinga [[Special:Preferences|mapreferences ako {{SITENAME}}]].',
 'yourname' => 'Zita:',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Nyorazve password:',
@@ -110,12 +105,8 @@ Usakanganwe kuchinga [[Special:Preferences|mapreferences ako {{SITENAME}}]].',
 'showpreview' => 'Ratidza chipandwa',
 'showdiff' => 'Ratidza zvasandurwa',
 
-# Search results
-'powersearch' => 'Tsvaga',
-
 # Preferences page
 'mypreferences' => 'Zvandinosarudza',
-'prefsnologin' => 'Hauna kugamuchirwa',
 'prefs-rc' => 'Zvaba Kuchinjwa',
 'searchresultshead' => 'Tsvaga',
 'youremail' => 'E-mail:',
@@ -170,7 +161,6 @@ Usakanganwe kuchinga [[Special:Preferences|mapreferences ako {{SITENAME}}]].',
 # Move page
 'move-page-legend' => 'Chichinura peji',
 'movepagebtn' => 'Chichinura peji',
-'movedto' => 'rachichinurwa ku',
 'movereason' => 'Chikonzero',
 
 # Namespace 8 related

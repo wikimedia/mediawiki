@@ -168,7 +168,6 @@ $messages = array(
 'qbedit' => 'Càgna',
 'qbpageoptions' => 'Chesta paggena',
 'qbmyoptions' => "'E ppaggene mie",
-'qbspecialpages' => 'Pàggene speciàle',
 'faq' => 'FAQ',
 'faqpage' => 'Project:Domanne frequente',
 
@@ -359,7 +358,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'loginlanguagelabel' => 'Lengua: $1',
 
 # Change password dialog
-'resetpass' => 'Càgna password',
+'changepassword' => 'Cagna password',
 'resetpass-submit-cancel' => 'Canciella',
 
 # Special:PasswordReset
@@ -442,8 +441,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 # Search results
 'searchresults' => "Risultato d''a recerca",
 'searchresults-title' => 'Ascià risultate ppe "$1"',
-'searchresulttext' => "Pe sapé de cchiù ncopp'â comme ascia 'a {{SITENAME}}, vere [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].",
-'notitlematches' => "Voce addemannata nun truvata dint' 'e titule 'e articulo",
 'notextmatches' => "Voce addemannata nun truvata dint' 'e teste 'e articulo",
 'prevn' => '{{PLURAL:$1|precedente|precedente $1}}',
 'nextn' => '{{PLURAL:$1|successivo|successive $1}}',
@@ -468,11 +465,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'search-interwiki-caption' => 'Prugiette frate',
 'searchall' => 'Tutte',
 'search-nonefound' => "'A ricerca nun ha produtto risultate.",
-'powersearch' => 'Truova',
 
 # Preferences page
 'mypreferences' => "Preferenze d''e mmeje",
-'changepassword' => 'Cagna password',
 'prefs-rc' => 'Urdeme nove',
 'prefs-watchlist' => 'Asservate speciale',
 'saveprefs' => 'Sarva',
@@ -682,7 +677,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'newtitle' => 'Titulo nuovo:',
 'movepagebtn' => "Spusta 'a paggena",
 'articleexists' => "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono.  Scegliere n'ato titulo.",
-'movedto' => 'spustata a',
 'movelogpage' => 'Spustamente',
 'movereason' => 'Raggióne',
 'revertmove' => 'ripristina',
@@ -781,9 +775,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'exif-gaincontrol-0' => 'Nisciuno',
 
 'exif-subjectdistancerange-0' => 'Scanusciuta',
-
-# External editor support
-'edit-externally-help' => "Pe piglià cchiù nfromma veré 'e [https://www.mediawiki.org/wiki/Manual:External_editors struzione] ('n ngrese)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutte',

@@ -69,7 +69,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'जिगु इ-मेल थाय्‌बाय्‌ नोटिफिकेसन इ-मेलय् क्यनादिसँ',
 'tog-shownumberswatching' => 'स्वयाच्वंपिं छ्यलामितेगु ल्याखँ क्यनादिसँ',
 'tog-fancysig' => 'कच्चा हस्ताक्षर (अटोम्याटिक लिङ्क मदेःकः)',
-'tog-showjumplinks' => '"जम्प टु" एसिसिबिलिटी लिङ्क इनेबल यानादिसँ',
 'tog-uselivepreview' => 'लाइभ प्रिभ्यु (जाभास्क्रिप्ट) इनेबल यानादिसँ (परिक्षणकाल)',
 'tog-forceeditsummary' => 'सम्पादन सार खालि त्वतिबिले जित सशंकित यानादिसँ',
 'tog-watchlisthideown' => 'जिगु सम्पादन वाचलिस्टय् सुचुकादिसँ',
@@ -166,7 +165,6 @@ $messages = array(
 'qbedit' => 'सम्पादन',
 'qbpageoptions' => 'थ्व पौ',
 'qbmyoptions' => 'जिगु पौ',
-'qbspecialpages' => 'विशेष पौ',
 'faq' => 'आपालं न्यनिगु न्ह्यसः (FAQ)',
 'faqpage' => 'Project:आपालं न्यनिगु न्ह्यसःत (FAQ)',
 
@@ -209,7 +207,7 @@ $messages = array(
 'jumptosearch' => 'मालादिसँ',
 'pool-errorunknown' => 'मस्युगु इरर',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}या बारेय्',
 'aboutpage' => 'Project:बारेय्',
 'copyright' => 'कण्टेण्ट $1 कथं उपलब्ध दु।',
@@ -219,7 +217,6 @@ $messages = array(
 'disclaimers' => 'डिस्क्लेमर्स',
 'disclaimerpage' => 'Project:साधारण डिस्क्लेमर्स',
 'edithelp' => 'सम्पादन ग्वहालि',
-'edithelppage' => 'Help:सम्पादन',
 'helppage' => 'Help:धलःपौ',
 'mainpage' => 'मू पौ',
 'mainpage-description' => 'मू पौ',
@@ -238,8 +235,6 @@ $messages = array(
 स्वयादिसँ [[विशेष:संस्करण|संस्करण पौ]]।',
 
 'ok' => 'ज्यु',
-'newmessageslink' => 'न्हुगु सन्देश',
-'newmessagesdifflink' => 'न्हापाया हिलेज्या',
 'youhavenewmessagesmulti' => '$1य् छित न्हुगु सन्देश वगु दु',
 'editsection' => 'सम्पादन',
 'editold' => 'सम्पादन',
@@ -272,12 +267,6 @@ $messages = array(
 
 # General errors
 'databaseerror' => 'डेटाबेस इरर',
-'dberrortext' => 'छगू डेटाबेस क्वेरी सिन्ट्याक्स इरर जूगु दु।
-थ्व इररं सफ्टवेयरय् bug दूगु इंगीत यायेफु।
-थ्व स्वया न्हः कोशिस जूगु डेटाबेस क्वेरी
-"<tt>$2</tt>" फंक्सनया
-<blockquote><tt>$1</tt></blockquote> ख।
-MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'laggedslavemode' => 'चेतावनी: पतिइ न्हुगु अपदेत मदेफु ।',
 'readonly' => 'देताबेस संरक्षित',
 'enterlockreason' => 'पौ कुनातयेगुया निंतिं कारण बियादिसँ, नापं पौ गब्ले चायेकिगु जुइफु उकिया अनुमान नं बियादिसँ',
@@ -309,7 +298,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'loginlanguagelabel' => 'भाषा: $1',
 
 # Change password dialog
-'resetpass' => 'पासवर्द हिलादिसँ',
+'changepassword' => 'पासवर्द हिलादिसँ',
 
 # Special:ChangeEmail
 'changeemail-submit' => 'इ-मेल हिलादिसँ',
@@ -353,16 +342,13 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'previousrevision' => '←पुलांगु संस्करण',
 
 # Search results
-'searchhelp-url' => 'Help:धलःपौ',
 'searchprofile-everything' => 'दक्वं',
 'search-result-size' => '$1 ({{PLURAL:$2|1 खँग्वः |$2 खँग्वःत}})',
 'searchrelated' => 'स्वापू दुःगु',
 'searchall' => 'सकल',
-'powersearch' => 'मालादिसँ',
 
 # Preferences page
 'mypreferences' => 'जिगु प्राथमिकता',
-'changepassword' => 'पासवर्द हिलादिसँ',
 'prefs-skin' => 'भुँसा',
 'prefs-datetime' => 'दिं व ई',
 'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
@@ -487,7 +473,6 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'monobook.css' => '/* थन तःगु CSS नं मोनोबुक स्किनया छ्य्‌लामितेत असर याइ */',
 'modern.css' => '/* थन तःगु CSS नं मोडर्न स्किनया छ्य्‌लामितेत असर याइ */',
 'print.css' => '/* थन तःगु CSS नं प्रिन्ट आउटपुटयात असर याइ */',
-'handheld.css' => '/* थन तःगु CSS नं $wgHandheldStyle आधारित ह्याण्डहेल्ड यन्त्रयात असर याइ */',
 
 # Attribution
 'others' => 'मेमेगु',

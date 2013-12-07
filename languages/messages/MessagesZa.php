@@ -82,7 +82,6 @@ $messages = array(
 'qbfind' => 'Ra',
 'qbedit' => 'Gaij',
 'qbmyoptions' => 'Yieb gou',
-'qbspecialpages' => 'Doenghmae daegxsei',
 'faq' => 'Cam caeuq dap',
 'faqpage' => 'Project:Cam caeuq dap',
 
@@ -121,14 +120,13 @@ $messages = array(
 'jumptonavigation' => 'Dazzaeuh',
 'jumptosearch' => 'Ra',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Gvanhyih {{SITENAME}}',
 'aboutpage' => 'Project:gvanhyih',
 'currentevents' => 'Saehgienh seizneix',
 'disclaimers' => 'gangjmingz mienxcwz',
 'disclaimerpage' => 'Project:Itbuen mienxcwz',
 'edithelp' => 'Caeuq mungz san-zonz',
-'edithelppage' => 'Help:gaij',
 'helppage' => 'Help:moegloeg',
 'mainpage' => 'Yiebdaeuz',
 'mainpage-description' => 'Yiebdeauz',
@@ -193,13 +191,11 @@ $messages = array(
 'searchresults' => 'gietgoj ra',
 'searchresults-title' => 'doiq "$1" gij gietgoj ra',
 'search-interwiki-more' => '（more）',
-'powersearch' => 'Cwmh goeggiz',
 'powersearch-legend' => 'Gauhgiz saeu',
 'powersearch-redir' => 'Cungzdinghyiengq liedbiuj',
 
 # Preferences page
 'mypreferences' => 'Doenghgaeq gou hae',
-'prefsnologin' => 'Maengx laezhaej',
 'searchresultshead' => 'Cwmh',
 'username' => 'Ciu bouxdeiz:',
 
@@ -300,10 +296,8 @@ $messages = array(
 # Move page
 'move-page-legend' => 'Caen doengh mae',
 'movearticle' => 'Caen doengh mae:',
-'movenologin' => 'Maengx laezhaej',
 'move-watch' => 'Demq mae-nej',
 'movepagebtn' => 'Caen doengh mae',
-'movedto' => 'Caen bei',
 'movereason' => 'Haujgaemj',
 'revertmove' => 'siu',
 

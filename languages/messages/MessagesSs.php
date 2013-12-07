@@ -90,7 +90,6 @@ $messages = array(
 'qbedit' => 'Hlela',
 'qbpageoptions' => 'Lelikhasi',
 'qbmyoptions' => 'Makhasi ami',
-'qbspecialpages' => 'Emakhasi labalulekile',
 
 # Vector skin
 'vector-action-addsection' => 'Ngeta sihloko',
@@ -152,7 +151,7 @@ Sicela ume kancane ngaphambi lwekuphindze ubone lelikhasi.
 
 $1',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Kabanti nge {{SITENAME}}',
 'aboutpage' => 'Project:Kabanti',
 'copyright' => 'Lokucuketfwe kungaphansi kwe $1.',
@@ -160,7 +159,6 @@ $1',
 'currentevents' => 'Tentakalo tanyalo',
 'currentevents-url' => 'Project:Tentakalo tanyalo',
 'edithelp' => 'Lusito ngekuhlela',
-'edithelppage' => 'Help:Kuhlela',
 'helppage' => 'Help:Lokucuketfwe',
 'mainpage' => 'Likhasi Lelikhulu',
 'mainpage-description' => 'Likhasi lelikhulu',
@@ -175,8 +173,6 @@ $1',
 'ok' => 'Kulungile',
 'retrievedfrom' => 'Kutsatfwe ku "$1"',
 'youhavenewmessages' => 'Una $1 ($2).',
-'newmessageslink' => 'milayeto lemisha',
-'newmessagesdifflink' => 'ingucuko yekugcina',
 'youhavenewmessagesmulti' => 'Unemilayeto lemisha nge $1',
 'editsection' => 'hlela',
 'editold' => 'hlela',
@@ -200,7 +196,6 @@ $1',
 
 # Search results
 'search-relatedarticle' => 'Lokuhlobene',
-'mwsuggest-disable' => 'Vala losito/mibono ye AJAX',
 'searcheverything-enable' => 'Sesha onke ma namespaces',
 'searchrelated' => 'lokuhlobene',
 'searchall' => 'konke',
@@ -208,11 +203,9 @@ $1',
 'showingresultsnum' => "Ngaphansi kukhonjiswa {{PLURAL:$3|'''1''' umphumela|'''$3''' miphumela}} kucalwa nga #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Umphumela '''$1''' of '''$3'''|Imiphumela '''$1 - $2''' ye '''$3'''}} ya '''$4'''",
 'search-nonefound' => 'Kute umphume lotfolwe/lofanele lesicelo sakho.',
-'powersearch' => 'Sesha ngalokuphakeme',
 'powersearch-legend' => 'Sesha ngalokuphakeme',
 'powersearch-ns' => 'Sesha ku namespaces:',
 'powersearch-redir' => 'Makhasi latfumelayo',
-'powersearch-field' => 'Sesha i',
 'powersearch-togglelabel' => 'Buka:',
 'powersearch-toggleall' => 'Konke',
 'powersearch-togglenone' => 'Kute',
@@ -220,9 +213,6 @@ $1',
 'searchdisabled' => '{{SITENAME}} kusesha kuvinjiwe.
 Ungasesha nge Google.
 Naka kutsi makhasi abo e {{SITENAME}} angaba sekadlulelwe sikhatsi.',
-
-# Quickbar
-'qbsettings-none' => 'Kute',
 
 # Preferences page
 'searchresultshead' => 'Sesha',
@@ -277,7 +267,6 @@ Naka kutsi makhasi abo e {{SITENAME}} angaba sekadlulelwe sikhatsi.',
 
 # Block/unblock
 'ipblocklist-submit' => 'Sesha',
-'proxyblocksuccess' => 'Kwentekile.',
 
 # Move page
 'movelogpage' => 'Khweshisa i-log',

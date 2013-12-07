@@ -668,7 +668,7 @@ Um tú velur at skriva tað, so verður tað nýtt til at geva brúkaranum ærun
 'user-mail-no-body' => 'Tú royndi at senda ein teldupost við ongum ella órímiliga stuttum innihaldi.',
 
 # Change password dialog
-'resetpass' => 'Broyt loyniorð',
+'changepassword' => 'Broyt loyniorð',
 'resetpass_announce' => 'Tú ritaði inn við einum fyribils loyniorði, sum tú hevur fingið við telduposti.
 Fyri at gera innritanina lidna, mást tú velja tær eitt nýtt loyniorð her:',
 'resetpass_header' => 'Broyt loyniorði á kontuni',
@@ -1055,9 +1055,6 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'rev-delundel' => 'skoða/fjal',
 'rev-showdeleted' => 'vís',
 'revisiondelete' => 'Strika/endurnýggja broytingina',
-'revdelete-nologtype-title' => 'Onki slag av loggi er upplýst',
-'revdelete-nologtype-text' => 'Tú hevur ikki útgreinað nakað slag av loggi, fyri at útføra hesa handling á.',
-'revdelete-nologid-title' => 'Ógyldugur loggpostur',
 'revdelete-no-file' => 'Nevnda fíla er ikki til.',
 'revdelete-show-file-confirm' => 'Ert tú vís/ur í, at tú ynskir at síggja eina strikaða endurskoðan av fíluni "<nowiki>$1</nowiki>" frá $2 kl. $3?',
 'revdelete-show-file-submit' => 'Ja',
@@ -1085,8 +1082,6 @@ $1",
 'logdelete-failure' => "'''Tað bar ikki til at broyta loggsjónligheitina:'''
 $1",
 'revdel-restore' => 'broyt sjónligheit',
-'revdel-restore-deleted' => 'strikaðar rættingar',
-'revdel-restore-visible' => 'sjónligar broytingar',
 'pagehist' => 'Síðu søgan',
 'deletedhist' => 'Strikingar søga',
 'revdelete-hide-current' => 'Tað er hendur ein feilur tá luturin skuldi fjalast, luturin er dagfestur $2, kl. $1: Hetta er nýggjast versjónin.
@@ -1188,7 +1183,6 @@ Tryggja tær, at henda broyting fer at varðveita framhaldssøguna hjá síðuni
 'search-interwiki-default' => '$1 úrslit:',
 'search-interwiki-more' => '(meira)',
 'search-relatedarticle' => 'Líknandi',
-'mwsuggest-disable' => 'Slá leitingaruppskot frá',
 'searcheverything-enable' => 'Leita í øllum navnaøkjum',
 'searchrelated' => 'líknandi',
 'searchall' => 'alt',
@@ -1212,7 +1206,6 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'preferences' => 'Innstillingar',
 'mypreferences' => 'Innstillingar',
 'prefs-edits' => 'Tal av rættingum:',
-'changepassword' => 'Broyt loyniorð',
 'prefs-skin' => 'Hamur',
 'skin-preview' => 'Forskoðan',
 'datedefault' => 'Ongi serlig ynskir',
@@ -2004,9 +1997,6 @@ Tú kanst avmarka sýningina við at velja slag av loggi, brúkaranavn (sum er f
 'allpagesto' => 'Vís síður sum enda við:',
 'allarticles' => 'Allar greinir',
 'allinnamespace' => 'Allar síður ($1 navnarúm)',
-'allnotinnamespace' => 'Allar síður (tó ikki í $1 navnarúminum)',
-'allpagesprev' => 'Undanfarnu',
-'allpagesnext' => 'Næstu',
 'allpagessubmit' => 'Far',
 'allpagesprefix' => 'Vís síður við prefiksi:',
 'allpagesbadtitle' => 'Síðuheitið ið tú skrivaði var skeivt ella hevði eitt inter-málsligt ella inter-wiki prefiks.
@@ -2532,7 +2522,6 @@ Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síð
 Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
 'movearticle' => 'Flyt síðu:',
 'moveuserpage-warning' => "'''Ávaring:''' Tú ert í ferð við at flyta eina brúkarasíðu. Legg vinarliga til merkis, at bert síðan verður flutt og brúkarin fær ''ikki'' nýtt navn.",
-'movenologin' => 'Hevur ikki ritað inn',
 'movenologintext' => 'Tú skalt vera ein skrásettur brúkari og [[Special:UserLogin|innritað/ur]] fyri at kunna flyta eina síðu.',
 'movenotallowed' => 'Tú hevur ikki loyvi til at flyta síður.',
 'movenotallowedfile' => 'Tú hevur ikki loyvi til at flyta fílur.',
@@ -2548,9 +2537,6 @@ Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú held
 ella er navnið tú valdi ógyldugt.
 Vinarliga vel eitt annað navn.',
 'cantmove-titleprotected' => 'Tú kanst ikki flyta eina síðu til hetta heitið, tí tað nýggja heitið er vart móti upprættan',
-'talkexists' => "'''Tað eydnaðist at flyta sjálva síðuna, men kjaksíðan kundi ikki flytast, tí ein er longu har við tí nýggja heitinum.
-Tú mást samantvinna tær manuelt.'''",
-'movedto' => 'flyt til',
 'movetalk' => 'Flyt kjaksíðuna eisini, um hon er til.',
 'move-subpages' => 'Flyt undirsíður (upp til $1)',
 'move-talk-subpages' => 'Flyt undirsíður hjá kjaksíðum (upp til $1)',

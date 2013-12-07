@@ -376,6 +376,7 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'loginlanguagelabel' => 'Polelo: $1',
 
 # Change password dialog
+'changepassword' => 'Fetola ditlhaka-tša-siphiri',
 'resetpass_text' => '<!-- Tsenya ditlhaka mo -->',
 'oldpassword' => 'Ditlhaka-tša-siphiri tša kgale:',
 'newpassword' => 'Ditlhaka-tša-siphiri tše mpsha:',
@@ -523,8 +524,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'revdelete-log' => 'Lebaka:',
 'revdel-restore' => '
 fetola tshenolo',
-'revdel-restore-deleted' => 'pušeletšo tšago phumulwa',
-'revdel-restore-visible' => 'pušeletšo tšago bonagala',
 'pagehist' => 'Histori ya letlakala',
 
 # History merging
@@ -584,7 +583,6 @@ fetola tshenolo',
 'preferences' => 'Dikgatlhegelo',
 'mypreferences' => 'Dikgatlhegelo tša ka',
 'prefs-edits' => 'Palo ya diphetogo:',
-'changepassword' => 'Fetola ditlhaka-tša-siphiri',
 'skin-preview' => 'Ponopele',
 'prefs-datetime' => 'Tšatšikgwedi le nako',
 'prefs-rc' => 'Diphetogo tša bjale',
@@ -1045,8 +1043,6 @@ Ge go le bjalo,o tla swanela ke go huduša goba go kopanya matlakala ka bowena."
 'articleexists' => 'Letlakala la goba le leina le legona, goba
 leina leo o le kgethilego ga la dumelega.
 Ka kgopelo, kgetha leina le lengwe.',
-'talkexists' => "'''Letlakala le hudugile ka katlego, efele letlakala la dipolešano ga la huduga kage gobe go ina letlakala leineng le lemphsa. Ka kgopelo, a gahlanye ka bowena.'''",
-'movedto' => 'hudugetše go',
 'movetalk' => 'Huduša letlakala la dipoledišano la go hlobana le letlakala le',
 'movelogpage' => "''log'' yago huduša",
 'movereason' => 'Lebaka:',

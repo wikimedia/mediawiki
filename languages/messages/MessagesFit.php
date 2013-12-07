@@ -120,7 +120,6 @@ $messages = array(
 'qbedit' => 'Mookkaa',
 'qbpageoptions' => 'Tämä sivu',
 'qbmyoptions' => 'Minun inställninkit',
-'qbspecialpages' => 'Spesiaali sivut',
 'faq' => 'Useasti kysytyt kysymykset',
 'faqpage' => 'Project:Useasti kysytyt kysymykset',
 
@@ -170,7 +169,7 @@ $messages = array(
 'jumptonavigation' => 'Navikeerinki',
 'jumptosearch' => 'Hae',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Asiasta {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage' => 'Project: Tioista',
 'copyrightpage' => '{{ns:project}}:Tekijänoikeuet',
@@ -179,7 +178,6 @@ $messages = array(
 'disclaimers' => 'Vastuuvaphaus',
 'disclaimerpage' => 'Project: Ylheinen varoitus',
 'edithelp' => 'Mookkausapua',
-'edithelppage' => 'Help: Kuinka sivuja mookathaan',
 'helppage' => 'Help: Sisältö',
 'mainpage' => 'Alkusivu',
 'mainpage-description' => 'Alkusivu',
@@ -190,8 +188,6 @@ $messages = array(
 
 'retrievedfrom' => 'Nouettu osoitheesta $1',
 'youhavenewmessages' => 'Sulla on $1 ($2).',
-'newmessageslink' => 'uusia meiliä',
-'newmessagesdifflink' => 'viiminen muutos',
 'editsection' => 'mookkaa',
 'editold' => 'mookkaa',
 'viewsourceold' => 'näytä lähekooti',
@@ -326,8 +322,6 @@ Merkinät: (nyk.) = eroavaisuuet nykyisheen versuunhiin, (eel.) = eroavaisuuet e
 # Revision deletion
 'rev-delundel' => 'näytä/piilota',
 'revdel-restore' => 'muuta näkyvyyttä',
-'revdel-restore-deleted' => 'poistetut muutokset',
-'revdel-restore-visible' => 'Näkyvät muutokset',
 
 # Merge log
 'revertmerge' => 'Pane takashiin yhistäminen',
@@ -418,7 +412,6 @@ $1 sisäle lokaattuja käyttäjiä',
 'recentchangeslinked' => 'Relateerattuja muutoksia',
 'recentchangeslinked-toolbox' => 'Relateerattuja muutoksia',
 'recentchangeslinked-title' => 'Muutokset relatterattuja "$1"',
-'recentchangeslinked-noresult' => 'Ei muutoksia linkathuin sivhuin annetulla aikakauela',
 'recentchangeslinked-summary' => 'Tämä on lista vereksistä muutoksista sivhuin, joihin on linkattu erikoiselta sivulta. Sivut sinun  [[Special:Watchlist|valvontalistala]] on markeerattu lihavala tyylilä',
 'recentchangeslinked-page' => 'Sivun nimi',
 'recentchangeslinked-to' => 'Näytä muutokset sivhuin, jolla sen eestä on linkki annethuun sivhuun',
@@ -455,8 +448,6 @@ Tiot [$2 fiilin kuvvaussivulta] näkyvät tässä alla.',
 
 # Statistics
 'statistics' => 'Statistiikkaa',
-
-'disambiguationspage' => 'Template:Haarainsivu',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|tavu|tavua}}',
@@ -677,10 +668,6 @@ Kaikki muut linkit samala rivilä.käsitelthään poikkeuksena, eli toisin sanoe
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Mookkaa tätä fiiliä käyttämällä eksterniä aplikasuunia',
-'edit-externally-help' => '(Katto [//www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lissää tietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kaikki',

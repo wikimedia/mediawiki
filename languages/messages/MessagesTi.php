@@ -65,7 +65,7 @@ $messages = array(
 'newpage' => 'ሓዳስ ፅሑፍ',
 'jumptosearch' => 'ድሉይ',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'ብዛዕባ ዊኪፒዲያ ብጠቅላላ',
 'mainpage' => 'መበገሲ ገጽ',
 'mainpage-description' => 'መበገሲ ገጽ',
@@ -91,7 +91,6 @@ $messages = array(
 # Search results
 'prevn' => 'ናይ ቀደም {{PLURAL:$1|$1}}',
 'nextn' => 'ዝቕጽል {{PLURAL:$1|$1}}',
-'powersearch' => 'ድሉይ',
 
 # Preferences page
 'preferences' => 'ኣማረጽቲ',
@@ -144,8 +143,6 @@ $messages = array(
 'nextpage' => 'ዝቕጽል ፅሑፍ ($1)',
 'prevpage' => 'ናይ ቀደም ፅሑፍ ($1)',
 'allarticles' => 'ኵሎም ፅሑፋት',
-'allpagesprev' => 'ናይ ቀደም',
-'allpagesnext' => 'ዝቕጽል',
 'allpagessubmit' => 'ኪድ',
 
 # Protect

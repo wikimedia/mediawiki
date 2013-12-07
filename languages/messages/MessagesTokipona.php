@@ -58,7 +58,7 @@ $messages = array(
 'otherlanguages' => 'toki ante',
 'redirectedfrom' => '(tan $1)',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'lipu sona pi toki pona li seme?',
 'aboutpage' => 'Project:lipu sona pi toki pona li seme?',
 'copyright' => 'lipu ken $1 li lawa e lipu ni.',
@@ -154,7 +154,6 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 'watch' => 'o sona e ante',
 'watchthispage' => 'mi wile sona e ante ale pi lipu ni lon tenpo kama',
 'unwatchthispage' => 'mi wile ala sona e ante ale pi lipu ni lon tenpo kama',
-'watchnochange' => 'None of your watched items was edited in the time period displayed.',
 
 # Contributions
 'mycontris' => 'mi ante e lipu seme',

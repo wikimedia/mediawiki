@@ -120,19 +120,17 @@ $messages = array(
 'redirectpagesub' => 'dah astsihígíí',
 'lastmodifiedat' => 'Díí naaltsoos $1/$2 łahgo ályaa.',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} baa haneʼ',
 'aboutpage' => 'Project: baa haneʼ',
 'copyright' => 'Díí naaltsoos bikáaʼgi saad shijaaʼígíí "$1" beehazʼą́ąnii bikʼehgo choidííłįįł',
 'edithelp' => 'anáʼálwoʼ',
-'edithelppage' => 'Help:Haitʼéegoshąʼ naaltsoos łahgo áshłééh?',
 'helppage' => 'Help:Bee hadítʼéhígíí',
 'mainpage' => 'Íiyisíí Naaltsoos',
 'mainpage-description' => 'Íiyisíí Naaltsoos',
 
 'retrievedfrom' => '"$1" bitsʼą́ą́dę́ę́ʼ',
 'youhavenewmessages' => 'Háíshį́į́ $1 nichʼįʼ áyiilaa. <small>($2)</small>',
-'newmessageslink' => 'haneʼ ániidígíí',
 'editsection' => 'łahgo áshłééh',
 'editold' => 'łahgo áshłééh',
 'editlink' => 'łahgo áshłééh',
@@ -209,10 +207,6 @@ $messages = array(
 'editundo' => 'ńdíídleeł!',
 
 # Search results
-'searchresulttext' => '{{SITENAME}} bikáaʼgi haʼnitáhígíí bíhoołʼaahgo biniiyé [[{{MediaWiki:Helppage}}|{{int:help}}]] yidíiłtah.',
-'searchsubtitle' => '\'\'\'[[:$1]]\'\'\' hanínítą́ą́ʼ ([[Special:Prefixindex/$1|naaltsoos "$1" wolyéhígíí tʼáá ałtso]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" baa atiinígíí tʼáá ałtso]])',
-'searchsubtitleinvalid' => "'''$1''' hanínítą́ą́ʼ",
-'notitlematches' => 'naaltsoos ádin',
 'viewprevnext' => '($1) ($2) ($3) shinááł',
 'search-result-size' => '$1 ({{PLURAL:$2|1 saad bikáaʼgi hólǫ́|$2 saad bikáaʼgi dahólǫ́}})',
 'search-redirect' => '("$1"dę́ę́ʼ)',
@@ -279,7 +273,7 @@ $3',
 # Special:LinkSearch
 'linksearch' => 'linksígíí tłʼóoʼdi siʼánígíí',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail bichʼįʼ áshłééh nisin',
 
 # Watchlist
@@ -359,10 +353,6 @@ $3',
 'metadata' => 'Metadataígíí',
 'metadata-expand' => 'yishʼį́ nisin',
 'metadata-collapse' => 'doo yishʼį́ nisin da',
-
-# External editor support
-'edit-externally' => "''external application''ígíí choinishʼįįhgo díí eʼelyaaígíí łahgo áshłééh nisin.",
-'edit-externally-help' => '([//www.mediawiki.org/wiki/Manual:External_editors anáʼálwoʼ] (Bilagáanakʼehjí))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tʼáá ałtso',

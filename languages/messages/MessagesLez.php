@@ -382,7 +382,7 @@ $messages = array(
 'loginlanguagelabel' => 'ЧӀал: $1',
 
 # Change password dialog
-'resetpass' => 'Куьлег дегишарун',
+'changepassword' => 'Парол дегишарун',
 'resetpass_header' => 'Аккаунтдин парол дегишун',
 'oldpassword' => 'ЦӀуру парол:',
 'newpassword' => 'ЦӀийи парол:',
@@ -533,8 +533,6 @@ $messages = array(
 'revdelete-radio-unset' => 'Ваъ',
 'revdelete-log' => 'Кар',
 'revdel-restore' => 'Аквадайвал масакIа авун',
-'revdel-restore-deleted' => 'Алуднавай жуьреяр',
-'revdel-restore-visible' => 'Аквадай масакIавилер',
 'pagehist' => 'Ччинин тарих',
 'deletedhist' => 'Алудунин тарих',
 'revdelete-reasonotherlist' => 'Муькуь себеб',
@@ -609,7 +607,6 @@ $messages = array(
 'preferences' => 'Туькlуьрун',
 'mypreferences' => 'Зи низамарунар',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
-'changepassword' => 'Парол дегишарун',
 'prefs-skin' => 'Къайдадиз ттунин тема',
 'skin-preview' => 'Сифтедин килигун',
 'datedefault' => 'Туькlуьрмир',
@@ -909,8 +906,6 @@ $messages = array(
 'allpagesfrom' => 'Къалур хъувун,идалай гатIунай:',
 'allpagesto' => 'Акъудан чарар, куьтягь жезвай:',
 'allarticles' => 'Вири ччинар',
-'allpagesprev' => 'Вилик алатай',
-'allpagesnext' => 'Къведайди',
 'allpagessubmit' => 'ЭлячIун',
 
 # Special:Categories
@@ -1106,8 +1101,6 @@ $messages = array(
 'pagemovedsub' => 'Рахъурун хьана',
 'movepage-moved' => '\'\'"$1" рахъурнай "$2"\'\'\'',
 'articleexists' => 'Ахьтин тlар алай чар ава, амма тlар, куьне хкянай дуьз туш.Башуьсте, масса тlар хкяй.',
-'talkexists' => "'''Чарчин тlар дегишарна, чарчин ихтилатар дегишар жезатуш, вучиз лагьайтlа ихтилатар цlийи чарчел фена.Галкlура гълелди.'''",
-'movedto' => 'хтана иниз',
 'movetalk' => 'Югъун,галкlана рахун',
 'movelogpage' => 'Тlвар эхцигунрин журнал',
 'movereason' => 'Фагьум:',

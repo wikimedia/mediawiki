@@ -345,7 +345,7 @@ j'm'escuse mais i feut prinde un aute nom.",
 'loginlanguagelabel' => 'Langache: $1',
 
 # Change password dialog
-'resetpass' => "Canger ch'mot d'passe",
+'changepassword' => "Canger ch'mot d'passe",
 'resetpass_header' => "Canger ch'mot d'passe dech conpte",
 'oldpassword' => "Anthiu mot d'passe:",
 'newpassword' => "Nouvieu mot d'passe:",
@@ -451,8 +451,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Revision deletion
 'rev-delundel' => 'montrer/mucher',
 'revdel-restore' => 'cange écmint vir',
-'revdel-restore-deleted' => 'canjemints abolis',
-'revdel-restore-visible' => 'canjemints visibes',
 'pagehist' => 'Histoère del pache',
 
 # Merge log
@@ -507,7 +505,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 # Preferences page
 'preferences' => 'Préférinches',
 'mypreferences' => 'Mes préférinches',
-'changepassword' => "Canger ch'mot d'passe",
 'timezoneregion-europe' => 'Urope',
 'youremail' => 'Imèle:',
 'username' => "Nom d'uzeu:",
@@ -714,9 +711,6 @@ Vir l'pache [$2 édseur Commons].",
 'allpagesto' => "Foaire vir chés paches qui s'términette à:",
 'allarticles' => 'Tertous chés artikes',
 'allinnamespace' => 'Tertous chés paches ($1 namespace)',
-'allnotinnamespace' => 'Tertous chés paches (mie din $1 namespace)',
-'allpagesprev' => "D'vant",
-'allpagesnext' => "D'apreu",
 'allpagessubmit' => 'Aler',
 'allpagesprefix' => "Foaire vir chés paches aveuc ch'préfix:",
 
@@ -894,8 +888,6 @@ Din chés cas-lo, I feut érlonmer ou ratatouiller l'pache aveuc l'main.",
 'pagemovedsub' => 'Déplachemint réussi',
 'movepage-moved' => '\'\'\'"$1" o té déplaché su "$2"\'\'\'',
 'articleexists' => "Il y o eune pache aveuc ch'nom-lo dja, ou bin ch'tite couési n'est poin valabe. <br /> I feut in prinde un eute",
-'talkexists' => "'''L'pache ale o té déplachée   mais l'pache d'pérlache n'put poin éte déplachée ker il y o pécho eune pache d'pérlache aveuc ch'nouvieu nom. <br /> I feut foaire un touillache al main.'''",
-'movedto' => 'Déplaché dsus',
 'movetalk' => "Canjer ch'nom del pache d'pérlache apparièe",
 'movelogpage' => 'Jornal éd chés déplachemints',
 'movereason' => 'Motif:',

@@ -112,8 +112,6 @@ $messages = array(
 'qbbrowse' => 'Bilid',
 'qbedit' => 'Iislan',
 'qbpageoptions' => 'Dya nga Pahina',
-'qbpageinfo' => 'Konteksto',
-'qbspecialpages' => 'Manga espesyal nga pahina',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -135,7 +133,7 @@ $messages = array(
 'delete' => 'Para',
 'deletethispage' => 'Paraun ang dya nga Pahina',
 'protect' => 'Amlig',
-'protect_change' => 'islan ang proteksyon',
+'protect_change' => 'iislan',
 'protectthispage' => 'Amligan ang dya nga pahina',
 'unprotect' => 'huksun ang proteksyon',
 'unprotectthispage' => 'Huksun ang proteksyon sa dya nga pahina',
@@ -154,13 +152,12 @@ $messages = array(
 'jumpto' => 'Lompat sa:',
 'jumptosearch' => 'sagap',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tunggəd sa {{SITENAME}}',
 'aboutpage' => 'Project:Tunggəd',
 'disclaimers' => 'Mga Panginwala',
 'disclaimerpage' => 'Project:Panginwala nga Pangtanan',
 'edithelp' => 'Panoytoy sa Pag-ilis',
-'edithelppage' => 'Help:Pag-ilis',
 'mainpage' => 'Pono nga Pahina',
 'mainpage-description' => 'Pono nga Pahina',
 'privacy' => 'Surundun sa Privacy',
@@ -176,8 +173,6 @@ Lantawa sa [[Special:Version|version kang page]].',
 
 'ok' => 'OK dun',
 'youhavenewmessages' => 'May rudyan kaw nga $1 ($2).',
-'newmessageslink' => 'bag-o nga manga mensahe',
-'newmessagesdifflink' => 'orihi nga ilis',
 'youhavenewmessagesmulti' => 'May rudyan kaw nga manga bag-o nga mensahe sa $1',
 'editsection' => 'iislan',
 'editold' => 'iislan',
@@ -188,7 +183,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pahina',
 'nstab-media' => 'Pahina kang Midya',
-'nstab-special' => 'Espesyal',
+'nstab-special' => 'Espesyal nga pahina',
 'nstab-project' => 'Pahina kang Proyekto',
 'nstab-image' => 'Inayap',
 'nstab-mediawiki' => 'Mensahe',
@@ -211,7 +206,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 'viewsource' => 'Turukun ang ginhalinan',
 
 # Login and logout pages
-'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer'' (for a maximum of $1 {{PLURAL:$1|day|days}})",
+'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''browser'' (kang maximum nga $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}})",
 'nologinlink' => "Himo ka sangka ''account''",
 'createaccount' => "Himo ka ''account''",
 
@@ -256,7 +251,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Special:ListUsers
 'listusers-submit' => 'Ipakita',
 
-# E-mail user
+# Email user
 'emailmessage' => 'Mensahe',
 
 # Delete
@@ -268,7 +263,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Undelete
 'undelete-search-submit' => 'Sagap',
 
-'sp-contributions-talk' => 'Wakal',
+'sp-contributions-talk' => 'wakal',
 'sp-contributions-submit' => 'Sagap',
 
 # What links here
@@ -310,13 +305,14 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Special:Version
 'version-specialpages' => 'Manga espesyal nga pahina',
 
-# Special:FilePath
-'filepath-page' => 'Inayap:',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Sagap',
 
 # Special:SpecialPages
 'specialpages' => 'Manga espesyal nga pahina',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => 'OK dun',
+'expand_templates_preview' => 'Bilid',
 
 );

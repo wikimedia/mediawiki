@@ -49,7 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Montrer le montant de guetteurs',
 'tog-oldsig' => '↓ Preview du signature existant:',
 'tog-fancysig' => 'Signature brute (sans liens préparés)',
-'tog-showjumplinks' => 'Mettre les "liens vites" en haut de la page',
 'tog-uselivepreview' => "User la vue d'avance vite (JavaScript) (En assai)",
 'tog-forceeditsummary' => "M'avertir quand j'ai laissé la boëte de commentaires vide",
 'tog-watchlisthideown' => 'Cacher mes changements dans la liste des pages guettées',
@@ -140,7 +139,6 @@ $messages = array(
 'qbedit' => 'Changer',
 'qbpageoptions' => 'Page de choix',
 'qbmyoptions' => 'Mes options',
-'qbspecialpages' => 'Pages espéciales',
 'faq' => 'Questions Communes',
 'faqpage' => 'Project:Questions Communes',
 
@@ -199,7 +197,7 @@ $messages = array(
 'jumpto' => 'Aller à:',
 'jumptosearch' => 'charcher',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "Qui c'est {{SITENAME}}?",
 'aboutpage' => 'Project:Info',
 'copyright' => 'Les matières sont avalable en accord avec $1',
@@ -209,7 +207,6 @@ $messages = array(
 'disclaimers' => 'Avertissements',
 'disclaimerpage' => 'Project:Avertissements ordinaires',
 'edithelp' => 'Aide',
-'edithelppage' => 'Help:Comment changer une page',
 'helppage' => 'Help:Aide',
 'mainpage' => 'Page Principale',
 'mainpage-description' => 'Page Principale',
@@ -228,8 +225,6 @@ $messages = array(
 
 'retrievedfrom' => 'Pris de "$1"',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
-'newmessageslink' => 'nouveaux messages',
-'newmessagesdifflink' => 'dernier changement',
 'youhavenewmessagesmulti' => 'Vous avez des nouveaux messages sus $1.',
 'editsection' => 'changer',
 'editold' => 'changer',
@@ -265,19 +260,6 @@ $messages = array(
 # General errors
 'error' => 'Erreur',
 'databaseerror' => "Erreur de la base d'information",
-'dberrortext' => 'Erreur de syntaxe dans la base d\'information.
-
-Ça pourrait vouloir dire qu\'y a une imperfection dans le software.<br />
-La dernière demande faite dans la base d\'information était:
-<blockquote><tt>$1</tt></blockquote>
-dedans la fonction "<tt>$2</tt>".<br />
-MySQL a retourné l\'erreur "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Erreur de syntaxe dans la base d\'information.
-
-La dernière demande faite dans la base d\'information était:
-"$1"
-dedans la fonction "$2".
-MySQL a retourné l\'erreur "$3: $4".',
 'laggedslavemode' => 'Avertissement: La page est peut-être pas renouvelée.',
 'readonly' => "La base d'information est barrée.",
 'enterlockreason' => "Écrire une raison pour le barrage avec un temps estimé
@@ -303,9 +285,6 @@ L'administrateur qui l'a barrée a donné cette explication: $1",
 'perfcached' => 'Cette information est en cache et pourrait pas être courante. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts' => 'Cette information est en cache et le dernier changement a été fait $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "À présent, les renouvelages pour cette page sont barrés.  L'information ici va pas être renouvelée t'à l'heure.",
-'wrong_wfQuery_params' => 'Informaton incorrecte sus le wfQuery()<br />
-Fonction: $1<br />
-Demande: $2',
 'viewsource' => 'Voir la source',
 'protectedpagetext' => 'Cette page est barrée pour empêcher des changements.',
 'viewsourcetext' => 'Vous pouvez voir et copier la source de cette page:',
@@ -313,7 +292,6 @@ Demande: $2',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
-'sqlhidden' => '(Demande SQL cachée)',
 'cascadeprotected' => 'Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected' => 'Vous avez pas la permission de changer les pages dans l\'espace de noms "$1".',
@@ -382,12 +360,11 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'loginlanguagelabel' => 'Langue: $1',
 
 # Change password dialog
-'resetpass' => 'Rétablir le mot de passe du compte',
 'resetpass_announce' => "Pour le moment, vous êtes connecté avec un mot de passe qu'a été envoyé par e-mail.  Pour finir de vous connecter, il faut créer un nouveau mot de passe ici:",
 'resetpass_text' => '<!-- Mettez du texte ici -->',
 'resetpass_header' => 'Rétablir le mot de passe',
 'resetpass_submit' => 'Créer le mot de passe et connecter',
-'resetpass_success' => 'Vous avez bien changé votre mot de passe!  On est après vous connecter...',
+'changepassword-success' => 'Vous avez bien changé votre mot de passe!  On est après vous connecter...',
 'resetpass_forbidden' => 'Vous pouvez pas changer votre mot de passe sus ce wiki ici.',
 
 # Edit page toolbar
@@ -595,8 +572,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Search results
 'searchresults' => 'Résultats de la charche',
 'searchresults-title' => 'Résultats de charche pour « $1 »',
-'searchresulttext' => "Pour plus d'information pour vous aider à charcher dans {{SITENAME}}, voyez [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchhelp-url' => 'Help:Aide',
 'searchprofile-everything' => 'Tout',
 'search-result-size' => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 

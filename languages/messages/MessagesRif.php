@@ -84,7 +84,6 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Af',
 'qbedit' => 'Ẓṛeg',
-'qbspecialpages' => 'Tudmawin Special',
 
 # Vector skin
 'vector-action-move' => 'Smuṭṭi',
@@ -126,7 +125,7 @@ $messages = array(
 'jumptonavigation' => 'tagriwa',
 'jumptosearch' => 'tarezzut',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Awal xef {{SITENAME}}',
 'aboutpage' => 'Project:Awal xef',
 'copyrightpage' => '{{ns:project}}:izrefan ussenɣel',
@@ -135,7 +134,6 @@ $messages = array(
 'disclaimers' => 'Ismigilen',
 'disclaimerpage' => 'Project:Asmigel amatu',
 'edithelp' => 'Tallalt deg uẓareg',
-'edithelppage' => 'Help:Aẓareg',
 'helppage' => 'Help:Tira d yiwlafen',
 'mainpage' => 'Tasna Tamezwarut',
 'mainpage-description' => 'Tasna Tamezwarut',
@@ -146,8 +144,6 @@ $messages = array(
 
 'retrievedfrom' => 'Itwarr-d zi "$1"',
 'youhavenewmessages' => 'Ghar-k / Ghar-m $1 ($2).',
-'newmessageslink' => 'tibratin timaynutin',
-'newmessagesdifflink' => 'Taẓṛigt tanggarut',
 'editsection' => 'Ẓṛeg',
 'editold' => 'ẓṛeg',
 'viewsourceold' => 'ẓeṛ aɣbalu',
@@ -325,7 +321,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 # Search results
 'searchresults' => 'Tifellawin n tarezzut',
 'searchresults-title' => 'Tifellawin n tarezzut xef "$1"',
-'searchsubtitle' => 'Trezzud xef \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|marra tasniwin issentan s "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|marra tasniwin iteqqnen ghar "$1"]])',
 'prevn' => 'Amzray {{PLURAL:$1|$1}}',
 'nextn' => 'wn d-itasn {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ẓeṛ ($1 {{int:pipe-separator}} $2) ($3)',
@@ -338,7 +333,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 'search-interwiki-caption' => 'Awmatn n usnfar',
 'search-interwiki-more' => '(ujar)',
 'searchall' => 'maṛṛa',
-'powersearch' => 'Tarzzut tanmhazt',
 'powersearch-legend' => 'Tarzzut tanmhazt',
 
 # Preferences page
@@ -385,7 +379,6 @@ mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 'recentchangeslinked-feed' => 'Tiẓṛigin ag ta',
 'recentchangeslinked-toolbox' => 'Tiẓṛigin ag ta',
 'recentchangeslinked-title' => 'Tiẓṛigin ssaɣant-id ɣar "$1"',
-'recentchangeslinked-noresult' => 'War llint ca n tiẓṛigin di Tasna ya di lwaqt id-tucid .',
 'recentchangeslinked-summary' => "Ta d tabdart n isnfiln itwaggn drus zggwami di tasniwin id-iqqnen zg ict tasna nniḍn (nigh iqqnen ghar iwdan zi ca n taggayt).
 Tasniwin di [[Special:Watchlist|your watchlist]] d '''tizurarin'''.",
 'recentchangeslinked-page' => 'Izwl n tasna:',
@@ -439,8 +432,6 @@ Tasniwin di [[Special:Watchlist|your watchlist]] d '''tizurarin'''.",
 
 # Statistics
 'statistics' => 'tisiḍanin',
-
-'disambiguations' => 'Tasniwin n usefhem',
 
 'doubleredirects' => '(redirects) ɛɛawdent',
 
@@ -653,9 +644,6 @@ mala amya, itxessa cekk ad tesnaqled s ufus mala txisd.",
 'movepage-moved' => '\'\'\'"$1" twanql ɣar "$2"\'\'\'',
 'articleexists' => 'Tasna s isem a tella da, niɣ isem itucid war icni.
 ixdar isem nniḍn.',
-'talkexists' => "'''Tasna twanql , maca Tasna n usiwl ins war twanqel ca maymmi qaddin ict nninḍ.
-snaqlitent s ufus.'''",
-'movedto' => 'smutti ghar',
 'movetalk' => 'Snaqel Tasniwin n usiwl igg illan akid-s',
 'movelogpage' => 'Snaql aɣmis',
 'movereason' => 'Ssebba:',
@@ -767,10 +755,6 @@ Innḍni ad twaffrn dg umzwar.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Ẓṛeg afaylu a s usnas zi baṛṛa',
-'edit-externally-help' => 'Xemm [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] i ktar n tilɣa(informations).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'marra',

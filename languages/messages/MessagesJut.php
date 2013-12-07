@@ -10,6 +10,7 @@
  * @author Geitost
  * @author Huslåke
  * @author Urhixidur
+ * @author Xabier Armendaritz
  * @author Ælsån
  */
 
@@ -43,7 +44,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Ves miin e-mail-adresse i mails ve besked ændrenger'm",
 'tog-shownumberswatching' => 'Ves åntal brugere, der åvervåger',
 'tog-fancysig' => 'Signaturer uden åtåmatisk henvesnenge',
-'tog-showjumplinks' => 'Ves tilgængelegheds-henvesnenger',
 'tog-uselivepreview' => 'Brug åtåmatisk førhåndsvesnenge (JavaScript) (eksperimentel)',
 'tog-forceeditsummary' => 'Advar, hves sammenfatnenge mangler ve gemnenge',
 'tog-watchlisthideown' => "Skjul egne ændrenger i'n åvervågnengsliste",
@@ -136,7 +136,6 @@ $messages = array(
 'qbedit' => 'Redigær',
 'qbpageoptions' => 'Endstellenger før side',
 'qbmyoptions' => 'Miine endstellenger',
-'qbspecialpages' => 'Sonst sider',
 'faq' => 'VSF',
 'faqpage' => 'Project:Vøl stellen fråĝer (VSF)',
 
@@ -194,7 +193,7 @@ $messages = array(
 'jumptonavigation' => 'navigasje',
 'jumptosearch' => 'Søĝnenge',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "{{SITENAME}}'m",
 'aboutpage' => 'Project:Åm',
 'copyright' => 'Endholtet er udgævet under $1.',
@@ -223,8 +222,6 @@ $messages = array(
 'ok' => 'Er åkæ',
 'retrievedfrom' => 'Hæntet frå "$1"',
 'youhavenewmessages' => 'Du har $1 ($2).',
-'newmessageslink' => 'nye beskeder',
-'newmessagesdifflink' => 'ændrenger æ side sedste vesnenge',
 'youhavenewmessagesmulti' => 'Der er nye meddelelser til dig: $1',
 'editsection' => 'redigær',
 'editold' => 'redigær',
@@ -266,16 +263,6 @@ $messages = array(
 # General errors
 'error' => 'Fejl',
 'databaseerror' => 'Databasefejl',
-'dberrortext' => 'Der er åpstået en syntaksfejl i en databaseførespørgsel.
-Dette ken være på grund åf en ugyldeg førespørgsel,
-æller det ken betyde en fejl i\'n softwær.
-Den seneste førsøĝte databaseførespørgsel var:
-<blockquote><tt>$1</tt></blockquote>
-frå\'n funksje "<tt>$2</tt>".
-MySQL æ returnerede fejl "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Der er åpstået en syntaksfejl i en databaseførespørgsel.
-Den seneste førsøĝte databaseførespørgsel var: "$1" frå\'n funksje "$2".
-MySQL æ returnerede fejl "$3: $4".',
 'laggedslavemode' => 'Bemærk: Den veste side endholter mulegves ekke de nyeste ændrenger.',
 'readonly' => 'Æ database er skrevebeskyttet',
 'enterlockreason' => "Skrev en begrundelse før æ skrevebeskyttelse, ve samt en vurderenge åf, hvornår æ skrevebeskyttelse åphæves ig'n",
@@ -295,9 +282,6 @@ MySQL æ returnerede fejl "$3: $4".',
 'formerror' => 'Fejl: Kan ekke åfsende formulær',
 'badtitle' => 'Førkert skrevselenger',
 'badtitletext' => 'Den ønskede sides nav var ekke tilladt, tøm æller æ side er førkert henvest frå en {{SITENAME}} på et andet språĝ.',
-'wrong_wfQuery_params' => 'Ugyldeg paramæter til wfQuery()<br />
-Funksje: $1<br />
-Førespørgsel: $2',
 'viewsource' => 'Ves æ kelde',
 'viewsourcetext' => "Du ken dog se og åfskreve'n keldekode til æ side:",
 
@@ -439,7 +423,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'nextn' => 'nægste {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ves ($1 {{int:pipe-separator}} $2) ($3)',
 'searchall' => 'ål',
-'powersearch' => 'Søĝ',
 
 # Preferences page
 'preferences' => 'Endstellenger',
@@ -529,8 +512,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Statistics
 'statistics' => 'Sensje',
-
-'disambiguations' => 'Ertikler ve flertydige skrevselenger',
 
 'doubleredirects' => 'Dåbbelte åmstyrenger',
 
@@ -729,8 +710,6 @@ I disse tilfælde er du nødt til at flytte æller sammenflette'n side manuelt."
 'movepage-moved' => 'Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'',
 'articleexists' => 'En side ve det navn eksisterer ålrede, æller det
 navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
-'talkexists' => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',
-'movedto' => 'flyttet til',
 'movetalk' => 'Flyt også\'n "diskusjeside", hves den eksisterer.',
 'movelogpage' => 'Flyttelog',
 'movereason' => 'Begrundelse:',
@@ -829,10 +808,6 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 * gpslongitude
 * gpsaltitude',
 
-# External editor support
-'edit-externally' => "Redigær denne gøret ve'n utsende redigærstøme",
-'edit-externally-help' => 'Se [//www.mediawiki.org/wiki/Manual:External_editors setup hjælpje] før mære informasje.',
-
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'åle',
 'namespacesall' => 'åle',
@@ -848,5 +823,16 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',
+
+# Special:ExpandTemplates
+'expandtemplates' => 'Engråt templater',
+'expand_templates_title' => 'Context titel, før {{SITENAME}}:',
+'expand_templates_input' => 'Input skrevselenger:',
+'expand_templates_output' => 'Resultåt',
+'expand_templates_xml_output' => 'XML output',
+'expand_templates_ok' => 'OK',
+'expand_templates_remove_comments' => 'Slet kommentår',
+'expand_templates_generate_xml' => 'Se XML parse træ',
+'expand_templates_preview' => 'Førhåndsvesnenge',
 
 );

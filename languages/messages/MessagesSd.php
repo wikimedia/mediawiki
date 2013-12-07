@@ -420,6 +420,7 @@ $messages = array(
 'accountcreatedtext' => '$1 نالي يوزر کاتو کلي چڪو آھي.',
 
 # Change password dialog
+'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
 'retypenew' => 'نئون ڳجھو لفظ ٻيهر ٽائيپ ڪندا:',
 
 # Edit page toolbar
@@ -523,7 +524,6 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 # Preferences page
 'preferences' => 'ترجيحات',
 'mypreferences' => 'منهنجون ترجيحات',
-'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
 'skin-preview' => 'پيش نگاهه',
 'datedefault' => 'بلا ترجيحا',
 'prefs-datetime' => 'تاريخ ۽ وقت',
@@ -676,7 +676,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'prevpage' => 'پويون صفحو ($1)',
 'allpagesfrom' => 'ھتان شروع ٿيندڙ صفحا نمايو',
 'allarticles' => 'سمورا مضمون',
-'allpagesprev' => 'اڳوڻو',
 'allpagessubmit' => 'ھلو',
 'allpagesprefix' => 'صفحا نمايو بمع اڳياڙي:',
 
@@ -811,9 +810,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'pagemovedsub' => 'چورڻ جو عمل ڪامياب ٿيو',
 'movepage-moved' => '\'\'\'"$1" کي چوري "$2" تي رکيو ويو آهي\'\'\'',
 'articleexists' => 'ان نالي سان صفحو اڳي ئي وجود رکي ٿو، يا ته توهان جو ڏنل نالو ناقابلڪار آهي.',
-'talkexists' => "
-'''موادي صفحو پاڻ ته ڪاميابيءَ سان چُري ويو، پر لاڳاپيل مباحثي صفحو چُري نه سگھيو ڇاڪاڻ ته نئين عنوان تي اڳي ئي هڪ مباحثي صفحو موجود آهي. براءِ مهرباني انهن ٻنهي هٿ سان ضمائيندا.",
-'movedto' => 'چوريو ويو برسر',
 'movetalk' => 'لاڳاپيل مباحثي صفحو چوريو',
 'movelogpage' => 'چورڻ لاگ',
 'movereason' => 'سبب:',

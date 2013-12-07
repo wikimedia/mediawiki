@@ -68,14 +68,13 @@ $messages = array(
 'otherlanguages' => 'Ka maleme a mang',
 'jumptosearch' => 'phuputso',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'mainpage' => 'Leqephe la pele',
 'mainpage-description' => 'Leqephe la pele',
 'portal' => 'Potjho e kopano',
 'portal-url' => 'Project:Potjho e kopano',
 
 'retrievedfrom' => 'E tswa ho "$1"',
-'newmessageslink' => 'melaetsa e metjha',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Sengolwa',
@@ -94,6 +93,7 @@ $messages = array(
 'mailmypassword' => 'Nthomele password ya ka ka email',
 
 # Change password dialog
+'changepassword' => 'Fetola lepetjo',
 'oldpassword' => 'Lepetjo la kgale:',
 'newpassword' => 'Lepetjo le letjha:',
 'retypenew' => 'Ngola lepetjo le letjha hape:',
@@ -106,11 +106,7 @@ $messages = array(
 'accmailtext' => 'Lepetjo la "$1" le se le rometswe ho $2.',
 'note' => "'''Ela hloko:'''",
 
-# Search results
-'powersearch' => 'Fuputsa',
-
 # Preferences page
-'changepassword' => 'Fetola lepetjo',
 'searchresultshead' => 'Phuputso',
 'allowemail' => 'Dumella batho ba bang hore ba nthomelle di-email',
 
@@ -138,7 +134,7 @@ $messages = array(
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
-# E-mail user
+# Email user
 'emailuser' => 'Romela motho enwa email',
 'emailfrom' => 'E tswa ho:',
 'emailto' => 'Ho:',

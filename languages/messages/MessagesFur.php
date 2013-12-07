@@ -464,7 +464,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'loginlanguagelabel' => 'Lenghe: $1',
 
 # Change password dialog
-'resetpass' => 'Gambie peraule clâf',
+'changepassword' => 'Gambie peraule clâf',
 'resetpass_header' => 'Cambie peraule clâf de identitât',
 'oldpassword' => 'Vecje peraule clâf',
 'newpassword' => 'Gnove peraule clâf',
@@ -627,8 +627,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'revdelete-radio-set' => 'Sì',
 'revdelete-radio-unset' => 'No',
 'revdel-restore' => 'cambie visibilitât',
-'revdel-restore-deleted' => 'revisions eliminadis',
-'revdel-restore-visible' => 'revisions visibilis',
 'pagehist' => 'Storic de pagjine',
 'revdelete-reasonotherlist' => 'Altri motîf',
 
@@ -676,7 +674,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'search-interwiki-caption' => 'Progjets fradis',
 'search-interwiki-default' => 'Risultâts di $1:',
 'search-interwiki-more' => '(altri)',
-'mwsuggest-disable' => 'Disative i sugjeriments AJAX',
 'searchrelated' => 'leâts',
 'searchall' => 'ducj',
 'showingresults' => "Ca sot {{PLURAL:$1|al è fin a '''1''' risultât|a son fin a '''$1''' risultâts}} scomençant dal numar '''$2'''.",
@@ -693,7 +690,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'preferences' => 'Preferencis',
 'mypreferences' => 'Preferencis',
 'prefs-edits' => 'Numar di cambiaments fats:',
-'changepassword' => 'Gambie peraule clâf',
 'prefs-skin' => 'Mascare',
 'skin-preview' => 'Anteprime',
 'datedefault' => 'Nissune preference',
@@ -1045,9 +1041,6 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent e/o l
 'allpagesto' => 'Mostre lis pagjinis fin a:',
 'allarticles' => 'Dutis lis vôs',
 'allinnamespace' => 'Dutis lis pagjinis (non dal spazi $1)',
-'allnotinnamespace' => 'Dutis lis pagjinis (no tal non dal spazi $1)',
-'allpagesprev' => 'Precedent',
-'allpagesnext' => 'Prossim',
 'allpagessubmit' => 'Va',
 'allpagesprefix' => 'Mostre lis pagjinis che a scomencin cun:',
 
@@ -1311,7 +1304,6 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 
 In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te pagjine di discussion, se tu lu desideris.",
 'movearticle' => 'Môf la vôs',
-'movenologin' => 'No tu sês jentrât',
 'movenologintext' => 'Tu âs di jessi un utent regjistrât e [[Special:UserLogin|jentrât]] par movi une pagjine.',
 'movenotallowed' => 'No tu âs i permès che a coventin par movi lis pagjinis.',
 'newtitle' => 'Al gnûf titul',
@@ -1321,8 +1313,6 @@ In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te p
 'movepage-moved' => '\'\'\'"$1" e je stade movude al titul "$2"\'\'\'',
 'articleexists' => 'Une pagjine cun chest non e esist za, o il non sielt nol è valit.
 Sielç par plasê un altri non.',
-'talkexists' => "'''La pagjine e je stade movude cun sucès, ma no si à podût movi la pagjine di discussion parcè che e esist za tal gnûf titul. Trasferìs il contignût a man par plasê.'''",
-'movedto' => 'Movude in',
 'movetalk' => 'Môf ancje la pagjine di discussion, se pussibil.',
 'movelogpage' => 'Regjistri des pagjinis movudis',
 'movelogpagetext' => 'Ca sot e je une liste des pagjinis movudis.',

@@ -74,7 +74,6 @@ $messages = array(
 'qbedit' => 'Padécéŋ',
 'qbpageoptions' => 'Édé leppa',
 'qbmyoptions' => "Leppana iya'",
-'qbspecialpages' => 'Leppa spésiala',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -127,19 +126,17 @@ $messages = array(
 'jumpto' => 'Luppe lao:',
 'jumptosearch' => 'sappa',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tentang {{SITENAME}}',
 'currentevents' => 'Accanjingeŋ kokkoro',
 'currentevents-url' => 'Project:Accanjingeŋ kokkoro',
 'disclaimers' => 'Diseklaima',
 'edithelp' => 'Paŋinriŋ mapadécéŋ',
-'edithelppage' => 'Help:Mapadécéŋ',
 'helppage' => 'Help:Lise',
 'mainpage' => 'Leppa Indoë',
 'mainpage-description' => 'Leppa Indoë',
 'portal' => 'Portal komunitas',
 
-'newmessageslink' => 'pappaseŋ baru',
 'editsection' => 'padécéŋ',
 'editold' => 'padécéŋ',
 'viewsourceold' => 'ita sumber',
@@ -241,16 +238,12 @@ $messages = array(
 'editundo' => 'undo',
 
 # Search results
-'searchsubtitle' => "Masappa iko '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Massappa iko '''$1'''",
 'viewprevnext' => 'Ita ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Lise',
 'search-result-size' => '$1 ({{PLURAL:$2|1 ada|$2 ada}})',
 'search-redirect' => '(redirect $1)',
 
 # Preferences page
 'mypreferences' => 'Bérékkeŋeŋna iyya',
-'prefsnologin' => "Déppa ma'log attama'",
 'prefs-watchlist' => 'Watchlist',
 'prefs-misc' => 'Misc',
 'saveprefs' => 'Taro',
@@ -343,8 +336,6 @@ $messages = array(
 'allpagesfrom' => 'Mappaitang halamang-halamang rimulai:',
 'allarticles' => 'Sininna leppa',
 'allinnamespace' => 'Maneŋ leppa (namespace $1)',
-'allnotinnamespace' => 'Maneŋ leppa (tania rilaleŋ namespace $1)',
-'allpagesnext' => 'Selanjutnya',
 'allpagessubmit' => 'Lanre',
 'allpagesprefix' => 'Mappaitang halamang-halamang éngkalinga awang:',
 
@@ -457,8 +448,7 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 
 # Special:SpecialPages
 'specialpages' => 'Leppa spésiala',
-'specialpages-note' => '----
-* Leppa spésiala normal
+'specialpages-note' => '* Leppa spésiala normal
 * <strong class="mw-specialpagerestricted">Leppa spésiala terbatas</strong>',
 'specialpages-group-other' => 'Leppa spésiala laiŋë',
 'specialpages-group-login' => 'Log attama / mendaftar',

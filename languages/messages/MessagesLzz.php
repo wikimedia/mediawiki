@@ -147,7 +147,6 @@ $messages = array(
 'qbedit' => 'Doktiri',
 'qbpageoptions' => 'Am sayfa',
 'qbmyoptions' => 'Çkimi sayfape',
-'qbspecialpages' => 'Doxmeli sayfape',
 
 # Vector skin
 'vector-action-delete' => 'Jili',
@@ -191,7 +190,7 @@ $messages = array(
 'jumptonavigation' => 'ixmari',
 'jumptosearch' => 'mgori',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} şeni',
 'aboutpage' => 'Project:Ambarepe',
 'copyright' => 'Doloxe na renanpe, $1-şi ren.',
@@ -199,7 +198,6 @@ $messages = array(
 'disclaimers' => 'Kʼabuli na var ixvenu ondepe',
 'disclaimerpage' => 'Project:Mtelot kʼabuli na var ixvenu ondepe',
 'edithelp' => 'Muçʼoşi iktirinen?',
-'edithelppage' => 'Help:Butʼkʼa muçʼoşi iktirinen?',
 'helppage' => 'Help:Doloxe na renanpe',
 'mainpage' => 'Dudi Butʼkʼa',
 'mainpage-description' => "Dudi But'k'a",
@@ -211,8 +209,6 @@ $messages = array(
 'ok' => 'HO',
 'retrievedfrom' => '"$1" adresişen eizdinu',
 'youhavenewmessages' => 'Ağani $1 giğun. ($2)',
-'newmessageslink' => 'ağani mesajepe',
-'newmessagesdifflink' => 'çodinaşi oktiroba',
 'youhavenewmessagesmulti' => "$1's ağne mesajepe giğun",
 'editsection' => 'doktiri',
 'editold' => 'Doktiri',
@@ -353,10 +349,6 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 # Search results
 'searchresults' => 'Ogoru sonucepe',
 'searchresults-title' => '"$1" şeni ogoru sonucepe',
-'searchresulttext' => '{{SITENAME}}-iş doloxe ogoru temas, mutxanepe oguru şeni [[{{MediaWiki:Helppage}}|{{int:help}}]] coxoni butʼkʼas o3ʼkʼedit.',
-'searchsubtitle' => 'Si \'\'\'[[:$1]]\'\'\' şeni gori. ([[Special:Prefixindex/$1|"$1" kʼala na gyoçʼkʼaps mtel butʼkʼape]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"\' butʼkʼa muşişa kʼontʼaktʼi na ikips mtel butʼkʼape]])',
-'searchsubtitleinvalid' => "'''$1''' şeni mgori",
-'notitlematches' => 'Çkar svas var iz*irinu',
 'notextmatches' => 'Çkar butʼkʼa var iz*irinu',
 'prevn' => 'ukʼuni {{PLURAL:$1|$1}}',
 'nextn' => 'mendi {{PLURAL:$1|$1}}',
@@ -369,13 +361,9 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'search-interwiki-default' => '$1 sonucepe:',
 'search-interwiki-more' => '(çkva)',
 'searchall' => 'mteli',
-'nonefound' => "'''Notʼi''': Xvala, namtini svacoxope maartani oqʼopinot igoren.
-Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (oğarğaluşi butʼkʼape, şablonepe, doçkva şeyepeti iqʼvasen) mgori varna pʼrefiksi oqʼopinot na igoren svacoxo ixmarit.",
-'powersearch' => 'Mordineri ogoru',
 'powersearch-legend' => 'Mordineri ogoru',
 'powersearch-ns' => 'Svacoxo-s mgori:',
 'powersearch-redir' => 'Redirektʼepe ilistʼeli',
-'powersearch-field' => 'Mgori:',
 
 # Preferences page
 'preferences' => 'Tercihepe',
@@ -651,8 +639,6 @@ Am situa3yonepes, butʼkʼa skanişkʼelen otiruşi ren.",
 'movepage-moved' => '\'\'\'"$1",  "$2" butʼkʼa muşişa itirinu\'\'\'',
 'articleexists' => 'Am coxos ar butʼkʼa koren varna na çʼari coxo mtini va ren.
 Mu iqʼven başka coxo doçʼari.',
-'talkexists' => "'''Butʼkʼa dido kʼai itirinu, mara oğarğaluşi butʼkʼa var itirinu çunki na itirinasen coxos zate ar butʼkʼa rtʼu. Mu iqʼven butʼkʼaşi doloçʼareli nç'arape majurani butʼkʼaşa ti-skani kʼala itirini.'''",
-'movedto' => 'itirinu:',
 'movetalk' => 'Korenna, "oğarğaluşi" butʼkʼa muşiti mendiği.',
 'movelogpage' => 'Coxo oktirobaşi kʼayitʼepe',
 'movereason' => 'Muşen:',
@@ -758,10 +744,6 @@ Ukʼaçxe na mulunan kʼontʼaktʼepe istʼisna oqʼopinot kʼabuli ixvenen. Mes
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
-
-# External editor support
-'edit-externally' => 'Dosyas, kʼompʼuteris na renan pʼrogramepe kʼala oktirobape doqʼvi.',
-'edit-externally-help' => '(Dido çkina şeni metʼas na renan [//www.mediawiki.org/wiki/Manual:External_editors galeni xvenaş tercihepe] (İngilisuri) butʼkʼa muşis o3ʼkʼedit)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'mteli',

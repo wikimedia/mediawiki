@@ -97,7 +97,6 @@ $messages = array(
 'qbedit' => 'Värrhtoedimmie',
 'qbpageoptions' => 'Dïhte bielie',
 'qbmyoptions' => 'Mov bielieh',
-'qbspecialpages' => 'Joekoelaakan bielieh',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -143,7 +142,7 @@ $messages = array(
 'jumptonavigation' => 'navigasjovne',
 'jumptosearch' => 'ohtsedh',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}}en bïjre',
 'aboutpage' => 'Project:Bïjre',
 'copyrightpage' => '{{ns:project}}:Bäjjesereaktah',
@@ -152,7 +151,6 @@ $messages = array(
 'disclaimers' => 'Friijavuohte vastideamis',
 'disclaimerpage' => 'Project:Bäjjesereaktah',
 'edithelp' => 'Sjiehtedimmie viehkie',
-'edithelppage' => 'Help:Sjiehtedimmie',
 'helppage' => 'Help:Sisvege',
 'mainpage' => 'Aalkoebielie',
 'mainpage-description' => 'Aalkoebielie',
@@ -163,8 +161,6 @@ $messages = array(
 
 'retrievedfrom' => 'Raejeste "$1" vïedtjeme',
 'youhavenewmessages' => 'Datne åtna $1 ($2).',
-'newmessageslink' => 'orre bïjre',
-'newmessagesdifflink' => 'minngemes värrhtoedimmie',
 'editsection' => 'sjïehtedh',
 'editold' => 'värrhtoedimmie',
 'editsectionhint' => 'Sektiovne sjiehtedh: $1',
@@ -236,6 +232,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'loginlanguagelabel' => 'Gïele: $1',
 
 # Change password dialog
+'changepassword' => 'Värrhtoedimmie loevesbaakoe',
 'oldpassword' => 'Båeries loevesbaakoe:',
 'newpassword' => 'Orre loevesbaakoe:',
 'retypenew' => 'Odhasit orre loevesbaakoe:',
@@ -326,18 +323,13 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 
 # Search results
 'searchresults' => 'Ohtsedh resultaateh',
-'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle' => "Dov ohtsedh ihke '''[[:$1]]'''",
 'prevn' => 'övtebe {{PLURAL:$1|$1}}',
 'nextn' => 'minngeben {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Vuesehth ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Sisvege',
-'powersearch' => 'Ohtsedh',
 
 # Preferences page
 'preferences' => 'Sïjsestäälningeh',
 'mypreferences' => 'Mov sïjsesäälningeh',
-'changepassword' => 'Värrhtoedimmie loevesbaakoe',
 'skin-preview' => 'Åvte-vuesiehtidh',
 'saveprefs' => 'Spååredh',
 'searchresultshead' => 'Ohtsedh',
@@ -395,7 +387,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'recentchangeslinked-feed' => 'Värrhtoedimmieh nille krïense bielieh',
 'recentchangeslinked-toolbox' => 'Värrhtoedimmieh nille krïense bielieh',
 'recentchangeslinked-title' => 'Värrhtoedimmie laktaseaddji gåajkoe "$1"',
-'recentchangeslinked-noresult' => 'Ijje kïrense bielieh värrhtoedimmie nuelesne dïhte veeljeme tïjje-boelhke.',
 'recentchangeslinked-summary' => "Dïhte joekoelaakan bielie lästoe dah minngemes värrhtoedimmieh nille bielieh goh lea lïenghke. Bielieh [[Special:Watchlist|nille dov]] sïektjedhlästoe lea '''buajtehks'''.",
 
 # Upload
@@ -459,8 +450,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'statistics' => 'Statistiike',
 'statistics-header-users' => 'Nuhtjien statistiike',
 
-'disambiguations' => 'Disambirgusjovne bielieh',
-
 'doubleredirects' => 'Guektien-gïerth bïjre-dirisjovneh',
 
 'brokenredirects' => 'Earjohks bïrje-dirisjovneh',
@@ -522,8 +511,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'prevpage' => 'Övtebe bielie ($1)',
 'allpagesfrom' => 'Vuesehte bielieh goh aelkedh meatan:',
 'allarticles' => 'Gaajhke bielieh',
-'allpagesprev' => 'Övtebe',
-'allpagesnext' => 'Minngebe',
 'allpagessubmit' => 'Vaadtsa',
 'allpagesprefix' => 'Vuesehte bielieh meatan prefihkse:',
 
@@ -671,7 +658,6 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 'articleexists' => 'Bielie meatan dïhte nomme gååvnese joe, jallh
 nome dov åtna veeljeme lea ijje jiiltige.
 Gïemhpes veeljeme jeatjebh nomme.',
-'movedto' => 'jåhta gåajkoe',
 'movetalk' => 'Jåhta aaj dïerkestidhbielie, bïjre dïhte gååvnese.',
 'movelogpage' => 'Jåhta logge',
 'movereason' => 'Gaavhtan:',
@@ -822,10 +808,6 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Lulnie låångdituude',
 'exif-gpslongitude-w' => 'Jillege låångdituude',
-
-# External editor support
-'edit-externally' => 'Värrhtoedimmie dïhte baalka meatan ehksteerne applikasjovne',
-'edit-externally-help' => 'Vuajna [//www.mediawiki.org/wiki/Manual:External_editors instalasjovne instruksjovne] ihke vielie bïevnesh.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gaajhke',

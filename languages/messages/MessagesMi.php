@@ -38,9 +38,6 @@ $messages = array(
 'mytalk' => 'Karere mōku',
 'navigation' => 'Huarahi',
 
-# Cologne Blue skin
-'qbspecialpages' => 'Whārangi motuhake',
-
 # Vector skin
 'vector-view-view' => 'Rīti',
 
@@ -58,7 +55,7 @@ $messages = array(
 'talk' => 'Kōrerorero',
 'toolbox' => 'Pouaka utauta',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Mo {{SITENAME}}',
 'currentevents' => 'Kōrero',
 'currentevents-url' => 'Project:Kōrero',

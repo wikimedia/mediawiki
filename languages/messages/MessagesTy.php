@@ -74,7 +74,6 @@ $messages = array(
 # Cologne Blue skin
 'qbedit' => 'Fa’ahuru ’ē',
 'qbmyoptions' => 'ta’u ’api',
-'qbspecialpages' => 'Te mau ’api ta’a ’ē',
 
 'help' => 'Tauturu',
 'search' => 'Roromā’imi',
@@ -89,7 +88,7 @@ $messages = array(
 'jumptonavigation' => 'arata’i',
 'jumptosearch' => 'haere',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Nō {{SITENAME}}',
 'aboutpage' => 'Project:Nō',
 'edithelp' => 'Tauturu',
@@ -97,8 +96,6 @@ $messages = array(
 'mainpage-description' => 'Fa’ari’ira’a',
 'portal' => 'Fare auhoa',
 
-'newmessageslink' => 'Te mau poro’i ’āpī',
-'newmessagesdifflink' => 'fa’ahuru-’ē-ra’a hope’a',
 'editsection' => 'fa’ahuru ’ē',
 'editold' => 'fa’ahuru ’ē',
 
@@ -114,9 +111,6 @@ $messages = array(
 
 # Revision feed
 'history-feed-title' => 'Parau tuatāpapa',
-
-# Search results
-'powersearch' => 'Roromā’imi',
 
 # Preferences page
 'prefs-rc' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
@@ -162,9 +156,6 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-search' => 'Roromā’imi {{SITENAME}}',
-
-# Special:FilePath
-'filepath-page' => 'Putu’ite:',
 
 # Special:SpecialPages
 'specialpages' => 'Te mau ’api ta’a ’ē',

@@ -133,7 +133,7 @@ $messages = array(
 'jumptonavigation' => 'navigeshon',
 'jumptosearch' => 'Luk fo',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Na bot {{SITENAME}}',
 'aboutpage' => 'Project:Na bot',
 'copyright' => 'Dis kontent de onda $1 .',
@@ -142,7 +142,6 @@ $messages = array(
 'disclaimers' => 'Disklema-dem',
 'disclaimerpage' => 'Project:Jeneral disklema',
 'edithelp' => 'Advais foh we yu wan fo edit',
-'edithelppage' => 'Help:Editin',
 'helppage' => 'Help:Kontent-dem',
 'mainpage' => 'Men Pej',
 'mainpage-description' => 'Men Pej',
@@ -166,7 +165,6 @@ Luk [[Special:Version|version page]].',
 'retrievedfrom' => 'Dem ritriv am na"$1"',
 'youhavenewmessages' => 'Yu get $1 ($2).',
 'editsection' => 'edit',
-'editsection-brackets' => '[$1]',
 'editold' => 'chenj',
 'viewsourceold' => 'Luk di sos',
 'editlink' => 'edit',
@@ -270,7 +268,6 @@ Somtem dem don dilit am.',
 'searchresults' => 'Sach rizolt-dem',
 'prevn' => 'privios wan {{PLURAL:$1|$1}}',
 'nextn' => 'neks wan {{PLURAL:$1|$1}}',
-'searchhelp-url' => 'Help:Kohntehnt-dehm',
 'searchprofile-articles' => 'Kontent pej-dem',
 'searchprofile-everything' => 'Oltin',
 'searchprofile-advanced' => 'Advans',
@@ -279,18 +276,15 @@ Somtem dem don dilit am.',
 'search-result-size' => '$1 ({{PLURAL:$2|1 wod|$2 wod-dem}})',
 'search-suggest' => 'Yu bin min?: $1',
 'searchall' => 'ol',
-'powersearch' => 'Advans sach',
 'powersearch-legend' => 'Advans sach',
 'powersearch-ns' => 'Sach na nemspes-dem:',
 'powersearch-redir' => 'List de sen yu kam ya',
-'powersearch-field' => 'Luk fo',
 'search-external' => 'Ekstanal sach',
 'searchdisabled' => '{{websait-im nem}} Di sach no de wok.
 Na mintem yuz Google fo sach.
 Memba se somtem dem indeks-dem noh op tu det {{SITENAME}}.',
 
 # Preferences page
-'prefsnologin' => 'Yu no login yet',
 'searchresultshead' => 'Sach',
 'youremail' => 'Imel:',
 'username' => 'Yuzanem:',
@@ -412,7 +406,6 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 'blocklogpage' => 'Blok log',
 
 # Move page
-'movenologin' => 'Yu no login yet',
 'move-watch' => 'Wach dis pej-ya',
 'movelogpage' => 'Muf log',
 

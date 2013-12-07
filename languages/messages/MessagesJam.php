@@ -477,7 +477,6 @@ Begyu wiet likl bifuo yu chrai agen.',
 'suspicious-userlogout' => 'Yu rikwes fi lag out dinai bikaa iluk laik se isen bai a brok brouza ar kiashin praxi.',
 
 # Change password dialog
-'resetpass' => 'Chienj paaswod',
 'resetpass_announce' => 'Yu lag iin wid a tempareri e-miel kuod.
 Fi finish lag iin, yu mos set a nyuu paaswod yaso:',
 'resetpass_header' => 'Chienj akount paaswod',
@@ -939,9 +938,6 @@ Ina demde kies, yu wi afi muuv ar moerj di piej manyuali ef yu dizaya.",
 'movepage-moved' => '\'\'\'"$1" muuv gaan a "$2"\'\'\'',
 'articleexists' => 'Piej wid daade niem egzis aredi, ar di niem yu chuuz no valid.
 Begyu chuuz aneda niem.',
-'talkexists' => "'''Di piej iself don muuv soksesfuli, bot di taak piek kudn muuv kaazn se wan egzis aredi a di nyuu taikl.
-Begyu moerj dem manyuali.'''",
-'movedto' => 'muuv gaan a',
 'movetalk' => 'Muuv asuosietid taak piej',
 'movelogpage' => 'Muuv lag',
 'movereason' => 'Riizn:',

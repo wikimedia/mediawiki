@@ -357,6 +357,9 @@ Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbäd. In
 'mailmypassword' => 'Â najs passwôrd iwâr iimejl dsuschign lasn',
 'loginlanguagelabel' => 'Sproch: $1',
 
+# Change password dialog
+'changepassword' => "S'bhaswôrd ändârn",
+
 # Edit page toolbar
 'bold_sample' => 'Dägsd in fäd',
 'bold_tip' => 'Fädâr dhägschd',
@@ -464,8 +467,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 # Revision deletion
 'rev-delundel' => 'ôôdsajng/fârbärng',
 'revdel-restore' => 'Ändârn, was oodsajchd wäd',
-'revdel-restore-deleted' => 'glöschde Versiona',
-'revdel-restore-visible' => 'sichdbore Versiona',
 
 # Merge log
 'revertmerge' => 'Dsrig fôr dii fârajnichung',
@@ -509,7 +510,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'search-interwiki-default' => 'Af $1 gfundn:',
 'search-interwiki-more' => '(noch mäa´)',
 'search-relatedarticle' => 'Fârwande',
-'mwsuggest-disable' => 'Foorschlääch iwâr AJAX abschdelâ',
 'searcheverything-enable' => 'In aln naamsrajm suuchn',
 'searchrelated' => 'fârwand',
 'searchall' => 'ale',
@@ -530,7 +530,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'preferences' => 'ajschdelunga',
 'mypreferences' => 'Ajschdelunga',
 'prefs-edits' => 'So ofd umgmoodld:',
-'changepassword' => "S'bhaswôrd ändârn",
 'prefs-skin' => 'Schaale',
 'skin-preview' => 'Môôl schbign',
 'datedefault' => 'Nôrmaal',
@@ -864,8 +863,6 @@ Schrajb bide den '''naja'' nôômâ fo dâr sajdn undârals '''Dsiil'' nâj un '
 'pagemovedsub' => 'Eds is fârschoom.',
 'movepage-moved' => "'''Dii sajdn „$1“ is edsad nach  „$2“ verschoom wôrn.'''",
 'articleexists' => "Es umdaafn gäd ned, wal's dii sajdn scho gibd, soo wise naj häd haasn soln. Dengg dä´ hald an andârn nôômâ aus.",
-'talkexists' => 'Dii sajdn is fârschoom wôrn, awa baj iira disghusjoonssajdn is ned gangâ, wals dii scho mim naja nôôma gibd. Jeds musd des fo hand dsamwôrschdln.',
-'movedto' => 'fârschoom nach',
 'movetalk' => "Dii disghusjoons-sajdn aa mid fârschiim, wen's gäd",
 'movelogpage' => 'Umdaaf-Logbuch',
 'movereason' => 'Grund:',

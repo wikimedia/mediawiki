@@ -875,7 +875,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'user-mail-no-body' => 'Tentou mandar email sem conteúdo ou com conteúdo demasiado pequeno.',
 
 # Change password dialog
-'resetpass' => 'Alterar palavra-chave',
+'changepassword' => 'Alterar palavra-chave',
 'resetpass_announce' => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.
 Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_text' => '<!-- Adicionar texto aqui -->',
@@ -1280,10 +1280,6 @@ Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{f
 'revisiondelete' => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title' => 'Edição de destino inválida',
 'revdelete-nooldid-text' => 'Ocorreu uma das seguintes: não especificou a revisão (ou revisões) de destino para realizar esta função, a revisão que especificou não existe, ou está tentando ocultar a revisão atual.',
-'revdelete-nologtype-title' => 'Tipo de registo não especificado',
-'revdelete-nologtype-text' => 'Não especificou um tipo de registo sobre o qual será executada esta operação.',
-'revdelete-nologid-title' => 'Entrada de registo inválida',
-'revdelete-nologid-text' => 'Ou não especificou um evento do registo sobre o qual executar esta função, ou a entrada que especificou não existe.',
 'revdelete-no-file' => 'O ficheiro especificado não existe.',
 'revdelete-show-file-confirm' => 'Tem a certeza de que quer ver uma revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 às $3?',
 'revdelete-show-file-submit' => 'Sim',
@@ -1317,8 +1313,6 @@ $1",
 'logdelete-failure' => "'''Não foi possível definir a visibilidade da entrada do registo:'''
 $1",
 'revdel-restore' => 'Alterar visibilidade',
-'revdel-restore-deleted' => 'revisões eliminadas',
-'revdel-restore-visible' => 'revisões visíveis',
 'pagehist' => 'Histórico da página',
 'deletedhist' => 'Histórico de eliminações',
 'revdelete-hide-current' => 'Erro ao ocultar o item datado de $2, $1: esta é a revisão atual.
@@ -1430,7 +1424,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
 'search-relatedarticle' => 'Relacionado',
-'mwsuggest-disable' => 'Desativar sugestões de pesquisa',
 'searcheverything-enable' => 'Pesquisar em todos os espaços nominais',
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
@@ -1455,7 +1448,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
 'prefsnologintext2' => 'Por favor, precisa de $1 para definir as suas preferências.',
-'changepassword' => 'Alterar palavra-chave',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Antever tema',
 'datedefault' => 'Sem preferência',
@@ -2314,9 +2306,6 @@ Pode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um 
 'allpagesto' => 'Apresentar páginas até:',
 'allarticles' => 'Todas as páginas',
 'allinnamespace' => 'Todas as páginas (espaço nominal $1)',
-'allnotinnamespace' => 'Todas as páginas (exceto as do espaço nominal $1)',
-'allpagesprev' => 'Anterior',
-'allpagesnext' => 'Próximo',
 'allpagessubmit' => 'Ver',
 'allpagesprefix' => 'Apresentar páginas iniciadas por:',
 'allpagesbadtitle' => 'O título de página fornecido era inválido ou tinha um prefixo interlínguas ou interwikis.
@@ -2920,7 +2909,6 @@ certifique-se de que compreende as consequências da operação antes de continu
 Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la com a existente, se assim desejar.",
 'movearticle' => 'Mover página',
 'moveuserpage-warning' => "'''Aviso:''' Está prestes a mover uma página de utilizador. Note que a página será apenas movida, ''sem'' alterar o nome do utilizador.",
-'movenologin' => 'Não autenticado',
 'movenologintext' => 'Precisa de ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
 'movenotallowed' => 'Não tem permissão para mover páginas.',
 'movenotallowedfile' => 'Não possui permissão para mover ficheiros.',
@@ -2936,9 +2924,6 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'articleexists' => 'Uma página com este nome já existe, ou o nome que escolheu é inválido.
 Escolha outro nome, por favor.',
 'cantmove-titleprotected' => 'Não pode mover uma página para esse destino, porque o novo título foi protegido para evitar a sua criação',
-'talkexists' => "'''A página em si foi movida com sucesso, mas a página de discussão não foi movida porque já existia uma com o mesmo título.
-Faça a fusão manual das páginas de discussão, por favor.'''",
-'movedto' => 'movido para',
 'movetalk' => 'Mover também a página de discussão associada.',
 'move-subpages' => 'Mover subpáginas (até $1)',
 'move-talk-subpages' => 'Mover subpáginas da página de discussão (até $1)',

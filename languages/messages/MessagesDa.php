@@ -691,7 +691,7 @@ Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'passwordtooshort' => 'Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.',
 'password-name-match' => 'Adgangskoden må ikke være det samme som brugernavnet.',
 'password-login-forbidden' => 'Brugen af dette brugernavn og adgangskode er blevet forbudt.',
-'mailmypassword' => 'Send ny adgangskode',
+'mailmypassword' => 'Nulstil adgangskode',
 'passwordremindertitle' => 'Ny midlertidig adgangskode til {{SITENAME}}',
 'passwordremindertext' => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
 har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}} ($4).
@@ -743,7 +743,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'user-mail-no-body' => 'Forsøgte at sende en e-mail med tomt eller urimeligt kort indhold.',
 
 # Change password dialog
-'resetpass' => 'Skift adgangskode',
+'changepassword' => 'Skift adgangskode',
 'resetpass_announce' => 'Du loggede på med den via e-mail tilsendte adgangskode. For at afslutte tilmeldingen, skal du nu vælge en ny adgangskode.',
 'resetpass_text' => '<!-- Tilføj tekst her -->',
 'resetpass_header' => 'Skift adgangskode',
@@ -764,7 +764,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
 'passwordreset-text-one' => 'Udfyld denne formular for at nulstille din adgangskode.',
-'passwordreset-text-many' => '{{PLURAL:$1|Udfyld et af felterne nedenfor for at nulstille din adgangskode.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Udfyld et af felterne for at modtage en midlertidig adgangskode via e-mail.}}',
 'passwordreset-legend' => 'Nulstil adgangskode',
 'passwordreset-disabled' => 'Nulstilling af adgangskode er slået fra på denne wiki.',
 'passwordreset-emaildisabled' => 'E-mailfunktioner er slået fra på denne wiki.',
@@ -1125,10 +1125,6 @@ Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/s
 'revisiondelete' => 'Slette/gendanne versioner',
 'revdelete-nooldid-title' => 'Ingen version angivet',
 'revdelete-nooldid-text' => 'Du har ikke angivet en version, som denne handling kan udføres på.',
-'revdelete-nologtype-title' => 'Ingen logtype er angivet',
-'revdelete-nologtype-text' => 'Du har ikke angivet en logtype at udføre denne handling på.',
-'revdelete-nologid-title' => 'Ugyldig logpost',
-'revdelete-nologid-text' => 'Du har ikke angivet en logpost at udføre denne funktion på eller den angivne post findes ikke.',
 'revdelete-no-file' => 'Den angivne fil findes ikke.',
 'revdelete-show-file-confirm' => 'Er du sikker på, at du vil vise en slettet version af filen "<nowiki>$1</nowiki>" fra den $2, klokken $3?',
 'revdelete-show-file-submit' => 'Ja',
@@ -1162,8 +1158,6 @@ $1",
 'logdelete-failure' => "'''Kunne ikke ændre logsynligheden.'''
 $1",
 'revdel-restore' => 'ændre synlighed',
-'revdel-restore-deleted' => 'slettede redigeringer',
-'revdel-restore-visible' => 'synlige ændringer',
 'pagehist' => 'Sidehistorik',
 'deletedhist' => 'Slettet historik',
 'revdelete-hide-current' => 'Der er opstået en fejl under skjulningen af objektet dateret $1 klokken $2: Dette er den nyeste revision.
@@ -1275,7 +1269,6 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-default' => '{{PLURAL:$1|et resultat|$1 resultater}}:',
 'search-interwiki-more' => '(mere)',
 'search-relatedarticle' => 'Relateret',
-'mwsuggest-disable' => 'Slå søgningsforslag fra',
 'searcheverything-enable' => 'Søg i alle navnerum',
 'searchrelated' => 'relateret',
 'searchall' => 'alle',
@@ -1298,7 +1291,6 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'mypreferences' => 'Indstillinger',
 'prefs-edits' => 'Antal redigeringer:',
 'prefsnologintext2' => 'Du skal $1 for at ændre brugerindstillinger.',
-'changepassword' => 'Skift adgangskode',
 'prefs-skin' => 'Udseende',
 'skin-preview' => 'Forhåndsvisning',
 'datedefault' => 'Ingen præference',
@@ -1597,6 +1589,7 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'recentchanges-label-unpatrolled' => 'Denne redigering er endnu ikke blevet patruljeret',
 'recentchanges-label-plusminus' => 'Størrelsen på siden blev ændret med dette antal bytes',
 'recentchanges-legend-newpage' => '(se også [[Special:NewPages|listen over nye sider]])',
+'recentchanges-legend-plusminus' => '("±123")',
 'rcnote' => "Herunder ses {{PLURAL:$1|'''1''' ændring|de sidste '''$1''' ændringer}} fra {{PLURAL:$2|i dag|de sidste '''$2''' dage}} fra den $4, kl. $5.",
 'rcnotefrom' => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
 'rclistfrom' => 'Vis nye ændringer startende fra $1',
@@ -2147,9 +2140,6 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'allpagesto' => 'Vis sider til og med:',
 'allarticles' => 'Alle sider',
 'allinnamespace' => 'Alle sider (i $1 navnerummet)',
-'allnotinnamespace' => 'Alle sider (ikke i $1 navnerummet)',
-'allpagesprev' => 'Forrige',
-'allpagesnext' => 'Næste',
 'allpagessubmit' => 'Vis',
 'allpagesprefix' => 'Vis sider med præfiks:',
 'allpagesbadtitle' => 'Det indtastede sidenavn er ugyldigt: Det har enten et foranstillet sprog-, en Interwiki-forkortelse eller indeholder et eller flere tegn, som ikke må anvendes i sidenavne.',
@@ -2320,9 +2310,9 @@ Kontakt bidragyderen:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer medmindre du besøger denne side. På din overvågningsliste kan du også nulstille alle markeringer for de sider, du overvåger.
+Du vil ikke modtage flere beskeder om yderligere aktivitet medmindre du besøger denne side. På din overvågningsliste kan du også nulstille alle markeringer for de sider, du overvåger.
 
-             Med venlig hilsen {{SITENAME}}s informationssystem
+         Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
 For at ændre dine indstillinger for e-mail meddelelser, besøg
@@ -2741,7 +2731,6 @@ du skal være sikker på at du forstår konsekvenserne af dette før du fortsæt
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'movearticle' => 'Flyt side',
 'moveuserpage-warning' => "'''Advarsel:''' Du er ved at flytte en brugerside. Bemærk at det kun er siden, der vil blive flyttet – brugeren bliver ''ikke'' omdøbt.",
-'movenologin' => 'Ikke logget på',
 'movenologintext' => 'Du skal være registreret bruger og [[Special:UserLogin|logget på]] for at flytte en side.',
 'movenotallowed' => 'Du har ikke rettigheder til at flytte sider.',
 'movenotallowedfile' => 'Du har ikke tilladelse til at flytte filer.',
@@ -2757,8 +2746,6 @@ I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'articleexists' => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'cantmove-titleprotected' => 'Du kan ikke omdøbe en side til dette navn. Det nye navn er beskyttet mod oprettelse.',
-'talkexists' => 'Siden blev flyttet korrekt, men den tilhørende diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en med den nye titel. Du er nødt til at flette dem sammen manuelt.',
-'movedto' => 'flyttet til',
 'movetalk' => 'Flyt også "diskussionssiden", hvis den eksisterer.',
 'move-subpages' => 'Flyt undersider (op til $1)',
 'move-talk-subpages' => 'Flyt diskussionssidens undersider (op til $1)',

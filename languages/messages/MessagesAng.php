@@ -445,7 +445,6 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 'loginlanguagelabel' => 'Sprǣc: $1',
 
 # Change password dialog
-'resetpass' => 'Andwendan þafungword',
 'oldpassword' => 'Eald þafungword:',
 'newpassword' => 'Nīwe þafungword:',
 'retypenew' => 'Wrīt nīwe þafungword eft:',
@@ -850,8 +849,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'allpagesto' => 'Īwan trametas oþ:',
 'allarticles' => 'Ealle trametas',
 'allinnamespace' => 'Ealle trametas (namstede: $1)',
-'allpagesprev' => 'Ǣr',
-'allpagesnext' => 'Nīehst',
 'allpagessubmit' => 'Gān',
 
 # Special:Categories
@@ -1045,7 +1042,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'movepage-moved' => '\'\'\'"$1" wæs tō "$2"\'\'\' gewegen',
 'articleexists' => 'Tramet on þǣm naman ǣr is, oþþe se nama þe þū cure nis riht.
 Cēos ōðerne naman lā.',
-'movedto' => 'gewegen tō',
 'movetalk' => 'Wegan gesibbe mōtunge',
 'movelogpage' => 'Wegan ealdhord',
 'movereason' => 'Racu:',

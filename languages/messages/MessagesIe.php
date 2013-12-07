@@ -523,6 +523,7 @@ Por preventer misusa, solmen un parol-clave amemora va esser inviat per {{PLURAL
 'suspicious-userlogout' => 'Tui petition por surtir esset desaprobat pro que probabilmen esset inviat per un navigator ruptet o servitor de autorisation che caching.',
 
 # Change password dialog
+'changepassword' => 'Modificar passa-parol',
 'oldpassword' => 'Anteyan passa-parol:',
 'newpassword' => 'Nov passa-parol:',
 'retypenew' => 'Confirmar nov passa-parol',
@@ -653,8 +654,6 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 # Revision deletion
 'rev-delundel' => 'monstrar/ocultar',
 'revdel-restore' => 'changer visibilitá',
-'revdel-restore-deleted' => 'deletet revisiones',
-'revdel-restore-visible' => 'visibil revisiones',
 
 # Suppression log
 'suppressionlog' => 'Diarium de supression',
@@ -708,7 +707,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 # Preferences page
 'preferences' => 'Preferenties',
 'mypreferences' => 'Preferenties',
-'changepassword' => 'Modificar passa-parol',
 'skin-preview' => 'Prevision',
 'saveprefs' => 'Conservar',
 'searchresultshead' => 'Serchar',
@@ -1196,13 +1194,9 @@ $1',
 
 # Move page
 'movearticle' => 'Mover págine:',
-'movenologin' => 'Vu ne ha intrat',
 'newtitle' => 'Por nov titul:',
 'move-watch' => 'Vigilar ti págine',
 'movepagebtn' => 'Mover págine',
-'talkexists' => "'''Li págine itself esset movet successosimen, ma li págine de discussion ne posset esser movet pro que un ja existe in li nov titul.
-Pleser fuse les manualmen.'''",
-'movedto' => 'movet por',
 'movelogpage' => 'Diarium de movementiones',
 'movereason' => 'Motive:',
 'revertmove' => 'reverter',

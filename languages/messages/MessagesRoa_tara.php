@@ -592,7 +592,7 @@ Ce tu scacchie de metterle, quiste avène ausate pe dà 'u giuste merite a 'a fa
 'user-mail-no-body' => "Pruvate a mannà 'na mail cu 'nu cuèrpe vacande o troppe curte.",
 
 # Change password dialog
-'resetpass' => "Cange 'a password",
+'changepassword' => "Cange 'a password",
 'resetpass_announce' => "Tu tè colleghete cu 'nu codece mannete pe e-mail temboranee.
 Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà:",
 'resetpass_text' => "<!-- Mitte 'u teste aqquà -->",
@@ -996,10 +996,6 @@ Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l
 'revisiondelete' => 'Scangille/Repristine revisiune',
 'revdelete-nooldid-title' => 'Revisione de destinazione invalida',
 'revdelete-nooldid-text' => "Tu non g'è specificate 'na revisione da arrivà pe abbilità sta funzione. 'A specifica revisione non g'esiste oppure tu stè pruève a scunnè 'a revisona corrende.",
-'revdelete-nologtype-title' => 'Nisciune tipe de archivije ha state specifichete',
-'revdelete-nologtype-text' => "Tu non g'è specificate 'u tipe de l'archivije pe eseguì st'aziona.",
-'revdelete-nologid-title' => "Richieste jndr'à l'archivije invalide",
-'revdelete-nologid-text' => "Tu non g'è specificate l'archivije de destinazione de l'evende pe eseguì sta funzione o 'a specifiche entrate non g'esiste.",
 'revdelete-no-file' => "'U file specificate non g'esiste.",
 'revdelete-show-file-confirm' => 'Si secure ca vuè ccu vide \'a revisione scangellate d\'u file "<nowiki>$1</nowiki>" \'u $2 a le $3?',
 'revdelete-show-file-submit' => 'Sìne',
@@ -1033,8 +1029,6 @@ $1",
 'logdelete-failure' => "'''L'archivije d'a visibbilità non ge pò essere 'mbostate:'''
 $1",
 'revdel-restore' => "Cange 'a visibilità",
-'revdel-restore-deleted' => 'revisiune scangellate',
-'revdel-restore-visible' => 'Revisiune visibbele',
 'pagehist' => "Storie d'a vôsce",
 'deletedhist' => "Storie d'u scangellamende",
 'revdelete-hide-current' => "Errore scunnènne le artichele datate $2, $1: queste ète 'a versiona corrende.
@@ -1147,7 +1141,6 @@ Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-default' => '$1 resultete:',
 'search-interwiki-more' => '(de cchiù)',
 'search-relatedarticle' => 'Colleghete',
-'mwsuggest-disable' => 'Disabbilete le conziglie in AJAX',
 'searcheverything-enable' => "Cirche jndr'à tutte le namespace",
 'searchrelated' => 'colleghete',
 'searchall' => 'tutte',
@@ -1171,7 +1164,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'preferences' => 'Me piece accussì',
 'mypreferences' => 'Me piace accussì',
 'prefs-edits' => 'Numere de cangiaminde:',
-'changepassword' => "Cange 'a password",
 'prefs-skin' => 'Skin',
 'skin-preview' => 'Andeprime',
 'datedefault' => 'Nisciuna preferenze',
@@ -2041,9 +2033,6 @@ Tu puè restringere 'a viste selezionanne 'u tipe de archivije, 'u nome utende (
 'allpagesto' => "Fà vedè pàggene ca spiccene 'u:",
 'allarticles' => 'Tutte le pàggene',
 'allinnamespace' => 'Tutte le pàggene (neimspeise $1)',
-'allnotinnamespace' => "Tutte le pàggene (ca non ge stonne jndr'à 'u namespace $1)",
-'allpagesprev' => 'Precedende',
-'allpagesnext' => 'Prossime',
 'allpagessubmit' => 'Veje',
 'allpagesprefix' => "Fa vedè le pàggene cu 'u prefisse:",
 'allpagesbadtitle' => "'U titele d'a vôsce ca è date ere invalide o tenève 'nu prefisse inter-lènghe o inter-uicchi.
@@ -2660,7 +2649,6 @@ Pe piacere ha essere secure secure de avere capite le conzeguenze apprime de sc�
 Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u codenute sue.",
 'movearticle' => 'Spuèste:',
 'moveuserpage-warning' => "'''Attenziò:''' Tu stè spuèste 'na pàgene utende. Vide bbuène ca sulamende 'a pàgene avène spustate ma l'utende ''non'' g'avene renomenate.",
-'movenologin' => 'Non ge sinde colleghete',
 'movenologintext' => "Tu a essere 'n'utende reggistrete e [[Special:UserLogin|colleghete]] pe spustà 'na pàgene.",
 'movenotallowed' => "Tu non ge tìne 'u permesse pe spustà le pàggene.",
 'movenotallowedfile' => "Tu non ge tìne 'u permesse pe spustà le file.",
@@ -2676,9 +2664,6 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'articleexists' => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
 Pe piacere scacchie n'otre nome.",
 'cantmove-titleprotected' => "Tu non ge puè spustà 'na pògene jndr'à sta locazzione purcè 'u titele nuève ha state protette da 'a ccrejazione",
-'talkexists' => "''''A pàgene ha state spustete, però 'a pàgene de le 'ngazzaminde pò essere ca non g'à state spustete purcè ne ste n'otre già cu 'u titele nuéve.
-Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
-'movedto' => 'spustete a',
 'movetalk' => "Spuéste 'a pàgene de le 'ngazzaminde associete",
 'move-subpages' => 'Spuèste le sottopàggene (fine a $1)',
 'move-talk-subpages' => "Spuèste le sotto pàggene de le 'ngazzainde (fine a $1)",

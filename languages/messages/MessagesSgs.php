@@ -456,7 +456,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'loginlanguagelabel' => 'Kalba: $1',
 
 # Change password dialog
-'resetpass' => 'Keistė slaptažuodi',
+'changepassword' => 'Pakeistė slaptažuodė',
 'resetpass_header' => 'Keistė paskīruos slaptažuodi',
 'oldpassword' => 'Sens slaptažuodis:',
 'newpassword' => 'Naus slaptažuodis:',
@@ -673,8 +673,6 @@ Pamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapi
 Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta torėni ėr galės ana atkortė viel par šėta pate sasaja, nabent īr nostatītė papėlduomė aprėbuojėmā.",
 'revdelete-unsuppress' => 'Šalėntė apribuojėmos atkortuos versėjės',
 'revdel-restore' => 'Keistė veizėmuma',
-'revdel-restore-deleted' => 'Ėštrintas versėjės',
-'revdel-restore-visible' => 'Veizėmas versėjės',
 'revdelete-edit-reasonlist' => 'Keistė trīnėma prīžastis',
 
 # Suppression log
@@ -729,7 +727,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'search-interwiki-default' => '$1 rezoltatā:',
 'search-interwiki-more' => '(daugiau)',
 'search-relatedarticle' => 'Sosėjėn',
-'mwsuggest-disable' => 'Kavuotė AJAX pasiūlīmus',
 'searchrelated' => 'sosėjėn',
 'searchall' => 'vėsė',
 'showingresults' => "Žemiau ruodoma lėgė '''$1''' {{PLURAL:$1|rezoltata|rezoltatu|rezoltatu}} pradedont #'''$2'''.",
@@ -745,7 +742,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'preferences' => 'Nustatīmā',
 'mypreferences' => 'Mona nustatīmā',
 'prefs-edits' => 'Keitėmu skaitlius:',
-'changepassword' => 'Pakeistė slaptažuodė',
 'prefs-skin' => 'Ėšruoda',
 'skin-preview' => 'Parveiza',
 'datedefault' => 'Juokė pasėrėnkėma',
@@ -1161,9 +1157,6 @@ katram ivīkdītė šėta funkcėjė.',
 'allpagesto' => 'Ruodītė poslapius, basėbengėnčios so:',
 'allarticles' => 'Vėsė straipsnē',
 'allinnamespace' => 'Vėsė poslapē (srėtis - $1)',
-'allnotinnamespace' => 'Vėsė poslapē (nesontīs šiuo srėtie - $1)',
-'allpagesprev' => 'Onkstesnis',
-'allpagesnext' => 'Sekontis',
 'allpagessubmit' => 'Tink',
 'allpagesprefix' => 'Ruodītė poslapios so prīdelēs:',
 'allpagesbadtitle' => 'Douts poslapė pavadėnėms īr neteisings a tor terpkalbėnė a terppruojektėnė prīdielė. Anamė īr vėns a kelė žėnklā, katrū negal nauduotė pavadėnėmūs.',
@@ -1539,7 +1532,6 @@ kū soprantat vėsas pasiekmes.",
 *Paliksėt žemiau asontė varnale nepažīmieta.
 Šėtās atviejās Tamsta sava nužiūra torėt parkeltė a apjongtė aptarėma poslapi.",
 'movearticle' => 'Parvadintė poslapi:',
-'movenologin' => 'Neprisėjongės',
 'movenologintext' => 'Nuoriedamė parvadintė poslapi, torėt būtė ožsėregėstravės nauduotuos ė tēpuogi būtė [[Special:UserLogin|prisėjongės]].',
 'newtitle' => 'Naus pavadėnėms:',
 'move-watch' => 'Keravuotė šėta poslapi',
@@ -1550,10 +1542,6 @@ kū soprantat vėsas pasiekmes.",
 'articleexists' => 'Straipsnis so tuokiu vardo jau īr
 a parinktāsis vards īr bluogs.
 Parinkat kėta varda.',
-'talkexists' => "'''Patsā poslapis bova siekmėngā parvadints, no aptarėmu poslapis nabova parkelts, kadongi nauja
-pavadėnėma straipsnis jau tor aptarėmu poslapi.
-Prašuom sojongtė šėtuos poslapios.'''",
-'movedto' => 'parvadints i',
 'movetalk' => 'Parkeltė sosėta aptarėma poslapi.',
 'movelogpage' => 'Parvardinėmu istuorėjė',
 'movelogpagetext' => 'Sārašos parvadintu poslapiu.',

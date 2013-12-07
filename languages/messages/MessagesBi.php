@@ -8,6 +8,7 @@
  * @file
  *
  * @author Iketsi
+ * @author Sotiale
  * @author Ushanka
  */
 
@@ -69,31 +70,45 @@ $messages = array(
 'qbedit' => 'Jenisim hem',
 'qbpageoptions' => 'Pej ia',
 'qbmyoptions' => 'Ol pej blong mi',
-'qbspecialpages' => 'Ol spesel pej',
 
+# Vector skin
+'vector-action-move' => 'Muv',
+'vector-view-history' => 'Lukluk histri',
+'vector-view-view' => 'Rid',
+
+'search' => 'Faenem samting',
+'history' => 'Pej histri',
+'history_short' => 'Histri',
 'edit' => 'Jenisim hem',
 'newpage' => 'Mekem niu pej',
 'talkpagelinktext' => 'Toktok',
 'specialpage' => 'Spesel Pej',
 'talk' => 'Tingting',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'mainpage' => 'Nambawan Pej',
 'mainpage-description' => 'Nambawan Pej',
+'portal' => 'Haus blong toktok‎',
+'portal-url' => 'Project:Haus blong toktok‎',
 
 'retrievedfrom' => 'Kam long "$1"',
 'editsection' => 'jenisim hem',
 'editold' => 'jenisim hem',
+'red-link-title' => '$1 (pej i no stap)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Atikel',
-'nstab-special' => 'Spesel',
+'nstab-special' => 'Spesel pej',
+'nstab-project' => 'Projek pej',
 
 # Edit pages
 'minoredit' => 'Mi bin mekem wan smol jenis',
 
 # Preferences page
 'servertime' => 'Taem blong server',
+
+# Recent changes
+'recentchanges' => 'Niu jenis',
 
 # Special:ListFiles
 'listfiles_name' => 'Nem',
@@ -106,7 +121,7 @@ $messages = array(
 # Special:AllPages
 'allarticles' => 'Olgeta atikel',
 
-# E-mail user
+# Email user
 'emailfrom' => 'Kam long',
 'emailto' => 'Go long:',
 
@@ -114,9 +129,6 @@ $messages = array(
 'year' => 'Yia:',
 
 'sp-contributions-talk' => 'toktok',
-
-# Block/unblock
-'proxyblocksuccess' => 'Finis.',
 
 # Move page
 'move-page-legend' => 'Muvum pej',
@@ -134,7 +146,7 @@ $messages = array(
 # Special:NewFiles
 'showhidebots' => '($1 bot)',
 
-# EXIF tags
+# Exif tags
 'exif-imagedescription' => 'Nem blong pikta',
 'exif-exposuretime-format' => '$1 sek. ($2)',
 
@@ -148,5 +160,8 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'Niu pej: $1',
+
+# Special:SpecialPages
+'specialpages' => 'Spesel pej',
 
 );

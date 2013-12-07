@@ -7,7 +7,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
+ * @author Murma174
  * @author Purodha
+ * @author Shirayuki
  * @author Slomox
  * @author Wikipeeta
  */
@@ -108,7 +111,6 @@ $messages = array(
 'qbedit' => 'Endre',
 'qbpageoptions' => 'Dise Sied',
 'qbmyoptions' => 'Miene Siede',
-'qbspecialpages' => "Opp'poate Siede",
 
 'errorpagetitle' => 'Fäla',
 'returnto' => 'Trigj no $1.',
@@ -157,7 +159,7 @@ $messages = array(
 'jumptonavigation' => 'Navigatioon',
 'jumptosearch' => 'Setje',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Äwa {{SITENAME}}',
 'aboutpage' => 'Project:Äwa',
 'copyright' => 'Enhault es to habe unja $1.',
@@ -166,7 +168,6 @@ $messages = array(
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Help tom Beoabeide',
-'edithelppage' => 'Help:Help tom Beoabeide',
 'helppage' => 'Help:Enhault',
 'mainpage' => 'Hauptsied',
 'mainpage-description' => 'Hauptsied',
@@ -183,8 +184,6 @@ $messages = array(
 
 'retrievedfrom' => 'Von "$1"',
 'youhavenewmessages' => 'Dü hast $1 ($2).',
-'newmessageslink' => 'Niee Norechte',
-'newmessagesdifflink' => "Latztet mol je'endat",
 'youhavenewmessagesmulti' => 'Du hast niee Norechte bie $1',
 'editsection' => 'Beoabeide',
 'editold' => 'endre',
@@ -226,12 +225,6 @@ Aula bruckboare Spezialsiede send bie [[Special:SpecialPages|{{int:specialpages}
 # General errors
 'error' => 'Fehla',
 'databaseerror' => 'Fehla enne Dotebank',
-'dberrortext' => 'Daut gauf een Syntaxfehla biem Opproope vonne Dotebank.
-Doa kaun een Probleem enne Software senne.
-Daut latzte Opproope vonne Dotebank we:
-<blockquote><tt>$1</tt></blockquote>
-ute Funktioon "<tt>$2</tt>".
-MySQL mald dem Fehla "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Oppjepausst: Dee jewesne Sied es nich onbedinjt dee latzte Versioon.',
 'readonly' => 'Dotebank es jeschlote',
 'enterlockreason' => 'Nan bitte een Grunt doafea, wurom dee Dotebank jeschlote saul en saj, woolang daut onjefea diere saul',
@@ -252,7 +245,7 @@ Bitte schriew eene Notiz aun [[Special:ListUsers/sysop|administrator]], en lot d
 'logout' => 'Rut hia',
 'userlogout' => 'Rut hia',
 'notloggedin' => 'Nich aunjemaldt',
-'nologin' => "Hast tjeen Bruckakonto? '''$1'''.",
+'nologin' => 'Hast tjeen Bruckakonto? $1.',
 'nologinlink' => 'Nieet Bruckakonto moake',
 'createaccount' => 'Bruckakonto moake',
 'gotaccount' => "Hast aul een Bruckakonto? '''$1'''.",
@@ -310,15 +303,11 @@ Bitte nemm eenen aundren.',
 # Search results
 'searchresults' => 'Setj Resultaute',
 'searchresults-title' => 'Setj Resultaute fe "$1"',
-'searchsubtitle' => 'Du sochst \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
 'prevn' => '{{PLURAL:$1|$1}} ferhäa',
 'nextn' => 'näakjste {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Tjitj ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Enhault',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Wot|$2 Wed}})',
-'powersearch' => 'Bätre Sääk',
 'powersearch-legend' => 'Betret Setje',
-'powersearch-field' => 'Setj no',
 
 # Preferences page
 'preferences' => 'Ennstalinje',
@@ -350,7 +339,6 @@ Bitte nemm eenen aundren.',
 'recentchangeslinked-feed' => 'Endarunge aun velinkte Siede',
 'recentchangeslinked-toolbox' => 'Endarunge aun velinkte Siede',
 'recentchangeslinked-title' => 'Endarunge aun Siede, woone von "$1" velinkt send',
-'recentchangeslinked-noresult' => 'Em utjesochten Tietrum es aun dee velinkte Siede nuscht aundasch jemoakt worde.',
 'recentchangeslinked-summary' => "Dit es eene List mette latzte Endarunge aune velinkte Siede (ooda bie Kategorien von Mettjlieda von dise Kategorie). Dee Siede opp diene [[Special:Watchlist|your watchlist]] woare '''fat''' jewese.",
 'recentchangeslinked-page' => 'Siednome:',
 'recentchangeslinked-to' => 'Wies Endarunge opp Siede, woone mett dise Sied velinkt send',
@@ -377,7 +365,7 @@ Bitte nemm eenen aundren.',
 'imagelinks' => 'Links',
 
 # MIME search
-'mimesearch' => 'MIME-Säkj',
+'mimesearch' => 'Schük efter MIME-Typ',
 
 # List redirects
 'listredirects' => 'Wiedawiesinje wiese',

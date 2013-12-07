@@ -107,7 +107,7 @@ $messages = array(
 'jumptonavigation' => 'Nabegashon',
 'jumptosearch' => 'Buska',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tokante {{SITENAME}}',
 'aboutpage' => 'Project:Info',
 'copyright' => 'E kontenido ta disponibel bou di $1.',
@@ -117,7 +117,6 @@ $messages = array(
 'disclaimers' => 'Deklarashon di Liberashon for di Responsabilidatnan',
 'disclaimerpage' => 'Project:Deklarashon di Liberashon for di Responsabilidat General',
 'edithelp' => 'Ayudo ku editamentu',
-'edithelppage' => 'Help:Kon pa editá artíkulo',
 'helppage' => 'Help:Kontenido',
 'mainpage' => 'Página Prinsipal',
 'mainpage-description' => 'Página Prinsipal',
@@ -131,7 +130,6 @@ $messages = array(
 'badaccess-group0' => 'Bo no tin outorisashon pa ehekutá e akshon ku bo a skohe.',
 
 'youhavenewmessages' => 'Bo tin $1 ($2).',
-'newmessageslink' => 'mensahe nobo',
 'youhavenewmessagesmulti' => 'Bo tin mensahe nobo riba $1',
 'editsection' => 'editá',
 'toc' => 'Kontenido',
@@ -164,9 +162,6 @@ Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].',
 'viewsource' => 'Wak fuente',
 
 # Login and logout pages
-'welcomecreation' => '== Bon bini, $1! ==
-Bo kuenta ta trahá.
-No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'yourname' => 'Nòmber di uzadó',
 'yourpassword' => 'Kontraseña',
 'yourpasswordagain' => 'Hinka kontraseña atrobe',
@@ -182,6 +177,9 @@ No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'emailconfirmlink' => 'Konfirmá bo e-mail adrès.',
 'accountcreated' => 'Kuenta trahá',
 'accountcreatedtext' => 'E kuenta di uzadó pa $1 tabata trahá.',
+
+# Change password dialog
+'changepassword' => 'Kambia kontraseña',
 
 # Edit pages
 'watchthis' => 'Observá e página aki',
@@ -209,12 +207,10 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 
 # Search results
 'nextn' => 'siguiente {{PLURAL:$1|$1}}',
-'searchhelp-url' => 'Help:Kontenido',
 
 # Preferences page
 'preferences' => 'Preferensianan',
 'mypreferences' => 'Mi preferensianan',
-'changepassword' => 'Kambia kontraseña',
 'timezonelegend' => 'Zona di tempu',
 'allowemail' => 'Akseptá e-mail di otro uzadó',
 'youremail' => 'E-mail:',
@@ -267,9 +263,6 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 'allpagesfrom' => 'Mustra páginanan kuminsando na:',
 'allarticles' => 'Tur artíkulo',
 'allinnamespace' => 'Tur página (dominio $1)',
-'allnotinnamespace' => 'Tur página (no den dominio di $1)',
-'allpagesprev' => 'Anterior',
-'allpagesnext' => 'Siguiente',
 'allpagesprefix' => 'Mustra páginanan kuminsando ku e prefiho:',
 
 # Special:Categories
@@ -278,7 +271,7 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda e-mail pa e uzadó aki',
 'emailpage' => 'Manda e-mail',
 'emailpagetext' => 'E formulario aki lo manda un e-mail pa e uzadò aki.
@@ -309,8 +302,8 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 'watchlistcontains' => 'Bo lista di observashon tin $1 {{PLURAL:$1|página|páginanan}}.',
 'wlshowlast' => 'Mustra último $1 oranan $2 dianan $3',
 
-'changed' => 'kambiá',
 'created' => 'trahá',
+'changed' => 'kambiá',
 
 # Delete
 'confirm' => 'Konfirmá',
@@ -370,7 +363,7 @@ Por fabor skohe un otro título.',
 'watchlistall2' => 'tur',
 'namespacesall' => 'tur',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmá e-mail adrès',
 'confirmemail_text' => 'Bo mester validá bo e-mail adrès pa uza funkshonnan di e-mail.
 Primi e boton abou pa manda un e-mail di konfirmashon pa bo e-mail adrès.

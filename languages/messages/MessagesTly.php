@@ -437,7 +437,7 @@ $messages = array(
 'loginlanguagelabel' => 'Зывон: $1',
 
 # Change password dialog
-'resetpass' => 'Пароли дәгиш карде',
+'changepassword' => 'Пароли дәгиш кардеј',
 'resetpass_header' => 'Иштирокәкә пароли дәгиш карде',
 'oldpassword' => 'Канә парол:',
 'newpassword' => 'Нујә парол:',
@@ -557,8 +557,6 @@ $messages = array(
 'revdelete-radio-unset' => 'Не',
 'revdelete-log' => 'Сәбәб:',
 'revdel-restore' => 'Винде дәрәҹә дәгиш карде',
-'revdel-restore-deleted' => 'Рәдд кардә быә рәвојәтон',
-'revdel-restore-visible' => 'Чијә рәвојәтон',
 'pagehist' => 'Сәһифә тарых',
 'revdelete-reasonotherlist' => 'Ҹо сәбәб',
 
@@ -611,7 +609,6 @@ $messages = array(
 # Preferences page
 'preferences' => 'Кукон',
 'mypreferences' => 'Кукон',
-'changepassword' => 'Пароли дәгиш кардеј',
 'skin-preview' => 'Сыфтәнә нишо дој',
 'prefs-user-pages' => 'Иштирокәкә сәһифон',
 'prefs-rc' => 'Ән нујә дәгишон',

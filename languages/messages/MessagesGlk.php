@@ -46,7 +46,7 @@ $messages = array(
 'jumptonavigation' => 'گردسن',
 'jumptosearch' => 'واموج',
 
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'currentevents' => 'تازه چیؤن',
 'mainpage' => 'گت صفحه',
 'mainpage-description' => 'گت صفحه',
@@ -64,8 +64,6 @@ $messages = array(
 # Search results
 'searchresults' => 'واموج‌دموجˇ نتایج',
 'searchresults-title' => 'واموج‌دموجˇ نتایج، «$1»ˇ واسی',
-'searchsubtitle' => "شمه '''[[:$1]]''' ره واموتید ([[Special:Prefixindex/$1|هنه‌شرانی (صفحه‌هایی) کی «$1» همره سرأ گیفته بیدی (شوروع بیدی).]]{{int:pipe-separator}}
-[[Special:WhatLinksHere/$1|او هنه‌شرانی (صفحه‌هایی) کی به «$1» خال (لینک) بدأیید]])",
 
 # Special:AllPages
 'allpagessubmit' => 'بشو',
