@@ -2158,7 +2158,6 @@ $wgMessageStructure = array(
 		'undeletebtn',
 		'undeletelink',
 		'undeleteviewlink',
-		'undeletereset',
 		'undeleteinvert',
 		'undeletecomment',
 		'undeletedrevisions',

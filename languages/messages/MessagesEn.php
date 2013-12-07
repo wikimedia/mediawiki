@@ -3167,7 +3167,6 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletebtn'                  => 'Restore',
 'undeletelink'                 => 'view/restore',
 'undeleteviewlink'             => 'view',
-'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invert selection',
 'undeletecomment'              => 'Reason:',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
