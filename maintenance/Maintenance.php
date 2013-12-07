@@ -880,7 +880,9 @@ abstract class Maintenance {
 		$this->afterFinalSetup();
 
 		$wgShowSQLErrors = true;
-		@set_time_limit( 0 );
+		wfSuppressWarnings();
+		set_time_limit( 0 );
+		wfRestoreWarnings();
 		$this->adjustMemoryLimit();
 
 		// Per-script profiling; useful for debugging

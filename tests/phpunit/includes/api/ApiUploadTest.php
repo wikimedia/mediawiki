@@ -464,13 +464,17 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$chunkSessionKey = false;
 		$resultOffset = 0;
 		// Open the file:
-		$handle = @fopen( $filePath, "r" );
+		wfSuppressWarnings();
+		$handle = fopen( $filePath, "r" );
+		wfRestoreWarnings();
 		if ( $handle === false ) {
 			$this->markTestIncomplete( "could not open file: $filePath" );
 		}
 		while ( !feof( $handle ) ) {
 			// Get the current chunk
-			$chunkData = @fread( $handle, $chunkSize );
+			wfSuppressWarnings();
+			$chunkData = fread( $handle, $chunkSize );
+			wfRestoreWarnings();
 
 			// Upload the current chunk into the $_FILE object:
 			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );
