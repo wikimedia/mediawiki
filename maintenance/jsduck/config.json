@@ -21,6 +21,11 @@
 		"../../resources/mediawiki.action/mediawiki.action.view.postEdit.js",
 		"../../resources/mediawiki.page/mediawiki.page.startup.js",
 		"../../resources/mediawiki.api",
+		"../../resources/mediawiki.language/mediawiki.cldr.js",
+		"../../resources/mediawiki.language/mediawiki.language.init.js",
+		"../../resources/mediawiki.language/mediawiki.language.js",
+		"../../resources/mediawiki.language/mediawiki.language.months.js",
+		"../../resources/mediawiki.language/mediawiki.language.numbers.js",
 		"../../resources/jquery/jquery.localize.js",
 		"../../resources/jquery/jquery.spinner.js"
 	]
