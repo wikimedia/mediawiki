@@ -1,4 +1,4 @@
-/**
+/*
  * Transfer of month names from messages into mw.language.
  *
  * Loading this module also ensures the availability of appropriate messages via mw.msg.
@@ -31,6 +31,7 @@
 	 * Information about month names in current UI language.
 	 *
 	 * Object keys:
+	 *
 	 * - `names`: array of month names (in nominative case in languages which have the distinction),
 	 *   zero-indexed
 	 * - `genitive`: array of month names in genitive case, zero-indexed
@@ -39,6 +40,7 @@
 	 *   for appropriate messages which can be passed to mw.msg.
 	 *
 	 * @property
+	 * @member mw.language
 	 */
 	mw.language.months = {
 		keys: {

@@ -1,15 +1,20 @@
-/**
- *  CLDR related utility methods.
- */
 ( function ( mw ) {
 	'use strict';
 
-	var cldr = {
+	/**
+	 * Namespace for CLDR-related utility methods.
+	 *
+	 * @class
+	 * @singleton
+	 */
+	mw.cldr = {
 		/**
-		 * For the number, get the plural for index
-		 * In case none of the rules passed, we return pluralRules.length
-		 * That means it is the "other" form.
-		 * @param number
+		 * Get the plural form index for the number.
+		 *
+		 * In case none of the rules passed, we return `pluralRules.length` -
+		 * that means it is the "other" form.
+		 *
+		 * @param {number} number
 		 * @param {Array} pluralRules
 		 * @return {number} plural form index
 		 */
@@ -23,7 +28,5 @@
 			return i;
 		}
 	};
-
-	mw.cldr = cldr;
 
 }( mediaWiki ) );
