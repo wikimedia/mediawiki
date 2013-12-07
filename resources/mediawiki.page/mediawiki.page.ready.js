@@ -1,4 +1,4 @@
-( function ( mw , $ ) {
+( function ( mw, $ ) {
 	var supportsPlaceholder = 'placeholder' in document.createElement( 'input' );
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
