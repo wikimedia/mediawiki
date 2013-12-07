@@ -3754,7 +3754,6 @@ $wgMessageStructure = array(
 	'comparepages' => array(
 		'comparepages',
 		'comparepages-summary',
-		'compare-selector',
 		'compare-page1',
 		'compare-page2',
 		'compare-rev1',
