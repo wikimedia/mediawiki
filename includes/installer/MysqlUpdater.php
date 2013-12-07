@@ -40,6 +40,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doIndexUpdate' ),
 			array( 'addTable', 'hitcounter', 'patch-hitcounter.sql' ),
 			array( 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ),
+			array( 'addIndex', 'recentchanges', 'new_name_timestamp', 'patch-rc-newindex.sql' ),
 
 			// 1.3
 			array( 'addField', 'user', 'user_real_name', 'patch-user-realname.sql' ),
