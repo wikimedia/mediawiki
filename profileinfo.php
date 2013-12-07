@@ -214,14 +214,23 @@ class profile_point {
 				<?php echo htmlspecialchars( str_replace( ',', ', ', $this->name() ) ) . $extet ?>
 			</div>
 		</th>
-		<td class="mw-profileinfo-timep"><?php echo @wfPercent( $this->time() / self::$totaltime * 100 ); ?></td>
-		<td class="mw-profileinfo-memoryp"><?php echo @wfPercent( $this->memory() / self::$totalmemory * 100 ); ?></td>
-		<td class="mw-profileinfo-count"><?php echo $this->count(); ?></td>
-		<td class="mw-profileinfo-cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ); ?></td>
-		<td class="mw-profileinfo-tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ); ?></td>
-		<td class="mw-profileinfo-mpc"><?php echo round( sprintf( '%.2f', $this->memoryPerCall() / 1024 ), 2 ); ?></td>
-		<td class="mw-profileinfo-tpr"><?php echo @round( sprintf( '%.2f', $this->time() / self::$totalcount ), 2 ); ?></td>
-		<td class="mw-profileinfo-mpr"><?php echo @round( sprintf( '%.2f', $this->memory() / self::$totalcount / 1024 ), 2 ); ?></td>
+		<td class="mw-profileinfo-timep"><?php
+			echo wfPercent( self::$totaltime > 0 ? $this->time() / self::$totaltime * 100 : 0 );
+		?></td><td class="mw-profileinfo-memoryp"><?php
+			echo wfPercent( self::$totalmemory > 0 ? $this->memory() / self::$totalmemory * 100 : 0 );
+		?></td><td class="mw-profileinfo-count"><?php
+			echo $this->count();
+		?></td><td class="mw-profileinfo-cpr"><?php
+			echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 );
+		?></td><td class="mw-profileinfo-tpc"><?php
+			echo round( sprintf( '%.2f', $this->timePerCall() ), 2 );
+		?></td><td class="mw-profileinfo-mpc"><?php
+			echo round( sprintf( '%.2f', $this->memoryPerCall() / 1024 ), 2 );
+		?></td><td class="mw-profileinfo-tpr"><?php
+			echo round( sprintf( '%.2f', $this->timePerRequest() ), 2 );
+		?></td><td class="mw-profileinfo-mpr"><?php
+			echo round( sprintf( '%.2f', $this->memoryPerRequest() / 1024 ), 2 );
+		?></td>
 	</tr>
 		<?php
 		if ( $ex ) {
@@ -248,23 +257,23 @@ class profile_point {
 	}
 
 	function timePerCall() {
-		return @( $this->time / $this->count );
+		return $this->count > 0 ? ( $this->time / $this->count ) : 0;
 	}
 
 	function memoryPerCall() {
-		return @( $this->memory / $this->count );
+		return $this->count > 0 ? ( $this->memory / $this->count ) : 0;
 	}
 
 	function callsPerRequest() {
-		return @( $this->count / self::$totalcount );
+		return self::$totalcount > 0 ? ( $this->count / self::$totalcount ) : 0;
 	}
 
 	function timePerRequest() {
-		return @( $this->time / self::$totalcount );
+		return self::$totalcount > 0 ? ( $this->time / self::$totalcount ) : 0;
 	}
 
 	function memoryPerRequest() {
-		return @( $this->memory / self::$totalcount );
+		return self::$totalcount > 0 ? ( $this->memory / self::$totalcount ) : 0;
 	}
 
 	function fmttime() {
@@ -303,7 +312,13 @@ if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 	$sort = $_REQUEST['sort'];
 }
 
-$res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
+$res = $dbr->select(
+	'profiling',
+	'*',
+	array(),
+	'profileinfo.php',
+	array( 'ORDER BY' => 'pf_name ASC' )
+);
 
 if ( isset( $_REQUEST['filter'] ) ) {
 	$filter = $_REQUEST['filter'];
@@ -316,7 +331,8 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	<p>
 		<input type="text" name="filter" value="<?php echo htmlspecialchars( $filter ); ?>">
 		<input type="hidden" name="sort" value="<?php echo htmlspecialchars( $sort ); ?>">
-		<input type="hidden" name="expand" value="<?php echo htmlspecialchars( implode( ",", array_keys( $expand ) ) ); ?>">
+		<input type="hidden" name="expand" value="<?php
+			echo htmlspecialchars( implode( ",", array_keys( $expand ) ) ); ?>">
 		<input type="submit" value="Filter">
 	</p>
 </form>
