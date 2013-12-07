@@ -823,7 +823,7 @@ return array(
 			'jquery.mwExtension',
 			'mediawiki.notify',
 		),
-		'messages' => array( 'showtoc', 'hidetoc' ),
+		'messages' => array( 'showtoc', 'hidetoc', 'brackets' ),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),

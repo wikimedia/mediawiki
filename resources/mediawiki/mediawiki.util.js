@@ -119,6 +119,7 @@
 							e.preventDefault();
 							util.toggleToc( $( this ) );
 						} );
+					// @todo Hard coded brackets; use 'brackets' message.
 					$tocTitle.append(
 						$tocToggleLink
 							.wrap( '<span class="toctoggle"></span>' )
@@ -322,6 +323,7 @@
 
 			$nodes.attr( 'title', function ( i, val ) {
 				if ( val && util.tooltipAccessKeyRegexp.test( val ) ) {
+					// @todo Hard coded brackets; use 'brackets' message.
 					return val.replace( util.tooltipAccessKeyRegexp,
 						'[' + util.tooltipAccessKeyPrefix + '$6]' );
 				}
@@ -431,6 +433,7 @@
 				// Trim any existing accesskey hint and the trailing space
 				tooltip = $.trim( tooltip.replace( util.tooltipAccessKeyRegexp, '' ) );
 				if ( accesskey ) {
+					// @todo Hard coded brackets; use 'brackets' message.
 					tooltip += ' [' + accesskey + ']';
 				}
 				$link.attr( 'title', tooltip );
