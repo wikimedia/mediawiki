@@ -133,6 +133,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
 		$u->setPassword( 'NotRandomPass' );
+		$u->setId( 14146 );
 		$u->addToDatabase();
 		unset( $u );
 
@@ -200,6 +201,12 @@ class BlockTest extends MediaWikiLangTestCase {
 			$oldBlock->delete();
 		}
 
+		// Local perspective (blockee on current wiki)...
+		$user = User::newFromName( 'UserOnForeignWiki' );
+		$user->addToDatabase();
+		// Set user ID to match the test value
+		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
+
 		// Foreign perspective (blockee not on current wiki)...
 		$block = new Block(
 			/* $address */ 'UserOnForeignWiki',
@@ -221,11 +228,6 @@ class BlockTest extends MediaWikiLangTestCase {
 		$res = $block->insert( $this->db );
 		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 
-		// Local perspective (blockee on current wiki)...
-		$user = User::newFromName( 'UserOnForeignWiki' );
-		$user->addToDatabase();
-		// Set user ID to match the test value
-		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
 		$user = null; // clear
 
 		$block = Block::newFromID( $res['id'] );
