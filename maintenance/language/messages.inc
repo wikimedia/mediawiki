@@ -1743,6 +1743,7 @@ $wgMessageStructure = array(
 		'ninterwikis',
 		'nlinks',
 		'nmembers',
+		'nmemberschanged',
 		'nrevisions',
 		'nviews',
 		'nimagelinks',
