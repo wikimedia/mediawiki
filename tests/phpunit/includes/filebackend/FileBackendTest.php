@@ -1480,6 +1480,28 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Preparing dir $path failed ($backendName)." );
 		}
 
+		$status = $this->backend->secure( array( 'dir' => dirname( $path ) ) );
+		if ( $isOK ) {
+			$this->assertGoodStatus( $status,
+				"Securing dir $path succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Securing dir $path succeeded ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Securing dir $path failed ($backendName)." );
+		}
+
+		$status = $this->backend->publish( array( 'dir' => dirname( $path ) ) );
+		if ( $isOK ) {
+			$this->assertGoodStatus( $status,
+				"Publishing dir $path succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Publishing dir $path succeeded ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Publishing dir $path failed ($backendName)." );
+		}
+
 		$status = $this->backend->clean( array( 'dir' => dirname( $path ) ) );
 		if ( $isOK ) {
 			$this->assertGoodStatus( $status,
@@ -1548,8 +1570,6 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Dir $dir no longer exists ($backendName)." );
 		}
 	}
-
-	// @todo testSecure
 
 	/**
 	 * @covers FileBackend::doOperations
