@@ -43,7 +43,7 @@ class EnhancedChangesList extends ChangesList {
 			'mediawiki.icon',
 		) );
 
-		return '';
+		return '<div class="mw-changeslist">';
 	}
 
 	/**
@@ -689,6 +689,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	public function endRecentChangesList() {
-		return $this->recentChangesBlock() . parent::endRecentChangesList();
+		return $this->recentChangesBlock() . '</div>';
 	}
 }
