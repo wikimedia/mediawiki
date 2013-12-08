@@ -399,7 +399,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'tsearchFixes' ),
 
 			// 1.23
-			array( 'addPgField', 'recentchanges', 'rc_source',            "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 		);
 	}
 

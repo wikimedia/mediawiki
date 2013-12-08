@@ -61,11 +61,11 @@ class ApiWatchTest extends ApiTestCase {
 			'list' => 'watchlist' ), $data );
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'watchlist', $data[0]['query'] );
-		foreach( $data[0]['query']['watchlist'] as $index => $item ) {
+		foreach ( $data[0]['query']['watchlist'] as $index => $item ) {
 			// Previous tests may insert an invalid title
 			// like ":ApiEditPageTest testNonTextEdit", which
 			// can't be cleared.
-			if ( strpos( $item['title'] , ':' ) === 0 ) {
+			if ( strpos( $item['title'], ':' ) === 0 ) {
 				unset( $data[0]['query']['watchlist'][$index] );
 			}
 		}

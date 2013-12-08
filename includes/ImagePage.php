@@ -1009,7 +1009,7 @@ EOT
 			} else {
 				$display = $curLang;
 			}
-			$opts =  XML::Option( $display, $curLang, true ) . $opts;
+			$opts = XML::Option( $display, $curLang, true ) . $opts;
 		}
 
 		$select = Html::rawElement( 'select', array( 'id' => 'mw-imglangselector', 'name' => 'lang' ), $opts );

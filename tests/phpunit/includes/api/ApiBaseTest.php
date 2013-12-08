@@ -26,7 +26,7 @@ class ApiBaseTest extends ApiTestCase {
 	public function testRequireOnlyOneParameterZero() {
 		$mock = new MockApi();
 		$mock->requireOnlyOneParameter(
-			array( "filename" => "foo.txt","enablechunks" => 0 ),
+			array( "filename" => "foo.txt", "enablechunks" => 0 ),
 			"filename", "enablechunks"
 		);
 	}

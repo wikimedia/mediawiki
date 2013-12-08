@@ -1660,7 +1660,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
-								   User $user = null, $serialisation_format = null ) {
+		User $user = null, $serialisation_format = null
+	) {
 		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
 
 		// Low-level sanity check

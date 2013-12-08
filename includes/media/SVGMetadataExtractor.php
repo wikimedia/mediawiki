@@ -267,7 +267,7 @@ class SVGReader {
 				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
 					// See http://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 					$langList = explode( ',', $sysLang );
-					foreach( $langList as $langItem ) {
+					foreach ( $langList as $langItem ) {
 						$langItem = trim( $langItem );
 						if ( Language::isWellFormedLanguageTag( $langItem ) ) {
 							$this->languages[$langItem] = self::LANG_FULL_MATCH;

@@ -72,13 +72,13 @@ class ExceptionTest extends MediaWikiTestCase {
 		$testCases = array();
 		foreach ( array( 'Exception', 'MWException' ) as $exClass ) {
 			$exTests = array(
-				array( 'string',  $exClass,  'id' ),
-				array( 'string',  $exClass,  'file' ),
-				array( 'integer', $exClass,  'line' ),
-				array( 'string',  $exClass,  'message' ),
-				array( 'null',    $exClass,  'url' ),
+				array( 'string', $exClass, 'id' ),
+				array( 'string', $exClass, 'file' ),
+				array( 'integer', $exClass, 'line' ),
+				array( 'string', $exClass, 'message' ),
+				array( 'null', $exClass, 'url' ),
 				# Backtrace only enabled with wgLogExceptionBacktrace = true
-				array( 'array',   $exClass,  'backtrace' ),
+				array( 'array', $exClass, 'backtrace' ),
 			);
 			$testCases = array_merge( $testCases, $exTests );
 		}
