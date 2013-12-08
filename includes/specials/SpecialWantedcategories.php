@@ -48,6 +48,36 @@ class WantedCategoriesPage extends WantedQueryPage {
 		);
 	}
 
+	function preprocessResults( $db, $res ) {
+		parent::preprocessResults( $db, $res );
+
+		$this->currentCategoryCounts = array();
+
+		if ( !$res->numRows() || !$this->isCached() ) {
+			return;
+		}
+
+		// Fetch (hopefully) up-to-date numbers of pages in each category.
+		// This should be fast enough as we limit the list to a reasonable length.
+
+		$allCategories = array_map( function ( $row ) {
+			return $row->title;
+		}, iterator_to_array( $res ) );
+
+		$categoryRes = $db->select(
+			'category',
+			array( 'cat_title', 'cat_pages' ),
+			array( 'cat_title' => $allCategories ),
+			__METHOD__
+		);
+		foreach ( $categoryRes as $row ) {
+			$this->currentCategoryCounts[ $row->cat_title ] = $row->cat_pages;
+		}
+
+		// Back to start for display
+		$res->seek( 0 );
+	}
+
 	/**
 	 * @param Skin $skin
 	 * @param object $result Result row
@@ -59,17 +89,37 @@ class WantedCategoriesPage extends WantedQueryPage {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = htmlspecialchars( $wgContLang->convert( $nt->getText() ) );
 
-		$plink = $this->isCached() ?
-			Linker::link( $nt, $text ) :
-			Linker::link(
+		if ( !$this->isCached() ) {
+			// We can assume the freshest data
+			$plink = Linker::link(
 				$nt,
 				$text,
 				array(),
 				array(),
 				array( 'broken' )
 			);
+			$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+		} else {
+			$plink = Linker::link( $nt, $text );
 
-		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+			$currentValue = isset( $this->currentCategoryCounts[ $result->title ] )
+				? $this->currentCategoryCounts[ $result->title ]
+				: 0;
+
+			// If the category has been created or emptied since the list was refreshed, strike it
+			if ( $nt->isKnown() || intval( $currentValue ) === 0 ) {
+				$plink = "<del>$plink</del>";
+			}
+
+			// Show the current number of category entries if it changed
+			if ( $currentValue !== $result->value ) {
+				$nlinks = $this->msg( 'nmemberschanged' )
+					->numParams( $result->value, $currentValue )->escaped();
+			} else {
+				$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+			}
+		}
+
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
