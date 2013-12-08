@@ -1050,26 +1050,19 @@ class SpecialUndelete extends SpecialPage {
 
 		$diffEngine = $currentRev->getContentHandler()->createDifferenceEngine( $diffContext );
 		$diffEngine->showDiffStyle();
-		$this->getOutput()->addHTML( "<div>" .
-			"<table style='width: 98%;' cellpadding='0' cellspacing='4' class='diff'>" .
-			"<col class='diff-marker' />" .
-			"<col class='diff-content' />" .
-			"<col class='diff-marker' />" .
-			"<col class='diff-content' />" .
-			"<tr>" .
-			"<td colspan='2' style='width: 50%; text-align: center' class='diff-otitle'>" .
-			$this->diffHeader( $previousRev, 'o' ) .
-			"</td>\n" .
-			"<td colspan='2' style='width: 50%;  text-align: center' class='diff-ntitle'>" .
-			$this->diffHeader( $currentRev, 'n' ) .
-			"</td>\n" .
-			"</tr>" .
-			$diffEngine->generateContentDiffBody(
-				$previousRev->getContent( Revision::FOR_THIS_USER, $this->getUser() ),
-				$currentRev->getContent( Revision::FOR_THIS_USER, $this->getUser() ) ) .
-			"</table>" .
-			"</div>\n"
+
+		$formattedDiff = $diffEngine->generateContentDiffBody(
+			$previousRev->getContent( Revision::FOR_THIS_USER, $this->getUser() ),
+			$currentRev->getContent( Revision::FOR_THIS_USER, $this->getUser() )
 		);
+
+		$formattedDiff = $diffEngine->addHeader(
+			$formattedDiff,
+			$this->diffHeader( $previousRev, 'o' ),
+			$this->diffHeader( $currentRev, 'n' )
+		);
+
+		$this->getOutput()->addHTML( "<div>$formattedDiff</div>\n" );
 	}
 
 	/**
@@ -1111,6 +1104,8 @@ class SpecialUndelete extends SpecialPage {
 		);
 		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff' );
 
+		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
+		// and partially #showDiffPage, but worse
 		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
 			Linker::link(
 				$targetPage,
