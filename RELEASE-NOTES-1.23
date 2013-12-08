@@ -73,6 +73,8 @@ production.
 * (bug 57098) SpecialPasswordReset now obeys returnto parameter
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
+* (bug 56199) Raw option of parser functions must now match complete word,
+  to take effect.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
