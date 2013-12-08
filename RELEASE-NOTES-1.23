@@ -49,6 +49,8 @@ production.
   those protection levels.
 * Added $wgAPIFormatModules, allowing extensions to add additional output
   formatting modules for the API.
+* (bug 47812) The MediaWiki:Group-user.{css,js} pages can now be used to add
+  custom CSS or JavaScript enabled only for registered users.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
