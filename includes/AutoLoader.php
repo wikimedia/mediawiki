@@ -686,6 +686,7 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
+	'MultiHttpClient' => 'includes/libs/MultiHttpClient.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
