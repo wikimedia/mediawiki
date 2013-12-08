@@ -469,7 +469,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'recentchanges-label-minor' => 'This is a minor edit',
 'recentchanges-label-bot' => 'uŞuḥlofano sim muBot.',
 'recentchanges-label-unpatrolled' => 'This edit has not yet been patrolled',
-'rcnote' => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $5, $4.",
 'rcnotefrom' => 'Herke komaḥwın aŞuḥlofe ḥaroye men ""$2"" (hul buSowudo ""$1"").',
 'rclistfrom' => 'Maḥway li Şuḥlofe ḥaṭe men $1',
 'rcshowhideminor' => '$1 minor edits',

@@ -1704,7 +1704,6 @@ $1",
 'recentchanges-label-plusminus' => '页面大小通过该字节数更改',
 'recentchanges-legend-newpage' => '（另见[[Special:NewPages|新页面列表]]）',
 'recentchanges-legend-plusminus' => "（''±123''）",
-'rcnote' => "下面是过去'''$2'''天的最后'''$1'''个更改，截至$4 $5。",
 'rcnotefrom' => "下面是'''$2'''之后的更改（最多显示'''$1'''个）。",
 'rclistfrom' => '显示$1之后的新更改',
 'rcshowhideminor' => '$1小编辑',
@@ -2416,10 +2415,10 @@ $UNWATCHURL
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete' => '操作完成',
 'actionfailed' => '操作失败',
-'deletedtext' => '“$1”已经被删除。最近删除的记录请参见$2。',
+'deletedtext' => '“$1”已被删除。最近的删除日志请见$2。',
 'dellogpage' => '删除日志',
 'dellogpagetext' => '下面是最近的删除的列表。',
-'deletionlog' => '删除记录',
+'deletionlog' => '删除日志',
 'reverted' => '恢复到较早的版本',
 'deletecomment' => '原因：',
 'deleteotherreason' => '其他/附加原因：',
@@ -2540,7 +2539,6 @@ $UNWATCHURL
 'undeletebtn' => '还原',
 'undeletelink' => '查看/还原',
 'undeleteviewlink' => '查看',
-'undeletereset' => '重设',
 'undeleteinvert' => '反向选择',
 'undeletecomment' => '原因：',
 'undeletedrevisions' => '{{PLURAL:$1|$1个版本}}被还原',
@@ -2556,7 +2554,7 @@ $1',
 'undelete-search-box' => '搜索已删除页面',
 'undelete-search-prefix' => '显示页面自：',
 'undelete-search-submit' => '搜索',
-'undelete-no-results' => '删除记录里没有符合的结果。',
+'undelete-no-results' => '删除日志中没有匹配的结果。',
 'undelete-filename-mismatch' => '不能删除带有时间戳的文件修订$1：文件不匹配',
 'undelete-bad-store-key' => '不能删除带有时间戳的文件修订$1：文件在删除前遗失。',
 'undelete-cleanup-error' => '删除无用的存档文件“$1”时发生错误。',
@@ -2629,7 +2627,6 @@ $1',
 'block' => '封禁用户',
 'unblock' => '解封用户',
 'blockip' => '封禁用户',
-'blockip-title' => '封禁用户',
 'blockip-legend' => '封禁用户',
 'blockiptext' => '使用下方的表单来禁止来自特定IP地址或用户名的写访问。
 只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。
@@ -2637,7 +2634,6 @@ $1',
 'ipadressorusername' => 'IP地址或用户名：',
 'ipbexpiry' => '期限：',
 'ipbreason' => '原因：',
-'ipbreasonotherlist' => '其他原因',
 'ipbreason-dropdown' => '*常见封禁原因
 ** 插入虚假信息
 ** 删除页面内容
@@ -2653,8 +2649,6 @@ $1',
 'ipbsubmit' => '封禁该用户',
 'ipbother' => '其它时间：',
 'ipboptions' => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,无限期:infinite',
-'ipbotheroption' => '其他',
-'ipbotherreason' => '其他/附加原因：',
 'ipbhidename' => '在编辑及列表中隐藏用户名',
 'ipbwatchuser' => '监视该用户的用户页面和讨论页面',
 'ipb-disableusertalk' => '阻止用户在封禁期间编辑自己的讨论页面',
@@ -2740,7 +2734,6 @@ $1被封禁的理由是：“$2”',
 'sorbsreason' => '在{{SITENAME}}使用的DNSBL中，您的IP地址被列为公开代理。',
 'sorbs_create_account_reason' => '在{{SITENAME}}使用的DNSBL中，您的IP地址被列为公开代理，因此您不能创建新账户。',
 'xffblockreason' => '您或您正在使用的代理服务器呈现在X-Forwarded-For数据包头的一个IP地址已被封禁。封禁原因为：$1',
-'cant-block-while-blocked' => '您无法在封禁期内封禁其他用户。',
 'cant-see-hidden-user' => '您尝试封禁的用户已被封禁并隐藏。
 由于您尚无隐藏用户的权限，您无法查看或编辑此用户的封禁。',
 'ipbblocked' => '您无法封禁或解封其他用户，因为您自己已被封禁',
@@ -3686,7 +3679,6 @@ Variants for Chinese language
 'watchlistall2' => '所有',
 'namespacesall' => '全部',
 'monthsall' => '全部',
-'limitall' => '全部',
 
 # Email address confirmation
 'confirmemail' => '确认邮箱地址',
@@ -3705,7 +3697,6 @@ Variants for Chinese language
 'confirmemail_needlogin' => '您需要$1以确认您的邮箱地址。',
 'confirmemail_success' => '您的邮箱已经被确认。您现在可以[[Special:UserLogin|登录]]并使用此网站了。',
 'confirmemail_loggedin' => '您的邮箱地址现在已被确认。',
-'confirmemail_error' => '保存你的确认时出错。',
 'confirmemail_subject' => '{{SITENAME}}电子邮件地址确认',
 'confirmemail_body' => '来自IP地址$1的用户（可能是您）在{{SITENAME}}上创建了账户“$2”，并提交了您
 的电子邮箱地址。
@@ -3783,6 +3774,11 @@ $5
 'imgmultipagenext' => '下一页 →',
 'imgmultigo' => '提交！',
 'imgmultigoto' => '到第$1页',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '（默认语言）',
+'img-lang-info' => '在$1 $2找到此图像。',
+'img-lang-go' => '去',
 
 # Table pager
 'ascending_abbrev' => '升',
@@ -3955,7 +3951,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 
 # Special:ComparePages
 'comparepages' => '对比页面',
-'compare-selector' => '对比页面版本',
 'compare-page1' => '页面1',
 'compare-page2' => '页面2',
 'compare-rev1' => '版本1',

@@ -1596,7 +1596,6 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'recentchanges-label-plusminus' => 'La mida de la pàgina ha canviat aquest nombre de bytes',
 'recentchanges-legend-newpage' => '(vegeu també la  [[Special:NewPages|llista de pàgines noves]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => 'A continuació hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|el darrer dia|els darrers <strong>$2</strong> dies}}, actualitzats a les $5 del $4.',
 'rcnotefrom' => 'A sota hi ha els canvis des de <b>$2</b> (es mostren fins <b>$1</b>).',
 'rclistfrom' => 'Mostra els canvis nous des de $1',
 'rcshowhideminor' => '$1 edicions menors',
@@ -2463,7 +2462,6 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletebtn' => 'Restaura!',
 'undeletelink' => 'mira/restaura',
 'undeleteviewlink' => 'veure',
-'undeletereset' => 'Reinicia',
 'undeleteinvert' => 'Invertir selecció',
 'undeletecomment' => 'Motiu:',
 'undeletedrevisions' => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
@@ -2552,7 +2550,6 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 'block' => "Blocatge d'usuaris",
 'unblock' => "Desblocatge d'usuaris",
 'blockip' => "Bloqueig d'usuaris",
-'blockip-title' => "Bloquejar l'usuari",
 'blockip-legend' => "Bloca l'usuari",
 'blockiptext' => "Empreu el següent formulari per blocar l'accés
 d'escriptura des d'una adreça IP específica o des d'un usuari determinat.
@@ -2563,7 +2560,6 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipadressorusername' => "Adreça IP o nom de l'usuari",
 'ipbexpiry' => 'Venciment',
 'ipbreason' => 'Motiu:',
-'ipbreasonotherlist' => 'Altres motius',
 'ipbreason-dropdown' => "*Motius de bloqueig més freqüents
 ** Inserció d'informació falsa
 ** Supressió de contingut sense justificació
@@ -2579,8 +2575,6 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipbsubmit' => 'Bloqueja aquesta adreça',
 'ipbother' => 'Un altre termini',
 'ipboptions' => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite',
-'ipbotheroption' => 'un altre',
-'ipbotherreason' => 'Altres motius o addicionals:',
 'ipbhidename' => "Amaga el nom d'usuari de les edicions i llistes",
 'ipbwatchuser' => "Vigila les pàgines d'usuari i de discussió de l'usuari",
 'ipb-disableusertalk' => 'Impedeix que aquest usuari pugui modificar la seva pàgina de discussió mentre dura el blocatge',
@@ -2669,7 +2663,6 @@ Per més detalls, a sota es mostra el registre de supressions:",
 'sorbsreason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert dins la llista negra de DNS que fa servir el projecte {{SITENAME}}.",
 'sorbs_create_account_reason' => "La vostra adreça IP està llistada com a servidor intermediari (''proxy'') obert a la llista negra de DNS que utilitza el projecte {{SITENAME}}. No podeu crear-vos-hi un compte",
 'xffblockreason' => "Una adreça IP present en la capçalera X-Forwarded-For, ja sigui vostra o la d'un servidor proxy que esteu utilitzant, ha estat blocada. El motiu inicial del bloqueig és: $1",
-'cant-block-while-blocked' => 'No podeu blocar altres usuaris quan esteu bloquejat.',
 'cant-see-hidden-user' => "L'usuari que esteu intentant blocar ja ha estat blocat i ocultat. Com que no teniu el permís hideuser no podeu veure ni modificar el seu blocatge.",
 'ipbblocked' => 'No podeu blocar o desblocar altres usuaris, perquè vós {{GENDER:|mateix|mateixa|mateix}} esteu {{GENDER:|blocat|blocada|blocat}}.',
 'ipbnounblockself' => 'No teniu permís per a treure el vostre bloqueig',
@@ -3579,7 +3572,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'watchlistall2' => 'totes',
 'namespacesall' => 'tots',
 'monthsall' => 'tots',
-'limitall' => 'tots',
 
 # Email address confirmation
 'confirmemail' => "Confirma l'adreça de correu electrònic",
@@ -3606,7 +3598,6 @@ El programari de correu retornà el següent missatge: $1",
 'confirmemail_success' => "S'ha confirmat la vostra adreça electrònica.
 Ara podeu [[Special:UserLogin|iniciar una sessió]] i gaudir del wiki.",
 'confirmemail_loggedin' => "Ja s'ha confirmat la vostra adreça electrònica.",
-'confirmemail_error' => 'Quelcom ha fallat en desar la vostra confirmació.',
 'confirmemail_subject' => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",
 'confirmemail_body' => "Algú, segurament vós, ha registrat el compte «$2» al projecte {{SITENAME}}
 amb aquesta adreça electrònica des de l'adreça IP $1.
@@ -3683,6 +3674,11 @@ Confirmeu que realment voleu tornar-la a crear.",
 'imgmultipagenext' => 'pàgina següent →',
 'imgmultigo' => 'Vés-hi!',
 'imgmultigoto' => 'Vés a la pàgina $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(llengua per defecte)',
+'img-lang-info' => 'Dibuixa aquesta imatge en $1 $2.',
+'img-lang-go' => 'Vés-hi',
 
 # Table pager
 'ascending_abbrev' => 'asc',
@@ -3854,7 +3850,6 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 
 # Special:ComparePages
 'comparepages' => 'Comparar pàgines',
-'compare-selector' => 'Comparar revisions de pàgines',
 'compare-page1' => 'Pàgina 1',
 'compare-page2' => 'Pàgina 2',
 'compare-rev1' => 'Revisió 1',

@@ -1714,7 +1714,6 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'recentchanges-label-bot' => 'Disse bewarking is uutevoerd deur n bot',
 'recentchanges-label-unpatrolled' => 'Disse bewarking is nog niet nao-ekeken',
 'recentchanges-legend-newpage' => '$1 - nieje pagina',
-'rcnote' => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de aofgeleupen {{PLURAL:$2|dag|'''$2''' dagen}} (per: $5, $4).",
 'rcnotefrom' => 'Dit bin de wiezigingen sinds <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
 'rclistfrom' => 'Bekiek wiezigingen vanaof $1',
 'rcshowhideminor' => '$1 kleine wiezigingen',
@@ -2590,7 +2589,6 @@ In dat geval mu'j de leste versie as zichtbaor instellen.",
 'undeletebtn' => 'Weerummeplaotsen',
 'undeletelink' => 'bekiek/weerummeplaotsen',
 'undeleteviewlink' => 'bekieken',
-'undeletereset' => 'Herstel',
 'undeleteinvert' => 'Seleksie ummekeren',
 'undeletecomment' => 'Reden:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} weerummeplaotst',
@@ -2680,7 +2678,6 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'block' => 'Gebruker blokkeren',
 'unblock' => 'Gebruker deblokkeren',
 'blockip' => 'Gebruker blokkeren',
-'blockip-title' => 'Gebruker blokkeren',
 'blockip-legend' => 'n Gebruker of IP-adres blokkeren',
 'blockiptext' => 'Gebruuk dit formulier um n IP-adres of gebrukersnaam te blokkeren. 
 t Is bedoeld um vandalisme te veurkoemen en mut akkederen mit t [[{{MediaWiki:Policy-url}}|beleid]]. 
@@ -2688,7 +2685,6 @@ Geef hieronder n reden op (bieveurbeeld op welke ziejen de vandalisme epleegd is
 'ipadressorusername' => 'IP-adres of gebrukersnaam',
 'ipbexpiry' => 'Verlöp nao',
 'ipbreason' => 'Reden:',
-'ipbreasonotherlist' => 'aandere reden',
 'ipbreason-dropdown' => '*Algemene redens veur t blokkeren
 ** verkeerde informasie invoeren
 ** ziejen leegmaken
@@ -2704,8 +2700,6 @@ Geef hieronder n reden op (bieveurbeeld op welke ziejen de vandalisme epleegd is
 'ipbsubmit' => 'adres blokkeren',
 'ipbother' => 'Aandere tied',
 'ipboptions' => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbeparkt:infinite',
-'ipbotheroption' => 'aanders',
-'ipbotherreason' => 'Aandere/extra reden:',
 'ipbhidename' => 'Verbarg de gebrukersnaam in bewarkingen en liesten',
 'ipbwatchuser' => 'Gebrukerszied en overlegzied op volglieste zetten',
 'ipb-disableusertalk' => 'Veurkoemen dat disse gebruker tiejens de blokkering de eigen overlegzied kan bewarken',
@@ -2795,7 +2789,6 @@ De blokkering is onderdeel van de reeks $2, waorvan de blokkering wel op-eheven 
 'sorbs_create_account_reason' => "Joew IP-adres is op-eneumen as open proxyserver in de zwarte lieste van DNS, die'w veur {{SITENAME}} gebruken.
 Je kunnen gien gebrukerszied anmaken.",
 'xffblockreason' => "n IP-adres dat jie gebruken is eblokkeerd. Dit steet in de kop 'X-Forwarded-For'. De oorspronkelike reden veur de blokkerings is: $1",
-'cant-block-while-blocked' => "Je kunnen aandere gebrukers niet blokkeren a'j zelf oek eblokkeerd bin.",
 'cant-see-hidden-user' => "De gebruker die'j proberen te blokkeren is al eblokkeerd en verbörgen.
 Umda'j gien rech hebben um gebrukers te verbargen, ku'j de blokkering van de gebruker niet bekieken of bewarken.",
 'ipbblocked' => "Je kunnen gien aandere gebrukers (de)blokkeren, umda'j zelf eblokkeerd bin",
@@ -3697,7 +3690,6 @@ Aandere velden wörden verbörgen.
 'watchlistall2' => 'alles',
 'namespacesall' => 'alles',
 'monthsall' => 'alles',
-'limitall' => 'alles',
 
 # Email address confirmation
 'confirmemail' => 'Bevestig netpostadres',
@@ -3715,7 +3707,6 @@ Fout bie t versturen: $1',
 'confirmemail_needlogin' => 'Je mutten $1 um joew netpostadres te bevestigen.',
 'confirmemail_success' => 'Joew netpostadres is bevestigd. Je kunnen noen [[Special:UserLogin|anmelden]] en {{SITENAME}} gebruken.',
 'confirmemail_loggedin' => 'Joew netpostadres is noen bevestig.',
-'confirmemail_error' => 'Der is iets fout egaon bie t opslaon van joew bevestiging.',
 'confirmemail_subject' => 'Bevestiging netpostadres veur {{SITENAME}}',
 'confirmemail_body' => 'Ene mit IP-adres $1, warschienlik jie zelf, hef zien eigen mit dit netpostadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
 
@@ -3964,7 +3955,6 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 
 # Special:ComparePages
 'comparepages' => 'Ziejen vergelieken',
-'compare-selector' => 'Ziedversies vergelieken',
 'compare-page1' => 'Zied 1',
 'compare-page2' => 'Zied 2',
 'compare-rev1' => 'Versie 1',

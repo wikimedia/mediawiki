@@ -750,7 +750,6 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 'recentchanges-summary' => 'Xiquinttāz in achi yancuīc ahmo occequīntīn tlapatlaliztli huiquipan inīn zāzanilpan.',
 'recentchanges-label-newpage' => 'Inīn tlapatlaliztli ōquiyōcox cē yancuīc āmatl',
 'recentchanges-label-minor' => 'Inīn tlapatlaliztli tepitōn',
-'rcnote' => "Nicān {{PLURAL:$1|cah '''1''' tlapatlaliaztli|cateh in xōcoyōc '''$1''' tlapatlaliztli}} īpan xōcoyōc {{PLURAL:$2|tōnalli|'''$2''' tōnaltin}} īhuīcpa $5, $4.",
 'rclistfrom' => 'Xiquinttāz yancuīc tlapatlaliztli īhuīcpa $1',
 'rcshowhideminor' => '$1 tlapatlalitzintli',
 'rcshowhidebots' => '$1 tepoztlācah',
@@ -1135,12 +1134,9 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'ipadressorusername' => 'IP nozo tlatequitiltilīlli ītōcā:',
 'ipbexpiry' => 'Motlamia:',
 'ipbreason' => 'Īxtlamatiliztli:',
-'ipbreasonotherlist' => 'Occē īxtlamatiliztli',
 'ipbsubmit' => 'Tiquitzacuilīz inīn tlatequitiltilīlli',
 'ipbother' => 'Occē cāuhpan:',
 'ipboptions' => '2 cāhuitl:2 hours,1 tōnalli:1 day,3 tōnaltin:3 days,1 chicuēyilhuitl:1 week,2 chicuēyilhuitl:2 weeks,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,mochipa:infinite',
-'ipbotheroption' => 'occē',
-'ipbotherreason' => 'Occē īxtlamatiliztli:',
 'ipbwatchuser' => 'Tiquinchiyāz inīn tlatequitiltilīlli in ītlatequitiltilīlzāzanil auh in ītēixnāmiquiliz',
 'badipaddress' => 'Ahcualli IP',
 'blockipsuccesssub' => 'Cualli tlatzacuiliztli',
@@ -1379,7 +1375,6 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'watchlistall2' => 'mochīntīn',
 'namespacesall' => 'mochīntīn',
 'monthsall' => '(mochīntīn)',
-'limitall' => 'mochi',
 
 # Email address confirmation
 'confirmemail' => 'Ticchicāhuāz e-mail',
@@ -1387,7 +1382,6 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'confirmemail_success' => 'Mocorreo ōmotlahtōlneltilih
 Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 'confirmemail_loggedin' => 'Mo e-mailcān ōmochicāuh.',
-'confirmemail_error' => 'Achi ōcatcah ahcualli mochicāhualiztechcopa.',
 'confirmemail_subject' => 'e-mailcān {{SITENAME}} ītlachicāhualiz',
 
 # Scary transclusion

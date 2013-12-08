@@ -1471,7 +1471,6 @@ Ti esurat a pagtaengam ket saan a maipakita kadagiti agar-aramat nga agkontak ke
 'recentchanges-label-minor' => 'Daytoy ket bassit a panag-urnos',
 'recentchanges-label-bot' => 'Daytoy a panag-urnos ket inaramid babaen ti maysa a bot',
 'recentchanges-label-unpatrolled' => 'Daytoy a panag-urnos ket saan pay a napatruliaan',
-'rcnote' => "Dita baba ket {{PLURAL:$1|ti '''1''' a naudi a sinukatan|dagiti '''$1''' a naudi a sinukatan}} iti napalabas nga {{PLURAL:$2|aldaw|'''$2''' nga al-aldaw}}, manipud idi $5, $4.",
 'rcnotefrom' => "Dita baba ket dagiti sinukatan manipud idi '''$2''' (agingga iti '''$1''' a naipakita).",
 'rclistfrom' => 'Ipakita dagiti kabarbaro a sinukatan a mangrugi manipud idi $1',
 'rcshowhideminor' => '$1 dagiti bassit a panag-urnos',
@@ -2367,7 +2366,6 @@ Addaanka ngata ti madi a silpo, wenno ti panagbaliw ket naipasubli wenno naikkat
 'undeletebtn' => 'Isubli',
 'undeletelink' => 'kitaen/isubli',
 'undeleteviewlink' => 'kitaen',
-'undeletereset' => 'Isubli',
 'undeleteinvert' => 'Baliktaden ti napili',
 'undeletecomment' => 'Rason:',
 'undeletedrevisions' => '{{PLURAL:$1|1 a  binaliwan|dagiti $1 a binaliwan}} ti naisubli',
@@ -2457,7 +2455,6 @@ Ti naudi a listaan ti pannakaserra ket adda dita baba tapno mausar a reperensia:
 'block' => 'Seraan ti agar-aramat',
 'unblock' => 'Ikkaten ti serra ti agar-aramat',
 'blockip' => 'Serraan ti agar-aramat',
-'blockip-title' => 'Serraan ti agar-aramat',
 'blockip-legend' => 'Serraan ti agar-aramat',
 'blockiptext' => 'Usaren ti kinabuklan dita baba tapno maserraan ti panagsurat manipud iti naisangayan nga IP a pagtaengan wenno nagan ti agar-aramat.
 Usaren laeng daytoy tapno pawilan ti bandalismo, ken panagtunos iti [[{{MediaWiki:Policy-url}}|annuroten]].
@@ -2465,7 +2462,6 @@ Ikkan ti naisangayan a rason dita baba (kas pagarigan, dakamaten ti maysa a pani
 'ipadressorusername' => 'IP a pagtaengan wenno nagan ti agar-aramat:',
 'ipbexpiry' => 'Agpaso:',
 'ipbreason' => 'Rason:',
-'ipbreasonotherlist' => 'Sabali a rason',
 'ipbreason-dropdown' => '*Dagiti kadawyan a rason ti panagserra
 ** Agikabil kadagiti  madi a pakaammo
 ** Agikkat kadagiti linaon ti pampanid
@@ -2481,8 +2477,6 @@ Ikkan ti naisangayan a rason dita baba (kas pagarigan, dakamaten ti maysa a pani
 'ipbsubmit' => 'Serraan daytoy nga agar-aramat',
 'ipbother' => 'Sabali nga oras:',
 'ipboptions' => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite',
-'ipbotheroption' => 'sabali',
-'ipbotherreason' => 'Sabali/nayon a rason:',
 'ipbhidename' => 'Ilemmeng ti nagan ti agar-aramat kadagiti listaan ken inurnos',
 'ipbwatchuser' => 'Bantayan ti panid ti agar-ramat ken panid ti tungtungan daytoy nga agar-aramat',
 'ipb-disableusertalk' => 'Pawilan daytoy nga agar-aramat nga agurnos kadagiti bukodda a tungtungan a panid no naserraan',
@@ -2575,7 +2569,6 @@ Pangngaasi ta kontakem ti agit-ited ti serbisio ti Internetmo wenno teknikal a s
 'sorbs_create_account_reason' => 'Ti IP a pagtaengam ket nakalista a kasla "nalukatan a pannakbagi" idiay DNSBL nga inusar ti {{SITNAME}}.
 Saanka a makaaramid ti pakabilangan',
 'xffblockreason' => 'Ti maysa nga IP a pagtaengan nga adda iti X-Forwarded-For header, mabalin a kukuam wenno ti pannakbagi a server nga us-usarem, ket naserraan. Ti kasisigud a rason ti pannakaserra idi ket: $1',
-'cant-block-while-blocked' => 'Saanmo a maserraan dagiti sabali nga agar-aramat no naserraanka met.',
 'cant-see-hidden-user' => 'Ti agar-aramat a kayatmo a serraan ket naserraan ken nailemmeng.
 Ket awan met ti karbengam nga agilemming ti agar-aramat, saan mo a makita wenno mabaliwan ti serra ti agar-aramat.',
 'ipbblocked' => 'Saanmo a mabalin ti agserra wenno agikkat ti serra ti sabali nga agar-aramat, ngamin ket naserraan ka met.',
@@ -3473,7 +3466,6 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'watchlistall2' => 'amin',
 'namespacesall' => 'amin',
 'monthsall' => 'amin',
-'limitall' => 'amin',
 
 # Email address confirmation
 'confirmemail' => 'Pasingkedan ti esurat a pagtaengam',
@@ -3498,7 +3490,6 @@ Mabalin a nagpaso daytoy a kodigo.',
 'confirmemail_success' => 'Napasingkedanen ti esurat a pagtaengam.
 Mabalinmo tattan ti [[Special:UserLogin|sumrek]] ken nanamen ti wiki.',
 'confirmemail_loggedin' => 'Napasingkedanen ti esurat a pagtaengam.',
-'confirmemail_error' => 'Adda banag a biddut ti panangidulin ti pammasingkedmo.',
 'confirmemail_subject' => 'Pammasingked ti esurat a pagtaengan ti {{SITENAME}}',
 'confirmemail_body' => 'Addaan, baka sika, ti naggapu ti IP a pagtaengan $1,
 ket nagrehistro ti pakabilangan "$2" iti daytoy nga esurat a pagtaengan idiay {{SITENAME}}
@@ -3748,7 +3739,6 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 
 # Special:ComparePages
 'comparepages' => 'Ipada dagiti panid',
-'compare-selector' => 'Ipada dagiti panagbaliw ti panid',
 'compare-page1' => 'Panid 1',
 'compare-page2' => 'Panid 2',
 'compare-rev1' => 'Panagbaliw 1',

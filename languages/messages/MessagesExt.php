@@ -935,7 +935,6 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'recentchanges-legend' => 'Ocionis enos úrtimus chambus',
 'recentchanges-summary' => 'Sigui los úrtimus chambus d´esti güiqui nesta páhina.',
 'recentchanges-feed-description' => 'Sigui los úrtimus chambus nel güiqui nesti feed.',
-'rcnote' => "Embahu se {{PLURAL:$1|muestra '''1''' chambu|muestran los úrtimus '''$1''' chambus}} {{PLURAL:$2|dendi ayel|enus úrtimus '''$2''' dias}}, de $4 a las $5.",
 'rcnotefrom' => "Embahu se muestran los chambus hechus dendi el '''$2''' (hata el '''$1''').",
 'rclistfrom' => 'Muestral los chambus hechus dendi el $1',
 'rcshowhideminor' => '$1 eicionis chiqueninas',
@@ -1501,7 +1500,6 @@ arrecuperás apaicerán nel estorial anteriol.",
 'undelete-nodiff' => "Nu s'á alcuentrau denguna revisión previa.",
 'undeletebtn' => 'Restaural',
 'undeletelink' => 'Guipal/arrecuperal',
-'undeletereset' => 'Reahustal',
 'undeletecomment' => 'Comentáriu:',
 'undeletedrevisions' => '{{PLURAL:$1|1 revisión|$1 revisionis}} restaurás',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisionis}} i {{PLURAL:$2|1 archivu|$2 archivus}} restauraus',
@@ -1578,7 +1576,6 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipadressorusername' => 'IP u nombri d´usuáriu:',
 'ipbexpiry' => 'Acabiha:',
 'ipbreason' => 'Razón:',
-'ipbreasonotherlist' => 'Otra razón',
 'ipbreason-dropdown' => '*Motivus frecuentis de tarugus
 ** Escrebil enhormación farsa
 ** Esborral el continiu las páhinas
@@ -1593,8 +1590,6 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipbsubmit' => 'Atarugal a esti usuáriu',
 'ipbother' => 'Otra ora:',
 'ipboptions' => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite',
-'ipbotheroption' => 'otru',
-'ipbotherreason' => 'Anguna otra razón?:',
 'ipbhidename' => 'Açonchal nombri d\'usuáriu nel "rustrihu e tarugus", "lista e tarugus ativus" i "lista d\'usuárius"',
 'ipbwatchuser' => "Visoreal la páhina d'usuáriu i la caraba d'esti usuáriu.",
 'badipaddress' => 'Direción IP nu premitia',
@@ -2176,7 +2171,6 @@ El correu degorvió: $1',
 'confirmemail_needlogin' => "Es mestel $1 pa confirmal la tu direción d'email.",
 'confirmemail_success' => "S'á confirmau la tu direción d'email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.",
 'confirmemail_loggedin' => "S'á confirmau la tu direción d'email.",
-'confirmemail_error' => 'Marru al emburacal la tu confirmación.',
 'confirmemail_subject' => 'Confirmaeru de direción de correu de {{SITENAME}}',
 'confirmemail_body' => 'Yeu!
 

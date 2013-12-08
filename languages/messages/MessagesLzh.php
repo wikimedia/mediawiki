@@ -1333,7 +1333,6 @@ $1",
 'recentchanges-label-bot' => '此乃機纂',
 'recentchanges-label-unpatrolled' => '是纂未巡',
 'recentchanges-legend-newpage' => '$1 - 新頁',
-'rcnote' => "下為自$4$5起，'''$2'''日內'''$1'''近易也。",
 'rcnotefrom' => "下為自'''$2'''至'''$1'''之易也。",
 'rclistfrom' => '自$1起之易也',
 'rcshowhideminor' => '$1校',
@@ -2020,7 +2019,6 @@ $NEWPAGE
 'undeletebtn' => '還',
 'undeletelink' => '察焉，以定還否',
 'undeleteviewlink' => '察',
-'undeletereset' => '歸白',
 'undeleteinvert' => '反相',
 'undeletecomment' => '因：',
 'undeletedrevisions' => '$1審已還',
@@ -2099,13 +2097,11 @@ $1',
 
 # Block/unblock
 'blockip' => '禁簿',
-'blockip-title' => '禁簿',
 'blockip-legend' => '禁簿',
 'blockiptext' => '函下禁纂，簿、址明判；[[{{MediaWiki:Policy-url}}|秉據]]如斯，立法克亂。指罪證行，了冤無憾。',
 'ipadressorusername' => 'IP或簿名',
 'ipbexpiry' => '限期',
 'ipbreason' => '指證',
-'ipbreasonotherlist' => '常犯',
 'ipbreason-dropdown' => '*如下道：
 ** 造假報
 ** 毀文貌
@@ -2120,8 +2116,6 @@ $1',
 'ipbsubmit' => '禁簿',
 'ipbother' => '別期',
 'ipboptions' => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite',
-'ipbotheroption' => '它',
-'ipbotherreason' => '補證、加證曰',
 'ipbhidename' => '簿名隱乎纂與表',
 'ipbwatchuser' => '哨該簿之齋與議',
 'ipb-change-block' => '用此設重禁此簿',
@@ -2183,7 +2177,6 @@ $1',
 'ip_range_invalid' => 'IP址圍不格',
 'ip_range_toolarge' => '大於 /$1 之禁段乃無容也。',
 'proxyblocker' => '禁Proxy',
-'cant-block-while-blocked' => '爾然被禁，勿施於人。',
 'cant-see-hidden-user' => '簿禁或藏矣。
 爾無藏之權，無視纂禁也。',
 'ipbblocked' => '爾無鎖或鎖他簿，因你自封也',
@@ -2606,7 +2599,6 @@ $1',
 'watchlistall2' => '全',
 'namespacesall' => '全',
 'monthsall' => '全',
-'limitall' => '全',
 
 # Email address confirmation
 'confirmemail' => '核郵驛',
@@ -2811,7 +2803,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 
 # Special:ComparePages
 'comparepages' => '較頁',
-'compare-selector' => '較頁之審',
 'compare-page1' => '頁一',
 'compare-page2' => '頁二',
 'compare-rev1' => '審一',

@@ -630,7 +630,6 @@ $messages = array(
 'recentchanges-label-minor' => 'ЗIамига хувцам я',
 'recentchanges-label-bot' => 'Ер хувцам бIатаца яь е',
 'recentchanges-label-unpatrolled' => 'Ер хувцам ший моттиге кхы дIадехьаяьккхаяц.',
-'rcnote' => "{{PLURAL:$1|Тlехьара '''$1''' хувцам|Тlехьара '''$1''' хувцамаш}} дола '''$2''' {{PLURAL:$2|ден|деношкахь}}, укх сахьате $5 $4.",
 'rcnotefrom' => 'КIалхагIа хувцамаш хьахьекха я <strong>$2</strong> денза (<strong>$1</strong> кхачалца).',
 'rclistfrom' => '$1 тIара хувцамаш хьахьокха',
 'rcshowhideminor' => 'зIамига хувцамаш $1',
@@ -1073,7 +1072,6 @@ $messages = array(
 'watchlistall2' => 'деррига',
 'namespacesall' => 'деррига',
 'monthsall' => 'деррига',
-'limitall' => 'деррига',
 
 # action=purge
 'confirm_purge_button' => 'ХIаа',

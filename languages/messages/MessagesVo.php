@@ -1216,7 +1216,6 @@ Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
 'recentchanges-label-bot' => 'Redakam at pädunon fa el bot',
 'recentchanges-label-unpatrolled' => 'Redakam at no nog pekontrolon',
 'recentchanges-legend-newpage' => '$1 - pad nulik',
-'rcnote' => "Dono {{PLURAL:$1|binon votükam '''1'''|binons votükams '''$1'''}} lätikün {{PLURAL:$2|dela|delas '''$2'''}} lätikün, pänumädöls tü $5, $4.",
 'rcnotefrom' => "Is palisedons votükams sis '''$2''' (jü '''$1''').",
 'rclistfrom' => 'Jonön votükamis nulik, primölo tü düp $1',
 'rcshowhideminor' => '$1 votükamis pülik',
@@ -1870,7 +1869,6 @@ Ba labol yümi dädik, u ba fomam pegepübon u pemoükon se registar.',
 'undeletebtn' => 'Sädunön moükami',
 'undeletelink' => 'logön/sädunön',
 'undeleteviewlink' => 'logön',
-'undeletereset' => 'Vagükolöd vali',
 'undeleteinvert' => 'Väli güükön',
 'undeletecomment' => 'Kod:',
 'undeletedrevisions' => 'Moükam {{PLURAL:$1|revida 1 pesädunon|revidas $1 pesädunons}}',
@@ -1949,13 +1947,11 @@ $1',
 'block' => 'Blokön gebani',
 'unblock' => 'Säblokön gebani',
 'blockip' => 'Blokön gebani',
-'blockip-title' => 'Blokön gebani',
 'blockip-legend' => 'Blokön gebani',
 'blockiptext' => 'Gebolös padi at ad blokön redakamagitäti gebananema u ladeta-IP semikas. Atos söton padunön teiko ad vitön vandalimi, e bai [[{{MediaWiki:Policy-url}}|dunalesets {{SITENAME}}]]. Penolös dono kodi patik pro blokam (a. s., mäniotolös padis pedobüköl).',
 'ipadressorusername' => 'Ladet-IP u gebananem',
 'ipbexpiry' => 'Dü',
 'ipbreason' => 'Kod:',
-'ipbreasonotherlist' => 'Kod votik',
 'ipbreason-dropdown' => '*Blokamakods suvik:
 ** Läükam nünas neverätik
 ** Moükam ninäda se pads
@@ -1970,8 +1966,6 @@ $1',
 'ipbsubmit' => 'Blokön gebani at',
 'ipbother' => 'Dul votik',
 'ipboptions' => 'düps 2:2 hours,del 1:1 day,dels 3:3 days,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite',
-'ipbotheroption' => 'dul votik',
-'ipbotherreason' => 'Kod(s) votik',
 'ipbhidename' => 'Klänedön gebananemi se redakams e liseds',
 'ipbwatchuser' => 'Galädon gebana- e bespikapadis gebana at',
 'ipb-change-block' => 'Dönublokön gebani me paramets at',
@@ -2041,7 +2035,6 @@ Kosikolös ko dünigevan bevüresodik u kaenastütans olik e nunolös ones sefas
 'sorbsreason' => 'Ladet-IP olik palisedon as pladulöm maifik pö el DNSBL fa {{SITENAME}} pageböl.',
 'sorbs_create_account_reason' => 'Ladet-IP olik palisedon as pladulöm maifik pö el DNSBL fa {{SITENAME}} pageböl.
 No dalol jafön kali.',
-'cant-block-while-blocked' => 'No dalol blokön gebanis votik bi peblokol it.',
 
 # Developer tools
 'lockdb' => 'Lökofärmükön nünodemi',
@@ -2666,7 +2659,6 @@ Nünabinets votik poklänedons.
 'watchlistall2' => 'valikis',
 'namespacesall' => 'valik',
 'monthsall' => 'valik',
-'limitall' => 'valikis',
 
 # Email address confirmation
 'confirmemail' => 'Fümedolös ladeti leäktronik',
@@ -2684,7 +2676,6 @@ Potanünöm egesedon: $1',
 'confirmemail_needlogin' => 'Nedol $1 ad fümedön ladeti leäktronik ola.',
 'confirmemail_success' => 'Ladet leäktronik ola pefümedon. Nu kanol nunädön oli e juitön vüki at.',
 'confirmemail_loggedin' => 'Ladeti leäktronik ola nu pefümedon.',
-'confirmemail_error' => 'Bos no eplöpon pö registaram fümedama olik.',
 'confirmemail_subject' => 'Fümedam ladeta leäktronik pro: {{SITENAME}}',
 'confirmemail_body' => 'Ek, bo ol, se ladet-IP: $1, ejafon kali: „$2‟ me ladeti leäktronik at lä {{SITENAME}}.
 

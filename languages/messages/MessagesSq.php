@@ -1512,7 +1512,6 @@ Kjo informatë është publike.',
 'recentchanges-label-bot' => 'Ky editim është kryer nga një bot',
 'recentchanges-label-unpatrolled' => 'Ky editim ende nuk është patrolluar',
 'recentchanges-legend-newpage' => '$1 - faqe të re',
-'rcnote' => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime}} së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $4, $5.",
 'rcnotefrom' => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom' => 'Tregon ndryshime së fundmi duke filluar nga $1',
 'rcshowhideminor' => '$1 redaktimet e vogla',
@@ -2368,7 +2367,6 @@ Ju mund të keni një lidhje të keqe, ose versioni mund të jetë restauruar os
 'undeletebtn' => 'Restauro!',
 'undeletelink' => 'shiko/rikthe',
 'undeleteviewlink' => 'Pamje',
-'undeletereset' => 'Boshatis',
 'undeleteinvert' => 'Selektim anasjelltas',
 'undeletecomment' => 'Arsyeja:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version u restaurua|versione u restauruan}}',
@@ -2457,7 +2455,6 @@ Bllokimi i funditë është më poshtë për referencë:',
 'block' => 'Blloko përdoruesin',
 'unblock' => 'Zhblloko përdoruesin',
 'blockip' => 'Blloko përdorues',
-'blockip-title' => 'Përdorues i Bllokuar',
 'blockip-legend' => 'Blloko përdoruesin',
 'blockiptext' => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP specifike.
 Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:Policy-url}}|rregullat e {{SITENAME}}-s]].
@@ -2465,7 +2462,6 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipadressorusername' => 'Adresë IP ose emër përdoruesi',
 'ipbexpiry' => 'Afati',
 'ipbreason' => 'Arsyeja:',
-'ipbreasonotherlist' => 'Arsye tjetër',
 'ipbreason-dropdown' => '*Arsyet më të shpeshta të bllokimit
 ** Postimi i informacioneve të rreme
 ** Largimi i përmbajtjes së faqes
@@ -2481,8 +2477,6 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipbsubmit' => 'Blloko këtë përdorues',
 'ipbother' => 'Kohë tjetër',
 'ipboptions' => '2 Orë:2 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,6 Muaj:6 months,1 Vjet:1 year,Pa kufi:infinite',
-'ipbotheroption' => 'tjetër',
-'ipbotherreason' => 'Arsye tjetër/shtesë',
 'ipbhidename' => 'Fshih emrat e përdorueseve nga redaktimet dhe listat',
 'ipbwatchuser' => 'Shiko faqen e prezantimit dhe diskutimit të këtij përdoruesi',
 'ipb-disableusertalk' => 'Parandalo këtë përdorues për të redaktuar faqe-diskutimin e tyre përderisa janë të bllokkuar',
@@ -2573,7 +2567,6 @@ Ajo është, megjithatë, e bllokuar si pjesë e rangut $2, që nuk mund të zhb
 'proxyblockreason' => 'IP adresa juaj është bllokuar sepse është një ndërmjetëse e hapur. Ju lutem lidhuni me kompaninë e shërbimeve të Internetit që përdorni dhe i informoni për këtë problem sigurije.',
 'sorbsreason' => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL.',
 'sorbs_create_account_reason' => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL që përdoret nga {{SITENAME}}. Nuk ju lejohet të hapni një llogari.',
-'cant-block-while-blocked' => 'Ju nuk mund të bllokoni përdorues të tjerë ndërkohë që jeni i bllokuar.',
 'cant-see-hidden-user' => 'Përdoruesi që po përpiqeni të bllokoni është i bllokuar dhe i fshehur.
 Përderisa ju nuk keni të drejtën e fshehjes së përdoruesve, ju nuk mund të shikoni ose redaktoni bllokimet e përdoruesit.',
 'ipbblocked' => 'Ju nuk mund të bllokoni ose zhbllokoni përdoruesit e tjerë, sepse jeni për vete i bllokuar',
@@ -3404,7 +3397,6 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 'watchlistall2' => 'të gjitha',
 'namespacesall' => 'të gjitha',
 'monthsall' => 'të gjitha',
-'limitall' => 'Të gjitha',
 
 # Email address confirmation
 'confirmemail' => 'Vërtetoni adresën tuaj',
@@ -3423,7 +3415,6 @@ Postieri u kthye: $1',
 'confirmemail_needlogin' => 'Ju duhet të $1 për ta konfirmuar email-adresën',
 'confirmemail_success' => 'Adresa juaj është vërtetuar. Mund të hyni brënda dhe të përdorni wiki-n.',
 'confirmemail_loggedin' => 'Adresa juaj është vërtetuar.',
-'confirmemail_error' => 'Pati gabim gjatë ruajtjes së vërtetimit tuaj.',
 'confirmemail_subject' => 'Vërtetim adrese nga {{SITENAME}}',
 'confirmemail_body' => 'Dikush, me gjasë ju, nga IP adresa $1,
 ka regjistruar një llogari "$2" me këtë e-mail adresë në {{SITENAME}}.
@@ -3648,7 +3639,6 @@ Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU Ge
 
 # Special:ComparePages
 'comparepages' => 'Krahasoni faqet',
-'compare-selector' => 'Krahasoni versionet e faqeve',
 'compare-page1' => 'Faqe 1',
 'compare-page2' => 'Faqe 2',
 'compare-rev1' => 'Version 1',

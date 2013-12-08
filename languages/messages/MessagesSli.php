@@ -967,7 +967,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'recentchanges-label-bot' => "Änderung durch an'n Bot",
 'recentchanges-label-unpatrolled' => 'Nicht-kontrollierte Änderung',
 'recentchanges-legend-newpage' => '$1 - neue Seite',
-'rcnote' => "Oagezeegt {{PLURAL:$1|wird '''1''' Ännerong|waan de letzta '''$1''' Änneronga}} {{PLURAL:$2|des letzta Taages|dar letzta '''$2''' Taage}}. Stand: $4, $5. (<b><tt>N</tt></b>&nbsp;– neuer Eentrag; <b><tt>K</tt></b>&nbsp;– kleene Ännerong; <b><tt>B</tt></b>&nbsp;– Ännerong dorch eena Bot; ''(± Zoahl)''&nbsp;– Greeßaännerong ei Byte)",
 'rcnotefrom' => "Oagezeigt waan de Änderunga seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom' => 'Oack Änneronga seit $1 zeiga.',
 'rcshowhideminor' => 'Klenne Änderunga $1',
@@ -1601,7 +1600,6 @@ Dies sullte ock erfolga, im Vandalismus zu verhindern und ei Iebereinstimmung mi
 Bitte gib dann Grund fier de Sperre oa.",
 'ipadressorusername' => 'IP-Atresse oder Benutzernoame:',
 'ipbreason' => 'Begriendung:',
-'ipbreasonotherlist' => 'Andere Begrindung',
 'ipbreason-dropdown' => '* Allgemeene Sperrgrinde
 ** Eenfiega foalscher Informationen
 ** Laara vu Seita
@@ -1616,8 +1614,6 @@ Bitte gib dann Grund fier de Sperre oa.",
 'ipbsubmit' => 'IP-Atresse/Benutzer sperra',
 'ipbother' => 'Ondere Dauer (englsch):',
 'ipboptions' => '2 Stonda:2 hours,1 Taag:1 day,3 Taage:3 days,1 Wuche:1 week,2 Wucha:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joahr:1 year,Unbeschränkt:infinite',
-'ipbotheroption' => 'Oandere Dauer',
-'ipbotherreason' => 'Andere/ergänzende Begrindung:',
 'ipbhidename' => 'Nutzernoame ei Beoarbeetunga und Listen verstecka',
 'ipbwatchuser' => 'Nutzer(dischkur)seite beobachta',
 'ipb-change-block' => 'Sperre miet diesen Sperrparametern erneuern',
@@ -1671,7 +1667,6 @@ Siehe de [[Special:BlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] fi
 'proxyblockreason' => 'Denne IP-Atresse wurde gesperrt, do se a offener Proxy ies. Bitte kontaktiere denn Internet-Provider oder denne Systemadministratoren und informiere se ieber dieses meegliche Sicherheetsproblem.',
 'sorbsreason' => 'De IP-Atresse ies ei dar DNSBL vu {{SITENAME}} ols offener PROXY gelistet.',
 'sorbs_create_account_reason' => 'De IP-Atresse ies ei dar DNSBL vu {{SITENAME}} ols offener PROXY gelistet. Doas Oalega neuer Nutzer ies ne meeglich.',
-'cant-block-while-blocked' => 'Du koast kenne andern Nutzer sperra, während du selbst gesperrt best',
 
 # Developer tools
 'lockdb' => 'Datenbank sperra',
@@ -2113,7 +2108,6 @@ Weitere werden standardmäßig nicht angezeigt.
 'watchlistall2' => 'olle',
 'namespacesall' => 'olle',
 'monthsall' => 'olle',
-'limitall' => 'olle',
 
 # Email address confirmation
 'confirmemail' => 'E-Mail-Atresse bestätiga (Authentifizierung)',
@@ -2131,7 +2125,6 @@ Rickmeldung des Mailservers: $1',
 'confirmemail_needlogin' => 'Du musst diech $1, im denne E-Mail-Atresse zu bestätiga.',
 'confirmemail_success' => 'Denne E-Mail-Atresse wurde erfolgreich bestätigt. Du koast diech jitz [[Special:UserLogin|oamelda]].',
 'confirmemail_loggedin' => 'Denne E-Mail-Atresse wurde erfolgreich bestätigt.',
-'confirmemail_error' => "Is gab an'n Fahler bei dar Bestätigung denner E-Mail-Atresse.",
 'confirmemail_subject' => '[{{SITENAME}}] - Bestätigung dar E-Mail-Atresse',
 'confirmemail_body' => 'Hallo,
 

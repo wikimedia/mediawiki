@@ -1585,7 +1585,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchanges-label-unpatrolled' => 'Iste modification non ha ancora essite patruliate',
 'recentchanges-label-plusminus' => 'Le dimension del pagina ha cambiate de iste numero de bytes',
 'recentchanges-legend-newpage' => '(vide etiam le [[Special:NewPages|lista de nove paginas]])',
-'rcnote' => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
 'rcnotefrom' => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom' => 'Monstrar nove modificationes a partir de $1',
 'rcshowhideminor' => '$1 modificationes minor',
@@ -2498,7 +2497,6 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'vider/restaurar',
 'undeleteviewlink' => 'vider',
-'undeletereset' => 'Reinitialisar',
 'undeleteinvert' => 'Inverter selection',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '{{PLURAL:$1|1 version|$1 versiones}} restaurate',
@@ -2587,7 +2585,6 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'block' => 'Blocar usator',
 'unblock' => 'Disblocar usator',
 'blockip' => 'Blocar usator',
-'blockip-title' => 'Blocar usator',
 'blockip-legend' => 'Blocar usator',
 'blockiptext' => 'Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.
@@ -2598,7 +2595,6 @@ specific que ha essite vandalisate).',
 'ipadressorusername' => 'Adresse IP o nomine de usator:',
 'ipbexpiry' => 'Expiration:',
 'ipbreason' => 'Motivo:',
-'ipbreasonotherlist' => 'Altere motivo',
 'ipbreason-dropdown' => "*Motivos frequente pro blocar
 ** Insertion de informationes false
 ** Elimination de contento de paginas
@@ -2614,8 +2610,6 @@ specific que ha essite vandalisate).',
 'ipbsubmit' => 'Blocar iste usator',
 'ipbother' => 'Altere durata:',
 'ipboptions' => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite',
-'ipbotheroption' => 'altere',
-'ipbotherreason' => 'Motivo altere/additional:',
 'ipbhidename' => 'Celar le nomine del usator del modificationes e del listas',
 'ipbwatchuser' => 'Observar le paginas de usator e de discussion de iste usator',
 'ipb-disableusertalk' => 'Impedir iste usator de modificar su proprie pagina de discussion durante que ille es blocate',
@@ -2707,7 +2701,6 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 'sorbs_create_account_reason' => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',
 'xffblockreason' => 'Un adresse IP presente in le capite X-Forwarded-For, o le tue o illo de un servitor proxy que tu usa, ha essite blocate. Le motivo original pro le blocada es: $1',
-'cant-block-while-blocked' => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
 'cant-see-hidden-user' => 'Le usator que tu tenta blocar ha ja essite blocate e celate. Post que tu non ha le derecto hideuser, tu non pote vider o modificar le blocada del usator.',
 'ipbblocked' => 'Tu non pote blocar o disblocar altere usatores, proque tu mesme es blocate',
 'ipbnounblockself' => 'Tu non ha le permission de disblocar te mesme',
@@ -3631,7 +3624,6 @@ Le alteres essera initialmente celate.
 'watchlistall2' => 'totes',
 'namespacesall' => 'totes',
 'monthsall' => 'totes',
-'limitall' => 'totes',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar adresse de e-mail',
@@ -3656,7 +3648,6 @@ Es possibile que le codice ha expirate.',
 'confirmemail_success' => 'Tu adresse de e-mail ha essite confirmate.
 Tu pote ora aperir un session e fruer te del wiki.',
 'confirmemail_loggedin' => 'Tu adresse de e-mail ha ora essite confirmate.',
-'confirmemail_error' => 'Un problema occurreva durante le salveguarda de tu confirmation.',
 'confirmemail_subject' => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
 'confirmemail_body' => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha create un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
@@ -3908,7 +3899,6 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 
 # Special:ComparePages
 'comparepages' => 'Comparar paginas',
-'compare-selector' => 'Comparar versiones de pagina',
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Version 1',

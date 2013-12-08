@@ -1251,7 +1251,6 @@ $1',
 'recentchanges-label-minor' => 'To je ńywjelge sprowjyńy',
 'recentchanges-label-bot' => 'To sprowjyńy bůło zrobjůne uod bota',
 'recentchanges-label-unpatrolled' => 'To sprowjyńy ńy bůło jeszcze uowjerzůne',
-'rcnote' => "Půńižej {{PLURAL:$1|pokozano uostatńo zmjano dokůnano|pokazano uostatńy '''$1''' zmjany naškryflane|pokozano uostatńich '''$1''' škryflań zrobjůnych}} bez {{PLURAL:$2|uostatńi dźyń|uostatńich '''$2''' dńi}}, začynojůnc uod $5 dńa $4.",
 'rcnotefrom' => 'Půńižej pokazano půmjyńańo zrobjůne pů <b>$2</b> (ńy wjyncyj jak <b>$1</b> pozycji).',
 'rclistfrom' => 'Ukoż půmjyńańa uod $1',
 'rcshowhideminor' => '$1 drobne půmjyńańa',
@@ -1880,7 +1879,6 @@ Możesz mjeć felerny link abo wersyjo můgła zostać wćepano nazod, abo wyće
 'undeletebtn' => 'Uodtwůrz',
 'undeletelink' => 'ukoż abo uodtwůrz',
 'undeleteviewlink' => 'ukoż',
-'undeletereset' => 'Wyčyść',
 'undeleteinvert' => 'Zaznocz na uopy',
 'undeletecomment' => 'Powůd wćepańo nazod:',
 'undeletedrevisions' => 'Wćepano nazod {{PLURAL:$1|1 wersyja|$1 wersyje|$1 wersyji}}',
@@ -1965,7 +1963,6 @@ Podej powůd (np. umjeszczajůnc mjana zajtůw, na kerych dopuszczůno śe wanda
 'ipadressorusername' => 'Adres IP abo mjano użytkowńika',
 'ipbexpiry' => 'Wygaso:',
 'ipbreason' => 'Čymu:',
-'ipbreasonotherlist' => 'Inkszy powůd',
 'ipbreason-dropdown' => '*Nojczynstsze powody zawjerańo uod sprawjyń
 ** Ataki na inkszych użytkowńikůw
 ** Naruszyńy praw autorskych
@@ -1982,8 +1979,6 @@ Podej powůd (np. umjeszczajůnc mjana zajtůw, na kerych dopuszczůno śe wanda
 'ipbsubmit' => 'Zawřij uod sprowjyń tygo užytkowńika',
 'ipbother' => 'Ikszy czas',
 'ipboptions' => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tydńe:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśůncůw:6 months,1 rok:1 year,nawdy:infinite',
-'ipbotheroption' => 'inkšy',
-'ipbotherreason' => 'Inkšy powůd:',
 'ipbhidename' => 'Schrůń mjano użytkowńika/adres IP w rejerze zawarć, na liśće aktywnych zawarć i liśće użytkowńikůw',
 'ipbwatchuser' => 'Dowej pozůr na zajta uosobisto i zajta godki tygo užytkowńika',
 'ipb-change-block' => 'Zmjyń sztalowańa zawarća uod sprowjyń',
@@ -2047,7 +2042,6 @@ Sprawa noležy wyjaśńić s dostawcům Internetu abo půmocům techńičnům in
 'sorbsreason' => 'Twůj adres IP znojdowo śe na liśće serwerůw open proxy w DNSBL, užywanej bez {{GRAMMAR:B.lp|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twůj adres IP znojdowo śe na liśće serwerůw open proxy w DNSBL, užywanej bez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Ńy možeš utwořić kůnta',
-'cant-block-while-blocked' => 'Ńy możesz zawjyrać uod sprowjyń inkszych użytkowńikůw, jak sam jeżeś uod ńich zawarty.',
 
 # Developer tools
 'lockdb' => 'Zawryj baza danych',
@@ -2664,7 +2658,6 @@ Kod može być předawńůny',
 'confirmemail_success' => 'Adres e-brif zostou potwjerdzůny.
 Možeš śe zalůgować i kořistać s šeršygo wachlařa fůnkcjůnalnośći wiki.',
 'confirmemail_loggedin' => 'Twůj adres e-brif zostou zweryfikowany.',
-'confirmemail_error' => 'Wystůmpiuy felery při škryflańu potwjerdzyńo.',
 'confirmemail_subject' => '{{SITENAME}} - weryfikacyjo adresa e-brif',
 'confirmemail_body' => 'Ktoś, uůnčůnc śe s kůmputra uo adreśe IP $1,
 zarejerowoú we {{GRAMMAR:MS.lp|{{SITENAME}}}} kůnto „$2” i podou ńińijšy adres e-mail.

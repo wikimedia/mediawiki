@@ -1585,7 +1585,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'recentchanges-label-bot' => 'Suntingan ini dilakukan oleh bot',
 'recentchanges-label-unpatrolled' => 'Suntingan ini belum dirondai',
 'recentchanges-legend-newpage' => '$1 - laman baru',
-'rcnote' => "Yang berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
 'rcnotefrom' => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom' => 'Papar perubahan sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
@@ -2467,7 +2466,6 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletebtn' => 'Pulihkan',
 'undeletelink' => 'lihat/pulihkan',
 'undeleteviewlink' => 'papar',
-'undeletereset' => 'Set semula',
 'undeleteinvert' => 'Kecualikan pilihan',
 'undeletecomment' => 'Sebab:',
 'undeletedrevisions' => '$1 semakan dipulihkan',
@@ -2553,7 +2551,6 @@ $1',
 'block' => 'Sekat pengguna',
 'unblock' => 'Nyahsekat pengguna',
 'blockip' => 'Sekat pengguna',
-'blockip-title' => 'Sekat pengguna',
 'blockip-legend' => 'Sekat pengguna',
 'blockiptext' => 'Gunakan borang di bawah untuk menyekat
 penyuntingan daripada alamat IP atau pengguna tertentu.
@@ -2564,7 +2561,6 @@ dirosakkan).',
 'ipadressorusername' => 'Alamat IP atau nama pengguna:',
 'ipbexpiry' => 'Tamat:',
 'ipbreason' => 'Sebab:',
-'ipbreasonotherlist' => 'Lain-lain',
 'ipbreason-dropdown' => '*Sebab lazim
 ** Memasukkan maklumat palsu
 ** Membuang kandungan daripada laman
@@ -2580,8 +2576,6 @@ dirosakkan).',
 'ipbsubmit' => 'Sekat pengguna ini',
 'ipbother' => 'Waktu lain:',
 'ipboptions' => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite',
-'ipbotheroption' => 'lain',
-'ipbotherreason' => 'Sebab tambahan/lain:',
 'ipbhidename' => 'Sembunyikan nama pengguna daripada senarai suntingan dan pengguna',
 'ipbwatchuser' => 'Pantau laman pengguna dan laman perbincangan bagi pengguna ini',
 'ipb-disableusertalk' => 'Halang pengguna ini daripada menyunting laman perbincangan sendiri apabila disekat',
@@ -2670,7 +2664,6 @@ Sila hubungi penyedia perkhidmatan Internet anda atau pihak sokongan teknikal da
 'sorbsreason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 'xffblockreason' => 'Alamat IP yang terdapat dalam pengepala X-Forwarded-For, sama ada milik anda ataupun pelayan proksi yang anda gunakan, telah disekat. Sebab asal sekatan adalah: $1',
-'cant-block-while-blocked' => 'Anda tidak boleh menyekat orang lain sedangkan anda disekat.',
 'cant-see-hidden-user' => 'Pengguna yang anda cuba sekat telahpun disekat dan tersorok.
 Memandangkan anda tidak mempunyai hak untuk menyorokkan pengguna, anda tidak boleh melihat atau menyunting sekatan pengguna tersebut.',
 'ipbblocked' => 'Anda tidak boleh menyekat atau menyahsekat pengguna lain kerana anda sendiri telah disekat',
@@ -3584,7 +3577,6 @@ Ruangan-ruangan yang lain pula akan disembunyikan pada asali.
 'watchlistall2' => 'semua',
 'namespacesall' => 'semua',
 'monthsall' => 'semua',
-'limitall' => 'semua',
 
 # Email address confirmation
 'confirmemail' => 'Sahkan alamat e-mel',
@@ -3608,7 +3600,6 @@ Pelayan mel memulangkan: $1',
 'confirmemail_needlogin' => 'Anda perlu $1 terlebih dahulu untuk mengesahkan alamat e-mel anda.',
 'confirmemail_success' => 'Alamat e-mel anda telah disahkan. Sekarang anda boleh melog masuk dan berseronok di wiki ini.',
 'confirmemail_loggedin' => 'Alamat e-mel anda telah disahkan.',
-'confirmemail_error' => 'Sesuatau yang tidak kena berlaku ketika kami menyimpan pengesahan anda.',
 'confirmemail_subject' => 'Pengesahan alamat e-mel di {{SITENAME}}',
 'confirmemail_body' => 'Seseorang, barangkali anda, dari alamat IP $1, telah mendaftarkan akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
 
@@ -3858,7 +3849,6 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 
 # Special:ComparePages
 'comparepages' => 'Perbandingan laman',
-'compare-selector' => 'Bandingkan semakan laman',
 'compare-page1' => 'Laman 1',
 'compare-page2' => 'Laman 2',
 'compare-rev1' => 'Semakan 1',

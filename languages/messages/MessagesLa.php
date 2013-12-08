@@ -1123,7 +1123,6 @@ Si vis id dare, opera tua tibi ascribentur.',
 'recentchanges-label-bot' => 'Hanc emendationem automaton fecit',
 'recentchanges-label-unpatrolled' => 'Haec recensio nondum est examinata',
 'recentchanges-legend-newpage' => '(vide etiam [[Special:NewPages|indicem paginarum novarum]])',
-'rcnote' => "Subter {{PLURAL:$1|est '''1''' nuper mutatum|sunt '''$1''' nuperrime mutata}} in {{PLURAL:$2|die proximo|'''$2''' diebus proximis}} ex $5, $4.",
 'rcnotefrom' => "Subter sunt '''$1''' nuperrime mutata in proxima '''$2''' die.",
 'rclistfrom' => 'Monstrare mutata nova incipiens ab $1',
 'rcshowhideminor' => '$1 recensiones minores',
@@ -1672,7 +1671,6 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'undeletebtn' => 'Restituere',
 'undeletelink' => 'inspicere/restituere',
 'undeleteviewlink' => 'inspicere',
-'undeletereset' => 'Reperscriptare',
 'undeleteinvert' => 'Selectionem invertere',
 'undeletecomment' => 'Causa:',
 'undeletedrevisions' => '{{PLURAL:$1|1 emendatio recuperata|$1 emendationes recuperatae}}',
@@ -1743,7 +1741,6 @@ Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo 
 'ipadressorusername' => 'Locus IP aut nomen usoris:',
 'ipbexpiry' => 'Exitus:',
 'ipbreason' => 'Causa:',
-'ipbreasonotherlist' => 'Causa alia',
 'ipbreason-dropdown' => '*Rationes crebriter adductae
 ** Ob scripta falsa
 ** Ob textum remotum
@@ -1757,8 +1754,6 @@ Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo 
 'ipbsubmit' => 'Obstruere hunc locum',
 'ipbother' => 'Exitus alius:',
 'ipboptions' => '2 horas:2 hours,1 diem:1 day,3 dies:3 days,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite',
-'ipbotheroption' => 'alius',
-'ipbotherreason' => 'Causa alia vel explicatio:',
 'ipbwatchuser' => 'Paginam usoris disputationisque huius usoris custodire',
 'ipb-change-block' => 'Obstructionem usoris modificare',
 'badipaddress' => 'Locus IP male formatus',
@@ -1809,7 +1804,6 @@ Commodule notatio obstructionum subter datur.',
 'ipb-needreblock' => '$1 iam obstructus est. Visne obstructionem modificare?',
 'ip_range_invalid' => 'Latitudo IP irrita.',
 'proxyblocker' => 'Instrumentum obstructionis moderatorum',
-'cant-block-while-blocked' => 'Dum obstructus es, non potes usores alios obstruere.',
 
 # Developer tools
 'lockdb' => 'Basem datorum obstruere',
@@ -2279,7 +2273,6 @@ Nuntius reddidit: $1',
 'confirmemail_success' => 'Tua inscriptio electronica adfirmata est.
 Libenter [[Special:UserLogin|conventum aperias]] utarisque {{grammar:ablative|{{SITENAME}}}}.',
 'confirmemail_loggedin' => 'Inscriptio tua electronica iam adfirmata est.',
-'confirmemail_error' => 'Aliquid erravit quando adfirmationem tuam servabamus.',
 'confirmemail_subject' => '{{SITENAME}} - Adfirmatio inscriptionis electronicae',
 'confirmemail_body' => 'Aliquis (probabiliter tu, ex loco IP $1)
 rationem "$2" creavit sub hac inscriptione electronica apud {{grammar:accusative|{{SITENAME}}}}.

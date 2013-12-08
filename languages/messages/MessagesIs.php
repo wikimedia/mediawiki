@@ -477,7 +477,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Um {{SITENAME}}',
 'aboutpage' => 'Project:Um verkefnið',
-'copyright' => 'Efni má nota samkvæmt $1 nema kemur fram annars.',
+'copyright' => 'Efni má nota samkvæmt $1 nema annað komi fram.',
 'copyrightpage' => '{{ns:project}}:Höfundarréttur',
 'currentevents' => 'Potturinn',
 'currentevents-url' => 'Project:Potturinn',
@@ -1625,7 +1625,6 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'recentchanges-label-bot' => 'Þessi breytingar var gerð af vélmenni',
 'recentchanges-label-unpatrolled' => 'Þessi breyting hefur ekki verið yfirfarin',
 'recentchanges-legend-newpage' => '$1 - ný síða',
-'rcnote' => "Að neðan {{PLURAL:$1|er '''1''' breyting|eru síðustu '''$1''' breytingar}} síðast {{PLURAL:$2|liðinn dag|liðna '''$2''' daga}}, frá $5, $4.",
 'rcnotefrom' => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",
 'rclistfrom' => 'Sýna breytingar frá og með $1',
 'rcshowhideminor' => '$1 minniháttar breytingar',
@@ -2511,7 +2510,6 @@ Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletebtn' => 'Endurvekja',
 'undeletelink' => 'skoða/endurvekja',
 'undeleteviewlink' => 'skoða',
-'undeletereset' => 'Endurstilla',
 'undeleteinvert' => 'Snúa vali við',
 'undeletecomment' => 'Ástæða:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
@@ -2601,7 +2599,6 @@ Síðasta færsla vistfangsins úr bönnunarskrá er sýnd hér fyrir neðan til
 'block' => 'Banna notanda',
 'unblock' => 'Afbanna notanda',
 'blockip' => 'Banna notanda',
-'blockip-title' => 'Banna notanda',
 'blockip-legend' => 'Banna notanda',
 'blockiptext' => 'Notaðu eyðublaðið hér að neðan til þess að banna ákveðið vistfang eða notandanafn.
 Þetta ætti einungis að gera til þess að koma í veg fyrir skemmdarverk, og í samræmi við [[{{MediaWiki:Policy-url}}|samþykktir]].
@@ -2609,7 +2606,6 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipadressorusername' => 'Vistfang eða notandanafn:',
 'ipbexpiry' => 'Bannið rennur út:',
 'ipbreason' => 'Ástæða:',
-'ipbreasonotherlist' => 'Aðrar ástæður',
 'ipbreason-dropdown' => '* Algengar bannástæður
 ** Setur inn rangar upplýsingar
 ** Fjarlægir efni af síðum
@@ -2625,8 +2621,6 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipbsubmit' => 'Banna notanda',
 'ipbother' => 'Annar tími:',
 'ipboptions' => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
-'ipbotheroption' => 'annar',
-'ipbotherreason' => 'Önnur/auka ástæða:',
 'ipbhidename' => 'Fela notandanafn úr breytingarskrá og listum',
 'ipbwatchuser' => 'Vakta notanda- og spjallsíður þessa notanda',
 'ipb-disableusertalk' => 'Banna þessum notanda að breyta eigin spjallsíðu',
@@ -2718,7 +2712,6 @@ Vinsamlegast hafðu samband við internetþjónustuaðilann þinn eða netstjór
 'sorbsreason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er í notkun á {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er notað af {{SITENAME}}.
 Þú getur ekki stofnað aðgang.',
-'cant-block-while-blocked' => 'Þú getur ekki bannað aðra notendur á meðan þú ert í banni.',
 'cant-see-hidden-user' => 'Notandinn sem þú ert að reyna að banna hefur þegar verið bannaður og falinn.
 Þar sem þú hefur ekki þau réttindi að fela notendur, þá getur þú ekki séð eða breytt banni notandans.',
 'ipbblocked' => 'Þú getur ekki bannað eða afbannað aðra notendur, því þú ert sjálfur í banni.',
@@ -3588,7 +3581,6 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'watchlistall2' => 'allt',
 'namespacesall' => 'öll',
 'monthsall' => 'allir',
-'limitall' => 'alla',
 
 # Email address confirmation
 'confirmemail' => 'Staðfesta netfang',
@@ -3609,7 +3601,6 @@ Póstþjónninn skilaði: $1',
 'confirmemail_needlogin' => 'Þú verður að $1 þig til að staðfesta netfangið þitt.',
 'confirmemail_success' => 'Netfang þitt hefur verið staðfest. Þú getur nú [[Special:UserLogin|skráð þig inn]] og vafrað um wiki-kerfið.',
 'confirmemail_loggedin' => 'Netfang þitt hefur verið staðfest.',
-'confirmemail_error' => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
 'confirmemail_subject' => 'Staðfesting netfangs á {{SITENAME}}',
 'confirmemail_body' => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
 
@@ -3832,7 +3823,6 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 
 # Special:ComparePages
 'comparepages' => 'Bera saman síður',
-'compare-selector' => 'Bera saman útgáfur síðna',
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
 'compare-rev1' => 'Útgáfa 1',

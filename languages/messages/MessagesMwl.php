@@ -643,7 +643,6 @@ Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.
 'recentchanges-legend' => 'Oupçones de las redadeiras altaraçones',
 'recentchanges-feed-description' => 'Acumpanha las redadeiras altaraçones de l biqui por esta semiente.',
 'recentchanges-legend-newpage' => '$1 - nuoba páigina',
-'rcnote' => "A seguir {{PLURAL:$1|stá listada '''ua''' altaraçon feita|stan '''$1''' altaraçones feitas}} {{PLURAL:$2|ne l redadeiro die|ne ls redadeiros '''$2''' dies}}, a partir de las $5 de $4.",
 'rcnotefrom' => 'Alteraçones feitas zde <b>$2</b> (amostradas até <b>$1</b>).',
 'rclistfrom' => 'Amostrar las noubas altaraçones a partir de $1',
 'rcshowhideminor' => '$1 eidiçones pequerrixas',

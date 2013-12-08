@@ -1003,7 +1003,6 @@ Eger bildirseñiz, saifelerdeki deñiştirmelerni kimniñ yapqanını köstermek
 'recentchanges-label-bot' => 'Bu bir botnıñ yapqan deñiştirmesi',
 'recentchanges-label-unpatrolled' => 'Bu deñiştirme alâ daa teşkerilmegen',
 'recentchanges-legend-newpage' => '$1 - yañı saife',
-'rcnote' => "$4 $5 tarihında soñki {{PLURAL:$2|künde|'''$2''' künde}} yapılğan '''{{PLURAL:$1|1|$1}}''' deñiştirme:",
 'rcnotefrom' => "'''$2''' tarihından itibaren yapılğan deñiştirmeler aşağıdadır (eñ çоq '''$1''' dane saife kösterile).",
 'rclistfrom' => '$1 tarihından berli yapılğan deñiştirmelerni köster',
 'rcshowhideminor' => 'kiçik deñiştirmelerni $1',
@@ -1496,7 +1495,6 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'viewdeletedpage' => 'Yoq etilgen saifelerge baq',
 'undeletebtn' => 'Keri ketir!',
 'undeletelink' => 'köster/keri ketir',
-'undeletereset' => 'Vazgeç',
 'undeletecomment' => 'Sebep:',
 'undeletedrevisions' => 'Toplam {{PLURAL:$1|1 qayd|$1 qayd}} keri ketirildi.',
 'undelete-header' => 'Keçenlerde yоq etilgen saifelerni körmek içün [[Special:Log/delete|yоq etüv jurnalına]] baqıñız.',
@@ -1553,8 +1551,6 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'ipbsubmit' => 'Bu qullanıcını blok et',
 'ipbother' => 'Farqlı zaman',
 'ipboptions' => '2 saat:2 hours,1 kün:1 day,3 kün:3 days,1 afta:1 week,2 afta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,müddetsiz:infinite',
-'ipbotheroption' => 'farqlı',
-'ipbotherreason' => 'Diger/ilâveli sebep:',
 'badipaddress' => 'Yañlış IP adresi',
 'blockipsuccesssub' => 'Blok etme muvafaqiyetnen yapıldı',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] blok etildi.<br />
@@ -1886,7 +1882,6 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 'watchlistall2' => 'episini',
 'namespacesall' => 'Episi',
 'monthsall' => 'Episi',
-'limitall' => 'bütüni',
 
 # Email address confirmation
 'confirmemail' => 'E-mail adresini tasdıqla',
@@ -1905,7 +1900,6 @@ Serverniñ cevabı: $1',
 'confirmemail_needlogin' => '$1 yapmaq içün başta e-mail adresiñizni tasdıqlamalısıñız.',
 'confirmemail_success' => 'E-mail adresiñiz tasdıqlandı.',
 'confirmemail_loggedin' => 'E-mail adresiñiz tasdıqlandı.',
-'confirmemail_error' => 'Tasdıqıñız bilinmegen bir hata sebebinden qayd etilmedi.',
 'confirmemail_subject' => '{{SITENAME}} e-mail adres tasdıqı.',
 'confirmemail_body' => '$1 IP adresinden yapılğan irişim ile {{SITENAME}} saytında
 bu e-mail adresinen bağlanğan $2 qullanıcı esabı
@@ -2035,7 +2029,6 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 
 # Special:ComparePages
 'comparepages' => 'Saifelerni teñeştirüv',
-'compare-selector' => 'Saifelerniñ versiyalarını teñeştirüv',
 'compare-submit' => 'Teñeştir',
 
 # HTML forms

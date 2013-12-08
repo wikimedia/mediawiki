@@ -582,7 +582,7 @@ Jaribu tena.',
 'passwordtooshort' => 'Ni lazima neno la siri liwe na {{PLURAL:$1|herufi}} $1 au zaidi.',
 'password-name-match' => 'Neno lako la siri lazima liwe tofauti na jina lako la mtumiaji.',
 'password-login-forbidden' => 'Utumiaji wa jina hili na neno lake siri imekatazwa.',
-'mailmypassword' => 'Nitume neno la siri jipya kwa barua-pepe',
+'mailmypassword' => 'Nitumie neno la siri jipya kwa barua-pepe',
 'passwordremindertitle' => 'Neno la siri jipya la muda kwa ajili ya {{SITENAME}}',
 'passwordremindertext' => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
 ameulizia neno jipya la siri kwa {{SITENAME}} ($4).
@@ -930,8 +930,8 @@ Sababu iliyotolewa na $3 ni ''$2''",
 Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = tofauti na pitio lililotangulia, '''({{int:minoreditletter}})''' = badiliko dogo.",
 'history-fieldset-title' => 'Fungua historia',
 'history-show-deleted' => 'Zilizofutwa tu',
-'histfirst' => 'Mwanzoni',
-'histlast' => 'Mwishoni',
+'histfirst' => 'zamani',
+'histlast' => 'mpya',
 'historysize' => '({{PLURAL:$1|baiti}}) $1',
 'historyempty' => '(tupu)',
 
@@ -1369,7 +1369,6 @@ Taarifa hii itakuwa wazi.',
 'recentchanges-label-bot' => 'Sahihisho hili lilitekelezwa na bot',
 'recentchanges-label-unpatrolled' => 'Haririo hili bado halijafanyiwa doria',
 'recentchanges-legend-newpage' => '$1 - ukurasa mpya',
-'rcnote' => "{{PLURAL:$1|Linalofuata ni badiliko '''1'''|Yanayofuata ni mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi saa $5, tarehe $4.",
 'rcnotefrom' => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
 'rclistfrom' => 'Onyesha mabadiliko mapya kuanzia $1',
 'rcshowhideminor' => '$1 mabadiliko madogo',
@@ -2138,7 +2137,6 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'undeletebtn' => 'Rudisha',
 'undeletelink' => 'onyesha/rejesha',
 'undeleteviewlink' => 'tazama',
-'undeletereset' => 'Panga upya',
 'undeleteinvert' => 'Geuza uteuzi',
 'undeletecomment' => 'Sababu:',
 'undeletedrevisions' => '{{PLURAL:$1|pitio 1 lilirudishwa|mapitio $1 yalirudishwa}}',
@@ -2213,7 +2211,6 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'block' => 'Kumzuia mtumiaji',
 'unblock' => 'Kuacha kumzuia mtumiaji',
 'blockip' => 'Zuia mtumiaji',
-'blockip-title' => 'Kumzuia mtumiaji',
 'blockip-legend' => 'Kumzuia mtumiaji',
 'blockiptext' => 'Tumia fomu iliyopo chini kumzuia mtu asihariri kwa kupitia anwani fulani wa IP au kwa kutumia jina fulani la mtumiaji.
 Nia ya kumzuia mtu inatakiwa kuwa kuzuia uharibifu tu, na ifanikiwe kutokana na masharti ya [[{{MediaWiki:Policy-url}}|sera]].
@@ -2221,7 +2218,6 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'ipadressorusername' => 'Anwani ya IP au jina la mtumiaji:',
 'ipbexpiry' => 'Itakwisha:',
 'ipbreason' => 'Sababu:',
-'ipbreasonotherlist' => 'Sababu nyingine',
 'ipbreason-dropdown' => '*Sababu za kawaida za kuzuia
 ** Kuingiza habari za uongo
 ** Kuondosha yaliyomo katika kurasa
@@ -2237,8 +2233,6 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'ipbsubmit' => 'Zuia mtumiaji huyu',
 'ipbother' => 'Muda mwingine:',
 'ipboptions' => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
-'ipbotheroption' => 'engine',
-'ipbotherreason' => 'Engine/sababu ya ziada:',
 'ipbhidename' => 'Ficha jina la mtumiaji katika orodha na kuhariri',
 'ipbwatchuser' => 'Fuatilia kurasa za mtumiaji na majadiliano ya mtumiaji huyu.',
 'ipb-disableusertalk' => 'Kuzuia mtumiaji huu asihariri ukurasa wake mwenyewe wa majadiliano wakati amezuluiwa',
@@ -2571,7 +2565,7 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'file-info-size-pages' => 'Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5',
 'file-nohires' => 'Hakuna saizi kubwa zaidi.',
 'svg-long-desc' => 'faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3',
-'show-big-image' => 'Faili lenyewe',
+'show-big-image' => 'Faili halisi',
 'show-big-image-preview' => 'Ukubwa wa hakikisho: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Ukubwa mwingine|Ukubwa zingine}}: $1.',
 'show-big-image-size' => 'piseli $1 × $2',
@@ -2822,7 +2816,6 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'watchlistall2' => 'zote',
 'namespacesall' => 'zote',
 'monthsall' => 'yote',
-'limitall' => 'zote',
 
 # Email address confirmation
 'confirmemail' => 'Kuyakinisha anwani ya barua pepe',
@@ -2847,7 +2840,6 @@ Huenda zimepitwa na wakati.',
 'confirmemail_success' => 'Barua pepe yako imethibitishwa.
 Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',
 'confirmemail_loggedin' => 'Anwani ya barua pepe yako imethibishwa sasa.',
-'confirmemail_error' => 'Kuna mambo yameenda kombo hifadhi ukamilisho wako.',
 'confirmemail_subject' => 'Barua pepe ya uthibitisho ya {{SITENAME}}',
 'confirmemail_body' => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, amesajili akaunti "$2" na anwani ya barua pepe hii kwenye {{SITENAME}}.
 
@@ -3048,7 +3040,6 @@ Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public Lic
 
 # Special:ComparePages
 'comparepages' => 'Linganisha kurasa',
-'compare-selector' => 'Kulinganisha mapitio',
 'compare-page1' => 'Ukurasa wa kwanza',
 'compare-page2' => 'Ukurasa wa pili',
 'compare-rev1' => 'Pitio la kwanza',

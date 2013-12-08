@@ -1426,7 +1426,6 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'recentchanges-label-bot' => 'Rọ́bọ́ọ̀tì ni ó ṣe àtúnṣe yìí',
 'recentchanges-label-unpatrolled' => 'Àtúnṣe yìí kò tí ì jẹ́ onísíṣọ́',
 'recentchanges-legend-newpage' => '$1 - ojúewé tuntun',
-'rcnote' => "Lábẹ́ ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1''' tí wọn gbẹ̀yìn}} láàrin {{PLURAL:$2|ọjọ́ kan|ọjọ́ '''$2'''}} sẹ́yìn ní ago $5, lọ́jọ́ $4.",
 'rcnotefrom' => "Àwọn àtúnṣe láti ''''$2''' (títí dé '''$1''' hàn) lábẹ́.",
 'rclistfrom' => 'Àfihàn àwọn àtúnṣe tuntun nípa bíbẹ̀rẹ̀ láti $1',
 'rcshowhideminor' => '$1 àwọn àtúnṣe kékéèké',
@@ -2306,7 +2305,6 @@ Tó bá jẹ́ báyìí, ẹ gbọ́dọ̀ yọ àmì ihò-àpótí tàbí kí �
 'undeletebtn' => 'Dápadà',
 'undeletelink' => 'wò/dápadà',
 'undeleteviewlink' => 'wo',
-'undeletereset' => 'Ìtúnṣètò',
 'undeleteinvert' => 'Pàṣípààrọ̀ àsàyàn',
 'undeletecomment' => 'Ìdíẹ̀:',
 'undeletedrevisions' => '{{PLURAL:$1|Àtúnyẹ̀wò 1|Àwọn àtúnyẹ̀wò $1}} ti jẹ́ dídápadà',
@@ -2396,7 +2394,6 @@ $1',
 'block' => 'Dínà oníṣe',
 'unblock' => 'Ìmúkúrò ìdínà oníṣe',
 'blockip' => 'Dínà oníṣe',
-'blockip-title' => 'Ìdínà oníṣẹ',
 'blockip-legend' => 'Ìdínà oníṣẹ',
 'blockiptext' => 'Ẹ lo fọ́ọ̀mù ìsàlẹ̀ láti dínà ìle kọ láti ọ̀dọ̀ àdírẹ́ẹ̀sì IP pàtó kan tàbí orúkọ oníṣe.
 Ẹyí gbọ́dọ̀ jẹ́ síṣe láti dínà ìṣèbàjẹ́ nìkan, àtí gẹ́gẹ́bí [[{{MediaWiki:Policy-url}}|ètò ìsiṣẹ́]].
@@ -2404,7 +2401,6 @@ $1',
 'ipadressorusername' => 'Àdírẹ́ẹ̀sì IP tàbí orúkọ oníṣe:',
 'ipbexpiry' => 'Ìwásópin:',
 'ipbreason' => 'Ìdíẹ̀:',
-'ipbreasonotherlist' => 'Ìdí mìíràn',
 'ipbreason-dropdown' => '*Àwọn ìdí fún ìdínà
 ** Àròyé tí kò jẹ́ òtítọ́
 ** Yíyọ àkóónú kúrò nínú ojúewé
@@ -2420,8 +2416,6 @@ $1',
 'ipbsubmit' => 'Dínà oníṣe yìí',
 'ipbother' => 'Àkókò míràn:',
 'ipboptions' => '2 wákàtí:2 hours,1 ọjọ́:1 day,3 ọjọ́:3 days,1 ọ̀ṣẹ̀:1 week,2 ọ̀ṣẹ̀:2 weeks,1 osù:1 month,3 osù:3 months,6 osù:6 months,1 ọdún:1 year,àílópin:infinite',
-'ipbotheroption' => 'òmíràn',
-'ipbotherreason' => 'Ìdí míràn/àfikún:',
 'ipbhidename' => 'Ìbómọ́lẹ̀ orúkọ oníṣe nínú àwọn àtúnṣe àti àwọn àkójọ',
 'ipbwatchuser' => 'Ìmójútó àwọn ojúewé oníṣe àti ọ̀rọ̀ oníṣe yìí',
 'ipb-disableusertalk' => 'Ìdínà oníṣe yìí láti ṣàtúnṣe ojúewé ọ̀rọ̀ wọn lásìkò kannáà tí wọ́n jẹ́ dídílọ́nà',
@@ -2512,7 +2506,6 @@ Sùgbọ́n ó jẹ́ dídílọ́nà gẹ́gẹ́bí ìkan nínú ìgbàjá $2,
 'sorbsreason' => 'Àdírẹ́ẹ̀sì IP yín jẹ́ títòjọ bíi ẹ̀rọ-ìwọ̀fà ẹlòmíràn àsíílẹ̀ nínú DNSBL tí {{SITENAME}} lò.',
 'sorbs_create_account_reason' => 'Àdírẹ́ẹ̀sì IP yín jẹ́ títòjọ bíi ẹ̀rọ-ìwọ̀fà ẹlòmíràn àsíílẹ̀ nínú DNSBL tí {{SITENAME}} lò.
 Ẹ kò le dá àpamọ́.',
-'cant-block-while-blocked' => 'Ẹ kò le dínà àwọn oníṣe míràn lásìkò kannáà tí ẹ jẹ́ dídílọ́nà.',
 'cant-see-hidden-user' => 'Oníṣe tí ẹ fẹ́ dínà tilẹ̀ ti jẹ́ dídílọ́nà, ó sì jẹ́ bíbòmọ́lẹ̀.
 Nítorípé ẹ kò ní ẹ̀tọ́ ìbòmọ́lẹ̀ oníṣe, ẹ kò le rí tàbí ṣàtúnṣe ìdínà oníṣe náà.',
 'ipbblocked' => 'Ẹ kò le dínà tàbí ṣe àìdínà àwọn oníṣe míràn nítorípé ẹ̀yin gangan jẹ́ dídínà.',
@@ -3259,7 +3252,6 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'watchlistall2' => 'gbogbo',
 'namespacesall' => 'gbogbo',
 'monthsall' => 'gbogbo',
-'limitall' => 'gbogbo',
 
 # Email address confirmation
 'confirmemail' => "Ṣè'múdájú àdírẹ́ẹ̀sì e-mail",
@@ -3278,7 +3270,6 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'confirmemail_success' => 'Àdírẹ́ẹ́sì e-mail yín ti jẹ́ mímúdájú.
 Ẹ le [[Special:UserLogin|wọlé]] nísìnhin láti gbádùn wiki yìí.',
 'confirmemail_loggedin' => 'Àdírẹ́ẹ̀sì e-mail yín ti dájú.',
-'confirmemail_error' => 'Àsìṣe ṣẹlẹ̀ láti fi ìmójútó yín pamọ́.',
 'confirmemail_subject' => 'Ìmúdájú àdírẹ́ẹ̀sì e-mail fún {{SITENAME}}',
 'confirmemail_body' => 'Ẹnìkan, bóyá ẹ̀yin sì ni, láti àdírẹ́ẹ̀sì IP $1,
 ti ṣe ìforúkọsílẹ̀ àpamọ́ kan "$2" pẹ̀lú àdírẹ́ẹ̀sì e-mail yìí lórí {{SITENAME}}.
@@ -3483,7 +3474,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'Ìfiwéra àwọn ojúewé',
-'compare-selector' => 'Ìfiwéra àwọn àtúnyẹ̀wò ojúewé',
 'compare-page1' => 'Ojúewé 1',
 'compare-page2' => 'Ojúewé 2',
 'compare-rev1' => 'Àtúnyẹ̀wò 1',

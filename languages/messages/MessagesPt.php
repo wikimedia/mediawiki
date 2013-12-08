@@ -1746,7 +1746,6 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'recentchanges-legend-newpage' => '(ver também a [[Special:NewPages|lista de páginas novas]])',
-'rcnote' => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
@@ -2646,7 +2645,6 @@ Pode ter usado um link incorreto ou talvez a revisão tenha sido restaurada ou r
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'ver/restaurar',
 'undeleteviewlink' => 'ver',
-'undeletereset' => 'Limpar',
 'undeleteinvert' => 'Inverter seleção',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
@@ -2735,14 +2733,12 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'block' => 'Bloquear utilizador',
 'unblock' => 'Desbloquear utilizador',
 'blockip' => 'Bloquear utilizador',
-'blockip-title' => 'Bloquear utilizador',
 'blockip-legend' => 'Bloquear utilizador',
 'blockiptext' => 'Utilize o formulário abaixo para bloquear o acesso de escrita a um endereço IP específico ou a um nome de utilizador.
 Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Indique a seguir um motivo de bloqueio específico (por exemplo, indicando as páginas que foram alvo de vandalismo).',
 'ipadressorusername' => 'Endereço IP ou nome de utilizador:',
 'ipbexpiry' => 'Expiração:',
 'ipbreason' => 'Motivo:',
-'ipbreasonotherlist' => 'Outro motivo',
 'ipbreason-dropdown' => '*Razões comuns para um bloqueio
 ** Inserção de informações falsas
 ** Remoção de conteúdos de páginas
@@ -2758,8 +2754,6 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipbsubmit' => 'Bloquear este utilizador',
 'ipbother' => 'Outro período:',
 'ipboptions' => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite',
-'ipbotheroption' => 'outro',
-'ipbotherreason' => 'Outro motivo/motivo adicional:',
 'ipbhidename' => 'Ocultar nome de utilizador nas edições e listas',
 'ipbwatchuser' => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
 'ipb-disableusertalk' => 'Impedir que este utilizador edite a sua página de discussão enquanto estiver bloqueado',
@@ -2849,7 +2843,6 @@ Contacte o seu fornecedor de internet ou o serviço de apoio técnico e informe-
 'sorbsreason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}.",
 'sorbs_create_account_reason' => "O seu endereço IP encontra-se listado como ''proxy'' aberto na DNSBL utilizada pela {{SITENAME}}. Não pode criar uma conta",
 'xffblockreason' => 'Um endereço IP presente no cabeçalho X-Forwarded-For, seja seu ou de um servidor de proxy que estiver a usar, foi bloqueado. A razão do bloqueio original foi: $1',
-'cant-block-while-blocked' => 'Não pode bloquear outros utilizadores enquanto estiver bloqueado.',
 'cant-see-hidden-user' => "O utilizador que está tentando bloquear já está bloqueado e oculto.
 Como não tem o privilégio para ocultar utilizadores ''(hideuser)'', não pode ver ou editar o bloqueio deste utilizador.",
 'ipbblocked' => 'Não pode bloquear ou desbloquear outros, porque está bloqueado',
@@ -3770,7 +3763,6 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'watchlistall2' => 'todas',
 'namespacesall' => 'todos',
 'monthsall' => 'todos',
-'limitall' => 'tudo',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar endereço de correio electrónico',
@@ -3794,7 +3786,6 @@ O sistema de correio devolveu o erro: $1',
 'confirmemail_success' => 'O seu endereço de correio electrónico foi confirmado.
 Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_loggedin' => 'O seu endereço de correio electrónico foi confirmado.',
-'confirmemail_error' => 'Alguma coisa correu mal ao gravar a sua confirmação.',
 'confirmemail_subject' => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
 'confirmemail_body' => 'Alguém, provavelmente você a partir do endereço IP $1,
 registrou uma conta "$2" com este endereço de correio eletrónico na {{SITENAME}}.
@@ -4046,7 +4037,6 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 
 # Special:ComparePages
 'comparepages' => 'Comparar páginas',
-'compare-selector' => 'Comparar edições da página',
 'compare-page1' => 'Página 1',
 'compare-page2' => 'Página 2',
 'compare-rev1' => 'Edição 1',

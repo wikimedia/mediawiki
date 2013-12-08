@@ -710,7 +710,6 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|na tinilaika|na tinilaika siha}}',
 'recentchanges' => 'Tinilaika siha gi halacha',
-'rcnote' => "Guåha {{PLURAL:$1|'''1''' na tinilaika|'''$1''' na tinilaika siha}} gi {{PLURAL:$2|day|'''$2''' days}}, ginen $5, $4.",
 'rcnotefrom' => "Gi papa' guåha i tinilaika siha ginen '''$2''' (fa'na'an '''$1''' ma'annok).",
 'rclistfrom' => "Na'annok i mannuebun tinilaika siha ginen $1",
 'rcshowhideminor' => "$1 na mandikike' na tinilaika siha",

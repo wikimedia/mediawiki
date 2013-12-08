@@ -1526,7 +1526,6 @@ Toś ta informacija buźo zjawna.',
 'recentchanges-label-plusminus' => 'Změnjona wjelikosc boka (licba bajtow)',
 'recentchanges-legend-newpage' => '(glej teke [[Special:NewPages|lisćinu nowych bokow]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Dołojce {{PLURAL:$1|jo '''1''' změna|stej slědnej '''$1''' změnje|su slědne '''$1''' změny}} w {{PLURAL:$2|slědnem dnju|slědnyma '''$2''' dnjoma|slědnych '''$2''' dnjach}}, staw wót $4, $5.",
 'rcnotefrom' => "Dołojce pokazuju se změny wót '''$2''' (maks. '''$1''' zapisow).",
 'rclistfrom' => 'Nowe změny wót $1 pokazaś.',
 'rcshowhideminor' => 'Snadne změny $1',
@@ -2399,7 +2398,6 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 'undeletebtn' => 'Wótnowiś',
 'undeletelink' => 'woglědaś se/wótnowiś',
 'undeleteviewlink' => 'woglědaś se',
-'undeletereset' => 'Slědk wześ',
 'undeleteinvert' => 'Wuběrk pśewobrośiś',
 'undeletecomment' => 'Pśicyna:',
 'undeletedrevisions' => '{{PLURAL:$1|1 wersija jo se nawrośiła|$1 wersiji stej se nawrośiłej|$1 wersije su se nawrośili}}.',
@@ -2487,13 +2485,11 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'block' => 'Wužywarja blokěrowaś',
 'unblock' => 'Blokěrowanje wužywarja wótpóraś',
 'blockip' => 'Wužywarja blokěrowaś',
-'blockip-title' => 'Wužywarja blokěrowaś',
 'blockip-legend' => 'Wužywarja blokěrowaś',
 'blockiptext' => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipadressorusername' => 'IP-adresa abo wužywarske mě',
 'ipbexpiry' => 'Cas blokěrowanja:',
 'ipbreason' => 'Pśicyna:',
-'ipbreasonotherlist' => 'Druga pśicyna',
 'ipbreason-dropdown' => '*powšykne pśicyny blokěrowanja
 ** pódawanje njepšawych informacijow
 ** wulašowanje wopśimjeśa bokow
@@ -2509,8 +2505,6 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'ipbsubmit' => 'Togo wužywarja blokěrowaś.',
 'ipbother' => 'Drugi cas:',
 'ipboptions' => '2 góźinje:2 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite',
-'ipbotheroption' => 'drugi',
-'ipbotherreason' => 'Hynakša/dalšna pśicyna:',
 'ipbhidename' => 'Wužywarske mě w změnach a lisćinach schowaś',
 'ipbwatchuser' => 'Wužywarski a diskusijny bok toś togo wužywarja wobglědowaś',
 'ipb-disableusertalk' => 'Toś tomu wužywarjeju zawobaraś swój bok wobźěłaś, gaž wón jo zablokěrowany.',
@@ -2595,7 +2589,6 @@ Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśe
 'sorbsreason' => 'Twója IP-adresa jo w DNSBL we {{GRAMMAR:lokatiw|{{SITENAME}}}} zapisana ako wócynjony proxy.',
 'sorbs_create_account_reason' => 'Twója IP-adresa jo w DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} ako wócynjony proxy zapisana. Njejo móžno, nowe wužywarske konta załožowaś.',
 'xffblockreason' => 'IP-adresa w header X-Forwarded-For, pak twója pak ta proksy-serwera, kótaryž wužywaš, jo se zablokěrowała. Spócetna pśicyna za blokěrowanje jo była: $1',
-'cant-block-while-blocked' => 'Njesmějoš žednych drugich wužywarjow blokěrowaś, mjaztym až ty sy blokěrowany.',
 'cant-see-hidden-user' => 'Wužywaŕ, kótaregož wopytujoš blokěrowaś, jo južo zablokěrowany a schowany. Dokulaž njamaš pšawo wužywarja schowaś, njamóžoš blokěrowanje wužywarja wiźeś abo wobźěłaś.',
 'ipbblocked' => 'Njamóžoš drugich wužywarjow blokěrowaś abo wótblokěrowaś, dokulaž ty sam jo zablokěrowany',
 'ipbnounblockself' => 'Njesmějoš se samogo wótblokěrowaś',
@@ -3499,7 +3492,6 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'watchlistall2' => 'wšykne',
 'namespacesall' => 'wšykne',
 'monthsall' => 'wšykne',
-'limitall' => 'wšykne',
 
 # Email address confirmation
 'confirmemail' => 'E-mailowu adresu wobkšuśiś.',
@@ -3517,7 +3509,6 @@ E-mailowy program jo wrośił: $1',
 'confirmemail_success' => 'Twója e-mailowa adresa jo wobkšuśona
 Móžoš se něnto [[Special:UserLogin|pśizjawiś]] a se wikiju wijaseliś.',
 'confirmemail_loggedin' => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
-'confirmemail_error' => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
 'confirmemail_subject' => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
 'confirmemail_body' => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
 
@@ -3771,7 +3762,6 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 
 # Special:ComparePages
 'comparepages' => 'Boki pśirownaś',
-'compare-selector' => 'Wersije boka pśirownaś',
 'compare-page1' => 'Bok 1',
 'compare-page2' => 'Bok 2',
 'compare-rev1' => 'Wersija 1',

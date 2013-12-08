@@ -1687,7 +1687,6 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'recentchanges-label-bot' => 'Túto úpravy vykonal robot',
 'recentchanges-label-unpatrolled' => 'Táto úprava zatiaľ nebola strážená',
 'recentchanges-legend-newpage' => '(pozri tiež [[Special:NewPages|zoznam nových stránok]])',
-'rcnote' => "Tu {{PLURAL:$1|je posledná úprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} z $4, $5.",
 'rcnotefrom' => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
 'rcshowhideminor' => '$1 drobné úpravy',
@@ -2565,7 +2564,6 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeletebtn' => 'Obnoviť!',
 'undeletelink' => 'zobraziť/obnoviť',
 'undeleteviewlink' => 'zobraziť',
-'undeletereset' => 'Reset',
 'undeleteinvert' => 'Invertovať výber',
 'undeletecomment' => 'Dôvod:',
 'undeletedrevisions' => '{{PLURAL:$1|jedna verzia bola obnovená|$1 verzie boli obnovené|$1 verzií bolo obnovených}}',
@@ -2653,7 +2651,6 @@ Nižšie si môžete pozrieť najnovšiu položku záznamu blokovaní:',
 'block' => 'Zablokovať používateľa',
 'unblock' => 'Odblokovať používateľa',
 'blockip' => 'Zablokovať používateľa',
-'blockip-title' => 'Zablokovať používateľa',
 'blockip-legend' => 'Zablokovať používateľa',
 'blockiptext' => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
 Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
@@ -2661,7 +2658,6 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipadressorusername' => 'IP adresa/meno používateľa:',
 'ipbexpiry' => 'Ukončenie:',
 'ipbreason' => 'Dôvod:',
-'ipbreasonotherlist' => 'Iný dôvod',
 'ipbreason-dropdown' => '* Bežné dôvody blokovania
 ** Zámerné vkladanie chybných informácií
 ** Mazanie obsahu stránok
@@ -2677,8 +2673,6 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbsubmit' => 'Zablokovať tohto používateľa',
 'ipbother' => 'Iný čas',
 'ipboptions' => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite',
-'ipbotheroption' => 'iný čas',
-'ipbotherreason' => 'Iný/ďalší dôvod',
 'ipbhidename' => 'Skryť meno používateľa z úprav a zoznamov',
 'ipbwatchuser' => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
 'ipb-disableusertalk' => 'Zabrániť tomuto používateľovi upravovať vlastnú diskusnú stránku, kým je zablokovaný',
@@ -2767,7 +2761,6 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'sorbsreason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
 'xffblockreason' => 'IP adresa prítomná v hlavičke X-Forwarded-For patriaca buď vám alebo proxy serveru, ktorý používate, je zablokovaná. Pôvodný dôvod zablokovania bol: $1',
-'cant-block-while-blocked' => 'Nemôžete blokovať iných používateľov, kým ste zablokovaný.',
 'cant-see-hidden-user' => 'Používateľ, ktorého sa pokúšate zablokovať už bol zablokovaný a skrytý. Pretože nemáte právo hideuser, nemôžete vidieť ani upravovať blokovanie používateľa.',
 'ipbblocked' => 'Nemôžete zablokovať ani odblokovať iných používateľov, pretože ste sami zablokovaní',
 'ipbnounblockself' => 'Nie je povolené, aby ste sa sami odblokovali',
@@ -3703,7 +3696,6 @@ Ostatné budú predvolene skryté.
 'watchlistall2' => 'všetky',
 'namespacesall' => 'všetky',
 'monthsall' => 'všetky',
-'limitall' => 'všetky',
 
 # Email address confirmation
 'confirmemail' => 'Potvrdiť e-mailovú adresu',
@@ -3728,7 +3720,6 @@ Hlásenie programu, ktorý odosielal poštu: $1',
 'confirmemail_needlogin' => 'Musíte sa $1 na potvrdenie vašej emailovaj adresy.',
 'confirmemail_success' => 'Vaša e-mailová adresa bola potvrdená. Môžete sa prihlásiť a využívať wiki.',
 'confirmemail_loggedin' => 'Vaša e-mailová adresa bola potvrdená.',
-'confirmemail_error' => 'Niečo sa pokazilo pri ukladaní vášho potvrdenia.',
 'confirmemail_subject' => '{{SITENAME}} - potvrdenie e-mailovej adresy',
 'confirmemail_body' => 'Niekto, pravdepodobne vy z IP adresy $1, zaregistroval účet
 „$2“ s touto e-mailovou adresou na {{GRAMMAR:lokál|{{SITENAME}}}}.
@@ -3983,7 +3974,6 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 
 # Special:ComparePages
 'comparepages' => 'Porovnať stránky',
-'compare-selector' => 'Porovnať revízie stránky',
 'compare-page1' => 'Stránka 1',
 'compare-page2' => 'Stránka 2',
 'compare-rev1' => 'Revízia 1',

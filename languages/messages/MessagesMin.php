@@ -1408,7 +1408,6 @@ Alamaik surel Sanak indakkan tau dek urang nan manghubuangi sanak tu.',
 'recentchanges-label-minor' => 'Iko suntiangan ketek',
 'recentchanges-label-bot' => 'Suntiang ko dibuek dek bot',
 'recentchanges-label-unpatrolled' => 'Suntiangan ko alun dipatroli',
-'rcnote' => "Berikuik ko {{PLURAL:$1|'''$1'''}} parubahan dalam {{PLURAL:$2|'''$2''' hari}} tarakhia, sampai $4, pukul $5.",
 'rcnotefrom' => "Di bawah ko ado parubahan mulai dari '''$2''' (sampai '''$1''' parubahan).",
 'rclistfrom' => 'Tunjuakan parubahan baru mulai dari tanggal $1',
 'rcshowhideminor' => '$1 suntiangan ketek',
@@ -1983,7 +1982,6 @@ Entri log sakek tabaru ado di bawah ko untuak referensi:',
 'block' => 'Sakek pangguno',
 'unblock' => 'Lapeh sakek',
 'blockip' => 'Sakek pangguno',
-'blockip-title' => 'Sakek pangguno',
 'blockip-legend' => 'Sakek pangguno',
 'blockiptext' => 'Gunoan formulir di bawah ko untuak manyakek akses dari sabuah alamaik IP atau pangguno.
 Iko hanyo buliah dilakuan untuak mancagah vandal, dan sajalan jo [[{{MediaWiki:Policy-url}}|kabijakan]].
@@ -1991,7 +1989,6 @@ Masuakan alasan sakek di bawah (contoh, mambuek karusakan atau vandal).',
 'ipadressorusername' => 'Alamaik IP atau namo pangguno:',
 'ipbexpiry' => 'Sampai:',
 'ipbreason' => 'Alasan:',
-'ipbreasonotherlist' => 'Alasan lain',
 'ipbreason-dropdown' => '*Alasan umum sakek
 ** Marusak (vandal)
 ** Mangagiah informasi palsu
@@ -2009,8 +2006,6 @@ Masuakan alasan sakek di bawah (contoh, mambuek karusakan atau vandal).',
 'ipbsubmit' => 'Sakek pangguno ko',
 'ipbother' => 'Salamo:',
 'ipboptions' => '2 jam:2 hours,1 ari:1 day,3 ari:3 days,1 pakan:1 week,2 pakan:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 taun:1 year,salamonyo:infinite',
-'ipbotheroption' => 'lainnyo',
-'ipbotherreason' => 'Alasan lain/tambahan:',
 'ipbhidename' => 'Suruakan namo pangguno dari daftar jo suntiangan',
 'ipbwatchuser' => 'Pantau laman pangguno ko jo laman rundiangnyo',
 'ipb-disableusertalk' => 'Halang pangguno ko manyuntiang laman diskusinyo wakatu disakek',
@@ -2491,7 +2486,6 @@ Nan lainnyo akan tasuruak sacaro baku.
 'watchlistall2' => 'kasadonyo',
 'namespacesall' => 'sadonyo',
 'monthsall' => 'sadonyo',
-'limitall' => 'sadonyo',
 
 # Table pager
 'table_pager_limit_label' => 'Item per laman:',
@@ -2611,7 +2605,6 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 
 # Special:ComparePages
 'comparepages' => 'Bandiangkan laman',
-'compare-selector' => 'Bandiangkan revisi laman',
 'compare-page1' => 'Laman 1',
 'compare-page2' => 'Laman 2',
 'compare-rev1' => 'Revisi 1',

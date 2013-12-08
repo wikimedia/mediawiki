@@ -1245,7 +1245,6 @@ $1',
 'recentchanges-label-bot' => 'دغه سمون د يو روباټ لخوا ترسره شوی',
 'recentchanges-label-unpatrolled' => 'دغه سمون تر اوسه پورې نه دی څارل شوی',
 'recentchanges-legend-newpage' => '(دا هم وگورۍ [[Special:NewPages|د نويو مخونو لړليک]])',
-'rcnote' => "دلته لاندې {{PLURAL:$1|وروستی '''1''' بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په  {{PLURAL:$2| يوې ورځ|'''$2''' ورځو}} کې تر $4 نېټې او $5 بجو پېښ شوي.",
 'rcnotefrom' => "په همدې ځای کې لاندې هغه بدلونونه دي چې د '''$2''' نه راپدېخوا پېښ شوي (تر '''$1''' پورې ښکاره شوي).",
 'rclistfrom' => 'هغه نوي بدلونونه ښکاره کول چې له $1 نه پيلېږي',
 'rcshowhideminor' => 'وړې سمونې $1',
@@ -1853,7 +1852,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'undeletebtn' => 'بيازېرمل',
 'undeletelink' => 'کتل/بيازېرمل',
 'undeleteviewlink' => 'کتل',
-'undeletereset' => 'بياايښودل',
 'undeleteinvert' => 'ټاکنې سرچپه کول',
 'undeletecomment' => 'سبب:',
 'undeletedfiles' => '{{PLURAL:$1|1 دوتنه بيازېرمه شوه|$1 دوتنې بيازېرمه شوې}}',
@@ -1915,12 +1913,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'block' => 'په کارن بنديز لگول',
 'unblock' => 'کارن له بنديزه وېستل',
 'blockip' => 'په کارن بنديز لگول',
-'blockip-title' => 'په کارن بنديز لگول',
 'blockip-legend' => 'په کارن بنديز لگول',
 'ipadressorusername' => 'IP پته يا کارن نوم',
 'ipbexpiry' => 'د پای نېټه:',
 'ipbreason' => 'سبب:',
-'ipbreasonotherlist' => 'بل لامل',
 'ipbreason-dropdown' => '*د بنديز ټولگړي سببونه
 ** د ناسمو مالوماتو خپرول
 ** د مخونو د مېنځپانگې ړنگول
@@ -1933,8 +1929,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipbsubmit' => 'په دې کارن بنديز لگول',
 'ipbother' => 'بل وخت:',
 'ipboptions' => '2 ساعتونه:2 hours,1 ورځ:1 day,3 ورځې:3 days,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
-'ipbotheroption' => 'نور',
-'ipbotherreason' => 'بل/اضافه سبب:',
 'ipbhidename' => 'کارن-نوم له سمون او لړليکونو پټول',
 'ipb-confirm' => 'د بنديز تاييد',
 'badipaddress' => 'ناسمه IP پته',
@@ -2469,7 +2463,6 @@ $1',
 'watchlistall2' => 'ټول',
 'namespacesall' => 'ټول',
 'monthsall' => 'ټول',
-'limitall' => 'ټول',
 
 # Email address confirmation
 'confirmemail' => 'د برېښليک پتې پخلی وکړی',
@@ -2480,7 +2473,6 @@ $1',
 که تاسې غونډال ته ورننوځی نو تاسې دې کوډ ته اړتيا نه لرۍ، خو تاسې هغه وخت همدې درلېږل شوي کوډ ته اړتيا لرۍ، کله چې په ويکي کې د برېښليک پر بنسټ نورې کړنې چارنول غواړی.',
 'confirmemail_needlogin' => 'ددې لپاره چې ستاسې د برېښليک پتې پخلی وشي، تاسې ته پکار ده چې $1.',
 'confirmemail_loggedin' => 'اوس ستاسې د برېښليک پتې پخلی وشو.',
-'confirmemail_error' => 'ستاسې د برېښليک پتې د تاييد په خوندي کولو کې يوه ستونزه رامېنڅ ته شوه.',
 'confirmemail_subject' => 'د {{SITENAME}} د برېښليک پتې تاييد',
 'confirmemail_body' => 'يو چا او يا هم کيدای شي چې تاسې پخپله، د $1 IP پتې نه،
 د "$2" په نامه يو گڼون په همدې بريښليک پتې د {{SITENAME}} په وېبځي کې ثبت کړی.
@@ -2685,7 +2677,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'مخونه پرتلل',
-'compare-selector' => 'د مخ بڼې سره پرتلل',
 'compare-page1' => '۱ مخ',
 'compare-page2' => '۲ مخ',
 'compare-rev1' => '۱ بڼه',

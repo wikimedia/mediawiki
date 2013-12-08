@@ -1698,7 +1698,6 @@ Se vos chouèsésséd de lo balyér, serat empleyê por vos atribuar voutres ôv
 'recentchanges-label-bot' => 'Ceti changement est étâ fêt per un robot',
 'recentchanges-label-unpatrolled' => 'Ceti changement est p’oncor étâ gouardâ',
 'recentchanges-legend-newpage' => '$1 - pâge novèla',
-'rcnote' => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|lo jorn passâ|los '''$2''' jorns passâs}} tant qu’a $5 lo $4.",
 'rcnotefrom' => "Vê-que los changements fêts dês lo '''$2''' (tant qu’a '''$1''' montrâs).",
 'rclistfrom' => 'Montrar los novéls changements dês lo $1',
 'rcshowhideminor' => '$1 los petiôts changements',
@@ -2597,7 +2596,6 @@ Pôt-étre vos éd un crouyo lim ou ben la vèrsion at possu étre refêta ou en
 'undeletebtn' => 'Refâre',
 'undeletelink' => 'vêre / refâre',
 'undeleteviewlink' => 'vêre',
-'undeletereset' => 'Rebetar a zérô',
 'undeleteinvert' => 'Envèrsar lo chouèx',
 'undeletecomment' => 'Rêson :',
 'undeletedrevisions' => '$1 {{PLURAL:$1|vèrsion refêta|vèrsions refêtes}}',
@@ -2687,7 +2685,6 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'block' => 'Blocar l’usanciér',
 'unblock' => 'Dèblocar l’usanciér',
 'blockip' => 'Blocar l’usanciér',
-'blockip-title' => 'Blocar l’usanciér',
 'blockip-legend' => 'Blocar l’usanciér',
 'blockiptext' => 'Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’usanciér.
 Una tâla mesera devrêt étre prêsa ren que por empachiér lo vandalismo et en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].
@@ -2695,7 +2692,6 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipadressorusername' => 'Adrèce IP ou ben nom d’usanciér :',
 'ipbexpiry' => 'Temps devant èxpiracion :',
 'ipbreason' => 'Rêson :',
-'ipbreasonotherlist' => 'Ôtra rêson',
 'ipbreason-dropdown' => '*Rêsons corentes de blocâjo
 ** Entrebetâ d’enformacions fôsses
 ** Suprèssion de contegnu de les pâges
@@ -2711,8 +2707,6 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipbsubmit' => 'Blocar ceti usanciér',
 'ipbother' => 'Ôtro temps :',
 'ipboptions' => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
-'ipbotheroption' => 'ôtra',
-'ipbotherreason' => 'Ôtra rêson / rêson de ples :',
 'ipbhidename' => 'Cachiér lo nom d’usanciér des changements et de les listes',
 'ipbwatchuser' => 'Siuvre les pâges usanciér et de discussion a ceti usanciér',
 'ipb-disableusertalk' => 'Empache cél usanciér de changiér sa prôpra pâge de discussion pendent lo temps de son blocâjo',
@@ -2806,7 +2800,6 @@ Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra a
 'sorbsreason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.",
 'sorbs_create_account_reason' => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
 Vos pouede pas fâre un compto.",
-'cant-block-while-blocked' => 'Vos pouede pas blocar d’ôtros usanciérs tant que vos éte blocâ.',
 'cant-see-hidden-user' => 'L’usanciér que vos tâchiéd de blocar at ja étâ blocâ et cachiê.
 Pas èyent lo drêt hideuser, vos pouede pas vêre ou ben changiér lo blocâjo a l’usanciér.',
 'ipbblocked' => 'Vos pouede pas blocar ou ben dèblocar d’ôtros usanciérs, perce que vos éte vos-mémo blocâ',
@@ -3703,7 +3696,6 @@ Los ôtros champs seront cachiês per dèfôt.
 'watchlistall2' => 'tot',
 'namespacesall' => 'tôs',
 'monthsall' => 'tôs',
-'limitall' => 'tôs',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar l’adrèce èlèctronica',
@@ -3728,7 +3720,6 @@ Ceti at pôt-étre èxpirâ.',
 'confirmemail_success' => 'Voutra adrèce èlèctronica at étâ confirmâ.
 Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
 'confirmemail_loggedin' => 'Ora, voutra adrèce èlèctronica est confirmâ.',
-'confirmemail_error' => 'Un problèmo est arrevâ pendent l’encartâjo de voutra confirmacion.',
 'confirmemail_subject' => 'Confirmacion d’adrèce èlèctronica por {{SITENAME}}',
 'confirmemail_body' => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
 at encartâ un compto « $2 » avouéc cela adrèce èlèctronica dessus {{SITENAME}}.
@@ -4031,7 +4022,6 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 
 # Special:ComparePages
 'comparepages' => 'Comparar des pâges',
-'compare-selector' => 'Comparar les vèrsions de les pâges',
 'compare-page1' => 'Pâge 1',
 'compare-page2' => 'Pâge 2',
 'compare-rev1' => 'Vèrsion 1',

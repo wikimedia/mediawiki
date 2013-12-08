@@ -543,7 +543,7 @@ $messages = array(
 'mediawikipage' => 'Хьагайта хааман агӀо',
 'templatepage' => 'Хьажа кепа агӀоне',
 'viewhelppage' => 'Схьаэца гӀо',
-'categorypage' => 'Хьажа категореши агӀоне',
+'categorypage' => 'Хьажа категорешан агӀоне',
 'viewtalkpage' => 'Хьажа дийцаре',
 'otherlanguages' => 'Кхечу маттахь дерш',
 'redirectedfrom' => '(ДӀасахьажийна кху $1)',
@@ -1345,7 +1345,6 @@ $1',
 'recentchanges-label-bot' => 'ХӀара нисдар шаболх бечо дина',
 'recentchanges-label-unpatrolled' => 'ХӀара нисдар хӀинца цхьано патрулировать дина дац',
 'recentchanges-legend-newpage' => '$1 — керла агlо',
-'rcnote' => "{{PLURAL:$1|Тlаьххьара '''$1''' хийцам|Тlаьххьара '''$1''' хийцамаш|Тlаьххьара '''$1''' хийцамаш}} за '''$2''' {{PLURAL:$2|де|дийнахь|дийнахь}}, оцу хан чохь $5 $4.",
 'rcnotefrom' => "Лахахь гайтина тӀера '''$2''' хийцамаш ('''$1''' къезиг).",
 'rclistfrom' => 'Гайта хийцам оцу $1.',
 'rcshowhideminor' => '$1 кегийра нисдарш',
@@ -1400,8 +1399,10 @@ $1',
 [[$1|thumb]]',
 'fileexists-forbidden' => 'Иштта цӀе йолу файл йолуш ю цундела тӀехула дӀаязян йиш яц.
 ТӀаккха а хьара файл чуяккха лууш делахь, дехар до, юха а гӀой файлан цӀе хийца а яй чуяккха файл. [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate' => 'ХӀара файл лахарчу {{PLURAL:$1|файлан|файлийн}} дубликат ю:',
 'file-deleted-duplicate' => 'Иштта файл ([[:$1]]) хӀинцале дӀаяьккхина хилла. Дехар до, юху файл чуяккхале файл дӀаяккхаран историга хьажа.',
 'uploadwarning' => 'Дlахьедар',
+'uploadwarning-text' => 'Дехар до, лахара файлах лаьцнарг хийца а дай юху а гӀорта файл чуяккха.',
 'uploadedimage' => 'чуяккхина «[[$1]]»',
 'overwroteimage' => 'Чуяккхина файлан керла верси «[[$1]]»',
 'upload-source' => 'ДIайолалун файл',
@@ -1498,6 +1499,7 @@ PICT # тайп тайпан
 'mimesearch' => 'MIME хула лаха',
 'mimesearch-summary' => 'ХӀокху агӀоно йиш хуьлуьйту MIME-тайпан файлаш харжа. Яздеш долу формат: чулацаман тайп/бухара тайп, масала  <code>image/jpeg</code>.',
 'mimetype' => 'MIME-тайп:',
+'download' => 'чуяккха',
 
 # Unwatched pages
 'unwatchedpages' => 'Цхьамо тергам ца беш йолу агIонаш',
@@ -1524,14 +1526,14 @@ PICT # тайп тайпан
 # Statistics
 'statistics' => 'Бухехьдерг',
 'statistics-header-pages' => 'Агlонашан жамlа',
-'statistics-header-edits' => 'Нисдаран жамlа',
+'statistics-header-edits' => 'Нисдаран жамӀ',
 'statistics-header-users' => 'Декъашхойн жамӀа',
 'statistics-articles' => 'Яззамаш',
 'statistics-pages' => 'Агlонаш',
 'statistics-pages-desc' => 'Массо вики агlонаш, дийцаре агlонашцани, дlасахьаждарш а кхин дерш.',
 'statistics-files' => 'Чуйаьхна файлаш',
 'statistics-edits' => 'Нисдаран дукхалла {{grammar:genitive|{{SITENAME}}}} дlа йолайаларца',
-'statistics-edits-average' => 'Йукъера агlонан нисдаран терхь',
+'statistics-edits-average' => 'Юккъера агӀонан нисдаран терахь',
 'statistics-users' => '[[ВП:Дlаязвалар|Дlаязбелларш]] шаберигге декъашхой чохь болу [[Special:ListUsers|(могlам)]]',
 'statistics-users-active' => 'Жигара декъашхой',
 'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хlум дина болу, кху {{PLURAL:$1|тlаьххьара $1 динахь|тlаьххьара $1 дийнахь}}',
@@ -1831,7 +1833,6 @@ PICT # тайп тайпан
 'undeletebtn' => 'МеттахӀоттае',
 'undeletelink' => 'хьажа/меттахӀоттае',
 'undeleteviewlink' => 'хьажа',
-'undeletereset' => 'ЦӀанъян',
 'undeleteinvert' => 'Къастае массо',
 'undeletecomment' => 'Бахьан:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|хийцамаш|хийцамаш|хийцамаш}} меттахӀоттайина',
@@ -1906,7 +1907,6 @@ PICT # тайп тайпан
 'ipadressorusername' => 'IP-адрес я декъашхочун цӀе:',
 'ipbexpiry' => 'Хан чекхйолу:',
 'ipbreason' => 'Бахьан:',
-'ipbreasonotherlist' => 'Кхин бахьан',
 'ipbreason-dropdown' => '* Белхан некъ дӀакъовлар бахьанаш:
 ** Харца хаам бар
 ** АгӀонан чураниг дӀаяккхар
@@ -1922,7 +1922,6 @@ PICT # тайп тайпан
 'ipbsubmit' => 'Блоктоха хӀокху декъашхочун/адресна',
 'ipbother' => 'Кхин хан:',
 'ipboptions' => '2 сахьат:2 hours,1 де:1 day,3 де:3 days,1 кlиран:1 week,2 кlиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
-'ipbotherreason' => 'Кхин бахьан/тӀетохар:',
 'ipbwatchuser' => 'ТӀетоха тергаме могӀам юкъа цуьнан долахь йолу агӀо а цуьнан дийцаре агӀо а',
 'ipb-disableusertalk' => 'Цамагдо шин дийцаре агӀо та я блоктоьхна хан чекхъяллалц',
 'ipb-change-block' => 'Юхаблоктоха декъашхочун оьцу хийцамашца',
@@ -2143,7 +2142,7 @@ PICT # тайп тайпан
 'tooltip-ca-nstab-image' => 'Хlуман агlо',
 'tooltip-ca-nstab-mediawiki' => 'Хааман агlо MediaWiki',
 'tooltip-ca-nstab-template' => 'Куцкепа агlо',
-'tooltip-ca-nstab-category' => 'Категореши агӀо',
+'tooltip-ca-nstab-category' => 'Категорешан агӀо',
 'tooltip-minoredit' => 'Къастам бé хlокху хийцамна кlеззиг боуш санна',
 'tooltip-save' => 'Хьан хийцамаш lалашбой',
 'tooltip-preview' => 'Дехар до, агlо lалаш йарал хьалха хьажа муха йу яз!',
@@ -2334,7 +2333,6 @@ PICT # тайп тайпан
 'watchlistall2' => 'массо',
 'namespacesall' => 'массо',
 'monthsall' => 'массо',
-'limitall' => 'массо',
 
 # Delete conflict
 'confirmrecreate' => "Декъашхочо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хӀара агӀо дӀаяккхина, ахьа иза тая йолийча, дӀаяккхарна бахьна:
@@ -2455,7 +2453,6 @@ PICT # тайп тайпан
 
 # Special:ComparePages
 'comparepages' => 'АгӀонаш муха ю хьажар',
-'compare-selector' => 'АгӀонашан версеш муха ю хьажар',
 'compare-page1' => 'Дуьххьаралера агӀо',
 'compare-page2' => 'ШолгӀа агӀо',
 'compare-rev1' => 'Дуьххьаралера верси',

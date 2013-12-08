@@ -928,7 +928,6 @@ HTML-тегдеринин тууралыгын текшериңиз.',
 'recentchanges-label-minor' => 'Бул майда оңдоо',
 'recentchanges-label-bot' => 'Бул оңдоо бот тарабынан жасалды',
 'recentchanges-label-unpatrolled' => 'Бул оңдоо күзөттөн өтө элек.',
-'rcnote' => "Ылдый жакта $5, $4 карата соңку {{PLURAL:$2|күндө|'''$2''' күндө}} жасалган {{PLURAL:$1| '''1''' өзгөрүү| '''$1''' өзгөрүү}}.",
 'rcnotefrom' => "'''$2''' -тан өзгөрүүлөр ылдый жакта ('''$1''' чейин көрсөтүлдү).",
 'rclistfrom' => '$1 күнүнөн баштап жаңы өзгөртүүлөрдү көрсөтүү',
 'rcshowhideminor' => 'Майда оңдоолорду $1',
@@ -1211,7 +1210,6 @@ To include a file in a page, use a link in one of the following forms:
 'undeletebtn' => 'Калыбына келтирүү',
 'undeletelink' => 'кароо/калыбына келтирүү',
 'undeleteviewlink' => 'көрүнүшү',
-'undeletereset' => 'Түшүрүү',
 'undeletecomment' => 'Себеп:',
 'undelete-search-submit' => 'Издөө',
 'undelete-show-file-submit' => 'Ооба',
@@ -1261,15 +1259,12 @@ To include a file in a page, use a link in one of the following forms:
 # Block/unblock
 'block' => 'Колдонуучуну бөгөттөө',
 'blockip' => 'Колдонуучуну бөгөттөө',
-'blockip-title' => 'Колдонуучуну бөгөттөө',
 'blockip-legend' => 'Колдонуучуну бөгөттөө',
 'ipadressorusername' => 'IP-дарек же колдонуучунун аты:',
 'ipbreason' => 'Себеп:',
-'ipbreasonotherlist' => 'Башка себеп',
 'ipbsubmit' => 'Бул колдонуучуну бөгөттөө',
 'ipbother' => 'Башка убакыт:',
 'ipboptions' => '2 саат:2 hours,1 күн:1 day,3 күн:3 days,1 жума:1 week,2 жума:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мөөнөтсүз:infinite',
-'ipbotheroption' => 'башка',
 'ipblocklist' => 'Бөгөттөлгөн колдонуучулар',
 'blocklist-target' => 'Максат',
 'blocklist-reason' => 'Себеп',
@@ -1656,7 +1651,6 @@ To include a file in a page, use a link in one of the following forms:
 'watchlistall2' => 'баары',
 'namespacesall' => 'баары',
 'monthsall' => 'баары',
-'limitall' => 'баары',
 
 # Email address confirmation
 'confirmemail' => 'Электрондук даректи аныктоо',
@@ -1753,7 +1747,6 @@ To include a file in a page, use a link in one of the following forms:
 
 # Special:ComparePages
 'comparepages' => 'Барактарды салыштыруу',
-'compare-selector' => 'Барактардын версияларын салыштыруу',
 'compare-page1' => 'Биринчи барак',
 'compare-page2' => 'Экинчи барак',
 'compare-rev1' => 'Биринчи версия',

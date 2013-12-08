@@ -817,7 +817,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'recentchanges-label-minor' => 'Cangiamento minô (m)',
 'recentchanges-label-bot' => "Sto cangiaménto o l'à fæto in bot",
 'recentchanges-label-unpatrolled' => "Sto cangiaménto o no l'é stæto ancón verificòu",
-'rcnote' => "Chì sotta {{PLURAL:$1|l'é elencou o cangiaménto ciù reçente|son elencæ i '''$1''' cangiaménti ciù reçenti}} a-o scîto {{PLURAL:$2|inte ùrtime 24 ôe|inti ùrtimi '''$2''' giorni}}; i dæti son agiornæ a-e $5 do $4.",
 'rcnotefrom' => "Chì sotta gh'è i cangiamenti fæti comensando da '''$2''' (scin a '''$1''').",
 'rclistfrom' => 'Fanni vedde e modiffiche apportæ partindo da $1',
 'rcshowhideminor' => '$1 cangiaménti minoi',

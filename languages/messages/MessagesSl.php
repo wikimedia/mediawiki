@@ -1610,7 +1610,6 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-label-unpatrolled' => 'Urejanje še ni bilo pregledano',
 'recentchanges-label-plusminus' => 'Uporabnik je velikost strani spremenil za tolikšno število bajtov.',
 'recentchanges-legend-newpage' => '(glej tudi [[Special:NewPages|seznam novih strani]])',
-'rcnote' => "Prikazujem {{PLURAL:$1|zadnjo spremembo|zadnji '''$1''' spremembi|zadnje '''$1''' spremembe|zadnjih '''$1''' sprememb|zadnjih '''$1''' sprememb}} v {{PLURAL:$2|zadnjem|zadnjih|zadnjih|zadnjih|zadnjih}} '''$2''' {{PLURAL:$2|dnevu|dneh|dneh|dneh|dneh}}, od $5, $4.",
 'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
 'rcshowhideminor' => '$1 manjša urejanja',
@@ -2516,7 +2515,6 @@ Morda imate napačno povezavo ali pa je bila redakcija obnovljena ali odstranjen
 'undeletebtn' => 'Obnovi',
 'undeletelink' => 'poglej/obnovi',
 'undeleteviewlink' => 'ogled',
-'undeletereset' => 'Ponastavi',
 'undeleteinvert' => 'Obrni izbor',
 'undeletecomment' => 'Razlog:',
 'undeletedrevisions' => '{{PLURAL:$1|obnovljena $1 redakcija|obnovljeni $1 redakciji|obnovljene $1 redakcije|obnovljenih $1 redakcij}}',
@@ -2606,7 +2604,6 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'block' => 'Blokiraj uporabnika',
 'unblock' => 'Odblokiraj uporabnika',
 'blockip' => 'Blokiranje IP-naslova ali uporabniškega imena',
-'blockip-title' => 'Blokiraj uporabnika',
 'blockip-legend' => 'Blokiraj uporabnika',
 'blockiptext' => "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje.
 To storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]].
@@ -2614,7 +2611,6 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'ipadressorusername' => 'IP-naslov ali uporabniško ime',
 'ipbexpiry' => 'Pretek',
 'ipbreason' => 'Razlog:',
-'ipbreasonotherlist' => 'Drug razlog',
 'ipbreason-dropdown' => '*Razlogi za blokado
 ** vandalizem
 ** dodajanje napačnih/lažnih podatkov
@@ -2630,8 +2626,6 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'ipbsubmit' => 'Blokiraj naslov',
 'ipbother' => 'Drugačen čas',
 'ipboptions' => '2 uri:2 hours,1 dan:1 day,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite',
-'ipbotheroption' => 'drugo',
-'ipbotherreason' => 'Drug/dodaten razlog:',
 'ipbhidename' => 'Skrij uporabniško ime iz urejanja in seznamov',
 'ipbwatchuser' => 'Nadzoruj uporabnikovo uporabniško in pogovorno stran',
 'ipb-disableusertalk' => 'Med blokado prepreči temu uporabniku urejati lastno pogovorno stran',
@@ -2723,7 +2717,6 @@ Gre za resno varnostno težavo, o kateri obvestite svojega internetnega ponudnik
 'sorbs_create_account_reason' => 'Vaš IP-naslov je v DNSBL, ki ga uporablja {{GRAMMAR:tožilnik|{{SITENAME}}}}, naveden kot odprti posredniški strežnik (proxy).
 Računa žal ne morete ustvariti.',
 'xffblockreason' => 'IP-naslov, prisoten v glavi X-Forwarded-For, ali vaš ali od strežnika proxy, ki ga uporabljate, je blokiran. Izvirni razlog za blokado: $1',
-'cant-block-while-blocked' => 'Ne morete blokirati drugih uporabnikove, medtem ko ste sami blokirani.',
 'cant-see-hidden-user' => 'Uporabnik, ki ga poskušate blokirate, je že blokiran in skrit.
 Ker nimate pravice hideuser, si ne morete ogledati ali urejati uporabnikove blokade.',
 'ipbblocked' => 'Ne morete blokirati ali deblokirati drugih uporabnikov, saj ste sami blokirani',
@@ -3636,7 +3629,6 @@ Druga bodo po privzetem skrita.
 'watchlistall2' => 'vse',
 'namespacesall' => 'vse',
 'monthsall' => 'vse',
-'limitall' => 'vse',
 
 # Email address confirmation
 'confirmemail' => 'Potrditev naslova elektronske pošte',
@@ -3657,7 +3649,6 @@ Posrednik e-pošte je vrnil: $1',
 'confirmemail_needlogin' => 'Za potrditev svojega e-poštnega naslova se morate $1.',
 'confirmemail_success' => 'Vaš e-poštni naslov je potrjen. Zdaj se lahko prijavite in uporabljate wiki.',
 'confirmemail_loggedin' => 'Svoj elektronski naslov ste uspešno potrdili.',
-'confirmemail_error' => 'Vaša potrditev se žal ni shranila.',
 'confirmemail_subject' => 'Potrditev e-poštnega naslova',
 'confirmemail_body' => 'Nekdo, verjetno vi, z IP-naslovom $1,
 je v {{GRAMMAR:dajalnik|{{SITENAME}}}} ustvaril račun »$2« in zanj vpisal ta elektronski naslov.
@@ -3913,7 +3904,6 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 
 # Special:ComparePages
 'comparepages' => 'Primerjaj strani',
-'compare-selector' => 'Primerjaj redakcije strani',
 'compare-page1' => 'Stran 1',
 'compare-page2' => 'Stran 2',
 'compare-rev1' => 'Redakcija 1',

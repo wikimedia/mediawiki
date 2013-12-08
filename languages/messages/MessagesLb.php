@@ -1588,7 +1588,6 @@ Dës Informatioun ass ëffentlech.",
 'recentchanges-label-unpatrolled' => 'Dës Ännerung gouf nach net nogekuckt',
 'recentchanges-legend-newpage' => '(kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])',
 'recentchanges-legend-plusminus' => "''(±123)''",
-'rcnote' => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
 'rcnotefrom' => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
 'rclistfrom' => 'Nei Ännerunge vu(n) $1 u weisen',
 'rcshowhideminor' => 'Kleng Ännerunge $1',
@@ -2464,7 +2463,6 @@ A sou Fäll däerf déi neist Versioun net markéiert ginn oder déi neist gelä
 'undeletebtn' => 'Restauréieren',
 'undeletelink' => 'weisen/restauréieren',
 'undeleteviewlink' => 'weisen',
-'undeletereset' => 'Ofbriechen',
 'undeleteinvert' => 'Auswiel ëmdréinen',
 'undeletecomment' => 'Grond:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|Versioun gouf|$1 Versioune goufe}} restauréiert',
@@ -2552,13 +2550,11 @@ $1',
 'block' => 'Benotzer spären',
 'unblock' => "D'Spär vum Benotzer ophiewen",
 'blockip' => 'Benotzer spären',
-'blockip-title' => 'Benotzer spären',
 'blockip-legend' => 'Benotzer spären',
 'blockiptext' => 'Benotzt dëse Formulaire fir eng spezifesch IP-Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat den [[{{MediaWiki:Policy-url}}|interne Richlinen]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).',
 'ipadressorusername' => 'IP-Adress oder Benotzernumm:',
 'ipbexpiry' => 'Gültegkeet:',
 'ipbreason' => 'Grond:',
-'ipbreasonotherlist' => 'Anere Grond',
 'ipbreason-dropdown' => "*Heefeg Ursaache fir Benotzer ze spären:
 **Bewosst falsch Informatiounen an eng oder méi Säite gesat
 **Ouni Grond Inhalt vu Säite geläscht
@@ -2574,8 +2570,6 @@ $1',
 'ipbsubmit' => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipbother' => 'Aner Dauer:',
 'ipboptions' => '2 Stonnen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
-'ipbotheroption' => 'Aner Dauer',
-'ipbotherreason' => 'Aneren oder zousätzleche Grond:',
 'ipbhidename' => 'Benotzernumm op Lëschten a bei Ännerunge verstoppen',
 'ipbwatchuser' => 'Dësem Benotzer seng Benotzer- an Diskussiouns-Säit iwwerwaachen',
 'ipb-disableusertalk' => "Dëse Benotzer dorun hënnere fir seng eegen Diskussiounssäit z'ännere sou laang wéi et gespaart ass",
@@ -2665,7 +2659,6 @@ Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.
 'sorbsreason' => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason' => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
 'xffblockreason' => 'Eng IP-Adress am X-Forwarded-For-Header gouf gespaart, entweder Är oder déi vum Proxyserver deen Dir benotzt. De Grond vun der Spär war: $1',
-'cant-block-while-blocked' => 'Dir däerft keng aner Benotzer spären, sou lang wéi Dir selwer gespaart sidd.',
 'cant-see-hidden-user' => "De Benotzer deen Dir versicht ze spären ass scho gespaart a verstoppt. Well Dir d'Recht ''Hideuser'' net hutt kënnt Dir dëse Benotzer net gesinn an dem Benotzer seng Spär net änneren.",
 'ipbblocked' => 'Dir kënnt keng aner Benotzer spären oder hir Spär ophiewen well Dir selwer gespaart sidd',
 'ipbnounblockself' => 'Dir kënnt Är Spär net selwer ophiewen',
@@ -3570,7 +3563,6 @@ Déi aner sinn am Standard verstoppt.
 'watchlistall2' => 'all',
 'namespacesall' => 'all',
 'monthsall' => 'all',
-'limitall' => 'all',
 
 # Email address confirmation
 'confirmemail' => 'E-Mailadress confirméieren',
@@ -3589,7 +3581,6 @@ Feelermeldung vum Mailserver: $1',
 'confirmemail_needlogin' => 'Dir musst iech $1, fir är E-Mail-Adress ze confirméieren.',
 'confirmemail_success' => 'Är E-Mailadress gouf confirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéieren.',
 'confirmemail_loggedin' => 'Är E-Mail-Adress gouf elo confirméiert.',
-'confirmemail_error' => 'Et ass eppes falsch gelaf bäim Späichere vun ärer Confirmatioun.',
 'confirmemail_subject' => 'Confirmatioun vun der E-Mail-Adress fir {{SITENAME}}',
 'confirmemail_body' => 'E Benotzer, waarscheinlech dir selwer, hutt mat der IP Adress $1 de Benotzerkont "$2" um Site {{SITENAME}} opgemaach.
 
@@ -3659,6 +3650,9 @@ Dëse Confirmatiounscode leeft den $4 of.',
 'imgmultipagenext' => 'nächst Säit →',
 'imgmultigo' => 'Lass!',
 'imgmultigoto' => "Géi op d'Säit $1",
+
+# Language selector for translatable SVGs
+'img-lang-go' => 'Lass',
 
 # Table pager
 'ascending_abbrev' => 'erop',
@@ -3830,7 +3824,6 @@ Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 
 # Special:ComparePages
 'comparepages' => 'Säite vergläichen',
-'compare-selector' => 'Versioune vu Säite vergläichen',
 'compare-page1' => 'Säit 1',
 'compare-page2' => 'Säit 2',
 'compare-rev1' => 'Versioun 1',
@@ -3982,6 +3975,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'rotate-comment' => 'Bild ëm $1 {{PLURAL:$1|Grad}} an der Richtung vun der Auer gedréint',
 
 # Limit report
+'limitreport-title' => 'Profilingdate vum Parser:',
 'limitreport-cputime' => 'CPU-Zäit-Notzung',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
 'limitreport-walltime' => 'Echtzäitnotzung',

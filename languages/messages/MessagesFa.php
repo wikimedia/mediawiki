@@ -1877,7 +1877,6 @@ $1",
 'recentchanges-label-plusminus' => 'حجم صفحه به اندازه این بایت‌ها تغییر یافته‌است',
 'recentchanges-legend-newpage' => '(همچنین به [[Special:NewPages|فهرست صفحات جدید]] نگاه کنید)',
 'recentchanges-legend-plusminus' => "('' ±۱۲۳'')",
-'rcnote' => "در زیر {{PLURAL:$1|'''۱''' تغییر|آخرین '''$1''' تغییر}} در آخرین {{PLURAL:$2|روز|'''$2''' روز}} را، تا $4 ساعت $5 می‌بینید.",
 'rcnotefrom' => 'در زیر تغییرات از تاریخ <b>$2</b> آمده‌اند (تا <b>$1</b> مورد نشان داده می‌شود).',
 'rclistfrom' => 'نمایش تغییرات جدید با شروع از $1',
 'rcshowhideminor' => '$1 ویرایش‌های جزئی',
@@ -2775,7 +2774,6 @@ $PAGEINTRO $NEWPAGE
 'undeletebtn' => 'احیا',
 'undeletelink' => 'نمایش/احیا',
 'undeleteviewlink' => 'نمایش',
-'undeletereset' => 'از نو',
 'undeleteinvert' => 'وارونه کردن انتخاب',
 'undeletecomment' => 'دلیل:',
 'undeletedrevisions' => '$1 نسخه احیا {{PLURAL:$1|شد|شدند}}',
@@ -2865,7 +2863,6 @@ $1',
 'block' => 'بستن کاربر',
 'unblock' => 'بازکردن کاربر',
 'blockip' => 'بستن کاربر',
-'blockip-title' => 'بستن کاربر',
 'blockip-legend' => 'بستن کاربر',
 'blockiptext' => 'از فرم زیر برای بستن دسترسی ویرایش یک نشانی آی‌پی یا نام کاربری مشخص استفاده کنید.
 این کار فقط فقط باید برای جلوگیری از خرابکاری و بر اساس [[{{MediaWiki:Policy-url}}|سیاست قطع دسترسی]] انجام شود.
@@ -2873,7 +2870,6 @@ $1',
 'ipadressorusername' => 'نشانی آی‌پی یا نام کاربری:',
 'ipbexpiry' => 'زمان سرآمدن:',
 'ipbreason' => 'دلیل:',
-'ipbreasonotherlist' => 'دلیل دیگر',
 'ipbreason-dropdown' => '*دلایل متداول قطع دسترسی
 **واردکردن اطلاعات نادرست
 **پاک‌کردن اطلاعات مفید از صفحه‌ها
@@ -2889,8 +2885,6 @@ $1',
 'ipbsubmit' => 'این کاربر بسته شود',
 'ipbother' => 'زمانی دیگر',
 'ipboptions' => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite',
-'ipbotheroption' => 'دیگر',
-'ipbotherreason' => 'دلیل دیگر/اضافی:',
 'ipbhidename' => 'نهفتن نام کاربری از ویرایش‌ها و فهرست‌ها',
 'ipbwatchuser' => 'پی‌گیری صفحهٔ کاربری و بحث این کاربر',
 'ipb-disableusertalk' => 'جلوگیری از ویرایشی صفحهً بحث توسط خود کاربر در زمانی که بسته است',
@@ -2983,7 +2977,6 @@ $1',
 'sorbs_create_account_reason' => 'نشانی آی‌پی شما توسط DNSBL مورد استفاده {{SITENAME}} به عنوان یک پروکسی باز گزارش شده‌است.
 شما اجازهٔ ساختن حساب کاربری ندارید.',
 'xffblockreason' => 'نشانی آی‌پی در X-Forwarded-For header موجود است و پروکسی شما یا سروری که از آن استفاده می‌کنید بسته‌شده‌است. دلیل بسته‌شدن: $1',
-'cant-block-while-blocked' => 'در مدتی که دسترسی شما بسته است نمی‌توانید دسترسی کاربران دیگر را قطع کنید.',
 'cant-see-hidden-user' => 'کاربری که می‌خواهید ببندید قبلاً بسته شده و پنهان گردیده است. چون شما دسترسی پنهان کردن کاربران را ندارید، نمی‌توانید قطع دسترسی کاربر را ببینید یا ویرایش کنید.',
 'ipbblocked' => 'شما نمی‌توانید دسترسی دیگر کاربران را ببندید یا باز کنید زیرا دسترسی خودتان بسته است.',
 'ipbnounblockself' => 'شما مجاز به باز کردن دسترسی خود نیستید.',
@@ -3904,7 +3897,6 @@ $1',
 'watchlistall2' => 'همه',
 'namespacesall' => 'همه',
 'monthsall' => 'همهٔ ماه‌ها',
-'limitall' => 'همه',
 
 # Email address confirmation
 'confirmemail' => 'تأیید نشانی رایانامه',
@@ -3925,7 +3917,6 @@ $1',
 
 هم‌اینک می‌توانید [[Special:UserLogin|به سامانه وارد شوید]] و از ویکی لذت ببرید.',
 'confirmemail_loggedin' => 'نشانی رایانامهٔ شما تأیید شد.',
-'confirmemail_error' => 'هنگام ذخیرهٔ تأیید شما به مشکلی برخورده شد.',
 'confirmemail_subject' => 'تأیید نشانی رایانامهٔ شما {{SITENAME}}',
 'confirmemail_body' => 'یک نفر، احتمالاً خود شما، از نشانی آی‌پی $1 حساب کاربری‌ای با نام «$2» و این نشانی رایانامه در {{SITENAME}} ایجاد کرده‌است.
 
@@ -4002,6 +3993,9 @@ $5
 'imgmultipagenext' => 'صفحهٔ بعد &larr;',
 'imgmultigo' => 'برو!',
 'imgmultigoto' => 'رفتن به صفحهٔ $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(زبان پیش‌فرض)',
 
 # Table pager
 'ascending_abbrev' => 'صعودی',
@@ -4238,7 +4232,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'مقایسهٔ صفحه‌ها',
-'compare-selector' => 'مقایسهٔ نسخه‌های صفحه‌ها',
 'compare-page1' => 'صفحهٔ ۱',
 'compare-page2' => 'صفحهٔ ۲',
 'compare-rev1' => 'نسخهٔ ۱',

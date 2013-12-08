@@ -1038,7 +1038,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'recentchanges-summary' => 'Guhertinên herî dawî yên wîkiyê li ser vê rûpelê bişopîne.',
 'recentchanges-label-minor' => 'Ev guhertineka biçûk e',
 'recentchanges-legend-newpage' => '$1 - rûpela nû',
-'rcnote' => "Jêr {{PLURAL:$1|guherandinek|'''$1''' guherandinên dawî}} di {{PLURAL:$2|rojê|'''$2''' rojên dawî}} de ji $3 şûnde tên nîşan dan.",
 'rclistfrom' => 'Guherandinên ji $1 şûnde nîşan bide',
 'rcshowhideminor' => 'Guherandinên biçûk $1',
 'rcshowhidebots' => "Bot'an $1",
@@ -1537,7 +1536,6 @@ Ger rûpeleke nû di dema jêbirinê de hatibe çêkirin, ew guherto wê were p�
 'undeletebtn' => 'Dîsa çêke!',
 'undeletelink' => 'dîtin/dîsa çêkirin',
 'undeleteviewlink' => 'bibîne:',
-'undeletereset' => 'Nû bike',
 'undeleteinvert' => 'Hilbijartinê şûnde vegerîne',
 'undeletecomment' => 'Sedem:',
 'undeletedrevisions' => '{{PLURAL:$1|Versiyonek dîsa hate|$1 versiyon dîsa hatin}} çêkirin',
@@ -1604,7 +1602,6 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'block' => 'Bikarhêner asteng bike',
 'unblock' => 'Astengkirinê rake',
 'blockip' => 'Bikarhêner asteng bike',
-'blockip-title' => 'Bikarhêner asteng bike',
 'blockip-legend' => 'Bikarhêner asteng bike',
 'blockiptext' => "Ji bo astengkirina nivîsandinê ya ji navnîşaneke IP'yê an jî ji bikarhênerekî/ê, vê formê bikarbîne.
 Divê ev tenê ji bo sekinandina vandalîzmê were bikaranîn, ku divê li gorî [[{{MediaWiki:Policy-url}}|rêgezê]] be.
@@ -1613,7 +1610,6 @@ Sedemekê binivîse!",
 'ipadressorusername' => "adresê IP'yekê ya navekî bikarhênerekî",
 'ipbexpiry' => 'Dem:',
 'ipbreason' => 'Sedem',
-'ipbreasonotherlist' => 'Sedemeke din',
 'ipbreason-dropdown' => '*Sedemên astengkirinê
 ** Vandalîzm
 ** Agahiya şaş dikire gotarekê
@@ -1629,8 +1625,6 @@ Sedemekê binivîse!",
 'ipbsubmit' => 'Vê bikarhêner asteng bike',
 'ipbother' => 'Demekî din:',
 'ipboptions' => '2 saet:2 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 meh:1 month,3 meh:3 months,6 meh:6 months,1 sal:1 year,ji her demê re:infinite',
-'ipbotheroption' => 'yên din',
-'ipbotherreason' => 'Sedemeke din',
 'ipbhidename' => 'Navê bikarhêner / adresê IP ji "pirtûkê" astengkirinê, lîsteya astengkirinên nû û lîsteya bikarhêneran veşêre',
 'ipbwatchuser' => 'Rûpelên bikarhêner û gotûbêjê bişopîne',
 'ipb-confirm' => 'Astengkirinê piştrast bike',
@@ -2005,7 +1999,6 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 'watchlistall2' => 'hemû',
 'namespacesall' => 'hemû',
 'monthsall' => 'hemû',
-'limitall' => 'hemû',
 
 # Email address confirmation
 'confirmemail' => 'Adrêsa e-nameyan nasbike',
@@ -2121,7 +2114,6 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 
 # Special:ComparePages
 'comparepages' => 'Rûpelan bide ber hev',
-'compare-selector' => 'Guhertoyên rûpelan bide ber hev',
 'compare-page1' => 'Rûpel 1',
 'compare-page2' => 'Rûpel 2',
 'compare-rev1' => 'Revîzyon 1',

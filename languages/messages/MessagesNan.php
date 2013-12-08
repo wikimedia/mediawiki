@@ -1070,7 +1070,6 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'watchlistall2' => 'choân-pō͘',
 'namespacesall' => 'choân-pō·',
 'monthsall' => 'choân-pō͘',
-'limitall' => '全部',
 
 # Email address confirmation
 'confirmemail' => 'Khak-jīn e-mail chū-chí',
@@ -1080,7 +1079,6 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'confirmemail_invalid' => 'Bô-hāu ê khak-jīn pian-bé. Pian-bé khó-lêng í-keng kòe-kî.',
 'confirmemail_success' => 'í ê e-mail chū-chí khak-jīn oân-sêng. Lí ē-sái teng-ji̍p, khai-sí hiáng-siū chit ê wiki.',
 'confirmemail_loggedin' => 'Lí ê e-mail chū-chí í-keng khak-jīn ū-hāu.',
-'confirmemail_error' => 'Pó-chûn khak-jīn chu-sìn ê sî-chūn hoat-seng būn-tê.',
 'confirmemail_subject' => '{{SITENAME}} e-mail chu-chi khak-jin phoe',
 'confirmemail_body' => 'Ū lâng (IP $1, tāi-khài sī lí pún-lâng) tī {{SITENAME}} ēng chit-ê e-mail chū-chí chù-chheh 1 ê kháu-chō "$2".
 

@@ -1590,7 +1590,6 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'recentchanges-label-plusminus' => 'Størrelsen på siden blev ændret med dette antal bytes',
 'recentchanges-legend-newpage' => '(se også [[Special:NewPages|listen over nye sider]])',
 'recentchanges-legend-plusminus' => '("±123")',
-'rcnote' => "Herunder ses {{PLURAL:$1|'''1''' ændring|de sidste '''$1''' ændringer}} fra {{PLURAL:$2|i dag|de sidste '''$2''' dage}} fra den $4, kl. $5.",
 'rcnotefrom' => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
 'rclistfrom' => 'Vis nye ændringer startende fra $1',
 'rcshowhideminor' => '$1 mindre ændringer',
@@ -2473,7 +2472,6 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undeletebtn' => 'Gendan',
 'undeletelink' => 'vis/gendan',
 'undeleteviewlink' => 'vis',
-'undeletereset' => 'Afbryd',
 'undeleteinvert' => 'Omvend valget af versioner',
 'undeletecomment' => 'Begrundelse:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version|versioner}} gendannet',
@@ -2561,7 +2559,6 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'block' => 'Bloker bruger',
 'unblock' => 'Ophæv blokering af bruger',
 'blockip' => 'Bloker bruger',
-'blockip-title' => 'Bloker bruger',
 'blockip-legend' => 'Bloker bruger',
 'blockiptext' => 'Brug formularen herunder til at blokere for skriveadgang fra en bestemt IP-adresse eller et brugernavn.
 Dette bør kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].
@@ -2569,7 +2566,6 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipadressorusername' => 'IP-adresse eller brugernavn',
 'ipbexpiry' => 'varighed',
 'ipbreason' => 'Begrundelse:',
-'ipbreasonotherlist' => 'Anden begrundelse',
 'ipbreason-dropdown' => '*Generelle begrundelser
 ** Indsættelse af forkerte oplysninger
 ** Fjernelse af korrekt indhold
@@ -2585,8 +2581,6 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipbsubmit' => 'Bloker denne bruger',
 'ipbother' => 'Anden varighed (engelsk)',
 'ipboptions' => '2 timer:2 hours,1 dag:1 day,3 dage:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite',
-'ipbotheroption' => 'Anden varighed',
-'ipbotherreason' => 'Anden/uddybende begrundelse',
 'ipbhidename' => 'Skjul brugernavnet i redigeringer og lister',
 'ipbwatchuser' => 'Overvåg denne brugers brugerside og diskussionsside.',
 'ipb-disableusertalk' => 'Forhindr denne bruger i at redigere sin egen brugerdiskussion under blokeringen',
@@ -2676,7 +2670,6 @@ Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle 
 'sorbsreason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY.',
 'sorbs_create_account_reason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY. Oprettelse af nye brugere er ikke mulig.',
 'xffblockreason' => 'En IP-adresse der er indeholdt i X-Fremsendt-Til hovedet, enten din egen eller en på en proxy-server, du bruger, er blevet blokeret. Den oprindelige grund til blokeringen var:$1',
-'cant-block-while-blocked' => 'Du kan ikke blokkere andre brugere mens du selv er blokkeret.',
 'cant-see-hidden-user' => 'Brugeren du prøver at blokerer er allerede blokeret og skjult. Siden du ikke har rettigheden til at skjule brugere, kan du ikke se eller ændre brugerens blokering.',
 'ipbblocked' => 'Du kan ikke ændre blokeringer, da du selv er blokeret',
 'ipbnounblockself' => 'Du kan ikke ophæve blokeringen af dig selv',
@@ -3581,7 +3574,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'watchlistall2' => 'alle',
 'namespacesall' => 'alle',
 'monthsall' => 'alle',
-'limitall' => 'alle',
 
 # Email address confirmation
 'confirmemail' => 'Bekræft e-mailadresse',
@@ -3600,7 +3592,6 @@ Besked fra mailserveren: $1',
 'confirmemail_success' => 'E-mailadressen er blevet bekræftet.
 Du kan nu [[Special:UserLogin|logge på]].',
 'confirmemail_loggedin' => 'Din e-mailadresse er nu bekræftet.',
-'confirmemail_error' => 'Der skete en fejl under lagring af din bekræftelse.',
 'confirmemail_subject' => '[{{SITENAME}}] - bekræftelse af e-mailadresse',
 'confirmemail_body' => 'Hej,
 
@@ -3843,7 +3834,6 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 
 # Special:ComparePages
 'comparepages' => 'Sammenlign sider',
-'compare-selector' => 'Sammenlign sideversioner',
 'compare-page1' => 'Side 1',
 'compare-page2' => 'Side 2',
 'compare-rev1' => 'Version 1',

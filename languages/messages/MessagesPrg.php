@@ -1042,7 +1042,6 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'recentchanges-label-bot' => 'Sta ast redigīsenis segītan pra bōtan',
 'recentchanges-label-unpatrolled' => 'Šis redigīsenis ni ast dabber izbandātan',
 'recentchanges-legend-newpage' => '$1 - nāunan pāusan',
-'rcnote' => "Zemmais ast {{PLURAL:$1|'''1''' kitawīdinsna segīta|panzdaumas '''$1''' kitawīdinsnas segītas}} en panzdaumamans {{PLURAL:$2|dēinan|'''$2''' dēinans}}, gīrbawintei ezze $5, $4.",
 'rcnotefrom' => "Zemmais ast kitawīdisnas ezze '''$2''' (ērgi '''$1''' waidīntan).",
 'rclistfrom' => 'Waidinnais nāunans kitawīdinsnans pagaūnintei ezze $1',
 'rcshowhideminor' => '$1 malkas kitawīdisnas',
@@ -1671,7 +1670,6 @@ Tu mazzi turītun wārgan autengīnsnan anga wersiōni pastāi etwārtai wartīn
 'undeletebtn' => 'Etwārtai wartinnais',
 'undeletelink' => 'wīdais/etwārtai wartinnais',
 'undeleteviewlink' => 'wīdais',
-'undeletereset' => 'Etkraūneis',
 'undeleteinvert' => 'Etwartinnais pazentlisenin',
 'undeletecomment' => 'Kumentārs:',
 'undeletedrevisions' => '{{PLURAL:$1|1 wersiōni|$1 wersiōnis}} etwārtai wartīntan',
@@ -1747,7 +1745,6 @@ $1',
 
 # Block/unblock
 'blockip' => 'Blōkis tērpautajan',
-'blockip-title' => 'Blōkis tērpautajan',
 'blockip-legend' => 'Blōkis tērpautajan',
 'blockiptext' => 'Tērpaus zemmaisin fōrmularan, kāi blōkilai enpeisāsenes mazīngiskwan iz kōnkretai IP adressin anga kōnkretasmu tērpautajan.
 Blōkitun prawerru tēr kāi ebsergītun ezze wandalisman be preitarīngi sen [[{{MediaWiki:Policy-url}}|pōlitikin]].
@@ -1755,15 +1752,12 @@ Padāis brewīnslin zemmais (p. endījanei tītelins stēisan wandalizītan pāu
 'ipadressorusername' => 'IP adressi anga tērpautajas pabilisnā:',
 'ipbexpiry' => 'Blōkisenis wanginna:',
 'ipbreason' => 'Brewīnsli:',
-'ipbreasonotherlist' => 'Kitā brewīnsli',
 'ipbcreateaccount' => 'Ebsergēis ezze rekkenas teīkseņu',
 'ipbemailban' => 'Ebsergēis ezze e-mailas tengīnsnas mazīngiskwai',
 'ipbenableautoblock' => 'Blōkis panzdauman šisse tērpautajas IP adressin be autōmatiskai wissans ripīntins, iz kawīdans tāns wīrst bandāwuns redigītun',
 'ipbsubmit' => 'Blōkis šin tērpautajan',
 'ipbother' => 'Kitā kerdā',
 'ipboptions' => '2 stūndis:2 hours, 1 deinā:1 day,3 dēinas:3 days,1 sawaīti:1 week,2 sawaītis:2 weeks,1 mīnss:1 month,3 mīnsei:3 months,6 mīnsei:6 months,1 mettan:1 year,bewangiskai:infinite',
-'ipbotheroption' => 'kits',
-'ipbotherreason' => 'Kitā/papilnimina brewīnsli:',
 'ipbhidename' => 'Kliptinais tērpautajas pabilīsnan en redigīsenimans be listimans',
 'ipbwatchuser' => 'Nadirēis šisse tērpautajas persōniskan pāusan be diskusiōnis pāusan',
 'ipb-change-block' => 'Kitawīdinais blōkisenes ensadīnsenins',
@@ -1831,7 +1825,6 @@ Sta ast, šlāit, blōkitan kāigi delīks stesse $2 ebīmtan, kawīdan mazzi b�
 'sorbsreason' => 'Twajā IP adressi ast en listei stēisan open proxy sērwerin en DBSBL, tērpautan pra {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Twajā IP adressi ast en listei stēisan open proxy sērwerin en DBSBL, tērpautan pra {{SITENAME}}.
 Tū ni mazzi teīktun rekkenan',
-'cant-block-while-blocked' => 'Tū ni mazzi blōkitun kittan tērpautajans, kaddan subs assei blōkitan.',
 
 # Developer tools
 'lockdb' => 'Izklaūjais dātanbazin',
@@ -2421,7 +2414,6 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'watchlistall2' => 'wisāi',
 'namespacesall' => 'wisāi',
 'monthsall' => 'wisāi',
-'limitall' => 'wisāi',
 
 # Email address confirmation
 'confirmemail' => 'Padrūktinais e-mail adressin',
@@ -2446,7 +2438,6 @@ Kōdan mazzi būtwei jāu ni aktuālin.',
 'confirmemail_success' => 'Twajā e-mail adressi pastāi padrūktintan.
 Tu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.',
 'confirmemail_loggedin' => 'Twajā e-mail adressi pastāi padrūktintan.',
-'confirmemail_error' => 'Tikka blāndas prei twāise padrūktinsnas enpeisāsnan.',
 'confirmemail_subject' => '{{SITENAME}} e-mail adressis',
 'confirmemail_invalidated' => 'E-mailas adressis padrūktinsna naikīntan',
 'invalidateemail' => 'Naikinnais e-mail padrūktinsnan',

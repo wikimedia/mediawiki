@@ -1819,7 +1819,6 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchanges-label-plusminus' => 'Deze paginagrootte is met dit aantal bytes gewijzigd',
 'recentchanges-legend-newpage' => "Zie ook de [[Special:NewPages|Lijst met nieuwe pagina's]].",
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $4 om $5.",
 'rcnotefrom' => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom' => 'Wijzigingen bekijken vanaf $1',
 'rcshowhideminor' => 'Kleine wijzigingen $1',
@@ -2738,7 +2737,6 @@ Mogelijk hebt u een verkeerde koppeling of is de versie hersteld of verwijderd u
 'undeletebtn' => 'Terugplaatsen',
 'undeletelink' => 'bekijken/terugplaatsen',
 'undeleteviewlink' => 'bekijken',
-'undeletereset' => 'Formulier wissen',
 'undeleteinvert' => 'Selectie omkeren',
 'undeletecomment' => 'Reden:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
@@ -2828,7 +2826,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'block' => 'Gebruiker blokkeren',
 'unblock' => 'Gebruiker deblokkeren',
 'blockip' => 'Gebruiker blokkeren',
-'blockip-title' => 'Gebruiker blokkeren',
 'blockip-legend' => 'Gebruiker blokkeren',
 'blockiptext' => "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken.
 Doe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:Policy-url}}|beleid]].
@@ -2836,7 +2833,6 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipadressorusername' => 'IP-adres of gebruikersnaam:',
 'ipbexpiry' => 'Vervalt (maak een keuze):',
 'ipbreason' => 'Reden:',
-'ipbreasonotherlist' => 'Andere reden',
 'ipbreason-dropdown' => "*Veel voorkomende redenen voor blokkades
 ** Foutieve informatie invoeren
 ** Verwijderen van informatie uit pagina's
@@ -2852,8 +2848,6 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbsubmit' => 'Deze gebruiker blokkeren',
 'ipbother' => 'Andere duur:',
 'ipboptions' => '2 uur:2 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbepaald:infinite',
-'ipbotheroption' => 'ander verval',
-'ipbotherreason' => 'Andere/extra reden:',
 'ipbhidename' => 'Gebruiker in bewerkingen en lijsten verbergen',
 'ipbwatchuser' => 'Gebruikerspagina en overlegpagina op volglijst plaatsen',
 'ipb-disableusertalk' => 'Voorkomen dat deze gebruiker tijdens de blokkade de eigen overlegpagina kan bewerken',
@@ -2947,7 +2941,6 @@ Neem contact op met uw internetprovider of uw helpdesk en stel die op de hoogte 
 'sorbs_create_account_reason' => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
 'xffblockreason' => 'Een IP-adres dat u gebruikt is geblokkeerd. Dit staat de X-Forwarded-For van de header. De oorspronkelijke blokkadereden is: $1',
-'cant-block-while-blocked' => 'U kunt andere gebruikers niet blokkeren terwijl u zelf geblokkeerd bent.',
 'cant-see-hidden-user' => 'De gebruiker die u probeert te blokken is al geblokkeerd en verborgen.
 Omdat u het recht "hideuser" niet hebt, kunt u de blokkade van de gebruiker niet bekijken of bewerken.',
 'ipbblocked' => 'U kunt geen andere gebruikers (de)blokkeren, omdat u zelf geblokkeerd bent',
@@ -3885,7 +3878,6 @@ Andere velden worden verborgen.
 'watchlistall2' => 'alles',
 'namespacesall' => 'alle',
 'monthsall' => 'alle',
-'limitall' => 'alle',
 
 # Email address confirmation
 'confirmemail' => 'E-mailadres bevestigen',
@@ -3910,7 +3902,6 @@ Mogelijk is de code verlopen.',
 'confirmemail_success' => 'Uw e-mailadres is bevestigd.
 U kunt zich nu [[Special:UserLogin|aanmelden]] en de wiki gebruiken.',
 'confirmemail_loggedin' => 'Uw e-mailadres is nu bevestigd.',
-'confirmemail_error' => 'Er is iets verkeerd gegaan tijdens het opslaan van uw bevestiging.',
 'confirmemail_subject' => 'Bevestiging e-mailadres voor {{SITENAME}}',
 'confirmemail_body' => 'Iemand, waarschijnlijk u, met het IP-adres $1,
 heeft zich met dit e-mailadres geregistreerd als gebruiker "$2" op {{SITENAME}}.
@@ -4182,7 +4173,6 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 
 # Special:ComparePages
 'comparepages' => "Pagina's vergelijken",
-'compare-selector' => 'Paginaversies vergelijken',
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Versie 1',

@@ -462,7 +462,6 @@ $messages = array(
 'recentchanges-label-minor' => 'თენა რე ციქა რედაქტირაფა',
 'recentchanges-label-bot' => 'თე რედაქტირაფა ბოტიშ ნაღოლემი რე',
 'recentchanges-label-unpatrolled' => 'თე რედაქტირაფა დიო ხოლო ვა რე პატრულირაფირი',
-'rcnote' => "თუდოლე ძირით ეკონია {{PLURAL:$1|'''1''' თირაფა|$1 თირაფა}} ეკონია {{PLURAL:$2|დღაშ|'''$2''' დღაშ}}, $5, $4 რენჯობათ.",
 'rcnotefrom' => 'თუდო მოჸუნაფილიე თირაფეფ, ”’$2””-შე (ძირაფილიე ”’$1”’)',
 'rclistfrom' => 'ახალ თირაფეფიშ ძირაფა დოჭყაფილ $1-შე',
 'rcshowhideminor' => '$1 ჭიჭე რედაქტირაფეფ',
@@ -703,7 +702,6 @@ $messages = array(
 # Block/unblock
 'blockip' => 'მახვარებუშ ბლოკირაფა',
 'ipboptions' => '2 საათი:2 hours,1 დღა:1 day,3 დღა:3 days,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,უხურგე ვადათ:infinite',
-'ipbotheroption' => 'შხვა',
 'ipblocklist' => 'ბლოკირელ მახვარებუეფჷ',
 'ipblocklist-submit' => 'გორუა',
 'blocklink' => 'ბლოკირაფა',

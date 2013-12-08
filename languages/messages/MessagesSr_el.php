@@ -561,7 +561,7 @@ $1',
 'mainpage' => 'Glavna strana',
 'mainpage-description' => 'Glavna strana',
 'policy-url' => 'Project:Pravila',
-'portal' => 'Radionica',
+'portal' => 'Portal zajednice',
 'portal-url' => 'Project:Radionica',
 'privacy' => 'Politika privatnosti',
 'privacypage' => 'Project:Politika privatnosti',
@@ -1665,7 +1665,6 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'recentchanges-label-bot' => 'Ovu izmenu je napravio bot',
 'recentchanges-label-unpatrolled' => 'Ova izmena još nije pregledana',
 'recentchanges-legend-newpage' => '$1 - nova stranica',
-'rcnote' => "Ispod {{PLURAL:$1|je '''1''' izmena|su poslednje '''$1''' izmene|su poslednjih '''$1''' izmena}} {{PLURAL:$2|prethodni dan|u poslednja '''$2''' dana|u poslednjih '''$2''' dana}}, od $4; $5.",
 'rcnotefrom' => 'Ispod su izmene od <b>$3; $4</b> (do <b>$1</b> izmena).',
 'rclistfrom' => 'Prikaži nove izmene počev od $1',
 'rcshowhideminor' => '$1 manje izmene',
@@ -2561,7 +2560,6 @@ Možda ste uneli pogrešnu vezu, ili je izmena vraćena ili uklonjena iz arhive.
 'undeletebtn' => 'Vrati',
 'undeletelink' => 'pogledaj/vrati',
 'undeleteviewlink' => 'pogledaj',
-'undeletereset' => 'Poništi',
 'undeleteinvert' => 'Obrni izbor',
 'undeletecomment' => 'Razlog:',
 'undeletedrevisions' => '{{PLURAL:$1|Izmena je vraćena|$1 izmene su vraćene|$1 izmena je vraćeno}}',
@@ -2650,7 +2648,6 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 'block' => 'Blokiraj korisnika',
 'unblock' => 'Deblokiraj korisnika',
 'blockip' => 'Blokiraj korisnika',
-'blockip-title' => 'Blokiranje korisnika',
 'blockip-legend' => 'Blokiraj korisnika',
 'blockiptext' => 'Koristite donji obrazac da biste zabranili pristup za pisanje s određene IP adrese ili korisničkog imena.
 Ovo bi trebalo da vršite samo radi sprečavanja vandalizma, u skladu sa [[{{MediaWiki:Policy-url}}|smernicama]].
@@ -2658,7 +2655,6 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 'ipadressorusername' => 'IP adresa ili korisničko ime:',
 'ipbexpiry' => 'Ističe:',
 'ipbreason' => 'Razlog:',
-'ipbreasonotherlist' => 'Drugi razlog',
 'ipbreason-dropdown' => '*Najčešći razlozi za blokiranje
 ** Unošenje lažnih informacija
 ** Uklanjanje sadržaja sa stranica
@@ -2674,8 +2670,6 @@ Izaberite konkretan razlog ispod (primer: navođenje konkretnih stranica koje su
 'ipbsubmit' => 'Blokiraj ovog korisnika',
 'ipbother' => 'Drugo vreme:',
 'ipboptions' => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 nedelja:1 week,2 nedelje:2 weeks,1 mesec:1 month,3 meseca:3 months,6 meseci:6 months,1 godina:1 year,trajno:infinite',
-'ipbotheroption' => 'drugo',
-'ipbotherreason' => 'Drugi/dodatni razlog:',
 'ipbhidename' => 'Sakrij korisničko ime sa izmena i spiskova',
 'ipbwatchuser' => 'Nadgledaj korisničke stranice i stranice za razgovor ovog korisnika',
 'ipb-disableusertalk' => 'Zabrani ovom korisniku da uređuje svoju stranicu za razgovor dok je blokiran',
@@ -2735,12 +2729,12 @@ Razlog blokiranja: "\'\'\'$2\'\'\'"',
 Istorija blokiranja se nalazi ispod:',
 'blocklog-showsuppresslog' => '{{GENDER:|Ovaj korisnik je ranije blokiran i sakriven|Ova korisnica je ranije blokirana i sakrivena|Ovaj korisnik je ranije blokiran i sakriven}}.
 Istorija sakrivanja se nalazi ispod:',
-'blocklogentry' => '{{GENDER:|je blokirao|je blokirala|je blokirao}} „[[$1]]” s rokom isticanja od $2 $3',
+'blocklogentry' => '{{GENDER:|je blokirao|je blokirala}} [[$1]] s rokom isticanja od $2 $3',
 'reblock-logentry' => '{{GENDER:|je promenio|je promenila|je promenio}} podešavanja za blokiranje {{GENDER:$1|korisnika|korisnice|korisnika}} [[$1]] s rokom isteka od $2 ($3)',
 'blocklogtext' => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.
 Tekuće zabrane i blokiranja možete naći [[Special:BlockList|ovde]].',
-'unblocklogentry' => '{{GENDER:|je deblokirao|je deblokirala|je deblokirao}} „$1“',
+'unblocklogentry' => '{{GENDER:|je deblokirao|je deblokirala}} $1',
 'block-log-flags-anononly' => 'samo anonimni korisnici',
 'block-log-flags-nocreate' => 'onemogućeno otvaranje naloga',
 'block-log-flags-noautoblock' => 'automatsko blokiranje je onemogućeno',
@@ -2768,7 +2762,6 @@ Obratite se vašem dobavljaču internet usluga ili tehničku podršku i obavesti
 'sorbsreason' => 'Vaša IP adresa je navedena kao otvoreni posrednik u DNSBL-u koji koristi {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je navedena kao otvoreni posrednik u DNSBL-u koji koristi {{SITENAME}}.
 Ne možete da otvorite nalog.',
-'cant-block-while-blocked' => 'Ne možete da blokirate druge korisnike dok ste i sami blokirani.',
 'cant-see-hidden-user' => 'Član kome želite da zabranite pristup je već blokiran i sakriven.
 S obzirom na to da nemate prava za sakrivanje korisnika, ne možete da vidite niti izmenite zabranu.',
 'ipbblocked' => 'Ne možete zabraniti ili vratiti pristup drugim korisnicima jer ste i sami blokirani',
@@ -3783,7 +3776,6 @@ $8',
 'watchlistall2' => 'sve',
 'namespacesall' => 'sve',
 'monthsall' => 'sve',
-'limitall' => 'sve',
 
 # Email address confirmation
 'confirmemail' => 'Potvrda e-adrese',
@@ -3806,7 +3798,6 @@ Greška: $1',
 'confirmemail_success' => 'Vaša e-adresa je potvrđena.
 Sada možete da se [[Special:UserLogin|prijavite]]. Želimo vam prijatan boravak na vikiju.',
 'confirmemail_loggedin' => 'Vaša e-adresa je sada potvrđena.',
-'confirmemail_error' => 'Nešto je krenulo naopako pri čuvanju vaše potvrde.',
 'confirmemail_subject' => '{{SITENAME}} – potvrda e-adrese',
 'confirmemail_body' => 'Neko, verovatno vi, sa IP adrese $1 je otvorio nalog „$2“ na vikiju {{SITENAME}}, navodeći ovu e-adresu.
 
@@ -4121,7 +4112,6 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 
 # Special:ComparePages
 'comparepages' => 'Upoređivanje stranica',
-'compare-selector' => 'Upoređivanje izmena stranice',
 'compare-page1' => 'Stranica 1',
 'compare-page2' => 'Stranica 2',
 'compare-rev1' => 'Izmena 1',

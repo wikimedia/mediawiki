@@ -1233,7 +1233,6 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 'recentchanges' => 'Jwıqtağı özgerister',
 'recentchanges-summary' => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
 'recentchanges-feed-description' => 'Bul arnamenen wïkïdegi eñ soñğı özgerister qadağalanadı.',
-'rcnote' => "$3 kezine deýin — tömende soñğı {{PLURAL:$2|kündegi|'''$2''' kündegi}}, soñğı '''$1''' özgeris körsetiledi.",
 'rcnotefrom' => "'''$2''' kezinen beri — tömende '''$1''' jetkenşe deýin özgerister körsetiledi.",
 'rclistfrom' => '$1 kezinen beri — jaña özgeristerdi körset.',
 'rcshowhideminor' => 'Şağın öñdemelerdi $1',
@@ -1809,7 +1808,6 @@ Siltemeñiz jaramsız, ne tüzetw qalpına keltirilgen, nemese murağattan alast
 'undelete-nodiff' => 'Eş aldıñğı tüzetw tabılmadı.',
 'undeletebtn' => 'Qalpına keltir!',
 'undeletelink' => 'qalpına keltirw',
-'undeletereset' => 'Qaýta qoý',
 'undeletecomment' => 'Mändemesi:',
 'undeletedrevisions' => '$1 tüzetw qalpına keltirildi',
 'undeletedrevisions-files' => '$1 tüzetw jäne $2 faýl qalpına keltirildi',
@@ -1886,7 +1884,6 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipadressorusername' => 'IP mekenjaýı ne qatıswşı atı:',
 'ipbexpiry' => 'Merzimi bitpek:',
 'ipbreason' => 'Sebebi:',
-'ipbreasonotherlist' => 'Basqa sebep',
 'ipbreason-dropdown' => '* Buğattawdıñ jalpı sebebteri
 ** Jalğan mälimet engizw
 ** Betterdegi mağlumattı alastaw
@@ -1901,8 +1898,6 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbsubmit' => 'Qatıswşını buğatta',
 'ipbother' => 'Basqa merzimi:',
 'ipboptions' => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
-'ipbotheroption' => 'basqa',
-'ipbotherreason' => 'Basqa/qosımşa sebep:',
 'ipbhidename' => 'Qatıswşı atın buğattaw jwrnalınnan, belsendi buğattaw tiziminen, qatıswşı tiziminen jasırw',
 'ipbwatchuser' => 'Bul qatıswşınıñ jeke jäne talqılaw betterin baqılaw',
 'badipaddress' => 'Jaramsız IP mekenjaýı',
@@ -2565,7 +2560,6 @@ Kod merzimi bitken şığar.',
 'confirmemail_success' => 'E-poşta mekenjaýıñız quptaldı.
 Endi wïkïge kirip jumısqa kiriswge boladı',
 'confirmemail_loggedin' => 'E-poşta mekenjaýıñız endi quptaldı.',
-'confirmemail_error' => 'Quptawñızdı saqtağanda belgisiz qate boldı.',
 'confirmemail_subject' => '{{SITENAME}} torabınan e-poşta mekenjaýıñızdı quptaw xatı',
 'confirmemail_body' => 'Keýbirew, $1 degen IP mekenjaýınan, öziñiz bolwı mümkin,
 {{SITENAME}} jobasında bul E-poşta mekenjaýın qoldanıp «$2» degen tirkelgi jasaptı.

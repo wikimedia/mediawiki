@@ -409,18 +409,18 @@ $messages = array(
 'october' => 'oktober',
 'november' => 'november',
 'december' => 'december',
-'january-gen' => 'januaris',
-'february-gen' => 'februaris',
+'january-gen' => 'januari',
+'february-gen' => 'februari',
 'march-gen' => 'mars',
-'april-gen' => 'aprils',
-'may-gen' => 'majs',
-'june-gen' => 'junis',
-'july-gen' => 'julis',
-'august-gen' => 'augustis',
-'september-gen' => 'septembers',
-'october-gen' => 'oktobers',
-'november-gen' => 'novembers',
-'december-gen' => 'decembers',
+'april-gen' => 'april',
+'may-gen' => 'maj',
+'june-gen' => 'juni',
+'july-gen' => 'juli',
+'august-gen' => 'augusti',
+'september-gen' => 'september',
+'october-gen' => 'oktober',
+'november-gen' => 'november',
+'december-gen' => 'december',
 'jan' => 'jan',
 'feb' => 'feb',
 'mar' => 'mar',
@@ -482,7 +482,7 @@ $messages = array(
 'qbbrowse' => 'Bläddra igenom',
 'qbedit' => 'Redigera',
 'qbpageoptions' => 'Denna sida',
-'qbmyoptions' => 'Mina inställningar',
+'qbmyoptions' => 'Mina sidor',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
 
@@ -829,7 +829,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'passwordtooshort' => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
 'password-name-match' => 'Ditt lösenord måste vara olikt ditt användarnamn.',
 'password-login-forbidden' => 'Användningen av dessa användarnamn och lösenord har förbjudits.',
-'mailmypassword' => 'Skicka nytt lösenord',
+'mailmypassword' => 'Återställ lösenord',
 'passwordremindertitle' => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext' => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|ett dygn|$5 dygn}}.
 
@@ -897,7 +897,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 # Special:PasswordReset
 'passwordreset' => 'Lösenordsåterställning',
 'passwordreset-text-one' => 'Fyll i detta formulär för att återställa ditt lösenord.',
-'passwordreset-text-many' => '{{PLURAL:$1|Fyll i ett av fälten för att återställa ditt lösenord.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Fyll i ett av fälten för att få ett tillfälligt lösenord via e-post.}}',
 'passwordreset-legend' => 'Återställ lösenord',
 'passwordreset-disabled' => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-emaildisabled' => 'E-postfunktioner har inaktiverats på denna wiki.',
@@ -1729,8 +1729,9 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges-label-minor' => 'Detta är en mindre ändring',
 'recentchanges-label-bot' => 'Denna redigering gjordes av en bot',
 'recentchanges-label-unpatrolled' => 'Denna redigering har inte blivit kontrollerad ännu',
+'recentchanges-label-plusminus' => 'Sidans storlek ändrades med detta antal byte',
 'recentchanges-legend-newpage' => '(se även [[Special:NewPages|listan över nya sidor]])',
-'rcnote' => "Nedan visas {{PLURAL:$1|'''1''' ändring|de senaste '''$1''' ändringarna}} från {{PLURAL:$2|det senaste dygnet|de senaste '''$2''' dygnen}}, per $4, kl. $5.",
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
 'rclistfrom' => 'Visa ändringar efter $1',
 'rcshowhideminor' => '$1 mindre ändringar',
@@ -2617,7 +2618,6 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletebtn' => 'Återställ',
 'undeletelink' => 'visa/återställ',
 'undeleteviewlink' => 'visa',
-'undeletereset' => 'Rensa',
 'undeleteinvert' => 'Invertera urval',
 'undeletecomment' => 'Anledning:',
 'undeletedrevisions' => '{{PLURAL:$1|en version återställd|$1 versioner återställda}}',
@@ -2706,7 +2706,6 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'block' => 'Blockera användare',
 'unblock' => 'Upphäv blockering av användare',
 'blockip' => 'Blockera användare',
-'blockip-title' => 'Blockera användare',
 'blockip-legend' => 'Blockera användare',
 'blockiptext' => 'Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.
 Detta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].
@@ -2714,7 +2713,6 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipadressorusername' => 'IP-adress eller användarnamn:',
 'ipbexpiry' => 'Varaktighet:',
 'ipbreason' => 'Anledning:',
-'ipbreasonotherlist' => 'Annan anledning',
 'ipbreason-dropdown' => '*Vanliga motiv till blockering
 ** Infogar falsk information
 ** Tar bort sidinnehåll
@@ -2730,8 +2728,6 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbsubmit' => 'Blockera användaren',
 'ipbother' => 'Annan tidsperiod:',
 'ipboptions' => '2 timmar:2 hours,1 dygn:1 day,3 dygn:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
-'ipbotheroption' => 'annan tidsperiod',
-'ipbotherreason' => 'Annan/ytterligare anledning:',
 'ipbhidename' => 'Dölj användarnamnet från redigeringar och listor',
 'ipbwatchuser' => 'Bevaka användarens användarsida och diskussionssida',
 'ipb-disableusertalk' => 'Hindra användaren från att redigera sina egna diskussionssida under blockeringen',
@@ -2822,7 +2818,6 @@ Se [[Special:BlockList|blockeringslistan]] för en översikt av gällande blocke
 'sorbs_create_account_reason' => 'Din IP-adress är listad som en öppen proxy i den DNSBL som används av {{SITENAME}}.
 Du får inte skapa ett användarkonto',
 'xffblockreason' => 'En IP-adress i sidhuvudet X-Forwarded-For, antingen din adress eller en proxyserver som du använder, har blockerats. Den ursprungliga anledningen till blockeringen var: $1',
-'cant-block-while-blocked' => 'Du kan inte blockera andra användare medan du är blockerad.',
 'cant-see-hidden-user' => 'Användaren du försöker blockera är redan blockerad och gömd. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.',
 'ipbblocked' => 'Du kan inte blockera eller avblockera andra användare, eftersom du själv är blockerad',
 'ipbnounblockself' => 'Du har inte tillåtelse att avblockera dig själv',
@@ -3194,6 +3189,7 @@ Fyll '''INTE''' i den här!",
 'pageinfo-length' => 'Sidlängd (i byte)',
 'pageinfo-article-id' => 'Sid-ID',
 'pageinfo-language' => 'Språk för sidinnehåll',
+'pageinfo-content-model' => 'Sidinnehållsmodell',
 'pageinfo-robot-policy' => 'Indexering av robotar',
 'pageinfo-robot-index' => 'Tillåten',
 'pageinfo-robot-noindex' => 'Inte tillåten',
@@ -3751,7 +3747,6 @@ Andra kommer att gömmas som standard
 'watchlistall2' => 'alla',
 'namespacesall' => 'alla',
 'monthsall' => 'alla',
-'limitall' => 'alla',
 
 # Email address confirmation
 'confirmemail' => 'Bekräfta e-postadress',
@@ -3770,7 +3765,6 @@ Mailservern svarade: $1',
 'confirmemail_success' => 'Din e-postadress har bekräftats.
 Du kan nu [[Special:UserLogin|logga in]] och använda wikin.',
 'confirmemail_loggedin' => 'Din e-postadress är nu bekräftad.',
-'confirmemail_error' => 'Någonting gick fel när din bekräftelse skulle sparas.',
 'confirmemail_subject' => 'Bekräftelse av e-postadress på {{SITENAME}}',
 'confirmemail_body' => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
 
@@ -3837,11 +3831,19 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Ta bort denna sida från din bevakningslista?',
 
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
+
 # Multipage image navigation
 'imgmultipageprev' => '← föregående sida',
 'imgmultipagenext' => 'nästa sida →',
 'imgmultigo' => 'Gå',
 'imgmultigoto' => 'Gå till sida $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(standardspråk)',
+'img-lang-info' => 'Rendera bilden i $1 $2.',
+'img-lang-go' => 'Gå',
 
 # Table pager
 'ascending_abbrev' => 'stigande',
@@ -4020,7 +4022,6 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 
 # Special:ComparePages
 'comparepages' => 'Jämför sidor',
-'compare-selector' => 'Jämför sidversioner',
 'compare-page1' => 'Sida 1',
 'compare-page2' => 'Sida 2',
 'compare-rev1' => 'Version 1',

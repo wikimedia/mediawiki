@@ -1416,7 +1416,6 @@ Arken koon det lees.',
 'recentchanges-label-plusminus' => 'Feranert sidjengrate (am soföl bytes)',
 'recentchanges-legend-newpage' => "(luke uk bi't [[Special:NewPages|list mä nei sidjen]])",
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Diar {{PLURAL:$1|stäänt det leetst feranrang|stun a leetst '''$1''' feranrangen}} faan a leetst {{PLURAL:$2|dai|'''$2''' daar}}. Stant: $4, am a klook $5.",
 'rcnotefrom' => "Diar wurd a feranrangen sant '''$2'''uunwiset (ei muar üs '''$1''' feranrangen).",
 'rclistfrom' => 'Bluas feranrangen sant $1 wise.',
 'rcshowhideminor' => '$1 letj feranrangen',
@@ -2272,7 +2271,6 @@ Di tekst faan det stregen sidj fu bluas administratooren uunwiset.',
 'undeletebtn' => 'Weder iinstel',
 'undeletelink' => 'wise / weder iinstel',
 'undeleteviewlink' => 'Uunluke',
-'undeletereset' => 'Turagsaat',
 'undeleteinvert' => 'Ütjwool amdrei',
 'undeletecomment' => 'Grünj:',
 'undeletedrevisions' => '{{PLURAL:$1|1 werjuun|$1 werjuunen}} weder iinsteld',
@@ -2358,7 +2356,6 @@ $1",
 'block' => 'Brüker spere',
 'unblock' => 'Brüker ei muar spere',
 'blockip' => 'IP-adres/brüker spere',
-'blockip-title' => 'Brüker spere',
 'blockip-legend' => 'IP-adres/brüker spere',
 'blockiptext' => 'Mä detdiar formulaar sperest dü en IP-adres of en brükernööm, so dat faan diar nian feranrangen muar maaget wurd kön. 
 Det skul bluas föörnimen wurd, am jin wandaalen föörtugungen an uun auerianstemang mä a [[{{MediaWiki:Policy-url}}|brükerreegeln]].
@@ -2366,7 +2363,6 @@ Skriiw en guden grünj för det sper ap.',
 'ipadressorusername' => 'IP-adres of brükernööm:',
 'ipbexpiry' => 'Sperdüür:',
 'ipbreason' => 'Grünj:',
-'ipbreasonotherlist' => 'Ööder grünj',
 'ipbreason-dropdown' => '* Mist brükt spergrünjer
 ** Skraft wat ferkiards
 ** Maaget sidjen leesag
@@ -2382,8 +2378,6 @@ Skriiw en guden grünj för det sper ap.',
 'ipbsubmit' => 'IP-adres/brüker spere',
 'ipbother' => 'Ööder sperdüür (ingelsk):',
 'ipboptions' => '2 stünj:2 hours,1 dai:1 day,3 daar:3 days,1 weg:1 week,2 weg:2 weeks,1 muun:1 month,3 muuner:3 months,6 muuner:6 months,1 juar:1 year,saner aanj:infinite',
-'ipbotheroption' => 'Ööder sperdüür',
-'ipbotherreason' => 'Ööder/noch en grünj:',
 'ipbhidename' => 'Brükernööm uun feranrangen an listen fersteeg',
 'ipbwatchuser' => "Hual di brüker sin brüker- an diskusjuunssidj uun't uug",
 'ipb-disableusertalk' => 'Ferhanre, dat di brüker sin diskusjuunssidj bewerket, so loong hi speret as.',
@@ -2473,7 +2467,6 @@ Fertel det dan ISP of dan süsteemsiinst. Eeben proxys stel det seekerhaid uun f
 'sorbsreason' => 'Din IP-adres as uun det DNSBL faan {{SITENAME}} üs eeben proxy apfeerd.',
 'sorbs_create_account_reason' => 'Din IP-adres as uun det DNSBL faan {{SITENAME}} üs eeben proxy apfeerd. Dü könst nian brükerkonto maage.',
 'xffblockreason' => 'En IP-adres uun di X-Forwarded-For-Header as speret wurden, det as din aanj of det faan dan proxy server. Di spergrünj as: $1',
-'cant-block-while-blocked' => 'Dü könst nian ööder brükern spere, so loong dü salew speret beest.',
 'cant-see-hidden-user' => 'Di brüker, diar dü spere wel, as al speret an ferbürgen. Dü heest oober ei det "hideuser"-rocht an könst det sper ei bewerke.',
 'ipbblocked' => 'Dü könst ööder brükern ei spere an uk nian speren apheew, auer dü salew speret beest.',
 'ipbnounblockself' => 'Dü könst din aanj sper ei apheew.',
@@ -3359,7 +3352,6 @@ Ferwisangen uun det salew rä wurd üs ütjnoomen uunsen, huar det datei dach uu
 'watchlistall2' => 'aaltumaal',
 'namespacesall' => 'aaltumaal',
 'monthsall' => 'aaltumaal',
-'limitall' => 'åle',
 
 # Email address confirmation
 'confirmemail' => 'E-mail-adres gudkään',
@@ -3379,7 +3371,6 @@ Ferschük det man noch ans.',
 'confirmemail_success' => 'Din e-mail-adres as gudkäänd wurden.
 Dü könst di nü [[Special:UserLogin|uunmelde]].',
 'confirmemail_loggedin' => 'Din e-mail-adres as gudkäänd wurden.',
-'confirmemail_error' => "Bi't gudkäänen faan din e-mail-adres as wat skiaf gingen.",
 'confirmemail_subject' => '[{{SITENAME}}] E-mail-adres gudkään',
 'confirmemail_body' => 'Gud dai,
 
@@ -3623,7 +3614,6 @@ An det woort so brükt: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special
 
 # Special:ComparePages
 'comparepages' => 'Sidjen ferglik',
-'compare-selector' => 'Sidjenwerjuunen ferglik',
 'compare-page1' => 'Sidj 1',
 'compare-page2' => 'Sidj 2',
 'compare-rev1' => 'Werjuun 1',

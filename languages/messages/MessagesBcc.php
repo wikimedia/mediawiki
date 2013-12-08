@@ -1207,7 +1207,6 @@ $1",
 'recentchanges-legend' => 'گزینه ی نوکین تغییرات',
 'recentchanges-summary' => 'رندگر نوکترین تغییرات ته ویکی تی ای صفحه.',
 'recentchanges-feed-description' => 'آهرین تغییرات ته وی کی چه ای فید رند گر',
-'rcnote' => "جهلء{{PLURAL:$1|هست '''1''' تغییری|هستن آهری '''$1''' تغییرات}} ته آهرین {{PLURAL:$2|روچ|'''$2''' روچان}}, چه$5, $4.",
 'rcnotefrom' => "جهلا تغییرات چه '''$2''' (تا  '''$1''' پیش دارگنت). هست",
 'rclistfrom' => 'پیش دار نوکین تغییراتآ چه $1',
 'rcshowhideminor' => '$1 هوردین تغییرات',
@@ -1889,7 +1888,6 @@ $NEWPAGE
 'undeletebtn' => 'باز گردینگ',
 'undeletelink' => 'بچار/واتر',
 'undeleteviewlink' => 'پیشدارگ',
-'undeletereset' => 'برگردینگ',
 'undeleteinvert' => 'چپکایگ کتن انتخاب',
 'undeletecomment' => 'نظر:',
 'undeletedrevisions' => '{{PLURAL:$1|1 بازبینی|$1 بازبینی آن}} واترینگ بیت',
@@ -1972,7 +1970,6 @@ $1',
 'ipadressorusername' => 'آدرس آي پی یا نام کاربری:',
 'ipbexpiry' => 'وهد هلگ:',
 'ipbreason' => 'دلیل:',
-'ipbreasonotherlist' => 'دگ دلیل',
 'ipbreason-dropdown' => '* متداولین دلایل محدودیت
 ** وارد کتن غلطین اطلاحات
 ** زورگ محتوا چه صفحات
@@ -1987,8 +1984,6 @@ $1',
 'ipbsubmit' => 'ای کاربرء محدود کن',
 'ipbother' => 'دگر وهد:',
 'ipboptions' => '۲ ساعت:2 hours,۱ روچ:1 day,۳ روچ:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌‌حد:infinite',
-'ipbotheroption' => 'دگر',
-'ipbotherreason' => 'دگر/اضافی ان دلیل:',
 'ipbhidename' => 'پناه کن نام کاربری چه اصلاحات و لیستان',
 'ipbwatchuser' => 'بچار ای کاربرء صفحات گپ و کاربری آ',
 'ipb-change-block' => 'بند کتن ای کاربر گون ای تنظیمات',
@@ -2055,7 +2050,6 @@ $1',
 'sorbsreason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  DNSBL که استفاده بیت گون {{SITENAME}}.',
 'sorbs_create_account_reason' => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  دی ان ای بی ال که استفاده بیت گون {{SITENAME}}.
 شما نه تونیت حسابی شرکنیت',
-'cant-block-while-blocked' => 'شما نه تونیت دگه کاربرانء بند کنیت وهدی که شما وت بند هستیت',
 
 # Developer tools
 'lockdb' => 'دیتابیس کبل کن',
@@ -2779,7 +2773,6 @@ Variants for Chinese language
 'confirmemail_success' => 'شمی آدرس ایمیل تایید بوتت.
 شما الان تونت وارد بیت و چه ویکی سوب برت',
 'confirmemail_loggedin' => 'شمی آدرس ایمیل هنو تایید بوتت',
-'confirmemail_error' => 'لهتی چیز اشتباهت وهد ذخیره کتن شمی تایید.',
 'confirmemail_subject' => '{{SITENAME}} تایید آدرس ایمیل',
 'confirmemail_body' => 'یک نفر،بلکه شما، چه آی پی آدرس $1,
 یک حسابی ثبت کتت "$2"  گون ای آدرس ایمیل ته {{SITENAME}}.

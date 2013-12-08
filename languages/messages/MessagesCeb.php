@@ -831,7 +831,6 @@ Kon gipili nimo nga ihatag kini, gamiton kini aron pasidunggan ka sa imong mga t
 'recentchanges' => 'Mga bag-ong giusab',
 'recentchanges-legend' => 'Mga opsyon sa bag-ong pag-usab',
 'recentchanges-feed-description' => 'Bantayi ang kinabag-ohang mga pag-usab sa wiki niining feed.',
-'rcnote' => "Sa ubos {{PLURAL:$1|ang '''1''' kausaban|ang mga bag-ong '''$1''' kausaban}} sa miaging {{PLURAL:$2|ka adlaw|'''$2''' ka mga adlaw}}, sa taknang $5, $4.",
 'rclistfrom' => 'Ipakita ang mga bag-ong pag-usab gikan $1',
 'rcshowhideminor' => '$1 menor nga pag-usab',
 'rcshowhidebots' => '$1 mga bot',

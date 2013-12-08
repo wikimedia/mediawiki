@@ -680,7 +680,6 @@ Doi Address werd ned gzaischd, wõnse midda babbln.',
 'recentchanges-label-minor' => "S'ische glenni Beawaidung",
 'recentchanges-label-bot' => 'Ännarunge duaschn Bod',
 'recentchanges-label-unpatrolled' => 'Die Ännarung isch noch nedd iwwabriefd worre',
-'rcnote' => "Õgzaischd {{PLURAL:$1|werd '''1''' Ännarung|werren die ledschde '''$1''' Ännarunge}} {{PLURAL:$2|vum ledschde Daach|inde ledschde '''$2''' Daache}} (Schdond: $4, $5)",
 'rcnotefrom' => "Unne sinn Ännarunge said '''$2''' (bis '''$1''').",
 'rclistfrom' => 'Zaisch die ledschde Ännarunge ab $1',
 'rcshowhideminor' => 'Glenni Ännarunge $1',
@@ -931,7 +930,6 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'undeletebtn' => 'Widderherschdelle',
 'undeletelink' => 'õgugge/widda herschdelle',
 'undeleteviewlink' => 'Õgugge',
-'undeletereset' => 'Zuriggsedze',
 'undelete-show-file-submit' => 'Ja',
 
 # Namespace form on various pages
@@ -980,7 +978,6 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'blockip' => 'Middawaida bloggiere',
 'ipbsubmit' => 'Middawaida bloggiere',
 'ipboptions' => '2 Schdunne:2 hours,1 Daach:1 day,3 Daach:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Monad:1 month,3 Monad:3 months,6 Monad:6 months,1 Johr:1 year,Fa imma:infinite',
-'ipbotheroption' => 'onnari',
 'ipusubmit' => 'Die Adreß fraigewwe',
 'ipblocklist' => 'Gschberrdi IP-Adress un Middawaidanõme',
 'infiniteblock' => 'ubgrensd',

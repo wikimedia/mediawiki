@@ -387,7 +387,6 @@ $messages = array(
 'recentchanges' => 'Медбöрья вильмöтöммез',
 'recentchanges-legend' => 'Медбöрья вильмöтöммез понда лöсьöтаннэз',
 'recentchanges-feed-description' => 'Синмавны медбöрья вильмöтöммез этiя вики визылын.',
-'rcnote' => "{{PLURAL:$1|Медбöрья '''$1''' вильмöтöм|Медбöрья '''$1''' вильмöтöм|Медбöрья'''$1''' вильмöтöм}} '''$2''' лун сьöрна, $5 $4  кежö.",
 'rclistfrom' => 'Мыччавны вильмöтöмсö  $1-сянь',
 'rcshowhideminor' => '$1 невунка мöдкöдьсьöтыштöм',
 'rcshowhidebots' => '$1 бот',
@@ -731,7 +730,6 @@ $messages = array(
 'watchlistall2' => 'быдöс',
 'namespacesall' => 'быдöс',
 'monthsall' => 'быдöс',
-'limitall' => 'быдöс',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Видзöт лöсялана вильмöтöммез',

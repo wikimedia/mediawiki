@@ -865,7 +865,6 @@ On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'recentchanges-legend' => 'Ixtijoroti taƣjiroti oxirin',
 'recentchanges-summary' => 'Nazorati taƣjirothoi navtarin dar Vikipedia dar hamin sahifa ast.',
 'recentchanges-feed-description' => 'Radjobiji oxirin taƣjiroti in viki dar in xurd.',
-'rcnote' => "Dar pojon  {{PLURAL:$1|'''1''' taƣjire ast|'''$1''' taƣjirot meboşand}}, ki dar davomi {{PLURAL:$2|rūh|'''$2''' rūzhoi}} oxir, sar karda az $5, $4.",
 'rcnotefrom' => 'Dar zer taƣjirothoi oxirin az <b>$2</b> (to <b>$1</b> nişon doda şudaast).',
 'rclistfrom' => 'Nişon dodani taƣjirothoi nav sar karda az $1',
 'rcshowhideminor' => '$1 viroişhoi xurd',
@@ -1350,7 +1349,6 @@ Dar in holatho, şumo bojad cand nusxai oxirin sahifaro niz ehjo kuned.',
 'undeletebtn' => 'Barqaror kardan',
 'undeletelink' => 'didan/barqaror kardan',
 'undeleteviewlink' => 'namoiş',
-'undeletereset' => 'Az nav',
 'undeletecomment' => 'Tavzeh:',
 'undeletedrevisions' => '$1 nusxa baqaror {{PLURAL:$1|şud|şudand}}',
 'undeletedrevisions-files' => '$1 nusxa va $2 parvanda barqaror {{PLURAL:$1|şud|şudand}}',
@@ -1422,7 +1420,6 @@ Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe
 'ipadressorusername' => 'IP nişona jo nomi korbar:',
 'ipbexpiry' => 'Xotima:',
 'ipbreason' => 'Sabab:',
-'ipbreasonotherlist' => 'Digar dalel',
 'ipbreason-dropdown' => "*Sababhoi umumiji bastan
 ** Vorid kardani ittilooti nodurust
 ** Pok kardani ittilooti mufid az sahifaho
@@ -1437,8 +1434,6 @@ Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe
 'ipbsubmit' => 'Bastani in korbar',
 'ipbother' => 'Digar vaqt:',
 'ipboptions' => '2 soat:2 hours,1 rūz:1 day,3 rūz:3 days,1 hafta:1 week,2 hafta:2 weeks,1 moh:1 month,3 moh:3 months,6 moh:6 months,1 sol:1 year,beoxir:infinite',
-'ipbotheroption' => 'digar',
-'ipbotherreason' => 'Dalelhoi digar/izofī:',
 'ipbhidename' => 'Pinhoni nomi korbarī az viroişho va fehristho',
 'badipaddress' => "IP nişonai nomū'tabar",
 'blockipsuccesssub' => 'Bastan muvaffaq щud',
@@ -2064,7 +2059,6 @@ Faqat satrhoe, ki bo * şurū' şavand ba nazar girifta meşavand. Avvalin pajva
 'watchlistall2' => 'hama',
 'namespacesall' => 'hama',
 'monthsall' => 'hama',
-'limitall' => 'hama',
 
 # Email address confirmation
 'confirmemail' => 'Tasdiqi nişonai poctai elektronī',
@@ -2082,7 +2076,6 @@ Firistanda bargardond: $1",
 'confirmemail_needlogin' => 'Baroi tasdiqi poctai elektroniaton nijoz ba $1 dored.',
 'confirmemail_success' => 'Nişonai poctai elektroniji şumo tasdiq şud. Hamaknun metavoned ba sistem vurud karda az viki lazzat bubared.',
 'confirmemail_loggedin' => 'Nişonai poctai elektroniji şumo tasdiq şud.',
-'confirmemail_error' => "Hangomi zaxirai ta'jidi şumo ba muşkilie barxūrda şud.",
 'confirmemail_subject' => '{{SITENAME}} tasdiqi nişonai poctai elektronī',
 'confirmemail_body' => 'Someone, probably you, from IP address $1,
 has registered an account "$2" with this e-mail address on {{SITENAME}}.

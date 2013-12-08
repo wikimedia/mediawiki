@@ -757,7 +757,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'recentchanges-label-minor' => 'Custu est unu acontzu minore',
 'recentchanges-label-bot' => 'Custu acontzu est stadu fatu dae unu bot',
 'recentchanges-legend-newpage' => '$1 - pàgina noa',
-'rcnote' => "Inoghe sighende {{PLURAL:$1|b'est s'ùrtima mudàntzia|bi sunt is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|in is ùrtimas '''$2''' dies}}; is datos sunt agiornados a  $5, $4.",
 'rcnotefrom' => "Sas chi sighint sunt sas mudàntzias dae '''$2''' (fintzas a '''$1''').",
 'rclistfrom' => 'Ammustra mudàntzias dae $1',
 'rcshowhideminor' => '$1 acontzos minores',
@@ -1154,18 +1153,15 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 
 # Block/unblock
 'blockip' => 'Blocca usuàriu',
-'blockip-title' => 'Blocca usuàriu',
 'blockip-legend' => 'Blocca usuàriu',
 'blockiptext' => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 'ipadressorusername' => 'Indiritzu IP o nùmene usuàriu:',
 'ipbexpiry' => 'Scadèntzia:',
 'ipbreason' => 'Motivu:',
-'ipbreasonotherlist' => 'Àteru motivu',
 'ipbsubmit' => 'Blocca custu usuàriu',
 'ipbother' => 'Àteru perìodu:',
 'ipboptions' => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
-'ipbotheroption' => 'àteru',
 'badipaddress' => "S'indiritzu IP indicadu non est currègidu.",
 'blockipsuccesssub' => 'Bloccu esecutivu',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] è stadu bloccadu. <br />
@@ -1422,7 +1418,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'watchlistall2' => 'totu',
 'namespacesall' => 'totu',
 'monthsall' => 'totu',
-'limitall' => 'totu',
 
 # Email address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",

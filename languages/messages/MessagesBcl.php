@@ -1507,7 +1507,6 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'recentchanges-label-unpatrolled' => 'Ining pagliwat dae pa tabi pinagpatrolyahan',
 'recentchanges-label-plusminus' => 'An kadakulaan nin pahina pinagliwat sa paagi kaining numero nin mga bayta',
 'recentchanges-legend-newpage' => '(hilngon man [[Special:NewPages|listahan kan mga baguhong pahina]])',
-'rcnote' => "Yaon sa ibaba iyo {{PLURAL:$1|an '''1''' pagbabago|an mga huring '''$1''' mga pagbabago}} kan nakaaging huring {{PLURAL:$2|aldaw|'''$2''' mga aldaw}}, poon pa kan $5, $4.",
 'rcnotefrom' => "Sa ibaba iyo an mga kaliwatan poon kan '''$2''' (sagkod sa '''$1''' na ipinapahiling).",
 'rclistfrom' => 'Ipahiling an baguhon na mga kaliwatan magpoon kan $1',
 'rcshowhideminor' => '$1 saradit na mga pagliwat',
@@ -2385,7 +2384,6 @@ binalik an na pagribay o hinalî sa archibo.',
 'undeletebtn' => 'Ibalik',
 'undeletelink' => 'hilngon/ibalik',
 'undeleteviewlink' => 'hilngon',
-'undeletereset' => 'Ipwesto giraray',
 'undeleteinvert' => 'Baliktada an pinilian',
 'undeletecomment' => 'An rason:',
 'undeletedrevisions' => '{{PLURAL:$1|1 rebisyon|$1 mga rebisyon}} ipinagbalik',
@@ -2474,7 +2472,6 @@ An pinakahuring entrada sa talaan nin pagbara nakahaya sa ibaba bilang reperensi
 'block' => 'Barahon an paragamit',
 'unblock' => 'Haleon an bara kan paragamit',
 'blockip' => 'Bagáton an paragamit',
-'blockip-title' => 'Barahon an paragamit',
 'blockip-legend' => 'Kubkuba an paragamit',
 'blockiptext' => 'Gamiton an pormularyo sa babâ para bagaton an pagsurat kan sarong espesipikong IP o ngaran nin parágamit.
 Dapat gibohon sana ini para maibitaran vandalismo, asin kompirmi sa [[{{MediaWiki:Policy-url}}|palakaw]].
@@ -2482,7 +2479,6 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipadressorusername' => 'direksyon nin IP o gahâ:',
 'ipbexpiry' => 'Pasó:',
 'ipbreason' => 'Rason:',
-'ipbreasonotherlist' => 'Ibang rason',
 'ipbreason-dropdown' => "*Mga komon na rason sa pagbagat
 ** Nagkakaag nin salang impormasyon
 ** Naghahalî nin mga laog kan páhina
@@ -2498,8 +2494,6 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipbsubmit' => 'Bagáton ining parágamit',
 'ipbother' => 'Ibang oras:',
 'ipboptions' => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daeng kasagkoran:infinite',
-'ipbotheroption' => 'iba',
-'ipbotherreason' => 'Iba/dugang na rasón:',
 'ipbhidename' => 'Tagoon an ngaran nin paragamit gikan sa mga pagliliwat asin mga listahan',
 'ipbwatchuser' => 'Bantayi ining gamit kan paragamit asin mga pahina nin olayan',
 'ipb-disableusertalk' => 'Pugulan ining paragamit na magliliwat kan saiyang sadireng pahina nin olayan habang ini barado',
@@ -2590,7 +2584,6 @@ Ini, baya, pinagkubkob bilang parte kan hidwas $2, na mapuwedeng daemakukubkob.'
 'sorbs_create_account_reason' => 'An saimong IP na estada pinaglista bilang sarong bukas na proksi sa laog kan DNSBL na ginagamit kan {{SITENAME}}.
 Ika dae makakamukna nin sarong panindog.',
 'xffblockreason' => 'An yaong IP adres sa laog nin X-Pinagtulod-Para sa kapamayuhan, dawa saimo o idtong proksing serbidor na saimong ginagamit, pinagkubkob. An orihinal na rason sa pagkubkob iyo na:$1',
-'cant-block-while-blocked' => 'Ika dae makakakubkob kan ibang mga paragamit mantang ika nakukubkob pa.',
 'cant-see-hidden-user' => 'An paragamit na pinagpubaran mong kubkubon pinagkubkob asin pinagtago na. Mala ta ika mayo nin karapatan na magtago nin paragamit, ika dae makakahiling or makakaliwat kan kinubkob na paragamit.',
 'ipbblocked' => 'Ika da makakakubkob or maghale nin kubkob sa ibang mga paragamit, nin huli ta ika mismo sa sadiri mo pinagkubkob na',
 'ipbnounblockself' => 'Ika dae pinagtutugutan na magkubkob kan sadiri mo',
@@ -3501,7 +3494,6 @@ Sublokas kan siyudad na ipinahiling',
 'watchlistall2' => 'gabos',
 'namespacesall' => 'gabós',
 'monthsall' => 'gabos',
-'limitall' => 'gabos',
 
 # Email address confirmation
 'confirmemail' => "Kompirmaron an ''e''-surat",
@@ -3525,7 +3517,6 @@ Paradarang surat pinagbalik: $1',
 'confirmemail_success' => 'An saimong e-surat na adres kumpirmado na.
 Puwede ka na ngunyan [[Special:UserLogin|maglaog]] asin maogmang maggamit kan wiki.',
 'confirmemail_loggedin' => "Nakompirmar na an saimong ''e''-surat.",
-'confirmemail_error' => 'May nasalâ sa pagtagama kan saimong kompirmasyon.',
 'confirmemail_subject' => "kompirmasyón {{SITENAME}} kan direksyón nin ''e''-surat",
 'confirmemail_body' => 'Sarong tawo, mapuwedeng ika, gikan sa IP adres na $1,
 nagrehistro nin sarong panindog "$2" na igwa kaining e-surat na adres sa {{SITENAME}}.
@@ -3769,7 +3760,6 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 
 # Special:ComparePages
 'comparepages' => 'Ikumpara an mga pahina',
-'compare-selector' => 'Ikumpara an mga rebisyon nin pahina',
 'compare-page1' => 'Pahina 1',
 'compare-page2' => 'Pahina 2',
 'compare-rev1' => 'Rebisyon 1',

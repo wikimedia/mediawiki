@@ -528,7 +528,6 @@ $messages = array(
 'recentchanges' => 'ການດັດແກ້ຫຼ້າສຸດ',
 'recentchanges-summary' => 'ເບິ່ງ ການປ່ຽນແປງ ຫຼ້າສຸດ ຢູ່ ໜ້າວິກີນີ້.',
 'recentchanges-feed-description' => 'ນຳເບິ່ງການປ່ຽນແປງຫຼ້າສຸດຢູ່ ວິກິນີ້ ໃນ ຟີດ',
-'rcnote' => "ທາງລຸ່ມ {{PLURAL:$1|ແມ່ນ'''1''' ການປ່ຽນແປງ|ແມ່ນ '''$1''' ການປ່ຽນແປງຫຼ້າສຸດ}} ໃນ {{PLURAL:$2|ມື້|'''$2''' ມື້}}, ເມື່ອ $3.",
 'rclistfrom' => 'ສະແດງ ການປ່ຽນແປງ ເລີ່ມແຕ່  $1',
 'rcshowhideminor' => '$1 ການດັດແກ້ເລັກນ້ອຍ',
 'rcshowhidebots' => '$1 ບອທ໌',
@@ -903,7 +902,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'confirmemail_needlogin' => 'ທ່ານ ຈະຕ້ອງ $1 ເພື່ອ ຢືນຢັນ ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານ.',
 'confirmemail_success' => 'ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານ ໄດ້ຮັບການຢືນຢັນແລ້ວ. ທ່ານ ສາມາດ ເຊັນເຂົ້າ ແລະ ມ່ວນຊື່ນກັບ ວີກີ ໄດ້.',
 'confirmemail_loggedin' => 'ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານໄດ້ຖືກຢືນຢັນແລ້ວ.',
-'confirmemail_error' => 'ມີອັນໃດອັນໜຶ່ງຜິດພາດ ໃນ ເວລາບັນທຶກ ການຢືນຢັນຂອງທ່ານ.',
 'confirmemail_subject' => '{{SITENAME}} ຢືນຢັນ ທີ່ຢູ່ ອີເມລ',
 
 # Delete conflict

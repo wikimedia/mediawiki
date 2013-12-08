@@ -1400,7 +1400,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'recentchanges-label-bot' => "Dees bewirking is oetgeveurd door 'ne bot",
 'recentchanges-label-unpatrolled' => 'Dees bewirking is nog neet gekónterleerd',
 'recentchanges-legend-newpage' => '$1 - Nuuj pagina',
-'rcnote' => "Hiejónger {{PLURAL:$1|steit de lètste bewirking|staon de lètste '''$1''' bewirkinge}} van de aafgeloupe {{PLURAL:$2|daag|'''$2''' daag}}, op $4, um $5.",
 'rcnotefrom' => "Verangeringe sins <b>$2</b> (mit 'n maximum van <b>$1</b> verangeringe).",
 'rclistfrom' => 'Tuin de verangeringe vanaaf $1',
 'rcshowhideminor' => '$1 klein bewèrkinge',
@@ -2222,7 +2221,6 @@ Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesj
 'undeletebtn' => 'Trökzètte',
 'undeletelink' => 'bekieke/trökzètte',
 'undeleteviewlink' => 'Bekiek',
-'undeletereset' => 'Reset',
 'undeleteinvert' => 'Ómgedriejde selectie',
 'undeletecomment' => 'Reeje:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} truukgeplaatsj',
@@ -2310,13 +2308,11 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'block' => 'Blok gebroeker',
 'unblock' => 'Deblokkeer IP adres',
 'blockip' => 'Blokkeer dit IP-adres',
-'blockip-title' => 'Blok gebroeker',
 'blockip-legend' => "'ne Gebroeker of IP-adres blokkere",
 'blockiptext' => "Gebroek 't óngerstjaondj formeleer óm sjrieftoegank van e zeker IP-adres te verbeje. Dit maag allein gedaon weure om vandalisme te veurkómme en in euvereinkóms mitte [[{{MediaWiki:Policy-url}}|beleid]]. Gaef hiejónger de raeje óp (bv. inkel vandaliseerdje paazjes).",
 'ipadressorusername' => 'IP-adres of gebroekersnaam',
 'ipbexpiry' => "Verlöp (maak 'n keuze)",
 'ipbreason' => 'Reeje:',
-'ipbreasonotherlist' => 'Angere reje',
 'ipbreason-dropdown' => '*Väöl veurkommende rejer veur blokkaazjes
 ** Foutieve informatie inveure
 ** Verwiedere van informatie oet artikele
@@ -2332,8 +2328,6 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'ipbsubmit' => 'Blokkeer dit IP-adres',
 'ipbother' => 'Anger verloup',
 'ipboptions' => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite',
-'ipbotheroption' => 'anger verloup',
-'ipbotherreason' => 'Angere/eventuele rejer:',
 'ipbhidename' => 'Verberg gebroekersnaam van liester èn bewèrkinger',
 'ipbwatchuser' => 'Gebroekerspazjena en euverlèkpazjena op vólglies plaatse',
 'ipb-disableusertalk' => 'Veurkóm det deze gebroeker tiedes de blok de eige euverlègkpagina kin bewirke',
@@ -2419,7 +2413,6 @@ Wils se de instellinge wiezige?',
 'proxyblockreason' => "Dien IP-adres is geblokkeerd ómdat 't 'n aope proxy is. Contacteer estebleef diene internet service provider of technische óngersjteuning en informeer ze euver dit serjeus veiligheidsprebleem.",
 'sorbsreason' => 'Dien IP-adres is opgenaome in de DNS-blacklist es open proxyserver, dae {{SITENAME}} gebroek.',
 'sorbs_create_account_reason' => 'Dien IP-adres is opgenómme in de DNS-blacklist es open proxyserver, dae {{SITENAME}} gebroek. De kèns gein gebroekersaccount aanmake.',
-'cant-block-while-blocked' => 'De kins anger gebroekers neet blokkere terwiel se zelf geblokkeerd bös.',
 'cant-see-hidden-user' => 'De gebroeker dae se perbeers te blokke is al geblok en verbórge.
 Ómdes se \'t rèch "hideuser" neet höbs, kèns se de blok neet bekieke of bewerke.',
 'ipbblocked' => 'Doe kèns gein anger gebroekers (ónt)blokke, ómdet se zèlf geblók bös.',
@@ -3242,7 +3235,6 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'watchlistall2' => 'al',
 'namespacesall' => 'alle',
 'monthsall' => 'al',
-'limitall' => 'al',
 
 # Email address confirmation
 'confirmemail' => 'Bevèstig e-mailadres',
@@ -3263,7 +3255,6 @@ Zuug dien e-mailadres nao op óngeljige karakters.
 'confirmemail_needlogin' => 'Doe mós $1 óm dien e-mailadres te bevestige.',
 'confirmemail_success' => 'Dien e-mailadres is bevesteg. De kins noe inlogke en van de wiki genete.',
 'confirmemail_loggedin' => 'Dien e-mailadres is noe vasgelag.',
-'confirmemail_error' => "Bie 't opsjlaon van eur bevèstiging is get fout gegange.",
 'confirmemail_subject' => 'Bevèstiging e-mailadres veur {{SITENAME}}',
 'confirmemail_body' => "Emes, waorsjienlik doe vanaaf 't IP-adres $1, heet 'n account $2
 aangemaak mit dit e-mailadres op {{SITENAME}}.
@@ -3488,7 +3479,6 @@ Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van d
 
 # Special:ComparePages
 'comparepages' => "Vergeliek pazjena's",
-'compare-selector' => 'Vergeliek pazjenaversies',
 'compare-page1' => 'Paasj 1',
 'compare-page2' => 'Paasj 2',
 'compare-rev1' => 'Versie 1',

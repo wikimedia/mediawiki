@@ -1075,7 +1075,6 @@ Ul $1 {{PLURAL:$1|xäreftän}} kübräk bulırğa tieş tügel.',
 'recentchanges-feed-description' => 'Bu ağımda soñğı üzgärtülärne küzätü.',
 'recentchanges-label-newpage' => 'Bu üzgärtü belän yaña bit tözelde',
 'recentchanges-label-minor' => 'Bu keçe üzgärtü',
-'rcnote' => 'Asta $4 $5 waqıtınna soñğı {{PLURAL:$2|1|$2}} kön eçendä bulğan soñğı {{PLURAL:$1|1|$1}} üzgärtmä kürsätelä:',
 'rcnotefrom' => "Astaraq '''$2''' başlap ('''$1''' qädär) üzgärtülär kürsätelgän.",
 'rclistfrom' => '$1 başlap yaña üzgärtülärne kürsät',
 'rcshowhideminor' => 'keçe üzgärtülärne $1',
@@ -1563,7 +1562,6 @@ Beterelüdän soñ şundıy uq isemle bit tözelgän bulsa, torğızılğan üzg
 'undeletebtn' => 'Torğızu',
 'undeletelink' => 'qaraw/torğızu',
 'undeleteviewlink' => 'qaraw',
-'undeletereset' => 'Taşlatu',
 'undeleteinvert' => 'Kiresen saylaw',
 'undeletecomment' => 'Säbäp:',
 'undelete-search-submit' => 'Ezläw',
@@ -1615,12 +1613,10 @@ $1',
 
 # Block/unblock
 'blockip' => 'Qullanuçını tıyu',
-'blockip-title' => 'Qullanuçını tıyu',
 'blockip-legend' => 'Qullanuçını tıyu',
 'ipadressorusername' => 'IP adresı yäki qullanuçı iseme:',
 'ipbexpiry' => 'Betä:',
 'ipbreason' => 'Säbäp:',
-'ipbreasonotherlist' => 'Başqa säbäp',
 'ipbreason-dropdown' => '* Qısunıñ ğädättäge säbäpläre
 ** Yalğan mäğlümat kertü
 ** Bitlärneñ eçtälegen sörtü
@@ -1633,7 +1629,6 @@ $1',
 'ipbsubmit' => 'Bu qullanuçını tıyu',
 'ipbother' => 'Başqa waqıt:',
 'ipboptions' => '2 säğät:2 hours,1 kön:1 day,3 kön:3 days,1 atna:1 week,2 atna:2 weeks,1 ay:1 month,3ay:3 months,6 ay:6 months,1 yıl:1 year,çiklänmägän:infinite',
-'ipbotheroption' => 'başqa',
 'badipaddress' => 'Yalğış IP adresı',
 'blockipsuccesssub' => 'Tıyu başqarılğan',
 'ipb-unblock-addr' => '$1 qullanuçısın tıyudan azat itü',
@@ -2008,7 +2003,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'watchlistall2' => 'barlıq',
 'namespacesall' => 'barlıq',
 'monthsall' => 'barlıq',
-'limitall' => 'barlıq',
 
 # Delete conflict
 'recreate' => 'Yañadan yasaw',

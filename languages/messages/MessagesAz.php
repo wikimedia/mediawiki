@@ -1272,7 +1272,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'recentchanges-label-bot' => 'Bu redaktə bot tərəfindən edilmişdir',
 'recentchanges-label-unpatrolled' => 'Bu redaktə hələ nəzərdən keçirilməmişdir',
 'recentchanges-legend-newpage' => '$1 - yeni səhifə',
-'rcnote' => "Aşağıdakı {{PLURAL:$1|'''1''' dəyişiklik|'''$1''' dəyişiklik}} saat $5, $4 tarixinə qədər son {{PLURAL:$2|gün|'''$2''' gün}} ərzində edilmişdir.",
 'rcnotefrom' => "Aşağıda '''$2'''-dən ('''$1'''-ə qədər) dəyişikliklər sadalanmışdır.",
 'rclistfrom' => '$1 vaxtından başlayaraq yeni dəyişiklikləri göstər',
 'rcshowhideminor' => 'Kiçik redaktələri $1',
@@ -1915,7 +1914,6 @@ Sonuncu silinmələrə bax: $2.',
 'undeletebtn' => 'Bərpa et',
 'undeletelink' => 'bax/bərpa et',
 'undeleteviewlink' => 'görünüş',
-'undeletereset' => 'Qur',
 'undeleteinvert' => 'Seçilən xaricindəkiləri',
 'undeletecomment' => 'Səbəb:',
 'undeletedrevisions' => 'Cəmi {{PLURAL:$1|1 redaktə|$1 redaktə}} geri qaytarıldı.',
@@ -2001,12 +1999,10 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'block' => 'İstifadəçini blokla',
 'unblock' => 'İstifadəçinin blokunu götür',
 'blockip' => 'İstifadəçini blokla',
-'blockip-title' => 'İstifadəçini blokla',
 'blockip-legend' => 'İstifadəçinin bloklanması',
 'ipadressorusername' => 'IP-ünvanı və ya istifadəçi adı',
 'ipbexpiry' => 'Bitmə müddəti:',
 'ipbreason' => 'Səbəb:',
-'ipbreasonotherlist' => 'Digər səbəb',
 'ipbreason-dropdown' => '*Bloklama səbəbləri:
 ** Yalan məlumatların əlavə edilməsi
 ** Səhifənin məzmununun silinməsi
@@ -2020,8 +2016,6 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'ipbsubmit' => 'Bu istifadəçini blokla',
 'ipbother' => 'Başqa vaxt',
 'ipboptions' => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,müddətsiz:infinite',
-'ipbotheroption' => 'başqa',
-'ipbotherreason' => 'Başqa/əlavə səbəb:',
 'ipbhidename' => 'İstifadəçi adını redaktələrdə və siyahılarda gizlət',
 'ipbwatchuser' => 'Bu istifadəçinin müzakirə və istifadəçi səhifəsini izlə',
 'ipb-disableusertalk' => 'Bu istifadəçi bloklu olarkən öz müzakirə səhifəsində redaktə etməsini əngəllə',
@@ -2812,7 +2806,6 @@ Variants for Chinese language
 'watchlistall2' => 'hamısını',
 'namespacesall' => 'bütün',
 'monthsall' => 'hamısı',
-'limitall' => 'bütün',
 
 # Email address confirmation
 'confirmemail' => 'E-məktubunu təsdiq et',
@@ -2954,7 +2947,6 @@ Variants for Chinese language
 
 # Special:ComparePages
 'comparepages' => 'Səhifələri qarşılaşdır',
-'compare-selector' => 'Səhifə redaktələrini qarşılaşdır',
 'compare-page1' => 'Səhifə 1',
 'compare-page2' => 'Səhifə 2',
 'compare-rev1' => 'Dəyişiklik 1',

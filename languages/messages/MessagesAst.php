@@ -1490,7 +1490,6 @@ Esta información sedrá pública.',
 'recentchanges-label-plusminus' => "El tamañu d'esta páxina cambió nesti númberu de bytes",
 'recentchanges-legend-newpage' => '(ver tamién la  [[Special:NewPages|llista de páxines nueves]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambiu|puen vese los caberos '''$1''' cambios}} {{PLURAL:$2|del caberu día|de los caberos '''$2''' díes}}, a fecha de $5, $4.",
 'rcnotefrom' => "Abaxo tan los cambeos dende '''$2''' (s'amuesen fasta '''$1''').",
 'rclistfrom' => 'Amosar los nuevos cambios dende $1',
 'rcshowhideminor' => '$1 ediciones menores',
@@ -2392,7 +2391,6 @@ revisión fuera restaurada o eliminada del archivu.",
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'ver/restaurar',
 'undeleteviewlink' => 'ver',
-'undeletereset' => 'Reaniciar',
 'undeleteinvert' => 'Invertir seleición',
 'undeletecomment' => 'Motivu:',
 'undeletedrevisions' => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
@@ -2481,14 +2479,12 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'block' => 'Bloquiar usuariu',
 'unblock' => 'Desbloquiar usuariu',
 'blockip' => 'Bloquiar usuariu',
-'blockip-title' => 'Bloquiar usuariu',
 'blockip-legend' => 'Bloquiar usuariu',
 'blockiptext' => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
 Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
 'ipadressorusername' => "Direición IP o nome d'usuariu:",
 'ipbexpiry' => 'Caducidá:',
 'ipbreason' => 'Motivu:',
-'ipbreasonotherlist' => 'Otru motivu',
 'ipbreason-dropdown' => "*Motivos comunes de bloquéu
 ** Enxertamientu d'información falso
 ** Dexar les páxines en blanco
@@ -2504,8 +2500,6 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipbsubmit' => 'Bloquiar esti usuariu',
 'ipbother' => 'Otru periodu:',
 'ipboptions' => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,indefiníu:infinite',
-'ipbotheroption' => 'otru',
-'ipbotherreason' => 'Motivu distintu/adicional:',
 'ipbhidename' => "Anubrir el nome d'usuariu d'ediciones y llistes",
 'ipbwatchuser' => "Vixilar les páxines d'usuariu y d'alderique d'esti usuariu",
 'ipb-disableusertalk' => "Torgar qu'esti usuariu edite la so páxina d'alderique mentanto tea bloquiáu",
@@ -2594,7 +2588,6 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista de bl
 'sorbsreason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
 'xffblockreason' => "Una direición IP presente na testera X-Forwarded-For, o suya o d'un sirvidor proxy que ta usando, ta bloquiada. El motivu orixinal del bloquéu foi: $1",
-'cant-block-while-blocked' => 'Nun pues bloquiar a otros usuarios mentes tu teas bloquiáu.',
 'cant-see-hidden-user' => "L'usuariu que tentes bloquiar yá ta bloquiáu y anubríu.
 Como nun tienes permisos p'anubrir usuarios, nun pues ver o editar el bloquéu del usuariu.",
 'ipbblocked' => 'Nun pues bloquiar o desbloquiar a otros usuarios, porque tas bloquiáu tu mesmu',
@@ -3526,7 +3519,6 @@ Los demás tarán anubríos de mou predetermináu.
 'watchlistall2' => 'too',
 'namespacesall' => 'toos',
 'monthsall' => 'toos',
-'limitall' => 'toos',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar direición de corréu',
@@ -3548,7 +3540,6 @@ El sirvidor de corréu devolvió: $1',
 'confirmemail_success' => 'El to corréu quedó confimáu.
 Agora yá pues [[Special:UserLogin|coneutate]] y esfrutar de la wiki.',
 'confirmemail_loggedin' => 'Quedó confirmada la to direición de corréu.',
-'confirmemail_error' => 'Hebo un problema al guardar la to confirmación.',
 'confirmemail_subject' => 'Confirmación de la direición de corréu de {{SITENAME}}',
 'confirmemail_body' => 'Daquién, seique tu, dende la IP $1, rexistró la cuenta "$2" con
 esta direición de corréu en {{SITENAME}}.
@@ -3800,7 +3791,6 @@ Tendría d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llic
 
 # Special:ComparePages
 'comparepages' => 'Comparar páxines',
-'compare-selector' => 'Comparar revisiones de páxina',
 'compare-page1' => 'Páxina 1',
 'compare-page2' => 'Páxina 2',
 'compare-rev1' => 'Revisión 1',

@@ -729,7 +729,6 @@ $messages = array(
 'recentchanges-label-minor' => 'Им гъвечlи дуьзар хъувун я',
 'recentchanges-label-bot' => 'И дуьзар хъувун ботди авунвайд я',
 'recentchanges-label-unpatrolled' => 'И дуьзар хъувундин винел патрулвал авунвач',
-'rcnote' => "$5, $4 чIавун кьатIдиз талукь {{PLURAL:$2|югъ|'''$2''' йикъар}} къене{{PLURAL:$1|эхиримжи'''1''' масакIавал|эхиримжи '''$1''' масакIавилер}}",
 'rcnotefrom' => "Агъадихъ '''$2'''-ай эгечIна масакIавилер къалурнава ( '''$1''' кьван  къалурнава).",
 'rclistfrom' => '$1-й эгечIна цIийи масакIавилер къалурун',
 'rcshowhideminor' => '$1 гъвечlи дуьзар хъувунар',
@@ -1012,7 +1011,6 @@ $messages = array(
 'undeletebtn' => 'ТуьхкIуьрун',
 'undeletelink' => 'Килигун/гуьнгуьна хтун',
 'undeleteviewlink' => 'Килигун',
-'undeletereset' => 'Алудна гадрун',
 'undeletecomment' => 'Кар',
 'undelete-search-submit' => 'Жагъурун',
 'undelete-show-file-submit' => 'Э',
@@ -1246,7 +1244,6 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'watchlistall2' => 'вири',
 'namespacesall' => 'вири',
 'monthsall' => 'вири',
-'limitall' => 'вири',
 
 # action=purge
 'confirm_purge_button' => 'ЭХь',

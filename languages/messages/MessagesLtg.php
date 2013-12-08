@@ -454,7 +454,6 @@ n = nasvareigs lobuojums.',
 'recentchanges' => 'Nasenejis puormejis',
 'recentchanges-legend' => 'Pādejūs izmaiņu īspiejis',
 'recentchanges-feed-description' => 'Redzit jaunuokuos wiki izmainis ar itīm pādim.',
-'rcnote' => 'Tagad ir {{PLURAL:$1|radzama pādejuo <strong>$1</strong> izmaiņa, kas izdareita|redzamys pādejuos <strong>$1</strong> izmainis, kas izdareitys}} {{PLURAL:$2|pādejā|pādejuos}} <strong>$2</strong> {{PLURAL:$2|dīnā|dīnuos}} (da $4, $5).',
 'rclistfrom' => 'Paruodeit jaunys izmainis nu $1',
 'rcshowhideminor' => '$1 nasvareigūs',
 'rcshowhidebots' => '$1 robotprogramys',
@@ -687,7 +686,6 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 # Block/unblock
 'blockip' => 'Nūblokēt lītuotuoju',
 'ipboptions' => '2 stuņdis:2 hours,1 dīna:1 day,3 dīnys:3 days,1 nedeļa:1 week,2 nedelis:2 weeks,1 mieness:1 month,3 mieneši:3 months,6 mieneši:6 months,1 gods:1 year,iz nanūsokamu laiku:infinite',
-'ipbotheroption' => 'cyts',
 'ipb-blocklist-contribs' => '$1 devīņs',
 'ipblocklist' => 'Nūblokēti lītuotuoji',
 'blocklink' => 'nūblokēt',
@@ -855,7 +853,6 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'watchlistall2' => 'vysys',
 'namespacesall' => 'vysys',
 'monthsall' => 'vysi',
-'limitall' => 'vysys',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Apsavērt atbylstūšuos izmainis',

@@ -798,7 +798,6 @@ Yer e-mail address insae revealed whin ither uisers contact ye.",
 'recentchanges-label-minor' => 'This is a smaa edit',
 'recentchanges-label-bot' => 'This edit wis performed by a bot',
 'recentchanges-label-unpatrolled' => 'This edit haes nae yet bin patrolled',
-'rcnote' => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' chynges}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $5, $4.",
 'rcnotefrom' => 'Ablo is the chynges syne <b>$2</b> (up tae <b>$1</b> shawn).',
 'rclistfrom' => 'Shaw new chynges stertin frae $1',
 'rcshowhideminor' => '$1 smaa edits',
@@ -1184,7 +1183,6 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'ipbsubmit' => 'Block this uiser',
 'ipbother' => 'Ither time',
 'ipboptions' => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
-'ipbotheroption' => 'ither',
 'badipaddress' => 'That IP address is nae guid',
 'blockipsuccesssub' => 'Block succeedit',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] haes been blockit.
@@ -1428,7 +1426,6 @@ If th' file haes bin modified frae tis original state, some details kin nae full
 'watchlistall2' => 'aw',
 'namespacesall' => 'aa',
 'monthsall' => 'aw',
-'limitall' => 'aw',
 
 # Email address confirmation
 'confirmemail_noemail' => 'Ye dinna hae a valid email address set in yer [[Special:Preferences|uiser preferences]].',
@@ -1443,7 +1440,6 @@ Mailer returned: $1',
 'confirmemail_needlogin' => 'Ye maun $1 for tae confirm yer email address.',
 'confirmemail_success' => 'Yer e-mail address haes been confirmed. Ye can nou log in an enjoy the wiki.',
 'confirmemail_loggedin' => 'Yer e-mail address haes noo been confirmed.',
-'confirmemail_error' => 'Something gaed agley hainin yer confirmation.',
 'confirmemail_body' => 'A bodie, maist likely you frae IP address $1, haes registert an
 accoont "$2" wi this e-mail address on {{SITENAME}}.
 

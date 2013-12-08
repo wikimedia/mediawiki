@@ -784,8 +784,6 @@ Dei Mail-Adress wead dabei ned ozoagt.',
 'recentchanges-label-minor' => 'Kloane Endarunga',
 'recentchanges-label-bot' => 'Endarung duach an Bot',
 'recentchanges-label-unpatrolled' => 'De Endarung is no ned kontrolliad worn',
-'rcnote' => "{{PLURAL:$1|'''1''' Endarung|'''$1''' Endarunga}} in dn {{PLURAL:$2|letztn 24 Stundn|letztn '''$2'''Dog}}.
-Stand: $4, $5 Uhr.",
 'rcnotefrom' => "Untn san de Endarunga seit  '''$2''' (bis za '''$1''' Ozoagn).",
 'rclistfrom' => 'Nua Endarunga seit $1 zoagn.',
 'rcshowhideminor' => 'Kloane Endarunga $1',
@@ -1225,7 +1223,6 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'undeletebtn' => 'Wiederherstön',
 'undeletelink' => 'oschaugn / wiadaheastejn',
 'undeleteviewlink' => 'oschaugn',
-'undeletereset' => 'Zrucksétzen',
 'undeletedfiles' => '$1 {{plural:$1|Datei|Dateien}} san wieda hergstellt worn',
 'undelete-search-box' => 'Suach noch gléschde Seiten',
 'undelete-search-submit' => 'Suach',
@@ -1281,7 +1278,6 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'block' => 'Benutzer sperrn',
 'unblock' => 'Benutzer freigeem',
 'blockip' => 'IP-Adress/Benytzer sperrn',
-'blockip-title' => 'Benytzer sperrn',
 'blockip-legend' => 'IP-Adresse/Benutzer sperrn',
 'blockiptext' => "Mid dem Formular sperrst a IP-Adress oder an Benytzernåmen, das vo durten aus koane Endarungen mer vurgnumma wern kennan.
 Des soid nur dafoing, um an Vandalismus z' vahindern und in Yweraistimmung mid d' [[{{MediaWiki:Policy-url}}|Richtlinien]].
@@ -1289,7 +1285,6 @@ Gib bittschee an Grund fyr d' Sperrn å.",
 'ipadressorusername' => 'IP-Adress oder Benytzernåm:',
 'ipbexpiry' => 'Sperrdauer:',
 'ipbreason' => 'Grund:',
-'ipbreasonotherlist' => 'Åndarer Grund:',
 'ipbreason-dropdown' => '* Oigmoahne Sperrgrynd
 ** Eihfyng voh voische Informaziónen
 ** Laarn voh Seiten
@@ -1305,8 +1300,6 @@ Gib bittschee an Grund fyr d' Sperrn å.",
 'ipbsubmit' => 'IP-Adress/Benutzer sperrn',
 'ipbother' => 'Åndre Dauer (auf englisch):',
 'ipboptions' => '2 Stund:2 hours,1 Dog:1 day,3 Dog:3 days,1 Woch:1 week,2 Wocha:2 weeks,1 Monat:1 month,3 Monat:3 months,6 Monat:6 months,1 Joar:1 year, Infinit:infinite',
-'ipbotheroption' => 'Åndre Dauer:',
-'ipbotherreason' => 'Ånderner/ergenznder Grund:',
 'ipbhidename' => 'An Benytzernåmen in Beorwaitungen und Linsten vastecken',
 'ipbwatchuser' => 'De Benytzer(diskussions)saiten beowochten',
 'ipb-change-block' => "D' Sperrn mid de Sperrparameter danaiern",
@@ -1686,7 +1679,6 @@ Bittscheh d' noraale Vurschau bnutzen.",
 
 # Special:ComparePages
 'comparepages' => 'Seiten vagleichen',
-'compare-selector' => 'Seitenversiónen vagleichen',
 'compare-page1' => 'Seiten 1',
 'compare-page2' => 'Seiten 2',
 'compare-rev1' => 'Versión 1',

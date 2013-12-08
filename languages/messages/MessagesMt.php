@@ -1563,7 +1563,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-label-bot' => 'Din il-modifika ġiet effettwata minn bot',
 'recentchanges-label-unpatrolled' => 'Din il-modifika għadha ma ġietx verifikata',
 'recentchanges-legend-newpage' => '$1 - paġna ġdida',
-'rcnote' => "Hawn taħt {{PLURAL:$1|tinsab l-aktar modifika riċenti|jinsabu l-'''$1''' modifiki riċenti}} għas-sit fl-aħħar {{PLURAL:$2|24 siegħa|'''$2''' ġranet}}, id-dati ġew aġġornati fil-$5 ta' $4.",
 'rcnotefrom' => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 'rclistfrom' => 'Uri l-modifiki ġodda jibdew minn $1',
 'rcshowhideminor' => '$1 modifiki żgħar',
@@ -2380,7 +2379,6 @@ Int jista' jkollhok link ħażin, jew jista' jkun li ir-reviżjoni ġie rkuprat 
 'undeletebtn' => 'Irkupra',
 'undeletelink' => 'uri/irkupra',
 'undeleteviewlink' => 'uri',
-'undeletereset' => 'Irrisettja',
 'undeleteinvert' => 'Inverti s-selezzjoni',
 'undeletecomment' => 'Raġuni:',
 'undeletedrevisions' => '{{PLURAL:$1|reviżjoni irkuprata|$1 reviżjonijiet irkuprati}}',
@@ -2470,7 +2468,6 @@ L-aħħar daħla fir-reġistru tal-imblokki tinsab hawn taħt bħala referenza:'
 'block' => 'Imblokka utent',
 'unblock' => 'Żblokka utent',
 'blockip' => 'Imblokka lil utent',
-'blockip-title' => "Imblokka 'l-utent",
 'blockip-legend' => "Imblokka 'l-utent",
 'blockiptext' => "Uża l-formola t'hawn taħt sabiex biex tibblokkja l-aċċess tal-kitba lil IP speċifiku jew utent.
 Il-blokk irid ikun użat biss sabiex jitnaqqas iċ-ċans ta' vandaliżmu, u għandu josservja b'mod strett il-[[{{MediaWiki:Policy-url}}|politika ta' {{SITENAME}}]].
@@ -2478,7 +2475,6 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipadressorusername' => 'Indirizz tal-IP jew isem tal-utent:',
 'ipbexpiry' => 'Skadenza tal-imblokk:',
 'ipbreason' => 'Raġuni:',
-'ipbreasonotherlist' => 'Raġuni oħra',
 'ipbreason-dropdown' => "*Raġunijiet komuni dwar blokki
 ** Iddaħħal informazzjoni falza
 ** Tneħħi kontenut mill-paġni
@@ -2494,8 +2490,6 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipbsubmit' => 'Imblokka lil dan l-utent',
 'ipbother' => 'Ħin ieħor:',
 'ipboptions' => 'sagħtejn:2 hours,ġurnata 1:1 day,3 ġranet:3 days,ġimgħa 1:1 week,ġimgħatejn:2 weeks,xahar 1:1 month,3 xhur:3 months,6 xhur:6 months,sena 1:1 year,infinita:infinite',
-'ipbotheroption' => 'ieħor',
-'ipbotherreason' => 'Raġunijiet oħra/addizzjonali:',
 'ipbhidename' => 'Aħbi l-isem tal-utent mill-modifiki u mill-elenki.',
 'ipbwatchuser' => "Osserva l-paġni u d-diskussjonijiet ta' dan l-utent",
 'ipb-disableusertalk' => "Ipprevjeni dan l-utent milli jimmodifika l-paġna ta' diskussjoni personali waqt li hu mblukkat.",
@@ -2579,7 +2573,6 @@ Ara l-[[Special:BlockList|lista tal-blokki]] sabiex tara l-blokki attivi.',
 'proxyblockreason' => "L-indirizz IP tiegħek ġie imblukkat peress li huwa proxy miftuħ. Jekk jogħġbok, ikkuntattja lill-provdituri tas-servizz tal-internet (ISP) jew lis-''support'' tekniku tiegħek u infurmahom b'din il-problema serja ta' sigurtà.",
 'sorbsreason' => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}.',
 'sorbs_create_account_reason' => 'L-indirizz IP tiegħek huwa mniżżel bħala proxy miftuħ fid-DNSBL użat minn {{SITENAME}}. Ma tistax toħloq kont.',
-'cant-block-while-blocked' => 'Ma tistax timblokka lil utenti oħra waqt li inti mblukkat.',
 'cant-see-hidden-user' => 'L-utent li qiegħed tipprova timblokka diġà ġie imblukkat u moħbi.
 Minħabba li inti m\'għandikx id-dritt li "taħbi \'l-utent", ma tistax tara jew timmodifika l-blokk tal-utent.',
 'ipbblocked' => 'Ma tistax timblokka jew tiżblokka utenti oħra, minħabba li inti stess tinsab imblukkat',
@@ -3431,7 +3424,6 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 'watchlistall2' => 'kollha',
 'namespacesall' => 'kollha',
 'monthsall' => 'kollha',
-'limitall' => 'kollha',
 
 # Email address confirmation
 'confirmemail' => 'Ikkonferma l-indirizz tal-posta elettronika',
@@ -3453,7 +3445,6 @@ Il-kodiċi setgħat tkun skadiet.",
 'confirmemail_needlogin' => 'Huwa neċessarju $1 biex tikkonferma l-indirizz propju tal-posta elettronika.',
 'confirmemail_success' => "L-indirizz tal-posta elettronika tiegħek ġie konfermat. Issa tista' [[Special:UserLogin|tidħol fil-kont tiegħek]] u tgawdi bis-sħiħ din il-wiki.",
 'confirmemail_loggedin' => 'L-indirizz tal-posta elettronika tiegħek ġie ikkonfermat.',
-'confirmemail_error' => 'Problema fis-salvataġġ tal-konferma.',
 'confirmemail_subject' => '{{SITENAME}}: rikjesta tal-konferma tal-indirizz',
 'confirmemail_body' => 'Xi ħadd, probabbilment int, mill-indirizz tal-IP $1,
 irreġistra l-kont "$2" b\'dan l-indirizz tal-posta elettronika fuq {{SITENAME}}.
@@ -3701,7 +3692,6 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 
 # Special:ComparePages
 'comparepages' => 'Qabbel il-paġni',
-'compare-selector' => "Ikkumpara reviżjonijiet ta' paġna",
 'compare-page1' => 'Paġna 1',
 'compare-page2' => 'Paġna 2',
 'compare-rev1' => 'Reviżjoni 1',

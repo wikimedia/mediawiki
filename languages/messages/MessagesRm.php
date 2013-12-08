@@ -1348,7 +1348,6 @@ Tia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contactes
 'recentchanges-label-bot' => 'Questa modificaziun è vegnida exequida dad in bot',
 'recentchanges-label-unpatrolled' => "Questa midada n'è anc betg vegnida controllada",
 'recentchanges-legend-newpage' => '$1 - nova pagina',
-'rcnote' => "Sutvart {{PLURAL:$1|è '''ina''' midada|èn las ultimas '''$1''' midadass}} {{PLURAL:$2|da l'ultim di|dals ultims '''$2''' dis}}, versiun dals  $4 $5.",
 'rcnotefrom' => "Midadas dapi '''$2''' (maximalmain '''$1''' vegnan mussads).",
 'rclistfrom' => 'Mussar las novas midadas entschavend cun $1',
 'rcshowhideminor' => '$1 midadas pitschnas',
@@ -2219,7 +2218,6 @@ Eventualmain es ti suandà ina colliaziun faussa u la versiun è vegnida restaur
 'undeletebtn' => 'restituir',
 'undeletelink' => 'mussar/restituir',
 'undeleteviewlink' => 'contemplar',
-'undeletereset' => 'Redefinir',
 'undeleteinvert' => 'Invertar la selecziun',
 'undeletecomment' => 'Motiv:',
 'undeletedrevisions' => 'Restituì {{PLURAL:$1|1 versiun|$1 versiuns}}',
@@ -2309,7 +2307,6 @@ L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'block' => "Bloccar l'utilisader",
 'unblock' => 'Debloccar in utilisader',
 'blockip' => "Bloccar l'utilisader",
-'blockip-title' => "Bloccar l'utilisader",
 'blockip-legend' => "Bloccar l'utilisader",
 'blockiptext' => "Utilisescha il formular sutvart per bloccar ina adressa IP u in utilisader uschia ch'el na po betg pli far midadas.
 Ti duessas be far quai per impedir vandalissem e en ina moda confurma a las [[{{MediaWiki:Policy-url}}|directivas]].
@@ -2317,7 +2314,6 @@ Inditgescha sutvart in motiv (per exempel pos ti inditgar paginas ch'èn vegnida
 'ipadressorusername' => "Adressa IP u num d'utilisader:",
 'ipbexpiry' => 'Bloccà enfin:',
 'ipbreason' => 'Motiv:',
-'ipbreasonotherlist' => 'Auter motiv',
 'ipbreason-dropdown' => "*Motivs generals per bloccar
 ** Inserir infurmaziuns faussas
 ** Stizzar cuntegn da paginas
@@ -2333,8 +2329,6 @@ Inditgescha sutvart in motiv (per exempel pos ti inditgar paginas ch'èn vegnida
 'ipbsubmit' => 'Bloccar quest utilisader',
 'ipbother' => 'Auter temp:',
 'ipboptions' => '2 uras:2 hours,1 di:1 day,3 dis:3 days,1 emna:1 week,2 emnas:2 weeks,1 mais:1 month,3 mais:3 months,6 mais:6 months,1 onn:1 year,permanent:infinite',
-'ipbotheroption' => 'auter',
-'ipbotherreason' => 'Auter/ulteriur motiv:',
 'ipbhidename' => "Zuppentar il num d'utilisader en las modicaziuns e glistas",
 'ipbwatchuser' => "Observar las paginas d'utilisader e da discussiun da quest utilisader",
 'ipb-disableusertalk' => "Evitar che quest utilisader po modifitgar sia pagina da discussiun durant ch'el è bloccà.",
@@ -2427,7 +2421,6 @@ Contactescha tes provider dals survetschs d'internet u ils administraturs dal si
 'sorbsreason' => 'Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.',
 'sorbs_create_account_reason' => "Tia adressa IP fa part da la glista da proxys averts da DNSBL che vegn utilisada da {{SITENAME}}.
 Ti na pos betg crear in conto d'utilisader.",
-'cant-block-while-blocked' => 'Ti na pos betg bloccar auters utilisaders durant che ti es sez bloccà',
 'cant-see-hidden-user' => "L'utilisader che ti emprovas da bloccar è gia bloccà e zuppentà.
 Perquai che ti h'has betg il dretg «hideuser» na pos ti betg vesair u modifitgar la bloccada da l'utilisader.",
 'ipbblocked' => 'Ti na pos betg bloccar u debloccar auters utilisaders perquai che ti es sez bloccà',
@@ -3311,7 +3304,6 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'watchlistall2' => 'tut',
 'namespacesall' => 'tuts',
 'monthsall' => 'tuts',
-'limitall' => 'tuts',
 
 # Email address confirmation
 'confirmemail' => "Confermar l'adressa dad e-mail",
@@ -3335,7 +3327,6 @@ Il server dad e-mail ha returnà: $1",
 'confirmemail_success' => "Tia adressa dad e-mail è vegnida confermada. 
 Ussa pos ti [[Special:UserLogin|t'annunziar]] ed utilisar la wiki.",
 'confirmemail_loggedin' => 'Tia adressa dad e-mail è ussa vegnida confermada.',
-'confirmemail_error' => 'Insatge è crappà cun tes mail da confermaziun. Stgisa foll!',
 'confirmemail_subject' => "{{SITENAME}} - Confermaziun da l'adressa dad e-mail",
 'confirmemail_body' => 'Insatgi cun l\'adressa dad IP $1, probablamain ti, 
 ha creà il conto "$2" sin {{SITENAME}} cun questa adressa dad e-mail.
@@ -3565,7 +3556,6 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 
 # Special:ComparePages
 'comparepages' => 'Cumparegliar paginas',
-'compare-selector' => "Cumparegliar versiuns d'ina pagina",
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Versiun 1',

@@ -1316,7 +1316,6 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'recentchanges-label-bot' => 'Suntingan iki diayahi déning bot',
 'recentchanges-label-unpatrolled' => 'Suntingan iki durung dipatroli',
 'recentchanges-legend-newpage' => '$1 - kaca anyar',
-'rcnote' => 'Ing ngisor iki kapacak {{PLURAL:$1|pangowahan|owah-owahan}} pungkasan ing  <strong>$2</strong> dina pungkasan ing $5, $4.',
 'rcnotefrom' => 'Ing ngisor iki owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
 'rclistfrom' => 'Saiki nuduhaké owah-owahan wiwit tanggal $1',
 'rcshowhideminor' => '$1 suntingan sithik',
@@ -2168,7 +2167,6 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'undeletebtn' => 'Balèkna!',
 'undeletelink' => 'pirsani/balèkna',
 'undeleteviewlink' => 'pirsani',
-'undeletereset' => "''Reset''",
 'undeleteinvert' => 'Walik pilihan',
 'undeletecomment' => 'Alesan:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|révisi|révisi}} wis dibalèkaké',
@@ -2258,7 +2256,6 @@ $1',
 'block' => 'Blokir panganggo',
 'unblock' => 'Uculaké blokirané panganggo',
 'blockip' => 'Blokir panganggo',
-'blockip-title' => 'Blokir panganggo',
 'blockip-legend' => 'Blokir panganggo',
 'blockiptext' => 'Enggonen formulir ing ngisor iki kanggo mblokir sawijining alamat IP utawa panganggo supaya ora bisa nyunting kaca.
 Prekara iki perlu dilakoni kanggo menggak vandalisme, lan miturut [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].
@@ -2266,7 +2263,6 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipadressorusername' => 'Alamat IP utawa jeneng panganggo',
 'ipbexpiry' => 'Kadaluwarsa',
 'ipbreason' => 'Alesan:',
-'ipbreasonotherlist' => 'Alesan liya',
 'ipbreason-dropdown' => '*Alesan umum mblokir panganggo
 ** Mènèhi informasi palsu
 ** Ngilangi isi kaca
@@ -2282,8 +2278,6 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipbsubmit' => 'Kirimna',
 'ipbother' => 'Wektu liya',
 'ipboptions' => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite',
-'ipbotheroption' => 'liyané',
-'ipbotherreason' => 'Alesan liya/tambahan',
 'ipbhidename' => 'Delikna jeneng panganggo saka suntingan lan pratélan',
 'ipbwatchuser' => 'Ngawasi kaca panganggo lan kaca-kaca dhiskusi panganggo iki',
 'ipb-disableusertalk' => 'Alangi panganggo iki nyunting kaca gunemané nalika diblokir',
@@ -2372,7 +2366,6 @@ Mangga mirsani [[Special:BlockList|daftar panganggo sing diblokir]] kanggo dafta
 Mangga ngubungi sing nyedyakaké dines internèt panjenengan utawa pitulungan tèknis lan aturana masalah kaamanan sérius iki.",
 'sorbsreason' => "Alamat IP panjenengan didaftar minangka ''open proxy'' ing DNSBL.",
 'sorbs_create_account_reason' => "Alamat IP panjenengan didaftar minangka ''open proxy'' ing DNSBL. Panjenengan ora bisa nggawé akun utawa rékening.",
-'cant-block-while-blocked' => 'Panjenengan ora bisa mblokir panganggo liya nalika panjenengan dhéwé pinuju diblokir.',
 'cant-see-hidden-user' => 'Panganggo sing Sampéyan coba blokir wis kablokir lan didhelikaké.
 Amarga Sampéyan ora nduwé hak ndhelikaké panganggo, Sampéyan ora bisa ndelok utawa nyunting blokiran panganggo.',
 'ipbblocked' => 'Sampéyan ora bisa mblokir utawa mbukak blokiran panganggo liya amarga Sampéyan dhéwé diblokir',
@@ -3244,7 +3237,6 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'watchlistall2' => 'kabèh',
 'namespacesall' => 'kabèh',
 'monthsall' => 'kabèh',
-'limitall' => 'kabèh',
 
 # Email address confirmation
 'confirmemail' => 'Konfirmasi alamat e-mail',
@@ -3267,7 +3259,6 @@ Pangirim mènèhi informasi: $1',
 'confirmemail_success' => 'Alamat e-mail panjenengan wis dikonfirmasi.
 Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
 'confirmemail_loggedin' => 'Alamat e-mail panjenengan wis dikonfirmasi.',
-'confirmemail_error' => 'Ana kaluputan nalika nyimpen konfirmasi panjenengan.',
 'confirmemail_subject' => 'Konfirmasi alamat e-mail {{SITENAME}}',
 'confirmemail_body' => 'Sawijining wong, mbokmenawa panjenengan dhéwé, saka alamat IP $1, wis ndaftaraké akun "$2" mawa alamat e-mail iki ing {{SITENAME}}. Bukaka pranala iki ing panjlajah wèb panjenengan.
 
@@ -3480,7 +3471,6 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 
 # Special:ComparePages
 'comparepages' => 'Bandhingna kaca',
-'compare-selector' => 'Bandhingna révisi kaca',
 'compare-page1' => 'Kaca 1',
 'compare-page2' => 'Kaca 2',
 'compare-rev1' => 'Révisi 1',

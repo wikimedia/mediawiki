@@ -725,7 +725,6 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'recentchanges-label-minor' => 'Imbddl ifssusn',
 'recentchanges-label-bot' => 'Ambddl ad iskr robot',
 'recentchanges-label-unpatrolled' => 'Ambddl ad ura jju ittmẓra',
-'rcnote' => 'Γid {{PLURAL:$1|ambddl amggaru lli ittuysgarn| $1 Imbddln imggura lli ittuyskarn}} ɣ {{PLURAL:$2|was amggaru| <b>$2</b> Ussan imggura}} ar $5 n $4.',
 'rcnotefrom' => "Had imbddln lli ittuyskarn z '''$2''' ('''$1''' ɣ uggar).",
 'rclistfrom' => 'Mel imbdeltn imaynutn z $1',
 'rcshowhideminor' => '$1 iẓṛign fssusnin',
@@ -983,7 +982,6 @@ Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
 # Block/unblock
 'blockip' => 'Qn f umsqdac',
 'ipboptions' => '2 ikudn:2 hours,1 as:1 day,3 ussan:3 days,1 imalas:1 week,2 imalasn:2 weeks,1 ayur:1 month,3 irn:3 months,6 irn:6 months,1 asggas:1 year,tusut ur iswuttan:infinite',
-'ipbotheroption' => 'wayya',
 'ipbhidename' => 'ḥbu assaɣ n umsqdac ɣ imbdln d umuɣn',
 'ipbwatchuser' => 'Tfr tisniwin d imsgdaln n umqdac',
 'ipblocklist' => 'Imsqdacn ttuẓnin',
@@ -1195,7 +1193,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'watchlistall2' => 'kraygat (kullu)',
 'namespacesall' => 'kullu',
 'monthsall' => 'kullu',
-'limitall' => 'Kullu',
 
 # Delete conflict
 'recreate' => 'awd skr',
@@ -1282,7 +1279,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 
 # Special:ComparePages
 'comparepages' => 'qarnn tiwriqin',
-'compare-selector' => 'qarn lmorajaa ntwriqin',
 'compare-page1' => 'tawriqt 1',
 'compare-page2' => 'tawriqt 2',
 'compare-rev1' => 'morajaa 1',

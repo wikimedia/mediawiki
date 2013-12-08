@@ -1799,7 +1799,6 @@ Cette information sera publique.',
 'recentchanges-label-plusminus' => 'La taille de la page a changé de ce nombre d’octets',
 'recentchanges-legend-newpage' => '(voir aussi la [[Special:NewPages|liste des nouvelles pages]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Voici {{PLURAL:$1|la dernière modification effectuée|les $1 dernières modifications effectuées}} durant {{PLURAL:$2|la dernière journée|les <b>$2</b> derniers jours}} jusqu'à $5 le $4.",
 'rcnotefrom' => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
 'rclistfrom' => 'Afficher les nouvelles modifications depuis le $1.',
 'rcshowhideminor' => '$1 les modifications mineures',
@@ -2698,7 +2697,6 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletebtn' => 'Restaurer',
 'undeletelink' => 'visualiser/rétablir',
 'undeleteviewlink' => 'voir',
-'undeletereset' => 'Réinitialiser',
 'undeleteinvert' => 'Inverser la sélection',
 'undeletecomment' => 'Motif :',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
@@ -2787,7 +2785,6 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'block' => 'Bloquer l’utilisateur',
 'unblock' => "Débloquer l'utilisateur",
 'blockip' => 'Bloquer l’utilisateur',
-'blockip-title' => 'Bloquer l’utilisateur',
 'blockip-legend' => 'Bloquer l’utilisateur',
 'blockiptext' => 'Utilisez le formulaire ci-dessous pour bloquer les tentatives de modification faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.
 Une telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].
@@ -2795,7 +2792,6 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipadressorusername' => "Adresse IP ou nom d'utilisateur :",
 'ipbexpiry' => 'Durée avant expiration :',
 'ipbreason' => 'Motif :',
-'ipbreasonotherlist' => 'Autre motif',
 'ipbreason-dropdown' => "* Motifs de blocage les plus fréquents
 ** Insertion de fausses informations
 ** Suppression injustifiée de contenu des pages
@@ -2811,8 +2807,6 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipbsubmit' => 'Bloquer cet utilisateur',
 'ipbother' => 'Autre durée :',
 'ipboptions' => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
-'ipbotheroption' => 'autre',
-'ipbotherreason' => 'Motif différent ou supplémentaire :',
 'ipbhidename' => "Masquer le nom d'utilisateur des modifications et des listes",
 'ipbwatchuser' => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
 'ipb-disableusertalk' => "Empêcher l'utilisateur de modifier sa page de discussion pendant le blocage",
@@ -2904,7 +2898,6 @@ Veuillez contacter votre fournisseur d'accès Internet ou votre support techniqu
 'sorbs_create_account_reason' => 'Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.
 Vous ne pouvez pas créer un compte.',
 'xffblockreason' => "Une adresse IP dans l'en-tête X-Forwarded-For, soit la vôtre ou celle d'un serveur proxy que vous utilisez, a été bloquée. La raison du blocage initial est : $1",
-'cant-block-while-blocked' => 'Vous ne pouvez pas bloquer d’autres utilisateurs tant que vous êtes bloqué{{GENDER:||e|(e)}}.',
 'cant-see-hidden-user' => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
 'ipbnounblockself' => "Vous n'êtes pas autorisé{{GENDER:||e|(e)}} à vous débloquer vous-même",
@@ -3833,7 +3826,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'watchlistall2' => 'tout',
 'namespacesall' => 'Tous',
 'monthsall' => 'tous',
-'limitall' => 'tous',
 
 # Email address confirmation
 'confirmemail' => 'Confirmer l’adresse de courriel',
@@ -3858,7 +3850,6 @@ Celui-ci a peut-être expiré.',
 'confirmemail_success' => 'Votre adresse de courriel a été confirmée.
 Vous pouvez maintenant vous [[Special:UserLogin|{{MediaWiki:Loginreqlink}}]] et profiter du wiki.',
 'confirmemail_loggedin' => 'Votre adresse de courriel est maintenant confirmée.',
-'confirmemail_error' => 'Un problème est survenu lors de l’enregistrement de votre confirmation.',
 'confirmemail_subject' => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
 'confirmemail_body' => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1,
 a enregistré un compte « $2 » avec cette adresse de courriel
@@ -4182,7 +4173,6 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 
 # Special:ComparePages
 'comparepages' => 'Comparer des pages',
-'compare-selector' => 'Comparer les versions des pages',
 'compare-page1' => 'Page 1',
 'compare-page2' => 'Page 2',
 'compare-rev1' => 'Version 1',

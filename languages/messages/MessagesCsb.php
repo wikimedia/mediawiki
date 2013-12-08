@@ -701,7 +701,6 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'recentchanges-summary' => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
 'recentchanges-label-minor' => 'To je drobnô edicëjô',
-'rcnote' => "Niżi {{PLURAL:$1|nachôdô sã '''1''' slédnô zjinaka zrobionô|nachôdają sã '''$1''' slédné zjinaczi zrobioné|nachôdô sã '''$1''' slédnych zjinaków zrobionëch}} w {{PLURAL:$2|slédnégò dnia|slédnych '''$2''' dniach}}, rëchùjąc òd $5 dnia $4.",
 'rcnotefrom' => "Niżi są zmianë òd '''$2''' (pòkazóné do '''$1''').",
 'rclistfrom' => 'Pòkażë nowé zmianë òd $1',
 'rcshowhideminor' => '$1 môłé zmianë',
@@ -1003,8 +1002,6 @@ Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na 
 'blockiptext' => 'Brëkùje formùlarza niżi abë zascëgòwac prawò zapisënkù spòd gwësny adresë IP. To robi sã blós dlôte abë zascëgnąc wandalëznom, a bëc w zgòdze ze [[{{MediaWiki:Policy-url}}|wskôzama]]. Pòdôj przëczënã (np. dając miona starn, na chtërnëch dopùszczono sã wandalëzny).',
 'ipbreason' => 'Przëczëna:',
 'ipboptions' => '2 gòdzënë:2 hours,1 dzéń:1 day,3 dni:3 days,1 tidzéń:1 week,2 tigòdnie:2 weeks,1 ksãżëc:1 month,3 ksãżëcë:3 months,6 ksãżëców:6 months,1 rok:1 year,na wiedno:infinite',
-'ipbotheroption' => 'jinszi cząd',
-'ipbotherreason' => 'Jinszé abù dodôwné przëczënë:',
 'ipbhidename' => 'Zatacë miono brëkòwnika ë edicëjach ë lëstach',
 'ipbwatchuser' => 'Ùzérôj starnã brëkòwnika ë jegò starnã diskùsëji',
 'badipaddress' => 'IP-adresa nie je richtich pòdónô.',
@@ -1203,7 +1200,6 @@ Jinszé pòla bãdą domëslno zataconé.
 'watchlistall2' => 'wszëtczé',
 'namespacesall' => 'wszëtczé',
 'monthsall' => 'wszëtczé',
-'limitall' => 'wszëtczé',
 
 # Email address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',

@@ -1700,7 +1700,6 @@ See teave on avalik.',
 'recentchanges-label-unpatrolled' => 'Seda muudatust ei ole veel kontrollitud',
 'recentchanges-label-plusminus' => 'Lehekülje suuruse muutus baitides',
 'recentchanges-legend-newpage' => '(vaata ka [[Special:NewPages|uute lehekülgede loendit]])',
-'rcnote' => "Allpool on esitatud {{PLURAL:$1|'''1''' muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|päeva|'''$2''' päeva}} jooksul seisuga $4, kell $5.",
 'rcnotefrom' => "Allpool on toodud muudatused alates: '''$2''' (näidatakse kuni '''$1''' muudatust)",
 'rclistfrom' => 'Näita muudatusi alates: $1',
 'rcshowhideminor' => 'Pisiparandused ($1)',
@@ -2566,7 +2565,6 @@ Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist e
 'undeletebtn' => 'Taasta',
 'undeletelink' => 'vaata/taasta',
 'undeleteviewlink' => 'vaata',
-'undeletereset' => 'Tühjenda',
 'undeleteinvert' => 'Pööra valik teistpidi',
 'undeletecomment' => 'Põhjus:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} taastatud',
@@ -2655,7 +2653,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'block' => 'Kasutaja blokeerimine',
 'unblock' => 'Kasutaja blokeeringu eemaldamine',
 'blockip' => 'Kasutaja blokeerimine',
-'blockip-title' => 'Kasutaja blokeerimine',
 'blockip-legend' => 'Kasutaja blokeerimine',
 'blockiptext' => 'See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.
 Seda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].
@@ -2663,7 +2660,6 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'ipadressorusername' => 'IP-aadress või kasutajanimi:',
 'ipbexpiry' => 'Kehtivus:',
 'ipbreason' => 'Põhjus:',
-'ipbreasonotherlist' => 'Muu põhjusel',
 'ipbreason-dropdown' => '*Tavalised blokeerimise põhjused
 ** Valeandmete lisamine
 ** Lehekülgedelt sisu kustutamine
@@ -2679,8 +2675,6 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'ipbsubmit' => 'Blokeeri see kasutaja',
 'ipbother' => 'Muu tähtaeg:',
 'ipboptions' => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
-'ipbotheroption' => 'muu tähtaeg',
-'ipbotherreason' => 'Muu või täiendav põhjus:',
 'ipbhidename' => 'Peida kasutajatunnus muudatustest ja loenditest',
 'ipbwatchuser' => 'Jälgi selle kasutaja lehekülge ja arutelu',
 'ipb-disableusertalk' => 'Keela sellel kasutajal blokeeringu ajal oma arutelulehekülge redigeerida',
@@ -2770,7 +2764,6 @@ See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'sorbsreason' => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.',
 'sorbs_create_account_reason' => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.
 Sa ei saa kasutajakontot luua.',
-'cant-block-while-blocked' => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
 'cant-see-hidden-user' => 'Kasutaja, keda blokeerida üritad, on juba blokeeritud ning peidetud. Kuna sul pole õigust blokeerida kasutajanimesid, peites need avalikkuse eest, ei saa sa selle kasutaja blokeeringut vaadata ega muuta.',
 'ipbblocked' => 'Sa ei saa teisi blokeerida ega nende blokeeringuid eemaldada, sest oled ise blokeeritud.',
 'ipbnounblockself' => 'Sul pole lubatud enda blokeeringut eemaldada.',
@@ -3689,7 +3682,6 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'watchlistall2' => 'Näita kõiki',
 'namespacesall' => 'kõik',
 'monthsall' => 'kõik',
-'limitall' => 'iga',
 
 # Email address confirmation
 'confirmemail' => 'E-posti aadressi kinnitamine',
@@ -3708,7 +3700,6 @@ Veateade e-kirja saatmisel: $1',
 'confirmemail_success' => 'Sinu e-posti aadress on kinnitatud
 Võid nüüd [[Special:UserLogin|sisse logida]].',
 'confirmemail_loggedin' => 'Sinu e-posti aadress on nüüd kinnitatud.',
-'confirmemail_error' => 'Viga kinnituskoodi salvestamisel.',
 'confirmemail_subject' => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',
 'confirmemail_body' => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
 
@@ -3945,7 +3936,6 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 
 # Special:ComparePages
 'comparepages' => 'Lehekülgede kõrvutamine',
-'compare-selector' => 'Lehekülje redaktsioonide kõrvutamine',
 'compare-page1' => 'Lehekülg 1',
 'compare-page2' => 'Lehekülg 2',
 'compare-rev1' => 'Redaktsioon&nbsp;1',

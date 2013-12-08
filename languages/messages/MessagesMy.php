@@ -931,7 +931,6 @@ Your e-mail address is not revealed when other users contact you.
 'recentchanges-label-minor' => 'အရေးမကြီးသော ​ပြင်​ဆင်​မှု ​ဖြစ်​သည်​',
 'recentchanges-label-bot' => 'ဤတည်းဖြတ်မှုကို ဘော့က လုပ်ဆောင်သွားသည်။',
 'recentchanges-label-unpatrolled' => 'ဤတည်းဖြတ်မှုကို မစောင့်ကြပ်မစစ်ဆေးရသေးပါ',
-'rcnote' => "အောက်ပါတို့သည် ပြီးခဲ့သော {{PLURAL:$2|ရက်|'''$2''' ရက်}}, $5, $4 ရက်စွဲအရ နောက်ဆုံး{{PLURAL:$1|ပြောင်းလဲမှု '''တစ်''' ခု|ပြောင်းလဲမှု '''$1''' ခု}}ဖြစ်သည်။",
 'rcnotefrom' => "အောက်ပါတို့သည် '''$2''' ကတည်းက အ​ပြောင်းအလဲများ ြဖစ်သည် ('''$1''' ခု ြပထားသည်)။",
 'rclistfrom' => '$1 မှစသော အပြောင်းအလဲအသစ်များကို ပြရန်',
 'rcshowhideminor' => 'အရေးမကြီးသော ပြင်ဆင်မှု $1ရန်',
@@ -1377,7 +1376,6 @@ Your e-mail address is not revealed when other users contact you.
 'undeletebtn' => 'ပြန်လည် ထိန်းသိမ်းရန်',
 'undeletelink' => 'စောင့်ကြည့်ရန်/ပြန်လည်ထိန်းသိမ်းရန်',
 'undeleteviewlink' => 'ကြည့်ရန်',
-'undeletereset' => 'Reset ချရန်',
 'undeleteinvert' => 'selection ကို ပြောင်းပြန်လှန်ရန်',
 'undeletecomment' => 'အ​ကြောင်း​ပြ​ချက် -',
 'undeletedrevisions' => '{{PLURAL:$1|မူတစ်ခု|မူ $1 ခု}} ကိုပြန်လည် ထိန်းသိမ်းပြီး',
@@ -1431,19 +1429,15 @@ Your e-mail address is not revealed when other users contact you.
 
 # Block/unblock
 'blockip' => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
-'blockip-title' => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
 'blockip-legend' => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
 'ipadressorusername' => 'အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် -',
 'ipbexpiry' => 'သက်တမ်းကုန်လွန်ရက် -',
 'ipbreason' => 'အ​ကြောင်း​ပြ​ချက်:',
-'ipbreasonotherlist' => 'အခြား အကြောင်းပြချက်',
 'ipbcreateaccount' => 'အကောင့်အသစ်ပြုလုပ်ခြင်းကို တားဆီးရန်',
 'ipbemailban' => 'အီးမေးပို့ခြင်းမှ အသုံးပြုသူကို တားဆီးရန်',
 'ipbsubmit' => 'ဤအသုံးပြုသူကို ပိတ်ပင်ရန်',
 'ipbother' => 'အခြားအချိန်:',
 'ipboptions' => '၂ နာရီ:2 hours,၁ ရက်:1 day,၃ ရက်:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
-'ipbotheroption' => 'အခြား',
-'ipbotherreason' => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'ipbhidename' => 'အသုံးပြုသူအမည်ကို တည်းဖြတ်မှုများနှင့် စာရင်းမှထဲတွင် ဝှက်ထားရန်',
 'ipbwatchuser' => 'ဤအသုံးပြုသူ၏စာမျက်နှနှင့် ဆွေးနွေးချက်တို့ကို စောင့်ကြည့်ရန်',
 'badipaddress' => 'တရားမဝင်သော IP address',
@@ -1755,7 +1749,6 @@ Your e-mail address is not revealed when other users contact you.
 'watchlistall2' => 'အားလုံး',
 'namespacesall' => 'အားလုံး',
 'monthsall' => 'အားလုံး',
-'limitall' => 'အားလုံး',
 
 # Email address confirmation
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
@@ -1854,7 +1847,6 @@ Your e-mail address is not revealed when other users contact you.
 
 # Special:ComparePages
 'comparepages' => 'စာမျက်နှာများကို နှုိင်းယှဉ်ရန်',
-'compare-selector' => 'စာမျက်နှာမူများကို နှုိင်းယှဉ်ရန်',
 'compare-page1' => 'စာမျက်နှာတစ်',
 'compare-page2' => 'စာမျက်နှာနှစ်',
 'compare-rev1' => 'မူ တစ်',

@@ -1750,7 +1750,6 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'recentchanges-label-unpatrolled' => 'Bu değişiklik henüz gözlenmemiş',
 'recentchanges-label-plusminus' => 'Sayfa boyutu bu bayt sayısı kadar değişti',
 'recentchanges-legend-newpage' => '(ayrıca bakınız [[Special:NewPages|yeni sayfalar listesi]])',
-'rcnote' => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom' => "'''$2''' tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> tanesi gösterilmektedir).",
 'rclistfrom' => '$1 tarihinden itibaren yeni değişiklikleri göster',
 'rcshowhideminor' => 'Küçük değişiklikleri $1',
@@ -2643,7 +2642,6 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undeletebtn' => 'Geri getir!',
 'undeletelink' => 'görüntüle/geri getir',
 'undeleteviewlink' => 'görüntüle',
-'undeletereset' => 'Vazgeç',
 'undeleteinvert' => 'Seçimi ters çevir',
 'undeletecomment' => 'Neden:',
 'undeletedrevisions' => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
@@ -2732,13 +2730,11 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'block' => 'Kullanıcıyı engelle',
 'unblock' => 'Kullanıcının engelini kaldır',
 'blockip' => 'Kullanıcıyı engelle',
-'blockip-title' => 'Kullanıcıyı engelle',
 'blockip-legend' => 'Kullanıcıyı engelle',
 'blockiptext' => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:Policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
 'ipadressorusername' => 'IP adresi veya kullanıcı adı',
 'ipbexpiry' => 'Bitiş süresi',
 'ipbreason' => 'Neden:',
-'ipbreasonotherlist' => 'Başka neden',
 'ipbreason-dropdown' => '*Genel engelleme nedenleri
 ** Yanlış bilgi eklemek
 ** Sayfalardan içeriği çıkarmak
@@ -2754,8 +2750,6 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'ipbsubmit' => 'Bu kullanıcıyı engelle',
 'ipbother' => 'Farklı zaman',
 'ipboptions' => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,süresiz:infinite',
-'ipbotheroption' => 'farklı',
-'ipbotherreason' => 'Başka/ek sebepler:',
 'ipbhidename' => 'Kullanıcı adını katkılarda ve listelerde gizle',
 'ipbwatchuser' => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
 'ipb-disableusertalk' => 'Bu kullanıcının engelliyken kendi mesaj sayfasında değişiklik yapmasını önle',
@@ -2846,7 +2840,6 @@ Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun 
 'sorbs_create_account_reason' => "IP adresiniz {{SITENAME}} sitesi tarafından kullanılan DNSBL'de açık proxy olarak listelenmiş.
 Hesap oluşturamazsınız",
 'xffblockreason' => 'Sizin ya da kullandığınız vekil sunucuya ait bir IP adresi X-Forwarded-For başlığında bulunuyor, ve engellendi. Orjinal engelleme nedeni: $1',
-'cant-block-while-blocked' => 'Siz engelliyken başka kullanıcıları engelleyemezsiniz.',
 'cant-see-hidden-user' => 'Engellemek istediğiniz kullanıcı zaten engellenmiş ve gizlenmiş. Kullanıcıgizle yetkiniz olmadığı için, kullanıcının engellenmesini göremez ya da değiştiremezsiniz.',
 'ipbblocked' => 'Diğer kullanıcıları engelleyemez ya da engellemesini kaldıramazsınız, çünkü kendiniz engellenmişsiz',
 'ipbnounblockself' => 'Kendi engellemenizi kaldırmanıza izniniz yok',
@@ -3783,7 +3776,6 @@ Diğerleri varsayılan olarak gizlenecektir.
 'watchlistall2' => 'Hepsini göster',
 'namespacesall' => 'hepsi',
 'monthsall' => 'hepsi',
-'limitall' => 'tümü',
 
 # Email address confirmation
 'confirmemail' => 'E-posta adresini onayla',
@@ -3805,7 +3797,6 @@ Mail yazılımı iade etti:$1',
 'confirmemail_needlogin' => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
 'confirmemail_success' => "E-posta adresiniz doğrulandı. [[Special:UserLogin|Oturum açıp]] Viki'nin keyfini çıkarabilirsiniz.",
 'confirmemail_loggedin' => 'E-posta adresiniz onaylandı.',
-'confirmemail_error' => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
 'confirmemail_subject' => '{{SITENAME}} e-posta adres onayı.',
 'confirmemail_body' => 'Birisi, muhtemelen siz, $1 IP adresinden,
 {{SITENAME}} sitesinde bu e-posta adresi ile $2 hesabını açtı.
@@ -3884,6 +3875,11 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'imgmultipagenext' => 'sonraki sayfa →',
 'imgmultigo' => 'Git!',
 'imgmultigoto' => '$1 sayfasına git',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(varsayılan dil)',
+'img-lang-info' => 'Bu resmi $1 ile işle $2.',
+'img-lang-go' => 'Gönder',
 
 # Table pager
 'ascending_abbrev' => 'küçükten büyüğe',
@@ -4060,7 +4056,6 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 
 # Special:ComparePages
 'comparepages' => 'Sayfaları karşılaştır',
-'compare-selector' => 'Sayfa sürümlerini karşılaştır',
 'compare-page1' => 'Sayfa 1',
 'compare-page2' => 'Sayfa 2',
 'compare-rev1' => 'Sürüm 1',

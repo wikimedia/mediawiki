@@ -1491,7 +1491,6 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'recentchanges-label-bot' => 'Gawa ng isang bot ang pagbabagong ito',
 'recentchanges-label-unpatrolled' => 'Hindi pa napapatrulyahan ang pagbabagong ito',
 'recentchanges-legend-newpage' => '$1 - bagong pahina',
-'rcnote' => "Nasa ibaba {{PLURAL:$1|ang '''1''' pagbabago|ang pinakahuling '''$1''' mga pagbabago}} sa huling {{PLURAL:$2|araw|'''$2''' mga araw}}, mula noong $5, $4.",
 'rcnotefrom' => "Nasa ibaba ang mga pagbabago mula pa noong '''$2''' (ipinapakita ang magpahanggang sa '''$1''').",
 'rclistfrom' => 'Ipakita ang bagong mga pagbabago simula sa $1',
 'rcshowhideminor' => '$1 maliliit na mga pagbabago',
@@ -2357,7 +2356,6 @@ Sa ganitong mga pagkakataon, dapat mong tanggalin ang tsek o huwag itago ang pin
 'undeletebtn' => 'Ibalik',
 'undeletelink' => 'tingnan/ibalik muli',
 'undeleteviewlink' => 'tingnan',
-'undeletereset' => 'I-reset',
 'undeleteinvert' => 'Baligtarin ang pagpili/pilian',
 'undeletecomment' => 'Dahilan:',
 'undeletedrevisions' => '{{PLURAL:$1|1 pagbabago|$1 mga pagbabagong}} naibalik na',
@@ -2446,7 +2444,6 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa ibaba para sa pa
 'block' => 'Harangin ang tagagamit',
 'unblock' => 'Huwag harangin ang tagagamit',
 'blockip' => 'Harangin/hadlangan ang tagagamit',
-'blockip-title' => 'Harangin ang tagagamit',
 'blockip-legend' => 'Iharang ang tagagamit',
 'blockiptext' => 'Gamitin ang mga lahok sa ibaba upang maharang ang akses sa pagsulat mula sa isang espesipikong IP address o bansag.
 Gawin lamang ito para maiwasan ang bandalismo, at napapaloob sa [[{{MediaWiki:Policy-url}}|patakaran]].
@@ -2454,7 +2451,6 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'ipadressorusername' => 'Direksyong IP o bansag:',
 'ipbexpiry' => 'Pagkawalang-bisa:',
 'ipbreason' => 'Dahilan:',
-'ipbreasonotherlist' => 'Ibang dahilan',
 'ipbreason-dropdown' => '*Mga karaniwang dahilan sa paghaharang
 ** Pagpasok ng hindi totoong impormasyon
 ** Pag-alis ng nilalaman mula sa mga pahina
@@ -2470,8 +2466,6 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'ipbsubmit' => 'Harangin/hadlangan ang tagagamit na ito',
 'ipbother' => 'Ibang oras:',
 'ipboptions' => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
-'ipbotheroption' => 'iba',
-'ipbotherreason' => 'Iba/karagdagang dahilan:',
 'ipbhidename' => 'Itago ang pangalan ng tagagamit mula sa pagbabago at mga talaan',
 'ipbwatchuser' => 'Bantayan ang pahinang pantagagamit at pahina ng usapan ng tagagamit na ito',
 'ipb-disableusertalk' => 'Pigilan ang tagagamit na ito mula sa pamamatnugot ng kanilang pansariling pahina ng usapan habang hinahadlangan',
@@ -2562,7 +2556,6 @@ Tingnan ang [[Special:BlockList|talaan ng pagharang]] para sa lista ng kasalukuy
 'sorbsreason' => 'Nakalista ang IP address mo bilang isang bukas na proxy sa DNSBL na ginagamit ng sayt na ito.',
 'sorbs_create_account_reason' => 'Nakatala ang iyong IP address bilang open proxy sa DNSBL na ginagamit ng {{SITENAME}}.
 Hindi ka makakalikha ng account',
-'cant-block-while-blocked' => 'Hindi mo mahahadlangan/mahaharang ang ibang mga tagagamit habang hinahadlangan ka.',
 'cant-see-hidden-user' => 'Ang tagagamit na sinusubukan mong hadlangan ay naharang at naikubli na.
 Dahil wala kang karapatang magkubli ng tagagamit, hindi mo makikita o mababago ang paghadlang sa tagagamit.',
 'ipbblocked' => 'Hindi mo mahahadlangan o tanggalin ang hadlang ng ibang mga tagagamit, dahil hinadlangan ka rin',
@@ -3555,7 +3548,6 @@ $8',
 'watchlistall2' => 'lahat',
 'namespacesall' => 'lahat',
 'monthsall' => 'lahat',
-'limitall' => 'lahat',
 
 # Email address confirmation
 'confirmemail' => 'Patotohanan ang adres ng e-liham',
@@ -3575,7 +3567,6 @@ Ibinalik ng tagapagpadala ang: $1',
 'confirmemail_needlogin' => 'Kailangan mong $1 upang kumpirmahin/mapatotohanan ang iyong adres ng e-liham.',
 'confirmemail_success' => 'Nakumpirma/napatotohanan na ang adres ng e-liham mo. Maaari ka ng [[Special:UserLogin|lumagda]] at maglibang sa wiki.',
 'confirmemail_loggedin' => 'Natiyak na ngayon ang tirahan ng e-liham mo.',
-'confirmemail_error' => 'May nangyaring kamalian sa pagsasagip ng iyong kumpirmasyon.',
 'confirmemail_subject' => 'Kumpirmasyon/pagpapatotoong pang-adres ng e-liham ng {{SITENAME}}',
 'confirmemail_body' => 'May isa, maaaring ikaw, na mula sa direksiyong IP na $1,
 ang nagtala ng isang kuwentang "$2" na mayroong ganitong direksiyong e-liham sa {{SITENAME}}.
@@ -3897,7 +3888,6 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 
 # Special:ComparePages
 'comparepages' => 'Paghambingin ang mga pahina',
-'compare-selector' => 'Paghambingin ang mga pahina ng rebisyon',
 'compare-page1' => 'Pahina 1',
 'compare-page2' => 'Pahina 2',
 'compare-rev1' => 'Rebisyon 1',

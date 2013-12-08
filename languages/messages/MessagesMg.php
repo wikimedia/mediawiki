@@ -1608,7 +1608,6 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'recentchanges-label-bot' => "Nataon'ny rôbô ity fanovana ity.",
 'recentchanges-label-unpatrolled' => 'Ity fanovana ity dia mbola tsy voamarina',
 'recentchanges-legend-newpage' => '$1 - pejy vaovao',
-'rcnote' => "!Ity ny {{PLURAL:$1|fanovàna farany|fanovàna farany}} $1 natao nandritra ny <b>$2</b> andro, hatramin'ny $4 tamin'ny ora faha $5.",
 'rcnotefrom' => "Ity eto ambany ity ny lisitry ny vao niova manomboka ny <b>$2</b> (hatramin'ny <b>$1</b> no miseho).",
 'rclistfrom' => 'Asehoy izay vao niova manomboka ny $1',
 'rcshowhideminor' => '$1 ny fanovàna kely',
@@ -2449,7 +2448,6 @@ Mety rohy tsy izy no anananao, na mety voafafa na naverina tamin'ny tahiry ilay 
 'undeletebtn' => 'Avereno!',
 'undeletelink' => 'Topi-maso/averina',
 'undeleteviewlink' => 'hijery',
-'undeletereset' => 'Hamerina',
 'undeleteinvert' => 'Hampifamaidika ny safidy',
 'undeletecomment' => 'Antony :',
 'undeletedrevisions' => 'voaverina ny {{PLURAL:$1|fanovana|fanovana}} $1',
@@ -2537,7 +2535,6 @@ Aseho eo ambany ny iditra farany ao amin'ny laogim-panakanana  mba hampahalala :
 'block' => 'Hanakana ilay mpikambana',
 'unblock' => "Hanala ny sakan'ilay mpikambana",
 'blockip' => 'Sakano ny mpikambana',
-'blockip-title' => 'Hanakana ilay mpikambana',
 'blockip-legend' => 'Sakano ny mpikambana',
 'blockiptext' => "Ampiasao ity formulaire ity hisakanana ny fahazoan-dàlana hanoratra
 ananan'ny adiresy IP iray na solonanarana iray.
@@ -2547,7 +2544,6 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'ipadressorusername' => 'Adiresy IP na solonanarana',
 'ipbexpiry' => 'Fahataperana',
 'ipbreason' => 'Antony :',
-'ipbreasonotherlist' => 'Antony hafa',
 'ipb-hardblock' => 'Hanakana ny mpikambana nisoratra anarana mampiasa ity adiresy IP ity',
 'ipbcreateaccount' => 'Hanakana ny fanokafana kaonty',
 'ipbemailban' => 'Hanakana ny fandefasana imailaka',
@@ -2555,8 +2551,6 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'ipbsubmit' => 'Sakano',
 'ipbother' => 'Hafa',
 'ipboptions' => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
-'ipbotheroption' => 'hafa',
-'ipbotherreason' => 'Antony hafa na fanampiny :',
 'ipbhidename' => "Hanitrika ny anaram-pikambana anatin'ny fanovana sy anaty lisitra",
 'ipbwatchuser' => "Hanaraka ny pejim-pikambana sy pejin-dresak'ity mpikambana ity",
 'ipb-disableusertalk' => 'Manakana ilay mpikambana hanova ny pejin-dresany mandritry ny sakana',
@@ -2647,7 +2641,6 @@ Ao amin'ny laharana $2 izay afaka alàna sakana anefa izy io.",
 'proxyblockreason' => "Voasakana ny adiresy IP-nao satria adiresy proxy malalaka izy io. Azafady mba lazao amin'ny mpanome internet anao io olana io.",
 'sorbsreason' => "Voasokokajin'ny DNSBL ho ao anatin'ny proxy midanadana ny adiresy IP-nao.",
 'sorbs_create_account_reason' => "Voasokajy ho isan'ny proxy midanadana ao amin'ny DNSBL ny adiresy IP-nao. Ireo IP ireo dia ahiana ho fitaovana azon'ny mpandefa spam ampiasaina. Tsy afaka manokatra kaonty ianao.",
-'cant-block-while-blocked' => 'Tsy azo sakananao ny mpikambana hafa raha mbola voasakana ianao.',
 'cant-see-hidden-user' => "Ny mpikambana andramanao sakanana dia efa nosakanana ary nasitrika.
 Noho ianao tsy manana ny zon'ny mpanitrika mpikambana (''hideuser''), tsy azonao jerena na ovaina ny sakan'ity mpikambana ity.",
 'ipbblocked' => "Tsy afaka manala ny sakan'ny mpikambana hafa ianao, satria voasakana koa ianao",
@@ -3330,7 +3323,6 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'watchlistall2' => 'rehetra',
 'namespacesall' => 'rehetra',
 'monthsall' => 'rehetra',
-'limitall' => 'rehetra',
 
 # Email address confirmation
 'confirmemail' => 'Fanamarinana adiresy imailaka.',
@@ -3354,7 +3346,6 @@ Ity no naverin'ny mpandefa mailaka : $1",
 'confirmemail_needlogin' => 'Mila $1 ianao raha hanamarina ny adiresy imailakao.',
 'confirmemail_success' => 'Voamarina ny adiresy imailakao. Afaka [[Special:UserLogin|miditra]] ianao ankehitriny ary mankafia ny wiki.',
 'confirmemail_loggedin' => 'Voamarina ny adiresy imailakao ankehitriny.',
-'confirmemail_error' => 'Nisy tsy fetezana nandritra ny fanamarinana adiresy imailaka.',
 'confirmemail_subject' => "Fanamarinana adiresy imailaka avy amin'ny sehatra {{SITENAME}}",
 'confirmemail_body' => 'Nisy olona, izay ianao ihany angamba, avy tamin\'ny adiresy IP $1, nanokatra kaonty
 "$2" tamin\'ity adiresy imailaka ity tao amin\'ny sehatra {{SITENAME}}.
@@ -3520,7 +3511,6 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 
 # Special:ComparePages
 'comparepages' => 'Hampitaha pejy',
-'compare-selector' => 'Hampitaha ny santiôm-pejy',
 'compare-page1' => 'Pejy 1',
 'compare-page2' => 'Pejy 2',
 'compare-rev1' => 'Santiôna 1',

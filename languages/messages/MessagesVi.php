@@ -1730,7 +1730,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchanges-label-plusminus' => 'Kích cỡ trang đã thay đổi bằng số byte này',
 'recentchanges-legend-newpage' => '(xem thêm [[Special:NewPages|danh sách các trang mới]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Dưới đây là {{PLURAL:$1|thay đổi '''duy nhất'''|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5 lúc $4.",
 'rcnotefrom' => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom' => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor' => '$1 sửa đổi nhỏ',
@@ -2619,7 +2618,6 @@ Chỉ có bảo quản viên mới xem được văn bản đầy đủ của nh
 'undeletebtn' => 'Phục hồi',
 'undeletelink' => 'xem lại/phục hồi',
 'undeleteviewlink' => 'xem',
-'undeletereset' => 'Tẩy trống',
 'undeleteinvert' => 'Đảo sự lựa chọn',
 'undeletecomment' => 'Lý do:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|bản|bản}} được phục hồi',
@@ -2706,7 +2704,6 @@ $1',
 'block' => 'Cấm người dùng',
 'unblock' => 'Bỏ cấm người dùng',
 'blockip' => 'Cấm người dùng',
-'blockip-title' => 'Cấm người dùng',
 'blockip-legend' => 'Cấm người dùng',
 'blockiptext' => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang.
 Điều này chỉ nên làm để tránh phá hoại, và phải theo [[{{MediaWiki:Policy-url}}|quy định]].
@@ -2714,7 +2711,6 @@ $1',
 'ipadressorusername' => 'Địa chỉ IP hay tên thành viên:',
 'ipbexpiry' => 'Thời hạn:',
 'ipbreason' => 'Lý do:',
-'ipbreasonotherlist' => 'Lý do khác',
 'ipbreason-dropdown' => '*Một số lý do cấm thường gặp
 ** Phá hoại
 ** Thêm thông tin sai lệch
@@ -2731,8 +2727,6 @@ $1',
 'ipbsubmit' => 'Cấm',
 'ipbother' => 'Thời hạn khác:',
 'ipboptions' => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite',
-'ipbotheroption' => 'khác',
-'ipbotherreason' => 'Lý do khác',
 'ipbhidename' => 'Ẩn tên người dùng ra khỏi các sửa đổi và danh sách',
 'ipbwatchuser' => 'Theo dõi trang thành viên và thảo luận thành viên của thành viên này',
 'ipb-disableusertalk' => 'Không cho người dùng này sửa trang thảo luận thành viên của họ khi bị cấm',
@@ -2817,7 +2811,6 @@ Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'sorbsreason' => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng.',
 'sorbs_create_account_reason' => 'Địa chỉ chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng. Bạn không thể mở tài khoản.',
 'xffblockreason' => 'Đầu đề X-Forwarded-For chứa một địa chỉ IP đã bị cấm, địa chỉ này hoặc của bạn hoặc của một máy chủ proxy bạn đang sử dụng. Lý do cấm ban đầu là: $1',
-'cant-block-while-blocked' => 'Bạn không thể cấm thành viên khác trong khi bạn đang bị cấm.',
 'cant-see-hidden-user' => 'Thành viên bạn muốn cấm đã bị cấm trước đây hoặc đã bị ẩn đi. Vì bạn không có quyền hideuser, bạn không thể xem hoặc thay đổi mức cấm của thành viên.',
 'ipbblocked' => 'Bạn không thể cấm hay bỏ cấm người dùng khác vì chính bạn đang bị cấm.',
 'ipbnounblockself' => 'Bạn không được bỏ cấm chính mình.',
@@ -3796,7 +3789,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'watchlistall2' => 'tất cả',
 'namespacesall' => 'tất cả',
 'monthsall' => 'tất cả',
-'limitall' => 'tất cả',
 
 # Email address confirmation
 'confirmemail' => 'Xác nhận thư điện tử',
@@ -3820,7 +3812,6 @@ Chương trình thư báo rằng: $1',
 'confirmemail_needlogin' => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
 'confirmemail_success' => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
 'confirmemail_loggedin' => 'Địa chỉ thư điện tử của bạn đã được xác nhận.',
-'confirmemail_error' => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject' => 'Xác nhận thư điện tử tại {{SITENAME}}',
 'confirmemail_body' => 'Ai đó, có thể là bạn, từ địa chỉ IP $1,
 đã mở tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
@@ -4132,7 +4123,6 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 
 # Special:ComparePages
 'comparepages' => 'So sánh trang',
-'compare-selector' => 'So sánh phiên bản trang',
 'compare-page1' => 'Trang 1',
 'compare-page2' => 'Trang 2',
 'compare-rev1' => 'Phiên bản 1',

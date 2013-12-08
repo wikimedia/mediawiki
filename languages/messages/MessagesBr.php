@@ -1556,7 +1556,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-bot' => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-label-unpatrolled' => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
 'recentchanges-legend-newpage' => '$1 - pajenn nevez',
-'rcnote' => "Setu aze an {{PLURAL:$1|'''1''' change|'''$1''' kemm diwezhañ}} bet c'hoarvezet e-pad an {{PLURAL:$2|deiz|'''$2''' deiz}} diwezhañ, savet d'an $4 da $5.",
 'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
 'rcshowhideminor' => "$1 ar c'hemmoù dister",
@@ -2444,7 +2443,6 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletebtn' => 'Assevel',
 'undeletelink' => 'gwelet/assevel',
 'undeleteviewlink' => 'gwelet',
-'undeletereset' => 'Adderaouekaat',
 'undeleteinvert' => 'Eilpennañ an diuzadenn',
 'undeletecomment' => 'Abeg :',
 'undeletedrevisions' => 'Adsavet {{PLURAL:$1|1 stumm|$1 stumm}}',
@@ -2532,7 +2530,6 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'block' => 'Stankañ an implijer',
 'unblock' => 'Distankañ an implijer',
 'blockip' => "Stankañ ur chomlec'h IP",
-'blockip-title' => 'Stankañ an implijer',
 'blockip-legend' => 'Stankañ an implijer',
 'blockiptext' => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
@@ -2540,7 +2537,6 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipadressorusername' => "Chomlec'h IP pe anv implijer",
 'ipbexpiry' => 'Pad ar stankadenn',
 'ipbreason' => 'Abeg :',
-'ipbreasonotherlist' => 'Abeg all',
 'ipbreason-dropdown' => "*Abegoù stankañ boutinañ
 ** Degas titouroù faos
 ** Tennañ danvez eus ar pajennoù
@@ -2556,8 +2552,6 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbsubmit' => 'Stankañ an implijer-mañ',
 'ipbother' => 'Prantad all',
 'ipboptions' => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite',
-'ipbotheroption' => 'prantad all',
-'ipbotherreason' => 'Abeg all/ouzhpenn',
 'ipbhidename' => "Kuzhat anv an implijer er rolloù hag er c'hemmoù",
 'ipbwatchuser' => 'Evezhiañ pajennoù implijer ha kaozeal an implijer-mañ',
 'ipb-disableusertalk' => 'Mirout ouzh an implijer-mañ da implijout e bajenn gaozeal dezhañ e-unan e-keit hag emañ stanket',
@@ -2642,7 +2636,6 @@ Setu aze an abeg(où) m\'eo bet stanket $1 : "\'\'$2\'\'"',
 'proxyblockreason' => "Stanket eo bet hoc'h IP rak ur proksi digor eo. Trugarez da gelaouiñ ho pourvezer moned ouzh ar Genrouedad pe ho skoazell deknikel eus ar gudenn surentez-mañ.",
 'sorbsreason' => "Rollet eo ho chomlec'h IP evel ur proksi digor en DNSBL implijet gant {{SITENAME}}.",
 'sorbs_create_account_reason' => "Rollet eo ho chomlec'h IP evel ur proksi digor war an DNSBL implijet gant {{SITENAME}}. N'hallit ket krouiñ ur gont",
-'cant-block-while-blocked' => "N'hallit ket stankañ implijerien all ma'z oc'h stanket c'hwi hoc'h-unan.",
 'cant-see-hidden-user' => "Stanket ha kuzhet eo bet dija an implijer emaoc'h o klask stankañ. Dre ma n'emañ ket ganeoc'h ar gwir hideuser, n'hallit ket gwelet pe kemmañ stankadenn an implijer.",
 'ipbblocked' => "Ne c'hellit ket stankañ pe distankañ implijerien all, dre ma 'z oc'h stanket",
 'ipbnounblockself' => "N'oc'h ket aotreet d'en em zistankañ ho unan",
@@ -3557,7 +3550,6 @@ Kuzhet e vo ar re all dre ziouer.
 'watchlistall2' => 'pep tra',
 'namespacesall' => 'pep tra',
 'monthsall' => 'an holl',
-'limitall' => 'An holl',
 
 # Email address confirmation
 'confirmemail' => "Kadarnaat ar chomlec'h postel",
@@ -3577,7 +3569,6 @@ Distro ar posteler : $1",
 'confirmemail_needlogin' => "Ret eo deoc'h $1 evit kadarnaat ho chomlec'h postel.",
 'confirmemail_success' => "Kadarnaet eo ho chomlec'h postel. A-benn bremañ e c'hallit [[Special:UserLogin|kevreañ]] hag ober ho mad eus ar wiki.",
 'confirmemail_loggedin' => "Kadarnaet eo ho chomlec'h bremañ",
-'confirmemail_error' => 'Ur gudenn zo bet e-ser enrollañ ho kadarnadenn',
 'confirmemail_subject' => "Kadarnadenn chomlec'h postel evit {{SITENAME}}",
 'confirmemail_body' => "Unan bennak, c'hwi moarvat, gant ar chomlec'h IP \$1,
 en deus enrollet ur gont \"\$2\" gant ar chomlec'h postel-mañ war lec'hienn {{SITENAME}}.
@@ -3842,7 +3833,6 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 
 # Special:ComparePages
 'comparepages' => 'Keñveriañ pajennoù',
-'compare-selector' => 'Keñveriañ stummoù ar pajennoù',
 'compare-page1' => 'Pajenn 1',
 'compare-page2' => 'Pajenn 2',
 'compare-rev1' => 'Adweladenn 1',

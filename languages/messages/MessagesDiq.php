@@ -1722,7 +1722,6 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'recentchanges-label-plusminus' => 'Ebata na perer ebatta na nımra de vırneya',
 'recentchanges-legend-newpage' => '(Zewbi bıvin [[Special:NewPages|Listeya peran de newan]])',
 'recentchanges-legend-plusminus' => "''(±123)''",
-'rcnote' => "Bıni dı  {{PLURAL:$2|roc|'''$2''' rocan}}  ra {{PLURAL:$1|'''1''' vurnayış|'''$1''' vurnayışi}} éyé cér de yé , $5 ra hetana $4.",
 'rcnotefrom' => "Cêr de '''$2''' ra nata vurnayışiyê asenê (tewr vêşi <b> '''$1'''</b> asenê).",
 'rclistfrom' => '$1 ra tepya vırnayışané newan bıasne',
 'rcshowhideminor' => 'Vırnayışané werkekean $1',
@@ -2614,7 +2613,6 @@ Revizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi ş
 'undeletebtn' => 'Timar bike',
 'undeletelink' => 'bıvêne/peyser bia',
 'undeleteviewlink' => 'bıvin',
-'undeletereset' => 'Reset kerê',
 'undeleteinvert' => 'vicnayeyi qeldaye açarn',
 'undeletecomment' => 'Sebeb:',
 'undeletedrevisions' => 'pêro piya{{PLURAL:$1|1 qeyd|$1 qeyd}} tepiya anciya.',
@@ -2704,13 +2702,11 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'block' => 'Karberi vındarne',
 'unblock' => 'Hesabê karberi akerê',
 'blockip' => 'Karberi kılit ke',
-'blockip-title' => 'Karberi kılit ke',
 'blockip-legend' => 'Karber blok bike',
 'blockiptext' => 'pê şuxulnayişê formê cêrıni, şıma eşkeni verniyê vurnayişkerdışê yew karberi ya zi yew IPyi bıgêrî. No têna qey verni-gırewtışê vandalizmiyo u gani şıma [[{{MediaWiki:Policy-url}}|qaydeyan]] re diqqet bıkeri. cêr de muheqqeq sebebê verni-grewtışi bınusi. (mesela: -nê- pelani de vandalizm kerdo).',
 'ipadressorusername' => 'Adresa IPy ya zi nameyê karberi:',
 'ipbexpiry' => 'Qedyayış:',
 'ipbreason' => 'Sebeb:',
-'ipbreasonotherlist' => 'Sebebê bini',
 'ipbreason-dropdown' => '*sebebê verni-grewtışi yê pêroyi
 ** malumatê şaş têare kerdış
 ** Zerreyê pelan vetış
@@ -2726,8 +2722,6 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'ipbsubmit' => 'Ena karber blok bike',
 'ipbother' => 'Waxtê bini:',
 'ipboptions' => '2 seat:2 hours,1 roc:1 day,3 roci:3 days,1 hefte:1 week,2 heftey:2 weeks,1 aşm:1 month,3 aşm:3 months,6 aşmi:6 months,1 ser:1 year,ebedi:infinite',
-'ipbotheroption' => 'bini',
-'ipbotherreason' => 'Sebebê bini:',
 'ipbhidename' => 'Nameyê karberî listeyan u vurnayîşan ra binumne',
 'ipbwatchuser' => 'Pela miniqaşe u pela ena karberî seyr bike',
 'ipb-disableusertalk' => 'No karber wexto ke bloqedeyo wa pela da xodı vurnayış kerdışi rê izin medı',
@@ -2819,7 +2813,6 @@ labele parçeya benateyê na $2 adresibi u ey ra ver-geryayo u şıma eşkeni no
 'sorbs_create_account_reason' => 'IP adresa şıma, hetê no translatewiki.net keyepeli ra DNSBL de proxy hesibyayo u liste biyo.
 
 şıma neeşkeni hesab bıvırazi',
-'cant-block-while-blocked' => 'Ê ye ke verniyê şıma gırewtî şıma nêeşkeni verniyê ninan bıgeri',
 'cant-see-hidden-user' => 'karber o ke şıma gêreni verniyê ey bıgeri ca ra verniyê ey gırewteyo u pinani kerdeyo.',
 'ipbblocked' => 'Ti nieşkena karberanê binan bloke bike ya zi a bike cunki ti bloke biya',
 'ipbnounblockself' => 'Ti nieşkena xo a bike',
@@ -3831,7 +3824,6 @@ $8',
 'watchlistall2' => 'pêro',
 'namespacesall' => 'pêro',
 'monthsall' => 'pêro',
-'limitall' => 'pêro',
 
 # Email address confirmation
 'confirmemail' => 'Adresê e-posta tesdiq ker',
@@ -3855,7 +3847,6 @@ Wextê kod ê konfirmasyonî viyerto.',
 'confirmemail_success' => 'Email adresê tu konfirme biy.
 Ti eşkeno [[Special:UserLogin|ci kewt]].',
 'confirmemail_loggedin' => 'E-posta adresiya şıma hendana tesdiq biya.',
-'confirmemail_error' => 'Konfirmasyon ni biy, yew ğelet esto.',
 'confirmemail_subject' => '{{SITENAME}} konfirmasyonê adres ê emalî',
 'confirmemail_body' => 'Brayo delal, mara ke şıma no IP-adresi ra,
 keyepelê {{SITENAME}}i de pêno $2 e-postayi hesab kerda.
@@ -4196,7 +4187,6 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 
 # Special:ComparePages
 'comparepages' => 'Pela miqeyese ke',
-'compare-selector' => 'Revizyonê pele miqayese bike',
 'compare-page1' => 'Pele 1',
 'compare-page2' => 'Pele 2',
 'compare-rev1' => 'Revizyonê 1i',

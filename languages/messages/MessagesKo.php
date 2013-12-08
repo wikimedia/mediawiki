@@ -1791,7 +1791,6 @@ HTML 태그를 확인하세요.',
 'recentchanges-label-unpatrolled' => '아직 검토하지 않은 편집',
 'recentchanges-label-plusminus' => '바이트로 표기된 바뀐 문서 크기',
 'recentchanges-legend-newpage' => '([[Special:NewPages|새 문서의 목록]]도 참고하세요)',
-'rcnote' => "다음은 $4 $5 까지의 {{PLURAL:$2|'''$2'''일}}동안 {{PLURAL:$1|바뀐 문서 '''$1'''개입니다}}.",
 'rcnotefrom' => "다음은 '''$2'''에서부터 바뀐 문서 '''$1'''개입니다.",
 'rclistfrom' => '$1 이래로 새로 바뀐 문서 보기',
 'rcshowhideminor' => '사소한 편집을 $1',
@@ -2705,7 +2704,6 @@ $UNWATCHURL
 'undeletebtn' => '되살리기',
 'undeletelink' => '보기/되살리기',
 'undeleteviewlink' => '보기',
-'undeletereset' => '초기화',
 'undeleteinvert' => '선택 반전',
 'undeletecomment' => '이유:',
 'undeletedrevisions' => '{{PLURAL:$1|판 1개|판 $1개}}를 되살렸습니다',
@@ -2796,7 +2794,6 @@ $1',
 'block' => '사용자 차단',
 'unblock' => '사용자 차단 해제',
 'blockip' => '사용자 차단',
-'blockip-title' => '특정 사용자를 차단하기',
 'blockip-legend' => '사용자 차단',
 'blockiptext' => '차단할 IP 주소나 사용자 이름을 아래에 적어 주세요.
 차단은 문서 훼손을 막기 위해, [[{{MediaWiki:Policy-url}}|정책]]에 의해서만 이루어져야 합니다.
@@ -2804,7 +2801,6 @@ $1',
 'ipadressorusername' => 'IP 주소 또는 사용자 이름:',
 'ipbexpiry' => '기한:',
 'ipbreason' => '이유:',
-'ipbreasonotherlist' => '다른 이유',
 'ipbreason-dropdown' => '*일반적인 차단 이유
 ** 거짓 정보를 넣음
 ** 문서 내용을 지움
@@ -2820,8 +2816,6 @@ $1',
 'ipbsubmit' => '사용자 차단',
 'ipbother' => '다른 기간:',
 'ipboptions' => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite',
-'ipbotheroption' => '수동으로 지정',
-'ipbotherreason' => '다른 이유/추가적인 이유:',
 'ipbhidename' => '사용자 이름을 편집 역사에서 숨기기',
 'ipbwatchuser' => '이 사용자 문서와 사용자 토론 문서를 주시하기',
 'ipb-disableusertalk' => '차단된 동안 자신의 사용자 토론 문서를 편집하지 못하도록 막기',
@@ -2914,7 +2908,6 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'sorbs_create_account_reason' => '당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.
 계정을 만들 수 없습니다.',
 'xffblockreason' => 'X-Forwarded-For 헤더에 현재 사용하고 있는 프록시 서버 중 당신이나 해당 IP 주소가 차단되었습니다. 차단 이유는 다음과 같습니다: $1',
-'cant-block-while-blocked' => '자신이 차단되어 있는 동안에는 다른 사용자를 차단할 수 없습니다.',
 'cant-see-hidden-user' => '차단하려 하는 사용자는 이미 차단되었고 숨김 처리되었습니다.
 사용자 숨기기 권한을 갖고 있지 않기 때문에, 이 사용자의 차단 기록을 보거나 차단 설정을 바꿀 수 없습니다.',
 'ipbblocked' => '자신이 차단되어 있기 때문에 다른 사용자를 차단하거나 차단을 해제할 수 없습니다.',
@@ -3069,7 +3062,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'allmessages-filter-modified' => '수정됨',
 'allmessages-prefix' => '접두어로 거르기:',
 'allmessages-language' => '언어:',
-'allmessages-filter-submit' => '실행',
+'allmessages-filter-submit' => '보기',
 
 # Thumbnails
 'thumbnail-more' => '실제 크기로',
@@ -3861,7 +3854,6 @@ Variants for Chinese language
 'watchlistall2' => '모두',
 'namespacesall' => '모두',
 'monthsall' => '모든 달',
-'limitall' => '모두',
 
 # Email address confirmation
 'confirmemail' => '이메일 주소 확인',
@@ -3886,7 +3878,6 @@ Variants for Chinese language
 'confirmemail_success' => '이메일 주소가 인증되었습니다.
 이제 [[Special:UserLogin|로그인]]해서 위키를 사용하세요.',
 'confirmemail_loggedin' => '이메일 주소가 인증되었습니다.',
-'confirmemail_error' => '인증을 저장하는 도중 오류가 발생했습니다.',
 'confirmemail_subject' => '{{SITENAME}} 이메일 주소 인증',
 'confirmemail_body' => '$1 IP 주소를 사용하는 사용자가
 {{SITENAME}}의 "$2" 계정에 이메일 인증 신청을 했습니다.
@@ -3966,6 +3957,11 @@ $5
 'imgmultipagenext' => '다음 페이지 →',
 'imgmultigo' => '이동!',
 'imgmultigoto' => '$1 페이지로 가기',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(기본 언어)',
+'img-lang-info' => '이 그림을 $1로 렌더합니다. $2',
+'img-lang-go' => '보기',
 
 # Table pager
 'ascending_abbrev' => '오름차순',
@@ -4140,7 +4136,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => '문서 비교',
-'compare-selector' => '문서의 특정판 비교',
 'compare-page1' => '첫 번째 문서',
 'compare-page2' => '두 번째 문서',
 'compare-rev1' => '첫 번째 판',

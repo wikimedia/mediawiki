@@ -1273,7 +1273,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchanges-label-bot' => 'Šī ir bota veikta izmaiņa',
 'recentchanges-label-unpatrolled' => 'Šis labojums vēl nav pārbaudīts',
 'recentchanges-legend-newpage' => '$1 - jauna lapa',
-'rcnote' => 'Šobrīd ir {{PLURAL:$1|redzama pēdējā <strong>$1</strong> izmaiņa, kas izdarīta|redzamas pēdējās <strong>$1</strong> izmaiņas, kas izdarītas}} {{PLURAL:$2|pēdējā|pēdējās}} <strong>$2</strong> {{PLURAL:$2|dienā|dienās}} (līdz $4, $5).',
 'rcnotefrom' => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom' => 'Parādīt jaunas izmaiņas kopš $1',
 'rcshowhideminor' => '$1 maznozīmīgos',
@@ -2031,7 +2030,6 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletebtn' => 'Atjaunot!',
 'undeletelink' => 'apskatīt/atjaunot',
 'undeleteviewlink' => 'skatīt',
-'undeletereset' => 'Notīrīt',
 'undeleteinvert' => 'Izvēlēties pretēji',
 'undeletecomment' => 'Iemesls:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
@@ -2112,14 +2110,12 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'block' => 'Bloķēt lietotāju',
 'unblock' => 'Atbloķēt lietotāju',
 'blockip' => 'Bloķēt lietotāju',
-'blockip-title' => 'Bloķēt lietotāju',
 'blockip-legend' => 'Bloķēt lietotāju',
 'blockiptext' => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[{{MediaWiki:Policy-url}}|noteikumiem]].
 Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipadressorusername' => 'IP adrese vai lietotājvārds',
 'ipbexpiry' => 'Termiņš',
 'ipbreason' => 'Iemesls:',
-'ipbreasonotherlist' => 'Cits iemesls',
 'ipbreason-dropdown' => '*Biežākie bloķēšanas iemesli
 ** Ievieto nepatiesu informāciju
 ** Dzēš lapu saturu
@@ -2134,8 +2130,6 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipbsubmit' => 'Bloķēt šo lietotāju',
 'ipbother' => 'Cits laiks',
 'ipboptions' => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite',
-'ipbotheroption' => 'cits',
-'ipbotherreason' => 'Cits/papildu iemesls:',
 'ipbhidename' => "Slēpt lietot'javārdu no labojumiem un sarakstiem",
 'ipbwatchuser' => 'Uzraudzīt šī lietotāja lapu un lietotāja diskusijas lapu',
 'ipb-change-block' => 'Pārbloķēt ar šiem uzstādījumiem',
@@ -2212,7 +2206,6 @@ Tas, iespējams, jau ir atbloķēts.',
 Tā ir bloķēta kā daļa no IP adrešu diapazona $2, kuru var atbloķēt.',
 'ip_range_invalid' => 'Nederīgs IP diapazons',
 'proxyblocker' => 'Starpniekservera bloķētājs',
-'cant-block-while-blocked' => 'Tu nevari bloķēt citus lietotājus, kamēr pats esi bloķēts.',
 'ipbblocked' => 'Tu nevar bloķēt vai atbloķēt lietotājus, jo Tu pats esi bloķēts',
 'ipbnounblockself' => 'Tev nav atļauts sevi atbloķēt',
 
@@ -2261,6 +2254,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'pagemovedsub' => 'Pārvietošana notikusi veiksmīgi',
 'movepage-moved' => '\'\'\'"$1" tika pārvietots uz "$2"\'\'\'',
 'movepage-moved-redirect' => 'Tika izveidota pāradresācija.',
+'movepage-moved-noredirect' => 'Netika izveidota pāradresācija.',
 'articleexists' => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
 'movetalk' => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
@@ -2908,7 +2902,6 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'watchlistall2' => 'visas',
 'namespacesall' => 'visas',
 'monthsall' => 'visi',
-'limitall' => 'visas',
 
 # Email address confirmation
 'confirmemail' => 'Apstiprini e-pasta adresi',
@@ -2931,7 +2924,6 @@ Nosūtīšanas programma atmeta atpakaļ: $1',
 'confirmemail_success' => 'Tava e-pasta adrese ir apstiprināta.
 Tagad vari [[Special:UserLogin|doties iekšā]] ar savu lietotājvārdu un pilnvērtīgi izmantot wiki iespējas.',
 'confirmemail_loggedin' => 'Tava e-pasta adrese tagad ir apstiprināta.',
-'confirmemail_error' => 'Notikusi kāda kļūme ar tava apstiprinājuma saglabāšanu.',
 'confirmemail_subject' => 'E-pasta adreses apstiprinajums no {{grammar:ģenitīvs|{{SITENAME}}}}',
 'confirmemail_body' => 'Kads, iespejams, tu pats, no IP adreses $1 ir registrejis {{grammar:ģenitīvs|{{SITENAME}}}} lietotaja vardu "$2" ar so e-pasta adresi.
 
@@ -3111,7 +3103,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Special:ComparePages
 'comparepages' => 'Salīdzināt lapas',
-'compare-selector' => 'Salīdzināt lapu versijas',
 'compare-page1' => '1. lapa',
 'compare-page2' => '2. lapa',
 'compare-rev1' => '1. versija',

@@ -1700,7 +1700,6 @@ dat dänne ehr Daate topaktoell sin,
 'recentchanges-label-bot' => 'Di Änderung es fun enem Bot jemaat woode',
 'recentchanges-label-unpatrolled' => 'Heh di Änderung es noch nit nohjeloort',
 'recentchanges-legend-newpage' => '$1 - neu Sigg',
-'rcnote' => '{{PLURAL:$1|Heh es de letzte Änderung us|Heh sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Daach|de letzte <strong>$2</strong> Dääsch|dä Zick}} vum <strong>$4</strong> aff <strong>$5</strong> Uhr beß jetz.',
 'rcnotefrom' => 'Hee {{PLURAL:$1|es ein|sin bes op <strong>$1</strong>|es keine}} fun de Änderunge zick dem <strong>$3</strong> öm <strong>$4</strong> Uhr opjelėß.',
 'rclistfrom' => 'Zeich de Änderunge vum $1 aan',
 'rcshowhideminor' => '$1 klein Mini-Änderunge',
@@ -2644,7 +2643,6 @@ Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
 'undeletebtn' => 'Zeröckholle!',
 'undeletelink' => 'aanloore odder widder zeröckholle',
 'undeleteviewlink' => 'aanloore',
-'undeletereset' => 'De Felder usleere',
 'undeleteinvert' => 'De Ußwahl ömdrije',
 'undeletecomment' => 'Jrond (för en et Logboch):',
 'undeletedrevisions' => '{{PLURAL:$1|ein Version|$1 Versione}} zeröckjehollt',
@@ -2733,7 +2731,6 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'block' => 'Metmaacher udder en <i lang="en">IP</i>-Addräß sperre',
 'unblock' => 'Don en Sperr för ene Metmaacher udder en <i lang="en">IP</i>-Addräß ophävve',
 'blockip' => 'Metmaacher sperre',
-'blockip-title' => 'Metmaacher Schpärre',
 'blockip-legend' => 'Metmaacher ov IP-Adresse Sperre',
 'blockiptext' => 'Hee kanns De bestemmte Metmaacher oder IP-Adresse sperre, su dat se hee em Wiki nit mieh schrieve und Sigge ändere künne.
 Dat sollt nor jedon wääde om sujenannte Vandaale ze bremse. Un mer müsse uns dobei natörlich aan uns [[{{MediaWiki:Policy-url}}|Rejelle]] för esu en Fäll halde.
@@ -2741,7 +2738,6 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipadressorusername' => '<i lang="en">IP</i>-Adress oder Metmaacher Name:',
 'ipbexpiry' => 'Duur, för wie lang',
 'ipbreason' => 'Aanlass:',
-'ipbreasonotherlist' => 'Ne andere Bejründung',
 'ipbreason-dropdown' => '* Alljemein Jrönd för et Sperre
 ** hät fekeehte Behouptunge udder Leeje en Atikele jeschrevve
 ** hät Sigge fottjeschmesse udder leddig jemaat
@@ -2760,8 +2756,6 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipbsubmit' => 'Dun dä Metmaacher sperre',
 'ipbother' => 'För en ander Duur:',
 'ipboptions' => '2 Stund:2 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,1 Johr:1 year,Unbejrenz:infinite',
-'ipbotheroption' => 'Söns wie lang',
-'ipbotherreason' => 'Ander Jrund oder Zosätzlich:',
 'ipbhidename' => 'Don däm Metmaacher singe Name versteiche, en de Leste un däm sing Änderunge.',
 'ipbwatchuser' => 'Op däm Metmaacher sing Metmaachersigg un Klaafsigg oppasse',
 'ipb-disableusertalk' => 'Dä Metmaacher darf sing Klaafsigg nit ändere, esulang, wi hä jwesperrt es',
@@ -2855,7 +2849,6 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'sorbsreason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 'sorbs_create_account_reason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich heh em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 'xffblockreason' => 'En <i lang="en">IP-</i>Adräs en ener <code lang="en">X-Forwarded-For</i> Koppreih es jeschpächt: Et künnt de Dinge udder enem <i lang="en">proxy server</i> zweschedren sing Adräß sin. Der Jrond för et Schpärre woh orschprönglesch: $1',
-'cant-block-while-blocked' => 'Do kanns ander Metmaacher nit sperre, esu lang wi De sellver jesperrt bes.',
 'cant-see-hidden-user' => 'Dä Metmaacher, dä De shperre wells, es al jeshperrt un verschtoche. Weil De nit dat Rääsch häs. Metmaacher ze vershteiche (<code>hideuser</code>), kanns De däm sing Sperr och nit ändere.',
 'ipbblocked' => 'Do kanns kein ander Metmaachere sperrre, weil De sellver jesperrt bes',
 'ipbnounblockself' => 'Do kanns nit sellver ophävve, dat De jesperrt bes',
@@ -3809,7 +3802,6 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'watchlistall2' => 'all',
 'namespacesall' => 'all',
 'monthsall' => 'all',
-'limitall' => 'alle',
 
 # Email address confirmation
 'confirmemail' => 'E-Mail Adress bestätije',
@@ -3827,7 +3819,6 @@ Dä E-Mail-ẞööver hät jesaat: ''$1''",
 'confirmemail_success' => 'Ding E-Mail Adress es jetz bestätich.
 Jetz künns De och noch enlogge. Vill Spass!',
 'confirmemail_loggedin' => 'Ding Addräß fö de <i lang="en">e-mail</i> es jäz beschtäätesch!',
-'confirmemail_error' => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
 'confirmemail_subject' => 'Dun Ding e-mail Adress för {{GRAMMAR:Akkusativ|{{SITENAME}}}} bestäteje.',
 'confirmemail_body' => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
 jedenfalls einer jemeldt, un well dä Metmaacher "$2" {{GRAMMAR:vun|{{SITENAME}}}}
@@ -4144,7 +4135,6 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 
 # Special:ComparePages
 'comparepages' => 'Sigge verjliesche',
-'compare-selector' => 'Versione vun Sigge verjlieshe',
 'compare-page1' => 'De ein Sigg',
 'compare-page2' => 'De ander Sigg',
 'compare-rev1' => 'de ein Version',

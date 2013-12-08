@@ -1706,7 +1706,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-label-plusminus' => 'Dimensiunea paginii s-a modificat corespunzător acestui număr de octeți',
 'recentchanges-legend-newpage' => '(vezi și [[Special:NewPages|lista cu pagini noi]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Mai jos se află {{PLURAL:\$|ultima modificare|ultimele '''\$1''' modificări|ultimele '''\$1''' de modificări}} din {{PLURAL:\$2|ultima zi|ultimele '''\$2''' zile|ultimele '''\$2''' de zile}}, începând cu \$5, \$4.",
 'rcnotefrom' => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom' => 'Se arată modificările începând cu $1',
 'rcshowhideminor' => '$1 modificările minore',
@@ -2595,7 +2594,6 @@ S-ar putea ca legătura să fie greșită, ori versiunea să fi fost restaurată
 'undeletebtn' => 'Recuperează',
 'undeletelink' => 'vizualizare/recuperare',
 'undeleteviewlink' => 'vezi',
-'undeletereset' => 'Resetează',
 'undeleteinvert' => 'Exclude spațiul',
 'undeletecomment' => 'Motiv:',
 'undeletedrevisions' => '{{PLURAL:$1|o versiune restaurată|$1 versiuni restaurate|$1 de versiuni restaurate}}',
@@ -2685,7 +2683,6 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'block' => 'Blocare utilizator',
 'unblock' => 'Deblocare utilizator',
 'blockip' => 'Blocare utilizator',
-'blockip-title' => 'Blocare utilizator',
 'blockip-legend' => 'Blocare utilizator/adresă IP',
 'blockiptext' => "Pentru a bloca un utilizator completați rubricile de mai jos.<br />
 '''Respectați [[{{MediaWiki:Policy-url}}|politica de blocare]].'''<br />
@@ -2693,7 +2690,6 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'ipadressorusername' => 'Adresă IP sau nume de utilizator',
 'ipbexpiry' => 'Expiră',
 'ipbreason' => 'Motiv:',
-'ipbreasonotherlist' => 'Alt motiv',
 'ipbreason-dropdown' => '*Motivele cele mai frecvente
 ** Introducere de informații false
 ** Ștergere conținut fără explicații
@@ -2709,8 +2705,6 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'ipbsubmit' => 'Blochează acest utilizator',
 'ipbother' => 'Alt termen:',
 'ipboptions' => '2 ore:2 hours,1 zi:1 day,3 zile:3 days,1 săptămână:1 week,2 săptămâni:2 weeks,1 lună:1 month,3 luni:3 months,6 luni:6 months,1 an:1 year,infinit:infinite',
-'ipbotheroption' => 'altul',
-'ipbotherreason' => 'Motiv diferit/adițional:',
 'ipbhidename' => 'Ascunde numele de utilizator la editare și afișare',
 'ipbwatchuser' => 'Urmărește pagina sa de utilizator și de discuții',
 'ipb-disableusertalk' => 'Se interzice acestui utilizator modificarea propriei pagini de discuții în timpul blocării',
@@ -2801,7 +2795,6 @@ Vă rugăm să vă contactați furnizorul de servicii Internet sau tehnicienii I
 'sorbs_create_account_reason' => 'Adresa dumneavoastră IP este listată ca un proxy deschis în lista neagră DNS.
 Nu vă puteți crea un cont',
 'xffblockreason' => 'O adresă IP prezentă în antetul X-Forwarded-For — fie a dumneavoastră, fie a serverului proxy pe care îl folosiți — a fost blocată. Motivul original al blocării a fost: $1',
-'cant-block-while-blocked' => 'Nu puteți bloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',
 'cant-see-hidden-user' => 'Utilizatorul pe care încercați să îl blocați este deja blocat și ascuns. Atata timp cât nu aveți drept de hideuser, nu puteți vedea sau modifica blocarea acestuia.',
 'ipbblocked' => 'Nu puteți bloca sau debloca alți utilizatori în timp ce sunteți dumneavoastră înșivă blocat.',
 'ipbnounblockself' => 'Nu aveți permisiunea de a vă debloca singur',
@@ -3723,7 +3716,6 @@ Altele vor fi ascunse implicit.
 'watchlistall2' => 'toate',
 'namespacesall' => 'toate',
 'monthsall' => 'toate',
-'limitall' => 'toate',
 
 # Email address confirmation
 'confirmemail' => 'Confirmare adresă e-mail',
@@ -3745,7 +3737,6 @@ Serverul de mail a returnat: $1',
 'confirmemail_needlogin' => 'Trebuie să vă $1 pentru a vă confirma adresa de e-mail.',
 'confirmemail_success' => 'Adresa de e-mail a fost confirmată. Acum vă puteți [[Special:UserLogin|autentifica]] și bucura de wiki.',
 'confirmemail_loggedin' => 'Adresa de e-mail a fost confirmată.',
-'confirmemail_error' => 'Ceva nu a funcționat la salvarea confirmării.',
 'confirmemail_subject' => 'Confirmarea adresei de e-mail la {{SITENAME}}',
 'confirmemail_body' => 'Cineva, probabil dumneavoastră de la adresa IP $1, și-a înregistrat la {{SITENAME}} contul „$2” cu această adresă de e-mail.
 
@@ -3816,6 +3807,12 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'imgmultipagenext' => 'pagina următoare →',
 'imgmultigo' => 'Du-te!',
 'imgmultigoto' => 'Du-te la pagina $1',
+
+# Language selector for translatable SVGs
+'img-lang-opt' => '$2 ($1)',
+'img-lang-default' => '(limba implicită)',
+'img-lang-info' => 'Randează această imagine în $1 $2.',
+'img-lang-go' => 'Du-te',
 
 # Table pager
 'ascending_abbrev' => 'cresc',
@@ -3986,7 +3983,6 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 
 # Special:ComparePages
 'comparepages' => 'Comparație între pagini',
-'compare-selector' => 'Comparație între versiuni',
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Versiunea 1',

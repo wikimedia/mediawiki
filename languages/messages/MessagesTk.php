@@ -1234,7 +1234,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'recentchanges-label-bot' => 'Bu özgerdiş bir bot tarapyndan amala aşyryldy',
 'recentchanges-label-unpatrolled' => 'Bu özgerdişe heniz patrullyk edilmändir',
 'recentchanges-legend-newpage' => '$1 - täze sahypa',
-'rcnote' => "Aşakda $5, $4 senesinden başlap, soňky {{PLURAL:$2|1 günde|'''$2''' günde}} edilen {{PLURAL:$1|'''1''' üýtgeşme|'''$1''' üýtgeşme}} görkezilýär.",
 'rcnotefrom' => '<b>$2</b> senesinden bäri edilen özgerdişler aşakda görkezilýär (<b>$1</b> sanysyna çenli).',
 'rclistfrom' => '$1 senesinden bäri edilen özgerdişleri görkez',
 'rcshowhideminor' => 'ujypsyzja özgerdişleri $1',
@@ -1986,7 +1985,6 @@ Ulanan çykgydyňyz nädogry bolmagy ýa-da onuň arhiwden dikeldilen ýa-da aý
 'undeletebtn' => 'Dikelt',
 'undeletelink' => 'görkez/dikelt',
 'undeleteviewlink' => 'görkez',
-'undeletereset' => 'Başky ýagdaýa getir',
 'undeleteinvert' => 'Saýlanmadyklar',
 'undeletecomment' => 'Sebäp:',
 'undeletedrevisions' => '{{PLURAL:$1|1 wersiýa|$1 wersiýa}} dikeldildi',
@@ -2068,7 +2066,6 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 
 # Block/unblock
 'blockip' => 'Ulanyjyny blokirle',
-'blockip-title' => 'Ulanyjyny blokirle',
 'blockip-legend' => 'Ulanyjyny blokirle',
 'blockiptext' => 'Aşakdaky formdan peýdalanyp, belli bir IP-niň ýa-da ulanyjy adynyň ýazmak hukugyny blokirläp bilersiňiz.
 Bu diňe wandalizmiň öňüni almak üçin hem-de [[{{MediaWiki:Policy-url}}|kadalara]] laýyklykda edilmelidir.
@@ -2076,7 +2073,6 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'ipadressorusername' => 'IP adresi ýa-da ulanyjy ady:',
 'ipbexpiry' => 'Gutarýan wagty:',
 'ipbreason' => 'Sebäp:',
-'ipbreasonotherlist' => 'Başga sebäp',
 'ipbreason-dropdown' => '*Adaty blokirleme sebäpleri
 ** Ýalan maglumat girizmek
 ** Sahypalaryň mazmunyny aýyrmak
@@ -2091,8 +2087,6 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'ipbsubmit' => 'Bu ulanyjyny blokirle',
 'ipbother' => 'Başga wagt:',
 'ipboptions' => '2 sagat:2 hours,1 gün:1 day,3 gün:3 days,1 hepde:1 week,2 hepde:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 ýyl:1 year,möhletsiz:infinite',
-'ipbotheroption' => 'başga',
-'ipbotherreason' => 'Başga/goşmaça sebäp:',
 'ipbhidename' => 'Ulanyjynyň adyny özgerdişlerde we sanawlarda gizle',
 'ipbwatchuser' => 'Bu ulanyjynyň ulanyjy we çekişme sahypalaryny gözegçilikde sakla',
 'ipb-change-block' => 'Bu sazlamalar bilen ulanyjyny gaýtadan blokirle',
@@ -2166,7 +2160,6 @@ Internet üpjün edijiňiz ýa-da goldaw gullugy bilen habarlaşyp, olary bu çy
 'sorbsreason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.',
 'sorbs_create_account_reason' => 'IP adresiňiz {{SITENAME}} tarapyndan ulanylýan DNSBL-de açyk proksi hökmünde sanawa goşulypdyr.
 Hasap açyp bilmeýärsiňiz.',
-'cant-block-while-blocked' => 'Özüňiz blokirlengikäňiz başga ulanyjylary blokirläp bilmeýärsiňiz.',
 'cant-see-hidden-user' => 'Blokirlejek bolýan ulanyjyňyz eýýäm blokirlenipdir hem-de gizlenilipdir. Ulanyjy gizlemek hukugyňyz ýokdugy sebäpli, ulanyjynyň blokirlemesini görüp ýa-da redaktirläp bilmeýärsiňiz.',
 'ipbblocked' => 'Beýleki ulanyjylary blokirläp ýa-da olaryň blokirlemesini aýryp bilmeýärsiňiz, sebäbi özüňiz blokirlenipsiňiz',
 'ipbnounblockself' => 'Öz blokirlemäňizi aýyrmagyňyza rugsat berilmeýär',
@@ -2805,7 +2798,6 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'watchlistall2' => 'Ählisini görkez',
 'namespacesall' => 'ählisi',
 'monthsall' => 'ählisi',
-'limitall' => 'ählisi',
 
 # Email address confirmation
 'confirmemail' => 'E-poçta adresini tassykla',
@@ -2827,7 +2819,6 @@ Serwer yzyna gaýtardy:$1',
 'confirmemail_needlogin' => 'E-poçta adresiňizi tassyklamak üçin $1.',
 'confirmemail_success' => 'E-poçta adresiňiz tassyklandy. [[Special:UserLogin|Sessiýa açyň-da]] wikini ulanyberiň.',
 'confirmemail_loggedin' => 'E-poçta adresiňiz tassyklandy.',
-'confirmemail_error' => 'Tassyklamaňyz ýazdyrylanda bir ýalňyşlyk boldy.',
 'confirmemail_subject' => '{{SITENAME}} e-poçta adres tassyklamasy.',
 'confirmemail_body' => 'Kimdir biri, ähtimal özüňiz, $1 IP adresinden,
 {{SITENAME}} saýtynda bu e-poçta adresi bilen $2 hasabyny açdy.
@@ -3028,7 +3019,6 @@ Bu programmanyň ýany bilen siz [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General P
 
 # Special:ComparePages
 'comparepages' => 'Sahypalary deňeşdir',
-'compare-selector' => 'Sahypa wersiýalaryny deňeşdir',
 'compare-page1' => 'Sahypa 1',
 'compare-page2' => 'Sahypa 2',
 'compare-rev1' => 'Wersiýa 1',

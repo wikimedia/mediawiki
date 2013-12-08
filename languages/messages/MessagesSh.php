@@ -1596,7 +1596,6 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'recentchanges-label-bot' => 'Ovu je izmjenu učinio bot',
 'recentchanges-label-unpatrolled' => 'Ova izmjena još nije patrolirana',
 'recentchanges-legend-newpage' => '$1 - nova stranica',
-'rcnote' => "Ispod {{PLURAL:$1|je '''$1''' promjena|su '''$1''' zadnje promjene|su '''$1''' zadnjih promjena}} u {{PLURAL:$2|posljednjem '''$2''' danu|posljednja '''$2''' dana|posljednjih '''$2''' dana}}, od $4, $5.",
 'rcnotefrom' => "Ispod {{PLURAL:$1|je '''$1''' izmjena|su '''$1''' zadnje izmjene|su '''$1''' zadnjih izmjena}} u {{PLURAL:$2|posljednjem '''$2''' danu|posljednja '''$2''' dana|posljednjih '''$2''' dana}}, od $4, $5.",
 'rclistfrom' => 'Prikaži nove izmjene počevši od $1',
 'rcshowhideminor' => '$1 male izmjene',
@@ -2471,7 +2470,6 @@ Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arh
 'undeletebtn' => 'Vrati',
 'undeletelink' => 'pogledaj/vrati',
 'undeleteviewlink' => 'pogledaj',
-'undeletereset' => 'Očisti',
 'undeleteinvert' => 'Sve osim odabranog',
 'undeletecomment' => 'Razlog:',
 'undeletedrevisions' => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
@@ -2561,7 +2559,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'block' => 'Blokiraj korisnika',
 'unblock' => 'Odblokiraj korisnika',
 'blockip' => 'Blokiraj korisnika',
-'blockip-title' => 'Blokiraj korisnika',
 'blockip-legend' => 'Blokiranje korisnika',
 'blockiptext' => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  
 Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. 
@@ -2569,7 +2566,6 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'ipadressorusername' => 'IP adresa ili korisničko ime:',
 'ipbexpiry' => 'Ističe:',
 'ipbreason' => 'Razlog:',
-'ipbreasonotherlist' => 'Ostali razlog/zi',
 'ipbreason-dropdown' => '*Najčešći razlozi blokiranja
 **Unošenje netačnih informacija
 **Uklanjanje sadržaja stranica
@@ -2585,8 +2581,6 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'ipbsubmit' => 'Blokirajte ovog korisnika',
 'ipbother' => 'Ostali period:',
 'ipboptions' => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite',
-'ipbotheroption' => 'ostalo',
-'ipbotherreason' => 'Ostali/dodatni razlog/zi:',
 'ipbhidename' => 'Sakrij korisničko ime iz uređivanja i spiskova',
 'ipbwatchuser' => 'Prati korisničku stranicu i stranicu za razgovor ovog korisnika',
 'ipb-disableusertalk' => 'Onemogući ovog korisnika da uređuje svoju vlastitu stranicu za razgovor dok je blokiran',
@@ -2681,7 +2675,6 @@ Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Servic
 'sorbs_create_account_reason' => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL korišten od {{SITENAME}}.
 Ne možete napraviti račun',
 'xffblockreason' => 'IP adresa koja postoji u zagljavlju X-Forwarded-For, ili Vaša ili od proxy servera koji koristite, je blokirana. Originalni razlog za blokiranje je bio: $1',
-'cant-block-while-blocked' => 'Ne možete blokirati druge korisnike dok ste blokirani.',
 'cant-see-hidden-user' => 'Korisnik kojeg pokušavate blokirati je već blokiran i sakriven. 
 Pošto nemate prava hideuser (sakrivanje korisnika), ne možete vidjeti ni urediti korisnikovu blokadu.',
 'ipbblocked' => 'Ne možete blokirati ili deblokirati druge korisnike, jer ste i sami blokirani',
@@ -3589,7 +3582,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'watchlistall2' => 'sve',
 'namespacesall' => 'sve',
 'monthsall' => 'sve',
-'limitall' => 'sve',
 
 # Email address confirmation
 'confirmemail' => 'Potvrdite adresu e-pošte',
@@ -3614,7 +3606,6 @@ Moguće je da je kod istekao.',
 'confirmemail_success' => 'Adresa vaše e-pošte je potvrđena.
 Možete sad da se [[Special:UserLogin|prijavite]] i uživate u viki.',
 'confirmemail_loggedin' => 'Adresa Vaše e-pošte je potvrđena.',
-'confirmemail_error' => 'Nešto je pošlo krivo prilikom snimanja vaše potvrde.',
 'confirmemail_subject' => '{{SITENAME}} adresa e-pošte za potvrdu',
 'confirmemail_body' => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
 
@@ -3852,7 +3843,6 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 
 # Special:ComparePages
 'comparepages' => 'Usporedi stranice',
-'compare-selector' => 'Usporedi revizije stranica',
 'compare-page1' => 'Stranica 1',
 'compare-page2' => 'Stranica 2',
 'compare-rev1' => 'Ispravljanje 1',

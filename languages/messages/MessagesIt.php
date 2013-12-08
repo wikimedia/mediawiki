@@ -1674,7 +1674,6 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'recentchanges-label-plusminus' => 'La dimensione della pagina è cambiata di questo numero di byte',
 'recentchanges-legend-newpage' => "(vedi anche [[Special:NewPages|l'elenco delle nuove pagine]])",
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} al sito {{PLURAL:$2|nelle ultime 24 ore|negli scorsi '''$2''' giorni}}; i dati sono aggiornati alle $5 del $4.",
 'rcnotefrom' => "Di seguito sono elencate le modifiche apportate a partire da '''$2''' (fino a '''$1''').",
 'rclistfrom' => 'Mostra le modifiche apportate a partire da $1',
 'rcshowhideminor' => '$1 le modifiche minori',
@@ -2545,7 +2544,6 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletebtn' => 'Ripristina',
 'undeletelink' => 'visualizza/ripristina',
 'undeleteviewlink' => 'visualizza',
-'undeletereset' => 'Reimposta',
 'undeleteinvert' => 'Inverti selezione',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
@@ -2632,7 +2630,6 @@ $1',
 'block' => 'Blocca utente',
 'unblock' => 'Sblocca utente',
 'blockip' => 'Blocco utente',
-'blockip-title' => 'Blocca utente',
 'blockip-legend' => "Blocca l'utente",
 'blockiptext' => "Usare il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o un utente registrato.
 Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].
@@ -2640,7 +2637,6 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipadressorusername' => 'Indirizzo IP o nome utente:',
 'ipbexpiry' => 'Scadenza del blocco:',
 'ipbreason' => 'Motivo:',
-'ipbreasonotherlist' => 'Altra motivazione',
 'ipbreason-dropdown' => '*Motivazioni più comuni per i blocchi
 ** Inserimento di informazioni false
 ** Rimozione di contenuti dalle pagine
@@ -2656,8 +2652,6 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipbsubmit' => "Blocca l'utente",
 'ipbother' => 'Durata non in elenco:',
 'ipboptions' => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite',
-'ipbotheroption' => 'altro',
-'ipbotherreason' => 'Altri motivi/dettagli:',
 'ipbhidename' => 'Nascondi il nome utente dalle modifiche e dagli elenchi.',
 'ipbwatchuser' => 'Segui le pagine e le discussioni utente di questo utente',
 'ipb-disableusertalk' => 'Impedisci a questo utente di modificare la propria pagina di discussioni mentre è bloccato',
@@ -2747,7 +2741,6 @@ Consultare l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi o b
 'sorbsreason' => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'xffblockreason' => "Un indirizzo IP presente nell'intestazione X-Forwarded-For, tuo o del server proxy che stai utilizzando, è stato bloccato. La motivazione originale del blocco è: $1",
-'cant-block-while-blocked' => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
 'cant-see-hidden-user' => 'L\'utente che si sta tentando di bloccare è stato già bloccato e nascosto. Poiché non hai il permesso "hideuser", non è possibile visualizzare o modificare il blocco dell\'utente.',
 'ipbblocked' => 'Non puoi bloccare o sbloccare altri utenti, perché tu stesso sei bloccato',
 'ipbnounblockself' => 'Non puoi sbloccare te stesso',
@@ -3661,7 +3654,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'watchlistall2' => 'tutte',
 'namespacesall' => 'tutti',
 'monthsall' => 'tutti',
-'limitall' => 'tutti',
 
 # Email address confirmation
 'confirmemail' => 'Conferma indirizzo email',
@@ -3683,7 +3675,6 @@ Messaggio di errore del mailer: $1',
 'confirmemail_needlogin' => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
 'confirmemail_success' => "L'indirizzo e-mail è confermato. Ora è possibile [[Special:UserLogin|eseguire l'accesso]] e fare pieno uso del sito.",
 'confirmemail_loggedin' => "L'indirizzo email è stato confermato.",
-'confirmemail_error' => 'Errore nel salvataggio della conferma.',
 'confirmemail_subject' => "{{SITENAME}}: richiesta di conferma dell'indirizzo",
 'confirmemail_body' => 'Qualcuno, probabilmente tu stesso dall\'indirizzo IP $1, ha registrato l\'account "$2" su {{SITENAME}} indicando questo indirizzo e-mail.
 
@@ -3761,6 +3752,10 @@ Per favore, conferma che vuoi veramente ricreare questa pagina.",
 'imgmultipagenext' => 'pagina seguente →',
 'imgmultigo' => 'Vai',
 'imgmultigoto' => 'Vai alla pagina $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(lingua predefinita)',
+'img-lang-go' => 'Vai',
 
 # Table pager
 'ascending_abbrev' => 'cresc',
@@ -3942,7 +3937,6 @@ Esempi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revi
 
 # Special:ComparePages
 'comparepages' => 'Confronta le pagine',
-'compare-selector' => 'Confronta le revisioni di una pagina',
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Revisione 1',

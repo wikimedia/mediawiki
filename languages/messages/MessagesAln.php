@@ -1126,7 +1126,6 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'recentchanges-summary' => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description' => 'Përcjelli ndryshimet mâ të reja të këtij wiki në këtë feed.',
 'recentchanges-label-newpage' => 'Ky redaktim krijoi një faqe të re',
-'rcnote' => "Mâ poshtë {{PLURAL:$1|âsht '''1''' ndryshim|janë '''$1''' ndryshimet e fundit}} në {{PLURAL:$2|ditën|'''$2''' ditët}} e fundit, prej $5, $4.",
 'rclistfrom' => 'Trego ndryshimet e reja tue fillue prej $1',
 'rcshowhideminor' => '$1 redaktimet e vogla',
 'rcshowhidebots' => 'botat në $1',

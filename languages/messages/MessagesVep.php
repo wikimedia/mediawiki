@@ -1234,7 +1234,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'recentchanges-label-bot' => 'Necen redakcijan tegi bot',
 'recentchanges-label-unpatrolled' => 'Necidä redakcijad ei völ patruliruinugoi',
 'recentchanges-legend-newpage' => "$1 - uz' lehtpol'",
-'rcnote' => "Alahan om ozutadud {{PLURAL:$1| '''1''' toižetuz|'''$1''' toižetust}} {{PLURAL:$2|jäl'gmäižes päiväs|jäl'gmäižiš '''$2''' päiviš}}, aigal $5, $4.",
 'rcnotefrom' => "Alemba oma anttud toižetused '''$2'''-späi ( '''$1'''-hesai).",
 'rclistfrom' => 'Ozutada uded toižetused dataspäi $1 augotaden',
 'rcshowhideminor' => '$1 pened redakcijad',
@@ -1908,7 +1907,6 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'undeletebtn' => 'Endištada',
 'undeletelink' => 'endištada',
 'undeleteviewlink' => 'nähta',
-'undeletereset' => 'Puhtastada',
 'undeleteinvert' => 'Käta erigoittud sanad vastkarin',
 'undeletecomment' => 'Kommentarii:',
 'undeletedrevisions' => '{{PLURAL:$1|1 toižetuz|$1 toižetust}} om endištadud',
@@ -1985,7 +1983,6 @@ Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 'block' => 'Kävutajan blokiruind',
 'unblock' => 'Heitta blokiruind ühtnijalpäi',
 'blockip' => 'Blokiruida kävutajad',
-'blockip-title' => 'Blokiruida kävutajad',
 'blockip-legend' => 'Blokiruida kävutajad',
 'blockiptext' => 'Kävutagat alemba anttud form, miše blokiruida kirjutandan voimuz märitud IP-adresaspäi.
 Nece sab tehta vaiše sen täht, miše borcuidas vandalizmanke, kut om kirjutadud [[{{MediaWiki:Policy-url}}|ohjandimiš]].
@@ -1993,7 +1990,6 @@ Kirjutagat sü alemba (ozutesikš, citiruigat vandaliziruidud lehtpoled).',
 'ipadressorusername' => 'IP-adres vai kävutajan nimi:',
 'ipbexpiry' => 'Lopindan strok:',
 'ipbreason' => 'Sü:',
-'ipbreasonotherlist' => 'Toine sü',
 'ipbreason-dropdown' => "*Blokiruindan päsüd
 ** Väran informacijan andand
 ** Lehtpoliden südäimišton čudand
@@ -2008,8 +2004,6 @@ Kirjutagat sü alemba (ozutesikš, citiruigat vandaliziruidud lehtpoled).',
 'ipbsubmit' => 'Blokiruida nece kävutai',
 'ipbother' => 'Toine aig:',
 'ipboptions' => "2 časud:2 hours,1 päiv:1 day,3 päiväd:3 days,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite",
-'ipbotheroption' => 'toine',
-'ipbotherreason' => 'Toine sü/Ližasü:',
 'ipbhidename' => 'Peitta kävutajan nimi redakcijoišpäi da nimikirjutesišpäi',
 'ipbwatchuser' => "Kacelta necen kävutajan personališt lehtpol't da lodulehtpol't",
 'ipb-change-block' => 'Blokirujda kävutajad udes neniden järgendusidenke',
@@ -2084,7 +2078,6 @@ Voib olda, se om jo heittud.',
 'proxyblockreason' => 'Teiden IP-adres om blokiruidud, sikš miše se om avoin proksi.
 Olgat hüväd, säkat pagin teiden Internet-provaideranke i kirjutagat hänele necen varuitomuden problemas.',
 'sorbsreason' => 'Teiden IP-adres om ozutadud kut avaitud proksi {{SITENAME}}-saitan DNSBL-an mustas nimikirjuteses.',
-'cant-block-while-blocked' => 'Teile ei sa blokiruida toižid kävutajid, sikš miše tö iče olet blokiruidud.',
 
 # Developer tools
 'lockdb' => 'Luklostada andmusiden baz',
@@ -2771,7 +2764,6 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'watchlistall2' => 'kaik',
 'namespacesall' => 'kaik',
 'monthsall' => 'kaik',
-'limitall' => 'kaik',
 
 # Email address confirmation
 'confirmemail' => 'Vahvištoitta e-počtan adres',
@@ -2787,7 +2779,6 @@ Kod voiži vanhtuda.',
 'confirmemail_success' => "Teiden e-počtan adres om vahvištoittud.
 Nügüd' tö voit [[Special:UserLogin|kirjutadas sistemha]] da rata wikiš.",
 'confirmemail_loggedin' => 'Teiden e-počtan adres om vahvištoittud.',
-'confirmemail_error' => 'Teiden e-počtan adresan vahvištoitandan aigan ozaižihe petuz.',
 'confirmemail_subject' => '{{SITENAME}}-sait paikičeb teid vahvištoitta teiden e-počtan adres',
 'confirmemail_body' => 'Ken-se, voib olda, tö, om sänu "$2"-registracijan {{SITENAME}}-saital. Se ristit om kävutanu IP-adresan "$1" da necen e-počtan adresan.
 
@@ -2986,7 +2977,6 @@ Kävutagat normaline ezikacund.',
 
 # Special:ComparePages
 'comparepages' => 'Lehtpoliden rindatuz',
-'compare-selector' => 'Lehtpoliden versijoiden rindatuz',
 'compare-page1' => "Ezmäine lehtpol'",
 'compare-page2' => "Toine lehtpol'",
 'compare-rev1' => 'Ezmäine versii',

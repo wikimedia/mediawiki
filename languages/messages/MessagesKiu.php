@@ -882,7 +882,6 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'recentchanges-label-bot' => 'No vurnais terefê zu boti ra bi',
 'recentchanges-label-unpatrolled' => 'No vurnais hona çım ra ranêvêrdo',
 'recentchanges-legend-newpage' => '$1 - pela newiye',
-'rcnote' => "Cêr {{PLURAL:$1|'''1''' vurnaiso peyên|'''$1''' vurnaisê peyêni}} be {{PLURAL:$2|roza peyêne|'''$2''' rozunê peyênunê}} $5, $4 ra estê.",
 'rcnotefrom' => "Cêr de vurnayîşê esto ke '''$2''' ra raver  (heta '''$1''' mucnayiyo).",
 'rclistfrom' => '$1 ra hata nıka vurnaisunê newu bıasne',
 'rcshowhideminor' => '$1 vurnaisê qızkeki',
@@ -1184,7 +1183,6 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'undeletebtn' => 'Peyser bia',
 'undeletelink' => 'bıvêne/peyser bia',
 'undeleteviewlink' => 'bıvêne',
-'undeletereset' => 'Vaz be',
 'undeleteinvert' => 'Weçinıtey ters bıçarne',
 'undeletecomment' => 'Sebeb:',
 'undelete-header' => 'Peleyê ke veror de besterneyayê êna bıvinê: [[Special:Log/delete|qeydê esterneya]].',
@@ -1478,7 +1476,6 @@ Eke dosya de peydêna vuriyais biyo ki, beno ke taê melumati gorê vurnaisê ne
 'watchlistall2' => 'pêro',
 'namespacesall' => 'pêro',
 'monthsall' => 'pêro',
-'limitall' => 'pêro',
 
 # action=purge
 'confirm_purge_button' => 'Temam',

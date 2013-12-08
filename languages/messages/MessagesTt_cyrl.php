@@ -1348,7 +1348,6 @@ $1",
 'recentchanges-label-bot' => 'Бу үзгәртү бот белән эшләнгән иде',
 'recentchanges-label-unpatrolled' => 'Үзгәртүне әлегә тикшермәгәннәр',
 'recentchanges-legend-newpage' => '$1 — яңа бит',
-'rcnote' => 'Аста $4 $5 вакытынна соңгы {{PLURAL:$2|1|$2}} көн эчендә булган соңгы {{PLURAL:$1|1|$1}} үзгәртмә күрсәтелә:',
 'rcnotefrom' => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom' => '$1 башлап яңа үзгәртүләрне күрсәт',
 'rcshowhideminor' => 'кече үзгәртүләрне $1',
@@ -1864,7 +1863,6 @@ $UNWATCHURL
 'undeletebtn' => 'Торгызу',
 'undeletelink' => 'карау/торгызу',
 'undeleteviewlink' => 'карау',
-'undeletereset' => 'Ташлату',
 'undeleteinvert' => 'Киресен сайлау',
 'undeletecomment' => 'Сәбәп:',
 'undeletedrevisions' => '{{PLURAL:$1|1 үзгәртү|$1 үзгәртү}} торгызылды',
@@ -1921,12 +1919,10 @@ $1',
 
 # Block/unblock
 'blockip' => 'Кулланучыны тыю',
-'blockip-title' => 'Кулланучыны тыю',
 'blockip-legend' => 'Кулланучыны тыю',
 'ipadressorusername' => 'IP адресы яки кулланучы исеме:',
 'ipbexpiry' => 'Бетә:',
 'ipbreason' => 'Сәбәп:',
-'ipbreasonotherlist' => 'Башка сәбәп',
 'ipbreason-dropdown' => '* Кысуның гадәттәге сәбәпләре
 ** Ялган мәгълүмат кертү
 ** Битләрнең эчтәлеген сөртү
@@ -1939,7 +1935,6 @@ $1',
 'ipbsubmit' => 'Бу кулланучыны тыю',
 'ipbother' => 'Башка вакыт:',
 'ipboptions' => '2 сәгать:2 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 ел:1 year,чикләнмәгән:infinite',
-'ipbotheroption' => 'башка',
 'badipaddress' => 'Ялгыш IP адресы',
 'blockipsuccesssub' => 'Тыю башкарылган',
 'ipb-unblock-addr' => '$1 кулланучысын тыюдан азат итү',
@@ -2345,7 +2340,6 @@ $1',
 'watchlistall2' => 'барлык',
 'namespacesall' => 'барлык',
 'monthsall' => 'барлык',
-'limitall' => 'барлык',
 
 # Delete conflict
 'recreate' => 'Яңадан ясау',
@@ -2456,7 +2450,6 @@ $1',
 
 # Special:ComparePages
 'comparepages' => 'Битләрне чагыштыру',
-'compare-selector' => 'Битләрнең юрамаларын чагыштыру',
 'compare-page1' => 'Беренче сәхифә',
 'compare-page2' => 'Икенче сәхифә',
 'compare-rev1' => 'Беренче юрама',

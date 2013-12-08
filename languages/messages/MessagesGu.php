@@ -1548,7 +1548,6 @@ HTML નાકું ચકાસો',
 'recentchanges-label-minor' => 'આ એક નાનો સુધારો છે.',
 'recentchanges-label-bot' => 'આ ફેરફાર બોટ દ્વારા કરાયો છે',
 'recentchanges-label-unpatrolled' => 'આ ફેરફાર હજી ચકાસાયો નથી',
-'rcnote' => "નીચે $5, $4 સુધીમાં અને તે પહેલાનાં '''$2''' દિવસમાં {{PLURAL:$1| થયેલો '''1''' માત્ર ફેરફાર|થયેલાં છેલ્લા  '''$1''' ફેરફારો}} દર્શાવ્યાં છે .",
 'rcnotefrom' => "નીચે '''$2'''થી થયેલાં '''$1''' ફેરફારો દર્શાવ્યાં છે.",
 'rclistfrom' => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
 'rcshowhideminor' => 'નાના ફેરફારો $1',
@@ -2431,7 +2430,6 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undeletebtn' => 'પાછું વાળો',
 'undeletelink' => 'જુઓ/પાછુ વાળો',
 'undeleteviewlink' => 'જુઓ',
-'undeletereset' => 'ફરી ગોઠવો',
 'undeleteinvert' => 'પસંદગી ઉલટાવો',
 'undeletecomment' => 'કારણ:',
 'undeletedrevisions' => '{{PLURAL:$1|૧ સંપાદન|$1 સંપાદનો}} પુન સ્થાપિત કરાયા',
@@ -2519,7 +2517,6 @@ $1',
 'block' => 'સભ્ય પર પ્રતિબંધ મુકો',
 'unblock' => 'સભ્ય પરનો પ્રતિબંધ હટાવો',
 'blockip' => 'સભ્ય પર પ્રતિબંધ મુકો',
-'blockip-title' => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockip-legend' => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockiptext' => 'કોઈ ચોક્કસ IP સરનામું કે સભ્યના લેખન યોગદાન પર પ્રતિબંધ મુકવા નીચેનું ફોર્મ વાપરો.
 તેનો ઉપયોગ માત્ર ભાંગફોડિયા પ્રવૃત્તિઓને રોકવા અને  [[{{MediaWiki:Policy-url}}|નીતિ]] અનુસાર જ હોવો જોઈએ.
@@ -2527,7 +2524,6 @@ $1',
 'ipadressorusername' => 'IP સરનામું અથવા સભ્યનામ:',
 'ipbexpiry' => 'સમાપ્તિ:',
 'ipbreason' => 'કારણ:',
-'ipbreasonotherlist' => 'અન્ય કારણ',
 'ipbreason-dropdown' => '*સામાન્ય પ્રતિબંધ કારણો
 ** ખોટી માહિતી ઉમેરાઈ  
 ** પાનામાંથી માહિતી ભૂંસી નાંખી
@@ -2544,8 +2540,6 @@ $1',
 'ipbsubmit' => 'આ સભ્ય પર પ્રતિબંધ મૂકો',
 'ipbother' => 'અન્ય સમય:',
 'ipboptions' => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
-'ipbotheroption' => 'અન્ય',
-'ipbotherreason' => 'અન્ય/વધારાનું કારણ:',
 'ipbhidename' => 'ફેરફારો અને યાદિમાંથી સભ્ય નામ છુપાવો',
 'ipbwatchuser' => 'આ સભ્યના સભ્ય અને ચર્ચા પાના જુઓ',
 'ipb-disableusertalk' => 'પ્રતિબંધ ઉઠે નહી ત્યાં સુધી આ સભ્યને પોતાનાં ચર્ચાનાં પાનાં પર ફેરફાર કરતાં રોકો',
@@ -2639,7 +2633,6 @@ $1',
 'sorbsreason' => '{{SITENAME}} દ્વારા વપરાયેલા DNSBL માં તમારું IP સરનામું એક ખુલ્લી પ્રોક્સી તરીકે નોંધાયું છે.',
 'sorbs_create_account_reason' => '{{SITENAME}} માં વપરાતા DNSBL દ્વારા તમારા IP  સરનામાને ખુલી પ્રોક્સી જણાવાઇ છે.
 તમે ખાતાની રચના નહીં કરી શકો.',
-'cant-block-while-blocked' => 'જ્યારે તમે પોતે પ્રતિબંધિત હોવ ત્યારે અન્ય સભ્યોને પ્રતિબંધિત ન કરી શકો',
 'cant-see-hidden-user' => 'તમે જે સભ્ય પર રોક લગાવવા પ્રયત્ન કરો છો તે ના પર પહેલેથી રોક લગાવાયેલી છે.
 તમને સભ્ય છુપાવો / બતાવોના અધિકારો ન હોવાથી, તમે  સભ્ય પર રોક લગાવેલ તે નોંધ જોઇ નથી શકતા.',
 'ipbblocked' => 'તમે અન્ય સભ્યોને પ્રતિબંધિત ન કરી શકો, તમે પોતે પ્રતિબંધિત છો.',
@@ -3522,7 +3515,6 @@ $2',
 'watchlistall2' => 'બધા',
 'namespacesall' => 'બધા',
 'monthsall' => 'બધા',
-'limitall' => 'બધા',
 
 # Email address confirmation
 'confirmemail' => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
@@ -3546,7 +3538,6 @@ $2',
 'confirmemail_success' => 'તમારા ઈ-મેલની પુષ્ટિ થઈ ગઈ છે.
 તમે હવે પ્રવેશ [[Special:UserLogin|log in]] કરી વિકિનો આનંદ ઉઠાવી શકો.',
 'confirmemail_loggedin' => 'તમારા ઇ-મેલ સરનામાની પુષ્ટિ કરાઇ છે.',
-'confirmemail_error' => 'પુષ્ટિ સાચવતા કોઈ ત્રુટિ રહી ગઈ',
 'confirmemail_subject' => '{{SITENAME}} ઈ-મેલ સરનામાની પુષ્ટિ',
 'confirmemail_body' => 'કોઇકે, કદાચ તમે પોતે જ , IP સરનામા  $1 પરથી,
  "$2" ખાતાનું ઇ-મેલ સરનામું બદલ્યું  {{SITENAME}} પર છે.
@@ -3782,7 +3773,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'પાનાં સરખાવો',
-'compare-selector' => 'પાનાનાં પુનરાવર્તન સરખાવો',
 'compare-page1' => 'પાનું ૧',
 'compare-page2' => 'પાનું ૨',
 'compare-rev1' => 'પુનરાવર્તન ૧',

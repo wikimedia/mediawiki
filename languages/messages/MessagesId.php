@@ -1748,7 +1748,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'recentchanges-label-bot' => 'Suntingan ini dilakukan oleh bot',
 'recentchanges-label-unpatrolled' => 'Suntingan ini belum terpatroli',
 'recentchanges-legend-newpage' => '$1 - halaman baru',
-'rcnote' => "Berikut adalah {{PLURAL:$1|'''1'''|'''$1'''}} perubahan terbaru dalam {{PLURAL:$2|'''1''' hari|'''$2''' hari}} terakhir, sampai $4 pukul $5.",
 'rcnotefrom' => 'Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).',
 'rclistfrom' => 'Perlihatkan perubahan terbaru sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
@@ -2631,7 +2630,6 @@ Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut rincian penggu
 'undeletebtn' => 'Kembalikan',
 'undeletelink' => 'lihat/kembalikan',
 'undeleteviewlink' => 'lihat',
-'undeletereset' => 'Reset',
 'undeleteinvert' => 'Balikkan pilihan',
 'undeletecomment' => 'Alasan:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|revisi|revisi}} telah dikembalikan',
@@ -2719,7 +2717,6 @@ Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'block' => 'Blokir pengguna',
 'unblock' => 'Buka blokir pengguna',
 'blockip' => 'Blokir pengguna',
-'blockip-title' => 'Blokir pengguna',
 'blockip-legend' => 'Blokir pengguna',
 'blockiptext' => 'Gunakan formulir di bawah untuk memblokir akses penulisan dari sebuah alamat IP atau pengguna tertentu.
 Ini hanya boleh dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan]].
@@ -2727,7 +2724,6 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipadressorusername' => 'Alamat IP atau nama pengguna:',
 'ipbexpiry' => 'Kedaluwarsa:',
 'ipbreason' => 'Alasan:',
-'ipbreasonotherlist' => 'Alasan lain',
 'ipbreason-dropdown' => '*Alasan umum
 ** Vandalisme
 ** Memberikan informasi palsu
@@ -2744,8 +2740,6 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbsubmit' => 'Blokir pengguna ini',
 'ipbother' => 'Waktu lain:',
 'ipboptions' => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
-'ipbotheroption' => 'lainnya',
-'ipbotherreason' => 'Alasan lain/tambahan:',
 'ipbhidename' => 'Sembunyikan nama pengguna dari suntingan dan daftar',
 'ipbwatchuser' => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
 'ipb-disableusertalk' => 'Cegah pengguna ini untuk menyunting halaman pembicaraannya saat diblokir',
@@ -2834,7 +2828,6 @@ Lihat [[Special:BlockList|daftar pemblokiran]] untuk semua pengguna yang saat in
 'sorbsreason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
 'sorbs_create_account_reason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
 'xffblockreason' => 'Sebuah alamat IP di kepala X-Forwarded-For, entah milik Anda atau server proxy yang Anda pakai, telah diblokir. Alasan pemblokirannya adalah: $1',
-'cant-block-while-blocked' => 'Anda tidak dapat memblokir pengguna lain ketika Anda sendiri sedang diblokir.',
 'cant-see-hidden-user' => 'Pengguna yang anda coba blokir telah di blokir dan di sembunyikan. Selama anda tidak memiliki hak sembunyikan pengguna, anda tidak dapat melihat atau menyunting pemblokiran pengguna ini.',
 'ipbblocked' => 'Anda tidak dapat memblokir atau membuka blokir pengguna lain, karena anda sendiri diblokir',
 'ipbnounblockself' => 'Anda tidak diizinkan untuk membuka blokir sendiri',
@@ -3836,7 +3829,6 @@ $8',
 'watchlistall2' => 'semua',
 'namespacesall' => 'semua',
 'monthsall' => 'semua',
-'limitall' => 'semua',
 
 # Email address confirmation
 'confirmemail' => 'Konfirmasi alamat surel',
@@ -3857,7 +3849,6 @@ Aplikasi pengiriman surel menginformasikan: $1',
 'confirmemail_success' => 'Alamat surel Anda telah dikonfirmasi.
 Sekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.',
 'confirmemail_loggedin' => 'Alamat surel Anda telah dikonfirmasi.',
-'confirmemail_error' => 'Terjadi kesalahan sewaktu menyimpan konfirmasi Anda.',
 'confirmemail_subject' => 'Konfirmasi alamat surel {{SITENAME}}',
 'confirmemail_body' => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surel ini di {{SITENAME}}.
 
@@ -4158,7 +4149,6 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 
 # Special:ComparePages
 'comparepages' => 'Bandingkan halaman',
-'compare-selector' => 'Bandingkan revisi halaman',
 'compare-page1' => 'Halaman 1',
 'compare-page2' => 'Halaman 2',
 'compare-rev1' => 'Revisi 1',

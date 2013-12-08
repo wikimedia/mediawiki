@@ -1668,7 +1668,6 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'recentchanges-label-bot' => 'Ovu izmjenu napravio je bot',
 'recentchanges-label-unpatrolled' => 'Ova izmjena još nije pregledana',
 'recentchanges-legend-newpage' => '$1 - nova stranica',
-'rcnote' => "{{PLURAL:$1|Slijedi zadnja '''$1''' promjena|Slijede zadnje '''$1''' promjene|Slijedi zadnjih '''$1''' promjena}} u {{PLURAL:$2|zadnjem '''$2''' danu|zadnja '''$2''' dana|zadnjih '''$2''' dana}}, od $5, $4.",
 'rcnotefrom' => 'Slijede promjene od <b>$2</b> (prikazano ih je do <b>$1</b>).',
 'rclistfrom' => 'Prikaži nove promjene počevši od $1',
 'rcshowhideminor' => '$1 manje promjene',
@@ -2522,7 +2521,6 @@ ili je promjena vraćena ili uklonjena iz arhive.',
 'undeletebtn' => 'Vrati!',
 'undeletelink' => 'vidi/vrati',
 'undeleteviewlink' => 'pregled',
-'undeletereset' => 'Očisti',
 'undeleteinvert' => 'Obrni odabir',
 'undeletecomment' => 'Razlog:',
 'undeletedrevisions' => '{{PLURAL:$1|$1 inačica vraćena|$1 inačice vraćene|$1 inačica vraćeno}}',
@@ -2610,7 +2608,6 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'block' => 'Blokiraj suradnika',
 'unblock' => 'Deblokiraj suradnika',
 'blockip' => 'Blokiraj suradnika',
-'blockip-title' => 'Blokiraj suradnika',
 'blockip-legend' => 'Blokiraj suradnika',
 'blockiptext' => 'Koristite donji obrazac za blokiranje pisanja pojedinih suradnika ili IP adresa .
 To biste trebali raditi samo zbog sprječavanja vandalizma i u skladu
@@ -2620,7 +2617,6 @@ vandalizirane).',
 'ipadressorusername' => 'IP adresa ili suradničko ime',
 'ipbexpiry' => 'Rok (na engleskom)',
 'ipbreason' => 'Razlog:',
-'ipbreasonotherlist' => 'Drugi razlog',
 'ipbreason-dropdown' => "*Najčešći razlozi za blokiranje
 ** Netočne informacije
 ** Uklanjanje sadržaja stranica
@@ -2636,8 +2632,6 @@ vandalizirane).',
 'ipbsubmit' => 'Blokiraj ovog suradnika',
 'ipbother' => 'Neki drugi rok (na engleskom, npr. 6 days):',
 'ipboptions' => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite',
-'ipbotheroption' => 'drugo',
-'ipbotherreason' => 'Drugi/dodatni razlog:',
 'ipbhidename' => 'Sakrij suradničko ime iz uređivanja i popisa',
 'ipbwatchuser' => 'Prati suradničku stranicu i stranicu za razgovor ovog suradnika',
 'ipb-disableusertalk' => 'Onemogući ovog suradnika da uređuje svoju stranicu za razgovor dok je blokiran',
@@ -2725,7 +2719,6 @@ Za popis trenutačnih zabrana i blokiranja vidi [[Special:BlockList|popis blokir
 'proxyblockreason' => 'Vaša je IP adresa blokirana jer se radi o otvorenom posredniku (proxyju). Molimo stupite u vezu s Vašim davateljem internetskih usluga (ISP-om) ili službom tehničke podrške i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'sorbsreason' => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL. Ne možete otvoriti račun.',
-'cant-block-while-blocked' => 'Ne možete blokirati druge suradnike dok ste blokirani.',
 'cant-see-hidden-user' => 'Korisnik kojeg pokušavate blokirati je već blokiran i sakriven. Pošto nemate prava hideuser (sakrivanje korisnika), ne možete vidjeti ni urediti korisnikovu blokadu.',
 'ipbblocked' => 'Ne možete blokirati ili odblokirati druge suradnike, jer ste blokirani',
 'ipbnounblockself' => 'Nije Vam dopušteno odblokirati se',
@@ -3621,7 +3614,6 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'watchlistall2' => 'sve',
 'namespacesall' => 'sve',
 'monthsall' => 'sve',
-'limitall' => 'sve',
 
 # Email address confirmation
 'confirmemail' => 'Potvrda e-mail adrese',
@@ -3641,7 +3633,6 @@ Poruka o pogrešci e-mail poslužitelja: $1',
 'confirmemail_needlogin' => 'Molimo $1 kako biste potvrdili Vašu e-mail adresu.',
 'confirmemail_success' => 'Vaša je e-mail adresa potvrđena. Možete se prijaviti i uživati u wikiju.',
 'confirmemail_loggedin' => 'Vaša je e-mail adresa potvrđena.',
-'confirmemail_error' => 'Došlo je do greške kod snimanja Vaše potvrde.',
 'confirmemail_subject' => '{{SITENAME}}: potvrda e-mail adrese',
 'confirmemail_body' => 'Netko, vjerojatno Vi, s IP adrese $1 je otvorio
 suradnički račun pod imenom "$2" s ovom e-mail adresom na {{SITENAME}}.
@@ -3936,7 +3927,6 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 
 # Special:ComparePages
 'comparepages' => 'Usporedite stranice',
-'compare-selector' => 'Usporedite inačice stranice',
 'compare-page1' => 'Stranica 1',
 'compare-page2' => 'Stranica 2',
 'compare-rev1' => 'Izmjena 1',

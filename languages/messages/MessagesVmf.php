@@ -600,7 +600,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'recentchanges-label-minor' => 'Blos a weng wôs is gändârd wôrn',
 'recentchanges-label-bot' => 'Ändrung durch an Bot',
 'recentchanges-label-unpatrolled' => 'Net-kondrollierde Ändrung',
-'rcnote' => "Des {{Plural:$1|is dii aane ändrung|sin dii '''$1''' ändrunga}}, dii in di {{Plural:$2|ledsdn 24 schdundn|ledsdn '''$2''' doochn}} gmachd wôrn {{Plural:$1|is|sin}}. Schdand is fom $4, $5 uur.",
 'rcnotefrom' => "Oozeichd werrn däi Ändrunga seid '''$2''' (max. '''$1''' Eidrääch).",
 'rclistfrom' => 'Bloos di ändrunga dsajchn sajd $1',
 'rcshowhideminor' => 'Glenâre Ändrungn $1',
@@ -828,7 +827,6 @@ Wenns'd dii sajdn irchendwan amôl nimä fârfolchn wilsd, musd bloos af „{{in
 
 # Block/unblock
 'blockip' => 'IP-Adressn odr ôôgmeldn aus-schbärn',
-'blockip-title' => 'Bearbajdâr aus-schbärn',
 'blockip-legend' => 'IP-Adresn odr Bearbajdâr aus-schbärn',
 'ipboptions' => '2 schdund:2 hours,1 dooch:1 day,3 dooch:3 days,1 wochng:1 week,2 wochng:2 weeks,1 moonad:1 month,3 moonad:3 months,6 moonad:6 months,1 jôôr:1 year,oone dsajdschrangng:infinite',
 'ipblocklist' => 'Gschberrder Nutzer',

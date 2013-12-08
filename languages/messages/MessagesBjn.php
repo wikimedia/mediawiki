@@ -1426,7 +1426,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'recentchanges-label-bot' => 'Babakan ngini digawi ulih saikung bot',
 'recentchanges-label-unpatrolled' => "Babakan ngini baluman ta'awasi",
 'recentchanges-legend-newpage' => '$1 - tungkaran puga',
-'rcnote' => "Di bawah ni {{PLURAL:$1|'''1'''|'''$1'''}} paubahan pahanyarnya dalam {{PLURAL:$2|'''1''' hari|'''$2''' hari}} tauncit, sampai $4 pukul $5.",
 'rcnotefrom' => "Di bawah ngini paubahan tumatan '''$2''' (ditampaiakan sampai '''$1''' paubahan)",
 'rclistfrom' => 'Tampaiakan paubahan pahanyarnya matan $1',
 'rcshowhideminor' => '$1 pambabakan sapalih',
@@ -2277,7 +2276,6 @@ Pian kalu-ai baisi tautan buruk, atawa ralatan sudah dibulikakan atau dibuang ma
 'undeletebtn' => 'Bulikakan',
 'undeletelink' => 'tiring/bulikakan',
 'undeleteviewlink' => 'tiringi',
-'undeletereset' => 'Bulikakan setelan',
 'undeleteinvert' => 'Bulikakan pilihan',
 'undeletecomment' => 'Alasan:',
 'undeletedrevisions' => '{{PLURAL:$1|1 ralatan|$1 raralatan}} dibulikakan',
@@ -2366,7 +2364,6 @@ Log blukir pahabisannya tasadia di bawah ngini gasan rujukan:',
 'block' => 'Blukir pamuruk',
 'unblock' => 'Lapas blukir pamuruk',
 'blockip' => 'Blukir pamuruk',
-'blockip-title' => 'Blukir pamuruk',
 'blockip-legend' => 'Blukir pamuruk',
 'blockiptext' => 'Puruk purmulir di bawah hagan mamblukir hak ungkai manulis matan sabuah alamat IP atawa ngaran-pamuruk.
 Ngini dipuruk hagan mancagah vandalisma haja, wan sasuai awan [[{{MediaWiki:Policy-url}}|kabijakan]].
@@ -2374,7 +2371,6 @@ Isi sabuah alasan khas di bawah (gasan cuntuh, manulisakan tutungkaran nang suah
 'ipadressorusername' => 'Alamat IP atawa ngaran pamuruk:',
 'ipbexpiry' => 'Kadaluwarsa:',
 'ipbreason' => 'Alasan:',
-'ipbreasonotherlist' => 'Alasan nang lain',
 'ipbreason-dropdown' => '*Alasan awam pamblukiran
 ** Mambuati panjalasan salah
 ** Mambuang isi matan tutungkaran
@@ -2390,8 +2386,6 @@ Isi sabuah alasan khas di bawah (gasan cuntuh, manulisakan tutungkaran nang suah
 'ipbsubmit' => 'Blukir pamuruk ngini',
 'ipbother' => 'Wayah lain:',
 'ipboptions' => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,salawasan:infinite',
-'ipbotheroption' => 'lainnya',
-'ipbotherreason' => 'Alasan lain/tambahan:',
 'ipbhidename' => 'Sungkupakan ngaranpamuruk matan babakan wan dadaptar',
 'ipbwatchuser' => 'Itihi tutungkaran pamuruk wan pamandiran pamuruk ngini',
 'ipb-disableusertalk' => 'Tangkal pamuruk ngini mambabak tungkaran pamandirannya wayah diblukir',
@@ -2483,7 +2477,6 @@ Muhun hubungi Panyadia Layan Internet Pian atawa sukungan tiknik wan padahi sidi
 'sorbsreason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Alamat IP Pian tadaptar sawagai pruksi tabuka dalam DNSBL dipuruk ulih {{SITENAME}}.
 Pian kada kawa maulah sabuah akun',
-'cant-block-while-blocked' => 'Pian kada kawa mamblukir pamuruk lain parhatan Pian diblukir.',
 'cant-see-hidden-user' => 'Pamuruk nang Pian cuba blukir sudah diblukir wan tasungkup.
 Tumatan Pian kada baisi hak mnyungkupakan pamuruk, Pian kada kawa manjanaki atawa mambabak pamblukiran pamuruk.',
 'ipbblocked' => 'Pian kada kawa mamblukir atau malapas blukir pamuruk lain, karana Pian surang diblukir',
@@ -3336,7 +3329,6 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'watchlistall2' => 'samunyaan',
 'namespacesall' => 'samunyaan',
 'monthsall' => 'samunyaan',
-'limitall' => 'samunyaan',
 
 # Email address confirmation
 'confirmemail' => 'Yakinakan alamat suril',
@@ -3361,7 +3353,6 @@ Si kudi pinanya sudah kadaluarsa.',
 'confirmemail_success' => 'Alamat suril Pian sudah diyakinakan.
 Rahatan ni Pian kawa [[Special:UserLogin|babuat log]] wan bahimung wiki.',
 'confirmemail_loggedin' => 'Alamat suril Pian rahatan ni sudah diyakinakan.',
-'confirmemail_error' => 'Ada nang tasalah rahatan manyimpan payakinan Pian.',
 'confirmemail_subject' => '{{SITENAME}} alamat suril payakinan',
 'confirmemail_body' => 'Sasaurang, pinanya Pian, malan alamat IP $1,
 sudah mandaptarakan sabuah akun "$2" awan alamat suril ngini pada {{SITENAME}}.
@@ -3590,7 +3581,6 @@ Pian saharusnya [{{SERVER}}{{SCRIPTPATH}}/COPYING sabuting salinan Lisansi Publi
 
 # Special:ComparePages
 'comparepages' => 'Bandingakan tutungkaran',
-'compare-selector' => 'Tanding raralatan tungkaran',
 'compare-page1' => 'Tungkaran 1',
 'compare-page2' => 'Tungkaran 2',
 'compare-rev1' => 'Ralatan 1',

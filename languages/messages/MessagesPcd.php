@@ -576,7 +576,6 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'recentchanges-label-minor' => "C'est un tiot canjemint",
 'recentchanges-label-bot' => 'Chol modificacion ale o té foaite pèr un robot.',
 'recentchanges-label-unpatrolled' => 'Chol modificacion ale n’o poin coèr té controlée.',
-'rcnote' => "Vlo {{PLURAL:$1|ech darin canjemint foait|chés $1 darins canjemints foaits}} din {{PLURAL:$2|l'darinne jornèe|chés <b>$2</b> darins jours}} dusque  l' $4 à $5.",
 'rcnotefrom' => "Vlo chés modificacions foaites édpuis l' '''$2''' (dousqu'à '''$1''' au plus).",
 'rclistfrom' => "Montrer chés nouvieus cangemints d'puis $1",
 'rcshowhideminor' => '$1 tiotes éditions',
@@ -851,13 +850,11 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 # Block/unblock
 'block' => "Blotcher l'uzeu",
 'blockip' => "Blotcher l'uzeu",
-'blockip-title' => "Blotcher l'uzeu",
 'blockip-legend' => "Blotcher l'uzeu",
 'blockiptext' => "Uzer dech teske-lo pour blotcher l’ahérse aux canjemints foaits dpui eune adrèche IP éspéchifique o bin d’un nom d’uzeu.
 I feut l'foaire seleumint pour inréyer ech vindalime et pi i feut ète acordant aveuc chés [[{{MediaWiki:Policy-url}}|usages intérnes]].
 Donner apré ch'motif  (pèr egzimpe chiter chés paches qu'ont té vindalisées).",
 'ipboptions' => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 ésminne:1 week,2 ésminnes:2 weeks,1 moés:1 month,3 moés:3 months,6 moés:6 months,1 an:1 year,infini:infinite',
-'ipbotheroption' => 'eute',
 'blocklist' => 'Uzeus blotchés',
 'ipblocklist' => 'Uzeus blotchés',
 'blocklink' => 'blotcher',
@@ -1068,7 +1065,6 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # Special:ComparePages
 'comparepages' => 'Compérer dés paches',
-'compare-selector' => 'Compérer chés vèrsions dés paches',
 'compare-page1' => 'Pache 1',
 'compare-page2' => 'Pache 2',
 'compare-rev1' => 'Canjemint 1',

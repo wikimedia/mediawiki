@@ -1524,7 +1524,6 @@ teisės",
 'recentchanges-label-bot' => 'Šį keitimą atliko automatinė programa',
 'recentchanges-label-unpatrolled' => 'Šis keitimas dar nebuvo patikrintas',
 'recentchanges-legend-newpage' => '$1 - naujas puslapis',
-'rcnote' => "Žemiau yra {{PLURAL:$1|'''1''' pakeitimas|paskutiniai '''$1''' pakeitimai|paskutinių '''$1''' pakeitimų}} per {{PLURAL:$2|dieną|paskutiniąsias '''$2''' dienas|paskutiniųjų '''$2''' dienų}} skaičiuojant nuo $5, $4.",
 'rcnotefrom' => "Žemiau yra pakeitimai pradedant '''$2''' (rodoma iki '''$1''' pakeitimų).",
 'rclistfrom' => 'Rodyti naujus pakeitimus pradedant $1',
 'rcshowhideminor' => '$1 smulkius keitimus',
@@ -2370,7 +2369,6 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeletebtn' => 'Atkurti',
 'undeletelink' => 'žiūrėti/atkurti',
 'undeleteviewlink' => 'žiūrėti',
-'undeletereset' => 'Iš naujo',
 'undeleteinvert' => 'Žymėti priešingai',
 'undeletecomment' => 'Priežastis:',
 'undeletedrevisions' => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}}',
@@ -2458,14 +2456,12 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'block' => 'Blokuoti naudotoją',
 'unblock' => 'Atblokuoti naudotoją',
 'blockip' => 'Blokuoti naudotoją',
-'blockip-title' => 'Blokuoti naudotoją',
 'blockip-legend' => 'Blokuoti naudotoją',
 'blockiptext' => 'Naudokite šią formą, kad uždraustumėte redagavimo prieigą pasirinktam IP adresui ar naudotojui. Tai turėtų būti atliekama tik tam, kad sustabdytumėte vandalizmą, ir neprieštarauti [[{{MediaWiki:Policy-url}}|projekte galiojančioms taisyklėms]].
 Žemiau pateikite tikslią priežastį (pavyzdžiui, nurodydami sugadintus puslapius).',
 'ipadressorusername' => 'IP adresas arba naudotojo vardas',
 'ipbexpiry' => 'Galiojimo laikas',
 'ipbreason' => 'Priežastis:',
-'ipbreasonotherlist' => 'Kita priežastis',
 'ipbreason-dropdown' => '*Bendrosios blokavimo priežastys
 ** Klaidingos informacijos įterpimas
 ** Turinio šalinimas iš puslapių
@@ -2481,8 +2477,6 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'ipbsubmit' => 'Blokuoti šį naudotoją',
 'ipbother' => 'Kitoks laikas',
 'ipboptions' => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite',
-'ipbotheroption' => 'kita',
-'ipbotherreason' => 'Kita/papildoma priežastis',
 'ipbhidename' => 'Slėpti naudotojo vardą keitimuose bei sąrašuose',
 'ipbwatchuser' => 'Stebėti šio naudotojo puslapį ir jo aptarimų puslapį',
 'ipb-disableusertalk' => 'Neleisti redaguoti savo naudotojo aptarimo puslapio',
@@ -2571,7 +2565,6 @@ Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:BlockList|
 'proxyblockreason' => 'Jūsų IP adresas yra užblokuotas, nes jis yra atvirasis tarpinis serveris. Prašome susisiekti su savo interneto paslaugų tiekėju ar technine pagalba ir praneškite jiems apie šią svarbią saugumo problemą.',
 'sorbsreason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės.',
 'sorbs_create_account_reason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės. Jūs negalite sukurti paskyros',
-'cant-block-while-blocked' => 'Jūs negalite blokuoti kitų naudotojų, pats būdamas užblokuotas.',
 'cant-see-hidden-user' => 'Naudotojas, kurį bandote užblokuoti, jau yra užblokuotas arba paslėptas.
 Kadangi jūs neturi hideuser teisės, jūs negalite pamatyti arba pakeisti naudotojo blokavimo.',
 'ipbblocked' => 'Jūs negalite blokuoti ar atblokuoti kitų naudotojų, nes pats esate užblokuotas',
@@ -3486,7 +3479,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'watchlistall2' => 'visus',
 'namespacesall' => 'visos',
 'monthsall' => 'visi',
-'limitall' => 'visi',
 
 # Email address confirmation
 'confirmemail' => 'Patvirtinkite el. pašto adresą',
@@ -3506,7 +3498,6 @@ Pašto tarnyba atsakė: $1',
 'confirmemail_needlogin' => 'Jums reikia $1, kad patvirtintumėte savo el. pašto adresą.',
 'confirmemail_success' => 'Jūsų el. pašto adresas patvirtintas. Dabar galite prisijungti ir mėgautis projektu.',
 'confirmemail_loggedin' => 'Jūsų el. pašto adresas patvirtintas.',
-'confirmemail_error' => 'Patvirtinimo metu įvyko neatpažinta klaida.',
 'confirmemail_subject' => '{{SITENAME}} el. pašto adreso patvirtinimas',
 'confirmemail_body' => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
 paskyrą „$2“ susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
@@ -3752,7 +3743,6 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 
 # Special:ComparePages
 'comparepages' => 'Palyginti puslapius',
-'compare-selector' => 'Palyginti puslapio keitimus',
 'compare-page1' => 'Puslapis 1',
 'compare-page2' => 'Puslapis 2',
 'compare-rev1' => 'Pirma versija',

@@ -1785,7 +1785,6 @@ $1",
 'recentchanges-label-plusminus' => 'Промена на големината на страницата во бајти',
 'recentchanges-legend-newpage' => '(погл. и [[Special:NewPages|списокот на нови страници]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Подолу {{PLURAL:$1|е прикажана '''1''' промена|се прикажани последните '''$1''' промени}} {{PLURAL:$2|за денес|во последниве '''$2''' дена}}, заклучно со $5, $4.",
 'rcnotefrom' => 'Подолу се промените од <b>$2</b> (се прикажуваат до <b>$1</b>).',
 'rclistfrom' => 'Прикажи нови промени почнувајќи од $1',
 'rcshowhideminor' => '$1 ситни промени',
@@ -2374,8 +2373,8 @@ $1',
 'special-categories-sort-abc' => 'подреди азбучно',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Избришани кориснички придонеси',
-'deletedcontributions-title' => 'Избришани кориснички придонеси',
+'deletedcontributions' => 'Избришани придонеси на корисникот',
+'deletedcontributions-title' => 'Избришани придонеси на корисникот',
 'sp-deletedcontributions-contribs' => 'придонеси',
 
 # Special:LinkSearch
@@ -2698,7 +2697,6 @@ $UNWATCHURL
 'undeletebtn' => 'Врати',
 'undeletelink' => 'погледај/врати',
 'undeleteviewlink' => 'преглед',
-'undeletereset' => 'Одново',
 'undeleteinvert' => 'Обратен избор',
 'undeletecomment' => 'Причина:',
 'undeletedrevisions' => '{{PLURAL:$1|1 измена е обновена|$1 измени се обновени}}',
@@ -2737,7 +2735,7 @@ $1',
 'blanknamespace' => '(Главен)',
 
 # Contributions
-'contributions' => '{{GENDER:$1|Кориснички}} придонеси',
+'contributions' => '{{GENDER:$1|Придонеси на корисникот}}',
 'contributions-title' => 'Придонеси на корисникот $1',
 'mycontris' => 'придонеси',
 'contribsub2' => 'За {{GENDER:$3|$1}} ($2)',
@@ -2750,7 +2748,7 @@ $1',
 'sp-contributions-newbies-sub' => 'За нови кориснички сметки',
 'sp-contributions-newbies-title' => 'Придонеси на нови корисници',
 'sp-contributions-blocklog' => 'Дневник на блокирања',
-'sp-contributions-deleted' => 'избришани кориснички придонеси',
+'sp-contributions-deleted' => 'избришани придонеси на корисникот',
 'sp-contributions-uploads' => 'подигања',
 'sp-contributions-logs' => 'дневници',
 'sp-contributions-talk' => 'разговор',
@@ -2787,7 +2785,6 @@ $1',
 'block' => 'Блокирај корисник',
 'unblock' => 'Одблокирај корисник',
 'blockip' => 'Блокирај корисник',
-'blockip-title' => 'Блокирај корисник',
 'blockip-legend' => 'Блокирај корисник',
 'blockiptext' => 'Користете го долниот образец за да го забраните пристапот за пишување од одредена IP-адреса или корисничко име.
 Ова единствено треба да се прави за да се спречи вандализам, во согласност со [[{{MediaWiki:Policy-url}}|правилата на Википедија]].
@@ -2795,7 +2792,6 @@ $1',
 'ipadressorusername' => 'IP-адреса или корисничко име:',
 'ipbexpiry' => 'Истек на рокот:',
 'ipbreason' => 'Причина:',
-'ipbreasonotherlist' => 'Друга причина',
 'ipbreason-dropdown' => '*Вообичаени причини за блокирање
 ** Вметнување лажни информации
 ** Бришење на содржини од страниците
@@ -2811,8 +2807,6 @@ $1',
 'ipbsubmit' => 'Блокирај го овој корисник',
 'ipbother' => 'Друг рок:',
 'ipboptions' => '2 часа:2 hours,1 ден:1 day,3 дена:3 days,1 недела:1 week,2 недели:2 weeks,1 месец:1 month,3 месеци:3 months,6 месеци:6 months,1 година:1 year,бесконечно:infinite',
-'ipbotheroption' => 'друго',
-'ipbotherreason' => 'Друга, дополнителна причина:',
 'ipbhidename' => 'Скриј го корисничкото име во уредувањата и списоците',
 'ipbwatchuser' => 'Набљудувај ја корисничката страница и страницата за разговор на овој корисник',
 'ipb-disableusertalk' => 'Спречи го корисников да ја уредува неговата страница за разговор додека е блокиран',
@@ -2907,7 +2901,6 @@ $1',
 'sorbs_create_account_reason' => 'Вашата IP-адреса е наведена како отворен застапникот (proxy) во DNSBL користена од {{SITENAME}}.
 Не можете да создадете корисничка сметка.',
 'xffblockreason' => 'Блокирана е IP-адреса присутна во заглавието X-Forwarded-For, која е ваша или на застапничкиот опслужувач што го користите. Наведеното образложение гласи: $1',
-'cant-block-while-blocked' => 'Не можете да блокирате други корисници додека и вие самите сте блокирани.',
 'cant-see-hidden-user' => 'Корисникот кој се обидувате да го блокирате е веќе блокиран и сокриен. Бидејќи вие немате права за сокривање на корисник, не можете да ги видите или уредувате корисничките блокирања.',
 'ipbblocked' => 'Не можете да блокирате или одблокирате други корисници бидејќи и самите сте блокирани',
 'ipbnounblockself' => 'Не е дозволено да се одблокирате самите себеси',
@@ -3905,7 +3898,6 @@ Variants for Chinese language
 'watchlistall2' => 'сите',
 'namespacesall' => 'сите',
 'monthsall' => 'сите',
-'limitall' => 'сите',
 
 # Email address confirmation
 'confirmemail' => 'Потврда на е-поштенска адреса',
@@ -3929,7 +3921,6 @@ Variants for Chinese language
 'confirmemail_success' => 'Вашата е-поштенска адреса е потврдена.
 Сега можете да се [[Special:UserLogin|најавите]]. Ви посакуваме пријатни мигови на викито!',
 'confirmemail_loggedin' => 'Вашата е-поштенска адреса сега е потврдена.',
-'confirmemail_error' => 'Нешто тргна наопаку при снимањето на вашата потврда.',
 'confirmemail_subject' => '{{SITENAME}} — Потврда на е-поштенска адреса',
 'confirmemail_body' => 'Некој, веројатно Вие, од IP-адресата $1, 
 на {{SITENAME}} ја регистрирал сметката „$2“ со оваа е-поштенска адреса .
@@ -4012,6 +4003,11 @@ $5
 'imgmultipagenext' => 'следна страница &rarr;',
 'imgmultigo' => 'Оди!',
 'imgmultigoto' => 'Оди на страница $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(стандарден јазик)',
+'img-lang-info' => 'Испиши ја сликата на $1 $2.',
+'img-lang-go' => 'Прикажи',
 
 # Table pager
 'ascending_abbrev' => 'раст',
@@ -4267,7 +4263,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'Спореди страници',
-'compare-selector' => 'Споредба на ревизии на страници',
 'compare-page1' => 'Страница 1',
 'compare-page2' => 'Страница 2',
 'compare-rev1' => 'Ревизија 1',

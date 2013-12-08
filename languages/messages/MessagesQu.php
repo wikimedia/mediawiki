@@ -1626,7 +1626,6 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'recentchanges-label-bot' => "Kayqa rurana antachap llamk'apusqanmi",
 'recentchanges-label-unpatrolled' => "Kay llamk'apusqaqa manaraqmi patrullasqachu",
 'recentchanges-legend-newpage' => "$1 - musuq p'anqa",
-'rcnote' => "Kay qatiqpiqa qhipaq {{PLURAL:$1|'''1''' hukchasqam|'''$1''' hukchasqakunam}} qhipaq {{PLURAL:$2|p'unchawpi|'''$2''' p'unchawkunapi}}, musuqchasqa $5, $4.",
 'rcnotefrom' => "Kay qatiqpiqa '''$2'''-mantapacha ('''$1'''-kama) hukchasqakunatam rikunki.",
 'rclistfrom' => '$1-manta musuq hukchasqakunata rikuchiy',
 'rcshowhideminor' => "$1 uchuylla llamk'apusqakunata",
@@ -2474,7 +2473,6 @@ Huklla llamk'apusqakunata paqarichinaykipaqqa, munasqayki llamk'apusqakunata akl
 'undeletebtn' => 'Paqarichiy!',
 'undeletelink' => 'qhaway/paqarichiy',
 'undeleteviewlink' => 'qhaway',
-'undeletereset' => 'Mana imapas',
 'undeleteinvert' => "Akllasqantinta t'ikrachiy",
 'undeletecomment' => 'Kayrayku:',
 'undeletedrevisions' => "{{PLURAL:$1|Huk paqarichisqa llamk'apusqa|$1 paqarichisqa llamk'apusqakuna}}",
@@ -2561,7 +2559,6 @@ Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'block' => "Ruraqta hark'ay",
 'unblock' => "Hark'asqa ruraqta qispichiy",
 'blockip' => "Ruraqta hark'ay",
-'blockip-title' => "Ruraqta hark'ay",
 'blockip-legend' => "Ruraqta hark'ay",
 'blockiptext' => "Kay qatiq hunt'ana p'anqata llamk'achiy huk sapaq IP huchhamanta icha ruraqpa rakiqunanmanta qillqay atiyta hark'anapaq.
 Kayqa rurasqa kachun wandalismullatam hark'anapaq, [[{{MediaWiki:Policy-url}}|{{SITENAME}}pa kawpayninkamallam]].
@@ -2569,7 +2566,6 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipadressorusername' => 'IP huchha icha ruraqpa sutin',
 'ipbexpiry' => "Hark'ay kaykama:",
 'ipbreason' => 'Kayrayku:',
-'ipbreasonotherlist' => 'Huk rayku',
 'ipbreason-dropdown' => "*Hark'anapaq sapsi raykukuna
 ** Llulla willayta qillqamuy
 ** P'anqata samiqninmanta ch'usaqchay
@@ -2585,8 +2581,6 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipbsubmit' => "Kay ruraqta hark'ay",
 'ipbother' => 'Huk puchukana pacha:',
 'ipboptions' => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite",
-'ipbotheroption' => 'huk',
-'ipbotherreason' => 'Huk/aswan rayku:',
 'ipbhidename' => "Ruraqpa sutinta llamk'apusqakunamanta, sutisuyukunamantapas pakay",
 'ipbwatchuser' => "Kay ruraqpa p'anqanta rimachinantapas watiqay",
 'ipb-disableusertalk' => "Kay ruraq hark'asqa kaspa kikinpa rimanakuy p'anqanta ama llamk'apuchunchu",
@@ -2669,7 +2663,6 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'proxyblockreason' => "IP huchhaykiqa hark'asqam kichasqa proxy kaptinmi. Ama hina kaspa, internet mink'aqniykiman icha allwiya yanapaqniykiman kay hatun qasi sasachakuymanta willay.",
 'sorbsreason' => 'IP huchhaykiqa kichasqa proxy nispa {{SITENAME}}pi DNSBL nisqapi qillqasqam.',
 'sorbs_create_account_reason' => 'IP huchhaykiqa kichasqa proxy nispa {{SITENAME}}pi DNSBL nisqapi qillqasqam. Manam atinkichu rakiqunata kichayta',
-'cant-block-while-blocked' => "Kikiyki hark'asqa kaspaykiqa, manam huk ruraqkunata hark'ayta atinkichu.",
 'cant-see-hidden-user' => "Hark'aykachasqayki ruraqqa pipapas hark'asqanñam pakasqanñapas. Ruraqta pakay hayñiyuq mana kaspaykim, manam atinkichu ruraqpaq hark'ay hallch'asqata rikuyta icha hukchasqayta.",
 'ipbblocked' => "Kikiyki hark'asqa kaspaykim, manam hukkunata hark'ayta icha hark'asqa kaymanta qispichiyta atinkichu",
 'ipbnounblockself' => "Kikiykitaqa manam hark'asqa kaymanta qispikuyta atinkichu",
@@ -3562,7 +3555,6 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'watchlistall2' => 'lliw',
 'namespacesall' => 'tukuy',
 'monthsall' => '(tukuy)',
-'limitall' => 'tukuy',
 
 # Email address confirmation
 'confirmemail' => 'E-chaski imamaytaykita takyachiy',
@@ -3581,7 +3573,6 @@ Kutichisqa chaski: $1',
 'confirmemail_success' => 'E-chaski imamaytaykiqa takyachisqañam.
 Kunanqa wikiman [[Special:UserLogin|yaykamuspayki]] ayniytam atinki.',
 'confirmemail_loggedin' => 'E-chaski imamaytaykiqa takyachisqañam.',
-'confirmemail_error' => 'Ima pantasqapas tukurqan takyachinaykita waqaychaypi.',
 'confirmemail_subject' => '{{SITENAME}} e-chaski imamayta takyachina',
 'confirmemail_body' => 'Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) kicharirqan {{SITENAME}}paq "$2" sutiyuq rakiqunatam, kay e-chaski imamaytayuq.
 
@@ -3813,7 +3804,6 @@ MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIY
 
 # Special:ComparePages
 'comparepages' => "P'anqakunata wakichay",
-'compare-selector' => 'Musuqchasqakunata wakichay',
 'compare-page1' => "P'anqa 1",
 'compare-page2' => "P'anqa 2",
 'compare-rev1' => 'Musuqchasqa 1',

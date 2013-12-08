@@ -719,7 +719,6 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 'recentchanges' => 'Riisant chienjdem',
 'recentchanges-legend' => 'Riisant chienj apshan',
 'recentchanges-feed-description' => 'Chrak di muos riisant chienjdem tu di wiki ina dis fiid.',
-'rcnote' => "Below {{PLURAL:$1|a '''1''' chienj|a di laas '''$1''' chienj}} ina di laas {{PLURAL:$2|die|'''$2''' die}}, az av $5, $4.",
 'rclistfrom' => 'Shuo nyuu chienjdem we taat frahn $1',
 'rcshowhideminor' => '$1 maina editdem',
 'rcshowhidebots' => '$1 batdem',

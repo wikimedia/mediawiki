@@ -1160,7 +1160,6 @@ Legend: '''({{int:cur}})''' = हाल के संशोधन के सा�
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'सब',
 'monthsall' => 'सब',
-'limitall' => 'सब',
 
 # Email address confirmation
 'confirmemail' => 'इ-मेल पता कन्फर्म करीं',

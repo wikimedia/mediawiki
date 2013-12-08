@@ -686,7 +686,6 @@ folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 'recentchanges-label-minor' => 'Þēos is lytel adihtung',
 'recentchanges-label-bot' => 'Searuþrǣl fremede þās adihtunge',
 'recentchanges-legend-newpage' => '$1 - nīƿu sīde',
-'rcnote' => "Beneoðan {{PLURAL:$1|is '''1''' andwendung|sind þā æftemestan '''$1''' andwendunga}} in {{PLURAL:$2|þǣm æftermestan dæge|þǣm æftemestum '''$2''' daga}}, fram $5 on $4.",
 'rcnotefrom' => "Niðer sind þā andwendunga fram '''$2''' (mǣst īweþ '''$1''').",
 'rclistfrom' => 'Īwan nīwa andwendunga fram $1 and siþþan',
 'rcshowhideminor' => '$1 lytela adihtunga',
@@ -1009,7 +1008,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 # Block/unblock
 'blockip' => 'Fortȳnan brūcend',
 'ipbreason' => 'Racu:',
-'ipbreasonotherlist' => 'Ōðru racu',
 'ipbreason-dropdown' => '*Gemǣna fortȳnungraca
 ** Insettung falsre cȳþþe
 ** Animung innunge of trametum
@@ -1021,8 +1019,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'ipbsubmit' => 'Fortȳnan þisne brūcend',
 'ipbother' => 'Ōðeru tīd',
 'ipboptions' => '2 tīda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnðas:3 months,6 mōnða:6 months,1 gēar:1 year,unendiende:infinite',
-'ipbotheroption' => 'ōðer',
-'ipbotherreason' => 'Ōðru oþþe nīehst racu:',
 'ipblocklist-submit' => 'Sēcan',
 'infiniteblock' => 'unendiende',
 'expiringblock' => 'forealdaþ on $1 on $2',
@@ -1227,7 +1223,6 @@ Cēos ōðerne naman lā.',
 'watchlistall2' => 'eall',
 'namespacesall' => 'eall',
 'monthsall' => 'eall',
-'limitall' => 'eall',
 
 # Email address confirmation
 'confirmemail_body' => 'Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan

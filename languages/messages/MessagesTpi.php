@@ -473,7 +473,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'nchanges' => '$1 senis',
 'recentchanges' => 'Nupela senis',
 'recentchanges-label-minor' => 'Dispela emi liklik senis',
-'rcnote' => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
 'rcshowhideminor' => '$1 ol liklik senis',
 'rcshowhidebots' => '$1 ol bot',
 'rcshowhideliu' => '$1 ol yusa',
@@ -706,7 +705,6 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 # Block/unblock
 'blockip' => 'Pasim yusa (Block user)',
 'ipboptions' => '2 awa:2 hours,1 de:1 day,3 de:3 days,1 wik:1 week,2 wik:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yia:1 year,oltaim:infinite',
-'ipbotheroption' => 'narapela',
 'ipblocklist' => 'Ol IP adres na yusanem i pas',
 'ipblocklist-submit' => 'Painim',
 'blocklink' => 'pasim',
@@ -801,7 +799,6 @@ Yu inap lukim as tok bilong em',
 'watchlistall2' => 'olgeta',
 'namespacesall' => 'ol',
 'monthsall' => 'olgeta',
-'limitall' => 'olgeta',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL i longpela tumas]',

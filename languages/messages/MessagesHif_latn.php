@@ -1438,7 +1438,6 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'recentchanges-label-bot' => 'Ii badlao ke ek bot karis hae',
 'recentchanges-label-unpatrolled' => 'Ii badlao pe abhi pahraa nai dewa gais hae.',
 'recentchanges-legend-newpage' => '$1 - nawaa panna',
-'rcnote' => "Niche {{PLURAL:$1|hai '''1''' badlao|aakhri hai '''$1''' badlao}} pahile {{PLURAL:$2|din|'''$2''' din}}, $5, $4 talak.",
 'rcnotefrom' => "Niche '''$2''' se badlao hai ('''$1''' tak )",
 'rclistfrom' => '$1 se suruu kar ke nawaa badlao dekhao',
 'rcshowhideminor' => '$1 chhota badlao',
@@ -2323,7 +2322,6 @@ Sait aap ke kharaab link hoi, nai to badlao ke sait pahile jaise kar dewa gais h
 'undeletebtn' => 'Pahile jaise kar do',
 'undeletelink' => 'dekho/pahile jaise karo',
 'undeleteviewlink' => 'dekho',
-'undeletereset' => 'Pahile jaise karo',
 'undeleteinvert' => 'Selection ke ulta karo',
 'undeletecomment' => 'Kaaran::',
 'undeletedrevisions' => '{{PLURAL:$1|1 badlao|$1 badlao}} ke pahile jaise kar dewa gais hai',
@@ -2413,7 +2411,6 @@ Sab se nawaa roke ke suchi ke, aap ke khatir, niche dewa gais hae.',
 'block' => 'Sadasya ke roko',
 'unblock' => 'Sadasya ke rukawat k khalaas karo',
 'blockip' => 'Sadasya ke roko',
-'blockip-title' => 'Sadasya ke roko',
 'blockip-legend' => 'Sadasya ke roko',
 'blockiptext' => 'Niche ke form ke use kar ke koi khaas IP address nai to username ke write access ke roko.
 Iske khaali vandalism ke roke ke khatir use kare ke chaahi [[{{MediaWiki:Policy-url}}|policy]] ke niche.
@@ -2421,7 +2418,6 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'ipadressorusername' => 'IP Address nai to username:',
 'ipbexpiry' => 'Expiry:',
 'ipbreason' => 'Kaaran:',
-'ipbreasonotherlist' => 'Duusra kaaran',
 'ipbreason-dropdown' => '*Roke ke sadhaarankaaran
 ** Galat jaankari diis
 ** Panna se jaankari nikalis
@@ -2437,8 +2433,6 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'ipbsubmit' => 'Ii sadasya ke roko',
 'ipbother' => 'Duusra time:',
 'ipboptions' => '2 ghanta:2 hours,1 din:1 day,3 daya:3 days,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite',
-'ipbotheroption' => 'duusra',
-'ipbotherreason' => 'Duusra/aur kaaran:',
 'ipbhidename' => 'Badlao aur suchi se username ke hatao',
 'ipbwatchuser' => 'Ii sadasya ke user aur talk panna pe dhyan rakho',
 'ipb-disableusertalk' => 'Ii sadasya ke aapan baat waala panna ke badle pe rukawat lagao, jab ii panna pe rok lagawa gais hae',
@@ -2533,7 +2527,6 @@ Meharbaani kar ke aap aapan Internet service provider, nai to tech support, ke c
 'sorbs_create_account_reason' => 'DNSBL used by {{SITENAME}} me aap ke IP address ke as an open proxy list karaa gais hai.
 Aap ke ek account banae ke ijajat nai hai',
 'xffblockreason' => 'Ek IP address jon ki X-Forwarded-For header me hae, chaahe aap ke nai to jon proxy server ke aap use kartaa hae ke, ke block kar dewa gais hae. Suruu waala block kare ke kaaran rahaa:$1',
-'cant-block-while-blocked' => 'Aap, jab ki apne blocked hai, duusra sadasya ke block nai kare sakta hai.',
 'cant-see-hidden-user' => 'Jon sadasya ke aap roke mangtaa hae ke pahile rok ke lukae dewa gais hae.
 Jab ki aap ke lage hideuser adhikaar nai hae, tab aap ii sadasya ke rukawat ke nai dekhe aur badle saktaa hae.',
 'ipbblocked' => 'Aap duusra sadasya ke roke nai to kohle nai sakta hae, kaahe ki aap ke bhi rokaa gais hae',
@@ -3431,7 +3424,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'watchlistall2' => 'sab',
 'namespacesall' => 'sab',
 'monthsall' => 'sab',
-'limitall' => 'sab',
 
 # Email address confirmation
 'confirmemail' => 'E-mail address ke pakka karo',
@@ -3456,7 +3448,6 @@ Ii code saait expire hoe gais hae.',
 'confirmemail_success' => 'Aap ke email address ke confirm kar dewa gais hae.
 Aap [[Special:UserLogin|log in]] kar ke ii wiki ke majaa le saktaa hae.',
 'confirmemail_loggedin' => 'Aap ke email address ke ap confirm kar dewa gais hae.',
-'confirmemail_error' => 'Aap ke confirmation me kuchh garrbarri hoe gais hae.',
 'confirmemail_subject' => '{{SITENAME}} email address ke confirmation',
 'confirmemail_body' => 'Koi, hoe sake aap IP address $1 se, ek account "$2" with this email address on {{SITENAME}} ke register karis hae.
 
@@ -3617,7 +3608,6 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 
 # Special:ComparePages
 'comparepages' => 'Panna ke biich me antar dekho',
-'compare-selector' => 'Panna ke badlao ke biih me antar dekho',
 'compare-page1' => 'Panna 1',
 'compare-page2' => 'Panna 2',
 'compare-rev1' => 'Badlao 1',

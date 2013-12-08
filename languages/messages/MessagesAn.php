@@ -1333,7 +1333,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'recentchanges-label-bot' => 'Ista edición fue feita por un bot',
 'recentchanges-label-unpatrolled' => "Esta edición encara no s'ha controlato",
 'recentchanges-legend-newpage' => '$1 - pachina nueva',
-'rcnote' => "Contino {{PLURAL:$1|s'amuestra o unico cambeo feito|s'amuestran os zaguers '''$1''' cambeos feitos}} en {{PLURAL:$2|o zaguer día|os zaguers '''$2''' días}}, dica o $5, $4.",
 'rcnotefrom' => "Contino s'amuestran os cambeos dende '''$2''' (dica '''$1''').",
 'rclistfrom' => 'Amostrar cambeos recients dende $1',
 'rcshowhideminor' => '$1 as edicions menors',
@@ -2142,7 +2141,6 @@ Si s'ha creyato una nueva pachina con o mesmo nombre dende que se borró a orich
 'undeletebtn' => 'Restaurar!',
 'undeletelink' => 'amostrar/restaurar',
 'undeleteviewlink' => 'veyer',
-'undeletereset' => 'Prencipiar',
 'undeleteinvert' => 'Contornar selección',
 'undeletecomment' => 'Razón:',
 'undeletedrevisions' => '{{PLURAL:$1|Una edición restaurata|$1 edicions restauratas}}',
@@ -2229,7 +2227,6 @@ Ta más información, s'amuestra contino a zaguera dentrada d'o rechistro de blo
 'block' => 'Bloqueyar usuario',
 'unblock' => 'Desbloqueyar usuario',
 'blockip' => 'Bloqueyar usuario',
-'blockip-title' => 'Bloqueyar usuario',
 'blockip-legend' => 'Bloqueyar usuario',
 'blockiptext' => "Replene o siguient formulario ta bloqueyar l'acceso
 d'escritura dende una cuenta d'usuario u una adreza IP especifica.
@@ -2240,7 +2237,6 @@ as pachinas que s'han vandalizato).",
 'ipadressorusername' => "Adreza IP u nombre d'usuario",
 'ipbexpiry' => 'Circumducción:',
 'ipbreason' => 'Razón:',
-'ipbreasonotherlist' => 'Atra razón',
 'ipbreason-dropdown' => "*Razons comuns de bloqueyo
 ** Meter información falsa
 ** Borrar conteniu d'as pachinas
@@ -2256,8 +2252,6 @@ as pachinas que s'han vandalizato).",
 'ipbsubmit' => 'bloqueyar a iste usuario',
 'ipbother' => 'Especificar atro periodo',
 'ipboptions' => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 anyo:1 year,ta cutio:infinite',
-'ipbotheroption' => 'un atra',
-'ipbotherreason' => 'Razons diferens u adicionals',
 'ipbhidename' => "Amagar o nombre d'usuario en edicions y listas",
 'ipbwatchuser' => "Cosirar as pachinas d'usuario y de descusión d'iste usuario",
 'ipb-disableusertalk' => 'Privar que iste usuario edite a suya propia pachina de discusión entre que sía bloqueyau',
@@ -2342,7 +2336,6 @@ Ta más detalles, debaixo s'amuestra o rechistro de supresions:",
 'proxyblockreason' => "S'ha bloqueyato a suya adreza IP porque ye un proxy ubierto. Por favor, contaute on o suyo furnidor de servicios d'Internet u con o suyo servicio d'asistencia tecnica e informe-les d'iste grau problema de seguridat.",
 'sorbsreason' => 'A suya adreza IP ye en a lista de proxies ubiertos en a DNSBL de {{SITENAME}}.',
 'sorbs_create_account_reason' => 'A suya adreza IP ye en a lista de proxies ubiertos en a DNSBL de {{SITENAME}}. No puede creyar una cuenta',
-'cant-block-while-blocked' => 'No puet bloqueyar a atros usuarios en o tiempo que ye bloqueyato.',
 'cant-see-hidden-user' => "L'usuario a qui ye mirando de bloqueyar ya ye bloqueyau y amagau. Como que ye posible que vusté no tienga o dreito hideuser, no puede veyer ni editar os bloqueyos d'ixe usuario.",
 'ipbblocked' => 'No puede bloqueyar ni desbloqueyar atros usuarios porque ya ye bloqueyau.',
 'ipbnounblockself' => 'No tiene permiso ta sacar o suyo propio bloqueyo',
@@ -3189,7 +3182,6 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'watchlistall2' => 'totz',
 'namespacesall' => 'totz',
 'monthsall' => 'totz',
-'limitall' => 'Totz',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar adreza de correu-e',
@@ -3207,7 +3199,6 @@ O programa retornó o siguient codigo d'error: $1",
 'confirmemail_needlogin' => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
 'confirmemail_success' => 'A suya adreza de correu-e ya ye confirmata. Agora puede [[Special:UserLogin|dentrar]] en o wiki y gronxiar-se-ie.',
 'confirmemail_loggedin' => 'A suya adreza de correu-e ya ye confirmata.',
-'confirmemail_error' => 'Bella cosa falló en alzar a suya confirmación.',
 'confirmemail_subject' => "confirmación de l'adreza de correu-e de {{SITENAME}}",
 'confirmemail_body' => 'Belún, probablement vusté mesmo, ha rechistrato una cuenta "$2" con ista adreza de correu-e en {{SITENAME}} dende l\'adreza IP $1.
 
@@ -3428,7 +3419,6 @@ Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia
 
 # Special:ComparePages
 'comparepages' => 'Contimparar pachinas',
-'compare-selector' => "Contimparar as versions d'as pachinas",
 'compare-page1' => 'Pachina 1',
 'compare-page2' => 'Pachina 2',
 'compare-rev1' => 'Versión 1',

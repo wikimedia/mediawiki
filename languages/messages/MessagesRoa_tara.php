@@ -1463,7 +1463,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchanges-label-bot' => "Stu cangiamende ha state fatte da 'nu bot",
 'recentchanges-label-unpatrolled' => "Stu cangiamende non g'à state angore condrollate",
 'recentchanges-legend-newpage' => '$1 - pàgena nove',
-'rcnote' => "Sotte {{PLURAL:$1|jè '''1''' cangiamende|sonde le urteme '''$1''' cangiaminde}} jndr'à l'urteme{{PLURAL:$2|sciurne|'''$2''' sciurne}}, jndr'à $5, $4.",
 'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' (fine a '''$1''' mustrete).",
 'rclistfrom' => 'Fà vedè le urteme cangiaminde partenne da $1',
 'rcshowhideminor' => '$1 cangiaminde stuèdeche',
@@ -2378,7 +2377,6 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undeletebtn' => 'Repristine',
 'undeletelink' => 'vide/repristine',
 'undeleteviewlink' => 'vide',
-'undeletereset' => 'Azzere',
 'undeleteinvert' => 'Selezione a smerse',
 'undeletecomment' => 'Mutive:',
 'undeletedrevisions' => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
@@ -2468,7 +2466,6 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'block' => "Bluècche l'utende",
 'unblock' => "Sbluècche l'utende",
 'blockip' => "Blocche l'utende",
-'blockip-title' => "Bluecche l'utende",
 'blockip-legend' => "Bluecche l'utende",
 'blockiptext' => "Ause 'a schermata de sotte pe bloccà l'accesse in scritture de 'nu specifiche indirizze IP o utende.
 Quiste avessa essere fatte sulamende pe prevenìe 'u vandalisme e in accorde cu [[{{MediaWiki:Policy-url}}|le reghele]].
@@ -2476,7 +2473,6 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipadressorusername' => "Indirizze IP o nome de l'utende:",
 'ipbexpiry' => 'More:',
 'ipbreason' => 'Mutive:',
-'ipbreasonotherlist' => 'Otre mutive',
 'ipbreason-dropdown' => "*Mutive comune de blocche
 ** Inzerimende de 'mbormaziune fause
 ** Scangellamende de condenute da le vôsce
@@ -2492,8 +2488,6 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbsubmit' => "Blocche st'utende",
 'ipbother' => 'Otre orarie:',
 'ipboptions' => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite',
-'ipbotheroption' => 'otre',
-'ipbotherreason' => 'Otre mutive:',
 'ipbhidename' => 'Scunne le nome utinde da le cangiaminde e da le liste',
 'ipbwatchuser' => "Vide a pàgena utende e quedde de le 'ngazzaminde de stu utende",
 'ipb-disableusertalk' => "Non ge face cangià a stu utende 'a pàgena de le 'ngazzaminde sue fine ca jè bloccate",
@@ -2588,7 +2582,6 @@ Pe piacere condatte 'u provider de Indernette tue o 'u supporte tecniche e 'mbor
 'sorbs_create_account_reason' => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.
 Tu nonge puè ccrejà 'nu cunde utende",
 'xffblockreason' => "'N'indirizze IP presende jndr'à testate X-Forwarded-For, tutte e doje le tune o 'nu server proxy ca ste ause, onne state bloccate. 'U mutive d'u blocche origgenale ere: $1",
-'cant-block-while-blocked' => 'Tu non ge puè bloccà otre utinde quanne tu si blocchete.',
 'cant-see-hidden-user' => "L'utende ca tu ste pruève a bloccà ha state già bloccate e scunnute. Ce tu non ge tine le deritte ''hideuser'', tu non ge puè vedè o cangià 'u blocche de l'utende.",
 'ipbblocked' => 'Tu non ge puè bloccà o sbloccà otre utinde, purcé tu sì ppure bloccate',
 'ipbnounblockself' => "Non ge t'è permesse de sbloccarte da sule",
@@ -3626,7 +3619,6 @@ $8',
 'watchlistall2' => 'tutte',
 'namespacesall' => 'tutte',
 'monthsall' => 'tutte',
-'limitall' => 'tutte',
 
 # Email address confirmation
 'confirmemail' => "Conferme l'indirizze e-mail",
@@ -3651,7 +3643,6 @@ Pò essere ca 'u codece ha scadute.",
 'confirmemail_success' => "L'indirizze e-mail tue ha state confermate.
 Tu, mò te puè [[Special:UserLogin|collegà]] e te puè devertì sus 'a Uicchipèdie.",
 'confirmemail_loggedin' => "L'indirizze e-mail tue ha state confermate.",
-'confirmemail_error' => "Quacchedune ha sbagliate reggistranne 'a conferma toje.",
 'confirmemail_subject' => 'Indirizze email de conferme pe {{SITENAME}}',
 'confirmemail_body' => "Quacchedune, pò essere tu, fa l'indirizze IP \$1,
 ha reggistrate 'nu cunde utende \"\$2\" cu st'indirizze email sus a {{SITENAME}}.
@@ -3986,7 +3977,6 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 
 # Special:ComparePages
 'comparepages' => 'Combronde le pàggene',
-'compare-selector' => "Combronde le revisiune d'à pàgene",
 'compare-page1' => 'Pàgene 1',
 'compare-page2' => 'Pàgene 2',
 'compare-rev1' => 'Revisione 1',

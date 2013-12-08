@@ -877,7 +877,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'recentchanges-label-newpage' => '茲蜀萆修改創建新其蜀頁',
 'recentchanges-label-minor' => '茲是蜀萆過要修改',
 'recentchanges-label-bot' => '茲蜀萆修改是機器人做其',
-'rcnote' => "下底是{{PLURAL:$1|是 '''1'''改變|最後'''$1'''萆改變}}敆最後'''$2'''日，就像$4 $5。",
 'rclistfrom' => '顯示由$1開始其新其改變',
 'rcshowhideminor' => '$1過要修改',
 'rcshowhidebots' => '$1機器人',
@@ -1140,7 +1139,6 @@ If a new page with the same name has been created since the deletion, the restor
 'undeletebtn' => '恢復',
 'undeletelink' => '看/恢復',
 'undeleteviewlink' => '看',
-'undeletereset' => '重新寫',
 'undeletecomment' => '原因：',
 'undelete-search-submit' => '尋討',
 
@@ -1190,7 +1188,6 @@ If a new page with the same name has been created since the deletion, the restor
 'ipadressorusername' => 'IP地址或者用戶名：',
 'ipbexpiry' => '過期：',
 'ipbreason' => '原因：',
-'ipbreasonotherlist' => '其它原因',
 'ipbreason-dropdown' => '*普通封鎖原因
 ** 加添假其信息
 ** 塗掉頁面內容
@@ -1205,8 +1202,6 @@ If a new page with the same name has been created since the deletion, the restor
 'ipbsubmit' => '封鎖茲用戶',
 'ipbother' => '其它時間',
 'ipboptions' => '2 點鐘:2 hours,1 日:1 day,3 日:3 days,1 禮拜:1 week,2 禮拜:2 weeks,1 月日:1 month,3 月日:3 months,6 月日:6 months,1 年:1 year,永遠:infinite',
-'ipbotheroption' => '其它',
-'ipbotherreason' => '其它原因：',
 'blockipsuccesssub' => '封鎖成功',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]]已經乞封鎖.<br />
 覷蜀覷[[Special:BlockList|封鎖單]]來瀏覽封鎖。',
@@ -1367,7 +1362,6 @@ If a new page with the same name has been created since the deletion, the restor
 可能已經過期了。',
 'confirmemail_needlogin' => '汝著$1來確定汝其電子郵件地址。',
 'confirmemail_loggedin' => '汝其電子郵件地址現在已經確定去了。',
-'confirmemail_error' => '保存汝其確認其時候發現有鄭了。',
 'confirmemail_body' => '有人（可能是汝）敆IP地址$1𡅏已經使茲蜀萆電子郵件地址來註冊蜀萆賬戶「$2」去了。
 
 卜想確認茲蜀萆賬戶當真是汝其，固加敆{{SITENAME}}激活電子郵件特點，許敆汝其瀏覽器𡅏拍開茲蜀萆鏈接：

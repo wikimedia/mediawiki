@@ -1319,7 +1319,6 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'recentchanges-label-minor' => 'Seo mùthadh beag',
 'recentchanges-label-bot' => "'S e bot a rinn an deasachadh seo",
 'recentchanges-label-unpatrolled' => 'Cha deach freiceadan tron deasachadh seo fhathast',
-'rcnote' => 'Tha {{PLURAL:$1|an $1 mhùthadh|an $1 mhùthadh|na $1 mùthaidhean|na $1 mùthadh}} mu dheireadh anns na $2 {{PLURAL:$2|latha|latha|làithean|latha}} mu dheireadh, mar a bha iad $5, $4.',
 'rcnotefrom' => "Gheibhear na mùthaidhean a-mach o '''$2''' (gu ruige '''$1''') gu h-ìosal.",
 'rclistfrom' => 'Seall na mùthaidhean ùra a-mach o $1',
 'rcshowhideminor' => '$1 mùthaidhean beaga',

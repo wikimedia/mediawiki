@@ -1759,7 +1759,6 @@ Vaše adresa v takovém případě není prozrazena.',
 'recentchanges-label-plusminus' => 'Velikost stránky se změnila o tolik bajtů',
 'recentchanges-legend-newpage' => '(vizte též [[Special:NewPages|seznam nových stránek]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => 'Níže {{plural:$1|je poslední|jsou poslední|je posledních}} <strong>$1</strong> {{plural:$1|změna|změny|změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <strong>$2</strong> {{plural:$2|den|dny|dnů}} před $4, $5.',
 'rcnotefrom' => 'Níže {{PLURAL:$1|je|jsou|je}} nejvýše <b>$1</b> {{PLURAL:$1|změna|změny|změn}} od <b>$2</b>.',
 'rclistfrom' => 'Ukázat nové změny, počínaje od $1',
 'rcshowhideminor' => '$1 malé editace',
@@ -2635,7 +2634,6 @@ Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a kl
 'undeletebtn' => 'Obnovit',
 'undeletelink' => 'prohlédnout/obnovit',
 'undeleteviewlink' => 'prohlédnout',
-'undeletereset' => 'Resetovat',
 'undeleteinvert' => 'Invertovat výběr',
 'undeletecomment' => 'Důvod:',
 'undeletedrevisions' => '{{PLURAL:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
@@ -2723,7 +2721,6 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'block' => 'Zablokovat uživatele',
 'unblock' => 'Odblokovat uživatele',
 'blockip' => 'Zablokovat uživatele',
-'blockip-title' => 'Blokovat uživatele',
 'blockip-legend' => 'Zablokovat uživatele',
 'blockiptext' => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
 Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
@@ -2731,7 +2728,6 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipadressorusername' => 'IP adresa nebo uživatelské jméno:',
 'ipbexpiry' => 'Čas vypršení:',
 'ipbreason' => 'Důvod:',
-'ipbreasonotherlist' => 'Jiný důvod',
 'ipbreason-dropdown' => '*Časté důvody blokování
 ** Vkládání klamných informací
 ** Odstraňování obsahu stránek
@@ -2747,8 +2743,6 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbsubmit' => 'Zablokovat',
 'ipbother' => 'Jiný čas vypršení:',
 'ipboptions' => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite',
-'ipbotheroption' => 'jiný',
-'ipbotherreason' => 'Jiný/další důvod:',
 'ipbhidename' => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser' => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'ipb-disableusertalk' => 'Zabránit tomuto uživateli editovat vlastní uživatelskou diskusi po dobu zablokování',
@@ -2836,7 +2830,6 @@ Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 'sorbsreason' => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
 'sorbs_create_account_reason' => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 'xffblockreason' => 'IP adresa uvedená v hlavičce X-Forwarded-For, ať už vaše, nebo patřící proxy serveru, který používáte, byla zablokována. Zdůvodnění tohoto zablokování: $1',
-'cant-block-while-blocked' => 'Nemůžete blokovat jiné uživatele, když jste zablokován(a).',
 'cant-see-hidden-user' => 'Uživatel, kterého se snažíte blokovat, už byl zablokován a skryt. Jelikož nemáte oprávnění hideuser, nemůžete si nastavení bloku tohoto uživatele prohlédnout ani ho změnit.',
 'ipbblocked' => 'Nemůžete blokovat nebo odblokovávat jiné uživatele, {{GENDER:|sám|sama|sám}} jste {{GENDER:|zablokován|zablokována|zablokován}}',
 'ipbnounblockself' => 'Nemáte dovoleno odblokovat {{GENDER:|sám|sama|sám}} sebe',
@@ -3752,7 +3745,6 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'watchlistall2' => 'všechny',
 'namespacesall' => 'všechny',
 'monthsall' => 'všechny',
-'limitall' => 'vše',
 
 # Email address confirmation
 'confirmemail' => 'Potvrzení e-mailové adresy',
@@ -3771,7 +3763,6 @@ Poštovní program hlásí: $1',
 'confirmemail_needlogin' => 'Pro potvrzení své e-mailové adresy se musíte $1.',
 'confirmemail_success' => 'Vaše e-mailová adresa byla potvrzena. Nyní se můžete přihlásit a používat wiki.',
 'confirmemail_loggedin' => 'Vaše e-mailová adresa byla potvrzena.',
-'confirmemail_error' => 'Nepodařilo se uložit vaše potvrzení.',
 'confirmemail_subject' => 'Potvrzení e-mailové adresy pro {{grammar:4sg|{{SITENAME}}}}',
 'confirmemail_body' => 'Někdo (patrně vy, z IP adresy $1) si na {{grammar:6sg|{{SITENAME}}}}
 zaregistroval účet se jménem „$2“ a touto e-mailovou adresou.
@@ -3856,6 +3847,11 @@ Opravdu si přejete znovu tuto stránku založit?',
 'imgmultipagenext' => 'následující stránka →',
 'imgmultigo' => 'Jít!',
 'imgmultigoto' => 'Jít na stranu $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(implicitní jazyk)',
+'img-lang-info' => 'Vykreslit tento obrázek v jazyce $1 $2',
+'img-lang-go' => 'Provést',
 
 # Table pager
 'ascending_abbrev' => 'vzest.',
@@ -4085,7 +4081,6 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 
 # Special:ComparePages
 'comparepages' => 'Porovnání stránek',
-'compare-selector' => 'Porovnání revizí stránek',
 'compare-page1' => 'Stránka 1',
 'compare-page2' => 'Stránka 2',
 'compare-rev1' => 'Revize 1',

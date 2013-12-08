@@ -865,7 +865,6 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'recentchanges-label-minor' => 'Tas īr mažos pataisīms',
 'recentchanges-label-bot' => 'Šėta keitėma padėrba autuomatėnė pruograma',
 'recentchanges-label-unpatrolled' => 'Tas keitėms da nebova patikrints',
-'rcnote' => "Žemiau īr '''$1''' {{PLURAL:$1|paskotinis pakeitims|paskotinē pakeitimā|paskotiniu pakeitimu}} par $2 {{PLURAL:$2|paskotinė̅jė dėina|paskotėniasės '''$2''' dėinas|paskotėniuju '''$2''' dėinū}} skaitlioujant nū $4, $5.",
 'rcnotefrom' => 'Žemiau īr pakeitėma pradedant nū <b>$2</b> (ruodom lėgė <b>$1</b> pakeitėmu).',
 'rclistfrom' => 'Ruodītė naujus pakeitėmus pradedant nū $1',
 'rcshowhideminor' => '$1 mažus pakeitėmus',
@@ -1372,7 +1371,6 @@ lėgė trīnima. Ėštrintū poslapiu tekstos īr galėmas tėk admėnėstratuor
 'undeletebtn' => 'Atkortė',
 'undeletelink' => 'veizietė/atstatītė',
 'undeleteviewlink' => 'veizietė',
-'undeletereset' => 'Ėš naujė',
 'undeleteinvert' => 'Žīmietė prīšėngā',
 'undeletecomment' => 'Kuomentars:',
 'undeletedrevisions' => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}}',
@@ -1443,7 +1441,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'ipadressorusername' => 'IP adresos a nauduotuojė vards',
 'ipbexpiry' => 'Galiuojėma čiesos',
 'ipbreason' => 'Prīžastis:',
-'ipbreasonotherlist' => 'Kėta prīžastis',
 'ipbreason-dropdown' => '*Dažniausės bluokavėma prižastīs
 ** Melagėngas infuormacėjės rašīms
 ** Torėnė trīnims ėš poslapiu
@@ -1458,8 +1455,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'ipbsubmit' => 'Blokoutė šėta nauduotuoja',
 'ipbother' => 'Kėtuoks čiesos',
 'ipboptions' => '2 adīnas:2 hours,1 dėina:1 day,3 dėinas:3 days,1 nedielė:1 week,2 nedielės:2 weeks,1 mienou:1 month,3 mienesē:3 months,6 mienesē:6 months,1 metā:1 year,omžėms:infinite',
-'ipbotheroption' => 'kėta',
-'ipbotherreason' => 'Kėta/papėlduoma prižastis',
 'ipbwatchuser' => 'Keravuotė tuo nauduotuojė poslapi ėr anuo aptarėma poslapi',
 'ipb-change-block' => 'Parblokoutė ta nauduotuoja so šėtās nustatīmās',
 'badipaddress' => 'Nelaistėns IP adresos',

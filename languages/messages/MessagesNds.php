@@ -1345,7 +1345,6 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'recentchanges-label-minor' => 'Dat is en lütte Ännern',
 'recentchanges-label-bot' => 'Düsse Ännern worr maakt vun en Bot',
 'recentchanges-label-unpatrolled' => 'Düsse Ännern is noch nich kontrolleert worrn',
-'rcnote' => "Hier sünd de letzten '''$1''' Ännern vun {{PLURAL:$2|den letzten Dag|de letzten '''$2''' Daag}} (Stand $5, $4). ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)",
 'rcnotefrom' => 'Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).',
 'rclistfrom' => 'Wies ne’e Ännern siet $1',
 'rcshowhideminor' => '$1 lütte Ännern',
@@ -1998,7 +1997,6 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeletebtn' => 'Wedderhalen!',
 'undeletelink' => 'ankieken/wedderhalen',
 'undeleteviewlink' => 'bekieken',
-'undeletereset' => 'Afbreken',
 'undeleteinvert' => 'Utwahl ümkehrn',
 'undeletecomment' => 'Grund:',
 'undeletedrevisions' => '{{PLURAL:$1|ene Version|$1 Versionen}} wedderhaalt',
@@ -2079,7 +2077,6 @@ De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'block' => 'Bruker blocken',
 'unblock' => 'Bruker freegeven',
 'blockip' => 'IP-Adress blocken',
-'blockip-title' => 'Bruker sperren',
 'blockip-legend' => 'Bruker blocken',
 'blockiptext' => 'Bruuk dat Formular, ene IP-Adress to blocken.
 Dit schall blots maakt warrn, Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]].
@@ -2087,7 +2084,6 @@ Ok den Grund för dat Blocken indregen.',
 'ipadressorusername' => 'IP-Adress oder Brukernaam:',
 'ipbexpiry' => 'Aflooptiet',
 'ipbreason' => 'Grund:',
-'ipbreasonotherlist' => 'Annern Grund',
 'ipbreason-dropdown' => '* Allgemene Sperrgrünn
 ** Tofögen vun verkehrte Infos
 ** Leddigmaken vun Sieden
@@ -2100,8 +2096,6 @@ Ok den Grund för dat Blocken indregen.',
 'ipbsubmit' => 'Adress blocken',
 'ipbother' => 'Annere Tiet:',
 'ipboptions' => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite',
-'ipbotheroption' => 'Annere Duer',
-'ipbotherreason' => 'Annern Grund:',
 'ipbhidename' => 'Brukernaam narms mehr wiesen',
 'ipbwatchuser' => 'Op Brukersiet un Brukerdiskuschoon oppassen',
 'ipb-change-block' => 'Mit disse Sperrparameters noch wedder nee sperren',
@@ -2164,7 +2158,6 @@ Kiek [[Special:BlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',
 'sorbsreason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY.',
 'sorbs_create_account_reason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY. Du kannst keen Brukerkonto nee opstellen.',
-'cant-block-while-blocked' => 'Du kannst kene annern Brukers sperren, wenn du sülvst sperrt büst.',
 
 # Developer tools
 'lockdb' => 'Datenbank sparren',
@@ -2822,7 +2815,6 @@ Wiedere warrt standardmatig nich anwiest:
 'watchlistall2' => 'alle',
 'namespacesall' => 'alle',
 'monthsall' => 'alle',
-'limitall' => 'all',
 
 # Email address confirmation
 'confirmemail' => 'Nettbreefadress bestätigen',
@@ -2839,7 +2831,6 @@ Fehler bi’t Versennen: $1',
 'confirmemail_needlogin' => 'Du musst $1, dat diene Nettbreefadress bestätigt warrt.',
 'confirmemail_success' => 'Diene Nettbreefadress is nu bestätigt.',
 'confirmemail_loggedin' => 'Diene Nettbreefadress is nu bestätigt.',
-'confirmemail_error' => 'Dat Spiekern vun diene Bestätigung hett nich klappt.',
 'confirmemail_subject' => '{{SITENAME}} Nettbreefadress-Bestätigung',
 'confirmemail_body' => 'Een, villicht du vun de IP-Adress $1 ut, hett dat Brukerkonto „$2“ mit disse Nettbreefadress op {{SITENAME}} anmellt.
 
@@ -3024,7 +3015,6 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 
 # Special:ComparePages
 'comparepages' => 'Sieden verglieken',
-'compare-selector' => 'Siedenversionen verglieken',
 'compare-page1' => 'Sied 1',
 'compare-page2' => 'Sied 2',
 'compare-rev1' => 'Version 1',

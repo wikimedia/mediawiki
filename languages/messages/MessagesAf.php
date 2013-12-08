@@ -1595,7 +1595,6 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'recentchanges-label-bot' => "Hierdie wysiging was deur 'n bot uitgevoer",
 'recentchanges-label-unpatrolled' => 'Die wysiging is nog nie gekontroleer nie',
 'recentchanges-legend-newpage' => '$1 - nuwe bladsy',
-'rcnote' => "Hier volg die laaste {{PLURAL:$1|'''$1''' wysiging|'''$1''' wysigings}} gedurende die afgelope {{PLURAL:$2|dag|'''$2''' dae}}, soos vanaf $4 om $5.",
 'rcnotefrom' => "Hier volg wysigings sedert '''$2''' (maksimum van '''$1''' word gewys).",
 'rclistfrom' => 'Vertoon wysigings vanaf $1',
 'rcshowhideminor' => '$1 klein wysigings',
@@ -2487,7 +2486,6 @@ U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit d
 'undeletebtn' => 'Plaas terug',
 'undeletelink' => 'wys/herstel',
 'undeleteviewlink' => 'bekyk',
-'undeletereset' => 'Herinstel',
 'undeleteinvert' => 'Omgekeerde seleksie',
 'undeletecomment' => 'Rede:',
 'undeletedrevisions' => '{{PLURAL:$1|1 weergawe|$1 weergawes}} herstel',
@@ -2576,7 +2574,6 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'block' => 'Blok gebruiker',
 'unblock' => 'Deblokkeer gebruiker',
 'blockip' => 'Blokkeer gebruiker',
-'blockip-title' => 'Blokkeer gebruiker',
 'blockip-legend' => 'Blokkeer gebruiker of IP-adres',
 'blockiptext' => "Gebruik die vorm hier onder om skryftoegang vir 'n gebruiker of IP-adres in te trek.
 Dit mag slegs as beskerming teen vandalisme en in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]] gedoen word.
@@ -2584,7 +2581,6 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipadressorusername' => 'IP-adres of gebruikersnaam:',
 'ipbexpiry' => 'Duur:',
 'ipbreason' => 'Rede:',
-'ipbreasonotherlist' => 'Ander rede',
 'ipbreason-dropdown' => '*Algemene redes vir versperring
 ** Invoeg van valse inligting
 ** Skrap van bladsyinhoud
@@ -2600,8 +2596,6 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbsubmit' => 'Versper hierdie gebruiker',
 'ipbother' => 'Ander tydperk:',
 'ipboptions' => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
-'ipbotheroption' => 'ander',
-'ipbotherreason' => 'Ander/ekstra rede:',
 'ipbhidename' => 'Verberg gebruiker van wysigings en lyste',
 'ipbwatchuser' => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
 'ipb-disableusertalk' => 'Voorkom dat die gebruiker tydens die blokkade sy eie besprekingsblad kan wysig',
@@ -2695,7 +2689,6 @@ Kontak asseblief u internet-diensverskaffer of tegniese ondersteuning en lig hul
 'sorbs_create_account_reason' => "U IP-adres is gelys as 'n oop instaanbediener (proxy) in die DNS-swartlys wat op {{SITENAME}} gebruik word.
 U kan nie 'n rekening skep nie.",
 'xffblockreason' => "'n IP-adres wat u gebruik is geblokkeer. Dit kom in die opskrif 'X-Forwarded-For' voor. Die oorspronklike rede vir die blokkade is: $1",
-'cant-block-while-blocked' => 'U kan nie ander gebruikers blokkeer terwyl u self geblokkeer is nie.',
 'cant-see-hidden-user' => "Die gebruiker wat u probeer blokkeer is reeds geblokkeer en weggesteek.
 Aangesien u nie die 'hideuser'-reg het nie, kan u nie die blokkade van die gebruiker sien of wysig nie.",
 'ipbblocked' => 'U kan nie ander gebruikers (de)blokkeer nie, omdat u self geblokkeer is',
@@ -3600,7 +3593,6 @@ Ander velde sal versteek wees.
 'watchlistall2' => 'alles',
 'namespacesall' => 'alle',
 'monthsall' => 'alle',
-'limitall' => 'alle',
 
 # Email address confirmation
 'confirmemail' => 'Bevestig e-posadres',
@@ -3621,7 +3613,6 @@ Die e-posprogram meld: $1',
 'confirmemail_success' => 'U e-posadres is bevestig.
 U kan nou [[Special:UserLogin|aanmeld]] en die wiki gebruik.',
 'confirmemail_loggedin' => 'U e-posadres is nou bevestig.',
-'confirmemail_error' => 'Iets het foutgegaan met die stoor van u bevestiging.',
 'confirmemail_subject' => '{{SITENAME}}: E-posadres-bevestiging',
 'confirmemail_body' => 'Iemand, waarskynlik u vanaf IP-adres: $1, het \'n rekening "$2" met hierdie e-posadres by {{SITENAME}} geregistreer.
 
@@ -3871,7 +3862,6 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 
 # Special:ComparePages
 'comparepages' => 'Vergelyk bladsye',
-'compare-selector' => 'Vergelyk bladsyweergawes',
 'compare-page1' => 'Bladsy 1',
 'compare-page2' => 'Bladsy 2',
 'compare-rev1' => 'Weergawe 1',

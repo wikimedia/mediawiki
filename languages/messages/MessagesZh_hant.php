@@ -1643,7 +1643,6 @@ $1",
 'recentchanges-label-plusminus' => '通過此處位元組的數位以更改頁面大小',
 'recentchanges-legend-newpage' => '（另見[[Special:NewPages|新頁面列表]]）',
 'recentchanges-legend-plusminus' => "（''±123''）",
-'rcnote' => "以下是在$4 $5，最近 '''$2''' 天內的 '''$1''' 次最近更改記錄。",
 'rcnotefrom' => "下面是自'''$2'''（最多顯示'''$1'''）:",
 'rclistfrom' => '顯示自 $1 以來的新變更',
 'rcshowhideminor' => '$1小編輯',
@@ -2508,7 +2507,6 @@ $UNWATCHURL
 'undeletebtn' => '還原',
 'undeletelink' => '檢視／還原',
 'undeleteviewlink' => '檢視',
-'undeletereset' => '重設',
 'undeleteinvert' => '反向選擇',
 'undeletecomment' => '理由：',
 'undeletedrevisions' => '$1個修訂版本已經恢復',
@@ -2594,7 +2592,6 @@ $1',
 'block' => '封禁使用者',
 'unblock' => '解封使用者',
 'blockip' => '封禁使用者',
-'blockip-title' => '封禁使用者',
 'blockip-legend' => '封禁使用者',
 'blockiptext' => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
 只有在為防止破壞，及符合[[{{MediaWiki:Policy-url}}|守則]]的情況下才可採取此行動。
@@ -2602,7 +2599,6 @@ $1',
 'ipadressorusername' => 'IP地址或用戶名:',
 'ipbexpiry' => '期限：',
 'ipbreason' => '原因：',
-'ipbreasonotherlist' => '其它原因',
 'ipbreason-dropdown' => '*一般的封禁理由
 ** 屢次增加不實資料
 ** 刪除頁面內容
@@ -2618,8 +2614,6 @@ $1',
 'ipbsubmit' => '查封該地址',
 'ipbother' => '其它時間:',
 'ipboptions' => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,無限期:infinite',
-'ipbotheroption' => '其他',
-'ipbotherreason' => '其它／附帶原因:',
 'ipbhidename' => '在編輯及列表中隱藏用戶名',
 'ipbwatchuser' => '監視這位用戶的用戶頁面以及其對話頁面',
 'ipb-disableusertalk' => '禁止被封禁用戶編輯自己的討論頁',
@@ -2705,7 +2699,6 @@ $1被封禁的理由是“$2”',
 'sorbsreason' => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason' => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立賬號。',
 'xffblockreason' => '您或您使用的代理伺服器X-Forwarded-For字段所包含的一個IP地址已被封禁。原始封禁理由：$1',
-'cant-block-while-blocked' => '當您被封鎖時不可以封鎖其他用戶。',
 'cant-see-hidden-user' => '您現正嘗試封鎖的用戶已經被封鎖或隱藏。
 您現在沒有隱藏用戶的權限，您不可以檢視或者編輯這位用戶的封鎖。',
 'ipbblocked' => '您無法封禁或解封其他用戶，因為您自己已被封禁',
@@ -3650,7 +3643,6 @@ Variants for Chinese language
 'watchlistall2' => '全部',
 'namespacesall' => '全部',
 'monthsall' => '全部',
-'limitall' => '全部',
 
 # Email address confirmation
 'confirmemail' => '確認郵箱位址',
@@ -3670,7 +3662,6 @@ Variants for Chinese language
 'confirmemail_needlogin' => '您需要$1以確認您的郵箱位址。',
 'confirmemail_success' => '您的郵箱已經被確認。您現在可以[[Special:UserLogin|登錄]]並使用此網站了。',
 'confirmemail_loggedin' => '您的郵箱位址現下已被確認。',
-'confirmemail_error' => '{{GENDER:|你|妳|你}}的確認過程發生錯誤。',
 'confirmemail_subject' => '{{SITENAME}}郵箱位址確認',
 'confirmemail_body' => '擁有IP位址$1的用戶（可能是您）在{{SITENAME}}創建了賬戶"$2"，並提交了您的電子郵箱位址。
 
@@ -3749,6 +3740,11 @@ $5
 'imgmultipagenext' => '下一頁 →',
 'imgmultigo' => '確定！',
 'imgmultigoto' => '到第$1頁',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '（預設語言）',
+'img-lang-info' => '於$1 $2呈現此圖像。',
+'img-lang-go' => '走',
 
 # Table pager
 'ascending_abbrev' => '升',
@@ -3920,7 +3916,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:ComparePages
 'comparepages' => '比較頁面',
-'compare-selector' => '比較頁面的修訂',
 'compare-page1' => '第1頁',
 'compare-page2' => '第2頁',
 'compare-rev1' => '修訂版本1',

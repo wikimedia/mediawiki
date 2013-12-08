@@ -1229,7 +1229,6 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'recentchanges-label-minor' => 'Gutiay ini nga pagliwat',
 'recentchanges-label-bot' => 'Ini nga pagliwat in ginbuhat han bot',
 'recentchanges-label-unpatrolled' => 'Ini nga pagliwat in diri pa nakapatrol',
-'rcnote' => "An ha ubos {{PLURAL:$1|in '''1''' nga pagbag-o|in kaurhian nga mga '''$1''' nga pagbag-o}} ha kaurhian nga {{PLURAL:$2|ka adlaw|'''$2''' ka mga adlaw}}, han $5, $4.",
 'rcnotefrom' => "An ha ubos in mga pagbabag-o tikanng '''\$''' (kutob ngadto ha '''\$1''' nga ginpakita).",
 'rclistfrom' => 'Pakit-a an mga ginbag-ohan tikang han $1',
 'rcshowhideminor' => '$1 gudti nga mga pagliwat',
@@ -1807,12 +1806,10 @@ $1',
 # Block/unblock
 'block' => 'Pugngi an gumaramit',
 'blockip' => 'Pugngi an gumaramit',
-'blockip-title' => 'Pugngi an gumaramit',
 'blockip-legend' => 'Pugngi an gumaramit',
 'ipadressorusername' => 'IP address o agnay-hit-gumaramit:',
 'ipbexpiry' => 'Matitima an dulot:',
 'ipbreason' => 'Katadungan:',
-'ipbreasonotherlist' => 'Lain nga katadungan',
 'ipbreason-dropdown' => '*Agsob nga mga rason hit pagpugong
 ** Pagsusuksok hin sayop nga pananabutan
 ** Pagtatangtang hin sulod tikang ha mga pakli
@@ -1827,8 +1824,6 @@ $1',
 'ipbsubmit' => 'Pugngi ini nga gumaramit',
 'ipbother' => 'Iba nga oras:',
 'ipboptions' => '2 ka oras:2 hours,1 ka adlaw:1 day,3 ka adlaw:3 days,1 ka semana:1 week,2 ka semana:2 weeks,1 ka bulan:1 month,3 ka bulan:3 months,6 ka bulan:6 months,1 ka tuig:1 year,waray katapusan:infinite',
-'ipbotheroption' => 'iba',
-'ipbotherreason' => 'Lain/dugang nga katadungan:',
 'ipbhidename' => 'Tagoa an agnay-han-gumaramit tikang ha mga pagliwat ngan mga talaan',
 'ipb-disableusertalk' => 'Ayaw tugota ini nga gumaramit ha pagliwat han iya kalugaringon nga hiruhimangraw nga pakli samtang nakapugong hiya',
 'ipb-change-block' => 'Ig-utro pagpugong an gumaramit upod ini nga mga kahimtang',
@@ -2315,14 +2310,12 @@ An iba in daan nakatago.
 'watchlistall2' => 'ngatanan',
 'namespacesall' => 'ngatanan',
 'monthsall' => 'ngatanan',
-'limitall' => 'ngatanan',
 
 # Email address confirmation
 'confirmemail' => 'Igkompirma an e-mail address',
 'confirmemail_sent' => 'Ginpadara an kompirmasyon han e-mail.',
 'confirmemail_needlogin' => 'Kinahanglanon mo hin $1 para makakompirma han imo e-mail address.',
 'confirmemail_loggedin' => 'Ginkompirma na yana an imo e-mail address',
-'confirmemail_error' => 'Mayda diri asya nga nahitabo ha pagtipig ha imo kompirmasyon.',
 'confirmemail_subject' => '{{SITENAME}} kompirmasyon han e-mail address',
 
 # Scary transclusion
@@ -2462,7 +2455,6 @@ An iba in daan nakatago.
 
 # Special:ComparePages
 'comparepages' => 'Igkumpara an mga pakli',
-'compare-selector' => 'Igkumpara an mga pagliwat han pakli',
 'compare-page1' => 'Pakli 1',
 'compare-page2' => 'Pakli 2',
 'compare-rev1' => 'Pagliwat 1',

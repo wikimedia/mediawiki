@@ -653,7 +653,6 @@ $messages = array(
 'recentchanges-label-minor' => 'Ым гадә дәгишије',
 'recentchanges-label-bot' => 'Ым дәгиши бот кардәше',
 'recentchanges-label-unpatrolled' => 'Im redaktə hələ nəzərədə dəvardəni',
-'rcnote' => "Бә жиј нишо доә быә {{PLURAL:$1|'''1''' дәгиши|'''$1''' дәгиши}}, бә охонә {{PLURAL:$2|ружәдә|'''$2''' ружәдә}}, саат $5, $4.",
 'rcnotefrom' => "Бә жиј доә быән дәгишон че вахтику '''$2''' (тосә '''$1''').",
 'rclistfrom' => '$1 вахтику дәгишон нишо быдә',
 'rcshowhideminor' => '$1 гәдәлијә дәгишон',
@@ -844,7 +843,6 @@ $messages = array(
 # Block/unblock
 'ipbreason' => 'Сәбәб:',
 'ipboptions' => '2 саат:2 hours,1 руж:1 day,3 руж:3 days,1 һафтә:1 week,2 һафтә:2 weeks,1 манг:1 month,3 манг:3 months,6 манг:6 months,1 сор:1 year,бемыһләт:infinite',
-'ipbotheroption' => 'ҹо',
 'ipblocklist' => 'Бастә быә иштирокәкон',
 'blocklist-reason' => 'Сәбәб',
 'ipblocklist-submit' => 'Нәве',

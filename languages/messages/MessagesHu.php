@@ -1660,7 +1660,6 @@ A műveletet nem lehet visszavonni.',
 'recentchanges-label-bot' => 'Ezt a szerkesztést egy bot hajtotta végre',
 'recentchanges-label-unpatrolled' => 'Ezt a szerkesztést még nem ellenőrizték',
 'recentchanges-legend-newpage' => '$1 – új lap',
-'rcnote' => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' nap utolsó '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának időpontja $4, $5.",
 'rcnotefrom' => 'Alább a <b>$2</b> óta történt változtatások láthatóak (<b>$1</b> db).',
 'rclistfrom' => '$1 után történt változtatások megtekintése',
 'rcshowhideminor' => 'apró szerkesztések $1',
@@ -2522,7 +2521,6 @@ változatot visszaállították vagy eltávolították az archívumból.',
 'undeletebtn' => 'Helyreállítás',
 'undeletelink' => 'megtekintés/helyreállítás',
 'undeleteviewlink' => 'megtekintés',
-'undeletereset' => 'Vissza',
 'undeleteinvert' => 'Kijelölés megfordítása',
 'undeletecomment' => 'Ok:',
 'undeletedrevisions' => '{{PLURAL:$1|egy|$1}} változat helyreállítva',
@@ -2609,7 +2607,6 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'block' => 'Felhasználó blokkolása',
 'unblock' => 'Felhasználó blokkolásának feloldása',
 'blockip' => 'Blokkolás',
-'blockip-title' => 'Felhasználó blokkolása',
 'blockip-legend' => 'Felhasználó blokkolása',
 'blockiptext' => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.
 Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].
@@ -2617,7 +2614,6 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipadressorusername' => 'IP-cím vagy felhasználói név',
 'ipbexpiry' => 'Lejárat:',
 'ipbreason' => 'Ok:',
-'ipbreasonotherlist' => 'Más ok',
 'ipbreason-dropdown' => '*Gyakori blokkolási okok
 ** Téves információ beírása
 ** Lapok tartalmának eltávolítása
@@ -2633,8 +2629,6 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'ipbsubmit' => 'Blokkolás',
 'ipbother' => 'Más időtartam:',
 'ipboptions' => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite',
-'ipbotheroption' => 'Más időtartam',
-'ipbotherreason' => 'Más/további ok:',
 'ipbhidename' => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
 'ipbwatchuser' => 'A felhasználó lapjának és vitalapjának figyelése',
 'ipb-disableusertalk' => 'Megakadályozza, hogy a felhasználó szerkeszthesse a saját vitalapját, miközben blokkolva van',
@@ -2718,7 +2712,6 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'proxyblockreason' => "Az IP-címeden ''nyílt proxy'' üzemel. Amennyiben nem használsz proxyt, vedd fel a kapcsolatot egy informatikussal vagy az internetszolgáltatóddal ezen súlyos biztonsági probléma ügyében.",
 'sorbsreason' => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán.',
 'sorbs_create_account_reason' => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán. Nem hozhatsz létre fiókot.',
-'cant-block-while-blocked' => 'Nem blokkolhatsz más szerkesztőket, miközben te magad blokkolva vagy.',
 'cant-see-hidden-user' => 'A felhasználó, akit blokkolni próbáltál már blokkolva és rejtve van. Mivel nincs felhasználó elrejtése jogosultságod, nem láthatod és nem szerkesztheted a felhasználó blokkját.',
 'ipbblocked' => 'Nem blokkolhatsz és nem oldhatod fel más felhasználók blokkjait, mert te magad is blokkolva vagy',
 'ipbnounblockself' => 'Nincs jogosultságod feloldani a saját felhasználói fiókod blokkját',
@@ -3632,7 +3625,6 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'watchlistall2' => 'bármikor',
 'namespacesall' => 'Összes',
 'monthsall' => 'mind',
-'limitall' => 'mind',
 
 # Email address confirmation
 'confirmemail' => 'E-mail cím megerősítése',
@@ -3652,7 +3644,6 @@ A levelező üzenete: $1',
 'confirmemail_needlogin' => 'Meg kell $1 erősíteni az e-mail címedet.',
 'confirmemail_success' => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
 'confirmemail_loggedin' => 'E-mail címed megerősítve.',
-'confirmemail_error' => 'Hiba az e-mail címed megerősítése során.',
 'confirmemail_subject' => '{{SITENAME}} e-mail cím megerősítés',
 'confirmemail_body' => 'Valaki, valószínűleg te, ezzel az e-mail címmel regisztrált
 „$2” néven a(z) {{SITENAME}} wikin, a(z) $1 IP-címről.
@@ -3882,7 +3873,6 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 
 # Special:ComparePages
 'comparepages' => 'Lapok összehasonlítása',
-'compare-selector' => 'Lapváltozatok összehasonlítása',
 'compare-page1' => '1. lap',
 'compare-page2' => '2. lap',
 'compare-rev1' => '1. változat',

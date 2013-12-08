@@ -504,7 +504,7 @@ $messages = array(
 'deletethispage' => 'امسح الصفحه دى',
 'undeletethispage' => 'استرجاع الصفحه دى',
 'undelete_short' => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلان|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
-'viewdeleted_short' => '{{PLURAL:$1|}}{{PLURAL:$1|تعديل واحد ملغي|تعديلين ملغيين|$1 تعديلات ملغية|$1 تعديل ملغي|$1 تعديل ملغي}}',
+'viewdeleted_short' => '{{PLURAL:$1|تعديل واحد ملغى|تعديلين ملغيين|$1 تعديلات ملغية|$1 تعديل ملغى|$1 تعديل ملغى}}',
 'protect' => 'حمايه',
 'protect_change' => 'غيّر',
 'protectthispage' => 'احمى الصفحه دى',
@@ -549,7 +549,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'عن {{SITENAME}}',
 'aboutpage' => 'Project:معلومات عن',
-'copyright' => 'الكلام و الصور موجودين حسب  $ 1 ماعدا الحالات إللى مكتوب عندها حاجه تانيه.',
+'copyright' => 'الكلام و الصور منشورين حسب   $1 ماعدا الحالات إللى مكتوب عندها حاجه تانيه.',
 'copyrightpage' => '{{ns:project}}:حقوق النسخ',
 'currentevents' => 'الاخبار دلوقتى',
 'currentevents-url' => 'Project:الاخبار دلوقتى',
@@ -576,10 +576,10 @@ $1',
 'ok' => 'موافئ',
 'retrievedfrom' => 'اتجابت من "$1"',
 'youhavenewmessages' => 'عندك $1 ($2).',
-'youhavenewmessagesfromusers' => 'عندك $1 من {{PLURAL:${{PLURAL:$3|}}3|يوزر واحد|يوزر واحد|اتنين يوزر |$3 مستخدمين|$3 يوزر|$3 يوزر}} ($2).',
+'youhavenewmessagesfromusers' => 'عندك $1 من {{PLURAL:${{PLURAL:$3|}}3|يوزر واحد|يوزر واحد|اتنين يوزر |$3 مستخدمين|$3 يوزر}} ($2).',
 'youhavenewmessagesmanyusers' => 'عندك $1 من يوزرات كتير  ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|رساله جديده|999=رسايل جديده}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|}}{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
 'youhavenewmessagesmulti' => 'عندك ميسيدج جديدة فى $1',
 'editsection' => 'تعديل',
 'editold' => 'تعديل',
@@ -631,6 +631,9 @@ $1',
 # General errors
 'error' => 'غلطه',
 'databaseerror' => 'غلط فى قاعدة البيانات (database)',
+'databaseerror-query' => ' إستفسار : $1',
+'databaseerror-function' => 'وظيفه : $1',
+'databaseerror-error' => 'غلط: $1',
 'laggedslavemode' => "'''تحذير:''' الصفحه يمكن ما يكونش فيها تحديثات جديده.",
 'readonly' => 'قاعدة البيانات (الـ database) مقفوله',
 'enterlockreason' => 'اكتب سبب القفل, و قول امتى تقريبا ح يتلغى القفل',
@@ -692,9 +695,15 @@ $2',
 # Login and logout pages
 'logouttext' => "'''أنت دلوقتى مش مسجل دخولك.'''
 
-تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو [[Special:UserLogin|الدخول مرة تانيه]] بنفس الاسم أو باسم تاني.
-ممكن تشوف بعض الصفحات  كأنك متسجل ، و دا علشان استعمال الصفحات المتخبية فى المتصفح بتاعك.",
+تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو [[Special:UserLogin|الدخول مرة تانيه]] بنفس الاسم أو باسم تانى.
+
+ممكن تشوف بعض الصفحات  كأنك متسجل ، و دا علشان استعمال الصفحات المتخبية ف البراوزر بتاعك.",
+'welcomeuser' => 'أهلاً بيك يا $1!',
+'welcomecreation-msg' => 'اتفتحلك حساب.
+لو تحب ممكن تغير [[Special:Preferences|تفضيلاتك ف {{SITENAME}}]].',
 'yourname' => 'اليوزرنيم:',
+'userlogin-yourname' => 'اسم اليوزر',
+'createacct-another-username-ph' => 'إكتب اسم يوزر:',
 'yourpassword' => 'الباسوورد:',
 'yourpasswordagain' => 'اكتب الباسورد تاني:',
 'remembermypassword' => ' (لمدة   $1 {{PLURAL:$1|يوم|يوم}})خليك فاكر دخولى على الكمبيوتر دا',
@@ -743,7 +752,7 @@ $2',
 من فضلك حاول تانى.',
 'passwordtooshort' => 'لازم تكون على الاقل{{PLURAL:$1|1 حرف|$1 حروف}}.',
 'password-name-match' => 'الباسورد بتاعتك لازم تكون مختلفه عن اسم اليوزر بتاعك.',
-'mailmypassword' => 'ابعتلى كلمة سر جديدة',
+'mailmypassword' => 'ابعتلى باسوورد جديده',
 'passwordremindertitle' => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
 'passwordremindertext' => 'فيه واحد(غالبا انت، من عنوان الاى بى $1)
 طلب باسورد جديده لـ{{SITENAME}} ($4).
@@ -779,7 +788,7 @@ $2',
 لو سمحت تتجاهل الرسالة دى اذا الحساب دا اتفتحلك بالغلط.',
 'usernamehasherror' => 'اسم اليوزر مش ممكن يكون فيه حروف هاش',
 'login-throttled' => 'انت عملت  محاولات لوجين كتيره  ع الحساب ده.
-من فضلك استنى قبل المحاولة مرة تانيه.',
+من فضلك استنى $1 قبل المحاولة مرة تانيه.',
 'loginlanguagelabel' => 'اللغة: $1',
 
 # Change password dialog
@@ -974,7 +983,7 @@ $2',
 'nocreate-loggedin' => 'انت ما عندك ش صلاحية تعمل صفحات جديدة.',
 'sectioneditnotsupported-title' => 'تعديل الأقسام مش مدعوم',
 'sectioneditnotsupported-text' => 'تعديل الاقسام مش مدعوم فى الصفحه دى',
-'permissionserrors' => 'غلطات فى السماح',
+'permissionserrors' => 'غلطه ف السماح',
 'permissionserrorstext' => 'ما عندك ش صلاحية تعمل كدا،{{PLURAL:$1|علشان|علشان}}:',
 'permissionserrorstext-withaction' => 'أنت ما عندكش الصلاحيات علشان $2، لل{{PLURAL:$1|سبب|أسباب}} ده:',
 'recreate-moveddeleted-warn' => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
@@ -987,10 +996,19 @@ $2',
 يظهر انها إتمسحت.',
 'edit-conflict' => 'تضارب تحريرى.',
 'edit-no-change' => 'تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.',
+'postedit-confirmation' => 'تعديلك  إتسييڤ.',
 'edit-already-exists' => 'لم يمكن إنشاء صفحة جديدة.
 هى موجودة بالفعل.',
+'defaultmessagetext' => 'النص الاوتوماتيكى',
+'content-failed-to-parse' => 'فشل ف تحليل $2 محتوى لـ $1 موديل: $3',
+'invalid-content-data' => 'بيانات المحتوى غلط',
 'editwarning-warning' => 'لو سيبت الصفحه دى ممكن يخلّيك تضيّع اى تغييرات عملتها.
 لو انت مسجّل دخولك, ممكن تعطّل التحذير ده من الجزء بتاع "تعديل" فى تفضيلاتك.',
+
+# Content models
+'content-model-wikitext' => 'ويكى تكست',
+'content-model-text' => 'كلام عادى',
+'content-model-javascript' => 'جاڤاسكربت',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
@@ -1506,7 +1524,6 @@ $1",
 'recentchanges-label-bot' => 'التعديل ده عمله بوت',
 'recentchanges-label-unpatrolled' => 'التعديل ده مإتراجعش لسه',
 'recentchanges-legend-newpage' => '$1 - صفحه جديده',
-'rcnote' => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} فى آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom' => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom' => 'اظهر التعديلات بدايه من $1',
 'rcshowhideminor' => '$1 تعديلات صغيره',
@@ -2247,7 +2264,6 @@ $UNWATCHURL
 'undeletebtn' => 'ترجيع',
 'undeletelink' => 'عرض/رجع تانى',
 'undeleteviewlink' => 'عرض',
-'undeletereset' => 'ابتدى من الأول',
 'undeleteinvert' => 'اعكس الاختيار',
 'undeletecomment' => 'السبب:',
 'undeletedrevisions' => 'رجع تانى {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
@@ -2326,7 +2342,6 @@ $1',
 
 # Block/unblock
 'blockip' => 'منع يوزر',
-'blockip-title' => 'منع اليوزر',
 'blockip-legend' => 'منع اليوزر',
 'blockiptext' => 'استخدم الاستمارة اللى تحت لمنع عنوان أيبى أو يوزر معين من الكتابة.
 دا لازم يحصل بس علشان تمنع التخريب ،و على حسب
@@ -2335,7 +2350,6 @@ $1',
 'ipadressorusername' => 'عنوان الأيبى أو اسم اليوزر:',
 'ipbexpiry' => 'مدة المنع:',
 'ipbreason' => 'السبب:',
-'ipbreasonotherlist' => 'سبب تاني',
 'ipbreason-dropdown' => '*أسباب المنع المشهورة
 ** تدخيل معلومات غلط
 ** مسح المحتوى من الصفحات
@@ -2350,8 +2364,6 @@ $1',
 'ipbsubmit' => 'منع اليوزر دا',
 'ipbother' => 'وقت تاني:',
 'ipboptions' => '2 ساعه:2 hours,1 يوم:1 day,3 يوم:3 days,1 اسبوع:1 week,2 اسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنه:1 year,على طول:infinite',
-'ipbotheroption' => 'كمان',
-'ipbotherreason' => 'سبب تاني:',
 'ipbhidename' => 'خبى اسم اليوزر من التعديلات و الليستات.',
 'ipbwatchuser' => 'راقب صفحات اليوزر و النقاش بتوع اليوزر دا',
 'ipb-change-block' => 'عيد منع اليوزر بالإعدادات دى',
@@ -2427,7 +2439,6 @@ $1',
 'sorbsreason' => 'عنوان الأيبى بتاعك موجود كبروكسى مفتوح فى DNSBL اللى بيستعمله{{SITENAME}}.',
 'sorbs_create_account_reason' => 'عنوان الأيبى بتاعك موجود كبروكسى مفتوح فى ال DNSBL اللى بيستعمله {{SITENAME}}.
 ما ينفعش تفتح حساب.',
-'cant-block-while-blocked' => 'أنت لا يمكنك منع اليوزرز التانين و أنت ممنوع.',
 'cant-see-hidden-user' => 'اليوزر اللى انت بتحاول تعمل له منع اصلا ممنوع و مخفى.اكمنك ما عندكش صلاحية تخبية اليوزرات، ما ينفعش تشوف المنع او تعدله.',
 
 # Developer tools
@@ -2690,6 +2701,7 @@ $1',
 'tooltip-rollback' => "\"'''ترجيع'''\" بيرجع بدوسه واحده التعديل (التعديلات) فى الصفحه دى لاخر واحد عدل الصفحه.",
 'tooltip-undo' => '"رجوع" بترجع  التعديل دا وبتفتح استمارة التعديل فى شكل البروفة. بتسمح بإضافة سبب فى الملخص.',
 'tooltip-summary' => 'اكتب ملخص قصير',
+'interlanguage-link-title' => 'ل $1 – $2',
 
 # Stylesheets
 'common.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على كل الواجهات */',
@@ -3102,7 +3114,6 @@ $1',
 'watchlistall2' => 'الكل',
 'namespacesall' => 'الكل',
 'monthsall' => 'الكل',
-'limitall' => 'الكل',
 
 # Email address confirmation
 'confirmemail' => 'اعمل تأكيد للأيميل بتاعك',
@@ -3127,7 +3138,6 @@ $1',
 'confirmemail_success' => 'الايميل بتاعك اتأكد خلاص.
 ممكن دلوقتى تسجل دخولك و تستمتع بالويكي.',
 'confirmemail_loggedin' => 'الايميل بتاعك اتأكد خلاص.',
-'confirmemail_error' => 'حصلت حاجة غلط و احنا بنحفظ التأكيد بتاعك.',
 'confirmemail_subject' => 'تأكيد الايميل من {{SITENAME}}',
 'confirmemail_body' => 'فى واحد، ممكن يكون إنتا، من عنوان الأيبى $1،
 فتح حساب "$2" بعنوان الايميل دا فى {{SITENAME}}.

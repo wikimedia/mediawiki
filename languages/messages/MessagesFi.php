@@ -1702,7 +1702,6 @@ Tämä tieto on julkinen.',
 'recentchanges-label-unpatrolled' => 'Tätä muutosta ei ole vielä tarkastettu',
 'recentchanges-label-plusminus' => 'Sivun koon muutos tavuina',
 'recentchanges-legend-newpage' => '(katso myös [[Special:NewPages|lista uusista sivuista]])',
-'rcnote' => 'Alla on {{PLURAL:$1|yksi muutos|$1 tuoreinta muutosta}} {{PLURAL:$2|yhden päivän|$2 viime päivän}} ajalta $4 kello $5 asti.',
 'rcnotefrom' => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom' => 'Näytä uudet muutokset $1 alkaen',
 'rcshowhideminor' => '$1 pienet muutokset',
@@ -2567,7 +2566,6 @@ Sinulla on kenties käytössä väärä linkki, tai sitten versio on saatettu pa
 'undeletebtn' => 'Palauta',
 'undeletelink' => 'näytä tai palauta',
 'undeleteviewlink' => 'näytä',
-'undeletereset' => 'Tyhjennä',
 'undeleteinvert' => 'Käänteinen valinta',
 'undeletecomment' => 'Syy:',
 'undeletedrevisions' => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',
@@ -2655,13 +2653,11 @@ Alla on viimeisin estolokin tapahtuma:',
 'block' => 'Estä käyttäjä',
 'unblock' => 'Poista käyttäjän esto',
 'blockip' => 'Estä käyttäjä',
-'blockip-title' => 'Estä käyttäjä',
 'blockip-legend' => 'Estä käyttäjä',
 'blockiptext' => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen [[{{MediaWiki:Policy-url}}|pitää olla syy]], esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vapaamuotoisen vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”2014-08-29”.',
 'ipadressorusername' => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry' => 'Kesto',
 'ipbreason' => 'Syy',
-'ipbreasonotherlist' => 'Muu syy',
 'ipbreason-dropdown' => '*Yleiset estosyyt
 ** Väärän tiedon lisääminen
 ** Sisällön poistaminen
@@ -2677,8 +2673,6 @@ Alla on viimeisin estolokin tapahtuma:',
 'ipbsubmit' => 'Estä',
 'ipbother' => 'Muu kesto',
 'ipboptions' => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite',
-'ipbotheroption' => 'Muu kesto',
-'ipbotherreason' => 'Muu syy tai tarkennus',
 'ipbhidename' => 'Piilota tunnus muokkauksista ja listauksista',
 'ipbwatchuser' => 'Tarkkaile tämän käyttäjän käyttäjä- ja keskustelusivua',
 'ipb-disableusertalk' => 'Estä käyttäjää muokkaamasta omaa keskustelusivuaan eston aikana',
@@ -2767,7 +2761,6 @@ Alla on ote häivytyslokista.',
 'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBL:n mustalla listalla sivustolla {{SITENAME}}. 
 Et voi luoda käyttäjätunnusta.',
 'xffblockreason' => 'Yhteydet IP-osoitteesta, joka löytyy sinun tai käyttämäsi välipalvelimen X-Forwarded-For-otsakkeesta, on estetty. Alkuperäinen estämisen syy oli: $1',
-'cant-block-while-blocked' => 'Et voi estää muita käyttäjiä kun olet itse estetty.',
 'cant-see-hidden-user' => 'Käyttäjä, jota yrität estää on jo estetty ja piilotettu. Koska sinulla ei ole hideuser-oikeutta, et voi nähdä tai muokata käyttäjän estoa.',
 'ipbblocked' => 'Et voi estää tai poistaa estoja muilta käyttäjiltä, koska itse olet estettynä',
 'ipbnounblockself' => 'Et ole oikeutettu poistamaan estoa itseltäsi',
@@ -3687,7 +3680,6 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'watchlistall2' => 'koko historia',
 'namespacesall' => 'kaikki',
 'monthsall' => 'kaikki',
-'limitall' => 'kaikki',
 
 # Email address confirmation
 'confirmemail' => 'Varmenna sähköpostiosoite',
@@ -3705,7 +3697,6 @@ Postitusohjelma palautti: $1',
 'confirmemail_success' => 'Sähköpostiosoitteesi on nyt varmennettu.
 Voit [[Special:UserLogin|kirjautua sisään]].',
 'confirmemail_loggedin' => 'Sähköpostiosoitteesi on nyt varmennettu.',
-'confirmemail_error' => 'Jokin epäonnistui varmennuksen tallentamisessa.',
 'confirmemail_subject' => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
 'confirmemail_body' => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
 
@@ -3953,7 +3944,6 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 
 # Special:ComparePages
 'comparepages' => 'Vertaile sivuja',
-'compare-selector' => 'Vertaile sivuversioita',
 'compare-page1' => 'Sivu 1',
 'compare-page2' => 'Sivu 2',
 'compare-rev1' => 'Versio 1',

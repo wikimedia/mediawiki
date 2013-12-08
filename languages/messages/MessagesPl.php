@@ -1135,7 +1135,7 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 'sectioneditnotsupported-text' => 'Edycja sekcji na tej stronie nie jest obsługiwana.',
 'permissionserrors' => 'Błąd uprawnień',
 'permissionserrorstext' => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
-'permissionserrorstext-withaction' => 'Nie masz uprawnień do $2, z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
+'permissionserrorstext-withaction' => 'Nie masz uprawnień do $2 z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
 'recreate-moveddeleted-warn' => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
@@ -1729,7 +1729,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'recentchanges-label-unpatrolled' => 'Ta edycja nie została jeszcze sprawdzona',
 'recentchanges-label-plusminus' => 'Zmieniony rozmiar strony (liczba bajtów)',
 'recentchanges-legend-newpage' => '(zobacz też [[Special:NewPages|listę nowych stron]])',
-'rcnote' => "Poniżej {{PLURAL:$1|znajduje się '''1''' ostatnia zmiana wykonana|znajdują się ostatnie '''$1''' zmiany wykonane|znajduje się ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniego dnia|ostatnich '''$2''' dni}}, licząc od $5 dnia $4.",
 'rcnotefrom' => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 'rclistfrom' => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
@@ -2625,7 +2624,6 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletebtn' => 'Odtwórz',
 'undeletelink' => 'pokaż lub odtwórz',
 'undeleteviewlink' => 'pokaż',
-'undeletereset' => 'Wyczyść',
 'undeleteinvert' => 'Odwróć zaznaczenie',
 'undeletecomment' => 'Powód',
 'undeletedrevisions' => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
@@ -2714,7 +2712,6 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'block' => 'Zablokuj użytkownika',
 'unblock' => 'Odblokuj użytkownika',
 'blockip' => 'Zablokuj użytkownika',
-'blockip-title' => 'Zablokowanie użytkownika',
 'blockip-legend' => 'Zablokuj użytkownika',
 'blockiptext' => 'Użyj poniższego formularza do zablokowania możliwości edycji spod określonego adresu IP lub konkretnemu użytkownikowi.
 Blokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWiki:Policy-url}}|przyjętymi zasadami]].
@@ -2722,7 +2719,6 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipadressorusername' => 'Adres IP lub nazwa użytkownika',
 'ipbexpiry' => 'Upływa',
 'ipbreason' => 'Powód',
-'ipbreasonotherlist' => 'Inny powód',
 'ipbreason-dropdown' => '*Najczęstsze przyczyny blokad
 ** Ataki na innych użytkowników
 ** Naruszenie praw autorskich
@@ -2740,8 +2736,6 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbsubmit' => 'Zablokuj użytkownika',
 'ipbother' => 'Inny okres',
 'ipboptions' => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite',
-'ipbotheroption' => 'inny okres',
-'ipbotherreason' => 'Inne lub dodatkowy powód',
 'ipbhidename' => 'Ukryj nazwę użytkownika w edycjach i listach',
 'ipbwatchuser' => 'Obserwuj stronę osobistą i stronę dyskusji tego użytkownika',
 'ipb-disableusertalk' => 'Zablokuj możliwość edytowania przez tego użytkownika własnej strony dyskusji w czasie trwania blokady.',
@@ -2832,7 +2826,6 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
 'xffblockreason' => 'Adres IP obecny w nagłówku X-Forwarded-For – twój lub serwera proxy, z którego korzystasz – został zablokowany. Powód blokady to: $1',
-'cant-block-while-blocked' => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
 'cant-see-hidden-user' => 'Konto użytkownika, które próbujesz zablokować, zostało już zablokowane oraz ukryte. Bez uprawnienia do ukrywania kont nie możesz zobaczyć oraz modyfikować blokady tego użytkownika.',
 'ipbblocked' => 'Nie możesz blokować i odblokowywać innych użytkowników, ponieważ sam jesteś zablokowany',
 'ipbnounblockself' => 'Nie możesz odblokować samego siebie',
@@ -3767,7 +3760,6 @@ Pozostałe pola zostaną domyślnie ukryte.
 'watchlistall2' => 'wszystkie',
 'namespacesall' => 'wszystkie',
 'monthsall' => 'wszystkie',
-'limitall' => 'wszystkie',
 
 # Email address confirmation
 'confirmemail' => 'Potwierdzanie adresu e‐mail',
@@ -3791,7 +3783,6 @@ Kod może być przedawniony.',
 'confirmemail_success' => 'Adres e‐mail został potwierdzony.
 Możesz [[Special:UserLogin|zalogować się]] i korzystać z szerszego wachlarza funkcji wiki.',
 'confirmemail_loggedin' => 'Twój adres email został zweryfikowany.',
-'confirmemail_error' => 'Pojawiły się błędy przy zapisywaniu potwierdzenia.',
 'confirmemail_subject' => '{{SITENAME}} – weryfikacja adresu e‐mail',
 'confirmemail_body' => 'Ktoś łącząc się z komputera o adresie IP $1
 zarejestrował w {{GRAMMAR:MS.lp|{{SITENAME}}}} konto „$2”, podając niniejszy adres e‐mail.
@@ -4087,7 +4078,6 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 
 # Special:ComparePages
 'comparepages' => 'Porównanie stron',
-'compare-selector' => 'Porównanie wersji stron',
 'compare-page1' => 'Strona 1',
 'compare-page2' => 'Strona 2',
 'compare-rev1' => 'Wersja 1',

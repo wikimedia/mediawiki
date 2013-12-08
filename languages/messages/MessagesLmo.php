@@ -725,7 +725,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'recentchanges-label-bot' => "Quela mudifega chì l'ha fada un bot",
 'recentchanges-label-unpatrolled' => "Quela mudifega chì a l'è stada mimga anmò verificada.",
 'recentchanges-legend-newpage' => '$1 - pagina növa',
-'rcnote' => "Chì de sota {{PLURAL:$1|gh'è '''1''' mudifega|a hinn i ültim '''$1''' mudifegh}} in di ültim {{PLURAL:$2|dì|'''$2''' dì}}, a partì dai $5 del $4.",
 'rcnotefrom' => "Chì de sota gh'è la lista di mudifegh de <b>$2</b> (fina a <b>$1</b>).",
 'rclistfrom' => 'Fà vidè i cambiament növ a partì de $1',
 'rcshowhideminor' => '$1 i mudifegh piscinín',
@@ -1094,7 +1093,6 @@ Quest chì a hinn i regulazión curent per la pagina '''$1''':",
 
 # Block/unblock
 'blockip' => 'Bloca el dovrat',
-'blockip-title' => "Bloca 'l druvadur",
 'blockip-legend' => "Bloca 'l druvadur",
 'blockiptext' => "Druvee 'l mòdul chì de suta per blucà l'acess cun dirit de scritüra a un indirizz IP specifegh o a un druvadur registraa.
 El bloch gh'è de druvàl dumà per evità el vandalism e in acord cun i [[{{MediaWiki:Policy-url}}|regulament de {{SITENAME}}]].
@@ -1102,7 +1100,6 @@ Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i 
 'ipadressorusername' => 'Indirizz IP o nom del druvdur:',
 'ipbexpiry' => 'Fina al:',
 'ipbreason' => 'Reson:',
-'ipbreasonotherlist' => 'Alter mutiv',
 'ipbreason-dropdown' => "*Mutiv püssee cumün per i blòch
 ** Avè caregaa di infurmazión fals
 ** Avè töt via del cuntegnüü dai paginn
@@ -1117,8 +1114,6 @@ Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i 
 'ipbsubmit' => 'Blòca quel druvàt chì',
 'ipbother' => 'Altra dürada:',
 'ipboptions' => '2 ur:2 hours,1 dì:1 day,3 dì:3 days,1 semana:1 week,2 semann:2 weeks,1 mes:1 month,3 mes:3 months,6 mes:6 months,1 ann:1 year,infinii:infinite',
-'ipbotheroption' => 'Alter',
-'ipbotherreason' => 'Alter resón/spiegazión',
 'ipbhidename' => "Scund 'l nom del druvat dai mudifegh e da i list.",
 'ipbwatchuser' => "Tegn d'ögg i paginn duvrat e de discüssión de quel duvrat chì",
 'ipb-change-block' => 'Blocà ancamò el duvrat cun quij impustazión chì',

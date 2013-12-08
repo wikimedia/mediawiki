@@ -1673,7 +1673,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'recentchanges-label-bot' => 'Aqueste cambiament es estat efectuat per un bòt.',
 'recentchanges-label-unpatrolled' => 'Aqueste cambiament es pas estat verificat encara.',
 'recentchanges-legend-newpage' => '$1 - pagina novèla',
-'rcnote' => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
 'rcnotefrom' => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximum).",
 'rclistfrom' => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor' => '$1 los cambiaments menors',
@@ -2544,7 +2543,6 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeletebtn' => 'Restablir',
 'undeletelink' => 'veire/restablir',
 'undeleteviewlink' => 'veire',
-'undeletereset' => 'Reïnicializar',
 'undeleteinvert' => 'Inversar la seleccion',
 'undeletecomment' => 'Motiu :',
 'undeletedrevisions' => '{{PLURAL:$1|1 revision restablida|$1 revisions restablidas}}',
@@ -2630,7 +2628,6 @@ La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d�
 'block' => 'Blocar un utilizaire',
 'unblock' => 'Desblocar un utilizaire',
 'blockip' => 'Blocar en escritura',
-'blockip-title' => 'Blocar l’utilizaire',
 'blockip-legend' => 'Blocar en escritura',
 'blockiptext' => "Utilizatz lo formulari çaijós per blocar l'accès a las modificacions a partir d'una adreça IP especifica o d'un nom d'utilizaire.
 Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].
@@ -2638,7 +2635,6 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'ipadressorusername' => 'Adreça IP o nom d’utilizaire :',
 'ipbexpiry' => 'Durada del blocatge :',
 'ipbreason' => 'Motiu :',
-'ipbreasonotherlist' => 'Autre motiu',
 'ipbreason-dropdown' => '* Motius de blocatge mai frequents
 ** Vandalisme
 ** Insercion d’informacions faussas
@@ -2655,8 +2651,6 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'ipbsubmit' => 'Blocar aqueste utilizaire',
 'ipbother' => 'Autra durada',
 'ipboptions' => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite',
-'ipbotheroption' => 'autre',
-'ipbotherreason' => 'Motiu diferent o suplementari',
 'ipbhidename' => 'Amagar lo nom d’utilizaire de las modificacions e de las listas',
 'ipbwatchuser' => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
 'ipb-disableusertalk' => "Empachar l'utilizaire de modificar sa pagina de discussion pendent lo blocatge",
@@ -2742,7 +2736,6 @@ Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire los
 'sorbsreason' => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.',
 'sorbs_create_account_reason' => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',
-'cant-block-while-blocked' => "Podètz pas blocar d'autres utilizaires pendent que sètz blocat(ada).",
 'cant-see-hidden-user' => "L'utilizaire qu'ensajatz de blocar es ja estat blocat e amagat. Sens lo drech hideuser, podètz pas veire o modificar lo blocatge de l'utilizaire.",
 'ipbblocked' => "Podètz pas blocar o desblocar d'autres utilizaire, perque vos {{GENDER:|meteis|meteissa|meteis}} sètz {{GENDER:|blocat|blocada|blocat}}.",
 'ipbnounblockself' => 'Sètz pas autorizat a vos desblocar vos meteis',
@@ -3637,7 +3630,6 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'watchlistall2' => 'tot',
 'namespacesall' => 'Totes',
 'monthsall' => 'totes',
-'limitall' => 'totes',
 
 # Email address confirmation
 'confirmemail' => "Confirmar l'adreça de corrièr electronic",
@@ -3656,7 +3648,6 @@ Retorn del programa de corrièr : $1',
 'confirmemail_needlogin' => 'Vos cal vos $1 per confirmar vòstra adreça de corrièr electronic.',
 'confirmemail_success' => 'Vòstra adreça de corrièr electronic es confirmada. Ara, vos podètz connectar e aprofechar del wiki.',
 'confirmemail_loggedin' => 'Ara, vòstra adreça es confirmada',
-'confirmemail_error' => "Un problèma s'es produch en volent enregistrar vòstra confirmacion.",
 'confirmemail_subject' => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
 'confirmemail_body' => "Qualqu’un, probablament vos,e amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul site {{SITENAME}}.
 
@@ -3900,7 +3891,6 @@ Ensajatz la previsualizacion normala.',
 
 # Special:ComparePages
 'comparepages' => 'Comparar de paginas',
-'compare-selector' => 'Comparar las versions de las paginas',
 'compare-page1' => 'Pagina 1',
 'compare-page2' => 'Pagina 2',
 'compare-rev1' => 'Version 1',

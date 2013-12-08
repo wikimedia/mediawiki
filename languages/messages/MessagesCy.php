@@ -613,7 +613,7 @@ Sicrhewch eich bod chi wedi sillafu'r enw'n gywir, neu [[Special:UserLogin/signu
 'passwordtooshort' => "Mae'n rhaid fod gan gyfrinair o leia $1 {{PLURAL:$1|nod}}.",
 'password-name-match' => "Rhaid i'ch cyfrinair a'ch enw defnyddiwr fod yn wahanol i'w gilydd.",
 'password-login-forbidden' => "Gwaharddwyd defnyddio'r enw defnyddiwr a'r cyfrinair hwn.",
-'mailmypassword' => 'Anfoner cyfrinair newydd ataf trwy e-bost',
+'mailmypassword' => 'Ailosoder y cyfrinair',
 'passwordremindertitle' => 'Hysbysu cyfrinair dros dro newydd ar gyfer {{SITENAME}}',
 'passwordremindertext' => 'Mae rhywun (chi mwy na thebyg, o\'r cyfeiriad IP $1) wedi gofyn i ni anfon cyfrinair newydd atoch ar gyfer {{SITENAME}} ($4).
 Mae cyfrinair dros dro, sef "$3", wedi ei greu ar gyfer y defnyddiwr "$2". Os mai dyma oedd y bwriad, yna dylech fewngofnodi a\'i newid cyn gynted â phosib. Daw\'ch cyfrinair dros dro i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}.
@@ -679,7 +679,7 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
 'passwordreset-text-one' => 'Cwblhewch y ffurflen hon er mwyn ailosod eich cyfrinair.',
-'passwordreset-text-many' => "{{PLURAL:$1|Llanwch un o'r blychau er mwyn ailosod eich cyfrinair.}}",
+'passwordreset-text-many' => "{{PLURAL:$1|Llanwch un o'r blychau er mwyn derbyn cyfrinair dros dro mewn ebost.}}",
 'passwordreset-legend' => 'Ailosod y cyfrinair',
 'passwordreset-disabled' => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
 'passwordreset-emaildisabled' => 'Analluogwyd offer e-bost ar y wici hwn.',
@@ -1505,7 +1505,6 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'recentchanges-label-plusminus' => "Newidiodd maint y dudalen o'r nifer hwn o feitiau",
 'recentchanges-legend-newpage' => '(gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
 'rcnotefrom' => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
 'rclistfrom' => 'Dangos newidiadau newydd, gan ddechrau ers $1',
 'rcshowhideminor' => '$1 golygiadau bychain',
@@ -2385,7 +2384,6 @@ Mae'n bosibl bod nam ar y cyswllt, neu fod y diwygiad eisoes wedi'i adfer neu we
 'undeletebtn' => 'Adfer',
 'undeletelink' => 'gweld/adfer',
 'undeleteviewlink' => 'gweld',
-'undeletereset' => 'Ailosod',
 'undeleteinvert' => "Gwrthdroi'r dewis",
 'undeletecomment' => 'Rheswm:',
 'undeletedrevisions' => 'wedi adfer $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
@@ -2475,7 +2473,6 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'block' => 'Rhwystro defnyddiwr',
 'unblock' => 'Dad-rwystro defnyddiwr',
 'blockip' => "Rhwystro'r defnyddiwr",
-'blockip-title' => "Rhwystro'r defnyddiwr",
 'blockip-legend' => "Rhwystro'r defnyddiwr",
 'blockiptext' => "Defnyddiwch y ffurflen hon i rwystro cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r gronfa ddata. 
 Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth, a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. 
@@ -2483,7 +2480,6 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'ipadressorusername' => 'Cyfeiriad IP neu enw defnyddiwr:',
 'ipbexpiry' => 'Am gyfnod:',
 'ipbreason' => 'Rheswm:',
-'ipbreasonotherlist' => 'Rheswm arall',
 'ipbreason-dropdown' => "*Rhesymau cyffredin dros flocio
 ** Gosod gwybodaeth anghywir
 ** Dileu cynnwys tudalennau
@@ -2499,8 +2495,6 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'ipbsubmit' => "Rhwystro'r defnyddiwr hwn",
 'ipbother' => 'Cyfnod arall:',
 'ipboptions' => '2 awr:2 hours,ddiwrnod:1 day,3 diwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,amhenodol:infinite',
-'ipbotheroption' => 'arall',
-'ipbotherreason' => 'Rheswm arall/ychwanegol:',
 'ipbhidename' => "Cuddio'r enw defnyddiwr rhag ymddangos ar restri a golygiadau",
 'ipbwatchuser' => 'Gwylio tudalen defnyddiwr a thudalen sgwrs y defnyddiwr hwn',
 'ipb-disableusertalk' => "Atal y defnyddiwr hwn rhag golygu ei dudalen/ei thudalen sgwrs ei hunan wrth i'r bloc fod yn weithredol",
@@ -2591,7 +2585,6 @@ Gallwch weld rhestr y rhwystrau a'r gwaharddiadau sydd yn weithredol ar hyn o br
 'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.
 Ni allwch greu cyfrif',
 'xffblockreason' => "Mae un o'r cyfeiriadau IP yn y pennyn 'X-Forwarded-For' wedi cael ei atal; naill ai eich cyfeiriad chi neu un o'r gweinyddion dirprwyol a ddefnyddiwyd gennych. Y rheswm gwreiddiol dros atal oedd: $1",
-'cant-block-while-blocked' => 'Ni allwch flocio defnyddwyr eraill tra bod rhwystr arnoch chithau.',
 'cant-see-hidden-user' => "Mae'r defnyddiwr yr ydych yn ceisio'i rwystro wedi ei rwystro a'i guddio'n barod.
 Gan nad yw'r gallu i guddio defnyddwyr gennych, ni allwch weld y rhwystr sydd ar y defnyddiwr na'i olygu.",
 'ipbblocked' => 'Ni allwch rwystro na dadrwystro defnyddwyr eraill, oherwydd eich bod chi eich hunan wedi eich rhwystro',
@@ -3499,7 +3492,6 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'watchlistall2' => 'holl',
 'namespacesall' => 'pob un',
 'monthsall' => 'pob mis',
-'limitall' => 'oll',
 
 # Email address confirmation
 'confirmemail' => "Cadarnhau'r cyfeiriad e-bost",
@@ -3518,7 +3510,6 @@ Dychwelodd yr ebostydd: $1",
 'confirmemail_success' => "Mae eich cyfeiriad e-bost wedi'i gadarnhau. 
 Cewch [[Special:UserLogin|fewngofnodi]] a mwynhau'r wici.",
 'confirmemail_loggedin' => 'Cadarnhawyd eich cyfeiriad e-bost.',
-'confirmemail_error' => 'Cafwyd gwall wrth ddanfon eich cadarnhad.',
 'confirmemail_subject' => 'Cadarnhâd cyfeiriad e-bost ar {{SITENAME}}',
 'confirmemail_body' => 'Mae rhywun (chi, yn fwy na thebyg, o\'r cyfeiriad IP $1) wedi cofrestru\'r cyfrif "$2" ar {{SITENAME}} gyda\'r cyfeiriad e-bost hwn.
 
@@ -3589,6 +3580,10 @@ Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
 'imgmultipagenext' => "i'r dudalen nesaf →",
 'imgmultigo' => 'Eler!',
 'imgmultigoto' => "Mynd i'r dudalen $1",
+
+# Language selector for translatable SVGs
+'img-lang-info' => "Cynhyrchu'r ddelwedd yn yr iaith $1. $2",
+'img-lang-go' => 'Cynhyrcher',
 
 # Table pager
 'ascending_abbrev' => 'esgynnol',
@@ -3760,7 +3755,6 @@ Defnydd:
 
 # Special:ComparePages
 'comparepages' => 'Cymharu tudalennau',
-'compare-selector' => "Cymharu diwygiadau gwahanol o'r dudalen",
 'compare-page1' => 'Tudalen 1',
 'compare-page2' => 'Tudalen 2',
 'compare-rev1' => 'Diwygiad 1',

@@ -706,7 +706,6 @@ A kan ben trowe efu dribi.
 'nchanges' => '$1 {{PLURAL:$1|kenki|kenki}}',
 'recentchanges' => 'Laste kenki',
 'recentchanges-feed-description' => 'Nanga a feed disi yu kan luku den moro nyun kenki fu a wiki disi.',
-'rcnote' => "Dya na ondrosey {{PLURAL:$1|'''1''' kenki|den '''$1''' laste kenki}} ini {{PLURAL:$2|a dei|den '''$2''' dei}} na fesi de fu si, tapu $4 na $5.",
 'rcnotefrom' => "Kenki fu '''$2''' (e sori te go miti '''$1''' kenki).",
 'rclistfrom' => 'Sori nyun kenki, bigin fu $1',
 'rcshowhideminor' => '$1 den pikin kenki',

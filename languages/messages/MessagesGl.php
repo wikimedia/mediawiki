@@ -1713,7 +1713,6 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'recentchanges-label-plusminus' => 'O tamaño da páxina variou este número de bytes',
 'recentchanges-legend-newpage' => '(véxase tamén a [[Special:NewPages|lista de páxinas novas]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "A continuación {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata o $4 ás $5.",
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
 'rclistfrom' => 'Mostrar os cambios novos desde o $1',
 'rcshowhideminor' => '$1 as edicións pequenas',
@@ -2618,7 +2617,6 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'ver/restaurar',
 'undeleteviewlink' => 'ver',
-'undeletereset' => 'Limpar',
 'undeleteinvert' => 'Inverter a selección',
 'undeletecomment' => 'Motivo:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|revisión restaurada|revisións restauradas}}',
@@ -2707,7 +2705,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'block' => 'Bloquear un usuario',
 'unblock' => 'Desbloquear un usuario',
 'blockip' => 'Bloquear o usuario',
-'blockip-title' => 'Bloquear un usuario',
 'blockip-legend' => 'Bloquear un usuario',
 'blockiptext' => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
@@ -2715,7 +2712,6 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipadressorusername' => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry' => 'Duración:',
 'ipbreason' => 'Motivo:',
-'ipbreasonotherlist' => 'Outro motivo',
 'ipbreason-dropdown' => '*Motivos frecuentes para bloquear
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
@@ -2731,8 +2727,6 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbsubmit' => 'Bloquear este usuario',
 'ipbother' => 'Outra duración:',
 'ipboptions' => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite',
-'ipbotheroption' => 'outra',
-'ipbotherreason' => 'Outro motivo:',
 'ipbhidename' => 'Agochar o nome de usuario nas edicións e listas',
 'ipbwatchuser' => 'Vixiar a páxina de usuario e a de conversa deste usuario',
 'ipb-disableusertalk' => 'Impedir que o usuario edite a súa propia páxina de conversa mentres dure o bloqueo',
@@ -2822,7 +2816,6 @@ Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte t�
 'sorbs_create_account_reason' => 'O seu enderezo IP está rexistrado como un proxy aberto na lista DNSBL usada por {{SITENAME}}.
 Polo tanto, non pode crear unha conta',
 'xffblockreason' => 'Un enderezo IP presente na cabeceira X-Forwarded-For, ou ben seu ou ben dun servidor proxy que está utilizando, foi bloqueado. O motivo do bloqueo orixinal é: $1',
-'cant-block-while-blocked' => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
 'cant-see-hidden-user' => 'O usuario que intenta bloquear xa foi bloqueado e agochado. Dado que non ten o dereito necesario para agochar usuarios, non pode ver ou editar o bloqueo do usuario.',
 'ipbblocked' => 'Non pode bloquear ou desbloquear outros usuarios porque vostede está bloqueado',
 'ipbnounblockself' => 'Non ten os permisos necesarios para desbloquearse a si mesmo',
@@ -3751,7 +3744,6 @@ Os demais agocharanse por omisión.
 'watchlistall2' => 'todo',
 'namespacesall' => 'todos',
 'monthsall' => 'todos',
-'limitall' => 'todas',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar o enderezo de correo electrónico',
@@ -3774,7 +3766,6 @@ Pode ser que caducase.',
 'confirmemail_needlogin' => 'Debe $1 para confirmar o seu enderezo de correo electrónico.',
 'confirmemail_success' => 'Confirmouse o seu enderezo de correo electrónico. Agora xa pode [[Special:UserLogin|acceder ao sistema]] e facer uso do wiki.',
 'confirmemail_loggedin' => 'Xa se confirmou o seu enderezo de correo electrónico.',
-'confirmemail_error' => 'Houbo un problema ao gardar a súa confirmación.',
 'confirmemail_subject' => 'Confirmación do enderezo de correo electrónico de {{SITENAME}}',
 'confirmemail_body' => 'Alguén, probablemente vostede, desde o enderezo IP $1,
 rexistrou a conta "$2" con este enderezo de correo electrónico en {{SITENAME}}.
@@ -4030,7 +4021,6 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 
 # Special:ComparePages
 'comparepages' => 'Comparar páxinas',
-'compare-selector' => 'Comparar as revisións de dúas páxinas',
 'compare-page1' => 'Páxina 1',
 'compare-page2' => 'Páxina 2',
 'compare-rev1' => 'Revisión 1',

@@ -1210,7 +1210,6 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'recentchanges-label-minor' => 'Kiye suntingan cilik',
 'recentchanges-label-bot' => 'Suntingan iki dilakokna déning bot',
 'recentchanges-label-unpatrolled' => 'Suntingan kiye durung dipatroli',
-'rcnote' => "Sing ana nang ngisor kiye kuwe {{PLURAL:$1|'''1'''|'''$1'''}} owahan anyar nang {{PLURAL:$2|dina|'''$2''' dina}} pungkasan kiye, nganti tanggal $4, jam $5.",
 'rcnotefrom' => 'Nang ngisor kiye owah-owahan wiwit <strong>$2</strong> (kapacak nganti <strong>$1</strong> owah-owahan).',
 'rclistfrom' => 'Tidokna owahan anyar molai sekang tanggal $1',
 'rcshowhideminor' => '$1 suntingan cilik',

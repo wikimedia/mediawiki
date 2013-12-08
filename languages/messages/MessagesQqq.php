@@ -3582,21 +3582,6 @@ See also:
 Preceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.',
 'recentchanges-legend-newpage' => 'Used as legend in [[Special:RecentChanges]]. Preceded by {{msg-mw|Recentchanges-label-newpage}}.',
 'recentchanges-legend-plusminus' => 'A plus/minus sign with a number for the legend.',
-'rcnote' => 'Used on [[Special:RecentChanges]].
-
-Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
-
-Parameters:
-* $1 - the number of changes shown
-* $2 - the number of days for which the changes are shown
-* $3 - (Unused) a date and time
-* $4 - a date alone
-* $5 - a time alone
-
- <!--Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"-->
- Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"
-See also:
-* {{msg-mw|Rcnotefrom}}',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
 The corresponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
@@ -5882,8 +5867,6 @@ Example (in English):
 'undeleteviewlink' => 'First part of {{msg-mw|undeletelink}}.
 Display name of link to view a deleted page used on [[Special:Log/delete]].
 {{Identical|View}}',
-'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
-{{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
 'undeletecomment' => '{{Identical|Reason}}',
 'undeletedrevisions' => 'Used as reason in the log entry. Parameters:
@@ -6217,7 +6200,6 @@ See also:
 'blockip' => 'The title of the special page [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'blockip-title' => '{{Identical|Block user}}',
 'blockip-legend' => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
 
 {{Identical|Block user}}',
@@ -6234,7 +6216,6 @@ See also:
 'ipbreason' => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
 
 {{Identical|Reason}}',
-'ipbreasonotherlist' => '{{Identical|Other reason}}',
 'ipbreason-dropdown' => 'Used as item list for dropdown on [[Special:Block]].
 
 The label for this dropdown is {{msg-mw|Ipbreason}}.',
@@ -6271,8 +6252,6 @@ See also:
 'ipboptions' => "{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
 {{Identical|Infinite}}",
-'ipbotheroption' => '{{Identical|Other}}',
-'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].
 
 See also:
@@ -9404,9 +9383,6 @@ Used as <code>$3</code> in the message {{msg-mw|Wlshowlast}}.
 {{Identical|All}}',
 'monthsall' => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also {{msg-mw|Month}}.
 {{Identical|All}}',
-'limitall' => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages.
-
-{{Identical|All}}',
 
 # Email address confirmation
 'confirmemail' => 'Title of [[Special:ConfirmEmail]] page.',
@@ -9428,7 +9404,6 @@ See also:
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_success' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
 'confirmemail_loggedin' => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
-'confirmemail_error' => 'Error message on [[Special:ConfirmEmail]]',
 'confirmemail_subject' => 'Subject of the e-mail sent to user during e-mail address confirmation
 {{Identical|SITENAME e-mail address confirmation}}',
 'confirmemail_body' => 'Body of the email sent to user when their account is created or they confirm their email address.
@@ -9552,16 +9527,32 @@ See also:
 * {{msg-mw|Imgmultigo|Submit button text}}',
 
 # Language selector for translatable SVGs
-'img-lang-opt' => '{{optional}} Items in the language drop down on the image page for a translated SVG file. For an example see [[:File:Gerrit patchset 25838 test.svg]]. See also {{msg-mw|img-lang-info}}
+'img-lang-opt' => '{{optional}}
+Items in the language drop down on the image page for a translated SVG file. For an example see [[:File:Gerrit patchset 25838 test.svg]].
 
-* $1 Language code
-* $2 Language name (Either in the language in question, or the name of that language translated to the current users interface language)',
-'img-lang-default' => 'An option in the drop down of a translatable file. For example see [[:File:Gerrit patchset 25838 test.svg]]. Used when it cannot be determined what the default fallback language is. However it should be noted that most of the time, the content displayed for this option would be in English.',
+Parameters:
+* $1 - language code
+* $2 - language name (Either in the language in question, or the name of that language translated to the current users interface language)
+See also:
+* {{msg-mw|Img-lang-info}}',
+'img-lang-default' => 'An option in the drop down of a translatable file. For example see [[:File:Gerrit patchset 25838 test.svg]].
+
+Used when it cannot be determined what the default fallback language is.
+
+However it should be noted that most of the time, the content displayed for this option would be in English.
+{{Identical|Default language}}',
 'img-lang-info' => 'Label for drop down box. Appears underneath the image on the image description page. See [[:File:Gerrit patchset 25838 test.svg]] for an example.
 
-* $1 is a drop down box with language options (See also {{msg-mw|img-lang-opt}})
-* $2 is a submit button, which uses the text from {{msg-mw|img-lang-go}}',
-'img-lang-go' => 'Go button for the language select for translatable files. See [[:File:Gerrit patchset 25838 test.svg]] for an example. See {{msg-mw|img-lang-info}}.',
+Parameters:
+* $1 - a drop down box with language options, uses the following messages:
+** {{msg-mw|Img-lang-default}}
+** {{msg-mw|Img-lang-opt}}. e.g. "English (en)", "日本語 (ja)"
+* $2 - a submit button, which uses the text from {{msg-mw|Img-lang-go}}',
+'img-lang-go' => 'Go button for the language select for translatable files. See [[:File:Gerrit patchset 25838 test.svg]] for an example.
+
+See also:
+* {{msg-mw|img-lang-info}}
+{{Identical|Go}}',
 
 # Table pager
 'ascending_abbrev' => 'Abbreviation of ascending order.
@@ -10075,7 +10066,6 @@ Parameters:
 
 # Special:ComparePages
 'comparepages' => 'The title of [[Special:ComparePages]]',
-'compare-selector' => 'Header of the form on [[Special:ComparePages]]',
 'compare-page1' => 'Label for the field of the 1st page in the comparison for [[Special:ComparePages]]
 {{Identical|Page}}',
 'compare-page2' => 'Label for the field of the 2nd page in the comparison for [[Special:ComparePages]]

@@ -1447,7 +1447,6 @@ Costa anformassion a sarà pùblica.",
 'recentchanges-label-plusminus' => "La taja dla pàgina a l'é cangià d'un nùmer ëd bytes",
 'recentchanges-legend-newpage' => '(vëdde ëdcò [[Special:NewPages|lista dle pàgine neuve]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnote' => "Ambelessì sota a-i {{PLURAL:$1|é '''1''' modìfica|son j'ùltime '''$1''' modìfiche}} ant j'ùltim {{PLURAL:$2|di|'''$2''' di}}, a parte da $5 dël $4.",
 'rcnotefrom' => ' Ambelessì sota a-i é la lista dle modìfiche da <b>$2</b> (fin-a a <b>$1</b>).',
 'rclistfrom' => 'Mostré le modìfiche a parte da $1',
 'rcshowhideminor' => '$1 le modìfiche cite',
@@ -2343,7 +2342,6 @@ l'avìa travajaje ansima anans che a la scancelèisso.
 'undeletebtn' => 'Ripristiné',
 'undeletelink' => 'vëdde/ripristiné',
 'undeleteviewlink' => 'vëdde',
-'undeletereset' => "Buté torna tut tanme 'l sòlit",
 'undeleteinvert' => 'Anvertì la selession',
 'undeletecomment' => 'Rason:',
 'undeletedrevisions' => '{{PLURAL:$1|Na revision pijàita|$1 revision pijàite}} andré',
@@ -2431,7 +2429,6 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'block' => "Bloché l'utent",
 'unblock' => "Dësbloché l'utent",
 'blockip' => "Bloché l'utent",
-'blockip-title' => "Bloché l'utent",
 'blockip-legend' => "Bloché l'utent",
 'blockiptext' => "Che a deuvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da chèich adrëssa IP o stranòm.<br />
 Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dle [[{{MediaWiki:Policy-url}}|régole ëd {{SITENAME}}]].<br />
@@ -2441,7 +2438,6 @@ Che a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blo
 'ipadressorusername' => 'Adrëssa IP ò stranòm',
 'ipbexpiry' => 'Fin-a al',
 'ipbreason' => 'Rason:',
-'ipbreasonotherlist' => 'Àotr motiv',
 'ipbreason-dropdown' => "*Motiv sòlit për ij blocagi
 ** Avej butà d'anformassion fàosse
 ** Avej gavà dël contnù da 'nt le pàgine
@@ -2457,8 +2453,6 @@ Che a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blo
 'ipbsubmit' => "Bloché st'utent-sì",
 'ipbother' => "N'àutra durà",
 'ipboptions' => "2 ore:2 hours,1 di:1 day,3 di:3 days,na sman-a:1 week,2 sman-e:2 weeks,1 mèis:1 month,3 mèis:3 months,6 mèis:6 months,n'ann:1 year,për sempe:infinite",
-'ipbotheroption' => "d'àutr",
-'ipbotherreason' => 'Àotri motiv/spiegon',
 'ipbhidename' => "Stërmé lë stranòm da 'nt le modìfiche e da 'nt j'elench",
 'ipbwatchuser' => "Ten-e d'euj le pàgine utent e ëd discussion dë st'utent-sì",
 'ipb-disableusertalk' => "Proibì a st'utent ëd modifiché soa pàgina ëd discussion quand a l'é blocà",
@@ -2547,7 +2541,6 @@ Për piasì che a contata sò fornitor ëd conession e che a lo anforma. As trat
 'sorbsreason' => "Soa adrëssa IP a l'é listà coma arpetitor duvert (open proxy) ansima al DNSBL dovrà da {{SITENAME}}.",
 'sorbs_create_account_reason' => "Soa adrëssa IP a l'é listà coma arpetitor duvèrt (open proxy) ansima al DNSBL dovrà da {{SITENAME}}. A peul nen creésse un cont.",
 'xffblockreason' => "N'adrëssa IP ant l'antestassion X-Forwarded-For, la soa o cola d'un servent fantasma che chiel a deuvra, a l'é stàita blocà. La rason dël blocagi inissial a l'era: $1",
-'cant-block-while-blocked' => "A peul pa bloché d'àutri utent antramentre che chiel a l'é blocà.",
 'cant-see-hidden-user' => "L'utent ch'a l'é an camin ch'a preuva a bloché a l'é già stàit blocà e stërmà. Da già ch'a l'ha pa ël drit hideuser, a peul pa vëdde o modifiché ël blocagi ëd cost utent.",
 'ipbblocked' => "A peul pa bloché o dësbloché d'àutri utent, përchè a l'é blocà chiel-midem",
 'ipbnounblockself' => "A l'é nen autorisà a dësblochesse da sol",
@@ -3464,7 +3457,6 @@ J'àutri a saran stërmà coma stàndard.
 'watchlistall2' => 'tute',
 'namespacesall' => 'tùit',
 'monthsall' => 'tuti',
-'limitall' => 'tùit',
 
 # Email address confirmation
 'confirmemail' => "Confermé l'adrëssa postal",
@@ -3489,7 +3481,6 @@ Che a controla l'adrëssa che a l'ha dane, mai che a-i fusso dij caràter nen v�
 'confirmemail_needlogin' => 'A venta $1 për confermé soa adrëssa ëd pòsta eletrònica.',
 'confirmemail_success' => "Soa adrëssa a l'é stàita confermà, adess a peul [[Special:UserLogin|rintré ant ël sistema]] e i-j auguroma da fessla bin ant la wiki!",
 'confirmemail_loggedin' => "Motobin mersì. Soa adrëssa ëd pòsta eletrònica adess a l'é confermà.",
-'confirmemail_error' => "Cheicòs a l'é andà mal ën salvand soa conferma.",
 'confirmemail_subject' => "Conferma dl'adrëssa postal da 'nt la {{SITENAME}}",
 'confirmemail_body' => "Cheidun, a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP $1,
 a l'ha duvertà un cont utent «$2» ansima a {{SITENAME}}, lassand-ne st'adrëssa ëd pòsta eletrònica-sì.
@@ -3567,6 +3558,11 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'imgmultipagenext' => 'pàgina anans →',
 'imgmultigo' => 'Andé!',
 'imgmultigoto' => 'Andé a la pàgina $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(lenga predefinìa)',
+'img-lang-info' => 'Rende costa plancia an $1 $2.',
+'img-lang-go' => 'Andé',
 
 # Table pager
 'ascending_abbrev' => 'a chërse',
@@ -3758,7 +3754,6 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 
 # Special:ComparePages
 'comparepages' => 'Confronté dle pàgine',
-'compare-selector' => 'Confronté le revision dle pàgine',
 'compare-page1' => 'Pàgina 1',
 'compare-page2' => 'Pàgina 2',
 'compare-rev1' => 'Revision 1',

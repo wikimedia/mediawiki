@@ -837,7 +837,7 @@ No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]]
 Usa el formulario de abajo para iniciar sesión como otro usuario.',
 'userlogin-createanother' => 'Crear otra cuenta',
 'createacct-join' => 'Introduce tus datos debajo.',
-'createacct-another-join' => 'Introduzca la información de la nueva cuenta a continuación.',
+'createacct-another-join' => 'Escribe la información de la cuenta nueva a continuación.',
 'createacct-emailrequired' => 'Dirección de correo electrónico',
 'createacct-emailoptional' => 'Dirección de correo electrónico (opcional)',
 'createacct-email-ph' => 'Escribe tu dirección de correo electrónico',
@@ -1790,7 +1790,6 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchanges-label-unpatrolled' => 'Esta edición todavía no se ha patrullado',
 'recentchanges-label-plusminus' => 'El tamaño de la página cambió esta cantidad de bytes',
 'recentchanges-legend-newpage' => '(véase también la [[Special:NewPages|lista de páginas nuevas]])',
-'rcnote' => "Debajo {{PLURAL:$1|hay '''1''' cambio efectuado|están los últimos '''$1''' cambios efectuados}} en  {{PLURAL:$2|el último día|los últimos '''$2''' días}}, hasta el $4, $5.",
 'rcnotefrom' => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom' => 'Mostrar nuevos cambios desde $1',
 'rcshowhideminor' => '$1 ediciones menores',
@@ -2677,7 +2676,6 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletebtn' => 'Restaurar',
 'undeletelink' => 'ver/restaurar',
 'undeleteviewlink' => 'ver',
-'undeletereset' => 'Cancelar',
 'undeleteinvert' => 'Invertir selección',
 'undeletecomment' => 'Razón:',
 'undeletedrevisions' => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
@@ -2766,7 +2764,6 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'block' => 'Bloquear usuario',
 'unblock' => 'Desbloquear usuario',
 'blockip' => 'Bloquear usuario',
-'blockip-title' => 'Bloquear usuario',
 'blockip-legend' => 'Bloquear usuario',
 'blockiptext' => 'Usa el siguiente formulario para bloquear el acceso de escritura desde una dirección IP específica o nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
@@ -2774,7 +2771,6 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'ipadressorusername' => 'Dirección IP o nombre de usuario:',
 'ipbexpiry' => 'Caducidad:',
 'ipbreason' => 'Motivo:',
-'ipbreasonotherlist' => 'Otra razón',
 'ipbreason-dropdown' => '*Motivos comunes de bloqueo
 ** Añadir información falsa
 ** Eliminar contenido de las páginas
@@ -2790,8 +2786,6 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'ipbsubmit' => 'Bloquear a este usuario',
 'ipbother' => 'Especificar caducidad',
 'ipboptions' => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite',
-'ipbotheroption' => 'otro',
-'ipbotherreason' => 'Otra razón:',
 'ipbhidename' => 'Ocultar nombre de usuario de ediciones y listas',
 'ipbwatchuser' => 'Vigilar las páginas de usuario y de discusión de este usuario',
 'ipb-disableusertalk' => 'Impedir que este usuario edite su propia página de discusión mientras esté bloqueado',
@@ -2879,7 +2873,6 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'sorbsreason' => 'Su dirección IP está listada como proxy abierto en DNSBL.',
 'sorbs_create_account_reason' => 'Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta',
 'xffblockreason' => 'Una dirección IP presente en la cabecera X-Forwarded-For, tuya o del servidor proxy que estás usando, ha sido bloqueada. El motivo original del bloqueo fue: $1',
-'cant-block-while-blocked' => 'No puedes bloquear a otros usuarios mientras estás bloquead{{GENDER:|o|a}}.',
 'cant-see-hidden-user' => 'El usuario que está intentando bloquear ya ha sido bloqueado y oculto. Puesto que usted no tiene el derecho hideuser, usted no puede ver o editar los bloqueos del usuario.',
 'ipbblocked' => 'No puedes bloquear o desbloquear a otros usuarios porque estás bloqueado',
 'ipbnounblockself' => 'No puedes desbloquearte',
@@ -3815,7 +3808,6 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'watchlistall2' => 'todos',
 'namespacesall' => 'todos',
 'monthsall' => 'todos',
-'limitall' => 'Todos',
 
 # Email address confirmation
 'confirmemail' => 'Confirmar dirección de correo electrónico',
@@ -3835,7 +3827,6 @@ El servidor indicó el error: $1',
 'confirmemail_success' => 'Su dirección de correo ha sido confirmada
 Ahora puedes [[Special:UserLogin|identificarte]] y colaborar en el wiki.',
 'confirmemail_loggedin' => 'Tu dirección de correo electrónico ha sido confirmada.',
-'confirmemail_error' => 'Algo salió mal al guardar su confirmación.',
 'confirmemail_subject' => 'confirmación de la dirección de correo de {{SITENAME}}',
 'confirmemail_body' => 'Alguien, probablemente usted mismo, ha registrado desde la dirección IP $1 la cuenta "$2" en {{SITENAME}}, utilizando esta dirección de correo.
 
@@ -4084,7 +4075,6 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 
 # Special:ComparePages
 'comparepages' => 'Comparar páginas',
-'compare-selector' => 'Comparar revisiones de página',
 'compare-page1' => 'Página 1',
 'compare-page2' => 'Página 2',
 'compare-rev1' => 'Revisión 1',

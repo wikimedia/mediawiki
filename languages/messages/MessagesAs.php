@@ -1583,7 +1583,6 @@ $1",
 'recentchanges-label-minor' => 'এইটো অগুৰুত্বপূৰ্ণ সম্পাদনা',
 'recentchanges-label-bot' => "এই সম্পাদনা ব'টৰ দ্বাৰা কৰা হৈছে",
 'recentchanges-label-unpatrolled' => 'এই সম্পাদনাটো এতিয়াও পৰীক্ষা কৰা হোৱা নাই',
-'rcnote' => "যোৱা {{PLURAL:$2|দিনত|'''$2''' দিনত}} সংঘটিত {{PLURAL:$1|'''১'''|'''$1'''}}টা সালসলনি, $5, $4 পৰ্যন্ত ।",
 'rcnotefrom' => "তলত '''$2''' ৰ পৰা হোৱা ('''$1''' লৈকে) পৰিৱৰ্তন দেখুৱা হৈছে ।",
 'rclistfrom' => '$1ৰ পৰা নতুন সালসলনি দেখুৱাওক',
 'rcshowhideminor' => '$1 -সংখ্যক নগণ্য সম্পাদনা',
@@ -2469,7 +2468,6 @@ $UNWATCHURL
 'undeletebtn' => 'পুনঃসংস্থাপন কৰক',
 'undeletelink' => 'লক্ষ্য কৰক/ঘূৰাই আনক',
 'undeleteviewlink' => 'দেখুৱাওক',
-'undeletereset' => 'পূৰ্বৰ অৱস্থালৈ লৈ যাওক',
 'undeleteinvert' => 'নিৰ্বাচন ওলোটা কৰক',
 'undeletecomment' => 'কাৰণ:',
 'undeletedrevisions' => '{{PLURAL:$1|১টা সংশোধন|$1টা সংশোধন}} পুনৰুদ্ধাৰ কৰা হৈছে',
@@ -2558,7 +2556,6 @@ $1',
 'block' => 'সদস্য বাৰণ কৰক',
 'unblock' => 'সদস্যৰ বাৰণ উঠাই লওক',
 'blockip' => 'সদস্য বাৰণ কৰক',
-'blockip-title' => 'সদস্য বাৰণ কৰক',
 'blockip-legend' => 'সদস্য বাৰণ কৰক',
 'blockiptext' => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি কোনো নিৰ্দিষ্ট আই.পি. ঠিকনা বা সদস্যনামৰ লিখাৰ অধিকাৰ বাৰণ কৰিব পাৰে ।
 কেৱল ধ্বংসপ্ৰৱণতা ৰোধ কৰিবলৈ আৰু [[{{MediaWiki:Policy-url}}|নীতি]] মানি চলি এনে কৰক ।
@@ -2566,7 +2563,6 @@ $1',
 'ipadressorusername' => 'আই-পি ঠিকনা বা সদস্যনাম:',
 'ipbexpiry' => 'ম্যাদ উকলিব:',
 'ipbreason' => 'কাৰণ:',
-'ipbreasonotherlist' => 'অন্য কাৰণ',
 'ipbreason-dropdown' => '*প্ৰতিবন্ধকৰ সাধাৰণ কাৰণসমূহ
 ** ভুল তথ্য দিয়া
 ** পৃষ্ঠাৰ বিষয়বস্তু আঁতৰাই পেলোৱা
@@ -2582,8 +2578,6 @@ $1',
 'ipbsubmit' => 'এই সদস্যক বাৰণ কৰক',
 'ipbother' => 'অন্য সময়:',
 'ipboptions' => '২ ঘণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনিৰ্দিষ্ট কাল:infinite',
-'ipbotheroption' => 'অন্যান্য',
-'ipbotherreason' => 'অন্য/অতিৰিক্ত কাৰণ:',
 'ipbhidename' => 'সম্পাদনা আৰু তালিকা সমূহৰ পৰা সদস্যনাম আঁৰ দিয়ক',
 'ipbwatchuser' => 'এই সদস্যৰ সদস্য আৰু আলোচনা পৃষ্ঠা লক্ষ্য কৰক',
 'ipb-disableusertalk' => 'প্ৰতিবন্ধক থকা অৱস্থাত এই সদস্যজনক নিজৰ কথা-বতৰা পৃষ্ঠা সম্পাদনা কৰাৰ পৰা বিৰত কৰক',
@@ -2675,7 +2669,6 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'sorbsreason' => '{{SITENAME}}ত ব্যৱহাৰ কৰা DNSBLত আপোনাৰ আই.পি. ঠিকনা মুক্ত প্ৰক্সী হিছাপে তালিকাভুক্ত হৈ আছে ।',
 'sorbs_create_account_reason' => '{{SITENAME}}ত ব্যৱহাৰ কৰা DNSBLত আপোনাৰ আই.পি. ঠিকনা মুক্ত প্ৰক্সী হিছাপে তালিকাভুক্ত হৈ আছে ।
 আপুনি একাউণ্ট সৃষ্টি কৰিব নোৱাৰে',
-'cant-block-while-blocked' => 'নিজেই অৱৰোধিত হৈ থকা অৱস্থাত আপুনি আন সদস্যক অৱৰোধ কৰিব নোৱাৰে ।',
 'cant-see-hidden-user' => 'আপুনি বাৰণ কৰিব বিচৰা সদস্যজনক ইতিমধ্যেই বাৰণ কৰি গোপন কৰা হৈছে ।
 যিহেতু আপোনাৰ সদস্যগোপনতা অধিকাৰ নাই, আপুনি সদস্যজনৰ প্ৰতিবন্ধক চাব বা সম্পাদনা কৰিব নোৱাৰে ।',
 'ipbblocked' => 'আপুনি আন সদস্যক অৱৰোধ কৰিব বা আঁতৰাব নোৱাৰে, কাৰণ আপুনি নিজেই বাধাপ্ৰাপ্ত অৱস্থাত আছে',
@@ -3579,7 +3572,6 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'watchlistall2' => 'সকলো',
 'namespacesall' => 'সকলোবোৰ',
 'monthsall' => 'সকলো',
-'limitall' => 'সকলোবোৰ',
 
 # Email address confirmation
 'confirmemail' => 'ই-মেইল ঠিকনা নিশ্চিত কৰক',
@@ -3603,7 +3595,6 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'confirmemail_success' => 'আপোনাৰ ই-মেইল ঠিকনা নিশ্চিতকৰণ কৰা হৈছে ।
 আপুনি এতিয়া [[Special:UserLogin|প্ৰৱেশ]] কৰক আৰু ৱিকি উপভোগ কৰক ।',
 'confirmemail_loggedin' => 'আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰা হৈছে ।',
-'confirmemail_error' => 'আপোনাৰ নিশ্চিতকৰণ সংৰক্ষণ কৰাত কিছু সমস্যা হৈছে ।',
 'confirmemail_subject' => '{{SITENAME}} ই-মেইল ঠিকনা নিশ্চিতকৰণ',
 'confirmemail_body' => 'কোনোবাই (সম্ভৱতঃ আপুনি) আই.পি. ঠিকনা $1ৰ পৰা এইটো ই-মেইল ঠিকনা ব্যৱহাৰ কৰি {{SITENAME}}ত
 এটা একাউণ্ট "$2" পঞ্জীয়ন কৰিছে ।
@@ -3852,7 +3843,6 @@ $5
 
 # Special:ComparePages
 'comparepages' => 'পৃষ্ঠা তুলনা কৰক',
-'compare-selector' => 'পৃষ্ঠা পুনৰীক্ষন তুলনা কৰক',
 'compare-page1' => 'পৃষ্ঠা ১',
 'compare-page2' => 'পৃষ্ঠা ২',
 'compare-rev1' => 'পুনৰীক্ষণ ১',

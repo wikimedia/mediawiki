@@ -1496,7 +1496,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'recentchanges-label-bot' => 'Die Bearbeitig isch dur e Bott uusgfiert wore',
 'recentchanges-label-unpatrolled' => 'Die Bearbeitig isch nonig vun eme Fäldhieter aagluegt wore',
 'recentchanges-legend-newpage' => '$1 - neji Syte',
-'rcnote' => "Azeigt {{PLURAL:$1|wird '''1''' Änderig|wärde di letschte '''$1''' Änderige}} {{PLURAL:$2|vom letschte Tag|i de letschte '''$2''' Täg}} (Stand: $4, $5)",
 'rcnotefrom' => 'Des sin d Ändrige syter <b>$2</b> (bis zem <b>$1</b> zeigt).',
 'rclistfrom' => '<small>Nöji Änderige ab $1 aazeige (UTC)</small>',
 'rcshowhideminor' => 'Chlynigkeite $1',
@@ -2328,7 +2327,6 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeletebtn' => 'Widerhärstelle',
 'undeletelink' => 'aaluege/widerhärstelle',
 'undeleteviewlink' => 'aaluege',
-'undeletereset' => 'Abbräche',
 'undeleteinvert' => 'Uswahl umchehre',
 'undeletecomment' => 'Grund:',
 'undeletedrevisions' => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
@@ -2417,14 +2415,12 @@ Do chunnt dr aktuäll Yytrag us em Benutzersperr-Logbuech:',
 'block' => 'Benutzer sperre',
 'unblock' => 'Benutzer frejgee',
 'blockip' => 'Däm Binutzer d Bearbeitigsrächt furtnee',
-'blockip-title' => 'Benutzer sperre',
 'blockip-legend' => 'IP-Adräss/Benutzer sperre',
 'blockiptext' => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
 Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
 'ipadressorusername' => 'IP-Adräss oder Benutzername:',
 'ipbexpiry' => 'Sperrduur:',
 'ipbreason' => 'Grund:',
-'ipbreasonotherlist' => 'Anderi Begrindig',
 'ipbreason-dropdown' => '* Allgmeini Sperrgrind
 ** Lesche vu Syte
 ** Aalege vu bledsinnige Syte
@@ -2442,8 +2438,6 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'ipbsubmit' => 'IP-Adräss/Benutzer sperre',
 'ipbother' => 'Anderi Duur (englisch):',
 'ipboptions' => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite',
-'ipbotheroption' => 'Anderi Duur',
-'ipbotherreason' => 'Anderi/zuesätzligi Begrindig:',
 'ipbhidename' => 'Benutzername in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
 'ipbwatchuser' => 'Benutzer(diskussions)syte beobachte',
 'ipb-disableusertalk' => 'Dää Benutzer dra hindere syy eigeni Diskussionssyte z bearbeite, solang er gsperrt isch',
@@ -2527,7 +2521,6 @@ Go d Sperri ufhebe lueg d [[Special:BlockList|Lisch vu allene aktive Sperrine]].
 'proxyblockreason' => 'Dyni IP-Adrässe isch gsperrt wore, wel si ne ufige Proxy isch. Bitte kontaktier Dyyn Internet-Provider oder Dyni Systemadministratore un informier si iber des Sicherheitsproblem.',
 'sorbsreason' => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet.',
 'sorbs_create_account_reason' => 'D IP-Adräss isch in dr DNSBL vu {{SITENAME}} as uffige PROXY glischtet. S Aalege vu neije Benutzer isch nit megli.',
-'cant-block-while-blocked' => 'Du derfsch kei anderi Benutzer sperre, derwylscht Du sälber gsperrt bisch.',
 'cant-see-hidden-user' => 'Dr Benutzer, wu Du versuechsch z sperre, isch scho gsperrt un versteckt wore. Du chasch d Sperri vu däm Benutzer nit säh oder bearbeite, wel du s „hideuser“-Rächt nit hesch.',
 'ipbblocked' => 'Du chasch keini andere Benutzer sperre oder entsperre, wel Du sälber gsperrt bisch',
 'ipbnounblockself' => 'Du derfsch di nit sälber entsperre',
@@ -3374,7 +3367,6 @@ Andri wäre standardmäßig nit aazeigt.
 'watchlistall2' => 'alli',
 'namespacesall' => 'alli',
 'monthsall' => 'alli',
-'limitall' => 'alli',
 
 # Email address confirmation
 'confirmemail' => 'Bstätigung vo Ihre E-Poscht-Adräss',
@@ -3392,7 +3384,6 @@ Ruggmäldig vum Mailserver: $1',
 'confirmemail_needlogin' => 'Du muesch dich $1, zume dyni E-Mail-Adress bstätige.',
 'confirmemail_success' => 'Dyni E-Mail-Adräss isch bstätiget worde. Du chasch di jitz aamälde.',
 'confirmemail_loggedin' => 'Dyni E-Mail-Adräss isch jitz bstätigt.',
-'confirmemail_error' => 'Öbis isch bim Bestätige vo dynrer E-Mail-Adress schief gloffe.',
 'confirmemail_subject' => '{{SITENAME}} E-Mail-Adrässbstätigung',
 'confirmemail_body' => 'Salü
 
@@ -3621,7 +3612,6 @@ E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott 
 
 # Special:ComparePages
 'comparepages' => 'Syte verglyyche',
-'compare-selector' => 'Syteversione verglyyche',
 'compare-page1' => 'Syte 1',
 'compare-page2' => 'Syte 2',
 'compare-rev1' => 'Version 1',

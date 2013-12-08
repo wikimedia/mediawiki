@@ -521,7 +521,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|loli|mau loli}}',
 'recentchanges' => 'Nā loli hou',
-'rcnote' => "ʻO {{PLURAL:$1|ka loli '''1'''|nā loli hope '''$1'''}} ma hope mai {{PLURAL:$2|ka lā hoʻokahi|nā lā '''$2'''}} ma hope, ma $5, $4.",
 'rcshowhideminor' => '$1 i nā ho‘opololei iki',
 'rcshowhidebots' => '$1 i nā lopako',
 'rcshowhideliu' => '$1 i nā mea hoʻohana i ʻeʻe ai',
