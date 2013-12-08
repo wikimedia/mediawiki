@@ -315,8 +315,11 @@ class FixBug20757 extends Maintenance {
 		$flags = explode( ',', $secondaryRow->old_flags );
 		$text = $secondaryRow->old_text;
 		if ( in_array( 'external', $flags ) ) {
+			if ( strpos( $text, '://' ) === false ) {
+				continue;
+			}
 			$url = $text;
-			@list( /* $proto */ , $path ) = explode( '://', $url, 2 );
+			list( /* $proto */ , $path ) = explode( '://', $url, 2 );
 			if ( $path == "" ) {
 				return false;
 			}

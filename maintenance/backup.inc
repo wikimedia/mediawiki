@@ -132,7 +132,9 @@ class BackupDumper {
 		foreach ( $args as $arg ) {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
-				@list( /* $full */ , $opt, $val, $param ) = $matches;
+				$opt = isset( $matches[1] ) ? $matches[1] : null;
+				$val = isset( $matches[2] ) ? $matches[2] : null;
+				$param = isset( $matches[3] ) ? $matches[3] : null;
 				switch ( $opt ) {
 				case "plugin":
 					$this->loadPlugin( $val, $param );
