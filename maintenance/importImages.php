@@ -87,16 +87,16 @@ if ( isset( $options['check-userblock'] ) ) {
 }
 
 # Get --from
-$from = @$options['from'];
+$from = isset( $options['from'] ) ? $options['from'] : null;
 
 # Get sleep time.
-$sleep = @$options['sleep'];
+$sleep = isset( $options['sleep'] ) ? $options['sleep'] : null;
 if ( $sleep ) {
 	$sleep = (int)$sleep;
 }
 
 # Get limit number
-$limit = @$options['limit'];
+$limit = isset( $options['limit'] ) ? $options['limit'] : null;
 if ( $limit ) {
 	$limit = (int)$limit;
 }

@@ -64,7 +64,10 @@ class SearchSqlite extends SearchEngine {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				$modifier = isset( $bits[1] ) ? $bits[1] : null;
+				$term = isset( $bits[2] ) ? $bits[2] : null;
+				$nonQuoted = isset( $bits[3] ) ? $bits[3] : null;
+				$wildcard = isset( $bits[4] ) ? $bits[4] : null;
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

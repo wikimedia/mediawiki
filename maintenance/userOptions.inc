@@ -155,7 +155,10 @@ class UserOptions {
 
 				$userValue = $user->getOption( $this->mAnOption );
 				if ( $userValue <> $defaultOptions[$this->mAnOption] ) {
-					@$ret[$this->mAnOption][$userValue]++;
+					if ( !isset( $ret[$this->mAnOption][$userValue] ) ) {
+						$ret[$this->mAnOption][$userValue] = 0;
+					}
+					$ret[$this->mAnOption][$userValue]++;
 				}
 
 			} else {
@@ -163,7 +166,10 @@ class UserOptions {
 				foreach ( $defaultOptions as $name => $defaultValue ) {
 					$userValue = $user->getOption( $name );
 					if ( $userValue <> $defaultValue ) {
-						@$ret[$name][$userValue]++;
+						if ( !isset( $ret[$name][$userValue] ) ) {
+							$ret[$name][$userValue] = 0;
+						}
+						$ret[$name][$userValue]++;
 					}
 				}
 			}
