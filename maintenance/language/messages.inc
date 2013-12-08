@@ -795,6 +795,7 @@ $wgMessageStructure = array(
 		'undo-success',
 		'undo-failure',
 		'undo-norev',
+		'undo-nochange',
 		'undo-summary',
 		'undo-summary-username-hidden',
 	),
