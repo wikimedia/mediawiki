@@ -4852,6 +4852,7 @@ Parameters:
 * $1 - the number of interwiki links",
 'nlinks' => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
 'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
+'nmemberschanged' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]] if the number of pages in the category has changed since the list was last refreshed. $1 is the original number of members of the category, $2 is the current one.',
 'nrevisions' => 'Used as link text in [[Special:FewestRevisions]].
 
 The link points to the page history (action=history).
