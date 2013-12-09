@@ -357,21 +357,14 @@ class User implements IDBAccessObject {
 	 * @return bool False if the ID does not exist, true otherwise
 	 */
 	public function loadFromId() {
-		global $wgMemc;
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
 			return false;
 		}
 
 		// Try cache
-		$key = wfMemcKey( 'user', 'id', $this->mId );
-		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] != self::VERSION ) {
-			// Object is expired, load from DB
-			$data = false;
-		}
-
-		if ( !$data ) {
+		$cache = $this->loadFromCache();
+		if ( !$cache ) {
 			wfDebug( "User: cache miss for user {$this->mId}\n" );
 			// Load from DB
 			if ( !$this->loadFromDatabase() ) {
@@ -379,15 +372,38 @@ class User implements IDBAccessObject {
 				return false;
 			}
 			$this->saveToCache();
-		} else {
-			wfDebug( "User: got user {$this->mId} from cache\n" );
-			// Restore from cache
-			foreach ( self::$mCacheVars as $name ) {
-				$this->$name = $data[$name];
-			}
 		}
 
 		$this->mLoadedItems = true;
+
+		return true;
+	}
+
+	/**
+	 * Load user data from shared cache, given mId has already been set.
+	 * @return bool false if the ID does not exist or data is invalid, true otherwise
+	 */
+	public function loadFromCache() {
+		global $wgMemc;
+
+		if ( $this->mId == 0 ) {
+			$this->loadDefaults();
+			return false;
+		}
+
+		$key = wfMemcKey( 'user', 'id', $this->mId );
+		$data = $wgMemc->get( $key );
+		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
+			// Object is expired
+			return false;
+		}
+
+		wfDebug( "User: got user {$this->mId} from cache\n" );
+
+		// Restore from cache
+		foreach ( self::$mCacheVars as $name ) {
+			$this->$name = $data[$name];
+		}
 
 		return true;
 	}
