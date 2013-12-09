@@ -243,13 +243,18 @@ class LocalRepo extends FileRepo {
 	public function findFiles( array $items, $flags = 0 ) {
 		$finalFiles = array(); // map of (DB key => corresponding File) for matches
 
-		$searchSet = array(); // map of (DB key => normalized search params)
+		$searchSet = array(); // map of (normalized DB key => search params)
 		foreach ( $items as $item ) {
-			$title = is_array( $item )
-				? File::normalizeTitle( $item['title'] )
-				: File::normalizeTitle( $item );
-			if ( $title ) { // valid title
-				$searchSet[$title->getDbKey()] = ( is_array( $item ) ? $item : array() );
+			if ( is_array( $item ) ) {
+				$title = File::normalizeTitle( $item['title'] );
+				if ( $title ) {
+					$searchSet[$title->getDBkey()] = $item;
+				}
+			} else {
+				$title = File::normalizeTitle( $item );
+				if ( $title ) {
+					$searchSet[$title->getDBkey()] = array();
+				}
 			}
 		}
 
@@ -272,11 +277,12 @@ class LocalRepo extends FileRepo {
 		{
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
-				$dbKey = $file->getName();
-				// There must have been a search for this DB Key
+				$dbKey = $file->getTitle()->getDBkey();
+				// There must have been a search for this exact DB Key
 				if ( $fileMatchesSearch( $file, $searchSet[$dbKey] ) ) {
-					$finalFiles[$dbKey] =
-						( $flags & FileRepo::TIME_ONLY ) ? $file->getTimestamp() : $file;
+					$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
+						? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
+						: $file;
 					unset( $searchSet[$dbKey] );
 				}
 			}
@@ -285,7 +291,10 @@ class LocalRepo extends FileRepo {
 		$dbr = $this->getSlaveDB();
 
 		// Query image table
-		$imgNames = array_keys( $searchSet );
+		$imgNames = array();
+		foreach ( array_keys( $searchSet ) as $dbKey ) {
+			$imgNames[] = $this->getNameFromTitle( File::normalizeTitle( $dbKey ) );
+		}
 		if ( count( $imgNames ) ) {
 			$res = $dbr->select( 'image',
 				LocalFile::selectFields(), array( 'img_name' => $imgNames ), __METHOD__ );
@@ -296,8 +305,13 @@ class LocalRepo extends FileRepo {
 		$oiConds = array(); // WHERE clause array for each file
 		foreach ( $searchSet as $dbKey => $search ) {
 			if ( isset( $search['params']['time'] ) ) {
-				$oiConds[] = $dbr->makeList( array( 'oi_name' => $dbKey,
-					'oi_timestamp' => $dbr->timestamp( $search['params']['time'] ) ), LIST_AND );
+				$oiConds[] = $dbr->makeList(
+					array(
+						'oi_name' => $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ),
+						'oi_timestamp' => $dbr->timestamp( $search['params']['time'] )
+					),
+					LIST_AND
+				);
 			}
 		}
 		if ( count( $oiConds ) ) {
@@ -317,8 +331,14 @@ class LocalRepo extends FileRepo {
 				$file = $this->newFile( $redir );
 				if ( $file && $fileMatchesSearch( $file, $search ) ) {
 					$file->redirectedFrom( $title->getDBkey() );
-					$finalFiles[$dbKey] =
-						( $flags & FileRepo::TIME_ONLY ) ? $file->getTimestamp() : $file;
+					if ( $flags & FileRepo::NAME_AND_TIME_ONLY ) {
+						$finalFiles[$dbKey] = array(
+							'title'     => $file->getTitle()->getDBkey(),
+							'timestamp' => $file->getTimestamp()
+						);
+					} else {
+						$finalFiles[$file->getTitle()->getDBkey()] = $file;
+					}
 				}
 			}
 		}
