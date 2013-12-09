@@ -174,10 +174,27 @@ class RepoGroup {
 	}
 
 	/**
+	 * Search repositories for many files at once.
+	 *
+	 * @param array $items An array of titles, or an array of findFile() options with
+	 *    the "title" option giving the title. Example:
+	 *
+	 *     $findItem = array( 'title' => $title, 'private' => true );
+	 *     $findBatch = array( $findItem );
+	 *     $repo->findFiles( $findBatch );
+	 *
+	 *    No title should appear in $items twice, as the result use titles as keys
+	 * @param int $flags Supports:
+	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
+	 *       The search title uses the input titles; the other is the final post-redirect title.
+	 *       All titles are returned as string DB keys and the inner array is associative.
+	 * @return array Map of (file name => File objects) for matches
+	 *
 	 * @param array $inputItems
+	 * @param integer $flags
 	 * @return array
 	 */
-	function findFiles( $inputItems ) {
+	function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
@@ -193,7 +210,7 @@ class RepoGroup {
 			}
 		}
 
-		$images = $this->localRepo->findFiles( $items );
+		$images = $this->localRepo->findFiles( $items, $flags );
 
 		foreach ( $this->foreignRepos as $repo ) {
 			// Remove found files from $items
@@ -201,7 +218,7 @@ class RepoGroup {
 				unset( $items[$name] );
 			}
 
-			$images = array_merge( $images, $repo->findFiles( $items ) );
+			$images = array_merge( $images, $repo->findFiles( $items, $flags ) );
 		}
 
 		return $images;
