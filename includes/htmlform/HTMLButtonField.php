@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Adds a generic button inline to the form. Does not do anything, you must add
  * click handling code in JavaScript. Use a HTMLSubmitField if you merely
@@ -10,7 +11,7 @@ class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
 
 	public function __construct( $info ) {
-		$info[ 'nodata' ] = true;
+		$info['nodata'] = true;
 		parent::__construct( $info );
 	}
 
@@ -20,8 +21,8 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 		);
 
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attr[ 'disabled' ] = 'disabled';
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attr['disabled'] = 'disabled';
 		}
 
 		return Html::input( $this->mName, $value, $this->buttonType, $attr );

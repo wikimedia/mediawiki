@@ -1,9 +1,9 @@
 <?php
+
 /**
  * Radio checkbox fields.
  */
 class HTMLRadioField extends HTMLFormField {
-
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -11,11 +11,11 @@ class HTMLRadioField extends HTMLFormField {
 			return $p;
 		}
 
-		if ( ! is_string( $value ) && ! is_int( $value ) ) {
+		if ( !is_string( $value ) && !is_int( $value ) ) {
 			return false;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams[ 'options' ] );
+		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
@@ -33,7 +33,7 @@ class HTMLRadioField extends HTMLFormField {
 	 * @return String
 	 */
 	function getInputHTML( $value ) {
-		$html = $this->formatOptions( $this->mParams[ 'options' ], $value );
+		$html = $this->formatOptions( $this->mParams['options'], $value );
 
 		return $html;
 	}
@@ -42,11 +42,11 @@ class HTMLRadioField extends HTMLFormField {
 		$html = '';
 
 		$attribs = array();
-		if ( ! empty( $this->mParams[ 'disabled' ] ) ) {
-			$attribs[ 'disabled' ] = 'disabled';
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
 		}
 
-		# TODO: should this produce an unordered list perhaps?
+		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
 				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
@@ -56,7 +56,11 @@ class HTMLRadioField extends HTMLFormField {
 				$radio = Xml::radio( $this->mName, $info, $info == $value, $attribs + array( 'id' => $id ) );
 				$radio .= '&#160;' . Html::rawElement( 'label', array( 'for' => $id ), $label );
 
-				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-flatlist-item' ), $radio );
+				$html .= ' ' . Html::rawElement(
+					'div',
+					array( 'class' => 'mw-htmlform-flatlist-item' ),
+					$radio
+				);
 			}
 		}
 

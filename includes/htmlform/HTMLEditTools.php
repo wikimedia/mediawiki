@@ -1,4 +1,5 @@
 <?php
+
 class HTMLEditTools extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		return '';
@@ -7,7 +8,11 @@ class HTMLEditTools extends HTMLFormField {
 	public function getTableRow( $value ) {
 		$msg = $this->formatMsg();
 
-		return '<tr><td></td><td class="mw-input">' . '<div class="mw-editTools">' . $msg->parseAsBlock() . "</div></td></tr>\n";
+		return
+			'<tr><td></td><td class="mw-input">' .
+			'<div class="mw-editTools">' .
+			$msg->parseAsBlock() .
+			"</div></td></tr>\n";
 	}
 
 	/**
@@ -15,6 +20,7 @@ class HTMLEditTools extends HTMLFormField {
 	 */
 	public function getDiv( $value ) {
 		$msg = $this->formatMsg();
+
 		return '<div class="mw-editTools">' . $msg->parseAsBlock() . '</div>';
 	}
 
@@ -26,15 +32,16 @@ class HTMLEditTools extends HTMLFormField {
 	}
 
 	protected function formatMsg() {
-		if ( empty( $this->mParams[ 'message' ] ) ) {
+		if ( empty( $this->mParams['message'] ) ) {
 			$msg = $this->msg( 'edittools' );
 		} else {
-			$msg = $this->msg( $this->mParams[ 'message' ] );
+			$msg = $this->msg( $this->mParams['message'] );
 			if ( $msg->isDisabled() ) {
 				$msg = $this->msg( 'edittools' );
 			}
 		}
 		$msg->inContentLanguage();
+
 		return $msg;
 	}
 }
