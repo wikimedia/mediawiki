@@ -40,10 +40,10 @@
 			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) +
 				( accesskeyTip ? ' ' + accesskeyTip[0] : '' )
 			)
-			.attr( 'href', mw.util.wikiScript() + '?' + $.param({
+			.attr( 'href', mw.util.wikiScript() + '?' + $.param( {
 					title: title,
 					action: action
-				})
+				} )
 			);
 
 		// Most common ID style
@@ -126,52 +126,46 @@
 			updateWatchLink( $link, action, 'loading' );
 
 			api = new mw.Api();
-			api[action](
-				title,
-				// Success
-				function ( watchResponse ) {
-					var $li, otherAction;
+			api[action]( title )
+			.done( function ( watchResponse ) {
+				var otherAction;
 
-					otherAction = action === 'watch' ? 'unwatch' : 'watch';
-					$li = $link.closest( 'li' );
+				otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-					mw.notify( $.parseHTML( watchResponse.message ), {
-						tag: 'watch-self'
-					} );
+				mw.notify( $.parseHTML( watchResponse.message ), {
+					tag: 'watch-self'
+				} );
 
-					// Set link to opposite
-					updateWatchLink( $link, otherAction );
+				// Set link to opposite
+				updateWatchLink( $link, otherAction );
 
-					// Bug 12395 - update the watch checkbox on edit pages when the
-					// page is watched or unwatched via the tab.
-					if ( watchResponse.watched !== undefined ) {
-						$( '#wpWatchthis' ).prop( 'checked', true );
-					} else {
-						$( '#wpWatchthis' ).prop( 'checked', false );
-					}
-				},
-				// Error
-				function () {
-					var cleanTitle, msg, link;
-
-					// Reset link to non-loading mode
-					updateWatchLink( $link, action );
-
-					// Format error message
-					cleanTitle = title.replace( /_/g, ' ' );
-					link = mw.html.element(
-						'a', {
-							href: mw.util.getUrl( title ),
-							title: cleanTitle
-						}, cleanTitle
-					);
-					msg = mw.message( 'watcherrortext', link );
-
-					// Report to user about the error
-					mw.notify( msg, { tag: 'watch-self' } );
-
+				// Bug 12395 - update the watch checkbox on edit pages when the
+				// page is watched or unwatched via the tab.
+				if ( watchResponse.watched !== undefined ) {
+					$( '#wpWatchthis' ).prop( 'checked', true );
+				} else {
+					$( '#wpWatchthis' ).prop( 'checked', false );
 				}
-			);
+			} )
+			.fail( function () {
+				var cleanTitle, msg, link;
+
+				// Reset link to non-loading mode
+				updateWatchLink( $link, action );
+
+				// Format error message
+				cleanTitle = title.replace( /_/g, ' ' );
+				link = mw.html.element(
+					'a', {
+						href: mw.util.getUrl( title ),
+						title: cleanTitle
+					}, cleanTitle
+				);
+				msg = mw.message( 'watcherrortext', link );
+
+				// Report to user about the error
+				mw.notify( msg, { tag: 'watch-self' } );
+			} );
 		} );
 	} );
 
