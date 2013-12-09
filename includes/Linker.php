@@ -915,10 +915,10 @@ class Linker {
 
 			$thumb15 = $file->transform( $hp15 );
 			$thumb20 = $file->transform( $hp20 );
-			if ( $thumb15->getUrl() !== $thumb->getUrl() ) {
+			if ( $thumb15 && $thumb15->getUrl() !== $thumb->getUrl() ) {
 				$thumb->responsiveUrls['1.5'] = $thumb15->getUrl();
 			}
-			if ( $thumb20->getUrl() !== $thumb->getUrl() ) {
+			if ( $thumb20 && $thumb20->getUrl() !== $thumb->getUrl() ) {
 				$thumb->responsiveUrls['2'] = $thumb20->getUrl();
 			}
 		}
