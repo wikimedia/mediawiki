@@ -509,6 +509,8 @@ CREATE INDEX &mw_prefix.logging_i02 ON &mw_prefix.logging (log_user, log_timesta
 CREATE INDEX &mw_prefix.logging_i03 ON &mw_prefix.logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i04 ON &mw_prefix.logging (log_timestamp);
 CREATE INDEX &mw_prefix.logging_i05 ON &mw_prefix.logging (log_type, log_action, log_timestamp);
+CREATE INDEX &mw_prefix.logging_i06 ON &mw_prefix.logging (log_user_text, log_type, log_timestamp);
+CREATE INDEX &mw_prefix.logging_i07 ON &mw_prefix.logging (log_user_text, log_timestamp);
 
 CREATE TABLE &mw_prefix.log_search (
   ls_field VARCHAR2(32) NOT NULL,

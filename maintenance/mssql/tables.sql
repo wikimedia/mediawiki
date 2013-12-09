@@ -619,6 +619,8 @@ CREATE INDEX /*$wgDBprefix*/page_time ON /*$wgDBprefix*/logging (log_namespace, 
 CREATE INDEX /*$wgDBprefix*/times ON /*$wgDBprefix*/logging (log_timestamp);
 CREATE INDEX /*$wgDBprefix*/log_user_type_time ON /*$wgDBprefix*/logging (log_user, log_type, log_timestamp);
 CREATE INDEX /*$wgDBprefix*/log_page_id_time ON /*$wgDBprefix*/logging (log_page,log_timestamp);
+CREATE INDEX /*$wgDBprefix*/log_user_text_type_time ON /*$wgDBprefix*/logging (log_user_text, log_type, log_timestamp);
+CREATE INDEX /*$wgDBprefix*/log_user_text_time ON /*$wgDBprefix*/logging (log_user_text, log_timestamp);
 
 CREATE TABLE /*$wgDBprefix*/log_search (
 	-- The type of ID (rev ID, log ID, rev timestamp, username)

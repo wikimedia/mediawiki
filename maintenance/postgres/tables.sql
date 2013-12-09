@@ -510,6 +510,8 @@ CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timesta
 CREATE INDEX logging_times ON logging (log_timestamp);
 CREATE INDEX logging_user_type_time ON logging (log_user, log_type, log_timestamp);
 CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
+CREATE INDEX logging_user_text_type_time ON logging (log_user_text, log_type, log_timestamp);
+CREATE INDEX logging_user_text_time ON logging (log_user_text, log_timestamp);
 
 CREATE TABLE log_search (
   ls_field   TEXT     NOT NULL,
