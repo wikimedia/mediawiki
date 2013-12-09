@@ -20,18 +20,12 @@
  * @file
  * @ingroup SpecialPage Watchlist
  */
-class SpecialWatchlist extends SpecialRecentChanges {
-	protected $customFilters;
-
+class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * Constructor
 	 */
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
-	}
-
-	public function isIncludable() {
-		return false;
 	}
 
 	/**
@@ -43,9 +37,8 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
-		// Overwrite RC options with Watchlist options
-		// (calling #add() again is okay)
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
+
 		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
 		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
 		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
@@ -53,7 +46,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
 		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
 
-		// Add new ones
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
 		return $opts;
@@ -105,26 +97,6 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		}
 
 		return $this->customFilters;
-	}
-
-	/**
-	 * Process $par and put options found if $opts. Not used for Watchlist.
-	 *
-	 * @param string $par
-	 * @param FormOptions $opts
-	 */
-	public function parseParameters( $par, FormOptions $opts ) {
-	}
-
-	/**
-	 * Get the current FormOptions for this request
-	 */
-	public function getOptions() {
-		if ( $this->rcOptions === null ) {
-			$this->rcOptions = $this->setup( null );
-		}
-
-		return $this->rcOptions;
 	}
 
 	/**
