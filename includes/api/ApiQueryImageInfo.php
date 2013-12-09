@@ -385,6 +385,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
+		$canonicaltitle = isset( $prop['canonicaltitle'] );
 		$url = isset( $prop['url'] );
 		$sha1 = isset( $prop['sha1'] );
 		$meta = isset( $prop['metadata'] );
@@ -395,13 +396,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$bitdepth = isset( $prop['bitdepth'] );
 		$uploadwarning = isset( $prop['uploadwarning'] );
 
-		if ( ( $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
+		if ( ( $canonicaltitle || $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
 			&& $file->isDeleted( File::DELETED_FILE )
 		) {
 			$vals['filehidden'] = '';
 
 			//Early return, tidier than indenting all following things one level
 			return $vals;
+		}
+
+		if ( $canonicaltitle ) {
+			$vals['canonicaltitle'] = $file->getTitle()->getPrefixedText();
 		}
 
 		if ( $url ) {
@@ -618,6 +623,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'userid' =>         ' userid        - Add the user ID that uploaded the image version',
 			'comment' =>        ' comment       - Comment on the version',
 			'parsedcomment' =>  ' parsedcomment - Parse the comment on the version',
+			'canonicaltitle' => ' canonicaltitle - Adds the canonical title of the image file',
 			'url' =>            ' url           - Gives URL to the image and the description page',
 			'size' =>           ' size          - Adds the size of the image in bytes ' .
 				'and the height, width and page count (if applicable)',
@@ -733,6 +739,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'parsedcomment' => array(
 				'commenthidden' => 'boolean',
 				'parsedcomment' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'canonicaltitle' => array(
+				'canonicaltitle' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				)
