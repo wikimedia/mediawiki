@@ -99,6 +99,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'protocols':
 					$fit = $this->appendProtocols( $p );
 					break;
+				case 'defaultoptions':
+					$fit = $this->appendDefaultOptions( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -238,6 +241,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+
+		$data['thumblimits'] = $GLOBALS['wgThumbLimits'];
+		$this->getResult()->setIndexedTagName( $data['thumblimits'], 'limit' );
+		$data['imagelimits'] = array();
+		$this->getResult()->setIndexedTagName( $data['imagelimits'], 'limit' );
+		foreach ( $GLOBALS['wgImageLimits'] as $k => $limit ) {
+			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
+		}
 
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
@@ -633,6 +644,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
 
+	public function appendDefaultOptions( $property ) {
+		return $this->getResult()->addValue( 'query', $property, User::getDefaultOptions() );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -687,6 +702,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'showhooks',
 					'variables',
 					'protocols',
+					'defaultoptions',
 				)
 			),
 			'filteriw' => array(
@@ -728,6 +744,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
 				' variables             - Returns a list of variable IDs',
 				' protocols             - Returns a list of protocols that are allowed in external links.',
+				' defaultoptions        - Returns the default values for user preferences.',
 			),
 			'filteriw' => 'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
