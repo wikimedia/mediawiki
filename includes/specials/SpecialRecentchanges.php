@@ -26,9 +26,8 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialRecentChanges extends SpecialPage {
-	var $rcOptions, $rcSubpage;
-	protected $customFilters;
+class SpecialRecentChanges extends ChangesListSpecialPage {
+	var $rcSubpage;
 
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
@@ -44,7 +43,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
-		$opts = new FormOptions();
+		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
 		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
@@ -58,10 +57,6 @@ class SpecialRecentChanges extends SpecialPage {
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
 
-		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'invert', false );
-		$opts->add( 'associated', false );
-
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
@@ -69,42 +64,8 @@ class SpecialRecentChanges extends SpecialPage {
 		return $opts;
 	}
 
-	/**
-	 * Create a FormOptions object with options as specified by the user
-	 *
-	 * @param array $parameters
-	 *
-	 * @return FormOptions
-	 */
-	public function setup( $parameters ) {
-		$opts = $this->getDefaultOptions();
-		foreach ( $this->getCustomFilters() as $key => $params ) {
-			$opts->add( $key, $params['default'] );
-		}
-
-		$opts = $this->fetchOptionsFromRequest( $opts );
-
-		// Give precedence to subpage syntax
-		if ( $parameters !== null ) {
-			$this->parseParameters( $parameters, $opts );
-		}
-
+	public function validateOptions( FormOptions $opts ) {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
-
-		return $opts;
-	}
-
-	/**
-	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
-	 *
-	 * Intended for subclassing, e.g. to add a backwards-compatibility layer.
-	 *
-	 * @param FormOptions $parameters
-	 * @return FormOptions
-	 */
-	protected function fetchOptionsFromRequest( $opts ) {
-		$opts->fetchValuesFromRequest( $this->getRequest() );
-		return $opts;
 	}
 
 	/**
@@ -222,8 +183,7 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
-	 * Process $par and put options found if $opts
-	 * Mainly used when including the page
+	 * Process $par and put options found in $opts. Used when including the page.
 	 *
 	 * @param string $par
 	 * @param FormOptions $opts
@@ -669,65 +629,6 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
-	 * Return the legend displayed within the fieldset.
-	 *
-	 * This method is also called from SpecialWatchlist.
-	 *
-	 * @param $context the object available as $this in non-static functions
-	 * @return string
-	 */
-	public static function makeLegend( IContextSource $context ) {
-		global $wgRecentChangesFlags;
-		$user = $context->getUser();
-		# The legend showing what the letters and stuff mean
-		$legend = Xml::openElement( 'dl' ) . "\n";
-		# Iterates through them and gets the messages for both letter and tooltip
-		$legendItems = $wgRecentChangesFlags;
-		if ( !$user->useRCPatrol() ) {
-			unset( $legendItems['unpatrolled'] );
-		}
-		foreach ( $legendItems as $key => $legendInfo ) { # generate items of the legend
-			$label = $legendInfo['title'];
-			$letter = $legendInfo['letter'];
-			$cssClass = isset( $legendInfo['class'] ) ? $legendInfo['class'] : $key;
-
-			$legend .= Xml::element( 'dt',
-				array( 'class' => $cssClass ), $context->msg( $letter )->text()
-			) . "\n";
-			if ( $key === 'newpage' ) {
-				$legend .= Xml::openElement( 'dd' );
-				$legend .= $context->msg( $label )->escaped();
-				$legend .= ' ' . $context->msg( 'recentchanges-legend-newpage' )->parse();
-				$legend .= Xml::closeElement( 'dd' ) . "\n";
-			} else {
-				$legend .= Xml::element( 'dd', array(),
-					$context->msg( $label )->text()
-				) . "\n";
-			}
-		}
-		# (+-123)
-		$legend .= Xml::tags( 'dt',
-			array( 'class' => 'mw-plusminus-pos' ),
-			$context->msg( 'recentchanges-legend-plusminus' )->parse()
-		) . "\n";
-		$legend .= Xml::element(
-			'dd',
-			array( 'class' => 'mw-changeslist-legend-plusminus' ),
-			$context->msg( 'recentchanges-label-plusminus' )->text()
-		) . "\n";
-		$legend .= Xml::closeElement( 'dl' ) . "\n";
-
-		# Collapsibility
-		$legend =
-			'<div class="mw-changeslist-legend">' .
-				$context->msg( 'recentchanges-legend-heading' )->parse() .
-				'<div class="mw-collapsible-content">' . $legend . '</div>' .
-			'</div>';
-
-		return $legend;
-	}
-
-	/**
 	 * Send the text to be displayed above the options
 	 *
 	 * @param FormOptions $opts Unused
@@ -746,14 +647,6 @@ class SpecialRecentChanges extends SpecialPage {
 				/* $interface */ false
 			);
 		}
-	}
-
-	/**
-	 * Send the text to be displayed after the options, for use in subclasses.
-	 *
-	 * @param FormOptions $opts
-	 */
-	function setBottomText( FormOptions $opts ) {
 	}
 
 	/**
@@ -988,14 +881,8 @@ class SpecialRecentChanges extends SpecialPage {
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
+		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
-		// This modules include styles and behavior for the legend box, load it unconditionally
-		$out->addModuleStyles( 'mediawiki.special.changeslist' );
-		$out->addModules( 'mediawiki.special.changeslist.js' );
-	}
-
-	protected function getGroupName() {
-		return 'changes';
 	}
 }
