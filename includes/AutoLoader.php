@@ -47,6 +47,7 @@ $wgAutoloadLocalClasses = array(
 	'CategoryPage' => 'includes/CategoryPage.php',
 	'CategoryViewer' => 'includes/CategoryViewer.php',
 	'ChangesFeed' => 'includes/ChangesFeed.php',
+	'ChangesListSpecialPage' => 'includes/specialpage/ChangesListSpecialPage.php',
 	'ChangeTags' => 'includes/ChangeTags.php',
 	'ChannelFeed' => 'includes/Feed.php',
 	'Collation' => 'includes/Collation.php',
