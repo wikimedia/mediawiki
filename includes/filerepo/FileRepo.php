@@ -40,7 +40,7 @@ class FileRepo {
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
 
-	const TIME_ONLY = 1;
+	const NAME_AND_TIME_ONLY = 1;
 
 	/** @var bool Whether to fetch commons image description pages and display
 	 *    them on the local wiki */
@@ -477,7 +477,9 @@ class FileRepo {
 	 *
 	 *    No title should appear in $items twice, as the result use titles as keys
 	 * @param int $flags Supports:
-	 *     - FileRepo::TIME_ONLY : return a (file name => timestamp) map instead
+	 *     - FileRepo::NAME_AND_TIME_ONLY : return a (search title => (title,timestamp)) map.
+	 *       The search title uses the input titles; the other is the final post-redirect title.
+	 *       All titles are returned as string DB keys and the inner array is associative.
 	 * @return array Map of (file name => File objects) for matches
 	 */
 	public function findFiles( array $items, $flags = 0 ) {
@@ -493,8 +495,15 @@ class FileRepo {
 			}
 			$file = $this->findFile( $title, $options );
 			if ( $file ) {
-				$result[$title->getDBkey()] =
-					( $flags & self::TIME_ONLY ) ? $file->getTimestamp() : $file;
+				$searchName = File::normalizeTitle( $title )->getDBkey(); // must be valid
+				if ( $flags & self::NAME_AND_TIME_ONLY ) {
+					$result[$searchName] = array(
+						'title'     => $file->getTitle()->getDBkey(),
+						'timestamp' => $file->getTimestamp()
+					);
+				} else {
+					$result[$searchName] = $file;
+				}
 			}
 		}
 
