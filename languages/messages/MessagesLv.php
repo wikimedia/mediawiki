@@ -1939,8 +1939,8 @@ Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:
 'editcomment' => "Attiecīgās izmaiņas kopsavilkums bija: \"''\$1''\".",
 'revertpage' => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]',
 'revertpage-nouser' => 'Novērsu (lietotājvārds slēpts) izmaiņas, atjaunoju [[User:$1|$1]] versiju.',
-'rollback-success' => 'Tika novērstas $1 izdarītās izmaiņas;
-un tika atjaunota iepriekšējā versija, kuru bija izveidojis $2.',
+'rollback-success' => 'Novērsu izmaiņas, ko izdarīja $1;
+atjaunoju versiju, ko saglabāja $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'sesijas kļūda',

@@ -1897,7 +1897,7 @@ Prosimo, ponovno preverite pravilnost URL-a in delovanje strani.',
 Prosimo, preverite delovanje strani, počakajte kratek čas in poskusite ponovno.
 Morda želite poskusiti ob času manjše zasedenosti.',
 
-'license' => 'Licenciranje:',
+'license' => 'Licenca:',
 'license-header' => 'Licenca',
 'nolicense' => 'Nobeno',
 'license-nopreview' => '(Predogled ni na voljo)',

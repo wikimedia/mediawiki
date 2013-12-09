@@ -3936,6 +3936,11 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'imgmultigo' => 'Accéder !',
 'imgmultigoto' => 'Aller à la page $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(langue par défaut)',
+'img-lang-info' => 'Afficher cette image en $1 $2.',
+'img-lang-go' => 'Lancer',
+
 # Table pager
 'ascending_abbrev' => 'crois.',
 'descending_abbrev' => 'décr.',

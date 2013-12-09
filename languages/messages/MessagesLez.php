@@ -310,7 +310,7 @@ $messages = array(
 'nstab-main' => 'Ччин',
 'nstab-user' => 'Уртахдин ччин',
 'nstab-media' => 'Медиа ччин',
-'nstab-special' => 'Квимекдин ччин',
+'nstab-special' => 'Куьмекдин ччин',
 'nstab-project' => 'Проектдин ччин',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Малумат',
@@ -656,9 +656,9 @@ $messages = array(
 'gender-male' => 'итимдин',
 'gender-female' => 'папарин',
 'email' => 'E-mail',
-'prefs-help-email' => 'Электрон почтунин адрес кхьи  мажбури туш, амма куьне парол рикIелай ракъурдатIа, ам герек жеда.',
+'prefs-help-email' => 'Электрон почтунин адрес кхьин  мажбури туш, амма куьне парол рикIелай ракъурдатIа, ам герек жеда.',
 'prefs-help-email-others' => 'Квевай куь уртахдин, ва я куь веревирдрин ччина элячIун къалурна муькуь уртахар галаз электрон почтадин куькмедалди алакъа хуьз жеда.
-Квез электрондин чар кхьидайла муькуь уртахриз куь электрондин почтадин адрес аквадач.',
+Квез электрон чар кхьидайла муькуь уртахриз куь электрон почтадин адрес аквадач.',
 'prefs-advancedediting' => 'Гегьенш низамарунар',
 'prefs-advancedrc' => 'Гегьенш низамарунар',
 'prefs-advancedrendering' => 'Гегьенш низамарунар',
@@ -791,7 +791,7 @@ $messages = array(
 'img-auth-accessdenied' => 'Гьахьун къадагъа авунва',
 
 'license' => 'Лицензиярун',
-'license-header' => 'Лицинзиярун',
+'license-header' => 'Лицензиярун',
 'nolicense' => 'ЗатIни хкягънавач',
 'license-nopreview' => '(Сифтедин килигун авайд ттуш)',
 'upload_source_file' => ' (куь компьютерда авай файл)',
@@ -1329,5 +1329,10 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'feedback-message' => 'Чар:',
 'feedback-cancel' => 'Гьич авун',
 'feedback-close' => 'Авунва',
+
+# Special:ExpandTemplates
+'expand_templates_xml_output' => 'XML акъудун',
+'expand_templates_ok' => 'ОК',
+'expand_templates_remove_comments' => 'Баянар алудун',
 
 );

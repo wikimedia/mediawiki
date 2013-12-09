@@ -703,6 +703,7 @@ Belka yewna ten kerdo hewn a.',
 'cannotdelete-title' => 'şıma  "$1" nê şenê besternê.',
 'delete-hook-aborted' => 'Esterıtışi terefê çengeli ra ibtal bi.
 Qet tesrih beyan nêbi.',
+'no-null-revision' => 'Qandé "$1" zew rewizyono newe névıraziya.',
 'badtitle' => 'Sernameo xırabın',
 'badtitletext' => 'Sernamey pela ke şıma waşt, nêvêrd, thalo/vengo ya ki zıwano miyanêno ğelet gırêdae ya ki sernamey wiki.
 Beno ke, tede yew ya zi zêdê işareti estê ke sernaman de nêxebetiyenê.',
@@ -1416,6 +1417,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'powersearch-togglenone' => 'Çıniyo',
 'search-external' => 'Cıgeyrayışê teberi',
 'searchdisabled' => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
+'search-error' => 'Cı geyrayış de zu ğeta emé meydan:$1',
 
 # Preferences page
 'preferences' => 'Tercihi',
@@ -2646,7 +2648,7 @@ $1',
 'namespace' => 'Heruna naman:',
 'invert' => 'Weçinayan ğariç bıasné',
 'tooltip-invert' => 'nameyo ke nışan biyo (u nameyo elekeyın zi nışanyyayo se) vurnayışan  zerrekan nımtışi re ena dore tesdiqi nışan kerê',
-'namespace_association' => 'Cayê nameyanê elaqedaran',
+'namespace_association' => 'Elaqedar nameyé cayan',
 'tooltip-namespace_association' => 'Herunda canemiya elekeyın nışan kerdışi sero qıse kerdışi yana zerre dekerdışi rê ena dora tesdiqi nışan kerê',
 'blanknamespace' => '(Ser)',
 
@@ -3932,6 +3934,11 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'imgmultipagenext' => 'pela badê cû →',
 'imgmultigo' => 'Şo!',
 'imgmultigoto' => 'Şo pela da $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(hesıbyayi zıwan)',
+'img-lang-info' => 'Resimé $1, $2 ya teké pé ke.',
+'img-lang-go' => 'Bırş',
 
 # Table pager
 'ascending_abbrev' => 'berz',

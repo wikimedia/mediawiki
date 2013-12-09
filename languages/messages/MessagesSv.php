@@ -801,7 +801,7 @@ Använd formuläret nedan för att logga in som en annan användare.',
 'createacct-benefit-heading' => '{{SITENAME}} är skapad av människor som dig.',
 'createacct-benefit-body1' => '{{PLURAL:$1|redigering|redigeringar}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|sida|sidor}}',
-'createacct-benefit-body3' => 'senaste {{PLURAL:$1|bidragsgivare}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|nylig|nyliga}} bidragsgivare',
 'badretype' => 'De lösenord du uppgett överensstämmer inte med varandra.',
 'userexists' => 'Det valda användarnamnet används redan.
 Var god välj ett annat namn.',
@@ -834,7 +834,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'passwordremindertext' => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|ett dygn|$5 dygn}}.
 
 Om denna begäran gjordes av någon annan, eller om du har kommit på ditt lösenord,
-och inte längre önskar ändra det, så kan du ignorera detta meddelande och
+och inte längre önskar ändra det, så kan du ignorera detta meddelande. Då kan du
 fortsätta använda ditt gamla lösenord.',
 'noemail' => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'noemailcreate' => 'Du måste ange en giltig e-postadress',

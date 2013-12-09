@@ -16,6 +16,7 @@
  * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
  * @author Charu
+ * @author Darshan kandolkar
  * @author Dineshjk
  * @author Hemant wikikosh1
  * @author Htt
@@ -618,7 +619,7 @@ $2',
 'yourpasswordagain' => 'कूटशब्द दुबारा लिखें:',
 'createacct-yourpasswordagain' => 'कूटशब्द की पुष्टि करें',
 'createacct-yourpasswordagain-ph' => 'कूटशब्द पुनः लिखें',
-'remembermypassword' => 'इस ब्राउज़र पर मेरा लॉगिन याद रखें (अधिकतम $1 {{PLURAL:$1|दिन|दिनों}} के लिए)',
+'remembermypassword' => 'ह्या ब्राउजराचेर माजो लॉग इन याद दवरात (चडांतचड $1 {{PLURAL:$1|दिस|दिसां}} खातीर)',
 'userlogin-remembermypassword' => 'मुझे लॉग्ड इन रखें',
 'userlogin-signwithsecure' => 'सुरक्षित कनेक्शन का प्रयोग करें',
 'yourdomainname' => 'आपका डोमेन:',
@@ -2158,7 +2159,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'prevpage' => 'पिछला पृष्ठ ($1)',
 'allpagesfrom' => 'इस अक्षर से आरंभ होने वाले पृष्ठ दर्शाएँ:',
 'allpagesto' => 'इस अक्षर से समाप्त होने वाले पृष्ठ दिखाएँ:',
-'allarticles' => 'सभी पृष्ठ',
+'allarticles' => 'सगळी पाना',
 'allinnamespace' => 'सभी पृष्ठ ($1 नामस्थान)',
 'allpagessubmit' => 'जाएँ',
 'allpagesprefix' => 'इस उपपद से शुरू होने वाले पृष्ठ दर्शाएँ:',
@@ -2845,7 +2846,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 
 # Namespace 8 related
 'allmessages' => 'व्यवस्था संदेश',
-'allmessagesname' => 'नाम',
+'allmessagesname' => 'नांव',
 'allmessagesdefault' => 'डिफॉल्ट पाठ',
 'allmessagescurrent' => 'वर्तमान पाठ',
 'allmessagestext' => 'ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [https://www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [//translatewiki.net translatewiki.net] को देखें।',

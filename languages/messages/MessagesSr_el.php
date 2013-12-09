@@ -1189,7 +1189,7 @@ Moguće da je obrisana s vikija ili je preimenovana.
 Pokušajte da [[Special:Search|pretražite viki]] za slične stranice.',
 
 # Revision deletion
-'rev-deleted-comment' => '(opis izmene je uklonjen)',
+'rev-deleted-comment' => '(opis izmene uklonjen)',
 'rev-deleted-user' => '(korisničko ime je uklonjeno)',
 'rev-deleted-event' => '(istorija je uklonjena)',
 'rev-deleted-user-contribs' => '[korisničko ime ili IP adresa je uklonjena – izmena je sakrivena sa spiska doprinosa]',
@@ -2254,7 +2254,7 @@ Pogledajte i [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-pat' => 'Obrazac pretrage:',
 'linksearch-ns' => 'Imenski prostor:',
 'linksearch-ok' => 'Pretraži',
-'linksearch-text' => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
+'linksearch-text' => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.
 Potreban je najviši domen, kao „*.org“.<br />
 {{PLURAL:$2|Podržan protokol|Podržani protokoli}}: <code>$1</code> (zadaje http:// ako ne navedete protokol).',
 'linksearch-line' => '$1 veza u $2',

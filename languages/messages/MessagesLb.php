@@ -1586,6 +1586,7 @@ Dës Informatioun ass ëffentlech.",
 'recentchanges-label-minor' => 'Dëst ass eng kleng Ännerung',
 'recentchanges-label-bot' => 'Dës Ännerung gouf vun engem Bot gemaacht',
 'recentchanges-label-unpatrolled' => 'Dës Ännerung gouf nach net nogekuckt',
+'recentchanges-label-plusminus' => "D'Gréisst vun der Säit huet sech ëm déi Zuel vu Bytes geännert",
 'recentchanges-legend-newpage' => '(kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])',
 'recentchanges-legend-plusminus' => "''(±123)''",
 'rcnotefrom' => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
@@ -3652,6 +3653,8 @@ Dëse Confirmatiounscode leeft den $4 of.',
 'imgmultigoto' => "Géi op d'Säit $1",
 
 # Language selector for translatable SVGs
+'img-lang-default' => '(Standard-Sprooch)',
+'img-lang-info' => 'Dëst Bild op $1$ $2 renderen.',
 'img-lang-go' => 'Lass',
 
 # Table pager
