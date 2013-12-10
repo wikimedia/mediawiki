@@ -59,7 +59,6 @@ $messages = array(
 'tog-minordefault' => 'Swaya diphetogo ka moka bjalo ka diphetogo tše nnyenyane',
 'tog-previewontop' => 'Bontšha Ponopele pele ga lepokisi la diphetogo',
 'tog-previewonfirst' => 'Bontšha Ponopeleka phetogo ya pele',
-'tog-nocache' => "Thibela go tsenya matlakala go segakolodi (''cache'')",
 'tog-enotifwatchlistpages' => 'Nthomele molaetša ge letlaka leo ke le tlhapetšego le eba le diphetogo',
 'tog-enotifusertalkpages' => 'Nromele molaetša ge letlakala la Dipoledišano laka le fetoga',
 'tog-enotifminoredits' => 'Ethomele e-mail ge goba le diphetogo tše nnyenyane go matlakala',

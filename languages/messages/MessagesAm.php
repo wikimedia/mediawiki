@@ -69,7 +69,6 @@ $messages = array(
 'tog-minordefault' => 'ሁሉም እርማቶች በቀዳሚነት አነስተኛ ይባሉ',
 'tog-previewontop' => 'ከማረሚያው ሳጥን በፊት ቅድመ-ዕይታ አሳይ',
 'tog-previewonfirst' => 'በመጀመሪያ እርማት ቅድመ-ዕይታ ይታይ',
-'tog-nocache' => 'ገጾችን በብራውዘር መቆጠብን (cache) አታስችል',
 'tog-enotifwatchlistpages' => 'የምከታተለው ገጽ ወይም ፋይል ሲቀየር ኢ-ሜይል ይላክልኝ',
 'tog-enotifusertalkpages' => 'የተጠቃሚ መወያያ ገጼ ሲቀየር ኢ-ሜይል ይላክልኝ',
 'tog-enotifminoredits' => 'ለአነስተኛ የገጽ እርማቶችም ኢ-ሜይል ይላክልኝ',

@@ -57,7 +57,6 @@ $messages = array(
 'tog-minordefault' => 'Mamuli badlao ke apne se nishaan lagao',
 'tog-previewontop' => 'Badlao waala dabba se pahile ek jhalak dekhao',
 'tog-previewonfirst' => 'Hamaar pahila badlao pe jhalak dekhao',
-'tog-nocache' => 'Browser pe panna ke bachae me rok lagao',
 'tog-enotifwatchlistpages' => 'Jab hamaar dhyaan suchi ke koi panna, nai to file, ke badla jae tab hame E-mail karo',
 'tog-enotifusertalkpages' => 'Jab hamaar baat waala panna ke badla jae tab hame E-mail karo',
 'tog-enotifminoredits' => 'Panna aur file me mamuli badlao khatir bhi hame E-mail karo',

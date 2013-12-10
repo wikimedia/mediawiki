@@ -133,7 +133,6 @@ $messages = array(
 'tog-minordefault' => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop' => 'Mostre anteprime parsore dal spazi pe modifiche',
 'tog-previewonfirst' => 'Mostre anteprime te prime modifiche',
-'tog-nocache' => 'Disative la memorie cache des pagjinis dal sgarfadôr',
 'tog-enotifwatchlistpages' => 'Mandimi une email se la pagjine e gambie',
 'tog-enotifusertalkpages' => 'Mandimi une email cuant che la mê pagjine di discussion e gambie',
 'tog-enotifminoredits' => 'Mandimi une email ancje pai piçui cambiaments ae pagjine',

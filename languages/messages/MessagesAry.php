@@ -38,7 +38,6 @@ $messages = array(
 'tog-minordefault' => 'alm jmia tadilat tafifa iftiradiyan',
 'tog-previewontop' => 'biyn laard lmosbaq qbl sndoq thrir',
 'tog-previewonfirst' => 'Ůbiyn moaayana maa awal tadil',
-'tog-nocache' => 'attl takhzin lmotassafih lsfha',
 'tog-enotifwatchlistpages' => 'sift liya barid electroni ila tbdlat chi sfha f qaaimat lmoraqaba diali',
 'tog-enotifusertalkpages' => 'sift liya rissala electronia ila tbdlat sfht niqach dyali',
 'tog-enotifminoredits' => 'sift liya risala electronia hta bnisba ltadilat tafifa',

@@ -146,7 +146,6 @@ $messages = array(
 'tog-minordefault' => 'Indica de longo comme menô e modiffiche',
 'tog-previewontop' => "Veddi l'anteprimma de d'äto a-o spaçio pe cangiâ",
 'tog-previewonfirst' => "Veddi l'anteprimma a-o primmo cangiamento",
-'tog-nocache' => 'Disabilita a cache de pagine do navegatô',
 'tog-enotifwatchlistpages' => "Famme savéi via e-mail quande 'na paggina o in file inti mæ osservæ a ven cangiâ.",
 'tog-enotifusertalkpages' => "Màndime un messaggio e-mail se gh'é de-e modìffiche inta pagina de discuscion da mæ pagina d'utente.",
 'tog-enotifminoredits' => 'Inviami una email pe e modifiche menoî ascì de pagine e di file',

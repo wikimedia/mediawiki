@@ -403,7 +403,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar todas las ediciones como menores de manera predeterminada',
 'tog-previewontop' => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst' => 'Mostrar previsualización en la primera edición',
-'tog-nocache' => 'Desactivar la caché de páginas del navegador',
 'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando se modifique una página o un archivo de mi lista de seguimiento',
 'tog-enotifusertalkpages' => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
 'tog-enotifminoredits' => 'Notificarme también por correo electrónico los cambios menores de las páginas y archivos',

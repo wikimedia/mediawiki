@@ -64,7 +64,6 @@ $messages = array(
 'tog-minordefault' => 'Marché tute le modìfiche coma cite coma predefinission',
 'tog-previewontop' => 'Smon-e la preuva dzora al quàder ëd modìfica dël test e nen sota',
 'tog-previewonfirst' => 'Smon-e na preuva la prima vira che as fa na modìfica',
-'tog-nocache' => 'Disabilité la memòria local ëd le pàgine dël navigador',
 'tog-enotifwatchlistpages' => "Mandeme un mëssagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine ch'im ten-o sot-euj",
 'tog-enotifusertalkpages' => 'Mandeme un mëssagi ëd pòsta eletrònica quand a-i son dle modìfiche a mia pàgina dle ciaciarade',
 'tog-enotifminoredits' => "Mandeme un mëssagi an pòsta eletrònica bele che për le modìfiche cite dle pàgine o dj'archivi",

@@ -207,7 +207,6 @@ $messages = array(
 'tog-minordefault' => "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
 'tog-previewontop' => "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 'tog-previewonfirst' => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
-'tog-nocache' => 'Säitecache vum Browser desaktivéieren',
 'tog-enotifwatchlistpages' => 'Schéckt mir eng E-Mail wann eng Säit oder e Fichier op menger Iwwerwaachungslëscht geännert gëtt',
 'tog-enotifusertalkpages' => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
 'tog-enotifminoredits' => 'Schéckt mir och bei klengen Ännerungen op vu mir iwwerwaachte Säiten oder Fichieren eng E-Mail.',

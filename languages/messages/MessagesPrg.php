@@ -35,7 +35,6 @@ $messages = array(
 'tog-minordefault' => 'Ebzentlis auprestaminai wissans kitawidīnsnans kāigi malkans',
 'tog-previewontop' => 'Waidinnais pirmādiran pirzdau redigīsnas laūkan',
 'tog-previewonfirst' => 'Waidinnais pirmādiran prei pirman redigīsenin',
-'tog-nocache' => 'Izklaūjais rānkas minīsnan',
 'tog-enotifwatchlistpages' => 'Tenginnais mi e-mail, ik pāusan iz majjan listin stēisan nadirītan ast kitawīdintan',
 'tog-enotifusertalkpages' => 'Iztenginnais mi e-mail, ik majjan diskusiōnis pāusan wīrst būwun kitawīdintan',
 'tog-enotifminoredits' => 'Tenginnais mi e-mail dīgi kaddan kitawīdinsnas as malkan',

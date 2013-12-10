@@ -177,7 +177,6 @@ $messages = array(
 'tog-minordefault' => 'Markeer sjtanderd alle bewirkinge es klein',
 'tog-previewontop' => 'Veurvertuin baove bewèrkingsveld tuine',
 'tog-previewonfirst' => 'Preview laote zien bie de ierste bewirking',
-'tog-nocache' => 'Zèt de browserpaginacaching oet',
 'tog-enotifwatchlistpages' => "Versjik 'ne e-mail nao mich bie bewirkinge van pagina's en bestenj op mien volglies",
 'tog-enotifusertalkpages' => "'ne E-mail nao mich versjikke es emes mien euverlèkpagina verangert",
 'tog-enotifminoredits' => "Versjik  mich 'ne e-mail bie klein bewirkinge op pagina's en bestenj op mien volglies",

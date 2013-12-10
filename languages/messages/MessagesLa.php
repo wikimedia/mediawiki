@@ -183,7 +183,6 @@ $messages = array(
 'tog-minordefault' => 'Notare omnes recensiones quasi minores',
 'tog-previewontop' => 'Monstrare praevisum ante capsam recensiti, non post ipsam',
 'tog-previewonfirst' => 'Praevisum monstrare recensione incipiente',
-'tog-nocache' => 'Sistere paginas apothecare',
 'tog-enotifwatchlistpages' => 'Mittere mihi litteras electronicas si pagina a me custodita vel fasciculus a me custoditus mutatur',
 'tog-enotifusertalkpages' => 'Mittere mihi litteras electronicas si mea disputatio mutatur',
 'tog-enotifminoredits' => 'Mittere mihi litteras electronicas etiam pro recensionibus minoribus',

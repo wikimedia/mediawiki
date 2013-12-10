@@ -35,7 +35,6 @@ $messages = array(
 'tog-minordefault' => 'ಪೂರಾ ಸಂಪಾದನೆನ್ಲಾ ಎಲ್ಯ ಪಂಡ್’ದ್ ಗುರ್ತ ಮಲ್ಪುಲೆ',
 'tog-previewontop' => 'ಮುನ್ನೋಟನ್ ಸಂಪಾದನೆ ಅಂಕಣದ ಮಿತ್ತ್ ತೊಜ್ಪಾಲೆ',
 'tog-previewonfirst' => 'ಶುರುತ ಬದಲಾವಣೆದ ಬೊಕ್ಕ ಮನ್ನೋಟನ್ ತೊಜ್ಪಾಲೆ',
-'tog-nocache' => 'ಪುಟೊತ caching ನ್ ಉಂತಾಲೆ',
 'tog-enotifwatchlistpages' => 'ಎನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಡ್ ಉಪ್ಪುನಂಚಿನ ಒವಾಂಡಲ ಪುಟ ಬದಲಾಂಡ ಎಂಕ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',
 'tog-enotifusertalkpages' => 'ಎನ್ನ ಚರ್ಚೆ ಪುಟ ಬದಲಾಂಡ ಎಂಕ್ ಇ-ಮೇಲ್ ಕಡಪುಡ್ಲೆ',
 'tog-enotifminoredits' => 'ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆ ಆಂಡಲ ಎಂಕ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',

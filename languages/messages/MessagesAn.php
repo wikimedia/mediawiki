@@ -151,7 +151,6 @@ $messages = array(
 'tog-minordefault' => 'Sinyalar por defecto totas as edicions como menors',
 'tog-previewontop' => "Amostrar l'anvista previa antes d'o quatrón d'edición",
 'tog-previewonfirst' => "Amostrar l'anvista previa de l'articlo en a primera edición",
-'tog-nocache' => "Desactivar a ''caché'' d'o navegador",
 'tog-enotifwatchlistpages' => 'Recibir un correu quan se faigan cambios en una pachina cosirata por yo',
 'tog-enotifusertalkpages' => 'Ninviar-me un correu quan cambee a mía pachina de descusión',
 'tog-enotifminoredits' => 'Ninviar-me un correu tamién quan bi haiga edicions menors de pachinas',

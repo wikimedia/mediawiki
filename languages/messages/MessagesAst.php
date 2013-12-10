@@ -85,7 +85,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar toles ediciones como menores de mou predetermináu',
 'tog-previewontop' => "Amosar previsualización enantes del cuadru d'edición",
 'tog-previewonfirst' => 'Amosar previsualización na primera edición',
-'tog-nocache' => 'Desactivar la caché de páxines del restolador',
 'tog-enotifwatchlistpages' => 'Mandame un corréu cuando camude una páxina o ficheru de la mio llista de vixilancia',
 'tog-enotifusertalkpages' => "Mandame un corréu cuando camude la mio páxina d'alderique",
 'tog-enotifminoredits' => 'Mandame tamién un corréu cuando heba ediciones menores de les páxines y ficheros',

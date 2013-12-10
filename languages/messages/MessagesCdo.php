@@ -158,7 +158,6 @@ $messages = array(
 'tog-minordefault' => '默認共所有其編輯都當作過要修改',
 'tog-previewontop' => '敆編輯框以前顯示預覽',
 'tog-previewonfirst' => '敆頭蜀回編輯時候看預覽',
-'tog-nocache' => '無讓瀏覽器頁面緩存',
 'tog-enotifwatchlistpages' => '我其監視單有變時候，發電子郵件乞我',
 'tog-enotifusertalkpages' => '我其討論頁有變時候，發電子郵件乞我',
 'tog-enotifminoredits' => '即使是過要編輯，也著發電子郵件乞我',

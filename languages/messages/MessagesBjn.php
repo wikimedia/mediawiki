@@ -165,7 +165,6 @@ $messages = array(
 'tog-minordefault' => 'Tandai samunyaan babakan sawagai babakan sapalih sacara baku',
 'tog-previewontop' => 'Tampaiakan titilikan sabalum kutak babak',
 'tog-previewonfirst' => 'Tampaiakan titilikan pada babakan panambaian',
-'tog-nocache' => 'Nonaktifkan panyinggahan tungkaran paramban',
 'tog-enotifwatchlistpages' => 'Kirimi ulun sur-él amun sabuting tungkaran dalam daptar itihan ulun baubah',
 'tog-enotifusertalkpages' => 'Surili ulun amun tungkaran pamandiran ulun baubah',
 'tog-enotifminoredits' => 'Kirimi ulun sur-él jua amun ada babakan sapalih matan tungkaran-tungkaran',

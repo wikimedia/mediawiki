@@ -122,7 +122,6 @@ $messages = array(
 'tog-minordefault' => 'Yapqan deñiştirmelerimni kiçik deñiştirmedir dep işaretle',
 'tog-previewontop' => 'Baqıp çıquvnı yazuv pencereniñ üstünde köster',
 'tog-previewonfirst' => 'Deñiştirme saifesine keçkende baqıp çıquvnı köster',
-'tog-nocache' => 'Brauzer saifelerni afızasında tutmasın',
 'tog-enotifwatchlistpages' => 'Közetüv cedvelimdeki bir saife ya da fayl deñiştirilgende maña e-mail yolla',
 'tog-enotifusertalkpages' => 'Qullanıcı saifem deñiştirilgende maña e-mail yolla',
 'tog-enotifminoredits' => 'Saife ya da faylda kiçik deñiştirilme olğanda da de maña e-mail yolla',

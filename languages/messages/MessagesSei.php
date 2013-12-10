@@ -35,7 +35,6 @@ $messages = array(
 'tog-minordefault' => 'Jömde ticpatlöx coccebj bajlöxamde auto',
 'tog-previewontop' => "Cohuatlöx cuáxiit boxde ticpatlöx 'pre",
 'tog-previewonfirst' => 'Cohuatlöx cuáxiitde 1. ticpatlöx',
-'tog-nocache' => 'Necoccebj cachede páhinám',
 'tog-enotifwatchlistpages' => 'E-iitom he páhina he cáminot coccebj quiih',
 'tog-enotifusertalkpages' => 'E-iitom he czaxö páhina he cáminot coccebj quiih',
 'tog-enotifminoredits' => 'E-iitom hede ticpatlöx bajlöxde páhinám',

@@ -228,7 +228,6 @@ $messages = array(
 'tog-minordefault' => 'Označi da su sve izmjene u pravilu manje',
 'tog-previewontop' => 'Prikaži pretpregled prije kutije za uređivanje',
 'tog-previewonfirst' => 'Prikaži pretpregled na prvoj izmjeni',
-'tog-nocache' => 'Onemogući keš (cache) stranica u pregledniku',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-mail kada se promijeni stranica ili datoteka na mom spisku praćenja',
 'tog-enotifusertalkpages' => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
 'tog-enotifminoredits' => 'Pošalji mi e-mail i kod manjih izmjena stranica i datoteka',

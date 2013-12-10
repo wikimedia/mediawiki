@@ -33,7 +33,6 @@ $messages = array(
 'tog-minordefault' => "Bulijjo, enkyukakyuka z'okola zirambibwe nti ntono",
 'tog-previewontop' => "Okulagako kubeerenga waggulu w'ekifo w'owandikira",
 'tog-previewonfirst' => 'Buli lwensooka okukyusa olupapula, ndagangako byenkoze',
-'tog-nocache' => "Ekyandaaza kiremenga kutereka koppi z'empapula z'okebera",
 'tog-enotifwatchlistpages' => "Nsindikiranga 'E-mail' empapula zengoberera buli lwe zikolebwako enkyukakyuka",
 'tog-enotifusertalkpages' => "Nsindikiranga 'E-mail' olupapula lwange olwa 'Yogera nange' buli lwe lukyusibwamu",
 'tog-enotifminoredits' => "Nsindikiranga 'E-mail' enkyukakyuka ne bwe ziba ntono",

@@ -119,7 +119,6 @@ $messages = array(
 'tog-minordefault' => 'Markahán gabos na saradit na pagliwat sa paaging panugmad',
 'tog-previewontop' => 'Ipahilíng an patànaw bàgo an kahon nin paghirá',
 'tog-previewonfirst' => 'Ipahilíng an patànaw sa enot na paghirá',
-'tog-nocache' => 'Pundoha an pagsaray nin mga pahina sa kilyaw (browser)',
 'tog-enotifwatchlistpages' => 'E-suratan mo ako kunsoarin an sarong pahina o sagunson na yaon sa sakong bantay-listahan pinagliwat',
 'tog-enotifusertalkpages' => 'E-koreohan ako pag pigribáyan an pahina kan sakóng olay',
 'tog-enotifminoredits' => 'E-suratan man ako para sa saraditon na mga pagliwat kan mga pahina asin mga sagunson',

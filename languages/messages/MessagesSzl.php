@@ -87,7 +87,6 @@ $messages = array(
 'tog-minordefault' => 'Kożde moje sprowjańy je ńywjelge',
 'tog-previewontop' => 'Uobźyrej przed placym sprowjańo',
 'tog-previewonfirst' => 'Obźyrej zajta przi pjyrszym sprowjańu',
-'tog-nocache' => 'Wypńij podrynczno pamjyńć',
 'tog-enotifwatchlistpages' => 'Wyślij e-brifa, kej ftoś zmjyńi zajta, na kero dowom pozůr',
 'tog-enotifusertalkpages' => 'Wyślij e-brifa, kej zajta mojij godki bydźe půmjyńono',
 'tog-enotifminoredits' => 'Wyślij e-brifa tyż, kej by szło uo drobne pomjyńańa',

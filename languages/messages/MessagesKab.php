@@ -65,7 +65,6 @@ $messages = array(
 'tog-minordefault' => 'Rcem akk ibeddlen am ibeddlen ifessasen d ameslugen',
 'tog-previewontop' => 'Ssken pre-timeẓriwt uqbel tankult ubeddel',
 'tog-previewonfirst' => 'Ssken pre-timeẓriwt akk d ubeddel amezwaru',
-'tog-nocache' => 'Ekkes lkac n usebter',
 'tog-enotifwatchlistpages' => "Azen-iyi-d e-mail m'ara yettubeddel asebter i ttɛassaɣ",
 'tog-enotifusertalkpages' => 'Azen-iyi-d e-mail asmi sɛiɣ izen amaynut',
 'tog-enotifminoredits' => 'Azen-iyi-d e-mail ma llan ibeddlen ifessasen',

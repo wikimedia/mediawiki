@@ -42,7 +42,6 @@ $messages = array(
 'tog-minordefault' => 'Etohoṕre sanam joṛao purạoanaḱko do bekor unuduḱ lekate cinhạkma',
 'tog-previewontop' => 'Joṛao bakso purạo lahare unuduḱ hoyoḱma',
 'tog-previewonfirst' => 'Pạhil joṛao purạore unuduḱ hoyoḱma',
-'tog-nocache' => 'Brajar sakam reaḱ kasiṅ bondoemẽ',
 'tog-enotifwatchlistpages' => 'E-mailạńme one tinre in̕aḱ n̕eloḱ tạlika do bodolok',
 'tog-enotifusertalkpages' => 'E-mailạn̕me one tinre in̕aḱ roṛaḱ laṛcaṛ sakam do bodoloḱa',
 'tog-enotifminoredits' => 'E-mailạn̕me arhõ one tinre in̕aḱ sakamre huḍiń kạmi hoyoḱ',

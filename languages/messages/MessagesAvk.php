@@ -121,7 +121,6 @@ $messages = array(
 'tog-minordefault' => 'Jinaf betakseem omavon mezolonon zo torigid',
 'tog-previewontop' => 'Abdinedira nediwer vamoe sutelaxo',
 'tog-previewonfirst' => 'Nedira va abdinedira bal taneafa betara',
-'tog-nocache' => 'Gritegirara va bupreyutasiki',
 'tog-enotifwatchlistpages' => 'Moi da betara va jinafi suzdasiki zo staksá !',
 'tog-enotifusertalkpages' => 'Moi da betara va jinafu favesikbu pu jin staksar !',
 'tog-enotifminoredits' => 'Icde bubetamara dere zo staksá !',

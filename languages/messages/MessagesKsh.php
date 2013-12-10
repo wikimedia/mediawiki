@@ -233,7 +233,6 @@ $messages = array(
 'tog-minordefault' => 'Dun all ming Änderunge jedes Mol als klein Mini-Änderunge vürschlage',
 'tog-previewontop' => 'Zeisch de Vör-Aanseesch övver däm Fäld för der Täx enzejävve aan.',
 'tog-previewonfirst' => 'Zeich de Vör-Aansich tirek för et eetste Mol beim Bearbeide aan',
-'tog-nocache' => 'Dun et Sigge Zweschespeichere en Dingem Brauser avschalte',
 'tog-enotifwatchlistpages' => 'Scheck mer en <i lang="en">e-mail</i>, wann en Sigg us minge Oppaßlėß verändert woode es',
 'tog-enotifusertalkpages' => 'Scheck mer en <i lang="en">e-mail</i>, wann ming Klaaf_Sigg jeändert weed',
 'tog-enotifminoredits' => 'Scheck mer och en <i lang="en">e-mail</i> för de klein Mini-Änderonge',

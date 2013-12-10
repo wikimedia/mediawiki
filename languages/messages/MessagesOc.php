@@ -312,7 +312,6 @@ $messages = array(
 'tog-minordefault' => 'Considerar mas modificacions coma menoras per defaut',
 'tog-previewontop' => 'Far veire la previsualizacion al dessús de la zòna de modificacion',
 'tog-previewonfirst' => 'Far veire la previsualizacion al moment de la primièra edicion',
-'tog-nocache' => "Desactivar l'escondedor de las paginas pel navigador",
 'tog-enotifwatchlistpages' => 'M’avertir per corrièr electronic quand una pagina o un fichièr de ma lista de seguiment es modificat',
 'tog-enotifusertalkpages' => 'M’avertir per corrièr electronic en cas de modificacion de ma pagina de discussion',
 'tog-enotifminoredits' => 'M’avertir per corrièr electronic quitament en cas de modificacions menoras de las paginas o dels fichièrs',

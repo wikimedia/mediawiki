@@ -57,7 +57,6 @@ $messages = array(
 'tog-minordefault' => 'Comharraich gach mùthadh mar mhùthadh beag a ghnàth',
 'tog-previewontop' => "Nochd an ro-shealladh os cionn a' bhogsa deasachaidh",
 'tog-previewonfirst' => "Nochd an ro-shealladh nuair a nithear a' chiad deasachadh",
-'tog-nocache' => 'Cuir à comas tasgadh nan duilleagan',
 'tog-enotifwatchlistpages' => "Cuir post-dealain thugam nuair a mhùthar duilleag a tha air a' chlàr-fhaire agam",
 'tog-enotifusertalkpages' => 'Cuir post-dealain thugam nuair a mhùthaichear duilleag mo chonaltraidh',
 'tog-enotifminoredits' => 'Cuir post-dealain thugam nuair a nithear mùthadh beag air duilleagan cuideachd',

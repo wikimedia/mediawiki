@@ -208,7 +208,6 @@ $messages = array(
 'tog-minordefault' => 'Vsa urejanja označi kot manjša',
 'tog-previewontop' => 'Prikaži predogled pred urejevalnim poljem',
 'tog-previewonfirst' => 'Ob začetku urejanja prikaži predogled',
-'tog-nocache' => 'Onemogoči predpomnenje strani v brskalniku',
 'tog-enotifwatchlistpages' => 'Ob spremembah strani ali datotek mi pošlji e-pošto',
 'tog-enotifusertalkpages' => 'Pošlji e-pošto ob spremembah moje pogovorne strani',
 'tog-enotifminoredits' => 'Pošlji e-pošto tudi za manjše spremembe strani in datotek',
@@ -856,7 +855,7 @@ To storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš rač
 # Edit pages
 'summary' => 'Povzetek urejanja:',
 'subject' => 'Zadeva/naslov:',
-'minoredit' => 'Manjše urejanje',
+'minoredit' => 'manjše urejanje',
 'watchthis' => 'Opazuj članek',
 'savearticle' => 'Shrani stran',
 'preview' => 'Predogled',
@@ -1604,11 +1603,11 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-summary' => 'Na tej strani lahko spremljate najnovejše spremembe wikija.',
 'recentchanges-noresult' => 'V podanem obdobju nobena sprememba ne ustreza tem merilom.',
 'recentchanges-feed-description' => 'Spremljajte zadnje spremembe wikija prek tega vira.',
-'recentchanges-label-newpage' => 'S tem urejanjem je uporabnik ustvaril novo stran',
+'recentchanges-label-newpage' => 's tem urejanjem je uporabnik ustvaril novo stran',
 'recentchanges-label-minor' => 'Manjše urejanje',
-'recentchanges-label-bot' => 'Urejanje je izvedel bot',
+'recentchanges-label-bot' => 'urejanje je izvedel bot',
 'recentchanges-label-unpatrolled' => 'Urejanje še ni bilo pregledano',
-'recentchanges-label-plusminus' => 'Uporabnik je velikost strani spremenil za tolikšno število bajtov.',
+'recentchanges-label-plusminus' => 'uporabnik je velikost strani spremenil za tolikšno število bajtov',
 'recentchanges-legend-newpage' => '(glej tudi [[Special:NewPages|seznam novih strani]])',
 'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
@@ -1621,8 +1620,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'rclinks' => 'Prikaži zadnjih $1 sprememb v zadnjih $2 dneh<br />$3',
 'diff' => 'prim',
 'hist' => 'zgod',
-'hide' => 'Skrij',
-'show' => 'Prikaži',
+'hide' => 'skrij',
+'show' => 'prikaži',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
@@ -2546,9 +2545,9 @@ $1',
 
 # Namespace form on various pages
 'namespace' => 'Imenski prostor:',
-'invert' => 'Obrni izbor',
+'invert' => 'obrni izbor',
 'tooltip-invert' => 'Označite to polje, da skrijete spremembe v izbranem imenskem prostoru (in povezanih imenskih prostorih, če je označeno)',
-'namespace_association' => 'Povezan imenski prostor',
+'namespace_association' => 'povezan imenski prostor',
 'tooltip-namespace_association' => 'Označite to polje, da vključite tudi pogovor ali predmetni imenski prostor, povezan z izbranim imenskim prostorom',
 'blanknamespace' => '(Osnovno)',
 
@@ -3772,7 +3771,7 @@ Da odstranite stran, označite kvadratek poleg nje in kliknite »{{int:Watchlist
 Lahko tudi [[Special:EditWatchlist/raw|uredite gol spisek]].',
 'watchlistedit-normal-submit' => 'Odstrani strani',
 'watchlistedit-normal-done' => 'Z vašega spiska nadzorov {{PLURAL:$1|je bila odstranjena $1 stran|sta bili odstranjeni $1 strani|so bile odstranjene $1 strani|je bilo odstranjenih $1 strani}}:',
-'watchlistedit-raw-title' => 'Uredi gol spisek nadzorov',
+'watchlistedit-raw-title' => 'urejanje golega spiska nadzorov',
 'watchlistedit-raw-legend' => 'Uredi gol spisek nadzorov',
 'watchlistedit-raw-explain' => 'Strani na vašem spisku nadzorov so prikazane spodaj in jih lahko urejate z dodajanjem in odstranjevanjem s seznama; vsak naslov je v svoji vrstici.
 Ko končate, kliknite »{{int:Watchlistedit-raw-submit}}«.
@@ -3784,8 +3783,8 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|Odstranjena je bila $1 stran|Odstranjeni sta bili 2 strani|Odstranjene so bile $1 strani|Odstranjenih je bilo $1 strani}}:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Oglej si ustrezne spremembe',
-'watchlisttools-edit' => 'Poglej in uredi spisek nadzorov',
+'watchlisttools-view' => 'oglej si ustrezne spremembe',
+'watchlisttools-edit' => 'prikaz in urejanje spiska nadzorov',
 'watchlisttools-raw' => 'Uredi gol spisek nadzorov',
 
 # Signatures

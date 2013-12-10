@@ -66,7 +66,6 @@ $messages = array(
 'tog-minordefault' => 'Alle Annerengen as littek markierje',
 'tog-previewontop' => 'Foarbekiek buppe dät Beoarbaidengsfinster anwiese',
 'tog-previewonfirst' => 'Bie dät eerste Beoarbaidjen altied dän Foarbekiek anwiese',
-'tog-nocache' => 'Siedencache fon dän Browser deaktivierje',
 'tog-enotifwatchlistpages' => 'Bie Annerengen an bekiekede Sieden E-Mails seende.',
 'tog-enotifusertalkpages' => 'Bie Annerengen an mien Benutser-Diskussionssiede E-Mails seende.',
 'tog-enotifminoredits' => 'Uk bie litje Annerengen an do Sieden E-Mails seende.',

@@ -118,7 +118,6 @@ $messages = array(
 'tog-minordefault' => 'Déan mionathruithe de gach aon athrú, mar réamhshocrú',
 'tog-previewontop' => 'Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de',
 'tog-previewonfirst' => 'Taispeáin réamhamharc don chéad athrú',
-'tog-nocache' => 'Ná sábháil leathanaigh i dtaisce an bhrabhsálaí',
 'tog-enotifwatchlistpages' => 'Cuir ríomhphost chugam nuair a athraítear leathanaigh',
 'tog-enotifusertalkpages' => 'Cuir ríomhphost chugam nuair a athraítear mo leathanach phlé úsáideora',
 'tog-enotifminoredits' => 'Cuir ríomhphost chugam nuair a dhéantar mionathruithe chomh maith',

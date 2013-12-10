@@ -114,7 +114,6 @@ $messages = array(
 'tog-minordefault' => 'Barlıq üzgärtülärne kileşü buyınça keçe dip bilgelänsen',
 'tog-previewontop' => 'Üzgärtü täräzäsennän östäräk bitne aldan qaraw ölkäsen kürsätelsen',
 'tog-previewonfirst' => 'Üzgärtü bitenä küçkändä başta aldan qaraw bite kürsätelsen',
-'tog-nocache' => 'Bitlär keşlawnı tıyılsın',
 'tog-enotifwatchlistpages' => 'Küzätü isemlegemdäge bit üzgärtelü turında elektron poçtağa xäbär cibärelsen',
 'tog-enotifusertalkpages' => 'Bäxäs bitem üzgärtelü turında elektron poçtağa xäbär cibärelsen',
 'tog-enotifminoredits' => 'Keçe üzgärtülär turında da elektron poçtağa xäbär cibärelsen',

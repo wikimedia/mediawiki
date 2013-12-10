@@ -79,7 +79,6 @@ $messages = array(
 'tog-minordefault' => 'Palē nutīliejėma pažīmietė redagavėmus kāp mažus',
 'tog-previewontop' => 'Ruodītė parvaiza vėrš redagavėma lauka',
 'tog-previewonfirst' => 'Ruodītė straipsnė parvėiza pėrmu redagavėmu',
-'tog-nocache' => "Nenauduotė poslapiu kaupėma (''caching'')",
 'tog-enotifwatchlistpages' => 'Siōstė mon gromata, kūmet pakeitams poslapis, katra stebiu',
 'tog-enotifusertalkpages' => 'Siōstė mon gromata, kūmet pakaitams mona nauduotuojė aptarėma poslapis',
 'tog-enotifminoredits' => 'Siōstė mon gromata, kūmet poslapė keitėms īr mažos',

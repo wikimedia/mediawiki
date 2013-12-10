@@ -42,7 +42,6 @@ $messages = array(
 'tog-minordefault' => 'Aanj feranrangen üs "letjen" kääntiakne',
 'tog-previewontop' => '"Iarst ans luke" boowen faan\'t wönang tu bewerkin',
 'tog-previewonfirst' => 'Bi\'t iarst bewerkin "iarst ans luke" uunwise',
-'tog-nocache' => 'Sidjencache faan di browser deaktiwiare',
 'tog-enotifwatchlistpages' => "Schüür mi en e-mail, wan sidjen of datein feranert wurd, diar ik uun't uug behual wal",
 'tog-enotifusertalkpages' => 'Bi feranrangen üüb min brüker-diskusjuunssidj en e-mail schüür',
 'tog-enotifminoredits' => 'Schüür mi uk bi letj feranrangen faan sidjen an datein en e-mail',

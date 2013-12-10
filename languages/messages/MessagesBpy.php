@@ -68,7 +68,6 @@ $messages = array(
 'tog-minordefault' => 'অকরাতই হাব্বি পতা ফাঙনেই বুলিয়া দেহাদে',
 'tog-previewontop' => 'পতা উপুগর গজে লেহার মিল্লেখ দেহাদে',
 'tog-previewonfirst' => 'পয়লা পতানিহাত মিল্লেখ দেহাদে',
-'tog-nocache' => 'পাতা য়মকরানিহান থা নাদি',
 'tog-enotifwatchlistpages' => 'মরে ইমেইল কর যদি মর মিল্লেঙে থসু অতা পতিলে',
 'tog-enotifusertalkpages' => 'মরে ইমেইল কর যদি মর য়্যারির পাতা পতিলে',
 'tog-enotifminoredits' => 'মরে ইমেইল কর পাতা আহানর পতানিহান হুরু ইলেউ',

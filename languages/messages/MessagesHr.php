@@ -337,7 +337,6 @@ $messages = array(
 'tog-minordefault' => 'Normalno označavaj sve moje izmjene kao manje',
 'tog-previewontop' => 'Prikaži kako će stranica izgledati iznad okvira za uređivanje',
 'tog-previewonfirst' => 'Prikaži kako će stranica izgledati čim otvorim uređivanje',
-'tog-nocache' => 'Isključi međuspremnik (cache) stranica u pregledniku',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-mail kod izmjene stranice u popisu praćenja',
 'tog-enotifusertalkpages' => 'Pošalji mi e-mail kod izmjene moje stranice za razgovor',
 'tog-enotifminoredits' => 'Pošalji mi e-mail i kod manjih izmjena stranice',

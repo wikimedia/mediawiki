@@ -254,7 +254,6 @@ $messages = array(
 'tog-minordefault' => '預設全部編輯做小修改',
 'tog-previewontop' => '喺修改欄上方顯示預覽',
 'tog-previewonfirst' => '第一次修改時顯示預覽',
-'tog-nocache' => '停用瀏覽器頁面快取',
 'tog-enotifwatchlistpages' => '當響我張監視清單度嘅頁面有修改時電郵通知我',
 'tog-enotifusertalkpages' => '個人留言版有修改時電郵通知我',
 'tog-enotifminoredits' => '小修改都要電郵通知我',

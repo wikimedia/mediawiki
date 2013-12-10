@@ -160,7 +160,6 @@ $messages = array(
 'tog-minordefault' => 'Rievdadusat leat unnit, jus ii eará álmmuhuvvo',
 'tog-previewontop' => 'Čájet siidduid rievdadusaid ovddalgihtii geahččama ođasmahttin lođá bajábealde',
 'tog-previewonfirst' => 'Čájehišgoađe siidduid rievdadusaid ovddalgihtii, go siiddu rievdadeapmi álggahuvvo',
-'tog-nocache' => 'Ále vurke siidduid gaskaboddasašmuitui',
 'tog-enotifwatchlistpages' => 'Sádde dieđu e-poasttain go mu čuovvunlistui gullevaš siidu rievdaduvvo',
 'tog-enotifusertalkpages' => 'Sádde e-poasta, go geavaheaddjisiiddu ságastallansiidu rievdaduvvo',
 'tog-enotifminoredits' => 'Sádde dieđu e-poasttain maid unna rievdadusaid birra',

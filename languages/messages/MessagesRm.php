@@ -65,7 +65,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar tut las modificaziuns per ordinari sco pitschnas',
 'tog-previewontop' => "Mussar la prevista sur il champ d'endatziun",
 'tog-previewonfirst' => "Adina mussar la prevista suenter l'emprima modificaziun",
-'tog-nocache' => 'Impedir che tes navigatur memorisescha las paginas en il cache',
 'tog-enotifwatchlistpages' => "Ma trametter in e-mail sch'ina pagina u ina datoteca sin mia glista d'observaziun vegn midada",
 'tog-enotifusertalkpages' => "Trametta in e-mail sch'i ha dà midadas sin mia pagina da discussiun.",
 'tog-enotifminoredits' => 'Era ma trametter in e-mail en cas da midadas pitschnas vid paginas u datotecas',

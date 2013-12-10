@@ -149,7 +149,6 @@ $messages = array(
 'tog-minordefault' => 'Tandaan sadaya éditan salaku minor luyu jeung ti dituna',
 'tog-previewontop' => 'Témbongkeun sawangan méméh kotak édit (lain sanggeusna)',
 'tog-previewonfirst' => 'Témbongkeun sawangan dina éditan munggaran',
-'tog-nocache' => "Tumpurkeun ''cache'' kaca dina pangaprak",
 'tog-enotifwatchlistpages' => 'Lamun aya kaca atawa berkas anu diawaskeun robah, béjaan ngaliwatan surélék',
 'tog-enotifusertalkpages' => 'Mun kaca obrolan kuring robah, béjaan ngaliwatan surélék',
 'tog-enotifminoredits' => 'Béjaan ogé (ngaliwatan surélék) lamun aya parobahan leutik dina kaca jeung berkasna',

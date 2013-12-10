@@ -345,7 +345,6 @@ $messages = array(
 'tog-minordefault' => "Markeer alle veraanderingen as 'kleine wieziging'",
 'tog-previewontop' => 'De naokiekzied boven t bewarkingsveld zetten',
 'tog-previewonfirst' => 'Naokieken bie eerste wieziging',
-'tog-nocache' => 'De tussenopslag van de webkieker uutzetten',
 'tog-enotifwatchlistpages' => 'Stuur mien n berichjen over zied- of bestaandswiezigingen uut mien volglieste.',
 'tog-enotifusertalkpages' => 'Stuur mien n berichjen as mien overlegzied ewiezigd is.',
 'tog-enotifminoredits' => 'Stuur mien oek n berichjen bie kleine bewarkingen van ziejen en bestaanden',

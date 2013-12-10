@@ -163,7 +163,6 @@ $messages = array(
 'tog-minordefault' => 'Make tout modifikasyon mwen yo "tou piti" pa defo',
 'tog-previewontop' => 'Montre kout je anvan zòn modifikasyon',
 'tog-previewonfirst' => 'Montre kout je pou chak premye modifikasyon',
-'tog-nocache' => 'Dezame kach pou paj yo nan òdinatè mwen',
 'tog-enotifwatchlistpages' => 'Voye m imèl lè youn nan paj m ap swiv yo chanje',
 'tog-enotifusertalkpages' => 'Voye m imèl lè paj itilizatè m nan chanje',
 'tog-enotifminoredits' => 'Voye m imèl tou pou modifikasyon paj yo ki tou piti',

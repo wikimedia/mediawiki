@@ -302,7 +302,6 @@ $messages = array(
 'tog-minordefault' => 'Označi sve izmjene malim isprva',
 'tog-previewontop' => 'Prikaži pretpregled prije polja za izmjenu a ne poslije',
 'tog-previewonfirst' => 'Prikaži izgled pri prvoj izmjeni',
-'tog-nocache' => 'Onemogući keširanje stranica u pregledniku',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-mail kada se promijeni stranica ili datoteka sa mog spiska praćenih članaka',
 'tog-enotifusertalkpages' => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
 'tog-enotifminoredits' => 'Pošalji mi e-poštu također za male izmjene u stranicama i datotekama',

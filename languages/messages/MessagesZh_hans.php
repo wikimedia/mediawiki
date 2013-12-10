@@ -402,7 +402,6 @@ $messages = array(
 'tog-minordefault' => '默认标记所有编辑为小编辑',
 'tog-previewontop' => '在编辑框上方显示预览',
 'tog-previewonfirst' => '首次编辑时显示预览',
-'tog-nocache' => '停用浏览器页面缓存',
 'tog-enotifwatchlistpages' => '当我的监视列表中的页面或文件更改时发送电子邮件通知我',
 'tog-enotifusertalkpages' => '当我的用户讨论页面更改时发送电子邮件通知我',
 'tog-enotifminoredits' => '当我的监视列表中的页面和文件有小编辑时也发送电子邮件通知我',
@@ -2573,7 +2572,7 @@ $1',
 'tooltip-invert' => '请选择该框以隐藏指定名字空间（及相关名字空间，若被选择）的页面更改',
 'namespace_association' => '相关名字空间',
 'tooltip-namespace_association' => '选中此复选框可包括与选定名字空间相关的讨论页或子页面',
-'blanknamespace' => '（主要）',
+'blanknamespace' => '（主）',
 
 # Contributions
 'contributions' => '{{GENDER:$1|用户}}贡献',

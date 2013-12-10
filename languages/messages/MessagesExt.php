@@ -41,7 +41,6 @@ $messages = array(
 'tog-minordefault' => 'Aseñalal tolas eicionis cumu chiqueninas pol defeutu',
 'tog-previewontop' => "Previsoreal sobri la caha d'eición, i nu embahu",
 'tog-previewonfirst' => 'Previsoreal ena primera eición',
-'tog-nocache' => 'Desatival "caché" enas páhinas',
 'tog-enotifwatchlistpages' => 'Envialmi un correu cuandu aiga chambus nuna páhina vehilá',
 'tog-enotifusertalkpages' => 'Envialmi un correu cuandu alguien escreba ena mi caraba',
 'tog-enotifminoredits' => 'Envialmi un correu cuandu se haga una eición chiquenina duna páhina',

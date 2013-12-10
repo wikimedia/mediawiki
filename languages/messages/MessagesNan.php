@@ -48,7 +48,6 @@ $messages = array(
 'tog-minordefault' => 'Chiām-tēng bī-lâi ê siu-kái lóng sī sió-siu-ká',
 'tog-previewontop' => 'Sûn-khoàⁿ ê lōe-iông tī pian-chi̍p keh-á thâu-chêng',
 'tog-previewonfirst' => 'Thâu-pái pian-chi̍p seng khoàⁿ-māi',
-'tog-nocache' => 'Koaiⁿ-tiāu ia̍h ê cache',
 'tog-enotifwatchlistpages' => 'Kam-sī-tuann ū ē bûn-tsiunn nā ū kái-piàn, kià tiān-tsú-phue hōo guá.',
 'tog-enotifusertalkpages' => 'Guá ê thó-lūn ia̍h  nā ū lâng kái,  kià tiān-tsú-phue hōo guá.',
 'tog-enotifminoredits' => 'Sió pian-chi̍p mā kià tiān-tsú-phue hōo guá.',

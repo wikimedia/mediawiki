@@ -366,7 +366,6 @@ $messages = array(
 'tog-minordefault' => 'Tandai semua suntingan sebagai suntingan kecil secara baku',
 'tog-previewontop' => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst' => 'Perlihatkan pratayang pada suntingan pertama',
-'tog-nocache' => 'Nonaktifkan penyinggahan halaman peramban',
 'tog-enotifwatchlistpages' => 'Kirimkan saya surel jika suatu halaman yang saya pantau berubah',
 'tog-enotifusertalkpages' => 'Kirimkan saya surel jika halaman pembicaraan saya berubah',
 'tog-enotifminoredits' => 'Kirimkan saya surel juga pada perubahan kecil',

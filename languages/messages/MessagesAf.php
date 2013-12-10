@@ -230,7 +230,6 @@ $messages = array(
 'tog-minordefault' => 'Merk alle wysigings automaties as klein by verstek.',
 'tog-previewontop' => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst' => 'Wys voorskou met eerste wysiging',
-'tog-nocache' => 'Deaktiveer blaaier se bladsykas',
 'tog-enotifwatchlistpages' => "Stuur my e-pos as 'n bladsye of lêer op my dophoulys verander",
 'tog-enotifusertalkpages' => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
 'tog-enotifminoredits' => 'Stuur ook e-pos vir klein wysigings aan bladsye en lêers',

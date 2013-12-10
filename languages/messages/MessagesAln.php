@@ -89,7 +89,6 @@ $messages = array(
 'tog-minordefault' => 'Shêjoji fillimisht tâna redaktimet si të vogla',
 'tog-previewontop' => 'Vendose parapamjen përpara kutisë redaktuese',
 'tog-previewonfirst' => 'Shfaqe parapamjen në redaktimin e parë',
-'tog-nocache' => 'Mos ruej kopje të faqeve',
 'tog-enotifwatchlistpages' => 'Njoftomë me email, kur ndryshojnë faqet e mbikëqyruna',
 'tog-enotifusertalkpages' => 'Njoftomë me email kur ndryshon faqja ime e diskutimit',
 'tog-enotifminoredits' => 'Njoftomë me email për redaktime të vogla të faqeve',

@@ -75,7 +75,6 @@ $messages = array(
 'tog-minordefault' => 'Ale maj ändrungn soln als glaane geldn',
 'tog-previewontop' => 'Foorschau owârhalb un ned undârhalb fom arbajds-fenschdâr',
 'tog-previewonfirst' => 'Baj dr ärschdn ändrung imâr ärschd â foorschau ôôdsajchn',
-'tog-nocache' => 'Sajdn-cache ausschaldn',
 'tog-enotifwatchlistpages' => 'Ii wil â iimejl griign, wen sich was beoobachdeds ändârd',
 'tog-enotifusertalkpages' => 'Ii wil â iimejl griign, wen sich uf majnâr disghusjoons-sajdn was duud',
 'tog-enotifminoredits' => 'I wil aa baj bloos glaanân ädrungn â iimejl griign',

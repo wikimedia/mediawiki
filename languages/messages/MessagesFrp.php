@@ -330,7 +330,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar per dèfôt tôs los changements coment petiôts',
 'tog-previewontop' => 'Montrar l’apèrçu d’amont la zona de changement',
 'tog-previewonfirst' => 'Montrar l’apèrçu pendent lo premiér changement',
-'tog-nocache' => 'Dèsactivar lo cacho de les pâges per lo navigator',
 'tog-enotifwatchlistpages' => 'Mè mandar un mèssâjo quand na pâge un fichiér de ma lista de siuvu est changiê(e)',
 'tog-enotifusertalkpages' => 'Mè mandar un mèssâjo quand ma pâge de discussion est changiêe',
 'tog-enotifminoredits' => 'Mè mandar un mèssâjo mémo en câs de petiôts changements de les pâges et des fichiérs',

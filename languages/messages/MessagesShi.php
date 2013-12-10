@@ -35,7 +35,6 @@ $messages = array(
 'tog-minordefault' => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 'tog-previewontop' => 'Mel iẓri amzwaru ɣ uflla ɣ taɣzut n imbddln',
 'tog-previewonfirst' => 'Ml imzray n imbdln imzwura',
-'tog-nocache' => 'ador itsjjal lmtasaffih tawriqt ad',
 'tog-enotifwatchlistpages' => 'sifd yi tabrat  igh ibdl kra yat twriqt ghomdfor inu',
 'tog-enotifusertalkpages' => 'sifd yi tabrat  igh tbdl tawriqt ohokko-no',
 'tog-enotifminoredits' => 'sifd yi tabrat  i ibdln mziynin',

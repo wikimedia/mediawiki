@@ -192,7 +192,6 @@ Parameters:
 'tog-minordefault' => "[[Special:Preferences]], tab 'Edit'. Offers user to mark all edits minor by default.  {{Gender}}",
 'tog-previewontop' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-previewonfirst' => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
-'tog-nocache' => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser. {{Gender}}",
 'tog-enotifwatchlistpages' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-enotifusertalkpages' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
 'tog-enotifminoredits' => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}
@@ -10036,7 +10035,7 @@ See definition of [[w:Regular_expression|regular expression]] on Wikipedia.",
 # Special:Tags
 'tags' => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [[mw:Manual:Tags|MediaWiki]].
 
-It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'.",
+It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'The change tags that are in use'.",
 'tag-filter' => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
 'tag-filter-submit' => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 

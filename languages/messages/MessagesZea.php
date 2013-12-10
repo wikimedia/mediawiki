@@ -65,7 +65,6 @@ $messages = array(
 'tog-minordefault' => "Al mien bewerkiengen as 'kleine' markeern",
 'tog-previewontop' => 'Voevertoônienge boven bewerkiengsveld weerheven',
 'tog-previewonfirst' => 'Voevertoônienge bie eêste bewerkieng weerheven',
-'tog-nocache' => "Cach'n van pagina's deur de browser uutzett'n",
 'tog-enotifwatchlistpages' => "E-mail me bie bewerkiengen van pagina's op men volglieste",
 'tog-enotifusertalkpages' => 'E-mail me wunnir a iemand men overlegpagina wiezig',
 'tog-enotifminoredits' => "E-mail me bie kleine bewerkiengen van pahina's op men volglieste",

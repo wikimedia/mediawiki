@@ -41,7 +41,6 @@ $messages = array(
 'tog-minordefault' => '默認標記全部編寫為細微修改',
 'tog-previewontop' => '在編寫框上頭顯示預覽',
 'tog-previewonfirst' => '第一擺編寫時顯示預覽',
-'tog-nocache' => '停用瀏覽器嘅頁面緩存',
 'tog-enotifwatchlistpages' => '亻厓監視列表肚嘅頁面或文件有更動時，發電子郵件分亻厓',
 'tog-enotifusertalkpages' => '亻厓嘅交流頁有更改時，發電子郵件分亻厓',
 'tog-enotifminoredits' => '頁面撈文件嘅細修改也發電子郵件分我',

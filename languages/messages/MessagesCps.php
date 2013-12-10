@@ -35,7 +35,6 @@ $messages = array(
 'tog-minordefault' => 'Markahan ang tanan nga gin-islan nga gamay lang pamaagi sa default',
 'tog-previewontop' => 'Ipakita ang prebyu antes ang kahon sang pang-ilis',
 'tog-previewonfirst' => 'Ipakita ang prebyu sa una nga pag-ilis',
-'tog-nocache' => 'Indi pagpaganahon ang pagcache sang pahina',
 'tog-enotifwatchlistpages' => 'Padal-an ako sang email kung ang pahina sa akon ginabanatayan nagbag-o',
 'tog-enotifusertalkpages' => 'Padal-an ako sang email kung ginbag-o ang akon nga pahina sang istoryahanay',
 'tog-enotifminoredits' => 'Padal-an man ako sang email sa mga gamay nga pag-ilis sang mini nga pahina',

@@ -306,7 +306,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar por omisión todas as edicións como pequenas',
 'tog-previewontop' => 'Mostrar a vista previa antes da caixa de edición',
 'tog-previewonfirst' => 'Mostrar a vista previa na primeira edición',
-'tog-nocache' => 'Desactivar a memoria caché do navegador',
 'tog-enotifwatchlistpages' => 'Enviádeme unha mensaxe de correo electrónico cando unha páxina ou un ficheiro da miña lista de vixilancia sufra un cambio',
 'tog-enotifusertalkpages' => 'Enviádeme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
 'tog-enotifminoredits' => 'Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas ou nos ficheiros',

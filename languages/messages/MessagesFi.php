@@ -339,7 +339,6 @@ $messages = array(
 'tog-minordefault' => 'Merkitse kaikki muutokset oletusarvoisesti pieniksi',
 'tog-previewontop' => 'Näytä esikatselu muokkauskentän yläpuolella',
 'tog-previewonfirst' => 'Näytä esikatselu heti, kun muokkaus aloitetaan',
-'tog-nocache' => 'Älä tallenna sivuja selaimen välimuistiin',
 'tog-enotifwatchlistpages' => 'Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muokkauksista',
 'tog-enotifusertalkpages' => 'Lähetä sähköpostiviesti oman keskustelusivun muokkauksista',
 'tog-enotifminoredits' => 'Lähetä sähköpostiviesti myös pienistä muokkauksista',
@@ -817,7 +816,7 @@ Salli evästeiden käyttö, ja sen jälkeen kirjaudu sisään juuri luomallasi k
 'passwordtooshort' => 'Salasanan täytyy olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.',
 'password-name-match' => 'Salasanasi täytyy olla eri kuin käyttäjätunnuksesi.',
 'password-login-forbidden' => 'Tämän käyttäjänimen ja salasanan käyttö on estetty.',
-'mailmypassword' => 'Lähetä uusi salasana sähköpostitse',
+'mailmypassword' => 'Uudista salasana',
 'passwordremindertitle' => 'Uusi väliaikainen salasana {{GRAMMAR:elative|{{SITENAME}}}}',
 'passwordremindertext' => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Väliaikainen salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana. Väliaikainen salasana vanhenee {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
 
@@ -884,7 +883,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 # Special:PasswordReset
 'passwordreset' => 'Salasanan uudistus',
 'passwordreset-text-one' => 'Täytä tämä lomake uudistaaksesi salasanasi.',
-'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi kentistä uudistaaksesi salasanasi.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Täytä yksi kentistä, jotta saat väliaikaisen salasanan sähköpostitse.}}',
 'passwordreset-legend' => 'Salasanan uudistus',
 'passwordreset-disabled' => 'Salasanojen uudistaminen ei ole mahdollista tässä wikissä.',
 'passwordreset-emaildisabled' => 'Sähköpostitoiminnot on poistettu käytöstä tässä wikissä.',
@@ -961,7 +960,7 @@ Sinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa 
 'image_tip' => 'Tallennettu tiedosto',
 'media_sample' => 'Esimerkki.ogg',
 'media_tip' => 'Tiedostolinkki',
-'sig_tip' => 'Allekirjoitus aikamerkinnällä',
+'sig_tip' => 'Allekirjoitus aikaleiman kanssa',
 'hr_tip' => 'Vaakasuora viiva',
 
 # Edit pages
@@ -1190,7 +1189,8 @@ Käyttäjän $3 antama syy on ''$2''",
 'last' => 'edell.',
 'page_first' => 'ensimmäinen sivu',
 'page_last' => 'viimeinen sivu',
-'histlegend' => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
+'histlegend' => "Eroavaisuuksien valinta: Merkitse niiden versioiden valintaympyrät, joita haluat vertailla, ja paina enter tai alhaalla olevaa nappia.<br />
+Selitys: '''({{int:cur}})''' = eroavaisuudet uusimpaan versioon, '''({{int:last}})''' = eroavaisuudet edeltävään versioon, '''{{int:minoreditletter}}''' = pieni muutos.",
 'history-fieldset-title' => 'Selaa muutoshistoriaa',
 'history-show-deleted' => 'Vain poistetut',
 'histfirst' => 'vanhimmat',
@@ -2229,7 +2229,7 @@ Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla,
 Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.',
 'logempty' => 'Ei tapahtumia lokissa.',
 'log-title-wildcard' => 'Kohde alkaa merkkijonolla',
-'showhideselectedlogentries' => 'Näytä tai piilota valitut lokimerkinnät',
+'showhideselectedlogentries' => 'Muuta valittujen lokitapahtumien näkyvyyttä',
 
 # Special:AllPages
 'allpages' => 'Kaikki sivut',
@@ -2450,10 +2450,10 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'deleteotherreason' => 'Muu syy tai tarkennus',
 'deletereasonotherlist' => 'Muu syy',
 'deletereason-dropdown' => '* Yleiset poistosyyt
-** Tekijänoikeusrikkomus
-** Tekijän poistopyyntö
-** Testisivu
+** Spam tai mainossivu
 ** Vandalismi
+** Tekijänoikeusrikkomus
+** Sivun tekijän pyyntö
 ** Virheellinen ohjaus',
 'delete-edit-reasonlist' => 'Muokkaa poistosyitä',
 'delete-toobig' => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
@@ -2654,7 +2654,9 @@ Alla on viimeisin estolokin tapahtuma:',
 'unblock' => 'Poista käyttäjän esto',
 'blockip' => 'Estä käyttäjä',
 'blockip-legend' => 'Estä käyttäjä',
-'blockiptext' => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen [[{{MediaWiki:Policy-url}}|pitää olla syy]], esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vapaamuotoisen vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”2014-08-29”.',
+'blockiptext' => 'Tällä toiminnolla voit estää käyttäjätunnusta tai IP-osoitetta muokkaamasta.<br />
+Tällainen muokkausesto pitäisi asettaa vain vandalismin torjumiseksi ja [[{{MediaWiki:Policy-url}}|käytännön]] mukaisesti.
+Kirjoita eston syy alla olevaan kenttään.',
 'ipadressorusername' => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry' => 'Kesto',
 'ipbreason' => 'Syy',
@@ -3771,6 +3773,10 @@ Varmista, että haluat luoda sivun uudelleen.",
 'imgmultigo' => 'Siirry',
 'imgmultigoto' => 'Sivu $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(oletuskieli)',
+'img-lang-go' => 'Suorita',
+
 # Table pager
 'ascending_abbrev' => 'nouseva',
 'descending_abbrev' => 'laskeva',
@@ -3931,8 +3937,8 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'tag-filter-submit' => 'Suodata',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Merkintä|Merkinnät}}]]: $2)',
 'tags-title' => 'Merkinnät',
-'tags-intro' => "Tämä sivu luetteloi ne merkinnät (''eng.'' tags), joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.",
-'tags-tag' => 'Merkintänimi',
+'tags-intro' => "Tämä sivu luetteloi ne merkinnät eli merkkaukset (''engl.'' tags), joilla ohjelmisto voi merkitä muokkauksia, ja mitä ne tarkoittavat.",
+'tags-tag' => 'Merkinnän nimi',
 'tags-display-header' => 'Näkyvyys muutosluetteloissa',
 'tags-description-header' => 'Täysi kuvaus tarkoituksesta',
 'tags-active-header' => 'Aktiivinen?',

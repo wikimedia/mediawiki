@@ -167,7 +167,6 @@ $messages = array(
 'tog-minordefault' => 'Marcar omne modificationes initialmente como minor',
 'tog-previewontop' => 'Monstrar previsualisation ante le quadro de modification',
 'tog-previewonfirst' => 'Monstrar previsualisation al prime modification',
-'tog-nocache' => "Disactivar le ''cache'' de paginas in le navigator",
 'tog-enotifwatchlistpages' => 'Notificar me per e-mail quando un pagina o file in mi observatorio es modificate',
 'tog-enotifusertalkpages' => 'Notificar me per e-mail quando mi pagina de discussion es modificate',
 'tog-enotifminoredits' => 'Notificar me etiam de modificationes minor de paginas e files',

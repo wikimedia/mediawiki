@@ -375,7 +375,6 @@ $messages = array(
 'tog-minordefault' => 'Varsayılan olarak bütün düzenlemeleri küçük olarak işaretle',
 'tog-previewontop' => 'Ön izlemeyi düzenleme kutusunun üstünde göster',
 'tog-previewonfirst' => 'İlk düzenlemede ön izlemeyi göster',
-'tog-nocache' => 'Tarayıcı sayfalarını önbelleğe almayı devre dışı bırak',
 'tog-enotifwatchlistpages' => 'İzleme listemdeki bir sayfanın ya da dosyanın değiştirilmesi durumunda bana e-posta gönder',
 'tog-enotifusertalkpages' => 'Kullanıcı mesaj sayfamda değişiklik olduğunda bana e-posta gönder',
 'tog-enotifminoredits' => 'Sayfalardaki ve dosyalardaki küçük değişikliklerde bana e-posta gönder',

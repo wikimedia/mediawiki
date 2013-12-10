@@ -78,7 +78,6 @@ $messages = array(
 'tog-minordefault' => 'Signa totu is acontzos comente minores pro difetu',
 'tog-previewontop' => "Ammustra s'antiprima a subra sa casella de acontzu e no a suta",
 'tog-previewonfirst' => "Ammustra s'antiprima pro su primu acontzu",
-'tog-nocache' => "Disativa sa ''cache'' pro is pàginas de su ''browser''",
 'tog-enotifwatchlistpages' => 'Spedi·mi una missada eletrònica cando una pàgina de sa watchlist mea est acontzada',
 'tog-enotifusertalkpages' => 'Spedi·mi una missada eletrònica cando sa pàgina de is cuntierras mias est acontzada',
 'tog-enotifminoredits' => 'Spedi·mi una missada eletrònica fintzas pro is acontzos minores de is pàginas',

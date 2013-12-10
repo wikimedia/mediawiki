@@ -201,7 +201,6 @@ $messages = array(
 'tog-minordefault' => "Sellet ouzh ar c'hemmoù degaset ganin<br /> evel kemmoù dister dre ziouer",
 'tog-previewontop' => 'Rakwelet tres ar bajenn a-us ar prenestr skridaozañ',
 'tog-previewonfirst' => 'Rakwelet tres ar bajenn kerkent hag an aozadenn gentañ',
-'tog-nocache' => 'Diweredekaat krubuilh ar pajennoù gant ar merdeer',
 'tog-enotifwatchlistpages' => 'Kas ur postel din pa vez kemmet ur bajenn zo war ma roll evezhiañ',
 'tog-enotifusertalkpages' => 'Kas ur postel din pa vez kemmet ma fajenn gaozeal',
 'tog-enotifminoredits' => 'Kas ur postel din, ha pa vije evit kemenn kemmoù dister',

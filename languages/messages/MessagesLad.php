@@ -202,7 +202,6 @@ $messages = array(
 'tog-minordefault' => 'Yir marcando todos los trocamientos como chiquiticos',
 'tog-previewontop' => 'Àmostar el previsteo enriva del cuadro de trocamiento',
 'tog-previewonfirst' => 'Àmostar el previsteo al primer trocamiento',
-'tog-nocache' => 'Desaktivar la kaxé de las hojas del navigador',
 'tog-enotifwatchlistpages' => 'Cada vez que y ay un trocamiento en una hoja que está en mi lista de akavidamiento, mándame una letral (e-mail)',
 'tog-enotifusertalkpages' => 'Cuando y ay un trocamineto en mi hoja de diskusyón, mándame una letral (e-mail)',
 'tog-enotifminoredits' => 'I para los trocamientos chiquiticos de las hojas, mándame una letral (e-mail)',

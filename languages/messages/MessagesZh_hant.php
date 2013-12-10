@@ -290,7 +290,6 @@ $messages = array(
 'tog-minordefault' => '預設將所有編輯標記為小修改',
 'tog-previewontop' => '在編輯框上方顯示預覽',
 'tog-previewonfirst' => '第一次編輯時顯示預覽',
-'tog-nocache' => '停用瀏覽器的頁面快取',
 'tog-enotifwatchlistpages' => '當我監視列表中的頁面或檔案有變更時，發送電子郵件通知我',
 'tog-enotifusertalkpages' => '我的對話頁有變更時，發送電子郵件通知我',
 'tog-enotifminoredits' => '頁面和檔案的小修改也發電子郵件給我',

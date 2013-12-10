@@ -164,7 +164,6 @@ $messages = array(
 'tog-minordefault' => 'Feroarings yn it earst oanjaan as tekstwizigings.',
 'tog-previewontop' => 'By it neisjen, bewurkingsfjild ûnderoan sette',
 'tog-previewonfirst' => 'Lit foarbyld sjen by earste wiziging',
-'tog-nocache' => 'Gjin oerslach brûke',
 'tog-enotifwatchlistpages' => 'E-mail my as in side op myn folchlist feroare is.',
 'tog-enotifusertalkpages' => 'E-mail my as myn oerlisside feroare wurdt',
 'tog-enotifminoredits' => 'E-mail my ek by lytse feroarings fan siden op myn folchlist',

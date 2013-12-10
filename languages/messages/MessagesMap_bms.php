@@ -38,7 +38,6 @@ $messages = array(
 'tog-minordefault' => 'Otomatis nandani kabeh suntingan dadi suntingan cilik',
 'tog-previewontop' => 'Tidokna pratayang sedurunge kotak sunting',
 'tog-previewonfirst' => 'Tidokna pratayang nang suntingan sing pertama',
-'tog-nocache' => 'Nonaktifna penyinggahan kaca peramban',
 'tog-enotifwatchlistpages' => 'Kirimna imel maring inyong angger kaca awa berkas utsing mlebu daptar pangawasanne inyong diowaih',
 'tog-enotifusertalkpages' => 'Kirimna imel maring inyong angger kaca dhiskusine inyong owah',
 'tog-enotifminoredits' => 'Kirimna imel maring inyong uga nek ana suntingan cilik nang kaca lan berkas',

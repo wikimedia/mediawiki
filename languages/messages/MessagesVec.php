@@ -181,7 +181,6 @@ $messages = array(
 'tog-minordefault' => 'Segna ogni canbiamento come picenin (solo come predefinìo)',
 'tog-previewontop' => "Mostra l'anteprima sora ła caseła de modifega e no soto",
 'tog-previewonfirst' => "Mostra l'anteprima par ła prima modifega",
-'tog-nocache' => 'Disativa ła cache par łe pajine del browser',
 'tog-enotifwatchlistpages' => "Segnałame via e-mail có vien canbià na pàjina o un file prexente inte ła lista de łe tegnùe d'ocio",
 'tog-enotifusertalkpages' => 'Avìseme par e-mail se i scrive su la me pagina de discussion',
 'tog-enotifminoredits' => "Avìxeme par e-mail anca pa' i canbiamenti picenini de pàjine e file",

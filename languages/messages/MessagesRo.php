@@ -318,7 +318,6 @@ $messages = array(
 'tog-minordefault' => 'Marchează din oficiu toate modificările ca fiind minore',
 'tog-previewontop' => 'Arată previzualizarea deasupra căsuței de modificare',
 'tog-previewonfirst' => 'Arată previzualizarea la prima modificare',
-'tog-nocache' => 'Dezactivează opțiunea navigatorului de memorare în cache a paginilor',
 'tog-enotifwatchlistpages' => 'Trimite-mi un e-mail atunci când o pagină sau un fișier din lista mea de pagini urmărite suferă modificări',
 'tog-enotifusertalkpages' => 'Trimite-mi un email când pagina mea de discuții este modificată',
 'tog-enotifminoredits' => 'Trimite-mi, de asemenea, un e-mail în caz de modificări minore asupra paginilor și fișierelor',

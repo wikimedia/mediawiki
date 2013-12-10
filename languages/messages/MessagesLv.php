@@ -75,7 +75,6 @@ $messages = array(
 'tog-minordefault' => 'Atzīmēt visus labojumus jau sākotnēji par maznozīmīgiem',
 'tog-previewontop' => 'Parādīt priekšskatījumu virs rediģēšanas lauka, nevis zem',
 'tog-previewonfirst' => 'Parādīt priekšskatījumu jau uzsākot rediģēšanu',
-'tog-nocache' => 'Atslēgt pārlūka lapu saglabāšanu kešatmiņā',
 'tog-enotifwatchlistpages' => 'Paziņot pa e-pastu par izmaiņām uzraugāmo rakstu sarakstā esošos rakstos un failos',
 'tog-enotifusertalkpages' => 'Paziņot pa e-pastu par izmaiņām manā diskusiju lapā',
 'tog-enotifminoredits' => 'Paziņot pa e-pastu arī par maznozīmīgiem labojumiem rakstos un failos',

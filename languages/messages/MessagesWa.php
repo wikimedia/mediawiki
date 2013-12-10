@@ -105,7 +105,6 @@ $messages = array(
 'tog-minordefault' => 'Prémete mes candjmints come mineurs',
 'tog-previewontop' => "Prévey l' årtike å dzeu del boesse d' aspougnaedje",
 'tog-previewonfirst' => "Prévey l' årtike å prumî candjmint",
-'tog-nocache' => "Èn nén eployî d' muchete pol håynaedje des pådjes",
 'tog-enotifwatchlistpages' => "M' emiler cwand ene pådje shuvowe candje",
 'tog-enotifusertalkpages' => "M' emiler cwand l' pådje di copene da minne candje",
 'tog-enotifminoredits' => "M' emiler eto po les ptits candjmints",

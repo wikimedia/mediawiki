@@ -181,7 +181,6 @@ $messages = array(
 'tog-minordefault' => 'Wšykne móje změny ako małe markěrowaś',
 'tog-previewontop' => 'Zespominanje wušej wobźěłowańskego póla pokazaś',
 'tog-previewonfirst' => 'Pśi prědnem wobźěłanju pśecej zespominanje pokazaś',
-'tog-nocache' => 'Cache bokow wobglědowaka znjemóžniś',
 'tog-enotifwatchlistpages' => 'E-mail pósłaś, jolic se wobglědowany bok abo wobglědowana dataja  změnja',
 'tog-enotifusertalkpages' => 'E-mail pósłaś, změnijo-lic se mój diskusijny bok',
 'tog-enotifminoredits' => 'E-mail teke małych změnow bokow a datajow dla pósłaś',

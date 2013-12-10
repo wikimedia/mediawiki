@@ -51,7 +51,6 @@ $messages = array(
 'tog-minordefault' => 'Myr roie-hoieaghey, cowree dagh arraghey myr myn-arraghey',
 'tog-previewontop' => 'Taishbyn y roie-haishbynys roish y chishtey reaghee',
 'tog-previewonfirst' => 'Taishbyn roie-haishbynys lurg y chied reaghey',
-'tog-nocache' => 'Ny sauail duillagyn ayns tasht y jeeagheyder',
 'tog-enotifwatchlistpages' => 'Cur post-l dou tra ta duillag er y rolley arrey aym goll er reaghey',
 'tog-enotifusertalkpages' => 'Cur post-l dou my vees y duillag ymmydeyr aym caghlaa',
 'tog-enotifminoredits' => 'Cur dou post-l er myn-arraghey duillagyn chammah',
