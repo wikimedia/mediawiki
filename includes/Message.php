@@ -841,7 +841,7 @@ class Message {
 	 */
 	protected function parseText( $string ) {
 		$out = MessageCache::singleton()->parse( $string, $this->title, /*linestart*/true, $this->interface, $this->language );
-		return is_object( $out ) ? $out->getText() : $out;
+		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
 	/**
