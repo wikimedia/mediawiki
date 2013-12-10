@@ -381,9 +381,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function doMainQuery( $conds, $opts ) {
 		$tables = array( 'recentchanges' );
 		$join_conds = array();
-		$query_options = array(
-			'USE INDEX' => array( 'recentchanges' => 'rc_timestamp' )
-		);
+		$query_options = array();
 
 		$uid = $this->getUser()->getId();
 		$dbr = wfGetDB( DB_SLAVE );
