@@ -30,7 +30,7 @@
  * @ingroup HTTP
  */
 class Http {
-	static $httpEngine = false;
+	static public $httpEngine = false;
 
 	/**
 	 * Perform an HTTP request
@@ -294,8 +294,10 @@ class MWHttpRequest {
 				return new CurlHttpRequest( $url, $options );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
-					throw new MWException( __METHOD__ . ': allow_url_fopen needs to be enabled for pure PHP' .
-						' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
+					throw new MWException( __METHOD__ . ': allow_url_fopen '.
+						'needs to be enabled for pure PHP http requests to '.
+						'work. If possible, curl should be used instead. See '.
+						'http://php.net/curl.' );
 				}
 				return new PhpHttpRequest( $url, $options );
 			default:
@@ -642,12 +644,16 @@ class MWHttpRequest {
 	/**
 	 * Returns the final URL after all redirections.
 	 *
-	 * Relative values of the "Location" header are incorrect as stated in RFC, however they do happen and modern browsers support them.
-	 * This function loops backwards through all locations in order to build the proper absolute URI - Marooned at wikia-inc.com
+	 * Relative values of the "Location" header are incorrect as
+	 * stated in RFC, however they do happen and modern browsers
+	 * support them.  This function loops backwards through all
+	 * locations in order to build the proper absolute URI - Marooned
+	 * at wikia-inc.com
 	 *
-	 * Note that the multiple Location: headers are an artifact of CURL -- they
-	 * shouldn't actually get returned this way. Rewrite this when bug 29232 is
-	 * taken care of (high-level redirect handling rewrite).
+	 * Note that the multiple Location: headers are an artifact of
+	 * CURL -- they shouldn't actually get returned this way. Rewrite
+	 * this when bug 29232 is taken care of (high-level redirect
+	 * handling rewrite).
 	 *
 	 * @return string
 	 */
@@ -678,7 +684,8 @@ class MWHttpRequest {
 				} else {
 					$url = parse_url( $this->url );
 					if ( isset( $url['host'] ) ) {
-						return $url['scheme'] . '://' . $url['host'] . $locations[$countLocations - 1];
+						return $url['scheme'] . '://' . $url['host'] .
+							$locations[$countLocations - 1];
 					}
 				}
 			} else {
