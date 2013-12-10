@@ -442,7 +442,7 @@ class SkinTemplate extends Skin {
 
 				if ( $wgMaxCredits != 0 ) {
 					$tpl->set( 'credits', Action::factory( 'credits', $this->getWikiPage(),
-						$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+						$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax, $title ) );
 				} else {
 					$tpl->set( 'lastmod', $this->lastModified() );
 				}
