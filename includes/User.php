@@ -2751,6 +2751,23 @@ class User {
 	}
 
 	/**
+	 * Returns true if the user is in the given group,
+	 * otherwise returns false
+	 *
+	 * @param string $group: group to test
+	 * @return boolean
+	 */
+	public function isInGroup( $group ) {
+		$groups = $this->getGroups();
+
+		if ( in_array( $group, $groups ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Get the user's edit count.
 	 * @return int, null for anonymous users
 	 */
