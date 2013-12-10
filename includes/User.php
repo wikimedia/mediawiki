@@ -2751,6 +2751,20 @@ class User {
 	}
 
 	/**
+	 * Returns true if the user is in the given group, otherwise
+	 * returns false. All effective groups are counted.
+	 *
+	 * @param string $group: group to test
+	 * @return boolean
+	 * @since 1.23
+	 */
+	public function isInGroup( $group ) {
+		$groups = $this->getEffectiveGroups();
+
+		return in_array( $group, $groups );
+	}
+
+	/**
 	 * Get the user's edit count.
 	 * @return int, null for anonymous users
 	 */
