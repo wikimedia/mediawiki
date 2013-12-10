@@ -840,6 +840,23 @@ class HWLDFWordAccumulator {
 	private $line = '';
 	private $group = '';
 	private $tag = '';
+	private $insClass = '';
+	private $delClass = '';
+
+	/**
+	 * @param string|null $insClass: class for <ins> tags in diffs
+	 * @param string|null $delClass: class for <del> tags in diffs
+	 */
+	public function __construct( $insClass = 'diffchange diffchange-inline',
+		$delClass = 'diffchange diffchange-inline' )
+	{
+		if ( $insClass ) {
+			$this->insClass = " class=\"$insClass\"";
+		}
+		if ( $delClass ) {
+			$this->delClass = " class=\"$delClass\"";
+		}
+	}
 
 	/**
 	 * @param $new_tag
@@ -847,10 +864,10 @@ class HWLDFWordAccumulator {
 	private function flushGroup( $new_tag ) {
 		if ( $this->group !== '' ) {
 			if ( $this->tag == 'ins' ) {
-				$this->line .= '<ins class="diffchange diffchange-inline">' .
+				$this->line .= "<ins{$this->insClass}>" .
 					htmlspecialchars( $this->group ) . '</ins>';
 			} elseif ( $this->tag == 'del' ) {
-				$this->line .= '<del class="diffchange diffchange-inline">' .
+				$this->line .= "<del{$this->delClass}>" .
 					htmlspecialchars( $this->group ) . '</del>';
 			} else {
 				$this->line .= htmlspecialchars( $this->group );
