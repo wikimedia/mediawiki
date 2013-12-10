@@ -444,7 +444,6 @@ $messages = array(
 'tog-minordefault' => 'Eigene Änderungen standardmäßig als geringfügig markieren',
 'tog-previewontop' => 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst' => 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
-'tog-nocache' => 'Seitencache des Browsers deaktivieren',
 'tog-enotifwatchlistpages' => 'Bei Änderungen an beobachteten Seiten oder Dateien E-Mails senden',
 'tog-enotifusertalkpages' => 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden',
 'tog-enotifminoredits' => 'Auch bei kleinen Änderungen an Seiten und Dateien E-Mails senden',

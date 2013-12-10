@@ -116,7 +116,6 @@ $messages = array(
 'tog-minordefault' => "Hepsi diişmäkleri 'küçük diişmäk' olarak nışanna",
 'tog-previewontop' => 'Öni siiri diiştirmää penceräsi üstünde göster',
 'tog-previewonfirst' => 'İlk kerä diiştirär känä ön siiri göster',
-'tog-nocache' => 'Sayfaları keş etmää yasakla',
 'tog-enotifwatchlistpages' => 'Sayfa diişär känä bana e-mail gönder',
 'tog-enotifusertalkpages' => 'Kullanıcı sayfamda diişmäk olar kana bana e-mail gönder',
 'tog-enotifminoredits' => 'Sayfalardaki küçük diişmäklerdä dä bana e-mail gönder',

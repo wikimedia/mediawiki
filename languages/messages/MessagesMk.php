@@ -375,7 +375,6 @@ $messages = array(
 'tog-minordefault' => 'Обележувај ги сите уредувања како ситни по основно',
 'tog-previewontop' => 'Прикажи го прегледот пред кутијата за уредување',
 'tog-previewonfirst' => 'Прикажи преглед на првото уредување',
-'tog-nocache' => 'Оневозможи кеширање на страниците во прелистувачот',
 'tog-enotifwatchlistpages' => 'Испраќај ми е-пошта при промена на страница или податотека од мојот список на набљудувања',
 'tog-enotifusertalkpages' => 'Испраќај ми е-пошта при промена на мојата страница за разговор',
 'tog-enotifminoredits' => 'Испраќај ми е-пошта и за ситни промени во страниците и податотеките',
@@ -3785,10 +3784,10 @@ Variants for Chinese language
 'exif-whitebalance-0' => 'Автоматска рамнотежа на бело',
 'exif-whitebalance-1' => 'Рачна рамнотежа на бело',
 
-'exif-scenecapturetype-0' => 'Стандардно',
+'exif-scenecapturetype-0' => 'Стандарден',
 'exif-scenecapturetype-1' => 'Пејзаж',
 'exif-scenecapturetype-2' => 'Портрет',
-'exif-scenecapturetype-3' => 'Ноќна сцена',
+'exif-scenecapturetype-3' => 'Ноќна снимка',
 
 'exif-gaincontrol-0' => 'Нема',
 'exif-gaincontrol-1' => 'Мало зголемување',

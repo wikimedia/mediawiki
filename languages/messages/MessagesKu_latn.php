@@ -132,7 +132,6 @@ $messages = array(
 'tog-minordefault' => 'Her guhertinekê weke guhertineke biçûk nîşan bide',
 'tog-previewontop' => 'Pêşdîtina gotarê li jorî cihê guherandinê nîşan bide',
 'tog-previewonfirst' => 'Li cem guherandinê hertim yekemîn pêşdîtinê nîşan bide',
-'tog-nocache' => 'Vegirtina rûpelan bisekinîne',
 'tog-enotifwatchlistpages' => 'Heke rûpeleke ez dişopînim hate guhertin ji min re E-nameyekê bişîne',
 'tog-enotifusertalkpages' => 'Dema rûpela min a Gotûbêjê hate guhertin e-nameyekê ji min re bişîne',
 'tog-enotifminoredits' => 'Ji bo guhertinên biçûk jî E-nameyekê ji min re bişîne',

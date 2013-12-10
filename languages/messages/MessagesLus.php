@@ -34,7 +34,6 @@ $messages = array(
 'tog-minordefault' => "Siamţhat tawh phawt chu 'tenau'-ah dah vek rawh",
 'tog-previewontop' => 'Siamţhatna bawm hmaah endikna dah rawh',
 'tog-previewonfirst' => 'Siamţhat vawi khatnaah endikna tilang rawh',
-'tog-nocache' => 'Fanna-in phêk a cache tur veng rawh',
 'tog-enotifwatchlistpages' => 'Ka ralvèn zinga phêk emaw taksa pakhat tihdanglam a nih apiangin e-lehkha min thawn rawh',
 'tog-enotifusertalkpages' => 'Ka hmangtu-sawihona phêk tihdanglam a nihin e-lehkha min thawn rawh',
 'tog-enotifminoredits' => 'Phêk leh taksa siamţhat tenauah pawh e-lehkha min thawn tho rawh',

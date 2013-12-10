@@ -237,7 +237,6 @@ $messages = array(
 'tog-minordefault' => 'Mariho ho madinika foana aloha ny fanovana rehetra',
 'tog-previewontop' => "Asehoy alohan'ny boaty fanovana ny tsipalotra",
 'tog-previewonfirst' => "Asehoy ny tsipalotra amin'ny fanovana voalohany",
-'tog-nocache' => 'Tsy alefa ny fanehoana ny pejy voasitriky ny mpitety',
 'tog-enotifwatchlistpages' => 'Andefasana imailaka rehefa voaova ny pejy na ny rakitra arahako',
 'tog-enotifusertalkpages' => 'Andefaso imailaka aho rehefa miova ny pejin-dresako',
 'tog-enotifminoredits' => "Andefasana imailaka na dia fanovana madinika aza no atao amin'ny pejy sy ny rakitra",

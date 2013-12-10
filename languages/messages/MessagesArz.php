@@ -323,7 +323,6 @@ $messages = array(
 'tog-minordefault' => 'علم على كل التعديلات كإنها صغيره فى الاساس',
 'tog-previewontop' => 'بين الپروڤه قبل علبة التعديل',
 'tog-previewonfirst' => 'بين البروفة عند أول تعديل',
-'tog-nocache' => 'عطّل تخزين البراوزر للصفحه',
 'tog-enotifwatchlistpages' => '
 ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
 'tog-enotifusertalkpages' => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',

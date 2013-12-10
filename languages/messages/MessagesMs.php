@@ -219,7 +219,6 @@ $messages = array(
 'tog-minordefault' => 'Tandakan semua suntingan sebagai kecil secara asali',
 'tog-previewontop' => 'Tunjukkan pralihat di atas kotak sunting',
 'tog-previewonfirst' => 'Tunjukkan pralihat pada suntingan pertama',
-'tog-nocache' => 'Lumpuhkan pengagregatan laman',
 'tog-enotifwatchlistpages' => 'E-mel kepada saya tentang perubahan pada halaman-halaman dan fail-fail dalam senarai pantau saya',
 'tog-enotifusertalkpages' => 'E-melkan saya apabila berlaku perubahan pada laman perbincangan saya',
 'tog-enotifminoredits' => 'Juga e-mel kepada saya tentang suntingan kecil pada halaman-halaman dan fail-fail',

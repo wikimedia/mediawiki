@@ -378,7 +378,6 @@ $messages = array(
 'tog-minordefault' => '사소한 편집을 기본적으로 선택하기',
 'tog-previewontop' => '편집 상자 앞에 미리 보기 보기',
 'tog-previewonfirst' => '처음 편집할 때 미리 보기 보기',
-'tog-nocache' => '브라우저 문서 캐시 비활성화',
 'tog-enotifwatchlistpages' => '주시문서 목록에 속한 문서나 파일이 바뀌면 이메일로 알림',
 'tog-enotifusertalkpages' => '내 토론 문서가 바뀌면 이메일로 알림',
 'tog-enotifminoredits' => '문서나 파일의 사소한 편집도 이메일로 알림',

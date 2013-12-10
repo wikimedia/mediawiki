@@ -285,7 +285,6 @@ $messages = array(
 'tog-minordefault' => 'Tukuy hukchasqakunata kikinmanta aslla nispa sananchay',
 'tog-previewontop' => "Rikch'ay qhawana ñawpaqman, ama qhipanpi kachunchu",
 'tog-previewonfirst' => "Manaraq llamk'apuspa rikch'ayta qhaway",
-'tog-nocache' => "Llika wamp'unap ''cache'' nisqa paki hallch'anman ama niy",
 'tog-enotifwatchlistpages' => "Watiqasqay p'anqa icha willañiqi hukchasqa kaptinqa, e-chaskita kachamuway",
 'tog-enotifusertalkpages' => "Rimachinay p'anqa hukchasqa kaptinqa, e-chaskita kachamuway",
 'tog-enotifminoredits' => "P'anqapi icha willañiqipi uchuy hukchasqamantapas willawaspa e-chaskita kachamuway",

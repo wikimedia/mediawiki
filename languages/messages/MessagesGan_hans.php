@@ -55,7 +55,6 @@ $messages = array(
 'tog-minordefault' => '全部𠮶编辑设成细修改',
 'tog-previewontop' => '到编辑框𠮶上首显示预览',
 'tog-previewonfirst' => '头道修改时显示预览',
-'tog-nocache' => '停用页面𠮶缓存',
 'tog-enotifwatchlistpages' => '偶监视框𠮶页面一有改动发电子邮件到偶',
 'tog-enotifusertalkpages' => '偶对话框𠮶页面一有改动发email到偶',
 'tog-enotifminoredits' => '有细𠮶改动都要发email到偶',

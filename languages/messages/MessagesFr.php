@@ -429,7 +429,6 @@ $messages = array(
 'tog-minordefault' => 'Marquer mes modifications comme mineures par défaut',
 'tog-previewontop' => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst' => 'Afficher la prévisualisation lors de la première modification',
-'tog-nocache' => 'Désactiver le cache des pages par le navigateur',
 'tog-enotifwatchlistpages' => "M'avertir par courriel lorsqu'une page ou un fichier de ma liste de suivi est modifiée",
 'tog-enotifusertalkpages' => "M'avertir par courriel si ma page de discussion est modifiée",
 'tog-enotifminoredits' => "M'avertir par courriel pour les modifications mineures de pages ou de fichiers également",

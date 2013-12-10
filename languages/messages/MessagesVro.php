@@ -64,7 +64,6 @@ $messages = array(
 'tog-minordefault' => 'Märgiq kõik parandusõq vaikimiisi väikeisis paranduisis',
 'tog-previewontop' => 'Näütäq proovikaehust inne, mitte perän toimõnduskasti',
 'tog-previewonfirst' => 'Näütäq edimädse toimõndusõ aigo proovikaehust',
-'tog-nocache' => 'Pästku-i lehekülgi võrgokaeja vaihõmällo',
 'tog-enotifwatchlistpages' => 'Saadaq mullõ e-kiri, ku muq perräkaetavat lehte vai teedüstüt muudõtas',
 'tog-enotifusertalkpages' => 'Saadaq mullõ e-kiri, ku mu arotuslehte muudõtas',
 'tog-enotifminoredits' => 'Saadaq mullõ e-kiri ka lehti ja failõ väikeisi muutmiisi kotsilõ',

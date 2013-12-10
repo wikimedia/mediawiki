@@ -174,7 +174,6 @@ $messages = array(
 'tog-minordefault' => 'Ìndica ogni canciamentu comu nicu (sulu comu pridifinitu)',
 'tog-previewontop' => "Ammustra l'antiprima prima dâ casella di canciamentu e nun doppu",
 'tog-previewonfirst' => "Ammustra l'antiprima supra lu primu canciamentu",
-'tog-nocache' => 'Disabbìlita la cache dî pàggini dû navigaturi',
 'tog-enotifwatchlistpages' => 'Mànnami na e-mail siddu la pàggina subbisci canciamenti',
 'tog-enotifusertalkpages' => 'Mànnimi nu missaggiu email quannu la mè pàggina di discussioni è canciata',
 'tog-enotifminoredits' => 'Mànnami na e-mail macari pi li canciamenti nichi di sta pàggina',

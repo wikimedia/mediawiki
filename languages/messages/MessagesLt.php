@@ -206,7 +206,6 @@ $messages = array(
 'tog-minordefault' => 'Pagal nutylėjimą pažymėti redagavimus kaip smulkius',
 'tog-previewontop' => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst' => 'Rodyti peržiūrą pirmą kartą pakeitus',
-'tog-nocache' => 'Išjungti interneto naršyklės puslapių podėlį',
 'tog-enotifwatchlistpages' => 'Siųsti man laišką, kai pakeičiamas puslapis, kurį stebiu',
 'tog-enotifusertalkpages' => 'Siųsti man laišką, kai pakeičiamas mano naudotojo aptarimo puslapis',
 'tog-enotifminoredits' => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',

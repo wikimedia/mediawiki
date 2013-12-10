@@ -56,7 +56,6 @@ $messages = array(
 'tog-watchdeletion' => 'Ñukapak pichashka pankakunata rikuna',
 'tog-minordefault' => 'Nimata nikpika, ñukapak killkaykunata uchillami nina',
 'tog-previewontop' => 'Ñauwpak rikuchik pankata killkana pankapak hawapi churana',
-'tog-nocache' => 'Wampunapi ama rikushka pankakunata yuyana',
 'tog-enotifwatchlistpages' => 'Shuk rikushka pankata shukchishka kakpika, e-chaskita kachamushpami willaway',
 'tog-enotifusertalkpages' => 'Ñukapak rimana pankapi mushuk killkayta tiyakpi, e-chaskiwan willaway',
 'tog-enotifminoredits' => 'Mushuk killkayta uchilla kakpipash e-chaskiwan willaway',

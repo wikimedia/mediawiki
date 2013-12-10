@@ -29,7 +29,6 @@ $messages = array(
 'tog-watchdeletion' => 'Pusize petulo a afi kulobala di zwa mukoloko di kentezi',
 'tog-previewontop' => "Kamukile PendiBe pre boks di hloli ye ng'i",
 'tog-previewonfirst' => 'Kamukile PendiBe kwa afi 1',
-'tog-nocache' => 'Amutembwe petulo kahili',
 'tog-enotifwatchlistpages' => 'Meli di zwa di petulo a kentezi sa petuhisize',
 'tog-enotifusertalkpages' => 'Meli di zwa di zwa bulelezi sa petuhisize',
 'tog-enotifrevealaddr' => 'Kamukile zwa adress di meli di xete peson kwa melina notifikasyona',

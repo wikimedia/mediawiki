@@ -171,7 +171,6 @@ $messages = array(
 'tog-minordefault' => "Marki ala mi kenki leki 'pikin'",
 'tog-previewontop' => 'Fusi hey opo mi kenkibox libi si',
 'tog-previewonfirst' => 'Sori wan Si-na-fesi na a fosi kenki',
-'tog-nocache' => 'No kebroiki cache',
 'tog-enotifwatchlistpages' => 'Seni mi wan E-mail te papira ini mi "Tan luku" rey kenki',
 'tog-enotifusertalkpages' => 'Seni mi wan E-mail te mi Taki papira kenki',
 'tog-enotifminoredits' => 'E-mail mi fu pikin kenki fu peprewoysi opo mi sirey',

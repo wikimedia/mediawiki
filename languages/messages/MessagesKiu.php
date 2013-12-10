@@ -76,7 +76,6 @@ $messages = array(
 'tog-minordefault' => 'Vurnayisunê ho pêrune ‘vurnayiso qızkek’ nisan bıde',
 'tog-previewontop' => 'Verqayti pela nustene ser de bıasne',
 'tog-previewonfirst' => 'Vurnayiso verên de verqayti tım bıasne',
-'tog-nocache' => 'Pelunê cıfeteliyawoği mia ho viri',
 'tog-enotifwatchlistpages' => 'Zû pele ya ki dosyawa ke lista mına şêrkerdişi de vurnê mı rê e-poste bırusne',
 'tog-enotifusertalkpages' => 'Pela mına hurênayişi ke vurnê mı rê e-poste bırusne',
 'tog-enotifminoredits' => 'Vurnayisunê qızkekunê pelun u dosyu de ki mı rê e-poste bırusne',

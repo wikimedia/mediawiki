@@ -237,7 +237,6 @@ $messages = array(
 'tog-minordefault' => 'Shëno të gjitha redaktimet si të vogla automatikisht',
 'tog-previewontop' => 'Vendose kutinë e bocetit sipër kutisë së redaktimeve',
 'tog-previewonfirst' => 'Tregoje bocetin në redaktimin e parë',
-'tog-nocache' => "Ç'aktivizo ruajtjen e faqeve të vizituara",
 'tog-enotifwatchlistpages' => 'Më njofto me e-mail kur ndryshohet një faqe apo skedaë nga lista ime e faqeve nën mbikqyrje',
 'tog-enotifusertalkpages' => 'Më njofto me e-mail kur faqja ime e dikutimeve të përdoruesit ndryshohet',
 'tog-enotifminoredits' => 'Më njofto me e-mail edhe kur ka redaktime të vogla në faqe dhe skedave',

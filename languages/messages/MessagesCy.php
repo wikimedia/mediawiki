@@ -139,7 +139,6 @@ $messages = array(
 'tog-minordefault' => 'Marcio pob golygiad fel un bach yn ddiofyn',
 'tog-previewontop' => 'Dangos y rhagolwg cyn y blwch golygu',
 'tog-previewonfirst' => 'Dangos rhagolwg ar y golygiad cyntaf',
-'tog-nocache' => 'Analluogi storio tudalennau yng nghelc y porydd',
 'tog-enotifwatchlistpages' => 'Gyrru e-bost ataf pan fo newid i dudalen neu ffeil ar fy rhestr wylio',
 'tog-enotifusertalkpages' => "Gyrru e-bost ataf fy hunan pan fo newid i'm tudalen sgwrs",
 'tog-enotifminoredits' => 'Gyrru e-bost ataf hefyd ar gyfer golygiadau bychain i dudalennau a ffeiliau',

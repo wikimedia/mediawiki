@@ -173,7 +173,6 @@ $messages = array(
 'tog-minordefault' => "Defolt boyınsha barlıq o'zgerislerdi kishi dep esaplaw",
 'tog-previewontop' => "O'zgertiw maydanınan aldın ko'rip shıg'ıw maydanın ko'rset",
 'tog-previewonfirst' => "Birinshi o'zgertiwdi ko'rip shıq",
-'tog-nocache' => "Brauzer bet keshlewin o'shir",
 'tog-enotifwatchlistpages' => "Baqlaw dizimimdegi bet o'zgertilgende mag'an xat jiber",
 'tog-enotifusertalkpages' => "Menin' sa'wbetim o'zgertilgende mag'an xat jiber",
 'tog-enotifminoredits' => "Kishi o'zgerisler haqqında da mag'an xat jiber",

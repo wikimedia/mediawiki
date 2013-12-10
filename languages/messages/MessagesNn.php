@@ -341,7 +341,6 @@ $messages = array(
 'tog-minordefault' => 'Merk endringar som «småplukk» som standard',
 'tog-previewontop' => 'Vis førehandsvisinga før endringsboksen',
 'tog-previewonfirst' => 'Førehandsvis første endring',
-'tog-nocache' => 'Deaktiver nettlesaren sitt mellomlager («cache»)',
 'tog-enotifwatchlistpages' => 'Send meg ein e-post når ei side eller ei fil på overvakingslista mi vert endra',
 'tog-enotifusertalkpages' => 'Send e-post når brukarsida mi vert endra',
 'tog-enotifminoredits' => 'Send meg e-post sjølv for mindre endringar på sider og filer',

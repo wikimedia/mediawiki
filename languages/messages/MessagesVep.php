@@ -110,7 +110,6 @@ $messages = array(
 'tog-minordefault' => 'Znamoita äugotižjärgendusen mödhe kaik toižetused penikš',
 'tog-previewontop' => 'Panda ezikacund redaktiruindan iknan edehe',
 'tog-previewonfirst' => 'Ozutada ezikacund redaktiruindan augotades',
-'tog-nocache' => "Kel'ta lehtpoliden keširuind",
 'tog-enotifwatchlistpages' => 'Oigekat minei e-počt, konz lehtpoled minun kaclendnimikirjutesespäi toižetase',
 'tog-enotifusertalkpages' => "Oigeta minei e-počt, konz minun lodulehtpol' toižetase",
 'tog-enotifminoredits' => 'Oigeta minei e-počt eskai siloi, konz toižetused oma minimaližed',

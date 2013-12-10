@@ -163,7 +163,6 @@ $messages = array(
 'tog-minordefault' => 'په طور پیش فرض کل اصلاحات آ په داب جزی مشخص کن',
 'tog-previewontop' => 'بازبین پیش دار پیش چه جعبه اصلاح',
 'tog-previewonfirst' => 'ته اولین اصلاح بازبینی پیش دار',
-'tog-nocache' => 'ذخیره کتن صفحه یا غیر فعال کن',
 'tog-enotifwatchlistpages' => 'منی ایمیل جن وهدی که یک صفحه ای ته منی لیست چارگ عوص بیت',
 'tog-enotifusertalkpages' => 'منآ ایمیل جن وهدی که صفحه ی گپ کاربر من عوض بیت',
 'tog-enotifminoredits' => 'من ایمیل جن همی داب په هوردین اصلاحات صفحات',

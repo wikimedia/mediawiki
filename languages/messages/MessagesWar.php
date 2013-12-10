@@ -85,7 +85,6 @@ $messages = array(
 'tog-minordefault' => 'Tigamni an ngatanan nga mga pagliwat nga gudti hin default',
 'tog-previewontop' => 'Igpakita in prevista o pan-ugsa-nga-lantaw ugsa hiton pagliwat nga kahon',
 'tog-previewonfirst' => 'Igpakita in prevista o pan-ugsa-nga-lantaw ha syahan nga pagliwat',
-'tog-nocache' => 'Ayaw patiroka an mga pakli nga pamiling',
 'tog-enotifwatchlistpages' => 'Ig-e-mail ako kun may pakli o paypay ha akon gintitiman-an nga gin-iba',
 'tog-enotifusertalkpages' => 'Ig-e-mail ako kun may nagbag-o han akon pakli-himangrawon',
 'tog-enotifminoredits' => 'Ig-e-mail liwat ako hin mga gudti nga mga pagliwat hin mga pakli ngan mga paypay',

@@ -34,7 +34,6 @@ $messages = array(
 'tog-minordefault' => "Peşfarzi hamai viroişhoro çuz'i işora kuned",
 'tog-previewontop' => 'Namoişi peşnamoişi qablī peş az quttiji viroiş va na pas az on',
 'tog-previewonfirst' => 'Nişon dodani peşnamoiş dar naxustin viroiş',
-'tog-nocache' => "Hofizai nihoniji sahifa dar mururgar ƣajrifa'ol şavad",
 'tog-enotifwatchlistpages' => 'Agar sahifae mavridi pajgiriji man taƣjir karda şavad ba man tariqi poctai elektronī pajjom bifiristed.',
 'tog-enotifusertalkpages' => 'Hangome ki dar sahifai korbariam taƣjir doda meşavad ba man tariqi poctai elektronī pajjom bifiristed.',
 'tog-enotifminoredits' => "Baroi taƣjiroti çuz'i ba man tariqi poctai elektronī pajjom bifiristed.",

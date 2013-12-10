@@ -339,7 +339,6 @@ $messages = array(
 'tog-minordefault' => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop' => 'Vis forhåndsvisningen over redigeringsboksen',
 'tog-previewonfirst' => 'Vis forhåndsvisning når du begynner å redigere',
-'tog-nocache' => 'Deaktiver nettlesermellomlagring av sider («caching»)',
 'tog-enotifwatchlistpages' => 'Send meg en e-post når sider og filer på overvåkningslisten min blir endret',
 'tog-enotifusertalkpages' => 'Send meg en e-post når brukerdiskusjonssiden min endres',
 'tog-enotifminoredits' => 'Send meg e-post også ved mindre endringer av sider og filer',

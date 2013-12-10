@@ -155,7 +155,6 @@ $messages = array(
 'tog-minordefault' => 'Alli dyni Änderigen als «chlyni Änderige» markiere',
 'tog-previewontop' => 'Vorschou vor em Editierfänschter aazeige',
 'tog-previewonfirst' => 'Vorschou aazeige bim erschten Editiere',
-'tog-nocache' => 'Syte-Cache vum Browser deaktiviere',
 'tog-enotifwatchlistpages' => 'Schick mer e Mail, wänn e Syte oder e Datei gänderet wird, wun i beobachte due',
 'tog-enotifusertalkpages' => 'Benachrichtigungsmails bi Änderigen a dyne Benutzersyte',
 'tog-enotifminoredits' => 'Au bi chlaine Änderige an Syte oder Dateie ne Mail schicke',

@@ -185,7 +185,6 @@ $messages = array(
 'tog-minordefault' => 'Tandoi kasado suntiangan sabagai suntiangan ketek sacaro baku',
 'tog-previewontop' => 'Tunjuakan pratonton sabalun kotak suntiang',
 'tog-previewonfirst' => 'Tunjuakan pratonton pado suntiangan patamo',
-'tog-nocache' => 'Matikan panyinggahan laman paramban',
 'tog-enotifwatchlistpages' => 'Kiriman surel, kok laman atau gambar pado daftar pantau Ambo barubah',
 'tog-enotifusertalkpages' => 'Kiriman surel, koq laman maota Ambo barubah',
 'tog-enotifminoredits' => 'Kirimkan surel juo untuk saketek suntingan pado laman jo gambar',

@@ -43,7 +43,6 @@ $messages = array(
 'tog-minordefault' => '默認記全部編都是細個',
 'tog-previewontop' => '編寫框頭前顯示先望',
 'tog-previewonfirst' => '頭垡編寫顯示先望',
-'tog-nocache' => '弗用流览器页面慢存',
 'tog-enotifwatchlistpages' => '我關注表裏個頁要弗文件變脫到用電子信通知我',
 'tog-enotifusertalkpages' => '我用戶討論頁變脫到用電子信通知我',
 'tog-enotifminoredits' => '頁搭文件細編也用電子信通知我',

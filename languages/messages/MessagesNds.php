@@ -236,7 +236,6 @@ $messages = array(
 'tog-minordefault' => 'Alle Ännern as lütt markeern',
 'tog-previewontop' => 'Vörschau vör dat Editeerfinster wiesen',
 'tog-previewonfirst' => "Vörschau bi'n eersten Ännern wiesen",
-'tog-nocache' => 'Twischenspieker vun’n Webkieker utstellen',
 'tog-enotifwatchlistpages' => 'Schriev mi en Nettbreef, wenn ene Siet, op de ik oppass, ännert warrt',
 'tog-enotifusertalkpages' => 'Schriev mi en Nettbreef, wenn ik ne’e Narichten heff',
 'tog-enotifminoredits' => 'Schriev mi en Nettbreef, ok wenn dat blots en lütte Ännern weer',

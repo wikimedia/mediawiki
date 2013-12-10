@@ -171,7 +171,6 @@ $messages = array(
 'tog-minordefault' => '慣為校',
 'tog-previewontop' => '頂草覽',
 'tog-previewonfirst' => '覽首修',
-'tog-nocache' => '莫謄文',
 'tog-enotifwatchlistpages' => '哨新，遣函',
 'tog-enotifusertalkpages' => '議新，遣函',
 'tog-enotifminoredits' => '校新，遣函',

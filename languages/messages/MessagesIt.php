@@ -313,7 +313,6 @@ $messages = array(
 'tog-minordefault' => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop' => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst' => "Mostra l'anteprima almeno una volta prima di salvare",
-'tog-nocache' => 'Disabilita la cache delle pagine del browser',
 'tog-enotifwatchlistpages' => 'Inviami una email quando viene modificata una pagina o un file presente tra gli osservati speciali',
 'tog-enotifusertalkpages' => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
 'tog-enotifminoredits' => 'Inviami una email anche per le modifiche minori di pagine e file',

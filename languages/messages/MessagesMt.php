@@ -295,7 +295,6 @@ $messages = array(
 'tog-minordefault' => 'Immarka awtomatikament kull modifika bħala waħda minuri',
 'tog-previewontop' => 'Uri dehra proviżorja tal-paġna fuq il-kaxxa tal-immodifikar',
 'tog-previewonfirst' => 'Uri dehra proviżorja mal-ewwel modifika',
-'tog-nocache' => 'Iddiżattiva l-cache tal-paġni tal-browser',
 'tog-enotifwatchlistpages' => "Ibgħatli ittre kull meta sseħħ modifika fuq paġna jew fajl li jinsab fil-lista ta' osservazzjoni tiegħi",
 'tog-enotifusertalkpages' => "Ibgħatli ittra-e kull meta l-paġna ta' diskussjoni tiegħi tiġi modifikata",
 'tog-enotifminoredits' => 'Ibgħatli wkoll ittra-e għall-modifiki minuri fuq paġni u fajls',

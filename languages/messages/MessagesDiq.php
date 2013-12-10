@@ -352,7 +352,6 @@ $messages = array(
 'tog-minordefault' => "Vurnayışanê xo pêrune ''vurnayışo qıckek'' nışan bıde",
 'tog-previewontop' => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst' => 'Vurnayışo verên de verqayti tım bımocne',
-'tog-nocache' => 'Pelanê cıgeyrayoği meya xo viri',
 'tog-enotifwatchlistpages' => 'Yew pele ya zi dosyaya ke lista mına seyrkerdışi de vurnayê mı rê e-poste bırışe',
 'tog-enotifusertalkpages' => 'Pela mına werênayışi ke vurnayê mı rê e-poste bırışe',
 'tog-enotifminoredits' => 'Vurnayışanê qıckekanê pelan u dosyeyan de zi mı rê e-poste bırışe',

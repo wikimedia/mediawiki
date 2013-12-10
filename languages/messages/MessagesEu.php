@@ -146,7 +146,6 @@ $messages = array(
 'tog-minordefault' => 'Lehenetsi bezala aldaketa txiki bezala markatu guztiak',
 'tog-previewontop' => 'Aurrebista aldaketa koadroaren aurretik erakutsi',
 'tog-previewonfirst' => 'Lehen aldaketan aurrebista erakutsi',
-'tog-nocache' => 'Orrialdeen katxea ezgaitu',
 'tog-enotifwatchlistpages' => 'Bidal iezadazue e-posta bat, jarraitzen ari naizen orrialde edo fitxategi bat aldatzen denean',
 'tog-enotifusertalkpages' => 'Nire eztabaida orrialdea aldatzen denean e-posta jaso',
 'tog-enotifminoredits' => 'Orrialde edo fitxategietan aldaketak txikiak direnean ere e-posta jaso',
@@ -3597,7 +3596,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'sqlite-no-fts' => '$1 testu osoan bilatzeko laguntzarik gabe',
 
 # New logging system
-'logentry-delete-delete' => '$1 wikilariak $3 orria {{GENDER:$2|ezabatu}} du',
+'logentry-delete-delete' => '$1 {{GENDER:$2|wikilariak}} «$3» orria ezabatu du',
 'logentry-delete-restore' => '$1(e)k $3 orrialdea {{GENDER:$2|berrezarri}} du',
 'logentry-delete-event' => '$1 wikilariak ikusgaitasuna aldatu {{PLURAL:$5|dio erregistroko sarrera bati|die erregistroko $5 sarrerari}}, $3 orrian: $4',
 'logentry-delete-revision' => '$1 erabiltzaileak {{PLURAL:$5|berrikuste baten|$5 berrikusteren}} ikusgaitasuna aldatu du «$3» orrian: $4',

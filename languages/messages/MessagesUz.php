@@ -132,7 +132,6 @@ $messages = array(
 'tog-minordefault' => 'Sukut boʻyicha barcha tahrirlarimni «kichik tahrir» etib belgilash',
 'tog-previewontop' => 'Tahrir oynasi tepasida koʻrib chiqish',
 'tog-previewonfirst' => 'Tahrirlashga oʻtiboq koʻrib chiqishni boshlash',
-'tog-nocache' => 'Brauzer sahifalarni kesh xotirasida saqlamasin',
 'tog-enotifwatchlistpages' => 'Kuzatuv roʻyxatimdagi sahifa yoki fayllar oʻzgartirilsa, menga bu haqda xat yuborilsin',
 'tog-enotifusertalkpages' => 'Munozara sahifam oʻzgartirilsa, menga bu haqda xat yuborilsin',
 'tog-enotifminoredits' => 'Kichik tahrir qilinsa ham e-pochtamga bu haqda xat yuborilsin',

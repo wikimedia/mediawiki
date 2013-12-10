@@ -75,7 +75,6 @@ $messages = array(
 'tog-minordefault' => 'सबै सम्पादनहरुलाई पूर्वनिर्धारित रुपमा सामान्य चिनो लगाउने',
 'tog-previewontop' => 'सम्पादन सन्दुक अगि पूर्वरुप देखाउने',
 'tog-previewonfirst' => 'पहिलो सम्पादनमा पूर्वरुप देखाउने',
-'tog-nocache' => 'ब्राउजर पृष्ठ क्यासिङ्ग निस्क्रिय पार्ने',
 'tog-enotifwatchlistpages' => 'मेरो निगरानी सूचीमा रहेका पृष्ठ अथवा फाइलहरु परिवर्तन गरिए मलाई ई-मेल गरियोस्',
 'tog-enotifusertalkpages' => 'मेरो प्रयोगकर्ता वार्ता पृष्ठ परिवर्तन गरिए मलाई ई-मेल गर्ने',
 'tog-enotifminoredits' => 'पृष्ठहरु र फाइलहरुको सामान्य सम्पादन भएमा पनि मलाई ई-मेल गरियोस्',
@@ -449,6 +448,8 @@ $2',
 'namespaceprotected' => " '''$1'''  नेमस्पेसमा रहेका पृष्ठहरु सम्पादन गर्ने अनुमति यहाँलाई छैन ।",
 'customcssprotected' => 'तपाईलाई यस  पृष्ठ सम्पादन गर्ने अनुमति छैन, किनकी यसमा कुनै अर्को प्रयोगकर्ताको व्यक्तिगत अभिरुचीहरु संग्रहित छन् ।',
 'customjsprotected' => 'तपाईलाई यस जाभास्कृप्ट पृष्ठ सम्पादन गर्ने अनुमति छैन, किनकी यसमा कुनै अर्को प्रयोगकर्ताको व्यक्तिगत अभिरुचीहरु संग्रहित छन् ।',
+'mycustomcssprotected' => 'यस CSSपृष्ठ सम्पादन गर्नको लागि लागि तपाईँलाई अनुमति छैन ।',
+'mycustomjsprotected' => 'यस JavaScript पृष्ठ सम्पादन गर्नको लागि लागि तपाईँलाई अनुमति छैन ।',
 'ns-specialprotected' => 'विशेष पृष्ठ सम्पादन गर्न सकिदैन ।',
 'titleprotected' => ' [[User:$1|$1]]द्वारा यो शीर्षक निर्माणहुनबाट जोगाइएको छ।
 कारण   "\'\'$2\'\'" हो ।',
@@ -500,7 +501,7 @@ $2',
 'gotaccount' => "के तपाईँसँग पहिले देखि नै खाता छ ? '''$1''' ।",
 'gotaccountlink' => 'लग इन',
 'userlogin-resetlink' => 'प्रवेश सम्बन्धी विवरणहरु बिर्सनु भयो?',
-'userlogin-resetpassword-link' => 'पासवर्ड परिवर्तन गर्नुहोस्',
+'userlogin-resetpassword-link' => 'पासवर्ड भुल्नुभयो?',
 'userlogin-createanother' => 'अर्को खाता खोल्नुहोस्',
 'createacct-join' => 'तपाईँका जानकारीहरू तल थप्नुहोस् ।',
 'createacct-another-join' => 'नयाँ खाताको जानकारी तल थप्नुहोस ।',
@@ -519,10 +520,13 @@ $2',
 'createacct-another-submit' => 'अर्को खाता सिर्जना गर्नुहोस्',
 'createacct-benefit-heading' => '{{SITENAME}} तपाईँ जस्तै मानिसहरूद्वारा सिर्जना गरिएको हो ।',
 'createacct-benefit-body1' => '{{PLURAL:$1|सम्पादन|सम्पादनहरू}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|पृष्ठ|पृष्ठहरू}}',
+'createacct-benefit-body3' => 'हालैका {{PLURAL:$1|योगदान कर्ता|योगदान कर्ताहरू}}',
 'badretype' => 'तपाईंले दिनुभएको पासवर्ड मिल्दैन।',
 'userexists' => 'तपाईले प्रविष्ट गर्नुभएको प्रयोगकर्ताको नाम पहिले देखिनै प्रयोगमा छ ।
 कृपया फरक नाम छान्नुहोस् ।',
 'loginerror' => 'प्रवेश त्रुटि',
+'createacct-error' => 'खाता बनाउँदा त्रुटि',
 'createaccounterror' => 'खाता बनाउन सकिएन: $1',
 'nocookiesnew' => 'तपाईँको खाता बनाइयो, तर तपाईँ प्रवेश गर्नुभएको छैन ।
 {{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ ।
@@ -644,6 +648,12 @@ $2
 'changeemail-none' => '(कुनै पनि हैन)',
 'changeemail-submit' => 'इमेल परिवर्तन गर्ने',
 'changeemail-cancel' => 'रद्द गर्ने',
+
+# Special:ResetTokens
+'resettokens' => 'टोकन पूर्वरुपमा फर्काउने',
+'resettokens-no-tokens' => 'पूर्वरुपमा फर्काउन कुनै पनि टोकन छैन ।',
+'resettokens-legend' => 'टोकनहरू पूर्वरुपमा फर्काउने',
+'resettokens-tokens' => 'टोकनहरू:',
 
 # Edit page toolbar
 'bold_sample' => 'गाढा अक्षर',
@@ -840,8 +850,11 @@ $2
 यो मेटिएको जस्तो देखिन्छ ।',
 'edit-conflict' => 'द्वन्द्व सम्पादन गर्ने ।',
 'edit-no-change' => 'तपाईँको सम्पादन वेवास्ता गरियो, किनकि कुनै पनि पाठ परिवर्तन गरिएन ।',
+'postedit-confirmation' => 'तपाईंको सम्पादन संग्रह गरिएको थियो ।',
 'edit-already-exists' => 'नयाँ पृष्ठ बनाउन सकिएन ।
 यो पहिले देखि नै रहेको छ।',
+'defaultmessagetext' => 'डिफल्ट सन्देश पाठ',
+'invalid-content-data' => 'अमान्य सामग्री डेटा',
 
 # Content models
 'content-model-wikitext' => 'विकिपाठ',
@@ -954,8 +967,8 @@ $2
 'revdelete-hide-user' => 'सम्पादकको प्रयोगकर्ता नाम/IP लुकाउने',
 'revdelete-hide-restricted' => 'प्रवन्धक वा अरुबाट डेटा कम लिने',
 'revdelete-radio-same' => '(परिवर्तन नगर्नुहोस्)',
-'revdelete-radio-set' => 'हुन्छ',
-'revdelete-radio-unset' => 'हुँदैन',
+'revdelete-radio-set' => 'लुकाइएको',
+'revdelete-radio-unset' => 'देखिने',
 'revdelete-suppress' => 'प्रवन्धक वा अरुबाट डेटा कम लिने',
 'revdelete-unsuppress' => 'पुनर्स्थापित पुनरावृत्तिबाट बन्देज हटाउने',
 'revdelete-log' => 'कारण :',
@@ -1363,6 +1376,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'recentchanges-label-bot' => 'यो सम्पादन बोट द्वारा गरिएको थियो',
 'recentchanges-label-unpatrolled' => 'यो सम्पादन अहिले सम्म पट्रोल गरिएको छैन',
 'recentchanges-legend-newpage' => '$1 - नयाँ पृष्ठ',
+'recentchanges-legend-plusminus' => "(''±१२३'')",
 'rcnotefrom' => "'''$2''' देखिका परिवर्तनहरु तल ('''$1''' सम्मका देखाइन्छ)।",
 'rclistfrom' => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
 'rcshowhideminor' => '$1 सामान्य सम्पादन',
@@ -1386,7 +1400,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'rc-change-size' => '$1',
 'rc-change-size-new' => 'परिवर्तनपछि $1 {{PLURAL:$1|बाइट|बाइट}}',
 'newsectionsummary' => '/* $1 */ नयाँ खण्ड',
-'rc-enhanced-expand' => 'जानकारी देखाउने( जाभा स्क्रिप्ट चाहिने)',
+'rc-enhanced-expand' => 'विस्तृत जानकारी हेर्ने',
 'rc-enhanced-hide' => 'जानकारी लुकाउने',
 'rc-old-title' => 'मौलिक तौरमा "$1" रुपमा बनाइएको',
 
@@ -1643,6 +1657,9 @@ $1',
 # Random page
 'randompage' => 'कुनै एक लेख',
 'randompage-nopages' => '{{PLURAL:$2| $1 नाम भएको कुनै पृष्ट छैन|$1 नाम भएका कुनै पृष्टहरु छैनन्}}',
+
+# Random page in category
+'randomincategory-selectcategory-submit' => 'जाने',
 
 # Random redirect
 'randomredirect' => 'कुनै एउटा अनुप्रेषितमा जाने',
@@ -2073,6 +2090,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'undeletedpage' => "'''$1लाई पूर्वावस्थामा ल्याइयो'''
 भर्खरै मेटाइएको रिकर्डहरु र पुनर्स्थापनाहरु हेर्न [[Special:Log/delete|मेटाइएको लग]]मा जानुहोस्।",
 'undelete-header' => 'भर्खर मेटिएका पृष्ठहरु हेर्न [[Special:Log/delete|मेटाइएका लग]]मा जानुहोस्।',
+'undelete-search-title' => 'मेटिएका पृष्ठहरु खोज्नुहोस',
 'undelete-search-box' => 'मेटिएका पृष्ठहरु खोज्नुहोस',
 'undelete-search-prefix' => 'बाट सुरु हुने  पृष्ठहरु देखाउनुहोस :',
 'undelete-search-submit' => 'खोजी गर्नुहोस्',
@@ -2082,6 +2100,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'undelete-cleanup-error' => 'प्रोगमा नआएको "$1" अभिलेख फाइल मेट्दा त्रुटी',
 'undelete-missing-filearchive' => 'फाइल अभिलेख आइडी $1 पुन:स्थापित गर्दा त्रुटी किनकी यो डेटाबेसमा छैन।
 यो पहिले नै पुन: स्थापित गरिसकिएको हुनछक्छ ।',
+'undelete-error' => 'पृष्ठ मेट्दा त्रुटि भयो',
 'undelete-error-short' => '$1  मेटाएको रद्द गर्दा त्रुटी भयो',
 'undelete-error-long' => 'फाइल $1 मेट्दै गर्दा त्रुटि आइलाग्यो।',
 'undelete-show-file-confirm' => 'के तपाईंले $3 मा $2 बाट मेटिएको "<nowiki>$1</nowiki>" फाइलको मेटिएको संस्करण हेर्ने निश्चय लिनु भएकै हो?',
@@ -2099,7 +2118,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'contributions' => '{{GENDER:$1|प्रयोगकर्ता}}का योगदानहरू',
 'contributions-title' => '$1को प्रयोगकर्ता योगदानहरु',
 'mycontris' => 'योगदानहरु',
-'contribsub2' => ' $1 ($2)को लागि',
+'contribsub2' => ' {{GENDER:$3|$1}} ($2)को लागि',
 'nocontribs' => 'यस मापदण्ड अनुसार परिवर्त पाइएन।',
 'uctop' => '(वर्तमान)',
 'month' => 'महिना देखि (र पहिले):',
@@ -2534,11 +2553,18 @@ $1को बन्देजको कारण : "$2" हो',
 
 # Info page
 'pageinfo-title' => ' "$1"को लागि जाकारी',
-'pageinfo-header-edits' => 'सम्पादनहरु',
+'pageinfo-header-basic' => 'साधारण जानकारी',
+'pageinfo-header-edits' => 'सम्पादन इतिहास',
+'pageinfo-header-restrictions' => 'पृष्ठ सुरक्षा',
+'pageinfo-header-properties' => 'पृष्ठ गुणहरू',
+'pageinfo-display-title' => 'प्रदर्शन शिर्षक',
 'pageinfo-views' => 'अवलोकन संख्या',
 'pageinfo-watchers' => 'निगरानी कर्ताहरुको संख्या',
 'pageinfo-edits' => 'सम्पादन संख्या',
 'pageinfo-authors' => 'फरक सम्पादकरुको संख्या',
+'pageinfo-redirectsto-info' => 'जानकारी',
+'pageinfo-contentpage-yes' => 'हो',
+'pageinfo-protect-cascading-yes' => 'हो',
 
 # Skin names
 'skinname-cologneblue' => 'कोलोग्ने निलो',
@@ -2622,6 +2648,16 @@ $1',
 'hours' => '{{PLURAL:$1|$1 घण्टा|$1 घण्टाहरु}}',
 'days' => '{{PLURAL:$1|$1 दिन|$1 दिनहरु}}',
 'ago' => '$1 पहिले',
+
+# Human-readable timestamps
+'monday-at' => 'सोमबार $1 मा',
+'tuesday-at' => 'मङ्गलबार $1मा',
+'wednesday-at' => 'बुधबार $1मा',
+'thursday-at' => 'बिहिबार $1मा',
+'friday-at' => 'शुक्रबार $1मा',
+'saturday-at' => 'शनिबार $1मा',
+'sunday-at' => 'आइतबार $1मा',
+'yesterday-at' => 'हिजो $1मा',
 
 # Bad image list
 'bad_image_list' => '(* बाट शुरु हुने पंक्ति)को  विषय सूची मात्र मान्य छ।  पंक्तिको पहिलो लिङ्क नराम्रो फाइलसित लिङ्क हुनैपर्छ । एउटै पंक्तिमा कुनै पछिबाट हुने लिंकलाई अपवाद मानिनेछ अर्थात् जुन पृष्ठमा फाइल इन-लाइन हुनसक्छ।',

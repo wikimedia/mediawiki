@@ -63,7 +63,6 @@ $messages = array(
 'tog-minordefault' => 'Mearcian ealla adihtunga lytela tō gewunan',
 'tog-previewontop' => 'Īwan fōrebysene ofer adihtunge mearce',
 'tog-previewonfirst' => 'Īwan fōrebysene on forman adihtunge',
-'tog-nocache' => 'Nā þafian þætte webbsēcend sette trametas on horde',
 'tog-enotifwatchlistpages' => 'Sendan mē spearcǣrend þǣr tramet oþþe ymele on mīnum behealdungtæle sīe andwended.',
 'tog-enotifusertalkpages' => 'Sendan mē spearcǣrend þǣr mīnes brūcendtrametes mōtung sī andwended',
 'tog-enotifminoredits' => 'Sendan mē spearcǣrend þǣr trametas oþþe ymelan sīen efne lyt andwended.',

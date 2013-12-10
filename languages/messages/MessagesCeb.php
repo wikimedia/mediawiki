@@ -88,7 +88,6 @@ $messages = array(
 'tog-minordefault' => 'Markahi ang tanang pag-usab isip ginagmay',
 'tog-previewontop' => 'Ipakita ang paunang tan-aw bag-o sa edit box',
 'tog-previewonfirst' => 'Ipakita ang paunang tan-aw sa unang pag-usab',
-'tog-nocache' => 'Ayaw i-cache ang panid',
 'tog-enotifwatchlistpages' => 'I-email ko kon ang panid nga akong gibantayan giusab.',
 'tog-enotifusertalkpages' => 'I-email ko kon nausab ang akong panid sa panaghisgot',
 'tog-enotifminoredits' => 'I-email ko alang sa mga ginagmay nga pag-usab',

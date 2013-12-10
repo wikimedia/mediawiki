@@ -131,7 +131,6 @@ $messages = array(
 'tog-minordefault' => 'Markizez kustume omna redaktajo kom mikra',
 'tog-previewontop' => 'Montrez prevido avan la redakto-buxo',
 'tog-previewonfirst' => 'Montrez prevido pos la unesma redakto',
-'tog-nocache' => 'Nekapableskez cache-ar pagini',
 'tog-enotifwatchlistpages' => 'Sendez e-posto a me kande pagino quan me surveyas chanjesas',
 'tog-enotifusertalkpages' => 'Sendez e-posto a me kande mea diskuto-pagino chanjesas',
 'tog-enotifminoredits' => 'Sendez e-posto a me mem por mikra chanji',

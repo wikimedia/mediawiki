@@ -336,7 +336,6 @@ $messages = array(
 'tog-minordefault' => 'Alapértelmezetten minden szerkesztésemet jelölje aprónak',
 'tog-previewontop' => 'Előnézet megjelenítése a szerkesztőablak előtt',
 'tog-previewonfirst' => 'Előnézet első szerkesztésnél',
-'tog-nocache' => 'A lapok gyorstárazásának letiltása a böngészőben',
 'tog-enotifwatchlistpages' => 'Kapjak értesítést e-mailben, ha egy általam figyelt lap vagy fájl megváltozik',
 'tog-enotifusertalkpages' => 'Kapjak értesítést e-mailben, ha megváltozik a vitalapom',
 'tog-enotifminoredits' => 'Kapjak értesítést e-mailben a lapok és fájlok apró változtatásairól',

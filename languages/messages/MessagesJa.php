@@ -390,7 +390,6 @@ $messages = array(
 'tog-minordefault' => '細部の編集に既定でチェックを入れる',
 'tog-previewontop' => 'プレビューを編集ボックスの前に配置',
 'tog-previewonfirst' => '編集開始時にもプレビューを表示',
-'tog-nocache' => 'ブラウザーによるページのキャッシュを無効にする',
 'tog-enotifwatchlistpages' => 'ウォッチリストにあるページやファイルが更新されたらメールを受け取る',
 'tog-enotifusertalkpages' => '自分のトークページが更新されたらメールを受け取る',
 'tog-enotifminoredits' => 'ページやファイルへの細部の編集でもメールを受け取る',
@@ -3257,7 +3256,7 @@ $2',
 'tooltip-undo' => '「取り消し」はこの編集を差し戻し、編集画面をプレビュー付きで開きます。要約欄に理由を追加できます。',
 'tooltip-preferences-save' => '設定を保存する',
 'tooltip-summary' => '短い要約を入力してください',
-'interlanguage-link-title' => '$1 – $2',
+'interlanguage-link-title' => '$2: $1',
 
 # Stylesheets
 'common.css' => '/* ここに記述したCSSはすべての外装に反映されます */',

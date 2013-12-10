@@ -327,7 +327,6 @@ $messages = array(
 'tog-minordefault' => 'Märgi kõik parandused vaikimisi pisiparandusteks',
 'tog-previewontop' => 'Näita eelvaadet toimetamiskasti ees',
 'tog-previewonfirst' => 'Näita eelvaadet esimesel redigeerimisel',
-'tog-nocache' => 'Keela võrgulehitsejal lehekülgede puhverdamine',
 'tog-enotifwatchlistpages' => 'Teata e-posti teel minu jälgitava lehekülje või faili muutmisest',
 'tog-enotifusertalkpages' => 'Teata e-posti teel minu arutelulehekülje muutmisest',
 'tog-enotifminoredits' => 'Teata e-posti teel mulle ka pisiparandustest lehekülgedel ja failides',

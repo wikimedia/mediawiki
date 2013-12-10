@@ -175,7 +175,6 @@ $messages = array(
 'tog-minordefault' => 'Wšě změny standardnje jako snadne woznamjenić',
 'tog-previewontop' => 'Přehlad před wobdźěłanskim polom pokazać',
 'tog-previewonfirst' => 'Při prěnim wobdźěłanju přehlad pokazać',
-'tog-nocache' => 'Pufrowanje stronow wobhladowaka znjemóžnić',
 'tog-enotifwatchlistpages' => 'E-mejlku pósłać, hdyž so strona abo dataja z wobkedźbowankow změni',
 'tog-enotifusertalkpages' => 'E-mejlku pósłać, hdyž so moja wužiwarska diskusijna strona změni',
 'tog-enotifminoredits' => 'Tež za snadne změny stronow a datajow e-mejl pósłać',

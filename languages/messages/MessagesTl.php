@@ -168,7 +168,6 @@ $messages = array(
 'tog-minordefault' => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
 'tog-previewontop' => 'Ipakita ang paunang tingin bago ang kahon ng pagbabago',
 'tog-previewonfirst' => 'Ipakita ang paunang tingin sa unang pagbabago',
-'tog-nocache' => 'Huwag paganahin ang pagtatago ng pahinang pantingintingin',
 'tog-enotifwatchlistpages' => 'Padalhan ako ng e-liham kapag nabago ang isa sa pahina o talaksang binabantayan ko',
 'tog-enotifusertalkpages' => 'Padalhan ako ng e-liham kapag binago ang aking pahina ng usapan',
 'tog-enotifminoredits' => 'Padalhan din ako ng e-liham para sa mga maliliit na mga pagbabago ng mga pahina at mga talaksan',

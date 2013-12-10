@@ -46,7 +46,6 @@ $messages = array(
 'tog-minordefault' => 'Pe convenzione signe tutte le cangiaminde cumme stuédeche',
 'tog-previewontop' => "Fa vedè l'andeprime apprime d'a caselle de le cangiaminde",
 'tog-previewonfirst' => "Fà vedè l'andeprime sus a 'u prime cangiamende",
-'tog-nocache' => "Disabbilite 'u caching d'a pàgene sfogliate",
 'tog-enotifwatchlistpages' => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangiate",
 'tog-enotifusertalkpages' => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangiate",
 'tog-enotifminoredits' => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus a le pàggene",

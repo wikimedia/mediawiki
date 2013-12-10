@@ -36,7 +36,6 @@ $messages = array(
 'tog-minordefault' => 'Tandaai oinsanan niditan tokoro sobaagi do pongoiso',
 'tog-previewontop' => 'Pokitono duluon-kokikitanai id pogulu kutak idit',
 'tog-previewonfirst' => 'Pokitono duluon-kokikitanai di idit koinsan',
-'tog-nocache' => 'Antabai kasing popogigihum bolikon',
 'tog-enotifwatchlistpages' => 'Ponuratai-i oku soira do haro bolikon toi pail lisintanganku haro nokowolion',
 'tog-enotifusertalkpages' => 'Ponuratai-i oku soira kiharo kowolion id pibabarasan momomogunoku',
 'tog-enotifminoredits' => 'Ponuratai-i oku nogi do nung haro no idit tongokoro do bolikon om nogi tangapail',

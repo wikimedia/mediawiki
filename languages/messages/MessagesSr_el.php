@@ -327,7 +327,6 @@ $messages = array(
 'tog-minordefault' => 'Označavaj sve izmene kao manje',
 'tog-previewontop' => 'Prikaži pregled pre okvira za uređivanje',
 'tog-previewonfirst' => 'Prikaži pregled na prvoj izmeni',
-'tog-nocache' => 'Onemogući privremeno memorisanje stranica',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-poruku kada se promeni stranica ili datoteka koju nadgledam',
 'tog-enotifusertalkpages' => 'Pošalji mi e-poruku kada se promeni moja stranica za razgovor',
 'tog-enotifminoredits' => 'Pošalji mi e-poruku i za manje izmene u stranicama i datotekama',
@@ -916,7 +915,7 @@ Privremena lozinka: $2',
 'image_tip' => 'Ugrađena datoteka',
 'media_sample' => 'Primer.ogg',
 'media_tip' => 'Veza',
-'sig_tip' => 'Potpis s trenutnim vremenom',
+'sig_tip' => 'Vaš potpis sa trenutnim vremenom',
 'hr_tip' => 'Vodoravna linija (koristiti retko)',
 
 # Edit pages
@@ -1722,9 +1721,9 @@ Datoteku dodajete na željenu stranicu koristeći sledeće obrasce:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.jpg]]</nowiki></code>''' za verziju slike u punoj veličini
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.png|200p|mini|levo|opis]]</nowiki></code>''' za verziju slike s veličinom od 200 piksela koja je prikazana u zasebnom okviru, zajedno s opisom.
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' za direktno povezivanje s datotekom bez njenog prikazivanja",
-'upload-permitted' => 'Dozvoljene vrste datoteka: $1.',
-'upload-preferred' => 'Poželjne vrste datoteka: $1.',
-'upload-prohibited' => 'Zabranjene vrste datoteka: $1.',
+'upload-permitted' => 'Dozvoljeni tipovi datoteka: $1.',
+'upload-preferred' => 'Preporučeni tipovi datoteka: $1.',
+'upload-prohibited' => 'Zabranjeni tipovi datoteka: $1.',
 'uploadlog' => 'dnevnik otpremanja',
 'uploadlogpage' => 'Dnevnik otpremanja',
 'uploadlogpagetext' => 'Ispod je spisak skorašnjih slanja.
@@ -2098,7 +2097,7 @@ Pre brisanja proverite da li druge stranice vode do tih šablona.',
 'statistics-views-total' => 'Ukupno pregleda',
 'statistics-views-total-desc' => 'Pregledi nepostojećih i posebnih stranica nisu uključeni',
 'statistics-views-peredit' => 'Pregleda po izmeni',
-'statistics-users' => 'Upisani korisnici ([[Special:ListUsers|spisak članova]])',
+'statistics-users' => 'Registrovani [[Special:ListUsers|korisnici]]',
 'statistics-users-active' => 'Aktivni korisnici',
 'statistics-users-active-desc' => 'Korisnici koji su izvršili bar jednu radnju {{PLURAL:$1|prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}',
 'statistics-mostpopular' => 'Najposećenije stranice',
@@ -2141,7 +2140,7 @@ Sada je preusmerenje na [[$2]].',
 'lonelypages' => 'Siročići',
 'lonelypagestext' => 'Sledeće stranice nisu povezane s drugim stranicama, niti su uključene transkluzijom u druge stranice.',
 'uncategorizedpages' => 'Nekategorisane stranice',
-'uncategorizedcategories' => 'Nekategorisane stranice',
+'uncategorizedcategories' => 'Nekategorisane kategorije',
 'uncategorizedimages' => 'Datoteke bez kategorija',
 'uncategorizedtemplates' => 'Nekategorisani šabloni',
 'unusedcategories' => 'Nekorišćene kategorije',
@@ -2458,8 +2457,8 @@ Poslednju izmenu je {{GENDER:$3|napravio|napravila|napravio}} [[User:$3|$3]] ([[
 'editcomment' => "Opis izmene: \"''\$1''\".",
 'revertpage' => 'Vraćene izmene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na poslednju izmenu korisnika [[User:$1|$1]]',
 'revertpage-nouser' => 'Vraćene su izmene skrivenog korisnika na poslednju izmenu {{GENDER:$1|korisnika|korisnice}} [[User:$1|$1]]',
-'rollback-success' => 'Vraćene su izmene {{GENDER:$1|korisnika|korisnice|korisnika}} $1
-na poslednju izmenu {{GENDER:$2|korisnika|korisnice|korisnika}} $2.',
+'rollback-success' => 'Vraćene su izmene {{GENDER:$1|korisnika|korisnice}} $1
+na poslednju izmenu {{GENDER:$2|korisnika|korisnice}} $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Sesija je okončana',
@@ -2468,12 +2467,12 @@ ova radnja je otkazana da bi se izbegla zloupotreba.
 Vratite se na prethodnu stranicu, ponovo je učitajte i pokušajte ponovo.',
 
 # Protect
-'protectlogpage' => 'Dnevnik zaštite',
+'protectlogpage' => 'Dnevnik zaključavanja',
 'protectlogtext' => 'Ispod je spisak izmena u vidu zaštite stranica.
 Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za više detalja.',
 'protectedarticle' => '{{GENDER:|je zaštitio|je zaštitila|je zaštitio}} „[[$1]]“',
 'modifiedarticleprotection' => '{{GENDER:|je promenio|je promenila|je promenio}} stepen zaštite za „[[$1]]“',
-'unprotectedarticle' => '{{GENDER:|je uklonio|je uklonila|je uklonio}} zaštitu sa stranice „[[$1]]“',
+'unprotectedarticle' => '{{GENDER:|je uklonio|je uklonila}} zaštitu sa stranice „[[$1]]“',
 'movedarticleprotection' => '{{GENDER:|je premestio|je premestila|je premestio}} postavke zaštite sa „[[$2]]“ na „[[$1]]“',
 'protect-title' => 'Stepen zaštite za „$1“',
 'protect-title-notallowed' => 'Pregled stepena zaštite za „$1“',

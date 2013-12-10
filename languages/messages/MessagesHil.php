@@ -40,7 +40,6 @@ $messages = array(
 'tog-minordefault' => 'Markahan dayon ang tanan nga diyutay nga pag-ilis',
 'tog-previewontop' => 'Ipakita ang preview bag-o ang kahon sang pag-ilis',
 'tog-previewonfirst' => 'Ipakita ang preview sa pinaka-una nga pag-ilis',
-'tog-nocache' => 'Untaton ang kina-iya sang brawser nga magtago sang panid',
 'tog-enotifwatchlistpages' => 'Padal-i ako sang e-mail kon ang panid kag hilera nga akon ginabantayan paga-ilisan',
 'tog-enotifusertalkpages' => 'Padal-i ako sang e-mail kon paga-ilisan ang akon panid sang pag-hisayranay',
 'tog-enotifminoredits' => 'Padal-i man ako sang e-mail kon may diyutay nga pag-ilis sa akon mga panid kag hilera',

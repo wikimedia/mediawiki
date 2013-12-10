@@ -56,7 +56,6 @@ $messages = array(
 'tog-minordefault' => 'Marca costumal tota editas como minor',
 'tog-previewontop' => 'Mostra la previde ante la caxa de editas',
 'tog-previewonfirst' => 'Mostra la previde a la edita prima',
-'tog-nocache' => 'Desengana la reserva de pajes',
 'tog-enotifwatchlistpages' => 'Envia un eposta a me cuando un paje ce me oserva es cambiada',
 'tog-enotifusertalkpages' => 'Envia me un eposta cuando me paje de discutes es cambiada',
 'tog-enotifminoredits' => 'Ance envia un eposta a me con edita minor de pajes',

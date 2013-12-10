@@ -254,7 +254,6 @@ $messages = array(
 'tog-minordefault' => 'Merkja allar breytingar sem minniháttar sjálfgefið',
 'tog-previewontop' => 'Sýna forskoðun á undan breytingarkassanum',
 'tog-previewonfirst' => 'Sýna forskoðun með fyrstu breytingu',
-'tog-nocache' => 'Slökkva á flýtiminni vafrans',
 'tog-enotifwatchlistpages' => 'Senda mér tölvupóst þegar síðu eða skrá á vaktlistanum mínu er breytt',
 'tog-enotifusertalkpages' => 'Senda mér tölvupóst þegar notandaspjallinu mínu er breytt',
 'tog-enotifminoredits' => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum og skrám',

@@ -102,7 +102,6 @@ $messages = array(
 'tog-minordefault' => 'jàppe samay coppite ni yu néewal saa su ne',
 'tog-previewontop' => 'Tegal wonendi gi ci kaw balaa boyotu coppite bi',
 'tog-previewonfirst' => 'wone wonendi gi su dee soppi gu njëkk la',
-'tog-nocache' => 'Doxadil ndenciti xët yi',
 'tog-enotifwatchlistpages' => 'Yónne ma ab bataaxal su aw xët wu ne ci sama limu toppte soppikoo',
 'tog-enotifusertalkpages' => 'Yónne ma ab bataaxal su ay coppite amee ci sama xëtu waxtaanuwaay',
 'tog-enotifminoredits' => 'Yónne ma ab bataaxal donte coppite yu néew lañu',

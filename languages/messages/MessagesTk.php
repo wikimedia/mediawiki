@@ -60,7 +60,6 @@ $messages = array(
 'tog-minordefault' => 'Ähli özgerdişleri "ujypsyzja" diýip belle',
 'tog-previewontop' => 'Deslapky syny redaktirleme gutusynyň üstünde görkez',
 'tog-previewonfirst' => 'Özgerdişde deslapky syny görkez',
-'tog-nocache' => 'Brauzerde sahypa keşirlemegi ýap',
 'tog-enotifwatchlistpages' => 'Gözegçilik sanawymdaky sahypa redaktirlenen mahaly maňa e-poçta iber',
 'tog-enotifusertalkpages' => 'Ulanyjy sahypamda üýtgeşme bolan mahaly maňa e-poçta iber',
 'tog-enotifminoredits' => 'Sahypalardaky ujypsyzja özgerdişlerde-de maňa e-poçta iber',

@@ -57,7 +57,6 @@ $messages = array(
 'tog-minordefault' => 'Markaan amin nga inurnos a kas sigud a bassit',
 'tog-previewontop' => 'Ipakita ti panagipadas sakbay ti pagurnosan a kahon',
 'tog-previewonfirst' => 'Ipakita ti pinadas iti umuna a panag-urnos',
-'tog-nocache' => 'Ibaldado ti panagilemmeng ti pabasabasa ti panid',
 'tog-enotifwatchlistpages' => 'Esuratannak no mabaliwan ti panid wenno papeles idiay listaan dagiti bambantayak',
 'tog-enotifusertalkpages' => 'Esuratannak no mabaliwan ti panid ti tungtungak',
 'tog-enotifminoredits' => 'Esuratannak pay para kadagiti bassit a panag-urnos kadagiti panid ken papeles',

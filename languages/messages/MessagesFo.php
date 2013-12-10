@@ -133,7 +133,6 @@ $messages = array(
 'tog-minordefault' => 'Merk sum standard allar broytingar sum smærri',
 'tog-previewontop' => 'Vís forhondsvísning áðren rættingarkassan',
 'tog-previewonfirst' => 'Vís forskoðan við fyrstu rætting',
-'tog-nocache' => 'Deaktivera síðu "caching" í brovsaranum',
 'tog-enotifwatchlistpages' => 'Send mær teldupost, tá ein síða ella fíla á mínum eftirlitslista er broytt',
 'tog-enotifusertalkpages' => 'Send mær teldubræv, tá mín brúkarasíða er broytt',
 'tog-enotifminoredits' => 'Send mær eisini ein teldupost viðvíkjandi smærri broytingum á síðum og fílum',

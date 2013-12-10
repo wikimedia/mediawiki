@@ -385,7 +385,6 @@ $messages = array(
 'tog-minordefault' => 'Označit editaci implicitně jako malá editace',
 'tog-previewontop' => 'Zobrazovat náhled před editačním oknem (ne za ním)',
 'tog-previewonfirst' => 'Zobrazit při první editaci náhled',
-'tog-nocache' => 'Vypnout cachování v prohlížeči',
 'tog-enotifwatchlistpages' => 'Poslat e-mail při změně sledované stránky nebo souboru',
 'tog-enotifusertalkpages' => 'Poslat e-mail při změně mé diskusní stránky',
 'tog-enotifminoredits' => 'Posílat e-maily i při malých editacích stránek a souborů',

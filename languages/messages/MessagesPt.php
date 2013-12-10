@@ -341,7 +341,6 @@ $messages = array(
 'tog-minordefault' => 'Por omissão, marcar todas as edições como menores',
 'tog-previewontop' => 'Mostrar a antevisão antes da caixa de edição',
 'tog-previewonfirst' => 'Mostrar a antevisão na primeira edição',
-'tog-nocache' => 'Desativar a cache de páginas do browser',
 'tog-enotifwatchlistpages' => 'Notificar-me por correio electrónico quando uma página ou ficheiro vigiado for alterado',
 'tog-enotifusertalkpages' => 'Notificar-me por correio electrónico quando a minha página de discussão é editada',
 'tog-enotifminoredits' => 'Notificar-me por correio electrónico também sobre edições menores de páginas ou ficheiros',

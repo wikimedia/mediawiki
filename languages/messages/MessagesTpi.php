@@ -72,7 +72,6 @@ $messages = array(
 'tog-minordefault' => 'Makim ol senis mi wokim olsem ol i liklik, sapos mi no makim',
 'tog-previewontop' => 'Soim pes mi senisim (pastaim long raitim) antap long bokis bilong wokim senis',
 'tog-previewonfirst' => 'Soim pes mi senisim pastaim long raitim',
-'tog-nocache' => ' Nogat stoa pes long browser',
 'tog-enotifwatchlistpages' => 'Salim imel long mi taim wanpela pes mi lukautim i senis',
 'tog-enotifusertalkpages' => 'Salim imel long mi wanem taim toktok bilong mi i senis',
 'tog-enotifminoredits' => 'Salim imel long mi tasol long liklik senis long pes na fail',

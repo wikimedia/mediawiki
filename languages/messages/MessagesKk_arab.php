@@ -411,7 +411,6 @@ $messages = array(
 'tog-minordefault' => 'ادەپكىدەن بارلىق وڭدەمەلەردى شاعىن دەپ بەلگىلە',
 'tog-previewontop' => 'قاراپ شىعۋ اۋماعى كىرىستىرۋ ورنى الدىندا',
 'tog-previewonfirst' => 'ٴبىرىنشى وڭدەگەندە قاراپ شىعۋ',
-'tog-nocache' => 'بەت بۇركەمەلەۋىن ٴوشىر',
 'tog-enotifwatchlistpages' => 'باقىلانعان بەت وزگەرگەندە ماعان حات جىبەر',
 'tog-enotifusertalkpages' => 'تالقىلاۋىم وزگەرگەندە ماعان حات جىبەر',
 'tog-enotifminoredits' => 'شاعىن وڭدەمە تۋرالى دا ماعان حات جىبەر',

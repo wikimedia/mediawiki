@@ -346,7 +346,6 @@ $messages = array(
 'tog-minordefault' => 'Marki defaŭlte ĉiujn redaktojn kiel etajn',
 'tog-previewontop' => 'Montri antaŭrigardon antaŭ redaktilo',
 'tog-previewonfirst' => 'Montri antaŭrigardon je unua redakto',
-'tog-nocache' => 'Malŝalti retumilan kaŝmemoron de paĝoj',
 'tog-enotifwatchlistpages' => 'Sendi al mi retmesaĝon kiam tiu paĝo en mia atentaro estas ŝanĝita',
 'tog-enotifusertalkpages' => 'Sendi al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
 'tog-enotifminoredits' => 'Sendi al mi ankaŭ retmesaĝojn pro malgrandaj redaktoj de paĝoj',

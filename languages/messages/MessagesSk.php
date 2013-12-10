@@ -305,7 +305,6 @@ $messages = array(
 'tog-minordefault' => 'Označovať všetky zmeny štandardne ako drobné',
 'tog-previewontop' => 'Zobrazovať náhľad pred textovým poľom úprav, nie až za ním',
 'tog-previewonfirst' => 'Zobraziť náhľad pred prvou úpravou',
-'tog-nocache' => 'Zakázať ukladanie stránok do vyrovnávacej pamäte prehliadača',
 'tog-enotifwatchlistpages' => 'Upozorniť ma emailom, keď sa zmení stránka alebo súbor z môjho zoznamu sledovaných',
 'tog-enotifusertalkpages' => 'Upozorniť ma emailom po zmene mojej používateľskej diskusnej stránky',
 'tog-enotifminoredits' => 'Upozorniť ma emailom aj na drobné úpravy stránok a súborov',

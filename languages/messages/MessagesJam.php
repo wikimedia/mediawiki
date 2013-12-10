@@ -35,7 +35,6 @@ $messages = array(
 'tog-watchdeletion' => 'Ad piej mi diliit tu mi wachlis',
 'tog-previewontop' => 'Shuo priivyuu bifuo edit bax',
 'tog-previewonfirst' => 'Shuo priivyuu pahn fos edit',
-'tog-nocache' => 'Disiebl brouza piej kiashin',
 'tog-enotifwatchlistpages' => 'E-miel mi wen piej pahn mi wachlis chienj',
 'tog-enotifusertalkpages' => 'E-miel mi wen mi yuuza taak piej chienj',
 'tog-enotifminoredits' => 'E-miel mi alzwel fi maina edit pahn piej',

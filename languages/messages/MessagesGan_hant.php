@@ -76,7 +76,6 @@ $messages = array(
 'tog-minordefault' => '全部嗰編輯設成細修改',
 'tog-previewontop' => '到編輯框嗰上首顯示預覽',
 'tog-previewonfirst' => '頭道修改時顯示預覽',
-'tog-nocache' => '停用頁面嗰緩存',
 'tog-enotifwatchlistpages' => '我監視框嗰頁面一有改動發電子郵件到我',
 'tog-enotifusertalkpages' => '我對話框嗰頁面一有改動發email到我',
 'tog-enotifminoredits' => '有細嗰改動都要發email到我',

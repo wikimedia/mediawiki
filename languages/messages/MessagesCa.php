@@ -225,7 +225,6 @@ $messages = array(
 'tog-minordefault' => 'Marca totes les contribucions com a edicions menors per defecte',
 'tog-previewontop' => "Mostra una previsualització abans del quadre d'edició",
 'tog-previewonfirst' => 'Mostra una previsualització en la primera modificació',
-'tog-nocache' => 'Inhabilita la memòria cau de les pàgines',
 'tog-enotifwatchlistpages' => "Envia'm un correu electrònic quan es modifiqui una pàgina de la meva llista de seguiment",
 'tog-enotifusertalkpages' => "Envia'm un correu electrònic quan es modifiqui la meva pàgina de discussió",
 'tog-enotifminoredits' => "Notifica'm per correu també en casos d'edicions menors",

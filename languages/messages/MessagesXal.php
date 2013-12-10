@@ -78,7 +78,6 @@ $messages = array(
 'tog-minordefault' => 'Цуг сольлһн баһ чинртә таасн болулх',
 'tog-previewontop' => 'Сольлһна теегин өмн хәләвр үзүлх',
 'tog-previewonfirst' => 'Сольхла, хәләвр үзүлх.',
-'tog-nocache' => 'Халхин кешлһн браузерт унтрах',
 'tog-enotifwatchlistpages' => 'Шинҗлсн халх сольхла, нанд e-mail бичг йовулх',
 'tog-enotifusertalkpages' => 'Мини ухалвр халх сольхла, нанд e-mail бичг йовулх',
 'tog-enotifminoredits' => 'Баһ сольлһн болв чигн болхла, нанд e-mail бичг йовулх',

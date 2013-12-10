@@ -62,7 +62,6 @@ $messages = array(
 'tog-underline' => 'Gleecher unnerleine:',
 'tog-hideminor' => 'Gleene Enneringe verschwinne losse',
 'tog-watchdefault' => 'Vun mir gennerte Ardickele watsche',
-'tog-nocache' => 'Bledder-Scheier ausmache',
 'tog-watchlisthideown' => 'Mei Ardickele vun mei Watsch-Lischt verschwinne losse',
 'tog-watchlisthidebots' => 'Enneringe vun Bots vun mei Watsch-Lischt verschwinne losse',
 'tog-watchlisthideminor' => 'Gleene Enneringe vun mei Watsch-Lischt verschwinne losse',

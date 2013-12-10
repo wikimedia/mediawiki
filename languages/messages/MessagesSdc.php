@@ -124,7 +124,6 @@ $messages = array(
 'tog-minordefault' => "Indica tutti li mudìfigghi cumenti 'minori' in otomàtiggu",
 'tog-previewontop' => "Musthra l'antiprimma sobra la casella di mudìfigga",
 'tog-previewonfirst' => "Musthra l'antiprimma pa la primma mudìfigga",
-'tog-nocache' => 'Disattiba la mimória cache pa li pàgini',
 'tog-enotifwatchlistpages' => 'Signàrami pa postha erettrònica li mudìfigghi a li pàgini abbaidaddi',
 'tog-enotifusertalkpages' => "Signàrami pa postha erettrònica li mudìfigghi a la me' pàgina di dischussioni",
 'tog-enotifminoredits' => 'Signàrami pa postha erettrònica puru li mudìfigghi minori',

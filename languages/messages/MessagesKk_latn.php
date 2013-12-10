@@ -374,7 +374,6 @@ $messages = array(
 'tog-minordefault' => 'Ädepkiden barlıq öñdemelerdi şağın dep belgile',
 'tog-previewontop' => 'Qarap şığw awmağı kiristirw ornı aldında',
 'tog-previewonfirst' => 'Birinşi öñdegende qarap şığw',
-'tog-nocache' => 'Bet bürkemelewin öşir',
 'tog-enotifwatchlistpages' => 'Baqılanğan bet özgergende mağan xat jiber',
 'tog-enotifusertalkpages' => 'Talqılawım özgergende mağan xat jiber',
 'tog-enotifminoredits' => 'Şağın öñdeme twralı da mağan xat jiber',

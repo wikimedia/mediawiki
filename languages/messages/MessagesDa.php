@@ -215,7 +215,6 @@ $messages = array(
 'tog-minordefault' => 'Markér som standard alle redigeringer som mindre redigeringer',
 'tog-previewontop' => 'Vis forhåndsvisning over redigeringsboksen',
 'tog-previewonfirst' => 'Vis forhåndsvisning når du starter med at redigere',
-'tog-nocache' => 'Slå browsercaching af sider fra',
 'tog-enotifwatchlistpages' => 'Send mig en e-mail ved ændringer til en side eller fil på min overvågningsliste',
 'tog-enotifusertalkpages' => 'Send mig en e-mail når min brugerdiskussionsside ændres',
 'tog-enotifminoredits' => 'Send mig også en e-mail ved mindre ændringer af sider og filer på min overvågningsliste',

@@ -60,7 +60,6 @@ $messages = array(
 'tog-minordefault' => 'Zaznaczë wszëtczé edicëje domëslno jakno môłé',
 'tog-previewontop' => 'Pòkażë pòdzérk przed kastką edicëji',
 'tog-previewonfirst' => 'Pòkażë pòdzérk ju przed pierszą edicëją',
-'tog-nocache' => 'Wëłączë pòdrãczną pamiãc w przezérnikù',
 'tog-enotifwatchlistpages' => 'Wëslë mie e-mail czedë starna jaką ùzéróm je zmieniwónô',
 'tog-enotifusertalkpages' => 'Wëslë mie e-mail czedë zmieniwónô je mòja starna diskùsëji',
 'tog-enotifminoredits' => 'Wëslë mie e-mail téż dlô môłich zmianów starnów',

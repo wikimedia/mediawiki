@@ -45,7 +45,6 @@ $messages = array(
 'tog-minordefault' => 'Mairk aa edits "smaa" bi defaut',
 'tog-previewontop' => 'Shaw scance afore edit box an no efter it',
 'tog-previewonfirst' => 'Shaw scance on first edit',
-'tog-nocache' => 'Disable page cachin',
 'tog-enotifwatchlistpages' => 'Send me an email on page chynges',
 'tog-enotifusertalkpages' => 'Send me an email whan ma uiser collogue page is chynged',
 'tog-enotifminoredits' => 'Send me an email for smaa edits o pages an aa',

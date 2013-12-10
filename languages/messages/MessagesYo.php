@@ -75,7 +75,6 @@ $messages = array(
 'tog-minordefault' => "Se àmì sí gbogbo àtúnse gẹ́gẹ́ bi kékeré lát'ìbẹ̀rẹ̀.",
 'tog-previewontop' => "Se àyẹ̀wò kí ẹ tó s'àtúnṣe",
 'tog-previewonfirst' => "S'àfihàn àgbéwò fún àtúnse àkọ́kọ́",
-'tog-nocache' => 'Ìdínà fífi ojúewé pamọ́ sínú cache',
 'tog-enotifwatchlistpages' => 'Fi e-mail ránṣẹ́ sí mi tí ojúewé tàbí fáìlì tí mò ún mójútó bá yípadà',
 'tog-enotifusertalkpages' => 'Fi e-mail ránṣẹ́ sími tí ojúewé oníṣe mi bá yípadà',
 'tog-enotifminoredits' => 'Fi e-mail ránṣẹ́ sí mi bákannà fún àtúnṣe kékékèé sí àwọn ojúewé àti fáìlì',

@@ -96,7 +96,6 @@ $messages = array(
 'tog-minordefault' => 'Me ka nhoro da na orü ntakịrị níle',
 'tog-previewontop' => 'Zitú ntàkịrị mgbe opuzọr zi igbe orü',
 'tog-previewonfirst' => 'Zitú nke takírí orü mbu',
-'tog-nocache' => 'Bì-chi cache na otúzọr intaneti gi',
 'tog-enotifwatchlistpages' => 'Türüm e-mail mgbe ihü nor na ndetu ihem ne lé gbanwere',
 'tog-enotifusertalkpages' => 'Türüm e-mail ngbe ébé okwu ndi na banife nkem gbanwere',
 'tog-enotifminoredits' => 'Türüm e-mail maka orü ntakịrị ihüá',

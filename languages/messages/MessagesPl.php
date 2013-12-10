@@ -335,7 +335,6 @@ $messages = array(
 'tog-minordefault' => 'Wszystkie edycje domyślnie oznaczaj jako drobne',
 'tog-previewontop' => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst' => 'Pokazuj podgląd strony podczas pierwszej edycji',
-'tog-nocache' => 'Wyłącz pamięć podręczną przeglądarki',
 'tog-enotifwatchlistpages' => 'Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane',
 'tog-enotifusertalkpages' => 'Wyślij do mnie e‐mail, gdy moja strona dyskusji zostanie zmodyfikowana',
 'tog-enotifminoredits' => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach',

@@ -104,7 +104,6 @@ $messages = array(
 'tog-minordefault' => 'Default olaraq bütün redaktələri kiçik redaktə kimi nişanla',
 'tog-previewontop' => 'Sınaq göstərişi yazma sahəsindən əvvəl göstər',
 'tog-previewonfirst' => 'İlkin redaktədə sınaq göstərişi',
-'tog-nocache' => 'Səhifələri keşdə saxlama',
 'tog-enotifwatchlistpages' => 'İzləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifusertalkpages' => 'Müzakirə səhifəm redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifminoredits' => 'Səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',

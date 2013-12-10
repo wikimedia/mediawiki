@@ -185,7 +185,6 @@ $messages = array(
 'tog-minordefault' => 'Bôh tanda mandum neuandam sibagoe neuandam bacut ngön baku',
 'tog-previewontop' => 'Peuleumah hasé yôh goh plôk andam',
 'tog-previewonfirst' => 'Peuleumah hasé bak neuandam phôn',
-'tog-nocache' => 'Pumaté pumeugöt beun laman peuramban nyoe',
 'tog-enotifwatchlistpages' => "Peu'ék surat-e keu lôn meunyo saboh halaman nyang lôn kalon meuubah",
 'tog-enotifusertalkpages' => "Peu'ek keu lôn surat-e meunyo ôn marit lôn meuubah",
 'tog-enotifminoredits' => "Peu'ék cit surat-e keu lôn bak neuubah ubit",

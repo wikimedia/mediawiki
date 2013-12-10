@@ -358,7 +358,6 @@ $messages = array(
 'tog-minordefault' => 'Mặc định đánh dấu tất cả sửa đổi của tôi là sửa đổi nhỏ',
 'tog-previewontop' => 'Hiển thị phần xem trước nằm trên hộp sửa đổi',
 'tog-previewonfirst' => 'Hiện xem trước tại lần sửa đầu tiên',
-'tog-nocache' => 'Không lưu trang trong bộ nhớ đệm trình duyệt',
 'tog-enotifwatchlistpages' => 'Gửi thư cho tôi khi có thay đổi tại trang hoặc tập tin tôi theo dõi',
 'tog-enotifusertalkpages' => 'Gửi thư cho tôi khi có thay đổi tại trang thảo luận của tôi',
 'tog-enotifminoredits' => 'Gửi thư cho tôi cả những thay đổi nhỏ trong trang và tập tin',
@@ -3891,6 +3890,11 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'imgmultipagenext' => 'trang sau →',
 'imgmultigo' => 'Xem',
 'imgmultigoto' => 'Đi đến trang $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(ngôn ngữ mặc định)',
+'img-lang-info' => 'Kết xuất hình này trong $1 $2.',
+'img-lang-go' => 'Xem',
 
 # Table pager
 'ascending_abbrev' => 'tăng',

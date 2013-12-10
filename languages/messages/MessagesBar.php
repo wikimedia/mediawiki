@@ -81,7 +81,6 @@ $messages = array(
 'tog-minordefault' => "D' eigernen Änderrungen standardmässig gringfiagig markirn",
 'tog-previewontop' => 'Vurschau ówerhoib vom Beorweitungsfenster åzoang',
 'tog-previewonfirst' => "Ban ersten Beorweiten oiwei d' Vurschau åzoang",
-'tog-nocache' => 'Seitencache vom Browser deaktivirn',
 'tog-enotifwatchlistpages' => 'Bei Änderrungen voh beówochterde Seiten a E-Mail schicken',
 'tog-enotifusertalkpages' => 'Bei Änderrungen voh meiner Benutzerseiten a E-Mail schicken',
 'tog-enotifminoredits' => 'Aa ba kloane Änderrungen voh beówochterde Seiten a E-Mail schicker',

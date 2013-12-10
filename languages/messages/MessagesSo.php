@@ -36,7 +36,6 @@ $messages = array(
 'tog-minordefault' => 'Isbedelada yaryar marwalba calaamadey',
 'tog-previewontop' => 'Itus horfiirinta kahor sanduuqa wax ka bedelida',
 'tog-previewonfirst' => 'Horfiirinta itus marka ugu horeeyso oo aan wax ka bedelo',
-'tog-nocache' => 'Dami browsaha maqaalada duubo',
 'tog-enotifwatchlistpages' => 'E-mail  ii soo dir markii  wax laga badalo maqaalada ku jira liiskayga waardiyaha',
 'tog-enotifusertalkpages' => 'E-mail ii soo dir markii boggayga wadahadalka oo isbedelo',
 'tog-enotifminoredits' => 'E-mail Ii soo dir xataa markii bedelo yar lagu sameeyo bogyada',

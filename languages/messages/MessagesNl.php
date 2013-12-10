@@ -398,7 +398,6 @@ $messages = array(
 'tog-minordefault' => 'Mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop' => 'Voorvertoning boven bewerkingsveld weergeven',
 'tog-previewonfirst' => 'Voorvertoning bij eerste bewerking weergeven',
-'tog-nocache' => "Cachen van pagina's door de browser uitschakelen",
 'tog-enotifwatchlistpages' => 'Mij e-mailen bij bewerkingen van pagina’s of bestanden op mijn volglijst',
 'tog-enotifusertalkpages' => 'Mij e-mailen als iemand mijn overlegpagina wijzigt',
 'tog-enotifminoredits' => 'Mij e-mailen bij kleine bewerkingen van pagina’s en bestanden op mijn volglijst',

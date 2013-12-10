@@ -145,7 +145,6 @@ $messages = array(
 'tog-minordefault' => 'Weka alama zote za mabadiliko madogo kama matumizi mbadala',
 'tog-previewontop' => 'Onyesha mandhari kabla ya sanduku la kuhariria',
 'tog-previewonfirst' => 'Onyesha mandhari unapoanza kuhariri',
-'tog-nocache' => 'Kurasa zisiwekwe katika kache (akiba ya muda) ya kivinjari',
 'tog-enotifwatchlistpages' => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zinabadilishwa',
 'tog-enotifusertalkpages' => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
 'tog-enotifminoredits' => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu.',

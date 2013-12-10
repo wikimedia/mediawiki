@@ -47,7 +47,6 @@ $messages = array(
 'tog-minordefault' => 'Eegene Änderunga standardmäßig als geringfiegich markiern',
 'tog-previewontop' => 'Vurschau uberhoalb voo dam Beoarbeetungsfanster oazäan',
 'tog-previewonfirst' => 'Beim erschta Bearbta emmer de Vurschau oazeiga',
-'tog-nocache' => 'Zwischaspeicharn derr Seite (eim cache) deaktiviern',
 'tog-enotifwatchlistpages' => 'Bei Änderunga voo beobachteta Seyta mer an E-mail schicka',
 'tog-enotifusertalkpages' => 'Bei Änderunga oa menner Benutzer-Dischkurseite E-mail oa mich schicka',
 'tog-enotifminoredits' => 'Au bei klenn Änderunga E-mail oa mich schicka',
