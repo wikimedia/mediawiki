@@ -38,6 +38,8 @@ class EditCLI extends Maintenance {
 		$this->addOption( 'bot', 'Bot edit', false, false, 'b' );
 		$this->addOption( 'autosummary', 'Enable autosummary', false, false, 'a' );
 		$this->addOption( 'no-rc', 'Do not show the change in recent changes', false, false, 'r' );
+		$this->addOption( 'nocreate', 'Don\'t create new pages', false, false );
+		$this->addOption( 'createonly', 'Only create new pages', false, false );
 		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
@@ -66,6 +68,12 @@ class EditCLI extends Maintenance {
 			$this->error( "Invalid title", true );
 		}
 		$context->setTitle( $title );
+
+		if ( $this->hasOption( 'nocreate' ) && !$title->exists() ) {
+			$this->error( "Page does not exist", true );
+		} elseif ( $this->hasOption( 'createonly' ) && $title->exists() ) {
+			$this->error( "Page already exists", true );
+		}
 
 		$page = WikiPage::factory( $title );
 
