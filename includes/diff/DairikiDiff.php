@@ -836,6 +836,9 @@ class MappedDiff extends Diff {
  * @ingroup DifferenceEngine
  */
 class HWLDFWordAccumulator {
+	public $insClass = ' class="diffchange diffchange-inline"';
+	public $delClass = ' class="diffchange diffchange-inline"';
+
 	private $lines = array();
 	private $line = '';
 	private $group = '';
@@ -847,10 +850,10 @@ class HWLDFWordAccumulator {
 	private function flushGroup( $new_tag ) {
 		if ( $this->group !== '' ) {
 			if ( $this->tag == 'ins' ) {
-				$this->line .= '<ins class="diffchange diffchange-inline">' .
+				$this->line .= "<ins{$this->insClass}>" .
 					htmlspecialchars( $this->group ) . '</ins>';
 			} elseif ( $this->tag == 'del' ) {
-				$this->line .= '<del class="diffchange diffchange-inline">' .
+				$this->line .= "<del{$this->delClass}>" .
 					htmlspecialchars( $this->group ) . '</del>';
 			} else {
 				$this->line .= htmlspecialchars( $this->group );
