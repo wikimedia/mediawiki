@@ -7333,6 +7333,17 @@ Parameters:
 * $3 - the content model reported for the offending revision in the dump that is being imported
 * $4 - the serialization format reported for the offending revision in the dump that is being imported
 {{Related|Import-error}}',
+'import-error-bad location' => 'Import error message displayed when trying to import a page to a title that is not allowed for this kind of content on this wiki.
+
+This may happen for content models bound to specific namespaces or title patterns, if the configuration of the allowed namespaces
+or titles differs from the configuration on the source wiki.
+
+Parameters:
+* $1 - the name of the page the offending revision belongs to
+* $2 - the ID of the offending revision, as reported in the dump that is being imported
+* $3 - the content model reported for the offending revision in the dump that is being imported
+* $4 - the serialization format reported for the offending revision in the dump that is being imported
+{{Related|Import-error}}',
 'import-options-wrong' => 'Used as error message on [[Special:Import]], when one of the options has an error.
 
 Parameters:
