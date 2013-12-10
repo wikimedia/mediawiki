@@ -56,7 +56,8 @@ class FSRepo extends FileRepo {
 			// Get the FS backend configuration
 			$backend = new FSFileBackend( array(
 				'name' => $info['name'] . '-backend',
-				'lockManager' => 'fsLockManager',
+				'wikiId' => wfWikiID(),
+				'lockManager' => LockManagerGroup::singleton( wfWikiID() )->get( 'fsLockManager' ),
 				'containerPaths' => array(
 					"{$repoName}-public" => "{$directory}",
 					"{$repoName}-temp" => "{$directory}/temp",
