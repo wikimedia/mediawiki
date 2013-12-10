@@ -70,6 +70,8 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
+
+		$this->mDb = wfGetDB( DB_SLAVE, 'logpager' );
 	}
 
 	public function getDefaultQuery() {
