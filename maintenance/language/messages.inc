@@ -2521,6 +2521,7 @@ $wgMessageStructure = array(
 		'import-error-special',
 		'import-error-invalid',
 		'import-error-unserialize',
+		'import-error-bad-location',
 		'import-options-wrong',
 		'import-rootpage-invalid',
 		'import-rootpage-nosubpage',
