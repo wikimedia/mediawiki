@@ -210,7 +210,7 @@ class RepoGroup {
 	/**
 	 * Interface for FileRepo::checkRedirect()
 	 * @param $title Title
-	 * @return bool
+	 * @return bool|Title
 	 */
 	function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
@@ -230,6 +230,47 @@ class RepoGroup {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Interface for FileRepo::checkRedirects()
+	 * @param $title Title
+	 * @return bool
+	 */
+	public function checkRedirects( array $titles ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$remaining = array();
+		$results = $this->localRepo->checkRedirects( $titles );
+
+		foreach( $results as $src => $target ) {
+			if ( !$target ) {
+				$remaining[] = Title::makeTitle( NS_FILE, $src );
+			}
+		}
+
+		if ( !$remaining ) {
+			return $results;
+		}
+
+		foreach ( $this->foreignRepos as $repo ) {
+			$redirects = $repo->checkRedirects( $remaining );
+			$results = $redirects += $results;
+
+			$remaining = array();
+			foreach( $redirects as $src => $target ) {
+				if ( !$target ) {
+					$remianing[] = Title::makeTitle( NS_FILE, $src );
+				}
+			}
+			if ( !$remaining ) {
+				return $results;
+			}
+		}
+
+		return $results;
 	}
 
 	/**

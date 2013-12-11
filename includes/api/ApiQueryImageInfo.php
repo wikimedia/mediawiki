@@ -79,8 +79,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 
 			$result = $this->getResult();
-			//search only inside the local repo
+			// FIXME: This should set ignoreRedirect, and rely on the api
+			// to find redirects, but that would break old versions of
+			// ForeignAPIRepo.
 			if ( $params['localonly'] ) {
+				//search only inside the local repo
 				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $titles );
 			} else {
 				$images = RepoGroup::singleton()->findFiles( $titles );
