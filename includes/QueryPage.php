@@ -295,8 +295,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );
-		if ( !$dbw || !$dbr ) {
+		if ( !$dbw ) {
 			return false;
 		}
 
@@ -310,7 +309,7 @@ abstract class QueryPage extends SpecialPage {
 				$num = $res->numRows();
 				# Fetch results
 				$vals = array();
-				while ( $res && $row = $dbr->fetchObject( $res ) ) {
+				foreach ( $res as $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
 							$value = wfTimestamp( TS_UNIX,
@@ -349,6 +348,13 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Get a DB connection to be used for slow recache queries
+	 */
+	function getRecacheDB() {
+		return wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+	}
+
+	/**
 	 * Run the query and return the result
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
@@ -357,7 +363,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
 
