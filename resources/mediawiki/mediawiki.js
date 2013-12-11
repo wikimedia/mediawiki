@@ -1269,12 +1269,7 @@ var mw = ( function ( $, undefined ) {
 							}
 							return true;
 						} );
-						if ( mw.loader.store.useFunction ) {
-							/* jshint -W054 */
-							new Function( concatSource.join( ';' ) )();
-						} else {
-							$.globalEval( concatSource.join( ';' ) );
-						}
+						$.globalEval( concatSource.join( ';' ) );
 					}
 
 					// Early exit if there's nothing to load...
@@ -1821,7 +1816,6 @@ var mw = ( function ( $, undefined ) {
 							raw = localStorage.getItem( mw.loader.store.getStoreKey() );
 							// If we get here, localStorage is available; mark enabled.
 							mw.loader.store.enabled = true;
-							mw.loader.store.useFunction = !!Math.floor( Math.random() * 2 );
 							data = JSON.parse( raw );
 							if ( data && typeof data.items === 'object' && data.vary === mw.loader.store.getVary() ) {
 								mw.loader.store.items = data.items;
