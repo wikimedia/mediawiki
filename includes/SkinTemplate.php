@@ -1233,7 +1233,10 @@ class SkinTemplate extends Skin {
 		} else {
 			$nav_urls['upload'] = false;
 		}
-		$nav_urls['specialpages'] = array( 'href' => self::makeSpecialUrl( 'Specialpages' ) );
+		$nav_urls['specialpages'] = array(
+			'href' => self::makeSpecialUrl( 'Specialpages' ),
+			'text' => SpecialPage::getTitleFor( 'Specialpages ' )->getRootText()
+		);
 
 		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
@@ -1273,7 +1276,8 @@ class SkinTemplate extends Skin {
 
 		if ( $out->isArticleRelated() ) {
 			$nav_urls['whatlinkshere'] = array(
-				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalURL()
+				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalURL(),
+				'text' => SpecialPage::getTitleFor( 'Whatlinkshere' )->getRootText()
 			);
 
 			$nav_urls['info'] = array(
@@ -1283,7 +1287,8 @@ class SkinTemplate extends Skin {
 
 			if ( $this->getTitle()->getArticleID() ) {
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
+					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL(),
+					'text' => SpecialPage::getTitleFor( 'Recentchangeslinked' )->getRootText()
 				);
 			}
 		}

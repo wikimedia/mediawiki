@@ -82,7 +82,7 @@ define( 'MEDIAWIKI', true );
 # Makes it possible to for example to have effective exclude path in apc.
 # __DIR__ breaks symlinked includes, but realpath() returns false
 # if we don't have permissions on parent directories.
-$IP = getenv( 'MW_INSTALL_PATH' );
+$IP = false;#getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	if ( realpath( '.' ) ) {
 		$IP = realpath( '.' );
@@ -90,6 +90,7 @@ if ( $IP === false ) {
 		$IP = dirname( __DIR__ );
 	}
 }
+$IP = 'C:/prog/wikimedia/mediawiki-core';
 
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
