@@ -149,6 +149,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { background: url(http://localhost/w/red.gif?timestamp); }',
 			),
 			array(
+				'Regular file (missing)',
+				'foo { background: url(theColorOfHerHair.gif); }',
+				'foo { background: url(http://localhost/w/theColorOfHerHair.gif); }',
+			),
+			array(
 				'Remote URL',
 				'foo { background: url(http://example.org/w/foo.png); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
