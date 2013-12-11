@@ -149,9 +149,39 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { background: url(http://localhost/w/red.gif?timestamp); }',
 			),
 			array(
+				'Regular file (missing)',
+				'foo { background: url(orange.gif); }',
+				'foo { background: url(http://localhost/w/orange.gif); }',
+			),
+			array(
 				'Remote URL',
 				'foo { background: url(http://example.org/w/foo.png); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
+			),
+			array(
+				'Protocol-relative remote URL',
+				'foo { background: url(//example.org/w/foo.png); }',
+				'foo { background: url(//example.org/w/foo.png); }',
+			),
+			array(
+				'Remote URL with query',
+				'foo { background: url(http://example.org/w/foo.png?query=yes); }',
+				'foo { background: url(http://example.org/w/foo.png?query=yes); }',
+			),
+			array(
+				'Protocol-relative remote URL with query',
+				'foo { background: url(//example.org/w/foo.png?query=yes); }',
+				'foo { background: url(//example.org/w/foo.png?query=yes); }',
+			),
+			array(
+				'Domain-relative URL',
+				'foo { background: url(/static/foo.png); }',
+				'foo { background: url(http://doc.example.org/static/foo.png); }',
+			),
+			array(
+				'Domain-relative URL with query',
+				'foo { background: url(/static/foo.png?query=yes); }',
+				'foo { background: url(http://doc.example.org/static/foo.png?query=yes); }',
 			),
 			array(
 				'Embedded file',
@@ -217,6 +247,16 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Spaces within url() parentheses are ignored',
 				'foo { background: url( red.gif ); }',
 				'foo { background: url(http://localhost/w/red.gif?timestamp); }',
+			),
+			array(
+				'@import rule to local file (should we remap this?)',
+				'@import url(/styles.css)',
+				'@import url(http://doc.example.org/styles.css)',
+			),
+			array(
+				'@import rule to URL (should we remap this?)',
+				'@import url(//localhost/styles.css?query=yes)',
+				'@import url(//localhost/styles.css?query=yes)',
 			),
 		);
 	}
