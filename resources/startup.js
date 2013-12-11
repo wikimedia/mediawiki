@@ -41,7 +41,9 @@ function isCompatible( ua ) {
 		// Opera Mini, all versions
 		ua.match( /Opera Mini/ ) ||
 		// Nokia's Ovi Browser
-		ua.match( /S40OviBrowser/ )
+		ua.match( /S40OviBrowser/ ) ||
+		// Google Glass browser groks JS but UI is too limited
+		( ua.match( /Glass/ ) && ua.match( /Android/ ) )
 	);
 }
 
