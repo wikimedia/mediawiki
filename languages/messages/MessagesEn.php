@@ -1254,6 +1254,9 @@ Please wait $1 before trying again.',
 'suspicious-userlogout'           => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
 'createacct-another-realname-tip' => 'Real name is optional.
 If you choose to provide it, this will be used for giving the user attribution for their work.',
+'pt-createaccount'                => 'Create account',
+'pt-login'                        => 'Log in',
+'pt-userlogout'                   => 'Log out',
 
 # Email sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages

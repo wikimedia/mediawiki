@@ -709,7 +709,7 @@ class SkinTemplate extends Skin {
 				'active' => $active
 			);
 			$personal_urls['logout'] = array(
-				'text' => $this->msg( 'userlogout' )->text(),
+				'text' => $this->msg( 'pt-userlogout' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogout',
 					// userlogout link must always contain an & character, otherwise we might not be able
 					// to detect a buggy precaching proxy (bug 17790)
@@ -721,7 +721,7 @@ class SkinTemplate extends Skin {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
 			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
 				? 'nav-login-createaccount'
-				: 'login';
+				: 'pt-login';
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
 			$login_url = array(
@@ -730,7 +730,7 @@ class SkinTemplate extends Skin {
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
 			);
 			$createaccount_url = array(
-				'text' => $this->msg( 'createaccount' )->text(),
+				'text' => $this->msg( 'pt-createaccount' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 			);

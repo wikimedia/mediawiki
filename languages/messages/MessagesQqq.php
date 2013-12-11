@@ -1292,12 +1292,7 @@ See example: [[Special:UserLogin]]',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
 'externaldberror' => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
-'login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there). Also the title of the new login special page, which does not combine Log in & Create account.
-
-See also:
-* {{msg-mw|Login}}
-* {{msg-mw|Accesskey-pt-anonlogin}}
-* {{msg-mw|Tooltip-pt-anonlogin}}
+'login' => "{{Doc-special|UserLogin|unlisted=1}}
 {{Identical|Log in}}",
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{Identical|Log in / create account}}",
@@ -1315,8 +1310,7 @@ See also:
 * {{msg-mw|Accesskey-pt-logout}}
 * {{msg-mw|Tooltip-pt-logout}}
 {{Identical|Log out}}',
-'userlogout' => '{{Doc-actionlink}}
-{{doc-special|UserLogout|unlisted=1}}
+'userlogout' => '{{doc-special|UserLogout|unlisted=1}}
 {{Identical|Log out}}',
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
@@ -1331,9 +1325,7 @@ See example: [[Special:UserLogin]]',
 {{Identical|Do not have an account}}',
 'nologinlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.
 {{Identical|Create an account}}',
-'createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
-
-{{doc-special|CreateAccount}}
+'createaccount' => '{{doc-special|CreateAccount|unlisted=1}}
 {{Identical|Create account}}',
 'gotaccount' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameter:
 * $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
@@ -1585,6 +1577,13 @@ This message is used in html.
 'createacct-another-realname-tip' => "{{doc-singularthey}}
 Used on the account creation form when creating another user's account. Similar to {{msg-mw|prefs-help-realname}}.
 {{Identical|Real name attribution}}",
+'pt-login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there)
+{{Identical|Log in}}",
+'pt-createaccount' => "Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
+{{Identical|Create account}}",
+'pt-userlogout' => "{{Doc-actionlink}}
+{{Identical|Log out}}
+",
 
 # Email sending
 'php-mail-error-unknown' => 'Used as error message when <code>mail()</code> returned empty error message.',

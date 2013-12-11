@@ -146,7 +146,7 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div>
 				<?php
-				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
+				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'pt-login' )->text(), 'submit', array(
 					'id' => 'wpLoginAttempt',
 					'tabindex' => '6',
 					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
