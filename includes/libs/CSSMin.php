@@ -168,7 +168,8 @@ class CSSMin {
 
 		// Note: This will not correctly handle cases where ';', '{' or '}' appears in the rule itself,
 		// e.g. in a quoted string. You are advised not to use such characters in file names.
-		$pattern = '/[;{]\K[^;}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}])/';
+		// We also map at the beginning of the string to be consistent in edge-cases ('@import url(…)').
+		$pattern = '/(?:^|[;{])\K[^;}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}])/';
 		return preg_replace_callback( $pattern, function ( $matchOuter ) use ( $local, $remote, $embedData ) {
 			$rule = $matchOuter[0];
 
@@ -218,36 +219,40 @@ class CSSMin {
 	 * @return string Remapped/embedded URL data
 	 */
 	public static function remapOne( $file, $query, $local, $remote, $embed ) {
-		// Skip fully-qualified URLs and data URIs
-		$urlScheme = parse_url( $file, PHP_URL_SCHEME );
+		// The full URL possibly with query, as passed to the 'url()' value in CSS
+		$url = $file . $query;
+
+		// Skip fully-qualified and protocol-relative URLs and data URIs
+		$urlScheme = substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME );
 		if ( $urlScheme ) {
-			return $file;
+			return $url;
 		}
 
 		// URLs with absolute paths like /w/index.php need to be expanded
 		// to absolute URLs but otherwise left alone
-		if ( $file !== '' && $file[0] === '/' ) {
+		if ( $url !== '' && $url[0] === '/' ) {
 			// Replace the file path with an expanded (possibly protocol-relative) URL
 			// ...but only if wfExpandUrl() is even available.
 			// This will not be the case if we're running outside of MW
 			if ( function_exists( 'wfExpandUrl' ) ) {
-				return wfExpandUrl( $file, PROTO_RELATIVE );
+				return wfExpandUrl( $url, PROTO_RELATIVE );
 			} else {
-				return $file;
+				return $url;
 			}
 		}
 
+		// We drop the query part here and instead make the path relative to $remote
 		$url = "{$remote}/{$file}";
-		$file = "{$local}/{$file}";
+		// Path to the actual file on the filesystem
+		$localFile = "{$local}/{$file}";
 
-		$replacement = false;
+		if ( $local !== false && file_exists( $localFile ) ) {
 
-		if ( $local !== false && file_exists( $file ) ) {
 			// Add version parameter as a time-stamp in ISO 8601 format,
 			// using Z for the timezone, meaning GMT
-			$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
+			$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $localFile ), -2 ) );
 			if ( $embed ) {
-				$data = self::encodeImageAsDataURI( $file );
+				$data = self::encodeImageAsDataURI( $localFile );
 				if ( $data !== false ) {
 					return $data;
 				} else {
@@ -261,7 +266,8 @@ class CSSMin {
 			// Assume that all paths are relative to $remote, and make them absolute
 			return $url . $query;
 		} else {
-			return $file;
+			// $local is truthy, but the file is missing
+			return $localFile;
 		}
 	}
 
