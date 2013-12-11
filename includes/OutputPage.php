@@ -2488,7 +2488,7 @@ $templates
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
-		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getHtmlCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
+		$ret = Html::htmlHeader( $sk->getHtmlElementAttributes() );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->inContentLanguage() );
