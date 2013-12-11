@@ -453,6 +453,15 @@ abstract class Skin extends ContextSource {
 		return "$numeric $type $name";
 	}
 
+	public function getHtmlElementAttributes() {
+		$lang = $this->getLanguage();
+		return array(
+			'lang' => $lang->getHtmlCode(),
+			'dir' => $lang->getDir(),
+			'class' => 'client-nojs',
+		);
+	}
+
 	/**
 	 * This will be called by OutputPage::headElement when it is creating the
 	 * "<body>" tag, skins can override it if they have a need to add in any
