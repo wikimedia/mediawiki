@@ -1269,7 +1269,25 @@ var mw = ( function ( $, undefined ) {
 							}
 							return true;
 						} );
-						$.globalEval( concatSource.join( ';' ) );
+						try {
+							$.globalEval( concatSource.join( ';' ) );
+						} catch ( err ) {
+							// Not good, we have invalid data in our store!
+							// First of all let's clear whatever is in there.
+							mw.loader.store.clear();
+
+							if ( err.name === 'SyntaxError' ) {
+								// This most likely means that no code has been executed, so let's log the error
+								// and continue loading. This might be caused by remnants of bug 57567.
+								log( 'SyntaxError while evaluating data from mw.loader.store' );
+							} else {
+								// This should not happen, the only thing that can live in the store are
+								// mw.loader.implement calls, which are hopefully not throwing themselves.
+								// We have no idea what is going on, bail out and the next page load should
+								// proceed with clear store.
+								throw err;
+							}
+						}
 					}
 
 					// Early exit if there's nothing to load...
@@ -1895,6 +1913,12 @@ var mw = ( function ( $, undefined ) {
 								JSON.stringify( descriptor.style ),
 								JSON.stringify( descriptor.messages )
 							];
+							// Attempted workaround for a possible Opera bug (bug 57567).
+							// This regex should never match under sane conditions.
+							if ( /^\s*\(/.test( args[1] ) ) {
+								args[1] = 'function' + args[1];
+								log( 'Detected malformed function stringification (bug 57567)' );
+							}
 						} catch (e) {
 							return;
 						}
@@ -1920,6 +1944,14 @@ var mw = ( function ( $, undefined ) {
 								delete mw.loader.store.items[key];
 							}
 						}
+					},
+
+					/**
+					 * Clear the entire module store right now.
+					 */
+					clear: function () {
+						mw.loader.store.items = {};
+						localStorage.removeItem( mw.loader.store.getStoreKey() );
 					},
 
 					/**
