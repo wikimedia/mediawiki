@@ -184,6 +184,16 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { background: url(http://doc.example.org/static/foo.png?query=yes); }',
 			),
 			array(
+				'Remote URL with parentheses',
+				'foo { background: url("http://example.org/w/foo_(2).png"); }',
+				'foo { background: url("http://example.org/w/foo_(2).png"); }',
+			),
+			array(
+				'Remote URL (unnecessary quotes not preserved)',
+				'foo { background: url("http://example.org/w/foo.png"); }',
+				'foo { background: url(http://example.org/w/foo.png); }',
+			),
+			array(
 				'Embedded file',
 				'foo { /* @embed */ background: url(red.gif); }',
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
