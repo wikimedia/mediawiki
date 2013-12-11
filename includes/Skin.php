@@ -37,6 +37,15 @@ abstract class Skin extends ContextSource {
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
+ public function getHtmlElementAttributes() {
+		$lang = $this->getLanguage();
+		return array(
+			'lang' => $lang->getHtmlCode(),
+			'dir' => $lang->getDir(),
+			'class' => 'client-nojs',
+		);
+	}
+
 	/**
 	 * Fetch the set of available skins.
 	 * @return array associative array of strings
