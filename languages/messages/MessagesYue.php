@@ -18,6 +18,7 @@
  * @author Waihorace
  * @author William915
  * @author Wong128hk
+ * @author Xiaomingyan
  * @author Yfdyh000
  */
 
@@ -1151,8 +1152,8 @@ $1",
 'saveprefs' => '儲存',
 'restoreprefs' => '恢復全部預設設定',
 'prefs-editing' => '編輯中',
-'rows' => '列：',
-'columns' => '行：',
+'rows' => '行數：',
+'columns' => '列數：',
 'searchresultshead' => '搵嘢',
 'resultsperpage' => '每頁顯示嘅擊中數：',
 'stub-threshold' => '<a href="#" class="stub">楔位連結</a>格式門檻 (bytes):',

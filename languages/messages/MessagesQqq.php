@@ -1336,9 +1336,9 @@ It is also used on the submit button in the form/special page where you register
 'gotaccountlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.',
-'userlogin-resetpassword-link' => 'Used as link text on login form.
+'userlogin-resetpassword-link' => 'Used as link text in the login form.
 
-The link points to the local [[Special:PasswordReset]].
+The link points to the local page [[Special:PasswordReset]].
 
 See example: [[Special:UserLogin]]
 

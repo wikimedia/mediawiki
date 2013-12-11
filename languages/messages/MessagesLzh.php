@@ -15,6 +15,7 @@
  * @author Simon Shek
  * @author StephDC
  * @author Super Wang
+ * @author Xiaomingyan
  * @author Yanteng3
  */
 
@@ -1089,8 +1090,8 @@ $1",
 'saveprefs' => '儲',
 'restoreprefs' => '重修',
 'prefs-editing' => '在修',
-'rows' => '行：',
-'columns' => '列：',
+'rows' => '行數：',
+'columns' => '列數：',
 'searchresultshead' => '尋',
 'resultsperpage' => '頁示尋',
 'stub-threshold' => '<a href="#" class="stub">短頁連</a>格式門檻（位元組）：',

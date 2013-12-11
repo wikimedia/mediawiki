@@ -1635,6 +1635,7 @@ Diese Information ist öffentlich.',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Versionsvergleich',
 'prefs-help-prefershttps' => 'Diese Einstellung wird bei deiner nächsten Anmeldung wirksam',
+'prefs-tabs-navigation-hint' => 'Tipp: Du kannst die linke und rechte Pfeiltasten benutzen, um zwischen den Registerkarten in der Reiterliste zu navigieren.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Diese E-Mail-Adresse scheint gültig zu sein.',

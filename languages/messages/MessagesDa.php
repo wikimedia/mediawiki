@@ -2075,8 +2075,8 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'mostimages' => 'Mest brugte filer',
 'mostinterwikis' => 'Sider med flest interwikilinks',
 'mostrevisions' => 'Sider med de fleste ændringer',
-'prefixindex' => 'Alle sider med præfiks',
-'prefixindex-namespace' => 'Alle sider med præfiks (navnerummet $1)',
+'prefixindex' => 'Alle sider der begynder med',
+'prefixindex-namespace' => 'Alle sider (i navnerummet $1) der begynder med',
 'prefixindex-strip' => 'Strip præfiks i listen',
 'shortpages' => 'Korte sider',
 'longpages' => 'Lange sider',
@@ -2139,7 +2139,7 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'allarticles' => 'Alle sider',
 'allinnamespace' => 'Alle sider (i $1 navnerummet)',
 'allpagessubmit' => 'Vis',
-'allpagesprefix' => 'Vis sider med præfiks:',
+'allpagesprefix' => 'Vis sider der begynder med:',
 'allpagesbadtitle' => 'Det indtastede sidenavn er ugyldigt: Det har enten et foranstillet sprog-, en Interwiki-forkortelse eller indeholder et eller flere tegn, som ikke må anvendes i sidenavne.',
 'allpages-bad-ns' => 'Navnerummet $1 findes ikke på {{SITENAME}}.',
 'allpages-hide-redirects' => 'Skjul omdirigeringer',
@@ -3665,6 +3665,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'imgmultigo' => 'OK',
 'imgmultigoto' => 'Gå til side $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(standardsprog)',
+
 # Table pager
 'ascending_abbrev' => 'op',
 'descending_abbrev' => 'ned',
@@ -3678,7 +3681,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'table_pager_empty' => 'Ingen resultater',
 
 # Auto-summaries
-'autosumm-blank' => 'Tømmer siden',
+'autosumm-blank' => 'Tømmer siden for indhold',
 'autosumm-replace' => "Sidens indhold blev erstattet med: '$1'",
 'autoredircomment' => 'Omdirigering til [[$1]] oprettet',
 'autosumm-new' => "Oprettede siden med '$1'",

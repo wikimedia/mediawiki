@@ -3846,6 +3846,11 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'imgmultigo' => 'Ir!',
 'imgmultigoto' => 'Ir á páxina $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(lingua por defecto)',
+'img-lang-info' => 'Renderizar esta imaxe en $1 $2.',
+'img-lang-go' => 'Mostrar',
+
 # Table pager
 'ascending_abbrev' => 'asc',
 'descending_abbrev' => 'desc',

@@ -2379,7 +2379,7 @@ $1',
 'blanknamespace' => '(ئاساسىي)',
 
 # Contributions
-'contributions' => '{{$1:GENDER|ئىشلەتكۈچى}} تۆھپىسى',
+'contributions' => '{{GENDER:$1|ئىشلەتكۈچى}} تۆھپىسى',
 'contributions-title' => '$1 نىڭ ئىشلەتكۈچى تۆھپىسى',
 'mycontris' => 'تۆھپە',
 'contribsub2' => '{{GENDER:$3|$1}} ($2) ئۈچۈن',

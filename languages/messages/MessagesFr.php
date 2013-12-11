@@ -68,6 +68,7 @@
  * @author Nicolas NALLET
  * @author Nicolas Raoul
  * @author Nnemo
+ * @author Nobody
  * @author Od1n
  * @author Omnipaedista
  * @author Peter17
@@ -1610,6 +1611,7 @@ Cette information sera publique.',
 'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Différences',
 'prefs-help-prefershttps' => 'Cette préférence sera effective lors de votre prochaine connexion.',
+'prefs-tabs-navigation-hint' => 'Astuce : Vous pouvez utiliser les flèches de gauche et de droite pour naviguer entre les onglets.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Semble valide',

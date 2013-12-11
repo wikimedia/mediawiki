@@ -3864,6 +3864,9 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'imgmultigo' => 'Przejdź',
 'imgmultigoto' => 'Idź do $1 strony',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(język domyślny)',
+
 # Table pager
 'ascending_abbrev' => 'rosn.',
 'descending_abbrev' => 'mal.',
