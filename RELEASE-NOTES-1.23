@@ -53,6 +53,7 @@ production.
   custom CSS or JavaScript enabled only for registered users.
 * (bug 52005) Special pages RecentChanges, RecentChangesLinked and Watchlist
   now include a legend describing the symbols used in lists of changes.
+* Improved the accessibility of the tabs in Special:Preferences.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

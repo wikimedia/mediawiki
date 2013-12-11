@@ -3222,6 +3222,7 @@ Used in [[Special:Preferences]], tab "Watchlist".
 The checkbox has the label {{msg-mw|Tog-prefershttps}}.
 
 See example: [[mw:Special:Preferences]].',
+'prefs-tabs-navigation-hint' => 'Hint message that explains the arrow key navigation for the tabs on Special:Preferences to screenreader users.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.',
