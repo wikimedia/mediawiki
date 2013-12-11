@@ -541,6 +541,7 @@ $wikiPage: WikiPage (object) being modified
 Wiki::articleFromTitle().
 $title: Title (object) used to create the article object
 $article: Article (object) that will be returned
+$context: IContextSource (object)
 
 'ArticleInsertComplete': After a new article is created. DEPRECATED, use
 PageContentInsertComplete.

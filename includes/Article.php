@@ -158,7 +158,7 @@ class Article implements Page {
 		}
 
 		$page = null;
-		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page ) );
+		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page, $context ) );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
 				case NS_FILE:
