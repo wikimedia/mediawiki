@@ -49,6 +49,7 @@
  * @author McDutchie
  * @author MetalBrasil
  * @author MisterSanderson
+ * @author Mordecaista
  * @author Nemo bis
  * @author OTAVIO1981
  * @author Opraco
@@ -600,8 +601,8 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'youhavenewmessages' => 'Você tem $1 ($2).',
 'youhavenewmessagesfromusers' => 'Você tem $1 de {{PLURAL:$3|outro usuário|$3 usuários}} ($2)',
 'youhavenewmessagesmanyusers' => 'Você tem $1 de muitos usuários ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|últimas alterações}}',
+'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|999=mensagens novas}}',
+'newmessagesdifflinkplural' => 'último {{PLURAL:$1|mudança|999=mudanças}}',
 'youhavenewmessagesmulti' => 'Você tem novas mensagens em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -731,7 +732,8 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 'invalidtitle-knownnamespace' => 'Título inválido para o espaço nominal "$2" e texto "$3"',
 'invalidtitle-unknownnamespace' => 'Título inválido para o espaço nominal de número desconhecido ($1) e texto "$2"',
 'exception-nologin' => 'Não está autenticado',
-'exception-nologin-text' => 'Esta página ou ação requer que você esteja autenticado neste wiki.',
+'exception-nologin-text' => 'Por favor clique [[Special:Userlogin|log in]] para poder acessar esta página ou ação',
+'exception-nologin-text-manual' => 'Por favor clique $1 para poder acessar essa página ou ação.',
 
 # Virus scanner
 'virus-badscanner' => "Má configuração: antivírus desconhecido: ''$1''",
@@ -830,7 +832,7 @@ Tente novamente.',
 'passwordtooshort' => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
 'password-name-match' => 'A sua senha deve ser diferente do seu nome de usuário.',
 'password-login-forbidden' => 'O uso deste nome de usuário e senha foi desautorizado.',
-'mailmypassword' => 'Enviar uma nova senha por e-mail',
+'mailmypassword' => 'Redefinir senha',
 'passwordremindertitle' => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext' => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
 A sua senha temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
@@ -849,7 +851,8 @@ Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|
 'acct_creation_throttle_hit' => 'Visitantes deste wiki utilizando o seu endereço IP criaram {{PLURAL:$1|1 conta|$1 contas}} no último dia, o que é o máximo permitido neste período de tempo.
 Como resultado, visitantes que usam este endereço IP não podem criar mais nenhuma conta no momento.',
 'emailauthenticated' => 'O seu endereço de e-mail foi autenticado às $3 de $2.',
-'emailnotauthenticated' => 'O seu endereço de e-mail ainda não foi autenticado. Não lhe será enviado nenhum e-mail sobre nenhuma das seguintes funcionalidades.',
+'emailnotauthenticated' => 'O seu endereço de e-mail ainda não foi autenticado.
+Não lhe será enviado nenhum e-mail sobre nenhuma das seguintes funcionalidades.',
 'noemailprefs' => 'Especifique um endereço de e-mail para que os seguintes recursos funcionem.',
 'emailconfirmlink' => 'Confirme o seu endereço de e-mail',
 'invalidemailaddress' => "O endereço de ''e-mail'' não pode ser aceite devido a talvez possuir um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.",
@@ -949,6 +952,7 @@ Senha temporária: $2',
 Você só deve reiniciá-los se compartilhou-os com alguém ou se a sua conta foi comprometida.',
 'resettokens-no-tokens' => 'Não existem tokens para reiniciar.',
 'resettokens-legend' => 'Reiniciar tokens',
+'resettokens-tokens' => 'Símbolos:',
 'resettokens-token-label' => '$1 (valor atual: $2)',
 'resettokens-watchlist-token' => 'Tokens para o feed da web (Atom/RSS) das [[Special:Watchlist|mudanças de páginas em sua lista de páginas vigiadas]]',
 'resettokens-done' => 'Tokens reiniciados.',
@@ -1281,10 +1285,11 @@ Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
 'revdelete-confirm' => 'Por favor confirme que pretende executar esta ação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
+* Informação potencialmente difamatória
 * Informação pessoal inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend' => 'Definir restrições de visualização',
-'revdelete-hide-text' => 'Ocultar texto da edição',
+'revdelete-hide-text' => 'Texto de revisão',
 'revdelete-hide-image' => 'Ocultar conteúdos do arquivo',
 'revdelete-hide-name' => 'Ocultar ação e alvo',
 'revdelete-hide-comment' => 'Sumário de edição',
@@ -1436,6 +1441,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'preferences' => 'Preferências',
 'mypreferences' => 'Preferências',
 'prefs-edits' => 'Número de edições:',
+'prefsnologintext2' => 'Por favor clique $1 para alterar suas preferências',
 'prefs-skin' => 'Tema',
 'skin-preview' => 'Pré-visualização',
 'datedefault' => 'Sem preferência',
@@ -1731,8 +1737,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-minor' => 'Esta é uma edição menor',
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
-'recentchanges-label-plusminus' => 'Alterações no tamanho da página, em bytes',
-'recentchanges-legend-newpage' => '$1 - nova página',
+'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
+'recentchanges-legend-newpage' => '(também veja [[Special:NewPages|lista de novas páginas]])',
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
@@ -2177,6 +2183,8 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'pageswithprop-text' => 'Esta página lista as páginas que usam uma determinada propriedade de página.',
 'pageswithprop-prop' => 'Nome da propriedade:',
 'pageswithprop-submit' => 'Ir',
+'pageswithprop-prophidden-long' => 'Longa propriedade de texto oculta ($1)',
+'pageswithprop-prophidden-binary' => 'Valor de propriedade binária oculta ($1)',
 
 'doubleredirects' => 'Redirecionamentos duplos',
 'doubleredirectstext' => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
@@ -3184,6 +3192,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-length' => 'Tamanho da página (em bytes)',
 'pageinfo-article-id' => 'ID da página',
 'pageinfo-language' => 'Idioma do conteúdo da página',
+'pageinfo-content-model' => 'Modelo de conteúdo de página',
 'pageinfo-robot-policy' => 'Indexado por robôs',
 'pageinfo-robot-index' => 'Autorizado',
 'pageinfo-robot-noindex' => 'Desautorizado',
@@ -3269,7 +3278,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'svg-long-desc' => 'arquivo SVG, de $1 × $2 pixels, tamanho: $3',
 'svg-long-desc-animated' => 'arquivo SVG animado, de $1 × $2 pixels e de tamanho: $3',
 'svg-long-error' => 'Arquivo SVG inválido: $1',
-'show-big-image' => 'Resolução original',
+'show-big-image' => 'Arquivo original',
 'show-big-image-preview' => 'Tamanho desta previsualização: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Outra resolução|Outras resoluções}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3840,6 +3849,11 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'imgmultigo' => 'Ir!',
 'imgmultigoto' => 'Ir para a página $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(Idioma padrão)',
+'img-lang-info' => 'Renderizar essa imagem em $1 $2',
+'img-lang-go' => 'Ir',
+
 # Table pager
 'ascending_abbrev' => 'asc',
 'descending_abbrev' => 'desc',
@@ -3939,7 +3953,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # Special:Redirect
 'redirect' => 'Redirecionar por arquivo, usuário ou ID de revisão',
 'redirect-legend' => 'Redirecionar para um arquivo ou página',
-'redirect-summary' => 'Esta página especial redireciona a um arquivo (dado o nome do arquivo), a uma página (dado um ID de revisão) ou a uma página de usuário (dado o ID do usuário).',
+'redirect-summary' => 'Esta página especial redireciona a um arquivo (dado o nome do arquivo), a uma página (dado um ID de revisão) ou a uma página de usuário (dado o ID do usuário). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Buscar',
 'redirect-value' => 'Valor:',

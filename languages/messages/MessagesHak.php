@@ -896,7 +896,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'saveprefs' => '保存',
 'restoreprefs' => '恢復所有默認設定',
 'prefs-editing' => '編寫緊',
-'rows' => '行：',
+'rows' => '行数：',
 'columns' => '列：',
 'searchresultshead' => '搜尋',
 'resultsperpage' => '每頁顯示鏈接數：',

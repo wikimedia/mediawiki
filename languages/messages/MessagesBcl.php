@@ -606,7 +606,7 @@ Tabi probaran giraray.',
 'passwordtooshort' => 'Mga sekretong panlaog dapat igwa nin {{PLURAL:$1|1 karakter|$1 mga karakter}}.',
 'password-name-match' => 'An saimong sekretong panlaog dapat laen sa saimong paragamit na ngaran.',
 'password-login-forbidden' => 'An paggamit kaining pangaran nin paragamit asin sekretong panlaog pinagbabawal.',
-'mailmypassword' => 'Paki-koreo an bagong sekretong panlaog',
+'mailmypassword' => 'Pakibaguha an pasa-taramon',
 'passwordremindertitle' => 'Bagong temporaryo na sekretong panlaog para sa {{SITENAME}}',
 'passwordremindertext' => 'May sarong tawo (pwedeng ika gayod, gikan sa IP address na $1) naghagad nin sarong bagong sekretong panlaog para sa {{SITENAME}} ($4). Sarong temporaryong sekretong panlaog para sa paragamit "$2" an pinagmukna asin pinagtuytoy na magin "$3". Kun iyo ini an saimong katuyuhan, kaipuhan mong maglaog asin magpili nin sarong bagong sekretong panlaog ngunyan.
 An saimong temporaryong sekretong panlaog mapapaso sa laog nin {{PLURAL:$5|sarong aldaw|$5 aldaw}}. 
@@ -673,7 +673,7 @@ Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong s
 # Special:PasswordReset
 'passwordreset' => 'Pakibago kan sekretong panlaog',
 'passwordreset-text-one' => 'Kumpletuhon ining porma sa pagliwat otro kan saimong pasa-taramon.',
-'passwordreset-text-many' => '{{PLURAL:$1|Palamanan an saro sa mga kaaganan tanganing mailuwat-otro an saimong pasa-taramon.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Kaagi an saro sa mga kaaganan tanganing makaresibe nin sarong temporaryong pasa-taramon sa paagi kan e-surat.}}',
 'passwordreset-legend' => 'Pakibago kan sekretong panlaog',
 'passwordreset-disabled' => 'An pagbago kan sekretong panlaog pinagpundo sa wiking ini.',
 'passwordreset-emaildisabled' => 'E-surat na mga estima pinag-uruntok sa wiking ini.',
@@ -3590,6 +3590,11 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 'imgmultigo' => 'Dumanán!',
 'imgmultigoto' => 'Magpasiring sa pahina $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(panugmad na lengguwahe)',
+'img-lang-info' => 'Giboha ining imahe sa $1 $2.',
+'img-lang-go' => 'Dumani',
+
 # Table pager
 'ascending_abbrev' => 'skt',
 'descending_abbrev' => 'ba',
@@ -3935,6 +3940,7 @@ Sa katunayan, ini minapabigwak kan gabos na bagay na yaon sa mga dobleng pananda
 'expand_templates_xml_output' => 'Kinaluwasan na XML',
 'expand_templates_remove_comments' => 'Tanggalon an mga komento',
 'expand_templates_remove_nowiki' => 'Pugulan an mga taktak na <nowiki> sa resulta',
+'expand_templates_generate_xml' => 'Ipahiling an panlunhay na kahoy nin XML',
 'expand_templates_preview' => 'Patânaw',
 
 );

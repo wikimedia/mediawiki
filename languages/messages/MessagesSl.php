@@ -1604,7 +1604,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-noresult' => 'V podanem obdobju nobena sprememba ne ustreza tem merilom.',
 'recentchanges-feed-description' => 'Spremljajte zadnje spremembe wikija prek tega vira.',
 'recentchanges-label-newpage' => 's tem urejanjem je uporabnik ustvaril novo stran',
-'recentchanges-label-minor' => 'Manjše urejanje',
+'recentchanges-label-minor' => 'manjše urejanje',
 'recentchanges-label-bot' => 'urejanje je izvedel bot',
 'recentchanges-label-unpatrolled' => 'Urejanje še ni bilo pregledano',
 'recentchanges-label-plusminus' => 'uporabnik je velikost strani spremenil za tolikšno število bajtov',
