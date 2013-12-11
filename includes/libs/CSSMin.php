@@ -141,6 +141,24 @@ class CSSMin {
 	}
 
 	/**
+	 * Build a CSS 'url()' value for the given URL, quoting parentheses (and other funny characters)
+	 * and escaping quotes as necessary.
+	 *
+	 * @param string $url URL to process
+	 * @return string 'url()' value, usually just `"url($url)"`, quoted/escaped if necessary
+	 */
+	public static function buildUrlValue( $url ) {
+		// The list below has been crafted to match URLs such as:
+		//   scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s
+		//   data:image/png;base64,R0lGODlh/+==
+		if ( preg_match( '!^[\w\d:@/~.%+;?&=-]+$!', $url ) ) {
+			return "url($url)";
+		} else {
+			return 'url("' . strtr( $url, array( '\\' => '\\\\', '"' => '\\"' ) ) . '")';
+		}
+	}
+
+	/**
 	 * Remaps CSS URL paths and automatically embeds data URIs for CSS rules or url() values
 	 * preceded by an / * @embed * / comment.
 	 *
@@ -182,14 +200,14 @@ class CSSMin {
 
 			$ruleWithRemapped = preg_replace_callback( $pattern, function ( $match ) use ( $local, $remote ) {
 				$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
-				return "url({$remapped})";
+				return CSSMin::buildUrlValue( $remapped );
 			}, $rule );
 
 			if ( $embedData ) {
 				$ruleWithEmbedded = preg_replace_callback( $pattern, function ( $match ) use ( $embedAll, $local, $remote ) {
 					$embed = $embedAll || $match['embed'];
 					$embedded = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, $embed );
-					return "url({$embedded})";
+					return CSSMin::buildUrlValue( $embedded );
 				}, $rule );
 			}
 
