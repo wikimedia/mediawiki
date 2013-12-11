@@ -241,33 +241,28 @@ class CSSMin {
 			}
 		}
 
-		// We drop the query part here and instead make the path relative to $remote
-		$url = "{$remote}/{$file}";
-		// Path to the actual file on the filesystem
-		$localFile = "{$local}/{$file}";
-
-		if ( $local !== false && file_exists( $localFile ) ) {
-
-			// Add version parameter as a time-stamp in ISO 8601 format,
-			// using Z for the timezone, meaning GMT
-			$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $localFile ), -2 ) );
-			if ( $embed ) {
-				$data = self::encodeImageAsDataURI( $localFile );
-				if ( $data !== false ) {
-					return $data;
-				} else {
-					return $url;
-				}
-			} else {
-				// Assume that all paths are relative to $remote, and make them absolute
-				return $url;
-			}
-		} elseif ( $local === false ) {
+		if ( $local === false ) {
 			// Assume that all paths are relative to $remote, and make them absolute
-			return $url . $query;
+			return $remote . '/' . $url;
 		} else {
-			// $local is truthy, but the file is missing
-			return $localFile;
+			// We drop the query part here and instead make the path relative to $remote
+			$url = "{$remote}/{$file}";
+			// Path to the actual file on the filesystem
+			$localFile = "{$local}/{$file}";
+			if ( file_exists( $localFile ) ) {
+				// Add version parameter as a time-stamp in ISO 8601 format,
+				// using Z for the timezone, meaning GMT
+				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $localFile ), -2 ) );
+				if ( $embed ) {
+					$data = self::encodeImageAsDataURI( $localFile );
+					if ( $data !== false ) {
+						return $data;
+					}
+				}
+			}
+			// If any of these conditions failed (file missing, we don't want to embed it
+			// or it's not embeddable), return the URL (possibly with ?timestamp part)
+			return $url;
 		}
 	}
 
