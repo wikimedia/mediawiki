@@ -300,8 +300,6 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		try {
-			# Clear out any old cached data
-			$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 			# Do query
 			$res = $this->reallyDoQuery( $limit, false );
 			$num = false;
@@ -327,6 +325,9 @@ abstract class QueryPage extends SpecialPage {
 							'qc_value' => $value );
 				}
 
+				$dbw->begin( __METHOD__ );
+				# Clear out any old cached data
+				$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 				# Save results into the querycache table on the master
 				if ( count( $vals ) ) {
 					$dbw->insert( 'querycache', $vals, __METHOD__ );
@@ -336,6 +337,7 @@ abstract class QueryPage extends SpecialPage {
 				$dbw->insert( 'querycache_info',
 					array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ),
 					$fname );
+				$dbw->commit( __METHOD__ );
 			}
 		} catch ( DBError $e ) {
 			if ( !$ignoreErrors ) {
