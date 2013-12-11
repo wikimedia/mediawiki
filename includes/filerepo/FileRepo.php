@@ -1717,10 +1717,25 @@ class FileRepo {
 	 * STUB
 	 *
 	 * @param Title $title Title of image
-	 * @return bool
+	 * @return bool|Title
 	 */
 	public function checkRedirect( Title $title ) {
 		return false;
+	}
+
+	/**
+	 * Check multiple titles for redirects
+	 *
+	 * @see checkRedirect
+	 * @param Array $title Titles of images to check
+	 * @return Array Map of title dbkey to target title or false if not a redirect
+	 */
+	public function checkRedirects( $titles ) {
+		$results = array();
+		foreach ( $titles as $title ) {
+			$results[$title->getDBKey()] = $this->checkRedirect( $title );
+		}
+		return $results;
 	}
 
 	/**

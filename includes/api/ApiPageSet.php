@@ -66,6 +66,7 @@ class ApiPageSet extends ApiBase {
 	private $mInterwikiTitles = array();
 	/** @var Title[] */
 	private $mPendingRedirectIDs = array();
+	private $mPendingForeignFileRedirectIDs = array();
 	private $mConvertedTitles = array();
 	private $mGoodRevIDs = array();
 	private $mLiveRevIDs = array();
@@ -856,7 +857,11 @@ class ApiPageSet extends ApiBase {
 						$this->mAllPages[$ns][$dbkey] = $this->mFakePageId;
 						$this->mMissingPages[$ns][$dbkey] = $this->mFakePageId;
 						$this->mGoodAndMissingPages[$ns][$dbkey] = $this->mFakePageId;
-						$this->mMissingTitles[$this->mFakePageId] = $title;
+						if ( $this->mResolveRedirects && $ns === NS_FILE ) {
+							$this->mPendingForeignFileRedirectIDs[$this->mFakePageId] = $title;
+						} else {
+							$this->mMissingTitles[$this->mFakePageId] = $title;
+						}
 						$this->mFakePageId--;
 						$this->mTitles[] = $title;
 
@@ -976,10 +981,11 @@ class ApiPageSet extends ApiBase {
 
 			// Repeat until all redirects have been resolved
 			// The infinite loop is prevented by keeping all known pages in $this->mAllPages
-			while ( $this->mPendingRedirectIDs ) {
+			while ( $this->mPendingRedirectIDs || $this->mPendingForeignFileRedirectIDs ) {
 				// Resolve redirects by querying the pagelinks table, and repeat the process
 				// Create a new linkBatch object for the next pass
 				$linkBatch = $this->getRedirectTargets();
+				//$this->getForeignFileRedirects( $linkBatch );
 
 				if ( $linkBatch->isEmpty() ) {
 					break;
@@ -1009,6 +1015,10 @@ class ApiPageSet extends ApiBase {
 	private function getRedirectTargets() {
 		$lb = new LinkBatch();
 		$db = $this->getDB();
+
+		if ( !$this->mPendingRedirectIDs ) {
+			return $lb;
+		}
 
 		$res = $db->select(
 			'redirect',
@@ -1052,6 +1062,37 @@ class ApiPageSet extends ApiBase {
 				$lb->addObj( $rt );
 				$this->mRedirectTitles[$title->getPrefixedText()] = $rt;
 				unset( $this->mPendingRedirectIDs[$id] );
+			}
+		}
+
+		return $lb;
+	}
+
+	/**
+	 * Retrieve foreign file redirects.
+	 *
+	 * Only pages that do not exist locally and in NS_FILE are considered.
+	 *
+	 * @param LinkBatch $lb
+	 * @return LinkBatch
+	 */
+	private function getForeignFileRedirects( LinkBatch $lb ) {
+		$repo = RepoGroup::singleton();
+		$redirectsToCheck = array_values( $this->mPendingForeignFileRedirectIDs );
+
+		$redirectResults = $repo->checkRedirects( $redirectsToCheck );
+
+		foreach ( $this->mPendingForeignFileRedirectIDs as $fakeId => $title ) {
+			$target = $redirectResults[$title->getDBKey()];
+			if ( $target ) {
+				if ( !isset( $this->mAllPages[$target->getNamespace()][$target->getDBKey()] ) ) {
+					$lb->add( $target->getNamespace(), $target->getDBKey() );
+				}
+				$this->mRedirectTitles[$title->getPrefixedText()] = $target;
+				unset( $this->mPendingForeignFileRedirectIDs[$fakeId] );
+			} else {
+				$this->mMissingTitles[$fakeId] = $title;
+				unset( $this->mPendingForeignFileRedirectIDs[$fakeId] );
 			}
 		}
 
