@@ -184,6 +184,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { background: url(http://doc.example.org/static/foo.png?query=yes); }',
 			),
 			array(
+				'Remote URL (unnecessary quotes not preserved)',
+				'foo { background: url("http://example.org/w/foo.png"); }',
+				'foo { background: url(http://example.org/w/foo.png); }',
+			),
+			array(
 				'Embedded file',
 				'foo { /* @embed */ background: url(red.gif); }',
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
@@ -257,6 +262,45 @@ class CSSMinTest extends MediaWikiTestCase {
 				'@import rule to URL (should we remap this?)',
 				'@import url(//localhost/styles.css?query=yes)',
 				'@import url(//localhost/styles.css?query=yes)',
+			),
+		);
+	}
+
+	/**
+	 * This tests basic functionality of CSSMin::buildUrlValue.
+	 *
+	 * @dataProvider provideBuildUrlValueCases
+	 * @covers CSSMin::buildUrlValue
+	 */
+	public function testBuildUrlValue( $message, $input, $expectedOutput ) {
+		$this->assertEquals(
+			$expectedOutput,
+			CSSMin::buildUrlValue( $input ),
+			"CSSMin::buildUrlValue: $message"
+		);
+	}
+
+	public static function provideBuildUrlValueCases() {
+		return array(
+			array(
+				'Full URL',
+				'scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s',
+				'url(scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s)',
+			),
+			array(
+				'data: URI',
+				'data:image/png;base64,R0lGODlh/+==',
+				'url(data:image/png;base64,R0lGODlh/+==)',
+			),
+			array(
+				'URL with quotes',
+				"https://en.wikipedia.org/wiki/Wendy's",
+				"url(\"https://en.wikipedia.org/wiki/Wendy's\")",
+			),
+			array(
+				'URL with parentheses',
+				'https://en.wikipedia.org/wiki/Boston_(band)',
+				'url("https://en.wikipedia.org/wiki/Boston_(band)")',
 			),
 		);
 	}
