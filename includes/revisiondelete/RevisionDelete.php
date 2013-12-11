@@ -669,8 +669,9 @@ class RevDel_FileItem extends RevDel_Item {
 	 */
 	protected function getUserTools() {
 		if ( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
-			$link = Linker::userLink( $this->file->user, $this->file->user_text ) .
-				Linker::userToolLinks( $this->file->user, $this->file->user_text );
+			$uid = $this->file->getUser( 'id' );
+			$name = $this->file->getUser( 'text' );
+			$link = Linker::userLink( $uid, $name ) . Linker::userToolLinks( $uid, $name );
 		} else {
 			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
