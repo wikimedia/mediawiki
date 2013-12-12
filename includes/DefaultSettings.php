@@ -4012,6 +4012,7 @@ $wgDefaultUserOptions = array(
 	'math' => 1,
 	'minordefault' => 0,
 	'newpageshidepatrolled' => 0,
+	'nickname' => '',
 	'noconvertlink' => 0,
 	'norollbackdiff' => 0,
 	'numberheadings' => 0,
