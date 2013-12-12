@@ -56,7 +56,7 @@ abstract class TitleArray implements Iterator {
 	}
 }
 
-class TitleArrayFromResult extends TitleArray {
+class TitleArrayFromResult extends TitleArray implements Countable {
 
 	/**
 	 * @var ResultWrapper

@@ -61,7 +61,7 @@ abstract class UserArray implements Iterator {
 	}
 }
 
-class UserArrayFromResult extends UserArray {
+class UserArrayFromResult extends UserArray implements Countable {
 
 	/**
 	 * @var ResultWrapper
