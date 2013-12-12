@@ -1543,6 +1543,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-tokenwatchlist' => 'Nyckel',
 'prefs-diffs' => 'Skillnader',
 'prefs-help-prefershttps' => 'Ändringar av denna inställning börjar gälla nästa gång du loggar in',
+'prefs-tabs-navigation-hint' => 'Tips: Du kan använda vänster och höger piltangenterna för att navigera mellan flikarna i listan flikar.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Ser giltig ut',

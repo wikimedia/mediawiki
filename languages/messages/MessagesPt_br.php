@@ -1738,7 +1738,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
-'recentchanges-legend-newpage' => '(também veja [[Special:NewPages|lista de novas páginas]])',
+'recentchanges-legend-newpage' => '(veja também a [[Special:NewPages|lista de páginas novas]])',
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',

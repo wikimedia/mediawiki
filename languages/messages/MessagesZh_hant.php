@@ -1454,6 +1454,7 @@ $1",
 'prefs-tokenwatchlist' => '密鑰',
 'prefs-diffs' => '差異',
 'prefs-help-prefershttps' => '此選項將於您下次登入時生效。',
+'prefs-tabs-navigation-hint' => '提示：您可通過左、右鍵於選項卡之間切換。',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '電子郵件位址有效',

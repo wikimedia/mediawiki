@@ -1660,7 +1660,8 @@ $1",
 'recentchanges-label-minor' => 'Гэтае рэдагаваньне — дробнае',
 'recentchanges-label-bot' => 'Гэтае рэдагаваньне зробленае робатам',
 'recentchanges-label-unpatrolled' => 'Гэтае рэдагаваньне яшчэ не было адпатруляванае',
-'recentchanges-legend-newpage' => '$1 — новая старонка',
+'recentchanges-label-plusminus' => 'Памер старонкі зьмяніўся на такую колькасьць байтаў',
+'recentchanges-legend-newpage' => '(глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])',
 'rcnotefrom' => "Ніжэй знаходзяцца зьмены з '''$2''' (да '''$1''' на старонку).",
 'rclistfrom' => 'Паказаць зьмены з $1',
 'rcshowhideminor' => '$1 дробныя праўкі',
@@ -3052,6 +3053,7 @@ $2',
 Дазваляе дадаваць прычыну адкату ў апісаньне зьменаў.',
 'tooltip-preferences-save' => 'Захаваць налады',
 'tooltip-summary' => 'Увядзіце кароткае апісаньне',
+'interlanguage-link-title' => '$1 — $2',
 
 # Metadata
 'notacceptable' => 'Вікі-сэрвэр ня можа адлюстраваць зьвесткі ў выглядзе, які здольны прачытаць Ваш браўзэр.',
@@ -3880,6 +3882,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 
 # Special:SpecialPages
 'specialpages' => 'Спэцыяльныя старонкі',
+'specialpages-note-top' => 'Легенда',
 'specialpages-note' => '* Звычайныя спэцыяльныя старонкі.
 * <strong class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</strong>
 * <span class="mw-specialpagecached">Кэшаваныя спэцыяльныя старонкі (могуць быць састарэлымі).</span>',

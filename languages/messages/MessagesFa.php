@@ -455,7 +455,7 @@ $messages = array(
 'tog-justify' => 'بندها تمام‌چین نمایش یابند',
 'tog-hideminor' => 'تغییرات جزئی از فهرست تغییرات اخیر پنهان شوند',
 'tog-hidepatrolled' => 'ویرایش‌های گشت‌خورده از فهرست تغییرات اخیر پنهان شوند',
-'tog-newpageshidepatrolled' => 'صفحه‌های نهگبانی‌شده از فهرست صفحه‌های تازه پنهان شوند',
+'tog-newpageshidepatrolled' => 'صفحه‌های گشت‌خورده از فهرست صفحه‌های تازه پنهان شوند',
 'tog-extendwatchlist' => 'گسترش فهرست پی‌گیری‌ها برای نمایش همهٔ تغییرات، نه فقط آخرین‌ها',
 'tog-usenewrc' => 'گروه‌بندی تغییرات بر پایهٔ صفحه‌های تغییرات اخیر و فهرست پیگیری‌ها (نیازمند جاوااسکریپت)',
 'tog-numberheadings' => 'شماره‌گذاری خودکار عنوان‌ها',
@@ -3995,6 +3995,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(زبان پیش‌فرض)',
+'img-lang-go' => 'برو',
 
 # Table pager
 'ascending_abbrev' => 'صعودی',

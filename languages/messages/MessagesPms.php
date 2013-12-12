@@ -1257,6 +1257,7 @@ Costa anformassion a sarà pùblica.",
 'prefs-tokenwatchlist' => 'Geton',
 'prefs-diffs' => 'Diferense',
 'prefs-help-prefershttps' => 'Costa preferensa a ancaminrà a marcé a soa pròssima conession.',
+'prefs-tabs-navigation-hint' => 'Astussia: A peul dovré le flece a snistra e a drita për navighé antra le schede ant la lista dle schede.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'A smija bon',

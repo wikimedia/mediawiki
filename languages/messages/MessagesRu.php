@@ -1668,6 +1668,7 @@ $1",
 'prefs-tokenwatchlist' => 'Токен',
 'prefs-diffs' => 'Разница версий',
 'prefs-help-prefershttps' => 'Эта настройка будет применена после следующего представления системе.',
+'prefs-tabs-navigation-hint' => 'Совет: Вы можете использовать клавиши стрелок влево и вправо для перехода между вкладками в списке вкладок.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Выглядит корректно',

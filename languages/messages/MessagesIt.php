@@ -1485,6 +1485,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Differenze',
 'prefs-help-prefershttps' => 'Questa preferenza avrà effetto dal prossimo accesso.',
+'prefs-tabs-navigation-hint' => "Suggerimento: è possibile utilizzare i tasti freccia sinistra e destra per spostarsi tra le schede nell'elenco delle schede.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "L'indirizzo e-mail sembra valido",
@@ -3754,6 +3755,7 @@ Per favore, conferma che vuoi veramente ricreare questa pagina.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(lingua predefinita)',
+'img-lang-info' => 'Converti questa immagine in $1 $2.',
 'img-lang-go' => 'Vai',
 
 # Table pager

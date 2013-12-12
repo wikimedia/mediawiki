@@ -1628,6 +1628,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'prefs-tokenwatchlist' => 'トークン',
 'prefs-diffs' => '差分',
 'prefs-help-prefershttps' => 'この設定は、次回ログインの際に反映されます。',
+'prefs-tabs-navigation-hint' => 'ヒント: ← キーと → キーで、タブ一覧内のタブ間を移動できます。',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'メールアドレスは有効のようです',

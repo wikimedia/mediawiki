@@ -1339,7 +1339,7 @@ $1",
 
 # Diffs
 'history-title' => '“$1”的版本历史',
-'difference-title' => '“$1”的版本间的差异',
+'difference-title' => '“$1”版本间的差异',
 'difference-title-multipage' => '页面“$1”与“$2”之间的差异',
 'difference-multipage' => '（页面间的差异）',
 'lineno' => '第$1行：',
@@ -1515,6 +1515,7 @@ $1",
 'prefs-tokenwatchlist' => '密钥',
 'prefs-diffs' => '差异对比',
 'prefs-help-prefershttps' => '该设置将在你下次登录时生效。',
+'prefs-tabs-navigation-hint' => '提示：您可以通过左、右箭头键在选项卡之间切换。',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '电子邮件地址有效',

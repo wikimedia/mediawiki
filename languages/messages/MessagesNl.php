@@ -1630,6 +1630,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Verschillen',
 'prefs-help-prefershttps' => 'Deze voorkeur wordt toegepast bij de volgende keer aanmelden.',
+'prefs-tabs-navigation-hint' => 'Tip: U kunt de pijltjestoetsen naar links en naar rechts gebruiken om te navigeren tussen de tabbladen in de lijst.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Het e-mailadres lijkt geldig',

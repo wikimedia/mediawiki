@@ -1598,6 +1598,7 @@ $1",
 'prefs-tokenwatchlist' => 'Жетон',
 'prefs-diffs' => 'Різниці версій',
 'prefs-help-prefershttps' => 'Цей параметр набуде чинності при вашому наступному вході у систему.',
+'prefs-tabs-navigation-hint' => 'Порада: Ви можете використовувати клавіші стрілок вліво і вправо для переходу між вкладками в списку вкладок.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Адреса електронної пошти є чинною',

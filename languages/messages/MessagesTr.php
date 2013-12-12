@@ -1562,6 +1562,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'prefs-tokenwatchlist' => 'Anahtar',
 'prefs-diffs' => 'Farklar',
 'prefs-help-prefershttps' => 'Bu tercih bir sonraki girişinizde etkili olacaktır.',
+'prefs-tabs-navigation-hint' => 'İpucu: Sekmeler listesindeki sekmeler arasında gezinmek için sağ ve sol ok tuşlarını kullanabilirsiniz.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-posta adresi geçerli görünüyor',
