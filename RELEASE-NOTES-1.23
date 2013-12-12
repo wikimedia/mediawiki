@@ -39,6 +39,9 @@ production.
   hide their (unrelated) log entries.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
+* Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:  57
+  it's called after everything is set up but before any major processing  58
+  happens.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

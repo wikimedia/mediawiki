@@ -69,6 +69,9 @@ $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
  */
 $processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
+// Last chance hook before executing the API
+wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+
 // Process data & print results
 $processor->execute();
 
