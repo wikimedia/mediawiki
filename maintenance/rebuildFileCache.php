@@ -49,7 +49,7 @@ class RebuildFileCache extends Maintenance {
 
 	public function execute() {
 		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
-		global $wgOut;
+		global $wgOut, $wgRequest;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
@@ -114,6 +114,8 @@ class RebuildFileCache extends Maintenance {
 				$context->setTitle( $title );
 				$article = Article::newFromTitle( $title, $context );
 				$context->setWikiPage( $article->getPage() );
+
+				$wgRequest->setTitle( $title );
 
 				$wgOut = $context->getOutput(); // set display title
 
