@@ -2203,6 +2203,10 @@ software.
 $software: The array of software in format 'name' => 'version'. See
   SpecialVersion::softwareInformation().
 
+'SpecialBlockModifyFormFields': Add more fields to Special:Block
+$sp: SpecialPage object, for context
+&$fields: Current HTMLForm fields
+
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
 $id: User identifier
 
