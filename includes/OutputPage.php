@@ -3293,12 +3293,10 @@ $templates
 		# Canonical URL
 		global $wgEnableCanonicalServerLink;
 		if ( $wgEnableCanonicalServerLink ) {
-			if ( $canonicalUrl !== false ) {
-				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
-			} else {
-				$reqUrl = $this->getRequest()->getRequestURL();
-				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+			if ( $canonicalUrl === false ) {
+				$canonicalUrl = $this->getTitle()->getLocalURL();
 			}
+			$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
 		}
 		if ( $canonicalUrl !== false ) {
 			$tags[] = Html::element( 'link', array(
