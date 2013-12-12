@@ -1315,14 +1315,16 @@ class FauxRequest extends WebRequest {
 			$this->session = $session;
 		}
 		$this->protocol = $protocol;
+		$this->title = null;
 	}
 
 	/**
-	 * @param $method string
-	 * @throws MWException
+	 * Set the Title object of this fake request
+	 *
+	 * @param $title Title
 	 */
-	private function notImplemented( $method ) {
-		throw new MWException( "{$method}() not implemented" );
+	public function setTitle( Title $title ) {
+		$this->title = $title;
 	}
 
 	/**
@@ -1372,8 +1374,13 @@ class FauxRequest extends WebRequest {
 		return false;
 	}
 
+	/**
+	 * Return the url of the Title object associated with this fake request
+	 *
+	 * @return string
+	 */
 	public function getRequestURL() {
-		$this->notImplemented( __METHOD__ );
+		return $this->title->getLocalURL();
 	}
 
 	public function getProtocol() {
