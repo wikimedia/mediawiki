@@ -451,15 +451,21 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Return the user ID of the uploader.
+	 * Returns ID or name of user who uploaded the file
 	 *
-	 * @return int
+	 * @note Prior to MediaWiki 1.23, this method always
+	 *   returned the user id, and was inconsistent with
+	 *   the rest of the file classes.
+	 * @param string $type 'text' or 'id'
+	 * @return int|string
 	 */
-	public function getUser() {
+	public function getUser( $type = 'text' ) {
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
-		} else {
+		} elseif ( $type == 'text' ) {
+			return $this->user_text;
+		} elseif ( $type == 'id' ) {
 			return $this->user;
 		}
 	}
@@ -467,9 +473,11 @@ class ArchivedFile {
 	/**
 	 * Return the user name of the uploader.
 	 *
+	 * @deprecated 1.23 Use getUser( 'text' ) instead.
 	 * @return string
 	 */
 	public function getUserText() {
+		wfDeprecated( __METHOD__, '1.23' );
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
