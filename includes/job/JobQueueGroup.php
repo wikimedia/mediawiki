@@ -347,7 +347,7 @@ class JobQueueGroup {
 			// later jobs have not been done yet. This helps throttle queue spam.
 			// @TODO: this is mostly a WMF-specific hack and should be removed when
 			// refreshLinks2 jobs are drained.
-			$deprioritized = !$this->get( 'refreshLinks' )->getSize() > 10000;
+			$deprioritized = $this->get( 'refreshLinks' )->getSize() > 10000;
 			$this->cache->set( 'isDeprioritized', $type, $deprioritized );
 
 			return $deprioritized;
