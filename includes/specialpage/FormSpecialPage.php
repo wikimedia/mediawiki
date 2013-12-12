@@ -36,6 +36,12 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected $par = null;
 
 	/**
+	 * The HTMLForm fields
+	 * @var array
+	 */
+	protected $fields;
+
+	/**
 	 * Get an HTMLForm descriptor array
 	 * @return Array
 	 */
@@ -80,6 +86,8 @@ abstract class FormSpecialPage extends SpecialPage {
 	 */
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
+		// Let hooks alter form fields
+		wfRunHooks( "Special{$this->getName()}ModifyFormFields", array( $this, &$this->fields ) );
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getMessagePrefix() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
@@ -105,7 +113,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$form->addPostText( $this->postText() );
 		$this->alterForm( $form );
 
-		// Give hooks a chance to alter the form, adding extra fields or text etc
+		// Give hooks a chance to alter the form
 		wfRunHooks( "Special{$this->getName()}BeforeFormDisplay", array( &$form ) );
 
 		return $form;
