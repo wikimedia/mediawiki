@@ -769,7 +769,12 @@ class Title {
 	 * @return String DB key
 	 */
 	function getUserCaseDBKey() {
-		return $this->mUserCaseDBKey;
+		if ( !is_null( $this->mUserCaseDBKey ) ) {
+			return $this->mUserCaseDBKey;
+		} else {
+			// If created via makeTitle(), $this->mUserCaseDBKey is not set.
+			return $this->mDbkeyform;
+		}
 	}
 
 	/**
