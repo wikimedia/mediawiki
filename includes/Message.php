@@ -818,7 +818,8 @@ class Message {
 				return array( 'before', $this->language->formatBitrate( $param['bitrate'] ) );
 			} else {
 				trigger_error(
-					"Invalid message parameter: " . htmlspecialchars( serialize( $param ) ),
+					'Invalid parameter for message "' . $this->getKey() . '": ' .
+					htmlspecialchars( serialize( $param ) ),
 					E_USER_WARNING
 				);
 				return array( 'before', '[INVALID]' );
