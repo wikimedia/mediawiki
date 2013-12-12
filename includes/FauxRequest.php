@@ -67,6 +67,7 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
+		$this->title = null;
 	}
 
 	/**
@@ -158,14 +159,12 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @since 1.25 MWException( "getRequestURL not implemented" )
-	 * no longer thrown.
+	 * Return the url of the Title object associated with this fake request
+	 *
+	 * @return string
 	 */
 	public function getRequestURL() {
-		if ( $this->requestUrl === null ) {
-			throw new MWException( 'Request URL not set' );
-		}
-		return $this->requestUrl;
+		return $this->title->getLocalURL();
 	}
 
 	public function getProtocol() {
