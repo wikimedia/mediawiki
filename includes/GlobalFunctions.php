@@ -1622,18 +1622,19 @@ function wfMsgWikiHtml( $key ) {
  * @deprecated since 1.18
  *
  * @param string $key key of the message
- * @param array $options processing rules. Can take the following options:
- *   <i>parse</i>: parses wikitext to HTML
- *   <i>parseinline</i>: parses wikitext to HTML and removes the surrounding
+ * @param array $options processing rules.
+ *   Can take the following options:
+ *     parse: parses wikitext to HTML
+ *     parseinline: parses wikitext to HTML and removes the surrounding
  *       p's added by parser or tidy
- *   <i>escape</i>: filters message through htmlspecialchars
- *   <i>escapenoentities</i>: same, but allows entity references like &#160; through
- *   <i>replaceafter</i>: parameters are substituted after parsing or escaping
- *   <i>parsemag</i>: transform the message using magic phrases
- *   <i>content</i>: fetch message for content language instead of interface
- * Also can accept a single associative argument, of the form 'language' => 'xx':
- *   <i>language</i>: Language object or language code to fetch message for
- *       (overridden by <i>content</i>).
+ *     escape: filters message through htmlspecialchars
+ *     escapenoentities: same, but allows entity references like &#160; through
+ *     replaceafter: parameters are substituted after parsing or escaping
+ *     parsemag: transform the message using magic phrases
+ *     content: fetch message for content language instead of interface
+ *   Also can accept a single associative argument, of the form 'language' => 'xx':
+ *     language: Language object or language code to fetch message for
+ *       (overridden by content).
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  *
  * @return String
