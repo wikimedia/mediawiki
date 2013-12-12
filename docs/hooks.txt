@@ -347,6 +347,9 @@ $body: Body of the message
 this to extend core API modules.
 &$module: Module object
 
+'ApiBeforeMain': Before calling ApiMain's execute() method in api.php.
+&$main: ApiMain object
+
 'ApiCheckCanExecute': Called during ApiMain::checkCanExecute. Use to further
 authenticate and authorize API clients before executing the module. Return
 false and set a message to cancel the request.

@@ -54,6 +54,9 @@ production.
 * (bug 52005) Special pages RecentChanges, RecentChangesLinked and Watchlist
   now include a legend describing the symbols used in lists of changes.
 * Improved the accessibility of the tabs in Special:Preferences.
+* Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
+  it's called after everything is set up but before any major processing
+  happens.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
