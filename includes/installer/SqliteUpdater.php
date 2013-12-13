@@ -123,6 +123,8 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.23
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			array( 'addField', 'watchlist', 'wl_del_notificationtimestamp',
+			      'patch-wl_del_notificationtimestamp.sql' ),
 		);
 	}
 
