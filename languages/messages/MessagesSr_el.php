@@ -1663,7 +1663,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'recentchanges-label-minor' => 'Manja izmena',
 'recentchanges-label-bot' => 'Ovu izmenu je napravio bot',
 'recentchanges-label-unpatrolled' => 'Ova izmena još nije pregledana',
-'recentchanges-legend-newpage' => '(takođe pogledajte [[Special:NewPages|spisak novih stranica]])',
+'recentchanges-legend-newpage' => '([[Special:NewPages|spisak novih stranica]])',
 'rcnotefrom' => 'Ispod su izmene od <b>$3; $4</b> (do <b>$1</b> izmena).',
 'rclistfrom' => 'Prikaži nove izmene počev od $1',
 'rcshowhideminor' => '$1 manje izmene',

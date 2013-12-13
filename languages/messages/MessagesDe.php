@@ -2284,6 +2284,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'ninterwikis' => '{{PLURAL:$1|Ein Interwikilink|$1 Interwikilinks}}',
 'nlinks' => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers' => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',
+'nmemberschanged' => '$1 → {{PLURAL:$2|Ein Mitglied|$2 Mitglieder}}',
 'nrevisions' => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
 'nviews' => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'nimagelinks' => 'Verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',

@@ -1981,6 +1981,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'ninterwikis' => '$1 {{PLURAL:$1|mjezyrěčny wotkaz|mjezyrěčnej wotkazaj|mjezyrěčne wotkazy|mjezyrěčnych wotkazow}}',
 'nlinks' => '$1 {{PLURAL:$1|wotkaz|wotkazaj|wotkazy|wotkazow}}',
 'nmembers' => '{{PLURAL:$1|$1 čłon|$1 čłonaj|$1 čłony|$1 čłonow}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|čłon|čłonaj|čłonojo|čłonow}}',
 'nrevisions' => '$1 {{PLURAL:$1|wobdźěłanje|wobdźěłani|wobdźěłanja|wobdźěłanjow}}',
 'nviews' => '$1 {{PLURAL:$1|jedyn wopyt|wopytaj|wopyty|wopytow}}',
 'nimagelinks' => 'Wužiwa so na $1 {{PLURAL:$1|stronje|stronomaj|stronach|stronach}}',
@@ -3572,6 +3573,11 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'imgmultipagenext' => 'přichodna strona →',
 'imgmultigo' => 'Dźi!',
 'imgmultigoto' => 'Dźi k stronje $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(standardna rěč)',
+'img-lang-info' => 'tutón wobraz w $1 $2 rysować.',
+'img-lang-go' => 'Wotpósłać',
 
 # Table pager
 'ascending_abbrev' => 'postupowacy',

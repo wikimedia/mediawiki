@@ -605,7 +605,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Туькlуьрун',
-'mypreferences' => 'Зи низамарунар',
+'mypreferences' => 'низамарунар',
 'prefs-edits' => 'Дьузар хъувунрин кьадар',
 'prefs-skin' => 'Къайдадиз ттунин тема',
 'skin-preview' => 'Сифтедин килигун',

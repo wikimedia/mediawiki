@@ -9,6 +9,7 @@
  *
  * @author Akoppad
  * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
+ * @author Dimension10
  * @author Dipin
  * @author HPN
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
@@ -480,18 +481,25 @@ $2',
 'userlogout' => 'ಲಾಗ್ ಔಟ್',
 'notloggedin' => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'userlogin-noaccount' => 'ಖಾತೆ ಇಲ್ಲವೇ?',
+'userlogin-joinproject' => '{{SITENAME}} ಸೇರಿ',
 'nologin' => "ಖಾತೆ ಇಲ್ಲವೇ? '''$1'''.",
 'nologinlink' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಿ',
 'createaccount' => 'ಹೊಸ ಖಾತೆ ತೆರೆಯಿರಿ',
 'gotaccount' => "ಈಗಾಗಲೇ ಖಾತೆಯಿದೆಯೇ? '''$1'''.",
 'gotaccountlink' => 'ಲಾಗ್ ಇನ್',
 'userlogin-resetlink' => 'ನಿಮ್ಮ ಲಾಗಿನ್ ವಿವರಗಳನ್ನು ಮರೆತಿದ್ದೀರಾ?',
+'userlogin-resetpassword-link' => 'ಗುಪ್ತಪದವನ್ನು ಮರಿತು ಹೊಯಿತ ?',
 'createacct-join' => 'ನಿಮ್ಮ ಮಾಹಿತಿಯನ್ನು ಕೆಳಗೆ ನಮೂದಿಸಿ',
 'createacct-emailrequired' => 'ಇ-ಮೇಲ್ ವಿಳಾಸ:',
 'createacct-email-ph' => 'ನಿಮ್ಮ ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ',
 'createaccountmail' => 'ಇ-ಅಂಚೆಯ ಮೂಲಕ',
+'createacct-realname' => 'ನಿಜವಾದ ಹೆಸರು (ಐಚ್ಛಿಕ)',
 'createaccountreason' => 'ಕಾರಣ:',
 'createacct-reason' => 'ಕಾರಣ',
+'createacct-reason-ph' => 'ನೀವು ಯಾಕೆ ಇನ್ನು ಒಂದು ಖಾತ ಮಾಡುತ ಇದ್ದೀರಿ ?',
+'createacct-submit' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಿ',
+'createacct-another-submit' => 'ಇನ್ನು ಒಂದು ಖಾತ ಮಾಡಿ',
+'createacct-benefit-heading' => '{{SITENAME}} ನಿಮ್ಮನ್ತವೆ ಜನರಿಂದ ಮಾಡಿದು',
 'badretype' => 'ನೀವು ಕೊಟ್ಟ ಪ್ರವೇಶಪದಗಳು ಬೇರೆಬೇರೆಯಾಗಿವೆ.',
 'userexists' => 'ನೀವು ನೀಡಿದ ಸದಸ್ಯರ ಹೆಸರು ಆಗಲೆ ಬಳಕೆಯಲ್ಲಿದೆ. ದಯವಿಟ್ಟು ಬೇರೊಂದು ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.',
 'loginerror' => 'ಲಾಗಿನ್ ದೋಷ',

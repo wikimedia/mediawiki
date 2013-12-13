@@ -11,6 +11,7 @@
  * @author Americophile
  * @author Amire80
  * @author Armandaneshjoo
+ * @author Armin1392
  * @author Asoxor
  * @author Baqeri
  * @author Behdarvandyani
@@ -1688,6 +1689,7 @@ $1",
 'prefs-tokenwatchlist' => 'نشانه',
 'prefs-diffs' => 'تفاوت‌ها',
 'prefs-help-prefershttps' => 'تأثیر این ترجیح بعد از ورود بعدی شما اعمال خواهد شد.',
+'prefs-tabs-navigation-hint' => 'نکته: شما می توانید از کلیدهای جهت‌نمای چپ و راست برای حرکت بین زبانه‌ها در فهرست زبانه‌ها استفاده کنید.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'نشانی رایانامه معتبر به نظر می‌رسد',
@@ -1870,7 +1872,7 @@ $1",
 'recentchanges-noresult' => 'هیچ تغییری در طول دورهٔ تعیین‌شده با این معیارها هم‌خوانی نداشت.',
 'recentchanges-feed-description' => 'آخرین تغییرات ویکی را در این خوراک پی‌گیری کنید.',
 'recentchanges-label-newpage' => 'این ویرایش صفحه‌ای جدید ایجاد کرد',
-'recentchanges-label-minor' => 'این ویرایش جزئی‌است',
+'recentchanges-label-minor' => 'این یک ویرایش جزئی‌است',
 'recentchanges-label-bot' => 'این ویرایش را یک ربات انجام داده‌است',
 'recentchanges-label-unpatrolled' => 'این ویرایش هنوز گشت‌زنی نشده‌است',
 'recentchanges-label-plusminus' => 'حجم صفحه به اندازه این بایت‌ها تغییر یافته‌است',
@@ -2339,6 +2341,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'ninterwikis' => '$1 {{PLURAL:$1|میان‌ویکی|میان‌ویکی}}',
 'nlinks' => '$1 {{PLURAL:$1|پیوند|پیوند}}',
 'nmembers' => '$1 {{PLURAL:$1|عضو|عضو}}',
+'nmemberschanged' => '$1 → $2   {{PLURAL:$2| عضو|عضو}}',
 'nrevisions' => '$1 {{PLURAL:$1|نسخه|نسخه}}',
 'nviews' => '$1 {{PLURAL:$1|بازدید|بازدید}}',
 'nimagelinks' => 'مورد استفاده در $1 {{PLURAL:$1|صفحه|صفحه}}',
@@ -3995,6 +3998,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(زبان پیش‌فرض)',
+'img-lang-info' => 'ارائه این تصویر در  $1   $2 .',
 'img-lang-go' => 'برو',
 
 # Table pager

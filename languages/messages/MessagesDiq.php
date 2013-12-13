@@ -1096,7 +1096,8 @@ Wexta ke şıma butonê \"{{int:savearticle}}\" tıkna '''teyna''' nuşteyo cori
 'yourtext' => 'nuşteyê şıma',
 'storedversion' => 'Nuşteyo qaydbiyaye',
 'nonunicodebrowser' => "'''DİQET: Browserê şıma u unicode yewbini nêgeni. Qey izin dayişê vurnayişê pelan: Karakteri ke ASCII niyê; zerreyê qutiyê vurnayişi de kodi (cod) şiyes-şiyes aseni.'''",
-'editingold' => "'''DİQET: Şıma pelo revizebiyaye de vurnayiş keni. Eke şıma qayd bıkeri vurnayişi ke pelo revizebiyayiş ra heta ewro biyê, pêroyê ey beni vini.'''",
+'editingold' => "'''İkaz: Şımayé rewizyon da kehan da perer d vırnayış kené.'''
+Vanése qeyd k,lakin rewziyoné veréni dé vınibé.",
 'yourdiff' => 'pêverronayiş',
 'copyrightwarning' => "'''Recayê ikazi:''' Sita da {{SITENAME}} ra iştıraqi pêro umışin da $2 zerredeyo (teferruata rê $1'i bıvinê).
 İştıraqê şıma, şıma kayıl niyê ke yewna merdumi kerpeyina bıvurnê yana yewna caya ra vılakerê se, iştıraq mekewê.<br />
@@ -2182,6 +2183,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikiy}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linkî}}',
 'nmembers' => '$1 {{PLURAL:$1|eza|ezayan}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$1|eza|ezayan}}',
 'nrevisions' => '$1 {{PLURAL:$1|vurnayış|vurnayışi}}',
 'nviews' => '$1 {{PLURAL:$1|vênayış|vênayışi}}',
 'nimagelinks' => '$1 {{PLURAL:$1|pele de|pelan de}} gureyeno',

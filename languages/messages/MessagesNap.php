@@ -489,7 +489,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'recentchanges-label-newpage' => "Chista modifica ha criato 'na nova paggena",
 'recentchanges-label-minor' => 'Chisto è nu cagnamiénto piccerillo',
 'recentchanges-label-unpatrolled' => "Chista modifica nun è stata 'ncora verificata",
-'rcnote' => "Ccà sotto nce songo ll'urdeme {{PLURAL:$1|cangiamiento|'''$1''' cangiamiente}} 'e ll'urdeme {{PLURAL:$2|juorno|'''$2''' juorne}}, agghiuornate alle $5 ddo $4.",
 'rclistfrom' => "Faje vedé 'e cagnamiénte fatte a partì 'a $1",
 'rcshowhideminor' => "$1 'e cagnamiénte piccerille",
 'rcshowhidebots' => "$1 'e bot",
@@ -754,7 +753,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, dimenzione ddo file: $3, tipo MIME: $4',
-'show-big-image' => 'Vversione ad ata risoluzione',
+'show-big-image' => "File 'e origgine",
 
 # Special:NewFiles
 'noimages' => "Nun nc'è nind' 'a veré.",

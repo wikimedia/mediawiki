@@ -712,7 +712,8 @@ A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
 'invalidtitle-knownnamespace' => 'Érvénytelen cím "$2" névtérrel és "$3" szöveggel',
 'invalidtitle-unknownnamespace' => 'Érvénytelen cím az ismeretlen $1 névtérszámmal és "$2" szöveggel',
 'exception-nologin' => 'Nem vagy bejelentkezve.',
-'exception-nologin-text' => 'Ezen lap vagy művelet használatához be kell jelentkezned erre a wikire.',
+'exception-nologin-text' => 'Ezen lap vagy művelet eléréséhez kérlek [[Special:Userlogin|jelentkezz be]].',
+'exception-nologin-text-manual' => 'Ezen lap vagy művelet eléréséhez $1.',
 
 # Virus scanner
 'virus-badscanner' => "Hibás beállítás: ismeretlen víruskereső: ''$1''",
@@ -759,7 +760,7 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'gotaccount' => "Ha már korábban regisztráltál, '''$1'''.",
 'gotaccountlink' => 'Bejelentkezés',
 'userlogin-resetlink' => 'Elfelejtetted a bejelentkezési adataidat?',
-'userlogin-resetpassword-link' => 'A jelszó alaphelyzetbe állítása',
+'userlogin-resetpassword-link' => 'Elfelejtetted a jelszavad?',
 'helplogin-url' => 'Help:Bejelentkezés',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Segítség a bejelentkezéshez]]',
 'createacct-join' => 'Add meg az alábbi információkat.',
