@@ -406,12 +406,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
+					'wl_del_notificationtimestamp' => null,
 				);
 				$rows[] = array(
 					'wl_user' => $this->getUser()->getId(),
 					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
+					'wl_del_notificationtimestamp' => null,
 				);
 			}
 		}

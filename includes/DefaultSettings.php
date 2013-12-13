@@ -1423,6 +1423,12 @@ $wgEmailAuthentication = true;
 $wgEnotifWatchlist = false;
 
 /**
+ * Allow users to enable email notification with most recent revision text on
+ * deletion of watched pages.
+ */
+$wgEnotifDeletionsWatchlist = false;
+
+/**
  * Allow users to enable email notification ("enotif") when someone edits their
  * user talk page.
  */
@@ -4001,6 +4007,7 @@ $wgDefaultUserOptions = array(
 	'enotifrevealaddr' => 0,
 	'enotifusertalkpages' => 1,
 	'enotifwatchlistpages' => 0,
+	'enotifdelwatchlistpages' => 0,
 	'extendwatchlist' => 0,
 	'fancysig' => 0,
 	'forceeditsummary' => 0,
