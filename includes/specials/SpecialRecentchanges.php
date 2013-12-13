@@ -662,7 +662,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		global $wgRecentChangesFlags;
 		$user = $context->getUser();
 		# The legend showing what the letters and stuff mean
-		$legend = Xml::openElement( 'dl', array( 'class' => 'mw-changeslist-legend' ) ) . "\n";
+		$legend = Xml::openElement( 'dl' ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
 		$legendItems = $wgRecentChangesFlags;
 		if ( !$user->useRCPatrol() ) {
@@ -698,6 +698,14 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
 		$legend .= Xml::closeElement( 'dl' ) . "\n";
+
+		# Collapsibility
+		$legend =
+			'<div class="mw-changeslist-legend">' .
+				$context->msg( 'recentchanges-legend-heading' )->parse() .
+				'<div class="mw-collapsible-content">' . $legend . '</div>' .
+			'</div>';
+
 		return $legend;
 	}
 
