@@ -1,10 +1,16 @@
-/* This is JsJpegMeta 1.0, ported to MediaWiki ResourceLoader by Bryan Tong Minh */
-/* The following lines where changed with respect to the original: 54, 625-627 */
+/**
+ * This is JsJpegMeta v1.0
+ * From: https://code.google.com/p/jsjpegmeta/downloads/list
+ * From: https://github.com/bennoleslie/jsjpegmeta/blob/v1.0.0/jpegmeta.js
+ *
+ * Ported to MediaWiki ResourceLoader by Bryan Tong Minh
+ * Changes:
+ * - Add closure.
+ * - Add this.JpegMeta assignment to expose it as global.
+ * - Add mw.libs.jpegmeta wrapper.
+ */
 
-(function( $ ) {
-
-	/* JsJpegMeta starts here */
-	
+( function () {
 	/*
 	Copyright (c) 2009 Ben Leslie
 	
@@ -52,7 +58,8 @@
 	*/
 
 	var JpegMeta = {};
-	this.JpegMeta = JpegMeta; // I have no clue why I need this magic... -- Bryan
+	// MediaWiki: Expose as global
+	this.JpegMeta = JpegMeta;
 	
 	/* 
 	   parse an unsigned number of size bytes at offset in some binary string data.
@@ -721,11 +728,10 @@
 		}
 	    }
 	};
-	
-	/* JsJpegMeta ends here */
 
+	// MediaWiki: Add mw.libs wrapper
 	mw.libs.jpegmeta = function( fileReaderResult, fileName ) {
 		return new JpegMeta.JpegFile( fileReaderResult, fileName );
 	};
 
-} )( jQuery );
+}() );
