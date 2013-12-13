@@ -1423,6 +1423,12 @@ $wgEmailAuthentication = true;
 $wgEnotifWatchlist = false;
 
 /**
+ * Allow users to enable inclusion of revision text in email notification ("enotif") on
+ * watchlist changes.
+ */
+$wgEnotifDeletionsWatchlist = false;
+
+/**
  * Allow users to enable email notification ("enotif") when someone edits their
  * user talk page.
  */

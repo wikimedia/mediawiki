@@ -461,7 +461,8 @@ class UserMailer {
  */
 class EmailNotification {
 	protected $subject, $body, $replyto, $from;
-	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;
+	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus, $pageText = '';
+	protected $noNotifications;
 	protected $mailTargets = array();
 
 	/**
@@ -489,7 +490,7 @@ class EmailNotification {
 	 * @param $pageStatus (default: 'changed')
 	 */
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false, $pageStatus = 'changed' ) {
-		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
+		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgEnotifDeletionsWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
 			$wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
@@ -498,8 +499,27 @@ class EmailNotification {
 
 		// Build a list of users to notify
 		$watchers = array();
+		$delWatchers = array();
 		if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
 			$dbw = wfGetDB( DB_MASTER );
+
+			if ( $wgEnotifDeletionsWatchlist && $pageStatus == 'deleted' ) {
+				$res = $dbw->select( array( 'watchlist' ),
+					array( 'wl_user' ),
+					array(
+						'wl_user != ' . intval( $editor->getID() ),
+						'wl_namespace' => $title->getNamespace(),
+						'wl_title' => $title->getDBkey(),
+						'wl_del_notificationtimestamp IS NULL',
+					), __METHOD__
+				);
+				foreach ( $res as $row ) {
+					$delUser = User::newFromId ( intval( $row->wl_user ) );
+					if ( $delUser->getOption( 'enotifdelwatchlistpages' ) ) {
+						$delWatchers[] = intval( $row->wl_user );
+					}
+				}
+			}
 			$res = $dbw->select( array( 'watchlist' ),
 				array( 'wl_user' ),
 				array(
@@ -512,24 +532,52 @@ class EmailNotification {
 			foreach ( $res as $row ) {
 				$watchers[] = intval( $row->wl_user );
 			}
+			$watchers = ( array_unique ( array_merge ( $watchers, $delWatchers ) ) );
+
 			if ( $watchers ) {
 				// Update wl_notificationtimestamp for all watching users except the editor
+				#var_dump ( $watchers );
+				#die();
 				$fname = __METHOD__;
-				$dbw->onTransactionIdle(
-					function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
-						$dbw->begin( $fname );
-						$dbw->update( 'watchlist',
-							array( /* SET */
-								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-							), array( /* WHERE */
-								'wl_user' => $watchers,
-								'wl_namespace' => $title->getNamespace(),
-								'wl_title' => $title->getDBkey(),
-							), $fname
-						);
-						$dbw->commit( $fname );
-					}
-				);
+				if ( $pageStatus == 'deleted' ) {
+					$dbw->onTransactionIdle(
+						function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+							$dbw->begin( $fname );
+							$dbw->update( 'watchlist',
+								array( /* SET */
+									'wl_notificationtimestamp' =>
+										$dbw->timestamp( $timestamp ),
+									'wl_del_notificationtimestamp' =>
+										$dbw->timestamp( $timestamp )
+								),
+								array( /* WHERE */
+									'wl_user' => $watchers,
+									'wl_namespace' => $title->getNamespace(),
+									'wl_title' => $title->getDBkey(),
+								), $fname
+							);
+							$dbw->commit( $fname );
+						}
+					);
+				} else {
+					$dbw->onTransactionIdle(
+						function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+							$dbw->begin( $fname );
+							$dbw->update( 'watchlist',
+								array( /* SET */
+									'wl_notificationtimestamp' =>
+										$dbw->timestamp( $timestamp )
+								),
+								array( /* WHERE */
+									'wl_user' => $watchers,
+									'wl_namespace' => $title->getNamespace(),
+									'wl_title' => $title->getDBkey(),
+								), $fname
+							);
+							$dbw->commit( $fname );
+						}
+					);
+				}
 			}
 		}
 
@@ -588,7 +636,7 @@ class EmailNotification {
 	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
 		$oldid, $watchers, $pageStatus = 'changed' ) {
 		# we use $wgPasswordSender as sender's address
-		global $wgEnotifWatchlist;
+		global $wgEnotifWatchlist, $wgEnotifDeletionsWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
 
 		wfProfileIn( __METHOD__ );
@@ -626,15 +674,46 @@ class EmailNotification {
 				$userTalkId = $targetUser->getId();
 			}
 
-			if ( $wgEnotifWatchlist ) {
+			if ( $wgEnotifWatchlist || ( $wgEnotifDeletionsWatchlist && $pageStatus == 'deleted' ) ) {
 				// Send updates to watchers other than the current editor
+				$contentText = null;
+				if ( $wgEnotifDeletionsWatchlist && $pageStatus == 'deleted' ) {
+					// Get the text of the most recent revision
+					$dbr = wfGetDB( DB_SLAVE );
+					$res = $dbr->selectRow ( 'archive', 'ar_text_id', array (
+						'ar_namespace' => $title->getNamespace(),
+						'ar_title' => $title->getDBkey() ), __METHOD__,
+						array ( 'ORDER BY' => 'ar_rev_id DESC' ) );
+					if ( $res ) {
+						$res = $dbr->selectRow ( 'text', 'old_text', array (
+							'old_id' => $res->ar_text_id ) );
+					}
+					if ( $res ) {
+						$contentText = $res->old_text;
+					}
+				}
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
+					if ( ( $watchingUser->getOption( 'enotifwatchlistpages' )
+						|| ( $contentText && $watchingUser->getOption( 'enotifdelwatchlistpages' ) ) )
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
 					) {
+						$this->pageText = '';
+						if ( $contentText ) {
+							if ( $watchingUser->getOption( 'enotifdelwatchlistpages' ) ) {
+								$this->pageText = str_replace ( '$CONTENTTEXT', $contentText,
+									wfMessage( 'enotif_body_deletion_watchlist' )
+									->inContentLanguage()->text() );
+							}
+						}
+						if ( $wgEnotifDeletionsWatchlist && $pageStatus != 'deleted'
+							&& $watchingUser->getOption( 'enotifdelwatchlistpages' ) ) {
+							$this->noNotifications = wfMessage(
+								'enotif_body_no_notifications_unless_deleted' )
+								->inContentLanguage()->text();
+						}
 						$this->compose( $watchingUser );
 					}
 				}
@@ -839,6 +918,10 @@ class EmailNotification {
 	 */
 	function sendPersonalised( $watchingUser ) {
 		global $wgContLang, $wgEnotifUseRealName;
+		if ( !isset ( $this->noNotifications ) ) {
+			$this->noNotifications = wfMessage( 'enotif_body_no_notifications' )
+				->inContentLanguage()->text();
+		}
 		// From the PHP manual:
 		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
 		//     The mail command will not parse this properly while talking with the MTA.
@@ -850,10 +933,14 @@ class EmailNotification {
 		$body = str_replace(
 			array( '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
+				'$PAGEEDITTIME',
+				'$NONOTIFICATIONS',
+				'$PAGETEXT' ),
 			array( $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName(),
 				$wgContLang->userDate( $this->timestamp, $watchingUser ),
-				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
+				$wgContLang->userTime( $this->timestamp, $watchingUser ),
+				$this->noNotifications,
+				$this->pageText ),
 			$this->body );
 
 		return UserMailer::send( $to, $this->from, $this->subject, $body, $this->replyto );
@@ -867,7 +954,10 @@ class EmailNotification {
 	 */
 	function sendImpersonal( $addresses ) {
 		global $wgContLang;
-
+		if ( !isset ( $this->noNotifications ) ) {
+			$this->noNotifications = wfMessage( 'enotif_body_no_notifications' )
+				->inContentLanguage()->text();
+		}
 		if ( empty( $addresses ) ) {
 			return null;
 		}
@@ -875,10 +965,14 @@ class EmailNotification {
 		$body = str_replace(
 				array( '$WATCHINGUSERNAME',
 					'$PAGEEDITDATE',
-					'$PAGEEDITTIME' ),
+					'$PAGEEDITTIME',
+					'$NONOTIFICATIONS',
+					'$PAGETEXT' ),
 				array( wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
 					$wgContLang->date( $this->timestamp, false, false ),
-					$wgContLang->time( $this->timestamp, false, false ) ),
+					$wgContLang->time( $this->timestamp, false, false ),
+					$this->noNotifications,
+					$this->pageText ),
 				$this->body );
 
 		return UserMailer::send( $addresses, $this->from, $this->subject, $body, $this->replyto );
