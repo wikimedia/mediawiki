@@ -123,6 +123,7 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.23
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 		);
 	}
 
