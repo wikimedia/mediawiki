@@ -2017,6 +2017,11 @@ class WikiPage implements Page, IDBAccessObject {
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
 
+		// Use a sane default for $serialization_format, see bug 57026
+		if ( $serialization_format === null ) {
+			$serialization_format = $content->getContentHandler()->getDefaultFormat();
+		}
+
 		if ( $this->mPreparedEdit
 			&& $this->mPreparedEdit->newContent
 			&& $this->mPreparedEdit->newContent->equals( $content )
