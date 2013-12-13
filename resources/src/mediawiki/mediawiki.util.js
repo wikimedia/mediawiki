@@ -57,7 +57,7 @@
 
 				// Make sure we don't unset util.$content if it was preset and we don't find anything
 				return util.$content;
-			} )();
+			}() );
 		},
 
 		/* Main body */
