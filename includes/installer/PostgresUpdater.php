@@ -169,6 +169,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('archive_ar_id_seq')" ),
 			array( 'addPgField', 'externallinks', 'el_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq')" ),
+			array( 'addPgField', 'watchlist', 'wl_del_notificationtimestamp', "TIMESTAMPTZ" ),
 
 			# type changes
 			array( 'changeField', 'archive', 'ar_deleted', 'smallint', '' ),
