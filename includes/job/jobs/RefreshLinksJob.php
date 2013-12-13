@@ -133,6 +133,10 @@ class RefreshLinksJob extends Job {
 		if ( isset( $this->params['rootJobTimestamp'] ) ) {
 			$page = WikiPage::factory( $title );
 			$skewedTimestamp = wfTimestamp( TS_UNIX, $this->params['rootJobTimestamp'] ) + 5;
+			if ( $page->getLinksTimestamp() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
+				// Something already updated the backlinks since this job was made
+				return true;
+			}
 			if ( $page->getTouched() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
 				$parserOptions = $page->makeParserOptions( 'canonical' );
 				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );

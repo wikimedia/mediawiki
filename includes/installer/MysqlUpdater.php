@@ -248,6 +248,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 			array( 'addIndex', 'logging', 'log_user_text_type_time',  'patch-logging_user_text_type_time_index.sql' ),
 			array( 'addIndex', 'logging', 'log_user_text_time',  'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 		);
 	}
 

@@ -218,6 +218,9 @@ class LinksUpdate extends SqlDataUpdate {
 		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
 		$this->invalidateProperties( $changed );
 
+		# Update the links table freshness for this title
+		$this->updateLinksTimestamp();
+
 		# Refresh links of all pages including this page
 		# This will be in a separate transaction
 		if ( $this->mRecursive ) {
@@ -854,6 +857,19 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Update links table freshness
+	 */
+	protected function updateLinksTimestamp() {
+		if ( $this->mId ) {
+			$this->mDb->update( 'page',
+				array( 'page_links_updated' => $this->mDb->timestamp() ),
+				array( 'page_id' => $this->mId ),
+				__METHOD__
+			);
+		}
 	}
 }
 

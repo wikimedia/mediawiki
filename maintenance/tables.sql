@@ -256,6 +256,11 @@ CREATE TABLE /*_*/page (
   -- of contained templates.
   page_touched binary(14) NOT NULL default '',
 
+  -- This timestamp is updated whenever a page is re-parsed and
+  -- it has all the link tracking tables updated for it. This is
+  -- useful for de-duplicating expensive backlink update jobs.
+  page_links_updated varbinary(14) NULL default NULL,
+
   -- Handy key to revision.rev_id of the current revision.
   -- This may be 0 during page creation, but that shouldn't
   -- happen outside of a transaction... hopefully.
