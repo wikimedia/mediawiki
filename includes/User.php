@@ -3110,7 +3110,10 @@ class User {
 		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( /* SET */ 'wl_notificationtimestamp' => null ),
+				array( /* SET */
+				      'wl_notificationtimestamp' => null,
+				      'wl_del_notificationtimestamp' => null
+				),
 				array( /* WHERE */ 'wl_user' => $id ),
 				__METHOD__
 			);
