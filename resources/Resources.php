@@ -1013,6 +1013,10 @@ return array(
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
 	),
+	'mediawiki.special.changeslist.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.changeslist.js',
+		'dependencies' => 'jquery.makeCollapsible',
+	),
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
