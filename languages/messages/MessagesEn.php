@@ -677,6 +677,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
+'tog-enotifdelwatchlistpages' => 'Email me the text of any page on my watchlist that is deleted',
 'tog-enotifwatchlistpages'    => 'Email me when a page or file on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'Email me when my user talk page is changed',
 'tog-enotifminoredits'        => 'Email me also for minor edits of pages and files',
@@ -2995,7 +2996,7 @@ Contact the editor:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.
+$NONOTIFICATIONS
 
 Your friendly {{SITENAME}} notification system
 
@@ -3010,7 +3011,15 @@ To delete the page from your watchlist, visit
 $UNWATCHURL
 
 Feedback and further assistance:
-{{canonicalurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}$PAGETEXT',
+'enotif_body_no_notifications' => 'There will be no other notifications in case of further activity unless you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.',
+'enotif_body_no_notifications_unless_deleted' => 'There will be no other notifications in case of further activity unless the page is deleted or you visit this page while logged in. You could also reset the notification flags for all your watched pages on your watchlist.',
+'enotif_body_deletion_watchlist' => '
+
+--
+The text of the most recent revision made to the page before it was deleted is as follows:
+
+$1',
 'created'                      => 'created', # only translate this message to other languages if you have to change it
 'changed'                      => 'changed', # only translate this message to other languages if you have to change it
 
