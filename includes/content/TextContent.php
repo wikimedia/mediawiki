@@ -151,7 +151,7 @@ class TextContent extends AbstractContent {
 		$text = $this->getNativeData();
 		$pst = rtrim( $text );
 
-		return ( $text === $pst ) ? $this : new WikitextContent( $pst );
+		return ( $text === $pst ) ? $this : new static( $pst );
 	}
 
 	/**
