@@ -1,12 +1,12 @@
 /*!
- * Object Oriented JavaScript Library v1.0.5
- * https://github.com/trevorparscal/oojs
+ * OOjs v1.0.6
+ * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2013 OOJS Team and other contributors.
+ * Copyright 2011-2013 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Oct 23 2013 02:22:02 GMT+0200 (CEST)
+ * Date: Tue Dec 10 2013 22:43:42 GMT+0100 (CET)
  */
 ( function ( global ) {
 
