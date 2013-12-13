@@ -80,6 +80,7 @@ CREATE TABLE page (
   page_is_new        SMALLINT       NOT NULL  DEFAULT 0,
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
+  page_links_updated TIMESTAMPTZ    NULL,
   page_latest        INTEGER        NOT NULL, -- FK?
   page_len           INTEGER        NOT NULL,
   page_content_model TEXT
