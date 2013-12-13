@@ -211,7 +211,7 @@ class UploadFromUrl extends UploadBase {
 	 * @return string Path to the file
 	 */
 	protected function makeTemporaryFile() {
-		$tmpFile = new TempFSFile( 'URL' );
+		$tmpFile = TempFSFile::factory( 'URL' );
 		$tmpFile->bind( $this );
 		return $tmpFile->getPath();
 	}
