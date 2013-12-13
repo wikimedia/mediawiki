@@ -1301,6 +1301,7 @@ Esta información sedrá pública.',
 'prefs-tokenwatchlist' => 'Pase',
 'prefs-diffs' => 'Diferencies',
 'prefs-help-prefershttps' => 'Esta preferencia aplicaráse nel siguiente aniciu de sesión.',
+'prefs-tabs-navigation-hint' => 'Gabitu: pue usar les tecles de flecha izquierda y drecha pa navegar peles llingüetes de la llista.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'La direición de corréu paez válida',
@@ -1960,6 +1961,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enllaz|enllaces}}',
 'nmembers' => '$1 {{PLURAL:$1|miembru|miembros}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|miembru|miembros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'nviews' => '$1 {{PLURAL:$1|vista|vistes}}',
 'nimagelinks' => 'Usao en $1 {{PLURAL:$1|páxina|páxines}}',
@@ -3618,6 +3620,11 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'imgmultipagenext' => 'páxina siguiente →',
 'imgmultigo' => '¡Dir!',
 'imgmultigoto' => 'Dir a la páxina $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(llingua predeterminada)',
+'img-lang-info' => 'Representar esta imaxe en $1 $2.',
+'img-lang-go' => 'Dir',
 
 # Table pager
 'ascending_abbrev' => 'asc',

@@ -55,6 +55,7 @@
  * @author Korrigan
  * @author Krinkle
  * @author Kropotkine 113
+ * @author Kvardek du
  * @author Litlok
  * @author Lloffiwr
  * @author Louperivois
@@ -1794,10 +1795,10 @@ Cette information sera publique.',
 'recentchanges-noresult' => 'Aucune modification correspondant à ces critères sur la période indiquée.',
 'recentchanges-feed-description' => 'Suivre les dernières modifications de ce wiki dans un flux.',
 'recentchanges-label-newpage' => 'Cette modification a créé une nouvelle page',
-'recentchanges-label-minor' => 'Cette modification est mineure',
+'recentchanges-label-minor' => 'Cette modification est mineure.',
 'recentchanges-label-bot' => 'Cette modification a été effectuée par un robot.',
 'recentchanges-label-unpatrolled' => "Cette modification n'a pas encore été patrouillée.",
-'recentchanges-label-plusminus' => 'La taille de la page a changé de ce nombre d’octets',
+'recentchanges-label-plusminus' => 'La taille de la page a changé de ce nombre d’octets.',
 'recentchanges-legend-newpage' => '(voir aussi la [[Special:NewPages|liste des nouvelles pages]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Voici les modifications effectuées depuis le '''$2''' ('''$1''' au maximum).",
@@ -2265,6 +2266,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|page liée|pages liées}}',
 'nmembers' => '$1 membre{{PLURAL:$1||s}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membre|membres}}',
 'nrevisions' => '$1 version{{PLURAL:$1||s}}',
 'nviews' => '$1 consultation{{PLURAL:$1||s}}',
 'nimagelinks' => 'Utilisé sur $1 {{PLURAL:$1|page|pages}}',

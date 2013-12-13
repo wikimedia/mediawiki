@@ -58,6 +58,7 @@
  * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Karduelis
+ * @author Kazu89
  * @author Kghbln
  * @author Kizito
  * @author Klenje
@@ -2009,7 +2010,7 @@ Parameters:
 'semiprotectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
 'cascadeprotectedwarning' => 'Parameters:
 * $1 - number of pages, for PLURAL support',
-'titleprotectedwarning' => 'Warning message above the edit form when editing a page that has been protected aginst creation.',
+'titleprotectedwarning' => 'Warning message above the edit form when editing a page that has been protected against creation.',
 'templatesused' => 'Displayed below the page when editing it. It indicates a list of templates which are used on that page.
 
 Parameters:
@@ -4848,8 +4849,19 @@ See also:
 Parameters:
 * $1 - the number of interwiki links",
 'nlinks' => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
-'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
-'nmemberschanged' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]] if the number of pages in the category has changed since the list was last refreshed. $1 is the original number of members of the category, $2 is the current one.',
+'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]].
+
+Parameters:
+* $1 - the number of members of the category
+See also:
+* {{msg-mw|Nmemberschanged}}',
+'nmemberschanged' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]] if the number of pages in the category has changed since the list was last refreshed.
+
+Parameters:
+* $1 - the original number of members of the category
+* $2 - the current one
+See also:
+* {{msg-mw|Nmembers}}',
 'nrevisions' => 'Used as link text in [[Special:FewestRevisions]].
 
 The link points to the page history (action=history).

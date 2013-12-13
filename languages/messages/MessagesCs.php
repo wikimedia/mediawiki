@@ -1570,6 +1570,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'prefs-tokenwatchlist' => 'Klíč',
 'prefs-diffs' => 'Porovnání verzí',
 'prefs-help-prefershttps' => 'Toto nastavení se projeví při příštím přihlášení.',
+'prefs-tabs-navigation-hint' => 'Tip: Pro přepínání mezi záložkami můžete používat šipky vlevo a vpravo.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailová adresa vypadá jako platná',
@@ -2213,6 +2214,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'ninterwikis' => '$1 {{PLURAL:$1|mezijazykový odkaz|mezijazykové odkazy|mezijazykových odkazů}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazů}}',
 'nmembers' => '$1 {{PLURAL:$1|položka|položky|položek}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|položka|položky|položek}}',
 'nrevisions' => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'nviews' => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'nimagelinks' => 'Použit na $1 {{PLURAL:$1|stránce|stránkách}}',
