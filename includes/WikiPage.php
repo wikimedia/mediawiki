@@ -84,6 +84,11 @@ class WikiPage implements Page, IDBAccessObject {
 	protected $mTouched = '19700101000000';
 
 	/**
+	 * @var string
+	 */
+	protected $mLinksUpdated = '19700101000000';
+
+	/**
 	 * @var int|null
 	 */
 	protected $mCounter = null;
@@ -241,6 +246,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$this->mRedirectTarget = null; // Title object if set
 		$this->mLastRevision = null; // Latest revision
 		$this->mTouched = '19700101000000';
+		$this->mLinksUpdated = '19700101000000';
 		$this->mTimestamp = '';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
@@ -278,6 +284,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_is_new',
 			'page_random',
 			'page_touched',
+			'page_links_updated',
 			'page_latest',
 			'page_len',
 		);
@@ -405,6 +412,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mId = intval( $data->page_id );
 			$this->mCounter = intval( $data->page_counter );
 			$this->mTouched = wfTimestamp( TS_MW, $data->page_touched );
+			$this->mLinksUpdated = wfTimestampOrNull( TS_MW, $data->page_links_updated );
 			$this->mIsRedirect = intval( $data->page_is_redirect );
 			$this->mLatest = intval( $data->page_latest );
 			// Bug 37225: $latest may no longer match the cached latest Revision object.
@@ -531,6 +539,17 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->loadPageData();
 		}
 		return $this->mTouched;
+	}
+
+	/**
+	 * Get the page_links_updated field
+	 * @return string|null containing GMT timestamp
+	 */
+	public function getLinksTimestamp() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		return $this->mLinksUpdated;
 	}
 
 	/**

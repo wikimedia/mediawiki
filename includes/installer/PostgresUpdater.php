@@ -402,6 +402,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.23
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 		);
 	}
 

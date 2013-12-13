@@ -125,6 +125,7 @@ changes to languages because of Bugzilla reports.
   'skins.vector.styles' and 'skins.monobook.styles', respectively,
   and their definition was changed not to include the common*.css files;
   the two skins now load the 'skins.common.interface' module instead.
+* A page_links_updated field has been added to the page table.
 
 == Compatibility ==
 
