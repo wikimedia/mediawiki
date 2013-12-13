@@ -41,6 +41,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->getOutput()->addModules( array(
 			'jquery.makeCollapsible',
 			'mediawiki.icon',
+			'mediawiki.special.changeslist.js',
 		) );
 
 		return '';
