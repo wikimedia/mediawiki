@@ -191,6 +191,8 @@ class Preferences {
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
 			$wgSecureLogin;
 
+		$lang = $context->getLanguage();
+
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
@@ -206,7 +208,7 @@ class Preferences {
 		$defaultPreferences['userid'] = array(
 			'type' => 'info',
 			'label-message' => array( 'uid', $userName ),
-			'default' => $user->getId(),
+			'default' => $lang->formatNumNoSeparators( $user->getId() ),
 			'section' => 'personal/info',
 		);
 
@@ -226,8 +228,6 @@ class Preferences {
 		}
 		asort( $userGroups );
 		asort( $userMembers );
-
-		$lang = $context->getLanguage();
 
 		$defaultPreferences['usergroups'] = array(
 			'type' => 'info',
