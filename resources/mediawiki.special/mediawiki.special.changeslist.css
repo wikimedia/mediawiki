@@ -17,6 +17,11 @@
 	border: 1px solid #ddd;
 }
 
+.mw-changeslist-legend dl {
+	/* Parent element defines sufficient padding */
+	margin-bottom: 0;
+}
+
 .mw-changeslist-legend dt {
 	float: left;
 }
