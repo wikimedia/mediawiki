@@ -904,7 +904,7 @@ abstract class File {
 			$params['height'] = $height;
 		}
 		$thumb = $this->transform( $params );
-		if ( is_null( $thumb ) || $thumb->isError() ) {
+		if ( !$thumb || $thumb->isError() ) {
 			return '';
 		}
 
