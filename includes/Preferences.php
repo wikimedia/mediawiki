@@ -188,8 +188,8 @@ class Preferences {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
-			$wgSecureLogin;
+			$wgEnotifWatchlist, $wgEnotifDeletionsWatchlist, $wgEnotifUserTalk,
+			$wgEnotifRevealEditorAddress, $wgSecureLogin;
 
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
@@ -539,6 +539,14 @@ class Preferences {
 					'type' => 'toggle',
 					'section' => 'personal/email',
 					'label-message' => 'tog-enotifwatchlistpages',
+					'disabled' => $disableEmailPrefs,
+				);
+			}
+			if ( $wgEnotifDeletionsWatchlist ) {
+				$defaultPreferences['enotifdelwatchlistpages'] = array(
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'tog-enotifdelwatchlistpages',
 					'disabled' => $disableEmailPrefs,
 				);
 			}

@@ -70,6 +70,7 @@
  * @author Kwj2772
  * @author Leinad
  * @author Lejonel
+ * @author Leucosticte
  * @author Li-sung
  * @author Liangent
  * @author Liuxinyu970226
@@ -5514,6 +5515,9 @@ The subject of the email is one of the following messages:
 *{{msg-mw|Enotif subject moved}}
 *{{msg-mw|Enotif subject restored}}
 *{{msg-mw|Enotif subject changed}}',
+'enotif_body_no_notifications' => 'Text that appears in a notification email sent when no further notifications will occur, even if the page is deleted.',
+'enotif_body_no_notifications_unless_deleted' => 'Text that appears in a notification email sent when no further notifications will occur unless the page is deleted.',
+'enotif_body_deletion_watchlist' => 'Text that appears at the end of a notification email providing the text of a deleted article.',
 'created' => '{{Optional}}
 Possible value for $CHANGEDORCREATED in the following messages:
 * {{msg-mw|enotif_subject}}
