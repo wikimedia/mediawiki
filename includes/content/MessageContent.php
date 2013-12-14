@@ -165,6 +165,8 @@ class MessageContent extends AbstractContent {
 		}
 
 		$po = new ParserOutput( $html );
+		// Message objects are in the user language.
+		$po->recordOption( 'userlang' );
 
 		return $po;
 	}
