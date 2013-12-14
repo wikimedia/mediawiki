@@ -229,7 +229,7 @@ jQuery( function ( $ ) {
 		while ( localTime >= 1440 ) {
 			localTime -= 1440;
 		}
-		$localtimeHolder.text( minutesToHours( localTime ) );
+		$localtimeHolder.text( mediaWiki.language.convertNumber( minutesToHours( localTime ) ) );
 	}
 
 	if ( $tzSelect.length && $tzTextbox.length ) {
