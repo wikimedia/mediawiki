@@ -1,7 +1,7 @@
 /**
  * JavaScript for Special:Preferences
  */
-jQuery( function ( $ ) {
+jQuery( function ( $, mw ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime;
@@ -229,7 +229,7 @@ jQuery( function ( $ ) {
 		while ( localTime >= 1440 ) {
 			localTime -= 1440;
 		}
-		$localtimeHolder.text( minutesToHours( localTime ) );
+		$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 	}
 
 	if ( $tzSelect.length && $tzTextbox.length ) {
