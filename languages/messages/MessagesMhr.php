@@ -12,6 +12,7 @@
  * @author Jose77
  * @author Kaganer
  * @author Lifeway
+ * @author Shirayuki
  * @author Сай
  * @author Санюн Вадик
  */
@@ -912,7 +913,7 @@ $messages = array(
 'nolinkshere-ns' => "Тыгай лӱм-влакын кумдыкышто '''[[:$1]]''' лаштык дене нимогай вес лаштык-влак кылым огыт кучо.",
 'isredirect' => 'вес вере колтышо лаштык',
 'istemplate' => 'пуртымаш',
-'isimage' => '!!FUZZY! файллан кылвер',
+'isimage' => 'файллан кылвер',
 'whatlinkshere-prev' => '{{PLURAL:$1|ончычсо|$1 ончычсо}}',
 'whatlinkshere-next' => '{{PLURAL:$1|вес|$1 вес}}',
 'whatlinkshere-links' => '← кылвер-влак',

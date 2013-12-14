@@ -940,7 +940,7 @@ $1",
 $1",
 'revdel-restore' => 'midar la visibilitad',
 'pagehist' => 'Istorgia da las versiuns',
-'deletedhist' => 'Cronologia da stizzar',
+'deletedhist' => "Cronologia d'eliminaziuns",
 'revdelete-hide-current' => "Errur cun zuppentar l'element datà ils $1 las $2: Quai è la versiun actuala. 
 Ella na po betg vegnir zuppentada.",
 'revdelete-show-no-access' => 'Errur cun mussar l\'element datà ils $1 las $2: Quest element è vegnì marcà sco "restrenschì".
@@ -1403,7 +1403,7 @@ Per integrar ina datoteca en in artitgel pos ti per exempel duvrar in dals suand
 'upload-preferred' => 'Tips da datotecas preferids: $1.',
 'upload-prohibited' => 'Tips da datotecas betg lubids: $1.',
 'uploadlog' => 'Protocol dal chargiar si',
-'uploadlogpage' => 'Protocol da chargiar si',
+'uploadlogpage' => 'Protocol da datotecas chargiadas si',
 'uploadlogpagetext' => "Quai è ina glista da las datotecas ch'èn vegnidas chargiadas si sco ultimas.
 Guarda era la [[Special:NewFiles|galleria da novas datotecas]] per ina survista pli visuala.",
 'filename' => 'Num da datoteca',
@@ -2001,7 +2001,7 @@ Midadas futuras vid questa pagina e la pagina da discussiun appertegnenta vegnan
 'unwatchthispage' => 'Betg pli observar',
 'notanarticle' => "Quai n'è betg ina pagina da cuntegn",
 'notvisiblerev' => "L'ultima versiun d'in auter utilisader è vegnida stizzada",
-'watchlist-details' => "Ti has {{PLURAL:$1|$1 paginas|$1 paginas}} sin tia glista d'observaziun, paginas da discussiun exclusas.",
+'watchlist-details' => "Ti has {{PLURAL:$1|$1 pagina|$1 paginas}} sin tia glista d'observaziun, paginas da discussiun exclusas.",
 'wlheader-enotif' => "Il servetsch d'infurmaziun per e-mail è activà.",
 'wlheader-showupdated' => "Paginas ch'èn vegnidas modifitgadas suenter che ti has vis els la davosa giada èn mussads '''grass'''",
 'watchmethod-recent' => "intercurir las davosas midadas per la glista d'observaziun",
@@ -2079,9 +2079,9 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 'actionfailed' => "L'acziun n'è betg reussida",
 'deletedtext' => '"$1" è vegnì stizzà.
 Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
-'dellogpage' => 'protocol dal stizzar',
+'dellogpage' => "protocol d'eliminaziuns",
 'dellogpagetext' => "Sutvart è ina glista dals elements stizzads l'ultim.",
-'deletionlog' => 'protocol da stizzar',
+'deletionlog' => "protocol d'eliminaziuns",
 'reverted' => 'Reinizialisà ina versiun da pli baud',
 'deletecomment' => 'Motiv:',
 'deleteotherreason' => 'Autra / supplementara raschun:',
@@ -2125,7 +2125,7 @@ questa acziun è vegnida interrutta sco mesira da precauziun encunter hijacking 
 Turna a l'ultima pagina, rechargia la pagina ed emprova anc ina giada.",
 
 # Protect
-'protectlogpage' => 'Protocol da las protecziuns',
+'protectlogpage' => 'Protocol da protecziuns',
 'protectlogtext' => 'Sutvart è ina glista da midadas vid protecziuns da paginas.
 Guarda la [[Special:ProtectedPages|glista da paginas protegidas]] per vesair la glista da las protecziuns actualmain activas.',
 'protectedarticle' => 'bloccà "[[$1]]"',
@@ -2225,8 +2225,8 @@ Eventualmain es ti suandà ina colliaziun faussa u la versiun è vegnida restaur
 $1',
 'undeletedpage' => "'''$1 è vegnì restaurà'''
 
-Consultescha il [[Special:Log/delete|protocol da stizzar]] per retschaiver ina survista da las ultimas paginas stizzadas u restauradas.",
-'undelete-header' => 'Legia il [[Special:Log/delete|protocol da stizzar]] per retschaiver ina survista da las ultimas paginas stizzadas u restauradas.',
+Consultescha il [[Special:Log/delete|protocol d'eliminaziuns]] per retschaiver ina survista da las ultimas paginas stizzadas u restauradas.",
+'undelete-header' => "Legia il [[Special:Log/delete|protocol d'eliminaziuns]] per retschaiver ina survista da las ultimas paginas stizzadas u restauradas.",
 'undelete-search-title' => 'Tschertgar paginas stizzadas',
 'undelete-search-box' => 'Tschertgar paginas stizzadas',
 'undelete-search-prefix' => 'Mussar paginas che cumenzan cun:',
@@ -2776,11 +2776,11 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 'pageinfo-article-id' => 'ID da la pagina',
 'pageinfo-language' => 'Lingua dal cuntegn da la pagina',
 'pageinfo-robot-policy' => 'Status per maschinas da tschertgar',
-'pageinfo-robot-index' => 'Indexabel',
-'pageinfo-robot-noindex' => 'Betg indexabel',
+'pageinfo-robot-index' => 'Lubì',
+'pageinfo-robot-noindex' => 'Betg lubì',
 'pageinfo-views' => 'Dumber da visitas',
 'pageinfo-watchers' => 'Dumber dad observaturs da la pagina',
-'pageinfo-redirects-name' => 'Renviaments a questa pagina',
+'pageinfo-redirects-name' => 'Dumber da renviaments a questa pagina',
 'pageinfo-subpages-name' => 'Sutpaginas da questa pagina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|renviament|renviaments}}; $3 {{PLURAL:$3|betg in renviament|betg renviaments}})',
 'pageinfo-firstuser' => 'Creatur da la pagina',
@@ -2817,7 +2817,7 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 'markedaspatrollederrornotify' => 'Sbagl durant marcar sco controllà.',
 
 # Patrol log
-'patrol-log-page' => 'Protocol da controlla',
+'patrol-log-page' => 'Protocol da controllas',
 'patrol-log-header' => 'Quai è il protocol da las versiuns controlladas.',
 'log-show-hide-patrol' => '$1 il protocol da controllas',
 
@@ -2849,7 +2849,7 @@ Cun exequir questa datoteca po tes sistem vegnir donnegià.",
 'svg-long-desc' => 'datoteca da SVG, grondezza da basa $1 × $2 pixels, grondezza da datoteca: $3',
 'svg-long-desc-animated' => 'Datoteca da SVG animada, dimensiun normala $1 x $2 pixels, grondezza da datoteca: $3',
 'svg-long-error' => 'Datoteca da SVG nundalida: $1',
-'show-big-image' => 'Resoluziun cumplaina',
+'show-big-image' => 'Datoteca originala',
 'show-big-image-preview' => 'Grondezza da questa prevista: $1.',
 'show-big-image-other' => 'Other {{PLURAL:$2|resoluziun|resoluziuns}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3094,7 +3094,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-compression-4' => 'CCITT gruppa 4 codaziun da fax',
 
 'exif-copyrighted-true' => "Protegì dal dretg d'auturs",
-'exif-copyrighted-false' => 'Domena publica',
+'exif-copyrighted-false' => "Il stadi da copyright n'è betg vegnì definì.",
 
 'exif-unknowndate' => 'Data nunenconuschenta',
 
@@ -3510,8 +3510,7 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 # Special:SpecialPages
 'specialpages' => 'Paginas spezialas',
 'specialpages-note' => '* Paginas spezialas normalas.
-* <span class="mw-specialpagerestricted">Paginas spezialas restrenschidas.</span>
-* <span class="mw-specialpagecached">Paginas spezialas en il cache (pon esser antiquadas).</span>',
+* <span class="mw-specialpagerestricted">Paginas spezialas restrenschidas.</span>',
 'specialpages-group-maintenance' => 'Rapports da mantegnamant',
 'specialpages-group-other' => 'Autras paginas spezialas',
 'specialpages-group-login' => "S'annunziar / crear in conto",
@@ -3521,7 +3520,7 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 'specialpages-group-highuse' => 'Paginas utilisadas savens',
 'specialpages-group-pages' => 'Glistas da paginas',
 'specialpages-group-pagetools' => 'Utensils per paginas',
-'specialpages-group-wiki' => 'Utensils e datas da la wiki',
+'specialpages-group-wiki' => 'Datas ed utensils',
 'specialpages-group-redirects' => 'Paginas specialas che renvieschan',
 'specialpages-group-spam' => 'Utensils da spam',
 
@@ -3589,8 +3588,8 @@ Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GN
 'sqlite-no-fts' => '$1 senza sustegn per la retschertga da text integrala',
 
 # New logging system
-'logentry-delete-delete' => '$1 ha stizzà la pagina $3',
-'logentry-delete-restore' => '$1 ha restaurà la pagina $3',
+'logentry-delete-delete' => '$1 {{GENDER:$2|ha stizzà}} la pagina $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|ha restaurà}} la pagina $3',
 'logentry-delete-event' => "$1 ha midà la visibilitad da{{PLURAL:$5|d ina occurrenza en il protocol| $5 occurrenzas en il protocol}} da '''$3''': $4",
 'logentry-delete-revision' => '$1 ha midà la visibilitad da{{PLURAL:$5|d ina versiun| $5 versiuns}} da la pagina $3: $4',
 'logentry-delete-event-legacy' => '$1 ha midà la visibilitad dad occurrenzas da protocol sin $3',

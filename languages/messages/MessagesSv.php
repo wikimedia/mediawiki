@@ -2194,6 +2194,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|länk|länkar}}',
 'nmembers' => '$1 {{PLURAL:$1|medlem|medlemmar}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|medlem|medlemmar}}',
 'nrevisions' => '$1 {{PLURAL:$1|version|versioner}}',
 'nviews' => '$1 {{PLURAL:$1|visning|visningar}}',
 'nimagelinks' => 'Använd på $1 {{PLURAL:$1|sida|sidor}}',

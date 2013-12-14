@@ -1741,7 +1741,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
 'recentchanges-noresult' => 'Nenhuma alteração correspondente a esses critérios foi realizada durante o período selecionado.',
 'recentchanges-feed-description' => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
-'recentchanges-label-newpage' => 'Esta edição criou uma página nova',
+'recentchanges-label-newpage' => 'Esta edição criou uma nova página',
 'recentchanges-label-minor' => 'Esta é uma edição menor',
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',

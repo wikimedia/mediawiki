@@ -79,6 +79,7 @@
  * @author Matma Rex
  * @author MaxSem
  * @author McDutchie
+ * @author MegaAlex
  * @author Meno25
  * @author Metalhead64
  * @author MichaelFrey
@@ -1329,7 +1330,6 @@ See example: [[Special:UserLogin]]',
 {{Identical|Create an account}}',
 'createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 
-It is also used on the submit button in the form/special page where you register a new account.
 {{doc-special|CreateAccount}}
 {{Identical|Create account}}',
 'gotaccount' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameter:

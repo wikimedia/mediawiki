@@ -1541,6 +1541,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-tokenwatchlist' => 'Dấu hiệu',
 'prefs-diffs' => 'Khác biệt',
 'prefs-help-prefershttps' => 'Đăng xuất và đăng nhập lại để áp dụng tùy chọn này.',
+'prefs-tabs-navigation-hint' => 'Mẹo: Bạn có thể bấm các phím mũi tên trái phải để luân chuyển qua các thẻ trong danh sách thẻ.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Có vẻ hợp lệ',
@@ -2191,7 +2192,8 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'ncategories' => '$1 {{PLURAL:$1|thể loại|thể loại}}',
 'ninterwikis' => '$1 liên kết liên wiki',
 'nlinks' => '$1 {{PLURAL:$1|liên kết|liên kết}}',
-'nmembers' => '$1 {{PLURAL:$1|trang|trang}}',
+'nmembers' => '$1 trang',
+'nmemberschanged' => '$1 → $2 trang',
 'nrevisions' => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'nviews' => '$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}',
 'nimagelinks' => 'Được sử dụng trong $1 trang',

@@ -1337,6 +1337,7 @@ Toś ta informacija buźo zjawna.',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Rozdźěle',
 'prefs-help-prefershttps' => 'Toś to nastajenje wustatkujo se pó twójom pśiducem pśizjawjenju.',
+'prefs-tabs-navigation-hint' => 'Tip: Móžoš lěwu a pšawu šypku wužywaś, aby mjazy rejtarkami w lisćinje rejtarkow nawigěrował.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Zda se, až e-mailowa adresa jo płaśiwa',
@@ -1977,6 +1978,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'ninterwikis' => '$1 {{PLURAL:$1|mjazyrěcny wótkaz|mjazyrěcnej wótkaza|mjazyrěcne wótkaze|mjazyrěcnych wótkazow}}',
 'nlinks' => '$1 {{PLURAL:$1|wótkaz|wótkaza|wótkaze}}',
 'nmembers' => '$1 {{PLURAL:$1|zapis|zapisa|zapise}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|cłon|cłonka|cłonki|cłonkow}}',
 'nrevisions' => '$1 {{PLURAL:$1|wobźěłanje|wobźěłani|wobźěłanja}}',
 'nviews' => '$1 {{PLURAL:$1|wótpšašanje|wótpšašani|wótpšašanja}}',
 'nimagelinks' => 'Wužywa se na $1 {{PLURAL:$1|boku|bokoma|bokach|bokach}}',
@@ -3579,6 +3581,11 @@ Pšosym wobkšuś, až napšawdu coš toś ten bok zasej napóraś.',
 'imgmultipagenext' => 'pśiducy bok →',
 'imgmultigo' => 'W pórědku',
 'imgmultigoto' => 'Źi k bokoju $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(standardna rěc)',
+'img-lang-info' => 'Toś ten wobraz w $1 kresliś $2.',
+'img-lang-go' => 'Wótpósłaś',
 
 # Table pager
 'ascending_abbrev' => 'górjej',

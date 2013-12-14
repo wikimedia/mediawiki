@@ -967,7 +967,8 @@ Dir musst Är Ännerungen an dat iewescht Textfeld androen.
 '''Nëmmen''' den Text aus dem ieweschten Textfeld gëtt gehale wann Dir op \"{{int:savearticle}}\" klickt.",
 'yourtext' => 'Ären Text',
 'storedversion' => 'Gespäichert Versioun',
-'nonunicodebrowser' => "'''OPGEPASST:''' Äre Browser ass net Unicode kompatibel. Ännert dat w.e.g. éier Dir eng Säit ännert.",
+'nonunicodebrowser' => "'''OPGEPASST: Äre Browser ass net Unicode kompatibel.'''
+E 'workaround' gëtt agesat deen et erlaabt Säite sécher z'änneren: Net-ASCII Zeeche ginn an der Ännerungskëscht als hexadezimal-Code gewisen.",
 'editingold' => "'''OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.'''",
 'yourdiff' => 'Ënnerscheeder',
 'copyrightwarning' => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn.
@@ -992,7 +993,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'template-semiprotected' => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories' => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
 'edittools' => '<!-- Dësen Text gëtt ënner dem "Ännere"-Formulaire souwéi dem "Eropluede"-Formulaire ugewisen. -->',
-'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|umellen]].",
+'nocreatetext' => "Op {{SITENAME}} gouf d'Schafe vun neie Säite limitéiert. Dir kënnt Säiten déi scho bestinn änneren oder Iech [[Special:UserLogin|aloggen oder e Benotzerkont opmaachen]].",
 'nocreate-loggedin' => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'sectioneditnotsupported-title' => 'Ännere vum Abschnitt gëtt net ënnerstëtzt',
 'sectioneditnotsupported-text' => "D'Ännere vun Abschnitte gëtt op dëser Ännerungssäit net ënnerstëtzt.",

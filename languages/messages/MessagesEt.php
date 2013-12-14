@@ -801,7 +801,7 @@ Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]]
 'passwordtooshort' => 'Parool peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'password-name-match' => 'Parool peab kasutajanimest erinema.',
 'password-login-forbidden' => 'Selle kasutajanime ja parooli kasutamine on keelatud.',
-'mailmypassword' => 'Saada e-posti teel uus parool',
+'mailmypassword' => 'Lähtesta parool',
 'passwordremindertitle' => '{{SITENAME}} – ajutine parool',
 'passwordremindertext' => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.
 
@@ -871,7 +871,7 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
 'passwordreset-text-one' => 'Täida see vorm, et oma parool lähtestada.',
-'passwordreset-text-many' => '{{PLURAL:$1|Täida üks väljadest, et oma parool lähtestada.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Täida üks väljadest, et saada e-kiri ajutise parooliga.}}',
 'passwordreset-legend' => 'Parooli lähtestamine',
 'passwordreset-disabled' => 'Selles vikis on paroolide lähtestamine keelatud.',
 'passwordreset-emaildisabled' => 'E-posti funktsioonid on selles vikis keelatud.',
@@ -1512,6 +1512,7 @@ See teave on avalik.',
 'prefs-tokenwatchlist' => 'Luba',
 'prefs-diffs' => 'Erinevused',
 'prefs-help-prefershttps' => 'See eelistus jõustub pärast järgmist sisselogimist.',
+'prefs-tabs-navigation-hint' => 'Spikker: Kaardiloendis toodud kaartide vahel liikumiseks saad kasutada vasakut ja paremat nooleklahvi.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Sobiv e-posti aadress',
@@ -2136,6 +2137,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'ninterwikis' => '{{PLURAL:$1|üks intervikilink|$1 intervikilinki}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linki}}',
 'nmembers' => '$1 {{PLURAL:$1|liige|liiget}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|liige|liiget}}',
 'nrevisions' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'nviews' => '$1 {{PLURAL:$1|külastus|külastust}}',
 'nimagelinks' => 'Kasutuses {{PLURAL:$1|ühel leheküljel|$1 leheküljel}}',
@@ -3766,6 +3768,11 @@ Palun kinnita, et soovid tõesti selle lehekülje taasluua.",
 'imgmultipagenext' => 'järgmine lehekülg →',
 'imgmultigo' => 'Mine!',
 'imgmultigoto' => 'Mine leheküljele $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(vaikekeel)',
+'img-lang-info' => 'Viimistle pilt järgmises keeles: $1 $2',
+'img-lang-go' => 'Mine',
 
 # Table pager
 'ascending_abbrev' => 'tõusev',

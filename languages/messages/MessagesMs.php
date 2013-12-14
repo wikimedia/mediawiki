@@ -1289,6 +1289,7 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'preferences' => 'Keutamaan',
 'mypreferences' => 'Keutamaan',
 'prefs-edits' => 'Jumlah suntingan:',
+'prefsnologintext2' => 'Sila $1 untuk melihat hasil suntingan anda.',
 'prefs-skin' => 'Rupa',
 'skin-preview' => 'Pralihat',
 'datedefault' => 'Tiada keutamaan',
@@ -1397,6 +1398,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-displaywatchlist' => 'Pilihan paparan',
 'prefs-diffs' => 'Beza',
 'prefs-help-prefershttps' => 'Keutamaan inu akan berkuatkuasa pada lain kali anda log masuk.',
+'prefs-tabs-navigation-hint' => 'Petua: Anda boleh menggunakan kekunci anak panah kiri atau kanan untuk beralihan dari tab ke tab pada senarai tab.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat e-mel adalah sah',
@@ -3667,6 +3669,9 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'imgmultipagenext' => 'halaman berikutnya →',
 'imgmultigo' => 'Pergi!',
 'imgmultigoto' => 'Pergi ke halaman $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(bahasa azali)',
 
 # Table pager
 'ascending_abbrev' => 'menaik',

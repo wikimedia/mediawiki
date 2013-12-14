@@ -452,11 +452,12 @@ Forsan it indica un erra in li programma usat de {{SITENAME}}.',
 'nosuchspecialpage' => 'Null tal special págine',
 'nospecialpagetext' => '<strong>Tu ha petit un ínvalid special págine.</strong>
 
-Omni existent special págines trova se in li [[Special:Specialpages|{{int:specialpagines}}]].',
+Omni existent special págines trova se in li [[Special:Specialpages|{{int:specialpages}}]].',
 
 # General errors
 'error' => 'Erra',
 'databaseerror' => 'Erra del data-base',
+'databaseerror-text' => 'Un erra in li questionada del database ha evenit. To posse indicar un erra in li software.',
 'missing-article' => 'Li textu de «$1» $2 ne ha esset trovat in li data-base.
 
 It es possibil, que ti págine ha esset deleet o movet.

@@ -623,8 +623,8 @@ $1',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 'youhavenewmessagesfromusers' => 'Anda memiliki $1 dari {{PLURAL:$3|$3 pengguna lain}} ($2).',
 'youhavenewmessagesmanyusers' => 'Anda memiliki $1 dari pengguna lain ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|pesan baru}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan}} terakhir',
+'newmessageslinkplural' => '{{PLURAL:$1|pesan baru|pesan baru}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan|999=perubahan}} terakhir',
 'youhavenewmessagesmulti' => 'Anda mendapat pesan baru pada $1',
 'editsection' => 'sunting',
 'editold' => 'sunting',
@@ -747,7 +747,8 @@ Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 'invalidtitle-knownnamespace' => 'Judul yang tidak sah dengan ruangnama "$2" dan teks "$3"',
 'invalidtitle-unknownnamespace' => 'Judul yang tidak sah dengan nomor ruang nama tidak diketahui $1 dan teks "$2"',
 'exception-nologin' => 'Belum masuk log',
-'exception-nologin-text' => 'Halaman atau tindakan ini mengharuskan Anda masuk log di wiki ini.',
+'exception-nologin-text' => 'Harap [[Special:Userlogin|masuk log]] untuk dapat mengakses halaman atau tindakan ini.',
+'exception-nologin-text-manual' => 'Silakan $1 untuk dapat mengakses halaman atau tindakan ini.',
 
 # Virus scanner
 'virus-badscanner' => "Kesalahan konfigurasi: pemindai virus tidak dikenal: ''$1''",
@@ -793,7 +794,7 @@ Ingatlah bahwa beberapa halaman mungkin masih menampilkan anda seperti masih mas
 'gotaccount' => "Sudah terdaftar sebagai pengguna? '''$1'''.",
 'gotaccountlink' => 'Masuk log',
 'userlogin-resetlink' => 'Lupa detail info masuk Anda?',
-'userlogin-resetpassword-link' => 'Buat ulang kata sandi',
+'userlogin-resetpassword-link' => 'Lupa kata sandi?',
 'helplogin-url' => 'Help:Masuk log',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan masuk log]]',
 'userlogin-loggedin' => 'Andan telah masuk log sebagai $1.
@@ -844,7 +845,7 @@ Silakan periksa kembali ejaan Anda.',
 'passwordtooshort' => 'Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.',
 'password-name-match' => 'Kata sandi Anda harus berbeda dari nama pengguna Anda.',
 'password-login-forbidden' => 'Penggunaan nama pengguna dan sandi ini telah dilarang.',
-'mailmypassword' => 'Kirim kata sandi baru',
+'mailmypassword' => 'Setel ulang kata sandi',
 'passwordremindertitle' => 'Peringatan kata sandi dari {{SITENAME}}',
 'passwordremindertext' => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kata sandi baru untuk {{SITENAME}} ($4). Kata sandi sementara untuk pengguna "$2" telah dibuatkan dan diset menjadi "$3". Jika memang Anda yang mengajukan permintaan ini, Anda perlu masuk log dan memilih kata sandi baru sekarang. Kata sandi sementara Anda akan kedaluwarsa dalam waktu {{PLURAL:$5|satu hari|$5 hari}}.
 
@@ -854,8 +855,7 @@ Jika orang lain yang melakukan permintaan ini, atau jika Anda telah mengingat ka
 'passwordsent' => 'Kata sandi baru telah dikirimkan ke alamat surel yang didaftarkan untuk "$1".
 Silakan masuk log kembali setelah menerima surel tersebut.',
 'blocked-mailpassword' => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
-'eauthentsent' => 'Sebuah surel untuk konfirmasi telah dikirim ke alamat surel.
-Anda harus mengikuti instruksi di dalam surel tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surel jika langkah ini belum dilakukan.',
+'eauthentsent' => 'Sebuah surel untuk konfirmasi telah dikirim ke alamat surel. Sebelum surel lainnya dikirim ke akun tersebut, Anda harus mengikuti instruksi di dalam surel tersebut, untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda.',
 'throttled-mailpassword' => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|$1 jam}} terakhir.
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|$1 jam}}.',
 'mailerror' => 'Kesalahan dalam mengirimkan surel: $1',
@@ -877,7 +877,7 @@ Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebu
 Anda dapat mengabaikan pesan ini jika akun ini dibuat karena suatu kesalahan.',
 'usernamehasherror' => 'Nama pengguna tidak bisa mengandung tanda pagar',
 'login-throttled' => 'Anda sudah terlalu sering mencoba masuk log.
-Silakan menunggu sebelum mencoba lagi.',
+Silakan menunggu $1 sebelum mencoba lagi.',
 'login-abort-generic' => 'Proses masuk Anda tidak berhasil - Dibatalkan',
 'loginlanguagelabel' => 'Bahasa: $1',
 'suspicious-userlogout' => 'Permintaan Anda untuk keluar log ditolak karena tampaknya dikirim oleh penjelajah yang rusak atau proksi penyinggah.',
@@ -911,7 +911,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 # Special:PasswordReset
 'passwordreset' => 'Setel ulang kata sandi',
 'passwordreset-text-one' => 'Lengkapi formulir ini untuk menyetel ulang kata sandi.',
-'passwordreset-text-many' => '{{PLURAL:$1|Isi salah satu kotak di bawah ini untuk menyetel ulang kata sandi Anda.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Isi salah satu kotak di bawah ini untuk mendapatkan kata sandi sementara melalui surel.}}',
 'passwordreset-legend' => 'Setel ulang kata sandi',
 'passwordreset-disabled' => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-emaildisabled' => 'Fitur surel telah dinonaktifkan pada wiki ini.',
@@ -1291,18 +1291,19 @@ Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin terse
 Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.",
 'revdelete-confirm' => 'Tolong konfirmasi bahwa Anda memang bermaksud melakukan ini, memahami konsekuensinya, dan bahwa Anda melakukannya sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].',
 'revdelete-suppress-text' => "Penyembunyian revisi '''hanya''' boleh digunakan untuk kasus-kasus berikut:
+* Informasi yang berpotensi memfitnah
 * Informasi pribadi yang tak sepantasnya
 *: ''alamat rumah dan nomor telepon, nomor kartu identitas, dan lain-lain.''",
 'revdelete-legend' => 'Atur batasan:',
-'revdelete-hide-text' => 'Sembunyikan teks revisi',
+'revdelete-hide-text' => 'Teks revisi',
 'revdelete-hide-image' => 'Sembunyikan isi berkas',
 'revdelete-hide-name' => 'Sembunyikan tindakan dan target',
-'revdelete-hide-comment' => 'Sembunyikan ringkasan suntingan',
-'revdelete-hide-user' => 'Sembunyikan nama pengguna/IP penyunting',
+'revdelete-hide-comment' => 'Ringkasan suntingan',
+'revdelete-hide-user' => 'Nama pengguna/alamat IP penyunting',
 'revdelete-hide-restricted' => 'Sembunyikan data dari opsis juga',
 'revdelete-radio-same' => '(jangan diubah)',
-'revdelete-radio-set' => 'Ya',
-'revdelete-radio-unset' => 'Tidak',
+'revdelete-radio-set' => 'Tersembunyikan',
+'revdelete-radio-unset' => 'Terlihat',
 'revdelete-suppress' => 'Sembunyikan juga dari pengurus',
 'revdelete-unsuppress' => 'Hapus batasan pada revisi yang dikembalikan',
 'revdelete-log' => 'Alasan:',
@@ -1447,6 +1448,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'preferences' => 'Preferensi',
 'mypreferences' => 'Preferensi',
 'prefs-edits' => 'Jumlah suntingan:',
+'prefsnologintext2' => 'Silakan $1 untuk mengubah preferensi Anda.',
 'prefs-skin' => 'Kulit',
 'skin-preview' => 'Pratayang',
 'datedefault' => 'Tak ada preferensi',
@@ -1559,6 +1561,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-tokenwatchlist' => 'Tanda',
 'prefs-diffs' => 'Beda',
 'prefs-help-prefershttps' => 'Preferensi ini akan diaktifkan kali berikutnya Anda masuk log.',
+'prefs-tabs-navigation-hint' => 'Tip: Anda dapat menggunakan tomboh panah kiri dan kanan untuk bernavigasi antartab di dalam daftar tab.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat surel tampaknya sah',
@@ -1747,7 +1750,8 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'recentchanges-label-minor' => 'Ini adalah suntingan kecil',
 'recentchanges-label-bot' => 'Suntingan ini dilakukan oleh bot',
 'recentchanges-label-unpatrolled' => 'Suntingan ini belum terpatroli',
-'recentchanges-legend-newpage' => '$1 - halaman baru',
+'recentchanges-label-plusminus' => 'Perubahan ukuran halaman dalam bita',
+'recentchanges-legend-newpage' => '(lihat pula [[Special:NewPages|daftar halaman baru]])',
 'rcnotefrom' => 'Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).',
 'rclistfrom' => 'Perlihatkan perubahan terbaru sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
@@ -2208,6 +2212,7 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|pranala|pranala}}',
 'nmembers' => '$1 {{PLURAL:$1|isi|isi}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|anggota|anggota}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisi|revisi}}',
 'nviews' => 'dilihat $1 {{PLURAL:$1|kali|kali}}',
 'nimagelinks' => 'Digunakan pada $1 {{PLURAL:$1|halaman|halaman}}',
@@ -3195,6 +3200,7 @@ Masukan ini '''DILARANG'''!",
 'pageinfo-length' => 'Panjang halaman (dalam bita)',
 'pageinfo-article-id' => 'ID Halaman',
 'pageinfo-language' => 'Bahasa isi halaman',
+'pageinfo-content-model' => 'Model isi halaman',
 'pageinfo-robot-policy' => 'Pengindeksan oleh robot',
 'pageinfo-robot-index' => 'Diperbolehkan',
 'pageinfo-robot-noindex' => 'Tidak diperbolehkan',
@@ -3934,6 +3940,9 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'imgmultigo' => 'Cari!',
 'imgmultigoto' => 'Pergi ke halaman $1',
 
+# Language selector for translatable SVGs
+'img-lang-go' => 'Tuju ke',
+
 # Table pager
 'ascending_abbrev' => 'naik',
 'descending_abbrev' => 'turun',
@@ -4079,7 +4088,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 # Special:Redirect
 'redirect' => 'Pengalihan oleh berkas, pengguna atau ID revisi',
 'redirect-legend' => 'Pengalihan ke sebuah berkas atau halaman',
-'redirect-summary' => 'Halaman istimewa ini beralih ke berkas (sesuai nama berkasnya), halaman (sesuai ID revisinya), atau halaman pengguna (sesuai ID numerik penggunanya).',
+'redirect-summary' => 'Halaman istimewa ini beralih ke berkas (sesuai nama berkasnya), halaman (sesuai ID revisinya), atau halaman pengguna (sesuai ID numerik penggunanya). Penggunaan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], atau [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Lanjut',
 'redirect-lookup' => 'Pencarian:',
 'redirect-value' => 'Nilai:',
@@ -4101,9 +4110,9 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 
 # Special:SpecialPages
 'specialpages' => 'Halaman istimewa',
+'specialpages-note-top' => 'Keterangan',
 'specialpages-note' => '* Halaman istimewa normal.
-* <span class="mw-specialpagerestricted">Halaman istimewa terlarang.</span>
-* <span class="mw-specialpagecached">Halaman istimewa tersinggah (mungkin usang).</span>',
+* <span class="mw-specialpagerestricted">Halaman istimewa terlarang.</span>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',
 'specialpages-group-other' => 'Lain-lain',
 'specialpages-group-login' => 'Masuk log / mendaftar',

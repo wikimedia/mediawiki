@@ -408,7 +408,7 @@ $1',
 'privacypage' => 'Project:Politica de confidentialitate',
 
 'badaccess' => 'Error de permission',
-'badaccess-group0' => 'Tu non ha le permission de executar le action que tu ha requestate.',
+'badaccess-group0' => 'Tu non es autorisate a exequer le action requestate.',
 'badaccess-groups' => 'Le action que tu ha requestate es limitate al usatores in {{PLURAL:$2|le gruppo|un del gruppos}}: $1.',
 
 'versionrequired' => 'Version $1 de MediaWiki requirite',
@@ -652,7 +652,7 @@ Verifica le orthographia.',
 'passwordtooshort' => 'Le contrasignos debe continer al minus {{PLURAL:$1|1 character|$1 characteres}}.',
 'password-name-match' => 'Tu contrasigno debe esser differente de tu nomine de usator.',
 'password-login-forbidden' => 'Le uso de iste nomine de usator e contrasigno ha essite prohibite.',
-'mailmypassword' => 'Inviar un nove contrasigno in e-mail',
+'mailmypassword' => 'Reinitialisar contrasigno',
 'passwordremindertitle' => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext' => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove
 contrasigno pro {{SITENAME}} ($4).
@@ -729,7 +729,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
 'passwordreset-text-one' => 'Completa iste formulario pro reinitialisar tu contrasigno.',
-'passwordreset-text-many' => '{{PLURAL:$1|Completa un de iste campos pro reinitialisar tu contrasigno.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Completa un de iste campos pro reciper un contrasigno temporari in e-mail.}}',
 'passwordreset-legend' => 'Reinitialisar contrasigno',
 'passwordreset-disabled' => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-emaildisabled' => 'Le functionalitate de e-mail ha essite disactivate in iste wiki.',
@@ -1397,6 +1397,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-tokenwatchlist' => 'Indicio',
 'prefs-diffs' => 'Differentias',
 'prefs-help-prefershttps' => 'Iste preferentia habera effecto a partir de tu proxime session.',
+'prefs-tabs-navigation-hint' => 'Consilio: Tu pote usar le claves de sagitta sinistre e dextre pro navigar inter le schedas in le lista.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Sembla valide',
@@ -1584,6 +1585,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchanges-label-unpatrolled' => 'Iste modification non ha ancora essite patruliate',
 'recentchanges-label-plusminus' => 'Le dimension del pagina ha cambiate de iste numero de bytes',
 'recentchanges-legend-newpage' => '(vide etiam le [[Special:NewPages|lista de nove paginas]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom' => 'Monstrar nove modificationes a partir de $1',
 'rcshowhideminor' => '$1 modificationes minor',
@@ -2055,6 +2057,7 @@ Le entratas <del>cancellate</del> ha essite resolvite.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|ligamine|ligamines}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|version|versiones}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks' => 'Usate in $1 {{PLURAL:$1|pagina|paginas}}',
@@ -3726,6 +3729,11 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'imgmultipagenext' => 'sequente pagina →',
 'imgmultigo' => 'Ir!',
 'imgmultigoto' => 'Visitar pagina $1',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(lingua predefinite)',
+'img-lang-info' => 'Presentar iste imagine in $1 $2.',
+'img-lang-go' => 'Va',
 
 # Table pager
 'ascending_abbrev' => 'asc',
