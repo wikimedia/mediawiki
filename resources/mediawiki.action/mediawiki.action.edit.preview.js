@@ -71,23 +71,36 @@
 		// TODO: This should use the action=parse API instead of loading the entire page,
 		// although that requires figuring out how to convert that raw data into proper HTML.
 		$previewDataHolder.load( targetUrl + ' ' + copySelectors.join( ',' ), postData, function () {
-			var i, $from;
+			var i, $from, $next;
 
 			// Copy the contents of the specified elements from the loaded page to the real page.
 			// Also copy their class attributes.
 			for ( i = 0; i < copySelectors.length; i++ ) {
 				$from = $previewDataHolder.find( copySelectors[i] );
 
-				$( copySelectors[i] )
-					.empty()
-					.append( $from.contents() )
-					.attr( 'class', $from.attr( 'class' ) );
+				if ( copySelectors[i] === '#wikiPreview' ) {
+					$next = $wikiPreview.next();
+					$wikiPreview
+						.detach()
+						.empty()
+						.append( $from.contents() )
+						.attr( 'class', $from.attr( 'class' ) );
+
+					mw.hook( 'wikipage.content' ).fire( $wikiPreview );
+
+					// Reattach
+					$next.before( $wikiPreview );
+
+				} else {
+					$( copySelectors[i] )
+						.empty()
+						.append( $from.contents() )
+						.attr( 'class', $from.attr( 'class' ) );
+				}
 			}
 
 			// Deprecated: Use mw.hook instead
 			$( mw ).trigger( 'LivePreviewDone', [copySelectors] );
-
-			mw.hook( 'wikipage.content' ).fire( $wikiPreview );
 
 			$spinner.remove();
 			$copyElements.animate( {
