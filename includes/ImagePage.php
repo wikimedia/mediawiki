@@ -991,7 +991,7 @@ EOT
 			} else {
 				$display = $code;
 			}
-			$opts .= "\n" . XML::Option( $display, $code, $curLang === $code );
+			$opts .= "\n" . Xml::option( $display, $code, $curLang === $code );
 			if ( $curLang === $code ) {
 				$haveCurrentLang = true;
 			}
@@ -1002,7 +1002,7 @@ EOT
 		if ( !$haveDefaultLang ) {
 			// Its hard to know if the content is really in the default language, or
 			// if its just unmarked content that could be in any language.
-			$opts = XML::Option( wfMessage( 'img-lang-default' )->text(), '', $defaultLang === $curLang ) . $opts;
+			$opts = Xml::option( wfMessage( 'img-lang-default' )->text(), '', $defaultLang === $curLang ) . $opts;
 		}
 		if ( !$haveCurrentLang && $defaultLang !== $curLang ) {
 			$name = Language::fetchLanguageName( $curLang, $this->getContext()->getLanguage()->getCode() );
@@ -1011,7 +1011,7 @@ EOT
 			} else {
 				$display = $curLang;
 			}
-			$opts = XML::Option( $display, $curLang, true ) . $opts;
+			$opts = Xml::option( $display, $curLang, true ) . $opts;
 		}
 
 		$select = Html::rawElement( 'select', array( 'id' => 'mw-imglangselector', 'name' => 'lang' ), $opts );
