@@ -1110,6 +1110,9 @@ return array(
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
 		),
+		'dependencies' => array(
+			'mediawiki.language',
+		),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
