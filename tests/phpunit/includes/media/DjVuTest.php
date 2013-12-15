@@ -76,7 +76,7 @@ class DjVuTest extends MediaWikiTestCase {
 
 	public function testGetImageSize() {
 		$this->assertArrayEquals(
-			array(  2480, 3508, 'DjVu', 'width="2480" height="3508"' ),
+			array( 2480, 3508, 'DjVu', 'width="2480" height="3508"' ),
 			$this->handler->getImageSize( null, $this->filePath . '/LoremIpsum.djvu' ),
 			'Test file LoremIpsum.djvu should have a size of 2480 * 3508'
 		);

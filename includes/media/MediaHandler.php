@@ -445,7 +445,7 @@ abstract class MediaHandler {
 			return $this->getPageText( $file, 1 );
 		}
 		$document = '';
-		for( $i = 1; $i <= $numPages; $i++ ) {
+		for ( $i = 1; $i <= $numPages; $i++ ) {
 			$curPage = $this->getPageText( $file, $i );
 			if ( is_string( $curPage ) ) {
 				$document .= $curPage . "\n";
