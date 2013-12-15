@@ -416,8 +416,9 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'actionthrottled' => 'Darbība netika atļauta',
 'protectedpagetext' => 'Šī lapa ir aizsargāta, lai novērstu tās izmainīšanu vai citas darbības.',
 'viewsourcetext' => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',
-'protectedinterface' => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
-'editinginterface' => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kas ir MediaWiki lokalizēšanas projekts.",
+'protectedinterface' => "Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.
+Lai pievienotu izmaiņas tulkojumā visās ''wiki'', lūdzam izmantot ''MediaWiki'' lokalizēšanas projektu [//translatewiki.net/ translatewiki.net].",
+'editinginterface' => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas šīs izmaiņas būtu lietderīgi pievienot arī ''MediaWiki'' lokalizēšanas projektā [//translatewiki.net/ translatewiki.net].",
 'namespaceprotected' => "Tev nav atļaujas izmainīt lapas, kas atrodas '''$1''' ''namespacē''.",
 'customcssprotected' => 'Jums nav tiesību rediģēt šo CSS lapu, jo tā satur cita lietotāja personiskos iestatījumus.',
 'customjsprotected' => 'Jums nav tiesību rediģēt šo JavaScript lapu, jo tā satur cita lietotāja personiskos iestatījumus.',

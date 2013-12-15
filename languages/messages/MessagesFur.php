@@ -12,6 +12,7 @@
  * @author Klenje
  * @author MF-Warburg
  * @author Reedy
+ * @author Tocaibon
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -121,19 +122,19 @@ $messages = array(
 'tog-underline' => 'Sotlinee leams',
 'tog-justify' => 'Justifiche paragraf',
 'tog-hideminor' => 'Plate lis piçulis modifichis tai ultins cambiaments',
-'tog-usenewrc' => 'Dopre i ultins cambiaments avanzâts (covente JavaScript)',
+'tog-usenewrc' => 'Ragrupe lis modifichis par pagjine intes ultimis modifichis e inati oservâts speciai',
 'tog-numberheadings' => 'Numerazion automatiche dai titui',
 'tog-showtoolbar' => 'Mostre sbare dai imprescj pe modifiche (JavaScript)',
-'tog-editondblclick' => 'Cambie lis pagjinis fracant dôs voltis (JavaScript)',
+'tog-editondblclick' => 'Cambie lis pagjinis fracant dôs voltis',
 'tog-editsection' => 'Inserìs un leam [cambie] pe editazion veloç di une sezion',
-'tog-editsectiononrightclick' => 'Modifiche une sezion fracant cul tast diestri<br /> sui titui des sezions (JavaScript)',
+'tog-editsectiononrightclick' => 'Modifiche une sezion fracant cul tast diestri<br /> sui titui des sezions',
 'tog-showtoc' => 'Mostre la tabele dai contignûts pes pagjinis cun plui di 3 sezions',
 'tog-rememberpassword' => 'Visiti di me su chest sgarfadôr (par un massim di $1 {{PLURAL:$1|zornade|zornadis}})',
 'tog-watchdefault' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
 'tog-minordefault' => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop' => 'Mostre anteprime parsore dal spazi pe modifiche',
 'tog-previewonfirst' => 'Mostre anteprime te prime modifiche',
-'tog-enotifwatchlistpages' => 'Mandimi une email se la pagjine e gambie',
+'tog-enotifwatchlistpages' => 'Mandimi une email se la pagjine o un file al gambie',
 'tog-enotifusertalkpages' => 'Mandimi une email cuant che la mê pagjine di discussion e gambie',
 'tog-enotifminoredits' => 'Mandimi une email ancje pai piçui cambiaments ae pagjine',
 'tog-enotifrevealaddr' => 'Distapone fûr il gno recapit email tai messaçs di notifiche',
@@ -146,7 +147,7 @@ $messages = array(
 
 'underline-always' => 'Simpri',
 'underline-never' => 'Mai',
-'underline-default' => 'Predeterminât dal sgarfadôr',
+'underline-default' => 'Ten ilis impostazions dal Browser o de skin che tu stâs doprant',
 
 # Font style option in Special:Preferences
 'editfont-default' => 'Predeterminât dal sgarfadôr',
@@ -225,7 +226,7 @@ $messages = array(
 'newwindow' => '(al vierç un gnûf barcon)',
 'cancel' => 'Scancele',
 'moredotdotdot' => 'Plui...',
-'mypage' => 'Mê pagjine',
+'mypage' => 'Pagjine',
 'mytalk' => 'Discussions',
 'anontalk' => 'Discussion par chest IP',
 'navigation' => 'somari',
@@ -245,7 +246,7 @@ $messages = array(
 'vector-action-move' => 'Môf',
 'vector-action-protect' => 'Protêç',
 'vector-action-undelete' => 'Recupere',
-'vector-action-unprotect' => 'No stâ protezi',
+'vector-action-unprotect' => 'Gambie la protezion',
 'vector-view-create' => 'Cree',
 'vector-view-edit' => 'Cambie',
 'vector-view-history' => 'Cjale il storic',
@@ -281,8 +282,8 @@ $messages = array(
 'protect' => 'Protêç',
 'protect_change' => 'cambie',
 'protectthispage' => 'Protêç cheste pagjine',
-'unprotect' => 'No stâ protezi',
-'unprotectthispage' => 'No stâ plui protezi cheste pagjine',
+'unprotect' => 'Gambie la protezion',
+'unprotectthispage' => 'Gambie la protezion di cheste pagjine',
 'newpage' => 'Gnove pagjine',
 'talkpage' => 'Fevelin di cheste pagjine',
 'talkpagelinktext' => 'discussion',
@@ -441,7 +442,7 @@ Considere che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît f
 'wrongpasswordempty' => 'La peraule clâf inseride e je vueide. Torne a provâ.',
 'passwordtooshort' => 'La peraule clâf e à di jessi di almancul {{PLURAL:$1|1 caratar|$1 caratars}}.',
 'password-name-match' => 'La peraule clâf e à di jessi divierse dal to non utent.',
-'mailmypassword' => 'Mande une gnove peraule clâf ae me direzion di pueste eletroniche',
+'mailmypassword' => 'Azere la password',
 'passwordremindertitle' => 'Gnove peraule clâf temporanie par {{SITENAME}}',
 'passwordremindertext' => 'Cualchidun (probabilmentri tu, de direzion IP $1) al à domandât une gnove peraule clâf par jentrâ in {{SITENAME}} ($4).
 Une peraule clâf temporanie par l\'utent "$2" e je stade creade e impuestade a "$3". Se cheste e jere la tô intenzion, tu varâs di jentrâ e sielzi une gnove peraule clâf cumò. La to peraule clâf temporanie e scjadarà daspò {{PLURAL:$5|une zornade|$5 zornadis}}.
@@ -608,8 +609,8 @@ Cualchi model nol vignarà includût.",
 Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la version precedente, '''p''' = piçul cambiament",
 'history-fieldset-title' => 'Sgarfe tal storic',
 'history-show-deleted' => 'Dome chei eliminâts',
-'histfirst' => 'Prime',
-'histlast' => 'Ultime',
+'histfirst' => 'Lis plui vieris',
+'histlast' => 'Lis plui gnovis',
 'historysize' => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty' => '(vueide)',
 
@@ -823,7 +824,7 @@ La tô direzion di pueste no ven mostrade cuant che i utents ti contatin.',
 'rc_categories' => 'Limite aes categoriis (dividilis cun "|")',
 'rc_categories_any' => 'Cualsisei',
 'newsectionsummary' => '/* $1 */ gnove sezion',
-'rc-enhanced-expand' => 'Mostre detais (al covente JavaScript)',
+'rc-enhanced-expand' => 'Cjale i detais (al covente JavaScript)',
 'rc-enhanced-hide' => 'Plate detais',
 
 # Recent changes linked
@@ -1217,9 +1218,9 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'contributions' => 'Contribûts {{GENDER:$1|dal utent|de utente}}',
 'contributions-title' => 'Contribûts di $1',
 'mycontris' => 'Contribûts',
-'contribsub2' => 'Par $1 ($2)',
+'contribsub2' => 'Par {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Nissun cambiament che al rispiete chescj criteris cjatât.',
-'uctop' => ' (su)',
+'uctop' => 'atuâl',
 'month' => 'Scomençant dal mês (e prime):',
 'year' => 'Scomençant dal an (e prime):',
 
@@ -1449,7 +1450,7 @@ Par plasê va su [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 'file-info-size' => '$1 × $2 pixel, dimensions: $3, gjenar MIME: $4',
 'file-nohires' => 'No son disponibilis versions cun risoluzion plui alte.',
 'svg-long-desc' => 'file tal formât SVG, dimensions nominâls $1 × $2 pixels, dimensions dal file: $3',
-'show-big-image' => 'Version a risoluzion plene',
+'show-big-image' => 'File origjnâl',
 
 # Special:NewFiles
 'newimages' => 'Galarie dai gnûfs files',

@@ -1400,6 +1400,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-tokenwatchlist' => 'Mærke',
 'prefs-diffs' => 'Forskelle',
 'prefs-help-prefershttps' => 'Denne indstilling træder i kraft næste gang du logger på.',
+'prefs-tabs-navigation-hint' => 'Tip: Du kan bruge venstre og højre piletasterne til at navigere mellem fanerne i fanelisten.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mailadressen ser ud til at være gyldig',
@@ -2047,6 +2048,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'ninterwikis' => '$1 {{PLURAL:$1|interwikilink|interwikilinks}}',
 'nlinks' => '{{PLURAL:$1|1 henvisning|$1 henvisninger}}',
 'nmembers' => '$1 {{PLURAL:$1|medlem|medlemmer}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|medlem|medlemmer}}',
 'nrevisions' => '{{PLURAL:$1|1 ændring|$1 ændringer}}',
 'nviews' => '{{PLURAL:$1|1 visning|$1 visninger}}',
 'nimagelinks' => 'Brugt på $1 {{PLURAL:$1|side|sider}}',
@@ -3667,6 +3669,8 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standardsprog)',
+'img-lang-info' => 'Gengiv dette billede på $1 $2.',
+'img-lang-go' => 'Udfør',
 
 # Table pager
 'ascending_abbrev' => 'op',

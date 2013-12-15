@@ -3737,7 +3737,7 @@ $5
 'autosumm-blank' => 'या पानावरील सगळा मजकूर काढला',
 'autosumm-replace' => "पान '$1' वापरून बदलले.",
 'autoredircomment' => '[[$1]] कडे पुनर्निर्देशित',
-'autosumm-new' => 'नवीन पान: $1',
+'autosumm-new' => 'नवीन पान "$1"',
 
 # Size units
 'size-bytes' => '$1 बा.',

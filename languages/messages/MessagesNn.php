@@ -3804,6 +3804,7 @@ Du skal ha motteke [{{SERVER}}{{SCRIPTPATH}}/COPYING ein kopi av GNU General Pub
 
 # Special:SpecialPages
 'specialpages' => 'Spesialsider',
+'specialpages-note-top' => 'Tyding',
 'specialpages-note' => '* Vanlege spesialsider.
 * <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
 'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',

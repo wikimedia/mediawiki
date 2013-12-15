@@ -1381,7 +1381,7 @@ Dës Informatioun ass ëffentlech.",
 'email' => 'E-Mail',
 'prefs-help-realname' => 'Äre richtegen Numm ass fakultativ. Wann Dir en ugitt, gëtt e benotzt fir Iech Är Kontributiounen zouzeuerdnen.',
 'prefs-help-email' => "D'E-Mailadress ass fakultativ, awer si gëtt gebraucht fir Iech Äert Passwuert ze mailen, wann Dir et géift vergiessen.",
-'prefs-help-email-others' => 'Dir kënnt Iech och dofir decidéieren datt Anerer Iech iwwer Är Diskussiounssäit kontaktéieren ouni datt Dir dobäi Är Identitéit verrode musst.',
+'prefs-help-email-others' => 'Dir kënnt Iech och dofir decidéieren datt Anerer Iech iwwer Är Diskussiounssäit kontaktéieren ouni datt Dir derbäi Är Identitéit verrode musst.',
 'prefs-help-email-required' => 'Eng gëlteg E-Mail-Adress gëtt heifir gebraucht.',
 'prefs-info' => 'Grondinformatioun',
 'prefs-i18n' => 'Internationalisatioun',
@@ -2225,7 +2225,7 @@ D\'E-Mail-Adress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hu
 'emailccsubject' => 'Kopie vun denger Noriicht un $1: $2',
 'emailsent' => 'E-Mail geschéckt',
 'emailsenttext' => 'Är E-Mail gouf fortgeschéckt.',
-'emailuserfooter' => 'Dës E-Mail gouf vum $1 dem $2 geschéckt dobäi gouf d\'Funktioun "Benotzer E-Mail" op {{SITENAME}} benotzt.',
+'emailuserfooter' => 'Dës E-Mail gouf vum $1 dem $2 geschéckt derbäi gouf d\'Funktioun "Benotzer E-Mail" op {{SITENAME}} benotzt.',
 
 # User Messenger
 'usermessage-summary' => 'Benoriichtegung hannerloossen.',
@@ -2835,7 +2835,7 @@ $2',
 'import' => 'Säiten importéieren',
 'importinterwiki' => 'Transwiki-Import',
 'import-interwiki-text' => "Sicht eng Wiki an e Säitentitel eraus fir z'importéieren.
-D'Versiounsdatumen an d'Benotzernimm bleiwen dobäi erhalen.
+D'Versiounsdatumen an d'Benotzernimm bleiwen derbäi erhalen.
 All Transwiki-Import-Aktioune ginn am [[Special:Log/import|Import-Logbuch]] protokolléiert.",
 'import-interwiki-source' => 'Quelle Wiki/Säit:',
 'import-interwiki-history' => "Importéier all d'Versioune vun dëser Säit",
@@ -3887,8 +3887,8 @@ Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 'revdelete-unrestricted' => 'Limitatioune fir Administrateuren opgehuewen',
 'logentry-move-move' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}}",
 'logentry-move-move-noredirect' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} ouni eng Viruleedung unzeleeën",
-'logentry-move-move_redir' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an dobäi gouf eng Viruleedung iwwerschriwwen",
-'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
+'logentry-move-move_redir' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an derbäi gouf eng Viruleedung iwwerschriwwen",
+'logentry-move-move_redir-noredirect' => "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} an derbäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol' => "$1 huet d'Versioun $4 vun der Säit $3 als nogekuckt {{GENDER:$2|markéiert}}",
 'logentry-patrol-patrol-auto' => "$1 huet d'Versioun $4 vun der Säit $3 automatesch als nogekuckt  {{GENDER:$2|markéiert}}",
 'logentry-newusers-newusers' => 'De Benotzerkont $1 gouf {{GENDER:$2|ugeluecht}}',

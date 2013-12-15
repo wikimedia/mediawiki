@@ -873,7 +873,7 @@ Emprova da [[Special:Search|tschertgar]] novas paginas sumegliantas en la wiki."
 
 # Revision deletion
 'rev-deleted-comment' => '(allontanà la resumaziun da las modificaziuns)',
-'rev-deleted-user' => "(stidà num d'utilisader)",
+'rev-deleted-user' => "(stizzà num d'utilisader)",
 'rev-deleted-event' => '(stizzà acziun dal protocol)',
 'rev-deleted-user-contribs' => "[Allontanà il num d'utilisader u l'adressa IP - zupentà la modificaziun da las contribuziuns]",
 'rev-deleted-text-permission' => "Questa versiun da la pagina è vegnida '''stizzada'''.
@@ -1402,7 +1402,7 @@ Per integrar ina datoteca en in artitgel pos ti per exempel duvrar in dals suand
 'upload-permitted' => 'Tips da datotecas lubids: $1.',
 'upload-preferred' => 'Tips da datotecas preferids: $1.',
 'upload-prohibited' => 'Tips da datotecas betg lubids: $1.',
-'uploadlog' => 'Protocol dal chargiar si',
+'uploadlog' => 'protocol da datotecas chargiadas si',
 'uploadlogpage' => 'Protocol da datotecas chargiadas si',
 'uploadlogpagetext' => "Quai è ina glista da las datotecas ch'èn vegnidas chargiadas si sco ultimas.
 Guarda era la [[Special:NewFiles|galleria da novas datotecas]] per ina survista pli visuala.",
@@ -2079,7 +2079,7 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 'actionfailed' => "L'acziun n'è betg reussida",
 'deletedtext' => '"$1" è vegnì stizzà.
 Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
-'dellogpage' => "protocol d'eliminaziuns",
+'dellogpage' => "Protocol d'eliminaziuns",
 'dellogpagetext' => "Sutvart è ina glista dals elements stizzads l'ultim.",
 'deletionlog' => "protocol d'eliminaziuns",
 'reverted' => 'Reinizialisà ina versiun da pli baud',
@@ -2266,7 +2266,7 @@ $1',
 'sp-contributions-newbies' => 'Be mussar contribuziuns da contos novs',
 'sp-contributions-newbies-sub' => "Per novs contos d'utilisader",
 'sp-contributions-newbies-title' => "Contribuziuns da novs contos d'utilisader",
-'sp-contributions-blocklog' => 'protocol dal bloccar',
+'sp-contributions-blocklog' => 'protocol da bloccadas',
 'sp-contributions-deleted' => 'Contribuziuns da commembers stizzadas',
 'sp-contributions-uploads' => 'datotecas chargiadas si',
 'sp-contributions-logs' => 'protocols',
@@ -2380,7 +2380,7 @@ La [[Special:BlockList|glista da bloccadas]] mussa tut las bloccadas.',
 'contribslink' => 'contribuziuns',
 'emaillink' => 'Trametter in e-mail',
 'autoblocker' => "Vossa adressa dad IP è vegnida bloccada perquai che vus utilisais ina adressa dad IP cun [[User:$1|$1]]. Motiv per bolccar $1: '''$2'''.",
-'blocklogpage' => 'Protocol dal bloccar',
+'blocklogpage' => 'Protocol da bloccadas',
 'blocklog-showlog' => 'Quest utilisader è gia vegnì bloccà pli baud.
 Qua il protocol da bloccadas sco infurmaziun:',
 'blocklog-showsuppresslog' => 'Quest utilisader è gia vegnì bloccà e zuppentà pli baud.
@@ -2500,7 +2500,7 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'movepage-page-moved' => 'La pagina $1 è vegnida spustada a $2.',
 'movepage-page-unmoved' => 'Betg pussaivel da spustar la pagina $1 a $2.',
 'movepage-max-pages' => 'Il dumber maximal da $1 {{PLURAL:$1|pagina|paginas}} è vegnì spustà. Tut las ulteriuras na pon betg vegnir spustadas automaticamain.',
-'movelogpage' => 'Protocol dal spustar',
+'movelogpage' => 'Protocol da spustaments',
 'movelogpagetext' => 'Sut è ina glista da tut las paginas spustadas.',
 'movesubpage' => '{{PLURAL:$1|Sutpagina|Sutpaginas}}',
 'movesubpagetext' => 'Questa pagina ha $1 {{PLURAL:$1|sutpagina mussada|sutpaginasmussadas}} sutvart.',

@@ -23,6 +23,7 @@
  * @author Ерней
  * @author Ильнар
  * @author Рашат Якупов
+ * @author Умар
  */
 
 $fallback = 'ru';
@@ -1346,7 +1347,7 @@ $1",
 'recentchanges-label-minor' => 'Бу кече үзгәртү',
 'recentchanges-label-bot' => 'Бу үзгәртү бот белән эшләнгән иде',
 'recentchanges-label-unpatrolled' => 'Үзгәртүне әлегә тикшермәгәннәр',
-'recentchanges-legend-newpage' => '$1 — яңа бит',
+'recentchanges-legend-newpage' => '([[Special:NewPages|яңа бит]])',
 'rcnotefrom' => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom' => '$1 башлап яңа үзгәртүләрне күрсәт',
 'rcshowhideminor' => 'кече үзгәртүләрне $1',

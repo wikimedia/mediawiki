@@ -27,6 +27,7 @@
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
+ * @author Byfserag
  * @author Byrial
  * @author BáthoryPéter
  * @author Claudia Hattitten

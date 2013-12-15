@@ -1554,7 +1554,8 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-minor' => "Ur c'hemm dister eo hemañ",
 'recentchanges-label-bot' => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-label-unpatrolled' => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
-'recentchanges-legend-newpage' => '$1 - pajenn nevez',
+'recentchanges-label-plusminus' => 'Kemmet he deus ment ar bajenn eus an niver-se a bitoù',
+'recentchanges-legend-newpage' => '(gwelet ivez [[Dibar:PajennoùNevez|roll ar pajennoù nevez krouet]])',
 'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
 'rcshowhideminor' => "$1 ar c'hemmoù dister",
@@ -3644,6 +3645,10 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'imgmultipagenext' => "pajenn war-lerc'h &rarr;",
 'imgmultigo' => 'Mont !',
 'imgmultigoto' => "Mont d'ar bajenn $1",
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(yezh dre ziouer)',
+'img-lang-go' => 'Mont',
 
 # Table pager
 'ascending_abbrev' => 'pignat',

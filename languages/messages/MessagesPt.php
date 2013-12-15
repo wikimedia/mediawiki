@@ -3163,6 +3163,7 @@ Permite colocar uma justificação no resumo da edição.',
 'modern.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Moderno */',
 'vector.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Vector */',
 'print.css' => '/* Código CSS colocado aqui afectará as impressões */',
+'noscript.css' => '/* Os estilos CSS colocados aqui afetarão os utilizadores que tenham o JavaScript desativado em seus navegadores */',
 
 # Scripts
 'common.js' => '/* Código Javascript colocado aqui será carregado para todos os utilizadores em cada carregamento de página */',
