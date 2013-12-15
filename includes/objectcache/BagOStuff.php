@@ -248,6 +248,23 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Batch insertion
+	 * @param array $data $key => $value assoc array
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 * @since 1.24
+	 */
+	public function setMulti( array $data, $exptime = 0 ) {
+		$res = true;
+		foreach ( $data as $key => $value ) {
+			if ( !$this->set( $key, $value, $exptime ) ) {
+				$res = false;
+			}
+		}
+		return $res;
+	}
+
+	/**
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime
