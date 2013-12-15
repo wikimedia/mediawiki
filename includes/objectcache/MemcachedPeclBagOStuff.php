@@ -259,6 +259,27 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
+	/**
+	 * @param array $data
+	 * @param int $exptime
+	 * @return bool
+	 */
+	public function setMulti( array $data, $exptime = 0 ) {
+		wfProfileIn( __METHOD__ );
+		foreach ( $data as $key => $value ) {
+			$encKey = $this->encodeKey( $key );
+			if ( $encKey !== $key ) {
+				$data[$encKey] = $value;
+				unset( $data[$key] );
+			}
+		}
+		$this->debugLog( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
+		$result = $this->client->setMulti( $data, $this->fixExpiry( $exptime ) );
+		wfProfileOut( __METHOD__ );
+		return $this->checkResult( false, $result );
+	}
+
+
 	/* NOTE: there is no cas() method here because it is currently not supported
 	 * by the BagOStuff interface and other BagOStuff subclasses, such as
 	 * SqlBagOStuff.
