@@ -264,7 +264,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 *       this can not really be done now due to use of $this->getWikiText using wfMessage()->plain()
 	 *       It is possible to mock such methods but only if namespaces are used
 	 */
-	public function testGetHtml( Status $status, $wikitext, $html) {
+	public function testGetHtml( Status $status, $wikitext, $html ) {
 		$this->assertEquals( $html, $status->getHTML() );
 	}
 
