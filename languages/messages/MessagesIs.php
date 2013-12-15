@@ -239,12 +239,12 @@ $messages = array(
 'tog-hidepatrolled' => 'Fela yfirfarnar breytingar í nýlegum breytingum',
 'tog-newpageshidepatrolled' => 'Fela yfirfarnar breytingar í listanum yfir nýjar síður',
 'tog-extendwatchlist' => 'Sýna allar breytingar á vaktlistanum, ekki einungis þær nýjustu',
-'tog-usenewrc' => 'Flokka breytingar eftir síðu í nýlegum breytingum og vaktlista (þarfnast JavaScript)',
+'tog-usenewrc' => 'Flokka breytingar eftir síðu í nýlegum breytingum og vaktlista',
 'tog-numberheadings' => 'Númera fyrirsagnir sjálfkrafa',
-'tog-showtoolbar' => 'Sýna breytingarverkfærastiku (JavaScript)',
-'tog-editondblclick' => 'Breyta síðum þegar tvísmellt er (JavaScript)',
+'tog-showtoolbar' => 'Sýna breytingarverkfærastiku',
+'tog-editondblclick' => 'Breyta síðum þegar tvísmellt er',
 'tog-editsection' => 'Virkja hlutabreytingu með [breyta] tenglum',
-'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir (JavaScript)',
+'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir',
 'tog-showtoc' => 'Sýna efnisyfirlit (fyrir síður með meira en 3 fyrirsagnir)',
 'tog-rememberpassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',
 'tog-watchcreations' => 'Bæta síðum sem ég bý til og skrám sem ég hleð inn á vaktlistann minn',
@@ -261,7 +261,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Sýna fjölda vaktandi notenda',
 'tog-oldsig' => 'Núverandi undirskrift:',
 'tog-fancysig' => 'Meðhöndla undirskrift sem wikimál (án sjálfvirks tengils)',
-'tog-uselivepreview' => 'Nota beina forskoðun (JavaScript) (Á tilraunastigi)',
+'tog-uselivepreview' => 'Nota beina forskoðun (Á tilraunastigi)',
 'tog-forceeditsummary' => 'Birta áminningu þegar breytingarágripið er tómt',
 'tog-watchlisthideown' => 'Ekki sýna mínar breytingar á vaktlistanum',
 'tog-watchlisthidebots' => 'Ekki sýna breytingar vélmenna á vaktlistanum',
@@ -624,7 +624,7 @@ Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ógildur titill í nafnrými "$2" og með textann "$3"',
 'invalidtitle-unknownnamespace' => 'Ógildur titill með óþekkt nafnrými númer $1 og texta "$2"',
 'exception-nologin' => 'Óinnskráð(ur)',
-'exception-nologin-text' => 'Þessi síða eða aðgerð krefst þess að þú sért skráður inn á þessum wiki.',
+'exception-nologin-text' => 'Vinsamlegast [[Special:Userlogin|skráðu þig inn]] til þess að hafa aðgang að þessari síðu eða aðgerð.',
 
 # Virus scanner
 'virus-badscanner' => "Slæm stilling: óþekktur veiruskannari: ''$1''",
@@ -634,7 +634,6 @@ Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Þú hefur verið skráð(ur) út.'''
 
-Þú getur haldið áfram að nota {{SITENAME}} óþekkt(ur), eða þú getur <span class='plainlinks'>[$1 skráð þig inn aftur]</span> sem sami eða annar notandi.
 Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá skráð(ur) inn, þangað til að þú hreinsar skyndiminnið í vafranum þínum.",
 'welcomeuser' => 'Velkomin(n), $1!',
 'welcomecreation-msg' => 'Aðgangurinn þinn hefur verið búinn til.
@@ -672,7 +671,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'gotaccount' => "Nú þegar með notandanafn? '''$1'''.",
 'gotaccountlink' => 'Skráðu þig inn',
 'userlogin-resetlink' => 'Gleymdir þú notendaupplýsingunum þínum?',
-'userlogin-resetpassword-link' => 'Endursetja lykilorð',
+'userlogin-resetpassword-link' => 'Gleymdiru lykilorðinu þínu?',
 'helplogin-url' => 'Help:Innskráning',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp við innskráningu]]',
 'userlogin-loggedin' => 'Þú ert búin(n) að skrá þig inn sem {{GENDER:$1|$1}}.
@@ -724,7 +723,7 @@ Athugaðu hvort um innsláttavillu er að ræða eða [[Special:UserLogin/signup
 'passwordtooshort' => 'Lykilorð skal vera að minnsta kosti {{plural: $1 |einn stafur|$1 stafir}}.',
 'password-name-match' => 'Þarf að lykilorð þitt sé öðruvísi notandanafni þínu',
 'password-login-forbidden' => 'Notkun þessa notendanafns og lykilorðs er ekki leyfileg.',
-'mailmypassword' => 'Senda nýtt lykilorð með tölvupósti',
+'mailmypassword' => 'Endurstilla lykilorð',
 'passwordremindertitle' => 'Nýtt tímabundið aðgangsorð fyrir {{SITENAME}}',
 'passwordremindertext' => 'Einhver (líklegast þú, á vistfanginu $1) hefur beðið um að fá nýtt
 lykilorð fyrir {{SITENAME}} ($4). Tímabundið lykilorð fyrir notandann „$2“
@@ -746,7 +745,7 @@ Til að koma í veg fyrir misnotkun, er aðeins einn tölvupóstur sendur {{PLUR
 'acct_creation_throttle_hit' => 'Því miður, hafa verið búnir til {{PLURAL:$1|1 aðgang|$1 aðganga}} nýr aðgangar í dag sem er hámarksfjöldi nýskráninga á einum degi.
 Þú getur því miður ekki búið til nýjan aðgang frá þessari IP-tölu að svo stöddu.',
 'emailauthenticated' => 'Netfang þitt var staðfest þann $2 klukkan $3.',
-'emailnotauthenticated' => 'Veffang þitt hefur ekki enn verið sannreynt. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
+'emailnotauthenticated' => 'Tölvupóstfang þitt hefur ekki enn verið staðfest. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
 'noemailprefs' => 'Tilgreindu netfang svo þessar aðgerðir virki.',
 'emailconfirmlink' => 'Staðfesta netfang þitt',
 'invalidemailaddress' => 'Ekki er hægt að taka við netfangi þínu þar sem að það er á ógildu formi.
@@ -1184,8 +1183,8 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-hide-user' => 'Notandanafn/vistfang',
 'revdelete-hide-restricted' => 'Dylja gögn frá stjórnendum og öðrum',
 'revdelete-radio-same' => '(ekki breyta)',
-'revdelete-radio-set' => 'Sjáanlegt',
-'revdelete-radio-unset' => 'Falið',
+'revdelete-radio-set' => 'Falið',
+'revdelete-radio-unset' => 'Sjáanlegt',
 'revdelete-suppress' => 'Dylja gögn frá stjórnendum og öðrum',
 'revdelete-unsuppress' => 'Fjarlægja takmarkanir á endurvöktum breytingum',
 'revdelete-log' => 'Ástæða:',
@@ -1530,7 +1529,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-ipblock-exempt' => 'Hunsa bönn vistfanga, sjálfvirk bönn og fjöldabönn',
 'right-proxyunbannable' => 'Sneiða hjá sjálfvirkum proxy-bönnum',
 'right-unblockself' => 'Afbanna sjálfan sig',
-'right-protect' => 'Breyta verndunarstigi og breyta vernduðum síðum',
+'right-protect' => 'Breyta verndunarstigi og breyta keðjuvernduðum síðum',
 'right-editprotected' => 'Breyta síðum vernduðum sem „{{int:protect-level-sysop}}“',
 'right-editsemiprotected' => 'Breyta síðum vernduðum sem „{{int:protect-level-autoconfirmed}}“',
 'right-editinterface' => 'Breyta notandaviðmótinu',
@@ -1623,7 +1622,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',
 'recentchanges-label-bot' => 'Þessi breytingar var gerð af vélmenni',
 'recentchanges-label-unpatrolled' => 'Þessi breyting hefur ekki verið yfirfarin',
-'recentchanges-legend-newpage' => '$1 - ný síða',
+'recentchanges-legend-newpage' => '(sjá einng [[Special:NewPages|lista yfir nýjar síður]])',
 'rcnotefrom' => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",
 'rclistfrom' => 'Sýna breytingar frá og með $1',
 'rcshowhideminor' => '$1 minniháttar breytingar',
@@ -2342,7 +2341,7 @@ Til þess að hafa samband við $PAGEEDITOR, smelltu á:
    $PAGEEDITOR_WIKI
 
 Athugaðu að frekari breytingar á $PAGETITLE leiða
-ekki af sér fleiri tilkynningar fyrr en þú hefur heimsótt síðuna.
+ekki af sér fleiri tilkynningar fyrr en þú hefur heimsótt síðuna á meðan þú ert skráð/ur inn.
 
 Kveðja,
 {{SITENAME}}
@@ -2384,9 +2383,11 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 'deleteotherreason' => 'Aðrar/fleiri ástæður:',
 'deletereasonotherlist' => 'Önnur ástæða',
 'deletereason-dropdown' => '* Algengar ástæður
+** Amapóstur
 ** Að beiðni höfundar
 ** Höfundaréttarbrot
-** Skemmdarverk',
+** Skemmdarverk
+** Brotin tilvísun',
 'delete-edit-reasonlist' => 'Breyta eyðingarástæðum',
 'delete-toobig' => 'Þessi síða hefur stóra breytingarskrá, yfir $1 {{PLURAL:$1|breyting|breytingar}}.
 Óheimilt er að eyða slíkum síðum til að valda ekki óæskilegum truflunum á {{SITENAME}}.',
@@ -2407,7 +2408,7 @@ einhver annar hefur breytt síðunni eða tekið breytinguna til baka.
 Síðasta breyting síðunnar er frá [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Beytingarágripið var: \"''\$1''\".",
 'revertpage' => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]',
-'revertpage-nouser' => 'Tók aftur breytingar (notendanafn fjarlægt) til síðustu útgáfu [[User:$1|$1]]',
+'revertpage-nouser' => 'Tók aftur breytingar falins notanda til síðustu útgáfu {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Tók til baka breytingar eftir $1; núverandi $2.',
 
 # Edit tokens
@@ -3144,7 +3145,7 @@ Vinsamlegast reyndu aftur.',
 'svg-long-desc' => 'SVG-skrá, að nafni til $1 × $2 dílar, skráarstærð: $3',
 'svg-long-desc-animated' => 'SVG-hreyfimynd, að nafni til $1 × $2 dílar, skráarstærð: $3',
 'svg-long-error' => 'Ógild SVG skrá: $1',
-'show-big-image' => 'Mesta upplausn',
+'show-big-image' => 'Upphafleg skrá',
 'show-big-image-preview' => 'Stærð þessarar forskoðunar: $1',
 'show-big-image-other' => '{{PLURAL:$2|Önnur upplausn|Aðrar upplausnir}}: $1.',
 'show-big-image-size' => '$1 x $2 dílar',
@@ -3385,7 +3386,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-compression-1' => 'Ósamþjappað',
 
 'exif-copyrighted-true' => 'Höfundaréttarvarið',
-'exif-copyrighted-false' => 'Í Almenningi',
+'exif-copyrighted-false' => 'Höfundaréttarstaða ekki tilgreind',
 
 'exif-unknowndate' => 'Óþekkt dagsetning',
 

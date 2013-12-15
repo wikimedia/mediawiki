@@ -20,6 +20,7 @@
  * @author Asaifm
  * @author Avocato
  * @author Bachounda
+ * @author Basharh
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
@@ -1905,6 +1906,7 @@ $1",
 'recentchanges-label-minor' => 'هذا تعديل طفيف',
 'recentchanges-label-bot' => 'أُجْرِيَ هذا التعديل بواسطة بوت',
 'recentchanges-label-unpatrolled' => 'لم يراجع هذا التعديل إلى الآن',
+'recentchanges-label-plusminus' => 'حجم الصفحة تغير بهذا العدد من وحدات البايت',
 'recentchanges-legend-newpage' => '(راجع أيضا [[Special:NewPages|قائمة الصفحات الجديدة]])',
 'rcnotefrom' => "بالأسفل التغييرات منذ '''$2''' (إلى '''$1''' معروضة).",
 'rclistfrom' => 'أظهر التغييرات بدءا من $1',

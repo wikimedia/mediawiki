@@ -1517,6 +1517,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'prefs-tokenwatchlist' => 'Jeton',
 'prefs-diffs' => 'Diferențe',
 'prefs-help-prefershttps' => 'Această preferință va avea efect la următoarea autentificare.',
+'prefs-tabs-navigation-hint' => 'Sfat: Puteți folosi tastele săgeată stânga și dreapta pentru a naviga între filele din cadrul listei de file.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Adresa de e-mail pare validă',
@@ -2169,6 +2170,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|legături interwiki|de legături interwiki}}',
 'nlinks' => '{{PLURAL:$1|o legătură|$1 legături|$1 de legături}}',
 'nmembers' => '$1 {{PLURAL:$1|membru|membri|de membri}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membru|membri|de membri}}',
 'nrevisions' => '{{PLURAL:$1|o versiune|$1 versiuni|$1 de versiuni}}',
 'nviews' => '{{PLURAL:$1|o accesare|$1 accesări|$1 de accesări}}',
 'nimagelinks' => 'Utilizat pe $1 {{PLURAL:$1|pagină|pagini}}',

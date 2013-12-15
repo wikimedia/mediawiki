@@ -1541,6 +1541,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Zmiany',
 'prefs-help-prefershttps' => 'Ta opcja zacznie działać przy twoim następnym zalogowaniu.',
+'prefs-tabs-navigation-hint' => 'Wskazówka: do poruszania się między zakładkami możesz użyć klawiszy strzałek w lewo i w prawo',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Wygląda na prawidłowy',
@@ -2197,6 +2198,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwiki|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linki|linków}}',
 'nmembers' => '$1 {{PLURAL:$1|element|elementy|elementów}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$1|element|elementy|elementów}}',
 'nrevisions' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'nviews' => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'nimagelinks' => 'Używane na $1 {{PLURAL:$1|stronie|stronach}}',
@@ -3866,6 +3868,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(język domyślny)',
+'img-lang-go' => 'Dalej',
 
 # Table pager
 'ascending_abbrev' => 'rosn.',

@@ -1338,6 +1338,7 @@ Tuta informacija budźe zjawna.',
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Rozdźěle',
 'prefs-help-prefershttps' => 'Tute nastajenje so po twojim přichodnym přizjewjenju wuskutkuje.',
+'prefs-tabs-navigation-hint' => 'Tip: Móžeš lěwy a prawy šipk wužiwać, zo byšće mjez rajtarkami w lisćinje rajtarkow nawigował.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Zda so, zo e-mejlowa adresa je płaćiwa',

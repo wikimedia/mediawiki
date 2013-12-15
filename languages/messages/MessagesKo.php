@@ -1603,6 +1603,7 @@ HTML 태그를 확인하세요.',
 'prefs-tokenwatchlist' => '토큰',
 'prefs-diffs' => '차이',
 'prefs-help-prefershttps' => '이 사용자 환경 설정은 다음 로그인에 적용됩니다.',
+'prefs-tabs-navigation-hint' => '팁: 탭 목록에서 탭 사이를 둘러보려면 왼쪽과 오른쪽 화살표 키를 사용할 수 있습니다.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => '이메일 주소가 올바른 것으로 보입니다',

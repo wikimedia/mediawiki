@@ -2211,6 +2211,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'ninterwikis' => '$1 {{PLURAL:$1|interviki|interviki}}',
 'nlinks' => '$1 {{PLURAL:$1|bağlantı|bağlantılar}}',
 'nmembers' => '{{PLURAL:$1|üye|üye}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|üye|üye}}',
 'nrevisions' => '{{PLURAL:$1|değişiklik|değişiklikler}}',
 'nviews' => '$1 {{PLURAL:$1|görünüm|görünüm}}',
 'nimagelinks' => '$1 {{PLURAL:$1|sayfada|sayfada}} kullanılıyor',
