@@ -403,7 +403,12 @@ class Preferences {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", $context->getTitle(), $user, ParserOptions::newFromContext( $context ) );
+		$oldsigWikiText = $wgParser->preSaveTransform(
+			'~~~',
+			$context->getTitle(),
+			$user,
+			ParserOptions::newFromContext( $context )
+		);
 		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
 		$defaultPreferences['oldsig'] = array(
 			'type' => 'info',
@@ -423,7 +428,8 @@ class Preferences {
 		$defaultPreferences['fancysig'] = array(
 			'type' => 'toggle',
 			'label-message' => 'tog-fancysig',
-			'help-message' => 'prefs-help-signature', // show general help about signature at the bottom of the section
+			// show general help about signature at the bottom of the section
+			'help-message' => 'prefs-help-signature',
 			'section' => 'personal/signature'
 		);
 
@@ -1135,7 +1141,10 @@ class Preferences {
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
 
-			$display = $sn . ' ' . $context->msg( 'parentheses', $context->getLanguage()->pipeList( $linkTools ) )->text();
+			$display = $sn . ' ' . $context->msg(
+				'parentheses',
+				$context->getLanguage()->pipeList( $linkTools )
+			)->text();
 			$ret[$display] = $skinkey;
 		}
 
@@ -1226,8 +1235,13 @@ class Preferences {
 				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
-				false === $wgParser->validateSig( $signature ) ) {
-			return Xml::element( 'span', array( 'class' => 'error' ), $form->msg( 'badsig' )->text() );
+				$wgParser->validateSig( $signature ) === false
+		) {
+			return Xml::element(
+				'span',
+				array( 'class' => 'error' ),
+				$form->msg( 'badsig' )->text()
+			);
 		} else {
 			return true;
 		}
@@ -1258,7 +1272,12 @@ class Preferences {
 	 * @param array $remove array of items to remove
 	 * @return HtmlForm
 	 */
-	static function getFormObject( $user, IContextSource $context, $formClass = 'PreferencesForm', array $remove = array() ) {
+	static function getFormObject(
+		$user,
+		IContextSource $context,
+		$formClass = 'PreferencesForm',
+		array $remove = array()
+	) {
 		$formDescriptor = Preferences::getPreferences( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
@@ -1299,9 +1318,16 @@ class Preferences {
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that $wgLocalTZoffset is the same as the local time zone offset
 		if ( $wgLocalTZoffset == $timestamp->format( 'Z' ) / 60 ) {
-			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $timestamp->getTimezone()->getName() )->text();
+			$server_tz_msg = $context->msg(
+				'timezoneuseserverdefault',
+				$timestamp->getTimezone()->getName()
+			)->text();
 		} else {
-			$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
+			$tzstring = sprintf(
+				'%+03d:%02d',
+				floor( $wgLocalTZoffset / 60 ),
+				abs( $wgLocalTZoffset ) % 60
+			);
 			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $tzstring )->text();
 		}
 		$opt[$server_tz_msg] = "System|$wgLocalTZoffset";
