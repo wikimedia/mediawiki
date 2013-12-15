@@ -271,10 +271,9 @@ class SkinTemplate extends Skin {
 	 * initialize various variables and generate the template
 	 *
 	 * @since 1.23
-	 * @param $out OutputPage
 	 * @return QuickTemplate the template to be executed by outputPage
 	 */
-	protected function prepareQuickTemplate( OutputPage $out = null ) {
+	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath,
 			$wgMimeType, $wgJsMimeType, $wgXhtmlNamespaces, $wgHtml5Version,
 			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
@@ -285,6 +284,7 @@ class SkinTemplate extends Skin {
 
 		$title = $this->getTitle();
 		$request = $this->getRequest();
+		$out = $this->getOutput();
 		$tpl = $this->setupTemplateForOutput();
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
