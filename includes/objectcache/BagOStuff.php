@@ -233,6 +233,23 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Batch insertion
+	 * @param array $data $key => $value assoc array
+	 * @param int $exptime
+	 * @return bool success
+	 * @since 1.23
+	 */
+	public function setMulti( array $data, $exptime = 0 ) {
+		$res = true;
+		foreach ( $data as $key => $value ) {
+			if ( !$this->set( $key, $value, $exptime ) ) {
+				$res = false;
+			}
+		}
+		return $res;
+	}
+
+	/**
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime integer
