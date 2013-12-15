@@ -562,7 +562,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 
 		$panel = array();
-		$panel[] = self::makeLegend( $this->getContext() );
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
 		$panel[] = '<hr />';
 
@@ -652,59 +651,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		}
 
 		return $extraOpts;
-	}
-
-	/**
-	 * Return the legend displayed within the fieldset
-	 *
-	 * @param $context the object available as $this in non-static functions
-	 * @return string
-	 */
-	public static function makeLegend( IContextSource $context ) {
-		$user = $context->getUser();
-		# The legend showing what the letters and stuff mean
-		$legend = Xml::openElement( 'dl', array( 'class' => 'mw-changeslist-legend' ) ) . "\n";
-		# Iterates through them and gets the messages for both letter and tooltip
-		# Messages:
-		# * minoreditletter
-		# * boteditletter
-		# * newpageletter
-		# * unpatrolledletter
-		# * recentchanges-label-minor
-		# * recentchanges-label-bot
-		# * recentchanges-label-newpage
-		# * recentchanges-label-unpatrolled
-		$legendItems = array( 'newpage' => 'newpage', 'minor' => 'minoredit', 'bot' => 'botedit' );
-		if ( $user->useRCPatrol() ) {
-			$legendItems['unpatrolled'] = 'unpatrolled';
-		}
-		foreach ( $legendItems as $label => $letter ) { # generate items of the legend
-			$legend .= Xml::element( 'dt',
-				array( 'class' => $label ), $context->msg( $letter . 'letter' )->text()
-			) . "\n";
-			if ( $letter === 'newpage' ) {
-				$legend .= Xml::openElement( 'dd' );
-				$legend .= $context->msg( "recentchanges-label-$label" )->escaped();
-				$legend .= ' ' . $context->msg( 'recentchanges-legend-newpage' )->parse();
-				$legend .= Xml::closeElement( 'dd' ) . "\n";
-			} else {
-				$legend .= Xml::element( 'dd', array(),
-					$context->msg( "recentchanges-label-$label" )->text()
-				) . "\n";
-			}
-		}
-		# (+-123)
-		$legend .= Xml::tags( 'dt',
-			array( 'class' => 'mw-plusminus-pos' ),
-			$context->msg( 'recentchanges-legend-plusminus' )->parse()
-		) . "\n";
-		$legend .= Xml::element(
-			'dd',
-			array( 'class' => 'mw-changeslist-legend-plusminus' ),
-			$context->msg( 'recentchanges-label-plusminus' )->text()
-		) . "\n";
-		$legend .= Xml::closeElement( 'dl' ) . "\n";
-		return $legend;
 	}
 
 	/**

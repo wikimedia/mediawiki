@@ -39,7 +39,6 @@ class SpecialWatchlist extends SpecialPage {
 
 		$user = $this->getUser();
 		$output = $this->getOutput();
-		$output->addModuleStyles( 'mediawiki.special.changeslist' );
 
 		# Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
@@ -255,8 +254,6 @@ class SpecialWatchlist extends SpecialPage {
 			false,
 			array( 'id' => 'mw-watchlist-options' )
 		);
-
-		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
 
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
