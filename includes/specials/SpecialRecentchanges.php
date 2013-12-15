@@ -661,31 +661,35 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return string
 	 */
 	public static function makeLegend( IContextSource $context ) {
-		global $wgRecentChangesFlags;
 		$user = $context->getUser();
 		# The legend showing what the letters and stuff mean
 		$legend = Xml::openElement( 'dl', array( 'class' => 'mw-changeslist-legend' ) ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
-		$legendItems = $wgRecentChangesFlags;
-		if ( !$user->useRCPatrol() ) {
-			unset( $legendItems['unpatrolled'] );
+		# Messages:
+		# * minoreditletter
+		# * boteditletter
+		# * newpageletter
+		# * unpatrolledletter
+		# * recentchanges-label-minor
+		# * recentchanges-label-bot
+		# * recentchanges-label-newpage
+		# * recentchanges-label-unpatrolled
+		$legendItems = array( 'newpage' => 'newpage', 'minor' => 'minoredit', 'bot' => 'botedit' );
+		if ( $user->useRCPatrol() ) {
+			$legendItems['unpatrolled'] = 'unpatrolled';
 		}
-		foreach ( $legendItems as $key => $legendInfo ) { # generate items of the legend
-			$label = $legendInfo['title'];
-			$letter = $legendInfo['letter'];
-			$cssClass = isset( $legendInfo['class'] ) ? $legendInfo['class'] : $key;
-
+		foreach ( $legendItems as $label => $letter ) { # generate items of the legend
 			$legend .= Xml::element( 'dt',
-				array( 'class' => $cssClass ), $context->msg( $letter )->text()
+				array( 'class' => $label ), $context->msg( $letter . 'letter' )->text()
 			) . "\n";
-			if ( $key === 'newpage' ) {
+			if ( $letter === 'newpage' ) {
 				$legend .= Xml::openElement( 'dd' );
-				$legend .= $context->msg( $label )->escaped();
+				$legend .= $context->msg( "recentchanges-label-$label" )->escaped();
 				$legend .= ' ' . $context->msg( 'recentchanges-legend-newpage' )->parse();
 				$legend .= Xml::closeElement( 'dd' ) . "\n";
 			} else {
 				$legend .= Xml::element( 'dd', array(),
-					$context->msg( $label )->text()
+					$context->msg( "recentchanges-label-$label" )->text()
 				) . "\n";
 			}
 		}
