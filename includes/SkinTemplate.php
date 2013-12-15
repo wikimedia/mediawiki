@@ -247,7 +247,6 @@ class SkinTemplate extends Skin {
 		}
 
 		$out = $this->getOutput();
-		$user = $this->getUser();
 
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
