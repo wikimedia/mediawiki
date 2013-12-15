@@ -272,6 +272,70 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param array $data
+	 * @param int $expiry
+	 * @return bool
+	 */
+	public function setMulti( array $data, $expiry = 0 ) {
+		$keysByTable = array();
+		foreach ( $data as $key => $value ) {
+			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
+			$keysByTable[$serverIndex][$tableName][] = $key;
+		}
+
+		$this->garbageCollect(); // expire old entries if any
+
+		$result = true;
+		$exptime = (int)$expiry;
+		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
+			$db = $this->getDB( $serverIndex );
+
+			if ( $exptime < 0 ) {
+				$exptime = 0;
+			}
+
+			if ( $exptime == 0 ) {
+				$encExpiry = $this->getMaxDateTime( $db );
+			} else {
+				if ( $exptime < 3.16e8 ) { # ~10 years
+					$exptime += time();
+				}
+				$encExpiry = $db->timestamp( $exptime );
+			}
+			foreach ( $serverKeys as $tableName => $tableKeys ) {
+				$rows = array();
+				foreach ( $tableKeys as $key ) {
+					$rows[] = array(
+						'keyname' => $key,
+						'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+						'exptime' => $encExpiry,
+					);
+				}
+
+				try {
+					$db->commit( __METHOD__, 'flush' );
+					$db->replace(
+						$tableName,
+						array( 'keyname' ),
+						$rows,
+						__METHOD__
+					);
+					$db->commit( __METHOD__, 'flush' );
+				} catch ( DBError $e ) {
+					$this->handleWriteError( $e, $serverIndex );
+					$result = false;
+				}
+
+			}
+
+		}
+
+		return $result;
+	}
+
+
+
+	/**
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime int

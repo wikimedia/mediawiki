@@ -209,6 +209,58 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	/**
+	 * @param array $data
+	 * @param int $expiry
+	 * @return bool
+	 */
+	public function setMulti( array $data, $expiry = 0 ) {
+		$section = new ProfileSection( __METHOD__ );
+
+		$batches = array();
+		$conns = array();
+		foreach ( $data as $key => $value ) {
+			list( $server, $conn ) = $this->getConnection( $key );
+			if ( !$conn ) {
+				continue;
+			}
+			$conns[$server] = $conn;
+			$batches[$server][] = $key;
+		}
+
+		$expiry = $this->convertToRelative( $expiry );
+		$result = true;
+		foreach ( $batches as $server => $batchKeys ) {
+			$conn = $conns[$server];
+			try {
+				$conn->multi( Redis::PIPELINE );
+				foreach ( $batchKeys as $key ) {
+					if ( $expiry ) {
+						$conn->setex( $key, $expiry, $this->serialize( $data[$key] ) );
+					} else {
+						$conn->set( $key, $this->serialize( $data[$key] ) );
+					}
+				}
+				$batchResult = $conn->exec();
+				if ( $batchResult === false ) {
+					$this->debug( "setMulti request to $server failed" );
+					continue;
+				}
+				foreach ( $batchResult as $value ) {
+					if ( $value === false ) {
+						$result = false;
+					}
+				}
+			} catch ( RedisException $e ) {
+				$this->handleException( $server, $conn, $e );
+			}
+		}
+
+		return $result;
+	}
+
+
+
 	public function add( $key, $value, $expiry = 0 ) {
 		$section = new ProfileSection( __METHOD__ );
 
