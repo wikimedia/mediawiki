@@ -653,7 +653,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Return the legend displayed within the fieldset
+	 * Return the legend displayed within the fieldset.
+	 *
+	 * This method is also called from SpecialWatchlist.
 	 *
 	 * @param $context the object available as $this in non-static functions
 	 * @return string
