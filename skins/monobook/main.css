@@ -250,6 +250,11 @@ table.rimage {
 	border: 1px solid #aaa;
 	padding: 0 .8em .3em .5em;
 }
+.pBody:after {
+	content: '';
+	clear: both;
+	display: block;
+}
 .portlet ul {
 	line-height: 1.5em;
 	font-size: 95%;
