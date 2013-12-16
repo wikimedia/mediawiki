@@ -324,7 +324,6 @@ class JobQueueDB extends JobQueue {
 				$job = Job::factory( $row->job_cmd, $title,
 					self::extractBlob( $row->job_params ), $row->job_id );
 				$job->metadata['id'] = $row->job_id;
-				$job->id = $row->job_id; // XXX: work around broken subclasses
 				break; // done
 			} while ( true );
 		} catch ( DBError $e ) {
@@ -596,11 +595,9 @@ class JobQueueDB extends JobQueue {
 					$job = Job::factory(
 						$row->job_cmd,
 						Title::makeTitle( $row->job_namespace, $row->job_title ),
-						strlen( $row->job_params ) ? unserialize( $row->job_params ) : false,
-						$row->job_id
+						strlen( $row->job_params ) ? unserialize( $row->job_params ) : false
 					);
 					$job->metadata['id'] = $row->job_id;
-					$job->id = $row->job_id; // XXX: work around broken subclasses
 					return $job;
 				}
 			);
