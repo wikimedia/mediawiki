@@ -73,6 +73,8 @@ production.
 * (bug 57098) SpecialPasswordReset now obeys returnto parameter
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
+* (bug 58213) Added an environmental check for very old PCRE versions to the
+  the installer and updater. PCRE 7.2 or later is now required.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
