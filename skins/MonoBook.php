@@ -221,6 +221,8 @@ echo $footerEnd;
 				} ?>
 
 			</form>
+
+			<?php $this->renderAfterPortlet( 'search' ); ?>
 		</div>
 	</div>
 <?php
@@ -242,6 +244,7 @@ echo $footerEnd;
 				} ?>
 
 			</ul>
+<?php		$this->renderAfterPortlet( 'cactions' ); ?>
 		</div>
 	</div>
 <?php
@@ -263,6 +266,7 @@ echo $footerEnd;
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
 ?>
 			</ul>
+<?php		$this->renderAfterPortlet( 'tb' ); ?>
 		</div>
 	</div>
 <?php
@@ -270,7 +274,7 @@ echo $footerEnd;
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if ( $this->data['language_urls'] ) {
+		if ( $this->data['language_urls'] !== false ) {
 ?>
 	<div id="p-lang" class="portlet" role="navigation">
 		<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
@@ -281,6 +285,8 @@ echo $footerEnd;
 
 <?php		} ?>
 			</ul>
+
+<?php		$this->renderAfterPortlet( 'lang' ); ?>
 		</div>
 	</div>
 <?php
@@ -315,9 +321,12 @@ echo $footerEnd;
 			# allow raw HTML block to be defined by extensions
 			print $cont;
 		}
+
+		$this->renderAfterPortlet( $bar );
 ?>
 		</div>
 	</div>
 <?php
 	}
+
 } // end of class

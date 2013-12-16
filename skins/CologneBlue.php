@@ -90,21 +90,37 @@ class CologneBlueTemplate extends BaseTemplate {
 			return "";
 		}
 
+		$html = '';
+
 		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
 		// not to capitalize the language names.
 		$language_urls = $this->data['language_urls'];
-		if ( empty( $language_urls ) ) {
-			return "";
+		if ( !empty( $language_urls ) ) {
+			$s = array();
+			foreach ( $language_urls as $key => $data ) {
+				$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
+			}
+
+			$html = wfMessage( 'otherlanguages' )->text()
+				. wfMessage( 'colon-separator' )->text()
+				. $this->getSkin()->getLanguage()->pipeList( $s );
 		}
 
-		$s = array();
-		foreach ( $language_urls as $key => $data ) {
-			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
-		}
+		$html .= $this->renderAfterPortlet( 'lang' );
 
-		return wfMessage( 'otherlanguages' )->text()
-			. wfMessage( 'colon-separator' )->text()
-			. $this->getSkin()->getLanguage()->pipeList( $s );
+		return $html;
+	}
+
+  	/**
+	 * @param string $name
+	 */
+	protected function renderAfterPortlet( $name ) {
+		$content = '';
+		wfRunHooks( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
+
+		$html = $content !== '' ? "<div class='after-portlet after-portlet-$name'>$content</div>" : '';
+
+		return $html;
 	}
 
 	function pageTitleLinks() {
@@ -517,6 +533,8 @@ class CologneBlueTemplate extends BaseTemplate {
 				$role = ( $heading == 'search' ) ? 'search' : 'navigation';
 				$s .= "<div class=\"portlet\" id=\"$portletId\" role=\"$role\">\n$headingHTML\n$listHTML\n</div>\n";
 			}
+
+			$s .= $this->renderAfterPortlet( $heading );
 		}
 
 		$s .= "</div>\n";
