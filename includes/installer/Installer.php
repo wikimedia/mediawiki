@@ -42,6 +42,14 @@ abstract class Installer {
 	const MINIMUM_PHP_VERSION = '5.3.2';
 
 	/**
+	 * The oldest version of PCRE we can support.
+	 *
+	 * Defining this is necessary because PHP may be linked with a system version
+	 * of PCRE, which may be older than that bundled with the minimum PHP version.
+	 */
+	const MINIMUM_PCRE_VERSION = '7.2';
+
+	/**
 	 * @var array
 	 */
 	protected $settings;
@@ -414,6 +422,15 @@ abstract class Installer {
 		} else {
 			$this->showMessage( 'config-env-php-toolow', $phpVersion, self::MINIMUM_PHP_VERSION );
 			$good = false;
+		}
+
+		// Must go here because an old version of PCRE can prevent other checks from completing
+		if ( $good ) {
+			list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+			if ( version_compare( $pcreVersion, self::MINIMUM_PCRE_VERSION, '<' ) ) {
+				$this->showError( 'config-pcre-old', self::MINIMUM_PCRE_VERSION, $pcreVersion );
+				$good = false;
+			}
 		}
 
 		if ( $good ) {
@@ -826,11 +843,6 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		if ( !function_exists( 'preg_match' ) ) {
-			$this->showError( 'config-pcre' );
-
-			return false;
-		}
 		wfSuppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
