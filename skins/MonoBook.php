@@ -270,7 +270,7 @@ echo $footerEnd;
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if ( $this->data['language_urls'] ) {
+		if ( $this->data['language_urls'] !== false ) {
 ?>
 	<div id="p-lang" class="portlet" role="navigation">
 		<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
@@ -281,6 +281,15 @@ echo $footerEnd;
 
 <?php		} ?>
 			</ul>
+
+<?php
+		$htmlToAppend = null;
+		wfRunHooks( 'SkinTemplateAfterLanguages', array( $this, &$htmlToAppend ) );
+
+		if ( is_string( $htmlToAppend ) ) {
+			echo $htmlToAppend;
+		}
+?>
 		</div>
 	</div>
 <?php

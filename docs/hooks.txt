@@ -2150,6 +2150,11 @@ subPageSubtitle() generates.
 If true is returned, $subpages will be ignored and the rest of
 subPageSubtitle() will run.
 
+'SkinTemplateAfterLanguages': After output of language links section, for adding
+raw HTML after the section. Any uses of the hook need to handle escaping.
+$template: QuickTemplate
+&$htmlToAppend: null|string null by default, if string (html) then it is injected.
+
 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink': After creating the "permanent
 link" tab.
 $sktemplate: SkinTemplate object

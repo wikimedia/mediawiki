@@ -274,7 +274,7 @@ class VectorTemplate extends BaseTemplate {
 					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
 					break;
 				case 'LANGUAGES':
-					if ( $this->data['language_urls'] ) {
+					if ( $this->data['language_urls']  !== false ) {
 						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
 					}
 					break;
@@ -318,7 +318,17 @@ class VectorTemplate extends BaseTemplate {
 		} else { ?>
 		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
 <?php
-		} ?>
+		}
+
+		if ( $name === 'lang' ) {
+			$htmlToAppend = null;
+			wfRunHooks( 'SkinTemplateAfterLanguages', array( $this, &$htmlToAppend ) );
+
+			if ( is_string( $htmlToAppend ) ) {
+				echo $htmlToAppend;
+			}
+		}
+?>
 	</div>
 </div>
 <?php
