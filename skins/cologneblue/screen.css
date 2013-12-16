@@ -133,6 +133,11 @@ textarea {
 	line-height: inherit;
 }
 
+div.after-portlet {
+	display: inline;
+	padding-left: .5em;
+}
+
 h1 {
 	color: #666666;
 	font-family: Verdana, Arial, sans-serif;

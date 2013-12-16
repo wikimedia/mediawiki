@@ -2006,6 +2006,12 @@ shown.
 $article: the page the form is shown for
 $out: OutputPage object
 
+'QuickTemplateAfterPortlet': After output of portlets, allow injecting
+custom HTML after the section. Any uses of the hook need to handle escaping.
+$template QuickTemplate
+$portlet: string portlet name
+&$html: string
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw.
 &$obj: RawPage object
 &$text: The text that's going to be the output

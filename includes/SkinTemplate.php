@@ -1735,6 +1735,19 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * @param string $name
+	 */
+	protected function renderAfterPortlet( $name ) {
+		$content = '';
+		wfRunHooks( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
+
+		if ( $content !== '' ) {
+			echo "<div class='after-portlet after-portlet-$name'>$content</div>";
+		}
+
+	}
+
+	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
