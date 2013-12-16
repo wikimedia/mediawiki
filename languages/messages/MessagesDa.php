@@ -886,7 +886,7 @@ Din nuværende IP-adresse er $3, og blokerings-id\'et er #$5.
 Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'blockednoreason' => 'ingen begrundelse givet',
 'whitelistedittext' => 'Du skal $1 for at kunne redigere sider.',
-'confirmedittext' => 'Du skal først bekræfte e-mailadressen, før du kan lave ændringer. Udfyld og bekræft din e-mailadresse i dine [[Special:Preferences|indstillinger]].',
+'confirmedittext' => 'Du skal først bekræfte din e-mailadresse, før du kan redigere sider. Udfyld og bekræft din e-mailadresse i dine [[Special:Preferences|indstillinger]].',
 'nosuchsectiontitle' => 'Kan ikke finde afsnittet',
 'nosuchsectiontext' => 'Du forsøgte at ændre et afsnit der ikke findes. Det kan være flyttet eller slettet, siden du hentede siden.',
 'loginreqtitle' => 'Log på nødvendigt',
@@ -1292,7 +1292,7 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'prefsnologintext2' => 'Du skal $1 for at ændre brugerindstillinger.',
 'prefs-skin' => 'Udseende',
 'skin-preview' => 'Forhåndsvisning',
-'datedefault' => 'Ingen præference',
+'datedefault' => 'Standard',
 'prefs-beta' => 'Betafunktioner',
 'prefs-datetime' => 'Dato og klokkeslæt',
 'prefs-labs' => 'Testfunktioner',
@@ -1388,7 +1388,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-dateformat' => 'Formatering af datoer',
 'prefs-timeoffset' => 'Tidsforskel',
 'prefs-advancedediting' => 'Generelle indstillinger',
-'prefs-editor' => 'Redaktør',
+'prefs-editor' => 'Redigeringsprogrammet',
 'prefs-preview' => 'Forhåndsvisning',
 'prefs-advancedrc' => 'Avancerede indstillinger',
 'prefs-advancedrendering' => 'Avancerede indstillinger',
@@ -2220,7 +2220,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'emailuser-title-notarget' => 'Send e-mail til en bruger',
 'emailpage' => 'E-mail bruger',
 'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne {{GENDER:$1|bruger}}.
-Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]], vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
+Den e-mailadresse, du har angivet i [[Special:Preferences|dine indstillinger]], vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
 'usermailererror' => 'E-mail-modulet returnerede en fejl:',
 'defemailsubject' => '{{SITENAME}}-e-mail fra brugeren "$1"',
 'usermaildisabled' => 'Bruger-e-mail deaktiveret',
@@ -3578,11 +3578,11 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # Email address confirmation
 'confirmemail' => 'Bekræft e-mailadresse',
-'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mailadresse i din [[Special:Preferences|brugerprofil]].',
+'confirmemail_noemail' => 'Du har ikke angivet en gyldig e-mailadresse i dine [[Special:Preferences|indstillinger]].',
 'confirmemail_text' => '{{SITENAME}} kræver, at du bekræfter en e-mailadresse (autentificering), før du kan bruge de udvidede e-mailfunktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mailadressen er gyldig.',
 'confirmemail_pending' => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send' => 'Send bekræftelseskode',
-'confirmemail_sent' => 'Bekræftelses-e-mail afsendt.',
+'confirmemail_sent' => 'Bekræftelsesmail afsendt.',
 'confirmemail_oncreate' => 'En bekræftelseskode er sendt til din e-mailadresse. Denne kode skal ikke bruges til at logge på, den kræves til aktivering af e-mailfunktionerne i Wikien.',
 'confirmemail_sendfailed' => '{{SITENAME}} kunne ikke afsende din bekræftelsesmail.
 Kontroller at e-mailadressen er korrekt.
@@ -3868,7 +3868,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'htmlform-int-toohigh' => 'Den angivne værdi er over maksimumsværdien på $1',
 'htmlform-required' => 'Denne værdi skal angives',
 'htmlform-submit' => 'Gem',
-'htmlform-reset' => 'Annuller ændringer',
+'htmlform-reset' => 'Fortryd ændringer',
 'htmlform-selectorother-other' => 'Anden',
 'htmlform-no' => 'Nej',
 'htmlform-yes' => 'Ja',

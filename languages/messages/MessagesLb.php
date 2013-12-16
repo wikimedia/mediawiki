@@ -2035,6 +2035,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'ninterwikis' => '$1 {{PLURAL:$1|Interwiki-Link|Interwiki-Linken}}',
 'nlinks' => '$1 {{PLURAL:$1|Link|Linken}}',
 'nmembers' => '$1 {{PLURAL:$1|Member|Memberen}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|Member|Memberen}}',
 'nrevisions' => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'nviews' => '$1 {{PLURAL:$1|Offro|Offroen}}',
 'nimagelinks' => 'Benotzt op {{PLURAL:$1|enger Säit|$1 Säiten}}',

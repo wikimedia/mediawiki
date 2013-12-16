@@ -8,6 +8,7 @@
  * @file
  *
  * @author Arwel Parry
+ * @author Cymrodor
  * @author Kaganer
  * @author Lloffiwr
  * @author Malafaya
@@ -139,8 +140,8 @@ $messages = array(
 'tog-minordefault' => 'Marcio pob golygiad fel un bach yn ddiofyn',
 'tog-previewontop' => 'Dangos y rhagolwg cyn y blwch golygu',
 'tog-previewonfirst' => 'Dangos rhagolwg ar y golygiad cyntaf',
-'tog-enotifwatchlistpages' => 'Gyrru e-bost ataf pan fo newid i dudalen neu ffeil ar fy rhestr wylio',
-'tog-enotifusertalkpages' => "Gyrru e-bost ataf fy hunan pan fo newid i'm tudalen sgwrs",
+'tog-enotifwatchlistpages' => 'Anfon e-bost ataf pan fo newid i dudalen neu ffeil ar fy rhestr wylio',
+'tog-enotifusertalkpages' => "Anfon e-bost ataf fy hunan pan fo newid i'm tudalen sgwrs",
 'tog-enotifminoredits' => 'Gyrru e-bost ataf hefyd ar gyfer golygiadau bychain i dudalennau a ffeiliau',
 'tog-enotifrevealaddr' => 'Datguddio fy nghyfeiriad e-bost mewn e-byst hysbysu',
 'tog-shownumberswatching' => "Dangos y nifer o ddefnyddwyr sy'n gwylio",
@@ -845,7 +846,7 @@ Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:use
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
 'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto!",
-'continue-editing' => "Neidier i'r blwch golygu",
+'continue-editing' => "Neidio i'r blwch golygu",
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -1227,7 +1228,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-setemail' => 'Gosod cyfeiriad e-bost',
 'prefs-email' => 'E-bostio',
 'prefs-rendering' => 'Ymddangosiad',
-'saveprefs' => 'Cadwer y dewisiadau',
+'saveprefs' => 'Cadw',
 'restoreprefs' => 'Adfer yr holl osodiadau diofyn (ymhob adran)',
 'prefs-editing' => 'Golygu',
 'rows' => 'Rhesi:',
@@ -2893,7 +2894,7 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-rollback' => "Yn troi golygiad(au) y defnyddiwr diwethaf i'r dudalen hon yn ôl gydag un clic.",
 'tooltip-undo' => 'Mae "dadwneud" yn troi\'r golygiad hwn yn ôl ac yn dangos rhagolwg o\'r golygiad adferedig.
 Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
-'tooltip-preferences-save' => 'Rhodder y dewisiadau ar gadw',
+'tooltip-preferences-save' => "Cadw'r dewisiadau",
 'tooltip-summary' => 'Rhowch grynodeb byr',
 'interlanguage-link-title' => '$1 - $2',
 

@@ -1465,6 +1465,7 @@ PICT # тайп тайпан
 'listfiles_user' => 'Декъашхо',
 'listfiles_size' => 'Барам',
 'listfiles_description' => 'Цуьнах лаьцна',
+'listfiles-show-all' => 'Гайта суьртийн шира версеш',
 
 # File description page
 'file-anchor-link' => 'Файл',

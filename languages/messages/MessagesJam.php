@@ -240,7 +240,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Habowt {{SITENAME}}',
-'aboutpage' => 'Project: អំពី',
+'aboutpage' => 'Project:About',
 'copyright' => 'Kantent avielobl anda $1.',
 'copyrightpage' => '{{ns:project}}:Kapirait',
 'currentevents' => 'Korant ivent',

@@ -587,8 +587,8 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'youhavenewmessages' => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
 'youhavenewmessagesfromusers' => '$2 kaptál {{PLURAL:$3|egy|$3}} szerkesztőtől $1!',
 'youhavenewmessagesmanyusers' => '$2 kaptál több szerkesztőtől $1.',
-'newmessageslinkplural' => '{{PLURAL:$1||}}a vitalapodon',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|Új üzenetet|Új üzeneteket}}',
+'newmessageslinkplural' => '{{PLURAL:$1|új üzenet|999=új üzenet}} a vitalapodon',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|változás|999=változás}}',
 'youhavenewmessagesmulti' => 'Új üzenet vár a(z) $1 wikin',
 'editsection' => 'szerkesztés',
 'editold' => 'szerkesztés',
@@ -763,6 +763,8 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'userlogin-resetpassword-link' => 'Elfelejtetted a jelszavad?',
 'helplogin-url' => 'Help:Bejelentkezés',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Segítség a bejelentkezéshez]]',
+'userlogin-loggedin' => 'Már be vagy jelentkezve mint {{GENDER:$1|$1}}. Ha más néven akarsz belépni, alább megteheted.',
+'userlogin-createanother' => 'Felhasználói fiók létrehozása',
 'createacct-join' => 'Add meg az alábbi információkat.',
 'createacct-another-join' => 'Add meg az új fiók adatait alább.',
 'createacct-emailrequired' => 'E-mail cím',
@@ -809,7 +811,7 @@ Ellenőrizd, hogy helyesen írtad-e be.',
 'passwordtooshort' => 'A jelszónak legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
 'password-name-match' => 'A jelszavadnak különböznie kell a szerkesztőnevedtől.',
 'password-login-forbidden' => 'Ezen felhasználónév és jelszó használata tiltott.',
-'mailmypassword' => 'Új jelszó küldése e-mailben',
+'mailmypassword' => 'Jelszó alaphelyzetbe állítása',
 'passwordremindertitle' => 'Ideiglenes jelszó a(z) {{SITENAME}} wikire',
 'passwordremindertext' => 'Valaki (vélhetően te, a(z) $1 IP-címről) új jelszót kért a(z)
 {{SITENAME}} wikis ($4) felhasználói fiókjához.
@@ -848,6 +850,7 @@ Várj $1, mielőtt újra próbálkozol.',
 'login-abort-generic' => 'A bejelentkezés sikertelen – megszakítva',
 'loginlanguagelabel' => 'Nyelv: $1',
 'suspicious-userlogout' => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
+'createacct-another-realname-tip' => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 
 # Email sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
@@ -876,7 +879,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',
 'passwordreset-text-one' => 'A jelszavad alaphelyzetbe állításához töltsd ki az űrlapot.',
-'passwordreset-text-many' => '{{PLURAL:$1|A jelszavad alaphelyzetbe állításához töltsd ki az alábbi mezők egyikét.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Az átmeneti jelszó elküldéséhez töltsd ki az alábbi mezők egyikét.}}',
 'passwordreset-legend' => 'Új jelszó kérése',
 'passwordreset-disabled' => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
 'passwordreset-emaildisabled' => 'Az e-mail funkció le van tiltva ezen a wikin.',
@@ -1236,17 +1239,17 @@ A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejt
 'revdelete-confirm' => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text' => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk
-*: ''otthoni címek és telefonszámok, társadalombiztosítási számok stb.''",
+*: ''otthoni cím, telefonszámok, társadalombiztosítási számok stb.''",
 'revdelete-legend' => 'Korlátozások megadása:',
 'revdelete-hide-text' => 'Változat szövegének elrejtése',
 'revdelete-hide-image' => 'A fájl tartalmának elrejtése',
 'revdelete-hide-name' => 'Művelet és cél elrejtése',
-'revdelete-hide-comment' => 'Összefoglaló elrejtése',
-'revdelete-hide-user' => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
+'revdelete-hide-comment' => 'Szerkesztési összefoglaló',
+'revdelete-hide-user' => 'Szerkesztői név/IP cím',
 'revdelete-hide-restricted' => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
 'revdelete-radio-same' => '(nincs változtatás)',
-'revdelete-radio-set' => 'Igen',
-'revdelete-radio-unset' => 'Nem',
+'revdelete-radio-set' => 'Rejtett',
+'revdelete-radio-unset' => 'Látható',
 'revdelete-suppress' => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-unsuppress' => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log' => 'Ok:',
@@ -1404,7 +1407,7 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'prefs-email' => 'Levelezés',
 'prefs-rendering' => 'Lapok megjelenítése',
 'saveprefs' => 'Mentés',
-'restoreprefs' => 'A beállítások alaphelyzetbe állítása',
+'restoreprefs' => 'A beállítások alaphelyzetbe állítása minden szakaszban',
 'prefs-editing' => 'Szerkesztés',
 'rows' => 'Sor',
 'columns' => 'Oszlop',
@@ -1462,8 +1465,8 @@ A műveletet nem lehet visszavonni.',
 'badsig' => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
 'badsiglength' => 'Az aláírásod túl hosszú.
 {{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.',
-'yourgender' => 'Nem:',
-'gender-unknown' => 'Nincs megadva',
+'yourgender' => 'Biológiai nem:',
+'gender-unknown' => 'Inkább nem adom meg',
 'gender-male' => 'Férfi',
 'gender-female' => 'Nő',
 'prefs-help-gender' => 'Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
@@ -1488,6 +1491,7 @@ A műveletet nem lehet visszavonni.',
 'prefs-displaysearchoptions' => 'Megjelenítési beállítások',
 'prefs-displaywatchlist' => 'Megjelenítési beállítások',
 'prefs-diffs' => 'Eltérések (diffek)',
+'prefs-help-prefershttps' => 'A beállítás a legközelebbi belépés után lép érvénybe.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Az e-mail cím érvényesnek tűnik',
@@ -1660,7 +1664,7 @@ A műveletet nem lehet visszavonni.',
 'recentchanges-label-bot' => 'Ezt a szerkesztést egy bot hajtotta végre',
 'recentchanges-label-unpatrolled' => 'Ezt a szerkesztést még nem ellenőrizték',
 'recentchanges-label-plusminus' => 'Az oldal mérete ennyi bájttal módosult.',
-'recentchanges-legend-newpage' => '$1 – új lap',
+'recentchanges-legend-newpage' => '(lásd még: [[Special:NewPages|Új lapok]])',
 'rcnotefrom' => 'Alább a <b>$2</b> óta történt változtatások láthatóak (<b>$1</b> db).',
 'rclistfrom' => '$1 után történt változtatások megtekintése',
 'rcshowhideminor' => 'apró szerkesztések $1',
@@ -1835,7 +1839,7 @@ $1',
 'upload-file-error-text' => 'Belső hiba történt egy ideiglenes fájl szerveren történő létrehozásakor.
 Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-misc-error' => 'Ismeretlen feltöltési hiba',
-'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a [[Special:ListUsers/sysop|adminisztrátorral]].',
+'upload-misc-error-text' => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba az [[Special:ListUsers/sysop|adminisztrátorral]].',
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size' => 'Ismeretlen méretű',
 'upload-http-error' => 'HTTP-hiba történt: $1',
@@ -1943,8 +1947,7 @@ Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
 # Special:ListFiles
-'listfiles-summary' => 'Ezen a speciális lapon látható az összes feltöltött fájl.
-Amennyiben a szerkesztő szűrést állított be, úgy csak azok a fájlok jelennek meg, amikor a szerkesztő töltötte fel a legfrissebb verziót.',
+'listfiles-summary' => 'Ezen a speciális lapon látható az összes feltöltött fájl.',
 'listfiles_search_for' => 'Keresés fájl nevére:',
 'imgfile' => 'fájl',
 'listfiles' => 'Fájllista',
@@ -2316,7 +2319,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'notvisiblerev' => 'A változat törölve lett',
 'watchlist-details' => 'A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.',
 'wlheader-enotif' => 'Az e-mailen keresztül történő értesítés engedélyezve.',
-'wlheader-showupdated' => "Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
+'wlheader-showupdated' => "Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagítva''' láthatók.",
 'watchmethod-recent' => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list' => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains' => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
@@ -2398,9 +2401,11 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'deleteotherreason' => 'További indoklás:',
 'deletereasonotherlist' => 'Egyéb indok',
 'deletereason-dropdown' => '*Gyakori törlési okok
-** Szerző kérésére
+** Spam
+** A szerző kérése
 ** Jogsértő
-** Vandalizmus',
+** Vandalizmus
+** Hibás átirányítás',
 'delete-edit-reasonlist' => 'Törlési okok szerkesztése',
 'delete-toobig' => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. A szervert kímélendő az ilyen lapok törlése nem engedélyezett.',
 'delete-warning-toobig' => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.',
@@ -3169,7 +3174,7 @@ A futtatása során kárt tehet a számítógépedben.",
 'svg-long-desc' => 'SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3',
 'svg-long-desc-animated' => 'Animált SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3',
 'svg-long-error' => 'Érvénytelen SVG-fájl: $1',
-'show-big-image' => 'A kép nagyfelbontású változata',
+'show-big-image' => 'Eredeti fájl',
 'show-big-image-preview' => 'Az előnézet mérete: $1',
 'show-big-image-other' => 'További {{PLURAL:$2|felbontás|felbontások}}: $1.',
 'show-big-image-size' => '$1 × $2 képpont',
@@ -3198,6 +3203,7 @@ A futtatása során kárt tehet a számítógépedben.",
 'minutes' => '{{PLURAL:$1|egy|$1}} perccel',
 'hours' => '{{PLURAL:$1|egy|$1}} órával',
 'days' => '{{PLURAL:$1|egy|$1}} nappal',
+'weeks' => '{{PLURAL:$1|$1 hét|$1 hét}}',
 'months' => '{{PLURAL:$1|$1 hónap|$1 hónap}}',
 'years' => '{{PLURAL:$1|$1 év|$1 év}}',
 'ago' => '$1 ezelőtt',
@@ -3205,6 +3211,8 @@ A futtatása során kárt tehet a számítógépedben.",
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|órával|órával}} ezelőtt',
+'minutes-ago' => '$1 {{PLURAL: $1|perce|perce}}',
+'seconds-ago' => '$1 {{PLURAL:$1|másodperce|másodperce}}',
 
 # Bad image list
 'bad_image_list' => 'A formátum a következő:
@@ -3418,7 +3426,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-compression-4' => 'CCITT Group 4 fax kódolás',
 
 'exif-copyrighted-true' => 'Szerzői jog által védett',
-'exif-copyrighted-false' => 'Közkincs',
+'exif-copyrighted-false' => 'Szerzői jogi állapot nincs beállítva',
 
 'exif-unknowndate' => 'Ismeretlen dátum',
 
@@ -3723,6 +3731,9 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'imgmultigo' => 'Menj',
 'imgmultigoto' => 'Ugrás a(z) $1. oldalra',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(alapértelmezett nyelv)',
+
 # Table pager
 'ascending_abbrev' => 'növ',
 'descending_abbrev' => 'csökk',
@@ -3817,6 +3828,12 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'version-entrypoints-header-entrypoint' => 'Belépési pont',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-user' => 'Felhasználói azonosító',
+'redirect-revision' => 'Oldal felülvizsgálata',
+'redirect-file' => 'Fájlnév',
+'redirect-not-exists' => 'Érték nem található',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Duplikátumok keresése',
 'fileduplicatesearch-summary' => 'Fájlok duplikátumainak keresése hash értékük alapján.',
@@ -3830,6 +3847,7 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 
 # Special:SpecialPages
 'specialpages' => 'Speciális lapok',
+'specialpages-note-top' => 'Jelmagyarázat',
 'specialpages-note' => '* Mindenki számára elérhető speciális lapok.
 * <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
