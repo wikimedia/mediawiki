@@ -367,7 +367,6 @@ class IP {
 	/**
 	 * Determine if an IP address really is an IP address, and if it is public,
 	 * i.e. not RFC 1918 or similar
-	 * Comes from ProxyTools.php
 	 *
 	 * @param $ip String
 	 * @return Boolean
@@ -482,7 +481,6 @@ class IP {
 	/**
 	 * Given an IP address in dotted-quad/octet notation, returns an unsigned integer.
 	 * Like ip2long() except that it actually works and has a consistent error return value.
-	 * Comes from ProxyTools.php
 	 *
 	 * @param string $ip quad dotted IP address.
 	 * @return Mixed: string/int/false
