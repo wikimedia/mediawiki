@@ -90,21 +90,30 @@ class CologneBlueTemplate extends BaseTemplate {
 			return "";
 		}
 
+		$html = '';
+
 		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
 		// not to capitalize the language names.
 		$language_urls = $this->data['language_urls'];
-		if ( empty( $language_urls ) ) {
-			return "";
+		if ( !empty( $language_urls ) ) {
+			$s = array();
+			foreach ( $language_urls as $key => $data ) {
+				$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
+			}
+
+			$html = wfMessage( 'otherlanguages' )->text()
+				. wfMessage( 'colon-separator' )->text()
+				. $this->getSkin()->getLanguage()->pipeList( $s );
 		}
 
-		$s = array();
-		foreach ( $language_urls as $key => $data ) {
-			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
+		$htmlToAppend = null;
+		wfRunHooks( 'QuickTemplateAfterLanguages', array( $this, &$htmlToAppend ) );
+
+		if ( is_string( $htmlToAppend ) ) {
+			$html .= $htmlToAppend;
 		}
 
-		return wfMessage( 'otherlanguages' )->text()
-			. wfMessage( 'colon-separator' )->text()
-			. $this->getSkin()->getLanguage()->pipeList( $s );
+		return $html;
 	}
 
 	function pageTitleLinks() {

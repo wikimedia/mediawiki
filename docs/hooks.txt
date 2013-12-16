@@ -1968,6 +1968,11 @@ shown.
 $article: the page the form is shown for
 $out: OutputPage object
 
+'QuickTemplateAfterLanguages': After output of language links section, for adding
+raw HTML after the section. Any uses of the hook need to handle escaping.
+$template: QuickTemplate
+&$htmlToAppend: null|string null by default, if string (html) then it is injected.
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw.
 &$obj: RawPage object
 &$text: The text that's going to be the output
