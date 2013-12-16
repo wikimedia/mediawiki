@@ -36,6 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
+wfProfileIn( $fname  . '-defaults' );
 
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
@@ -248,8 +249,10 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 unset( $repo ); // no global pollution; destroy reference
 
 if ( is_null( $wgEnableAutoRotation ) ) {
+	wfProfileIn( $fname . '-defaults-rotation' );
 	// Only enable auto-rotation when the bitmap handler can rotate
 	$wgEnableAutoRotation = BitmapHandler::canRotate();
+	wfProfileOut( $fname . '-defaults-rotation' );
 }
 
 if ( $wgRCFilterByAge ) {
@@ -401,11 +404,15 @@ if ( $wgRC2UDPAddress ) {
 	);
 }
 
+wfProfileOut( $fname  . '-defaults' );
+
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
 // all the memory from logging SQL queries on maintenance scripts
 global $wgCommandLineMode;
 if ( $wgDebugToolbar && !$wgCommandLineMode ) {
+	wfProfileIn( $fname . '-debugtoolbar' );
 	MWDebug::init();
+	wfProfileOut( $fname . '-debugtoolbar' );
 }
 
 if ( !class_exists( 'AutoLoader' ) ) {
@@ -423,6 +430,7 @@ require_once "$IP/includes/ProxyTools.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 
+wfProfileIn( $fname . '-defaults2' );
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
@@ -431,7 +439,9 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 # Now that GlobalFunctions is loaded, set defaults that depend
 # on it.
 if ( $wgTmpDirectory === false ) {
+	wfProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
+	wfProfileOut( $fname . '-tempDir' );
 }
 
 if ( $wgCanonicalServer === false ) {
@@ -455,6 +465,7 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 	);
 }
 
+wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low
@@ -533,13 +544,13 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 wfProfileOut( $fname . '-session' );
 wfProfileIn( $fname . '-globals' );
 
-$wgContLang = Language::factory( $wgLanguageCode );
-$wgContLang->initEncoding();
-$wgContLang->initContLang();
+#$wgContLang = Language::factory( $wgLanguageCode );
+#$wgContLang->initEncoding();
+#$wgContLang->initContLang();
 
 // Now that variant lists may be available...
-$wgRequest->interpolateTitle();
-$wgUser = RequestContext::getMain()->getUser(); # BackCompat
+#$wgRequest->interpolateTitle();
+#$wgUser = RequestContext::getMain()->getUser(); # BackCompat
 
 /**
  * @var $wgLang Language
@@ -549,12 +560,12 @@ $wgLang = new StubUserLang;
 /**
  * @var OutputPage
  */
-$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
+#$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
 
 /**
  * @var $wgParser Parser
  */
-$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
+#$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
