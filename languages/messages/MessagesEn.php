@@ -1699,8 +1699,8 @@ function, the specified revision does not exist, or you are attempting to hide t
 Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
 'revdelete-confirm'           => 'Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'revdelete-suppress-text'     => "Suppression should '''only''' be used for the following cases:
-* Potentially libelous information
-* Inappropriate personal information
+* potentially libelous information
+* inappropriate personal information
 *: ''home addresses and telephone numbers, national identification numbers, etc.''",
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Revision text',
