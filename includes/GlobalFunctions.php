@@ -4160,3 +4160,56 @@ function wfCanIPUseHTTPS( $ip ) {
 	wfRunHooks( 'CanIPUseHTTPS', array( $ip, &$canDo ) );
 	return !!$canDo;
 }
+
+/**
+ * Work out the IP address based on various globals
+ * For trusted proxies, use the XFF client IP (first of the chain)
+ *
+ * @deprecated in 1.19; call $wgRequest->getIP() directly.
+ * @return string
+ */
+function wfGetIP() {
+	wfDeprecated( __METHOD__, '1.19' );
+	global $wgRequest;
+	return $wgRequest->getIP();
+}
+
+/**
+ * Checks if an IP is a trusted proxy provider.
+ * Useful to tell if X-Forwarded-For data is possibly bogus.
+ * Squid cache servers for the site are whitelisted.
+ *
+ * @param $ip String
+ * @return bool
+ */
+function wfIsTrustedProxy( $ip ) {
+	$trusted = wfIsConfiguredProxy( $ip );
+	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+	return $trusted;
+}
+
+/**
+ * Checks if an IP matches a proxy we've configured.
+ * @param $ip String
+ * @return bool
+ * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
+ */
+function wfIsConfiguredProxy( $ip ) {
+	global $wgSquidServers, $wgSquidServersNoPurge;
+
+	// quick check of known proxy servers
+	$trusted = in_array( $ip, $wgSquidServers )
+		|| in_array( $ip, $wgSquidServersNoPurge );
+
+	if ( !$trusted ) {
+		// slightly slower check to see if the ip is listed directly or in a CIDR
+		// block in $wgSquidServersNoPurge
+		foreach ( $wgSquidServersNoPurge as $block ) {
+			if ( strpos( $block, '/' ) !== false && IP::isInRange( $ip, $block ) ) {
+				$trusted = true;
+				break;
+			}
+		}
+	}
+	return $trusted;
+}
