@@ -221,6 +221,9 @@ class SpecialBlock extends FormSpecialPage {
 
 		$this->maybeAlterFormDefaults( $a );
 
+		// Allow extensions to add more fields
+		wfRunHooks( 'SpecialBlockModifyFormFields', array( $this, &$a ) );
+
 		return $a;
 	}
 
