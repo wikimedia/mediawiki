@@ -72,6 +72,8 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* Added QuickTemplateAfterPortlet hook to allow injecting html after portlets
+  in Vector, Monobook, Modern and CologneBlue skins.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
