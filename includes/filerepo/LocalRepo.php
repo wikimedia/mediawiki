@@ -279,7 +279,7 @@ class LocalRepo extends FileRepo {
 				$file = $repo->newFileFromRow( $row );
 				$dbKey = $file->getTitle()->getDBkey();
 				// There must have been a search for this exact DB Key
-				if ( $fileMatchesSearch( $file, $searchSet[$dbKey] ) ) {
+				if ( isset( $searchSet[$dbKey] ) && $fileMatchesSearch( $file, $searchSet[$dbKey] ) ) {
 					$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
 						? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
 						: $file;
