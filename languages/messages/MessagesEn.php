@@ -3376,7 +3376,7 @@ See the [[Special:BlockList|block list]] for the list of currently operational b
 'range_block_disabled'            => 'The administrator ability to create range blocks is disabled.',
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
-'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
+'ipb_hide_invalid'                => 'Unable to suppress this account; it has more than {{PLURAL:$1|one edit|$1 edits}}.',
 'ipb_already_blocked'             => '"$1" is already blocked.',
 'ipb-needreblock'                 => '$1 is already blocked. Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
