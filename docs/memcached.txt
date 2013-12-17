@@ -78,7 +78,7 @@ usage evenly), make its entry a subarray:
 == PHP client for memcached ==
 
 MediaWiki uses a fork of Ryan T. Dean's pure-PHP memcached client.
-The newer PECL module is not yet supported.
+The newer PECL module is supported.
 
 MediaWiki uses three object for object caching:
 * $wgMemc, controlled by $wgMainCacheType
