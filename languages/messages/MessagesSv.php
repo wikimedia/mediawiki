@@ -326,7 +326,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Stryk under länkar',
+'tog-underline' => 'Stryk under länkar:',
 'tog-justify' => 'Marginaljustera stycken',
 'tog-hideminor' => 'Visa inte mindre redigeringar i senaste ändringar',
 'tog-hidepatrolled' => 'Dölj patrullerade redigeringar i senaste ändringar',

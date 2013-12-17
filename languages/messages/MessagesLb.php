@@ -1401,6 +1401,7 @@ Dës Informatioun ass ëffentlech.",
 'prefs-tokenwatchlist' => 'Token',
 'prefs-diffs' => 'Ënnerscheeder',
 'prefs-help-prefershttps' => 'Dës Astellung gëtt déi nächste Kéier wierksam wou Dir Iech ageloggt.',
+'prefs-tabs-navigation-hint' => "Tipp: Dir kënnt d'Feiler no lénks an no riets benotze fir tëscht den Tabs an der Lëscht vun den Tabs ze navigéieren.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "D'E-Mail-Adress schéngt valabel ze sinn",
@@ -2079,6 +2080,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'listusers' => 'Benotzerlëscht',
 'listusers-editsonly' => 'Nëmme Benotzer mat Ännerunge weisen',
 'listusers-creationsort' => 'Nom Datum vum Uleeën zortéieren',
+'listusers-desc' => 'Vu grouss op kleng zortéieren',
 'usereditcount' => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'usercreated' => "{{GENDER:$3|De(n)|D'}} $1 ëm $2 Auer ugeluecht",
 'newpages' => 'Nei Säiten',

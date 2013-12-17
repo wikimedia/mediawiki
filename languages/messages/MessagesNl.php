@@ -2300,6 +2300,7 @@ Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou
 'ninterwikis' => '$1 {{PLURAL:$1|interwikikoppeling|interwikikoppelingen}}',
 'nlinks' => '$1 {{PLURAL:$1|koppeling|koppelingen}}',
 'nmembers' => '$1 {{PLURAL:$1|item|items}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|lid|leden}}',
 'nrevisions' => '$1 {{PLURAL:$1|versie|versies}}',
 'nviews' => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
 'nimagelinks' => "Gebruikt op {{PLURAL:$1|één pagina|$1 pagina's}}",

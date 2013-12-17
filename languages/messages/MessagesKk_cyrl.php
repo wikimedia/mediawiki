@@ -3472,6 +3472,7 @@ $5
 
 # Size units
 'size-bytes' => '$1 байт',
+'size-kilobytes' => '$1 КБ',
 
 # Live preview
 'livepreview-loading' => 'Жүктеуде…',

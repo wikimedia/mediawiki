@@ -596,8 +596,8 @@ $1',
 'youhavenewmessages' => 'Por vi estas $1 ($2).',
 'youhavenewmessagesfromusers' => 'Riceviĝis $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).',
 'youhavenewmessagesmanyusers' => 'Riceviĝis $1 de multaj uzantoj ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|novaj mesaĝoj}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|lasta ŝanĝo|lastaj ŝanĝoj}}',
+'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|999=novaj mesaĝoj}}',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection' => 'redakti',
 'editold' => 'redakti',
@@ -649,6 +649,11 @@ Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Eraro',
 'databaseerror' => 'Datumbaza eraro',
+'databaseerror-text' => 'Datumbaza eraro de la mendo okazis.
+Ĉi tiu eble indikas cimon de la programaro.',
+'databaseerror-textcl' => 'Datumbaza eraro de la mendo okazis.',
+'databaseerror-query' => 'Mendo: $1',
+'databaseerror-function' => 'Funkcio: $1',
 'databaseerror-error' => 'Eraro: $1',
 'laggedslavemode' => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly' => 'Datumaro ŝlosita, nurlega',
@@ -720,7 +725,7 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 'invalidtitle-knownnamespace' => 'Nevalida titolo kun nomspaco "$2" kaj teksto "$3"',
 'invalidtitle-unknownnamespace' => 'Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto "$2"',
 'exception-nologin' => 'Ne ensalutita',
-'exception-nologin-text' => 'Vi devas ensaluti ĉi tiun vikion por fari ĉi tiun agon.',
+'exception-nologin-text' => 'Bonvolu [[Special:Userlogin|ensaluti]] por atingi ĉi tiun paĝon aŭ agon.',
 
 # Virus scanner
 'virus-badscanner' => "Malbona konfiguro: nekonata virusa skanilo: ''$1''",
@@ -730,7 +735,6 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 # Login and logout pages
 'logouttext' => "'''Vi nun estas elsalutinta.'''
 
-Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estus ensalutinta, ĝis vi refreŝigos kaŝmemoron de via retumilo.",
 'welcomeuser' => 'Bonvenon, $1!',
 'welcomecreation-msg' => 'Via konto estas kreita.
@@ -765,7 +769,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'gotaccount' => "Ĉu vi jam havas konton? '''$1'''.",
 'gotaccountlink' => 'Ensaluti',
 'userlogin-resetlink' => 'Ĉu vi forgesis ensalutajn detalojn?',
-'userlogin-resetpassword-link' => 'Restarigu vian pasvorton',
+'userlogin-resetpassword-link' => 'Ĉu vi forgesis vian pasvorton?',
 'helplogin-url' => 'Help:Ensalutado',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Helpo pri ensalutado]]',
 'createacct-join' => 'Suben enigu informojn pri vi',
@@ -808,7 +812,7 @@ Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'passwordtooshort' => 'Pasvortoj devas esti almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.',
 'password-name-match' => 'Via pasvorto devas nepre malsami vian salutnomon.',
 'password-login-forbidden' => 'Estas malpermesite uzi tiun ĉi salutnomon kaj pasvorton.',
-'mailmypassword' => 'Retpoŝti novan pasvorton',
+'mailmypassword' => 'Refari pasvorton',
 'passwordremindertitle' => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
 'passwordremindertext' => 'Iu (probable vi, el IP-adreso $1) petis novan
 pasvorton por {{SITENAME}} ($4). Provizora pasvorto por uzanto
@@ -831,7 +835,7 @@ Por preventi misuzon, nur unu reŝargita pasvorto estos sendita dum {{PLURAL:$1|
 'mailerror' => 'Okazis eraro sendante retpoŝtaĵon: $1',
 'acct_creation_throttle_hit' => 'Vizitintoj al ĉi tiu vikio uzintaj vian IP-adreson kreis {{PLURAL:$1|1 konton|$1 kontojn}} dum la lasta tago, kiu estas la maksimume permesita en ĉi tiu tempoperiodo.
 Tial, vizitantoj kun ĉi tiu IP-adreso ne povas krei pluajn kontojn ĉi-momente.',
-'emailauthenticated' => 'Via retadreso estis aŭtentikigita ekde $2 $3.',
+'emailauthenticated' => 'Via retadreso estis konfirmita ekde $2 $3.',
 'emailnotauthenticated' => 'Via retadreso ne jam estas aŭtentigata.
 Neniu retpoŝto estos sendita pro iuj jenaj kialoj.',
 'noemailprefs' => 'Specifu retpoŝtan adreson por ĉi tiuj ecoj funkcii.',
@@ -1262,18 +1266,19 @@ funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan 
 Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.",
 'revdelete-confirm' => 'Bonvolu konfirmi ke vi intencias fari ĉi tion, ke vi komprenas la konsekvencojn kaj ke vi faras ĉi tion laŭ [[{{MediaWiki:Policy-url}}|la regularo]].',
 'revdelete-suppress-text' => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
+* Ebla kalumnia informo
 * Netaŭga persona informo
 *: ''hejmaj adresoj kaj telefonnumeroj, ŝtataj identnumeroj, ktp.''",
 'revdelete-legend' => 'Fari videblecajn limigojn',
-'revdelete-hide-text' => 'Kaŝi tekston de versio',
+'revdelete-hide-text' => 'Teksto de revizio',
 'revdelete-hide-image' => 'Kaŝi enhavon de dosieroj',
 'revdelete-hide-name' => 'Kaŝi agon kaj celon',
-'revdelete-hide-comment' => 'Kaŝi komenton de redakto',
-'revdelete-hide-user' => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
+'revdelete-hide-comment' => 'Resumo de redakto',
+'revdelete-hide-user' => 'Salutnomo de redaktanto/IP-adreso',
 'revdelete-hide-restricted' => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
 'revdelete-radio-same' => '(ne ŝanĝi)',
-'revdelete-radio-set' => 'Videbla',
-'revdelete-radio-unset' => 'Kaŝita',
+'revdelete-radio-set' => 'Kaŝita',
+'revdelete-radio-unset' => 'Videbla',
 'revdelete-suppress' => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-unsuppress' => 'Forigi limigojn al restarigitaj versioj',
 'revdelete-log' => 'Kialo:',
@@ -1675,7 +1680,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'action-protect' => 'ŝanĝi la protektan nivelon por ĉi tiu paĝo',
 'action-rollback' => 'tuj malfari la redaktojn de la lasta uzanto kiu redaktis specifan paĝon',
 'action-import' => 'enporti paĝojn de alia vikio',
-'action-importupload' => 'importi ĉi tiun paĝon de dosiera alŝuto',
+'action-importupload' => 'importi paĝojn de dosiera alŝuto',
 'action-patrol' => 'marki redakton de alia persono kiel patrolitan',
 'action-autopatrol' => 'fari vian redakton markitan kiel patrolitan',
 'action-unwatchedpages' => 'vidi la liston de neatentitaj paĝoj',
@@ -1701,7 +1706,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchanges-label-minor' => 'Ĉi tiu estas eta redakto',
 'recentchanges-label-bot' => 'Ĉi tiu redakto estis farita per roboto.',
 'recentchanges-label-unpatrolled' => 'Ĉi tiu redakto ne jam estis patrolata.',
-'recentchanges-legend-newpage' => '$1 - nova paĝo',
+'recentchanges-legend-newpage' => '(vidu ankaŭ [[Special:NewPages|liston de novaj paĝoj]])',
 'rcnotefrom' => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
 'rclistfrom' => 'Montri novajn ŝanĝojn ekde "$1"',
 'rcshowhideminor' => '$1 redaktetojn',
@@ -1743,7 +1748,7 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 'reuploaddesc' => 'Reveni al la alŝuta formularo.',
 'upload-tryagain' => 'Enigi ŝanĝitan dosieran priskribon',
 'uploadnologin' => 'Ne ensalutinta',
-'uploadnologintext' => 'Vi devas [[Special:UserLogin|ensaluti]] por alŝuti dosierojn.',
+'uploadnologintext' => 'Bonvolu $1 por alŝuti dosierojn.',
 'upload_directory_missing' => 'La alŝuta dosierujo ($1) estas nek trovebla nek kreebla de la retservilo.',
 'upload_directory_read_only' => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror' => 'Eraro okazis dum alŝuto',
@@ -1985,6 +1990,8 @@ Kiam oni filtras ĝin laŭ uzanto, nur la aktuala versio de la dosiero estos mon
 'listfiles_size' => 'Grandeco',
 'listfiles_description' => 'Priskribo',
 'listfiles_count' => 'Versioj',
+'listfiles-latestversion-yes' => 'Jes',
+'listfiles-latestversion-no' => 'Ne',
 
 # File description page
 'file-anchor-link' => 'Dosiero',
@@ -2353,8 +2360,8 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'notanarticle' => 'Ne estas artikolo',
 'notvisiblerev' => 'Versio estis forigita',
 'watchlist-details' => '{{PLURAL:$1|$1 paĝon|$1 paĝojn}} en via atentaro, krom diskutpaĝoj.',
-'wlheader-enotif' => 'Retpoŝta sciigo estas ebligita',
-'wlheader-showupdated' => "Montriĝas per '''dikaj literoj''' tiuj paĝoj, kiujn oni ŝanĝis ekde kiam vi laste vizitis ilin",
+'wlheader-enotif' => 'Retpoŝta sciigo estas ŝalta.',
+'wlheader-showupdated' => "Paĝoj montriĝis per '''dikaj literoj''' kiuj estis ŝanĝitaj ekde vi laste vizitis.",
 'watchmethod-recent' => 'traserĉas lastajn redaktojn',
 'watchmethod-list' => 'traserĉas priatentitajn',
 'watchlistcontains' => 'Via atentaro enhavas $1 {{PLURAL:$1|paĝon|paĝojn}}.',
@@ -2397,7 +2404,7 @@ Kontaktu la redaktinton:
 retpoŝte: $PAGEEDITOR_EMAIL
 vikie: $PAGEEDITOR_WIKI
 
-Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitus ĉi tiun paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
+Ne estos aliaj avertoj kaze de sekvaj agoj krom se vi vizitus ĉi tiun paĝon ensalutite. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
             Sincere via, la avertsistemo de {{SITENAME}}
 
@@ -2462,7 +2469,7 @@ pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon.
 La lasta redaktinto estis [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "La resumo de la komento estis: \"''\$1''\".",
 'revertpage' => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]',
-'revertpage-nouser' => 'Restarigis redaktojn de (salutnomo forigita) al lasta revizio de [[User:$1|$1]]',
+'revertpage-nouser' => 'Restarigis redaktojn de (salutnomo forigita) al lasta revizio de {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
 
 # Edit tokens
@@ -2601,7 +2608,7 @@ $1',
 'contributions' => 'Kontribuoj de {{GENDER:$1|uzanto|uzantino}}',
 'contributions-title' => 'Kontribuoj de uzanto $1',
 'mycontris' => 'Kontribuoj',
-'contribsub2' => 'De $1 ($2)',
+'contribsub2' => 'De {{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
 'uctop' => ' (aktuala)',
 'month' => 'Ekde monato (kaj pli frue):',
@@ -2792,7 +2799,7 @@ Vi povas ĝisdatigi alidirektilojn kiu indikas la originalan titolon aŭtomate.
 Se vi elektas ĝisdatigi permane, bonvolu kontroli [[Special:DoubleRedirects|duoblajn]] aŭ [[Special:BrokenRedirects|rompitajn alidirektilojn]].
 Vi estas responsa por certigi ke ligilojn direktas fidinde.
 
-Notu, ke la paĝo '''ne''' estos movita se jam ekzistas paĝo ĉe la nova titolo, krom se ĝi estas malplena aŭ alidirektilo al ĉi tiu paĝo, kaj sen antaŭa redaktohistorio.
+Notu, ke la paĝo '''ne''' estos movita se jam ekzistas paĝo ĉe la nova titolo, krom se tiu loko estas malplena aŭ alidirektilo al ĉi tiu paĝo, kaj sen antaŭa redaktohistorio.
 Pro tio, vi ja povos removi la paĝon je la antaŭa titolo se vi mistajpus, kaj ne povas forviŝi ekzistantan paĝon per movo.
 
 '''AVERTO!'''
@@ -3111,8 +3118,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spam_reverting' => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking' => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
 'spam_deleting' => 'Ĉiuj versioj enhavis ligilojn al $1 - forigante',
-'simpleantispam-label' => 'Kontrolo kontraŭ spamo.
-NE ENIGU ion ajn!',
+'simpleantispam-label' => "Kontrolo kontraŭ spamo.
+'''NE ENIGU''' ion ajn!",
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
@@ -3126,13 +3133,13 @@ NE ENIGU ion ajn!',
 'pageinfo-length' => 'Paĝgrandeco (en bajtoj)',
 'pageinfo-article-id' => 'Paĝa identigo',
 'pageinfo-language' => 'Lingvo de paĝa enhavo',
-'pageinfo-robot-policy' => 'Statuso de la serĉilo',
-'pageinfo-robot-index' => 'Indeksebla',
-'pageinfo-robot-noindex' => 'Ne indeksebla',
+'pageinfo-robot-policy' => 'Indeksado per robotoj',
+'pageinfo-robot-index' => 'Permesata',
+'pageinfo-robot-noindex' => 'Malpermesata',
 'pageinfo-views' => 'Nombro de rigardoj',
 'pageinfo-watchers' => 'Nombro de paĝatentantoj',
 'pageinfo-few-watchers' => 'Malpli ol $1 {{PLURAL:$1|atentanto|atentantoj}}',
-'pageinfo-redirects-name' => 'Alidirektoj al ĉi tiu paĝo',
+'pageinfo-redirects-name' => 'Nombro da alidirektiloj al ĉi tiu paĝo',
 'pageinfo-subpages-name' => 'Subpaĝoj de ĉi tiu paĝo',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|alidirektilo|alidirektiloj}}; $3 {{PLURAL:$3|ne-alidirektilo|ne-alidirektiloj}})',
 'pageinfo-firstuser' => 'Kreinto de la paĝo',
@@ -3210,7 +3217,7 @@ $1',
 'svg-long-desc' => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'svg-long-desc-animated' => 'Animata SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'svg-long-error' => 'Malvalida SVG-dosiero: $1',
-'show-big-image' => 'Plena distingivo',
+'show-big-image' => 'Fonta dosiero',
 'show-big-image-preview' => 'Grandeco de ĉi antaŭvido: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Alia distingivo|Aliaj distingivoj}}: $1.',
 'show-big-image-size' => '$1 × $2 rastrumeroj',
@@ -3918,6 +3925,9 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'version-entrypoints-header-entrypoint' => 'Eniropunkto',
 'version-entrypoints-header-url' => 'Retadreso',
 
+# Special:Redirect
+'redirect-submit' => 'Ek',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Serĉu duplikatajn dosierojn',
 'fileduplicatesearch-summary' => 'Serĉi duplikatajn dosierojn bazite de haketvaloro.',
@@ -3932,8 +3942,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 # Special:SpecialPages
 'specialpages' => 'Specialaj paĝoj',
 'specialpages-note' => '* Normaj specialaj paĝoj.
-* <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>
-* <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
+* <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other' => 'Aliaj specialaj paĝoj',
 'specialpages-group-login' => 'Ensaluti /  registriĝi',
@@ -4016,14 +4025,14 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'logentry-delete-delete' => '$1 forigis paĝon $3',
 'logentry-delete-restore' => '$1 restarigis paĝon $3',
 'logentry-delete-event' => '$1 ŝanĝis videblecon de {{PLURAL:$5|protokola evento|$5 protokolaj eventoj}} je $3: $4',
-'logentry-delete-revision' => '$1 ŝanĝis videblecon de {{PLURAL:$5|revizio|$5 reviziojn}} je paĝo $3: $4',
-'logentry-delete-event-legacy' => '$1 ŝanĝis videblecon de protokolaj eventoj en $3',
-'logentry-delete-revision-legacy' => '$1 ŝanĝis videblecon de revizioj en $3',
-'logentry-suppress-delete' => '$1 kaŝis paĝon $3',
-'logentry-suppress-event' => '$1 kaŝite ŝanĝis videblecon de {{PLURAL:$5|protokola evento|$5 protokolaj eventoj}} je $3: $4',
+'logentry-delete-revision' => '$1 {{GENDER:$2|ŝanĝis}} videblecon de {{PLURAL:$5|revizio|$5 reviziojn}} je paĝo $3: $4',
+'logentry-delete-event-legacy' => '$1 {{GENDER:$2|ŝanĝis}} videblecon de protokolaj eventoj en $3',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|ŝanĝis}} videblecon de revizioj en $3',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|kaŝis}} paĝon $3',
+'logentry-suppress-event' => '$1 kaŝite {{GENDER:$2|ŝanĝis}} videblecon de {{PLURAL:$5|protokola evento|$5 protokolaj eventoj}} je $3: $4',
 'logentry-suppress-revision' => '$1 kaŝite ŝanĝis videblecon de {{PLURAL:$5|revizio|$5 reviziojn}} je paĝo $3: $4',
-'logentry-suppress-event-legacy' => '$1 kaŝite ŝanĝis videblecon de protokolaj eventoj en $3',
-'logentry-suppress-revision-legacy' => '$1 kaŝite ŝanĝis videblecon de revizioj en paĝo $3',
+'logentry-suppress-event-legacy' => '$1 kaŝite {{GENDER:$2|ŝanĝis}} videblecon de protokolaj eventoj en $3',
+'logentry-suppress-revision-legacy' => '$1 kaŝite {{GENDER:$2|ŝanĝis}} videblecon de revizioj en paĝo $3',
 'revdelete-content-hid' => 'enhavo kaŝita',
 'revdelete-summary-hid' => 'resumo de redakto kaŝita',
 'revdelete-uname-hid' => 'salutnomo kaŝita',
@@ -4036,13 +4045,13 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'logentry-move-move-noredirect' => '$1 movis paĝon $3 al $4 ne lasante alidirektilon',
 'logentry-move-move_redir' => '$1 movis paĝon $3 al $4 anstataŭigante alidirektilon',
 'logentry-move-move_redir-noredirect' => '$1 movis paĝon $3 al $4 anstataŭigante alidirektilon ne lasante alidirektilon',
-'logentry-patrol-patrol' => '$1 markis revizion $4 de paĝo $3 patrolita',
-'logentry-patrol-patrol-auto' => '$1 aŭtomate markis revizion $4 de paĝo $3 patrolita',
-'logentry-newusers-newusers' => 'Konto de uzanto $1 estis kreita',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|markis}} revizion $4 de paĝo $3 patrolita',
+'logentry-patrol-patrol-auto' => '$1 aŭtomate {{GENDER:$2|markis}} revizion $4 de paĝo $3 patrolita',
+'logentry-newusers-newusers' => 'Konto de uzanto $1 estis {{GENDER:$2|kreita}}',
 'logentry-newusers-create' => 'Konto de uzanto $1 estis kreita',
 'logentry-newusers-create2' => 'Konto de uzanto $3 estis kreita de $1',
 'logentry-newusers-byemail' => 'Konto de uzanto $3 estis kreita de $1 kaj pasvorto estis sendita per retpoŝto',
-'logentry-newusers-autocreate' => 'Uzantokonto $1 estis kreita aŭtomate',
+'logentry-newusers-autocreate' => 'Uzantokonto $1 estis {{GENDER:$2|kreita}} aŭtomate',
 'logentry-rights-rights' => '$1 ŝanĝis grupan membrecon por $3 de $4 al $5',
 'logentry-rights-rights-legacy' => '$1 ŝanĝis grupan membrecon por $3',
 'logentry-rights-autopromote' => '$1 estis aŭtomate {{GENDER:$2|altrangigita}} de $4 al $5',
