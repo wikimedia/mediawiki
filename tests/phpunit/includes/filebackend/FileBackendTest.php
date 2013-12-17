@@ -1115,6 +1115,57 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testGetFileStat
+	 * @covers FileBackend::streamFile
+	 */
+	public function testStreamFile( $path, $content, $alreadyExists ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestStreamFile( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
+	}
+
+	private function doTestStreamFile( $path, $content ) {
+		$backendName = $this->backendClass();
+
+		// Test doStreamFile() directly to avoid header madness
+		$class = new ReflectionClass( $this->backend );
+		$method = $class->getMethod( 'doStreamFile' );
+		$method->setAccessible( true );
+
+		if ( $content !== null ) {
+			$this->prepare( array( 'dir' => dirname( $path ) ) );
+			$status = $this->create( array( 'dst' => $path, 'content' => $content ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $path succeeded ($backendName)." );
+
+			ob_start();
+			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$data = ob_get_contents();
+			ob_end_clean();
+
+			$this->assertEquals( $content, $data, "Correct content streamed from '$path'" );
+		} else { // 404 case
+			ob_start();
+			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$data = ob_get_contents();
+			ob_end_clean();
+
+			$this->assertEquals( '', $data, "Correct content streamed from '$path' ($backendName)" );
+		}
+	}
+
+	public static function provider_testStreamFile() {
+		$cases = array();
+
+		$base = self::baseStorePath();
+		$cases[] = array( "$base/unittest-cont1/e/b/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", null );
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testGetFileContents
 	 * @covers FileBackend::getFileContents
 	 * @covers FileBackend::getFileContentsMulti
