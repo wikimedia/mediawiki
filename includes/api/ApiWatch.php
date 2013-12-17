@@ -30,21 +30,57 @@
  * @ingroup API
  */
 class ApiWatch extends ApiBase {
+	private $mPageSet = null;
 
 	public function execute() {
 		$user = $this->getUser();
 		if ( !$user->isLoggedIn() ) {
 			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		}
+
 		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
 			$this->dieUsage( 'You don\'t have permission to edit your watchlist', 'permissiondenied' );
 		}
 
 		$params = $this->extractRequestParams();
-		$title = Title::newFromText( $params['title'] );
+		$pageSet = $this->getPageSet();
+		// by default we use pageset to extract the page to work on.
+		// title is still supported for backward compatability
+		if ( !isset( $params['title'] ) ) {
+			$pageSet->execute();
+			$res = $pageSet->getInvalidTitlesAndRevisions( array( 'invalidTitles', 'special', 'missingIds', 'missingRevIds' ) );
+			foreach ( $pageSet->getMissingTitles() as $title ) {
+				$r = $this->watchTitle( $title, $user, $params );
+				$r['missing'] = 1;
+				$res[] = $r;
+			}
+			foreach ( $pageSet->getGoodTitles() as $title ) {
+				$r = $this->watchTitle( $title, $user, $params );
+				$res[] = $r;
+			}
+			$this->getResult()->setIndexedTagName( $res, 'w' );
+		} else {
+			// dont allow use of old title parameter with new pageset parameters.
+			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), function ( $x ) {
+				return !is_null( $x ) && $x !== false;
+			} ) );
+			if ( count( $extraParams ) > 0 ) {
+				$p = $this->getModulePrefix();
+				$this->dieUsage( "The parameter {$p}title can not be used with ".  implode( ", {$p}", $extraParams ), 'invalidparammix' );
+			}
+			$this->requireMaxOneParameter( array_merge( $params, $extraParams ), 'title', 'titles', 'pageids', 'revids' );
+			$title = Title::newFromText( $params['title'] );
+			if ( !$title || $title->isExternal() || !$title->canExist() ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+			$res = $this->watchTitle( $title, $user, $params );
+		}
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+	}
 
-		if ( !$title || !$title->isWatchable() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+	private function watchTitle( Title $title, User $user, array $params ) {
+		if ( !$title->isWatchable() ) {
+			return array( 'title' => $title->getPrefixedText(), 'watchable' => 0 );
 		}
 
 		$res = array( 'title' => $title->getPrefixedText() );
@@ -61,25 +97,42 @@ class ApiWatch extends ApiBase {
 		}
 
 		if ( $params['unwatch'] ) {
-			$res['unwatched'] = '';
-			$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )
-				->title( $title )->parseAsBlock();
 			$status = UnwatchAction::doUnwatch( $title, $user );
+			if ( $status->isOK() ) {
+				$res['unwatched'] = '';
+				$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )
+					->title( $title )->parseAsBlock();
+			}
 		} else {
-			$res['watched'] = '';
-			$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
-				->title( $title )->parseAsBlock();
 			$status = WatchAction::doWatch( $title, $user );
+			if ( $status->isOK() ) {
+				$res['watched'] = '';
+				$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
+					->title( $title )->parseAsBlock();
+			}
 		}
 
 		if ( !is_null( $oldLang ) ) {
 			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
 
+
 		if ( !$status->isOK() ) {
-			$this->dieStatus( $status );
+			$res['error'] = '';
 		}
-		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+		return $res;
+	}
+
+
+	/**
+	 * Get a cached instance of an ApiPageSet object
+	 * @return ApiPageSet
+	 */
+	private function getPageSet() {
+		if ( $this->mPageSet === null ) {
+			$this->mPageSet = new ApiPageSet( $this );
+		}
+		return $this->mPageSet;
 	}
 
 	public function mustBePosted() {
@@ -98,11 +151,11 @@ class ApiWatch extends ApiBase {
 		return 'watch';
 	}
 
-	public function getAllowedParams() {
-		return array(
+	public function getAllowedParams( $flags = 0 ) {
+		$result = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ApiBase::PARAM_DEPRECATED => true
 			),
 			'unwatch' => false,
 			'uselang' => null,
@@ -111,11 +164,16 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 		);
+		if ( $flags ) {
+			$result += $this->getPageSet()->getFinalParams( $flags );
+		}
+		return $result;
 	}
 
 	public function getParamDescription() {
-		return array(
-			'title' => 'The page to (un)watch',
+		$psModule = $this->getPageSet();
+		return $psModule->getParamDescription() + array(
+			'title' => 'The page to (un)watch. use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
 			'uselang' => 'Language to show the message in',
 			'token' => 'A token previously acquired via prop=info',
@@ -134,7 +192,7 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Add or remove a page from/to the current user\'s watchlist';
+		return 'Add or remove pages from/to the current user\'s watchlist';
 	}
 
 	public function getPossibleErrors() {
@@ -147,8 +205,8 @@ class ApiWatch extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=watch&title=Main_Page' => 'Watch the page "Main Page"',
-			'api.php?action=watch&title=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
+			'api.php?action=watch&titles=Main_Page' => 'Watch the page "Main Page"',
+			'api.php?action=watch&titles=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
 		);
 	}
 
