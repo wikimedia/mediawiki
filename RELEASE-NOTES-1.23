@@ -131,6 +131,8 @@ production.
 * (bug 57874) action=feedcontributions no longer has one item more than limit.
 * All API modules now support an assert parameter. See the new features section
   for more details.
+* (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 * Added prop=contributors to fetch the list of contributors to the page.
 * The following API modules will now return entries where fields have been
   revision-deleted: list=deletedrevs, list=filearchive, list=recentchanges,

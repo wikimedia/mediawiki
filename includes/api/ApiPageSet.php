@@ -75,6 +75,30 @@ class ApiPageSet extends ApiBase {
 	private $mDefaultNamespace = NS_MAIN;
 
 	/**
+	 * Add all items from $values into the result
+	 * @param array $result output
+	 * @param array $values values to add
+	 * @param string $flag the name of the boolean flag to mark this element
+	 * @param string $name if given, name of the value
+	 */
+	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
+		foreach ( $values as $val ) {
+			if ( $val instanceof Title ) {
+				$v = array();
+				ApiQueryBase::addTitleInfo( $v, $val );
+			} elseif ( $name !== null ) {
+				$v = array( $name => $val );
+			} else {
+				$v = $val;
+			}
+			if ( $flag !== null ) {
+				$v[$flag] = '';
+			}
+			$result[] = $v;
+		}
+	}
+
+	/**
 	 * Constructor
 	 * @param $dbSource ApiBase Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
@@ -496,6 +520,41 @@ class ApiPageSet extends ApiBase {
 		}
 
 		return $values;
+	}
+
+	/**
+	 * Get an array of invalid/special/missing titles.
+	 *
+	 * @return array List of types of invalid titles to include:
+	 * - invalidTitles: Titles from $this->getInvalidTitles()
+	 * - special: Titles from $this->getSpecialTitles()
+	 * - missingIds: ids from $this->getMissingPageIDs()
+	 * - missingRevIds: ids from $this->getMissingRevisionIDs()
+	 * - missingTitles: Titles from $this->getMissingTitles()
+	 * - interwikiTitles: Titles from $this->getInterwikiTitlesAsResult()
+	 * @since 1.23
+	 */
+	public function getInvalidTitlesAndRevisions( $invalidChecks = array( 'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'missingTitles', 'interwikiTitles' ) ) {
+		$result = array();
+		if ( in_array( "invalidTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );
+		}
+		if ( in_array( "special", $invalidChecks ) ) {
+			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
+		}
+		if ( in_array( "missingIds", $invalidChecks ) ) {
+		self::addValues( $result, $this->getMissingPageIDs(), 'missing', 'pageid' );
+		}
+		if ( in_array( "missingRevIds", $invalidChecks ) ) {
+			self::addValues( $result, $this->getMissingRevisionIDs(), 'missing', 'revid' );
+		}
+		if ( in_array( "missingTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getMissingTitles(), 'missing' );
+		}
+		if ( in_array( "interwikiTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getInterwikiTitlesAsResult() );
+		}
+		return $result;
 	}
 
 	/**
