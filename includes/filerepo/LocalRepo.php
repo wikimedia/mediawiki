@@ -275,15 +275,25 @@ class LocalRepo extends FileRepo {
 		$applyMatchingFiles = function( ResultWrapper $res, &$searchSet, &$finalFiles )
 			use ( $repo, $fileMatchesSearch, $flags )
 		{
+			global $wgContLang;
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
-				$dbKey = $file->getTitle()->getDBkey();
-				// There must have been a search for this exact DB Key
-				if ( $fileMatchesSearch( $file, $searchSet[$dbKey] ) ) {
-					$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
-						? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
-						: $file;
-					unset( $searchSet[$dbKey] );
+				$info = $repo->getInfo();
+				// There must have been a search for this DB key, but this has to handle the
+				// cases were title capitalization is different on the client and repo wikis.
+				$dbKeysLook = array( str_replace( ' ', '_', $file->getName() ) );
+				if ( !empty( $info['initialCapital'] ) ) {
+					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
+				}
+				foreach ( $dbKeysLook as $dbKey ) {
+					if ( isset( $searchSet[$dbKey])
+						&& $fileMatchesSearch( $file, $searchSet[$dbKey] )
+					) {
+						$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
+							? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
+							: $file;
+						unset( $searchSet[$dbKey] );
+					}
 				}
 			}
 		};
