@@ -16,25 +16,12 @@
 
 		// Compatibility map
 		map = {
-			browsers: {
-				// Left-to-right languages
-				ltr: {
-					// SimpleSearch is broken in Opera < 9.6
-					opera: [['>=', 9.6]],
-					docomo: false,
-					blackberry: false,
-					ipod: false,
-					iphone: false
-				},
-				// Right-to-left languages
-				rtl: {
-					opera: [['>=', 9.6]],
-					docomo: false,
-					blackberry: false,
-					ipod: false,
-					iphone: false
-				}
-			}
+			// SimpleSearch is broken in Opera < 9.6
+			opera: [['>=', 9.6]],
+			docomo: false,
+			blackberry: false,
+			ipod: false,
+			iphone: false
 		};
 
 		if ( !$.client.test( map ) ) {
