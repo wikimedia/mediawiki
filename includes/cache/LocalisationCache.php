@@ -528,6 +528,32 @@ class LocalisationCache {
 	}
 
 	/**
+	 * Read a JSON file containing localisation messages.
+	 * @param string $fileName Name of file to read
+	 * @throws MWException if there is a syntax error in the JSON file
+	 * @return array with a 'messages' key, or empty array if the file doesn't exist
+	 */
+	protected function readJSONFile( $fileName ) {
+		wfProfileIn( __METHOD__ );
+		if ( !file_exists( $fileName ) ) {
+			return array();
+		}
+
+		$json = file_get_contents( $fileName );
+		if ( $json === false ) {
+			return array();
+		}
+		$data = FormatJson::decode( $json, true );
+		if ( $data === null ) {
+			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
+		}
+		// Remove metadata
+		unset( $data['@metadata'] );
+		// The JSON format only supports messages, none of the other variables, so wrap the data
+		return array( 'messages' => $data );
+	}
+
+	/**
 	 * Get the compiled plural rules for a given language from the XML files.
 	 * @since 1.20
 	 */
@@ -736,7 +762,7 @@ class LocalisationCache {
 	 * @throws MWException
 	 */
 	public function recache( $code ) {
-		global $wgExtensionMessagesFiles;
+		global $wgExtensionMessagesFiles, $wgExtensionMessagesDirs;
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
@@ -810,11 +836,33 @@ class LocalisationCache {
 		# like site-specific message overrides.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
-		foreach ( $wgExtensionMessagesFiles as $fileName ) {
+		foreach ( $wgExtensionMessagesDirs as $dirs ) {
+			foreach ( (array)$dirs as $dir ) {
+				foreach ( $codeSequence as $csCode ) {
+					$fileName = "$dir/$csCode.json";
+					$data = $this->readJSONFile( $fileName );
+
+					foreach ( $data as $key => $item ) {
+						$this->mergeItem( $key, $allData[$key], $item );
+					}
+
+					$deps[] = new FileDependency( $fileName );
+				}
+			}
+		}
+
+		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
+				if ( $key === 'messages' && isset( $wgExtensionMessagesDirs[$extension] ) ) {
+					# For backwards compatibility, ignore messages from extensions in
+					# $wgExtensionMessagesFiles that are also present in $wgExtensionMessagesDirs.
+					# This allows extensions to use both and be backwards compatible.
+					# Variables other than $messages still need to be supported though.
+					continue;
+				}
 				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
 					$used = true;
 				}
@@ -833,6 +881,7 @@ class LocalisationCache {
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
+		$deps['wgExtensionMessagesDirs'] = new GlobalDependency( 'wgExtensionMessagesDirs' );
 		$deps['version'] = new ConstantDependency( 'MW_LC_VERSION' );
 
 		# Add dependencies to the cache entry
