@@ -50,8 +50,8 @@ class NullJob extends Job {
 	 * @param array $params job parameters (lives, usleep)
 	 * @param int $id Job id
 	 */
-	function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'null', $title, $params, $id );
+	function __construct( $title, $params ) {
+		parent::__construct( 'null', $title, $params );
 		if ( !isset( $this->params['lives'] ) ) {
 			$this->params['lives'] = 1;
 		}

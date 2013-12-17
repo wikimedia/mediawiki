@@ -27,8 +27,8 @@
  * @ingroup Upload
  */
 class AssembleUploadChunksJob extends Job {
-	public function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'AssembleUploadChunks', $title, $params, $id );
+	public function __construct( $title, $params ) {
+		parent::__construct( 'AssembleUploadChunks', $title, $params );
 		$this->removeDuplicates = true;
 	}
 

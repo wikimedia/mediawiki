@@ -29,8 +29,8 @@
  * @deprecated 1.23
  */
 class RefreshLinksJob2 extends Job {
-	function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'refreshLinks2', $title, $params, $id );
+	function __construct( $title, $params ) {
+		parent::__construct( 'refreshLinks2', $title, $params );
 		// Base jobs for large templates can easily be de-duplicated
 		$this->removeDuplicates = !isset( $params['start'] ) && !isset( $params['end'] );
 	}

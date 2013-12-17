@@ -86,8 +86,8 @@ class DoubleRedirectJob extends Job {
 	 * @param array|bool $params
 	 * @param int $id
 	 */
-	function __construct( $title, $params = false, $id = 0 ) {
-		parent::__construct( 'fixDoubleRedirect', $title, $params, $id );
+	function __construct( $title, $params = false ) {
+		parent::__construct( 'fixDoubleRedirect', $title, $params );
 		$this->reason = $params['reason'];
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
 	}
