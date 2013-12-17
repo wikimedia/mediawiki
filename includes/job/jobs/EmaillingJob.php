@@ -28,8 +28,8 @@
  * @ingroup JobQueue
  */
 class EmaillingJob extends Job {
-	function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'sendMail', Title::newMainPage(), $params, $id );
+	function __construct( $title, $params ) {
+		parent::__construct( 'sendMail', Title::newMainPage(), $params );
 	}
 
 	function run() {

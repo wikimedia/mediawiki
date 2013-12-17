@@ -27,8 +27,8 @@
  * @ingroup Upload
  */
 class PublishStashedFileJob extends Job {
-	public function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'PublishStashedFile', $title, $params, $id );
+	public function __construct( $title, $params ) {
+		parent::__construct( 'PublishStashedFile', $title, $params );
 		$this->removeDuplicates = true;
 	}
 

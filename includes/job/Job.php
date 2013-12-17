@@ -66,16 +66,15 @@ abstract class Job {
 	 * @param string $command Job command
 	 * @param Title $title Associated title
 	 * @param array|bool $params Job parameters
-	 * @param int $id Job identifier
 	 * @throws MWException
 	 * @return Job
 	 */
-	public static function factory( $command, Title $title, $params = false, $id = 0 ) {
+	public static function factory( $command, Title $title, $params = false ) {
 		global $wgJobClasses;
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
 
-			return new $class( $title, $params, $id );
+			return new $class( $title, $params );
 		}
 		throw new MWException( "Invalid job command `{$command}`" );
 	}
