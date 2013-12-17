@@ -28,10 +28,6 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/** The maximum number of edits a user can have and still be hidden
-	 * TODO: config setting? */
-	const HIDEUSER_CONTRIBLIMIT = 1000;
-
 	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
@@ -599,7 +595,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return Bool|String
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit;
+		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
 
 		$performer = $context->getUser();
 
@@ -670,10 +666,13 @@ class SpecialBlock extends FormSpecialPage {
 			} elseif ( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
-			} elseif ( $user->getEditCount() > self::HIDEUSER_CONTRIBLIMIT ) {
+			} elseif ( $wgHideUserContribLimit !== false
+				&& $user->getEditCount() > $wgHideUserContribLimit
+			) {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
-				return array( 'ipb_hide_invalid' );
+				return array( array( 'ipb_hide_invalid',
+					Message::numParam( $wgHideUserContribLimit ) ) );
 			} elseif ( !$data['Confirm'] ) {
 				return array( 'ipb-confirmhideuser' );
 			}
