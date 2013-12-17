@@ -65,6 +65,7 @@ class MagicWord {
 	var $mId, $mSynonyms, $mCaseSensitive;
 	var $mRegex = '';
 	var $mRegexStart = '';
+	var $mRegexStartToEnd = '';
 	var $mBaseRegex = '';
 	var $mVariableRegex = '';
 	var $mVariableStartToEndRegex = '';
@@ -338,6 +339,7 @@ class MagicWord {
 		$case = $this->mCaseSensitive ? '' : 'iu';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
+		$this->mRegexStartToEnd = "/^(?:{$this->mBaseRegex})$/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
 		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)",
 			"/^(?:{$this->mBaseRegex})$/{$case}" );
@@ -405,6 +407,19 @@ class MagicWord {
 	}
 
 	/**
+	 * Gets a regex matching the word from start to end of a string
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	function getRegexStartToEnd() {
+		if ( $this->mRegexStartToEnd == '' ) {
+			$this->initRegex();
+		}
+		return $this->mRegexStartToEnd;
+	}
+
+	/**
 	 * regex without the slashes and what not
 	 *
 	 * @return string
@@ -436,6 +451,18 @@ class MagicWord {
 	 */
 	function matchStart( $text ) {
 		return (bool)preg_match( $this->getRegexStart(), $text );
+	}
+
+	/**
+	 * Returns true if the text matched the word
+	 *
+	 * @param $text string
+	 *
+	 * @return bool
+	 * @since 1.23
+	 */
+	function matchStartToEnd( $text ) {
+		return (bool)preg_match( $this->getRegexStartToEnd(), $text );
 	}
 
 	/**
