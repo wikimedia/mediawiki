@@ -5931,12 +5931,50 @@ $wgExtensionFunctions = array();
  * Variables defined in extensions will override conflicting variables defined
  * in the core.
  *
+ * Since MediaWiki 1.23, use of this variable to define messages is discouraged; instead, store
+ * messages in JSON format and use $wgExtensionMessagesDirs. For setting other variables than
+ * $messages, $wgExtensionMessagesFiles should still be used.
+ *
+ * If there is an entry in $wgExtensionMessagesDirs with the same key as one in
+ * $wgExtensionMessagesFiles, then any $messages variables set in the $wgExtensionMessagesFiles file
+ * will be ignored. This means an extension that only provides messages can be backwards compatible
+ * by using both $wgExtensionMessagesFiles and $wgExtensionMessagesDirs, and only one of the two
+ * will be used depending on what the version of MediaWiki supports.
+ *
  * @par Example:
  * @code
  *    $wgExtensionMessagesFiles['ConfirmEdit'] = __DIR__.'/ConfirmEdit.i18n.php';
  * @endcode
  */
 $wgExtensionMessagesFiles = array();
+
+/**
+ * Extension messages directories.
+ *
+ * Associative array mapping extension name to the path of the directory where message files can
+ * be found. The message files are expected to be JSON files named for their language code, e.g.
+ * en.json, de.json, etc.
+ *
+ * Extensions with messages in multiple places may specify an associative array mapping group names
+ * to message directories.
+ *
+ * @par Simple example:
+ * @code
+ *    $wgExtensionMessagesDirs['ConfirmEdit'] = __DIR__ . '/i18n';
+ * @endcode
+ *
+ * @par Complex example:
+ * @code
+ *    $wgExtensionMessagesDirs['VisualEditor'] = array(
+ *        '' => __DIR__ . '/i18n',
+ *        've-core' => __DIR__ . '/modules/ve-core/i18n',
+ *        'qunit' => __DIR__ . '/modules/qunit/localisation',
+ *        'oojs-ui' => __DIR__ . '/modules/oojs-ui/messages',
+ *    )
+ * @endcode
+ * @since 1.23
+ */
+$wgExtensionMessagesDirs = array();
 
 /**
  * Array of files with list(s) of extension entry points to be used in
