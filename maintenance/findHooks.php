@@ -96,6 +96,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/upload/',
 			$IP . '/languages/',
 			$IP . '/maintenance/',
+			$IP . '/maintenance/language/',
 			$IP . '/tests/',
 			$IP . '/tests/parser/',
 			$IP . '/tests/phpunit/suites/',
