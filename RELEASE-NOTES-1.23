@@ -82,8 +82,10 @@ production.
 * EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
+* (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
-=== Languages updated in 1.23===
+=== Languages updated in 1.23 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
