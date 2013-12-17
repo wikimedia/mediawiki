@@ -28,9 +28,6 @@
  * @ingroup JobQueue
  */
 abstract class Job {
-	/** @var int Job identifier */
-	public $id;
-
 	/** @var string */
 	public $command;
 
@@ -145,24 +142,14 @@ abstract class Job {
 	 * @param $command
 	 * @param $title
 	 * @param $params array|bool
-	 * @param $id int
 	 */
-	public function __construct( $command, $title, $params = false, $id = 0 ) {
+	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
 		$this->params = $params;
-		$this->id = $id;
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;
-	}
-
-	/**
-	 * @return int May be 0 for jobs stored outside the DB
-	 * @deprecated since 1.22
-	 */
-	public function getId() {
-		return $this->id;
 	}
 
 	/**
