@@ -10532,6 +10532,7 @@ For more information, see [[mw:Extension:ExpandTemplates]]',
 'expand_templates_input' => '{{Identical|Input text}}',
 'expand_templates_output' => '{{Identical|Result}}',
 'expand_templates_xml_output' => 'Used as HTML <code><nowiki><h2></nowiki></code> heading.',
+'expand_templates_html_output' => 'Used as HTML <code><nowiki><h2></nowiki></code> heading.',
 'expand_templates_ok' => '{{Identical|OK}}',
 'expand_templates_remove_comments' => 'Check box to tell [[mw:Extension:ExpandTemplates]] to not show comments in the expanded template.',
 'expand_templates_remove_nowiki' => "Option on [[Special:Expandtemplates]]
@@ -10553,6 +10554,7 @@ Ticked:
 test
 </pre>",
 'expand_templates_generate_xml' => 'Used as checkbox label.',
+'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
 );

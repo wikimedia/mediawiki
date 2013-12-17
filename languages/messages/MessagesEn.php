@@ -5110,19 +5110,21 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'limitreport-expensivefunctioncount-value' => '$1/$2', # only translate this message to other languages if you have to change it
 
 # ExpandTemplates
-'expandtemplates'                  => 'Expand templates',
-'expand_templates_intro'           => 'This special page takes text and expands all templates in it recursively.
+'expandtemplates'                   => 'Expand templates',
+'expand_templates_intro'            => 'This special page takes text and expands all templates in it recursively.
 It also expands supported parser functions like
 <code><nowiki>{{</nowiki>#language:…}}</code> and variables like
 <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
 In fact, it expands pretty much everything in double-braces.',
-'expand_templates_title'           => 'Context title, for {{FULLPAGENAME}}, etc.:',
-'expand_templates_input'           => 'Input text:',
-'expand_templates_output'          => 'Result',
-'expand_templates_xml_output'      => 'XML output',
-'expand_templates_ok'              => 'OK',
-'expand_templates_remove_comments' => 'Remove comments',
-'expand_templates_remove_nowiki'   => 'Suppress <nowiki> tags in result',
-'expand_templates_generate_xml'    => 'Show XML parse tree',
-'expand_templates_preview'         => 'Preview',
+'expand_templates_title'            => 'Context title, for {{FULLPAGENAME}}, etc.:',
+'expand_templates_input'            => 'Input text:',
+'expand_templates_output'           => 'Result',
+'expand_templates_xml_output'       => 'XML output',
+'expand_templates_html_output'      => 'Raw HTML output',
+'expand_templates_ok'               => 'OK',
+'expand_templates_remove_comments'  => 'Remove comments',
+'expand_templates_remove_nowiki'    => 'Suppress <nowiki> tags in result',
+'expand_templates_generate_xml'     => 'Show XML parse tree',
+'expand_templates_generate_rawhtml' => 'Show raw HTML',
+'expand_templates_preview'          => 'Preview',
 );
