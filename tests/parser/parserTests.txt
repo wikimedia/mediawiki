@@ -16688,6 +16688,19 @@ language=be-tarask
 !! end
 
 !! test
+Wrong option for formatNum (bug 56199)
+!! input
+{{formatnum:1,234.56|Random}}
+{{formatnum:1,234.56|EVERYTHING}}
+{{formatnum:1234.56|any argument that has the string 'NOSEP'}}
+!! result
+<p>1,234.56
+1,234.56
+1,234.56
+</p>
+!! end
+
+!! test
 Strip marker in grammar
 !! options
 language=fi
