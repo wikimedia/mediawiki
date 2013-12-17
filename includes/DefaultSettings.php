@@ -5935,8 +5935,37 @@ $wgExtensionFunctions = array();
  * @code
  *    $wgExtensionMessagesFiles['ConfirmEdit'] = __DIR__.'/ConfirmEdit.i18n.php';
  * @endcode
+ * @deprecated since 1.23 Store messages in JSON files instead and use $wgExtensionMessagesDirs
  */
 $wgExtensionMessagesFiles = array();
+
+/**
+ * Extension messages directories.
+ *
+ * Associative array mapping extension name to the path of the directory where message files can
+ * be found. The message files are expected to be JSON files named for their language code, e.g.
+ * en.json, de.json, etc.
+ *
+ * Extensions with messages in multiple places may specify an associative array mapping group names
+ * to message directories.
+ *
+ * @par Simple example:
+ * @code
+ *    $wgExtensionMessagesDirs['ConfirmEdit'] = __DIR__ . '/i18n';
+ * @endcode
+ *
+ * @par Complex example:
+ * @code
+ *    $wgExtensionMessagesDirs['VisualEditor'] = array(
+ *        '' => __DIR__ . '/i18n',
+ *        've-core' => __DIR__ . '/modules/ve-core/i18n',
+ *        'qunit' => __DIR__ . '/modules/qunit/localisation',
+ *        'oojs-ui' => __DIR__ . '/modules/oojs-ui/messages',
+ *    )
+ * @endcode
+ * @since 1.23
+ */
+$wgExtensionMessagesDirs = array();
 
 /**
  * Array of files with list(s) of extension entry points to be used in

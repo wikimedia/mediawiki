@@ -528,6 +528,28 @@ class LocalisationCache {
 	}
 
 	/**
+	 * Read a JSON file containing localisation messages.
+	 * @param $fileName
+	 * @throws MWException if there is a syntax error in the JSON file
+	 * @return array with a 'messages' key, or empty array if the file doesn't exist
+	 */
+	protected function readJSONFile( $fileName ) {
+		wfProfileIn( __METHOD__ );
+		$json = file_get_contents( $fileName );
+		if ( $json === false ) {
+			return array();
+		}
+		$data = FormatJson::decode( $json, true );
+		if ( $data === null ) {
+			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
+		}
+		// Remove metadata
+		unset( $data['@metadata'] );
+		// The JSON format only supports messages, none of the other variables, so wrap the data
+		return array( 'messages' => $data );
+	}
+
+	/**
 	 * Get the compiled plural rules for a given language from the XML files.
 	 * @since 1.20
 	 */
@@ -736,7 +758,7 @@ class LocalisationCache {
 	 * @throws MWException
 	 */
 	public function recache( $code ) {
-		global $wgExtensionMessagesFiles;
+		global $wgExtensionMessagesFiles, $wgExtensionMessagesDirs;
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
@@ -822,6 +844,24 @@ class LocalisationCache {
 
 			if ( $used ) {
 				$deps[] = new FileDependency( $fileName );
+			}
+		}
+		foreach ( $wgExtensionMessagesDirs as $dirs ) {
+			foreach ( (array)$dirs as $dir ) {
+				$fileName = "$dir/$code.json";
+				wfDebugLog(__METHOD__ . ": Reading $fileName\n");
+				$data = $this->readJSONFile( $fileName );
+				$used = false;
+
+				foreach ( $data as $key => $item ) {
+					$this->mergeItem( $key, $allData[$key], $item );
+					$used = true;
+				}
+
+				if ( $used ) {
+					wfDebugLog( __METHOD__ . ": Adding dependency on $fileName\n" );
+					$deps[] = new FileDependency( $fileName );
+				}
 			}
 		}
 
