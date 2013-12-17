@@ -473,6 +473,10 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* (bug 47099) Plural rules were updated to those from CLDR 24 for Manx (gv).
+* (bug 54514) Explicit plural forms now work for Russian.
+* (bug 46422) Explicit plural forms for languages that use a custom
+  implementation for Language::convertPlural now work correctly.
 * Batak Toba (bbc-latn) added.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
