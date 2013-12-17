@@ -186,6 +186,47 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the load URL of the startup modules.
+	 *
+	 * This is a helper for getScript(), but can also be called standalone, such
+	 * as when generating an AppCache manifest.
+	 *
+	 * @param $context ResourceLoaderContext
+	 * @return string
+	 */
+	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
+		$out = '';
+
+		// The core modules:
+		$moduleNames = array( 'jquery', 'mediawiki' );
+		wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$moduleNames ) );
+
+		// Get the latest version
+		$loader = $context->getResourceLoader();
+		$version = 0;
+		foreach ( $moduleNames as $moduleName ) {
+			$version = max( $version,
+				$loader->getModule( $moduleName )->getModifiedTime( $context )
+			);
+		}
+
+		$query = array(
+			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
+			'only' => 'scripts',
+			'lang' => $context->getLanguage(),
+			'skin' => $context->getSkin(),
+			'debug' => $context->getDebug() ? 'true' : 'false',
+			'version' => wfTimestamp( TS_ISO_8601_BASIC, $version )
+		);
+		// Ensure uniform query order
+		ksort( $query );
+		$out =  wfAppendQuery( wfScript( 'load' ), $query );
+
+		return $out;
+	}
+
+
+	/**
 	 * @param $context ResourceLoaderContext
 	 * @return string
 	 */
@@ -194,30 +235,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$out = file_get_contents( "$IP/resources/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
-
-			// The core modules:
-			$moduleNames = array( 'jquery', 'mediawiki' );
-			wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$moduleNames ) );
-
-			// Get the latest version
-			$loader = $context->getResourceLoader();
-			$version = 0;
-			foreach ( $moduleNames as $moduleName ) {
-				$version = max( $version,
-					$loader->getModule( $moduleName )->getModifiedTime( $context )
-				);
-			}
-			// Build load query for StartupModules
-			$query = array(
-				'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
-				'only' => 'scripts',
-				'lang' => $context->getLanguage(),
-				'skin' => $context->getSkin(),
-				'debug' => $context->getDebug() ? 'true' : 'false',
-				'version' => wfTimestamp( TS_ISO_8601_BASIC, $version )
-			);
-			// Ensure uniform query order
-			ksort( $query );
 
 			// Startup function
 			$configuration = $this->getConfig( $context );
@@ -230,7 +247,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				"};\n";
 
 			// Conditional script injection
-			$scriptTag = Html::linkedScript( wfAppendQuery( wfScript( 'load' ), $query ) );
+			$scriptTag = Html::linkedScript( self::getStartupModulesUrl( $context ) );
 			$out .= "if ( isCompatible() ) {\n" .
 				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
 				"}\n" .
