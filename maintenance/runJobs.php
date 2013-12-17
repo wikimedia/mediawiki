@@ -36,6 +36,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'maxtime', 'Maximum amount of wall-clock time', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
+		$this->addOption( 'nologstarts', 'Do not log a message on job starts', false, false );
 	}
 
 	public function memoryLimit() {
@@ -86,7 +87,9 @@ class RunJobs extends Maintenance {
 				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
 				++$jobsRun;
-				$this->runJobsLog( $job->toString() . " STARTING" );
+				if ( ! $this->hasOption( 'nologstarts' ) ) {
+					$this->runJobsLog( $job->toString() . " STARTING" );
+				}
 
 				// Set timer to stop the job if too much CPU time is used
 				set_time_limit( $maxTime ?: 0 );

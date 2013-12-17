@@ -57,6 +57,10 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* maintenance/runJobs.php learned --nologstarts which can be used to prevent it
+  from sending a log message whenever a job start. Small wikis would probably
+  be happy to see jobs starting, so disabling it is an explicit option intended
+  to cut in half the amount of traffic sent to runJobs log bucket on big wikis.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
