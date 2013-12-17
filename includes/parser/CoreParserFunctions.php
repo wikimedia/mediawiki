@@ -402,11 +402,12 @@ class CoreParserFunctions {
 	 * @return boolean true on successful match
 	 */
 	private static function matchAgainstMagicword( $magicword, $value ) {
-		if ( strval( $value ) === '' ) {
+		$value = trim( strval( $value ) );
+		if ( $value === '' ) {
 			return false;
 		}
 		$mwObject = MagicWord::get( $magicword );
-		return $mwObject->match( $value );
+		return $mwObject->matchStartToEnd( $value );
 	}
 
 	static function formatRaw( $num, $raw ) {

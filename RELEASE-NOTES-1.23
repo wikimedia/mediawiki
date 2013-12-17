@@ -104,6 +104,8 @@ production.
   templatelinks does).
 * (bug 58167) The web installer no longer throws an exception when PHP is
   compiled without support for MySQL yet with support for another DBMS.
+* (bug 56199) Raw option of parser functions must now match complete word,
+  to take effect.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
