@@ -507,8 +507,11 @@ class LoginForm extends SpecialPage {
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
 
-		# Update user count
+		// Update user count
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
+
+		// Watch user's userpage and talk page
+		$u->addWatch( $u->getUserPage(), WatchedItem::IGNORE_USER_RIGHTS );
 
 		return Status::newGood( $u );
 	}
