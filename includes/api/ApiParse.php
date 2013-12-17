@@ -249,6 +249,10 @@ class ApiParse extends ApiBase {
 			$result_array['redirects'] = $redirValues;
 		}
 
+		if ( $params['disabletoc'] ) {
+			$p_result->setTOCEnabled( false );
+		}
+
 		if ( isset( $prop['text'] ) ) {
 			$result_array['text'] = array();
 			ApiResult::setContent( $result_array['text'], $p_result->getText() );
@@ -691,6 +695,7 @@ class ApiParse extends ApiBase {
 			'generatexml' => false,
 			'preview' => false,
 			'sectionpreview' => false,
+			'disabletoc' => false,
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 			),
@@ -753,6 +758,7 @@ class ApiParse extends ApiBase {
 			'generatexml' => "Generate XML parse tree (requires contentmodel=$wikitext)",
 			'preview' => 'Parse in preview mode',
 			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
+			'disabletoc' => 'Disable table of contents in output',
 			'contentformat' => array(
 				'Content serialization format used for the input text',
 				"Only valid when used with {$p}text",
