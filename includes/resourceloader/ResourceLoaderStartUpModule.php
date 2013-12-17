@@ -186,13 +186,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the load URL of the startup modules.
+	 *
+	 * This is a helper for getScript(), but can also be called standalone, such
+	 * as when generating an AppCache manifest.
+	 *
 	 * @param $context ResourceLoaderContext
 	 * @return string
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
-		global $IP, $wgLegacyJavaScriptGlobals;
+	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
+		$out = '';
 
-		$out = file_get_contents( "$IP/resources/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
 
 			// The core modules:
@@ -207,7 +211,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$loader->getModule( $moduleName )->getModifiedTime( $context )
 				);
 			}
-			// Build load query for StartupModules
+
 			$query = array(
 				'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
 				'only' => 'scripts',
@@ -218,6 +222,21 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			);
 			// Ensure uniform query order
 			ksort( $query );
+			$out =  wfAppendQuery( wfScript( 'load' ), $query );
+		}
+		return $out;
+	}
+
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return string
+	 */
+	public function getScript( ResourceLoaderContext $context ) {
+		global $IP, $wgLegacyJavaScriptGlobals;
+
+		$out = file_get_contents( "$IP/resources/startup.js" );
+		if ( $context->getOnly() === 'scripts' ) {
 
 			// Startup function
 			$configuration = $this->getConfig( $context );
@@ -230,7 +249,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				"};\n";
 
 			// Conditional script injection
-			$scriptTag = Html::linkedScript( wfAppendQuery( wfScript( 'load' ), $query ) );
+			$scriptTag = Html::linkedScript( self::getStartupModulesUrl( $context ) );
 			$out .= "if ( isCompatible() ) {\n" .
 				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
 				"}\n" .
