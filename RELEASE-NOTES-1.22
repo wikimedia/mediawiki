@@ -4,7 +4,7 @@ have it on, turn it '''off''' if you can.
 == MediaWiki 1.22.0 ==
 
 MediaWiki 1.22.0 is the stable branch and is recommended for use in production.
-This is a security and maintenance release of the MediaWiki 1.21 branch.
+MediaWiki 1.22.0 is a large release that contains many new features and bug fixes.
 
 * Breaking Changes in 1.22.0
 * New features in 1.22.0
