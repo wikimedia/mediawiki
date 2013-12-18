@@ -59,6 +59,7 @@
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Rodrigo Padula
+ * @author Rodrigo codignoli
  * @author Sir Lestaty de Lioncourt
  * @author Teles
  * @author TheGabrielZaum
@@ -1739,6 +1740,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
 'recentchanges-legend-newpage' => '(veja também a [[Special:NewPages|lista de páginas novas]])',
+'recentchanges-legend-plusminus' => '±123',
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
@@ -2212,6 +2214,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|Interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|linque|linques}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
+'nmemberschanged' => '$ -> $2{{PLURAL:$2|membro|membro}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks' => 'Utilizada em $1 {{PLURAL:$1|página|páginas}}',
@@ -3842,6 +3845,9 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'confirm-watch-top' => 'Adicionar esta página às suas páginas vigiadas?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Remover esta página das páginas vigiadas?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '$1',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

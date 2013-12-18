@@ -1733,7 +1733,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rclistfrom' => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
 'rcshowhidebots' => '$1 boty',
-'rcshowhideliu' => '$1 zalogowanych',
+'rcshowhideliu' => '$1 zarejestrowanych',
 'rcshowhideanons' => '$1 anonimowych',
 'rcshowhidepatr' => '$1 sprawdzone',
 'rcshowhidemine' => '$1 moje edycje',

@@ -10,6 +10,7 @@
  * @author Antofa
  * @author Cornelia
  * @author Felis
+ * @author Jun Misugi
  * @author Kaganer
  */
 
@@ -233,7 +234,10 @@ $messages = array(
 'vector-action-move' => 'Ippustha',
 'vector-view-create' => 'Cria',
 'vector-view-edit' => 'Mudifigga',
+'vector-view-history' => 'Vèdi isthòria',
 'vector-view-view' => 'Leggi',
+'vector-view-viewsource' => 'Vèdi fonti',
+'namespaces' => 'Tipi di pàgina:',
 
 'errorpagetitle' => 'Errori',
 'returnto' => 'Turra a $1.',
@@ -268,7 +272,7 @@ $messages = array(
 'personaltools' => 'Isthrumenti passunari',
 'postcomment' => 'Noba sezzioni',
 'articlepage' => 'Vedi la bozi',
-'talk' => 'dischussioni',
+'talk' => 'Dischussioni',
 'views' => 'Vìsiti',
 'toolbox' => 'Isthrumenti',
 'userpage' => 'Visuarizza la pàgina utenti',
@@ -319,7 +323,7 @@ $messages = array(
 'retrievedfrom' => 'Buggaddu da "$1"',
 'youhavenewmessages' => 'Ài $1 ($2).',
 'youhavenewmessagesmulti' => 'Ài nobi imbasciaddi i $1',
-'editsection' => 'mudifigga',
+'editsection' => 'Mudìfigga',
 'editold' => 'mudifigga',
 'viewsourceold' => "visuarizza l'orìgini",
 'editlink' => 'mudifigga',
@@ -875,6 +879,9 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'recentchanges-legend' => 'Opzioni ulthimi mudifigghi',
 'recentchanges-summary' => 'Chistha pàgina prisinta li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
 'recentchanges-feed-description' => 'Chisthu feed cunteni li mudìfigghi più rizzenti a li cuntinuddi di lu situ.',
+'recentchanges-label-newpage' => 'Noba pàgina',
+'recentchanges-label-minor' => 'Chistha è una mudìfigga minori',
+'recentchanges-label-bot' => 'Chistha è una mudìfigga pa unu bot',
 'rcnotefrom' => "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da '''$2''' (finz'a '''$1''').",
 'rclistfrom' => 'Musthra li mudìfigghi arriggaddi à partì da $1',
 'rcshowhideminor' => '$1 li mudìfigghi minori',
@@ -886,8 +893,8 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'rclinks' => "Musthra li $1 mudìfigghi più rizzenti arriggaddi i' l'ulthimi $2 dì<br />$3",
 'diff' => 'diff',
 'hist' => 'cron',
-'hide' => 'cua',
-'show' => 'musthra',
+'hide' => 'Cua',
+'show' => 'Musthra',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
@@ -1393,7 +1400,7 @@ $1",
 # Contributions
 'contributions' => 'Cuntributi utenti',
 'contributions-title' => 'Cuntributi di $1',
-'mycontris' => "li me' cuntributi",
+'mycontris' => "Li me' cuntributi",
 'contribsub2' => 'Pa $1 ($2)',
 'nocontribs' => 'Nò so isthaddi acciappaddi mudifigghi cunfoimmi a li criteri sciubaraddi.',
 'uctop' => '(ulthima pa la pàgina)',
@@ -1403,6 +1410,8 @@ $1",
 'sp-contributions-newbies' => 'Musthra soru li cuntributi di li nobi utenti',
 'sp-contributions-newbies-sub' => 'Pa li nobi utenti',
 'sp-contributions-blocklog' => 'Brocchi',
+'sp-contributions-uploads' => 'carriggamentu',
+'sp-contributions-logs' => 'rigisthri',
 'sp-contributions-talk' => 'dischussioni',
 'sp-contributions-search' => 'Zercha cuntributi',
 'sp-contributions-username' => 'Indirizzu IP o nommu utenti:',
@@ -1639,8 +1648,9 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-search' => 'Zercha di dentru a {{SITENAME}}',
 'tooltip-search-go' => "Via a una pàgina cu' lu tìturu indicaddu, si v'è",
 'tooltip-search-fulltext' => "Zercha lu testhu indicaddu i' li pàgini",
-'tooltip-p-logo' => 'Pagina prinzipari',
+'tooltip-p-logo' => 'Visita la pàgina prinzipari',
 'tooltip-n-mainpage' => 'Visita la pàgina prinzipari',
+'tooltip-n-mainpage-description' => 'Visita la pàgina prinzipari',
 'tooltip-n-portal' => "Deschrizioni di lu prugettu, cosa pói fà, und'agattà li cosi",
 'tooltip-n-currentevents' => "Infuimmazioni i' l'eventi d'attuarità",
 'tooltip-n-recentchanges' => "Erencu di l'ulthimi mudìfigghi i' lu situ",
@@ -1674,7 +1684,7 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-watch' => "Aggiungi chistha pàgina a la listha di l'abbaidaddi ippiziari",
 'tooltip-recreate' => "Ricrea la pàgina puru s'è già isthadda canzilladda.",
 'tooltip-upload' => 'Ischuminza lu carriggamentu',
-'tooltip-rollback' => '"Turra che primma" annulla li mudifigghi a chistha pagina di l\'ulthimu cuntributori cu\' un soru clic.',
+'tooltip-rollback' => '"Turra che primma" annulla li mudìfigghi a chistha pagina di l\'ulthimu cuntributori cu\' un soru clic.',
 'tooltip-undo' => "\"Annulla\"  pilmitti d'annullà chistha mudifigga e abbri lu modulu di mudifigga d'antiprimma. Pilmitti d'insirì una mutibazioni i' l'oggettu di la mudifigga.",
 
 # Metadata
@@ -1836,7 +1846,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tutti',
-'namespacesall' => 'Tutti',
+'namespacesall' => 'tutti',
 'monthsall' => 'tutti',
 
 # Email address confirmation

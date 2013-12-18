@@ -148,6 +148,18 @@ $messages = array(
 'oct' => 'Tub',
 'nov' => 'Wam',
 'dec' => 'Duj',
+'january-date' => '$1 yennayer',
+'february-date' => '$1 fuṛaṛ',
+'march-date' => '$1 meɣres',
+'april-date' => '$1 yebrir',
+'may-date' => '$1 mayyu',
+'june-date' => '$1 yunyu',
+'july-date' => '$1 yulyu',
+'august-date' => '$1 ɣuct',
+'september-date' => '$1 ctamber',
+'october-date' => '$1 tuber',
+'november-date' => '$1 wamber',
+'december-date' => '$1 dujamber',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Taggayt|Taggayin}}',

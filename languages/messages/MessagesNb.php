@@ -1726,7 +1726,7 @@ Informasjonen vil være offentlig.',
 'rclistfrom' => 'Vis nye endringer med start fra $1',
 'rcshowhideminor' => '$1 mindre endringer',
 'rcshowhidebots' => '$1 roboter',
-'rcshowhideliu' => '$1 innloggede brukere',
+'rcshowhideliu' => '$1 registrerte brukere',
 'rcshowhideanons' => '$1 anonyme brukere',
 'rcshowhidepatr' => '$1 patruljerte endringer',
 'rcshowhidemine' => '$1 mine endringer',
@@ -2116,7 +2116,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 # Random page in category
 'randomincategory' => 'Tilfeldig side innenfor kategorien',
 'randomincategory-invalidcategory' => '«$1» er ikke et gyldig kategorinavn.',
-'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1]]-kategorien.',
+'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1|$1]]-kategorien.',
 'randomincategory-selectcategory' => 'Hent en tilfeldig side fra kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Start',
 
@@ -2440,8 +2440,7 @@ Kontakt brukeren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Det vil ikke komme flere varsler om endringer på denne siden med mindre du besøker den.
-Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslisten din.
+Det vil ikke komme flere varsler om endringer på denne siden med mindre du besøker den mens du er innlogget. Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslisten din.
 
              Ditt vennlige varslingssystem for {{SITENAME}}
 
@@ -2506,7 +2505,8 @@ Se $2 for en oversikt over de siste slettingene.',
 Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Redigeringskommentaren var: «''$1''»",
 'revertpage' => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]',
-'revertpage-nouser' => 'Tilbakestilt endring av skjult bruker til siste versjon av {GENDER:$1|[[Bruker:$1]]}}',
+'revertpage-nouser' => 'Tilbakestilt endringer av skjult bruker til siste versjon av
+{{GENDER:$1|[[Bruker:$1|$1]]}}',
 'rollback-success' => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
 
 # Edit tokens
@@ -4017,7 +4017,7 @@ Eksempler:[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 'dberr-problems' => 'Siden har tekniske problemer.',
 'dberr-again' => 'Prøv å oppdatere siden om noen minutter.',
 'dberr-info' => '(Kan ikke kontakte databasetjeneren: $1)',
-'dberr-info-hidden' => '(Får ikke kontakt med databasetjeneren: $1)',
+'dberr-info-hidden' => '(Får ikke kontakt med databasetjeneren)',
 'dberr-usegoogle' => 'Du kan prøve å søke via Google imens.',
 'dberr-outofdate' => 'Merk at deres indeks over våre sider kan være utdatert.',
 'dberr-cachederror' => 'Følgende er en mellomlagret kopi av den etterspurte siden, og kan være foreldet.',

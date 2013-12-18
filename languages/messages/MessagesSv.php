@@ -1736,7 +1736,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'rclistfrom' => 'Visa ändringar efter $1',
 'rcshowhideminor' => '$1 mindre ändringar',
 'rcshowhidebots' => '$1 robotar',
-'rcshowhideliu' => '$1 inloggade användare',
+'rcshowhideliu' => '$1 registrerade användare',
 'rcshowhideanons' => '$1 oinloggade användare',
 'rcshowhidepatr' => '$1 kontrollerade redigeringar',
 'rcshowhidemine' => '$1 mina ändringar',
