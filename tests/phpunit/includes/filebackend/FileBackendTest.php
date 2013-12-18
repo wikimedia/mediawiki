@@ -37,7 +37,9 @@ class FileBackendTest extends MediaWikiTestCase {
 				$useConfig['shardViaHashLevels'] = array( // test sharding
 					'unittest-cont1' => array( 'levels' => 1, 'base' => 16, 'repeat' => 1 )
 				);
-				$useConfig['fileJournal'] = FileJournal::factory( $config['fileJournal'], $name );
+				if ( isset( $useConfig['fileJournal'] ) ) {
+					$useConfig['fileJournal'] = FileJournal::factory( $useConfig['fileJournal'], $name );
+				}
 				$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
