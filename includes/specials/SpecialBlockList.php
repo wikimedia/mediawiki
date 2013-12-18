@@ -455,8 +455,6 @@ class BlockListPager extends TablePager {
 
 /**
  * Items per page dropdown. Essentially a crap workaround for bug 32603.
- *
- * @todo Do not release 1.19 with this.
  */
 class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 	/**
