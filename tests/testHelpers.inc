@@ -664,3 +664,37 @@ class DelayedParserTest {
 	}
 
 }
+
+/**
+ * Initialize and detect the DjVu files support
+ */
+class DjVuSupport {
+
+	/**
+	 * Initialises DjVu tools global with default values
+	 */
+	public function __construct() {
+		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML, $wgFileExtensions;
+
+		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/bin/ddjvu';
+		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/bin/djvudump';
+		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/bin/djvutoxml';
+
+		if ( !in_array( 'djvu', $wgFileExtensions ) ) {
+			$wgFileExtensions[] = 'djvu';
+		}
+	}
+
+	/**
+	 * Returns if the DjVu tools are usable
+	 *
+	 * @return bool
+	 */
+	public function isEnable() {
+		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
+
+		return is_executable( $wgDjvuRenderer )
+			&& is_executable( $wgDjvuDump )
+			&& is_executable( $wgDjvuToXML );
+	}
+}
