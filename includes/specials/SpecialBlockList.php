@@ -230,7 +230,7 @@ class BlockListPager extends TablePager {
 	function getFieldNames() {
 		static $headers = null;
 
-		if ( $headers == array() ) {
+		if ( $headers === null ) {
 			$headers = array(
 				'ipb_timestamp' => 'blocklist-timestamp',
 				'ipb_target' => 'blocklist-target',
