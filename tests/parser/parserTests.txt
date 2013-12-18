@@ -7215,7 +7215,7 @@ Magic Word: {{NUMBEROFFILES}}
 !! wikitext
 {{NUMBEROFFILES}}
 !! html
-<p>4
+<p>5
 </p>
 !! end
 
@@ -14769,6 +14769,17 @@ Width-sized image (using px, with preceding whitespace - test regression from r3
 <p><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg" width="640" height="73" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg 2x" /></a>
 </p>
 !!end
+
+!! test
+Image with page parameter
+!! options
+djvu
+!! wikitext
+[[File:LoremIpsum.djvu|page=2]]
+!! html
+<p><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" class="image"><img alt="LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" width="2480" height="3508" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x" /></a>
+</p>
+!! end
 
 !! test
 Another italics / bold test
