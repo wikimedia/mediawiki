@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialRecentchangeslinked extends SpecialRecentChanges {
+class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	var $rclTargetTitle;
 
 	function __construct() {
