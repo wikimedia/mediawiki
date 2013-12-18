@@ -120,7 +120,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->lSize( $this->getQueueKey( 'l-unclaimed' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -141,7 +141,7 @@ class JobQueueRedis extends JobQueue {
 
 			return array_sum( $conn->exec() );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -158,7 +158,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -175,7 +175,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -229,7 +229,7 @@ class JobQueueRedis extends JobQueue {
 			JobQueue::incrStats( 'job-insert-duplicate', $this->type,
 				count( $items ) - $failed - $pushed );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 
 		return true;
@@ -330,7 +330,7 @@ LUA;
 				$job = $this->getJobFromFields( $item ); // may be false
 			} while ( !$job ); // job may be false if invalid
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 
 		return $job;
@@ -442,7 +442,7 @@ LUA;
 					return false;
 				}
 			} catch ( RedisException $e ) {
-				$this->throwRedisException( $this->server, $conn, $e );
+				$this->throwRedisException( $conn, $e );
 			}
 		}
 
@@ -473,7 +473,7 @@ LUA;
 			// Update the timestamp of the last root job started at the location...
 			return $conn->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL ); // 2 weeks
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -494,7 +494,7 @@ LUA;
 			// Get the last time this root job was enqueued
 			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 
 		// Check if a new root job was started at the location after this one's...
@@ -519,7 +519,7 @@ LUA;
 
 			return ( $conn->delete( $keys ) !== false );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -542,7 +542,7 @@ LUA;
 				} )
 			);
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -565,7 +565,7 @@ LUA;
 				} )
 			);
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -580,8 +580,8 @@ LUA;
 	protected function doGetSiblingQueueSizes( array $types ) {
 		$sizes = array(); // (type => size)
 		$types = array_values( $types ); // reindex
+		$conn = $this->getConnection();
 		try {
-			$conn = $this->getConnection();
 			$conn->multi( Redis::PIPELINE );
 			foreach ( $types as $type ) {
 				$conn->lSize( $this->getQueueKey( 'l-unclaimed', $type ) );
@@ -593,7 +593,7 @@ LUA;
 				}
 			}
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 
 		return $sizes;
@@ -623,7 +623,7 @@ LUA;
 
 			return $job;
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 	}
 
@@ -707,7 +707,7 @@ LUA;
 				JobQueue::incrStats( 'job-abandon', $this->type, $abandoned );
 			}
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $this->server, $conn, $e );
+			$this->throwRedisException( $conn, $e );
 		}
 
 		return $count;
@@ -822,13 +822,12 @@ LUA;
 	}
 
 	/**
-	 * @param $server string
 	 * @param $conn RedisConnRef
 	 * @param $e RedisException
 	 * @throws JobQueueError
 	 */
-	protected function throwRedisException( $server, RedisConnRef $conn, $e ) {
-		$this->redisPool->handleException( $server, $conn, $e );
+	protected function throwRedisException( RedisConnRef $conn, $e ) {
+		$this->redisPool->handleError( $conn, $e );
 		throw new JobQueueError( "Redis server error: {$e->getMessage()}\n" );
 	}
 

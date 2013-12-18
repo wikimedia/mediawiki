@@ -84,7 +84,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'get', $key, $server, $result );
@@ -108,7 +108,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'set', $key, $server, $result );
@@ -142,7 +142,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = ( $conn->exec() == array( true ) );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'cas', $key, $server, $result );
@@ -162,7 +162,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = true;
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'delete', $key, $server, $result );
@@ -201,7 +201,7 @@ class RedisBagOStuff extends BagOStuff {
 					}
 				}
 			} catch ( RedisException $e ) {
-				$this->handleException( $server, $conn, $e );
+				$this->handleException( $conn, $e );
 			}
 		}
 
@@ -229,7 +229,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'add', $key, $server, $result );
@@ -260,7 +260,7 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'replace', $key, $server, $result );
@@ -290,7 +290,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = $this->unserialize( $conn->incrBy( $key, $value ) );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'incr', $key, $server, $result );
@@ -352,8 +352,8 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 */
-	protected function handleException( $server, RedisConnRef $conn, $e ) {
-		$this->redisPool->handleException( $server, $conn, $e );
+	protected function handleException( RedisConnRef $conn, $e ) {
+		$this->redisPool->handleError( $conn, $e );
 	}
 
 	/**
