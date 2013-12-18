@@ -82,6 +82,8 @@ class ParserTest {
 	 * command-line options (--color and --quick).
 	 */
 	public function __construct( $options = array() ) {
+		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
+
 		# Only colorize output if stdout is a terminal.
 		$this->color = !wfIsWindows() && Maintenance::posix_isatty( 1 );
 
@@ -134,10 +136,19 @@ class ParserTest {
 
 		$this->runDisabled = isset( $options['run-disabled'] );
 		$this->runParsoid = isset( $options['run-parsoid'] );
+		$this->runDjVu = false;
 
 		$this->hooks = array();
 		$this->functionHooks = array();
 		self::setUp();
+
+		if (
+			$this->checkIfToolExists( $wgDjvuRenderer ) &&
+			$this->checkIfToolExists( $wgDjvuDump ) &&
+			$this->checkIfToolExists( $wgDjvuToXML )
+		) {
+			$this->runDjVu = true;
+		}
 	}
 
 	static function setUp() {
@@ -146,7 +157,8 @@ class ParserTest {
 			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
-			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
+			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers,
+			$wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML, $wgFileExtensions;
 
 		$wgScript = '/index.php';
 		$wgScriptPath = '/';
@@ -216,6 +228,25 @@ class ParserTest {
 		}
 
 		self::setupInterwikis();
+
+		//DjVu support (not used if $this->useDjVu is set to false)
+		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/local/bin/ddjvu';
+		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/local/bin/djvudump';
+		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/local/bin/djvutoxml';
+		$wgFileExtensions[] = 'djvu';
+	}
+
+	/**
+	 * Check if a cli tool exists
+	 *
+	 * @param string $path path to the tool
+	 * @return bool
+	 */
+	protected function checkIfToolExists( $path ) {
+		wfSuppressWarnings();
+		$result = file_exists( $path );
+		wfRestoreWarnings();
+		return $result;
 	}
 
 	/**
@@ -1000,6 +1031,44 @@ class ParserTest {
 			'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+			'size' => 3249,
+			'width' => 2480,
+			'height' => 3508,
+			'media_type' => MEDIATYPE_BITMAP,
+			'mime' => 'image/vnd.djvu',
+			'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+			'sha1' => wfBaseConvert( '4', 16, 36, 31 ),
+			'fileExists' => true
+		), $this->db->timestamp( '20010115123600' ), $user );
 	}
 
 	public function teardownDatabase() {
@@ -1078,6 +1147,8 @@ class ParserTest {
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
 			' version="1.1" width="240" height="180"/>' );
+		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
+		copy( "$IP/tests/phpunit/data/media/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
 		return $dir;
 	}
 
@@ -1127,6 +1198,8 @@ class ParserTest {
 
 				"$dir/0/09/Bad.jpg",
 
+				"$dir/5/5f/LoremIpsum.svg",
+
 				"$dir/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
@@ -1157,6 +1230,8 @@ class ParserTest {
 				"$dir/thumb/f/",
 				"$dir/0/09/",
 				"$dir/0/",
+				"$dir/5/5f",
+				"$dir/5",
 				"$dir/thumb",
 				"$dir/math/f/a/5",
 				"$dir/math/f/a",
