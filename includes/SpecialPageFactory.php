@@ -109,7 +109,7 @@ class SpecialPageFactory {
 		'Watchlist'                 => 'SpecialWatchlist',
 		'Newpages'                  => 'SpecialNewpages',
 		'Recentchanges'             => 'SpecialRecentChanges',
-		'Recentchangeslinked'       => 'SpecialRecentchangeslinked',
+		'Recentchangeslinked'       => 'SpecialRecentChangesLinked',
 		'Tags'                      => 'SpecialTags',
 
 		// Media reports and uploads
