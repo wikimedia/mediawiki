@@ -41,6 +41,7 @@ class NewParserTest extends MediaWikiTestCase {
 	protected function setUp() {
 		global $wgNamespaceAliases, $wgContLang;
 		global $wgHooks, $IP;
+		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 
 		parent::setUp();
 
@@ -130,6 +131,9 @@ class NewParserTest extends MediaWikiTestCase {
 		// Vector images have to be handled slightly differently
 		$tmpGlobals['wgMediaHandlers']['image/svg+xml'] = 'MockSvgHandler';
 
+		// DjVu images have to be handled slightly differently
+		$tmpGlobals['wgMediaHandlers']['image/vnd.djvu'] = 'MockDjVuHandler';
+
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
@@ -137,6 +141,12 @@ class NewParserTest extends MediaWikiTestCase {
 		# add a namespace shadowing a interwiki link, to test
 		# proper precedence when resolving links. (bug 51680)
 		$tmpGlobals['wgExtraNamespaces'] = array( 100 => 'MemoryAlpha' );
+
+		//DjVu support
+		$tmpGlobals['wgDjvuRenderer'] = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/bin/ddjvu';
+		$tmpGlobals['wgDjvuDump'] = $wgDjvuDump ? $wgDjvuDump : '/usr/bin/djvudump';
+		$tmpGlobals['wgDjvuToXML'] = $wgDjvuToXML ? $wgDjvuToXML : '/usr/bin/djvutoxml';
+		$tmpGlobals['wgFileExtensions'][] = 'djvu';
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -272,6 +282,46 @@ class NewParserTest extends MediaWikiTestCase {
 					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
 					'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
+		}
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+				'size' => 3249,
+				'width' => 2480,
+				'height' => 3508,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/vnd.djvu',
+				'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+				'sha1' => wfBaseConvert( '4', 16, 36, 31 ),
+				'fileExists' => true
+			), $this->db->timestamp( '20010115123600' ), $user );
 		}
 	}
 
@@ -446,6 +496,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/6/6c" ) );
+		$backend->store( array(
+			'src' => "$IP/tests/phpunit/data/media/LoremIpsum.djvu", 'dst' => "$base/local-public/6/6c/LoremIpsum.djvu"
+		) );
 
 		// No helpful SVG file to copy, so make one ourselves
 		$data = '<?xml version="1.0" encoding="utf-8"?>' .
@@ -524,6 +578,11 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-public/e/ea/Thumb.png",
 
 				"$base/local-public/0/09/Bad.jpg",
+
+				"$base/local-public/6/6c/LoremIpsum.djvu",
+				"$base/local-thumb/6/6c/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg",
+				"$base/local-thumb/6/6c/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg",
+				"$base/local-thumb/6/6c/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
 
 				"$base/local-public/f/ff/Foobar.svg",
 				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
@@ -630,6 +689,22 @@ class NewParserTest extends MediaWikiTestCase {
 				$this->markTestSkipped( "SKIPPED: texvc binary does not exist"
 					. " or is not executable.\n"
 					. "Current configuration is:\n\$wgTexvc = '$wgTexvc'" );
+			}
+		}
+		if ( isset( $opts['djvu'] ) ) {
+			global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
+
+			if ( !is_executable( $wgDjvuRenderer ) ||
+				!is_executable( $wgDjvuDump ) ||
+				!is_executable( $wgDjvuToXML )
+			) {
+				$this->markTestSkipped(
+					"SKIPPED: djvu binaries do not exist or are not executable.\n" .
+					"Current configuration is:\n" .
+					"\$wgDjvuRenderer = '$wgDjvuRenderer'\n" .
+					"\$wgDjvuDump = '$wgDjvuDump'\n" .
+					"\$wgDjvuToXML = '$wgDjvuToXML'\n"
+				);
 			}
 		}
 
