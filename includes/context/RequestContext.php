@@ -315,7 +315,8 @@ class RequestContext implements IContextSource {
 	 */
 	public function getLanguage() {
 		if ( isset( $this->recursion ) ) {
-			trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
+			// @FIXME: This should be reenabled once the Bug 54193 is solved, otherwise we are polluting fatalmonitor
+			// trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
 			$e = new Exception;
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
