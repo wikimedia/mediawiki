@@ -32,6 +32,9 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var boolean whether or not to show the XML parse tree */
 	protected $generateXML;
 
+	/** @var boolean whether or not to show the raw HTML code */
+	protected $generateRawHtml;
+
 	/** @var boolean whether or not to remove comments in the expanded wikitext */
 	protected $removeComments;
 
@@ -62,6 +65,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		}
 		$input = $request->getText( 'wpInput' );
 		$this->generateXML = $request->getBool( 'wpGenerateXml' );
+		$this->generateRawHtml = $request->getBool( 'wpGenerateRawHtml' );
 
 		if ( strlen( $input ) ) {
 			$this->removeComments = $request->getBool( 'wpRemoveComments', false );
@@ -113,7 +117,15 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$out->addHTML( $tmp );
-			$this->showHtmlPreview( $title, $output, $out );
+
+			$rawhtml = $this->generateHtml( $title, $output );
+
+			if ( $this->generateRawHtml && strlen( $rawhtml ) > 0 ) {
+				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
+			}
+
+			$this->showHtmlPreview( $title, $rawhtml, $out );
+
 		}
 
 	}
@@ -171,6 +183,12 @@ class SpecialExpandTemplates extends SpecialPage {
 			'generate_xml',
 			$this->generateXML
 		) . '</p>';
+		$form .= '<p>' . Xml::checkLabel(
+			$this->msg( 'expand_templates_generate_rawhtml' )->text(),
+			'wpGenerateRawHtml',
+			'generate_rawhtml',
+			$this->generateRawHtml
+		) . '</p>';
 		$form .= '<p>' . Xml::submitButton(
 			$this->msg( 'expand_templates_ok' )->text(),
 			array( 'accesskey' => 's' )
@@ -202,28 +220,38 @@ class SpecialExpandTemplates extends SpecialPage {
 	}
 
 	/**
-	 * Render the supplied wiki text and append to the page as a preview
+	 * Renders the supplied wikitext as html
 	 *
 	 * @param Title $title
 	 * @param string $text
-	 * @param OutputPage $out
+	 * @return string
 	 */
-	private function showHtmlPreview( Title $title, $text, OutputPage $out ) {
+	private function generateHtml( Title $title, $text ) {
 		global $wgParser;
 
 		$popts = ParserOptions::newFromContext( $this->getContext() );
 		$popts->setTargetLanguage( $title->getPageLanguage() );
 		$pout = $wgParser->parse( $text, $title, $popts );
-		$lang = $title->getPageViewLanguage();
 
+		return $pout->getText();
+	}
+
+	/**
+	 * Wraps the provided html code in a div and outputs it to the page
+	 *
+	 * @param Title $title
+	 * @param string $html
+	 * @param OutputPage $out
+	 */
+	private function showHtmlPreview( Title $title, $html, OutputPage $out ) {
+		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 		$out->addHTML( Html::openElement( 'div', array(
 			'class' => 'mw-content-' . $lang->getDir(),
 			'dir' => $lang->getDir(),
 			'lang' => $lang->getHtmlCode(),
 		) ) );
-
-		$out->addHTML( $pout->getText() );
+		$out->addHTML( $html );
 		$out->addHTML( Html::closeElement( 'div' ) );
 	}
 }

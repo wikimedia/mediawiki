@@ -3948,10 +3948,12 @@ $wgMessageStructure = array(
 		'expand_templates_input',
 		'expand_templates_output',
 		'expand_templates_xml_output',
+		'expand_templates_html_output',
 		'expand_templates_ok',
 		'expand_templates_remove_comments',
 		'expand_templates_remove_nowiki',
 		'expand_templates_generate_xml',
+		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
 	),
 );
