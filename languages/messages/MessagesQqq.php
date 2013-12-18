@@ -3592,6 +3592,7 @@ See also:
 'recentchanges-label-plusminus' => 'Legend item for plus/minus.
 
 Preceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.',
+'recentchanges-legend-heading' => 'Used as a heading for legend box on [[Special:RecentChanges]] and [[Special:Watchlist]].',
 'recentchanges-legend-newpage' => 'Used as legend in [[Special:RecentChanges]]. Preceded by {{msg-mw|Recentchanges-label-newpage}}.',
 'recentchanges-legend-plusminus' => 'A plus/minus sign with a number for the legend.',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
