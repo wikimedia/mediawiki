@@ -279,6 +279,20 @@ class RedisConnectionPool {
 	 * @param RedisException $e
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
+		return $this->handleError( $cref, $e );
+	}
+
+	/**
+	 * The redis extension throws an exception in response to various read, write
+	 * and protocol errors. Sometimes it also closes the connection, sometimes
+	 * not. The safest response for us is to explicitly destroy the connection
+	 * object and let it be reopened during the next request.
+	 *
+	 * @param RedisConnRef $cref
+	 * @param RedisException $e
+	 */
+	public function handleError( RedisConnRef $cref, RedisException $e ) {
+		$server = $cref->getServer();
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		foreach ( $this->connections[$server] as $key => $connection ) {
 			if ( $cref->isConnIdentical( $connection['conn'] ) ) {
