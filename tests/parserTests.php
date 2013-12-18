@@ -24,7 +24,7 @@
  * @ingroup Testing
  */
 
-$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled', 'run-parsoid' );
+$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled', 'run-parsoid', 'run-djvu' );
 $optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';
@@ -54,6 +54,7 @@ Options:
   --help           Show this help message
   --run-disabled   run disabled tests
   --run-parsoid    run parsoid tests (normally disabled)
+  --run-djvu       run djvu tests (normally disabled)
 
 ENDS;
 	exit( 0 );
