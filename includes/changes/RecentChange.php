@@ -84,7 +84,7 @@ class RecentChange {
 	 */
 	private $mPerformer = false;
 
-	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentchangeslinked
+	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentChangesLinked
 	public $notificationtimestamp;
 
 	/**
