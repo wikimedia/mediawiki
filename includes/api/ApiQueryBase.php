@@ -608,6 +608,15 @@ abstract class ApiQueryBase extends ApiBase {
 
 		return $errors;
 	}
+
+	/**
+	 * Check whether the current user has permission to view revision-deleted
+	 * fields.
+	 * @return bool
+	 */
+	public function userCanSeeRevDel() {
+		return $this->getUser()->isAllowedAny( 'deletedhistory', 'deletedtext', 'suppressrevision' );
+	}
 }
 
 /**

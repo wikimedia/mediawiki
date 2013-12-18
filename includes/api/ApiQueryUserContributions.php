@@ -176,9 +176,19 @@ class ApiQueryContributions extends ApiQueryBase {
 			);
 		}
 
-		if ( !$user->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		// Don't include any revisions where we're not supposed to be able to
+		// see the username.
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$bitmask = Revision::DELETED_USER;
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
 		}
+		if ( $bitmask ) {
+			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+		}
+
 		// We only want pages by the specified users.
 		if ( $this->prefixMode ) {
 			$this->addWhere( 'rev_user_text' .
@@ -299,11 +309,19 @@ class ApiQueryContributions extends ApiQueryBase {
 	 */
 	private function extractRowInfo( $row ) {
 		$vals = array();
+		$anyHidden = false;
 
+		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+			$vals['texthidden'] = '';
+			$anyHidden = true;
+		}
+
+		// Any rows where we can't view the user were filtered out in the query.
 		$vals['userid'] = $row->rev_user;
 		$vals['user'] = $row->rev_user_text;
 		if ( $row->rev_deleted & Revision::DELETED_USER ) {
 			$vals['userhidden'] = '';
+			$anyHidden = true;
 		}
 		if ( $this->fld_ids ) {
 			$vals['pageid'] = intval( $row->rev_page );
@@ -340,7 +358,9 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->rev_comment ) ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
 				$vals['commenthidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_COMMENT, $this->getUser() ) ) {
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $row->rev_comment;
 				}
@@ -377,6 +397,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			} else {
 				$vals['tags'] = array();
 			}
+		}
+
+		if ( $anyHidden && $row->rev_deleted & Revision::DELETED_RESTRICTED ) {
+			$vals['suppressed'] = '';
 		}
 
 		return $vals;
