@@ -20,18 +20,13 @@ class DjVuTest extends MediaWikiTestCase {
 	protected $handler;
 
 	protected function setUp() {
-		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		parent::setUp();
 
 		//cli tool setup
-		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/bin/ddjvu';
-		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/bin/djvudump';
-		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/bin/djvutoxml';
-		if (
-			!$this->checkIfToolExists( $wgDjvuRenderer ) ||
-			!$this->checkIfToolExists( $wgDjvuDump ) ||
-			!$this->checkIfToolExists( $wgDjvuToXML )
-		) {
+		$djvuSupport = new DjVuSupportDetector();
+		$djvuSupport->initializeGlobals();
+
+		if ( !$djvuSupport->isDjVuSupportEnable() ) {
 			$this->markTestSkipped( 'This test needs the installation of the ddjvu, djvutoxml and djvudump tools' );
 		}
 
@@ -50,19 +45,6 @@ class DjVuTest extends MediaWikiTestCase {
 		) );
 
 		$this->handler = new DjVuHandler();
-	}
-
-	/**
-	 * Check if a tool exist
-	 *
-	 * @param string $path path to the tool
-	 * @return bool
-	 */
-	protected function checkIfToolExists( $path ) {
-		wfSuppressWarnings();
-		$result = file_exists( $path );
-		wfRestoreWarnings();
-		return $result;
 	}
 
 	protected function dataFile( $name, $type ) {
