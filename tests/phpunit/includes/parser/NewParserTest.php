@@ -130,6 +130,9 @@ class NewParserTest extends MediaWikiTestCase {
 		// Vector images have to be handled slightly differently
 		$tmpGlobals['wgMediaHandlers']['image/svg+xml'] = 'MockSvgHandler';
 
+		// DjVu images have to be handled slightly differently
+		$tmpGlobals['wgMediaHandlers']['image/vnd.djvu'] = 'MockDjVuHandler';
+
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
@@ -273,6 +276,44 @@ class NewParserTest extends MediaWikiTestCase {
 					'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
 		}
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+			'size' => 3249,
+			'width' => 2480,
+			'height' => 3508,
+			'media_type' => MEDIATYPE_BITMAP,
+			'mime' => 'image/vnd.djvu',
+			'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+			'sha1' => '613762766a7175787334383033726b7a323464353334347868706b30337632',
+			'fileExists' => true
+		), $this->db->timestamp( '20010115123600' ), $user );
 	}
 
 	//ParserTest setup/teardown functions
@@ -446,6 +487,10 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/5/5f" ) );
+		$backend->store( array(
+			'src' => "$IP/tests/phpunit/data/media/LoremIpsum.djvu", 'dst' => "$base/5/5f/LoremIpsum.djvu"
+		) );
 
 		// No helpful SVG file to copy, so make one ourselves
 		$tmpDir = wfTempDir();
@@ -510,6 +555,8 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-public/e/ea/Thumb.png",
 
 				"$base/local-public/0/09/Bad.jpg",
+
+				"$base/5/5f/LoremIpsum.djvu",
 
 				"$base/local-public/f/ff/Foobar.svg",
 				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.jpg",

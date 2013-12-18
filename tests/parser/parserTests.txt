@@ -14115,6 +14115,15 @@ Width-sized image (using px, with preceding whitespace - test regression from r3
 !!end
 
 !! test
+Image with page parameter
+!! input
+[[File:LoremIpsum.djvu|page=2]]
+!! result
+<p><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" class="image"><img alt="LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" width="2480" height="3508" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x" /></a>
+</p>
+!! end
+
+!! test
 Another italics / bold test
 !! input
  ''' ''x'

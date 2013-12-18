@@ -979,6 +979,44 @@ class ParserTest {
 			'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+			'size' => 3249,
+			'width' => 2480,
+			'height' => 3508,
+			'media_type' => MEDIATYPE_BITMAP,
+			'mime' => 'image/vnd.djvu',
+			'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+			'sha1' => '613762766a7175787334383033726b7a323464353334347868706b30337632',
+			'fileExists' => true
+		), $this->db->timestamp( '20010115123600' ), $user );
 	}
 
 	public function teardownDatabase() {
@@ -1057,6 +1095,8 @@ class ParserTest {
 		file_put_contents( "$dir/f/ff/Foobar.svg",
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg" />' );
+		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
+		copy( "$IP/tests/phpunit/data/media/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
 		return $dir;
 	}
 
@@ -1106,6 +1146,8 @@ class ParserTest {
 
 				"$dir/0/09/Bad.jpg",
 
+				"$dir/5/5f/LoremIpsum.svg",
+
 				"$dir/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
@@ -1136,6 +1178,8 @@ class ParserTest {
 				"$dir/thumb/f/",
 				"$dir/0/09/",
 				"$dir/0/",
+				"$dir/5/5f",
+				"$dir/5",
 				"$dir/thumb",
 				"$dir/math/f/a/5",
 				"$dir/math/f/a",
