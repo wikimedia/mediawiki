@@ -38,7 +38,7 @@ tr.mw-block-hideuser {
 
 /**** Special:BlockList ****/
 table.mw-blocklist span.mw-usertoollinks,
-span.mw-blocklist-actions{
+span.mw-blocklist-actions {
 	white-space: nowrap;
 	font-size: 90%;
 }
