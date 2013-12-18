@@ -173,7 +173,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 * @return void
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
-		$this->redisPool->handleException( $conn->getServer(), $conn, $e );
+		$this->redisPool->handleError( $conn, $e );
 	}
 
 	/**
