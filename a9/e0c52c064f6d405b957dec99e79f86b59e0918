@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+1: Siebrand <siebrand@wikimedia.org>
+Code-Review+2: Legoktm <legoktm.wikipedia@gmail.com>
+Code-Review+1: Deskana <dgarry@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Wed, 18 Dec 2013 19:29:58 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/101446
+Project: mediawiki/core
+Branch: refs/heads/master
