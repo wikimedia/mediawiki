@@ -483,6 +483,7 @@ class TestFileIterator implements Iterator {
 					if ( $input == false || $result == false ||
 						( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
 						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && $result != 'html/php' && !$this->parserTest->runParsoid )
+						|| ( preg_match( '/\\bdjvu\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDjVu )
 						|| !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )
 					) {
 						# disabled test
