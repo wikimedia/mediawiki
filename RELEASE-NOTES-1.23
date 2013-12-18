@@ -82,6 +82,7 @@ production.
 * EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
+* action=parse now has disabletoc flag to disable table of contents in output.
 
 === Languages updated in 1.23===
 
