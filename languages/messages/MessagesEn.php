@@ -4623,7 +4623,7 @@ Please confirm that you really want to recreate this page.",
 
 'img-lang-opt' => '$2 ($1)',
 'img-lang-default' => '(default language)',
-'img-lang-info' => 'Render this image in $1 $2.',
+'img-lang-info' => 'Render this image in $1. $2',
 'img-lang-go' => 'Go',
 
 # Table pager
