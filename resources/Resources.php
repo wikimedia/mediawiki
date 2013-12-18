@@ -129,28 +129,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	// FIXME: Remove in favour of skins.monobook.styles when cache expires
-	'skins.monobook' => array(
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'monobook/main.css' => array( 'media' => 'screen' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	// FIXME: Remove in favour of skins.vector.styles when cache expires
-	'skins.vector' => array(
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
-			'vector/styles.less',
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
 	'skins.vector.styles' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
