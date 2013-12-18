@@ -50,11 +50,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$scale = $this->getScale( $params );
 
-		$metadataOpts = array(
+		$opts = array(
 			'version' => $params['metadataversion'],
 			'language' => $params['extmetadatalanguage'],
 			'multilang' => $params['extmetadatamultilang'],
 			'extmetadatafilter' => $params['extmetadatafilter'],
+			'revdelUser' => $this->getUser(),
 		);
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
@@ -78,13 +79,26 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 			}
 
-			$result = $this->getResult();
-			//search only inside the local repo
+			$findTitles = array_map( function ( $title ) {
+				return array(
+					'title' => $title,
+					'private' => true,
+				);
+			}, $titles );
+
+			// FileRepo doesn't allow specifying the user, so make sure the
+			// globals are set correctly.
+			global $wgUser;
+			$wgUser = $this->getUser();
+			RequestContext::getMain()->setUser( $wgUser );
+
 			if ( $params['localonly'] ) {
-				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $titles );
+				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $findTitles );
 			} else {
-				$images = RepoGroup::singleton()->findFiles( $titles );
+				$images = RepoGroup::singleton()->findFiles( $findTitles );
 			}
+
+			$result = $this->getResult();
 			foreach ( $titles as $title ) {
 				$pageId = $pageIds[NS_FILE][$title];
 				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
@@ -154,7 +168,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 					$fit = $this->addPageSubItem( $pageId,
 						self::getInfo( $img, $prop, $result,
-							$finalThumbParams, $metadataOpts
+							$finalThumbParams, $opts
 						)
 					);
 					if ( !$fit ) {
@@ -189,7 +203,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
 						$this->addPageSubItem( $pageId,
 							self::getInfo( $oldie, $prop, $result,
-								$finalThumbParams, $metadataOpts
+								$finalThumbParams, $opts
 							)
 						);
 					if ( !$fit ) {
@@ -310,30 +324,46 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param array $prop of properties to get (in the keys)
 	 * @param $result ApiResult object
 	 * @param array $thumbParams containing 'width' and 'height' items, or null
-	 * @param array|bool|string $metadataOpts Options for metadata fetching.
+	 * @param array|bool|string $opts Options for data fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option
 	 *    'language': The language for extmetadata property
 	 *    'multilang': Return all translations in extmetadata property
+	 *    'revdelUser': User to use when checking whether to show revision-deleted fields.
 	 * @return Array: result array
 	 */
-	static function getInfo( $file, $prop, $result, $thumbParams = null, $metadataOpts = false ) {
+	static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
 		global $wgContLang;
 
-		if ( !$metadataOpts || is_string( $metadataOpts ) ) {
-			$metadataOpts = array(
-				'version' => $metadataOpts ?: 'latest',
+		$anyHidden = false;
+
+		if ( !$opts || is_string( $opts ) ) {
+			$opts = array(
+				'version' => $opts ?: 'latest',
 				'language' => $wgContLang,
 				'multilang' => false,
 				'extmetadatafilter' => array(),
+				'revdelUser' => null,
 			);
 		}
-		$version = $metadataOpts['version'];
+		$version = $opts['version'];
 		$vals = array();
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
 		if ( isset( $prop['timestamp'] ) ) {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+		}
+
+		// Handle external callers who don't pass revdelUser
+		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
+			$revdelUser = $opts['revdelUser'];
+			$canShowField = function ( $field ) use ( $file, $revdelUser ) {
+				return $file->userCan( $field, $revdelUser );
+			};
+		} else {
+			$canShowField = function ( $field ) use ( $file ) {
+				return !$file->isDeleted( $field );
+			};
 		}
 
 		$user = isset( $prop['user'] );
@@ -342,7 +372,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $user || $userid ) {
 			if ( $file->isDeleted( File::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( $canShowField( File::DELETED_USER ) ) {
 				if ( $user ) {
 					$vals['user'] = $file->getUser();
 				}
@@ -374,13 +406,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $pcomment || $comment ) {
 			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( $canShowField( File::DELETED_COMMENT ) ) {
 				if ( $pcomment ) {
 					$vals['parsedcomment'] = Linker::formatComment(
-						$file->getDescription(), $file->getTitle() );
+						$file->getDescription( File::RAW ), $file->getTitle() );
 				}
 				if ( $comment ) {
-					$vals['comment'] = $file->getDescription();
+					$vals['comment'] = $file->getDescription( File::RAW );
 				}
 			}
 		}
@@ -396,11 +430,20 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$bitdepth = isset( $prop['bitdepth'] );
 		$uploadwarning = isset( $prop['uploadwarning'] );
 
-		if ( ( $canonicaltitle || $url || $sha1 || $meta || $mime || $mediatype || $archive || $bitdepth )
-			&& $file->isDeleted( File::DELETED_FILE )
-		) {
-			$vals['filehidden'] = '';
+		if ( $uploadwarning ) {
+			$vals['html'] = SpecialUpload::getExistsWarning( UploadBase::getExistsWarning( $file ) );
+		}
 
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			$vals['filehidden'] = '';
+			$anyHidden = true;
+		}
+
+		if ( $anyHidden && $file->isDeleted( File::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = true;
+		}
+
+		if ( !$canShowField( File::DELETED_FILE ) ) {
 			//Early return, tidier than indenting all following things one level
 			return $vals;
 		}
@@ -458,12 +501,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// start with a letter, and all the values are strings.
 			// Thus there should be no issue with format=xml.
 			$format = new FormatMetadata;
-			$format->setSingleLanguage( !$metadataOpts['multilang'] );
-			$format->getContext()->setLanguage( $metadataOpts['language'] );
+			$format->setSingleLanguage( !$opts['multilang'] );
+			$format->getContext()->setLanguage( $opts['language'] );
 			$extmetaArray = $format->fetchExtendedMetadata( $file );
-			if ( $metadataOpts['extmetadatafilter'] ) {
+			if ( $opts['extmetadatafilter'] ) {
 				$extmetaArray = array_intersect_key(
-					$extmetaArray, array_flip( $metadataOpts['extmetadatafilter'] )
+					$extmetaArray, array_flip( $opts['extmetadatafilter'] )
 				);
 			}
 			$vals['extmetadata'] = $extmetaArray;
@@ -483,10 +526,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $bitdepth ) {
 			$vals['bitdepth'] = $file->getBitDepth();
-		}
-
-		if ( $uploadwarning ) {
-			$vals['html'] = SpecialUpload::getExistsWarning( UploadBase::getExistsWarning( $file ) );
 		}
 
 		return $vals;
@@ -528,6 +567,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
+		if ( $this->getUser()->isAllowedAny( 'deletedhistory', 'deletedtext', 'suppressrevision' ) ) {
+			return 'private';
+		}
+
 		return 'public';
 	}
 

@@ -158,11 +158,23 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if ( !is_null( $title ) ) {
-			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0' );
-		}
-		if ( !is_null( $user ) ) {
-			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0' );
+		if ( !is_null( $title ) || !is_null( $user ) ) {
+			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+				$titleBits = LogPage::DELETED_ACTION;
+				$userBits = LogPage::DELETED_USER;
+			} elseif ( !$this->getUser()->isAllowed( 'suppressrevision' ) ) {
+				$titleBits = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+				$userBits = LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED;
+			} else {
+				$titleBits = 0;
+				$userBits = 0;
+			}
+			if ( !is_null( $title ) && $titleBits ) {
+				$this->addWhere( $db->bitAnd( 'log_deleted', $titleBits ) . " != $titleBits" );
+			}
+			if ( !is_null( $user ) && $userBits ) {
+				$this->addWhere( $db->bitAnd( 'log_deleted', $userBits ) . " != $userBits" );
+			}
 		}
 
 		$count = 0;
@@ -296,6 +308,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private function extractRowInfo( $row ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
 		$vals = array();
+		$anyHidden = false;
+		$user = $this->getUser();
 
 		if ( $this->fld_ids ) {
 			$vals['logid'] = intval( $row->log_id );
@@ -305,15 +319,28 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
-		if ( $this->fld_title || $this->fld_ids ) {
+		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $user ) ) {
 				if ( $this->fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
 					$vals['pageid'] = intval( $row->page_id );
+				}
+				if ( $this->fld_details && $row->log_params !== '' ) {
+					self::addLogParams(
+						$this->getResult(),
+						$vals,
+						$logEntry->getParameters(),
+						$logEntry->getType(),
+						$logEntry->getSubtype(),
+						$logEntry->getTimestamp(),
+						$logEntry->isLegacy()
+					);
 				}
 			}
 		}
@@ -323,26 +350,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['action'] = $row->log_action;
 		}
 
-		if ( $this->fld_details && $row->log_params !== '' ) {
-			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
-				$vals['actionhidden'] = '';
-			} else {
-				self::addLogParams(
-					$this->getResult(),
-					$vals,
-					$logEntry->getParameters(),
-					$logEntry->getType(),
-					$logEntry->getSubtype(),
-					$logEntry->getTimestamp(),
-					$logEntry->isLegacy()
-				);
-			}
-		}
-
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
 					$vals['user'] = $row->user_name === null ? $row->log_user_text : $row->user_name;
 				}
@@ -362,7 +375,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->log_comment ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $row->log_comment;
 				}
@@ -383,10 +398,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
+		if ( $anyHidden && LogEventsList::isDeleted( $row, LogPage::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = '';
+		}
+
 		return $vals;
 	}
 
 	public function getCacheMode( $params ) {
+		$user = $this->getUser();
+		if ( $user->isAllowedAny( 'deletedhistory', 'deletedtext', 'suppressrevision' ) ) {
+			return 'private';
+		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';

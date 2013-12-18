@@ -66,6 +66,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$fld_token = false;
 		}
 
+		// If user can't undelete, no tokens
+		if ( !$user->isAllowed( 'undelete' ) ) {
+			$fld_token = false;
+		}
+
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getTitles();
@@ -101,8 +106,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		$this->addTables( 'archive' );
-		$this->addWhere( 'ar_deleted = 0' );
-		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp' ) );
+		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted' ) );
 
 		$this->addFieldsIf( 'ar_parent_id', $fld_parentid );
 		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
@@ -131,11 +135,13 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_content ) {
 			$this->addTables( 'text' );
+			$this->addJoinConds(
+				array( 'text' => array( 'INNER JOIN', array( 'ar_text_id=old_id' ) ) )
+			);
 			$this->addFields( array( 'ar_text', 'ar_text_id', 'old_text', 'old_flags' ) );
-			$this->addWhere( 'ar_text_id = old_id' );
 
 			// This also means stricter restrictions
-			if ( !$user->isAllowed( 'undelete' ) ) {
+			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
 				$this->dieUsage(
 					'You don\'t have permission to view deleted revision content',
 					'permissiondenied'
@@ -186,6 +192,22 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		} elseif ( !is_null( $params['excludeuser'] ) ) {
 			$this->addWhere( 'ar_user_text != ' .
 				$db->addQuotes( $params['excludeuser'] ) );
+		}
+
+		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+			// Paranoia: avoid brute force searches (bug 17342)
+			// (shouldn't be able to get here without 'deletedhistory', but
+			// check it again just in case)
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = Revision::DELETED_USER;
+			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->addWhere( $db->bitAnd( 'ar_deleted', $bitmask ) . " != $bitmask" );
+			}
 		}
 
 		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) ) {
@@ -243,6 +265,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 
 			$rev = array();
+			$anyHidden = false;
+
 			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
 			if ( $fld_revid ) {
 				$rev['revid'] = intval( $row->ar_rev_id );
@@ -250,21 +274,37 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_parentid && !is_null( $row->ar_parent_id ) ) {
 				$rev['parentid'] = intval( $row->ar_parent_id );
 			}
-			if ( $fld_user ) {
-				$rev['user'] = $row->ar_user_text;
-			}
-			if ( $fld_userid ) {
-				$rev['userid'] = $row->ar_user;
-			}
-			if ( $fld_comment ) {
-				$rev['comment'] = $row->ar_comment;
+			if ( $fld_user || $fld_userid ) {
+				if ( $row->ar_deleted & Revision::DELETED_USER ) {
+					$rev['userhidden'] = '';
+					$anyHidden = true;
+				}
+				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_USER, $user ) ) {
+					if ( $fld_user ) {
+						$rev['user'] = $row->ar_user_text;
+					}
+					if ( $fld_userid ) {
+						$rev['userid'] = $row->ar_user;
+					}
+				}
 			}
 
-			$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
-
-			if ( $fld_parsedcomment ) {
-				$rev['parsedcomment'] = Linker::formatComment( $row->ar_comment, $title );
+			if ( $fld_comment || $fld_parsedcomment ) {
+				if ( $row->ar_deleted & Revision::DELETED_COMMENT ) {
+					$rev['commenthidden'] = '';
+					$anyHidden = true;
+				}
+				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_COMMENT, $user ) ) {
+					if ( $fld_comment ) {
+						$rev['comment'] = $row->ar_comment;
+					}
+					if ( $fld_parsedcomment ) {
+						$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+						$rev['parsedcomment'] = Linker::formatComment( $row->ar_comment, $title );
+					}
+				}
 			}
+
 			if ( $fld_minor && $row->ar_minor_edit == 1 ) {
 				$rev['minor'] = '';
 			}
@@ -272,14 +312,26 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['len'] = $row->ar_len;
 			}
 			if ( $fld_sha1 ) {
-				if ( $row->ar_sha1 != '' ) {
-					$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
-				} else {
-					$rev['sha1'] = '';
+				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
+					$rev['sha1hidden'] = '';
+					$anyHidden = true;
+				}
+				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
+					if ( $row->ar_sha1 != '' ) {
+						$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
+					} else {
+						$rev['sha1'] = '';
+					}
 				}
 			}
 			if ( $fld_content ) {
-				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
+					$rev['texthidden'] = '';
+					$anyHidden = true;
+				}
+				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
+					ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+				}
 			}
 
 			if ( $fld_tags ) {
@@ -292,11 +344,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 			}
 
+			if ( $anyHidden && ( $row->ar_deleted & Revision::DELETED_RESTRICTED ) ) {
+				$rev['suppressed'] = '';
+			}
+
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
 				$a['revisions'] = array( $rev );
 				$result->setIndexedTagName( $a['revisions'], 'rev' );
+				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				ApiQueryBase::addTitleInfo( $a, $title );
 				if ( $fld_token ) {
 					$a['token'] = $token;

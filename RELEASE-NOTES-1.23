@@ -125,6 +125,24 @@ production.
 * All API modules now support an assert parameter. See the new features section
   for more details.
 * Added prop=contributors to fetch the list of contributors to the page.
+* The following API modules will now return entries where fields have been
+  revision-deleted: list=deletedrevs, list=filearchive, list=recentchanges,
+  list=watchlist. "hidden" indicators will be included, in the same style as is
+  already done for prop=revisions.
+* The following API modules will now return the content of revision-deleted
+  fields, in addition to the "hidden" indicators, if the querying user has the
+  necessary rights: list=logevents, list=usercontribs, prop=imageinfo,
+  prop=revisions.
+* The above modules, where applicable, will now return entries filtered by
+  revision-deleted fields if the querying user has the necessary rights. For
+  example, prop=revisions with rvuser or rvexcludeuser will no longer skip
+  revisions where the user was revision-deleted if the current user has the
+  deletedhistory right.
+* The 'hideuser' right, used when blocking, is no longer necessary or
+  sufficient for seeing contributions with revision-deleted in
+  list=usercontribs.
+* list=watchlist now uses the querying user's rights rather than the wlowner's
+  rights when checking whether wlprop=patrol is allowed.
 
 === Languages updated in 1.23 ===
 
