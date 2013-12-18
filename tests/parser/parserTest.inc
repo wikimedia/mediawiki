@@ -82,6 +82,8 @@ class ParserTest {
 	 * command-line options (--color and --quick).
 	 */
 	public function __construct( $options = array() ) {
+		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
+
 		# Only colorize output if stdout is a terminal.
 		$this->color = !wfIsWindows() && Maintenance::posix_isatty( 1 );
 
@@ -216,6 +218,9 @@ class ParserTest {
 		}
 
 		self::setupInterwikis();
+
+		$djvuSupport = new DjVuSupportDetector();
+		$djvuSupport->initializeGlobals();
 	}
 
 	/**
@@ -540,6 +545,14 @@ class ParserTest {
 
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
+
+		if ( isset( $opts['djvu'] ) ) {
+			$djvuSupport = new DjVuSupportDetector();
+
+			if ( !$djvuSupport->isDjVuSupportEnable() ) {
+				return $this->showSkipped();
+			}
+		}
 
 		if ( isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
@@ -1003,6 +1016,44 @@ class ParserTest {
 			'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+			'size' => 3249,
+			'width' => 2480,
+			'height' => 3508,
+			'media_type' => MEDIATYPE_BITMAP,
+			'mime' => 'image/vnd.djvu',
+			'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+			'sha1' => wfBaseConvert( '4', 16, 36, 31 ),
+			'fileExists' => true
+		), $this->db->timestamp( '20010115123600' ), $user );
 	}
 
 	public function teardownDatabase() {
@@ -1081,6 +1132,9 @@ class ParserTest {
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
 			' version="1.1" width="240" height="180"/>' );
+		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
+		copy( "$IP/tests/phpunit/data/media/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
+
 		return $dir;
 	}
 
@@ -1147,6 +1201,11 @@ class ParserTest {
 
 				"$dir/0/09/Bad.jpg",
 
+				"$dir/5/5f/LoremIpsum.djvu",
+				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg",
+				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg",
+				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
+
 				"$dir/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
@@ -1178,6 +1237,11 @@ class ParserTest {
 				"$dir/thumb/f/",
 				"$dir/0/09/",
 				"$dir/0/",
+				"$dir/5/5f",
+				"$dir/5",
+				"$dir/thumb/5/5f/LoremIpsum.djvu",
+				"$dir/thumb/5/5f",
+				"$dir/thumb/5",
 				"$dir/thumb",
 				"$dir/math/f/a/5",
 				"$dir/math/f/a",
@@ -1268,6 +1332,19 @@ class ParserTest {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Print a skipped message.
+	 *
+	 * @return boolean
+	 */
+	protected function showSkipped() {
+		if ( $this->showProgress ) {
+			print $this->term->color( '1;33' ) . 'SKIPPED' . $this->term->reset() . "\n";
+		}
+
+		return true;
 	}
 
 	/**
