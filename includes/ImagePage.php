@@ -316,7 +316,12 @@ class ImagePage extends Article {
 
 			$renderLang = $request->getVal( 'lang' );
 			if ( !is_null( $renderLang ) ) {
-				$params['lang'] = $renderLang;
+				$handler = $this->displayImg->getHandler();
+				if ( $handler && $handler->validateParam( 'lang', $renderLang ) ) {
+					$params['lang'] = $renderLang;
+				} else {
+					$renderLang = null;
+				}
 			}
 
 			$width_orig = $this->displayImg->getWidth( $page );
@@ -1002,7 +1007,7 @@ EOT
 		if ( !$haveDefaultLang ) {
 			// Its hard to know if the content is really in the default language, or
 			// if its just unmarked content that could be in any language.
-			$opts = Xml::option( wfMessage( 'img-lang-default' )->text(), '', $defaultLang === $curLang ) . $opts;
+			$opts = Xml::option( wfMessage( 'img-lang-default' )->text(), $defaultLang, $defaultLang === $curLang ) . $opts;
 		}
 		if ( !$haveCurrentLang && $defaultLang !== $curLang ) {
 			$name = Language::fetchLanguageName( $curLang, $this->getContext()->getLanguage()->getCode() );
