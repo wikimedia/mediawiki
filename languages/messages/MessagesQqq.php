@@ -4073,6 +4073,7 @@ See also:
 * {{msg-mw|zip-wrong-format}}
 * {{msg-mw|uploadjava}}
 * {{msg-mw|uploadvirus}}',
+'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 'uploadvirus' => 'Error message displayed when uploaded file contains a virus.
 
 Parameters:

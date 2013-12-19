@@ -474,9 +474,10 @@ abstract class UploadBase {
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-				if ( $this->detectScriptInSvg( $this->mTempPath ) ) {
+				$svgStatus = $this->detectScriptInSvg( $this->mTempPath );
+				if ( $svgStatus !== false ) {
 					wfProfileOut( __METHOD__ );
-					return array( 'uploadscripted' );
+					return $svgStatus;
 				}
 			}
 		}
@@ -1164,7 +1165,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param $filename string
-	 * @return bool
+	 * @return mixed false of the file is verified (does not contain scripts), array otherwise.
 	 */
 	protected function detectScriptInSvg( $filename ) {
 		$check = new XmlTypeCheck(
@@ -1173,7 +1174,13 @@ abstract class UploadBase {
 			true,
 			array( 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' )
 		);
-		return $check->filterMatch;
+		if ( $check->wellFormed !== true ) {
+			// Invalid xml (bug 58553)
+			return array( 'uploadinvalidxml' );
+		} elseif ( $check->filterMatch ) {
+			return array( 'uploadscripted' );
+		}
+		return false;
 	}
 
 	/**
