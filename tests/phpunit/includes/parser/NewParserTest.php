@@ -308,7 +308,7 @@ class NewParserTest extends MediaWikiTestCase {
 				$useConfig['name'] = 'local-backend'; // swap name
 				unset( $useConfig['lockManager'] );
 				unset( $useConfig['fileJournal'] );
-				$class = $conf['class'];
+				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$backend = self::$backendToUse;
 			}
@@ -318,11 +318,7 @@ class NewParserTest extends MediaWikiTestCase {
 			# informations.
 			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
-				'wikiId' => wfWikiId(),
-				'containerPaths' => array(
-					'local-public' => "$uploadDir",
-					'local-thumb' => "$uploadDir/thumb",
-				)
+				'wikiId' => wfWikiId()
 			) );
 		}
 
@@ -448,16 +444,12 @@ class NewParserTest extends MediaWikiTestCase {
 		) );
 
 		// No helpful SVG file to copy, so make one ourselves
-		$tmpDir = wfTempDir();
-		$tempFsFile = new TempFSFile( "$tmpDir/Foobar.svg" );
-		$tempFsFile->autocollect(); // destroy file when $tempFsFile leaves scope
-		file_put_contents( "$tmpDir/Foobar.svg",
-			'<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>' );
+		$data = '<?xml version="1.0" encoding="utf-8"?>' .
+			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>';
 
 		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
-		$backend->quickStore( array(
-			'src' => "$tmpDir/Foobar.svg", 'dst' => "$base/local-public/f/ff/Foobar.svg"
+		$backend->quickCreate( array(
+			'content' => $data, 'dst' => "$base/local-public/f/ff/Foobar.svg"
 		) );
 	}
 

@@ -28,95 +28,12 @@
  * @ingroup FileBackend
  * @since 1.22
  */
-class MockFileBackend extends FileBackendStore {
-
-	protected $mocked = array();
-
-	/** Poor man debugging */
-	protected function debug( $msg = '' ) {
-		wfDebug( wfGetCaller() . "$msg\n" );
-	}
-
-	public function isPathUsableInternal( $storagePath ) {
-		return true;
-	}
-
-	protected function doCreateInternal( array $params ) {
-		if ( isset( $params['content'] ) ) {
-			$content = $params['content'];
-		} else {
-			$content = 'Default mocked file content';
-		}
-		$this->debug( serialize( $params ) );
-		$dst = $params['dst'];
-		$this->mocked[$dst] = $content;
-		return Status::newGood();
-	}
-
-	protected function doStoreInternal( array $params ) {
-		$this->debug( serialize( $params ) );
-		return $this->doCreateInternal( $params );
-	}
-
-	protected function doCopyInternal( array $params ) {
-		$this->debug( serialize( $params ) );
-		$src = $params['src'];
-		$dst = $params['dst'];
-		$this->mocked[$dst] = $this->mocked[$src];
-		return Status::newGood();
-	}
-
-	protected function doDeleteInternal( array $params ) {
-		$this->debug( serialize( $params ) );
-		$src = $params['src'];
-		unset( $this->mocked[$src] );
-		return Status::newGood();
-	}
-
-	protected function doGetFileStat( array $params ) {
-		$src = $params['src'];
-		if ( array_key_exists( $src, $this->mocked ) ) {
-			$this->debug( "('$src') found" );
-			return array(
-				'mtime' => wfTimestamp( TS_MW ),
-				'size' => strlen( $this->mocked[$src] ),
-				# No sha1, stat does not need it.
-			);
-		} else {
-			$this->debug( "('$src') not found" );
-			return false;
-		}
-	}
-
+class MockFileBackend extends MemoryFileBackend {
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = array(); // (path => MockFSFile)
-
-		$this->debug( '(' . serialize( $params ) . ')' );
 		foreach ( $params['srcs'] as $src ) {
-			$tmpFiles[$src] = new MockFSFile(
-				wfTempDir() . '/' . wfRandomString( 32 )
-			);
+			$tmpFiles[$src] = new MockFSFile( wfTempDir() . '/' . wfRandomString( 32 ) );
 		}
 		return $tmpFiles;
-	}
-
-	protected function doDirectoryExists( $container, $dir, array $params ) {
-		$this->debug();
-		return true;
-	}
-
-	public function getDirectoryListInternal( $container, $dir, array $params ) {
-		$this->debug();
-		return array();
-	}
-
-	public function getFileListInternal( $container, $dir, array $params ) {
-		$this->debug();
-		return array();
-	}
-
-	protected function directoriesAreVirtual() {
-		$this->debug();
-		return true;
 	}
 }
