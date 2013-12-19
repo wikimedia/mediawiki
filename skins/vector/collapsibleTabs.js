@@ -72,8 +72,10 @@
 			collapsible: 'li.collapsible',
 			shifting: false,
 			expandCondition: function ( eleWidth ) {
-				// If there's at least eleWidth pixels free space, expand.
-				return calculateTabDistance() >= eleWidth;
+				// If there are at least eleWidth + 1 pixels of free space, expand.
+				// We add 1 because .width() will truncate fractional values
+				// but .offset() will not.
+				return calculateTabDistance() >= (eleWidth + 1);
 			},
 			collapseCondition: function () {
 				// If there's an overlap, collapse.
