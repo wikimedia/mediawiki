@@ -78,10 +78,6 @@ class NextJobDB extends Maintenance {
 			}
 
 			list( $type, $db ) = $candidates[mt_rand( 0, count( $candidates ) - 1 )];
-			if ( JobQueueGroup::singleton( $db )->isQueueDeprioritized( $type ) ) {
-				$pendingDBs[$type] = array_diff( $pendingDBs[$type], array( $db ) );
-				$again = true;
-			}
 		} while ( $again );
 
 		if ( $this->hasOption( 'types' ) ) {
