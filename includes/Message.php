@@ -817,11 +817,12 @@ class Message {
 			} elseif ( isset( $param['bitrate'] ) ) {
 				return array( 'before', $this->language->formatBitrate( $param['bitrate'] ) );
 			} else {
-				trigger_error(
-					'Invalid parameter for message "' . $this->getKey() . '": ' .
-					htmlspecialchars( serialize( $param ) ),
-					E_USER_WARNING
-				);
+				$warning = 'Invalid parameter for message "' . $this->getKey() . '": ' .
+					htmlspecialchars( serialize( $param ) );
+				trigger_error( $warning, E_USER_WARNING );
+				$e = new Exception;
+				wfDebugLog( 'Bug58676', $warning . "\n" . $e->getTraceAsString() );
+
 				return array( 'before', '[INVALID]' );
 			}
 		} elseif ( $param instanceof Message ) {
