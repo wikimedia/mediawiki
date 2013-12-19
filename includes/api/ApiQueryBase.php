@@ -405,9 +405,8 @@ abstract class ApiQueryBase extends ApiBase {
 		$paramName = $this->encodeParamName( $paramName );
 		$msg = array( $paramName => $paramValue );
 		$result = $this->getResult();
-		$result->disableSizeCheck();
-		$result->addValue( 'query-continue', $this->getModuleName(), $msg, ApiResult::ADD_ON_TOP );
-		$result->enableSizeCheck();
+		$result->addValue( 'query-continue', $this->getModuleName(), $msg,
+			ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 	}
 
 	/**
