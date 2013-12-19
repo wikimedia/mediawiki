@@ -392,6 +392,10 @@ class JobQueueGroup {
 					}
 				}
 			}
+			// The tasks may have recycled jobs or release delayed jobs into the queue
+			if ( isset( $tasksRun[$type] ) && !$queue->isEmpty() ) {
+				JobQueueAggregator::singleton()->notifyQueueNonEmpty( $this->wiki, $type );
+			}
 		}
 
 		$wgMemc->merge( $key, function ( $cache, $key, $lastRuns ) use ( $tasksRun ) {
