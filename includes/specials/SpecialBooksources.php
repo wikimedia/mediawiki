@@ -188,6 +188,6 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'other';
+		return 'wiki';
 	}
 }
