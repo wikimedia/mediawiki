@@ -254,4 +254,8 @@ class SpecialExpandTemplates extends SpecialPage {
 		$out->addHTML( $html );
 		$out->addHTML( Html::closeElement( 'div' ) );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }
