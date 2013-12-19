@@ -30,6 +30,14 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	var $rcOptions, $rcSubpage;
 	protected $customFilters;
 
+	/**
+	 * The feed format to output as (either 'rss' or 'atom'), or null if no
+	 * feed output was requested
+	 *
+	 * @var string $feedFormat
+	 */
+	protected $feedFormat;
+
 	public function __construct( $name = 'Recentchanges' ) {
 		parent::__construct( $name );
 	}
@@ -69,10 +77,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Create a FormOptions object with options as specified by the user
 	 *
 	 * @param array $parameters
-	 *
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {
+		global $wgFeedLimit;
+
 		$opts = $this->getDefaultOptions();
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
@@ -86,7 +95,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$this->parseParameters( $parameters, $opts );
 		}
 
-		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
 
 		return $opts;
 	}
@@ -106,30 +115,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Create a FormOptions object specific for feed requests and return it
-	 *
-	 * @return FormOptions
-	 */
-	public function feedSetup() {
-		global $wgFeedLimit;
-		$opts = $this->getDefaultOptions();
-		$opts->fetchValuesFromRequest( $this->getRequest() );
-		$opts->validateIntBounds( 'limit', 0, $wgFeedLimit );
-
-		return $opts;
-	}
-
-	/**
 	 * Get the current FormOptions for this request
 	 */
 	public function getOptions() {
 		if ( $this->rcOptions === null ) {
-			if ( $this->including() ) {
-				$isFeed = false;
-			} else {
-				$isFeed = (bool)$this->getRequest()->getVal( 'feed' );
-			}
-			$this->rcOptions = $isFeed ? $this->feedSetup() : $this->setup( $this->rcSubpage );
+			$this->rcOptions = $this->setup( $this->rcSubpage );
 		}
 
 		return $this->rcOptions;
@@ -142,12 +132,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
-		$feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
+		$this->feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
 
 		# 10 seconds server-side caching max
 		$this->getOutput()->setSquidMaxage( 10 );
 		# Check if the client has a cached version
-		$lastmod = $this->checkLastModified( $feedFormat );
+		$lastmod = $this->checkLastModified( $this->feedFormat );
 		if ( $lastmod === false ) {
 			return;
 		}
@@ -168,7 +158,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			return;
 		}
 
-		if ( !$feedFormat ) {
+		if ( !$this->feedFormat ) {
 			$batch = new LinkBatch;
 			foreach ( $rows as $row ) {
 				$batch->add( NS_USER, $row->rc_user_text );
@@ -177,8 +167,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			}
 			$batch->execute();
 		}
-		if ( $feedFormat ) {
-			list( $changesFeed, $formatter ) = $this->getFeedObject( $feedFormat );
+		if ( $this->feedFormat ) {
+			list( $changesFeed, $formatter ) = $this->getFeedObject( $this->feedFormat );
 			/** @var ChangesFeed $changesFeed */
 			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
 		} else {
