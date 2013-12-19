@@ -1041,7 +1041,7 @@ class User {
 	/**
 	 * Initialize this object from a row from the user table.
 	 *
-	 * @param array $row Row from the user table to load.
+	 * @param stdClass $row Row from the user table to load.
 	 * @param array $data Further user data to load into the object
 	 *
 	 *	user_groups		Array with groups out of the user_groups table
