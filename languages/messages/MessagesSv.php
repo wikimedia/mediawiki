@@ -571,7 +571,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Om {{SITENAME}}',
 'aboutpage' => 'Project:Om',
-'copyright' => 'Innehållet är tillgängligt under $1.',
+'copyright' => 'Innehållet är tillgängligt under $1 om inte annat anges.',
 'copyrightpage' => '{{ns:project}}:Upphovsrätt',
 'currentevents' => 'Aktuella händelser',
 'currentevents-url' => 'Project:Aktuella händelser',
@@ -582,8 +582,8 @@ $1',
 'mainpage' => 'Huvudsida',
 'mainpage-description' => 'Huvudsida',
 'policy-url' => 'Project:Riktlinjer',
-'portal' => 'Deltagarportalen',
-'portal-url' => 'Project:Deltagarportalen',
+'portal' => 'Gemenskapens portal',
+'portal-url' => 'Project:Gemenskapens portal',
 'privacy' => 'Integritetspolicy',
 'privacypage' => 'Project:Integritetspolicy',
 
@@ -1730,6 +1730,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges-label-bot' => 'Denna redigering gjordes av en bot',
 'recentchanges-label-unpatrolled' => 'Denna redigering har inte blivit kontrollerad ännu',
 'recentchanges-label-plusminus' => 'Sidans storlek ändrades med detta antal byte',
+'recentchanges-legend-heading' => "'''Teckenförklaring:'''",
 'recentchanges-legend-newpage' => '(se även [[Special:NewPages|listan över nya sidor]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
@@ -3843,7 +3844,7 @@ Bekräfta att du verkligen vill återskapa sidan.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standardspråk)',
-'img-lang-info' => 'Rendera bilden i $1 $2.',
+'img-lang-info' => 'Rendera denna bild i $1. $2',
 'img-lang-go' => 'Gå',
 
 # Table pager
@@ -4195,10 +4196,12 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'expand_templates_input' => 'Text som ska expanderas:',
 'expand_templates_output' => 'Expanderad kod',
 'expand_templates_xml_output' => 'XML-kod',
+'expand_templates_html_output' => 'Rå HTML-utdata',
 'expand_templates_ok' => 'Expandera',
 'expand_templates_remove_comments' => 'Ta bort kommentarer',
 'expand_templates_remove_nowiki' => 'Undertryck <nowiki> taggar i resultatet',
 'expand_templates_generate_xml' => 'Visa parseträd som XML',
+'expand_templates_generate_rawhtml' => 'Visa rå HTML',
 'expand_templates_preview' => 'Förhandsvisning',
 
 );

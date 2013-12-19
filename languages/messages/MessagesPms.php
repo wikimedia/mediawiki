@@ -3562,7 +3562,7 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(lenga predefinìa)',
-'img-lang-info' => 'Rende costa plancia an $1 $2.',
+'img-lang-info' => 'Rende costa plancia an $1. $2',
 'img-lang-go' => 'Andé',
 
 # Table pager

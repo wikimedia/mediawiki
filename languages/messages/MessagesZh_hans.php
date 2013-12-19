@@ -1301,7 +1301,7 @@ $1",
 ** 潜在毁谤性信息',
 'revdelete-otherreason' => '其他/附加原因：',
 'revdelete-reasonotherlist' => '其他原因',
-'revdelete-edit-reasonlist' => '编辑删除埋由',
+'revdelete-edit-reasonlist' => '编辑删除原因',
 'revdelete-offender' => '版本作者：',
 
 # Suppression log
@@ -1702,6 +1702,7 @@ $1",
 'recentchanges-label-bot' => '该编辑由机器人执行',
 'recentchanges-label-unpatrolled' => '该编辑尚未巡查',
 'recentchanges-label-plusminus' => '该页面字节数的前后变化',
+'recentchanges-legend-heading' => "'''标记：'''",
 'recentchanges-legend-newpage' => '（另见[[Special:NewPages|新页面列表]]）',
 'recentchanges-legend-plusminus' => "（''±123''）",
 'rcnotefrom' => "下面是'''$2'''之后的更改（最多显示'''$1'''个）。",
@@ -2042,7 +2043,7 @@ $1',
 *常用删除理由
 ** 侵犯版权
 ** 重复文件',
-'filedelete-edit-reasonlist' => '编辑删除埋由',
+'filedelete-edit-reasonlist' => '编辑删除原因',
 'filedelete-maintenance' => '维护期间文件删除和恢复暂时停用。',
 'filedelete-maintenance-title' => '无法删除文件',
 
@@ -4125,10 +4126,12 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'expand_templates_input' => '输入文本：',
 'expand_templates_output' => '结果：',
 'expand_templates_xml_output' => 'XML输出',
+'expand_templates_html_output' => '原始HTML输出',
 'expand_templates_ok' => '确定',
 'expand_templates_remove_comments' => '移除注释',
 'expand_templates_remove_nowiki' => '在结果中隐藏<nowiki>标签',
 'expand_templates_generate_xml' => '显示XML语法树',
+'expand_templates_generate_rawhtml' => '显示原始HTML',
 'expand_templates_preview' => '预览',
 
 );

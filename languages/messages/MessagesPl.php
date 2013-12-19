@@ -1728,7 +1728,9 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'recentchanges-label-bot' => 'Ta edycja została wykonana przez bota',
 'recentchanges-label-unpatrolled' => 'Ta edycja nie została jeszcze sprawdzona',
 'recentchanges-label-plusminus' => 'Zmieniony rozmiar strony (liczba bajtów)',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(zobacz też [[Special:NewPages|listę nowych stron]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 'rclistfrom' => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
@@ -3868,6 +3870,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(język domyślny)',
+'img-lang-info' => 'Wyświetl tę ilustrację w $1 $2.',
 'img-lang-go' => 'Dalej',
 
 # Table pager
@@ -4259,10 +4262,12 @@ W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
 'expand_templates_input' => 'Tekst wejściowy',
 'expand_templates_output' => 'Rezultat',
 'expand_templates_xml_output' => 'wynik w formacie XML',
+'expand_templates_html_output' => 'Wyświetlanie surowego HTML',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Usuń komentarze',
 'expand_templates_remove_nowiki' => 'Ukrywaj w wyniku znaczniki <nowiki>',
 'expand_templates_generate_xml' => 'Pokaż drzewo analizatora składni w formacie XML',
+'expand_templates_generate_rawhtml' => 'Pokaż surowy HTML',
 'expand_templates_preview' => 'Podgląd',
 
 );

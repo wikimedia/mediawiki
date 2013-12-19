@@ -4055,8 +4055,8 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(既定の言語)',
-'img-lang-info' => 'この画像を $1 で $2',
-'img-lang-go' => '描画',
+'img-lang-info' => 'この画像を $1 で描画する。$2',
+'img-lang-go' => '実行',
 
 # Table pager
 'ascending_abbrev' => '昇順',
@@ -4475,10 +4475,12 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'expand_templates_input' => '展開するテキスト:',
 'expand_templates_output' => '展開結果',
 'expand_templates_xml_output' => 'XML 出力',
+'expand_templates_html_output' => '出力される HTML ソース',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'コメントを除去',
 'expand_templates_remove_nowiki' => '結果に含まれる <nowiki> タグを表示しない',
 'expand_templates_generate_xml' => 'XML 構文解析ツリーを表示',
+'expand_templates_generate_rawhtml' => 'HTML ソースを表示',
 'expand_templates_preview' => 'プレビュー',
 
 );

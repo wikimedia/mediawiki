@@ -3928,7 +3928,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(Standardsprache)',
-'img-lang-info' => 'Dieses Bild in $1 rendern $2.',
+'img-lang-info' => 'Dieses Bild in $1 rendern. $2',
 'img-lang-go' => 'Los',
 
 # Table pager

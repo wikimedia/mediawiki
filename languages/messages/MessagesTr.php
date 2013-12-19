@@ -1745,8 +1745,8 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'recentchanges-noresult' => 'Belirtilen kriterlere uyan herhangi bir değişiklik bulunamadı.',
 'recentchanges-feed-description' => "Bu beslemede, viki'de yapılan en son değişiklikleri takip edin.",
 'recentchanges-label-newpage' => 'Bu değişiklikle yeni bir sayfa oluşturuldu',
-'recentchanges-label-minor' => 'Bu bir küçük değişiklik',
-'recentchanges-label-bot' => 'Bu değişiklik bir bot tarafından yapıldı',
+'recentchanges-label-minor' => 'Küçük değişiklik',
+'recentchanges-label-bot' => 'Bir bot tarafından yapılan değişiklik',
 'recentchanges-label-unpatrolled' => 'Bu değişiklik henüz gözlenmemiş',
 'recentchanges-label-plusminus' => 'Sayfa boyutundaki değişikliğin bayt bazında değeri',
 'recentchanges-legend-heading' => "'''Gösterge:'''",
@@ -3880,7 +3880,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(varsayılan dil)',
-'img-lang-info' => 'Bu resmi $1 ile işle $2.',
+'img-lang-info' => 'Bu resmi $1 ile işle. $2',
 'img-lang-go' => 'Gönder',
 
 # Table pager

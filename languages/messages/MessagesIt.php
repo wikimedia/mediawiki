@@ -1673,6 +1673,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'recentchanges-label-bot' => 'Questa modifica è stata effettuata da un bot',
 'recentchanges-label-unpatrolled' => 'Questa modifica non è stata ancora verificata',
 'recentchanges-label-plusminus' => 'La dimensione della pagina è cambiata di questo numero di byte',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => "(vedi anche [[Special:NewPages|l'elenco delle nuove pagine]])",
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Di seguito sono elencate le modifiche apportate a partire da '''$2''' (fino a '''$1''').",
@@ -3757,7 +3758,7 @@ Per favore, conferma che vuoi veramente ricreare questa pagina.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(lingua predefinita)',
-'img-lang-info' => 'Converti questa immagine in $1 $2.',
+'img-lang-info' => 'Converti questa immagine in $1. $2',
 'img-lang-go' => 'Vai',
 
 # Table pager
@@ -4115,10 +4116,12 @@ vale a dire praticamente tutto ciò che si trova tra doppie parentesi graffe.',
 'expand_templates_input' => 'Testo da espandere:',
 'expand_templates_output' => 'Risultato',
 'expand_templates_xml_output' => 'Output in formato XML',
+'expand_templates_html_output' => 'Risultato HTML',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Ignora i commenti',
 'expand_templates_remove_nowiki' => 'Elimina il tag <nowiki> nel risultato',
 'expand_templates_generate_xml' => 'Mostra albero sintattico XML',
+'expand_templates_generate_rawhtml' => 'Mostra HTML',
 'expand_templates_preview' => 'Anteprima',
 
 );

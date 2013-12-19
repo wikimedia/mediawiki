@@ -806,7 +806,7 @@ Brukarnamn skil mellom stor og liten bokstav. Sjekk at du har skrive brukarnamet
 'passwordtooshort' => 'Passord må innehalda minst {{PLURAL:$1|eitt teikn|$1 teikn}}.',
 'password-name-match' => 'Passordet ditt lyt vera noko anna enn brukarnamnet ditt.',
 'password-login-forbidden' => 'Bruk av dette brukarnamnet og passordet er vorte forbode.',
-'mailmypassword' => 'Send nytt passord',
+'mailmypassword' => 'Attendestill passord',
 'passwordremindertitle' => 'Nytt passord til {{SITENAME}}',
 'passwordremindertext' => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Eit mellombels passord for «$2» er oppretta, og er sett til «$3». Om det var det du ville, må du logge inn
 og velje eit nytt passord no.
