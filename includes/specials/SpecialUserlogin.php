@@ -1099,7 +1099,8 @@ class LoginForm extends SpecialPage {
 
 			$out->addModuleStyles( array(
 				'mediawiki.ui',
-				'mediawiki.special.createaccount'
+				'mediawiki.ui.button',
+				'mediawiki.special.createaccount',
 			) );
 			// XXX hack pending RL or JS parse() support for complex content messages
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349

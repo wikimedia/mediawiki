@@ -700,7 +700,10 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 		if ( $this->isVForm() ) {
-			$this->getOutput()->addModuleStyles( 'mediawiki.ui' );
+			$this->getOutput()->addModuleStyles( array(
+				'mediawiki.ui',
+				'mediawiki.ui.button',
+			) );
 			// @todo Should vertical form set setWrapperLegend( false )
 			// to hide ugly fieldsets?
 		}

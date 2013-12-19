@@ -87,7 +87,7 @@ class SpecialSearch extends SpecialPage {
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 		$out->addModuleStyles( array(
-			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui'
+			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui', 'mediawiki.ui.button'
 		) );
 
 		// Strip underscores from title parameter; most of the time we'll want
