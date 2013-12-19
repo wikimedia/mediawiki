@@ -547,6 +547,7 @@ $wgAutoloadLocalClasses = array(
 	'FSFileBackendDirList' => 'includes/filebackend/FSFileBackend.php',
 	'FSFileBackendFileList' => 'includes/filebackend/FSFileBackend.php',
 	'FSFileOpHandle' => 'includes/filebackend/FSFileBackend.php',
+	'MemoryFileBackend' => 'includes/filebackend/MemoryFileBackend.php',
 	'SwiftFileBackend' => 'includes/filebackend/SwiftFileBackend.php',
 	'SwiftFileBackendList' => 'includes/filebackend/SwiftFileBackend.php',
 	'SwiftFileBackendDirList' => 'includes/filebackend/SwiftFileBackend.php',
