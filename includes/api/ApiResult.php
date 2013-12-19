@@ -56,6 +56,14 @@ class ApiResult extends ApiBase {
 	 */
 	const ADD_ON_TOP = 2;
 
+	/**
+	 * For addValue() and setElement(), do not check size while adding a value
+	 * Don't use this unless you REALLY know what you're doing.
+	 * Values added while the size checking was disabled will never be counted
+	 * @since 1.23
+	 */
+	const NO_SIZE_CHECK = 4;
+
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	/**
@@ -151,7 +159,7 @@ class ApiResult extends ApiBase {
 	 * @param array $arr to add $value to
 	 * @param string $name Index of $arr to add $value at
 	 * @param $value mixed
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP
 	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
 	 *    specifically chosen so that it would be backwards compatible with the
 	 *    new method signature.
@@ -278,10 +286,9 @@ class ApiResult extends ApiBase {
 	 * @param $path array|string|null
 	 * @param $name string
 	 * @param $value mixed
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This
-	 *    parameter used to be boolean, and the value of OVERRIDE=1 was specifically
-	 *    chosen so that it would be backwards compatible with the new method
-	 *    signature.
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 *   This parameter used to be boolean, and the value of OVERRIDE=1 was specifically
+	 *   chosen so that it would be backwards compatible with the new method signature.
 	 * @return bool True if $value fits in the result, false if not
 	 *
 	 * @since 1.21 int $flags replaced boolean $override
@@ -290,7 +297,7 @@ class ApiResult extends ApiBase {
 		global $wgAPIMaxResultSize;
 
 		$data = &$this->mData;
-		if ( $this->mCheckingSize ) {
+		if ( $this->mCheckingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
 			$newsize = $this->mSize + self::size( $value );
 			if ( $newsize > $wgAPIMaxResultSize ) {
 				$this->setWarning(

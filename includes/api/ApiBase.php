@@ -264,10 +264,8 @@ abstract class ApiBase extends ContextSource {
 		}
 		$msg = array();
 		ApiResult::setContent( $msg, $warning );
-		$result->disableSizeCheck();
 		$result->addValue( 'warnings', $moduleName,
-			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP );
-		$result->enableSizeCheck();
+			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 	}
 
 	/**
