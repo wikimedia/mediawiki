@@ -469,3 +469,6 @@
 [submodule "extensions/VisualEditor"]
 	path = extensions/VisualEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VisualEditor.git
+[submodule "extensions/GWToolset"]
+	path = extensions/GWToolset
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GWToolset.git
