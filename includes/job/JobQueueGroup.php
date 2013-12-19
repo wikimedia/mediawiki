@@ -155,9 +155,6 @@ class JobQueueGroup {
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0 ) {
 		if ( is_string( $qtype ) ) { // specific job type
-			if ( ( $flags & self::USE_PRIORITY ) && $this->isQueueDeprioritized( $qtype ) ) {
-				return false; // back off
-			}
 			$job = $this->get( $qtype )->pop();
 			if ( !$job ) {
 				JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
@@ -180,9 +177,6 @@ class JobQueueGroup {
 			shuffle( $types ); // avoid starvation
 
 			foreach ( $types as $type ) { // for each queue...
-				if ( ( $flags & self::USE_PRIORITY ) && $this->isQueueDeprioritized( $type ) ) {
-					continue; // back off
-				}
 				$job = $this->get( $type )->pop();
 				if ( $job ) { // found
 					return $job;
@@ -328,32 +322,6 @@ class JobQueueGroup {
 		}
 
 		return $this->coalescedQueues;
-	}
-
-	/**
-	 * Check if jobs should not be popped of a queue right now.
-	 * This is only used for performance, such as to avoid spamming
-	 * the queue with many sub-jobs before they actually get run.
-	 *
-	 * @param string $type
-	 * @return bool
-	 */
-	public function isQueueDeprioritized( $type ) {
-		if ( $this->cache->has( 'isDeprioritized', $type, 5 ) ) {
-			return $this->cache->get( 'isDeprioritized', $type );
-		}
-		if ( $type === 'refreshLinks2' ) {
-			// Don't keep converting refreshLinksPartition => refreshLinks jobs if the
-			// later jobs have not been done yet. This helps throttle queue spam.
-			// @TODO: this is mostly a WMF-specific hack and should be removed when
-			// refreshLinks2 jobs are drained.
-			$deprioritized = $this->get( 'refreshLinks' )->getSize() > 10000;
-			$this->cache->set( 'isDeprioritized', $type, $deprioritized );
-
-			return $deprioritized;
-		}
-
-		return false;
 	}
 
 	/**
