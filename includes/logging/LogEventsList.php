@@ -561,7 +561,15 @@ class LogEventsList extends ContextSource {
 
 		if ( $logBody ) {
 			if ( $msgKey[0] ) {
-				$s = '<div class="mw-warning-with-logexcerpt">';
+				global $wgLang;
+				$dir = $wgLang->getDir();
+				$lang = $wgLang->getCode();
+
+				$s = Xml::openElement( 'div', array(
+					'class' => "mw-warning-with-logexcerpt mw-content-$dir",
+					'dir' => $dir,
+					'lang' => $lang,
+				) );
 
 				if ( count( $msgKey ) == 1 ) {
 					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
