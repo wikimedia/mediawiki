@@ -56,14 +56,16 @@ class ShowJobs extends Maintenance {
 		} elseif ( $this->hasOption( 'group' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
 				$queue = $group->get( $type );
+				$delayed = $queue->getDelayedCount();
 				$pending = $queue->getSize();
 				$claimed = $queue->getAcquiredCount();
 				$abandoned = $queue->getAbandonedCount();
 				$active = max( 0, $claimed - $abandoned );
-				if ( ( $pending + $claimed ) > 0 ) {
+				if ( ( $pending + $claimed + $delayed ) > 0 ) {
 					$this->output(
 						"{$type}: $pending queued; " .
-						"$claimed claimed ($active active, $abandoned abandoned)\n"
+						"$claimed claimed ($active active, $abandoned abandoned); " .
+						"$delayed delayed\n"
 					);
 				}
 			}
