@@ -2011,7 +2011,7 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>i
 'unusedtemplateswlh' => 'aðrir tenglar',
 
 # Random page
-'randompage' => 'Handahófsvalin grein',
+'randompage' => 'Handahófsvalin síða',
 'randompage-nopages' => 'Það eru engar síður í {{PLURAL:$2|nafnrýminu|nafnrýmunum}}: $1.',
 
 # Random page in category

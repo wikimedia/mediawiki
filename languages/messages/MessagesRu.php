@@ -70,6 +70,7 @@
  * @author Matma Rex
  * @author MaxBioHazard
  * @author MaxSem
+ * @author Milicevic01
  * @author NBS
  * @author Nemo bis
  * @author Okras
@@ -1855,6 +1856,7 @@ $1",
 'recentchanges-label-bot' => 'Эта правка сделана ботом',
 'recentchanges-label-unpatrolled' => 'Эта правку ещё никем не патрулировалась',
 'recentchanges-label-plusminus' => 'Размер страницы изменился на данное количество байт',
+'recentchanges-legend-heading' => "'''Легенда:'''",
 'recentchanges-legend-newpage' => '(см. также [[Special:NewPages|список новых страниц]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Ниже перечислены изменения с '''$2''' (не более '''$1''').",

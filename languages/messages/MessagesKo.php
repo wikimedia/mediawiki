@@ -33,6 +33,7 @@
  * @author PuzzletChung
  * @author TheAlpha for knowledge
  * @author ToePeu
+ * @author Yjs5497
  * @author Yknok29
  * @author לערי ריינהארט
  * @author 관인생략
@@ -4312,10 +4313,12 @@ $5
 'expand_templates_input' => '전개할 내용:',
 'expand_templates_output' => '결과',
 'expand_templates_xml_output' => 'XML 출력',
+'expand_templates_html_output' => '원본 HTML 출력',
 'expand_templates_ok' => '확인',
 'expand_templates_remove_comments' => '주석 제거',
 'expand_templates_remove_nowiki' => '결과에서 <nowiki> 태그를 숨기기',
 'expand_templates_generate_xml' => 'XML 구문 트리 보기',
+'expand_templates_generate_rawhtml' => '원본 HTML 보이기',
 'expand_templates_preview' => '미리 보기',
 
 );

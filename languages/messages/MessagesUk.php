@@ -4020,7 +4020,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(типова мова)',
-'img-lang-info' => 'Візуалізувати це зображення у $1 $2.',
+'img-lang-info' => 'Візуалізувати це зображення у $1. $2',
 'img-lang-go' => 'Перейти',
 
 # Table pager
@@ -4435,10 +4435,12 @@ MediaWiki поширюється в надії, що вона буде кори�
 'expand_templates_input' => 'Вхідний текст:',
 'expand_templates_output' => 'Результат',
 'expand_templates_xml_output' => 'XML-вивід',
+'expand_templates_html_output' => 'Сирий вивід HTML',
 'expand_templates_ok' => 'Гаразд',
 'expand_templates_remove_comments' => 'Вилучити коментарі',
 'expand_templates_remove_nowiki' => 'Ігнорувати теги <nowiki> в результаті',
 'expand_templates_generate_xml' => 'Показати дерево аналізу XML',
+'expand_templates_generate_rawhtml' => 'Показати сирий HTML',
 'expand_templates_preview' => 'Попередній перегляд',
 
 );

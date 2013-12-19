@@ -1817,13 +1817,14 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchanges-label-bot' => 'Deze bewerking is uitgevoerd door een bot',
 'recentchanges-label-unpatrolled' => 'Deze bewerking is nog niet gecontroleerd',
 'recentchanges-label-plusminus' => 'Deze paginagrootte is met dit aantal bytes gewijzigd',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => "Zie ook de [[Special:NewPages|Lijst met nieuwe pagina's]].",
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom' => 'Wijzigingen bekijken vanaf $1',
 'rcshowhideminor' => 'Kleine wijzigingen $1',
 'rcshowhidebots' => 'bots $1',
-'rcshowhideliu' => 'aangemelde gebruikers $1',
+'rcshowhideliu' => 'geregistreerde gebruikers $1',
 'rcshowhideanons' => 'anonieme gebruikers $1',
 'rcshowhidepatr' => 'gecontroleerde bewerkingen $1',
 'rcshowhidemine' => 'mijn bewerkingen $1',
@@ -3980,7 +3981,7 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.',
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standaard taal)',
-'img-lang-info' => 'Deze afbeeldingen renderen in de taal $1 $2',
+'img-lang-info' => 'Deze afbeeldingen renderen in de taal $1. $2',
 'img-lang-go' => 'OK',
 
 # Table pager
@@ -4350,10 +4351,12 @@ Vrijwel alle tekst tussen dubbele accolades wordt gesubstitueerd.',
 'expand_templates_input' => 'Invoertekst:',
 'expand_templates_output' => 'Resultaat',
 'expand_templates_xml_output' => 'XML-uitvoer',
+'expand_templates_html_output' => 'Ruwe HTML',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Opmerkingen verwijderen',
 'expand_templates_remove_nowiki' => 'Tags <nowiki> in resultaat onderdrukken',
 'expand_templates_generate_xml' => 'XML-parserboom bekijken',
+'expand_templates_generate_rawhtml' => 'Ruwe HTML weergeven',
 'expand_templates_preview' => 'Voorvertoning',
 
 );
