@@ -73,7 +73,7 @@ production.
 * (bug 57098) SpecialPasswordReset now obeys returnto parameter
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
-* (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds
+* (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
@@ -86,7 +86,7 @@ production.
 * action=parse now has disabletoc flag to disable table of contents in output.
 * SpecialRecentChanges::feedSetup() was removed.
 
-=== Languages updated in 1.23===
+=== Languages updated in 1.23 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
