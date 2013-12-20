@@ -145,6 +145,7 @@ $wgAutoloadLocalClasses = array(
 	'MailAddress' => 'includes/UserMailer.php',
 	'MediaWiki' => 'includes/Wiki.php',
 	'MediaWiki_I18N' => 'includes/SkinTemplate.php',
+	'MediaWikiVersionFetcher' => 'includes/MediaWikiVersionFetcher.php',
 	'Message' => 'includes/Message.php',
 	'MessageBlobStore' => 'includes/MessageBlobStore.php',
 	'MimeMagic' => 'includes/MimeMagic.php',
@@ -405,6 +406,10 @@ $wgAutoloadLocalClasses = array(
 	# includes/clientpool
 	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
 	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
+
+	# includes/composer
+	'ComposerPackageModifier' => 'includes/composer/ComposerPackageModifier.php',
+	'ComposerVersionNormalizer' => 'includes/composer/ComposerVersionNormalizer.php',
 
 	# includes/config
 	'Config' => 'includes/config/Config.php',
