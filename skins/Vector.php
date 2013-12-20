@@ -437,11 +437,11 @@ class VectorTemplate extends BaseTemplate {
 			echo $this->makeSearchInput( array( 'id' => 'searchInput' ) );
 			echo Html::hidden( 'title', $this->get( 'searchtitle' ) );
 			// Browsers will use this fulltext search button by default if their JavaScript support is turned off
-			echo Html::rawElement( 'noscript', array(),
-				$this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton' ) )
-			);
+			//echo Html::rawElement( 'noscript', array(),
+				echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton visible' ) );
+			//);
 			// Otherwise only this direct search button will be visible and actionable
-			echo $this->makeSearchButton( 'go', array( 'id' => 'searchButton', 'class' => 'searchButton' ) );
+			echo $this->makeSearchButton( 'go', array( 'id' => 'searchButton', 'class' => 'searchButton hidden' ) );
 			?>
 		</div>
 	</form>
