@@ -77,7 +77,7 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg( array( 'protect-invalidlevel', $p[1] ) );
 			}
 
-			if ( in_array( $expiry[$i], array( 'infinite', 'indefinite', 'never' ) ) ) {
+			if ( in_array( $expiry[$i], array( 'infinite', 'indefinite', 'infinity', 'never' ) ) ) {
 				$expiryarray[$p[0]] = $db->getInfinity();
 			} else {
 				$exp = strtotime( $expiry[$i] );
@@ -187,7 +187,7 @@ class ApiProtect extends ApiBase {
 			'expiry' => array(
 				'Expiry timestamps. If only one timestamp is ' .
 					'set, it\'ll be used for all protections.',
-				'Use \'infinite\', \'indefinite\' or \'never\', for a never-expiring protection.'
+				'Use \'infinite\', \'indefinite\', \'infinity\' or \'never\', for a never-expiring protection.'
 			),
 			'reason' => 'Reason for (un)protecting',
 			'cascade' => array(
