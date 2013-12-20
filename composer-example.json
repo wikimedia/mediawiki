@@ -7,5 +7,14 @@
 		"ext-mbstring": "*",
 		"ext-wikidiff2": "*",
 		"ext-apc": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"ComposerHookHandler": "includes/"
+		}
+	},
+	"scripts": {
+		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
+		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	}
 }
