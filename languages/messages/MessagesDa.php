@@ -1588,6 +1588,7 @@ Vær venlig at gennemse og bekræft dine ændringer.',
 'recentchanges-label-bot' => 'Denne redigering blev udført af en bot',
 'recentchanges-label-unpatrolled' => 'Denne redigering er endnu ikke blevet patruljeret',
 'recentchanges-label-plusminus' => 'Størrelsen på siden blev ændret med dette antal bytes',
+'recentchanges-legend-heading' => "'''Forklaring:'''",
 'recentchanges-legend-newpage' => '(se også [[Special:NewPages|listen over nye sider]])',
 'recentchanges-legend-plusminus' => '("±123")',
 'rcnotefrom' => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
@@ -3669,7 +3670,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standardsprog)',
-'img-lang-info' => 'Gengiv dette billede på $1 $2.',
+'img-lang-info' => 'Gengiv dette billede på $1. $2',
 'img-lang-go' => 'Udfør',
 
 # Table pager
@@ -4014,10 +4015,12 @@ Faktisk udfolder den stort set alt i dobbelte tuborgklammer.',
 'expand_templates_input' => 'Inputtekst:',
 'expand_templates_output' => 'Resultat',
 'expand_templates_xml_output' => 'XML-kode',
+'expand_templates_html_output' => 'Rå HTML-output',
 'expand_templates_ok' => 'Udfold',
 'expand_templates_remove_comments' => 'Fjern kommentarer',
 'expand_templates_remove_nowiki' => 'Undertryk <nowiki>-tags i resultatet',
 'expand_templates_generate_xml' => 'Vis analysetræ som XML',
+'expand_templates_generate_rawhtml' => 'Vis rå HTML',
 'expand_templates_preview' => 'Forhåndsvisning',
 
 );

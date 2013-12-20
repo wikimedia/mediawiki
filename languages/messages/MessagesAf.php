@@ -1589,11 +1589,12 @@ As u dit verskaf, sal dit gebruik word om erkenning vir u werk te gee.',
 'recentchanges-summary' => 'Volg die mees onlangse wysigings aan die wiki op die bladsy.',
 'recentchanges-noresult' => 'Geen wysigings gedurende die tydperk pas die kriteria nie.',
 'recentchanges-feed-description' => 'Hierdie voer laat u toe om die mees onlangse wysigings aan die wiki te volg.',
-'recentchanges-label-newpage' => "Met die wysiging is 'n nuwe bladsy geskep",
+'recentchanges-label-newpage' => "Met die wysiging is 'n nuwe bladsy geskep.",
 'recentchanges-label-minor' => "Hierdie is 'n klein wysiging",
 'recentchanges-label-bot' => "Hierdie wysiging is deur 'n bot uitgevoer",
 'recentchanges-label-unpatrolled' => 'Die wysiging is nog nie gekontroleer nie',
 'recentchanges-label-plusminus' => 'Bladsy is met die aantal grepe gewysig',
+'recentchanges-legend-heading' => "'''Sleutel:'''",
 'recentchanges-legend-newpage' => '$1 - nuwe bladsy',
 'rcnotefrom' => "Hier volg wysigings sedert '''$2''' (maksimum van '''$1''' word gewys).",
 'rclistfrom' => 'Vertoon wysigings vanaf $1',
@@ -2057,6 +2058,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'ninterwikis' => '$1 {{PLURAL:$1|interwikiskakel|interwikiskakels}}',
 'nlinks' => '$1 {{PLURAL:$1|skakel|skakels}}',
 'nmembers' => '$1 {{PLURAL:$1|lid|lede}}',
+'nmemberschanged' => '$1 {{PLURAL:$1|lid|lede}}',
 'nrevisions' => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'nviews' => '$1 {{PLURAL:$1|keer|kere}} aangevra',
 'nimagelinks' => 'Gebruik op {{PLURAL:$1|een bladsy|$1 bladsye}}',
@@ -3685,6 +3687,10 @@ Bevestig dat u die bladsy wil herskep.',
 'imgmultigo' => 'Laat waai!',
 'imgmultigoto' => 'Gaan na bladsy $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(standaard taal)',
+'img-lang-go' => 'OK',
+
 # Table pager
 'ascending_abbrev' => 'op',
 'descending_abbrev' => 'af',
@@ -3813,6 +3819,7 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 
 # Special:SpecialPages
 'specialpages' => 'Spesiale bladsye',
+'specialpages-note-top' => 'Sleutel',
 'specialpages-note' => '* Normale spesiale bladsye.
 * <span class="mw-specialpagerestricted">Spesiale bladsye met beperkte toegang.</span>
 * <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',

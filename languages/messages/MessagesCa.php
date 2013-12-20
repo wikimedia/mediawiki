@@ -3679,7 +3679,7 @@ Confirmeu que realment voleu tornar-la a crear.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(llengua per defecte)',
-'img-lang-info' => 'Dibuixa aquesta imatge en $1 $2.',
+'img-lang-info' => 'Dibuixa aquesta imatge en $1. $2',
 'img-lang-go' => 'Vés-hi',
 
 # Table pager

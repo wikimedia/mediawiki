@@ -1704,13 +1704,14 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-label-bot' => 'Această modificare a fost efectuată de un robot',
 'recentchanges-label-unpatrolled' => 'Această modificare nu a fost încă verificată',
 'recentchanges-label-plusminus' => 'Dimensiunea paginii s-a modificat corespunzător acestui număr de octeți',
+'recentchanges-legend-heading' => "'''Legendă:'''",
 'recentchanges-legend-newpage' => '(vedeți și [[Special:NewPages|lista cu pagini noi]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom' => 'Se arată modificările începând cu $1',
 'rcshowhideminor' => '$1 modificările minore',
 'rcshowhidebots' => '$1 roboții',
-'rcshowhideliu' => '$1 utilizatorii autentificați',
+'rcshowhideliu' => '$1 utilizatorii înregistrați',
 'rcshowhideanons' => '$1 utilizatorii anonimi',
 'rcshowhidepatr' => '$1 modificările patrulate',
 'rcshowhidemine' => '$1 contribuțiile mele',
@@ -3812,7 +3813,7 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 # Language selector for translatable SVGs
 'img-lang-opt' => '$2 ($1)',
 'img-lang-default' => '(limba implicită)',
-'img-lang-info' => 'Randează această imagine în $1 $2.',
+'img-lang-info' => 'Randează această imagine în $1. $2',
 'img-lang-go' => 'Du-te',
 
 # Table pager
@@ -4156,10 +4157,12 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'expand_templates_input' => 'Introduceți textul aici:',
 'expand_templates_output' => 'Rezultat',
 'expand_templates_xml_output' => 'Ieșire XML',
+'expand_templates_html_output' => 'Ieșire HTML brut',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Elimină comentariile',
 'expand_templates_remove_nowiki' => 'Suprimă etichetele <nowiki> în rezultat',
 'expand_templates_generate_xml' => 'Arată arborele de analiză XML',
+'expand_templates_generate_rawhtml' => 'Arată HTML brut',
 'expand_templates_preview' => 'Previzualizare',
 
 );

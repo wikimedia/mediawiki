@@ -1620,7 +1620,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'recentchanges-feed-description' => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'recentchanges-label-newpage' => 'Þessi breyting skapaði nýja síðu',
 'recentchanges-label-minor' => 'Þetta er minniháttar breyting',
-'recentchanges-label-bot' => 'Þessi breytingar var gerð af vélmenni',
+'recentchanges-label-bot' => 'Þessi breyting var gerð af vélmenni',
 'recentchanges-label-unpatrolled' => 'Þessi breyting hefur ekki verið yfirfarin',
 'recentchanges-legend-newpage' => '(sjá einng [[Special:NewPages|lista yfir nýjar síður]])',
 'rcnotefrom' => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",

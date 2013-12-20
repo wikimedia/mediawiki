@@ -1525,13 +1525,14 @@ Tuta informacija budźe zjawna.',
 'recentchanges-label-bot' => 'Tuta změna bu přez roboćik přewjedźena',
 'recentchanges-label-unpatrolled' => 'Tuta změnu hišće njebu přepruwowana',
 'recentchanges-label-plusminus' => 'Změnjena wulkosć strony (w bajtach)',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(hlej tež [[Special:NewPages|lisćinu nowych stronow]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Deleka so změny wot '''$2''' pokazuja (hač k '''$1''').",
 'rclistfrom' => 'Nowe změny pokazać, započinajo z $1',
 'rcshowhideminor' => 'snadne změny $1',
 'rcshowhidebots' => 'Boćiki $1',
-'rcshowhideliu' => 'Přizjewjeni wužiwarjo $1',
+'rcshowhideliu' => 'Zregistrowani wužiwarjo $1',
 'rcshowhideanons' => 'Anonymni wužiwarjo $1',
 'rcshowhidepatr' => 'Dohladowane změny $1',
 'rcshowhidemine' => 'moje změny $1',
@@ -3577,7 +3578,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standardna rěč)',
-'img-lang-info' => 'tutón wobraz w $1 $2 rysować.',
+'img-lang-info' => 'Tutón wobraz w $1 rysować. $2',
 'img-lang-go' => 'Wotpósłać',
 
 # Table pager
@@ -3928,10 +3929,12 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'expand_templates_input' => 'Tekst zapodać:',
 'expand_templates_output' => 'Wuslědk',
 'expand_templates_xml_output' => 'Wudaće XML',
+'expand_templates_html_output' => 'Hrube HTML-wudaće',
 'expand_templates_ok' => 'W porjadku',
 'expand_templates_remove_comments' => 'Komentary wotstronić',
 'expand_templates_remove_nowiki' => 'Taflički <nowiki> we wuslědku potłóčić',
 'expand_templates_generate_xml' => 'Analyzowy štom XML pokazać',
+'expand_templates_generate_rawhtml' => 'Hruby HTML pokazać',
 'expand_templates_preview' => 'Přehlad',
 
 );

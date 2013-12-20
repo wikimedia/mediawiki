@@ -68,6 +68,7 @@
  * @author زكريا
  * @author عصام بايزيدي
  * @author عمرو
+ * @author محمد أحمد عبد الفتاح
  * @author محمد الجداوي
  * @author مشعل الحربي
  * @author نصوح
@@ -994,7 +995,7 @@ $2',
 'passwordtooshort' => 'يجب أن تتكون كلمة السر على الأقل من {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفا|$1 حرف}}.',
 'password-name-match' => 'يجب أن تكون كلمة المرور مختلفة عن اسم المستخدم.',
 'password-login-forbidden' => 'تم منع استخدام اسم المستخدم هذا وكلمة السر.',
-'mailmypassword' => 'أرسل لي كلمة سر جديدة',
+'mailmypassword' => 'أعد تعيين كلمة السر',
 'passwordremindertitle' => 'كلمة سر مؤقتة جديدة ل{{SITENAME}}',
 'passwordremindertext' => 'لقد طلب شخص ما (غالبا أنت، من عنوان الآيبي $1) كلمة سر جديدة ل{{SITENAME}} ($4).
 أنشئت كلمة سر مؤقتة للمستخدم "$2" وجعلت "$3".
@@ -1615,7 +1616,7 @@ $1",
 'prefs-skin' => 'واجهة',
 'skin-preview' => 'عرض مسبق',
 'datedefault' => 'لا تفضيل',
-'prefs-beta' => 'مزايا بيتا',
+'prefs-beta' => 'مزايا تجريبية',
 'prefs-datetime' => 'وقت وتاريخ',
 'prefs-labs' => 'مزايا مختبرية',
 'prefs-user-pages' => 'صفحات المستخدمين',
@@ -1634,7 +1635,7 @@ $1",
 'prefs-email' => 'خيارات البريد الإلكتروني',
 'prefs-rendering' => 'المظهر',
 'saveprefs' => 'احفظ',
-'restoreprefs' => 'إسترجع كل الإعدادات الافتراضية',
+'restoreprefs' => 'استرجع كل الإعدادات الافتراضية',
 'prefs-editing' => 'التحرير',
 'rows' => 'صفوف:',
 'columns' => 'أعمدة:',
@@ -1722,6 +1723,7 @@ $1",
 'prefs-tokenwatchlist' => 'مفتاح',
 'prefs-diffs' => 'فروقات',
 'prefs-help-prefershttps' => 'سيتم تفعيل هذا التفضيل عند ولوجوك في المرة القادمة.',
+'prefs-tabs-navigation-hint' => 'تلميح: يمكنك استخدام مفتاحي السهمين الأيمن والأيسر للتنقل بين الألسنة في قائمة الألسنة.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'يبدو أن عنوان البريد الإلكتروني صالح',
@@ -1907,6 +1909,7 @@ $1",
 'recentchanges-label-bot' => 'أُجْرِيَ هذا التعديل بواسطة بوت',
 'recentchanges-label-unpatrolled' => 'لم يراجع هذا التعديل إلى الآن',
 'recentchanges-label-plusminus' => 'حجم الصفحة تغير بهذا العدد من وحدات البايت',
+'recentchanges-legend-heading' => 'شرح',
 'recentchanges-legend-newpage' => '(راجع أيضا [[Special:NewPages|قائمة الصفحات الجديدة]])',
 'rcnotefrom' => "بالأسفل التغييرات منذ '''$2''' (إلى '''$1''' معروضة).",
 'rclistfrom' => 'أظهر التغييرات بدءا من $1',
@@ -4088,6 +4091,9 @@ $5
 'imgmultipagenext' => 'الصفحة التالية ←',
 'imgmultigo' => 'اذهب!',
 'imgmultigoto' => 'اذهب إلى صفحة $1',
+
+# Language selector for translatable SVGs
+'img-lang-go' => 'اذهب',
 
 # Table pager
 'ascending_abbrev' => 'تصاعدي',

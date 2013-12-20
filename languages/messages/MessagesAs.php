@@ -684,7 +684,7 @@ $2',
 'passwordtooshort' => "গুপ্তশব্দ কমেও {{PLURAL:$1|১ টা|$1 টা}} আখৰৰ হ'ব লাগিব ।",
 'password-name-match' => "আপোনাৰ গুপ্তশব্দ আৰু আপোনাৰ সদস্যনাম বেলেগ হ'ব লাগিব",
 'password-login-forbidden' => 'এই সদস্যনাম আৰু গুপ্তশব্দৰ ব্যৱহাৰ নিষিদ্ধ কৰা হৈছে ।',
-'mailmypassword' => 'ই-মেইলত গুপ্তশব্দ পঠিয়াওক',
+'mailmypassword' => 'গুপ্তশব্দ ন-কৈ বহুৱাওক',
 'passwordremindertitle' => '{{SITENAME}}ৰ কাৰণে নতুন অস্থায়ী গুপ্তশব্দ',
 'passwordremindertext' => 'কোনোবাই (হয়তো আপুনি, $1 আই-পি ঠিকনাৰ পৰা)
 {{SITENAME}}ত ব্যৱহাৰ কৰিবলৈ নতুন গুপ্তশব্দৰ বাবে অনুৰোধ কৰিছে ($4) ।
@@ -755,7 +755,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => 'গুপ্তশব্দ ন-কৈ বহুৱাওক',
 'passwordreset-text-one' => 'আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ এই প্ৰপত্ৰ পূৰণ কৰক।',
-'passwordreset-text-many' => '{{PLURAL:$1|আপোনাৰ গুপ্তশব্দ ন-কৈ বহুৱাবলৈ এই তথ্যসমূহৰ যিকোনো এটা দিয়ক।}}',
+'passwordreset-text-many' => '{{PLURAL:$1|ইমেইলত এটা অস্থায়ী গুপ্তশব্দ পাবলৈ এই তথ্যসমূহৰ যিকোনো এটা দিয়ক।}}',
 'passwordreset-legend' => 'গুপ্তশব্দ ন-কৈ বহাওক',
 'passwordreset-disabled' => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
 'passwordreset-emaildisabled' => 'এই ৱিকিত ই-মেইল বৈশিষ্টসমূহ নিষ্ক্ৰিয় কৰা হৈছে।',
@@ -1299,6 +1299,7 @@ $1",
 'preferences' => 'পছন্দসমূহ',
 'mypreferences' => 'পছন্দসমূহ',
 'prefs-edits' => 'সম্পাদনাৰ সংখ্যা:',
+'prefsnologintext2' => 'আপোনাৰ পছন্দসমূহৰ সালসলনি কৰিবলৈ অনুগ্ৰহ কৰি $1 কৰক।',
 'prefs-skin' => 'আৱৰণ',
 'skin-preview' => 'খচৰা',
 'datedefault' => 'কোনো পছন্দ নাই',
@@ -1503,6 +1504,7 @@ $1",
 'right-unblockself' => 'আপোনা-আপুনি খোলা',
 'right-protect' => 'সুৰক্ষাৰ স্তৰ পৰিৱৰ্তন কৰক আৰু প্ৰপাতাকাৰ-সুৰক্ষিত পৃষ্ঠাসমূহ সম্পাদনা কৰক',
 'right-editprotected' => 'সুৰক্ষিত পৃষ্ঠা (কেশ্বকেডিঙ সুৰক্ষাৰ অবিহনে) সম্পাদনা কৰক',
+'right-editsemiprotected' => '"{{int:protect-level-autoconfirmed}}" হিচাপে সুৰক্ষি পৃষ্ঠা সম্পাদনা কৰক',
 'right-editinterface' => 'সদস্যৰ ইণ্টাৰফে’চ সম্পাদনা কৰক',
 'right-editusercssjs' => 'আন সদস্যৰ CSS আৰু JavaScript  সম্পাদনা কৰক',
 'right-editusercss' => 'আন সদস্যৰ CSS ফাইল সম্পাদনা কৰক',
@@ -1510,6 +1512,10 @@ $1",
 'right-editmyusercss' => 'আপোনাৰ নিজৰ সদস্য CSS ফাইলসমূহ সম্পাদনা কৰক।',
 'right-editmyuserjs' => 'আপোনাৰ নিজৰ সদস্য JavaScript ফাইলসমূহ সম্পাদনা কৰক',
 'right-viewmywatchlist' => 'আপোনাৰ নিজৰ লক্ষ্য-তালিকা চাওক',
+'right-editmywatchlist' => 'আপোনাৰ নিজৰ লক্ষ্যতালিকাখন সম্পাদনা কৰক। মন কৰিব যে কিছুমান কামে এই অধিকাৰ অবিহনেও পৃষ্ঠা যোগ দিয়াব।',
+'right-viewmyprivateinfo' => 'আপোনাৰ ব্যক্তিগত তথ্য চাওক (যেনে- ইমেইল ঠিকনা, প্ৰকৃত নাম)',
+'right-editmyprivateinfo' => 'আপোনাৰ ব্যক্তিগত তথ্য সম্পাদনা কৰক (যেনে- ইমেইল ঠিকনা, প্ৰকৃত নাম)',
+'right-editmyoptions' => 'আপোনাৰ নিজৰ পছন্দসমূহ সম্পাদনা কৰক',
 'right-rollback' => 'শেষৰজন সদস্যই এখন নিৰ্দিষ্ট পৃষ্টাত কৰা সম্পাদনা পূৰ্বৰ অৱস্থালৈ ঘূৰাই আনক',
 'right-markbotedits' => 'ৰ’ল্ড-বেক সম্পাদনাসমূহ বট সম্পাদনা বুলি চিহ্নিত কৰক',
 'right-noratelimit' => 'গতি সীমাৰ দ্বাৰা প্ৰভাৱিত নহ’ব',
@@ -1561,8 +1567,8 @@ $1",
 'action-block' => 'এই সদস্যক সম্পাদনা কৰাৰ পৰা বাৰণ কৰক',
 'action-protect' => 'এই পৃষ্ঠাৰ সুৰক্ষাৰ মাত্ৰা পৰিৱৰ্তন কৰক',
 'action-rollback' => 'শেষৰজন সদস্যই এখন নিৰ্দিষ্ট পৃষ্টাত কৰা সম্পাদনা পূৰ্বৰ অৱস্থালৈ ঘূৰাই আনক',
-'action-import' => 'অন্য ৱিকিৰ পৰা এই পৃষ্ঠাখন আমদানী কৰক',
-'action-importupload' => 'ফাইল আপল’ডৰ পৰা এই পৃষ্ঠা আমদানী কৰক',
+'action-import' => 'অন্য ৱিকিৰ পৰা পৃষ্ঠা আমদানি কৰক',
+'action-importupload' => 'ফাইল আপল’ডৰ পৰা পৃষ্ঠা আমদানি কৰক',
 'action-patrol' => 'আনৰ সম্পাদনা পৰীক্ষিত বুলি চিহ্নিত কৰক',
 'action-autopatrol' => 'আপোনাৰ সম্পাদনা পৰীক্ষিত বুলি চিহ্নিত কৰক',
 'action-unwatchedpages' => 'নিৰীক্ষণ নকৰা পৃষ্ঠাসমূহৰ তালিকা চাওক',
@@ -1571,9 +1577,14 @@ $1",
 'action-userrights-interwiki' => 'আন ৱিকিৰ সদস্যৰ অধিকাৰসমূহ সম্পাদনা কৰক',
 'action-siteadmin' => 'তথ্যকোষ বন্ধ কৰক বা খোলক',
 'action-sendemail' => 'ই-মেইল পঠিয়াওক',
+'action-editmywatchlist' => 'আপোনাৰ লক্ষ্যতালিকা সম্পাদনা কৰক',
+'action-viewmywatchlist' => 'আপোনাৰ লক্ষ্যতালিকা চাওক',
+'action-viewmyprivateinfo' => 'আপোনাৰ ব্যক্তিগত তথ্য চাওক',
+'action-editmyprivateinfo' => 'আপোনাৰ ব্যক্তিগত তথ্য সম্পাদনা কৰক',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|সাল-সলনি|সাল-সলনি}}',
+'enhancedrc-history' => 'ইতিহাস',
 'recentchanges' => 'শেহতীয়া সাল-সলনি',
 'recentchanges-legend' => 'সাম্প্ৰতিক সালসলনিৰ পছন্দসমূহ',
 'recentchanges-summary' => 'ৱিকিত হোৱা শেহতীয়া সাল-সলনি এই পৃষ্ঠাত অনুসৰণ কৰক।',
@@ -1582,11 +1593,15 @@ $1",
 'recentchanges-label-minor' => 'এইটো অগুৰুত্বপূৰ্ণ সম্পাদনা',
 'recentchanges-label-bot' => "এই সম্পাদনা ব'টৰ দ্বাৰা কৰা হৈছে",
 'recentchanges-label-unpatrolled' => 'এই সম্পাদনাটো এতিয়াও পৰীক্ষা কৰা হোৱা নাই',
+'recentchanges-label-plusminus' => 'পৃষ্ঠাৰ আকাৰ এই পৰিমাণৰ বাইট পৰিৱৰ্তন হৈছে',
+'recentchanges-legend-heading' => "'''ব্যাখ্যা:'''",
+'recentchanges-legend-newpage' => '(লগতে [[Special:NewPages|নতুন পৃষ্ঠাসমূহৰ তালিকা]] চাওক)',
+'recentchanges-legend-plusminus' => "(''±১২৩'')",
 'rcnotefrom' => "তলত '''$2''' ৰ পৰা হোৱা ('''$1''' লৈকে) পৰিৱৰ্তন দেখুৱা হৈছে ।",
 'rclistfrom' => '$1ৰ পৰা নতুন সালসলনি দেখুৱাওক',
 'rcshowhideminor' => '$1 -সংখ্যক নগণ্য সম্পাদনা',
 'rcshowhidebots' => "ব'ট $1",
-'rcshowhideliu' => 'প্ৰবিষ্ট সভ্যৰ সাল-সলনি $1',
+'rcshowhideliu' => '$1 পঞ্জীভুক্ত সদস্য',
 'rcshowhideanons' => 'বেনামী সদস্য $1',
 'rcshowhidepatr' => '$1 নিৰীক্ষিত সম্পাদনা',
 'rcshowhidemine' => 'মোৰ সম্পাদনা $1',
@@ -1623,7 +1638,7 @@ $1",
 'reuploaddesc' => 'আপল’ড বাতিল কৰি আপল’ড প্ৰপত্ৰলৈ ঘূৰি যাওক',
 'upload-tryagain' => 'পৰিৱৰ্তিত ফাইলৰ বিৱৰণ দাখিল কৰক',
 'uploadnologin' => 'প্ৰৱেশ কৰা নাই',
-'uploadnologintext' => 'ফাইল আপল’ড কৰিবলৈ আপুনি আগতে [[Special:UserLogin|লগ-ইন]] কৰিব লাগিব ।',
+'uploadnologintext' => 'ফাইল আপল’ড কৰিবলৈ অনুগ্ৰহ কৰি $1 কৰক।',
 'upload_directory_missing' => 'আপলোড ডিৰেক্টৰি ($1)  বিচাৰি পোৱা নগ’ল আৰু ৱেবচাৰ্ভাৰৰ দ্বাৰা তৈয়াৰ কৰিব পৰা নগ’ল ।',
 'upload_directory_read_only' => 'আপল’ড ডিৰেক্টৰি ($1) ৱেবচাৰ্ভাৰৰ দ্বাৰা লিখনযোগ্য নহয় ।',
 'uploaderror' => 'আপল’ডত সমস্যা হৈছে',
@@ -1866,8 +1881,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'upload_source_file' => '(আপোনাৰ কম্পিউটাৰৰ এটা ফাইল)',
 
 # Special:ListFiles
-'listfiles-summary' => 'এই বিশেষ পৃষ্ঠাত সকলো আপল’ড হোৱা ফাইল দেখা পাব ।
-সদস্যৰ দ্বাৰা চেকিলে কেৱল শেহতীয়াকৈ আপল’ড কৰা ফাইলৰ সংস্কৰণ দেখা পোৱা যাব ।',
+'listfiles-summary' => 'এই বিশেষ পৃষ্ঠাত সকলো আপল’ড হোৱা ফাইল দেখা পাব।',
 'listfiles_search_for' => 'মিডিয়াৰ নাম অনুসন্ধান:',
 'imgfile' => 'ফাইল',
 'listfiles' => 'ফাইলৰ তালিকা',
@@ -1878,6 +1892,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listfiles_size' => 'আকাৰ',
 'listfiles_description' => 'বিৱৰণ',
 'listfiles_count' => 'সংস্কৰণ',
+'listfiles-show-all' => 'ছবিসমূহৰ পুৰণা সংস্কৰণ অন্তৰ্ভুক্ত কৰক',
+'listfiles-latestversion' => 'শেহতীয়া সংস্কৰণ',
 'listfiles-latestversion-yes' => 'হয়',
 'listfiles-latestversion-no' => 'নহয়',
 
@@ -1979,6 +1995,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 # Random page in category
 'randomincategory' => 'শ্ৰেণীৰ যিকোনো পৃষ্ঠা',
+'randomincategory-invalidcategory' => '"$1" বৈধ শ্ৰেণী নাম নহয়।',
+'randomincategory-nopages' => '[[:Category:$1|$1]] শ্ৰেণীত কোনো পৃষ্ঠা নাই।',
+'randomincategory-selectcategory-submit' => 'যাওক',
 
 # Random redirect
 'randomredirect' => 'অনিৰ্ধাৰিত পুননিৰ্দেশ',
@@ -2182,7 +2201,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'listgrouprights' => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
 'listgrouprights-summary' => 'এই ৱিকিত থকা গোটসমূহৰ তালিকা সেইবোৰৰ প্ৰৱেশাধিকাৰসহ তলত দিয়া হ’ল ।
 সুকীয়া অধিকাৰ সম্পৰ্কে [[{{MediaWiki:Listgrouprights-helppage}}|অধিক তথ্য]] থাকিব পাৰে ।',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">অনুমোদিত অধিকাৰ</span>
+'listgrouprights-key' => 'ব্যাখ্যা:
+* <span class="listgrouprights-granted">অনুমোদিত অধিকাৰ</span>
 * <span class="listgrouprights-revoked">প্ৰত্যাহাৰ কৰা অধিকাৰ</span>',
 'listgrouprights-group' => 'গোট',
 'listgrouprights-rights' => 'অধিকাৰসমূহ',
@@ -2338,10 +2358,12 @@ $UNWATCHURL
 'deletecomment' => 'কাৰণ:',
 'deleteotherreason' => 'আন/অতিৰিক্ত কাৰণ:',
 'deletereasonotherlist' => 'আন কাৰণ:',
-'deletereason-dropdown' => '* অৱলুপ্তিৰ সাধাৰণ কাৰণসমূহ
-** লেখকৰ অনুৰোধ
+'deletereason-dropdown' => '* বিলোপনৰ সাধাৰণ কাৰণসমূহ
+** স্পাম
+** অসভ্যালি
 ** কপিৰাইট উলঙ্ঘন
-** অসভ্যালি',
+** লেখকৰ অনুৰোধ
+** ভঙা পুনঃনিৰ্দেশনা',
 'delete-edit-reasonlist' => 'অপসাৰণ কৰা কাৰণ সম্পাদনা কৰক',
 'delete-toobig' => 'এই পৃষ্ঠাখনৰ সম্পাদনা ইতিহাস অতি দীঘল, $1 {{PLURAL:$1|টা সংশোধনৰো|টা সংশোধনৰো}} বেছি ।
 {{SITENAME}}ৰ আকস্মিক ক্ষতি ৰোধ কৰিবলৈ এনে পৃষ্ঠাৰ ইতিহাস বিলোপ কৰাত সীমাবদ্ধতা আৰোপ কৰা হৈছে ।',
@@ -2363,7 +2385,7 @@ $UNWATCHURL
 [[User:$3|$3]] ([[User talk:$3|আলোচনা]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])ই এই পৃষ্ঠাৰ শেষ সম্পাদনা কৰিছিল ।",
 'editcomment' => "সম্পাদনাৰ সাৰাংশ আছিল: \"''\$1''\"।",
 'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|কথা-বতৰা]])ৰ সম্পাদনাসমূহ [[User:$1|$1]]য়ে কৰা শেষ সংশোধনলৈ ঘূৰাই নিয়া হৈছে ।',
-'revertpage-nouser' => '(সদস্যনাম বিলোপিত) য়ে কৰা সম্পাদনা [[User:$1|$1]] য়ে কৰা শেষ সংশোধনীলৈ ঘূৰাই নিয়া হৈছে ।',
+'revertpage-nouser' => 'এজন গোপন ব্যৱহাৰকাৰীয়ে কৰা সম্পাদনা {{GENDER:$1|[[User:$1|$1]]}}-য়ে কৰা শেষ সংশোধনীলৈ ঘূৰাই নিয়া হৈছে।',
 'rollback-success' => '$1 ৰ সম্পাদনাসমূহ পূৰ্বৰ অৱস্থালৈ ঘূৰাই নিয়া হৈছে;
 পৃষ্ঠাখন $2 য়ে কৰা শেষ সংশোধনীলৈ ঘূৰাই নিয়া হৈছে ।',
 
@@ -3021,13 +3043,14 @@ $2',
 'pageinfo-length' => 'পৃষ্ঠাৰ দৈৰ্ঘ্য (বাইটত)',
 'pageinfo-article-id' => 'পৃষ্ঠা ID',
 'pageinfo-language' => 'পৃষ্ঠাত সন্নিবিষ্ট ভাষা',
-'pageinfo-robot-policy' => 'সন্ধান ইঞ্জিনৰ স্থিতি',
-'pageinfo-robot-index' => 'ইনডেক্স উপযোগী',
-'pageinfo-robot-noindex' => 'ইনডেক্সৰ অনুপযোগী',
+'pageinfo-content-model' => 'পৃষ্ঠাৰ সমলৰ মডেল',
+'pageinfo-robot-policy' => "ৰ'ব'টৰ জৰিয়তে ইন্‌ডেক্সিং কৰা হৈছে",
+'pageinfo-robot-index' => 'অনুমোদিত',
+'pageinfo-robot-noindex' => 'অনুমোদন অগ্ৰাহ্য',
 'pageinfo-views' => 'দৰ্শনৰ সংখ্যা',
 'pageinfo-watchers' => 'পৃষ্ঠা নিৰীক্ষকৰ সংখ্যা',
 'pageinfo-few-watchers' => '$1 {{PLURAL:$1|তকৈ কম নিৰীক্ষক}}',
-'pageinfo-redirects-name' => 'পৃষ্ঠালৈ থকা পুনৰ্নিৰ্দেশ',
+'pageinfo-redirects-name' => 'এই পৃষ্ঠালৈ থকা পুনৰ্নিৰ্দেশৰ সংখ্যা',
 'pageinfo-subpages-name' => 'এই পৃষ্ঠাৰ উপপৃষ্ঠাসমূহ',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|পুনৰ্নিৰ্দেশ|পুনৰ্নিৰ্দেশসমূহ}}; $3 {{PLURAL:$3|অপুনৰ্নিৰ্দেশ নাই|অপুনৰ্নিৰ্দেশসমূহ}})',
 'pageinfo-firstuser' => 'পৃষ্ঠাখনৰ সৃষ্টিকৰ্তা',
@@ -3363,7 +3386,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-compression-4' => "CCITT দল ৪ ফেক্স এনক'ডিং",
 
 'exif-copyrighted-true' => 'কপিৰাইট আছে',
-'exif-copyrighted-false' => "ৰাজহুৱা ড'মেইন",
+'exif-copyrighted-false' => 'কপিৰাইট সংক্ৰান্ত তথ্য নাই',
 
 'exif-unknowndate' => 'অজ্ঞাত তাৰিখ',
 
@@ -3671,6 +3694,10 @@ $5
 'imgmultigo' => 'যাওক',
 'imgmultigoto' => '$1 পৃষ্ঠালৈ যাওক',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(ডিফল্ট ভাষা)',
+'img-lang-go' => 'যাওক',
+
 # Table pager
 'ascending_abbrev' => 'আৰোহণ',
 'descending_abbrev' => 'অৱতৰণ',
@@ -3754,6 +3781,7 @@ $5
 'version-license' => 'অনুজ্ঞাপত্ৰ',
 'version-poweredby-credits' => "এই ৱিকি '''[https://www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
 'version-poweredby-others' => 'অন্য',
+'version-poweredby-translators' => 'translatewiki.net অনুবাদকসকল',
 'version-credits-summary' => 'আমি নিম্নোক্ত ব্যক্তিসকলক তেওঁলোকে [[Special:Version|মিডিয়াৱিকি]]লৈ দিয়া দিয়া বৰঙনিৰ বাবে চিনাকী  কৰিব বিচাৰিছো।',
 'version-license-info' => "মিডিয়াৱিকি এটা বিনামূলীয়া চফ্টৱেৰ; আপুনি Free Software Foundation -ৰ দ্বাৰা প্ৰকাশিত GNU General Public License -ৰ চুক্তিসমূহৰ অন্তৰ্গত ইয়াক পুনৰ বিতৰণ কৰিব পাৰিব অথবা সলনি কৰিব পাৰিব; হয়তো অনুজ্ঞাপত্ৰৰ সংস্কৰণ ২ 
 অথবা (আপোনাৰ বিকল্পত) যিকোনো পৰৱৰ্তী সংস্কৰণ।
@@ -3794,6 +3822,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
+'specialpages-note-top' => 'ব্যাখ্যা',
 'specialpages-note' => '* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।
 * <span class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</span>
 * <span class="mw-specialpagecached">কেশ্ব কৰা বিশেষ পৃষ্ঠাসমূহ (অপ্ৰচলিতও হ\'ব পাৰে)।</span>',

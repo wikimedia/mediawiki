@@ -1702,7 +1702,7 @@ $1",
 'recentchanges-label-bot' => '该编辑由机器人执行',
 'recentchanges-label-unpatrolled' => '该编辑尚未巡查',
 'recentchanges-label-plusminus' => '该页面字节数的前后变化',
-'recentchanges-legend-heading' => "'''标记：'''",
+'recentchanges-legend-heading' => "'''说明：'''",
 'recentchanges-legend-newpage' => '（另见[[Special:NewPages|新页面列表]]）',
 'recentchanges-legend-plusminus' => "（''±123''）",
 'rcnotefrom' => "下面是'''$2'''之后的更改（最多显示'''$1'''个）。",
@@ -3779,7 +3779,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '（默认语言）',
-'img-lang-info' => '在$1 $2找到此图像。',
+'img-lang-info' => '在$1找到此图像。$2',
 'img-lang-go' => '去',
 
 # Table pager

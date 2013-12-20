@@ -72,6 +72,7 @@
  * @author W (aka Wuzur)
  * @author Wikifan
  * @author Wikinaut
+ * @author Wnme
  * @author Xqt
  * @author Ziko
  * @author Zylbath
@@ -601,7 +602,7 @@ $messages = array(
 
 'navigation-heading' => 'Navigationsmenü',
 'errorpagetitle' => 'Fehler',
-'returnto' => 'Zurück zur Seite $1.',
+'returnto' => "'''Zurück zur Seite $1.'''",
 'tagline' => 'Aus {{SITENAME}}',
 'help' => 'Hilfe',
 'search' => 'Suche',
@@ -4295,12 +4296,12 @@ Auch Parserfunktionen wie
 <code><nowiki>{{</nowiki>#language:…}}</code> und Variablen wie
 <code><nowiki>{{</nowiki>CURRENTDAY}}</code> werden ausgewertet –
 faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
-'expand_templates_title' => 'Kontexttitel, für {{FULLPAGENAME}} etc.:',
+'expand_templates_title' => 'Kontexttitel für beispielsweise {{FULLPAGENAME}}:',
 'expand_templates_input' => 'Eingabefeld:',
 'expand_templates_output' => 'Ergebnis',
 'expand_templates_xml_output' => 'XML-Ausgabe',
 'expand_templates_html_output' => 'Roh-HTML-Ausgabe',
-'expand_templates_ok' => 'Okay',
+'expand_templates_ok' => 'Vorlage expandieren',
 'expand_templates_remove_comments' => 'Kommentare entfernen',
 'expand_templates_remove_nowiki' => '<nowiki>-Tags in der Ausgabe unterdrücken',
 'expand_templates_generate_xml' => 'XML-Parser-Baum zeigen',

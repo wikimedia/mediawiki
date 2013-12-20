@@ -26,6 +26,7 @@
  * @author Biathlon
  * @author Bouron
  * @author Chilin
+ * @author Cinemantique
  * @author Claymore
  * @author Comp1089
  * @author Cryptocoryne
@@ -912,7 +913,7 @@ $2',
 'createacct-imgcaptcha-ph' => 'Введите текст, который вы видите выше',
 'createacct-submit' => 'Создать учётную запись',
 'createacct-another-submit' => 'Создать ещё одну учётную запись',
-'createacct-benefit-heading' => '{{SITENAME}} создана такими же людьми, как вы.',
+'createacct-benefit-heading' => '{{SITENAME}} создают такие же люди, как вы.',
 'createacct-benefit-body1' => '{{PLURAL:$1|правка|правки|правок}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|статья|статьи|статей}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|участник|участника|участников}} за последнее время',

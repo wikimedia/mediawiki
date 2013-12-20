@@ -1524,13 +1524,14 @@ Toś ta informacija buźo zjawna.',
 'recentchanges-label-bot' => 'Toś ta změna jo se pśez bośik wuwjadła.',
 'recentchanges-label-unpatrolled' => 'Toś ta změna hyšći njejo se pśekontrolěrowała',
 'recentchanges-label-plusminus' => 'Změnjona wjelikosc boka (licba bajtow)',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(glej teke [[Special:NewPages|lisćinu nowych bokow]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Dołojce pokazuju se změny wót '''$2''' (maks. '''$1''' zapisow).",
 'rclistfrom' => 'Nowe změny wót $1 pokazaś.',
 'rcshowhideminor' => 'Snadne změny $1',
 'rcshowhidebots' => 'awtomatiske programy (boty) $1',
-'rcshowhideliu' => 'pśizjawjone wužywarje $1',
+'rcshowhideliu' => 'Zregistrěrowane wužywarje $1',
 'rcshowhideanons' => 'anonymne wužywarje $1',
 'rcshowhidepatr' => 'kontrolěrowane změny $1',
 'rcshowhidemine' => 'móje pśinoski $1',
@@ -3584,7 +3585,7 @@ Pšosym wobkšuś, až napšawdu coš toś ten bok zasej napóraś.',
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(standardna rěc)',
-'img-lang-info' => 'Toś ten wobraz w $1 kresliś $2.',
+'img-lang-info' => 'Toś ten wobraz w $1 kresliś. $2',
 'img-lang-go' => 'Wótpósłaś',
 
 # Table pager
@@ -3940,10 +3941,12 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'expand_templates_input' => 'Zapódany tekst:',
 'expand_templates_output' => 'Wuslědk',
 'expand_templates_xml_output' => 'Wudany XML',
+'expand_templates_html_output' => 'Gropne HTML-wudaśe',
 'expand_templates_ok' => 'W pórěźe',
 'expand_templates_remove_comments' => 'Komentary wótwónoźeś',
 'expand_templates_remove_nowiki' => 'Toflicki <nowiki> we wuslědku pódtłocyś',
 'expand_templates_generate_xml' => 'Parsowański bom XML pokazaś',
+'expand_templates_generate_rawhtml' => 'Gropny HTML pokazaś',
 'expand_templates_preview' => 'Pśeglěd',
 
 );

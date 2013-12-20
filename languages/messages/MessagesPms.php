@@ -3931,10 +3931,12 @@ An efet, a espand praticament tut lòn ch'a-i é antrames dle grafe dobie.",
 'expand_templates_input' => 'Test da analisé:',
 'expand_templates_output' => 'Arzultà',
 'expand_templates_xml_output' => 'Output an XML',
+'expand_templates_html_output' => 'Surtìa an HTML sempi',
 'expand_templates_ok' => 'Bin parèj',
 'expand_templates_remove_comments' => 'Gava via ij coment',
 'expand_templates_remove_nowiki' => "Gava ij tag <nowiki> ant l'arzultà",
 'expand_templates_generate_xml' => "Mosta l'erbo ëd parse XML",
+'expand_templates_generate_rawhtml' => "Smon-e l'HTML sempi",
 'expand_templates_preview' => 'Preuva',
 
 );

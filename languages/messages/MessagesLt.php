@@ -30,6 +30,7 @@
  * @author Urhixidur
  * @author Vilius2001
  * @author Vpovilaitis
+ * @author Xabier Armendaritz
  * @author לערי ריינהארט
  */
 
@@ -282,7 +283,7 @@ $messages = array(
 'mar' => 'kov',
 'apr' => 'bal',
 'may' => 'geg',
-'jun' => 'bir',
+'jun' => 'Eka',
 'jul' => 'lie',
 'aug' => 'rgp',
 'sep' => 'rgs',

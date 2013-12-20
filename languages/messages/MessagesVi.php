@@ -1728,13 +1728,14 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchanges-label-bot' => 'Sửa đổi này do bot thực hiện',
 'recentchanges-label-unpatrolled' => 'Sửa đổi này chưa được tuần tra',
 'recentchanges-label-plusminus' => 'Kích cỡ trang đã thay đổi bằng số byte này',
+'recentchanges-legend-heading' => "'''Chú giải:'''",
 'recentchanges-legend-newpage' => '(xem thêm [[Special:NewPages|danh sách các trang mới]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom' => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor' => '$1 sửa đổi nhỏ',
 'rcshowhidebots' => '$1 sửa đổi bot',
-'rcshowhideliu' => '$1 sửa đổi thành viên',
+'rcshowhideliu' => '$1 thành viên đăng ký',
 'rcshowhideanons' => '$1 sửa đổi vô danh',
 'rcshowhidepatr' => '$1 sửa đổi đã tuần tra',
 'rcshowhidemine' => '$1 sửa đổi của tôi',
@@ -3895,7 +3896,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(ngôn ngữ mặc định)',
-'img-lang-info' => 'Kết xuất hình này trong $1 $2.',
+'img-lang-info' => 'Kết xuất hình này trong $1. $2',
 'img-lang-go' => 'Xem',
 
 # Table pager
@@ -4301,10 +4302,12 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'expand_templates_input' => 'Mã nguồn để bung:',
 'expand_templates_output' => 'Kết quả',
 'expand_templates_xml_output' => 'Xuất XML',
+'expand_templates_html_output' => 'Mã nguồn HTML thô',
 'expand_templates_ok' => 'Bung',
 'expand_templates_remove_comments' => 'Bỏ các chú thích',
 'expand_templates_remove_nowiki' => 'Bỏ qua thẻ <nowiki> trong kết quả',
 'expand_templates_generate_xml' => 'Xem cây phân tích XML',
+'expand_templates_generate_rawhtml' => 'Hiển thị HTML thô',
 'expand_templates_preview' => 'Xem trước',
 
 );

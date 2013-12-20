@@ -1273,6 +1273,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchanges-label-bot' => 'Šī ir bota veikta izmaiņa',
 'recentchanges-label-unpatrolled' => 'Šis labojums vēl nav pārbaudīts',
 'recentchanges-label-plusminus' => 'Par tik baitiem tika izmainīts lapas izmērs',
+'recentchanges-legend-heading' => "'''Apzīmējumi:'''",
 'recentchanges-legend-newpage' => '(skatīt arī [[Special:NewPages|jaunās lapas]])',
 'rcnotefrom' => "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 'rclistfrom' => 'Parādīt jaunas izmaiņas kopš $1',
@@ -3065,6 +3066,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 
 # Special:SpecialPages
 'specialpages' => 'Īpašās lapas',
+'specialpages-note-top' => 'Apzīmējumi',
 'specialpages-note' => '* Normālas īpašās lapas.
 * <span class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</span>
 * <span class="mw-specialpagecached">Iekešotās īpašās lapas.</span>',

@@ -1584,6 +1584,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchanges-label-bot' => 'Iste modification ha essite effectuate per un robot',
 'recentchanges-label-unpatrolled' => 'Iste modification non ha ancora essite patruliate',
 'recentchanges-label-plusminus' => 'Le dimension del pagina ha cambiate de iste numero de bytes',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(vide etiam le [[Special:NewPages|lista de nove paginas]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
@@ -3732,7 +3733,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(lingua predefinite)',
-'img-lang-info' => 'Presentar iste imagine in $1 $2.',
+'img-lang-info' => 'Presentar iste imagine in $1. $2',
 'img-lang-go' => 'Va',
 
 # Table pager
@@ -4082,10 +4083,12 @@ De facto, illo expande quasi toto inter accolladas duple.',
 'expand_templates_input' => 'Texto de entrata:',
 'expand_templates_output' => 'Resultato',
 'expand_templates_xml_output' => 'Output XML',
+'expand_templates_html_output' => 'Resultato in HTML brute',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Eliminar commentos',
 'expand_templates_remove_nowiki' => 'Supprimer le etiquettas <nowiki> in le resultato',
 'expand_templates_generate_xml' => 'Monstrar arbore syntactic XML',
+'expand_templates_generate_rawhtml' => 'Monstrar HTML brute',
 'expand_templates_preview' => 'Previsualisation',
 
 );

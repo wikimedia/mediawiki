@@ -1641,6 +1641,7 @@ $1",
 'recentchanges-label-bot' => '這次編輯是由機器人進行',
 'recentchanges-label-unpatrolled' => '這次編輯尚未巡查過',
 'recentchanges-label-plusminus' => '更改前後頁面位元組大小的變化',
+'recentchanges-legend-heading' => "'''說明：'''",
 'recentchanges-legend-newpage' => '（另見[[Special:NewPages|新頁面列表]]）',
 'recentchanges-legend-plusminus' => "（''±123''）",
 'rcnotefrom' => "下面是自'''$2'''（最多顯示'''$1'''）:",
@@ -3744,7 +3745,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '（預設語言）',
-'img-lang-info' => '於$1 $2呈現此圖像。',
+'img-lang-info' => '於$1呈現此圖像。$2',
 'img-lang-go' => '走',
 
 # Table pager
@@ -4088,10 +4089,12 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'expand_templates_input' => '輸入文字：',
 'expand_templates_output' => '結果：',
 'expand_templates_xml_output' => 'XML輸出',
+'expand_templates_html_output' => '原始HTML輸出',
 'expand_templates_ok' => '確定',
 'expand_templates_remove_comments' => '移除注釋',
 'expand_templates_remove_nowiki' => '在結果中隱藏<nowiki>標記',
 'expand_templates_generate_xml' => '顯示XML語法樹',
+'expand_templates_generate_rawhtml' => '顯示原始HTML',
 'expand_templates_preview' => '預覽',
 
 );

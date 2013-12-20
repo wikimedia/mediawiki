@@ -1673,7 +1673,7 @@ $1",
 'right-purge' => 'רענון זיכרון המטמון של האתר ללא מעבר לדף אישור',
 'right-autoconfirmed' => 'עקיפת הגבלת קצב העריכות המבוססת על כתובת IP',
 'right-bot' => 'טיפול בעריכות כאוטומטיות',
-'right-nominornewtalk' => 'ביטול שליחת התראה למשתמש שקיבל הודעה חדשה בעת עריכה משנית בדפי שיחתו',
+'right-nominornewtalk' => 'ביטול שליחת התראה על הודעה חדשה למשתמש בעת עריכה משנית בדף שיחתו',
 'right-apihighlimits' => 'שימוש ב־API עם פחות הגבלות',
 'right-writeapi' => 'שימוש ב־API לשינוי דפים',
 'right-delete' => 'מחיקת דפים',
@@ -3918,7 +3918,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(שפת ברירת המחדל)',
-'img-lang-info' => 'הצגת תמונה זו בשפה $1 $2.',
+'img-lang-info' => 'הצגת תמונה זו בשפה $1. $2',
 'img-lang-go' => 'הצגה',
 
 # Table pager

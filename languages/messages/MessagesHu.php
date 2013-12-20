@@ -1669,7 +1669,7 @@ A műveletet nem lehet visszavonni.',
 'rclistfrom' => '$1 után történt változtatások megtekintése',
 'rcshowhideminor' => 'apró szerkesztések $1',
 'rcshowhidebots' => 'botok szerkesztéseinek $1',
-'rcshowhideliu' => 'bejelentkezett felhasználók szerkesztéseinek $1',
+'rcshowhideliu' => '$1 bejelentkezett felhasználó',
 'rcshowhideanons' => 'névtelen szerkesztések $1',
 'rcshowhidepatr' => 'ellenőrzött szerkesztések $1',
 'rcshowhidemine' => 'saját szerkesztések $1',
@@ -1958,6 +1958,8 @@ Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
 'listfiles_size' => 'Méret',
 'listfiles_description' => 'Leírás',
 'listfiles_count' => 'Változatok',
+'listfiles-latestversion-yes' => 'Igen',
+'listfiles-latestversion-no' => 'Nem',
 
 # File description page
 'file-anchor-link' => 'Fájl',
@@ -2049,6 +2051,10 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 # Random page
 'randompage' => 'Lap találomra',
 'randompage-nopages' => 'A következő {{PLURAL:$2|névtérben|névterekben}} nincsenek lapok: $1.',
+
+# Random page in category
+'randomincategory' => 'Véletlen lap egy kategóriából',
+'randomincategory-invalidcategory' => '"$1" nem egy érvényes kategória neve.',
 
 # Random redirect
 'randomredirect' => 'Átirányítás találomra',

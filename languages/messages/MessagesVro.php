@@ -240,7 +240,7 @@ $messages = array(
 'articlepage' => 'Artiklilehekülg',
 'talk' => 'Arotus',
 'views' => 'Kaemisõq',
-'toolbox' => 'Tüüriistakast',
+'toolbox' => 'Tüüriistaq',
 'userpage' => 'Pruukjalehekülg',
 'projectpage' => 'Tallituslehekülg',
 'imagepage' => 'Näütäq teedüstülehte',
@@ -345,6 +345,7 @@ Olõmanolõvaq tallitusleheküleq ommaq löüdäq leheküle päält [[Special:Sp
 # General errors
 'error' => 'Viga',
 'databaseerror' => 'Teedüskogo viga',
+'databaseerror-error' => 'Viga: $1',
 'laggedslavemode' => 'Hoiatus: Taa lehe pääl pruugi-i ollaq perämäidsi muutmiisi.',
 'readonly' => 'Teedüskogo kirotuskaitsõ all',
 'enterlockreason' => 'Kirodaq lukkupandmisõ põhjus ja ligikaudnõ vallalõvõtmisõ aig',
