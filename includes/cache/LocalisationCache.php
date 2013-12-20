@@ -766,7 +766,7 @@ class LocalisationCache {
 	 * @throws MWException
 	 */
 	public function recache( $code ) {
-		global $wgExtensionMessagesFiles, $wgExtensionMessagesDirs;
+		global $wgExtensionMessagesFiles, $wgMessagesDirs;
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
@@ -840,7 +840,7 @@ class LocalisationCache {
 		# like site-specific message overrides.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
-		foreach ( $wgExtensionMessagesDirs as $dirs ) {
+		foreach ( $wgMessagesDirs as $dirs ) {
 			foreach ( (array)$dirs as $dir ) {
 				foreach ( $codeSequence as $csCode ) {
 					$fileName = "$dir/$csCode.json";
@@ -860,9 +860,9 @@ class LocalisationCache {
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
-				if ( $key === 'messages' && isset( $wgExtensionMessagesDirs[$extension] ) ) {
+				if ( $key === 'messages' && isset( $wgMessagesDirs[$extension] ) ) {
 					# For backwards compatibility, ignore messages from extensions in
-					# $wgExtensionMessagesFiles that are also present in $wgExtensionMessagesDirs.
+					# $wgExtensionMessagesFiles that are also present in $wgMessagesDirs.
 					# This allows extensions to use both and be backwards compatible.
 					# Variables other than $messages still need to be supported though.
 					continue;
@@ -885,7 +885,7 @@ class LocalisationCache {
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
-		$deps['wgExtensionMessagesDirs'] = new GlobalDependency( 'wgExtensionMessagesDirs' );
+		$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
 		$deps['version'] = new ConstantDependency( 'MW_LC_VERSION' );
 
 		# Add dependencies to the cache entry

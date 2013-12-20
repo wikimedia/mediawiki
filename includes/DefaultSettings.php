@@ -5934,13 +5934,13 @@ $wgExtensionFunctions = array();
  * in the core.
  *
  * Since MediaWiki 1.23, use of this variable to define messages is discouraged; instead, store
- * messages in JSON format and use $wgExtensionMessagesDirs. For setting other variables than
+ * messages in JSON format and use $wgMessagesDirs. For setting other variables than
  * $messages, $wgExtensionMessagesFiles should still be used.
  *
- * If there is an entry in $wgExtensionMessagesDirs with the same key as one in
+ * If there is an entry in $wgMessagesDirs with the same key as one in
  * $wgExtensionMessagesFiles, then any $messages variables set in the $wgExtensionMessagesFiles file
  * will be ignored. This means an extension that only provides messages can be backwards compatible
- * by using both $wgExtensionMessagesFiles and $wgExtensionMessagesDirs, and only one of the two
+ * by using both $wgExtensionMessagesFiles and $wgMessagesDirs, and only one of the two
  * will be used depending on what the version of MediaWiki supports.
  *
  * @par Example:
@@ -5960,12 +5960,12 @@ $wgExtensionMessagesFiles = array();
  *
  * @par Simple example:
  * @code
- *    $wgExtensionMessagesDirs['ConfirmEdit'] = __DIR__ . '/i18n';
+ *    $wgMessagesDirs['ConfirmEdit'] = __DIR__ . '/i18n';
  * @endcode
  *
  * @par Complex example:
  * @code
- *    $wgExtensionMessagesDirs['VisualEditor'] = array(
+ *    $wgMessagesDirs['VisualEditor'] = array(
  *        __DIR__ . '/i18n',
  *        __DIR__ . '/modules/ve-core/i18n',
  *        __DIR__ . '/modules/qunit/localisation',
@@ -5974,7 +5974,7 @@ $wgExtensionMessagesFiles = array();
  * @endcode
  * @since 1.23
  */
-$wgExtensionMessagesDirs = array();
+$wgMessagesDirs = array();
 
 /**
  * Array of files with list(s) of extension entry points to be used in
