@@ -3686,6 +3686,7 @@ $wgMessageStructure = array(
 		'redirect-lookup',
 		'redirect-value',
 		'redirect-user',
+		'redirect-page',
 		'redirect-revision',
 		'redirect-file',
 		'redirect-not-exists',

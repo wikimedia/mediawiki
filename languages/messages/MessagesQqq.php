@@ -9959,7 +9959,7 @@ A short description of the script path entry point. Links to the mediawiki.org d
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
-This means \"Redirect by file'''name''', user '''ID''', or revision ID\".",
+This means \"Redirect by file'''name''', user '''ID''', page ID, or revision ID\".",
 'redirect-legend' => 'Legend of fieldset around input box in [[Special:Redirect]]',
 'redirect-summary' => 'Shown at top of [[Special:Redirect]]',
 'redirect-submit' => 'Button label in [[Special:Redirect]].
@@ -9968,12 +9968,14 @@ This means \"Redirect by file'''name''', user '''ID''', or revision ID\".",
 
 Followed by the select box which has the following options:
 * {{msg-mw|Redirect-user}}
+* {{msg-mw|Redirect-page}}
 * {{msg-mw|Redirect-revision}}
 * {{msg-mw|Redirect-file}}',
 'redirect-value' => 'Second field label in [[Special:Redirect]]
 {{Identical|Value}}',
 'redirect-user' => 'Description of lookup type for [[Special:Redirect]].
 {{Identical|User ID}}',
+'redirect-page' => 'Description of lookup type for [[Special:Redirect]].',
 'redirect-revision' => "Description of lookup type for [[Special:Redirect]].
 
 This means \"Page revision '''ID'''\".",

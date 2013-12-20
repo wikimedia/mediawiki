@@ -4839,15 +4839,16 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
 
 # Special:Redirect
-'redirect'            => 'Redirect by file, user, or revision ID',
+'redirect'            => 'Redirect by file, user, page or revision ID',
 'redirect-legend'     => 'Redirect to a file or page',
 'redirect-text'       => '', # do not translate or duplicate this message to other languages
-'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID), or a user page (given a numeric user ID). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary'    => 'This special page redirects to a file (given the file name), a page (given a revision ID or page ID), or a user page (given a numeric user ID). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit'     => 'Go',
 'redirect-lookup'     => 'Lookup:',
 'redirect-value'      => 'Value:',
 'redirect-user'       => 'User ID',
 'redirect-revision'   => 'Page revision',
+'redirect-page'       => 'Page ID',
 'redirect-file'       => 'File name',
 'redirect-not-exists' => 'Value not found',
 
