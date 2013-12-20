@@ -40,6 +40,7 @@
 		if ( !$.client.test( map ) ) {
 			return;
 		}
+		$( '.searchButton' ).toggleClass('hidden visible');
 
 		// Compute form data for search suggestions functionality.
 		function computeResultRenderCache( context ) {

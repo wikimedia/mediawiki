@@ -411,6 +411,15 @@ div#simpleSearch #searchInput:-moz-placeholder {
 div#simpleSearch #searchInput:-ms-input-placeholder {
 	color: #999;
 }
+div#simpleSearch #searchInput {
+	-webkit-appearance: textfield;
+}
+div#simpleSearch #searchInput::-webkit-search-decoration,
+div#simpleSearch #searchInput::-webkit-search-cancel-button,
+div#simpleSearch #searchInput::-webkit-search-results-button,
+div#simpleSearch #searchInput::-webkit-search-results-decoration {
+	-webkit-appearance: textfield;
+}
 /* The buttons. They are displayed in the same position, and if both are
    present the fulltext search one obscures the 'Go' one. */
 div#simpleSearch #searchButton,
