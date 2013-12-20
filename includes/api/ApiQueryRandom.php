@@ -60,7 +60,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'page_namespace', $namespace );
 		$this->addWhereRange( 'page_random', 'newer', $randstr, null );
 		$this->addWhereFld( 'page_is_redirect', $redirect );
-		$this->addOption( 'USE INDEX', 'page_random' );
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array( 'page_id', 'page_title', 'page_namespace' ) );
 		} else {
