@@ -1036,6 +1036,7 @@ return array(
 		'position' => 'top',
 		'skinStyles' => array(
 			'vector' => 'skins/vector/special.preferences.less',
+			'minerva' => 'skins/vector/special.preferences.less',
 		),
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
