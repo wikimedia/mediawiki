@@ -136,6 +136,25 @@ class SpecialRedirect extends FormSpecialPage {
 	}
 
 	/**
+	 * Handle Special:Redirect/page/xxx (by redirecting to index.php?curid=xxx)
+	 *
+	 * @return string|null url to redirect to, or null if $mValue is invalid.
+	 */
+	function dispatchPage() {
+		$curid = $this->mValue;
+		if ( !ctype_digit( $curid ) ) {
+			return null;
+		}
+		$curid = (int)$curid;
+		if ( $curid === 0 ) {
+			return null;
+		}
+		return wfAppendQuery( wfScript( 'index' ), array(
+			'curid' => $curid
+		) );
+	}
+
+	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
 	 * or do nothing (if $mValue wasn't set) allowing the form to be
@@ -154,6 +173,9 @@ class SpecialRedirect extends FormSpecialPage {
 			break;
 		case 'revision':
 			$url = $this->dispatchRevision();
+			break;
+		case 'page':
+			$url = $this->dispatchPage();
 			break;
 		default:
 			$this->getOutput()->setStatusCode( 404 );
@@ -177,8 +199,10 @@ class SpecialRedirect extends FormSpecialPage {
 		$mp = $this->getMessagePrefix();
 		$ns = array(
 			// subpage => message
-			// Messages: redirect-user, redirect-revision, redirect-file
+			// Messages: redirect-user, redirect-page, redirect-revision,
+			// redirect-file
 			'user' => $mp . '-user',
+			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
 		);
