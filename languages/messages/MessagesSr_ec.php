@@ -4041,6 +4041,9 @@ $5
 'imgmultigo' => 'Иди!',
 'imgmultigoto' => 'Иди на страницу $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(подразумевани језик)',
+
 # Table pager
 'ascending_abbrev' => 'раст.',
 'descending_abbrev' => 'опад.',

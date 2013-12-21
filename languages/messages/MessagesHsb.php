@@ -3683,14 +3683,15 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Po datajowym mjenje, wužiwarju abo wersijowym ID dale sposrědkować',
+'redirect' => 'Po datajowym mjenje, wužiwarju, stronje abo wersijowym ID dale sposrědkować',
 'redirect-legend' => 'Do dataje abo strony dale sposrědkować',
-'redirect-summary' => 'Tuta specialna strona so do dataje (datajowe mjeno je podate), strony (wersijowy ID je podaty) abo wužiwarskeje strony (numeriski wužiwarski ID je podaty) dale sposrědkuje. Wužiće:
-[[{{#Special:Redirect}}/file/Přikład.jpg]], [[{{#Special:Redirect}}/revision/328429]] abo [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Tuta specialna strona so do dataje (datajowe mjeno je podate), strony (wersijowy ID abo ID strony je podaty) abo wužiwarskeje strony (numeriski wužiwarski ID je podaty) dale sposrědkuje. Wužiće:
+[[{{#Special:Redirect}}/file/Přikład.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] abo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Los',
 'redirect-lookup' => 'Pytać:',
 'redirect-value' => 'Hódnota:',
 'redirect-user' => 'ID wužiwarja',
+'redirect-page' => 'ID strony',
 'redirect-revision' => 'Wersija strony',
 'redirect-file' => 'Datajowe mjeno',
 'redirect-not-exists' => 'Hódnota njeje so namakała',

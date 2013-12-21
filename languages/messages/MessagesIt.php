@@ -3867,14 +3867,15 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Percorso script]',
 
 # Special:Redirect
-'redirect' => 'Reindirizzamento da file, utente o ID versione',
+'redirect' => 'Reindirizzamento da file, utente, pagina o versione',
 'redirect-legend' => 'Reindirizza a un file o una pagina',
-'redirect-summary' => 'Questa pagina speciale reindirizza a un file (specificando il nome del file), a una pagina (specificando un ID di versione) o a un utente (specificando un ID utente numerico).
-Esempi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Questa pagina speciale reindirizza a un file (specificando il nome del file), a una pagina (specificando un ID di versione o un ID pagina) o a un utente (specificando un ID utente numerico).
+Esempi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Vai',
 'redirect-lookup' => 'Ricerca:',
 'redirect-value' => 'Valore:',
 'redirect-user' => 'ID utente',
+'redirect-page' => 'ID della pagina',
 'redirect-revision' => 'Versione pagina',
 'redirect-file' => 'Nome del file',
 'redirect-not-exists' => 'Valore non trovato',

@@ -3880,9 +3880,9 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 脚本路径]',
 
 # Special:Redirect
-'redirect' => '重定向（按文件、用户或版本ID）',
+'redirect' => '重定向（按文件、用户、页面或版本ID）',
 'redirect-legend' => '重定向至文件或页面',
-'redirect-summary' => '本特殊页面可以跳转至一个文件（提供文件名）、页面（提供版本ID）或用户页面（提供数字用户ID）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/revision/328429]]或[[{{#Special:Redirect}}/user/101]]。',
+'redirect-summary' => '本特殊页面可以跳转至一个文件（提供文件名）、页面（提供版本ID或页面ID）或用户页面（提供数字用户ID）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/page/64308]]、[[{{#Special:Redirect}}/revision/328429]]或[[{{#Special:Redirect}}/user/101]]。',
 'redirect-submit' => '提交',
 'redirect-lookup' => '基于：',
 'redirect-value' => '值：',

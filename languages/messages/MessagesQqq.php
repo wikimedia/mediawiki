@@ -7988,7 +7988,8 @@ The label and the input box are always hidden.',
 'pageinfo-display-title' => 'The title that is displayed when the page is viewed.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
 'pageinfo-length' => 'The length of the page, in bytes.',
-'pageinfo-article-id' => 'The numeric identifier of the page.',
+'pageinfo-article-id' => 'The numeric identifier of the page.
+{{Identical|Page ID}}',
 'pageinfo-language' => 'Language in which the page content is written.',
 'pageinfo-content-model' => 'The model in which the page content is written.
 
@@ -9959,7 +9960,7 @@ A short description of the script path entry point. Links to the mediawiki.org d
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
-This means \"Redirect by file'''name''', user '''ID''', page ID, or revision ID\".",
+This means \"Redirect by file'''name''', user '''ID''', page '''ID''', or revision ID\".",
 'redirect-legend' => 'Legend of fieldset around input box in [[Special:Redirect]]',
 'redirect-summary' => 'Shown at top of [[Special:Redirect]]',
 'redirect-submit' => 'Button label in [[Special:Redirect]].
@@ -9975,7 +9976,8 @@ Followed by the select box which has the following options:
 {{Identical|Value}}',
 'redirect-user' => 'Description of lookup type for [[Special:Redirect]].
 {{Identical|User ID}}',
-'redirect-page' => 'Description of lookup type for [[Special:Redirect]].',
+'redirect-page' => 'Description of lookup type for [[Special:Redirect]].
+{{Identical|Page ID}}',
 'redirect-revision' => "Description of lookup type for [[Special:Redirect]].
 
 This means \"Page revision '''ID'''\".",

@@ -1739,6 +1739,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
+'recentchanges-legend-heading' => "'''Legenda''':",
 'recentchanges-legend-newpage' => '(veja também a [[Special:NewPages|lista de páginas novas]])',
 'recentchanges-legend-plusminus' => '±123',
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
@@ -2214,7 +2215,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|Interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|linque|linques}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
-'nmemberschanged' => '$ -> $2{{PLURAL:$2|membro|membro}}',
+'nmemberschanged' => '$2{{PLURAL:$2|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks' => 'Utilizada em $1 {{PLURAL:$1|página|páginas}}',
@@ -3981,6 +3982,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 
 # Special:SpecialPages
 'specialpages' => 'Páginas especiais',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',

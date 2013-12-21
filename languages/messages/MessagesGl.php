@@ -1043,7 +1043,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 '''Este aínda non foi gardado!'''",
 'sitejspreview' => "'''Lembre que só está vendo a vista previa deste código JavaScript.'''
 '''Este aínda non foi gardado!'''",
-'userinvalidcssjstitle' => "'''Aviso:''' Non hai ningún tema chamado \"\$1\".
+'userinvalidcssjstitle' => "'''Aviso:''' Non hai ningún aparencia chamada \"\$1\".
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
@@ -1711,6 +1711,7 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'recentchanges-label-bot' => 'Esta edición foi realizada por un bot',
 'recentchanges-label-unpatrolled' => 'Esta edición aínda non foi comprobada',
 'recentchanges-label-plusminus' => 'O tamaño da páxina variou este número de bytes',
+'recentchanges-legend-heading' => "'''Lenda:'''",
 'recentchanges-legend-newpage' => '(véxase tamén a [[Special:NewPages|lista de páxinas novas]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
@@ -3850,7 +3851,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(lingua por defecto)',
-'img-lang-info' => 'Renderizar esta imaxe en $1 $2.',
+'img-lang-info' => 'Renderizar esta imaxe en $1. $2',
 'img-lang-go' => 'Mostrar',
 
 # Table pager
@@ -3954,13 +3955,14 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta das escrituras]',
 
 # Special:Redirect
-'redirect' => 'Redirixir por nome de ficheiro, ID de usuario ou ID de revisión',
+'redirect' => 'Redirixir por nome de ficheiro, ID de usuario, ID de páxina ou ID de revisión',
 'redirect-legend' => 'Redirixir a un ficheiro ou unha páxina',
-'redirect-summary' => 'Esta páxina especial redirixe cara a un ficheiro (dado o nome), unha páxina (dado o ID dunha revisión) ou unha páxina de usuario (dado o ID dun usuario). Utilización: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Esta páxina especial redirixe cara a un ficheiro (dado o nome), unha páxina (dado o ID da páxina ou o dunha revisión) ou unha páxina de usuario (dado o ID dun usuario). Utilización: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Continuar',
 'redirect-lookup' => 'Procurar:',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'ID de usuario',
+'redirect-page' => 'ID de páxina',
 'redirect-revision' => 'Revisión de páxina',
 'redirect-file' => 'Nome de ficheiro',
 'redirect-not-exists' => 'Non se atopou o valor',
@@ -4203,10 +4205,12 @@ De feito, expande case calquera cousa entre dúas chaves.',
 'expand_templates_input' => 'Texto de entrada:',
 'expand_templates_output' => 'Resultado',
 'expand_templates_xml_output' => 'Saída XML',
+'expand_templates_html_output' => 'Saída HTML en bruto',
 'expand_templates_ok' => 'Aceptar',
 'expand_templates_remove_comments' => 'Eliminar os comentarios',
 'expand_templates_remove_nowiki' => 'Suprimir as etiquetas <nowiki> no resultado',
 'expand_templates_generate_xml' => 'Mostrar as árbores de análise XML',
+'expand_templates_generate_rawhtml' => 'Mostrar o HTML en bruto',
 'expand_templates_preview' => 'Vista previa',
 
 );

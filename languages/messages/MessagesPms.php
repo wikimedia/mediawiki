@@ -1445,6 +1445,7 @@ Costa anformassion a sarà pùblica.",
 'recentchanges-label-bot' => "Sa modìfica a l'é stàita fàita da un trigomiro",
 'recentchanges-label-unpatrolled' => "Sta modìfica-sì a l'é pa ancó stàita verificà",
 'recentchanges-label-plusminus' => "La taja dla pàgina a l'é cangià d'un nùmer ëd bytes",
+'recentchanges-legend-heading' => "'''Legend:'''",
 'recentchanges-legend-newpage' => '(vëdde ëdcò [[Special:NewPages|lista dle pàgine neuve]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => ' Ambelessì sota a-i é la lista dle modìfiche da <b>$2</b> (fin-a a <b>$1</b>).',
@@ -3020,6 +3021,7 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'just-now' => 'pròpi adess',
 
 # Human-readable timestamps
+'hours-ago' => '$1 {{PLURAL:$1|ora|ore}} fa',
 'minutes-ago' => '$1 {{PLURAL:$1|minuta|minute}} fa',
 'seconds-ago' => '$1 {{PLURAL:$1second}} fa',
 'monday-at' => 'Lùn-es a $1',
@@ -3682,13 +3684,14 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Senté d\'artìcol]',
 
 # Special:Redirect
-'redirect' => 'Ridirigiù da archivi, utent o ID ëd revision',
+'redirect' => 'Ridirigiù da archivi, utent, pàgina o ID ëd revision',
 'redirect-legend' => "Ridirige a n'archivi o na pàgina",
-'redirect-summary' => "Costa pàgina special a ponta a n'archivi (dàit ël nòm dl'archivi), na pàgina (dàita n'ID a la revision) o na pàgina d'utent (dàit n'identificativ numérich a l'utent). Usagi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
+'redirect-summary' => "Costa pàgina special a ponta a n'archivi (dàit ël nòm dl'archivi), na pàgina (dàit n'ID ëd revision o n'ID ëd pàgina) o na pàgina d'utent (dàit n'identificativ numérich a l'utent). Usagi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Andé',
 'redirect-lookup' => 'Arserca:',
 'redirect-value' => 'Valor:',
 'redirect-user' => "ID dl'utent",
+'redirect-page' => 'Identificativ ëd la pàgina',
 'redirect-revision' => 'Revision ëd la pàgina',
 'redirect-file' => "Nòm ëd l'archivi",
 'redirect-not-exists' => 'Valor nen trovà',

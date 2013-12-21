@@ -4102,13 +4102,14 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
 
 # Special:Redirect
-'redirect' => 'Doorverwijzen op bestandsnaam, gebruikersnummer of versienummer',
+'redirect' => 'Doorverwijzen op bestandsnaam, gebruikersnummer, paginanummer, of versienummer',
 'redirect-legend' => 'Doorverwijzen naar een bestand of pagina',
-'redirect-summary' => 'Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven). Gebruik: [[{{#Special:Redirect}}/file/Voorbeeld.jpg]], [[{{#Special:Redirect}}/revision/328429]] of [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een paginanummer of versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven). Gebruik: [[{{#Special:Redirect}}/file/Voorbeeld.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] of [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'OK',
 'redirect-lookup' => 'Opzoeken:',
 'redirect-value' => 'Waarde:',
 'redirect-user' => 'Gebruikersnummer',
+'redirect-page' => 'Pagina-ID',
 'redirect-revision' => 'Paginaversie',
 'redirect-file' => 'Bestandsnaam',
 'redirect-not-exists' => 'Waarde niet gevonden',

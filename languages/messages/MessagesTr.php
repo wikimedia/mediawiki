@@ -3985,13 +3985,14 @@ Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansın
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Dosya, kullanıcı veya sayfa ID yönlendirme',
+'redirect' => 'Dosya, kullanıcı, sayfa ya da revizyon kimliği ile yönlendirme',
 'redirect-legend' => 'Bir dosya veya sayfaya yönlendirme',
-'redirect-summary' => "Bu özel sayfa sizi bir dosya (dosya adı verilen), bir sayfa (bir revizyon ID'si verilen) veya bir kullanıcı sayfasının (sayısal kullanıcı kimliği verilen) adresine yönlendirir. Kullanım: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ya da  [[{{#Special:Redirect}}/user/101]].",
+'redirect-summary' => "Bu özel sayfa sizi bir dosya (dosya adı verilen), bir sayfa (bir revizyon ya da sayfa ID'si verilen) veya bir kullanıcı sayfasının (sayısal kullanıcı kimliği verilen) adresine yönlendirir. Kullanım: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], ya da  [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Git',
 'redirect-lookup' => 'Ara:',
 'redirect-value' => 'Değer:',
 'redirect-user' => 'Kullanıcı kimliği',
+'redirect-page' => 'Sayfa kimliği',
 'redirect-revision' => 'Sayfa revizyonu',
 'redirect-file' => 'Dosya adı',
 'redirect-not-exists' => 'Değer bulunamadı',

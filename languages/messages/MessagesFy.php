@@ -8,6 +8,7 @@
  * @file
  *
  * @author Geitost
+ * @author Kening Aldgilles
  * @author Maartenvdbent
  * @author Purodha
  * @author Pyt
@@ -169,7 +170,7 @@ $messages = array(
 'tog-enotifminoredits' => 'E-mail my ek by lytse feroarings fan siden op myn folchlist',
 'tog-enotifrevealaddr' => 'Myn e-mailadres sjen litte yn e-mailberjochten',
 'tog-shownumberswatching' => 'It tal brûkers sjen litte dat dizze side folget',
-'tog-oldsig' => 'Hûdige sinjatuerprintallyk:',
+'tog-oldsig' => 'Aktuele sinjatuerprintallyk:',
 'tog-fancysig' => 'Sinjatuer as wikitekst behannelje (sûnder automatyske keppeling)',
 'tog-uselivepreview' => '"live proefbyld" brûke (JavaScript nedich - eksperimenteel)',
 'tog-forceeditsummary' => 'Warskôgje at ik de gearfetting leech lit.',
@@ -245,6 +246,18 @@ $messages = array(
 'oct' => 'okt',
 'nov' => 'nov',
 'dec' => 'des',
+'january-date' => '$1 jannewaris',
+'february-date' => '$1 febrewaris',
+'march-date' => '$1 maart',
+'april-date' => '$1 april',
+'may-date' => '$1 maaie',
+'june-date' => '$1 juny',
+'july-date' => '$1 july',
+'august-date' => '$1 augustus',
+'september-date' => '$1 septimber',
+'october-date' => '$1 oktober',
+'november-date' => '$1 novimber',
+'december-date' => '$1 desimber',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategory|Kategoryen}}',
@@ -261,6 +274,8 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Dizze kategory befettet de folgjende triem.|Dizze kategory befettet {{PLURAL:$1|de folgjende triem|$1 de folgjende triemmen}}, fan yn totaal $2.}}',
 'category-file-count-limited' => 'Dizze kategory befettet {{PLURAL:$1|de folgjende triem|de folgjende $1 triemmen}}.',
 'listingcontinuesabbrev' => '(ferfolch)',
+'index-category' => 'Yndeksearre siden',
+'noindex-category' => 'Net-yndeksearre siden',
 
 'about' => 'Ynfo',
 'article' => 'Ynhâld side',
@@ -310,6 +325,7 @@ $messages = array(
 'printableversion' => 'Ofdruk-ferzje',
 'permalink' => 'Fêste keppeling',
 'print' => 'Ofdrukke',
+'view' => 'Lêze',
 'edit' => 'Wizigje',
 'create' => 'Oanmeitsje',
 'editthispage' => 'Side bewurkje',
@@ -420,9 +436,11 @@ $1",
 
 # Main script and global functions
 'nosuchaction' => 'Unbekende aksje.',
-'nosuchactiontext' => "De aksje dy't jo oanjoegen fia de URL is net bekind by it Wiki-program",
+'nosuchactiontext' => 'De opdracht yn de URL is ûnjildich.
+Mooglik hasto in typefout makke yn de URL of in ferkearde keppeling folge.
+It soe likegoed in programmatuerflater fan {{SITENAME}} wêze kinne.',
 'nosuchspecialpage' => 'Unbekende side',
-'nospecialpagetext' => "Jo hawwe in Wiki-side opfrege dy't net bekind is by it Wiki-programma.",
+'nospecialpagetext' => "Jo hawwe in Wiki-side opfrege dy't net bekend is by it Wiki-programma.",
 
 # General errors
 'error' => 'Fout',
@@ -455,19 +473,19 @@ Meitsje dêr melding fan by in [[Special:ListUsers/sysop|systeembehearder]] fan 
 'unexpected' => 'Hommelse wearde: "$1"="$2".',
 'formerror' => 'Fout: koe formulier net oerlizze',
 'badarticleerror' => 'Dat kin op dizze side net dien wurden.',
-'cannotdelete' => 'Koe de oantsjutte side of it oantsjutte ôfbyld net wiskje. (Faaks hat in oar dat al dien.)',
+'cannotdelete' => 'Koe de oantsjutte side of it oantsjutte ôfbyld "$1" net fuorthelje. (Faaks hat in oar dat al dien.)',
 'badtitle' => 'Misse titel',
 'badtitletext' => 'De opfrege sidetitel wie ûnjildich, leech, of in miskeppele yntertaal of ynterwiki titel.',
-'perfcached' => "Dit is bewarre ynformaasje dy't mooglik ferâldere is. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
-'perfcachedts' => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached' => "Dit is bewarre ynformaasje dy't mooglik ferâldere is. In maksimum fan {{PLURAL:$1|ien resultaat is|$1 resultaten binne}} beskikber yn de cache.",
+'perfcachedts' => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1. In maksimum fan {{PLURAL:$4|ien resultaat is|$4 resultaten binne}} beskikber yn de cache.',
 'querypage-no-updates' => 'Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.',
 'viewsource' => 'Besjoch de boarne',
 'actionthrottled' => 'Hanneling opkeard',
 'actionthrottledtext' => 'As maatregel tsjin spam is it tal kearen per tiidsienheid beheind dat jo dizze hanneling ferrjochtsje kinne. Jo binne oer de limyt. Besykje it in tal minuten letter wer.',
-'protectedpagetext' => 'Dizze side is befeilige. Bewurkjen is net mûglik.',
+'protectedpagetext' => 'Dizze side is befeilige. Bewurkjen is net mooglik.',
 'viewsourcetext' => 'Jo kinne de boarnetekst fan dizze side besjen en kopiearje:',
-'protectedinterface' => "Dizze side befettet tekst foar berjochten fan 'e software en is befeilige om misbrûk tefoaren te kommen.",
-'editinginterface' => "'''Warskôging;''' Jo bewurkje in side dy't brûkt wurdt troch software. Bewurkings op dizze side beynfloedzje de gebrûksynterface fan elkenien. Oerweagje foar oersettings [//translatewiki.net/wiki/Main_Page?setlang=fy translatewiki.net] te brûken, it oersetprojekt foar MediaWiki.",
+'protectedinterface' => "Dizze side jout systeemteksten fan 'e software en is befeilige tsjin misbrûk. Asto oersettingen foar alle wiki's tafoegje of bewurkje wolst, kinsto [//translatewiki.net/ translatewiki.net] brûke.",
+'editinginterface' => "'''Tink derom;''' Jo bewurkje in side dy't brûkt wurdt foar systeemteksten foar de software. Bewurkings op dizze side beynfloedzje de brûkersynterface fan elkenien. Asto wol oersettingen tafoegje of bewurkje wolst kinsto  [//translatewiki.net/wiki/Main_Page?setlang=fy translatewiki.net] brûke, it oersetprojekt foar MediaWiki.",
 'cascadeprotected' => 'Dizze side is skoattele tsjin wizigjen, om\'t der in ûnderdiel útmakket fan de neikommende {{PLURAL:$1|side|siden}}, dy\'t skoattele {{PLURAL:$1|is|binne}} mei de "ûnderlizzende siden" opsje ynskeakele: $2',
 'namespaceprotected' => "Jo hawwe gjin rjochten om siden yn'e nammerûmte '''$1''' te bewurkjen.",
 'ns-specialprotected' => "Siden yn'e nammerûmte {{ns:special}} kinne net bewurke wurde.",
@@ -482,30 +500,65 @@ De oanfierde reden is ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Jo binne no ôfmeld.'''
 
-Jo kinne de {{SITENAME}} fierders anonym brûke, of jo op 'e <span class='plainlinks'>[$1 nij oanmelde]</span> ûnder deselde of in oare namme.
-Mûglik wurdt noch in tal siden werjûn as wiene Jo oanmeld, oant Jo de cache fan Jo browser leegje.",
+Guon siden kinne noch foar it ljocht komme, krekt as wiesto noch oanmeld. Asto de cache fan dyn webblêder leechhellest feroaret dat wer.",
 'yourname' => 'Jo meidochnamme:',
+'userlogin-yourname' => 'Meidoggersnamme',
+'userlogin-yourname-ph' => 'Jou dyn brûkersnamme',
+'createacct-another-username-ph' => 'Jou dyn brûkersnamme',
 'yourpassword' => 'Jo wachtwurd',
+'userlogin-yourpassword' => 'Wachtwurd',
+'userlogin-yourpassword-ph' => 'Jou dyn wachtwurd',
+'createacct-yourpassword-ph' => 'Jou dyn wachtwurd',
 'yourpasswordagain' => 'Jo wachtwurd (nochris)',
-'remembermypassword' => 'Oare kear fansels oanmelde (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'createacct-yourpasswordagain' => 'Befêstigje wachtwurd',
+'createacct-yourpasswordagain-ph' => 'Befêstigje wachtwurd nochris',
+'remembermypassword' => 'Oare kear fansels oanmelde (maksimaal $1 {{PLURAL:$1|dei|dagen}})',
+'userlogin-remembermypassword' => 'Ynlogd bliuwe',
+'userlogin-signwithsecure' => 'Feilige ferbining brûke',
 'yourdomainname' => 'Jo domein:',
+'password-change-forbidden' => 'Op dizze wiky kinst gjin wachtwurden feroare',
 'externaldberror' => 'Der is in fout by it oanmelden by de database of jo hawwe gjin tastimming om jo ekstern account by te wurkjen.',
 'login' => 'Oanmelde',
 'nav-login-createaccount' => 'Oanmelde',
 'loginprompt' => "Jo moatte 'cookies' oanstean hawwe om yn jo oan te melden by {{SITENAME}}.",
 'userlogin' => 'Oanmelde',
+'userloginnocreate' => 'Ynlogge',
 'logout' => 'Ofmelde',
 'userlogout' => 'Ofmelde',
 'notloggedin' => 'Net oanmelde',
+'userlogin-noaccount' => 'Hasto gjin akkount?',
+'userlogin-joinproject' => 'Meidwaan {{SITENAME}}',
 'nologin' => 'Noch net oanmelden as meidogger? $1.',
 'nologinlink' => 'Meitsje in brûker oan',
 'createaccount' => 'Nije ynstellings oanmeitsje',
 'gotaccount' => "Hawwe jo jo al as meidogger oanmelde? '''$1'''.",
 'gotaccountlink' => 'Oanmelde',
+'userlogin-resetlink' => 'Ynlochdata fergetten?',
+'userlogin-resetpassword-link' => 'Wachtwurd fergetten?',
+'helplogin-url' => 'Help:Oanmelde',
+'createacct-emailrequired' => 'E-mailadres',
+'createacct-emailoptional' => 'E-mailadres (net ferplichte)',
+'createacct-email-ph' => 'E-mailadres ynfiere',
+'createacct-another-email-ph' => 'E-mailadres ynfiere',
 'createaccountmail' => 'troch e-mail',
+'createacct-realname' => 'Echte namme (net ferplichte)',
+'createaccountreason' => 'Reden:',
+'createacct-reason' => 'Reden',
+'createacct-reason-ph' => 'Wêrom makkesto in oare akkount?',
+'createacct-captcha' => 'Feiligenshifking',
+'createacct-imgcaptcha-ph' => 'Nim de tekst fan hjirboppe oer',
+'createacct-submit' => 'Meitsje in akkount',
+'createacct-another-submit' => 'Meitsje in oare akkount',
+'createacct-benefit-heading' => '{{SITENAME}} is makke troch minsken krekt as dy.',
+'createacct-benefit-body1' => '{{PLURAL:$1|bewurking|bewurkings}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|side|siden}}',
+'createacct-benefit-body3' => 'aktive {{PLURAL:$1|skriuwer|skriuwers}}',
 'badretype' => 'De ynfierde wachtwurden binne net lyk.',
-'userexists' => 'Dy meidochnamme wurdt al brûkt. Besykje in oarenien.',
+'userexists' => 'Dy meidoggersnamme wurdt al brûkt. 
+Besykje in oarenien.',
 'loginerror' => 'Oanmeldflater',
+'createacct-error' => 'Flater slein by meitsjen fan akkount',
+'createaccounterror' => 'Koe akkount net meitsje: $1',
 'nocookiesnew' => 'De brûker is oanmakke mar net oanmeld. {{SITENAME}} brûkt cookies foar it oanmelden fan brûkers. Skeakelje dy yn en meld jo dan oan mei jo nije brûkersnamme en wachtwurd.',
 'nocookieslogin' => '{{SITENAME}} brûkt cookies foar it oanmelden fan brûkers. Jo hawwe cookies útskeakele. Skeakelje dy opsje oan en besykje it nochris.',
 'noname' => 'Jo moatte in meidognamme opjaan.',
@@ -567,12 +620,22 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'resetpass_forbidden' => 'Wachtwurden kinne net feroare wurde',
 'resetpass-no-info' => "Jo moatte oanmeld wêze foar't Jo dizze side brûke kinne.",
 'resetpass-submit-loggedin' => 'Wachtwurd feroarje',
+'resetpass-submit-cancel' => 'Ofbrekke',
 'resetpass-wrong-oldpass' => 'It momintele of tydlike wachtwurd is ûnjildich.
 Mûglik hawwe Jo Jo wachtwurd al feroare of in nij tydlik wachtwurd oanfrege.',
 'resetpass-temp-password' => 'Tydlik wachtwurd:',
 
 # Special:PasswordReset
+'passwordreset-legend' => 'Wachtwurd weromsette',
 'passwordreset-username' => 'Meidoggernamme',
+'passwordreset-domain' => 'Domein:',
+'passwordreset-email' => 'E-mailadres:',
+'passwordreset-emailtitle' => 'Akkountdetails op {{SITENAME}}',
+
+# Special:ChangeEmail
+'changeemail' => 'Feroarje e-mailadres',
+'changeemail-header' => 'Feroarje akkount e-mailadres',
+'changeemail-cancel' => 'Ofbrekke',
 
 # Edit page toolbar
 'bold_sample' => 'Fette tekst',
@@ -699,18 +762,19 @@ Hjirby sizze jo tagelyk ta, dat jo dizze tekst sels skreaun hawwe, of oernommen 
 As jo net wolle dat jo teksten yngeand oanpast wurde troch oaren, set se hjir dan net.<br />
 Jo sizze ek ta dat jo de oarspronklike auteur binne fan dit materiaal, of dat jo it kopiearre hawwe út in boarne yn it publike domein, of in soartgelikense frije boarne (sjuch $1 foar details).
 '''BRUK GJIN MATERIAAL DAT BESKERME WURDT TROCH AUTEURSRJOCHT, OF JO MOATTE DER TASTIMMING FOAR HAWWE!'''",
-'longpageerror' => "'''FOUT: de tekst dy't jo tafoege hawwe is $1 kilobyte grut, wat grutter is as it maksimum fan $2 kilobytes.
+'longpageerror' => "'''FOUT: de tekst dy't jo tafoege hawwe is {{PLURAL:$1|ien kilobyte|$1 kilobytes}} grut, wat grutter is as it maksimum fan {{PLURAL:$2|ien kilobyte|$2 kilobytes}}.
 Bewarjen is net mûglik.'''",
 'readonlywarning' => "'''Warskôging: De databank is ôfsletten foar ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze. Bewarje de tekst foar lettere pleatsing yn in teksttriem.'''
 
 In  behearder hat de database blokkearre om de folgjende reden: $1",
-'protectedpagewarning' => "'''Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.'''",
+'protectedpagewarning' => "'''Warskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.'''",
 'semiprotectedpagewarning' => "'''Tink derom:''' dizze side is befeilige en kin allinne troch registrearre brûkers bewurke wurde.",
 'cascadeprotectedwarning' => "'''Warskôging:''' Dizze side is skoattele sadat allinnich behearders de side wizigje kinne, om't der in ûnderdiel útmakket fan de neikommende {{PLURAL:\$1|side|siden}}, dy't skoattele binne mei de \"ûnderlizzende siden\" opsje ynskeakele:",
-'titleprotectedwarning' => "'''WARSKÔGING: Dizze side is befeilige, dat allinne inkelde brûkers kinne him oanmeitsje.'''",
-'templatesused' => 'Berjochten brûkt op dizze side:',
-'templatesusedpreview' => 'Yn dit proefbyld sjabloanen:',
-'templatesusedsection' => "Sjabloanen dy't brûkt wurde yn dizze subkop:",
+'titleprotectedwarning' => "'''WARSKÔGING: Dizze side is befeilige. Der binne [[Special:ListGroupRights|spesjale rjochten]] nedich om dizze side meitsje te kinnen.'''
+De lêste lochrigel stiet hjirûnder:",
+'templatesused' => '{{PLURAL:$1|Berjocht|Berjochten}} brûkt op dizze side:',
+'templatesusedpreview' => "{{PLURAL:$1|Sjabloan|Sjabloanen}} dy't yn dizze bewurking brûkt wurde:",
+'templatesusedsection' => "{{PLURAL:$1|Sjabloan|Sjabloanen}} dy't brûkt wurde yn dizze subkop:",
 'template-protected' => '(befeilige)',
 'template-semiprotected' => '(semi-befeilige)',
 'hiddencategories' => 'Dizze side falt yn de folgjende ferburgen
@@ -733,8 +797,10 @@ Der is gjin taljochting beskikber.',
 Hy liket fuorthelle te wezen.',
 'edit-conflict' => 'Bewurkingskonflikt.',
 'edit-no-change' => "Dyn bewurking is is net trochfierd, om 't der gjin feroaring yn 'e tekst oanbrocht is.",
+'postedit-confirmation' => 'Dyn bewurking is fêstlein.',
 'edit-already-exists' => 'De side is net oanmakke.
 Hy bestie al.',
+'defaultmessagetext' => 'Standert berjochttekst',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Warskôging: Dizze side brûkt tefolle kostbere parserfunksjes.
@@ -1333,6 +1399,8 @@ Klikken op in kolomkop feroaret de sortearring.',
 'listfiles_size' => 'Grutte',
 'listfiles_description' => 'Beskriuwing',
 'listfiles_count' => 'Ferzjes',
+'listfiles-latestversion-yes' => 'Ja',
+'listfiles-latestversion-no' => 'Nee',
 
 # File description page
 'file-anchor-link' => 'Triem',
@@ -2115,6 +2183,10 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'exif-exposuretime-format' => '$1 sek ($2)',
 'exif-flash' => 'Flits',
 'exif-filesource' => 'Triemboarne',
+'exif-contrast' => 'Kontrast',
+'exif-sharpness' => 'Skerpte',
+'exif-gpstimestamp' => 'GPS-tiid (atoomklok)',
+'exif-gpsspeedref' => 'Snelheidsienheid',
 'exif-gpsdatestamp' => 'GPS-datum',
 
 'exif-unknowndate' => 'Datum ûnbekend',
@@ -2268,5 +2340,15 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'revdelete-restricted' => 'hat beheinings oplein oan behearders',
 'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
 'rightsnone' => '(gjin)',
+
+# Feedback
+'feedback-subject' => 'Underwerp:',
+'feedback-message' => 'Berjocht:',
+'feedback-cancel' => 'Ofbrekke',
+'feedback-submit' => 'Feedback ferstjoere',
+'feedback-close' => 'Dien',
+
+# Search suggestions
+'searchsuggest-search' => 'Sykje',
 
 );

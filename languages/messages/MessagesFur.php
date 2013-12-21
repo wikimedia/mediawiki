@@ -135,6 +135,8 @@ $messages = array(
 'tog-rememberpassword' => 'Visiti di me su chest sgarfadôr (par un massim di $1 {{PLURAL:$1|zornade|zornadis}})',
 'tog-watchcreations' => 'Zonte  lis pagjinis creadis e i file cjariats aes oservadis specials',
 'tog-watchdefault' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
+'tog-watchmoves' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
+'tog-watchdeletion' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
 'tog-minordefault' => 'Imposte come opzion predeterminade ducj i cambiaments come piçui',
 'tog-previewontop' => 'Mostre anteprime parsore dal spazi pe modifiche',
 'tog-previewonfirst' => 'Mostre anteprime te prime modifiche',
@@ -149,16 +151,27 @@ $messages = array(
 'tog-forceeditsummary' => 'Domande conferme se il cjamp ogjet al è vueit',
 'tog-watchlisthideown' => 'Plate i miei cambiaments inte liste des pagjinis tignudis di voli',
 'tog-watchlisthidebots' => 'Plate i bot de liste dai oservâts speciai',
+'tog-watchlisthideminor' => 'Plate i piçui cambiaments de liste dai oservâts speciai',
+'tog-watchlisthideliu' => 'Plate lis modifichis dai utents regjstrâts de liste dai oservâts speciai',
+'tog-watchlisthideanons' => 'Palte lis modifichis dai utents anonims dai oservâts speciai',
+'tog-watchlisthidepatrolled' => 'Plate lis modifichis verificadis de liste dai oservâts speciai',
 'tog-ccmeonemails' => 'Mandimi une copie dai messaçs che o mandi ai altris utents',
+'tog-diffonly' => 'No mostrâ la pagjine dopo il control des versions',
 'tog-showhiddencats' => 'Mostre categoriis platadis',
+'tog-norollbackdiff' => 'No mostrâ lis diferencis dopo vê revocât une pagjine',
 'tog-useeditwarning' => 'Visimi cuant che o stoi par lassâ une pagjine dulà che a son cambiaments no salvâts',
+'tog-prefershttps' => 'Dopre simpri une conession sigure par acedi',
 
 'underline-always' => 'Simpri',
 'underline-never' => 'Mai',
 'underline-default' => 'Ten ilis impostazions dal Browser o de skin che tu stâs doprant',
 
 # Font style option in Special:Preferences
+'editfont-style' => 'Stîl di caratar de aree di scriture',
 'editfont-default' => 'Predeterminât dal sgarfadôr',
+'editfont-monospace' => 'Caratar a lungjece fisse',
+'editfont-sansserif' => 'Caratar sans-serif',
+'editfont-serif' => 'Caratar di scriture serif',
 
 # Dates
 'sunday' => 'Domenie',
@@ -211,6 +224,18 @@ $messages = array(
 'oct' => 'Otu',
 'nov' => 'Nov',
 'dec' => 'Dic',
+'january-date' => '$1 di Zenâr',
+'february-date' => '$1 di Fevrâr',
+'march-date' => '$1 di Març',
+'april-date' => '$1 di Avrîl',
+'may-date' => '$1 di Mai',
+'june-date' => '$1 di Jugn',
+'july-date' => '$1 di Lui',
+'august-date' => '$1 di Avost',
+'september-date' => '$1 di Setembar',
+'october-date' => '$1 di Otubar',
+'november-date' => '$1 di Novembar',
+'december-date' => '$1 di Dicembar',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categoriis}}',
@@ -227,13 +252,16 @@ $messages = array(
 'category-file-count' => '{{PLURAL:$2|Cheste categorie e conten dome un file, mostrât ca sot.|Cheste categorie e conten {{PLURAL:$1|un file, mostrât|$1 files, mostrâts}} ca sot, suntun totâl di $2.}}',
 'category-file-count-limited' => 'Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.',
 'listingcontinuesabbrev' => 'cont.',
+'index-category' => 'Pagjinis indicizadis',
 'noindex-category' => 'Pagjinis no indicizadis',
+'broken-file-category' => 'Pagjnis cun leams a file no corets',
 
 'about' => 'Informazions',
 'article' => 'Vôs',
 'newwindow' => '(al vierç un gnûf barcon)',
 'cancel' => 'Scancele',
 'moredotdotdot' => 'Plui...',
+'morenotlisted' => 'La liste no je complete',
 'mypage' => 'Pagjine',
 'mytalk' => 'Discussions',
 'anontalk' => 'Discussion par chest IP',
@@ -247,6 +275,7 @@ $messages = array(
 'qbpageoptions' => 'Cheste pagjine',
 'qbmyoptions' => 'Mês pagjinis',
 'faq' => 'Domandis plui frecuentis',
+'faqpage' => 'Progjet:Domandis frecuentis',
 
 # Vector skin
 'vector-action-addsection' => 'Gnove sezion',
@@ -255,6 +284,7 @@ $messages = array(
 'vector-action-protect' => 'Protêç',
 'vector-action-undelete' => 'Recupere',
 'vector-action-unprotect' => 'Gambie la protezion',
+'vector-simplesearch-preference' => 'Abilite la bare di ricjerche semplificade (dome pe Vector Skin)',
 'vector-view-create' => 'Cree',
 'vector-view-edit' => 'Cambie',
 'vector-view-history' => 'Cjale il storic',
@@ -264,6 +294,7 @@ $messages = array(
 'namespaces' => 'Spazis dai nons',
 'variants' => 'Variants',
 
+'navigation-heading' => 'Menù di Navigazion',
 'errorpagetitle' => 'Erôr',
 'returnto' => 'Torne a $1.',
 'tagline' => 'Di {{SITENAME}}',
@@ -285,6 +316,7 @@ $messages = array(
 'create-this-page' => 'Cree cheste pagjine',
 'delete' => 'Elimine',
 'deletethispage' => 'Elimine cheste pagjine',
+'undeletethispage' => 'Recupere cheste pagjine',
 'undelete_short' => 'Recupere {{PLURAL:$1|modifiche eliminade|$1 modifichis eliminadis}}',
 'viewdeleted_short' => 'Viôt {{PLURAL:$1|une modifiche eliminade|$1 modifichis eliminadis}}',
 'protect' => 'Protêç',
@@ -319,6 +351,10 @@ $messages = array(
 'jumpto' => 'Va a:',
 'jumptonavigation' => 'navigazion',
 'jumptosearch' => 'ricercje',
+'view-pool-error' => 'Scusinus ma i server a son sovrecjariats in chest moment. Masse utents a stan cjalant cheste pagjnie. Torne a provâ fra cualchi minût.
+
+$1',
+'pool-timeout' => 'Timeout durant la spiete dal sbolc.',
 'pool-errorunknown' => 'Erôr no cognossût',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).

@@ -4164,13 +4164,15 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسیر اسکریپت]',
 
 # Special:Redirect
-'redirect' => 'تغییرمسیر توسط پرونده، کاربر یا شناسهٔ نسخه',
+'redirect' => 'تغییرمسیر توسط پرونده، کاربر، صفحه یا شناسهٔ نسخه',
 'redirect-legend' => 'تغییرمسیر به یک پرونده یا صفحه',
-'redirect-summary' => 'این صفحهٔ ویژه به پرونده (نام پرونده داده‌شده)، صفحه (شماره شناسهٔ صفحه داده‌شده) یا صفحهٔ کاربری (شناسهٔ عددی کاربری داده‌شده) تغییرمسیر می‌یابد. طرز استفاده: [[{{#Special:Redirect}}/file/Example.jpg]]، [[{{#Special:Redirect}}/revision/328429]] یا [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'این صفحهٔ ویژه به پرونده (نام پرونده داده‌شده)، صفحه (شماره شناسهٔ صفحه یا شماره نسخهٔ داده‌شده) یا صفحهٔ کاربری (شناسهٔ عددی کاربری داده‌شده) تغییرمسیر می‌یابد. طرز استفاده: [[{{#Special:Redirect}}/file/Example.jpg]]، 
+[[{{#Special:Redirect}}/page/64308]]، [[{{#Special:Redirect}}/revision/328429]] یا [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'برو',
 'redirect-lookup' => 'جستجو:',
 'redirect-value' => 'مقدار:',
 'redirect-user' => 'شناسهٔ کاربر',
+'redirect-page' => 'شناسهٔ صفحه',
 'redirect-revision' => 'نسخهٔ صفحه',
 'redirect-file' => 'نام پرونده',
 'redirect-not-exists' => 'مقدار پیدا نشد',

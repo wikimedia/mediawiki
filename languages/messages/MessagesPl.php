@@ -3870,7 +3870,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(język domyślny)',
-'img-lang-info' => 'Wyświetl tę ilustrację w $1 $2.',
+'img-lang-info' => 'Wyświetl tę ilustrację w $1. $2',
 'img-lang-go' => 'Dalej',
 
 # Table pager
@@ -4013,7 +4013,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Przekierowanie według pliku, użytkownika albo identyfikatora wersji',
+'redirect' => 'Przekierowanie według pliku, użytkownika, strony lub identyfikatora wersji',
 'redirect-legend' => 'Przekieruj do pliku lub strony',
 'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Przejdź',

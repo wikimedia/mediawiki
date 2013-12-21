@@ -15,6 +15,7 @@
  * @author Geitost
  * @author Kaganer
  * @author MegaAlex
+ * @author Milicevic01
  * @author Simona
  * @author Spiritia
  * @author Stanqo
@@ -1576,11 +1577,12 @@ $1",
 Легенда: '''тек''' = разлика на текущата версия,
 '''ист''' = история на версиите",
 'recentchanges-feed-description' => 'Проследяване на последните промени в {{SITENAME}}.',
-'recentchanges-label-newpage' => 'С тази редакция беше създадена нова страница',
+'recentchanges-label-newpage' => 'Нова страница',
 'recentchanges-label-minor' => 'Това е малка промяна',
 'recentchanges-label-bot' => 'Тази редакция е извършена от робот',
 'recentchanges-label-unpatrolled' => 'Тази редакция все още не е проверена',
 'recentchanges-label-plusminus' => 'Размерът на страницата е променен с този брой байтове',
+'recentchanges-legend-heading' => "'''Легенда:'''",
 'recentchanges-legend-newpage' => '(вижте също [[Special:NewPages|списъка с нови страници]])',
 'rcnotefrom' => 'Дадени са промените от <strong>$2</strong> (до <strong>$1</strong> показани).',
 'rclistfrom' => 'Показване на промени, като се започва от $1.',

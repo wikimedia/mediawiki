@@ -4228,13 +4228,14 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath/ja スクリプトパス]',
 
 # Special:Redirect
-'redirect' => 'ファイル名、利用者ID、版IDでの転送',
+'redirect' => 'ファイル名、利用者ID、ページID、版IDでの転送',
 'redirect-legend' => 'ファイルまたはページヘの転送',
-'redirect-summary' => 'この特別ページは、ファイル (ファイル名を指定)、ページ (版 ID を指定)、利用者ページ (利用者 ID を整数で指定) に転送されます。使用例: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]]',
+'redirect-summary' => 'この特別ページは、ファイル (ファイル名を指定)、ページ (版 ID またはページ ID を指定)、利用者ページ (利用者 ID を整数で指定) に転送されます。使用例: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]],  [[{{#Special:Redirect}}/user/101]]',
 'redirect-submit' => '実行',
 'redirect-lookup' => '検索の種類:',
 'redirect-value' => '値:',
 'redirect-user' => '利用者 ID',
+'redirect-page' => 'ページ ID',
 'redirect-revision' => 'ページの版 ID',
 'redirect-file' => 'ファイル名',
 'redirect-not-exists' => '値が見つかりません',

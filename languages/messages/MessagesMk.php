@@ -1783,6 +1783,7 @@ $1",
 'recentchanges-label-bot' => 'Ова уредување е направено од бот',
 'recentchanges-label-unpatrolled' => 'Ова уредување сè уште не е испатролирано',
 'recentchanges-label-plusminus' => 'Промена на големината на страницата во бајти',
+'recentchanges-legend-heading' => "'''Легенда:'''",
 'recentchanges-legend-newpage' => '(погл. и [[Special:NewPages|списокот на нови страници]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'Подолу се промените од <b>$2</b> (се прикажуваат до <b>$1</b>).',
@@ -4007,7 +4008,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(стандарден јазик)',
-'img-lang-info' => 'Испиши ја сликата на $1 $2.',
+'img-lang-info' => 'Испиши ја сликата на $1. $2',
 'img-lang-go' => 'Прикажи',
 
 # Table pager
@@ -4192,13 +4193,14 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=mk Скрипта]',
 
 # Special:Redirect
-'redirect' => 'Пренасочување по податотека, корисник или назнака на ревизија',
+'redirect' => 'Пренасочување по податотеки, корисник или назнака на ревизија',
 'redirect-legend' => 'Пренасочување кон податотека или страница',
-'redirect-summary' => 'Оваа специјална страница пренасочува кон податотека (се задава името), страница (се задава назнаката на ревизијата) или корисничка странца (се задава бројчената назнака на корисникот). Употреба: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] или [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Оваа специјална страница пренасочува кон податотека (се задава името), страница (се задава назнаката на ревизијата или страницата) или корисничка странца (се задава бројчената назнака на корисникот). Употреба: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] или [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Оди',
 'redirect-lookup' => 'Пребарај:',
 'redirect-value' => 'Вредност:',
 'redirect-user' => 'Корисничка назнака',
+'redirect-page' => 'Назнака на страницата',
 'redirect-revision' => 'Ревизија на страницата',
 'redirect-file' => 'Име на податотека',
 'redirect-not-exists' => 'Вредноста не е најдена',
@@ -4440,10 +4442,12 @@ $5
 'expand_templates_input' => 'Влезен текст:',
 'expand_templates_output' => 'Извод',
 'expand_templates_xml_output' => 'XML излез',
+'expand_templates_html_output' => 'Сиров HTML-извод',
 'expand_templates_ok' => 'ОК',
 'expand_templates_remove_comments' => 'Отстрани коментари',
 'expand_templates_remove_nowiki' => 'Притаи <nowiki> ознаки во резултатот',
 'expand_templates_generate_xml' => 'Прикажи XML дрво на парсирање',
+'expand_templates_generate_rawhtml' => 'Прикажувај сиров HTML',
 'expand_templates_preview' => 'Преглед',
 
 );

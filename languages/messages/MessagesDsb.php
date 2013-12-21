@@ -3695,14 +3695,15 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Pó datajowem mjenju, wužywarju abo wersijowem ID dalej pósrědniś',
+'redirect' => 'Pó datajowem mjenju, wužywarju, boku abo wersijowem ID dalej pósrědniś',
 'redirect-legend' => 'Do dataje abo boka dalej pósrědniś',
-'redirect-summary' => 'Toś ten specialny bok pósrědnja se do dataje (datajowe mě jo pódane), boka (wersijowy ID jo pódany) abo wužywarskego boka (numeriski wužywarski ID jo pódany) dalej. Wužyśe:
-[[{{#Special:Redirect}}/file/Pśikład.jpg]], [[{{#Special:Redirect}}/revision/328429]] abo [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Toś ten specialny bok pósrědnja se do dataje (datajowe mě jo pódane), boka (wersijowy ID abo ID boka jo pódany) abo wužywarskego boka (numeriski wužywarski ID jo pódany) dalej. Wužyśe:
+[[{{#Special:Redirect}}/file/Pśikład.jpg]], [[{{#Special:Redirect}}/page/64308]],[[{{#Special:Redirect}}/revision/328429]] abo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Pytaś',
 'redirect-lookup' => 'Pytaś:',
 'redirect-value' => 'Gódnota:',
 'redirect-user' => 'ID wužywarja',
+'redirect-page' => 'ID boka',
 'redirect-revision' => 'Bokowa wersija',
 'redirect-file' => 'Datajowe mě',
 'redirect-not-exists' => 'Gódnota njejo se namakała',

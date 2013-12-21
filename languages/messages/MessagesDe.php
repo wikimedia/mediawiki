@@ -602,7 +602,7 @@ $messages = array(
 
 'navigation-heading' => 'Navigationsmenü',
 'errorpagetitle' => 'Fehler',
-'returnto' => "'''Zurück zur Seite $1.'''",
+'returnto' => 'Zurück zur Seite $1.',
 'tagline' => 'Aus {{SITENAME}}',
 'help' => 'Hilfe',
 'search' => 'Suche',
@@ -4046,13 +4046,14 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Skriptpfad]',
 
 # Special:Redirect
-'redirect' => 'Weiterleitung auf Benutzerseite, Seitenversion oder Datei',
-'redirect-legend' => 'Weiterleitung auf eine Benutzerseite, Seitenversion oder Datei',
-'redirect-summary' => 'Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seitenversion (Versionskennung angegeben) oder Datei (Dateiname angegeben) weiter. Benutzung: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] oder [[{{#Special:Redirect}}/user/101]].',
+'redirect' => 'Weiterleitung auf Benutzerseite, Seite, Seitenversion oder Datei',
+'redirect-legend' => 'Weiterleitung auf eine Benutzerseite, Seite, Seitenversion oder Datei',
+'redirect-summary' => 'Diese Spezialseite leitet auf eine Benutzerseite (numerische Benutzerkennung angegeben), Seite (Seitenkennung angeben), Seitenversion (Versionskennung angegeben) oder Datei (Dateiname angegeben) weiter. Benutzung: [[{{#Special:Redirect}}/user/101]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] oder [[{{#Special:Redirect}}/file/Example.jpg]].',
 'redirect-submit' => 'Los',
 'redirect-lookup' => 'Suchen:',
 'redirect-value' => 'Kennung oder Dateiname:',
 'redirect-user' => 'Benutzerseite',
+'redirect-page' => 'Seite',
 'redirect-revision' => 'Seitenversion',
 'redirect-file' => 'Datei',
 'redirect-not-exists' => 'Der Wert wurde nicht gefunden',

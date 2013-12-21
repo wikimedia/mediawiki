@@ -1737,6 +1737,7 @@ $1",
 'recentchanges-label-bot' => 'ഇത് യന്ത്രം ചെയ്ത തിരുത്താണ്',
 'recentchanges-label-unpatrolled' => 'ഇതുവരെ റോന്തുചുറ്റപ്പെടാത്ത തിരുത്ത്',
 'recentchanges-label-plusminus' => 'താളിന്റെ വലിപ്പം ഇത്രയും ബൈറ്റുകൾ മാറിയിരിക്കുന്നു',
+'recentchanges-legend-heading' => "'''സൂചന:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|പുതിയ താളുകളുടെ പട്ടികയും]] കാണുക)',
 'rcnotefrom' => '<b>$2</b> മുതലുള്ള മാറ്റങ്ങൾ (<b>$1</b> എണ്ണം വരെ കാണാം).',
 'rclistfrom' => '$1 മുതലുള്ള മാറ്റങ്ങൾ പ്രദർശിപ്പിക്കുക',
@@ -3829,7 +3830,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(സ്വതേ വേണ്ട ഭാഷ)',
-'img-lang-info' => 'ഈ ചിത്രം ഇങ്ങനെ $1 കാണിക്കുക $2.',
+'img-lang-info' => 'ഈ ചിത്രം ഈ ഭാഷയിൽ കാണിക്കുക: $1. $2',
 'img-lang-go' => 'പോകൂ',
 
 # Table pager
@@ -3941,13 +3942,14 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath സ്ക്രിപ്റ്റ് പഥം]',
 
 # Special:Redirect
-'redirect' => 'പ്രമാണത്താൽ, ഉപയോക്താവിനാൽ അഥവാ നാൾപ്പതിപ്പ് ഐ.ഡി. ചെയ്യുന്ന തിരിച്ചുവിടൽ',
+'redirect' => 'പ്രമാണത്താൽ, ഉപയോക്താവിനാൽ, താളിനാൽ അഥവാ നാൾപ്പതിപ്പ് ഐ.ഡി.യാൽ ചെയ്യുന്ന തിരിച്ചുവിടൽ',
 'redirect-legend' => 'ഒരു പ്രമാണത്തിലോട്ടോ താളിലോട്ടോ ഉള്ള തിരിച്ചുവിടൽ',
-'redirect-summary' => 'ഈ പ്രത്യേക താൾ ഒരു പ്രമാണത്തിലേയ്ക്കോ (പ്രമാണത്തിന്റെ പേര് തന്നിട്ടുണ്ട്), ഒരു താളിലേയ്ക്കോ (നാൾപ്പതിപ്പിന്റെ ഐഡി തന്നിട്ടുണ്ട്), അല്ലെങ്കിൽ ഒരു ഉപയോക്തൃതാളിലേയ്ക്കോ (ഉപയോക്താവിന്റെ സംഖ്യാ ഐ.ഡി. തന്നിട്ടുണ്ട്) തിരിച്ചുവിടുന്നു. ഉപയോഗം Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], അല്ലെങ്കിൽ [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'ഈ പ്രത്യേക താൾ ഒരു പ്രമാണത്തിലേയ്ക്കോ (പ്രമാണത്തിന്റെ പേര് തന്നിട്ടുണ്ട്), ഒരു താളിലേയ്ക്കോ (നാൾപ്പതിപ്പിന്റെ ഐ.ഡി. അല്ലെങ്കിൽ താൾ തന്നിട്ടുണ്ട്), അല്ലെങ്കിൽ ഒരു ഉപയോക്തൃതാളിലേയ്ക്കോ (ഉപയോക്താവിന്റെ സംഖ്യാ ഐ.ഡി. തന്നിട്ടുണ്ട്) തിരിച്ചുവിടുന്നു. ഉപയോഗം: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]],  [[{{#Special:Redirect}}/revision/328429]], അല്ലെങ്കിൽ [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'പോകൂ',
 'redirect-lookup' => 'തേടുക:',
 'redirect-value' => 'വില:',
 'redirect-user' => 'ഉപയോക്തൃ ഐ.ഡി.',
+'redirect-page' => 'താളിന്റെ ഐ.ഡി.',
 'redirect-revision' => 'താളിന്റെ നാൾപ്പതിപ്പ്',
 'redirect-file' => 'പ്രമാണത്തിന്റെ പേര്',
 'redirect-not-exists' => 'വില കണ്ടെത്താൻ കഴിഞ്ഞില്ല',
@@ -4189,10 +4191,12 @@ $5
 'expand_templates_input' => 'ഇൻപുട്ട് ടെക്സ്റ്റ്:',
 'expand_templates_output' => 'ഫലം',
 'expand_templates_xml_output' => 'എക്സ്.എം.എൽ. ഔട്ട്പുട്ട്',
+'expand_templates_html_output' => 'അസംസ്കൃത എച്ച്.റ്റി.എം.എൽ. ഔട്ട്പുട്ട്',
 'expand_templates_ok' => 'ശരി',
 'expand_templates_remove_comments' => 'അഭിപ്രായങ്ങൾ ഒഴിവാക്കുക',
 'expand_templates_remove_nowiki' => 'ഫലങ്ങളിലെ <nowiki> റ്റാഗുകൾ ഒതുക്കുക',
 'expand_templates_generate_xml' => 'എക്സ്.എം.എൽ. പാഴ്‌സർ ട്രീ പ്രദർശിപ്പിക്കുക',
+'expand_templates_generate_rawhtml' => 'അസംസ്കൃത എച്ച്.റ്റി.എം.എൽ. പ്രദർശിപ്പിക്കുക',
 'expand_templates_preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക',
 
 );

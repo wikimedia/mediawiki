@@ -583,7 +583,7 @@ $1',
 'mainpage-description' => 'Huvudsida',
 'policy-url' => 'Project:Riktlinjer',
 'portal' => 'Gemenskapens portal',
-'portal-url' => 'Project:Gemenskapens portal',
+'portal-url' => 'Projekt:Gemenskapens portal',
 'privacy' => 'Integritetspolicy',
 'privacypage' => 'Project:Integritetspolicy',
 
