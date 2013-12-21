@@ -2208,7 +2208,9 @@ $sp: SpecialPage object, for context
 &$fields: Current HTMLForm fields
 
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
-$id: User identifier
+$id: User id number, only provided for backwards-compatability
+$user: User object representing user contributions are being fetched for
+$sp: SpecialPage instance, providing context
 
 'SpecialListusersDefaultQuery': Called right before the end of
 UsersPager::getDefaultQuery().

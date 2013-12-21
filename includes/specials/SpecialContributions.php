@@ -168,7 +168,7 @@ class SpecialContributions extends SpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
-		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
+		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
 			$out->addHTML( $this->getForm() );
 
 			$pager = new ContribsPager( $this->getContext(), array(
