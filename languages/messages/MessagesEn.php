@@ -3364,7 +3364,7 @@ See the [[Special:BlockList|block list]] for the list of currently operational b
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
 'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
-'ipb_already_blocked'             => '"$1" is already blocked',
+'ipb_already_blocked'             => '"$1" is already blocked.',
 'ipb-needreblock'                 => '$1 is already blocked. Do you want to change the settings?',
 'ipb-otherblocks-header'          => 'Other {{PLURAL:$1|block|blocks}}',
 'unblock-hideuser'                => 'You cannot unblock this user, as their username has been hidden.',
@@ -3379,12 +3379,12 @@ Please contact your Internet service provider or technical support of your organ
 'sorbs'                           => 'DNSBL', # only translate this message to other languages if you have to change it
 'sorbsreason'                     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
-You cannot create an account',
+You cannot create an account.',
 'xffblockreason'                  => 'An IP address present in the X-Forwarded-For header, either yours or that of a proxy server you are using, has been blocked. The original block reason was: $1',
 'cant-see-hidden-user'            => "The user you are trying to block has already been blocked and hidden.
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
-'ipbblocked'                      => 'You cannot block or unblock other users because you are yourself blocked',
-'ipbnounblockself'                => 'You are not allowed to unblock yourself',
+'ipbblocked'                      => 'You cannot block or unblock other users because you are yourself blocked.',
+'ipbnounblockself'                => 'You are not allowed to unblock yourself.',
 'ipb-default-expiry'              => '', # do not translate or duplicate this message to other languages
 
 # Developer tools
