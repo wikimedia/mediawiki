@@ -154,4 +154,17 @@ class HTMLCacheUpdateJob extends Job {
 			}
 		}
 	}
+
+	function advisedBackoff() {
+		// Avoid too many purges, which cause higher CPU usage under normal traffic
+		// due to more proxy and parser cache misses. This helps avoid huge spikes.
+		if ( isset( $this->params['pages'] ) ) {
+			// Aim for about 100 pages/sec per job runner process
+			$seconds = floor( count( $this->params['pages'] ) / 100 );
+			$percentChance = count( $this->params['pages'] ) % 100;
+			$seconds += ( mt_rand( 1, 100 ) <= $percentChance ) ? 1 : 0;
+			return $seconds;
+		}
+		return 0;
+	}
 }

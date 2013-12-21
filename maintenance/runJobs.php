@@ -64,12 +64,12 @@ class RunJobs extends Maintenance {
 				}
 			}
 		}
+
+		$type = $this->getOption( 'type', false );
 		$maxJobs = $this->getOption( 'maxjobs', false );
 		$maxTime = $this->getOption( 'maxtime', false );
 		$startTime = time();
-		$type = $this->getOption( 'type', false );
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
-		$jobsRun = 0; // counter
 
 		$group = JobQueueGroup::singleton();
 		// Handle any required periodic queue maintenance
@@ -78,11 +78,18 @@ class RunJobs extends Maintenance {
 			$this->runJobsLog( "Executed $count periodic queue task(s)." );
 		}
 
-		$flags = JobQueueGroup::USE_CACHE | JobQueueGroup::USE_PRIORITY;
+		$backoffs = $this->readBackoffs(); // map of (type => UNIX expiry)
+		$startingBackoffs = $backoffs; // avoid unnecessary writes
+		$backoffExpireFunc = function( $t ) { return $t > time(); };
+
+		$jobsRun = 0; // counter
+		$flags = JobQueueGroup::USE_CACHE;
 		$lastTime = time(); // time since last slave check
 		do {
+			$backoffs = array_filter( $backoffs, $backoffExpireFunc );
+			$blacklist = array_keys( $backoffs );
 			$job = ( $type === false )
-				? $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags )
+				? $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags, $blacklist )
 				: $group->pop( $type ); // job from a single queue
 			if ( $job ) { // found a job
 				++$jobsRun;
@@ -117,6 +124,13 @@ class RunJobs extends Maintenance {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
 				}
 
+				// Back off of certain jobs for a while
+				if ( $job->advisedBackoff() ) {
+					$jType = $job->getType();
+					$backoffs[$jType] = isset( $backoffs[$jType] ) ? $backoffs[$jType] : 0;
+					$backoffs[$jType] = max( $backoffs[$jType], time() + $job->advisedBackoff() );
+				}
+
 				// Break out if we hit the job count or wall time limits...
 				if ( $maxJobs && $jobsRun >= $maxJobs ) {
 					break;
@@ -139,6 +153,51 @@ class RunJobs extends Maintenance {
 				$this->assertMemoryOK();
 			}
 		} while ( $job ); // stop when there are no jobs
+		// Sync the persistent backoffs for the next runJobs.php pass
+		if ( $backoffs !== $startingBackoffs ) {
+			$this->flushBackoffs( $backoffs );
+		}
+	}
+
+	/**
+	 * @return array Job type/expiry backoff info from persistent storage
+	 */
+	private function readBackoffs() {
+		$section = new ProfileSection( __METHOD__ );
+
+		$backoffs = array();
+		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
+		if ( is_file( $file ) ) {
+			$handle = fopen( $file, 'rb' );
+			flock( $handle, LOCK_SH );
+			$content = stream_get_contents( $handle );
+			$backoffs = json_decode( $content, true ) ?: array();
+			flock( $handle, LOCK_UN );
+			fclose( $handle );
+		}
+
+		return $backoffs;
+	}
+
+	/**
+	 * @param array $backoffs Job type/expiry backoff info to merge to persistent storage
+	 */
+	private function flushBackoffs( array $backoffs ) {
+		$section = new ProfileSection( __METHOD__ );
+
+		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
+		$handle = fopen( $file, 'wb+' );
+		flock( $handle, LOCK_EX );
+		$content = stream_get_contents( $handle );
+		$cBackoffs = json_decode( $content, true ) ?: array();
+		foreach ( $backoffs as $type => $timestamp ) {
+			$cBackoffs[$type] = isset( $cBackoffs[$type] ) ? $cBackoffs[$type] : 0;
+			$cBackoffs[$type] = max( $cBackoffs[$type], $backoffs[$type] );
+		}
+		ftruncate( $handle, 0 );
+		fwrite( $handle, json_encode( $backoffs ) );
+		flock( $handle, LOCK_UN );
+		fclose( $handle );
 	}
 
 	/**
@@ -151,7 +210,7 @@ class RunJobs extends Maintenance {
 			$m = array();
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
 				list( , $num, $unit ) = $m;
-				$conv = array( 'g' => 1024 * 1024 * 1024, 'm' => 1024 * 1024, 'k' => 1024, '' => 1 );
+				$conv = array( 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 );
 				$maxBytes = $num * $conv[strtolower( $unit )];
 			} else {
 				$maxBytes = 0;

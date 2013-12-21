@@ -198,6 +198,14 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer Seconds for a runner to avoid another job of this type
+	 * @since 1.23
+	 */
+	public function advisedBackoff() {
+		return 0;
+	}
+
+	/**
 	 * Subclasses may need to override this to make duplication detection work.
 	 * The resulting map conveys everything that makes the job unique. This is
 	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
