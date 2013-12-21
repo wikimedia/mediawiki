@@ -147,6 +147,41 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			),
 		), $out->getSections(), 'getSections() with proper value when <h2> is used' );
 	}
+
+	/**
+	 * @dataProvider provideNormalizeLinkUrl
+	 * @covers Parser::normalizeLinkUrl
+	 * @covers Parser::normalizeUrlComponent
+	 */
+	public function testNormalizeLinkUrl( $explanation, $url, $expected ) {
+		$this->assertEquals( $expected, Parser::normalizeLinkUrl( $url ), $explanation );
+	}
+
+	public static function provideNormalizeLinkUrl() {
+		return array(
+			array(
+				'Escaping of unsafe characters',
+				'http://example.org/foo bar?param[]="value"&param[]=valüe',
+				'http://example.org/foo%20bar?param%5B%5D=%22value%22&param%5B%5D=val%C3%BCe',
+			),
+			array(
+				'Case normalization of percent-encoded characters',
+				'http://example.org/%ab%cD%Ef%FF',
+				'http://example.org/%AB%CD%EF%FF',
+			),
+			array(
+				'Unescaping of safe characters',
+				'http://example.org/%3C%66%6f%6F%3E?%3C%66%6f%6F%3E#%3C%66%6f%6F%3E',
+				'http://example.org/%3Cfoo%3E?%3Cfoo%3E#%3Cfoo%3E',
+			),
+			array(
+				'Context-sensitive replacement of sometimes-safe characters',
+				'http://example.org/%23%2F%3F%26%3D%2B%3B?%23%2F%3F%26%3D%2B%3B#%23%2F%3F%26%3D%2B%3B',
+				'http://example.org/%23%2F%3F&=+;?%23/?%26%3D%2B%3B#%23/?&=+;',
+			),
+		);
+	}
+
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
 	// replaceSection(), getPreloadText()
 }
