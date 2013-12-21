@@ -198,6 +198,15 @@ abstract class Job {
 	}
 
 	/**
+	 * @return integer Number of actually "work items" handled in this job
+	 * @see $wgJobBackoffThrottling
+	 * @since 1.23
+	 */
+	public function workItemCount() {
+		return 1;
+	}
+
+	/**
 	 * Subclasses may need to override this to make duplication detection work.
 	 * The resulting map conveys everything that makes the job unique. This is
 	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
