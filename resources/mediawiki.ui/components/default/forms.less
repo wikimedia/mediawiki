@@ -12,8 +12,28 @@
 @captchaContainerWidth: 290px;
 @defaultFormWidth: @captchaContainerWidth;
 
+// Forms
+//
+// Styleguide 3.
+
+// VForm
+//
 // Style a compact vertical stacked form ("VForm") and the elements in divs
-// within it.
+// within it. See button section on guidance of how and when to use mw-ui-constructive.
+//
+// Markup:
+// <form class="mw-ui-vform">
+//   <div class="mw-ui-vform-div">This is a form example.</div>
+//   <div>
+//     <label>Username </label>
+//     <input value="input">
+//   </div>
+//   <div>
+//     <button class="mw-ui-button mw-ui-constructive">Button in vform</button>
+//   </div>
+// </form>
+//
+// Styleguide 3.1.
 .mw-ui-vform {
 	.box-sizing(border-box);
 
@@ -60,9 +80,25 @@
 
 	}
 
+	// Form errors
+	//
 	// HTMLForm uses error, SpecialUserlogin (login and create account) uses
 	// errorbox.
-	// TODO move errorbox from mediawiki.special.vforms.css into here.
+	//
+	// TODO: move errorbox from mediawiki.special.vforms.css into here.
+	//
+	// Markup:
+	// <form class="mw-ui-vform">
+	//   <div class="error">An error occurred</div>
+	//   <div>
+	//     <input type="text" value="input" class="mw-ui-input">
+	//   <div>
+	//   </div>
+	//     <button class="mw-ui-button">Button in vform</button>
+	//   </div>
+	// </form>
+	//
+	// Styleguide 3.1.
 	.error {
 		.box-sizing(border-box);
 		font-size: 0.9em;
