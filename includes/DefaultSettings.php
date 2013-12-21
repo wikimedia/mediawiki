@@ -6097,6 +6097,14 @@ $wgJobClasses = array(
 $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
 
 /**
+ * Map of job types to how many job "work items" should be run per second
+ * on each job runner process. The meaning of "work items" varies per job,
+ * but typically would be something like "pages to update". A single job
+ * may have a variable number of work items, as is the case with batch jobs.
+ */
+$wgJobBackoffThrottling = array();
+
+/**
  * Map of job types to configuration arrays.
  * This determines which queue class and storage system is used for each job type.
  * Job types that do not have explicit configuration will use the 'default' config.
