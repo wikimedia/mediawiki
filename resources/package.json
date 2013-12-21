@@ -4,5 +4,10 @@
 	"version": "0.0.1",
 	"dependencies": {
 		"kss": ">=0.3.6"
+	},
+	"repository" : {
+		"type" : "git",
+		"url" : "https://gerrit.wikimedia.org/r/p/mediawiki/core.git"
 	}
+
 }
