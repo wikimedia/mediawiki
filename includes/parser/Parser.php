@@ -1761,38 +1761,64 @@ class Parser {
 	/**
 	 * Replace unusual URL escape codes with their equivalent characters
 	 *
+	 * This generally follows the syntax defined in RFC 3986, with special
+	 * consideration for HTTP query strings.
+	 *
 	 * @param string $url
 	 * @return string
-	 *
-	 * @todo This can merge genuinely required bits in the path or query string,
-	 *       breaking legit URLs. A proper fix would treat the various parts of
-	 *       the URL differently; as a workaround, just use the output for
-	 *       statistical records, not for actual linking/output.
 	 */
 	public static function replaceUnusualEscapes( $url ) {
-		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',
-			array( __CLASS__, 'replaceUnusualEscapesCallback' ), $url );
-	}
-
-	/**
-	 * Callback function used in replaceUnusualEscapes().
-	 * Replaces unusual URL escape codes with their equivalent character
-	 *
-	 * @param array $matches
-	 *
-	 * @return string
-	 */
-	private static function replaceUnusualEscapesCallback( $matches ) {
-		$char = urldecode( $matches[0] );
-		$ord = ord( $char );
-		# Is it an unsafe or HTTP reserved character according to RFC 1738?
-		if ( $ord > 32 && $ord < 127 && strpos( '<>"#{}|\^~[]`;/?', $char ) === false ) {
-			# No, shouldn't be escaped
-			return $char;
-		} else {
-			# Yes, leave it escaped
-			return $matches[0];
+		static $unsafe, $callback = null;
+		if ( $callback === null ) {
+			$callback = function ( $matches ) use ( &$unsafe ) {
+				$char = urldecode( $matches[0] );
+				$ord = ord( $char );
+				if ( $ord > 32 && $ord < 127 && strpos( $unsafe, $char ) === false ) {
+					# Unescape it
+					return $char;
+				} else {
+					# Leave it escaped
+					return $matches[0];
+				}
+			};
 		}
+
+		# First, make sure unsafe characters are encoded
+		$url = preg_replace_callback( '/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
+			function ( $m ) {
+				return rawurlencode( $m[0] );
+			},
+			$url
+		);
+
+		$ret = '';
+		$end = strlen( $url );
+
+		# Fragment part - 'fragment'
+		$start = strpos( $url, '#' );
+		if ( $start !== false && $start < $end ) {
+			$unsafe = '"#%<>[\]^`{|}';
+			$ret = preg_replace_callback( '/%[0-9A-Fa-f]{2}/', $callback,
+				substr( $url, $start, $end - $start ) ) . $ret;
+			$end = $start;
+		}
+
+		# Query part - 'query' minus &=+;
+		$start = strpos( $url, '?' );
+		if ( $start !== false && $start < $end ) {
+			$unsafe = '"#%<>[\]^`{|}&=+;';
+			$ret = preg_replace_callback( '/%[0-9A-Fa-f]{2}/', $callback,
+				substr( $url, $start, $end - $start ) ) . $ret;
+			$end = $start;
+		}
+
+		# Scheme and path part - 'pchar'
+		# (we assume no userinfo or encoded colons in the host)
+		$unsafe = '"#%<>[\]^`{|}/?';
+		$ret = preg_replace_callback( '/%[0-9A-Fa-f]{2}/', $callback,
+			substr( $url, 0, $end ) ) . $ret;
+
+		return $ret;
 	}
 
 	/**
