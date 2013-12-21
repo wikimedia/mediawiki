@@ -154,4 +154,8 @@ class HTMLCacheUpdateJob extends Job {
 			}
 		}
 	}
+
+	function workItemCount() {
+		return isset( $this->params['pages'] ) ? count( $this->params['pages'] ) : 1;
+	}
 }
