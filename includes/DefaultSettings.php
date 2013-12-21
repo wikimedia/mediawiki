@@ -6093,8 +6093,18 @@ $wgJobClasses = array(
  * - Jobs that you would never want to run as part of a page rendering request.
  * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
  *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
+ * These settings should be global to all wikis.
  */
 $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
+
+/**
+ * Map of job types to how many job "work items" should be run per second
+ * on each job runner process. The meaning of "work items" varies per job,
+ * but typically would be something like "pages to update". A single job
+ * may have a variable number of work items, as is the case with batch jobs.
+ * These settings should be global to all wikis.
+ */
+$wgJobBackoffThrottling = array();
 
 /**
  * Map of job types to configuration arrays.
