@@ -67,7 +67,7 @@ class SkinVector extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$styles = array( 'skins.common', 'skins.vector.styles' );
+		$styles = array( 'skins.common.interface', 'skins.vector.styles' );
 		wfRunHooks( 'SkinVectorStyleModules', array( &$this, &$styles ) );
 		$out->addModuleStyles( $styles );
 	}

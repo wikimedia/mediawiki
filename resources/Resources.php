@@ -51,6 +51,59 @@ return array(
 	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
 	/**
+	 * Common skin styles, grouped into three graded levels.
+	 *
+	 * Level 1 "elements":
+	 *     The base level that only contains the most basic of common skin styles.
+	 *     Only styles for single elements are included, no styling for complex structures like the TOC
+	 *     is present. This level is for skins that want to implement the entire style of even content area
+	 *     structures like the TOC themselves.
+	 *
+	 * Level 2 "content":
+	 *     The most commonly used level for skins implemented from scratch. This level includes all the single
+	 *     element styles from "elements" as well as styles for complex structures such as the TOC that are output
+	 *     in the content area by MediaWiki rather than the skin. Essentially this is the common level that lets
+	 *     skins leave the style of the content area as it is normally styled, while leaving the rest of the skin
+	 *     up to the skin implementation.
+	 *
+	 * Level 3 "interface":
+	 *     The highest level, this stylesheet contains extra common styles for classes like .firstHeading, #contentSub,
+	 *     et cetera which are not outputted by MediaWiki but are common to skins like MonoBook, Vector, etc...
+	 *     Essentially this level is for styles that are common to MonoBook clones. And since practically every skin
+	 *     that currently exists within core is a MonoBook clone, all our core skins currently use this level.
+	 *
+	 * These modules are typically loaded by addModuleStyles which has absolutely no concept of dependency
+	 * management. As a result the skins.common.* modules contain duplicate stylesheet references instead of
+	 * setting 'dependencies' to the lower level the module is based on. For this reason avoid including multiple
+	 * skins.common.* modules into your skin as this will result in duplicate css.
+	 */
+	'skins.common.elements' => array(
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.common.content' => array(
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.common.interface' => array(
+		// Used in the web installer. Test it after modifying this definition!
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+
+	/**
 	 * Skins
 	 * Be careful not to add 'scripts' to these modules,
 	 * since they are loaded with OutputPage::addModuleStyles so that the skin styles
@@ -72,16 +125,6 @@ return array(
 		'styles' => array(
 			'modern/main.css' => array( 'media' => 'screen' ),
 			'modern/print.css' => array( 'media' => 'print' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	'skins.common' => array(
-		// Used in the web installer. Test it after modifying this definition!
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
