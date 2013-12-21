@@ -216,6 +216,8 @@ production.
 * (bug 69789) Title::getContentModel() now loads from the database when
   necessary instead of incorrectly returning the default content model.
 * (bug 69249) wfBaseConvert() now works around PHP Bug #50175 when using GMP.
+* (bug 57909) URLs in the externallinks table will no longer have certain
+  characters decoded in the query string.
 
 === Action API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
