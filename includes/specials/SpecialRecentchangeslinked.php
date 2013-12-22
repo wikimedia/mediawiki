@@ -44,17 +44,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts['target'] = $par;
 	}
 
-	public function getFeedObject( $feedFormat ) {
-		$feed = new ChangesFeed( $feedFormat, false );
-		$feedObj = $feed->getFeedObject(
-			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
-				->inContentLanguage()->text(),
-			$this->msg( 'recentchangeslinked-feed' )->inContentLanguage()->text(),
-			$this->getTitle()->getFullURL()
-		);
-		return array( $feed, $feedObj );
-	}
-
 	public function doMainQuery( $conds, $opts ) {
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
@@ -219,6 +208,13 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $res;
 	}
 
+	function setTopText( FormOptions $opts ) {
+		$target = $this->getTargetTitle();
+		if ( $target ) {
+			$this->getOutput()->addBacklinkSubtitle( $target );
+		}
+	}
+
 	/**
 	 * Get options to be displayed in a form
 	 *
@@ -238,6 +234,17 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $extraOpts;
 	}
 
+	public function getFeedObject( $feedFormat ) {
+		$feed = new ChangesFeed( $feedFormat, false );
+		$feedObj = $feed->getFeedObject(
+			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
+				->inContentLanguage()->text(),
+			$this->msg( 'recentchangeslinked-feed' )->inContentLanguage()->text(),
+			$this->getTitle()->getFullURL()
+		);
+		return array( $feed, $feedObj );
+	}
+
 	/**
 	 * @return Title
 	 */
@@ -251,12 +258,5 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			}
 		}
 		return $this->rclTargetTitle;
-	}
-
-	function setTopText( FormOptions $opts ) {
-		$target = $this->getTargetTitle();
-		if ( $target ) {
-			$this->getOutput()->addBacklinkSubtitle( $target );
-		}
 	}
 }

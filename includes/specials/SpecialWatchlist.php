@@ -29,77 +29,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object containing the default options
-	 *
-	 * @return FormOptions
-	 */
-	public function getDefaultOptions() {
-		$opts = parent::getDefaultOptions();
-		$user = $this->getUser();
-
-		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
-
-		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
-		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
-		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
-		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
-		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
-		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
-
-		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
-
-		return $opts;
-	}
-
-	/**
-	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
-	 *
-	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
-	 * to the current ones.
-	 *
-	 * @param FormOptions $parameters
-	 * @return FormOptions
-	 */
-	protected function fetchOptionsFromRequest( $opts ) {
-		static $compatibilityMap = array(
-			'hideMinor' => 'hideminor',
-			'hideBots' => 'hidebots',
-			'hideAnons' => 'hideanons',
-			'hideLiu' => 'hideliu',
-			'hidePatrolled' => 'hidepatrolled',
-			'hideOwn' => 'hidemyself',
-		);
-
-		$params = $this->getRequest()->getValues();
-		foreach ( $compatibilityMap as $from => $to ) {
-			if ( isset( $params[$from] ) ) {
-				$params[$to] = $params[$from];
-				unset( $params[$from] );
-			}
-		}
-
-		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
-		// methods defined on WebRequest and removing this dependency would cause some code duplication.
-		$request = new DerivativeRequest( $this->getRequest(), $params );
-		$opts->fetchValuesFromRequest( $request );
-		return $opts;
-	}
-
-	/**
-	 * Get custom show/hide filters
-	 *
-	 * @return array Map of filter URL param names to properties (msg/default)
-	 */
-	protected function getCustomFilters() {
-		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
-			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
-		}
-
-		return $this->customFilters;
-	}
-
-	/**
 	 * Execute
 	 * @param $par Parameter passed to the page
 	 */
@@ -179,6 +108,77 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$rows->free();
+	}
+
+	/**
+	 * Get a FormOptions object containing the default options
+	 *
+	 * @return FormOptions
+	 */
+	public function getDefaultOptions() {
+		$opts = parent::getDefaultOptions();
+		$user = $this->getUser();
+
+		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
+
+		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
+		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
+		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
+		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
+		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
+
+		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
+
+		return $opts;
+	}
+
+	/**
+	 * Get custom show/hide filters
+	 *
+	 * @return array Map of filter URL param names to properties (msg/default)
+	 */
+	protected function getCustomFilters() {
+		if ( $this->customFilters === null ) {
+			$this->customFilters = array();
+			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
+		}
+
+		return $this->customFilters;
+	}
+
+	/**
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
+	 *
+	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
+	 * to the current ones.
+	 *
+	 * @param FormOptions $parameters
+	 * @return FormOptions
+	 */
+	protected function fetchOptionsFromRequest( $opts ) {
+		static $compatibilityMap = array(
+			'hideMinor' => 'hideminor',
+			'hideBots' => 'hidebots',
+			'hideAnons' => 'hideanons',
+			'hideLiu' => 'hideliu',
+			'hidePatrolled' => 'hidepatrolled',
+			'hideOwn' => 'hidemyself',
+		);
+
+		$params = $this->getRequest()->getValues();
+		foreach ( $compatibilityMap as $from => $to ) {
+			if ( isset( $params[$from] ) ) {
+				$params[$to] = $params[$from];
+				unset( $params[$from] );
+			}
+		}
+
+		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
+		// methods defined on WebRequest and removing this dependency would cause some code duplication.
+		$request = new DerivativeRequest( $this->getRequest(), $params );
+		$opts->fetchValuesFromRequest( $request );
+		return $opts;
 	}
 
 	/**
@@ -397,51 +397,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 	}
 
-	function setTopText( FormOptions $opts ) {
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
-
-		$nondefaults = $opts->getChangedValues();
-		$form = "";
-
-		# Show watchlist header
-		$form .= "<p>";
-		$form .= $this->msg( 'watchlist-details' )->numParams( $this->numItems )->parse() . "\n";
-		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
-			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
-		}
-		if ( $wgShowUpdatedMarker ) {
-			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
-		}
-		$form .= "</p>";
-
-		if ( $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getTitle()->getLocalURL(),
-				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
-			Html::hidden( 'reset', 'all' ) . "\n";
-			foreach ( $nondefaults as $key => $value ) {
-				$form .= Html::hidden( $key, $value ) . "\n";
-			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
-		}
-
-		$form .= Xml::openElement( 'form', array(
-			'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL(),
-			'id' => 'mw-watchlist-form'
-		) );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
-			array( 'id' => 'mw-watchlist-options' )
-		);
-
-		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
-
-		$this->getOutput()->addHTML( $form );
-	}
-
 	/**
 	 * Return the text to be displayed above the changes
 	 *
@@ -535,6 +490,51 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->getOutput()->addHTML( $form );
 
 		$this->setBottomText( $opts );
+	}
+
+	function setTopText( FormOptions $opts ) {
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
+
+		$nondefaults = $opts->getChangedValues();
+		$form = "";
+
+		# Show watchlist header
+		$form .= "<p>";
+		$form .= $this->msg( 'watchlist-details' )->numParams( $this->numItems )->parse() . "\n";
+		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+		}
+		if ( $wgShowUpdatedMarker ) {
+			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+		}
+		$form .= "</p>";
+
+		if ( $wgShowUpdatedMarker ) {
+			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getTitle()->getLocalURL(),
+				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'reset', 'all' ) . "\n";
+			foreach ( $nondefaults as $key => $value ) {
+				$form .= Html::hidden( $key, $value ) . "\n";
+			}
+			$form .= Xml::closeElement( 'form' ) . "\n";
+		}
+
+		$form .= Xml::openElement( 'form', array(
+			'method' => 'post',
+			'action' => $this->getTitle()->getLocalURL(),
+			'id' => 'mw-watchlist-form'
+		) );
+		$form .= Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			array( 'id' => 'mw-watchlist-options' )
+		);
+
+		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
+
+		$this->getOutput()->addHTML( $form );
 	}
 
 	protected function showHideLink( $options, $message, $name, $value ) {
