@@ -161,7 +161,6 @@ class ChangesList extends ContextSource {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
-		$this->getOutput()->addModules( 'mediawiki.special.changeslist.js' );
 
 		return '<div class="mw-changeslist">';
 	}
