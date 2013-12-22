@@ -39,56 +39,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::__construct( $name, $restriction );
 	}
 
-	public function isIncludable() {
-		return true;
-	}
-
-	/**
-	 * Get a FormOptions object containing the default options
-	 *
-	 * @return FormOptions
-	 */
-	public function getDefaultOptions() {
-		$opts = parent::getDefaultOptions();
-		$user = $this->getUser();
-
-		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
-		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
-		$opts->add( 'from', '' );
-
-		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
-		$opts->add( 'hidebots', true );
-		$opts->add( 'hideanons', false );
-		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
-		$opts->add( 'hidemyself', false );
-
-		$opts->add( 'categories', '' );
-		$opts->add( 'categories_any', false );
-		$opts->add( 'tagfilter', '' );
-
-		return $opts;
-	}
-
-	public function validateOptions( FormOptions $opts ) {
-		global $wgFeedLimit;
-		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
-	}
-
-	/**
-	 * Get custom show/hide filters
-	 *
-	 * @return array Map of filter URL param names to properties (msg/default)
-	 */
-	protected function getCustomFilters() {
-		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
-			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
-		}
-
-		return $this->customFilters;
-	}
-
 	/**
 	 * Main execution point
 	 *
@@ -143,20 +93,44 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return an array with a ChangesFeed object and ChannelFeed object
+	 * Get a FormOptions object containing the default options
 	 *
-	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
-	 * @return array
+	 * @return FormOptions
 	 */
-	public function getFeedObject( $feedFormat ) {
-		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
-		$formatter = $changesFeed->getFeedObject(
-			$this->msg( 'recentchanges' )->inContentLanguage()->text(),
-			$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
-			$this->getPageTitle()->getFullURL()
-		);
+	public function getDefaultOptions() {
+		$opts = parent::getDefaultOptions();
+		$user = $this->getUser();
 
-		return array( $changesFeed, $formatter );
+		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
+		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
+		$opts->add( 'from', '' );
+
+		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hidebots', true );
+		$opts->add( 'hideanons', false );
+		$opts->add( 'hideliu', false );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
+		$opts->add( 'hidemyself', false );
+
+		$opts->add( 'categories', '' );
+		$opts->add( 'categories_any', false );
+		$opts->add( 'tagfilter', '' );
+
+		return $opts;
+	}
+
+	/**
+	 * Get custom show/hide filters
+	 *
+	 * @return array Map of filter URL param names to properties (msg/default)
+	 */
+	protected function getCustomFilters() {
+		if ( $this->customFilters === null ) {
+			$this->customFilters = array();
+			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
+		}
+
+		return $this->customFilters;
 	}
 
 	/**
@@ -210,25 +184,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 	}
 
-	/**
-	 * Get last modified date, for client caching
-	 * Don't use this if we are using the patrol feature, patrol changes don't
-	 * update the timestamp
-	 *
-	 * @param string $feedFormat
-	 * @return string|bool
-	 */
-	public function checkLastModified( $feedFormat ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
-		if ( $feedFormat || !$this->getUser()->useRCPatrol() ) {
-			if ( $lastmod && $this->getOutput()->checkLastModified( $lastmod ) ) {
-				# Client cache fresh and headers sent, nothing more to do.
-				return false;
-			}
-		}
-
-		return $lastmod;
+	public function validateOptions( FormOptions $opts ) {
+		global $wgFeedLimit;
+		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
 	}
 
 	/**
@@ -477,28 +435,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get the query string to append to feed link URLs.
-	 *
-	 * @return string
-	 */
-	public function getFeedQuery() {
-		global $wgFeedLimit;
-
-		$this->getOptions()->validateIntBounds( 'limit', 0, $wgFeedLimit );
-		$options = $this->getOptions()->getChangedValues();
-
-		// wfArrayToCgi() omits options set to null or false
-		foreach ( $options as &$value ) {
-			if ( $value === false ) {
-				$value = '0';
-			}
-		}
-		unset( $value );
-
-		return wfArrayToCgi( $options );
-	}
-
-	/**
 	 * Return the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
@@ -574,6 +510,27 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Send the text to be displayed above the options
+	 *
+	 * @param FormOptions $opts Unused
+	 */
+	function setTopText( FormOptions $opts ) {
+		global $wgContLang;
+
+		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
+		if ( !$message->isDisabled() ) {
+			$this->getOutput()->addWikiText(
+				Html::rawElement( 'p',
+					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+					"\n" . $message->plain() . "\n"
+				),
+				/* $lineStart */ false,
+				/* $interface */ false
+			);
+		}
+	}
+
+	/**
 	 * Get options to be displayed in a form
 	 *
 	 * @param FormOptions $opts
@@ -606,24 +563,72 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed above the options
-	 *
-	 * @param FormOptions $opts Unused
+	 * Add page-specific modules.
 	 */
-	function setTopText( FormOptions $opts ) {
-		global $wgContLang;
+	protected function addModules() {
+		parent::addModules();
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.recentchanges' );
+	}
 
-		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
-		if ( !$message->isDisabled() ) {
-			$this->getOutput()->addWikiText(
-				Html::rawElement( 'p',
-					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
-					"\n" . $message->plain() . "\n"
-				),
-				/* $lineStart */ false,
-				/* $interface */ false
-			);
+	/**
+	 * Get last modified date, for client caching
+	 * Don't use this if we are using the patrol feature, patrol changes don't
+	 * update the timestamp
+	 *
+	 * @param string $feedFormat
+	 * @return string|bool
+	 */
+	public function checkLastModified( $feedFormat ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
+		if ( $feedFormat || !$this->getUser()->useRCPatrol() ) {
+			if ( $lastmod && $this->getOutput()->checkLastModified( $lastmod ) ) {
+				# Client cache fresh and headers sent, nothing more to do.
+				return false;
+			}
 		}
+
+		return $lastmod;
+	}
+
+	/**
+	 * Return an array with a ChangesFeed object and ChannelFeed object
+	 *
+	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
+	 * @return array
+	 */
+	public function getFeedObject( $feedFormat ) {
+		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
+		$formatter = $changesFeed->getFeedObject(
+			$this->msg( 'recentchanges' )->inContentLanguage()->text(),
+			$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
+			$this->getPageTitle()->getFullURL()
+		);
+
+		return array( $changesFeed, $formatter );
+	}
+
+	/**
+	 * Get the query string to append to feed link URLs.
+	 *
+	 * @return string
+	 */
+	public function getFeedQuery() {
+		global $wgFeedLimit;
+
+		$this->getOptions()->validateIntBounds( 'limit', 0, $wgFeedLimit );
+		$options = $this->getOptions()->getChangedValues();
+
+		// wfArrayToCgi() omits options set to null or false
+		foreach ( $options as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+
+		return wfArrayToCgi( $options );
 	}
 
 	/**
@@ -854,12 +859,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
 
-	/**
-	 * Add page-specific modules.
-	 */
-	protected function addModules() {
-		parent::addModules();
-		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.recentchanges' );
+	public function isIncludable() {
+		return true;
 	}
 }
