@@ -32,19 +32,60 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected $customFilters;
 
 	/**
+	 * The feed format to output as (either 'rss' or 'atom'), or null if no
+	 * feed output was requested
+	 *
+	 * @var string $feedFormat
+	 */
+	protected $feedFormat;
+
+	/**
 	 * Main execution point
-	 * @todo This should totally do things
 	 *
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
-		throw new MWException( "Not implemented" );
+		$this->feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
+
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->addModules();
+
+		$opts = $this->getOptions();
+		// Fetch results, prepare a batch link existence check query
+		$conds = $this->buildMainQueryConds( $opts );
+		$rows = $this->doMainQuery( $conds, $opts );
+		if ( $rows === false ) {
+			if ( !$this->including() ) {
+				$this->doHeader( $opts );
+			}
+
+			return;
+		}
+
+		if ( !$this->feedFormat ) {
+			$batch = new LinkBatch;
+			foreach ( $rows as $row ) {
+				$batch->add( NS_USER, $row->rc_user_text );
+				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$batch->add( $row->rc_namespace, $row->rc_title );
+			}
+			$batch->execute();
+		}
+		if ( $this->feedFormat ) {
+			list( $changesFeed, $formatter ) = $this->getFeedObject( $this->feedFormat );
+			/** @var ChangesFeed $changesFeed */
+			$changesFeed->execute( $formatter, $rows, $this->checkLastModified( $this->feedFormat ), $opts );
+		} else {
+			$this->webOutput( $rows, $opts );
+		}
+
+		$rows->free();
 	}
 
 	/**
 	 * Get the current FormOptions for this request
-	 * @todo Not called by anything, should be called by execute()
 	 *
 	 * @return FormOptions
 	 */
@@ -142,7 +183,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Return an array of conditions depending of options set in $opts
 	 * @todo This should build some basic conditions here…
-	 * @todo Not called by anything, should be called by execute()
 	 *
 	 * @param FormOptions $opts
 	 * @return array
@@ -152,7 +192,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Process the query
 	 * @todo This should build some basic processing here…
-	 * @todo Not called by anything, should be called by execute()
 	 *
 	 * @param array $conds
 	 * @param FormOptions $opts
@@ -163,7 +202,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 * @todo This should do most, if not all, of the outputting now done by subclasses
-	 * @todo Not called by anything, should be called by execute()
 	 *
 	 * @param array $rows Database rows
 	 * @param FormOptions $opts
@@ -278,13 +316,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Add page-specific modules.
-	 * @todo Not called by anything, should be called by execute()
 	 */
 	protected function addModules() {
 		$out = $this->getOutput();
 		// Styles and behavior for the legend box (see makeLegend())
 		$out->addModuleStyles( 'mediawiki.special.changeslist.legend' );
 		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
+	}
+
+	/**
+	 * Get last-modified date, for client caching. Not implemented by default
+	 * (returns current time).
+	 *
+	 * @param string $feedFormat
+	 * @return string|bool
+	 */
+	public function checkLastModified( $feedFormat ) {
+		return wfTimestampNow();
 	}
 
 	protected function getGroupName() {
