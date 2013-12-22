@@ -23,6 +23,8 @@
  * @author Antoine Musso <hashar@free.fr>
  */
 
+define( 'MW_SETUP_NO_CACHE', 1 );
+define( 'MW_SETUP_NO_CONTEXT', 1 );
 require_once __DIR__ . '/Maintenance.php';
 
 /**
