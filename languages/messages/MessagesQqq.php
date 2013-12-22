@@ -2266,6 +2266,11 @@ See also:
 * $1 - target IP address
 * $2 - reason or {{msg-mw|blockednoreason}}
 * $3 - username',
+'cantcreateaccount-range-text' => "Used as more detailed version of the {{msg-mw|Cantcreateaccount-text}} error message, with the title {{msg-mw|cantcreateaccounttitle}}.
+* $1 - target IP range
+* $2 - reason or {{msg-mw|blockednoreason}}
+* $3 - username
+* $4 - current user's IP address",
 
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',

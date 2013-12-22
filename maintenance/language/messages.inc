@@ -800,6 +800,7 @@ $wgMessageStructure = array(
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',
 		'cantcreateaccount-text',
+		'cantcreateaccount-range-text',
 	),
 	'history' => array(
 		'viewpagelogs',

@@ -980,13 +980,15 @@ class LoginForm extends SpecialPage {
 		# haven't bothered to log out before trying to create an account to
 		# evade it, but we'll leave that to their guilty conscience to figure
 		# out.
+		$isRangeBlock = $block->getType() === Block::TYPE_RANGE;
 		throw new ErrorPageError(
 			'cantcreateaccounttitle',
-			'cantcreateaccount-text',
+			$isRangeBlock ? 'cantcreateaccount-range-text' : 'cantcreateaccount-text',
 			array(
 				$block->getTarget(),
 				$block->mReason ? $block->mReason : $this->msg( 'blockednoreason' )->text(),
-				$block->getByName()
+				$block->getByName(),
+				$isRangeBlock ? $this->getRequest()->getIP() : false // Only used in cantcreateaccount-range-text
 			)
 		);
 	}
