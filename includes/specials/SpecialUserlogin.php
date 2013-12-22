@@ -980,14 +980,23 @@ class LoginForm extends SpecialPage {
 		# haven't bothered to log out before trying to create an account to
 		# evade it, but we'll leave that to their guilty conscience to figure
 		# out.
+		$errorParams = array(
+			$block->getTarget(),
+			$block->mReason ? $block->mReason : $this->msg( 'blockednoreason' )->text(),
+			$block->getByName()
+		);
+
+		if ( $block->getType() === Block::TYPE_RANGE ) {
+			$errorMessage = 'cantcreateaccount-range-text';
+			$errorParams[] = $this->getRequest()->getIP();
+		} else {
+			$errorMessage = 'cantcreateaccount-text';
+		}
+
 		throw new ErrorPageError(
 			'cantcreateaccounttitle',
-			'cantcreateaccount-text',
-			array(
-				$block->getTarget(),
-				$block->mReason ? $block->mReason : $this->msg( 'blockednoreason' )->text(),
-				$block->getByName()
-			)
+			$errorMessage,
+			$errorParams
 		);
 	}
 
