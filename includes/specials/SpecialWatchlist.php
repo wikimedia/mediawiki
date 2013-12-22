@@ -74,7 +74,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
-		$this->numRows = $rows->numRows(); // TODO kill me
 		if ( $rows === false ) {
 			$this->doHeader( $opts );
 
@@ -423,7 +422,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$wlInfo = '';
 		if ( $opts['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
-			$wlInfo = $this->msg( 'wlnote' )->numParams( $this->numRows, round( $opts['days'] * 24 ) )->params(
+			$wlInfo = $this->msg( 'wlnote2' )->numParams( /* unused */ 0, round( $opts['days'] * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
 		}
 
