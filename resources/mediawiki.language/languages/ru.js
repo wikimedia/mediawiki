@@ -1,4 +1,4 @@
-/**
+/*!
  * Russian (Русский) language functions
  */
 

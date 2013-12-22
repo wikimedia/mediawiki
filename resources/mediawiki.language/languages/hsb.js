@@ -1,4 +1,4 @@
-/**
+/*!
  * Upper Sorbian (Hornjoserbsce) language functions
  */
 

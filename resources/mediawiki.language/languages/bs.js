@@ -1,4 +1,4 @@
-/**
+/*!
  * Bosnian (bosanski) language functions
  */
 
