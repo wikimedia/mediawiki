@@ -74,6 +74,8 @@ production.
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
 * (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds.
+* (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
+  to appear blank or with missing text.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
