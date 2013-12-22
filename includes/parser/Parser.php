@@ -3238,6 +3238,7 @@ class Parser {
 		$forceRawInterwiki = false; # Force interwiki transclusion to be done in raw mode not rendered
 		$isChildObj = false;        # $text is a DOM node needing expansion in a child frame
 		$isLocalObj = false;        # $text is a DOM node needing expansion in the current frame
+		$isTransclude = false;      # $text contains a transcluded page, DOMness determined by isChildObj
 
 		# Title object, where $text came from
 		$title = false;
@@ -3423,6 +3424,7 @@ class Parser {
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
+						$isTransclude = true;
 					}
 				}
 
@@ -3442,6 +3444,7 @@ class Parser {
 					$text = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
 					$isChildObj = true;
 				}
+				$isTransclude = true;
 				$found = true;
 			}
 
@@ -3492,7 +3495,9 @@ class Parser {
 			$text = $frame->expand( $text, PPFrame::RECOVER_ORIG );
 			$isLocalObj = false;
 		}
-
+		if ($isTransclude) {
+		        wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		}
 		if ( $titleProfileIn ) {
 			wfProfileOut( $titleProfileIn ); // template out
 		}
