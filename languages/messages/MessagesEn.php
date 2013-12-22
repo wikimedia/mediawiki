@@ -1615,6 +1615,9 @@ Please check the comparison below to verify that this is what you want to do, an
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Cannot create account',
+'cantcreateaccount-range-text' => "Account creation from IP addresses in the range '''$1''', which includes your IP address ('''$4'''), has been blocked by [[User:$3|$3]].
+
+The reason given by $3 is ''$2''",
 'cantcreateaccount-text' => "Account creation from this IP address ('''$1''') has been blocked by [[User:$3|$3]].
 
 The reason given by $3 is ''$2''",
