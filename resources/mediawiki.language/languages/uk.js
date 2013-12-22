@@ -1,4 +1,4 @@
-/**
+/*!
  * Ukrainian (Українська) language functions
  */
 

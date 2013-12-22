@@ -1,4 +1,4 @@
-/**
+/*!
  * Slovenian (Slovenščina) language functions
  */
 

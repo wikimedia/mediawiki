@@ -1,6 +1,6 @@
-/**
- *  Finnish (Suomi) language functions
- *  @author Santhosh Thottingal
+/*!
+ * Finnish (Suomi) language functions
+ * @author Santhosh Thottingal
  */
 
 mediaWiki.language.convertGrammar = function ( word, form ) {

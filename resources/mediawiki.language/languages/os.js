@@ -1,8 +1,7 @@
-/**
+/*!
  * Ossetian (Ирон) language functions
  * @author Santhosh Thottingal
  */
-
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
 	var grammarForms = mediaWiki.language.getData( 'os', 'grammarForms' ),

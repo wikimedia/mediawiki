@@ -1,4 +1,4 @@
-/**
+/*!
  * Latin (lingua Latina) language functions
  * @author Santhosh Thottingal
  */
