@@ -282,9 +282,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function addModules() {
 		$out = $this->getOutput();
-		// These modules include styles and behavior for the legend box, load them unconditionally
-		$out->addModuleStyles( 'mediawiki.special.changeslist' );
-		$out->addModules( 'mediawiki.special.changeslist.js' );
+		// Styles and behavior for the legend box (see makeLegend())
+		$out->addModuleStyles( 'mediawiki.special.changeslist.legend' );
+		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
 	}
 
 	protected function getGroupName() {

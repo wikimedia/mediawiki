@@ -1,3 +1,7 @@
+/**
+ * Script for changes list legend
+ */
+
 /* Remember the collapse state of the legend on recent changes and watchlist pages. */
 jQuery( document ).ready( function ( $ ) {
 	var
