@@ -754,6 +754,21 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
+	 * @see $wgEnableAutoRotation
+	 * @return bool Whether auto rotation is enabled
+	 */
+	public static function autoRotateEnabled() {
+		global $wgEnableAutoRotation;
+
+		if ( $wgEnableAutoRotation === null ) {
+			// Only enable auto-rotation when the bitmap handler can rotate
+			$wgEnableAutoRotation = BitmapHandler::canRotate();
+		}
+
+		return $wgEnableAutoRotation;
+	}
+
+	/**
 	 * @param File $file
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90

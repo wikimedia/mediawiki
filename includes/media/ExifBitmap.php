@@ -169,12 +169,11 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getImageSize( $image, $path ) {
-		global $wgEnableAutoRotation;
 		$gis = parent::getImageSize( $image, $path );
 
 		// Don't just call $image->getMetadata(); FSFile::getPropsFromPath() calls us with a bogus object.
 		// This may mean we read EXIF data twice on initial upload.
-		if ( $wgEnableAutoRotation ) {
+		if ( BitmapHandler::autoRotateEnabled() ) {
 			$meta = $this->getMetadata( $image, $path );
 			$rotation = $this->getRotationForExif( $meta );
 		} else {
@@ -203,8 +202,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {
-		global $wgEnableAutoRotation;
-		if ( !$wgEnableAutoRotation ) {
+		if ( !BitmapHandler::autoRotateEnabled() ) {
 			return 0;
 		}
 
