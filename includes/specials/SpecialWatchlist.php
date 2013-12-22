@@ -18,7 +18,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage Watchlist
+ * @ingroup SpecialPage
+ */
+
+/**
+ * A special page that lists last changes made to the wiki,
+ * limited to user-defined list of titles.
+ *
+ * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
@@ -29,25 +36,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Execute
-	 * @param $par Parameter passed to the page
+	 * Main execution point
+	 *
+	 * @param string $subpage
 	 */
-	function execute( $par ) {
+	function execute( $subpage ) {
 		global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
-		$user = $this->getUser();
-		$output = $this->getOutput();
-
-		# Anons don't get a watchlist
+		// Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
 
-		// Check permissions
-		$this->checkPermissions();
-
+		$output = $this->getOutput();
 		$request = $this->getRequest();
-		$opts = $this->getOptions();
 
-		$mode = SpecialEditWatchlist::getMode( $request, $par );
+		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
 			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
@@ -59,6 +61,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
+		$this->checkPermissions();
+
+		$user = $this->getUser();
+		$opts = $this->getOptions();
+
 		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
 			$request->wasPosted() )
 		{
@@ -67,38 +74,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->addModules();
-
-		// Fetch results, prepare a batch link existence check query
-		$conds = $this->buildMainQueryConds( $opts );
-		$rows = $this->doMainQuery( $conds, $opts );
-		if ( $rows === false ) {
-			$this->doHeader( $opts );
-
-			return;
-		}
-
-		$feedFormat = $this->getRequest()->getVal( 'feed' );
-		if ( !$feedFormat ) {
-			$batch = new LinkBatch;
-			foreach ( $rows as $row ) {
-				$batch->add( NS_USER, $row->rc_user_text );
-				$batch->add( NS_USER_TALK, $row->rc_user_text );
-				$batch->add( $row->rc_namespace, $row->rc_title );
-			}
-			$batch->execute();
-		}
-		if ( $feedFormat ) {
-			list( $changesFeed, $formatter ) = $this->getFeedObject( $feedFormat );
-			/** @var ChangesFeed $changesFeed */
-			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
-		} else {
-			$this->webOutput( $rows, $opts );
-		}
-
-		$rows->free();
+		parent::execute( $subpage );
 	}
 
 	/**
