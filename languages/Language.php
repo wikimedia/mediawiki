@@ -929,6 +929,7 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+		$code = strtolower( $code );
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
