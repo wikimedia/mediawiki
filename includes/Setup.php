@@ -248,13 +248,6 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 }
 unset( $repo ); // no global pollution; destroy reference
 
-if ( is_null( $wgEnableAutoRotation ) ) {
-	wfProfileIn( $fname . '-defaults-rotation' );
-	// Only enable auto-rotation when the bitmap handler can rotate
-	$wgEnableAutoRotation = BitmapHandler::canRotate();
-	wfProfileOut( $fname . '-defaults-rotation' );
-}
-
 if ( $wgRCFilterByAge ) {
 	# # Trim down $wgRCLinkDays so that it only lists links which are valid
 	# # as determined by $wgRCMaxAge.
