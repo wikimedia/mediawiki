@@ -27,13 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
-	/**
-	 * The feed format to output as (either 'rss' or 'atom'), or null if no
-	 * feed output was requested
-	 *
-	 * @var string $feedFormat
-	 */
-	protected $feedFormat;
 
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
@@ -44,52 +37,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @param string $subpage
 	 */
-	public function execute( $subpage ) {
-		$this->rcSubpage = $subpage;
-		$this->feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
-
-		# 10 seconds server-side caching max
+	public function execute( $subpage ) {// 10 seconds server-side caching max
 		$this->getOutput()->setSquidMaxage( 10 );
-		# Check if the client has a cached version
+		// Check if the client has a cached version
 		$lastmod = $this->checkLastModified( $this->feedFormat );
 		if ( $lastmod === false ) {
 			return;
 		}
 
-		$opts = $this->getOptions();
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->addModules();
-
-		// Fetch results, prepare a batch link existence check query
-		$conds = $this->buildMainQueryConds( $opts );
-		$rows = $this->doMainQuery( $conds, $opts );
-		if ( $rows === false ) {
-			if ( !$this->including() ) {
-				$this->doHeader( $opts );
-			}
-
-			return;
-		}
-
-		if ( !$this->feedFormat ) {
-			$batch = new LinkBatch;
-			foreach ( $rows as $row ) {
-				$batch->add( NS_USER, $row->rc_user_text );
-				$batch->add( NS_USER_TALK, $row->rc_user_text );
-				$batch->add( $row->rc_namespace, $row->rc_title );
-			}
-			$batch->execute();
-		}
-		if ( $this->feedFormat ) {
-			list( $changesFeed, $formatter ) = $this->getFeedObject( $this->feedFormat );
-			/** @var ChangesFeed $changesFeed */
-			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
-		} else {
-			$this->webOutput( $rows, $opts );
-		}
-
-		$rows->free();
+		parent::execute( $subpage );
 	}
 
 	/**

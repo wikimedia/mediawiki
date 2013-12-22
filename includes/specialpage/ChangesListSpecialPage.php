@@ -32,14 +32,56 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected $customFilters;
 
 	/**
+	 * The feed format to output as (either 'rss' or 'atom'), or null if no
+	 * feed output was requested
+	 *
+	 * @var string $feedFormat
+	 */
+	protected $feedFormat;
+
+	/**
 	 * Main execution point
-	 * @todo This should totally do things
 	 *
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
-		throw new MWException( "Not implemented" );
+		$this->feedFormat = $this->including() ? null : $this->getRequest()->getVal( 'feed' );
+
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->addModules();
+
+		$opts = $this->getOptions();
+		// Fetch results, prepare a batch link existence check query
+		$conds = $this->buildMainQueryConds( $opts );
+		$rows = $this->doMainQuery( $conds, $opts );
+		if ( $rows === false ) {
+			if ( !$this->including() ) {
+				$this->doHeader( $opts );
+			}
+
+			return;
+		}
+
+		if ( !$this->feedFormat ) {
+			$batch = new LinkBatch;
+			foreach ( $rows as $row ) {
+				$batch->add( NS_USER, $row->rc_user_text );
+				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$batch->add( $row->rc_namespace, $row->rc_title );
+			}
+			$batch->execute();
+		}
+		if ( $this->feedFormat ) {
+			list( $changesFeed, $formatter ) = $this->getFeedObject( $this->feedFormat );
+			/** @var ChangesFeed $changesFeed */
+			$changesFeed->execute( $formatter, $rows, $lastmod, $opts );
+		} else {
+			$this->webOutput( $rows, $opts );
+		}
+
+		$rows->free();
 	}
 
 	/**
