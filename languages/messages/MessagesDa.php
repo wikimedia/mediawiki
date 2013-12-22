@@ -1058,6 +1058,9 @@ Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brugerkontoen kan ikke oprettes.',
 'cantcreateaccount-text' => "Oprettelsen af en brugerkonto fra IP-adressen <b>$1</b> er spærret af [[User:$3|$3]]. Årsagen til blokeringen er angivet som ''$2''",
+'cantcreateaccount-range-text' => "Oprettelsen af en brugerkonto fra IP-adresser i intervallet '''$1''', som omfatter din IP-adresse ('''$4'''), er blevet blokeret af [[User:$3|$3]].
+
+Årsagen angivet af $3 er ''$2''",
 
 # History pages
 'viewpagelogs' => 'Vis loglister for denne side',
@@ -3769,13 +3772,14 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Omdirigering pga. fil, bruger eller udgave ID',
+'redirect' => 'Omdirigering pga. fil, bruger-, side- eller udgave-ID',
 'redirect-legend' => 'Omstilling til en fil eller en side',
-'redirect-summary' => "Denne specialside omdirigerer til en fil (hvis filnavnet er angivet), en side (hvis udgave ID'et er angivet) eller en brugerside (hvis et numerisk brugernummer er angivet). Eksempler på brug: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] eller [[{{#Special:Redirect}}/user/101]].",
-'redirect-submit' => 'Kør',
+'redirect-summary' => "Denne specialside omdirigerer til en fil (hvis filnavnet er angivet), en side (hvis udgave ID'et eller side ID'et er angivet) eller en brugerside (hvis et numerisk brugernummer er angivet). Eksempler på brug: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]],[[{{#Special:Redirect}}/revision/328429]] eller [[{{#Special:Redirect}}/user/101]].",
+'redirect-submit' => 'Vis',
 'redirect-lookup' => 'Slå op:',
 'redirect-value' => 'Værdi:',
 'redirect-user' => 'Bruger ID',
+'redirect-page' => 'Side-ID',
 'redirect-revision' => 'Sideversion',
 'redirect-file' => 'Filnavn',
 'redirect-not-exists' => 'Værdi ej fundet',

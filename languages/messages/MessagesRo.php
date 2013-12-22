@@ -1174,6 +1174,9 @@ Acsete argumente au fost omise.',
 'cantcreateaccount-text' => "Crearea de conturi de la această adresă IP ('''$1''') a fost blocată de [[User:$3|$3]].
 
 Motivul invocat de $3 este ''$2''",
+'cantcreateaccount-range-text' => "Crearea de conturi de la adresele IP din gama '''$1''', care o include și pe a dumneavoastră ('''$4'''), a fost blocată de [[User:$3|$3]].
+
+Motivul invocat de $3 este ''$2''",
 
 # History pages
 'viewpagelogs' => 'Afișează jurnalele paginii',
@@ -3912,13 +3915,14 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Redirecționare după fișier, utilizator sau ID-ul versiunii',
+'redirect' => 'Redirecționare după fișier, utilizator, ID-ul paginii sau al versiunii',
 'redirect-legend' => 'Redirecționare către un fișier sau o pagină',
-'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului). Utilizare: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] sau [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Această pagină specială vă redirecționează către un fișier (dat fiind un nume de fișier), o pagină (dat fiind ID-ul unei versiuni sau ID-ul unei pagini) sau o pagină de utilizator (dat fiind un ID numeric al utilizatorului). Utilizare: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] sau [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Du-te',
 'redirect-lookup' => 'Căutare:',
 'redirect-value' => 'Valoare:',
 'redirect-user' => 'ID utilizator',
+'redirect-page' => 'ID pagină',
 'redirect-revision' => 'Versiune de pagină',
 'redirect-file' => 'Nume de fișier',
 'redirect-not-exists' => 'Valoarea nu a fot găsită',

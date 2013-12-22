@@ -2262,13 +2262,15 @@ See also:
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Used as title of the error message {{msg-mw|Cantcreateaccount-text}}.',
-'cantcreateaccount-text' => 'Used as error message, with the title {{msg-mw|cantcreateaccounttitle}}.
+'cantcreateaccount-text' => 'Used as error message, with the title {{msg-mw|Cantcreateaccounttitle}}.
 * $1 - target IP address
-* $2 - reason or {{msg-mw|blockednoreason}}
-* $3 - username',
-'cantcreateaccount-range-text' => "Used as more detailed version of the {{msg-mw|Cantcreateaccount-text}} error message, with the title {{msg-mw|cantcreateaccounttitle}}.
+* $2 - reason or {{msg-mw|Blockednoreason}}
+* $3 - username
+See also:
+* {{msg-mw|Cantcreateaccount-range-text}}',
+'cantcreateaccount-range-text' => "Used as more detailed version of the {{msg-mw|Cantcreateaccount-text}} error message, with the title {{msg-mw|Cantcreateaccounttitle}}.
 * $1 - target IP range
-* $2 - reason or {{msg-mw|blockednoreason}}
+* $2 - reason or {{msg-mw|Blockednoreason}}
 * $3 - username
 * $4 - current user's IP address",
 

@@ -997,6 +997,9 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 'cantcreateaccount-text' => "Wutworjenje wužiwarskeho konta z IP-adresy '''$1''' bu wot [[User:$3|$3]] zablokowane.
 
 Přičina za blokowanje, podata wot $3, je: ''$2''",
+'cantcreateaccount-range-text' => "Załoženje kontow z IP-adresow we wobłuku '''$1'', kotryž twoju IP-adresu wobsahuje ('''$4'''), je so wot [[User:$3|$3]] zablokowało.
+
+Přičina podata wot $3 je ''$2''",
 
 # History pages
 'viewpagelogs' => 'protokole tuteje strony pokazać',

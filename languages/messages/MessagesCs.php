@@ -4010,9 +4010,9 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cesta ke skriptům]',
 
 # Special:Redirect
-'redirect' => 'Přesměrování podle souboru, uživatele nebo ID revize',
+'redirect' => 'Přesměrování podle souboru, uživatele, stránky nebo ID revize',
 'redirect-legend' => 'Přesměrování na soubor či stránku',
-'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID revize) nebo uživatele (podle číselného uživatelského ID). Použití: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] nebo [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Tato speciální stránka přesměrovává na soubor (podle názvu), stránku (podle ID stránky nebo revize) nebo uživatele (podle číselného uživatelského ID). Použití: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] nebo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Přejít',
 'redirect-lookup' => 'Najít:',
 'redirect-value' => 'Hodnota:',

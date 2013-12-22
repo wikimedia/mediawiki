@@ -1741,7 +1741,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
 'recentchanges-legend-heading' => "'''Legenda''':",
 'recentchanges-legend-newpage' => '(veja também a [[Special:NewPages|lista de páginas novas]])',
-'recentchanges-legend-plusminus' => '±123',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',

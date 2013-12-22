@@ -26,6 +26,7 @@
  * @author Jeblad
  * @author Jsoby
  * @author Jóna Þórunn
+ * @author Kjetil r
  * @author Kph
  * @author Kph-no
  * @author Laaknor
@@ -537,7 +538,7 @@ $messages = array(
 'projectpage' => 'Vis prosjektside',
 'imagepage' => 'Vis filside',
 'mediawikipage' => 'Vis beskjedside',
-'templatepage' => 'Vis mal',
+'templatepage' => 'Vis malside',
 'viewhelppage' => 'Vis hjelpeside',
 'categorypage' => 'Vis kategoriside',
 'viewtalkpage' => 'Vis diskusjon',
@@ -570,8 +571,8 @@ $1',
 'disclaimerpage' => 'Project:Generelle forbehold',
 'edithelp' => 'Redigeringshjelp',
 'helppage' => 'Help:Innhold',
-'mainpage' => 'Hovedside',
-'mainpage-description' => 'Hovedside',
+'mainpage' => 'Forside',
+'mainpage-description' => 'Forside',
 'policy-url' => 'Project:Retningslinjer',
 'portal' => 'Prosjektportal',
 'portal-url' => 'Project:Prosjektportal',
@@ -582,8 +583,8 @@ $1',
 'badaccess-group0' => 'Du har ikke tilgang til å utføre handlingen du prøvde på.',
 'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av brukere i {{PLURAL:$2|gruppa|gruppene}} $1.',
 
-'versionrequired' => 'Versjon $1 av MediaWiki er påkrevd',
-'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version|versjonsiden]]',
+'versionrequired' => 'MediaWiki-versjon $1 er påkrevd',
+'versionrequiredtext' => 'MediaWiki-versjon $1 er nødvendig for å bruke denne siden. Se [[Special:Version|versjonsiden]]',
 
 'ok' => 'OK',
 'retrievedfrom' => 'Hentet fra «$1»',
@@ -645,11 +646,11 @@ En liste over gyldige spesialsider finnes på [[Special:SpecialPages|{{int:speci
 'databaseerror' => 'Databasefeil',
 'databaseerror-text' => 'En feil skjedde med en databasespørring.
 Dette kan være et tegn på feil med programvaren.',
-'databaseerror-textcl' => 'En feil skjedde med et databasespørring.',
+'databaseerror-textcl' => 'En feil skjedde med en databasespørring.',
 'databaseerror-query' => 'Spørring: $1',
 'databaseerror-function' => 'Funksjon: $1',
 'databaseerror-error' => 'Feil: $1',
-'laggedslavemode' => 'Advarsel: Dette kan være en eldre versjon av siden.',
+'laggedslavemode' => "'''Advarsel:''' Dette kan være en eldre versjon av siden.",
 'readonly' => 'Databasen er skrivebeskyttet',
 'enterlockreason' => 'Skriv en begrunnelse for skrivebeskyttelsen, inkludert et estimat for når den blir opphevet',
 'readonlytext' => 'Databasen er for øyeblikket skrivebeskyttet, sannsynligvis på grunn av rutinemessig vedlikehold.
@@ -696,8 +697,8 @@ Den inneholder kanskje ett eller flere tegn som ikke kan brukes i titler.',
 'protectedpagetext' => 'Denne siden har blitt låst for endringer.',
 'viewsourcetext' => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext' => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
-'protectedinterface' => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
-'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes for å fremskaffe grensesnittekst for programvaren.
+'protectedinterface' => 'Denne siden kontrollerer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
+'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes til å kontrollere grensesnittekst for programvaren.
 Endringer av denne siden vil påvirke hvordan grensesnittet vil se ut for andre brukere.
 For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=nb translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'cascadeprotected' => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
@@ -722,14 +723,14 @@ Administrators nærmere begrunnelse: «$3».',
 'exception-nologin-text-manual' => 'Du må $1 for å få tilgang til denne siden eller handlingen.',
 
 # Virus scanner
-'virus-badscanner' => "Dårlig konfigurasjon: Ukjent virusskanner: ''$1''",
+'virus-badscanner' => "Feilkonfigurasjon: Ukjent virusskanner: ''$1''",
 'virus-scanfailed' => 'skanning mislyktes (kode $1)',
 'virus-unknownscanner' => 'ukjent antivirusprogram:',
 
 # Login and logout pages
 'logouttext' => "'''Du er nå logget ut.'''
 
-Vær oppmerksom på at noen sider kan fortsette å dukke opp som om du fortsatt var innlogget, helt til du nullstiller nettleserens cache.",
+Vær oppmerksom på at noen sider kan fortsette å dukke opp som om du fortsatt var innlogget, helt til du nullstiller nettleserens mellomlager (cache).",
 'welcomeuser' => 'Velkommen, $1!',
 'welcomecreation-msg' => 'Kontoen din har blitt opprettet.
 Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.',

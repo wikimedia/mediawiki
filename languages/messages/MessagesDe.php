@@ -1294,6 +1294,9 @@ Bitte prüfe den Vergleich unten, um sicherzustellen, dass du dies tun möchtest
 'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse '''($1)''' aus wurde durch [[User:$3|$3]] gesperrt.
 
 Grund der Sperre: ''$2''",
+'cantcreateaccount-range-text' => "Das Erstellen von Benutzerkonten von IP-Adressen im Bereich '''$1''', der deine IP-Adresse ('''$4''') enthält, wurde von [[User:$3|$3]] gesperrt.
+
+Der angegebene Grund von $3 lautet: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Logbücher dieser Seite anzeigen',

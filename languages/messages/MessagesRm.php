@@ -3386,7 +3386,7 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 
 # action=purge
 'confirm_purge_button' => 'ok',
-'confirm-purge-top' => 'Stizzar il cache da questa pagina?',
+'confirm-purge-top' => 'Svidar il cache da questa pagina?',
 'confirm-purge-bottom' => 'Svida il cache dad ina pagina e sforza da mussar la versiun actuala.',
 
 # action=watch/unwatch

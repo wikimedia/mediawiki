@@ -995,6 +995,9 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 'cantcreateaccount-text' => "Wutwórjenje wužywarskego konta z toś teje IP adresy ('''$1''') jo blokěrowane pśez [[User:$3|$3]].
 
 Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
+'cantcreateaccount-range-text' => "Napóranje kontow z IP-adresow we wobcerku '''$1''', kótaryž wopśimujo twóju IP-adresu ('''$4'''), jo se wót [[User:$3|$3]] zablokěrowało.
+
+Pśicyna pódana wót $3 jo ''$2''",
 
 # History pages
 'viewpagelogs' => 'Protokole boka pokazaś',

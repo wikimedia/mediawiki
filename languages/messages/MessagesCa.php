@@ -3779,13 +3779,14 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Redirigeix per fitxer, usuari o ID de la revisió',
+'redirect' => 'Redirigeix per fitxer, usuari, pàgina o ID de la revisió',
 'redirect-legend' => 'Redirigeix a un fitxer o a una pàgina',
-'redirect-summary' => "Aquesta pàgina especial redirigeix a un fitxer (donat el nom del fitxer), una pàgina (donada un ID de la revisió), o a una pàgina d'usuari (donat un ID numèric d'usuari). Ús: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
+'redirect-summary' => "Aquesta pàgina especial redirigeix a un fitxer (donat el nom del fitxer), una pàgina (donats un ID de la revisió o un ID de pàgina), o a una pàgina d'usuari (donat un ID numèric d'usuari). Ús: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Vés-hi',
 'redirect-lookup' => 'Consulta:',
 'redirect-value' => 'Valor:',
 'redirect-user' => "ID d'usuari",
+'redirect-page' => 'ID de pàgina',
 'redirect-revision' => 'Revisió de la pàgina',
 'redirect-file' => 'Nom del fitxer',
 'redirect-not-exists' => "No s'ha trobat el valor",

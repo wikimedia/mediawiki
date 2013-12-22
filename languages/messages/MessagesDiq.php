@@ -1184,7 +1184,7 @@ Taye şabloni zerre pel de nêmociyayeni.',
 'undo-success' => 'No vurnayiş tepeye geryeno. pêverronayişêyê cêrıni kontrol bıkeri.',
 'undo-failure' => 'Sebayê pêverameyişê vurnayişan karo tepêya gırewtış nêbı.',
 'undo-norev' => 'Vurnayiş tepêya nêgeryeno çunke ya vere cû hewna biyo ya zi ca ra çino.',
-'undo-summary' => 'Peysergırewtışê teshisê $1i be terefê [[Special:Contributions/$2|$2i]] ([[User talk:$2|Werênayış]])',
+'undo-summary' => "Vırnayışa $1'i be terefê [[Special:Contributions/$2|$2i]] ([[User talk:$2|vatenayış]]) peyser grot",
 'undo-summary-username-hidden' => "Rewizyona veri $1'i hewada",
 
 # Account creation failure
@@ -2671,7 +2671,7 @@ $1',
 'sp-contributions-deleted' => 'iştırakê karberiê esterıtey',
 'sp-contributions-uploads' => 'barkerdey',
 'sp-contributions-logs' => 'qeydi',
-'sp-contributions-talk' => 'werênayış',
+'sp-contributions-talk' => 'vatenayış',
 'sp-contributions-userrights' => 'İdareyê heqanê karberan',
 'sp-contributions-blocked-notice' => 'verniyê no/na karber/e geriyayo/a
 qê referansi qeydê vernigrewtışi cêr de eşkera biyo:',
@@ -3066,7 +3066,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-pt-login' => 'Mayê şıma ronıştış akerdışi rê dawet keme; labelê ronıştış mecburi niyo',
 'tooltip-pt-anonlogin' => 'Seba cıkewtışê şıma rê dewato; labelê, no zeruri niyo',
 'tooltip-pt-logout' => 'Sistem ra vıcyayış',
-'tooltip-ca-talk' => 'Zerrey pela sero werênayış',
+'tooltip-ca-talk' => 'Heqdé zerreki vatenayış',
 'tooltip-ca-edit' => 'Tı şenay na perer bıvurné.Verdé qeyd kerdışi ver gocega verqayti bıkarné.',
 'tooltip-ca-addsection' => 'Zu bınnusteya newi ak',
 'tooltip-ca-viewsource' => 'Ena pele kılit biya.
@@ -4192,7 +4192,7 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'tags-active-yes' => 'E',
 'tags-active-no' => 'Nê',
 'tags-edit' => 'bıvurne',
-'tags-hitcount' => '$1 {{PLURAL:$1|vurnayış|vurnayışi}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|vırnayış|vırnayışi}}',
 
 # Special:ComparePages
 'comparepages' => 'Pela miqeyese ke',

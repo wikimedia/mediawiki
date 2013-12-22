@@ -4057,14 +4057,15 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]',
 
 # Special:Redirect
-'redirect' => 'Đổi hướng đến tập tin, người dùng, hoặc số phiên bản',
+'redirect' => 'Đổi hướng đến tập tin, người dùng, trang, hoặc số phiên bản',
 'redirect-legend' => 'Đổi hướng đến tập tin hoặc trang',
-'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản được cho vào), hoặc trang cá nhân (theo số thành viên). Cách sử dụng: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], hoặc [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Trang đặc biệt này đổi hướng đến một tập tin (theo tên tập tin được cho vào), trang (theo số phiên bản hoặc số trang được cho vào), hoặc trang cá nhân (theo số thành viên). Cách sử dụng: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], hoặc [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Đi',
 'redirect-lookup' => 'Tra cứu:',
 'redirect-value' => 'Giá trị:',
 'redirect-user' => 'Số thành viên',
-'redirect-revision' => 'Phiên bản trang',
+'redirect-page' => 'Số trang',
+'redirect-revision' => 'Số phiên bản trang',
 'redirect-file' => 'Tên tập tin',
 'redirect-not-exists' => 'Không tìm thấy giá trị',
 

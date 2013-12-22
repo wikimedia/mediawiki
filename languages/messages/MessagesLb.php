@@ -3657,7 +3657,7 @@ Dëse Confirmatiounscode leeft den $4 of.',
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(Standard-Sprooch)',
-'img-lang-info' => 'Dëst Bild op $1$ $2 renderen.',
+'img-lang-info' => 'Dëst Bild op $1 renderen. $2',
 'img-lang-go' => 'Lass',
 
 # Table pager
@@ -3756,14 +3756,15 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Viruleedung duerch e Fichier, Benotzer oder Versiouns-ID',
+'redirect' => 'Viruleedung duerch e Fichier, e Benotzer, eng Säit oder eng Versiouns-ID',
 'redirect-legend' => 'Viruleedung op ee Fichier oder eng Säit',
 'redirect-summary' => 'Dës Spezialsäit ass eng Viruleedung op e Fichier (Fichiersnumm uginn), eng Säit (Versiounsnummer uginn) oder eng Benotzersäit (numeresch Benotzeridentifikatioun uginn).
-Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], oder [[{{#Special:Redirect}}/user/101]].',
+Gebrauch: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], oder [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Lass',
 'redirect-lookup' => 'Nosichen:',
 'redirect-value' => 'Wäert:',
 'redirect-user' => 'Benotzernummer',
+'redirect-page' => 'ID (Nummer) vun der Säit',
 'redirect-revision' => 'Versioun vun der Säit',
 'redirect-file' => 'Numm vum Fichier',
 'redirect-not-exists' => 'Wäert net fonnt',

@@ -11,6 +11,7 @@
  * @author Altostratus
  * @author Chanhee
  * @author Chulki Lee
+ * @author Clockoon
  * @author Cwt96
  * @author Devunt
  * @author Ficell
@@ -546,7 +547,7 @@ $messages = array(
 'history' => '문서 역사',
 'history_short' => '역사',
 'updatedmarker' => '마지막으로 방문한 뒤 바뀜',
-'printableversion' => '인쇄용 판',
+'printableversion' => '인쇄 버전',
 'permalink' => '고유 링크',
 'print' => '인쇄',
 'view' => '보기',
@@ -1255,6 +1256,9 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'cantcreateaccount-text' => "현재 아이피 주소('''$1''')는 [[User:$3|$3]] 사용자에 의해 계정 만들기가 차단되었습니다.
 
 차단 이유는 다음과 같습니다: $2",
+'cantcreateaccount-range-text' => "당신의 IP 주소('''\$4''')가 속해 있는 '''\$1''' 대역에서의 계정 생성을 [[User:\$3|\$3]] 사용자가 차단하였습니다.
+
+\$3 사용자가 제시한 이유는 \"\$2\"입니다.",
 
 # History pages
 'viewpagelogs' => '이 문서의 기록 보기',
@@ -1793,6 +1797,7 @@ HTML 태그를 확인하세요.',
 'recentchanges-label-plusminus' => '바이트로 표기된 바뀐 문서 크기',
 'recentchanges-legend-heading' => "'''범례:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|새 문서 목록]]도 참고하세요)',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "다음은 '''$2'''에서부터 바뀐 문서 '''$1'''개입니다.",
 'rclistfrom' => '$1 이래로 새로 바뀐 문서 보기',
 'rcshowhideminor' => '사소한 편집을 $1',
@@ -3197,7 +3202,7 @@ $2',
 'tooltip-t-emailuser' => '이 사용자에게 이메일 보내기',
 'tooltip-t-upload' => '파일 올리기',
 'tooltip-t-specialpages' => '모든 특수 문서의 목록',
-'tooltip-t-print' => '이 문서의 인쇄용 판',
+'tooltip-t-print' => '이 문서의 인쇄 버전',
 'tooltip-t-permalink' => '문서의 이 판에 대한 고유링크',
 'tooltip-ca-nstab-main' => '본문 보기',
 'tooltip-ca-nstab-user' => '사용자 문서 보기',
@@ -4066,13 +4071,14 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath 스크립트 경로]',
 
 # Special:Redirect
-'redirect' => '파일, 사용자나 판 ID별 넘겨주기',
+'redirect' => '파일, 사용자, 문서나 판 ID로 넘겨주기',
 'redirect-legend' => '파일이나 문서로 넘겨주기',
-'redirect-summary' => '이 특수 문서는 파일(파일 이름을 지정), 문서(판 ID를 지정)나 사용자 문서(사용자 ID를 정수로 지정)로 넘겨줍니다. 사용법: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], 혹은 [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => '이 특수 문서는 파일(파일 이름이 주어짐), 문서(판 ID나 문서 ID가 주어짐)나 사용자 문서(숫자로 표시된 사용자 ID가 주어짐)로 넘겨줍니다. 사용법: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], 또는 [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => '보기',
 'redirect-lookup' => '찾을 종류:',
 'redirect-value' => '값:',
 'redirect-user' => '사용자 ID',
+'redirect-page' => '문서 ID',
 'redirect-revision' => '문서 판',
 'redirect-file' => '파일 이름',
 'redirect-not-exists' => '값을 찾을 수 없습니다',
