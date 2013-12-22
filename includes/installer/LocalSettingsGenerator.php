@@ -288,7 +288,7 @@ ${serverSetting}
 
 ## The relative URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-\$wgLogo             = \"{$this->values['wgLogo']}\";
+\$wgLogo = \"{$this->values['wgLogo']}\";
 
 ## UPO means: this is also a user preference option
 
