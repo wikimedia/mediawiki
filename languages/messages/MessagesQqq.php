@@ -5462,13 +5462,12 @@ See also:
 * {{msg-mw|Watchlist-details}}',
 'iteminvalidname' => 'Parameters:
 * $1 - item name',
-'wlnote' => 'Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.
+'wlnote2' => 'Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.
 
 Parameters:
-* $1 - the number of changes shown
-* $2 - the number of hours for which the changes are shown
-* $3 - a date alone
-* $4 - a time alone',
+* $1 - the number of hours for which the changes are shown
+* $2 - a date alone
+* $3 - a time alone',
 'wlshowlast' => 'Appears on [[Special:Watchlist]]. Parameters:
 * $1 - a choice of different numbers of hours ("1 | 2 | 6 | 12")
 * $2 - a choice of different numbers of days ("1 | 3 | 7")
