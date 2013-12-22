@@ -71,14 +71,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->outputHeader();
 		$this->addModules();
 
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-
-		$this->numItems = $this->countItems( $dbr ); // TODO kill me
-		if ( $this->numItems == 0 ) {
-			$output->addWikiMsg( 'nowatchlist' );
-			return;
-		}
-
 		// Fetch results, prepare a batch link existence check query
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
@@ -516,18 +508,25 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form = "";
 		$user = $this->getUser();
 
-		# Show watchlist header
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$numItems = $this->countItems( $dbr );
+
+		// Show watchlist header
 		$form .= "<p>";
-		$form .= $this->msg( 'watchlist-details' )->numParams( $this->numItems )->parse() . "\n";
-		if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
-			$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
-		}
-		if ( $wgShowUpdatedMarker ) {
-			$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+		if ( $numItems == 0 ) {
+			$form .= $this->msg( 'nowatchlist' )->parse() . "\n";
+		} else {
+			$form .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
+			if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+				$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+			}
+			if ( $wgShowUpdatedMarker ) {
+				$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+			}
 		}
 		$form .= "</p>";
 
-		if ( $wgShowUpdatedMarker ) {
+		if ( $numItems > 0 && $wgShowUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
