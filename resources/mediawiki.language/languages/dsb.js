@@ -1,4 +1,4 @@
-/**
+/*!
  * Lower Sorbian (Dolnoserbski) language functions
  */
 

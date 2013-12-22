@@ -1,22 +1,21 @@
-/**
- * Localized Language support attempts to mirror some of the functionality of
- * Language.php in MediaWiki.
- * This adds methods for transforming message text.
+/*
+ * Methods for transforming message syntax.
  */
 ( function ( mw, $ ) {
 
-var language = {
+/**
+ * @class mw.language
+ */
+$.extend( mw.language, {
 
 	/**
 	 * Process the PLURAL template substitution
 	 *
-	 * @param {object} template Template object
-	 * @format template
-	 *  {
-	 *      'title': [title of template],
-	 *      'parameters': [template parameters]
-	 *  }
-	 * @example {{Template:title|params}}
+	 * @private
+	 * @param {Object} template Template object
+	 * @param {string} template.title
+	 * @param {Array} template.parameters
+	 * @return {string}
 	 */
 	procPLURAL: function ( template ) {
 		if ( template.title && template.parameters && mw.language.convertPlural ) {
@@ -39,9 +38,9 @@ var language = {
 	/**
 	 * Plural form transformations, needed for some languages.
 	 *
-	 * @param count integer Non-localized quantifier
-	 * @param forms array List of plural forms
-	 * @return string Correct form for quantifier in this language
+	 * @param {number} count Non-localized quantifier
+	 * @param {Array} forms List of plural forms
+	 * @return {string} Correct form for quantifier in this language
 	 */
 	convertPlural: function ( count, forms ) {
 		var pluralRules,
@@ -90,9 +89,10 @@ var language = {
 	/**
 	 * Pads an array to a specific length by copying the last one element.
 	 *
-	 * @param forms array Number of forms given to convertPlural
-	 * @param count integer Number of forms required
-	 * @return array Padded array of forms
+	 * @private
+	 * @param {Array} forms Number of forms given to convertPlural
+	 * @param {number} count Number of forms required
+	 * @return {Array} Padded array of forms
 	 */
 	preConvertPlural: function ( forms, count ) {
 		while ( forms.length < count ) {
@@ -103,14 +103,14 @@ var language = {
 
 	/**
 	 * Provides an alternative text depending on specified gender.
-	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
+	 *
+	 * Usage in message text: `{{gender:[gender|user object]|masculine|feminine|neutral}}`.
 	 * If second or third parameter are not specified, masculine is used.
 	 *
 	 * These details may be overriden per language.
 	 *
-	 * @param gender string male, female, or anything else for neutral.
-	 * @param forms array List of gender forms
-	 *
+	 * @param {string} gender 'male', 'female', or anything else for neutral.
+	 * @param {Array} forms List of gender forms
 	 * @return string
 	 */
 	gender: function ( gender, forms ) {
@@ -129,13 +129,14 @@ var language = {
 
 	/**
 	 * Grammatical transformations, needed for inflected languages.
-	 * Invoked by putting {{grammar:form|word}} in a message.
-	 * The rules can be defined in $wgGrammarForms global or grammar
-	 * forms can be computed dynamically by overriding this method per language
+	 * Invoked by putting `{{grammar:form|word}}` in a message.
 	 *
-	 * @param word {String}
-	 * @param form {String}
-	 * @return {String}
+	 * The rules can be defined in $wgGrammarForms global or computed
+	 * dynamically by overriding this method per language.
+	 *
+	 * @param {string} word
+	 * @param {string} form
+	 * @return {string}
 	 */
 	convertGrammar: function ( word, form ) {
 		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
@@ -145,8 +146,6 @@ var language = {
 		return word;
 	}
 
-};
-
-$.extend( mw.language, language );
+} );
 
 }( mediaWiki, jQuery ) );

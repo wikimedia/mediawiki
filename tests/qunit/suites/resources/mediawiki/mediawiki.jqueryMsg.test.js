@@ -10,8 +10,7 @@
 
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.orgMwLangauge = mw.language;
-			mw.language = $.extend( true, {}, this.orgMwLangauge );
+			this.originalMwLanguage = mw.language;
 
 			// Messages that are reused in multiple tests
 			mw.messages.set( {
@@ -55,7 +54,7 @@
 			} );
 		},
 		teardown: function () {
-			mw.language = this.orgMwLangauge;
+			mw.language = this.originalMwLanguage;
 		}
 	} ) );
 
