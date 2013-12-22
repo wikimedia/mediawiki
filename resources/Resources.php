@@ -1013,8 +1013,11 @@ return array(
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
 	),
-	'mediawiki.special.changeslist.js' => array(
-		'scripts' => 'resources/mediawiki.special/mediawiki.special.changeslist.js',
+	'mediawiki.special.changeslist.legend' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.legend.css',
+	),
+	'mediawiki.special.changeslist.legend.js' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.changeslist.legend.js',
 		'dependencies' => array(
 			'jquery.makeCollapsible',
 			'jquery.cookie',
