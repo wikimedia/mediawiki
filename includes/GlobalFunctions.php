@@ -2428,7 +2428,7 @@ define( 'TS_POSTGRES', 7 );
 /**
  * ISO 8601 basic format with no timezone: 19860209T200000Z.  This is used by ResourceLoader
  */
-define( 'TS_ISO_8601_BASIC', 9 );
+define( 'TS_ISO_8601_BASIC', 8 );
 
 /**
  * Get a timestamp string in one of various formats

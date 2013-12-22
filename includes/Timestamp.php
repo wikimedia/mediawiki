@@ -36,12 +36,12 @@ class MWTimestamp {
 		TS_UNIX => 'U',
 		TS_MW => 'YmdHis',
 		TS_DB => 'Y-m-d H:i:s',
-		TS_ISO_8601 => 'Y-m-d\TH:i:s\Z',
-		TS_ISO_8601_BASIC => 'Ymd\THis\Z',
-		TS_EXIF => 'Y:m:d H:i:s', // This shouldn't ever be used, but is included for completeness
 		TS_RFC2822 => 'D, d M Y H:i:s',
+		TS_ISO_8601 => 'Y-m-d\TH:i:s\Z',
+		TS_EXIF => 'Y:m:d H:i:s', // This shouldn't ever be used, but is included for completeness
 		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
 		TS_POSTGRES => 'Y-m-d H:i:s',
+		TS_ISO_8601_BASIC => 'Ymd\THis\Z',
 	);
 
 	/**
