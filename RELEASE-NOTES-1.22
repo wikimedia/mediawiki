@@ -19,6 +19,8 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
 * (bug 58434) The broken installer for database backend Oracle was fixed.
 * (bug 58167) The web installer no longer throws an exception when PHP is
   compiled without support for MySQL yet with support for another DBMS.
+* (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
+  to appear blank or with missing text.
 
 == MediaWiki 1.22.0 ==
 
