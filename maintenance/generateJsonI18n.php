@@ -90,7 +90,36 @@ class GenerateJsonI18n extends Maintenance {
 			}
 			$this->output( "$jsonfile\n" );
 		}
+
+		$shim = <<<'PHP'
+<?php
+$messages = array();
+$GLOBALS['wgHooks']['LocalisationCacheRecache'][] = function ( $cache, $code, &$cachedData ) {
+	$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
+	foreach ( $codeSequence as $csCode ) {
+		$fileName = __DIR__ . "/{{OUT}}/$csCode.json";
+		if ( is_readable( $fileName ) ) {
+			$data = FormatJson::decode( file_get_contents( $fileName ), true );
+			foreach ( $data as $key => $unused ) {
+				if ( $key === '' || $key[0] === '@' ) {
+					unset( $data[$key] );
+				}
+			}
+			$cachedData['messages'] = array_merge( $data, $cachedData['messages'] );
+		}
+
+		$cachedData['deps'][] = new FileDependency( $fileName );
+	}
+	return true;
+};
+
+PHP;
+
+		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
+		file_put_contents( $phpfile, $shim );
+
 		$this->output( "All done.\n" );
+		$this->output( "Also add \$wgMessagesDirs['YourExtension'] = __DIR__ . /i18n';\n" );
 	}
 
 	/**
