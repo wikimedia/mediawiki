@@ -2273,6 +2273,7 @@ $wgMessageStructure = array(
 		'blockipsuccesstext',
 		'ipb-blockingself',
 		'ipb-confirmhideuser',
+		'ipb-confirmaction',
 		'ipb-edit-dropdown',
 		'ipb-unblock-addr',
 		'ipb-unblock',
