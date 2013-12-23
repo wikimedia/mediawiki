@@ -12,29 +12,29 @@
  *
  * Example:
  *
- *     var uri = new mw.Uri( 'http://foo.com/mysite/mypage.php?quux=2' );
+ *     var uri = new mw.Uri( 'http://example.com/mysite/mypage.php?quux=2' );
  *
- *     if ( uri.host == 'foo.com' ) {
- *         uri.host = 'www.foo.com';
+ *     if ( uri.host == 'example.com' ) {
+ *         uri.host = 'foo.example.com';
  *         uri.extend( { bar: 1 } );
  *
  *         $( 'a#id1' ).attr( 'href', uri );
- *         // anchor with id 'id1' now links to http://foo.com/mysite/mypage.php?bar=1&quux=2
+ *         // anchor with id 'id1' now links to http://foo.example.com/mysite/mypage.php?bar=1&quux=2
  *
  *         $( 'a#id2' ).attr( 'href', uri.clone().extend( { bar: 3, pif: 'paf' } ) );
- *         // anchor with id 'id2' now links to http://foo.com/mysite/mypage.php?bar=3&quux=2&pif=paf
+ *         // anchor with id 'id2' now links to http://foo.example.com/mysite/mypage.php?bar=3&quux=2&pif=paf
  *     }
  *
  * Parsing here is regex based, so may not work on all URIs, but is good enough for most.
  *
  * Given a URI like
- * 'http://usr:pwd@www.test.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=&test3=value+%28escaped%29&r=1&r=2#top':
+ * 'http://usr:pwd@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=&test3=value+%28escaped%29&r=1&r=2#top':
  * The returned object will have the following properties:
  *
  *    protocol  'http'
  *    user      'usr'
  *    password  'pwd'
- *    host      'www.test.com'
+ *    host      'www.example.com'
  *    port      '81'
  *    path      '/dir/dir.2/index.htm'
  *    query     {
@@ -85,7 +85,7 @@
 		'protocol',  // http
 		'user',      // usr
 		'password',  // pwd
-		'host',      // www.test.com
+		'host',      // www.example.com
 		'port',      // 81
 		'path',      // /dir/dir.2/index.htm
 		'query',     // q1=0&&test1&test2=value (will become { q1: '0', test1: '', test2: 'value' } )
