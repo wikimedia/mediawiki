@@ -126,11 +126,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$user = $params['user'];
 		if ( !is_null( $user ) ) {
 			$userid = User::idFromName( $user );
-			if ( !$userid ) {
-				$this->dieUsage( "User name $user not found", 'param_user' );
+			if ( $userid ) {
+				$this->addWhereFld( 'log_user', $userid );
+				$index['logging'] = 'user_time';
+			} else {
+				$this->addWhereFld( 'log_user_text', IP::sanitizeIP( $user ) );
+				$index['logging'] = 'user_text_time';
 			}
-			$this->addWhereFld( 'log_user', $userid );
-			$index['logging'] = 'user_time';
 		}
 
 		$title = $params['title'];
