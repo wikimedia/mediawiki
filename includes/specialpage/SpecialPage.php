@@ -29,7 +29,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialPage {
+class SpecialPage extends ContextSource {
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
 	protected $mName;
@@ -55,12 +55,6 @@ class SpecialPage {
 
 	// Whether the special page can be included in an article
 	protected $mIncludable;
-
-	/**
-	 * Current request context
-	 * @var IContextSource
-	 */
-	protected $mContext;
 
 	/**
 	 * Initialise the special page list
@@ -772,94 +766,6 @@ class SpecialPage {
 	 */
 	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
-	}
-
-	/**
-	 * Sets the context this SpecialPage is executed in
-	 *
-	 * @param $context IContextSource
-	 * @since 1.18
-	 */
-	public function setContext( $context ) {
-		$this->mContext = $context;
-	}
-
-	/**
-	 * Gets the context this SpecialPage is executed in
-	 *
-	 * @return IContextSource|RequestContext
-	 * @since 1.18
-	 */
-	public function getContext() {
-		if ( $this->mContext instanceof IContextSource ) {
-			return $this->mContext;
-		} else {
-			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
-			return RequestContext::getMain();
-		}
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 * @since 1.18
-	 */
-	public function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
-	 * Get the OutputPage being used for this instance
-	 *
-	 * @return OutputPage
-	 * @since 1.18
-	 */
-	public function getOutput() {
-		return $this->getContext()->getOutput();
-	}
-
-	/**
-	 * Shortcut to get the User executing this instance
-	 *
-	 * @return User
-	 * @since 1.18
-	 */
-	public function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Shortcut to get the skin being used for this instance
-	 *
-	 * @return Skin
-	 * @since 1.18
-	 */
-	public function getSkin() {
-		return $this->getContext()->getSkin();
-	}
-
-	/**
-	 * Shortcut to get user's language
-	 *
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 * @since 1.18
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->getLanguage();
-	}
-
-	/**
-	 * Shortcut to get user's language
-	 *
-	 * @return Language
-	 * @since 1.19
-	 */
-	public function getLanguage() {
-		return $this->getContext()->getLanguage();
 	}
 
 	/**
