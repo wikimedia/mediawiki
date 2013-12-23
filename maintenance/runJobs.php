@@ -64,12 +64,12 @@ class RunJobs extends Maintenance {
 				}
 			}
 		}
+
+		$type = $this->getOption( 'type', false );
 		$maxJobs = $this->getOption( 'maxjobs', false );
 		$maxTime = $this->getOption( 'maxtime', false );
 		$startTime = time();
-		$type = $this->getOption( 'type', false );
 		$wgTitle = Title::newFromText( 'RunJobs.php' );
-		$jobsRun = 0; // counter
 
 		$group = JobQueueGroup::singleton();
 		// Handle any required periodic queue maintenance
@@ -78,12 +78,21 @@ class RunJobs extends Maintenance {
 			$this->runJobsLog( "Executed $count periodic queue task(s)." );
 		}
 
-		$flags = JobQueueGroup::USE_CACHE | JobQueueGroup::USE_PRIORITY;
+		$backoffs = $this->loadBackoffs(); // map of (type => UNIX expiry)
+		$startingBackoffs = $backoffs; // avoid unnecessary writes
+		$backoffExpireFunc = function( $t ) { return $t > time(); };
+
+		$jobsRun = 0; // counter
+		$flags = JobQueueGroup::USE_CACHE;
 		$lastTime = time(); // time since last slave check
 		do {
-			$job = ( $type === false )
-				? $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags )
-				: $group->pop( $type ); // job from a single queue
+			if ( $type === false ) {
+				$backoffs = array_filter( $backoffs, $backoffExpireFunc );
+				$blacklist = array_keys( $backoffs );
+				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags, $blacklist );
+			} else {
+				$group->pop( $type ); // job from a single queue
+			}
 			if ( $job ) { // found a job
 				++$jobsRun;
 				$this->runJobsLog( $job->toString() . " STARTING" );
@@ -117,6 +126,14 @@ class RunJobs extends Maintenance {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
 				}
 
+				// Back off of certain jobs for a while
+				$ttw = $this->getBackoffTimeToWait( $job );
+				if ( $ttw > 0 ) {
+					$jType = $job->getType();
+					$backoffs[$jType] = isset( $backoffs[$jType] ) ? $backoffs[$jType] : 0;
+					$backoffs[$jType] = max( $backoffs[$jType], time() + $ttw );
+				}
+
 				// Break out if we hit the job count or wall time limits...
 				if ( $maxJobs && $jobsRun >= $maxJobs ) {
 					break;
@@ -139,10 +156,87 @@ class RunJobs extends Maintenance {
 				$this->assertMemoryOK();
 			}
 		} while ( $job ); // stop when there are no jobs
+		// Sync the persistent backoffs for the next runJobs.php pass
+		$backoffs = array_filter( $backoffs, $backoffExpireFunc );
+		if ( $backoffs !== $startingBackoffs ) {
+			$this->syncBackoffs( $backoffs );
+		}
 	}
 
 	/**
-	 * Make sure that this script is not too close to the memory usage limit
+	 * @param Job $job
+	 * @return integer Seconds for this runner to avoid doing more jobs of this type
+	 * @see $wgJobBackoffThrottling
+	 */
+	private function getBackoffTimeToWait( Job $job ) {
+		global $wgJobBackoffThrottling;
+
+		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ) {
+			return 0; // not throttled
+		}
+		$itemsPerSecond = $wgJobBackoffThrottling[$job->getType()];
+		if ( $itemsPerSecond <= 0 ) {
+			return 0; // not throttled
+		}
+
+		$seconds = 0;
+		if ( $job->workItemCount() > 0 ) {
+			$seconds = floor( $job->workItemCount() / $itemsPerSecond );
+			$remainder = $job->workItemCount() % $itemsPerSecond;
+			$seconds += ( mt_rand( 1, $itemsPerSecond ) <= $remainder ) ? 1 : 0;
+		}
+
+		return (int)$seconds;
+	}
+
+	/**
+	 * Get the previous backoff expiries from persistent storage
+	 *
+	 * @return array Map of (job type => backoff expiry timestamp)
+	 */
+	private function loadBackoffs() {
+		$section = new ProfileSection( __METHOD__ );
+
+		$backoffs = array();
+		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
+		if ( is_file( $file ) ) {
+			$handle = fopen( $file, 'rb' );
+			flock( $handle, LOCK_SH );
+			$content = stream_get_contents( $handle );
+			flock( $handle, LOCK_UN );
+			fclose( $handle );
+			$backoffs = json_decode( $content, true ) ?: array();
+		}
+
+		return $backoffs;
+	}
+
+	/**
+	 * Merge the current backoff expiries from persistent storage
+	 *
+	 * @param array $backoffs Map of (job type => backoff expiry timestamp)
+	 */
+	private function syncBackoffs( array $backoffs ) {
+		$section = new ProfileSection( __METHOD__ );
+
+		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
+		$handle = fopen( $file, 'wb+' );
+		flock( $handle, LOCK_EX );
+		$content = stream_get_contents( $handle );
+		$cBackoffs = json_decode( $content, true ) ?: array();
+		foreach ( $backoffs as $type => $timestamp ) {
+			$cBackoffs[$type] = isset( $cBackoffs[$type] ) ? $cBackoffs[$type] : 0;
+			$cBackoffs[$type] = max( $cBackoffs[$type], $backoffs[$type] );
+		}
+		ftruncate( $handle, 0 );
+		fwrite( $handle, json_encode( $backoffs ) );
+		flock( $handle, LOCK_UN );
+		fclose( $handle );
+	}
+
+	/**
+	 * Make sure that this script is not too close to the memory usage limit.
+	 * It is better to die in between jobs than OOM right in the middle of one.
 	 * @throws MWException
 	 */
 	private function assertMemoryOK() {
@@ -151,7 +245,7 @@ class RunJobs extends Maintenance {
 			$m = array();
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
 				list( , $num, $unit ) = $m;
-				$conv = array( 'g' => 1024 * 1024 * 1024, 'm' => 1024 * 1024, 'k' => 1024, '' => 1 );
+				$conv = array( 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 );
 				$maxBytes = $num * $conv[strtolower( $unit )];
 			} else {
 				$maxBytes = 0;

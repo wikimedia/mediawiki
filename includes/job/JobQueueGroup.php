@@ -44,7 +44,6 @@ class JobQueueGroup {
 	const TYPE_ANY = 2; // integer; any job
 
 	const USE_CACHE = 1; // integer; use process or persistent cache
-	const USE_PRIORITY = 2; // integer; respect deprioritization
 
 	const PROC_CACHE_TTL = 15; // integer; seconds
 
@@ -149,18 +148,21 @@ class JobQueueGroup {
 	 * This pops a job off a queue as specified by $wgJobTypeConf and
 	 * updates the aggregate job queue information cache as needed.
 	 *
-	 * @param int|string $qtype JobQueueGroup::TYPE_DEFAULT or type string
+	 * @param int|string $qtype JobQueueGroup::TYPE_* constant or job type string
 	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
+	 * @param array $blacklist List of job types to ignore
 	 * @return Job|bool Returns false on failure
 	 */
-	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0 ) {
-		if ( is_string( $qtype ) ) { // specific job type
-			$job = $this->get( $qtype )->pop();
-			if ( !$job ) {
-				JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
-			}
+	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = array() ) {
+		$job = false;
 
-			return $job;
+		if ( is_string( $qtype ) ) { // specific job type
+			if ( !in_array( $qtype, $blacklist ) ) {
+				$job = $this->get( $qtype )->pop();
+				if ( !$job ) {
+					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
+				}
+			}
 		} else { // any job in the "default" jobs types
 			if ( $flags & self::USE_CACHE ) {
 				if ( !$this->cache->has( 'queues-ready', 'list', self::PROC_CACHE_TTL ) ) {
@@ -174,20 +176,22 @@ class JobQueueGroup {
 			if ( $qtype == self::TYPE_DEFAULT ) {
 				$types = array_intersect( $types, $this->getDefaultQueueTypes() );
 			}
+
+			$types = array_diff( $types, $blacklist ); // avoid selected types
 			shuffle( $types ); // avoid starvation
 
 			foreach ( $types as $type ) { // for each queue...
 				$job = $this->get( $type )->pop();
 				if ( $job ) { // found
-					return $job;
+					break;
 				} else { // not found
 					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $type );
 					$this->cache->clear( 'queues-ready' );
 				}
 			}
-
-			return false; // no jobs found
 		}
+
+		return $job;
 	}
 
 	/**
