@@ -6,6 +6,8 @@
 // Styleguide 2.
 
 @buttonBorderRadius: 3px;
+@transitionDuration: .1s;
+@transitionFunction: ease-in-out;
 
 // Button styling
 //
@@ -13,13 +15,16 @@
 // Due to a lack of a CSS reset, the exact styling of the button depends on what type of element is used.
 //
 // Markup:
-// <div class="mw-ui-button">button.mw-ui-button</div>
+// <button class="mw-ui-button">.mw-ui-button</button>
+// <button class="mw-ui-button" disabled>.mw-ui-button</button>
+// <button class="mw-ui-button mw-ui-quiet">.mw-ui-button</button>
+// <button class="mw-ui-button mw-ui-quiet" disabled>.mw-ui-button</button>
 //
 // Styleguide 2.1.
 .mw-ui-button {
 	// Container layout
 	display: inline-block;
-	padding: 0.4em 1em 0.4em 1em;
+	padding: .5em 1em;
 	margin: 0;
 
 	// IE6/IE7 hack
@@ -28,7 +33,7 @@
 	zoom: 1;
 
 	// Container styling
-	.buttonColors();
+	.button-colors(@colorWhite);
 	border-radius: @buttonBorderRadius;
 
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
@@ -36,17 +41,21 @@
 
 	// Content styling
 	text-align: center;
-	text-decoration: none;
-
 	font-weight: bold;
+	white-space: nowrap;
 
 	// Interaction styling
 	cursor: pointer;
 
-	&:disabled,
-	&.mw-ui-disabled {
+	&:disabled {
 		cursor: default;
 	}
+
+	// FIXME: @import "mediawiki.mixins" (the one that contains .transition
+	// mixin) causes make kss to fail
+	@transition: background @transitionDuration @transitionFunction, color @transitionDuration @transitionFunction, box-shadow @transitionDuration @transitionFunction;
+	-webkit-transition: @transition;
+	transition: @transition;
 
 	// Styling for specific button types
 	// -----------------------------------------
@@ -59,17 +68,25 @@
 		width: 100%;
 	}
 
-	// Primary buttons
+	// Progressive buttons
 	//
-	// Do not use the mw-ui-primary class use mw-ui-constructive instead. For blue buttons
-	// use mw-ui-progressive (coming soon)
+	// Use progressive buttons for actions which lead to a next step in the process.
+	// .mw-ui-primary is deprecated, kept for compatibility.
 	//
 	// Markup:
-	// <button class="mw-ui-button mw-ui-primary">mw-ui-primary</button>
+	// <button class="mw-ui-button mw-ui-progressive">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-progressive" disabled>.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet" disabled>.mw-ui-progressive</button>
 	//
 	// Styleguide 2.1.1.
+	&.mw-ui-progressive,
 	&.mw-ui-primary {
-		.buttonColors(@agoraBlue);
+		.button-colors(@colorProgressive);
+
+		&.mw-ui-quiet {
+			.button-colors-quiet(@colorProgressive);
+		}
 	}
 
 	// Constructive buttons
@@ -79,11 +96,18 @@
 	// e.g. save changes button
 	//
 	// Markup:
-	// <button class="mw-ui-button mw-ui-constructive">mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive" disabled>.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet" disabled>.mw-ui-constructive</button>
 	//
 	// Styleguide 2.1.2.
 	&.mw-ui-constructive {
-		.buttonColors(@agoraGreen);
+		.button-colors(@colorConstructive);
+
+		&.mw-ui-quiet {
+			.button-colors-quiet(@colorConstructive);
+		}
 	}
 
 	// Destructive buttons
@@ -93,11 +117,34 @@
 	// This should not be used for cancel buttons.
 	//
 	// Markup:
-	// <button class="mw-ui-button mw-ui-destructive">mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive">.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive" disabled>.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet">.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet" disabled>.mw-ui-destructive</button>
 	//
 	// Styleguide 2.1.3.
 	&.mw-ui-destructive {
-		.buttonColors(@agoraRed);
+		.button-colors(@colorDestructive);
+
+		&.mw-ui-quiet {
+			.button-colors-quiet(@colorDestructive);
+		}
+	}
+
+	&.mw-ui-quiet {
+		background: transparent;
+		border: none;
+		.button-colors-quiet(@colorGrayDark);
+
+		&:hover,
+		&:focus {
+			box-shadow: none;
+		}
+
+		&:active,
+		&:disabled {
+			background: transparent;
+		}
 	}
 }
 
