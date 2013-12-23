@@ -639,6 +639,10 @@ class LocalisationCache {
 			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
 			foreach ( $ruleElements as $elt ) {
 				$ruleType = $elt->getAttribute( 'count' );
+				if ( $ruleType === 'other' ) {
+					// Don't record "other" rules, which have an empty condition
+					continue;
+				}
 				$rules[] = $elt->nodeValue;
 				$ruleTypes[] = $ruleType;
 			}
