@@ -483,7 +483,13 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		// config-support-sqlite
 		$dbSupport = '';
 		foreach ( $this->parent->getDBTypes() as $type ) {
-			$link = DatabaseBase::factory( $type )->getSoftwareLink();
+			try {
+					$link = DatabaseBase::factory( $type )->getSoftwareLink();
+				} catch ( Exception $e ) {
+					// Cannot create database object (probably library not installed), so output
+					// plaintext
+					$link = wfMessage( "config-type-$type" )->plain();
+				}
 			$dbSupport .= wfMessage( "config-support-$type", $link )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
