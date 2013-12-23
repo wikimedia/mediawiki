@@ -3300,6 +3300,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
 See the [[Special:BlockList|block list]] to review blocks.',
 'ipb-blockingself'                => 'You are about to block yourself! Are you sure you want to do that?',
+'ipb-confirmblockself'            => 'If you are sure you want to block yourself, please check the highlighted field at the bottom.',
 'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled. This will suppress the user\'s name in all lists and log entries. Are you sure you want to do that?',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',

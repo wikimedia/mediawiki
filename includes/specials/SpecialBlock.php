@@ -303,7 +303,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( (string)$this->target === $this->getUser()->getName() ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = 'ipb-blockingself';
+			$this->preErrors[] = array( 'ipb-blockingself', 'ipb-confirmblockself' );
 		}
 	}
 
@@ -630,7 +630,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $target === $performer->getName() &&
 				( $data['PreviousTarget'] !== $target || !$data['Confirm'] )
 			) {
-				return array( 'ipb-blockingself' );
+				return array( 'ipb-blockingself', 'ipb-confirmblockself' );
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
 			$userId = 0;

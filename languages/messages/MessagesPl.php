@@ -2749,6 +2749,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
 Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'ipb-blockingself' => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
+'ipb-confirmblockself' => 'Jeśli jesteś pewien, że chcesz się zablokować, zaznacz wyróżnione pole na dole.',
 'ipb-confirmhideuser' => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown' => 'Edytuj listę przyczyn blokady',
 'ipb-unblock-addr' => 'Odblokuj $1',
