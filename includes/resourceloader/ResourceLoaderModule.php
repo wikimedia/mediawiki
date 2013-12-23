@@ -472,6 +472,13 @@ abstract class ResourceLoaderModule {
 			// We've seen this hash before, re-use the timestamp of when we first saw it.
 			wfProfileOut( __METHOD__ );
 			return $data;
+		} elseif ( ctype_digit( $data ) ) {
+			$dataInt = intval( $data );
+			if ( $dataInt > 0 ) {
+				// Hash was int-like and we've seen it before, so re-use.
+				wfProfileOut( __METHOD__ );
+				return $dataInt;
+			}
 		}
 
 		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module {$this->getName()} in context {$context->getHash()}: $hash." );
