@@ -21,7 +21,7 @@ class ApiQueryTest extends ApiTestCase {
 		// Setup en: as interwiki prefix
 		$this->hooks = $wgHooks;
 		$wgHooks['InterwikiLoadPrefix'][] = function ( $prefix, &$data ) {
-			if ( $prefix == 'en' ) {
+			if ( $prefix == 'apiquerytestiw' ) {
 				$data = array( 'iw_url' => 'wikipedia' );
 			}
 			return false;
@@ -114,10 +114,10 @@ class ApiQueryTest extends ApiTestCase {
 			array( 'x', NS_MAIN, 'X', false ),
 			array( 'y ', NS_MAIN, 'Y_', false ),
 			array( 'template:foo', NS_CATEGORY, 'Template:foo', false ),
-			array( 'en:foo', NS_CATEGORY, 'En:foo', false ),
+			array( 'apiquerytestiw:foo', NS_CATEGORY, 'Apiquerytestiw:foo', false ),
 			array( "\xF7", NS_MAIN, null, true ),
 			array( 'template:foo', NS_MAIN, null, true ),
-			array( 'en:foo', NS_MAIN, null, true ),
+			array( 'apiquerytestiw:foo', NS_MAIN, null, true ),
 		);
 	}
 }
