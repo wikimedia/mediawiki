@@ -1010,6 +1010,7 @@ return array(
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => array(
 			'mediawiki.util',
 		),
