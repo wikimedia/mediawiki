@@ -275,7 +275,7 @@ $messages = array(
 'qbpageoptions' => 'Cheste pagjine',
 'qbmyoptions' => 'Mês pagjinis',
 'faq' => 'Domandis plui frecuentis',
-'faqpage' => 'Progjet:Domandis frecuentis',
+'faqpage' => 'Project:FAQ',
 
 # Vector skin
 'vector-action-addsection' => 'Gnove sezion',
@@ -360,7 +360,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Informazions su {{SITENAME}}',
 'aboutpage' => 'Project:Informazions',
-'copyright' => 'Il contignût al è disponibil sot de $1',
+'copyright' => 'Il contignût al è disponibil sot de licence $1 se nol è specificât in altre maniere',
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Lis gnovis',
 'currentevents-url' => 'Project:Lis gnovis',
@@ -370,18 +370,24 @@ $1',
 'helppage' => 'Help:Contignûts',
 'mainpage' => 'Pagjine principâl',
 'mainpage-description' => 'Pagjine principâl',
+'policy-url' => 'Project:Politiche',
 'portal' => 'Ostarie',
 'portal-url' => 'Project:Ostarie',
 'privacy' => 'Politiche pe privacy',
 'privacypage' => 'Project:Politiche_pe_privacy',
 
 'badaccess' => 'Permès no suficients',
+'badaccess-group0' => 'No tu sês autorizât a  eseguî la azion domandade',
+'badaccess-groups' => 'La azione domandade è je pussibile dome dai utents {{PLURAL:$2|dal grup|di un di chescj grups}}: $1.',
 
 'versionrequired' => 'E covente la version $1 di MediaWiki',
+'versionrequiredtext' => 'La version $1 de MediaWiki a covente par doprâ cheste pagjine.
+Cjale la [[Special:Version|pagjine de version]].',
 
 'ok' => 'Va ben',
 'retrievedfrom' => 'Cjapât fûr di $1',
 'youhavenewmessages' => 'Tu âs $1 ($2).',
+'youhavenewmessagesmanyusers' => 'Tu âs $1 di tancj utents ($2)',
 'youhavenewmessagesmulti' => 'Tu âs gnûfs messaçs su $1',
 'editsection' => 'cambie',
 'editold' => 'cambie',
@@ -848,6 +854,7 @@ La tô direzion di pueste no ven mostrade cuant che i utents ti contatin.',
 'recentchanges-label-minor' => 'Chest al è un piçul cambiament',
 'recentchanges-label-bot' => 'Chest cambiament al è stât eseguît di un bot',
 'recentchanges-label-unpatrolled' => 'Chest cambiament nol è stât ancjemò verificât',
+'recentchanges-label-plusminus' => 'La dimension de pagjine e je cambiade di chest numar di byte',
 'rcnotefrom' => "Ca sot i cambiaments dal '''$2''' (fintremai al '''$1''').",
 'rclistfrom' => 'Mostre i ultins cambiaments dal $1',
 'rcshowhideminor' => '$1 i piçui cambiaments',
@@ -1328,7 +1335,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'move-page-legend' => 'Môf pagjine',
 'movepagetext' => "Cun il formulari ca sot tu puedis gambiâ il non a une pagjine, movint dut il sô storic al gnûf non.
 Il vieri titul al deventarà une pagjine di reindirizament al gnûf titul. I leams ae vecje pagjine no saran gambiâts; verifiche
-par plasê che no sedin reindirizaments doplis o no funzionants.
+par plasê che no sedin reindirizaments  [[Special:DoubleRedirects|doplis]] o [[Special:BrokenRedirects|no funzionants]].
 Tu sês responsabil che i leams a continui a mandâ tal puest just.
 
 Note che la pagjine '''no''' sarà movude se e je za une pagjine cul gnûf titul, a mancul che no sedi vueide o un reindirizament e

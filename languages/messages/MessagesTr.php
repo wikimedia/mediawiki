@@ -1220,6 +1220,9 @@ Bu değişkenler atlandı.",
 'cantcreateaccount-text' => "Bu IP adresinden ('''$1''') kullanıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.
 
 $3 tarafından verilen sebep ''$2''",
+'cantcreateaccount-range-text' => "'''$1''' aralığındaki IP'ler için hesap oluşturma [[User:$3|$3]] tarafından engellendi, bu sizin IP adresinizi de ('''$4''') içeriyor.
+
+$3 tarafından verilen gerekçe ''$2''",
 
 # History pages
 'viewpagelogs' => 'Bu sayfa ile ilgili kayıtları göster',

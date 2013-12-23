@@ -1130,6 +1130,8 @@ $2
 'cantcreateaccount-text' => "從這個 IP 位址 （<b>$1</b>） 建立帳號已經被 [[User:$3|$3]] 禁止。
 
 當中被 $3 封禁的原因是 ''$2''",
+'cantcreateaccount-range-text' => "於此IP位址段'''$1'''之賬戶註冊被[[User:$3|$3]]禁止，其亦包括您所使用之IP位址（'''$4'''）。
+$3所述禁止原因為“$2”。",
 
 # History pages
 'viewpagelogs' => '查詢這個頁面的日誌',
@@ -3845,13 +3847,14 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath 條目路徑]',
 
 # Special:Redirect
-'redirect' => '重定向檔案、用戶ID或頁面修訂ID',
+'redirect' => '重定向檔案、用戶、頁面或修訂ID',
 'redirect-legend' => '重定向到檔案或頁面',
-'redirect-summary' => '此特殊頁面重定向到檔案（指定的檔案名稱）、頁面 （指定的頁面修訂ID） 或用戶頁面（指定的用戶ID數值）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/revision/328429]]或[[{{#Special:Redirect}}/user/101]]。',
+'redirect-summary' => '此特殊頁面重定向到檔案（請指定檔案名）、頁面（請指定修訂ID或頁面ID）或用戶頁（請指定用戶ID數值）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/page/64308]]、[[{{#Special:Redirect}}/revision/328429]]或[[{{#Special:Redirect}}/user/101]]。',
 'redirect-submit' => '提交',
 'redirect-lookup' => '尋找：',
 'redirect-value' => '值：',
 'redirect-user' => '用戶ID：',
+'redirect-page' => '頁面ID',
 'redirect-revision' => '頁面修訂ID',
 'redirect-file' => '檔案名稱',
 'redirect-not-exists' => '找不到',

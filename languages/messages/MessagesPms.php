@@ -912,6 +912,9 @@ Costi paràmeter a son stàit ignorà.",
 'cantcreateaccount-text' => "La cression ëd cont neuv a parte da st'adrëssa IP-sì ('''$1''') a l'é stàita blocà da [[User:$3|$3]].
 
 La rason butà da $3 për ël blocagi a l'é stàita: ''$2''",
+'cantcreateaccount-range-text' => "La creassion ëd cont da l'adrëssa IP ant l'antërval '''$1''', ch'a comprend soa adrëssa IP ('''$4'''), a l'é stàita blocà da [[User:$3|$3]].
+
+La rason dàita da $3 a l'é ''$2''",
 
 # History pages
 'viewpagelogs' => 'Smon ij registr dë sta pàgina-sì',

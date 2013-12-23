@@ -1198,6 +1198,9 @@ Những tham số này sẽ bị bỏ đi.',
 'cantcreateaccount-text' => "Chức năng tài tạo khoản từ địa chỉ IP này ('''$1''') đã bị [[User:$3|$3]] cấm.
 
 Lý do được $3 đưa ra là ''$2''",
+'cantcreateaccount-range-text' => "[[User:$3|$3]] đã cấm các địa chỉ IP trong dãy '''$1''', bao gồm địa chỉ IP của bạn ('''$4'''), không được mở tài khoản.
+
+Lý do được đưa ra bởi $3 là ''$2''",
 
 # History pages
 'viewpagelogs' => 'Xem nhật trình của trang này',

@@ -1272,6 +1272,9 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a mainten
 'cantcreateaccount-text' => "La création de compte depuis cette adresse IP (<b>$1</b>) a été bloquée par [[User:$3|$3]].
 
 La raison donnée était ''$2''.",
+'cantcreateaccount-range-text' => "La création de compte depuis les adresses IP dans la plage '''$1''', qui comprend votre adresse IP ('''$4'''), ont été bloquées par [[User:$3|$3]].
+
+Le motif fourni par $3 est ''$2''",
 
 # History pages
 'viewpagelogs' => 'Voir les opérations sur cette page',
@@ -4109,13 +4112,14 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Chemin de script]',
 
 # Special:Redirect
-'redirect' => 'Redirigé par fichier, utilisateur, ou ID de révision',
+'redirect' => 'Redirigé par fichier, utilisateur, page ou ID de révision',
 'redirect-legend' => 'Rediriger vers une page ou un fichier',
-'redirect-summary' => 'Cette page spéciale redirige vers un fichier (nom de fichier fourni), une page (ID de révision fourni) ou une page d’utilisateur (identifiant numérique de l’utilisateur fourni). Utilisation : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Cette page spéciale redirige vers un fichier (nom de fichier fourni), une page (ID de révision ou de page fourni) ou une page d’utilisateur (identifiant numérique de l’utilisateur fourni). Utilisation : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Valider',
 'redirect-lookup' => 'Recherche :',
 'redirect-value' => 'Valeur :',
 'redirect-user' => "ID de l'utilisateur",
+'redirect-page' => 'ID de page',
 'redirect-revision' => 'Révision de la page',
 'redirect-file' => 'Nom du fichier',
 'redirect-not-exists' => 'Valeur non trouvée',

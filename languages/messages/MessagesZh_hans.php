@@ -1198,6 +1198,8 @@ $2
 'cantcreateaccount-text' => "从该IP地址（'''$1'''）创建账户已被[[User:$3|$3]]禁止。
 
 $3的理由是''$2''",
+'cantcreateaccount-range-text' => "从该IP地址段'''$1'''的账户创建已被[[User:$3|$3]]禁止，而这也包括了您的IP地址（'''$4'''）。
+$3给出的原因是“$2”。",
 
 # History pages
 'viewpagelogs' => '查看本页面的日志',
@@ -1635,8 +1637,8 @@ $1",
 'right-userrights' => '编辑所有用户权限',
 'right-userrights-interwiki' => '编辑其它wiki上用户的用户权限',
 'right-siteadmin' => '锁定和解锁数据库',
-'right-override-export-depth' => '导出含有链接页面深度为5的页面',
-'right-sendemail' => '电邮联系其他用户',
+'right-override-export-depth' => '导出页面，包括最多5层链接',
+'right-sendemail' => '发送电子邮件给其他用户',
 'right-passwordreset' => '查看密码重置电子邮件',
 
 # Special:Log/newusers
@@ -3833,7 +3835,7 @@ $5
 'watchlistedit-raw-removed' => '$1个标题被删除：',
 
 # Watchlist editing tools
-'watchlisttools-view' => '查看相关更改',
+'watchlisttools-view' => '查看有关更改',
 'watchlisttools-edit' => '查看并编辑监视列表',
 'watchlisttools-raw' => '编辑原始监视列表',
 

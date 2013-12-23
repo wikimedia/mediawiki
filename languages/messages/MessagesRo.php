@@ -25,6 +25,7 @@
  * @author Silviubogan
  * @author Stelistcristi
  * @author Strainu
+ * @author TTO
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -2086,9 +2087,7 @@ Această pagină specială permite căutarea fișierelor în funcție de tipul M
 * Imagini animate : <code>image/gif</code>
 * Fișiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code>
 * Fișiere video : <code>video/ogg</code>, <code>video/x-ogg</code>
-* Fișiere PDF : <code>application/pdf</code>
-
-Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup fișiere mime.types].',
+* Fișiere PDF : <code>application/pdf</code>',
 'mimetype' => 'Tip MIME:',
 'download' => 'descarcă',
 

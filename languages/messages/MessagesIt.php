@@ -1150,6 +1150,9 @@ Controlla le differenze mostrate sotto fra le due versioni per essere certo che 
 'cantcreateaccount-text' => "La registrazione è stata bloccata da [[User:$3|$3]] per questo indirizzo IP ('''$1''').
 
 La motivazione del blocco fornita da $3 è la seguente: ''$2''",
+'cantcreateaccount-range-text' => "La registrazione da indirizzi IP nell'intervallo '''$1''', che include il tuo ('''$4'''), è stata bloccata da [[User:$3|$3]].
+
+La motivazione fornita da $3 è ''$2''",
 
 # History pages
 'viewpagelogs' => 'Visualizza i log relativi a questa pagina.',

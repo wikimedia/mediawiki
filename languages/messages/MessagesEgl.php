@@ -418,7 +418,7 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked-toolbox' => 'Mudéfichi coleghêdi',
-'recentchangeslinked-summary' => "Cla pàgina specêla ché la fà vèder al j ûltmi mudéfichi al pàgini coleghêdi da còla sgnêda (o dèinter int la categoréia sgnêda). Al pàgini dèint a la tó lésta 'd j [[Special:Watchlist|Uservê specêl]] în sgnêdi in '''grasèt'''.",
+'recentchangeslinked-summary' => "Cla pàgina specêla ché la fà vèder al j ûltmi mudéfichi al pàgini coleghêdi da còla sgnêda (o dèinter int la categoréia sgnêda). Al pàgini dèint a la tó lésta 'd j [[Special:Watchlist|tgnû sòt ôc specêl]] în sgnêdi in '''grasèt'''.",
 
 # Upload
 'upload' => "Cârga un 'file'",
@@ -580,7 +580,7 @@ $messages = array(
 'tooltip-ca-viewsource' => "Cla pàgina ché l'é sòta prutesiòun, mó 't pō vèder al só côdis surzéia.",
 'tooltip-ca-history' => 'Revişiòun fâti a cla pàgina ché.',
 'tooltip-ca-move' => 'Spôsta cla pàgina ché (câmbia tétol)',
-'tooltip-ca-watch' => "Zênta cla pàgina ché a la tó lésta 'd j uservê specêl.",
+'tooltip-ca-watch' => "Zûnta cla pàgina ché a la tó lésta di tgnû 'd ôc specêl.",
 'tooltip-search' => 'Sērca dèinter ed {{SITENAME}}',
 'tooltip-search-fulltext' => 'Sērca int al pàgini al tèst e-sgnê.',
 'tooltip-p-logo' => 'Guêrda la pàgina principêla',

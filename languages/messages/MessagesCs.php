@@ -1228,6 +1228,9 @@ Tyto argumenty byly vynechány.',
 'cantcreateaccount-text' => "Zakládání nových účtů z této IP adresy ('''$1''') bylo zablokováno uživatelem [[User:$3|$3]].
 
 $3 uvádí toto zdůvodnění: ''$2''",
+'cantcreateaccount-range-text' => "Zakládání nových účtů z IP adres v rozsahu '''$1''', který obsahuje i vaši IP adresu ('''$4'''), bylo zablokováno {{GENDER:$3|uživatelem|uživatelkou}} [[User:$3|$3]].
+
+$3 uvádí toto zdůvodnění: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Zobrazit protokolovací záznamy k této stránce',
@@ -4017,6 +4020,7 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'redirect-lookup' => 'Najít:',
 'redirect-value' => 'Hodnota:',
 'redirect-user' => 'Uživatelské ID',
+'redirect-page' => 'ID stránky',
 'redirect-revision' => 'Revizi stránky',
 'redirect-file' => 'Jméno souboru',
 'redirect-not-exists' => 'Hodnota nenalezena',
