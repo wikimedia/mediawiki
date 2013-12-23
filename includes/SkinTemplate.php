@@ -1302,6 +1302,7 @@ class SkinTemplate extends Skin {
 
 			if ( $this->getUser()->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
+					'text' => $this->msg( 'blockip', $rootUser )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 				);
 			}
