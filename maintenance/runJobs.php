@@ -47,8 +47,6 @@ class RunJobs extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		if ( wfReadOnly() ) {
 			$this->error( "Unable to run jobs; the wiki is in read-only mode.", 1 ); // die
 		}
@@ -68,7 +66,6 @@ class RunJobs extends Maintenance {
 		$maxTime = $this->getOption( 'maxtime', false );
 		$startTime = time();
 		$type = $this->getOption( 'type', false );
-		$wgTitle = Title::newFromText( 'RunJobs.php' );
 		$jobsRun = 0; // counter
 
 		$group = JobQueueGroup::singleton();
