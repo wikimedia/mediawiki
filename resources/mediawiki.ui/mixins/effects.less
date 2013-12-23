@@ -1,52 +1,71 @@
-/* Mixins for visual effects in CSS3 */
-
 @import "../settings/colors";
-
-// ----------------------------------------------------------------------------
-// Gradients
-// ----------------------------------------------------------------------------
-.vertical-gradient(@startColor: lighten(@agoraGray, 95%), @endColor: @agoraGray, @startPos: 0, @endPos: 100%) {
-	background-color: @endColor;
-	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
-	background-image: -webkit-gradient( linear, left top, left bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) ); // Safari 4+, Chrome 2+
-	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Safari 5.1+, Chrome 10+
-	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
-}
-
 // ----------------------------------------------------------------------------
 // Button styling
 // ----------------------------------------------------------------------------
 
-.buttonColors(@baseColor: @agoraGray) {
-	// Background color
-	.vertical-gradient(lighten(@baseColor, 7.5%), @baseColor);
-
-	border: 1px solid darken(@baseColor, 2%);
+.button-colors(@bgColor) {
+	background: @bgColor;
 
 	&:hover,
-	&.mw-ui-hover {
-		.vertical-gradient(lighten(@baseColor, 12.5%), lighten(@baseColor, 7.5%));
-		text-decoration: none;
+	&:focus {
+		// The inner bottom bevel should match the active background color.
+		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
+		outline: none;
 	}
 
-	&:active,
-	&.mw-ui-active {
-		background-image: none;
-		background-color: darken(@baseColor, 3%);
-	}
-
-	&:disabled,
-	&.mw-ui-disabled {
-		background-image: none;
-		background-color: @baseColor;
-		opacity: 0.5;
+	&:active {
+		// lessphp doesn't implement shade (https://github.com/leafo/lessphp/issues/528);
+		// it passes it through, then ResourceLoader drops it.
+		// background: shade(@bgColor, 20%);
+		background: mix(#000, @bgColor, 20%);
+		box-shadow: none;
 	}
 }
 
-.buttonColors(@baseColor: @agoraGray) when (lightness(@baseColor) >= 50%) {
-	color: #000;
+.button-colors(@bgColor) when (lightness(@bgColor) >= 70%) {
+	color: @colorGrayDark;
+	border: 1px solid @colorGrayLight;
+
+	&:disabled {
+		color: @colorGrayLight;
+
+		// make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active {
+			background: @bgColor;
+			box-shadow: none;
+		}
+	}
 }
 
-.buttonColors(@baseColor: @agoraGray) when (lightness(@baseColor) < 50%) {
-	color: #fff;
+.button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
+	color: @colorWhite;
+	border: none;
+
+	&:disabled {
+		background: @colorGrayLight;
+
+		// make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active {
+			box-shadow: none;
+		}
+	}
+}
+
+.button-colors-quiet(@textColor) {
+	color: @textColor;
+
+	&:hover,
+	&:focus {
+		color: tint(@textColor, 20%);
+	}
+
+	&:active {
+		color: shade(@textColor, 20%);
+	}
+
+	&:disabled {
+		color: @colorGrayLight;
+	}
 }
