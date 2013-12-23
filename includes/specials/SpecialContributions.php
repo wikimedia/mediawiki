@@ -98,10 +98,10 @@ class SpecialContributions extends SpecialPage {
 			$this->getSkin()->setRelevantUser( $userObj );
 		} else {
 			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
-			$out->setHTMLTitle(
-				$this->msg( 'pagetitle', $this->msg( 'sp-contributions-newbies-title' ) )
-					->inContentLanguage()->plain()
-			);
+			$out->setHTMLTitle( $this->msg(
+				'pagetitle',
+				$this->msg( 'sp-contributions-newbies-title' )->plain()
+			)->inContentLanguage() );
 		}
 
 		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
@@ -168,7 +168,7 @@ class SpecialContributions extends SpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
-		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
+		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
 			$out->addHTML( $this->getForm() );
 
 			$pager = new ContribsPager( $this->getContext(), array(
