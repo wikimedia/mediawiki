@@ -33,11 +33,13 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Gesprec'      => NS_TALK,
-	'Biliþgesprec' => NS_FILE_TALK,
-	'Bysengesprec' => NS_TEMPLATE_TALK,
-	'Helpgesprec'  => NS_HELP_TALK,
-	'Floccgesprec' => NS_CATEGORY_TALK,
+	'Gesprec'       => NS_TALK,
+	'Brucend'       => NS_USER,
+	'Brucendmotung' => NS_USER_TALK,
+	'Biliþgesprec'  => NS_FILE_TALK,
+	'Bysengesprec'  => NS_TEMPLATE_TALK,
+	'Helpgesprec'   => NS_HELP_TALK,
+	'Floccgesprec'  => NS_CATEGORY_TALK,
 );
 
 $messages = array(
