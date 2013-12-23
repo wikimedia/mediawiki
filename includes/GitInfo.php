@@ -170,6 +170,9 @@ class GitInfo {
 		}
 
 		$configArray = parse_ini_file( $config, true );
+		if( $configArray === false ) {
+			return false;
+		}
 		$remote = false;
 
 		// Use the "origin" remote repo if available or any other repo if not.
