@@ -12,7 +12,9 @@ var mw = ( function ( $, undefined ) {
 	/* Private Members */
 
 	var hasOwn = Object.prototype.hasOwnProperty,
-		slice = Array.prototype.slice;
+		slice = Array.prototype.slice,
+		trackCallbacks = $.Callbacks( 'memory' ),
+		trackQueue = [];
 
 	/**
 	 * Log a message to window.console, if possible. Useful to force logging of some
@@ -324,6 +326,70 @@ var mw = ( function ( $, undefined ) {
 	 */
 	return {
 		/* Public Members */
+
+		/**
+		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
+		 *
+		 * On browsers that implement the Navigation Timing API, this function will produce floating-point
+		 * values with microsecond precision that are guaranteed to be monotonic. On all other browsers,
+		 * it will fall back to using `Date`.
+		 *
+		 * @returns {number} Current time
+		 */
+		now: ( function () {
+			var perf = window.performance,
+				navStart = perf && perf.timing && perf.timing.navigationStart;
+			return navStart && typeof perf.now === 'function' ?
+				function () { return navStart + perf.now(); } :
+				function () { return +new Date(); };
+		}() ),
+
+		/**
+		 * Track an analytic event.
+		 *
+		 * This method provides a generic means for MediaWiki JavaScript code to capture state
+		 * information for analysis. Each logged event specifies a string topic name that describes
+		 * the kind of event that it is. Topic names consist of dot-separated path components,
+		 * arranged from most general to most specific. Each path component should have a clear and
+		 * well-defined purpose.
+		 *
+		 * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
+		 * events that match their subcription, including those that fired before the handler was
+		 * bound.
+		 *
+		 * @param {string} topic Topic name
+		 * @param {Object} [data] Data describing the event, encoded as an object
+		 */
+		track: function ( topic, data ) {
+			trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
+			trackCallbacks.fire( trackQueue );
+		},
+
+		/**
+		 * Register a handler for subset of analytic events, specified by topic
+		 *
+		 * Handlers will be called once for each tracked event, including any events that fired before the
+		 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
+		 * the exact time at which the event fired, a string 'topic' property naming the event, and a
+		 * 'data' property which is an object of event-specific data. The event topic and event data are
+		 * also passed to the callback as the first and second arguments, respectively.
+		 *
+		 * @param {string} topic Handle events whose name starts with this string prefix
+		 * @param {Function} callback Handler to call for each matching tracked event
+		 */
+		trackSubscribe: function ( topic, callback ) {
+			var seen = 0;
+
+			trackCallbacks.add( function ( trackQueue ) {
+				var event;
+				for ( ; seen < trackQueue.length; seen++ ) {
+					event = trackQueue[ seen ];
+					if ( event.topic.indexOf( topic ) === 0 ) {
+						callback.call( event, event.topic, event.data );
+					}
+				}
+			} );
+		},
 
 		/**
 		 * Dummy placeholder for {@link mw.log}
