@@ -296,14 +296,14 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $this->requestedHideUser ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = 'ipb-confirmhideuser';
+			$this->preErrors[] = array( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 		}
 
 		# Or if the user is trying to block themselves
 		if ( (string)$this->target === $this->getUser()->getName() ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = 'ipb-blockingself';
+			$this->preErrors[] = array( 'ipb-blockingself', 'ipb-confirmaction' );
 		}
 	}
 
@@ -630,7 +630,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $target === $performer->getName() &&
 				( $data['PreviousTarget'] !== $target || !$data['Confirm'] )
 			) {
-				return array( 'ipb-blockingself' );
+				return array( 'ipb-blockingself', 'ipb-confirmaction' );
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
 			$userId = 0;
@@ -678,7 +678,7 @@ class SpecialBlock extends FormSpecialPage {
 				# Disallow hiding users with many edits for performance.
 				return array( 'ipb_hide_invalid' );
 			} elseif ( !$data['Confirm'] ) {
-				return array( 'ipb-confirmhideuser' );
+				return array( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 			}
 		}
 

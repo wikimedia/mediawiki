@@ -3301,6 +3301,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 See the [[Special:BlockList|block list]] to review blocks.',
 'ipb-blockingself'                => 'You are about to block yourself! Are you sure you want to do that?',
 'ipb-confirmhideuser'             => 'You are about to block a user with "hide user" enabled. This will suppress the user\'s name in all lists and log entries. Are you sure you want to do that?',
+'ipb-confirmaction'               => 'If you are sure you really want to do it, please check the highlighted field at the bottom.',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',

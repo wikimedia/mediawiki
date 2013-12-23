@@ -6330,6 +6330,11 @@ See also:
 
 See also:
 * {{msg-mw|Ipb-blockingself}}',
+'ipb-confirmaction' => 'Used to inform user to check "Confirm block" checkbox in [[Special:Block]].
+
+See also:
+* {{msg-mw|Ipb-blockingself}}
+* {{msg-mw|Ipb-confirmhideuser}}'
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.
 
 See also:
