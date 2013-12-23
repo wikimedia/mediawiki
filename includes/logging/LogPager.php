@@ -167,21 +167,19 @@ class LogPager extends ReverseChronologicalPager {
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $name );
 		if ( !$userid ) {
-			/* It should be nicer to abort query at all,
-			   but for now it won't pass anywhere behind the optimizer */
-			$this->mConds[] = "NULL";
+			$this->mConds['log_user_text'] = IP::sanitizeIP( $name );
 		} else {
 			$this->mConds['log_user'] = $userid;
-			// Paranoia: avoid brute force searches (bug 17342)
-			$user = $this->getUser();
-			if ( !$user->isAllowed( 'deletedhistory' ) ) {
-				$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
-				$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
-					' != ' . LogPage::SUPPRESSED_USER;
-			}
-			$this->performer = $usertitle->getText();
 		}
+		// Paranoia: avoid brute force searches (bug 17342)
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
+				' != ' . LogPage::SUPPRESSED_USER;
+		}
+		$this->performer = $usertitle->getText();
 	}
 
 	/**
