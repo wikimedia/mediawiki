@@ -1,0 +1,46 @@
+# Travis CI build configuration for MediaWiki
+# <https://travis-ci.org/wikimedia/mediawiki-core>
+#
+# The Wikimedia Foundation uses a self-hosted Jenkins instance to run unit
+# tests, but it tests code against the version of PHP that is deployed on
+# Wikimedia's production cluster. This Travis CI configuration is designed to
+# complement that setup by testing MediaWiki against HHVM.
+#
+language: php
+
+php:
+  - hhvm
+
+services:
+  - mysql
+
+branches:
+  # Test changes in master and in Wikimedia's production branches.
+  only:
+    - master
+    - /^wmf\/.*$/
+
+before_install:
+  - sudo apt-get install -qq djvulibre-bin tidy
+
+before_script:
+  # Initialise submodules, in case we're testing a Wikimedia production branch.
+  - git submodule update --init --recursive
+  # Travis CI's HHVM environment provides PHPUnit as a phar file, but
+  # MediaWiki's test suite only works if individual PHPUnit files are
+  # actual files on disk (bug 58881).
+  - composer require 'phpunit/phpunit=3.7.*'
+  - >
+      php maintenance/install.php testwiki admin
+      --pass travis
+      --dbname traviswiki
+      --dbuser travis
+      --dbpass ""
+      --scriptpath "/w"
+
+script:
+  - >
+      hhvm --php
+      -d include_path=".$(printf ':%s' vendor/phpunit/*)"
+      -d date.timezone="Etc/UTC"
+      tests/phpunit/phpunit.php
