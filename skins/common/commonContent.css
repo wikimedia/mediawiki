@@ -163,12 +163,6 @@ img.thumbborder {
 /**
  * Basic styles for the user login and create account forms
  */
-#userlogin, #userloginForm {
-	border: solid 1px #cccccc;
-	padding: 1.2em;
-	margin: 0.5em;
-}
-
 #loginend {
 	margin: 0.5em;
 }
