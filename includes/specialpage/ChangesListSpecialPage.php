@@ -124,12 +124,19 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Get a FormOptions object containing the default options. By default returns some basic options,
-	 * you might not call parent method and discard them.
+	 * you might want to not call parent method and discard them, or to override default values.
 	 *
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
 		$opts = new FormOptions();
+
+		$opts->add( 'hideminor', false );
+		$opts->add( 'hidebots', false );
+		$opts->add( 'hideanons', false );
+		$opts->add( 'hideliu', false );
+		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'hidemyself', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -182,12 +189,80 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Return an array of conditions depending of options set in $opts
-	 * @todo This should build some basic conditions here…
+	 * @todo Whyyyy is this mutating $opts…
 	 *
 	 * @param FormOptions $opts
 	 * @return array
 	 */
-	abstract public function buildMainQueryConds( FormOptions $opts );
+	public function buildMainQueryConds( FormOptions $opts ) {
+		$dbr = $this->getDB();
+		$user = $this->getUser();
+		$conds = array();
+
+		// It makes no sense to hide both anons and logged-in users
+		// Where this occurs, force anons to be shown
+		$botsOnly = false;
+		if ( $opts['hideanons'] && $opts['hideliu'] ) {
+			// Check if the user wants to show bots only
+			if ( $opts['hidebots'] ) {
+				$opts['hideanons'] = false;
+			} else {
+				$botsOnly = true;
+			}
+		}
+
+		// Toggles
+		if ( $opts['hideminor'] ) {
+			$conds['rc_minor'] = 0;
+		}
+		if ( $opts['hidebots'] ) {
+			$conds['rc_bot'] = 0;
+		}
+		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
+			$conds['rc_patrolled'] = 0;
+		}
+		if ( $botsOnly ) {
+			$conds['rc_bot'] = 1;
+		} else {
+			if ( $opts['hideliu'] ) {
+				$conds[] = 'rc_user = 0';
+			}
+			if ( $opts['hideanons'] ) {
+				$conds[] = 'rc_user != 0';
+			}
+		}
+		if ( $opts['hidemyself'] ) {
+			if ( $user->getId() ) {
+				$conds[] = 'rc_user != ' . $dbr->addQuotes( $user->getId() );
+			} else {
+				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
+			}
+		}
+
+		// Namespace filtering
+		if ( $opts['namespace'] !== '' ) {
+			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
+			$operator = $opts['invert'] ? '!=' : '=';
+			$boolean = $opts['invert'] ? 'AND' : 'OR';
+
+			// Namespace association (bug 2429)
+			if ( !$opts['associated'] ) {
+				$condition = "rc_namespace $operator $selectedNS";
+			} else {
+				// Also add the associated namespace
+				$associatedNS = $dbr->addQuotes(
+					MWNamespace::getAssociated( $opts['namespace'] )
+				);
+				$condition = "(rc_namespace $operator $selectedNS "
+					. $boolean
+					. " rc_namespace $operator $associatedNS)";
+			}
+
+			$conds[] = $condition;
+		}
+
+		return $conds;
+	}
 
 	/**
 	 * Process the query
@@ -198,6 +273,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	abstract public function doMainQuery( $conds, $opts );
+
+	/**
+	 * Return a DatabaseBase object for reading
+	 *
+	 * @return DatabaseBase
+	 */
+	protected function getDB() {
+		return wfGetDB( DB_SLAVE );
+	}
 
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
