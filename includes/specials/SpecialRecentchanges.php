@@ -148,26 +148,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	/**
 	 * Return an array of conditions depending of options set in $opts
+	 * @todo Whyyyy is this mutating $opts…
 	 *
 	 * @param FormOptions $opts
 	 * @return array
 	 */
 	public function buildMainQueryConds( FormOptions $opts ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$conds = array();
-
-		# It makes no sense to hide both anons and logged-in users
-		# Where this occurs, force anons to be shown
-		$forcebot = false;
-		if ( $opts['hideanons'] && $opts['hideliu'] ) {
-			# Check if the user wants to show bots only
-			if ( $opts['hidebots'] ) {
-				$opts['hideanons'] = false;
-			} else {
-				$forcebot = true;
-				$opts['hidebots'] = false;
-			}
-		}
+		$dbr = $this->getDB();
+		$conds = parent::buildMainQueryConds( $opts );
 
 		// Calculate cutoff
 		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
@@ -182,59 +170,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
-
-		$hidePatrol = $this->getUser()->useRCPatrol() && $opts['hidepatrolled'];
-		$hideLoggedInUsers = $opts['hideliu'] && !$forcebot;
-		$hideAnonymousUsers = $opts['hideanons'] && !$forcebot;
-
-		if ( $opts['hideminor'] ) {
-			$conds['rc_minor'] = 0;
-		}
-		if ( $opts['hidebots'] ) {
-			$conds['rc_bot'] = 0;
-		}
-		if ( $hidePatrol ) {
-			$conds['rc_patrolled'] = 0;
-		}
-		if ( $forcebot ) {
-			$conds['rc_bot'] = 1;
-		}
-		if ( $hideLoggedInUsers ) {
-			$conds[] = 'rc_user = 0';
-		}
-		if ( $hideAnonymousUsers ) {
-			$conds[] = 'rc_user != 0';
-		}
-
-		if ( $opts['hidemyself'] ) {
-			if ( $this->getUser()->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $this->getUser()->getId() );
-			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $this->getUser()->getName() );
-			}
-		}
-
-		# Namespace filtering
-		if ( $opts['namespace'] !== '' ) {
-			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
-			$operator = $opts['invert'] ? '!=' : '=';
-			$boolean = $opts['invert'] ? 'AND' : 'OR';
-
-			# namespace association (bug 2429)
-			if ( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
-			} else {
-				# Also add the associated namespace
-				$associatedNS = $dbr->addQuotes(
-					MWNamespace::getAssociated( $opts['namespace'] )
-				);
-				$condition = "(rc_namespace $operator $selectedNS "
-					. $boolean
-					. " rc_namespace $operator $associatedNS)";
-			}
-
-			$conds[] = $condition;
-		}
 
 		return $conds;
 	}
@@ -252,7 +187,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$query_options = array();
 
 		$uid = $this->getUser()->getId();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB();
 		$limit = $opts['limit'];
 		$namespace = $opts['namespace'];
 		$invert = $opts['invert'];
@@ -323,7 +258,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB();
 
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
@@ -537,7 +472,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string|bool
 	 */
 	public function checkLastModified( $feedFormat ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB();
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
 		if ( $feedFormat || !$this->getUser()->useRCPatrol() ) {
 			if ( $lastmod && $this->getOutput()->checkLastModified( $lastmod ) ) {
