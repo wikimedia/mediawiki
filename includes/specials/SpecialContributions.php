@@ -354,7 +354,7 @@ class SpecialContributions extends SpecialPage {
 	protected function getForm() {
 		global $wgScript;
 
-		$this->opts['title'] = $this->getTitle()->getPrefixedText();
+		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		if ( !isset( $this->opts['target'] ) ) {
 			$this->opts['target'] = '';
 		} else {

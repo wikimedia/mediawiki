@@ -126,6 +126,8 @@ changes to languages because of Bugzilla reports.
   and their definition was changed not to include the common*.css files;
   the two skins now load the 'skins.common.interface' module instead.
 * A page_links_updated field has been added to the page table.
+* SpecialPage::getTitle has been deprecated in favor of
+  SpecialPage::getPageTitle.
 
 == Compatibility ==
 

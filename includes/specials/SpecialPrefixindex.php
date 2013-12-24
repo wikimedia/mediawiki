@@ -101,7 +101,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$out .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
 		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
@@ -249,7 +249,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$out2 = '';
 		} else {
 			$nsForm = $this->namespacePrefixForm( $namespace, $prefix );
-			$self = $this->getTitle();
+			$self = $this->getPageTitle();
 			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
 				'<tr>
 					<td>' .

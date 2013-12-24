@@ -49,7 +49,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 		}
 
 		$prefix = $this->prefix;
-		$t = $this->getTitle();
+		$t = $this->getPageTitle();
 
 		return Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .

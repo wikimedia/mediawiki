@@ -189,7 +189,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$formatter = $changesFeed->getFeedObject(
 			$this->msg( 'recentchanges' )->inContentLanguage()->text(),
 			$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
-			$this->getTitle()->getFullURL()
+			$this->getPageTitle()->getFullURL()
 		);
 
 		return array( $changesFeed, $formatter );
@@ -593,7 +593,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$out .= Html::hidden( $key, $value );
 		}
 
-		$t = $this->getTitle();
+		$t = $this->getPageTitle();
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
 		$form = Xml::tags( 'form', array( 'action' => $wgScript ), $out );
 		$panel[] = $form;
@@ -862,7 +862,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$text = '<strong>' . $text . '</strong>';
 		}
 
-		return Linker::linkKnown( $this->getTitle(), $text, array(), $params );
+		return Linker::linkKnown( $this->getPageTitle(), $text, array(), $params );
 	}
 
 	/**

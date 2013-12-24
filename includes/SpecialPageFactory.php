@@ -466,13 +466,13 @@ class SpecialPageFactory {
 			if ( $name != $page->getLocalName() && !$context->getRequest()->wasPosted() ) {
 				$query = $context->getRequest()->getQueryValues();
 				unset( $query['title'] );
-				$title = $page->getTitle( $par );
+				$title = $page->getPageTitle( $par );
 				$url = $title->getFullURL( $query );
 				$context->getOutput()->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $title;
 			} else {
-				$context->setTitle( $page->getTitle( $par ) );
+				$context->setTitle( $page->getPageTitle( $par ) );
 			}
 
 		} elseif ( !$page->isIncludable() ) {

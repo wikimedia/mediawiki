@@ -49,7 +49,7 @@ class RevisiondeleteAction extends FormlessAction {
 	public function show() {
 		$special = SpecialPageFactory::getPage( 'Revisiondelete' );
 		$special->setContext( $this->getContext() );
-		$special->getContext()->setTitle( $special->getTitle() );
+		$special->getContext()->setTitle( $special->getPageTitle() );
 		$special->run( '' );
 	}
 }

@@ -346,7 +346,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// this design is extremely dubious, but supposedly HTMLForm is our standard now?
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new HTMLForm( array(
 			'Clear' => array(
 				'type' => 'hidden',
@@ -362,7 +362,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		// show the files + form, if there are any, or just say there are none
 		$refreshHtml = Html::element( 'a',
-			array( 'href' => $this->getTitle()->getLocalURL() ),
+			array( 'href' => $this->getPageTitle()->getLocalURL() ),
 			$this->msg( 'uploadstash-refresh' )->text() );
 		$files = $this->stash->listFiles();
 		if ( $files && count( $files ) ) {
@@ -372,7 +372,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				// TODO: Use Linker::link or even construct the list in plain wikitext
 				$fileListItemsHtml .= Html::rawElement( 'li', array(),
 					Html::element( 'a', array( 'href' =>
-						$this->getTitle( "file/$file" )->getLocalURL() ), $file )
+						$this->getPageTitle( "file/$file" )->getLocalURL() ), $file )
 				);
 			}
 			$this->getOutput()->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );

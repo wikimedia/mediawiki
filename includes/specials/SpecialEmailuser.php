@@ -149,7 +149,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$this->mTargetObj = $ret;
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new HTMLForm( $this->getFormFields(), $context );
 		// By now we are supposed to be sure that $this->mTarget is a user name
 		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
@@ -260,7 +260,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'askusername' )
 		) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Xml::openElement( 'fieldset' ) .
 			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
 			Xml::inputLabel(

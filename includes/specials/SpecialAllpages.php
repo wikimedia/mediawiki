@@ -123,7 +123,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		global $wgScript;
-		$t = $this->getTitle();
+		$t = $this->getPageTitle();
 
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
@@ -302,7 +302,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					$nsForm .
 					'</td>
 							<td class="mw-allpages-nav">' .
-					Linker::link( $this->getTitle(), $this->msg( 'allpages' )->escaped(),
+					Linker::link( $this->getPageTitle(), $this->msg( 'allpages' )->escaped(),
 						array(), array(), 'known' ) .
 					"</td>
 						</tr>" .
@@ -346,7 +346,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$queryParams['hideredirects'] = 1;
 		}
 
-		$url = $this->getTitle()->getLocalURL( $queryParams );
+		$url = $this->getPageTitle()->getLocalURL( $queryParams );
 		$inlink = Html::element( 'a', array( 'href' => $url ), $inpointf );
 		$outlink = Html::element( 'a', array( 'href' => $url ), $outpointf );
 
@@ -480,7 +480,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				}
 			}
 
-			$self = $this->getTitle();
+			$self = $this->getPageTitle();
 
 			$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
 			$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .

@@ -86,7 +86,7 @@ class LinkSearchPage extends QueryPage {
 			'form',
 			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $wgScript )
 		) . "\n" .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
 			Xml::inputLabel(

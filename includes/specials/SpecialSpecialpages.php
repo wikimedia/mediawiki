@@ -68,7 +68,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$groups[$group] = array();
 				}
 				$groups[$group][$page->getDescription()] = array(
-					$page->getTitle(),
+					$page->getPageTitle(),
 					$page->isRestricted(),
 					$page->isCached()
 				);

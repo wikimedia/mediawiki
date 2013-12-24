@@ -142,7 +142,7 @@ class SpecialMergeHistory extends SpecialPage {
 				'<fieldset>' .
 				Xml::element( 'legend', array(),
 					$this->msg( 'mergehistory-box' )->text() ) .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::hidden( 'submitted', '1' ) .
 				Html::hidden( 'mergepoint', $this->mTimestamp ) .
 				Xml::openElement( 'table' ) .
@@ -171,7 +171,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
 
 		$out = $this->getOutput();
-		$titleObj = $this->getTitle();
+		$titleObj = $this->getPageTitle();
 		$action = $titleObj->getLocalURL( array( 'action' => 'submit' ) );
 		# Start the form here
 		$top = Xml::openElement(

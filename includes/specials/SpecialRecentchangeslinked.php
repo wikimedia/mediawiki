@@ -50,7 +50,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
 				->inContentLanguage()->text(),
 			$this->msg( 'recentchangeslinked-feed' )->inContentLanguage()->text(),
-			$this->getTitle()->getFullURL()
+			$this->getPageTitle()->getFullURL()
 		);
 		return array( $feed, $feedObj );
 	}

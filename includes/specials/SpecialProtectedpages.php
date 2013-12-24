@@ -200,7 +200,7 @@ class SpecialProtectedpages extends SpecialPage {
 	) {
 		global $wgScript;
 
-		$title = $this->getTitle();
+		$title = $this->getPageTitle();
 
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .

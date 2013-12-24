@@ -101,7 +101,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form = Html::openElement(
 				'form',
-				array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL() )
+				array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL() )
 			) . "\n";
 			$form .= Html::hidden( 'token', $user->getEditToken() ) . "\n";
 			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() ) . "\n";

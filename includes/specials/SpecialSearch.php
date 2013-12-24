@@ -375,7 +375,7 @@ class SpecialSearch extends SpecialPage {
 		if ( $num || $this->offset ) {
 			// Show the create link ahead
 			$this->showCreateLink( $t, $num );
-			$prevnext = $this->getLanguage()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
+			$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
@@ -1089,7 +1089,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function shortDialog( $term ) {
-		$out = Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
@@ -1134,7 +1134,7 @@ class SpecialSearch extends SpecialPage {
 		return Xml::element(
 			'a',
 			array(
-				'href' => $this->getTitle()->getLocalURL( $stParams ),
+				'href' => $this->getPageTitle()->getLocalURL( $stParams ),
 				'title' => $tooltip
 			),
 			$label
