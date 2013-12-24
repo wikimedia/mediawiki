@@ -755,8 +755,10 @@ class SpecialPage {
 	 * also the name that will be listed in Special:Specialpages
 	 *
 	 * Derived classes can override this, but usually it is easier to keep the
-	 * default behavior. Messages can be added at run-time, see
-	 * MessageCache.php.
+	 * default behavior. New messages can be added via an i18n file.
+	 * See https://www.mediawiki.org/wiki/I18n for details.
+	 *
+	 * @note Must return a string, not a Message object, or things break.
 	 *
 	 * @return String
 	 */
