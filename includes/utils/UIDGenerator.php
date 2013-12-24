@@ -40,6 +40,7 @@ class UIDGenerator {
 	protected $fileHandles = array(); // cache file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
+	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
 
 	protected function __construct() {
 		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
@@ -212,6 +213,94 @@ class UIDGenerator {
 	 */
 	public static function newRawUUIDv4( $flags = 0 ) {
 		return str_replace( '-', '', self::newUUIDv4( $flags ) );
+	}
+
+	/**
+	 * Return an ID that is sequential *only* for this node and bucket
+	 *
+	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart
+	 *
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (<=48) of resulting numbers before wrap-around
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return float Integer value as float
+	 * @since 1.23
+	 */
+	public static function newSequentialID( $bucket, $bits = 48, $flags = 0 ) {
+		return current( self::newSequentialIDMulti( $bucket, $bits, 1, $flags ) );
+	}
+
+	/**
+	 * Return IDs that are sequential *only* for this node and bucket
+	 *
+	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart
+	 *
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param integer $count Number of IDs to return (1 to 10000)
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return array Ordered list of float integer values
+	 * @since 1.23
+	 */
+	public static function newSequentialIDMulti( $bucket, $bits, $count, $flags = 0 ) {
+		if ( $count <= 0 ) {
+			return array(); // nothing to do
+		} elseif ( $count > 10000 ) {
+			throw new MWException( 'Number of requested IDs (is too high.' );
+		} elseif ( $bits < 16 || $bits > 48 ) {
+			throw new MWException( 'Requested bit size is out of range.' );
+		}
+
+		$counter = null; // post-increment persistent counter value
+
+		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
+		// Counter values would not survive accross script instances in CLI mode.
+		$cache = null;
+		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
+			try {
+				$cache = ObjectCache::newAccelerator( array() );
+			} catch ( MWException $e ) {} // not supported
+		}
+		if ( $cache ) {
+			$counter = $cache->incr( 'squidhtcppurge', $count );
+			if ( $counter === false ) {
+				if ( !$cache->add( 'squidhtcppurge', $count ) ) {
+					throw new MWException( 'Unable to set value to ' . get_class( $cache ) );
+				} else {
+					$counter = $count;
+				}
+			}
+		}
+
+		if ( $counter === null ) {
+			$path = wfTempDir() . '/mw-' . __CLASS__ . '-' . rawurlencode( $bucket ) . '-48';
+			$handle = fopen( $path, 'cb+' );
+			// Acquire the UID lock file
+			if ( $handle === false ) {
+				throw new MWException( "Could not open '{$path}'." );
+			} elseif ( !flock( $handle, LOCK_EX ) ) {
+				throw new MWException( "Could not acquire '{$path}'." );
+			}
+			// Fetch the counter value and increment it...
+			rewind( $handle );
+			$counter = floor( trim( fgets( $handle ) ) ) + $count; // fetch as float
+			// Write back the new counter value
+			ftruncate( $handle, 0 );
+			rewind( $handle );
+			fwrite( $handle, $counter % pow( 2, 48 ) ); // warp-around as needed
+			fflush( $handle );
+			// Release the UID lock file
+			flock( $handle, LOCK_UN );
+			fclose( $handle );
+		}
+
+		$ids = array();
+		$currentId = floor( $counter - $count ); // pre-increment counter value
+		for ( $i = 0; $i < $count; ++$i ) {
+			$ids[] = ++$currentId % pow( 2, $bits );
+		}
+
+		return $ids;
 	}
 
 	/**

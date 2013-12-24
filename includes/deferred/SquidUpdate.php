@@ -216,6 +216,8 @@ class SquidUpdate {
 
 		// Remove duplicate URLs from collection
 		$urlArr = array_unique( $urlArr );
+		$ids = UIDGenerator::newSequentialIDMulti( 'squidhtcppurge', 32, count( $urlArr ) );
+
 		foreach ( $urlArr as $url ) {
 			if ( !is_string( $url ) ) {
 				wfProfileOut( __METHOD__ );
@@ -243,7 +245,8 @@ class SquidUpdate {
 			// Construct a minimal HTCP request diagram
 			// as per RFC 2756
 			// Opcode 'CLR', no response desired, no auth
-			$htcpTransID = rand();
+			$htcpTransID = current( $ids );
+			next( $ids );
 
 			$htcpSpecifier = pack( 'na4na*na8n',
 				4, 'HEAD', strlen( $url ), $url,
