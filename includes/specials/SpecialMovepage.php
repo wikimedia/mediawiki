@@ -351,18 +351,31 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) && $handler->supportsRedirects() ) {
+		if ( $user->isAllowed( 'suppressredirect' ) ) {
+			if( $handler->supportsRedirects() ) {
+				$leavecheck = Xml::checkLabel(
+					$this->msg( 'move-leave-redirect' )->text(),
+					'wpLeaveRedirect',
+					'wpLeaveRedirect',
+					$this->leaveRedirect
+				);
+			} else {
+				$leavecheck = Xml::checkLabel(
+					$this->msg( 'move-leave-redirect' )->text(),
+					'wpLeaveRedirect',
+					'wpLeaveRedirect',
+					true,
+					array(
+						'disabled' => 'disabled'
+					)
+				);
+			}
 			$out->addHTML( "
 				<tr>
 					<td></td>
-					<td class='mw-input' >" .
-					Xml::checkLabel(
-						$this->msg( 'move-leave-redirect' )->text(),
-						'wpLeaveRedirect',
-						'wpLeaveRedirect',
-						$this->leaveRedirect
-					) .
-					"</td>
+					<td class='mw-input' >"
+					. $leavecheck
+					. "</td>
 				</tr>"
 			);
 		}
