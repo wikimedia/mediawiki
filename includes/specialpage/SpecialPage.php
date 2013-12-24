@@ -755,10 +755,9 @@ class SpecialPage {
 	 * also the name that will be listed in Special:Specialpages
 	 *
 	 * Derived classes can override this, but usually it is easier to keep the
-	 * default behavior. Messages can be added at run-time, see
-	 * MessageCache.php.
+	 * default behavior.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getDescription() {
 		return $this->msg( strtolower( $this->mName ) )->text();
