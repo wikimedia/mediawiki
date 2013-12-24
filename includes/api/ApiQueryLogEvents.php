@@ -72,7 +72,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'page' => array( 'LEFT JOIN',
 				array( 'log_namespace=page_namespace',
 					'log_title=page_title' ) ) ) );
-		$index = array( 'logging' => 'times' ); // default, may change
 
 		$this->addFields( array(
 			'log_type',
@@ -110,7 +109,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld( 'log_action', $action );
 		} elseif ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
-			$index['logging'] = 'type_time';
 		}
 
 		$this->addTimestampWhereRange(
@@ -126,11 +124,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$user = $params['user'];
 		if ( !is_null( $user ) ) {
 			$userid = User::idFromName( $user );
-			if ( !$userid ) {
-				$this->dieUsage( "User name $user not found", 'param_user' );
+			if ( $userid ) {
+				$this->addWhereFld( 'log_user', $userid );
+			} else {
+				$this->addWhereFld( 'log_user_text', IP::sanitizeIP( $user ) );
 			}
-			$this->addWhereFld( 'log_user', $userid );
-			$index['logging'] = 'user_time';
 		}
 
 		$title = $params['title'];
@@ -141,9 +139,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 			$this->addWhereFld( 'log_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
-
-			// Use the title index in preference to the user index if there is a conflict
-			$index['logging'] = is_null( $user ) ? 'page_time' : array( 'page_time', 'user_time' );
 		}
 
 		$prefix = $params['prefix'];
@@ -161,8 +156,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
 			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
 		}
-
-		$this->addOption( 'USE INDEX', $index );
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !is_null( $title ) ) {
