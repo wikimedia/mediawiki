@@ -40,6 +40,7 @@ class UIDGenerator {
 	protected $fileHandles = array(); // cache file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
+	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
 
 	protected function __construct() {
 		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
@@ -215,6 +216,95 @@ class UIDGenerator {
 	}
 
 	/**
+	 * Return an ID that is sequential *only* for this node and bucket
+	 *
+	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart
+	 *
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (<=48) of resulting numbers before wrap-around
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return float Integer value as float
+	 * @since 1.23
+	 */
+	public static function newSequentialID( $bucket, $bits = 48, $flags = 0 ) {
+		return current( self::newSequentialIDs( $bucket, $bits, 1, $flags ) );
+	}
+
+	/**
+	 * Return IDs that are sequential *only* for this node and bucket
+	 *
+	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart
+	 *
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param integer $count Number of IDs to return (1 to 10000)
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return array Ordered list of float integer values
+	 * @since 1.23
+	 */
+	public static function newSequentialIDs( $bucket, $bits, $count, $flags = 0 ) {
+		if ( $count <= 0 ) {
+			return array(); // nothing to do
+		} elseif ( $count > 10000 ) {
+			throw new MWException( "Number of requested IDs ($count) is too high." );
+		} elseif ( $bits < 16 || $bits > 48 ) {
+			throw new MWException( "Requested bit size ($bits) is out of range." );
+		}
+
+		$counter = null; // post-increment persistent counter value
+
+		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
+		// Counter values would not survive accross script instances in CLI mode.
+		$cache = null;
+		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
+			try {
+				$cache = ObjectCache::newAccelerator( array() );
+			} catch ( MWException $e ) {} // not supported
+		}
+		if ( $cache ) {
+			$counter = $cache->incr( $bucket, $count );
+			if ( $counter === false ) {
+				if ( !$cache->add( $bucket, $count ) ) {
+					throw new MWException( 'Unable to set value to ' . get_class( $cache ) );
+				}
+				$counter = $count;
+			}
+		}
+
+		// Note: use of fmod() avoids "division by zero" on 32 bit machines
+		if ( $counter === null ) {
+			$path = wfTempDir() . '/mw-' . __CLASS__ . '-' . rawurlencode( $bucket ) . '-48';
+			$handle = fopen( $path, 'cb+' );
+			// Acquire the UID lock file
+			if ( $handle === false ) {
+				throw new MWException( "Could not open '{$path}'." );
+			} elseif ( !flock( $handle, LOCK_EX ) ) {
+				fclose( $handle );
+				throw new MWException( "Could not acquire '{$path}'." );
+			}
+			// Fetch the counter value and increment it...
+			rewind( $handle );
+			$counter = floor( trim( fgets( $handle ) ) ) + $count; // fetch as float
+			// Write back the new counter value
+			ftruncate( $handle, 0 );
+			rewind( $handle );
+			fwrite( $handle, fmod( $counter, pow( 2, 48 ) ) ); // warp-around as needed
+			fflush( $handle );
+			// Release the UID lock file
+			flock( $handle, LOCK_UN );
+			fclose( $handle );
+		}
+		$ids = array();
+		$divisor = pow( 2, $bits );
+		$currentId = floor( $counter - $count ); // pre-increment counter value
+		for ( $i = 0; $i < $count; ++$i ) {
+			$ids[] = fmod( ++$currentId, $divisor );
+		}
+
+		return $ids;
+	}
+
+	/**
 	 * Get a (time,counter,clock sequence) where (time,counter) is higher
 	 * than any previous (time,counter) value for the given clock sequence.
 	 * This is useful for making UIDs sequential on a per-node bases.
@@ -237,6 +327,7 @@ class UIDGenerator {
 		if ( $handle === false ) {
 			throw new MWException( "Could not open '{$this->$lockFile}'." );
 		} elseif ( !flock( $handle, LOCK_EX ) ) {
+			fclose( $handle );
 			throw new MWException( "Could not acquire '{$this->$lockFile}'." );
 		}
 		// Get the current timestamp, clock sequence number, last time, and counter
