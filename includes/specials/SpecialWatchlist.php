@@ -155,55 +155,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return array
 	 */
 	public function buildMainQueryConds( FormOptions $opts ) {
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-		$conds = array();
-		$user = $this->getUser();
+		$dbr = $this->getDB();
+		$conds = parent::buildMainQueryConds( $opts );
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
-		}
-
-		# Toggles
-		if ( $opts['hidemyself'] ) {
-			$conds[] = 'rc_user != ' . $user->getId();
-		}
-		if ( $opts['hidebots'] ) {
-			$conds[] = 'rc_bot = 0';
-		}
-		if ( $opts['hideminor'] ) {
-			$conds[] = 'rc_minor = 0';
-		}
-		if ( $opts['hideliu'] ) {
-			$conds[] = 'rc_user = 0';
-		}
-		if ( $opts['hideanons'] ) {
-			$conds[] = 'rc_user != 0';
-		}
-		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
-			$conds[] = 'rc_patrolled != 1';
-		}
-
-		# Namespace filtering
-		if ( $opts['namespace'] !== '' ) {
-			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
-			$operator = $opts['invert'] ? '!=' : '=';
-			$boolean = $opts['invert'] ? 'AND' : 'OR';
-
-			# namespace association (bug 2429)
-			if ( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
-			} else {
-				# Also add the associated namespace
-				$associatedNS = $dbr->addQuotes(
-					MWNamespace::getAssociated( $opts['namespace'] )
-				);
-				$condition = "(rc_namespace $operator $selectedNS "
-					. $boolean
-					. " rc_namespace $operator $associatedNS)";
-			}
-
-			$conds[] = $condition;
 		}
 
 		return $conds;
@@ -219,7 +176,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function doMainQuery( $conds, $opts ) {
 		global $wgShowUpdatedMarker;
 
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$dbr = $this->getDB();
 		$user = $this->getUser();
 		# Toggle watchlist content (all recent edits or just the latest)
 		if ( $opts['extended'] ) {
@@ -295,6 +252,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Return a DatabaseBase object for reading
+	 *
+	 * @return DatabaseBase
+	 */
+	protected function getDB() {
+		return wfGetDB( DB_SLAVE, 'watchlist' );
+	}
+
+	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 *
 	 * @param ResultWrapper $rows Database rows
@@ -303,7 +269,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function webOutput( $rows, $opts ) {
 		global $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
 
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$dbr = $this->getDB();
 		$user = $this->getUser();
 
 		$dbr->dataSeek( $rows, 0 );
@@ -481,7 +447,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form = "";
 		$user = $this->getUser();
 
-		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+		$dbr = $this->getDB();
 		$numItems = $this->countItems( $dbr );
 
 		// Show watchlist header
