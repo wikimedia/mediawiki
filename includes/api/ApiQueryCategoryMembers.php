@@ -101,6 +101,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$dir,
 				$params['start'],
 				$params['end'] );
+			// Include in ORDER BY for uniqueness
+			$this->addWhereRange( 'cl_from', $dir, null, null );
+
+			if ( !is_null( $params['continue'] ) ) {
+				$cont = explode( '|', $params['continue'] );
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$op = ( $dir === 'newer' ? '>' : '<' );
+				$db = $this->getDB();
+				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$continueFrom = (int)$cont[1];
+				$this->dieContinueUsageIf( $continueFrom != $cont[1] );
+				$this->addWhere( "cl_timestamp $op $continueTimestamp OR " .
+					"(cl_timestamp = $continueTimestamp AND " .
+					"cl_from $op= $continueFrom)"
+				);
+			}
 
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
@@ -186,7 +202,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				// @todo Security issue - if the user has no right to view next
 				// title, it will still be shown
 				if ( $params['sort'] == 'timestamp' ) {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
 				} else {
 					$sortkey = bin2hex( $row->cl_sortkey );
 					$this->setContinueEnumParameter( 'continue',
@@ -229,7 +245,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					null, $vals );
 				if ( !$fit ) {
 					if ( $params['sort'] == 'timestamp' ) {
-						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
+						$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
 					} else {
 						$sortkey = bin2hex( $row->cl_sortkey );
 						$this->setContinueEnumParameter( 'continue',

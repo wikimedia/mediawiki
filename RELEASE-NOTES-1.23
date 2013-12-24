@@ -193,6 +193,7 @@ production.
 * Added llprop=langname and llprop=autonym for action=query&prop=langlinks.
 * prop=redirects is added, to return redirects to the pages in the query.
 * list=allredirects is added, to list all redirects pointing to a namespace.
+* (bug 24782) Various modules will now use unique continuation parameters.
 
 === Languages updated in 1.23 ===
 

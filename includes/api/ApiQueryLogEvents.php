@@ -73,13 +73,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'log_title=page_title' ) ) ) );
 
 		$this->addFields( array(
+			'log_id',
 			'log_type',
 			'log_action',
 			'log_timestamp',
 			'log_deleted',
 		) );
 
-		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
+		$this->addFieldsIf( 'page_id', $this->fld_ids );
 		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf(
@@ -116,6 +117,21 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$params['start'],
 			$params['end']
 		);
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'log_id', $params['dir'], null, null );
+
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+			$continueId = (int)$cont[1];
+			$this->dieContinueUsageIf( $continueId != $cont[1] );
+			$this->addWhere( "log_timestamp $op $continueTimestamp OR " .
+				"(log_timestamp = $continueTimestamp AND " .
+				"log_id $op= $continueId)"
+			);
+		}
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -183,7 +199,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->log_timestamp|$row->log_id" );
 				break;
 			}
 
@@ -193,7 +209,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->log_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->log_timestamp|$row->log_id" );
 				break;
 			}
 		}
@@ -469,7 +485,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			)
+			),
+			'continue' => null,
 		);
 	}
 
@@ -500,6 +517,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'prefix' => 'Filter entries that start with this prefix. Disabled in Miser Mode',
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

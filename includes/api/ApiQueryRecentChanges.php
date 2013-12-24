@@ -152,15 +152,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
-
-			$timestamp = $this->getDB()->addQuotes( wfTimestamp( TS_MW, $cont[0] ) );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$db = $this->getDB();
+			$timestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
 			$id = intval( $cont[1] );
+			$this->dieContinueUsageIf( $id != $cont[1] );
 			$op = $params['dir'] === 'older' ? '<' : '>';
-
 			$this->addWhere(
 				"rc_timestamp $op $timestamp OR " .
 				"(rc_timestamp = $timestamp AND " .
@@ -254,6 +251,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the fields we're concerned with to our query. */
 		$this->addFields( array(
+			'rc_id',
 			'rc_timestamp',
 			'rc_namespace',
 			'rc_title',
@@ -277,7 +275,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				);
 			}
 
-			$this->addFields( 'rc_id' );
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( array( 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
@@ -371,10 +368,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter(
-					'continue',
-					wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id
-				);
+				$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 				break;
 			}
 
@@ -388,10 +382,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter(
-						'continue',
-						wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id
-					);
+					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
 				}
 			} else {
