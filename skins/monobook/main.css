@@ -636,26 +636,6 @@ td.htmlform-tip {
 	margin-top: 2em;
 }
 
-div#userloginForm,
-div#userlogin {
-	margin: 0 3em 1em 0;
-	border: 1px solid #aaa;
-	clear: both;
-	padding: 1.5em 2em;
-	float: left;
-}
-
-div#userloginForm h2,
-div#userlogin h2 {
-	padding-top: 0;
-}
-
-div#userlogin .captcha,
-div#userloginForm .captcha {
-	border: 1px solid #bbb;
-	padding: 1.5em 2em;
-}
-
 #loginend, #signupend {
 	clear: both;
 }
@@ -668,10 +648,6 @@ div#userloginForm .captcha {
 	font-size: 85%;
 	line-height: 1.2;
 	padding-top: 2em;
-}
-
-#userlogin .loginText, #userlogin .loginPassword {
-	width: 12em;
 }
 
 #userloginlink a, #wpLoginattempt, #wpCreateaccount {
