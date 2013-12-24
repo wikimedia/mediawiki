@@ -95,4 +95,32 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers UIDGenerator::newSequentialID
+	 */
+	public function testNewSequentialID() {
+		$id1 = UIDGenerator::newSequentialID( 'test', 32 );
+		$id2 = UIDGenerator::newSequentialID( 'test', 32 );
+
+		$this->assertType( 'float', $id1, "ID returned as float" );
+		$this->assertType( 'float', $id2, "ID returned as float" );
+		$this->assertGreaterThan( 0, $id1, "ID greater than 1" );
+		$this->assertGreaterThan( $id1, $id2, "IDs increasing in value" );
+	}
+
+	/**
+	 * @covers UIDGenerator::newSequentialIDs
+	 */
+	public function testNewSequentialIDs() {
+		$ids = UIDGenerator::newSequentialIDs( 'test', 32, 5 );
+		$lastId = null;
+		foreach ( $ids as $id ) {
+			$this->assertType( 'float', $id, "ID returned as float" );
+			$this->assertGreaterThan( 0, $id, "ID greater than 1" );
+			if ( $lastId ) {
+				$this->assertGreaterThan( $lastId, $id, "IDs increasing in value" );
+			}
+			$lastId = $id;
+		}
+	}
 }
