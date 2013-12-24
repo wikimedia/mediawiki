@@ -106,7 +106,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		$this->addTables( 'archive' );
-		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted' ) );
+		$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted', 'ar_id' ) );
 
 		$this->addFieldsIf( 'ar_parent_id', $fld_parentid );
 		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
@@ -214,19 +214,33 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) ) {
+		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 3 );
-			$ns = intval( $cont[0] );
-			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
-			$title = $db->addQuotes( $cont[1] );
-			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
-			$this->addWhere( "ar_namespace $op $ns OR " .
-				"(ar_namespace = $ns AND " .
-				"(ar_title $op $title OR " .
-				"(ar_title = $title AND " .
-				"ar_timestamp $op= $ts)))" );
+			if ( $mode == 'all' || $mode == 'revs' ) {
+				$this->dieContinueUsageIf( count( $cont ) != 4 );
+				$ns = intval( $cont[0] );
+				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+				$title = $db->addQuotes( $cont[1] );
+				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
+				$ar_id = (int)$cont[3];
+				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[3] );
+				$this->addWhere( "ar_namespace $op $ns OR " .
+					"(ar_namespace = $ns AND " .
+					"(ar_title $op $title OR " .
+					"(ar_title = $title AND " .
+					"(ar_timestamp $op $ts OR " .
+					"(ar_timestamp = $ts AND " .
+					"ar_id $op= $ar_id)))))" );
+			} else {
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$ar_id = (int)$cont[1];
+				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
+				$this->addWhere( "ar_timestamp $op $ts OR " .
+					"(ar_timestamp = $ts AND " .
+					"ar_id $op= $ar_id)" );
+			}
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -236,12 +250,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
+				// @todo Does this work on non-MySQL?
 				$this->addOption( 'GROUP BY', 'ar_title' );
 			} else {
 				$sort = ( $dir == 'newer' ? '' : ' DESC' );
 				$this->addOption( 'ORDER BY', array(
 					'ar_title' . $sort,
-					'ar_timestamp' . $sort
+					'ar_timestamp' . $sort,
+					'ar_id' . $sort,
 				) );
 			}
 		} else {
@@ -251,6 +267,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->addWhereRange( 'ar_title', $dir, null, null );
 			}
 			$this->addTimestampWhereRange( 'ar_timestamp', $dir, $params['start'], $params['end'] );
+			// Include in ORDER BY for uniqueness
+			$this->addWhereRange( 'ar_id', $dir, null, null );
 		}
 		$res = $this->select( __METHOD__ );
 		$pageMap = array(); // Maps ns&title to (fake) pageid
@@ -260,10 +278,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( ++$count > $limit ) {
 				// We've had enough
 				if ( $mode == 'all' || $mode == 'revs' ) {
-					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$row->ar_title . '|' . $row->ar_timestamp );
+					$this->setContinueEnumParameter( 'continue',
+						"$row->ar_namespace|$row->ar_title|$row->ar_timestamp|$row->ar_id"
+					);
 				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->ar_timestamp|$row->ar_id" );
 				}
 				break;
 			}
@@ -371,10 +390,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 			if ( !$fit ) {
 				if ( $mode == 'all' || $mode == 'revs' ) {
-					$this->setContinueEnumParameter( 'continue', intval( $row->ar_namespace ) . '|' .
-						$row->ar_title . '|' . $row->ar_timestamp );
+					$this->setContinueEnumParameter( 'continue',
+						"$row->ar_namespace|$row->ar_title|$row->ar_timestamp|$row->ar_id"
+					);
 				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ar_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->ar_timestamp|$row->ar_id" );
 				}
 				break;
 			}
@@ -468,7 +488,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
 			'excludeuser' => 'Don\'t list revisions by this user',
-			'continue' => 'When more results are available, use this to continue (1, 3)',
+			'continue' => 'When more results are available, use this to continue',
 			'unique' => 'List only one revision for each page (3)',
 			'tag' => 'Only list revisions tagged with this tag',
 		);

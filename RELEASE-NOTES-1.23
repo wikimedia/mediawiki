@@ -248,6 +248,7 @@ production.
   included in all searches.
 * Added list=prefixsearch that works like action=opensearch but can be used as
   a generator.
+* (bug 24782) Various modules will now use unique continuation parameters.
 
 === Languages updated in 1.23 ===
 
