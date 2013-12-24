@@ -85,6 +85,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$this->addFields( array(
+			'rc_id',
 			'rc_namespace',
 			'rc_title',
 			'rc_timestamp',
@@ -137,6 +138,22 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'],
 			$params['start'], $params['end'] );
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'rc_id', $params['dir'], null, null );
+
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+			$continueId = (int)$cont[1];
+			$this->dieContinueUsageIf( $continueId != $cont[1] );
+			$this->addWhere( "rc_timestamp $op $continueTimestamp OR " .
+				"(rc_timestamp = $continueTimestamp AND " .
+				"rc_id $op= $continueId)"
+			);
+		}
+
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 
 		if ( !$params['allrev'] ) {
@@ -209,10 +226,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter(
-					'start',
-					wfTimestamp( TS_ISO_8601, $row->rc_timestamp )
-				);
+				$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 				break;
 			}
 
@@ -220,8 +234,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$vals = $this->extractRowInfo( $row );
 				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'start',
-						wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
 				}
 			} else {
@@ -460,7 +473,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string'
-			)
+			),
+			'continue' => null,
 		);
 	}
 
@@ -504,7 +518,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to ' .
-				'allow access to another user\'s watchlist'
+				'allow access to another user\'s watchlist',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

@@ -90,6 +90,7 @@ production.
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
+* (bug 24782) Various modules will now use unique continuation parameters.
 
 === Languages updated in 1.23 ===
 

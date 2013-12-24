@@ -103,22 +103,14 @@ class ApiQueryContributions extends ApiQueryBase {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				if ( $this->multiUserMode ) {
-					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
-				}
+				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				break;
 			}
 
 			$vals = $this->extractRowInfo( $row );
 			$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
-				if ( $this->multiUserMode ) {
-					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
-				}
+				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				break;
 			}
 		}
@@ -162,18 +154,34 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhere( 'page_id=rev_page' );
 
 		// Handle continue parameter
-		if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+		if ( !is_null( $this->params['continue'] ) ) {
 			$continue = explode( '|', $this->params['continue'] );
-			$this->dieContinueUsageIf( count( $continue ) != 2 );
 			$db = $this->getDB();
-			$encUser = $db->addQuotes( $continue[0] );
-			$encTS = $db->addQuotes( $db->timestamp( $continue[1] ) );
+			if ( $this->multiUserMode ) {
+				$this->dieContinueUsageIf( count( $continue ) != 3 );
+				$encUser = $db->addQuotes( array_shift( $continue ) );
+			} else {
+				$this->dieContinueUsageIf( count( $continue ) != 2 );
+			}
+			$encTS = $db->addQuotes( $db->timestamp( $continue[0] ) );
+			$encId = (int)$continue[1];
+			$this->dieContinueUsageIf( $encId != $continue[1] );
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
-			$this->addWhere(
-				"rev_user_text $op $encUser OR " .
-				"(rev_user_text = $encUser AND " .
-				"rev_timestamp $op= $encTS)"
-			);
+			if ( $this->multiUserMode ) {
+				$this->addWhere(
+					"rev_user_text $op $encUser OR " .
+					"(rev_user_text = $encUser AND " .
+					"(rev_timestamp $op $encTS OR " .
+					"(rev_timestamp = $encTS AND " .
+					"rev_id $op= $encId)))"
+				);
+			} else {
+				$this->addWhere(
+					"rev_timestamp $op $encTS OR " .
+					"(rev_timestamp = $encTS AND " .
+					"rev_id $op= $encId)"
+				);
+			}
 		}
 
 		if ( !$user->isAllowed( 'hideuser' ) ) {
@@ -194,6 +202,9 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 		$this->addTimestampWhereRange( 'rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'rev_id', $this->params['dir'], null, null );
+
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		$show = $this->params['show'];
@@ -217,6 +228,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// ns+title checks if the user has access rights for this page
 		// user_text is necessary if multiple users were specified
 		$this->addFields( array(
+			'rev_id',
 			'rev_timestamp',
 			'page_namespace',
 			'page_title',
@@ -259,7 +271,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$this->addTables( $tables );
 		$this->addFieldsIf( 'rev_page', $this->fld_ids );
-		$this->addFieldsIf( 'rev_id', $this->fld_ids || $this->fld_flags );
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
@@ -383,8 +394,11 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	private function continueStr( $row ) {
-		return $row->rev_user_text . '|' .
-			wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
+		if ( $this->multiUserMode ) {
+			return "$row->rev_user_text|$row->rev_timestamp|$row->rev_id";
+		} else {
+			return "$row->rev_timestamp|$row->rev_id";
+		}
 	}
 
 	public function getCacheMode( $params ) {
