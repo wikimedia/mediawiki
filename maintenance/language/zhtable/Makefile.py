@@ -352,7 +352,7 @@ def main():
 /**
  * Simplified / Traditional Chinese conversion tables
  *
- * Automatically generated using code and data in includes/zhtable/
+ * Automatically generated using code and data in maintenance/language/zhtable/
  * Do not modify directly!
  *
  * @file
