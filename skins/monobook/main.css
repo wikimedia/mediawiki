@@ -642,13 +642,7 @@ div#userlogin {
 	border: 1px solid #aaa;
 	clear: both;
 	padding: 1.5em 2em;
-	background-color: #f9f9f9;
 	float: left;
-}
-
-div#userloginForm table,
-div#userlogin table {
-	background-color: #f9f9f9;
 }
 
 div#userloginForm h2,
@@ -660,7 +654,6 @@ div#userlogin .captcha,
 div#userloginForm .captcha {
 	border: 1px solid #bbb;
 	padding: 1.5em 2em;
-	background-color: white;
 }
 
 #loginend, #signupend {
