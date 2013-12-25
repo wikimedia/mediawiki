@@ -311,6 +311,8 @@ $1',
 'toc' => 'Torėnīs',
 'showtoc' => 'ruodītė',
 'hidetoc' => 'kavuotė',
+'collapsible-collapse' => 'Sugōžtė',
+'collapsible-expand' => 'Atsklēstė',
 'thisisdeleted' => 'Veizėtė a atkortė $1?',
 'viewdeleted' => 'Ruodītė $1?',
 'restorelink' => '$1 {{PLURAL:$1|ėštrinta keitėma|ėštrintos keitėmos|ėštrintū keitėmu}}',
@@ -613,6 +615,7 @@ Tuo faila pašalinėma istuorėjė īr pateikta dielē patuogoma:",
 'moveddeleted-notice' => 'Tas poslapis bova ėštrėnts.
 Ėštrėnta poslapė versėju sārašos īr pateikts paveiziejėmō žemiau.',
 'edit-conflict' => 'Redagavėma kuonflėktos',
+'postedit-confirmation' => 'Tamstas padėrbts pakeitėms ėšsauguots īr.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => 'Perspiejėms: Šabluonu īterpėma dėdoms īr par dėdelis.
@@ -864,6 +867,7 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'recentchanges-label-minor' => 'Tas īr mažos pataisīms',
 'recentchanges-label-bot' => 'Šėta keitėma padėrba autuomatėnė pruograma',
 'recentchanges-label-unpatrolled' => 'Tas keitėms da nebova patikrints',
+'recentchanges-label-plusminus' => 'Ton baitu skaitliom pakeists straipsnė apmiers',
 'rcnotefrom' => 'Žemiau īr pakeitėma pradedant nū <b>$2</b> (ruodom lėgė <b>$1</b> pakeitėmu).',
 'rclistfrom' => 'Ruodītė naujus pakeitėmus pradedant nū $1',
 'rcshowhideminor' => '$1 mažus pakeitėmus',
@@ -942,9 +946,11 @@ Prašuom ėšsėrėnktė kėta varda.',
 'uploaddisabledtext' => 'Failu ikielėmā oždraustė īr.',
 'uploadscripted' => 'Šėts failos tor HTML a programėni kuoda, katros gal būtė klaidėngā soprasts interneta naršīklės.',
 'uploadvirus' => 'Šėtom faile īr virosas! Ėšsamiau: $1',
+'upload-source' => 'Faila šaltėnis',
 'sourcefilename' => 'Ikeliams fails',
 'destfilename' => 'Nuorims faila pavadinims',
 'upload-maxfilesize' => 'Dėdliausias faila dėdoms: $1',
+'upload-options' => 'Nostatīmā īkelėmō',
 'watchthisupload' => 'Keravuotė šėta poslapė',
 'upload-success-subj' => 'Ikelt siekmėngā',
 
@@ -1654,6 +1660,9 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'spam_reverting' => 'Atkoriama i onkstesne versėje, katra nator nūruodu i $1',
 'spam_blanking' => 'Vėsos versėjės toriejė nūruodu i $1. Ėšvaluoma',
 
+# Info page
+'pageinfo-toolboxlink' => 'Poslapė infuormacėjė',
+
 # Patrolling
 'markaspatrolleddiff' => 'Žīmietė, kū patikrėnta',
 'markaspatrolledtext' => 'Pažīmietė, ka poslapis patėkrėnts īr',
@@ -1899,6 +1908,9 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'logentry-newusers-create2' => '$1 padėrba nauduotuojė paskīra $3',
 'logentry-newusers-autocreate' => 'Paskīra $1 bova padėrbta autuomatėškā',
 'rightsnone' => '(juokiū)',
+
+# Search suggestions
+'searchsuggest-containing' => 'katrėi tor...',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Ėšskeistė šabluonus',

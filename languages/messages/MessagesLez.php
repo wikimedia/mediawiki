@@ -521,7 +521,7 @@ $messages = array(
 
 # Revision deletion
 'rev-deleted-comment' => 'Дуьзар хъувунин тегьерар кхьин алуднава',
-'rev-deleted-user' => '(иштиракчидин тIвар алуднава)',
+'rev-deleted-user' => '(уртахдин тӀвар алуднава)',
 'rev-deleted-event' => '(къейд алуднава)',
 'rev-delundel' => 'къалурун/кIевирун',
 'rev-showdeleted' => 'къалурун',
@@ -572,7 +572,7 @@ $messages = array(
 'shown-title' => 'Ччина $1 {{PLURAL:$1|нетижа|нетижа}} къалурун',
 'viewprevnext' => 'Килигун ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''И вики-проектда \"[[:\$1]]\" тlвар алай ччин ава.'''",
-'searchmenu-new' => "'''И вики-проектда \"[[:\$1]]\" ччин туькlуьрун !'''",
+'searchmenu-new' => "'''И вики-проектда «[[:$1]]» ччин туькӀуьрун!'''",
 'searchprofile-articles' => 'Асул ччинар',
 'searchprofile-project' => 'Куьмек гунин ва проектдин ччинар',
 'searchprofile-images' => 'Мультимедиа',
@@ -613,7 +613,7 @@ $messages = array(
 'prefs-beta' => 'Бета-мумкинвилер',
 'prefs-datetime' => 'Нумра ва вахт',
 'prefs-labs' => 'Экспериментдин мумкинвилер',
-'prefs-personal' => 'Иштиракчидин профил',
+'prefs-personal' => 'Уртахдин профил',
 'prefs-rc' => 'Mукьвара хьайи дегишвилер',
 'prefs-watchlist' => 'Гуьзетунин сиягь',
 'prefs-watchlist-edits-max' => 'Максимум кьадар: 1000',
@@ -781,7 +781,7 @@ $messages = array(
 'upload-options' => 'Ппарунин шартIар',
 'watchthisupload' => 'И файл гуьзетун',
 
-'upload-file-error' => 'КЪенепатан гъалатI',
+'upload-file-error' => 'Къенепатан гъалатӀ',
 'upload-unknown-size' => 'Тийижир кьадар',
 
 # Special:UploadStash
@@ -869,7 +869,7 @@ $messages = array(
 'brokenredirects-edit' => 'дегишарун',
 'brokenredirects-delete' => 'алудун',
 
-'withoutinterwiki-submit' => 'КЪалурун',
+'withoutinterwiki-submit' => 'Къалурун',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|байт|байтар}}',
@@ -882,9 +882,9 @@ $messages = array(
 'listusers' => 'Уртахрин сиягь',
 'usercreated' => '{{GENDER:$3|Created}} идав $1 идал $2',
 'newpages' => 'ЦӀийи ччинар',
-'newpages-username' => 'Иштиракчидин тlвар',
+'newpages-username' => 'Уртахдин тӀвар',
 'ancientpages' => 'виридалайни цIуру ччинар',
-'move' => 'ТIвар эхцигун',
+'move' => 'ТӀвар эхцигун',
 'movethispage' => 'Юзун и хъувун',
 'pager-newer-n' => '{{PLURAL:$1|мадни цIийи 1|мадни цIийи $1}}',
 'pager-older-n' => '{{PLURAL:$1|мадни цIуру 1|мадни цIуру $1}}',
@@ -939,8 +939,9 @@ $messages = array(
 'watchlist' => 'Зи вилив хуьнин сиягь',
 'mywatchlist' => 'Вилив хуьнин сиягь',
 'watchlistfor2' => '$1 $2 патал',
-'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
-'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
+'addedwatchtext' => 'Чар «[[:$1]]» тун хъувунай куьн [[Special:Watchlist|watchlist]].
+Къвезмай дегишунар и чарчел ва галкӀанавай чарчихъ ихтилатар жеда инна, ахъатдава «сакӀус яцӀу» инна веревирд авун гьам кьизил авун.',
+'removedwatchtext' => 'Чар «[[:$1]]» идай чӀурнай [[Special:Watchlist|ахтармишунин цӀарар]].',
 'watch' => 'Вилив хуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
 'unwatch' => 'Вилив хуьмир',
@@ -1077,7 +1078,7 @@ $messages = array(
 'block-log-flags-nocreate' => 'Аккаунт туькIуьрдай изинар авач',
 
 # Move page
-'move-page' => '$1 тIвар эхцигун',
+'move-page' => '$1 тӀвар эхцигун',
 'move-page-legend' => 'Юзун хъувун',
 'movepagetext' => "Ишлемишиз кlеневай къаб,чарчин тlар дегишариp, кьиспесдин  чка дегишарун, цlийи тlар авун.
 Иски тlарцlи ракъурда цlийи тlарцlел.
@@ -1093,17 +1094,17 @@ $messages = array(
 Буюр, килиг , куьне фикирзатlа вуч жезатlа, кхьин хъийидади.",
 'movepagetalktext' => "Ухшар авай чарар ихтилатдин, фида масса чкадал вуч вичиз ибур галаз''',амма:'''                                                                               *Эчlи чар ихтилатдин ава цlийи тlар алаз, ва                                                                                                                                           *Куьне иляйда пайдах кlеникай                                                                                                                                                                                  Гьа вахтунда, куьне чка дегишар авун или санал авуна чар гъилелди, кlанда",
 'movearticle' => 'Юзун хъувун:',
-'newtitle' => 'Цlийи тlарцlихъ:',
+'newtitle' => 'ЦӀийи тӀвар:',
 'move-watch' => 'Гелкъуьн и хъувун',
 'movepagebtn' => 'Юзун хъувун',
 'pagemovedsub' => 'Рахъурун хьана',
 'movepage-moved' => '\'\'"$1" рахъурнай "$2"\'\'\'',
 'articleexists' => 'Ахьтин тlар алай чар ава, амма тlар, куьне хкянай дуьз туш.Башуьсте, масса тlар хкяй.',
 'movetalk' => 'Югъун,галкlана рахун',
-'movelogpage' => 'Тlвар эхцигунрин журнал',
+'movelogpage' => 'ТӀвар эхцигунрин журнал',
 'movereason' => 'Фагьум:',
 'revertmove' => 'Рахкъурун',
-'delete_and_move' => 'Алудун ва тIвар эхцигун',
+'delete_and_move' => 'Алудун ва тӀвар эхцигун',
 
 # Export
 'export' => 'Ччинрин экспорт',
@@ -1141,7 +1142,7 @@ $messages = array(
 'tooltip-ca-history' => 'И ччинин алатай масакIавилерин журнал',
 'tooltip-ca-protect' => 'И ччин хуьн',
 'tooltip-ca-delete' => 'И ччин алудун',
-'tooltip-ca-move' => 'Ччиндин тIвар масакIа авун',
+'tooltip-ca-move' => 'Ччиндин тӀвар масакӀа авун',
 'tooltip-ca-watch' => 'И ччин куь вилив хуьнин сиягьдиз алава авун',
 'tooltip-ca-unwatch' => 'И ччин куь вилив хуьнин сиягьдай къахчун',
 'tooltip-search' => '{{SITENAME}} къекъуьн',
@@ -1279,7 +1280,7 @@ Cиягьда авай анжах (* лишандихъ галаз эгечIза
 'watchlistedit-normal-title' => 'Гуьзетунин сиягь дуьзар хъувун',
 'watchlistedit-raw-title' => 'Гуьзетунин сиягь текст хьиз дуьзар хъувун',
 'watchlistedit-raw-legend' => 'Гуьзетунин сиягь текст хьиз дуьзар хъувун',
-'watchlistedit-raw-titles' => 'КЬилинцIарар:',
+'watchlistedit-raw-titles' => 'КьилинцӀарар:',
 'watchlistedit-raw-submit' => 'Гуьзетунин сиягь цIийи хъувун',
 
 # Watchlist editing tools

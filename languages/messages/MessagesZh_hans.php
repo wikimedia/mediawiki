@@ -1097,7 +1097,7 @@ $2
 这种情况通常在您使用含有故障的网页式匿名代理服务的时候出现。",
 'edit_form_incomplete' => "'''编辑表格的某些部分没有到达服务器，请检查你的编辑是否完整并重试。'''",
 'editing' => '编辑“$1”',
-'creating' => '创建 $1',
+'creating' => '创建“$1”',
 'editingsection' => '编辑“$1（段落）”',
 'editingcomment' => '编辑“$1”（新段落）',
 'editconflict' => '编辑冲突：$1',

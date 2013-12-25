@@ -583,7 +583,7 @@ $1',
 'mainpage-description' => 'Huvudsida',
 'policy-url' => 'Project:Riktlinjer',
 'portal' => 'Gemenskapens portal',
-'portal-url' => 'Projekt:Gemenskapens portal',
+'portal-url' => 'Project:Gemenskapens portal',
 'privacy' => 'Integritetspolicy',
 'privacypage' => 'Project:Integritetspolicy',
 
@@ -1197,6 +1197,9 @@ Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad
 'cantcreateaccount-text' => '[[User:$3|$3]] har blockerat den här IP-adressen (\'\'\'$1\'\'\') från att registrera konton.
 
 Anledningen till blockeringen var "$2".',
+'cantcreateaccount-range-text' => "IP-adresserna mellan '''$1''', som inkluderar din IP-adress ('''$4'''), har blockerats från att registrera konton av [[User:$3|$3]].
+
+Anledningen enligt $3 var ''$2''",
 
 # History pages
 'viewpagelogs' => 'Visa loggar för denna sida',
@@ -3952,13 +3955,14 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Omdirigering efter filnamn, användar-ID eller versions-ID',
+'redirect' => 'Omdirigering efter filnamn, användar-ID, sida eller versions-ID',
 'redirect-legend' => 'Omdirigera till en fil eller sida',
-'redirect-summary' => 'Den här specialsidan omdirigerar till en fil (efter filnamn), en sida (efter versions-id) eller en användarsida (efter användar-id). Användning: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], eller [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Den här specialsidan omdirigerar till en fil (efter filnamn), en sida (efter en versions eller sidas ID) eller en användarsida (efter användar-ID). Användning: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], eller [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Kör',
 'redirect-lookup' => 'Slå upp:',
 'redirect-value' => 'Värde:',
 'redirect-user' => 'Användar-ID',
+'redirect-page' => 'Sidans ID',
 'redirect-revision' => 'Sidversion',
 'redirect-file' => 'Filnamn',
 'redirect-not-exists' => 'Värdet hittades inte',

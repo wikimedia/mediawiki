@@ -355,6 +355,7 @@ $messages = array(
 
 $1',
 'pool-timeout' => 'Timeout durant la spiete dal sbolc.',
+'pool-queuefull' => 'La code dal pool e je plene',
 'pool-errorunknown' => 'Erôr no cognossût',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
@@ -387,7 +388,10 @@ Cjale la [[Special:Version|pagjine de version]].',
 'ok' => 'Va ben',
 'retrievedfrom' => 'Cjapât fûr di $1',
 'youhavenewmessages' => 'Tu âs $1 ($2).',
+'youhavenewmessagesfromusers' => '{{PLURAL:$4|Tu âs}} $1 da {{PLURAL:$3|un altri utent|$3 utens}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tu âs $1 di tancj utents ($2)',
+'newmessageslinkplural' => '{{PLURAL:$1|un gnûf messaç|999=gnûfs messaçs}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ultin cambiament|999=ultins cambiaments}}',
 'youhavenewmessagesmulti' => 'Tu âs gnûfs messaçs su $1',
 'editsection' => 'cambie',
 'editold' => 'cambie',
@@ -404,11 +408,15 @@ Cjale la [[Special:Version|pagjine de version]].',
 'viewdeleted' => 'Vuelistu viodi $1?',
 'restorelink' => '{{PLURAL:$1|une modifiche eliminade|$1 modifichis eliminadis}}',
 'feedlinks' => 'Canâl (feed):',
+'feed-invalid' => 'Modalitât di iscrizion al feed no valide',
+'feed-unavailable' => 'No son disponibîi feeds',
 'site-rss-feed' => 'Canâl RSS di $1',
 'site-atom-feed' => 'Canâl Atom di $1',
 'page-rss-feed' => 'Canâl RSS par "$1"',
 'page-atom-feed' => 'Canâl Atom par "$1"',
 'red-link-title' => '$1 (la pagjine no esist)',
+'sort-descending' => 'Ordinament decressint',
+'sort-ascending' => 'Ordinament cressint',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Vôs',
@@ -423,6 +431,9 @@ Cjale la [[Special:Version|pagjine de version]].',
 'nstab-category' => 'Categorie',
 
 # Main script and global functions
+'nosuchaction' => 'Azion no pussibile',
+'nosuchactiontext' => "La azion specificade inte URL no je valide. Forsit la URL no je stade scrite juste o forsit il leam no l'è valit. Forsit al è un bug in {{SITENAME}}.",
+'nosuchspecialpage' => 'Pagjine speciâl no disponibil',
 'nospecialpagetext' => '<strong>Tu âs cirût une pagjine speciâl no valide.</strong>
 
 Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].',
@@ -430,8 +441,14 @@ Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPa
 # General errors
 'error' => 'Erôr',
 'databaseerror' => 'Erôr de base di dâts',
+'databaseerror-text' => 'Erôr inte interogazion dal database. Forsit al è un bug intal software.',
+'databaseerror-textcl' => 'Erôr inte interogazion dal database.',
+'databaseerror-query' => 'Interogazion: $1',
+'databaseerror-function' => 'Funzion $1',
+'databaseerror-error' => 'Erôr: $1',
 'laggedslavemode' => 'Atenzion: La pagjine podarès no segnalâ inzornaments recents.',
 'readonly' => 'Base di dâts blocade',
+'enterlockreason' => 'Scrivi il motîf dal bloc e indicâ cuant che al varès di jessi gjavât.',
 'readonlytext' => "La base di dâts pal moment e je blocade e no si puedin zontâ vôs e fâ modifichis, probabilmentri pe normâl manutenzion de base di dâts, daspò de cuâl dut al tornarà normâl.
 
 L'aministradôr ch'al à metût il bloc al à scrit cheste motivazion: $1",
@@ -442,8 +459,19 @@ Chest in gjenar al è causât dal jessi lâts daûr dal leam a une pagjine che e
 Se la cause no samee jessi cheste, tu podaressis vê cjatât un problem tal software.
 Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la URL.',
 'missingarticle-rev' => '(numar de revision: $1)',
+'readonly_lag' => 'Par cumò il database al è stât blocât pe sincronizazion cul server',
+'internalerror' => 'Erôr interni',
+'internalerror_info' => 'Erôr interni: $1',
+'fileappenderrorread' => 'No si pues lei "$1" durant òa zonte',
+'fileappenderror' => 'No si pues tacâ "$1" a "$2"',
+'filecopyerror' => 'No si pues copiâ il file "$1" in "$2"',
+'filerenameerror' => 'No si pues rinominâ "$1" in "$2"',
 'filedeleteerror' => 'No si pues eliminâ il file "$1".',
+'directorycreateerror' => 'No si pues creâ la cartele "$1"',
 'filenotfound' => 'No si pues cjatâ il file "$1".',
+'fileexistserror' => 'No si pues scrivi il file "$1": al esist zà',
+'unexpected' => 'Valor no proviodût: "$1" = "$2"',
+'formerror' => 'Erôr: no si rive a mandâ il form',
 'badtitle' => 'Titul sbaliât',
 'badtitletext' => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
 Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',

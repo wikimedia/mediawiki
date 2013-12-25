@@ -2219,7 +2219,7 @@ L'adreça electrònica que vau indicar a [[Special:Preferences|les vostres prefe
 'emailtarget' => "Introduïu el nom d'usuari del destinatari",
 'emailusername' => "Nom d'usuari:",
 'emailusernamesubmit' => 'Enviar',
-'email-legend' => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
+'email-legend' => 'Envia un missatge electrònic a un altre usuari de {{SITENAME}}',
 'emailfrom' => 'De:',
 'emailto' => 'Per a:',
 'emailsubject' => 'Assumpte:',

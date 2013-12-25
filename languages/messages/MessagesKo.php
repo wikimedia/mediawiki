@@ -3228,7 +3228,7 @@ $2',
 'tooltip-undo' => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고 차이 보기 기능이 미리 보기 형식으로 나타납니다. 편집 요약에 이 편집을 왜 되돌리는지에 대한 이유를 쓸 수 있습니다.',
 'tooltip-preferences-save' => '환경 설정 저장하기',
 'tooltip-summary' => '짧은 요약을 적어주세요',
-'interlanguage-link-title' => '$2 - $1',
+'interlanguage-link-title' => '$1 – $2',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',

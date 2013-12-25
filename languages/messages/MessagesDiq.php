@@ -2671,7 +2671,7 @@ $1',
 'sp-contributions-deleted' => 'iştırakê karberiê esterıtey',
 'sp-contributions-uploads' => 'barkerdey',
 'sp-contributions-logs' => 'qeydi',
-'sp-contributions-talk' => 'vatenayış',
+'sp-contributions-talk' => 'werênayış',
 'sp-contributions-userrights' => 'İdareyê heqanê karberan',
 'sp-contributions-blocked-notice' => 'verniyê no/na karber/e geriyayo/a
 qê referansi qeydê vernigrewtışi cêr de eşkera biyo:',

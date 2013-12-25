@@ -330,7 +330,7 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo',
-'tog-editsection' => 'Possibilitar a edição de seções com links [editar]',
+'tog-editsection' => 'Possibilitar a edição de secções com links [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de seções por clique com o botão direito no título da seção',
 'tog-showtoc' => 'Mostrar índice (para páginas com mais de três seções)',
 'tog-rememberpassword' => 'Recordar os meus dados neste browser (no máximo, durante $1 {{PLURAL:$1|dia|dias}})',
@@ -602,7 +602,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'viewsourceold' => 'ver código-fonte',
 'editlink' => 'editar',
 'viewsourcelink' => 'ver código-fonte',
-'editsectionhint' => 'Editar seção: $1',
+'editsectionhint' => 'Editar secção: $1',
 'toc' => 'Índice',
 'showtoc' => 'mostrar',
 'hidetoc' => 'esconder',
@@ -705,14 +705,14 @@ Por enquanto, os dados aqui presentes não poderão ser atualizados.',
 'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afetarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projeto destinado à tradução do MediaWiki.",
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de proteção "em cascata" ativada):
 $2',
-'namespaceprotected' => "Não possui permissão para editar páginas no espaço nominal '''$1'''.",
-'customcssprotected' => 'Não tem permissões para editar esta página de CSS porque ela contém as configurações pessoais de outro utilizador.',
-'customjsprotected' => 'Não tem permissões para editar esta página de JavaScript porque ela contém as configurações pessoais de outro utilizador.',
+'namespaceprotected' => "Não tem permissão para editar páginas no espaço nominal '''$1'''.",
+'customcssprotected' => 'Não tem permissão para editar esta página de CSS porque esta contém as configurações pessoais de outro utilizador.',
+'customjsprotected' => 'Não tem permissão para editar esta página de JavaScript porque esta contém as configurações pessoais de outro utilizador.',
 'mycustomcssprotected' => 'Não tem permissão para editar esta página de CSS.',
 'mycustomjsprotected' => 'Não tem permissão para editar esta página de JavaScript.',
-'myprivateinfoprotected' => 'Você não tem permissão para editar sua informação privada.',
-'mypreferencesprotected' => 'Você não tem permissão para editar as suas preferências.',
-'ns-specialprotected' => 'Não é possível editar páginas especiais',
+'myprivateinfoprotected' => 'Não tem permissão para editar a sua informação privada.',
+'mypreferencesprotected' => 'Não tem permissão para editar as suas preferências.',
+'ns-specialprotected' => 'Não é possível editar páginas especiais.',
 'titleprotected' => 'Este título foi protegido contra criação por [[User:$1|$1]].
 A justificação foi "\'\'$2\'\'".',
 'filereadonlyerror' => 'Não é possível modificar o ficheiro "$1" porque o repositório de ficheiros "$2" está em modo de leitura.
@@ -1025,7 +1025,7 @@ Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloq
 'confirmedittext' => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
 Introduza e valide o endereço através das [[Special:Preferences|preferências do utilizador]], por favor.',
 'nosuchsectiontitle' => 'Não foi possível encontrar a seção',
-'nosuchsectiontext' => 'Tentou editar uma seção que não existe.
+'nosuchsectiontext' => 'Tentou editar uma secção que não existe.
 Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'loginreqtitle' => 'Autenticação necessária',
 'loginreqlink' => 'autenticar-se',
@@ -1093,8 +1093,8 @@ Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal
 'edit_form_incomplete' => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing' => 'A editar $1',
 'creating' => 'A criar $1',
-'editingsection' => 'A editar $1 (seção)',
-'editingcomment' => 'A editar $1 (nova seção)',
+'editingsection' => 'A editar $1 (secção)',
+'editingcomment' => 'A editar $1 (nova secção)',
 'editconflict' => 'Conflito de edição: $1',
 'explainconflict' => "A página foi alterada por alguém desde que começou a editá-la.
 A caixa de texto abaixo mostra o texto existente neste momento.
@@ -1103,9 +1103,9 @@ Terá de reintegrar as suas mudanças no texto da caixa abaixo.
 '''Só''' o texto desta caixa será gravado quando clicar \"{{int:savearticle}}\".",
 'yourtext' => 'O seu texto',
 'storedversion' => 'Versão guardada',
-'nonunicodebrowser' => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
-Foi ativado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
-'editingold' => "'''Aviso: Está a editar uma revisão desatualizada desta página.'''
+'nonunicodebrowser' => "'''Aviso: O seu navegador não é compatível com as especificações Unicode.
+Foi activado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
+'editingold' => "'''Aviso: Está a editar uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff' => 'Diferenças',
 'copyrightwarning' => "Note, por favor, que todas as suas contribuições na {{SITENAME}} são consideradas publicadas nos termos da licença $2 (consulte $1 para mais detalhes).
@@ -1746,7 +1746,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-bot' => 'Esta edição foi feita por um robô',
 'recentchanges-label-unpatrolled' => 'Esta edição ainda não foi patrulhada',
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
-'recentchanges-legend-newpage' => '(ver também a [[Special:NewPages|lista de páginas novas]])',
+'recentchanges-legend-heading' => "'''Legenda:'''",
+'recentchanges-legend-newpage' => '([[Special:NewPages|lista de páginas novas]])',
 'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
@@ -3872,7 +3873,7 @@ Confirme que deseja realmente recriar esta página, por favor.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(língua padrão)',
-'img-lang-info' => 'Renderizar essa imagem em $1 $2.',
+'img-lang-info' => 'Renderizar essa imagem em $1. $2',
 'img-lang-go' => 'Ir',
 
 # Table pager
@@ -3973,9 +3974,9 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Redirecionar pelo ID do ficheiro, utilizador ou revisão',
+'redirect' => 'Redireccionar pelo ID do ficheiro, utilizador ou revisão',
 'redirect-legend' => 'Redirecionar para um ficheiro ou página',
-'redirect-summary' => 'Esta página especial redireciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador). Utilização: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Esta página especial redirecciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador). Utilização: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Pesquisa:',
 'redirect-value' => 'Valor:',

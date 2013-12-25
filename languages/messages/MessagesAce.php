@@ -643,7 +643,7 @@ Préksa keulayi neu’ija Droëneuh.',
 'passwordtooshort' => "Lageuëm paléng h'an harôh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
 'password-name-match' => 'Lageuëm Droeuneuh beubida nibak nan Ureuëng ngui.',
 'password-login-forbidden' => 'Ngui nan ureuëng ngui ngön lageuëm nyoë ka jitham.',
-'mailmypassword' => 'Atô ulang lageuëm rahsia',
+'mailmypassword' => 'Atô keulayi lageuëm rahsia',
 'passwordremindertitle' => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
 'passwordremindertext' => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë lageuëm barô keu {{SITENAME}} ($4). Lageuëm si\'at keu ureuëng ngui "$2" ka geupeuna ngön ka geuatô jeuet keu "$3". Meunyö nyoe nakeuh meukeusud droeneuh, droeneuh peureulèë neutamöng ngön neupiléh lageuëm barô jinoe. Lageuem siat droeneuh meung abéh lam {{PLURAL:$5|siuroe|$5 uroe}}.
 
@@ -660,15 +660,19 @@ Meunyö ureuëng la\'én nyang peugöt neulakèë nyoe, atawa meunyö droeneuh k
 'usernamehasherror' => 'Nan ureueng ngui han jeut na tanda pageue',
 'login-throttled' => 'Droeneuh ka lé that neuujoe tamöng.
 Neuprèh $1 sigohlom neuujoe lom.',
+'login-abort-generic' => 'Log tamöng droëneuh han meuhasé- Ngon ka geupeubateuë.',
 'loginlanguagelabel' => 'Bahsa: $1',
 'createacct-another-realname-tip' => 'Nan aseuli hana meucéh neupasoe.
 Meunyö neupasoe, euntreuk nan droëneuh nyan geupeuleumah mangat jitupeue soe nyang tuléh.',
 
 # Email sending
+'php-mail-error-unknown' => 'Ralat hana geuteupeuë lam guna surat() PHP',
 'user-mail-no-addy' => 'Ujoe kirém surat-e ngön hana alamat surat-e.',
+'user-mail-no-body' => 'Droëneuh ka neucuba kirém e-surat soh ngon that paneuk',
 
 # Change password dialog
 'changepassword' => 'Gantoe lageuem rahsia',
+'resetpass_announce' => 'Droëneuh kaneutamöng ngon kode siat nyang geukirém rot e-surat. Keu neusambông nyan droëneuh jeuët neupeutamöng narit rahsia barô',
 'resetpass_header' => 'Gantoë lageuëm rahsia nan ureuëng ngui',
 'oldpassword' => 'Lageuëm rahsia awai:',
 'newpassword' => 'Lageuëm rahsia barô:',
@@ -679,11 +683,20 @@ Meunyö neupasoe, euntreuk nan droëneuh nyan geupeuleumah mangat jitupeue soe n
 'resetpass-no-info' => "Droëneuh suwah neutamöng mangat jeuët neu'eu laman nyoë",
 'resetpass-submit-loggedin' => 'Gantoë lageuëm rahsia',
 'resetpass-submit-cancel' => 'Pubateuë',
+'resetpass-wrong-oldpass' => 'Narit rahsia salah.
+Droëneuh kadang ka meuhasé neuubah narit rahsia atawa neulakè narit rahsia barô',
 'resetpass-temp-password' => 'Lageuem rahsia keu siat:',
+'resetpass-abort-generic' => 'Meuubah narit rahsia ka geupeubateuë lé ekstensi',
 
 # Special:PasswordReset
+'passwordreset-text-one' => 'Neupeuleungkap formulir nyoë keu meuatô keulayi narit rahsia',
+'passwordreset-text-many' => '{{PLURAL:$1|Neupasoë saboh kutak dimeuyub nyoë keu neuteumèe narit rahsia siat rot e-surat}}',
+'passwordreset-disabled' => 'Meuatô narit rahsia keulayi ka geupeumaté lam wiki nyoë',
+'passwordreset-emaildisabled' => 'Tanda e-surat ka geupeumaté lam wiki nyoë',
 'passwordreset-username' => 'Ureueng ngui:',
+'passwordreset-domain' => 'Domain',
 'passwordreset-capture' => 'Eu hasé surat-e?',
+'passwordreset-capture-help' => 'Meunyoë droëneuh neuceuë kutak nyoë, e-surat (ngon narit rahsia siat) ka geupeuleumah keudroëneuh ngon geukirém cit keu ureuëng ngui',
 'passwordreset-email' => 'Alamat surat-e:',
 'passwordreset-emailtitle' => 'Teuneurang nan ureueng ngui bak {{SITENAME}}',
 
@@ -974,7 +987,7 @@ Dalèh $3 nyoe nakeuh ''$2''",
 'yournick' => 'Tanda jaroe barô:',
 'prefs-help-signature' => 'Komèntar bak ôn marit suwah neubôh "<nowiki>~~~~</nowiki>", nyang eunteuk meugantoe keu tanda jaroe droeneuh ngön watèe jinoe.',
 'badsiglength' => 'Tanda jaroë droëneuh panyang that.
-Panyangjih bèk leubèh nibak $1 {{PLURAL:$1|haraih|haraih}}.',
+Bèk neupeuleubèh nibak $1 {{PLURAL:$1|haraih|haraih}}.',
 'gender-unknown' => 'Hana geupeunyata',
 'gender-male' => 'Ureueng agam',
 'gender-female' => 'Ureueng inöng',

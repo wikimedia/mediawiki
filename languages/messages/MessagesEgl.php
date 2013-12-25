@@ -14,6 +14,20 @@
 $fallback = 'it';
 
 $messages = array(
+# User preference toggles
+'tog-underline' => "Tîra 'na rîga sòta i colegamèint.",
+'tog-hideminor' => "Lōga 'l mudéfichi pió céchi int al j ûltmi mudéfichi.",
+'tog-hidepatrolled' => "Lōga 'l mudéfichi verifichêdi int al j ûltmi modéfichi",
+'tog-newpageshidepatrolled' => "Lōga al pàgini verifichêdi da l'elèinch dal pàgini pió nōvi.",
+'tog-extendwatchlist' => "Fà vèder tót' al mudéfichi fât a i tgnû sòt ôc, mìa sōl l'ûltma.",
+'tog-usenewrc' => "Unés al mudéfichi per pàgina int al j ûltmi mudéfichi e in quî tgnû sòt' ôc.",
+'tog-numberheadings' => 'Cûnta automâtica di tétol ed sesiòun.',
+'tog-showtoolbar' => 'Fà vèder la bâra di strumèint ed mudéfica.',
+'tog-editondblclick' => "Mudéfica 'l pàgini cun un cléch dòpi.",
+'tog-editsection' => 'Mudéfica dal sesiòun per mèz dal colegamèint [mudéfica].',
+'tog-editsectiononrightclick' => 'Mudéfica dal sesiòun per mèz dal cléch a dréta insém al tétol.',
+'tog-showtoc' => "Fà vèder al sûnt (p'r al pàgini cun pió 'd 3 sesiòun)",
+
 # Dates
 'sun' => 'Dum',
 'mon' => 'Lun',
@@ -72,7 +86,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind' => 'Câta',
 'qbedit' => 'Mudéfica',
-'qbpageoptions' => 'Siēlti pàgina',
+'qbpageoptions' => "Siēlti 'd la pàgina",
 'qbmyoptions' => 'Al mē pàgini',
 'faq' => 'Dmândi fâti',
 
@@ -83,7 +97,7 @@ $messages = array(
 'vector-view-create' => 'Invèinta',
 'vector-view-edit' => 'Mudéfica',
 'vector-view-history' => 'Guêrda la stôria',
-'vector-view-view' => 'Lēz',
+'vector-view-view' => 'Lēş',
 'vector-view-viewsource' => 'Guêrda la surzéia',
 'actions' => 'Asiòun',
 'namespaces' => 'Spâsi di nòm',
@@ -97,7 +111,7 @@ $messages = array(
 'go' => 'Và',
 'searcharticle' => 'Và',
 'history' => "Stòria 'd la pàgina",
-'history_short' => 'Storia',
+'history_short' => 'Stôria',
 'printableversion' => "Stâmpa la pàgina ch' ét vèd.",
 'permalink' => 'Colegamèint fés',
 'print' => 'Stâmpa',
@@ -105,7 +119,7 @@ $messages = array(
 'edit' => 'Mudéfichi',
 'create' => 'Invèinta',
 'delete' => 'Scanşéla',
-'deletethispage' => 'Canşéla cla pàgina ché',
+'deletethispage' => 'Scanşéla cla pàgina ché',
 'undelete_short' => "Recóper ed {{PLURAL:$1|'na revisiòun|$1 revisiòun}}",
 'viewdeleted_short' => "Guèrda {{PLURAL:$1|'na mudéficha scanşlêda|$1 mudéfichi scanşlêdi}}",
 'protect' => 'Prutēz',
@@ -148,8 +162,8 @@ $messages = array(
 'aboutpage' => 'Project:Infurmasiòun',
 'copyright' => "Còl che gh' é che dèinter a 's pōl druvêr sòta licèinsa $1, s' an gh'é mia scrét diversamèint.",
 'copyrightpage' => "{{ns:project}}:Dirét 'd avtōr",
-'currentevents' => "Côşi 'd adèsa",
-'currentevents-url' => "Project:Côşi 'd adèsa",
+'currentevents' => 'Fât e prugèt ed tót',
+'currentevents-url' => 'Project:Prugèt_ed_tót',
 'disclaimers' => 'Avertèinsi',
 'disclaimerpage' => 'Project:Avertèinsi generêli',
 'edithelp' => 'Léber dal spiegasiòun',
@@ -157,8 +171,8 @@ $messages = array(
 'mainpage' => 'Préma pàgina',
 'mainpage-description' => 'Pàgina principêla',
 'policy-url' => "Project:Léni 'd cundòta",
-'portal' => 'Purtêl ed la comunitê',
-'portal-url' => 'Project:Purtêl ed la comunitê',
+'portal' => 'Discóter e quistiunêr',
+'portal-url' => 'Project:Discóter e quistiunêr',
 'privacy' => 'Infurmasiòun só la véta privêda',
 'privacypage' => 'Project:Règoli só la secretèsa dal j infurmasiòun personêli.',
 
@@ -192,14 +206,14 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pàgina',
 'nstab-user' => 'Pàgina utèint',
-'nstab-media' => 'File multimediäl',
+'nstab-media' => 'File multimediêl',
 'nstab-special' => 'Pàgina specêla',
 'nstab-project' => "Pàgina 'd servési",
-'nstab-image' => 'Cartèla',
+'nstab-image' => "'File'",
 'nstab-mediawiki' => 'Mesâg',
 'nstab-template' => 'Mudèl',
 'nstab-help' => 'Ajót',
-'nstab-category' => 'Categuéria',
+'nstab-category' => 'Categoréia',
 
 # General errors
 'error' => 'Erōr',
@@ -238,7 +252,7 @@ $messages = array(
 'oldpassword' => "Cêva 'd ingès vècia:",
 'newpassword' => "Nōva cêva 'd ingrès:",
 'resetpass-submit-loggedin' => "Câmbia la cêva 'd ingrès",
-'resetpass-submit-cancel' => 'Canşèla',
+'resetpass-submit-cancel' => 'Scanşèla',
 'resetpass-temp-password' => "Cêva 'd ingrès pruvişôria:",
 
 # Special:PasswordReset
@@ -256,7 +270,7 @@ $messages = array(
 'summary' => 'Sûnt:',
 'savearticle' => 'Sêlva la pàgina',
 'preview' => 'Guêrda préma',
-'showpreview' => 'Guêrda al cambiamèint',
+'showpreview' => "Guêrda préma 'd salvêr",
 'showdiff' => 'Guêrda i cambiamèint',
 'blockedtitle' => 'Utèint bluchê',
 'newarticle' => '(Nōv)',
@@ -390,7 +404,7 @@ $messages = array(
 'grouppage-suppress' => '{{ns:project}}:Oversight',
 
 # Rights
-'right-read' => 'Al lēz al pàgini',
+'right-read' => 'Al lēş al pàgini',
 'right-edit' => 'Mudéfica pàgini',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -408,7 +422,7 @@ $messages = array(
 'rcshowhidemine' => '$1 al mē mudéfichi',
 'diff' => 'dif',
 'hist' => 'stòr',
-'hide' => 'Nascònd',
+'hide' => 'Lōga',
 'show' => 'Fà vèder',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
@@ -602,14 +616,14 @@ $messages = array(
 'tooltip-ca-nstab-project' => 'Guêrda la pàgina dal prugèt',
 'tooltip-ca-nstab-image' => "Guêrda la pàgina dal 'file'",
 'tooltip-ca-nstab-template' => "Guêrda 'l template",
-'tooltip-ca-nstab-help' => "Vadä la pàgina d'aiüt",
-'tooltip-ca-nstab-category' => "Vadä la pàgina d'la categoria",
+'tooltip-ca-nstab-help' => "Guêrda la pàgina d'ajót",
+'tooltip-ca-nstab-category' => "Guêrda la pàgina 'd la categoréia",
 'tooltip-save' => 'Sêlva al mudéfichi',
 'tooltip-rollback' => "\"Rollback\" al scanşèla cun un cléch tót' al mudéfichi fâti a cla pàgina ché da l'ûltem ch' al gh'à més al mân.",
 'tooltip-undo' => '"Scanşèla" al permèt de scanşlêr cla mudéfica ché e l\'arvés al mudèl ed mudéfica in môd "Guerda préma". E al permèt ed mèter dèinter \'na spiegasiòun int l\' elemèint ed la mudéfica.',
 
 # Attribution
-'others' => 'ätar',
+'others' => 'êter',
 
 # Info page
 'pageinfo-header-edits' => 'Stòria dal mudéfichi',
@@ -649,7 +663,7 @@ a vînen cunsidrê sōl j elèinch puntê (ríghi che cumîncen cun al carâter 
 'exif-gpsdatestamp' => 'Dâta GPS',
 'exif-source' => 'Surzéia',
 'exif-languagecode' => 'Léngva',
-'exif-iimcategory' => 'Categuréia',
+'exif-iimcategory' => 'Categoréia',
 'exif-identifier' => 'Identificatîv',
 
 # 'all' in various places, this might be different for inflected languages

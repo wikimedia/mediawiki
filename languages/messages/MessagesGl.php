@@ -1178,6 +1178,9 @@ Comprobe a comparación que aparece a continuación para confirmar que isto é o
 'cantcreateaccount-text' => "A creación de contas desde este enderezo IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
 A razón dada por $3 foi ''$2''",
+'cantcreateaccount-range-text' => "A creación de contas dende direccións IP no rango '''$1''', e que inclúe á súa dirección IP ('''$4'''), foi bloqueada polo usuario [[User:$3|$3]].
+
+A razón dada por $3 foi ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Ver os rexistros desta páxina',

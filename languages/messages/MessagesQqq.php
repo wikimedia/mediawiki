@@ -107,6 +107,7 @@
  * @author PhiLiP
  * @author Piangpha
  * @author Platonides
+ * @author PleaseStand
  * @author Prima klasy4na
  * @author Prometheus.pyrphoros
  * @author Psubhashish
@@ -6230,7 +6231,7 @@ See also:
 'block' => '{{doc-special|Block}}
 {{Identical|Block user}}',
 'unblock' => '{{doc-special|Unblock}}',
-'blockip' => 'The title of the special page [[Special:BlockIP]].
+'blockip' => 'Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. "Username" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.
 
 {{Identical|Block user}}',
 'blockip-legend' => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
