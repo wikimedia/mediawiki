@@ -351,7 +351,16 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) && $handler->supportsRedirects() ) {
+		if ( $user->isAllowed( 'suppressredirect' ) ) {
+			if ( $handler->supportsRedirects() ) {
+				$isChecked = $this->leaveRedirect;
+				$options = array();
+			} else {
+				$isChecked = false;
+				$options = array(
+					'disabled' => 'disabled'
+				);
+			}
 			$out->addHTML( "
 				<tr>
 					<td></td>
@@ -360,7 +369,8 @@ class MovePageForm extends UnlistedSpecialPage {
 						$this->msg( 'move-leave-redirect' )->text(),
 						'wpLeaveRedirect',
 						'wpLeaveRedirect',
-						$this->leaveRedirect
+						$isChecked,
+						$options
 					) .
 					"</td>
 				</tr>"
