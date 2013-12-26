@@ -51,6 +51,7 @@ class DBObject {
  * This allows us to distinguish a blob from a normal string and an array of strings
  */
 class Blob {
+	/** @var string */
 	private $mData;
 
 	function __construct( $data ) {
@@ -97,13 +98,23 @@ interface Field {
  * @ingroup Database
  */
 class ResultWrapper implements Iterator {
-	var $db, $result, $pos = 0, $currentRow = null;
+	/** @var resource */
+	public $result;
+
+	/** @var DatabaseBase */
+	protected $db;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var */
+	protected $currentRow = null;
 
 	/**
 	 * Create a new result object from a result resource and a Database object
 	 *
 	 * @param DatabaseBase $database
-	 * @param resource $result
+	 * @param resource|ResultWrapper $result
 	 */
 	function __construct( $database, $result ) {
 		$this->db = $database;
@@ -221,10 +232,17 @@ class ResultWrapper implements Iterator {
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	var $result = array();
-	var $db = null; // And it's going to stay that way :D
-	var $pos = 0;
-	var $currentRow = null;
+	/** @var array */
+	public $result = array();
+
+	/** @var null And it's going to stay that way :D */
+	protected $db = null;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var array|stdClass|bool */
+	protected $currentRow = null;
 
 	function __construct( $array ) {
 		$this->result = $array;
