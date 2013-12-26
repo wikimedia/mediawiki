@@ -68,12 +68,21 @@ class MapCacheLRU {
 	}
 
 	/**
+	 * Check if a key exists
+	 *
+	 * @param $key string
+	 * @return bool
+	 */
+	public function has( $key ) {
+		return isset( $this->cache[$key] );
+	}
+
+	/**
 	 * Get the value for a key.
 	 * This returns null if the key is not set.
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
 	 * @param $key string
-	 * @param $prop string
 	 * @return mixed
 	 */
 	public function get( $key ) {
