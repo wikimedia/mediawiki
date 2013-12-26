@@ -26,16 +26,25 @@
  * @ingroup Database
  */
 class DatabaseSqlite extends DatabaseBase {
+	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
-	var $mAffectedRows;
-	var $mLastResult;
-	var $mDatabaseFile;
-	var $mName;
+	/** @var string File name for SQLite database file */
+	public $mDatabaseFile;
+
+	/** @var int The number of rows affected as an integer */
+	protected $mAffectedRows;
+
+	/** @var resource */
+	protected $mLastResult;
 
 	/**
-	 * @var PDO
+	 * @var string
+	 * @todo Seems to serve no purpose. Remove?
 	 */
+	private $mName;
+
+	/** @var PDO */
 	protected $mConn;
 
 	function __construct( $p = null ) {
