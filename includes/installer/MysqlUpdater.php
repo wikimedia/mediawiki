@@ -394,6 +394,16 @@ class MysqlUpdater extends DatabaseUpdater {
 				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
 			), array( 'NOT (wl_namespace & 1)' ), __METHOD__, 'IGNORE' );
 		$this->output( "done.\n" );
+
+		$this->output( "Adding missing watchlist subject page rows... " );
+		$this->db->insertSelect( 'watchlist', 'watchlist',
+			array(
+				'wl_user' => 'wl_user',
+				'wl_namespace' => 'wl_namespace & ~1',
+				'wl_title' => 'wl_title',
+				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
+			), array( 'wl_namespace & 1' ), __METHOD__, 'IGNORE' );
+		$this->output( "done.\n" );
 	}
 
 	function doSchemaRestructuring() {
