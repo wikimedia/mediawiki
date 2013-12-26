@@ -176,6 +176,11 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @var User */
 	protected $performer;
 
+	/** @var bool Whether the parameters for this log entry are stored in new
+	 *    or old format.
+	 */
+	protected $legacy;
+
 	protected function __construct( $row ) {
 		$this->row = $row;
 	}
@@ -360,6 +365,9 @@ class ManualLogEntry extends LogEntryBase {
 
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
+
+	/** @var int ID of the log entry */
+	protected $id;
 
 	/**
 	 * Constructor.
