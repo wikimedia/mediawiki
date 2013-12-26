@@ -86,11 +86,8 @@ class LBFactorySingle extends LBFactory {
  * Helper class for LBFactorySingle.
  */
 class LoadBalancerSingle extends LoadBalancer {
-
-	/**
-	 * @var DatabaseBase
-	 */
-	var $db;
+	/** @var DatabaseBase */
+	protected $db;
 
 	/**
 	 * @param $params array
