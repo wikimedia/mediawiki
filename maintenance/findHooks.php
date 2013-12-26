@@ -143,7 +143,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromLocalDoc( $doc ) {
 			$m = array();
 			$content = file_get_contents( $doc );
-			preg_match_all( "/\n'(.*?)'/", $content, $m );
+			preg_match_all( "/\n'(.*?)':/", $content, $m );
 			return array_unique( $m[1] );
 	}
 
