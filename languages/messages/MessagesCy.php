@@ -1509,7 +1509,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'rclistfrom' => 'Dangos newidiadau newydd, gan ddechrau ers $1',
 'rcshowhideminor' => '$1 golygiadau bychain',
 'rcshowhidebots' => '$1 botiau',
-'rcshowhideliu' => '$1 defnyddwyr mewngofnodedig',
+'rcshowhideliu' => '$1 o ddefnyddwyr cofrestredig',
 'rcshowhideanons' => '$1 defnyddwyr anhysbys',
 'rcshowhidepatr' => '$1 golygiadau wedi derbyn ymweliad patrôl',
 'rcshowhidemine' => '$1 fy ngolygiadau',
@@ -3681,7 +3681,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Ailgyfeirio yn ôl enw ffeil, ID defnyddiwr neu ID diwygiad tudalen',
+'redirect' => 'Ailgyfeirio yn ôl enw ffeil, defnyddiwr, tudalen neu ID y diwygiad',
 'redirect-legend' => 'Ailgyfeirio i ffeil neu dudalen',
 'redirect-summary' => "Mae'r dudalen arbennig hon yn ailgyfeirio at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddiwygiad o'r dudalen), neu at dudalen defnyddiwr (o roi rhif ID y defnyddiwr).
 Defnydd: 

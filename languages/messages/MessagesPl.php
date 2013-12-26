@@ -40,6 +40,7 @@
  * @author Odder
  * @author Odie2
  * @author Olgak85
+ * @author Peter Bowman
  * @author Przemub
  * @author Reedy
  * @author Remedios44
@@ -439,7 +440,7 @@ $messages = array(
 'subcategories' => 'Podkategorie',
 'category-media-header' => 'Pliki w kategorii „$1”',
 'category-empty' => "''Obecnie w tej kategorii brak stron oraz plików.''",
-'hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie}}',
+'hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukrytych kategorii}}',
 'hidden-category-category' => 'Ukryte kategorie',
 'category-subcat-count' => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Poniżej wyświetlono $1 spośród wszystkich $2 podkategorii tej kategorii.}}',
 'category-subcat-count-limited' => 'Ta kategoria ma {{PLURAL:$1|1 podkategorię|$1 podkategorie|$1 podkategorii}}.',
@@ -4015,11 +4016,12 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 # Special:Redirect
 'redirect' => 'Przekierowanie według pliku, użytkownika, strony lub identyfikatora wersji',
 'redirect-legend' => 'Przekieruj do pliku lub strony',
-'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Ta strona specjalna przekierowuje do: pliku (o podanej nazwie), do strony (o podanym numerze wersji lub identyfikatorze strony) albo do strony użytkownika (o podanym identyfikatorze numerycznym). Sposób użycia: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] albo [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Przejdź',
 'redirect-lookup' => 'Wyszukaj:',
 'redirect-value' => 'Wartość:',
 'redirect-user' => 'ID użytkownika',
+'redirect-page' => 'Identyfikator strony',
 'redirect-revision' => 'Wersja strony',
 'redirect-file' => 'Nazwa pliku',
 'redirect-not-exists' => 'Nie znaleziono wartości',

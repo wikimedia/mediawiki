@@ -3504,7 +3504,7 @@ Ako je prvobitno stanje datoteke promenjeno, moguće je da neki detalji ne opisu
 'exif-copyrightowner' => 'Nosilac autorskog prava',
 'exif-usageterms' => 'Pravila korišćenja',
 'exif-webstatement' => 'Izjava o autorskom pravu',
-'exif-originaldocumentid' => 'Jedinstveni IB izvornog dokumenta',
+'exif-originaldocumentid' => 'Jedinstveni ID izvornog dokumenta',
 'exif-licenseurl' => 'Adresa licence za autorska prava',
 'exif-morepermissionsurl' => 'Rezervni podaci o licenciranju',
 'exif-attributionurl' => 'Pri ponovnom korišćenju ovog rada, koristite vezu do',

@@ -77,6 +77,7 @@
  * @author Penarc
  * @author PerroVerd
  * @author Pertile
+ * @author Peter Bowman
  * @author Pginer
  * @author Piolinfax
  * @author Platonides
@@ -1788,6 +1789,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchanges-label-bot' => 'Esta edición fue realizada por un robot',
 'recentchanges-label-unpatrolled' => 'Esta edición todavía no se ha patrullado',
 'recentchanges-label-plusminus' => 'El tamaño de la página cambió esta cantidad de bytes',
+'recentchanges-legend-heading' => "'''Leyenda:'''",
 'recentchanges-legend-newpage' => '(véase también la [[Special:NewPages|lista de páginas nuevas]])',
 'rcnotefrom' => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom' => 'Mostrar nuevos cambios desde $1',
@@ -3900,6 +3902,9 @@ Confirma que realmente quieres volver a crear esta página.",
 'imgmultigo' => '¡Ir!',
 'imgmultigoto' => 'Ir a la página $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(idioma predeterminado)',
+
 # Table pager
 'ascending_abbrev' => 'asc',
 'descending_abbrev' => 'desc',
@@ -4000,9 +4005,9 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Ruta de la secuencia de comandos (script)]',
 
 # Special:Redirect
-'redirect' => 'Redirigir por archivo, usuario o ID de revisión',
+'redirect' => 'Redirigir por archivo, usuario, página o ID de revisión',
 'redirect-legend' => 'Redirigir a un archivo o página',
-'redirect-summary' => 'Esta página especial redirige a un fichero (dado un nombre de fichero), a una página (dado un identificador de revisión) o a una página de usuario (dado en identificador numérico de usuario). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Esta página especial redirige a un fichero (dado un nombre de fichero), a una página (dado un identificador de revisión o de página) o a una página de usuario (dado un identificador numérico de usuario). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Buscar:',
 'redirect-value' => 'Valor:',

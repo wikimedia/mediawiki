@@ -10,6 +10,7 @@
  * @author Albamhandae
  * @author Altostratus
  * @author Chanhee
+ * @author ChongDae
  * @author Chulki Lee
  * @author Clockoon
  * @author Cwt96
@@ -31,6 +32,7 @@
  * @author LFM
  * @author Mintz0223
  * @author Pi.C.Noizecehx
+ * @author Priviet
  * @author PuzzletChung
  * @author TheAlpha for knowledge
  * @author ToePeu
@@ -1796,7 +1798,7 @@ HTML 태그를 확인하세요.',
 'recentchanges-label-unpatrolled' => '아직 검토하지 않은 편집',
 'recentchanges-label-plusminus' => '바이트로 표기된 바뀐 문서 크기',
 'recentchanges-legend-heading' => "'''범례:'''",
-'recentchanges-legend-newpage' => '([[Special:NewPages|새 문서 목록]]도 참고하세요)',
+'recentchanges-legend-newpage' => '([[Special:NewPages|새 문서 목록]]도 참고)',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "다음은 '''$2'''에서부터 바뀐 문서 '''$1'''개입니다.",
 'rclistfrom' => '$1 이래로 새로 바뀐 문서 보기',
@@ -2499,7 +2501,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'notvisiblerev' => '이 판은 삭제되었습니다.',
 'watchlist-details' => '토론을 제외하고 {{PLURAL:$1|문서 $1개}}를 주시하고 있습니다.',
 'wlheader-enotif' => '이메일 알림 기능이 활성화되었습니다.',
-'wlheader-showupdated' => "마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 보여집니다.",
+'wlheader-showupdated' => "마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 보입니다.",
 'watchmethod-recent' => '주시된 문서를 확인하고자 최근 편집을 확인',
 'watchmethod-list' => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains' => '{{PLURAL:$1|문서 $1개}}를 주시하고 있습니다.',
@@ -2792,7 +2794,7 @@ $1',
 'whatlinkshere-next' => '{{PLURAL:$1|다음|다음 $1개}}',
 'whatlinkshere-links' => '← 가리키는 문서 목록',
 'whatlinkshere-hideredirs' => '넘겨주기를 $1',
-'whatlinkshere-hidetrans' => '틀을 $1',
+'whatlinkshere-hidetrans' => '끼워넣기를 $1',
 'whatlinkshere-hidelinks' => '링크를 $1',
 'whatlinkshere-hideimages' => '파일 링크를 $1',
 'whatlinkshere-filters' => '필터',

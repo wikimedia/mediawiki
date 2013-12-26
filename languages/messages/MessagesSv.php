@@ -641,9 +641,9 @@ $1',
 
 # Main script and global functions
 'nosuchaction' => 'Funktionen finns inte',
-'nosuchactiontext' => 'Den handling som specificerats av URL:en är ogiltig.
-Du kan ha stavat URL:en fel, eller följt en felaktig länk.
-Det kan också bero på en bug i {{SITENAME}}.',
+'nosuchactiontext' => 'Den handling som specificerats av webbadressen är ogiltig.
+Du kan ha stavat webbadressen fel, eller följt en felaktig länk.
+Det kan även bero på en bugg i mjukvaran som används på {{SITENAME}}.',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
 'nospecialpagetext' => '<strong>Du har begärt en specialsida som inte finns.</strong>
 
@@ -671,7 +671,7 @@ Detta orsakas oftast av att man följer en inaktuell länk till en jämförelse 
 Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
 Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör]], ange då URL:en (webbadressen).',
 'missingarticle-rev' => '(version#: $1)',
-'missingarticle-diff' => '(jämförelse mellan version $1 och $2)',
+'missingarticle-diff' => '(Skillnad: $1, $2)',
 'readonly_lag' => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror' => 'Internt fel',
 'internalerror_info' => 'Internt fel: $1',
@@ -713,18 +713,18 @@ För att lägga till eller ändra översättningar för alla wikis, var god anv�
 'cascadeprotected' => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
 'namespaceprotected' => "Du har inte behörighet att redigera sidor i namnrymden '''$1'''.",
-'customcssprotected' => 'Du har inte behörighet att redigera denna CSS-sidan eftersom den innehåller en annan användares personliga inställningar.',
-'customjsprotected' => 'Du har inte behörighet att redigera denna JavaScript-sidan eftersom den innehåller en annan användares personliga inställningar.',
+'customcssprotected' => 'Du har inte behörighet att redigera denna CSS-sida eftersom den innehåller en annan användares personliga inställningar.',
+'customjsprotected' => 'Du har inte behörighet att redigera denna JavaScript-sida eftersom den innehåller en annan användares personliga inställningar.',
 'mycustomcssprotected' => 'Du har inte rättigheten att redigera denna CSS-sida.',
 'mycustomjsprotected' => 'Du har inte rättigheten att redigera denna JavaScript-sida.',
 'myprivateinfoprotected' => 'Du har inte behörighet att redigera din privata information.',
 'mypreferencesprotected' => 'Du har inte behörighet att redigera dina inställningar.',
 'ns-specialprotected' => 'Specialsidor kan inte redigeras.',
 'titleprotected' => 'Denna sidtitel har skyddats från att skapas av [[User:$1|$1]].
-Den uppgivna anledningen är "\'\'$2\'\'".',
+Den angivna anledningen är "\'\'$2\'\'".',
 'filereadonlyerror' => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
 
-Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
+Den administratör som låste den angav följande anledning: "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ogiltig titel med namnrymden "$2" och texten "$3"',
 'invalidtitle-unknownnamespace' => 'Ogiltig titel med okänt namnrymdsnummer $1 och texten "$2"',
 'exception-nologin' => 'Inte inloggad',
@@ -1165,7 +1165,7 @@ Om du är inloggad kan du slå av den här varningen under "Redigering" i dina i
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
 
-Antalet anrop får vara högst $2, nu görs {{PLURAL:$#|$1 anrop}}.',
+Antalet anrop får vara högst $2, nu görs {{PLURAL:$1|$1 anrop|$1 anrop}}',
 'expensive-parserfunction-category' => 'Sidor med för många resurskrävande parserfunktioner',
 'post-expand-template-inclusion-warning' => 'Varning: Den här sidan innehåller för mycket mallinklusioner.
 Några av mallarna kommer inte att inkluderas.',
@@ -1299,7 +1299,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'revdelete-success' => "'''Sidversionssynlighet har uppdaterats.'''",
 'revdelete-failure' => "'''Sidversionssynlighet kunde inte uppdateras:'''
 $1",
-'logdelete-success' => "'''Loggåtgärdens synlighet har ändrats.'''",
+'logdelete-success' => "'''Loggens synlighet har ställts in.'''",
 'logdelete-failure' => "'''Loggens synlighet kunde inte ställas in:'''
 $1",
 'revdel-restore' => 'ändra synlighet',
@@ -1550,8 +1550,8 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'prefs-tabs-navigation-hint' => 'Tips: Du kan använda vänster och höger piltangenterna för att navigera mellan flikarna i listan flikar.',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => 'Ser giltig ut',
-'email-address-validity-invalid' => 'Giltig adress krävs!',
+'email-address-validity-valid' => 'E-postadress ser giltig ut',
+'email-address-validity-invalid' => 'Ange en giltig e-postadress',
 
 # User rights
 'userrights' => 'Hantering av användarrättigheter',
@@ -1575,7 +1575,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-changeable-col' => 'Grupper du kan ändra',
 'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
 'userrights-conflict' => 'Konflikt vid ändringar av användarrättigheter! Var god granska och bekräfta dina ändringar.',
-'userrights-removed-self' => 'Du tog bort dina egna rättigheter. Som sådan, kan du inte längre komma åt denna sida.',
+'userrights-removed-self' => 'Du tog bort dina egna rättigheter. Du kan därför inte längre komma åt denna sida.',
 
 # Groups
 'group' => 'Grupp:',
@@ -1607,18 +1607,18 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-createpage' => 'Skapa sidor (som inte är diskussionssidor)',
 'right-createtalk' => 'Skapa diskussionssidor',
 'right-createaccount' => 'Skapa nya användarkonton',
-'right-minoredit' => 'Markera mindre ändringar',
+'right-minoredit' => 'Markera redigeringar som mindre',
 'right-move' => 'Flytta sidor',
 'right-move-subpages' => 'Flytta sidor med deras undersidor',
 'right-move-rootuserpages' => 'Flytta root-användarsidor',
 'right-movefile' => 'Flytta filer',
-'right-suppressredirect' => 'Behöver inte skapa omdirigeringar vid sidflyttning',
+'right-suppressredirect' => 'Skapa inte omdirigeringar från ursprungssidan vid sidflyttning',
 'right-upload' => 'Ladda upp filer',
-'right-reupload' => 'Skriva över existerande filer',
-'right-reupload-own' => 'Skriva över egna filer',
-'right-reupload-shared' => 'Skriva över delade filer lokalt',
-'right-upload_by_url' => 'Ladda upp en fil genom en URL',
-'right-purge' => 'Rensa cachen för sidor utan att behöva bekräfta',
+'right-reupload' => 'Skriv över existerande filer',
+'right-reupload-own' => 'Skriv över egna filer',
+'right-reupload-shared' => 'Skriv över delade filer lokalt',
+'right-upload_by_url' => 'Ladda upp en fil genom en webbadress',
+'right-purge' => 'Rensa cachen för en sida utan att bekräfta',
 'right-autoconfirmed' => 'Påverkas inte av IP-baserade hastighetsgränser',
 'right-bot' => 'Behandlas som en automatisk process',
 'right-nominornewtalk' => 'Mindre ändringar på diskussionssidor ger inte besked om nya meddelanden',

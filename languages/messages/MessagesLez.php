@@ -150,7 +150,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Категория|Категорияр}}',
-'category_header' => '"$1" категориядин ччинар',
+'category_header' => '«$1» категориядин ччинар',
 'subcategories' => 'агъакатегорияр',
 'category-media-header' => '"$1" категориядин медиа',
 'category-empty' => "''Алай чӀава и категория ичӀи я.\"",

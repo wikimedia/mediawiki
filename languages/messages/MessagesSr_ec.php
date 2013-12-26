@@ -3664,7 +3664,7 @@ Variants for Chinese language
 'exif-copyrightowner' => 'Носилац ауторског права',
 'exif-usageterms' => 'Правила коришћења',
 'exif-webstatement' => 'Изјава о ауторском праву',
-'exif-originaldocumentid' => 'Јединствени ИБ изворног документа',
+'exif-originaldocumentid' => 'Јединствени ID изворног документа',
 'exif-licenseurl' => 'Адреса лиценце за ауторска права',
 'exif-morepermissionsurl' => 'Резервни подаци о лиценцирању',
 'exif-attributionurl' => 'При поновном коришћењу овог рада, користите везу до',
