@@ -748,7 +748,7 @@ class Preferences {
 		}
 
 		$defaultPreferences['stubthreshold'] = array(
-			'type' => 'selectorother',
+			'type' => 'select',
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
 			'size' => 20,
