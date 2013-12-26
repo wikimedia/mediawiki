@@ -81,7 +81,7 @@ class DerivativeContext extends ContextSource {
 	/**
 	 * Set the SiteConfiguration object
 	 *
-	 * @param SiteConfiguration $c
+	 * @param SiteConfiguration $s
 	 */
 	public function setConfig( SiteConfiguration $s ) {
 		$this->config = $s;
