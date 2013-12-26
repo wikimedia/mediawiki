@@ -101,7 +101,7 @@ class SpecialRandomInCategory extends SpecialPage {
 
 			$msg = $this->msg( 'randomincategory-selectcategory' );
 			$form = Html::rawElement( 'form', array( 'action' => $wgScript ),
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 				$msg->rawParams( $input, $submit )->parse()
 			);
 			$this->getOutput()->addHtml( $form );

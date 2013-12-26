@@ -61,7 +61,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$title = Title::newFromText( $titleStr );
 
 		if ( !$title ) {
-			$title = $this->getTitle();
+			$title = $this->getPageTitle();
 		}
 		$input = $request->getText( 'wpInput' );
 		$this->generateXML = $request->getBool( 'wpGenerateXml' );
@@ -138,7 +138,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * @return string
 	 */
 	private function makeForm( $title, $input ) {
-		$self = $this->getTitle();
+		$self = $this->getPageTitle();
 		$form = Xml::openElement(
 			'form',
 			array( 'method' => 'post', 'action' => $self->getLocalUrl() )

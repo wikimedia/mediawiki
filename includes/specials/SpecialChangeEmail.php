@@ -148,7 +148,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				Xml::openElement( 'form',
 					array(
 						'method' => 'post',
-						'action' => $this->getTitle()->getLocalURL(),
+						'action' => $this->getPageTitle()->getLocalURL(),
 						'id' => 'mw-changeemail-form' ) ) . "\n" .
 				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .

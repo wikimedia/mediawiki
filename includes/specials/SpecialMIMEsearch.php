@@ -112,7 +112,7 @@ class MIMEsearchPage extends QueryPage {
 				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgScript )
 			) .
 				Xml::openElement( 'fieldset' ) .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 				Xml::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
 				Xml::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $mime ) .
 				' ' .

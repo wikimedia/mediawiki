@@ -495,7 +495,7 @@ class DeletedContributionsPage extends SpecialPage {
 	function getForm( $options ) {
 		global $wgScript;
 
-		$options['title'] = $this->getTitle()->getPrefixedText();
+		$options['title'] = $this->getPageTitle()->getPrefixedText();
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
 		} else {

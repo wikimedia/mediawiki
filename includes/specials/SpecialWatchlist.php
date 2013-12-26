@@ -159,7 +159,7 @@ class SpecialWatchlist extends SpecialPage {
 			&& $request->wasPosted()
 		) {
 			$user->clearAllNotifications();
-			$output->redirect( $this->getTitle()->getFullURL( $nondefaults ) );
+			$output->redirect( $this->getPageTitle()->getFullURL( $nondefaults ) );
 			return;
 		}
 
@@ -236,7 +236,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		if ( $wgShowUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getTitle()->getLocalURL(),
+				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
 			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
@@ -248,7 +248,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		$form .= Xml::openElement( 'form', array(
 			'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL(),
+			'action' => $this->getPageTitle()->getLocalURL(),
 			'id' => 'mw-watchlist-form'
 		) );
 		$form .= Xml::fieldset(
@@ -437,14 +437,14 @@ class SpecialWatchlist extends SpecialPage {
 		$label = $this->msg( $value ? 'show' : 'hide' )->escaped();
 		$options[$name] = 1 - (int)$value;
 
-		return $this->msg( $message )->rawParams( Linker::linkKnown( $this->getTitle(), $label, array(), $options ) )->escaped();
+		return $this->msg( $message )->rawParams( Linker::linkKnown( $this->getPageTitle(), $label, array(), $options ) )->escaped();
 	}
 
 	protected function hoursLink( $h, $options = array() ) {
 		$options['days'] = ( $h / 24.0 );
 
 		return Linker::linkKnown(
-			$this->getTitle(),
+			$this->getPageTitle(),
 			$this->getLanguage()->formatNum( $h ),
 			array(),
 			$options
@@ -456,7 +456,7 @@ class SpecialWatchlist extends SpecialPage {
 		$message = ( $d ? $this->getLanguage()->formatNum( $d ) : $this->msg( 'watchlistall2' )->escaped() );
 
 		return Linker::linkKnown(
-			$this->getTitle(),
+			$this->getPageTitle(),
 			$message,
 			array(),
 			$options

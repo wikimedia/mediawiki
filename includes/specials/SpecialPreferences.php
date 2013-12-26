@@ -69,7 +69,7 @@ class SpecialPreferences extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle( 'reset' ) ); // Reset subpage
+		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
 		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
@@ -88,7 +88,7 @@ class SpecialPreferences extends SpecialPage {
 		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
-		$url = $this->getTitle()->getFullURL( 'success' );
+		$url = $this->getPageTitle()->getFullURL( 'success' );
 
 		$this->getOutput()->redirect( $url );
 

@@ -534,7 +534,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
@@ -598,7 +598,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			),
 		);
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle( 'raw' ) ); // Reset subpage
+		$context->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
 		$form = new HTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'

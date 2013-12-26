@@ -809,7 +809,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::rawElement(
 					'label',
 					array( 'for' => 'prefix' ),
@@ -849,7 +849,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out->addWikiMsg( 'undeletepagetext', $this->getLanguage()->formatNum( $result->numRows() ) );
 
-		$undelete = $this->getTitle();
+		$undelete = $this->getPageTitle();
 		$out->addHTML( "<ul>\n" );
 		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
@@ -932,7 +932,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$link = Linker::linkKnown(
-			$this->getTitle( $this->mTargetObj->getPrefixedDBkey() ),
+			$this->getPageTitle( $this->mTargetObj->getPrefixedDBkey() ),
 			htmlspecialchars( $this->mTargetObj->getPrefixedText() )
 		);
 
@@ -1015,7 +1015,7 @@ class SpecialUndelete extends SpecialPage {
 					'style' => 'clear: both' ) ) .
 				Xml::openElement( 'form', array(
 					'method' => 'post',
-					'action' => $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) ) ) ) .
+					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ) ) ) .
 				Xml::element( 'input', array(
 					'type' => 'hidden',
 					'name' => 'target',
@@ -1074,7 +1074,7 @@ class SpecialUndelete extends SpecialPage {
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
 		if ( $isDeleted ) {
 			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?
-			$targetPage = $this->getTitle();
+			$targetPage = $this->getPageTitle();
 			$targetQuery = array(
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
@@ -1145,7 +1145,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML(
 			Xml::openElement( 'form', array(
 					'method' => 'POST',
-					'action' => $this->getTitle()->getLocalURL( array(
+					'action' => $this->getPageTitle()->getLocalURL( array(
 						'target' => $this->mTarget,
 						'file' => $key,
 						'token' => $user->getEditToken( $key ),
@@ -1233,7 +1233,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mAllowed ) {
-			$action = $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) );
+			$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 			# Start the form here
 			$top = Xml::openElement(
 				'form',
@@ -1364,7 +1364,7 @@ class SpecialUndelete extends SpecialPage {
 		// Build page & diff links...
 		$user = $this->getUser();
 		if ( $this->mCanView ) {
-			$titleObj = $this->getTitle();
+			$titleObj = $this->getPageTitle();
 			# Last link
 			if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$pageLink = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
@@ -1430,7 +1430,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed && $row->fa_storage_key ) {
 			$checkBox = Xml::check( 'fileid' . $row->fa_id );
 			$key = urlencode( $row->fa_storage_key );
-			$pageLink = $this->getFileLink( $file, $this->getTitle(), $ts, $key );
+			$pageLink = $this->getFileLink( $file, $this->getPageTitle(), $ts, $key );
 		} else {
 			$checkBox = '';
 			$pageLink = $this->getLanguage()->userTimeAndDate( $ts, $user );

@@ -174,7 +174,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function getSuccessURL() {
-		return $this->getTitle( $this->mTarget )->getFullURL( array( 'success' => 1 ) );
+		return $this->getPageTitle( $this->mTarget )->getFullURL( array( 'success' => 1 ) );
 	}
 
 	/**
@@ -405,7 +405,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgScript;
 		$this->getOutput()->addHTML(
 			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
 			Xml::inputLabel( $this->msg( 'userrights-user-editname' )->text(), 'user', 'username', 30, str_replace( '_', ' ', $this->mTarget ), array( 'autofocus' => true ) ) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
@@ -490,7 +490,7 @@ class UserrightsPage extends SpecialPage {
 		);
 
 		$this->getOutput()->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
 			Html::hidden( 'user', $this->mTarget ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
 			Html::hidden( 'conflictcheck-originalgroups', implode( ',', $user->getGroups() ) ) . // Conflict detection

@@ -27,6 +27,7 @@
  * Includes some static functions for handling the special page list deprecated
  * in favor of SpecialPageFactory.
  *
+ * @todo Turn this into a real ContextSource
  * @ingroup SpecialPage
  */
 class SpecialPage {
@@ -629,7 +630,7 @@ class SpecialPage {
 					SpecialPage::getTitleFor( 'Userlogin' ),
 					$this->msg( 'loginreqlink' )->escaped(),
 					array(),
-					array( 'returnto' => $this->getTitle()->getPrefixedText() )
+					array( 'returnto' => $this->getPageTitle()->getPrefixedText() )
 				);
 				$reasonMsg = $this->msg( $reasonMsg )->rawParams( $loginreqlink );
 			}
@@ -768,8 +769,20 @@ class SpecialPage {
 	 *
 	 * @param $subpage String|Bool
 	 * @return Title object
+	 * @deprecated in 1.23, use SpecialPage::getPageTitle
 	 */
 	function getTitle( $subpage = false ) {
+		wfDeprecated( __METHOD__, '1.23' );
+		return $this->getPageTitle( $subpage );
+	}
+
+	/**
+	 * Get a self-referential title object
+	 *
+	 * @param $subpage String|Bool
+	 * @return Title object
+	 */
+	function getPageTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
 

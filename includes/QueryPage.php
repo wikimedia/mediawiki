@@ -547,7 +547,7 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
 					$this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
+				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
@@ -749,7 +749,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedUrl() {
-		return $this->getTitle()->getFullURL();
+		return $this->getPageTitle()->getFullURL();
 	}
 }
 

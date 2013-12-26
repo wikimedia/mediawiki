@@ -318,7 +318,7 @@ class LoginForm extends SpecialPage {
 			# Confirm that the account was created
 			$out->setPageTitle( $this->msg( 'accountcreated' ) );
 			$out->addWikiMsg( 'accountcreatedtext', $u->getName() );
-			$out->addReturnTo( $this->getTitle() );
+			$out->addReturnTo( $this->getPageTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry( 'create2', $this->mReason );
 		}
@@ -390,7 +390,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Include checks that will include GlobalBlocking (Bug 38333)
-		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'createaccount', $currentUser, true );
+		$permErrors = $this->getPageTitle()->getUserPermissionsErrors( 'createaccount', $currentUser, true );
 		if ( count( $permErrors ) ) {
 				throw new PermissionsError( 'createaccount', $permErrors );
 		}
@@ -1075,7 +1075,7 @@ class LoginForm extends SpecialPage {
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		global $wgSecureLogin, $wgPasswordResetRoutes;
 
-		$titleObj = $this->getTitle();
+		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
@@ -1431,7 +1431,7 @@ class LoginForm extends SpecialPage {
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
 		return Linker::linkKnown(
-			$this->getTitle(),
+			$this->getPageTitle(),
 			htmlspecialchars( $text ),
 			$attr,
 			$query

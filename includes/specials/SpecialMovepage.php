@@ -281,7 +281,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'form',
 				array(
 					'method' => 'post',
-					'action' => $this->getTitle()->getLocalURL( 'action=submit' ),
+					'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ),
 					'id' => 'movepage'
 				)
 			) .

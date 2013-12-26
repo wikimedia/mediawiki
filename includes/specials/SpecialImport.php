@@ -64,11 +64,11 @@ class SpecialImport extends SpecialPage {
 		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
-			$this->getTitle()->getUserPermissionsErrors(
+			$this->getPageTitle()->getUserPermissionsErrors(
 				'import', $user, true,
 				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
 			),
-			$this->getTitle()->getUserPermissionsErrors(
+			$this->getPageTitle()->getUserPermissionsErrors(
 				'importupload', $user, true,
 				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
 			)
@@ -203,7 +203,7 @@ class SpecialImport extends SpecialPage {
 	private function showForm() {
 		global $wgImportSources, $wgExportMaxLinkDepth;
 
-		$action = $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) );
+		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
