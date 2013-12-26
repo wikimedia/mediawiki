@@ -44,6 +44,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 			'fields' => array( 'title' => 'cat_title',
 				'namespace' => NS_CATEGORY,
 				'value' => 'cat_pages' ),
+			'conds' => array( 'cat_pages > 0' ),
 		);
 	}
 
