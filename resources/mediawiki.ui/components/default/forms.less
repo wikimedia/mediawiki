@@ -47,8 +47,8 @@
 		width: 100%;
 
 		// MW currently doesn't use the type attribute everywhere on inputs.
-		input,
-		.mw-ui-button {
+		// The 2014 Agora "beveled bottom edge" design DOESN'T want full-width buttons.
+		input:not(.mw-ui-button) {
 			display: block;
 			.box-sizing(border-box);
 			margin: 0;

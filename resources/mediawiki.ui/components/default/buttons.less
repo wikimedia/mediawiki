@@ -219,3 +219,26 @@ a.mw-ui-button {
 		border-bottom-right-radius: @buttonBorderRadius;
 	}
 }
+
+// --------------------------------------------------------------------------
+// Containers
+// --------------------------------------------------------------------------
+
+// A row of actions
+//
+// Buttons are right-aligned (in left-to-right languages)
+// The most prominent action is furthest right and should be Constructive or
+// Primary.  To avoid a distracting multi-colored effect, it may be better to
+// use quiet and/or neutral styles for the buttons for other actions.
+//
+// Markup:
+// <div style="text-align: right;">
+//   <button class="mw-ui-button mw-ui-destructive mw-ui-quiet">Cancel</button>
+//   <button class="mw-ui-button">Preview</button>
+//   <button class="mw-ui-button mw-ui-constructive">Submit</button>
+// </div>
+//
+// Styleguide 2.3.
+.mw-ui-actionbuttons {
+	text-align: right;
+}

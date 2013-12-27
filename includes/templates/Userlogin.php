@@ -144,12 +144,21 @@ class UserloginTemplate extends BaseTemplate {
 				<?php } ?>
 			</div>
 
-			<div>
+			<div class="mw-ui-actionbuttons">
+				<?php if ( $this->haveData( 'createOrLoginHref' ) ) {
+					if ( $this->data['loggedin'] ) { ?>
+						<span id="mw-createaccount-another">
+							<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="6"  class="mw-ui-button mw-ui-quiet mw-ui-progressive"><?php $this->msg( 'userlogin-createanother' ); ?></a>
+						</span>
+					<?php } else { ?>
+						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="6"  class="mw-ui-button mw-ui-quiet mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
+					<?php }
+				} ?>
 				<?php
 				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
 					'id' => 'wpLoginAttempt',
-					'tabindex' => '6',
-					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
+					'tabindex' => '7',
+					'class' => 'mw-ui-button mw-ui-constructive'
 				) );
 				?>
 			</div>
@@ -157,17 +166,6 @@ class UserloginTemplate extends BaseTemplate {
 			<div id="mw-userlogin-help">
 				<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
 			</div>
-			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
-				<?php if ( $this->data['loggedin'] ) { ?>
-					<div id="mw-createaccount-another">
-						<h3 id="mw-userloginlink"><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a></h3>
-					</div>
-				<?php } else { ?>
-					<div id="mw-createaccount-cta">
-						<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
-					</div>
-				<?php } ?>
-			<?php } ?>
 			<?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 			<?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 			<?php if ( $this->data['cansecurelogin'] ) {?><input type="hidden" name="wpForceHttps" value="<?php $this->text( 'stickhttps' ); ?>" /><?php } ?>

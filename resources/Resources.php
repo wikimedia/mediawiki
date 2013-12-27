@@ -1162,12 +1162,6 @@ return array(
 		),
 		'position' => 'top',
 	),
-	'mediawiki.special.userlogin.login.styles' => array(
-		'styles' => array(
-			'resources/mediawiki.special/mediawiki.special.userlogin.login.css',
-		),
-		'position' => 'top',
-	),
 	'mediawiki.special.userlogin.common.js' => array(
 		'scripts' => array(
 			'resources/mediawiki.special/mediawiki.special.userlogin.common.js',

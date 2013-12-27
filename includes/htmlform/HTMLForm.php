@@ -701,8 +701,8 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 		if ( $this->isVForm() ) {
 			$this->getOutput()->addModuleStyles( array(
-				'mediawiki.ui',
 				'mediawiki.ui.button',
+				'mediawiki.ui',
 			) );
 			// @todo Should vertical form set setWrapperLegend( false )
 			// to hide ugly fieldsets?
@@ -810,19 +810,17 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $this->isVForm() ) {
-				// mw-ui-block is necessary because the buttons aren't necessarily in an
-				// immediate child div of the vform.
 				// TODO Let client specify if the primary submit button is progressive or destructive
-				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-constructive', 'mw-ui-block' );
+				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-constructive' );
 			}
 
 			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 
 			// Buttons are top-level form elements in table and div layouts,
-			// but vform wants all elements inside divs to get spaced-out block
+			// but vform wants action buttons inside a div for right-aligned
 			// styling.
 			if ( $this->isVForm() ) {
-				$html = Html::rawElement( 'div', null, "\n$html\n" );
+				$html = Html::rawElement( 'div', array( 'class' => 'mw-ui-actionbuttons' ), "\n$html\n" );
 			}
 		}
 

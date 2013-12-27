@@ -1148,11 +1148,6 @@ class LoginForm extends SpecialPage {
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 		} else {
-			// Additional styles for login form
-			$out->addModuleStyles( array(
-				'mediawiki.special.userlogin.login.styles'
-			) );
-
 			$template = new UserloginTemplate();
 
 			$q = 'action=submitlogin&type=login';
