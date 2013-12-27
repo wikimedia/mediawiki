@@ -49,7 +49,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @throws DBConnectionError
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		global $wgAllDBsAreLocalhost, $wgDBmysql5, $wgSQLMode;
+		global $wgAllDBsAreLocalhost, $wgSQLMode;
 		wfProfileIn( __METHOD__ );
 
 		# Debugging hack -- fake cluster
@@ -113,13 +113,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			}
 		}
 
-		// Tell the server we're communicating with it in UTF-8.
-		// This may engage various charset conversions.
-		if ( $wgDBmysql5 ) {
-			$this->mysqlSetCharset( 'utf8' );
-		} else {
-			$this->mysqlSetCharset( 'binary' );
+		// Tell the server what we're communicating with
+		if ( !$this->connectInitCharset() ) {
+			return $this->reportConnectionError( "Error setting character set" );
 		}
+
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
 			$mode = $this->addQuotes( $wgSQLMode );
@@ -136,6 +134,22 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		wfProfileOut( __METHOD__ );
 
 		return true;
+	}
+
+	/**
+	 * Set the character set information right after connection
+	 * @return bool
+	 */
+	protected function connectInitCharset() {
+		global $wgDBmysql5;
+
+		if ( $wgDBmysql5 ) {
+			// Tell the server we're communicating with it in UTF-8.
+			// This may engage various charset conversions.
+			return $this->mysqlSetCharset( 'utf8' );
+		} else {
+			return $this->mysqlSetCharset( 'binary' );
+		}
 	}
 
 	/**
