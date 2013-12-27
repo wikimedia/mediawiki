@@ -247,14 +247,14 @@ class UsercreateTemplate extends BaseTemplate {
 			// so skip one index.
 			$tabIndex++;
 			?>
-			<div class="mw-submit">
+			<div class="mw-submit mw-ui-actionbuttons">
 				<?php
 				echo Html::input(
 					'wpCreateaccount',
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
 					'submit',
 					array(
-						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-primary",
+						'class' => "mw-ui-button mw-ui-constructive",
 						'id' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
 					)
