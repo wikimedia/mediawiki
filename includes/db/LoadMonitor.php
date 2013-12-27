@@ -37,7 +37,7 @@ interface LoadMonitor {
 	/**
 	 * Perform pre-connection load ratio adjustment.
 	 * @param array $loads
-	 * @param string|bool $group the selected query group. Default: false
+	 * @param string|bool $group The selected query group. Default: false
 	 * @param string|bool $wiki Default: false
 	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false );
@@ -55,16 +55,16 @@ interface LoadMonitor {
 	 * to the running thread count. The threshold may be false, which indicates
 	 * that the sysadmin has not configured this feature.
 	 *
-	 * @param $conn DatabaseBase
-	 * @param $threshold Float
+	 * @param DatabaseBase $conn
+	 * @param float $threshold
 	 */
 	function postConnectionBackoff( $conn, $threshold );
 
 	/**
 	 * Return an estimate of replication lag for each server
 	 *
-	 * @param $serverIndexes
-	 * @param $wiki
+	 * @param array $serverIndexes
+	 * @param string $wiki
 	 *
 	 * @return array
 	 */
@@ -82,8 +82,8 @@ class LoadMonitorNull implements LoadMonitor {
 	}
 
 	/**
-	 * @param $serverIndexes
-	 * @param $wiki
+	 * @param array $serverIndexes
+	 * @param string $wiki
 	 * @return array
 	 */
 	function getLagTimes( $serverIndexes, $wiki ) {
@@ -98,9 +98,7 @@ class LoadMonitorNull implements LoadMonitor {
  * @ingroup Database
  */
 class LoadMonitorMySQL implements LoadMonitor {
-	/**
-	 * @var LoadBalancer
-	 */
+	/** @var LoadBalancer */
 	public $parent;
 
 	/**
@@ -111,16 +109,16 @@ class LoadMonitorMySQL implements LoadMonitor {
 	}
 
 	/**
-	 * @param $loads
-	 * @param $group bool
-	 * @param $wiki bool
+	 * @param array $loads
+	 * @param bool $group
+	 * @param bool $wiki
 	 */
 	function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
 	/**
-	 * @param $serverIndexes
-	 * @param $wiki
+	 * @param array $serverIndexes
+	 * @param string $wiki
 	 * @return array
 	 */
 	function getLagTimes( $serverIndexes, $wiki ) {
@@ -192,8 +190,8 @@ class LoadMonitorMySQL implements LoadMonitor {
 	}
 
 	/**
-	 * @param $conn DatabaseBase
-	 * @param $threshold
+	 * @param DatabaseBase|DatabaseMySQLBase $conn
+	 * @param int $threshold
 	 * @return int
 	 */
 	function postConnectionBackoff( $conn, $threshold ) {

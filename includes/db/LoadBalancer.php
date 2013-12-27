@@ -31,16 +31,20 @@ class LoadBalancer {
 	private $mServers, $mConns, $mLoads, $mGroupLoads;
 	private $mErrorConnection;
 	private $mReadIndex, $mAllowLagged;
-	private $mWaitForPos, $mWaitTimeout;
+
+	/** @var bool|DBMasterPos False if not set */
+	private $mWaitForPos;
+
+	private $mWaitTimeout;
 	private $mLaggedSlaveMode, $mLastError = 'Unknown error';
 	private $mParentInfo, $mLagTimes;
 	private $mLoadMonitorClass, $mLoadMonitor;
 
 	/**
 	 * @param array $params with keys:
-	 *    servers           Required. Array of server info structures.
-	 *    masterWaitTimeout Replication lag wait timeout
-	 *    loadMonitor       Name of a class used to fetch server lag and load.
+	 *   servers           Required. Array of server info structures.
+	 *   masterWaitTimeout Replication lag wait timeout
+	 *   loadMonitor       Name of a class used to fetch server lag and load.
 	 * @throws MWException
 	 */
 	function __construct( $params ) {
@@ -108,7 +112,7 @@ class LoadBalancer {
 	/**
 	 * Get or set arbitrary data used by the parent object, usually an LBFactory
 	 * @param $x
-	 * @return Mixed
+	 * @return mixed
 	 */
 	function parentInfo( $x = null ) {
 		return wfSetVar( $this->mParentInfo, $x );
@@ -120,8 +124,7 @@ class LoadBalancer {
 	 *
 	 * @deprecated since 1.21, use ArrayUtils::pickRandom()
 	 *
-	 * @param $weights array
-	 *
+	 * @param array $weights
 	 * @return bool|int|string
 	 */
 	function pickRandom( $weights ) {
@@ -129,8 +132,8 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param $loads array
-	 * @param $wiki bool
+	 * @param array $loads
+	 * @param bool|string $wiki Wiki to get non-lagged for
 	 * @return bool|int|string
 	 */
 	function getRandomNonLagged( $loads, $wiki = false ) {
@@ -177,8 +180,8 @@ class LoadBalancer {
 	 * always return a consistent index during a given invocation
 	 *
 	 * Side effect: opens connections to databases
-	 * @param $group bool
-	 * @param $wiki bool
+	 * @param bool|string $group
+	 * @param bool|string $wiki
 	 * @throws MWException
 	 * @return bool|int|string
 	 */
@@ -338,7 +341,7 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a specified number of microseconds, and return the period waited
-	 * @param $t int
+	 * @param int $t
 	 * @return int
 	 */
 	function sleep( $t ) {
@@ -354,7 +357,7 @@ class LoadBalancer {
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
-	 * @param $pos DBMasterPos
+	 * @param DBMasterPos $pos
 	 */
 	public function waitFor( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -372,7 +375,7 @@ class LoadBalancer {
 
 	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
-	 * @param $pos DBMasterPos
+	 * @param DBMasterPos $pos
 	 */
 	public function waitForAll( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -390,7 +393,7 @@ class LoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 * Returns false if there is no connection open
 	 *
-	 * @param $i int
+	 * @param int $i
 	 * @return DatabaseBase|bool False on failure
 	 */
 	function getAnyOpenConnection( $i ) {
@@ -575,7 +578,7 @@ class LoadBalancer {
 	 *
 	 * @param integer $db
 	 * @param mixed $groups
-	 * @param string $wiki
+	 * @param bool|string $wiki
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -591,7 +594,7 @@ class LoadBalancer {
 	 *
 	 * @param integer $db
 	 * @param mixed $groups
-	 * @param string $wiki
+	 * @param bool|string $wiki
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -607,7 +610,7 @@ class LoadBalancer {
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param $i Integer server index
-	 * @param string $wiki wiki ID to open
+	 * @param bool|string $wiki wiki ID to open
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -998,7 +1001,7 @@ class LoadBalancer {
 
 	/**
 	 * Disables/enables lag checks
-	 * @param $mode null
+	 * @param null|bool $mode
 	 * @return bool
 	 */
 	function allowLagged( $mode = null ) {
@@ -1030,7 +1033,7 @@ class LoadBalancer {
 
 	/**
 	 * Call a function with each open connection object
-	 * @param $callback
+	 * @param callable $callback
 	 * @param array $params
 	 */
 	function forEachOpenConnection( $callback, $params = array() ) {
@@ -1050,8 +1053,7 @@ class LoadBalancer {
 	 * May attempt to open connections to slaves on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param string $wiki Wiki ID, or false for the default database
-	 *
+	 * @param bool|string $wiki Wiki ID, or false for the default database
 	 * @return array ( host, max lag, index of max lagged host )
 	 */
 	function getMaxLag( $wiki = false ) {
@@ -1086,8 +1088,7 @@ class LoadBalancer {
 	 * Get lag time for each server
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 *
-	 * @param $wiki
-	 *
+	 * @param string|bool $wiki
 	 * @return array
 	 */
 	function getLagTimes( $wiki = false ) {
@@ -1118,8 +1119,7 @@ class LoadBalancer {
 	 * function instead of Database::getLag() avoids a fatal error in this
 	 * case on many installations.
 	 *
-	 * @param $conn DatabaseBase
-	 *
+	 * @param DatabaseBase $conn
 	 * @return int
 	 */
 	function safeGetLag( $conn ) {
@@ -1148,14 +1148,16 @@ class LoadBalancer {
 class DBConnRef implements IDatabase {
 	/** @var LoadBalancer */
 	protected $lb;
+
 	/** @var DatabaseBase|null */
 	protected $conn;
-	/** @var Array|null */
+
+	/** @var array|null */
 	protected $params;
 
 	/**
-	 * @param $lb LoadBalancer
-	 * @param $conn DatabaseBase|array Connection or (server index, group, wiki ID) array
+	 * @param LoadBalancer $lb
+	 * @param DatabaseBase|array $conn Connection or (server index, group, wiki ID) array
 	 */
 	public function __construct( LoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
