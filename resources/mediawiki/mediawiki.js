@@ -1960,6 +1960,12 @@ var mw = ( function ( $, undefined ) {
 								JSON.stringify( descriptor.style ),
 								JSON.stringify( descriptor.messages )
 							];
+							// Attempted workaround for a possible Opera bug (bug 57567).
+							// This regex should never match under sane conditions.
+							if ( /^\s*\(/.test( args[1] ) ) {
+								args[1] = 'function' + args[1];
+								log( 'Detected malformed function stringification (bug 57567)' );
+							}
 						} catch ( e ) {
 							return;
 						}
