@@ -1,0 +1,16 @@
+*
+!cologneblue/*
+!/cologneblue/
+!CologneBlue.php
+!common/*
+!/common/
+!modern/*
+!/modern/
+!Modern.php
+!monobook/*
+!/monobook/
+!MonoBook.php
+!vector/*
+!/vector/
+!Vector.php
+!.gitignore
