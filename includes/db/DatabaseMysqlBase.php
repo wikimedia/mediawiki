@@ -41,12 +41,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $server string
-	 * @param $user string
-	 * @param $password string
-	 * @param $dbName string
+	 * @param string $server
+	 * @param string $user
+	 * @param string $password
+	 * @param string $dbName
+	 * @throws Exception|DBConnectionError
 	 * @return bool
-	 * @throws DBConnectionError
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgAllDBsAreLocalhost, $wgSQLMode;
@@ -155,7 +155,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Open a connection to a MySQL server
 	 *
-	 * @param $realServer string
+	 * @param string $realServer
 	 * @return mixed Raw connection
 	 * @throws DBConnectionError
 	 */
@@ -170,7 +170,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	abstract protected function mysqlSetCharset( $charset );
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|resource $res
 	 * @throws DBUnexpectedError
 	 */
 	function freeResult( $res ) {
@@ -188,14 +188,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Free result memory
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return bool
 	 */
 	abstract protected function mysqlFreeResult( $res );
 
 	/**
-	 * @param $res ResultWrapper
-	 * @return object|bool
+	 * @param ResultWrapper|resource $res
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
 	function fetchObject( $res ) {
@@ -224,13 +224,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Fetch a result row as an object
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return stdClass
 	 */
 	abstract protected function mysqlFetchObject( $res );
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|resource $res
 	 * @return array|bool
 	 * @throws DBUnexpectedError
 	 */
@@ -260,14 +260,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Fetch a result row as an associative and numeric array
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return array
 	 */
 	abstract protected function mysqlFetchArray( $res );
 
 	/**
 	 * @throws DBUnexpectedError
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|resource $res
 	 * @return int
 	 */
 	function numRows( $res ) {
@@ -289,13 +289,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Get number of rows in result
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return int
 	 */
 	abstract protected function mysqlNumRows( $res );
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|resource $res
 	 * @return int
 	 */
 	function numFields( $res ) {
@@ -309,13 +309,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Get number of fields in result
 	 *
-	 * @param $res Raw result
+	 * @param resource $res Raw result
 	 * @return int
 	 */
 	abstract protected function mysqlNumFields( $res );
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|resource $res
 	 * @param $n int
 	 * @return string
 	 */
@@ -330,7 +330,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Get the name of the specified field in a result
 	 *
-	 * @param $res Raw result
+	 * @param ResultWrapper|resource $res
 	 * @param $n int
 	 * @return string
 	 */
@@ -338,7 +338,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * mysql_field_type() wrapper
-	 * @param $res
+	 * @param ResultWrapper|resource $res
 	 * @param $n int
 	 * @return string
 	 */
@@ -353,15 +353,15 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Get the type of the specified field in a result
 	 *
-	 * @param $res Raw result
-	 * @param $n int
+	 * @param ResultWrapper|resource $res
+	 * @param int $n
 	 * @return string
 	 */
 	abstract protected function mysqlFieldType( $res, $n );
 
 	/**
-	 * @param $res ResultWrapper
-	 * @param $row
+	 * @param ResultWrapper|resource $res
+	 * @param int $row
 	 * @return bool
 	 */
 	function dataSeek( $res, $row ) {
@@ -375,8 +375,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Move internal result pointer
 	 *
-	 * @param $res Raw result
-	 * @param $row int
+	 * @param ResultWrapper|resource $res
+	 * @param int $row
 	 * @return bool
 	 */
 	abstract protected function mysqlDataSeek( $res, $row );
@@ -406,16 +406,16 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Returns the text of the error message from previous MySQL operation
 	 *
-	 * @param $conn Raw connection
+	 * @param resource $conn Raw connection
 	 * @return string
 	 */
 	abstract protected function mysqlError( $conn = null );
 
 	/**
-	 * @param $table string
-	 * @param $uniqueIndexes
-	 * @param $rows array
-	 * @param $fname string
+	 * @param string $table
+	 * @param array $uniqueIndexes
+	 * @param array $rows
+	 * @param string $fname
 	 * @return ResultWrapper
 	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
@@ -427,12 +427,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
 	 *
-	 * @param $table string|array
-	 * @param $vars string|array
-	 * @param $conds string|array
-	 * @param $fname string
-	 * @param $options string|array
-	 * @return int
+	 * @param string|array $table
+	 * @param string|array $vars
+	 * @param string|array $conds
+	 * @param string $fname
+	 * @param string|array $options
+	 * @return bool|int
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
 		$fname = __METHOD__, $options = array()
@@ -455,8 +455,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $table string
-	 * @param $field string
+	 * @param string $table
+	 * @param string $field
 	 * @return bool|MySQLField
 	 */
 	function fieldInfo( $table, $field ) {
@@ -479,8 +479,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Get column information from a result
 	 *
-	 * @param $res Raw result
-	 * @param $n int
+	 * @param resource $res Raw result
+	 * @param int $n
 	 * @return stdClass
 	 */
 	abstract protected function mysqlFetchField( $res, $n );
@@ -489,9 +489,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * Get information about an index into an object
 	 * Returns false if the index does not exist
 	 *
-	 * @param $table string
-	 * @param $index string
-	 * @param $fname string
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool|array|null False or null on failure
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -520,8 +520,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $s string
-	 *
+	 * @param string $s
 	 * @return string
 	 */
 	function strencode( $s ) {
@@ -538,8 +537,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
 	 *
-	 * @param $s string
-	 *
+	 * @param string $s
 	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
@@ -549,7 +547,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 * @return bool
 	 */
 	public function isQuotedIdentifier( $name ) {
@@ -659,10 +657,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * Wait for the slave to catch up to a given master position.
-	 * @TODO: return values for this and base class are rubbish
+	 * @todo Return values for this and base class are rubbish
 	 *
-	 * @param $pos DBMasterPos object
-	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
+	 * @param DBMasterPos $pos
+	 * @param int $timeout The maximum number of seconds to wait for synchronisation
 	 * @return bool|string
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
@@ -745,7 +743,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $index
+	 * @param string $index
 	 * @return string
 	 */
 	function useIndexClause( $index ) {
@@ -767,7 +765,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $options array
+	 * @param array $options
 	 */
 	public function setSessionOptions( array $options ) {
 		if ( isset( $options['connTimeout'] ) ) {
@@ -777,6 +775,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param string $sql
+	 * @param string $newLine
+	 * @return bool
+	 */
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		if ( strtoupper( substr( $newLine, 0, 9 ) ) == 'DELIMITER' ) {
 			preg_match( '/^DELIMITER\s+(\S+)/', $newLine, $m );
@@ -792,7 +795,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 *
 	 * @param string $lockName name of lock to poll
 	 * @param string $method name of method calling us
-	 * @return Boolean
+	 * @return bool
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
@@ -804,9 +807,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $lockName string
-	 * @param $method string
-	 * @param $timeout int
+	 * @param string $lockName
+	 * @param string $method
+	 * @param int $timeout
 	 * @return bool
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
@@ -826,8 +829,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * FROM MYSQL DOCS:
 	 * http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
-	 * @param $lockName string
-	 * @param $method string
+	 * @param string $lockName
+	 * @param string $method
 	 * @return bool
 	 */
 	public function unlock( $lockName, $method ) {
@@ -839,10 +842,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $read array
-	 * @param $write array
-	 * @param $method string
-	 * @param $lowPriority bool
+	 * @param array $read
+	 * @param array $write
+	 * @param string $method
+	 * @param bool $lowPriority
 	 * @return bool
 	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
@@ -864,7 +867,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $method string
+	 * @param string $method
 	 * @return bool
 	 */
 	public function unlockTables( $method ) {
@@ -877,7 +880,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * Get search engine class. All subclasses of this
 	 * need to implement this if they wish to use searching.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getSearchEngine() {
 		return 'SearchMySQL';
@@ -885,7 +888,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param bool $value
-	 * @return mixed
+	 * @return mixed null|bool|ResultWrapper
 	 */
 	public function setBigSelects( $value = true ) {
 		if ( $value === 'default' ) {
@@ -937,8 +940,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param string $fname
 	 * @return bool
 	 */
-	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+	public function upsert( $table, array $rows, array $uniqueIndexes,
+		array $set, $fname = __METHOD__
 	) {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
@@ -1009,24 +1012,26 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $oldName
-	 * @param $newName
-	 * @param $temporary bool
-	 * @param $fname string
+	 * @param string $oldName
+	 * @param string $newName
+	 * @param bool $temporary
+	 * @param string $fname
+	 * @return bool
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 		$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
-		$this->query( $query, $fname );
+
+		return $this->query( $query, $fname );
 	}
 
 	/**
 	 * List all tables on the database
 	 *
 	 * @param string $prefix Only show tables with this prefix, e.g. mw_
-	 * @param string $fname calling function name
+	 * @param string $fname Calling function name
 	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
@@ -1133,7 +1138,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Differentiates between a TABLE and a VIEW.
 	 *
-	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @param string $name Name of the TABLE/VIEW to test
+	 * @param string $prefix
 	 * @return bool
 	 * @since 1.22
 	 */

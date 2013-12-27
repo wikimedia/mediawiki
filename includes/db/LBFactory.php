@@ -116,7 +116,7 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newMainLB( $wiki = false );
@@ -124,7 +124,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function getMainLB( $wiki = false );
@@ -135,7 +135,7 @@ abstract class LBFactory {
 	 * cleaning it up.
 	 *
 	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 *
 	 * @return LoadBalancer
 	 */
@@ -145,7 +145,7 @@ abstract class LBFactory {
 	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 *
 	 * @return LoadBalancer
 	 */

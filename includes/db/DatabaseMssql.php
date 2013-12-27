@@ -159,6 +159,11 @@ class DatabaseMssql extends DatabaseBase {
 		return sqlsrv_close( $this->mConn );
 	}
 
+	/**
+	 * @param string $sql
+	 * @return bool|MssqlResult
+	 * @throws DBUnexpectedError
+	 */
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		$this->offset = 0;
@@ -213,6 +218,9 @@ class DatabaseMssql extends DatabaseBase {
 		return $res;
 	}
 
+	/**
+	 * @param mixed|ResultWrapper $res
+	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -220,6 +228,10 @@ class DatabaseMssql extends DatabaseBase {
 		$res->free();
 	}
 
+	/**
+	 * @param ResultWrapper|stdClass $res
+	 * @return stdClass
+	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -229,6 +241,9 @@ class DatabaseMssql extends DatabaseBase {
 		return $row;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getErrors() {
 		$strRet = '';
 		$retErrors = sqlsrv_errors( SQLSRV_ERR_ALL );
@@ -245,6 +260,10 @@ class DatabaseMssql extends DatabaseBase {
 		return $strRet;
 	}
 
+	/**
+	 * @param resource $res
+	 * @return Blob
+	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -254,6 +273,10 @@ class DatabaseMssql extends DatabaseBase {
 		return $row;
 	}
 
+	/**
+	 * @param mixed $res
+	 * @return int
+	 */
 	function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -286,6 +309,11 @@ class DatabaseMssql extends DatabaseBase {
 		return $this->mInsertId;
 	}
 
+	/**
+	 * @param mixed $res
+	 * @param int $row
+	 * @return bool
+	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -318,16 +346,16 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * SELECT wrapper
 	 *
-	 * @param $table   Mixed: array or string, table name(s) (prefix auto-added)
-	 * @param $vars    Mixed: array or string, field name(s) to be retrieved
-	 * @param $conds   Mixed: array or string, condition(s) for WHERE
-	 * @param $fname   String: calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options associative array of options (e.g.
+	 * @param mixed $table Array or string, table name(s) (prefix auto-added)
+	 * @param mixed $vars Array or string, field name(s) to be retrieved
+	 * @param mixed $conds Array or string, condition(s) for WHERE
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param array $options Associative array of options (e.g.
 	 *   array('GROUP BY' => 'page_title')), see Database::makeSelectOptions
 	 *   code for list of supported stuff
-	 * @param $join_conds Array: Associative array of table join conditions
+	 * @param array $join_conds Associative array of table join conditions
 	 *   (optional) (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return Mixed: database result resource (feed to Database::fetchObject
+	 * @return mixed Database result resource (feed to Database::fetchObject
 	 *   or whatever), or false on failure
 	 */
 	function select( $table, $vars, $conds = '', $fname = __METHOD__,
@@ -348,15 +376,15 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * SELECT wrapper
 	 *
-	 * @param $table   Mixed:  Array or string, table name(s) (prefix auto-added)
-	 * @param $vars    Mixed:  Array or string, field name(s) to be retrieved
-	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
-	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param mixed $table Array or string, table name(s) (prefix auto-added)
+	 * @param mixed $vars Array or string, field name(s) to be retrieved
+	 * @param mixed $conds Array or string, condition(s) for WHERE
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *                 see Database::makeSelectOptions code for list of supported stuff
-	 * @param $join_conds Array: Associative array of table join conditions (optional)
-	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return string, the SQL text
+	 *   see Database::makeSelectOptions code for list of supported stuff
+	 * @param array $join_conds Associative array of table join conditions (optional)
+	 *    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 * @return string The SQL text
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
@@ -374,6 +402,11 @@ class DatabaseMssql extends DatabaseBase {
 	 * This is not necessarily an accurate estimate, so use sparingly
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
+	 * @param string $table
+	 * @param string $vars
+	 * @param string $conds
+	 * @param string $fname
+	 * @param array $options
 	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '',
@@ -397,6 +430,9 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return array|bool|null
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -617,7 +653,8 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function nextSequenceValue( $seqName ) {
 		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
@@ -639,7 +676,8 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
-	 * @return
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function currentSequenceValue( $seqName ) {
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
@@ -653,7 +691,11 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	# Returns the size of a text field, or -1 for "unlimited"
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @return int Returns the size of a text field, or -1 for "unlimited"
+	 */
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SELECT CHARACTER_MAXIMUM_LENGTH,DATA_TYPE FROM INFORMATION_SCHEMA.Columns
@@ -671,10 +713,11 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
-	 * $sql string SQL query we will append the limit too
-	 * $limit integer the SQL limit
-	 * $offset integer the SQL offset (default false)
-	 * @return mixed|string
+	 *
+	 * @param string $sql SQL query we will append the limit too
+	 * @param int $limit The SQL limit
+	 * @param bool|int $offset The SQL offset (default false)
+	 * @return array|string
 	 */
 	function limitResult( $sql, $limit, $offset = false ) {
 		if ( $offset === false || $offset == 0 ) {
@@ -696,11 +739,16 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	// If there is a limit clause, parse it, strip it, and pass the remaining
-	// SQL through limitResult() with the appropriate parameters. Not the
-	// prettiest solution, but better than building a whole new parser. This
-	// exists becase there are still too many extensions that don't use dynamic
-	// sql generation.
+	/**
+	 * If there is a limit clause, parse it, strip it, and pass the remaining
+	 * SQL through limitResult() with the appropriate parameters. Not the
+	 * prettiest solution, but better than building a whole new parser. This
+	 * exists becase there are still too many extensions that don't use dynamic
+	 * sql generation.
+	 *
+	 * @param string $sql
+	 * @return array|mixed|string
+	 */
 	function LimitToTopN( $sql ) {
 		// Matches: LIMIT {[offset,] row_count | row_count OFFSET offset}
 		$pattern = '/\bLIMIT\s+((([0-9]+)\s*,\s*)?([0-9]+)(\s+OFFSET\s+([0-9]+))?)/i';
@@ -721,12 +769,18 @@ class DatabaseMssql extends DatabaseBase {
 		return $sql;
 	}
 
+	/**
+	 * Timestamp in ISO 8601 format with no timezone: 1986-02-09T20:00:00Z
+	 *
+	 * @param int $ts Timestamp
+	 * @return bool|string The same date in ISO 8601 format with no timezone or false
+	 */
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_ISO_8601, $ts );
 	}
 
 	/**
-	 * @return string wikitext of a link to the server software's web site
+	 * @return string Wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
 		return "[http://www.microsoft.com/sql/ MS SQL Server]";
@@ -745,6 +799,12 @@ class DatabaseMssql extends DatabaseBase {
 		return $version;
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $fname
+	 * @param bool $schema
+	 * @return bool
+	 */
 	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
@@ -762,6 +822,9 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Query whether a given column exists in the mediawiki schema
+	 * @param string $table
+	 * @param string $field
+	 * @param string $fname
 	 * @return bool
 	 */
 	function fieldExists( $table, $field, $fname = __METHOD__ ) {
@@ -826,7 +889,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Escapes a identifier for use inm SQL.
 	 * Throws an exception if it is invalid.
 	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
-	 * @param $identifier
+	 * @param string $identifier
 	 * @throws MWException
 	 * @return string
 	 */
@@ -916,10 +979,12 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @private
+	 * @param array $tables
+	 * @param array $use_index
+	 * @param array $join_conds
 	 * @return string
 	 */
-	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
+	protected function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
 		$ret = array();
 		$retJOIN = array();
 		$use_index_safe = is_array( $use_index ) ? $use_index : array();
@@ -980,11 +1045,9 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @private
-	 *
 	 * @param array $options an associative array of options to be turned into
-	 *                 an SQL query, valid keys are listed in the function.
-	 * @return Array
+	 *   an SQL query, valid keys are listed in the function.
+	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
 		$tailOpts = '';
@@ -1041,11 +1104,11 @@ class DatabaseMssql extends DatabaseBase {
  * @ingroup Database
  */
 class MssqlField implements Field {
-	private $name, $tablename, $default, $max_length, $nullable, $type;
+	private $name, $tableName, $default, $max_length, $nullable, $type;
 
 	function __construct( $info ) {
 		$this->name = $info['COLUMN_NAME'];
-		$this->tablename = $info['TABLE_NAME'];
+		$this->tableName = $info['TABLE_NAME'];
 		$this->default = $info['COLUMN_DEFAULT'];
 		$this->max_length = $info['CHARACTER_MAXIMUM_LENGTH'];
 		$this->nullable = !( strtolower( $info['IS_NULLABLE'] ) == 'no' );
@@ -1085,7 +1148,21 @@ class MssqlField implements Field {
  * @ingroup Database
  */
 class MssqlResult {
+	/** @var int */
+	private $mCursor;
 
+	/** @var array */
+	private $mRows;
+
+	/** @var bool|int */
+	private $mNumFields;
+
+	/** @var array|bool */
+	private $mFieldMeta;
+
+	/**
+	 * @param bool|resource $queryresult
+	 */
 	public function __construct( $queryresult = false ) {
 		$this->mCursor = 0;
 		$this->mRows = array();
@@ -1108,6 +1185,11 @@ class MssqlResult {
 		sqlsrv_free_stmt( $queryresult );
 	}
 
+	/**
+	 * @param array $array
+	 * @param stdClass $obj
+	 * @return stdClass
+	 */
 	private function array_to_obj( $array, &$obj ) {
 		foreach ( $array as $key => $value ) {
 			if ( is_array( $value ) ) {
