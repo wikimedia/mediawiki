@@ -466,7 +466,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
-	 * @para $par
+	 * @param string $par
 	 * @return int
 	 */
 	function execute( $par ) {
