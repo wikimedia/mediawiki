@@ -46,6 +46,29 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			$this->dieUsageMsg( array( 'missingparam', 'lang' ) );
 		}
 
+		// Return language variant data if requested
+		if ( $params['variants'] ) {
+			foreach ( $this->getPageSet()->getGoodTitles() as $id => $title ) {
+				$pageLang = $title->getPageLanguage();
+				$variants = $pageLang->getVariants();
+				// Don't count the current variant
+				if ( count( $variants ) > 1 ) {
+					$pageLangCode = $pageLang->getCode();
+					foreach ( $variants as $code ) {
+						// Don't list the current variant
+						if ( $code !== $pageLangCode ) {
+							$entry = array( 'lang' => wfBCP47( $code ) );
+							if ( isset( $params['url'] ) ) {
+								$entry['url'] = $title->getFullURL( array( 'variant' => $code ), false, PROTO_CURRENT );
+							}
+							ApiResult::setContent( $entry, $pageLang->getVariantname( $code ) );
+							$this->addPageSubItem( $id, $entry, 'lv', 'langvariants' );
+						}
+					}
+				}
+			}
+		}
+
 		$this->addFields( array(
 			'll_from',
 			'll_lang',
@@ -134,6 +157,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			),
 			'continue' => null,
 			'url' => false,
+			'variants' => false,
 			'lang' => null,
 			'title' => null,
 			'dir' => array(
@@ -151,6 +175,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
 			'url' => 'Whether to get the full URL',
+			'variants' => 'Whether to also return language variants for the page',
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
@@ -166,6 +191,10 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'*' => 'string'
+			),
+			'langvariants' => array(
+				ApiBase::PROP_TYPE => 'array',
+				ApiBase::PROP_NULLABLE => true
 			)
 		);
 	}
@@ -184,6 +213,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return array(
 			'api.php?action=query&prop=langlinks&titles=Main%20Page&redirects='
 				=> 'Get interlanguage links from the [[Main Page]]',
+			'api.php?action=query&prop=langlinks&titles=Main%20Page&llvariants=&redirects='
+				=> 'Get interlanguage links as well as language variants from the [[Main Page]]',
 		);
 	}
 

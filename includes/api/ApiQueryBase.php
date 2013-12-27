@@ -376,22 +376,27 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Same as addPageSubItems(), but one element of $data at a time
 	 * @param int $pageId Page ID
 	 * @param array $item Data array à la ApiResult
-	 * @param string $elemname XML element name. If null, getModuleName()
-	 *  is used
+	 * @param string $elemname XML element name. If null, getModulePrefix()
+	 *  is used.
+	 * @param string $subelement Page subelement to put the element in.
+	 *  If null, getModuleName() is used.
 	 * @return bool Whether the element fit in the result
 	 */
-	protected function addPageSubItem( $pageId, $item, $elemname = null ) {
+	protected function addPageSubItem( $pageId, $item, $elemname = null, $subelement = null ) {
 		if ( is_null( $elemname ) ) {
 			$elemname = $this->getModulePrefix();
 		}
+		if ( is_null( $subelement ) ) {
+			$subelement = $this->getModuleName();
+		}
 		$result = $this->getResult();
 		$fit = $result->addValue( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), null, $item );
+			$subelement ), null, $item );
 		if ( !$fit ) {
 			return false;
 		}
 		$result->setIndexedTagName_internal( array( 'query', 'pages', $pageId,
-			$this->getModuleName() ), $elemname );
+			$subelement ), $elemname );
 
 		return true;
 	}
