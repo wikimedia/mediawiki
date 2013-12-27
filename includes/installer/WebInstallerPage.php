@@ -454,7 +454,9 @@ class WebInstaller_Welcome extends WebInstallerPage {
 }
 
 class WebInstaller_DBConnect extends WebInstallerPage {
-
+	/**
+	 * @return string|void When string, "skip" or "continue"
+	 */
 	public function execute() {
 		if ( $this->getVar( '_ExistingDBSettings' ) ) {
 			return 'skip';
