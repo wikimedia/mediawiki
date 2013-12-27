@@ -59,7 +59,6 @@ abstract class LBFactory {
 	 * Returns the LBFactory class to use and the load balancer configuration.
 	 *
 	 * @param array $config (e.g. $wgLBFactoryConf)
-	 *
 	 * @return string class name
 	 */
 	public static function getLBFactoryClass( array $config ) {
@@ -99,7 +98,7 @@ abstract class LBFactory {
 	/**
 	 * Set the instance to be the given object
 	 *
-	 * @param $instance LBFactory
+	 * @param LBFactory $instance
 	 */
 	static function setInstance( $instance ) {
 		self::destroyInstance();
@@ -108,7 +107,7 @@ abstract class LBFactory {
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param $conf
+	 * @param array $conf
 	 */
 	abstract function __construct( $conf );
 
@@ -116,7 +115,7 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newMainLB( $wiki = false );
@@ -124,7 +123,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function getMainLB( $wiki = false );
@@ -134,9 +133,8 @@ abstract class LBFactory {
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
-	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
-	 *
+	 * @param string $cluster External storage cluster, or false for core
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newExternalLB( $cluster, $wiki = false );
@@ -145,8 +143,7 @@ abstract class LBFactory {
 	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
-	 *
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function &getExternalLB( $cluster, $wiki = false );
@@ -155,7 +152,8 @@ abstract class LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback string|array
+	 *
+	 * @param callable $callback
 	 * @param array $params
 	 */
 	abstract function forEachLB( $callback, $params = array() );
@@ -169,8 +167,9 @@ abstract class LBFactory {
 
 	/**
 	 * Call a method of each tracked load balancer
-	 * @param $methodName string
-	 * @param $args array
+	 *
+	 * @param string $methodName
+	 * @param array $args
 	 */
 	function forEachLBCallMethod( $methodName, $args = array() ) {
 		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
@@ -178,8 +177,8 @@ abstract class LBFactory {
 
 	/**
 	 * Private helper for forEachLBCallMethod
-	 * @param $loadBalancer
-	 * @param $methodName string
+	 * @param LoadBalancer $loadBalancer
+	 * @param string $methodName
 	 * @param $args
 	 */
 	function callMethod( $loadBalancer, $methodName, $args ) {
@@ -212,7 +211,7 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function newMainLB( $wiki = false ) {
@@ -249,7 +248,7 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function getMainLB( $wiki = false ) {
@@ -264,8 +263,8 @@ class LBFactorySimple extends LBFactory {
 
 	/**
 	 * @throws MWException
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
@@ -280,8 +279,8 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster
+	 * @param bool|string $wiki
 	 * @return array
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
@@ -298,8 +297,9 @@ class LBFactorySimple extends LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback
-	 * @param $params array
+	 *
+	 * @param callable $callback
+	 * @param array $params
 	 */
 	function forEachLB( $callback, $params = array() ) {
 		if ( isset( $this->mainLB ) ) {

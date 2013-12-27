@@ -149,7 +149,7 @@ class LBFactoryMulti extends LBFactory {
 	protected $lastSection;
 
 	/**
-	 * @param $conf array
+	 * @param array $conf
 	 * @throws MWException
 	 */
 	function __construct( $conf ) {
@@ -183,7 +183,7 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki bool|string
+	 * @param bool|string $wiki
 	 * @return string
 	 */
 	function getSectionForWiki( $wiki = false ) {
@@ -203,7 +203,7 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki bool|string
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function newMainLB( $wiki = false ) {
@@ -226,7 +226,7 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki bool|string
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function getMainLB( $wiki = false ) {
@@ -243,7 +243,7 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * @param string $cluster
-	 * @param bool $wiki
+	 * @param bool|string $wiki
 	 * @throws MWException
 	 * @return LoadBalancer
 	 */
@@ -263,8 +263,8 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster external storage cluster, or false for core
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
@@ -280,9 +280,9 @@ class LBFactoryMulti extends LBFactory {
 	/**
 	 * Make a new load balancer object based on template and load array
 	 *
-	 * @param $template
-	 * @param $loads array
-	 * @param $groupLoads
+	 * @param array $template
+	 * @param array $loads
+	 * @param array $groupLoads
 	 * @return LoadBalancer
 	 */
 	function newLoadBalancer( $template, $loads, $groupLoads ) {
@@ -299,9 +299,9 @@ class LBFactoryMulti extends LBFactory {
 	/**
 	 * Make a server array as expected by LoadBalancer::__construct, using a template and load array
 	 *
-	 * @param $template
-	 * @param $loads array
-	 * @param $groupLoads
+	 * @param array $template
+	 * @param array $loads
+	 * @param array $groupLoads
 	 * @return array
 	 */
 	function makeServerArray( $template, $loads, $groupLoads ) {
@@ -343,7 +343,7 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * Take a group load array indexed by group then server, and reindex it by server then group
-	 * @param $groupLoads
+	 * @param array $groupLoads
 	 * @return array
 	 */
 	function reindexGroupLoads( $groupLoads ) {
@@ -359,7 +359,7 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * Get the database name and prefix based on the wiki ID
-	 * @param $wiki bool
+	 * @param bool|string $wiki
 	 * @return array
 	 */
 	function getDBNameAndPrefix( $wiki = false ) {
@@ -376,8 +376,8 @@ class LBFactoryMulti extends LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback
-	 * @param $params array
+	 * @param callable $callback
+	 * @param array $params
 	 */
 	function forEachLB( $callback, $params = array() ) {
 		foreach ( $this->mainLBs as $lb ) {
