@@ -458,6 +458,7 @@ class ArchivedFile {
 	 *   the rest of the file classes.
 	 * @param string $type 'text' or 'id'
 	 * @return int|string
+	 * @throws MWException
 	 */
 	public function getUser( $type = 'text' ) {
 		$this->load();
@@ -467,6 +468,9 @@ class ArchivedFile {
 		} elseif ( $type == 'id' ) {
 			return $this->user;
 		}
+
+		throw new MWException( "Unknown type '$type'." );
+
 	}
 
 	/**
