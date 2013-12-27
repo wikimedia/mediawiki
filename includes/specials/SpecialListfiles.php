@@ -387,6 +387,20 @@ class ImageListPager extends TablePager {
 		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
 	}
 
+	/**
+	 * @param string $field
+	 * @param string $value
+	 * @return Message|string|int The return type depends on the value of $field:
+	 *   - thumb: string
+	 *   - img_timestamp: string
+	 *   - img_name: string
+	 *   - img_user_text: string
+	 *   - img_size: string
+	 *   - img_description: string
+	 *   - count: int
+	 *   - top: Message
+	 * @throws MWException
+	 */
 	function formatValue( $field, $value ) {
 		switch ( $field ) {
 			case 'thumb':
@@ -446,6 +460,8 @@ class ImageListPager extends TablePager {
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value );
+			default:
+				throw new MWException( "Unknown field '$field'" );
 		}
 	}
 
