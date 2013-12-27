@@ -250,7 +250,7 @@ class CoreParserFunctions {
 	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
 	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
 	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
-	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
+	static function fullurle( $parser, $s = '', $arg = null ) { return htmlspecialchars( self::urlFunction( 'getFullURL', $s, $arg ) ); }
 	static function canonicalurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getCanonicalURL', $s, $arg ); }
 	static function canonicalurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeCanonicalURL', $s, $arg ); }
 
