@@ -38,77 +38,33 @@ class CoreParserFunctions {
 		#  function callback,
 		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
 		#    instead of {{#int:...}})
+		$noHashFunctions = array(
+			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
+			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
+			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural',
+			'numberofpages', 'numberofusers', 'numberofactiveusers',
+			'numberofarticles', 'numberoffiles', 'numberofadmins',
+			'numberingroup', 'numberofedits', 'numberofviews', 'language',
+			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
+			'pagesincategory', 'pagesize', 'protectionlevel', 'namespace',
+			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
+			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
+			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
+			'basepagename', 'basepagenamee', 'subpagename', 'subpagenamee',
+			'talkpagename', 'talkpagenamee', 'subjectpagename',
+			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
+			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
+			'revisiontimestamp', 'revisionuser',
+		);
+		foreach ( $noHashFunctions as $func ) {
+			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
+		}
 
-		$parser->setFunctionHook( 'int',              array( __CLASS__, 'intFunction'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'ns',               array( __CLASS__, 'ns'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'nse',              array( __CLASS__, 'nse'              ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'urlencode',        array( __CLASS__, 'urlencode'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'lcfirst',          array( __CLASS__, 'lcfirst'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'ucfirst',          array( __CLASS__, 'ucfirst'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'lc',               array( __CLASS__, 'lc'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'uc',               array( __CLASS__, 'uc'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'localurl',         array( __CLASS__, 'localurl'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'localurle',        array( __CLASS__, 'localurle'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullurl',          array( __CLASS__, 'fullurl'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullurle',         array( __CLASS__, 'fullurle'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'canonicalurl',     array( __CLASS__, 'canonicalurl'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'canonicalurle',    array( __CLASS__, 'canonicalurle'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'formatnum',        array( __CLASS__, 'formatnum'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'grammar',          array( __CLASS__, 'grammar'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'gender',           array( __CLASS__, 'gender'           ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofpages',    array( __CLASS__, 'numberofpages'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofusers',    array( __CLASS__, 'numberofusers'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofactiveusers', array( __CLASS__, 'numberofactiveusers' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofarticles', array( __CLASS__, 'numberofarticles' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberoffiles',    array( __CLASS__, 'numberoffiles'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofadmins',   array( __CLASS__, 'numberofadmins'   ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberingroup',    array( __CLASS__, 'numberingroup'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofedits',    array( __CLASS__, 'numberofedits'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofviews',    array( __CLASS__, 'numberofviews'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'language',         array( __CLASS__, 'language'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'padleft',          array( __CLASS__, 'padleft'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'padright',         array( __CLASS__, 'padright'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'anchorencode',     array( __CLASS__, 'anchorencode'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
-		$parser->setFunctionHook( 'speciale',         array( __CLASS__, 'speciale'         ) );
-		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'mwnamespace'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespacenumber',  array( __CLASS__, 'namespacenumber'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectspacee',    array( __CLASS__, 'subjectspacee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagename',         array( __CLASS__, 'pagename'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagenamee',        array( __CLASS__, 'pagenamee'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullpagename',     array( __CLASS__, 'fullpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullpagenamee',    array( __CLASS__, 'fullpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'rootpagename',     array( __CLASS__, 'rootpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'rootpagenamee',    array( __CLASS__, 'rootpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'basepagename',     array( __CLASS__, 'basepagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'basepagenamee',    array( __CLASS__, 'basepagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subpagename',      array( __CLASS__, 'subpagename'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subpagenamee',     array( __CLASS__, 'subpagenamee'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkpagename',     array( __CLASS__, 'talkpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
-		$parser->setFunctionHook( 'pageid',           array( __CLASS__, 'pageid'           ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionid',       array( __CLASS__, 'revisionid'       ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionday',      array( __CLASS__, 'revisionday'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionday2',     array( __CLASS__, 'revisionday2'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionmonth',    array( __CLASS__, 'revisionmonth'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionmonth1',   array( __CLASS__, 'revisionmonth1'   ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionyear',     array( __CLASS__, 'revisionyear'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisiontimestamp', array( __CLASS__, 'revisiontimestamp' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'revisionuser',     array( __CLASS__, 'revisionuser'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'int',        array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'special',    array( __CLASS__, 'special'     ) );
+		$parser->setFunctionHook( 'speciale',   array( __CLASS__, 'speciale'    ) );
+		$parser->setFunctionHook( 'tag',        array( __CLASS__, 'tagObj'      ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate'  ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
