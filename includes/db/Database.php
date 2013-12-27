@@ -249,6 +249,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $mFakeSlaveLag = null, $mFakeMaster = false;
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
+	/** @var array Additional, DBMS specific options */
+	protected $dbmsOptions = array();
 
 	protected $preparedArgs;
 
@@ -712,6 +714,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$flags = $params['flags'];
 			$tablePrefix = $params['tablePrefix'];
 			$foreign = $params['foreign'];
+			if ( isset( $params['dbmsOptions'] ) ) {
+				$this->dbmsOptions = $params['dbmsOptions'];
+			}
 		} else { // legacy calling pattern
 			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.23" );
 			$args = func_get_args();
@@ -829,7 +834,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				'dbname' => isset( $p['dbname'] ) ? $p['dbname'] : false,
 				'flags' => isset( $p['flags'] ) ? $p['flags'] : 0,
 				'tablePrefix' => isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
-				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false
+				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false,
+				'dbmsOptions' => isset( $p['dbmsOptions'] ) ? $p['dbmsOptions'] : array()
 			);
 
 			return new $class( $params );
