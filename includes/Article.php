@@ -1439,7 +1439,7 @@ class Article implements Page {
 
 		if ( $appendSubtitle ) {
 			$out = $this->getContext()->getOutput();
-			$out->addSubtitle( wfMessage( 'redirectpagesub' )->escaped() );
+			$out->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
 		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
