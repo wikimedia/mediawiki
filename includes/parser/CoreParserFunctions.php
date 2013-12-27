@@ -46,7 +46,7 @@ class CoreParserFunctions {
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'numberofviews', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
-			'pagesincategory', 'pagesize', 'protectionlevel', 'namespace',
+			'pagesincategory', 'pagesize', 'protectionlevel',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
 			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
 			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
@@ -60,6 +60,7 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
 		}
 
+		$parser->setFunctionHook( 'namespace'   array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'int',        array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'special',    array( __CLASS__, 'special'     ) );
 		$parser->setFunctionHook( 'speciale',   array( __CLASS__, 'speciale'    ) );
