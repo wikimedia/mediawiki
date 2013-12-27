@@ -80,6 +80,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
+	 * @param string $charset
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {

@@ -529,6 +529,9 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -960,6 +963,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given index exists
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool
 	 */
 	function indexExists( $table, $index, $fname = __METHOD__ ) {
@@ -981,6 +987,8 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
+	 * @param string $table
+	 * @param string $fname
 	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__ ) {

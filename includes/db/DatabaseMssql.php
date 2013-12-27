@@ -374,6 +374,11 @@ class DatabaseMssql extends DatabaseBase {
 	 * This is not necessarily an accurate estimate, so use sparingly
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
+	 * @param string $table
+	 * @param string $vars
+	 * @param string $conds
+	 * @param string $fname
+	 * @param array $options
 	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '',
@@ -397,6 +402,9 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return array|bool|null
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -617,7 +625,8 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function nextSequenceValue( $seqName ) {
 		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
@@ -639,7 +648,8 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
-	 * @return
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function currentSequenceValue( $seqName ) {
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
@@ -671,10 +681,11 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
-	 * $sql string SQL query we will append the limit too
-	 * $limit integer the SQL limit
-	 * $offset integer the SQL offset (default false)
-	 * @return mixed|string
+	 *
+	 * @param string $sql SQL query we will append the limit too
+	 * @param int $limit The SQL limit
+	 * @param bool|int $offset The SQL offset (default false)
+	 * @return array|string
 	 */
 	function limitResult( $sql, $limit, $offset = false ) {
 		if ( $offset === false || $offset == 0 ) {
@@ -762,6 +773,9 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Query whether a given column exists in the mediawiki schema
+	 * @param string $table
+	 * @param string $field
+	 * @param string $fname
 	 * @return bool
 	 */
 	function fieldExists( $table, $field, $fname = __METHOD__ ) {
@@ -917,6 +931,9 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * @private
+	 * @param array $tables
+	 * @param array $use_index
+	 * @param array $join_conds
 	 * @return string
 	 */
 	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {

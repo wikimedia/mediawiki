@@ -41,12 +41,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $server string
-	 * @param $user string
-	 * @param $password string
-	 * @param $dbName string
+	 * @param string $server
+	 * @param string $user
+	 * @param string $password
+	 * @param string $dbName
+	 * @throws Exception
 	 * @return bool
-	 * @throws DBConnectionError
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgAllDBsAreLocalhost, $wgDBmysql5, $wgSQLMode;
@@ -921,11 +921,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param array $uniqueIndexes
 	 * @param array $set
 	 * @param string $fname
-	 * @param array $options
 	 * @return bool
 	 */
-	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+	public function upsert( $table, array $rows, array $uniqueIndexes,
+		array $set, $fname = __METHOD__
 	) {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
@@ -1120,7 +1119,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Differentiates between a TABLE and a VIEW.
 	 *
-	 * @param $name string: Name of the TABLE/VIEW to test
+	 * @param string $name Name of the TABLE/VIEW to test
+	 * @param string $prefix
 	 * @return bool
 	 * @since 1.22
 	 */
