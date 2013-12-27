@@ -100,6 +100,11 @@ production.
   - LoadBalancer_Single to LoadBalancerSingle
   - LoadMonitor_MySQL to LoadMonitorMySQL
   - LoadMonitor_Null to LoadMonitorNull
+* Removed methods:
+  - Linker::makeBrokenLink() (deprecated in 1.16)
+  - Linker::makeBrokenLinkObj() (deprecated in 1.16)
+  - Linker::makeColouredLinkObj() (deprecated in 1.16)
+  - Linker::makeSizeLinkObj() (deprecated in 1.17)
 
 === Languages updated in 1.23 ===
 
