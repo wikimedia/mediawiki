@@ -302,7 +302,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
-			return;
+			return null;
 		}
 
 		if ( $wgDBOracleDRCP ) {
