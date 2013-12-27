@@ -597,6 +597,11 @@ abstract class UploadBase {
 	 * @return Array of warnings
 	 */
 	public function checkWarnings() {
+		$verify = $this->verifyUpload();
+		if( $verify["status"] !== self::OK ) {
+			return null;
+		}
+
 		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
@@ -653,17 +658,14 @@ abstract class UploadBase {
 		if ( $dupes ) {
 			$warnings['duplicate'] = $dupes;
 		}
-
-		// Check dupes against archives
+			// Check dupes against archives
 		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
 		if ( $archivedImage->getID() > 0 ) {
 			$warnings['duplicate-archive'] = $archivedImage->getName();
 		}
-
-		wfProfileOut( __METHOD__ );
+			wfProfileOut( __METHOD__ );
 		return $warnings;
 	}
-
 	/**
 	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
