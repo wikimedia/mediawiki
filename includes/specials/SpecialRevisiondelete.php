@@ -438,7 +438,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$list->reset();
 			$bitfield = $list->current()->getBits(); // existing field
 			if ( $this->submitClicked ) {
-				$bitfield = $this->extractBitfield( $this->extractBitParams(), $bitfield );
+				$bitfield = RevisionDeleter::extractBitfield( $this->extractBitParams(), $bitfield );
 			}
 			foreach ( $this->checks as $item ) {
 				list( $message, $name, $field ) = $item;
@@ -555,17 +555,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$bitfield[Revision::DELETED_RESTRICTED] = 0;
 		}
 		return $bitfield;
-	}
-
-	/**
-	 * Put together a rev_deleted bitfield
-	 * @deprecated since 1.22, use RevisionDeleter::extractBitfield instead
-	 * @param array $bitPars extractBitParams() params
-	 * @param int $oldfield current bitfield
-	 * @return array
-	 */
-	public static function extractBitfield( $bitPars, $oldfield ) {
-		return RevisionDeleter::extractBitfield( $bitPars, $oldfield );
 	}
 
 	/**
