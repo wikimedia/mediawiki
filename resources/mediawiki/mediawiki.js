@@ -1403,7 +1403,7 @@ var mw = ( function ( $, undefined ) {
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, concatSource, group, g, i, modules, maxVersion, sourceLoadScript,
+						source, concatSource, origBatch, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1433,6 +1433,7 @@ var mw = ( function ( $, undefined ) {
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
 						concatSource = [];
+						origBatch = batch;
 						batch = $.grep( batch, function ( module ) {
 							var source = mw.loader.store.get( module );
 							if ( source ) {
@@ -1441,7 +1442,23 @@ var mw = ( function ( $, undefined ) {
 							}
 							return true;
 						} );
-						$.globalEval( concatSource.join( ';' ) );
+						try {
+							$.globalEval( concatSource.join( ';' ) );
+						} catch ( err ) {
+							// Not good, the cached mw.loader.implement calls failed! This should never happen,
+							// barring ResourceLoader bugs, browser bugs and PEBKACs. Let's clear whatever is in
+							// there and the next page load should proceed with an empty store.
+							mw.loader.store.clear();
+							log( 'Error while evaluating data from mw.loader.store', err );
+							// Depending on when the error happened, some modules' implement() calls might not
+							// have been executed, which would leave them in the 'loading' state forever.
+							// Re-add them to the batch and hope for the best. This means that at most one module
+							// will be useless (the one that had the error) instead of all of them.
+							origBatch = $.grep( origBatch, function ( module ) {
+								return registry[module].state === 'loading';
+							} );
+							batch = batch.concat( origBatch );
+						}
 					}
 
 					// Early exit if there's nothing to load...
@@ -2089,6 +2106,14 @@ var mw = ( function ( $, undefined ) {
 								delete mw.loader.store.items[key];
 							}
 						}
+					},
+
+					/**
+					 * Clear the entire module store right now.
+					 */
+					clear: function () {
+						mw.loader.store.items = {};
+						localStorage.removeItem( mw.loader.store.getStoreKey() );
 					},
 
 					/**
