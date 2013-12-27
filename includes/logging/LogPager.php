@@ -154,15 +154,15 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries by the given user.
 	 *
 	 * @param string $name (In)valid user name
-	 * @return bool
+	 * @return void
 	 */
 	private function limitPerformer( $name ) {
 		if ( $name == '' ) {
-			return false;
+			return;
 		}
 		$usertitle = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $usertitle ) ) {
-			return false;
+			return;
 		}
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $name );
@@ -179,6 +179,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
+
 		$this->performer = $usertitle->getText();
 	}
 
@@ -188,7 +189,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param string|Title $page Title name
 	 * @param string $pattern
-	 * @return bool
+	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
@@ -198,7 +199,7 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$title = Title::newFromText( $page );
 			if ( strlen( $page ) == 0 || !$title instanceof Title ) {
-				return false;
+				return;
 			}
 		}
 
