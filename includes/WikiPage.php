@@ -3399,35 +3399,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @deprecated since 1.18
-	 */
-	public function quickEdit( $text, $comment = '', $minor = 0 ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgUser;
-		$this->doQuickEdit( $text, $wgUser, $comment, $minor );
-	}
-
-	/**
-	 * @deprecated since 1.18
-	 */
-	public function viewUpdates() {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgUser;
-		$this->doViewUpdates( $wgUser );
-	}
-
-	/**
-	 * @deprecated since 1.18
-	 * @param $oldid int
-	 * @return bool
-	 */
-	public function useParserCache( $oldid ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgUser;
-		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
-	}
-
-	/**
 	 * Returns a list of updates to be performed when this page is deleted. The updates should remove any information
 	 * about this page from secondary data stores such as links tables.
 	 *
