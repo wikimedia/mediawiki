@@ -186,18 +186,26 @@ class ORAField implements Field {
  * @ingroup Database
  */
 class DatabaseOracle extends DatabaseBase {
-	var $mInsertId = null;
-	var $mLastResult = null;
-	var $lastResult = null;
-	var $cursor = 0;
-	var $mAffectedRows;
+	/** @var resource */
+	protected $mLastResult = null;
 
-	var $ignore_DUP_VAL_ON_INDEX = false;
-	var $sequenceData = null;
+	/** @var int The number of rows affected as an integer */
+	protected $mAffectedRows;
 
-	var $defaultCharset = 'AL32UTF8';
+	/** @var int */
+	private $mInsertId = null;
 
-	var $mFieldInfoCache = array();
+	/** @var bool */
+	private $ignoreDupValOnIndex = false;
+
+	/** @var bool|array */
+	private $sequenceData = null;
+
+	/** @var string Character set for Oracle database */
+	private $defaultCharset = 'AL32UTF8';
+
+	/** @var array */
+	private $mFieldInfoCache = array();
 
 	function __construct( $p = null ) {
 		global $wgDBprefix;
@@ -409,7 +417,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( !oci_execute( $stmt, $this->execFlags() ) ) {
 			$e = oci_error( $stmt );
-			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
+			if ( !$this->ignoreDupValOnIndex || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
 				return false;
@@ -480,7 +488,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
-	 * @return null
+	 * @return null|int
 	 */
 	function insertId() {
 		return $this->mInsertId;
@@ -541,7 +549,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( in_array( 'IGNORE', $options ) ) {
-			$this->ignore_DUP_VAL_ON_INDEX = true;
+			$this->ignoreDupValOnIndex = true;
 		}
 
 		if ( !is_array( reset( $a ) ) ) {
@@ -554,7 +562,7 @@ class DatabaseOracle extends DatabaseBase {
 		$retVal = true;
 
 		if ( in_array( 'IGNORE', $options ) ) {
-			$this->ignore_DUP_VAL_ON_INDEX = false;
+			$this->ignoreDupValOnIndex = false;
 		}
 
 		return $retVal;
@@ -669,7 +677,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
-			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
+			if ( !$this->ignoreDupValOnIndex || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
 				return false;
@@ -730,13 +738,13 @@ class DatabaseOracle extends DatabaseBase {
 		$sql .= " $tailOpts";
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
-			$this->ignore_DUP_VAL_ON_INDEX = true;
+			$this->ignoreDupValOnIndex = true;
 		}
 
 		$retval = $this->query( $sql, $fname );
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
-			$this->ignore_DUP_VAL_ON_INDEX = false;
+			$this->ignoreDupValOnIndex = false;
 		}
 
 		return $retval;
@@ -768,7 +776,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return null
+	 *
+	 * @param string $seqName
+	 * @return null|int
 	 */
 	function nextSequenceValue( $seqName ) {
 		$res = $this->query( "SELECT $seqName.nextval FROM dual" );
@@ -780,6 +790,8 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Return sequence_name if table has a sequence
+	 *
+	 * @param string $table
 	 * @return bool
 	 */
 	private function getSequenceData( $table ) {
@@ -1388,6 +1400,7 @@ class DatabaseOracle extends DatabaseBase {
 					return false;
 				}
 			} else {
+				/** @var OCI_Lob[] $lob */
 				if ( ( $lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) ) === false ) {
 					$e = oci_error( $stmt );
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
@@ -1407,7 +1420,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
-			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
+			if ( !$this->ignoreDupValOnIndex || $e['code'] != '1' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
 				return false;
