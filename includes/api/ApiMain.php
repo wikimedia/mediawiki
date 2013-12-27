@@ -293,16 +293,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * @deprecated since 1.17 Private caching is now the default, so there is usually no
-	 * need to call this function. If there is a need, you can use
-	 * $this->setCacheMode('private')
-	 */
-	public function setCachePrivate() {
-		wfDeprecated( __METHOD__, '1.17' );
-		$this->setCacheMode( 'private' );
-	}
-
-	/**
 	 * Set directives (key/value pairs) for the Cache-Control header.
 	 * Boolean values will be formatted as such, by including or omitting
 	 * without an equals sign.
@@ -314,21 +304,6 @@ class ApiMain extends ApiBase {
 	 */
 	public function setCacheControl( $directives ) {
 		$this->mCacheControl = $directives + $this->mCacheControl;
-	}
-
-	/**
-	 * Make sure Vary: Cookie and friends are set. Use this when the output of a request
-	 * may be cached for anons but may not be cached for logged-in users.
-	 *
-	 * WARNING: This function must be called CONSISTENTLY for a given URL. This means that a
-	 * given URL must either always or never call this function; if it sometimes does and
-	 * sometimes doesn't, stuff will break.
-	 *
-	 * @deprecated since 1.17 Use setCacheMode( 'anon-public-user-private' )
-	 */
-	public function setVaryCookie() {
-		wfDeprecated( __METHOD__, '1.17' );
-		$this->setCacheMode( 'anon-public-user-private' );
 	}
 
 	/**
