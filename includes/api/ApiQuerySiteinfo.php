@@ -199,7 +199,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $wgContLang->hasVariants() ) {
 			$variants = array();
 			foreach ( $wgContLang->getVariants() as $code ) {
-				$variants[] = array( 'code' => $code );
+				$variants[] = array(
+					'code' => $code,
+					'name' => $wgContLang->getVariantname( $code ),
+				);
 			}
 			$data['variants'] = $variants;
 			$this->getResult()->setIndexedTagName( $data['variants'], 'lang' );
