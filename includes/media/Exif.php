@@ -553,18 +553,6 @@ class Exif {
 		}
 	}
 
-	/**
-	 * Use FormatMetadata to create formatted values for display to user
-	 * (is this ever used?)
-	 *
-	 * @deprecated since 1.18
-	 */
-	function makeFormattedData() {
-		wfDeprecated( __METHOD__, '1.18' );
-		$this->mFormattedExifData = FormatMetadata::getFormattedData(
-			$this->mFilteredExifData );
-	}
-
 	/**#@-*/
 
 	/**#@+
@@ -583,23 +571,6 @@ class Exif {
 	 */
 	function getFilteredData() {
 		return $this->mFilteredExifData;
-	}
-
-	/**
-	 * Get $this->mFormattedExifData
-	 *
-	 * This returns the data for display to user.
-	 * Its unclear if this is ever used.
-	 *
-	 * @deprecated since 1.18
-	 */
-	function getFormattedData() {
-		wfDeprecated( __METHOD__, '1.18' );
-		if ( !$this->mFormattedExifData ) {
-			$this->makeFormattedData();
-		}
-
-		return $this->mFormattedExifData;
 	}
 
 	/**#@-*/

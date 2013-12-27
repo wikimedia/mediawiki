@@ -101,6 +101,8 @@ production.
   - LoadMonitor_MySQL to LoadMonitorMySQL
   - LoadMonitor_Null to LoadMonitorNull
 * Removed methods:
+  - Exif::getFormattedData() (deprecated in 1.18)
+  - Exif::makeFormattedData() (deprecated in 1.18)
   - Linker::makeBrokenLink() (deprecated in 1.16)
   - Linker::makeBrokenLinkObj() (deprecated in 1.16)
   - Linker::makeColouredLinkObj() (deprecated in 1.16)
