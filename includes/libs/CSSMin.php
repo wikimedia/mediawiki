@@ -52,6 +52,7 @@ class CSSMin {
 		'tif' => 'image/tiff',
 		'tiff' => 'image/tiff',
 		'xbm' => 'image/x-xbitmap',
+		'svg' => 'image/svg+xml',
 	);
 
 	/* Static Methods */
