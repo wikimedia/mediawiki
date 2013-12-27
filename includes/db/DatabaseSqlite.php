@@ -206,12 +206,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
 	 *
-	 * @param string $name database name to be used in queries like
+	 * @param string $name Database name to be used in queries like
 	 *   SELECT foo FROM dbname.table
-	 * @param string $file database file name. If omitted, will be generated
+	 * @param bool|string $file Database file name. If omitted, will be generated
 	 *   using $name and $wgSQLiteDataDir
-	 * @param string $fname calling function name
-	 *
+	 * @param string $fname Calling function name
 	 * @return ResultWrapper
 	 */
 	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
@@ -444,6 +443,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns false if the index does not exist
 	 * - if errors are explicitly ignored, returns NULL on failure
 	 *
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return array
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -544,6 +546,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @param string $table
+	 * @param array $a
+	 * @param String $fname
+	 * @param array $options
 	 * @return bool
 	 */
 	function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
@@ -597,6 +603,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
 	 *
+	 * @param string $table
+	 * @param string $field
 	 * @return int
 	 */
 	function textFieldSize( $table, $field ) {
