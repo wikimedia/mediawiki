@@ -110,8 +110,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Opens a database file
 	 *
-	 * @param $fileName string
-	 *
+	 * @param string $fileName
 	 * @throws DBConnectionError
 	 * @return PDO|bool SQL connection or false if failed
 	 */
@@ -138,8 +137,10 @@ class DatabaseSqlite extends DatabaseBase {
 			# Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
 
-			return true;
+			return $this->mConn;
 		}
+
+		return false;
 	}
 
 	/**
@@ -206,12 +207,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
 	 *
-	 * @param string $name database name to be used in queries like
+	 * @param string $name Database name to be used in queries like
 	 *   SELECT foo FROM dbname.table
-	 * @param string $file database file name. If omitted, will be generated
+	 * @param bool|string $file Database file name. If omitted, will be generated
 	 *   using $name and $wgSQLiteDataDir
-	 * @param string $fname calling function name
-	 *
+	 * @param string $fname Calling function name
 	 * @return ResultWrapper
 	 */
 	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
@@ -256,7 +256,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper|mixed $res
 	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -267,8 +267,8 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res ResultWrapper
-	 * @return object|bool
+	 * @param ResultWrapper|array $res
+	 * @return stdClass|bool
 	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -390,8 +390,8 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res ResultWrapper
-	 * @param $row
+	 * @param ResultWrapper|resource $res
+	 * @param int $row
 	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -444,6 +444,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns false if the index does not exist
 	 * - if errors are explicitly ignored, returns NULL on failure
 	 *
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return array
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -493,8 +496,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * Filter the options used in SELECT statements
 	 *
-	 * @param $options array
-	 *
+	 * @param array $options
 	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
@@ -508,10 +510,10 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $options array
+	 * @param array $options
 	 * @return string
 	 */
-	function makeUpdateOptions( $options ) {
+	protected function makeUpdateOptions( $options ) {
 		$options = self::fixIgnore( $options );
 
 		return parent::makeUpdateOptions( $options );
@@ -544,6 +546,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @param string $table
+	 * @param array $a
+	 * @param String $fname
+	 * @param array $options
 	 * @return bool
 	 */
 	function insert( $table, $a, $fname = __METHOD__, $options = array() ) {
@@ -568,7 +574,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @param $table
-	 * @param $uniqueIndexes
+	 * @param array $uniqueIndexes Unused
 	 * @param $rows
 	 * @param $fname string
 	 * @return bool|ResultWrapper
@@ -597,6 +603,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
 	 *
+	 * @param string $table
+	 * @param string $field
 	 * @return int
 	 */
 	function textFieldSize( $table, $field ) {

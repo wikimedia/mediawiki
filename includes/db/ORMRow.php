@@ -259,10 +259,10 @@ class ORMRow implements IORMRow {
 				switch ( $type ) {
 					case 'array':
 						$value = (array)$value;
-					// fall-through!
+						// fall-through!
 					case 'blob':
 						$value = serialize( $value );
-					// fall-through!
+						// fall-through!
 				}
 
 				$values[$this->table->getPrefixedField( $name )] = $value;

@@ -560,9 +560,12 @@ class LoadBalancer {
 		if ( $refCount <= 0 ) {
 			$this->mConns['foreignFree'][$serverIndex][$wiki] = $conn;
 			unset( $this->mConns['foreignUsed'][$serverIndex][$wiki] );
-			wfDebug( __METHOD__ . ": freed connection $serverIndex/$wiki\n" );
+			$si = print_r( $serverIndex, true );
+			wfDebug( __METHOD__ . ": freed connection $si/$wiki\n" );
 		} else {
-			wfDebug( __METHOD__ . ": reference count for $serverIndex/$wiki reduced to $refCount\n" );
+			$si = print_r( $serverIndex, true );
+			$rc = print_r( $refCount, true );
+			wfDebug( __METHOD__ . ": reference count for $si/$wiki reduced to $rc\n" );
 		}
 	}
 
@@ -575,7 +578,7 @@ class LoadBalancer {
 	 *
 	 * @param integer $db
 	 * @param mixed $groups
-	 * @param string $wiki
+	 * @param bool|string $wiki
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -591,7 +594,7 @@ class LoadBalancer {
 	 *
 	 * @param integer $db
 	 * @param mixed $groups
-	 * @param string $wiki
+	 * @param bool|string $wiki
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -607,7 +610,7 @@ class LoadBalancer {
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param $i Integer server index
-	 * @param string $wiki wiki ID to open
+	 * @param bool|string $wiki wiki ID to open
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -1050,8 +1053,7 @@ class LoadBalancer {
 	 * May attempt to open connections to slaves on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param string $wiki Wiki ID, or false for the default database
-	 *
+	 * @param bool|string $wiki Wiki ID, or false for the default database
 	 * @return array ( host, max lag, index of max lagged host )
 	 */
 	function getMaxLag( $wiki = false ) {

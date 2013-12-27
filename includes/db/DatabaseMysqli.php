@@ -30,7 +30,7 @@
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
-	 * @param $sql string
+	 * @param string $sql
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
@@ -43,6 +43,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $ret;
 	}
 
+	/**
+	 * @param string $realServer
+	 * @return bool|mysqli
+	 * @throws DBConnectionError
+	 */
 	protected function mysqlConnect( $realServer ) {
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
@@ -80,6 +85,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
+	 * @param string $charset
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
@@ -123,7 +129,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param $db
+	 * @param string $db
 	 * @return bool
 	 */
 	function selectDB( $db ) {
@@ -139,12 +145,20 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $this->mConn->server_info;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFreeResult( $res ) {
 		$res->free_result();
 
 		return true;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFetchObject( $res ) {
 		$object = $res->fetch_object();
 		if ( $object === null ) {
@@ -154,6 +168,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $object;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFetchArray( $res ) {
 		$array = $res->fetch_array();
 		if ( $array === null ) {
@@ -163,14 +181,27 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $array;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return mixed
+	 */
 	protected function mysqlNumRows( $res ) {
 		return $res->num_rows;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return mixed
+	 */
 	protected function mysqlNumFields( $res ) {
 		return $res->field_count;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFetchField( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 		$field->not_null = $field->flags & MYSQLI_NOT_NULL_FLAG;
@@ -182,21 +213,40 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $field;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFieldName( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 
 		return $field->name;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFieldType( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 		return $field->type;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $row
+	 * @return mixed
+	 */
 	protected function mysqlDataSeek( $res, $row ) {
 		return $res->data_seek( $row );
 	}
 
+	/**
+	 * @param mysqli $conn Optional connection object
+	 * @return string
+	 */
 	protected function mysqlError( $conn = null ) {
 		if ( $conn === null ) {
 			return mysqli_connect_error();
@@ -205,6 +255,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 	}
 
+	/**
+	 * Escapes special characters in a string for use in an SQL statement
+	 * @param string $s
+	 * @return string
+	 */
 	protected function mysqlRealEscapeString( $s ) {
 		return $this->mConn->real_escape_string( $s );
 	}
