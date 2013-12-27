@@ -1011,17 +1011,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Alias for getText(Revision::FOR_THIS_USER)
-	 *
-	 * @deprecated since 1.17
-	 * @return String
-	 */
-	public function revText() {
-		wfDeprecated( __METHOD__, '1.17' );
-		return $this->getText( self::FOR_THIS_USER );
-	}
-
-	/**
 	 * Fetch revision text without regard for view restrictions
 	 *
 	 * @return String

@@ -107,7 +107,12 @@ production.
   - Linker::makeBrokenLinkObj() (deprecated in 1.16)
   - Linker::makeColouredLinkObj() (deprecated in 1.16)
   - Linker::makeSizeLinkObj() (deprecated in 1.17)
+  - Revision::revText() (deprecated in 1.17)
+  - SkinTemplate::jstext() (deprecated in 1.21)
   - SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
+  - WikiPage::quickEdit() (deprecated in 1.18)
+  - WikiPage::useParserCache() (deprecated in 1.18)
+  - WikiPage::viewUpdates() (deprecated in 1.18)
 
 === Languages updated in 1.23 ===
 
