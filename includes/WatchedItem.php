@@ -113,6 +113,12 @@ class WatchedItem {
 			return;
 		}
 
+		// some pages cannot be watched
+		if ( !$this->getTitle()->isWatchable() ) {
+			$this->watched = false;
+			return;
+		}
+
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 
