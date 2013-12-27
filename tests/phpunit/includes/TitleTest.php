@@ -104,7 +104,6 @@ class TitleTest extends MediaWikiTestCase {
 			'A ~~~~~ Timestamp',
 			str_repeat( 'x', 256 ),
 			// Namespace prefix without actual title
-			// ':', // bug 54044
 			'Talk:',
 			'Category: ',
 			'Category: #bar'

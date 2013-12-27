@@ -3312,7 +3312,6 @@ class Title {
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
-		# TODO: Why do we exclude NS_MAIN (bug 54044)
 		if ( $dbkey == '' && $this->mInterwiki == '' && $this->mNamespace != NS_MAIN ) {
 			return false;
 		}
