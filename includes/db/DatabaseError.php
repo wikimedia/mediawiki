@@ -26,14 +26,12 @@
  * @ingroup Database
  */
 class DBError extends MWException {
-	/**
-	 * @var DatabaseBase
-	 */
+	/** @var DatabaseBase */
 	public $db;
 
 	/**
 	 * Construct a database error
-	 * @param $db DatabaseBase object which threw the error
+	 * @param DatabaseBase $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase $db = null, $error ) {
@@ -90,8 +88,13 @@ class DBError extends MWException {
  * @ingroup Database
  */
 class DBConnectionError extends DBError {
+	/** @var string Error text */
 	public $error;
 
+	/**
+	 * @param DatabaseBase $db Object throwing the error
+	 * @param string $error Error text
+	 */
 	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
@@ -114,9 +117,11 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @param $key
-	 * @param $fallback
-	 * @return string
+	 * @param string $key
+	 * @param string $fallback Unescaped alternative error text in case the
+	 *   message cache cannot be used. Can contain parameters as in regular
+	 *   messages, that should be passed as additional parameters.
+	 * @return string Unprocessed plain error text with parameters replaced
 	 */
 	function msg( $key, $fallback /*[, params...] */ ) {
 		global $wgLang;
@@ -141,7 +146,7 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return string
+	 * @return string Safe HTML
 	 */
 	function getHTML() {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
@@ -192,6 +197,11 @@ class DBConnectionError extends DBError {
 		}
 	}
 
+	/**
+	 * Output the exception report using HTML.
+	 *
+	 * @return void
+	 */
 	public function reportHTML() {
 		global $wgUseFileCache;
 
@@ -307,11 +317,11 @@ class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $error string
-	 * @param $errno int|string
-	 * @param $sql string
-	 * @param $fname string
+	 * @param DatabaseBase $db
+	 * @param string $error
+	 * @param int|string $errno
+	 * @param string $sql
+	 * @param string $fname
 	 */
 	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred. Did you forget to run " .
@@ -329,7 +339,7 @@ class DBQueryError extends DBError {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	function isLoggable() {
 		// Don't send to the exception log, already in dberror log
@@ -391,7 +401,7 @@ class DBQueryError extends DBError {
 	 * sites using this option probably don't care much about "security by obscurity". Of course,
 	 * if $wgShowSQLErrors is true, the SQL query *is* shown.
 	 *
-	 * @return array: Keys are message keys; values are arrays of arguments for Html::element().
+	 * @return array Keys are message keys; values are arrays of arguments for Html::element().
 	 *   Array will be empty if users are not allowed to see any of these details at all.
 	 */
 	protected function getTechnicalDetails() {
@@ -416,7 +426,7 @@ class DBQueryError extends DBError {
 
 	/**
 	 * @param string $key Message key
-	 * @return string: English message text
+	 * @return string English message text
 	 */
 	private function getFallbackMessage( $key ) {
 		$messages = array(
