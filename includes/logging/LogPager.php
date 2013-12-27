@@ -180,6 +180,7 @@ class LogPager extends ReverseChronologicalPager {
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
 		$this->performer = $usertitle->getText();
+		// @todo return statement missing. Returns bool arrording to docs.
 	}
 
 	/**
@@ -233,6 +234,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
+		// @todo return statement missing. Returns bool arrording to docs.
 	}
 
 	/**
