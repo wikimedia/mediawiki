@@ -92,14 +92,37 @@ production.
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
+* Removed classes:
+  - TitleDependency
+  - TitleListDependency
 * Renamed classes:
+  - CdbReader_DBA to CdbReaderDBA
+  - CdbReader_PHP to CdbReaderPHP
+  - CdbWriter_DBA to CdbWriterDBA
+  - CdbWriter_PHP to CdbWriterPHP
+  - DiffOp_Add to DiffOpAdd
+  - DiffOp_Change to DiffOpChange
+  - DiffOp_Copy to DiffOpCopy
+  - DiffOp_Delete to DiffOpDelete
+  - HWLDF_WordAccumulator to HWLDFWordAccumulator
   - LBFactory_Fake to LBFactoryFake
   - LBFactory_Multi to LBFactoryMulti
   - LBFactory_Simple to LBFactorySimple
   - LBFactory_Single to LBFactorySingle
+  - LCStore_Accel to LCStoreAccel
+  - LCStore_CDB to LCStoreCDB
+  - LCStore_DB to LCStoreDB
+  - LCStore_Null to LCStoreNull
   - LoadBalancer_Single to LoadBalancerSingle
   - LoadMonitor_MySQL to LoadMonitorMySQL
   - LoadMonitor_Null to LoadMonitorNull
+  - LocalisationCache_BulkLoad to LocalisationCacheBulkLoad
+  - csvStatsOutput to CsvStatsOutput
+  - extensionLanguages to ExtensionLanguages
+  - languages to Languages
+  - statsOutput to StatsOutput
+  - textStatsOutput to TextStatsOutput
+  - wikiStatsOutput to WikiStatsOutput
 * Removed methods:
   - Exif::getFormattedData() (deprecated in 1.18)
   - Exif::makeFormattedData() (deprecated in 1.18)
