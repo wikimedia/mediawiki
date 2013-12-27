@@ -44,6 +44,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlConnect( $realServer ) {
+		global $wgDBmysql5;
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysqli_init' ) ) {
@@ -63,8 +64,15 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 
 		$mysqli = mysqli_init();
-		$numAttempts = 2;
+		if ( $wgDBmysql5 ) {
+			// Tell the server we're communicating with it in UTF-8.
+			// This may engage various charset conversions.
+			mysqli_options( $mysqli, MYSQLI_SET_CHARSET_NAME, 'utf8' );
+		} else {
+			mysqli_options( $mysqli, MYSQLI_SET_CHARSET_NAME, 'binary' );
+		}
 
+		$numAttempts = 2;
 		for ( $i = 0; $i < $numAttempts; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
@@ -77,6 +85,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 
 		return false;
+	}
+
+	protected function connectInitCharset() {
+		// already done in mysqlConnect()
+		return true;
 	}
 
 	/**
