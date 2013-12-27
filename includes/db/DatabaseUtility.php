@@ -129,7 +129,7 @@ class ResultWrapper implements Iterator {
 	/**
 	 * Get the number of rows in a result object
 	 *
-	 * @return integer
+	 * @return int
 	 */
 	function numRows() {
 		return $this->db->numRows( $this );
@@ -151,7 +151,7 @@ class ResultWrapper implements Iterator {
 	 * Fetch the next row from the given result object, in associative array
 	 * form. Fields are retrieved with $row['fieldname'].
 	 *
-	 * @return Array
+	 * @return array
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
@@ -171,7 +171,7 @@ class ResultWrapper implements Iterator {
 	 * Change the position of the cursor in a result object.
 	 * See mysql_data_seek()
 	 *
-	 * @param $row integer
+	 * @param int $row
 	 */
 	function seek( $row ) {
 		$this->db->dataSeek( $this, $row );
@@ -302,6 +302,7 @@ class FakeResultWrapper extends ResultWrapper {
  * manually, use DatabaseBase::anyChar() and anyString() instead.
  */
 class LikeMatch {
+	/** @var string */
 	private $str;
 
 	/**
@@ -316,7 +317,7 @@ class LikeMatch {
 	/**
 	 * Return the original stored string.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function toString() {
 		return $this->str;
@@ -327,4 +328,10 @@ class LikeMatch {
  * An object representing a master or slave position in a replicated setup.
  */
 interface DBMasterPos {
+	/**
+	 * Return the original stored string.
+	 *
+	 * @return mixed Master position
+	 */
+	public function getMasterPos();
 }

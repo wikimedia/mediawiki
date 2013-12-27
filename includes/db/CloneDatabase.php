@@ -25,44 +25,29 @@
  */
 
 class CloneDatabase {
-	/**
-	 * Table prefix for cloning
-	 * @var String
-	 */
+	/** @var string Table prefix for cloning */
 	private $newTablePrefix = '';
 
-	/**
-	 * Current table prefix
-	 * @var String
-	 */
+	/** @var string Current table prefix */
 	private $oldTablePrefix = '';
 
-	/**
-	 * List of tables to be cloned
-	 * @var Array
-	 */
+	/** @var array List of tables to be cloned */
 	private $tablesToClone = array();
 
-	/**
-	 * Should we DROP tables containing the new names?
-	 * @var Bool
-	 */
+	/** @var bool Should we DROP tables containing the new names? */
 	private $dropCurrentTables = true;
 
-	/**
-	 * Whether to use temporary tables or not
-	 * @var Bool
-	 */
+	/** @var bool Whether to use temporary tables or not */
 	private $useTemporaryTables = true;
 
 	/**
 	 * Constructor
 	 *
-	 * @param $db DatabaseBase A database subclass
+	 * @param DatabaseBase $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables
 	 * @param string $oldTablePrefix Prefix on current tables, if not $wgDBprefix
-	 * @param $dropCurrentTables bool
+	 * @param bool $dropCurrentTables
 	 */
 	public function __construct( DatabaseBase $db, array $tablesToClone,
 		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
@@ -128,7 +113,7 @@ class CloneDatabase {
 	/**
 	 * Change the table prefix on all open DB connections/
 	 *
-	 * @param $prefix
+	 * @param string $prefix
 	 * @return void
 	 */
 	public static function changePrefix( $prefix ) {
@@ -138,8 +123,8 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param $lb LoadBalancer
-	 * @param $prefix
+	 * @param LoadBalancer $lb
+	 * @param string $prefix
 	 * @return void
 	 */
 	public static function changeLBPrefix( $lb, $prefix ) {
@@ -147,8 +132,8 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $prefix
+	 * @param DatabaseBase $db
+	 * @param string $prefix
 	 * @return void
 	 */
 	public static function changeDBPrefix( $db, $prefix ) {
