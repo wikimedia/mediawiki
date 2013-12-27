@@ -28,11 +28,20 @@
  * @ingroup Database
  */
 class DatabaseMssql extends DatabaseBase {
-	var $mInsertId = null;
-	var $mLastResult = null;
-	var $mAffectedRows = null;
+	/** @var resource */
+	protected $mLastResult = null;
 
-	var $mPort;
+	/** @var int The number of rows affected as an integer */
+	protected $mAffectedRows = null;
+
+	/**
+	 * @var int Post number for database
+	 * @todo Unused and can be removed?
+	 */
+	protected $mPort;
+
+	/** @var int */
+	private $mInsertId = null;
 
 	function cascadingDeletes() {
 		return true;
@@ -271,7 +280,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
-	 * @return null
+	 * @return int|null
 	 */
 	function insertId() {
 		return $this->mInsertId;
