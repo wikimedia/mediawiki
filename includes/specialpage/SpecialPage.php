@@ -129,7 +129,7 @@ class SpecialPage {
 	 */
 	static function getGroup( &$page ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getGroup( $page );
+		return $page->getFinalGroupName();
 	}
 
 	/**
