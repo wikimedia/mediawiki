@@ -107,6 +107,7 @@ production.
   - Linker::makeBrokenLinkObj() (deprecated in 1.16)
   - Linker::makeColouredLinkObj() (deprecated in 1.16)
   - Linker::makeSizeLinkObj() (deprecated in 1.17)
+  - SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
 
 === Languages updated in 1.23 ===
 
