@@ -360,7 +360,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
-	/* Copied from ApiQueryRecentChanges. */
+	/** Copied from ApiQueryRecentChanges.
+	 *
+	 * @param string $type
+	 * @return string
+	 */
 	private function parseRCType( $type ) {
 		if ( is_array( $type ) ) {
 			$retval = array();
