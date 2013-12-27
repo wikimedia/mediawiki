@@ -67,6 +67,8 @@
 			'~',
 			'"',
 			'\'',
+			'#', //Do we want that?
+			'#anchor',
 			'Talk:Sandbox',
 			'Talk:Foo:Sandbox',
 			'File:Example.svg',
@@ -76,7 +78,16 @@
 			'A~~',
 			// Length is 256 total, but only title part matters
 			'Category:' + repeat( 'x', 248 ),
-			repeat( 'x', 252 )
+			repeat( 'x', 252 ),
+			// interwiki prefix
+			'localtestiw: #anchor',
+			'localtestiw:foo',
+			'localtestiw: foo # anchor',
+			'localtestiw: Talk: Sandbox # anchor',
+			'remotetestiw:',
+			'removetestiw: #bar',
+			'remotetestiw: Talk:',
+			'remotetestiw: Talk: Foo'
 		],
 		invalid: [
 			'',
@@ -124,6 +135,10 @@
 			'Talk:',
 			'Category: ',
 			'Category: #bar'
+			// Note: Commented out because they are not marked invalid by the JS test as
+			// mw.Title does not respect $wgLocalInterwiki.
+			// 'localtestiw:',
+			// 'localtestiw: Talk:'
 		]
 	};
 

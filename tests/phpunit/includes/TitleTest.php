@@ -40,6 +40,21 @@ class TitleTest extends MediaWikiTestCase {
 	 * @todo This method should be split into 2 separate tests each with a provider
 	 */
 	public function testSecureAndSplit() {
+		$this->setMwGlobals( array(
+			'wgLocalInterwiki' => 'localtestiw',
+			'wgHooks' => array(
+				'InterwikiLoadPrefix' => array(
+					function ( $prefix, &$data ) {
+						if ( $prefix == 'localtestiw' ) {
+							$data = array( 'iw_url' => 'localtestiw' );
+						} elseif ( $prefix == 'remotetestiw' ) {
+							$data = array( 'iw_url' => 'remotetestiw' );
+						}
+						return false;
+					}
+				)
+			)
+		));
 		// Valid
 		foreach ( array(
 			'Sandbox',
@@ -49,6 +64,8 @@ class TitleTest extends MediaWikiTestCase {
 			'~',
 			'"',
 			'\'',
+			'#', //Do we want that?
+			'#anchor',
 			'Talk:Sandbox',
 			'Talk:Foo:Sandbox',
 			'File:Example.svg',
@@ -58,7 +75,16 @@ class TitleTest extends MediaWikiTestCase {
 			'A~~',
 			// Length is 256 total, but only title part matters
 			'Category:' . str_repeat( 'x', 248 ),
-			str_repeat( 'x', 252 )
+			str_repeat( 'x', 252 ),
+			// interwiki prefix
+			'localtestiw: #anchor',
+			'localtestiw:foo',
+			'localtestiw: foo # anchor',
+			'localtestiw: Talk: Sandbox # anchor',
+			'remotetestiw:',
+			'removetestiw: #bar',
+			'remotetestiw: Talk:',
+			'remotetestiw: Talk: Foo'
 		) as $text ) {
 			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
 		}
@@ -106,7 +132,9 @@ class TitleTest extends MediaWikiTestCase {
 			// Namespace prefix without actual title
 			'Talk:',
 			'Category: ',
-			'Category: #bar'
+			'Category: #bar',
+			'localtestiw:',
+			'localtestiw: Talk:'
 		) as $text ) {
 			$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
 		}
