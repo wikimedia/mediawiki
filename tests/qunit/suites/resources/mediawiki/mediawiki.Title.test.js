@@ -121,7 +121,6 @@
 			// purposes it is part of the title
 			repeat( 'x', 252 ) + '.json',
 			// Namespace prefix without actual title
-			// ':', // bug 54044
 			'Talk:',
 			'Category: ',
 			'Category: #bar'
