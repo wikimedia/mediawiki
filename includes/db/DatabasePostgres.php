@@ -765,11 +765,8 @@ __INDEXATTR__;
 		if ( !$res ) {
 			return null;
 		}
-		foreach ( $res as $row ) {
-			return true;
-		}
 
-		return false;
+		return (bool) count( $res );
 	}
 
 	/**
@@ -880,7 +877,7 @@ __INDEXATTR__;
 			}
 		}
 		if ( $savepoint ) {
-			$olde = error_reporting( $olde );
+			error_reporting( $olde );
 			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
@@ -952,7 +949,7 @@ __INDEXATTR__;
 				$savepoint->release();
 				$numrowsinserted++;
 			}
-			$olde = error_reporting( $olde );
+			error_reporting( $olde );
 			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
