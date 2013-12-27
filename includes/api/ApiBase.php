@@ -862,17 +862,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.17 use MWNamespace::getValidNamespaces()
-	 *
-	 * @return array
-	 */
-	public static function getValidNamespaces() {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		return MWNamespace::getValidNamespaces();
-	}
-
-	/**
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the page under consideration

@@ -350,34 +350,6 @@ class SpecialPage {
 	}
 
 	/**
-	 * Use PHP's magic __call handler to get calls to the old PHP4 constructor
-	 * because PHP E_STRICT yells at you for having __construct() and SpecialPage()
-	 *
-	 * @param string $fName Name of called method
-	 * @param array $a Arguments to the method
-	 * @throws MWException
-	 * @deprecated since 1.17, call parent::__construct()
-	 */
-	public function __call( $fName, $a ) {
-		// Deprecated messages now, remove in 1.19 or 1.20?
-		wfDeprecated( __METHOD__, '1.17' );
-
-		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
-		if ( strtolower( $fName ) == 'specialpage' ) {
-			$name = isset( $a[0] ) ? $a[0] : '';
-			$restriction = isset( $a[1] ) ? $a[1] : '';
-			$listed = isset( $a[2] ) ? $a[2] : true;
-			$function = isset( $a[3] ) ? $a[3] : false;
-			$file = isset( $a[4] ) ? $a[4] : 'default';
-			$includable = isset( $a[5] ) ? $a[5] : false;
-			$this->init( $name, $restriction, $listed, $function, $file, $includable );
-		} else {
-			$className = get_class( $this );
-			throw new MWException( "Call to undefined method $className::$fName" );
-		}
-	}
-
-	/**
 	 * Get the name of this Special Page.
 	 * @return string
 	 */

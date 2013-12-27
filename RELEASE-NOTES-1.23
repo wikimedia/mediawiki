@@ -138,8 +138,11 @@ changes to languages because of Bugzilla reports.
   SpecialPage::getPageTitle.
 
 ==== Removed classes ====
-* TitleDependency
-* TitleListDependency
+* TitleDependency (unused)
+* TitleListDependency (unused)
+* WikiError (deprecated in 1.17)
+* WikiXmlError (deprecated in 1.17)
+* WikiErrorMsg (deprecated in 1.17)
 
 ==== Renamed classes ====
 * CdbReader_DBA to CdbReaderDBA
@@ -171,6 +174,10 @@ changes to languages because of Bugzilla reports.
 * wikiStatsOutput to WikiStatsOutput
 
 ==== Removed methods ====
+* ApiBase::getValidNamespaces() (deprecated in 1.17)
+* ApiMain::setCachePrivate() (deprecated in 1.17)
+* ApiMain::setVaryCookie (deprecated in 1.17)
+* CategoryViewer::addSubcategory() (deprecated in 1.17)
 * EditPage::spamPage() (deprecated since 1.17)
 * Exif::getFormattedData() (deprecated in 1.18)
 * Exif::makeFormattedData() (deprecated in 1.18)
@@ -183,9 +190,12 @@ changes to languages because of Bugzilla reports.
 * ProfilerSimple::getCpuTime (deprecated in 1.20)
 * Revision::revText() (deprecated in 1.17)
 * SkinTemplate::jstext() (deprecated in 1.21)
+* SpecialPage::__call() (deprecated in 1.17)
 * SpecialRecentChanges::feedSetup()
 * SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
 * User::getPageRenderingHash() (deprecated in 1.17)
+* WebRequest::getFileSize() (deprecated in 1.17)
+* WebRequest::isPathInfoBad() (deprecated in 1.17)
 * WikiPage::quickEdit() (deprecated in 1.18)
 * WikiPage::useParserCache() (deprecated in 1.18)
 * WikiPage::viewUpdates() (deprecated in 1.18)
