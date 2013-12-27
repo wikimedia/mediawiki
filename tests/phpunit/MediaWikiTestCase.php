@@ -53,7 +53,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Holds original values of MediaWiki configuration settings
 	 * to be restored in tearDown().
-	 * See also setMwGlobal().
+	 * See also setMwGlobals().
 	 * @var array
 	 */
 	private $mwGlobals = array();
