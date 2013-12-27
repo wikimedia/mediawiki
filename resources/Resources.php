@@ -756,7 +756,7 @@ return array(
 		'messages' => array( 'htmlform-chosen-placeholder' ),
 	),
 	'mediawiki.icon' => array(
-		'styles' => 'resources/mediawiki/mediawiki.icon.css',
+		'styles' => 'resources/mediawiki/mediawiki.icon.less',
 	),
 	'mediawiki.inspect' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.inspect.js',
