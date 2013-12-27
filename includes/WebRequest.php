@@ -210,7 +210,6 @@ class WebRequest {
 		} else {
 			return 'http';
 		}
-		return $arr;
 	}
 
 	/**
