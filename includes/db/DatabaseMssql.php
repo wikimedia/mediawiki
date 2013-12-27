@@ -88,7 +88,7 @@ class DatabaseMssql extends DatabaseBase {
 
 		# e.g. the class is being loaded
 		if ( !strlen( $user ) ) {
-			return;
+			return null;
 		}
 
 		$this->close();
