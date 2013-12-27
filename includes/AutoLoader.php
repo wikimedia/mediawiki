@@ -687,6 +687,7 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
+	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
@@ -1074,7 +1075,6 @@ $wgAutoloadLocalClasses = array(
 	'RegexlikeReplacer' => 'includes/utils/StringUtils.php',
 	'ReplacementArray' => 'includes/utils/StringUtils.php',
 	'Replacer' => 'includes/utils/StringUtils.php',
-	'ScopedCallback' => 'includes/utils/ScopedCallback.php',
 	'StringUtils' => 'includes/utils/StringUtils.php',
 	'UIDGenerator' => 'includes/utils/UIDGenerator.php',
 	'ZipDirectoryReader' => 'includes/utils/ZipDirectoryReader.php',
