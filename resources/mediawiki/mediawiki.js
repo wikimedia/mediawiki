@@ -1405,7 +1405,7 @@ var mw = ( function ( $, undefined ) {
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, concatSource, group, g, i, modules, maxVersion, sourceLoadScript,
+						source, concatSource, origBatch, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1435,6 +1435,7 @@ var mw = ( function ( $, undefined ) {
 					mw.loader.store.init();
 					if ( mw.loader.store.enabled ) {
 						concatSource = [];
+						origBatch = batch;
 						batch = $.grep( batch, function ( module ) {
 							var source = mw.loader.store.get( module );
 							if ( source ) {
@@ -1443,7 +1444,29 @@ var mw = ( function ( $, undefined ) {
 							}
 							return true;
 						} );
-						$.globalEval( concatSource.join( ';' ) );
+						try {
+							$.globalEval( concatSource.join( ';' ) );
+						} catch ( err ) {
+							// Not good, the cached mw.loader.implement calls failed! This should
+							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
+							// Depending on how corrupt the string is, it is likely that some
+							// modules' implement() succeeded while the ones after the error will
+							// never run and leave their modules in the 'loading' state forever.
+
+							// Since this is an error not caused by an individual module but by
+							// something that infected the implement call itself, don't take any
+							// risks and clear everything in this cache.
+							mw.loader.store.clear();
+							// Re-add the ones still pending back to the batch and let the server
+							// repopulate these modules to the cache.
+							// This means that at most one module will be useless (the one that had
+							// the error) instead of all of them.
+							log( 'Error while evaluating data from mw.loader.store', err );
+							origBatch = $.grep( origBatch, function ( module ) {
+								return registry[module].state === 'loading';
+							} );
+							batch = batch.concat( origBatch );
+						}
 					}
 
 					// Early exit if there's nothing to load...
@@ -2091,6 +2114,14 @@ var mw = ( function ( $, undefined ) {
 								delete mw.loader.store.items[key];
 							}
 						}
+					},
+
+					/**
+					 * Clear the entire module store right now.
+					 */
+					clear: function () {
+						mw.loader.store.items = {};
+						localStorage.removeItem( mw.loader.store.getStoreKey() );
 					},
 
 					/**
