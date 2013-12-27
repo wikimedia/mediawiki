@@ -386,6 +386,12 @@ class ImageListPager extends TablePager {
 		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
 	}
 
+	/**
+	 * @param string $field
+	 * @param string $value
+	 * @return int|Message|mixed|string
+	 * @throws MWException
+	 */
 	function formatValue( $field, $value ) {
 		switch ( $field ) {
 			case 'thumb':
@@ -446,6 +452,8 @@ class ImageListPager extends TablePager {
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value );
 		}
+
+		throw new MWException( "Unknown field '$field'" );
 	}
 
 	function getForm() {
