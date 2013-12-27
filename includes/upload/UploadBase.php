@@ -597,73 +597,79 @@ abstract class UploadBase {
 	 * @return Array of warnings
 	 */
 	public function checkWarnings() {
+		$verify = $this->verifyUpload();
 		global $wgLang;
-		wfProfileIn( __METHOD__ );
+		if($verify["status"] == self::OK) {
 
-		$warnings = array();
+			wfProfileIn( __METHOD__ );
 
-		$localFile = $this->getLocalFile();
-		$filename = $localFile->getName();
+			$warnings = array();
 
-		/**
-		 * Check whether the resulting filename is different from the desired one,
-		 * but ignore things like ucfirst() and spaces/underscore things
-		 */
-		$comparableName = str_replace( ' ', '_', $this->mDesiredDestName );
-		$comparableName = Title::capitalize( $comparableName, NS_FILE );
+			$localFile = $this->getLocalFile();
+			$filename = $localFile->getName();
 
-		if ( $this->mDesiredDestName != $filename && $comparableName != $filename ) {
-			$warnings['badfilename'] = $filename;
-		}
+			/**
+			 * Check whether the resulting filename is different from the desired one,
+			 * but ignore things like ucfirst() and spaces/underscore things
+			 */
+			$comparableName = str_replace( ' ', '_', $this->mDesiredDestName );
+			$comparableName = Title::capitalize( $comparableName, NS_FILE );
 
-		// Check whether the file extension is on the unwanted list
-		global $wgCheckFileExtensions, $wgFileExtensions;
-		if ( $wgCheckFileExtensions ) {
-			$extensions = array_unique( $wgFileExtensions );
-			if ( !$this->checkFileExtension( $this->mFinalExtension, $extensions ) ) {
-				$warnings['filetype-unwanted-type'] = array( $this->mFinalExtension,
-					$wgLang->commaList( $extensions ), count( $extensions ) );
+			if ( $this->mDesiredDestName != $filename && $comparableName != $filename ) {
+				$warnings['badfilename'] = $filename;
 			}
-		}
 
-		global $wgUploadSizeWarning;
-		if ( $wgUploadSizeWarning && ( $this->mFileSize > $wgUploadSizeWarning ) ) {
-			$warnings['large-file'] = array( $wgUploadSizeWarning, $this->mFileSize );
-		}
-
-		if ( $this->mFileSize == 0 ) {
-			$warnings['emptyfile'] = true;
-		}
-
-		$exists = self::getExistsWarning( $localFile );
-		if ( $exists !== false ) {
-			$warnings['exists'] = $exists;
-		}
-
-		// Check dupes against existing files
-		$hash = $this->getTempFileSha1Base36();
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
-		$title = $this->getTitle();
-		// Remove all matches against self
-		foreach ( $dupes as $key => $dupe ) {
-			if ( $title->equals( $dupe->getTitle() ) ) {
-				unset( $dupes[$key] );
+			// Check whether the file extension is on the unwanted list
+			global $wgCheckFileExtensions, $wgFileExtensions;
+			if ( $wgCheckFileExtensions ) {
+				$extensions = array_unique( $wgFileExtensions );
+				if ( !$this->checkFileExtension( $this->mFinalExtension, $extensions ) ) {
+					$warnings['filetype-unwanted-type'] = array( $this->mFinalExtension,
+						$wgLang->commaList( $extensions ), count( $extensions ) );
+				}
 			}
-		}
-		if ( $dupes ) {
-			$warnings['duplicate'] = $dupes;
-		}
 
-		// Check dupes against archives
-		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
-		if ( $archivedImage->getID() > 0 ) {
-			$warnings['duplicate-archive'] = $archivedImage->getName();
-		}
+			global $wgUploadSizeWarning;
+			if ( $wgUploadSizeWarning && ( $this->mFileSize > $wgUploadSizeWarning ) ) {
+				$warnings['large-file'] = array( $wgUploadSizeWarning, $this->mFileSize );
+			}
 
-		wfProfileOut( __METHOD__ );
-		return $warnings;
+			if ( $this->mFileSize == 0 ) {
+				$warnings['emptyfile'] = true;
+			}
+
+			$exists = self::getExistsWarning( $localFile );
+			if ( $exists !== false ) {
+				$warnings['exists'] = $exists;
+			}
+
+			// Check dupes against existing files
+			$hash = $this->getTempFileSha1Base36();
+			$dupes = RepoGroup::singleton()->findBySha1( $hash );
+			$title = $this->getTitle();
+			// Remove all matches against self
+			foreach ( $dupes as $key => $dupe ) {
+				if ( $title->equals( $dupe->getTitle() ) ) {
+					unset( $dupes[$key] );
+				}
+			}
+			if ( $dupes ) {
+				$warnings['duplicate'] = $dupes;
+			}
+
+			// Check dupes against archives
+			$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
+			if ( $archivedImage->getID() > 0 ) {
+				$warnings['duplicate-archive'] = $archivedImage->getName();
+			}
+
+			wfProfileOut( __METHOD__ );
+			return $warnings;
+		}
+		else {
+			return null;
+		}
 	}
-
 	/**
 	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
