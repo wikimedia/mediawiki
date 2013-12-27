@@ -1165,7 +1165,7 @@ Om du är inloggad kan du slå av den här varningen under "Redigering" i dina i
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
 
-Antalet anrop får vara högst $2, nu görs {{PLURAL:$1|$1 anrop|$1 anrop}}',
+Antalet anrop får vara högst $2, nu görs {{PLURAL:$1|$1 anrop}}',
 'expensive-parserfunction-category' => 'Sidor med för många resurskrävande parserfunktioner',
 'post-expand-template-inclusion-warning' => 'Varning: Den här sidan innehåller för mycket mallinklusioner.
 Några av mallarna kommer inte att inkluderas.',
@@ -1315,15 +1315,15 @@ Du har inte behörighet till det.',
 'revdelete-no-change' => "'''Varning:''' objektet daterat $2, $1 hade redan de begärda synlighetsinställningarna.",
 'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
 Vänligen kontrollera loggarna.',
-'revdelete-only-restricted' => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
+'revdelete-only-restricted' => 'Fel vid döljandet av objektet daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja ett av de övriga visningsalternativen.',
 'revdelete-reason-dropdown' => '*Vanliga orsaker till radering
-** Brott mot copyright
+** Upphovsrättsbrott
 ** Opassande kommentar eller personupplysningar
 ** Opassande användarnamn
 ** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason' => 'Annan/ytterligare anledning:',
 'revdelete-reasonotherlist' => 'Annan anledning',
-'revdelete-edit-reasonlist' => 'Redigera anledningar för radering',
+'revdelete-edit-reasonlist' => 'Redigera anledningar för raderingar',
 'revdelete-offender' => 'Versionens författare:',
 
 # Suppression log
@@ -1340,8 +1340,8 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-into' => 'Målsida:',
 'mergehistory-list' => 'Sidhistorik som kan sammanfogas',
 'mergehistory-merge' => 'Följande versioner av [[:$1]] kan infogas i [[:$2]]. Med hjälp av alternativknapparna för varje version kan du välja att endast infoga versioner fram till en viss tidpunkt. Notera att om du använder navigationslänkarna så avmarkeras alla alternativknappar.',
-'mergehistory-go' => 'Visa versioner som kan infogas',
-'mergehistory-submit' => 'Sammanfoga',
+'mergehistory-go' => 'Visa redigeringar som kan slås samman',
+'mergehistory-submit' => 'Sammanfoga sidversioner',
 'mergehistory-empty' => 'Inga versioner av sidorna kan sammanfogas.',
 'mergehistory-success' => '$3 {{PLURAL:$3|version|versioner}} av [[:$1]] har infogats i [[:$2]].',
 'mergehistory-fail' => 'Historikerna kunde inte sammanfogas, kontrollera de sidor och den sidversion som du valt.',
@@ -1383,15 +1383,15 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchresults-title' => 'Sökresultat för "$1"',
 'toomanymatches' => 'Sökningen gav för många resultat, försök med en annan fråga',
 'titlematches' => 'Träffar i sidtitlar',
-'textmatches' => 'Sidor som innehåller sökordet:',
-'notextmatches' => 'Det finns inga sidor som innehåller sökordet',
+'textmatches' => 'Artikeltexter som matchar sökningen',
+'notextmatches' => 'Inga artikeltexter matchar sökningen',
 'prevn' => 'föregående {{PLURAL:$1|$1}}',
 'nextn' => 'nästa {{PLURAL:$1|$1}}',
 'prevn-title' => 'Föregående $1 {{PLURAL:$1|resultat|resultat}}',
 'nextn-title' => 'Nästa $1 {{PLURAL:$1|resultat|resultat}}',
 'shown-title' => 'Visa $1 {{PLURAL:$1|resultat|resultat}} per sida',
 'viewprevnext' => 'Visa ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-exists' => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.'''",
+'searchmenu-exists' => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.''' {{PLURAL:\$2|0=|Se även de andra sökresultaten som hittades.}}",
 'searchmenu-new' => "'''Skapa sidan \"[[:\$1]]\" på denna wiki!'''",
 'searchprofile-articles' => 'Innehållssidor',
 'searchprofile-project' => 'Hjälp- och projektsidor',
@@ -4192,7 +4192,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'limitreport-templateargumentsize' => 'Storlek på mallargument',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte}}',
 'limitreport-expansiondepth' => 'Största expansionsdjup',
-'limitreport-expensivefunctioncount' => 'Antal dyra parser-funktioner',
+'limitreport-expensivefunctioncount' => 'Antal resurskrävande parserfunktioner',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Expandera mallar',

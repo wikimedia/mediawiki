@@ -972,6 +972,7 @@ Cafodd yr argiau hyn eu hepgor.",
 'cantcreateaccount-text' => "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, ('''$1'''), gan [[User:$3|$3]].
 
 Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
+'cantcreateaccount-range-text' => "Gosododd [[User:$3|$3]] floc ar agor cyfrifon o gyfeiriadau IP yn yr ystod '''$1''', sy'n cynnwys eich cyfeiriad IP chi ('''$4''').",
 
 # History pages
 'viewpagelogs' => "Dangos logiau'r dudalen hon",
@@ -1317,6 +1318,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'prefs-tokenwatchlist' => 'Tocyn',
 'prefs-diffs' => "Cymharu golygiadau ('gwahan')",
 'prefs-help-prefershttps' => "Bydd y dewis yma'n cael ei roi ar waith y tro nesaf i chi fewngofnodi.",
+'prefs-tabs-navigation-hint' => "Awgrym: Gallwch ddefnyddio'r allweddellau sy'n saethau i'r chwith neu i'r dde i lywio rhwng y tabiau ar restr y tabiau.",
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Y cyfeiriad e-bost yn ymddangos yn un dilys',
@@ -1503,6 +1505,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'recentchanges-label-bot' => 'Golygwyd gan fot',
 'recentchanges-label-unpatrolled' => "Nid yw'r golygiad hwn wedi derbyn ymweliad patrôl eto",
 'recentchanges-label-plusminus' => "Newidiodd maint y dudalen o'r nifer hwn o feitiau",
+'recentchanges-legend-heading' => "'''Allwedd:'''",
 'recentchanges-legend-newpage' => '(gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
@@ -3583,6 +3586,7 @@ Cadarnhewch eich bod chi wir am ail-greu'r dudalen.",
 'imgmultigoto' => "Mynd i'r dudalen $1",
 
 # Language selector for translatable SVGs
+'img-lang-default' => '(diofyn)',
 'img-lang-info' => "Cynhyrchu'r ddelwedd yn yr iaith $1. $2",
 'img-lang-go' => 'Cynhyrcher',
 
@@ -3683,13 +3687,14 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 # Special:Redirect
 'redirect' => 'Ailgyfeirio yn ôl enw ffeil, defnyddiwr, tudalen neu ID y diwygiad',
 'redirect-legend' => 'Ailgyfeirio i ffeil neu dudalen',
-'redirect-summary' => "Mae'r dudalen arbennig hon yn ailgyfeirio at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddiwygiad o'r dudalen), neu at dudalen defnyddiwr (o roi rhif ID y defnyddiwr).
+'redirect-summary' => "Mae'r dudalen arbennig hon yn ailgyfeirio at ffeil (o roi enw'r ffeil), at dudalen (o roi ID rhyw ddiwygiad o'r dudalen neu ID y dudalen), neu at dudalen defnyddiwr (o roi rhif ID y defnyddiwr).
 Defnydd: 
-[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], neu [[{{#Special:Redirect}}/user/101]].",
+[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], neu [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Ati',
 'redirect-lookup' => 'Chwilio drwy:',
 'redirect-value' => 'Chwilio am:',
 'redirect-user' => 'ID defnyddwyr',
+'redirect-page' => 'ID tudalennau',
 'redirect-revision' => 'Rhifau diwygiadau tudalennau',
 'redirect-file' => 'Enwau ffeiliau',
 'redirect-not-exists' => "Heb lwyddo i'w ganfod",
@@ -3922,12 +3927,15 @@ Defnydd:
 
 # Special:ExpandTemplates
 'expandtemplates' => "Ehangu'r nodynnau",
+'expand_templates_title' => 'Teitl y cyd-destun, ar gyfer {{FULLPAGENAME}}, etc.:',
 'expand_templates_input' => 'Cynnwys y mewnbwn:',
 'expand_templates_output' => 'Y canlyniad',
 'expand_templates_xml_output' => 'Yr allbwn XML',
+'expand_templates_html_output' => 'Allbwn HTML crai',
 'expand_templates_ok' => 'Iawn',
 'expand_templates_remove_comments' => 'Peidio â dangos sylwadau',
 'expand_templates_remove_nowiki' => "Cuddio'r tagiau <nowiki> wrth ehangu",
+'expand_templates_generate_rawhtml' => 'Dangos HTML crai',
 'expand_templates_preview' => 'Rhagolwg',
 
 );

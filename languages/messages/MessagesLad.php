@@ -397,7 +397,7 @@ $messages = array(
 'jumptosearch' => 'búsquida',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'Encima de la {{SITENAME}}',
+'aboutsite' => 'Encima de {{SITENAME}}',
 'aboutpage' => 'Project:Encima de',
 'copyright' => 'El contenido se puede topar debaxo de la <i>$1</i>',
 'copyrightpage' => '{{ns:project}}:Derechos de autor',
@@ -436,7 +436,7 @@ $messages = array(
 'site-atom-feed' => 'Alimentela de Atom de $1',
 'page-rss-feed' => '"$1" Fuente RSS',
 'page-atom-feed' => '"$1" Subscripción Atom',
-'red-link-title' => '$1 (esta hoja no egziste)',
+'red-link-title' => '$1 (la hoja no egziste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Hoja',

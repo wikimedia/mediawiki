@@ -1686,6 +1686,7 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'recentchanges-label-bot' => 'Túto úpravu vykonal bot',
 'recentchanges-label-unpatrolled' => 'Táto úprava zatiaľ nebola strážená',
 'recentchanges-label-plusminus' => 'Veľkosť stránky sa zmenila o toľkoto bajtov',
+'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(pozri tiež [[Special:NewPages|zoznam nových stránok]])',
 'rcnotefrom' => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
@@ -3925,6 +3926,7 @@ Spolu s týmto programom by ste obdržať [{{SERVER}}{{SCRIPTPATH}}/COPYING kóp
 
 # Special:SpecialPages
 'specialpages' => 'Špeciálne stránky',
+'specialpages-note-top' => 'Legenda',
 'specialpages-note' => '* Bežné špeciálne stránky.
 * <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>
 * <span class="mw-specialpagecached">Špeciálne stránky vo vyrovnávacej pamäti (môže byť neaktuálne).</span>',

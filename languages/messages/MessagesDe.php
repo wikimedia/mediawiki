@@ -880,7 +880,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'helplogin-url' => 'Help:Anmelden',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
 'userlogin-loggedin' => 'Du bist bereits als {{GENDER:$1|$1}} angemeldet.
-Benutze das unten stehende Formular, um sich unter einem anderen Benutzer anzumelden.',
+Benutze das unten stehende Formular, um dich unter einem anderen Benutzernamen anzumelden.',
 'userlogin-createanother' => 'Ein weiteres Benutzerkonto erstellen',
 'createacct-join' => 'Gib unten deine Informationen ein.',
 'createacct-another-join' => 'Gib unten die Informationen des neuen Benutzerkontos ein.',

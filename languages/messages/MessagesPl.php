@@ -1199,6 +1199,9 @@ Argument ten będzie pominięty.',
 'cantcreateaccount-text' => "Tworzenie konta z tego adresu IP ('''$1''') zostało zablokowane przez [[User:$3|$3]].
 
 Podany przez $3 powód to ''$2''",
+'cantcreateaccount-range-text' => "Tworzenie konta z adresów IP w zakresie '''$1''', który zawiera i twój adres IP ('''$4'''), zostało zablokowane przez [[User:$3|$3]].
+
+Podany przez $3 powód to ''$2''",
 
 # History pages
 'viewpagelogs' => 'Zobacz rejestry operacji dla tej strony',
