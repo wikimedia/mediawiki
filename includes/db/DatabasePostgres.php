@@ -135,8 +135,7 @@ SQL;
  * @ingroup Database
  */
 class PostgresTransactionState {
-
-	static $WATCHED = array(
+	private static $WATCHED = array(
 		array(
 			"desc" => "%s: Connection state changed from %s -> %s\n",
 			"states" => array(
@@ -155,6 +154,12 @@ class PostgresTransactionState {
 			)
 		)
 	);
+
+	/** @var array */
+	private $mNewState;
+
+	/** @var array */
+	private $mCurrentState;
 
 	public function __construct( $conn ) {
 		$this->mConn = $conn;
@@ -284,10 +289,26 @@ class SavepointPostgres {
  * @ingroup Database
  */
 class DatabasePostgres extends DatabaseBase {
-	var $mInsertId = null;
-	var $mLastResult = null;
-	var $numeric_version = null;
-	var $mAffectedRows = null;
+	/** @var resource */
+	protected $mLastResult = null;
+
+	/** @var int The number of rows affected as an integer */
+	protected $mAffectedRows = null;
+
+	/** @var int */
+	private $mInsertId = null;
+
+	/** @var float|string */
+	private $numericVersion = null;
+
+	/** @var string Connect string to open a PostgreSQL connection */
+	private $connectString;
+
+	/** @var PostgresTransactionState */
+	private $mTransactionState;
+
+	/** @var string */
+	private $mCoreSchema;
 
 	function getType() {
 		return 'postgres';
@@ -602,7 +623,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return the result of the last call to nextSequenceValue();
 	 * This must be called after nextSequenceValue().
 	 *
-	 * @return integer|null
+	 * @return int|null
 	 */
 	function insertId() {
 		return $this->mInsertId;
@@ -791,7 +812,7 @@ __INDEXATTR__;
 		}
 
 		$table = $this->tableName( $table );
-		if ( !isset( $this->numeric_version ) ) {
+		if ( !isset( $this->numericVersion ) ) {
 			$this->getServerVersion();
 		}
 
@@ -820,7 +841,7 @@ __INDEXATTR__;
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $this->numeric_version >= 8.2 && !$savepoint ) {
+			if ( $this->numericVersion >= 8.2 && !$savepoint ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
@@ -984,7 +1005,9 @@ __INDEXATTR__;
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return null
+	 * 
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function nextSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
@@ -997,6 +1020,8 @@ __INDEXATTR__;
 
 	/**
 	 * Return the current value of a sequence. Assumes it has been nextval'ed in this session.
+	 *
+	 * @param string $seqName
 	 * @return
 	 */
 	function currentSequenceValue( $seqName ) {
@@ -1126,7 +1151,7 @@ __INDEXATTR__;
 	 * Needs transaction
 	 *
 	 * @since 1.19
-	 * @return string return default schema for the current session
+	 * @return string Default schema for the current session
 	 */
 	function getCurrentSchema() {
 		$res = $this->query( "SELECT current_schema()", __METHOD__ );
@@ -1239,21 +1264,21 @@ __INDEXATTR__;
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		if ( !isset( $this->numeric_version ) ) {
+		if ( !isset( $this->numericVersion ) ) {
 			$versionInfo = pg_version( $this->mConn );
 			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
 				// Old client, abort install
-				$this->numeric_version = '7.3 or earlier';
+				$this->numericVersion = '7.3 or earlier';
 			} elseif ( isset( $versionInfo['server'] ) ) {
 				// Normal client
-				$this->numeric_version = $versionInfo['server'];
+				$this->numericVersion = $versionInfo['server'];
 			} else {
 				// Bug 16937: broken pgsql extension from PHP<5.3
-				$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
+				$this->numericVersion = pg_parameter_status( $this->mConn, 'server_version' );
 			}
 		}
 
-		return $this->numeric_version;
+		return $this->numericVersion;
 	}
 
 	/**
@@ -1431,12 +1456,12 @@ SQL;
 	protected function replaceVars( $ins ) {
 		$ins = parent::replaceVars( $ins );
 
-		if ( $this->numeric_version >= 8.3 ) {
+		if ( $this->numericVersion >= 8.3 ) {
 			// Thanks for not providing backwards-compatibility, 8.3
 			$ins = preg_replace( "/to_tsvector\s*\(\s*'default'\s*,/", 'to_tsvector(', $ins );
 		}
 
-		if ( $this->numeric_version <= 8.1 ) { // Our minimum version
+		if ( $this->numericVersion <= 8.1 ) { // Our minimum version
 			$ins = str_replace( 'USING gin', 'USING gist', $ins );
 		}
 
