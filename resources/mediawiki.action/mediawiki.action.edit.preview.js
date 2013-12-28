@@ -29,6 +29,7 @@
 		// update from from the ajax-loaded preview page.
 		copySelectors = [
 			// Main
+			'#firstHeading',
 			'#wikiPreview',
 			'#wikiDiff',
 			'#catlinks',
@@ -47,7 +48,7 @@
 		$spinner = $.createSpinner( {
 			size: 'large',
 			type: 'block'
-		});
+		} );
 		$wikiPreview.before( $spinner );
 		$spinner.css( {
 			marginTop: $spinner.height()
