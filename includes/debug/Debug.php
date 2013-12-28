@@ -549,6 +549,7 @@ class MWDebug {
 			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
+			'profile' => Profiler::instance()->getRawData(),
 		);
 	}
 }
