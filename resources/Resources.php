@@ -700,7 +700,7 @@ return array(
 		),
 	),
 	'mediawiki.debug' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
+		'scripts' => array( 'resources/mediawiki/mediawiki.debug.js', 'resources/mediawiki/mediawiki.profile.js' ),
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
 		'dependencies' => 'jquery.footHovzer',
 		'position' => 'bottom',

@@ -160,6 +160,8 @@
 
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
+			paneTriggerBitDiv( 'profile', 'Profile', this.data.profile.length );
+
 			gitInfo = '';
 			if ( this.data.gitRevision !== false ) {
 				gitInfo = '(' + this.data.gitRevision.substring( 0, 7 ) + ')';
@@ -196,7 +198,8 @@
 				querylist: this.buildQueryTable(),
 				debuglog: this.buildDebugLogTable(),
 				request: this.buildRequestPane(),
-				includes: this.buildIncludesPane()
+				includes: this.buildIncludesPane(),
+				profile: this.buildProfilePane()
 			};
 
 			for ( id in panes ) {
@@ -359,6 +362,11 @@
 			}
 
 			return $table;
+		},
+
+		buildProfilePane: function() {
+			mw.Debug.Profile.init();
+			return mw.Debug.Profile.canvas;
 		}
 	};
 

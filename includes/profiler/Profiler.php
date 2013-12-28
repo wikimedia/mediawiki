@@ -96,7 +96,7 @@ class ProfileSection {
  */
 class Profiler {
 	protected $mStack = array(), $mWorkStack = array(), $mCollated = array(),
-		$mCalls = array(), $mTotals = array();
+		$mCalls = array(), $mTotals = array(), $mPeriods = array();
 	protected $mTimeMetric = 'wall';
 	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
 
@@ -556,6 +556,7 @@ class Profiler {
 				$this->mMin[$fname] = 1 << 24;
 				$this->mMax[$fname] = 0;
 				$this->mOverhead[$fname] = 0;
+				$this->mPeriods[$fname] = array();
 			}
 
 			$this->mCollated[$fname] += $elapsed;
@@ -564,6 +565,7 @@ class Profiler {
 			$this->mMin[$fname] = min( $this->mMin[$fname], $elapsed );
 			$this->mMax[$fname] = max( $this->mMax[$fname], $elapsed );
 			$this->mOverhead[$fname] += $subcalls;
+			$this->mPeriods[$fname][] = compact( 'start', 'end' );
 		}
 
 		$this->mCalls['-overhead-total'] = $profileCount;
@@ -606,6 +608,33 @@ class Profiler {
 		$prof .= "\nTotal: $total\n\n";
 
 		return $prof;
+	}
+
+	function getRawData() {
+		$this->collateData();
+
+		$output = array();
+		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
+		foreach ( $this->mCollated as $fname => $elapsed ) {
+			$periods = array();
+			foreach ( $this->mPeriods[$fname] as $period ) {
+				$periods[] = array(
+					'start' => $period['start'] * 1000,
+					'end' => $period['end'] * 1000,
+				);
+			}
+			$output[$fname] = array(
+				'calls' => $this->mCalls[$fname],
+				'elapsed' => $elapsed * 1000,
+				'percent' => $total ? 100. * $elapsed / $total : 0,
+				'memory' => $this->mMemory[$fname],
+				'min' => $this->mMin[$fname] * 1000,
+				'max' => $this->mMax[$fname] * 1000,
+				'overhead' => $this->mOverhead[$fname],
+				'periods' => $periods,
+			);
+		}
+		return $output;
 	}
 
 	/**
