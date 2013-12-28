@@ -2941,7 +2941,7 @@ class Parser {
 				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 				break;
 			case 'currentdayname':
-				$value = $pageLang->getWeekdayName( MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
+				$value = $pageLang->getWeekdayName( (int)MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
 				break;
 			case 'currentyear':
 				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'Y' ), true );
@@ -2961,7 +2961,7 @@ class Parser {
 				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'w' ) );
 				break;
 			case 'localdayname':
-				$value = $pageLang->getWeekdayName( MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1 );
+				$value = $pageLang->getWeekdayName( (int)MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1 );
 				break;
 			case 'localyear':
 				$value = $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ), true );
