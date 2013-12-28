@@ -923,7 +923,8 @@ class LocalisationCache {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
 		# Run hooks
-		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
+		$purgeBlobs = true;
+		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
 			wfProfileOut( __METHOD__ );
@@ -958,7 +959,7 @@ class LocalisationCache {
 		# Clear out the MessageBlobStore
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
-		if ( !$this->store instanceof LCStoreNull ) {
+		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
 			MessageBlobStore::clear();
 		}
 

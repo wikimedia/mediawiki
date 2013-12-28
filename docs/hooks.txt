@@ -1546,6 +1546,7 @@ cache.
 $cache: The LocalisationCache object
 $code: language code
 &$alldata: The localisation data from core and extensions
+&purgeBlobs: whether to purge/update the message blobs via MessageBlobStore::clear()
 
 'LocalisationChecksBlacklist': When fetching the blacklist of
 localisation checks.
