@@ -700,9 +700,18 @@ return array(
 		),
 	),
 	'mediawiki.debug' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
-		'styles' => 'resources/mediawiki/mediawiki.debug.css',
-		'dependencies' => 'jquery.footHovzer',
+		'scripts' => array(
+			'resources/mediawiki/mediawiki.debug.js',
+			'resources/mediawiki/mediawiki.profile.js'
+		),
+		'styles' => array(
+			'resources/mediawiki/mediawiki.debug.css',
+			'resources/mediawiki/mediawiki.profile.css'
+		),
+		'dependencies' => array(
+			'jquery.footHovzer',
+			'jquery.tipsy',
+		),
 		'position' => 'bottom',
 	),
 	'mediawiki.debug.init' => array(
