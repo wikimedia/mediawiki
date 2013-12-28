@@ -758,9 +758,18 @@ return array(
 		),
 	),
 	'mediawiki.debug' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
-		'styles' => 'resources/mediawiki/mediawiki.debug.less',
-		'dependencies' => 'jquery.footHovzer',
+		'scripts' => array(
+			'resources/mediawiki/mediawiki.debug.js',
+			'resources/mediawiki/mediawiki.debug.profile.js'
+		),
+		'styles' => array(
+			'resources/mediawiki/mediawiki.debug.less',
+			'resources/mediawiki/mediawiki.debug.profile.css'
+		),
+		'dependencies' => array(
+			'jquery.footHovzer',
+			'jquery.tipsy',
+		),
 		'position' => 'bottom',
 	),
 	'mediawiki.debug.init' => array(
