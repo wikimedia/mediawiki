@@ -659,7 +659,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * representing the result row $row. Rows will be concatenated and
 	 * returned by getBody()
 	 *
-	 * @param array $row Database row
+	 * @param array|stdClass $row Database row
 	 * @return string
 	 */
 	abstract function formatRow( $row );

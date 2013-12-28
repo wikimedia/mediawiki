@@ -157,7 +157,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	/**
 	 * Constructs new LogEntry from database result row.
 	 * Supports rows from both logging and recentchanges table.
-	 * @param $row
+	 * @param stdClass|array $row
 	 * @return DatabaseLogEntry
 	 */
 	public static function newFromRow( $row ) {
