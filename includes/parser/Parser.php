@@ -3034,11 +3034,8 @@ class Parser {
 				return $wgLanguageCode;
 			default:
 				$ret = null;
-				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret, &$frame ) ) ) {
-					return $ret;
-				} else {
-					return null;
-				}
+				wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret, &$frame ) );
+				return $ret;
 		}
 
 		if ( $index ) {
