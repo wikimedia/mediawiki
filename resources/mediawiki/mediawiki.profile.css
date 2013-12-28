@@ -1,0 +1,40 @@
+
+.mw-debug-profile-flyout {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.1s, left 0.2s, top 0.2s;
+	display: none;
+	padding: 10px;
+	z-index: 2000;
+	background-color: white;
+	border: 1px solid black;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+.mw-debug-profile-timeline tspan,
+.mw-debug-profile-meta {
+	font-size: 10px;
+}
+
+.mw-debug-profile-underline {
+	stroke-width: 1;
+	stroke: #dfdfdf;
+}
+
+.mw-debug-profile-period {
+	fill: red;
+}
+
+/* connecting line between endpoints on long events */
+.mw-debug-profile-period line {
+	stroke: red;
+	stroke-width: 2;
+}
+
+.mw-debug-profile-timeline text {
+	fill: #444;
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
