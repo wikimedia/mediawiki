@@ -287,6 +287,10 @@ $messages = array(
 'log-fulllog' => 'Guêrda la stòria dal registrasiòun',
 'edit-conflict' => "Cuntrâst 'd edisiòun",
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''Atensiòun:''' la grandèsa di mudē més dèinter l'é trôp grôsa. Soquânt mudē gnirâ mìa més dèinter.",
+'post-expand-template-inclusion-category' => "Pàgini in dó la grandèsa di mudē més dèinter la và d'ed sōver dal lémit permés.",
+
 # History pages
 'viewpagelogs' => "Guêrda la stòria 'd cla pàgina ché",
 'currentrev' => 'Ûltma revişiòun',
@@ -328,6 +332,7 @@ $messages = array(
 'nextn-title' => '{{PLURAL:$1|Al rişultêt ed préma|$1 i rişultêt ed préma}}',
 'shown-title' => 'Fà vèder {{PLURAL:$1|un rişultêt|$1 di rişultêt}}',
 'viewprevnext' => 'Guêrda ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-new' => 'Şvilópa la pàgina "[[:$1]]" insém a cól sît ché.',
 'searchprofile-articles' => "Pàgini 'd j argumèint",
 'searchprofile-project' => "Pàgini 'd ajót e relatîvi al prugèt.",
 'searchprofile-images' => 'Multimèdia',
@@ -452,6 +457,7 @@ $messages = array(
 'filehist-current' => "(d'adèsa)",
 'filehist-datetime' => 'Dâta/Ōra',
 'filehist-thumb' => 'Miniadûra',
+'filehist-thumbtext' => 'Miniadûra ed la revisiòun dal $1.',
 'filehist-user' => 'Utèint',
 'filehist-dimensions' => 'Amzûri',
 'filehist-comment' => 'Cumèint',
@@ -549,6 +555,7 @@ $messages = array(
 'ipb-unblock-addr' => 'Şblôcä $1',
 'unblockip' => "Şblôcä l'utèint",
 'blocklist' => 'Utèint bluchê',
+'ipblocklist' => 'Utèint bluchê',
 'ipblocklist-submit' => 'Sērca',
 'ipblocklist-otherblocks' => 'Êter {{PLURAL:$1|blôch}}',
 'blocklink' => 'blôca',
@@ -566,6 +573,7 @@ $messages = array(
 'revertmove' => 'armèt',
 
 # Export
+'export' => "Pôrta fōra 'l pàgini.",
 'export-submit' => 'Pôrta fōra',
 
 # Namespace 8 related
@@ -621,6 +629,7 @@ $messages = array(
 'tooltip-save' => 'Sêlva al mudéfichi',
 'tooltip-rollback' => "\"Rollback\" al scanşèla cun un cléch tót' al mudéfichi fâti a cla pàgina ché da l'ûltem ch' al gh'à més al mân.",
 'tooltip-undo' => '"Scanşèla" al permèt de scanşlêr cla mudéfica ché e l\'arvés al mudèl ed mudéfica in môd "Guerda préma". E al permèt ed mèter dèinter \'na spiegasiòun int l\' elemèint ed la mudéfica.',
+'tooltip-summary' => 'Mèt dèinter un sût cèch.',
 
 # Attribution
 'others' => 'êter',

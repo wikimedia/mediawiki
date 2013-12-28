@@ -877,16 +877,24 @@ Sīkāku informāciju var atrast [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rev-suppressed-no-diff' => "Tu nevari aplūkot šīs izmaiņas, jo viena no versijām ir '''dzēsta'''.",
 'rev-delundel' => 'rādīt/slēpt',
 'rev-showdeleted' => 'parādīt',
-'revisiondelete' => 'Dzēst / atjaunot versijas',
+'revisiondelete' => 'Dzēst/atjaunot versijas',
 'revdelete-nooldid-title' => 'Nederīga mērķa versija',
 'revdelete-no-file' => 'Norādītais fails neeksistē.',
 'revdelete-show-file-submit' => 'Jā',
+'revdelete-selected' => "'''[[:$1]] {{PLURAL:$2|izvēlētā versija|izvēlētās versijas}}:'''",
+'logdelete-selected' => "'''{{PLURAL:$1|Izvēlētais reģistra ieraksts|Izvēlētie reģistra ieraksti}}:'''",
+'revdelete-text' => "'''Lapu hronoloģijā un reģistros izdzēstās versijas vēl joprojām būs redzamas, tomēr daļa informācijas nebūs pieejama publiski.''' Citi {{SITENAME}} administratori varēs apskatīt spēlto saturu un varēs to atslēpt, ja vien nav papildu ierobežojumi.",
+'revdelete-confirm' => 'Lūdzu apstiprini, ka Tu zini, ko dari, Tu apzinies sekas, tāpat Tu to dari saskaņā ar vadlīnijām.',
+'revdelete-suppress-text' => "Paslēpšanu izmantot vienīgi šādos gadījumos:
+* potenciāli apmelojoša informācija
+* nepiemērotā personīgā informācija
+*: ''mājas adrese, telefona numuri u.c.''",
 'revdelete-legend' => 'Uzstādīt redzamības ierobežojumus',
-'revdelete-hide-text' => 'Paslēpt versijas tekstu',
+'revdelete-hide-text' => 'Versijas teksts',
 'revdelete-hide-image' => 'Paslēpt faila saturu',
 'revdelete-hide-name' => 'Paslēpt darbību un tās objektu',
-'revdelete-hide-comment' => 'Paslēpt kopsavilkumu',
-'revdelete-hide-user' => 'Paslēpt autora lietotājvārdu/IP adresi',
+'revdelete-hide-comment' => 'Kopsavilkums',
+'revdelete-hide-user' => 'Autora lietotājvārds/IP adrese',
 'revdelete-hide-restricted' => 'Paslēpt datus arī no administratoriem',
 'revdelete-radio-same' => '(nemainīt)',
 'revdelete-radio-set' => 'Jā',
@@ -903,11 +911,12 @@ $1",
 $1",
 'revdel-restore' => 'mainīt redzamību',
 'pagehist' => 'Lapas vēsture',
-'deletedhist' => 'Vēsture dzēsta',
+'deletedhist' => 'Dzēstā vēsture',
 'revdelete-modify-missing' => 'Kļūda, mainot vienumu ar ID $1: tas ir pazudis no datubāzes!',
 'revdelete-reason-dropdown' => '*Biežākie dzēšanas iemesli
 ** autortiesību pārkāpums
 ** nepiemērota personīgā informācija
+** nepiemērots lietotāja vārds
 ** potenciāli apmelojoša informācija',
 'revdelete-otherreason' => 'Cits/papildu iemesls:',
 'revdelete-reasonotherlist' => 'Cits iemesls',

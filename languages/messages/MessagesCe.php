@@ -2337,6 +2337,12 @@ PICT # тайп тайпан
 'hours-ago' => '$1 {{PLURAL:$1|сахьт}} хьалха',
 'minutes-ago' => '$1 {{PLURAL:$1|минут}} хьалха',
 'seconds-ago' => '$1 {{PLURAL:$1|секунд}} хьалха',
+'monday-at' => 'оршотан дийнахь $1',
+'wednesday-at' => 'кхаарин дийнахь $1',
+'thursday-at' => 'еарин дийнахь $1',
+'friday-at' => 'пӀераскан дийнахь $1',
+'saturday-at' => 'шот дийнахь $1',
+'sunday-at' => 'кӀиранан дийнахь $1',
 'yesterday-at' => 'селхана $1 даьлча',
 
 # Bad image list

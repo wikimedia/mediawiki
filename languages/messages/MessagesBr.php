@@ -1874,7 +1874,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'filehist-comment' => 'Notenn',
 'filehist-missing' => 'Restr diank',
 'imagelinks' => 'Implij ar restr',
-'linkstoimage' => "Liammet eo {{PLURAL:$1|ar bajenn-mañ|an $1 pajenn-mañ}} d'ar restr-mañ :",
+'linkstoimage' => 'Liammet eo {{PLURAL:$1|ar bajenn-mañ|an $1 pajenn-mañ}} ouzh ar restr-mañ :',
 'linkstoimage-more' => "Ouzhpenn $1 {{PLURAL:$1|bajenn zo liammet ouzh|pajenn zo liammet ouzh}} ar restr-mañ.
 Ne laka ar roll-mañ war wel nemet {{PLURAL:$1|ar bajenn gentañ liammet ouzh|an $1 pajenn gentañ liammet ouzh}} ar rest-mañ.
 Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",

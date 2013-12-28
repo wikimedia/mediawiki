@@ -12,6 +12,7 @@
  * @author BetelgeuSeginus
  * @author Bilalokms
  * @author Bombola
+ * @author Cagrix
  * @author Cekli829
  * @author Coolland
  * @author Dbl2010
@@ -483,17 +484,17 @@ $messages = array(
 'hidden-category-category' => 'Gizli kategoriler',
 'category-subcat-count' => '{{PLURAL:$2|Bu kategori sadece aşağıdaki alt kategoriyi içermektedir.|Bu kategoride aşağıdaki {{PLURAL:$1|alt kategori|$1 alt kategorisi}} dahil $2 alt kategorisi vardır.}}',
 'category-subcat-count-limited' => 'Bu kategori aşağıdaki {{PLURAL:$1|alt kategoriye|$1 alt kategoriye}} sahiptir.',
-'category-article-count' => '{{PLURAL:$2|Bu kategori sadece aşağıdaki sayfayı içermektedir.|Toplam $2 taneden, aşağıdaki {{PLURAL:$1|sayfa|$1 sayfa}} bu kategoridedir.}}',
-'category-article-count-limited' => 'Bu kategoride {{PLURAL:$1|sayfa|$1 sayfa}} bulunmaktadır.',
-'category-file-count' => '{{PLURAL:$2|Bu kategori sadece aşağıdaki dosyayı içerir.|Toplam $2 taneden, aşağıdaki {{PLURAL:$1|dosya|$1 dosya}} bu kategoridedir.}}',
-'category-file-count-limited' => 'Aşağıdaki {{PLURAL:$1|dosya|$1 dosya}} mevcut kategoridedir.',
+'category-article-count' => '{{PLURAL:$2|Bu kategori sadece aşağıdaki sayfayı içermektedir.|Toplam $2 taneden, aşağıdaki {{PLURAL:$1|sayfa|$1 sayfalar}} bu kategoridedir.}}',
+'category-article-count-limited' => 'Bu kategoride {{PLURAL:$1|sayfa|$1 sayfalar}} bulunmaktadır.',
+'category-file-count' => '{{PLURAL:$2|Bu kategori sadece aşağıdaki dosyayı içerir.|Toplam $2 taneden, aşağıdaki {{PLURAL:$1|dosya|$1 dosyalar}} bu kategoridedir.}}',
+'category-file-count-limited' => 'Aşağıdaki {{PLURAL:$1|dosya|$1 dosyalar}} mevcut kategoridedir.',
 'listingcontinuesabbrev' => '(devam)',
 'index-category' => 'Dizinli sayfalar',
 'noindex-category' => 'Dizinli olmayan sayfalar',
 'broken-file-category' => 'Bozuk dosya bağlantıları içeren sayfalar',
 
 'about' => 'Hakkında',
-'article' => 'Madde',
+'article' => 'İçerik sayfası',
 'newwindow' => '(yeni bir pencerede açılır)',
 'cancel' => 'İptal',
 'moredotdotdot' => 'Daha...',
@@ -511,7 +512,7 @@ $messages = array(
 'qbpageoptions' => 'Bu sayfa',
 'qbmyoptions' => 'Sayfalarım',
 'faq' => 'SSS',
-'faqpage' => 'Project:SSS',
+'faqpage' => 'Proje: SSS',
 
 # Vector skin
 'vector-action-addsection' => 'Konu ekle',
@@ -602,16 +603,16 @@ $1',
 'copyright' => 'Aksi belirtilmedikçe içerik $1 altındadır.',
 'copyrightpage' => '{{ns:project}}:Telif hakları',
 'currentevents' => 'Güncel olaylar',
-'currentevents-url' => 'Project:Güncel olaylar',
+'currentevents-url' => 'Proje: güncel olaylar',
 'disclaimers' => 'Sorumluluk reddi',
-'disclaimerpage' => 'Project:Genel sorumluluk reddi',
+'disclaimerpage' => 'Proje: genel sorumluluk reddi',
 'edithelp' => 'Nasıl değiştirilir?',
 'helppage' => 'Help:İçindekiler',
 'mainpage' => 'Ana Sayfa',
 'mainpage-description' => 'Ana sayfa',
-'policy-url' => 'Project:Politika',
+'policy-url' => 'Proje: politika',
 'portal' => 'Topluluk portalı',
-'portal-url' => 'Project:Topluluk portalı',
+'portal-url' => 'Proje: Topluluk portalı',
 'privacy' => 'Gizlilik ilkesi',
 'privacypage' => 'Project:Gizlilik ilkesi',
 
@@ -625,7 +626,7 @@ $1',
 'ok' => 'Tamam',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '"$1" adresinden alındı.',
-'youhavenewmessages' => 'Yeni $1 var ($2).',
+'youhavenewmessages' => 'Yeni $1 var olan($2).',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcıdan}} $1 var ($2).',
 'youhavenewmessagesmanyusers' => 'Birçok kullanıcıdan $1 var ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',

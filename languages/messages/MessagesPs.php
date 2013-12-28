@@ -607,7 +607,7 @@ $1',
 'badretype' => 'دا پټنوم چې تاسې ليکلی د مخکني پټنوم سره ورته نه دی.',
 'userexists' => 'کوم کارن نوم چې تاسې ورکړی هغه بل چا کارولی.
 لطفاً يو بل نوم وټاکۍ.',
-'loginerror' => 'د ننوتنې ستونزه',
+'loginerror' => 'د ننوتلو ستونزه',
 'createacct-error' => 'د گڼون جوړېدنې ستونزه',
 'createaccounterror' => 'گڼون مو جوړ نه شو: $1',
 'nocookiesnew' => 'ستاسې گڼون جوړ شو، خو تاسې لا غونډال ته نه ياست ورننوتلي.
@@ -1889,7 +1889,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'contributions' => '{{GENDER:$1|کارن}} ونډې',
 'contributions-title' => 'د $1 کارن ونډې',
 'mycontris' => 'ونډې',
-'contribsub2' => 'د $1 لپاره ($2)',
+'contribsub2' => 'د {{GENDER:$3|$1}} لپاره ($2)',
 'nocontribs' => 'دې شرطونو سره سم بدلونونه و نه موندل شول.',
 'uctop' => '(اوسنی)',
 'month' => 'له مياشتې د (او پخواني):',
@@ -1897,11 +1897,13 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 'sp-contributions-newbies' => 'د نوو گڼونونو ونډې ښکاره کول',
 'sp-contributions-newbies-sub' => 'د نوو گڼونونو لپاره',
+'sp-contributions-newbies-title' => 'د نويو گڼونونو لپاره د کارن ونډې',
 'sp-contributions-blocklog' => 'د بنديز يادښت',
 'sp-contributions-deleted' => 'ړنگېدلې کارن ونډې',
 'sp-contributions-uploads' => 'پورته کېدنې',
 'sp-contributions-logs' => 'يادښتونه',
 'sp-contributions-talk' => 'خبرې اترې',
+'sp-contributions-userrights' => 'د کارن رښتو سمبالښت',
 'sp-contributions-blocked-notice' => 'دم مهال په دې کارن بنديز لگېدلی.
 د بنديز يادښت تازه مالومات په لاندې توگه دي:',
 'sp-contributions-search' => 'د ونډو پلټنه',
@@ -2112,6 +2114,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'import-upload-filename' => 'د دوتنې نوم:',
 'import-comment' => 'تبصره:',
 'import-revision-count' => '$1 {{PLURAL:$1|بڼه|بڼې}}',
+'importnotext' => 'تش او يا بې متنه مخ',
 
 # Import log
 'importlogpage' => 'د واردولو يادښت',
@@ -2177,6 +2180,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-diff' => 'دا هغه بدلونونه چې تاسې په متن کې ترسره کړي، ښکاره کوي. [alt-v]',
 'tooltip-compareselectedversions' => 'د همدې مخ د دوو ټاکل شويو بڼو تر مېنځ توپيرونه وگورۍ.',
 'tooltip-watch' => 'دا مخ ستاسې کتنلړ کې ورگډوي [alt-w]',
+'tooltip-watchlistedit-normal-submit' => 'سرليکونه غورځول',
+'tooltip-watchlistedit-raw-submit' => 'کتنلړ اوسمهالول',
 'tooltip-upload' => 'د پورته کولو پيل',
 'tooltip-rollback' => 'په همدې مخ کې "په شابېول" د وروستني ونډوال سمون (سمونونه) په يوه کلېک په څټ ورګرځوي.',
 'tooltip-undo' => '"ناکړ" همدا سمون پر شا گرځوي او د سمون کړکۍ د مخکتنې په بڼه پرانيزي.
@@ -2226,6 +2231,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'pageinfo-contentpage' => 'مېنځپانگيز مخ کې شمېرل شوی',
 'pageinfo-contentpage-yes' => 'هو',
 'pageinfo-protect-cascading-yes' => 'هو',
+'pageinfo-category-info' => 'د وېشنيزې مالومات',
+'pageinfo-category-pages' => 'د مخونو شمېر',
+'pageinfo-category-subcats' => 'د څېرمه وېشنيزو شمېر',
 'pageinfo-category-files' => 'د دوتنو شمېر',
 
 # Skin names
@@ -2252,6 +2260,7 @@ $1',
 # Media information
 'thumbsize' => 'د بټنوک کچه:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|مخ|مخونه}}',
+'file-info' => 'د دوتنې کچه: $1, MIME ډول: $2',
 'file-info-size' => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
 'file-nohires' => 'تر دې کچې لوړې بېلن نښې نشته.',
 'svg-long-desc' => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
@@ -2280,6 +2289,7 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 دقيقه|$1 دقيقې}}',
 'hours' => '{{PLURAL:$1|$1 ساعت|$1 ساعتونه}}',
 'days' => '{{PLURAL:$1|$1 ورځ|$1 ورځې}}',
+'weeks' => '{{PLURAL:$1|$1 اونۍ|$1 اونۍ}}',
 'months' => '{{PLURAL:$1|$1 مياشت|$1 مياشتې}}',
 'years' => '{{PLURAL:$1|$1 کال|$1 کالونه}}',
 'ago' => '$1 دمخه',
@@ -2664,6 +2674,7 @@ $5
 'redirect-submit' => 'ورځه',
 'redirect-value' => 'ارزښت:',
 'redirect-user' => 'کارن پېژند',
+'redirect-page' => 'د مخ پېژند',
 'redirect-file' => 'د دوتنې نوم',
 'redirect-not-exists' => 'ارزښت و نه موندل شو',
 
@@ -2791,6 +2802,10 @@ $5
 'duration-millennia' => '$1 {{PLURAL:$1|زرمه|زرمې}}',
 
 # Limit report
+'limitreport-cputime' => 'سي پي يو وخت کارېدنه',
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|ثانيه|ثانيې}}',
+'limitreport-walltime' => 'اصلي وخت کارېدنه',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|ثانيه|ثانيې}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|بايټ|بايټونه}}',
 
 # Special:ExpandTemplates

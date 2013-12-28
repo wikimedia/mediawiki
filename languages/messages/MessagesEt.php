@@ -1164,6 +1164,9 @@ Need argumendid on välja jäetud.",
 'cantcreateaccounttitle' => 'Ei saa kontot luua',
 'cantcreateaccount-text' => "Kasutaja [[User:$3|$3]] on blokeerinud kasutajanime loomise sellelt IP-aadressilt ('''$1''').
 Kasutaja $3 märkis põhjuseks ''$2''",
+'cantcreateaccount-range-text' => "Kontode loomine IP-aadressidelt vahemikus '''$1''', millesse jääb sinu IP-aadress ('''$4'''), on blokeeritud. Blokeeris kasutaja [[User:$3|$3]].
+
+$3 tõi järgmise põhjuse: ''$2''",
 
 # History pages
 'viewpagelogs' => 'Vaata selle lehe logisid',
@@ -3771,7 +3774,7 @@ Palun kinnita, et soovid tõesti selle lehekülje taasluua.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(vaikekeel)',
-'img-lang-info' => 'Viimistle pilt järgmises keeles: $1 $2',
+'img-lang-info' => 'Viimistle pilt järgmises keeles: $1. $2',
 'img-lang-go' => 'Mine',
 
 # Table pager
@@ -3870,13 +3873,14 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Ümbersuunamine faili, kasutaja või redaktsiooni identifikaatori järgi',
+'redirect' => 'Ümbersuunamine faili, kasutaja, lehekülje või redaktsiooni identifikaatori järgi',
 'redirect-legend' => 'Ümbersuunamine faili juurde või leheküljele',
-'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde. Kasutamine: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] või [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni või lehekülje identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde. Kasutamine: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] või [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Mine',
 'redirect-lookup' => 'Leia:',
 'redirect-value' => 'Väärtus:',
 'redirect-user' => 'Kasutaja identifikaator',
+'redirect-page' => 'Lehekülje identifikaator',
 'redirect-revision' => 'Lehekülje redaktsioon',
 'redirect-file' => 'Failinimi',
 'redirect-not-exists' => 'Väärtust ei leitud',
@@ -4118,10 +4122,12 @@ Samuti hõrendab see parserifunktsioonid nagu
 'expand_templates_input' => 'Sisendtekst:',
 'expand_templates_output' => 'Tulemus',
 'expand_templates_xml_output' => 'XML-väljund',
+'expand_templates_html_output' => 'HTML-toorväljund',
 'expand_templates_ok' => 'Hõrenda',
 'expand_templates_remove_comments' => 'Eemalda selgitavad märkused',
 'expand_templates_remove_nowiki' => 'Ära näita tulemuses <nowiki>-silte',
 'expand_templates_generate_xml' => 'Näita XML sõelumispuud',
+'expand_templates_generate_rawhtml' => 'Näita toor-HTMLi',
 'expand_templates_preview' => 'Eelvaade',
 
 );

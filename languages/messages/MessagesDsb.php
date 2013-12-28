@@ -386,7 +386,7 @@ $messages = array(
 'otherlanguages' => 'W drugich rěcach',
 'redirectedfrom' => '(pósrědnjone z boka „$1”)',
 'redirectpagesub' => 'Dalejpósrědnjenje',
-'lastmodifiedat' => 'Slědna změna boka: $1 w $2 goź.',
+'lastmodifiedat' => 'Slědna změna boka: $1 w $2 góź.',
 'viewcount' => 'Toś ten bok jo był woglědany {{PLURAL:$1|jaden raz|$1 raza|$1 raze}}.',
 'protectedpage' => 'Śćitany bok',
 'jumpto' => 'Źi na bok:',
@@ -3084,7 +3084,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 # Metadata
 'metadata' => 'Metadaty',
-'metadata-help' => 'Toś ta dataja wopśimjejo pśidatne informacije, kótarež nejskerjej póchadaju wót digitalneje kamery abo scannera. Jolic dataja bu pozdźej změnjona, njeby mógli někotare detaile změnjonu dataju wótbłyšćowaś.',
+'metadata-help' => 'Toś ta dataja wopśimjejo pśidatne informacije, kótarež nejskerjej póchadaju wót digitalneje kamery abo scannera. Jolic dataja bu pózdźej změnjona, njeby mógli někotare detaile změnjonu dataju wótbłyšćowaś.',
 'metadata-expand' => 'rozšyrjone detaile pokazaś',
 'metadata-collapse' => 'rozšyrjone detaile schowaś',
 'metadata-fields' => 'Slědujuce póla metadatow, kótarež su w toś tej powěźeńce pódane, budu se do bokow wopisanja wobrazow zapśimowaś, gaž tabela metadatow jo schowana. Druge se pó standarźe njepokazuju.

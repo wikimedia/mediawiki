@@ -484,11 +484,11 @@ Olùṣeàmójútó tó típa ṣe àlàyé yìí: "$3".',
 'yourdomainname' => 'Domain yín:',
 'password-change-forbidden' => 'Ẹ kò le ṣe ìyípadà ọ̀rọ̀ìpamọ́ lórí wiki yìí.',
 'externaldberror' => 'Bóyá àsìṣe ìfidájú ibùdó dátà ló ṣẹlẹ̀ tàbí ẹ kò jẹ́ gbígbà ní ààyè láti sọ àpamọ́ òde yín di ọ̀tun.',
-'login' => 'Ìwọlé',
+'login' => 'Ìjáwọlé',
 'nav-login-createaccount' => 'Ìwọlé / Ìforúkọ sílẹ̀',
 'loginprompt' => 'Ẹ gbọ́dọ̀ jọ̀wọ́ cookies láti wọlé sí {{SITENAME}}.',
 'userlogin' => 'Ìwọlé / ìforúkọ sílẹ̀',
-'userloginnocreate' => 'Ìwọlé',
+'userloginnocreate' => 'Ìjáwọlé',
 'logout' => 'Ìjáde',
 'userlogout' => 'Ìjáde',
 'notloggedin' => "Ẹ kò tí w'ọlé",
@@ -739,7 +739,7 @@ $1 ni ó ṣe ìdínà.
 'nosuchsectiontext' => 'Ẹ ti gbìyànjú láti ṣàtúnṣe abala tí kòsí.
 Ó ti le jẹ́ yíyípò tàbí píparẹ́ nígbà tí ẹ ún bojúwo ojúewé náà.',
 'loginreqtitle' => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
-'loginreqlink' => 'wọlé',
+'loginreqlink' => 'jáwọlé',
 'loginreqpagetext' => 'Ẹ gbọ́dọ̀ $1 láti wo àwọn ojúewé míràn.',
 'accmailtitle' => 'Ti fi ọ̀rọ̀ìpamọ́ ránṣẹ́.',
 'accmailtext' => "A ti fi ọ̀rọ̀ìpamọ́ àrìnàkò tí a pèsè fún [[User talk:$1|$1]] ránṣẹ́ sí $2. Ẹ le ṣe àyípadà ọ̀rọ̀ìpamọ́ fún àpamọ́ tuntun yìí ní ibi ''[[Special:ChangePassword|àyípadà ọ̀rọ̀ìpamọ́]]'' lẹ́yìn tí ẹ bá ti jáwọlé.",
@@ -1006,8 +1006,8 @@ Tó bá jẹ́ pé ẹ ti wọlé, ẹ lè dẹ́kun ìkìlọ̀ yìí nínù ab
 'revdelete-hide-user' => 'Orúkọ oníṣe/àdírẹ́ẹ̀sì IP olùtúnṣe',
 'revdelete-hide-restricted' => 'Ìbòmọ́lẹ̀ àwọn ìpèsè ti àwọn alámùójútó àti ti àwọn yìókù',
 'revdelete-radio-same' => '(láì yípadà)',
-'revdelete-radio-set' => 'Híhàn',
-'revdelete-radio-unset' => 'Bíbòmọ́lẹ̀',
+'revdelete-radio-set' => 'Bíbòmọ́lẹ̀',
+'revdelete-radio-unset' => 'Híhàn',
 'revdelete-suppress' => 'Ìbòmọ́lẹ̀ àwọn ìpèsè ti àwọn alámùójútó àti ti àwọn yìókù',
 'revdelete-unsuppress' => 'Ìyọkúrò àlà sí àwọn àtúnyẹ̀wò àdápadà',
 'revdelete-log' => 'Ìdíẹ̀:',
@@ -1087,6 +1087,7 @@ Kò ṣe é bòmọ́lẹ̀.',
 'compareselectedversions' => 'Ìfiwéra àwọn àtúnṣe ìṣàyàn',
 'showhideselectedversions' => 'Ìfihàn/ìbòmọ́lẹ̀ àwọn àtúnyẹ̀wò ṣíṣàyàn',
 'editundo' => 'dápadà',
+'diff-empty' => '(Kò ní yàtọ̀)',
 'diff-multi' => '({{PLURAL:$1|Àtúnyẹ̀wò inú àrin kan|Àwọn àtúnyẹ̀wò inú àrin $1}} látọwọ́ {{PLURAL:$2|oníṣe kan|àwọn oníṣe $2}} kò jẹ́ fífihàn)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Àtúnyẹ̀wò inú àrin kan|Àwọn àtúnyẹ̀wò inú àrin $1}} látọwọ́ {{PLURAL:$2|oníṣe|àwọn oníṣe}} tó pọ̀ju $2 lọ kò jẹ́ fífihàn)',
 'difference-missing-revision' => '{{PLURAL:$2|Àtúnyẹ̀wò kan|Àwọn àtúnyẹ̀wò $2}} ìyàtọ̀ yìí ($1) kò {{PLURAL:$2|sí|sí}}.
@@ -1146,11 +1147,13 @@ Kò ṣe é bòmọ́lẹ̀.',
 'searchdisabled' => 'Ṣíṣàwárí nínú {{SITENAME}} wà ní dídálẹ́kun.
 Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 Àkíyèsí pé àwọn atọ́ka wọn fún àkóónú {{SITENAME}} le mọ́ jẹ́ tuntun.',
+'search-error' => 'Àṣìṣe ṣẹlẹ̀ fún ìwárí: $1',
 
 # Preferences page
 'preferences' => 'Àwọn ìfẹ́ràn',
 'mypreferences' => 'Àwọn ìfẹ́ràn',
 'prefs-edits' => 'Iye àwọn àtúnṣe:',
+'prefsnologintext2' => 'Ẹ jọ̀wọ́ ẹ $1 láti ṣe ìyípadà àwọn ìfẹ́ràn yín.',
 'prefs-skin' => 'Skin (Àwọ̀)',
 'skin-preview' => 'Àkọ́yẹ̀wò',
 'datedefault' => 'Kò sí ìfẹ́ràn',
@@ -1248,6 +1251,8 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'prefs-dateformat' => 'Irú ọjọ́ọdún',
 'prefs-timeoffset' => 'Ìyàtọ̀ àsìkò',
 'prefs-advancedediting' => 'Àwọn àṣàyàn gíga',
+'prefs-editor' => 'Olùṣàtúnṣe',
+'prefs-preview' => 'Àkọ́yẹ̀wò',
 'prefs-advancedrc' => 'Àwọn àṣàyàn onígíga',
 'prefs-advancedrendering' => 'Àwọn àṣàyàn onígíga',
 'prefs-advancedsearchoptions' => 'Àwọn àṣàyàn onígíga',
@@ -1416,6 +1421,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|àtúnṣe|àwọn àtúnṣe}} $1',
+'enhancedrc-history' => 'ìtàn',
 'recentchanges' => 'Àwọn àtúnṣe tuntun',
 'recentchanges-legend' => 'Àwọn àṣàyàn fún àtúnṣe tuntun',
 'recentchanges-summary' => 'Ẹ tẹ̀ lé àwọn àtúnṣe tuntun sí wiki lórí ojúewé yìí.',
@@ -1424,12 +1430,14 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'recentchanges-label-minor' => 'Àtùnṣe kékeré nìyí',
 'recentchanges-label-bot' => 'Rọ́bọ́ọ̀tì ni ó ṣe àtúnṣe yìí',
 'recentchanges-label-unpatrolled' => 'Àtúnṣe yìí kò tí ì jẹ́ onísíṣọ́',
-'recentchanges-legend-newpage' => '$1 - ojúewé tuntun',
+'recentchanges-label-plusminus' => 'Iye bytes àtúnṣe sí ìtóbi ojúewé',
+'recentchanges-legend-heading' => "'''Ìtumọ̀:'''",
+'recentchanges-legend-newpage' => '(ẹ tún wo [[Special:NewPages|àtòjọ àwọn ojúewé tuntun]])',
 'rcnotefrom' => "Àwọn àtúnṣe láti ''''$2''' (títí dé '''$1''' hàn) lábẹ́.",
 'rclistfrom' => 'Àfihàn àwọn àtúnṣe tuntun nípa bíbẹ̀rẹ̀ láti $1',
 'rcshowhideminor' => '$1 àwọn àtúnṣe kékéèké',
 'rcshowhidebots' => '$1 àwọn bot',
-'rcshowhideliu' => '$1 àwọn oníṣe tótiwọlé',
+'rcshowhideliu' => '$1 àwọn oníṣe aforúkọsílẹ̀',
 'rcshowhideanons' => '$1 àwọn oníṣe aláìlórúkọ',
 'rcshowhidepatr' => '$1 àwọn àtúnṣe ọlùṣọ́',
 'rcshowhidemine' => '$1 àwọn àtúnṣe mi',
@@ -1466,7 +1474,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'reuploaddesc' => 'Fagilé ìrùsókè kí ó tó padà sí fọ́ọ̀mù ìrùsókè',
 'upload-tryagain' => 'Ìkóólẹ̀ fáìlì ìjúwe aláàtúnṣe',
 'uploadnologin' => 'Ẹ kò tíì wọlé',
-'uploadnologintext' => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlè]] láti ṣe ìrùsókè faili.',
+'uploadnologintext' => 'Ẹ jọ̀wọ́ ẹ $1 láti ṣe ìrùsókè fáìlì.',
 'upload_directory_missing' => 'Àpò ìrùsókè ($1) kòsí bẹ́ẹ̀sìni kò le jẹ́ dídá látọwọ́ ẹ̀rọ-ìwọ̀fà.',
 'upload_directory_read_only' => 'Àpò ìrùsókè ($1) kò ṣeékọ sí nínú látọwọ́ ẹ̀rọ-ìwọ̀fà.',
 'uploaderror' => 'Àsìse ìrùsókè',
@@ -1721,6 +1729,8 @@ Tó bá jẹ́ jíjọ̀ gẹ́gẹ́bí oníṣe, àwọn fáìlì tí oníṣe
 'listfiles_size' => 'Ìtóbi',
 'listfiles_description' => 'Ìjúwe',
 'listfiles_count' => 'Àwọn àtẹ̀jáde',
+'listfiles-latestversion-yes' => 'Bẹ́ẹ̀ni',
+'listfiles-latestversion-no' => 'Bẹ́ẹ̀kọ́',
 
 # File description page
 'file-anchor-link' => 'Fáìlì',
@@ -3339,6 +3349,9 @@ $5
 'imgmultigo' => 'Lọ!',
 'imgmultigoto' => 'Lọ sí ojúewé $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(èdè látìbẹ̀rẹ̀)',
+
 # Table pager
 'ascending_abbrev' => 'ròkè',
 'descending_abbrev' => 'relẹ̀',
@@ -3617,5 +3630,8 @@ Bíbẹ̀ẹ̀kọ́, ẹ le lo fọ́ọ̀mù ìsàlẹ̀. Ẹjọ́ yín yíò
 
 # Image rotation
 'rotate-comment' => 'Àwòrán jẹ́ mímúyípo ní {{PLURAL:$1|degree|ìyí}} $1 bíi ọwọ́ ago',
+
+# Special:ExpandTemplates
+'expand_templates_preview' => 'Àkọ́yẹ̀wò',
 
 );

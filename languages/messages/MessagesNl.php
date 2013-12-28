@@ -1279,6 +1279,9 @@ Controleer voor het opslaan of het resultaat gewenst is.',
 'cantcreateaccount-text' => "Registreren vanaf dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].
 
 De door $3 opgegeven reden is ''$2''",
+'cantcreateaccount-range-text' => 'Het aanmaken van gebruikers vanaf IP-adressen in de reeks <strong>$1</strong> is niet mogelijk doordat dit is ingesteld door [[User:$3|$3]]. Uw IP-adres $4 bevindt zich in deze reeks.
+
+De reden voor de blokkade is <em>$2</em>',
 
 # History pages
 'viewpagelogs' => 'Logboek voor deze pagina bekijken',
@@ -3335,11 +3338,11 @@ Vul dit veld '''NIET''' in!",
 'pageinfo-firstuser' => 'Gebruiker die de pagina heeft aangemaakt',
 'pageinfo-firsttime' => 'Datum waarop de pagina is aangemaakt',
 'pageinfo-lastuser' => 'Laatste bewerker',
-'pageinfo-lasttime' => 'Datum van laatste bewerking',
-'pageinfo-edits' => 'Totaal aantal bewerkingen',
-'pageinfo-authors' => 'Totaal aantal verschillende auteurs',
-'pageinfo-recent-edits' => 'Recent aantal bewerkingen (binnen de afgelopen $1).',
-'pageinfo-recent-authors' => 'Recent aantal verschillende auteurs',
+'pageinfo-lasttime' => 'Laatste bewerking',
+'pageinfo-edits' => 'Aantal bewerkingen',
+'pageinfo-authors' => 'Auteurs totaal',
+'pageinfo-recent-edits' => 'Recente bewerkingen (binnen de afgelopen $1)',
+'pageinfo-recent-authors' => 'Recente auteurs',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisch woord|Magische woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',
