@@ -1084,7 +1084,7 @@ class Linker {
 		return self::link(
 			$page,
 			htmlspecialchars( $altUserName !== false ? $altUserName : $userName ),
-			array( 'class' => 'mw-userlink' )
+			array( 'class' => 'mw-userlink', 'rel' => 'author' )
 		);
 	}
 
