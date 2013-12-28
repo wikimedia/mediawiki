@@ -937,8 +937,11 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
 			if ( $userCanRead ) {
+				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() && 
+					!$this->getWikiPage()->isLocal();
+
 				// Adds view view link
-				if ( $title->exists() ) {
+				if ( $title->exists() || $isForeignFile ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
 						array( "$skname-view-view", 'view' ),
@@ -946,6 +949,18 @@ class SkinTemplate extends Skin {
 					);
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
+				}
+
+				// If it is a non-local file, show a link to the file in its own repository
+				if ( $isForeignFile ) {
+					$file = $this->getWikiPage()->getFile();
+					$content_navigation['views']['view-foreign'] = array(
+						'class' => '',
+						'text' => wfMessageFallback( "$skname-view-foreign", 'view-foreign' )->setContext( $this->getContext() )->
+							params( $file->getRepo()->getDisplayName() )->text(),
+						'href' => $file->getDescriptionUrl(),
+						'primary' => false,
+					);
 				}
 
 				wfProfileIn( __METHOD__ . '-edit' );
@@ -962,13 +977,16 @@ class SkinTemplate extends Skin {
 						&& ( ( $isTalk && $this->isRevisionCurrent() ) || $out->showNewSectionLink() );
 					$section = $request->getVal( 'section' );
 
-					$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
-						'edit' : 'create';
+					if ( $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ) {
+						$msgKey = $isForeignFile ? 'edit-local' : 'edit';
+					} else {
+						$msgKey = $isForeignFile ? 'create-local' : 'create';
+					}
 					$content_navigation['views']['edit'] = array(
 						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection ) ? 'selected' : '' ) . $isTalkClass,
 						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
-						'primary' => true, // don't collapse this in vector
+						'primary' => !$isForeignFile, // don't collapse this in vector
 					);
 
 					// section link
