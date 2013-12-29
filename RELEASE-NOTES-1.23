@@ -32,6 +32,10 @@ production.
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
 * $wgDBAhandler was removed as the only class using it was also removed
 * The 'max threads' setting was removed from $wgDBservers.
+* A new configuration variable, $wgShowSigButtonInContentNamespaces, controls
+  whether users see a "signature" button on the edit toolbar in content
+  namespaces. It is set to false by default - wikis that use signatures on
+  content pages should set it to true to preserve the old behavior.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
