@@ -136,6 +136,7 @@ production.
   - WikiPage::quickEdit() (deprecated in 1.18)
   - WikiPage::useParserCache() (deprecated in 1.18)
   - WikiPage::viewUpdates() (deprecated in 1.18)
+  - ProfilerSimple::getCpuTime (deprecated in 1.20)
 
 === Languages updated in 1.23 ===
 
