@@ -130,6 +130,7 @@ production.
   - Linker::makeBrokenLinkObj() (deprecated in 1.16)
   - Linker::makeColouredLinkObj() (deprecated in 1.16)
   - Linker::makeSizeLinkObj() (deprecated in 1.17)
+  - ProfilerSimple::getCpuTime (deprecated in 1.20)
   - Revision::revText() (deprecated in 1.17)
   - SkinTemplate::jstext() (deprecated in 1.21)
   - SpecialRevisionDelete::extractBitField() (deprecated in 1.22)

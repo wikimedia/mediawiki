@@ -113,21 +113,4 @@ class ProfilerSimple extends Profiler {
 	public function logData() {
 		/* Implement in subclasses */
 	}
-
-	/**
-	 * Get the actual CPU time or the initial one if $ru is set.
-	 *
-	 * @deprecated in 1.20
-	 * @return float|null
-	 */
-	function getCpuTime( $ru = null ) {
-		wfDeprecated( __METHOD__, '1.20' );
-
-		if ( $ru === null ) {
-			return $this->getTime( 'cpu' );
-		} else {
-			# It theory we should use $ru here, but it always $wgRUstart that is passed here
-			return $this->getInitialTime( 'cpu' );
-		}
-	}
 }
