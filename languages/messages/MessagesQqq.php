@@ -4939,6 +4939,7 @@ See the following search results:
 'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
+'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]]',
 'protectedpagesempty' => 'Used in [[Special:ProtectedPages]], when there are no protected pages with the specified parameters.',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
