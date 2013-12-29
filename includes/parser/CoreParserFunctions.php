@@ -209,7 +209,7 @@ class CoreParserFunctions {
 	}
 
 	static function localurle( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'escapeLocalURL', $s, $arg );
+		return htmlspecialchars( self::urlFunction( 'getLocalURL', $s, $arg ) );
 	}
 
 	static function fullurl( $parser, $s = '', $arg = null ) {
