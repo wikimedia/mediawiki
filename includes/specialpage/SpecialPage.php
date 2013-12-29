@@ -66,11 +66,11 @@ class SpecialPage {
 	/**
 	 * Get a localised Title object for a specified special page name
 	 *
-	 * @param $name String
-	 * @param string|Bool $subpage subpage string, or false to not use a subpage
-	 * @param string $fragment the link fragment (after the "#")
+	 * @param string $name
+	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string $fragment The link fragment (after the "#")
+	 * @return Title
 	 * @throws MWException
-	 * @return Title object
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
@@ -80,9 +80,9 @@ class SpecialPage {
 	/**
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
 	 *
-	 * @param $name String
-	 * @param string|Bool $subpage subpage string, or false to not use a subpage
-	 * @return Title object or null if the page doesn't exist
+	 * @param string $name
+	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @return Title|null Title object or null if the page doesn't exist
 	 */
 	public static function getSafeTitleFor( $name, $subpage = false ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
@@ -106,10 +106,10 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
+	 * @param Callback|bool $function Function called by execute(). By default
+	 *   it is constructed from $name
 	 * @param string $file File which is included by execute(). It is also
-	 * constructed from $name by default
+	 *   constructed from $name by default
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
@@ -125,10 +125,10 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
+	 * @param Callback|bool $function Function called by execute(). By default
+	 *   it is constructed from $name
 	 * @param string $file File which is included by execute(). It is also
-	 * constructed from $name by default
+	 *   constructed from $name by default
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
@@ -150,7 +150,7 @@ class SpecialPage {
 
 	/**
 	 * Get the name of this Special Page.
-	 * @return String
+	 * @return string
 	 */
 	function getName() {
 		return $this->mName;
@@ -158,7 +158,7 @@ class SpecialPage {
 
 	/**
 	 * Get the permission that a user must have to execute this page
-	 * @return String
+	 * @return string
 	 */
 	function getRestriction() {
 		return $this->mRestriction;
@@ -168,7 +168,7 @@ class SpecialPage {
 	 * Get the file which will be included by SpecialPage::execute() if your extension is
 	 * still stuck in the past and hasn't overridden the execute() method.  No modern code
 	 * should want or need to know this.
-	 * @return String
+	 * @return string
 	 * @deprecated since 1.18
 	 */
 	function getFile() {
@@ -180,25 +180,25 @@ class SpecialPage {
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @since r3583 (v1.3)
-	 * @return Bool
+	 * @return bool
 	 */
 	function isListed() {
 		return $this->mListed;
 	}
 	/**
 	 * Set whether this page is listed in Special:Specialpages, at run-time
-	 * @since r3583 (v1.3)
-	 * @param $listed Bool
-	 * @return Bool
+	 * @since 1.3
+	 * @param bool $listed
+	 * @return bool
 	 */
 	function setListed( $listed ) {
 		return wfSetVar( $this->mListed, $listed );
 	}
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
-	 * @since r11308 (v1.6)
-	 * @param $x Bool
-	 * @return Bool
+	 * @since 1.6
+	 * @param bool $x
+	 * @return bool
 	 */
 	function listed( $x = null ) {
 		return wfSetVar( $this->mListed, $x );
@@ -206,7 +206,7 @@ class SpecialPage {
 
 	/**
 	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
-	 * @return Bool
+	 * @return bool
 	 */
 	public function isIncludable() {
 		return $this->mIncludable;
@@ -214,8 +214,8 @@ class SpecialPage {
 
 	/**
 	 * Whether the special page is being evaluated via transclusion
-	 * @param $x Bool
-	 * @return Bool
+	 * @param bool $x
+	 * @return bool
 	 */
 	function including( $x = null ) {
 		return wfSetVar( $this->mIncluding, $x );
@@ -223,6 +223,7 @@ class SpecialPage {
 
 	/**
 	 * Get the localised name of the special page
+	 * @return string
 	 */
 	function getLocalName() {
 		if ( !isset( $this->mLocalName ) ) {
@@ -237,7 +238,7 @@ class SpecialPage {
 	 * (and still overridden) by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isExpensive() {
 		return false;
@@ -249,7 +250,7 @@ class SpecialPage {
 	 * Used by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 * @since 1.21
 	 */
 	public function isCached() {
@@ -260,7 +261,7 @@ class SpecialPage {
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
-	 * @return Boolean: should the page be displayed with the restricted-access
+	 * @return bool Should the page be displayed with the restricted-access
 	 *   pages?
 	 */
 	public function isRestricted() {
@@ -273,8 +274,8 @@ class SpecialPage {
 	 * special page (as defined by $mRestriction).  Can be overridden by sub-
 	 * classes with more complicated permissions schemes.
 	 *
-	 * @param $user User: the user to check
-	 * @return Boolean: does the user have permission to view the page?
+	 * @param User $user The user to check
+	 * @return bool Does the user have permission to view the page?
 	 */
 	public function userCanExecute( User $user ) {
 		return $user->isAllowed( $this->mRestriction );
@@ -282,6 +283,7 @@ class SpecialPage {
 
 	/**
 	 * Output an error message telling the user what access level they have to have
+	 * @throws PermissionsError
 	 */
 	function displayRestrictionError() {
 		throw new PermissionsError( $this->mRestriction );
@@ -291,6 +293,8 @@ class SpecialPage {
 	 * Checks if userCanExecute, and if not throws a PermissionsError
 	 *
 	 * @since 1.19
+	 * @return void
+	 * @throws PermissionsError
 	 */
 	public function checkPermissions() {
 		if ( !$this->userCanExecute( $this->getUser() ) ) {
@@ -302,6 +306,7 @@ class SpecialPage {
 	 * If the wiki is currently in readonly mode, throws a ReadOnlyError
 	 *
 	 * @since 1.19
+	 * @return void
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {
@@ -368,7 +373,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	final public function run( $subPage ) {
 		/**
@@ -376,8 +381,8 @@ class SpecialPage {
 		 *
 		 * @since 1.20
 		 *
-		 * @param $special SpecialPage
-		 * @param $subPage string|null
+		 * @param SpecialPage $this
+		 * @param string|null $subPage
 		 */
 		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
 
@@ -390,8 +395,8 @@ class SpecialPage {
 		 *
 		 * @since 1.20
 		 *
-		 * @param $special SpecialPage
-		 * @param $subPage string|null
+		 * @param SpecialPage $this
+		 * @param string|null $subPage
 		 */
 		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ) );
 	}
@@ -401,7 +406,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	protected function beforeExecute( $subPage ) {
 		// No-op
@@ -412,7 +417,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	protected function afterExecute( $subPage ) {
 		// No-op
@@ -424,7 +429,7 @@ class SpecialPage {
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
 		$this->setHeaders();
@@ -445,7 +450,7 @@ class SpecialPage {
 	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
-	 * @param string $summaryMessageKey message key of the summary
+	 * @param string $summaryMessageKey Message key of the summary
 	 */
 	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgContLang;
@@ -478,8 +483,8 @@ class SpecialPage {
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param $subpage String|Bool
-	 * @return Title object
+	 * @param string|bool $subpage
+	 * @return Title
 	 * @deprecated in 1.23, use SpecialPage::getPageTitle
 	 */
 	function getTitle( $subpage = false ) {
@@ -490,8 +495,8 @@ class SpecialPage {
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param $subpage String|Bool
-	 * @return Title object
+	 * @param string|bool $subpage
+	 * @return Title
 	 */
 	function getPageTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
@@ -500,7 +505,7 @@ class SpecialPage {
 	/**
 	 * Sets the context this SpecialPage is executed in
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @since 1.18
 	 */
 	public function setContext( $context ) {
@@ -619,7 +624,7 @@ class SpecialPage {
 	/**
 	 * Adds RSS/atom links
 	 *
-	 * @param $params array
+	 * @param array $params
 	 */
 	protected function addFeedLinks( $params ) {
 		global $wgFeedClasses;
