@@ -332,7 +332,7 @@ $messages = array(
 'nextn-title' => '{{PLURAL:$1|Al rişultêt ed préma|$1 i rişultêt ed préma}}',
 'shown-title' => 'Fà vèder {{PLURAL:$1|un rişultêt|$1 di rişultêt}}',
 'viewprevnext' => 'Guêrda ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-new' => 'Şvilópa la pàgina "[[:$1]]" insém a cól sît ché.',
+'searchmenu-new' => "'''Şvilópa la pàgina \"[[:\$1]]\" insém a cól sît ché! '''{{PLURAL:\$2|0=|Guêrda ânch i rişultêt catê}}.",
 'searchprofile-articles' => "Pàgini 'd j argumèint",
 'searchprofile-project' => "Pàgini 'd ajót e relatîvi al prugèt.",
 'searchprofile-images' => 'Multimèdia',
@@ -346,6 +346,7 @@ $messages = array(
 'search-result-size' => "$1 ({{PLURAL:$2|'na parôla|$2 parôli}})",
 'search-redirect' => '(redirect $1)',
 'search-section' => '(sesiòun $1)',
+'search-suggest' => "Fōrsi 't serchêv $1",
 'search-interwiki-caption' => 'Prugèt fradē',
 'search-interwiki-default' => 'Rişultêt da $1:',
 'search-interwiki-more' => '(êter)',
@@ -454,6 +455,7 @@ $messages = array(
 # File description page
 'file-anchor-link' => "'File'",
 'filehist' => "Stòria 'd la pàgina",
+'filehist-help' => "Fà cléch insém a 'n gróp dâta/ōra per vèder al file cm'é l'ēra int al mumèint e-sgnê",
 'filehist-current' => "(d'adèsa)",
 'filehist-datetime' => 'Dâta/Ōra',
 'filehist-thumb' => 'Miniadûra',
@@ -462,6 +464,7 @@ $messages = array(
 'filehist-dimensions' => 'Amzûri',
 'filehist-comment' => 'Cumèint',
 'imagelinks' => "Ûş dal 'file'",
+'sharedupload-desc-here' => "Cól file ché al deşvîn da $1 e al pōl èser druvê da êter prugèt. Ed sègvit a vîn fât vèder la spiegasiòun che gh'é int la [$2 pàgina de spiegasiòun dal file].",
 
 # File deletion
 'filedelete-submit' => 'Scanşela',
@@ -552,6 +555,7 @@ $messages = array(
 'unblock' => "Şblôcä l'utèint",
 'blockip' => "Blôcä l'utèint",
 'blockip-legend' => "Blôcä l'utèint",
+'ipboptions' => '2 ōri:2 hours,1 dé:1 day,3 dé:3 days,1 stmâna:1 week,2 stâni:2 weeks,1 mèiş:1 month,3 mèiş:3 months,6 mèiş:6 months,1 ân:1 year,per sèimper:infinite.',
 'ipb-unblock-addr' => 'Şblôcä $1',
 'unblockip' => "Şblôcä l'utèint",
 'blocklist' => 'Utèint bluchê',

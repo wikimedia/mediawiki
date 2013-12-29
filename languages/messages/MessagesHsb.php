@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Derbeth
  * @author Dundak
  * @author J budissin
  * @author Kaganer
@@ -334,7 +335,7 @@ $messages = array(
 'returnto' => 'Wróćo k stronje $1.',
 'tagline' => 'z {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'help' => 'Pomoc',
-'search' => 'pytać',
+'search' => 'Pytać',
 'searchbutton' => 'Pytać',
 'go' => 'Pytać',
 'searcharticle' => 'Pytać',
