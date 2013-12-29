@@ -58,10 +58,15 @@ abstract class LBFactory {
 	/**
 	 * Returns the LBFactory class to use and the load balancer configuration.
 	 *
-	 * @return array ( factory class, $wgLBFactoryConf )
+	 * @param array $config - optional (uses $wgLBFactoryConf by default)
+	 *
+	 * @return array ( factory class, $config )
 	 */
-	static function getLBFactoryClass() {
-		global $wgLBFactoryConf;
+	static function getLBFactoryClass( array $config = null ) {
+		if ( $config === null ) {
+			global $wgLBFactoryConf;
+			$config = $wgLBFactoryConf;
+		}
 
 		// For configuration backward compatibility after removing
 		// underscores from class names in MediaWiki 1.23.
@@ -72,7 +77,7 @@ abstract class LBFactory {
 			'LBFactory_Fake' => 'LBFactoryFake',
 		);
 
-		$class = $wgLBFactoryConf['class'];
+		$class = $config['class'];
 
 		if ( in_array( $class, array_keys( $bcClasses ) ) ) {
 			$class = $bcClasses[$class];
@@ -82,7 +87,7 @@ abstract class LBFactory {
 			);
 		}
 
-		return array( $class, $wgLBFactoryConf );
+		return array( $class, $config );
 	}
 
 	/**
