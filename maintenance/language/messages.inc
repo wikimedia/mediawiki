@@ -1808,6 +1808,7 @@ $wgMessageStructure = array(
 		'protectedpages-indef',
 		'protectedpages-summary',
 		'protectedpages-cascade',
+		'protectedpages-noredirect',
 		'protectedpagesempty',
 		'protectedtitles',
 		'protectedtitles-summary',
