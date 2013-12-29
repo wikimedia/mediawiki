@@ -5448,6 +5448,15 @@ $wgUniversalEditButton = true;
  */
 $wgUseAutomaticEditSummaries = true;
 
+/**
+ * Whether to display the Signature button on the edit toolbar in the content
+ * namespaces defined by $wgContentNamespaces. Most wikis will want to set this
+ * to false - only more "traditional" wikis where content and discussion are
+ * intermixed, and/or where it is customary to post signatures on content pages,
+ * should need to set this to true.
+ */
+$wgShowSigButtonInContentNamespaces = false;
+
 /** @} */ # end edit UI }
 
 /************************************************************************//**
