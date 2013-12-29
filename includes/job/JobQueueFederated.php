@@ -163,7 +163,7 @@ class JobQueueFederated extends JobQueue {
 		$this->throwErrorIfAllPartitionsDown( $failed );
 
 		$this->cache->add( $key, $empty ? 'true' : 'false', self::CACHE_TTL_LONG );
-		return !$empty;
+		return $empty;
 	}
 
 	protected function doGetSize() {
