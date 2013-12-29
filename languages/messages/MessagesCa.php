@@ -711,7 +711,7 @@ la vostra antiga contrasenya.",
 'noemailcreate' => "Has d'indicar una adreça de correu electrònic vàlida",
 'passwordsent' => "S'ha enviat una nova contrasenya a l'adreça electrònica registrada per «$1».
 Inicieu una sessió després que la rebeu.",
-'blocked-mailpassword' => 'La vostra adreça IP ha estat blocada. Se us ha desactivat la funció de recuperació de contrasenya per a prevenir abusos.',
+'blocked-mailpassword' => "S'ha blocat la vostra adreça IP. Se us ha desactivat la funció de recuperació de contrasenya per a prevenir abusos.",
 'eauthentsent' => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'enviï cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
 'throttled-mailpassword' => "Ja se us ha enviat un correu electrònic de reinicialització de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}.
 Per a prevenir abusos, només s'envia un correu electrònic de reinicialització de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
@@ -1003,10 +1003,10 @@ Podeu modificar les planes ja existents o bé [[Special:UserLogin|entrar en un c
 'permissionserrors' => 'Error de permisos',
 'permissionserrorstext' => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
-'recreate-moveddeleted-warn' => "'''Avís: esteu creant una pàgina que ha estat prèviament suprimida.'''
+'recreate-moveddeleted-warn' => "'''Avís: esteu creant una pàgina que s'ha suprimit prèviament.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
-A continuació s'ofereix el registre d'esborraments i de reanomenaments de la pàgina:",
+A continuació s'ofereix el registre de supressions i de reanomenaments de la pàgina:",
 'moveddeleted-notice' => "S'ha suprimit aquesta pàgina.
 A continuació us mostrem com a referència el registre d'esborraments i reanomenaments de la pàgina.",
 'log-fulllog' => 'Veure tot el registre',
@@ -1104,8 +1104,8 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-user' => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event' => "(s'ha suprimit el registre d'accions)",
 'rev-deleted-user-contribs' => "[nom d'usuari o adreça IP esborrada - modificació ocultada de les contribucions]",
-'rev-deleted-text-permission' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-text-permission' => "S'ha '''suprimit''' aquesta versió de la pàgina.
+Vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
 'rev-deleted-text-unhide' => "S'ha '''suprimit''' la revisió d'aquesta pàgina.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
@@ -1114,21 +1114,21 @@ Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLP
 Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-deleted-text-view' => "S'ha '''suprimit''' aquesta versió de la pàgina.
 Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-suppressed-text-view' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-suppressed-text-view' => "S'ha '''suprimit''' aquesta versió de la pàgina.
+Vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].",
 'rev-deleted-no-diff' => "No podeu veure aquesta comparativa perquè s'ha '''suprimit''' una de les versions.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-suppressed-no-diff' => "No podeu veure aquesta diferència perquè s'ha '''suprimit''' una de les revisions.",
-'rev-deleted-unhide-diff' => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
-Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+'rev-deleted-unhide-diff' => "S'ha '''eliminat''' una de les revisions d'aquesta comparativa.
+Vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].
 Encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
 'rev-suppressed-unhide-diff' => "S¡ha '''suprimit''' una de les revisions d'aquesta comparativa.
 Podeu veure'n més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].
 Podeu seguir [$1 veient aquesta comparativa] si així ho desitgeu.",
 'rev-deleted-diff-view' => "S'ha '''suprimit'' una de les revisions d'aquesta comparativa.
 Podeu veure aquesta comparativa; poden haver-hi més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborraments].",
-'rev-suppressed-diff-view' => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
-Podeu veure aquesta comparativa; pot haver-hi més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].",
+'rev-suppressed-diff-view' => "S'ha '''suprimit'' una de les revisions d'aquesta comparativa.
+Vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].",
 'rev-delundel' => 'mostra/amaga',
 'rev-showdeleted' => 'mostra',
 'revisiondelete' => 'Esborrar/restaurar revisions',
@@ -1714,7 +1714,7 @@ Si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers.
 Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
-'file-deleted-duplicate' => "Un fitxer idèntic a aquest ([[:$1]]) ha estat esborrat amb anterioritat. Hauríeu de comprovar el registre d'esborrat del fitxer abans de tornar-lo a carregar.",
+'file-deleted-duplicate' => "S'ha suprimit anteriorment un fitxer idèntic a aquest ([[:$1]]). Hauríeu de comprovar el registre de supressions del fitxer abans de tornar-lo a carregar.",
 'uploadwarning' => 'Avís de càrrega',
 'uploadwarning-text' => 'Modifiqueu la descripció de la imatge i torneu a intentar-ho.',
 'savefile' => 'Desa el fitxer',
@@ -2245,7 +2245,7 @@ L'adreça electrònica que vau indicar a [[Special:Preferences|les vostres prefe
 'watchnologintext' => "Heu d'[[Special:UserLogin|entrar]]
 per modificar el vostre llistat de seguiment.",
 'addwatch' => 'Afegeix a llista de seguiment',
-'addedwatchtext' => 'La pàgina "[[:$1]]" ha estat afegida a la vostra [[Special:Watchlist|llista de seguiment]].
+'addedwatchtext' => 'S\'ha afegit la pàgina "[[:$1]]" a la vostra [[Special:Watchlist|llista de seguiment]].
 S\'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió.',
 'removewatch' => 'Treu de la llista de seguiment',
 'removedwatchtext' => "S'ha tret la pàgina «[[:$1]]» de la vostra [[Special:Watchlist|llista de seguiment]].",
@@ -2370,7 +2370,7 @@ La darrera modificació l'ha fet l'usuari [[User:$3|$3]] ([[User talk:$3|Discuss
 
 # Edit tokens
 'sessionfailure-title' => 'Error de sessió',
-'sessionfailure' => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
+'sessionfailure' => "S'ha produït un error amb la vostra sessió. S'ha anul·lat aquesta acció en prevenció de pirateig de sessió. Premeu «Torna», recarregueu la pàgina des d'on veniu i torneu-ho a intentar.",
 
 # Protect
 'protectlogpage' => 'Registre de protecció',
@@ -2630,7 +2630,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'change-blocklink' => 'canvia el blocatge',
 'contribslink' => 'contribucions',
 'emaillink' => 'correu electrònic',
-'autoblocker' => "Heu estat blocat automàticament perquè la vostra adreça IP ha estat recentment utilitzada per l'usuari ''[[User:$1|$1]]''.
+'autoblocker' => "Se us ha blocat automàticament perquè la vostra adreça IP ha estat recentment utilitzada per l'usuari ''[[User:$1|$1]]''.
 El motiu del bloqueig de $1 és: ''$2''.",
 'blocklogpage' => 'Registre de bloquejos',
 'blocklog-showlog' => "S'ha blocat aquest usuari prèviament.

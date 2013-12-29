@@ -374,7 +374,7 @@ $messages = array(
 'createaccounterror' => 'И аккаунт туькӀуьриз мумкин ттуш: $1',
 'loginsuccesstitle' => 'Агалкьунралди гьахьун',
 'wrongpasswordempty' => 'Тавакъу ийида, ичӀи тушир парол ттур.',
-'mailmypassword' => 'ЦӀийи парол э-мейлдиз къачун',
+'mailmypassword' => 'Парол алудна гадрун',
 'mailerror' => 'Чар ракъурунин гъалатӀ: $1',
 'emailconfirmlink' => 'Куь электрон почтунин адрес тестикьун.',
 'accountcreated' => 'Аккаунт туькӀуьрнава',
@@ -1026,7 +1026,7 @@ $messages = array(
 'contributions-title' => '$1 уртахди кутур крар',
 'mycontris' => 'Кутур кар',
 'contribsub2' => '($1)-ин кутур пай  ($2)',
-'uctop' => '(вини кьил)',
+'uctop' => 'алай',
 'month' => ' Вацралай (ва адалай вилик)',
 'year' => 'Иисалай (ва адалай вилик):',
 
