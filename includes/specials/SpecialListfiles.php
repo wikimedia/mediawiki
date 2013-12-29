@@ -33,6 +33,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$userName = $par;
 			$search = '';
+			$showAll = false;
 		} else {
 			$userName = $this->getRequest()->getText( 'user', $par );
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
