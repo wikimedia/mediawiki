@@ -326,8 +326,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
-			'title' => "Which category to enumerate (required). Must include ' .
-				'Category: prefix. Cannot be used together with {$p}pageid",
+			'title' => "Which category to enumerate (required). Must include " .
+				"'Category:' prefix. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the category to enumerate. Cannot be used together with {$p}title",
 			'prop' => array(
 				'What pieces of information to include',
@@ -347,13 +347,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
 			'startsortkey' => "Sortkey to start listing from. Must be given in ' .
 				'binary format. Can only be used with {$p}sort=sortkey",
-			'endsortkey' => "Sortkey to end listing at. Must be given in binary ' .
-				'format. Can only be used with {$p}sort=sortkey",
-			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can ' .
-				'only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
-			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, ' .
-				'if this value occurs it will not be included!). Can only be used with ' .
-				'{$p}sort=sortkey. Overrides {$p}endsortkey",
+			'endsortkey' => "Sortkey to end listing at. Must be given in binary " .
+				"format. Can only be used with {$p}sort=sortkey",
+			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can " .
+				"only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
+			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, " .
+				"if this value occurs it will not be included!). Can only be used with " .
+				"{$p}sort=sortkey. Overrides {$p}endsortkey",
 			'continue' => 'For large categories, give the value returned from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
