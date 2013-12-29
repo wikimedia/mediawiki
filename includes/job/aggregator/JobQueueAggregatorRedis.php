@@ -104,9 +104,10 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 				}
 			} else { // cache miss
 				// Avoid duplicated effort
+				$rand = wfRandomString( 32 );
 				$conn->multi( Redis::MULTI );
-				$conn->setnx( $this->getReadyQueueKey() . ":lock", 1 );
-				$conn->expire( $this->getReadyQueueKey() . ":lock", 3600 );
+				$conn->setex( "{$rand}:lock", 3600, 1 );
+				$conn->renamenx( "{$rand}:lock", $this->getReadyQueueKey() . ":lock" );
 				if ( $conn->exec() !== array( true, true ) ) { // lock
 					return array(); // already in progress
 				}
