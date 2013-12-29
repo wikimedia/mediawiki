@@ -848,6 +848,7 @@ return array(
 		'styles' => 'resources/mediawiki.action/mediawiki.action.edit.collapsibleFooter.css',
 		'dependencies' => array(
 			'jquery.makeCollapsible',
+			'jquery.cookie',
 			'mediawiki.icon',
 		),
 	),
