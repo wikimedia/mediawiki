@@ -91,7 +91,7 @@ class RunJobs extends Maintenance {
 				$blacklist = array_keys( $backoffs );
 				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags, $blacklist );
 			} else {
-				$group->pop( $type ); // job from a single queue
+				$job = $group->pop( $type ); // job from a single queue
 			}
 			if ( $job ) { // found a job
 				++$jobsRun;
