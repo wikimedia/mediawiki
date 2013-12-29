@@ -46,10 +46,12 @@ abstract class LBFactory {
 	 * @return LBFactory
 	 */
 	static function &singleton() {
-		if ( is_null( self::$instance ) ) {
-			$LBFactoryConf = self::getLBFactoryClass();
+		global $wgLBFactoryConf;
 
-			self::$instance = new $LBFactoryConf[0]( $LBFactoryConf[1] );
+		if ( is_null( self::$instance ) ) {
+			$class = self::getLBFactoryClass( $wgLBFactoryConf );
+
+			self::$instance = new $class( $wgLBFactoryConf );
 		}
 
 		return self::$instance;
@@ -58,11 +60,11 @@ abstract class LBFactory {
 	/**
 	 * Returns the LBFactory class to use and the load balancer configuration.
 	 *
-	 * @return array ( factory class, $wgLBFactoryConf )
+	 * @param array $config (e.g. $wgLBFactoryConf)
+	 *
+	 * @return string class name
 	 */
-	static function getLBFactoryClass() {
-		global $wgLBFactoryConf;
-
+	public static function getLBFactoryClass( array $config ) {
 		// For configuration backward compatibility after removing
 		// underscores from class names in MediaWiki 1.23.
 		$bcClasses = array(
@@ -72,9 +74,9 @@ abstract class LBFactory {
 			'LBFactory_Fake' => 'LBFactoryFake',
 		);
 
-		$class = $wgLBFactoryConf['class'];
+		$class = $config['class'];
 
-		if ( in_array( $class, array_keys( $bcClasses ) ) ) {
+		if ( isset( $bcClasses[$class] ) ) {
 			$class = $bcClasses[$class];
 			wfDeprecated(
 				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
@@ -82,7 +84,7 @@ abstract class LBFactory {
 			);
 		}
 
-		return array( $class, $wgLBFactoryConf );
+		return $class;
 	}
 
 	/**
