@@ -374,6 +374,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			return $retval;
 		}
+
 		switch ( $type ) {
 			case 'edit':
 				return RC_EDIT;
@@ -383,6 +384,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				return RC_LOG;
 			case 'external':
 				return RC_EXTERNAL;
+			default:
+				ApiBase::dieDebug( __METHOD__, "Unknown type '$type'" );
 		}
 	}
 
