@@ -28,10 +28,7 @@
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
-
-	/**
-	 * @var UploadBase
-	 */
+	/** @var UploadBase */
 	protected $mUpload = null;
 
 	protected $mParams;
