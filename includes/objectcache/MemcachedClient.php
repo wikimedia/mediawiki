@@ -729,7 +729,7 @@ class MWMemcached {
 	 * @access  private
 	 */
 	function _connect_sock( &$sock, $host ) {
-		list( $ip, $port ) = explode( ':', $host );
+		list( $ip, $port ) = preg_split('/:(?=\d)/' , $host );
 		$sock = false;
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
