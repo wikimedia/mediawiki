@@ -82,16 +82,54 @@ production.
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
   repo.
-* EditPage::spamPage() was deprecated since 1.17 and has been removed.
 * action=parse&prop=languageshtml was deprecated in 1.18 and will be removed in
   MediaWiki 1.24.
 * action=parse now has disabletoc flag to disable table of contents in output.
-* SpecialRecentChanges::feedSetup() was removed.
 * (bug 25702) list=allcategories, list=allimages, list=alllinks, list=allpages,
   list=deletedrevs and list=filearchive did not handle case-sensitivity
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
+
+=== Languages updated in 1.23 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* Support was added for Northern Luri (lrc)
+
+=== Other changes in 1.23 ===
+* The rc_type field in the recentchanges table has been superseded by a new
+  rc_source field.  The rc_source field is a string representation of the
+  change type where rc_type was a numeric constant.  This field is not yet
+  queried but will be in a future point release of 1.22.
+** Utilize update.php to create and populate this new field.  On larger wiki's
+   which do not wish to update recentchanges table in one large update please
+   review the sql and comments in maintenance/archives/patch-rc_source.sql.
+** The rc_type field of recentchanges will be deprecated in a future point
+   release.
+* The global variable $wgArticle has been removed after a lengthy deprecation.
+* The global functions addButton and insertTags (for mw.toolbar.addButton and
+  mw.toolbar.insertTags) now emits mw.log.warn when accessed.
+* User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
+* The ExpandTemplates extension has been moved into MediaWiki core.
+* (bug 52812) Removed "Disable search suggestions" from Preference.
+* (bug 52809) Removed "Disable browser page caching" from Preference.
+* Three new modules intended for use by custom skins were added:
+  'skins.common.elements', 'skins.common.content', and 'skins.common.interface',
+  representing three levels of standard MediaWiki styling. Previously skin
+  creators wishing to use them had to refer to the file names of appropriate
+  files directly, which is now discouraged.
+* The modules 'skins.vector' and 'skins.monobook' have been renamed to
+  'skins.vector.styles' and 'skins.monobook.styles', respectively,
+  and their definition was changed not to include the common*.css files;
+  the two skins now load the 'skins.common.interface' module instead.
+* A page_links_updated field has been added to the page table.
+* SpecialPage::getTitle has been deprecated in favor of
+  SpecialPage::getPageTitle.
+* EditPage::spamPage() was deprecated since 1.17 and has been removed.
+* SpecialRecentChanges::feedSetup() was removed.
 * Removed classes:
   - TitleDependency
   - TitleListDependency
@@ -137,44 +175,6 @@ production.
   - WikiPage::quickEdit() (deprecated in 1.18)
   - WikiPage::useParserCache() (deprecated in 1.18)
   - WikiPage::viewUpdates() (deprecated in 1.18)
-
-=== Languages updated in 1.23 ===
-
-MediaWiki supports over 350 languages. Many localisations are updated
-regularly. Below only new and removed languages are listed, as well as
-changes to languages because of Bugzilla reports.
-
-* Support was added for Northern Luri (lrc)
-
-=== Other changes in 1.23 ===
-* The rc_type field in the recentchanges table has been superseded by a new
-  rc_source field.  The rc_source field is a string representation of the
-  change type where rc_type was a numeric constant.  This field is not yet
-  queried but will be in a future point release of 1.22.
-** Utilize update.php to create and populate this new field.  On larger wiki's
-   which do not wish to update recentchanges table in one large update please
-   review the sql and comments in maintenance/archives/patch-rc_source.sql.
-** The rc_type field of recentchanges will be deprecated in a future point
-   release.
-* The global variable $wgArticle has been removed after a lengthy deprecation.
-* The global functions addButton and insertTags (for mw.toolbar.addButton and
-  mw.toolbar.insertTags) now emits mw.log.warn when accessed.
-* User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
-* The ExpandTemplates extension has been moved into MediaWiki core.
-* (bug 52812) Removed "Disable search suggestions" from Preference.
-* (bug 52809) Removed "Disable browser page caching" from Preference.
-* Three new modules intended for use by custom skins were added:
-  'skins.common.elements', 'skins.common.content', and 'skins.common.interface',
-  representing three levels of standard MediaWiki styling. Previously skin
-  creators wishing to use them had to refer to the file names of appropriate
-  files directly, which is now discouraged.
-* The modules 'skins.vector' and 'skins.monobook' have been renamed to
-  'skins.vector.styles' and 'skins.monobook.styles', respectively,
-  and their definition was changed not to include the common*.css files;
-  the two skins now load the 'skins.common.interface' module instead.
-* A page_links_updated field has been added to the page table.
-* SpecialPage::getTitle has been deprecated in favor of
-  SpecialPage::getPageTitle.
 
 == Compatibility ==
 
