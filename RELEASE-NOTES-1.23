@@ -76,6 +76,7 @@ production.
 * (bug 37812) ResourceLoader will notice when a module's definition changes and
   recompile it accordingly.
 * (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds.
+* (bug 57874) Special:Contributions RSS has 1 more than limit.
 
 === API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
