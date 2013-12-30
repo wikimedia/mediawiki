@@ -27,8 +27,7 @@
  */
 class ParserCache {
 	private $mMemc;
-	const try116cache = false; /* Only useful $wgParserCacheExpireTime after updating to 1.17 */
-
+	
 	/**
 	 * Get an instance of this object
 	 *
@@ -146,7 +145,7 @@ class ParserCache {
 			$usedOptions = $optionsKey->mUsedOptions;
 			wfDebug( "Parser cache options found.\n" );
 		} else {
-			if ( !$useOutdated && !self::try116cache ) {
+			if ( !$useOutdated ) {
 				return false;
 			}
 			$usedOptions = ParserOptions::legacyOptions();
@@ -186,12 +185,6 @@ class ParserCache {
 		}
 
 		$value = $this->mMemc->get( $parserOutputKey );
-		if ( self::try116cache && !$value && strpos( $value, '*' ) !== -1 ) {
-			wfDebug( "New format parser cache miss.\n" );
-			$parserOutputKey = $this->getParserOutputKey( $article,
-				$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) );
-			$value = $this->mMemc->get( $parserOutputKey );
-		}
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			wfIncrStats( "pcache_miss_absent" );
