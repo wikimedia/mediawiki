@@ -1232,7 +1232,10 @@ class LCStoreDB implements LCStore {
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
 class LCStoreCDB implements LCStore {
+	/** @var CdbReader[] */
 	private $readers;
+
+	/** @var CdbWriterDBA|CdbWriterPHP */
 	private $writer;
 	private $currentLang;
 	private $directory;

@@ -3079,8 +3079,6 @@ class Parser {
 	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
-	 * @private
-	 *
 	 * @return PPNode
 	 */
 	function preprocessToDom( $text, $flags = 0 ) {

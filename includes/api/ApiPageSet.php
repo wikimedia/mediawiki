@@ -308,7 +308,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * All Title objects provided.
-	 * @return array of Title objects
+	 * @return Title[]
 	 */
 	public function getTitles() {
 		return $this->mTitles;
@@ -324,7 +324,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects that were found in the database.
-	 * @return array page_id (int) => Title (obj)
+	 * @return Title[] Array page_id (int) => Title (obj)
 	 */
 	public function getGoodTitles() {
 		return $this->mGoodTitles;
@@ -341,7 +341,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Title objects that were NOT found in the database.
 	 * The array's index will be negative for each item
-	 * @return array of Title objects
+	 * @return Title[]
 	 */
 	public function getMissingTitles() {
 		return $this->mMissingTitles;
@@ -350,7 +350,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
-	 * @return array of strings (not Title objects)
+	 * @return string[] Array of strings (not Title objects)
 	 */
 	public function getInvalidTitles() {
 		return $this->mInvalidTitles;

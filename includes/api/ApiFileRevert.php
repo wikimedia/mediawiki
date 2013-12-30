@@ -46,6 +46,7 @@ class ApiFileRevert extends ApiBase {
 		$this->checkPermissions( $this->getUser() );
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
+		/** @var Status $status */
 		$status = $this->file->upload(
 			$sourceUrl,
 			$this->params['comment'],
