@@ -580,6 +580,10 @@ See also:
 'view' => 'The default text of the "View" or "Read" (Vector) views tab which represents the basic view for the page. Should be in the infinitive mood.
 
 {{Identical|View}}',
+'view-foreign' => 'The text on the tab that sends people to the "master copy" of the file at the foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.
+
+Parameters:
+* $1 - the name of the shared repository. On Wikimedia sites, $1 is {{msg-mw|Shared-repo-name-shared}}. The default value for $1 is {{msg-mw|Shared-repo}}.',
 'edit' => 'The text of the tab going to the edit form. When the page is protected, you will see {{msg-mw|Viewsource}}. Should be in the infinitive mood.
 
 See also:
@@ -587,9 +591,19 @@ See also:
 * {{msg-mw|Accesskey-ca-edit}}
 * {{msg-mw|Tooltip-ca-edit}}
 {{Identical|Edit}}',
-'create' => 'The text on the tab of the edit form on unexisting pages starts editing them.
+'edit-local' => 'The text on the tab going to the edit form for the local description page of a file from a foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.
+
+See also:
+* {{msg-mw|Edit}}
+* {{msg-mw|Create-local}}',
+'create' => 'The text on the tab of the edit form on unexisting pages starts editing them. Should be in the infinitive mood.
 
 {{Identical|Create}}',
+'create-local' => 'The text on the tab going to the creation form for the (not yet existing) local description page of a file from a foreign file repository (e.g. Wikimedia Commons). Should be in the infinitive mood.
+
+See also:
+* {{msg-mw|Create}}
+* {{msg-mw|Edit-local}}',
 'editthispage' => 'This is the "edit" link as used in the Cologne Blue skin, at the bottom of the page.
 
 See {{msg-mw|Create-this-page}} for when the page does not exist.
