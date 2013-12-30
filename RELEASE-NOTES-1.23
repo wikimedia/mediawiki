@@ -124,6 +124,8 @@ production.
 * All API modules now support an assert parameter. See the new features section
   for more details.
 * Added prop=contributors to fetch the list of contributors to the page.
+* prop=redirects is added, to return redirects to the pages in the query.
+* list=allredirects is added, to list all redirects pointing to a namespace.
 
 === Languages updated in 1.23 ===
 
