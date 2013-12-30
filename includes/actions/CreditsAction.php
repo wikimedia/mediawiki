@@ -80,10 +80,10 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get the last author with the last modification time
-	 * @param WikiPage $page
+	 * @param Page $page
 	 * @return String HTML
 	 */
-	protected function getAuthor( WikiPage $page ) {
+	protected function getAuthor( Page $page ) {
 		$user = User::newFromName( $page->getUserText(), false );
 
 		$timestamp = $page->getTimestamp();
