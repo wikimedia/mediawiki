@@ -25,6 +25,7 @@
  * @author Dereckson
  * @author Diti
  * @author Dodoïste
+ * @author Dr Brains
  * @author Drongou
  * @author Elfix
  * @author Enzoreg
@@ -2628,7 +2629,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect-norestrictiontypes-title' => 'Page non protégeable',
 'protect-legend' => 'Confirmer la protection',
 'protectcomment' => 'Motif :',
-'protectexpiry' => "Date d'expiration :",
+'protectexpiry' => 'Date d’expiration :',
 'protect_expiry_invalid' => "La date d'expiration est invalide.",
 'protect_expiry_old' => "La date d'expiration est déjà passée.",
 'protect-unchain-permissions' => "Déverrouiller davantage d'options de protection",

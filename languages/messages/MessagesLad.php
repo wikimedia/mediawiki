@@ -10,6 +10,7 @@
  * @author ILVI
  * @author Jewbask
  * @author Maor X
+ * @author Menachem.Moreira
  * @author Remember the dot
  * @author Runningfridgesrule
  * @author Taichi
@@ -189,10 +190,10 @@ $messages = array(
 'tog-extendwatchlist' => 'Anchar mi lista de akavidamiento afín de àmostrar todos los trocamientos, no sólo los muevos',
 'tog-usenewrc' => 'Usar el modo adelantado (JavaScript es menester)',
 'tog-numberheadings' => 'Numerotar otomatika mente los títůlos de los kapítůlos',
-'tog-showtoolbar' => 'Àmostrar el chibuk de aparatos (JavaScript es menester)',
-'tog-editondblclick' => 'Trocar las hojas con doble klik (JavaScript es menester)',
+'tog-showtoolbar' => 'Àmostrar el chibuk de aparatos',
+'tog-editondblclick' => 'Trocar las pajinas con doble klik',
 'tog-editsection' => 'Ofrir la possibilidad de trocar los kapítůlos con el atamiento [trocar]',
-'tog-editsectiononrightclick' => 'Pueder trocar los kapítůlos, en pizando el botón derecho del ratón encima el títůlo (JavaScript es menester)',
+'tog-editsectiononrightclick' => 'Pueder trocar los kapítůlos, en pizando el botón derecho del ratón encima el títůlo',
 'tog-showtoc' => 'Àmostrar el cuadro de contènidos (para las hojas que tienen más de 3 títůlos de capítůlo)',
 'tog-rememberpassword' => 'Acordarse de mi entrada en este navigador (a lo más muńcho $1 {{PLURAL:$1|día|días}})',
 'tog-watchcreations' => 'Akavidar las hojas que crîo',
@@ -209,7 +210,7 @@ $messages = array(
 'tog-shownumberswatching' => 'Àmostrar el kadhar de usadores que están akavidando las hojas',
 'tog-oldsig' => 'La firma presente',
 'tog-fancysig' => 'Tratar la firma como un vikiteksto (sin un atamiento otomatiko)',
-'tog-uselivepreview' => 'Usar el "previsteo bivo" (JavaScript es menester) (eksperimental)',
+'tog-uselivepreview' => 'Usar el "previsteo bivo" (eksperimental)',
 'tog-forceeditsummary' => 'Avizarme cuando dexo el somaryo vazío',
 'tog-watchlisthideown' => 'Esconder mis trocamientos en mi lista de akavidamiento',
 'tog-watchlisthidebots' => 'Esconder trocamientos de bot en mi lista de akavidamiento',
@@ -248,10 +249,10 @@ $messages = array(
 'thu' => 'Juğ',
 'fri' => 'Vie',
 'sat' => 'Shab',
-'january' => 'Enero',
+'january' => 'Jenero',
 'february' => 'Hevrero',
 'march' => 'Março',
-'april' => 'Abril',
+'april' => 'Avril',
 'may_long' => 'Mayo',
 'june' => 'Juño',
 'july' => 'Jullo',
@@ -284,6 +285,18 @@ $messages = array(
 'oct' => 'Och',
 'nov' => 'Nov',
 'dec' => 'Dez',
+'january-date' => 'Jenero $1',
+'february-date' => 'Fevrero $1',
+'march-date' => 'Marso $1',
+'april-date' => 'Avril $1',
+'may-date' => 'Mayo $1',
+'june-date' => 'Junio $1',
+'july-date' => 'Djulio $1',
+'august-date' => 'Agosto $1',
+'september-date' => 'Sietembre $1',
+'october-date' => 'Oktubre $1',
+'november-date' => 'Noviembre $1',
+'december-date' => 'Disiembre $1',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kateggoría|Kateggorías}}',
@@ -309,7 +322,7 @@ $messages = array(
 'newwindow' => '(Se avre en una mueva ventana)',
 'cancel' => 'Anular',
 'moredotdotdot' => 'Más...',
-'mypage' => 'Mi hoja',
+'mypage' => 'Pajina',
 'mytalk' => 'Mi diskusyon',
 'anontalk' => 'Diskusyón para este adresso de IP',
 'navigation' => 'Navigación',
@@ -378,7 +391,7 @@ $messages = array(
 'articlepage' => 'Ver el artícůlo de contenido',
 'talk' => 'Diskusyón',
 'views' => 'Vistas',
-'toolbox' => 'Cuadro de aparates',
+'toolbox' => 'Aparatos',
 'userpage' => 'Ver la hoja del usador',
 'projectpage' => 'Ver la hoja del projeto',
 'imagepage' => 'Ver la hoja de la dosya',
@@ -439,7 +452,7 @@ $messages = array(
 'red-link-title' => '$1 (la hoja no egziste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Hoja',
+'nstab-main' => 'Pajina',
 'nstab-user' => 'Hoja de empleador',
 'nstab-media' => 'Hoja de Meddia',
 'nstab-special' => 'Hoja especial',
@@ -471,6 +484,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'viewsource' => 'Ver su manadero',
 
 # Login and logout pages
+'welcomeuser' => 'Bienvinidos, $1',
 'yourname' => 'Su nombre de usuario',
 'yourpassword' => 'Parola',
 'yourpasswordagain' => 'Entra de muevo la parola',
@@ -509,6 +523,7 @@ Si puede ser, escoge un otro nombre.',
 'passwordreset-email' => 'Adresso de letral:',
 
 # Special:ChangeEmail
+'changeemail-none' => '(dinguno)',
 'changeemail-submit' => 'Trocar letral',
 'changeemail-cancel' => 'Anular',
 
@@ -584,6 +599,9 @@ Kale ke penses si es menesterozo editar esta oja.
 El enrejistro de efassado i taxireado para esta oja puede ser meldado aki:",
 'moveddeleted-notice' => "Esta ója fue efassada.
 El ''log'' de efassado i taxireado de la ója es amostrado abasho para dar referensia.",
+
+# Content models
+'content-model-wikitext' => 'vikiteksto',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Avizo:''' La contenencia de xablon está muy grande.
@@ -702,15 +720,22 @@ Leyenda: (act) = diferencias con la versión actual,
 'timezoneregion-america' => 'América',
 'timezoneregion-antarctica' => 'Antárctica',
 'timezoneregion-asia' => 'Asia',
+'timezoneregion-atlantic' => 'Oseano Atlantiko',
 'timezoneregion-australia' => 'Ostralia',
 'timezoneregion-europe' => 'Europa',
+'timezoneregion-indian' => 'Oseano Indiko',
+'timezoneregion-pacific' => 'Oseano Pasifiko',
+'prefs-searchoptions' => 'Bushkar',
 'prefs-files' => 'Dosyas',
-'youremail' => 'El adderesso de tu letra electrόnica:',
-'username' => 'Nombre de usuario:',
+'youremail' => 'Korreo elektroniko:',
+'username' => '{{{{GENDER:$1|Nombre de usuario}}:',
 'yourrealname' => 'Nombre verdadero:',
-'yourlanguage' => 'Lingua:',
+'yourlanguage' => 'Lengua:',
 'yournick' => 'Firma mueva:',
-'email' => 'Letral',
+'gender-unknown' => 'Prefiero no dezir',
+'gender-male' => 'El redakto pajinas de viki',
+'gender-female' => 'Eya redakto pajinas de viki',
+'email' => 'Korreo elektroniko',
 'prefs-help-email' => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
 'prefs-help-email-others' => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
 'prefs-signature' => 'Firma',
@@ -724,6 +749,8 @@ Leyenda: (act) = diferencias con la versión actual,
 
 # Rights
 'right-edit' => 'Trocar las hojas',
+'right-createpage' => 'Krear pajinas (ke no son pajinas de diskusyon)',
+'right-createtalk' => 'Krear pajinas de diskusyon',
 'right-minoredit' => 'Marcar trocamientos como "chiquiticos"',
 'right-delete' => 'Efassar hojas',
 
@@ -737,10 +764,12 @@ Leyenda: (act) = diferencias con la versión actual,
 'action-read' => 'meldar esta hoja',
 'action-edit' => 'trocar esta hoja',
 'action-createpage' => 'crear hojas',
+'action-createtalk' => 'Krear pajinas de diskusyon',
 'action-delete' => 'efassar esta hoja',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
+'enhancedrc-history' => 'istoria',
 'recentchanges' => 'Trocamientos freskos',
 'recentchanges-legend' => 'Opciones encima de los trocamientos frescos',
 'recentchanges-summary' => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
@@ -765,7 +794,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'minoreditletter' => 'ch',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
-'rc-enhanced-expand' => 'Mostra los detalyos (cale JavaScript)',
+'rc-enhanced-expand' => 'Mostra los detalyos',
 'rc-enhanced-hide' => 'Guarda los detalyos',
 
 # Recent changes linked
@@ -791,6 +820,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'listfiles_name' => 'Nombre',
 'listfiles_user' => 'Usuario',
 'listfiles_size' => 'Boy',
+'listfiles-latestversion-yes' => 'Si',
 
 # File description page
 'file-anchor-link' => 'Archivo',
@@ -813,11 +843,19 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 La descripción en su [$2 hoja de descripción del arxivo] está amostrada debaxo.',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este arxivo',
 
+# MIME search
+'download' => 'deskargar',
+
 # Random page
 'randompage' => 'Hoja por asardo',
 
 # Statistics
 'statistics' => 'Estatísticas',
+'statistics-pages' => 'Pajinas',
+
+'brokenredirects-edit' => 'trocar',
+
+'withoutinterwiki-submit' => 'Amostrar',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|baytes}}',
@@ -825,6 +863,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'prefixindex' => 'Todas las hojas con prefixo',
 'usercreated' => '{{GENDER:$3|Enrejistrado|Enrejistrada}} el $1 a las $2',
 'newpages' => 'Hojas muevas',
+'newpages-username' => 'Nombre de usuario:',
 'ancientpages' => 'Artikolos mas viejos',
 'move' => 'taxirea',
 'movethispage' => 'Tashirea esta hoja',
@@ -857,6 +896,9 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Special:LinkSearch
 'linksearch' => 'Linkes eksternos',
 'linksearch-line' => 'Atamiento para $1 en la ója $2',
+
+# Special:ListUsers
+'listusers-submit' => 'Amostrar',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ver los miembros de este grupo)',
@@ -932,6 +974,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 # Undelete
 'undeletelink' => 've/trae atrás',
 'undeleteviewlink' => 've',
+'undelete-show-file-submit' => 'Si',
 
 # Namespace form on various pages
 'namespace' => 'Espacio de nombres:',
@@ -942,7 +985,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'contributions' => 'Ajustamientos {{GENDER:$1|del usador|de la usadora}}',
 'contributions-title' => 'Ajustamientos {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris' => 'Mis dados',
-'contribsub2' => '$1 ($2)',
+'contribsub2' => 'Para {{{{GENDER:$3|$1}}($2)',
 'uctop' => '(última modificación)',
 'month' => 'Desde el mes (i antes):',
 'year' => 'Desde el año (i antes):',
@@ -1093,6 +1136,10 @@ Puedes ver su manadero',
 # Attribution
 'anonymous' => '{{PLURAL:$1|Uzuario anonimo|Uzuarios anonimos}} de {{SITENAME}}',
 
+# Info page
+'pageinfo-contentpage-yes' => 'Si',
+'pageinfo-protect-cascading-yes' => 'Si',
+
 # Browsing diffs
 'previousdiff' => '← Trocamiento más antiguo',
 'nextdiff' => 'Edición más nueva →',
@@ -1135,6 +1182,7 @@ Los otros campos se van a guardar por defecto.
 'exif-filesource' => 'Manadéro de archivo',
 'exif-gpstimestamp' => 'Tiémpo GPS (óra atómica)',
 'exif-gpsdatestamp' => 'Dáta GPS',
+'exif-languagecode' => 'Lengua',
 
 'exif-meteringmode-255' => 'Otro',
 
@@ -1171,6 +1219,10 @@ Los otros campos se van a guardar por defecto.
 # action=purge
 'confirm_purge_button' => 'Akseptár',
 
+# action=watch/unwatch
+'confirm-watch-button' => "D'akodro",
+'confirm-unwatch-button' => "D'akodro",
+
 # Multipage image navigation
 'imgmultipageprev' => '← pajina anterior',
 'imgmultipagenext' => 'siguiente pajina →',
@@ -1186,7 +1238,7 @@ Los otros campos se van a guardar por defecto.
 
 # Auto-summaries
 'autoredircomment' => 'Redireksionado a [[$1]]',
-'autosumm-new' => 'Pajina mueva: $1',
+'autosumm-new' => 'Pajina kreado con "$1"',
 
 # Live preview
 'livepreview-loading' => 'Cargando...',
@@ -1228,6 +1280,7 @@ Los otros campos se van a guardar por defecto.
 # Special:Tags
 'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit' => 'Filtro',
+'tags-active-yes' => 'Si',
 'tags-edit' => 'trocar',
 
 # Special:ComparePages
@@ -1239,6 +1292,7 @@ Los otros campos se van a guardar por defecto.
 
 # HTML forms
 'htmlform-selectorother-other' => 'Otro',
+'htmlform-yes' => 'Si',
 
 # New logging system
 'logentry-newusers-autocreate' => 'El cuento $1 fue crîado otomatika mente',
@@ -1247,5 +1301,8 @@ Los otros campos se van a guardar por defecto.
 'feedback-subject' => 'Sujeto',
 'feedback-message' => 'Messaje',
 'feedback-cancel' => 'Anular',
+
+# Special:ExpandTemplates
+'expand_templates_ok' => "D'akodro",
 
 );

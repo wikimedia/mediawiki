@@ -512,7 +512,7 @@ $messages = array(
 'qbpageoptions' => 'Bu sayfa',
 'qbmyoptions' => 'Sayfalarım',
 'faq' => 'SSS',
-'faqpage' => 'Proje: SSS',
+'faqpage' => 'Proje:SSS',
 
 # Vector skin
 'vector-action-addsection' => 'Konu ekle',

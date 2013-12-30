@@ -481,8 +481,8 @@ $1",
 'youhavenewmessages' => 'U het $1 (sien $2).',
 'youhavenewmessagesfromusers' => "U het $1 van {{PLURAL:$3|'n ander gebruiker|$3 gebruikers}} ($2).",
 'youhavenewmessagesmanyusers' => 'U het $1 van baie gebruikers ($2).',
-'newmessageslinkplural' => "{{PLURAL:$1|'n nuwe boodskap|nuwe boodskappe}}",
-'newmessagesdifflinkplural' => 'laaste {{PLURAL:$1|wysiging|wysigings}}',
+'newmessageslinkplural' => "{{PLURAL:$1|'n nuwe boodskap|999=nuwe boodskappe}}",
+'newmessagesdifflinkplural' => 'laaste {{PLURAL:$1|wysiging|999=wysigings}}',
 'youhavenewmessagesmulti' => 'U het nuwe boodskappe op $1',
 'editsection' => 'wysig',
 'editold' => 'wysig',
@@ -534,6 +534,7 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasisfout',
+'databaseerror-text' => "'n Databasisfout het voorgekom. Dit kan op 'n fout in die sagteware dui.",
 'databaseerror-textcl' => "'n Databasis-versoek het gefaal.",
 'databaseerror-query' => 'SQL: $1',
 'databaseerror-function' => 'Funksie: $1',
@@ -572,6 +573,7 @@ Iemand anders het dit moontlik reeds geskrap.',
 'cannotdelete-title' => 'Bladsy "$1" kan nie verwyder word nie',
 'delete-hook-aborted' => "Die wysiging is deur 'n hoek gekanselleer.
 Geen verduideliking is verskaf nie.",
+'no-null-revision' => 'Dit was nie moontlik om \'n nuwe leë weergawe vir bladsy "$1" maak nie',
 'badtitle' => 'Ongeldige titel',
 'badtitletext' => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
@@ -606,7 +608,8 @@ Die rede hiervoor is "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Ongeldige titel met naamruimte "$2" en teks "$3"',
 'invalidtitle-unknownnamespace' => 'Ongeldige titel met onbekende naamruimtenummer $1 en teks "$2"',
 'exception-nologin' => 'Nie aangeteken nie',
-'exception-nologin-text' => 'U moet eers op hierdie wiki aanmeld alvorens u hierdie bladsy kan sien of die handeling kan uitvoer.',
+'exception-nologin-text' => '[[Special:Userlogin|Meld aan]] om hierdie bladsy te wys of om die handeling uit te voer.',
+'exception-nologin-text-manual' => 'U moet $1 om hierdie bladsy te wys of die handeling uit te voer.',
 
 # Virus scanner
 'virus-badscanner' => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
@@ -614,10 +617,9 @@ Die rede hiervoor is "\'\'$3\'\'".',
 'virus-unknownscanner' => 'onbekende antivirus:',
 
 # Login and logout pages
-'logouttext' => "'''U is nou uitgeteken'''
+'logouttext' => "'''U is nou afgemeld'''
 
-U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer as dieselfde of 'n ander gebruiker <span class='plainlinks'>[$1 aanmeld]</span>.
-Dit is moontlik dat sommige bladsye nog sal aandui dat u steeds aangemeld is totdat u u webblaaier se kas skoonmaak.",
+Sommige bladsye kan moontlik nog aandui dat u steeds aangemeld is, totdat u u webblaaier se kas skoonmaak.",
 'welcomeuser' => 'Welkom, $1!',
 'welcomecreation-msg' => 'U gebruiker is geskep.
 Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel nie.',
@@ -654,9 +656,11 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'gotaccount' => "Het u reeds 'n rekening? $1.",
 'gotaccountlink' => 'Meld aan',
 'userlogin-resetlink' => 'U besonderhede vergeet?',
-'userlogin-resetpassword-link' => 'Herstel u wagwoord',
+'userlogin-resetpassword-link' => 'Wagwoord vergeet?',
 'helplogin-url' => 'Help:Aanmelding',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp met aanmelding]]',
+'userlogin-loggedin' => "U is reeds aangemeld as {{GENDER:$1|$1}}.
+Gebruik die onderstaande vorm om as 'n ander gebruiker aan te meld.",
 'userlogin-createanother' => "Skep nog 'n rekening",
 'createacct-join' => 'Verskaf u gegewens hieronder.',
 'createacct-another-join' => 'Sleutel die nuwe rekening se inligting hier onder in:',
@@ -746,6 +750,8 @@ Wag asseblief alvorens u weer probeer.",
 'login-abort-generic' => 'U is nie aangemeld nie. Die prosedure is gestaak.',
 'loginlanguagelabel' => 'Taal: $1',
 'suspicious-userlogout' => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
+'createacct-another-realname-tip' => 'Regte naam is opsioneel.
+As u dit verskaf, sal dit gebruik word om u erkenning vir u werk te gee.',
 
 # Email sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
@@ -762,8 +768,7 @@ Om voort te gaan moet u 'n nuwe wagwoord hier kies:",
 'newpassword' => 'Nuwe wagwoord',
 'retypenew' => 'Tik nuwe wagwoord weer in',
 'resetpass_submit' => 'Stel wagwoord en meld aan',
-'changepassword-success' => 'U wagwoord is suksesvol gewysig!
-Besig om u aan te meld...',
+'changepassword-success' => 'U wagwoord is suksesvol gewysig!',
 'resetpass_forbidden' => 'Wagwoorde kannie gewysig word nie.',
 'resetpass-no-info' => 'U moet ingeteken wees om hierdie bladsy direk te kan gebruik.',
 'resetpass-submit-loggedin' => 'Verander wagwoord',
@@ -776,7 +781,7 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 # Special:PasswordReset
 'passwordreset' => 'Wagwoord herstel',
 'passwordreset-text-one' => 'Voltooi hierdie vorm om u wagwoord te herstel.',
-'passwordreset-text-many' => '{{PLURAL:$1|Vul een van die velde in om u wagwoord te herstel.}}',
+'passwordreset-text-many' => "{{PLURAL:$1|Vul een van die velde in om 'n tydelike wagwoord per e-pos te ontvang.}}",
 'passwordreset-legend' => 'Kry nuwe wagwoord',
 'passwordreset-disabled' => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
 'passwordreset-emaildisabled' => 'E-posfunksies is afgeskakel op hierdie wiki.',

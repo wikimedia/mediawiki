@@ -411,7 +411,7 @@ $messages = array(
 'articlepage' => 'ดูหน้าเนื้อหา',
 'talk' => 'อภิปราย',
 'views' => 'ดู',
-'toolbox' => 'กล่องเครื่องมือ',
+'toolbox' => 'เครื่องมือ',
 'userpage' => 'ดูหน้าผู้ใช้',
 'projectpage' => 'ดูหน้าโครงการ',
 'imagepage' => 'ดูหน้าไฟล์',
@@ -588,7 +588,8 @@ $1',
 'invalidtitle-knownnamespace' => 'ชื่อเรื่องที่มีเนมสเปซ "$2" กับข้อความ "$3" ไม่ถูกต้อง',
 'invalidtitle-unknownnamespace' => 'ชื่อเรื่องที่ไม่ทราบเนมสเปซหมายเลข $1 กับข้อความ "$2" ไม่ถูกต้อง',
 'exception-nologin' => 'ไม่ได้ล็อกอิน',
-'exception-nologin-text' => 'หน้าหรือปฏิบัติการนี้กำหนดให้คุณต้องล็อกอินเข้าสู่วิกินี้ก่อน',
+'exception-nologin-text' => 'โปรด[[Special:Userlogin|ล็อกอิน]]เพื่อสามารถเข้าถึงหน้าหรือปฏิบัติการนี้',
+'exception-nologin-text-manual' => 'โปรด$1เพื่อสามารถเข้าถึงหน้าหรือปฏิบัติการนี้',
 
 # Virus scanner
 'virus-badscanner' => "โครงแบบผิดพลาด: ไม่รู้จักตัวสแกนไวรัส: ''$1''",
@@ -635,7 +636,7 @@ $1',
 'gotaccount' => "มีบัญชีแล้วใช่ไหม '''$1'''",
 'gotaccountlink' => 'ล็อกอิน',
 'userlogin-resetlink' => 'ลืมรายละเอียดล็อกอินของคุณหรือ',
-'userlogin-resetpassword-link' => 'ตั้งรหัสผ่านใหม่',
+'userlogin-resetpassword-link' => 'ลืมรหัสผ่านหรือ',
 'helplogin-url' => 'Help:การล็อกอิน',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|คำอธิบายเรื่องการล็อกอิน]]',
 'userlogin-loggedin' => 'คุณล็อกอินในชื่อ {{GENDER:$1|$1}} แล้ว
@@ -683,7 +684,7 @@ $1',
 'passwordtooshort' => 'รหัสผ่านต้องมีความยาวอย่างน้อย $1 อักขระ',
 'password-name-match' => 'รหัสผ่านต้องต่างจากชื่อผู้ใช้',
 'password-login-forbidden' => 'ห้ามใช้ชื่อผู้ใช้และรหัสผ่านนี้',
-'mailmypassword' => 'อีเมลรหัสผ่านใหม่',
+'mailmypassword' => 'ตั้งรหัสผ่านใหม่',
 'passwordremindertitle' => 'รหัสผ่านชั่วคราวใหม่สำหรับ {{SITENAME}}',
 'passwordremindertext' => 'ผู้ใดผู้หนึ่ง (ซึ่งอาจเป็นคุณ ที่ใช้เลขที่อยู่ไอพี $1) ขอให้ส่งรหัสผ่านใหม่ของ {{SITENAME}} ($4) รหัสผ่านชั่วคราวสำหรับชื่อผู้ใช้ "$2" ถูกสร้างขึ้น และกำหนดเป็น "$3" หากการขอรหัสผ่านใหม่นี้เป็นเจตนาของคุณ คุณจำต้องล็อกอินและเลือกรหัสผ่านใหม่ ณ ขณะนี้ รหัสผ่านชั่วคราวของคุณจะหมดอายุใน $5 วัน
 
@@ -701,7 +702,7 @@ $1',
 จึงส่งผลให้ผู้เข้าชมที่ใช้เลขที่อยู่ไอพีนี้ ไม่สามารถสร้างบัญชีได้อีกในขณะนี้',
 'emailauthenticated' => 'ที่อยู่อีเมลของคุณได้รับการยืนยันเมื่อวันที่ $2 เวลา $3',
 'emailnotauthenticated' => 'ที่อยู่อีเมลของคุณยังไม่ได้รับการยืนยัน 
-ไม่มีการส่งอีเมลสำหรับคุณลักษณะใด ๆ ต่อไปนี้',
+จะไม่มีการส่งอีเมลสำหรับคุณลักษณะใด ๆ ต่อไปนี้',
 'noemailprefs' => 'ระบุที่อยู่อีเมลในการตั้งค่าของคุณเพื่อให้คุณลักษณะเหล่านี้ทำงานได้',
 'emailconfirmlink' => 'ยืนยันที่อยู่อีเมลของคุณ',
 'invalidemailaddress' => 'ไม่สามารถรับที่อยู่อีเมลได้ เพราะดูมีรูปแบบไม่ถูกต้อง
@@ -750,7 +751,7 @@ $1',
 # Special:PasswordReset
 'passwordreset' => 'ตั้งรหัสผ่านใหม่',
 'passwordreset-text-one' => 'กรอกแบบนี้เพื่อตั้งรหัสผ่านใหม่',
-'passwordreset-text-many' => '{{PLURAL:$1|กรอกเขตข้อมูลหนึ่งเพื่อตั้งรหัสผ่านใหม่}}',
+'passwordreset-text-many' => '{{PLURAL:$1|กรอกเขตข้อมูลหนึ่งเพื่อรับรหัสผ่านชั่วคราวทางอีเมล}}',
 'passwordreset-legend' => 'เปลี่ยนรหัสผ่าน',
 'passwordreset-disabled' => 'การตั้งรหัสผ่านใหม่ปิดใช้งานบนวิกินี้',
 'passwordreset-emaildisabled' => 'คุณลักษณะอีเมลถูกปิดใช้งานบนวิกินี้',
@@ -1035,6 +1036,9 @@ $2
 'cantcreateaccount-text' => "การสร้างบัญชีใหม่จากที่อยู่ไอพีนี้ ('''$1''') ถูกระงับโดย [[User:$3|$3]]
 
 เหตุผลที่ $3 ให้ไว้ คือ ''$2''",
+'cantcreateaccount-range-text' => "การสร้างบัญชีจากเลขที่อยู่ไอพีในช่วง '''$1''' ซึ่งรวมเลขที่อยู่ไอพีของคุณ ('''$4''') ถูกบล็อกโดย [[User:$3|$3]] 
+
+เหตุผลที่ $3 ชี้แจง คือ ''$2''",
 
 # History pages
 'viewpagelogs' => 'ดูปูมของหน้านี้',
@@ -1111,20 +1115,20 @@ $2
 'revdelete-text' => "'''รุ่นการปรับปรุงและเหตุการณ์ที่ถูกลบยังปรากฏในประวัติและปูมของหน้า แต่สาธารณะไม่สามารถเข้าถึงเนื้อหาบางส่วนได้'''
 ผู้ดูแลระบบคนอื่นบน {{SITENAME}} ยังสามารถเข้าถึงเนื้อหาที่ถูกซ่อน และสามารถกู้คืนอีกครั้งในลักษณะเดิมเช่นนี้ เว้นแต่จะมีการกำหนดการจำกัดเพิ่มเติม",
 'revdelete-confirm' => 'กรุณายืนยันว่าคุณมีเจตนาลบจริง และเข้าใจผลลัพธ์ และกระทำภายใต้[[{{MediaWiki:Policy-url}}|นโยบาย]]',
-'revdelete-suppress-text' => "การระงับควรใช้ '''เฉพาะ''' กรณีต่อไปนี้:
+'revdelete-suppress-text' => "การระงับควรใช้'''เฉพาะ'''กรณีต่อไปนี้:
 * ข้อมูลที่อาจหมิ่นประมาท
 * ข้อมูลส่วนบุคคลที่ไม่เหมาะสม
 *: ''ที่อยู่บ้านและหมายเลขโทรศัพท์บ้าน, หมายเลขประกันสังคม, ฯลฯ''",
 'revdelete-legend' => 'ตั้งการจำกัดทัศนวิสัย:',
-'revdelete-hide-text' => 'ซ่อนข้อความรุ่น',
+'revdelete-hide-text' => 'ข้อความรุ่น',
 'revdelete-hide-image' => 'ซ่อนเนื้อหาไฟล์',
 'revdelete-hide-name' => 'ซ่อนปฏิบัติการและเป้าหมาย',
-'revdelete-hide-comment' => 'ซ่อนคำอธิบายอย่างย่อ',
-'revdelete-hide-user' => 'ซ่อนชื่อผู้ใช้/เลขที่อยู่ไอพีผู้เขียน',
+'revdelete-hide-comment' => 'คำอธิบายอย่างย่อ',
+'revdelete-hide-user' => 'ชื่อผู้ใช้/เลขที่อยู่ไอพีผู้เขียน',
 'revdelete-hide-restricted' => 'ระงับข้อมูลจากผู้ดูแลระบบเช่นเดียวกับผู้ใช้อื่น',
 'revdelete-radio-same' => '(ไม่เปลี่ยนแปลง)',
-'revdelete-radio-set' => 'ใช่',
-'revdelete-radio-unset' => 'ไม่',
+'revdelete-radio-set' => 'ซ่อน',
+'revdelete-radio-unset' => 'เปิดเผย',
 'revdelete-suppress' => 'ซ่อนข้อมูลจากผู้ดูแลระบบเช่นเดียวกับผู้ใช้อื่น',
 'revdelete-unsuppress' => 'ลบการจำกัดสำหรับรุ่นที่กู้คืน',
 'revdelete-log' => 'เหตุผล:',
@@ -1266,6 +1270,7 @@ $1",
 'preferences' => 'ตั้งค่าส่วนตัว',
 'mypreferences' => 'การตั้งค่า',
 'prefs-edits' => 'จำนวนการแก้ไข:',
+'prefsnologintext2' => 'โปรด$1เพื่อเปลี่ยนการตั้งค่าของคุณ',
 'prefs-skin' => 'หน้าตา',
 'skin-preview' => 'แสดงตัวอย่าง',
 'datedefault' => 'ค่าตั้งต้น',
@@ -1560,12 +1565,13 @@ $1",
 'recentchanges-label-bot' => 'การแก้ไขนี้กระทำโดยบอต',
 'recentchanges-label-unpatrolled' => 'การแก้ไขนี้ยังไม่ได้ตรวจสอบ',
 'recentchanges-label-plusminus' => 'ขนาดของหน้าเปลี่ยนไปด้วยจำนวนไบต์เท่านี้',
+'recentchanges-legend-heading' => "'''คำอธิบายสัญลักษณ์:'''",
 'recentchanges-legend-newpage' => '(ดูเพิ่มที่[[Special:NewPages|รายชื่อหน้าใหม่]])',
 'rcnotefrom' => "ด้านล่างเป็นการเปลี่ยนแปลงตั้งแต่ '''$2''' (มากสุด '''$1''' รายการ)",
 'rclistfrom' => 'แสดงการเปลี่ยนแปลงใหม่เริ่มตั้งแต่ $1',
 'rcshowhideminor' => '$1การแก้ไขเล็กน้อย',
 'rcshowhidebots' => '$1บอต',
-'rcshowhideliu' => '$1ผู้ใช้ล็อกอิน',
+'rcshowhideliu' => '$1ผู้ใช้ลงทะเบียน',
 'rcshowhideanons' => '$1ผู้ใช้นิรนาม',
 'rcshowhidepatr' => '$1การแก้ไขที่ตรวจสอบแล้ว',
 'rcshowhidemine' => '$1การแก้ไขของฉัน',
@@ -3034,7 +3040,7 @@ $1',
 'file-nohires' => 'ไม่มีความละเอียดสูงกว่านี้',
 'svg-long-desc' => 'ไฟล์ SVG, $1 × $2 พิกเซล พอเป็นพิธี, ขนาดไฟล์: $3',
 'svg-long-error' => 'ไฟล์ SVG ไม่ถูกต้อง: $1',
-'show-big-image' => 'ความละเอียดสูงสุด',
+'show-big-image' => 'ไฟล์ต้นฉบับ',
 'show-big-image-other' => 'อื่นๆ {{PLURAL:$2|resolution|resolutions}}: $1.',
 'show-big-image-size' => '$1 × $2 พิกเซล',
 'file-info-gif-looped' => 'วนซ้ำ',
@@ -3489,6 +3495,9 @@ $5
 'confirm-unwatch-button' => 'ตกลง',
 'confirm-unwatch-top' => 'ลบหน้านี้ออกจากรายการเฝ้าดูของคุณ',
 
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
+
 # Multipage image navigation
 'imgmultipageprev' => '← หน้าก่อนหน้า',
 'imgmultipagenext' => 'หน้าถัดไป →',
@@ -3610,13 +3619,14 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath เส้นทางสคริปต์]',
 
 # Special:Redirect
-'redirect' => 'การเปลี่ยนทางตามชื่อไฟล์ รหัสประจำผู้ใช้หรือรุ่น',
+'redirect' => 'การเปลี่ยนทางตามชื่อไฟล์ รหัสประจำผู้ใช้ หน้าหรือรุ่น',
 'redirect-legend' => 'การเปลี่ยนทางไปยังไฟล์หรือหน้า',
 'redirect-summary' => 'หน้าพิเศษนี้เปลี่ยนทางไปยังไฟล์ (ระบุเป็นชื่อไฟล์) หน้า (ระบุเป็นรหัสรุ่น) หรือหน้าผู้ใช้ (ระบุเป็นรหัสผู้ใช้)',
 'redirect-submit' => 'ไป',
 'redirect-lookup' => 'ค้นดู:',
 'redirect-value' => 'ค่า:',
 'redirect-user' => 'รหัสผู้ใช้',
+'redirect-page' => 'รหัสประจำหน้า',
 'redirect-revision' => 'รุ่นหน้า',
 'redirect-file' => 'ชื่อไฟล์',
 'redirect-not-exists' => 'ไม่พบค่า',
@@ -3634,6 +3644,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'หน้าพิเศษ',
+'specialpages-note-top' => 'คำอธิบายสัญลักษณ์',
 'specialpages-note' => '* หน้าพิเศษปกติ
 * <span class="mw-specialpagerestricted">หน้าพิเศษที่ถูกจำกัด</span>',
 'specialpages-group-maintenance' => 'รายงานการเก็บกวาด',
@@ -3673,7 +3684,10 @@ $5
 'tags-tag' => 'ชื่อป้ายกำกับ',
 'tags-display-header' => 'สิ่งที่แสดงในรายการการเปลี่ยนแปลง',
 'tags-description-header' => 'คำอธิบายความหมายโดยละเอียด',
+'tags-active-header' => 'เปิดใช้งานหรือไม่',
 'tags-hitcount-header' => 'การเปลี่ยนแปลงที่มีป้ายนี้กำกับ',
+'tags-active-yes' => 'ใช่',
+'tags-active-no' => 'ไม่',
 'tags-edit' => 'แก้ไข',
 'tags-hitcount' => '$1 การเปลี่ยนแปลง',
 
@@ -3693,6 +3707,7 @@ $5
 'dberr-problems' => 'ขออภัย เว็บไซต์นี้กำลังพบกับข้อผิดพลาดทางเทคนิค',
 'dberr-again' => 'กรุณารอสักครู่แล้วจึงโหลดใหม่',
 'dberr-info' => '(ไม่สามารถติดต่อเซิร์ฟเวอร์ฐานข้อมูลได้: $1)',
+'dberr-info-hidden' => '(ไม่สามารถติดต่อเซิร์ฟเวอร์ฐานข้อมูล)',
 'dberr-usegoogle' => 'คุณสามารถลองสืบค้นผ่านกูเกิลในระหว่างนี้',
 'dberr-outofdate' => 'โปรดทราบว่าดัชนีเนื้อหาของเราในกูเกิลอาจล้าสมัยแล้ว',
 'dberr-cachederror' => 'นี่คือข้อมูลคัดลอกชั่วคราวของหน้าที่ร้องขอ และอาจไม่เป็นปัจจุบัน',
@@ -3710,6 +3725,7 @@ $5
 'htmlform-selectorother-other' => 'อื่น ๆ',
 'htmlform-no' => 'ไม่',
 'htmlform-yes' => 'ใช่',
+'htmlform-chosen-placeholder' => 'เลือกตัวเลือก',
 
 # SQLite database support
 'sqlite-has-fts' => 'รุ่น $1 พร้อมการสนับสนุนการค้นหาข้อความแบบเต็ม',

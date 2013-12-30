@@ -1047,6 +1047,9 @@ Per favor controla le comparation infra pro verificar que tu vole facer isto, e 
 'cantcreateaccount-text' => "Le creation de contos desde iste adresse IP ('''$1''') ha essite blocate per [[User:$3|$3]].
 
 Le motivo que $3 dava es ''$2''",
+'cantcreateaccount-range-text' => "Le creation de contos ab le adresses IP in le intervallo '''$1''', le qual include tu adresse IP ('''$4'''), ha essite blocate per [[User:$3|$3]].
+
+Le motivo fornite per $3 es ''$2''",
 
 # History pages
 'viewpagelogs' => 'Vider le entratas del registro pro iste pagina',
@@ -3834,13 +3837,14 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Cammino al script]',
 
 # Special:Redirect
-'redirect' => 'Rediriger per nomine de file, ID de usator o ID de version',
+'redirect' => 'Rediriger per nomine de file, ID de usator, ID de pagina o ID de version',
 'redirect-legend' => 'Rediriger a un file o pagina',
-'redirect-summary' => 'Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version) o a un pagina de usator (si es date un ID de usator numeric). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] o [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Iste pagina special redirige a un file (si es date le nomine de un file), a un pagina (si es date un ID de version o ID de pagina) o a un pagina de usator (si es date un ID de usator numeric). Usage: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] o [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Va',
 'redirect-lookup' => 'Cercar:',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'ID de usator',
+'redirect-page' => 'ID del pagina',
 'redirect-revision' => 'Version de pagina',
 'redirect-file' => 'Nomine de file',
 'redirect-not-exists' => 'Valor non trovate',

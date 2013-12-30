@@ -5553,7 +5553,6 @@ Parameters:
 'confirmdeletetext' => 'Introduction shown when deleting a page.
 
 Refers to {{msg-mw|Policy-url}}.',
-'deleting-backlinks-warning' => "A warning shown when a page that is being deleted has links to it.",
 'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
 
 See also:
@@ -5597,6 +5596,7 @@ See also:
 * $1 - the upper limit of number of revisions
 See also:
 * {{msg-mw|Delete-toobig}}',
+'deleting-backlinks-warning' => 'A warning shown when a page that is being deleted has links to it.',
 
 # Rollback
 'rollback' => '{{Identical|Rollback}}',

@@ -2594,6 +2594,7 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => 'Löschgründe bearbeiten',
 'delete-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
 'delete-warning-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
+'deleting-backlinks-warning' => "'''Warnung:''' Es verweisen noch andere Seiten auf die zu löschende Seite.",
 
 # Rollback
 'rollback' => 'Zurücksetzen der Änderungen',
