@@ -92,6 +92,8 @@ production.
   properly for all parameters.
 * ApiQueryBase::titlePartToKey allows an extra parameter that indicates the
   namespace in order to properly capitalize the title part.
+* prop=redirects is added, to return redirects to the pages in the query.
+* list=allredirects is added, to list all redirects pointing to a namespace.
 
 === Languages updated in 1.23 ===
 
