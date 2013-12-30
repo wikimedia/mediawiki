@@ -27,7 +27,6 @@
  */
 class ParserCache {
 	private $mMemc;
-	
 	/**
 	 * Get an instance of this object
 	 *
