@@ -5553,6 +5553,7 @@ Parameters:
 'confirmdeletetext' => 'Introduction shown when deleting a page.
 
 Refers to {{msg-mw|Policy-url}}.',
+'deleting-backlinks-warning' => "A warning shown when a page that is being deleted has links to it.",
 'actioncomplete' => 'Used in several situations, for example when a page has been deleted.
 
 See also:
@@ -10040,7 +10041,7 @@ See also:
 'specialpages-group-media' => '{{doc-special-group|like=[[Special:FilePath]], [[Special:MIMESearch]] and [[Special:Upload]]}}',
 'specialpages-group-users' => '{{doc-special-group|like=[[Special:ActiveUsers]], [[Special:Contributions]] and [[Special:ListGroupRights]]}}',
 'specialpages-group-highuse' => '{{doc-special-group|like=[[Special:MostCategories]], [[Special:MostLinked]] and [[Special:MostRevisions]]}}',
-'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], 
+'specialpages-group-pages' => '{{doc-special-group|like=[[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]],
 [[Special:Disambiguations]], etc}}',
 'specialpages-group-pagetools' => '{{doc-special-group|like=[[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc}}',
 'specialpages-group-wiki' => '{{doc-special-group|like=[[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc}}',
