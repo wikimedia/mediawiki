@@ -3240,7 +3240,7 @@ function wfUsePHP( $req_ver ) {
  * with releases
  *
  * Note: Due to the behavior of PHP's version_compare() which is used in this
- * fuction, if you want to allow the 'wmf' development versions add a 'c' (or
+ * function, if you want to allow the 'wmf' development versions add a 'c' (or
  * any single letter other than 'a', 'b' or 'p') as a post-fix to your
  * targeted version number. For example if you wanted to allow any variation
  * of 1.22 use `wfUseMW( '1.22c' )`. Using an 'a' or 'b' instead of 'c' will
