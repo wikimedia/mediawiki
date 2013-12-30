@@ -260,6 +260,7 @@ class HistoryAction extends FormlessAction {
 		}
 		$request = $this->getRequest();
 
+		/** @var RSSFeed|AtomFeed $feed */
 		$feed = new $wgFeedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .
 			$this->msg( 'history-feed-title' )->inContentLanguage()->text(),

@@ -124,7 +124,7 @@ class MessageCache {
 	}
 
 	/**
-	 * @param ObjectCache $memCached A cache instance. If none, fall back to CACHE_NONE.
+	 * @param ObjectCache|BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */

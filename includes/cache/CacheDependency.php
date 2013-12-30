@@ -29,13 +29,14 @@
  */
 class DependencyWrapper {
 	private $value;
+	/** @var CacheDependency[] */
 	private $deps;
 
 	/**
 	 * Create an instance.
 	 * @param $value Mixed: the user-supplied value
-	 * @param $deps Mixed: a dependency or dependency array. All dependencies
-	 *        must be objects implementing CacheDependency.
+	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
+	 *   array. All dependencies must be objects implementing CacheDependency.
 	 */
 	function __construct( $value = false, $deps = array() ) {
 		$this->value = $value;
