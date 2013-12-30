@@ -39,12 +39,19 @@
                     width: this.$element[0].offsetWidth,
                     height: this.$element[0].offsetHeight
                 });
-                
-                var actualWidth = $tip[0].offsetWidth, actualHeight = $tip[0].offsetHeight;
+
                 var gravity = (typeof this.options.gravity == 'function')
                                 ? this.options.gravity.call(this.$element[0])
                                 : this.options.gravity;
                 
+                // Attach css classes before checking height/width so they 
+                // can be applied.
+                $tip.addClass('tipsy-' + gravity);
+                if (this.options.className) {
+                    $tip.addClass(maybeCall(this.options.className, this.$element[0]));
+                }
+                
+                var actualWidth = $tip[0].offsetWidth, actualHeight = $tip[0].offsetHeight;
                 var tp;
                 switch (gravity.charAt(0)) {
                     case 'n':
@@ -76,11 +83,7 @@
                         }
                     }
                 }
-                
-                $tip.css(tp).addClass('tipsy-' + gravity);
-                if (this.options.className) {
-                    $tip.addClass(maybeCall(this.options.className, this.$element[0]));
-                }
+                $tip.css(tp);
                 
                 if (this.options.fade) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity}, 100);
