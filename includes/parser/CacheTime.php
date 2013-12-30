@@ -40,10 +40,24 @@ class CacheTime {
 	/**
 	 * @return string TS_MW timestamp
 	 */
-	function getCacheTime()              { return wfTimestamp( TS_MW, $this->mCacheTime ); }
+	function getCacheTime() {
+		return wfTimestamp( TS_MW, $this->mCacheTime );
+	}
 
-	function containsOldMagic()          { return $this->mContainsOldMagic; }
-	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
+	/**
+	 * @return bool
+	 */
+	function containsOldMagic() {
+		return $this->mContainsOldMagic;
+	}
+
+	/**
+	 * @param $com bool
+	 * @return bool
+	 */
+	function setContainsOldMagic( $com ) {
+		return wfSetVar( $this->mContainsOldMagic, $com );
+	}
 
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
@@ -51,7 +65,9 @@ class CacheTime {
 	 * @param $t string
 	 * @return string
 	 */
-	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+	function setCacheTime( $t ) {
+		return wfSetVar( $this->mCacheTime, $t );
+	}
 
 	/**
 	 * Sets the number of seconds after which this object should expire.
