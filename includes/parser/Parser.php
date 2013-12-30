@@ -2109,7 +2109,6 @@ class Parser {
 
 					/**
 					 * Strip the whitespace Category links produce, see bug 87
-					 * @todo We might want to use trim($tmp, "\n") here.
 					 */
 					$s .= trim( $prefix . $trail, "\n" ) == '' ? '' : $prefix . $trail;
 
