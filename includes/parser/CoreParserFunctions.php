@@ -387,7 +387,7 @@ class CoreParserFunctions {
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title && !$title->hasFragment() && $title->equals( $parser->mTitle ) ) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 

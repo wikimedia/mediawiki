@@ -1201,14 +1201,24 @@ class Title {
 	}
 
 	/**
+	 * Check if a Title fragment is set
+	 *
+	 * @return bool
+	 * @since 1.23
+	 */
+	public function hasFragment() {
+		return $this->mFragment != '';
+	}
+
+	/**
 	 * Get the fragment in URL form, including the "#" character if there is one
 	 * @return String Fragment in URL form
 	 */
 	public function getFragmentForURL() {
-		if ( $this->mFragment == '' ) {
+		if ( !$this->hasFragment() ) {
 			return '';
 		} else {
-			return '#' . Title::escapeFragmentForURL( $this->mFragment );
+			return '#' . Title::escapeFragmentForURL( $this->getFragment() );
 		}
 	}
 
@@ -1291,8 +1301,8 @@ class Title {
 	 */
 	public function getFullText() {
 		$text = $this->getPrefixedText();
-		if ( $this->mFragment != '' ) {
-			$text .= '#' . $this->mFragment;
+		if ( $this->hasFragment() ) {
+			$text .= '#' . $this->getFragment();
 		}
 		return $text;
 	}

@@ -387,7 +387,7 @@ class Linker {
 
 		// If the target is just a fragment, with no title, we return the fragment
 		// text.  Otherwise, we return the title text itself.
-		if ( $target->getPrefixedText() === '' && $target->getFragment() !== '' ) {
+		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
 		return htmlspecialchars( $target->getPrefixedText() );
