@@ -185,6 +185,7 @@ $wgAutoloadLocalClasses = array(
 	'Revision' => 'includes/Revision.php',
 	'RevisionList' => 'includes/RevisionList.php',
 	'RSSFeed' => 'includes/Feed.php',
+	'RunningStat' => 'includes/profiler/RunningStat.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',
