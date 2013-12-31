@@ -49,7 +49,7 @@ class MappedIterator extends FilterIterator {
 	 * @param Iterator|Array $iter
 	 * @param callable $vCallback Value transformation callback
 	 * @param array $options Options map (includes "accept") (since 1.22)
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 */
 	public function __construct( $iter, $vCallback, array $options = array() ) {
 		if ( is_array( $iter ) ) {
@@ -57,7 +57,7 @@ class MappedIterator extends FilterIterator {
 		} elseif ( $iter instanceof Iterator ) {
 			$baseIterator = $iter;
 		} else {
-			throw new MWException( "Invalid base iterator provided." );
+			throw new UnexpectedValueException( "Invalid base iterator provided." );
 		}
 		parent::__construct( $baseIterator );
 		$this->vCallback = $vCallback;
