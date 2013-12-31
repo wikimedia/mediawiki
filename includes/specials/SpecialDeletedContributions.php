@@ -427,6 +427,15 @@ class DeletedContributionsPage extends SpecialPage {
 						'page' => $nt->getPrefixedText()
 					)
 				);
+				# Suppression log link (bug 59120)
+				if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
+					$tools[] = Linker::linkKnown(
+						SpecialPage::getTitleFor( 'Log', 'suppress' ),
+						$this->msg( 'sp-contributions-suppresslog' )->escaped(),
+						array(),
+						array( 'offender' => $userObj->getName() )
+					);
+				}
 			}
 
 			# Uploads
