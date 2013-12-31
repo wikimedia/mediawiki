@@ -42,7 +42,7 @@ class HashRing {
 			return $w > 0;
 		} );
 		if ( !count( $map ) ) {
-			throw new MWException( "Ring is empty or all weights are zero." );
+			throw new UnexpectedValueException( "Ring is empty or all weights are zero." );
 		}
 		$this->sourceMap = $map;
 		// Sort the locations based on the hash of their names
