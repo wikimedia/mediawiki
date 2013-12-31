@@ -1014,7 +1014,7 @@ class Title {
 	 * @return Bool TRUE or FALSE
 	 */
 	public function isMovable() {
-		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->getInterwiki() != '' ) {
+		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->isExternal() ) {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
 			return false;
 		}
@@ -3582,7 +3582,7 @@ class Title {
 		if ( !$this->isMovable() ) {
 			$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
 		}
-		if ( $nt->getInterwiki() != '' ) {
+		if ( $nt->isExternal() ) {
 			$errors[] = array( 'immobile-target-namespace-iw' );
 		}
 		if ( !$nt->isMovable() ) {

@@ -121,7 +121,7 @@ class MediaWiki {
 			$ret = Title::newMainPage();
 		}
 
-		if ( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ) {
+		if ( $ret === null || ( $ret->getDBkey() == '' && !$ret->isExternal() ) ) {
 			$ret = SpecialPage::getTitleFor( 'Badtitle' );
 		}
 
@@ -197,7 +197,7 @@ class MediaWiki {
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' )
+		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
@@ -231,7 +231,7 @@ class MediaWiki {
 		$pageView = false; // was an article or special page viewed?
 
 		// Interwiki redirects
-		if ( $title->getInterwiki() != '' ) {
+		if ( $title->isExternal() ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
 				$url = $title->getFullURL( array( 'rdfrom' => $rdfrom ) );

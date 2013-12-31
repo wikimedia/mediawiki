@@ -279,10 +279,10 @@ class ParserOutput extends CacheTime {
 	 * @throws MWException if given invalid input
 	 */
 	function addInterwikiLink( $title ) {
-		$prefix = $title->getInterwiki();
-		if ( $prefix == '' ) {
+		if ( !$title->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
+		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
 			$this->mInterwikiLinks[$prefix] = array();
 		}
