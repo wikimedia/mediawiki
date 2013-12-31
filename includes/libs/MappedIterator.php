@@ -57,7 +57,7 @@ class MappedIterator extends FilterIterator {
 		} elseif ( $iter instanceof Iterator ) {
 			$baseIterator = $iter;
 		} else {
-			throw new MWException( "Invalid base iterator provided." );
+			throw new UnexpectedValueException( "Invalid base iterator provided." );
 		}
 		parent::__construct( $baseIterator );
 		$this->vCallback = $vCallback;
