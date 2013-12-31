@@ -29,17 +29,42 @@
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
 
-	var $zeroEntry = array( 'cpu' => 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0 );
 	var $errorEntry;
 
+	public function getZeroEntry() {
+		return array(
+			'cpu'     => 0.0,
+			'cpu_sq'  => 0.0,
+			'real'    => 0.0,
+			'real_sq' => 0.0,
+			'count'   => 0
+		);
+	}
+
+	public function getErrorEntry() {
+		$entry = $this->getZeroEntry();
+		$entry['count'] = 1;
+		return $entry;
+	}
+
+	public function updateEntry( $name, $elapsedCpu, $elapsedReal ) {
+		$entry =& $this->mCollated[$name];
+		if ( !is_array( $entry ) ) {
+			$entry = $this->getZeroEntry();
+			$this->mCollated[$name] =& $entry;
+		}
+		$entry['cpu'] += $elapsedCpu;
+		$entry['cpu_sq'] += $elapsedCpu * $elapsedCpu;
+		$entry['real'] += $elapsedReal;
+		$entry['real_sq'] += $elapsedReal * $elapsedReal;
+	}
+
 	public function isPersistent() {
-		/* Implement in output subclasses */
-		return false;
+		return true;
 	}
 
 	protected function addInitialStack() {
-		$this->errorEntry = $this->zeroEntry;
-		$this->errorEntry['count'] = 1;
+		$this->errorEntry = $this->getErrorEntry();
 
 		$initialTime = $this->getInitialTime();
 		$initialCpu = $this->getInitialTime( 'cpu' );
@@ -88,20 +113,10 @@ class ProfilerSimple extends Profiler {
 				$this->debug( "$message\n" );
 				$this->mCollated[$message] = $this->errorEntry;
 			}
-			$entry =& $this->mCollated[$functionname];
-			$elapsedcpu = $this->getTime( 'cpu' ) - $octime;
-			$elapsedreal = $this->getTime() - $ortime;
-			if ( !is_array( $entry ) ) {
-				$entry = $this->zeroEntry;
-				$this->mCollated[$functionname] =& $entry;
-			}
-			$entry['cpu'] += $elapsedcpu;
-			$entry['cpu_sq'] += $elapsedcpu * $elapsedcpu;
-			$entry['real'] += $elapsedreal;
-			$entry['real_sq'] += $elapsedreal * $elapsedreal;
-			$entry['count']++;
-
-			$this->updateTrxProfiling( $functionname, $elapsedreal );
+			$elapsedCpu = $this->getTime( 'cpu' ) - $octime;
+			$elapsedReal = $this->getTime() - $ortime;
+			$this->updateEntry( $functionname, $elapsedCpu, $elapsedReal );
+			$this->updateTrxProfiling( $functionname, $elapsedReal );
 		}
 	}
 
