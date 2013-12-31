@@ -161,8 +161,9 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return DatabaseLogEntry
 	 */
 	public static function newFromRow( $row ) {
-		if ( is_array( $row ) && isset( $row['rc_logid'] ) ) {
-			return new RCDatabaseLogEntry( (object)$row );
+		$row = (object)$row;
+		if ( isset( $row->rc_logid ) ) {
+			return new RCDatabaseLogEntry( $row );
 		} else {
 			return new self( $row );
 		}
