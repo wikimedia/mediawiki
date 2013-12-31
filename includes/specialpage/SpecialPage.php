@@ -781,6 +781,7 @@ class SpecialPage {
 	 *
 	 * @param $subpage String|Bool
 	 * @return Title object
+	 * @since 1.23
 	 */
 	function getPageTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
