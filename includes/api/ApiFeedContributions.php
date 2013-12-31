@@ -87,7 +87,13 @@ class ApiFeedContributions extends ApiBase {
 
 		$feedItems = array();
 		if ( $pager->getNumRows() > 0 ) {
+			$count = 0;
+			$limit = $pager->getLimit();
 			foreach ( $pager->mResult as $row ) {
+				// ContribsPager selects one more row for navigation, skip that row
+				if ( ++$count > $limit ) {
+					break;
+				}
 				$feedItems[] = $this->feedItem( $row );
 			}
 		}
