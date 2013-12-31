@@ -655,7 +655,11 @@ abstract class UploadBase {
 		// Check dupes against archives
 		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
 		if ( $archivedImage->getID() > 0 ) {
-			$warnings['duplicate-archive'] = $archivedImage->getName();
+			if ( $archivedImage->userCan( File::DELETED_FILE ) ) {
+				$warnings['duplicate-archive'] = $archivedImage->getName();
+			} else {
+				$warnings['duplicate-archive'] = '';
+			}
 		}
 
 		wfProfileOut( __METHOD__ );

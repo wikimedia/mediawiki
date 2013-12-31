@@ -2327,6 +2327,8 @@ If you still want to upload your file, please go back and use a new name.
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[:$1]]) has previously been deleted.
 You should check that file's deletion history before proceeding to re-upload it.",
+'file-deleted-duplicate-notitle' => "A file identical to this file has previously been deleted, and the title has been suppressed.
+You should ask someone with the ability to view suppressed file data to review the situation before proceeding to re-upload it.",
 'uploadwarning'               => 'Upload warning',
 'uploadwarning-text'          => 'Please modify the file description below and try again.',
 'savefile'                    => 'Save file',

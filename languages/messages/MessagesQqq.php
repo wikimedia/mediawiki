@@ -4041,7 +4041,14 @@ This message is followed by the gallery of the duplicate files.
 Parameters:
 * $1 - number of duplicate files',
 'file-deleted-duplicate' => 'Used in [[Special:Upload]. Parameters:
-* $1 - page title of the file',
+* $1 - page title of the file
+
+See also:
+* {{msg-mw|file-deleted-duplicate-notitle}}',
+'file-deleted-duplicate-notitle' => 'Used in [[Special:Upload] when the title of the deleted duplicate is not available.
+
+See also:
+* {{msg-mw|file-deleted-duplicate}}',
 'uploadwarning' => 'Used as section header in [[Special:Upload]].',
 'uploadwarning-text' => 'Used in [[Special:Upload]].',
 'savefile' => 'When uploading a file',
