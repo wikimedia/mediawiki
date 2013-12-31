@@ -1535,6 +1535,7 @@ Appears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} afte
 'invalidemailaddress' => 'Shown as a warning when written an invalid email address in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'cannotchangeemail' => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'emaildisabled' => 'Error message shown when user tries to set an email address but email features are disabled.',
+'emailsender' => 'From name used in system email sent to users.',
 'accountcreated' => 'Used as page title in [[Special:UserLogin]].
 
 See also:
