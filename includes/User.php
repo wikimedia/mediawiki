@@ -3778,7 +3778,8 @@ class User {
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if ( is_null( $from ) ) {
 			global $wgPasswordSender, $wgPasswordSenderName;
-			$sender = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+			$sender = new MailAddress( $wgPasswordSender,
+				$wgPasswordSenderName || wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		} else {
 			$sender = new MailAddress( $from );
 		}

@@ -1318,9 +1318,10 @@ $wgPasswordSender = 'apache@' . $serverName;
 unset( $serverName ); # Don't leak local variables to global scope
 
 /**
- * Password reminder name
+ * Password reminder name.
+ * @deprecated since 1.23; use the system message 'emailsender' instead.
  */
-$wgPasswordSenderName = 'MediaWiki Mail';
+$wgPasswordSenderName = false;
 
 /**
  * Dummy address which should be accepted during mail send action.

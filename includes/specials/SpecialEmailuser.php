@@ -332,7 +332,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// SPF and bounce problems with some mailers (see below).
 			global $wgPasswordSender, $wgPasswordSenderName;
 
-			$mailFrom = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+			$mailFrom = new MailAddress( $wgPasswordSender,
+				$wgPasswordSenderName || wfMessage( 'emailsender' )->inContentLanguage()->text() );
 			$replyTo = $from;
 		} else {
 			// Put the sending user's e-mail address in the From: header.
