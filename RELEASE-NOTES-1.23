@@ -9,6 +9,7 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+
 * $wgDebugLogGroups values may be set to an associative array with a
   'destination' key specifying the log destination. The array may also contain
   a 'sample' key with a positive integer value N indicating that the log group
@@ -28,6 +29,7 @@ production.
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 
 === New features in 1.23 ===
+
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
   Compared to the browser cache, caching in Web Storage allows ResourceLoader
   to be more granular about evicting stale modules from the cache while
@@ -61,6 +63,7 @@ production.
   happens.
 
 === Bug fixes in 1.23 ===
+
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
   changes and watchlist) and the talk page message indicator are now correctly
   updated when the user is viewing old revisions of pages, instead of always
@@ -80,6 +83,7 @@ production.
   to appear blank or with missing text.
 
 === API changes in 1.23 ===
+
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
   categories.
 * action=query&meta=filerepoinfo now returns additional information for each
@@ -99,9 +103,10 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* Support was added for Northern Luri (lrc)
+* Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===
+
 * The rc_type field in the recentchanges table has been superseded by a new
   rc_source field.  The rc_source field is a string representation of the
   change type where rc_type was a numeric constant.  This field is not yet
@@ -114,7 +119,6 @@ changes to languages because of Bugzilla reports.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * The global functions addButton and insertTags (for mw.toolbar.addButton and
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
-* User::getPageRenderingHash() was deprecated since 1.17 and has been removed.
 * The ExpandTemplates extension has been moved into MediaWiki core.
 * (bug 52812) Removed "Disable search suggestions" from Preference.
 * (bug 52809) Removed "Disable browser page caching" from Preference.
@@ -130,53 +134,60 @@ changes to languages because of Bugzilla reports.
 * A page_links_updated field has been added to the page table.
 * SpecialPage::getTitle has been deprecated in favor of
   SpecialPage::getPageTitle.
-* EditPage::spamPage() was deprecated since 1.17 and has been removed.
-* SpecialRecentChanges::feedSetup() was removed.
-* Removed classes:
-  - TitleDependency
-  - TitleListDependency
-* Renamed classes:
-  - CdbReader_DBA to CdbReaderDBA
-  - CdbReader_PHP to CdbReaderPHP
-  - CdbWriter_DBA to CdbWriterDBA
-  - CdbWriter_PHP to CdbWriterPHP
-  - DiffOp_Add to DiffOpAdd
-  - DiffOp_Change to DiffOpChange
-  - DiffOp_Copy to DiffOpCopy
-  - DiffOp_Delete to DiffOpDelete
-  - HWLDF_WordAccumulator to HWLDFWordAccumulator
-  - LBFactory_Fake to LBFactoryFake
-  - LBFactory_Multi to LBFactoryMulti
-  - LBFactory_Simple to LBFactorySimple
-  - LBFactory_Single to LBFactorySingle
-  - LCStore_Accel to LCStoreAccel
-  - LCStore_CDB to LCStoreCDB
-  - LCStore_DB to LCStoreDB
-  - LCStore_Null to LCStoreNull
-  - LoadBalancer_Single to LoadBalancerSingle
-  - LoadMonitor_MySQL to LoadMonitorMySQL
-  - LoadMonitor_Null to LoadMonitorNull
-  - LocalisationCache_BulkLoad to LocalisationCacheBulkLoad
-  - csvStatsOutput to CsvStatsOutput
-  - extensionLanguages to ExtensionLanguages
-  - languages to Languages
-  - statsOutput to StatsOutput
-  - textStatsOutput to TextStatsOutput
-  - wikiStatsOutput to WikiStatsOutput
-* Removed methods:
-  - Exif::getFormattedData() (deprecated in 1.18)
-  - Exif::makeFormattedData() (deprecated in 1.18)
-  - Linker::makeBrokenLink() (deprecated in 1.16)
-  - Linker::makeBrokenLinkObj() (deprecated in 1.16)
-  - Linker::makeColouredLinkObj() (deprecated in 1.16)
-  - Linker::makeSizeLinkObj() (deprecated in 1.17)
-  - ProfilerSimple::getCpuTime (deprecated in 1.20)
-  - Revision::revText() (deprecated in 1.17)
-  - SkinTemplate::jstext() (deprecated in 1.21)
-  - SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
-  - WikiPage::quickEdit() (deprecated in 1.18)
-  - WikiPage::useParserCache() (deprecated in 1.18)
-  - WikiPage::viewUpdates() (deprecated in 1.18)
+
+==== Removed classes ====
+
+* TitleDependency
+* TitleListDependency
+
+==== Renamed classes ====
+
+* CdbReader_DBA to CdbReaderDBA
+* CdbReader_PHP to CdbReaderPHP
+* CdbWriter_DBA to CdbWriterDBA
+* CdbWriter_PHP to CdbWriterPHP
+* DiffOp_Add to DiffOpAdd
+* DiffOp_Change to DiffOpChange
+* DiffOp_Copy to DiffOpCopy
+* DiffOp_Delete to DiffOpDelete
+* HWLDF_WordAccumulator to HWLDFWordAccumulator
+* LBFactory_Fake to LBFactoryFake
+* LBFactory_Multi to LBFactoryMulti
+* LBFactory_Simple to LBFactorySimple
+* LBFactory_Single to LBFactorySingle
+* LCStore_Accel to LCStoreAccel
+* LCStore_CDB to LCStoreCDB
+* LCStore_DB to LCStoreDB
+* LCStore_Null to LCStoreNull
+* LoadBalancer_Single to LoadBalancerSingle
+* LoadMonitor_MySQL to LoadMonitorMySQL
+* LoadMonitor_Null to LoadMonitorNull
+* LocalisationCache_BulkLoad to LocalisationCacheBulkLoad
+* csvStatsOutput to CsvStatsOutput
+* extensionLanguages to ExtensionLanguages
+* languages to Languages
+* statsOutput to StatsOutput
+* textStatsOutput to TextStatsOutput
+* wikiStatsOutput to WikiStatsOutput
+
+==== Removed methods ====
+
+* EditPage::spamPage() (deprecated since 1.17)
+* Exif::getFormattedData() (deprecated in 1.18)
+* Exif::makeFormattedData() (deprecated in 1.18)
+* Linker::makeBrokenLink() (deprecated in 1.16)
+* Linker::makeBrokenLinkObj() (deprecated in 1.16)
+* Linker::makeColouredLinkObj() (deprecated in 1.16)
+* Linker::makeSizeLinkObj() (deprecated in 1.17)
+* ProfilerSimple::getCpuTime (deprecated in 1.20)
+* Revision::revText() (deprecated in 1.17)
+* SkinTemplate::jstext() (deprecated in 1.21)
+* SpecialRecentChanges::feedSetup()
+* SpecialRevisionDelete::extractBitField() (deprecated in 1.22)
+* User::getPageRenderingHash() (deprecated in 1.17)
+* WikiPage::quickEdit() (deprecated in 1.18)
+* WikiPage::useParserCache() (deprecated in 1.18)
+* WikiPage::viewUpdates() (deprecated in 1.18)
 
 == Compatibility ==
 
