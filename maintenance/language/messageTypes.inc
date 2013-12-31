@@ -131,6 +131,7 @@ $wgIgnoredMessages = array(
 	'signupstart',
 	'signupend',
 	'signupend-https',
+	'emailsender',
 	'sitenotice',
 	'sitesubtitle',
 	'sitetitle',

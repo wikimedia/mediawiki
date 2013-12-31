@@ -1318,11 +1318,6 @@ $wgPasswordSender = 'apache@' . $serverName;
 unset( $serverName ); # Don't leak local variables to global scope
 
 /**
- * Password reminder name
- */
-$wgPasswordSenderName = 'MediaWiki Mail';
-
-/**
  * Dummy address which should be accepted during mail send action.
  * It might be necessary to adapt the address or to set it equal
  * to the $wgEmergencyContact address.

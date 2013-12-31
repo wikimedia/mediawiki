@@ -330,9 +330,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// This is a bit ugly, but will serve to differentiate
 			// wiki-borne mails from direct mails and protects against
 			// SPF and bounce problems with some mailers (see below).
-			global $wgPasswordSender, $wgPasswordSenderName;
+			global $wgPasswordSender;
 
-			$mailFrom = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+			$mailFrom = new MailAddress( $wgPasswordSender, wfMessage( 'emailsender' )->parse() );
 			$replyTo = $from;
 		} else {
 			// Put the sending user's e-mail address in the From: header.
