@@ -257,10 +257,17 @@ class CategoryViewer extends ContextSource {
 	 * @param int $pageLength
 	 * @param bool $isRedirect
 	 */
-	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+	function addPage( $title, $sortkey, $pageLength, $isRedirect = false, $alias = null ) {
 		global $wgContLang;
 
-		$this->articles[] = $this->generateLink( 'page', $title, $isRedirect );
+		$link = Linker::link( $title,
+			strpos($alias, '|')===false?null:substr($alias, strpos($alias, '|')+1) );
+		if ( $isRedirect ) {
+			// This seems kind of pointless given 'mw-redirect' class,
+			// but keeping for back-compatibility with user css.
+			$link = '<span class="redirect-in-category">' . $link . '</span>';
+		}
+		$this->articles[] = $link;
 
 		$this->articles_start_char[] = $wgContLang->convert(
 			$this->collation->getFirstLetter( $sortkey ) );
@@ -363,7 +370,9 @@ class CategoryViewer extends ContextSource {
 				} elseif ( $title->getNamespace() == NS_FILE ) {
 					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, substr($humanSortkey, 0,
+						strpos($humanSortkey, '|')===false?strlen($humanSortkey):strpos($humanSortkey, '|')),
+						$row->page_len, $row->page_is_redirect, $row->cl_sortkey_prefix );
 				}
 			}
 		}
