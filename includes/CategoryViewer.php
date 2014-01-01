@@ -252,10 +252,10 @@ class CategoryViewer extends ContextSource {
 	 * @param $pageLength
 	 * @param $isRedirect bool
 	 */
-	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+	function addPage( $title, $sortkey, $pageLength, $isRedirect = false, $alias = null ) {
 		global $wgContLang;
 
-		$link = Linker::link( $title );
+		$link = Linker::link( $title, strpos($alias, '|')===false?null:substr($alias, strpos($alias, '|')+1) );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
 			// but keeping for back-compatibility with user css.
@@ -353,7 +353,7 @@ class CategoryViewer extends ContextSource {
 				} elseif ( $title->getNamespace() == NS_FILE ) {
 					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, substr($humanSortkey, 0, strpos($humanSortkey, '|')===false?strlen($humanSortkey):strpos($humanSortkey, '|')), $row->page_len, $row->page_is_redirect, $row->cl_sortkey_prefix );
 				}
 			}
 		}
