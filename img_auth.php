@@ -92,6 +92,11 @@ function wfImageAuthMain() {
 		if ( strpos( $path, $prefix ) === 0 ) {
 			$be = FileBackendGroup::singleton()->backendFromPath( $storageDir );
 			$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
+			// Check basic user authorization
+			if ( !RequestContext::getMain()->getUser()->isAllowed( 'read' ) ) {
+				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $filename );
+				return;
+			}
 			if ( $be->fileExists( array( 'src' => $filename ) ) ) {
 				wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
 				$be->streamFile( array( 'src' => $filename ),
