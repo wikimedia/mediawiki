@@ -1265,8 +1265,7 @@ class Title {
 	 * @return String the prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
-		// @todo FIXME: Bad usage of empty() ?
-		if ( empty( $this->mPrefixedText ) ) {
+		if ( $this->mPrefixedText === null ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
