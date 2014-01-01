@@ -5,7 +5,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageLv.php */
+/** Tests for Latvian */
 class LanguageLvTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
@@ -28,13 +28,17 @@ class LanguageLvTest extends LanguageClassesTestCase {
 		return array(
 			array( 'zero', 0 ),
 			array( 'one', 1 ),
-			array( 'other', 11 ),
+			array( 'zero', 11 ),
 			array( 'one', 21 ),
-			array( 'other', 411 ),
+			array( 'zero', 411 ),
+			array( 'other', 2 ),
+			array( 'other', 9 ),
+			array( 'zero', 12 ),
 			array( 'other', 12.345 ),
-			array( 'other', 20 ),
+			array( 'zero', 20 ),
+			array( 'other', 22 ),
 			array( 'one', 31 ),
-			array( 'other', 200 ),
+			array( 'zero', 200 ),
 		);
 	}
 }
