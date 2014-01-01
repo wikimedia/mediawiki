@@ -79,13 +79,16 @@ class DeleteLogFormatter extends LogFormatter {
 				$count = count( explode( ',', $params[$paramStart] ) );
 				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
 
-				return $this->parsedParametersDeleteLog = $newParams;
+				$this->parsedParametersDeleteLog = $newParams;
+				return $this->parsedParametersDeleteLog;
 			} else {
-				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
+				$this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
+				return $this->parsedParametersDeleteLog;
 			}
 		}
 
-		return $this->parsedParametersDeleteLog = $params;
+		$this->parsedParametersDeleteLog = $params;
+		return $this->parsedParametersDeleteLog;
 	}
 
 	protected function parseBitField( $string ) {
