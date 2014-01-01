@@ -857,7 +857,7 @@ class LoginForm extends SpecialPage {
 		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $error ) );
 		$reset = new SpecialChangePassword();
 		$derivative = new DerivativeContext( $this->getContext() );
-		$derivative->setTitle( $reset->getTitle() );
+		$derivative->setTitle( $reset->getPageTitle() );
 		$reset->setContext( $derivative );
 		$reset->execute( null );
 	}
