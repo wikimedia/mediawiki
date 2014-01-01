@@ -85,7 +85,8 @@ class WikiFilePage extends WikiPage {
 		if ( $from == $to ) {
 			return null;
 		}
-		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		$this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		return $this->mRedirectTarget;
 	}
 
 	/**
@@ -142,7 +143,8 @@ class WikiFilePage extends WikiPage {
 		}
 		$hash = $this->mFile->getSha1();
 		if ( !( $hash ) ) {
-			return $this->mDupes = array();
+			$this->mDupes = array();
+			return $this->mDupes;
 		}
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		// Remove duplicates with self and non matching file sizes

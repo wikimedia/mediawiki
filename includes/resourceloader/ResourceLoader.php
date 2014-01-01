@@ -1130,11 +1130,11 @@ class ResourceLoader {
 	public static function inDebugMode() {
 		global $wgRequest, $wgResourceLoaderDebug;
 		static $retval = null;
-		if ( !is_null( $retval ) ) {
-			return $retval;
+		if ( is_null( $retval ) ) {
+			$retval = $wgRequest->getFuzzyBool( 'debug',
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
 		}
-		return $retval = $wgRequest->getFuzzyBool( 'debug',
-			$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
+		return $retval;
 	}
 
 	/**
