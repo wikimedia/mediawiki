@@ -1480,6 +1480,7 @@ Parameters:
 Parameters:
 * $1 - (Optional) username, for GENDER support',
 'wrongpassword' => 'Used as error message when the provided password is wrong.
+This message is used in html.
 {{Identical|Please try again}}',
 'wrongpasswordempty' => 'Error message displayed when entering a blank password.
 {{Identical|Please try again}}',
@@ -1572,7 +1573,8 @@ Parameters:
 ** {{msg-mw|Duration-seconds}}
 
 This is a protection against robots trying to find the password by trying lots of them.
-The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].',
+The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
+This message is used in html.',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. Parameters:
 * $1 - a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
@@ -1792,7 +1794,8 @@ See also:
 See also:
 * {{msg-mw|Showdiff}}
 * {{msg-mw|Accesskey-diff}}
-* {{msg-mw|Tooltip-diff}}',
+* {{msg-mw|Tooltip-diff}}
+{{Identical|Show change}}',
 'anoneditwarning' => 'Shown when editing a page anonymously.
 See also:
 * {{msg-mw|Sf autoedit anoneditwarning}}
@@ -8023,7 +8026,8 @@ Preceded by the label {{msg-mw|Pageinfo-robot-policy}}.',
 'pageinfo-few-watchers' => 'Message displayed when there are fewer than $wgUnwatchedPageThreshold watchers. $1 is the value of $wgUnwatchedPageThreshold.',
 'pageinfo-redirects-name' => 'Header of the row in the first table of the info action.
 
-Followed by the number of redirects to the page.
+Followed by {{msg-mw|Pageinfo-redirects-value}}.
+
 Used as link text. The link points to "{{int:Whatlinkshere-title}}" page ([[Special:WhatLinksHere]]).
 
 See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',
@@ -8032,7 +8036,8 @@ Parameters:
 * $1 - the number of redirects to the page',
 'pageinfo-subpages-name' => 'Header of the row in the first table of the info action.
 
-Followed by the number of subpages of the page.
+Followed by {{msg-mw|Pageinfo-subpages-value}}.
+
 Used as link text. The link points to the "{{int:Prefixindex}}" page ([[Special:PrefixIndex]]).
 
 See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',

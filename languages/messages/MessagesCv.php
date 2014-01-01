@@ -138,7 +138,7 @@ $messages = array(
 'dec' => 'раш',
 
 # Categories related messages
-'pagecategories' => 'Категорисем',
+'pagecategories' => '{{PLURAL:$1|Категори|Категорисем}}',
 'category_header' => '«$1» категорири статьясем',
 'subcategories' => 'Подкатегорисем',
 'category-media-header' => '«$1» категорири файлсем',
@@ -159,7 +159,7 @@ $messages = array(
 'cancel' => 'Пăрахăçла',
 'moredotdotdot' => 'Малалла…',
 'mypage' => 'Ман страница',
-'mytalk' => 'Ман канашлу страници',
+'mytalk' => 'Сӳтсе явни',
 'anontalk' => 'Çак IP-адреса сӳтсе явни',
 'navigation' => 'Меню',
 'and' => '&#32;тата',
@@ -219,7 +219,7 @@ $messages = array(
 'articlepage' => 'Статьяна пăх',
 'talk' => 'Сӳтсе явни',
 'views' => 'Пурĕ пăхнă',
-'toolbox' => 'Ĕç хатĕрĕсем',
+'toolbox' => 'Хатĕрсем',
 'userpage' => 'Хутшăнакан страницине пăх',
 'projectpage' => 'Проект страницине пăх',
 'imagepage' => 'Ӳкерчĕк страницине пăх',
@@ -292,7 +292,7 @@ $messages = array(
 'nstab-main' => 'Статья',
 'nstab-user' => 'Хутшăнакан страници',
 'nstab-media' => 'Мультимеди',
-'nstab-special' => 'Ятарлă',
+'nstab-special' => 'Ятарлă страницă',
 'nstab-project' => 'Проект çинчен',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Пĕлтерӳ',
@@ -564,7 +564,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # Preferences page
 'preferences' => 'Ĕнерлевсем',
-'mypreferences' => 'Ман ĕнерлевсем',
+'mypreferences' => 'Ĕнерлев',
 'prefs-edits' => 'Тӳрлетӳсен шучĕ:',
 'prefs-skin' => 'Ерешленӳ',
 'skin-preview' => 'Малтанхи курăну',

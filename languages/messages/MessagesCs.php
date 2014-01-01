@@ -2529,6 +2529,7 @@ Rady a kontakt:
 'delete-edit-reasonlist' => 'Editovat důvody smazání',
 'delete-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
 'delete-warning-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
+'deleting-backlinks-warning' => "'''Upozornění:''' Na stránku, kterou se chystáte smazat, odkazují jiné stránky.",
 
 # Rollback
 'rollback' => 'Vrátit zpět editace',

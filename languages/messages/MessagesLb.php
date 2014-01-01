@@ -2355,6 +2355,7 @@ D'Läsche vu sou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENA
 'delete-warning-toobig' => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läschen dovu kann zu Stéierungen am Fonctionnement vun {{SITENAME}} féieren;
 dës Aktioun soll mat Virsiicht gemaach ginn.",
+'deleting-backlinks-warning' => "'''Opgepasst:''' Aner Säite linken op d'Säit déi Dir am Gaang sidd ze läschen.",
 
 # Rollback
 'rollback' => 'Ännerungen zrécksetzen',

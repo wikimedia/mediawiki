@@ -2382,6 +2382,7 @@ Le deletion de tal paginas ha essite restringite pro impedir le disruption accid
 'delete-warning-toobig' => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAME}};
 procede con caution.',
+'deleting-backlinks-warning' => "'''Attention:''' Il ha altere paginas con ligamines al pagina que tu es sur le puncto de deler.",
 
 # Rollback
 'rollback' => 'Revocar modificationes',

@@ -29,6 +29,13 @@ $messages = array(
 'tog-showtoc' => "Fà vèder al sûnt (p'r al pàgini cun pió 'd 3 sesiòun)",
 
 # Dates
+'sunday' => 'Dumènica',
+'monday' => 'lunedé',
+'tuesday' => 'Martedé',
+'wednesday' => 'Mercordé',
+'thursday' => 'Giovedé',
+'friday' => 'Venerdé',
+'saturday' => 'Sâbet',
 'sun' => 'Dum',
 'mon' => 'Lun',
 'tue' => 'Mar',
@@ -75,7 +82,9 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoréia!Categoréi}}',
+'category_header' => "Pàgini 'd la categoréia $1",
 'hidden-categories' => '{{PLURAL:$1|Categoréia lughêda|Categoréi lughêdi}}',
+'category-subcat-count' => "{{PLURAL:$2|In cla categoréia ché a gh'é sōl 'n'ónica sòt-categoréia.| In cla categoréia ché a gh'é {{PLURAL:$1|la sòt-categoréia sgnêda|al $1 sòt-categoréi sgnêdi}} ed sègvit, só 'n totêl ed $2.}}",
 'category-article-count' => "{{PLURAL:$2|In cla categoréia ché a gh'é sōl 'na pàgina, sgnêda ché.|In cla categoréia ché gh'é{{PLURAL:$1|la pàgina sgnêda| al pàgini $1 sgnêdi}} ed sègvit, in un totêl ed $2.}}",
 
 'about' => 'Infumasiòun',
@@ -93,6 +102,7 @@ $messages = array(
 'faq' => 'Dmândi fâti',
 
 # Vector skin
+'vector-action-addsection' => 'Zûnta discusiòun',
 'vector-action-delete' => 'Scanşèla',
 'vector-action-move' => 'Spôsta',
 'vector-action-protect' => 'Prutēz',
@@ -139,7 +149,7 @@ $messages = array(
 'talk' => 'Discusiòun',
 'views' => 'Vîşiti',
 'toolbox' => 'Strumèint',
-'userpage' => "Guêrda la pàgina 'd l'uteint",
+'userpage' => 'Guêrda la pàgina utèint',
 'projectpage' => 'Guêrda la pàgina dal prugèt',
 'imagepage' => "Guêrda la pàgina dal 'file'",
 'mediawikipage' => 'Guêrda al mesâg',
@@ -289,6 +299,7 @@ $messages = array(
 'preview' => 'Guêrda préma',
 'showpreview' => "Guêrda préma 'd salvêr",
 'showdiff' => 'Guêrda i cambiamèint',
+'anoneditwarning' => "'''Atensiòun:''' Ingrès mìa fât. Al tó indirés IP al srà sgnê int la stòria ed cla pàgina chè.",
 'blockedtitle' => 'Utèint bluchê',
 'newarticle' => '(Nōv)',
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',
@@ -339,6 +350,7 @@ $messages = array(
 
 # Diffs
 'lineno' => 'Rîga $1:',
+'compareselectedversions' => 'Cunfrûnta al revisiòun sernîdi.',
 'editundo' => 'scanşèla',
 
 # Search results
@@ -443,11 +455,18 @@ $messages = array(
 
 # Recent changes
 'recentchanges' => 'Ûltmi mudéfichi',
+'recentchanges-legend' => 'Siēlti ûltmi mudéfichi.',
+'recentchanges-label-newpage' => "Cun cla mudéfica ché t'é fât 'na pàgina nōva.",
+'recentchanges-label-minor' => "Còsta l'é 'na mudéfica céca",
+'recentchanges-label-bot' => "Cla mudéfica ché l'é stêda fâta da un bot.",
+'recentchanges-label-unpatrolled' => "Cla mudéfica ché an n'é mìa incòra stêda verifichêda.",
+'rclistfrom' => 'Fà vèder al mudéfichi fâti a partîr da $1.',
 'rcshowhideminor' => '$1 al mudéfichi céchi',
 'rcshowhidebots' => '$1 i bot',
 'rcshowhideliu' => '$1 j utèint registrê',
 'rcshowhideanons' => '$1 j utèint sèinsa nòm.',
 'rcshowhidemine' => '$1 al mē mudéfichi',
+'rclinks' => 'Fà vèder al $1 ûltmi mudéfichi fâti int j ûltem $2 dé<br />$3',
 'diff' => 'dif',
 'hist' => 'stòr',
 'hide' => 'Lōga',
@@ -457,13 +476,20 @@ $messages = array(
 'boteditletter' => 'b',
 'number_of_watching_users_pageview' => '[vésta da {{PLURAL:$1|un utèint|$1 utèint}}]',
 'rc_categories_any' => "Bast' ech sia",
+'rc-enhanced-expand' => 'Fà vèder i particulêr.',
+'rc-enhanced-hide' => 'Lōga i particulêr.',
 
 # Recent changes linked
+'recentchangeslinked' => 'Mudéfichi coleghêdi',
 'recentchangeslinked-toolbox' => 'Mudéfichi coleghêdi',
+'recentchangeslinked-title' => 'Mudéfichi coleghêdi a $1.',
 'recentchangeslinked-summary' => "Cla pàgina specêla ché la fà vèder al j ûltmi mudéfichi al pàgini coleghêdi da còla sgnêda (o dèinter int la categoréia sgnêda). Al pàgini dèint a la tó lésta 'd j [[Special:Watchlist|tgnû sòt ôc specêl]] în sgnêdi in '''grasèt'''.",
+'recentchangeslinked-page' => "Nòm ' d la pàgina.",
+'recentchangeslinked-to' => 'Fà vèder sōl al mudéfichi fâti al pàgini coleghêdi a còla sgnêda.',
 
 # Upload
 'upload' => "Cârga un 'file'",
+'filedesc' => 'Sûnt.',
 
 'license' => 'Licèinsa:',
 'license-header' => 'Licèinsa',
@@ -478,7 +504,7 @@ $messages = array(
 'file-anchor-link' => "'File'",
 'filehist' => "Stòria 'd la pàgina",
 'filehist-help' => "Fà cléch insém a 'n gróp dâta/ōra per vèder al file cm'é l'ēra int al mumèint e-sgnê",
-'filehist-current' => "(d'adèsa)",
+'filehist-current' => '(adès)',
 'filehist-datetime' => 'Dâta/Ōra',
 'filehist-thumb' => 'Miniadûra',
 'filehist-thumbtext' => 'Miniadûra ed la revisiòun dal $1.',
@@ -486,7 +512,7 @@ $messages = array(
 'filehist-dimensions' => 'Amzûri',
 'filehist-comment' => 'Cumèint',
 'imagelinks' => "Ûş dal 'file'",
-'linkstoimage' => "{{{{PLURAL:$1|Int la pàgina seguèint a gh'é|Int al seguèinti $1 pàgini a gh'é}} colegamèint al file:",
+'linkstoimage' => "{{PLURAL:$1|Int la pàgina seguèint a gh'é|Int al seguèinti $1 pàgini a gh'é}} colegamèint al file:",
 'sharedupload-desc-here' => "Cól file ché al deşvîn da $1 e al pōl èser druvê da êter prugèt. Ed sègvit a vîn fât vèder la spiegasiòun che gh'é int la [$2 pàgina de spiegasiòun dal file].",
 
 # File deletion
@@ -499,6 +525,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
+'nmembers' => '$1 {{PLURAL:$1|elemèint}}',
 'newpages' => 'Pàgini pió nōvi',
 'move' => 'Spôsta',
 
@@ -508,6 +535,9 @@ $messages = array(
 # Special:AllPages
 'alphaindexline' => 'da $1 a $2',
 'allpagessubmit' => 'Và',
+
+# Special:Categories
+'categories' => 'Categoréi',
 
 # Special:ListUsers
 'listusers-submit' => 'Fà vèder',
@@ -561,18 +591,23 @@ $messages = array(
 'blanknamespace' => '(Principêl)',
 
 # Contributions
-'contributions' => 'Lavōr fât da {{GENDER:$1|utèint}}',
+'contributions' => "Lavōr fât da {{GENDER:$1|l'utèint}}",
 'contributions-title' => 'Lavōr ed $1',
 'mycontris' => 'I mē lavōr',
 'contribsub2' => 'Per {{GENDER:$3|$1}}($2)',
-'uctop' => "(d'adèsa)",
+'uctop' => '(adès)',
 
 'sp-contributions-submit' => 'Sērca',
 
 # What links here
 'whatlinkshere' => 'A pûnten ché',
+'whatlinkshere-title' => 'Pàgini che pûnet a "$1"',
 'whatlinkshere-page' => 'Pàgina:',
+'isimage' => "Colegamèint vêrs al 'file'",
 'whatlinkshere-links' => '← colegamèint',
+'whatlinkshere-hidetrans' => '$1 uniòun',
+'whatlinkshere-hidelinks' => '$1 colegamèint',
+'whatlinkshere-filters' => 'Fîlter',
 
 # Block/unblock
 'block' => "Blôca l'utèint",
@@ -632,6 +667,7 @@ $messages = array(
 'tooltip-ca-history' => 'Revişiòun fâti a cla pàgina ché.',
 'tooltip-ca-move' => 'Spôsta cla pàgina ché (câmbia tétol)',
 'tooltip-ca-watch' => "Zûnta cla pàgina ché a la tó lésta di tgnû 'd ôc specêl.",
+'tooltip-ca-unwatch' => "Tó via cla pàgina ché da la tó lésta di tgnû 'd ôc specêl.",
 'tooltip-search' => 'Sērca dèinter ed {{SITENAME}}',
 'tooltip-search-go' => "Và a'na pàgina cun al tétol sgnê, s' al gh'é.",
 'tooltip-search-fulltext' => 'Sērca int al pàgini al tèst e-sgnê.',
@@ -646,11 +682,13 @@ $messages = array(
 'tooltip-t-whatlinkshere' => "Elèinch ed tót' al pàgini ch'în coleghêdi a còsta.",
 'tooltip-t-recentchangeslinked' => 'Elèinch dal j ûltmi mudéfichi al pàgini coleghêdi a còsta.',
 'tooltip-feed-atom' => 'Feed Atom per cla pàgina ché.',
+'tooltip-t-contributions' => "Lèsta di lavōr fât da cl'utèint ché.",
 'tooltip-t-upload' => "Cârga un 'file'",
 'tooltip-t-specialpages' => 'Elèinch ed tót al pàgini specêli',
 'tooltip-t-print' => 'Per stampêr cla pàgina ché.',
 'tooltip-t-permalink' => "Colegamèint fés a cla rervişiòun ché 'd  la pàgina.",
 'tooltip-ca-nstab-main' => 'Guêrda la pàgina',
+'tooltip-ca-nstab-user' => 'Guêrda la pàgina utèint',
 'tooltip-ca-nstab-project' => 'Guêrda la pàgina dal prugèt',
 'tooltip-ca-nstab-image' => "Guêrda la pàgina dal 'file'",
 'tooltip-ca-nstab-template' => "Guêrda 'l template",
@@ -659,6 +697,7 @@ $messages = array(
 'tooltip-save' => 'Sêlva al mudéfichi',
 'tooltip-preview' => "Guêrda al mudéfichi préma 'd salvêr (cunsiliê préma 'd salvêr)",
 'tooltip-diff' => "Guêrda 'l mudéfichi fâti al tèst",
+'tooltip-compareselectedversions' => "Guêrda al diferèinsi tr' al dō revisiòun sernîdi ed cla pàgina ché.",
 'tooltip-rollback' => "\"Rollback\" al scanşèla cun un cléch tót' al mudéfichi fâti a cla pàgina ché da l'ûltem ch' al gh'à més al mân.",
 'tooltip-undo' => '"Scanşèla" al permèt de scanşlêr cla mudéfica ché e l\'arvés al mudèl ed mudéfica in môd "Guerda préma". E al permèt ed mèter dèinter \'na spiegasiòun int l\' elemèint ed la mudéfica.',
 'tooltip-summary' => 'Mèt dèinter un sût cèch.',
@@ -699,6 +738,7 @@ a vînen cunsidrê sōl j elèinch puntê (ríghi che cumîncen cun al carâter 
 
 # Metadata
 'metadata' => 'Metadati',
+'metadata-help' => "In cól file ché agh'é dal j infurmasiòun zuntêdi, prubabilmèint zuntêdi da la mâchina fotogrâfica o dal scàner druvê per fotografêrel o per fêrel dvintêr digitêl. Se al file l'é stê mudfifichê, soquânt particulêr a prén cumbinêr mìa cun la realtê.",
 
 # Exif tags
 'exif-exposuretime-format' => '$1 s ($2)',

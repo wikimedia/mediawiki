@@ -459,6 +459,7 @@ Chest in gjenar al è causât dal jessi lâts daûr dal leam a une pagjine che e
 Se la cause no samee jessi cheste, tu podaressis vê cjatât un problem tal software.
 Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la URL.',
 'missingarticle-rev' => '(numar de revision: $1)',
+'missingarticle-diff' => '(Dif.: $1, $2)',
 'readonly_lag' => 'Par cumò il database al è stât blocât pe sincronizazion cul server',
 'internalerror' => 'Erôr interni',
 'internalerror_info' => 'Erôr interni: $1',
@@ -472,16 +473,35 @@ Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la U
 'fileexistserror' => 'No si pues scrivi il file "$1": al esist zà',
 'unexpected' => 'Valor no proviodût: "$1" = "$2"',
 'formerror' => 'Erôr: no si rive a mandâ il form',
+'badarticleerror' => 'Operazion no permetude in cheste pagjine',
+'cannotdelete' => 'La pagjine o il file "$1" no si pues concelâ. 
+Podarès jessi stât cancelât di cualchidun altri.',
+'cannotdelete-title' => 'No si pues cancelâ la pagjine "$1"',
+'delete-hook-aborted' => 'La cancelazion e je stade anulade di un hook. 
+No je une spigazion disponibile.',
+'no-null-revision' => 'No si pues creâ une version vuedie de pagjine "$1"',
 'badtitle' => 'Titul sbaliât',
 'badtitletext' => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
 Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
+'perfcached' => 'I dats seguints a vegnin di une copie de "cache" dal database e a podaressin no jessi inzornâts. La cache e rive a tignî al massim  {{PLURAL:$1|un risultâ disponibil|$1 risultats disponibii}}',
+'perfcachedts' => 'I dats seguints a vegnin di une copie de "cache" dal database dal $1 e a podaressin no jessi inzornâts. La cache e rive a tignî al massim  {{PLURAL:$1|un risultâ disponibil|$1 risultats disponibii}}',
+'querypage-no-updates' => 'Inzornaments de pagjine a son al moment sospindûts. I dats metûts no saràn salvâts.',
 'viewsource' => 'Cjale risultive',
+'viewsource-title' => 'Cjale il codiç di $1',
+'actionthrottled' => 'Azion ritardade',
+'actionthrottledtext' => 'Come misure anti-spam tu âs des limitazion tal fâ cheste azion masse voltis in toc di timp curt. Il limit al è stât superât. Tu puedis tornâ a provâ fra cualchi minût.',
+'protectedpagetext' => 'Pagjine protete par evitâ modifichis o altris azions.',
 'viewsourcetext' => 'Tu puedis viodi e copiâ la risultive di cheste pagjine:',
+'viewyourtext' => 'Tu puedis viodi o copiâ il codiç des "tôs modifichis" in cheste pagjine.',
+'ns-specialprotected' => 'Lis pagjinis specialis no si puedin modificâ',
+'exception-nologin' => 'No tu sês jentrât',
+
+# Virus scanner
+'virus-unknownscanner' => 'antivirus no cognossût:',
 
 # Login and logout pages
-'logouttext' => "'''Tu sâs cumò lât fûr.'''
+'logouttext' => "'''Tu sës cumò lât fûr.'''
 
-Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis <span class='plainlinks'>[$1 jentrâ di gnûf]</span> cul stes o cuntun altri non utent.
 Considere che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la memorie cache dal sgarfadôr.",
 'yourname' => 'Non utent',
 'yourpassword' => 'Peraule clâf',
@@ -809,7 +829,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'timezoneregion-indian' => 'Ocean Indian',
 'timezoneregion-pacific' => 'Ocean Pacific',
 'allowemail' => 'Ative la ricezion di messaçs email di bande di altris utents¹',
-'prefs-searchoptions' => 'Opzions de ricercje',
+'prefs-searchoptions' => 'Cîr',
 'prefs-namespaces' => 'Spazis dai nons',
 'defaultns' => 'Se no, cîr in chescj spazis dai nons:',
 'default' => 'predeterminât',
@@ -818,7 +838,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prefs-custom-js' => 'JS personalizât',
 'prefs-emailconfirm-label' => 'Conferme de pueste eletroniche:',
 'youremail' => 'Email *',
-'username' => 'Non utent:',
+'username' => '{{GENDER:$1|Non utent}}:',
 'uid' => 'ID utent:',
 'prefs-memberingroups' => 'Al fâs part {{PLURAL:$1|dal grup|dai grups}}:',
 'prefs-registration' => 'Date di regjistrazion:',

@@ -2396,6 +2396,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => '編輯刪除理由',
 'delete-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除此類頁面的動作已經被限制，以防止在{{SITENAME}}上的意外擾亂。',
 'delete-warning-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。',
+'deleting-backlinks-warning' => "'''警告：'''您要刪除的頁面有其他頁面連接至此。",
 
 # Rollback
 'rollback' => '回退編輯',

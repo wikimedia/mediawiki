@@ -17,6 +17,7 @@
  * @author Pasanbhathiya2
  * @author Romaine
  * @author Singhalawap
+ * @author Thushara
  * @author චතුනි අලහප්පෙරුම
  * @author තඹරු විජේසේකර
  * @author දසනැබළයෝ
@@ -2247,6 +2248,7 @@ Feedback and further assistance:
 'delete-warning-toobig' => 'මෙම පිටුවට, {{PLURAL:$1|එක් සංශෝධනයකට|සංශෝධන $1 කට}} වඩා වැඩි විශාල සංස්කරණ ඉතිහාසයක් ඇත.
 මෙය මකාදැමීම  {{SITENAME}} හි දත්ත-ගබඩා ක්‍රියාකාරකම් වලට අවහිරතා පැන නැංවීමට හේතු විය හැක;
 පරිස්සමින් ඉදිරි කටයුතු කරන්න.',
+'deleting-backlinks-warning' => "'''ප්‍රවේශමෙන්:''' ඔබ සූදානම් වන්නේ ඔබ පරිශීලනය කරන පිටුවට සම්බන්ධ වූ අනෙක් පිටු මකා දැමීමටයි.",
 
 # Rollback
 'rollback' => 'සංස්කරණයන් පුනරාවර්තනය කරන්න',

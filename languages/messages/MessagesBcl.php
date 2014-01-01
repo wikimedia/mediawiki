@@ -1506,6 +1506,7 @@ An saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit mak
 'recentchanges-label-bot' => 'Ining pagliwat pinaghimo bilang sarong bot',
 'recentchanges-label-unpatrolled' => 'Ining pagliwat dae pa tabi pinagpatrolyahan',
 'recentchanges-label-plusminus' => 'An kadakulaan nin pahina pinagliwat sa paagi kaining numero nin mga bayta',
+'recentchanges-legend-heading' => "'''Kabalaynan:'''",
 'recentchanges-legend-newpage' => '(hilngon man [[Special:NewPages|listahan kan mga baguhong pahina]])',
 'recentchanges-legend-plusminus' => "(''±saro-duwa-tolo'')",
 'rcnotefrom' => "Sa ibaba iyo an mga kaliwatan poon kan '''$2''' (sagkod sa '''$1''' na ipinapahiling).",
@@ -2272,6 +2273,7 @@ Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.'
 An pagpupura kan nasambit na mga pahina dae pinagtutugot tanganing maiwasan an aksidenteng pagka-antala kan {{SITENAME}}.',
 'delete-warning-toobig' => 'Ining pahina igwa nin dakulaong historiya sa pagliwat, minasobrang $1 {{PLURAL:$1|rebisyon|mga rebisyon}}.
 An pagpupura kaini mapuwedeng makapag-antala sa mga operasyon kan datos-sarayan kan {{SITENAME}}; magpadagos tabi na igwang pag-iingat.',
+'deleting-backlinks-warning' => "'''Patanid:''' An ibang mga pahina nakatakod sa pahina na muya mong pagpupuraon.",
 
 # Rollback
 'rollback' => 'Mga paghihira na pabalík',
@@ -3595,7 +3597,7 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(panugmad na lengguwahe)',
-'img-lang-info' => 'Giboha ining imahe sa $1 $2.',
+'img-lang-info' => 'Giboha ining imahe sa $1. $2',
 'img-lang-go' => 'Dumani',
 
 # Table pager
@@ -3694,13 +3696,14 @@ Ika dapat na nakapagresibe na kan [{{SERVER}}{{SCRIPTPATH}}/COPYING sarong kopya
 'version-entrypoints-header-url' => 'Kilyawan',
 
 # Special:Redirect
-'redirect' => 'Palikwatong sa paagi nin sagunson, paragamit, or rebisyon kan ID',
+'redirect' => 'Palikwata sa paagi nin sagunson, paragamit, pahina o rebisyon kan ID',
 'redirect-legend' => 'Palikwatong pasiring sa sarong sagunson o pahina',
-'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an ngaran kan sagunson), sarong pahina (ipinagtao an sarong rebisyon kan ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit). Pinaggamitan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Ining espesyal na pahina minalikwat pasiring sa sarong sagunson (ipinagtao an pangaran nin sagunson), sarong pahina (ipinagtao an sarong rebisyon nin ID o pahina nin ID), o sarong pahina nin paragamit (ipinagtao an numerikong ID nin paragamit). Pinagkagamitan: [[{{#Special:Redirect}}/sagunson/Example.jpg]], [[{{#Special:Redirect}}/rebisyon/328429]], or [[{{#Special:Redirect}}/paragamit/101]].',
 'redirect-submit' => 'Dumani',
 'redirect-lookup' => 'Hanapon mo',
 'redirect-value' => 'Halaga:',
 'redirect-user' => 'ID nin Paragamit',
+'redirect-page' => 'ID kan pahina',
 'redirect-revision' => 'Rebisyon kan Pahina',
 'redirect-file' => 'Ngaran nin Sagunson',
 'redirect-not-exists' => 'Halaga dae nanagboan',

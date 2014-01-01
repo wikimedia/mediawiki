@@ -184,7 +184,7 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Suliñar los atamientos:',
 'tog-justify' => 'Arrimar los paraggrafos de dos vandas',
-'tog-hideminor' => 'Esconder los trocamientos chiquiticos en la hoja de los "trocamientos freskos"',
+'tog-hideminor' => 'Esconder los trocamientos chikos en la hoja de los "trocamientos freskos"',
 'tog-hidepatrolled' => 'Esconder los trocamientos surveyados en la hoja de los "trocamientos freskos"',
 'tog-newpageshidepatrolled' => 'Esconder las hojas surveyadas de la lista de las hojas muevas',
 'tog-extendwatchlist' => 'Anchar mi lista de akavidamiento afín de àmostrar todos los trocamientos, no sólo los muevos',
@@ -321,12 +321,12 @@ $messages = array(
 'article' => 'Artícůlo de contenido',
 'newwindow' => '(Se avre en una mueva ventana)',
 'cancel' => 'Anular',
-'moredotdotdot' => 'Más...',
+'moredotdotdot' => 'Mas...',
 'mypage' => 'Pajina',
 'mytalk' => 'Mi diskusyon',
 'anontalk' => 'Diskusyón para este adresso de IP',
 'navigation' => 'Navigación',
-'and' => '&#32;y',
+'and' => '&#32;i',
 
 # Cologne Blue skin
 'qbfind' => 'Topar',
@@ -358,8 +358,8 @@ $messages = array(
 'returnto' => 'Tornar a $1.',
 'tagline' => 'De {{SITENAME}}',
 'help' => 'Ayudo',
-'search' => 'Busca',
-'searchbutton' => 'Busca',
+'search' => 'Bushkar',
+'searchbutton' => 'Bushkar',
 'go' => 'Vate',
 'searcharticle' => 'Vate',
 'history' => 'La îstoria de la hoja',
@@ -407,7 +407,8 @@ $messages = array(
 'protectedpage' => 'Hoja guardada',
 'jumpto' => 'Salta a:',
 'jumptonavigation' => 'navigación',
-'jumptosearch' => 'búsquida',
+'jumptosearch' => 'bushkar',
+'pool-errorunknown' => 'Yerro deskonosido',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Encima de {{SITENAME}}',
@@ -432,7 +433,7 @@ $messages = array(
 
 'ok' => 'DE ACORDDO',
 'retrievedfrom' => 'Acòjido del adhresso "$1"',
-'youhavenewmessages' => 'Tienes $1 ($2).',
+'youhavenewmessages' => '{{PLURAL:$3|Tienes}} $1 ($2).',
 'youhavenewmessagesmulti' => 'Tienes messajes nuevos en $1',
 'editsection' => 'troca',
 'editold' => 'troca',
@@ -469,6 +470,7 @@ $messages = array(
 # General errors
 'error' => 'Yerro',
 'databaseerror' => 'Yerro de la Databasa',
+'databaseerror-error' => 'Yerro: $1',
 'missing-article' => 'La basa de dados no topó el teksto de la hoja llamada "$1" $2.
 
 En lo mas muncho, esto se cavsa de un "dif" anakróniko ou de un atamiento a la istoria de una hoja que se efaçó.
@@ -501,7 +503,14 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'gotaccount' => "¿Ya tienes un cuento? '''$1'''.",
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => 'Olvidates tus detalyos de akseso?',
+'userlogin-createanother' => 'Krear otro kuento',
+'createacct-emailrequired' => 'Adreso de korreo elektroniko',
 'createaccountmail' => 'por una letra electrónica',
+'createaccountreason' => 'Razon:',
+'createacct-reason' => 'Razon',
+'createacct-submit' => 'Krear tu cuento',
+'createacct-another-submit' => 'Krear otro kuento',
+'createacct-benefit-body2' => '{{{{PLURAL:$1|pajina|pajinas}}',
 'userexists' => 'El nombre que entrates ya se usa.
 Si puede ser, escoge un otro nombre.',
 'createaccounterror' => 'No se pudo crear el cuento: $1',
@@ -523,6 +532,9 @@ Si puede ser, escoge un otro nombre.',
 'passwordreset-email' => 'Adresso de letral:',
 
 # Special:ChangeEmail
+'changeemail' => 'Kambiar adreso de korreo elektroniko',
+'changeemail-header' => 'Kambiar adreso de korreo elektroniko de kuento',
+'changeemail-newemail' => 'Muevo adreso de korreo elektroniko:',
 'changeemail-none' => '(dinguno)',
 'changeemail-submit' => 'Trocar letral',
 'changeemail-cancel' => 'Anular',
@@ -566,7 +578,7 @@ Tu adresso de IP va ser enrejjistrado en la istoria de la hoja.",
 'loginreqpagetext' => 'Tienes que $1 para pueder ver otras hojas.',
 'accmailtitle' => 'La kontrasenya ha sido embiada.',
 'accmailtext' => 'La kontrasenya para "$1" se ha embiado a $2.',
-'newarticle' => '(Nuevo)',
+'newarticle' => '(Muevo)',
 'newarticletext' => 'Arrivates a una hoja que daínda no egziste.
 Para crear esta hoja, empeça a escribir en la caxa de abaxo. Mira [[{{MediaWiki:Helppage}}|la hoja de ayudo]] para saber más.
 Si venites aquí por yerro, torna a la hoja de antes.',
@@ -642,17 +654,18 @@ Leyenda: (act) = diferencias con la versión actual,
 # Revision deletion
 'rev-delundel' => 'mostra/esconde',
 'rev-showdeleted' => 'mostra',
-'revdelete-show-file-submit' => 'Sí',
+'revdelete-show-file-submit' => 'Si',
 'revdelete-radio-same' => '(no troques)',
-'revdelete-radio-set' => 'Sí',
+'revdelete-radio-set' => 'Eskondido',
 'revdelete-radio-unset' => 'No',
-'revdelete-log' => 'Razón:',
+'revdelete-log' => 'Razon:',
 'revdel-restore' => 'troca la visibilitá',
 'pagehist' => 'La storia de la hoja',
+'revdelete-otherreason' => 'Otro razon/razon adisiyonal',
 'revdelete-reasonotherlist' => 'Otra razón',
 
 # History merging
-'mergehistory-reason' => 'Razón:',
+'mergehistory-reason' => 'Razon:',
 
 # Merge log
 'revertmerge' => 'Apartar',
@@ -693,7 +706,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'search-suggest' => 'Quijites dezir: $1',
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => 'Los resultados de $1:',
-'search-interwiki-more' => '(más)',
+'search-interwiki-more' => '(mas)',
 'searchrelated' => 'lisionado',
 'searchall' => 'todos',
 'showingresultsheader' => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
@@ -702,6 +715,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'powersearch-ns' => 'Busca en los espacios de nombres:',
 'powersearch-redir' => 'Mostra las redirecciones',
 'powersearch-toggleall' => 'Todos',
+'powersearch-togglenone' => 'dingun',
 'search-external' => 'Búsqueda eksterna',
 
 # Preferences page
@@ -709,13 +723,16 @@ Leyenda: (act) = diferencias con la versión actual,
 'mypreferences' => 'Las mis preferensias',
 'prefs-skin' => 'Vista',
 'skin-preview' => 'Previstear',
+'prefs-datetime' => 'Data i ora',
 'prefs-rc' => 'Los Trocamientos de Alcabo',
 'prefs-watchlist' => 'Lista de los Trocamientos Preferidos',
 'prefs-watchlist-days' => 'El número de los días a mostrar en la lista de los trocamientos preferidos:',
-'prefs-watchlist-days-max' => '$1 {{PLURAL:$1|días|días}} a lo más muncho',
+'prefs-watchlist-days-max' => '$1 {{PLURAL:$1|diya|diyas}} a lo más muncho',
 'prefs-resetpass' => 'Trocar la parola',
+'prefs-changeemail' => 'Kambiar adreso de korreo elektroniko',
 'prefs-rendering' => 'Vista',
 'saveprefs' => 'Enrejistrar',
+'searchresultshead' => 'Bushkar',
 'timezoneregion-africa' => 'África',
 'timezoneregion-america' => 'América',
 'timezoneregion-antarctica' => 'Antárctica',
@@ -728,7 +745,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'prefs-searchoptions' => 'Bushkar',
 'prefs-files' => 'Dosyas',
 'youremail' => 'Korreo elektroniko:',
-'username' => '{{{{GENDER:$1|Nombre de usuario}}:',
+'username' => '{{GENDER:$1|Nombre de usuario}}:',
 'yourrealname' => 'Nombre verdadero:',
 'yourlanguage' => 'Lengua:',
 'yournick' => 'Firma mueva:',
@@ -738,16 +755,26 @@ Leyenda: (act) = diferencias con la versión actual,
 'email' => 'Korreo elektroniko',
 'prefs-help-email' => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
 'prefs-help-email-others' => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
+'prefs-i18n' => 'Internasionalisasyion',
 'prefs-signature' => 'Firma',
+'prefs-editor' => 'Redaktor',
+
+# User rights
+'userrights-reason' => 'Razon:',
 
 # Groups
 'group-user' => 'Usadorers',
 'group-sysop' => 'Administradores',
+'group-bureaucrat' => 'Burokratos',
 'group-all' => '(todos)',
 
+'group-bureaucrat-member' => '{{GENDER:$1|burokrato}}',
+
 'grouppage-sysop' => '{{ns:project}}:Administradores',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokratos',
 
 # Rights
+'right-read' => 'Meldar pajinas',
 'right-edit' => 'Trocar las hojas',
 'right-createpage' => 'Krear pajinas (ke no son pajinas de diskusyon)',
 'right-createtalk' => 'Krear pajinas de diskusyon',
@@ -766,6 +793,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'action-createpage' => 'crear hojas',
 'action-createtalk' => 'Krear pajinas de diskusyon',
 'action-delete' => 'efassar esta hoja',
+'action-sendemail' => 'embiar korreo elektronikos',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
@@ -794,6 +822,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'minoreditletter' => 'ch',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
+'rc_categories_any' => 'Kualkyer',
 'rc-enhanced-expand' => 'Mostra los detalyos',
 'rc-enhanced-hide' => 'Guarda los detalyos',
 
@@ -817,6 +846,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'license-header' => 'Lesensiamyénto',
 
 # Special:ListFiles
+'listfiles_date' => 'Data',
 'listfiles_name' => 'Nombre',
 'listfiles_user' => 'Usuario',
 'listfiles_size' => 'Boy',
@@ -842,8 +872,17 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'sharedupload-desc-here' => 'Esta hoja es de $1 y puede ser usado por otros projetos.
 La descripción en su [$2 hoja de descripción del arxivo] está amostrada debaxo.',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este arxivo',
+'shared-repo-from' => 'de $1',
+
+# File reversion
+'filerevert-comment' => 'Razon:',
+
+# File deletion
+'filedelete-comment' => 'Razon:',
+'filedelete-reason-otherlist' => 'Otra razon',
 
 # MIME search
+'mimesearch' => 'bushkida por MIME',
 'download' => 'deskargar',
 
 # Random page
@@ -861,6 +900,8 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'nbytes' => '$1 {{PLURAL:$1|bayt|baytes}}',
 'nmembers' => '$1 {{PLURAL:$1|miembro|miembros}}',
 'prefixindex' => 'Todas las hojas con prefixo',
+'shortpages' => 'Pajinas kurtas',
+'longpages' => 'Pajinas largas',
 'usercreated' => '{{GENDER:$3|Enrejistrado|Enrejistrada}} el $1 a las $2',
 'newpages' => 'Hojas muevas',
 'newpages-username' => 'Nombre de usuario:',
@@ -871,7 +912,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'pager-older-n' => '{{PLURAL:$1|1 de antes|$1 de antes}}',
 
 # Book sources
-'booksources' => 'Fuentes de libros',
+'booksources' => 'Fuentes de livros',
 'booksources-search-legend' => 'Buscar fuentes de libros',
 'booksources-go' => 'Yir',
 
@@ -884,7 +925,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'prevpage' => 'Hoja de antés ($1)',
 'allpagesfrom' => 'Mostrar hojas que empecen por:',
 'allpagesto' => 'Mostrar hojas escapadas con:',
-'allarticles' => 'Todos los artikolos',
+'allarticles' => 'Todas las pajinas',
 'allinnamespace' => 'Todas las pajinas (espasio $1)',
 'allpagessubmit' => 'Àmostrar la lista',
 
@@ -895,6 +936,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # Special:LinkSearch
 'linksearch' => 'Linkes eksternos',
+'linksearch-ok' => 'Bushkar',
 'linksearch-line' => 'Atamiento para $1 en la ója $2',
 
 # Special:ListUsers
@@ -904,7 +946,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'listgrouprights-members' => '(ver los miembros de este grupo)',
 
 # Email user
-'emailuser' => 'Embia e-mail a este usuario',
+'emailuser' => 'Embia korreo elektroniko a este usuario',
 
 # Watchlist
 'watchlist' => 'Lista de akavidamiento',
@@ -937,7 +979,7 @@ resultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url
 Mira $2 para un registro de los efassados nuevos.',
 'dellogpage' => 'Registro de efassados',
 'deletecomment' => 'Razón:',
-'deleteotherreason' => 'Otra razón:',
+'deleteotherreason' => 'Otra razon/razon adisiyonal:',
 'deletereasonotherlist' => 'Otra razón',
 'deletereason-dropdown' => '* Motivos generales de efassamientos
 ** La demanda del criador de la hoja
@@ -952,7 +994,7 @@ Mira $2 para un registro de los efassados nuevos.',
 'protectedarticle' => 'guardó «[[$1]]»',
 'modifiedarticleprotection' => 'trocó el nivel de protección de «[[$1]]»',
 'prot_1movedto2' => '[[$1]] trasladado a [[$2]]',
-'protectcomment' => 'Razón:',
+'protectcomment' => 'Razon:',
 'protectexpiry' => 'Escapa:',
 'protect_expiry_invalid' => 'Tiempo de escapación yerrado.',
 'protect_expiry_old' => 'El tiempo de escapación está en el passado.',
@@ -968,12 +1010,19 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'protect-expiring' => 'caduca el $1 (UTC)',
 'protect-cascade' => 'Protección en cascada - guardar todas las hojas incluidas en ésta.',
 'protect-cantedit' => 'No puedes trocar el nivel de protección porque no tienes permissión para hazer ediciones.',
+'protect-otherreason' => 'Otra razon/razon adisiyonal',
+'protect-otherreason-op' => 'Otra razon',
 'restriction-type' => 'Permiso:',
 'restriction-level' => 'Nivel de restricción:',
+
+# Restrictions (nouns)
+'restriction-create' => 'Krear',
 
 # Undelete
 'undeletelink' => 've/trae atrás',
 'undeleteviewlink' => 've',
+'undeletecomment' => 'Razon:',
+'undelete-search-submit' => 'Bushkar',
 'undelete-show-file-submit' => 'Si',
 
 # Namespace form on various pages
@@ -985,10 +1034,10 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'contributions' => 'Ajustamientos {{GENDER:$1|del usador|de la usadora}}',
 'contributions-title' => 'Ajustamientos {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris' => 'Mis dados',
-'contribsub2' => 'Para {{{{GENDER:$3|$1}}($2)',
+'contribsub2' => 'Para {{GENDER:$3|$1}}($2)',
 'uctop' => '(última modificación)',
 'month' => 'Desde el mes (i antes):',
-'year' => 'Desde el año (i antes):',
+'year' => 'Desde el anyo (i antes):',
 
 'sp-contributions-newbies' => 'Mostrar solo las ajustamientos de los usuarios nuevos',
 'sp-contributions-blocklog' => 'registro de bloqueos',
@@ -996,14 +1045,14 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'sp-contributions-logs' => 'enrejistros',
 'sp-contributions-talk' => 'Diskusyón',
 'sp-contributions-search' => 'Buscar ajustamientos',
-'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
+'sp-contributions-username' => 'Adreso de IP o nombre de usuario:',
 'sp-contributions-toponly' => "Amostrar solo revisiones d'alkavo",
-'sp-contributions-submit' => 'Buscar',
+'sp-contributions-submit' => 'Bushkar',
 
 # What links here
 'whatlinkshere' => 'Atamientos a esta hoja',
 'whatlinkshere-title' => 'Hojas que dan link a "$1"',
-'whatlinkshere-page' => 'Hoja:',
+'whatlinkshere-page' => 'Pajina:',
 'linkshere' => "Las hojas venideras dan link a '''[[:$1]]''':",
 'nolinkshere' => "Dinguna ója tiene atamientos kon '''[[:$1]]'''",
 'isredirect' => 'Hoja redirigida',
@@ -1020,12 +1069,16 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 
 # Block/unblock
 'blockip' => 'Bloquear usuario',
-'ipboptions' => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite',
+'ipbreason' => 'Razon:',
+'ipboptions' => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 anyo:1 year,para siempre:infinite',
 'ipblocklist' => 'Usadores bloqueados',
+'blocklist-reason' => 'Razon',
+'ipblocklist-submit' => 'Bushkar',
 'blocklink' => 'bloka',
 'unblocklink' => 'quita el bloko',
 'change-blocklink' => 'troca el bloko',
 'contribslink' => 'donos',
+'emaillink' => 'embiar korreo elektroniko',
 'blocklogpage' => 'Bloqueos de usuarios',
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un tiempo de $2',
 'unblocklogentry' => 'desbloqueó a "$1"',
@@ -1060,7 +1113,7 @@ En estos casos, va deber trasladar manualmente el contenido de la hoja de diskus
 Si puede ser, escoge otro nombre.',
 'movetalk' => 'Renombrar la hoja de diskussión también, si es possible.',
 'movelogpage' => 'Registro de traslados',
-'movereason' => 'Razón:',
+'movereason' => 'Razon:',
 'revertmove' => 'abolta',
 
 # Export
@@ -1095,9 +1148,9 @@ Puedes ver su manadero',
 'tooltip-ca-move' => 'Taxirea (renombra) esta hoja',
 'tooltip-ca-watch' => 'Ajustar esta hoja a tu lista de akavidamientos',
 'tooltip-ca-unwatch' => 'Quita esta hoja de tu lista de escogidos',
-'tooltip-search' => 'Busca en {{SITENAME}}',
+'tooltip-search' => 'Bushkar en {{SITENAME}}',
 'tooltip-search-go' => 'Si ay una hoja con este nombre egzakto, vate allá.',
-'tooltip-search-fulltext' => 'Busca este teksto en las hojas',
+'tooltip-search-fulltext' => 'Bushka este teksto en las hojas',
 'tooltip-p-logo' => 'Vate a la primera hoja',
 'tooltip-n-mainpage' => 'Vate a la primera hoja',
 'tooltip-n-mainpage-description' => 'Vate a la primera hoja',
@@ -1150,6 +1203,18 @@ Puedes ver su manadero',
 'svg-long-desc' => 'arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3',
 'show-big-image' => 'Resolución original',
 
+# Special:NewFiles
+'ilsubmit' => 'Bushkar',
+'bydate' => 'por data',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'just-now' => 'endagora',
+
+# Human-readable timestamps
+'hours-ago' => 'aze $1{{PLURAL:$1|ora|oras}}',
+'minutes-ago' => 'aze {{PLURAL:$1|minuto|minutos}}',
+'seconds-ago' => 'aze {{PLURAL:$1|segundo|segundos}}',
+
 # Bad image list
 'bad_image_list' => 'El formato es ansina:
 
@@ -1179,6 +1244,7 @@ Los otros campos se van a guardar por defecto.
 * gpsaltitude',
 
 # Exif tags
+'exif-artist' => 'Otor',
 'exif-filesource' => 'Manadéro de archivo',
 'exif-gpstimestamp' => 'Tiémpo GPS (óra atómica)',
 'exif-gpsdatestamp' => 'Dáta GPS',
@@ -1201,6 +1267,7 @@ Los otros campos se van a guardar por defecto.
 
 'exif-iimcategory-hth' => 'Salud',
 'exif-iimcategory-lab' => 'Lavoro',
+'exif-iimcategory-sci' => 'Sensiya i teknolojiya',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',
@@ -1208,10 +1275,10 @@ Los otros campos se van a guardar por defecto.
 'monthsall' => '(todos)',
 
 # Email address confirmation
-'confirmemail' => 'Konfirmar direksion e-pósta',
+'confirmemail' => 'Konfirmar adreso de korreo elektronika',
 'confirmemail_send' => 'Embiar el kodigo de konfirmasion.',
 'confirmemail_sent' => 'Konfirmasion de pósta embiada.',
-'confirmemail_success' => 'Su direksion de pósta a sido konfirmada. Agóra puedes registrarse e kolaborar en el wiki.',
+'confirmemail_success' => 'Su adreso de korreo elektronika a sido konfirmada. Agóra puedes registrarse e kolaborar en el wiki.',
 
 # Delete conflict
 'recreate' => 'Krear de muevo',
@@ -1222,6 +1289,9 @@ Los otros campos se van a guardar por defecto.
 # action=watch/unwatch
 'confirm-watch-button' => "D'akodro",
 'confirm-unwatch-button' => "D'akodro",
+
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pajina anterior',
@@ -1259,9 +1329,10 @@ Los otros campos se van a guardar por defecto.
 'version-version' => '(Versión $1)',
 'version-poweredby-others' => 'otros',
 'version-software-version' => 'Versión',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Buscar',
+'fileduplicatesearch-submit' => 'Bushkar',
 
 # Special:SpecialPages
 'specialpages' => 'Hojas especiales',
@@ -1296,11 +1367,29 @@ Los otros campos se van a guardar por defecto.
 
 # New logging system
 'logentry-newusers-autocreate' => 'El cuento $1 fue crîado otomatika mente',
+'rightsnone' => '(dinguno)',
 
 # Feedback
 'feedback-subject' => 'Sujeto',
 'feedback-message' => 'Messaje',
 'feedback-cancel' => 'Anular',
+
+# Search suggestions
+'searchsuggest-search' => 'Bushkar',
+
+# Durations
+'duration-seconds' => '$1{{PLURAL:$1|segundo|segundos}}',
+'duration-minutes' => '$1{{PLURAL:$1|minuto|minutos}}',
+'duration-hours' => '$1{{PLURAL:$1|ora|oras}}',
+'duration-days' => '$1{{PLURAL:$1|diya|diyas}}',
+'duration-weeks' => '$1{{PLURAL:$1|semana|semanas}}',
+'duration-years' => '$1{{PLURAL:$1|anyo|anyos}}',
+'duration-decades' => '$1{{PLURAL:$1|syekolo|syekolos}}',
+'duration-centuries' => '$1{{PLURAL:$1|syekolo|syekolos}}',
+
+# Limit report
+'limitreport-cputime-value' => '$1{{PLURAL:$1|segundo|segundos}}',
+'limitreport-walltime-value' => '$1{{PLURAL:$1|segundo|segundos}}',
 
 # Special:ExpandTemplates
 'expand_templates_ok' => "D'akodro",

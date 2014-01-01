@@ -473,8 +473,8 @@ $1',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 'youhavenewmessagesfromusers' => 'Anda menerima $1 daripada {{PLURAL:$3|seorang|$3 orang}} pengguna lain ($2).',
 'youhavenewmessagesmanyusers' => 'Anda menerima $1 daripada ramai pengguna ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|pesanan|pesanan-pesanan}} baru',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan|perubahan-perubahan}} terkini',
+'newmessageslinkplural' => '{{PLURAL:$1|satu pesanan|999=beberapa pesanan}} baru',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan|999=beberapa perubahan}} terkini',
 'youhavenewmessagesmulti' => 'Anda telah menerima pesanan baru pada $1',
 'editsection' => 'sunting',
 'editold' => 'sunting',
@@ -600,7 +600,8 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 'invalidtitle-knownnamespace' => 'Tajuk tidak sah dengan ruang nama "$2" dan teks "$3"',
 'invalidtitle-unknownnamespace' => 'Tajuk tidak sah dengan nombor ruang nama tidak dikenali $1 dan teks "$2"',
 'exception-nologin' => 'Belum log masuk',
-'exception-nologin-text' => 'Halaman atau tindakan ini memerlukan anda untuk log masuk ke dalam wiki ini.',
+'exception-nologin-text' => 'Sila [[Special:Userlogin|log masuk]] untuk dapat mengakses halaman atau tindakan ini.',
+'exception-nologin-text-manual' => 'Sila $1 untuk dapat mengakses halaman atau tindakan ini.',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -647,9 +648,11 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'gotaccount' => "Sudah mempunyai akaun? '''$1'''.",
 'gotaccountlink' => 'Log masuk',
 'userlogin-resetlink' => 'Lupa nama pengguna/kata laluan anda?',
-'userlogin-resetpassword-link' => 'Reset kata laluan anda',
+'userlogin-resetpassword-link' => 'Lupa kata laluan anda?',
 'helplogin-url' => 'Help:Log masuk',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan untuk log masuk]]',
+'userlogin-loggedin' => 'Anda sudah log masuk sebagai {{GENDER:$1|$1}}. Gunakan borang di bawah untuk log masuk sebagai pengguna lain.',
+'userlogin-createanother' => 'Buka satu lagi akaun',
 'createacct-join' => 'Isikan keterangan anda di bawah.',
 'createacct-another-join' => 'Masukkan maklumat akaun baru di bawah.',
 'createacct-emailrequired' => 'Alamat e-mel',
@@ -704,17 +707,15 @@ e-mel yang didaftarkan oleh "$1".
 Sila log masuk semula setelah anda menerima e-mel tersebut.',
 'blocked-mailpassword' => 'Alamat IP anda telah disekat daripada sebarang penyuntingan, oleh itu, untuk
 mengelak penyalahgunaan, anda tidak dibenarkan menggunakan ciri pemulihan kata laluan.',
-'eauthentsent' => 'Sebuah e-mel pengesahan telah dikirim kepada alamat e-mel tersebut.
-Sebelum e-emel lain boleh dikirim kepada alamat tersebut, anda perlu mengikuti segala arahan dalam e-mel tersebut
-untuk membuktikan bahawa alamat tersebut memang milik anda.',
+'eauthentsent' => 'Sepucuk e-mel pengesahan telah dikirim kepada alamat e-mel yang dinyatakan.
+Sebelum e-mel lain boleh dikirim kepada alamat tersebut, anda perlu mematuhi arahan-arahan pada e-mel pengesahan tersebut untuk mengesahkan bahawa alamat tersebut benar-benar kepunyaan anda.',
 'throttled-mailpassword' => 'E-mel set semula kata laluan telah dihantar dalam tempoh $1 jam yang lalu.
 Untuk mencegah salah guna, hanya sepucuk e-mel set semula kata laluan dihantar setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror' => 'Ralat ketika mengirim e-mel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini yang menggunakan alamat IP anda telah membuka sebanyak $1 akaun semenjak sehari lepas, iaitu merupakan had maksimum yang dibenarkan dalam tempoh tersebut.
 Akibatknya, pengunjung dari alamat IP ini tidak boleh membuka akaun lagi pada masa sekarang.',
 'emailauthenticated' => 'Alamat e-mel anda telah disahkan pada $2, $3.',
-'emailnotauthenticated' => 'Alamat e-mel anda belum disahkan. Oleh itu,
-e-mel bagi ciri-ciri berikut tidak boleh dikirim.',
+'emailnotauthenticated' => 'Alamat e-mel anda belum disahkan. Oleh itu, e-mel tidak boleh dikirim bagi ciri-ciri berikut.',
 'noemailprefs' => 'Anda perlu menetapkan alamat e-mel terlebih dahulu untuk menggunakan ciri-ciri ini.',
 'emailconfirmlink' => 'Sahkan alamat e-mel anda.',
 'invalidemailaddress' => 'Alamat e-mel tersebut tidak boleh diterima kerana ia tidak sah. Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
@@ -764,7 +765,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 # Special:PasswordReset
 'passwordreset' => 'Set semula kata laluan',
 'passwordreset-text-one' => 'Lengkapkan borang ini untuk mengeset semula kata laluan anda.',
-'passwordreset-text-many' => '{{PLURAL:$1|Isi salah satu ruangan untuk mengeset semula kata laluan anda.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Isi salah satu ruangan berikut untuk menerima kata laluan sementara melalui e-mel.}}',
 'passwordreset-legend' => 'Set semula kata laluan',
 'passwordreset-disabled' => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
 'passwordreset-emaildisabled' => 'Ciri-ciri e-mel telah dipadamkan di wiki ini.',
@@ -1056,6 +1057,9 @@ Argumen-argumen ini telah ditinggalkan.',
 'cantcreateaccount-text' => "Pembukaan akaun daripada alamat IP ini (<b>$1</b>) telah disekat oleh [[User:$3|$3]].
 
 Sebab yang diberikan oleh $3 ialah ''$2''",
+'cantcreateaccount-range-text' => "Pembukaan akaun dari alamat-alamat IP dalam julat '''$1''', termasuk alamat IP anda ('''$4'''), telah disekat oleh [[User:$3|$3]].
+
+Sebab yang diberikan oleh $3 ialah ''$2''",
 
 # History pages
 'viewpagelogs' => 'Lihat log bagi laman ini',
@@ -1133,19 +1137,20 @@ Anda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Specia
 'revdelete-text' => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log, tetapi kandungannya tidak boleh diakses awam.'''
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya semula melalui laman ini melainkan mempunyai batasan.",
 'revdelete-confirm' => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
-'revdelete-suppress-text' => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
-* Maklumat peribadi tidak sesuai
+'revdelete-suppress-text' => "Sekatan seharusnya digunakan '''hanya''' untuk kes-kes berikut:
+* maklumat yang mungkin berunsur fitnah
+* maklumat peribadi tidak sesuai
 *: ''alamat rumah dan nombor telefon, nombor keselamatan sosial, dsbg.''",
 'revdelete-legend' => 'Tetapkan batasan:',
-'revdelete-hide-text' => 'Sembunyikan teks semakan',
+'revdelete-hide-text' => 'Teks semakan',
 'revdelete-hide-image' => 'Sembunyikan kandungan fail',
 'revdelete-hide-name' => 'Sembunyikan tindakan dan sasaran',
-'revdelete-hide-comment' => 'Sembunyikan komen suntingan',
-'revdelete-hide-user' => 'Sembunyikan nama pengguna/IP penyunting',
+'revdelete-hide-comment' => 'Ringkasan suntingan',
+'revdelete-hide-user' => 'Nama pengguna/IP penyunting',
 'revdelete-hide-restricted' => 'Sekat data daripada penyelia dan pengguna lain',
 'revdelete-radio-same' => '(jangan tukar)',
-'revdelete-radio-set' => 'Ya',
-'revdelete-radio-unset' => 'Tidak',
+'revdelete-radio-set' => 'Tersembunyi',
+'revdelete-radio-unset' => 'Kelihatan',
 'revdelete-suppress' => 'Sekat data daripada semua pengguna, termasuk penyelia',
 'revdelete-unsuppress' => 'Buang batasan pada semakan yang dipulihkan',
 'revdelete-log' => 'Sebab:',
@@ -1585,12 +1590,14 @@ Tindakan ini tidak boleh dibatalkan.',
 'recentchanges-label-minor' => 'Ini ialah suntingan kecil',
 'recentchanges-label-bot' => 'Suntingan ini dilakukan oleh bot',
 'recentchanges-label-unpatrolled' => 'Suntingan ini belum dirondai',
-'recentchanges-legend-newpage' => '$1 - laman baru',
+'recentchanges-label-plusminus' => 'Saiz halaman telah berubah sebanyak jumlah bait ini',
+'recentchanges-legend-heading' => "'''Petunjuk:'''",
+'recentchanges-legend-newpage' => '(lihat juga [[Special:NewPages|senarai halaman baru]])',
 'rcnotefrom' => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom' => 'Papar perubahan sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
 'rcshowhidebots' => '$1 bot',
-'rcshowhideliu' => '$1 pengguna log masuk',
+'rcshowhideliu' => '$1 pengguna berdaftar',
 'rcshowhideanons' => '$1 pengguna tanpa nama',
 'rcshowhidepatr' => '$1 suntingan dirondai',
 'rcshowhidemine' => '$1 suntingan saya',
@@ -2304,9 +2311,9 @@ Hubungi penyunting:
 mel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tiada lagi pemberitahuan lanjut sekiranya terdapat suntingan selanjutnya melainkan anda mengunjungi halaman berkenaan. Anda juga boleh menetapkan semula tanda-tanda pemberitahuan untuk kesemua halaman dalam senarai pantau anda.
+Tiada lagi pemberitahuan lanjut sekiranya terdapat kegiatan selanjutnya melainkan anda mengunjungi halaman berkenaan apabila log masuk. Anda juga boleh menetapkan semula tanda-tanda pemberitahuan untuk kesemua halaman dalam senarai pantau anda.
 
-			 Sistem pemberitahuan {{SITENAME}} yang mesra
+Sistem pemberitahuan {{SITENAME}} yang mesra
 
 --
 Untuk mengubah tetapan pemberitahuan melalui e-mel anda, kunjungi
@@ -2348,12 +2355,15 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'deleteotherreason' => 'Sebab lain/tambahan:',
 'deletereasonotherlist' => 'Sebab lain',
 'deletereason-dropdown' => '* Sebab-sebab lazim
-** Permintaan pengarang
+** Spam
+** Vandalisme
 ** Melanggar hak cipta
-** Vandalisme',
+** Permintaan pengarang
+** Lencongan terputus',
 'delete-edit-reasonlist' => 'Ubah sebab-sebab hapus',
 'delete-toobig' => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Oleh itu, laman ini dilindungi daripada dihapuskan untuk mengelak kerosakan di {{SITENAME}} yang tidak disengajakan.',
 'delete-warning-toobig' => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Menghapuskannya boleh mengganggu perjalanan pangkalan data {{SITENAME}}. Sila berhati-hati.',
+'deleting-backlinks-warning' => "'''Amaran:''' Terdapat halaman-halaman lain yang berpaut pada halaman yang hendak anda hapus itu.",
 
 # Rollback
 'rollback' => 'Undurkan suntingan.',
@@ -3007,7 +3017,8 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'spam_reverting' => 'Membalikkan kepada versi terakhir yang tidak mengandungi pautan ke $1',
 'spam_blanking' => 'Mengosongkan semua semakan yang mengandungi pautan ke $1',
 'spam_deleting' => 'Menghapuskan semua semakan yang mengandungi pautan ke $1',
-'simpleantispam-label' => "Pemeriksaan anti-spam. '''JANGAN''' isi ruangan ini!",
+'simpleantispam-label' => "Pemeriksaan anti-spam.
+'''JANGAN''' isi ruangan ini!",
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',
@@ -3021,6 +3032,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-length' => 'Kepanjangan halaman (bait)',
 'pageinfo-article-id' => 'ID halaman',
 'pageinfo-language' => 'Bahasa isi kandungan halaman',
+'pageinfo-content-model' => 'Model kandungan halaman',
 'pageinfo-robot-policy' => 'Indeks oleh robot',
 'pageinfo-robot-index' => 'Dibenarkan',
 'pageinfo-robot-noindex' => 'Tidak dibenarkan',
@@ -3672,6 +3684,8 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(bahasa azali)',
+'img-lang-info' => 'Paparkan gambar ini dalam $1. $2',
+'img-lang-go' => 'Jalan',
 
 # Table pager
 'ascending_abbrev' => 'menaik',
@@ -3784,13 +3798,14 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Laluan skrip]',
 
 # Special:Redirect
-'redirect' => 'Lencongkan mengikut fail, ID pengguna atau ID semakan',
+'redirect' => 'Lencongkan mengikut ID fail, pengguna, halaman atau semakan',
 'redirect-legend' => 'Lencongkan ke fail atau halaman',
-'redirect-summary' => 'Halaman khas ini melencong kepada fail (dengan nama fail), halaman (dengan ID semakan) atau halaman pengguna (dengan ID pengguna berangka).',
+'redirect-summary' => 'Halaman khas ini melencong kepada fail (dengan nama fail), halaman (dengan ID semakan atau ID halaman) atau halaman pengguna (dengan ID pengguna berangka). Penggunaan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], atau [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Pergi',
 'redirect-lookup' => 'Cari:',
 'redirect-value' => 'Nilai:',
 'redirect-user' => 'ID Pengguna',
+'redirect-page' => 'ID halaman',
 'redirect-revision' => 'Semakan halaman',
 'redirect-file' => 'Nama fail',
 'redirect-not-exists' => 'Nilai tidak dijumpai',
@@ -3808,9 +3823,9 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 
 # Special:SpecialPages
 'specialpages' => 'Laman khas',
+'specialpages-note-top' => 'Petunjuk',
 'specialpages-note' => '* Laman khas biasa.
-* <span class="mw-specialpagerestricted">Laman khas terhad.</span>
-* <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
+* <span class="mw-specialpagerestricted">Laman khas terhad.</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other' => 'Laman khas lain',
 'specialpages-group-login' => 'Log masuk / buka akaun',
@@ -3848,7 +3863,10 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'tags-tag' => 'Nama label',
 'tags-display-header' => 'Rupa dalam senarai perubahan',
 'tags-description-header' => 'Keterangan makna',
+'tags-active-header' => 'Aktif?',
 'tags-hitcount-header' => 'Perubahan',
+'tags-active-yes' => 'Ya',
+'tags-active-no' => 'Tidak',
 'tags-edit' => 'sunting',
 'tags-hitcount' => '$1 perubahan',
 
@@ -4030,10 +4048,12 @@ Sebenarnya, ia mengembangkan segalanya dalam tanda kurung panah berganda.',
 'expand_templates_input' => 'Teks input:',
 'expand_templates_output' => 'Hasil',
 'expand_templates_xml_output' => 'Output XML',
+'expand_templates_html_output' => 'Output HTML mentah',
 'expand_templates_ok' => 'OK',
 'expand_templates_remove_comments' => 'Buang ulasan',
 'expand_templates_remove_nowiki' => 'Sekat tag <nowiki> dalam hasil',
 'expand_templates_generate_xml' => 'Papar pepohon hurai XML',
+'expand_templates_generate_rawhtml' => 'Paparkan HTML mentah',
 'expand_templates_preview' => 'Pralihat',
 
 );

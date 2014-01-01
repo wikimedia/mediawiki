@@ -194,6 +194,7 @@ $messages = array(
 'tog-ccmeonemails' => 'Mi kopije e-mejlkow pósłać, kotrež druhim wužiwarjam pósćelu',
 'tog-diffonly' => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats' => 'Schowane kategorije pokazać',
+'tog-noconvertlink' => 'Konwertowanje wotkazoweho titula znjemóžnić',
 'tog-norollbackdiff' => 'Rozdźěl po wróćostajenju zanjechać',
 'tog-useeditwarning' => 'Warnować, hdyž so wobdźěłowanska strona z njeskładowanymi změnami wopušća',
 'tog-prefershttps' => 'Po přizjewjenju přeco wěsty zwisk wužiwać',
@@ -2299,6 +2300,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'delete-edit-reasonlist' => 'Přičiny za wušmórnjenje wobdźěłać',
 'delete-toobig' => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje tajkich stronow bu wobmjezowane, zo by připadne přetorhnjenje {{SITENAME}} wobešło.',
 'delete-warning-toobig' => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje móže operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
+'deleting-backlinks-warning' => "'''Warnowanje:''' Druhe strony wotkazuja k stronje, kotruž chceš zhašeć.",
 
 # Rollback
 'rollback' => 'Změny cofnyć',

@@ -2586,6 +2586,7 @@ La suppression de telles pages a été restreinte pour prévenir des perturbatio
 'delete-warning-toobig' => "Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ;
 veuiller ne procéder qu'avec prudence.",
+'deleting-backlinks-warning' => "'''Attention :''' D’autres pages ont un lien vers la page que vous allez supprimer.",
 
 # Rollback
 'rollback' => 'Révoquer les modifications',
