@@ -273,7 +273,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$module = $loader->getModule( $name );
 			$time = max( $time, $module->getModifiedTime( $context ) );
 		}
-		return $this->modifiedTime[$hash] = $time;
+		$this->modifiedTime[$hash] = $time;
+		return $this->modifiedTime[$hash];
 	}
 
 	/* Methods */

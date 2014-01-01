@@ -454,8 +454,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// If a module is nothing but a list of dependencies, we need to avoid
 		// giving max() an empty array
 		if ( count( $files ) === 0 ) {
+			$this->modifiedTime[$context->getHash()] = 1;
 			wfProfileOut( __METHOD__ );
-			return $this->modifiedTime[$context->getHash()] = 1;
+			return $this->modifiedTime[$context->getHash()];
 		}
 
 		wfProfileIn( __METHOD__ . '-filemtime' );

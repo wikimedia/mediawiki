@@ -455,7 +455,8 @@ class LogFormatter {
 		// Bad things happens if the numbers are not in correct order
 		ksort( $params );
 
-		return $this->parsedParameters = $params;
+		$this->parsedParameters = $params;
+		return $this->parsedParameters;
 	}
 
 	/**
@@ -737,7 +738,8 @@ class LegacyLogFormatter extends LogFormatter {
 		}
 
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
-			return $this->revert = '';
+			$this->revert = '';
+			return $this->revert;
 		}
 
 		$title = $this->entry->getTarget();

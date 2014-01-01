@@ -2892,15 +2892,15 @@ class Title {
 		# alone to cache the result.  There's no point in having it hanging
 		# around uninitialized in every Title object; therefore we only add it
 		# if needed and don't declare it statically.
-		if ( isset( $this->mHasSubpages ) ) {
-			return $this->mHasSubpages;
+		if ( !isset( $this->mHasSubpages ) ) {
+			$this->mHasSubpages = false;
+			$subpages = $this->getSubpages( 1 );
+			if ( $subpages instanceof TitleArray ) {
+				$this->mHasSubpages = (bool)$subpages->count();
+			}
 		}
 
-		$subpages = $this->getSubpages( 1 );
-		if ( $subpages instanceof TitleArray ) {
-			return $this->mHasSubpages = (bool)$subpages->count();
-		}
-		return $this->mHasSubpages = false;
+		return $this->mHasSubpages;
 	}
 
 	/**
@@ -2922,7 +2922,7 @@ class Title {
 		if ( $limit > -1 ) {
 			$options['LIMIT'] = $limit;
 		}
-		return $this->mSubpages = TitleArray::newFromResult(
+		$this->mSubpages = TitleArray::newFromResult(
 			$dbr->select( 'page',
 				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ),
 				$conds,
@@ -2930,6 +2930,7 @@ class Title {
 				$options
 			)
 		);
+		return $this->mSubpages;
 	}
 
 	/**
@@ -2990,7 +2991,8 @@ class Title {
 	 */
 	public function getArticleID( $flags = 0 ) {
 		if ( $this->getNamespace() < 0 ) {
-			return $this->mArticleID = 0;
+			$this->mArticleID = 0;
+			return $this->mArticleID;
 		}
 		$linkCache = LinkCache::singleton();
 		if ( $flags & self::GAID_FOR_UPDATE ) {
@@ -3019,7 +3021,8 @@ class Title {
 		}
 		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
-			return $this->mRedirect = false;
+			$this->mRedirect = false;
+			return $this->mRedirect;
 		}
 
 		$linkCache = LinkCache::singleton();
@@ -3031,7 +3034,8 @@ class Title {
 			# LinkCache as appropriate, or use $flags = Title::GAID_FOR_UPDATE. If that flag is
 			# set, then LinkCache will definitely be up to date here, since getArticleID() forces
 			# LinkCache to refresh its data from the master.
-			return $this->mRedirect = false;
+			$this->mRedirect = false;
+			return $this->mRedirect;
 		}
 
 		$this->mRedirect = (bool)$cached;
@@ -3052,13 +3056,15 @@ class Title {
 		}
 		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
-			return $this->mLength = 0;
+			$this->mLength = 0;
+			return $this->mLength;
 		}
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
-			return $this->mLength = 0;
+			$this->mLength = 0;
+			return $this->mLength;
 		}
 
 		$this->mLength = intval( $cached );
@@ -3078,14 +3084,16 @@ class Title {
 		}
 		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
-			return $this->mLatestID = 0;
+			$this->mLatestID = 0;
+			return $this->mLatestID;
 		}
 		$linkCache = LinkCache::singleton();
 		$linkCache->addLinkObj( $this );
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
-			return $this->mLatestID = 0;
+			$this->mLatestID = 0;
+			return $this->mLatestID;
 		}
 
 		$this->mLatestID = intval( $cached );
@@ -4649,7 +4657,8 @@ class Title {
 			return $this->mNotificationTimestamp[$uid];
 		}
 		if ( !$uid || !$wgShowUpdatedMarker || !$user->isAllowed( 'viewmywatchlist' ) ) {
-			return $this->mNotificationTimestamp[$uid] = false;
+			$this->mNotificationTimestamp[$uid] = false;
+			return $this->mNotificationTimestamp[$uid];
 		}
 		// Don't cache too much!
 		if ( count( $this->mNotificationTimestamp ) >= self::CACHE_MAX ) {
