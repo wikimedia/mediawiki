@@ -5,7 +5,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageMk.php */
+/** Tests for македонски/Macedonian */
 class LanguageMkTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
@@ -28,7 +28,7 @@ class LanguageMkTest extends LanguageClassesTestCase {
 		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
-			array( 'other', 11 ),
+			array( 'one', 11 ),
 			array( 'one', 21 ),
 			array( 'one', 411 ),
 			array( 'other', 12.345 ),
