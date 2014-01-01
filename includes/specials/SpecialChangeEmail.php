@@ -135,6 +135,15 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
 	}
 
+	/**
+	 * @param $msg string
+	 * @param $args array
+	 * @since 1.23
+	 */
+	protected function errorHtml( $msg, $args = array() ) {
+		$this->getOutput()->addHTML( "<p class='error'>\n" . $this->msg( $msg, $args )->text() . "\n</p>" );
+	}
+
 	protected function showForm() {
 		global $wgRequirePasswordforEmailChange;
 		$user = $this->getUser();
@@ -232,14 +241,14 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			$this->error( array( 'login-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
+			$this->errorHtml( 'login-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) );
 
 			return false;
 		}
 
 		global $wgRequirePasswordforEmailChange;
 		if ( $wgRequirePasswordforEmailChange && !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
-			$this->error( 'wrongpassword' );
+			$this->errorHtml( 'wrongpassword' );
 
 			return false;
 		}
