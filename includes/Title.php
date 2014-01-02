@@ -3633,7 +3633,6 @@ class Title {
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays( $errors,
 				$this->getUserPermissionsErrors( 'move', $wgUser ),
-				$this->getUserPermissionsErrors( 'edit', $wgUser ),
 				$nt->getUserPermissionsErrors( 'move-target', $wgUser ),
 				$nt->getUserPermissionsErrors( 'edit', $wgUser ) );
 		}
