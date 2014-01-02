@@ -173,6 +173,8 @@ changes to languages because of Bugzilla reports.
 * Removed methods:
   - Exif::getFormattedData() (deprecated in 1.18)
   - Exif::makeFormattedData() (deprecated in 1.18)
+  - Language::convertLinkToAllVariants() (deprecated in 1.17)
+  - LanguageConverter::convertLinkToAllVariants() (deprecated in 1.17)
   - Linker::makeBrokenLink() (deprecated in 1.16)
   - Linker::makeBrokenLinkObj() (deprecated in 1.16)
   - Linker::makeColouredLinkObj() (deprecated in 1.16)

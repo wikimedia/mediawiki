@@ -492,21 +492,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Convert link text to all valid variants.
-	 * In the first, this function only convert text outside the
-	 * "-{" "}-" markups. Since the "{" and "}" are not allowed in
-	 * titles, the text will get all converted always.
-	 * So I removed this feature and deprecated the function.
-	 *
-	 * @param $text String: the text to be converted
-	 * @return Array: variant => converted text
-	 * @deprecated since 1.17 Use autoConvertToAllVariants() instead
-	 */
-	public function convertLinkToAllVariants( $text ) {
-		return $this->autoConvertToAllVariants( $text );
-	}
-
-	/**
 	 * Apply manual conversion rules.
 	 *
 	 * @param $convRule ConverterRule Object of ConverterRule

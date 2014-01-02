@@ -62,7 +62,6 @@ class FakeConverter {
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
-	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
 	/** @deprecated since 1.22 is no longer used */
 	function armourMath( $text ) { return $text; }
 	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
@@ -3903,21 +3902,6 @@ class Language {
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		$this->mConverter->findVariantLink( $link, $nt, $ignoreOtherCond );
-	}
-
-	/**
-	 * If a language supports multiple variants, converts text
-	 * into an array of all possible variants of the text:
-	 *  'variant' => text in that variant
-	 *
-	 * @deprecated since 1.17 Use autoConvertToAllVariants()
-	 *
-	 * @param $text string
-	 *
-	 * @return string
-	 */
-	public function convertLinkToAllVariants( $text ) {
-		return $this->mConverter->convertLinkToAllVariants( $text );
 	}
 
 	/**
