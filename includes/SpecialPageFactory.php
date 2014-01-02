@@ -44,7 +44,6 @@
  * @since 1.17
  */
 class SpecialPageFactory {
-
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
@@ -259,8 +258,8 @@ class SpecialPageFactory {
 	 * where the first element is the special page name and the second is the
 	 * subpage.
 	 *
-	 * @param $alias String
-	 * @return Array( String, String|null ), or array( null, null ) if the page is invalid
+	 * @param string $alias
+	 * @return array Array( String, String|null ), or array( null, null ) if the page is invalid
 	 */
 	public static function resolveAlias( $alias ) {
 		global $wgContLang;
@@ -286,8 +285,8 @@ class SpecialPageFactory {
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param $page Mixed: SpecialPage or string
-	 * @param $group String
+	 * @param SpecialPage|string $page
+	 * @param string $group
 	 * @deprecated since 1.21 Override SpecialPage::getGroupName
 	 */
 	public static function setGroup( $page, $group ) {
@@ -301,8 +300,8 @@ class SpecialPageFactory {
 	/**
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
-	 * @param $page SpecialPage
-	 * @return String
+	 * @param SpecialPage $page
+	 * @return string
 	 * @deprecated since 1.21 Use SpecialPage::getFinalGroupName
 	 */
 	public static function getGroup( &$page ) {
@@ -314,8 +313,8 @@ class SpecialPageFactory {
 	/**
 	 * Check if a given name exist as a special page or as a special page alias
 	 *
-	 * @param string $name name of a special page
-	 * @return Boolean: true if a special page exists with this name
+	 * @param string $name Name of a special page
+	 * @return bool True if a special page exists with this name
 	 */
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
@@ -351,9 +350,9 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
 	 *
-	 * @param $user User object to check permissions, $wgUser will be used
-	 *              if not provided
-	 * @return Array( String => Specialpage )
+	 * @param $user User object to check permissions, $wgUser will be used if
+	 *   if not provided
+	 * @return array ( string => Specialpage )
 	 */
 	public static function getUsablePages( User $user = null ) {
 		$pages = array();
@@ -378,7 +377,7 @@ class SpecialPageFactory {
 	/**
 	 * Return categorised listable special pages for all users
 	 *
-	 * @return Array( String => Specialpage )
+	 * @return array ( string => Specialpage )
 	 */
 	public static function getRegularPages() {
 		$pages = array();
@@ -395,7 +394,7 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, but not for everyone
 	 *
-	 * @return Array( String => Specialpage )
+	 * @return array ( string => Specialpage )
 	 */
 	public static function getRestrictedPages() {
 		global $wgUser;
@@ -421,9 +420,9 @@ class SpecialPageFactory {
 	 * Returns a title object if the page is redirected, false if there was no such special
 	 * page, and true if it was successful.
 	 *
-	 * @param $title          Title object
-	 * @param $context        IContextSource
-	 * @param $including      Bool output is being captured for use in {{special:whatever}}
+	 * @param Title $title
+	 * @param IContextSource $context
+	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
 	 *
 	 * @return bool
 	 */
@@ -501,10 +500,9 @@ class SpecialPageFactory {
 	 * variables so that the special page will get the context it'd expect on a
 	 * normal request, and then restores them to their previous values after.
 	 *
-	 * @param $title Title
-	 * @param $context IContextSource
-	 *
-	 * @return String: HTML fragment
+	 * @param Title $title
+	 * @param IContextSource $context
+	 * @return string HTML fragment
 	 */
 	static function capturePath( Title $title, IContextSource $context ) {
 		global $wgOut, $wgTitle, $wgRequest, $wgUser, $wgLang;
@@ -539,10 +537,9 @@ class SpecialPageFactory {
 	/**
 	 * Get the local name for a specified canonical name
 	 *
-	 * @param $name String
-	 * @param $subpage String|Bool
-	 *
-	 * @return String
+	 * @param string $name
+	 * @param string|bool $subpage
+	 * @return string
 	 */
 	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
@@ -576,9 +573,8 @@ class SpecialPageFactory {
 	/**
 	 * Get a title for a given alias
 	 *
-	 * @param $alias String
-	 *
-	 * @return Title or null if there is no such alias
+	 * @param string $alias
+	 * @return Title|null Title or null if there is no such alias
 	 */
 	static function getTitleForAlias( $alias ) {
 		$name = self::resolveAlias( $alias );
