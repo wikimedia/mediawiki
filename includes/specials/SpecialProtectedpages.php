@@ -52,6 +52,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$ns = $request->getIntOrNull( 'namespace' );
 		$indefOnly = $request->getBool( 'indefonly' ) ? 1 : 0;
 		$cascadeOnly = $request->getBool( 'cascadeonly' ) ? 1 : 0;
+		$noRedirect = $request->getBool( 'noredirect' ) ? 1 : 0;
 
 		$pager = new ProtectedPagesPager(
 			$this,
@@ -62,7 +63,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$sizetype,
 			$size,
 			$indefOnly,
-			$cascadeOnly
+			$cascadeOnly,
+			$noRedirect
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions(
@@ -72,7 +74,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$sizetype,
 			$size,
 			$indefOnly,
-			$cascadeOnly
+			$cascadeOnly,
+			$noRedirect
 		) );
 
 		if ( $pager->getNumRows() ) {
@@ -186,17 +189,18 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
-	 * @param $namespace Integer
-	 * @param string $type restriction type
-	 * @param string $level restriction level
+	 * @param int $namespace
+	 * @param string $type Restriction type
+	 * @param string $level Restriction level
 	 * @param string $sizetype "min" or "max"
-	 * @param $size Integer
-	 * @param $indefOnly Boolean: only indefinie protection
-	 * @param $cascadeOnly Boolean: only cascading protection
+	 * @param int $size
+	 * @param bool $indefOnly Only indefinite protection
+	 * @param bool $cascadeOnly Only cascading protection
+	 * @param bool $noRedirect Don't show redirects
 	 * @return String: input form
 	 */
 	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype,
-		$size, $indefOnly, $cascadeOnly
+		$size, $indefOnly, $cascadeOnly, $noRedirect
 	) {
 		global $wgScript;
 
@@ -212,6 +216,7 @@ class SpecialProtectedpages extends SpecialPage {
 			"<br /><span style='white-space: nowrap'>" .
 			$this->getExpiryCheck( $indefOnly ) . "&#160;\n" .
 			$this->getCascadeCheck( $cascadeOnly ) . "&#160;\n" .
+			$this->getRedirectCheck( $noRedirect ) . "&#160;\n" .
 			"</span><br /><span style='white-space: nowrap'>" .
 			$this->getSizeLimit( $sizetype, $size ) . "&#160;\n" .
 			"</span>" .
@@ -266,6 +271,19 @@ class SpecialProtectedpages extends SpecialPage {
 			'cascadeonly',
 			'cascadeonly',
 			$cascadeOnly
+		) . "\n";
+	}
+
+	/**
+	 * @param bool $noRedirect
+	 * @return string Formatted HTML
+	 */
+	protected function getRedirectCheck( $noRedirect ) {
+		return Xml::checkLabel(
+			$this->msg( 'protectedpages-noredirect' )->text(),
+			'noredirect',
+			'noredirect',
+			$noRedirect
 		) . "\n";
 	}
 
@@ -372,10 +390,10 @@ class SpecialProtectedpages extends SpecialPage {
  */
 class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
-	private $type, $level, $namespace, $sizetype, $size, $indefonly;
+	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
 	function __construct( $form, $conds = array(), $type, $level, $namespace,
-		$sizetype = '', $size = 0, $indefonly = false, $cascadeonly = false
+		$sizetype = '', $size = 0, $indefonly = false, $cascadeonly = false, $noredirect = false
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
@@ -386,6 +404,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$this->size = intval( $size );
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
+		$this->noredirect = (bool)$noredirect;
 		parent::__construct( $form->getContext() );
 	}
 
@@ -423,6 +442,9 @@ class ProtectedPagesPager extends AlphabeticPager {
 		}
 		if ( $this->cascadeonly ) {
 			$conds[] = 'pr_cascade = 1';
+		}
+		if ( $this->noredirect ) {
+			$conds[] = 'page_is_redirect = 0';
 		}
 
 		if ( $this->level ) {

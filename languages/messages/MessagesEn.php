@@ -2753,6 +2753,7 @@ It now redirects to [[$2]].',
 'protectedpages-indef'            => 'Indefinite protections only',
 'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
 'protectedpages-cascade'          => 'Cascading protections only',
+'protectedpages-noredirect'       => 'Hide redirects',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
 'protectedtitles'                 => 'Protected titles',
 'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
