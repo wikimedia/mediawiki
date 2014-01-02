@@ -94,9 +94,6 @@ class ApiUpload extends ApiBase {
 			}
 		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
-		} else {
-			wfDebug( __METHOD__ . 'about to verify' );
-			$this->verifyUpload();
 		}
 
 		// Check if the user has the rights to modify or overwrite the requested title
@@ -130,6 +127,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getContextResult() {
+		$this->verifyUpload();
 		$warnings = $this->getApiWarnings();
 		if ( $warnings && !$this->mParams['ignorewarnings'] ) {
 			// Get warnings formatted in result array format
