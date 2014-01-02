@@ -501,7 +501,7 @@ class LinkHolderArray {
 				// Self-link checking for mixed/different variant titles. At this point, we
 				// already know the exact title does not exist, so the link cannot be to a
 				// variant of the current title that exists as a separate page.
-				if ( $variantTitle->equals( $parentTitle ) && $title->getFragment() === '' ) {
+				if ( $variantTitle->equals( $parentTitle ) && !$title->hasFragment() ) {
 					$this->internals[$ns][$index]['selflink'] = true;
 					continue 2;
 				}

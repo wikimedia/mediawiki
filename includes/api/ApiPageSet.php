@@ -387,7 +387,7 @@ class ApiPageSet extends ApiBase {
 				'from' => strval( $titleStrFrom ),
 				'to' => $titleTo->getPrefixedText(),
 			);
-			if ( $titleTo->getFragment() !== '' ) {
+			if ( $titleTo->hasFragment() ) {
 				$r['tofragment'] = $titleTo->getFragment();
 			}
 			$values[] = $r;

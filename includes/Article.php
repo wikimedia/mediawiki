@@ -988,7 +988,7 @@ class Article implements Page {
 				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
 
 				// Set the fragment if one was specified in the redirect
-				if ( strval( $this->getTitle()->getFragment() ) != '' ) {
+				if ( $this->getTitle()->hasFragment() ) {
 					$outputPage->addInlineScript( Xml::encodeJsCall(
 						'redirectToFragment', array( $this->getTitle()->getFragmentForURL() )
 					) );
