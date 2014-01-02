@@ -236,7 +236,8 @@ class LanguageConverter {
 			$ret = $wgRequest->getVal( 'uselang' );
 		}
 
-		return $this->mURLVariant = $this->validateVariant( $ret );
+		$this->mURLVariant = $this->validateVariant( $ret );
+		return $this->mURLVariant;
 	}
 
 	/**
@@ -269,7 +270,8 @@ class LanguageConverter {
 			$ret = $wgUser->getOption( 'language' );
 		}
 
-		return $this->mUserVariant = $this->validateVariant( $ret );
+		$this->mUserVariant = $this->validateVariant( $ret );
+		return $this->mUserVariant;
 	}
 
 	/**

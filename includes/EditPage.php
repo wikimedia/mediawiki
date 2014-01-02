@@ -1913,12 +1913,10 @@ class EditPage {
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$baseRevision = Revision::loadFromTimestamp(
+			$this->mBaseRevision = Revision::loadFromTimestamp(
 				$db, $this->mTitle, $this->edittime );
-			return $this->mBaseRevision = $baseRevision;
-		} else {
-			return $this->mBaseRevision;
 		}
+		return $this->mBaseRevision;
 	}
 
 	/**

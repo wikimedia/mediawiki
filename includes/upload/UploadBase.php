@@ -723,7 +723,8 @@ abstract class UploadBase {
 		# exclamation mark, so restrict file name to 240 bytes.
 		if ( strlen( $this->mFilteredName ) > 240 ) {
 			$this->mTitleError = self::FILENAME_TOO_LONG;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		}
 
 		/**
@@ -736,7 +737,8 @@ abstract class UploadBase {
 		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
 		if ( is_null( $nt ) ) {
 			$this->mTitleError = self::ILLEGAL_FILENAME;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		}
 		$this->mFilteredName = $nt->getDBkey();
 
@@ -777,19 +779,22 @@ abstract class UploadBase {
 
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		} elseif ( $blackListedExtensions ||
 				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
 					!$this->checkFileExtensionList( $ext, $wgFileExtensions ) ) ) {
 			$this->mBlackListedExtensions = $blackListedExtensions;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		}
 
 		// Windows may be broken with special characters, see bug XXX
 		if ( wfIsWindows() && !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() ) ) {
 			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		}
 
 		# If there was more than one "extension", reassemble the base
@@ -802,10 +807,12 @@ abstract class UploadBase {
 
 		if ( strlen( $partname ) < 1 ) {
 			$this->mTitleError = self::MIN_LENGTH_PARTNAME;
-			return $this->mTitle = null;
+			$this->mTitle = null;
+			return $this->mTitle;
 		}
 
-		return $this->mTitle = $nt;
+		$this->mTitle = $nt;
+		return $this->mTitle;
 	}
 
 	/**

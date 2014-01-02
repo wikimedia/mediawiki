@@ -2137,7 +2137,8 @@ class Linker {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return self::$accesskeycache[$name] = $accesskey;
+		self::$accesskeycache[$name] = $accesskey;
+		return self::$accesskeycache[$name];
 	}
 
 	/**

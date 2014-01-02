@@ -908,13 +908,15 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// rd_fragment and rd_interwiki were added later, populate them if empty
 		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
-			return $this->mRedirectTarget = Title::makeTitle(
+			$this->mRedirectTarget = Title::makeTitle(
 				$row->rd_namespace, $row->rd_title,
 				$row->rd_fragment, $row->rd_interwiki );
+			return $this->mRedirectTarget;
 		}
 
 		// This page doesn't have an entry in the redirect table
-		return $this->mRedirectTarget = $this->insertRedirect();
+		$this->mRedirectTarget = $this->insertRedirect();
+		return $this->mRedirectTarget;
 	}
 
 	/**
