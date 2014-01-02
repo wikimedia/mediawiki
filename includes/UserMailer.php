@@ -120,6 +120,8 @@ class UserMailer {
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
 		$strings = array();
 		foreach ( $headers as $name => $value ) {
+			// Prevent header injection by stripping newlines from value
+			$value = self::sanitizeHeaderValue( $value );
 			$strings[] = "$name: $value";
 		}
 		return implode( $endl, $strings );
@@ -394,12 +396,24 @@ class UserMailer {
 	}
 
 	/**
+	 * Strips bad characters from a header value to prevent PHP mail header injection attacks
+	 * @param string $val String to be santizied
+	 * @return string
+	 */
+	public static function sanitizeHeaderValue( $val ) {
+		return strtr( $val, array( "\r" => '', "\n" => '' ) );
+	}
+
+	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
 	 * @param $phrase string
 	 * @return string
 	 */
 	public static function rfc822Phrase( $phrase ) {
-		$phrase = strtr( $phrase, array( "\r" => '', "\n" => '', '"' => '' ) );
+		// Remove line breaks
+		$phrase = self::sanitizeHeaderValue( $phrase );
+		// Remove quotes
+		$phrase = str_replace( '"', '', $phrase );
 		return '"' . $phrase . '"';
 	}
 
@@ -694,7 +708,7 @@ class EmailNotification {
 	 * Generate the generic "this page has been changed" e-mail text.
 	 */
 	private function composeCommonMailtext() {
-		global $wgPasswordSender, $wgPasswordSenderName, $wgNoReplyAddress;
+		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
 
@@ -779,7 +793,8 @@ class EmailNotification {
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
-		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+		$adminAddress = new MailAddress( $wgPasswordSender,
+			wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		if ( $wgEnotifRevealEditorAddress
 			&& ( $this->editor->getEmail() != '' )
 			&& $this->editor->getOption( 'enotifrevealaddr' )

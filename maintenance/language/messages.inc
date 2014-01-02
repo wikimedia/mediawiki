@@ -550,6 +550,7 @@ $wgMessageStructure = array(
 		'invalidemailaddress',
 		'cannotchangeemail',
 		'emaildisabled',
+		'emailsender',
 		'accountcreated',
 		'accountcreatedtext',
 		'createaccount-title',
