@@ -551,9 +551,13 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function getApiWarnings() {
-		$warnings = $this->mUpload->checkWarnings();
+		if ( is_null($this->verifyUpload() ) )  {
+			$warnings = $this->mUpload->checkWarnings();
 
-		return $this->transformWarnings( $warnings );
+			return $this->transformWarnings( $warnings );
+		} else {
+			$this->dieUsage( 'There were errors during upload' );
+		}
 	}
 
 	protected function transformWarnings( $warnings ) {
