@@ -710,7 +710,7 @@ class Parser {
 			$t = Title::newFromText( 'NO TITLE' );
 		}
 
-		if ( strval( $t->getFragment() ) !== '' ) {
+		if ( $t->hasFragment() ) {
 			# Strip the fragment to avoid various odd effects
 			$this->mTitle = clone $t;
 			$this->mTitle->setFragment( '' );
@@ -2120,7 +2120,7 @@ class Parser {
 			# Self-link checking. For some languages, variants of the title are checked in
 			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
 			# for linking to a different variant.
-			if ( $ns != NS_SPECIAL && $nt->equals( $this->mTitle ) && $nt->getFragment() === '' ) {
+			if ( $ns != NS_SPECIAL && $nt->equals( $this->mTitle ) && !$nt->hasFragment() ) {
 				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;
 			}

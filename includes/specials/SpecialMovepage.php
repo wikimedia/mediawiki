@@ -467,7 +467,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$nt = $this->newTitle;
 
 		# don't allow moving to pages with # in
-		if ( !$nt || $nt->getFragment() != '' ) {
+		if ( !$nt || $nt->hasFragment() ) {
 			$this->showForm( array( array( 'badtitletext' ) ) );
 
 			return;

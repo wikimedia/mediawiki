@@ -60,7 +60,7 @@ class Title {
 	var $mUserCaseDBKey;              // /< DB key with the initial letter in the case specified by the user
 	var $mNamespace = NS_MAIN;        // /< Namespace index, i.e. one of the NS_xxxx constants
 	var $mInterwiki = '';             // /< Interwiki prefix
-	var $mFragment;                   // /< Title fragment (i.e. the bit after the #)
+	var $mFragment = '';              // /< Title fragment (i.e. the bit after the #)
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mContentModel = false;       // /< ID of the page's content model, i.e. one of the CONTENT_MODEL_XXX constants
@@ -1201,14 +1201,24 @@ class Title {
 	}
 
 	/**
+	 * Check if a Title fragment is set
+	 *
+	 * @return bool
+	 * @since 1.23
+	 */
+	public function hasFragment() {
+		return $this->mFragment !== '';
+	}
+
+	/**
 	 * Get the fragment in URL form, including the "#" character if there is one
 	 * @return String Fragment in URL form
 	 */
 	public function getFragmentForURL() {
-		if ( $this->mFragment == '' ) {
+		if ( !$this->hasFragment() ) {
 			return '';
 		} else {
-			return '#' . Title::escapeFragmentForURL( $this->mFragment );
+			return '#' . Title::escapeFragmentForURL( $this->getFragment() );
 		}
 	}
 
@@ -1290,8 +1300,8 @@ class Title {
 	 */
 	public function getFullText() {
 		$text = $this->getPrefixedText();
-		if ( $this->mFragment != '' ) {
-			$text .= '#' . $this->mFragment;
+		if ( $this->hasFragment() ) {
+			$text .= '#' . $this->getFragment();
 		}
 		return $text;
 	}
