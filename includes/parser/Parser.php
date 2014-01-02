@@ -3031,6 +3031,9 @@ class Parser {
 			case 'contentlanguage':
 				global $wgLanguageCode;
 				return $wgLanguageCode;
+			case 'cascadingsources':
+				$value = CoreParserFunctions::cascadingsources( $this );
+				break;
 			default:
 				$ret = null;
 				wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret, &$frame ) );
