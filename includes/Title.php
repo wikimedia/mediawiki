@@ -59,7 +59,7 @@ class Title {
 	var $mDbkeyform = '';             // /< Main part with underscores
 	var $mUserCaseDBKey;              // /< DB key with the initial letter in the case specified by the user
 	var $mNamespace = NS_MAIN;        // /< Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki = '';             // /< Interwiki prefix (or null string)
+	var $mInterwiki = '';             // /< Interwiki prefix
 	var $mFragment;                   // /< Title fragment (i.e. the bit after the #)
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
@@ -700,11 +700,11 @@ class Title {
 	 * @return Bool
 	 */
 	public function isExternal() {
-		return ( $this->mInterwiki != '' );
+		return $this->mInterwiki !== '';
 	}
 
 	/**
-	 * Get the interwiki prefix (or null string)
+	 * Get the interwiki prefix
 	 *
 	 * @return String Interwiki prefix
 	 */
