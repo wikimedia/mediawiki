@@ -95,7 +95,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 			wfProfileOut( __METHOD__ );
 
-			return $this->reportConnectionError( $error );
+			$this->reportConnectionError( $error );
 		}
 
 		if ( $dbName != '' ) {
@@ -109,13 +109,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 				wfProfileOut( __METHOD__ );
 
-				return $this->reportConnectionError( "Error selecting database $dbName" );
+				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
 		}
 
 		// Tell the server what we're communicating with
 		if ( !$this->connectInitCharset() ) {
-			return $this->reportConnectionError( "Error setting character set" );
+			$this->reportConnectionError( "Error setting character set" );
 		}
 
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
@@ -126,7 +126,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			if ( !$success ) {
 				wfLogDBError( "Error setting sql_mode to $mode on server {$this->mServer}" );
 				wfProfileOut( __METHOD__ );
-				return $this->reportConnectionError( "Error setting sql_mode to $mode" );
+				$this->reportConnectionError( "Error setting sql_mode to $mode" );
 			}
 		}
 
