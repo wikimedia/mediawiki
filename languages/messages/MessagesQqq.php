@@ -10388,6 +10388,7 @@ Parameters:
 'api-error-duplicate-archive' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 - a number of files
 * $2 - a link to a list of duplicate files',
+'api-error-stasherror' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-duplicate-archive-popup-title' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is a number of files.',
 'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present.
