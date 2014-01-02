@@ -65,7 +65,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
-		if ( !$title || $title->getInterwiki() != '' ) {
+		if ( !$title || $title->isExternal() ) {
 			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )->parse() . '</div>' );
 			return false;
 		}

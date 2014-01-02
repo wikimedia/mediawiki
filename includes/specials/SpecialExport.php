@@ -315,7 +315,7 @@ class SpecialExport extends SpecialPage {
 			foreach ( explode( "\n", $page ) as $pageName ) {
 				$pageName = trim( $pageName );
 				$title = Title::newFromText( $pageName );
-				if ( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
+				if ( $title && !$title->isExternal() && $title->getText() !== '' ) {
 					// Only record each page once!
 					$pageSet[$title->getPrefixedText()] = true;
 				}

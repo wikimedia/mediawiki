@@ -493,7 +493,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
 		}
-		if ( $defaultNamespace != $t->getNamespace() || $t->getInterwiki() !== '' ) {
+		if ( $defaultNamespace != $t->getNamespace() || $t->isExternal() ) {
 			// This can happen in two cases. First, if you call titlePartToKey with a title part
 			// that looks like a namespace, but with $defaultNamespace = NS_MAIN. It would be very
 			// difficult to handle such a case. Such cases cannot exist and are therefore treated
