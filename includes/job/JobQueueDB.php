@@ -358,7 +358,7 @@ class JobQueueDB extends JobQueue {
 				// Instead, this uses job_random to pick a row (possibly checking both directions).
 				$ineq = $gte ? '>=' : '<=';
 				$dir = $gte ? 'ASC' : 'DESC';
-				$row = $dbw->selectRow( 'job', '*', // find a random job
+				$row = $dbw->selectRow( 'job', self::selectFields(), // find a random job
 					array(
 						'job_cmd' => $this->type,
 						'job_token' => '', // unclaimed
@@ -375,7 +375,7 @@ class JobQueueDB extends JobQueue {
 				// Bug 42614: "ORDER BY job_random" with a job_random inequality causes high CPU
 				// in MySQL if there are many rows for some reason. This uses a small OFFSET
 				// instead of job_random for reducing excess claim retries.
-				$row = $dbw->selectRow( 'job', '*', // find a random job
+				$row = $dbw->selectRow( 'job', self::selectFields(), // find a random job
 					array(
 						'job_cmd' => $this->type,
 						'job_token' => '', // unclaimed
@@ -459,7 +459,7 @@ class JobQueueDB extends JobQueue {
 			}
 			// Fetch any row that we just reserved...
 			if ( $dbw->affectedRows() ) {
-				$row = $dbw->selectRow( 'job', '*',
+				$row = $dbw->selectRow( 'job', self::selectFields(),
 					array( 'job_cmd' => $this->type, 'job_token' => $uuid ), __METHOD__
 				);
 				if ( !$row ) { // raced out by duplicate job removal
@@ -589,7 +589,7 @@ class JobQueueDB extends JobQueue {
 		$dbr = $this->getSlaveDB();
 		try {
 			return new MappedIterator(
-				$dbr->select( 'job', '*',
+				$dbr->select( 'job', self::selectFields(),
 					array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
 				function ( $row ) use ( $dbr ) {
 					$job = Job::factory(
@@ -823,5 +823,26 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function throwDBException( DBError $e ) {
 		throw new JobQueueError( get_class( $e ) . ": " . $e->getMessage() );
+	}
+
+	/**
+	 * Return the list of job fields that should be selected.
+	 * @since 1.23
+	 * @return array
+	 */
+	public static function selectFields() {
+		return array(
+			'job_id',
+			'job_cmd',
+			'job_namespace',
+			'job_title',
+			'job_timestamp',
+			'job_params',
+			'job_random',
+			'job_attempts',
+			'job_token',
+			'job_token_timestamp',
+			'job_sha1',
+		);
 	}
 }
