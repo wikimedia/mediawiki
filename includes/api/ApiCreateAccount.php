@@ -254,6 +254,7 @@ class ApiCreateAccount extends ApiBase {
 			'sorbs_create_account_reason',
 			'noname',
 			'userexists',
+			'usercreate-normalisation',
 			'password-name-match', // from User::getPasswordValidity
 			'password-login-forbidden', // from User::getPasswordValidity
 			'noemailtitle',

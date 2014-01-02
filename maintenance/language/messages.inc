@@ -507,6 +507,7 @@ $wgMessageStructure = array(
 		'createacct-benefit-body3',
 		'badretype',
 		'userexists',
+		'usercreate-normalisation',
 		'loginerror',
 		'createacct-error',
 		'createaccounterror',

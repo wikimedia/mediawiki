@@ -1441,6 +1441,7 @@ Parameters:
 * $1 - number of contributors (users)',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
+'usercreate-normalisation' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.
 {{Identical|Login error}}',
 'createacct-error' => 'Used as heading for the error message.',
