@@ -833,6 +833,7 @@ class UploadForm extends HTMLForm {
 			'section' => 'source',
 			'type' => 'file',
 			'id' => 'wpUploadFile',
+			'radio-id' => 'wpSourceTypeFile',
 			'label-message' => 'sourcefilename',
 			'upload-type' => 'File',
 			'radio' => &$radio,
@@ -850,6 +851,7 @@ class UploadForm extends HTMLForm {
 				'class' => 'UploadSourceField',
 				'section' => 'source',
 				'id' => 'wpUploadFileURL',
+				'radio-id' => 'wpSourceTypeurl',
 				'label-message' => 'sourceurl',
 				'upload-type' => 'url',
 				'radio' => &$radio,
@@ -1112,23 +1114,30 @@ class UploadSourceField extends HTMLTextField {
 	 * @return string
 	 */
 	function getLabelHtml( $cellAttributes = array() ) {
+		$id = $this->mParams['id'];
+		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
+
 		if ( !empty( $this->mParams['radio'] ) ) {
-			$id = "wpSourceType{$this->mParams['upload-type']}";
+			if ( isset( $this->mParams['radio-id'] ) ) {
+				$radioId = $this->mParams['radio-id'];
+			} else {
+				$radioId = 'wpSourceType' . $this->mParams['upload-type'];
+			}
+
 			$attribs = array(
 				'name' => 'wpSourceType',
 				'type' => 'radio',
-				'id' => $id,
+				'id' => $radioId,
 				'value' => $this->mParams['upload-type'],
 			);
+
 			if ( !empty( $this->mParams['checked'] ) ) {
 				$attribs['checked'] = 'checked';
 			}
-			$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
+
 			$label .= Html::element( 'input', $attribs );
-		} else {
-			$id = $this->mParams['id'];
-			$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 		}
+
 		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, $label );
 	}
 
