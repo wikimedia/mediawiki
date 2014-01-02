@@ -73,7 +73,7 @@ class Title {
 	var $mHasCascadingRestrictions;   ///< Are cascading restrictions in effect on this page?
 	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
-	var $mPrefixedText;               ///< Text form including namespace/interwiki, initialised on demand
+	var $mPrefixedText = null;        ///< Text form including namespace/interwiki, initialised on demand
 	var $mTitleProtection;            ///< Cached value for getTitleProtection (create protection)
 	# Don't change the following default, NS_MAIN is hardcoded in several
 	# places.  See bug 696.
@@ -1265,8 +1265,7 @@ class Title {
 	 * @return String the prefixed title, with spaces
 	 */
 	public function getPrefixedText() {
-		// @todo FIXME: Bad usage of empty() ?
-		if ( empty( $this->mPrefixedText ) ) {
+		if ( $this->mPrefixedText === null ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
