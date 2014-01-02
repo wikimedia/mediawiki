@@ -866,7 +866,7 @@ class XmlDumpWriter {
 	 * @since 1.18
 	 */
 	public static function canonicalTitle( Title $title ) {
-		if ( $title->getInterwiki() ) {
+		if ( $title->isExternal() ) {
 			return $title->getPrefixedText();
 		}
 

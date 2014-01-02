@@ -44,7 +44,7 @@ class PrefixSearch {
 
 		// Find a Title which is not an interwiki and is in NS_MAIN
 		$title = Title::newFromText( $search );
-		if ( $title && $title->getInterwiki() == '' ) {
+		if ( $title && !$title->isExternal() ) {
 			$ns = array( $title->getNamespace() );
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
@@ -57,7 +57,7 @@ class PrefixSearch {
 		$title = Title::newFromText( $search . 'Dummy' );
 		if ( $title && $title->getText() == 'Dummy'
 			&& $title->getNamespace() != NS_MAIN
-			&& $title->getInterwiki() == '' ) {
+			&& !$title->isExternal() ) {
 			return self::searchBackend(
 				array( $title->getNamespace() ), '', $limit );
 		}

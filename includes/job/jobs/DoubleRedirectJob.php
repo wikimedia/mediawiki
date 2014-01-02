@@ -197,7 +197,7 @@ class DoubleRedirectJob extends Job {
 			}
 			$seenTitles[$titleText] = true;
 
-			if ( $title->getInterwiki() ) {
+			if ( $title->isExternal() ) {
 				// If the target is interwiki, we have to break early (bug 40352).
 				// Otherwise it will look up a row in the local page table
 				// with the namespace/page of the interwiki target which can cause

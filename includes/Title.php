@@ -685,7 +685,7 @@ class Title {
 	 * @return Bool TRUE if this is an in-project interwiki link or a wikilink, FALSE otherwise
 	 */
 	public function isLocal() {
-		if ( $this->mInterwiki != '' ) {
+		if ( $this->isExternal() ) {
 			$iw = Interwiki::fetch( $this->mInterwiki );
 			if ( $iw ) {
 				return $iw->isLocal();
@@ -719,7 +719,7 @@ class Title {
 	 * @return Bool TRUE if this is transcludable
 	 */
 	public function isTrans() {
-		if ( $this->mInterwiki == '' ) {
+		if ( !$this->isExternal() ) {
 			return false;
 		}
 
@@ -732,7 +732,7 @@ class Title {
 	 * @return String the DB name
 	 */
 	public function getTransWikiID() {
-		if ( $this->mInterwiki == '' ) {
+		if ( !$this->isExternal() ) {
 			return false;
 		}
 
@@ -830,7 +830,7 @@ class Title {
 	public function getNsText() {
 		global $wgContLang;
 
-		if ( $this->mInterwiki != '' ) {
+		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.
 			// But for interwiki transclusion it sometimes does.
 			// Shit. Shit shit shit.
@@ -1014,7 +1014,7 @@ class Title {
 	 * @return Bool TRUE or FALSE
 	 */
 	public function isMovable() {
-		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->getInterwiki() != '' ) {
+		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->isExternal() ) {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
 			return false;
 		}
@@ -1236,7 +1236,7 @@ class Title {
 	 */
 	private function prefix( $name ) {
 		$p = '';
-		if ( $this->mInterwiki != '' ) {
+		if ( $this->isExternal() ) {
 			$p = $this->mInterwiki . ':';
 		}
 
@@ -1735,7 +1735,7 @@ class Title {
 	 *  interwiki link
 	 */
 	public function getEditURL() {
-		if ( $this->mInterwiki != '' ) {
+		if ( $this->isExternal() ) {
 			return '';
 		}
 		$s = $this->getLocalURL( 'action=edit' );
@@ -3250,7 +3250,7 @@ class Title {
 		} while ( true );
 
 		# We already know that some pages won't be in the database!
-		if ( $this->mInterwiki != '' || NS_SPECIAL == $this->mNamespace ) {
+		if ( $this->isExternal() || NS_SPECIAL == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
 		$fragment = strstr( $dbkey, '#' );
@@ -3306,13 +3306,13 @@ class Title {
 		# and [[Foo]] point to the same place.  Don't force it for interwikis, since the
 		# other site might be case-sensitive.
 		$this->mUserCaseDBKey = $dbkey;
-		if ( $this->mInterwiki == '' ) {
+		if ( !$this->isExternal() ) {
 			$dbkey = self::capitalize( $dbkey, $this->mNamespace );
 		}
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
 		# self-links with a fragment identifier.
-		if ( $dbkey == '' && $this->mInterwiki == '' && $this->mNamespace != NS_MAIN ) {
+		if ( $dbkey == '' && !$this->isExternal() && $this->mNamespace != NS_MAIN ) {
 			return false;
 		}
 
@@ -3582,7 +3582,7 @@ class Title {
 		if ( !$this->isMovable() ) {
 			$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
 		}
-		if ( $nt->getInterwiki() != '' ) {
+		if ( $nt->isExternal() ) {
 			$errors[] = array( 'immobile-target-namespace-iw' );
 		}
 		if ( !$nt->isMovable() ) {
@@ -4494,7 +4494,7 @@ class Title {
 			return $isKnown;
 		}
 
-		if ( $this->mInterwiki != '' ) {
+		if ( $this->isExternal() ) {
 			return true;  // any interwiki link might be viewable, for all we know
 		}
 

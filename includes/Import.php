@@ -1717,7 +1717,7 @@ class ImportStreamSource {
 			return Status::newFatal( 'import-noarticle' );
 		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if ( is_null( $link ) || $link->getInterwiki() == '' ) {
+		if ( is_null( $link ) || !$link->isExternal() ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		} else {
 			$params = array();
