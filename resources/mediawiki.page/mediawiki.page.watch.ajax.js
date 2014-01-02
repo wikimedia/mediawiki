@@ -133,7 +133,8 @@
 				otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
 				mw.notify( $.parseHTML( watchResponse.message ), {
-					tag: 'watch-self'
+					tag: 'watch-self',
+					type: 'info'
 				} );
 
 				// Set link to opposite
@@ -164,7 +165,10 @@
 				msg = mw.message( 'watcherrortext', link );
 
 				// Report to user about the error
-				mw.notify( msg, { tag: 'watch-self' } );
+				mw.notify( msg, {
+					tag: 'watch-self',
+					type: 'error'
+				} );
 			} );
 		} );
 	} );

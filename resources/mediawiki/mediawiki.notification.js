@@ -37,6 +37,12 @@
 			}
 		}
 
+		if ( options.type ) {
+			// Sanitize options.type
+			options.type = options.type.replace( /[ _\-]+/g, '-' ).replace( /[^\-a-z0-9]+/ig, '' );
+			$notification.addClass( 'mw-notification-type-' + options.type );
+		}
+
 		if ( options.title ) {
 			$notificationTitle = $( '<div class="mw-notification-title"></div>' )
 				.text( options.title )
@@ -460,11 +466,15 @@
 		 * - title:
 		 *   An optional title for the notification. Will be displayed above the
 		 *   content. Usually in bold.
+		 *
+		 * - type:
+		 *   An optional type of message: 'info', 'warn', 'error'.
 		 */
 		defaults: {
 			autoHide: true,
 			tag: false,
-			title: undefined
+			title: undefined,
+			type: 'info'
 		},
 
 		/**
