@@ -363,6 +363,7 @@ $magicWords = array(
 	'numberingroup'           => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'          => array( 1,    '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( 1,    'PROTECTIONLEVEL' ),
+	'cascadingsources'        => array( 1,    'CASCADINGSOURCES' ),
 	'formatdate'              => array( 0,    'formatdate', 'dateformat' ),
 	'url_path'                => array( 0,    'PATH' ),
 	'url_wiki'                => array( 0,    'WIKI' ),
