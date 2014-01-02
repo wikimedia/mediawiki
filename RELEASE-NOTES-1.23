@@ -59,6 +59,8 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* Give error on account creation when user name is adjust silence due to
+  technical restrictions (e.g. first letter capitalized)
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

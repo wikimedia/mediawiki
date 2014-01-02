@@ -407,6 +407,14 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'noname' );
 		} elseif ( 0 != $u->idForName() ) {
 			return Status::newFatal( 'userexists' );
+		} elseif ( $name !== $u->getName() ) {
+			// user name silently changed due to technical restrictions (e.g. first letter capitalized)
+			$status = Status::newFatal( 'usercreate-normalisation', $name, $u->getName() );
+
+			// set the form field to the correct name, so the user can hit the button again
+			$this->mUsername = $u->getName();
+
+			return $status;
 		}
 
 		if ( $this->mCreateaccountMail ) {
