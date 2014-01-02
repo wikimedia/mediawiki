@@ -3905,6 +3905,7 @@ $wgMessageStructure = array(
 		'api-error-overwrite',
 		'api-error-stashfailed',
 		'api-error-publishfailed',
+		'api-error-stasherror',
 		'api-error-timeout',
 		'api-error-unclassified',
 		'api-error-unknown-code',
