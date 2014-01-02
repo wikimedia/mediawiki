@@ -5083,6 +5083,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+'api-error-stasherror'                    => 'There was an error while uploading the file.',
 
 # Durations
 'duration-seconds'   => '$1 {{PLURAL:$1|second|seconds}}',
