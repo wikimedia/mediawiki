@@ -270,21 +270,21 @@ EOT;
 	 * @return string
 	 */
 	private function fileCachedPage() {
-		global $wgTitle, $wgOut, $wgRequest;
+		$context = RequestContext::getMain();
 
-		if ( $wgOut->isDisabled() ) {
+		if ( $context->getOutput()->isDisabled() ) {
 			// Done already?
 			return '';
 		}
 
-		if ( $wgTitle ) {
-			// use $wgTitle if we managed to set it
-			$t = $wgTitle->getPrefixedDBkey();
+		if ( $context->getTitle() ) {
+			// Use the main context's title if we managed to set it
+			$t = $context->getTitle()->getPrefixedDBkey();
 		} else {
 			// Fallback to the raw title URL param. We can't use the Title
 			// class is it may hit the interwiki table and give a DB error.
 			// We may get a cache miss due to not sanitizing the title though.
-			$t = str_replace( ' ', '_', $wgRequest->getVal( 'title' ) );
+			$t = str_replace( ' ', '_', $context->getRequest()->getVal( 'title' ) );
 			if ( $t == '' ) { // fallback to main page
 				$t = Title::newFromText(
 					$this->msg( 'mainpage', 'Main Page' ) )->getPrefixedDBkey();
