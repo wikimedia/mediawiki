@@ -944,7 +944,7 @@ Dovresti farlo se le hai accidentalmente condivise con qualcuno o se la tua uten
 'preview' => 'Anteprima',
 'showpreview' => 'Visualizza anteprima',
 'showlivepreview' => "Funzione ''Live preview''",
-'showdiff' => 'Mostra cambiamenti',
+'showdiff' => 'Mostra modifiche',
 'anoneditwarning' => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato il tuo indirizzo IP.",
 'anonpreviewwarning' => "''Non è stato eseguito il login. Salvando la pagina, il proprio indirizzo IP sarà registrato nella cronologia.''",
 'missingsummary' => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata con l'oggetto vuoto.",
@@ -2440,6 +2440,7 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'delete-edit-reasonlist' => 'Modifica i motivi di cancellazione',
 'delete-toobig' => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
 'delete-warning-toobig' => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
+'deleting-backlinks-warning' => "'''Attenzione:''' altre pagine contengono collegamenti alla pagina che stai per cancellare.",
 
 # Rollback
 'rollback' => 'Annulla le modifiche',

@@ -1468,7 +1468,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'stub-threshold' => 'Gräns för <a href="#" class="stub">stubblänk</a>-formatering (byte):',
 'stub-threshold-disabled' => 'Avaktiverat',
 'recentchangesdays' => 'Antal dygn som skall visas i "senaste ändringarna":',
-'recentchangesdays-max' => 'Maximalt $1 {{PLURAL:$1|dygn|dygn}}',
+'recentchangesdays-max' => 'Maximalt $1 {{PLURAL:$1|dygn}}',
 'recentchangescount' => 'Antal redigeringar som visas som standard:',
 'prefs-help-recentchangescount' => 'Detta inkluderar senaste ändringarna, sidhistorik och loggar.',
 'prefs-help-watchlist-token2' => 'Detta är den hemliga nyckeln till webbflödet i din bevakningslista.

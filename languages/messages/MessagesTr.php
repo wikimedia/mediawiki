@@ -512,7 +512,7 @@ $messages = array(
 'qbpageoptions' => 'Bu sayfa',
 'qbmyoptions' => 'Sayfalarım',
 'faq' => 'SSS',
-'faqpage' => 'Proje:SSS',
+'faqpage' => 'Project:SSS',
 
 # Vector skin
 'vector-action-addsection' => 'Konu ekle',
@@ -603,16 +603,16 @@ $1',
 'copyright' => 'Aksi belirtilmedikçe içerik $1 altındadır.',
 'copyrightpage' => '{{ns:project}}:Telif hakları',
 'currentevents' => 'Güncel olaylar',
-'currentevents-url' => 'Proje: güncel olaylar',
+'currentevents-url' => 'Project:Güncel olaylar',
 'disclaimers' => 'Sorumluluk reddi',
-'disclaimerpage' => 'Proje: genel sorumluluk reddi',
+'disclaimerpage' => 'Project:Genel sorumluluk reddi',
 'edithelp' => 'Nasıl değiştirilir?',
 'helppage' => 'Help:İçindekiler',
 'mainpage' => 'Ana Sayfa',
 'mainpage-description' => 'Ana sayfa',
-'policy-url' => 'Proje: politika',
+'policy-url' => 'Project:İlkeler',
 'portal' => 'Topluluk portalı',
-'portal-url' => 'Proje: Topluluk portalı',
+'portal-url' => 'Project:Topluluk portali',
 'privacy' => 'Gizlilik ilkesi',
 'privacypage' => 'Project:Gizlilik ilkesi',
 
@@ -626,7 +626,7 @@ $1',
 'ok' => 'Tamam',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '"$1" adresinden alındı.',
-'youhavenewmessages' => 'Yeni $1 var olan($2).',
+'youhavenewmessages' => '$1 {{PLURAL:$3|var}} ($2).',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcıdan}} $1 var ($2).',
 'youhavenewmessagesmanyusers' => 'Birçok kullanıcıdan $1 var ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',
@@ -2531,6 +2531,7 @@ Böyle sayfaların silinmesi, {{SITENAME}} sitesini bozmamak için sınırlanmak
 'delete-warning-toobig' => 'Bu sayfanın büyük bir değişiklik geçmişi var, $1 {{PLURAL:$1|revizyonun|revizyonun}} üzerinde.
 Bunu silmek {{SITENAME}} işlemlerini aksatabilir;
 dikkatle devam edin.',
+'deleting-backlinks-warning' => "'''Uyarı:''' Silmek üzere olduğunuz sayfaya başka sayfalardan bağlantılar var.",
 
 # Rollback
 'rollback' => 'değişiklikleri geri al',

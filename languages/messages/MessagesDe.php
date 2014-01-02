@@ -2328,6 +2328,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'protectedpages' => 'Geschützte Seiten',
 'protectedpages-indef' => 'Nur unbeschränkt geschützte Seiten zeigen',
 'protectedpages-cascade' => 'Nur Seiten mit Kaskadenschutz',
+'protectedpages-noredirect' => 'Weiterleitungen ausblenden',
 'protectedpagesempty' => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
 'protectedtitles' => 'Geschützte Seitennamen',
 'protectedtitlesempty' => 'Zurzeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',

@@ -786,9 +786,9 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'gotaccount' => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink' => 'Dekewtış',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
-'userlogin-resetpassword-link' => 'Şıma parola ke ğo vira?',
+'userlogin-resetpassword-link' => 'Parola xo kerda xo vira?',
 'helplogin-url' => 'Help:Qeydbiyayış',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Desteg be qeydbiyayış ra]]',
+'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Peşti be qeydbiyayış ra]]',
 'userlogin-loggedin' => 'Tı xora namey {{GENDER:$1|$1}} ra kewtê/kewtay cı.
 Formê cêrêni bıgureyne ke namey karberio bin ra cı kewê.',
 'userlogin-createanother' => 'Zewbi hesab vıraz',

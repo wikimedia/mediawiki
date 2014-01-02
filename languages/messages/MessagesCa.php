@@ -1066,6 +1066,9 @@ Se n'han omès els arguments.",
 'cantcreateaccount-text' => "[[User:$3|$3]] ha bloquejat la creació de comptes des d'aquesta adreça IP ('''$1''').
 
 El motiu donat per $3 és ''$2''",
+'cantcreateaccount-range-text' => "La creació de comptes des de les adreces IP en el rang '''$1''', que inclou la vostra adreça IP ('''$4'''), ha esta blocada per [[User:$3|$3]].
+
+El motiu donat per $3 és ''$2''",
 
 # History pages
 'viewpagelogs' => "Visualitza els registres d'aquesta pàgina",
@@ -2350,6 +2353,7 @@ Vegeu $2 per a un registre dels esborrats més recents.",
 'delete-edit-reasonlist' => "Edita els motius d'eliminació",
 'delete-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
 'delete-warning-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
+'deleting-backlinks-warning' => "'''Avís:''' Altres pàgines enllacen a la pàgina que esteu a punt de suprimir.",
 
 # Rollback
 'rollback' => 'Reverteix edicions',

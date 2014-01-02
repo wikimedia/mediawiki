@@ -1399,8 +1399,8 @@ Vérifiez les journaux.",
 'revdelete-offender' => 'Auteur de la révision :',
 
 # Suppression log
-'suppressionlog' => 'Journal des suppressions',
-'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
+'suppressionlog' => 'Journal des masquages',
+'suppressionlogtext' => 'Voici la liste des masquages et des blocages qui portent sur du contenu caché aux administrateurs.
 Voir la [[Special:BlockList|liste des blocages]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
 # History merging

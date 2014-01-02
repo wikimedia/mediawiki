@@ -430,8 +430,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'rev-delundel' => 'faje vedé/annascunne',
 'rev-showdeleted' => 'faje vedé',
 'revdelete-show-file-submit' => 'Sì',
-'revdelete-radio-set' => 'Sì',
-'revdelete-radio-unset' => 'No',
+'revdelete-radio-set' => 'Nasconde',
+'revdelete-radio-unset' => 'Faje vedé',
 'revdel-restore' => 'càgna visiblità',
 
 # Diffs

@@ -1554,7 +1554,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-minor' => "Ur c'hemm dister eo hemañ",
 'recentchanges-label-bot' => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-label-unpatrolled' => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
-'recentchanges-label-plusminus' => 'Kemmet he deus ment ar bajenn eus an niver-se a bitoù',
+'recentchanges-label-plusminus' => 'Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù',
 'recentchanges-legend-newpage' => '(gwelet ivez [[Dibar:PajennoùNevez|roll ar pajennoù nevez krouet]])',
 'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",

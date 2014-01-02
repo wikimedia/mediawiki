@@ -224,7 +224,7 @@ $messages = array(
 'nstab-image' => "'File'",
 'nstab-mediawiki' => 'Mesâg',
 'nstab-template' => 'Mudèl',
-'nstab-help' => 'Ajót',
+'nstab-help' => 'Per quî rivê da pôch',
 'nstab-category' => 'Categoréia',
 
 # General errors
@@ -302,6 +302,7 @@ $messages = array(
 'anoneditwarning' => "'''Atensiòun:''' Ingrès mìa fât. Al tó indirés IP al srà sgnê int la stòria ed cla pàgina chè.",
 'blockedtitle' => 'Utèint bluchê',
 'newarticle' => '(Nōv)',
+'newarticletext' => "Al colegamèint apèina fât al cumbîna cun 'na pàgina ch' an n'é mìa incòra stêda fâta. S'ét vō fêr la pàgina adès, l'é asê cumincêr a scréver al tèst int la caşèla ché sòt (per vedèr infurmasiòun pió precîşi guêrda la [[{{MediaWiki:Helppage}}|pàgina 'd ajót]]). Se al colegamèint  l'é stê avêrt per erōr, l'é asê clichêr al pulsânt \"Indrē\" dal tó navigadōr.",
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',
 'noarticletext-nopermission' => "In cól mumèint ché la pàgina serchêda l'é vōda. L'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît o<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] <span>, mó an 't gh'ê mìa al permès ed fêr cla pàgina ché.",
 'note' => "'''Nôta:'''",
@@ -605,6 +606,7 @@ $messages = array(
 'whatlinkshere-page' => 'Pàgina:',
 'isimage' => "Colegamèint vêrs al 'file'",
 'whatlinkshere-links' => '← colegamèint',
+'whatlinkshere-hideredirs' => '$1redirect',
 'whatlinkshere-hidetrans' => '$1 uniòun',
 'whatlinkshere-hidelinks' => '$1 colegamèint',
 'whatlinkshere-filters' => 'Fîlter',
@@ -686,7 +688,7 @@ $messages = array(
 'tooltip-t-upload' => "Cârga un 'file'",
 'tooltip-t-specialpages' => 'Elèinch ed tót al pàgini specêli',
 'tooltip-t-print' => 'Per stampêr cla pàgina ché.',
-'tooltip-t-permalink' => "Colegamèint fés a cla rervişiòun ché 'd  la pàgina.",
+'tooltip-t-permalink' => "Colegamèint fés a cla revişiòun ché 'd  la pàgina.",
 'tooltip-ca-nstab-main' => 'Guêrda la pàgina',
 'tooltip-ca-nstab-user' => 'Guêrda la pàgina utèint',
 'tooltip-ca-nstab-project' => 'Guêrda la pàgina dal prugèt',
@@ -718,6 +720,7 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, amzûra dal file:$3, gèner MIME: $4',
+'file-nohires' => "An gh'é mìa la manēra ed vèder pió cêr de csé.",
 'show-big-image' => 'File uriginêl',
 'file-info-gif-looped' => 'A ripetisiòun',
 'file-info-png-looped' => 'A ripetisiòun',
@@ -739,6 +742,20 @@ a vînen cunsidrê sōl j elèinch puntê (ríghi che cumîncen cun al carâter 
 # Metadata
 'metadata' => 'Metadati',
 'metadata-help' => "In cól file ché agh'é dal j infurmasiòun zuntêdi, prubabilmèint zuntêdi da la mâchina fotogrâfica o dal scàner druvê per fotografêrel o per fêrel dvintêr digitêl. Se al file l'é stê mudfifichê, soquânt particulêr a prén cumbinêr mìa cun la realtê.",
+'metadata-fields' => "I câmp relatîv a i metadati ed la figûra, in lésta in cól mesâg ché, a gnirân més int la pàgina ed la figûra quând la tabèla di metadati l'é mustrêda int la fōrma cûrta. Per impustasiòun pre-stabilîda, chiêter câmp a gnirân lughê. 
+* make 
+* model 
+* datetimeoriginal 
+* exposuretime 
+* fnumber 
+* isospeedratings 
+* focallength 
+* artist 
+* copyright 
+* imagedescription 
+* gpslatitude 
+* gpslongitude 
+* gpsaltitude",
 
 # Exif tags
 'exif-exposuretime-format' => '$1 s ($2)',
