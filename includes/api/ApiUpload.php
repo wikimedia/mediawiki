@@ -130,6 +130,10 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getContextResult() {
+		$verification = $this->mUpload->verifyUpload();
+		if ( $verification['status'] !== UploadBase::OK ) {
+			$this->checkVerification($verification);
+		}
 		$warnings = $this->getApiWarnings();
 		if ( $warnings && !$this->mParams['ignorewarnings'] ) {
 			// Get warnings formatted in result array format
