@@ -26,10 +26,8 @@
  * @ingroup Database
  */
 abstract class LBFactory {
-	/**
-	 * @var LBFactory
-	 */
-	static $instance;
+	/** @var LBFactory */
+	protected static $instance;
 
 	/**
 	 * Disables all access to the load balancer, will cause all database access
@@ -198,15 +196,14 @@ abstract class LBFactory {
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
 class LBFactorySimple extends LBFactory {
+	/** @var LoadBalancer */
+	protected $mainLB;
 
-	/**
-	 * @var LoadBalancer
-	 */
-	var $mainLB;
-	var $extLBs = array();
+	/** @var LoadBalancer[] */
+	protected $extLBs = array();
 
-	# Chronology protector
-	var $chronProt;
+	/** @var ChronologyProtector */
+	protected $chronProt;
 
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
