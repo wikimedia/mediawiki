@@ -49,3 +49,4 @@ wfLogProfilingData();
 // needs to *parse* in PHP4, although we'll never get down here to worry about = vs =&
 $lb = wfGetLBFactory();
 $lb->shutdown();
+ 
