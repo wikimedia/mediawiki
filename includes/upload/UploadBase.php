@@ -31,8 +31,6 @@
  * UploadBase and subclasses are the backend of MediaWiki's file uploads.
  * The frontends are formed by ApiUpload and SpecialUpload.
  *
- * See also includes/docs/upload.txt
- *
  * @author Brion Vibber
  * @author Bryan Tong Minh
  * @author Michael Dale
