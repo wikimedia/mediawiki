@@ -831,7 +831,6 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerSimpleUDP' => 'includes/profiler/ProfilerSimpleUDP.php',
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
-	'RunningStat' => 'includes/profiler/RunningStat.php',
 
 	# includes/rcfeed
 	'RCFeedEngine' => 'includes/rcfeed/RCFeedEngine.php',
@@ -1077,6 +1076,7 @@ $wgAutoloadLocalClasses = array(
 	'RegexlikeReplacer' => 'includes/utils/StringUtils.php',
 	'ReplacementArray' => 'includes/utils/StringUtils.php',
 	'Replacer' => 'includes/utils/StringUtils.php',
+	'RunningStat' => 'includes/utils/RunningStat.php',
 	'StringUtils' => 'includes/utils/StringUtils.php',
 	'UIDGenerator' => 'includes/utils/UIDGenerator.php',
 	'ZipDirectoryReader' => 'includes/utils/ZipDirectoryReader.php',
