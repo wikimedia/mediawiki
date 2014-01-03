@@ -4213,3 +4213,154 @@ function wfIsConfiguredProxy( $ip ) {
 	}
 	return $trusted;
 }
+
+/**
+ * Pack a value into MessagePack format
+ *
+ * MessagePack is a space-efficient binary data interchange format. This
+ * function supports null, boolean, integer, float, string and array (both
+ * indexed and associative) types. Object serialization is not supported.
+ *
+ * This implementation is derived from msgpack-php:
+ * Copyright (c) 2011 OnlineCity <https://github.com/onlinecity/msgpack-php>.
+ * Released under the terms of the MIT license. See
+ *   <https://github.com/onlinecity/msgpack-php/blob/master/LICENSE>.
+ *
+ * @see <http://msgpack.org/>
+ * @see <http://wiki.msgpack.org/display/MSGPACK/Format+specification>
+ *
+ * @param mixed $value
+ * @return string
+ * @since 1.23
+ */
+function wfMessagePack( $value ) {
+	static $bigendian;
+
+	if ( !isset( $bigendian ) ) {
+		$bigendian = pack( 'S', 1 ) === pack( 'n', 1 );
+	}
+
+	switch ( gettype( $value ) ) {
+	case 'NULL':
+		return "\xC0";
+
+	case 'boolean':
+		return $value ? "\xC3" : "\xC2";
+
+	case 'double':
+	case 'float':
+		return $bigendian
+			? "\xCB" . pack( 'd', $value )
+			: "\xCB" . strrev( pack( 'd', $value ) );
+
+	case 'string':
+		$length = strlen( $value );
+		if ( $length < 32 ) {
+			return pack( 'Ca*', 0xA0 | $length, $value );
+		} elseif ( $length <= 0xFFFF ) {
+			return pack( 'Cna*', 0xDA, $length, $value );
+		} elseif ( $length <= 0xFFFFFFFF ) {
+			return pack( 'CNa*', 0xDB, $length, $value );
+		}
+		throw new LengthException( "String too long: $length (max: 4294967295)." );
+
+	case 'integer':
+		if ( $value >= 0 ) {
+			if ( $value <= 0x7F ) {
+				// positive fixnum
+				return chr( $value );
+			}
+			if ( $value <= 0xFF ) {
+				// uint8
+				return pack( 'CC', 0xCC, $value );
+			}
+			if ( $value <= 0xFFFF ) {
+				// uint16
+				return pack( 'Cn', 0xCD, $value );
+			}
+			if ( $value <= 0xFFFFFFFF ) {
+				// uint32
+				return pack( 'CN', 0xCE, $value );
+			}
+			if ( $value <= 0xFFFFFFFFFFFFFFFF ) {
+				// uint64
+				$hi = ( $value & 0xFFFFFFFF00000000 ) >> 32;
+				$lo = $value & 0xFFFFFFFF;
+				return $bigendian
+					? pack( 'CNN', 0xCF, $lo, $hi )
+					: pack( 'CNN', 0xCF, $hi, $lo );
+			}
+		} else {
+			if ( $value >= -32 ) {
+				// negative fixnum
+				return pack( 'c', $value );
+			}
+			if ( $value >= -0x80 ) {
+				// int8
+				return pack( 'Cc', 0xD0, $value );
+			}
+			if ( $value >= -0x8000 ) {
+				// int16
+				$p = pack('s',$value);
+				return $bigendian
+					? pack( 'Ca2', 0xD1, $p )
+					: pack( 'Ca2', 0xD1, strrev( $p ) );
+			}
+			if ( $value >= -0x80000000 ) {
+				// int32
+				$p = pack( 'l', $value );
+				return $bigendian
+					? pack( 'Ca4', 0xD2, $p )
+					: pack( 'Ca4', 0xD2, strrev( $p ) );
+			}
+			if ( $value >= -0x8000000000000000 ) {
+				// int64
+				// pack() does not support 64-bit ints either so pack into two 32-bits
+				$p1 = pack( 'l', $value & 0xFFFFFFFF );
+				$p2 = pack( 'l', ( $value >> 32 ) & 0xFFFFFFFF );
+				return $bigendian
+					? pack( 'Ca4a4', 0xD3, $p1, $p2 )
+					: pack( 'Ca4a4', 0xD3, strrev( $p2 ), strrev( $p1 ) );
+			}
+		}
+		throw new LengthException( 'Invalid integer: ' . $value );
+
+	case 'array':
+		$associative = array_values( $value ) !== $value;
+		$length = count( $value );
+		$buffer = '';
+
+		if ( $length > 0xFFFFFFFF ) {
+			throw new LengthException( "Array too long: $length (max: 4294967295)." );
+		}
+
+		if ( $associative ) {
+			if ( $length < 16 ) {
+				$buffer .= pack( 'C', 0x80 | $length );
+			} elseif ( $length <= 0xFFFF ) {
+				$buffer .= pack( 'Cn', 0xDE, $length );
+			} else {
+				$buffer .= pack( 'CN', 0xDF, $length );
+			}
+			foreach ( $value as $k => $v ) {
+				$buffer .= wfMessagePack( $k );
+				$buffer .= wfMessagePack( $v );
+			}
+		} else {
+			if ( $length < 16 ) {
+				$buffer .= pack( 'C', 0x90 | $length );
+			} elseif ( $length <= 0xFFFF ) {
+				$buffer .= pack( 'Cn', 0xDC, $length );
+			} else {
+				$buffer .= pack( 'CN', 0xDD, $length );
+			}
+			foreach ( $value as $v ) {
+				$buffer .= wfMessagePack( $v );
+			}
+		}
+		return $buffer;
+
+	default:
+		throw new LengthException( 'Unsupported type: ' . gettype( $value ) );
+	}
+}
