@@ -5,68 +5,66 @@
  */
 class MWMessagePackTest extends MediaWikiTestCase {
 
-	/* @var array Array of test cases, keyed by type. Each type is an array of
-	 * (value, expected encoding as hex string). The expected values were
-	 * generated using <https://github.com/onlinecity/msgpack-php>, which
-	 * includes a serialization function.
+	/**
+	 * Provides test cases for MWMessagePackTest::testMessagePack
+	 *
+	 * Returns an array of test cases. Each case is an array of (type, value,
+	 * expected encoding as hex string). The expected values were generated
+	 * using <https://github.com/msgpack/msgpack-php>, which includes a
+	 * serialization function.
 	 */
-	public $data = array(
-		'integer' => array(
-			array(  0, '00' ),
-			array(  1, '01' ),
-			array(  5, '05' ),
-			array(  -1, 'ff' ),
-			array(  -2, 'fe' ),
-			array(  35, '23' ),
-			array(  -35, 'd0dd' ),
-			array(  128, 'cc80' ),
-			array(  -128, 'd080' ),
-			array(  1000, 'cd03e8' ),
-			array(  -1000, 'd1fc18' ),
-			array(  100000, 'ce000186a0' ),
-			array(  -100000, 'd2fffe7960' ),
-			array(  10000000000, 'cf00000002540be400' ),
-			array(  -10000000000, 'd3fffffffdabf41c00' ),
-			array(  -223372036854775807, 'd3fce66c50e2840001' ),
-			array(  -9223372036854775807, 'd38000000000000001' ),
-		),
-		'NULL' => array(
-			array( null, 'c0' ),
-		),
-		'boolean' => array(
-			array( true, 'c3' ),
-			array( false, 'c2' ),
-		),
-		'double' => array(
-			array(  0.1, 'cb3fb999999999999a' ),
-			array(  1.1, 'cb3ff199999999999a' ),
-			array(  123.456, 'cb405edd2f1a9fbe77' ),
-		),
-		'string' => array(
-			array(  '', 'a0' ),
-			array( 'foobar', 'a6666f6f626172' ),
+	public function provider() {
+		return array(
+			array( 'nil', NULL, 'c0' ),
+			array( 'bool', true, 'c3' ),
+			array( 'bool', false, 'c2' ),
+			array( 'positive fixnum', 0, '00' ),
+			array( 'positive fixnum', 1, '01' ),
+			array( 'positive fixnum', 5, '05' ),
+			array( 'positive fixnum', 35, '23' ),
+			array( 'uint 8', 128, 'cc80' ),
+			array( 'uint 16', 1000, 'cd03e8' ),
+			array( 'uint 32', 100000, 'ce000186a0' ),
+			array( 'uint 64', 10000000000, 'cf00000002540be400' ),
+			array( 'negative fixnum', -1, 'ff' ),
+			array( 'negative fixnum', -2, 'fe' ),
+			array( 'int 8', -128, 'd080' ),
+			array( 'int 8', -35, 'd0dd' ),
+			array( 'int 16', -1000, 'd1fc18' ),
+			array( 'int 32', -100000, 'd2fffe7960' ),
+			array( 'int 64', -10000000000, 'd3fffffffdabf41c00' ),
+			array( 'int 64', -223372036854775807, 'd3fce66c50e2840001' ),
+			array( 'int 64', -9223372036854775807, 'd38000000000000001' ),
+			array( 'double', 0.1, 'cb3fb999999999999a' ),
+			array( 'double', 1.1, 'cb3ff199999999999a' ),
+			array( 'double', 123.456, 'cb405edd2f1a9fbe77' ),
+			array( 'fix raw', '', 'a0' ),
+			array( 'fix raw', 'foobar', 'a6666f6f626172' ),
 			array(
+				'raw 16',
 				'Lorem ipsum dolor sit amet amet.',
 				'da00204c6f72656d20697073756d20646f6c6f722073697420616d657420616d65742e'
 			),
-		),
-		'array' => array(
-			array( array( 'abc', 'def', 'ghi' ), '93a3616263a3646566a3676869' ),
-			array( array( 'one' => 1, 'two' => 2 ), '82a36f6e6501a374776f02' ),
-		),
-	);
+			array(
+				'fix array',
+				array( 'abc', 'def', 'ghi' ),
+				'93a3616263a3646566a3676869'
+			),
+			array(
+				'fix map',
+				array( 'one' => 1, 'two' => 2 ),
+				'82a36f6e6501a374776f02'
+			),
+		);
+	}
 
 	/**
 	 * Verify that values are serialized correctly.
 	 * @covers MWMessagePack::pack
+	 * @dataProvider provider
 	 */
-	public function testMessagePack() {
-		foreach( $this->data as $type => $cases ) {
-			foreach( $cases as $case ) {
-				list( $value, $expected ) = $case;
-				$actual = bin2hex( MWMessagePack::pack( $value ) );
-				$this->assertEquals( $actual, $expected, $type );
-			}
-		}
+	public function testPack( $type, $value, $expected ) {
+		$actual = bin2hex( MWMessagePack::pack( $value ) );
+		$this->assertEquals( $actual, $expected, $type );
 	}
 }
