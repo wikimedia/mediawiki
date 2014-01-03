@@ -106,6 +106,7 @@ class HTMLForm extends ContextSource {
 		'select' => 'HTMLSelectField',
 		'radio' => 'HTMLRadioField',
 		'multiselect' => 'HTMLMultiSelectField',
+		'limitselect' => 'HTMLSelectLimitField',
 		'check' => 'HTMLCheckField',
 		'toggle' => 'HTMLCheckField',
 		'int' => 'HTMLIntField',
