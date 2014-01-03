@@ -243,6 +243,21 @@ class UIDGenerator {
 	 * @since 1.23
 	 */
 	public static function newSequentialPerNodeIDs( $bucket, $bits, $count, $flags = 0 ) {
+		$gen = self::singleton();
+		return $gen->getSequentialPerNodeIDs( $bucket, $bits, $count, $flags );
+	}
+
+	/**
+	 * Return IDs that are sequential *only* for this node and bucket
+	 *
+	 * @see UIDGenerator::newSequentialPerNodeID()
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param integer $count Number of IDs to return (1 to 10000)
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return array Ordered list of float integer values
+	 */
+	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
 			return array(); // nothing to do
 		} elseif ( $count > 10000 ) {
@@ -274,7 +289,13 @@ class UIDGenerator {
 		// Note: use of fmod() avoids "division by zero" on 32 bit machines
 		if ( $counter === null ) {
 			$path = wfTempDir() . '/mw-' . __CLASS__ . '-' . rawurlencode( $bucket ) . '-48';
-			$handle = fopen( $path, 'cb+' );
+			// Get the UID lock file handle
+			if ( isset( $this->fileHandles[$path] ) ) {
+				$handle = $this->fileHandles[$path];
+			} else {
+				$handle = fopen( $path, 'cb+' );
+				$this->fileHandles[$path] = $handle ?: null; // cache
+			}
 			// Acquire the UID lock file
 			if ( $handle === false ) {
 				throw new MWException( "Could not open '{$path}'." );
@@ -292,8 +313,8 @@ class UIDGenerator {
 			fflush( $handle );
 			// Release the UID lock file
 			flock( $handle, LOCK_UN );
-			fclose( $handle );
 		}
+
 		$ids = array();
 		$divisor = pow( 2, $bits );
 		$currentId = floor( $counter - $count ); // pre-increment counter value
