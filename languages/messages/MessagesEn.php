@@ -1836,6 +1836,7 @@ Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-result-score'              => 'Relevance: $1%',
 'search-redirect'                  => '(redirect $1)',
 'search-section'                   => '(section $1)',
+'search-file-match'                => '(matches file content)',
 'search-suggest'                   => 'Did you mean: $1',
 'search-interwiki-caption'         => 'Sister projects',
 'search-interwiki-default'         => '$1 results:',
