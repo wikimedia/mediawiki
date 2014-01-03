@@ -106,12 +106,12 @@
 						$( '<div style="margin-top: 1em;"></div>' ).append(
 							mw.msg( 'feedback-subject' ),
 							$( '<br>' ),
-							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 99%;"/>' )
+							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;"/>' )
 						),
 						$( '<div style="margin-top: 0.4em;"></div>' ).append(
 							mw.msg( 'feedback-message' ),
 							$( '<br>' ),
-							$( '<textarea name="message" class="feedback-message" style="width: 99%;" rows="5" cols="60"></textarea>' )
+							$( '<textarea name="message" class="feedback-message" rows="5" cols="60"></textarea>' )
 						)
 					),
 					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(

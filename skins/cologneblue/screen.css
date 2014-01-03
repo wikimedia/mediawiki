@@ -56,9 +56,6 @@ p, pre, .mw-code, td, th, li, dd, dt {
 textarea {
 	overflow: auto;
 	width: 100%;
-}
-
-#editform textarea {
 	display: block;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
