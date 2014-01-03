@@ -102,6 +102,7 @@ abstract class Installer {
 		'mysql',
 		'postgres',
 		'oracle',
+		'mssql',
 		'sqlite',
 	);
 
