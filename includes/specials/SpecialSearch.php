@@ -687,10 +687,15 @@ class SpecialSearch extends SpecialPage {
 			);
 		}
 
+		$fileMatch = '';
 		// Include a thumbnail for media files...
 		if ( $t->getNamespace() == NS_FILE ) {
 			$img = $result->getFile();
 			$img = $img ?: wfFindFile( $t );
+			if ( $result->isFileMatch() ) {
+				$fileMatch = "<span class='searchalttitle'>" .
+					$this->msg( 'search-file-match' )->escaped() . "</span>";
+			}
 			if ( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if ( $thumb ) {
@@ -706,7 +711,7 @@ class SpecialSearch extends SpecialPage {
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
 						'<td style="vertical-align: top;">' .
-						$link .
+						"{$link} {$fileMatch}" .
 						$extract .
 						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related}</div>" .
 						'</td>' .
@@ -725,7 +730,7 @@ class SpecialSearch extends SpecialPage {
 			&$score, &$size, &$date, &$related,
 			&$html
 		) ) ) {
-			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section}</div> {$extract}\n" .
+			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
 				"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
 				"</li>\n";
 		}

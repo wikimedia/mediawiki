@@ -988,6 +988,13 @@ class SearchResult {
 	function getInterwikiPrefix() {
 		return '';
 	}
+
+	/**
+	 * Did this match file contents (eg: PDF/DJVU)?
+	 */
+	function isFileMatch() {
+		return false;
+	}
 }
 /**
  * A SearchResultSet wrapper for SearchEngine::getNearMatch
