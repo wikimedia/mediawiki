@@ -59,6 +59,8 @@ production.
 * Added ApiBeforeMain hook, roughly equivalent to the BeforeInitialize hook:
   it's called after everything is set up but before any major processing
   happens.
+* Added a new ZeroMQFeedEngine for sending RC feeds via ZeroMQ (http://zeromq.org/).
+  Requires the ZeroMQ PHP extension from https://github.com/mkoppanen/php-zmq.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
