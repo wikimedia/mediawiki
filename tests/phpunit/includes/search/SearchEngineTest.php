@@ -8,10 +8,12 @@
  * @note Coverage will only ever show one of on of the Search* classes
  */
 class SearchEngineTest extends MediaWikiLangTestCase {
+
 	/**
 	 * @var SearchEngine
 	 */
 	protected $search;
+
 	protected $pageList;
 
 	/**
@@ -22,10 +24,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		// Search tests require MySQL or SQLite with FTS
-		# Get database type and version
 		$dbType = $this->db->getType();
-		$dbSupported =
-			( $dbType === 'mysql' )
+		$dbSupported = ( $dbType === 'mysql' )
 				|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
 
 		if ( !$dbSupported ) {
@@ -33,6 +33,14 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		}
 
 		$searchType = $this->db->getSearchEngine();
+		$this->setMwGlobals( array(
+			'wgSearchType' => $searchType
+		) );
+
+		if ( !isset( self::$pageList ) ) {
+			$this->addPages();
+		}
+
 		$this->search = new $searchType( $this->db );
 	}
 
@@ -42,15 +50,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
-	function pageExists( $title ) {
-		return false;
-	}
-
-	function addDBData() {
-		if ( $this->pageExists( 'Not_Main_Page' ) ) {
-			return;
-		}
-
+	protected function addPages() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			// @todo cover the case of non-wikitext content in the main namespace
 			return;
@@ -75,12 +75,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'DomainName', 'example.com', 0 );
 	}
 
-	function fetchIds( $results ) {
+	protected function fetchIds( $results ) {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
 			$this->markTestIncomplete( __CLASS__ . " does no yet support non-wikitext content "
 				. "in the main namespace" );
 		}
-
 		$this->assertTrue( is_object( $results ) );
 
 		$matches = array();
@@ -105,7 +104,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * @param $text String: page's content
 	 * @param $n Integer: unused
 	 */
-	function insertPage( $pageName, $text, $ns ) {
+	protected function insertPage( $pageName, $text, $ns ) {
 		$title = Title::newFromText( $pageName, $ns );
 
 		$user = User::newFromName( 'WikiSysop' );
@@ -180,4 +179,5 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
 			"Title power search failed" );
 	}
+
 }
