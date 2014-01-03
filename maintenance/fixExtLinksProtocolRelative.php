@@ -66,11 +66,13 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			$db->insert( 'externallinks',
 				array(
 					array(
+						'el_id' => $db->nextSequenceValue( 'externallinks_el_id_seq' ),
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "http:{$row->el_index}",
 					),
 					array(
+						'el_id' => $db->nextSequenceValue( 'externallinks_el_id_seq' ),
 						'el_from' => $row->el_from,
 						'el_to' => $row->el_to,
 						'el_index' => "https:{$row->el_index}",
