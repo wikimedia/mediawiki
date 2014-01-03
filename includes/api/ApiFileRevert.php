@@ -28,13 +28,13 @@
  * @ingroup API
  */
 class ApiFileRevert extends ApiBase {
-
-	/**
-	 * @var File
-	 */
+	/** @var LocalFile */
 	protected $file;
+
+	/** @var string */
 	protected $archiveName;
 
+	/** @var array */
 	protected $params;
 
 	public function execute() {
