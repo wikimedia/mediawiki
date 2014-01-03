@@ -1791,6 +1791,11 @@ $wgSlaveLagWarning = 10;
  */
 $wgSlaveLagCritical = 30;
 
+/**
+ * Use NT Authentication instead of $wgDBuser / $wgDBpassword for MS SQL Server
+ */
+$wgDBNTAuthentication = false;
+
 /**@}*/ # End of DB settings }
 
 /************************************************************************//**
