@@ -245,6 +245,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $mTrxPreCommitCallbacks = array();
 
 	protected $mTablePrefix;
+	protected $mSchema;
 	protected $mFlags;
 	protected $mForeign;
 	protected $mErrorCount = 0;
@@ -426,6 +427,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	public function tablePrefix( $prefix = null ) {
 		return wfSetVar( $this->mTablePrefix, $prefix );
+	}
+
+	/**
+	 * Get/set the db schema.
+	 * @param string $schema The database schema to set, or omitted to leave it unchanged.
+	 * @return string The previous db schema.
+	 */
+	public function dbSchema( $schema = null ) {
+		return wfSetVar( $this->mSchema, $schema );
 	}
 
 	/**
@@ -711,7 +721,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
 	function __construct( $params = null ) {
-		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
+		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mTrxAtomicLevels = new SplStack;
 
@@ -722,6 +732,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$dbName = $params['dbname'];
 			$flags = $params['flags'];
 			$tablePrefix = $params['tablePrefix'];
+			$schema = $params['schema'];
 			$foreign = $params['foreign'];
 		} else { // legacy calling pattern
 			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.23" );
@@ -732,6 +743,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$dbName = isset( $args[3] ) ? $args[3] : false;
 			$flags = isset( $args[4] ) ? $args[4] : 0;
 			$tablePrefix = isset( $args[5] ) ? $args[5] : 'get from global';
+			$schema = 'get from global';
 			$foreign = isset( $args[6] ) ? $args[6] : false;
 		}
 
@@ -755,6 +767,13 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTablePrefix = $wgDBprefix;
 		} else {
 			$this->mTablePrefix = $tablePrefix;
+		}
+
+		/** Get the database schema*/
+		if ( $schema == 'get from global' ) {
+			$this->mSchema = $wgDBmwschema;
+		} else {
+			$this->mSchema = $schema;
 		}
 
 		$this->mForeign = $foreign;
@@ -792,7 +811,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
-	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, driver
+	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, schema, driver
 	 * @throws MWException If the database driver or extension cannot be found
 	 * @return DatabaseBase|null DatabaseBase subclass or null
 	 */
@@ -832,6 +851,17 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				" no viable database extension found for type '$dbType'" );
 		}
 
+		// Determine schema defaults. Currently Microsoft SQL Server uses $wgDBmwschema,
+		// and everything else doesn't use a schema (e.g. null)
+		// Although postgres and oracle support schemas, we don't use them (yet) to maintain backwards compatibility
+		$defaultSchemas = array(
+			'mysql' => null,
+			'postgres' => null,
+			'sqlite' => null,
+			'oracle' => null,
+			'mssql' => 'get from global',
+		);
+
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
 			$params = array(
@@ -841,6 +871,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				'dbname' => isset( $p['dbname'] ) ? $p['dbname'] : false,
 				'flags' => isset( $p['flags'] ) ? $p['flags'] : 0,
 				'tablePrefix' => isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
+				'schema' => isset( $p['schema'] ) ? $p['schema'] : $defaultSchemas[$dbType],
 				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false
 			);
 
@@ -2162,7 +2193,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return string Full database name
 	 */
 	public function tableName( $name, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
+		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables, $wgSharedSchema;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
@@ -2186,10 +2217,17 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
 		$dbDetails = explode( '.', $name, 2 );
-		if ( count( $dbDetails ) == 2 ) {
-			list( $database, $table ) = $dbDetails;
+		if ( count( $dbDetails ) == 3 ) {
+			list( $database, $schema, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
 			$prefix = '';
+		} elseif ( count( $dbDetails ) == 2 ) {
+			list( $database, $table ) = $dbDetails;
+			# We don't want any prefix added in this case
+			# In dbs that support it, $database may actually be the schema
+			# but that doesn't affect any of the functionality here
+			$prefix = '';
+			$schema = null;
 		} else {
 			list( $table ) = $dbDetails;
 			if ( $wgSharedDB !== null # We have a shared database
@@ -2198,17 +2236,28 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				&& in_array( $table, $wgSharedTables ) # A shared table is selected
 			) {
 				$database = $wgSharedDB;
+				$schema = $wgSharedSchema === null ? $this->mSchema : $wgSharedSchema;
 				$prefix = $wgSharedPrefix === null ? $this->mTablePrefix : $wgSharedPrefix;
 			} else {
 				$database = null;
+				$schema = $this->mSchema; # Default schema
 				$prefix = $this->mTablePrefix; # Default prefix
 			}
 		}
 
 		# Quote $table and apply the prefix if not quoted.
+		# $tableName might be empty if this is called from Database::replaceVars()
 		$tableName = "{$prefix}{$table}";
-		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $tableName ) ) {
+		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $tableName ) && $tableName !== '' ) {
 			$tableName = $this->addIdentifierQuotes( $tableName );
+		}
+
+		# Quote $schema and merge it with the table name if needed
+		if ( $schema !== null ) {
+			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $schema ) ) {
+				$schema = $this->addIdentifierQuotes( $schema );
+			}
+			$tableName = $schema . '.' . $tableName;
 		}
 
 		# Quote $database and merge it with the table name if needed
