@@ -1647,7 +1647,6 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                                    if available
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
- *   - max threads: (optional) Maximum number of running threads
  *
  *   These and any other user-defined properties will be assigned to the mLBInfo member
  *   variable of the Database object.
