@@ -86,6 +86,12 @@ production.
 * New user accounts' personal and talk pages are now watched by them by default.
 * Added SkinTemplateGetLanguageLink hook to allow changing the html of language
   links.
+* Added experimental support for using Microsoft SQL Server as the database
+  backend.
+** Added new Microsoft SQL Server-specific configuration variable
+   $wgDBWindowsAuthentication, which makes the web server authenticate against
+   the database server using Integrated Windows Authentication instead of
+   $wgDBuser/$wgDBpassword.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -334,7 +340,7 @@ MediaWiki 1.23 requires PHP 5.3.2 or later.
 
 MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
 support for them is somewhat less mature. There is experimental support for
-Oracle.
+Oracle and Microsoft SQL Server.
 
 The supported versions are:
 
@@ -342,6 +348,7 @@ The supported versions are:
 * PostgreSQL 8.3 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399) or later
 
 == Upgrading ==
 
