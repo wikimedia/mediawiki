@@ -885,8 +885,9 @@ $new: the ?new= param value from the url
 
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
-$rev: Revision object
+$newRev: Revision object of the "new" revision
 &$links: Array of HTML links
+$oldRev: Revision object of the "old" revision (may be null/invalid)
 
 'DiffViewHeader': Called before diff display
 $diff: DifferenceEngine object that's calling
