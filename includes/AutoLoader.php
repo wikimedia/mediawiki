@@ -1070,6 +1070,7 @@ $wgAutoloadLocalClasses = array(
 	'HashRing' => 'includes/utils/HashRing.php',
 	'HashtableReplacer' => 'includes/utils/StringUtils.php',
 	'IP' => 'includes/utils/IP.php',
+	'MessagePack' => 'includes/utils/MessagePack.php',
 	'MWCryptRand' => 'includes/utils/MWCryptRand.php',
 	'MWFunction' => 'includes/utils/MWFunction.php',
 	'MappedIterator' => 'includes/utils/MappedIterator.php',
