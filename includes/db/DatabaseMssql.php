@@ -22,56 +22,55 @@
  * @author Joel Penner <a-joelpe at microsoft dot com>
  * @author Chris Pucci <a-cpucci at microsoft dot com>
  * @author Ryan Biesemeyer <v-ryanbi at microsoft dot com>
+ * @author Ryan Schmidt <skizzerz at gmail dot com>
  */
 
 /**
  * @ingroup Database
  */
 class DatabaseMssql extends DatabaseBase {
-	/** @var resource */
+	protected $mInsertId = null;
 	protected $mLastResult = null;
-
-	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows = null;
-
-	/**
-	 * @var int Post number for database
-	 * @todo Unused and can be removed?
-	 */
+	protected $mSeekTo = null;
+	protected $mSubqueryId = 0;
+	protected $mScrollableCursor = true;
+	protected $mPrepareStatements = true;
+	protected $mBinaryColumnCache = null;
+	protected $mBitColumnCache = null;
+	protected $mIgnoreDupKeyErrors = false;
+	
 	protected $mPort;
 
-	/** @var int */
-	private $mInsertId = null;
-
-	function cascadingDeletes() {
-		return true;
+	public function cascadingDeletes() {
+		return false; // for now until we get all the FKs in the schema
 	}
 
-	function cleanupTriggers() {
-		return true;
+	public function cleanupTriggers() {
+		return false; // for now until we get all the FKs in the schema
 	}
 
-	function strictIPs() {
-		return true;
-	}
-
-	function realTimestamps() {
-		return true;
-	}
-
-	function implicitGroupby() {
+	public function strictIPs() {
 		return false;
 	}
 
-	function implicitOrderby() {
+	public function realTimestamps() {
 		return false;
 	}
 
-	function functionalIndexes() {
+	public function implicitGroupby() {
+		return false;
+	}
+
+	public function implicitOrderby() {
+		return false;
+	}
+
+	public function functionalIndexes() {
 		return true;
 	}
 
-	function unionSupportsOrderAndLimit() {
+	public function unionSupportsOrderAndLimit() {
 		return false;
 	}
 
@@ -84,7 +83,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBConnectionError
 	 * @return bool|DatabaseBase|null
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	public function open( $server, $user, $password, $dbName ) {
 		# Test for driver support, to avoid suppressed fatal error
 		if ( !function_exists( 'sqlsrv_connect' ) ) {
 			throw new DBConnectionError(
@@ -93,7 +92,7 @@ class DatabaseMssql extends DatabaseBase {
 					"the driver from: http://go.microsoft.com/fwlink/?LinkId=123470\n" );
 		}
 
-		global $wgDBport;
+		global $wgDBport, $wgDBNTAuthentication;
 
 		# e.g. the class is being loaded
 		if ( !strlen( $user ) ) {
@@ -118,13 +117,13 @@ class DatabaseMssql extends DatabaseBase {
 		// Current solution requires installer to know to input 'ntauth' for
 		// both username and password to trigger connection via NT Auth. Ugly,
 		// ugly, ugly!
-		// @todo Make this better and add NT Auth choice to MW installer when
-		// SQL Server option is chosen.
+		// @deprecated Replaced by $wgDBNTAuthentication, but this workaround kept
+		// for backwards compatibility
 		$ntAuthUserTest = strtolower( $user );
 		$ntAuthPassTest = strtolower( $password );
 
 		// Decide which auth scenerio to use
-		if ( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) {
+		if ( $wgDBNTAuthentication || ( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) ) {
 			// Don't add credentials to $connectionInfo
 		} else {
 			$connectionInfo['UID'] = $user;
@@ -141,8 +140,7 @@ class DatabaseMssql extends DatabaseBase {
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
-
-			return false;
+			throw new DBConnectionError( $this, $this->lastError() );
 		}
 
 		$this->mOpened = true;
@@ -160,7 +158,10 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	protected function doQuery( $sql ) {
-		wfDebug( "SQL: [$sql]\n" );
+		global $wgDebugDumpSql;
+		if ( $wgDebugDumpSql ) {
+			wfDebug( "SQL: [$sql]\n" );
+		}
 		$this->offset = 0;
 
 		// several extensions seem to think that all databases support limits
@@ -180,63 +181,166 @@ class DatabaseMssql extends DatabaseBase {
 		}
 
 		// perform query
-		$stmt = sqlsrv_query( $this->mConn, $sql );
-		if ( $stmt == false ) {
-			$message = "A database error has occurred. Did you forget " .
-				"to run maintenance/update.php after upgrading?  See: " .
-				"http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
-				"Query: " . htmlentities( $sql ) . "\n" .
-				"Function: " . __METHOD__ . "\n";
-			// process each error (our driver will give us an array of errors unlike other providers)
-			foreach ( sqlsrv_errors() as $error ) {
-				$message .= $message . "ERROR[" . $error['code'] . "] " . $error['message'] . "\n";
+		
+		// SQLSRV_CURSOR_STATIC is slower than SQLSRV_CURSOR_CLIENT_BUFFERED (one of the two is
+		// needed if we want to be able to seek around the result set), however CLIENT_BUFFERED
+		// has a bug in the sqlsrv driver where wchar_t types (such as nvarchar) that are empty
+		// strings make php throw a fatal error "Severe error translating Unicode"
+		if ( $this->mScrollableCursor ) {
+			$scrollArr = array( 'Scrollable' => SQLSRV_CURSOR_STATIC );
+		} else {
+			$scrollArr = array();
+		}
+		
+		if ( $this->mPrepareStatements ) {
+			// we do prepare + execute so we can get its field metadata for later usage if desired
+			$stmt = sqlsrv_prepare( $this->mConn, $sql, array(), $scrollArr );
+			$success = sqlsrv_execute( $stmt );
+		} else {
+			$stmt = sqlsrv_query( $this->mConn, $sql, array(), $scrollArr );
+			$success = (bool)$stmt;
+		}
+		
+		if ( $this->mIgnoreDupKeyErrors ) {
+			// ignore duplicate key errors, but nothing else
+			// this emulates INSERT IGNORE in MySQL
+			$this->mIgnoreDupKeyErrors = false;
+			if ( $success === false ) {
+				$errors = sqlsrv_errors( SQLSRV_ERR_ERRORS );
+				$success = true;
+				
+				foreach ( $errors as $err ) {
+					if ( $err['SQLSTATE'] == '23000' && $err['code'] == '2601' ) {
+						continue; // duplicate key error
+					} elseif ( $err['SQLSTATE'] == '01000' && $err['code'] == '3621' ) {
+						continue; // generic "the statement has been terminated" error
+					}
+					$success = false; // getting here means we got an error we weren't expecting
+				}
+				
+				if ( $success ) {
+					$this->mAffectedRows = 0;
+					return true;
+				}
 			}
-
-			throw new DBUnexpectedError( $this, $message );
+		}
+		
+		if ( $success === false ) {
+			return false;
 		}
 		// remember number of rows affected
 		$this->mAffectedRows = sqlsrv_rows_affected( $stmt );
 
-		// if it is a SELECT statement, or an insert with a request to output
-		// something we want to return a row.
-		if ( ( preg_match( '#\bSELECT\s#i', $sql ) ) ||
-			( preg_match( '#\bINSERT\s#i', $sql ) && preg_match( '#\bOUTPUT\s+INSERTED\b#i', $sql ) )
-		) {
-			// this is essentially a rowset, but Mediawiki calls these 'result'
-			// the rowset owns freeing the statement
-			$res = new MssqlResult( $stmt );
+		return $stmt;
+	}
+
+	public function freeResult( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		
+		sqlsrv_free_stmt( $res );
+	}
+
+	public function fetchObject( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+
+		if ( $this->mSeekTo !== null) {
+			$result = sqlsrv_fetch_object( $res, 'stdClass', array(), SQLSRV_SCROLL_ABSOLUTE, $this->mSeekTo );
+			$this->mSeekTo = null;
 		} else {
-			// otherwise we simply return it was successful, failure throws an exception
-			$res = true;
+			$result = sqlsrv_fetch_object( $res );
 		}
-
-		return $res;
+		
+		// MediaWiki expects us to return boolean false when there are no more rows instead of null
+		if ( $result === null ) {
+			return false;
+		}
+		
+		return $result;
 	}
 
-	function freeResult( $res ) {
+	public function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		$res->free();
+		
+		if ( $this->mSeekTo !== null ) {
+			$result = sqlsrv_fetch_array( $res, SQLSRV_FETCH_BOTH, SQLSRV_SCROLL_ABSOLUTE, $this->mSeekTo );
+			$this->mSeekTo = null;
+		} else {
+			$result = sqlsrv_fetch_array( $res );
+		}
+		
+		// MediaWiki expects us to return boolean false when there are no more rows instead of null
+		if ( $result === null ) {
+			return false;
+		}
+		
+		return $result;
 	}
 
-	function fetchObject( $res ) {
+	public function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		$row = $res->fetch( 'OBJECT' );
 
-		return $row;
+		return sqlsrv_num_rows( $res );
 	}
 
-	function getErrors() {
+	public function numFields( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+
+		return sqlsrv_num_fields( $res );
+	}
+
+	public function fieldName( $res, $n ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		
+		$metadata = sqlsrv_field_metadata( $res );
+		return $metadata[$n]['Name'];
+	}
+
+	/**
+	 * This must be called after nextSequenceVal
+	 * @return int|null
+	 */
+	public function insertId() {
+		return $this->mInsertId;
+	}
+
+	public function dataSeek( $res, $row ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+
+		// check bounds
+		$numRows = $this->numRows( $res );
+		$row = intval( $row );
+		
+		if ( $numRows === 0 ) {
+			return false;
+		} elseif ( $row < 0 || $row > $numRows - 1 ) {
+			return false;
+		}
+		
+		// Unlike MySQL, the seek actually happens on the next access
+		$this->mSeekTo = $row;
+		return true;
+	}
+
+	public function lastError() {
 		$strRet = '';
 		$retErrors = sqlsrv_errors( SQLSRV_ERR_ALL );
 		if ( $retErrors != null ) {
 			foreach ( $retErrors as $arrError ) {
-				$strRet .= "SQLState: " . $arrError['SQLSTATE'] . "\n";
-				$strRet .= "Error Code: " . $arrError['code'] . "\n";
-				$strRet .= "Message: " . $arrError['message'] . "\n";
+				$strRet .= $this->formatError( $arrError ) . "\n";
 			}
 		} else {
 			$strRet = "No errors found";
@@ -244,74 +348,21 @@ class DatabaseMssql extends DatabaseBase {
 
 		return $strRet;
 	}
-
-	function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-		$row = $res->fetch( SQLSRV_FETCH_BOTH );
-
-		return $row;
+	
+	private function formatError( $err ) {
+		return '[SQLSTATE ' . $err['SQLSTATE'] . '][Error Code ' . $err['code'] . ']' . $err['message'];
 	}
-
-	function numRows( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return ( $res ) ? $res->numrows() : 0;
-	}
-
-	function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return ( $res ) ? $res->numfields() : 0;
-	}
-
-	function fieldName( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return ( $res ) ? $res->fieldname( $n ) : 0;
-	}
-
-	/**
-	 * This must be called after nextSequenceVal
-	 * @return int|null
-	 */
-	function insertId() {
-		return $this->mInsertId;
-	}
-
-	function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return ( $res ) ? $res->seek( $row ) : false;
-	}
-
-	function lastError() {
-		if ( $this->mConn ) {
-			return $this->getErrors();
-		} else {
-			return "No database connection";
-		}
-	}
-
-	function lastErrno() {
+	
+	public function lastErrno() {
 		$err = sqlsrv_errors( SQLSRV_ERR_ALL );
-		if ( $err[0] ) {
+		if ( $err !== null && isset( $err[0] ) ) {
 			return $err[0]['code'];
 		} else {
 			return 0;
 		}
 	}
 
-	function affectedRows() {
+	public function affectedRows() {
 		return $this->mAffectedRows;
 	}
 
@@ -330,15 +381,34 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return Mixed: database result resource (feed to Database::fetchObject
 	 *   or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds = '', $fname = __METHOD__,
+	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
 	) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( isset( $options['EXPLAIN'] ) ) {
-			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL ON;" );
-			$ret = $this->query( $sql, $fname );
-			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL OFF;" );
-
+			try {
+				$this->mScrollableCursor = false;
+				$this->mPrepareStatements = false;
+				$this->query( "SET SHOWPLAN_ALL ON" );
+				$ret = $this->query( $sql, $fname );
+				$this->query( "SET SHOWPLAN_ALL OFF" );
+			} catch ( DBQueryError $dqe ) {
+				if ( isset( $options['FOR COUNT'] ) ) {
+					// likely don't have privs for SHOWPLAN, so run a select count instead
+					$this->query( "SET SHOWPLAN_ALL OFF" );
+					unset( $options['EXPLAIN'] );
+					$ret = $this->select( $table, 'COUNT(*) AS EstimateRows', $conds, $fname, $options, $join_conds );
+				} else {
+					// someone actually wanted the query plan instead of an est row count
+					// let them know of the error
+					$this->mScrollableCursor = true;
+					$this->mPrepareStatements = true;
+					throw $dqe;
+				}
+			}
+			$this->mScrollableCursor = true;
+			$this->mPrepareStatements = true;
+			
 			return $ret;
 		}
 
@@ -358,14 +428,58 @@ class DatabaseMssql extends DatabaseBase {
 	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return string, the SQL text
 	 */
-	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
+	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
 	) {
 		if ( isset( $options['EXPLAIN'] ) ) {
 			unset( $options['EXPLAIN'] );
 		}
-
-		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		
+		$sql = parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		
+		// try to rewrite aggregations of bit columns (currently MAX and MIN)
+		if ( strpos( $sql, 'MAX(' ) !== false || strpos( $sql, 'MIN(' ) !== false ) {
+			$bitColumns = array();
+			if ( is_array( $table ) ) {
+				foreach ( $table as $t ) {
+					$bitColumns += $this->getBitColumns( $this->tableName( $t ) );
+				}
+			} else {
+				$bitColumns = $this->getBitColumns( $this->tableName( $table ) );
+			}
+			
+			foreach ( $bitColumns as $col => $info ) {
+				$replacements = array(
+					"MAX({$col})" => "MAX(CAST({$col} AS tinyint))",
+					"MIN({$col})" => "MIN(CAST({$col} AS tinyint))",
+				);
+				$sql = str_replace( array_keys( $replacements ), array_values( $replacements ), $sql );
+			}
+		}
+		
+		return $sql;
+	}
+	
+	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__ ) {
+		$this->mScrollableCursor = false;
+		try {
+			parent::deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname );
+		} catch( Exception $e ) {
+			$this->mScrollableCursor = true;
+			throw $e;
+		}
+		$this->mScrollableCursor = true;
+	}
+	
+	public function delete( $table, $conds, $fname = __METHOD__ ) {
+		$this->mScrollableCursor = false;
+		try {
+			parent::delete( $table, $conds, $fname );
+		} catch( Exception $e ) {
+			$this->mScrollableCursor = true;
+			throw $e;
+		}
+		$this->mScrollableCursor = true;
 	}
 
 	/**
@@ -376,16 +490,18 @@ class DatabaseMssql extends DatabaseBase {
 	 * Takes same arguments as Database::select()
 	 * @return int
 	 */
-	function estimateRowCount( $table, $vars = '*', $conds = '',
+	public function estimateRowCount( $table, $vars = '*', $conds = '',
 		$fname = __METHOD__, $options = array()
 	) {
 		// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$options['EXPLAIN'] = true;
+		$options['FOR COUNT'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
+
 			if ( isset( $row['EstimateRows'] ) ) {
 				$rows = $row['EstimateRows'];
 			}
@@ -399,7 +515,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * If errors are explicitly ignored, returns NULL on failure
 	 * @return array|bool|null
 	 */
-	function indexInfo( $table, $index, $fname = __METHOD__ ) {
+	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# This does not return the same info as MYSQL would, but that's OK
 		# because MediaWiki never uses the returned value except to check for
 		# the existance of indexes.
@@ -446,7 +562,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBQueryError
 	 * @return bool
 	 */
-	function insert( $table, $arrToInsert, $fname = __METHOD__, $options = array() ) {
+	public function insert( $table, $arrToInsert, $fname = __METHOD__, $options = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $arrToInsert ) ) {
 			return true;
@@ -462,21 +578,24 @@ class DatabaseMssql extends DatabaseBase {
 			$arrToInsert = array( 0 => $arrToInsert ); // make everything multi row compatible
 		}
 
-		$allOk = true;
-
 		// We know the table we're inserting into, get its identity column
 		$identity = null;
-		// strip matching square brackets from table name
-		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table );
+		// strip matching square brackets and the db/schema from table name
+		$tableRawArr = explode( '.', preg_replace( '#\[([^\]]*)\]#', '$1', $table ) );
+		$tableRaw = array_pop( $tableRawArr );
 		$res = $this->doQuery(
 			"SELECT NAME AS idColumn FROM SYS.IDENTITY_COLUMNS " .
 				"WHERE OBJECT_NAME(OBJECT_ID)='{$tableRaw}'"
 		);
-		if ( $res && $res->numrows() ) {
+		if ( $res && sqlsrv_has_rows( $res ) ) {
 			// There is an identity for this table.
-			$identity = array_pop( $res->fetch( SQLSRV_FETCH_ASSOC ) );
+			$identityArr = sqlsrv_fetch_array( $res, SQLSRV_FETCH_ASSOC );
+			$identity = array_pop( $identityArr );
 		}
-		unset( $res );
+		sqlsrv_free_stmt( $res );
+		
+		// Determine binary/varbinary fields so we can encode data as a hex string like 0xABCDEF
+		$binaryColumns = $this->getBinaryColumns( $table );
 
 		foreach ( $arrToInsert as $a ) {
 			// start out with empty identity column, this is so we can return
@@ -510,70 +629,57 @@ class DatabaseMssql extends DatabaseBase {
 			// INSERT IGNORE is not supported by SQL Server
 			// remove IGNORE from options list and set ignore flag to true
 			$ignoreClause = false;
-			foreach ( $options as $k => $v ) {
-				if ( strtoupper( $v ) == "IGNORE" ) {
-					unset( $options[$k] );
-					$ignoreClause = true;
-				}
-			}
-
-			// translate MySQL INSERT IGNORE to something SQL Server can use
-			// example:
-			// MySQL: INSERT IGNORE INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
-			// MSSQL: IF NOT EXISTS (SELECT * FROM user_groups WHERE ug_user = '1')
-			//        INSERT INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
-			if ( $ignoreClause ) {
-				$prival = $a[$keys[0]];
-				$sqlPre .= "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = '$prival')";
+			if ( in_array( 'IGNORE', $options ) ) {
+				$options = array_diff( $options, array( 'IGNORE' ) );
+				$this->mIgnoreDupKeyErrors = true;
 			}
 
 			// Build the actual query
 			$sql = $sqlPre . 'INSERT ' . implode( ' ', $options ) .
 				" INTO $table (" . implode( ',', $keys ) . ") $identityClause VALUES (";
-
+			
 			$first = true;
-			foreach ( $a as $value ) {
+			foreach ( $a as $key => $value ) {
+				if ( isset( $binaryColumns[$key] ) ) {
+					$value = new MssqlBlob( $value );
+				}
 				if ( $first ) {
 					$first = false;
 				} else {
 					$sql .= ',';
 				}
-				if ( is_string( $value ) ) {
-					$sql .= $this->addQuotes( $value );
-				} elseif ( is_null( $value ) ) {
+				if ( is_null( $value ) ) {
 					$sql .= 'null';
 				} elseif ( is_array( $value ) || is_object( $value ) ) {
-					if ( is_object( $value ) && strtolower( get_class( $value ) ) == 'blob' ) {
+					if ( is_object( $value ) && $value instanceOf Blob ) {
 						$sql .= $this->addQuotes( $value );
 					} else {
 						$sql .= $this->addQuotes( serialize( $value ) );
 					}
 				} else {
-					$sql .= $value;
+					$sql .= $this->addQuotes( $value );
 				}
 			}
 			$sql .= ')' . $sqlPost;
 
 			// Run the query
-			$ret = sqlsrv_query( $this->mConn, $sql );
-
-			if ( $ret === false ) {
-				throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
-			} elseif ( $ret != null ) {
-				// remember number of rows affected
-				$this->mAffectedRows = sqlsrv_rows_affected( $ret );
-				if ( !is_null( $identity ) ) {
-					// then we want to get the identity column value we were assigned and save it off
-					$row = sqlsrv_fetch_object( $ret );
-					$this->mInsertId = $row->$identity;
-				}
-				sqlsrv_free_stmt( $ret );
-				continue;
+			$this->mScrollableCursor = false;
+			try {
+				$ret = $this->query( $sql );
+			} catch ( Exception $e ) {
+				$this->mScrollableCursor = true;
+				throw $e;
 			}
-			$allOk = false;
+			$this->mScrollableCursor = true;
+			
+			if ( !is_null( $identity ) ) {
+				// then we want to get the identity column value we were assigned and save it off
+				$row = $ret->fetchObject();
+				$this->mInsertId = $row->$identity;
+			}
 		}
 
-		return $allOk;
+		return $ret;
 	}
 
 	/**
@@ -591,70 +697,147 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBQueryError
 	 * @return null|ResultWrapper
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array() ) {
-		$ret = parent::insertSelect(
-			$destTable,
-			$srcTable,
-			$varMap,
-			$conds,
-			$fname,
-			$insertOptions,
-			$selectOptions
-		);
+	public function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__, $insertOptions = array(), $selectOptions = array() ) {
+		$this->mScrollableCursor = false;
+		try {
+			$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
+		} catch( Exception $e ) {
+			$this->mScrollableCursor = true;
+			throw $e;
+		}
+		$this->mScrollableCursor = true;
 
-		if ( $ret === false ) {
-			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), /*$sql*/ '', $fname );
-		} elseif ( $ret != null ) {
-			// remember number of rows affected
-			$this->mAffectedRows = sqlsrv_rows_affected( $ret );
+		return $ret;
+	}
+	
+	/**
+	 * UPDATE wrapper. Takes a condition array and a SET array.
+	 *
+	 * @param $table  String name of the table to UPDATE. This will be passed through
+	 *                DatabaseBase::tableName().
+	 *
+	 * @param array $values An array of values to SET. For each array element,
+	 *                the key gives the field name, and the value gives the data
+	 *                to set that field to. The data will be quoted by
+	 *                DatabaseBase::addQuotes().
+	 *
+	 * @param $conds  Array:  An array of conditions (WHERE). See
+	 *                DatabaseBase::select() for the details of the format of
+	 *                condition arrays. Use '*' to update all rows.
+	 *
+	 * @param $fname  String: The function name of the caller (from __METHOD__),
+	 *                for logging and profiling.
+	 *
+	 * @param array $options An array of UPDATE options, can be:
+	 *                   - IGNORE: Ignore unique key conflicts
+	 *                   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
+	 * @return Boolean
+	 */
+	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
+		$table = $this->tableName( $table );
+		$binaryColumns = $this->getBinaryColumns( $table );
+		
+		$opts = $this->makeUpdateOptions( $options );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET, $binaryColumns );
 
-			return $ret;
+		if ( $conds !== array() && $conds !== '*' ) {
+			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND, $binaryColumns );
 		}
 
-		return null;
+		$this->mScrollableCursor = false;
+		try {
+			$ret = $this->query( $sql );
+		} catch ( Exception $e ) {
+			$this->mScrollableCursor = true;
+			throw $e;
+		}
+		$this->mScrollableCursor = true;
+		return true;
 	}
 
 	/**
-	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return
+	 * Makes an encoded list of strings from an array
+	 * @param array $a containing the data
+	 * @param int $mode Constant
+	 *      - LIST_COMMA:          comma separated, no field names
+	 *      - LIST_AND:            ANDed WHERE clause (without the WHERE). See
+	 *        the documentation for $conds in DatabaseBase::select().
+	 *      - LIST_OR:             ORed WHERE clause (without the WHERE)
+	 *      - LIST_SET:            comma separated with field names, like a SET clause
+	 *      - LIST_NAMES:          comma separated field names
+	 * @param array $binaryColumns Contains a list of column names that are binary types
+	 *      This is a custom parameter only present for MS SQL.
+	 *
+	 * @throws MWException|DBUnexpectedError
+	 * @return string
 	 */
-	function nextSequenceValue( $seqName ) {
-		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
-			sqlsrv_query(
-				$this->mConn,
-				"CREATE TABLE [sequence_$seqName] (id INT NOT NULL IDENTITY PRIMARY KEY, junk varchar(10) NULL)"
-			);
+	public function makeList( $a, $mode = LIST_COMMA, $binaryColumns = array() ) {
+		if ( !is_array( $a ) ) {
+			throw new DBUnexpectedError( $this, 'DatabaseBase::makeList called with incorrect parameters' );
 		}
-		sqlsrv_query( $this->mConn, "INSERT INTO [sequence_$seqName] (junk) VALUES ('')" );
-		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
-		// KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
-		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC );
 
-		sqlsrv_free_stmt( $ret );
-		$this->mInsertId = $row['id'];
+		$first = true;
+		$list = '';
 
-		return $row['id'];
-	}
+		foreach ( $a as $field => $value ) {
+			if ( $mode != LIST_NAMES && isset( $binaryColumns[$field] ) ) {
+				if ( is_array( $value ) ) {
+					foreach ( $value as &$v ) {
+						$v = new MssqlBlob( $v );
+					}
+				} else {
+					$value = new MssqlBlob( $value );
+				}
+			}
+			
+			if ( !$first ) {
+				if ( $mode == LIST_AND ) {
+					$list .= ' AND ';
+				} elseif ( $mode == LIST_OR ) {
+					$list .= ' OR ';
+				} else {
+					$list .= ',';
+				}
+			} else {
+				$first = false;
+			}
 
-	/**
-	 * Return the current value of a sequence. Assumes it has ben nextval'ed in this session.
-	 * @return
-	 */
-	function currentSequenceValue( $seqName ) {
-		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
-		if ( $ret !== false ) {
-			$row = sqlsrv_fetch_array( $ret );
-			sqlsrv_free_stmt( $ret );
-
-			return $row['id'];
-		} else {
-			return $this->nextSequenceValue( $seqName );
+			if ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_numeric( $field ) ) {
+				$list .= "($value)";
+			} elseif ( ( $mode == LIST_SET ) && is_numeric( $field ) ) {
+				$list .= "$value";
+			} elseif ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_array( $value ) ) {
+				if ( count( $value ) == 0 ) {
+					throw new MWException( __METHOD__ . ": empty input for field $field" );
+				} elseif ( count( $value ) == 1 ) {
+					// Special-case single values, as IN isn't terribly efficient
+					// Don't necessarily assume the single key is 0; we don't
+					// enforce linear numeric ordering on other arrays here.
+					$value = array_values( $value );
+					$list .= $field . " = " . $this->addQuotes( $value[0] );
+				} else {
+					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+				}
+			} elseif ( $value === null ) {
+				if ( $mode == LIST_AND || $mode == LIST_OR ) {
+					$list .= "$field IS ";
+				} elseif ( $mode == LIST_SET ) {
+					$list .= "$field = ";
+				}
+				$list .= 'NULL';
+			} else {
+				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
+					$list .= "$field = ";
+				}
+				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
+			}
 		}
+
+		return $list;
 	}
 
 	# Returns the size of a text field, or -1 for "unlimited"
-	function textFieldSize( $table, $field ) {
+	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SELECT CHARACTER_MAXIMUM_LENGTH,DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'";
@@ -671,26 +854,45 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
-	 * $sql string SQL query we will append the limit too
+	 * $sql string SQL query we will append the limit to
 	 * $limit integer the SQL limit
 	 * $offset integer the SQL offset (default false)
 	 * @return mixed|string
 	 */
-	function limitResult( $sql, $limit, $offset = false ) {
+	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( $offset === false || $offset == 0 ) {
 			if ( strpos( $sql, "SELECT" ) === false ) {
 				return "TOP {$limit} " . $sql;
 			} else {
-				return preg_replace( '/\bSELECT(\s*DISTINCT)?\b/Dsi', 'SELECT$1 TOP ' . $limit, $sql, 1 );
+				return preg_replace( '/\bSELECT(\s+DISTINCT)?\b/Dsi', 'SELECT$1 TOP ' . $limit, $sql, 1 );
 			}
 		} else {
-			$sql = '
-				SELECT * FROM (
-					SELECT sub2.*, ROW_NUMBER() OVER(ORDER BY sub2.line2) AS line3 FROM (
-						SELECT 1 AS line2, sub1.* FROM (' . $sql . ') AS sub1
-					) as sub2
-				) AS sub3
-				WHERE line3 BETWEEN ' . ( $offset + 1 ) . ' AND ' . ( $offset + $limit );
+			// This one is fun, we need to pull out the select list as well as any ORDER BY clause
+			$select = $orderby = array();
+			$s1 = preg_match( '#SELECT\s+(.+?)\s+FROM#Dis', $sql, $select );
+			$s2 = preg_match( '#(ORDER BY\s+.+?)(\s*FOR XML .*)?$#Dis', $sql, $orderby );
+			$overOrder = $postOrder = '';
+			$first = $offset + 1;
+			$last = $offset + $limit;
+			$sub1 = 'sub_' . $this->mSubqueryId;
+			$sub2 = 'sub_' . ($this->mSubqueryId + 1);
+			$this->mSubqueryId += 2;
+			if ( !$s1 ) {
+				// wat
+				throw new DBUnexpectedError( $this, "Attempting to LIMIT a non-SELECT query\n" );
+			}
+			if ( !$s2 ) {
+				// no ORDER BY
+				$overOrder = 'ORDER BY 1';
+			} else {
+				if ( !isset( $orderby[2] ) || !$orderby[2] ) {
+					// don't need to strip it out if we're using a FOR XML clause
+					$sql = str_replace( $orderby[1], '', $sql );
+				}
+				$overOrder = $orderby[1];
+				$postOrder = ' ' . $overOrder;
+			}
+			$sql = "SELECT {$select[1]} FROM (SELECT ROW_NUMBER() OVER({$overOrder}) AS rowNumber, * FROM ({$sql}) {$sub1}) {$sub2} WHERE rowNumber BETWEEN {$first} AND {$last}{$postOrder}";
 
 			return $sql;
 		}
@@ -701,7 +903,7 @@ class DatabaseMssql extends DatabaseBase {
 	// prettiest solution, but better than building a whole new parser. This
 	// exists becase there are still too many extensions that don't use dynamic
 	// sql generation.
-	function LimitToTopN( $sql ) {
+	public function LimitToTopN( $sql ) {
 		// Matches: LIMIT {[offset,] row_count | row_count OFFSET offset}
 		$pattern = '/\bLIMIT\s+((([0-9]+)\s*,\s*)?([0-9]+)(\s+OFFSET\s+([0-9]+))?)/i';
 		if ( preg_match( $pattern, $sql, $matches ) ) {
@@ -721,10 +923,6 @@ class DatabaseMssql extends DatabaseBase {
 		return $sql;
 	}
 
-	function timestamp( $ts = 0 ) {
-		return wfTimestamp( TS_ISO_8601, $ts );
-	}
-
 	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */
@@ -735,7 +933,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * @return string Version information from the database
 	 */
-	function getServerVersion() {
+	public function getServerVersion() {
 		$server_info = sqlsrv_server_info( $this->mConn );
 		$version = 'Error';
 		if ( isset( $server_info['SQLServerVersion'] ) ) {
@@ -745,11 +943,11 @@ class DatabaseMssql extends DatabaseBase {
 		return $version;
 	}
 
-	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
+	public function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {
-			print "Error in tableExists query: " . $this->getErrors();
+			print "Error in tableExists query: " . $this->lastError();
 
 			return false;
 		}
@@ -764,12 +962,12 @@ class DatabaseMssql extends DatabaseBase {
 	 * Query whether a given column exists in the mediawiki schema
 	 * @return bool
 	 */
-	function fieldExists( $table, $field, $fname = __METHOD__ ) {
+	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
-			print "Error in fieldExists query: " . $this->getErrors();
+			print "Error in fieldExists query: " . $this->lastError();
 
 			return false;
 		}
@@ -780,12 +978,12 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	function fieldInfo( $table, $field ) {
+	public function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
-			print "Error in fieldInfo query: " . $this->getErrors();
+			print "Error in fieldInfo query: " . $this->lastError();
 
 			return false;
 		}
@@ -846,122 +1044,21 @@ class DatabaseMssql extends DatabaseBase {
 		return "[$identifier]";
 	}
 
-	/**
-	 * Initial setup.
-	 * Precondition: This object is connected as the superuser.
-	 * Creates the database, schema, user and login.
-	 */
-	function initial_setup( $dbName, $newUser, $loginPassword ) {
-		$dbName = $this->escapeIdentifier( $dbName );
-
-		// It is not clear what can be used as a login,
-		// From http://msdn.microsoft.com/en-us/library/ms173463.aspx
-		// a sysname may be the same as an identifier.
-		$newUser = $this->escapeIdentifier( $newUser );
-		$loginPassword = $this->addQuotes( $loginPassword );
-
-		$this->doQuery( "CREATE DATABASE $dbName;" );
-		$this->doQuery( "USE $dbName;" );
-		$this->doQuery( "CREATE SCHEMA $dbName;" );
-		$this->doQuery( "
-						CREATE
-							LOGIN $newUser
-						WITH
-							PASSWORD=$loginPassword
-						;
-					" );
-		$this->doQuery( "
-						CREATE
-							USER $newUser
-						FOR
-							LOGIN $newUser
-						WITH
-							DEFAULT_SCHEMA=$dbName
-						;
-					" );
-		$this->doQuery( "
-						GRANT
-							BACKUP DATABASE,
-							BACKUP LOG,
-							CREATE DEFAULT,
-							CREATE FUNCTION,
-							CREATE PROCEDURE,
-							CREATE RULE,
-							CREATE TABLE,
-							CREATE VIEW,
-							CREATE FULLTEXT CATALOG
-						ON
-							DATABASE::$dbName
-						TO $newUser
-						;
-					" );
-		$this->doQuery( "
-						GRANT
-							CONTROL
-						ON
-							SCHEMA::$dbName
-						TO $newUser
-						;
-					" );
-	}
-
-	function encodeBlob( $b ) {
-		// we can't have zero's and such, this is a simple encoding to make sure we don't barf
-		return base64_encode( $b );
-	}
-
-	function decodeBlob( $b ) {
-		// we can't have zero's and such, this is a simple encoding to make sure we don't barf
-		return base64_decode( $b );
-	}
-
-	/**
-	 * @private
-	 * @return string
-	 */
-	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
-		$ret = array();
-		$retJOIN = array();
-		$use_index_safe = is_array( $use_index ) ? $use_index : array();
-		$join_conds_safe = is_array( $join_conds ) ? $join_conds : array();
-		foreach ( $tables as $table ) {
-			// Is there a JOIN and INDEX clause for this table?
-			if ( isset( $join_conds_safe[$table] ) && isset( $use_index_safe[$table] ) ) {
-				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
-				$tableClause .= ' ON (' . $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND ) . ')';
-				$retJOIN[] = $tableClause;
-			// Is there an INDEX clause?
-			} elseif ( isset( $use_index_safe[$table] ) ) {
-				$tableClause = $this->tableName( $table );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
-				$ret[] = $tableClause;
-			// Is there a JOIN clause?
-			} elseif ( isset( $join_conds_safe[$table] ) ) {
-				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
-				$tableClause .= ' ON (' . $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND ) . ')';
-				$retJOIN[] = $tableClause;
-			} else {
-				$tableClause = $this->tableName( $table );
-				$ret[] = $tableClause;
-			}
-		}
-		// We can't separate explicit JOIN clauses with ',', use ' ' for those
-		$straightJoins = !empty( $ret ) ? implode( ',', $ret ) : "";
-		$otherJoins = !empty( $retJOIN ) ? implode( ' ', $retJOIN ) : "";
-
-		// Compile our final table clause
-		return implode( ' ', array( $straightJoins, $otherJoins ) );
-	}
-
-	function strencode( $s ) { # Should not be called by us
+	public function strencode( $s ) { # Should not be called by us
 		return str_replace( "'", "''", $s );
 	}
 
-	function addQuotes( $s ) {
-		if ( $s instanceof Blob ) {
-			return "'" . $s->fetch( $s ) . "'";
+	public function addQuotes( $s ) {
+		if ( $s instanceOf MssqlBlob ) {
+			return $s->fetch();
+		} elseif ( $s instanceOf Blob ) {
+			// this shouldn't really ever be called, but it's here if needed
+			// (and will quite possibly make the SQL error out)
+			return ( new MssqlBlob( $s->fetch() ) )->fetch();
 		} else {
+			if ( is_bool( $s ) ) {
+				$s = $s ? 1 : 0;
+			}
 			return parent::addQuotes( $s );
 		}
 	}
@@ -972,11 +1069,17 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	public function isQuotedIdentifier( $name ) {
-		return $name[0] == '[' && substr( $name, -1, 1 ) == ']';
+		return strlen( $name ) && $name[0] == '[' && substr( $name, -1, 1 ) == ']';
 	}
 
-	function selectDB( $db ) {
-		return ( $this->query( "SET DATABASE $db" ) !== false );
+	public function selectDB( $db ) {
+		try {
+			$this->mDBname = $db;
+			$this->query( "USE $db" );
+			return true;
+		} catch ( Exception $e ) {
+			return false;
+		}
 	}
 
 	/**
@@ -986,7 +1089,7 @@ class DatabaseMssql extends DatabaseBase {
 	 *                 an SQL query, valid keys are listed in the function.
 	 * @return Array
 	 */
-	function makeSelectOptions( $options ) {
+	public function makeSelectOptions( $options ) {
 		$tailOpts = '';
 		$startOpts = '';
 
@@ -1001,8 +1104,13 @@ class DatabaseMssql extends DatabaseBase {
 
 		$tailOpts .= $this->makeOrderBy( $options );
 
-		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) {
+		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';
+		}
+		
+		if ( isset( $noKeyOptions['FOR XML'] ) ) {
+			// used in group concat field emulation
+			$tailOpts .= " FOR XML PATH('')";
 		}
 
 		// we want this to be compatible with the output of parent::makeSelectOptions()
@@ -1013,25 +1121,100 @@ class DatabaseMssql extends DatabaseBase {
 	 * Get the type of the DBMS, as it appears in $wgDBtype.
 	 * @return string
 	 */
-	function getType() {
+	public function getType() {
 		return 'mssql';
 	}
 
-	function buildConcat( $stringList ) {
+	public function buildConcat( $stringList ) {
 		return implode( ' + ', $stringList );
 	}
 
+	/**
+	 * Build a GROUP_CONCAT or equivalent statement for a query.
+	 * MS SQL doesn't have GROUP_CONCAT so we emulate it with other stuff (and boy is it nasty)
+	 *
+	 * This is useful for combining a field for several rows into a single string.
+	 * NULL values will not appear in the output, duplicated values will appear,
+	 * and the resulting delimiter-separated values have no defined sort order.
+	 * Code using the results may need to use the PHP unique() or sort() methods.
+	 *
+	 * @param string $delim Glue to bind the results together
+	 * @param string|array $table Table name
+	 * @param string $field Field name
+	 * @param string|array $conds Conditions
+	 * @param string|array $join_conds Join conditions
+	 * @return String SQL text
+	 * @since 1.23
+	 */
+	public function buildGroupConcatField( $delim, $table, $field, $conds = '', $join_conds = array() ) {
+		$gcsq = 'gcsq_' . $this->mSubqueryId;
+		$this->mSubqueryId++;
+		
+		$delimLen = strlen( $delim );
+		$fld = "{$field} + {$this->addQuotes( $delim )}";
+		$sql = "(SELECT LEFT({$field}, LEN({$field}) - {$delimLen}) FROM ("
+			. $this->selectSQLText( $table, $fld, $conds, null, array( 'FOR XML' ), $join_conds )
+			. ") {$gcsq} ({$field}))";
+		
+		return $sql;
+	}
+	
 	public function getSearchEngine() {
 		return "SearchMssql";
 	}
-
+	
 	/**
-	 * Since MSSQL doesn't recognize the infinity keyword, set date manually.
-	 * @todo Remove magic date
-	 * @return string
+	 * Returns an associative array for fields that are of type varbinary, binary, or image
+	 * $table can be either a raw table name or passed through tableName() first
 	 */
-	public function getInfinity() {
-		return '3000-01-31 00:00:00.000';
+	private function getBinaryColumns( $table ) {
+		$tableRawArr = explode( '.', preg_replace( '#\[([^\]]*)\]#', '$1', $table ) );
+		$tableRaw = array_pop( $tableRawArr );
+		
+		if ( $this->mBinaryColumnCache === null ) {
+			$this->populateColumnCaches();
+		}
+		
+		return isset( $this->mBinaryColumnCache[$tableRaw] ) ? $this->mBinaryColumnCache[$tableRaw] : array();
+	}
+	
+	private function getBitColumns( $table ) {
+		$tableRawArr = explode( '.', preg_replace( '#\[([^\]]*)\]#', '$1', $table ) );
+		$tableRaw = array_pop( $tableRawArr );
+		
+		if ( $this->mBitColumnCache === null ) {
+			$this->populateColumnCaches();
+		}
+		
+		return isset( $this->mBitColumnCache[$tableRaw] ) ? $this->mBitColumnCache[$tableRaw] : array();
+	}
+	
+	private function populateColumnCaches() {
+		$res = $this->select( 'INFORMATION_SCHEMA.COLUMNS', '*',
+			array(
+				'TABLE_CATALOG' => $this->mDBname,
+				'TABLE_SCHEMA' => $this->mSchema,
+				'DATA_TYPE' => array( 'varbinary', 'binary', 'image', 'bit' )
+			) );
+		
+		$this->mBinaryColumnCache = array();
+		$this->mBitColumnCache = array();
+		foreach ( $res as $row ) {
+			if ( $row->DATA_TYPE == 'bit' ) {
+				$this->mBitColumnCache[$row->TABLE_NAME][$row->COLUMN_NAME] = $row;
+			} else {
+				$this->mBinaryColumnCache[$row->TABLE_NAME][$row->COLUMN_NAME] = $row;
+			}
+		}
+	}
+	
+	// called in the installer and updater, probably doesn't need to be called anywhere else in the codebase
+	public function prepareStatements( $value = null ) {
+		return wfSetVar( $this->mPrepareStatements, $value );
+	}
+	
+	public function scrollableCursor( $value = null ) {
+		return wfSetVar( $this->mScrollableCursor, $value );
 	}
 } // end DatabaseMssql class
 
@@ -1077,213 +1260,31 @@ class MssqlField implements Field {
 	}
 }
 
-/**
- * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows
- * into an array and maintain our own cursor index into that array... This is
- * similar to the way the Oracle driver handles this same issue
- *
- * @ingroup Database
- */
-class MssqlResult {
-
-	public function __construct( $queryresult = false ) {
-		$this->mCursor = 0;
-		$this->mRows = array();
-		$this->mNumFields = sqlsrv_num_fields( $queryresult );
-		$this->mFieldMeta = sqlsrv_field_metadata( $queryresult );
-
-		$rows = sqlsrv_fetch_array( $queryresult, SQLSRV_FETCH_ASSOC );
-
-		foreach ( $rows as $row ) {
-			if ( $row !== null ) {
-				foreach ( $row as $k => $v ) {
-					if ( is_object( $v ) && method_exists( $v, 'format' ) ) { // DateTime Object
-						$row[$k] = $v->format( "Y-m-d\TH:i:s\Z" );
-					}
-				}
-				$this->mRows[] = $row; // read results into memory, cursors are not supported
-			}
+class MssqlBlob extends Blob {
+	public function __construct( $data ) {
+		if ( $data instanceOf MssqlBlob ) {
+			return $data;
+		} elseif ( $data instanceOf Blob ) {
+			$this->mData = $data->fetch();
+		} elseif ( is_array( $data ) && is_object( $data ) ) {
+			$this->mData = serialize( $data );
+		} else {
+			$this->mData = $data;
 		}
-		$this->mRowCount = count( $this->mRows );
-		sqlsrv_free_stmt( $queryresult );
 	}
-
-	private function array_to_obj( $array, &$obj ) {
-		foreach ( $array as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$obj->$key = new stdClass();
-				$this->array_to_obj( $value, $obj->$key );
-			} else {
-				if ( !empty( $key ) ) {
-					$obj->$key = $value;
-				}
-			}
+	
+	// Returns an unquoted hex representation of a binary string
+	// for insertion into varbinary-type fields
+	public function fetch() {
+		if ( $this->mData === null ) {
+			return 'null';
 		}
-
-		return $obj;
-	}
-
-	public function fetch( $mode = SQLSRV_FETCH_BOTH, $object_class = 'stdClass' ) {
-		if ( $this->mCursor >= $this->mRowCount || $this->mRowCount == 0 ) {
-			return false;
+		
+		$ret = '0x';
+		for ( $i = 0; $i < strlen( $this->mData ); $i++ ) {
+			$ret .= bin2hex( pack( 'C', ord( $this->mData[$i] ) ) );
 		}
-		$arrNum = array();
-		if ( $mode == SQLSRV_FETCH_NUMERIC || $mode == SQLSRV_FETCH_BOTH ) {
-			foreach ( $this->mRows[$this->mCursor] as $value ) {
-				$arrNum[] = $value;
-			}
-		}
-		switch ( $mode ) {
-			case SQLSRV_FETCH_ASSOC:
-				$ret = $this->mRows[$this->mCursor];
-				break;
-			case SQLSRV_FETCH_NUMERIC:
-				$ret = $arrNum;
-				break;
-			case 'OBJECT':
-				$o = new $object_class;
-				$ret = $this->array_to_obj( $this->mRows[$this->mCursor], $o );
-				break;
-			case SQLSRV_FETCH_BOTH:
-			default:
-				$ret = $this->mRows[$this->mCursor] + $arrNum;
-				break;
-		}
-
-		$this->mCursor++;
-
+		
 		return $ret;
-	}
-
-	public function get( $pos, $fld ) {
-		return $this->mRows[$pos][$fld];
-	}
-
-	public function numrows() {
-		return $this->mRowCount;
-	}
-
-	public function seek( $iRow ) {
-		$this->mCursor = min( $iRow, $this->mRowCount );
-	}
-
-	public function numfields() {
-		return $this->mNumFields;
-	}
-
-	public function fieldname( $nr ) {
-		$arrKeys = array_keys( $this->mRows[0] );
-
-		return $arrKeys[$nr];
-	}
-
-	public function fieldtype( $nr ) {
-		$i = 0;
-		$intType = -1;
-		foreach ( $this->mFieldMeta as $meta ) {
-			if ( $nr == $i ) {
-				$intType = $meta['Type'];
-				break;
-			}
-			$i++;
-		}
-		// http://msdn.microsoft.com/en-us/library/cc296183.aspx contains type table
-		switch ( $intType ) {
-			case SQLSRV_SQLTYPE_BIGINT:
-				$strType = 'bigint';
-				break;
-			case SQLSRV_SQLTYPE_BINARY:
-				$strType = 'binary';
-				break;
-			case SQLSRV_SQLTYPE_BIT:
-				$strType = 'bit';
-				break;
-			case SQLSRV_SQLTYPE_CHAR:
-				$strType = 'char';
-				break;
-			case SQLSRV_SQLTYPE_DATETIME:
-				$strType = 'datetime';
-				break;
-			case SQLSRV_SQLTYPE_DECIMAL: // ($precision, $scale)
-				$strType = 'decimal';
-				break;
-			case SQLSRV_SQLTYPE_FLOAT:
-				$strType = 'float';
-				break;
-			case SQLSRV_SQLTYPE_IMAGE:
-				$strType = 'image';
-				break;
-			case SQLSRV_SQLTYPE_INT:
-				$strType = 'int';
-				break;
-			case SQLSRV_SQLTYPE_MONEY:
-				$strType = 'money';
-				break;
-			case SQLSRV_SQLTYPE_NCHAR: // ($charCount):
-				$strType = 'nchar';
-				break;
-			case SQLSRV_SQLTYPE_NUMERIC: // ($precision, $scale):
-				$strType = 'numeric';
-				break;
-			case SQLSRV_SQLTYPE_NVARCHAR: // ($charCount)
-				$strType = 'nvarchar';
-				break;
-			// case SQLSRV_SQLTYPE_NVARCHAR('max'):
-			//	 $strType = 'nvarchar(MAX)';
-			//	 break;
-			case SQLSRV_SQLTYPE_NTEXT:
-				$strType = 'ntext';
-				break;
-			case SQLSRV_SQLTYPE_REAL:
-				$strType = 'real';
-				break;
-			case SQLSRV_SQLTYPE_SMALLDATETIME:
-				$strType = 'smalldatetime';
-				break;
-			case SQLSRV_SQLTYPE_SMALLINT:
-				$strType = 'smallint';
-				break;
-			case SQLSRV_SQLTYPE_SMALLMONEY:
-				$strType = 'smallmoney';
-				break;
-			case SQLSRV_SQLTYPE_TEXT:
-				$strType = 'text';
-				break;
-			case SQLSRV_SQLTYPE_TIMESTAMP:
-				$strType = 'timestamp';
-				break;
-			case SQLSRV_SQLTYPE_TINYINT:
-				$strType = 'tinyint';
-				break;
-			case SQLSRV_SQLTYPE_UNIQUEIDENTIFIER:
-				$strType = 'uniqueidentifier';
-				break;
-			case SQLSRV_SQLTYPE_UDT:
-				$strType = 'UDT';
-				break;
-			case SQLSRV_SQLTYPE_VARBINARY: // ($byteCount)
-				$strType = 'varbinary';
-				break;
-			// case SQLSRV_SQLTYPE_VARBINARY('max'):
-			//	 $strType = 'varbinary(MAX)';
-			//	 break;
-			case SQLSRV_SQLTYPE_VARCHAR: // ($charCount)
-				$strType = 'varchar';
-				break;
-			// case SQLSRV_SQLTYPE_VARCHAR('max'):
-			//	 $strType = 'varchar(MAX)';
-			//	 break;
-			case SQLSRV_SQLTYPE_XML:
-				$strType = 'xml';
-				break;
-			default:
-				$strType = $intType;
-		}
-
-		return $strType;
-	}
-
-	public function free() {
-		unset( $this->mRows );
 	}
 }
