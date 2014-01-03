@@ -688,6 +688,7 @@ $wgAutoloadLocalClasses = array(
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
 	'MWMessagePack' => 'includes/libs/MWMessagePack.php',
+	'RunningStat' => 'includes/libs/RunningStat.php',
 	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
@@ -831,7 +832,6 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerSimpleUDP' => 'includes/profiler/ProfilerSimpleUDP.php',
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
-	'RunningStat' => 'includes/profiler/RunningStat.php',
 
 	# includes/rcfeed
 	'RCFeedEngine' => 'includes/rcfeed/RCFeedEngine.php',
