@@ -1176,7 +1176,7 @@ table.floatleft {
 	display: none;
 }
 
-/* For developpers */
+/* For developers */
 .xdebug-error {
 	position: absolute;
 	z-index: 99;
