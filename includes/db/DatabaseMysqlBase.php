@@ -1203,11 +1203,7 @@ class MySQLField implements Field {
 }
 
 class MySQLMasterPos implements DBMasterPos {
-	/** @var string */
-	private $file;
-
-	/** @var int */
-	private $pos;
+	var $file, $pos;
 
 	function __construct( $file, $pos ) {
 		$this->file = $file;
