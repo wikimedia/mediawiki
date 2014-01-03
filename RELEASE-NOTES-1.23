@@ -84,6 +84,11 @@ production.
 * (bug 57201) SpecialRecentChangesFilters hook is now executed for feeds.
 * (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
   to appear blank or with missing text.
+* (bug 56931) Updated the plural rules to CLDR 24. They are in new format
+  which is detailed in UTS 35 Rev 33. The PHP parser and evaluator as well as
+  the JavaScript evaluator were updated to support the new format. Plural rules
+  for some languages have changed, most notably Russian. Affected software
+  messages have been updated and marked for review at translatewiki.net.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
