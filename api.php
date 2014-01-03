@@ -75,12 +75,17 @@ wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
 // Process data & print results
 $processor->execute();
 
+if ( function_exists( 'fastcgi_finish_request' ) ) {
+	fastcgi_finish_request();
+}
+
 // Execute any deferred updates
 DeferredUpdates::doUpdates();
 
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
 wfProfileOut( 'api.php' );
+
 wfLogProfilingData();
 
 // Log the request
