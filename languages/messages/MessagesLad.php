@@ -222,6 +222,7 @@ $messages = array(
 'tog-diffonly' => 'No amostrar el contenido de la hoja debaxo las diffes (diferencias entre los trocamientos)',
 'tog-showhiddencats' => 'Amostrar las katēggorías escondidas',
 'tog-norollbackdiff' => 'No amostrar la diff doeśpués de aboltar',
+'tog-useeditwarning' => 'Avirteme kuando desho la pajina sin guardar los kambios',
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -322,6 +323,7 @@ $messages = array(
 'newwindow' => '(Se avre en una mueva ventana)',
 'cancel' => 'Anular',
 'moredotdotdot' => 'Mas...',
+'morenotlisted' => 'Esta lista no esta kompleta',
 'mypage' => 'Pajina',
 'mytalk' => 'Mi diskusyon',
 'anontalk' => 'Diskusyón para este adresso de IP',
@@ -354,6 +356,7 @@ $messages = array(
 'namespaces' => 'Espacios de nombres',
 'variants' => 'Formas diferentes',
 
+'navigation-heading' => 'Menu de navigasyon',
 'errorpagetitle' => 'Yerro',
 'returnto' => 'Tornar a $1.',
 'tagline' => 'De {{SITENAME}}',
@@ -446,6 +449,7 @@ $messages = array(
 'hidetoc' => 'esconder',
 'thisisdeleted' => 'Ver o restorar $1?',
 'viewdeleted' => 'Desea ver $1?',
+'feedlinks' => 'Kanal:',
 'site-rss-feed' => 'Fuente de RSS de $1',
 'site-atom-feed' => 'Alimentela de Atom de $1',
 'page-rss-feed' => '"$1" Fuente RSS',
@@ -470,6 +474,8 @@ $messages = array(
 # General errors
 'error' => 'Yerro',
 'databaseerror' => 'Yerro de la Databasa',
+'databaseerror-query' => 'Demanda: $1',
+'databaseerror-function' => 'Fonksyon: $1',
 'databaseerror-error' => 'Yerro: $1',
 'missing-article' => 'La basa de dados no topó el teksto de la hoja llamada "$1" $2.
 
@@ -488,8 +494,15 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 # Login and logout pages
 'welcomeuser' => 'Bienvinidos, $1',
 'yourname' => 'Su nombre de usuario',
+'userlogin-yourname' => 'Nombre de usuario',
+'userlogin-yourname-ph' => 'Eskrive tu nombre de usuario',
+'createacct-another-username-ph' => 'Eskrive el nombre de usuario',
 'yourpassword' => 'Parola',
+'userlogin-yourpassword' => 'Kontrasenya',
+'userlogin-yourpassword-ph' => 'Eskriva tu kontrasenya',
+'createacct-yourpassword-ph' => 'Eskriva una kontrasenya',
 'yourpasswordagain' => 'Entra de muevo la parola',
+'createacct-yourpasswordagain-ph' => 'Eskrive la kontrasenya de muevo',
 'remembermypassword' => 'Acórdate de mi entrada de usador en este bilgisayar/orddênador (por un maksimum de {{PLURAL:$1|día|días}})',
 'login' => 'Entrar',
 'nav-login-createaccount' => 'Entrar / Criar un cuento',
@@ -497,24 +510,31 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'userlogin' => 'Entrar / Registrarse',
 'logout' => 'Salir',
 'userlogout' => 'Salir',
+'userlogin-noaccount' => 'No tiene un kuento?',
+'userlogin-joinproject' => 'Abonar {{SITENAME}}',
 'nologin' => "¿No tienes un cuento? '''$1'''.",
 'nologinlink' => 'Crea un cuento',
 'createaccount' => 'Crea un nuevo cuento',
 'gotaccount' => "¿Ya tienes un cuento? '''$1'''.",
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => 'Olvidates tus detalyos de akseso?',
+'userlogin-resetpassword-link' => 'Olvidaste tu kontrasenya?',
 'userlogin-createanother' => 'Krear otro kuento',
+'createacct-join' => 'Eskrive abasho tu informasyon',
 'createacct-emailrequired' => 'Adreso de korreo elektroniko',
+'createacct-email-ph' => 'Eskrive tu adreso de korreo elektroniko',
+'createacct-another-email-ph' => 'Eskrive el adreso de korreo elektronico',
 'createaccountmail' => 'por una letra electrónica',
 'createaccountreason' => 'Razon:',
 'createacct-reason' => 'Razon',
 'createacct-submit' => 'Krear tu cuento',
 'createacct-another-submit' => 'Krear otro kuento',
-'createacct-benefit-body2' => '{{{{PLURAL:$1|pajina|pajinas}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pajina|pajinas}}',
 'userexists' => 'El nombre que entrates ya se usa.
 Si puede ser, escoge un otro nombre.',
 'createaccounterror' => 'No se pudo crear el cuento: $1',
 'mailmypassword' => 'Embiar una nueva koddiche por e-mail',
+'mailerror' => 'Falta al embiar korreo: $1',
 'emailconfirmlink' => 'Confirma su adderesso de letra electrónica',
 'accountcreated' => 'Cuento creado',
 'accountcreatedtext' => 'El cuento del usuario para $1 fue creado.',
@@ -534,10 +554,15 @@ Si puede ser, escoge un otro nombre.',
 # Special:ChangeEmail
 'changeemail' => 'Kambiar adreso de korreo elektroniko',
 'changeemail-header' => 'Kambiar adreso de korreo elektroniko de kuento',
+'changeemail-oldemail' => 'Adreso de korreo elektroniko aktual:',
 'changeemail-newemail' => 'Muevo adreso de korreo elektroniko:',
 'changeemail-none' => '(dinguno)',
+'changeemail-password' => 'Tu kontrasenya en {{SITENAME}}:',
 'changeemail-submit' => 'Trocar letral',
 'changeemail-cancel' => 'Anular',
+
+# Special:ResetTokens
+'resettokens-token-label' => '$1(valor aktual: $2)',
 
 # Edit page toolbar
 'bold_sample' => 'Teksto gordo',
@@ -573,6 +598,7 @@ Tu adresso de IP va ser enrejjistrado en la istoria de la hoja.",
 'blockedtitle' => 'El usador está blokeado',
 'blockednoreason' => 'La razόn no se diό',
 'whitelistedittext' => 'Tienes que $1 para pueder trocar artículos.',
+'nosuchsectiontitle' => 'No se puede topar seksyon',
 'loginreqtitle' => 'Entrar es menester',
 'loginreqlink' => 'entrar',
 'loginreqpagetext' => 'Tienes que $1 para pueder ver otras hojas.',
@@ -611,9 +637,13 @@ Kale ke penses si es menesterozo editar esta oja.
 El enrejistro de efassado i taxireado para esta oja puede ser meldado aki:",
 'moveddeleted-notice' => "Esta ója fue efassada.
 El ''log'' de efassado i taxireado de la ója es amostrado abasho para dar referensia.",
+'edit-already-exists' => 'No se puede krear una pajina mueva.
+Ya egziste.',
+'defaultmessagetext' => 'Teksto de mesaje predeterminado',
 
 # Content models
 'content-model-wikitext' => 'vikiteksto',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Avizo:''' La contenencia de xablon está muy grande.
@@ -622,6 +652,9 @@ Algunos xablones no van á ser comprendidos.",
 'post-expand-template-argument-warning' => "'''Aviso:''' Esta oja tiene kuanto menos un kampo enel xablon muy lungo.
 Este o estos kampos no van ser amostrados",
 'post-expand-template-argument-category' => 'Ojas ke tienen xablones kon parametros no uzados',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'No se puede krear el kuento',
 
 # History pages
 'viewpagelogs' => 'Ver los registros de esta hoja',
@@ -642,8 +675,8 @@ Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en la istoria',
 'history-show-deleted' => 'Sólamente efassado',
-'histfirst' => 'Primeras',
-'histlast' => 'De alcabo',
+'histfirst' => 'Lo mas antiko',
+'histlast' => 'Lo mas muevo',
 'historysize' => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty' => '(vazío)',
 
@@ -655,6 +688,8 @@ Leyenda: (act) = diferencias con la versión actual,
 'rev-delundel' => 'mostra/esconde',
 'rev-showdeleted' => 'mostra',
 'revdelete-show-file-submit' => 'Si',
+'revdelete-hide-image' => 'Eskonder el kontenido de archivo',
+'revdelete-hide-user' => 'Nombre de usuario/adreso de IP del Redaktor',
 'revdelete-radio-same' => '(no troques)',
 'revdelete-radio-set' => 'Eskondido',
 'revdelete-radio-unset' => 'No',
@@ -724,6 +759,8 @@ Leyenda: (act) = diferencias con la versión actual,
 'prefs-skin' => 'Vista',
 'skin-preview' => 'Previstear',
 'prefs-datetime' => 'Data i ora',
+'prefs-user-pages' => 'Pajinas de usuario',
+'prefs-personal' => 'Profil de usuario',
 'prefs-rc' => 'Los Trocamientos de Alcabo',
 'prefs-watchlist' => 'Lista de los Trocamientos Preferidos',
 'prefs-watchlist-days' => 'El número de los días a mostrar en la lista de los trocamientos preferidos:',
@@ -736,6 +773,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'timezoneregion-africa' => 'África',
 'timezoneregion-america' => 'América',
 'timezoneregion-antarctica' => 'Antárctica',
+'timezoneregion-arctic' => 'Artiko',
 'timezoneregion-asia' => 'Asia',
 'timezoneregion-atlantic' => 'Oseano Atlantiko',
 'timezoneregion-australia' => 'Ostralia',
@@ -760,16 +798,23 @@ Leyenda: (act) = diferencias con la versión actual,
 'prefs-editor' => 'Redaktor',
 
 # User rights
+'userrights-groupsmember' => 'Miembro de:',
 'userrights-reason' => 'Razon:',
 
 # Groups
+'group' => 'Grupo:',
 'group-user' => 'Usadorers',
+'group-bot' => 'Bots',
 'group-sysop' => 'Administradores',
 'group-bureaucrat' => 'Burokratos',
 'group-all' => '(todos)',
 
+'group-user-member' => '{{GENDER:$1|usuario}}',
+'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-bureaucrat-member' => '{{GENDER:$1|burokrato}}',
 
+'grouppage-user' => '{{ns:project}}:Usuarios',
+'grouppage-bot' => '{{ns:project}}:Bots',
 'grouppage-sysop' => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokratos',
 
@@ -778,6 +823,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'right-edit' => 'Trocar las hojas',
 'right-createpage' => 'Krear pajinas (ke no son pajinas de diskusyon)',
 'right-createtalk' => 'Krear pajinas de diskusyon',
+'right-createaccount' => 'Krear muevos kuentos de usuarios',
 'right-minoredit' => 'Marcar trocamientos como "chiquiticos"',
 'right-delete' => 'Efassar hojas',
 
@@ -792,6 +838,8 @@ Leyenda: (act) = diferencias con la versión actual,
 'action-edit' => 'trocar esta hoja',
 'action-createpage' => 'crear hojas',
 'action-createtalk' => 'Krear pajinas de diskusyon',
+'action-createaccount' => 'Krear este kuento de usuario',
+'action-minoredit' => 'sinyalar este kambio komo chiko',
 'action-delete' => 'efassar esta hoja',
 'action-sendemail' => 'embiar korreo elektronikos',
 
@@ -806,11 +854,12 @@ Leyenda: (act) = diferencias con la versión actual,
 'recentchanges-label-minor' => 'Esta es un trocamiento chiquitico',
 'recentchanges-label-bot' => 'Este trokamiento fue echo por un bot',
 'recentchanges-label-unpatrolled' => 'Estre trokamiento no esta akavidado',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => "Debasho se amostran los trokamientos desde '''$2''' (amostrados fina <b>$1</b>)",
 'rclistfrom' => 'Mostra los trocamientos nuevos empeçando desde $1',
 'rcshowhideminor' => '$1 trocamientos chiquiticos',
 'rcshowhidebots' => '$1 bots',
-'rcshowhideliu' => '$1 empleadores enrējjistrados',
+'rcshowhideliu' => '$1 usuarios enrējjistrados',
 'rcshowhideanons' => '$1 empleadores anonimes',
 'rcshowhidepatr' => '$1 trokamientos akavidados',
 'rcshowhidemine' => '$1 mis ediciones',
@@ -839,18 +888,28 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 # Upload
 'upload' => 'Suvir una dosya',
 'uploadlogpage' => 'Subidas de arxivos',
+'filename' => 'Nombre de archivo',
 'filedesc' => 'Somario',
+'filereuploadsummary' => 'Kambios de archivo:',
+'filename-tooshort' => 'El nombre del archivo es muy kurto.',
+'savefile' => 'Guardar archivo',
 'uploadedimage' => 'subió «[[$1]]»',
+
+# File backend
+'backend-fail-notexists' => 'El archivo $1 no egziste.',
+'backend-fail-alreadyexists' => 'El archivo "$1" ya egziste.',
 
 'license' => 'Lesensia:',
 'license-header' => 'Lesensiamyénto',
 
 # Special:ListFiles
+'imgfile' => 'archivo',
 'listfiles_date' => 'Data',
 'listfiles_name' => 'Nombre',
 'listfiles_user' => 'Usuario',
 'listfiles_size' => 'Boy',
 'listfiles-latestversion-yes' => 'Si',
+'listfiles-latestversion-no' => 'No',
 
 # File description page
 'file-anchor-link' => 'Archivo',
@@ -879,6 +938,8 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # File deletion
 'filedelete-comment' => 'Razon:',
+'filedelete-nofile' => "'''$1''' no egziste.",
+'filedelete-otherreason' => 'Otra razon/razon adisiyonal',
 'filedelete-reason-otherlist' => 'Otra razon',
 
 # MIME search
@@ -888,9 +949,15 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Random page
 'randompage' => 'Hoja por asardo',
 
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Ir',
+
 # Statistics
 'statistics' => 'Estatísticas',
+'statistics-articles' => 'Pajinas de kontenido',
 'statistics-pages' => 'Pajinas',
+
+'pageswithprop-submit' => 'Ir',
 
 'brokenredirects-edit' => 'trocar',
 
@@ -922,6 +989,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Special:AllPages
 'allpages' => 'Todas las hojas',
 'alphaindexline' => '$1 a $2',
+'nextpage' => 'La sigiente pajina ($1)',
 'prevpage' => 'Hoja de antés ($1)',
 'allpagesfrom' => 'Mostrar hojas que empecen por:',
 'allpagesto' => 'Mostrar hojas escapadas con:',
@@ -935,18 +1003,36 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'special-categories-sort-abc' => 'ordenar alefbeticamente',
 
 # Special:LinkSearch
-'linksearch' => 'Linkes eksternos',
+'linksearch' => 'Bushkida de enlases eksternos',
 'linksearch-ok' => 'Bushkar',
 'linksearch-line' => 'Atamiento para $1 en la ója $2',
 
 # Special:ListUsers
 'listusers-submit' => 'Amostrar',
 
+# Special:ActiveUsers
+'activeusers-hidebots' => 'Eskonder bots',
+'activeusers-noresult' => 'No se toparon usuario.',
+
 # Special:ListGroupRights
+'listgrouprights' => 'Derechos del grupo de usuario',
+'listgrouprights-group' => 'Grupo',
+'listgrouprights-rights' => 'Derechos',
+'listgrouprights-helppage' => 'Ayudo:Derechos de grupo',
 'listgrouprights-members' => '(ver los miembros de este grupo)',
 
 # Email user
 'emailuser' => 'Embia korreo elektroniko a este usuario',
+'emailuser-title-target' => 'Embiar un korreo elektroniko a {{Gender:$1|este usuario|esta usuaria}}',
+'emailuser-title-notarget' => 'Embiar un korreo elektroniko a un usuario',
+'emailpage' => 'Embiar un korreo elektroniko a un usuario',
+'defemailsubject' => 'Korreo elektroniko del usuario "$1" de {{SITENAME}}',
+'emailusername' => 'Nombre de usuario:',
+'emailfrom' => 'De:',
+'emailto' => 'Para:',
+'emailsubject' => 'Sujeto:',
+'emailmessage' => 'Mesaje:',
+'emailsend' => 'Embiar',
 
 # Watchlist
 'watchlist' => 'Lista de akavidamiento',
@@ -966,6 +1052,8 @@ Cuando queres eliminar la hoja de tu lista de escogidas, piza «Dexar de cudiar�
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Cudiando...',
 'unwatching' => 'Dexando de cudiar...',
+
+'enotif_impersonal_salutation' => '{{SITENAME}} usuario',
 
 # Delete
 'deletepage' => 'Efassar esta hoja',
@@ -1083,6 +1171,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un tiempo de $2',
 'unblocklogentry' => 'desbloqueó a "$1"',
 'block-log-flags-nocreate' => 'desactivada la creación de cuentos',
+'block-log-flags-hiddenname' => 'nombre de usuario eskondido',
 
 # Move page
 'movepagetext' => "Usando el formulario venidero se va renombrar una hoja, quitando todo su istoria a su nuevo nombre.
@@ -1118,16 +1207,23 @@ Si puede ser, escoge otro nombre.',
 
 # Export
 'export' => 'Eksportar las hojas',
+'export-download' => 'Guardar komo archivo',
 
 # Namespace 8 related
 'allmessages' => 'Mesajes del sistema',
 'allmessagesname' => 'Nombre',
 'allmessagesdefault' => 'Teksto por defekto',
 'allmessagescurrent' => 'Teksto aktual',
+'allmessages-filter-all' => 'Todos',
+'allmessages-language' => 'Lengua:',
+'allmessages-filter-submit' => 'Ir',
 
 # Thumbnails
 'thumbnail-more' => 'Engrandece',
 'thumbnail_error' => 'Yerro kriando la imej chika: $1',
+
+# Special:Import
+'import-upload-filename' => 'Nombre de archivo:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tu hoja de usador',
@@ -1204,16 +1300,33 @@ Puedes ver su manadero',
 'show-big-image' => 'Resolución original',
 
 # Special:NewFiles
+'showhidebots' => '($1 bots)',
 'ilsubmit' => 'Bushkar',
 'bydate' => 'por data',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 segundo|$1 segundos}}',
+'minutes' => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
+'hours' => '{{PLURAL:$1|$1 ora|$1 oras}}',
+'days' => '{{PLURAL:$1|$1 diya|$1 diyas}}',
+'weeks' => '{{PLURAL:$1|$1 semana|$1 semanas}}',
+'months' => '{{PLURAL:$1|$1 mez|$1 mezes}}',
+'years' => '{{PLURAL:$1|$1 anyo|$1 anyos}}',
+'ago' => 'aze $1',
 'just-now' => 'endagora',
 
 # Human-readable timestamps
 'hours-ago' => 'aze $1{{PLURAL:$1|ora|oras}}',
 'minutes-ago' => 'aze {{PLURAL:$1|minuto|minutos}}',
 'seconds-ago' => 'aze {{PLURAL:$1|segundo|segundos}}',
+'monday-at' => 'El lunes a la $1',
+'tuesday-at' => 'El martes a la $1',
+'wednesday-at' => 'El mierkoles a la $1',
+'thursday-at' => 'El djuves a la $1',
+'friday-at' => 'El viernes a la $1',
+'saturday-at' => 'El shabat a la $1',
+'sunday-at' => 'El alhad a la $1',
+'yesterday-at' => 'Ayer a la $1',
 
 # Bad image list
 'bad_image_list' => 'El formato es ansina:
@@ -1249,6 +1362,10 @@ Los otros campos se van a guardar por defecto.
 'exif-gpstimestamp' => 'Tiémpo GPS (óra atómica)',
 'exif-gpsdatestamp' => 'Dáta GPS',
 'exif-languagecode' => 'Lengua',
+
+'exif-copyrighted-true' => 'Kon derechos del otor',
+
+'exif-exposureprogram-1' => 'Giya',
 
 'exif-meteringmode-255' => 'Otro',
 

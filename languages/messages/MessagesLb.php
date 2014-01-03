@@ -2075,6 +2075,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'protectedpages' => 'Gespaart Säiten',
 'protectedpages-indef' => 'Nëmme onbegrenzt-gespaarte Säite weisen',
 'protectedpages-cascade' => 'Nëmme Säiten déi duerch Kaskade gespaart sinn',
+'protectedpages-noredirect' => 'Viruleedunge verstoppen',
 'protectedpagesempty' => 'Elo si keng Säite mat dëse Parameteren gespaart.',
 'protectedtitles' => 'Gespaarten Titel',
 'protectedtitlesempty' => 'Zur Zäit si mat de Parameteren déi Dir uginn hutt keng Säite fir neit Uleeë gespaart.',

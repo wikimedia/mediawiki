@@ -704,7 +704,7 @@ kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangsko
 'noemailcreate' => 'Du skal angive en gyldig e-mailadresse',
 'passwordsent' => 'En ny adgangskode er sendt til e-mailadressen, som er registreret for "$1".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
-'blocked-mailpassword' => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille en ny adgangskode.',
+'blocked-mailpassword' => 'Din IP-adresse er blokeret fra at redigere sider. For at forhindre misbrug, er det heller ikke muligt, at bestille en ny adgangskode.',
 'eauthentsent' => 'En e-mailbekræftelse er sendt til den angivne e-mailadresse.
 
 Før flere e-mails bliver sendt til kontoen, skal du følge instruktionerne i e-mailen, for at bekræfte at kontoen rent faktisk er din.',
@@ -1057,7 +1057,9 @@ Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brugerkontoen kan ikke oprettes.',
-'cantcreateaccount-text' => "Oprettelsen af en brugerkonto fra IP-adressen <b>$1</b> er spærret af [[User:$3|$3]]. Årsagen til blokeringen er angivet som ''$2''",
+'cantcreateaccount-text' => "Oprettelsen af en brugerkonto fra IP-adressen ('''$1''') er blevet blokeret af [[User:$3|$3]].
+
+Årsagen til blokeringen er angivet af $3 som ''$2''",
 'cantcreateaccount-range-text' => "Oprettelsen af en brugerkonto fra IP-adresser i intervallet '''$1''', som omfatter din IP-adresse ('''$4'''), er blevet blokeret af [[User:$3|$3]].
 
 Årsagen angivet af $3 er ''$2''",
@@ -1370,8 +1372,8 @@ Det kan ikke gøres om.',
 'prefs-help-variant' => 'Den sprogvariant eller retskrivning, som du foretrækker, at denne wikis indholdssider vises i.',
 'yournick' => 'Signatur:',
 'prefs-help-signature' => 'Kommentarer på diskussionssider bør signeres med "<nowiki>~~~~</nowiki>" som vil blive konverteret til din signatur og et tidsstempel.',
-'badsig' => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
-'badsiglength' => 'Din signatur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
+'badsig' => 'Syntaksen i signaturen er ugyldig; kontroller venligst den brugte HTML.',
+'badsiglength' => 'Din signatur er for lang. Den må højst indeholde $1 {{PLURAL:$1|tegn}}.',
 'yourgender' => 'Hvordan foretrækker du at blive beskrevet?',
 'gender-unknown' => 'Jeg foretrækker ikke at specificere',
 'gender-male' => 'Han redigerer wikisider',
@@ -2409,7 +2411,8 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 'protect_expiry_old' => 'Udløbstiden ligger i fortiden.',
 'protect-unchain-permissions' => 'Lås yderligere beskyttelsesindstillinger op',
 'protect-text' => "Her kan beskyttelsesstatus for siden '''$1''' ses og ændres.",
-'protect-locked-blocked' => "Du kan ikke ændre sidens status, da din brugerkonto er spærret. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
+'protect-locked-blocked' => "Du kan ikke ændre sidens status, da din brugerkonto er blokeret.
+Her er de aktuelle beskyttelsesindstillinger for siden '''$1''':",
 'protect-locked-dblock' => "Databasen er spærret, sidebeskyttelsen kan derfor ikke ændres. her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-locked-access' => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-cascadeon' => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
@@ -2594,7 +2597,9 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress' => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub' => 'Blokeringen er gennemført.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.
+
+[[Bruger:$1|$1]] ([[User talk:$1|diskussion]] | [[Special:Contributions/$1|bidrag]]) er blevet blokeret. <br />Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself' => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser' => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown' => 'Rediger blokeringsbegrundelser',
@@ -2628,7 +2633,7 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'expiringblock' => 'udløber $1 $2',
 'anononlyblock' => 'kun anonyme',
 'noautoblockblock' => 'automatisk blokering slået fra',
-'createaccountblock' => 'Oprettelse af brugerkonti spærret',
+'createaccountblock' => 'oprettelse af konto deaktiveret',
 'emailblock' => 'e-mail blokeret',
 'blocklist-nousertalk' => 'kan ikke redigere egen diskussionsside',
 'ipblocklist-empty' => 'Blokeringslisten er tom.',
@@ -2641,18 +2646,18 @@ Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'autoblocker' => 'Du er automatisk blokeret, fordi du deler IP-adresse med "[[User:$1|$1]]".
 Begrundelse: "$2".',
 'blocklogpage' => 'Blokeringslog',
-'blocklog-showlog' => 'Denne bruger er tidligere blevet blokeret.
+'blocklog-showlog' => 'Denne bruger har tidligere været blokeret.
 Blokeringsloggen vises nedenfor som reference:',
 'blocklog-showsuppresslog' => 'Denne bruger har tidligere været blokeret og skjult.
 Skjulningsloggen vises nedenfor som reference:',
-'blocklogentry' => 'blokerede [[$1]] med en varighed på $2 $3',
-'reblock-logentry' => 'ændrede blokeringsindstillinger for [[$1]] med en varighed $2 $3',
+'blocklogentry' => 'blokerede [[$1]] med $2 som udløbstid $3',
+'reblock-logentry' => 'ændrede blokeringsindstillinger for [[$1]] med $2 som udløbstid $3',
 'blocklogtext' => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere.
 Automatisk blokerede IP-adresser er ikke anført her.
 Se [[Special:BlockList|blokeringslisten]] for den nuværende liste med aktuelle blokeringer.',
 'unblocklogentry' => 'ophævede blokering af "$1"',
 'block-log-flags-anononly' => 'kun anonyme',
-'block-log-flags-nocreate' => 'Oprettelse af brugerkonti blokeret',
+'block-log-flags-nocreate' => 'oprettelse af konto deaktiveret',
 'block-log-flags-noautoblock' => 'automatisk blokering slået fra',
 'block-log-flags-noemail' => 'e-mail blokeret',
 'block-log-flags-nousertalk' => 'kan ikke redigere egen diskussionsside',
@@ -3690,9 +3695,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 
 # Auto-summaries
 'autosumm-blank' => 'Tømmer siden for indhold',
-'autosumm-replace' => "Sidens indhold blev erstattet med: '$1'",
+'autosumm-replace' => 'Erstatter sidens indhold med "$1"',
 'autoredircomment' => 'Omdirigering til [[$1]] oprettet',
-'autosumm-new' => "Oprettede siden med '$1'",
+'autosumm-new' => 'Oprettede siden med "$1"',
 
 # Live preview
 'livepreview-loading' => 'Indlæser …',

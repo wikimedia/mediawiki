@@ -2409,7 +2409,7 @@ Ota yhteyttä muokkaajaan:
 sähköposti: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös nollata ilmoitukset kaikille tarkkailemillesi sivuille tarkkailulistallasi.
+Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla sisään kirjautuneena. Voit myös nollata ilmoitukset kaikille tarkkailemillesi sivuille tarkkailulistallasi.
 
              {{GRAMMAR:genitive|{{SITENAME}}}} ilmoitusjärjestelmä
 

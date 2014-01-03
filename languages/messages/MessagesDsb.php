@@ -2022,6 +2022,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'protectedpages' => 'Šćitane boki',
 'protectedpages-indef' => 'Jano boki pokazaś, kótarež su na njewěsty cas šćitane',
 'protectedpages-cascade' => 'Jano boki z kaskadowym šćitom',
+'protectedpages-noredirect' => 'Dalejpósrědnjenja schowaś',
 'protectedpagesempty' => 'Z toś tymi parametrami njejsu tuchylu žedne boki šćitane.',
 'protectedtitles' => 'Šćitane titele',
 'protectedtitlesempty' => 'Tuchylu njejsu žedne boki z pódanych parametrami šćitane.',

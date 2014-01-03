@@ -11,6 +11,7 @@
  * @author Kaganer
  * @author Makuba
  * @author Malafaya
+ * @author Minisarm
  * @author Reedy
  * @author Remember the dot
  * @author Renan
@@ -640,7 +641,7 @@ Tis argumentes have esset omisset.",
 'next' => 'prox',
 'last' => 'ant',
 'page_first' => 'prim',
-'page_last' => 'ultim',
+'page_last' => 'ultima',
 'histlegend' => "Diferenties de selection: marca li buxes de radio de li revisiones por comparar e batte \"intrar\" o li buton in li funde.<br />
 Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})''' = diferenties que antecede li revision, '''{{int:minoreditletter}}''' = redaction minori.",
 'history-fieldset-title' => 'Historie de navigation',

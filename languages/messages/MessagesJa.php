@@ -1085,7 +1085,7 @@ $2
 
 $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロックについて問い合わせることができます。
 
-ただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、「{{int:emailuser}}」機能を使用できないことに注意してください。
+ただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、「この利用者にメールを送信」機能を使用できないことに注意してください。
 
 現在ご使用中のIPアドレスは$3 、このブロックIDは#$5です。
 お問い合わせの際は、上記の情報を必ず書いてください。",
@@ -2344,6 +2344,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'protectedpages' => '保護されているページ',
 'protectedpages-indef' => '無期限保護のみ',
 'protectedpages-cascade' => 'カスケード保護のみ',
+'protectedpages-noredirect' => 'リダイレクトを隠す',
 'protectedpagesempty' => '指定した条件で保護中のページは現在ありません。',
 'protectedtitles' => '作成保護されているページ名',
 'protectedtitlesempty' => 'これらの引数で現在保護されているページはありません。',
@@ -4433,6 +4434,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-overwrite' => '既存のファイルへの上書きは許可されていません。',
 'api-error-stashfailed' => '内部エラー: サーバーは一時ファイルを格納できませんでした。',
 'api-error-publishfailed' => '内部エラー: サーバーは一時ファイルを発行できませんでした。',
+'api-error-stasherror' => 'ファイルをスタッシュにアップロードする際にエラーが発生しました。',
 'api-error-timeout' => 'サーバーが決められた時間内に応答しませんでした。',
 'api-error-unclassified' => '不明なエラーが発生しました。',
 'api-error-unknown-code' => '不明なエラー:「$1」',

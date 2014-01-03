@@ -2236,6 +2236,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'protectedpages' => 'Trang bị khóa',
 'protectedpages-indef' => 'Chỉ hiển thị khóa vô hạn',
 'protectedpages-cascade' => 'Chỉ hiển thị khóa theo tầng',
+'protectedpages-noredirect' => 'Ẩn trang đổi hướng',
 'protectedpagesempty' => 'Hiện không có trang nào bị khóa với các thông số này.',
 'protectedtitles' => 'Tên trang bị khóa',
 'protectedtitlesempty' => 'Không có tựa trang nào bị khóa với các thông số như vậy.',
@@ -2509,6 +2510,7 @@ Việc xóa các trang như vậy bị hạn chế để ngăn ngừa phá hoạ
 'delete-warning-toobig' => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu {{SITENAME}};
 hãy cẩn trọng khi thực hiện.',
+'deleting-backlinks-warning' => "'''Cảnh báo:''' Có trang khác liên kết đến trang mà bạn sắp xóa.",
 
 # Rollback
 'rollback' => 'Lùi tất cả sửa đổi',
@@ -4261,6 +4263,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'api-error-overwrite' => 'Không được ghi đè một tập tin đã tồn tại.',
 'api-error-stashfailed' => 'Lỗi nội bộ: Máy chủ bị thất bại trong việc lưu giữ tập tin tạm.',
 'api-error-publishfailed' => 'Lỗi nội bộ: Máy chủ bị thất bại trong việc xuất bản tập tin tạm.',
+'api-error-stasherror' => 'Đã xuất hiện lỗi khi tải tập tin lên hàng đợi.',
 'api-error-timeout' => 'Máy chủ không đáp ứng trong thời gian dự kiến.',
 'api-error-unclassified' => 'Gặp lỗi không ngờ',
 'api-error-unknown-code' => 'Lỗi không rõ: “$1”',
