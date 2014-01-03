@@ -213,11 +213,11 @@ class ParserCache {
 
 	/**
 	 * @param ParserOutput $parserOutput
-	 * @param Article $article
+	 * @param WikiPage $page
 	 * @param ParserOptions $popts
 	 * @param string $cacheTime Time when the cache was generated
 	 */
-	public function save( $parserOutput, $article, $popts, $cacheTime = null ) {
+	public function save( $parserOutput, $page, $popts, $cacheTime = null ) {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
@@ -231,11 +231,11 @@ class ParserCache {
 
 			$optionsKey->setContainsOldMagic( $parserOutput->containsOldMagic() );
 
-			$parserOutputKey = $this->getParserOutputKey( $article,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $article->getTitle() ) );
+			$parserOutputKey = $this->getParserOutputKey( $page,
+				$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->setTimestamp( $article->getTimestamp() );
+			$parserOutput->setTimestamp( $page->getTimestamp() );
 
 			$parserOutput->mText .= "\n<!-- Saved in parser cache with key $parserOutputKey and timestamp $cacheTime\n -->\n";
 			wfDebug( "Saved in parser cache with key $parserOutputKey and timestamp $cacheTime\n" );
@@ -244,7 +244,7 @@ class ParserCache {
 			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
 
 			// ...and its pointer
-			$this->mMemc->set( $this->getOptionsKey( $article ), $optionsKey, $expire );
+			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
 		} else {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}
