@@ -33,6 +33,8 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
+		// TODO: Remove after MW plurals rules made in sync with CLDR
+		$this->markTestSkipped( 'Skipping. Russian plural forms are overridden in MW' );
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
