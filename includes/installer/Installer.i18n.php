@@ -241,6 +241,7 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
+	'config-type-mssql'               => 'Microsoft SQL Server',
 	'config-support-info'             => 'MediaWiki supports the following database systems:
 
 $1
@@ -250,10 +251,12 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-dbsupport-postgres'       => '* [{{int:version-db-postgres-url}} PostgreSQL] is a popular open source database system as an alternative to MySQL. There may be some minor outstanding bugs, and it is not recommended for use in a production environment. ([http://www.php.net/manual/en/pgsql.installation.php How to compile PHP with PostgreSQL support])',
 	'config-dbsupport-sqlite'         => '* [{{int:version-db-sqlite-url}} SQLite] is a lightweight database system that is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-dbsupport-oracle'         => '* [{{int:version-db-oracle-url}} Oracle] is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-dbsupport-mssql'          => '* [{{int:version-db-mssql-url}} Microsoft SQL Server] is a commercial enterprise database for Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php How to compile PHP with SQLSRV support])',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
 	'config-header-oracle'            => 'Oracle settings',
+	'config-header-mssql'             => 'Microsoft SQL Server settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
 	'config-missing-db-host'          => 'You must enter a value for "Database host"',
@@ -272,6 +275,7 @@ Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-db-sys-create-oracle' => 'Installer only supports using a SYSDBA account for creating a new account.',
 	'config-db-sys-user-exists-oracle' => 'User account "$1" already exists. SYSDBA can only be used for creating of a new account!',
 	'config-postgres-old'             => 'PostgreSQL $1 or later is required. You have $2.',
+	'config-mssql-old'                => 'Microsoft SQL Server $1 or later is required. You have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
 Do not use spaces or hyphens.
 This will be used for the SQLite data file name.',
@@ -352,6 +356,13 @@ This is more efficient than MySQL's UTF-8 mode, and allows you to use the full r
 
 In <strong>UTF-8 mode</strong>, MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 
+	'config-mssql-auth'               => 'Authentication type:',
+	'config-mssql-install-auth'       => 'Select the authentication type that will be used to connect to the database during the installation process.
+If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+	'config-mssql-web-auth'           => 'Select the authentication type that the web server will use to connect to the database server, during ordinary operation of the wiki.
+If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+	'config-mssql-sqlauth'            => 'SQL Server Authentication',
+	'config-mssql-windowsauth'        => 'Windows Authentication',
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
@@ -705,6 +716,8 @@ Used in help box.',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
 	'config-type-oracle' => '{{optional}}',
+	'config-type-mssql' => '{{optional}}',
+	'config-header-mssql' => 'Used as a section heading on the installer form, inside of a fieldset',
 	'config-support-info' => 'Parameters:
 * $1 - a list of DBMSs that MediaWiki supports, composed with config-dbsupport-* messages.',
 	'config-support-mysql' => 'Parameters:
@@ -723,6 +736,8 @@ Used in help box.',
 * $1 - database server name
 See also:
 * {{msg-mw|Config-db-host-oracle-help}}',
+	'config-support-mssql' => 'Parameters:
+* $1 - a link to the Microsoft SQL Server home page, the anchor text of which is "Microsoft SQL Server".',
 	'config-invalid-db-name' => 'Used as error message. Parameters:
 * $1 - database name
 See also:
@@ -740,6 +755,9 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-postgres-old' => 'Used as error message. Used as warning. Parameters:
 * $1 - minimum version
 * $2 - the version of PostgreSQL that has been installed',
+	'config-mssql-old' => 'Used as an error message. Parameters:
+* $1 - minimum version
+* $2 - the version of Microsoft SQL Server that has been installed',
 	'config-sqlite-parent-unwritable-group' => 'Used as SQLite error message. Parameters:
 * $1 - data directory
 * $2 - "dirname" part of $1
@@ -762,6 +780,11 @@ See also:
 * $1 - filename',
 	'config-sqlite-cant-create-db' => 'Used as SQLite error message. Parameters:
 * $1 - filename',
+	'config-mssql-auth' => 'radio button label',
+	'config-mssql-install-auth' => 'Used as the help text for the "Authentication type" radio button when typing in database settings for installation',
+	'config-mssql-web-auth' => 'Used as the help text for the "Authentication type" radio button when typing in database settings for normal wiki usage',
+	'config-mssql-sqlauth' => 'Radio button',
+	'config-mssql-windowsauth' => 'Radio button. The official term is "Integrated Windows Authentication" but Microsoft itself uses "Windows Authentication" elsewhere in Microsoft SQL Server as a synonym.',
 	'config-can-upgrade' => 'Parameters:
 * $1 - Version or Revision indicator.',
 	'config-upgrade-done' => 'Used as success message. Parameters:
@@ -4894,7 +4917,7 @@ Instalación anulada.',
 	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
 Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
 Instalación anulada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes. 
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita el parámetro <code>length</code> GET a $1 bytes.
 El componente ResourceLoader (gestor de recursos) de MediaWiki trabajará en este límite, pero eso perjudicará el rendimiento.
 Si es posible, deberías establecer <code>suhosin.get.max_value_length</code> en el valor 1024 o superior en <code>php.ini</code> y establecer <code>$wgResourceLoaderMaxQueryLength</code> en el mismo valor en <code>php.ini</code>.',
 	'config-db-type' => 'Tipo de base de datos',
@@ -4932,7 +4955,7 @@ Esta no es la contraseña para la cuenta de MediaWiki; esta es la contraseña pa
 	'config-db-wiki-help' => 'Introduce el nombre de usuario y la contraseña que serán usados para acceder a la base de datos durante la operación normal del wiki.
 Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.',
 	'config-db-prefix' => 'Prefijo para las tablas de la base de datos:',
-	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos. 
+	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos.
 No utilice espacios.
 
 Normalmente se deja este campo vacío.',
@@ -15509,7 +15532,7 @@ Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej mo
 
 Możesz utworzyć konto użytkownika bazy danych podczas instalacji MediaWiki. Wówczas należy podać nazwę i hasło użytkownika z rolą SYSDBA w celu użycia go przez instalator do utworzenia nowe konta użytkownika, z którego korzystać będzie MediaWiki.
 
-Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy. 
+Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy.
 
 W podkatalogu "maintenance/oracle" znajduje się skrypt do tworzenia konta użytkownika. Korzystanie z konta użytkownika z ograniczonymi uprawnieniami spowoduje wyłączenie funkcji związanych z aktualizacją oprogramowania MediaWiki.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
@@ -15900,7 +15923,7 @@ A la trovrà an LocalSetting.php.",
 Për agiorné sta instalassion, për piasì fà anvece giré <code>update.php</code>",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-badkey' => "La ciav ch'it l'has dàit a l'é pa giusta.",
-	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki. 
+	'config-upgrade-key-missing' => "A l'é stàita trovà n'istalassion esistenta ëd MediaWiki.
 Për agiorné soa istalassion, për piasì ch'a buta la linia sì-sota al fond ëd sò <code>LocalSettings.php</code>:
 
 $1",
@@ -19593,7 +19616,7 @@ Ang mas masasalimuot na mga kaayusan ng mga karapatan ng tagagamit ay makukuha p
 	'config-license-gfdl' => 'Lisensiyang 1.3 ng Malayang Dokumentasyon ng GNU o mas lalong huli',
 	'config-license-pd' => 'Nasasakupan ng Madla',
 	'config-license-cc-choose' => 'Pumili ng isang pasadyang Lisensiya ng Malikhaing mga Pangkaraniwan',
-	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya]. 
+	'config-license-help' => "Maraming mga pangmadlang wiki ang naglalagay ng lahat ng mga ambag sa ilalim ng [http://freedomdefined.org/Definition lisensiyang malaya].
 Nakakatulong ito sa paglikha ng isang diwa ng pagmamay-ari ng pamayanan at nakapanghihikayat ng ambag na pangmahabang panahon.
 Sa pangkalahatan, hindi kailangan ang isang wiking pribado o pangsamahan.
 
@@ -20023,7 +20046,7 @@ MediaWiki вимагає підтримку UTF-8 для коректної ро
 	'config-mysql-old' => 'Необхідна MySQL $1 або пізніша, а у Вас $2.',
 	'config-db-port' => 'Порт бази даних:',
 	'config-db-schema' => 'Схема для MediaWiki',
-	'config-db-schema-help' => 'Ця схема зазвичай працює добре. 
+	'config-db-schema-help' => 'Ця схема зазвичай працює добре.
 Змінюйте її тільки якщо знаєте, що Вам це потрібно.',
 	'config-pg-test-error' => "Не вдається підключитися до бази даних '''$1''': $2",
 	'config-sqlite-dir' => 'Папка даних SQLite:',
@@ -20250,7 +20273,7 @@ GFDL — допустима ліцензія, але у ній важко роз
 	'config-upload-deleted-help' => 'Оберіть папку для архівації видалених файлів.
 В ідеалі, вона не має бути доступною через інтернет.',
 	'config-logo' => 'URL логотипу:',
-	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів. 
+	'config-logo-help' => 'Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів.
 
 Завантажте зображення відповідного розміру і введіть тут його URL.
 
@@ -20370,9 +20393,9 @@ $messages['ur'] = array(
 	'config-git' => 'Git ورژن کنٹرول مصنع لطیف ملا: <code>$1</code> ۔',
 	'config-git-bad' => 'GIT ورژن کنٹرول مصنع لطیف نہيں ملا ۔',
 	'config-mysql-only-myisam-dep' => "' ' تنبیہ: ' '[[MyISAM|مائ اسام]] واحد دستیاب 'ذخیرہ جاتی انجن' ہے جو مائی ایس کیو ایل کے لیے ہے ، جو کہ ناموزوں ہے میڈیا وکی کے لیے ،کیوں کہ :
-* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے 
+* یہ ہموار قطاروں کی سہولت بمشکل فراہم کرتا ہے
 * یہ دوسرے انجنوں کے مقابلے  زیادہ بگڑ جاتا ہے
-* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔ 
+* میڈیا وکی کوڈ بیس ہمیشہ سنبھال نہيں پاتا مائی اسام کو ۔
 
 آپ کا مائی ایس کیو ایل کا نصب ہمیشہ اننو ڈی بی کی سہولت نہيں دے سکتا ، ہو سکتا ہے یہ مزید ترقیاتی کام چاہے", # Fuzzy
 	'config-profile-fishbowl' => 'صرف مجاز ایڈیٹرز',

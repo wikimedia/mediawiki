@@ -1585,7 +1585,7 @@ $wgSQLMode = '';
 /**
  * Mediawiki schema
  */
-$wgDBmwschema = 'mediawiki';
+$wgDBmwschema = null;
 
 /**
  * To override default SQLite data directory ($docroot/../data)
@@ -1804,6 +1804,11 @@ $wgSlaveLagWarning = 10;
  * @see $wgSlaveLagWarning
  */
 $wgSlaveLagCritical = 30;
+
+/**
+ * Use Windows Authentication instead of $wgDBuser / $wgDBpassword for MS SQL Server
+ */
+$wgDBWindowsAuthentication = false;
 
 /**@}*/ # End of DB settings }
 
