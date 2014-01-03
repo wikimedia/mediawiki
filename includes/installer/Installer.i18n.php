@@ -247,6 +247,7 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
+	'config-type-mssql'               => 'Microsoft SQL Server',
 	'config-support-info'             => 'MediaWiki supports the following database systems:
 
 $1
@@ -256,10 +257,12 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-support-postgres'         => '* $1 is a popular open source database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). There may be some minor outstanding bugs, and it is not recommended for use in a production environment.',
 	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-support-oracle'           => '* $1 is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-support-mssql'            => '* $1 is a commercial enterprise database for Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php How to compile PHP with SQLSRV support])',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
 	'config-header-oracle'            => 'Oracle settings',
+	'config-header-mssql'             => 'Microsoft SQL Server settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
 	'config-missing-db-host'          => 'You must enter a value for "Database host"',
@@ -278,6 +281,7 @@ Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-db-sys-create-oracle' => 'Installer only supports using a SYSDBA account for creating a new account.',
 	'config-db-sys-user-exists-oracle' => 'User account "$1" already exists. SYSDBA can only be used for creating of a new account!',
 	'config-postgres-old'             => 'PostgreSQL $1 or later is required. You have $2.',
+	'config-mssql-old'                => 'Microsoft SQL Server $1 or later is required. You have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
 Do not use spaces or hyphens.
 This will be used for the SQLite data file name.',
@@ -358,6 +362,13 @@ This is more efficient than MySQL's UTF-8 mode, and allows you to use the full r
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 
+	'config-mssql-auth'               => 'Authentication type:',
+	'config-mssql-install-auth'       => 'Select the authentication type that will be used to connect to the database during the installation process.
+If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+	'config-mssql-web-auth'           => 'Select the authentication type that the web server will use to connect to the database server, during ordinary operation of the wiki.
+If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+	'config-mssql-sqlauth'            => 'SQL Server Authentication',
+	'config-mssql-windowsauth'        => 'Windows Authentication',
 	'config-site-name'                => 'Name of wiki:',
 	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
@@ -708,6 +719,8 @@ Used in help box.',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
 	'config-type-oracle' => '{{optional}}',
+	'config-type-mssql' => '{{optional}}',
+	'config-header-mssql' => 'Used as a section heading on the installer form, inside of a fieldset',
 	'config-support-info' => 'Parameters:
 * $1 - a list of DBMSs that MediaWiki supports, composed with other config-type-* and config-support-* messages.',
 	'config-support-mysql' => 'Parameters:
@@ -722,6 +735,8 @@ Used in help box.',
 * $1 - database server name
 See also:
 * {{msg-mw|Config-db-host-oracle-help}}',
+	'config-support-mssql' => 'Parameters:
+* $1 - a link to the Microsoft SQL Server home page, the anchor text of which is "Microsoft SQL Server".',
 	'config-invalid-db-name' => 'Used as error message. Parameters:
 * $1 - database name
 See also:
@@ -739,6 +754,9 @@ If you\'re translating this message to a right-to-left language, consider writin
 	'config-postgres-old' => 'Used as error message. Used as warning. Parameters:
 * $1 - minimum version
 * $2 - the version of PostgreSQL that has been installed',
+	'config-mssql-old' => 'Used as an error message. Parameters:
+* $1 - minimum version
+* $2 - the version of Microsoft SQL Server that has been installed',
 	'config-sqlite-parent-unwritable-group' => 'Used as SQLite error message. Parameters:
 * $1 - data directory
 * $2 - "dirname" part of $1
@@ -761,6 +779,11 @@ See also:
 * $1 - filename',
 	'config-sqlite-cant-create-db' => 'Used as SQLite error message. Parameters:
 * $1 - filename',
+	'config-mssql-auth' => 'radio button label',
+	'config-mssql-install-auth' => 'Used as the help text for the "Authentication type" radio button when typing in database settings for installation',
+	'config-mssql-web-auth' => 'Used as the help text for the "Authentication type" radio button when typing in database settings for normal wiki usage',
+	'config-mssql-sqlauth' => 'Radio button',
+	'config-mssql-windowsauth' => 'Radio button. The official term is "Integrated Windows Authentication" but Microsoft itself uses "Windows Authentication" elsewhere in Microsoft SQL Server as a synonym.',
 	'config-can-upgrade' => 'Parameters:
 * $1 - Version or Revision indicator.',
 	'config-upgrade-done' => 'Used as success message. Parameters:

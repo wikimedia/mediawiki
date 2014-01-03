@@ -52,7 +52,7 @@ class DBObject {
  */
 class Blob {
 	/** @var string */
-	private $mData;
+	protected $mData;
 
 	function __construct( $data ) {
 		$this->mData = $data;
