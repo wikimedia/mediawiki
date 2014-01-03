@@ -35,7 +35,7 @@
 class MWMessagePack {
 
 	/** @var boolean|null Whether current system is bigendian. **/
-	public static $bigendian;
+	public static $bigendian = null;
 
 	/**
 	 * Encode a value using MessagePack
@@ -46,6 +46,7 @@ class MWMessagePack {
 	 *
 	 * @param mixed $value
 	 * @return string
+	 * @throws InvalidArgumentException if $value is an unsupported type or too long a string
 	 */
 	public static function pack( $value ) {
 		if ( self::$bigendian === null ) {
@@ -74,7 +75,7 @@ class MWMessagePack {
 			} elseif ( $length <= 0xFFFFFFFF ) {
 				return pack( 'CNa*', 0xDB, $length, $value );
 			}
-			throw new LengthException( "String too long: $length (max: 4294967295)." );
+			throw new InvalidArgumentException( __METHOD__ . ": string too long (length: $length; max: 4294967295)" );
 
 		case 'integer':
 			if ( $value >= 0 ) {
@@ -113,7 +114,7 @@ class MWMessagePack {
 				}
 				if ( $value >= -0x8000 ) {
 					// int16
-					$p = pack('s',$value);
+					$p = pack( 's', $value );
 					return self::$bigendian
 						? pack( 'Ca2', 0xD1, $p )
 						: pack( 'Ca2', 0xD1, strrev( $p ) );
@@ -135,16 +136,24 @@ class MWMessagePack {
 						: pack( 'Ca4a4', 0xD3, strrev( $p2 ), strrev( $p1 ) );
 				}
 			}
-			throw new LengthException( 'Invalid integer: ' . $value );
+			throw new InvalidArgumentException( __METHOD__ . ": invalid integer '$value'" );
 
 		case 'array':
-			$associative = array_values( $value ) !== $value;
-			$length = count( $value );
 			$buffer = '';
-
+			$length = count( $value );
 			if ( $length > 0xFFFFFFFF ) {
-				throw new LengthException( "Array too long: $length (max: 4294967295)." );
+				throw new InvalidArgumentException( __METHOD__ . ": array too long (length: $length, max: 4294967295)" );
 			}
+
+			$index = 0;
+			foreach ( $value as $k => $v ) {
+				if ( $index !== $k || $index === $length ) {
+					break;
+				} else {
+					$index++;
+				}
+			}
+			$associative = $index !== $length;
 
 			if ( $associative ) {
 				if ( $length < 16 ) {
@@ -173,7 +182,7 @@ class MWMessagePack {
 			return $buffer;
 
 		default:
-			throw new LengthException( 'Unsupported type: ' . gettype( $value ) );
+			throw new InvalidArgumentException( __METHOD__ . ': unsupported type ' . gettype( $value ) );
 		}
 	}
 }
