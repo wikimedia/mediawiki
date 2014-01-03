@@ -1893,11 +1893,9 @@ class Title {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
-		} elseif ( $action == 'edit' && !$user->isAllowed( 'edit' )) {
-			if ( $user->isAnon() ) {
-				$errors[] = array( 'noarticletext-nopermission');
-				$errors[] = $this->missingPermissionError( $action, $short );
-			}
+		} elseif ( $action == 'edit' && $user->isAnon() && !$user->isAllowed( 'edit' ) ) {
+			$errors[] = array( 'noarticletext-nopermission');
+			$errors[] = $this->missingPermissionError( $action, $short );
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
 		}
