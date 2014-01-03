@@ -182,6 +182,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
+		global $wgAllowCategorizedRecentChanges;
+
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -225,7 +227,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
 		// knowledge to use an index merge if it wants (it may use some other index though).
-		return $dbr->select(
+		$rows = $dbr->select(
 			$tables,
 			$fields,
 			$conds + array( 'rc_new' => array( 0, 1 ) ),
@@ -233,22 +235,35 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $opts['limit'] ) + $query_options,
 			$join_conds
 		);
+
+		// Build the final data
+		if ( $wgAllowCategorizedRecentChanges ) {
+			$this->filterByCategories( $rows, $opts );
+		}
+
+		return $rows;
 	}
 
 	/**
-	 * Send output to the OutputPage object, only called if not used feeds
+	 * Output feed links.
+	 */
+	public function outputFeedLinks() {
+		$feedQuery = $this->getFeedQuery();
+		if ( $feedQuery !== '' ) {
+			$this->getOutput()->setFeedAppendQuery( $feedQuery );
+		} else {
+			$this->getOutput()->setFeedAppendQuery( false );
+		}
+	}
+
+	/**
+	 * Build and output the actual changes list.
 	 *
 	 * @param array $rows Database rows
 	 * @param FormOptions $opts
 	 */
-	public function webOutput( $rows, $opts ) {
-		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker, $wgAllowCategorizedRecentChanges;
-
-		// Build the final data
-
-		if ( $wgAllowCategorizedRecentChanges ) {
-			$this->filterByCategories( $rows, $opts );
-		}
+	public function outputChangesList( $rows, $opts ) {
+		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 
 		$limit = $opts['limit'];
 
@@ -298,21 +313,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 		}
 		$rclistOutput .= $list->endRecentChangesList();
-
-		// Print things out
-
-		if ( !$this->including() ) {
-			// Output options box
-			$this->doHeader( $opts );
-		}
-
-		// And now for the content
-		$feedQuery = $this->getFeedQuery();
-		if ( $feedQuery !== '' ) {
-			$this->getOutput()->setFeedAppendQuery( $feedQuery );
-		} else {
-			$this->getOutput()->setFeedAppendQuery( false );
-		}
 
 		if ( $rows->numRows() === 0 ) {
 			$this->getOutput()->addHtml(
