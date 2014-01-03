@@ -315,16 +315,36 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
-	 * @todo This should do most, if not all, of the outputting now done by subclasses
 	 *
 	 * @param ResultWrapper $rows Database rows
 	 * @param FormOptions $opts
 	 */
-	abstract public function webOutput( $rows, $opts );
+	public function webOutput( $rows, $opts ) {
+		if ( !$this->including() ) {
+			$this->outputFeedLinks();
+			$this->doHeader( $opts );
+		}
+
+		$this->outputChangesList( $rows, $opts );
+	}
+
+	/**
+	 * Output feed links.
+	 */
+	public function outputFeedLinks() {
+		// nothing by default
+	}
+
+	/**
+	 * Build and output the actual changes list.
+	 *
+	 * @param array $rows Database rows
+	 * @param FormOptions $opts
+	 */
+	abstract public function outputChangesList( $rows, $opts );
 
 	/**
 	 * Return the text to be displayed above the changes
-	 * @todo Not called by anything, should be called by webOutput()
 	 *
 	 * @param FormOptions $opts
 	 * @return string XHTML
