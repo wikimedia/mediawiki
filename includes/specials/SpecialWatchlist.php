@@ -279,16 +279,39 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Send output to the OutputPage object, only called if not used feeds
+	 * Output feed links.
+	 */
+	public function outputFeedLinks() {
+		$user = $this->getUser();
+		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
+		if ( $wlToken ) {
+			$this->addFeedLinks( array(
+				'action' => 'feedwatchlist',
+				'allrev' => 1,
+				'wlowner' => $user->getName(),
+				'wltoken' => $wlToken,
+			) );
+		}
+	}
+
+	/**
+	 * Build and output the actual changes list.
 	 *
 	 * @param array $rows Database rows
 	 * @param FormOptions $opts
 	 */
-	public function webOutput( $rows, $opts ) {
+	public function outputChangesList( $rows, $opts ) {
 		global $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
 
 		$dbr = $this->getDB();
 		$user = $this->getUser();
+		$output = $this->getOutput();
+
+		# Show a message about slave lag, if applicable
+		$lag = wfGetLB()->safeGetLag( $dbr );
+		if ( $lag > 0 ) {
+			$output->showLagWarning( $lag );
+		}
 
 		$dbr->dataSeek( $rows, 0 );
 
@@ -327,35 +350,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$s .= $list->endRecentChangesList();
 
-		// Print things out
-
-		$output = $this->getOutput();
-
-		$output->addSubtitle(
-			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools( null ) )
-		);
-
-		// Output options box
-		$this->doHeader( $opts );
-
-		// Add feed links
-		$wlToken = $user->getTokenFromOption( 'watchlisttoken' );
-		if ( $wlToken ) {
-			$this->addFeedLinks( array(
-				'action' => 'feedwatchlist',
-				'allrev' => 1,
-				'wlowner' => $user->getName(),
-				'wltoken' => $wlToken,
-			) );
-		}
-
-		# Show a message about slave lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $dbr );
-		if ( $lag > 0 ) {
-			$output->showLagWarning( $lag );
-		}
-
 		if ( $rows->numRows() == 0 ) {
 			$output->wrapWikiMsg(
 				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
@@ -375,6 +369,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		global $wgScript;
 
 		$user = $this->getUser();
+
+		$this->getOutput()->addSubtitle(
+			$this->msg( 'watchlistfor2', $user->getName() )
+				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+		);
 
 		$this->setTopText( $opts );
 
