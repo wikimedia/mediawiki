@@ -271,26 +271,14 @@ class LoadBalancer {
 					continue;
 				}
 
-				// Perform post-connection backoff
-				$threshold = isset( $this->mServers[$i]['max threads'] )
-					? $this->mServers[$i]['max threads'] : false;
-				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
-
 				// Decrement reference counter, we are finished with this connection.
 				// It will be incremented for the caller later.
 				if ( $wiki !== false ) {
 					$this->reuseConnection( $conn );
 				}
 
-				if ( $backoff ) {
-					# Post-connection overload, don't use this server for now
-					$totalThreadsConnected += $backoff;
-					$overloadedServers++;
-					unset( $currentLoads[$i] );
-				} else {
-					# Return this server
-					break 2;
-				}
+				# Return this server
+				break 2;
 			}
 
 			# No server found yet

@@ -43,24 +43,6 @@ interface LoadMonitor {
 	function scaleLoads( &$loads, $group = false, $wiki = false );
 
 	/**
-	 * Perform post-connection backoff.
-	 *
-	 * If the connection is in overload, this should return a backoff factor
-	 * which will be used to control polling time. The number of threads
-	 * connected is a good measure.
-	 *
-	 * If there is no overload, zero can be returned.
-	 *
-	 * A threshold thread count is given, the concrete class may compare this
-	 * to the running thread count. The threshold may be false, which indicates
-	 * that the sysadmin has not configured this feature.
-	 *
-	 * @param $conn DatabaseBase
-	 * @param $threshold Float
-	 */
-	function postConnectionBackoff( $conn, $threshold );
-
-	/**
 	 * Return an estimate of replication lag for each server
 	 *
 	 * @param $serverIndexes
@@ -76,9 +58,6 @@ class LoadMonitorNull implements LoadMonitor {
 	}
 
 	function scaleLoads( &$loads, $group = false, $wiki = false ) {
-	}
-
-	function postConnectionBackoff( $conn, $threshold ) {
 	}
 
 	/**
@@ -189,25 +168,5 @@ class LoadMonitorMySQL implements LoadMonitor {
 		wfProfileOut( __METHOD__ );
 
 		return $times;
-	}
-
-	/**
-	 * @param $conn DatabaseBase
-	 * @param $threshold
-	 * @return int
-	 */
-	function postConnectionBackoff( $conn, $threshold ) {
-		if ( !$threshold ) {
-			return 0;
-		}
-		$status = $conn->getMysqlStatus( "Thread%" );
-		if ( $status['Threads_running'] > $threshold ) {
-			$server = $conn->getProperty( 'mServer' );
-			wfLogDBError( "LB backoff from $server - Threads_running = {$status['Threads_running']}\n" );
-
-			return $status['Threads_connected'];
-		} else {
-			return 0;
-		}
 	}
 }
