@@ -5615,6 +5615,7 @@ $wgRCFeeds = array();
 $wgRCEngines = array(
 	'redis' => 'RedisPubSubFeedEngine',
 	'udp' => 'UDPRCFeedEngine',
+	'zmq' => 'ZeroMQFeedEngine',
 );
 
 /**
