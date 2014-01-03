@@ -935,7 +935,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param array $uniqueIndexes
 	 * @param array $set
 	 * @param string $fname
-	 * @param array $options
 	 * @return bool
 	 */
 	public function upsert(

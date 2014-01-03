@@ -2681,7 +2681,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *                to set that field to. The data will be quoted by
 	 *                DatabaseBase::addQuotes().
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options of options
 	 *
 	 * @return bool
 	 * @since 1.22
