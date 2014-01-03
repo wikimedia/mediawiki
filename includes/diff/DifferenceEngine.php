@@ -381,7 +381,7 @@ class DifferenceEngine extends ContextSource {
 		$rdel = $this->revisionDeleteLink( $this->mNewRev );
 
 		# Allow extensions to define their own revision tools
-		wfRunHooks( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools ) );
+		wfRunHooks( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools, $this->mOldRev ) );
 		$formattedRevisionTools = array();
 		// Put each one in parentheses (poor man's button)
 		foreach ( $revisionTools as $tool ) {
