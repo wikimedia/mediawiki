@@ -485,11 +485,10 @@ class SearchEngine {
 	 */
 	public static function getSearchTypes() {
 		global $wgSearchType, $wgSearchTypeAlternatives;
-		static $alternatives = null;
-		if ( $alternatives === null ) {
-			$alternatives = $wgSearchTypeAlternatives ?: array();
-			array_unshift( $alternatives, $wgSearchType );
-		}
+
+		$alternatives = $wgSearchTypeAlternatives ?: array();
+		array_unshift( $alternatives, $wgSearchType );
+
 		return $alternatives;
 	}
 
