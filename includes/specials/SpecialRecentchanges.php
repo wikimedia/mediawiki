@@ -144,11 +144,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function validateOptions( FormOptions $opts ) {
 		global $wgFeedLimit;
 		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
+		parent::validateOptions( $opts );
 	}
 
 	/**
 	 * Return an array of conditions depending of options set in $opts
-	 * @todo Whyyyy is this mutating $opts…
 	 *
 	 * @param FormOptions $opts
 	 * @return array
