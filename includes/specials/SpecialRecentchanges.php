@@ -182,35 +182,32 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
-		$tables = array( 'recentchanges' );
-		$join_conds = array();
-		$query_options = array();
-
-		$uid = $this->getUser()->getId();
 		$dbr = $this->getDB();
-		$limit = $opts['limit'];
-		$namespace = $opts['namespace'];
-		$invert = $opts['invert'];
-		$associated = $opts['associated'];
+		$user = $this->getUser();
 
+		$tables = array( 'recentchanges' );
 		$fields = RecentChange::selectFields();
+		$query_options = array();
+		$join_conds = array();
+
 		// JOIN on watchlist for users
-		if ( $uid && $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
+		if ( $user->getId() && $user->isAllowed( 'viewmywatchlist' ) ) {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';
 			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
-				'wl_user' => $uid,
+				'wl_user' => $user->getId(),
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
 			) );
 		}
-		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
+
+		if ( $user->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
 			$fields[] = 'page_latest';
 			$join_conds['page'] = array( 'LEFT JOIN', 'rc_cur_id=page_id' );
 		}
-		// Tag stuff.
+
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$fields,
@@ -233,7 +230,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$fields,
 			$conds + array( 'rc_new' => array( 0, 1 ) ),
 			__METHOD__,
-			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) + $query_options,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $opts['limit'] ) + $query_options,
 			$join_conds
 		);
 	}

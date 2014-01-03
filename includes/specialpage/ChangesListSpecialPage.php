@@ -269,13 +269,44 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Process the query
-	 * @todo This should build some basic processing here…
 	 *
 	 * @param array $conds
 	 * @param FormOptions $opts
-	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
+	 * @return bool|ResultWrapper Result or false
 	 */
-	abstract public function doMainQuery( $conds, $opts );
+	public function doMainQuery( $conds, $opts ) {
+		$tables = array( 'recentchanges' );
+		$fields = RecentChange::selectFields();
+		$query_options = array();
+		$join_conds = array();
+
+		ChangeTags::modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			''
+		);
+
+		// @todo Fire a Special{$this->getName()}Query hook here
+		// @todo Uncomment and document
+		// if ( !wfRunHooks( 'ChangesListSpecialPageQuery',
+		// 	array( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) )
+		// ) {
+		// 	return false;
+		// }
+
+		$dbr = $this->getDB();
+		return $dbr->select(
+			$tables,
+			$fields,
+			$conds,
+			__METHOD__,
+			$query_options,
+			$join_conds
+		);
+	}
 
 	/**
 	 * Return a DatabaseBase object for reading
