@@ -74,7 +74,7 @@ class MWMessagePack {
 			} elseif ( $length <= 0xFFFFFFFF ) {
 				return pack( 'CNa*', 0xDB, $length, $value );
 			}
-			throw new LengthException( "String too long: $length (max: 4294967295)." );
+			throw new MWException( __METHOD__ . ": string too long (length: $length; max: 4294967295)" );
 
 		case 'integer':
 			if ( $value >= 0 ) {
@@ -135,16 +135,24 @@ class MWMessagePack {
 						: pack( 'Ca4a4', 0xD3, strrev( $p2 ), strrev( $p1 ) );
 				}
 			}
-			throw new LengthException( 'Invalid integer: ' . $value );
+			throw new MWException( __METHOD__ . ": invalid integer '$value'" );
 
 		case 'array':
-			$associative = array_values( $value ) !== $value;
-			$length = count( $value );
 			$buffer = '';
-
+			$length = count( $value );
 			if ( $length > 0xFFFFFFFF ) {
-				throw new LengthException( "Array too long: $length (max: 4294967295)." );
+				throw new MWException( __METHOD__ . ": array too long (length: $length, max: 4294967295)" );
 			}
+
+			$index = 0;
+			foreach( $value as $k => $v ) {
+				if ( $index !== $k || $index === $length ) {
+					break;
+				} else {
+					$index++;
+				}
+			}
+			$associative = $index !== $length;
 
 			if ( $associative ) {
 				if ( $length < 16 ) {
@@ -173,7 +181,7 @@ class MWMessagePack {
 			return $buffer;
 
 		default:
-			throw new LengthException( 'Unsupported type: ' . gettype( $value ) );
+			throw new MWException( __METHOD__ ': unsupported type ' . gettype( $value ) );
 		}
 	}
 }
