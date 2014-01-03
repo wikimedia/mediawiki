@@ -2875,9 +2875,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	) {
 		$destTable = $this->tableName( $destTable );
 
-		if ( is_array( $insertOptions ) ) {
-			$insertOptions = implode( ' ', $insertOptions );
+		if ( !is_array( $insertOptions ) ) {
+			$insertOptions = array( $insertOptions );
 		}
+
+		$insertOptions = $this->makeInsertOptions( $insertOptions );
 
 		if ( !is_array( $selectOptions ) ) {
 			$selectOptions = array( $selectOptions );
