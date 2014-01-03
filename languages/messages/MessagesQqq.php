@@ -4942,7 +4942,8 @@ See the following search results:
 'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
-'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]]',
+'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]].
+{{Identical|Hide redirect}}',
 'protectedpagesempty' => 'Used in [[Special:ProtectedPages]], when there are no protected pages with the specified parameters.',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
@@ -5075,7 +5076,8 @@ See also:
 'allpagesbadtitle' => 'Used in [[Special:AllPages]], [[Special:PrefixIndex]] and [[Special:RecentChangesLinked]].',
 'allpages-bad-ns' => 'Used as error message. Parameters:
 * $1 - namespace name, other than "Main" namespace',
-'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
+'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].
+{{Identical|Hide redirect}}',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Message notifying they are watching a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
@@ -10388,7 +10390,6 @@ Parameters:
 'api-error-duplicate-archive' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 - a number of files
 * $2 - a link to a list of duplicate files',
-'api-error-stasherror' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-duplicate-archive-popup-title' => 'API error message that can be used for client side localisation of API errors. Parameters:
 * $1 is a number of files.',
 'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present.
@@ -10437,6 +10438,7 @@ See also:
 'api-error-overwrite' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-stashfailed' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-publishfailed' => 'API error message that can be used for client side localisation of API errors.',
+'api-error-stasherror' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-timeout' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unclassified' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-unknown-code' => 'API error message that can be used for client side localisation of API errors.

@@ -2027,6 +2027,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'protectedpages' => 'Škitane strony',
 'protectedpages-indef' => 'Jenož strony z njewobmjezowanym škitom',
 'protectedpages-cascade' => 'Jenož strony z kaskadowym škitom',
+'protectedpages-noredirect' => 'Dalesposrědkowanja schować',
 'protectedpagesempty' => 'Tuchwilu žane.',
 'protectedtitles' => 'Škitane titule',
 'protectedtitlesempty' => 'Žane titule njejsu tuchwilu z tutymi parametrami škitane.',

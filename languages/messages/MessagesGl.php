@@ -2228,6 +2228,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'protectedpages' => 'Páxinas protexidas',
 'protectedpages-indef' => 'Só as proteccións indefinidas',
 'protectedpages-cascade' => 'Só as proteccións en serie',
+'protectedpages-noredirect' => 'Agochar as redireccións',
 'protectedpagesempty' => 'Actualmente non hai ningunha páxina protexida con eses parámetros.',
 'protectedtitles' => 'Títulos protexidos',
 'protectedtitlesempty' => 'Actualmente non hai ningún título protexido con eses parámetros.',
@@ -2506,6 +2507,7 @@ Limitouse a eliminación destas páxinas para previr problemas de funcionamento 
 'delete-warning-toobig' => 'Esta páxina conta cun historial de edicións longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
 Ao eliminala pódense provocar problemas de funcionamento nas operacións da base de datos de {{SITENAME}};
 proceda con coidado.',
+'deleting-backlinks-warning' => "'''Atención:''' Outras páxinas ligan á páxina que vostede quere borrar.",
 
 # Rollback
 'rollback' => 'Reverter as edicións',
@@ -4159,6 +4161,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-overwrite' => 'Non está permitido sobrescribir un ficheiro existente.',
 'api-error-stashfailed' => 'Erro interno: O servidor non puido almacenar o ficheiro temporal.',
 'api-error-publishfailed' => 'Erro interno: O servidor non puido publicar o ficheiro temporal.',
+'api-error-stasherror' => 'Houbo un erro mentras se subía o ficheiro a stash.',
 'api-error-timeout' => 'O servidor non respondeu no tempo esperado.',
 'api-error-unclassified' => 'Houbo un erro descoñecido.',
 'api-error-unknown-code' => 'Erro descoñecido: "$1"',
