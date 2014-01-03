@@ -633,6 +633,12 @@ class SpecialSearch extends SpecialPage {
 				"</span>";
 		}
 
+		$fileMatch = '';
+		if ( $t->getNamespace() == NS_FILE && $result->isFileMatch() ) {
+			$fileMatch = "<span class='searchalttitle'>" .
+				$this->msg( 'search-file-match' )->text() . "</span>";
+		}
+
 		// format text extract
 		$extract = "<div class='searchresult'>" . $result->getTextSnippet( $terms ) . "</div>";
 
@@ -722,7 +728,7 @@ class SpecialSearch extends SpecialPage {
 			&$score, &$size, &$date, &$related,
 			&$html
 		) ) ) {
-			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section}</div> {$extract}\n" .
+			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
 				"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
 				"</li>\n";
 		}
