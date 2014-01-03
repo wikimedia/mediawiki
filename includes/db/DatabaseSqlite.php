@@ -54,6 +54,7 @@ class DatabaseSqlite extends DatabaseBase {
 				'dbname' => isset( $args[3] ) ? $args[3] : false,
 				'flags' => isset( $args[4] ) ? $args[4] : 0,
 				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
+				'schema' => 'get from global',
 				'foreign' => isset( $args[6] ) ? $args[6] : false
 			);
 		}
