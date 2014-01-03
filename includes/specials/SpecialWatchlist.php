@@ -178,6 +178,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$dbr = $this->getDB();
 		$user = $this->getUser();
+
 		# Toggle watchlist content (all recent edits or just the latest)
 		if ( $opts['extended'] ) {
 			$limitWatchlist = $user->getIntOption( 'wllimit' );
@@ -201,6 +202,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$tables = array( 'recentchanges', 'watchlist' );
 		$fields = RecentChange::selectFields();
+		$query_options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 		$join_conds = array(
 			'watchlist' => array(
 				'INNER JOIN',
@@ -211,12 +213,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				),
 			),
 		);
-		$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
+
 		if ( $wgShowUpdatedMarker ) {
 			$fields[] = 'wl_notificationtimestamp';
 		}
 		if ( $limitWatchlist ) {
-			$options['LIMIT'] = $limitWatchlist;
+			$query_options['LIMIT'] = $limitWatchlist;
 		}
 
 		$rollbacker = $user->isAllowed( 'rollback' );
@@ -245,10 +247,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 
-		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
-		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
+		ChangeTags::modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			''
+		);
 
-		return $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
+		wfRunHooks( 'SpecialWatchlistQuery',
+			array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
+
+		return $dbr->select(
+			$tables,
+			$fields,
+			$conds,
+			__METHOD__,
+			$query_options,
+			$join_conds
+		);
 	}
 
 	/**
