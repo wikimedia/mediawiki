@@ -103,13 +103,15 @@
 								$feedbackPageLink.clone()
 							)
 						),
-						$( '<div style="margin-top: 1em;"></div>' ).append(
-							mw.msg( 'feedback-subject' ),
+						$( '<div style="margin-top: 1em;"></div>' )
+						.msg( 'feedback-subject' )
+						.append(
 							$( '<br>' ),
 							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 99%;"/>' )
 						),
-						$( '<div style="margin-top: 0.4em;"></div>' ).append(
-							mw.msg( 'feedback-message' ),
+						$( '<div style="margin-top: 0.4em;"></div>' )
+						.msg( 'feedback-message' )
+						.append(
 							$( '<br>' ),
 							$( '<textarea name="message" class="feedback-message" style="width: 99%;" rows="5" cols="60"></textarea>' )
 						)
@@ -117,8 +119,9 @@
 					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(
 						$( '<p>' ).msg( 'feedback-bugcheck', $bugsListLink )
 					),
-					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' ).append(
-						mw.msg( 'feedback-adding' ),
+					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' )
+					.msg( 'feedback-adding' )
+					.append(
 						$( '<br>' ),
 						$( '<span class="feedback-spinner"></span>' )
 					),
@@ -135,21 +138,21 @@
 					color: '#0645ad'
 				} );
 
-				this.$dialog.dialog({
+				this.$dialog.dialog( {
 					width: 500,
 					autoOpen: false,
-					title: mw.msg( this.dialogTitleMessageKey ),
+					title: mw.message( this.dialogTitleMessageKey ).escaped(),
 					modal: true,
 					buttons: fb.buttons
-				});
+				} );
 
-			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
-			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
+			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get( 0 );
+			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get( 0 );
 
 		},
 
 		display: function ( s ) {
-			this.$dialog.dialog( { buttons:{} } ); // hide the buttons
+			this.$dialog.dialog( { buttons: {} } ); // hide the buttons
 			this.$dialog.find( '.feedback-mode' ).hide(); // hide everything
 			this.$dialog.find( '.feedback-' + s ).show(); // show the desired div
 		},
@@ -189,7 +192,7 @@
 		 * Display the feedback form
 		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
 		 *  subject: {String}
-		 *	message: {String}
+		 *  message: {String}
 		 */
 		displayForm: function ( contents ) {
 			var fb = this,
@@ -228,25 +231,6 @@
 			var subject, message,
 				fb = this;
 
-			function ok( result ) {
-				if ( result.edit !== undefined ) {
-					if ( result.edit.result === 'Success' ) {
-						fb.displayThanks();
-					} else {
-						// unknown API result
-						fb.displayError( 'feedback-error1' );
-					}
-				} else {
-					// edit failed
-					fb.displayError( 'feedback-error2' );
-				}
-			}
-
-			function err() {
-				// ajax request failed
-				fb.displayError( 'feedback-error3' );
-			}
-
 			// Get the values to submit.
 			subject = this.subjectInput.value;
 
@@ -259,14 +243,32 @@
 
 			this.displaySubmitting();
 
-			this.api.newSection( this.title, subject, message, ok, err );
+			this.api.newSection( this.title, subject, message )
+			.done( function ( result ) {
+				if ( result.edit !== undefined ) {
+					if ( result.edit.result === 'Success' ) {
+						fb.displayThanks();
+					} else {
+						// unknown API result
+						fb.displayError( 'feedback-error1' );
+					}
+				} else {
+					// edit failed
+					fb.displayError( 'feedback-error2' );
+				}
+			} )
+			.fail( function () {
+				// ajax request failed
+				fb.displayError( 'feedback-error3' );
+			} );
+
 		},
 
 		/**
 		 * Modify the display form, and then open it, focusing interface on the subject.
 		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
-		 *						subject: {String}
-		 *						message: {String}
+		 *  subject: {String}
+		 *  message: {String}
 		 */
 		launch: function ( contents ) {
 			this.displayForm( contents );
