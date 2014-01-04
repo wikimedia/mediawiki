@@ -401,6 +401,23 @@ class Status {
 	}
 
 	/**
+	 * Gives true, when this status only contains errors of the given type.
+	 *
+	 * @param $type String
+	 *
+	 * @return bool
+	 * @since 1.23
+	 */
+	public function hasOnlyType( $type ) {
+		foreach ( $this->errors as $error ) {
+			if ( $error['type'] !== $type ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
 	 * Note, due to the lack of tools for comparing Message objects, this

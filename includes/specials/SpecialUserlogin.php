@@ -222,7 +222,7 @@ class LoginForm extends SpecialPage {
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
-			$this->mainLoginForm( $error->toString() );
+			$this->mainLoginForm( $error->toString(), $status->hasOnlyType( 'warning' ) ? 'warning' : 'error' );
 			return;
 		}
 
@@ -258,7 +258,7 @@ class LoginForm extends SpecialPage {
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
-			$this->mainLoginForm( $error->toString() );
+			$this->mainLoginForm( $error->toString(), $status->hasOnlyType( 'warning' ) ? 'warning' : 'error' );
 			return false;
 		}
 
@@ -407,6 +407,15 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'noname' );
 		} elseif ( 0 != $u->idForName() ) {
 			return Status::newFatal( 'userexists' );
+		} elseif ( $name !== $u->getName() ) {
+			// user name silently changed due to technical restrictions (e.g. first letter capitalized)
+			$status = Status::newGood();
+			$status->warning( 'usercreate-normalization', $name, $u->getName() );
+
+			// set the form field to the correct name, so the user can hit the button again
+			$this->mUsername = $u->getName();
+
+			return $status;
 		}
 
 		if ( $this->mCreateaccountMail ) {
