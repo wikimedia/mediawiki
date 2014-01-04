@@ -1414,6 +1414,7 @@ $wgMessageStructure = array(
 		'fileexists-shared-forbidden',
 		'file-exists-duplicate',
 		'file-deleted-duplicate',
+		'file-deleted-duplicate-notitle',
 		'uploadwarning',
 		'uploadwarning-text',
 		'savefile',

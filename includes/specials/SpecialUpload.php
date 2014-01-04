@@ -348,9 +348,14 @@ class SpecialUpload extends SpecialPage {
 			} elseif ( $warning == 'duplicate' ) {
 				$msg = $this->getDupeWarning( $args );
 			} elseif ( $warning == 'duplicate-archive' ) {
-				$msg = "\t<li>" . $this->msg( 'file-deleted-duplicate',
-						Title::makeTitle( NS_FILE, $args )->getPrefixedText() )->parse()
-					. "</li>\n";
+				if ( $args === '' ) {
+					$msg = "\t<li>" . $this->msg( 'file-deleted-duplicate-notitle' )->parse()
+						. "</li>\n";
+				} else {
+					$msg = "\t<li>" . $this->msg( 'file-deleted-duplicate',
+							Title::makeTitle( NS_FILE, $args )->getPrefixedText() )->parse()
+						. "</li>\n";
+				}
 			} else {
 				if ( $args === true ) {
 					$args = array();
