@@ -233,11 +233,15 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Queue recursive jobs for this page
 	 *
-	 * Which means do LinksUpdate on all templates
-	 * that include the current page, using the job queue.
+	 * Which means do LinksUpdate on all pages that include the current page,
+	 * using the job queue.
 	 */
 	function queueRecursiveJobs() {
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+			// Process imagelinks in case the title is or was a redirect
+			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
+		}
 	}
 
 	/**

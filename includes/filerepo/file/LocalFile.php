@@ -1458,17 +1458,6 @@ class LocalFile extends File {
 			LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 		}
 
-		# Invalidate cache for all pages that redirects on this page
-		$redirs = $this->getTitle()->getRedirectsHere();
-
-		foreach ( $redirs as $redir ) {
-			if ( !$reupload && $redir->getNamespace() === NS_FILE ) {
-				LinksUpdate::queueRecursiveJobsForTable( $redir, 'imagelinks' );
-			}
-			$update = new HTMLCacheUpdate( $redir, 'imagelinks' );
-			$update->doUpdate();
-		}
-
 		wfProfileOut( __METHOD__ );
 
 		return true;
