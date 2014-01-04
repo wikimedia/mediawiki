@@ -152,29 +152,27 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Implement redirect extraction for wikitext.
-	 *
-	 * @return null|Title
+	 * Extract the redirect target and the remaining text on the page.
 	 *
 	 * @note: migrated here from Title::newFromRedirectInternal()
 	 *
-	 * @see Content::getRedirectTarget
-	 * @see AbstractContent::getRedirectTarget
+	 * @since 1.23
+	 * @return array 2 elements: Title|null and string
 	 */
-	public function getRedirectTarget() {
+	protected function getRedirectTargetAndText() {
 		global $wgMaxRedirects;
 		if ( $wgMaxRedirects < 1 ) {
 			// redirects are disabled, so quit early
 			return null;
 		}
 		$redir = MagicWord::get( 'redirect' );
-		$text = trim( $this->getNativeData() );
+		$text = ltrim( $this->getNativeData() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable
 			// Ensure that it really does come directly after #REDIRECT
 			// Some older redirects included a colon, so don't freak about that!
 			$m = array();
-			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
+			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}\s*!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
 				if ( strpos( $m[1], '%' ) !== false ) {
@@ -184,14 +182,27 @@ class WikitextContent extends TextContent {
 				$title = Title::newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					return null;
+					return array( null, $this->getNativeData() );
 				}
 
-				return $title;
+				return array( $title, substr( $text, strlen( $m[0] ) ) );
 			}
 		}
 
-		return null;
+		return array( null, $this->getNativeData() );
+	}
+
+	/**
+	 * Implement redirect extraction for wikitext.
+	 *
+	 * @return null|Title
+	 *
+	 * @see Content::getRedirectTarget
+	 * @see AbstractContent::getRedirectTarget
+	 */
+	public function getRedirectTarget() {
+		list( $title, ) = $this->getRedirectTargetAndText();
+		return $title;
 	}
 
 	/**
@@ -296,14 +307,28 @@ class WikitextContent extends TextContent {
 		$revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		global $wgParser;
+		global $wgParse;
 
 		if ( !$options ) {
 			//NOTE: use canonical options per default to produce cacheable output
 			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
 		}
 
-		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+		list( $redir, $text ) = $this->getRedirectTargetAndText();
+		$po = $wgParser->parse( $text, $title, $options, true, true, $revId );
+
+		// Add redirect indicator at the top
+		if ( $redir ) {
+			// Make sure to include the redirect link in pagelinks
+			$po->addLink( $redir );
+			if ( $generateHtml ) {
+				$chain = $this->getRedirectChain();
+				$po->setText(
+					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
+					$po->getText()
+				);
+			}
+		}
 
 		return $po;
 	}
