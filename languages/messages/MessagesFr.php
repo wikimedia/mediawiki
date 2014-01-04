@@ -132,6 +132,11 @@ $namespaceAliases = array(
 	'Discussion_Catégorie' => NS_CATEGORY_TALK
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Utilisateur', 'female' => 'Utilisatrice' ),
+	NS_USER => array( 'male' => 'Discussion_utilisateur', 'female' => 'Discussion_utilisatrice' ),
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Utilisateurs_actifs', 'UtilisateursActifs' ),
 	'Allmessages'               => array( 'Messages_système', 'Messages_systeme', 'Messagessystème', 'Messagessysteme' ),
