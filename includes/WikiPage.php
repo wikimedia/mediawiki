@@ -2794,6 +2794,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
 
+		// Reparse any pages including this image
+		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+			LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
+		}
+
 		// Clear caches
 		WikiPage::onArticleDelete( $this->mTitle );
 
@@ -3262,17 +3267,17 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		// templatelinks table may have become out of sync,
+		// templatelinks or imagelinks tables may have become out of sync,
 		// especially if using variable-based transclusions.
 		// For paranoia, check if things have changed and if
 		// so apply updates to the database. This will ensure
 		// that cascaded protections apply as soon as the changes
 		// are visible.
 
-		// Get templates from templatelinks
+		// Get templates from templatelinks and images from imagelinks
 		$id = $this->getId();
 
-		$tlTemplates = array();
+		$dbLinks = array();
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'templatelinks' ),
@@ -3282,21 +3287,35 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		foreach ( $res as $row ) {
-			$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
+			$dbLinks["{$row->tl_namespace}:{$row->tl_title}"] = true;
 		}
 
-		// Get templates from parser output.
-		$poTemplates = array();
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'imagelinks' ),
+			array( 'il_to' ),
+			array( 'il_from' => $id ),
+			__METHOD__
+		);
+
+		foreach ( $res as $row ) {
+			$dbLinks[NS_FILE . ":{$row->il_to}"] = true;
+		}
+
+		// Get templates and images from parser output.
+		$poLinks = array();
 		foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
 			foreach ( $templates as $dbk => $id ) {
-				$poTemplates["$ns:$dbk"] = true;
+				$poLinks["$ns:$dbk"] = true;
 			}
+		}
+		foreach ( $parserOutput->getImages() as $dbk => $id ) {
+			$poLinks[NS_FILE . ":$dbk"] = true;
 		}
 
 		// Get the diff
-		$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
+		$links_diff = array_diff_key( $poLinks, $dbLinks );
 
-		if ( count( $templates_diff ) > 0 ) {
+		if ( count( $links_diff ) > 0 ) {
 			// Whee, link updates time.
 			// Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
