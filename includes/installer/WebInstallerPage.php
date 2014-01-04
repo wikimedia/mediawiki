@@ -835,6 +835,8 @@ class WebInstaller_Name extends WebInstallerPage {
 			$msg = 'config-admin-password-blank';
 		} elseif ( $pwd !== $this->getVar( '_AdminPassword2' ) ) {
 			$msg = 'config-admin-password-mismatch';
+		} elseif ( strtolower ( $pwd ) == strtolower ( $user ) ) {
+			$msg = 'config-admin-password-same';
 		} elseif ( $valid !== true ) {
 			# As of writing this will only catch the username being e.g. 'FOO' and
 			# the password 'foo'
