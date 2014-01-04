@@ -28,6 +28,8 @@ production.
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 * $wgPasswordSenderName has been deprecated. To set a custom mailer name,
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
+* Special:ProtectedPages shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
