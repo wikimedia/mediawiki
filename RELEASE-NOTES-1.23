@@ -98,6 +98,8 @@ production.
   messages have been updated and marked for review at translatewiki.net.
 * (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
   remaining page content.
+* (bug 23542) imagelinks now stores both the redirect and target (as
+  templatelinks does).
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
