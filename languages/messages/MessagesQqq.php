@@ -9986,6 +9986,11 @@ A short description of the script path entry point. Links to the mediawiki.org d
 'version-credits-title' => 'Page title for an about/credits page for a MediaWiki extension. $1 is the name of the extension.',
 'version-credits-not-found' => 'Descriptive error used when detailed about/credits for an extension are not available.',
 'version-ext-license' => '{{Identical|License}}',
+'version-ext-colheader-name'            => 'Column header for the name of an extension',
+'version-ext-colheader-version'         => '{{Identical|version}} Column header for describing an extensions version',
+'version-ext-colheader-license'         => '{{Identical|License}} Column header for describing an extensions license',
+'version-ext-colheader-description'     => 'Column header for the description of an extension',
+'version-ext-colheader-credits'         => 'Column header for the list of authors and credits for an extension',
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}
