@@ -3891,6 +3891,7 @@ class Title {
 
 		if ( $moveOverRedirect ) {
 			$newid = $nt->getArticleID();
+			$newcontent = $newpage->getContent();
 
 			# Delete the old redirect. We don't save it to history since
 			# by definition if we've got here it's rather uninteresting.
@@ -3898,7 +3899,7 @@ class Title {
 			# a conflict on the unique namespace+title index...
 			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
 
-			$newpage->doDeleteUpdates( $newid );
+			$newpage->doDeleteUpdates( $newid, $newcontent );
 		}
 
 		# Save a null revision in the page's history notifying of the move
