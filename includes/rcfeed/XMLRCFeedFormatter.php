@@ -20,13 +20,11 @@
  */
 
 /**
- * Formats a notification into the JSON format (http://www.json.org)
- *
- * @since 1.22
+ * @since 1.23
  */
-class JSONRCFeedFormatter extends MachineReadableRCFeedFormatter {
+class XMLRCFeedFormatter extends MachineReadableRCFeedFormatter {
 
 	protected function formatArray( array $packet ) {
-		return FormatJson::encode( $packet );
+		return ApiFormatXml::recXmlPrint( 'recentchange', $packet, 0 );
 	}
 }
