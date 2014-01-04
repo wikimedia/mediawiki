@@ -1157,9 +1157,6 @@ class AutoLoader {
 	 * autoload - take a class name and attempt to load it
 	 *
 	 * @param string $className name of class we're looking for.
-	 * @return bool Returning false is important on failure as
-	 * it allows Zend to try and look in other registered autoloaders
-	 * as well.
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
@@ -1209,7 +1206,7 @@ class AutoLoader {
 			}
 
 			# Give up
-			return false;
+			return;
 		}
 
 		# Make an absolute path, this improves performance by avoiding some stat calls
@@ -1219,8 +1216,6 @@ class AutoLoader {
 		}
 
 		require $filename;
-
-		return true;
 	}
 
 	/**
