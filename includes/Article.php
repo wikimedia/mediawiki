@@ -1018,7 +1018,7 @@ class Article implements Page {
 
 	/**
 	 * Show a header specific to the namespace currently being viewed, like
-	 * [[MediaWiki:Talkpagetext]]. For Article::view().
+	 * [[MediaWiki:Talkpagetext]]. Also show page notices. For Article::view().
 	 */
 	public function showNamespaceHeader() {
 		if ( $this->getTitle()->isTalkPage() ) {
@@ -1026,7 +1026,12 @@ class Article implements Page {
 				$this->getContext()->getOutput()->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1\n</div>", array( 'talkpageheader' ) );
 			}
 		}
+
+		foreach ( $this->getTitle()->getPageNotices( $this->getRevIdFetched() ) as $notice ) {
+			$this->getContext()->getOutput()->addHTML( "<div class=\"mw-pagenotice\">\n$notice\n</div>" );
+		}
 	}
+
 
 	/**
 	 * Show the footer section of an ordinary page view
