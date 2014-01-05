@@ -3349,8 +3349,8 @@ $1',
 'exif-gpslongitude-w' => 'западна дължина',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|метър|метра}} над морското равнище',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|метър|метра}} под морското равнище',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|метър|метра}} над морското равнище',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|метър|метра}} под морското равнище',
 
 'exif-gpsstatus-a' => 'Измерване в ход',
 'exif-gpsstatus-v' => 'Оперативна съвместимост на измерването',

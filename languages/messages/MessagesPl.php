@@ -2243,6 +2243,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'protectedpages' => 'Strony zabezpieczone',
 'protectedpages-indef' => 'Tylko strony zabezpieczone na zawsze',
 'protectedpages-cascade' => 'Tylko strony zabezpieczone rekursywnie',
+'protectedpages-noredirect' => 'Ukryj przekierowania',
 'protectedpagesempty' => 'Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.',
 'protectedtitles' => 'Zabezpieczone nazwy stron',
 'protectedtitlesempty' => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
@@ -2515,6 +2516,7 @@ Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 Usuwanie jej zostało ograniczone ze względu na możliwość zakłócenia pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'delete-warning-toobig' => 'Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />
 Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
+'deleting-backlinks-warning' => "''' Uwaga:''' Do strony, masz zamiar usunąć, odwołują się inne strony.",
 
 # Rollback
 'rollback' => 'Cofnij edycję',

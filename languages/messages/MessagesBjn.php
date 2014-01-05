@@ -857,7 +857,7 @@ Pambakal nang manyunduk manjalasakan kaini: $1",
 Log masuk pauncitnya disadiakan di bawah gasan rujukan:",
 'semiprotectedpagewarning' => "'''Catatan:''' Tungkaran ngini sudah dilindungi nang akibatnya pamakai tadaptar haja nang kawa mambabak.
 Log masuk pauncitnya disadiakan di bawah gasan rujukan:",
-'cascadeprotectedwarning' => "'''Paringatan:''' Tungkaran ngini sudah dilindungi nang akibatnya pamakai awan hak istimiwa pambakal haja nang kawa mambabak, sualnya ngini tamasuk dalam baumpat parlindungan barénténg {{PLURAL: $1|tungkaran|tutungkaran}}:",
+'cascadeprotectedwarning' => "'''Paringatan:''' Tungkaran ngini sudah dilindungi nang akibatnya pamakai awan hak istimiwa pambakal haja nang kawa mambabak, sualnya ngini tamasuk dalam baumpat parlindungan barénténg {{PLURAL:$1|tungkaran|tutungkaran}}:",
 'titleprotectedwarning' => "'''Paringatan: Tungkaran ngini sudah dilindungi nang akibatnya [[Special:ListGroupRights|hak khas]] diparluakan hagan maulah ngini.'''
 Log masuk pauncitnya disadiakan di bawah gasan rujukan:",
 'templatesused' => '{{PLURAL:$1|Citakan|Citakan}} nang digunakan di tungkaran ngini:',

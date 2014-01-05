@@ -4301,7 +4301,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-minutes' => '{{PLURAL:$1|ein&nbsp;Menot|$1&nbsp;Menotte|kein&nbsp;Menot}}',
 'duration-hours' => '{{PLURAL:$1|en&nbsp;Schtond|$1&nbsp;Schtonde|kein&nbsp;Schtond}}',
 'duration-days' => '{{PLURAL:$1|ene&nbsp;Daach|$1&nbsp;Dääsch|keine&nbsp;Daach}}',
-'duration-weeks' => '{{PLURAL: $1|en&nbsp;Woch|$1&nbsp;Woche|kein&nbsp;Woch}}',
+'duration-weeks' => '{{PLURAL:$1|en&nbsp;Woch|$1&nbsp;Woche|kein&nbsp;Woch}}',
 'duration-years' => '{{PLURAL:$1|e&nbsp;Johr|$1&nbsp;Johre|kei&nbsp;Johr}}',
 'duration-decades' => '{{PLURAL:$1|zehn&nbsp;Johre|$1&nbsp;Johzehnte|kei&nbsp;Johzehnt}}',
 'duration-centuries' => '{{PLURAL:$1|e&nbsp;Johhondert|$1&nbsp;Johhonderte|kei&nbsp;Johhondert}}',

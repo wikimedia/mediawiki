@@ -1220,7 +1220,7 @@ It must not be more than $1 {{PLURAL:$1|1=character|characters}} long.',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL: $1|$1 секунда|$1 секунда}}',
-'minutes' => '{{PLURAL: $1|$1 минут|$1 минут}}',
+'minutes' => '{{PLURAL:$1|$1 минут|$1 минут}}',
 'hours' => '{{PLURAL:$1|1=$1 шак|$1 шак}}',
 'days' => '{{PLURAL:$1|1=$1 хүн|$1 хүн}}',
 'ago' => '$1 бурунгаар',
@@ -1374,12 +1374,12 @@ It must not be more than $1 {{PLURAL:$1|1=character|characters}} long.',
 'feedback-cancel' => 'Соксаары',
 
 # Durations
-'duration-seconds' => '$1 {{PLURAL: $1|секунда|секунда}}',
-'duration-minutes' => '$1 {{PLURAL: $1|минут|минут}}',
-'duration-hours' => '$1 {{PLURAL: $1|шак|шак}}',
+'duration-seconds' => '$1 {{PLURAL:$1|секунда|секунда}}',
+'duration-minutes' => '$1 {{PLURAL:$1|минут|минут}}',
+'duration-hours' => '$1 {{PLURAL:$1|шак|шак}}',
 'duration-days' => '$1 {{PLURAL:$1|1=хүн|хүн}}',
-'duration-weeks' => '$1 {{PLURAL: $1|чеди-хонук|чеди-хонук}}',
-'duration-years' => '$1 {{PLURAL: $1|чыл|чыл}}',
+'duration-weeks' => '$1 {{PLURAL:$1|чеди-хонук|чеди-хонук}}',
+'duration-years' => '$1 {{PLURAL:$1|чыл|чыл}}',
 'duration-decades' => '$1 {{PLURAL:$1|1=он хонук|он хонук}}',
 'duration-centuries' => '$1 {{PLURAL:$1|1=чүс чыл|чүс чыл}}',
 

@@ -1399,7 +1399,7 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 'nolinkstoimage' => 'Pads nonik peyümons ad ragiv at.',
 'morelinkstoimage' => 'Logolös [[Special:WhatLinksHere/$1|yümis pluik]] ad ragiv at.',
 'linkstoimage-redirect' => '$1 (lüodükam ragiva) $2',
-'duplicatesoffile' => '{{Plural:$1|Ragiv fovik leigon|Ragivs fovik $1 leigons}} ko ragiv at ([[Special:FileDuplicateSearch/$2|nüns pluik]]):',
+'duplicatesoffile' => '{{PLURAL:$1|Ragiv fovik leigon|Ragivs fovik $1 leigons}} ko ragiv at ([[Special:FileDuplicateSearch/$2|nüns pluik]]):',
 'sharedupload' => 'Ragiv at binon se $1 e kanon pagebön fa proyegs votik.',
 'sharedupload-desc-here' => 'Ragiv at kömon de $1 e kanon pagebön fa proyegs votik.
 Bepenot su [$2 pad bepenota ragiva] onik pajonon dono.',

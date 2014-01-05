@@ -26,6 +26,7 @@
  * @author Meno25
  * @author Mvrban
  * @author Nemo bis
+ * @author Phidrho
  * @author Roberta F.
  * @author SpeedyGonsales
  * @author Tivek
@@ -3847,7 +3848,12 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'version-hook-name' => 'Ime kuke',
 'version-hook-subscribedby' => 'Pretplaćeno od',
 'version-version' => '(Inačica $1)',
-'version-license' => 'Licencija',
+'version-license' => 'Licenca',
+'version-ext-license' => 'Licenca',
+'version-ext-colheader-version' => 'Verzija',
+'version-ext-colheader-license' => 'Licenca',
+'version-ext-colheader-description' => 'Opis',
+'version-ext-colheader-credits' => 'Autori',
 'version-poweredby-credits' => "Ovaj wiki pogoni '''[https://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others' => 'ostali',
 'version-credits-summary' => 'Željeli bismo zahvaliti sljedećim suradnicima na njihovom doprinosu [[Special:Version|MediaWikiju]].',
@@ -3867,6 +3873,7 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'redirect-submit' => 'Idi',
 'redirect-value' => 'Vrijednost:',
 'redirect-user' => 'ID suradnika',
+'redirect-page' => 'ID stranice',
 'redirect-file' => 'Datotečno ime',
 
 # Special:FileDuplicateSearch

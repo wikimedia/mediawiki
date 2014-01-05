@@ -350,7 +350,7 @@ $messages = array(
 'redirectpagesub' => 'Ukurasa wa kuelekeza',
 'lastmodifiedat' => 'Ukurasa huu umebadilishwa kwa mara ya mwisho tarehe $1, saa $2.',
 'viewcount' => 'Ukurasa huu umetembelewa mara {{PLURAL:$1|moja tu|$1}}.',
-'protectedpage' => 'Kurasa iliyolindwa',
+'protectedpage' => 'Ukurasa uliolindwa',
 'jumpto' => 'Rukia:',
 'jumptonavigation' => 'urambazaji',
 'jumptosearch' => 'tafuta',
@@ -550,11 +550,17 @@ Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span c
 'gotaccountlink' => 'Ingia',
 'userlogin-resetlink' => 'Umesahau maelezo yako ya kuingia?',
 'createacct-emailrequired' => 'Anwani ya barua pepe',
+'createacct-emailoptional' => 'Anwani ya barua pepe (si lazima)',
 'createacct-email-ph' => 'Weka anwani yako ya barua pepe',
 'createacct-another-email-ph' => 'Weka anwani ya barua pepe',
 'createaccountmail' => 'Kwa barua pepe',
+'createacct-realname' => 'Jina la kweli (si lazima)',
 'createaccountreason' => 'Sababu:',
 'createacct-reason' => 'Sababu',
+'createacct-benefit-heading' => '{{SITENAME}} inatengenezwa na watu kama wewe.',
+'createacct-benefit-body1' => '{{PLURAL:$1|haririo|maharirio}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|ukurasa|kurasa}}',
+'createacct-benefit-body3' => '{{PLURAL:$1|mhariri|wahariri}} wa hivi karibuni',
 'badretype' => 'Maneno uliyoyaandika ni tofauti.',
 'userexists' => 'Jina la mtumiaji uliloingiza tayari linatumika.
 Tafadhali chagua jina lingine.',
@@ -659,17 +665,17 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'passwordreset-capture-help' => 'Iwapo utatia alama kisanduku hiki, barua-pepe (pamoja na nenosiri la muda) litaoneshwa kwako na vilevile litatumwa kwa mtumiaji.',
 'passwordreset-email' => 'Anwani ya barua pepe:',
 'passwordreset-emailtitle' => 'Maelezo ya akaunti kwenye {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+'passwordreset-emailtext-ip' => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba neno la siri la akaunti yako liwekwe upya katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
 
 $2
 
 {{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
 Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, basi usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
-'passwordreset-emailtext-user' => 'Mtumiaji $1 kwenye {{SITENAME}} ameomba akumbushwe maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+'passwordreset-emailtext-user' => 'Mtumiaji $1 kwenye {{SITENAME}} ameomba neno la siri la akaunti yako liwekwe upya katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
 
 $2
 
-{{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
+{{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5}}.
 Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, basi usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
 'passwordreset-emailelement' => 'Jina la mtumiaji: $1
 Neno la siri la muda: $2',
@@ -685,6 +691,7 @@ Neno la siri la muda: $2',
 'changeemail-oldemail' => 'Anwani ya barua pepe ya sasa:',
 'changeemail-newemail' => 'Anwani mpya ya barua pepe:',
 'changeemail-none' => '(hakuna)',
+'changeemail-password' => 'Neno lako la siri kuingia {{SITENAME}}:',
 'changeemail-submit' => 'Badilisha anwani ya barua pepe',
 'changeemail-cancel' => 'Batilisha',
 
@@ -901,7 +908,7 @@ Baadhi ya vigezo havitaweza kuingizwa.",
 'undo-success' => 'Sahihisho linaweza kutenguliwa.
 Tafadhali tazama linganisho lililopo chini ili kuthibitisha kwamba kutengua ndiyo inayotakiwa, na kisha uhifadhi mabadiliko ili kukamilisha kutengua sahihisho.',
 'undo-failure' => 'Haririo halikuweza kutenguliwa kwa kufuatia mgongano wa maharirio katikati.',
-'undo-norev' => 'Sahihisho halikuweza kutenguliwa kwa sababu halipo au limeshafutwa.',
+'undo-norev' => 'Haririo halikuweza kutenguliwa kwa sababu halipo au limeshafutwa.',
 'undo-summary' => 'Tengua pitio $1 lililoandikwa na [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]])',
 
 # Account creation failure
@@ -1372,7 +1379,7 @@ Taarifa hii itakuwa wazi.',
 'rclistfrom' => 'Onyesha mabadiliko mapya kuanzia $1',
 'rcshowhideminor' => '$1 mabadiliko madogo',
 'rcshowhidebots' => 'roboti $1',
-'rcshowhideliu' => '$1 watumiaji sasa',
+'rcshowhideliu' => 'watumiaji $1 waliojisajili',
 'rcshowhideanons' => '$1 watumiaji bila majina',
 'rcshowhidepatr' => '$1 masahihisho yanayofanywa doria',
 'rcshowhidemine' => '$1 masahihisho yangu',
@@ -1951,12 +1958,8 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 'watchnologin' => 'Hujaingia',
 'watchnologintext' => 'Lazima uwe [[Special:UserLogin|umeshaingia]] ili uweze kuhariri orodha ya maangalizi yako.',
 'addwatch' => 'Ongeza kwenye orodha ya maangalizi',
-'addedwatchtext' => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
-Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo,
-na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:RecentChanges|orodha ya mabadiliko ya karibuni]]
-ili kukusaidia kutambua.
-
-Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuatilia\" katika mwamba pembeni.",
+'addedwatchtext' => 'Ukurasa "[[:$1]]" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
+Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo.',
 'removewatch' => 'Ondoa kutoka orodha ya maangalizi',
 'removedwatchtext' => 'Ukurasa "[[:$1]]" umeondoshwa kutoka katika [[Special:Watchlist|maangalizi yako]].',
 'watch' => 'Fuatilia',
@@ -1984,15 +1987,22 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'enotif_mailer' => 'Huduma ya taarifa ya barua pepe kutoka kwa {{SITENAME}}',
 'enotif_reset' => 'Weka alama kwa kurasa zote zilizotembelewa',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
+'enotif_subject_deleted' => '$2 {{GENDER:$2|alifuta}} ukurasa wa $1 katika {{SITENAME}}',
+'enotif_subject_created' => '$2 {{GENDER:$2|alianzisha}} ukurasa wa $1 katika {{SITENAME}}',
+'enotif_subject_moved' => '$2 {{GENDER:$2|alihamisha}} ukurasa wa $1 katika {{SITENAME}}',
+'enotif_subject_restored' => '$2 {{GENDER:$2|alirudisha}} ukurasa wa $1 katika {{SITENAME}}',
+'enotif_subject_changed' => '$2 {{GENDER:$2|alibadilisha}} ukurasa wa $1 katika {{SITENAME}}',
+'enotif_body_intro_deleted' => '$2 {{GENDER:$2|alifuta}} ukurasa wa $1 katika {{SITENAME}} tarehe $PAGEEDITDATE. Tazama $3.',
+'enotif_body_intro_created' => '$2 {{GENDER:$2|alianzisha}} ukurasa wa $1 katika {{SITENAME}} tarehe $PAGEEDITDATE. Tazama $3 kuona ukurasa ulivyo sasa hivi.',
+'enotif_body_intro_moved' => '$2 {{GENDER:$2|alihamisha}} ukurasa wa $1 katika {{SITENAME}} tarehe $PAGEEDITDATE. Tazama $3 kuona ukurasa ulivyo sasa hivi.',
+'enotif_body_intro_restored' => '$2 {{GENDER:$2|alirudisha}} ukurasa wa $1 katika {{SITENAME}} tarehe $PAGEEDITDATE. Tazama $3 kuona ukurasa ulivyo sasa hivi.',
+'enotif_body_intro_changed' => '$2 {{GENDER:$2|alibadilisha}} ukurasa wa $1 katika {{SITENAME}} tarehe $PAGEEDITDATE. Tazama $3 kuona ukurasa ulivyo sasa hivi.',
 'enotif_lastvisited' => 'Tazama $1 kwa mabadiliko yote tangu ziara yako ya mwisho.',
 'enotif_lastdiff' => 'Tazama badiliko hili hapo $1.',
 'enotif_anon_editor' => 'mtumiaji bila jina $1',
 'enotif_body' => 'Mpendwa $WATCHINGUSERNAME,
 
-
-$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}} saa $PAGEEDITDATE. Tazama $PAGETITLE_URL kuona ukurasa ulivyo sasa hivi.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Muhtasari wa mhariri: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2000,12 +2010,15 @@ Uwasiliane na mhariri kwa njia hizi:
 barua pepe: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Hutapata taarifa za mabadiliko mengine yatakayotokea kwenye ukurasa huu hadi utakapotazama ukurasa.
+Hutapata taarifa za mabadiliko mengine yatakayotokea kwenye ukurasa huu hadi utakapotazama ukurasa wakati umeingia akaunti yako.
 Au unaweza kuweka upya maombi ya kupewa taarifa kwa ajili ya kurasa zote zilizopo kwenye orodha yako ya maangalizi.
 
-             Kutoka kwa {{SITENAME}}
+             Kutoka kwa mashine ya kutoa taarifa ya {{SITENAME}}
 
 --
+Ukitaka kubadilisha mapendekezo yako kuhusu kutolewa taarifa, nenda
+{{canonicalurl:{{#special:Preferences}}}}
+
 Ukitaka kubadilisha mapendekezo yako yanayohusika orodha ya maangalizi yako, nenda
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2975,6 +2988,7 @@ Pia unaweza [[Special:EditWatchlist|kutumia kihariri cha kawaida]].',
 'version-other' => 'Zingine',
 'version-version' => '(Toleo $1)',
 'version-license' => 'Ruhusa',
+'version-ext-colheader-description' => 'Ufafanuzi',
 'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[https://www.mediawiki.org/ MediaWiki]''', hakimiliki © 2001-$1 $2.",
 'version-poweredby-others' => 'wengine',
 'version-license-info' => 'MediaWiki ni bidhaa pepe huru; unaweza kuisambaza pamoja na kuitumia na kuibadilisha kutokana na masharti ya leseni ya GNU General Public License inayotolewa na Free Software Foundation (Shirika la Bidhaa Pepe Huru); ama toleo 2 la hakimiliki, ama (ukitaka) toleo lolote linalofuata.
@@ -2986,6 +3000,9 @@ Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public Lic
 'version-software-product' => 'Bidhaa',
 'version-software-version' => 'Toleo',
 'version-entrypoints-header-url' => 'KISARA Kioneshi Sanifu Raslimali',
+
+# Special:Redirect
+'redirect-submit' => 'Nenda',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Tafuta mafaili ya nakili',

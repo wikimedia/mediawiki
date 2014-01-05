@@ -754,6 +754,7 @@ Hamus nullam causam dedit.',
 Haec pagina deleta esse videtur.',
 'edit-conflict' => 'Contentio recensionis.',
 'edit-no-change' => 'Recensio tua non servata est, quia contenta paginae non mutavisti.',
+'postedit-confirmation' => 'Recensio tua servata est.',
 'edit-already-exists' => 'Non potui paginam novam creare
 quia haec pagina iam est.',
 

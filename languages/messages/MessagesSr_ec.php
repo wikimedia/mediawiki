@@ -1654,7 +1654,7 @@ $1",
 'group-bot-member' => '{{GENDER:$1|бот}}',
 'group-sysop-member' => '{{GENDER:$1|администратор|администраторка|администратор}}',
 'group-bureaucrat-member' => '{{GENDER:$1|бирократа|бирократкиња|бирократа}}',
-'group-suppress-member' => '{{GENDER:$1|ревизор|ревизорка|ревизор}}',
+'group-suppress-member' => '{{GENDER:$1|ревизор|ревизорка}}',
 
 'grouppage-user' => '{{ns:project}}:Корисници',
 'grouppage-autoconfirmed' => '{{ns:project}}:Аутоматски потврђени корисници',

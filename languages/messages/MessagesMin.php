@@ -2647,7 +2647,7 @@ Sanak mustilah alah manarimo [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi P
 'duration-minutes' => '$1 {{PLURAL:$1|minik}}',
 'duration-hours' => '$1 {{PLURAL:$1|jam}}',
 'duration-days' => '$1 {{PLURAL:$1|ari}}',
-'duration-weeks' => '{{PLURAL: $1|}}$1 pakan',
+'duration-weeks' => '{{PLURAL:$1|}}$1 pakan',
 'duration-years' => '$1 {{PLURAL:$1|taun}}',
 'duration-decades' => '$1 {{PLURAL:$1|dekade}}',
 'duration-centuries' => '$1 {{PLURAL:$1|abaik}}',

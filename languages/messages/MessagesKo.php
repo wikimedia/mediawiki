@@ -1579,16 +1579,14 @@ HTML 태그를 확인하세요.',
 'badsiglength' => '서명이 너무 깁니다.
 서명은 $1 {{PLURAL:$1|글자}}보다 짧아야 합니다.',
 'yourgender' => '어떻게 성별을 알려주고 싶습니까?',
-'gender-unknown' => '자세히 알려주기 싫습니다',
+'gender-unknown' => '밝히고 싶지 않습니다.',
 'gender-male' => '위키 문서를 편집하는 남자입니다',
 'gender-female' => '위키 문서를 편집하는 여자입니다',
-'prefs-help-gender' => '이 사용자 환경 설정을 설정하는 것은 선택 사항입니다.
-소프트웨어는 다른 사용자에게 화면을 보여주어 당신을 언급할 때 적절한 성별 문법을 사용하는 데 이 값을 사용합니다.
-이 정보는 공개됩니다.',
+'prefs-help-gender' => '이 사용자 환경 설정은 선택 사항입니다. 소프트웨어에서 이 설정을 사용해 사용자를 가리키고 다른 사용자에게 자신을 언급하는데 적절한 문법적 성별을 사용합니다. 이 정보는 공개됩니다.',
 'email' => '이메일',
 'prefs-help-realname' => '실명은 선택 사항입니다.
 실명을 입력하면 문서 기여에 자신의 이름이 들어가게 됩니다.',
-'prefs-help-email' => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호 바꾸기를 위해 필요합니다.',
+'prefs-help-email' => '이메일 주소 입력은 선택 사항입니다. 다만 비밀번호를 잊었을 때 비밀번호를 재설정하기 위해 필요합니다.',
 'prefs-help-email-others' => '자신의 문서나 토론 문서에 있는 이메일 보내기 링크로 다른 사용자가 연락할 수 있게 할 수도 있습니다.
 이 경우에도 이메일 주소는 다른 사용자가 연락할 때 공개되지 않습니다.',
 'prefs-help-email-required' => '이메일 주소가 필요합니다.',
@@ -4053,7 +4051,7 @@ $5
 'version-hook-name' => '훅 이름',
 'version-hook-subscribedby' => '훅이 사용된 위치',
 'version-version' => '(버전 $1)',
-'version-license' => '라이선스',
+'version-license' => '미디어위키 라이선스',
 'version-poweredby-credits' => "이 위키는 '''[https://www.mediawiki.org/ MediaWiki]'''(미디어위키)를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
 'version-poweredby-translators' => 'translatewiki.net 번역자',

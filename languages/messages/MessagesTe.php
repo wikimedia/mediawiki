@@ -3648,7 +3648,7 @@ $5
 'duration-minutes' => '$1 {{PLURAL:$1|నిమిషం|నిమిషాలు}}',
 'duration-hours' => '$1 {{PLURAL:$1|గంట|గంటలు}}',
 'duration-days' => '$1 {{PLURAL:$1|రోజు|రోజులు}}',
-'duration-weeks' => '$1 {{PLURAL: $1|వారం|వారాలు}}',
+'duration-weeks' => '$1 {{PLURAL:$1|వారం|వారాలు}}',
 'duration-years' => '$1 {{PLURAL:$1|సంవత్సరం|సంవత్సరాలు}}',
 'duration-decades' => '$1 {{PLURAL:$1|దశాబ్దం|దశాబ్దాలు}}',
 'duration-centuries' => '$1 {{PLURAL:$1|శతాబ్దం|శతాబ్దాలు}}',

@@ -3976,7 +3976,7 @@ MediaWiki ଉପଯୋଗୀ ହେବା ଲକ୍ଷରେ ବଣ୍ଟାଯ�
 'duration-minutes' => '$1 {{PLURAL:$1|ମିନିଟ|ମିନିଟ}}',
 'duration-hours' => '$1 {{PLURAL:$1|ଘଣ୍ଟା|ଘଣ୍ଟା}}',
 'duration-days' => '$1 {{PLURAL:$1|ଦିନ|ଦିନଗୁଡିକ}}',
-'duration-weeks' => '$1 {{PLURAL: $1|ସପ୍ତାହ|ସପ୍ତାହଗୁଡିକ}}',
+'duration-weeks' => '$1 {{PLURAL:$1|ସପ୍ତାହ|ସପ୍ତାହଗୁଡିକ}}',
 'duration-years' => '$1 {{PLURAL:$1|year|years}}',
 'duration-decades' => '$1 {{PLURAL:$1|decade|decades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',

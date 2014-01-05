@@ -2117,7 +2117,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 # Random page in category
 'randomincategory' => 'Tilfeldig side innenfor kategorien',
 'randomincategory-invalidcategory' => '«$1» er ikke et gyldig kategorinavn.',
-'randomincategory-nopages' => 'Det finnes ingen sider i [[:Kategori:$1|$1]]-kategorien.',
+'randomincategory-nopages' => 'Det finnes ingen sider i [[:Category:$1|$1]]-kategorien.',
 'randomincategory-selectcategory' => 'Hent en tilfeldig side fra kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Start',
 
@@ -2507,7 +2507,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'editcomment' => "Redigeringskommentaren var: «''$1''»",
 'revertpage' => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]',
 'revertpage-nouser' => 'Tilbakestilt endringer av skjult bruker til siste versjon av
-{{GENDER:$1|[[Bruker:$1|$1]]}}',
+{{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
 
 # Edit tokens
@@ -3913,6 +3913,12 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'version-hook-subscribedby' => 'Brukes av',
 'version-version' => '(versjon $1)',
 'version-license' => 'Lisens',
+'version-ext-license' => 'Lisens',
+'version-ext-colheader-name' => 'Utvidelse',
+'version-ext-colheader-version' => 'Versjon',
+'version-ext-colheader-license' => 'Lisens',
+'version-ext-colheader-description' => 'Beskrivelse',
+'version-ext-colheader-credits' => 'Forfattere',
 'version-poweredby-credits' => "Denne wikien er drevet av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
 'version-poweredby-translators' => 'translatewiki.net-oversettere',
@@ -3930,7 +3936,7 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Omdiriger via filnavn, bruker, eller versjonsid',
+'redirect' => 'Omdiriger via filnavn, bruker eller versjonsid',
 'redirect-legend' => 'Omdiriger til en fil eller side',
 'redirect-summary' => 'Denne spesialsiden omdirigerer til en fil (hvis et filnavn angis), en side (hvis et redigeringsnummer angis) eller en brukerside (hvis en numerisk brukeridentifikator angis).
 Eksempler:[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
@@ -3938,6 +3944,7 @@ Eksempler:[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/re
 'redirect-lookup' => 'Oppslag:',
 'redirect-value' => 'Verdi:',
 'redirect-user' => 'Bruker-ID',
+'redirect-page' => 'Side-ID',
 'redirect-revision' => 'Sideversjon',
 'redirect-file' => 'Filnavn',
 'redirect-not-exists' => 'Verdi er ikke funnet',
@@ -4131,6 +4138,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'api-error-overwrite' => 'Det er ikke tillatt å overskrive eksisterende filer.',
 'api-error-stashfailed' => 'Internal error: tjeneren greide ikke å lagre midlertidig fil.',
 'api-error-publishfailed' => 'Intern feil: Tjeneren greide ikke å publisere midlertidig fil.',
+'api-error-stasherror' => 'Det oppstod en feil mens filen ble lastet opp til stash.',
 'api-error-timeout' => 'Serveren svarte ikke innenfor forventet tid.',
 'api-error-unclassified' => 'En ukjent feil har oppstått',
 'api-error-unknown-code' => 'Ukjent feil: "$1"',
@@ -4184,6 +4192,7 @@ Faktisk utvider den det meste innkapslet i doble krøllparenteser.',
 'expand_templates_remove_comments' => 'Fjern kommentarer',
 'expand_templates_remove_nowiki' => 'Ikke vis <nowiki>-merkelapper i resultatet',
 'expand_templates_generate_xml' => 'Vis parsetre som XML',
+'expand_templates_generate_rawhtml' => 'Vis ubehandlet HTML',
 'expand_templates_preview' => 'Forhåndsvisning',
 
 );

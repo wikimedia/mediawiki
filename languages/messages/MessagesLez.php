@@ -473,7 +473,7 @@ $messages = array(
 'templatesusedpreview' => '{{PLURAL:$1|1=Шаблон|Шаблонар}},илемишзавай дуьз клигунра:',
 'template-protected' => '(хвенвай)',
 'template-semiprotected' => '(са кьадар хвенва)',
-'hiddencategories' => 'И ччин {{PLURAL: $1 | чуьнуьхай категориядиз | $1 чуьнуьхай категорийриз}} талукь я:',
+'hiddencategories' => 'И ччин {{PLURAL:$1 | чуьнуьхай категориядиз | $1 чуьнуьхай категорийриз}} талукь я:',
 'permissionserrors' => 'ГЬахьнин гъалатlар',
 'permissionserrorstext-withaction' => 'Квез и {{PLURAL:$1|1=себебдалди|себебралди}} $2 йиз ихтияр авайд туш:',
 'recreate-moveddeleted-warn' => "'''Дикъет! Куьне виликда алуднавай ччин туьхкlуьриз алахъзава.'''
@@ -825,7 +825,7 @@ $messages = array(
 'filehist-comment' => 'Къейд',
 'filehist-missing' => 'Файл авачиз я',
 'imagelinks' => 'Файл кардик кутун',
-'linkstoimage' => 'Къведай {{PLURAL: $1 | ччин | $1 ччинар}} гьа и файлдиз элячlзава',
+'linkstoimage' => 'Къведай {{PLURAL:$1 | ччин | $1 ччинар}} гьа и файлдиз элячlзава',
 'nolinkstoimage' => 'И файлдиз элячlзавай ччинар авайд туш',
 'sharedupload' => 'И шикил $1 масса хакъидайра ишлемишатlа жезава.',
 'sharedupload-desc-here' => 'И файл $1-кай я ва ам маса проектра  кардик кутаз жеда.

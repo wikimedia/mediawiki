@@ -3218,7 +3218,7 @@ A futtatása során kárt tehet a számítógépedben.",
 
 # Human-readable timestamps
 'hours-ago' => '$1 {{PLURAL:$1|órával|órával}} ezelőtt',
-'minutes-ago' => '$1 {{PLURAL: $1|perce|perce}}',
+'minutes-ago' => '$1 {{PLURAL:$1|perce|perce}}',
 'seconds-ago' => '$1 {{PLURAL:$1|másodperce|másodperce}}',
 'monday-at' => '$1 (hétfő)',
 'tuesday-at' => '$1 (kedd)',
@@ -4046,12 +4046,12 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'api-error-verification-error' => 'A fájl feltehetőleg sérült, vagy hibás a kiterjesztése.',
 
 # Durations
-'duration-seconds' => '{{PLURAL: $1|másodperc|másodperc}}',
-'duration-minutes' => '$1 {{PLURAL: $1|perc|perc}}',
+'duration-seconds' => '{{PLURAL:$1|másodperc|másodperc}}',
+'duration-minutes' => '$1 {{PLURAL:$1|perc|perc}}',
 'duration-hours' => '{{PLURAL:$1|egy|$1}} óra',
 'duration-days' => '{{PLURAL:$1|egy|$1}} nap',
 'duration-weeks' => '$1 {{PLURAL:$1|hét|hét}}',
-'duration-years' => '{{PLURAL: $1|Egy év|$1 év}}',
+'duration-years' => '{{PLURAL:$1|Egy év|$1 év}}',
 'duration-decades' => '{{PLURAL:$1|egy|$1}} évtized',
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',

@@ -1954,6 +1954,8 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'file-exists-duplicate' => 'このファイルは以下の{{PLURAL:$1|ファイル|ファイル群}}と重複しています:',
 'file-deleted-duplicate' => 'このファイル ([[:$1]]) と同一のファイルが以前に削除されています。
 再度アップロードをする前に、以前削除されたファイルの削除記録を確認してください。',
+'file-deleted-duplicate-notitle' => 'このファイルと同一のファイルが、以前に削除されページ名が秘匿されました。
+You should ask someone with the ability to view suppressed file data to review the situation before proceeding to re-upload it.',
 'uploadwarning' => 'アップロード警告',
 'uploadwarning-text' => '下記のファイル解説を修正して再試行してください。',
 'savefile' => 'ファイルを保存',
@@ -4102,8 +4104,8 @@ $5
 通常のプレビューを試してください。',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'この一覧には、$1 {{PLURAL:$1|秒}}より前の変更が表示されていない可能性があります。',
-'lag-warn-high' => 'データベースサーバー遅延のため、この一覧には、$1 {{PLURAL:$1|秒}}より前の変更が表示されていない可能性があります。',
+'lag-warn-normal' => 'この一覧には $1 {{PLURAL:$1|秒}}前以降の変更内容が表示されていないおそれがあります。',
+'lag-warn-high' => 'データベースサーバーの大幅な遅延のため、この一覧には $1 {{PLURAL:$1|秒}}前以降の変更内容が表示されていないおそれがあります。',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'ウォッチリストには {{PLURAL:$1|$1 件のページ}}が登録されています (トークページを除く)。',
@@ -4212,8 +4214,18 @@ $5
 'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name' => 'フック名',
 'version-hook-subscribedby' => '使用個所',
-'version-version' => '(バージョン $1)',
-'version-license' => 'ライセンス',
+'version-version' => '($1)',
+'version-license' => 'MediaWiki のライセンス',
+'version-ext-license' => 'ライセンス',
+'version-ext-colheader-name' => '拡張機能',
+'version-ext-colheader-version' => 'バージョン',
+'version-ext-colheader-license' => 'ライセンス',
+'version-ext-colheader-description' => '説明',
+'version-ext-colheader-credits' => '作者',
+'version-license-title' => '$1 のライセンス',
+'version-license-not-found' => 'この拡張機能には詳細なライセンス情報がありません。',
+'version-credits-title' => '$1 への貢献者情報',
+'version-credits-not-found' => 'この拡張機能には詳細な貢献者情報がありません。',
 'version-poweredby-credits' => "このウィキは、'''[https://www.mediawiki.org/ MediaWiki]''' (copyright © 2001-$1 $2) で動作しています。",
 'version-poweredby-others' => 'その他',
 'version-poweredby-translators' => 'translatewiki.net の翻訳者たち',

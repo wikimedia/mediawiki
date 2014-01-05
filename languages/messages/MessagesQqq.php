@@ -4045,7 +4045,7 @@ Parameters:
 
 See also:
 * {{msg-mw|file-deleted-duplicate-notitle}}',
-'file-deleted-duplicate-notitle' => 'Used in [[Special:Upload] when the title of the deleted duplicate is not available.
+'file-deleted-duplicate-notitle' => 'Used in [[Special:Upload]] when the title of the deleted duplicate is not available.
 
 See also:
 * {{msg-mw|file-deleted-duplicate}}',
@@ -6345,11 +6345,6 @@ See also:
 
 See also:
 * {{msg-mw|Ipb-blockingself}}',
-'ipb-confirmaction' => 'Used to inform the user they need to check the "Confirm block" checkbox on [[Special:Block]] ({{mw-msg|ipb-confirm}}) to continue.
-
-See also:
-* {{msg-mw|Ipb-blockingself}}
-* {{msg-mw|Ipb-confirmhideuser}}',
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.
 
 See also:
@@ -9960,7 +9955,41 @@ Parameters:
 Used in [[Special:Version]], preceeding the Subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345"). Parameters:
 * $1 - (Unused) directory revision number or empty string
 * $2 - checkout revision number',
-'version-license' => '{{Identical|License}} but used specifically for the MediaWiki software',
+'version-license' => 'Used specifically for the MediaWiki software.
+
+Used as heading in [[Special:Version]].',
+'version-ext-license' => "Used in [[Special:Version]].
+
+Used as label for the link pointing to the extension's license page. e.g. [[Special:Version/License/Maps]]
+{{Identical|License}}",
+'version-ext-colheader-name' => 'Column header for the name of an extension.
+{{Identical|Extension}}',
+'version-ext-colheader-version' => 'Column header for describing an extensions version.
+{{Identical|Version}}',
+'version-ext-colheader-license' => 'Column header for describing an extensions license.
+{{Identical|License}}',
+'version-ext-colheader-description' => 'Column header for the description of an extension.
+{{Identical|Description}}',
+'version-ext-colheader-credits' => 'Column header for the list of authors and credits for an extension.
+{{Identical|Author}}',
+'version-license-title' => 'Page title for an extended license for a piece of software.
+
+Used as page title for the license page. e.g. [[Special:Version/License/Maps]].
+
+Parameters:
+* $1 - the name of software',
+'version-license-not-found' => 'Descriptive error used when detailed license text for a piece of software is not found.
+
+See example: [[Special:Version/License/Foo]]',
+'version-credits-title' => 'Page title for an about/credits page for a MediaWiki extension.
+
+Used as heading in credits page. e.g. [[Special:Version/Credits]] and [[Special:Version/Credits/UniversalLanguageSelector]]
+
+Parameters:
+* $1 - the name of the extension',
+'version-credits-not-found' => 'Descriptive error used when detailed about/credits for an extension are not available.
+
+See example: [[Special:Version/Credits/Foo]]',
 'version-poweredby-credits' => 'Message shown on [[Special:Version]]. Parameters:
 * $1 - the current year
 * $2 - a list of selected MediaWiki authors',
@@ -9986,16 +10015,6 @@ See also {{msg-mw|Version-entrypoints}}',
 A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => '{{Optional}}
 A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
-'version-license-title' => 'Page title for an extended license for a piece of software. Argument $1 is the name of software.',
-'version-license-not-found' => 'Descriptive error used when detailed license text for a piece of software is not found',
-'version-credits-title' => 'Page title for an about/credits page for a MediaWiki extension. $1 is the name of the extension.',
-'version-credits-not-found' => 'Descriptive error used when detailed about/credits for an extension are not available.',
-'version-ext-license' => '{{Identical|License}}',
-'version-ext-colheader-name'            => 'Column header for the name of an extension',
-'version-ext-colheader-version'         => '{{Identical|version}} Column header for describing an extensions version',
-'version-ext-colheader-license'         => '{{Identical|License}} Column header for describing an extensions license',
-'version-ext-colheader-description'     => 'Column header for the description of an extension',
-'version-ext-colheader-credits'         => 'Column header for the list of authors and credits for an extension',
 
 # Special:Redirect
 'redirect' => "{{doc-special|Redirect}}

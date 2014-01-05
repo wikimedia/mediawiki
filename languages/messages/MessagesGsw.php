@@ -3296,8 +3296,8 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-gpslongitude-w' => 'weschtl. Längi',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} iber em Meeresspiegel',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} unter em Meeresspiegel',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} iber em Meeresspiegel',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} unter em Meeresspiegel',
 
 'exif-gpsstatus-a' => 'Mässig lauft',
 'exif-gpsstatus-v' => 'Interoperabilität vu Mässige',

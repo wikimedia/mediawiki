@@ -3746,7 +3746,7 @@ $5
 'duration-minutes' => '$1 {{PLURAL:$1|នាទី|នាទី}}',
 'duration-hours' => '$1 {{PLURAL:$1|ម៉ោង|ម៉ោង}}',
 'duration-days' => '$1 {{PLURAL:$1|ថ្ងៃ|ថ្ងៃ}}',
-'duration-weeks' => '$1 {{PLURAL: $1|សប្តាហ៍|សប្តាហ៍}}',
+'duration-weeks' => '$1 {{PLURAL:$1|សប្តាហ៍|សប្តាហ៍}}',
 'duration-years' => '$1 {{PLURAL:$1|ឆ្នាំ|ឆ្នាំ}}',
 'duration-decades' => '$1 {{PLURAL:$1|ទសវត្សរ៍|ទសវត្សរ៍}}',
 'duration-centuries' => '$1 {{PLURAL:$1|សតវត្សរ៍|សតវត្សរ៍}}',

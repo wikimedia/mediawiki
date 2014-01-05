@@ -1561,7 +1561,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'prefs-tokenwatchlist' => 'Tanda',
 'prefs-diffs' => 'Beda',
 'prefs-help-prefershttps' => 'Preferensi ini akan diaktifkan kali berikutnya Anda masuk log.',
-'prefs-tabs-navigation-hint' => 'Tip: Anda dapat menggunakan tomboh panah kiri dan kanan untuk bernavigasi antartab di dalam daftar tab.',
+'prefs-tabs-navigation-hint' => 'Tip: Anda dapat menggunakan tombol panah kiri dan kanan untuk bernavigasi antartab di dalam daftar tab.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat surel tampaknya sah',
@@ -1590,7 +1590,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'userrights-changeable-col' => 'Kelompok yang dapat Anda ubah',
 'userrights-unchangeable-col' => 'Kelompok yang tidak dapat Anda ubah',
 'userrights-irreversible-marker' => '$1*',
-'userrights-conflict' => 'Konflik perubahan hak pengguna! Silakan tinjau ulang dan konfirmasi perubahan anda.',
+'userrights-conflict' => 'Konflik perubahan hak pengguna! Silakan tinjau ulang dan konfirmasi perubahan Anda.',
 'userrights-removed-self' => 'Anda berhasil mencabut hak-hak Anda. Anda tidak bisa lagi mengakses halaman ini.',
 
 # Groups
@@ -4299,8 +4299,8 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-minutes' => '{{PLURAL:$1||}}$1 menit',
 'duration-hours' => '{{PLURAL:$1||}}$1 jam',
 'duration-days' => '{{PLURAL:$1||}}$1 hari',
-'duration-weeks' => '{{PLURAL: $1||}}$1 minggu',
-'duration-years' => '{{PLURAL: $1||}}$1 tahun',
+'duration-weeks' => '{{PLURAL:$1||}}$1 minggu',
+'duration-years' => '{{PLURAL:$1||}}$1 tahun',
 'duration-decades' => '{{PLURAL:$1||}}$1 dekade',
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',

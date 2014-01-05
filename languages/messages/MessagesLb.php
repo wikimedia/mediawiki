@@ -3496,8 +3496,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpslongitude-w' => 'westlech Längt',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} iwwer dem Niveau vum Mier',
-'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} ënner dem Niveau vum Mier',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} iwwer dem Niveau vum Mier',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} ënner dem Niveau vum Mier',
 
 'exif-gpsstatus-a' => 'Miessung am Gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
@@ -3975,7 +3975,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-minutes' => '$1 {{PLURAL:$1|Minutt|Minutten}}',
 'duration-hours' => '$1 {{PLURAL:$1|Stonn|Stonnen}}',
 'duration-days' => '$1 {{PLURAL:$1|Dag|Deeg}}',
-'duration-weeks' => '$1 {{PLURAL: $1|Woch|Wochen}}',
+'duration-weeks' => '$1 {{PLURAL:$1|Woch|Wochen}}',
 'duration-years' => '$1 {{PLURAL:$1|Joer|Joer}}',
 'duration-decades' => '$1 {{PLURAL:$1|Joerzéngt|Joerzéngten}}',
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',

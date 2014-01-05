@@ -444,7 +444,7 @@ $1',
 
 'badaccess' => 'অনুমোদন ত্ৰুটি',
 'badaccess-group0' => 'আপুনি কৰিব বিচৰা কামতো কৰাৰ অধিকাৰ আপোনাৰ নাই।',
-'badaccess-groups' => 'আপুনি অনুৰোধ কৰা কাৰ্য কেৱল {{plural:$2|গোটৰ|গোটৰ}} সদস্যৰ বাবে সীমিত: $1',
+'badaccess-groups' => 'আপুনি অনুৰোধ কৰা কাৰ্য কেৱল {{PLURAL:$2|গোটৰ|গোটৰ}} সদস্যৰ বাবে সীমিত: $1',
 
 'versionrequired' => 'মিডিয়াৱিকিৰ $1 সংকলন থাকিব লাগিব ।',
 'versionrequiredtext' => 'এই পৃষ্ঠাটো ব্যৱহাৰ কৰিবলৈ মিডিয়াৱিকিৰ $1 সংস্কৰণ থাকিব লাগিব । [[Special:Version|সংস্কৰণ পৃষ্ঠা]] চাওক।',
@@ -4026,7 +4026,7 @@ $5
 'duration-minutes' => '$1 {{PLURAL:$1|মিনিট|মিনিট}}',
 'duration-hours' => '$1 {{PLURAL:$1|ঘন্টা|ঘন্টা}}',
 'duration-days' => '$1 {{PLURAL:$1|দিন|দিন}}',
-'duration-weeks' => '{{PLURAL: $1|সপ্তাহ|সপ্তাহ}}',
+'duration-weeks' => '{{PLURAL:$1|সপ্তাহ|সপ্তাহ}}',
 'duration-years' => '$1 {{PLURAL:$1|বছৰ|বছৰ}}',
 'duration-decades' => '$1 {{PLURAL:$1|দশক|দশক}}',
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',

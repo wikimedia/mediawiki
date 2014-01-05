@@ -1537,7 +1537,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|administrator|administratorka}}',
 'group-bureaucrat-member' => '{{GENDER:$1|birokrata|birokratkinja}}',
-'group-suppress-member' => '{{GENDER:$1|revizor|revizorka|revizor}}',
+'group-suppress-member' => '{{GENDER:$1|revizor|revizorka}}',
 
 'grouppage-user' => '{{ns:project}}:Korisnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatski potvrđeni korisnici',

@@ -1172,6 +1172,7 @@ Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla.
 'deadendpages' => 'Pàgini chena iscidda',
 'deadendpagestext' => 'Li sighenti pàgini so chena cullegamenti bessu althri pàgini di {{SITENAME}}.',
 'protectedpages' => 'Pàgini prutiggiddi',
+'protectedpages-noredirect' => 'Cuà rinvii',
 'protectedpagesempty' => 'Abà nò vi so pàgini prutiggiddi.',
 'protectedtitles' => 'Tìturi prutiggiddi',
 'protectedtitlesempty' => 'Abà nò vi so tìturi prutiggiddi.',

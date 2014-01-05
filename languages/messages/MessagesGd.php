@@ -309,8 +309,8 @@ Seall air [[Special:Version|duilleag an tionndaidh]].',
 'youhavenewmessages' => 'Tha $1 ($2) agad.',
 'youhavenewmessagesfromusers' => 'Tha $1 o {{PLURAL:$3|aon chleachdaiche|$3 chleachdaiche|$3 cleachdaichean|$3 cleachdaiche}} agad ($2).',
 'youhavenewmessagesmanyusers' => 'Tha $1 agad o iomadh cleachdaiche ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|aon teachdaireachd ùr|$1 theachdaireachd ùr|$1 teachdaireachdan ùra|$1 teachdaireachd ùr}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|am mùthadh|an $1 mhùthadh|na $1 mùthaidhean|na $1 mùthadh}} mu dheireadh',
+'newmessageslinkplural' => '{{PLURAL:$1|teachdaireachd ùr|theachdaireachd ùr|theachdaireachdan ùra|teachdaireachd ùr}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|mhùthadh|mhùthadh|mùthaidhean|mùthadh}} mu dheireadh',
 'youhavenewmessagesmulti' => 'Tha teachdaireachdan ùra agad ann an $1',
 'editsection' => 'deasaich',
 'editold' => 'deasaich',
@@ -438,7 +438,7 @@ Thug an rianaire a ghlais e seachad an t-adhbhar a leanas: "$3".',
 'invalidtitle-knownnamespace' => 'Tiotal mì-dhligheach leis an namespace "$2" agus an teacsa "$3"',
 'invalidtitle-unknownnamespace' => 'Tiotal mì-dhligheach leis an àireamh namespace $1 agus an teacsa "$2"',
 'exception-nologin' => 'Chan eil thu air clàradh a-steach',
-'exception-nologin-text' => 'Feumaidh tu clàradh a-steach air an uicipeid seo mus urrainn dhut seo a dhèanamh.',
+'exception-nologin-text' => 'Feumaidh tu [[Special:Userlogin|clàradh a-steach]] mus fhaic thu an duilleag seo no mus urrainn dhut seo a dhèanamh.',
 
 # Virus scanner
 'virus-badscanner' => "Droch cho-dhealbhachd: sganair bhìorasan neo-aithnichte: ''$1''",
@@ -542,7 +542,7 @@ Feuch ris a-rithist.',
 'passwordtooshort' => "Feumaidh faclan-faire a bhith {{PLURAL:$1|$1 charactar|$1 charactar|$1 caractaran|$1 caractar}} a dh'fhaid air a' char as lugha.",
 'password-name-match' => "Chan fhaod am facal-faire 's an t-ainm-cleachdaiche agad a bhith co-ionnann.",
 'password-login-forbidden' => "Tha an t-ainm-cleachdaiche 's am facal-faire seo toirmisgte.",
-'mailmypassword' => "Cuir facal-faire ùr thugam air a' phost-dealain",
+'mailmypassword' => 'Ath-shuidhich am facal-faire',
 'passwordremindertitle' => 'Facal-faire sealach ùr airson {{SITENAME}}',
 'passwordremindertext' => 'Dh\'iarr cuideigin (\'s mathaid gun do dh\'iarr thusa seo on t-seòladh IP $1) facal-faire ùr airson {{SITENAME}} ($4). Chaidh facal-faire sealach a chruthachadh airson "$2" a tha \'na "$3".
 Ma bha sin fa-near dhut, bidh agad ri clàradh a-steach agus facal-faire ùr a thaghadh
@@ -614,7 +614,7 @@ Saoil an do dh'atharraich thu am facal-faire agad mu thràth no an do dh'iarr th
 # Special:PasswordReset
 'passwordreset' => 'Ath-shuidhich am facal-faire',
 'passwordreset-text-one' => 'Lìon am foirm seo gus am facal-faire agad ath-shuidheachadh.',
-'passwordreset-text-many' => '{{PLURAL:$1|Lìon aon dhe na raointean gus am facal-faire agad ath-shuidheachadh.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Lìon aon dhe na raointean gus facal-faire sealach fhaighinn ann am post-d.}}',
 'passwordreset-legend' => 'Ath-shuidhich am facal-faire',
 'passwordreset-disabled' => 'Chaidh ath-shuidheachadh nam faclan-faire a chur à comas air an uicipeid seo.',
 'passwordreset-emaildisabled' => "Chaidh feartan a' phuist-d a chur à comas san uicipeid seo.",
@@ -1013,8 +1013,8 @@ Gheibh rianairean eile air {{SITENAME}} greim fhathast air an t-susbaint fhalaic
 'revdelete-hide-user' => 'Ainm-cleachdaiche/seòladh IP an deasaiche',
 'revdelete-hide-restricted' => 'Mùch dàta o rianairean agus càch',
 'revdelete-radio-same' => '(na atharraich)',
-'revdelete-radio-set' => 'Ri fhaicinn',
-'revdelete-radio-unset' => 'Falaichte',
+'revdelete-radio-set' => 'Falaichte',
+'revdelete-radio-unset' => 'Ri fhaicinn',
 'revdelete-suppress' => 'Mùch dàta o rianairean agus càch',
 'revdelete-unsuppress' => 'Thoir air falbh na bacaidhean air mùthaidhean a chaidh aiseag',
 'revdelete-log' => 'Adhbhar:',
@@ -1322,7 +1322,7 @@ Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.
 'rclistfrom' => 'Seall na mùthaidhean ùra a-mach o $1',
 'rcshowhideminor' => '$1 mùthaidhean beaga',
 'rcshowhidebots' => '$1 botaichean',
-'rcshowhideliu' => '$1 neach-cleachdaidh air logadh a-steach',
+'rcshowhideliu' => '$1 neach-cleachdaidh clàraichte',
 'rcshowhideanons' => '$1 luchd-cleachdaidh gun ainm',
 'rcshowhidepatr' => '$1 na deasachaidhean fo aire freiceadain',
 'rcshowhidemine' => '$1 na mùthaidhean agam',
@@ -1758,6 +1758,9 @@ Tadhail air [https://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki]
 'others' => 'eile',
 'siteusers' => '{{PLURAL:$2|cleachdaiche|cleachdaichean}} {{SITENAME}} $1',
 
+# Info page
+'pageinfo-toolboxlink' => 'Fiosrachadh mun duilleag',
+
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',
 'nextdiff' => 'Deasachadh nas ùire →',
@@ -1766,7 +1769,7 @@ Tadhail air [https://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki]
 'file-info-size' => '$1 × $2 pixel, meud an fhaidhle: $3, seòrsa MIME: $4',
 'file-nohires' => 'Chan eil dùmhlachd-bhreacaidh nas fhearr ri fhaighinn.',
 'svg-long-desc' => 'Faidhle SVG, a-rèir ainm $1 × $2 pixel, meud faidhle: $3',
-'show-big-image' => 'Dùmhlachd-bhreacaidh shlàn',
+'show-big-image' => 'Am faidhle tùsail',
 
 # Special:NewFiles
 'ilsubmit' => 'Rannsaich',

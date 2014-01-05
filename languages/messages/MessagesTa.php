@@ -3637,11 +3637,11 @@ $5
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|நொடி|நொடிகள்}}',
-'duration-minutes' => '{{PLURAL: $1|நிமிடம்|நிமிடங்கள்}}',
+'duration-minutes' => '{{PLURAL:$1|நிமிடம்|நிமிடங்கள்}}',
 'duration-hours' => '$1 {{PLURAL:$1|மணி|மணிகள்}} முன்பு',
 'duration-days' => '$1 {{PLURAL:$1|நாள்|நாட்கள்}}',
-'duration-weeks' => '{{PLURAL: $1|வாரம்|வாரங்கள்}}',
-'duration-years' => '{{PLURAL: $1|வருடம்|வருடங்கள்}}',
+'duration-weeks' => '{{PLURAL:$1|வாரம்|வாரங்கள்}}',
+'duration-years' => '{{PLURAL:$1|வருடம்|வருடங்கள்}}',
 'duration-decades' => '$1 {{PLURAL:$1|பத்தாண்டு|பத்தாண்டுகள்}}',
 'duration-centuries' => '$1 {{PLURAL:$1|நூற்றாண்டு|நூற்றாண்டுகள்}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ஆயிரம் ஆண்டு|ஆயிரம் ஆண்டுகள்}}',

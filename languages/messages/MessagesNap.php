@@ -63,10 +63,10 @@ $messages = array(
 'tog-extendwatchlist' => "Spanne ll'asservate speciale pe fà vedé tutte 'e cagnàmiente, nun solo l'ultimo",
 'tog-usenewrc' => 'Urdeme càgnamiente avanzate (JavaScript)',
 'tog-numberheadings' => "Annúmmera automatecamente 'e títule",
-'tog-showtoolbar' => "Aspone 'a barra d''e stromiente 'e cagno (JavaScript)",
-'tog-editondblclick' => "Cagna 'e pàggene cliccanno ddoje vote (JavaScript)",
+'tog-showtoolbar' => "Aspone 'a barra d''e stromiente 'e cagno",
+'tog-editondblclick' => "Cagna 'e pàggene cliccanno ddoje vote",
 'tog-editsection' => "Permette 'e cagnà 'e sezzione cu a jonta [cagna]",
-'tog-editsectiononrightclick' => "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione (JavaScript)",
+'tog-editsectiononrightclick' => "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione",
 'tog-showtoc' => "Mosta ll'innece pe 'e paggene cu cchiù 'e 3 sezzione",
 'tog-rememberpassword' => "Ricurda 'a registrazzione pe' cchiu sessione (ppe 'numassimo 'e $1 {{PLURAL:$1|juorno|juorne}})",
 
@@ -155,7 +155,7 @@ $messages = array(
 'newwindow' => "(s'arape n'ata fenèsta)",
 'cancel' => 'Scancèlla',
 'moredotdotdot' => 'Cchiù...',
-'morenotlisted' => 'Atro...',
+'morenotlisted' => 'Chisto elenco nun è cumpreto.',
 'mypage' => 'Paggena',
 'mytalk' => "'E mmie chiàcchieriate",
 'anontalk' => 'Chiacchierate pe chisto IP',
@@ -247,7 +247,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => "'Nfrummazione ncòpp'a {{SITENAME}}",
 'aboutpage' => "Project:'Nfrummazione",
-'copyright' => "Cuntenuti suggietti a licienza 'e uso $1.",
+'copyright' => "Cuntenute suggiette a licienza 'e auso $1 se nun fuje ritto atro.",
 'copyrightpage' => '{{ns:project}}:Copyrights',
 'currentevents' => 'Novità',
 'currentevents-url' => 'Project:Novità',
@@ -302,7 +302,7 @@ $messages = array(
 'internalerror' => "Errore 'nterno",
 'internalerror_info' => "Errore 'nterno: $1",
 'filedeleteerror' => 'Nun se pô scancellà \'o file "$1"',
-'cannotdelete' => "Nun è possibbele scassà 'a paggena o 'a fiura addamannata. (Putria éssere stato già scancellato.)",
+'cannotdelete' => "Nun è possibbele scassà 'a paggena o 'a fiura $1 addamannata. Putria éssere stato già scancellato.",
 'badtitle' => "'O nnomme nun è jùsto",
 'viewsource' => 'Vere sorgente',
 'viewsource-title' => "Vere surgente 'e $1",
@@ -311,7 +311,7 @@ $messages = array(
 # Login and logout pages
 'logouttext' => "'''Site asciùte.'''
 
-Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putite trasì n'ata vota, cu 'o stesso nomme o cu n'ato nomme.",
+Nota ca arcune paggene potrebbero cuntinuà ad apparire comme se 'o logout nun fosse avvenuto finché nun venne pulita 'a cache d\"o proprio browser.",
 'welcomeuser' => 'Bemmenuto, $1!',
 'yourname' => 'Nomme utente',
 'userlogin-yourname' => 'Nomme utente',
@@ -353,7 +353,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'loginsuccess' => "'''Si stato cunnesso ô server 'e {{SITENAME}} cu 'o nomme utente 'e \"\$1\".'''",
 'nosuchusershort' => 'Nun ce stanno utente cu o nòmme "$1". Cuntrolla si scrivìste buòno.',
 'nouserspecified' => "Tiene 'a dìcere nu nomme pricìso.",
-'acct_creation_throttle_hit' => 'Ce dispiace, haje già criato $1 utente. Nun ne pô crià ate.',
+'acct_creation_throttle_hit' => "{{PLURAL:$1|1 registrazzione è già stata effettuata|$1 registrazzione song già state effettuate}} 'e qualcuno cu 'o tujo stisso innerezzo IP dint'ô urdemo juorno: è 'o massimo cunsentito 'n chisto periodo 'e tiempo.
+Perciò, 'e utente ca ausano chisto innerezzo IP nun possono registrarse ppe 'o mumiento.",
 'accountcreated' => 'Cunto criato',
 'loginlanguagelabel' => 'Lengua: $1',
 
@@ -395,7 +396,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'loginreqlink' => "aseguì ll'acciesso",
 'loginreqpagetext' => "Pe' veré ate ppaggene abbesognate $1.",
 'accmailtitle' => "'O password è stato mannato.",
-'accmailtext' => '\'A password pe ll\'utente "$1" fuje mannata ô nnerizzo $2.',
+'accmailtext' => "'Na password gennerata casualmente ppe [[User talk:$1|$1]] è stata mannata a $2. Chista password può essere càgnata dint'â paggena ppe ''[[Special:ChangePassword|càgna 'a password]]'' subbeto doppo l'acciesso.",
 'newarticle' => '(Novo)',
 'previewnote' => "'''Chesta è sola n'anteprimma; 'e cagnamiénte â paggena nun songo ancora sarvate!'''",
 'editing' => "Cagnamiento 'e $1",
@@ -504,7 +505,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'newpageletter' => 'N',
 'boteditletter' => 'b',
 'rc_categories_any' => 'Qualònca',
-'rc-enhanced-expand' => 'Fa vede dettaglie (richiede JavaScript)',
+'rc-enhanced-expand' => 'Fa vede dettaglie',
 'rc-enhanced-hide' => 'Annascunne dettaglie',
 
 # Recent changes linked
@@ -576,9 +577,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Special:Categories
 'categories' => 'Categurìe',
-'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.
-[[Special:UnusedCategories|Unused categories]] are not shown here.
-Also see [[Special:WantedCategories|wanted categories]].",
+'categoriespagetext' => "{{PLURAL:$1|'A categurìa 'nnecata 'e seguito cuntiene|'E categurìe 'nnecate 'e seguito cuntengono}} paggene o file multimediale.
+'E [[Special:UnusedCategories|categurìe vuote]] nun song mostrate ccà.
+Vere anche 'e [[Special:WantedCategories|categurìe richieste]].",
 
 # Special:LinkSearch
 'linksearch-ok' => 'Truova',
@@ -616,7 +617,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 # Protect
 'protectedarticle' => 'ha prutetto "[[$1]]"',
 'prot_1movedto2' => 'ha spustato [[$1]] a [[$2]]',
-'protect-expiry-options' => '2 ore:2 hours,1 juorno:1 day,3 juorne:3 days,1 semmana:1 week,2 semmane:2 weeks,1 mise:1 month,3 mese:3 months,6 mese:6 months,1 anno:1 year,infinito:infinite',
+'protect-expiry-options' => '1 ore:1 hour,1 juorno:1 day,1 semmana:1 week,2 semmane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anno:1 year,infinito:infinite',
 
 # Undelete
 'viewdeletedpage' => "Vìre 'e ppàggine scancellate",
@@ -630,7 +631,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 # Contributions
 'contributions' => 'Contribbute {{GENDER:$1|utente}}',
 'mycontris' => "'E ffatiche d''e mmeje",
-'contribsub2' => 'Ppe $1 ($2)',
+'contribsub2' => 'Ppe {{GENDER:$3|$1}} ($2)',
 'uctop' => '(attuale)',
 'month' => 'D"o mese (e primma):',
 'year' => "'E ll'anno (e primma):",
@@ -669,7 +670,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'contribslink' => 'contribuzzione',
 'blocklogpage' => 'Blocche',
 'blocklogentry' => 'ha fermato "[[$1]]" pe\' nu mumento \'e $2 $3',
-'blocklogtext' => "Chesta è 'a lista d''e azzione 'e blocco e sblocco utente.  'E nnerizze IP bloccate automaticamente nun nce so'. Addumannà 'a [[Special:BlockList|lista IP bloccate]] pp' 'a lista d''e nnerizze e nomme utente 'o ca blocco nce sta.",
+'blocklogtext' => "Chesta è 'a lista d''e azzione 'e blocco e sblocco utente.  'E nnerizze IP bloccate automaticamente nun nce so'. Addumannà 'a [[Special:BlockList|lista bloccate]] pp' 'a lista d''e nnerizze e nomme utente 'o ca blocco nce sta.",
 
 # Move page
 'movearticle' => "Spusta 'a paggena",
@@ -785,7 +786,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'confirmemail_loggedin' => "'O nnerizzo 'e e-mail è vàleto",
 
 # Delete conflict
-'deletedwhileediting' => 'Attenziòne: quaccherùno have scancellàto chesta pàggena prìmma ca tu accuminciàste â scrìvere!',
+'deletedwhileediting' => 'Attenziòne: quaccherùno have scancellàto chesta pàggena doppo ca tu accuminciàste â scrìvere!',
 
 # Auto-summaries
 'autoredircomment' => 'Redirect â paggena [[$1]]',

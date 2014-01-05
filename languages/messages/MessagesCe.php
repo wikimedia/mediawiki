@@ -630,7 +630,7 @@ $1',
 'nstab-user' => 'Декъашхо',
 'nstab-media' => 'Медиа агӀо',
 'nstab-special' => 'Белха агlо',
-'nstab-project' => 'Проектех',
+'nstab-project' => 'Проектах лаьцна',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Хаам',
 'nstab-template' => 'Кеп',
@@ -1748,6 +1748,7 @@ PICT # тайп тайпан
 'move' => 'Цlе хийца',
 'movethispage' => 'Хlокху агlон цlе хийца',
 'unusedimagestext' => 'Дехар до, тидаме эца, кхин йолу дуьнана машан-меттигаш а лелош хила мега нийсса йогӀу хьажораг (URL) хӀокху хӀуман, хӀокху могӀаме йогӀуш ялахь яцахь а иза хила мега жигара лелош.',
+'unusedcategoriestext' => 'ХӀокху категорешан чохь агӀонаш я кхин категореш яц.',
 'notargettitle' => 'Ӏалашо билгал йина яц',
 'notargettext' => 'И кхочушдан ахьа билгал йина яц Ӏалашонан агӀо я декъашхо.',
 'nopagetitle' => 'Ишта агӀо яц',
@@ -1823,9 +1824,15 @@ PICT # тайп тайпан
 
 # Special:ListGroupRights
 'listgrouprights' => 'Декъашхойн тобанаши бакъонаш',
+'listgrouprights-summary' => 'Лахахьа гойту декъашхошна яла йиш йолу бакъонаш. [[{{MediaWiki:Listgrouprights-helppage}}|хьажа кхин хааме]].',
+'listgrouprights-key' => 'Легенда:
+* <span class="listgrouprights-granted">Ела бакъонаш</span>
+* <span class="listgrouprights-revoked">ДӀаяьхна бакъонаш</span>',
 'listgrouprights-group' => 'Тоба',
+'listgrouprights-rights' => 'Бакъонаш',
 'listgrouprights-helppage' => 'Help:Тобан бакъонаш',
 'listgrouprights-members' => '(тобан могlам)',
+'listgrouprights-addgroup-all' => 'массо тобанийн юкъатоха йиш ю',
 
 # Email user
 'mailnologintext' => 'Электронан кехаташ кхехьийта йиш хилийта [[Special:UserLogin|системин чугӀо]] кхин декъашхошка хаамаш кхехьийта хьа [[Special:Preferences|гӀирса чохь]] бакъалла долу электронан почтан адрес хила деза.',
@@ -1957,7 +1964,7 @@ PICT # тайп тайпан
 ** гӀараялл агӀо',
 'protect-edit-reasonlist' => 'Бахьанин список нисяр',
 'protect-expiry-options' => '1 сахьт:1 hour,1 де:1 day,1 кӀиран:1 week,2 кӀиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
-'restriction-type' => 'Бакъо:',
+'restriction-type' => 'Бакъонаш:',
 'restriction-level' => 'ТӀекхочаран локхалла:',
 'minimum-size' => 'Лаххара бараме',
 'maximum-size' => 'Лаккхара бараме:',
@@ -2513,6 +2520,7 @@ PICT # тайп тайпан
 'exif-sharpness-0' => 'Лартӏахь',
 
 'exif-dc-date' => 'Терахь(ш)',
+'exif-dc-rights' => 'Бакъонаш',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'массо',
@@ -2589,6 +2597,7 @@ PICT # тайп тайпан
 'version-parser-function-hooks' => 'Cинтаксисан къасторан функци схьалоцурш',
 'version-version' => '(Верси $1)',
 'version-license' => 'Бакъо',
+'version-ext-colheader-version' => 'Верси',
 'version-poweredby-credits' => "ХӀара вики болх беш ю '''[https://www.mediawiki.org/ MediaWiki]''' движок тӀехь, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'кхин',
 'version-license-info' => 'MediaWiki ю маьрша программин латораг, шу йиш ю фондас арахецна йолу GNU General Public License лицензица и яржо я хийца а.

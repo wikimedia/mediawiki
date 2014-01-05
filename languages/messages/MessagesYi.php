@@ -3699,7 +3699,7 @@ $5
 'version-parser-extensiontags' => 'פארזער פארברייטערן טאַגן',
 'version-hook-name' => 'נאמען פון hook',
 'version-version' => '(ווערסיע $1)',
-'version-license' => 'ליצענץ',
+'version-license' => 'מעדיעוויקי ליצענץ',
 'version-poweredby-others' => 'אַנדערע',
 'version-poweredby-translators' => 'translatewiki.net איבערזעצער',
 'version-credits-summary' => 'מיר ווילן אנערקענען די פֿאלגנדע מענטשן פֿאר זייער בײַשטײַערוג צו [[Special:Version|מעדיעוויקי]].',

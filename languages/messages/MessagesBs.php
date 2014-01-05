@@ -1312,7 +1312,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'showhideselectedversions' => 'Pokaži/sakrij odabrane verzije',
 'editundo' => 'ukloni ovu izmjenu',
 'diff-empty' => '(Nema razlike)',
-'diff-multi' => '({{plural:$1|Nije prikazana jedna međurevizija|Nisu prikazane $1 međurevizije|Nije prikazano $1 međurevizija}} od {{PLURAL:$2|jednog korisnika|$2 korisnika}})',
+'diff-multi' => '({{PLURAL:$1|Nije prikazana jedna međurevizija|Nisu prikazane $1 međurevizije|Nije prikazano $1 međurevizija}} od {{PLURAL:$2|jednog korisnika|$2 korisnika}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Jedna međurevizija|$1 međurevizije|$1 međurevizija}} od više od $2 {{PLURAL:$2|korisnika|korisnika}} {{PLURAL:$1|nije prikazana|nisu prikazane}})',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna izmjena|$2 izmjene}} od ove razlike ($1) ne {{PLURAL:$2|postoji|postoje}}.
 

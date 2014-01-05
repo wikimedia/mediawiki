@@ -1075,6 +1075,9 @@ Naslednji argumenti so bili izpuščeni.",
 'cantcreateaccount-text' => "Registracije z IP-naslova ('''$1''') je administrator(ka) [[User:$3|$3]] blokiral(a).
 
 Razlog, ki ga je $3 podal(a), je ''$2''.",
+'cantcreateaccount-range-text' => "Ustvarjanje računov z IP-naslovov v območju '''$1''', ki vključuje vaš IP-naslov ('''$4'''), je blokiral(-a) [[User:$3|$3]].
+
+Razlog, ki ga je podal(-a) $3, je ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Poglej dnevniške zapise o strani',
@@ -1736,6 +1739,8 @@ Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom.
 'file-exists-duplicate' => 'Ta datoteka je dvojnik {{PLURAL:$1|naslednje datoteke|naslednjih datotek}}:',
 'file-deleted-duplicate' => 'Datoteka je identična tej ([[:$1]]), ki je bila predhodno izbrisana.
 Preverite zgodovino brisanja datoteke, preden jo ponovno naložite.',
+'file-deleted-duplicate-notitle' => 'Datoteka, identična tej datoteki, je bila v preteklosti izbrisana in naslov je bil zatrt.
+Poprosite koga, ki ima možnost ogleda podatkov zatrtih datotek, da preveri položaj, preden nadaljujete s ponovnim nalaganjem.',
 'uploadwarning' => 'Opozorilo!',
 'uploadwarning-text' => 'Prosimo, spremenite opis datoteke spodaj in poskusite ponovno.',
 'savefile' => 'Shrani datoteko',
@@ -2124,6 +2129,7 @@ Sedaj je preusmeritev na [[$2]].',
 'protectedpages' => 'Zaščitene strani',
 'protectedpages-indef' => 'Samo neomejene zaščite',
 'protectedpages-cascade' => 'Le kaskadne zaščite',
+'protectedpages-noredirect' => 'Skrij preusmeritve',
 'protectedpagesempty' => 'Nobena stran ni trenutno zaščitena s temi parametri.',
 'protectedtitles' => 'Zaščiteni naslovi',
 'protectedtitlesempty' => 'Noben naslov ni trenutno zaščiten s temi parametri.',
@@ -2400,6 +2406,7 @@ Izbris takšnih strani je bil omejen v izogib neželenim motnjam {{GRAMMAR:dativ
 'delete-warning-toobig' => 'Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.
 Njeno brisanje lahko zmoti obratovanje zbirke podatkov {{GRAMMAR:dative|{{SITENAME}}}};
 nadaljujte s previdnostjo.',
+'deleting-backlinks-warning' => "'''Opozorilo:''' Druge strani se povezujejo na stran, ki jo nameravate izbrisati.",
 
 # Rollback
 'rollback' => 'Vrni spremembe',
@@ -3436,8 +3443,8 @@ Druga bodo po privzetem skrita.
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',
 
-'exif-xyresolution-i' => '$1 dpi ({{plural:$1|točka/palec|točki/palec|točke/palec|točk/palec|točk/palec}})',
-'exif-xyresolution-c' => '$1 dpc ({{plural:$1|točka/centimeter|točki/centimeter|točke/centimeter|točk/centimeter|točk/centimeter}})',
+'exif-xyresolution-i' => '$1 dpi ({{PLURAL:$1|točka/palec|točki/palec|točke/palec|točk/palec|točk/palec}})',
+'exif-xyresolution-c' => '$1 dpc ({{PLURAL:$1|točka/centimeter|točki/centimeter|točke/centimeter|točk/centimeter|točk/centimeter}})',
 
 'exif-colorspace-65535' => 'Neumerjeno',
 
@@ -3818,7 +3825,17 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'version-hook-name' => 'Ime razširitve',
 'version-hook-subscribedby' => 'Naročen s strani',
 'version-version' => '(Različica $1)',
-'version-license' => 'Licenca',
+'version-license' => 'Dovoljenje MediaWiki',
+'version-ext-license' => 'Dovoljenje',
+'version-ext-colheader-name' => 'Razširitev',
+'version-ext-colheader-version' => 'Različica',
+'version-ext-colheader-license' => 'Dovoljenje',
+'version-ext-colheader-description' => 'Opis',
+'version-ext-colheader-credits' => 'Avtorji',
+'version-license-title' => 'Dovoljenje za $1',
+'version-license-not-found' => 'Za razširitev nismo našli podrobnih informacij o dovoljenju.',
+'version-credits-title' => 'Zasluge za $1',
+'version-credits-not-found' => 'Za razširitev nismo našli podrobnih informacij o zaslugah.',
 'version-poweredby-credits' => "Ta wiki poganja '''[https://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 'version-poweredby-others' => 'drugi',
 'version-poweredby-translators' => 'Prevajalci translatewiki.net',
@@ -4039,6 +4056,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-overwrite' => 'Prepisovanje obstoječe datoteke ni dovoljeno.',
 'api-error-stashfailed' => 'Notranja napaka: strežnik ni uspel shraniti začasne datoteke.',
 'api-error-publishfailed' => 'Notranja napaka: strežnik ni uspel objaviti začasne datoteke.',
+'api-error-stasherror' => 'Pri nalaganju datoteke v hrambo je prišlo do napake.',
 'api-error-timeout' => 'Strežnik se ni odzval v pričakovanem času.',
 'api-error-unclassified' => 'Prišlo je do neznane napake',
 'api-error-unknown-code' => 'Neznana napaka: »$1«',

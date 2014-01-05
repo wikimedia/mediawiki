@@ -4222,7 +4222,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-hours' => '$1 {{PLURAL:$1|hora|horas}}',
 'duration-days' => '$1 {{PLURAL:$1|día|días}}',
 'duration-weeks' => '$1 {{PLURAL:$1|semana|semanas}}',
-'duration-years' => '$1 {{PLURAL: $1|año|años}}',
+'duration-years' => '$1 {{PLURAL:$1|año|años}}',
 'duration-decades' => '$1 {{PLURAL:$1|década|décadas}}',
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
