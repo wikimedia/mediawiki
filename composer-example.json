@@ -4,8 +4,8 @@
 	},
 	"suggest": {
 		"ext-fileinfo": "*",
-		"ext-mbstring": "*",
-		"ext-wikidiff2": "*",
-		"ext-apc": "*"
+		"ext-mbstring": "Faster unicode handling",
+		"ext-wikidiff2": "Faster diff generation",
+		"ext-apc": "Speed up MediaWiki with opcode caching (before PHP 5.5)"
 	}
 }
