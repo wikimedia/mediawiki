@@ -9,3 +9,13 @@
 /*
 .mw-email-authenticated .mw-input { }
 */
+
+/**
+ * Hide, but keep accessible for screen-readers.
+ * Like .mw-jump, #jump-to-nav from skins/common/shared.css
+ */
+.mw-navigation-hint {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}
