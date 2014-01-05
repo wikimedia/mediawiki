@@ -65,6 +65,9 @@ production.
   its #test method when strings are used in the browser map: version '1.10' is
   now correctly considered larger than '1.2'. Using numbers in the version map
   is not affected.
+* Configurable per-namespace "page notices", akin to editnotices but appearing
+  at the top of each page when viewed, are now available. Use
+  MediaWiki:Pagenotice-# where # is the namespace number.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

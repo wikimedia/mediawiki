@@ -2440,6 +2440,12 @@ $title: The Title object for the page the edit notices are for
 $oldid: Revision ID that the edit notices are for (or 0 for latest)
 &$notices: Array of notices. Keys are i18n message keys, values are parseAsBlock()ed messages.
 
+'TitleGetPageNotices': Allows extensions to add page notices (arbitrary content
+displayed at the top of a page).
+$title: The Title object for the page the notices are for
+$oldid: Revision ID being viewed (or 0 if not available)
+&$notices: Array of notices. Keys are i18n message keys, values are parseAsBlock()ed messages.
+
 'TitleGetRestrictionTypes': Allows extensions to modify the types of protection
 that can be applied.
 $title: The title in question.
