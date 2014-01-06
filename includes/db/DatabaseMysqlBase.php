@@ -681,7 +681,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->addQuotes( $pos->file );
-		$encPos = intval( $pos->pos );
+		$encPos = intval( $pos->getMasterPos() );
 		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		$res = $this->doQuery( $sql );
 
@@ -1254,5 +1254,12 @@ class MySQLMasterPos implements DBMasterPos {
 		$thatPos = $pos->getCoordinates();
 
 		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getMasterPos() {
+		return $this->pos;
 	}
 }
