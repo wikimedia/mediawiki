@@ -149,6 +149,7 @@ class MagicWord {
 		'contentlanguage',
 		'numberofadmins',
 		'numberofviews',
+		'cascadingsources',
 	);
 
 	/* Array of caching hints for ParserCache */

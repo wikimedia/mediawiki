@@ -54,7 +54,7 @@ class CoreParserFunctions {
 			'talkpagename', 'talkpagenamee', 'subjectpagename',
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
-			'revisiontimestamp', 'revisionuser',
+			'revisiontimestamp', 'revisionuser', 'cascadingsources',
 		);
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
@@ -1118,4 +1118,32 @@ class CoreParserFunctions {
 		$rev = self::getCachedRevisionObject( $parser, $t );
 		return $rev ? $rev->getUserText() : '';
 	}
+
+	/**
+	 * Returns the sources of any cascading protection acting on a specified page.
+	 * Pages will not return their own title unless they transclude themselves.
+	 * This is an expensive parser function and can't be called too many times per page.
+	 *
+	 * @param Parser $parser
+	 * @param string $title
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function cascadingsources( $parser, $title = '' ) {
+		$titleObject = Title::newFromText( $title );
+		if ( !( $titleObject instanceof Title ) ) {
+			$titleObject = $parser->mTitle;
+		}
+		$names = array();
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$sources = $titleObject->getCascadeProtectionSources();
+			foreach ( $sources[0] as $sourceTitle ) {
+				$names[] = $sourceTitle->getText();
+			}
+		}
+
+		return implode( $names, '|' );
+	}
+
 }
