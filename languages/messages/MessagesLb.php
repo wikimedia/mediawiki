@@ -1054,6 +1054,9 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'cantcreateaccount-text' => 'D\'Opmaache vu Benotzerkonten vun dëser IP Adress (\'\'\'$1\'\'\') gouf vum [[User:$3|$3]] gespaart.
 
 De Benotzer $3 huet "$2" als Grond uginn.',
+'cantcreateaccount-range-text' => "D'Uleeë vu Benotzerkonte vun IP-Adressen aus dem Beräich \"\$1\", zu deem Är IP-Adress ('''\$4''') gehéiert, gouf vum [[User:\$3|\$3]] gespaart.
+
+De Grond den den \$3 uginn huet ass ''\$2''",
 
 # History pages
 'viewpagelogs' => 'Logbicher fir dës Säit weisen',
@@ -3138,7 +3141,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'minutes' => '{{PLURAL:$1|enger Minutt|$1 Minutten}}',
 'hours' => '{{PLURAL:$1|enger Stonn|$1 Stonnen}}',
 'days' => '{{PLURAL:$1|engem Dag|$1 Deeg}}',
-'weeks' => '{{PLURAL: $1|eng Woch|$1 Wochen}}',
+'weeks' => '{{PLURAL:$1|eng Woch|$1 Wochen}}',
 'months' => '{{PLURAL:$1|ee Mount|$1 Méint}}',
 'years' => '{{PLURAL:$1|ee Joer|$1 Joer}}',
 'ago' => 'viru(n) $1',
@@ -3496,8 +3499,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-gpslongitude-w' => 'westlech Längt',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} iwwer dem Niveau vum Mier',
-'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|Meter|Meter}} ënner dem Niveau vum Mier',
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|Meter}} iwwer dem Niveau vum Mier',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|Meter}} ënner dem Niveau vum Mier',
 
 'exif-gpsstatus-a' => 'Miessung am Gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
@@ -3741,7 +3744,14 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-hook-name' => 'Numm vun der Klamer',
 'version-hook-subscribedby' => 'Opruff vum',
 'version-version' => '(Versioun $1)',
-'version-license' => 'Lizenz',
+'version-license' => 'MediaWiki-Lizenz',
+'version-ext-license' => 'Lizenz',
+'version-ext-colheader-name' => 'Erweiderung',
+'version-ext-colheader-version' => 'Versioun',
+'version-ext-colheader-license' => 'Lizenz',
+'version-ext-colheader-description' => 'Beschreiwung',
+'version-ext-colheader-credits' => 'Auteuren',
+'version-license-title' => 'Lizenz fir $1',
 'version-poweredby-credits' => "Dës Wiki funktionéiert mat '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anerer',
 'version-poweredby-translators' => 'translatewiki.net Iwwersetzer',

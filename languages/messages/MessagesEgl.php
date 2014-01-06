@@ -27,6 +27,11 @@ $messages = array(
 'tog-editsection' => 'Mudéfica dal sesiòun per mèz dal colegamèint [mudéfica].',
 'tog-editsectiononrightclick' => 'Mudéfica dal sesiòun per mèz dal cléch a dréta insém al tétol.',
 'tog-showtoc' => "Fà vèder al sûnt (p'r al pàgini cun pió 'd 3 sesiòun)",
+'tog-rememberpassword' => "Tîn a mèint la cêva 'd ingrès insém a cól navigadōr ché (per un mâsim ed $1{{PLURAL:$1|dé}}).",
+'tog-watchcreations' => "Zûnta al pàgini fâti e i file carghê int i tgnû 'd ôc specêl.",
+'tog-watchmoves' => "Zûnta al pàgini e i file spustê int i tgnû 'd ôc specêl.",
+'tog-watchdeletion' => "Zûnta al pàgini e i file scanşlê int i tgnû 'd ôc specêl.",
+'tog-minordefault' => 'Sògna ògni mudéfica cme céca (sōl cme pre-stabilî)',
 
 # Dates
 'sunday' => 'Dumènica',
@@ -264,7 +269,9 @@ $messages = array(
 'nologin' => "An gh'èt mìa incòra un ingrès? $1",
 'nologinlink' => 'Fà la tó inscrisiòun',
 'createaccount' => 'Fà la tó inscrisiòun',
+'gotaccount' => "Gh'èt bèle un ingrès? $1",
 'gotaccountlink' => 'Và dèinter',
+'userlogin-resetlink' => "T'ét scurdê j elemèint p'r al tó ingrès?",
 'createaccountmail' => "Drōva 'na cêva 'd ingrès a chêş pruvişôria e spidésla a l'indirés ed pôsta eletrônica sgnê.",
 'createaccountreason' => 'Mutîv:',
 'loginerror' => "Erōr 'd ingrès",
@@ -331,6 +338,7 @@ Al tō mudéfichi în MIA incòra stêdi salvêdi.",
 'template-protected' => '(prutèt)',
 'template-semiprotected' => '(mèz-prutèt)',
 'hiddencategories' => "Cla pàgina ché l' é 'd {{PLURAL:$1|'na categoréia lughêda|$1 categoréi lughêdi}}:",
+'permissionserrorstext-withaction' => "An 's gh'à mìa i permès necesâri per $2, per{{PLURAL:$1|cól mutîv ché|chi mutîv ché}}:",
 'recreate-moveddeleted-warn' => "'''Atensiòun: a s'é drē serchêr ed fêr 'na pàgina bèle scanşlêda tèimp fa'''. 
 
 Asicurêres che sìa dabòun necesâri cuntinvêr a mudifichêr cla pàgina ché.
@@ -408,6 +416,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'searchprofile-everything-tooltip' => "Sērca dapertót (ânch int al pàgini 'd discusuòun).",
 'searchprofile-advanced-tooltip' => 'Sērca int i spâsi di nòm fât só mzûra.',
 'search-result-size' => "$1 ({{PLURAL:$2|'na parôla|$2 parôli}})",
+'search-result-category-size' => '{{PLURAL:$1|1 utèint|$1 utèint}} ({{PLURAL:$2|1 sotcategoréia|$2 sotcategoréi}},{{PLURAL:$3|1 file|$3 files}})',
 'search-redirect' => '(redirect $1)',
 'search-section' => '(sesiòun $1)',
 'search-suggest' => "Fōrsi 't serchêv $1",
@@ -450,6 +459,8 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'yourrealname' => 'Nòm vèira:',
 'yourlanguage' => 'Léngua',
 'email' => 'E-mail',
+'prefs-help-email' => "Mèter l'indéris ed la tó pôsta eletrônica an n'é mia necesâri, mó al permèt ed ricêver la cêva 'd ingrès se per chêş ét la scurdés.",
+'prefs-help-email-others' => "Ét pō ânca sernîr ed lasêr che chiêter a 's mèten in cuntât  tēgh cun la pôsta eletrônica cun al colegamèint da la tó pàgina utèint o da còla 'd discusiòun.  Al tó indirés al vîn mìa fât savèir a quî ch'ét 's mèten in cuntât tēgh.",
 
 # Groups
 'group' => 'Gróp:',
@@ -507,6 +518,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'rcshowhidebots' => '$1 i bot',
 'rcshowhideliu' => '$1 j utèint registrê',
 'rcshowhideanons' => '$1 j utèint sèinsa nòm.',
+'rcshowhidepatr' => '$1 al mudéfichi verifichêdi',
 'rcshowhidemine' => '$1 al mē mudéfichi',
 'rclinks' => 'Fà vèder al $1 ûltmi mudéfichi fâti int j ûltem $2 dé<br />$3',
 'diff' => 'dif',
@@ -610,6 +622,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'listgrouprights-members' => "(elèinch 'd j inscrét)",
 
 # Email user
+'emailuser' => "Scrév a l'utèint",
 'emailfrom' => 'Da:',
 'emailto' => 'A:',
 'emailsubject' => 'Argumèint:',
@@ -623,6 +636,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'watch' => 'Và adrē',
 'watchthispage' => 'Và adrē a cla pàgina ché',
 'unwatch' => 'Andêr mìa adrē',
+'watchlist-details' => "La lésta 'd quî tgnû 'd ôc specêl la gh'à {{PLURAL:$1|'na pàgina (e la relatîva pàgina 'd discusiòun)|$1 pagine (e al relatîvi  pàgini 'd discusiòun)}}.",
 'wlshowlast' => 'Fà vèder al j ûltmi $1 ōri $2 dé $3',
 'watchlist-options' => 'Siēlti di tgnû sòt ôc specêl.',
 
@@ -686,7 +700,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'whatlinkshere-title' => 'Pàgini che pûnten a "$1"',
 'whatlinkshere-page' => 'Pàgina:',
 'linkshere' => "Al pàgini segvèinti a gh'àn di colegamèint a '''[[:$1]]'''.",
-'nolinkshere' => "Nisóna pàgina la gh'à dèinter colegamèint che pûnten a '''[[$1]]'''.",
+'nolinkshere' => "Nisóna pàgina la gh'à dèinter colegamèint che pûnten a '''[[:$1]]'''.",
 'isredirect' => 'Pàgina redirect',
 'istemplate' => 'uniòun',
 'isimage' => "Colegamèint vêrs al 'file'",
@@ -718,6 +732,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'blocklogpage' => 'Blôch',
 'blocklogentry' => "t'é bluchê [[$1]] per un peréiod ed $2 $3",
 'unblocklogentry' => "l'à şbluchê $1",
+'block-log-flags-nocreate' => 'Registrasiòun bluchêda',
 
 # Move page
 'move-page' => 'Spustamèint ed $1',
@@ -899,6 +914,9 @@ a vînen cunsidrê sōl j elèinch puntê (ríghi che cumîncen cun al carâter 
 'watchlisttools-view' => 'Guêrda al mudéfichi relatîvi.',
 'watchlisttools-edit' => "Fa vèder e mudéfica la lést quî di tgnû 'd ôc specêl.",
 'watchlisttools-raw' => 'Mudéfica la lésta in furmê tèst.',
+
+# Core parser functions
+'duplicate-defaultsort' => "Atensiòun la cêva per urdnêr pre-stabilîda ''$1'' la vîn cambiêda cun la ''$2''.",
 
 # Special:Version
 'version' => 'Versiòun',

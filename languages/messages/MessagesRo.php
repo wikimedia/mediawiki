@@ -2724,6 +2724,7 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 Vedeți [[Special:BlockList|lista blocărilor]] pentru a revizui adresele blocate.',
 'ipb-blockingself' => 'Sunteți pe cale să vă autoblocați! Sunteți sigur că doriți să continuați?',
 'ipb-confirmhideuser' => 'Sunteți pe cale să blocați un utilizator cu funcția „ascunde utilizator” activată. Acest lucru va înlătura numele său de utilizator din toate listele și jurnalele. Sunteți sigur că vreți să continuați?',
+'ipb-confirmaction' => 'Dacă sunteți într-adevăr sigur(ă) că doriți să acționați, bifați câmpul „{{int:ipb-confirm}}” din partea de jos.',
 'ipb-edit-dropdown' => 'Modifică motivele blocării',
 'ipb-unblock-addr' => 'Deblochează utilizatorul $1',
 'ipb-unblock' => 'Deblocați un nume de utilizator sau o adresă IP',

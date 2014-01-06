@@ -1222,7 +1222,7 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'undeletebtn' => 'Wiederherstön',
 'undeletelink' => 'oschaugn / wiadaheastejn',
 'undeleteviewlink' => 'oschaugn',
-'undeletedfiles' => '$1 {{plural:$1|Datei|Dateien}} san wieda hergstellt worn',
+'undeletedfiles' => '$1 {{PLURAL:$1|Datei|Dateien}} san wieda hergstellt worn',
 'undelete-search-box' => 'Suach noch gléschde Seiten',
 'undelete-search-submit' => 'Suach',
 'undelete-show-file-submit' => 'Jo',

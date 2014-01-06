@@ -663,10 +663,10 @@ Neudala vysvetlenie.',
 'viewsourcetext' => 'Môžete si zobraziť a kopírovať zdroj tejto stránky:',
 'viewyourtext' => "Môžete si prehliadnuť a skopírovať zdrojový kód '''vašich zmien''' tejto stránky:",
 'protectedinterface' => 'Táto stránka poskytuje text používateľského rozhrania tejto wiki a je zamknutá, aby sa predišlo jej zneužitiu.
-Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projekt lokalizácie MediaWiki.',
+Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/ translatewiki.net], projekt lokalizácie MediaWiki.',
 'editinginterface' => "'''Upozornenie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania.
 Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatným používateľom.
-Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projekt lokalizácie MediaWiki.",
+Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/ translatewiki.net], projekt lokalizácie MediaWiki.",
 'cascadeprotected' => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou „kaskádového zamknutia“:
 $2',
 'namespaceprotected' => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",

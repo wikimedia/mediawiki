@@ -880,12 +880,12 @@ Twoje změny hišće njejsu składowane!",
 'previewconflict' => 'Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.',
 'session_fail_preview' => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 Spytaj prošu hišće raz.
-Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so zaso.",
-'session_fail_preview_html' => "'''Njemóžachmy twoje změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
+Jeli přeco hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.",
+'session_fail_preview_html' => "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''
 
-''Dokelž we {{GRAMMAR:lokatiw|{{SITENAME}}}} je luty HTML zmóžnił, je přehlad jako wěstotna naprawa přećiwo atakam přez JavaScript schowany.''
+''Dokelž je we {{GRAMMAR:lokatiw|{{SITENAME}}}} luty HTML zmóžnjeny, je přehlad jako wěstotna naprawa přećiwo atakam přez JavaScript schowany.''
 
-'''Jeli to je legitimny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.'''",
+'''Jeli to je chutnje měnjeny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli přeco hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.'''",
 'token_suffix_mismatch' => "'''Twoja změna je so wotpokazała, dokelž twój wobhladowak je znamješka skepsał.
 Składowanje móže wobsah strony zničić. Móže so to na přikład přez wopačnje dźěłowacy proksy stać.'''",
 'edit_form_incomplete' => "'''Někotre dźěle wobdźěłowanskeho formulara njejsu serwer docpěli; prošu přepruwuj, hač twoje změny su w porjadku a spytaj hišće raz.'''",
@@ -2529,6 +2529,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.',
 'ipb-blockingself' => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
 'ipb-confirmhideuser' => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
+'ipb-confirmaction' => 'Jeli sy sej wěsty, zo chceš to woprawdźe činić, přepruwuj prošu deleka polo "{{int:ipb-confirm}}".',
 'ipb-edit-dropdown' => 'přičiny zablokowanjow wobdźěłać',
 'ipb-unblock-addr' => 'zablokowanje wužiwarja „$1“ zběhnyć',
 'ipb-unblock' => 'zablokowanje wužiwarja abo IP-adresy zběhnyć',

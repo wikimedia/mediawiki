@@ -3806,7 +3806,7 @@ $5
 'version-hook-subscribedby' => 'ჩაწერილია',
 'version-version' => '(ვერსია $1)',
 'version-svn-revision' => '(r$2)',
-'version-license' => 'ლიცენზია',
+'version-license' => 'მედიავიკის ლიცენზია',
 'version-poweredby-credits' => "ეს ვიკი მუშაობს '''[https://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'სხვები',
 'version-poweredby-translators' => 'translatewiki.net-ის მთარგმნელები',

@@ -1715,6 +1715,8 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Denne fil er en bublet af {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}:',
 'file-deleted-duplicate' => 'En fil identisk med denne fil ([[:$1]]) er tidligere blevet slettet. Du bør tjekke den fils sletningshistorik før du prøver at genoplægge den.',
+'file-deleted-duplicate-notitle' => 'En fil, der er identisk med denne fil er tidligere blevet slettet, og titlen er blevet undertrykt.
+Du bør spørge en person med evnen til at se undertrykte fildata for at gennemgå situationen inden du fortsætter med at uploade den igen.',
 'uploadwarning' => 'Advarsel',
 'uploadwarning-text' => 'Vær venlig at ændre filbeskrivelsen nedenfor og prøv igen.',
 'savefile' => 'Gem fil',
@@ -2485,8 +2487,8 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undeleteinvert' => 'Omvend valget af versioner',
 'undeletecomment' => 'Begrundelse:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version|versioner}} gendannet',
-'undeletedrevisions-files' => '$1 {{plural:$1|version|versioner}} og $2 {{plural:$2|fil|filer}} gendannet',
-'undeletedfiles' => '$1 {{plural:$1|fil|filer}} gendannet',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|version|versioner}} og $2 {{PLURAL:$2|fil|filer}} gendannet',
+'undeletedfiles' => '$1 {{PLURAL:$1|fil|filer}} gendannet',
 'cannotundelete' => 'Gendannelse mislykkedes:
 $1',
 'undeletedpage' => "'''$1''' blev gendannet.
@@ -3143,7 +3145,7 @@ Du kan beskadige dit system hvis du udfører den.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => '$1t',
-'seconds' => '{{PLURAL: $1|$1 sekund|$1 sekunder}}',
+'seconds' => '{{PLURAL:$1|$1 sekund|$1 sekunder}}',
 'minutes' => '{{PLURAL:$1|$1 minut|$1 minutter}}',
 'hours' => '{{PLURAL:$1|$1 time|$1 timer}}',
 'days' => '{{PLURAL:$1|$1 dag|$1 dage}}',

@@ -9944,13 +9944,10 @@ This message is followed by the list of parser extension tags like <code><nowiki
 'version-parser-function-hooks' => 'Shown in [[Special:Version]]',
 'version-hook-name' => 'Shown in [[Special:Version]]',
 'version-hook-subscribedby' => 'Shown in [[Special:Version]]',
-'version-version' => 'Used in [[Special:Version]].
-
-Preceded by the MediaWiki extension name.
+'version-version' => 'Used in [[Special:Version]]. Preceded by the MediaWiki extension name.
 
 Parameters:
-* $1 - version number of the extension
-{{Identical|Version}}',
+* $1 - version number of the extension',
 'version-svn-revision' => '{{Identical|Revision}}{{optional}}
 Used in [[Special:Version]], preceeding the Subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345"). Parameters:
 * $1 - (Unused) directory revision number or empty string

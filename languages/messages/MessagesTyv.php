@@ -1219,7 +1219,7 @@ It must not be more than $1 {{PLURAL:$1|1=character|characters}} long.',
 'ilsubmit' => 'Дилээр',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '{{PLURAL: $1|$1 секунда|$1 секунда}}',
+'seconds' => '{{PLURAL:$1|$1 секунда|$1 секунда}}',
 'minutes' => '{{PLURAL:$1|$1 минут|$1 минут}}',
 'hours' => '{{PLURAL:$1|1=$1 шак|$1 шак}}',
 'days' => '{{PLURAL:$1|1=$1 хүн|$1 хүн}}',

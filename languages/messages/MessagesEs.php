@@ -1259,6 +1259,9 @@ Ese o esos parámetros han sido omitidos.',
 'cantcreateaccount-text' => "La creación de cuentas desde esta dirección IP ('''$1''') ha sido bloqueada por [[User:$3|$3]].
 
 El motivo dado por $3 es ''$2''",
+'cantcreateaccount-range-text' => "La creación de cuentas de usuario desde direcciones IP en el rango '''$1''', que incluye tu dirección IP ('''$4'''), ha sido bloqueada por [[User:$3|$3]].
+
+El motivo dado por $3 es ''$2''",
 
 # History pages
 'viewpagelogs' => 'Ver los registros de esta página',
@@ -1337,9 +1340,9 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm' => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'revdelete-suppress-text' => "La herramienta de supresión '''solo''' debería usarse en los siguientes casos:
-* Información potencialmente injuriosa o calumniante.
-* Información personal inapropiada, tal como:
-*: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
+* información potencialmente injuriosa o calumniante.
+* información personal inapropiada, tal como:
+*: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.''",
 'revdelete-legend' => 'Establecer restricciones de revisión:',
 'revdelete-hide-text' => 'Texto de la revisión',
 'revdelete-hide-image' => 'Ocultar el contenido del archivo',
@@ -1603,6 +1606,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'prefs-tokenwatchlist' => 'Clave',
 'prefs-diffs' => 'Diferencias',
 'prefs-help-prefershttps' => 'Esta preferencia tendrá efecto en tu próximo inicio de sesión.',
+'prefs-tabs-navigation-hint' => 'Sugerencia: Puede utilizar las teclas de flecha izquierda y derecha para navegar entre las pestañas de la lista de pestañas.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'La dirección de correo electrónico parece ser válida',
@@ -1909,6 +1913,7 @@ Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nomb
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
 'file-deleted-duplicate' => 'Un archivo idéntico a este ([[:$1]]) ha sido borrado con anterioridad. Debes comprobar el historial de borrado del archivo ante de volver a subirlo.',
+'file-deleted-duplicate-notitle' => 'Un archivo idéntico a este ha sido borrado con anterioridad, y el título ha sido suprimido. Deberías contactar con alguien capaz de ver los datos de archivos borrados para que revise esta situación antes de proceder a subir de nuevo este archivo.',
 'uploadwarning' => 'Advertencia de subida de archivo',
 'uploadwarning-text' => 'Por favor, modifique la descripción del archivo abajo indicada e inténtelo de nuevo.',
 'savefile' => 'Guardar archivo',
@@ -2253,6 +2258,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enlace|enlaces}}',
 'nmembers' => '$1 {{PLURAL:$1|artículo|artículos}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|miembro|miembros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'nviews' => '$1 {{PLURAL:$1|vista|vistas}}',
 'nimagelinks' => 'Usado en {{PLURAL:$1|una página|$1 páginas}}',
@@ -2291,6 +2297,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Sólo protecciones indefinidas',
 'protectedpages-cascade' => 'Sólo protecciones en cascada',
+'protectedpages-noredirect' => 'Ocultar redirecciones',
 'protectedpagesempty' => 'Actualmente no hay ninguna página protegida con esos parámetros.',
 'protectedtitles' => 'Títulos protegidos',
 'protectedtitlesempty' => 'Actualmente no existen entradas protegidas con esos parámetros.',
@@ -2564,6 +2571,7 @@ Véase $2 para un registro de los borrados recientes.',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig' => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
 'delete-warning-toobig' => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
+'deleting-backlinks-warning' => "'''Advertencia:''' Hay enlaces desde otras páginas a la página que estás a punto de borrar.",
 
 # Rollback
 'rollback' => 'Revertir ediciones',
@@ -2798,6 +2806,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'ipb-blockingself' => '¡Estás a punto de bloquearte a ti mismo!  ¿Estás seguro de que quieres hacerlo?',
 'ipb-confirmhideuser' => 'Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?',
+'ipb-confirmaction' => 'Si estás seguro de querer hacerlo, por favor, marca el campo «{{int:ipb-confirm}}» que hay al final.',
 'ipb-edit-dropdown' => 'Editar motivo del bloqueo',
 'ipb-unblock-addr' => 'Desbloquear $1',
 'ipb-unblock' => 'Desbloquear un usuario o una IP',
@@ -3904,6 +3913,8 @@ Confirma que realmente quieres volver a crear esta página.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(idioma predeterminado)',
+'img-lang-info' => 'Renderizar esta imagen en $1. $2',
+'img-lang-go' => 'Adelante',
 
 # Table pager
 'ascending_abbrev' => 'asc',
@@ -3985,7 +3996,17 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-hook-name' => 'Nombre de la extensión',
 'version-hook-subscribedby' => 'Suscrito por',
 'version-version' => '(Versión $1)',
-'version-license' => 'Licencia',
+'version-license' => 'Licencia de MediaWiki',
+'version-ext-license' => 'Licencia',
+'version-ext-colheader-name' => 'Extensión',
+'version-ext-colheader-version' => 'Versión',
+'version-ext-colheader-license' => 'Licencia',
+'version-ext-colheader-description' => 'Descripción',
+'version-ext-colheader-credits' => 'Autores',
+'version-license-title' => 'Licencia para $1',
+'version-license-not-found' => 'No se han encontrado información detallada de licencia para esta extensión.',
+'version-credits-title' => 'Reconocimiento para $1',
+'version-credits-not-found' => 'No se ha encontrado información detallada de reconocimiento para esta extensión.',
 'version-poweredby-credits' => "Este wiki funciona gracias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otros',
 'version-poweredby-translators' => 'Traductores de translatewiki.net',
@@ -4012,6 +4033,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'redirect-lookup' => 'Buscar:',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'Id. del usuario',
+'redirect-page' => 'ID de la página',
 'redirect-revision' => 'Revisión de página',
 'redirect-file' => 'Nombre de fichero',
 'redirect-not-exists' => 'No se encontró el valor',
@@ -4207,6 +4229,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-overwrite' => 'No se permite sobrescribir un archivo existente.',
 'api-error-stashfailed' => 'Error interno: El servidor no pudo almacenar el archivo temporal.',
 'api-error-publishfailed' => 'Error interno: el servidor no pudo publicar el archivo temporal.',
+'api-error-stasherror' => 'Ha ocurrido un error al subir el archivo al depósito.',
 'api-error-timeout' => 'El servidor no respondió en el plazo previsto.',
 'api-error-unclassified' => 'Ocurrió un error desconocido.',
 'api-error-unknown-code' => 'Error desconocido: «$1»',
@@ -4254,10 +4277,12 @@ También expande las funciones sintácticas como <code><nowiki>{{</nowiki>#langu
 'expand_templates_input' => 'Texto a expandir:',
 'expand_templates_output' => 'Resultado:',
 'expand_templates_xml_output' => 'Salida XML',
+'expand_templates_html_output' => 'Salida HTML en crudo',
 'expand_templates_ok' => 'Aceptar',
 'expand_templates_remove_comments' => 'Eliminar comentarios (<!-- ... -->)',
 'expand_templates_remove_nowiki' => 'Suprimir <nowiki> etiquetas en resultado',
 'expand_templates_generate_xml' => 'Mostrar el árbol XML.',
+'expand_templates_generate_rawhtml' => 'Mostrar HTML en crudo',
 'expand_templates_preview' => 'Previsualización',
 
 );

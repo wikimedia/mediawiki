@@ -1630,6 +1630,8 @@ Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 'file-exists-duplicate' => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
 'file-deleted-duplicate' => "Mae ffeil union debyg i hon ([[:$1]]) eisoes wedi cael ei dileu.
 Dylech edrych ar hanes dileu'r ffeil honno cyn bwrw ati i'w llwytho unwaith eto.",
+'file-deleted-duplicate-notitle' => "Mae ffeil union debyg i hon eisoes wedi cael ei dileu, ac mae'r teitl wedi ei hatal rhag ymddangos ar goedd.
+Cyn i chi ail-lwytho'r ffeil, dylech holi i rywun â'r gallu ganddo i weld data ffeil sydd wedi ei hatal rhag ymddangos, i adolygu'r sefyllfa.",
 'uploadwarning' => 'Rhybudd uwchlwytho',
 'uploadwarning-text' => 'Newidiwch ddisgrifiad y ffeil isod ac yna ceisiwch ei huwchlwytho eto, os gwelwch yn dda.',
 'savefile' => "Cadw'r ffeil",
@@ -2514,6 +2516,7 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 Gweler y [[Special:BlockList|rhestr blociau]] er mwyn arolygu blociau.',
 'ipb-blockingself' => "Rydych ar rwystro'ch hunan! A ydych yn siŵr eich bod chi am wneud hyn?",
 'ipb-confirmhideuser' => 'Rydych ar rwystro defnyddiwr sydd yn "guddiedig." Bydd hyn yn atal enw\'r defnyddiwr ym mhob rhestr a chofnod lòg. A ydych yn siŵr eich bod chi am wneud hyn?',
+'ipb-confirmaction' => 'Os ydych wir am wneud hyn, cliciwch ar y maes "{{int:ipb-confirm}}" ar y gwaelod.',
 'ipb-edit-dropdown' => "Golygu'r rhesymau dros flocio",
 'ipb-unblock-addr' => 'Dadflocio $1',
 'ipb-unblock' => 'Dadflocio enw defnyddiwr neu gyfeiriad IP',

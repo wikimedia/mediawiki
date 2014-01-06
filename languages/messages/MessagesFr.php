@@ -2835,6 +2835,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.',
 'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain{{GENDER:||e|(e)}} de vouloir faire cela ?',
 'ipb-confirmhideuser' => "Vous êtes sur le point de bloquer un utilisateur avec « cacher l'utilisateur » activé. Cela supprime le nom de l'utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?",
+'ipb-confirmaction' => 'Si vous êtes sûr de vraiment vouloir le faire, veuillez cocher le champ « {{int:ipb-confirm}} » en bas.',
 'ipb-edit-dropdown' => 'Modifier les motifs de blocage par défaut',
 'ipb-unblock-addr' => 'Débloquer $1',
 'ipb-unblock' => 'Débloquer un compte utilisateur ou une adresse IP',

@@ -3685,7 +3685,7 @@ $5
 'revdelete-restricted' => 'әкімшілерге тиымдар қолдады',
 'revdelete-unrestricted' => 'әкімшілерден тиымдарды аластады',
 'logentry-move-move' => '$1 $3 бетін $4 бетіне {{GENDER:$2|жылжытты}}',
-'logentry-move-move-noredirect' => '$1 $3 бетін $4 бетіне {{GENDER:$2|жылжытты}} (айдатқыш қалдырылмады)',
+'logentry-move-move-noredirect' => '$1 $3 бетін $4 бетіне {{GENDER:$2|жылжытты}} (айдатқыш қалдырмады)',
 'logentry-move-move_redir' => '$1 $3 бетін $4 деген айдатқыш үстіне {{GENDER:$2|жылжытты}}',
 'logentry-move-move_redir-noredirect' => '$1 $3 бетін $4 деген айдатқыш үстіне {{GENDER:$2|жылжытты}} (айдатқыш қалдырылмады)',
 'logentry-newusers-newusers' => '$1 жаңадан қатысушы тіркелгісін {{GENDER:$2|жасады}}',

@@ -4057,7 +4057,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-hook-name' => 'De Schnettstelle ier Name',
 'version-hook-subscribedby' => 'Opjeroofe vun',
 'version-version' => '(Väsjohn $1)',
-'version-license' => 'Lėzänz',
+'version-license' => 'MediaWiki sing Lėzänz',
 'version-poweredby-credits' => "Dat Wiki heh löp met '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'sönß wää',
 'version-poweredby-translators' => 'de Övversäzer em translatewiki.net',

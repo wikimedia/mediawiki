@@ -347,7 +347,7 @@ $messages = array(
 'vector-action-undelete' => 'Traer atrás',
 'vector-action-unprotect' => 'Kambiar proteksyon',
 'vector-simplesearch-preference' => 'Aktivar consejos de búsqueda adelantada (sólo pelejo Vector)',
-'vector-view-create' => 'Criar',
+'vector-view-create' => 'Krear',
 'vector-view-edit' => 'Trocar',
 'vector-view-history' => 'Ver la istoria',
 'vector-view-view' => 'Meldar',
@@ -361,10 +361,10 @@ $messages = array(
 'returnto' => 'Tornar a $1.',
 'tagline' => 'De {{SITENAME}}',
 'help' => 'Ayudo',
-'search' => 'Buxcar',
-'searchbutton' => 'Buxcar',
+'search' => 'Bushkar',
+'searchbutton' => 'Bushkar',
 'go' => 'Vate',
-'searcharticle' => 'Vate',
+'searcharticle' => 'Ir',
 'history' => 'La istoria de la hoja',
 'history_short' => 'Istoria',
 'updatedmarker' => 'trocado desde mi visita de alcavo',
@@ -373,7 +373,7 @@ $messages = array(
 'print' => 'Imprimir',
 'view' => 'Ver',
 'edit' => 'Trocar',
-'create' => 'Criar',
+'create' => 'Krear',
 'editthispage' => 'Trocar esta hoja',
 'create-this-page' => 'Crîar esta hoja',
 'delete' => 'Efaçar',
@@ -410,7 +410,7 @@ $messages = array(
 'protectedpage' => 'Hoja guardada',
 'jumpto' => 'Saltar a:',
 'jumptonavigation' => 'navigación',
-'jumptosearch' => 'buxcar',
+'jumptosearch' => 'Bushkar',
 'pool-errorunknown' => 'Yerro deskonosido',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
@@ -460,11 +460,11 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pajina',
-'nstab-user' => 'Hoja del kullaneador',
+'nstab-user' => 'Pajina de usuario',
 'nstab-media' => 'Hoja de Meddia',
 'nstab-special' => 'Hoja especial',
 'nstab-project' => 'Hoja del proyecto',
-'nstab-image' => 'Dosya',
+'nstab-image' => 'Archivo',
 'nstab-mediawiki' => 'Messaj',
 'nstab-template' => 'Şablón',
 'nstab-help' => 'Ayudo',
@@ -495,7 +495,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 
 # Login and logout pages
 'welcomeuser' => 'Bienvinidos, $1',
-'yourname' => 'Su nombre de usuario',
+'yourname' => 'Nombre de usuario:',
 'userlogin-yourname' => 'Nombre de usuario',
 'userlogin-yourname-ph' => 'Eskrive tu nombre de usuario',
 'createacct-another-username-ph' => 'Eskrive el nombre de usuario',
@@ -524,9 +524,11 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'userlogin-createanother' => 'Krear otro kuento',
 'createacct-join' => 'Eskrive abasho tu informasyon',
 'createacct-emailrequired' => 'Adreso de korreo elektroniko',
+'createacct-emailoptional' => 'Korreo elektroniko (opsyonal)',
 'createacct-email-ph' => 'Eskrive tu adreso de korreo elektroniko',
 'createacct-another-email-ph' => 'Eskrive el adreso de korreo elektronico',
 'createaccountmail' => 'por una letra electrónica',
+'createacct-realname' => 'Nombre verdadero (opsyonal)',
 'createaccountreason' => 'Razon:',
 'createacct-reason' => 'Razon',
 'createacct-submit' => 'Krear tu cuento',
@@ -540,7 +542,7 @@ Si puede ser, escoge un otro nombre.',
 'mailerror' => 'Falta al embiar korreo: $1',
 'emailconfirmlink' => 'Confirma su adderesso de letra electrónica',
 'accountcreated' => 'Cuento creado',
-'accountcreatedtext' => 'El cuento del usuario para $1 fue creado.',
+'accountcreatedtext' => 'El kuento de usuario para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) fue kreado.',
 'loginlanguagelabel' => 'Lingua: $1',
 
 # Change password dialog
@@ -572,7 +574,7 @@ Si puede ser, escoge un otro nombre.',
 'bold_tip' => 'Teksto gordo',
 'italic_sample' => 'Teksto cursivo',
 'italic_tip' => 'Teksto en cursiva',
-'link_sample' => 'Título del link',
+'link_sample' => 'Título del enlase',
 'link_tip' => 'Link interno',
 'extlink_sample' => 'http://www.example.com Título del link',
 'extlink_tip' => 'Link eksterno (acόrdate de ajustar el prefiks http://)',
@@ -727,15 +729,15 @@ Leyenda: (act) = diferencias con la versión actual,
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => 'Egziste una oja yamada "[[:$1]]" en esta viki',
 'searchmenu-new' => "'''Krear la pajina «[[:$1]]» en esta viki!'''{{PLURAL:$2|0=|Tambien ver la pajina topado kon tu bushkida.|Tambier ver la resulta de tu bushkida.}}",
-'searchprofile-articles' => 'Hojas de contènido',
+'searchprofile-articles' => 'Pajinas de kontenido',
 'searchprofile-project' => 'Hojas de ayudo y hojas de projeto',
 'searchprofile-images' => 'Multimedya',
 'searchprofile-everything' => 'Todo',
 'searchprofile-advanced' => 'Adelantado',
-'searchprofile-articles-tooltip' => 'Buxca en $1',
-'searchprofile-project-tooltip' => 'Buxca en $1',
-'searchprofile-images-tooltip' => 'Buxca las dosyas',
-'searchprofile-everything-tooltip' => 'Buxca en todo el contènido (y mismo en las hojas de diskusyón)',
+'searchprofile-articles-tooltip' => 'Bushkar en $1',
+'searchprofile-project-tooltip' => 'Bushkar en $1',
+'searchprofile-images-tooltip' => 'Bushkar archivos',
+'searchprofile-everything-tooltip' => 'Bushkar en todo el kontenido (i mismo en las hojas de diskusyón)',
 'searchprofile-advanced-tooltip' => 'Buscar en espacios de nombres particůlares',
 'search-result-size' => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
 'search-result-category-size' => '{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 basho-kateggoria|$2 basho-kateggoria}}, {{PLURAL:$3|1 dossia|$3 dossias}})',
@@ -796,6 +798,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'email' => 'Korreo elektroniko',
 'prefs-help-email' => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
 'prefs-help-email-others' => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
+'prefs-info' => 'Informasyon basiko',
 'prefs-i18n' => 'Internasionalisasyion',
 'prefs-signature' => 'Firma',
 'prefs-editor' => 'Redaktor',
@@ -831,6 +834,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'right-move' => 'Mover pajinas',
 'right-movefile' => 'Mover archivo',
 'right-delete' => 'Efassar hojas',
+'right-sendemail' => 'Embiar korreo elektroniko a otro usuario',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Registro de creación de usuarios',
@@ -896,6 +900,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'filename' => 'Nombre de archivo',
 'filedesc' => 'Somario',
 'filereuploadsummary' => 'Kambios de archivo:',
+'filesource' => 'Fuente:',
 'filename-tooshort' => 'El nombre del archivo es muy kurto.',
 'savefile' => 'Guardar archivo',
 'uploadedimage' => 'subió «[[$1]]»',
@@ -904,11 +909,16 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'backend-fail-notexists' => 'El archivo $1 no egziste.',
 'backend-fail-alreadyexists' => 'El archivo "$1" ya egziste.',
 
+# img_auth script messages
+'img-auth-nofile' => 'El archivo "$1" no egziste.',
+
 'license' => 'Lesensia:',
 'license-header' => 'Lesensiamyénto',
 
 # Special:ListFiles
 'imgfile' => 'archivo',
+'listfiles' => 'Lista de archivos',
+'listfiles_thumb' => 'Minyatura',
 'listfiles_date' => 'Data',
 'listfiles_name' => 'Nombre',
 'listfiles_user' => 'Usuario',
@@ -917,7 +927,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'listfiles-latestversion-no' => 'No',
 
 # File description page
-'file-anchor-link' => 'Dosya',
+'file-anchor-link' => 'Archivo',
 'filehist' => 'La istoria de la dosya',
 'filehist-help' => 'Klika encima de una data/ora para vel el arxivo de esta data.',
 'filehist-revert' => 'aboltar',
@@ -925,7 +935,8 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'filehist-datetime' => 'Data/Ora',
 'filehist-thumb' => 'Minyatura',
 'filehist-thumbtext' => 'Minyatura de la versión á las $1',
-'filehist-user' => 'Kullaneador',
+'filehist-nothumb' => 'Sin minyatura',
+'filehist-user' => 'Usuario',
 'filehist-dimensions' => 'Dimensiones',
 'filehist-filesize' => 'El boy de la dosya',
 'filehist-comment' => 'Comentario',
@@ -951,6 +962,9 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # MIME search
 'mimesearch' => 'bushkida por MIME',
 'download' => 'deskargar',
+
+# Unused templates
+'unusedtemplateswlh' => 'otros enlases',
 
 # Random page
 'randompage' => 'Hoja por azardo',
@@ -993,7 +1007,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Book sources
 'booksources' => 'Fuentes de livros',
 'booksources-search-legend' => 'Buscar fuentes de libros',
-'booksources-go' => 'Yir',
+'booksources-go' => 'Ir',
 
 # Special:Log
 'log' => 'Rejistros',
@@ -1021,6 +1035,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 
 # Special:ListUsers
 'listusers-submit' => 'Amostrar',
+'listusers-noresult' => 'No se topo usuario',
 
 # Special:ActiveUsers
 'activeusers-hidebots' => 'Eskonder bots',
@@ -1114,6 +1129,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'protect-cantedit' => 'No puedes trocar el nivel de protección porque no tienes permissión para hazer ediciones.',
 'protect-otherreason' => 'Otra razon/razon adisiyonal',
 'protect-otherreason-op' => 'Otra razon',
+'protect-expiry-options' => '1 ora:1 hour,1 diya:1 day,1 semana:1 week,2 semanas:2 weeks,1 mez:1 month,3 mezes:3 months,6 mezes:6 months,1 anyo:1 year,para siempre:infinite',
 'restriction-type' => 'Permiso:',
 'restriction-level' => 'Nivel de restricción:',
 
@@ -1171,11 +1187,13 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 
 # Block/unblock
 'blockip' => 'Bloquear usuario',
+'ipadressorusername' => 'Adreso de IP o nombre de usuario:',
 'ipbreason' => 'Razon:',
 'ipboptions' => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 anyo:1 year,para siempre:infinite',
 'ipblocklist' => 'Usadores bloqueados',
 'blocklist-reason' => 'Razon',
 'ipblocklist-submit' => 'Bushkar',
+'infiniteblock' => 'para siempre',
 'blocklink' => 'blokar',
 'unblocklink' => 'quitar el bloko',
 'change-blocklink' => 'trocar el bloko',
@@ -1186,6 +1204,9 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'unblocklogentry' => 'desbloqueó a "$1"',
 'block-log-flags-nocreate' => 'desactivada la creación de cuentos',
 'block-log-flags-hiddenname' => 'nombre de usuario eskondido',
+
+# Developer tools
+'lockedbyandtime' => '(por {{GENDER:$1|$1}} el $2 a la $3)',
 
 # Move page
 'movepagetext' => "Usando el formulario venidero se va renombrar una hoja, quitando todo su istoria a su nuevo nombre.
@@ -1221,6 +1242,8 @@ Si puede ser, escoge otro nombre.',
 
 # Export
 'export' => 'Eksportar las hojas',
+'export-addcat' => 'Anyadir',
+'export-addns' => 'Anyadir',
 'export-download' => 'Guardar komo archivo',
 
 # Namespace 8 related
@@ -1237,7 +1260,9 @@ Si puede ser, escoge otro nombre.',
 'thumbnail_error' => 'Yerro kriando la imej chika: $1',
 
 # Special:Import
+'import-interwiki-submit' => 'Importar',
 'import-upload-filename' => 'Nombre de archivo:',
+'importnopages' => 'No ay pajinas para importar.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Tu hoja de usador',
@@ -1258,7 +1283,7 @@ Puedes ver su manadero',
 'tooltip-ca-move' => 'Taxirea (renombra) esta hoja',
 'tooltip-ca-watch' => 'Ajustar esta hoja a tu lista de akavidamientos',
 'tooltip-ca-unwatch' => 'Quita esta hoja de tu lista de escogidos',
-'tooltip-search' => 'Buxca en {{SITENAME}}',
+'tooltip-search' => 'Bushkar en {{SITENAME}}',
 'tooltip-search-go' => 'Si ay una hoja con este nombre egzakto, vate allá.',
 'tooltip-search-fulltext' => 'Buxca este teksto en las hojas',
 'tooltip-p-logo' => 'Vate a la primera hoja',
@@ -1379,6 +1404,8 @@ Los otros campos se van a guardar por defecto.
 
 'exif-copyrighted-true' => 'Kon derechos del otor',
 
+'exif-componentsconfiguration-0' => 'no egziste',
+
 'exif-exposureprogram-1' => 'Giya',
 
 'exif-meteringmode-255' => 'Otro',
@@ -1429,6 +1456,9 @@ Los otros campos se van a guardar por defecto.
 'imgmultipagenext' => 'siguiente pajina →',
 'imgmultigo' => 'Ir!',
 
+# Language selector for translatable SVGs
+'img-lang-go' => 'Ir',
+
 # Table pager
 'table_pager_next' => 'Pajina siguiente',
 'table_pager_prev' => 'Pajina anterior',
@@ -1458,11 +1488,18 @@ Los otros campos se van a guardar por defecto.
 'version-specialpages' => 'Pajinas espesiales',
 'version-other' => 'Otros',
 'version-version' => '(Versión $1)',
+'version-ext-colheader-credits' => 'Otores',
 'version-poweredby-others' => 'otros',
 'version-software-version' => 'Versión',
 'version-entrypoints-header-url' => 'URL',
 
+# Special:Redirect
+'redirect-submit' => 'Ir',
+'redirect-value' => 'Valor:',
+'redirect-file' => 'Nombre de archivo',
+
 # Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Nombre de archivo:',
 'fileduplicatesearch-submit' => 'Bushkar',
 
 # Special:SpecialPages
@@ -1483,7 +1520,9 @@ Los otros campos se van a guardar por defecto.
 'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit' => 'Filtro',
 'tags-active-yes' => 'Si',
+'tags-active-no' => 'No',
 'tags-edit' => 'trocar',
+'tags-hitcount' => '$1 {{PLURAL:$1|kambio|kambios}}',
 
 # Special:ComparePages
 'compare-page1' => 'Hoja 1',
@@ -1494,6 +1533,7 @@ Los otros campos se van a guardar por defecto.
 
 # HTML forms
 'htmlform-selectorother-other' => 'Otro',
+'htmlform-no' => 'No',
 'htmlform-yes' => 'Si',
 
 # New logging system
