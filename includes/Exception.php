@@ -38,8 +38,7 @@ class MWException extends Exception {
 	function useOutputPage() {
 		return $this->useMessageCache() &&
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
-			!empty( $GLOBALS['wgOut'] ) &&
-			!empty( $GLOBALS['wgTitle'] );
+			!empty( $GLOBALS['wgOut'] );
 	}
 
 	/**
