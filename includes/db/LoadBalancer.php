@@ -563,9 +563,12 @@ class LoadBalancer {
 		if ( $refCount <= 0 ) {
 			$this->mConns['foreignFree'][$serverIndex][$wiki] = $conn;
 			unset( $this->mConns['foreignUsed'][$serverIndex][$wiki] );
-			wfDebug( __METHOD__ . ": freed connection $serverIndex/$wiki\n" );
+			$si = print_r( $serverIndex, true );
+			wfDebug( __METHOD__ . ": freed connection $si/$wiki\n" );
 		} else {
-			wfDebug( __METHOD__ . ": reference count for $serverIndex/$wiki reduced to $refCount\n" );
+			$si = print_r( $serverIndex, true );
+			$rc = print_r( $refCount, true );
+			wfDebug( __METHOD__ . ": reference count for $si/$wiki reduced to $rc\n" );
 		}
 	}
 
