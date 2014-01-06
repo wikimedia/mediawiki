@@ -14,6 +14,9 @@
 
 $fallback = 'fr';
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # Dates
 'sunday' => 'tāpati',

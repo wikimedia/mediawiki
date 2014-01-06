@@ -55,6 +55,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Categoreye_copene',
 );
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Allpages'                  => array( 'Totes_les_pådjes' ),
 	'Block'                     => array( 'Bloker', 'Blocaedje' ),

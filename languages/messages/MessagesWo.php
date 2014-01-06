@@ -51,6 +51,9 @@ $namespaceAliases = array(
 	'Discussion_Catégorie' => NS_CATEGORY_TALK,
 );
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'CreateAccount'             => array( 'Sos am sàq' ),
 	'Listfiles'                 => array( 'Limu nataal yi' ),

@@ -123,6 +123,9 @@ $namespaceAliases = array(
 	'Discussion_Catégorie' => NS_CATEGORY_TALK,
 );
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Mpikambana_mavitrika' ),
 	'Allmessages'               => array( 'Hafatra_rehetra' ),
