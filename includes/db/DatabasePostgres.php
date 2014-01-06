@@ -1253,14 +1253,15 @@ __INDEXATTR__;
 	 * This will be also called by the installer after the schema is created
 	 *
 	 * @since 1.19
-	 * @param string $desired_schema
+	 *
+	 * @param string $desiredSchema
 	 */
-	function determineCoreSchema( $desired_schema ) {
+	function determineCoreSchema( $desiredSchema ) {
 		$this->begin( __METHOD__ );
-		if ( $this->schemaExists( $desired_schema ) ) {
-			if ( in_array( $desired_schema, $this->getSchemas() ) ) {
-				$this->mCoreSchema = $desired_schema;
-				wfDebug( "Schema \"" . $desired_schema . "\" already in the search path\n" );
+		if ( $this->schemaExists( $desiredSchema ) ) {
+			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
+				$this->mCoreSchema = $desiredSchema;
+				wfDebug( "Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
@@ -1269,14 +1270,14 @@ __INDEXATTR__;
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path,
-					$this->addIdentifierQuotes( $desired_schema ) );
+					$this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
-				$this->mCoreSchema = $desired_schema;
-				wfDebug( "Schema \"" . $desired_schema . "\" added to the search path\n" );
+				$this->mCoreSchema = $desiredSchema;
+				wfDebug( "Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
 			$this->mCoreSchema = $this->getCurrentSchema();
-			wfDebug( "Schema \"" . $desired_schema . "\" not found, using current \"" .
+			wfDebug( "Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
