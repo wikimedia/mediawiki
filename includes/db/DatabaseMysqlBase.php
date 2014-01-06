@@ -1023,7 +1023,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
 		$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
-		$this->query( $query, $fname );
+
+		return $this->query( $query, $fname );
 	}
 
 	/**
