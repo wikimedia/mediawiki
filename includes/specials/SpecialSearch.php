@@ -269,7 +269,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// did you mean... suggestions
-		if ( $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
+		if ( ( $t === null || !$t->isKnown() ) && $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );
 
 			# mirror Go/Search behavior of original request ..
