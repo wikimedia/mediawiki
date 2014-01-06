@@ -988,6 +988,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
 	'SpecialProtectedpages' => 'includes/specials/SpecialProtectedpages.php',
 	'SpecialProtectedtitles' => 'includes/specials/SpecialProtectedtitles.php',
+	'SpecialPurge' => 'includes/specials/SpecialPurge.php',
 	'SpecialRandomInCategory' => 'includes/specials/SpecialRandomInCategory.php',
 	'SpecialRandomredirect' => 'includes/specials/SpecialRandomredirect.php',
 	'SpecialRecentChanges' => 'includes/specials/SpecialRecentchanges.php',
