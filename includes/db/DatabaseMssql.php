@@ -166,7 +166,6 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	protected function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
-		$this->offset = 0;
 
 		// several extensions seem to think that all databases support limits
 		// via LIMIT N after the WHERE clause well, MSSQL uses SELECT TOP N,
@@ -1105,11 +1104,11 @@ class DatabaseMssql extends DatabaseBase {
  * @ingroup Database
  */
 class MssqlField implements Field {
-	private $name, $tablename, $default, $max_length, $nullable, $type;
+	private $name, $tableName, $default, $max_length, $nullable, $type;
 
 	function __construct( $info ) {
 		$this->name = $info['COLUMN_NAME'];
-		$this->tablename = $info['TABLE_NAME'];
+		$this->tableName = $info['TABLE_NAME'];
 		$this->default = $info['COLUMN_DEFAULT'];
 		$this->max_length = $info['CHARACTER_MAXIMUM_LENGTH'];
 		$this->nullable = !( strtolower( $info['IS_NULLABLE'] ) == 'no' );
@@ -1149,6 +1148,18 @@ class MssqlField implements Field {
  * @ingroup Database
  */
 class MssqlResult {
+	/** @var int */
+	private $mCursor;
+
+	/** @var array */
+	private $mRows;
+
+	/** @var bool|int */
+	private $mNumFields;
+
+	/** @var array|bool */
+	private $mFieldMeta;
+
 	/**
 	 * @param bool|resource $queryresult
 	 */
