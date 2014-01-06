@@ -124,6 +124,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return PDO|bool SQL connection or false if failed
 	 */
 	function openFile( $fileName ) {
+		$err = false;
+
 		$this->mDatabaseFile = $fileName;
 		try {
 			if ( $this->mFlags & DBO_PERSISTENT ) {
