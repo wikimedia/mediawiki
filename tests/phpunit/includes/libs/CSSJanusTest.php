@@ -437,6 +437,10 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'div { float: left; /* @noflip */ text-align: left; }',
 				'div { float: right; /* @noflip */ text-align: left; }'
 			),
+			array(
+				// before an attribute rule with multiple properties
+				'/* @noflip */ div.foo[bar*=\'baz\'] { float:left; clear: left; }'
+			),
 
 			// Guard against css3 stuff
 			array(
