@@ -940,8 +940,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param string $fname
 	 * @return bool
 	 */
-	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+	public function upsert( $table, array $rows, array $uniqueIndexes,
+		array $set, $fname = __METHOD__
 	) {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
