@@ -36,6 +36,7 @@ class SearchEngine {
 	var $searchTerms = array();
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
+	protected $showSuggestion = true;
 
 	/// Feature values
 	protected $features = array();
@@ -302,6 +303,17 @@ class SearchEngine {
 	 */
 	function setNamespaces( $namespaces ) {
 		$this->namespaces = $namespaces;
+	}
+
+	/**
+	 * Set whether the searcher should try to build a suggestion.  Note: some searchers
+	 * don't support building a suggestion in the first place and others don't respect
+	 * this flag.
+	 *
+	 * @param boolean $showSuggestion should the searcher try to build suggestions
+	 */
+	function setShowSuggestion( $showSuggestion ) {
+		$this->showSuggestion = $showSuggestion;
 	}
 
 	/**
