@@ -40,6 +40,9 @@ $namespaceAliases = array(
 	'Diskisyon_Imaj' => NS_USER_TALK,
 );
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'ItilizatèAktif' ),
 	'Allmessages'               => array( 'ToutMesaj' ),
