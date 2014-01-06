@@ -31,8 +31,10 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * @dataProvider provideTransformAdvancedCases
 	 */
 	public function testTransformAdvanced( $code, $expectedOutput, $options = array() ) {
-		$swapLtrRtlInURL = isset( $options['swapLtrRtlInURL'] ) ? $options['swapLtrRtlInURL'] : false;
-		$swapLeftRightInURL = isset( $options['swapLeftRightInURL'] ) ? $options['swapLeftRightInURL'] : false;
+		$swapLtrRtlInURL = isset( $options['swapLtrRtlInURL'] ) ?
+			$options['swapLtrRtlInURL'] : false;
+		$swapLeftRightInURL = isset( $options['swapLeftRightInURL'] ) ?
+			$options['swapLeftRightInURL'] : false;
 
 		$flipped = CSSJanus::transform( $code, $swapLtrRtlInURL, $swapLeftRightInURL );
 
@@ -436,6 +438,26 @@ class CSSJanusTest extends MediaWikiTestCase {
 				// after multiple properties
 				'div { float: left; /* @noflip */ text-align: left; }',
 				'div { float: right; /* @noflip */ text-align: left; }'
+			),
+			array(
+				// before a *= attribute selector with multiple properties
+				'/* @noflip */ div.foo[bar*=baz] { float:left; clear: left; }'
+			),
+			array(
+				// before a ^= attribute selector with multiple properties
+				'/* @noflip */ div.foo[bar^=baz] { float:left; clear: left; }'
+			),
+			array(
+				// before a ~= attribute selector with multiple properties
+				'/* @noflip */ div.foo[bar~=baz] { float:left; clear: left; }'
+			),
+			array(
+				// before a = attribute selector with multiple properties
+				'/* @noflip */ div.foo[bar=baz] { float:left; clear: left; }'
+			),
+			array(
+				// before a quoted attribute selector with multiple properties
+				'/* @noflip */ div.foo[bar=\'baz{quux\'] { float:left; clear: left; }'
 			),
 
 			// Guard against css3 stuff
