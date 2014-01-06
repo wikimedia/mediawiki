@@ -984,7 +984,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param array $join_conds
 	 * @return string
 	 */
-	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
+	protected function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
 		$ret = array();
 		$retJOIN = array();
 		$use_index_safe = is_array( $use_index ) ? $use_index : array();
