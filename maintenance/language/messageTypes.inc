@@ -450,6 +450,7 @@ $wgOptionalMessages = array(
 	'hebrew-calendar-m11-gen',
 	'hebrew-calendar-m12-gen',
 	'version-api',
+	'version-version',
 	'version-svn-revision',
 	'semicolon-separator',
 	'comma-separator',
