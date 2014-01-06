@@ -2690,8 +2690,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @throws Exception
 	 * @return bool
 	 */
-	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+		$fname = __METHOD__
 	) {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
