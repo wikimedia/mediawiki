@@ -723,7 +723,7 @@ class DatabaseOracle extends DatabaseBase {
 			oci_commit( $this->mConn );
 		}
 
-		oci_free_statement( $stmt );
+		return oci_free_statement( $stmt );
 	}
 
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
@@ -1497,7 +1497,7 @@ class DatabaseOracle extends DatabaseBase {
 			oci_commit( $this->mConn );
 		}
 
-		oci_free_statement( $stmt );
+		return oci_free_statement( $stmt );
 	}
 
 	function bitNot( $field ) {

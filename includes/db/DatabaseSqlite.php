@@ -150,8 +150,10 @@ class DatabaseSqlite extends DatabaseBase {
 			# Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
 
-			return true;
+			return $this->mConn;
 		}
+
+		return false;
 	}
 
 	/**
