@@ -52,6 +52,9 @@ $namespaceAliases = array(
 	'Discussion_Catègorie'  => NS_CATEGORY_TALK
 );
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Usanciérs_actifs', 'UsanciérsActifs' ),
 	'Allmessages'               => array( 'Mèssâjos_sistèmo', 'MèssâjosSistèmo' ),

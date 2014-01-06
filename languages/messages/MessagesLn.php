@@ -14,6 +14,9 @@
 
 $fallback = 'fr';
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $linkPrefixExtension = true;
 
 # Same as the French (bug 8485)

@@ -13,6 +13,9 @@
 
 $fallback = 'fr';
 
+// Remove French aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Gbënëngö-gbê',
