@@ -12117,7 +12117,7 @@ MSIE CSS safety test: comment in expression
 !! end
 
 !! test
-CSS safety test: vertical tab
+MSIE 6 CSS safety test: vertical tab (bug 55332)
 !! input
 <p style="font-size: 100px; background-image:url\b(https://www.google.com/images/srpr/logo6w.png)">A</p>
 !! result
@@ -12126,7 +12126,7 @@ CSS safety test: vertical tab
 !! end
 
 !! test
-MSIE CSS safety test: Fullwidth
+MSIE 6 CSS safety test: Fullwidth (bug 55332)
 !! input
 <p style="font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title='XSSed'),'red')">A</p>
 <div style="top:ＥＸＰＲＥＳＳＩＯＮ(alert())">B</div>
@@ -12137,7 +12137,7 @@ MSIE CSS safety test: Fullwidth
 !! end
 
 !! test
-MSIE CSS safety test: IPA extensions
+MSIE 6 CSS safety test: IPA extensions (bug 55332)
 !! input
 <div style="background-image:uʀʟ(javascript:alert())">A</div>
 <p style="font-size: 100px; color: expʀessɪoɴ((title='XSSed'),'red')">B</p>
@@ -12148,7 +12148,7 @@ MSIE CSS safety test: IPA extensions
 !! end
 
 !! test
-MSIE CSS safety test: sup/sub script
+MSIE 6 CSS safety test: sup/sub script (bug 55332)
 !! input
 <div style="background-image:url⁽javascript:alert())">A</div>
 <div style="background-image:url₍javascript:alert())">B</div>
@@ -12161,7 +12161,7 @@ MSIE CSS safety test: sup/sub script
 !! end
 
 !! test
-MSIE CSS safety test: Repetition markers
+MSIE 6 CSS safety test: Repetition markers (bug 55332)
 !! input
 <p style="font-size: 100px; color: expres〱ion((title='XSSed'),'red')">A</p>
 <p style="font-size: 100px; color: expresゝion((title='XSSed'),'red')">B</p>
