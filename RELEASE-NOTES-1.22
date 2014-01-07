@@ -1,5 +1,15 @@
+= MediaWiki release notes =
+
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
+
+== MediaWiki 1.22.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.0 ===
+
+* (bug 58434) The installer for database backend Oracle was broken.
 
 == MediaWiki 1.22.0 ==
 
