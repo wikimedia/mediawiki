@@ -4944,6 +4944,30 @@ class Title {
 	}
 
 	/**
+	 * Get a list of rendered page notices (displayed above page content) for this page.
+	 *
+	 * Array is keyed by the original message key, and values are rendered using parseAsBlock, so
+	 * they will already be wrapped in paragraphs.
+	 *
+	 * @since 1.23
+	 * @param int oldid Revision ID that's being viewed
+	 * @return Array
+	 */
+	public function getPageNotices( $oldid = 0 ) {
+		$notices = array();
+
+		# Optional notices on a per-namespace basis
+		$pagenoticeNs = 'pagenotice-' . $this->getNamespace();
+		$pagenoticeNsMessage = wfMessage( $pagenoticeNs );
+		if ( $pagenoticeNsMessage->exists() ) {
+			$notices[$pagenoticeNs] = $pagenoticeNsMessage->parseAsBlock();
+		}
+
+		wfRunHooks( 'TitleGetPageNotices', array( $this, $oldid, &$notices ) );
+		return $notices;
+	}
+
+	/**
 	 * Get a list of rendered edit notices for this page.
 	 *
 	 * Array is keyed by the original message key, and values are rendered using parseAsBlock, so
