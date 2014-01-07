@@ -51,7 +51,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**@}}*/
 
 	/** @var stdclass Map of cache fields (text, parser output, ect) for a proposed/new edit */
-	protected $mPreparedEdit = false;
+	public $mPreparedEdit = false;
 
 	/**
 	 * @var int
