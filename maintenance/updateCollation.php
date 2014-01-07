@@ -71,6 +71,7 @@ TEXT;
 		global $wgCategoryCollation;
 
 		$dbw = $this->getDB( DB_MASTER );
+		$dbr = $this->getDB( DB_SLAVE );
 		$force = $this->getOption( 'force' );
 		$dryRun = $this->getOption( 'dry-run' );
 		$verboseStats = $this->getOption( 'verbose-stats' );
@@ -103,7 +104,7 @@ TEXT;
 				);
 			}
 
-			$count = $dbw->estimateRowCount(
+			$count = $dbr->estimateRowCount(
 				'categorylinks',
 				'*',
 				$collationConds,
@@ -111,7 +112,7 @@ TEXT;
 			);
 			// Improve estimate if feasible
 			if ( $count < 1000000 ) {
-				$count = $dbw->selectField(
+				$count = $dbr->selectField(
 					'categorylinks',
 					'COUNT(*)',
 					$collationConds,
@@ -130,7 +131,7 @@ TEXT;
 		$batchConds = array();
 		do {
 			$this->output( "Selecting next " . self::BATCH_SIZE . " rows..." );
-			$res = $dbw->select(
+			$res = $dbr->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
 					'cl_sortkey', 'cl_type', 'page_namespace', 'page_title'
