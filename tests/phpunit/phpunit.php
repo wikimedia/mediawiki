@@ -108,9 +108,9 @@ if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
 }
 
 if ( PHPUnit_Runner_Version::id() !== '@package_version@'
-	&& version_compare( PHPUnit_Runner_Version::id(), '3.6.7', '<' )
+	&& version_compare( PHPUnit_Runner_Version::id(), '3.7.0', '<' )
 ) {
-	die( 'PHPUnit 3.6.7 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
+	die( 'PHPUnit 3.7.0 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
 }
 
 if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
