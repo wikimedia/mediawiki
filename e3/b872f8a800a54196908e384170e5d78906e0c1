@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+1: Siebrand <siebrand@wikimedia.org>
+Code-Review+2: Nikerabbit <niklas.laxstrom@gmail.com>
+Submitted-by: jenkins-bot
+Submitted-at: Tue, 07 Jan 2014 08:35:29 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/105438
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.23wmf9
