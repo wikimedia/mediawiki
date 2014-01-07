@@ -413,6 +413,7 @@ Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 # General errors
 'error' => 'Petuz',
 'databaseerror' => 'Andmusiden bazan petuz',
+'databaseerror-query' => 'Ecmine: $1',
 'databaseerror-function' => 'Funkcii:$1',
 'databaseerror-error' => 'Petuz: $1',
 'laggedslavemode' => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
@@ -564,17 +565,17 @@ Olgat hüväd, kirjutagatoiš sistemha, konz sat sen.",
 'mailerror' => 'E-počtan oigendamižen petuz: $1',
 'emailauthenticated' => 'Teiden e-počtan adres vahvištoittihe datal $2 aigal $3.',
 'emailnotauthenticated' => 'Teiden e-počtan adres ei ole völ vahvištoittud.
-Wiki-likutimen počtfunkcijad ei olgoi kävutamas.',
+Kirjeižid ei oigekoi ni-ühten funkcijan täht.',
 'noemailprefs' => 'Kirjutagat e-počtan adres teiden järgendusihe, miše se oliži kävutamas.',
 'emailconfirmlink' => 'Vahvištoitkat teiden e-počtan adres',
 'invalidemailaddress' => 'Ningomal e-počtan adresal om vär format. Olgat hüväd, kirjutagat e-počtan adres oiktas formatas vai puhtastagat e-počtan pöud.',
 'emaildisabled' => 'Nece sait ei voi oigeta e-počtad.',
 'accountcreated' => 'Registracii om OK',
-'accountcreatedtext' => 'Registracii $1-kävutajan täht om sätud.',
+'accountcreatedtext' => 'Registracii [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]])-kävutajan täht om sätud.',
 'createaccount-title' => '{{SITENAME}}: registracijan sädand.',
 'usernamehasherror' => 'Kävutajan nimes ei voi olda mugošt znamad.',
 'login-throttled' => 'Tö olet tehnu äjahkon naprindoid kirjutadas sistemha.
-Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
+Olgat hüväd, varastagat $1 aigad edel ut naprindad.',
 'login-abort-generic' => 'Teiden naprind tulda sistemha om satusetoi - Azotadud',
 'loginlanguagelabel' => 'Kel’: $1',
 
@@ -592,7 +593,7 @@ Miše tulda sistemha lopuližikš, teile pidab säta uz' peitsana naku:",
 'newpassword' => "Uz' peitsana:",
 'retypenew' => "Toštkat uz' peitsana:",
 'resetpass_submit' => 'Säta peitsana da kirjutadas sistemha',
-'changepassword-success' => 'Teiden peisana om vajehtadud jügedusita! Tulend sistemha...',
+'changepassword-success' => 'Teiden peisana om vajehtadud jügedusita!',
 'resetpass_forbidden' => 'Ei voi vajehtada peitsanad',
 'resetpass-no-info' => 'Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.',
 'resetpass-submit-loggedin' => 'Vajehtada peitsana',
@@ -610,7 +611,7 @@ Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'passwordreset-email' => 'E-počtan adres:',
 'passwordreset-emailelement' => 'Kävutajannimi: $1
 Aigaline peitsana: $2',
-'passwordreset-emailsent' => 'Muštatai kirjeine oigetihe e-počtadme',
+'passwordreset-emailsent' => 'Muštatai kirjeine uden peitsananke oigetihe e-počtadme.',
 
 # Special:ChangeEmail
 'changeemail' => 'Toižetada e-počtan adres',
@@ -872,7 +873,7 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-text' => "'''Čutud versijad ozutadas lehtpolen istorijas da aigkirjoiš, no järgeližed lugijad ei voiškakoi nähta niiden südäimišton erasid paloid.'''
 Administratorad voiškatas lugeda peittud südäimištod da endištada sidä necen interfeisan kal't siloi, konz ei ole ližakaidendusid.",
 'revdelete-legend' => 'Säta kaidendused',
-'revdelete-hide-text' => 'Peitta necen lehtpolen versijan tekst',
+'revdelete-hide-text' => 'Redakcijan tekst',
 'revdelete-hide-image' => 'Peitta failan südäiolend',
 'revdelete-hide-name' => 'Peitta tegend da sen objekt',
 'revdelete-hide-comment' => 'Peitta toižetusiden kirjutez',
@@ -1448,6 +1449,7 @@ Ku valitas vaiše ühten kävutajan failad, ka ozutadas vaiše necen kävutajan 
 'listfiles_size' => 'Suruz’',
 'listfiles_description' => 'Ümbrikirjutand',
 'listfiles_count' => 'Versijad',
+'listfiles-latestversion' => 'Nügüdläine versii',
 'listfiles-latestversion-yes' => 'Ka',
 
 # File description page
@@ -1664,6 +1666,9 @@ Olgat hüväd, otkat sil'mnägubale, miše toižed-ki saitad voidas kosketada fa
 'allpagesprefix' => 'Ozutada lehtpoled prefiksoidenke:',
 'allpages-bad-ns' => '{{SITENAME}}-saital ei ole "$1"-nimiavarust.',
 'allpages-hide-redirects' => 'Peitta läbikosketused',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Ozutada möhembad.',
 
 # Special:Categories
 'categories' => 'Kategorijad',
@@ -3067,6 +3072,7 @@ Kävutagat normaline ezikacund.',
 
 # API errors
 'api-error-empty-file' => "Teil oigetud fail om pall'az.",
+'api-error-fetchfileerror' => 'Südäipetuz: mi-se läksi värin failad sades.',
 'api-error-filename-tooshort' => 'Lühudahk failannimi.',
 'api-error-filetype-banned' => "Nece failtip om kel'tud.",
 'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|om laskmatoi failantip|oma laskmatomad failantipad}}. Lasktud {{PLURAL:$3|failantip om|failantipad oma}} $2.',

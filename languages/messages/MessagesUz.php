@@ -1259,7 +1259,7 @@ Qayta aloqa va yordam
 'deletedtext' => '"$1" yoʻqotildi.
 Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'dellogpage' => 'Yoʻqotish qaydlari',
-'dellogpagetext' => 'Quyida oxirgi oʻchirish qaydlari keltirilgan',
+'dellogpagetext' => 'Quyida oxirgi yoʻqotish qaydlari keltirilgan',
 'deletionlog' => 'yoʻqotish qaydlari',
 'reverted' => 'Eski holiga keltirildi',
 'deletecomment' => 'Sabab:',

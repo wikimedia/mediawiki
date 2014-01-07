@@ -434,9 +434,14 @@ $messages = array(
 
 'badaccess' => 'Yerro de permissión',
 
+'versionrequired' => 'Se nesesite la versyon $1 de MediaWiki',
+'versionrequiredtext' => 'Se nesesita versyon $1 de MediaWiki para uzar este pajina. Ver [[Special:Version|La pajina de versyon]].',
+
 'ok' => 'DE ACORDDO',
 'retrievedfrom' => 'Acòjido del adhresso "$1"',
 'youhavenewmessages' => '{{PLURAL:$3|Tienes}} $1 ($2).',
+'youhavenewmessagesfromusers' => 'Tiene $1 de {{PLURAL:$3|otro usuario|$3 usuarios}}($2).',
+'youhavenewmessagesmanyusers' => 'Tiene $1 de munchos usuarios ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|un muevo mesaje|999=mesajes muevos}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|ulitmo kambio|999=ultimos kambios}}',
 'youhavenewmessagesmulti' => 'Tienes messajes nuevos en $1',
@@ -457,6 +462,8 @@ $messages = array(
 'page-rss-feed' => '"$1" Fuente RSS',
 'page-atom-feed' => '"$1" Subscripción Atom',
 'red-link-title' => '$1 (la hoja no egziste)',
+'sort-descending' => 'Atakanar en orden desendente',
+'sort-ascending' => 'Atakanar en orden asendente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Pajina',
@@ -471,6 +478,7 @@ $messages = array(
 'nstab-category' => 'Kategoriya',
 
 # Main script and global functions
+'nosuchaction' => 'No egziste esa aksyon',
 'nosuchspecialpage' => 'No ay tala hoja especial',
 
 # General errors
@@ -492,6 +500,11 @@ Si puede ser mete un [[Special:ListUsers/sysop|administrador]] en corriente y ta
 'badtitletext' => 'El título de la hoja demandada está vazío, no es valible, o es un link interlingua o interwiki incorrecto.
 Puede ser que contiene uno o más caracteres que no se pueden usar en los títulos.',
 'viewsource' => 'Ver su manadero',
+'viewsource-title' => 'Ver la fuente de $1',
+'actionthrottled' => 'Aksyon limitada',
+
+# Virus scanner
+'virus-unknownscanner' => 'antivirus deskonosido:',
 
 # Login and logout pages
 'welcomeuser' => 'Bienvinidos, $1',
@@ -504,8 +517,11 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'userlogin-yourpassword-ph' => 'Eskriva tu kontrasenya',
 'createacct-yourpassword-ph' => 'Eskriva una kontrasenya',
 'yourpasswordagain' => 'Entra de muevo la parola',
+'createacct-yourpasswordagain' => 'Konfirme contrasenya',
 'createacct-yourpasswordagain-ph' => 'Eskrive la kontrasenya de muevo',
 'remembermypassword' => 'Acórdate de mi entrada de usador en este bilgisayar/orddênador (por un maksimum de {{PLURAL:$1|día|días}})',
+'yourdomainname' => 'Tu dominyo:',
+'password-change-forbidden' => 'No se puede kambiar contrasenyas en este viki.',
 'login' => 'Entrar',
 'nav-login-createaccount' => 'Entrar / Criar un cuento',
 'loginprompt' => 'Kale tener "cookies" aktivadas enel navegador para enrejistrarse en {{SITENAME}}',
@@ -535,9 +551,10 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'createacct-another-submit' => 'Krear otro kuento',
 'createacct-benefit-heading' => '{{SITENAME}} es izo por djente komo tu.',
 'createacct-benefit-body2' => '{{PLURAL:$1|pajina|pajinas}}',
-'userexists' => 'El nombre que entrates ya se usa.
-Si puede ser, escoge un otro nombre.',
+'userexists' => 'El nombre de usuario que eskrivites ya se uza.
+Eskoje un nombre diferente.',
 'createaccounterror' => 'No se pudo crear el cuento: $1',
+'password-name-match' => 'Tu contrasenya kale ser diferente de tu usuario.',
 'mailmypassword' => 'Restableser kontrasenya',
 'mailerror' => 'Falta al embiar korreo: $1',
 'emailconfirmlink' => 'Confirma su adderesso de letra electrónica',
@@ -547,11 +564,17 @@ Si puede ser, escoge un otro nombre.',
 
 # Change password dialog
 'changepassword' => 'Trocar el kóddiche',
+'resetpass_header' => 'Kambiar kontrasenya del kuento',
 'oldpassword' => 'Kóddiche viejo:',
 'newpassword' => 'Kóddiche muevo:',
+'retypenew' => 'Eskrive de muevo la kontrasenya mueva',
+'resetpass_forbidden' => 'No se puede kambiar las kontrasenyas',
+'resetpass-submit-loggedin' => 'Kambiar kontrasenya',
 'resetpass-submit-cancel' => 'Anular',
 
 # Special:PasswordReset
+'passwordreset' => 'Restableser kontrasenya',
+'passwordreset-legend' => 'Restableser kontrasenya',
 'passwordreset-username' => 'Nombre de usador:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-email' => 'Adresso de letral:',
@@ -621,6 +644,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 Puedes [[Special:Search/{{PAGENAME}}|bushkar este titolo de oja]] en otras pajinas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bushkar en los rejistros relasyonados]</span>.',
 'userpage-userdoesnotexist-view' => 'El cuento del usador $1 no está enrejistrado.',
+'updated' => '(Aktualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "¡Akórdate ke esto es sólo una previsualizasion i aínda no se enrejistró!'''
 Los tus trokamientos no se tienen guadrados!",
@@ -648,6 +672,7 @@ Ya egziste.',
 
 # Content models
 'content-model-wikitext' => 'vikiteksto',
+'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
 
 # Parser/template warnings
@@ -690,6 +715,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'history-feed-item-nocomment' => '$1 en $2',
 
 # Revision deletion
+'rev-deleted-user' => '(se kito el nombre de usuario)',
 'rev-delundel' => 'mostra/esconde',
 'rev-showdeleted' => 'mostra',
 'revdelete-show-file-submit' => 'Si',
@@ -947,6 +973,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'sharedupload' => 'Este arxivo es de $1 i puede ser usado por otros proyectos.',
 'sharedupload-desc-here' => 'Esta hoja es de $1 y puede ser usado por otros projetos.
 La descripción en su [$2 hoja de descripción del arxivo] está amostrada debaxo.',
+'filepage-nofile' => 'No egziste dingun archivo de este nombre.',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este arxivo',
 'shared-repo-from' => 'de $1',
 
@@ -1045,10 +1072,12 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'listgrouprights' => 'Derechos del grupo de usuario',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-rights' => 'Derechos',
-'listgrouprights-helppage' => 'Ayudo:Derechos de grupo',
+'listgrouprights-helppage' => 'Help:Derechos de grupo',
 'listgrouprights-members' => '(ver los miembros de este grupo)',
 'listgrouprights-addgroup' => 'Anyadir {{PLURAL:$2|grupo|grupos}}: $1',
 'listgrouprights-removegroup' => 'Kitar {{PLURAL:$2|grupo|grupos}}: $1',
+'listgrouprights-addgroup-all' => 'Anyadir todos los grupos',
+'listgrouprights-removegroup-all' => 'Kitar todos los grupos',
 
 # Email user
 'emailuser' => 'Embia korreo elektroniko a este usuario',
@@ -1062,6 +1091,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'emailsubject' => 'Sujeto:',
 'emailmessage' => 'Mesaje:',
 'emailsend' => 'Embiar',
+'emailsent' => 'Korreo elektroniko embiado',
 
 # Watchlist
 'watchlist' => 'Lista de akavidamiento',

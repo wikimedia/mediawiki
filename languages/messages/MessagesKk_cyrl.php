@@ -9,6 +9,7 @@
  *
  * @author AlefZet
  * @author Alibek Kisybay
+ * @author Amangeldy
  * @author Arystanbek
  * @author Bakytgul Salykhova
  * @author Daniyar
@@ -3587,6 +3588,8 @@ $5
 'version-hook-subscribedby' => 'Тұзақ тартқыштары',
 'version-version' => '(Нұсқасы: $1)',
 'version-license' => 'Лицензиясы',
+'version-ext-license' => 'Лицензия',
+'version-ext-colheader-credits' => 'Автор(лары)',
 'version-poweredby-others' => 'басқалар',
 'version-software' => 'Орнатылған бағдарламалық жасақтама',
 'version-software-product' => 'Өнім',

@@ -31,6 +31,7 @@
  * @author Pxos
  * @author Samoasambia
  * @author Silvonen
+ * @author Smite
  * @author Snidata
  * @author Str4nd
  * @author Stryn
@@ -3867,7 +3868,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-parser-function-hooks' => 'Jäsentimen laajennusfunktiot',
 'version-hook-name' => 'Kytköspisteen nimi',
 'version-hook-subscribedby' => 'Kytkökset',
-'version-version' => '(Versio $1)',
+'version-version' => '($1)',
 'version-license' => 'MediaWikin lisenssi',
 'version-ext-license' => 'Lisenssi',
 'version-ext-colheader-name' => 'Laajennusosa',
@@ -4124,6 +4125,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
 'limitreport-walltime' => 'Todellinen ajankäyttö',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
+'limitreport-ppvisitednodes' => 'Esikääntäjän läpikäymien solmujen määrä',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',

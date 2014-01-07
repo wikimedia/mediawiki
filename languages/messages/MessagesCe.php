@@ -1335,21 +1335,21 @@ $1",
 'group-autoconfirmed' => 'Ша тӀелаьцболу декъашхой',
 'group-bot' => 'Шаболххой',
 'group-sysop' => 'Куьйгалхой',
-'group-bureaucrat' => 'Даржахой',
+'group-bureaucrat' => 'Бюрократаш',
 'group-suppress' => 'Ревизораш',
 'group-all' => '(массо)',
 
 'group-user-member' => '{{GENDER:$1|декъашхо}}',
 'group-bot-member' => 'шаболххо',
 'group-sysop-member' => '{{GENDER:$1|куьйгалхо}}',
-'group-bureaucrat-member' => 'даржахо',
+'group-bureaucrat-member' => '{{GENDER:$1|бюрократхо}}',
 'group-suppress-member' => 'левисорхо',
 
 'grouppage-user' => '{{ns:project}}:Декъашхой',
 'grouppage-autoconfirmed' => '{{ns:project}}:Бакъонаш йолу декъашхой',
 'grouppage-bot' => '{{ns:project}}:Шаболххой',
 'grouppage-sysop' => '{{ns:project}}:Куьйгалхой',
-'grouppage-bureaucrat' => '{{ns:project}}:Даржахой',
+'grouppage-bureaucrat' => '{{ns:project}}:Бюрократаш',
 'grouppage-suppress' => '{{ns:project}}:Ревизораш',
 
 # Rights
@@ -2184,6 +2184,7 @@ PICT # тайп тайпан
 
 Ишта чу ханчохь, ахьа дехьа яккха йезар ю йа куьйга хlоттайар, нагахь иза хьашт йалахь.",
 'movearticle' => 'Цle хийца хlокху агlон',
+'moveuserpage-warning' => "'''Тергам бе.''' Хьо декъашхочун агӀона цӀе хийца гӀерта. Дехар до, тергам бе, декъашхочун агӀона цӀе бен хийца лур яц, декъашхочун дӀаяздаран цӀе хийца лур яц.",
 'newtitle' => 'Керла цlе',
 'move-watch' => 'Латайé хӀара агӀо тергаме могӀанан юкъахь',
 'movepagebtn' => 'Агlон цlе хийца',

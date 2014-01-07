@@ -4032,7 +4032,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-parser-function-hooks' => "Parsererweiterungen ''(Funktionen)''",
 'version-hook-name' => 'Schnittstellenname',
 'version-hook-subscribedby' => 'Aufruf von',
-'version-version' => '(Version $1)',
+'version-version' => '($1)',
 'version-svn-revision' => '(Version $2)',
 'version-license' => 'MediaWiki-Lizenz',
 'version-ext-license' => 'Lizenz',

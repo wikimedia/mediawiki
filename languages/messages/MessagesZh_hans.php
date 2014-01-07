@@ -64,6 +64,7 @@
  * @author Stevenliuyi
  * @author Supaiku
  * @author Tommyang
+ * @author User670839245
  * @author Waihorace
  * @author Wilsonmess
  * @author Wmr89502270
@@ -1792,7 +1793,7 @@ $1",
 'filename-tooshort' => '文件名过短。',
 'filetype-banned' => '此类文件被禁止。',
 'verification-error' => '文件未通过验证。',
-'hookaborted' => '您所尝试的修改被插件钩子舍弃。',
+'hookaborted' => '您所尝试的修改被一个扩展程序终止。',
 'illegal-filename' => '文件名非法。',
 'overwrite' => '不允许覆盖现有文件。',
 'unknown-error' => '发生未知错误。',

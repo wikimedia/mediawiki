@@ -24,6 +24,7 @@
  * @author Ladsgroup
  * @author Leyth
  * @author Mardetanha
+ * @author Mcuteangel
  * @author Mehdi
  * @author Mehran
  * @author MehranVB
@@ -452,8 +453,8 @@ $imageFiles = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'خط کشیدن زیر پیوندها:',
-'tog-justify' => 'بندها تمام‌چین نمایش یابند',
+'tog-underline' => 'پیوند خط کشی شده در زیر:',
+'tog-justify' => 'توجیه پاراگراف',
 'tog-hideminor' => 'تغییرات جزئی از فهرست تغییرات اخیر پنهان شوند',
 'tog-hidepatrolled' => 'ویرایش‌های گشت‌خورده از فهرست تغییرات اخیر پنهان شوند',
 'tog-newpageshidepatrolled' => 'صفحه‌های گشت‌خورده از فهرست صفحه‌های تازه پنهان شوند',
@@ -2905,6 +2906,7 @@ $1',
 برای بررسی بسته‌شده‌ها [[Special:BlockList|فهرست بسته‌شده‌ها]] را ببینید.',
 'ipb-blockingself' => 'شما در حال بستن خودتان هستید!  آیا مطمئن هستید که می‌خواهید چنین کاری انجام دهید؟',
 'ipb-confirmhideuser' => 'شما در حال بستن یک کاربر هستید که «پنهان‌سازی کاربر» برایش فعال شد‌ه‌است. این کار نام کاربر را از همهٔ فهرست‌ها و سیاهه‌ها مخفی می‌کند. آیا مطمئن هستید که می‌خواهید آن را انجام دهید؟',
+'ipb-confirmaction' => 'اگر واقعاً مطمئنید که می‌خواهید آن را انجام دهید، لطفاً زمینهٔ "{{int:ipb-confirm}}" را در زیر بررسی کنید.',
 'ipb-edit-dropdown' => 'ویرایش دلایل قطع‌دسترسی',
 'ipb-unblock-addr' => 'باز کردن $1',
 'ipb-unblock' => 'باز کردن نام کاربری یا نشانی آی‌پی',
@@ -4148,7 +4150,7 @@ $5
 'version-parser-function-hooks' => 'قلاب‌های عملگر تجزیه‌گر',
 'version-hook-name' => 'نام قلاب',
 'version-hook-subscribedby' => 'وارد شده توسط',
-'version-version' => '(نسخه $1)',
+'version-version' => '(نسخه  $1)',
 'version-svn-revision' => '(&رلم;r$2)',
 'version-license' => 'اجازه‌نامهٔ مدیاویکی',
 'version-ext-license' => 'مجوزها',

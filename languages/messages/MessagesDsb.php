@@ -561,7 +561,7 @@ Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
-'virus-scanfailed' => 'Scannowanje jo se njeraźiło (kod $1)',
+'virus-scanfailed' => 'Scannowanje njejo se raźiło (koda $1)',
 'virus-unknownscanner' => 'njeznaty antiwirus:',
 
 # Login and logout pages
@@ -740,7 +740,7 @@ Ty by měł se něnto pśizjawiś a nowe gronidło wustajiś. Jolic něchten dru
 Nachylne gronidło: $2',
 'passwordreset-emailsent' => 'E-mail za anulěrowanje gronidła jo se pósłała.',
 'passwordreset-emailsent-capture' => 'E-mail za anulěrowanje gronidła jo se pósłała, kótaraž pokazujo se dołojce.',
-'passwordreset-emailerror-capture' => 'E-mail za anulěrowanje gronidła jo se napórała, kótaraž se dołojce pokazujo, ale słanje {{GENDER:$2|wužywarjeju|wužywarce}} jo se njeraźiło: $1',
+'passwordreset-emailerror-capture' => 'E-mail za anulěrowanje gronidła jo se napórała, kótaraž se dołojce pokazujo, ale słanje {{GENDER:$2|wužywarjeju|wužywarce}} njejo se raźiło: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'E-mailowu adresu změniś',
@@ -951,7 +951,7 @@ Zda sem až jo wulašowany.',
 'edit-already-exists' => 'Njejo móžno było nowy bok napóraś.
 Eksistěrujo južo.',
 'defaultmessagetext' => 'Standardny tekst powěźeńki',
-'content-failed-to-parse' => 'Parsowanje wopśimjeśa $2 za model $1 jo se njeraźiło: $3',
+'content-failed-to-parse' => 'Parsowanje wopśimjeśa $2 za model $1 njejo se raźiło: $3',
 'invalid-content-data' => 'Njepłaśiwe wopśimjeśowe daty',
 'content-not-allowed-here' => 'Wopśimjeśe "$1" njejo na boku [[$2]] dowólone',
 'editwarning-warning' => 'Gaž toś ten bok se spušća, mógu se změny zgubiś, kótarež sy pśewjadł.
@@ -1495,7 +1495,7 @@ Toś ta informacija buźo zjawna.',
 'action-undelete' => 'Toś ten bok wótnowiś',
 'action-suppressrevision' => 'schowanu wersiju pśeglědaś a wótnowiś',
 'action-suppressionlog' => 'toś ten priwatny protokol zwobrazniś',
-'action-block' => 'Toś tomu wužiwarjeju wobźěłowanje zawoboraś',
+'action-block' => 'Toś tomu wužywarjeju wobźěłowanje zawoboraś',
 'action-protect' => 'Šćitowe stopnje za toś ten bok změniś',
 'action-rollback' => 'změny slědnego wužywarja, kótaryž jo wobźěłał wěsty bok, malsnje slědk stajiś',
 'action-import' => 'boki z drugego wikija importěrowaś',
@@ -1764,8 +1764,8 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'uploadstash-summary' => 'Toś ten bok zmóžnja dostup do datajow, kótarež su nagrate (abo so nagrawaju), ale hyšći njejsu do wikija wózjawjone. Toś te dataje njejsu widobne za nikogo, mimo až za wužywarja, kótaryž jo je nagrał.',
 'uploadstash-clear' => 'Schowane nagrate dataje wulašowaś',
 'uploadstash-nofiles' => 'Njamaš schowane nagrate dataje.',
-'uploadstash-badtoken' => 'Wuwjeźenje teje akcije jo se njeraźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
-'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
+'uploadstash-badtoken' => 'Wuwjeźenje teje akcije njejo se raźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
+'uploadstash-errclear' => 'Wótpóranje datajow njejo se raźiło.',
 'uploadstash-refresh' => 'Lisćinu datajow aktualizěrowaś',
 'invalid-chunk-offset' => 'Njepłaśiwy startowy dypk',
 
@@ -1791,7 +1791,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 # HTTP errors
 'http-invalid-url' => 'Njepłaśiwy URL: $1',
 'http-invalid-scheme' => 'URL ze šemu "$1" se njepódpěraju.',
-'http-request-error' => 'HTTP-napšašowanje jo se njeraźiło njeznateje zmólki dla.',
+'http-request-error' => 'HTTP-napšašowanje njejo se raźiło njeznateje zmólki dla.',
 'http-read-error' => 'Cytańska zmólka HTTP.',
 'http-timed-out' => 'HTTP-napšašowanje jo cas pśekšocyło.',
 'http-curl-error' => 'Zmólka pśi wótwółowanju URL: $1',
@@ -2411,7 +2411,7 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 'undeletedrevisions' => '{{PLURAL:$1|1 wersija jo se nawrośiła|$1 wersiji stej se nawrośiłej|$1 wersije su se nawrośili}}.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 wersija|$1 wersiji|$1 wersije}} a {{PLURAL:$2|1 dataja|$2 dataji|$2 dataje}} {{PLURAL:$2|jo se nawrośiła|stej se nawrośiłej|su se nawrośili}}.',
 'undeletedfiles' => '{{PLURAL:$1|1 dataja jo se nawrośiła|$1 dataji stej se nawrośiłej|$1 dataje su se nawrośili}}.',
-'cannotundelete' => 'Wótnowjenje jo se njeraźiło:
+'cannotundelete' => 'Wótnowjenje njejo se raźiło:
 $1',
 'undeletedpage' => "Bok '''$1''' jo se nawrośił.
 
@@ -2791,9 +2791,9 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'importhistoryconflict' => 'Konflikt wersijow (snaź jo toś ten bok južo raz se importěrował)',
 'importnosources' => 'Za transwikijowe importěrowanje njejsu žrědła definěrowane, direktne stawizny nagraśow su znjemóžnjone.',
 'importnofile' => 'Žedna dataja za importěrowanje njejo se nagrała.',
-'importuploaderrorsize' => 'Nagrawanje importoweje dataje jo se njeraźiło. Dataja jo wětša ako dowólona wjelikosć nagraśow.',
-'importuploaderrorpartial' => 'Nagrawanje importoweje dataje jo se njeraźiło. Dataja jo se jano pó źělach nagrała.',
-'importuploaderrortemp' => 'Nagrawanje importoweje dataje jo se njeraźiło. Temporarny zapis feluje.',
+'importuploaderrorsize' => 'Nagrawanje importoweje dataje njejo se raźiło. Dataja jo wětša ako dowólona wjelikosć nagraśow.',
+'importuploaderrorpartial' => 'Nagrawanje importoweje dataje njejo se raźiło. Dataja jo se jano pó źělach nagrała.',
+'importuploaderrortemp' => 'Nagrawanje importoweje dataje njejo se raźiło. Temporarny zapis felujo.',
 'import-parse-failure' => 'Zmólka pśi XML-imporśe:',
 'import-noarticle' => 'Žeden bok za import!',
 'import-nonewrevisions' => 'Wšykne wersije buchu južo pjerwjej importowane.',
@@ -2998,7 +2998,7 @@ HOW '''NIC''' njezapisaś!",
 'markedaspatrollederrortext' => 'Musyš wersiju wuzwóliś.',
 'markedaspatrollederror-noautopatrol' => 'Njesmějoš swóje změny ako kontrolěrowane markěrowaś.',
 'markedaspatrollednotify' => 'Toś ta změna do $1 jo se ako doglědowana markěrowała.',
-'markedaspatrollederrornotify' => 'Markěrowanje ako doglědowane jo se njeraźiło.',
+'markedaspatrollederrornotify' => 'Markěrowanje ako doglědowane njejo se raźiło.',
 
 # Patrol log
 'patrol-log-page' => 'Protokol kontrolow',
@@ -3558,7 +3558,7 @@ Toś ten wobkšuśeński kod płaśi až do $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',
 'scarytranscludefailed' => '[Zapśěgnjenje pśedłogi za $1 njejo se raźiło]',
-'scarytranscludefailed-httpstatus' => '[Wótwołanje pśedłogi za $1 jo se njeraźiło: HTTP $2]',
+'scarytranscludefailed-httpstatus' => '[Wótwołanje pśedłogi za $1 njejo se raźiło: HTTP $2]',
 'scarytranscludetoolong' => '[URL jo pśedłujki]',
 
 # Delete conflict
@@ -3870,7 +3870,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'feedback-submit' => 'Komentar wótpósłaś',
 'feedback-adding' => 'Komentar pśidawa se bokoju...',
 'feedback-error1' => 'Zmólka: Njepóznaty wuslědk wót API',
-'feedback-error2' => 'Zmólka: Wobźěłanje jo se njeraźiło',
+'feedback-error2' => 'Zmólka: Wobźěłanje njejo se raźiło',
 'feedback-error3' => 'Zmólka: Žedne wótegrono wót API',
 'feedback-thanks' => 'Źěkujomy se! Twój komentar jo se k bokoju "[$2 $1]" pósłał.',
 'feedback-close' => 'Dokóńcony',
@@ -3891,7 +3891,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Dwójna dataja|Dwójnej dataji|Dwójne dataje|Dwójne dataje}}',
 'api-error-empty-file' => 'Dataja, kótaruž sy nagrał, jo prozna była.',
 'api-error-emptypage' => 'Napóranje nowych, proznych bokow njejo dowólone.',
-'api-error-fetchfileerror' => 'Nutśikowna zmólka: Pśii wobstarowanju dataje jo se něco njeraźiło.',
+'api-error-fetchfileerror' => 'Nutśikowna zmólka: Pśi wobstarowanju dataje něco njejo se raźiło.',
 'api-error-fileexists-forbidden' => 'Dataja z mjenim "$1" južo eksistěrujo, a njedajo se pśepisaś.',
 'api-error-fileexists-shared-forbidden' => 'Dataja z mjenim "$1" južo eksistěrujo w zgromadnem datajowem repozitoriumje a njedajo se pśepisaś.',
 'api-error-file-too-large' => 'Dataja, kótaruž sy nagrał, jo pśewjelika była.',
@@ -3902,7 +3902,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-hookaborted' => 'Změna, kótaruž sy wopytał pśewjasć, jo se pśetergnuła pśez rozšyrjenje.',
 'api-error-http' => 'Nutśikowna zmólka: Zwisk ze serwerom njemóžno.',
 'api-error-illegal-filename' => 'Datajowe mě njejo dowólone.',
-'api-error-internal-error' => 'Nutśikowna zmólka: Pśi pśeźěłowanju twójogo nagraśa na wiki jo se něco njeraźiło.',
+'api-error-internal-error' => 'Nutśikowna zmólka: Pśi pśeźěłowanju twójogo nagraśa na wiki něco njejo se raźiło.',
 'api-error-invalid-file-key' => 'Nutśikowna zmólka: Dataja njejo se w temporernem składowaku namakała.',
 'api-error-missingparam' => 'Nutśikowna zmólka: Felujuce parametry pśi napšašowanju.',
 'api-error-missingresult' => 'Nutśikowna zmólka: Njedajo se zwěsćiś, lěc kopěrowanje jo se raźiło.',
@@ -3918,7 +3918,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-timeout' => 'Serwer njejo we wócakanem casu wótgronił.',
 'api-error-unclassified' => 'Njeznata zmólka jo nastała.',
 'api-error-unknown-code' => 'Njeznata zmólka: "$1"',
-'api-error-unknown-error' => 'Nutśikowna zmólka: Pśi nagrawanju twójeje dataje jo se něco njeraźiło.',
+'api-error-unknown-error' => 'Nutśikowna zmólka: Pśi nagrawanju twójeje dataje něco njejo se raźiło.',
 'api-error-unknown-warning' => 'Njeznate warnowanje: $1',
 'api-error-unknownerror' => 'Njeznata zmólka: "$1".',
 'api-error-uploaddisabled' => 'Nagraśa su na toś tom wikiju znjemóžnjone.',

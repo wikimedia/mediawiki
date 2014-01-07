@@ -26,6 +26,7 @@
  * @author ITurtle
  * @author Idh0854
  * @author Jmkim dot com
+ * @author Jskang
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
@@ -1582,7 +1583,9 @@ HTML 태그를 확인하세요.',
 'gender-unknown' => '밝히고 싶지 않습니다.',
 'gender-male' => '위키 문서를 편집하는 남자입니다',
 'gender-female' => '위키 문서를 편집하는 여자입니다',
-'prefs-help-gender' => '이 사용자 환경 설정은 선택 사항입니다. 소프트웨어에서 이 설정을 사용해 사용자를 가리키고 다른 사용자에게 자신을 언급하는데 적절한 문법적 성별을 사용합니다. 이 정보는 공개됩니다.',
+'prefs-help-gender' => '이 항목은 선택 사항입니다.
+적절한 문법적 성별을 사용하여 당신을 지칭하거나 다른 사람들에게 당신을 언급하는 경우에 이 항목의 값이 사용됩니다.
+이것은 공개 항목입니다.',
 'email' => '이메일',
 'prefs-help-realname' => '실명은 선택 사항입니다.
 실명을 입력하면 문서 기여에 자신의 이름이 들어가게 됩니다.',
@@ -1925,6 +1928,7 @@ $2 {{PLURAL:$3|형식만 사용할 수 있습니다}}.',
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => '현재 올리고 있는 {{PLURAL:$1|파일}}이 아래 파일과 중복됩니다:',
 'file-deleted-duplicate' => '이 파일과 같은 파일 ([[:$1]])이 이전에 삭제된 적이 있습니다. 파일을 다시 올리기 전에 문서의 삭제 기록을 확인해 주시기 바랍니다.',
+'file-deleted-duplicate-notitle' => '이 파일과 같은 파일이 삭제된 이력이 있습니다. 업로드하기에 앞서, 삭제된 파일의 이력을 확인할 수 있는 권한을 가진 담당자에게 먼저 문의하기 바랍니다.',
 'uploadwarning' => '올리기 경고',
 'uploadwarning-text' => '아래의 파일 설명을 수정하고 다시 시도해 주세요.',
 'savefile' => '파일 저장',
@@ -2314,6 +2318,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedpages' => '보호된 문서 목록',
 'protectedpages-indef' => '오른쪽 조건에 맞는 보호만 보기',
 'protectedpages-cascade' => '연쇄적 보호만 보기',
+'protectedpages-noredirect' => '넘겨주기 숨김',
 'protectedpagesempty' => '보호되어 있는 문서가 없습니다.',
 'protectedtitles' => '만들기 보호된 표제어 목록',
 'protectedtitlesempty' => '해당 조건에 맞는 만들기 금지 표제어가 없습니다.',
@@ -2593,6 +2598,7 @@ $UNWATCHURL
 'delete-warning-toobig' => '이 문서에는 {{PLURAL:$1|편집 역사}}가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있습니다.
 주의해 주세요.',
+'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서로의 링크를 가진 다른 문서가 있습니다.",
 
 # Rollback
 'rollback' => '편집 되돌리기',
@@ -4052,6 +4058,14 @@ $5
 'version-hook-subscribedby' => '훅이 사용된 위치',
 'version-version' => '(버전 $1)',
 'version-license' => '미디어위키 라이선스',
+'version-ext-license' => '라이선스',
+'version-ext-colheader-name' => '확장기능',
+'version-ext-colheader-version' => '버전',
+'version-ext-colheader-license' => '라이선스',
+'version-ext-colheader-description' => '설명',
+'version-ext-colheader-credits' => '저자',
+'version-license-not-found' => '이 확장기능에 대한 라이선스 세부 정보가 없습니다.',
+'version-credits-not-found' => '이 확장기능에 대한 크레딧 세부 정보가 없습니다.',
 'version-poweredby-credits' => "이 위키는 '''[https://www.mediawiki.org/ MediaWiki]'''(미디어위키)를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
 'version-poweredby-translators' => 'translatewiki.net 번역자',
