@@ -104,34 +104,6 @@
 				// Make sure we don't unset util.$content if it was preset and we don't find anything
 				return util.$content;
 			} )();
-
-			// Table of contents toggle
-			mw.hook( 'wikipage.content' ).add( function () {
-				var $tocTitle, $tocToggleLink, hideTocCookie;
-				$tocTitle = $( '#toctitle' );
-				$tocToggleLink = $( '#togglelink' );
-				// Only add it if there is a TOC and there is no toggle added already
-				if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
-					hideTocCookie = $.cookie( 'mw_hidetoc' );
-					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
-						.text( mw.msg( 'hidetoc' ) )
-						.click( function ( e ) {
-							e.preventDefault();
-							util.toggleToc( $(this) );
-						} );
-					$tocTitle.append(
-						$tocToggleLink
-							.wrap( '<span class="toctoggle"></span>' )
-							.parent()
-								.prepend( '&nbsp;[' )
-								.append( ']&nbsp;' )
-					);
-
-					if ( hideTocCookie === '1' ) {
-						util.toggleToc( $tocToggleLink );
-					}
-				}
-			} );
 		},
 
 		/* Main body */
@@ -228,33 +200,22 @@
 		 * or Null if there was no table of contents.
 		 */
 		toggleToc: function ( $toggleLink, callback ) {
-			var $tocList = $( '#toc ul:first' );
+			var ret, $tocList = $( '#toc ul:first' );
 
 			// This function shouldn't be called if there's no TOC,
 			// but just in case...
 			if ( $tocList.length ) {
 				if ( $tocList.is( ':hidden' ) ) {
-					$tocList.slideDown( 'fast', callback );
-					$toggleLink.text( mw.msg( 'hidetoc' ) );
-					$( '#toc' ).removeClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', null, {
-						expires: 30,
-						path: '/'
-					} );
-					return true;
+					ret = true;
 				} else {
-					$tocList.slideUp( 'fast', callback );
-					$toggleLink.text( mw.msg( 'showtoc' ) );
-					$( '#toc' ).addClass( 'tochidden' );
-					$.cookie( 'mw_hidetoc', '1', {
-						expires: 30,
-						path: '/'
-					} );
-					return false;
+					ret = false;
 				}
 			} else {
-				return null;
+				ret = null;
 			}
+			$toggleLink.click();
+			$tocList.promise().done( callback );
+			return ret;
 		},
 
 		/**
