@@ -65,7 +65,7 @@ interface DatabaseType {
 
 	/**
 	 * Fetch the next row from the given result object, in associative array
-	 * form.  Fields are retrieved with $row['fieldname'].
+	 * form. Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
 	 * @param ResultWrapper $res Result object as returned from DatabaseBase::query(), etc.
@@ -178,7 +178,7 @@ interface DatabaseType {
 
 	/**
 	 * Returns a wikitext link to the DB's website, e.g.,
-	 *     return "[http://www.mysql.com/ MySQL]";
+	 *   return "[http://www.mysql.com/ MySQL]";
 	 * Should at least contain plain text, if for some reason
 	 * your database has no website.
 	 *
@@ -196,7 +196,7 @@ interface DatabaseType {
 
 	/**
 	 * A string describing the current software version, and possibly
-	 * other details in a user-friendly way.  Will be listed on Special:Version, etc.
+	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
 	 * Use getServerVersion() to get machine-friendly information.
 	 *
 	 * @return string Version information from the database server
@@ -325,7 +325,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * A string describing the current software version, and possibly
-	 * other details in a user-friendly way.  Will be listed on Special:Version, etc.
+	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
 	 * Use getServerVersion() to get machine-friendly information.
 	 *
 	 * @return string Version information from the database server
@@ -372,7 +372,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * split up queries into batches using a LIMIT clause than to switch off
 	 * buffering.
 	 *
-	 * @param null|bool $buffer 
+	 * @param null|bool $buffer
 	 * @return null|bool The previous value of the flag
 	 */
 	public function bufferResults( $buffer = null ) {
@@ -621,7 +621,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		global $wgDebugDBTransactions;
 		$this->mFlags |= $flag;
 		if ( ( $flag & DBO_TRX ) & $wgDebugDBTransactions ) {
-			wfDebug( "Implicit transactions are now  disabled.\n" );
+			wfDebug( "Implicit transactions are now disabled.\n" );
 		}
 	}
 
@@ -794,7 +794,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string $dbType A possible DB type
 	 * @param array $p An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix, driver
-	 * @throws MWException
+	 * @throws MWException If the database driver or extension cannot be found
 	 * @return DatabaseBase|null DatabaseBase subclass or null
 	 */
 	final public static function factory( $dbType, $p = array() ) {
@@ -938,7 +938,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * The DBMS-dependent part of query()
 	 *
-	 * @param  string $sql SQL query.
+	 * @param string $sql SQL query.
 	 * @return ResultWrapper|bool Result object to feed to fetchObject,
 	 *   fetchRow, ...; or false on failure
 	 */
@@ -1141,8 +1141,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	protected function prepare( $sql, $func = 'DatabaseBase::prepare' ) {
 		/* MySQL doesn't support prepared statements (yet), so just
-		   pack up the query for reference. We'll manually replace
-		   the bits later. */
+		 * pack up the query for reference. We'll manually replace
+		 * the bits later.
+		 */
 		return array( 'query' => $sql, 'func' => $func );
 	}
 
@@ -1420,8 +1421,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string $fname Caller function name
 	 * @param array $options Query options
 	 * @param array $join_conds Join conditions
-	 * 
-	 * @param string|array $table 
+	 *
+	 * @param string|array $table
 	 *
 	 * May be either an array of table names, or a single string holding a table
 	 * name. If an array is given, table aliases can be specified, for example:
@@ -1913,12 +1914,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
-	 * @param string $table  Name of the table to UPDATE. This will be passed through
+	 * @param string $table Name of the table to UPDATE. This will be passed through
 	 *   DatabaseBase::tableName().
 	 * @param array $values An array of values to SET. For each array element,
 	 *   the key gives the field name, and the value gives the data to set
 	 *   that field to. The data will be quoted by DatabaseBase::addQuotes().
-	 * @param array $conds  An array of conditions (WHERE). See
+	 * @param array $conds An array of conditions (WHERE). See
 	 *   DatabaseBase::select() for the details of the format of condition
 	 *   arrays. Use '*' to update all rows.
 	 * @param string $fname The function name of the caller (from __METHOD__),
@@ -1942,15 +1943,15 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Makes an encoded list of strings from an array
-	 * 
+	 *
 	 * @param array $a Containing the data
 	 * @param int $mode Constant
-	 *    - LIST_COMMA:          comma separated, no field names
-	 *    - LIST_AND:            ANDed WHERE clause (without the WHERE). See
-	 *      the documentation for $conds in DatabaseBase::select().
-	 *    - LIST_OR:             ORed WHERE clause (without the WHERE)
-	 *    - LIST_SET:            comma separated with field names, like a SET clause
-	 *    - LIST_NAMES:          comma separated field names
+	 *    - LIST_COMMA: Comma separated, no field names
+	 *    - LIST_AND:   ANDed WHERE clause (without the WHERE). See the
+	 *      documentation for $conds in DatabaseBase::select().
+	 *    - LIST_OR:    ORed WHERE clause (without the WHERE)
+	 *    - LIST_SET:   Comma separated with field names, like a SET clause
+	 *    - LIST_NAMES: Comma separated field names
 	 * @throws MWException|DBUnexpectedError
 	 * @return string
 	 */
@@ -2120,7 +2121,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return bool Success or failure
 	 */
 	public function selectDB( $db ) {
-		# Stub.  Shouldn't cause serious problems if it's not overridden, but
+		# Stub. Shouldn't cause serious problems if it's not overridden, but
 		# if your database engine supports a concept similar to MySQL's
 		# databases you may as well.
 		$this->mDBname = $db;
@@ -2538,11 +2539,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * USE INDEX clause.  Unlikely to be useful for anything but MySQL.  This
+	 * USE INDEX clause. Unlikely to be useful for anything but MySQL. This
 	 * is only needed because a) MySQL must be as efficient as possible due to
 	 * its use on Wikipedia, and b) MySQL 4.0 is kind of dumb sometimes about
-	 * which index to pick.  Anyway, other databases might have different
-	 * indexes on a given table.  So don't bother overriding this unless you're
+	 * which index to pick. Anyway, other databases might have different
+	 * indexes on a given table. So don't bother overriding this unless you're
 	 * MySQL.
 	 * @param string $index
 	 * @return string
@@ -2804,7 +2805,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * A string to insert into queries to show that they're low-priority, like
-	 * MySQL's LOW_PRIORITY.  If no such feature exists, return an empty
+	 * MySQL's LOW_PRIORITY. If no such feature exists, return an empty
 	 * string and nothing bad should happen.
 	 *
 	 * @return string Returns the text of the low priority option if it is
@@ -2909,16 +2910,16 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Construct a LIMIT query with optional offset.  This is used for query
-	 * pages.  The SQL should be adjusted so that only the first $limit rows
-	 * are returned.  If $offset is provided as well, then the first $offset
+	 * Construct a LIMIT query with optional offset. This is used for query
+	 * pages. The SQL should be adjusted so that only the first $limit rows
+	 * are returned. If $offset is provided as well, then the first $offset
 	 * rows should be discarded, and the next $limit rows should be returned.
 	 * If the result of the query is not ordered, then the rows to be returned
 	 * are theoretically arbitrary.
 	 *
 	 * $sql is expected to be a SELECT, if that makes a difference.
 	 *
-	 * The version provided by default works in MySQL and SQLite.  It will very
+	 * The version provided by default works in MySQL and SQLite. It will very
 	 * likely need to be overridden for most other DBMSes.
 	 *
 	 * @param string $sql SQL query we will append the limit too
@@ -2961,7 +2962,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Returns an SQL expression for a simple conditional.  This doesn't need
+	 * Returns an SQL expression for a simple conditional. This doesn't need
 	 * to be overridden unless CASE isn't supported in your DBMS.
 	 *
 	 * @param string|array $cond SQL expression which will result in a boolean value
@@ -3625,7 +3626,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return bool Success or failure
 	 */
 	public function ping() {
-		# Stub.  Not essential to override.
+		# Stub. Not essential to override.
 		return true;
 	}
 
