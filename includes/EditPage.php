@@ -3222,36 +3222,30 @@ HTML
 				}
 			}
 
-			$rt = $content->getRedirectChain();
-			if ( $rt ) {
-				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
-			} else {
+			# If we're adding a comment, we need to show the
+			# summary as the headline
+			if ( $this->section === "new" && $this->summary !== "" ) {
+				$content = $content->addSectionHeader( $this->summary );
+			}
 
-				# If we're adding a comment, we need to show the
-				# summary as the headline
-				if ( $this->section === "new" && $this->summary !== "" ) {
-					$content = $content->addSectionHeader( $this->summary );
-				}
+			$hook_args = array( $this, &$content );
+			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
+			wfRunHooks( 'EditPageGetPreviewContent', $hook_args );
 
-				$hook_args = array( $this, &$content );
-				ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
-				wfRunHooks( 'EditPageGetPreviewContent', $hook_args );
+			$parserOptions->enableLimitReport();
 
-				$parserOptions->enableLimitReport();
+			# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
+			# But it's now deprecated, so never mind
 
-				# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
-				# But it's now deprecated, so never mind
+			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$parserOutput = $content->getParserOutput( $this->getArticle()->getTitle(), null, $parserOptions );
 
-				$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-				$parserOutput = $content->getParserOutput( $this->getArticle()->getTitle(), null, $parserOptions );
+			$previewHTML = $parserOutput->getText();
+			$this->mParserOutput = $parserOutput;
+			$wgOut->addParserOutputNoText( $parserOutput );
 
-				$previewHTML = $parserOutput->getText();
-				$this->mParserOutput = $parserOutput;
-				$wgOut->addParserOutputNoText( $parserOutput );
-
-				if ( count( $parserOutput->getWarnings() ) ) {
-					$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-				}
+			if ( count( $parserOutput->getWarnings() ) ) {
+				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
 			}
 		} catch ( MWContentSerializationException $ex ) {
 			$m = wfMessage( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
