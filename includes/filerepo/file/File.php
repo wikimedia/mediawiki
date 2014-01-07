@@ -583,7 +583,11 @@ abstract class File {
 	public function getCommonMetaArray() {
 		$handler = $this->getHandler();
 
-		return $handler->getCommonMetaArray( $this );
+		if ( $handler ) {
+			return $handler->getCommonMetaArray( $this );
+		} else {
+			return array();
+		}
 	}
 
 	/**
