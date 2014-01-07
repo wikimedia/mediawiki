@@ -628,12 +628,6 @@ table.collapsed tr.collapsable {
 	clear: both;
 }
 
-#mw_trackbacks {
-	border: solid 1px #bbbbff;
-	background-color: #eeeeff;
-	padding: 0.2em;
-}
-
 /**
  * Data table style
  *
