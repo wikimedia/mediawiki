@@ -35,8 +35,8 @@ class CLDRPluralRuleEvaluator {
 	 * Evaluate a number against a set of plural rules. If a rule passes,
 	 * return the index of plural rule.
 	 *
-	 * @param int The number to be evaluated against the rules
-	 * @param array The associative array of plural rules in pluralform => rule format.
+	 * @param int $number The number to be evaluated against the rules
+	 * @param array $rules The associative array of plural rules in pluralform => rule format.
 	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluate( $number, array $rules ) {
@@ -64,9 +64,9 @@ class CLDRPluralRuleEvaluator {
 	 * Evaluate a compiled set of rules returned by compile(). Do not allow
 	 * the user to edit the compiled form, or else PHP errors may result.
 	 *
-	 * @param string The number to be evaluated against the rules, in English, or it
+	 * @param string $number The number to be evaluated against the rules, in English, or it
 	 *   may be a type convertible to string.
-	 * @param array The associative array of plural rules in pluralform => rule format.
+	 * @param array $rules The associative array of plural rules in pluralform => rule format.
 	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluateCompiled( $number, array $rules ) {
@@ -243,7 +243,8 @@ class CLDRPluralRuleEvaluator_Range {
 	/**
 	 * Add another part to this range.
 	 *
-	 * @param mixed The part to add, either a range object itself or a single number.
+	 * @param CLDRPluralRuleEvaluator_Range|int $other The part to add, either
+	 *   a range object itself or a single number.
 	 */
 	function add( $other ) {
 		if ( $other instanceof self ) {
@@ -359,7 +360,7 @@ class CLDRPluralRuleConverter {
 	/**
 	 * Convert a rule to RPN. This is the only public entry point.
 	 *
-	 * @param $rule The rule to convert
+	 * @param string $rule The rule to convert
 	 * @return string The RPN representation of the rule
 	 */
 	public static function convert( $rule ) {
@@ -386,6 +387,7 @@ class CLDRPluralRuleConverter {
 
 		// Iterate through all tokens, saving the operators and operands to a
 		// stack per Dijkstra's shunting yard algorithm.
+		/** @var CLDRPluralRuleConverter_Operator $token */
 		while ( false !== ( $token = $this->nextToken() ) ) {
 			// In this grammar, there are only binary operators, so every valid
 			// rule string will alternate between operator and operand tokens.
@@ -534,6 +536,8 @@ class CLDRPluralRuleConverter {
 	 * For the binary operator $op, pop its operands off the stack and push
 	 * a fragment with rpn and type members describing the result of that
 	 * operation.
+	 *
+	 * @param CLDRPluralRuleConverter_Operator $op
 	 */
 	protected function doOperation( $op ) {
 		if ( count( $this->operands ) < 2 ) {
@@ -548,6 +552,8 @@ class CLDRPluralRuleConverter {
 	/**
 	 * Create a numerical expression object
 	 *
+	 * @param string $text
+	 * @param int $pos
 	 * @return CLDRPluralRuleConverter_Expression The numerical expression
 	 */
 	protected function newNumber( $text, $pos ) {
@@ -557,6 +563,9 @@ class CLDRPluralRuleConverter {
 	/**
 	 * Create a binary operator
 	 *
+	 * @param string $type
+	 * @param int $pos
+	 * @param int $length
 	 * @return CLDRPluralRuleConverter_Operator The operator
 	 */
 	protected function newOperator( $type, $pos, $length ) {
@@ -602,7 +611,11 @@ class CLDRPluralRuleConverter_Fragment {
  * validation.
  */
 class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragment {
-	public $type, $rpn;
+	/** @var string */
+	public $type;
+
+	/** @var string */
+	public $rpn;
 
 	function __construct( $parser, $type, $rpn, $pos, $length ) {
 		parent::__construct( $parser, $pos, $length );
@@ -627,11 +640,7 @@ class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragmen
  * messages), and the binary operator at that location.
  */
 class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment {
-	/**
-	 * The name
-	 *
-	 * @var string
-	 */
+	/** @var string The name */
 	public $name;
 
 	/**
@@ -684,8 +693,8 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 	 *
 	 * @param CLDRPluralRuleConverter $parser The parser
 	 * @param string $name The operator name
-	 * @param int $pos The position
 	 * @param int $pos The length
+	 * @param int $length
 	 */
 	function __construct( $parser, $name, $pos, $length ) {
 		parent::__construct( $parser, $pos, $length );
