@@ -262,7 +262,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$sha1Hash = sha1_file( $params['src'] );
 		wfRestoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
 			return $status;
 		}
@@ -271,7 +271,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$handle = fopen( $params['src'], 'rb+' );
 		if ( $handle === false ) { // source doesn't exist?
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
 			return $status;
 		}
