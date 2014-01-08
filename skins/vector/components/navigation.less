@@ -30,11 +30,11 @@ div#mw-head {
 	top: 0;
 	right: 0;
 	width: 100%;
-}
 
-div#mw-head h3 {
-	margin: 0;
-	padding: 0;
+	h3 {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 /* Navigation Containers */
@@ -64,15 +64,15 @@ div#mw-head h3 {
 	left: 0;
 	width: 10em;
 	height: 160px;
-}
 
-#p-logo a {
-	display: block;
-	width: 10em;
-	height: 160px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	text-decoration: none;
+	a {
+		display: block;
+		width: 10em;
+		height: 160px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		text-decoration: none;
+	}
 }
 
 /* Panel */
@@ -83,51 +83,50 @@ div#mw-panel {
 	padding-top: 1em;
 	width: 10em;
 	left: 0;
-}
 
-div#mw-panel div.portal {
-	padding-bottom: 1.5em;
-	direction: ltr;
-}
+	div.portal {
+		padding-bottom: 1.5em;
+		direction: ltr;
 
-div#mw-panel div.portal h3 {
-	font-weight: normal;
-	color: #444;
-	padding: @menu-main-heading-padding;
-	cursor: default;
-	border: none;
-	font-size: @menu-main-heading-font-size;
-}
+		h3 {
+			font-weight: normal;
+			color: #444;
+			padding: @menu-main-heading-padding;
+			cursor: default;
+			border: none;
+			font-size: @menu-main-heading-font-size;
+		}
 
-div#mw-panel div.portal div.body {
-	padding-top: 0.5em;
-	margin: @menu-main-body-margin;
+		div.body {
+			padding-top: 0.5em;
+			margin: @menu-main-body-margin;
 
-	.background-image('images/portal-break.png');
-	background-repeat: no-repeat;
-	background-position: top left;
-}
+			.background-image('images/portal-break.png');
+			background-repeat: no-repeat;
+			background-position: top left;
 
-div#mw-panel div.portal div.body ul {
-	list-style-type: none;
-	list-style-image: none;
-	padding: @menu-main-body-padding;
-	margin: 0;
-}
+			ul {
+				list-style-type: none;
+				list-style-image: none;
+				padding: @menu-main-body-padding;
+				margin: 0;
 
-div#mw-panel div.portal div.body ul li {
-	line-height: 1.125em;
-	padding: 0;
-	padding-bottom: 0.5em;
-	margin: 0;
-	font-size: @menu-main-body-font-size;
-	word-wrap: break-word;
-}
+				li {
+					line-height: 1.125em;
+					padding: 0;
+					padding-bottom: 0.5em;
+					margin: 0;
+					font-size: @menu-main-body-font-size;
+					word-wrap: break-word;
 
-div#mw-panel div.portal div.body ul li a {
-	color: @menu-main-body-link-color;
-	&:visited {
-		color: @menu-main-body-link-visited-color;
+					a {
+						color: @menu-main-body-link-color;
+						&:visited {
+							color: @menu-main-body-link-visited-color;
+						}
+					}
+				}
+			}
+		}
 	}
 }
-
