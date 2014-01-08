@@ -154,8 +154,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
 	protected function getCustomFilters() {
-		// @todo Fire a Special{$this->getName()}Filters hook here
-		return array();
+		if ( $this->customFilters === null ) {
+			$this->customFilters = array();
+			wfRunHooks( 'ChangesListSpecialPageFilters', array( $this, &$this->customFilters ) );
+		}
+
+		return $this->customFilters;
 	}
 
 	/**
@@ -288,13 +292,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			''
 		);
 
-		// @todo Fire a Special{$this->getName()}Query hook here
-		// @todo Uncomment and document
-		// if ( !wfRunHooks( 'ChangesListSpecialPageQuery',
-		// 	array( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) )
-		// ) {
-		// 	return false;
-		// }
+		if ( !wfRunHooks( 'ChangesListSpecialPageQuery',
+			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) )
+		) {
+			return false;
+		}
 
 		return $dbr->select(
 			$tables,
