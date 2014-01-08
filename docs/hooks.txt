@@ -828,6 +828,21 @@ ChangePassword form via the Preferences form.
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
+'ChangesListSpecialPageFilters': Called after building form options on pages inheriting from ChangesListSpecialPage (in core: RecentChanges, RecentChangesLinked and Watchlist).
+$special: ChangesListSpecialPage instance
+&$filters: associative array of filter definitions. The keys are the HTML
+  name/URL parameters. Each key maps to an associative array with a 'msg'
+  (message key) and a 'default' value.
+
+'ChangesListSpecialPageQuery': Called when building SQL query on pages inheriting from ChangesListSpecialPage (in core: RecentChanges, RecentChangesLinked and Watchlist).
+$name: name of the special page, e.g. 'Watchlist'
+&$tables: array of tables to be queried
+&$fields: array of columns to select
+&$conds: array of WHERE conditionals for query
+&$query_options: array of options for the database request
+&$join_conds: join conditions for the tables
+$opts: FormOptions for this request
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
@@ -2319,7 +2334,7 @@ use this to change some selection criteria or substitute a different title.
   result from the normal query
 
 'SpecialRecentChangesFilters': Called after building form options at
-RecentChanges.
+RecentChanges. Deprecated, use ChangesListSpecialPageFilters instead.
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML
   name/URL parameters. Each key maps to an associative array with a 'msg'
@@ -2331,7 +2346,8 @@ SpecialRecentChanges.
 $opts: FormOptions for this request
 
 'SpecialRecentChangesQuery': Called when building SQL query for
-SpecialRecentChanges and SpecialRecentChangesLinked.
+SpecialRecentChanges and SpecialRecentChangesLinked. Deprecated, use
+ChangesListSpecialPageQuery instead.
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
@@ -2421,12 +2437,14 @@ $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
 
 'SpecialWatchlistFilters': Called after building form options at Watchlist.
+Deprecated, use ChangesListSpecialPageFilters instead.
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML
   name/URL parameters. Each key maps to an associative array with a 'msg'
   (message key) and a 'default' value.
 
 'SpecialWatchlistQuery': Called when building sql query for SpecialWatchlist.
+Deprecated, use ChangesListSpecialPageQuery instead.
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
