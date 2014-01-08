@@ -27,12 +27,12 @@
  * @ingroup SpecialPage
  */
 
-class SpecialContributions extends SpecialPage {
+class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
 	public function __construct() {
 		parent::__construct( 'Contributions' );
-	}
+       }
 
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -169,8 +169,9 @@ class SpecialContributions extends SpecialPage {
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
+		if(!$this->including()){
 			$out->addHTML( $this->getForm() );
-
+                }
 			$pager = new ContribsPager( $this->getContext(), array(
 				'target' => $target,
 				'contribs' => $this->opts['contribs'],
