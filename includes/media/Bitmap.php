@@ -187,7 +187,9 @@ class BitmapHandler extends ImageHandler {
 					wfHostname(), $image->getName() ) );
 
 			return new MediaTransformError( 'thumbnail_error',
-				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
+				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
+				'Could not get retrieve copy of original'
+			);
 		}
 
 		# Try a hook
@@ -227,7 +229,9 @@ class BitmapHandler extends ImageHandler {
 		} elseif ( $removed ) {
 			# Thumbnail was zero-byte and had to be removed
 			return new MediaTransformError( 'thumbnail_error',
-				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
+				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
+				 'Thumbnail was 0 bytes when created'
+			);
 		} elseif ( $mto ) {
 			return $mto;
 		} else {
