@@ -110,7 +110,7 @@ $GLOBALS['wgHooks']['LocalisationCacheRecache'][] = function ( $cache, $code, &$
 		$fileName = __DIR__ . "/{{OUT}}/$csCode.json";
 		if ( is_readable( $fileName ) ) {
 			$data = FormatJson::decode( file_get_contents( $fileName ), true );
-			foreach ( $data as $key => $unused ) {
+			foreach ( array_keys( $data ) as $key ) {
 				if ( $key === '' || $key[0] === '@' ) {
 					unset( $data[$key] );
 				}
