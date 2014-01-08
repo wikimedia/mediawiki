@@ -884,7 +884,7 @@ class Sanitizer {
 
 		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
 		$value = preg_replace_callback(
-			'/[！-ｚ]/u', // U+FF01 to U+FF5A
+			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (bug 58088)
 			array( __CLASS__, 'cssNormalizeUnicodeWidth' ),
 			$value
 		);
