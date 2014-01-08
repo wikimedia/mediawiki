@@ -253,6 +253,8 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$t = Title::newFromText( $term );
+		$showSuggestion = $t === null || !$t->isKnown();
+		$search->setShowSuggestion( $showSuggestion );
 
 		// fetch search results
 		$rewritten = $search->replacePrefixes( $term );
@@ -269,7 +271,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// did you mean... suggestions
-		if ( $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
+		if ( $showSuggestion && $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );
 
 			# mirror Go/Search behavior of original request ..
