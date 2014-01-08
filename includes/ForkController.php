@@ -30,11 +30,11 @@
  * @ingroup Maintenance
  */
 class ForkController {
-	var $children = array();
-	var $termReceived = false;
-	var $flags = 0, $procsToStart = 0;
+	protected $children = array();
+	protected $termReceived = false;
+	protected $flags = 0, $procsToStart = 0;
 
-	static $restartableSignals = array(
+	protected static $restartableSignals = array(
 		SIGFPE,
 		SIGILL,
 		SIGSEGV,
