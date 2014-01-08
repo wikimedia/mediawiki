@@ -1078,7 +1078,11 @@ class SwiftFileBackend extends FileBackendStore {
 			$reqs = $this->http->runMulti( $reqs );
 			foreach ( $reqs as $path => $op ) {
 				list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
-				if ( $rcode >= 200 && $rcode <= 299 ) {
+				fclose( $op['stream'] ); // close open handle
+				if ( $rcode >= 200 && $rcode <= 299
+					// double check that the disk is not full/broken
+					&& $tmpFile->getSize() == $rhdrs['content-length']
+				) {
 					// good
 				} elseif ( $rcode === 404 ) {
 					$tmpFiles[$path] = false;
@@ -1087,7 +1091,6 @@ class SwiftFileBackend extends FileBackendStore {
 					$this->onError( null, __METHOD__,
 						array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
 				}
-				fclose( $op['stream'] ); // close open handle
 			}
 		}
 
