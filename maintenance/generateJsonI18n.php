@@ -97,7 +97,7 @@ class GenerateJsonI18n extends Maintenance {
 		}
 
 		$this->output( "All done.\n" );
-		$this->output( "Also add \$wgMessagesDirs['YourExtension'] = __DIR__ . /i18n';\n" );
+		$this->output( "Also add \$wgMessagesDirs['YourExtension'] = __DIR__ . '/i18n';\n" );
 	}
 
 	protected function doShim( $jsondir ) {
