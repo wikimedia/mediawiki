@@ -155,6 +155,7 @@ changes to languages because of Bugzilla reports.
 * A page_links_updated field has been added to the page table.
 * SpecialPage::getTitle has been deprecated in favor of
   SpecialPage::getPageTitle.
+* Option to mark hooks as deprecated has been added.
 
 ==== Removed classes ====
 * TitleDependency
