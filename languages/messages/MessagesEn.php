@@ -1968,7 +1968,7 @@ Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.
 It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'yourgender'                    => 'How do you prefer to be described?',
-'gender-unknown'                => 'I prefer not to say',
+'gender-unknown'                => 'They edit wiki pages',
 'gender-male'                   => 'He edits wiki pages',
 'gender-female'                 => 'She edits wiki pages',
 'prefs-help-gender'             => 'Setting this preference is optional.

@@ -3146,9 +3146,11 @@ This may be customized for other languages. This should sound like a question, t
 * {{msg-mw|gender-male}}
 * {{msg-mw|gender-female}}
 The idea is that this preference is used for speaking to the user and about the user, and the label and the preference are supposed to demonstrate it.',
-'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.
+'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt.
+Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.
 
-This may appropriately customized for your language. It should sound like a reply to {{msg-mw|yourgender}}.',
+You have to customize this example for your language if needed to have a sentence which varies depending on the grammatical gender.
+The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|Yourgender}}.',
 'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|Yourgender}} prompt.
 Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
 
