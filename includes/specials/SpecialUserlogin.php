@@ -596,35 +596,7 @@ class LoginForm extends SpecialPage {
 
 		global $wgBlockDisablesLogin;
 		if ( !$u->checkPassword( $this->mPassword ) ) {
-			if ( $u->checkTemporaryPassword( $this->mPassword ) ) {
-				// The e-mailed temporary password should not be used for actu-
-				// al logins; that's a very sloppy habit, and insecure if an
-				// attacker has a few seconds to click "search" on someone's o-
-				// pen mail reader.
-				//
-				// Allow it to be used only to reset the password a single time
-				// to a new value, which won't be in the user's e-mail ar-
-				// chives.
-				//
-				// For backwards compatibility, we'll still recognize it at the
-				// login form to minimize surprises for people who have been
-				// logging in with a temporary password for some time.
-				//
-				// As a side-effect, we can authenticate the user's e-mail ad-
-				// dress if it's not already done, since the temporary password
-				// was sent via e-mail.
-				if ( !$u->isEmailConfirmed() ) {
-					$u->confirmEmail();
-					$u->saveSettings();
-				}
-
-				// At this point we just return an appropriate code/ indicating
-				// that the UI should show a password reset form; bot inter-
-				// faces etc will probably just fail cleanly here.
-				$retval = self::RESET_PASS;
-			} else {
-				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
-			}
+			$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
@@ -742,7 +714,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle;
+		global $wgPasswordAttemptThrottle;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -755,32 +727,9 @@ class LoginForm extends SpecialPage {
 					$user->invalidateCache();
 				}
 
-				if ( $user->requiresHTTPS() ) {
-					$this->mStickHTTPS = true;
-				}
-
-				if ( $wgSecureLogin && !$this->mStickHTTPS ) {
-					$user->setCookies( null, false );
-				} else {
-					$user->setCookies();
-				}
-				self::clearLoginToken();
-
-				// Reset the throttle
-				$request = $this->getRequest();
-				$key = wfMemcKey( 'password-throttle', $request->getIP(), md5( $this->mUsername ) );
-				$wgMemc->delete( $key );
+				self::loginUser( $this->getContext(), $user, $this->mStickHTTPS );
 
 				if ( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
-					/* Replace the language object to provide user interface in
-					 * correct language immediately on this first page load.
-					 */
-					$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
-					$userLang = Language::factory( $code );
-					$wgLang = $userLang;
-					$this->getContext()->setLanguage( $userLang );
-					// Reset SessionID on Successful login (bug 40995)
-					$this->renewSessionId();
 					$this->successfulLogin();
 				} else {
 					$this->cookieRedirectCheck( 'login' );
@@ -823,10 +772,6 @@ class LoginForm extends SpecialPage {
 				$error = $this->mAbortLoginErrorMsg ?: 'wrongpasswordempty';
 				$this->mainLoginForm( $this->msg( $error )->text() );
 				break;
-			case self::RESET_PASS:
-				$error = $this->mAbortLoginErrorMsg ?: 'resetpass_announce';
-				$this->resetLoginForm( $this->msg( $error )->text() );
-				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );
 				break;
@@ -848,18 +793,6 @@ class LoginForm extends SpecialPage {
 			default:
 				throw new MWException( 'Unhandled case value' );
 		}
-	}
-
-	/**
-	 * @param $error string
-	 */
-	function resetLoginForm( $error ) {
-		$this->getOutput()->addHTML( Xml::element( 'p', array( 'class' => 'error' ), $error ) );
-		$reset = new SpecialChangePassword();
-		$derivative = new DerivativeContext( $this->getContext() );
-		$derivative->setTitle( $reset->getPageTitle() );
-		$reset->setContext( $derivative );
-		$reset->execute( null );
 	}
 
 	/**
@@ -896,6 +829,49 @@ class LoginForm extends SpecialPage {
 		$result = $u->sendMail( $this->msg( $emailTitle )->inLanguage( $userLanguage )->text(), $m );
 
 		return $result;
+	}
+
+	/**
+	 * Log in a given user to the given request context
+	 *
+	 * Set the user's cookies to indicate they are logged in. Also perform other tasks
+	 * that need to be done during login, such as resetting the session ID and setting
+	 * the proper user language in the context
+	 *
+	 * @since 1.23
+	 *
+	 * @param RequestContext $context Context to log user into
+	 * @param User $user User to log in
+	 * @param bool $stickHttps Whether the user wants to stay on HTTPS or not
+	 */
+	public static function loginUser( RequestContext $context, User $user, $stickHttps ) {
+		global $wgSecureLogin, $wgCookieSecure, $wgLang;
+
+		if ( $user->requiresHTTPS() ) {
+			$stickHttps = true;
+		}
+
+		if ( $wgSecureLogin && !$stickHttps ) {
+			$wgCookieSecure = false;
+			$user->setCookies( null, false );
+		} else {
+			$user->setCookies();
+		}
+
+		self::clearLoginToken();
+		self::clearLoginThrottle( $user->getName() );
+
+		/* Replace the language object to provide user interface in
+		 * correct language immediately on this first page load.
+		 */
+		$code = $context->getRequest()->getVal( 'uselang', $user->getOption( 'language' ) );
+		$userLang = Language::factory( $code );
+
+		$wgLang = $userLang;
+		$context->setLanguage( $userLang );
+
+		// Reset SessionID on Successful login (bug 40995)
+		wfResetSessionID();
 	}
 
 	/**
