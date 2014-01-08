@@ -32,7 +32,8 @@ class SpecialContributions extends SpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Contributions' );
-	}
+		$this->mIncludable = true;
+       }
 
 	public function execute( $par ) {
 		$this->setHeaders();
