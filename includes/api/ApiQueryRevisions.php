@@ -78,12 +78,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 	 * @return bool|String
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
-		global $wgUser;
+		global $wgUser, $wgRequest;
+
 		if ( !$wgUser->isAllowed( 'rollback' ) ) {
 			return false;
 		}
 
-		return $wgUser->getEditToken(
+		return $wgRequest->getCsrfToken(
 			array( $title->getPrefixedText(), $rev->getUserText() ) );
 	}
 

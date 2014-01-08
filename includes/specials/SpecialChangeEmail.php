@@ -95,9 +95,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$this->mPassword = $request->getVal( 'wpPassword' );
 		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
 
-		if ( $request->wasPosted()
-			&& $user->matchEditToken( $request->getVal( 'token' ) )
-		) {
+		if ( $request->wasPosted() && $request->checkCsrfToken() ) {
 			$info = $this->attemptChange( $user, $this->mPassword, $this->mNewEmail );
 			if ( $info === true ) {
 				$this->doReturnTo();
@@ -138,6 +136,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	protected function showForm() {
 		global $wgRequirePasswordforEmailChange;
 		$user = $this->getUser();
+		$request = $this->getRequest();
 
 		$oldEmailText = $user->getEmail()
 			? $user->getEmail()
@@ -150,7 +149,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 						'method' => 'post',
 						'action' => $this->getPageTitle()->getLocalURL(),
 						'id' => 'mw-changeemail-form' ) ) . "\n" .
-				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
+				Html::hidden( 'token', $request->getCsrfToken() ) . "\n" .
 				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 				$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
 				Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"

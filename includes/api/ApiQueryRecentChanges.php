@@ -75,7 +75,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @return bool|string
 	 */
 	public static function getPatrolToken( $pageid, $title, $rc = null ) {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 
 		$validTokenUser = false;
 
@@ -94,7 +94,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			static $cachedPatrolToken = null;
 
 			if ( is_null( $cachedPatrolToken ) ) {
-				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+				$cachedPatrolToken = $wgRequest->getCsrfToken( 'patrol' );
 			}
 
 			return $cachedPatrolToken;

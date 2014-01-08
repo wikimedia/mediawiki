@@ -36,13 +36,13 @@
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data, $headers = array();
+	protected $data, $headers = array(), $csrfToken = null;
 
 	/**
 	 * Lazy-init response object
 	 * @var WebResponse
 	 */
-	private $response;
+	protected $response;
 
 	/**
 	 * Cached client IP address
@@ -343,7 +343,7 @@ class WebRequest {
 	 * @param $default Mixed
 	 * @return mixed
 	 */
-	private function getGPCVal( $arr, $name, $default ) {
+	protected function getGPCVal( $arr, $name, $default ) {
 		# PHP is so nice to not touch input data, except sometimes:
 		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
@@ -687,6 +687,68 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the value of the CSRF token for a given salt, or generate one
+	 * if it does not exist
+	 *
+	 * @since 1.23
+	 *
+	 * @param string|array $salt
+	 *
+	 * @return string CSRF token for injection into an HTML form
+	 */
+	public function getCsrfToken( $salt = '' ) {
+		global $wgSecretKey;
+
+		if ( $this->csrfToken === null ) {
+			$this->csrfToken = $this->getCookie( 'EditToken' );
+
+			if ( $this->csrfToken === null ) {
+				$this->csrfToken = MWCryptRand::generateHex( 32 );
+				$this->response()->setcookie( 'EditToken', $this->csrfToken );
+			}
+		}
+
+		if ( is_array( $salt ) ) {
+			$salt = implode( '|', $salt );
+		}
+
+		return hash_hmac( 'sha512', $this->csrfToken, $wgSecretKey . $salt ) . EDIT_TOKEN_SUFFIX;
+	}
+
+	/**
+	 * Check the edit token from the cookie against the form field
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $salt
+	 * @param string $fieldName POST field name where edit token should be found
+	 *
+	 * @return bool True on success, false on failure
+	 */
+	public function checkCsrfToken( $salt = '', $fieldName = 'wpEditToken' ) {
+		$token = $this->getCsrfToken( $salt );
+
+		return $token === $this->getVal( $fieldName );
+	}
+
+	/**
+	 * Check the edit token from the cookie against the form field, but leave out checking the token suffix, which
+	 * is used to check proxies
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $salt
+	 * @param string $fieldName POST field name where edit token should be found
+	 *
+	 * @return bool True on success, false on failure
+	 */
+	public function checkCsrfTokenNoSuffix( $salt = '', $fieldName = 'wpEditToken' ) {
+		$token = $this->getCsrfToken( $salt );
+
+		return strncmp( $token, $this->getVal( $fieldName ), 32 ) === 0;
+	}
+
+	/**
 	 * Return the path and query string portion of the request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
@@ -892,11 +954,10 @@ class WebRequest {
 	 * @return WebResponse
 	 */
 	public function response() {
-		/* Lazy initialization of response object for this request */
 		if ( !is_object( $this->response ) ) {
-			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
-			$this->response = new $class();
+			$this->response = new WebResponse();
 		}
+
 		return $this->response;
 	}
 
@@ -1304,6 +1365,16 @@ class WebRequestUpload {
 	}
 
 	/**
+	 * Override a specific data item. Useful for setting data after construction
+	 *
+	 * @param string $name Index of value to set
+	 * @param string $val Value to set
+	 */
+	public function setVal( $name, $val ) {
+		$this->data[$name] = $val;
+	}
+
+	/**
 	 * Returns whether this upload failed because of overflow of a maximum set
 	 * in php.ini
 	 *
@@ -1333,6 +1404,7 @@ class WebRequestUpload {
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
+	private $cookies = array();
 
 	/**
 	 * @param array $data of *non*-urlencoded key => value pairs, the
@@ -1402,8 +1474,24 @@ class FauxRequest extends WebRequest {
 		return $this->wasPosted;
 	}
 
+	public function setCookie( $key, $value, $prefix = null ) {
+		global $wgCookiePrefix;
+
+		if ( $prefix === null ) {
+			$prefix = $wgCookiePrefix;
+		}
+
+		$this->cookies[$prefix . $key] = $value;
+	}
+
 	public function getCookie( $key, $prefix = null, $default = null ) {
-		return $default;
+		global $wgCookiePrefix;
+
+		if ( $prefix === null ) {
+			$prefix = $wgCookiePrefix;
+		}
+
+		return $this->getGPCVal( $this->cookies, $prefix . $key, $default );
 	}
 
 	public function checkSessionCookie() {
@@ -1495,6 +1583,29 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @return FauxResponse
+	 */
+	public function response() {
+		if ( !is_object( $this->response ) ) {
+			$this->response = new FauxResponse();
+		}
+
+		return $this->response;
+	}
+
+	/**
+	 * Apply the results of a FauxResponse object to this request
+	 *
+	 * Useful for maintaining cookies across multiple faux requests.
+	 *
+	 * @param FauxResponse $response
+	 */
+	public function applyResponse( FauxResponse $response ) {
+		$cookies = $response->getcookies();
+		$this->cookies = array_merge( $cookies, $this->cookies );
+	}
+
+	/**
 	 * @param array $extWhitelist
 	 * @return bool
 	 */
@@ -1566,5 +1677,9 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getProtocol() {
 		return $this->base->getProtocol();
+	}
+
+	public function getCsrfToken( $salt = '' ) {
+		return $this->base->getCsrfToken( $salt );
 	}
 }

@@ -47,7 +47,7 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcId ) ) {
+		if ( !$request->checkCsrfToken( $rcId, 'token' ) ) {
 			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
 		}
 

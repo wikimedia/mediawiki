@@ -3662,12 +3662,15 @@ class User {
 	 * submission.
 	 *
 	 * @since 1.19
+	 * @deprecated 1.23 Use WebRequest to set and check tokens
 	 *
 	 * @param string|array $salt of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
+		wfDeprecated( "Use WebRequest to set and check tokens.", "1.23" );
+
 		if ( $request == null ) {
 			$request = $this->getRequest();
 		}
@@ -3703,12 +3706,17 @@ class User {
 	 * user's own login session, not a form submission from a third-party
 	 * site.
 	 *
+	 * @deprecated 1.23 Use WebRequest to set and check tokens
+	 *
 	 * @param string $val Input value to compare
 	 * @param string $salt Optional function-specific data for hashing
 	 * @param WebRequest $request Object to use or null to use $wgRequest
+	 *
 	 * @return boolean: Whether the token matches
 	 */
 	public function matchEditToken( $val, $salt = '', $request = null ) {
+		wfDeprecated( "Use WebRequest to set and check tokens.", "1.23" );
+
 		$sessionToken = $this->getEditToken( $salt, $request );
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
@@ -3720,12 +3728,17 @@ class User {
 	 * Check given value against the token value stored in the session,
 	 * ignoring the suffix.
 	 *
+	 * @deprecated 1.23 Use WebRequest to set and check tokens
+	 *
 	 * @param string $val Input value to compare
 	 * @param string $salt Optional function-specific data for hashing
 	 * @param WebRequest $request object to use or null to use $wgRequest
+	 * 
 	 * @return boolean: Whether the token matches
 	 */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
+		wfDeprecated( "Use WebRequest to set and check tokens.", "1.23" );
+
 		$sessionToken = $this->getEditToken( $salt, $request );
 		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
 	}

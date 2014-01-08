@@ -12,21 +12,22 @@ class ApiWatchTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
+	function getTokens( &$request = null ) {
+		return $this->getTokenList( self::$users['sysop'], null, $request );
 	}
 
 	/**
 	 */
 	public function testWatchEdit() {
-		$tokens = $this->getTokens();
+		$lastReq = null;
+		$tokens = $this->getTokens( $lastReq );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'edit',
 			'title' => 'Help:UTPage', // Help namespace is hopefully wikitext
 			'text' => 'new text',
 			'token' => $tokens['edittoken'],
-			'watchlist' => 'watch' ) );
+			'watchlist' => 'watch' ), null, false, null, $lastReq );
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
@@ -38,12 +39,13 @@ class ApiWatchTest extends ApiTestCase {
 	 * @depends testWatchEdit
 	 */
 	public function testWatchClear() {
-		$tokens = $this->getTokens();
+		$lastReq = null;
+		$tokens = $this->getTokens( $lastReq );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'wllimit' => 'max',
-			'list' => 'watchlist' ) );
+			'list' => 'watchlist' ), null, false, null, $lastReq );
 
 		if ( isset( $data[0]['query']['watchlist'] ) ) {
 			$wl = $data[0]['query']['watchlist'];
@@ -53,12 +55,12 @@ class ApiWatchTest extends ApiTestCase {
 					'action' => 'watch',
 					'title' => $page['title'],
 					'unwatch' => true,
-					'token' => $tokens['watchtoken'] ) );
+					'token' => $tokens['watchtoken'] ), $data[2], false, null, $lastReq );
 			}
 		}
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
-			'list' => 'watchlist' ), $data );
+			'list' => 'watchlist' ), $data[2], false, null, $lastReq );
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'watchlist', $data[0]['query'] );
 		foreach ( $data[0]['query']['watchlist'] as $index => $item ) {
@@ -77,14 +79,15 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	public function testWatchProtect() {
-		$tokens = $this->getTokens();
+		$lastReq = null;
+		$tokens = $this->getTokens( $lastReq );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'protect',
 			'token' => $tokens['protecttoken'],
 			'title' => 'Help:UTPage',
 			'protections' => 'edit=sysop',
-			'watchlist' => 'unwatch' ) );
+			'watchlist' => 'unwatch' ), null, false, null, $lastReq );
 
 		$this->assertArrayHasKey( 'protect', $data[0] );
 		$this->assertArrayHasKey( 'protections', $data[0]['protect'] );

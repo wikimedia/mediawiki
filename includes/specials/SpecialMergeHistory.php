@@ -57,7 +57,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$this->mComment = $request->getText( 'wpComment' );
 
-		$this->mMerge = $request->wasPosted() && $this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$this->mMerge = $request->wasPosted() && $request->checkCsrfToken();
 		// target page
 		if ( $this->mSubmitted ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
@@ -238,7 +238,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$misc .= Html::hidden( 'destID', $this->mDestObj->getArticleID() );
 		$misc .= Html::hidden( 'target', $this->mTarget );
 		$misc .= Html::hidden( 'dest', $this->mDest );
-		$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
+		$misc .= Html::hidden( 'wpEditToken', $this->getRequest()->getCsrfToken() );
 		$misc .= Xml::closeElement( 'form' );
 		$out->addHTML( $misc );
 

@@ -94,9 +94,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile', false );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
 
-		if ( 'submit' == $request->getVal( 'action' ) && $request->wasPosted()
-			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
-		) {
+		if ( 'submit' == $request->getVal( 'action' ) && $request->wasPosted() && $request->checkCsrfToken() ) {
 			$this->doSubmit();
 		} else {
 			$this->showForm( array() );
@@ -444,7 +442,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				"</td>
 			</tr>" .
 				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $user->getEditToken() ) .
+				Html::hidden( 'wpEditToken', $this->getRequest()->getCsrfToken() ) .
 				Xml::closeElement( 'fieldset' ) .
 				Xml::closeElement( 'form' ) .
 				"\n"

@@ -13,8 +13,8 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	protected function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
+	protected function getTokens( &$request = null ) {
+		return $this->getTokenList( self::$users['sysop'], null, $request );
 	}
 
 	function addDBData() {
@@ -37,7 +37,8 @@ class ApiBlockTest extends ApiTestCase {
 	 * previously always considered valid (bug 34212).
 	 */
 	public function testMakeNormalBlock() {
-		$tokens = $this->getTokens();
+		$lastReq = null;
+		$tokens = $this->getTokens( $lastReq );
 
 		$user = User::newFromName( 'UTApiBlockee' );
 
@@ -53,7 +54,7 @@ class ApiBlockTest extends ApiTestCase {
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->user );
+			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->user, $lastReq );
 
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 
