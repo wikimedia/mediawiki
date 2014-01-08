@@ -4026,10 +4026,12 @@ function wfGetLangConverterCacheStorage() {
  *
  * @param string $event event name
  * @param array $args parameters passed to hook functions
+ * @param string|null $deprecatedVersion optionally mark hook as deprecated with version number
+ *
  * @return Boolean True if no handler aborted the hook
  */
-function wfRunHooks( $event, array $args = array() ) {
-	return Hooks::run( $event, $args );
+function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) {
+	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
 /**

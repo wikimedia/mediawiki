@@ -163,6 +163,7 @@ changes to languages because of Bugzilla reports.
 ** Several array keys have been renamed: hideMinor → hideminor,
    hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
    hidePatrolled → hidepatrolled, hideOwn → hidemyself.
+* Option to mark hooks as deprecated has been added.
 
 ==== Removed classes ====
 * TitleDependency (unused)
