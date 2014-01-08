@@ -1298,7 +1298,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function setLoginToken() {
 		global $wgRequest;
-		// Generate a token directly instead of using $user->editToken()
+		// Generate a token directly instead of using $user->getEditToken()
 		// because the latter reuses $_SESSION['wsEditToken']
 		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
