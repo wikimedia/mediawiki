@@ -1322,7 +1322,6 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'rows' => 'Zeilen',
 'columns' => 'Kolonnen',
 'searchresultshead' => 'Sichen',
-'resultsperpage' => 'Zuel vun de Resultater pro Säit:',
 'stub-threshold' => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
 'stub-threshold-disabled' => 'Desaktivéiert',
 'recentchangesdays' => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',

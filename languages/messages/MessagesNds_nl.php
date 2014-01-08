@@ -1443,7 +1443,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'rows' => 'Regels',
 'columns' => 'Kolommen',
 'searchresultshead' => 'Zeukresultaoten',
-'resultsperpage' => 'Antal zeukresultaoten per zied',
 'stub-threshold' => 'Verwiezingsformattering van <a href="#" class="stub">beginnetjes</a>:',
 'stub-threshold-disabled' => 'uutezet',
 'recentchangesdays' => 'Antal dagen die "Leste wiezigingen" löt zien:',

@@ -747,7 +747,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'rows' => 'Ǹdịlị:',
 'columns' => 'Ogìdì:',
 'searchresultshead' => 'Chọwa',
-'resultsperpage' => 'Nlé na ihü:',
 'stub-threshold-disabled' => 'Ápụgị òkò',
 'timezonelegend' => 'Nkeji ogẹ:',
 'localtime' => 'Ogẹ ebeanọr:',

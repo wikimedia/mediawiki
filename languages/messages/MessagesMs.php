@@ -1322,7 +1322,6 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'rows' => 'Baris:',
 'columns' => 'Lajur:',
 'searchresultshead' => 'Cari',
-'resultsperpage' => 'Jumlah padanan bagi setiap halaman:',
 'stub-threshold' => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
 'stub-threshold-disabled' => 'Dimatikan',
 'recentchangesdays' => 'Bilangan hari dalam perubahan terkini:',

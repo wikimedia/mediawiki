@@ -1258,7 +1258,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'rows' => 'Rědki:',
 'columns' => 'Słupy:',
 'searchresultshead' => 'Pytaś',
-'resultsperpage' => 'Wuslědki na bok:',
 'stub-threshold' => 'Formatěrowanje  <a href="#" class="stub">wótkaza na zarodk</a> (w bytach):',
 'stub-threshold-disabled' => 'Znjemóžnjony',
 'recentchangesdays' => 'Licba dnjow, kenž se pokazuju w "slědnych změnach":',

@@ -783,7 +783,6 @@ Google hmangin i lo zawng hrih thei ang.
 'rows' => 'Tlar:',
 'columns' => 'Thlur:',
 'searchresultshead' => 'Zawnna',
-'resultsperpage' => 'Phêk khat tawh zât:',
 'stub-threshold-disabled' => 'Tihnun a ni lo',
 'recentchangesdays' => 'Tihdanglam thar ni tihlan tùr chin:',
 'recentchangesdays-max' => 'A tam berah ni $1 {{PLURAL:$1||}}',

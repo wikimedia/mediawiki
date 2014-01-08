@@ -1256,7 +1256,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'rows' => 'Zylene',
 'columns' => 'Spaltene',
 'searchresultshead' => 'Suech-Ergäbnis',
-'resultsperpage' => 'Träffer pro Syte',
 'stub-threshold' => 'Gleichformatierig <a href="#" class="stub">vu chleine Syte</a> (in Byte):',
 'stub-threshold-disabled' => 'Deaktiviert',
 'recentchangesdays' => 'Aazahl vu dr Täg, wu d Lischt vu dr  „Letschte Änderige“ standardmässig soll umfasse:',

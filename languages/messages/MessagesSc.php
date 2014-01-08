@@ -650,7 +650,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'rows' => 'Lìnias:',
 'columns' => 'Colunnas:',
 'searchresultshead' => 'Settaggio delle preferenze per la ricerca',
-'resultsperpage' => 'Risultati da visualizzare per pagina',
 'stub-threshold-disabled' => 'Disativadu',
 'recentchangescount' => 'Nùmeru de acontzos de amostare pro definidura:',
 'savedprefs' => 'Is preferèntzias tuas sunt stadas sarbadas.',

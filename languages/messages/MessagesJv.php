@@ -1158,7 +1158,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rows' => 'Larikan:',
 'columns' => 'Kolom:',
 'searchresultshead' => 'Panggolèkan',
-'resultsperpage' => 'Cacahing klik saben kaca:',
 'stub-threshold' => 'Ambang wates kanggo format <a href="#" class="stub">pranala rintisan</a>:',
 'stub-threshold-disabled' => 'Dipatèni',
 'recentchangesdays' => 'Cacahé dina sing dituduhaké ing owah-owahan pungkasan:',

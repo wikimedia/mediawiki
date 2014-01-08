@@ -1181,7 +1181,6 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'rows' => 'Àwọn ìtẹ̀lé gbọlọjọ:',
 'columns' => 'Àwọn ìtẹ̀lé gogoro:',
 'searchresultshead' => 'Àwárí',
-'resultsperpage' => 'Àwọn èsì ní ojúewé kọ̀ọ̀kan:',
 'stub-threshold' => 'Àlà fún idárú <a href="#" class="stub">àjàpọ̀ ẹ̀kúnrẹ́rẹ́</a> (bytes):',
 'stub-threshold-disabled' => 'Dídálẹ́kun',
 'recentchangesdays' => 'Iye ọjọ́ láti fihàn nínú àwọn àtúnṣe tuntun:',

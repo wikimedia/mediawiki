@@ -1292,7 +1292,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rows' => 'Linennoù :',
 'columns' => 'Bannoù',
 'searchresultshead' => 'Klask',
-'resultsperpage' => 'Niver a respontoù dre bajenn :',
 'stub-threshold' => 'Bevenn uhelañ evit al <a href="#" class="stub">liammoù war-du an danvez pennadoù</a> (okted) :',
 'stub-threshold-disabled' => 'Diweredekaet',
 'recentchangesdays' => "Niver a zevezhioù da ziskouez er c'hemmoù diwezhañ :",

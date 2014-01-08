@@ -852,7 +852,6 @@ Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l'
 'rows' => 'Royes',
 'columns' => 'Colones',
 'searchresultshead' => 'Håynaedje des rzultats di cweraedje',
-'resultsperpage' => 'Nombe di responses a håyner so ene pådje',
 'recentchangesdays' => 'Nombe di djoûs po les dierins candjmints:',
 'recentchangesdays-max' => 'Macsimom $1 djoû{{PLURAL:$1||s}}',
 'recentchangescount' => 'Prémetou nombe di candjmintstites a håyner:',

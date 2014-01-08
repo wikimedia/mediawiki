@@ -137,6 +137,7 @@
  * @author Sp5uhe
  * @author Srhat
  * @author Subhashkataria21.90
+ * @author TMg
  * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
@@ -3040,7 +3041,6 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'searchresultshead' => 'Replaced by {{msg-mw|prefs-searchoptions}}, though may still be used in some extensions. DEPRECATED.
 
 {{Identical|Search}}',
-'resultsperpage' => "Option on the 'Search options' tab of [[Special:Preferences]]",
 'stub-threshold' => 'Used in [[Special:Preferences]], tab "Misc".',
 'stub-threshold-disabled' => 'Used in [[Special:Preferences]].
 {{Identical|Disabled}}',
@@ -4989,7 +4989,7 @@ See also:
 See also:
 * {{msg-mw|Notargettitle|title}}
 * {{msg-mw|Notargettext|text}}',
-'nopagetitle' => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
+'nopagetitle' => 'Used as title on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].
 
 The text is {{msg-mw|nopagetext}}.
 

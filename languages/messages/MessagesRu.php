@@ -80,6 +80,7 @@
  * @author Putnik
  * @author Rave
  * @author Rubin
+ * @author Rubin16
  * @author Sagan
  * @author Shirayuki
  * @author Sk
@@ -1590,7 +1591,6 @@ $1",
 'rows' => 'Строк:',
 'columns' => 'Столбцов:',
 'searchresultshead' => 'Поиск',
-'resultsperpage' => 'Количество найденных записей на страницу:',
 'stub-threshold' => 'Порог для определения оформления <a href="#" class="stub">ссылок на заготовки</a> (в байтах):',
 'stub-threshold-disabled' => 'Отключён',
 'recentchangesdays' => 'Количество дней, за которые показывать свежие правки:',

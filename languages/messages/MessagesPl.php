@@ -1463,7 +1463,6 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'rows' => 'Wiersze',
 'columns' => 'Kolumny',
 'searchresultshead' => 'Wyszukiwanie',
-'resultsperpage' => 'Liczba wyników na stronie',
 'stub-threshold' => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',
 'stub-threshold-disabled' => 'Wyłączone',
 'recentchangesdays' => 'Liczba dni prezentowanych w ostatnich zmianach',
@@ -2546,9 +2545,9 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage' => 'Zabezpieczone',
 'protectlogtext' => 'Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.
 Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle' => 'zabezpieczono "[[$1]]"',
-'modifiedarticleprotection' => 'zmieniono stopień zabezpieczenia "[[$1]]"',
-'unprotectedarticle' => 'odbezpieczył [[$1]]',
+'protectedarticle' => 'zabezpieczył(a) „[[$1]]”',
+'modifiedarticleprotection' => 'zmienił(a) stopień zabezpieczenia „[[$1]]”',
+'unprotectedarticle' => 'odbezpieczył(a) „[[$1]]”',
 'movedarticleprotection' => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title' => 'Zmiana stopnia zabezpieczenia „$1”',
 'protect-title-notallowed' => 'Podgląd stopnia zabezpieczenia „$1”',
@@ -3059,9 +3058,9 @@ Brak katalogu dla plików tymczasowych.',
 # Import log
 'importlogpage' => 'Rejestr importu',
 'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload' => 'Zaimportowano [[$1]] przez pobieranie plików',
+'import-logentry-upload' => 'zaimportował(a) [[$1]] przez pobieranie plików',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
-'import-logentry-interwiki' => 'zaimportowano $1 używając transwiki',
+'import-logentry-interwiki' => 'zaimportował(a) $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
 
 # JavaScriptTest

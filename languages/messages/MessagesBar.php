@@ -713,7 +713,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rows' => 'Zeiln:',
 'columns' => 'Spoiten',
 'searchresultshead' => 'Suachen',
-'resultsperpage' => 'Dreffer pró Seiten:',
 'savedprefs' => 'Deine Eihstellungen san gspeicherd worn.',
 'timezonelegend' => 'Zaidzone:',
 'localtime' => 'Ortszaid:',

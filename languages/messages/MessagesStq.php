@@ -1008,7 +1008,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'rows' => 'Riegen',
 'columns' => 'Spalten',
 'searchresultshead' => 'Säike (010)',
-'resultsperpage' => 'Träffere pro Siede:',
 'stub-threshold' => '<a href="#" class="stub">Kuute Artikkele</a> markierje bi (in Byte):',
 'stub-threshold-disabled' => 'Deaktivierd',
 'recentchangesdays' => 'Antaal fon Deege, do ju Lieste fon „Lääste Annerengen“ standoardmäitich uumfoatje skäl:',

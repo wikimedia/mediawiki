@@ -1334,7 +1334,6 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'rows' => 'Rye',
 'columns' => 'Kolomme',
 'searchresultshead' => 'Soekresultate',
-'resultsperpage' => 'Aantal resultate om te wys',
 'stub-threshold' => 'Drempel vir merk as <a href="#" class="stub">saadjie</a> (grepe):',
 'stub-threshold-disabled' => 'Afgeskakel',
 'recentchangesdays' => 'Aantal dae wat in onlangse wysigings vertoon word:',

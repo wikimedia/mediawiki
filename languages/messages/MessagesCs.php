@@ -1490,7 +1490,6 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rows' => 'Řádky',
 'columns' => 'Sloupce',
 'searchresultshead' => 'Vyhledávání',
-'resultsperpage' => 'Počet výsledků na stránku:',
 'stub-threshold' => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'stub-threshold-disabled' => 'Vypnuto',
 'recentchangesdays' => 'Počet dní zobrazených v posledních změnách:',
@@ -3302,7 +3301,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 
 # Special:NewFiles
 'newimages' => 'Galerie nových souborů',
-'imagelisttext' => "Níže je {{PLURAL:$1|jeden soubor|seznam '''$1'''&nbsp;souborů seřazených $2|seznam '''$1'''&nbsp;souborů seřazených $2}}.",
+'imagelisttext' => "Níže je {{PLURAL:$1|'''$1''' soubor|seznam '''$1'''&nbsp;souborů seřazených $2}}.",
 'newimages-summary' => 'Na této speciální stránce se zobrazují poslední načtené soubory.',
 'newimages-legend' => 'Filtr',
 'newimages-label' => 'Název souboru (nebo jeho část):',

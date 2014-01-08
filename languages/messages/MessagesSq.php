@@ -1267,7 +1267,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'rows' => 'Rreshta:',
 'columns' => 'Kollona:',
 'searchresultshead' => 'Kërkimi',
-'resultsperpage' => 'Sa përputhje të tregohen për faqe:',
 'stub-threshold' => 'Kufiri për formatin e <a href="#" class="stub">lidhjeve cung</a> (B):',
 'stub-threshold-disabled' => 'Çaktivizuar',
 'recentchangesdays' => 'Numri i ditëve të treguara në ndryshime së fundmi:',

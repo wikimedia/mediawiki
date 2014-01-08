@@ -823,7 +823,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'rows' => 'Sraitheanna',
 'columns' => 'Colúin',
 'searchresultshead' => 'Cuardaigh',
-'resultsperpage' => 'Torthaí le taispeáint ó leathanach:',
 'stub-threshold-disabled' => 'Díchumasaithe',
 'recentchangesdays' => 'Méid laethanta le taispeáint sna hathruithe is déanaí:',
 'recentchangesdays-max' => '(uasmhéid $1 {{PLURAL:$1|lá|lá}})',

@@ -1175,7 +1175,6 @@ Sòn a l'é normalment causà da l'andèje dapress a na veja liura stòrica a na
 'rows' => 'Righe:',
 'columns' => 'Colòne:',
 'searchresultshead' => "Specifiché soe preferense d'arserca",
-'resultsperpage' => 'Arzultà da mostré për vira pàgina:',
 'stub-threshold' => 'Valor mìnim për j\'<a href="#" class="stub">anliure a jë sbòss</a>:',
 'stub-threshold-disabled' => 'Disabilità',
 'recentchangesdays' => "Vàire dì smon-e ant j'ùltime modìfiche:",

@@ -1419,7 +1419,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'rows' => 'Riadky:',
 'columns' => 'Stĺpce:',
 'searchresultshead' => 'Vyhľadávanie',
-'resultsperpage' => 'Počet vyhovujúcich výsledkov zobrazených na stránku:',
 'stub-threshold' => 'Prah formátovania <a href="#" class="stub">výhonkov</a> (v bajtoch):',
 'stub-threshold-disabled' => 'Vypnuté',
 'recentchangesdays' => 'Koľko dní zobrazovať v posledných úpravách:',

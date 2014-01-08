@@ -1474,7 +1474,6 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'rows' => 'Linhas:',
 'columns' => 'Colunas:',
 'searchresultshead' => 'Pesquisar',
-'resultsperpage' => 'Resultados por página:',
 'stub-threshold' => 'Links para páginas curtas terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
 'stub-threshold-disabled' => 'Desativado',
 'recentchangesdays' => 'Dias a apresentar nas mudanças recentes:',

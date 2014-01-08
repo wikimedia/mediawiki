@@ -1413,7 +1413,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'rows' => 'Redova',
 'columns' => 'Stupaca',
 'searchresultshead' => 'Prikaz rezultata pretrage',
-'resultsperpage' => 'Koliko pogodaka na jednoj stranici',
 'stub-threshold' => 'Prag za formatiranje poput <a href="#" class="stub">poveznice mrve</a>:',
 'stub-threshold-disabled' => 'Onemogućeno',
 'recentchangesdays' => 'Broj dana prikazanih u nedavnim promjenama:',

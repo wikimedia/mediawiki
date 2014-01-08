@@ -1329,7 +1329,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'rows' => 'Files',
 'columns' => 'Columnes',
 'searchresultshead' => 'Preferències de la cerca',
-'resultsperpage' => 'Resultats a mostrar per pàgina',
 'stub-threshold' => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
 'stub-threshold-disabled' => 'Deshabilitat',
 'recentchangesdays' => 'Dies a mostrar en els canvis recents:',

@@ -1485,7 +1485,6 @@ Ayrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme g
 'rows' => 'Satır',
 'columns' => 'Sütun',
 'searchresultshead' => 'Arama',
-'resultsperpage' => 'Sayfada gösterilecek bulunan madde sayısı',
 'stub-threshold' => '<a href="#" class="stub">Taslak bağlantısı</a> formatı için baraj (bayt):',
 'stub-threshold-disabled' => 'Devre dışı',
 'recentchangesdays' => 'Son değişikliklerde gösterilecek günler:',

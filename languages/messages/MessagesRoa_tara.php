@@ -1190,7 +1190,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'rows' => 'Righe:',
 'columns' => 'Culonne:',
 'searchresultshead' => 'Cirche',
-'resultsperpage' => 'Trasute pe pàgene:',
 'stub-threshold' => 'Soglie pe <a href="#" class="stub">collegamende stub</a> de formattazione (byte):',
 'stub-threshold-disabled' => 'Disabbilitate',
 'recentchangesdays' => "Sciurne da fà vedè jndr'à le cangiaminde recende:",

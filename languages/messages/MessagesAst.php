@@ -1222,7 +1222,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'rows' => 'Fileres:',
 'columns' => 'Columnes:',
 'searchresultshead' => 'Buscar',
-'resultsperpage' => 'Resultaos por páxina:',
 'stub-threshold' => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled' => 'Desactivao',
 'recentchangesdays' => "Díes que s'amuesen nos cambios recientes:",

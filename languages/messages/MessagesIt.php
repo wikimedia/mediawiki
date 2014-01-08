@@ -1407,7 +1407,6 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'rows' => 'Righe:',
 'columns' => 'Colonne:',
 'searchresultshead' => 'Ricerca',
-'resultsperpage' => 'Numero di risultati per pagina:',
 'stub-threshold' => 'Valore minimo per i <a href="#" class="stub">collegamenti agli stub</a>, in byte:',
 'stub-threshold-disabled' => 'Disattivato',
 'recentchangesdays' => 'Numero di giorni da mostrare nelle ultime modifiche:',

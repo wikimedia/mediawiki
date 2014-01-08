@@ -630,7 +630,6 @@ $messages = array(
 'rows' => 'ЦIарар',
 'columns' => 'Гулар:',
 'searchresultshead' => 'Ахтармишун',
-'resultsperpage' => 'Са ччиниз талукь тир жагъанвай нетижаяр',
 'stub-threshold-disabled' => 'Галуднава',
 'timezonelegend' => 'Вахтунин минзил',
 'localtime' => 'Чкадин вахт',

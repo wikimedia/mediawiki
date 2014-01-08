@@ -1454,7 +1454,6 @@ Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'rows' => 'Rader:',
 'columns' => 'Kolonner',
 'searchresultshead' => 'Søk',
-'resultsperpage' => 'Resultater per side:',
 'stub-threshold' => 'Grense for <span class="mw-stub-example">stubblenkeformatering</span>:',
 'stub-threshold-disabled' => 'Deaktivert',
 'recentchangesdays' => 'Antall dager som skal vises i siste endringer:',

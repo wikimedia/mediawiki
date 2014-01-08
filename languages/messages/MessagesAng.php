@@ -628,7 +628,6 @@ folclicum āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 'rows' => 'Rǣwa:',
 'columns' => 'Sȳla:',
 'searchresultshead' => 'Sōcn',
-'resultsperpage' => 'Tōhrīgunga tō īewenne for ǣlcum tramete:',
 'recentchangescount' => 'Hū mæniga adihtunga to īwenne gewunelīce:',
 'savedprefs' => 'Þīna fōreberunga wurdon gehordod.',
 'timezonelegend' => 'Tīdgeard',

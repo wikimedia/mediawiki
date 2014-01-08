@@ -1235,7 +1235,6 @@ An mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page
 'rows' => 'Mga hilera:',
 'columns' => 'Mga taytay:',
 'searchresultshead' => 'Hanápon',
-'resultsperpage' => 'Mga tamà kada pahina:',
 'stub-threshold' => 'Kasagkoran kan <a href="#" class="stub">takod kan tambô</a> pigpopormato:',
 'stub-threshold-disabled' => 'Pinagpundo',
 'recentchangesdays' => 'Mga aldáw na ipapahilíng sa mga nakakaági pa sanáng pagbabàgó:',

@@ -1260,7 +1260,6 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'rows' => 'Rjadki:',
 'columns' => 'Stołpiki:',
 'searchresultshead' => 'Pytać',
-'resultsperpage' => 'Wuslědki za stronu:',
 'stub-threshold' => 'Wotkazowe formatowanje <a href="#" class="stub">małych stronow</a> (w bajtach):',
 'stub-threshold-disabled' => 'Znjemóžnjeny',
 'recentchangesdays' => 'Ličba dnjow w lisćinje aktualnych změnow:',

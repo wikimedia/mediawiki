@@ -1043,7 +1043,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'rows' => 'Rindiņu skaits:',
 'columns' => 'Simbolu skaits rindiņā:',
 'searchresultshead' => 'Meklēšana',
-'resultsperpage' => 'Lappusē parādāmo rezultātu skaits',
 'stub-threshold' => 'Slieksnis <a href="#" class="stub">aizmetņa saites</a> formatēšanai (baiti):',
 'stub-threshold-disabled' => 'Atslēgts',
 'recentchangesdays' => 'Dienu skaits, kuru rādīt pēdējās izmaiņās:',

@@ -1240,7 +1240,6 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'rows' => 'Mga pahalang na hanay:',
 'columns' => 'Mga pahabang hanay:',
 'searchresultshead' => 'Hanapin',
-'resultsperpage' => 'Bilang ng pagtama sa bawat pahina:',
 'stub-threshold' => 'Kakayanan para sa pagpopormat ng <a href="#" class="usbong">kawing ng usbong</a> (mga \'\'byte\'\'):',
 'stub-threshold-disabled' => 'Hindi pinagagana',
 'recentchangesdays' => 'Mga araw na ipapakita sa kamakailan lamang na mga pagbabago:',

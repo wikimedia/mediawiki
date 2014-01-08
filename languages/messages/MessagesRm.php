@@ -1098,7 +1098,6 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'rows' => 'Lingias:',
 'columns' => 'Colonnas:',
 'searchresultshead' => 'Tschertga',
-'resultsperpage' => 'resultats per pagina:',
 'stub-threshold' => 'Limita per la formataziun sco <a href="#" class="stub">colliaziun a stubs</a>, en bytes:',
 'stub-threshold-disabled' => 'Deactivà',
 'recentchangesdays' => 'Dumber da dis che duain vegnir mussads en las ultimas midadas:',

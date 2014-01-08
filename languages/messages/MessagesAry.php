@@ -954,7 +954,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'rows' => 'sofof:',
 'columns' => 'aaamida:',
 'searchresultshead' => 'Qelleb',
-'resultsperpage' => 'adad nataij  f sfha',
 'stub-threshold' => 'l-ḫadd l-aqṣa ṫaĝ <a href="#" class="stub">wṣlaṫ l-bidraṫ</a> (ḅayṫaṫ):',
 'stub-threshold-disabled' => 'makhdamch',
 'recentchangesdays' => 'n-nharaṫ lli twrri f-ṫġyiraṫ j-jdida:',

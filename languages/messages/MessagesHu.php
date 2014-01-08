@@ -1412,7 +1412,6 @@ Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás
 'rows' => 'Sor',
 'columns' => 'Oszlop',
 'searchresultshead' => 'Keresés',
-'resultsperpage' => 'Laponként mutatott találatok száma:',
 'stub-threshold' => 'A hivatkozások <a href="#" class="stub">csonkként</a> történő formázásának határa (bájtban):',
 'stub-threshold-disabled' => 'Kikapcsolva',
 'recentchangesdays' => 'A friss változtatásokban mutatott napok száma:',

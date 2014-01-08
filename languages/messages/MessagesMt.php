@@ -1319,7 +1319,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'rows' => 'Fillieri:',
 'columns' => 'Kolonni:',
 'searchresultshead' => 'Fittex',
-'resultsperpage' => "Numru ta' riżultati għal kull paġna:",
 'stub-threshold' => 'Valur minimu għall-<a href="#" class="stub">ħoloq għall-abozzi</a>, f\'bytes:',
 'stub-threshold-disabled' => 'Diżattivat',
 'recentchangesdays' => "Numru ta' ġranet li għandhom jintwerew fit-tibdil riċenti:",

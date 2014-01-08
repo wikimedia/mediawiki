@@ -1232,7 +1232,6 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'rows' => 'Røð:',
 'columns' => 'Teigar:',
 'searchresultshead' => 'Leita',
-'resultsperpage' => 'Úrslit fyri hvørja síðu:',
 'stub-threshold' => 'Avmarkað til <a href="#" class="stub">stubba leinki</a> formatering (bytes):',
 'stub-threshold-disabled' => 'Er gjørt óvirki',
 'recentchangesdays' => 'Dagar av vísa í seinastu broytingum:',

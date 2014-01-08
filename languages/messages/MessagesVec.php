@@ -1242,7 +1242,6 @@ I detaji i pol esar catai inte'l [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'rows' => 'Righe:',
 'columns' => 'Cołone:',
 'searchresultshead' => 'Riserca',
-'resultsperpage' => 'Nùmaro de risultati par pagina:',
 'stub-threshold' => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',
 'stub-threshold-disabled' => 'Disativà',
 'recentchangesdays' => 'Nùmaro de giòrni da mostrar ne le ultime modifiche:',

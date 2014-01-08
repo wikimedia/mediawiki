@@ -1035,9 +1035,9 @@ Heta ke werte de qısım çıniyo, ca çıniyo ke tı raştkerdışê xo qeyd b�
 
 Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[Special:ChangePassword|parola bıvurn]]'' bıvurni.",
 'newarticle' => '(Newe)',
-'newarticletext' => 'Ena per erdmaluamti miyan de çıniya.
-Şıma qayıle ena perer vırazese dora metini bıkarne. (yana  [[{{MediaWiki:Helppage}}|Pera destegi]] ra malumat bıgire).
-Nara ke şıma ğamğamde ameyé tiya se butonda peyseri bıploğne u şıré cado verén.',
+'newarticletext' => "To yew gıre tıkna be ra yew pela ke hewna çıniya.
+Seba afernayışê pele ra, qutiya metnê cêrêni bıgurene (seba melumati qaytê [[{{MediaWiki:Helppage}}|pela peşti]] ke).
+Eke be ğeletine ameya tiya, wa gocega '''peyser'''i programê xo de bıtıkne.",
 'anontalkpagetext' => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
 'noarticletext' => 'Na per enewke venga.
 Tı şenay na perer, peran de [[Special:Search/{{PAGENAME}}|binan miyan de bıgeyrè]],
@@ -1385,7 +1385,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
 'searchmenu-new' => "''Na Wiki de pelay \"[[:\$1]]\" vıraze!'''",
 'searchprofile-articles' => 'Perré muhteway',
-'searchprofile-project' => 'Pera Destegi uw Procan',
+'searchprofile-project' => 'Pelê peşti û procey',
 'searchprofile-images' => 'Multimedya',
 'searchprofile-everything' => 'Heme çi',
 'searchprofile-advanced' => 'Ravérden',
@@ -1453,7 +1453,6 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'rows' => 'Xeti:',
 'columns' => 'Estûni:',
 'searchresultshead' => 'Cı geyre',
-'resultsperpage' => 'Neticeye ke perde bıase:',
 'stub-threshold' => 'Qandé <a href="#" class="stub">Taslağ  formati</a> sinor (bayti):',
 'stub-threshold-disabled' => 'Astengın',
 'recentchangesdays' => 'Rocê ke vurnayışanê peyênan de bıasê:',
@@ -3111,7 +3110,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-ca-nstab-image' => 'Pera dosyayer bıvin',
 'tooltip-ca-nstab-mediawiki' => 'Mesacané sistemi bıvin',
 'tooltip-ca-nstab-template' => 'Şabloni bıvin',
-'tooltip-ca-nstab-help' => 'Pera destegi bıvin',
+'tooltip-ca-nstab-help' => 'Pela peşti bıvêne',
 'tooltip-ca-nstab-category' => 'Pera kategori bıvin',
 'tooltip-minoredit' => 'Nay vırnayışa werdi nışan bıkeré',
 'tooltip-save' => 'Vurnayışa qeyd ke',

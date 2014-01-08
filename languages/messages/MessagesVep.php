@@ -1029,7 +1029,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'rows' => 'Rivid:',
 'columns' => 'Pachid:',
 'searchresultshead' => 'Ecind',
-'resultsperpage' => 'Kirjutesiden lugu lehtpolel:',
 'stub-threshold' => 'Nägutesen märitamižen künduz <a href="#" class="stub">kosketust otetile</a> (baitoiš)',
 'stub-threshold-disabled' => 'Ei ole kävutamas',
 'recentchangesdays' => 'Päiväd veresiden toižetusidenke, lugumär:',

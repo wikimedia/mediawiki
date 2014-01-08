@@ -12,6 +12,7 @@
  * @author Cimon Avaro
  * @author Crt
  * @author ElmA
+ * @author Elseweyr
  * @author Geitost
  * @author Harriv
  * @author Hyperborean
@@ -1438,7 +1439,6 @@ $1 {{int:pipe-separator}} $2',
 'rows' => 'Rivejä',
 'columns' => 'Sarakkeita',
 'searchresultshead' => 'Haku',
-'resultsperpage' => 'Tuloksia sivua kohti',
 'stub-threshold' => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',
 'stub-threshold-disabled' => 'Ei käytössä',
 'recentchangesdays' => 'Näytettävien päivien määrä tuoreissa&nbsp;muutoksissa',
@@ -1708,6 +1708,7 @@ Tämä tieto on julkinen.',
 'recentchanges-label-plusminus' => 'Sivun koon muutos tavuina',
 'recentchanges-legend-heading' => "'''Selitys:'''",
 'recentchanges-legend-newpage' => '(katso myös [[Special:NewPages|lista uusista sivuista]])',
+'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom' => 'Näytä uudet muutokset $1 alkaen',
 'rcshowhideminor' => '$1 pienet muutokset',
@@ -3776,6 +3777,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 
 # Separators for various lists, etc.
 'percent' => '$1&#160;%',
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',
@@ -3785,6 +3787,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(oletuskieli)',
+'img-lang-info' => 'Näytä tämä kuva kielellä $1. $2',
 'img-lang-go' => 'Suorita',
 
 # Table pager
@@ -3878,6 +3881,8 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-ext-colheader-credits' => 'Tekijät',
 'version-license-title' => 'Lisenssi ohjelmalle $1',
 'version-license-not-found' => 'Tälle lisäosalle ei ole saatavissa tarkkoja lisenssitietoja.',
+'version-credits-title' => 'Laajennuksen $1 tekijätiedot',
+'version-credits-not-found' => 'Tälle laajenukselle ei löytynyt yksityiskohtaisia tekijätietoja.',
 'version-poweredby-credits' => "Tämä wiki käyttää '''[https://www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'muut',
 'version-poweredby-translators' => 'translatewiki.net-kääntäjät',
@@ -4096,6 +4101,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-overwrite' => 'Olemassa olevan tiedoston korvaaminen toisella ei ole sallittua.',
 'api-error-stashfailed' => 'Sisäinen virhe: Väliaikaisen tiedoston tallentaminen epäonnistui.',
 'api-error-publishfailed' => 'Sisäinen virhe: Väliaikaisen tiedoston julkaiseminen epäonnistui.',
+'api-error-stasherror' => 'Tiedostoa ladattaessa tapahtui virhe.',
 'api-error-timeout' => 'Palvelin ei vastannut odotetun ajan kuluessa.',
 'api-error-unclassified' => 'Tapahtui tuntematon virhe.',
 'api-error-unknown-code' => 'Tuntematon virhe: $1.',
@@ -4130,6 +4136,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-expansiondepth' => 'Highest expansion depth',
+'limitreport-expensivefunctioncount' => 'Vaativien parserfunktioiden määrä',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Mallineiden laajennus',

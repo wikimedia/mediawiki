@@ -1148,7 +1148,6 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'rows' => 'Räen:',
 'columns' => 'Spleder:',
 'searchresultshead' => 'Schük',
-'resultsperpage' => 'So fölsis komt det föör per sidj:',
 'stub-threshold' => 'Formatiarang faan links <a href="#" class="stub">för letj sidjen</a> (uun Byte):',
 'stub-threshold-disabled' => 'Ufsteld',
 'recentchangesdays' => 'Soföl daar skel a „leetst feranrangen“ uunwise:',

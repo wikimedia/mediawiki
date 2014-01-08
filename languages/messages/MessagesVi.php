@@ -1460,7 +1460,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'rows' => 'Số hàng:',
 'columns' => 'Số cột:',
 'searchresultshead' => 'Tìm kiếm',
-'resultsperpage' => 'Số kết quả mỗi trang:',
 'stub-threshold' => 'Định dạng <a href="#" class="stub">liên kết đến sơ khai</a> cho các trang ngắn hơn (byte):',
 'stub-threshold-disabled' => 'Tắt',
 'recentchangesdays' => 'Số ngày hiển thị trong thay đổi gần đây:',

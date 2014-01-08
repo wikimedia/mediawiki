@@ -846,7 +846,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'rows' => 'Rito',
 'columns' => 'Tulpõ',
 'searchresultshead' => 'Otsminõ',
-'resultsperpage' => 'Tulõmuisi leheküle kotsilõ',
 'stub-threshold' => '<a href="#" class="stub">Kehväkese lehe</a> näütämispiir (baidõn):',
 'recentchangesdays' => 'Päivi, midä näüdädäq viimätsin muutmiisin',
 'recentchangescount' => 'Päälkirjo hulk viimätsin muutmiisin',

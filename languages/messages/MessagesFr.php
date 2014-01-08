@@ -1538,7 +1538,6 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'rows' => 'Rangées :',
 'columns' => 'Colonnes :',
 'searchresultshead' => 'Filtrer avec cette valeur',
-'resultsperpage' => 'Nombre de réponses par page :',
 'stub-threshold' => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
 'stub-threshold-disabled' => 'Désactivé',
 'recentchangesdays' => 'Nombre de jours à afficher dans les modifications récentes :',

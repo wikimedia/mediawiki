@@ -807,7 +807,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'rows' => 'Riis',
 'columns' => 'Colonis:',
 'searchresultshead' => 'Ricercje',
-'resultsperpage' => 'Risultâts par pagjine',
 'stub-threshold' => 'Valôr minim pe formatazion dai <a href="#" class="stub">leams aboç</a> (bytes):',
 'recentchangesdays' => 'Numar di zornadis di mostrâ tai ultins cambiaments:',
 'recentchangesdays-max' => '(massim $1 {{PLURAL:$1|zornade|zornadis}})',
