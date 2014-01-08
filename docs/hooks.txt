@@ -1595,6 +1595,12 @@ $paramArray: Array of parameters that corresponds to logging.log_params field.
 &$revert: string that is displayed in the UI, similar to $comment.
 $time: timestamp of the log entry (added in 1.12)
 
+'LonelyPagesQuery': Allow extensions to modify the query used by
+Special:LonelyPages.
+&$tables: tables to join in the query
+&$conds: conditions for the query
+&$join_conds: join conditions for the query
+
 'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance
 script.
 $refreshLinks: RefreshLinks object
