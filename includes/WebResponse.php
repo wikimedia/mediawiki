@@ -124,8 +124,8 @@ class WebResponse {
  * @ingroup HTTP
  */
 class FauxResponse extends WebResponse {
-	private $headers;
-	private $cookies;
+	private $headers = array();
+	private $cookies = array();
 	private $code;
 
 	/**
@@ -176,15 +176,25 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * @todo document. It just ignore optional parameters.
-	 *
 	 * @param string $name name of cookie
 	 * @param string $value value to give cookie
 	 * @param int $expire number of seconds til cookie expires (Default: 0)
-	 * @param array $options ignored
+	 * @param array $options Additional cookie options
+	 *
+	 * @see WebResponse::setcookie
 	 */
 	public function setcookie( $name, $value, $expire = 0, $options = null ) {
-		$this->cookies[$name] = $value;
+		global $wgCookiePrefix;
+
+		if ( !is_array( $options ) ) {
+			// Backwards compatability
+			$options = array( 'prefix' => $options );
+		}
+		$options = array_filter( $options, function ( $a ) {
+					return $a !== null;
+				} ) + array( 'prefix' => $wgCookiePrefix );
+
+		$this->cookies[$options['prefix'] . $name] = $value;
 	}
 
 	/**
@@ -196,5 +206,14 @@ class FauxResponse extends WebResponse {
 			return $this->cookies[$name];
 		}
 		return null;
+	}
+
+	/**
+	 * Get all of the cookies in one array
+	 *
+	 * @return array
+	 */
+	public function getcookies() {
+		return $this->cookies;
 	}
 }

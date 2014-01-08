@@ -67,11 +67,11 @@ class ApiQueryUsers extends ApiQueryBase {
 	 * @return String
 	 */
 	public static function getUserrightsToken( $user ) {
-		global $wgUser;
+		global $wgRequest;
 
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
-		return $wgUser->getEditToken( $user->getName() );
+		return $wgRequest->getCsrfToken( $user->getName() );
 	}
 
 	public function execute() {

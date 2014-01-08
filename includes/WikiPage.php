@@ -2820,7 +2820,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.
-	 * @param string $token Rollback token.
+	 * @param null $unused Unused parameter for tokens (will issue a warning if not null)
 	 * @param $bot Boolean: If true, mark all reverted edits as bot.
 	 *
 	 * @param array $resultDetails contains result-specific array of additional values
@@ -2834,7 +2834,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * OutputPage::showPermissionsErrorPage().
 	 */
 	public function doRollback(
-		$fromP, $summary, $token, $bot, &$resultDetails, User $user
+		$fromP, $summary, $unused, $bot, &$resultDetails, User $user
 	) {
 		$resultDetails = null;
 
@@ -2843,12 +2843,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $user );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
-		if ( !$user->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) ) {
-			$errors[] = array( 'sessionfailure' );
-		}
-
 		if ( $user->pingLimiter( 'rollback' ) || $user->pingLimiter() ) {
 			$errors[] = array( 'actionthrottledtext' );
+		}
+
+		if ( $unused !== null ) {
+			wfWarn( "Using deprecated token parameter in " . __METHOD__ .
+				". The token should be checked by the caller" );
 		}
 
 		// If there were errors, bail out now

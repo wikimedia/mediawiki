@@ -1198,7 +1198,7 @@ class ImageHistoryList extends ContextSource {
 					array(
 						'action' => 'revert',
 						'oldimage' => $img,
-						'wpEditToken' => $user->getEditToken( $img )
+						'wpEditToken' => $this->getRequest()->getCsrfToken( $img )
 					)
 				);
 			}
@@ -1225,7 +1225,7 @@ class ImageHistoryList extends ContextSource {
 					array(
 						'target' => $this->title->getPrefixedText(),
 						'file' => $img,
-						'token' => $user->getEditToken( $img )
+						'token' => $this->getRequest()->getCsrfToken( $img )
 					)
 				);
 			} else {

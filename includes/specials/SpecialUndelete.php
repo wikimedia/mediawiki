@@ -704,8 +704,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mTimestamp = $time ? wfTimestamp( TS_MW, $time ) : '';
 		$this->mFilename = $request->getVal( 'file' );
 
-		$posted = $request->wasPosted() &&
-			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$posted = $request->wasPosted() && $request->checkCsrfToken();
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
@@ -757,6 +756,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->loadRequest( $par );
 
 		$out = $this->getOutput();
+		$request = $this->getRequest();
 
 		if ( is_null( $this->mTargetObj ) ) {
 			$out->addWikiMsg( 'undelete-header' );
@@ -789,7 +789,7 @@ class SpecialUndelete extends SpecialPage {
 				} else {
 					throw new PermissionsError( 'deletedtext' );
 				}
-			} elseif ( !$user->matchEditToken( $this->mToken, $this->mFilename ) ) {
+			} elseif ( !$request->checkCsrfToken( $this->mFilename ) ) {
 				$this->showFileConfirmationForm( $this->mFilename );
 			} else {
 				$this->showFile( $this->mFilename );
@@ -1027,7 +1027,7 @@ class SpecialUndelete extends SpecialPage {
 				Xml::element( 'input', array(
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
-					'value' => $user->getEditToken() ) ) .
+					'value' => $this->getRequest()->getCsrfToken() ) ) .
 				$previewButton .
 				$diffButton .
 				Xml::closeElement( 'form' ) .
@@ -1148,7 +1148,7 @@ class SpecialUndelete extends SpecialPage {
 					'action' => $this->getPageTitle()->getLocalURL( array(
 						'target' => $this->mTarget,
 						'file' => $key,
-						'token' => $user->getEditToken( $key ),
+						'token' => $this->getRequest()->getCsrfToken( $key ),
 					) ),
 				)
 			) .
@@ -1330,7 +1330,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			# Slip in the hidden controls here
 			$misc = Html::hidden( 'target', $this->mTarget );
-			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
+			$misc .= Html::hidden( 'wpEditToken', $this->getRequest()->getCsrfToken() );
 			$misc .= Xml::closeElement( 'form' );
 			$out->addHTML( $misc );
 		}
@@ -1510,6 +1510,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key ) {
 		$user = $this->getUser();
+		$request = $this->getRequest();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
@@ -1523,7 +1524,7 @@ class SpecialUndelete extends SpecialPage {
 			array(
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'file' => $key,
-				'token' => $user->getEditToken( $key )
+				'token' => $request->getCsrfToken( $key ),
 			)
 		);
 

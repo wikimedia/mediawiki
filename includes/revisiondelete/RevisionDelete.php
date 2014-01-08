@@ -656,7 +656,7 @@ class RevDel_FileItem extends RevDel_Item {
 				array(
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $this->file->getArchiveName(),
-					'token' => $this->list->getUser()->getEditToken(
+					'token' => $this->list->getRequest()->getCsrfToken(
 						$this->file->getArchiveName() )
 				)
 			);
@@ -801,7 +801,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 				array(
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
-					'token' => $this->list->getUser()->getEditToken( $key )
+					'token' => $this->list->getRequest()->getCsrfToken( $key )
 				)
 			);
 		}

@@ -495,7 +495,7 @@ class DifferenceEngine extends ContextSource {
 						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 					}
 
-					$token = $user->getEditToken( $rcid );
+					$token = $this->getRequest()->getCsrfToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
 						$this->msg( 'markaspatrolleddiff' )->escaped(),

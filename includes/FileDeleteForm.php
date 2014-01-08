@@ -93,7 +93,7 @@ class FileDeleteForm {
 		}
 
 		// Perform the deletion if appropriate
-		if ( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
+		if ( $wgRequest->wasPosted() && $wgRequest->checkCsrfToken( $this->oldimage ) ) {
 			$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
 			$deleteReason = $wgRequest->getText( 'wpReason' );
 
@@ -224,7 +224,7 @@ class FileDeleteForm {
 			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMessage( 'filedelete-legend' )->text() ) .
-			Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) ) .
+			Html::hidden( 'wpEditToken', $wgRequest->getCsrfToken( $this->oldimage ) ) .
 			$this->prepareMessage( 'filedelete-intro' ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-img-deleteconfirm-table' ) ) .
 			"<tr>

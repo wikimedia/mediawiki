@@ -40,10 +40,10 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 * @return array: List of tokens keyed by token type
 	 */
 	protected function contextUserTokens() {
-		global $wgUser;
+		global $wgRequest;
 
 		return array(
-			'editToken' => $wgUser->getEditToken(),
+			'editToken' => $wgRequest->getCsrfToken(),
 			'patrolToken' => ApiQueryRecentChanges::getPatrolToken( null, null ),
 			'watchToken' => ApiQueryInfo::getWatchToken( null, null ),
 		);

@@ -37,7 +37,7 @@ class FauxResponseTest extends MediaWikiTestCase {
 	 */
 	public function testCookie() {
 		$this->assertEquals( null, $this->response->getcookie( 'key' ), 'Non-existing cookie' );
-		$this->response->setcookie( 'key', 'val' );
+		$this->response->setcookie( 'key', 'val', 0, array( 'prefix' => '' ) );
 		$this->assertEquals( 'val', $this->response->getcookie( 'key' ), 'Existing cookie' );
 	}
 

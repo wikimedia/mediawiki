@@ -23,17 +23,22 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 	}
 
-	protected function doApiRequest( array $params, array $unused = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $unused = null, $appendModule = false, User $user = null,
+		FauxRequest $lastReq = null
+	) {
 		$sessionId = session_id();
 		session_write_close();
 
 		$req = new FauxRequest( $params, true, $_SESSION );
-		$module = new ApiMain( $req, true );
-		$module->execute();
+		if ( $lastReq !== null ) {
+			$req->applyResponse( $lastReq->response() );
+		}
+
+		$result = $this->doApiRequestInternal( $req, $user, $appendModule );
 
 		wfSetupSession( $sessionId );
 
-		return array( $module->getResultData(), $req );
+		return $result;
 	}
 
 	/**

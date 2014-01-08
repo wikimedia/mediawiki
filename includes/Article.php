@@ -1049,6 +1049,7 @@ class Article implements Page {
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
+		$request = $this->getContext()->getRequest();
 		$cache = wfGetMainCache();
 		$rc = false;
 
@@ -1121,7 +1122,7 @@ class Article implements Page {
 
 		$rcid = $rc->getAttribute( 'rc_id' );
 
-		$token = $user->getEditToken( $rcid );
+		$token = $request->getCsrfToken( $rcid );
 
 		$outputPage->preventClickjacking();
 		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
@@ -1560,8 +1561,8 @@ class Article implements Page {
 			$reason = $deleteReasonList;
 		}
 
-		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
-			array( 'delete', $this->getTitle()->getPrefixedText() ) )
+		if ( $request->wasPosted() &&
+			$request->checkCsrfToken( array( 'delete', $this->getTitle()->getPrefixedText() ) )
 		) {
 			# Flag to hide all contents of the archived revisions
 			$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
@@ -1628,7 +1629,9 @@ class Article implements Page {
 
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
 
-		$user = $this->getContext()->getUser();
+		$context = $this->getContext();
+		$user = $context->getUser();
+		$request = $context->getRequest();
 
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
@@ -1696,7 +1699,8 @@ class Article implements Page {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
+			Html::hidden( 'wpEditToken',
+				$request->getCsrfToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {

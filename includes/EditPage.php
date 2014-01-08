@@ -1165,10 +1165,9 @@ class EditPage {
 	 * @private
 	 */
 	function tokenOk( &$request ) {
-		global $wgUser;
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		$this->mTokenOk = $request->checkCsrfToken();
+		$this->mTokenOkExceptSuffix = $request->checkCsrfTokenNoSuffix();
+
 		return $this->mTokenOk;
 	}
 
@@ -2637,7 +2636,7 @@ HTML
 	}
 
 	protected function showFormAfterText() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgRequest;
 		/**
 		 * To make it harder for someone to slip a user a page
 		 * which submits an edit form to the wiki without their
@@ -2650,7 +2649,7 @@ HTML
 		 * include the constant suffix to prevent editing from
 		 * broken text-mangling proxies.
 		 */
-		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgUser->getEditToken() ) . "\n" );
+		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgRequest->getCsrfToken() ) . "\n" );
 	}
 
 	/**

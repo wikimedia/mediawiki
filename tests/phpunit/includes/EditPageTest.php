@@ -127,7 +127,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {
-			$edit['wpEditToken'] = $user->getEditToken();
+			$edit['wpEditToken'] = EDIT_TOKEN_SUFFIX;
 		}
 
 		if ( !isset( $edit['wpEdittime'] ) ) {

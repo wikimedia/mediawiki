@@ -84,7 +84,7 @@ class UnwatchedpagesPage extends QueryPage {
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
 		$plink = Linker::linkKnown( $nt, htmlspecialchars( $text ) );
-		$token = WatchAction::getWatchToken( $nt, $this->getUser() );
+		$token = WatchAction::getWatchToken( $nt, $this->getUser(), 'watch', $this->getRequest() );
 		$wlink = Linker::linkKnown(
 			$nt,
 			$this->msg( 'watch' )->escaped(),

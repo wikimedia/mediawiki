@@ -40,14 +40,19 @@ class RollbackAction extends FormlessAction {
 
 		$request = $this->getRequest();
 
-		$result = $this->page->doRollback(
-			$request->getVal( 'from' ),
-			$request->getText( 'summary' ),
-			$request->getVal( 'token' ),
-			$request->getBool( 'bot' ),
-			$details,
-			$this->getUser()
-		);
+		$fromP = $request->getVal( 'from' );
+		if ( $request->checkCsrfToken( array( $this->getTitle()->getPrefixedText(), $fromP ), 'token' ) ) {
+			$result = $this->page->doRollback(
+				$fromP,
+				$request->getText( 'summary' ),
+				null,
+				$request->getBool( 'bot' ),
+				$details,
+				$this->getUser()
+			);
+		} else {
+			$result = array( 'sessionfailure' );
+		}
 
 		if ( in_array( array( 'actionthrottledtext' ), $result ) ) {
 			throw new ThrottledError;

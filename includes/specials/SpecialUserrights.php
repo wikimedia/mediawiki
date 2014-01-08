@@ -142,7 +142,7 @@ class UserrightsPage extends SpecialPage {
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
-			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
+			$request->checkCsrfToken( $this->mTarget )
 		) {
 			// save settings
 			$status = $this->fetchUser( $this->mTarget );
@@ -492,7 +492,7 @@ class UserrightsPage extends SpecialPage {
 		$this->getOutput()->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
 			Html::hidden( 'user', $this->mTarget ) .
-			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
+			Html::hidden( 'wpEditToken', $this->getRequest()->getCsrfToken( $this->mTarget ) ) .
 			Html::hidden( 'conflictcheck-originalgroups', implode( ',', $user->getGroups() ) ) . // Conflict detection
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'userrights-editusergroup', $user->getName() )->text() ) .
