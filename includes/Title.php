@@ -1894,7 +1894,7 @@ class Title {
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
 		} elseif ( $action == 'edit' && $user->isAnon() && !$user->isAllowed( 'edit' ) ) {
-			$errors[] = array( 'noarticletext-nopermission');
+			$errors[] = array( 'noarticletext-nopermission' );
 			$errors[] = $this->missingPermissionError( $action, $short );
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
