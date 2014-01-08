@@ -44,6 +44,8 @@ production.
 * (bug 56033) Add content model to the page information.
 * Added Article::MissingArticleConditions hook to give extensions a chance to
   hide their (unrelated) log entries.
+* Added LonelyPagesQuery hook to let extensions modify the query used to
+  generate Special:LonelyPages.
 * Added $wgOpenSearchDefaultLimit defining the default number of entries to show
   on action=opensearch API call.
 * For namespaces with $wgNamespaceProtection (including the MediaWiki

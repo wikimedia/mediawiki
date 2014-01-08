@@ -49,36 +49,40 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array(
-			'tables' => array(
-				'page', 'pagelinks',
-				'templatelinks'
+		$tables = array( 'page', 'pagelinks', 'templatelinks' );
+		$conds = array(
+			'pl_namespace IS NULL',
+			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_is_redirect' => 0,
+			'tl_namespace IS NULL'
+		);
+		$joinConds = array(
+			'pagelinks' => array(
+				'LEFT JOIN', array(
+					'pl_namespace = page_namespace',
+					'pl_title = page_title'
+				)
 			),
+			'templatelinks' => array(
+				'LEFT JOIN', array(
+					'tl_namespace = page_namespace',
+					'tl_title = page_title'
+				)
+			)
+		);
+
+		// Allow extensions to modify the query
+		wfRunHooks( 'LonelyPagesQuery', array( &$tables, &$conds, &$joinConds ) );
+
+		return array(
+			'tables' => $tables,
 			'fields' => array(
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
 			),
-			'conds' => array(
-				'pl_namespace IS NULL',
-				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_is_redirect' => 0,
-				'tl_namespace IS NULL'
-			),
-			'join_conds' => array(
-				'pagelinks' => array(
-					'LEFT JOIN', array(
-						'pl_namespace = page_namespace',
-						'pl_title = page_title'
-					)
-				),
-				'templatelinks' => array(
-					'LEFT JOIN', array(
-						'tl_namespace = page_namespace',
-						'tl_title = page_title'
-					)
-				)
-			)
+			'conds' => $conds,
+			'join_conds' => $joinConds
 		);
 	}
 
