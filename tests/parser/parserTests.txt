@@ -5104,6 +5104,17 @@ MSIE CSS safety test: sup/sub script
 !! end
 
 !! test
+Opera -o-link CSS
+!! input
+<div
+title="&#100;&#97;&#116;&#97;&#58;&#116;&#101;&#120;&#116;&#47;&#104;&#116;&#109;&#108;&#44;&#60;&#105;&#109;&#103;&#32;&#115;&#114;&#99;&#61;&#49;&#32;&#111;&#110;&#101;&#114;&#114;&#111;&#114;&#61;&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;&#62;"
+style="-o-link:attr(title);-o-link-source:current">X</div>
+!! result
+<div title="data:text/html,&lt;img src=1 onerror=alert(1)&gt;" style="/* insecure input */">X</div>
+
+!! end
+
+!! test
 MSIE CSS safety test: Repetition markers
 !! input
 <p style="font-size: 100px; color: expres〱ion((title='XSSed'),'red')">A</p>
