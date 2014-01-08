@@ -13,100 +13,105 @@ div.vectorTabs {
 	/* @noflip */
 	float: left;
 	height: 2.5em;
-}
-
-div.vectorTabs {
 	.background-image('images/tab-break.png');
 	background-position: bottom left;
 	background-repeat: no-repeat;
 	padding-left: 1px;
-}
 
-div.vectorTabs ul {
-	/* @noflip */
-	float: left;
-	height: 100%;
-	list-style-type: none;
-	list-style-image: none;
-	margin: 0;
-	padding: 0;
-}
+	ul {
+		/* @noflip */
+		float: left;
+		height: 100%;
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0;
+		padding: 0;
+		.background-image('images/tab-break.png');
+		background-position: right bottom;
+		background-repeat: no-repeat;
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs ul li {
-	/* @noflip */
-	float: left;
-	line-height: 1.125em;
-	display: inline-block;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	background-color: #f3f3f3;
-	.background-image('images/tab-normal-fade.png');
-	background-position: bottom left;
-	background-repeat: repeat-x;
-	white-space: nowrap;
-}
+		li {
+			/* @noflip */
+			float: left;
+			line-height: 1.125em;
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #f3f3f3;
+			.background-image('images/tab-normal-fade.png');
+			background-position: bottom left;
+			background-repeat: repeat-x;
+			white-space: nowrap;
+		}
 
-/* IGNORED BY IE6 */
-div.vectorTabs ul > li {
-	display: block;
-}
+		/* IGNORED BY IE6 which doesn't support child selector */
+		> li {
+			display: block;
+		}
+	}
 
-div.vectorTabs li.selected {
-	.background-image('images/tab-current-fade.png');
-}
+	li {
+		&.new {
+			a,
+			a:visited{
+				color: #a55858;
+			}
+		}
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs li a {
-	display: inline-block;
-	height: 1.9em;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
-	color: @menu-link-color;
-	cursor: pointer;
-	font-size: 0.8em;
-}
+		&.selected {
+			.background-image('images/tab-current-fade.png');
+			a,
+			a:visited{
+				color: #333;
+				text-decoration: none;
+			}
+		}
 
-/* IGNORED BY IE6 */
-div.vectorTabs li > a {
-	display: block;
-}
+		&.icon {
+			a {
+				background-position: bottom right;
+				background-repeat: no-repeat;
+			}
+		}
 
-div.vectorTabs li.icon a {
-	background-position: bottom right;
-	background-repeat: no-repeat;
-}
+		a {
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			height: 1.9em;
+			padding-left: 0.5em;
+			padding-right: 0.5em;
+			color: @menu-link-color;
+			cursor: pointer;
+			font-size: 0.8em;
+		}
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs span a {
-	display: inline-block;
-	padding-top: 1.25em;
-}
+		/* Ignored by IE6 which doesn't support child selector */
+		> a {
+			display: block;
+		}
+	}
 
-/* IGNORED BY IE6 */
-div.vectorTabs span > a {
-	/* @noflip */
-	float: left;
-	display: block;
-}
+	span {
+		display: inline-block;
+		.background-image('images/tab-break.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
 
-div.vectorTabs span {
-	display: inline-block;
-	.background-image('images/tab-break.png');
-	background-position: bottom right;
-	background-repeat: no-repeat;
-}
+		a  {
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			padding-top: 1.25em;
+		}
 
-div.vectorTabs li.selected a,
-div.vectorTabs li.selected a:visited{
-	color: #333;
-	text-decoration: none;
-}
-
-div.vectorTabs li.new a,
-div.vectorTabs li.new a:visited{
-	color: #a55858;
+		/* Ignored by IE6 which doesn't support child selector */
+		> a {
+			/* @noflip */
+			float: left;
+			display: block;
+		}
+	}
 }
 
 /* Variants and Actions */
@@ -263,12 +268,6 @@ div.vectorMenu li.selected a,
 div.vectorMenu li.selected a:visited {
 	color: #333;
 	text-decoration: none;
-}
-
-div.vectorTabs ul {
-	.background-image('images/tab-break.png');
-	background-position: right bottom;
-	background-repeat: no-repeat;
 }
 
 @import 'watchstar.less';
