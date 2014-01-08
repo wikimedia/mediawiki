@@ -27,48 +27,89 @@
  * @ingroup SpecialPage
  */
 class SpecialChangePassword extends FormSpecialPage {
+	/**
+	 * @var string A temporary password reset token optionally provided by the user
+	 */
+	private $token = '';
 
-	protected $mUserName, $mDomain;
+	/**
+	 * @var User The user whose password is being changed
+	 */
+	private $user;
 
 	public function __construct() {
 		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
 		$this->listed( false );
+		$this->user = $this->getUser();
 	}
 
-	/**
-	 * Main execution point
-	 */
-	function execute( $par ) {
+	public function execute( $par ) {
+		global $wgSecureLogin;
+
+		// If secure login is enabled, only allow password changes over HTTPS
+		if (
+			$this->getRequest()->getProtocol() !== 'https' &&
+			$wgSecureLogin &&
+			wfCanIPUseHTTPS( $this->getRequest()->getIP() )
+		) {
+			$request = $this->getRequest();
+			$title = $this->getFullTitle();
+
+			$query = array(
+					'fromhttp' => '1',
+					'returnto' => $request->getVal( 'returnto' ),
+					'returntoquery' => $request->getVal( 'returntoquery' ),
+					'title' => null,
+			) + $request->getQueryValues();
+
+			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
+
+			$this->getOutput()->redirect( $url );
+			// Since we only do this redir to change proto, always vary
+			$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
+
+			return;
+		}
+
 		$this->getOutput()->disallowUserJs();
 
 		parent::execute( $par );
 	}
 
+	protected function setParameter( $par ) {
+		$user = User::newFromName( $par );
+		if ( $user && $user->isLoggedIn() ) {
+			$this->user = $user;
+			$this->token = $this->getRequest()->getVal( 'token' );
+		}
+	}
+
 	protected function checkExecutePermissions( User $user ) {
+		global $wgAuth;
+
 		parent::checkExecutePermissions( $user );
 
-		if ( !$this->getRequest()->wasPosted() ) {
-			$this->requireLogin( 'resetpass-no-info' );
+		if ( !$this->user->isLoggedIn() ) {
+			throw new UserNotLoggedIn;
+		}
+
+		if ( !$wgAuth->allowPasswordChange() ) {
+			throw new ErrorPageError( 'changepassword', 'resetpass_forbidden' );
 		}
 	}
 
 	protected function getFormFields() {
-		global $wgCookieExpiration;
-
-		$user = $this->getUser();
 		$request = $this->getRequest();
-
-		$oldpassMsg = $user->isLoggedIn() ? 'oldpassword' : 'resetpass-temp-password';
 
 		$fields = array(
 			'Name' => array(
 				'type' => 'info',
 				'label-message' => 'username',
-				'default' => $request->getVal( 'wpName', $user->getName() ),
+				'default' => $this->user->getName(),
 			),
 			'Password' => array(
-				'type' => 'password',
-				'label-message' => $oldpassMsg,
+				'type' => $this->token ? 'hidden' : 'password',
+				'label-message' => 'oldpassword',
 			),
 			'NewPassword' => array(
 				'type' => 'password',
@@ -78,6 +119,10 @@ class SpecialChangePassword extends FormSpecialPage {
 				'type' => 'password',
 				'label-message' => 'retypenew',
 			),
+			'ForceHttps' => array(
+				'type' => 'hidden',
+				'default' => !$request->getBool( 'fromhttp' ) && $request->getProtocol() === 'https'
+			)
 		);
 
 		$extraFields = array();
@@ -92,20 +137,11 @@ class SpecialChangePassword extends FormSpecialPage {
 			);
 		}
 
-		if ( !$user->isLoggedIn() ) {
-			$fields['Remember'] = array(
-				'type' => 'check',
-				'label' => $this->msg( 'remembermypassword' )
-						->numParams( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )
-						->text(),
-				'default' => $request->getVal( 'wpRemember' ),
-			);
-		}
-
 		return $fields;
 	}
 
 	protected function alterForm( HTMLForm $form ) {
+		$form->setAction( $this->getFullTitle()->getLocalURL( array( 'token' => $this->token ) ) );
 		$form->setId( 'mw-resetpass-form' );
 		$form->setTableId( 'mw-resetpass-table' );
 		$form->setWrapperLegendMsg( 'resetpass_header' );
@@ -121,15 +157,9 @@ class SpecialChangePassword extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		global $wgAuth;
+		global $wgPasswordAttemptThrottle;
 
 		$request = $this->getRequest();
-
-		if ( $request->getCheck( 'wpLoginToken' ) ) {
-			// This comes from Special:Userlogin when logging in with a temporary password
-			return false;
-		}
-
 		if ( $request->getCheck( 'wpCancel' ) ) {
 			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
 			if ( !$titleObj instanceof Title ) {
@@ -137,111 +167,55 @@ class SpecialChangePassword extends FormSpecialPage {
 			}
 			$query = $request->getVal( 'returntoquery' );
 			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
+
 			return true;
 		}
 
-		try {
-			$this->mUserName = $request->getVal( 'wpName', $this->getUser()->getName() );
-			$this->mDomain = $wgAuth->getDomain();
+		$oldPass = $data['Password'];
+		$newPass = $data['NewPassword'];
 
-			if ( !$wgAuth->allowPasswordChange() ) {
-				throw new ErrorPageError( 'changepassword', 'resetpass_forbidden' );
+		$abortMsg = 'resetpass-abort-generic';
+		$status = 'success';
+		$retval = true;
+
+		if ( $newPass !== $data['Retype'] ) {
+			$status = 'badretype';
+			$retval =  array( 'badretype' );
+		} elseif ( LoginForm::incLoginThrottle( $this->user->getName() ) === true ) {
+			$status = 'throttled';
+			$retval = array( $this->msg( 'login-throttled' ),
+				$this->getLanguage()->formatDuration( $wgPasswordAttemptThrottle['seconds'] )
+			);
+		} elseif ( !wfRunHooks( 'AbortChangePassword', array( $this->user, $oldPass, $newPass, &$abortMsg ) ) ) {
+			$status = 'abortreset';
+			$retval = array( $abortMsg );
+		} elseif ( !$this->user->checkPassword( $oldPass ) && !$this->user->checkTemporaryPassword( $this->token ) ) {
+			$status = 'wrongpassword';
+			$retval = array( 'resetpass-wrong-oldpass' );
+		} else {
+			try {
+				$this->user->setPassword( $newPass );
+				$this->user->saveSettings();
+				LoginForm::loginUser( $this->getContext(), $this->user, $data['ForceHttps'] );
+			} catch ( PasswordError $e ) {
+				$status = 'error';
+				$retval = $e->getMessage();
 			}
 
-			$this->attemptReset( $data['Password'], $data['NewPassword'], $data['Retype'] );
-
-			return true;
-		} catch ( PasswordError $e ) {
-			return $e->getMessage();
+			LoginForm::clearLoginThrottle( $this->user->getName() );
 		}
+
+		wfRunHooks( 'PrefsPasswordAudit', array( $this->user, $newPass, $status ) );
+
+		return $retval;
 	}
 
 	public function onSuccess() {
-		if ( $this->getUser()->isLoggedIn() ) {
-			$this->getOutput()->wrapWikiMsg(
-				"<div class=\"successbox\">\n$1\n</div>",
-				'changepassword-success'
-			);
-			$this->getOutput()->returnToMain();
-		} else {
-			$request = $this->getRequest();
-			LoginForm::setLoginToken();
-			$token = LoginForm::getLoginToken();
-			$data = array(
-				'action' => 'submitlogin',
-				'wpName' => $this->mUserName,
-				'wpDomain' => $this->mDomain,
-				'wpLoginToken' => $token,
-				'wpPassword' => $request->getVal( 'wpNewPassword' ),
-			) + $request->getValues( 'wpRemember', 'returnto', 'returntoquery' );
-			$login = new LoginForm( new DerivativeRequest( $request, $data, true ) );
-			$login->setContext( $this->getContext() );
-			$login->execute( null );
-		}
-	}
-
-	/**
-	 * @throws PasswordError when cannot set the new password because requirements not met.
-	 */
-	protected function attemptReset( $oldpass, $newpass, $retype ) {
-		global $wgPasswordAttemptThrottle;
-
-		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
-		if ( $isSelf ) {
-			$user = $this->getUser();
-		} else {
-			$user = User::newFromName( $this->mUserName );
-		}
-
-		if ( !$user || $user->isAnon() ) {
-			throw new PasswordError( $this->msg( 'nosuchusershort', $this->mUserName )->text() );
-		}
-
-		if ( $newpass !== $retype ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
-			throw new PasswordError( $this->msg( 'badretype' )->text() );
-		}
-
-		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
-		if ( $throttleCount === true ) {
-			$lang = $this->getLanguage();
-			throw new PasswordError( $this->msg( 'login-throttled' )
-				->params( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
-				->text()
-			);
-		}
-
-		$abortMsg = 'resetpass-abort-generic';
-		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
-			throw new PasswordError( $this->msg( $abortMsg )->text() );
-		}
-
-		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
-		}
-
-		// Please reset throttle for successful logins, thanks!
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $this->mUserName );
-		}
-
-		try {
-			$user->setPassword( $newpass );
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
-		} catch ( PasswordError $e ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
-			throw new PasswordError( $e->getMessage() );
-		}
-
-		if ( $isSelf ) {
-			// This is needed to keep the user connected since
-			// changing the password also modifies the user's token.
-			$user->setCookies();
-		}
-
-		$user->saveSettings();
+		$this->getOutput()->wrapWikiMsg(
+			"<div class=\"successbox\">\n$1\n</div>",
+			'changepassword-success'
+		);
+		$this->getOutput()->returnToMain();
 	}
 
 	public function requiresUnblock() {

@@ -258,11 +258,22 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$passwords = array();
 		foreach ( $users as $user ) {
-			$password = $user->randomPassword();
+			$password = wfBaseConvert( MWCryptRand::generateHex( 64 ), 16, 32 );
 			$user->setNewpassword( $password );
 			$user->saveSettings();
-			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
-				->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
+
+			$title = SpecialPage::getTitleFor( 'ChangePassword', $user->getName() );
+			$url = $title->getFullURL(
+				array( 'token' => $password ),
+				false,
+				$user->requiresHTTPS() ? PROTO_HTTPS : PROTO_CURRENT
+			);
+
+			$passwords[] = $this->msg(
+				'passwordreset-emailelement',
+				$user->getName(),
+				$url
+			)->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
 

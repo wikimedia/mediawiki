@@ -28,6 +28,8 @@ production.
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 * $wgPasswordSenderName has been deprecated. To set a custom mailer name,
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -72,6 +74,9 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
