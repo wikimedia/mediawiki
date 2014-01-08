@@ -963,7 +963,11 @@ class DifferenceEngine extends ContextSource {
 		$nEdits = $this->mNewPage->countRevisionsBetween( $oldRev, $newRev );
 		if ( $nEdits > 0 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
-			$numUsers = $this->mNewPage->countAuthorsBetween( $oldRev, $newRev, $limit );
+			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
+			$numUsers = count( $users );
+			if( $numUsers == 1 && $users[0] == $newRev->getRawUserText() ) {
+				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
+			}
 
 			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
 		}
@@ -979,11 +983,13 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	public static function intermediateEditsMsg( $numEdits, $numUsers, $limit ) {
-		if ( $numUsers > $limit ) {
+		if ( $numUsers == 0 ) {
+			$msg = 'diff-multi-sameuser';
+		} elseif ( $numUsers > $limit ) {
 			$msg = 'diff-multi-manyusers';
 			$numUsers = $limit;
 		} else {
-			$msg = 'diff-multi';
+			$msg = 'diff-multi-otherusers';
 		}
 
 		return wfMessage( $msg )->numParams( $numEdits, $numUsers )->parse();
