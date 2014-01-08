@@ -281,6 +281,23 @@ class SpecialWatchlist extends SpecialPage {
 			}
 		}
 
+		// Log entries with DELETED_ACTION must not show up unless the user has
+		// the necessary rights.
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$bitmask = LogPage::DELETED_ACTION;
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		if ( $bitmask ) {
+			$conds[] = $dbr->makeList( array(
+				'rc_type != ' . RC_LOG,
+				$dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
+			), LIST_OR );
+		}
+
+
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
 		wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
 

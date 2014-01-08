@@ -273,18 +273,22 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_ids ) {
 			$vals['logid'] = intval( $row->log_id );
-			$vals['pageid'] = intval( $row->page_id );
 		}
 
 		if ( $this->fld_title || $this->fld_parsedcomment ) {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
-		if ( $this->fld_title ) {
+		if ( $this->fld_title || $this->fld_ids ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
-				ApiQueryBase::addTitleInfo( $vals, $title );
+				if ( $this->fld_title ) {
+					ApiQueryBase::addTitleInfo( $vals, $title );
+				}
+				if ( $this->fld_ids ) {
+					$vals['pageid'] = intval( $row->page_id );
+				}
 			}
 		}
 

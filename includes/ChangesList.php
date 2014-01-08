@@ -789,7 +789,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
 			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+				. $block[0]->mAttribs['rc_log_type'] );
 		} else {
 			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns'
 					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
@@ -1105,8 +1105,7 @@ class EnhancedChangesList extends ChangesList {
 		$logType = $rcObj->mAttribs['rc_log_type'];
 		if( $logType ) {
 			# Log entry
-			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $logType . '-' . $rcObj->mAttribs['rc_title'] );
+			$classes = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
 		} else {
 			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' .
 					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
