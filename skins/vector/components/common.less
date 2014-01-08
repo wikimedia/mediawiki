@@ -1,0 +1,118 @@
+/*
+ * Any rules which should not be flipped automatically in right-to-left situations should be
+ * prepended with @noflip in a comment block.
+ *
+ * This stylesheet employs a few CSS trick to accomplish compatibility with a wide range of web
+ * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
+ * a rule that makes things work in IE6, and then following it with a rule that begins with
+ * "html > body" or use a child selector ">", which is ignored by IE6 because it does not support
+ * the child selector. You can spot this by looking for the "OVERRIDDEN BY COMPLIANT BROWSERS" and
+ * "IGNORED BY IE6" comments.
+ */
+@import "mediawiki.mixins";
+
+/* Framework */
+html {
+	font-size: @html-font-size;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: @content-font-family;
+}
+body {
+	background-color: #f6f6f6;
+	font-size: @body-font-size;
+}
+
+/* Content */
+div#content {
+	line-height: @content-line-height;
+	margin-left: 10em;
+	padding: @content-padding;
+	/* Border on top, left, and bottom side */
+	border: 1px solid #a7d7f9;
+	border-right-width: 0;
+	/* Merge the border with tabs' one (in their background image) */
+	margin-top: -1px;
+	background-color: white;
+	color: @content-font-color;
+	direction: ltr;
+}
+
+/* Hide empty portlets */
+div.emptyPortlet {
+		display: none;
+}
+
+ul {
+	list-style-type: disc;
+	.list-style-image('images/bullet-icon.png');
+}
+
+pre, .mw-code {
+	line-height: 1.3em;
+}
+
+/* Site Notice (includes notices from CentralNotice extension) */
+#siteNotice {
+	font-size: 0.8em;
+}
+
+#firstHeading {
+	padding-top: 0;
+	margin-top: 0;
+	font-size: @content-heading-font-size;
+}
+
+.redirectText {
+	font-size: 140%;
+}
+
+.redirectMsg img {
+	vertical-align: text-bottom;
+}
+
+#bodyContent {
+	position: relative;
+	width: 100%;
+	line-height: 1.5em;
+	font-size: @content-font-size;
+}
+
+/* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
+// FIXME: Should be part of jquery.tipsy.css
+.tipsy {
+	font-size: 0.8em;
+}
+
+/* Animate between standard and high definition layouts */
+body.vector-animateLayout {
+	div#content,
+	div#footer,
+	#left-navigation {
+		.transition(margin-left 250ms, padding 250ms;);
+	}
+
+	#p-logo {
+		.transition(left 250ms);
+	}
+
+	#mw-panel {
+		.transition(padding-right 250ms);
+	}
+
+	#p-search {
+		.transition(margin-right 250ms);
+	}
+
+	#p-personal {
+		.transition(right 250ms);
+	}
+
+	#mw-head-base {
+		.transition(margin-left 250ms);
+	}
+}
