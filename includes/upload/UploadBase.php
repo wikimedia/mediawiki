@@ -1167,8 +1167,27 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	protected function detectScriptInSvg( $filename ) {
-		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
+		$check = new XmlTypeCheck(
+			$filename,
+			array( $this, 'checkSvgScriptCallback' ),
+			true,
+			array( 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' )
+		);
 		return $check->filterMatch;
+	}
+
+	/**
+	 * Callback to filter SVG Processing Instructions.
+	 * @param $target string processing instruction name
+	 * @param $data string processing instruction attribute and value
+	 * @return bool (true if the filter identified something bad)
+	 */
+	public static function checkSvgPICallback( $target, $data ) {
+		// Don't allow external stylesheets (bug 57550)
+		if ( preg_match( '/xml-stylesheet/i', $target) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
