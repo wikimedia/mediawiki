@@ -107,7 +107,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
+			$this->customFilters = parent::getCustomFilters();
 			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
 		}
 

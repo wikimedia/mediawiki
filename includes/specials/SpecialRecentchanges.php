@@ -83,7 +83,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
+			$this->customFilters = parent::getCustomFilters();
 			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
 		}
 
