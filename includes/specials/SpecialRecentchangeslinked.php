@@ -105,7 +105,10 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$opts['tagfilter']
 		);
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) ) {
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ),
+			'1.23' )
+		) {
 			return false;
 		}
 

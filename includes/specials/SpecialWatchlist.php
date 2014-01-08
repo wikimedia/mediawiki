@@ -107,8 +107,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
-			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
+			$this->customFilters = parent::getCustomFilters();
+			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ), '1.23' );
 		}
 
 		return $this->customFilters;
@@ -257,7 +257,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 
 		wfRunHooks( 'SpecialWatchlistQuery',
-			array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
+			array( &$conds, &$tables, &$join_conds, &$fields, $opts ),
+			'1.23' );
 
 		return $dbr->select(
 			$tables,

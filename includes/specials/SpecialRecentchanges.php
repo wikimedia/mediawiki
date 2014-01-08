@@ -83,8 +83,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
-			$this->customFilters = array();
-			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
+			$this->customFilters = parent::getCustomFilters();
+			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ), '1.23' );
 		}
 
 		return $this->customFilters;
@@ -220,7 +220,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		);
 
 		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
-			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) )
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ),
+			'1.23' )
 		) {
 			return false;
 		}
