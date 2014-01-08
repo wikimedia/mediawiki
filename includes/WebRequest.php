@@ -36,7 +36,7 @@
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data, $headers = array();
+	protected $data, $headers = array(), $csrfToken = null;
 
 	/**
 	 * Lazy-init response object
@@ -687,6 +687,68 @@ class WebRequest {
 	}
 
 	/**
+	 * Get the value of the CSRF token for a given salt, or generate one
+	 * if it does not exist
+	 *
+	 * @since 1.23
+	 *
+	 * @param string|array $salt
+	 *
+	 * @return string CSRF token for injection into an HTML form
+	 */
+	public function getCsrfToken( $salt = '' ) {
+		global $wgSecretKey;
+
+		if ( $this->csrfToken === null ) {
+			$this->csrfToken = $this->getCookie( 'EditToken' );
+
+			if ( $this->csrfToken === null ) {
+				$this->csrfToken = MWCryptRand::generateHex( 32 );
+				$this->response()->setcookie( 'EditToken', $this->csrfToken );
+			}
+		}
+
+		if ( is_array( $salt ) ) {
+			$salt = implode( '|', $salt );
+		}
+
+		return hash_hmac( 'sha512', $this->csrfToken, $wgSecretKey . $salt ) . EDIT_TOKEN_SUFFIX;
+	}
+
+	/**
+	 * Check the edit token from the cookie against the form field
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $salt
+	 * @param string $fieldName POST field name where edit token should be found
+	 *
+	 * @return bool True on success, false on failure
+	 */
+	public function checkCsrfToken( $salt = '', $fieldName = 'wpEditToken' ) {
+		$token = $this->getCsrfToken( $salt );
+
+		return $token === $this->getVal( $fieldName );
+	}
+
+	/**
+	 * Check the edit token from the cookie against the form field, but leave out checking the token suffix, which
+	 * is used to check proxies
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $salt
+	 * @param string $fieldName POST field name where edit token should be found
+	 *
+	 * @return bool True on success, false on failure
+	 */
+	public function checkCsrfTokenNoSuffix( $salt = '', $fieldName = 'wpEditToken' ) {
+		$token = $this->getCsrfToken( $salt );
+
+		return strncmp( $token, $this->getVal( $fieldName ), 32 ) === 0;
+	}
+
+	/**
 	 * Return the path and query string portion of the request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
@@ -1304,6 +1366,16 @@ class WebRequestUpload {
 	}
 
 	/**
+	 * Override a specific data item. Useful for setting data after construction
+	 *
+	 * @param string $name Index of value to set
+	 * @param string $val Value to set
+	 */
+	public function setVal( $name, $val ) {
+		$this->data[$name] = $val;
+	}
+
+	/**
 	 * Returns whether this upload failed because of overflow of a maximum set
 	 * in php.ini
 	 *
@@ -1566,5 +1638,9 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getProtocol() {
 		return $this->base->getProtocol();
+	}
+
+	public function getCsrfToken( $salt = '' ) {
+		return $this->base->getCsrfToken( $salt );
 	}
 }

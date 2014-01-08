@@ -66,9 +66,7 @@ class WatchAction extends FormAction {
 		$this->checkCanExecute( $user );
 
 		// Must have valid token for this action/title
-		$salt = array( $this->getName(), $this->getTitle()->getDBkey() );
-
-		if ( $user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
+		if ( $this->getRequest()->checkCsrfToken( array( $this->getName(), $this->getTitle()->getDBkey() ), 'token' ) ) {
 			$this->onSubmit( array() );
 			$this->onSuccess();
 		} else {
@@ -171,10 +169,14 @@ class WatchAction extends FormAction {
 	 * @param Title $title Title object of page to watch
 	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'unwatch'
+	 * @param WebRequest $request Web request to get tokens from
 	 * @return string Token
 	 * @since 1.18
 	 */
-	public static function getWatchToken( Title $title, User $user, $action = 'watch' ) {
+	public static function getWatchToken( Title $title, User $user, $action = 'watch', WebRequest $request = null ) {
+		if ( $request === null ) {
+			$request = RequestContext::getMain()->getRequest();
+		}
 		if ( $action != 'unwatch' ) {
 			$action = 'watch';
 		}
@@ -182,7 +184,7 @@ class WatchAction extends FormAction {
 
 		// This token stronger salted and not compatible with ApiWatch
 		// It's title/action specific because index.php is GET and API is POST
-		return $user->getEditToken( $salt );
+		return $request->getCsrfToken( $salt );
 	}
 
 	/**
@@ -191,11 +193,12 @@ class WatchAction extends FormAction {
 	 * @param Title $title Title object of page to unwatch
 	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'watch'
+	 * @param WebRequest $request Web request to get tokens from
 	 * @return string Token
 	 * @since 1.18
 	 */
-	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch' ) {
-		return self::getWatchToken( $title, $user, $action );
+	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch', WebRequest $request = null ) {
+		return self::getWatchToken( $title, $user, $action, $request );
 	}
 
 	protected function alterForm( HTMLForm $form ) {

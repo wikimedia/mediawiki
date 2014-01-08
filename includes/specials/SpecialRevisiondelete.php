@@ -263,7 +263,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				throw new PermissionsError( 'deletedtext' );
 			}
 		}
-		if ( !$user->matchEditToken( $this->token, $archiveName ) ) {
+
+		$request = $this->getRequest();
+		if ( !$request->checkCsrfToken( $archiveName ) ) {
 			$lang = $this->getLanguage();
 			$this->getOutput()->addWikiMsg( 'revdelete-show-file-confirm',
 				$this->targetObj->getText(),
@@ -275,7 +277,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'action' => $this->getPageTitle()->getLocalURL( array(
 							'target' => $this->targetObj->getPrefixedDBkey(),
 							'file' => $archiveName,
-							'token' => $user->getEditToken( $archiveName ),
+							'token' => $request->getCsrfToken( $archiveName ),
 						) )
 					)
 				) .
@@ -388,7 +390,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
+				Html::hidden( 'wpEditToken', $this->getRequest()->getCsrfToken() ) .
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
@@ -487,8 +489,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function submit() {
 		# Check edit token on submission
-		$token = $this->getRequest()->getVal( 'wpEditToken' );
-		if ( $this->submitClicked && !$this->getUser()->matchEditToken( $token ) ) {
+		if ( $this->submitClicked && !$this->getRequest()->checkCsrfToken() ) {
 			$this->getOutput()->addWikiMsg( 'sessionfailure' );
 			return false;
 		}

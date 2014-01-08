@@ -103,7 +103,7 @@ class SpecialImport extends SpecialPage {
 		$this->rootpage = $request->getText( 'rootpage' );
 
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'editToken' ) ) ) {
+		if ( !$request->checkCsrfToken() ) {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $sourceName == 'upload' ) {
 			$isUpload = true;
@@ -206,6 +206,7 @@ class SpecialImport extends SpecialPage {
 		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$request = $this->getRequest();
 
 		if ( $user->isAllowed( 'importupload' ) ) {
 			$out->addHTML(
@@ -256,7 +257,7 @@ class SpecialImport extends SpecialPage {
 					"</td>
 				</tr>" .
 					Xml::closeElement( 'table' ) .
-					Html::hidden( 'editToken', $user->getEditToken() ) .
+					Html::hidden( 'wpEditToken', $request->getCsrfToken() ) .
 					Xml::closeElement( 'form' ) .
 					Xml::closeElement( 'fieldset' )
 			);
@@ -293,7 +294,7 @@ class SpecialImport extends SpecialPage {
 					$this->msg( 'import-interwiki-text' )->parseAsBlock() .
 					Html::hidden( 'action', 'submit' ) .
 					Html::hidden( 'source', 'interwiki' ) .
-					Html::hidden( 'editToken', $user->getEditToken() ) .
+					Html::hidden( 'wpEditToken', $request->getCsrfToken() ) .
 					Xml::openElement( 'table', array( 'id' => 'mw-import-table-interwiki' ) ) .
 					"<tr>
 					<td class='mw-label'>" .

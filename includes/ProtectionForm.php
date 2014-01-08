@@ -258,8 +258,7 @@ class ProtectionForm {
 			return false;
 		}
 
-		$token = $wgRequest->getVal( 'wpEditToken' );
-		if ( !$wgUser->matchEditToken( $token, array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
+		if ( !$wgRequest->checkCsrfToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
 			$this->show( array( 'sessionfailure' ) );
 			return false;
 		}
@@ -325,7 +324,7 @@ class ProtectionForm {
 	 * @return String: HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgLang, $wgOut;
+		global $wgUser, $wgLang, $wgOut, $wgRequest;
 
 		$mProtectreasonother = Xml::label(
 			wfMessage( 'protectcomment' )->text(),
@@ -526,7 +525,8 @@ class ProtectionForm {
 		}
 
 		if ( !$this->disabled ) {
-			$out .= Html::hidden( 'wpEditToken', $wgUser->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) );
+			$out .= Html::hidden( 'wpEditToken',
+				$wgRequest->getCsrfToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) );
 			$out .= Xml::closeElement( 'form' );
 			$wgOut->addScript( $this->buildCleanupScript() );
 		}

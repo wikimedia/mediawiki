@@ -798,6 +798,8 @@ more stuff
 	 * @todo FIXME: this is a better rollback test than the one below, but it keeps failing in jenkins for some reason.
 	 */
 	public function broken_testDoRollback() {
+		global $wgRequest;
+
 		$admin = new User();
 		$admin->setName( "Admin" );
 
@@ -837,8 +839,7 @@ more stuff
 
 		# now, try the actual rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
-		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user2->getName() ), null );
-		$errors = $page->doRollback( $user2->getName(), "testing revert", $token, false, $details, $admin );
+		$errors = $page->doRollback( $user2->getName(), "testing revert", null, false, $details, $admin );
 
 		if ( $errors ) {
 			$this->fail( "Rollback failed:\n" . print_r( $errors, true ) . ";\n" . print_r( $details, true ) );
@@ -873,8 +874,7 @@ more stuff
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
-		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user1->getName() ), null );
-		$errors = $page->doRollback( $user1->getName(), "testing revert", $token, false, $details, $admin );
+		$errors = $page->doRollback( $user1->getName(), "testing revert", null, false, $details, $admin );
 
 		if ( $errors ) {
 			$this->fail( "Rollback failed:\n" . print_r( $errors, true ) . ";\n" . print_r( $details, true ) );
