@@ -1047,14 +1047,6 @@ class Preferences {
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgContLang, $wgVectorUseSimpleSearch;
 
-		## Search #####################################
-		$defaultPreferences['searchlimit'] = array(
-			'type' => 'int',
-			'label-message' => 'resultsperpage',
-			'section' => 'searchoptions/displaysearchoptions',
-			'min' => 0,
-		);
-
 		if ( $wgVectorUseSimpleSearch ) {
 			$defaultPreferences['vector-simplesearch'] = array(
 				'type' => 'toggle',
