@@ -2345,7 +2345,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				unlink( $file );
 			}
 		}
-		$containers = array( 'unittest-cont1', 'unittest-cont2' );
+		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont-bad' );
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );
 		}
