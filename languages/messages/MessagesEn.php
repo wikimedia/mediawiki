@@ -1305,8 +1305,8 @@ associated with this email address:
 
 $2
 
-{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.
-You should log in and choose a new password now. If someone else made this
+{{PLURAL:$3|This reset link|These reset links}} will expire in {{PLURAL:$5|one day|$5 days}}.
+You should browse to the link and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
@@ -1315,13 +1315,13 @@ password.',
 
 $2
 
-{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.
-You should log in and choose a new password now. If someone else made this
+{{PLURAL:$3|This reset link|These reset links}} will expire in {{PLURAL:$5|one day|$5 days}}.
+You should browse to the link and choose a new password now. If someone else made this
 request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
 'passwordreset-emailelement'       => 'Username: $1
-Temporary password: $2',
+Reset link: $2',
 'passwordreset-emailsent'          => 'A password reset email has been sent.',
 'passwordreset-emailsent-capture'  => 'A password reset email has been sent, which is shown below.',
 'passwordreset-emailerror-capture' => 'A password reset email was generated, which is shown below, but sending it to the {{GENDER:$2|user}} failed: $1',

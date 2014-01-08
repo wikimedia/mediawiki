@@ -1655,7 +1655,7 @@ Parameters:
 * $5 - number of days',
 'passwordreset-emailelement' => "This is a body of a password reset email to allow them into the system with a new password. Parameters:
 * $1 - the user's login name. This parameter can be used for GENDER.
-* $2 - the temporary password given by the system",
+* $2 - a link to the password reset form with a reset token",
 'passwordreset-emailsent' => 'Used in [[Special:PasswordReset]].
 
 See also:
