@@ -160,6 +160,10 @@
 			}
 		}
 
+		// Reject empty title with empty fragment
+		if ( title === '#' ) {
+			return false;
+		}
 		// Process fragment
 		i = title.indexOf( '#' );
 		if ( i === -1 ) {

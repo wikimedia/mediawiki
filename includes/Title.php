@@ -3260,6 +3260,10 @@ class Title {
 		if ( $this->isExternal() || NS_SPECIAL == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
+		# Reject empty title with empty fragment
+		if ( $dbkey === '#' ) {
+			return false;
+		}
 		$fragment = strstr( $dbkey, '#' );
 		if ( false !== $fragment ) {
 			$this->setFragment( $fragment );
