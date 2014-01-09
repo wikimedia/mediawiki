@@ -89,8 +89,15 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
 
-		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
-			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
+		if ( $this->including()) {
+			$out->addHTML( $this->showIndirectLinksIncludable( 0, $this->target, $opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ), $opts->getValue( 'back' ) ) );
+			return;
+		} else {
+			$out->addHTML( $this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ), $opts->getValue( 'back' ) ));
+			return;
+		}
 	}
 
 	/**
@@ -252,6 +259,177 @@ class SpecialWhatLinksHere extends SpecialPage {
 		if ( $level == 0 ) {
 			$out->addHTML( $this->whatlinkshereForm() );
 			$out->addHTML( $this->getFilterPanel() );
+			$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
+
+			$prevnext = $this->getPrevNext( $prevId, $nextId );
+			$out->addHTML( $prevnext );
+		}
+
+		$out->addHTML( $this->listStart( $level ) );
+		foreach ( $rows as $row ) {
+			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
+
+			if ( $row->rd_from && $level < 2 ) {
+				$out->addHTML( $this->listItem( $row, $nt, true ) );
+				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
+				$out->addHTML( Xml::closeElement( 'li' ) );
+			} else {
+				$out->addHTML( $this->listItem( $row, $nt ) );
+			}
+		}
+
+		$out->addHTML( $this->listEnd() );
+
+		if ( $level == 0 ) {
+			$out->addHTML( $prevnext );
+		}
+	}
+  
+  function showIndirectLinksIncludable( $level, $target, $limit, $from = 0, $back = 0 ) {
+		global $wgMaxRedirectLinksRetrieved;
+		$out = $this->getOutput();
+		$dbr = wfGetDB( DB_SLAVE );
+		$options = array();
+
+		$hidelinks = $this->opts->getValue( 'hidelinks' );
+		$hideredirs = $this->opts->getValue( 'hideredirs' );
+		$hidetrans = $this->opts->getValue( 'hidetrans' );
+		$hideimages = $target->getNamespace() != NS_FILE || $this->opts->getValue( 'hideimages' );
+
+		$fetchlinks = ( !$hidelinks || !$hideredirs );
+
+		// Make the query
+		$plConds = array(
+			'page_id=pl_from',
+			'pl_namespace' => $target->getNamespace(),
+			'pl_title' => $target->getDBkey(),
+		);
+		if ( $hideredirs ) {
+			$plConds['rd_from'] = null;
+		} elseif ( $hidelinks ) {
+			$plConds[] = 'rd_from is NOT NULL';
+		}
+
+		$tlConds = array(
+			'page_id=tl_from',
+			'tl_namespace' => $target->getNamespace(),
+			'tl_title' => $target->getDBkey(),
+		);
+
+		$ilConds = array(
+			'page_id=il_from',
+			'il_to' => $target->getDBkey(),
+		);
+
+		$namespace = $this->opts->getValue( 'namespace' );
+		if ( is_int( $namespace ) ) {
+			$plConds['page_namespace'] = $namespace;
+			$tlConds['page_namespace'] = $namespace;
+			$ilConds['page_namespace'] = $namespace;
+		}
+
+		if ( $from ) {
+			$tlConds[] = "tl_from >= $from";
+			$plConds[] = "pl_from >= $from";
+			$ilConds[] = "il_from >= $from";
+		}
+
+		// Read an extra row as an at-end check
+		$queryLimit = $limit + 1;
+
+		// Enforce join order, sometimes namespace selector may
+		// trigger filesorts which are far less efficient than scanning many entries
+		$options[] = 'STRAIGHT_JOIN';
+
+		$options['LIMIT'] = $queryLimit;
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'rd_from' );
+
+		$joinConds = array( 'redirect' => array( 'LEFT JOIN', array(
+			'rd_from = page_id',
+			'rd_namespace' => $target->getNamespace(),
+			'rd_title' => $target->getDBkey(),
+			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
+		)));
+
+		if ( $fetchlinks ) {
+			$options['ORDER BY'] = 'pl_from';
+			$plRes = $dbr->select( array( 'pagelinks', 'page', 'redirect' ), $fields,
+				$plConds, __METHOD__, $options,
+				$joinConds
+			);
+		}
+
+		if ( !$hidetrans ) {
+			$options['ORDER BY'] = 'tl_from';
+			$tlRes = $dbr->select( array( 'templatelinks', 'page', 'redirect' ), $fields,
+				$tlConds, __METHOD__, $options,
+				$joinConds
+			);
+		}
+
+		if ( !$hideimages ) {
+			$options['ORDER BY'] = 'il_from';
+			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
+				$ilConds, __METHOD__, $options,
+				$joinConds
+			);
+		}
+
+		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+			if ( 0 == $level ) {
+
+				// Show filters only if there are links
+				$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+			}
+			return;
+		}
+
+		// Read the rows into an array and remove duplicates
+		// templatelinks comes second so that the templatelinks row overwrites the
+		// pagelinks row, so we get (inclusion) rather than nothing
+		if ( $fetchlinks ) {
+			foreach ( $plRes as $row ) {
+				$row->is_template = 0;
+				$row->is_image = 0;
+				$rows[$row->page_id] = $row;
+			}
+		}
+		if ( !$hidetrans ) {
+			foreach ( $tlRes as $row ) {
+				$row->is_template = 1;
+				$row->is_image = 0;
+				$rows[$row->page_id] = $row;
+			}
+		}
+		if ( !$hideimages ) {
+			foreach ( $ilRes as $row ) {
+				$row->is_template = 0;
+				$row->is_image = 1;
+				$rows[$row->page_id] = $row;
+			}
+		}
+
+		// Sort by key and then change the keys to 0-based indices
+		ksort( $rows );
+		$rows = array_values( $rows );
+
+		$numRows = count( $rows );
+
+		// Work out the start and end IDs, for prev/next links
+		if ( $numRows > $limit ) {
+			// More rows available after these ones
+			// Get the ID from the last row in the result set
+			$nextId = $rows[$limit]->page_id;
+			// Remove undisplayed rows
+			$rows = array_slice( $rows, 0, $limit );
+		} else {
+			// No more rows after
+			$nextId = false;
+		}
+		$prevId = $from;
+
+		if ( $level == 0 ) {
 			$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
 			$prevnext = $this->getPrevNext( $prevId, $nextId );
