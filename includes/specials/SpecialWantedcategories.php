@@ -109,7 +109,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 				: 0;
 
 			// If the category has been created or emptied since the list was refreshed, strike it
-			if ( $nt->isKnown() || $currentValue === 0 ) {
+			if ( $nt->isKnown() || !$currentValue ) {
 				$plink = "<del>$plink</del>";
 			}
 
