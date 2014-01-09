@@ -567,6 +567,11 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$this->masterIndex]->getFileStat( $realParams );
 	}
 
+	public function getFileXAttributes( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->getFileXAttributes( $realParams );
+	}
+
 	public function getFileContentsMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
@@ -643,6 +648,10 @@ class FileBackendMultiWrite extends FileBackend {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
+	}
+
+	public function getFeatures() {
+		return $this->backends[$this->masterIndex]->getFeatures();
 	}
 
 	public function clearCache( array $paths = null ) {
