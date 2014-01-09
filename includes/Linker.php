@@ -25,6 +25,8 @@
  * for primarily page content: links, embedded images, table of contents. Links
  * are also used in the skin.
  *
+ * @todo: turn this into a legacy interface for HtmlPageLinkRenderer and similar services.
+ *
  * @ingroup Skins
  */
 class Linker {
