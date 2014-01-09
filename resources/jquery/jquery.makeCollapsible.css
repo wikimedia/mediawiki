@@ -1,6 +1,10 @@
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
 	float: right;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* collapse links in captions should be inline */
