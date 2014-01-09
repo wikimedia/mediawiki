@@ -319,6 +319,18 @@ class EditPage {
 		}
 	}
 
+	/**
+	 * Returns if the given content model is editable.
+	 *
+	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
+	 * @return bool
+	 * @throws MWException if $modelId has no known handler
+	 */
+	public function isSupportedContentModel( $modelId ) {
+		return $this->allowNonTextContent ||
+			ContentHandler::getForModelID( $modelId ) instanceof TextContentHandler;
+	}
+
 	function submit() {
 		$this->edit();
 	}
@@ -613,6 +625,7 @@ class EditPage {
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
 	 * @param $request WebRequest
+	 * @throws ErrorPageError
 	 */
 	function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
@@ -777,12 +790,17 @@ class EditPage {
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 
-		$content_handler = ContentHandler::getForTitle( $this->mTitle );
-		$this->contentModel = $request->getText( 'model', $content_handler->getModelID() ); #may be overridden by revision
-		$this->contentFormat = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
+		$this->contentModel = $request->getText( 'model', $this->contentModel ); #may be overridden by revision
+		$this->contentFormat = $request->getText( 'format', $this->contentFormat ); #may be overridden by revision
 
+		if ( !ContentHandler::getForModelID( $this->contentModel )->isSupportedFormat( $this->contentFormat ) ) {
+			throw new ErrorPageError(
+				'editpage-notsupportedcontentformat-title',
+				'editpage-notsupportedcontentformat-text',
+				array( $this->contentFormat, ContentHandler::getLocalizedName( $this->contentModel ) )
+			);
+		}
 		#TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
-		#TODO: check if the desired content model supports the given content format!
 
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
@@ -2126,9 +2144,9 @@ class EditPage {
 			return $content;
 		}
 
-		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
-			throw new MWException( "This content model can not be edited as text: "
-								. ContentHandler::getLocalizedName( $content->getModel() ) );
+		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+			throw new MWException( 'This content model is not supported: '
+				. ContentHandler::getLocalizedName( $content->getModel() ) );
 		}
 
 		return $content->serialize( $this->contentFormat );
@@ -2156,8 +2174,8 @@ class EditPage {
 		$content = ContentHandler::makeContent( $text, $this->getTitle(),
 			$this->contentModel, $this->contentFormat );
 
-		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
-			throw new MWException( "This content model can not be edited as text: "
+		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+			throw new MWException( 'This content model is not supported: '
 				. ContentHandler::getLocalizedName( $content->getModel() ) );
 		}
 

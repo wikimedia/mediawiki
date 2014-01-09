@@ -2138,6 +2138,11 @@ Parameters:
 'editwarning-warning' => "{{doc-important|Do ''not'' use <nowiki>{{int:prefs-editing}}</nowiki> for \"Editing\". It is forbidden in this message, see [[mwr:68405]].}}
 
 but you can see the text of that button here: {{msg-mw|Prefs-editing}}",
+'editpage-notsupportedcontentformat-title'=> 'Title of error page shown when using an incompatible format on EditPage',
+'editpage-notsupportedcontentformat-text' => 'Error message shown when using an incompatible format on EditPage.
+* $1 is the format id
+* $2 is the content model name
+',
 
 # Content models
 'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.

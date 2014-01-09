@@ -1578,6 +1578,8 @@ It already exists.',
 'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
 'editwarning-warning'              => 'Leaving this page may cause you to lose any changes you have made.
 If you are logged in, you can disable this warning in the "Editing" section of your preferences.',
+'editpage-notsupportedcontentformat-title'=> 'Content format not supported',
+'editpage-notsupportedcontentformat-text' => 'The content format $1 is not supported by the content model $2.',
 
 # Content models
 'content-model-wikitext'   => 'wikitext',
