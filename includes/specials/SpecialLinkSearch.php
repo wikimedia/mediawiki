@@ -27,6 +27,17 @@
  * @ingroup SpecialPage
  */
 class LinkSearchPage extends QueryPage {
+
+	/**
+	 * @var TitleFormatter
+	 */
+	protected $titleFormatter = null;
+
+	/**
+	 * @var PageLinkRenderer
+	 */
+	protected $linkRenderer = null;
+
 	function setParams( $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
@@ -35,6 +46,43 @@ class LinkSearchPage extends QueryPage {
 
 	function __construct( $name = 'LinkSearch' ) {
 		parent::__construct( $name );
+
+		// Since we don't control the constructor parameters, we can't inject services that way.
+		// Instead, we initialize services in the execute() method, and allow them to be overridden
+		// using the setServices() method.
+	}
+
+	/**
+	 * Initialize or override the services SpecialCategories collaborates with.
+	 * Useful mainly for testing.
+	 *
+	 * @todo: query logic and rendering logic should be split and also injected
+	 *
+	 * @param TitleFormatter $titleFormatter
+	 * @param PageLinkRenderer $linkRenderer
+	 */
+	public function setServices(
+		TitleFormatter $titleFormatter,
+		PageLinkRenderer $linkRenderer
+	) {
+		$this->titleFormatter = $titleFormatter;
+		$this->linkRenderer = $linkRenderer;
+	}
+
+	/**
+	 * Initialize any services we'll need. Use setServices() to override.
+	 * This allows for dependency injection even though we don't control object creation.
+	 */
+	private function initServices() {
+		$lang = $this->getContext()->getLanguage();
+
+		if ( !$this->titleFormatter ) {
+			$this->titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+		}
+
+		if ( !$this->linkRenderer ) {
+			$this->linkRenderer = new MediaWikiPageLinkRenderer( $this->titleFormatter );
+		}
 	}
 
 	function isCacheable() {
@@ -43,6 +91,8 @@ class LinkSearchPage extends QueryPage {
 
 	function execute( $par ) {
 		global $wgUrlProtocols, $wgMiserMode, $wgScript;
+
+		$this->initServices();
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -219,9 +269,11 @@ class LinkSearchPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$title = Title::makeTitle( $result->namespace, $result->title );
+		$title = new TitleValue( TitleValue::DBKEY_FORM, (int)$result->namespace, $result->title );
+		$text = $this->titleFormatter->formatForDisplay( $title );
+		$pageLink = $this->linkRenderer->renderHtmlLink( $title, $text );
+
 		$url = $result->url;
-		$pageLink = Linker::linkKnown( $title );
 		$urlLink = Linker::makeExternalLink( $url, $url );
 
 		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
