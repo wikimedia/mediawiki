@@ -27,6 +27,8 @@
  * Optionally may contain an interwiki designation or namespace.
  * @note This class can fetch various kinds of data from the database;
  *       however, it does so inefficiently.
+ * @note Consider using a TitleValue object instead. TitleValue is more lightweight
+ *       and does not rely on global state or the database.
  *
  * @internal documentation reviewed 15 Mar 2010
  */
@@ -108,6 +110,20 @@ class Title {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Create a new Title from a TitleValue
+	 *
+	 * @param TitleValue $titleValue, assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromTitleValue( TitleValue $titleValue ) {
+		return self::makeTitle(
+			$titleValue->getNamespace(),
+			$titleValue->getText(),
+			$titleValue->getSection() );
 	}
 
 	/**
@@ -737,6 +753,15 @@ class Title {
 		}
 
 		return Interwiki::fetch( $this->mInterwiki )->getWikiID();
+	}
+
+	/**
+	 * Get a TitleValue object
+	 *
+	 * @return TitleValue
+	 */
+	public function getTitleValue() {
+		return new TitleValue( $this->getNamespace(), $this->getDBkey(), $this->getFragment() );
 	}
 
 	/**
