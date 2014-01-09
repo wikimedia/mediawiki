@@ -1664,7 +1664,7 @@ abstract class FileBackendStore extends FileBackend {
 						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] ) );
 				}
 				if ( isset( $val['xattr'] ) ) { // some backends store headers/metadata
-					$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
+					$val['xattr'] = self::normalizeXAttributes( $val['xattr'] );
 					$this->cheapCache->set( $path, 'xattr',
 						array( 'map' => $val['xattr'], 'latest' => $val['latest'] ) );
 				}
