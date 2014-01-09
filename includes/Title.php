@@ -27,6 +27,8 @@
  * Optionally may contain an interwiki designation or namespace.
  * @note This class can fetch various kinds of data from the database;
  *       however, it does so inefficiently.
+ * @note Consider using a TitleValue object instead. TitleValue is more lightweight
+ *       and does not rely on global state or the database.
  *
  * @internal documentation reviewed 15 Mar 2010
  */
@@ -108,6 +110,20 @@ class Title {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Create a new Title from a TitleValue
+	 *
+	 * @param TitleValue $titleValue, assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromTitleValue( TitleValue $titleValue ) {
+		return self::makeTitle(
+			$titleValue->getNamespace(),
+			$titleValue->getText(),
+			$titleValue->getSection() );
 	}
 
 	/**
@@ -740,6 +756,16 @@ class Title {
 	}
 
 	/**
+	 * Get a TitleValue object
+	 *
+	 * @return TitleValue
+	 */
+	public function getTitleValue() {
+		//TODO: keep this in a member! //DO NOT MERGE without this
+		return new TitleValue( TitleValue::DBKEY_FORM, $this->getNamespace(), $this->getDBkey(), $this->getFragment() );
+	}
+
+	/**
 	 * Get the text form (spaces not underscores) of the main part
 	 *
 	 * @return String Main part of the title
@@ -829,6 +855,8 @@ class Title {
 	 */
 	public function getNsText() {
 		global $wgContLang;
+
+		//FIXME: use a WikitextTitleFormatter to do this! //DO NOT MERGE without this
 
 		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.

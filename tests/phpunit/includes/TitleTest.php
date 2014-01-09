@@ -3,6 +3,8 @@
 /**
  * @group Database
  *        ^--- needed for language cache stuff
+ *
+ * @group Title
  */
 class TitleTest extends MediaWikiTestCase {
 	protected function setUp() {
@@ -481,5 +483,46 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),
 			array( 'User:John_Doe/subOne', 'subOne' ),
 		);
+	}
+
+	public function provideNewFromTitleValue() {
+		return array(
+			array( new TitleValue( TitleValue::DBKEY_FORM, NS_MAIN, 'Foo' ) ),
+			array( new TitleValue( TitleValue::TITLE_FORM, NS_MAIN, 'Foo', 'bar' ) ),
+			array( new TitleValue( TitleValue::UNKNOWN_FORM, NS_USER, 'Hansi Maier' ) ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromTitleValue( TitleValue $value ) {
+		$title = Title::newFromTitleValue( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getSection(), $title->getFragment() );
+	}
+
+	public function provideGetTitleValue() {
+		return array(
+			array( 'Foo' ),
+			array( 'Foo#bar' ),
+			array( 'User:Hansi Maier' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetTitleValue
+	 */
+	public function testGetTitleValue( $text ) {
+		$title = Title::newFromText( $text );
+		$value = $title->getTitleValue();
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $title->getDBkey(), $dbkey );
+		$this->assertEquals( $title->getNamespace(), $value->getNamespace() );
+		$this->assertEquals( $title->getFragment(), $value->getSection() );
 	}
 }
