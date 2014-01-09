@@ -9,6 +9,7 @@ MediaWiki 1.22.0 is a large release that contains many new features and bug fixe
 * Breaking Changes in 1.22.0
 * New features in 1.22.0
 * Configuration changes in 1.22.0
+* Bug fixes in 1.22.1
 * Bug fixes in 1.22.0
 * API changes in 1.22.0
 * Languages updated in 1.22.1
@@ -324,6 +325,10 @@ MediaWiki 1.22.0 is a large release that contains many new features and bug fixe
   $wgProxyMemcExpiry have been removed, along with the open proxy scanner
   script they were added for.
 * Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
+
+=== Bug fixes in 1.22.1 ===
+* (bug 58167) The web installer no longer throws an exception when PHP is
+  compiled without support for MySQL yet with support for another DBMS.
 
 === Bug fixes in 1.22.0 ===
 * (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade

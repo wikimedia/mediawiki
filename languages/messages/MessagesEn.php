@@ -4857,6 +4857,13 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-software'                      => 'Installed software',
 'version-software-product'              => 'Product',
 'version-software-version'              => 'Version',
+'version-db-mysql-url'                  => 'http://www.mysql.com/', # do not translate or duplicate this message to other languages
+'version-db-mariadb-url'                => 'http://mariadb.org/', # do not translate or duplicate this message to other languages
+'version-db-percona-url'                => 'http://www.percona.com/software/percona-server', # do not translate or duplicate this message to other languages
+'version-db-postgres-url'               => 'http://www.postgresql.org/', # do not translate or duplicate this message to other languages
+'version-db-oracle-url'                 => 'http://www.oracle.com/database/', # do not translate or duplicate this message to other languages
+'version-db-sqlite-url'                 => 'http://www.sqlite.org/', # do not translate or duplicate this message to other languages
+'version-db-mssql-url'                  => 'http://www.microsoft.com/sql/', # do not translate or duplicate this message to other languages
 'version-entrypoints'                   => 'Entry point URLs',
 'version-entrypoints-header-entrypoint' => 'Entry point',
 'version-entrypoints-header-url'        => 'URL',
