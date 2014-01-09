@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialWhatLinksHere extends SpecialPage {
+class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 	/**
 	 * @var FormOptions
@@ -88,9 +88,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
-
-		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
-			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
+		$out->addHTML( $this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),$opts->getValue( 'from' ), $opts->getValue( 'back' ) ));
 	}
 
 	/**
@@ -192,13 +190,14 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
 			if ( 0 == $level ) {
+			if(!$this->including()){
 				$out->addHTML( $this->whatlinkshereForm() );
 
 				// Show filters only if there are links
 				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
 					$out->addHTML( $this->getFilterPanel() );
 				}
-
+                          }
 				$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 			}
@@ -250,8 +249,10 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$prevId = $from;
 
 		if ( $level == 0 ) {
+		if(!$this->including()){
 			$out->addHTML( $this->whatlinkshereForm() );
 			$out->addHTML( $this->getFilterPanel() );
+			}
 			$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
 			$prevnext = $this->getPrevNext( $prevId, $nextId );
@@ -277,7 +278,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$out->addHTML( $prevnext );
 		}
 	}
-
+  
 	protected function listStart( $level ) {
 		return Xml::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
 	}
