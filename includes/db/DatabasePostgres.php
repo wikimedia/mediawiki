@@ -1140,7 +1140,7 @@ __INDEXATTR__;
 	 * @return string wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
-		return '[http://www.postgresql.org/ PostgreSQL]';
+		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
 
 	/**
