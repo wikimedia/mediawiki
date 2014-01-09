@@ -120,11 +120,12 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function formatRow( $result ) {
-		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
-		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
-		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
+		$text = $this->titleNormalizer->getTextForm( $result->cat_title );
+		$link = $this->titleLinkRenderer->renderLink( $title, htmlspecialchars( $text ) );
 
-		return Xml::tags( 'li', null, $this->getLanguage()->specialList( $titleText, $count ) ) . "\n";
+		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 
 	public function getStartForm( $from ) {

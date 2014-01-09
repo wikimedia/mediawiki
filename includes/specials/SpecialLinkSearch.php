@@ -219,9 +219,11 @@ class LinkSearchPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$title = Title::makeTitle( $result->namespace, $result->title );
+		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
+		$text = $this->titleNormalizer->getTextForm( $result->cat_title );
+		$pageLink = $this->titleLinkRenderer->renderLink( $title, $text );
+
 		$url = $result->url;
-		$pageLink = Linker::linkKnown( $title );
 		$urlLink = Linker::makeExternalLink( $url, $url );
 
 		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
