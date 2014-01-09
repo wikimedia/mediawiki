@@ -176,11 +176,14 @@ class ApiParse extends ApiBase {
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
-			if ( !$titleObj->canExist() ) {
-				$this->dieUsage( "Namespace doesn't allow actual pages", 'pagecannotexist' );
-			}
 			$wgTitle = $titleObj;
-			$pageObj = WikiPage::factory( $titleObj );
+			if ( $titleObj->canExist() ) {
+				$pageObj = WikiPage::factory( $titleObj );
+			} else {
+				// Do like MediaWiki::initializeArticle()
+				$article = Article::newFromTitle( $titleObj, $this->getContext() );
+				$pageObj = $article->getPage();
+			}
 
 			$popts = $this->makeParserOptions( $pageObj, $params );
 
@@ -805,7 +808,6 @@ class ApiParse extends ApiBase {
 				'code' => 'notwikitext',
 				'info' => 'The requested operation is only supported on wikitext content.'
 			),
-			array( 'code' => 'pagecannotexist', 'info' => "Namespace doesn't allow actual pages" ),
 		) );
 	}
 
