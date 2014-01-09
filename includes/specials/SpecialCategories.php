@@ -26,18 +26,67 @@
  */
 class SpecialCategories extends SpecialPage {
 
+	/**
+	 * @var TitleFormatter
+	 */
+	protected $titleFormatter = null;
+
+	/**
+	 * @var PageLinkRenderer
+	 */
+	protected $linkRenderer = null;
+
 	function __construct() {
 		parent::__construct( 'Categories' );
+
+		// Since we don't control the constructor parameters, we can't inject services that way.
+		// Instead, we initialize services in the execute() method, and allow them to be overridden
+		// using the initServices() method.
+	}
+
+	/**
+	 * Initialize or override the services SpecialCategories collaborates with.
+	 * Useful mainly for testing.
+	 *
+	 * @todo: the pager should also be injected, and de-coupled from the rendering logic.
+	 *
+	 * @param TitleFormatter $titleFormatter
+	 * @param PageLinkRenderer $linkRenderer
+	 */
+	public function setServices(
+		TitleFormatter $titleFormatter,
+		PageLinkRenderer $linkRenderer
+	) {
+		$this->titleFormatter = $titleFormatter;
+		$this->linkRenderer = $linkRenderer;
+	}
+
+	/**
+	 * Initialize any services we'll need. Use initServices() to override.
+	 * This allows for dependency injection even though we don't control object creation.
+	 */
+	private function initServices() {
+		$lang = $this->getContext()->getLanguage();
+
+		if ( !$this->titleFormatter ) {
+			$this->titleFormatter = new WikitextTitleFormatter( $lang, false );
+		}
+
+		if ( !$this->linkRenderer ) {
+			$this->linkRenderer = new HtmlPageLinkRenderer( new UrlTitleFormatter( $lang ) );
+		}
 	}
 
 	function execute( $par ) {
+		$this->initServices();
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
 		$from = $this->getRequest()->getText( 'from', $par );
 
-		$cap = new CategoryPager( $this->getContext(), $from );
+		$cap = new CategoryPager( $this->getContext(), $from, $this->titleFormatter, $this->linkRenderer );
 		$cap->doQuery();
 
 		$this->getOutput()->addHTML(
@@ -63,7 +112,26 @@ class SpecialCategories extends SpecialPage {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
-	function __construct( IContextSource $context, $from ) {
+
+	/**
+	 * @var TitleFormatter
+	 */
+	protected $titleFormatter;
+
+	/**
+	 * @var PageLinkRenderer
+	 */
+	protected $linkRenderer;
+
+	/**
+	 * @param IContextSource $context
+	 * @param string $from
+	 * @param TitleFormatter $titleFormatter
+	 * @param PageLinkRenderer $linkRenderer
+	 */
+	function __construct( IContextSource $context, $from,
+		TitleFormatter $titleFormatter, PageLinkRenderer $linkRenderer
+	) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
@@ -71,6 +139,9 @@ class CategoryPager extends AlphabeticPager {
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
 		}
+
+		$this->titleFormatter = $titleFormatter;
+		$this->linkRenderer = $linkRenderer;
 	}
 
 	function getQueryInfo() {
@@ -120,11 +191,12 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function formatRow( $result ) {
-		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
-		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
-		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
+		$text = $this->titleFormatter->format( $title );
+		$link = $this->linkRenderer->renderLink( $title, htmlspecialchars( $text ) );
 
-		return Xml::tags( 'li', null, $this->getLanguage()->specialList( $titleText, $count ) ) . "\n";
+		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 
 	public function getStartForm( $from ) {
