@@ -1035,6 +1035,16 @@ $wgAutoloadLocalClasses = array(
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
 
+	# includes/title
+	'DatabaseTitleFormatter' => 'includes/title/DatabaseTitleFormatter.php',
+	'HtmlPageLinkRenderer' => 'includes/title/HtmlPageLinkRenderer.php',
+	'PageLinkRenderer' => 'includes/title/PageLinkRenderer.php',
+	'TitleFormatter' => 'includes/title/TitleFormatter.php',
+	'TitleValue' => 'includes/title/TitleValue.php',
+	'WikitextPageLinkRenderer' => 'includes/title/WikitextPageLinkRenderer.php',
+	'WikitextTitleFormatter' => 'includes/title/WikitextTitleFormatter.php',
+	'UrlTitleFormatter' => 'includes/title/UrlTitleFormatter.php',
+
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
