@@ -1353,7 +1353,7 @@ $1",
 
 # Rights
 'right-read' => 'агӀонашка хьажар',
-'right-edit' => 'АгӀоаш нисяр',
+'right-edit' => 'агӀонаш нийсе',
 'right-createpage' => 'АгӀонаш кхоллар (дийцарш дац)',
 'right-createtalk' => 'Дийцаре агӀонаш кхоллар',
 'right-createaccount' => 'декъашхошна керла дӀаяздарш кхоллар',
@@ -1922,7 +1922,7 @@ PICT # тайп тайпан
 'editcomment' => "Хийцамаш барна гайтина бахьна: ''$1''.",
 'revertpage' => 'Нисдарш [[Special:Contributions/$2|$2]] ([[User talk:$2|дийцаре]]) юха даьхна башхаллийн [[User:$1|$1]]',
 'revertpage-nouser' => 'Нисдарш (декъашхочун цӀе хьулйина) юхадаьхина башхаллин {{GENDER:$1|[[User:$1|$1]]}}',
-'rollback-success' => 'Юха даьхна $1; нисдарш, $2 версен.',
+'rollback-success' => 'Юхадаьхна $1; нисдарш, $2 версен.',
 
 # Protect
 'protectlogpage' => 'Гlаролли тептар',
@@ -2704,7 +2704,7 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'revdelete-uname-unhid' => 'декъашхочун цӀе гуча яьккхина',
 'revdelete-restricted' => 'куьйгалхойн доза туху',
 'revdelete-unrestricted' => 'куьйгалхойн доза тохар дӀаяьккхина',
-'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 → $4',
+'logentry-move-move' => '$1 {{GENDER:$2|цӀе хийцина}} $3 → $4',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|цӀе хийцина}} $3 → $4 дӀасахьажийнарг цаюьтуш',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|цӀе хийцина|цӀе хийцина}} $3 оцу $4 дӀасахьажоран тӀохул а дӀасахьажийнарг цаюьтуш а',

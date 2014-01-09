@@ -62,6 +62,7 @@
  * @author Louperivois
  * @author Ltrlg
  * @author Lucyin
+ * @author Manohisoa
  * @author Mattho69
  * @author McDutchie
  * @author Meithal
@@ -1239,6 +1240,8 @@ Elle existe déjà.",
 'content-not-allowed-here' => 'Le contenu « $1 » n’est pas autorisé sur la page [[$2]]',
 'editwarning-warning' => 'Quitter cette page vous fera perdre toutes les modifications que vous avez faites.
 Si vous êtes connecté, vous pouvez désactiver cet avertissement dans la section « Modification » de vos préférences.',
+'editpage-notsupportedcontentformat-title' => 'Format de contenu non pris en charge',
+'editpage-notsupportedcontentformat-text' => "Le format de contenu $1 n'est pas pris en charge par le modèle de contenu $2 .",
 
 # Content models
 'content-model-wikitext' => 'wikitexte',

@@ -3682,7 +3682,7 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 'version-parser-function-hooks' => 'Parserowe funkcije',
 'version-hook-name' => 'Mě kokule',
 'version-hook-subscribedby' => 'Aboněrowany wót',
-'version-version' => '(Wersija $1)',
+'version-version' => '($1)',
 'version-license' => 'Licenca MediaWiki',
 'version-ext-license' => 'Licenca',
 'version-ext-colheader-name' => 'Rozšyrjenje',

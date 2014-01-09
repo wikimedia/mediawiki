@@ -176,6 +176,7 @@ $messages = array(
 'vector-action-protect' => 'Prutēz',
 'vector-action-undelete' => 'Fà al recóper',
 'vector-action-unprotect' => 'Câmbia la prutesiòun',
+'vector-simplesearch-preference' => 'Drōva la bâra per la sērca pió fâcila (sōl per la skin Vector)',
 'vector-view-create' => 'Invèinta',
 'vector-view-edit' => 'Mudéfica',
 'vector-view-history' => 'Guêrda la stôria',
@@ -242,6 +243,11 @@ $messages = array(
 'jumpto' => 'Và a:',
 'jumptonavigation' => 'Navigasiòun',
 'jumptosearch' => 'Sērca',
+'view-pool-error' => 'In cól mumèint ché i terminêl în trôp câregh.
+Trôp utèint în drē serchêr ed vèder cla pàgina ché.
+Spèta soquânt minût préma ed pruvêr incòra a carghêr la pgina.
+
+$1',
 'pool-timeout' => "Tèimp che gh'é da spetêr préma dal sblôch.",
 'pool-queuefull' => 'A ghé la fîla, trôpa gînta a vōl vèder la pàgina, prōva tra soquânt minût',
 'pool-errorunknown' => 'Erōr mìa cgnusû',
@@ -278,6 +284,8 @@ $messages = array(
 'youhavenewmessagesfromusers' => '{{PLURAL:$4|Ét ghê}} $1 da {{PLURAL:$3|un êter utèint|$3 utèint}} ($2).',
 'youhavenewmessagesmanyusers' => "Ét gh'ê $1 da dimòndi utèint $2.",
 'newmessageslinkplural' => '{{PLURAL:$1|un nōv mesâg|999=nōv mesâg}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ûltma mudéfica|999=ûltmi mudéfichi}}',
+'youhavenewmessagesmulti' => "Ét gh'ê di mesâg nōv insém a $1",
 'editsection' => 'Mudéfica',
 'editold' => 'mudéfica',
 'viewsourceold' => 'guêrda la surzéia',
@@ -315,15 +323,45 @@ $messages = array(
 'nstab-help' => 'Per quî rivê da pôch',
 'nstab-category' => 'Categoréia',
 
+# Main script and global functions
+'nosuchaction' => 'Operasiòun mìa arcgnusûda',
+'nosuchactiontext' => "Còl che t'é scrét int l' URL an n'é mìa vâlid.
+L'é anca pusébil che la URL la sia stêda scréta şbaliêda o che sia stê fât un colegamèint mìa vâlid.
+Còst al pré ânca dîr che gh'é un bug in {{SITENAME}}.",
+'nosuchspecialpage' => "La pàgina specêla l'an gh'é mìa.",
+'nospecialpagetext' => "<strong>La pàgina specêla serchêda an n'é mìa stêda arcgnusûda</strong>
+
+L'elèinch dal pàgini specêli vâlidi a 's câta in [[Special:SpecialPages|Elèinch dal pàgini specêli]].",
+
 # General errors
 'error' => 'Erōr',
 'databaseerror' => "Erōr dal 'database'",
+'databaseerror-text' => 'È sucès un erōr de dmânda insém al databêş.
+A pré ânch èser un bug int al prugrâma.',
+'databaseerror-textcl' => 'È sucès un erōr de dmânda insém al databêş.',
+'databaseerror-function' => 'Funsiòun: $1',
+'databaseerror-error' => 'Erōr: $1',
+'laggedslavemode' => "'''Atèinti:''' la pàgina la pré avèir mìa al revisiòun pió nōv.",
 'readonly' => "'Database' bluchê",
+'enterlockreason' => "Scréver al mutîv dal blôch, precişêr quând a 's pèinsa che 'l vègna tôt via.",
 'missing-article' => "Al datebêş an n'à mìa catê al tèst ed 'na pàgina ch' l' aré duvû catêres sòt' al nòm \"\$1\" \$2. Ed sôlit còst a sucēd quând a vîn arciamê, a partîr da la stòria dal mudéfichi o dal cunfrûnt tra versiòun, un colegamèint a 'na pàgina scanşlêda, a un cunfrûnt tra versiòun che gh'în mìa o a un cunfrûnt tra versiòun cun la stòria dal mudéfichi scanşlêda. In chês cuntrâri, a s'é pubabilmèint catê un erōr int al prugrâma ed Media Wiki. A se dmânda al piaşèir ed comunichêr còl ch'é sucès a un [[Special:ListUsers/sysop|amministadōr]] e comunichêregh l'indirés (URL) in quistiòun.",
 'missingarticle-rev' => '(nómer ed la versiòun: $1)',
 'missingarticle-diff' => '(Diff: $1, $2)',
 'internalerror' => 'Erōr intêren',
 'internalerror_info' => 'Erōr intêren: $1',
+'fileappenderrorread' => 'An n\'é mìa stê pusébil lēşer "$1" mèinter es fêva la zûnta.',
+'fileappenderror' => 'An n\'é mìa pusébil zuntêr "$1" a "$2".',
+'filecopyerror' => 'An n\'é mìa pusébil cupiêr al file "$1" in "$2".',
+'filerenameerror' => 'An n\'é mìa pusébil cambiêr al nòm ed "$1" in "$2".',
+'directorycreateerror' => 'An n\'é mìa pusébil fêr la directory "$1".',
+'filenotfound' => 'An n\'é mìa pusébil catêr al file "$1".',
+'fileexistserror' => 'An n\'é mìa pusébil scréver al file "$1": al file al gh\'é bèle.',
+'unexpected' => 'Valōr mìa pervést "$1"="$2".',
+'formerror' => "Erōr: an n'é ma pusébil spidîr al môdul.",
+'badarticleerror' => 'Operasiòun mìa permésa per cla pàgina ché.',
+'cannotdelete' => 'An n\'é mìa stê pusébil scanşlêr la pàgina o al file "$1".
+Al pré èser bèle stê scanşlê da quelchidûn êter.',
+'cannotdelete-title' => 'Impusébil scanşlêr la pàgina "$1".',
 'badtitle' => 'Tétol mìa curèt.',
 'badtitletext' => "Al tétol ed la pàgina serchêda l'é vōd, şbaliê opór al deşvîn da 'n erōr int i colegamèint di côdis o int i colegamèint druvê in wiki. In pió al pré avèir ûn o pió carâter ch'an pōlen mìa èser druvê int i tétol.",
 'viewsource' => 'Guêrda la surzéia',

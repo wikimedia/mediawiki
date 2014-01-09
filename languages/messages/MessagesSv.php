@@ -1155,6 +1155,8 @@ Den finns redan.',
 'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
 'editwarning-warning' => 'Om du lämnar den här sidan kommer du att förlora alla ändringar du har gjort.
 Om du är inloggad kan du slå av den här varningen under "Redigering" i dina inställningar.',
+'editpage-notsupportedcontentformat-title' => 'Innehållsformat som inte stöds',
+'editpage-notsupportedcontentformat-text' => 'Innehållsformatet $1 stöds inte av innehållsmodellen $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',

@@ -1254,6 +1254,8 @@ Sie wurde anscheinend gelöscht.',
 'content-not-allowed-here' => 'Der Inhalt „$1“ ist auf der Seite [[$2]] nicht erlaubt',
 'editwarning-warning' => 'Das Verlassen dieser Seite kann dazu führen, dass deine Änderungen verloren gehen.
 Wenn du angemeldet bist, kannst du das Anzeigen dieser Warnung im Bereich „Bearbeiten“ deiner Einstellungen abschalten.',
+'editpage-notsupportedcontentformat-title' => 'Das Inhaltsformat wird nicht unterstützt',
+'editpage-notsupportedcontentformat-text' => 'Das Inhaltsformat $1 wird vom Inhaltsmodell $2 nicht unterstützt.',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',

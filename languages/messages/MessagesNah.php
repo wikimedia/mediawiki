@@ -472,9 +472,7 @@ Occeppa xicalaqui niman ticmatīz.',
 'loginreqlink' => 'ximocalaqui',
 'loginreqpagetext' => 'Tihuīquilia $1 ic tiquintta occequīntīn zāzaniltin.',
 'accmailtitle' => 'Tlahtōlichtacāyōtl ōmoihuah.',
-'accmailtext' => "Cē zāzotlahtōlichtacāyōtl ōcyōcox [[User talk:$1|$1]]  moquitītlani īhuīc $2.
-
-In tlahtōlichtacāyōtl īpal inīn yancuīc cuenta hueliti ticpatlalo zāzanilpan ''[[Special:ChangePassword|tlahtōlichtacāyōtl patlaliztli]]'' zatepan ōticalac.",
+'accmailtext' => "Ōquiyōcox zāzochtacātlahtōlli in [[User talk:$1|$1]] auh ōmoquitītlan īhuīc $2. Tihueliti ticpatlaz īpan ''[[Special:ChangePassword|Ticpatlaz in ]]'' in ōticalaco achtopa.",
 'newarticle' => '(Yancuīc)',
 'newarticletext' => 'Ōtictocac cētiliztli cē zāzanilhuīc oc ahmo ia. Intlā quiēlēhuia quichīhua, xitlahcuiloa niman (nō xiquitta [[{{MediaWiki:Helppage}}|tēpalēhuiliztli zāzanilli]] huehca ōmpa tlapatlaliztli). Intlā ahmo, yāuh achtopa zāzanilli.',
 'noarticletext' => 'In āxcān, ahmō onca tlahcuilōlli inīn zāzanilpan.
@@ -505,7 +503,7 @@ Tihuelīti [[Special:Search/{{PAGENAME}}|tictēmoa inīn zāzaniltōcācopa]] oc
 'hiddencategories' => 'Inīn zāzanilli mopiya {{PLURAL:$1|1 neneuhcāyōc ōmotlāti|$1 neneuhcāyōc ōmotlāti}}:',
 'nocreatetext' => 'Inīn huiqui ōquitzacuili tlahuelītiliztli ic tlachīhua yancuīc zāzaniltin. Tichuelīti ticcuepa auh ticpatla cē zāzanilli, [[Special:UserLogin|xicalaqui nozo xicchīhua cē cuentah]].',
 'nocreate-loggedin' => 'Ahmo tihuelīti tiquinchīhua yancuīc zāzaniltin.',
-'permissionserrors' => 'Huelītiliztechcopa ahcuallōtl',
+'permissionserrors' => 'Tēmācāhualiztli aiuhcāyōtl',
 'permissionserrorstext' => 'Ahmo tihuelīti quichīhua inōn, inīn {{PLURAL:$1|īxtlamatilizpampa}}:',
 'permissionserrorstext-withaction' => 'Ahmo tiquihuelīti $2 inīn {{PLURAL:$1|īxtlamatilizpampa}}:',
 'moveddeleted-notice' => 'Inīn zāzanilli ōmopolo.

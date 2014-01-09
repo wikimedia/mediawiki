@@ -941,7 +941,7 @@ Ako ponovo kliknete na „{{int:savearticle}}“, vaša izmena će biti sačuvan
 'blockedtitle' => 'Korisnik je blokiran',
 'blockedtext' => "'''Vaše korisničko ime ili IP adresa je blokirana.'''
 
-Blokiranje je {{GENDER:$4|izvršio|izvršila|izvršio}} $1.
+Blokiranje je {{GENDER:$4|izvršio|izvršila}} $1.
 Razlog: ''$2''.
 
 * Datum blokiranja: $8

@@ -449,7 +449,7 @@ $1',
 'versionrequired' => 'মিডিয়াৱিকিৰ $1 সংকলন থাকিব লাগিব ।',
 'versionrequiredtext' => 'এই পৃষ্ঠাটো ব্যৱহাৰ কৰিবলৈ মিডিয়াৱিকিৰ $1 সংস্কৰণ থাকিব লাগিব । [[Special:Version|সংস্কৰণ পৃষ্ঠা]] চাওক।',
 
-'ok' => 'ঠিক আছে',
+'ok' => 'শুদ্ধ',
 'retrievedfrom' => '"$1"ৰ পৰা সংকলিত',
 'youhavenewmessages' => 'আপোনাৰ কাৰণে $1 আছে। ($2)',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|আন এজন সদস্য|$3 জন সদস্য}}ৰ পৰা আপোনালৈ $1 আহিছে ($2)।',
@@ -3689,14 +3689,14 @@ $5
 'recreate' => 'পুনৰ সৃষ্টি কৰক',
 
 # action=purge
-'confirm_purge_button' => 'ঠিক আছে',
+'confirm_purge_button' => 'শুদ্ধ',
 'confirm-purge-top' => 'এই পৃষ্ঠাৰ কেচ্‌ খালী কৰা হওক ?',
 'confirm-purge-bottom' => "এখন পৃষ্ঠাক শোধিত কৰিলে কেচ্‌ আতৰি যায় আৰু সকলোতকৈ শেহতীয়া সংশোধন প্ৰদৰ্শিত হ'বলৈ বাধ্য কৰে।",
 
 # action=watch/unwatch
-'confirm-watch-button' => 'ঠিক আছে',
+'confirm-watch-button' => 'শুদ্ধ',
 'confirm-watch-top' => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাত যোগ কৰক',
-'confirm-unwatch-button' => 'ঠিক আছে',
+'confirm-unwatch-button' => 'শুদ্ধ',
 'confirm-unwatch-top' => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 
 # Multipage image navigation

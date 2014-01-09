@@ -8,6 +8,7 @@
  * @file
  *
  * @author AnakngAraw
+ * @author Aze
  * @author Dosmiin Barsbold
  * @author Felipe Aira
  * @author Jojit fb
@@ -561,13 +562,19 @@ Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakala
 'welcomecreation-msg' => 'Nilikha na ang iyong kuwenta.
 Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SITENAME}}]].',
 'yourname' => 'Bansag:',
+'userlogin-yourname' => 'Pangngalan',
+'userlogin-yourname-ph' => 'Ilagay ang iyong Pangngalan',
+'createacct-another-username-ph' => 'Ilagay ang Pangngalan',
 'yourpassword' => 'Hudyat:',
 'userlogin-yourpassword' => 'Hudyat',
 'userlogin-yourpassword-ph' => 'Ipasok ang iyong hudyat',
+'createacct-yourpassword-ph' => 'Ilagay ang hudyat',
 'yourpasswordagain' => 'Hudyat mo uli:',
 'createacct-yourpasswordagain' => 'Tiyakin ang hudyat',
+'createacct-yourpasswordagain-ph' => 'Muling ilagay ang hudyat',
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'userlogin-remembermypassword' => 'Panatilihin akong nakalagda',
+'userlogin-signwithsecure' => 'Gumamit ng wastong koneksyon',
 'yourdomainname' => 'Dominyo mo:',
 'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
 'externaldberror' => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
@@ -587,15 +594,23 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'gotaccount' => 'May kuwenta ka na ba? $1.',
 'gotaccountlink' => 'Lumagda',
 'userlogin-resetlink' => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',
+'userlogin-resetpassword-link' => 'Nakalimutan ang hudyat?',
+'userlogin-createanother' => 'Lumikha ng isang akawnt',
+'createacct-join' => 'Ilagay ang iyong impormasyon sa baba.',
+'createacct-another-join' => 'Ilagay ang impormasyon ng bagong akawnt sa baba.',
 'createacct-emailrequired' => 'Direksiyong e-liham:',
 'createaccountmail' => 'Gumamit ng pansamantalang walang-piling hudyat at ipadala ito sa direksiyong e-liham na nakasaad sa ibaba',
 'createacct-realname' => 'Tunay na pangalan (maaaring wala)',
 'createaccountreason' => 'Dahilan:',
 'createacct-reason' => 'Dahilan',
+'createacct-reason-ph' => 'Bakit ka gagawa ng isa pang akawnt?',
+'createacct-imgcaptcha-ph' => 'Ilagay ang tekstong makikita sa taas.',
+'createacct-benefit-heading' => '{{SITENAME}} ay linikha ng mga taong tulad mo.',
 'badretype' => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
 'userexists' => 'May gumagamit na ng ipinasok na bansag.
 Pumili po ng ibang pangalan.',
 'loginerror' => 'Kamalian sa paglagda',
+'createacct-error' => 'May pagkakamali sa paglikha ng akawnt',
 'createaccounterror' => 'Hindi mailikha ang kuwenta: $1',
 'nocookiesnew' => "Nalikha ang kuwenta ng tagagamit, ngunit hindi ka nakalagda.
 Gumagamit ang {{SITENAME}} ng mga kuki (''cookies'') upang makalagda ang mga tagagamit.
@@ -624,7 +639,7 @@ Pakisubok muli.',
 'passwordtooshort' => 'Ang mga hudyat ay dapat mayroong {{PLURAL:$1|1 panitik|$1 panitik}} (karakter).',
 'password-name-match' => 'Dapat magkaiba ang hudyat mo sa bansag mo.',
 'password-login-forbidden' => 'Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at hudyat.',
-'mailmypassword' => 'Ipadala sa pamamagitan ng e-liham ang bagong hudyat',
+'mailmypassword' => 'Muling itakda ang hudyat',
 'passwordremindertitle' => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 'passwordremindertext' => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong
 hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha

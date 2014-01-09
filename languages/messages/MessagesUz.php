@@ -1143,6 +1143,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Foydalanuvchilar guruhi huquqlari',
+'listgrouprights-summary' => 'Har bir viki-loyihada boʻlgani kabi, Oʻzbekcha Vikipediyada ham foydalanuvchilar bir nechta guruhlarga boʻlingan boʻlib, quyida ularning roʻyxati va tegishli huquqlari keltirilgan. Alohida huquqlar haqida [[{{MediaWiki:Listgrouprights-helppage}}|qoʻshimcha maʼlumotlar]] boʻlishi mumkin.',
+'listgrouprights-key' => 'Izohlar:
+* <span class="listgrouprights-granted">Amaldagi huquqlar</span>
+* <span class="listgrouprights-revoked">Bekor qilingan huquqlar</span>',
 'listgrouprights-group' => 'Guruh',
 'listgrouprights-rights' => 'Huquqlar',
 'listgrouprights-helppage' => 'Help:Guruhlar huquqlari',

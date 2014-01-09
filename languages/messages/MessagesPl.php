@@ -4007,6 +4007,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-ext-colheader-license' => 'Licencja',
 'version-ext-colheader-description' => 'Opis',
 'version-ext-colheader-credits' => 'Autorzy',
+'version-license-not-found' => 'Nie znaleziono szczegółowych informacji licencyjnych dla tego rozszerzenia.',
 'version-poweredby-credits' => "Ta wiki korzysta z oprogramowania '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others' => 'inni',
 'version-poweredby-translators' => 'tłumacze translatewiki.net',
