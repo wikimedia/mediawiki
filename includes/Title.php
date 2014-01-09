@@ -27,6 +27,8 @@
  * Optionally may contain an interwiki designation or namespace.
  * @note This class can fetch various kinds of data from the database;
  *       however, it does so inefficiently.
+ * @note Consider using a TitleValue object instead. TitleValue is more lightweight
+ *       and does not rely on global state or the database.
  *
  * @internal documentation reviewed 15 Mar 2010
  */
@@ -85,7 +87,54 @@ class Title {
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
 	var $mHasSubpage;                 // /< Whether a page has any subpages
 	private $mPageLanguage = false;   // /< The (string) language code of the page's language and content code.
+	private $mTitleValue = null;      // /< A corresponding TitleValue object
 	// @}
+
+	/**
+	 * B/C kludge: provide a TitleParser for use by Title.
+	 * Ideally, Title would have no methods that need this.
+	 * Avoid usage of this singleton by using TitleValue
+	 * and the associated services when possible.
+	 *
+	 * @return TitleParser
+	 */
+	private static function getTitleParser() {
+		global $wgContLang, $wgLocalInterwiki;
+
+		static $titleCodec = null;
+		static $titleCodecFingerprint = null;
+
+		// $wgContLang and $wgLocalInterwiki may change (especially while testing),
+		// make sure we are using the right one. To detect changes over the course
+		// of a request, we remember a fingerprint of the config used to create the
+		// codec singleton, and re-create it if the fingerprint doesn't match.
+		$fingerprint = $wgContLang->getCode() . '|' . $wgLocalInterwiki;
+
+		if ( $fingerprint !== $titleCodecFingerprint ) {
+			$titleCodec = null;
+		}
+
+		if ( !$titleCodec ) {
+			$titleCodec = new MediaWikiTitleCodec( $wgContLang, GenderCache::singleton(), $wgLocalInterwiki );
+			$titleCodecFingerprint = $fingerprint;
+		}
+
+		return $titleCodec;
+	}
+
+	/**
+	 * B/C kludge: provide a TitleParser for use by Title.
+	 * Ideally, Title would have no methods that need this.
+	 * Avoid usage of this singleton by using TitleValue
+	 * and the associated services when possible.
+	 *
+	 * @return TitleFormatter
+	 */
+	private static function getTitleFormatter() {
+		//NOTE: we know that getTitleParser() returns a MediaWikiTitleCodec,
+		//      which implements TitleFormatter.
+		return self::getTitleParser();
+	}
 
 	/**
 	 * Constructor
@@ -108,6 +157,20 @@ class Title {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Create a new Title from a TitleValue
+	 *
+	 * @param TitleValue $titleValue, assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromTitleValue( TitleValue $titleValue ) {
+		return self::makeTitle(
+			$titleValue->getNamespace(),
+			$titleValue->getText(),
+			$titleValue->getFragment() );
 	}
 
 	/**
@@ -147,7 +210,7 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
-		$t->mDefaultNamespace = $defaultNamespace;
+		$t->mDefaultNamespace = intval( $defaultNamespace );
 
 		if ( $t->secureAndSplit() ) {
 			if ( $defaultNamespace == NS_MAIN ) {
@@ -473,6 +536,8 @@ class Title {
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
 	 * replacing this regex with something valid will make many titles valid.
 	 *
+	 * @todo: move this into MediaWikiTitleCodec
+	 *
 	 * @return String regex string
 	 */
 	static function getTitleInvalidRegex() {
@@ -742,6 +807,31 @@ class Title {
 	}
 
 	/**
+	 * Get a TitleValue object representing this Title.
+	 *
+	 * @note: Not all valid Titles have a corresponding valid TitleValue
+	 * (e.g. TitleValues cannot represent page-local links that have a
+	 * fragment but no title text).
+	 *
+	 * @return TitleValue|null
+	 */
+	public function getTitleValue() {
+		if ( $this->mTitleValue === null ) {
+			try {
+				$this->mTitleValue = new TitleValue(
+					$this->getNamespace(),
+					$this->getDBkey(),
+					$this->getFragment() );
+			} catch ( InvalidArgumentException $ex ) {
+				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
+					$this->getPrefixedText() . ']]: ' . $ex->getMessage() . "\n" );
+			}
+		}
+
+		return $this->mTitleValue;
+	}
+
+	/**
 	 * Get the text form (spaces not underscores) of the main part
 	 *
 	 * @return String Main part of the title
@@ -830,8 +920,6 @@ class Title {
 	 * @return String: Namespace text
 	 */
 	public function getNsText() {
-		global $wgContLang;
-
 		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.
 			// But for interwiki transclusion it sometimes does.
@@ -844,13 +932,13 @@ class Title {
 			}
 		}
 
-		if ( $wgContLang->needsGenderDistinction() &&
-				MWNamespace::hasGenderDistinction( $this->mNamespace ) ) {
-			$gender = GenderCache::singleton()->getGenderOf( $this->getText(), __METHOD__ );
-			return $wgContLang->getGenderNsText( $this->mNamespace, $gender );
+		try {
+			$formatter = $this->getTitleFormatter();
+			return $formatter->getNamespaceName( $this->mNamespace, $this->mDbkeyform );
+		} catch ( InvalidArgumentException $ex )  {
+			wfDebug( __METHOD__ . ': ' . $ex->getMessage() . "\n" );
+			return false;
 		}
-
-		return $wgContLang->getNsText( $this->mNamespace );
 	}
 
 	/**
@@ -3219,179 +3307,25 @@ class Title {
 
 		$dbkey = $this->mDbkeyform;
 
-		# Strip Unicode bidi override characters.
-		# Sometimes they slip into cut-n-pasted page titles, where the
-		# override chars get included in list displays.
-		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
-
-		# Clean up whitespace
-		# Note: use of the /u option on preg_replace here will cause
-		# input with invalid UTF-8 sequences to be nullified out in PHP 5.2.x,
-		# conveniently disabling them.
-		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
-		$dbkey = trim( $dbkey, '_' );
-
-		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
-			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
-			return false;
-		}
-
-		$this->mDbkeyform = $dbkey;
-
-		# Initial colon indicates main namespace rather than specified default
-		# but should not create invalid {ns,title} pairs such as {0,Project:Foo}
-		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
-			$this->mNamespace = NS_MAIN;
-			$dbkey = substr( $dbkey, 1 ); # remove the colon but continue processing
-			$dbkey = trim( $dbkey, '_' ); # remove any subsequent whitespace
-		}
-
-		if ( $dbkey == '' ) {
-			return false;
-		}
-
-		# Namespace or interwiki prefix
-		$firstPass = true;
-		$prefixRegexp = "/^(.+?)_*:_*(.*)$/S";
-		do {
-			$m = array();
-			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
-				$p = $m[1];
-				if ( ( $ns = $wgContLang->getNsIndex( $p ) ) !== false ) {
-					# Ordinary namespace
-					$dbkey = $m[2];
-					$this->mNamespace = $ns;
-					# For Talk:X pages, check if X has a "namespace" prefix
-					if ( $ns == NS_TALK && preg_match( $prefixRegexp, $dbkey, $x ) ) {
-						if ( $wgContLang->getNsIndex( $x[1] ) ) {
-							# Disallow Talk:File:x type titles...
-							return false;
-						} elseif ( Interwiki::isValidInterwiki( $x[1] ) ) {
-							# Disallow Talk:Interwiki:x type titles...
-							return false;
-						}
-					}
-				} elseif ( Interwiki::isValidInterwiki( $p ) ) {
-					if ( !$firstPass ) {
-						# Can't make a local interwiki link to an interwiki link.
-						# That's just crazy!
-						return false;
-					}
-
-					# Interwiki link
-					$dbkey = $m[2];
-					$this->mInterwiki = $wgContLang->lc( $p );
-
-					# Redundant interwiki prefix to the local wiki
-					if ( $wgLocalInterwiki !== false
-						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki )
-					) {
-						if ( $dbkey == '' ) {
-							# Can't have an empty self-link
-							return false;
-						}
-						$this->mInterwiki = '';
-						$firstPass = false;
-						# Do another namespace split...
-						continue;
-					}
-
-					# If there's an initial colon after the interwiki, that also
-					# resets the default namespace
-					if ( $dbkey !== '' && $dbkey[0] == ':' ) {
-						$this->mNamespace = NS_MAIN;
-						$dbkey = substr( $dbkey, 1 );
-					}
-				}
-				# If there's no recognized interwiki or namespace,
-				# then let the colon expression be part of the title.
-			}
-			break;
-		} while ( true );
-
-		$fragment = strstr( $dbkey, '#' );
-		if ( false !== $fragment ) {
-			$this->setFragment( $fragment );
-			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
-			# remove whitespace again: prevents "Foo_bar_#"
-			# becoming "Foo_bar_"
-			$dbkey = preg_replace( '/_*$/', '', $dbkey );
-		}
-
-		# Reject illegal characters.
-		$rxTc = self::getTitleInvalidRegex();
-		if ( preg_match( $rxTc, $dbkey ) ) {
-			return false;
-		}
-
-		# Pages with "/./" or "/../" appearing in the URLs will often be un-
-		# reachable due to the way web browsers deal with 'relative' URLs.
-		# Also, they conflict with subpage syntax.  Forbid them explicitly.
-		if (
-			strpos( $dbkey, '.' ) !== false &&
-			(
-				$dbkey === '.' || $dbkey === '..' ||
-				strpos( $dbkey, './' ) === 0 ||
-				strpos( $dbkey, '../' ) === 0 ||
-				strpos( $dbkey, '/./' ) !== false ||
-				strpos( $dbkey, '/../' ) !== false ||
-				substr( $dbkey, -2 ) == '/.' ||
-				substr( $dbkey, -3 ) == '/..'
-			)
-		) {
-			return false;
-		}
-
-		# Magic tilde sequences? Nu-uh!
-		if ( strpos( $dbkey, '~~~' ) !== false ) {
-			return false;
-		}
-
-		# Limit the size of titles to 255 bytes. This is typically the size of the
-		# underlying database field. We make an exception for special pages, which
-		# don't need to be stored in the database, and may edge over 255 bytes due
-		# to subpage syntax for long titles, e.g. [[Special:Block/Long name]]
-		if (
-			( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 )
-			|| strlen( $dbkey ) > 512
-		) {
-			return false;
-		}
-
-		# Normally, all wiki links are forced to have an initial capital letter so [[foo]]
-		# and [[Foo]] point to the same place.  Don't force it for interwikis, since the
-		# other site might be case-sensitive.
-		$this->mUserCaseDBKey = $dbkey;
-		if ( !$this->isExternal() ) {
-			$dbkey = self::capitalize( $dbkey, $this->mNamespace );
-		}
-
-		# Can't make a link to a namespace alone... "empty" local links can only be
-		# self-links with a fragment identifier.
-		if ( $dbkey == '' && !$this->isExternal() && $this->mNamespace != NS_MAIN ) {
-			return false;
-		}
-
-		// Allow IPv6 usernames to start with '::' by canonicalizing IPv6 titles.
-		// IP names are not allowed for accounts, and can only be referring to
-		// edits from the IP. Given '::' abbreviations and caps/lowercaps,
-		// there are numerous ways to present the same IP. Having sp:contribs scan
-		// them all is silly and having some show the edits and others not is
-		// inconsistent. Same for talk/userpages. Keep them normalized instead.
-		if ( $this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK ) {
-			$dbkey = IP::sanitizeIP( $dbkey );
-		}
-
-		// Any remaining initial :s are illegal.
-		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
+		try {
+			//NOTE: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
+			//      the parsing code with Title, while avoiding massive refactoring.
+			//TODO: get rid of secureAndSplit, refactor parsing code.
+			$parser = $this->getTitleParser();
+			$parts = $parser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
+		} catch ( MalformedTitleException $ex ) {
 			return false;
 		}
 
 		# Fill fields
-		$this->mDbkeyform = $dbkey;
-		$this->mUrlform = wfUrlencode( $dbkey );
+		$this->setFragment( '#' . $parts['fragment'] );
+		$this->mInterwiki = $parts['interwiki'];
+		$this->mNamespace = $parts['namespace'];
+		$this->mUserCaseDBKey = $parts['user_case_dbkey'];
 
-		$this->mTextform = str_replace( '_', ' ', $dbkey );
+		$this->mDbkeyform = $parts['dbkey'];
+		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
+		$this->mTextform = str_replace( '_', ' ', $this->mDbkeyform );
 
 		# We already know that some pages won't be in the database!
 		if ( $this->isExternal() || $this->mNamespace == NS_SPECIAL ) {

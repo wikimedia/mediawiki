@@ -1042,6 +1042,15 @@ $wgAutoloadLocalClasses = array(
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
 
+	# includes/title
+	'PageLinkRenderer' => 'includes/title/PageLinkRenderer.php',
+	'TitleFormatter' => 'includes/title/TitleFormatter.php',
+	'TitleParser' => 'includes/title/TitleParser.php',
+	'TitleValue' => 'includes/title/TitleValue.php',
+	'MalformedTitleException' => 'includes/title/MalformedTitleException.php',
+	'MediaWikiPageLinkRenderer' => 'includes/title/MediaWikiPageLinkRenderer.php',
+	'MediaWikiTitleCodec' => 'includes/title/MediaWikiTitleCodec.php',
+
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
