@@ -795,11 +795,12 @@ class WebRequest {
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
 	 *
-	 * @param $deflimit Integer: limit to use if no input and the user hasn't set the option.
+	 * @param int $deflimit limit to use if no input and the user hasn't set the option.
 	 * @param string $optionname to specify an option other than rclimit to pull from.
+	 * @param int $hardlimit the maximum upper limit to allow, usually 5000
 	 * @return array first element is limit, second is offset
 	 */
-	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
+	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit', $hardlimit = 5000 ) {
 		global $wgUser;
 
 		$limit = $this->getInt( 'limit', 0 );
@@ -812,8 +813,8 @@ class WebRequest {
 		if ( $limit <= 0 ) {
 			$limit = $deflimit;
 		}
-		if ( $limit > 5000 ) {
-			$limit = 5000; # We have *some* limits...
+		if ( $limit > $hardlimit ) {
+			$limit = $hardlimit; # We have *some* limits...
 		}
 
 		$offset = $this->getInt( 'offset', 0 );

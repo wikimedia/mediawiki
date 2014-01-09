@@ -120,7 +120,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function load() {
 		$request = $this->getRequest();
-		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20 );
+		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, '', 500 );
 		$this->mPrefix = $request->getVal( 'prefix', '' );
 
 		$user = $this->getUser();
