@@ -485,7 +485,14 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		// config-support-sqlite
 		$dbSupport = '';
 		foreach ( $this->parent->getDBTypes() as $type ) {
-			$link = DatabaseBase::factory( $type )->getSoftwareLink();
+			// FIXME: "lego" message construction
+			$links = array(
+				'mysql' => '[http://www.mysql.com/ MySQL]',
+				'postgres' => '[http://www.postgresql.org/ PostgreSQL]',
+				'oracle' => '[http://www.oracle.com/ Oracle]',
+				'sqlite' => '[http://sqlite.org/ SQLite]',
+			);
+			$link = isset( $links[$type] ) ? $links[$type] : wfMessage( "config-type-$type" )->plain();
 			$dbSupport .= wfMessage( "config-support-$type", $link )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
