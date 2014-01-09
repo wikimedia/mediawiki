@@ -27,6 +27,12 @@
  * @ingroup SpecialPage
  */
 class LinkSearchPage extends QueryPage {
+
+	/**
+	 * @var PageLinkRenderer
+	 */
+	protected $linkRenderer = null;
+
 	function setParams( $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
@@ -35,6 +41,36 @@ class LinkSearchPage extends QueryPage {
 
 	function __construct( $name = 'LinkSearch' ) {
 		parent::__construct( $name );
+
+		// Since we don't control the constructor parameters, we can't inject services that way.
+		// Instead, we initialize services in the execute() method, and allow them to be overridden
+		// using the setServices() method.
+	}
+
+	/**
+	 * Initialize or override the PageLinkRenderer SpecialCategories collaborates with.
+	 * Useful mainly for testing.
+	 *
+	 * @todo: query logic and rendering logic should be split and also injected
+	 *
+	 * @param PageLinkRenderer $linkRenderer
+	 */
+	public function setPageLinkRenderer(
+		PageLinkRenderer $linkRenderer
+	) {
+		$this->linkRenderer = $linkRenderer;
+	}
+
+	/**
+	 * Initialize any services we'll need. Use setServices() to override.
+	 * This allows for dependency injection even though we don't control object creation.
+	 */
+	private function initServices() {
+		if ( !$this->linkRenderer ) {
+			$lang = $this->getContext()->getLanguage();
+			$titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
+		}
 	}
 
 	function isCacheable() {
@@ -43,6 +79,8 @@ class LinkSearchPage extends QueryPage {
 
 	function execute( $par ) {
 		global $wgUrlProtocols, $wgMiserMode, $wgScript;
+
+		$this->initServices();
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -219,9 +257,10 @@ class LinkSearchPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$title = Title::makeTitle( $result->namespace, $result->title );
+		$title = new TitleValue( (int)$result->namespace, $result->title );
+		$pageLink = $this->linkRenderer->renderHtmlLink( $title );
+
 		$url = $result->url;
-		$pageLink = Linker::linkKnown( $title );
 		$urlLink = Linker::makeExternalLink( $url, $url );
 
 		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
