@@ -837,19 +837,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the size of the upload, or 0.
-	 *
-	 * @deprecated since 1.17
-	 * @param $key String:
-	 * @return integer
-	 */
-	public function getFileSize( $key ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getSize();
-	}
-
-	/**
 	 * Return the upload error or 0
 	 *
 	 * @param $key String:
@@ -1034,35 +1021,6 @@ extension.
 HTML;
 		echo "\n";
 		return true;
-	}
-
-	/**
-	 * Returns true if the PATH_INFO ends with an extension other than a script
-	 * extension. This could confuse IE for scripts that send arbitrary data which
-	 * is not HTML but may be detected as such.
-	 *
-	 * Various past attempts to use the URL to make this check have generally
-	 * run up against the fact that CGI does not provide a standard method to
-	 * determine the URL. PATH_INFO may be mangled (e.g. if cgi.fix_pathinfo=0),
-	 * but only by prefixing it with the script name and maybe some other stuff,
-	 * the extension is not mangled. So this should be a reasonably portable
-	 * way to perform this security check.
-	 *
-	 * Also checks for anything that looks like a file extension at the end of
-	 * QUERY_STRING, since IE 6 and earlier will use this to get the file type
-	 * if there was no dot before the question mark (bug 28235).
-	 *
-	 * @deprecated Use checkUrlExtension().
-	 *
-	 * @param $extWhitelist array
-	 *
-	 * @return bool
-	 */
-	public function isPathInfoBad( $extWhitelist = array() ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		global $wgScriptExtension;
-		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
-		return IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist );
 	}
 
 	/**
@@ -1461,14 +1419,6 @@ class FauxRequest extends WebRequest {
 	 */
 	public function getSessionArray() {
 		return $this->session;
-	}
-
-	/**
-	 * @param array $extWhitelist
-	 * @return bool
-	 */
-	public function isPathInfoBad( $extWhitelist = array() ) {
-		return false;
 	}
 
 	/**

@@ -182,15 +182,6 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * Add a subcategory to the internal lists, using a title object
-	 * @deprecated since 1.17 kept for compatibility, use addSubcategoryObject instead
-	 */
-	function addSubcategory( Title $title, $sortkey, $pageLength ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		$this->addSubcategoryObject( Category::newFromTitle( $title ), $sortkey, $pageLength );
-	}
-
-	/**
 	 * Get the character to be used for sorting subcategories.
 	 * If there's a link from Category:A to Category:B, the sortkey of the resulting
 	 * entry in the categorylinks table is Category:A, not A, which it SHOULD be.
