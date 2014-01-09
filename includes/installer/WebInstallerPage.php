@@ -485,15 +485,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		// config-support-sqlite
 		$dbSupport = '';
 		foreach ( $this->parent->getDBTypes() as $type ) {
-			// FIXME: remove message parameter once old "lego" translations are gone
-			$links = array(
-				'mysql' => '[{{int:version-db-mysql-url}} MySQL]',
-				'postgres' => '[{{int:version-db-postgres-url}} PostgreSQL]',
-				'oracle' => '[{{int:version-db-oracle-url}} Oracle]',
-				'sqlite' => '[{{int:version-db-sqlite-url}} SQLite]',
-			);
-			$link = isset( $links[$type] ) ? $links[$type] : wfMessage( "config-type-$type" )->plain();
-			$dbSupport .= wfMessage( "config-support-$type", $link )->plain() . "\n";
+			$dbSupport .= wfMessage( "config-support-$type" )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
 			wfMessage( 'config-support-info', trim( $dbSupport ) )->text() ) );
