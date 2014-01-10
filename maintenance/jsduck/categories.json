@@ -52,6 +52,10 @@
 		"name": "Upstream",
 		"groups": [
 			{
+				"name": "OOJS",
+				"classes": ["OO", "OO.*"]
+			},
+			{
 				"name": "jQuery",
 				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]
 			},

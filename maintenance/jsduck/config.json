@@ -22,6 +22,7 @@
 		"../../resources/mediawiki.page/mediawiki.page.startup.js",
 		"../../resources/mediawiki.api",
 		"../../resources/jquery/jquery.localize.js",
-		"../../resources/jquery/jquery.spinner.js"
+		"../../resources/jquery/jquery.spinner.js",
+		"../../resources/oojs"
 	]
 }
