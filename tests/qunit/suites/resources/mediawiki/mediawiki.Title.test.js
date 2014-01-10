@@ -74,6 +74,8 @@
 			'Foo/.../Sandbox',
 			'Sandbox/...',
 			'A~~',
+			'#anchor',
+			'Sandbox#anchor',
 			// Length is 256 total, but only title part matters
 			'Category:' + repeat( 'x', 248 ),
 			repeat( 'x', 252 )
@@ -81,6 +83,8 @@
 		invalid: [
 			'',
 			':',
+			'#',
+			':#',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
