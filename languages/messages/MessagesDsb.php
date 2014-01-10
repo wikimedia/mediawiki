@@ -956,6 +956,8 @@ Eksistěrujo južo.',
 'content-not-allowed-here' => 'Wopśimjeśe "$1" njejo na boku [[$2]] dowólone',
 'editwarning-warning' => 'Gaž toś ten bok se spušća, mógu se změny zgubiś, kótarež sy pśewjadł.
 Jolic sy pśizjawjeny, móžoš toś to warnowanje we wótrězku „Wobźěłaś“ swójich nastajenjow znjemóžniś.',
+'editpage-notsupportedcontentformat-title' => 'Wopśimjeśowy format se njepódpěra.',
+'editpage-notsupportedcontentformat-text' => 'Wopśimjeśowy format $1 njepódpěra se pśez wopśimjeśowy model $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

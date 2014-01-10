@@ -1152,6 +1152,8 @@ Slette- og flytteloggen vises nedenfor.',
 'invalid-content-data' => 'Ugyldig innhold',
 'content-not-allowed-here' => 'Innholdsmodellen «$1» er ikke tillatt på siden [[$2]]',
 'editwarning-warning' => 'Ved å forlate siden kan du miste alle endringer du har utført. Om du er logget inn kan du slå av denne advarselen under «Redigering»-seksjonen i innstillingene.',
+'editpage-notsupportedcontentformat-title' => 'Innholdsformatet er ikke støttet',
+'editpage-notsupportedcontentformat-text' => 'Innholdsformatet $1 er ikke støttet av innholdsmodellen $2.',
 
 # Content models
 'content-model-wikitext' => 'WikiTekst',
@@ -3798,6 +3800,9 @@ Denne bekreftelseskoden utløper $4.',
 'confirm-watch-top' => 'Legg denne siden til overvåkningslisten din?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Fjern denne siden fra overvåkningslisten din?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',

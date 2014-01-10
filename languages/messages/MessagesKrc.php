@@ -1448,7 +1448,7 @@ $1 {{PLURAL:$1|1=символдан|символладан}} кеб болург
 
 # Recent changes linked
 'recentchangeslinked' => 'Байлам тюрлениуле',
-'recentchangeslinked-feed' => 'Байламлы тюрлендириуле',
+'recentchangeslinked-feed' => 'Байламлы тюрлениуле',
 'recentchangeslinked-toolbox' => 'Байламлы тюрлендириуле',
 'recentchangeslinked-title' => '$1 бет бла байламлы тюрлендириуле',
 'recentchangeslinked-summary' => "Белгиленнген бет (неда белгиленнген категориягъа киргенле) джиберген бетледе джангы тюрлениулени тизмеси.

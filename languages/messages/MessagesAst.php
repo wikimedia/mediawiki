@@ -918,6 +918,8 @@ Esta yá esiste.',
 'content-not-allowed-here' => 'El conteníu «$1» nun se permite na páxina [[$2]]',
 'editwarning-warning' => 'Salir d\'esta páxina pue causar la perda de cualesquier cambiu fechu.
 Si aniciasti sesión, pue desactivase esti avisu na seición "Edición" de les tos preferencies.',
+'editpage-notsupportedcontentformat-title' => 'El formatu del conteníu nun tien sofitu',
+'editpage-notsupportedcontentformat-text' => 'El formatu del conteníu, $1, nun tien sofitu del modelu de conteníu $2.',
 
 # Content models
 'content-model-wikitext' => 'testu wiki',

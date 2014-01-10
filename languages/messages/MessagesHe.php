@@ -1211,6 +1211,8 @@ $2
 'content-not-allowed-here' => 'תוכן מסוג "$1" אינו מותר בדף [[$2]]',
 'editwarning-warning' => 'עזיבת דף זה עשויה לגרום לאובדן כל השינויים שביצעתם.
 אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "עריכה" שבהעדפות שלכם.',
+'editpage-notsupportedcontentformat-title' => 'סוג התוכן אינו נתמך',
+'editpage-notsupportedcontentformat-text' => 'תוכן מסוג $1 אינו נתמך על־ידי מודל התוכן $2.',
 
 # Content models
 'content-model-wikitext' => 'טקסט ויקי',

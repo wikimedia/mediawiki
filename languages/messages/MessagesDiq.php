@@ -452,7 +452,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategoriy}}',
-'category_header' => 'Perré ke kategori da "$1" de yé',
+'category_header' => 'Pelê ke kategoriya "$1" derê',
 'subcategories' => 'Kategoriyê bınêni',
 'category-media-header' => 'Dosyeyê ke kategoriya "$1" derê',
 'category-empty' => "''Ena kategoriye de hewna qet nuştey ya zi medya çıniyê.''",
@@ -471,7 +471,7 @@ $messages = array(
 'broken-file-category' => 'Peleye ke gıreyê dosyeyanê ğeletan muhtewa kenê',
 'categoryviewer-pagedlinks' => '($1) ($2)',
 
-'about' => 'Heqdé cı',
+'about' => 'Heqa cı de',
 'article' => 'Wesiqe',
 'newwindow' => '(pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
@@ -576,13 +576,13 @@ $1',
 'pool-errorunknown' => 'Xeta nêzanıtiye',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'Heqdé {{SITENAME}}',
-'aboutpage' => 'Project:Heqdê cı',
+'aboutsite' => 'Heqa {{SITENAME}} de',
+'aboutpage' => 'Project:Heqa cı de',
 'copyright' => 'Zerrekacı $1 bındı not biya.',
 'copyrightpage' => '{{ns:project}}:Heqa telifi',
 'currentevents' => 'Veng u vac',
 'currentevents-url' => 'Project:Rocani hadisey',
-'disclaimers' => 'Reddiya mesuliyeti',
+'disclaimers' => 'Redê mesuliyeti',
 'disclaimerpage' => 'Project:Reddê mesuliyetê bıngey',
 'edithelp' => 'Peştdariya vurnayışi',
 'helppage' => 'Help:Zerrek',
@@ -1384,11 +1384,11 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) bıvênên',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
 'searchmenu-new' => "''Na Wiki de pelay \"[[:\$1]]\" vıraze!'''",
-'searchprofile-articles' => 'Perré muhteway',
+'searchprofile-articles' => 'Pelê tedeestey',
 'searchprofile-project' => 'Pelê peşti û procey',
 'searchprofile-images' => 'Multimedya',
 'searchprofile-everything' => 'Heme çi',
-'searchprofile-advanced' => 'Ravérden',
+'searchprofile-advanced' => 'Raverşiyaye',
 'searchprofile-articles-tooltip' => '$1 de cı geyré',
 'searchprofile-project-tooltip' => '$1 de bigêre',
 'searchprofile-images-tooltip' => 'Dosya cı geyr',
@@ -2491,12 +2491,12 @@ Qe qeydê wedarnayışi, $2 bevinin.',
 'deletecomment' => 'Sebeb:',
 'deleteotherreason' => 'Sebebo bin:',
 'deletereasonotherlist' => 'Sebebo bin',
-'deletereason-dropdown' => '*Sebebé esterıti
-** Spam
+'deletereason-dropdown' => '* Sebebê esterıtışê pêroyi
+** Vurnayışo nêwaşte (spam)
 ** Vandalizm
-** İhlala heqdé telifi
-** Waştışé nustoği
-** Xırab hetenayış',
+** İxlalê heqa telifi
+** Waştışê nuştoği
+** Oryantasyono xırabe',
 'delete-edit-reasonlist' => 'Sebebê vurnayışan bıvurne',
 'delete-toobig' => 'no pel, pê $1 {{PLURAL:$1|tene vuriyayiş|tene vuriyayiş}}i wayirê yew tarixo kehen o.
 qey hewna nêşiyayişi wina pelani u {{SITENAME}}nêxerebnayişê keyepeli yew hed niyaya ro.',

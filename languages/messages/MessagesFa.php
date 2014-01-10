@@ -1303,6 +1303,8 @@ $2
 'content-not-allowed-here' => 'محتوای «$1» در صفحهٔ [[$2]] مجاز نیست',
 'editwarning-warning' => 'خروج از این صفحه ممکن است باعث از دست رفتن هرچه نوشته‌اید شود.
 اگر شما با نام کاربری وارد شده‌اید می‌توانید این هشدار را در بخش «در حال ویرایش» ترجیحاتتان بیابید.',
+'editpage-notsupportedcontentformat-title' => 'فرمت محتوا پشتیبانی نشده',
+'editpage-notsupportedcontentformat-text' => 'فرمت محتوای $1 توسط مدل محتوای $2 پشتیبانی نشده‌است.',
 
 # Content models
 'content-model-wikitext' => 'ویکی‌متن',

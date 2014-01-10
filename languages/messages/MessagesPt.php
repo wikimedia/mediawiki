@@ -2531,6 +2531,7 @@ A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evita
 'delete-warning-toobig' => 'Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
 prossiga com precaução.',
+'deleting-backlinks-warning' => "'''Aviso:''' Outras páginas têm ligação à página que está prestes a eliminar.",
 
 # Rollback
 'rollback' => 'Reverter edições',
