@@ -328,4 +328,10 @@ class LikeMatch {
  * An object representing a master or slave position in a replicated setup.
  */
 interface DBMasterPos {
+	/**
+	 * Return the master position.
+	 *
+	 * @return mixed Master position
+	 */
+	public function getMasterPos();
 }
