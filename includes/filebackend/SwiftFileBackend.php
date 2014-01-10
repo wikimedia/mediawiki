@@ -1136,8 +1136,10 @@ class SwiftFileBackend extends FileBackendStore {
 
 			if ( $this->swiftTempUrlKey != '' ) {
 				$url = $this->storageUrl( $auth, $srcCont, $srcRel );
+				// Swift wants the signature based on the unencoded object name
+				$contPath = parse_url( $this->storageUrl( $auth, $srcCont ), PHP_URL_PATH );
 				$signature = hash_hmac( 'sha1',
-					"GET\n{$expires}\n" . parse_url( $url, PHP_URL_PATH ),
+					"GET\n{$expires}\n{$contPath}/{$srcRel}",
 					$this->swiftTempUrlKey
 				);
 				return "{$url}?temp_url_sig={$signature}&temp_url_expires={$expires}";
