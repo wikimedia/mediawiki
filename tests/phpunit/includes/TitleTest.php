@@ -81,7 +81,7 @@ class TitleTest extends MediaWikiTestCase {
 			'localtestiw: Talk: Sandbox # anchor',
 			'remotetestiw:',
 			'remotetestiw: Talk: # anchor',
-			'removetestiw: #bar',
+			'remotetestiw: #bar',
 			'remotetestiw: Talk:',
 			'remotetestiw: Talk: Foo'
 		) as $text ) {
