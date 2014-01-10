@@ -1025,6 +1025,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
 		}
 
+		$queryProf = '';
+		$totalProf = '';
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 
 		if ( !Profiler::instance()->isStub() ) {
