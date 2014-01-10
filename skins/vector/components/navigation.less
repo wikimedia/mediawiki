@@ -1,0 +1,133 @@
+@import "mediawiki.mixins";
+@import "personalMenu";
+@import "collapsibleNav";
+@import "search";
+@import "tabs";
+
+/* Hide, but keep accessible for screen-readers */
+#mw-navigation h2 {
+	position: absolute;
+	top: -9999px;
+}
+
+/* Head */
+#mw-page-base {
+	height: 5em;
+	background-color: white;
+	.background-image('images/page-fade.png');
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+
+#mw-head-base {
+	margin-top: -5em;
+	margin-left: 10em;
+	height: 5em;
+}
+
+div#mw-head {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+div#mw-head h3 {
+	margin: 0;
+	padding: 0;
+}
+
+/* Navigation Containers */
+#left-navigation {
+	float: left;
+	margin-left: 10em;
+	margin-top: 2.5em;
+	/* When right nav would overlap left nav, it's placed below it
+	   (normal CSS floats behavior). This rule ensures that no empty space
+	   is shown between them due to right nav's margin-top. Page layout
+	   is still broken, but at least the nav overlaps only the page title
+	   instead of half the content. */
+	margin-bottom: -2.5em;
+	/* IE 6 double-margin bug fix */
+	display: inline;
+}
+
+#right-navigation {
+	float: right;
+	margin-top: 2.5em;
+}
+
+/* Logo */
+#p-logo {
+	position: absolute;
+	top: -160px;
+	left: 0;
+	width: 10em;
+	height: 160px;
+}
+
+#p-logo a {
+	display: block;
+	width: 10em;
+	height: 160px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-decoration: none;
+}
+
+/* Panel */
+div#mw-panel {
+	font-size: @menu-main-font-size;
+	position: absolute;
+	top: 160px;
+	padding-top: 1em;
+	width: 10em;
+	left: 0;
+}
+
+div#mw-panel div.portal {
+	padding-bottom: 1.5em;
+	direction: ltr;
+}
+
+div#mw-panel div.portal h3 {
+	font-weight: normal;
+	color: #444;
+	padding: @menu-main-heading-padding;
+	cursor: default;
+	border: none;
+	font-size: @menu-main-heading-font-size;
+}
+
+div#mw-panel div.portal div.body {
+	padding-top: 0.5em;
+	margin: @menu-main-body-margin;
+
+	.background-image('images/portal-break.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+div#mw-panel div.portal div.body ul {
+	list-style-type: none;
+	list-style-image: none;
+	padding: @menu-main-body-padding;
+	margin: 0;
+}
+
+div#mw-panel div.portal div.body ul li {
+	line-height: 1.125em;
+	padding: 0;
+	padding-bottom: 0.5em;
+	margin: 0;
+	font-size: @menu-main-body-font-size;
+	word-wrap: break-word;
+}
+
+div#mw-panel div.portal div.body ul li a {
+	color: @menu-main-body-link-color;
+	&:visited {
+		color: @menu-main-body-link-visited-color;
+	}
+}
+
