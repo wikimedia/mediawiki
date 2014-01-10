@@ -83,6 +83,7 @@ class ApiCreateAccount extends ApiBase {
 
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
+		wfRunHooks( 'AddNewAccountApiForm', array( $this, $loginForm ) );
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
@@ -158,6 +159,9 @@ class ApiCreateAccount extends ApiBase {
 			// Everything was fine.
 			$result['result'] = 'success';
 		}
+		
+		// Give extensions a chance to modify the API result data
+		wfRunHooks( 'AddNewAccountApiResult', array( $this, $loginForm, &$result ) );
 
 		$apiResult->addValue( null, 'createaccount', $result );
 	}
