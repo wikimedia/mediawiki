@@ -86,9 +86,9 @@ td.diff-deletedline .diffchange {
 }
 
 td.diff-addedline .diffchange {
-	background: #d8ecff;
+	background: #a3d3ff;
 }
 
 td.diff-deletedline .diffchange {
-	background: #feeec8;
+	background: #ffe49c;
 }
