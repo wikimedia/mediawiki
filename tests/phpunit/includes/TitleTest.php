@@ -56,6 +56,8 @@ class TitleTest extends MediaWikiTestCase {
 			'Foo/.../Sandbox',
 			'Sandbox/...',
 			'A~~',
+			'#anchor',
+			'Sandbox#anchor',
 			// Length is 256 total, but only title part matters
 			'Category:' . str_repeat( 'x', 248 ),
 			str_repeat( 'x', 252 )
@@ -67,6 +69,8 @@ class TitleTest extends MediaWikiTestCase {
 		foreach ( array(
 			'',
 			':',
+			'#',
+			':#',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
