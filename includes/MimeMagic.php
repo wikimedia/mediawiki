@@ -517,7 +517,7 @@ class MimeMagic {
 			} else {
 				wfDebug( __METHOD__ . ": refusing to guess better type for $mime file, " .
 					".$ext is not a known OPC extension.\n" );
-				$mime = 'application/zip';
+				$mime = 'false';
 			}
 		}
 

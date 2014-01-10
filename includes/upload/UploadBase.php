@@ -490,7 +490,7 @@ abstract class UploadBase {
 			if ( !$zipStatus->isOK() ) {
 				$errors = $zipStatus->getErrorsArray();
 				$error = reset( $errors );
-				if ( $error[0] !== 'zip-wrong-format' ) {
+				if ( !($error[0] == 'zip-wrong-format' || $error[0] == 'zip-bad') ) {
 					wfProfileOut( __METHOD__ );
 					return $error;
 				}
