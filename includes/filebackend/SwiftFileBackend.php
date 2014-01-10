@@ -89,12 +89,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
 	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
-	 *   - rgwS3AccessKey     : Ragos Gateway S3 "access key" value on the account.
+	 *   - rgwS3AccessKey     : Rados Gateway S3 "access key" value on the account.
 	 *                          Do not set this until it has been set in the backend.
 	 *                          This is used for generating expiring pre-authenticated URLs.
 	 *                          Only use this when using rgw and to work around
 	 *                          http://tracker.newdream.net/issues/3454.
-	 *   - rgwS3SecretKey     : Ragos Gateway S3 "secret key" value on the account.
+	 *   - rgwS3SecretKey     : Rados Gateway S3 "secret key" value on the account.
 	 *                          Do not set this until it has been set in the backend.
 	 *                          This is used for generating expiring pre-authenticated URLs.
 	 *                          Only use this when using rgw and to work around
