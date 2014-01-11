@@ -246,9 +246,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $conditions
 	 * @param array $options
 	 * @param null|string $functionName
-	 *
 	 * @return ResultWrapper
-	 * @throws DBQueryError if the quey failed (even if the database was in ignoreErrors mode).
+	 * @throws DBQueryError if the query failed (even if the database was in
+	 *   ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null
@@ -378,7 +378,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return ResultWrapper
+	 * @return stdClass
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
 		array $options = array(), $functionName = null
@@ -825,7 +825,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param stdClass $result
-	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	public function getFieldsFromDBResult( stdClass $result ) {

@@ -1579,6 +1579,7 @@ PICT # тайп тайпан
 'listfiles_description' => 'Цуьнах лаьцна',
 'listfiles_count' => 'Верси',
 'listfiles-show-all' => 'Гайта суьртийн шира версеш',
+'listfiles-latestversion-yes' => 'ХӀаъ',
 
 # File description page
 'file-anchor-link' => 'Файл',
@@ -2354,7 +2355,9 @@ PICT # тайп тайпан
 'pageinfo-language' => 'АгӀона мотт',
 'pageinfo-toolboxlink' => 'Агlонах болу бовзам',
 'pageinfo-redirectsto-info' => 'Хаам',
+'pageinfo-contentpage-yes' => 'ХӀаъ',
 'pageinfo-protect-cascading' => 'Чахчарин гӀоралла кхузара',
+'pageinfo-protect-cascading-yes' => 'ХӀаъ',
 'pageinfo-protect-cascading-from' => 'Чахчарин гӀоралла тӀера',
 'pageinfo-category-info' => 'Категорех лаьцна хаам',
 
@@ -2660,6 +2663,7 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'tags-description-header' => 'МаьӀнан дуьззина сурт хӀоттор',
 'tags-active-header' => 'Жигара?',
 'tags-hitcount-header' => 'Къастам бина нисдарш',
+'tags-active-yes' => 'ХӀаъ',
 'tags-edit' => 'нисйé',
 'tags-hitcount' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
 
@@ -2684,6 +2688,7 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'htmlform-submit' => 'ДӀадахьийта',
 'htmlform-reset' => 'Цаоьшу хийцамаш',
 'htmlform-selectorother-other' => 'Кхин',
+'htmlform-yes' => 'ХӀаъ',
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаяьккхина}} агӀо $3',
@@ -2745,8 +2750,16 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Кепаш схьаястар',
+'expand_templates_intro' => 'ХӀокху белхан агӀорахь йиш ю йоза хийца.
+Кхин кепаш схьаяста.
+<code><nowiki>{{#language:…}}</nowiki></code> кхочуш дан тайп
+<code><nowiki>{{CURRENTDAY}}</nowiki></code>.',
+'expand_templates_title' => 'АгӀона {{FULLPAGENAME}} корта кхин а:',
+'expand_templates_input' => 'Чудолу йоза:',
 'expand_templates_output' => 'Хилам',
 'expand_templates_remove_comments' => 'ДӀаяха комментареш',
+'expand_templates_remove_nowiki' => 'ДӀайоху тегаш <nowiki> хилча',
+'expand_templates_generate_xml' => 'Гойту дитта цу XML',
 'expand_templates_preview' => 'Хьалха муха ю хьажа',
 
 );

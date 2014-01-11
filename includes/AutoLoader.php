@@ -842,6 +842,8 @@ $wgAutoloadLocalClasses = array(
 	'RCFeedFormatter' => 'includes/rcfeed/RCFeedFormatter.php',
 	'IRCColourfulRCFeedFormatter' => 'includes/rcfeed/IRCColourfulRCFeedFormatter.php',
 	'JSONRCFeedFormatter' => 'includes/rcfeed/JSONRCFeedFormatter.php',
+	'XMLRCFeedFormatter' => 'includes/rcfeed/XMLRCFeedFormatter.php',
+	'MachineReadableRCFeedFormatter' => 'includes/rcfeed/MachineReadableRCFeedFormatter.php',
 
 	# includes/resourceloader
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',

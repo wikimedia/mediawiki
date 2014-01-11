@@ -1089,6 +1089,8 @@ $2
 'invalid-content-data' => '內容資料無效',
 'content-not-allowed-here' => '[[$2]]頁面上不允許「$1」內容',
 'editwarning-warning' => '離開這個頁面可能會令您失去之前作出的所有更改。若您已經登入，您可在偏好設定的「編輯」部份裡關閉此警告。',
+'editpage-notsupportedcontentformat-title' => '內容格式尚無法支援',
+'editpage-notsupportedcontentformat-text' => '內容模型$2尚無法支援內容格式$1。',
 
 # Content models
 'content-model-wikitext' => '圍記文字（Wikitext）',

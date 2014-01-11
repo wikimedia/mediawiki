@@ -674,9 +674,8 @@ Ayrim andozalar qo'shilmaydi.",
 'last' => 'oxirgi',
 'page_first' => 'birinchi',
 'page_last' => 'oxirgi',
-'histlegend' => 'Farqlar: solishtirish uchun kerakli radiobokslarni belgilang va pastdagi tugmani yoki Enterni bosing.<br />
-Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
-(oxirgi) = avvalgi koʻrinish bilan farq, k = kichkina tahrir.',
+'histlegend' => "Farqlarni tanlash: solishtirish uchun kerakli radiobokslarni belgilang va '''{{int:compare-submit}}''' tugmasini bosing.<br />
+Bu yerda: '''({{int:cur}})''' = hozirgi koʻrinish bilan farqi, '''({{int:last}})''' = avvalgi koʻrinish bilan farqi, '''{{int:minoreditletter}}''' = kichkina tahrir.",
 'history-fieldset-title' => 'Tarixni koʻrish',
 'history-show-deleted' => 'Faqat o‘chirilganlari',
 'histfirst' => 'Eng avvalgi',
@@ -935,11 +934,15 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'recentchanges' => 'Yangi oʻzgarishlar',
 'recentchanges-legend' => 'Yangi oʻzgarishlar moslamalari',
 'recentchanges-summary' => 'Bu sahifada siz {{SITENAME}}da sodir boʻlgan soʻnggi oʻzgarishlarni koʻrishingiz mumkin.',
+'recentchanges-noresult' => 'Koʻrsatilgan muddatga va shartlarga oid oʻzgarishlar topilmadi.',
 'recentchanges-feed-description' => 'Vikida mazkur oqimdagi oxirgi oʻzgarishlarni kuzatish',
-'recentchanges-label-newpage' => 'Bu tahrir orqali yangi sahifa yaratildi',
-'recentchanges-label-minor' => 'Bu kichik tahrir',
-'recentchanges-label-bot' => 'Bu tahrirni bot bajardi',
+'recentchanges-label-newpage' => 'Bu tahrir orqali yangi sahifa yaratilgan',
+'recentchanges-label-minor' => 'Bu tahrir kichik deb belgilangan',
+'recentchanges-label-bot' => 'Bu tahrirni bot bajargan',
 'recentchanges-label-unpatrolled' => 'Bu tahrir hali tekshirilmagan',
+'recentchanges-label-plusminus' => 'sahifa vazni baytlarda qanchaga oʻzgargani',
+'recentchanges-legend-heading' => "'''Izoh:'''",
+'recentchanges-legend-newpage' => '(shuningdek qarang: [[Special:NewPages|yangi sahifalar roʻyxati]])',
 'rcnotefrom' => "Quyida <strong>$2</strong> dan (<strong>$1</strong> gacha) bo'lgan o'zgarishlar keltirilgan.",
 'rclistfrom' => '$1 dan boshlab yangi oʻzgarishlarni koʻrsat.',
 'rcshowhideminor' => 'Kichik tahrirlarni $1',
@@ -952,7 +955,7 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'diff' => 'farq',
 'hist' => 'tarix',
 'hide' => 'yashir',
-'show' => 'Koʻrsat',
+'show' => 'koʻrsat',
 'minoreditletter' => 'k',
 'newpageletter' => 'Y',
 'boteditletter' => 'b',
@@ -1142,7 +1145,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-noresult' => 'Foydalanuvchilar topilmadi.',
 
 # Special:ListGroupRights
-'listgrouprights' => 'Foydalanuvchilar guruhi huquqlari',
+'listgrouprights' => 'Foydalanuvchilar guruhlari roʻyxati',
 'listgrouprights-summary' => 'Har bir viki-loyihada boʻlgani kabi, Oʻzbekcha Vikipediyada ham foydalanuvchilar bir nechta guruhlarga boʻlingan boʻlib, quyida ularning roʻyxati va tegishli huquqlari keltirilgan. Alohida huquqlar haqida [[{{MediaWiki:Listgrouprights-helppage}}|qoʻshimcha maʼlumotlar]] boʻlishi mumkin.',
 'listgrouprights-key' => 'Izohlar:
 * <span class="listgrouprights-granted">Amaldagi huquqlar</span>
@@ -1197,8 +1200,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatchthispage' => "Kuzatuvni to'xtatish",
 'notanarticle' => 'Maqola emas',
 'watchlist-details' => 'Sizning kuzatuv roʻyxatingizda hozirda {{PLURAL:$1|bitta sahifa|$1ta sahifa}} mavjud (munozara sahifalarini hisobga olmaganda).',
+'wlheader-showupdated' => "Siz oxirgi marta kirganingizdan keyin oʻzgartirilgan sahifalar '''qalin''' yozuv bilan ajratib koʻrsatilgan.",
 'wlnote' => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
-'wlshowlast' => 'Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko‘rsatish. $3 tahrirlarni ko‘rsatish',
+'wlshowlast' => 'Oxirgi $1 soatdagi $2 kundagi tahrirlarni koʻrsat $3',
 'watchlist-options' => 'Kuzatuv roʻyxati moslamalari',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1206,7 +1210,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching' => "Kuzatuv ro'yxatidan o'chirish...",
 
 'enotif_mailer' => "{{SITENAME}} Pochta orqali e'lon qilish xizmati",
-'enotif_reset' => 'Hamma sahifalarni koʻrib chiqilgan deb belgilash',
+'enotif_reset' => 'Hammasini koʻrib chiqilgan deb belgilash',
 'enotif_impersonal_salutation' => '{{SITENAME}} ishtirokchisi',
 'enotif_subject_deleted' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan o‘chirildi',
 'enotif_subject_created' => '{{SITENAME}} loyihasining $1 nomli sahifasi foydalanuvchi {{gender:$2|$2}} tomonidan yaratildi',
@@ -1629,7 +1633,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'exif-iimcategory-wea' => 'Ob-havo',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'Barcha',
+'watchlistall2' => 'hammasi',
 'namespacesall' => 'Barchasi',
 'monthsall' => 'barchasi',
 
@@ -1647,6 +1651,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'table_pager_last' => 'Oxirgi sahifa',
 
 # Auto-summaries
+'autosumm-blank' => 'Sahifa tozalandi',
 'autoredircomment' => '[[$1]]ga yoʻnaltirildi',
 'autosumm-new' => '"$1" yozuvi orqali yangi sahifa yaratildi',
 
@@ -1673,6 +1678,9 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Nishonlar]] filtri:',
 
+# Special:ComparePages
+'compare-submit' => 'Solishtirish',
+
 # HTML forms
 'htmlform-reset' => 'Oʻzgarishlarni bekor qilish',
 'htmlform-selectorother-other' => 'Boshqa',
@@ -1690,6 +1698,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 
 # Search suggestions
 'searchsuggest-search' => 'Qidiruv',
+'searchsuggest-containing' => 'ichida bu boʻlgan...',
 
 # API errors
 'api-error-unknown-code' => 'Noaniq xato: "$1".',

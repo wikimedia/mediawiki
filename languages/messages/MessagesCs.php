@@ -9,6 +9,7 @@
  *
  * @author Chmee2
  * @author Danny B.
+ * @author DemonioCZ
  * @author Dontlietome7
  * @author Geitost
  * @author Helix84
@@ -1187,6 +1188,8 @@ Zřejmě byla smazána.',
 'content-not-allowed-here' => 'Obsah typu $1 není na stránce [[$2]] dovolen.',
 'editwarning-warning' => 'Opuštěním této stránky se mohou veškeré provedené změny ztratit.
 Přihlášení uživatelé si mohou toto varování vypnout na záložce „Editace“ v uživatelském nastavení.',
+'editpage-notsupportedcontentformat-title' => 'Nepodporovaný formát obsahu',
+'editpage-notsupportedcontentformat-text' => 'Model obsahu $2 nepodporuje formát obsahu $1.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',
@@ -3995,7 +3998,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'version-parser-function-hooks' => 'Funkce parseru',
 'version-hook-name' => 'Název přípojného bodu',
 'version-hook-subscribedby' => 'Volán z',
-'version-version' => '(Verze $1)',
+'version-version' => '($1)',
 'version-license' => 'Licence MediaWiki',
 'version-ext-license' => 'Licence',
 'version-ext-colheader-name' => 'Rozšíření',

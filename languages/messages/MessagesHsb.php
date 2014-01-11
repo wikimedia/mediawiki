@@ -960,6 +960,8 @@ Eksistuje hižo.',
 'invalid-content-data' => 'Njepłaćiwe wobsahowe daty',
 'content-not-allowed-here' => 'Wobsah "$1" njeje na stronje [[$2]] dowoleny',
 'editwarning-warning' => 'Hdyž so strona wopušća, móža so změny zhubić, kotrež sy přewjedł. Jeli sy přizjewjeny, móžeš tute warnowanje we wotrězku "Wobdźěłowanje" swojich nastajenjow znjemóžnić.',
+'editpage-notsupportedcontentformat-title' => 'Wobsahowy format so njepodpěruje',
+'editpage-notsupportedcontentformat-text' => 'Wobsahowy format $1 so přez wobsahowy model $2 njepodpěruje.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

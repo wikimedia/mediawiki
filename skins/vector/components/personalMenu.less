@@ -1,0 +1,41 @@
+/* Personal */
+#p-personal {
+	position: absolute;
+	top: 0.33em;
+	right: 0.75em;
+	/* Display on top of page tabs - bugs 37158, 48078 */
+	z-index: 100;
+
+	h3 {
+		display: none;
+	}
+
+	ul {
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0;
+		padding-left: 10em; /* Keep from overlapping logo */
+	}
+
+	li {
+		line-height: 1.125em;
+		/* @noflip */
+		float: left;
+		margin-left: 0.75em;
+		margin-top: 0.5em;
+		font-size: @menu-personal-font-size;
+		white-space: nowrap;
+	}
+}
+
+/* Icon for Usernames */
+#pt-userpage,
+#pt-anonuserpage,
+#pt-login {
+	background-position: left top;
+	background-repeat: no-repeat;
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	.background-image-svg('images/user-icon.svg', 'images/user-icon.png');
+	padding-left: 15px !important;
+}

@@ -157,6 +157,16 @@ changes to languages because of Bugzilla reports.
 * A page_links_updated field has been added to the page table.
 * SpecialPage::getTitle has been deprecated in favor of
   SpecialPage::getPageTitle.
+* BREAKING CHANGE: Two potentially backwards-incompatible changes have been made
+  to the 'SpecialWatchlistQuery' hook's last parameter (array $values) to make
+  the hook more consistent with the 'SpecialRecentChangesQuery' one:
+** Several array keys have been renamed: hideMinor → hideminor,
+   hideBots → hidebots, hideAnons → hideanons, hideLiu → hideliu,
+   hidePatrolled → hidepatrolled, hideOwn → hidemyself.
+** The parameter value is now a FormOptions object, not a plain array (array
+   access operators should continue to work, as it implements the ArrayAccess
+   interface).
+* Option to mark hooks as deprecated has been added.
 
 ==== Removed classes ====
 * TitleDependency (unused)

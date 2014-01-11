@@ -852,6 +852,8 @@ Uun't strik- an fersküüw-logbuk oner stäänt muar diartu.",
 'content-not-allowed-here' => '„$1“ mut ei skrewen wurd üüb sidj [[$2]]',
 'editwarning-warning' => 'Wan dü detheer sidj slotst, kön feranrangen ferleesen gung.
 Üs uunmeldet brüker könst dü detheer wäärnang bi din iinstelangen oner „Bewerke“ wechknipse.',
+'editpage-notsupportedcontentformat-title' => 'Detdiar formoot gongt ei.',
+'editpage-notsupportedcontentformat-text' => 'Det formoot $1 gongt ei mä det model $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -3535,7 +3537,7 @@ Dü könst uk det [[Special:EditWatchlist|normool sidj]] tu bewerkin nem.",
 'version-parser-function-hooks' => 'Parser function hooks',
 'version-hook-name' => 'Hook nööm',
 'version-hook-subscribedby' => 'Aprepen faan',
-'version-version' => '(Werjuun $1)',
+'version-version' => '($1)',
 'version-license' => 'MediaWiki-lisens',
 'version-ext-license' => 'Lisens',
 'version-ext-colheader-name' => 'Ütjwidjang',

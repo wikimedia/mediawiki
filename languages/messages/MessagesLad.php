@@ -328,7 +328,7 @@ $messages = array(
 'mypage' => 'Hoja',
 'mytalk' => 'Mi diskusyon',
 'anontalk' => 'Diskusyón para este adresso de IP',
-'navigation' => 'Navigación',
+'navigation' => 'Navigasyon',
 'and' => '&#32;i',
 
 # Cologne Blue skin
@@ -348,7 +348,7 @@ $messages = array(
 'vector-action-undelete' => 'Traer atrás',
 'vector-action-unprotect' => 'Trocar proteksyon',
 'vector-simplesearch-preference' => 'Aktivar barra de buskida simplifikada (solamente kon aspekto Vector)',
-'vector-view-create' => 'Criar',
+'vector-view-create' => 'Krear',
 'vector-view-edit' => 'Trocar',
 'vector-view-history' => 'Ver la istoria',
 'vector-view-view' => 'Meldar',
@@ -363,7 +363,7 @@ $messages = array(
 'tagline' => 'De {{SITENAME}}',
 'help' => 'Ayudo',
 'search' => 'Buxcar',
-'searchbutton' => 'Buxcar',
+'searchbutton' => 'Bushkar',
 'go' => 'Ir',
 'searcharticle' => 'Ir',
 'history' => 'La istoria de la hoja',
@@ -374,10 +374,10 @@ $messages = array(
 'print' => 'Imprimir',
 'view' => 'Ver',
 'edit' => 'Trocar',
-'create' => 'Criar',
+'create' => 'Krear',
 'editthispage' => 'Trocar esta hoja',
 'create-this-page' => 'Criar esta hoja',
-'delete' => 'Efaçar',
+'delete' => 'Efasar',
 'deletethispage' => 'Efassar esta hoja',
 'undeletethispage' => 'Restorar esta pajina',
 'undelete_short' => 'Traer atrás $1 {{PLURAL:$1|trocamientos|trocamientos}}',
@@ -412,8 +412,8 @@ $messages = array(
 'viewcount' => 'Este pajina fue vijitado {{PLURAL:$1|una vez|$1 vezes}}.',
 'protectedpage' => 'Hoja guardada',
 'jumpto' => 'Saltar a:',
-'jumptonavigation' => 'navigación',
-'jumptosearch' => 'Buxcar',
+'jumptonavigation' => 'navigasyon',
+'jumptosearch' => 'bushkar',
 'view-pool-error' => 'Diskulpe, los servidores estan sovrekargado en est momento.
 Ay demaziado usuarios estan aprovando a ver esta pajina.
 Aspera un momento antes de aprovar esta pajina de muevo.
@@ -475,7 +475,7 @@ $1',
 'feed-invalid' => 'Tipo de kanal de subskripsyon es invalido.',
 'feed-unavailable' => 'Kanales de subskripsyon no estan disponibles',
 'site-rss-feed' => 'Fuente de RSS de $1',
-'site-atom-feed' => 'Alimentela de Atom de $1',
+'site-atom-feed' => 'Kanal Atom de $1',
 'page-rss-feed' => '"$1" Fuente RSS',
 'page-atom-feed' => '"$1" Subscripción Atom',
 'red-link-title' => '$1 (la hoja no egziste)',
@@ -484,11 +484,11 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Hoja',
-'nstab-user' => 'Hoja de kullaneador',
+'nstab-user' => 'Pajina de usuario',
 'nstab-media' => 'Hoja de Meddia',
 'nstab-special' => 'Hoja especial',
 'nstab-project' => 'Hoja del proyecto',
-'nstab-image' => 'Dosya',
+'nstab-image' => 'Archivo',
 'nstab-mediawiki' => 'Messaj',
 'nstab-template' => 'Şablón',
 'nstab-help' => 'Ayudo',
@@ -514,21 +514,58 @@ Esto puede indikar un yerro en la programa.',
 'databaseerror-function' => 'Fonksyon: $1',
 'databaseerror-error' => 'Yerro: $1',
 'laggedslavemode' => "'''Aviso:''' Puede ke la pajina no kontiene las aktualizasyones mas resientes.",
-'missing-article' => 'La basa de dados no topó el teksto de la hoja llamada "$1" $2.
+'readonly' => 'Base de datos blokeada',
+'enterlockreason' => 'Eskrive un razon por el blokeo,incluyendo un estimasyon de kuando libera el blokeo',
+'readonlytext' => 'La base de datos esta blokeada a muevas entradas i otras modifikasyones,probablemente para mantenemento rutinas, Kuando akava se enkontra dispozible.
 
-En lo mas muncho, esto se cavsa de un "dif" anakróniko ou de un atamiento a la istoria de una hoja que se efaçó.
+El administrador ke blokeo dio esta esplikasyon: $1',
+'missing-article' => 'La base de datos no topó el teksto de una pajina ke se debe topar, llamada "$1" $2.
 
-Si esto no es el cavso, puede ser que topates una chincha en el lojikal.
-Si puede ser mete un [[Especial:ListaUsadores/sysop|administrador]] en corriente y también anota la URL.',
+Jeneralmente, esto se cavsa de un "dif" anakróniko o de una enlase de la istoria de una pajina que se efaso.
+
+Si esto no es el cavso, puede ser que topates un yerro en la programa.
+Si puede avisar [[Special:ListUsers/sysop|administrador]], anotando la URL.',
 'missingarticle-rev' => '(nº. de revisión: $1)',
 'missingarticle-diff' => '(Dif.: $1, $2)',
+'readonly_lag' => 'La base de datos se a blokeado mientres los servidores se sinkronizan',
+'internalerror' => 'Yerro enterno',
+'internalerror_info' => 'Yerro enterno: $1',
+'fileappenderrorread' => 'No se pudo meldar "$1" durante enkashyon.',
+'fileappenderror' => 'No se pudo enkashar "$1" a "$2".',
 'filecopyerror' => 'No se pudo copiar el arxiv "$1" a "$2".',
+'filerenameerror' => 'No se pudo renombrar archivo "$1" a "$2".',
+'filedeleteerror' => 'No se pudo efasar archivo "$1".',
+'directorycreateerror' => 'No se pudo krear direktorio "$1".',
+'filenotfound' => 'No se pudo topar archivo "$1".',
+'fileexistserror' => 'No se pudo eskrivir al archivo "$1": Archivo ya egziste.',
+'unexpected' => 'Valor enasperado: "$1"="$2".',
+'formerror' => 'Yerro: No se pudo embiar fomulario.',
+'badarticleerror' => 'No se puede azer esta aksyon en este pajina.',
+'cannotdelete' => 'No pudo efasar esta pajina o archivo "$1".
+Puede ser ke ya a efasado otra persona.',
+'cannotdelete-title' => 'No se puede efasar pajina "$1"',
+'delete-hook-aborted' => 'Efasyon fue anulado por "hook".',
+'no-null-revision' => 'No pudo krear la mueva revizyon nula para la pajina "$1"',
 'badtitle' => 'Titolo negro',
 'badtitletext' => 'El título de la hoja demandada está vazío, no es valible, o es un link interlingua o interwiki incorrecto.
 Puede ser que contiene uno o más caracteres que no se pueden usar en los títulos.',
+'perfcached' => 'Los sigiente datos se enkontra en el cache i puede ser ke no esta aktualizada. Un maksimo de {{PLURAL:$1|un resultado esta|$1 resultados estan}} enkontrado en el cache.',
+'perfcachedts' => 'Los sigiente datos se enkontra en el cache, i fue aktualizado $1. Un maksimo de {{PLURAL:$4|un resultado esta|$1 resultados estan}} enkontrado en el cache.',
+'querypage-no-updates' => 'Las aktualizasyones de esta pajina esta desaktivado.
+Las datos no va aktualizar agora.',
 'viewsource' => 'Ver su manadero',
 'viewsource-title' => 'Ver la fuente de $1',
 'actionthrottled' => 'Aksyon limitada',
+'actionthrottledtext' => 'Komo prekosyon kontra el spam, ay un limite de kuanto vezes puede azer este aksyon en poko tiempo, i sovrepasaste este limite.
+Aprovar de muevo en unos minutos.',
+'protectedpagetext' => 'La pajina esta guardado kontra esdisyones i otras aksyones.',
+'viewsourcetext' => 'Puede ver i kopiar la fuente de este pajina:',
+'viewyourtext' => 'Puede ver i kopiar la fuente de "tus edisyones" a esta pajina:',
+'protectedinterface' => 'Esta pajina abastese teksto de la interfaz para la programa de este viki, i es guardado para empedir abuso.
+Para anyadir o kambiar traduksyones para todos los vikis, uza [//translatewiki.net/translatewiki.net], el projecto de lokalizasyon de MediaWiki.',
+'editinginterface' => "'''Aviso:''' Estas editando una pajina uzada para abasteser teksto de la interfaz para la programa.
+Kambios a esta pajina afectara la aparesemiento de la interfaz de usuario para los otros usuarios en este viki.
+Para anyadir o kambiar traduksyones para todos los vikis, uza [//translatewiki.net/translatewiki.net], el projecto de lokalizasyon de MediaWiki.",
 
 # Virus scanner
 'virus-unknownscanner' => 'antivirus deskonosido:',
@@ -539,18 +576,18 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'userlogin-yourname' => 'Nombre de usuario',
 'userlogin-yourname-ph' => 'Eskrive tu nombre de usuario',
 'createacct-another-username-ph' => 'Eskrive el nombre de usuario',
-'yourpassword' => 'Parola',
+'yourpassword' => 'Kontrasenya:',
 'userlogin-yourpassword' => 'Kontrasenya',
 'userlogin-yourpassword-ph' => 'Eskriva tu kontrasenya',
 'createacct-yourpassword-ph' => 'Eskriva una kontrasenya',
-'yourpasswordagain' => 'Entra de muevo la parola',
+'yourpasswordagain' => 'Entra de muevo la kontrasenya',
 'createacct-yourpasswordagain' => 'Konfirme contrasenya',
 'createacct-yourpasswordagain-ph' => 'Eskrive la kontrasenya de muevo',
 'remembermypassword' => 'Acórdate de mi entrada de usador en este bilgisayar/orddênador (por un maksimum de {{PLURAL:$1|día|días}})',
 'yourdomainname' => 'Tu dominyo:',
 'password-change-forbidden' => 'No se puede kambiar contrasenyas en este viki.',
 'login' => 'Entrar',
-'nav-login-createaccount' => 'Entrar / Criar un cuento',
+'nav-login-createaccount' => 'Entrar / krear un kuento',
 'loginprompt' => 'Kale tener "cookies" aktivadas enel navegador para enrejistrarse en {{SITENAME}}',
 'userlogin' => 'Entrar / Registrarse',
 'logout' => 'Salir',
@@ -558,8 +595,8 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'userlogin-noaccount' => 'No tiene un kuento?',
 'userlogin-joinproject' => 'Abonar {{SITENAME}}',
 'nologin' => "¿No tienes un cuento? '''$1'''.",
-'nologinlink' => 'Crea un cuento',
-'createaccount' => 'Crea un nuevo cuento',
+'nologinlink' => 'Krear un kuento',
+'createaccount' => 'Krear un kuento',
 'gotaccount' => "¿Ya tienes un cuento? '''$1'''.",
 'gotaccountlink' => 'Entrar',
 'userlogin-resetlink' => 'Olvidates tus detalyos de akseso?',
@@ -570,7 +607,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'createacct-emailoptional' => 'Korreo elektroniko (opsyonal)',
 'createacct-email-ph' => 'Eskrive tu adreso de korreo elektroniko',
 'createacct-another-email-ph' => 'Eskrive el adreso de korreo elektronico',
-'createaccountmail' => 'por una letra electrónica',
+'createaccountmail' => 'Uzar una contrasenya temporal y embiarla al korreo elektronico espesificado',
 'createacct-realname' => 'Nombre verdadero (opsyonal)',
 'createaccountreason' => 'Razon:',
 'createacct-reason' => 'Razon',
@@ -607,6 +644,8 @@ Eskoje un nombre diferente.',
 'passwordreset-username' => 'Nombre de usador:',
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-email' => 'Adresso de letral:',
+'passwordreset-emailelement' => 'Usuario: $1
+Kontrasenya temporal: $2',
 
 # Special:ChangeEmail
 'changeemail' => 'Kambiar adreso de korreo elektroniko',
@@ -635,7 +674,7 @@ Eskoje un nombre diferente.',
 'nowiki_sample' => 'Escribid aquí texto sin formato',
 'nowiki_tip' => 'Iñorar el formato wiki',
 'image_tip' => 'Imagen incorporada',
-'media_tip' => 'Atamiento de dosya',
+'media_tip' => 'Enlase de archivo',
 'sig_tip' => 'Firma, data i ora',
 'hr_tip' => 'Liña orizontala (úsala de vez en cuando)',
 
@@ -660,7 +699,7 @@ Tu adresso de IP va ser enrejjistrado en la istoria de la hoja.",
 'loginreqlink' => 'entrar',
 'loginreqpagetext' => 'Tienes que $1 para pueder ver otras hojas.',
 'accmailtitle' => 'La kontrasenya ha sido embiada.',
-'accmailtext' => 'La kontrasenya para "$1" se ha embiado a $2.',
+'accmailtext' => "Se a embiado a $2 una kontrasenya jenerado por [[User talk:$1|$1]]. Se puede kambiar en la pajina ''[[Special:ChangePassword|cambiar kontrasenya]]'' al entrar.",
 'newarticle' => '(Muevo)',
 'newarticletext' => 'Arrivates a una hoja que daínda no egziste.
 Para crear esta hoja, empeça a escribir en la caxa de abaxo. Mira [[{{MediaWiki:Helppage}}|la hoja de ayudo]] para saber más.
@@ -733,7 +772,7 @@ Este o estos kampos no van ser amostrados",
 'histlegend' => "Selección de diferencias: marca los selectores de las versiones a comparar y pulsa ''enter'' o el botón de abajo.<br />
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
-'history-fieldset-title' => 'Buscar en la istoria',
+'history-fieldset-title' => 'Navegar en la istoria',
 'history-show-deleted' => 'Sólamente efassado',
 'histfirst' => 'Lo mas antiko',
 'histlast' => 'Lo mas muevo',
@@ -775,8 +814,8 @@ Leyenda: (act) = diferencias con la versión actual,
 'diff-multi' => '(No {{PLURAL:$1|es amostrado un trokamiento intermedio echo|son amostrados $1 trokamientos intermedios echos}} por {{PLURAL:$2|un usador|$2 usadores}})',
 
 # Search results
-'searchresults' => 'Resultados de la búsquida',
-'searchresults-title' => 'Resultados de la búsquida de «$1»',
+'searchresults' => 'Resultados de la bushkida',
+'searchresults-title' => 'Resultados de la bushkida de «$1»',
 'notextmatches' => 'No se pudo topar en dinguna hoja.',
 'prevn' => '{{PLURAL:$1|$1}} de antes',
 'nextn' => '{{PLURAL:$1|$1}} venideras',
@@ -818,6 +857,7 @@ Leyenda: (act) = diferencias con la versión actual,
 # Preferences page
 'preferences' => 'Preferencias',
 'mypreferences' => 'Las mis preferensias',
+'prefs-edits' => 'Numero de edisyones:',
 'prefs-skin' => 'Vista',
 'skin-preview' => 'Previstear',
 'prefs-datetime' => 'Data i ora',
@@ -853,7 +893,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'gender-male' => 'El redakto pajinas de viki',
 'gender-female' => 'Eya redakto pajinas de viki',
 'email' => 'Korreo elektroniko',
-'prefs-help-email' => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
+'prefs-help-email' => 'El adreso de korreo elektroniko es opsional, ma es menester para alimpiar la tu kontrasenya, si la olvidates',
 'prefs-help-email-others' => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
 'prefs-help-email-required' => 'Se nesesita adreso de korreo elektroniko.',
 'prefs-info' => 'Informasyon basiko',
@@ -933,7 +973,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'rclinks' => 'Ver los dal cavo $1 trocamientos en los dal cavo $2 días.<br />$3',
 'diff' => 'dif',
 'hist' => 'ist',
-'hide' => 'Esconder',
+'hide' => 'Eskonder',
 'show' => 'Amostrar',
 'minoreditletter' => 'ch',
 'newpageletter' => 'N',
@@ -953,7 +993,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son '''reforçadas'
 'recentchangeslinked-to' => 'Amostra los trocamientos freskos en lugar de la hoja indicada',
 
 # Upload
-'upload' => 'Suvir una dosya',
+'upload' => 'Suvir un archivo',
 'uploadlogpage' => 'Subidas de arxivos',
 'filename' => 'Nombre de archivo',
 'filedesc' => 'Somario',
@@ -985,7 +1025,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son '''reforçadas'
 'listfiles-latestversion-no' => 'No',
 
 # File description page
-'file-anchor-link' => 'Dosya',
+'file-anchor-link' => 'Archivo',
 'filehist' => 'La istoria de la dosya',
 'filehist-help' => 'Klika encima de una data/ora para vel la dosya desta data.',
 'filehist-revert' => 'aboltar',
@@ -994,7 +1034,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son '''reforçadas'
 'filehist-thumb' => 'Minyatura',
 'filehist-thumbtext' => 'Minyatura de la versión á las $1',
 'filehist-nothumb' => 'Sin minyatura',
-'filehist-user' => 'Kullaneador',
+'filehist-user' => 'Usuario',
 'filehist-dimensions' => 'Dimensiones',
 'filehist-filesize' => 'El boy de la dosya',
 'filehist-comment' => 'Comentario',
@@ -1035,11 +1075,16 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'statistics' => 'Estatísticas',
 'statistics-articles' => 'Pajinas de kontenido',
 'statistics-pages' => 'Pajinas',
+'statistics-users-active' => 'Usuarios aktivos',
 
 'pageswithprop-submit' => 'Ir',
 
-'brokenredirects-edit' => 'trocar',
+'doubleredirects' => 'Redireksyones dobles',
 
+'brokenredirects-edit' => 'trocar',
+'brokenredirects-delete' => 'efasar',
+
+'withoutinterwiki' => 'Pajinas sin enlases de lenguas',
 'withoutinterwiki-submit' => 'Amostrar',
 
 # Miscellaneous special pages
@@ -1129,9 +1174,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'watchlist' => 'Lista de akavidamiento',
 'mywatchlist' => 'Mi lista de akavidamientos',
 'watchlistfor2' => 'Para $1 $2',
-'addedwatchtext' => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
-
-Cuando queres eliminar la hoja de tu lista de escogidas, piza «Dexar de cudiar» en el menú.",
+'addedwatchtext' => 'La pajina "[[:$1]]" fue anyadido a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta pajina i en tu pajina de diskusyon assosiada va apareser ayi.',
 'removedwatchtext' => 'La hoja «[[:$1]]» fue eliminada de tu [[Special:Watchlist|lista de escogidas]].',
 'watch' => 'cudiar',
 'watchthispage' => 'Cudia esta hoja',
@@ -1160,10 +1203,12 @@ Mira $2 para un registro de los efassados nuevos.',
 'deletecomment' => 'Razón:',
 'deleteotherreason' => 'Otra razon/razon adisiyonal:',
 'deletereasonotherlist' => 'Otra razón',
-'deletereason-dropdown' => '* Motivos generales de efassamientos
-** La demanda del criador de la hoja
-** Violación de copyright
-** Vandalismo',
+'deletereason-dropdown' => '* Razones komunes de efassamientos
+** Spam
+** Vandalismo
+** Violasyon del derecho de otor
+** Demande del otor mizmo
+** Redireksyon rota',
 
 # Rollback
 'rollbacklink' => 'aboltar',
@@ -1182,9 +1227,9 @@ Mira $2 para un registro de los efassados nuevos.',
 A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'protect-cascadeon' => 'Esta hoja está guardada en momento porque está incluida en {{PLURAL:$1|la hoja venidera|las hojas venideras}}, que tienen activada la opción de protección en grados. Puedes trocar el nivel de protección de esta hoja, ma no va afectar a la protección en grados.',
 'protect-default' => 'Permitir todos los usuarios',
-'protect-fallback' => 'Tiene menester del permiso «$1»',
-'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
-'protect-level-sysop' => 'Sólo administradores',
+'protect-fallback' => 'Solo permitir usuarios kon permiso "$1"',
+'protect-level-autoconfirmed' => 'Solo permitir usuarios otokonfirmados',
+'protect-level-sysop' => 'Solo permitir administradores',
 'protect-summary-cascade' => 'con grados',
 'protect-expiring' => 'caduca el $1 (UTC)',
 'protect-cascade' => 'Protección en cascada - guardar todas las hojas incluidas en ésta.',
@@ -1237,13 +1282,13 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'nolinkshere' => "Dinguna ója tiene atamientos kon '''[[:$1]]'''",
 'isredirect' => 'Hoja redirigida',
 'istemplate' => 'inclusión',
-'isimage' => 'Atamiento de la dossia',
+'isimage' => 'enlase de archivo',
 'whatlinkshere-prev' => '{{PLURAL:$1|de antes|de antes $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|venidera|venideras $1}}',
-'whatlinkshere-links' => '← linkes',
+'whatlinkshere-links' => '← enlases',
 'whatlinkshere-hideredirs' => '$1 redirecciones',
 'whatlinkshere-hidetrans' => '$1 inclusiones',
-'whatlinkshere-hidelinks' => '$1 linkes',
+'whatlinkshere-hidelinks' => '$1 enlases',
 'whatlinkshere-hideimages' => '$1 atamientos a imejes',
 'whatlinkshere-filters' => 'Filtres',
 
@@ -1252,7 +1297,8 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'ipadressorusername' => 'Adreso de IP o nombre de usuario:',
 'ipbreason' => 'Razon:',
 'ipboptions' => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 anyo:1 year,para siempre:infinite',
-'ipblocklist' => 'Usadores bloqueados',
+'badipaddress' => 'Adreso de IP invalido',
+'ipblocklist' => 'Usuarios blokeados',
 'blocklist-reason' => 'Razon',
 'ipblocklist-submit' => 'Bushkar',
 'infiniteblock' => 'para siempre',
@@ -1264,25 +1310,25 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'blocklogpage' => 'Bloqueos de usuarios',
 'blocklogentry' => 'bloqueó a [[$1]] $3 durante un tiempo de $2',
 'unblocklogentry' => 'desbloqueó a "$1"',
-'block-log-flags-nocreate' => 'desactivada la creación de cuentos',
+'block-log-flags-nocreate' => 'desactivada la kreasyon de kuentos',
 'block-log-flags-hiddenname' => 'nombre de usuario eskondido',
 
 # Developer tools
 'lockedbyandtime' => '(por {{GENDER:$1|$1}} el $2 a la $3)',
 
 # Move page
-'movepagetext' => "Usando el formulario venidero se va renombrar una hoja, quitando todo su istoria a su nuevo nombre.
-El título de antes se va convertir en una redirección al nuevo título.
-Los linkes al antiguo título de la hoja no se van trocar.
-Asegúrate de no dexar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
-Tú sos responsable de aranjjar los linkes de manera menesterosa.
+'movepagetext' => "Uzando el sigiente formulario va renombrar una pajina, kitando todo su istoria a su nuevo nombre.
+El titulo orijinal se va convertir en una redireksyon al muevo titulo.
+Puede aktualizar otomatikamente las redireksyones al titulo orijinal.
+Si eskoje no azerlo, asegurate de verifikar ke no ay  [[Special:DoubleRedirects|redireksyones dobles]] o [[Special:BrokenRedirects|rotas]].
+Tú sos responsable de asegurar ke los enlases funksyonan korrectamente.
 
-Acórdate que la hoja '''no''' va ser renombrada si ya egziste una hoja con esta nuevo título, a no ser que sea una hoja vazía o una redirección sin istoria.
-Esto siñifica que vas pueder renombrar una hoja a su título original si hazes un yerro, ma que no vas pueder sobrescribir una hoja que ya existe.
+Nota ke la pajina '''no''' va ser renombrada si ya egziste una hoja con esta muevo título, a no ser que sea una redireksyon sin istoria.
+Esto sinyifica que vas pueder renombrar una pajina a su titulo orijinal si hazes un yerro, ma que no vas pueder sobreskrivir una pajina que ya existe.
 
-'''¡Atansión!'''
-Este puede ser un trocamiento muy muy emportante e inesperado para una hoja popular;
-si puede ser, asegúrate de entender las resultados del lo que hazes antes de yir endelantre.",
+'''Aviso!'''
+Este puede ser un trocamiento muy muy emportante e inesperado para una pajina popular;
+asegurate de entender las resultados del lo que azes antes de ir endelantre.",
 'movepagetalktext' => "La hoja de diskussión associada, si egziste, va ser renombrada otomáticamente '''a menos que:'''
 *Esté renombrando la hoja entre espacios de nombres diferentes,
 *Una hoja de diskussión no vazía ya egziste con el nombre nuevo, o
@@ -1319,7 +1365,7 @@ Si puede ser, escoge otro nombre.',
 
 # Thumbnails
 'thumbnail-more' => 'Engrandece',
-'thumbnail_error' => 'Yerro kriando la imej chika: $1',
+'thumbnail_error' => 'Yerro kriando la minyatura: $1',
 
 # Special:Import
 'import-interwiki-submit' => 'Importar',
@@ -1327,7 +1373,7 @@ Si puede ser, escoge otro nombre.',
 'importnopages' => 'No ay pajinas para importar.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Tu hoja de kullaneador',
+'tooltip-pt-userpage' => 'Tu pajina de usuario',
 'tooltip-pt-mytalk' => 'Tu hoja de diskusyón',
 'tooltip-pt-preferences' => 'Mis preferencias',
 'tooltip-pt-watchlist' => 'La lista de los trocamientos acontècidos en las hojas akavidadas.',
@@ -1344,13 +1390,13 @@ Puedes ver su manadero',
 'tooltip-ca-delete' => 'Efassar esta hoja',
 'tooltip-ca-move' => 'Taxirea (renombra) esta hoja',
 'tooltip-ca-watch' => 'Ajustar esta hoja a tu lista de akavidamientos',
-'tooltip-ca-unwatch' => 'Quita esta hoja de tu lista de escogidos',
-'tooltip-search' => 'Buxcar en {{SITENAME}}',
-'tooltip-search-go' => 'Si ay una hoja con este nombre egzakto, vate allá.',
+'tooltip-ca-unwatch' => 'Kita esta pajina de tu lista de escogidos',
+'tooltip-search' => 'Bushka en {{SITENAME}}',
+'tooltip-search-go' => 'Ir a la pajina con este nombre egzakto, si egziste.',
 'tooltip-search-fulltext' => 'Buxca este teksto en las hojas',
 'tooltip-p-logo' => 'Vate a la primera hoja',
-'tooltip-n-mainpage' => 'Vate a la primera hoja',
-'tooltip-n-mainpage-description' => 'Vate a la primera hoja',
+'tooltip-n-mainpage' => 'Vijitar a la primera hoja',
+'tooltip-n-mainpage-description' => 'Vijitar a la primera hoja',
 'tooltip-n-portal' => 'Encima del projeto, lo que puedes hazer y ánde topar todo',
 'tooltip-n-currentevents' => 'Jhaberes y acontècimientos de oy día',
 'tooltip-n-recentchanges' => 'Lista de los trocamientos muevos en el viki',
@@ -1362,12 +1408,12 @@ Puedes ver su manadero',
 'tooltip-feed-atom' => "Fuente de Atom d'esta hoja",
 'tooltip-t-contributions' => 'Ver la lista de ajustamientos de este usuario',
 'tooltip-t-emailuser' => 'A este usuario, mándale una letra electrόnica (ímey)',
-'tooltip-t-upload' => 'Suve las dosyas por aquí',
+'tooltip-t-upload' => 'Suvir un archivo',
 'tooltip-t-specialpages' => 'Lista de todas las hojas especiales',
 'tooltip-t-print' => 'Forma apropiada para imprimir esta hoja',
 'tooltip-t-permalink' => 'Atamiento permanente a este enderechamiento de la hoja',
 'tooltip-ca-nstab-main' => 'Ve el artíkolo de contènido',
-'tooltip-ca-nstab-user' => 'Ve la hoja de usuario',
+'tooltip-ca-nstab-user' => 'Ver la pajina de usuario',
 'tooltip-ca-nstab-special' => 'Esta es una hoja especial, la hoja ya no se puede trocar',
 'tooltip-ca-nstab-project' => 'Ver la hoja del prodjekto',
 'tooltip-ca-nstab-image' => 'Ver la hoja de la dosya',
@@ -1498,7 +1544,7 @@ Los otros campos se van a guardar por defecto.
 'confirmemail' => 'Konfirmar adreso de korreo elektronika',
 'confirmemail_send' => 'Embiar el kodigo de konfirmasion.',
 'confirmemail_sent' => 'Konfirmasion de pósta embiada.',
-'confirmemail_success' => 'Su adreso de korreo elektronika a sido konfirmada. Agóra puedes registrarse e kolaborar en el wiki.',
+'confirmemail_success' => 'Su adreso de korreo elektronika a sido konfirmada. Agóra puedes [[Special:UserLogin|entrar]] e kolaborar en el wiki.',
 
 # Delete conflict
 'recreate' => 'Krear de muevo',
@@ -1599,7 +1645,7 @@ Los otros campos se van a guardar por defecto.
 'htmlform-yes' => 'Si',
 
 # New logging system
-'logentry-newusers-autocreate' => 'El cuento $1 fue crîado otomatika mente',
+'logentry-newusers-autocreate' => 'El cuento de usuario $1 fue {{GENDER:$2|kreado}} otomatikamente',
 'rightsnone' => '(dinguno)',
 
 # Feedback

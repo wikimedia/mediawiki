@@ -2471,7 +2471,7 @@ Vratite se na prethodnu stranicu, ponovo je učitajte i pokušajte ponovo.',
 'protectlogpage' => 'Dnevnik zaključavanja',
 'protectlogtext' => 'Ispod je spisak izmena u vidu zaštite stranica.
 Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za više detalja.',
-'protectedarticle' => '{{GENDER:|je zaštitio|je zaštitila|je zaštitio}} „[[$1]]“',
+'protectedarticle' => '{{GENDER:|je zaštitio|je zaštitila}} „[[$1]]“',
 'modifiedarticleprotection' => '{{GENDER:|je promenio|je promenila|je promenio}} stepen zaštite za „[[$1]]“',
 'unprotectedarticle' => 'uklonjena zaštita sa stranice „[[$1]]“',
 'movedarticleprotection' => '{{GENDER:|je premestio|je premestila|je premestio}} postavke zaštite sa „[[$2]]“ na „[[$1]]“',

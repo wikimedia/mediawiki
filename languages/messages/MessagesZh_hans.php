@@ -1159,6 +1159,8 @@ $2
 'invalid-content-data' => '无效的内容数据',
 'content-not-allowed-here' => '[[$2]]页面上不允许“$1”内容',
 'editwarning-warning' => '离开本页面可能导致你失去任何你已经作出的更改。如果你处于登录状态，你可以在你的设置的“编辑”部分停用该警告。',
+'editpage-notsupportedcontentformat-title' => '内容格式尚不支持',
+'editpage-notsupportedcontentformat-text' => '内容模型$2尚不支持内容格式$1。',
 
 # Content models
 'content-model-wikitext' => 'wiki文本',

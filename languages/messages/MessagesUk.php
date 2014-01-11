@@ -1211,6 +1211,8 @@ $2
 'content-not-allowed-here' => 'Вміст «$1» недопустимий на сторінці [[$2]]',
 'editwarning-warning' => 'Перехід на іншу сторінку призведе до втрати ваших змін.
 Якщо ви ввійшли до системи, то ви можете відключити це попередження в розділі «Редагування» ваших налаштувань.',
+'editpage-notsupportedcontentformat-title' => 'Непідтримуваний формат вмісту',
+'editpage-notsupportedcontentformat-text' => 'Формат вмісту $1 не підтримується моделлю вмісту $2.',
 
 # Content models
 'content-model-wikitext' => 'вікітекст',

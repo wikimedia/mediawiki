@@ -1134,6 +1134,8 @@ Ea există deja.',
 'content-not-allowed-here' => 'Conținutul de tip „$1” nu este permis pe pagina [[$2]]',
 'editwarning-warning' => 'Părăsind această pagină, există riscul pierderii modificărilor efectuate.
 Dacă sunteți autentificat, puteți dezactiva această avertizare în secțiunea „Modificare” a preferințelor dumneavoastră.',
+'editpage-notsupportedcontentformat-title' => 'Formatul conținutului nu este acceptat',
+'editpage-notsupportedcontentformat-text' => 'Formatul de conținut $1 nu este acceptat de modelul de conținut $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitext',

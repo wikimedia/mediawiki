@@ -3225,7 +3225,7 @@ Omne ligamines posterior in le mesme linea es considerate como exceptiones, i.e.
 Si le file ha essite modificate ab su stato original, es possibile que alcun detalios non reflecte completemente le file modificate.',
 'metadata-expand' => 'Revelar detalios extense',
 'metadata-collapse' => 'Celar detalios extense',
-'metadata-fields' => 'Le campos de metadatos de imagine listate in iste message essera includite in le visualisation del pagina de imagine quando le tabula de metadatos es plicate.
+'metadata-fields' => 'Le campos de metadatos de imagine listate in iste message essera includite in le visualisation del pagina de imagine quando le tabella de metadatos es plicate.
 Le alteres essera initialmente celate.
 * make
 * model
