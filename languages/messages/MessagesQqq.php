@@ -10008,6 +10008,20 @@ This message is followed by the list of installed software (MediaWiki, PHP and M
 'version-software-product' => 'Shown in [[Special:Version]].
 {{Identical|Product}}',
 'version-software-version' => '{{Identical|Version}}',
+'version-db-mysql-url' => '{{notranslate}}
+URL of the website for [[wikipedia:MySQL|MySQL]].',
+'version-db-mariadb-url' => '{{notranslate}}
+URL of the website for [[wikipedia:MariaDB|MariaDB]].',
+'version-db-percona-url' => '{{notranslate}}
+URL of the website for Percona Server.',
+'version-db-postgres-url' => '{{notranslate}}
+URL of the website for [[wikipedia:PostgreSQL|PostgreSQL]].',
+'version-db-oracle-url' => '{{notranslate}}
+URL of the website for [[wikipedia:Oracle Database|Oracle Database]].',
+'version-db-sqlite-url' => '{{notranslate}}
+URL of the website for [[wikipedia:SQLite|SQLite]].',
+'version-db-mssql-url' => '{{notranslate}}
+URL of the website for [[wikipedia:Microsoft SQL Server|Microsoft SQL Server]].',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
 'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
 See also {{msg-mw|Version-entrypoints}}',
