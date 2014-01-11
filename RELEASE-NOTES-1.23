@@ -259,6 +259,7 @@ changes to languages because of Bugzilla reports.
 * Linker::makeColouredLinkObj() (deprecated in 1.16)
 * Linker::makeSizeLinkObj() (deprecated in 1.17)
 * MediaWiki::articleFromTitle() (deprecated in 1.18)
+* ParserOptions::getkin() (deprecated 1.18)
 * ProfilerSimple::getCpuTime (deprecated in 1.20)
 * Revision::revText() (deprecated in 1.17)
 * SkinTemplate::jstext() (deprecated in 1.21)
