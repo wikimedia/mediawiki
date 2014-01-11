@@ -484,7 +484,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		// Messages: config-dbsupport-mysql, config-dbsupport-postgres, config-dbsupport-oracle,
 		// config-dbsupport-sqlite
 		$dbSupport = '';
-		foreach ( $this->parent->getDBTypes() as $type ) {
+		foreach ( Installer::getDBTypes() as $type ) {
 			$dbSupport .= wfMessage( "config-dbsupport-$type" )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
