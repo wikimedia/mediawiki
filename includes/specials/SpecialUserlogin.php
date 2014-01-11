@@ -100,8 +100,8 @@ class LoginForm extends SpecialPage {
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
-		$this->mWatchlist = $request->getCheck( 'wpWatchlist' )
 									&& $wgEnableEmail;
+		$this->mWatchlist = $request->getCheck( 'wpWatchlist' );
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' ) && !$this->mCreateaccountMail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
