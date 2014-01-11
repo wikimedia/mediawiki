@@ -44,7 +44,7 @@ class LoginForm extends SpecialPage {
 	const WRONG_TOKEN = 13;
 
 	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
-	var $mAction, $mCreateaccount, $mCreateaccountMail;
+	var $mAction, $mCreateaccount, $mCreateaccountMail, $mWatchlist;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
@@ -100,6 +100,7 @@ class LoginForm extends SpecialPage {
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
+		$this->mWatchlist = $request->getCheck( 'wpWatchlist' )
 									&& $wgEnableEmail;
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' ) && !$this->mCreateaccountMail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
@@ -512,6 +513,9 @@ class LoginForm extends SpecialPage {
 
 		// Watch user's userpage and talk page
 		$u->addWatch( $u->getUserPage(), WatchedItem::IGNORE_USER_RIGHTS );
+		if($this->mWatchlist){
+			$this->getUser()->addWatch( $u->getUserPage(), WatchedItem::IGNORE_USER_RIGHTS );
+		}
 
 		return Status::newGood( $u );
 	}
