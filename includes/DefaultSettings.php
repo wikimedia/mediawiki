@@ -3071,14 +3071,6 @@ $wgVectorUseIconWatch = true;
 $wgEdititis = false;
 
 /**
- * Better directionality support (bug 6100 and related).
- * Removed in 1.18, still kept here for LiquidThreads backwards compatibility.
- *
- * @deprecated since 1.18
- */
-$wgBetterDirectionality = true;
-
-/**
  * Some web hosts attempt to rewrite all responses with a 404 (not found)
  * status code, mangling or hiding MediaWiki's output. If you are using such a
  * host, you should start looking for a better one. While you're doing that,
