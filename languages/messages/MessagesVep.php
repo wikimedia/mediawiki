@@ -1053,7 +1053,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'timezoneregion-indian' => 'Indijan valdmeri',
 'timezoneregion-pacific' => "Tün' valdmeri",
 'allowemail' => 'Laskkat toižile kävutajile oigeta teile e-počtad',
-'prefs-searchoptions' => 'Ecindan järgendused',
+'prefs-searchoptions' => 'Ectä',
 'prefs-namespaces' => 'Nimiavarused',
 'defaultns' => 'Toižiš statjoiš ectä neniš nimiavarusiš:',
 'default' => 'augotižjärgendusen mödhe',

@@ -1497,6 +1497,13 @@ $1",
 'upload-recreate-warning' => "'''Тегам бе: иштта цӀе йолу файл дӀаяьккхина я цӀе хийцина.'''
 
 Лахахьа гойтуш ю хӀокху агӀона тептар:",
+'uploadtext' => "Лелайе хӀара агӀо сервер чу файлаш йохуш.
+Хьалхо чуйаьхна файлаш хьажа,  [[Special:FileList|кхузахь]]. Кхин чуйаьхна файлаш дӀаязло [[Special:Log/upload|чуяхаран тептар чохь]], дӀаяьхна файлаш каро йиш ю [[Special:Log/delete|кхузахь]].
+
+Файл агӀона чуйилла лелабе лахара могӀанаш:
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' файла Файлан юьззина верси чуйиллуш;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|цунахь лаьцна хаам]]</nowiki></code>''' 200 пиксель барамехь файл чуйилар бухахь цунахь лаьцна могӀа а болуш;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' файлан тӀе хьажораг хӀотайо файл агӀонгахь ца гуш.",
 'upload-permitted' => 'Магийна файлийн тайпанаш: $1.',
 'uploadlogpage' => 'Чуяхаран тéптар',
 'uploadlogpagetext' => 'Лахахьа гойтуш бу тӀаьххьара чуяхна файлийн могӀам.
@@ -2723,6 +2730,7 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 
 # Feedback
 'feedback-cancel' => 'Цаоьшу',
+'feedback-close' => 'Кийчча ю',
 
 # Search suggestions
 'searchsuggest-search' => 'Лаха',
