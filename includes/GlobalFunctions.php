@@ -1341,19 +1341,6 @@ function wfGetLangObj( $langcode = false ) {
 }
 
 /**
- * Old function when $wgBetterDirectionality existed
- * All usage removed, wfUILang can be removed in near future
- *
- * @deprecated since 1.18
- * @return Language
- */
-function wfUILang() {
-	wfDeprecated( __METHOD__, '1.18' );
-	global $wgLang;
-	return $wgLang;
-}
-
-/**
  * This is the function for getting translated interface messages.
  *
  * @see Message class for documentation how to use them.
@@ -2620,25 +2607,6 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 }
 
 /**
- * Find out whether or not a mixed variable exists in a string
- *
- * @deprecated Just use str(i)pos
- * @param $needle String
- * @param $str String
- * @param $insensitive Boolean
- * @return Boolean
- */
-function in_string( $needle, $str, $insensitive = false ) {
-	wfDeprecated( __METHOD__, '1.21' );
-	$func = 'strpos';
-	if ( $insensitive ) {
-		$func = 'stripos';
-	}
-
-	return $func( $str, $needle ) !== false;
-}
-
-/**
  * Safety wrapper around ini_get() for boolean settings.
  * The values returned from ini_get() are pre-normalized for settings
  * set via php.ini or php_flag/php_admin_flag... but *not*
@@ -3713,15 +3681,6 @@ function wfLocalFile( $title ) {
 }
 
 /**
- * Stream a file to the browser. Back-compat alias for StreamFile::stream()
- * @deprecated since 1.19
- */
-function wfStreamFile( $fname, $headers = array() ) {
-	wfDeprecated( __FUNCTION__, '1.19' );
-	StreamFile::stream( $fname, $headers );
-}
-
-/**
  * Should low-performance queries be disabled?
  *
  * @return Boolean
@@ -3846,23 +3805,6 @@ function wfCountDown( $n ) {
 		}
 	}
 	echo "\n";
-}
-
-/**
- * Generate a random 32-character hexadecimal token.
- * @param $salt Mixed: some sort of salt, if necessary, to add to random
- *              characters before hashing.
- * @return string
- * @codeCoverageIgnore
- * @deprecated since 1.20; Please use MWCryptRand for security purposes and
- * wfRandomString for pseudo-random strings
- * @warning This method is NOT secure. Additionally it has many callers that
- * use it for pseudo-random purposes.
- */
-function wfGenerateToken( $salt = '' ) {
-	wfDeprecated( __METHOD__, '1.20' );
-	$salt = serialize( $salt );
-	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
 
 /**
