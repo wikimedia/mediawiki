@@ -35,6 +35,8 @@ class CoreTagHooks {
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
+		$parser->setHook( 'pretext', array( __CLASS__, 'pretext' ) );
+		$parser->setHook( 'poem', array( __CLASS__, 'pretext' ) ); # legacy alias
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}
@@ -118,5 +120,73 @@ class CoreTagHooks {
 	 */
 	static function gallery( $content, $attributes, $parser ) {
 		return $parser->renderImageGallery( $content, $attributes );
+	}
+
+	/**
+	 * Core parser tag hook function for 'pretext', aka 'poem'.
+	 *
+	 * Outputs text, maintaining line breaks and providing a smaller, line-based
+	 * indentation. Suitable for poems and similar content.
+	 *
+	 * @param string $content The text inside the <pretext> tag
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param boolean $frame
+	 * @return string
+	 */
+	static function pretext( $content, $attributes, $parser, $frame = false ) {
+		$tag = $parser->insertStripItem( "<br />", $parser->mStripState );
+
+		// replace colons with indented spans
+		$text = preg_replace_callback( '/^(:+)(.+)$/m', array( __CLASS__, 'pretextIndentVerse' ), $content );
+
+		// replace newlines with <br /> tags unless they are at the beginning or end
+		// of the content
+		$text = preg_replace(
+			array( "/^\n/", "/\n$/D", "/\n/" ),
+			array( "", "", "$tag\n" ),
+			$text );
+
+		// replace spaces at the beginning of a line with non-breaking spaces
+		$text = preg_replace_callback( '/^( +)/m', array( __CLASS__, 'pretextReplaceSpaces' ), $text );
+
+		$text = $parser->recursiveTagParse( $text, $frame );
+
+		$attribs = Sanitizer::validateTagAttributes( $attributes, 'div' );
+
+		// Wrap output in a <div> with "poem" class.
+		if ( isset( $attribs['class'] ) ) {
+			$attribs['class'] = 'poem ' . $attribs['class'];
+		} else {
+			$attribs['class'] = 'poem';
+		}
+
+		return Html::rawElement( 'div', $attribs, "\n" . trim( $text ) . "\n" );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that replaces spaces with non-breaking spaces
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more spaces
+	 * @return mixed
+	 */
+	protected static function pretextReplaceSpaces( $m ) {
+		return str_replace( ' ', '&#160;', $m[1] );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that wraps content in an indented span
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more colons
+	 *   - $m[2] consists of the text after the colons
+	 * @return string
+	 */
+	protected static function pretextIndentVerse( $m ) {
+		$attribs = array(
+			'class' => 'mw-poem-indented',
+			'style' => 'margin-left: ' . strlen( $m[1] ) . 'em;'
+		);
+		// @todo Should this really be raw?
+		return Html::rawElement( 'span', $attribs, $m[2] );
 	}
 }
