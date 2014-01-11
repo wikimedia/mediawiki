@@ -3335,22 +3335,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Perform article updates on a special page creation.
-	 *
-	 * @param $rev Revision object
-	 *
-	 * @todo This is a shitty interface function. Kill it and replace the
-	 * other shitty functions like doEditUpdates and such so it's not needed
-	 * anymore.
-	 * @deprecated since 1.18, use doEditUpdates()
-	 */
-	public function createUpdates( $rev ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgUser;
-		$this->doEditUpdates( $rev, $wgUser, array( 'created' => true ) );
-	}
-
-	/**
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
