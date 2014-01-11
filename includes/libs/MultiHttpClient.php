@@ -6,11 +6,13 @@
  * HTTP request maps use the following format:
  *   - method   : GET/HEAD/PUT/POST/DELETE
  *   - url      : HTTP/HTTPS URL
- *   - query    : <query parameter field/value associative array>
+ *   - query    : <query parameter field/value associative array> (uses RFC 3986)
  *   - headers  : <header name/value associative array>
  *   - body     : source to get the HTTP request body from;
  *                this can simply be a string (always), a resource for
- *                PUT requests, and a field/value array for POST request
+ *                PUT requests, and a field/value array for POST request;
+ *                array bodies are encoded as multipart/form-data and strings
+ *                use application/x-www-form-urlencoded (headers sent automatically)
  *   - stream   : resource to stream the HTTP response body to
  *
  * @author Aaron Schulz
@@ -179,7 +181,12 @@ class MultiHttpClient {
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 
 		$url = $req['url'];
-		$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
+		// PHP_QUERY_RFC3986 is PHP 5.4+ only
+		$query = str_replace(
+			array( '+', '%7E' ),
+			array( '%20', '~' ),
+			http_build_query( $req['query'], '', '&' )
+		);
 		if ( $query != '' ) {
 			$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
 		}

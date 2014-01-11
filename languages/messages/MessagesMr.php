@@ -600,7 +600,7 @@ $1',
 'youhavenewmessagesfromusers' => 'तुमच्यासाठी {{PLURAL:$3|इतर सदस्याकडून|$3 सदस्यांकडून}} $1 आहेत. ($2)',
 'youhavenewmessagesmanyusers' => 'तुमच्यासाठी बऱ्याच सदस्यांकडून $1 आहेत. ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|एक नवीन संदेश|९९९=नवीन संदेश}}',
-'newmessagesdifflinkplural' => 'मागील {{PLURAL:$1|बदल}}',
+'newmessagesdifflinkplural' => 'मागील {{PLURAL:$1|999=बदल}}',
 'youhavenewmessagesmulti' => '$1 वर तुमच्यासाठी नवीन संदेश आहेत.',
 'editsection' => 'संपादन',
 'editold' => 'संपादन',
@@ -840,7 +840,7 @@ $2',
 'mailerror' => 'विपत्र पाठवण्यात त्रुटी: $1',
 'acct_creation_throttle_hit' => 'माफ करा, तुम्ही आत्तापर्यंत {{PLURAL:$1|१ खाते उघडले आहे|$1 खाती उघडली आहेत}}. तुम्हाला आणखी खाती उघडता येणार नाहीत.',
 'emailauthenticated' => 'तुमचा विपत्रपत्ता $2 ला $3 यावेळी तपासण्यात आला आहे.',
-'emailnotauthenticated' => 'तुमचा ई-मेल पत्ता अद्याप अधिप्रमाणित(ऑथेंटिकेटेड) नाही. खालील कोणत्याही फिचर्सकरिता ई-मेल पाठविला जाणार नाही.',
+'emailnotauthenticated' => 'तुमच्या ई-मेल पत्त्याची अद्याप निश्चिती झालेली नाही. खालील कोणत्याही फिचर्ससाठी ई-मेल पाठविला जाणार नाही.',
 'noemailprefs' => 'खालील सुविधा कार्यान्वित करण्यासाठी,पसंतीक्रमात ई-मेल पत्ता नमूद करा.',
 'emailconfirmlink' => 'आपला ई-मेल पत्ता निश्चित करा.',
 'invalidemailaddress' => 'तुम्ही दिलेला ई-मेल पत्ता चुकीचा आहे, कारण तो योग्यप्रकारे लिहिलेला नाही. कृपया योग्यप्रकारे ई-मेल पत्ता लिहा अथवा ती जागा मोकळी सोडा.',
@@ -1690,7 +1690,7 @@ $1",
 'rclistfrom' => '$1 नंतर केले गेलेले बदल दाखवा.',
 'rcshowhideminor' => 'छोटे बदल $1',
 'rcshowhidebots' => 'सांगकामे(बॉट्स) $1',
-'rcshowhideliu' => 'सनोंद प्रवेशित सदस्य $1',
+'rcshowhideliu' => '$1नोंदणीकृत सदस्य',
 'rcshowhideanons' => 'अनामिक सदस्य $1',
 'rcshowhidepatr' => '$1 पहारा असलेली संपादने',
 'rcshowhidemine' => 'माझे बदल $1',
@@ -2443,7 +2443,7 @@ $UNWATCHURL
 शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]] [[Special:Contributions/$3|{{int:contribslink}}]])-चे होते.',
 'editcomment' => "संपादन सारांश \"''\$1''\" होता.",
 'revertpage' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.',
-'revertpage-nouser' => 'लपविलेल्या सदस्याची संपादने उलटवून {{GENDER:$1|[[सदस्य:$1|$1]]}} यांच्या आवृत्तीप्रमाणे पूर्ववत केले.',
+'revertpage-nouser' => 'लपविलेल्या सदस्याची संपादने उलटवून मागील आवृत्तीप्रमाणे पूर्ववत केले{{GENDER:$1|[[सदस्य:$1|$1]]}}',
 'rollback-success' => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
 
 # Edit tokens
@@ -3802,7 +3802,7 @@ $5
 'version-parser-function-hooks' => 'पृथकक कार्य अंकुश',
 'version-hook-name' => 'अंकुश नाव',
 'version-hook-subscribedby' => 'वर्गणीदार',
-'version-version' => '(आवृत्ती $1)',
+'version-version' => '($1)',
 'version-license' => 'मिडियाविकि परवाना',
 'version-poweredby-credits' => "हा विकी '''[https://www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
 'version-poweredby-others' => 'इतर',
@@ -3823,7 +3823,8 @@ $5
 # Special:Redirect
 'redirect' => 'संचिका,सदस्य किंवा आवृत्ती या ओळखणीनुसार पुनर्निर्देशन',
 'redirect-legend' => 'संचिका अथवा पानास पुनर्निर्देशन',
-'redirect-summary' => 'हे विशेष पान एक संचिकेस पुनर्निर्देशित करते(दिलेले संचिकानाम),एक पान(दिलेली आवृत्ती ओळ्खण) किंवा एक सदस्यपान(दिलेला सदस्य अंक).',
+'redirect-summary' => 'हे विशेष पान एक संचिकेस पुनर्निर्देशित करते(दिलेले संचिकानाम),एक पान(दिलेली आवृत्ती किंवा पान ओळखण) किंवा एक सदस्यपान(दिलेला सदस्य अंक).
+वापर:[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], किंवा [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'जा',
 'redirect-lookup' => 'बघा:',
 'redirect-value' => 'मुल्य:',
@@ -3847,7 +3848,7 @@ $5
 'specialpages' => 'विशेष पृष्ठे',
 'specialpages-note-top' => 'विवरण',
 'specialpages-note' => '* सर्वसाधारण विशेष पृष्ठे.
-* <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</strong>',
+* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</span>',
 'specialpages-group-maintenance' => 'व्यवस्थापन अहवाल',
 'specialpages-group-other' => 'इतर विशेष पृष्ठे',
 'specialpages-group-login' => 'प्रवेश / नवीन सदस्य नोंदणी',
@@ -4050,10 +4051,9 @@ $5
 
 # Special:ExpandTemplates
 'expandtemplates' => 'साचे वाढवा',
-'expand_templates_intro' => 'हे पान काही मजकूर घेऊन त्यातिल सर्व साचे वाढविते. तसेच हे पान पार्सर फंक्शन्स जसे की
+'expand_templates_intro' => 'हे पान काही मजकूर घेऊन आवर्ती पद्धतीने त्यातील सर्व साचे वाढविते. तसेच हे पान पार्सर फंक्शन्स जसे की
 <nowiki>{{</nowiki>#language:...}}, व बदलणार्‍या किमती (variables) जसे की
-<nowiki>{{</nowiki>CURRENTDAY}}&mdash;म्हणजेच दोन ब्रेसेसमधील सर्व मजकूर वाढविते.
-मीडियाविकिमधून पार्सर स्टेज मागवून हे केले जाते.',
+<nowiki>{{</nowiki>CURRENTDAY}}&mdash;म्हणजेच दोन ब्रेसेसमधील बरेच काही वाढविते.',
 'expand_templates_title' => '{{FULLPAGENAME}} वगैरे करीता, कन्टेक्स्ट शीर्षक:',
 'expand_templates_input' => 'इनपुट मजकूर:',
 'expand_templates_output' => 'निकाल',

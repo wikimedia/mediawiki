@@ -1109,6 +1109,8 @@ Esiste già.',
 'content-not-allowed-here' => 'Contenuto in "$1" non consentito nella pagine [[$2]]',
 'editwarning-warning' => 'Lasciare questa pagina potrebbe causare la perdita di tutte le modifiche fatte.
 Se hai effettuato l\'accesso, puoi disattivare questo avviso nella sezione "Casella di modifica" delle tue preferenze.',
+'editpage-notsupportedcontentformat-title' => 'Formato contenuto non supportato',
+'editpage-notsupportedcontentformat-text' => 'Il formato del contenuto $1 non è supportato dal modello di contenuto $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitesto',

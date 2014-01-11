@@ -932,6 +932,8 @@ Igwa na kaini.',
 'invalid-content-data' => 'Imbalidong datos nin laman',
 'content-not-allowed-here' => '"$1" na laman dae pinagtutugutan sa pahina [[$2]]',
 'editwarning-warning' => 'Sa pagbaya kaining pahina magkakausa saimo na mawara an anuman na mga kaliwatan na saimong ginibo. Kun ika maglaog, mapuwede mong untukon ining patanid sa "Pagliliwat" na seksyon kan saimong mga kamuyahan.',
+'editpage-notsupportedcontentformat-title' => 'Kalamnan nin pormat bakong suportado',
+'editpage-notsupportedcontentformat-text' => 'An pormat nin kalamnan na $1 bakong suportado kan modelong kalamnan na $2.',
 
 # Content models
 'content-model-wikitext' => 'wiki-teksto',

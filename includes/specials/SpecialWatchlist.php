@@ -35,6 +35,99 @@ class SpecialWatchlist extends SpecialRecentChanges {
 	}
 
 	/**
+	 * Get a FormOptions object containing the default options
+	 *
+	 * @return FormOptions
+	 */
+	public function getDefaultOptions() {
+		$opts = parent::getDefaultOptions();
+		$user = $this->getUser();
+
+		// Overwrite RC options with Watchlist options
+		// (calling #add() again is okay)
+		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
+		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
+		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
+		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
+		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
+		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
+
+		// Add new ones
+		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
+
+		return $opts;
+	}
+
+	/**
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
+	 *
+	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
+	 * to the current ones.
+	 *
+	 * @param FormOptions $parameters
+	 * @return FormOptions
+	 */
+	protected function fetchOptionsFromRequest( $opts ) {
+		static $compatibilityMap = array(
+			'hideMinor' => 'hideminor',
+			'hideBots' => 'hidebots',
+			'hideAnons' => 'hideanons',
+			'hideLiu' => 'hideliu',
+			'hidePatrolled' => 'hidepatrolled',
+			'hideOwn' => 'hidemyself',
+		);
+
+		$params = $this->getRequest()->getValues();
+		foreach ( $compatibilityMap as $from => $to ) {
+			if ( isset( $params[$from] ) ) {
+				$params[$to] = $params[$from];
+				unset( $params[$from] );
+			}
+		}
+
+		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
+		// methods defined on WebRequest and removing this dependency would cause some code duplication.
+		$request = new DerivativeRequest( $this->getRequest(), $params );
+		$opts->fetchValuesFromRequest( $request );
+		return $opts;
+	}
+
+	/**
+	 * Get custom show/hide filters
+	 *
+	 * @return array Map of filter URL param names to properties (msg/default)
+	 */
+	protected function getCustomFilters() {
+		if ( $this->customFilters === null ) {
+			$this->customFilters = array();
+			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
+		}
+
+		return $this->customFilters;
+	}
+
+	/**
+	 * Process $par and put options found if $opts. Not used for Watchlist.
+	 *
+	 * @param string $par
+	 * @param FormOptions $opts
+	 */
+	public function parseParameters( $par, FormOptions $opts ) {
+	}
+
+	/**
+	 * Get the current FormOptions for this request
+	 */
+	public function getOptions() {
+		if ( $this->rcOptions === null ) {
+			$this->rcOptions = $this->setup( null );
+		}
+
+		return $this->rcOptions;
+	}
+
+	/**
 	 * Execute
 	 * @param $par Parameter passed to the page
 	 */
@@ -63,6 +156,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			) );
 		}
 
+		$opts = $this->getOptions();
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -93,49 +187,14 @@ class SpecialWatchlist extends SpecialRecentChanges {
 			return;
 		}
 
-		// @todo use FormOptions!
-		$defaults = array(
-		/* float */ 'days' => floatval( $user->getOption( 'watchlistdays' ) ),
-		/* bool  */ 'hideMinor' => (int)$user->getBoolOption( 'watchlisthideminor' ),
-		/* bool  */ 'hideBots' => (int)$user->getBoolOption( 'watchlisthidebots' ),
-		/* bool  */ 'hideAnons' => (int)$user->getBoolOption( 'watchlisthideanons' ),
-		/* bool  */ 'hideLiu' => (int)$user->getBoolOption( 'watchlisthideliu' ),
-		/* bool  */ 'hidePatrolled' => (int)$user->getBoolOption( 'watchlisthidepatrolled' ),
-		/* bool  */ 'hideOwn' => (int)$user->getBoolOption( 'watchlisthideown' ),
-		/* bool  */ 'extended' => (int)$user->getBoolOption( 'extendwatchlist' ),
-		/* ?     */ 'namespace' => '', //means all
-		/* ?     */ 'invert' => false,
-		/* bool  */ 'associated' => false,
-		);
-		$this->customFilters = array();
-		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
-		foreach ( $this->customFilters as $key => $params ) {
-			$defaults[$key] = $params['default'];
-		}
-
-		# Extract variables from the request, falling back to user preferences or
-		# other default values if these don't exist
-		$values = array();
-		$values['days'] = floatval( $request->getVal( 'days', $defaults['days'] ) );
-		$values['hideMinor'] = (int)$request->getBool( 'hideMinor', $defaults['hideMinor'] );
-		$values['hideBots'] = (int)$request->getBool( 'hideBots', $defaults['hideBots'] );
-		$values['hideAnons'] = (int)$request->getBool( 'hideAnons', $defaults['hideAnons'] );
-		$values['hideLiu'] = (int)$request->getBool( 'hideLiu', $defaults['hideLiu'] );
-		$values['hideOwn'] = (int)$request->getBool( 'hideOwn', $defaults['hideOwn'] );
-		$values['hidePatrolled'] = (int)$request->getBool( 'hidePatrolled', $defaults['hidePatrolled'] );
-		$values['extended'] = (int)$request->getBool( 'extended', $defaults['extended'] );
-		foreach ( $this->customFilters as $key => $params ) {
-			$values[$key] = (int)$request->getBool( $key, $defaults[$key] );
-		}
-
 		# Get namespace value, if supplied, and prepare a WHERE fragment
-		$nameSpace = $request->getIntOrNull( 'namespace' );
-		$invert = $request->getBool( 'invert' );
-		$associated = $request->getBool( 'associated' );
-		if ( !is_null( $nameSpace ) ) {
+		$nameSpace = $opts['namespace'];
+		$invert = $opts['invert'];
+		$associated = $opts['associated'];
+
+		if ( $nameSpace !== '' ) {
 			$eq_op = $invert ? '!=' : '=';
 			$bool_op = $invert ? 'AND' : 'OR';
-			$nameSpace = intval( $nameSpace ); // paranioa
 			if ( !$associated ) {
 				$nameSpaceClause = "rc_namespace $eq_op $nameSpace";
 			} else {
@@ -146,18 +205,11 @@ class SpecialWatchlist extends SpecialRecentChanges {
 					" rc_namespace $eq_op $associatedNS";
 			}
 		} else {
-			$nameSpace = '';
 			$nameSpaceClause = '';
 		}
-		$values['namespace'] = $nameSpace;
-		$values['invert'] = $invert;
-		$values['associated'] = $associated;
 
 		// Dump everything here
-		$nondefaults = array();
-		foreach ( $defaults as $name => $defValue ) {
-			wfAppendToArrayIfNotDefault( $name, $values[$name], $defaults, $nondefaults );
-		}
+		$nondefaults = $opts->getChangedValues();
 
 		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' )
 			&& $request->wasPosted()
@@ -170,27 +222,27 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		# Possible where conditions
 		$conds = array();
 
-		if ( $values['days'] > 0 ) {
-			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $values['days'] * 86400 ) ) );
+		if ( $opts['days'] > 0 ) {
+			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
 
 		# Toggles
-		if ( $values['hideOwn'] ) {
+		if ( $opts['hidemyself'] ) {
 			$conds[] = 'rc_user != ' . $user->getId();
 		}
-		if ( $values['hideBots'] ) {
+		if ( $opts['hidebots'] ) {
 			$conds[] = 'rc_bot = 0';
 		}
-		if ( $values['hideMinor'] ) {
+		if ( $opts['hideminor'] ) {
 			$conds[] = 'rc_minor = 0';
 		}
-		if ( $values['hideLiu'] ) {
+		if ( $opts['hideliu'] ) {
 			$conds[] = 'rc_user = 0';
 		}
-		if ( $values['hideAnons'] ) {
+		if ( $opts['hideanons'] ) {
 			$conds[] = 'rc_user != 0';
 		}
-		if ( $user->useRCPatrol() && $values['hidePatrolled'] ) {
+		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
 			$conds[] = 'rc_patrolled != 1';
 		}
 		if ( $nameSpaceClause ) {
@@ -198,7 +250,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		}
 
 		# Toggle watchlist content (all recent edits or just the latest)
-		if ( $values['extended'] ) {
+		if ( $opts['extended'] ) {
 			$limitWatchlist = $user->getIntOption( 'wllimit' );
 			$usePage = false;
 		} else {
@@ -293,7 +345,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 		}
 
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
-		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields, $values ) );
+		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds, &$tables, &$join_conds, &$fields, $opts ) );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 		$numRows = $res->numRows();
@@ -302,34 +354,34 @@ class SpecialWatchlist extends SpecialRecentChanges {
 
 		$lang = $this->getLanguage();
 		$wlInfo = '';
-		if ( $values['days'] > 0 ) {
+		if ( $opts['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
-			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $values['days'] * 24 ) )->params(
+			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
 		}
 
-		$cutofflinks = $this->cutoffLinks( $values['days'], $nondefaults ) . "<br />\n";
+		$cutofflinks = $this->cutoffLinks( $opts['days'], $nondefaults ) . "<br />\n";
 
 		# Spit out some control panel links
 		$filters = array(
-			'hideMinor' => 'rcshowhideminor',
-			'hideBots' => 'rcshowhidebots',
-			'hideAnons' => 'rcshowhideanons',
-			'hideLiu' => 'rcshowhideliu',
-			'hideOwn' => 'rcshowhidemine',
-			'hidePatrolled' => 'rcshowhidepatr'
+			'hideminor' => 'rcshowhideminor',
+			'hidebots' => 'rcshowhidebots',
+			'hideanons' => 'rcshowhideanons',
+			'hideliu' => 'rcshowhideliu',
+			'hidemyself' => 'rcshowhidemine',
+			'hidepatrolled' => 'rcshowhidepatr'
 		);
-		foreach ( $this->customFilters as $key => $params ) {
+		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
 		if ( !$user->useNPPatrol() ) {
-			unset( $filters['hidePatrolled'] );
+			unset( $filters['hidepatrolled'] );
 		}
 
 		$links = array();
 		foreach ( $filters as $name => $msg ) {
-			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $values[$name] );
+			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $opts[$name] );
 		}
 
 		$hiddenFields = $nondefaults;

@@ -87,6 +87,7 @@
  * @author Remember the dot
  * @author Remux
  * @author Richard Wolf VI
+ * @author Salvador alc
  * @author Sanbec
  * @author Savh
  * @author Shirayuki
@@ -1218,6 +1219,8 @@ Ya existe.',
 'content-not-allowed-here' => 'El contenido "$1" no está permitido en la página [[$2]]',
 'editwarning-warning' => 'Si abandonas esta página perderás tus cambios.
 Si estás identificado, puedes deshabilitar esta advertencia en la sección "Edición" de tus preferencias.',
+'editpage-notsupportedcontentformat-title' => 'Formato de contenido no admitido',
+'editpage-notsupportedcontentformat-text' => 'El formato de contenido $1 no es compatible con el modelo de contenido  $2.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',
