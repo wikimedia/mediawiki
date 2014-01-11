@@ -461,14 +461,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * No-op
-	 * @deprecated since 1.18
-	 */
-	public function forUpdate() {
-		wfDeprecated( __METHOD__, '1.18' );
-	}
-
-	/**
 	 * Returns true if the currently-referenced revision is the current edit
 	 * to this page (and it exists).
 	 * @return bool
