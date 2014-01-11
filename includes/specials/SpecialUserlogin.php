@@ -159,6 +159,8 @@ class LoginForm extends SpecialPage {
 
 		$this->load();
 
+		$out->disallowUserJs(); // just in case...
+
 		// Check for [[Special:Userlogin/signup]]. This affects form display and
 		// page title.
 		if ( $subPage == 'signup' ) {
@@ -1248,7 +1250,6 @@ class LoginForm extends SpecialPage {
 			wfRunHooks( 'UserLoginForm', array( &$template ) );
 		}
 
-		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}
 
