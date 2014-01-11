@@ -209,6 +209,7 @@ changes to languages because of Bugzilla reports.
 * ApiMain::setCachePrivate() (deprecated in 1.17)
 * ApiMain::setVaryCookie (deprecated in 1.17)
 * Article::forUpdate() (deprecated in 1.18)
+* Article::markpatrolled() (deprecated in 1.18)
 * CategoryViewer::addSubcategory() (deprecated in 1.17)
 * EditPage::spamPage() (deprecated since 1.17)
 * Exif::getFormattedData() (deprecated in 1.18)

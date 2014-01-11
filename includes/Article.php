@@ -1891,15 +1891,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Mark this particular edit/page as patrolled
-	 * @deprecated since 1.18
-	 */
-	public function markpatrolled() {
-		wfDeprecated( __METHOD__, '1.18' );
-		Action::factory( 'markpatrolled', $this )->show();
-	}
-
-	/**
 	 * Handle action=purge
 	 * @deprecated since 1.19
 	 * @return Action|bool|null false if the action is disabled, null if it is not recognised
