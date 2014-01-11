@@ -445,7 +445,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string $name The entry of the info array to get, or null to get the
 	 *   whole array
 	 *
-	 * @return LoadBalancer|null
+	 * @return array|null
 	 */
 	public function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
