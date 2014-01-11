@@ -1891,15 +1891,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Mark this particular edit/page as patrolled
-	 * @deprecated since 1.18
-	 */
-	public function markpatrolled() {
-		wfDeprecated( __METHOD__, '1.18' );
-		Action::factory( 'markpatrolled', $this )->show();
-	}
-
-	/**
 	 * Handle action=purge
 	 * @deprecated since 1.19
 	 * @return Action|bool|null false if the action is disabled, null if it is not recognised
@@ -1924,72 +1915,6 @@ class Article implements Page {
 	public function rollback() {
 		wfDeprecated( __METHOD__, '1.19' );
 		Action::factory( 'rollback', $this )->show();
-	}
-
-	/**
-	 * User-interface handler for the "watch" action.
-	 * Requires Request to pass a token as of 1.18.
-	 * @deprecated since 1.18
-	 */
-	public function watch() {
-		wfDeprecated( __METHOD__, '1.18' );
-		Action::factory( 'watch', $this )->show();
-	}
-
-	/**
-	 * Add this page to the current user's watchlist
-	 *
-	 * This is safe to be called multiple times
-	 *
-	 * @return bool true on successful watch operation
-	 * @deprecated since 1.18
-	 */
-	public function doWatch() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return WatchAction::doWatch( $this->getTitle(), $this->getContext()->getUser() );
-	}
-
-	/**
-	 * User interface handler for the "unwatch" action.
-	 * Requires Request to pass a token as of 1.18.
-	 * @deprecated since 1.18
-	 */
-	public function unwatch() {
-		wfDeprecated( __METHOD__, '1.18' );
-		Action::factory( 'unwatch', $this )->show();
-	}
-
-	/**
-	 * Stop watching a page
-	 * @return bool true on successful unwatch
-	 * @deprecated since 1.18
-	 */
-	public function doUnwatch() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return WatchAction::doUnwatch( $this->getTitle(), $this->getContext()->getUser() );
-	}
-
-	/**
-	 * Output a redirect back to the article.
-	 * This is typically used after an edit.
-	 *
-	 * @deprecated in 1.18; call OutputPage::redirect() directly
-	 * @param $noRedir Boolean: add redirect=no
-	 * @param string $sectionAnchor section to redirect to, including "#"
-	 * @param string $extraQuery extra query params
-	 */
-	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		if ( $noRedir ) {
-			$query = 'redirect=no';
-			if ( $extraQuery ) {
-				$query .= "&$extraQuery";
-			}
-		} else {
-			$query = $extraQuery;
-		}
-
-		$this->getContext()->getOutput()->redirect( $this->getTitle()->getFullURL( $query ) . $sectionAnchor );
 	}
 
 	/**
