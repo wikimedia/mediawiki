@@ -1370,10 +1370,10 @@ Arken koon det lees.',
 'action-createtalk' => 'diskusjuunssidjen maage',
 'action-createaccount' => 'jüdeer brükerkonto mååge',
 'action-minoredit' => 'detdiar feranrang üs letj kääntiakne',
-'action-move' => 'jüdeer sid ferschüwe',
-'action-move-subpages' => 'jüdeer sid än unerside ferschüwe',
+'action-move' => 'an fersküüw det diar sidj',
+'action-move-subpages' => 'an fersküüw detdiar sidj mä hör onersidjen',
 'action-move-rootuserpages' => 'hood-brükersidj fersküüw',
-'action-movefile' => 'jüdeer sid ferschüwe',
+'action-movefile' => 'an fersküüw detdiar datei',
 'action-upload' => 'Datein huuchschüür',
 'action-reupload' => 'det datei auerskriiw',
 'action-reupload-shared' => 'det datei auerskriiw, diar uun en gemiansoom archiif leit',
@@ -2502,7 +2502,7 @@ Fertel det dan ISP of dan süsteemsiinst. Eeben proxys stel det seekerhaid uun f
 
 # Move page
 'move-page' => 'Fersküüw $1',
-'move-page-legend' => 'Sid ferschüwe',
+'move-page-legend' => 'Sidj fersküüw',
 'movepagetext' => "Mä detdiar formulaar könst dü en sidj mä aal sin werjuunen amnääm.
 Di ual tiitel woort üüb di nei widjerfeerd.
 Dü könst widjerfeerangen, diar üüb di ual tiitel wise, automaatisk üüb di nei tiitel widjerfeer läät.

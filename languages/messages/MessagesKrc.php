@@ -1419,6 +1419,7 @@ $1 {{PLURAL:$1|1=символдан|символладан}} кеб болург
 'recentchanges-label-minor' => 'Бу гитче тюрлениудю',
 'recentchanges-label-bot' => 'Бу тюрлендириуню бот этгенди',
 'recentchanges-label-unpatrolled' => 'Бу тюрлендириу алкъын патруль этилинмегенди',
+'recentchanges-label-plusminus' => 'Бетни ёлчеми быллай бир байтха тюрленнгенди',
 'recentchanges-legend-newpage' => '$1 — джангы бет',
 'rcnotefrom' => 'Тюбюрекде <strong>$2</strong> башлаб (<strong>$1</strong> дери) тюрлендириуле кёрюнедиле',
 'rclistfrom' => '$1 башлаб джангы тюрлениулени кёргюз',
@@ -1447,9 +1448,9 @@ $1 {{PLURAL:$1|1=символдан|символладан}} кеб болург
 'rc-old-title' => 'биринчи «$1» деб къуралгъан',
 
 # Recent changes linked
-'recentchangeslinked' => 'Байлам тюрлениуле',
+'recentchangeslinked' => 'Байламлы тюрлениуле',
 'recentchangeslinked-feed' => 'Байламлы тюрлениуле',
-'recentchangeslinked-toolbox' => 'Байламлы тюрлендириуле',
+'recentchangeslinked-toolbox' => 'Байлам тюрлениуле',
 'recentchangeslinked-title' => '$1 бет бла байламлы тюрлендириуле',
 'recentchangeslinked-summary' => "Белгиленнген бет (неда белгиленнген категориягъа киргенле) джиберген бетледе джангы тюрлениулени тизмеси.
 [[Special:Watchlist|Кёзде тургъан тизмеге]] кирген бетле '''чертилибдиле'''.",

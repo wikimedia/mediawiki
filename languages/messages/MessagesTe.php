@@ -1498,6 +1498,8 @@ $1",
 'recentchanges-label-minor' => 'ఇది ఒక చిన్న మార్పు',
 'recentchanges-label-bot' => 'ఈ మార్పును ఒక బాటు చేసింది',
 'recentchanges-label-unpatrolled' => 'ఈ దిద్దుబాటు మీద నిఘా లేదు',
+'recentchanges-label-plusminus' => 'ఈ పేజి పరిమాణంలో  జరిగిన మార్పుల  బైట్ల సంఖ్య',
+'recentchanges-legend-heading' => "'''సూచిక :'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)',
 'rcnotefrom' => '<b>$2</b> నుండి జరిగిన మార్పులు (<b>$1</b> వరకు చూపబడ్డాయి).',
 'rclistfrom' => '$1 నుండి జరిగిన మార్పులను చూపించు',
@@ -2030,7 +2032,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listgrouprights' => 'వాడుకరి గుంపుల హక్కులు',
 'listgrouprights-summary' => 'కింది జాబితాలో ఈ వికీలో నిర్వచించిన వాడుకరి గుంపులు, వాటికి సంబంధించిన హక్కులు ఉన్నాయి.
 విడివిడిగా హక్కులకు సంబంధించిన మరింత సమాచారం [[{{MediaWiki:Listgrouprights-helppage}}]] వద్ద లభించవచ్చు.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">ప్రసాదించిన హక్కు</span>
+'listgrouprights-key' => 'సూచిక:
+* <span class="listgrouprights-granted">ప్రసాదించిన హక్కు</span>
 * <span class="listgrouprights-revoked">వెనక్కి తీసుకున్న హక్కు</span>',
 'listgrouprights-group' => 'గుంపు',
 'listgrouprights-rights' => 'హక్కులు',
@@ -3503,6 +3506,7 @@ $5
 
 # Special:SpecialPages
 'specialpages' => 'ప్రత్యేక పేజీలు',
+'specialpages-note-top' => 'సూచిక',
 'specialpages-note' => '* మామూలు ప్రత్యేక పుటలు.
 * <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పుటలు.</strong>
 * <span class="mw-specialpagecached">Cached ప్రత్యేక పుటలు (పాతబడి ఉండొచ్చు).</span>',

@@ -62,6 +62,7 @@
  * @author Zack wadghiri
  * @author Zanatos
  * @author أحمد
+ * @author الهميان
  * @author ترجمان05
  * @author خالد حسني
  * @author روخو
@@ -739,7 +740,7 @@ $1',
 'disclaimerpage' => 'Project:إخلاء مسؤولية عام',
 'edithelp' => 'مساعدة التحرير',
 'helppage' => 'Help:محتويات',
-'mainpage' => 'الصفحة الرئيسية',
+'mainpage' => 'الصفحة الرئيسة',
 'mainpage-description' => 'الصفحة الرئيسية',
 'policy-url' => 'Project:سياسة',
 'portal' => 'بوابة المجتمع',

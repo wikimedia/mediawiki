@@ -614,7 +614,7 @@ $2',
 'userlogout' => 'بچۆ دەرەوە',
 'notloggedin' => 'لە ژوورەوە نیت',
 'userlogin-noaccount' => 'ھەژمارت نییە؟',
-'userlogin-joinproject' => 'ڕەگەڵ {{SITENAME}} کەوە',
+'userlogin-joinproject' => 'وێڕای {{SITENAME}} کەوە',
 'nologin' => 'ھەژمارت نییە؟  $1.',
 'nologinlink' => 'ھەژمارێک دروست بکە',
 'createaccount' => 'ھەژمار دروست بکە',
@@ -2174,6 +2174,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'ئەم لاپەڕە مێژوویەکی دەستکاری زۆر گەورەی هەیە، زیاتر لە $1 {{PLURAL:$1|پێداچوونەوە|پێداچوونەوە}}.
 سڕینەوی ئەوە لە وانەیە کارەکانی بنکەدراوی {{SITENAME}} تووشی کێشە بکات؛
 دوورنواڕانە جێ‌بەجێی بکە.',
+'deleting-backlinks-warning' => "'''ھۆشدار:''' پەڕەی تر بەم پەڕەیەی دەتەوێ بیسڕییەوە بەستەر دراوە.",
 
 # Rollback
 'rollback' => 'گەڕاندنەوەی دەستکارییەکان',

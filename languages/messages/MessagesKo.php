@@ -31,6 +31,7 @@
  * @author Klutzy
  * @author Kwj2772
  * @author LFM
+ * @author Leehoy
  * @author Mintz0223
  * @author Pi.C.Noizecehx
  * @author Priviet
@@ -374,7 +375,7 @@ $messages = array(
 'tog-editondblclick' => '더블 클릭으로 문서 편집하기',
 'tog-editsection' => '[편집] 링크로 부분 편집하기',
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 문단 편집하기 활성화',
-'tog-showtoc' => '문서의 차례 보여주기 (머릿글이 4개 이상인 경우)',
+'tog-showtoc' => '문서의 목차 보여주기 (머릿글이 4개 이상인 경우)',
 'tog-rememberpassword' => '이 브라우저에서 로그인 상태를 저장하기 (최대 $1{{PLURAL:$1|일}})',
 'tog-watchcreations' => '내가 만드는 문서와 내가 올린 파일을 주시문서 목록에 추가',
 'tog-watchdefault' => '내가 편집하는 문서와 파일을 주시문서 목록에 추가',
@@ -1217,6 +1218,8 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
 'editwarning-warning' => '이 페이지에서 벗어나면 저장하지 않은 바뀜이 모두 사라집니다.
 로그인을 했다면, 환경 설정의 "편집 상자"에서 이 경고를 띄우지 않도록 설정할 수 있습니다.',
+'editpage-notsupportedcontentformat-title' => '지원하지 않는 컨텐츠 형식',
+'editpage-notsupportedcontentformat-text' => '컨텐츠 모델 $2 에서는 컨텐츠형식 $1을 지원하지 않습니다.',
 
 # Content models
 'content-model-wikitext' => '위키텍스트',
@@ -2840,6 +2843,7 @@ $1',
 차단된 사용자 목록은 [[Special:BlockList|여기]]에서 볼 수 있습니다.',
 'ipb-blockingself' => '자기 자신을 차단하려고 합니다! 정말로 실행할까요?',
 'ipb-confirmhideuser' => '사용자를 차단하면서 "사용자 숨기기" 설정을 선택했습니다. 모든 기록에서 이 사용자의 사용자 이름을 숨기게 됩니다. 정말로 계정을 숨기시겠습니까?',
+'ipb-confirmaction' => '그것을 정말로 하기 원한다면 아래에 있는 "{{int:ipb-confirm}}" 부분에 체크하세요',
 'ipb-edit-dropdown' => '차단 이유 목록 편집하기',
 'ipb-unblock-addr' => '$1 차단 해제하기',
 'ipb-unblock' => '사용자 또는 IP 주소 차단 해제하기',
@@ -4063,7 +4067,9 @@ $5
 'version-ext-colheader-license' => '라이선스',
 'version-ext-colheader-description' => '설명',
 'version-ext-colheader-credits' => '저자',
+'version-license-title' => '$1 사용을 위한 라이센스',
 'version-license-not-found' => '이 확장기능에 대한 라이선스 세부 정보가 없습니다.',
+'version-credits-title' => '$1의 작성자',
 'version-credits-not-found' => '이 확장기능에 대한 크레딧 세부 정보가 없습니다.',
 'version-poweredby-credits' => "이 위키는 '''[https://www.mediawiki.org/ MediaWiki]'''(미디어위키)를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others' => '그 외 다른 개발자',
@@ -4285,6 +4291,7 @@ $5
 'api-error-overwrite' => '이미 있는 파일을 덮어쓸 수 없습니다.',
 'api-error-stashfailed' => '내부 오류: 서버가 임시 파일을 저장하지 못했습니다.',
 'api-error-publishfailed' => '내부 오류: 서버가 임시 파일을 게시하지 못했습니다.',
+'api-error-stasherror' => '파일을 안전한 곳으로 업로드 하는 동안 오류가 발생했습니다.',
 'api-error-timeout' => '서버가 제 시간 내에 응답하지 않았습니다.',
 'api-error-unclassified' => '알 수 없는 오류가 발생했습니다.',
 'api-error-unknown-code' => '알 수 없는 오류: "$1"',

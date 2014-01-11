@@ -424,7 +424,7 @@ $messages = array(
 'tog-diffonly' => "No mostrar bajo las ''diferencias'' el contenido de la página",
 'tog-showhiddencats' => 'Mostrar las categorías escondidas',
 'tog-noconvertlink' => 'Desactivar la conversión de título de enlace',
-'tog-norollbackdiff' => "Omitir la ''diferencia'' después de revertir",
+'tog-norollbackdiff' => 'Omitir la diferencia después de revertir',
 'tog-useeditwarning' => 'Advertirme cuando abandone una página editada con cambios sin grabar',
 'tog-prefershttps' => 'Utiliza una conexión segura siempre que haya iniciado una sesión',
 
@@ -453,7 +453,7 @@ $messages = array(
 'wed' => 'mié',
 'thu' => 'jue',
 'fri' => 'vie',
-'sat' => 'sab',
+'sat' => 'sáb',
 'january' => 'enero',
 'february' => 'febrero',
 'march' => 'marzo',
@@ -612,7 +612,7 @@ $messages = array(
 'redirectedfrom' => '(Redirigido desde «$1»)',
 'redirectpagesub' => 'Página de redirección',
 'lastmodifiedat' => 'Esta página fue modificada por última vez el $1, a las $2.',
-'viewcount' => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
+'viewcount' => 'Esta página se ha visitado {{PLURAL:$1|una vez|$1 veces}}.',
 'protectedpage' => 'Página protegida',
 'jumpto' => 'Saltar a:',
 'jumptonavigation' => 'navegación',
@@ -748,7 +748,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 Puede que ya haya sido borrado por alguien más.',
 'cannotdelete-title' => 'No se puede borrar la página «$1»',
 'delete-hook-aborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión. No hay explicación disponible.',
-'no-null-revision' => 'No se pudo crear la nueva revisión nula para la página "$1"',
+'no-null-revision' => 'No se pudo crear la revisión nula para la página «$1»',
 'badtitle' => 'Título incorrecto',
 'badtitletext' => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -789,7 +789,7 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",
-'virus-scanfailed' => 'Escaneo fallido (código $1)',
+'virus-scanfailed' => 'falló el análisis (código $1)',
 'virus-unknownscanner' => 'antivirus desconocido:',
 
 # Login and logout pages
@@ -801,7 +801,7 @@ No olvides personalizar tus [[Special:Preferences|preferencias de {{SITENAME}}]]
 'yourname' => 'Nombre de usuario:',
 'userlogin-yourname' => 'Usuario',
 'userlogin-yourname-ph' => 'Escribe tu nombre de usuario',
-'createacct-another-username-ph' => 'Ingrese el nombre de usuario',
+'createacct-another-username-ph' => 'Escribe el nombre de usuario',
 'yourpassword' => 'Contraseña:',
 'userlogin-yourpassword' => 'Contraseña',
 'userlogin-yourpassword-ph' => 'Escribe tu contraseña',
@@ -925,8 +925,8 @@ Puedes ignorar este mensaje si esta cuenta fue creada por error.',
 'login-abort-generic' => 'Tu inicio de sesión no fue exitoso - Cancelado',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => 'Tu solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.',
-'createacct-another-realname-tip' => 'El nombre Real es opcional.
-Si elige proporcionarlo, se usará para dar al usuario la atribución de su trabajo.',
+'createacct-another-realname-tip' => 'El nombre real es opcional.
+Si se proporciona, se usará para dar al usuario la atribución de su trabajo.',
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP.',
@@ -936,7 +936,7 @@ Si elige proporcionarlo, se usará para dar al usuario la atribución de su trab
 # Change password dialog
 'changepassword' => 'Cambiar contraseña',
 'resetpass_announce' => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico.
-Por favor, introduce una nueva contraseña aquí:',
+Establece una contraseña nueva aquí:',
 'resetpass_text' => '<!-- Añada texto aquí -->',
 'resetpass_header' => 'Cambiar la contraseña de la cuenta',
 'oldpassword' => 'Contraseña antigua:',
@@ -995,8 +995,8 @@ Contraseña temporal: $2',
 'changeemail-header' => 'Cambiar la dirección de correo de la cuenta',
 'changeemail-text' => 'Rellena este formulario para cambiar tu dirección de correo electrónico. Debes introducir la contraseña para confirmar este cambio.',
 'changeemail-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
-'changeemail-oldemail' => 'Dirección de correo electrónico actual:',
-'changeemail-newemail' => 'Nueva dirección de correo electrónico:',
+'changeemail-oldemail' => 'Dirección electrónica actual:',
+'changeemail-newemail' => 'Dirección electrónica nueva:',
 'changeemail-none' => '(ninguna)',
 'changeemail-password' => 'Tu contraseña en {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar correo electrónico',
@@ -2472,7 +2472,7 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'addwatch' => 'Añadir a la lista de seguimiento',
 'addedwatchtext' => 'La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista de seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí.',
 'removewatch' => 'Quitar de la lista de seguimiento',
-'removedwatchtext' => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
+'removedwatchtext' => 'Se ha eliminado la página «[[:$1]]» de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch' => 'Vigilar',
 'watchthispage' => 'Vigilar esta página',
 'unwatch' => 'Dejar de vigilar',

@@ -37,6 +37,7 @@
  * @author Mwpnl
  * @author Naudefj
  * @author Niels
+ * @author Niknetniko
  * @author Paul B
  * @author Romaine
  * @author SPQRobin
@@ -1236,6 +1237,8 @@ Deze bestaat al.',
 'content-not-allowed-here' => 'De inhoud "$1" is niet toegestaan op pagina [[$2]].',
 'editwarning-warning' => 'Als u deze pagina verlaat verliest u mogelijk wijzigingen die u hebt gemaakt.
 Als u bent aangemeld, kunt u deze waarschuwing uitschakelen in het tabblad "{{int:prefs-editing}}" in uw voorkeuren.',
+'editpage-notsupportedcontentformat-title' => 'Inhoudsformaat niet ondersteund',
+'editpage-notsupportedcontentformat-text' => 'Het inhoudsformaat $1 wordt niet ondersteund door het inhoudsmodel $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
