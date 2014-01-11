@@ -771,7 +771,6 @@ $wgAutoloadLocalClasses = array(
 	'DBABagOStuff' => 'includes/objectcache/DBABagOStuff.php',
 	'EhcacheBagOStuff' => 'includes/objectcache/EhcacheBagOStuff.php',
 	'EmptyBagOStuff' => 'includes/objectcache/EmptyBagOStuff.php',
-	'FakeMemCachedClient' => 'includes/objectcache/EmptyBagOStuff.php',
 	'HashBagOStuff' => 'includes/objectcache/HashBagOStuff.php',
 	'MediaWikiBagOStuff' => 'includes/objectcache/SqlBagOStuff.php',
 	'MemCachedClientforWiki' => 'includes/objectcache/MemcachedClient.php',

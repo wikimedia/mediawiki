@@ -78,10 +78,3 @@ class EmptyBagOStuff extends BagOStuff {
 		return true;
 	}
 }
-
-/**
- * Backwards compatibility alias for EmptyBagOStuff
- * @deprecated since 1.18
- */
-class FakeMemCachedClient extends EmptyBagOStuff {
-}
