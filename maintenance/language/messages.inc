@@ -1142,13 +1142,10 @@ $wgMessageStructure = array(
 		'userrights-reason',
 		'userrights-no-interwiki',
 		'userrights-nodatabase',
-		'userrights-nologin',
-		'userrights-notallowed',
 		'userrights-changeable-col',
 		'userrights-unchangeable-col',
 		'userrights-irreversible-marker',
 		'userrights-conflict',
-		'userrights-removed-self',
 	),
 	'group' => array(
 		'group',
