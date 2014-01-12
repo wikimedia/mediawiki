@@ -249,7 +249,7 @@ class CoreParserFunctions {
 			}
 			return $text;
 		} else {
-			return array( 'found' => false );
+			return false;
 		}
 	}
 
