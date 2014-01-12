@@ -209,7 +209,12 @@ class CoreParserFunctions {
 	}
 
 	static function localurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getLocalURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if( !is_string( $temp ) ) {
+			return htmlspecialchars( false );
+		} else {
+			return $temp;
+		}
 	}
 
 	static function fullurl( $parser, $s = '', $arg = null ) {
@@ -217,7 +222,12 @@ class CoreParserFunctions {
 	}
 
 	static function fullurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getFullURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getFullURL', $s, $arg );
+		if( !is_string( $temp ) ) {
+			return htmlspecialchars( false );
+		} else {
+			return $temp;
+		}
 	}
 
 	static function canonicalurl( $parser, $s = '', $arg = null ) {
