@@ -209,7 +209,12 @@ class CoreParserFunctions {
 	}
 
 	static function localurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getLocalURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if( $temp['found'] === false ) {
+			return htmlspecialchars( false );
+		} else {
+			return htmlspecialchars( $temp );
+		}
 	}
 
 	static function fullurl( $parser, $s = '', $arg = null ) {
@@ -217,7 +222,12 @@ class CoreParserFunctions {
 	}
 
 	static function fullurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getFullURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getFullURL', $s, $arg );
+		if( $temp['found'] === false ) {
+			return htmlspecialchars( false );
+		} else {
+			return htmlspecialchars( $temp );
+		}
 	}
 
 	static function canonicalurl( $parser, $s = '', $arg = null ) {
@@ -387,7 +397,7 @@ class CoreParserFunctions {
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title && !$title->hasFragment() && $title->equals( $parser->mTitle ) ) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 
@@ -402,11 +412,12 @@ class CoreParserFunctions {
 	 * @return boolean true on successful match
 	 */
 	private static function matchAgainstMagicword( $magicword, $value ) {
-		if ( strval( $value ) === '' ) {
+		$value = trim( strval( $value ) );
+		if ( $value === '' ) {
 			return false;
 		}
 		$mwObject = MagicWord::get( $magicword );
-		return $mwObject->match( $value );
+		return $mwObject->matchStartToEnd( $value );
 	}
 
 	static function formatRaw( $num, $raw ) {
@@ -678,12 +689,6 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo FIXME: Title::getLength() documentation claims that it adds things
-	 *   to the link cache, so the local cache here should be unnecessary, but
-	 *   in fact calling getLength() repeatedly for the same $page does seem to
-	 *   run one query for each call?
-	 * @todo Document parameters
-	 *
 	 * @param $parser Parser
 	 * @param $page String Name of page to check (Default: empty string)
 	 * @param $raw String Should number be human readable with commas or just number
@@ -703,7 +708,10 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Returns the requested protection level for the current page
+	 * Returns the requested protection level for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels for the given title have
+	 * already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -716,10 +724,13 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-		# Title::getRestrictions returns an array, its possible it may have
-		# multiple values in the future
-		return implode( $restrictions, ',' );
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
+			# Title::getRestrictions returns an array, its possible it may have
+			# multiple values in the future
+			return implode( $restrictions, ',' );
+		}
+		return '';
 	}
 
 	/**
@@ -985,10 +996,34 @@ class CoreParserFunctions {
 		// Use title from parser to have correct pageid after edit
 		if ( $t->equals( $parser->getTitle() ) ) {
 			$t = $parser->getTitle();
+			return $t->getArticleID();
 		}
-		// fetch pageid from cache/database and return the value
-		$pageid = $t->getArticleID();
-		return $pageid ? $pageid : '';
+
+		// These can't have ids
+		if ( !$t->canExist() || $t->isExternal() ) {
+			return 0;
+		}
+
+		// Check the link cache, maybe something already looked it up.
+		$linkCache = LinkCache::singleton();
+		$pdbk = $t->getPrefixedDBkey();
+		$id = $linkCache->getGoodLinkID( $pdbk );
+		if ( $id != 0 ) {
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		if ( $linkCache->isBadLink( $pdbk ) ) {
+			$parser->mOutput->addLink( $t, 0 );
+			return $id;
+		}
+
+		// We need to load it from the DB, so mark expensive
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$id = $t->getArticleID();
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		return null;
 	}
 
 	/**
@@ -1122,7 +1157,8 @@ class CoreParserFunctions {
 	/**
 	 * Returns the sources of any cascading protection acting on a specified page.
 	 * Pages will not return their own title unless they transclude themselves.
-	 * This is an expensive parser function and can't be called too many times per page.
+	 * This is an expensive parser function and can't be called too many times per page,
+	 * unless cascading protection sources for the page have already been loaded.
 	 *
 	 * @param Parser $parser
 	 * @param string $title
@@ -1135,15 +1171,17 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$names = array();
-		if ( $parser->incrementExpensiveFunctionCount() ) {
+		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+			|| $parser->incrementExpensiveFunctionCount()
+		) {
+			$names = array();
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
 				$names[] = $sourceTitle->getPrefixedText();
 			}
+			return implode( $names, '|' );
 		}
-
-		return implode( $names, '|' );
+		return '';
 	}
 
 }
