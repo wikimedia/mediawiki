@@ -205,27 +205,63 @@ class CoreParserFunctions {
 	}
 
 	static function localurl( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'getLocalURL', $s, $arg );
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if ( $temp === false ) {
+			return array( 'found' => false );
+		}
+		else {
+		      return $temp;
+		}
 	}
 
 	static function localurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getLocalURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if( $temp === false ) {
+			return htmlspecialchars( array( 'found' => false ) );
+		}
+		else {
+		      return htmlspecialchars( $temp );
+		}
 	}
 
 	static function fullurl( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'getFullURL', $s, $arg );
+		$temp = self::urlFunction( 'getFullURL', $s, $arg );
+		if( $temp === false ) {
+			return array( 'found' => false );
+		}
+		else {
+		      return $temp;
+		}
 	}
 
 	static function fullurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getFullURL', $s, $arg ) );
+		$temp =  self::urlFunction( 'getFullURL', $s, $arg );
+		if( $temp === false ) {
+			return htmlspecialchars( array( 'found' => false ) );
+		}
+		else {
+		      return htmlspecialchars( $temp );
+		}
 	}
 
 	static function canonicalurl( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'getCanonicalURL', $s, $arg );
+		$temp = self::urlFunction( 'getCanonicalURL', $s, $arg );
+		if( $temp === false ) {
+			return array( 'found' => false );
+		}
+		else {
+		      return $temp;
+		}
 	}
 
 	static function canonicalurle( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'escapeCanonicalURL', $s, $arg );
+		$temp = self::urlFunction( 'escapeCanonicalURL', $s, $arg );
+		if( $temp === false ) {
+			return array( 'found' => false );
+		}
+		else {
+		      return $temp;
+		}
 	}
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
@@ -249,7 +285,7 @@ class CoreParserFunctions {
 			}
 			return $text;
 		} else {
-			return array( 'found' => false );
+			return false;
 		}
 	}
 
