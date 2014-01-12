@@ -104,8 +104,7 @@
  * @code
  * # Name / identifier of the wiki as set in $conf->wikis
  * $wikiID = 'beta';
- * $globals = $conf->getAll( $wikiID );
- * extract( $globals );
+ * $conf->extractAllGlobals( 'enwiki' );
  * @endcode
  *
  * TODO: give examples for,
@@ -276,36 +275,6 @@ class SiteConfiguration {
 		} else {
 			return $in;
 		}
-	}
-
-	/**
-	 * Gets all settings for a wiki
-	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param string $suffix The suffix of the wiki in question.
-	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param array $wikiTags The tags assigned to the wiki.
-	 * @return Array Array of settings requested.
-	 */
-	public function getAll( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
-		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
-		$localSettings = array();
-		foreach ( $this->settings as $varname => $stuff ) {
-			$append = false;
-			$var = $varname;
-			if ( substr( $varname, 0, 1 ) == '+' ) {
-				$append = true;
-				$var = substr( $varname, 1 );
-			}
-
-			$value = $this->getSetting( $varname, $wiki, $params );
-			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) ) {
-				$value = self::arrayMerge( $value, $GLOBALS[$var] );
-			}
-			if ( !is_null( $value ) ) {
-				$localSettings[$var] = $value;
-			}
-		}
-		return $localSettings;
 	}
 
 	/**
