@@ -1938,6 +1938,7 @@ Papildinformācija:
 'delete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
 'delete-toobig' => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
 Šādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.',
+'deleting-backlinks-warning' => "'''Brīdinājums:''' uz lapu, ko grasies izdzēst, ved saites no citām lapām.",
 
 # Rollback
 'rollback' => 'Novērst labojumus',

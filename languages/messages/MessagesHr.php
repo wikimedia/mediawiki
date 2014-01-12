@@ -1978,7 +1978,7 @@ Sljedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vod
 'linkstoimage-redirect' => '$1 (preusmjeravanje datoteke) $2',
 'duplicatesoffile' => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload' => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali projekti.',
-'sharedupload-desc-there' => 'Ova datoteka je s $1 i mogu je koristiti drugi projekti. Pogledajte [$2 stranicu s opisom datoteke] za dodatne informacije.',
+'sharedupload-desc-there' => 'Ova datoteka je s projekta $1 i mogu je koristiti drugi projekti. Pogledajte [$2 stranicu s opisom datoteke] za dodatne informacije.',
 'sharedupload-desc-here' => 'Ova datoteka je sa $1 i mogu je koristiti drugi projekti. Opis s njezine [$2 stranice s opisom datoteke] prikazan je ispod.',
 'sharedupload-desc-edit' => 'Ova datoteka nalazi se na $1 i može se rabiti na drugim projektima.
 Njen opis možete urediti na [$2 stranici opisa datoteke].',

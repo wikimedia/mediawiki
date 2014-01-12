@@ -688,7 +688,7 @@ Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/
 'editinginterface' => "'''Upozorenje:''' uređujete stranicu koja se koristi za prikazivanje teksta korisničkog okruženja.
 Izmene na ovoj stranici će uticati na sve korisnike ovog vikija.
 Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat za lokalizaciju Medijavikija.",
-'cascadeprotected' => 'Ova stranica je zaključana jer sadrži {{PLURAL:$1|1=sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:
+'cascadeprotected' => 'Ova stranica je zaključana jer sadrži {{PLURAL:$1|sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:
 $2',
 'namespaceprotected' => "Nemate dozvolu da uređujete stranice u imenskom prostoru '''$1'''.",
 'customcssprotected' => 'Nemate dozvolu da menjate ovu CSS stranicu jer sadrži lične postavke drugog korisnika.',
@@ -1744,7 +1744,7 @@ Promenite naziv datoteke i ponovo je pošaljite.',
 'filename-toolong' => 'Nazivi datoteka mogu imati najviše 240 bajtova.',
 'badfilename' => 'Naziv datoteke je promenjen u „$1“.',
 'filetype-mime-mismatch' => 'Ekstenzija „.$1“ ne odgovara prepoznatoj vrsti MIME datoteke ($2).',
-'filetype-badmime' => 'Datoteke MIME vrste „$1“ nije dozvoljeno slati.',
+'filetype-badmime' => 'Datoteke MIME tipa „$1“ nije dozvoljeno slati.',
 'filetype-bad-ie-mime' => 'Ova datoteka se ne može poslati zato što bi je Internet eksplorer uočio kao „$1“, a to je zabranjena i opasna vrsta datoteke.',
 'filetype-unwanted-type' => '„.$1“ je nepoželjna vrsta datoteke.
 {{PLURAL:$3|1=Poželjna vrsta datoteke je|Poželjne vrste datoteka su}} $2.',

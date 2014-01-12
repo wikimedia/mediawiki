@@ -33,6 +33,7 @@
  * @author Hakeem
  * @author Histolo2
  * @author Houcinee1
+ * @author Ibrahim.ID
  * @author Jak
  * @author Khaledhosny
  * @author Lord Anubis
@@ -740,7 +741,7 @@ $1',
 'disclaimerpage' => 'Project:إخلاء مسؤولية عام',
 'edithelp' => 'مساعدة التحرير',
 'helppage' => 'Help:محتويات',
-'mainpage' => 'الصفحة الرئيسة',
+'mainpage' => 'الصفحة الرئيسية',
 'mainpage-description' => 'الصفحة الرئيسية',
 'policy-url' => 'Project:سياسة',
 'portal' => 'بوابة المجتمع',

@@ -520,6 +520,7 @@ Ism yozilishini tekshirib koʻring.',
 'newpassword' => "Yangi mahfiy so'z:",
 'retypenew' => 'Yangi mahfiy soʻzni qayta tering:',
 'resetpass_submit' => "Maxfiy so'zni o'rnatish va kirish",
+'changepassword-success' => 'Maxfiy soʻzni oʻzgartirish muvaffaqiyatli oʻtdi!',
 'resetpass_forbidden' => "Maxfiy so'z o'zgartirilishi mumkin emas",
 'resetpass-submit-loggedin' => 'Maxfiy soʻzni oʻzgartirish',
 'resetpass-submit-cancel' => 'Bekor',
@@ -940,9 +941,9 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'recentchanges-label-minor' => 'Bu tahrir kichik deb belgilangan',
 'recentchanges-label-bot' => 'Bu tahrirni bot bajargan',
 'recentchanges-label-unpatrolled' => 'Bu tahrir hali tekshirilmagan',
-'recentchanges-label-plusminus' => 'sahifa vazni baytlarda qanchaga oʻzgargani',
+'recentchanges-label-plusminus' => 'vazni qanchaga oʻzgargani (bayt)',
 'recentchanges-legend-heading' => "'''Izoh:'''",
-'recentchanges-legend-newpage' => '(shuningdek qarang: [[Special:NewPages|yangi sahifalar roʻyxati]])',
+'recentchanges-legend-newpage' => '([[Special:NewPages|alohida roʻyxat]])',
 'rcnotefrom' => "Quyida <strong>$2</strong> dan (<strong>$1</strong> gacha) bo'lgan o'zgarishlar keltirilgan.",
 'rclistfrom' => '$1 dan boshlab yangi oʻzgarishlarni koʻrsat.',
 'rcshowhideminor' => 'Kichik tahrirlarni $1',
@@ -1396,14 +1397,14 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'ipadressorusername' => 'IP-manzil yoki foydalanuvchi nomi:',
 'ipbexpiry' => 'Tugaydi:',
 'ipbreason' => 'Sabab:',
-'ipbreason-dropdown' => "* Chetlashtirishning andazaviy sabablari
-** Yolg'on axborot kiritish
-** Sahifa matnini o'chirish
-** Tashqi saytlarga spam-yo'llanmalar
-** Ma'nosiz matn/axlat qo'shish
-** Tahdid, ishtirokchilarni ta'qib qilish
-** Bir necha hisob yozuvlaridan o'z manfaatlarida foydalanish
-** Ishtirokchining nomaqbul ismi",
+'ipbreason-dropdown' => '* Chetlashtirishning odatiy sabablari
+** Yolgʻon maʼlumot kiritish
+** Sahifa matnini toʻliq oʻchirish
+** Tashqi saytlarga spam-havolalar
+** Maʼnosiz matn/axlat qoʻshish
+** Foydalanuvchilarga tahdid qilish, ularni taʼqib qilish
+** Bir nechta hisob yozuvlaridan oʻz manfaatlarida foydalanish
+** Nomaqbul foydalanuvchi nomi',
 'ipbsubmit' => 'Ushbu foydalanuvchini chetlashtirish',
 'ipbother' => 'Boshqa vaqt:',
 'ipboptions' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
