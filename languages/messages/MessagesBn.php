@@ -1944,7 +1944,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'mostinterwikis' => 'সবচেয়ে বেশী ইন্টারউইকি লিংক-সমৃদ্ধ নিবন্ধসমূহ',
 'mostrevisions' => 'সবচেয়ে বেশী বার সম্পাদিত নিবন্ধসমূহ',
 'prefixindex' => 'উপসর্গ সহ সমস্ত পাতা',
-'prefixindex-namespace' => 'প্রিফিক্স সম্পবলিত সকল পাতা ($1 নামস্থান)',
+'prefixindex-namespace' => 'উপসর্গ সহ সকল পাতা ($1 নামস্থান)',
 'prefixindex-strip' => 'তালিকা থেকে প্রিফিক্স সরাও',
 'shortpages' => 'সংক্ষিপ্ত পাতাসমূহ',
 'longpages' => 'দীর্ঘ পাতাসমূহ',

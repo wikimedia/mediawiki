@@ -872,6 +872,7 @@ A esist già.",
 'editwarning-warning' => "Chité sta pàgina-sì a peul feje perde tute le modìfiche ch'a l'ha fàit.
 S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «Modìfica» dij sò gust.",
 'editpage-notsupportedcontentformat-title' => 'Formà ëd contnù nen mantnù',
+'editpage-notsupportedcontentformat-text' => "Ël formà ëd contnù $1 a l'é nen mantnù dal model Ëd contnù $2.",
 
 # Content models
 'content-model-wikitext' => 'test wiki',

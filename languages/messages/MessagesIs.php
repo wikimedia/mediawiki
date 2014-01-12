@@ -505,7 +505,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'youhavenewmessages' => 'Þú hefur fengið $1 ($2).',
 'youhavenewmessagesfromusers' => 'Þú hefur $1 frá {{PLURAL:$3|öðrum notanda|$3 notendum}} ($2)',
 'youhavenewmessagesmanyusers' => 'Þú hefur $1 frá mörgum notendum ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|ein|}} ný skilaboð',
+'newmessageslinkplural' => '{{PLURAL:$1|ný}} skilaboð',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|síðasta breyting|síðustu breytingar}} spjallsíðunnar',
 'youhavenewmessagesmulti' => 'Þín bíða ný skilaboð á $1',
 'editsection' => 'breyta',
@@ -593,8 +593,8 @@ Líklegt er að einhver annar hafi gert það.',
 Engin skýring gefin.',
 'badtitle' => 'Slæmur titill',
 'badtitletext' => 'Umbeðin síðutitill er ógildur.',
-'perfcached' => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar. Allt að {{PLURAL:$1|ein niðurstaða er aðgengileg|$1 niðurstöður eru aðgengilegar}} í skyndiminninu.',
-'perfcachedts' => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. Allt að {{PLURAL:$4|ein niðurstaða er aðgengileg|$4 niðurstöður eru aðgengilegar}} í skyndiminninu.',
+'perfcached' => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar. Allt að $1 {{PLURAL:$1|niðurstaða er aðgengileg|niðurstöður eru aðgengilegar}} í skyndiminninu.',
+'perfcachedts' => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. Allt að $4 {{PLURAL:$4|niðurstaða er aðgengileg|niðurstöður eru aðgengilegar}} í skyndiminninu.',
 'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
 'viewsource' => 'Skoða efni',
 'viewsource-title' => 'Skoða efni $1',
@@ -720,7 +720,7 @@ Athugaðu hvort um innsláttavillu er að ræða eða [[Special:UserLogin/signup
 'login-userblocked' => 'Þessi notandi hefur verið settur í bann.  Innskráning ekki leyfð.',
 'wrongpassword' => 'Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.',
 'wrongpasswordempty' => 'Lykilorðsreiturinn var auður. Vinsamlegast reyndu aftur.',
-'passwordtooshort' => 'Lykilorð skal vera að minnsta kosti {{PLURAL:$1 |einn stafur|$1 stafir}}.',
+'passwordtooshort' => 'Lykilorð skal vera að minnsta kosti $1 {{PLURAL:$1|stafur|stafir}}.',
 'password-name-match' => 'Þarf að lykilorð þitt sé öðruvísi notandanafni þínu',
 'password-login-forbidden' => 'Notkun þessa notendanafns og lykilorðs er ekki leyfileg.',
 'mailmypassword' => 'Endurstilla lykilorð',
@@ -728,10 +728,10 @@ Athugaðu hvort um innsláttavillu er að ræða eða [[Special:UserLogin/signup
 'passwordremindertext' => 'Einhver (líklegast þú, á vistfanginu $1) hefur beðið um að fá nýtt
 lykilorð fyrir {{SITENAME}} ($4). Tímabundið lykilorð fyrir notandann „$2“
 hefur verið búið til og er núna „$3“. Ef þetta er það sem þú vildir, þarfu að skrá
-þig inn og velja nýtt lykilorð.  Þetta tímabundna lykilorð rennur út eftir {{PLURAL:$5|einn dag|$5 daga}}.
+þig inn og velja nýtt lykilorð.  Þetta tímabundna lykilorð rennur út eftir $5 {{PLURAL:$5|dag|daga}}.
 
 Ef það var ekki þú sem fórst fram á þetta, eða ef þú mannst lykilorðið þitt,
-og vilt ekki lengur breyta því, skaltu hunsa þetta skilaboð og
+og vilt ekki lengur breyta því, skaltu hunsa þessi skilaboð og
 halda áfram að nota gamla lykilorðið.',
 'noemail' => 'Það er ekkert netfang skráð fyrir notandan "$1".',
 'noemailcreate' => 'Þú verður að skrá gilt netfang',
@@ -809,14 +809,14 @@ endursetningu lykilorðsins þíns fyrir {{SITENAME}} ($4). Aðgangur eftirfaran
 
 $2
 
-Ef þetta er það sem þú vildir, þarftu að skrá þig inn og velja nýtt lykilorð. {{PLURAL:$3|Tímabundna lykilorð|Tímabundnu lykilorðin}} renna út eftir {{PLURAL:$5|einn dag|$5 daga}}.
+Ef þetta er það sem þú vildir, þarftu að skrá þig inn og velja nýtt lykilorð. {{PLURAL:$3|Tímabundna lykilorðið rennur|Tímabundnu lykilorðin renna}} út eftir $5 {{PLURAL:$5|dag|daga}}.
 
 Ef það varst ekki þú sem fórst fram á þetta, eða ef þú mannst lykilorðið þitt, og villt ekki lengur breyta því, skaltu hunsa þessi skilaboð og halda áfram að nota gamla lykilorðið.',
 'passwordreset-emailtext-user' => 'Notandinn $1 á {{SITENAME}} hefur beðið um endursetningu lykilorðsins þíns fyrir {{SITENAME}} ($4). Aðgangur eftirfarandi {{PLURAL:$3|notanda er|notendum eru}} tengd þessu netfangi:
 
 $2
 
-Ef þetta er það sem þú vildir, þarftu að skrá þig inn og velja nýtt lykilorð. {{PLURAL:$3|Tímabundna lykilorð|Tímabundnu lykilorðin}} renna út eftir {{PLURAL:$5|einn dag|$5 daga}}.
+Ef þetta er það sem þú vildir, þarftu að skrá þig inn og velja nýtt lykilorð. {{PLURAL:$3|Tímabundna lykilorðið rennur|Tímabundnu lykilorðin renna}} út eftir $5 {{PLURAL:$5|dag|daga}}.
 
 Ef það varst ekki þú sem fórst fram á þetta, eða ef þú mannst lykilorðið þitt, og villt ekki lengur breyta því, skaltu hunsa þessi skilaboð og halda áfram að nota gamla lykilorðið.',
 'passwordreset-emailelement' => 'Notendanafn: $1
@@ -1005,7 +1005,7 @@ Lausn er í gildi sem leyfir þér að breyta síðum: Stafatákn sem eru ekki �
 Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br />
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 '''EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!'''",
-'longpageerror' => "'''VILLA: Textinn sem þú sendir inn er {{PLURAL:$1|eitt kílóbæti|$1 kílóbæti}} að lengd, en hámarkið er {{PLURAL:$2|eitt kílóbæti|$2 kílóbæti}}. Ekki er hægt að vista textann.'''",
+'longpageerror' => "'''VILLA: Textinn sem þú sendir inn er $1 {{PLURAL:$1|kílóbæti|kílóbæti}} að lengd, en hámarkið er $2 {{PLURAL:$2|kílóbæti|kílóbæti}}. Ekki er hægt að vista textann.'''",
 'readonlywarning' => "'''AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.'''
 Þú ættir að klippa og líma textann yfir í textaskjal til þess að geyma hann til seinni tíma.
 
@@ -1063,7 +1063,7 @@ Ef þú ert skráður inn, þá getur þú óvirkjað þessi skilaboð í „Bre
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Viðvörun:''' Þessi síða inniheldur of mörg vinnslufrek aðgerðar þáttunar köll.
 
-Hún ætti að innihalda minna en $2 {{PLURAL:$2|kall|köll}}, en {{PLURAL:$1|er nú eitt kall|eru nú $1 köll}}.",
+Hún ætti að innihalda minna en $2 {{PLURAL:$2|kall|köll}}, en {{PLURAL:$1|er nú $1 kall|eru nú $1 köll}}.",
 'expensive-parserfunction-category' => 'Síður með of mörg vinnslufrek aðgerðar þáttunar köll',
 'post-expand-template-inclusion-warning' => "'''Viðvörun:''' Sniðið tekur of mikið pláss.
 Hluti sniðsins verður ekki með.",
@@ -1265,9 +1265,9 @@ Athugaðu að með því að nota flakktenglana er þessi dálkur endurstilltur.
 'showhideselectedversions' => 'Sýna/fela valdar breytingar',
 'editundo' => 'Taka aftur þessa breytingu',
 'diff-empty' => '(Enginn munur)',
-'diff-multi' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá {{PLURAL:$2|notanda|$2 notendum}}.)',
-'diff-multi-manyusers' => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá fleiri en {{PLURAL:$2|einum notanda|$2 notendum}}.)',
-'difference-missing-revision' => '{{PLURAL:$2|Ein útgáfa|$2 útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.
+'diff-multi' => '$1 ({{PLURAL:$1|millibreyting ekki sýnd|millibreytingar ekki sýndar}} frá $2 {{PLURAL:$2|notanda|notendum}}.)',
+'diff-multi-manyusers' => '($1 {{PLURAL:$1|millibreyting ekki sýnd|millibreytingar ekki sýndar}} frá fleiri en $2 {{PLURAL:$2|notanda|notendum}}.)',
+'difference-missing-revision' => '$2 {{PLURAL:$2|útgáfa|útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.
 
 Þetta gerist oftast þegar úreldur samanburðartengill tengir á síðu sem hefur verið eytt.
 Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].',
@@ -1813,7 +1813,7 @@ Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjó
 'backend-fail-closetemp' => 'Mistókst að loka tímabundinni skrá.',
 'backend-fail-read' => 'Mistókst að lesa skrá $1.',
 'backend-fail-create' => 'Mistókst að skrifa skrá $1.',
-'backend-fail-maxsize' => 'Mistókst að skrifa skránna $1 því hún er stærri en {{PLURAL:$2|eitt bæti|$2 bæti}}.',
+'backend-fail-maxsize' => 'Mistókst að skrifa skránna „$1” því hún er stærri en $2 {{PLURAL:$2|bæti}}.',
 'backend-fail-readonly' => 'Gagnabankann "$1" er engöngu hægt að lesa í augnablikinu. Ástæðan sem var gefin er: "\'\'$2\'\'"',
 'backend-fail-synced' => 'Skráin $1 er í ósamkvæmu ástandi innan innri geymslubakenda',
 'backend-fail-connect' => 'Mistókst að tengjast gagnabankanum "$1".',
@@ -2513,7 +2513,7 @@ Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletecomment' => 'Ástæða:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
-'undeletedfiles' => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
+'undeletedfiles' => '$1 {{PLURAL:$1|skrá endurvakin|skrár endurvaktar}}',
 'cannotundelete' => 'Ekki var hægt að afturkalla eyðingu.
 $1',
 'undeletedpage' => "'''$1 var endurvakin'''
@@ -3704,7 +3704,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.',
 'watchlistedit-normal-explain' => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan.
 Til að fjarlægja titil hakaðu í kassann við hliðina á honum og smelltu á „{{int:Watchlistedit-normal-submit}}“. Þú getur einnig [[Special:EditWatchlist/raw|breytt honum opnum]].',
 'watchlistedit-normal-submit' => 'Fjarlægja titla',
-'watchlistedit-normal-done' => '{{PLURAL:$1|Ein síða var fjarlægð|$1 síður voru fjarlægðar}} af vaktlistanum þínum:',
+'watchlistedit-normal-done' => '$1 {{PLURAL:$1|síða var fjarlægð|síður voru fjarlægðar}} af vaktlistanum þínum:',
 'watchlistedit-raw-title' => 'Breyta opnum vaktlistanum',
 'watchlistedit-raw-legend' => 'Breyta opnum vaktlistanum',
 'watchlistedit-raw-explain' => 'Titlarnir á vaktlistanum þínum eru sýndir hér fyrir neðan og þeim er hægt að breyta með því að bæta við og taka út af honum;

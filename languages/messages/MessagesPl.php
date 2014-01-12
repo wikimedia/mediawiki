@@ -2203,7 +2203,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwiki|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linki|linków}}',
 'nmembers' => '$1 {{PLURAL:$1|element|elementy|elementów}}',
-'nmemberschanged' => '$1 → $2 {{PLURAL:$1|element|elementy|elementów}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|element|elementy|elementów}}',
 'nrevisions' => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'nviews' => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'nimagelinks' => 'Używane na $1 {{PLURAL:$1|stronie|stronach}}',
