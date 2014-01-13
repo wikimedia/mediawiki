@@ -9,7 +9,7 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.0 ===
 
-* Restore compatibility with curl < 7.16.2.
+* (bug 58178) Restore compatibility with curl < 7.16.2.
 * (bug 56931) Updated the plural rules to CLDR 24. They are in new format
   which is detailed in UTS 35 Rev 33. The PHP parser and evaluator as well as
   the JavaScript evaluator were updated to support the new format. Plural rules
@@ -21,6 +21,7 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
   compiled without support for MySQL yet with support for another DBMS.
 * (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
   to appear blank or with missing text.
+* (bug 47055) Changed FOR UPDATE handling in Postgresql
 
 == MediaWiki 1.22.0 ==
 
