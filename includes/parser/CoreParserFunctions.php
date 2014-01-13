@@ -704,7 +704,10 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Returns the requested protection level for the current page
+	 * Returns the requested protection level for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels for the given title have
+	 * already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -717,10 +720,13 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-		# Title::getRestrictions returns an array, its possible it may have
-		# multiple values in the future
-		return implode( $restrictions, ',' );
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
+			# Title::getRestrictions returns an array, its possible it may have
+			# multiple values in the future
+			return implode( $restrictions, ',' );
+		}
+		return '';
 	}
 
 	/**
