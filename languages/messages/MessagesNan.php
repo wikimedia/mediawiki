@@ -332,6 +332,9 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 # General errors
 'error' => 'Chhò-gō·',
 'databaseerror' => 'Chu-liāu-khò· chhò-gō·',
+'databaseerror-query' => '揣：',
+'databaseerror-function' => '功能：',
+'laggedslavemode' => "'''提醒：'''頁內容可能毋是上新的。",
 'readonly' => 'Chu-liāu-khò· só tiâu leh',
 'enterlockreason' => 'Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.',
 'readonlytext' => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
@@ -340,6 +343,9 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 Che it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat ê ia̍h í-keng hông thâi tiàu.
 
 Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .',
+'missingarticle-rev' => '（修訂版本＃：$1）',
+'missingarticle-diff' => '（精差：$1，$2）',
+'readonly_lag' => '佇附屬的資料庫更新到主要資料庫資料的時陣，資料庫會自動鎖定。',
 'internalerror' => 'Loē-pō͘ ê chhò-ngō͘',
 'internalerror_info' => 'Loē-pō͘ ê chhò-ngō͘: $1',
 'fileappenderrorread' => 'Ka-ji̍p(append) ê sî bô-hoat-tō͘ thak "$1".',
@@ -353,7 +359,8 @@ Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chh
 'unexpected' => 'Koài-koài ê pió-tat: "$1"="$2"。',
 'formerror' => 'Chhò-gō·: bô-hoat-tō· kā pió sàng chhut khì.',
 'badarticleerror' => 'Bē-tàng tiàm chit ia̍h chip-hêng chit ê tōng-chok.',
-'cannotdelete' => 'Bô-hoat-tō· kā hit ê ia̍h a̍h-sī iáⁿ-siōng thâi tiāu. (Khó-lêng pa̍t-lâng í-keng kā thâi tiāu ah.)',
+'cannotdelete' => 'Bô-hoat-tō· kā hit ê ia̍h a̍h-sī iáⁿ-siōng 「$1」 thâi tiāu. (Khó-lêng pa̍t-lâng í-keng kā thâi tiāu ah.)',
+'cannotdelete-title' => '無法度共"$1"這頁刣掉。',
 'badtitle' => 'M̄-chiâⁿ piau-tê',
 'badtitletext' => 'Iau-kiû ê piau-tê sī bô-hāu ê, khang ê, a̍h-sī liân-kiat chhò-gō· ê inter-language/inter-wiki piau-tê.',
 'perfcached' => 'Ē-kha ê chu-liāu tùi lâi--ê, só·-í bī-pit oân-choân hoán-èng siōng sin ê chōng-hóng. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -607,7 +614,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'rows' => 'Chōa:',
 'columns' => 'Nôa',
 'searchresultshead' => 'Chhiau-chhōe kiat-kó ê siat-tēng',
-'resultsperpage' => '1 ia̍h hián-sī kúi kiāⁿ:',
 'recentchangesdays' => 'Hián-sī kúi ji̍t chòe-kīn ê kái-piàn:',
 'recentchangesdays-max' => 'siōng-choē $1 {{PLURAL:$1|kang|kang}}',
 'recentchangescount' => 'Hián-sī kúi tiâu chòe-kīn ê kái-piàn:',

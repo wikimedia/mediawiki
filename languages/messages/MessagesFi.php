@@ -1134,6 +1134,7 @@ Se on jo olemassa.',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
 'editwarning-warning' => 'Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.
 Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa "Muokkaus".',
+'editpage-notsupportedcontentformat-title' => 'Sisällön muotoa ei tueta',
 
 # Content models
 'content-model-wikitext' => 'wikiteksti',

@@ -9,6 +9,7 @@
  *
  * @author An13sa
  * @author Bengoa
+ * @author Fitoschido
  * @author Helix84
  * @author Kaganer
  * @author Kaustubh
@@ -1131,7 +1132,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'mergelogpagetext' => 'Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.',
 
 # Diffs
-'history-title' => '"$1" orrialdearen historia berrikuspena',
+'history-title' => '«$1» orrialdearen historia berrikuspena',
 'difference-title' => '«$1»: berrikuspenen arteko aldeak',
 'difference-title-multipage' => '"$1" eta "$2" orrialdeen arteko ezberditasunak',
 'difference-multipage' => '(Orrialdeen arteko ezberdintasunak)',
@@ -2702,7 +2703,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 'import-error-invalid' => '"$1" orrialdea ez da inportatu izena ez delako baliagarria.',
 'import-options-wrong' => 'Aukera {{PLURAL:$2|ez-egokia|ez-egokiak}}:<nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Emandako jatorri orrialdea izenburu ez-baliagarria da.',
-'import-rootpage-nosubpage' => 'Jatorri orrialdearen "$1" izen-tarteak ez du baimentzen azpi-orrialderik.',
+'import-rootpage-nosubpage' => 'Jatorri orrialdearen «$1» izen-tarteak ez du baimentzen azpi-orrialderik.',
 
 # Import log
 'importlogpage' => 'Inportazio erregistroa',

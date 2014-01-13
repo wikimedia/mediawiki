@@ -352,9 +352,9 @@ $messages = array(
 'tog-minordefault' => "Vurnayışanê xo pêrune ''vurnayışo qıckek'' nışan bıde",
 'tog-previewontop' => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst' => 'Vurnayışo verên de verqayti tım bımocne',
-'tog-enotifwatchlistpages' => 'Yew pele ya zi dosyaya ke lista mına seyrkerdışi de vurnayê mı rê e-poste bırışe',
+'tog-enotifwatchlistpages' => 'Jû pele ya ki dosyawa ke lista mına seyrkerdışi de vurnae, mı rê e-mail bırışe',
 'tog-enotifusertalkpages' => 'Pela mına werênayışi ke vurnayê mı rê e-poste bırışe',
-'tog-enotifminoredits' => 'Vurnayışanê qıckekanê pelan u dosyeyan de zi mı rê e-poste bırışe',
+'tog-enotifminoredits' => 'Pelan de vurnayışanê qıckekan u dosyan de ki mı rê e-mail bırışe',
 'tog-enotifrevealaddr' => 'Adresa e-posteyê mı posteyê xeberan de bımocne',
 'tog-shownumberswatching' => 'Amarê karberanê seyrkerdoğan bımocne',
 'tog-oldsig' => 'İmzaya mewcude:',
@@ -383,27 +383,27 @@ $messages = array(
 'editfont-style' => 'Cayê vurnayışi de terzê nuştışi:',
 'editfont-default' => 'Cıgeyrayoğo hesabiyaye',
 'editfont-monospace' => 'Terzê nusteyê sabıtcagırewtoği',
-'editfont-sansserif' => 'Babetê Sans-serifi',
-'editfont-serif' => 'Babetê serifi',
+'editfont-sansserif' => 'Fontê Sans-serifi',
+'editfont-serif' => 'Font (çêşıdê nuştey) Serif',
 
 # Dates
-'sunday' => 'Kırê',
+'sunday' => 'Kırê (Bazar)',
 'monday' => 'Dışeme',
 'tuesday' => 'Sêşeme',
 'wednesday' => 'Çarşeme',
 'thursday' => 'Pancşeme',
-'friday' => 'Êne',
+'friday' => 'Yene',
 'saturday' => 'Şeme',
 'sun' => 'Krê',
 'mon' => 'Dış',
 'tue' => 'Sêş',
 'wed' => 'Çrş',
 'thu' => 'Pşm',
-'fri' => 'Êne',
+'fri' => 'Yen',
 'sat' => 'Şem',
 'january' => 'Çele',
 'february' => 'Sıbate',
-'march' => 'Adar',
+'march' => 'Adar (Mart)',
 'april' => 'Nisane',
 'may_long' => 'Gulane',
 'june' => 'Heziran',
@@ -418,7 +418,7 @@ $messages = array(
 'march-gen' => 'Adar',
 'april-gen' => 'Nisane',
 'may-gen' => 'Gulane',
-'june-gen' => 'Heziran',
+'june-gen' => 'Hezirane',
 'july-gen' => 'Temuze',
 'august-gen' => 'Tebaxe',
 'september-gen' => 'Keşkelun',
@@ -935,44 +935,44 @@ Parola vêrdiye: $2',
 # Special:ChangeEmail
 'changeemail' => 'E-posta adresa xo bıvurnê',
 'changeemail-header' => 'E-posya adresta hesabdê xo bıvurnê',
-'changeemail-text' => 'Şıma qayılê ke e-postay xo bıvurnê se enê formi pırkerê. Qandê araşt kerdışi zi parolay xo şıma de bınusnê',
-'changeemail-no-info' => 'Resayışê ena pela rê Dekewtış icab keno.',
-'changeemail-oldemail' => 'E-postay şımaya newki:',
-'changeemail-newemail' => 'E-posta adresiyo newe:',
-'changeemail-none' => '(Çıno)',
-'changeemail-password' => 'Parolaya şımaya {{SITENAME}}i:',
-'changeemail-submit' => 'E-postay xo bıvurne',
+'changeemail-text' => 'Şıma ke qailê  e-postay xo bıvırnê, enê formi pırr kerê. Raşt kerdışi rê ki şıma gani parolay xo bınusnê',
+'changeemail-no-info' => 'Şıma gani bıkewê pele ke derdest bıresê na pele.',
+'changeemail-oldemail' => 'E-postay şımawa nıkaêne:',
+'changeemail-newemail' => 'E-postay şımawa newiye:',
+'changeemail-none' => '(Çıniyo)',
+'changeemail-password' => 'Parolay şımawa {{SITENAME}}i:',
+'changeemail-submit' => 'E-postay xo bıvırnên',
 'changeemail-cancel' => 'Bıtexelne',
 
 # Special:ResetTokens
-'resettokens' => 'Reset fi ye',
-'resettokens-no-tokens' => 'Ena reset nefina',
-'resettokens-legend' => 'Reset fi ye',
-'resettokens-tokens' => 'Beli kerdeni:',
-'resettokens-token-label' => '$1 (weziyeta newki: $2)',
-'resettokens-watchlist-token' => 'Qandé [[Special:Watchlist|Per vırnayışa lista da temaşan]]  web wari kerdeni (Atom/RSS)',
-'resettokens-done' => 'Reset fi',
-'resettokens-resetbutton' => 'Reset fiyayış weçin',
+'resettokens' => 'Nışanan reset ke',
+'resettokens-no-tokens' => 'Nışanê reseti çıniyê',
+'resettokens-legend' => 'Nışanan reset ke',
+'resettokens-tokens' => 'Nışani:',
+'resettokens-token-label' => '$1 (weziyeto nıkaên: $2)',
+'resettokens-watchlist-token' => 'Web Feed rê nışan (Atom/RSS)ê [[Special:Watchlist|vêreno perranê lista şımawa seyrkerdışi]]',
+'resettokens-done' => 'Nışanan reset ke',
+'resettokens-resetbutton' => 'Nışananê weçıniteyan reset ke',
 
 # Edit page toolbar
 'bold_sample' => 'Metno qalın',
 'bold_tip' => 'Metno qalın',
-'italic_sample' => 'Metno vırandere',
-'italic_tip' => 'Metno vırandere',
-'link_sample' => 'Namey gırê',
-'link_tip' => 'Gıreyê miyani',
-'extlink_sample' => 'http://www.example.com şınasiya adresi',
-'extlink_tip' => 'Greyê teberi (adresi vero http:// dekerê de)',
-'headline_sample' => 'nuştey xeta seri',
-'headline_tip' => '2.ki sewiye sername',
-'nowiki_sample' => 'Non-format nuşte itiya ra bıerz',
-'nowiki_tip' => 'Format kerdışê wiki bıterknê',
+'italic_sample' => 'Metno çewt',
+'italic_tip' => 'Metno çewt',
+'link_sample' => 'Namey gırey',
+'link_tip' => 'Gırey miyani',
+'extlink_sample' => 'http://www.misal.com sernamey gırey',
+'extlink_tip' => 'Gırey teberi (xo vira mekerên http:// prefix)',
+'headline_sample' => 'metnê sernamey',
+'headline_tip' => 'sewiya 2ıne sername',
+'nowiki_sample' => 'metnê formatkerdey berze etıya',
+'nowiki_tip' => 'Goş formatê Wiki ra mekûwe',
 'image_sample' => 'Misal resim.jpg',
-'image_tip' => 'Dosyaya gumın',
+'image_tip' => 'Dosya tewrkerdiye',
 'media_sample' => 'misal.jpg',
-'media_tip' => 'Gıreyê dosya',
-'sig_tip' => 'İmza u wext',
-'hr_tip' => 'Çıxiza dimdayi (hend akar mefiye)',
+'media_tip' => 'Gırey dosya',
+'sig_tip' => 'İmzay şıma be morê zemani',
+'hr_tip' => 'Xeta verardiye (teserrufın bıgureyne/bıxebetne)',
 
 # Edit pages
 'summary' => "<font style=\"color:Blue\">'''Xulasa:'''</font>",
@@ -982,30 +982,32 @@ Parola vêrdiye: $2',
 'savearticle' => 'Pele qeyd ke',
 'preview' => 'Verqayt',
 'showpreview' => 'Verqayti bımocne',
-'showlivepreview' => 'Verqayto cıwın',
+'showlivepreview' => 'Verqayto cınde (giyane)',
 'showdiff' => 'Vurnayışan bımocne',
-'anoneditwarning' => 'Teme!: Şıma bı hesabê xo nıkewtê cı. Hurêndiya namey şıma dı IP-adresa şıma qeyd bena u asena.',
-'anonpreviewwarning' => "''Ti hama nicikewte. Qeyd kerdiş zerre tarixê pele de adresê IP yê tu keyd keno.''",
-'missingsummary' => "'''DİQET:''' Şıma kılmnuşte nıkerd.
-Eke şıma reyna butonê qaydker ser a ne pel bê kılmnuşte qayd beno.",
-'missingcommenttext' => 'Cêr de yew xulasa binuse.',
-'missingcommentheader' => "Vir ardoğ:''' Şıma qey na mesela sername nuşte nênuşt.
-Eke şıma reyna \"{{int:savearticle}}\" qayd ker bıtıkni pel bê sername qayd beno.",
-'summary-preview' => 'Verqeydê qıssa:',
-'subject-preview' => 'Mesela/Sername  verqayd seyr kerdış:',
-'blockedtitle' => 'Karber (eza) blok biyo',
-'blockedtext' => '\'\'\'No name ya zi na IP adresê şıma ri musade çino.\'\'\'
+'anoneditwarning' => 'İqaz!: Şıma be hesabê xo nêkewtê cı. 
+Adresê şımaê IP tarixê vırnayışê na pele de do qeyd bo.',
+'anonpreviewwarning' => '"Şıma be hesabê xo nêkewtê cı. Eke qeyd kerê, adresê şımaê IP tarixê vırnayışê na pele de do qeyd bo."',
+'missingsummary' => "'''DİQET:''' Şıma jû xulasa nênuşte.
+Eke şıma \"{int:savearticle}}\" reyna bıtıkê, vırnayışê şıma bê xulasa qeyd beno.",
+'missingcommenttext' => 'Cêr de jû fıkır bınusên, şıma rê zehmet.',
+'missingcommentheader' => "'''Diqet:''' Şıma seba nê fıkrvaci yew mewzu/sernuşte nênuşt.
+Eke şıma reyna \"{{int:savearticle}}\" bıtıknê, vırnayışê şıa bê mewzu/sernuşte do qeyd bo.",
+'summary-preview' => 'Verqaytê xulasa:',
+'subject-preview' => 'Verqaytê mewzu/sernuştey:',
+'blockedtitle' => 'Karber blokekerdeo',
+'blockedtext' => '\'\'\'No namey karberi ya ki no adresê IP blokekerdeo.\'\'\'
 
-Oyo ke musade nêkeno: $1.<br />
-Sebebê musade nêdayiş: \'\'$2\'\'.
+Vıraştoğê blokey: $1
+Sebebê blokey: \'\'$2\'\'.
 
-* Dest pê kerdışê musade nêdayiş: $8
-* Qedyayişê musade nêdayiş: $6
-* Oyo ke cı rê musade nêdeyêno: $7
+* Sıftekerdena blokey: $8
+* Qediyayışê blokey: $6
+* Blokebiyae: $7
 
-Eke şıma sebebê musade nêdayiş ri itiraz keni, $1 de ya zi yewna [[{{MediaWiki:Grouppage-sysop}}|xızmetkar]] de şıma eşkeni na mesela de qıse bıkeri. [[Special:Preferences|Tercihê]] eke şıma na qısme de pey yew e-postayo raşt nêkewte cı, şıma xususiyetê "Karber ri e-posta bırışê" ra nêeşkeni istifade bıkeri, eke şıma tercihanê xo bıerz zerreyê e-postayê xo şıma hıni şenê ep-posta bırışê.
-<br />IP adresê şıma yo nıkayın $3, numreya musade nêdayiş #$5.
-<br />Eke şıma qayile yew xızmkar çiko bıpers, no malumatan not bıkere ney şıma rê lazım beni.',
+Şıma şenê  $1 de ya ki  yewna [[{{MediaWiki:Grouppage-sysop}}|administrator]]i de irtıbat kewê ke na mesela sero werênê, cemaet vırazê. 
+Şıma nêşenê xısusiyetê "karberi rê e-posta bırışe" bıgureynê/bıxebetnê heta ke [[Special:Preferences|Tercihanê hesabi]] de jû e-postawa ke vêrena, beli biye u şıam gureynayışê cı ra mehrum nêbiyê.
+IP adresê şımao nıkaên $3o u numrey bloki #$5.
+Şıma rê zehmet, eke kewnê ra dıme, teferruatanê corênan not kerên.',
 'autoblockedtext' => 'IP adresê şıma otomotikmen kerda kılit, çıkı $1 verniya nê hesabi grota.
 Sebebê cı zi:
 

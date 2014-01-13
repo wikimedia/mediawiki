@@ -1168,6 +1168,8 @@ Ela já existia.',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Abandonar esta página pode fazer com que você perca todas as alterações que fez.
 Se você estiver autenticado, você pode desabilitar este aviso na seção "Edição" de suas preferências.',
+'editpage-notsupportedcontentformat-title' => 'Formato do conteúdo não suportado',
+'editpage-notsupportedcontentformat-text' => 'O formato de conteúdo $1 não é suportando pelo modelo de conteúdo $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1552,6 +1554,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-tokenwatchlist' => 'Senha',
 'prefs-diffs' => 'Diferenças',
 'prefs-help-prefershttps' => 'Esta preferência terá efeito no seu próximo início de sessão.',
+'prefs-tabs-navigation-hint' => 'Dica: Você pode usar as teclas de seta esquerda e direita para navegar entre as abas da lista de abas.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
@@ -2214,7 +2217,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|Interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|link|links}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
-'nmemberschanged' => '$2{{PLURAL:$2|membro|membros}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks' => 'Utilizada em $1 {{PLURAL:$1|página|páginas}}',
@@ -2253,6 +2256,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Proteções infinitas apenas',
 'protectedpages-cascade' => 'Apenas proteções progressivas',
+'protectedpages-noredirect' => 'Ocultar redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedtitles' => 'Títulos protegidos',
 'protectedtitlesempty' => 'Neste momento, nenhum dos títulos está protegido com estes parâmetros.',
@@ -2530,6 +2534,7 @@ A eliminação de tais páginas foi restrita, a fim de se evitarem problemas aci
 'delete-warning-toobig' => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
+'deleting-backlinks-warning' => "'''Cuidado:''' Outras páginas redirecionam para a página que você está prestes a deletar.",
 
 # Rollback
 'rollback' => 'Reverter edições',
@@ -2762,6 +2767,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 Consulte a [[Special:BlockList|lista de bloqueios]].',
 'ipb-blockingself' => 'Você está prestes a bloquear-se a si próprio. Você tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser' => 'Você está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do usuário de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
+'ipb-confirmaction' => 'Se você tem certeza que realmente quer fazer isto, por favor verifique o campo "{{int:ipb-confirm}}" no final.',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
 'ipb-unblock-addr' => 'Desbloquear $1',
 'ipb-unblock' => 'Desbloquear um usuário ou endereço de IP',
@@ -3857,7 +3863,7 @@ Por favor, confirme que realmente deseja recriar esta página.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(Idioma padrão)',
-'img-lang-info' => 'Renderizar essa imagem em $1 $2',
+'img-lang-info' => 'Renderizar essa imagem em $1. $2',
 'img-lang-go' => 'Ir',
 
 # Table pager
@@ -3939,7 +3945,17 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-hook-name' => 'Nome do hook',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versão $1)',
-'version-license' => 'Licença',
+'version-license' => 'Licença do MediaWiki',
+'version-ext-license' => 'Licença',
+'version-ext-colheader-name' => 'Extensão',
+'version-ext-colheader-version' => 'Versão',
+'version-ext-colheader-license' => 'Licença',
+'version-ext-colheader-description' => 'Descrição',
+'version-ext-colheader-credits' => 'Autores',
+'version-license-title' => 'Licença para $1',
+'version-license-not-found' => 'Nenhuma informação detalhada dessa licença foi encontrada para esta extensão.',
+'version-credits-title' => 'Créditos para $1',
+'version-credits-not-found' => 'Nenhuma informação detalhada de crédito foi encontrada para esta extensão.',
 'version-poweredby-credits' => "Este é um wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
 'version-poweredby-translators' => 'tradutores da translatewiki.net',
@@ -3959,11 +3975,12 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 # Special:Redirect
 'redirect' => 'Redirecionar por arquivo, usuário ou ID de revisão',
 'redirect-legend' => 'Redirecionar para um arquivo ou página',
-'redirect-summary' => 'Esta página especial redireciona a um arquivo (dado o nome do arquivo), a uma página (dado um ID de revisão) ou a uma página de usuário (dado o ID do usuário). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Esta página especial redireciona a um arquivo (dado o nome do arquivo), a uma página (dado um ID de revisão ou ID da página) ou a uma página de usuário (dado o ID do usuário). Uso: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], or [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Buscar',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'ID do usuário',
+'redirect-page' => 'ID da página',
 'redirect-revision' => 'Revisão da página',
 'redirect-file' => 'Nome do arquivo',
 'redirect-not-exists' => 'Valor não encontrado',
@@ -4157,6 +4174,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'api-error-overwrite' => 'Não é permitido sobrescrever um arquivo já existente.',
 'api-error-stashfailed' => 'Erro interno: o servidor não conseguiu armazenar o arquivo temporário.',
 'api-error-publishfailed' => 'Erro interno: O servidor falhou ao publicar o arquivo temporário.',
+'api-error-stasherror' => 'Houve um erro durante o upload do arquivo para a pilha.',
 'api-error-timeout' => 'O servidor não respondeu dentro do tempo esperado.',
 'api-error-unclassified' => 'Ocorreu um erro desconhecido',
 'api-error-unknown-code' => 'Erro desconhecido: "$1"',
@@ -4206,10 +4224,12 @@ Na verdade, expande tudo que está entre chaves duplas.',
 'expand_templates_input' => 'Texto de entrada:',
 'expand_templates_output' => 'Resultado',
 'expand_templates_xml_output' => 'Resultado XML',
+'expand_templates_html_output' => 'Saída HTML puro',
 'expand_templates_ok' => 'Expandir',
 'expand_templates_remove_comments' => 'Remover comentários',
 'expand_templates_remove_nowiki' => 'Suprima marcações <nowiki> no resultado',
 'expand_templates_generate_xml' => 'Mostrar árvore de análise (parse) do XML',
+'expand_templates_generate_rawhtml' => 'Mostrar HTML puro',
 'expand_templates_preview' => 'Pré-visualização',
 
 );

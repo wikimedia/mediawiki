@@ -357,7 +357,7 @@ $1',
 'nstab-main' => 'Artikel',
 'nstab-user' => 'Panganggo',
 'nstab-media' => 'Media',
-'nstab-special' => 'Istiméwa',
+'nstab-special' => 'Astamiwa',
 'nstab-project' => 'Proyek',
 'nstab-image' => 'Gambar',
 'nstab-mediawiki' => 'Pariwara',
@@ -1456,9 +1456,9 @@ Alamat layang èlèktronik Sampéyan ora dituduhaké nalika wong liya ngubungi S
 'rc-old-title' => 'wigatiné digawé minangka "$1"',
 
 # Recent changes linked
-'recentchangeslinked' => 'Pranala Pilihan',
-'recentchangeslinked-feed' => 'Pranala Pilihan',
-'recentchangeslinked-toolbox' => 'Pranala Pilihan',
+'recentchangeslinked' => 'Pangowahan sing terkait',
+'recentchangeslinked-feed' => 'Pangowahan sing terkait',
+'recentchangeslinked-toolbox' => 'Pangowahan sing terkait',
 'recentchangeslinked-title' => 'Owah-owahan sing ana gandhèngané karo "$1"',
 'recentchangeslinked-summary' => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng (utawa anggota sawijining kateogri). Kaca sing [[Special:Watchlist|panjenengan awasi]] ditandhani '''kandel'''.",
 'recentchangeslinked-page' => 'Jeneng kaca:',
@@ -3611,7 +3611,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'fileduplicatesearch-noresults' => 'Ora ana berkas mawa jeneng "$1" ditemokaké.',
 
 # Special:SpecialPages
-'specialpages' => 'Kaca istiméwa',
+'specialpages' => 'Kaca astamiwa',
 'specialpages-note-top' => 'Katrangan',
 'specialpages-note' => '* Kaca astamiwa biasa.
 * <span class="mw-specialpagerestricted">Kaca astamiwa kawatesan.</span>',

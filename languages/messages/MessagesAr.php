@@ -1335,6 +1335,8 @@ $2
 'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
 'editwarning-warning' => 'قد تتسبب مغادرة هذه الصفحة بخسارتك لأي تغييرات أجريتها.
 يمكنك تعطيل هذا التحذير إذا كنت والجًا في قسم "التحرير" في تفضيلاتك.',
+'editpage-notsupportedcontentformat-title' => 'تنسيق المحتوى غير مدعوم',
+'editpage-notsupportedcontentformat-text' => 'تنسيق المحتوى $1 غير مدعوم بواسطة نموذج المحتوى $2.',
 
 # Content models
 'content-model-wikitext' => 'نص ويكي',
@@ -1377,6 +1379,9 @@ $2
 'cantcreateaccount-text' => "إنشاء الحسابات من عنوان الأيبي هذا ('''$1''') تم منعه بواسطة [[User:$3|$3]].
 
 السبب المعطى بواسطة $3 هو ''$2''",
+'cantcreateaccount-range-text' => "إنشاء الحسابات من عناوين الآيبي في النطاق '''$1'''، التي تحتوي على الآيبي الخاص بك ('''$4''')، قد حظرها [[مستخدم:$3|$3]].
+
+سبب الحظر الذي قاله $3 هو ''$2''",
 
 # History pages
 'viewpagelogs' => 'اعرض سجلات هذه الصفحة',
@@ -1796,7 +1801,7 @@ $1",
 'right-reupload-shared' => 'الرفع على الملفات في مستودع الملفات المشترك محليا',
 'right-upload_by_url' => 'رفع ملف من عنوان مسار',
 'right-purge' => 'تحديث كاش الموقع لصفحة بدون تأكيد',
-'right-autoconfirmed' => 'تعديل الصفحات نصف المحمية',
+'right-autoconfirmed' => 'غير متأثر بحدود المعدل',
 'right-bot' => 'تعامل كعملية أوتوماتيكية',
 'right-nominornewtalk' => 'عدم جعل التعديلات الطفيفة لصفحات النقاش تظهر برواز الرسائل الجديدة',
 'right-apihighlimits' => 'استخدام حدود أعلى في استعلامات API',
@@ -1827,6 +1832,7 @@ $1",
 'right-editmyusercss' => 'تعديل ملفات CSS للمستخدم نفسه',
 'right-editmyuserjs' => 'تعديل ملفات جافاسكربت للمستخدم نفسه',
 'right-viewmywatchlist' => 'عرض قائمة مراقبتك',
+'right-editmywatchlist' => 'حرر قائمة مراقبتك. لاحظ أن بعض الإجراءات لا تزال تضيف الصفحات حتى بدون هذا الحق.',
 'right-viewmyprivateinfo' => 'إستعرض بياناتك الشخصية (مثل البريد الإلكتروني والإسم الحقيقي)',
 'right-editmyprivateinfo' => 'حرر بياناتك الشخصية (مثل البريد الإلكتروني والإسم الحقيقي)',
 'right-editmyoptions' => 'تعديل تفضيلاتك',
@@ -1916,7 +1922,7 @@ $1",
 'rclistfrom' => 'أظهر التغييرات بدءا من $1',
 'rcshowhideminor' => '$1 التعديلات الطفيفة',
 'rcshowhidebots' => '$1 البوتات',
-'rcshowhideliu' => '$1 المستخدمين المسجلين',
+'rcshowhideliu' => '$1 {{GENDER:$1|مستخدمين مسجلين|مستخدمات مسجلات|مستخدمون مسجلون}}',
 'rcshowhideanons' => '$1 المستخدمين المجهولين',
 'rcshowhidepatr' => '$1 التعديلات المراجعة',
 'rcshowhidemine' => '$1 تعديلاتي',
@@ -4257,7 +4263,7 @@ $5
 'version-hook-name' => 'اسم الخطاف',
 'version-hook-subscribedby' => 'يستخدم بواسطة',
 'version-version' => '(نسخة $1)',
-'version-svn-revision' => '(r$2)',
+'version-svn-revision' => 'ن$1',
 'version-license' => 'الرخصة',
 'version-poweredby-credits' => "تدار هذه الويكي بواسطة '''[https://www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',

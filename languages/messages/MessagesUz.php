@@ -678,7 +678,7 @@ Ayrim andozalar qo'shilmaydi.",
 'histlegend' => "Farqlarni tanlash: solishtirish uchun kerakli radiobokslarni belgilang va '''{{int:compare-submit}}''' tugmasini bosing.<br />
 Bu yerda: '''({{int:cur}})''' = hozirgi koʻrinish bilan farqi, '''({{int:last}})''' = avvalgi koʻrinish bilan farqi, '''{{int:minoreditletter}}''' = kichkina tahrir.",
 'history-fieldset-title' => 'Tarixni koʻrish',
-'history-show-deleted' => 'Faqat o‘chirilganlari',
+'history-show-deleted' => 'Faqat yoʻqotilganlari',
 'histfirst' => 'Eng avvalgi',
 'histlast' => 'Eng soʻnggi',
 'historysize' => '({{PLURAL:$1|1 bayt|$1 bayt}})',
@@ -774,7 +774,7 @@ Bu yerda: '''({{int:cur}})''' = hozirgi koʻrinish bilan farqi, '''({{int:last}}
 'showingresultsheader' => "$4 uchun {{PLURAL:$5|'''$3'''dan '''$1''' natija|'''$3'''dan '''$1 - $2''' natijalar}}",
 'search-nonefound' => 'Talabga javob beradigan natija topilmadi.',
 'powersearch-legend' => 'Kengaytirilgan qidiruv',
-'powersearch-ns' => 'Bu nom-fazolarda izla:',
+'powersearch-ns' => 'Quyidagi nomfazolardan qidir:',
 'powersearch-redir' => 'Qayta yoʻnaltirishlarni koʻrsatish',
 'powersearch-togglelabel' => 'Belgilash:',
 'powersearch-toggleall' => 'Hammasini',
@@ -923,6 +923,7 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 
 # User rights log
 'rightslog' => 'Foydalanuvchi huquqlari koʻrsatilgan qaydlar',
+'rightslogtext' => 'Foydalanuvchi huquqlarini oʻzgartirish qaydlari.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ushbu sahifani tahrirlash',
@@ -993,6 +994,7 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'license-header' => 'Litsenziyalash',
 
 # Special:ListFiles
+'listfiles-summary' => 'Ushbu maxsus sahifada barcha yuklangan fayllar koʻrsatilgan.',
 'imgfile' => 'fayl',
 'listfiles' => 'Fayllar roʻyxati',
 'listfiles_thumb' => 'Miniatura',
@@ -1091,10 +1093,14 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 
 # Special:Log
 'specialloguserlabel' => 'Ijrochi:',
-'speciallogtitlelabel' => 'Moʻljal (nom yoki foydalanuvchi):',
+'speciallogtitlelabel' => 'Moʻljal (foydalanuvchi yoki sahifa nomi):',
 'log' => 'Qaydlar',
 'all-logs-page' => 'Barcha ochiq qaydlar',
-'logempty' => 'Qaydnomada mos keladigan yozuvlar mavjud emas.',
+'alllogstext' => "{{SITENAME}}dagi barcha jurnallar roʻyxati.
+Natijalarni jurnal nomi, foydalanuvchi nomi (harflar katta-kichikligi inobatga olinadi) yoki sahifa nomi boʻyicha saralashingiz mumkin.
+* Biror foydalanuvchi ''amalga oshirgan qaydni'', uning foydalanuvchi nomini \"Ijrochi\" oynasiga kiritib qidirish mumkin.
+* Biror foydalanuvchi yoki sahifaga ''nisbatan'' amalga oshirilgan qaydni, ularning nomini \"Moʻljal\" oynasiga kiritib qidirish mumkin.",
+'logempty' => 'Talabga mos yozuvlar mavjud emas.',
 'log-title-wildcard' => 'Shu matndan boshlanuvchi sarlavhalarni izlash',
 
 # Special:AllPages
@@ -1350,7 +1356,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'contributions-title' => '{{GENDER:$1|Foydalanuvchi}} $1 hissasi',
 'mycontris' => 'Hissam',
 'contribsub2' => '$1 uchun ($2)',
-'nocontribs' => 'Belgilangan shartlarga muvofiq oʻzgarishlar topilmadi',
+'nocontribs' => 'Belgilangan shartlarga muvofiq oʻzgarishlar topilmadi.',
 'uctop' => '(joriy)',
 'month' => 'Oydan (va avvalroq)',
 'year' => 'Yildan (va avvalroq)',
@@ -1359,11 +1365,12 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'sp-contributions-newbies-sub' => 'Yangi hisob yozuvlaridan',
 'sp-contributions-newbies-title' => 'Yangi hisob yozuvlarining hissalari',
 'sp-contributions-blocklog' => 'chetlatishlar',
-'sp-contributions-deleted' => "o'chirilgan tahrirlar",
+'sp-contributions-deleted' => 'yoʻqotilgan tahrirlar',
 'sp-contributions-uploads' => 'yuklamalar',
 'sp-contributions-logs' => 'qaydlar',
 'sp-contributions-talk' => 'munozara',
 'sp-contributions-userrights' => 'foydalanuvchining huquqlarini boshqarish',
+'sp-contributions-blocked-notice' => 'Ushbu foydalanuvchi hozirda tahrirlashdan chetlatilgan. Quyida chetlatish qaydlaridan soʻnggi yozuv keltirilgan:',
 'sp-contributions-search' => 'Hissalarni qidirish',
 'sp-contributions-username' => 'IP-manzil yoki foydalanuvchi nomi:',
 'sp-contributions-toponly' => 'Faqat oxirgi deb hisoblangan tahrirlarni koʻrsat',
@@ -1650,6 +1657,7 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'table_pager_prev' => 'Oldingi sahifa',
 'table_pager_first' => 'Birinchi sahifa',
 'table_pager_last' => 'Oxirgi sahifa',
+'table_pager_limit_label' => 'Bir sahifadagi yozuvlar soni:',
 
 # Auto-summaries
 'autosumm-blank' => 'Sahifa tozalandi',
@@ -1693,6 +1701,9 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'logentry-patrol-patrol-auto' => '$1 $3 sahifasining $4 versiyasini avtomatik patrulladi',
 'logentry-newusers-newusers' => '$1 hisob yozuvi yaratildi',
 'logentry-newusers-create' => '$1 hisob yozuvi yaratildi',
+'logentry-newusers-autocreate' => '$1 hisob yozuvi avtomatik ravishda {{GENDER:$2|yaratilgan}}',
+'logentry-rights-rights' => '$1 $3ning guruhlardagi aʼzoligini $4dan $5ga {{GENDER:$2|oʻzgartirdi}}',
+'logentry-rights-rights-legacy' => '$1 $3ning guruhlardagi aʼzoligini oʻzgartirdi',
 
 # Feedback
 'feedback-close' => 'Bajarildi',
