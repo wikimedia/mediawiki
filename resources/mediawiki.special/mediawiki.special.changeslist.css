@@ -24,13 +24,10 @@
 
 .mw-changeslist-legend dt {
 	float: left;
+	margin-right: 0.5em;
 }
 
 .mw-changeslist-legend dd {
 	margin-left: 1.5em;
 	line-height: 1.3em;
-}
-
-.mw-changeslist-legend dd.mw-changeslist-legend-plusminus {
-	margin-left: 3.5em;
 }
