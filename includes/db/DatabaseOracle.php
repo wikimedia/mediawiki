@@ -1513,9 +1513,6 @@ class DatabaseOracle extends DatabaseBase {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
 	}
 
-	function setFakeMaster( $enabled = true ) {
-	}
-
 	function getDBname() {
 		return $this->mDBname;
 	}

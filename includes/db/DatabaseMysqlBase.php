@@ -33,6 +33,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
 
+	/** @var null|int */
+	protected $mFakeSlaveLag = null;
+
+	protected $mFakeMaster = false;
+
 	/**
 	 * @return string
 	 */
@@ -579,6 +584,24 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	abstract protected function mysqlPing();
 
 	/**
+	 * Set lag time in seconds for a fake slave
+	 *
+	 * @param int $lag
+	 */
+	public function setFakeSlaveLag( $lag ) {
+		$this->mFakeSlaveLag = $lag;
+	}
+
+	/**
+	 * Make this connection a fake master
+	 *
+	 * @param bool $enabled
+	 */
+	public function setFakeMaster( $enabled = true ) {
+		$this->mFakeMaster = $enabled;
+	}
+
+	/**
 	 * Returns slave lag.
 	 *
 	 * This will do a SHOW SLAVE STATUS
@@ -661,7 +684,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 *
 	 * @param DBMasterPos|MySQLMasterPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return bool|string
+	 * @return int Zero if the slave was past that position already,
+	 *   greater than zero if we waited for some period of time, less than
+	 *   zero if we timed out.
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
 		if ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
@@ -673,15 +698,30 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->commit( __METHOD__, 'flush' );
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$status = parent::masterPosWait( $pos, $timeout );
-			wfProfileOut( __METHOD__ );
+			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
 
-			return $status;
+			if ( $wait > $timeout * 1e6 ) {
+				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
+				wfProfileOut( __METHOD__ );
+
+				return -1;
+			} elseif ( $wait > 0 ) {
+				wfDebug( "Fake slave waiting $wait us\n" );
+				usleep( $wait );
+				wfProfileOut( __METHOD__ );
+
+				return 1;
+			} else {
+				wfDebug( "Fake slave up to date ($wait us)\n" );
+				wfProfileOut( __METHOD__ );
+
+				return 0;
+			}
 		}
 
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->addQuotes( $pos->file );
-		$encPos = intval( $pos->getMasterPos() );
+		$encPos = intval( $pos->pos );
 		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		$res = $this->doQuery( $sql );
 
@@ -705,7 +745,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	function getSlavePos() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			return parent::getSlavePos();
+			$pos = new MySQLMasterPos( 'fake', microtime( true ) - $this->mFakeSlaveLag );
+			wfDebug( __METHOD__ . ": fake slave pos = $pos\n" );
+
+			return $pos;
 		}
 
 		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
@@ -729,7 +772,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	function getMasterPos() {
 		if ( $this->mFakeMaster ) {
-			return parent::getMasterPos();
+			return new MySQLMasterPos( 'fake', microtime( true ) );
 		}
 
 		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
@@ -1232,8 +1275,8 @@ class MySQLMasterPos implements DBMasterPos {
 	/** @var string */
 	public $file;
 
-	/** @var int */
-	private $pos;
+	/** @var int timestamp */
+	public $pos;
 
 	function __construct( $file, $pos ) {
 		$this->file = $file;
@@ -1262,12 +1305,5 @@ class MySQLMasterPos implements DBMasterPos {
 		$thatPos = $pos->getCoordinates();
 
 		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getMasterPos() {
-		return $this->pos;
 	}
 }

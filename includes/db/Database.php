@@ -249,7 +249,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $mForeign;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
-	protected $mFakeSlaveLag = null, $mFakeMaster = false;
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
 
@@ -478,10 +477,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Set lag time in seconds for a fake slave
 	 *
-	 * @param int $lag
+	 * @param mixed $lag Valid values for this parameter are determined by the
+	 *   subclass, but should be a PHP scalar or array that would be sensible
+	 *   as part of $wgLBFactoryConf.
 	 */
 	public function setFakeSlaveLag( $lag ) {
-		$this->mFakeSlaveLag = $lag;
 	}
 
 	/**
@@ -490,7 +490,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param bool $enabled
 	 */
 	public function setFakeMaster( $enabled = true ) {
-		$this->mFakeMaster = $enabled;
 	}
 
 	/**
@@ -3117,32 +3116,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *   zero if we timed out.
 	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout ) {
-		wfProfileIn( __METHOD__ );
-
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
-
-			if ( $wait > $timeout * 1e6 ) {
-				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
-				wfProfileOut( __METHOD__ );
-
-				return -1;
-			} elseif ( $wait > 0 ) {
-				wfDebug( "Fake slave waiting $wait us\n" );
-				usleep( $wait );
-				wfProfileOut( __METHOD__ );
-
-				return 1;
-			} else {
-				wfDebug( "Fake slave up to date ($wait us)\n" );
-				wfProfileOut( __METHOD__ );
-
-				return 0;
-			}
-		}
-
-		wfProfileOut( __METHOD__ );
-
 		# Real waits are implemented in the subclass.
 		return 0;
 	}
@@ -3153,15 +3126,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return DBMasterPos|bool False if this is not a slave.
 	 */
 	public function getSlavePos() {
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$pos = new MySQLMasterPos( 'fake', microtime( true ) - $this->mFakeSlaveLag );
-			wfDebug( __METHOD__ . ": fake slave pos = $pos\n" );
-
-			return $pos;
-		} else {
-			# Stub
-			return false;
-		}
+		# Stub
+		return false;
 	}
 
 	/**
@@ -3170,11 +3136,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return DBMasterPos|bool False if this is not a master
 	 */
 	public function getMasterPos() {
-		if ( $this->mFakeMaster ) {
-			return new MySQLMasterPos( 'fake', microtime( true ) );
-		} else {
-			return false;
-		}
+		# Stub
+		return false;
 	}
 
 	/**
@@ -3642,7 +3605,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return int Database replication lag in seconds
 	 */
 	public function getLag() {
-		return intval( $this->mFakeSlaveLag );
+		return 0;
 	}
 
 	/**
