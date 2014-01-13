@@ -253,6 +253,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
 		}
 
+		if ( !empty( $GLOBALS['wgFavicon'] ) ) {
+			$data['favicon'] = $GLOBALS['wgFavicon'];
+		}
+
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
