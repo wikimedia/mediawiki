@@ -947,20 +947,11 @@ class WebInstaller_Options extends WebInstallerPage {
 		if ( $extensions ) {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 
-			/* Force a recache, so we load extensions descriptions */
-			global $wgLang;
-			$lc = Language::getLocalisationCache();
-			$lc->initialisedLangs = array();
-			$lc->getItem( $wgLang->mCode, '' );
-			LinkCache::singleton()->useDatabase( false );
-
 			foreach ( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
-						'var' => "ext-{$ext['name']}",
-						'rawtext' => "<b>{$ext['name']}</b>: " .
-						wfMessage( $ext['descriptionmsg'] )->useDatabase( false )->parse(),
-					) );
-
+					'var' => "ext-$ext",
+					'rawtext' => $ext,
+				) );
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
@@ -1183,12 +1174,11 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$extsAvailable = array_map( function($e) { if( isset($e['name']) ) return $e['name']; }, $this->parent->findExtensions() );
+		$extsAvailable = $this->parent->findExtensions();
 		$extsToInstall = array();
-		foreach ( $extsAvailable as $key => $ext ) {
-				var_dump("config_ext-$ext");
+		foreach ( $extsAvailable as $ext ) {
 			if ( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
-				$extsToInstall[] = $extsAvailable[ $key ];
+				$extsToInstall[] = $ext;
 			}
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
