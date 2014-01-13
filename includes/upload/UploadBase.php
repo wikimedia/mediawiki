@@ -250,7 +250,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $srcPath the source path
-	 * @return string the real path if it was a virtual URL
+	 * @return string|bool the real path if it was a virtual URL Returns false on failure
 	 */
 	function getRealPath( $srcPath ) {
 		wfProfileIn( __METHOD__ );
@@ -259,12 +259,15 @@ abstract class UploadBase {
 			// @todo just make uploads work with storage paths
 			// UploadFromStash loads files via virtual URLs
 			$tmpFile = $repo->getLocalCopy( $srcPath );
-			$tmpFile->bind( $this ); // keep alive with $this
-			wfProfileOut( __METHOD__ );
-			return $tmpFile->getPath();
+			if ( $tmpFile ) {
+				$tmpFile->bind( $this ); // keep alive with $this
+			}
+			$path = $tmpFile ? $tmpFile->getPath() : false;
+		} else {
+			$path = $srcPath;
 		}
 		wfProfileOut( __METHOD__ );
-		return $srcPath;
+		return $path;
 	}
 
 	/**
