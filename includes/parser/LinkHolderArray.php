@@ -280,85 +280,87 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
-		wfProfileIn( __METHOD__ . '-check' );
-		$dbr = wfGetDB( DB_SLAVE );
-		$threshold = $this->parent->getOptions()->getStubThreshold();
+		if ( $linkCache->useDatabase() ) {
+			wfProfileIn( __METHOD__ . '-check' );
+			$dbr = wfGetDB( DB_SLAVE );
+			$threshold = $this->parent->getOptions()->getStubThreshold();
 
-		# Sort by namespace
-		ksort( $this->internals );
+			# Sort by namespace
+			ksort( $this->internals );
 
-		$linkcolour_ids = array();
+			$linkcolour_ids = array();
 
-		# Generate query
-		$queries = array();
-		foreach ( $this->internals as $ns => $entries ) {
-			foreach ( $entries as $entry ) {
-				$title = $entry['title'];
-				$pdbk = $entry['pdbk'];
+			# Generate query
+			$queries = array();
+			foreach ( $this->internals as $ns => $entries ) {
+				foreach ( $entries as $entry ) {
+					$title = $entry['title'];
+					$pdbk = $entry['pdbk'];
 
-				# Skip invalid entries.
-				# Result will be ugly, but prevents crash.
-				if ( is_null( $title ) ) {
-					continue;
-				}
+					# Skip invalid entries.
+					# Result will be ugly, but prevents crash.
+					if ( is_null( $title ) ) {
+						continue;
+					}
 
-				# Check if it's a static known link, e.g. interwiki
-				if ( $title->isAlwaysKnown() ) {
-					$colours[$pdbk] = '';
-				} elseif ( $ns == NS_SPECIAL ) {
-					$colours[$pdbk] = 'new';
-				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
-					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
-					$output->addLink( $title, $id );
-					$linkcolour_ids[$id] = $pdbk;
-				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
-					$colours[$pdbk] = 'new';
-				} else {
-					# Not in the link cache, add it to the query
-					$queries[$ns][] = $title->getDBkey();
+					# Check if it's a static known link, e.g. interwiki
+					if ( $title->isAlwaysKnown() ) {
+						$colours[$pdbk] = '';
+					} elseif ( $ns == NS_SPECIAL ) {
+						$colours[$pdbk] = 'new';
+					} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
+						$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
+						$output->addLink( $title, $id );
+						$linkcolour_ids[$id] = $pdbk;
+					} elseif ( $linkCache->isBadLink( $pdbk ) ) {
+						$colours[$pdbk] = 'new';
+					} else {
+						# Not in the link cache, add it to the query
+						$queries[$ns][] = $title->getDBkey();
+					}
 				}
 			}
-		}
-		if ( $queries ) {
-			$where = array();
-			foreach ( $queries as $ns => $pages ) {
-				$where[] = $dbr->makeList(
-					array(
-						'page_namespace' => $ns,
-						'page_title' => $pages,
-					),
-					LIST_AND
+			if ( $queries ) {
+				$where = array();
+				foreach ( $queries as $ns => $pages ) {
+					$where[] = $dbr->makeList(
+						array(
+							'page_namespace' => $ns,
+							'page_title' => $pages,
+						),
+						LIST_AND
+					);
+				}
+
+				$res = $dbr->select(
+					'page',
+					array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+					$dbr->makeList( $where, LIST_OR ),
+					__METHOD__
 				);
-			}
 
-			$res = $dbr->select(
-				'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
-				$dbr->makeList( $where, LIST_OR ),
-				__METHOD__
-			);
-
-			# Fetch data and form into an associative array
-			# non-existent = broken
-			foreach ( $res as $s ) {
-				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
-				$pdbk = $title->getPrefixedDBkey();
-				$linkCache->addGoodLinkObjFromRow( $title, $s );
-				$output->addLink( $title, $s->page_id );
-				# @todo FIXME: Convoluted data flow
-				# The redirect status and length is passed to getLinkColour via the LinkCache
-				# Use formal parameters instead
-				$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
-				//add id to the extension todolist
-				$linkcolour_ids[$s->page_id] = $pdbk;
+				# Fetch data and form into an associative array
+				# non-existent = broken
+				foreach ( $res as $s ) {
+					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
+					$pdbk = $title->getPrefixedDBkey();
+					$linkCache->addGoodLinkObjFromRow( $title, $s );
+					$output->addLink( $title, $s->page_id );
+					# @todo FIXME: Convoluted data flow
+					# The redirect status and length is passed to getLinkColour via the LinkCache
+					# Use formal parameters instead
+					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
+					//add id to the extension todolist
+					$linkcolour_ids[$s->page_id] = $pdbk;
+				}
+				unset( $res );
 			}
-			unset( $res );
+			if ( count( $linkcolour_ids ) ) {
+				//pass an array of page_ids to an extension
+				wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
+			}
+			wfProfileOut( __METHOD__ . '-check' );
 		}
-		if ( count( $linkcolour_ids ) ) {
-			//pass an array of page_ids to an extension
-			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
-		}
-		wfProfileOut( __METHOD__ . '-check' );
 
 		# Do a second query for different language variants of links and categories
 		if ( $wgContLang->hasVariants() ) {

@@ -948,11 +948,33 @@ class WebInstaller_Options extends WebInstallerPage {
 		if ( $extensions ) {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 
+			/* Force a recache, so we load extensions descriptions */
+			global $wgLang;
+			$lc = Language::getLocalisationCache();
+			$lc->setInitialisedLanguages( array() );
+			$lc->getItem( $wgLang->mCode, '' );
+			LinkCache::singleton()->useDatabase( false );
+
 			foreach ( $extensions as $ext ) {
-				$extHtml .= $this->parent->getCheckBox( array(
-					'var' => "ext-$ext",
-					'rawtext' => $ext,
-				) );
+				$desc = null;
+				if ( isset( $ext['descriptionmsg'] ) ) {
+					$desc = wfMessage( $ext['descriptionmsg'] )
+						->useDatabase( false )->parse();
+				} elseif ( isset( $ext['description'] ) ) {
+					$desc = $ext['description'];
+				}
+
+				if ( $desc ) {
+					$extHtml .= $this->parent->getCheckBox( array(
+							'var' => "ext-{$ext['name']}",
+							'rawtext' => "<b>{$ext['name']}</b>: $desc"
+						) );
+				} else {
+					$extHtml .= $this->parent->getCheckBox( array(
+							'var' => "ext-{$ext['name']}",
+							'rawtext' => "<b>{$ext['name']}</b>"
+						) );
+				}
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
@@ -1175,11 +1197,16 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$extsAvailable = $this->parent->findExtensions();
+		$extsAvailable = array_map(
+			function( $e ) {
+				if( isset( $e['name'] ) ) {
+					return $e['name'];
+				}
+			}, $this->parent->findExtensions() );
 		$extsToInstall = array();
-		foreach ( $extsAvailable as $ext ) {
+		foreach ( $extsAvailable as $key => $ext ) {
 			if ( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
-				$extsToInstall[] = $ext;
+				$extsToInstall[] = $extsAvailable[ $key ];
 			}
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );

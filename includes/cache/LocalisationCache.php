@@ -1027,6 +1027,25 @@ class LocalisationCache {
 		$this->store = new LCStoreNull;
 		$this->manualRecache = false;
 	}
+
+	/**
+	 * Return an array with initialised languages.
+	 *
+	 * @return array
+	 */
+	public function getInitialisedLanguages() {
+		return $this->initialisedLangs;
+	}
+
+	/**
+	 * Set initialised languages.
+	 *
+	 * @param array $languages Optional array of initialised languages.
+	 */
+	public function setInitialisedLanguages( $languages = array() ) {
+		$this->initialisedLangs = $languages;
+	}
+
 }
 
 /**

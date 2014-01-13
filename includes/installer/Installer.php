@@ -1408,6 +1408,27 @@ abstract class Installer {
 	}
 
 	/**
+	 * Load the extension credits for i18n strings.
+	 */
+	public function getExtensionInfo( $file ) {
+		global $wgExtensionCredits, $wgResourceModules;
+
+		$save['wgResourceModules'] = $wgResourceModules;
+		$save['wgExtensionCredits'] = $wgExtensionCredits;
+		$wgResourceModules = array();
+		$wgExtensionCredits = array();
+		$ext = array();
+		require_once $file ;
+		$e = array_values( $wgExtensionCredits );
+		if( $e ) {
+			$ext = array_values( $e[0] );
+		}
+		$wgResourceModules = $save['wgResourceModules'];
+		$wgExtensionCredits = $save['wgExtensionCredits'];
+		return $ext[0];
+	}
+
+	/**
 	 * Finds extensions that follow the format /extensions/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
 	 *
@@ -1429,13 +1450,22 @@ abstract class Installer {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$file.php" ) ) {
-				$exts[] = $file;
+
+			$extFile = "$extDir/$file/$file.php";
+			$extI18NFile = "$extDir/$file/$file.i18n.php";
+			if ( file_exists( $extFile ) ) {
+				if ( $info = $this->getExtensionInfo( $extFile ) ) {
+					$exts[$info['name']] = $info;
+
+					if ( file_exists( $extI18NFile ) ) {
+						global $wgExtensionMessagesFiles;
+						$wgExtensionMessagesFiles[$file] = $extI18NFile;
+					}
+				}
 			}
 		}
 		closedir( $dh );
-		natcasesort( $exts );
-
+		uksort( $exts, 'strnatcasecmp' );
 		return $exts;
 	}
 
@@ -1462,8 +1492,9 @@ abstract class Installer {
 
 		require "$IP/includes/DefaultSettings.php";
 
+		$extensions = $this->findExtensions();
 		foreach ( $exts as $e ) {
-			require_once "$IP/extensions/$e/$e.php";
+			require_once $extensions[$e]['path'];
 		}
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
