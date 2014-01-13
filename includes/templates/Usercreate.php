@@ -183,11 +183,11 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php if ( $this->data['usereason'] ) { ?>
 				<div>
 					<label for='wpReason'><?php $this->msg( 'createacct-reason' ); ?></label>
-					<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', array(
+					<?php echo Html::textarea( 'wpReason', $this->data['reason'], array(
 						'class' => 'mw-input loginText',
 						'id' => 'wpReason',
 						'tabindex' => '8',
-						'size' => '20',
+						'rows' => '3',
 						'placeholder' => $this->getMsg( 'createacct-reason-ph' )->text()
 					) ); ?>
 				</div>
