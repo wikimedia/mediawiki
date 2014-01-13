@@ -3120,7 +3120,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		wfProfileIn( __METHOD__ );
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
+			$wait = intval( ( $pos->getMasterPos() - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
 
 			if ( $wait > $timeout * 1e6 ) {
 				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
