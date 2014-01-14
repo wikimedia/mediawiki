@@ -60,6 +60,12 @@
 
 		$previewDataHolder = $( '<div>' );
 		targetUrl = $editform.attr( 'action' );
+		targetUrl += targetUrl.indexOf( '?' ) !== -1 ? '&' : '?';
+		targetUrl += $.param( {
+			debug: mw.config.get( 'debug' ),
+			uselang: mw.config.get( 'wgUserLanguage' ),
+			useskin: mw.config.get( 'skin' )
+		} );
 
 		// Gather all the data from the form
 		postData = $editform.formToArray();
