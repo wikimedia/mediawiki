@@ -22,6 +22,7 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
 * (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
   to appear blank or with missing text.
 * (bug 47055) Changed FOR UPDATE handling in Postgresql
+* (bug 57026) Avoid extra parsing in prepareContentForEdit()
 
 == MediaWiki 1.22.0 ==
 
