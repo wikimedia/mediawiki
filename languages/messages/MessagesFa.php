@@ -4438,4 +4438,6 @@ $5
 'expand_templates_generate_rawhtml' => 'نمایش اچ‌تی‌ام‌ال خام',
 'expand_templates_preview' => 'پیش‌نمایش',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML در پروندهٔ بارگذاری‌شده نمی‌تواند تجزیه شود.',
 );

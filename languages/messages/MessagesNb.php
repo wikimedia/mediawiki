@@ -1728,6 +1728,7 @@ Informasjonen vil være offentlig.',
 'recentchanges-label-plusminus' => 'Sidestørrelsen kan endres med dette antallet bytes',
 'recentchanges-legend-heading' => "'''Tegnforklaring:'''",
 'recentchanges-legend-newpage' => '(se også [[Special:NewPages|liste av nye sider]])',
+'recentchanges-legend-plusminus' => '«(±123)»',
 'rcnotefrom' => "Nedenfor er endringene siden '''$2''' (opp til '''$1''' vises).",
 'rclistfrom' => 'Vis nye endringer med start fra $1',
 'rcshowhideminor' => '$1 mindre endringer',
@@ -4212,4 +4213,6 @@ Faktisk utvider den det meste innkapslet i doble krøllparenteser.',
 'expand_templates_generate_rawhtml' => 'Vis ubehandlet HTML',
 'expand_templates_preview' => 'Forhåndsvisning',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML-en i den opplastede filen kunne ikke tolkes.',
 );

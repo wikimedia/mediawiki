@@ -4289,4 +4289,6 @@ V podstatě rozbalí prakticky všechno v dvojitých složených závorkách.',
 'expand_templates_generate_rawhtml' => 'Zobrazit surové HTML',
 'expand_templates_preview' => 'Náhled',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML v načteném souboru nelze zpracovat.',
 );

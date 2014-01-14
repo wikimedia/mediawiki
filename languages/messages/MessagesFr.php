@@ -4391,4 +4391,6 @@ En fait, elle réalise l'expansion de pratiquement tout ce qui est encadré par 
 'expand_templates_generate_rawhtml' => 'Afficher le HTML brut',
 'expand_templates_preview' => 'Aperçu du rendu',
 
+# Unknown messages
+'uploadinvalidxml' => 'Le XML dans le fichier importé n’a pas pu être analysé.',
 );

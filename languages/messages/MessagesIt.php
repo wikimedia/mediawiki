@@ -4144,4 +4144,6 @@ vale a dire praticamente tutto ciò che si trova tra doppie parentesi graffe.',
 'expand_templates_generate_rawhtml' => 'Mostra HTML',
 'expand_templates_preview' => 'Anteprima',
 
+# Unknown messages
+'uploadinvalidxml' => 'Il codice XML nel file caricato non può essere elaborato.',
 );

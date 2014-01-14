@@ -4184,4 +4184,6 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'expand_templates_generate_rawhtml' => 'Arată HTML brut',
 'expand_templates_preview' => 'Previzualizare',
 
+# Unknown messages
+'uploadinvalidxml' => 'Nu s-a putut analiza conținutul XML din fișierul încărcat.',
 );

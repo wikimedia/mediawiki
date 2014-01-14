@@ -2042,6 +2042,8 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'هذا الملف مكرر  {{PLURAL:$1|للملف|للملفات}} التالية:',
 'file-deleted-duplicate' => 'ملف مطابق لهذه الملف ([[:$1]]) تم حذفه من قبل. ينبغي أن تتحقق من تاريخ الحذف لهذا الملف قبل المتابعة بإعادة رفعه.',
+'file-deleted-duplicate-notitle' => 'سابقا تم حذف ملف مطابق لهذا الملف، وقد تم منع العنوان.
+ينبغي أن تسأل شخص ما لديه القدرة على عرض بيانات الملف الممنوع لاستعراض الوضع قبل الشروع في إعادة تحميله.',
 'uploadwarning' => 'تحذير الرفع',
 'uploadwarning-text' => 'من فضلك عدل وصف الملف أدناه وحاول مرة أخرى.',
 'savefile' => 'احفظ الملف',
@@ -2362,6 +2364,8 @@ $1',
 'pageswithprop-text' => 'تسرد هذه الصفحة الصفحات التي تستخدم خاصية صفحة معينة.',
 'pageswithprop-prop' => 'اسم الخاصية:',
 'pageswithprop-submit' => 'اذهب',
+'pageswithprop-prophidden-long' => 'قيمة خاصية النص الطويل المخفية ($1)',
+'pageswithprop-prophidden-binary' => 'قيمة الخاصية الثنائية المخفية ($1)',
 
 'doubleredirects' => 'تحويلات مزدوجة',
 'doubleredirectstext' => 'هذه الصفحة تعرض الصفحات التي تحول إلى صفحات تحويل أخرى.
@@ -2389,6 +2393,7 @@ $1',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '{{PLURAL:$1|لا وصلات|وصلة واحدة|وصلتان|$1 وصلات|$1 وصلة}}',
 'nmembers' => '{{PLURAL:$1|لا أعضاء|عضو واحد|عضوان|$1 أعضاء|$1 عضوا|$1 عضو}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|عضو|أعضاء}}',
 'nrevisions' => '{{PLURAL:$1|لا مراجعات|مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}',
 'nviews' => '{{PLURAL:$1|مشاهدة واحدة|مشاهدتان|$1 مشاهدات|$1 مشاهدة}}',
 'nimagelinks' => 'مستخدم في {{PLURAL:$1||صفحة واحدة|صفحتين|$1 صفحات|$1 صفحة}}',
@@ -2427,6 +2432,7 @@ $1',
 'protectedpages' => 'صفحات محمية',
 'protectedpages-indef' => 'عمليات الحماية غير المحددة فقط',
 'protectedpages-cascade' => 'الحماية المضمنة فقط',
+'protectedpages-noredirect' => 'أخفِ التحويلات',
 'protectedpagesempty' => 'لا توجد صفحات محمية حاليا بهذه المحددات.',
 'protectedtitles' => 'عناوين محمية',
 'protectedtitlesempty' => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
@@ -2537,7 +2543,8 @@ $1',
 'listgrouprights' => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary' => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
 ربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.',
-'listgrouprights-key' => '* <span class="listgrouprights-granted">صلاحية ممنوحة</span>
+'listgrouprights-key' => 'عنوان:
+* <span class="listgrouprights-granted">صلاحية ممنوحة</span>
 * <span class="listgrouprights-revoked">صلاحية مسحوبة</span>',
 'listgrouprights-group' => 'المجموعة',
 'listgrouprights-rights' => 'الصلاحيات',
@@ -2694,15 +2701,18 @@ $UNWATCHURL
 'deleteotherreason' => 'سبب آخر/إضافي:',
 'deletereasonotherlist' => 'سبب آخر',
 'deletereason-dropdown' => '*أسباب الحذف الشائعة
-** طلب المؤلف
+** سخام
+** تخريب
 ** خرق لحقوق التأليف والنشر
-** تخريب',
+** طلب المؤلف
+** تحويلة مكسورة',
 'delete-edit-reasonlist' => 'عدل أسباب الحذف',
 'delete-toobig' => 'لهذه الصفحة تاريخ تعديل طويل، أكثر من {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}}.
 قُيّد محذف مثل هذه الصفحات لمنع الاضطراب المفاجئة في {{SITENAME}}.',
 'delete-warning-toobig' => 'لهذه الصفحة تاريخ تعديل طويل، أكثر من {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}}.
 قد يؤدي حذفها إلى اضطراب عمليات قاعدة البيانات في {{SITENAME}}؛
 استمر مع الحذر.',
+'deleting-backlinks-warning' => "'''تحذير:''' ترتبط صفحات أخرى بالصفحة التي أنت على وشك حذفها.",
 
 # Rollback
 'rollback' => 'استرجاع التعديلات',
@@ -2943,6 +2953,7 @@ $1',
 أنظر [[Special:BlockList|قائمة منع الآيبي]] لمراجعة حالات المنع.',
 'ipb-blockingself' => 'أنت على وشك منع نفسك! أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-confirmhideuser' => 'أنت على وشك منع مستخدم مع تفعيل خيار "أخف المستخدم". سوف يخفي هذا الخيار اسم المستخدم من جميل القوائم ومدخلات السجلات. أمتأكد من رغبتك في القيام بذلك؟',
+'ipb-confirmaction' => 'إن كنت متأكدًا أنك تريد القيام بذلك حقًا، فالرجاء التحقق من حقل "{{int:ipb-confirm}}" في الأسفل.',
 'ipb-edit-dropdown' => 'عدل أسباب المنع',
 'ipb-unblock-addr' => 'رفع منع $1',
 'ipb-unblock' => 'رفع المنع عن مستخدم أو عنوان أيبي',
@@ -3402,6 +3413,7 @@ $2',
 'pageinfo-length' => 'حجم الصفحة (بالبايت)',
 'pageinfo-article-id' => 'معرف الصفحة (ID)',
 'pageinfo-language' => 'لغة محتوى الصفحة',
+'pageinfo-content-model' => 'نموذج محتوى الصفحة',
 'pageinfo-robot-policy' => 'فهرسة الروبوتات',
 'pageinfo-robot-index' => 'مسموحة',
 'pageinfo-robot-noindex' => 'غير مسموحة',
@@ -4100,6 +4112,7 @@ $5
 'imgmultigoto' => 'اذهب إلى صفحة $1',
 
 # Language selector for translatable SVGs
+'img-lang-default' => '(اللغة الافتراضية)',
 'img-lang-go' => 'اذهب',
 
 # Table pager

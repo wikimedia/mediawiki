@@ -4331,4 +4331,6 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'expand_templates_generate_rawhtml' => 'Hiển thị HTML thô',
 'expand_templates_preview' => 'Xem trước',
 
+# Unknown messages
+'uploadinvalidxml' => 'Không thể phân tích mã XML trong tập tin tải lên.',
 );

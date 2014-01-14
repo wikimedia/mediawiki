@@ -4348,4 +4348,6 @@ $5
 'expand_templates_generate_rawhtml' => '원본 HTML 보이기',
 'expand_templates_preview' => '미리 보기',
 
+# Unknown messages
+'uploadinvalidxml' => '이 업로드 된 파일의 XML 구문은 분석할 수 없습니다.',
 );

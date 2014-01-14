@@ -4154,4 +4154,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'expand_templates_generate_rawhtml' => '显示原始HTML',
 'expand_templates_preview' => '预览',
 
+# Unknown messages
+'uploadinvalidxml' => '上传文件中的XML无法解析。',
 );

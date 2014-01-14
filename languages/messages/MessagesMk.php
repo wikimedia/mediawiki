@@ -4470,4 +4470,6 @@ $5
 'expand_templates_generate_rawhtml' => 'Прикажувај сиров HTML',
 'expand_templates_preview' => 'Преглед',
 
+# Unknown messages
+'uploadinvalidxml' => 'Не можев да го парсирам XML-от што се наоѓа во подигнатата податотека.',
 );

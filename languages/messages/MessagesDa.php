@@ -2600,9 +2600,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress' => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub' => 'Blokeringen er gennemført.',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.
-
-[[User:$1|$1]] ([[User talk:$1|diskussion]] | [[Special:Contributions/$1|bidrag]]) er blevet blokeret. <br />Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself' => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser' => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown' => 'Rediger blokeringsbegrundelser',

@@ -4369,4 +4369,6 @@ $5
 'expand_templates_generate_rawhtml' => 'הצגת HTML גולמי',
 'expand_templates_preview' => 'תצוגה מקדימה',
 
+# Unknown messages
+'uploadinvalidxml' => 'לא ניתן לפרש את ה־XML בקובץ שהועלה.',
 );

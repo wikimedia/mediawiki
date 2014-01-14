@@ -4037,7 +4037,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-svn-revision' => '(Version $2)',
 'version-license' => 'MediaWiki-Lizenz',
 'version-ext-license' => 'Lizenz',
-'version-ext-colheader-name' => 'Erweiterung',
+'version-ext-colheader-name' => 'Bezeichnung',
 'version-ext-colheader-version' => 'Version',
 'version-ext-colheader-license' => 'Lizenz',
 'version-ext-colheader-description' => 'Beschreibung',
@@ -4329,4 +4329,6 @@ faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
 'expand_templates_generate_rawhtml' => 'Rohes HTML anzeigen',
 'expand_templates_preview' => 'Vorschau',
 
+# Unknown messages
+'uploadinvalidxml' => 'Das XML in der hochgeladenen Datei konnte nicht geparst werden.',
 );

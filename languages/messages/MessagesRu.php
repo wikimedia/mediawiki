@@ -4446,4 +4446,6 @@ MediaWiki распространяется в надежде, что она бу
 'expand_templates_generate_rawhtml' => 'Показать HTML',
 'expand_templates_preview' => 'Предпросмотр',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML в загруженном файле не может быть проанализирован.',
 );
