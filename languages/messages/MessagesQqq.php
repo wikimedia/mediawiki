@@ -3661,7 +3661,7 @@ Preceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.',
 A plus/minus sign with a number for the legend.',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
-The corresponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+The corresponding message is {{msg-mw|Rclistfrom}} (split into date and time).
 
 Parameters:
 * $1 - the maximum number of changes that are displayed
@@ -3671,7 +3671,9 @@ Parameters:
 'rclistfrom' => 'Used on [[Special:RecentChanges]].
 
 Parameters:
-* $1 - a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]).
+* $1 - a link to the revision of a specific date and time. he date and the time are the link description. No longer used.
+* $2 - a link to the revision of a specific time. The time is the link description (with split of date and time).
+* $3 - a link to the revision of a specific date. The date is the link description (with split of date and time).
 
 The corresponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => 'Option text in [[Special:RecentChanges]]. Parameters:
