@@ -1,0 +1,9 @@
+Code-Review+1: Brion VIBBER <brion@wikimedia.org>
+Verified+2: jenkins-bot
+Code-Review+1: Siebrand <siebrand@wikimedia.org>
+Code-Review+2: Bartosz Dziewoński <matma.rex@gmail.com>
+Submitted-by: jenkins-bot
+Submitted-at: Tue, 14 Jan 2014 21:21:47 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/103387
+Project: mediawiki/core
+Branch: refs/heads/master
