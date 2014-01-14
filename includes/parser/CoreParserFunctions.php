@@ -986,10 +986,34 @@ class CoreParserFunctions {
 		// Use title from parser to have correct pageid after edit
 		if ( $t->equals( $parser->getTitle() ) ) {
 			$t = $parser->getTitle();
+			return $t->getArticleID();
 		}
-		// fetch pageid from cache/database and return the value
-		$pageid = $t->getArticleID();
-		return $pageid ? $pageid : '';
+
+		// These can't have ids
+		if ( !$t->canExist() || $t->isExternal() ) {
+			return 0;
+		}
+
+		// Check the link cache, maybe something already looked it up.
+		$linkCache = LinkCache::singleton();
+		$pdbk = $t->getPrefixedDBkey();
+		$id = $linkCache->getGoodLinkID( $pdbk );
+		if ( $id != 0 ) {
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		if ( $linkCache->isBadLink( $pdbk ) ) {
+			$parser->mOutput->addLink( $t, 0 );
+			return $id;
+		}
+
+		// We need to load it from the DB, so mark expensive
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$id = $t->getArticleID();
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		return null;
 	}
 
 	/**
