@@ -1149,7 +1149,11 @@ abstract class UploadBase {
 	 * @return mixed false of the file is verified (does not contain scripts), array otherwise.
 	 */
 	protected function detectScriptInSvg( $filename ) {
-		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
+		$check = new XmlTypeCheck(
+			$filename,
+			array( $this, 'checkSvgScriptCallback' ),
+			array( 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' )
+		);
 		if ( $check->wellFormed !== true ) {
 			// Invalid xml (bug 58553)
 			return array( 'uploadinvalidxml' );
@@ -1259,6 +1263,20 @@ abstract class UploadBase {
 		}
 
 		return false; //No scripts detected
+	}
+	
+ 	/**
+	 * Callback to filter SVG Processing Instructions.
+	 * @param $target string processing instruction name
+	 * @param $data string processing instruction attribute and value
+	 * @return bool (true if the filter identified something bad)
+	 */
+	public static function checkSvgPICallback( $target, $data ) {
+		// Don't allow external stylesheets (bug 57550)
+		if ( preg_match( '/xml-stylesheet/i', $target) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
