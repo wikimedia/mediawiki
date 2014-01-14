@@ -307,6 +307,9 @@ function wfStreamThumb( array $params ) {
 	if ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
+	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 ) );
+		return;
 	}
 
 	// Thumbnail isn't already there, so create the new thumbnail...
@@ -332,11 +335,51 @@ function wfStreamThumb( array $params ) {
 	}
 
 	if ( $errorMsg !== false ) {
+		wfThumbIncrAttemptFailures( $img, $thumbName );
 		wfThumbError( 500, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
 	}
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ * @param int $limit
+ * @return int|bool
+ */
+function wfThumbIsAttemptThrottled( File $img, $thumbName, $limit ) {
+	global $wgMemc;
+
+	return ( $wgMemc->get( wfThumbAttemptKey( $img, $thumbName ) ) >= $limit );
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ */
+function wfThumbIncrAttemptFailures( File $img, $thumbName ) {
+	global $wgMemc;
+
+	$key = wfThumbAttemptKey( $img, $thumbName );
+	if ( !$wgMemc->incr( $key, 1 ) ) {
+		if ( !$wgMemc->add( $key, 1, 3600 ) ) {
+			$wgMemc->incr( $key, 1 );
+		}
+	}
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ * @return string
+ */
+function wfThumbAttemptKey( File $img, $thumbName ) {
+	global $wgAttemptFailureEpoch;
+
+	return wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
+		$img->getRepo()->getName(), md5( $img->getName() ), md5( $thumbName ) );
 }
 
 /**
