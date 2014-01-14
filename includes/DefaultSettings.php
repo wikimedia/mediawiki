@@ -1032,6 +1032,14 @@ $wgTiffThumbnailType = false;
 $wgThumbnailEpoch = '20030516000000';
 
 /**
+ * Certain operations are avoided if there were too many recent failures,
+ * for example, thumbnail generation. Bump this value to invalidate all
+ * memory of failed operations and thus allow further attempts to resume.
+ * This is useful when a cause for the failures has been found and fixed.
+ */
+$wgAttemptFailureEpoch = 1;
+
+/**
  * If set, inline scaled images will still produce "<img>" tags ready for
  * output instead of showing an error message.
  *
