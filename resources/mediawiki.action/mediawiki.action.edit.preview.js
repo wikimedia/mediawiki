@@ -59,7 +59,7 @@
 		$copyElements.animate( { opacity: 0.4 }, 'fast' );
 
 		$previewDataHolder = $( '<div>' );
-		targetUrl = $editform.attr( 'action' );
+		targetUrl = $editform.attr( 'action' ) + '&useskin=' + mw.config.get( 'skin' );
 
 		// Gather all the data from the form
 		postData = $editform.formToArray();
