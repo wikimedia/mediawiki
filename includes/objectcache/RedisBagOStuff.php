@@ -79,12 +79,13 @@ class RedisBagOStuff extends BagOStuff {
 			return false;
 		}
 		try {
-			$result = $this->unserialize( $conn->get( $key ) );
+			$value = $conn->get( $key );
+			$casToken = $value;
+			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $server, $conn, $e );
 		}
-		$casToken = $result;
 
 		$this->logRequest( 'get', $key, $server, $result );
 		return $result;
@@ -125,7 +126,7 @@ class RedisBagOStuff extends BagOStuff {
 		try {
 			$conn->watch( $key );
 
-			if ( $this->get( $key ) !== $casToken ) {
+			if ( $this->serialize( $this->get( $key ) ) !== $casToken ) {
 				$conn->unwatch();
 				return false;
 			}
