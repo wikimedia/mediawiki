@@ -33,7 +33,7 @@ $wgConf = new SiteConfiguration;
 /** @endcond */
 
 /** MediaWiki version number */
-$wgVersion = '1.19.10';
+$wgVersion = '1.19.9';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename = 'MediaWiki';
@@ -4228,7 +4228,7 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
-
+ 
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
