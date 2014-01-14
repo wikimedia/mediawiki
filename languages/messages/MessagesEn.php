@@ -2207,7 +2207,7 @@ Your email address is not revealed when other users contact you.',
 'recentchanges-legend-newpage'      => '(also see [[Special:NewPages|list of new pages]])',
 'recentchanges-legend-plusminus'    => '(<em>±123</em>)', # only translate this message to other languages if you have to change it
 'rcnotefrom'                        => 'Below are the changes since <strong>$2</strong> (up to <strong>$1</strong> shown).',
-'rclistfrom'                        => 'Show new changes starting from $1',
+'rclistfrom'                        => 'Show new changes starting from $2, $3',
 'rcshowhideminor'                   => '$1 minor edits',
 'rcshowhideminor-show'              => 'Show',
 'rcshowhideminor-hide'              => 'Hide',
