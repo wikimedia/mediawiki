@@ -3569,6 +3569,7 @@ $2',
 'thumbnail_image-type'     => 'Image type not supported',
 'thumbnail_gd-library'     => 'Incomplete GD library configuration: Missing function $1',
 'thumbnail_image-missing'  => 'File seems to be missing: $1',
+'thumbnail_image-failure-limit' => 'There have been too many recent failed attempts ($1 or more) to render this thumbnail. Please try again later.',
 
 # Special:Import
 'import'                     => 'Import pages',

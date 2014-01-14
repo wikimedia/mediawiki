@@ -2486,6 +2486,7 @@ $wgMessageStructure = array(
 		'thumbnail_image-type',
 		'thumbnail_gd-library',
 		'thumbnail_image-missing',
+		'thumbnail_image-failure-limit'
 	),
 	'import' => array(
 		'import',
