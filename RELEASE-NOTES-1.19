@@ -3,6 +3,17 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.10 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.9 ===
+* (bug 57550) SECURITY: Disallow stylesheets in SVG Uploads
+* (bug 58088) SECURITY: Don't normalize U+FF3C to \ in CSS Checks
+* (bug 58472) SECURITY: Disallow -o-link in styles
+* (bug 58553) SECURITY: Return error on invalid XML for SVG Uploads
+* (bug 58699) SECURITY: Fix RevDel log entry information leaks
+
 == MediaWiki 1.19.9 ==
 
 This is a security and maintenance release of the MediaWiki 1.19 branch.
