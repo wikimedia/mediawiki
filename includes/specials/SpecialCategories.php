@@ -27,9 +27,9 @@
 class SpecialCategories extends SpecialPage {
 
 	/**
-	 * @var PageLinkRenderer
+	 * @var callable
 	 */
-	protected $linkRenderer = null;
+	protected $pagerBuilder = null;
 
 	public function __construct() {
 		parent::__construct( 'Categories' );
@@ -40,41 +40,68 @@ class SpecialCategories extends SpecialPage {
 	}
 
 	/**
-	 * Initialize or override the PageLinkRenderer SpecialCategories collaborates with.
-	 * Useful mainly for testing.
+	 * Initialize or override the pagerBuilder SpecialCategories::newCategoryPager() will
+	 * use to create a pager that will execute the database query and generate the HTML output.
 	 *
-	 * @todo: the pager should also be injected, and de-coupled from the rendering logic.
+	 * @param callable $pagerBuilder A callable that accepts one parameter,
+	 * the "from" page title as a string, and returns an IndexPager for listing
+	 * results.
 	 *
-	 * @param PageLinkRenderer $linkRenderer
+	 * @throws InvalidArgumentException
 	 */
-	public function setPageLinkRenderer(
-		PageLinkRenderer $linkRenderer
-	) {
-		$this->linkRenderer = $linkRenderer;
+	public function setPagerBuilder( $pagerBuilder ) {
+		if ( !is_callable( $pagerBuilder ) ) {
+			throw new InvalidArgumentException( '$pagerBuilder must be callable' );
+		}
+
+		$this->pagerBuilder = $pagerBuilder;
 	}
 
 	/**
-	 * Initialize any services we'll need (unless it has already been provided via a setter).
-	 * This allows for dependency injection even though we don't control object creation.
+	 * Default builder for the IndexPager to be used by this special page.
+	 * Will be called from newCategoryPager() unless overridden by setPagerBuilder().
+	 *
+	 * @param string $from The title the pager should start at.
+	 *
+	 * @return CategoryPager
 	 */
-	private function initServices() {
-		if ( !$this->linkRenderer ) {
-			$lang = $this->getContext()->getLanguage();
-			$titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
-			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
+	protected function buildCategoryPager( $from ) {
+		global $wgArticlePath, $wgLocalInterwiki;
+
+		$titleFormatter = new MediaWikiTitleCodec( $this->getLanguage(), GenderCache::singleton(), $wgLocalInterwiki );
+		$linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter, $wgArticlePath );
+		$resultRowFormatter = new CategoryPagerRowFormatter( $this->getContext(), $linkRenderer );
+
+		return new CategoryPager( $this->getContext(), $from, $resultRowFormatter );
+	}
+
+	/**
+	 * Returns a new IndexPager suitable for listing categories starting from
+	 * the title given by $from.
+	 *
+	 * The IndexPager is created using the builder set via setPagerBuilder(),
+	 * defaulting to buildCategoryPager() if setPagerBuilder() wasn't used.
+	 *
+	 * @param string $from The title the pager should start at.
+	 *
+	 * @return CategoryPager
+	 */
+	protected function newCategoryPager( $from ) {
+		if ( !$this->pagerBuilder ) {
+			$this->pagerBuilder = array( $this, 'buildCategoryPager' );
 		}
+
+		return call_user_func( $this->pagerBuilder, $from );
 	}
 
 	public function execute( $par ) {
-		$this->initServices();
-
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
 		$from = $this->getRequest()->getText( 'from', $par );
 
-		$cap = new CategoryPager( $this->getContext(), $from, $this->linkRenderer );
+		$cap = $this->newCategoryPager( $from );
 		$cap->doQuery();
 
 		$this->getOutput()->addHTML(
@@ -102,17 +129,16 @@ class SpecialCategories extends SpecialPage {
 class CategoryPager extends AlphabeticPager {
 
 	/**
-	 * @var PageLinkRenderer
+	 * @var ResultRowFormatter
 	 */
-	protected $linkRenderer;
+	protected $rowFormatter;
 
 	/**
 	 * @param IContextSource $context
 	 * @param string $from
-	 * @param PageLinkRenderer $linkRenderer
+	 * @param ResultRowFormatter $rowFormatter
 	 */
-	public function __construct( IContextSource $context, $from, PageLinkRenderer $linkRenderer
-	) {
+	public function __construct( IContextSource $context, $from, ResultRowFormatter $rowFormatter ) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
@@ -121,7 +147,7 @@ class CategoryPager extends AlphabeticPager {
 			$this->setIncludeOffset( true );
 		}
 
-		$this->linkRenderer = $linkRenderer;
+		$this->rowFormatter = $rowFormatter;
 	}
 
 	function getQueryInfo() {
@@ -162,7 +188,7 @@ class CategoryPager extends AlphabeticPager {
 		$this->mResult->rewind();
 
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cat_title ) );
+			$batch->add( NS_CATEGORY, $row->cat_title );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
@@ -171,12 +197,7 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function formatRow( $result ) {
-		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
-		$text = $title->getText();
-		$link = $this->linkRenderer->renderHtmlLink( $title, $text );
-
-		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
-		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
+		return $this->rowFormatter->formatRow( $result );
 	}
 
 	public function getStartForm( $from ) {
@@ -196,5 +217,53 @@ class CategoryPager extends AlphabeticPager {
 						)
 				)
 		);
+	}
+}
+
+/**
+ * Formatter for result rows on SpecialCategories
+ *
+ * @license GPL 2+
+ * @author Daniel Kinzler
+ *
+ * @ingroup SpecialPage Formatter
+ */
+class CategoryPagerRowFormatter extends ContextSource implements ResultRowFormatter {
+
+	/**
+	 * @var TitleFormatter
+	 */
+	protected $titleFormatter;
+
+	/**
+	 * @var PageLinkRenderer
+	 */
+	protected $linkRenderer;
+
+	/**
+	 * @param IContextSource $context
+	 * @param PageLinkRenderer $linkRenderer
+	 */
+	function __construct(
+		IContextSource $context,
+		PageLinkRenderer $linkRenderer
+	) {
+		parent::setContext( $context );
+
+		$this->linkRenderer = $linkRenderer;
+	}
+
+	/**
+	 * @param object $row the result row to format, as an stdclass object
+	 *
+	 * @return string HTML
+	 */
+	function formatRow( $row ) {
+		$title = new TitleValue( NS_CATEGORY, $row->cat_title );
+		$text = $title->getText();
+		$link = $this->linkRenderer->renderHtmlLink( $title, htmlspecialchars( $text ) );
+
+		$count = $this->msg( 'nmembers' )->numParams( $row->cat_pages )->escaped();
+		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 }
