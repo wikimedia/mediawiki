@@ -7269,6 +7269,8 @@ See also:
 *$1 is a function name of the GD library',
 'thumbnail_image-missing' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
 *$1 is the path incl. filename of the missing image',
+'thumbnail_image-failure-limit' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
+*$1 is the maximum allowed number of failed attempts',
 
 # Special:Import
 'import' => 'The title of the special page [[Special:Import]];',
@@ -9649,7 +9651,7 @@ Quotation marks, for quoting, sometimes titles etc., depending on the language.
 
 See: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].
 
-Parameters: 
+Parameters:
 * $1 - text to be wrapped in quotation marks',
 
 # Multipage image navigation

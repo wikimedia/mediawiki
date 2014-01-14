@@ -220,6 +220,9 @@ changes to languages because of Bugzilla reports.
   3 headings)" was removed.
 * (bug 52810) Preference "Justify paragraphs" was removed.
 * OutputPage::showErrorPage raises a notice if arguments are incoherent.
+* Thumbnails that keep failing to render in thumb.php will be rate-limited
+  againt further render attempts for 1 hour. $wgAttemptFailureEpoch can be
+  altered to reset all rate-limited thumbnails at once. 
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
