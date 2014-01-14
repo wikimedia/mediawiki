@@ -125,6 +125,7 @@ class DBABagOStuff extends BagOStuff {
 		}
 
 		$val = dba_fetch( $key, $handle );
+		$casToken = $val;
 		list( $val, $expiry ) = $this->decode( $val );
 
 		# Must close ASAP because locks are held
@@ -138,8 +139,6 @@ class DBABagOStuff extends BagOStuff {
 			wfDebug( __METHOD__ . ": $key expired\n" );
 			$val = false;
 		}
-
-		$casToken = $val;
 
 		wfProfileOut( __METHOD__ );
 
@@ -193,7 +192,6 @@ class DBABagOStuff extends BagOStuff {
 		// DBA is locked to any other write connection, so we can safely
 		// compare the current & previous value before saving new value
 		$val = dba_fetch( $key, $handle );
-		list( $val, $exptime ) = $this->decode( $val );
 		if ( $casToken !== $val ) {
 			dba_close( $handle );
 			wfProfileOut( __METHOD__ );
