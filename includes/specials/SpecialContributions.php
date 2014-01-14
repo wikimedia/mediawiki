@@ -856,8 +856,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$batch->add( $row->page_namespace, $row->page_title );
 			}
 		}
-		# Bug 59987: avoid using 'contributions' db connection
-		$this->mParentLens = Revision::getParentLengths( wfGetDB( DB_SLAVE ), $revIds );
+		$this->mParentLens = Revision::getParentLengths( $this->getDatabase(), $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
 	}
