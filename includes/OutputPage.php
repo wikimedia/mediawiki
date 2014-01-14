@@ -2510,6 +2510,10 @@ $templates
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
+		// Avoid Internet Explorer "compatibility view", so that
+		// jQuery can work correctly.
+		$ret .= Html::element( 'meta', array( 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=EDGE' ) );
+
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
