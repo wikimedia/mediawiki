@@ -1,0 +1,4 @@
+this is a text file for git and gerrit testing purpose.
+
+and this is second line 
+
