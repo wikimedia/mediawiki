@@ -962,14 +962,18 @@ class SpecialRecentChanges extends SpecialPage {
 
 		// show from this onward link
 		$timestamp = wfTimestampNow();
-		$now = $lang->userTimeAndDate( $timestamp, $user );
-		$tl = $this->makeOptionsLink(
-			$now, array( 'from' => $timestamp ), $nondefaults
+		$timenow = $lang->userTime( $timestamp, $user );
+		$datenow = $lang->userDate( $timestamp, $user );
+		$tltime = $this->makeOptionsLink(
+			$timenow, array( 'from' => $timestamp ), $nondefaults
+		);
+		$tldate = $this->makeOptionsLink(
+			$datenow, array( 'from' => $timestamp ), $nondefaults
 		);
 
 		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )
 			->parse();
-		$rclistfrom = $this->msg( 'rclistfrom' )->rawParams( $tl )->parse();
+		$rclistfrom = $this->msg( 'rclistfrom' )->rawParams( $tltime , $tldate )->parse();
 
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
