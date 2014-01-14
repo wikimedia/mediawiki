@@ -19,6 +19,13 @@ class XmlTypeCheck {
 	 */
 	public $rootElement = '';
 
+ 	/**
+	 * Additional parsing options
+	 */
+	private $parserOptions = array(
+		'processing_instruction_handler' => '',
+	);
+
 	/**
 	 * @param $file string filename
 	 * @param $filterCallback callable (optional)
@@ -26,9 +33,12 @@ class XmlTypeCheck {
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, and attributes, but not to text contents.
 	 *        Filter should return 'true' to toggle on $this->filterMatch
+	 * @param array $options list of additional parsing options:
+	 *	processing_instruction_handler: Callback for xml_set_processing_instruction_handler
 	 */
-	function __construct( $file, $filterCallback=null ) {
+	function __construct( $file, $filterCallback=null, $options=array() ) {
 		$this->filterCallback = $filterCallback;
+		$this->parserOptions = array_merge( $this->parserOptions, $options );
 		$this->run( $file );
 	}
 
@@ -51,6 +61,13 @@ class XmlTypeCheck {
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
 		xml_set_element_handler( $parser, array( $this, 'rootElementOpen' ), false );
+
+		if ( $this->parserOptions['processing_instruction_handler'] ) {
+			xml_set_processing_instruction_handler(
+				$parser,
+				array( $this, 'processingInstructionHandler' )
+			);
+		}
 
 		if ( file_exists( $fname ) ) {
 			$file = fopen( $fname, "rb" );
@@ -99,6 +116,18 @@ class XmlTypeCheck {
 	 */
 	private function elementOpen( $parser, $name, $attribs ) {
 		if( call_user_func( $this->filterCallback, $name, $attribs ) ) {
+			// Filter hit!
+			$this->filterMatch = true;
+		}
+	}
+
+	/**
+	 * @param $parser
+	 * @param $target
+	 * @param $data
+	 */
+	private function processingInstructionHandler( $parser, $target, $data ) {
+		if ( call_user_func( $this->parserOptions['processing_instruction_handler'], $target, $data ) ) {
 			// Filter hit!
 			$this->filterMatch = true;
 		}
