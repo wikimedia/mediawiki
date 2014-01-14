@@ -139,7 +139,29 @@ class FormatJson {
 		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
 		$json = json_encode( $value, $options );
 		if ( $json === false ) {
-			return false;
+			// json_encode can't handle binary data.
+			// Instead of failing completely, walk the values and get rid of all
+			// failing occurrences, then try json_encode again.
+			$callback = function ( &$value, $key, $options ) {
+				// ctype_print is just to check for (potential) binary data in
+				// a slightly faster way than json_encode; if ctype_print is ok,
+				// the additional json_encode check doesn't need to be done.
+				if ( !ctype_print( $value ) && json_encode( $value, $options ) === false ) {
+					$value = "<failed to json_encode>";
+				}
+			};
+			if ( is_array( $value ) ) {
+				array_walk_recursive( $value, $callback, $options );
+			} elseif ( is_string( $value ) ) {
+				$callback( $value, null, $options );
+			}
+
+			// try json_encode again, now that binary data has been stripped
+			$json = json_encode($value);
+
+			if ( $json === false ) {
+				return false;
+			}
 		}
 
 		if ( $pretty ) {
