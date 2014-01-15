@@ -203,7 +203,7 @@ class LoadBalancer {
 			return $this->mReadIndex;
 		}
 
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
 
 		# Find the relevant load array
 		if ( $group !== false ) {
@@ -212,7 +212,6 @@ class LoadBalancer {
 			} else {
 				# No loads for this group, return false and the caller can use some other group
 				wfDebug( __METHOD__ . ": no loads for group $group\n" );
-				wfProfileOut( __METHOD__ );
 
 				return false;
 			}
@@ -221,7 +220,6 @@ class LoadBalancer {
 		}
 
 		if ( !count( $nonErrorLoads ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
 
@@ -255,7 +253,6 @@ class LoadBalancer {
 				# This is permanent and means the configuration or the load monitor
 				# wants us to return false.
 				wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
-				wfProfileOut( __METHOD__ );
 
 				return false;
 			}
@@ -294,11 +291,10 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
 				}
 			}
-			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $i !== false ) {
+			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group !== false ) {
 				$this->mReadIndex = $i;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $i;
 	}
