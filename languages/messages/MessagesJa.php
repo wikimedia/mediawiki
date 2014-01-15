@@ -4505,4 +4505,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'expand_templates_generate_rawhtml' => 'HTML ソースを表示',
 'expand_templates_preview' => 'プレビュー',
 
+# Unknown messages
+'uploadinvalidxml' => 'アップロードされたファイルに含まれる XML が構文解析できませんでした。',
 );

@@ -801,6 +801,7 @@ Tā jau eksistē.',
 'content-not-allowed-here' => '"$1" saturs nav atļauts lapā [[$2]]',
 'editwarning-warning' => 'Atstājot šo lapu tu zaudēsi izdarītās izmaiņas. 
 Ja esi pieteicies, jūs vari atspējot šo brīdinājumu savās izvēlēs sadaļā "rediģēšana"',
+'editpage-notsupportedcontentformat-title' => 'Satura formāts nav atbalstīts',
 
 # Content models
 'content-model-wikitext' => 'vikiteksts',

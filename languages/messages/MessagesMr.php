@@ -3808,6 +3808,7 @@ $5
 'version-hook-subscribedby' => 'वर्गणीदार',
 'version-version' => '($1)',
 'version-license' => 'मिडियाविकि परवाना',
+'version-ext-license' => 'परवाना',
 'version-ext-colheader-name' => 'विस्तारक',
 'version-ext-colheader-version' => 'आवृत्ती',
 'version-ext-colheader-license' => 'परवाना',
@@ -4072,4 +4073,6 @@ $5
 'expand_templates_generate_xml' => 'XML चा पार्स (parse) वृक्ष दाखवा',
 'expand_templates_preview' => 'झलक',
 
+# Unknown messages
+'uploadinvalidxml' => 'अपभारीत संचिकेतील XML पार्स करता आले नाही.',
 );

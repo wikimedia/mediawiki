@@ -387,6 +387,16 @@ An n'é mìa stê dê la spiegasiòun.",
 'protectedpagetext' => "Cla pàgina ché l'é stêda prutèta per impidîr la mudéfica o êtri operasiòun.",
 'viewsourcetext' => "L'é pusébil vèder e cupiêr al côdis surzéia ed cla pàgina ché.",
 'viewyourtext' => 'L\'é pusébil vèder e cupiêr al côdis surzéia dal "tō mudéfichi" ed cla pàgina ché:',
+'protectedinterface' => "Cla pàgina ché la gh'à 'n elemèint ch' al fa pêrt dal colegamèint tra utèint e al progrâma 'd cól sît ché e l'é prutèta per schivşêr pusébil abûş. Per zuntêr o mudufichêr tradusiòun per tót i sistēma wiki druvêr [//translatewiki.net/ translatewiki.net], al prugèt 'd adatamèint a ògni léngva 'd MediaWiki.",
+'editinginterface' => "'''Atèinti:'' Al tèst ed cla pàgina ché 'l fa pêrt dal colegamèint tra utèint e 'l progrâma dal sît.  Tót' al modéfichi fâti a cla pàgina ché a gnîran spustêdi insém a i mesâg vést da tót j utèint ed cól wiki ché. Per zuntêr o mudufichêr tradusiòun vâlidi per tót i wiki, cunsîdra la pusibilitê 'd druvêr [/ / translatewiki.net / translatewiki.net], al prugèt 'd adatamèint a ògni léngva 'd MediaWiki.",
+'cascadeprotected' => "Insém a cla pàgina ché an n'é mìa pusébil fêr dal mudéfichi perchè l'é dèinter {{PLURAL:$1|int la pàgina sgnêda ché  'd sègvit, ch' l'é stêda prutèta|int al pàgini sgnêdi ché  'd sègvit, ch' în stêdi prutèti}} cun la prutesiòun ch' la 's arfà in cuntinvasiòun:
+$2",
+'namespaceprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr al pàgini dal spâsi di nòm '''$1'''.",
+'customcssprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina CSS ché, perchè la gh'à dèinter al j impustasiòun personêli 'd n' êter utèint.",
+'customjsprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina JavaScript ché, perchè la gh'à dèinter al j impustasiòun personêli 'd n' êter utèint.",
+'mycustomcssprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina CSS ché.",
+'mycustomjsprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina JavaScript ché .",
+'myprivateinfoprotected' => "An 's gh'à mìa i permès necesâri per cambiê 'l j infurmasiòun personêli.",
 
 # Login and logout pages
 'yourname' => 'Nòm utèint:',

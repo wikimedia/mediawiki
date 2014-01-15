@@ -1005,6 +1005,8 @@ Illo existe ja.',
 'content-not-allowed-here' => 'Le contento "$1" non es permittite in le pagina [[$2]]',
 'editwarning-warning' => 'Quitar iste pagina pote causar le perdita de omne modificationes que tu ha facite.
 Si tu ha aperite un session, tu pote disactivar iste aviso in le section "Modification" de tu preferentias.',
+'editpage-notsupportedcontentformat-title' => 'Formato de contento non supportate',
+'editpage-notsupportedcontentformat-text' => 'Le formato de contento $1 non es supportate per le modello de contento $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -4110,4 +4112,6 @@ De facto, illo expande quasi toto inter accolladas duple.',
 'expand_templates_generate_rawhtml' => 'Monstrar HTML brute',
 'expand_templates_preview' => 'Previsualisation',
 
+# Unknown messages
+'uploadinvalidxml' => 'Le codice XML in le file incargate non pote esser interpretate.',
 );

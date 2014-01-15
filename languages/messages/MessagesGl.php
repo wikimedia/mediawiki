@@ -1136,6 +1136,8 @@ Esta xa existe.',
 'content-not-allowed-here' => 'O contido "$1" non está permitido na páxina "[[$2]]"',
 'editwarning-warning' => 'Deixar esta páxina pode causar a perda de calquera cambio feito.
 Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "Edición" das súas preferencias.',
+'editpage-notsupportedcontentformat-title' => 'Formato de contido non admitido',
+'editpage-notsupportedcontentformat-text' => 'O formato de contido $1 non é compatible co modelo de contido  $2.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',
@@ -1178,9 +1180,9 @@ Comprobe a comparación que aparece a continuación para confirmar que isto é o
 'cantcreateaccount-text' => "A creación de contas desde este enderezo IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
 A razón dada por $3 foi ''$2''",
-'cantcreateaccount-range-text' => "A creación de contas dende direccións IP no rango '''$1''', e que inclúe á súa dirección IP ('''$4'''), foi bloqueada polo usuario [[User:$3|$3]].
+'cantcreateaccount-range-text' => "O usuario [[User:$3|$3]] bloqueou a creación de contas desde enderezos IP no rango '''$1''', no que se inclúe o seu enderezo IP ('''$4''').
 
-A razón dada por $3 foi ''$2''.",
+A razón que deu $3 foi ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Ver os rexistros desta páxina',
@@ -1841,6 +1843,7 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate' => 'Un ficheiro idéntico a este ("[[:$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
+'file-deleted-duplicate-notitle' => 'Un ficheiro idéntico a este foi borrado con anterioridade, e o título foi suprimido. Debería contactar con alguén capaz de ver os datos de ficheiros borrados para que revise esta situación antes de voltar a subilo de novo.',
 'uploadwarning' => 'Advertencia ao cargar o ficheiro',
 'uploadwarning-text' => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile' => 'Gardar o ficheiro',
@@ -2744,6 +2747,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself' => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser' => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
+'ipb-confirmaction' => 'Se está seguro de que quere facelo realmente, por favor marque o campo "{{int:ipb-confirm}}" abaixo.',
 'ipb-edit-dropdown' => 'Editar os motivos de bloqueo',
 'ipb-unblock-addr' => 'Desbloquear a $1',
 'ipb-unblock' => 'Desbloquear un usuario ou enderezo IP',
@@ -3947,6 +3951,9 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-ext-colheader-description' => 'Descrición',
 'version-ext-colheader-credits' => 'Autores',
 'version-license-title' => 'Licenza para $1',
+'version-license-not-found' => 'Non se atopou información detallada de licenza para esta extensión.',
+'version-credits-title' => 'Receñecemento para $1',
+'version-credits-not-found' => 'Non se atopou información detallada de recoñecemento para esta extensión.',
 'version-poweredby-credits' => "Este wiki está desenvolvido por '''[https://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autoría © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
 'version-poweredby-translators' => 'os tradutores de translatewiki.net',
@@ -4225,4 +4232,6 @@ De feito, expande case calquera cousa entre dúas chaves.',
 'expand_templates_generate_rawhtml' => 'Mostrar o HTML en bruto',
 'expand_templates_preview' => 'Vista previa',
 
+# Unknown messages
+'uploadinvalidxml' => 'O XML do ficheiro cargado non pode ser interpretado.',
 );

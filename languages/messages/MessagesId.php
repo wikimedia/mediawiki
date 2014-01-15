@@ -34,6 +34,7 @@
  * @author Remember the dot
  * @author Rex
  * @author Rv77ax
+ * @author StefanusRA
  * @author Urhixidur
  * @author William Surya Permana
  * @author לערי ריינהארט
@@ -1755,7 +1756,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'rclistfrom' => 'Perlihatkan perubahan terbaru sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
 'rcshowhidebots' => '$1 bot',
-'rcshowhideliu' => '$1 pengguna masuk log',
+'rcshowhideliu' => '$1 pengguna-pengguna terdaftar',
 'rcshowhideanons' => '$1 pengguna anon',
 'rcshowhidepatr' => '$1 suntingan terpatroli',
 'rcshowhidemine' => '$1 suntingan saya',

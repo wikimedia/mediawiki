@@ -2209,7 +2209,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'withoutinterwiki-legend' => 'Prefixo',
 'withoutinterwiki-submit' => 'Exibir',
 
-'fewestrevisions' => 'Páginas de conteúdo com menos edições',
+'fewestrevisions' => 'Páginas com menos edições',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -4232,4 +4232,6 @@ Na verdade, expande tudo que está entre chaves duplas.',
 'expand_templates_generate_rawhtml' => 'Mostrar HTML puro',
 'expand_templates_preview' => 'Pré-visualização',
 
+# Unknown messages
+'uploadinvalidxml' => 'O XML no arquivo enviado não pôde ser analisado.',
 );
