@@ -2656,6 +2656,17 @@ class Title {
 	}
 
 	/**
+	 * Accessor for mRestrictionsLoaded
+	 *
+	 * @return bool Whether or not the page's restrictions have already been
+	 * loaded from the database
+	 * @since 1.23
+	 */
+	public function areRestrictionsLoaded() {
+		return $this->mRestrictionsLoaded;
+	}
+
+	/**
 	 * Accessor/initialisation for mRestrictions
 	 *
 	 * @param string $action action that permission needs to be checked for
@@ -2668,6 +2679,21 @@ class Title {
 		return isset( $this->mRestrictions[$action] )
 				? $this->mRestrictions[$action]
 				: array();
+	}
+
+	/**
+	 * Accessor/initialisation for mRestrictions
+	 *
+	 * @return Array of Arrays of Strings the first level indexed by
+	 * action, the second level containing the names of the groups
+	 * allowed to perform each action
+	 * @since 1.23
+	 */
+	public function getAllRestrictions() {
+		if ( !$this->mRestrictionsLoaded ) {
+			$this->loadRestrictions();
+		}
+		return $this->mRestrictions;
 	}
 
 	/**
