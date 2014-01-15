@@ -196,12 +196,12 @@ class LoadBalancer {
 		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
 			return 0;
-		} elseif ( $group === false and $this->mReadIndex >= 0 ) {
+		} elseif ( $group === false && $this->mReadIndex >= 0 ) {
 			# Shortcut if generic reader exists already
 			return $this->mReadIndex;
 		}
 
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
 
 		$totalElapsed = 0;
 
@@ -215,7 +215,6 @@ class LoadBalancer {
 			} else {
 				# No loads for this group, return false and the caller can use some other group
 				wfDebug( __METHOD__ . ": no loads for group $group\n" );
-				wfProfileOut( __METHOD__ );
 
 				return false;
 			}
@@ -224,7 +223,6 @@ class LoadBalancer {
 		}
 
 		if ( !$nonErrorLoads ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
 
@@ -259,7 +257,6 @@ class LoadBalancer {
 					# This is permanent and means the configuration or the load monitor
 					# wants us to return false.
 					wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
-					wfProfileOut( __METHOD__ );
 
 					return false;
 				}
@@ -330,11 +327,10 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
 				}
 			}
-			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $i !== false ) {
+			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group !== false ) {
 				$this->mReadIndex = $i;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $i;
 	}
