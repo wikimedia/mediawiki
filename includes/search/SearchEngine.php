@@ -762,18 +762,22 @@ class SearchResult {
 	/**
 	 * @var Revision
 	 */
-	var $mRevision = null;
-	var $mImage = null;
+	protected $mRevision = null;
+
+	/**
+	 * @var File
+	 */
+	protected $mImage = null;
 
 	/**
 	 * @var Title
 	 */
-	var $mTitle;
+	protected $mTitle;
 
 	/**
 	 * @var String
 	 */
-	var $mText;
+	protected $mText;
 
 	/**
 	 * Return a new SearchResult and initializes it with a title.
@@ -840,10 +844,7 @@ class SearchResult {
 	 * @return Boolean
 	 */
 	function isBrokenTitle() {
-		if ( is_null( $this->mTitle ) ) {
-			return true;
-		}
-		return false;
+		return is_null( $this->mTitle );
 	}
 
 	/**
@@ -860,6 +861,14 @@ class SearchResult {
 	 */
 	function getTitle() {
 		return $this->mTitle;
+	}
+
+	/**
+	 * Get the file for this page, if one exists
+	 * @return File|null
+	 */
+	function getFile() {
+		return $this->mImage;
 	}
 
 	/**

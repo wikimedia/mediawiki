@@ -689,7 +689,8 @@ class SpecialSearch extends SpecialPage {
 
 		// Include a thumbnail for media files...
 		if ( $t->getNamespace() == NS_FILE ) {
-			$img = wfFindFile( $t );
+			$img = $result->getFile();
+			$img = $img ?: wfFindFile( $t );
 			if ( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if ( $thumb ) {
