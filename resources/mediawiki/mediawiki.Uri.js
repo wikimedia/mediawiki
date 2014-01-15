@@ -1,16 +1,13 @@
 /**
- * Library for simple URI parsing and manipulation.  Requires jQuery.
+ * Library for simple URI parsing and manipulation. Dependencies: mw, jQuery.
  *
- * Do not expect full RFC 3986 compliance. Intended to be minimal, but featureful.
- * The use cases we have in mind are constructing 'next page' or 'previous page' URLs,
- * detecting whether we need to use cross-domain proxies for an API, constructing
- * simple URL-based API calls, etc.
+ * Intended to be minimal, but featureful; do not expect full RFC 3986 compliance. The use cases we
+ * have in mind are constructing 'next page' or 'previous page' URLs, detecting whether we need to
+ * use cross-domain proxies for an API, constructing simple URL-based API calls, etc. Parsing here
+ * is regex-based, so may not work on all URIs, but is good enough for most.
  *
- * Intended to compress very well if you use a JS-parsing minifier.
- *
- * Dependencies: mw, jQuery
- *
- * Example:
+ * You can modify the properties directly, then use the #toString method to extract the full URI
+ * string again. Example:
  *
  *     var uri = new mw.Uri( 'http://example.com/mysite/mypage.php?quux=2' );
  *
@@ -25,47 +22,47 @@
  *         // anchor with id 'id2' now links to http://foo.example.com/mysite/mypage.php?bar=3&quux=2&pif=paf
  *     }
  *
- * Parsing here is regex based, so may not work on all URIs, but is good enough for most.
- *
  * Given a URI like
- * 'http://usr:pwd@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=&test3=value+%28escaped%29&r=1&r=2#top':
- * The returned object will have the following properties:
+ * `http://usr:pwd@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=&test3=value+%28escaped%29&r=1&r=2#top`
+ * the returned object will have the following properties:
  *
- *    protocol  'http'
- *    user      'usr'
- *    password  'pwd'
- *    host      'www.example.com'
- *    port      '81'
- *    path      '/dir/dir.2/index.htm'
- *    query     {
- *                  q1: 0,
- *                  test1: null,
- *                  test2: '',
- *                  test3: 'value (escaped)'
- *                  r: [1, 2]
- *              }
- *    fragment  'top'
+ *     protocol  'http'
+ *     user      'usr'
+ *     password  'pwd'
+ *     host      'www.example.com'
+ *     port      '81'
+ *     path      '/dir/dir.2/index.htm'
+ *     query     {
+ *                   q1: '0',
+ *                   test1: null,
+ *                   test2: '',
+ *                   test3: 'value (escaped)'
+ *                   r: ['1', '2']
+ *               }
+ *     fragment  'top'
  *
- * n.b. 'password' is not technically allowed for HTTP URIs, but it is possible with other
- * sorts of URIs.
- * You can modify the properties directly. Then use the toString() method to extract the
- * full URI string again.
+ * (N.b., 'password' is technically not allowed for HTTP URIs, but it is possible with other kinds
+ * of URIs.)
  *
- * Parsing based on parseUri 1.2.2 (c) Steven Levithan <stevenlevithan.com> MIT License
+ * Parsing based on parseUri 1.2.2 (c) Steven Levithan <stevenlevithan.com>, MIT License.
  * http://stevenlevithan.com/demo/parseuri/js/
  *
+ * @class mw.Uri
  */
 
 ( function ( mw, $ ) {
-
 	/**
-	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern of
-	 * having to add something to the URI as we go, but only if it's present, and to include a character before or after if so.
-	 * @param {string|undefined} pre To prepend.
-	 * @param {string} val To include.
-	 * @param {string} post To append.
-	 * @param {boolean} raw If true, val will not be encoded.
-	 * @return {string} Result.
+	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
+	 * of having to add something to the URI as we go, but only if it's present, and to include a
+	 * character before or after if so.
+	 *
+	 * @private
+	 * @static
+	 * @param {string|undefined} pre To prepend
+	 * @param {string} val To include
+	 * @param {string} post To append
+	 * @param {boolean} raw If true, val will not be encoded
+	 * @return {string} Result
 	 */
 	function cat( pre, val, post, raw ) {
 		if ( val === undefined || val === null || val === '' ) {
@@ -74,43 +71,88 @@
 		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
 	}
 
-	// Regular expressions to parse many common URIs.
+	/**
+	 * Regular expressions to parse many common URIs.
+	 *
+	 * @private
+	 * @static
+	 * @property {Object} parser
+	 */
 	var parser = {
 		strict: /^(?:([^:\/?#]+):)?(?:\/\/(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?)?((?:[^?#\/]*\/)*[^?#]*)(?:\?([^#]*))?(?:#(.*))?/,
 		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?((?:\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?[^?#\/]*)(?:\?([^#]*))?(?:#(.*))?/
 	},
 
-	// The order here matches the order of captured matches in the above parser regexes.
+	/**
+	 * The order here matches the order of captured matches in the `parser` property regexes.
+	 *
+	 * @private
+	 * @static
+	 * @property {Array} properties
+	 */
 	properties = [
-		'protocol',  // http
-		'user',      // usr
-		'password',  // pwd
-		'host',      // www.example.com
-		'port',      // 81
-		'path',      // /dir/dir.2/index.htm
-		'query',     // q1=0&&test1&test2=value (will become { q1: '0', test1: '', test2: 'value' } )
-		'fragment'   // top
+		'protocol',
+		'user',
+		'password',
+		'host',
+		'port',
+		'path',
+		'query',
+		'fragment'
 	];
 
+	/**
+	 * @property {string} protocol For example `http` (always present)
+	 */
+	/**
+	 * @property {string|undefined} user For example `usr`
+	 */
+	/**
+	 * @property {string|undefined} password For example `pwd`
+	 */
+	/**
+	 * @property {string} host For example `www.example.com` (always present)
+	 */
+	/**
+	 * @property {string|undefined} port For example `81`
+	 */
+	/**
+	 * @property {string} path For example `/dir/dir.2/index.htm` (always present)
+	 */
+	/**
+	 * @property {Object} query For example `{ a: '0', b: '', c: 'value' }` (always present)
+	 */
+	/**
+	 * @property {string|undefined} fragment For example `top`
+	 */
 
 	/**
-	 * We use a factory to inject a document location, for relative URLs, including protocol-relative URLs.
-	 * so the library is still testable & purely functional.
+	 * A factory method to create a variation of mw.Uri with a different default location (for
+	 * relative URLs, including protocol-relative URLs). Used so the library is still testable &
+	 * purely functional.
+	 *
+	 * @method
+	 * @member mw
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var defaultUri;
 
 		/**
-		 * Constructs URI object. Throws error if arguments are illegal/impossible, or otherwise don't parse.
+		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
+		 * otherwise don't parse.
+		 *
+		 * @class mw.Uri
 		 * @constructor
-		 * @param {Object|string} uri URI string, or an Object with appropriate properties (especially another URI object to clone).
-		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
-		 *  This parameter is optional. If omitted (or set to undefined, null or empty string), then an object will be created
-		 *  for the default uri of this constructor (e.g. document.location for mw.Uri in MediaWiki core).
-		 * @param {Object|boolean} Object with options, or (backwards compatibility) a boolean for strictMode
-		 *  - {boolean} strictMode Trigger strict mode parsing of the url. Default: false
-		 *  - {boolean} overrideKeys Wether to let duplicate query parameters override eachother (true) or automagically
-		 *     convert to an array (false, default).
+		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
+		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
+		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object
+		 *  will be created for the default `uri` of this constructor (`document.location` for
+		 *  mw.Uri, other values for other instances -- see mw.UriRelative for details).
+		 * @param {Object|boolean} [options] Object with options, or (backwards compatibility) a boolean
+		 *  for strictMode
+		 * @param {boolean} [options.strictMode=false] Trigger strict mode parsing of the url.
+		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
+		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
 		function Uri( uri, options ) {
 			options = typeof options === 'object' ? options : { strictMode: !!options };
@@ -167,10 +209,15 @@
 		}
 
 		/**
-		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more compliant with RFC 3986
-		 * Similar to rawurlencode from PHP and our JS library mw.util.rawurlencode, but we also replace space with a +
-		 * @param {string} s String to encode.
-		 * @return {string} Encoded string for URI.
+		 * Encode a value for inclusion in a url.
+		 *
+		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more
+		 * compliant with RFC 3986. Similar to rawurlencode from PHP and our JS library
+		 * mw.util.rawurlencode, except this also replaces spaces with `+`.
+		 *
+		 * @static
+		 * @param {string} s String to encode
+		 * @return {string} Encoded string for URI
 		 */
 		Uri.encode = function ( s ) {
 			return encodeURIComponent( s )
@@ -180,9 +227,14 @@
 		};
 
 		/**
-		 * Standard decodeURIComponent, with '+' to space.
-		 * @param {string} s String encoded for URI.
-		 * @return {string} Decoded string.
+		 * Decode a url encoded value.
+		 *
+		 * Reversed #encode. Standard decodeURIComponent, with addition of replacing
+		 * `+` with a space.
+		 *
+		 * @static
+		 * @param {string} s String to decode
+		 * @return {string} Decoded string
 		 */
 		Uri.decode = function ( s ) {
 			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
@@ -192,14 +244,17 @@
 
 			/**
 			 * Parse a string and set our properties accordingly.
-			 * @param {string} str URI
-			 * @param {Object} options
-			 * @return {boolean} Success.
+			 *
+			 * @private
+			 * @param {string} str URI, see constructor.
+			 * @param {Object} options See constructor.
 			 */
 			parse: function ( str, options ) {
-				var q,
-					uri = this,
-					matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
+				var q, matches,
+					uri = this;
+
+				// Apply parser regex and set all properties based on the result
+				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				$.each( properties, function ( i, property ) {
 					uri[ property ] = matches[ i + 1 ];
 				} );
@@ -235,11 +290,12 @@
 						}
 					} );
 				}
-				this.query = q;
+				uri.query = q;
 			},
 
 			/**
-			 * Returns user and password portion of a URI.
+			 * Get user and password section of a URI.
+			 *
 			 * @return {string}
 			 */
 			getUserInfo: function () {
@@ -247,7 +303,8 @@
 			},
 
 			/**
-			 * Gets host and port portion of a URI.
+			 * Get host and port section of a URI.
+			 *
 			 * @return {string}
 			 */
 			getHostPort: function () {
@@ -255,8 +312,10 @@
 			},
 
 			/**
-			 * Returns the userInfo and host and port portion of the URI.
-			 * In most real-world URLs, this is simply the hostname, but it is more general.
+			 * Get the userInfo, host and port section of the URI.
+			 *
+			 * In most real-world URLs this is simply the hostname, but the definition of 'authority' section is more general.
+			 *
 			 * @return {string}
 			 */
 			getAuthority: function () {
@@ -264,8 +323,10 @@
 			},
 
 			/**
-			 * Returns the query arguments of the URL, encoded into a string
-			 * Does not preserve the order of arguments passed into the URI. Does handle escaping.
+			 * Get the query arguments of the URL, encoded into a string.
+			 *
+			 * Does not preserve the original order of arguments passed in the URI. Does handle escaping.
+			 *
 			 * @return {string}
 			 */
 			getQueryString: function () {
@@ -287,7 +348,8 @@
 			},
 
 			/**
-			 * Returns everything after the authority section of the URI
+			 * Get everything after the authority section of the URI.
+			 *
 			 * @return {string}
 			 */
 			getRelativePath: function () {
@@ -295,8 +357,11 @@
 			},
 
 			/**
-			 * Gets the entire URI string. May not be precisely the same as input due to order of query arguments.
-			 * @return {string} The URI string.
+			 * Get the entire URI string.
+			 *
+			 * May not be precisely the same as input due to order of query arguments.
+			 *
+			 * @return {string} The URI string
 			 */
 			toString: function () {
 				return this.protocol + '://' + this.getAuthority() + this.getRelativePath();
@@ -304,16 +369,19 @@
 
 			/**
 			 * Clone this URI
-			 * @return {Object} new URI object with same properties
+			 *
+			 * @return {Object} New URI object with same properties
 			 */
 			clone: function () {
 				return new Uri( this );
 			},
 
 			/**
-			 * Extend the query -- supply query parameters to override or add to ours
-			 * @param {Object} query parameters in key-val form to override or add
-			 * @return {Object} this URI object
+			 * Extend the query section of the URI with new parameters.
+			 *
+			 * @param {Object} parameters Query parameters to add to ours (or to override ours with) as an
+			 *  object
+			 * @return {Object} This URI object
 			 */
 			extend: function ( parameters ) {
 				$.extend( this.query, parameters );
@@ -326,7 +394,7 @@
 		return Uri;
 	};
 
-	// if we are running in a browser, inject the current document location, for relative URLs
+	// If we are running in a browser, inject the current document location (for relative URLs).
 	if ( document && document.location && document.location.href ) {
 		mw.Uri = mw.UriRelative( document.location.href );
 	}
