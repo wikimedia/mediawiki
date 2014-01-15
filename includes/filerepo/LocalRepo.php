@@ -491,4 +491,17 @@ class LocalRepo extends FileRepo {
 			$wgMemc->set( $memcKey, ' PURGED', 12 );
 		}
 	}
+
+	/**
+	 * Return information about the repository.
+	 *
+	 * @return array
+	 * @since 1.22
+	 */
+	function getInfo() {
+		global $wgFavicon;
+		return array_merge( parent::getInfo(), array(
+			'icon' => wfExpandUrl( $wgFavicon ),
+		) );
+	}
 }
