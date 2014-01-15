@@ -1324,7 +1324,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
 				"$base/unittest-cont1/e/a/z.txt" ),
-			array( "contents xx", "contents xy", "contents xz" )
+			array( "contents xx $", "contents xy 111", "contents xz" )
 		);
 
 		return $cases;
@@ -1391,7 +1391,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
 				"$base/unittest-cont1/e/a/z.txt" ),
-			array( "contents xx", "contents xy", "contents xz" )
+			array( "contents xx 1111", "contents xy %", "contents xz $" )
 		);
 
 		return $cases;
