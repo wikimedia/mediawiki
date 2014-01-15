@@ -489,6 +489,8 @@ class IP {
 		if ( self::isIPv6( $ip ) ) {
 			$n = self::toUnsigned6( $ip );
 		} else {
+			// Bug 60035: an IP with leading 0's fails in ip2long sometimes (e.g. *.08)
+			$ip = preg_replace( '/(?<=\.)0+(?=[1-9])/', '', $ip );
 			$n = ip2long( $ip );
 			if ( $n < 0 ) {
 				$n += pow( 2, 32 );
