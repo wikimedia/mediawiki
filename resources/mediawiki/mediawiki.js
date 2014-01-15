@@ -1,6 +1,8 @@
 /**
  * Base library for MediaWiki.
  *
+ * Exposed as globally as `mediaWiki` with `mw` as shortcut.
+ *
  * @class mw
  * @alternateClassName mediaWiki
  * @singleton
@@ -179,6 +181,51 @@ var mw = ( function ( $, undefined ) {
 	 * Similar to the Message class in MediaWiki PHP.
 	 *
 	 * Format defaults to 'text'.
+	 *
+	 *     @example
+	 *
+	 *     var obj, str;
+	 *     mw.messages.set( {
+	 *         'hello': 'Hello world',
+	 *         'hello-user': 'Hello, $1!',
+	 *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3'
+	 *     } );
+	 *
+	 *     obj = new mw.Message( mw.messages, 'hello' );
+	 *     mw.log( obj.text() );
+	 *     // Hello world
+	 *
+	 *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John Doe' ] );
+	 *     mw.log( obj.text() );
+	 *     // Hello, John Doe!
+	 *
+	 *     obj = new mw.Message( mw.messages, 'welcome-user', [ 'John Doe', 'Wikipedia', '2 hours ago' ] );
+	 *     mw.log( obj.text() );
+	 *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
+	 *
+	 *     // Using mw.message shortcut
+	 *     obj = mw.message( 'hello-user', 'John Doe' );
+	 *     mw.log( obj.text() );
+	 *     // Hello, John Doe!
+	 *
+	 *     // Using mw.msg shortcut
+	 *     str = mw.msg( 'hello-user', 'John Doe' );
+	 *     mw.log( str );
+	 *     // Hello, John Doe!
+	 *
+	 *     // Different formats
+	 *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John "Wiki" <3 Doe' ] );
+	 *
+	 *     obj.format = 'text';
+	 *     str = obj.toString();
+	 *     // Same as:
+	 *     str = obj.text();
+	 *
+	 *     mw.log( str );
+	 *     // Hello, John "Wiki" <3 Doe!
+	 *
+	 *     mw.log( obj.escaped() );
+	 *     // Hello, John &quot;Wiki&quot; &lt;3 Doe!
 	 *
 	 * @class mw.Message
 	 *
@@ -414,14 +461,14 @@ var mw = ( function ( $, undefined ) {
 		 * Map of configuration values
 		 *
 		 * Check out [the complete list of configuration values](https://www.mediawiki.org/wiki/Manual:Interface/JavaScript#mw.config)
-		 * on MediaWiki.org.
+		 * on mediawiki.org.
 		 *
-		 * If `$wgLegacyJavaScriptGlobals` is true, this Map will put its values in the
-		 * global window object.
+		 * If `$wgLegacyJavaScriptGlobals` is true, this Map will add its values to the
+		 * global `window` object.
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder. Re-assigned in ResourceLoaderStartupModule with an instance of `mw.Map`.
+		// Dummy placeholder. Re-assigned in ResourceLoaderStartupModule to an instance of `mw.Map`.
 		config: null,
 
 		/**
@@ -438,7 +485,7 @@ var mw = ( function ( $, undefined ) {
 		 * This was reserved for future use but never ended up being used.
 		 *
 		 * @deprecated since 1.22: Let deprecated identifiers keep their original name
-		 * and use mw.log#deprecate to create an access container for tracking.
+		 *  and use mw.log#deprecate to create an access container for tracking.
 		 * @property
 		 */
 		legacy: {},
@@ -454,8 +501,9 @@ var mw = ( function ( $, undefined ) {
 		/**
 		 * Get a message object.
 		 *
-		 * Similar to wfMessage() in MediaWiki PHP.
+		 * Shorcut for `new mw.Message( mw.messages, key, parameters )`.
 		 *
+		 * @see mw.Message
 		 * @param {string} key Key of message to get
 		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
 		 * @return {mw.Message}
@@ -467,9 +515,9 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Get a message string using 'text' format.
+		 * Get a message string using the (default) 'text' format.
 		 *
-		 * Similar to wfMsg() in MediaWiki PHP.
+		 * Shortcut for `mw.message( key, parameters... ).text()`.
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
@@ -1445,9 +1493,14 @@ var mw = ( function ( $, undefined ) {
 				/**
 				 * Register a source.
 				 *
-				 * @param {string} id Short lowercase a-Z string representing a source, only used internally.
-				 * @param {Object} props Object containing only the loadScript property which is a url to
-				 *  the load.php location of the source.
+				 * The #work method will use this information to split up requests by source.
+				 *
+				 *     mw.loader.addSource( 'mediawikiwiki', { loadScript: '//www.mediawiki.org/w/load.php' } );
+				 *
+				 * @param {string} id Short string representing a source wiki, used internally for
+				 *  registered modules to indicate where they should be loaded from (usually lowercase a-z).
+				 * @param {Object} props
+				 * @param {string} props.loadScript Url to the load.php entry point of the source wiki.
 				 * @return {boolean}
 				 */
 				addSource: function ( id, props ) {
@@ -1583,6 +1636,12 @@ var mw = ( function ( $, undefined ) {
 
 				/**
 				 * Execute a function as soon as one or more required modules are ready.
+				 *
+				 * Example of inline dependency on OOjs:
+				 *
+				 *     mw.loader.using( 'oojs', function () {
+				 *         OO.compare( [ 1 ], [ 1 ] );
+				 *     } );
 				 *
 				 * @param {string|Array} dependencies Module name or array of modules names the callback
 				 *  dependends on to be ready before executing
@@ -1731,6 +1790,8 @@ var mw = ( function ( $, undefined ) {
 				 * Get the version of a module.
 				 *
 				 * @param {string} module Name of module to get version for
+				 * @return {string|null} The version, or null if the module (or its version) is not
+				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
 					if ( registry[module] !== undefined && registry[module].version !== undefined ) {
@@ -1760,7 +1821,7 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Get names of all registered modules.
+				 * Get the names of all registered modules.
 				 *
 				 * @return {Array}
 				 */
@@ -2040,6 +2101,8 @@ var mw = ( function ( $, undefined ) {
 					 * pages are loaded with different module sets, the possibility exists that
 					 * modules saved by one page will be clobbered by another. But the impact would
 					 * be minor and the problem would be corrected by subsequent page views.
+					 *
+					 * @method
 					 */
 					update: ( function () {
 						var timer;
@@ -2107,6 +2170,10 @@ var mw = ( function ( $, undefined ) {
 			return {
 				/**
 				 * Escape a string for HTML. Converts special characters to HTML entities.
+				 *
+				 *     mw.html.escape( '< > \' & "' );
+				 *     // Returns &lt; &gt; &#039; &amp; &quot;
+				 *
 				 * @param {string} s The string to escape
 				 */
 				escape: function ( s ) {
