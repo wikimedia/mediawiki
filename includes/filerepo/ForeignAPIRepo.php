@@ -485,6 +485,10 @@ class ForeignAPIRepo extends FileRepo {
 
 			$info['articlepath'] = $general['articlepath'];
 			$info['server'] = $general['server'];
+
+			if ( isset( $general['favicon'] ) ) {
+				$info['favicon'] = $general['favicon'];
+			}
 		}
 
 		return $info;
