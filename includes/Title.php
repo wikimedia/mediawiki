@@ -2556,6 +2556,19 @@ class Title {
 	}
 
 	/**
+	 * Determines whether cascading protection sources have already been loaded from
+	 * the database.
+	 *
+	 * @param bool $getPages True to check if the pages are loaded, or false to check
+	 * if the status is loaded.
+	 * @return bool Whether or not the specified information has been loaded
+	 * @since 1.23
+	 */
+	public function areCascadeProtectionSourcesLoaded( $getPages = true ) {
+		return $getPages ? isset( $this->mCascadeSources ) : isset( $this->mHasCascadingRestrictions );
+	}
+
+	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
 	 * @param bool $getPages Whether or not to retrieve the actual pages
