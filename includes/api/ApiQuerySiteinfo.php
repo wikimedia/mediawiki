@@ -124,7 +124,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = wfExpandUrl( $mainPage->getFullURL(), PROTO_CURRENT );
 		$data['sitename'] = $GLOBALS['wgSitename'];
-		$data['logo'] = $GLOBALS['wgLogo'];
+
+		// wgLogo can either be a relative or an absolute path
+		// make sure we always return an absolute path
+		$data['logo'] = wfExpandUrl( $GLOBALS['wgLogo'], PROTO_RELATIVE );
+
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 		$data['phpversion'] = phpversion();
 		$data['phpsapi'] = PHP_SAPI;
@@ -254,7 +258,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		if ( !empty( $GLOBALS['wgFavicon'] ) ) {
-			$data['favicon'] = $GLOBALS['wgFavicon'];
+			// wgFavicon can either be a relative or an absolute path
+			// make sure we always return an absolute path
+			$data['favicon'] = wfExpandUrl( $GLOBALS['wgFavicon'], PROTO_RELATIVE );
 		}
 
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
