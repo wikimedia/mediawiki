@@ -254,7 +254,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		if ( !empty( $GLOBALS['wgFavicon'] ) ) {
-			$data['favicon'] = $GLOBALS['wgFavicon'];
+			// wgFavicon can either be a relative or an absolute path
+			// make sure we always return an absolute path
+			$data['favicon'] = wfExpandUrl( $GLOBALS['wgFavicon'], PROTO_RELATIVE );
 		}
 
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
