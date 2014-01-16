@@ -650,7 +650,7 @@ $1',
 'nstab-mediawiki' => 'Mesac',
 'nstab-template' => 'Şablon',
 'nstab-help' => 'Pela peşti',
-'nstab-category' => 'Kategori',
+'nstab-category' => 'Kategoriye',
 
 # Main script and global functions
 'nosuchaction' => 'Fealiyeto wınasi çıniyo',
@@ -2123,7 +2123,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # Random page in category
 'randomincategory' => 'Ğoseri pera kategoriya',
-'randomincategory-invalidcategory' => '"$1" namedı kategori çıniya',
+'randomincategory-invalidcategory' => '"$1" yew nameyê kategoriya vêrdiye niyo.',
 'randomincategory-nopages' => 'Kategori da [[:Category:$1|$1]] de qet  per çıniya.',
 'randomincategory-selectcategory' => 'Pera ke cıra raşt ameye kategori do bıgéri yo: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Şo',
@@ -2183,7 +2183,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|bayti}}',
-'ncategories' => '$1 {{PLURAL:$1|Kategori|Kategoriy}}',
+'ncategories' => '$1 {{PLURAL:$1|Kategoriye|Kategoriy}}',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikiy}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linkî}}',
 'nmembers' => '$1 {{PLURAL:$1|eza|ezayan}}',
@@ -2293,10 +2293,10 @@ tipa rocaneyi, nameyê karberi (herfa pil u qıci re hessas a), ya zi peli (reyn
 
 # Special:Categories
 'categories' => 'Kategoriy',
-'categoriespagetext' => '{{PLURAL:$1|kategoriyê|kategoriyê}} cêrıni de pel u media esto.
-[[Special:UnusedCategories|kategoriyê ke nê xebtênê]] tiya de nêmociyeni.
-hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
-'categoriesfrom' => 'kategori yê ke pê ninan destpêkeno ramocın:',
+'categoriespagetext' => '{{PLURAL:$1|Kategoriya cêrene|Kategoriyanê cêrênan}} de peli ya zi medya estê.
+[[Special:UnusedCategories|Kategoriyê ke nêxebetiyenê]] tiya de nêmocniyayê.
+[[Special:WantedCategories|Kategoriyanê waşteyeyan]] de zi bıvêne.',
+'categoriesfrom' => 'Kategoriyê ke be ninan dest pêkenê, bımocne:',
 'special-categories-sort-count' => 'goreyê çendi rêz ker.',
 'special-categories-sort-abc' => 'alfabetik rêz ker',
 
@@ -3113,7 +3113,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-ca-nstab-mediawiki' => 'Mesacané sistemi bıvin',
 'tooltip-ca-nstab-template' => 'Şabloni bıvin',
 'tooltip-ca-nstab-help' => 'Pela peşti bıvêne',
-'tooltip-ca-nstab-category' => 'Pera kategori bıvin',
+'tooltip-ca-nstab-category' => 'Pela kategoriye bıvêne',
 'tooltip-minoredit' => 'Nay vırnayışa werdi nışan bıkeré',
 'tooltip-save' => 'Vurnayışa qeyd ke',
 'tooltip-preview' => 'Vurnayışané ğo çımra ravyarné. Verdé qeyd kerdışi eneri bıkarné!',
@@ -3543,7 +3543,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-writer' => 'Nuştekar',
 'exif-languagecode' => 'Zıwan',
 'exif-iimversion' => 'Verqaydê IIM',
-'exif-iimcategory' => 'Kategori',
+'exif-iimcategory' => 'Kategoriye',
 'exif-iimsupplementalcategory' => 'Oleyê Kategoriyan',
 'exif-datetimeexpires' => 'No peyra mekarênê',
 'exif-datetimereleased' => 'Bıroşe',

@@ -397,6 +397,18 @@ $2",
 'mycustomcssprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina CSS ché.",
 'mycustomjsprotected' => "An 's gh'à mìa i permès necesâri per mudifichêr cla pàgina JavaScript ché .",
 'myprivateinfoprotected' => "An 's gh'à mìa i permès necesâri per cambiê 'l j infurmasiòun personêli.",
+'mypreferencesprotected' => "An 's gh'à mìa i permès necesâri per cambiêr al preferèinsi personêli.",
+'ns-specialprotected' => "An n'é mìa pusébil mudifichêr al pàgini specêli.",
+'titleprotected' => 'Al tétol ed cla pagina ché l\'é stê bluchê da [[User:$1|$1]].
+Còst l\'é al mutîv:"$2".',
+'filereadonlyerror' => 'An n\'é mìa stê pusébil mudifichêr al file "$1" perchè al depôsit di file "$2" a \'s pōl sōl lēzer.
+
+L\'aministradōr ch\' al l\'à bluchê l\'à dê cla spiegasiòun ché:"$3".',
+'invalidtitle-knownnamespace' => 'Tétol mìa vâlid cme spâsi di nòm "$2" e tèst "$3"',
+'invalidtitle-unknownnamespace' => 'Tétol mìa vâlid cun spâsi di nòm mìa cgnusû "$1" e tèst "$2"',
+'exception-nologin' => "An t'é mìa gnû dèinter",
+'exception-nologin-text' => "Per andêr dèinter a cla pàgina ché o fêr còl ch'ét pèins ét gh'ê da [[Special:Userlogin|fêr l'ingrès]].",
+'exception-nologin-text-manual' => 'Per prèir andêr dèinter a cla pàgina ché o fêr còl ch\'ét peins ét gh\'ê da "$1".',
 
 # Login and logout pages
 'yourname' => 'Nòm utèint:',

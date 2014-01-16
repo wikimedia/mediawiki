@@ -221,11 +221,11 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Hanipika ny rohy:',
 'tog-justify' => 'Hanitsy ny andiany',
-'tog-hideminor' => "Hanitsika ny fanovana madinika ao amin'ny fanovana farany",
-'tog-hidepatrolled' => "Hanitrika ny fanovana voaara-maso ao amin'ny fanovana farany",
+'tog-hideminor' => "Hanitsika ny fiovana madinika ao amin'ny fanovana farany",
+'tog-hidepatrolled' => "Hanitrika ny fiovana voaara-maso ao amin'ny fiovana farany",
 'tog-newpageshidepatrolled' => "Hanitsika ny pejy voaara-maso ao amin'ny pejy vaovao",
 'tog-extendwatchlist' => 'Hanitatra ny lisitra fanaraham-pejy mba haneho ny fanovana rehetra fa tsy ny vaovao indrindra fotsiny',
-'tog-usenewrc' => "Hamondrona ny fanovana araky ny pejy ao amin'ny fanovana farany ary ao amin'ny lisitry ny pejy arahana",
+'tog-usenewrc' => "Hampivondrona ny fiovana araky ny pejy ao amin'ny fiovana farany ary ao amin'ny lisitry ny pejy arahana",
 'tog-numberheadings' => 'Asio laharany ny lohateny',
 'tog-showtoolbar' => 'Haneho ny toolbar fanovana',
 'tog-editondblclick' => "Hanova pejy amin'ny alalan'ny tsindrim-boalavo roa misesy",
@@ -494,7 +494,7 @@ Mitaky version $1-n'i MediaWiki",
 'youhavenewmessagesfromusers' => "Manana $1 avy amin'ny mpikambana {{PLURAL:$3|hafa|$3}} ($2).",
 'youhavenewmessagesmanyusers' => "Manana $1 avy amin'ny mpikambana maro ($2).",
 'newmessageslinkplural' => '{{PLURAL:$1|hafatra iray|hafatra maro}}',
-'newmessagesdifflinkplural' => 'fanovana farany{{PLURAL:$1}}',
+'newmessagesdifflinkplural' => 'fiovana {{PLURAL:$1|farany|999=farany}}',
 'youhavenewmessagesmulti' => "Manana hafatra vaovao ianao eo amin'ny $1.",
 'editsection' => 'hanova',
 'editold' => 'hanova',
@@ -1105,10 +1105,9 @@ Ao aorian'ny fivelarana, mety namoaka valy lava loatra angamba izy, ary tsy namp
 'last' => 'farany',
 'page_first' => 'voalohany',
 'page_last' => 'farany',
-'histlegend' => "
-Fifidianana ny votoatiny hampitahaina: mariho eo anilan'ny versions hampitahaina dia tsindrio ny bokotra Entrée na ny bokotra etsy ambany.<br />
-Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
-(farany) = fampitahana amin'ny version talohan'ity, M = fanovana madinika",
+'histlegend' => "Fisafidianana ny votoatiny hohampitahaina: Mario ny bokotra radiôn'ny fiovana hampitahazay ary tsintrio ny bokotra fanekena amin'ny faram-pejy<br />
+Maribolana: '''(ank)''' = fampitahana amin'ny votoatin'ny pejy ankehitriny,
+'''(farany)''' = fampitahana amin'ny version talohan'ity, M = fanovana madinika",
 'history-fieldset-title' => 'Karohy ny tantara',
 'history-show-deleted' => 'Voafafa ihany',
 'histfirst' => 'antitra indrindra',
@@ -1350,7 +1349,7 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'recentchangesdays' => "Isa ny andro ho ampiseho eo amin'ny fanovàna farany",
 'recentchangesdays-max' => '($1 andro{{PLURAL:$1||}} fara-faha betsany)',
 'recentchangescount' => "Isan'ny fanovana haseho (tsipalotra) :",
-'prefs-help-recentchangescount' => 'Misy ny fanovana farany, ny tantaram-pejy ary ny laogy',
+'prefs-help-recentchangescount' => 'Misy ny fiovana farany, ny tantaram-pejy ary ny laogy',
 'savedprefs' => 'Voatahiry ny mombamomba anao.',
 'timezonelegend' => "Faritr'ora :",
 'localtime' => 'Ora an-toerana',
@@ -1536,7 +1535,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'right-importupload' => 'mampiditra na manafatra pejy avy amina rakitra iray',
 'right-patrol' => "Manamarina ny fanovan'ny hafa",
 'right-autopatrol' => 'Manamarika ny fanovany efa nomarihana',
-'right-patrolmarks' => "Mijery ny mariky ny fanamarihana any amin'ny fanovana farany",
+'right-patrolmarks' => "Mijery ny mariky ny fanamarihana any amin'ny fiovana farany",
 'right-unwatchedpages' => 'Mijery ny lisitry ny pejy tsy arahina',
 'right-mergehistory' => 'Manatsonika ny tantaram-pejy',
 'right-userrights' => "Manova ny fahefan'ny mpikambana",
@@ -1599,7 +1598,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'nchanges' => '{{PLURAL:$1|fanovana|fanovana}} $1',
 'enhancedrc-since-last-visit' => '$1 ({{PLURAL:$1|hatry ny famangiana farany}})',
 'enhancedrc-history' => 'tantara',
-'recentchanges' => 'Fanovana farany',
+'recentchanges' => 'Fiovana farany',
 'recentchanges-legend' => 'Safidy ny fanovàna farany',
 'recentchanges-summary' => "Jereo eto amin'ity pejy ity izay vao niova vao haingana teto amin'ity wiki ity.",
 'recentchanges-noresult' => "Tsy misy fanovana miady amin'ny fepe-potoana napetraka.",
@@ -2252,11 +2251,11 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'watchlist-details' => "Pejy $1{{PLURAL:}} ao amin'ny lisitry ny pejy arahanao, tsy isaina ny pejin-dresaka.",
 'wlheader-enotif' => "Alefa ny fampilazana amin'ny mailaka.",
 'wlheader-showupdated' => "Aseho '''sorabaventy''' ny pejy niova taorian'ny famangianao azy farany.",
-'watchmethod-recent' => 'fanamarinana ny fanovana farany hahitana pejy arahana',
-'watchmethod-list' => 'fanamarinana ny pejy arahana ahitana fanovana farany',
+'watchmethod-recent' => 'fanamarinana ny fiovana farany hahitana pejy arahana',
+'watchmethod-list' => 'fanamarinana ny pejy arahana hahitana fiovana vao haingana',
 'watchlistcontains' => "Ao amin'ny pejy arahanao dia ahitana pejy $1{{PLURAL:}}.",
 'iteminvalidname' => "Olana amin'ny zavatra « $1 » : tsy ara-dalàna ny anarana...",
-'wlnote' => "Eo ambany dia ahitana ny  {{PLURAL:$1|fanovana farany indrindra|ny fanovana ''$1'' farany}} natao tanatin'ny adin'ny {{PLURAL:$2|iray|'''$2'''}}, nanomboka ny $3, $4.",
+'wlnote' => "Eo ambany dia ahitana ny {{PLURAL:$1|fiovana farany indrindra|ny fiovana ''$1'' farany}} natao tanatin'ny adin'ny {{PLURAL:$2|iray|'''$2'''}}, nanomboka ny $3, $4.",
 'wlshowlast' => 'Haneho ny $1 ora farany, ny $2 andro farany na $3',
 'watchlist-options' => 'Safidy ny lisitry ny pejy arahana',
 
@@ -2343,15 +2342,15 @@ ataovy am-pitandremana ity tao ity.",
 'rollbacklink' => 'foano',
 'rollbacklinkcount' => 'hamoana fanovana{{PLURAL:$1}} $1',
 'rollbackfailed' => "Tsy voaverina amin'ny teo aloha",
-'cantrollback' => "Tsy afaka iverenana ny fanovana; ny mpanova farany ihany no tompon'ny pejy.",
-'alreadyrolled' => "Tsy afaka foanana ny fanovana ny pejy « [[:$1]] » nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])
+'cantrollback' => "Tsy afaka iverenana ny fiovana; ny mpanova farany ihany no tompon'ny pejy.",
+'alreadyrolled' => "Tsy afaka foanana ny fiovan'ny pejy « [[:$1]] » nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])
 
-Efa nataon'i [[User:$3|$3]] ([[User talk:$3|dinika]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ny fanovana farany.",
+Efa nataon'i [[User:$3|$3]] ([[User talk:$3|dinika]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) ny fiovana farany.",
 'editcomment' => "Toy izao no fanamarihana momba io fanovana io: \"''\$1''\".",
 'revertpage' => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
 'revertpage-nouser' => "Manala ny fanovana (nataom-pikambana voaafina), miverina any amin'ny filaza faran'i  [[User:$1|$1]]",
-'rollback-success' => "Fanalàna ny fanovana nataon'i $1 ;
-miverina any amin'ny santiôna farany nataon'i $2.",
+'rollback-success' => "Fanesorana ny fiovana nataon'i $1 ;
+fiverenana amin'ny fiovana farany nataon'i $2.",
 
 # Edit tokens
 'sessionfailure-title' => 'Tsi-fetezaka mikasika ny kaonty idirana',
@@ -2509,7 +2508,7 @@ Aseho eo ambany ny laogim-panakanana mba hampahalala anao :",
 Aseho eo ambany ny iditra farany ao amin'ny laogim-panakanana  mba hampahalala :",
 'sp-contributions-search' => "Hikaroka fandraisan'anjara",
 'sp-contributions-username' => 'Adiresy IP na anaram-pikambana :',
-'sp-contributions-toponly' => 'Fanovana izay farany eo ihany no aseho',
+'sp-contributions-toponly' => 'Fiovana izay farany ihany no aseho',
 'sp-contributions-submit' => 'Hikaroka',
 
 # What links here
@@ -2750,15 +2749,12 @@ Anarana hafa omena.",
 
 # Export
 'export' => 'Hamoaka pejy',
-'exporttext' => "Afaka manondrana ny lahatsoratra miaraka amin'ny tantaram-panovana ny pejy na vondrom-pejy maromaro ianao.
-Aoriana dia mety hafaran'ny wiki iray mandeha amin'ny rindrankajy MediaWiki izany, na dia mbola tsy afaka
-atao aza izany amin'izao fotoana izao.
+'exporttext' => "Afaka mamoaka lahatsoratra ary tantaram-piovana amin'ny pejy tokana, na vondrom-pejy mifonona anaty XML ianao.
+Azo ampidirina amy wiki hafa izany amin'ny alalan'ny [[Special:Import|pejy fanafarana]].
 
-Ny fomba fanondranana pejy dia, manomeza lohateny izay na maromaro eto amin'ny boaty ety ambany eto, lohateny iray isaky ny andalana,
-ary safidio na ny votoatiny ankehitriny ihany no ilainao na miaraka amin'ny endriky ny pejy rehetra taloha, sy hoe ny votoatiny ankehitriny
-miampy fampahalalana momba ny fanovana farany fotsiny ve sa miaraka amin'ny tantaran'ny fanovana rehetra.
+Raha hamoaka pejy iray dia atso tsohy eo amin'ny boaty eo ambany ny lohatenin'ny pejinao, andalana iray isaky ny pejy, ary ataovy ny safidy: maka ny tantaram-piovany, na ny fiovana farany ihany.
 
-Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] ho an'ny [[{{MediaWiki:Mainpage}}]].",
+Ho an'ny tranga voalaza farany, dia azonao ampaisaina ny rohy, ohatra [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] ho an'ny pejy \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportall' => 'Hamoaka ny pejy rehetra',
 'exportcuronly' => "Ny votoatiny ankehitriny ihany no haondrana fa tsy miaraka amin'ny tantarany iray manontolo",
 'exportnohistory' => "
@@ -2982,7 +2978,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'pageinfo-firstuser' => 'Mpamorona ilay pejy',
 'pageinfo-firsttime' => 'Daty namoronana ilay pejy',
 'pageinfo-lastuser' => 'Mpanova farany',
-'pageinfo-lasttime' => "Datin'ny fanovana farany",
+'pageinfo-lasttime' => 'Daty niovàna farany',
 'pageinfo-edits' => "Isa manontolon'ny fanovana",
 'pageinfo-authors' => "Isa manontolon'ny mpandray anjara",
 'pageinfo-recent-edits' => "Fanovana vao haingana (natao tanatin'ny $1)",
@@ -3008,7 +3004,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'markaspatrolledtext' => 'Marihana ho hita sy voatsara',
 'markedaspatrolled' => 'Voamarina',
 'markedaspatrolledtext' => "Ny santiôna voafidy an'ny [[:$1]] dia voamarika ho voamarina.",
-'rcpatroldisabled' => "Tsy nalefa ny fanamarinana ao amin'ny fanovana farany.",
+'rcpatroldisabled' => "Tsy nalefa ny fanamarinana ao amin'ny fiovana farany.",
 'rcpatroldisabledtext' => 'Tsy atao ankehitriny ny fanamarinana ny pejy novaina farany.',
 'markedaspatrollederror' => 'Tsy afaka marihana ho voamarina',
 'markedaspatrollederrortext' => 'Tsy maintsy misafidy santiôna iray ianao mba hahafahanao manamarika azy ho voamarina.',
@@ -3473,7 +3469,7 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 'specialpages-group-maintenance' => 'laogy hikojakojana',
 'specialpages-group-other' => 'Pejy manokana hafa',
 'specialpages-group-login' => 'Hiditra / hisoratra anarana',
-'specialpages-group-changes' => 'Fanovana farany sy laogy',
+'specialpages-group-changes' => 'Fiovana farany sy laogy',
 'specialpages-group-media' => 'Laogy sy fampidirana rakitra media.',
 'specialpages-group-users' => 'Mpikambana sy satany',
 'specialpages-group-highuse' => 'Pejy ampiasaina mafy',

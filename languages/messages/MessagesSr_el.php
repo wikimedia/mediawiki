@@ -426,12 +426,12 @@ $messages = array(
 'december-date' => '$1. decembar',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|1=Kategorija|Kategorije}}',
+'pagecategories' => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header' => 'Stranice u kategoriji „$1“',
 'subcategories' => 'Potkategorije',
 'category-media-header' => 'Datoteke u kategoriji „$1“',
 'category-empty' => "<div style=\"margin:2em 1em 0 1em; padding:0.5em; border:1px solid #AAA; text-align:center;\">''Ova kategorija trenutno ne sadrži stranice ili datoteke.''</div>",
-'hidden-categories' => '{{PLURAL:$1|1=Sakrivena kategorija|Sakrivene kategorije}}',
+'hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}',
 'hidden-category-category' => 'Sakrivene kategorije',
 'category-subcat-count' => '{{PLURAL:$2|Ova kategorija sadrži samo sledeću potkategoriju.|Ova kategorija ima {{PLURAL:$1|sledeću potkategoriju|sledeće $1 potkategorije|sledećih $1 potkategorija}}, od ukupno $2.}}',
 'category-subcat-count-limited' => 'Ova kategorija sadrži {{PLURAL:$1|sledeću potkategoriju|sledeće $1 potkategorije|sledećih $1 potkategorija}}.',
@@ -567,7 +567,7 @@ $1',
 
 'badaccess' => 'Greške u ovlašćenjima',
 'badaccess-group0' => 'Nije vam dozvoljeno da izvršite zahtevanu radnju.',
-'badaccess-groups' => 'Radnja je dostupna samo korisnicima u {{PLURAL:$2|1=sledećoj grupi|sledećim grupama}}:  $1.',
+'badaccess-groups' => 'Radnja koju ste zahtevali je ograničena samo korisnicima u {{PLURAL:$2|sledećoj grupi|sledećim grupama}}: $1.',
 
 'versionrequired' => 'Potrebno je izdanje $1 Medijavikija',
 'versionrequiredtext' => 'Potrebno je izdanje $1 Medijavikija da biste koristili ovu stranicu.
@@ -581,8 +581,8 @@ Pogledajte stranicu za [[Special:Version|izdanje]].',
 'youhavenewmessages' => 'Imate $1 ($2).',
 'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika|$3 korisnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od mnogo korisnika ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|1=novu poruku|999=nove poruke}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|1=poslednju izmenu|999=poslednje izmene}}',
+'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|999=nove poruke}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|poslednju izmenu|999=poslednje izmene}}',
 'youhavenewmessagesmulti' => 'Imate novih poruka na $1',
 'editsection' => 'uredi',
 'editold' => 'uredi',
@@ -673,7 +673,7 @@ Nije dato nikakvo obrazloženje.',
 'badtitletext' => 'Naslov stranice je neispravan, prazan ili je međujezički ili međuviki naslov pogrešno povezan.
 Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
 'perfcached' => 'Sledeći podaci su keširani i mogu biti zastareli. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata|$1 rezultata}}.',
-'perfcachedts' => 'Sledeći podaci su keširani i poslednji put su ažurirani $2 u $3. Keš sadrži najviše {{PLURAL:$4|1=jedan rezultat|$4 rezultata}}.',
+'perfcachedts' => 'Sledeći podaci su keširani i poslednji put su ažurirani $2 u $3. U kešu {{PLURAL:$4|je dostupan najviše jedan rezultat|su dostupna najviše $4 rezultata|je dostupno najviše $4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je trenutno onemogućeno.
 Podaci koji se ovde nalaze mogu biti zastareli.',
 'viewsource' => 'Izvorni kod',
@@ -701,7 +701,7 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 'invalidtitle-knownnamespace' => 'Neispravan naslov s imenskim prostorom „$2“ i tekstom „$3“',
 'invalidtitle-unknownnamespace' => 'Neispravan naslov s imenskim prostorom br. $1 i tekstom „$2“',
 'exception-nologin' => 'Niste prijavljeni',
-'exception-nologin-text' => 'Ova stranica ili radnja zahteva da budete prijavljeni na viki.',
+'exception-nologin-text' => '[[Special:Userlogin|Prijavite se]] da biste pristupili ovoj stranici ili radnji.',
 
 # Virus scanner
 'virus-badscanner' => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -805,14 +805,14 @@ Prijavite se pošto je primite.',
 'blocked-mailpassword' => 'Vašoj IP adresi je onemogućeno uređivanje stranica, kao i mogućnost zahtevanja nove lozinke.',
 'eauthentsent' => 'Na navedenu e-adresu je poslat potvrdni kod.
 Pre nego što pošaljemo daljnje poruke, pratite uputstva s e-pošte da biste potvrdili da ste vi otvorili nalog.',
-'throttled-mailpassword' => 'Podsetnik za lozinku je poslat {{PLURAL:$1|pre sat vremena|u poslednja $1 sata|u poslednjih $1 sati}}.
-Da bismo sprečili zloupotrebu, posednik šaljemo samo jednom u roku od {{PLURAL:$1|jednog sata|$1 sata|$1 sati}}.',
+'throttled-mailpassword' => 'Poruka za promenu lozinke je poslata u {{PLURAL:$1|poslednjih sat vremena|poslednja $1 sata|poslednjih $1 sati}}.
+Da bismo sprečili zloupotrebu, podsetnik šaljemo samo jednom u roku od {{PLURAL:$1|sat vremena|$1 sata|$1 sati}}.',
 'mailerror' => 'Greška pri slanju poruke: $1',
 'acct_creation_throttle_hit' => 'Posetioci ovog vikija koji koriste vašu IP adresu su već otvorili {{PLURAL:$1|jedan nalog|$1 naloga|$1 naloga}} prethodni dan, što je najveći dozvoljeni broj u tom vremenskom periodu.
 Zbog toga posetioci s ove IP adrese trenutno ne mogu otvoriti više naloga.',
 'emailauthenticated' => 'Vaša e-adresa je potvrđena $2 u $3.',
 'emailnotauthenticated' => 'Vaša e-adresa još nije potvrđena.
-Poruke neće biti poslate ni za jednu od sledećih mogućnosti.',
+Poruke neće biti poslate ni u jednom od sledećih slučajeva.',
 'noemailprefs' => 'Unesite e-adresu kako bi ove mogućnosti radile.',
 'emailconfirmlink' => 'Potvrdite svoju e-adresu',
 'invalidemailaddress' => 'E-adresa ne može biti prihvaćena jer je neispravnog oblika.

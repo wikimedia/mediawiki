@@ -3959,4 +3959,6 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'expand_templates_generate_rawhtml' => 'Hruby HTML pokazać',
 'expand_templates_preview' => 'Přehlad',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML w nahratej dataji njeda so parsować.',
 );

@@ -3962,4 +3962,6 @@ An efet, a espand praticament tut lòn ch'a-i é antrames dle grafe dobie.",
 'expand_templates_generate_rawhtml' => "Smon-e l'HTML sempi",
 'expand_templates_preview' => 'Preuva',
 
+# Unknown messages
+'uploadinvalidxml' => "L'XML ant l'archivi carià a l'ha nen podù esse analisà.",
 );

@@ -910,7 +910,7 @@ $messages = array(
 'categories' => 'Категорияр',
 
 # Special:LinkSearch
-'linksearch' => 'КЪецепатан элячIунар жугъурун',
+'linksearch' => 'Къецепатан элячӀунар жугъурун',
 'linksearch-ns' => 'Тlварарин генгвал:',
 'linksearch-ok' => 'Ахтармишун',
 'linksearch-line' => '$2-ай $1-аз элячlун',

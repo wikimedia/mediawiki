@@ -3969,4 +3969,6 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'expand_templates_generate_rawhtml' => 'Gropny HTML pokazaś',
 'expand_templates_preview' => 'Pśeglěd',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML w nagratej dataji njedajo se parsowaś.',
 );

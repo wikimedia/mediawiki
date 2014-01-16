@@ -1275,7 +1275,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'sp-contributions-submit' => 'Buxcar',
 
 # What links here
-'whatlinkshere' => 'Atamientos a esta hoja',
+'whatlinkshere' => 'Hojas atadas',
 'whatlinkshere-title' => 'Hojas que dan link a "$1"',
 'whatlinkshere-page' => 'Hoja:',
 'linkshere' => "Las hojas venideras dan link a '''[[:$1]]''':",
@@ -1402,7 +1402,7 @@ Puedes ver su manadero',
 'tooltip-n-recentchanges' => 'Lista de los trocamientos dalcavo en el viki',
 'tooltip-n-randompage' => 'Carga una hoja por azardo',
 'tooltip-n-help' => 'Ambézate y topa ayudo',
-'tooltip-t-whatlinkshere' => 'La lista de todas las hojas del viki que se atan a esta hoja',
+'tooltip-t-whatlinkshere' => 'Una lista de todas las hojas del viki que tienen atamientos a esta hoja',
 'tooltip-t-recentchangeslinked' => 'Los trocamientos muevos en las hojas atadas con esta hoja',
 'tooltip-feed-rss' => 'Sindicación RSS de esta hoja',
 'tooltip-feed-atom' => "Fuente de Atom d'esta hoja",
@@ -1478,9 +1478,9 @@ Puedes ver su manadero',
 # Bad image list
 'bad_image_list' => 'El formato es ansina:
 
-Sólo elementos de lista (liñas empeçando con *) se toman en konsidheración.
+Sólo elementos de lista (liñas empeçando con *) se toman en konsidherasyón.
 El primer atamiento de cada liña se deve de atar a una dosya negra (la dosya que se quere blokar).
-Los atamientos venideros que están en la misma liña se konsidheran como eksepsiones (es de dezir, hojas ande se puede usar la dosya).',
+Los atamientos venideros que están en la misma liña se konsidheran como eksepsiones (hojas, ande la dosya puede aparecer en la liña, ande se puede kullânear la dosya).',
 
 # Metadata
 'metadata' => 'Metadatos',

@@ -4261,4 +4261,6 @@ Aslında, çift ayraçlı hemen hemen her şeyi genişletir.',
 'expand_templates_generate_rawhtml' => 'Ham HTML göster',
 'expand_templates_preview' => 'Önizleme',
 
+# Unknown messages
+'uploadinvalidxml' => 'Yüklenen dosyadaki XML işlenemedi.',
 );
