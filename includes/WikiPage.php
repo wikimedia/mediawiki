@@ -343,6 +343,16 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Determine whether data for the page has been loaded from the database
+	 *
+	 * @return Whether or not the data has been loaded
+	 * @since 1.23
+	 */
+	public function isDataLoaded() {
+		return $this->mDataLoaded;
+	}
+
+	/**
 	 * Set the general counter, title etc data loaded from
 	 * some source.
 	 *
