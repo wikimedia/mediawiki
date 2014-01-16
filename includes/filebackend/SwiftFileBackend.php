@@ -617,59 +617,9 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doGetFileStat( array $params ) {
-		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $srcRel === null ) {
-			return false; // invalid storage path
-		}
+		$stats = $this->doGetFileStatMulti( array( 'srcs' => array( $params['src'] ) ) + $params );
 
-		$auth = $this->getAuthentication();
-		if ( !$auth ) {
-			return null;
-		}
-
-		// (a) Check the container
-		$cstat = $this->getContainerStat( $srcCont, true );
-		if ( $cstat === false ) {
-			return false; // ok, nothing to do
-		} elseif ( !is_array( $cstat ) ) {
-			return null;
-		}
-
-		// (b) Check the file
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
-			'method' => 'HEAD',
-			'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
-			'headers' => $this->authTokenHeaders( $auth ) + $this->headersFromParams( $params )
-		) );
-		if ( $rcode === 200 || $rcode === 204 ) {
-			// Update the object if it is missing some headers
-			$rhdrs = $this->addMissingMetadata( $rhdrs, $params['src'] );
-			// Fetch all of the custom metadata headers
-			$metadata = array();
-			foreach ( $rhdrs as $name => $value ) {
-				if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
-					$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
-				}
-			}
-			// Fetch all of the custom raw HTTP headers
-			$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
-			$stat = array(
-				// Convert various random Swift dates to TS_MW
-				'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
-				// Empty objects actually return no content-length header in Ceph
-				'size' => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-				'sha1' => $rhdrs['x-object-meta-sha1base36'],
-				'md5' => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
-				'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
-			);
-		} elseif ( $rcode === 404 ) {
-			$stat = false;
-		} else {
-			$stat = null;
-			$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc );
-		}
-
-		return $stat;
+		return reset( $stats );
 	}
 
 	/**
@@ -975,9 +925,10 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 				$stat = array(
 					// Convert various random Swift dates to TS_MW
-					'mtime' => $this->convertSwiftDate( $object->last_modified, TS_MW ),
-					'size' => (int)$object->bytes,
-					'md5' => ctype_xdigit( $object->hash ) ? $object->hash : null,
+					'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
+					'size'   => (int)$object->bytes,
+					// Note: manifiest ETags are not an MD5 of the file
+					'md5'    => ctype_xdigit( $object->hash ) ? $object->hash : null,
 					'latest' => false // eventually consistent
 				);
 				$names[] = array( $object->name, $stat );
@@ -1494,6 +1445,82 @@ class SwiftFileBackend extends FileBackendStore {
 		foreach ( $containerInfo as $container => $info ) {
 			$this->containerStatCache->set( $container, 'stat', $info );
 		}
+	}
+
+	protected function doGetFileStatMulti( array $params ) {
+		$stats = array();
+
+		$auth = $this->getAuthentication();
+
+		$reqs = array();
+		foreach ( $params['srcs'] as $path ) {
+			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+			if ( $srcRel === null ) {
+				$stats[$path] = false;
+				continue; // invalid storage path
+			} elseif ( !$auth ) {
+				$stats[$path] = null;
+				continue;
+			}
+
+			// (a) Check the container
+			$cstat = $this->getContainerStat( $srcCont, true );
+			if ( $cstat === false ) {
+				$stats[$path] = false;
+				continue; // ok, nothing to do
+			} elseif ( !is_array( $cstat ) ) {
+				$stats[$path] = null;
+				continue;
+			}
+
+			$reqs[$path] = array(
+				'method'  => 'HEAD',
+				'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
+				'headers' => $this->authTokenHeaders( $auth ) + $this->headersFromParams( $params )
+			);
+		}
+
+		$opts = array( 'maxConnsPerHost' => $params['concurrency'] );
+		$reqs = $this->http->runMulti( $reqs, $opts );
+
+		foreach ( $params['srcs'] as $path ) {
+			if ( array_key_exists( $path, $stats ) ) {
+				continue; // some sort of failure above
+			}
+			// (b) Check the file
+			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $reqs[$path]['response'];
+			if ( $rcode === 200 || $rcode === 204 ) {
+				// Update the object if it is missing some headers
+				$rhdrs = $this->addMissingMetadata( $rhdrs, $path );
+				// Fetch all of the custom metadata headers
+				$metadata = array();
+				foreach ( $rhdrs as $name => $value ) {
+					if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+						$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
+					}
+				}
+				// Fetch all of the custom raw HTTP headers
+				$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
+				$stat = array(
+					// Convert various random Swift dates to TS_MW
+					'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
+					// Empty objects actually return no content-length header in Ceph
+					'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
+					'sha1'  => $rhdrs[ 'x-object-meta-sha1base36'],
+					// Note: manifiest ETags are not an MD5 of the file
+					'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
+					'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
+				);
+			} elseif ( $rcode === 404 ) {
+				$stat = false;
+			} else {
+				$stat = null;
+				$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc );
+			}
+			$stats[$path] = $stat;
+		}
+
+		return $stats;
 	}
 
 	/**
