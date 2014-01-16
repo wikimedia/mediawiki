@@ -193,7 +193,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge, $wgMemc,
+		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgMiserMode,
 			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit;
 
 		$user = $this->getUser();
@@ -540,7 +540,11 @@ class InfoAction extends FormlessAction {
 		) {
 			$options = array( 'LIMIT' => $wgPageInfoTransclusionLimit );
 			$transcludedTemplates = $title->getTemplateLinksFrom( $options );
-			$transcludedTargets = $title->getTemplateLinksTo( $options );
+			if ( $wgMiserMode ) {
+				$transcludedTargets = array();
+			} else {
+				$transcludedTargets = $title->getTemplateLinksTo( $options );
+			}
 
 			// Page properties
 			$pageInfo['header-properties'] = array();
@@ -581,7 +585,7 @@ class InfoAction extends FormlessAction {
 				);
 			}
 
-			if ( $pageCounts['transclusion']['to'] > 0 ) {
+			if ( !$wgMiserMode && $pageCounts['transclusion']['to'] > 0 ) {
 				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
 					$more = Linker::link(
 						$whatLinksHere,
