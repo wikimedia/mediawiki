@@ -1,6 +1,6 @@
-/**
- *  Hungarian language functions
- *  @author Santhosh Thottingal
+/*!
+ * Hungarian language functions
+ * @author Santhosh Thottingal
  */
 
 mediaWiki.language.convertGrammar = function ( word, form ) {

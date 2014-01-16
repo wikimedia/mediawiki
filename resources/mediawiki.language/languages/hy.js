@@ -1,4 +1,4 @@
-/**
+/*!
  * Armenian (Հայերեն) language functions
  */
 

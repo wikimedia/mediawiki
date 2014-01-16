@@ -1,4 +1,4 @@
-/**
+/*!
  * Hebrew (עברית) language functions
  */
 
