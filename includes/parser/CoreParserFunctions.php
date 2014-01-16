@@ -1153,7 +1153,8 @@ class CoreParserFunctions {
 	/**
 	 * Returns the sources of any cascading protection acting on a specified page.
 	 * Pages will not return their own title unless they transclude themselves.
-	 * This is an expensive parser function and can't be called too many times per page.
+	 * This is an expensive parser function and can't be called too many times per page,
+	 * unless cascading protection sources for the page have already been loaded.
 	 *
 	 * @param Parser $parser
 	 * @param string $title
@@ -1166,15 +1167,17 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$names = array();
-		if ( $parser->incrementExpensiveFunctionCount() ) {
+		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+			|| $parser->incrementExpensiveFunctionCount()
+		) {
+			$names = array();
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
 				$names[] = $sourceTitle->getPrefixedText();
 			}
+			return implode( $names, '|' );
 		}
-
-		return implode( $names, '|' );
+		return '';
 	}
 
 }
