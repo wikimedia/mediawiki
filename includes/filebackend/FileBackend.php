@@ -1189,8 +1189,10 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Preload persistent file stat and property cache into in-process cache.
+	 * Preload persistent file stat cache and property cache into in-process cache.
 	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @see FileBackend::getFileStat()
 	 *
 	 * @param array $paths Storage paths
 	 */
@@ -1201,9 +1203,25 @@ abstract class FileBackend {
 	 * Invalidate any in-process file stat and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
+	 * @see FileBackend::getFileStat()
+	 *
 	 * @param array $paths Storage paths (optional)
 	 */
 	public function clearCache( array $paths = null ) {
+	}
+
+	/**
+	 * Preload file stat information (concurrently if possible) into in-process cache.
+	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @see FileBackend::getFileStat()
+	 *
+	 * @param array $params Parameters include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 * @since 1.23
+	 */
+	public function preloadFileStat( array $params ) {
 	}
 
 	/**
