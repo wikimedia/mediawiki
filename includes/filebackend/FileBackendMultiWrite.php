@@ -661,6 +661,10 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 	}
 
+	public function preloadFileStat( array $params ) {
+		$this->backends[$this->masterIndex]->preloadFileStat( $params );
+	}
+
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
 		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $realOps );
