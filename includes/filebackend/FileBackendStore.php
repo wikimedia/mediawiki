@@ -1095,9 +1095,16 @@ abstract class FileBackendStore extends FileBackend {
 			$this->clearCache();
 		}
 
-		// Load from the persistent file and container caches
-		$this->primeFileCache( $performOps );
-		$this->primeContainerCache( $performOps );
+		// Build the list of paths involved
+		$paths = array();
+		foreach ( $performOps as $op ) {
+			$paths = array_merge( $paths, $op->storagePathsRead() );
+			$paths = array_merge( $paths, $op->storagePathsChanged() );
+		}
+		// Load from the persistent container caches
+		$this->primeContainerCache( $paths );
+		// Get the latest stat info for all the files (having locked them)
+		$this->preloadFileStat( array( 'srcs' => $paths, 'latest' => true ) );
 
 		// Actually attempt the operation batch...
 		$opts = $this->setConcurrencyFlags( $opts );
@@ -1270,6 +1277,62 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $paths Storage paths (optional)
 	 */
 	protected function doClearCache( array $paths = null ) {
+	}
+
+	final public function preloadFileStat( array $params ) {
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+
+		$stats = $this->doGetFileStatMulti( $params );
+		if ( $stats === null ) {
+			return; // not supported
+		}
+
+		$latest = !empty( $params['latest'] ); // use latest data?
+		foreach ( $stats as $path => $stat ) {
+			$path = FileBackend::normalizeStoragePath( $path );
+			if ( $path === null ) {
+				continue; // this shouldn't happen
+			}
+			if ( is_array( $stat ) ) { // file exists
+				$stat['latest'] = $latest;
+				$this->cheapCache->set( $path, 'stat', $stat );
+				$this->setFileCache( $path, $stat ); // update persistent cache
+				if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
+					$this->cheapCache->set( $path, 'sha1',
+						array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
+				}
+				if ( isset( $stat['xattr'] ) ) { // some backends store headers/metadata
+					$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
+					$this->cheapCache->set( $path, 'xattr',
+						array( 'map' => $stat['xattr'], 'latest' => $latest ) );
+				}
+			} elseif ( $stat === false ) { // file does not exist
+				$this->cheapCache->set( $path, 'stat',
+					$latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
+				$this->cheapCache->set( $path, 'xattr',
+					array( 'map' => false, 'latest' => $latest ) );
+				$this->cheapCache->set( $path, 'sha1',
+					array( 'hash' => false, 'latest' => $latest ) );
+				wfDebug( __METHOD__ . ": File $path does not exist.\n" );
+			} else { // an error occurred
+				wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
+			}
+		}
+	}
+
+	/**
+	 * Get file stat information (concurrently if possible) for several files
+	 *
+	 * @see FileBackend::getFileStat()
+	 *
+	 * @param array $params Parameters include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 * @return array|null Map of storage paths to array|bool|null (returns null if not supported)
+	 * @since 1.23
+	 */
+	protected function doGetFileStatMulti( array $params ) {
+		return null; // not supported
 	}
 
 	/**
@@ -1528,7 +1591,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Do a batch lookup from cache for container stats for all containers
-	 * used in a list of container names, storage paths, or FileOp objects.
+	 * used in a list of container names or storage paths objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
 	 * @param array $items
@@ -1540,10 +1603,7 @@ abstract class FileBackendStore extends FileBackend {
 		$contNames = array(); // (cache key => resolved container name)
 		// Get all the paths/containers from the items...
 		foreach ( $items as $item ) {
-			if ( $item instanceof FileOp ) {
-				$paths = array_merge( $paths, $item->storagePathsRead() );
-				$paths = array_merge( $paths, $item->storagePathsChanged() );
-			} elseif ( self::isStoragePath( $item ) ) {
+			if ( self::isStoragePath( $item ) ) {
 				$paths[] = $item;
 			} elseif ( is_string( $item ) ) { // full container name
 				$contNames[$this->containerCacheKey( $item )] = $item;
@@ -1629,7 +1689,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * used in a list of storage paths or FileOp objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
-	 * @param array $items List of storage paths or FileOps
+	 * @param array $items List of storage paths
 	 */
 	final protected function primeFileCache( array $items ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1638,10 +1698,7 @@ abstract class FileBackendStore extends FileBackend {
 		$pathNames = array(); // (cache key => storage path)
 		// Get all the paths/containers from the items...
 		foreach ( $items as $item ) {
-			if ( $item instanceof FileOp ) {
-				$paths = array_merge( $paths, $item->storagePathsRead() );
-				$paths = array_merge( $paths, $item->storagePathsChanged() );
-			} elseif ( self::isStoragePath( $item ) ) {
+			if ( self::isStoragePath( $item ) ) {
 				$paths[] = FileBackend::normalizeStoragePath( $item );
 			}
 		}
