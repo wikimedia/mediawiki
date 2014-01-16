@@ -931,7 +931,7 @@ $1',
 
 'versionrequired'     => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page.
-See [[Special:Version|version page]].',
+See [[Special:Software|version page]].',
 
 'ok'                           => 'OK',
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
@@ -4806,7 +4806,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
 
-# Special:Version
+# Special:Software
 'version'                               => 'Version',
 'version-summary'                       => '', # do not translate or duplicate this message to other languages
 'version-extensions'                    => 'Installed extensions',
@@ -4839,7 +4839,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-poweredby-credits'             => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'              => 'others',
 'version-poweredby-translators'         => 'translatewiki.net translators',
-'version-credits-summary'               => 'We would like to recognize the following persons for their contribution to [[Special:Version|MediaWiki]].',
+'version-credits-summary'               => 'We would like to recognize the following persons for their contribution to [[Special:Software|MediaWiki]].',
 'version-license-info'                  => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
