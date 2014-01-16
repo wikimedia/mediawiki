@@ -113,7 +113,6 @@ define( 'CACHE_NONE', 0 );       // Do not cache
 define( 'CACHE_DB', 1 );         // Store cache objects in the DB
 define( 'CACHE_MEMCACHED', 2 );  // MemCached, must specify servers in $wgMemCacheServers
 define( 'CACHE_ACCEL', 3 );      // APC, XCache or WinCache
-define( 'CACHE_DBA', 4 );        // Use PHP's DBA extension to store in a DBM-style database
 /**@}*/
 
 /**@{
