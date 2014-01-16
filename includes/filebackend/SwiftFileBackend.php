@@ -638,7 +638,7 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
 			'method'  => 'HEAD',
 			'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
-			'headers' => $this->authTokenHeaders( $auth )
+			'headers' => $this->authTokenHeaders( $auth ) + $this->headersFromParams( $params )
 		) );
 		if ( $rcode === 200 || $rcode === 204 ) {
 			// Update the object if it is missing some headers
@@ -1185,7 +1185,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function headersFromParams( array $params ) {
 		$hdrs = array();
 		if ( !empty( $params['latest'] ) ) {
-			$hdrs[] = 'X-Newest: true';
+			$hdrs['x-newest'] = 'true';
 		}
 
 		return $hdrs;
