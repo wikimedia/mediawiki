@@ -40,6 +40,10 @@ class PopularPagesPage extends QueryPage {
 		return false;
 	}
 
+	public function isIncludable() {
+		return true;
+	}
+
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'page' ),
@@ -52,6 +56,14 @@ class PopularPagesPage extends QueryPage {
 				'page_namespace' => MWNamespace::getContentNamespaces()
 			)
 		);
+	}
+
+	public function execute( $par ) {
+		if ( $this->including() && is_numeric( $par ) ) {
+			$this->limit = intval( $par );
+		}
+		$this->shownavigation = !$this->including();
+		parent::execute( $par );
 	}
 
 	/**
