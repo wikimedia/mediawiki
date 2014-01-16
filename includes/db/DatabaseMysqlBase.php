@@ -804,14 +804,18 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
+		// MariaDB includes its name in its version string (sent when the connection is opened),
+		// and this is how MariaDB's version of the mysql command-line client identifies MariaDB
+		// servers (see the mariadb_connection() function in libmysql/libmysql.c).
 		$version = $this->getServerVersion();
-		if ( strpos( $version, 'MariaDB' ) !== false ) {
+		if ( strpos( $version, 'MariaDB' ) !== false || strpos( $version, '-maria-' ) !== false ) {
 			return '[{{int:version-db-mariadb-url}} MariaDB]';
-		} elseif ( strpos( $version, 'percona' ) !== false ) {
-			return '[{{int:version-db-percona-url}} Percona Server]';
-		} else {
-			return '[{{int:version-db-mysql-url}} MySQL]';
 		}
+
+		// Percona Server's version suffix is not very distinctive, and @@version_comment
+		// doesn't give the necessary info for source builds, so assume the server is MySQL.
+		// (Even Percona's version of mysql doesn't try to make the distinction.)
+		return '[{{int:version-db-mysql-url}} MySQL]';
 	}
 
 	/**
