@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g id="remove" style="opacity:0.75;">
+	<path id="trash_can" style="fill-rule:evenodd;clip-rule:evenodd;" d="M12,10h-1v6h1V10z M10,10H9v6h1V10z M14,10h-1v6h1V10z
+		 M14,6V5H9v1H6v3h1v7.966l1,1.031v-0.074V18h6.984L15,17.982v0.015l1-1.031V9h1V6H14z M15,17H8V9h7V17z M16,8H7V7h9V8z"/>
+</g>
+</svg>

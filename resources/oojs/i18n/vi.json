@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cheers!",
+            "Jdforrester",
+            "Minh Nguyen"
+        ]
+    },
+    "ooui-dialog-action-close": "Đóng",
+    "ooui-outline-control-move-down": "Chuyển mục xuống",
+    "ooui-outline-control-move-up": "Chuyển mục lên",
+    "ooui-toolbar-more": "Thêm"
+}
