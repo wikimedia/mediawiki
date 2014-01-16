@@ -447,6 +447,7 @@ class SpecialWatchlist extends SpecialRecentChanges {
 
 		$nondefaults = $opts->getChangedValues();
 		$form = "";
+		$user = $this->getUser();
 
 		# Show watchlist header
 		$form .= "<p>";
