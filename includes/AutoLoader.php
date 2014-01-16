@@ -246,7 +246,6 @@ $wgAutoloadLocalClasses = array(
 	'XmlJsCode' => 'includes/Xml.php',
 	'XMLReader2' => 'includes/Import.php',
 	'XmlSelect' => 'includes/Xml.php',
-	'ZhClient' => 'includes/ZhClient.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
