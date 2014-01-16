@@ -57,9 +57,9 @@ class SpecialVersion extends SpecialPage {
 
 		// Explode the sub page information into useful bits
 		$parts = explode( '/', (string)$par );
+		$extNode = null;
 		if ( isset( $parts[1] ) ) {
 			$extName = str_replace( '_', ' ', $parts[1] );
-			$extNode = null;
 			// Find it!
 			foreach ( $wgExtensionCredits as $group => $extensions ) {
 				foreach ( $extensions as $ext ) {
