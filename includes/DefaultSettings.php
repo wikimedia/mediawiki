@@ -1945,9 +1945,6 @@ $wgCacheDirectory = false;
  *   - CACHE_DB:         Store cache objects in the DB
  *   - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
  *   - CACHE_ACCEL:      APC, XCache or WinCache
- *   - CACHE_DBA:        Use PHP's DBA extension to store in a DBM-style
- *                       database. This is slow, and is not recommended for
- *                       anything other than debugging.
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgObjectCaches.
  *
@@ -2000,15 +1997,10 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  * the value is an associative array of parameters. The "class" parameter is the
  * class name which will be used. Alternatively, a "factory" parameter may be
  * given, giving a callable function which will generate a suitable cache object.
- *
- * The other parameters are dependent on the class used.
- * - CACHE_DBA uses $wgTmpDirectory by default. The 'dir' parameter let you
- *   overrides that.
  */
 $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'table' => 'objectcache' ),
-	CACHE_DBA => array( 'class' => 'DBABagOStuff' ),
 
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
