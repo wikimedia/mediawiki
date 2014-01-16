@@ -5956,15 +5956,16 @@ $wgExtensionMessagesFiles = array();
  * @par Complex example:
  * @code
  *    $wgMessagesDirs['VisualEditor'] = array(
- *        __DIR__ . '/i18n',
- *        __DIR__ . '/modules/ve-core/i18n',
- *        __DIR__ . '/modules/qunit/localisation',
- *        __DIR__ . '/modules/oojs-ui/messages',
+ *        __DIR__ . '/lib/ve/modules/ve/i18n',
+ *        __DIR__ . '/modules/ve-mw/i18n',
+ *        __DIR__ . '/modules/ve-wmf/i18n',
  *    )
  * @endcode
  * @since 1.23
  */
-$wgMessagesDirs = array();
+$wgMessagesDirs = array(
+	"$IP/resources/oojs/i18n",
+);
 
 /**
  * Array of files with list(s) of extension entry points to be used in

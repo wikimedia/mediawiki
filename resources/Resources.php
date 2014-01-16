@@ -1266,12 +1266,31 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
-	/* OOJS */
-	// WARNING: oojs is NOT COMPATIBLE with older browsers and
+	/* OOjs */
+	// WARNING: OOjs and OOjs-UI are NOT COMPATIBLE with older browsers and
 	// WILL BREAK if loaded in browsers that don't support ES5
 	'oojs' => array(
 		'scripts' => array(
 			'resources/oojs/oojs.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'oojs-ui' => array(
+		'scripts' => array(
+			'resources/oojs/oojs-ui.js',
+		),
+		'styles' => array(
+			'resources/oojs/oojs-ui.svg.css',
+		),
+		'messages' => array(
+			'ooui-dialog-action-close',
+			'ooui-outline-control-move-down',
+			'ooui-outline-control-move-up',
+			'ooui-toolbar-more',
+		),
+		'dependencies' => array(
+			'oojs',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),

@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "MaGa",
+            "Roberta F.",
+            "SpeedyGonsales"
+        ]
+    },
+    "ooui-dialog-action-close": "zatvori",
+    "ooui-outline-control-move-down": "Premjesti stavku dolje",
+    "ooui-outline-control-move-up": "Premjesti stavku gore",
+    "ooui-toolbar-more": "Više mogućnosti"
+}

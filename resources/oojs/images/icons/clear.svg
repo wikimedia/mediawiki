@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g id="clear" style="opacity:0.75;">
+	<path id="circle_with_strike" style="fill-rule:evenodd;clip-rule:evenodd;" d="M11.999,5.022c-3.853,0-6.977,3.124-6.977,6.978 c0,3.853,3.124,6.978,6.977,6.978c3.854,0,6.979-3.125,6.979-6.978C18.978,8.146,15.853,5.022,11.999,5.022z M6.886,12 c0-1.092,0.572-3.25,0.93-2.929l7.113,7.113c0.488,0.525-1.837,0.931-2.93,0.931C9.174,17.114,6.886,14.824,6.886,12z M16.184,14.929L9.07,7.816c-0.445-0.483,1.837-0.931,2.929-0.931c2.827,0,5.115,2.289,5.115,5.114 C17.114,13.092,16.75,15.542,16.184,14.929z"/>
+</g>
+</svg>
