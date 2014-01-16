@@ -1,0 +1,27 @@
+{
+    "@metadata": {
+        "authors": [
+            "Amire80",
+            "DR",
+            "Eugrus",
+            "Iluvatar",
+            "KPu3uC B Poccuu",
+            "Kalan",
+            "MaxBioHazard",
+            "NBS",
+            "Niklem",
+            "Okras",
+            "Ole Yves",
+            "Putnik",
+            "Sunpriat",
+            "Yury Katkov",
+            "Умар"
+        ]
+    },
+    "ooui-dialog-action-close": "Закрыть",
+    "ooui-outline-control-move-down": "Переместить элемент вниз",
+    "ooui-outline-control-move-up": "Переместить элемент вверх",
+    "ooui-toggle-on": "вкл.",
+    "ooui-toggle-off": "выкл.",
+    "ooui-toolbar-more": "Ещё"
+}

@@ -1,0 +1,19 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cgtdk",
+            "Christian List",
+            "EileenSanda",
+            "Laketown",
+            "Palnatoke",
+            "Simeondahl",
+            "Tehnix"
+        ]
+    },
+    "ooui-dialog-action-close": "Luk",
+    "ooui-outline-control-move-down": "Flyt ned",
+    "ooui-outline-control-move-up": "Flyt op",
+    "ooui-toggle-on": "Til",
+    "ooui-toggle-off": "Fra",
+    "ooui-toolbar-more": "Mere"
+}

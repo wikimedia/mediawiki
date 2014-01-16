@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Makuba"
+        ]
+    },
+    "ooui-dialog-action-close": "Terminar",
+    "ooui-outline-control-move-down": "Mover element a infra",
+    "ooui-outline-control-move-up": "Mover element a supra",
+    "ooui-toggle-on": "Activ",
+    "ooui-toggle-off": "Ínactiv",
+    "ooui-toolbar-more": "Plu"
+}

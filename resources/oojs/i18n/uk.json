@@ -1,0 +1,26 @@
+{
+    "@metadata": {
+        "authors": [
+            "AS",
+            "Aced",
+            "Ahonc",
+            "Andriykopanytsia",
+            "Base",
+            "Perohanych",
+            "RLuts",
+            "Sahran",
+            "Sergento",
+            "Steve.rusyn",
+            "SteveR",
+            "Tel'et",
+            "Tifinaghes",
+            "Ата"
+        ]
+    },
+    "ooui-dialog-action-close": "Закрити",
+    "ooui-outline-control-move-down": "Перемістити елемент униз",
+    "ooui-outline-control-move-up": "Перемістити елемент вгору",
+    "ooui-toggle-on": "Увімк.",
+    "ooui-toggle-off": "Вимкн.",
+    "ooui-toolbar-more": "Більше"
+}
