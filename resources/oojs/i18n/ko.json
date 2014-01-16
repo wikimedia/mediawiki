@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "Freebiekr",
+            "Hym411",
+            "Kwj2772",
+            "LFM",
+            "아라"
+        ]
+    },
+    "ooui-dialog-action-close": "닫기",
+    "ooui-outline-control-move-down": "항목을 아래로 옮기기",
+    "ooui-outline-control-move-up": "항목을 위로 옮기기",
+    "ooui-toggle-on": "사용",
+    "ooui-toggle-off": "해제",
+    "ooui-toolbar-more": "더 보기"
+}

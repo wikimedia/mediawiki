@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dalba",
+            "Ebraminio",
+            "Jdforrester",
+            "Ladsgroup",
+            "Mjbmr",
+            "Nojan Madinehi",
+            "Reza1615",
+            "Taha",
+            "درفش کاویانی"
+        ]
+    },
+    "ooui-dialog-action-close": "بستن",
+    "ooui-outline-control-move-down": "انتقال مورد به پایین",
+    "ooui-outline-control-move-up": "انتقال مورد به بالا",
+    "ooui-toggle-on": "روشن",
+    "ooui-toggle-off": "خاموش",
+    "ooui-toolbar-more": "بیشتر"
+}
