@@ -1173,7 +1173,7 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Do standard deferred updates after page view
+	 * Do standard deferred updates after page view (existing or missing page)
 	 * @param User $user The relevant user
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
