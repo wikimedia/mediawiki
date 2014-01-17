@@ -2282,6 +2282,7 @@ See also:
 * $2 - reason or {{msg-mw|Blockednoreason}}
 * $3 - username
 * $4 - current user's IP address",
+'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
 
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',
