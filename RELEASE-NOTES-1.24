@@ -120,6 +120,10 @@ production.
   suppressed content but not suppress it ("suppressrevision" right).
 * Added a new hook, "OutputPageScriptsForBottomQueue", to add modules to the
   bottom queue that should be requested in a dedicated <script> request.
+* Added the NestedMenuParser class to allow skins to turn interface messages
+  formatted similarily to MediaWiki:Sidebar into nested navigation menus.
+  This allows third-party skins to create navigation menus similar to those
+  found on various custom WordPress themes.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
