@@ -416,7 +416,7 @@ class FileRepo {
 	 *   ignoreRedirect: If true, do not follow file redirects
 	 *   private:        If true, return restricted (deleted) files if the current
 	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found.
+	 *                   be found. If a User object, use that user instead of the current.
 	 * @return File|bool False on failure
 	 */
 	public function findFile( $title, $options = array() ) {
@@ -439,7 +439,11 @@ class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
+				} elseif ( !empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE,
+						$options['private'] instanceof User ? $options['private'] : null
+					)
+				) {
 					return $img;
 				}
 			}
@@ -536,7 +540,11 @@ class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
+				} elseif ( !empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE,
+						$options['private'] instanceof User ? $options['private'] : null
+					)
+				) {
 					return $img;
 				}
 			}

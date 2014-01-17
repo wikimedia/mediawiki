@@ -260,6 +260,9 @@ class LocalRepo extends FileRepo {
 
 		$fileMatchesSearch = function( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
+			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
+				? $search['private']
+				: null;
 			return (
 				$file->exists() &&
 				(
@@ -267,7 +270,7 @@ class LocalRepo extends FileRepo {
 					( !empty( $search['time'] ) && $search['time'] === $file->getTimestamp() )
 				) &&
 				( !empty( $search['private'] ) || !$file->isDeleted( File::DELETED_FILE ) ) &&
-				$file->userCan( File::DELETED_FILE )
+				$file->userCan( File::DELETED_FILE, $user )
 			);
 		};
 
