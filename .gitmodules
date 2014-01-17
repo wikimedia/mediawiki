@@ -255,3 +255,9 @@
 	path = skins/monaco
 	url = https://github.com/dantman/monaco-port.git
 
+[submodule "extensions/PdfBook"]
+	path = extensions/PdfBook
+	url = https://github.com/wikimedia/mediawiki-extensions-PdfBook.git
+[submodule "extensions/Collection"]
+	path = extensions/Collection
+	url = https://github.com/wikimedia/mediawiki-extensions-Collection.git
