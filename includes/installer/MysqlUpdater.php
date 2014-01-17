@@ -192,6 +192,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase.sql' ),
+			# Allow reverting back to 1.19 from later version
+			array( 'addfield', 'recentchanges', 'rc_moved_to_ns',    'patch-recentchanges-add-rc_moved_to.sql' ),
 		);
 	}
 
