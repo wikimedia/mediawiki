@@ -3116,7 +3116,7 @@ Pokušajte ponovo.',
 'spamprotectiontitle' => 'Filter za zaštitu od nepoželjnih poruka',
 'spamprotectiontext' => 'Stranica koju želite da sačuvate je blokirana od filtera protiv nepoželjnih poruka.
 Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj listi.',
-'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za nepoželjne poruke: $1',
+'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
 'spambot_username' => 'Čišćenje nepoželjnih poruka u Medijavikiji',
 'spam_reverting' => 'Vraćam na poslednju izmenu koja ne sadrži veze do $1',
 'spam_blanking' => 'Sve izmene sadrže veze do $1. Čistim',

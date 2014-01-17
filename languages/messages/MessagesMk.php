@@ -4167,7 +4167,7 @@ $5
 
 # Special:Version
 'version' => 'Верзија',
-'version-extensions' => 'Инсталирани додатоци',
+'version-extensions' => 'Воспоставени додатоци',
 'version-specialpages' => 'Специјални страници',
 'version-parserhooks' => 'Парсерски куки',
 'version-variables' => 'Променливи',
@@ -4202,7 +4202,7 @@ $5
 МедијаВики се нуди со надеж дека ќе биде од корист, но БЕЗ БИЛО КАКВА ГАРАНЦИЈА; дури и без подразбраната гаранција за ПРОДАЖНА ВРЕДНОСТ или ПОГОДНОСТ ЗА ДАДЕНА ЦЕЛ. За повеќе информации, погледајте ја ГНУ-овата општа јавна лиценца.
 
 Заедно со програмов треба да имате добиено [{{SERVER}}{{SCRIPTPATH}}/COPYING примерок од ГНУ-овата општа јавна лиценца]; ако немате добиено примерок, пишете на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитајте ја тука].',
-'version-software' => 'Инсталирана програмска опрема',
+'version-software' => 'Воспоставена програмска опрема',
 'version-software-product' => 'Производ',
 'version-software-version' => 'Верзија',
 'version-entrypoints' => 'URL-а на влезните точки',
