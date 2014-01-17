@@ -126,6 +126,10 @@ production.
 * (bug 66440) The MediaWiki web installer will now allow you to choose the skins
   to enable (from the ones included in download tarball) and decide which one
   should be the default.
+* Added the NestedMenuParser class to allow skins to turn interface messages
+  formatted similarily to MediaWiki:Sidebar into nested navigation menus.
+  This allows third-party skins to create navigation menus similar to those
+  found on various custom WordPress themes.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
