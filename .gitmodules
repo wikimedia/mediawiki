@@ -265,6 +265,9 @@
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor.git
 	branch = REL1_22
+[submodule "extensions/Wikilog"]
+	path = extensions/Wikilog
+	url = https://github.com/mediawiki4intranet/Wikilog
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
