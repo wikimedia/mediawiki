@@ -130,6 +130,7 @@ $wgAutoloadLocalClasses = array(
 	'MWHookException' => 'includes/Hooks.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWNamespace' => 'includes/MWNamespace.php',
+	'NestedMenuParser' => 'includes/NestedMenuParser.php',
 	'OutputPage' => 'includes/OutputPage.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
