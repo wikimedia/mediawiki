@@ -153,6 +153,7 @@ $wgAutoloadLocalClasses = array(
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWInit' => 'includes/Init.php',
 	'MWNamespace' => 'includes/Namespace.php',
+	'NestedMenuParser' => 'includes/NestedMenuParser.php',
 	'OutputPage' => 'includes/OutputPage.php',
 	'Page' => 'includes/WikiPage.php',
 	'PageQueryPage' => 'includes/PageQueryPage.php',
