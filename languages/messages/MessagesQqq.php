@@ -2914,6 +2914,7 @@ Parameters:
 * \$1 - a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from''')",
 'search-section' => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.
 {{Identical|Section}}',
+'search-file-match' => 'This text will be shown on the search result listing after the page title of a result if the search engine got search results from the contents of files, rather than the pages.',
 'search-suggest' => 'Used for "Did you mean" suggestions:
 * $1 - suggested link',
 'search-interwiki-caption' => 'Used in [[Special:Search]], when showing search results from other wikis.',

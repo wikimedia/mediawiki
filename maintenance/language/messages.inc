@@ -979,6 +979,7 @@ $wgMessageStructure = array(
 		'search-result-score',
 		'search-redirect',
 		'search-section',
+		'search-file-match',
 		'search-suggest',
 		'search-interwiki-caption',
 		'search-interwiki-default',
