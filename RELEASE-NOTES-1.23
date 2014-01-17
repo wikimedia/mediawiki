@@ -274,6 +274,9 @@ changes to languages because of Bugzilla reports.
 * WikiPage::useParserCache() (deprecated in 1.18)
 * WikiPage::viewUpdates() (deprecated in 1.18)
 
+==== Removed globals ====
+* $wgBetterDirectionality (deprecated in 1.18)
+
 == Compatibility ==
 
 MediaWiki 1.23 requires PHP 5.3.2 or later.
