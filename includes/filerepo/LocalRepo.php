@@ -315,11 +315,11 @@ class LocalRepo extends FileRepo {
 		// Query old image table
 		$oiConds = array(); // WHERE clause array for each file
 		foreach ( $searchSet as $dbKey => $search ) {
-			if ( isset( $search['params']['time'] ) ) {
+			if ( isset( $search['time'] ) ) {
 				$oiConds[] = $dbr->makeList(
 					array(
 						'oi_name' => $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ),
-						'oi_timestamp' => $dbr->timestamp( $search['params']['time'] )
+						'oi_timestamp' => $dbr->timestamp( $search['time'] )
 					),
 					LIST_AND
 				);
