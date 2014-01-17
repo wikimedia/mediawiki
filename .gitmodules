@@ -6,6 +6,10 @@
 	path = extensions/AdminLinks
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AdminLinks.git
 	branch = REL1_22
+[submodule "extensions/AJAXPoll"]
+	path = extensions/AJAXPoll
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AJAXPoll.git
+	branch = REL1_22
 [submodule "extensions/AntiSpoof"]
 	path = extensions/AntiSpoof
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AntiSpoof.git
@@ -98,6 +102,10 @@
 	path = extensions/HeaderTabs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/HeaderTabs.git
 	branch = REL1_22
+[submodule "extensions/HighlightLinksInCategory"]
+	path = extensions/HighlightLinksInCategory
+	url = https://github.com/Orain/HighlightLinksInCategory.git
+	branch = master
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ImageMap.git
@@ -138,6 +146,10 @@
 	path = extensions/MobileFrontend
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MobileFrontend.git
 	branch = REL1_22
+[submodule "extensions/MultiBoilerplate"]
+	path = extensions/MultiBoilerplate
+	url = https://github.com/Orain/MultiBoilerplate.git
+	branch = master
 [submodule "extensions/MyVariables"]
 	path = extensions/MyVariables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MyVariables.git
@@ -237,10 +249,17 @@
 	path = extensions/Variables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Variables.git
 	branch = REL1_22
+[submodule "extensions/VoteNY"]
+	path = extensions/VoteNY
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VoteNY.git
+	branch = REL1_22
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor.git
 	branch = REL1_22
+[submodule "extensions/Wikilog"]
+	path = extensions/Wikilog
+	url = https://github.com/mediawiki4intranet/Wikilog
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
