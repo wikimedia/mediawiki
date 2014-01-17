@@ -559,7 +559,6 @@ $wgAutoloadLocalClasses = array(
 	'ScopedLock' => 'includes/filebackend/lockmanager/ScopedLock.php',
 	'FSLockManager' => 'includes/filebackend/lockmanager/FSLockManager.php',
 	'DBLockManager' => 'includes/filebackend/lockmanager/DBLockManager.php',
-	'LSLockManager' => 'includes/filebackend/lockmanager/LSLockManager.php',
 	'MemcLockManager' => 'includes/filebackend/lockmanager/MemcLockManager.php',
 	'QuorumLockManager' => 'includes/filebackend/lockmanager/QuorumLockManager.php',
 	'MySqlLockManager' => 'includes/filebackend/lockmanager/DBLockManager.php',
