@@ -183,6 +183,10 @@ production.
 * Added HTMLAutoCompleteSelectField.
 * Added a new hook, "SkinPreloadExistence", to allow extensions to add titles to
   link existence cache before the page is rendered.
+* Added the NestedMenuParser class to allow skins to turn interface messages
+  formatted similarily to MediaWiki:Sidebar into nested navigation menus.
+  This allows third-party skins to create navigation menus similar to those
+  found on various custom WordPress themes.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
