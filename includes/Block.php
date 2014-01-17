@@ -102,21 +102,6 @@ class Block {
 	}
 
 	/**
-	 * Load a block from the database, using either the IP address or
-	 * user ID. Tries the user ID first, and if that doesn't work, tries
-	 * the address.
-	 *
-	 * @param string $address IP address of user/anon
-	 * @param $user Integer: user id of user
-	 * @return Block Object
-	 * @deprecated since 1.18
-	 */
-	public static function newFromDB( $address, $user = 0 ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return self::newFromTarget( User::whoIs( $user ), $address );
-	}
-
-	/**
 	 * Load a blocked user from their block id.
 	 *
 	 * @param $id Integer: Block id to search for
@@ -184,44 +169,6 @@ class Block {
 			&& $this->prevents( 'editownusertalk' ) == $block->prevents( 'editownusertalk' )
 			&& $this->mReason == $block->mReason
 		);
-	}
-
-	/**
-	 * Clear all member variables in the current object. Does not clear
-	 * the block from the DB.
-	 * @deprecated since 1.18
-	 */
-	public function clear() {
-		wfDeprecated( __METHOD__, '1.18' );
-		# Noop
-	}
-
-	/**
-	 * Get a block from the DB, with either the given address or the given username
-	 *
-	 * @param string $address The IP address of the user, or blank to skip IP blocks
-	 * @param int $user The user ID, or zero for anonymous users
-	 * @return Boolean: the user is blocked from editing
-	 * @deprecated since 1.18
-	 */
-	public function load( $address = '', $user = 0 ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		if ( $user ) {
-			$username = User::whoIs( $user );
-			$block = self::newFromTarget( $username, $address );
-		} else {
-			$block = self::newFromTarget( null, $address );
-		}
-
-		if ( $block instanceof Block ) {
-			# This is mildly evil, but hey, it's B/C :D
-			foreach ( $block as $variable => $value ) {
-				$this->$variable = $value;
-			}
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -860,17 +807,6 @@ class Block {
 	}
 
 	/**
-	 * Get/set the SELECT ... FOR UPDATE flag
-	 * @deprecated since 1.18
-	 *
-	 * @param $x Bool
-	 */
-	public function forUpdate( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		# noop
-	}
-
-	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
 	 * @param $x Bool
@@ -947,33 +883,6 @@ class Block {
 	}
 
 	/**
-	 * Encode expiry for DB
-	 *
-	 * @param string $expiry timestamp for expiry, or
-	 * @param $db DatabaseBase object
-	 * @return String
-	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
-	 */
-	public static function encodeExpiry( $expiry, $db ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return $db->encodeExpiry( $expiry );
-	}
-
-	/**
-	 * Decode expiry which has come from the DB
-	 *
-	 * @param string $expiry Database expiry format
-	 * @param int $timestampType Requested timestamp format
-	 * @return String
-	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
-	 */
-	public static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgContLang;
-		return $wgContLang->formatExpiry( $expiry, $timestampType );
-	}
-
-	/**
 	 * Get a timestamp of the expiry for autoblocks
 	 *
 	 * @param $timestamp String|Int
@@ -983,18 +892,6 @@ class Block {
 		global $wgAutoblockExpiry;
 
 		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
-	}
-
-	/**
-	 * Gets rid of unneeded numbers in quad-dotted/octet IP strings
-	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
-	 * @param string $range IP address to normalize
-	 * @return string
-	 * @deprecated since 1.18, call IP::sanitizeRange() directly
-	 */
-	public static function normaliseRange( $range ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return IP::sanitizeRange( $range );
 	}
 
 	/**
@@ -1011,29 +908,6 @@ class Block {
 			$dbw->delete( 'ipblocks',
 				array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), $method );
 		} );
-	}
-
-	/**
-	 * Get a value to insert into expiry field of the database when infinite expiry
-	 * is desired
-	 * @deprecated since 1.18, call $dbr->getInfinity() directly
-	 * @return String
-	 */
-	public static function infinity() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfGetDB( DB_SLAVE )->getInfinity();
-	}
-
-	/**
-	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
-	 * ("24 May 2034"), into an absolute timestamp we can put into the database.
-	 * @param string $expiry whatever was typed into the form
-	 * @return String: timestamp or "infinity" string for th DB implementation
-	 * @deprecated since 1.18 moved to SpecialBlock::parseExpiryInput()
-	 */
-	public static function parseExpiryInput( $expiry ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialBlock::parseExpiryInput( $expiry );
 	}
 
 	/**
