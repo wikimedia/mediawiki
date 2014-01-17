@@ -611,6 +611,7 @@ class Article implements Page {
 					if ( !$this->mPage->exists() ) {
 						wfDebug( __METHOD__ . ": showing missing article\n" );
 						$this->showMissingArticle();
+						$this->mPage->doViewUpdates( $user );
 						wfProfileOut( __METHOD__ );
 						return;
 					}
