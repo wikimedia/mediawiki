@@ -745,46 +745,45 @@ class SwiftFileBackend extends FileBackendStore {
 		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
 		// Blindly create tmp files and stream to them, catching any exception if the file does
 		// not exist. Doing stats here is useless and will loop infinitely in addMissingMetadata().
-		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
-			$reqs = array(); // (path => op)
+		$reqs = array(); // (path => op)
 
-			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
-				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
-				if ( $srcRel === null || !$auth ) {
-					$contents[$path] = false;
-					continue;
-				}
+		foreach ( $params['srcs'] as $path ) { // each path in this concurrent batch
+			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+			if ( $srcRel === null || !$auth ) {
+				$contents[$path] = false;
+				continue;
+			}
+			$data = false;
+			// Create a new temporary memory file...
+			$handle = fopen( 'php://temp', 'wb' );
+			if ( $handle ) {
+				$reqs[$path] = array(
+					'method'  => 'GET',
+					'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
+					'headers' => $this->authTokenHeaders( $auth )
+						+ $this->headersFromParams( $params ),
+					'stream'  => $handle,
+				);
+			} else {
 				$data = false;
-				// Create a new temporary memory file...
-				$handle = fopen( 'php://temp', 'wb' );
-				if ( $handle ) {
-					$reqs[$path] = array(
-						'method'  => 'GET',
-						'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
-						'headers' => $this->authTokenHeaders( $auth )
-							+ $this->headersFromParams( $params ),
-						'stream'  => $handle,
-					);
-				} else {
-					$data = false;
-				}
-				$contents[$path] = $data;
 			}
+			$contents[$path] = $data;
+		}
 
-			$reqs = $this->http->runMulti( $reqs );
-			foreach ( $reqs as $path => $op ) {
-				list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
-				if ( $rcode >= 200 && $rcode <= 299 ) {
-					rewind( $op['stream'] ); // start from the beginning
-					$contents[$path] = stream_get_contents( $op['stream'] );
-				} elseif ( $rcode === 404 ) {
-					$contents[$path] = false;
-				} else {
-					$this->onError( null, __METHOD__,
-						array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
-				}
-				fclose( $op['stream'] ); // close open handle
+		$opts = array( 'maxConns' => $params['concurrency'] );
+		$reqs = $this->http->runMulti( $reqs, $opts );
+		foreach ( $reqs as $path => $op ) {
+			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
+			if ( $rcode >= 200 && $rcode <= 299 ) {
+				rewind( $op['stream'] ); // start from the beginning
+				$contents[$path] = stream_get_contents( $op['stream'] );
+			} elseif ( $rcode === 404 ) {
+				$contents[$path] = false;
+			} else {
+				$this->onError( null, __METHOD__,
+					array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
 			}
+			fclose( $op['stream'] ); // close open handle
 		}
 
 		return $contents;
@@ -1064,53 +1063,52 @@ class SwiftFileBackend extends FileBackendStore {
 		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
 		// Blindly create tmp files and stream to them, catching any exception if the file does
 		// not exist. Doing a stat here is useless causes infinite loops in addMissingMetadata().
-		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
-			$reqs = array(); // (path => op)
+		$reqs = array(); // (path => op)
 
-			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
-				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
-				if ( $srcRel === null || !$auth ) {
-					$tmpFiles[$path] = null;
-					continue;
-				}
-				$tmpFile = null;
-				// Get source file extension
-				$ext = FileBackend::extensionFromPath( $path );
-				// Create a new temporary file...
-				$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
-				if ( $tmpFile ) {
-					$handle = fopen( $tmpFile->getPath(), 'wb' );
-					if ( $handle ) {
-						$reqs[$path] = array(
-							'method'  => 'GET',
-							'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
-							'headers' => $this->authTokenHeaders( $auth )
-								+ $this->headersFromParams( $params ),
-							'stream'  => $handle,
-						);
-					} else {
-						$tmpFile = null;
-					}
-				}
-				$tmpFiles[$path] = $tmpFile;
+		foreach ( $params['srcs'] as $path ) { // each path in this concurrent batch
+			list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+			if ( $srcRel === null || !$auth ) {
+				$tmpFiles[$path] = null;
+				continue;
 			}
-
-			$reqs = $this->http->runMulti( $reqs );
-			foreach ( $reqs as $path => $op ) {
-				list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
-				fclose( $op['stream'] ); // close open handle
-				if ( $rcode >= 200 && $rcode <= 299
-					// double check that the disk is not full/broken
-					&& $tmpFiles[$path]->getSize() == $rhdrs['content-length']
-				) {
-					// good
-				} elseif ( $rcode === 404 ) {
-					$tmpFiles[$path] = false;
+			$tmpFile = null;
+			// Get source file extension
+			$ext = FileBackend::extensionFromPath( $path );
+			// Create a new temporary file...
+			$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+			if ( $tmpFile ) {
+				$handle = fopen( $tmpFile->getPath(), 'wb' );
+				if ( $handle ) {
+					$reqs[$path] = array(
+						'method'  => 'GET',
+						'url'     => $this->storageUrl( $auth, $srcCont, $srcRel ),
+						'headers' => $this->authTokenHeaders( $auth )
+							+ $this->headersFromParams( $params ),
+						'stream'  => $handle,
+					);
 				} else {
-					$tmpFiles[$path] = null;
-					$this->onError( null, __METHOD__,
-						array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
+					$tmpFile = null;
 				}
+			}
+			$tmpFiles[$path] = $tmpFile;
+		}
+
+		$opts = array( 'maxConns' => $params['concurrency'] );
+		$reqs = $this->http->runMulti( $reqs, $opts );
+		foreach ( $reqs as $path => $op ) {
+			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $op['response'];
+			fclose( $op['stream'] ); // close open handle
+			if ( $rcode >= 200 && $rcode <= 299
+				// double check that the disk is not full/broken
+				&& $tmpFiles[$path]->getSize() == $rhdrs['content-length']
+			) {
+				// good
+			} elseif ( $rcode === 404 ) {
+				$tmpFiles[$path] = false;
+			} else {
+				$tmpFiles[$path] = null;
+				$this->onError( null, __METHOD__,
+					array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
 			}
 		}
 
