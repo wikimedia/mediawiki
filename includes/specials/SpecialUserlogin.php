@@ -444,12 +444,22 @@ class LoginForm extends SpecialPage {
 		$u->setRealName( $this->mRealName );
 
 		$abortError = '';
-		if ( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+		$abortStatus = null;
+		if ( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			$abortError = new RawMessage( $abortError );
-			$abortError->text();
-			return Status::newFatal( $abortError );
+			if ( $abortStatus === null ) {
+				// Report back the old string as a raw message status.
+				// Beware this doesn't report properly back in API results
+				// though it works ok for the web UI.
+				$abortError = new RawMessage( $abortError );
+				$abortError->text();
+				return Status::newFatal( $abortError );
+			} else {
+				// For MediaWiki 1.23+ and updated hooks, return the Status object
+				// returned from the hook.
+				return $abortStatus;
+			}
 		}
 
 		// Hook point to check for exempt from account creation throttle
