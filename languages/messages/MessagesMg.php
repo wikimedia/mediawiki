@@ -221,7 +221,7 @@ $messages = array(
 # User preference toggles
 'tog-underline' => 'Hanipika ny rohy:',
 'tog-justify' => 'Hanitsy ny andiany',
-'tog-hideminor' => "Hanitsika ny fiovana madinika ao amin'ny fanovana farany",
+'tog-hideminor' => "Hanitsika ny fiovana madinika ao amin'ny fiovana farany",
 'tog-hidepatrolled' => "Hanitrika ny fiovana voaara-maso ao amin'ny fiovana farany",
 'tog-newpageshidepatrolled' => "Hanitsika ny pejy voaara-maso ao amin'ny pejy vaovao",
 'tog-extendwatchlist' => 'Hanitatra ny lisitra fanaraham-pejy mba haneho ny fanovana rehetra fa tsy ny vaovao indrindra fotsiny',

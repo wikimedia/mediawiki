@@ -517,7 +517,7 @@ $messages = array(
 'category-file-count-limited' => '以下{{PLURAL:$1|文件|$1个文件}}属于当前分类。',
 'listingcontinuesabbrev' => '续',
 'index-category' => '可索引页面',
-'noindex-category' => '不可索引页面',
+'noindex-category' => '禁止索引的页面',
 'broken-file-category' => '有受损文件链接的页面',
 'categoryviewer-pagedlinks' => '（$1）（$2）',
 
