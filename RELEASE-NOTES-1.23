@@ -75,6 +75,10 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* Added the NestedMenuParser class to allow skins to turn interface messages
+  formatted similarily to MediaWiki:Sidebar into nested navigation menus.
+  This allows third-party skins to create navigation menus similar to those
+  found on various custom WordPress themes.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
