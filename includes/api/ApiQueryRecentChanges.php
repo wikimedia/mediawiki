@@ -145,7 +145,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
-		 * 		AND rc_deleted = 0
 		 */
 		$this->addTables( 'recentchanges' );
 		$index = array( 'recentchanges' => 'rc_timestamp' ); // May change
@@ -176,7 +175,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		) );
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
-		$this->addWhereFld( 'rc_deleted', 0 );
 
 		if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
@@ -326,6 +324,36 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
+		// Paranoia: avoid brute force searches (bug 17342)
+		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = Revision::DELETED_USER;
+			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->addWhere( $this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" );
+			}
+		}
+		if ( $this->getRequest()->getCheck( 'namespace' ) ) {
+			// LogPage::DELETED_ACTION hides the affected page, too.
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = LogPage::DELETED_ACTION;
+			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->addWhere( $this->getDB()->makeList( array(
+					'rc_type != ' . RC_LOG,
+					$this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
+				), LIST_OR ) );
+			}
+		}
+
 		$this->token = $params['token'];
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addOption( 'USE INDEX', $index );
@@ -389,6 +417,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	public function extractRowInfo( $row ) {
 		/* Determine the title of the page that has been changed. */
 		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+		$user = $this->getUser();
 
 		/* Our output data. */
 		$vals = array();
@@ -419,32 +448,50 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals['type'] = $type;
 		}
 
+		$anyHidden = false;
+
 		/* Create a new entry in the result for the title. */
-		if ( $this->fld_title ) {
-			ApiQueryBase::addTitleInfo( $vals, $title );
+		if ( $this->fld_title || $this->fld_ids ) {
+			if ( $type === RC_LOG && ( $row->rc_deleted & LogPage::DELETED_ACTION ) ) {
+				$vals['actionhidden'] = '';
+				$anyHidden = true;
+			}
+			if ( $type !== RC_LOG ||
+				LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user )
+			) {
+				if ( $this->fld_title ) {
+					ApiQueryBase::addTitleInfo( $vals, $title );
+				}
+				if ( $this->fld_ids ) {
+					$vals['pageid'] = intval( $row->rc_cur_id );
+					$vals['revid'] = intval( $row->rc_this_oldid );
+					$vals['old_revid'] = intval( $row->rc_last_oldid );
+				}
+			}
 		}
 
-		/* Add ids, such as rcid, pageid, revid, and oldid to the change's info. */
 		if ( $this->fld_ids ) {
 			$vals['rcid'] = intval( $row->rc_id );
-			$vals['pageid'] = intval( $row->rc_cur_id );
-			$vals['revid'] = intval( $row->rc_this_oldid );
-			$vals['old_revid'] = intval( $row->rc_last_oldid );
 		}
 
-		/* Add user data and 'anon' flag, if use is anonymous. */
+		/* Add user data and 'anon' flag, if user is anonymous. */
 		if ( $this->fld_user || $this->fld_userid ) {
-
-			if ( $this->fld_user ) {
-				$vals['user'] = $row->rc_user_text;
+			if ( $row->rc_deleted & Revision::DELETED_USER ) {
+				$vals['userhidden'] = '';
+				$anyHidden = true;
 			}
+			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_USER, $user ) ) {
+				if ( $this->fld_user ) {
+					$vals['user'] = $row->rc_user_text;
+				}
 
-			if ( $this->fld_userid ) {
-				$vals['userid'] = $row->rc_user;
-			}
+				if ( $this->fld_userid ) {
+					$vals['userid'] = $row->rc_user;
+				}
 
-			if ( !$row->rc_user ) {
-				$vals['anon'] = '';
+				if ( !$row->rc_user ) {
+					$vals['anon'] = '';
+				}
 			}
 		}
 
@@ -473,12 +520,20 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		/* Add edit summary / log summary. */
-		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
-			$vals['comment'] = $row->rc_comment;
-		}
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+			if ( $row->rc_deleted & Revision::DELETED_COMMENT ) {
+				$vals['commenthidden'] = '';
+				$anyHidden = true;
+			}
+			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_COMMENT, $user ) ) {
+				if ( $this->fld_comment && isset( $row->rc_comment ) ) {
+					$vals['comment'] = $row->rc_comment;
+				}
 
-		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-			$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+				if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
+					$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+				}
+			}
 		}
 
 		if ( $this->fld_redirect ) {
@@ -492,23 +547,29 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['patrolled'] = '';
 		}
 
-		if ( $this->fld_patrolled && ChangesList::isUnpatrolled( $row, $this->getUser() ) ) {
+		if ( $this->fld_patrolled && ChangesList::isUnpatrolled( $row, $user ) ) {
 			$vals['unpatrolled'] = '';
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
-			$vals['logid'] = intval( $row->rc_logid );
-			$vals['logtype'] = $row->rc_log_type;
-			$vals['logaction'] = $row->rc_log_action;
-			$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
-			ApiQueryLogEvents::addLogParams(
-				$this->getResult(),
-				$vals,
-				$logEntry->getParameters(),
-				$logEntry->getType(),
-				$logEntry->getSubtype(),
-				$logEntry->getTimestamp()
-			);
+			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
+				$vals['actionhidden'] = '';
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user ) ) {
+				$vals['logid'] = intval( $row->rc_logid );
+				$vals['logtype'] = $row->rc_log_type;
+				$vals['logaction'] = $row->rc_log_action;
+				$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
+				ApiQueryLogEvents::addLogParams(
+					$this->getResult(),
+					$vals,
+					$logEntry->getParameters(),
+					$logEntry->getType(),
+					$logEntry->getSubtype(),
+					$logEntry->getTimestamp()
+				);
+			}
 		}
 
 		if ( $this->fld_tags ) {
@@ -522,15 +583,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
-			// The RevDel check should currently never pass due to the
-			// rc_deleted = 0 condition in the WHERE clause, but in case that
-			// ever changes we check it here too.
 			if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 				$vals['sha1hidden'] = '';
-			} elseif ( $row->rev_sha1 !== '' ) {
-				$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
-			} else {
-				$vals['sha1'] = '';
+				$anyHidden = true;
+			}
+			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_TEXT, $user ) ) {
+				if ( $row->rev_sha1 !== '' ) {
+					$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+				} else {
+					$vals['sha1'] = '';
+				}
 			}
 		}
 
@@ -545,6 +607,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					$vals[$t . 'token'] = $val;
 				}
 			}
+		}
+
+		if ( $anyHidden && ( $row->rc_deleted & Revision::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = '';
 		}
 
 		return $vals;
@@ -583,6 +649,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( isset( $params['token'] ) ) {
+			return 'private';
+		}
+		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
 		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
