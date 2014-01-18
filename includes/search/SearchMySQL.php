@@ -28,17 +28,9 @@
  * Search engine hook for MySQL 4+
  * @ingroup Search
  */
-class SearchMySQL extends SearchEngine {
+class SearchMySQL extends SearchDatabase {
 	var $strictMatching = true;
 	static $mMinSearchLength;
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseMysql: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
 
 	/**
 	 * Parse the user's query and transform it into an SQL fragment which will

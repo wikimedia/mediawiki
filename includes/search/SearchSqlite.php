@@ -25,21 +25,7 @@
  * Search engine hook for SQLite
  * @ingroup Search
  */
-class SearchSqlite extends SearchEngine {
-
-	/**
-	 * @var DatabaseSqlite
-	 */
-	protected $db;
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseSqlite: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
+class SearchSqlite extends SearchDatabase {
 	/**
 	 * Whether fulltext search is supported by current schema
 	 * @return Boolean
