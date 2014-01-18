@@ -132,34 +132,37 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		$feedType = $request->getVal( 'feed' );
+
+		$feedParams = array(
+			'action' => 'feedcontributions',
+			'user' => $target,
+		);
+		if ( $this->opts['topOnly'] ) {
+			$feedParams['toponly'] = true;
+		}
+		if ( $this->opts['deletedOnly'] ) {
+			$feedParams['deletedonly'] = true;
+		}
+		if ( $this->opts['tagfilter'] !== '' ) {
+			$feedParams['tagfilter'] = $this->opts['tagfilter'];
+		}
+		if ( $this->opts['namespace'] !== '' ) {
+			$feedParams['namespace'] = $this->opts['namespace'];
+		}
+		// Don't use year and month for the feed URL, but pass them on if
+		// we redirect to API (if $feedType is specified)
+		if ( $feedType && $this->opts['year'] !== null ) {
+			$feedParams['year'] = $this->opts['year'];
+		}
+		if ( $feedType && $this->opts['month'] !== null ) {
+			$feedParams['month'] = $this->opts['month'];
+		}
+
 		if ( $feedType ) {
 			// Maintain some level of backwards compatability
 			// If people request feeds using the old parameters, redirect to API
-			$apiParams = array(
-				'action' => 'feedcontributions',
-				'feedformat' => $feedType,
-				'user' => $target,
-			);
-			if ( $this->opts['topOnly'] ) {
-				$apiParams['toponly'] = true;
-			}
-			if ( $this->opts['deletedOnly'] ) {
-				$apiParams['deletedonly'] = true;
-			}
-			if ( $this->opts['tagfilter'] !== '' ) {
-				$apiParams['tagfilter'] = $this->opts['tagfilter'];
-			}
-			if ( $this->opts['namespace'] !== '' ) {
-				$apiParams['namespace'] = $this->opts['namespace'];
-			}
-			if ( $this->opts['year'] !== null ) {
-				$apiParams['year'] = $this->opts['year'];
-			}
-			if ( $this->opts['month'] !== null ) {
-				$apiParams['month'] = $this->opts['month'];
-			}
-
-			$url = wfAppendQuery( wfScript( 'api' ), $apiParams );
+			$feedParams['feedformat'] = $feedType;
+			$url = wfAppendQuery( wfScript( 'api' ), $feedParams );
 
 			$out->redirect( $url, '301' );
 
@@ -167,7 +170,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		// Add RSS/atom links
-		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
+		$this->addFeedLinks( $feedParams );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
 			if ( !$this->including() ) {
