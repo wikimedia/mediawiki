@@ -668,6 +668,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'cannotdelete' => 'Lehekülge või faili "$1" ei saa kustutada.
 Võimalik, et keegi on selle juba kustutanud.',
 'cannotdelete-title' => 'Lehekülge "$1" ei saa kustutada',
+'no-null-revision' => 'Lehekülje "$1" nullredaktsiooni ei õnnestunud teha.',
 'badtitle' => 'Vigane pealkiri',
 'badtitletext' => 'Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
 See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.',
@@ -1130,6 +1131,8 @@ See on juba olemas.',
 'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1i.',
 'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
 Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "Toimetamine" keelata.',
+'editpage-notsupportedcontentformat-title' => 'Sisuvormingu tugi puudub',
+'editpage-notsupportedcontentformat-text' => 'Sisumudelil $2 puudub sisuvormingu $1 tugi.',
 
 # Content models
 'content-model-wikitext' => 'vikitekst',
@@ -1152,6 +1155,7 @@ Need argumendid on välja jäetud.",
 'node-count-exceeded-warning' => 'Lehekülg ületas sõlmemäära.',
 'expansion-depth-exceeded-category' => 'Ületatud hõrendussügavusega leheküljed',
 'expansion-depth-exceeded-warning' => 'Lehekülg ületas hõrendussügavuse.',
+'converter-manual-rule-error' => 'Tõrge keelevariandi käsivahetusreeglis',
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
@@ -1375,6 +1379,7 @@ Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin 
 'search-result-score' => 'Vastavus: $1%',
 'search-redirect' => '(ümbersuunamine $1)',
 'search-section' => '(alaosa $1)',
+'search-file-match' => '(vastab faili sisule)',
 'search-suggest' => 'Kas mõtlesid: $1',
 'search-interwiki-caption' => 'Sõsarprojektid',
 'search-interwiki-default' => '$1 tulemused:',
@@ -1921,6 +1926,7 @@ Selle turvalisust ei saa kontrollida.',
 'uploadstash-badtoken' => 'Toiming ebaõnnestus; võib-olla redigeerimisloa aegumise tõttu. Proovi uuesti.',
 'uploadstash-errclear' => 'Failide kustutamine ebaõnnestus.',
 'uploadstash-refresh' => 'Värskenda faililoendit',
+'invalid-chunk-offset' => 'Tüki vigane nihe',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Juurdepääs keelatud',
@@ -2771,6 +2777,7 @@ See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'sorbsreason' => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.',
 'sorbs_create_account_reason' => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.
 Sa ei saa kasutajakontot luua.',
+'xffblockreason' => 'X-Forwarded-Fori päises esinev IP-aadress, mis kuulub kas sulle või proksiserverile, mida kasutad, on blokeeritud. Blokeerimise algne põhjus oli: $1',
 'cant-see-hidden-user' => 'Kasutaja, keda blokeerida üritad, on juba blokeeritud ning peidetud. Kuna sul pole õigust blokeerida kasutajanimesid, peites need avalikkuse eest, ei saa sa selle kasutaja blokeeringut vaadata ega muuta.',
 'ipbblocked' => 'Sa ei saa teisi blokeerida ega nende blokeeringuid eemaldada, sest oled ise blokeeritud.',
 'ipbnounblockself' => 'Sul pole lubatud enda blokeeringut eemaldada.',
@@ -3748,6 +3755,8 @@ Selle kinnituskoodi aegumistähtaeg on $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Vikidevaheline mallina kasutamine on keelatud]',
+'scarytranscludefailed' => '[Malli $1 hankimine ebaõnnestus]',
+'scarytranscludefailed-httpstatus' => '[Malli $1 hankimine ebaõnnestus: HTTP $2]',
 'scarytranscludetoolong' => '[URL on liiga pikk]',
 
 # Delete conflict
@@ -4140,8 +4149,10 @@ Samuti hõrendab see parserifunktsioonid nagu
 'expand_templates_ok' => 'Hõrenda',
 'expand_templates_remove_comments' => 'Eemalda selgitavad märkused',
 'expand_templates_remove_nowiki' => 'Ära näita tulemuses <nowiki>-silte',
-'expand_templates_generate_xml' => 'Näita XML sõelumispuud',
+'expand_templates_generate_xml' => 'Näita XML-liigenduspuud',
 'expand_templates_generate_rawhtml' => 'Näita toor-HTMLi',
 'expand_templates_preview' => 'Eelvaade',
 
+# Unknown messages
+'uploadinvalidxml' => 'Üleslaaditud failis sisalduvat XMLi ei õnnestunud liigendada.',
 );

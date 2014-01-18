@@ -852,8 +852,8 @@ Skriv inn en fungerende e-postadresse eller tøm feltet.',
 
 Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'usernamehasherror' => 'Brukernavn kan ikke inneholde nummertegn.',
-'login-throttled' => 'Du har nylig prøvd for mange ganger å logge inn.
-Vær vennlig å vente $1 før du prøver igjen.',
+'login-throttled' => 'Du har prøvd å logge inn for mange ganger.
+Vent $1 før du prøver på nytt.',
 'login-abort-generic' => 'Innleggingen ble avbrutt.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',

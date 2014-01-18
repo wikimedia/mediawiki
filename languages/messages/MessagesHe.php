@@ -1464,6 +1464,7 @@ $1",
 'search-result-score' => 'רלוונטיוּת: $1%',
 'search-redirect' => '(הפניה $1)',
 'search-section' => '(פסקה $1)',
+'search-file-match' => '(התאמה בתוכן הקובץ)',
 'search-suggest' => 'האם התכוונת ל: $1',
 'search-interwiki-caption' => 'מיזמי אחות',
 'search-interwiki-default' => 'תוצאות ב{{GRAMMAR:תחילית|$1}}:',
@@ -2580,7 +2581,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => 'עריכת סיבות המחיקה',
 'delete-toobig' => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקת דפים כאלה הוגבלה כדי למנוע פגיעה בביצועי האתר.',
 'delete-warning-toobig' => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקה שלו עלולה להפריע לפעולות בבסיס הנתונים; אנא שקלו שנית את המחיקה.',
-'deleting-backlinks-warning' => "'''אזהרה:''' דפים אחרים מקשרים לדף שאתם עומדים למחוק.",
+'deleting-backlinks-warning' => "'''אזהרה:''' דפים אחרים מקשרים לדף שאתם עומדים למחוק או מכלילים אותו.",
 
 # Rollback
 'rollback' => 'שחזור עריכות',

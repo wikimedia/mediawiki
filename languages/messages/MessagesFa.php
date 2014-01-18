@@ -1553,6 +1553,7 @@ $1",
 'search-result-score' => 'ارتباط: $1٪',
 'search-redirect' => '(تغییرمسیر $1)',
 'search-section' => '(بخش $1)',
+'search-file-match' => '(تشابه محتوی پرونده)',
 'search-suggest' => 'آیا منظورتان این بود: $1',
 'search-interwiki-caption' => 'پروژه‌های خواهر',
 'search-interwiki-default' => '$1 نتیجه:',
@@ -2664,7 +2665,7 @@ $PAGEINTRO $NEWPAGE
 'delete-warning-toobig' => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
 حذف آن ممکن است که عملکرد پایگاه دادهٔ {{SITENAME}} را مختل کند;
 با احتیاط ادامه دهید.',
-'deleting-backlinks-warning' => "''' هشدار:''' صفحات دیگر پیوند به صفحه شما  درباره حذف هستند.",
+'deleting-backlinks-warning' => "''' هشدار:''' صفحات دیگر پیوند یا تراگنجایش به صفحه شما  برای حذف هستند.",
 
 # Rollback
 'rollback' => 'واگردانی ویرایش‌ها',

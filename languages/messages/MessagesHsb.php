@@ -1208,6 +1208,7 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-result-score' => 'Relewanca: $1 %',
 'search-redirect' => '(Daleposrědkowanje $1)',
 'search-section' => '(wotrězk $1)',
+'search-file-match' => '(wotpowěduje datajowemu wobsahej)',
 'search-suggest' => 'Měnješe ty $1?',
 'search-interwiki-caption' => 'Sotrowske projekty',
 'search-interwiki-default' => '$1 wuslědki:',
@@ -2303,7 +2304,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'delete-edit-reasonlist' => 'Přičiny za wušmórnjenje wobdźěłać',
 'delete-toobig' => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje tajkich stronow bu wobmjezowane, zo by připadne přetorhnjenje {{SITENAME}} wobešło.',
 'delete-warning-toobig' => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje móže operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
-'deleting-backlinks-warning' => "'''Warnowanje:''' Druhe strony wotkazuja k stronje, kotruž chceš zhašeć.",
+'deleting-backlinks-warning' => "'''Warnowanje:''' Druhe strony wotkazuja k stronje abo strona je druhdźe zapřijata, kotruž chceš zhašeć.",
 
 # Rollback
 'rollback' => 'Změny cofnyć',

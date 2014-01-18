@@ -1385,6 +1385,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'search-result-score' => 'Relevanță: $1%',
 'search-redirect' => '(redirecționare către $1)',
 'search-section' => '(secțiunea $1)',
+'search-file-match' => '(se regăsește în conținutul fișierului)',
 'search-suggest' => 'V-ați referit la: $1',
 'search-interwiki-caption' => 'Proiecte înrudite',
 'search-interwiki-default' => '$1 rezultate:',
@@ -2490,7 +2491,7 @@ Accesați $2 pentru o listă cu elementele recent șterse.',
 'delete-warning-toobig' => 'Această pagină are un istoric al modificărilor mult prea mare, cu mai mult de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}.
 Ștergerea sa poate afecta baza de date a sitului {{SITENAME}};
 acționați cu precauție.',
-'deleting-backlinks-warning' => "'''Atenție:''' Alte pagini se leagă de pagina pe care doriți să o ștergeți.",
+'deleting-backlinks-warning' => "'''Atenție:''' Alte pagini se leagă sau sunt transcluse din pagina pe care doriți să o ștergeți.",
 
 # Rollback
 'rollback' => 'Editări de revenire',

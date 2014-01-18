@@ -1503,6 +1503,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-result-score' => 'Relevanz: $1 %',
 'search-redirect' => '(Weiterleitung von „$1“)',
 'search-section' => '(Abschnitt $1)',
+'search-file-match' => '(treffende Dateiinhalte)',
 'search-suggest' => 'Meintest du „$1“?',
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 Ergebnisse:',
@@ -2598,7 +2599,7 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => 'Löschgründe bearbeiten',
 'delete-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
 'delete-warning-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
-'deleting-backlinks-warning' => "'''Warnung:''' Es verweisen noch andere Seiten auf die zu löschende Seite.",
+'deleting-backlinks-warning' => "'''Warnung:''' Es verweisen noch andere Seiten auf die zu löschende Seite oder diese Seite ist noch woanders eingebunden.",
 
 # Rollback
 'rollback' => 'Zurücksetzen der Änderungen',

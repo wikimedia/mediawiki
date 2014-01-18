@@ -2729,7 +2729,7 @@ Razlog blokiranja: „$2“',
 Istorija blokiranja se nalazi ispod:',
 'blocklog-showsuppresslog' => '{{GENDER:|Ovaj korisnik je ranije blokiran i sakriven|Ova korisnica je ranije blokirana i sakrivena|Ovaj korisnik je ranije blokiran i sakriven}}.
 Istorija sakrivanja se nalazi ispod:',
-'blocklogentry' => '{{GENDER:|je blokirao|je blokirala}} [[$1]] s rokom isticanja od $2 $3',
+'blocklogentry' => 'je blokirao [[$1]] s rokom isticanja od $2 $3',
 'reblock-logentry' => '{{GENDER:|je promenio|je promenila|je promenio}} podešavanja za blokiranje {{GENDER:$1|korisnika|korisnice|korisnika}} [[$1]] s rokom isteka od $2 ($3)',
 'blocklogtext' => 'Ovo je dnevnik blokiranja i deblokiranja korisnika.
 Automatski blokirane IP adrese nisu navedene.

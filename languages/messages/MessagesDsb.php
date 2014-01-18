@@ -1206,6 +1206,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-result-score' => 'Relewanca: $1 %',
 'search-redirect' => '(pśesměrowanje $1)',
 'search-section' => '(sekcija $1)',
+'search-file-match' => '(wótpowědujo datajowemu wopśimjeśeju)',
 'search-suggest' => 'Měnjašo $1?',
 'search-interwiki-caption' => 'Sotšine projekty',
 'search-interwiki-default' => '$1 wuslědki:',
@@ -2297,7 +2298,7 @@ Pšašanja a dalšna pomoc:
 'delete-toobig' => 'Toś ten bok ma z wěcej nježli $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujku historiju. Lašowanje takich bokow bu wobgranicowane, aby wobškoźenju {{GRAMMAR:genitiw|{{SITENAME}}}} z pśigódy zajźowało.',
 'delete-warning-toobig' => 'Toś ten bok ma z wěcej ako $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujke stawizny. Jich wulašowanje móžo źěło datoweje banki na {{SITENAME}} kazyś;
 póstupujśo z glědanim.',
-'deleting-backlinks-warning' => "'''Warnowanje:''' Druge boki wótkazuju k bokoju, kótaryž coš wulašowaś.",
+'deleting-backlinks-warning' => "'''Warnowanje:''' Druge boki wótkazuju k bokoju abo bok jo hynźi zapśěgnjony, kótaryž coš wulašowaś.",
 
 # Rollback
 'rollback' => 'Wobźěłanja slědk wześ',

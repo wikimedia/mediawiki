@@ -58,6 +58,7 @@
  * @author Iniquity
  * @author Iwan Novirion
  * @author Jon Harald Søby
+ * @author Joseph
  * @author Karduelis
  * @author Kazu89
  * @author Kghbln

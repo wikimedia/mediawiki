@@ -1034,6 +1034,7 @@ Izgleda, da je bila izbrisana.',
 'content-not-allowed-here' => 'Vsebina »$1« ni dovoljena na strani [[$2]]',
 'editwarning-warning' => 'Če zapustite stran, boste morda izgubili vse spremembe, ki ste jih naredili.
 Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »Urejanje« v svojih nastavitvah.',
+'editpage-notsupportedcontentformat-title' => 'Oblika vsebine ni podprta',
 
 # Content models
 'content-model-wikitext' => 'wikibesedilo',
@@ -1427,8 +1428,8 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'prefs-tabs-navigation-hint' => 'Namig: Za krmarjenje med zavihki na seznamu zavihkov lahko uporabite levo in desno smerno tipko.',
 
 # User preference: email validation using jQuery
-'email-address-validity-valid' => 'Izgleda veljaven',
-'email-address-validity-invalid' => 'Obvezen je veljaven naslov!',
+'email-address-validity-valid' => 'E-poštni naslov je videti veljaven',
+'email-address-validity-invalid' => 'Vnesite veljaven e-poštni naslov',
 
 # User rights
 'userrights' => 'Upravljanje s pravicami uporabnikov',
@@ -4113,4 +4114,6 @@ Pravzaprav razširi skoraj vse v dvojnih zavitih oklepajih.',
 'expand_templates_generate_rawhtml' => 'Prikaži surovi HTML',
 'expand_templates_preview' => 'Predogled',
 
+# Unknown messages
+'uploadinvalidxml' => 'XML v naloženi datoteki ne moremo razčleniti.',
 );

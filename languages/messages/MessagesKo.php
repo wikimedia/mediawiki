@@ -1472,6 +1472,7 @@ $1",
 'search-result-score' => '유사도: $1%',
 'search-redirect' => '($1에서 넘어옴)',
 'search-section' => '($1 문단)',
+'search-file-match' => '(내용이 일치하는 파일 있음)',
 'search-suggest' => '$1 문서를 찾고 있으신가요?',
 'search-interwiki-caption' => '자매 프로젝트',
 'search-interwiki-default' => '$1 결과:',
@@ -2600,7 +2601,7 @@ $UNWATCHURL
 'delete-warning-toobig' => '이 문서에는 {{PLURAL:$1|편집 역사}}가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있습니다.
 주의해 주세요.',
-'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서로의 링크를 가진 다른 문서가 있습니다.",
+'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서로 연결되거나 삽입된 다른 문서가 있습니다.",
 
 # Rollback
 'rollback' => '편집 되돌리기',
