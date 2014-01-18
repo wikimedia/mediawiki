@@ -50,6 +50,10 @@
 	path = extensions/CodeEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeEditor.git
 	branch = REL1_22
+[submodule "extensions/Collection"]
+	path = extensions/Collection
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Collection.git
+	branch = REL1_22
 [submodule "extensions/Comments"]
 	path = extensions/Comments
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Comments.git
@@ -154,6 +158,10 @@
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git
 	branch = REL1_22
+	[submodule "extensions/PdfBook"]
+	path = extensions/PdfBook
+	url = https://github.com/wikimedia/mediawiki-extensions-PdfBook.git
+	branch = master
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Poem.git
@@ -254,10 +262,3 @@
 [submodule "skins/monaco"]
 	path = skins/monaco
 	url = https://github.com/dantman/monaco-port.git
-
-[submodule "extensions/PdfBook"]
-	path = extensions/PdfBook
-	url = https://github.com/wikimedia/mediawiki-extensions-PdfBook.git
-[submodule "extensions/Collection"]
-	path = extensions/Collection
-	url = https://github.com/wikimedia/mediawiki-extensions-Collection.git
