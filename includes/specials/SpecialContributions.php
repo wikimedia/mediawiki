@@ -130,35 +130,35 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['month'] = $request->getIntOrNull( 'month' );
 		}
 
+		$feedParams = array(
+			'action' => 'feedcontributions',
+			'user' => $target,
+		);
+		if ( $this->opts['topOnly'] ) {
+			$feedParams['toponly'] = true;
+		}
+		if ( $this->opts['deletedOnly'] ) {
+			$feedParams['deletedonly'] = true;
+		}
+		if ( $this->opts['tagfilter'] !== '' ) {
+			$feedParams['tagfilter'] = $this->opts['tagfilter'];
+		}
+		if ( $this->opts['namespace'] !== '' ) {
+			$feedParams['namespace'] = $this->opts['namespace'];
+		}
+		if ( $this->opts['year'] !== null ) {
+			$feedParams['year'] = $this->opts['year'];
+		}
+		if ( $this->opts['month'] !== null ) {
+			$feedParams['month'] = $this->opts['month'];
+		}
+
 		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
 			// Maintain some level of backwards compatability
 			// If people request feeds using the old parameters, redirect to API
-			$apiParams = array(
-				'action' => 'feedcontributions',
-				'feedformat' => $feedType,
-				'user' => $target,
-			);
-			if ( $this->opts['topOnly'] ) {
-				$apiParams['toponly'] = true;
-			}
-			if ( $this->opts['deletedOnly'] ) {
-				$apiParams['deletedonly'] = true;
-			}
-			if ( $this->opts['tagfilter'] !== '' ) {
-				$apiParams['tagfilter'] = $this->opts['tagfilter'];
-			}
-			if ( $this->opts['namespace'] !== '' ) {
-				$apiParams['namespace'] = $this->opts['namespace'];
-			}
-			if ( $this->opts['year'] !== null ) {
-				$apiParams['year'] = $this->opts['year'];
-			}
-			if ( $this->opts['month'] !== null ) {
-				$apiParams['month'] = $this->opts['month'];
-			}
-
-			$url = wfAppendQuery( wfScript( 'api' ), $apiParams );
+			$feedParams['feedformat'] = $feedType;
+			$url = wfAppendQuery( wfScript( 'api' ), $feedParams );
 
 			$out->redirect( $url, '301' );
 
@@ -166,7 +166,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		// Add RSS/atom links
-		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
+		$this->addFeedLinks( $feedParams );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
 			$out->addHTML( $this->getForm() );
