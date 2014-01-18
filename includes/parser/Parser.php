@@ -2095,7 +2095,7 @@ class Parser {
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( __METHOD__ . "-category" );
-					$s = rtrim( $s . "\n" ); # bug 87
+					$s = rtrim( $s , "\n" ); # bug 87
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
