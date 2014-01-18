@@ -278,6 +278,9 @@ changes to languages because of Bugzilla reports.
   table.mw-prefixindex-list-table to avoid duplicate ids when the special page
   is transcluded.
 * (bug 62198) window.$j has been deprecated.
+* Hook 'RedirectSpecialArticleRedirectParams' has been renamed to
+  'RedirectSpecialPageToPageRedirectParams' following the change of the name of
+  the associated class.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
@@ -316,6 +319,8 @@ changes to languages because of Bugzilla reports.
 * statsOutput to StatsOutput
 * textStatsOutput to TextStatsOutput
 * wikiStatsOutput to WikiStatsOutput
+* RedirectSpecialArticle to RedirectSpecialPageToPage
+* SpecialRedirectToSpecial to RedirectSpecialPageToSpecial
 
 ==== Removed methods ====
 * ApiBase::getValidNamespaces() (deprecated in 1.17)

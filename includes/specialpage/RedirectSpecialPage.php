@@ -90,7 +90,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 /**
  * @ingroup SpecialPage
  */
-abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
+abstract class RedirectSpecialPageToSpecial extends RedirectSpecialPage {
 	// @todo FIXME: Visibility must be declared
 	var $redirName, $redirSubpage;
 
@@ -113,6 +113,9 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 		}
 	}
 }
+
+// Old class name deprecated since 1.23
+class_alias( 'RedirectSpecialPageToSpecial', 'SpecialRedirectToSpecial' );
 
 /**
  * Superclass for any RedirectSpecialPage which redirects the user
@@ -164,16 +167,16 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  *
  * @par Hook extension:
  * Extensions can add to the redirect parameters list by using the hook
- * RedirectSpecialArticleRedirectParams
+ * RedirectSpecialPageToPageRedirectParams
  *
  * This hook allows extensions which add GET parameters like FlaggedRevs to
  * retain those parameters when redirecting using special pages.
  *
  * @par Hook extension example:
  * @code
- *	$wgHooks['RedirectSpecialArticleRedirectParams'][] =
- *		'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
- *	public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
+ *	$wgHooks['RedirectSpecialPageToPageRedirectParams'][] =
+ *		'MyExtensionHooks::onRedirectSpecialPageToPageRedirectParams';
+ *	public static function onRedirectSpecialPageToPageRedirectParams( &$redirectParams ) {
  *		$redirectParams[] = 'stable';
  *		return true;
  *	}
@@ -181,7 +184,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  *
  * @ingroup SpecialPage
  */
-abstract class RedirectSpecialArticle extends RedirectSpecialPage {
+abstract class RedirectSpecialPageToPage extends RedirectSpecialPage {
 	function __construct( $name ) {
 		parent::__construct( $name );
 		$redirectParams = array(
@@ -200,7 +203,11 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'ctype', 'maxage', 'smaxage',
 		);
 
-		wfRunHooks( "RedirectSpecialArticleRedirectParams", array( &$redirectParams ) );
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array( &$redirectParams ), '1.23' );
+		wfRunHooks( "RedirectSpecialPageToPageRedirectParams", array( &$redirectParams ) );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
 }
+
+// Old class name deprecated since 1.23
+class_alias( 'RedirectSpecialPageToPage', 'RedirectSpecialArticle' );

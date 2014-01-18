@@ -409,7 +409,7 @@ class SpecialListUsers extends IncludableSpecialPage {
  *
  * @ingroup SpecialPage
  */
-class SpecialListAdmins extends SpecialRedirectToSpecial {
+class SpecialListAdmins extends RedirectSpecialPageToSpecial {
 	function __construct() {
 		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
 	}
@@ -420,7 +420,7 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
  *
  * @ingroup SpecialPage
  */
-class SpecialListBots extends SpecialRedirectToSpecial {
+class SpecialListBots extends RedirectSpecialPageToSpecial {
 	function __construct() {
 		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
