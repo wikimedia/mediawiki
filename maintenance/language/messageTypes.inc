@@ -498,6 +498,8 @@ $wgOptionalMessages = array(
 	'limitreport-expensivefunctioncount-value',
 	'interlanguage-link-title',
 	'img-lang-opt',
+	'quotation-marks',
+	'recentchanges-legend-plusminus',
 );
 
 /** Exif messages, which may be set as optional in several checks, but are generally mandatory */
