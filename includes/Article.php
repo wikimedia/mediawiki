@@ -1612,7 +1612,8 @@ class Article implements Page {
 		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $this->getTitle() );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
-		if ( $this->getTitle()->getBacklinkCache()->hasLinks( 'pagelinks' ) ) {
+		$backlinkCache = $this->getTitle()->getBacklinkCache();
+		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'deleting-backlinks-warning' );
 		}

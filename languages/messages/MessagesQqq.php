@@ -5614,7 +5614,7 @@ See also:
 * $1 - the upper limit of number of revisions
 See also:
 * {{msg-mw|Delete-toobig}}',
-'deleting-backlinks-warning' => 'A warning shown when a page that is being deleted has links to it.',
+'deleting-backlinks-warning' => 'A warning shown when a page that is being deleted has at least one link to it or is transcluded in at least one page.',
 
 # Rollback
 'rollback' => '{{Identical|Rollback}}',
