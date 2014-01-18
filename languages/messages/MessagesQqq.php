@@ -6597,7 +6597,8 @@ See also:
 * {{msg-mw|Ip range toolarge}}',
 'ipb_expiry_invalid' => 'Used as error message in [[Special:Block]].',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
-'ipb_hide_invalid' => 'Used as error message in [[Special:Block]].',
+'ipb_hide_invalid' => 'Used as error message in [[Special:Block]].
+* $1 - Number of edits (Value of [[mw:Manual:$wgHideUserContribLimit]])',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'ipb-needreblock' => 'Used in [[Special:Block]].
 * $1 - target username',

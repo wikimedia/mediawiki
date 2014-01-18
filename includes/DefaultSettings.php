@@ -4556,6 +4556,15 @@ $wgAvailableRights = array();
 $wgDeleteRevisionsLimit = 0;
 
 /**
+ * The maximum number of edits a user can have and
+ * can still be hidden by users with the hideuser permission.
+ * This is limited for performance reason.
+ * Set to false to disable the limit.
+ * @since 1.23
+ */
+$wgHideUserContribLimit = 1000;
+
+/**
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires memcached
