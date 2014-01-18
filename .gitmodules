@@ -74,10 +74,6 @@
 	path = extensions/CSS
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CSS.git
 	branch = REL1_22
-[submodule "extensions/DataValues"]
-	path = extensions/DataValues
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DataValues.git
-	branch = REL1_22
 [submodule "extensions/Disambiguator"]
 	path = extensions/Disambiguator
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Disambiguator.git
