@@ -841,14 +841,14 @@ abstract class Skin extends ContextSource {
 			$out = $wgCopyrightIcon;
 		} elseif ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
+			$text = htmlspecialchars( $wgRightsText );
 
 			if ( $wgRightsUrl ) {
 				$url = htmlspecialchars( $wgRightsUrl );
-				$out .= '<a href="' . $url . '">';
+				$out .= '<a href="' . $url . '" title="' . $text . '">';
 			}
 
-			$text = htmlspecialchars( $wgRightsText );
-			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
+			$out .= '<span style="background-image:url(\'$icon\'); width:88px; height: 31px; display: block"></span>';
 
 			if ( $wgRightsUrl ) {
 				$out .= '</a>';
@@ -866,7 +866,7 @@ abstract class Skin extends ContextSource {
 		global $wgStylePath;
 
 		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
-		$text = '<a href="//www.mediawiki.org/"><img src="' . $url . '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
+		$text = '<a href="//www.mediawiki.org/" title="Powered by MediaWiki"><span style="background-image:url(\'' . $url . '\'); height:31px; width:88px; display: block"></span></a>';
 		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
 		return $text;
 	}
