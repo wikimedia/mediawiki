@@ -232,9 +232,7 @@ CREATE TABLE /*_*/page (
   -- Spaces are transformed into underscores in title storage.
   page_title varchar(255) binary NOT NULL,
 
-  -- Comma-separated set of permission keys indicating who
-  -- can move or edit the page.
-  page_restrictions tinyblob NOT NULL,
+
 
   -- Number of times this page has been viewed.
   page_counter bigint unsigned NOT NULL default 0,

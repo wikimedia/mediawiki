@@ -59,7 +59,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function requestExtraData( $pageSet ) {
 		global $wgDisableCounters, $wgContentHandlerUseDB;
 
-		$pageSet->requestField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
 		if ( !$pageSet->isResolvingRedirects() ) {
 			$pageSet->requestField( 'page_is_redirect' );
@@ -288,7 +287,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		$this->pageRestrictions = $pageSet->getCustomField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
 		$this->pageIsRedir = !$pageSet->isResolvingRedirects()
 			? $pageSet->getCustomField( 'page_is_redirect' )

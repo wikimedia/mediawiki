@@ -278,7 +278,6 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_id',
 			'page_namespace',
 			'page_title',
-			'page_restrictions',
 			'page_counter',
 			'page_is_redirect',
 			'page_is_new',
@@ -407,7 +406,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTitle->loadFromRow( $data );
 
 			// Old-fashioned restrictions
-			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mId = intval( $data->page_id );
 			$this->mCounter = intval( $data->page_counter );
@@ -1253,7 +1251,6 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_namespace'    => $this->mTitle->getNamespace(),
 			'page_title'        => $this->mTitle->getDBkey(),
 			'page_counter'      => 0,
-			'page_restrictions' => '',
 			'page_is_redirect'  => 0, // Will set this shortly...
 			'page_is_new'       => 1,
 			'page_random'       => wfRandom(),
@@ -2405,7 +2402,6 @@ class WikiPage implements Page, IDBAccessObject {
 			// Clear out legacy restriction fields
 			$dbw->update(
 				'page',
-				array( 'page_restrictions' => '' ),
 				array( 'page_id' => $id ),
 				__METHOD__
 			);
@@ -2594,20 +2590,20 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 * @return String
 	 */
-	protected static function flattenRestrictions( $limit ) {
-		if ( !is_array( $limit ) ) {
-			throw new MWException( 'WikiPage::flattenRestrictions given non-array restriction set' );
-		}
-
-		$bits = array();
-		ksort( $limit );
-
-		foreach ( array_filter( $limit ) as $action => $restrictions ) {
-			$bits[] = "$action=$restrictions";
-		}
-
-		return implode( ':', $bits );
-	}
+// 	protected static function flattenRestrictions( $limit ) {
+// 		if ( !is_array( $limit ) ) {
+// 			throw new MWException( 'WikiPage::flattenRestrictions given non-array restriction set' );
+// 		}
+// 
+// 		$bits = array();
+// 		ksort( $limit );
+// 
+// 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
+// 			$bits[] = "$action=$restrictions";
+// 		}
+// 
+// 		return implode( ':', $bits );
+// 	}
 
 	/**
 	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
