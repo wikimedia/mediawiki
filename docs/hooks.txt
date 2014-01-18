@@ -772,6 +772,7 @@ $block: Block object (which is set to be autoblocking)
 'BlockIp': Before an IP address or user is blocked.
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
+$reason: if the hook is aborted, the error message to be returned
 
 'BlockIpComplete': After an IP address or user is blocked.
 $block: the Block object that was saved

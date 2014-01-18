@@ -695,8 +695,9 @@ class SpecialBlock extends FormSpecialPage {
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
 
-		if ( !wfRunHooks( 'BlockIp', array( &$block, &$performer ) ) ) {
-			return array( 'hookaborted' );
+		$reason = array( 'hookaborted' );
+		if ( !wfRunHooks( 'BlockIp', array( &$block, &$performer, &$reason ) ) ) {
+			return $reason;
 		}
 
 		# Try to insert block. Is there a conflicting block?
