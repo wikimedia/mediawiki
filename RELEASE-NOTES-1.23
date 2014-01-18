@@ -167,6 +167,9 @@ changes to languages because of Bugzilla reports.
    access operators should continue to work, as it implements the ArrayAccess
    interface).
 * Option to mark hooks as deprecated has been added.
+* Hook 'RedirectSpecialArticleRedirectParams' has been renamed to
+  'RedirectSpecialPageToPageRedirectParams' following the change of the name of
+  the associated class.
 
 ==== Removed classes ====
 * TitleDependency (unused)
@@ -197,6 +200,8 @@ changes to languages because of Bugzilla reports.
 * LoadMonitor_MySQL to LoadMonitorMySQL
 * LoadMonitor_Null to LoadMonitorNull
 * LocalisationCache_BulkLoad to LocalisationCacheBulkLoad
+* RedirectSpecialArticle to RedirectSpecialPageToPage
+* SpecialRedirectToSpecial to RedirectSpecialPageToSpecial
 * csvStatsOutput to CsvStatsOutput
 * extensionLanguages to ExtensionLanguages
 * languages to Languages

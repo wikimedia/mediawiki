@@ -29,7 +29,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialArticle {
+class SpecialMypage extends RedirectSpecialPageToPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
 	}
@@ -48,7 +48,7 @@ class SpecialMypage extends RedirectSpecialArticle {
  *
  * @ingroup SpecialPage
  */
-class SpecialMytalk extends RedirectSpecialArticle {
+class SpecialMytalk extends RedirectSpecialPageToPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
 	}
