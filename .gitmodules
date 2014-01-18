@@ -172,7 +172,7 @@
 	branch = REL1_22
 	[submodule "extensions/PdfBook"]
 	path = extensions/PdfBook
-	url = https://github.com/wikimedia/mediawiki-extensions-PdfBook.git
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PdfBook.git
 	branch = master
 [submodule "extensions/Poem"]
 	path = extensions/Poem
@@ -267,7 +267,7 @@
 	branch = REL1_22
 [submodule "extensions/Wikilog"]
 	path = extensions/Wikilog
-	url = https://github.com/mediawiki4intranet/Wikilog
+	url = https://github.com/mediawiki4intranet/Wikilog.git
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
