@@ -6,6 +6,10 @@
 	path = extensions/AdminLinks
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AdminLinks.git
 	branch = REL1_22
+[submodule "extensions/AJAXPoll"]
+	path = extensions/AJAXPoll
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AJAXPoll.git
+	branch = REL1_22
 [submodule "extensions/AntiSpoof"]
 	path = extensions/AntiSpoof
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AntiSpoof.git
@@ -245,6 +249,10 @@
 	path = extensions/Variables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Variables.git
 	branch = REL1_22
+[submodule "extensions/VoteNY"]
+	path = extensions/VoteNY
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VoteNY.git
+	branch = REL1_22
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor.git
@@ -252,6 +260,10 @@
 [submodule "extensions/WikiLove"]
 	path = extensions/WikiLove
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
+	branch = REL1_22
+[submodule "extensions/Wikilog"]
+	path = extensions/Wikilog
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikilog.git
 	branch = REL1_22
 [submodule "skins/filament"]
 	path = skins/filament
