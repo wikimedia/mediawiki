@@ -272,10 +272,6 @@
 	path = extensions/WikiLove
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
 	branch = REL1_22
-[submodule "extensions/Wikilog"]
-	path = extensions/Wikilog
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikilog.git
-	branch = REL1_22
 [submodule "skins/filament"]
 	path = skins/filament
 	url = https://github.com/WikiWonders/filament.git
