@@ -106,6 +106,10 @@
 	path = extensions/HeaderTabs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/HeaderTabs.git
 	branch = REL1_22
+[submodule "extensions/HighlightLinksInCategory"]
+	path = extensions/HighlightLinksInCategory
+	url = https://github.com/Orain/HighlightLinksInCategory.git
+	branch = master
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ImageMap.git
@@ -146,6 +150,10 @@
 	path = extensions/MobileFrontend
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MobileFrontend.git
 	branch = REL1_22
+[submodule "extensions/MultiBoilerplate"]
+	path = extensions/MultiBoilerplate
+	url = https://github.com/Orain/MultiBoilerplate.git
+	branch = master
 [submodule "extensions/MyVariables"]
 	path = extensions/MyVariables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MyVariables.git
