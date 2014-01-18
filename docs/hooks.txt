@@ -2024,7 +2024,11 @@ $out: OutputPage object
 'RecentChange_save': Called at the end of RecentChange::save().
 $recentChange: RecentChange object
 
-'RedirectSpecialArticleRedirectParams': Lets you alter the set of parameter
+'RedirectSpecialArticleRedirectParams': Deprecated since 1.23, use
+RedirectSpecialPageToPageRedirectParams instead.
+&$redirectParams: array
+
+'RedirectSpecialPageToPageRedirectParams': Lets you alter the set of parameter
 names such as "oldid" that are preserved when using redirecting special pages
 such as Special:MyPage and Special:MyTalk.
 &$redirectParams: An array of parameters preserved by redirecting special pages.
