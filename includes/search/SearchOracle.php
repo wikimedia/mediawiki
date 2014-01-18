@@ -28,7 +28,7 @@
  * Search engine hook base class for Oracle (ConText).
  * @ingroup Search
  */
-class SearchOracle extends SearchEngine {
+class SearchOracle extends SearchDatabase {
 
 	private $reservedWords = array(
 		'ABOUT' => 1,
@@ -58,14 +58,6 @@ class SearchOracle extends SearchEngine {
 		'TT' => 1,
 		'WITHIN' => 1,
 	);
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabasePostgres: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
 
 	/**
 	 * Perform a full text search query and return a result set.

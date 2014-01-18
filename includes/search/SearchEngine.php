@@ -42,19 +42,6 @@ class SearchEngine {
 	protected $features = array();
 
 	/**
-	 * @var DatabaseBase
-	 */
-	protected $db;
-
-	function __construct( $db = null ) {
-		if ( $db ) {
-			$this->db = $db;
-		} else {
-			$this->db = wfGetDB( DB_SLAVE );
-		}
-	}
-
-	/**
 	 * Perform a full text search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
 	 * STUB

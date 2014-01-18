@@ -25,16 +25,7 @@
  * Search engine hook base class for Mssql (ConText).
  * @ingroup Search
  */
-class SearchMssql extends SearchEngine {
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseMssql: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
+class SearchMssql extends SearchDatabase {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
