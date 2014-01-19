@@ -614,7 +614,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return string wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
-		return "[http://sqlite.org/ SQLite]";
+		return "[{{int:version-db-sqlite-url}} SQLite]";
 	}
 
 	/**

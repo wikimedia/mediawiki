@@ -382,6 +382,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $diffs as $url => $dummy ) {
 			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
 				$arr[] = array(
+					'el_id' => $this->mDb->nextSequenceValue( 'externallinks_el_id_seq' ),
 					'el_from' => $this->mId,
 					'el_to' => $url,
 					'el_index' => $index,

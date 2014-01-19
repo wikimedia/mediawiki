@@ -250,7 +250,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $srcPath the source path
-	 * @return string the real path if it was a virtual URL
+	 * @return string|bool the real path if it was a virtual URL Returns false on failure
 	 */
 	function getRealPath( $srcPath ) {
 		wfProfileIn( __METHOD__ );
@@ -259,12 +259,15 @@ abstract class UploadBase {
 			// @todo just make uploads work with storage paths
 			// UploadFromStash loads files via virtual URLs
 			$tmpFile = $repo->getLocalCopy( $srcPath );
-			$tmpFile->bind( $this ); // keep alive with $this
-			wfProfileOut( __METHOD__ );
-			return $tmpFile->getPath();
+			if ( $tmpFile ) {
+				$tmpFile->bind( $this ); // keep alive with $this
+			}
+			$path = $tmpFile ? $tmpFile->getPath() : false;
+		} else {
+			$path = $srcPath;
 		}
 		wfProfileOut( __METHOD__ );
-		return $srcPath;
+		return $path;
 	}
 
 	/**
@@ -475,9 +478,10 @@ abstract class UploadBase {
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-				if ( $this->detectScriptInSvg( $this->mTempPath ) ) {
+				$svgStatus = $this->detectScriptInSvg( $this->mTempPath );
+				if ( $svgStatus !== false ) {
 					wfProfileOut( __METHOD__ );
-					return array( 'uploadscripted' );
+					return $svgStatus;
 				}
 			}
 		}
@@ -1158,8 +1162,33 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	protected function detectScriptInSvg( $filename ) {
-		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
-		return $check->filterMatch;
+		$check = new XmlTypeCheck(
+			$filename,
+			array( $this, 'checkSvgScriptCallback' ),
+			true,
+			array( 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' )
+		);
+		if ( $check->wellFormed !== true ) {
+			// Invalid xml (bug 58553)
+			return array( 'uploadinvalidxml' );
+		} elseif ( $check->filterMatch ) {
+			return array( 'uploadscripted' );
+		}
+		return false;
+	}
+
+	/**
+	 * Callback to filter SVG Processing Instructions.
+	 * @param $target string processing instruction name
+	 * @param $data string processing instruction attribute and value
+	 * @return bool (true if the filter identified something bad)
+	 */
+	public static function checkSvgPICallback( $target, $data ) {
+		// Don't allow external stylesheets (bug 57550)
+		if ( preg_match( '/xml-stylesheet/i', $target) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

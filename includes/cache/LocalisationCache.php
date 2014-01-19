@@ -594,6 +594,10 @@ class LocalisationCache {
 			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
 			foreach ( $ruleElements as $elt ) {
 				$ruleType = $elt->getAttribute( 'count' );
+				if ( $ruleType === 'other' ) {
+					// Don't record "other" rules, which have an empty condition
+					continue;
+				}
 				$rules[] = $elt->nodeValue;
 				$ruleTypes[] = $ruleType;
 			}
@@ -953,6 +957,25 @@ class LocalisationCache {
 		$this->store = new LCStore_Null;
 		$this->manualRecache = false;
 	}
+
+	/**
+	 * Return an array with initialised languages.
+	 *
+	 * @return array
+	 */
+	public function getInitialisedLanguages() {
+		return $this->initialisedLangs;
+	}
+
+	/**
+	 * Set initialised languages.
+	 *
+	 * @param array $languages Optional array of initialised languages.
+	 */
+	public function setInitialisedLanguages( $languages = array() ) {
+		$this->initialisedLangs = $languages;
+	}
+
 }
 
 /**

@@ -20,7 +20,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$templates1 = $title->getTemplateLinksFrom();
 
 		$wgLang = Language::factory( 'de' );
-		$page->mPreparedEdit = false; // In order to force the rerendering of the same wikitext
+		$page = WikiPage::factory( $title ); // In order to force the rerendering of the same wikitext
 
 		// We need an edit, a purge is not enough to regenerate the tables
 		$page->doEditContent( new WikitextContent( '{{:{{int:history}}}}' ), 'Test code for bug 14404', EDIT_UPDATE, false, $user );

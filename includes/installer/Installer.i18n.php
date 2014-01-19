@@ -100,9 +100,8 @@ You should [//www.mediawiki.org/wiki/Unicode_normalization_considerations upgrad
 	'config-no-db'                    => 'Could not find a suitable database driver! You need to install a database driver for PHP.
 The following database types are supported: $1.
 
-If you are on shared hosting, ask your hosting provider to install a suitable database driver.
-If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
-If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
+If you compiled PHP yourself, reconfigure it with a database client enabled, for example, using <code>./configure --with-mysqli</code>.
+If you installed PHP from a Debian or Ubuntu package, then you also need to install, for example, the <code>php5-mysql</code> package.',
 	'config-outdated-sqlite'          => "'''Warning:''' you have SQLite $1, which is lower than minimum required version $2. SQLite will be unavailable.",
 	'config-no-fts3'                  => "'''Warning:''' SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
@@ -243,7 +242,7 @@ That includes raw user data (email addresses, hashed passwords) as well as delet
 Consider putting the database somewhere else altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts'            => 'Default tablespace:',
 	'config-oracle-temp-ts'           => 'Temporary tablespace:',
-	'config-type-mysql'               => 'MySQL',
+	'config-type-mysql'               => 'MySQL (or compatible)',
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
@@ -252,10 +251,10 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 $1
 
 If you do not see the database system you are trying to use listed below, then follow the instructions linked above to enable support.',
-	'config-support-mysql'            => '* $1 is the primary target for MediaWiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
-	'config-support-postgres'         => '* $1 is a popular open source database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). There may be some minor outstanding bugs, and it is not recommended for use in a production environment.',
-	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
-	'config-support-oracle'           => '* $1 is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
+	'config-dbsupport-mysql'          => '* [{{int:version-db-mysql-url}} MySQL] is the primary target for MediaWiki and is best supported. MediaWiki also works with [{{int:version-db-mariadb-url}} MariaDB] and [{{int:version-db-percona-url}} Percona Server], which are MySQL compatible. ([http://www.php.net/manual/en/mysqli.installation.php How to compile PHP with MySQL support])',
+	'config-dbsupport-postgres'       => '* [{{int:version-db-postgres-url}} PostgreSQL] is a popular open source database system as an alternative to MySQL. There may be some minor outstanding bugs, and it is not recommended for use in a production environment. ([http://www.php.net/manual/en/pgsql.installation.php How to compile PHP with PostgreSQL support])',
+	'config-dbsupport-sqlite'         => '* [{{int:version-db-sqlite-url}} SQLite] is a lightweight database system that is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
+	'config-dbsupport-oracle'         => '* [{{int:version-db-oracle-url}} Oracle] is a commercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
@@ -640,7 +639,7 @@ See also:
 * {{msg-mw|config-env-php}}',
 	'config-unicode-pure-php-warning' => 'PECL is the name of a group producing standard pieces of software for PHP, and intl is the name of their library handling some aspects of internationalization.',
 	'config-unicode-update-warning' => "ICU is a body producing standard software tools for support of Unicode and other internationalization aspects. This message warns the system administrator installing MediaWiki that the server's software is not up-to-date and MediaWiki will have problems handling some characters.",
-	'config-no-db' => '{{doc-important|Do not translate "<code>./configure --with-mysql</code>" and "<code>php5-mysql</code>".}}
+	'config-no-db' => '{{doc-important|Do not translate "<code>./configure --with-mysqli</code>" and "<code>php5-mysql</code>".}}
 Parameters:
 * $1 is comma separated list of database types supported by MediaWiki.',
 	'config-outdated-sqlite' => 'Used as warning. Parameters:
@@ -704,12 +703,12 @@ Message shown when PHP parameter <code>suhosin.get.max_value_length</code> is be
 * $2 - error message',
 	'config-sqlite-dir-help' => '{{doc-important|Do not translate <code>.htaccess</code> and <code>/var/lib/mediawiki/yourwiki</code>.}}
 Used in help box.',
-	'config-type-mysql' => '{{optional}}',
+	'config-type-mysql' => '"Or compatible" refers to several database systems that are compatible with MySQL, as explained in {{msg-mw|config-dbsupport-mysql}}, and thus also work with this choice of database type.',
 	'config-type-postgres' => '{{optional}}',
 	'config-type-sqlite' => '{{optional}}',
 	'config-type-oracle' => '{{optional}}',
 	'config-support-info' => 'Parameters:
-* $1 - a list of DBMSs that MediaWiki supports, composed with other config-type-* and config-support-* messages.',
+* $1 - a list of DBMSs that MediaWiki supports, composed with config-dbsupport-* messages.',
 	'config-support-mysql' => 'Parameters:
 * $1 - a link to the MySQL home page having the anchor text "MySQL".',
 	'config-support-postgres' => 'Parameters:
@@ -718,6 +717,10 @@ Used in help box.',
 * $1 - a link to the SQLite home page having the anchor text "SQLite".',
 	'config-support-oracle' => 'Parameters:
 * $1 - a link to the Oracle home page, the anchor text of which is "Oracle".',
+	'config-dbsupport-mysql' => 'Used in {{msg-mw|config-support-info}}.',
+	'config-dbsupport-postgres' => 'Used in {{msg-mw|config-support-info}}.',
+	'config-dbsupport-sqlite' => 'Used in {{msg-mw|config-support-info}}.',
+	'config-dbsupport-oracle' => 'Used in {{msg-mw|config-support-info}}.',
 	'config-invalid-db-server-oracle' => 'Used as error message. Parameters:
 * $1 - database server name
 See also:

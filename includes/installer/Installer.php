@@ -1411,7 +1411,7 @@ abstract class Installer {
 
 		$wgVersion = "1.22";
 		$wgResourceModules = array();
-		require_once( $file );
+		require_once $file ;
 		$e = array_values( $wgExtensionCredits );
 		if( $e ) {
 			$ext = array_values( $e[0] );

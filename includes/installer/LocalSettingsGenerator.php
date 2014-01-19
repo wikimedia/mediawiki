@@ -145,7 +145,12 @@ class LocalSettingsGenerator {
 
 			$ip = $this->installer->getVar( 'IP' );
 			foreach ( $this->extensions as $ext) {
-				$path = str_replace( $ip, '$IP', $extensions[$ext]['path'] );
+				$path = str_replace( $ip, '', $extensions[$ext]['path'] );
+				$prefix = '';
+				if ( $path !== $extensions[$ext]['path'] ) {
+					$prefix = '$IP';
+				}
+				$path = $prefix . self::escapePhpString( $path );
 				$localSettings .= "require_once \"$path\";\n";
 			}
 		}

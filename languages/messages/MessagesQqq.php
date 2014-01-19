@@ -4064,6 +4064,7 @@ See also:
 * {{msg-mw|zip-wrong-format}}
 * {{msg-mw|uploadjava}}
 * {{msg-mw|uploadvirus}}',
+'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 'uploadvirus' => 'Error message displayed when uploaded file contains a virus.
 
 Parameters:
@@ -9922,6 +9923,20 @@ Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].'
 This message is followed by the list of installed software (MediaWiki, PHP and MySQL).',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
+'version-db-mysql-url' => '{{notranslate}}
+URL of the website for [[wikipedia:MySQL|MySQL]].',
+'version-db-mariadb-url' => '{{notranslate}}
+URL of the website for [[wikipedia:MariaDB|MariaDB]].',
+'version-db-percona-url' => '{{notranslate}}
+URL of the website for Percona Server.',
+'version-db-postgres-url' => '{{notranslate}}
+URL of the website for [[wikipedia:PostgreSQL|PostgreSQL]].',
+'version-db-oracle-url' => '{{notranslate}}
+URL of the website for [[wikipedia:Oracle Database|Oracle Database]].',
+'version-db-sqlite-url' => '{{notranslate}}
+URL of the website for [[wikipedia:SQLite|SQLite]].',
+'version-db-mssql-url' => '{{notranslate}}
+URL of the website for [[wikipedia:Microsoft SQL Server|Microsoft SQL Server]].',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
 'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
 See also {{msg-mw|Version-entrypoints}}',

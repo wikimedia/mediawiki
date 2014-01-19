@@ -200,7 +200,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+				. $block[0]->mAttribs['rc_log_type'] );
 		} else {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
 					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
@@ -551,8 +551,7 @@ class EnhancedChangesList extends ChangesList {
 		$classes = array( 'mw-enhanced-rc' );
 		if ( $logType ) {
 			# Log entry
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-'
-					. $logType . '-' . $rcObj->mAttribs['rc_title'] );
++			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
 		} else {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );

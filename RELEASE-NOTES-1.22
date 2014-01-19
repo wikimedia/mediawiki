@@ -1,22 +1,48 @@
+= MediaWiki release notes =
+
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.22 ==
+== MediaWiki 1.22.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.22 branch.
 
-MediaWiki 1.22 is an alpha-quality branch and is not recommended for use in
-production.
+=== Changes since 1.22.0 ===
 
-* Breaking Changes in 1.22
-* New features in 1.22
-* Configuration changes in 1.22
-* Bug fixes in 1.22
-* API changes in 1.22
-* Languages updated in 1.22
-* Other changes in 1.22
+* (bug 57550) SECURITY: Disallow stylesheets in SVG Uploads
+* (bug 58088) SECURITY: Don't normalize U+FF3C to \ in CSS Checks
+* (bug 58472) SECURITY: Disallow -o-link in styles
+* (bug 58553) SECURITY: Return error on invalid XML for SVG Uploads
+* (bug 58699) SECURITY: Fix RevDel log entry information leaks
+* (bug 58178) Restore compatibility with curl < 7.16.2.
+* (bug 56931) Updated the plural rules to CLDR 24. They are in new format
+  which is detailed in UTS 35 Rev 33. The PHP parser and evaluator as well as
+  the JavaScript evaluator were updated to support the new format. Plural rules
+  for some languages have changed, most notably Russian. Affected software
+  messages have been updated and marked for review at translatewiki.net.
+  This change is backported from the development branch of MediaWiki 1.23.
+* (bug 58434) The broken installer for database backend Oracle was fixed.
+* (bug 58167) The web installer no longer throws an exception when PHP is
+  compiled without support for MySQL yet with support for another DBMS.
+* (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages
+  to appear blank or with missing text.
+* (bug 47055) Changed FOR UPDATE handling in Postgresql
+* (bug 57026) Avoid extra parsing in prepareContentForEdit()
 
-=== Breaking Changes in 1.22 ===
+== MediaWiki 1.22.0 ==
+
+MediaWiki 1.22.0 is the stable branch and is recommended for use in production.
+MediaWiki 1.22.0 is a large release that contains many new features and bug fixes.
+
+* Breaking Changes in 1.22.0
+* New features in 1.22.0
+* Configuration changes in 1.22.0
+* Bug fixes in 1.22.0
+* API changes in 1.22.0
+* Languages updated in 1.22.0
+* Other changes in 1.22.0
+
+=== Breaking Changes in 1.22.0 ===
 * BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
   change their class name from .editsection to .mw-editsection and place them at
   the end of the heading element instead of the beginning. Client-side code and
@@ -74,7 +100,7 @@ production.
   'mediawiki.legacy.wikibits' (which IEFixes depends on) and that will import
   IEFixes automatically if user agent conditions are met.
 
-=== New features in 1.22 ===
+=== New features in 1.22.0 ===
 * You can now install extensions using Composer.
   See https://www.mediawiki.org/wiki/Composer
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -267,7 +293,7 @@ production.
   prefix. Also fixed PHPUnit test suite when using a MySQL backend containing
   views.
 
-=== Configuration changes in 1.22 ===
+=== Configuration changes in 1.22.0 ===
 * $wgRedirectScript was removed. It was unused.
 * Removed $wgLocalMessageCacheSerialized, it is now always true.
 * $wgVectorUseIconWatch is now enabled by default.
@@ -325,7 +351,7 @@ production.
   script they were added for.
 * Default value of $wgMaxShellMemory has been tripled (it's now 300 MB).
 
-=== Bug fixes in 1.22 ===
+=== Bug fixes in 1.22.0 ===
 * (bug 47271) $wgContentHandlerUseDB should be set to false during the upgrade
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
   could still navigate to the page by entering the URL directly.
@@ -413,7 +439,7 @@ production.
 * (bug 56707) Correct tooltip of "Next n results" on query special pages.
 * (bug 56770) mw.util.addPortletLink: Check length before access array index.
 
-=== API changes in 1.22 ===
+=== API changes in 1.22.0 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
   to improve human readability of URLs and similar strings. Also, a "utf8"
   option is now provided to use UTF-8 encoding instead of hex escape codes
@@ -467,16 +493,20 @@ production.
   file repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
 * The new query module list=allfileusages to enumerate file usages was added.
 
-=== Languages updated in 1.22 ===
+=== Languages updated in 1.22.0 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* (bug 47099) Plural rules were updated to those from CLDR 24 for Manx (gv).
+* (bug 54514) Explicit plural forms now work for Russian.
+* (bug 46422) Explicit plural forms for languages that use a custom
+  implementation for Language::convertPlural now work correctly.
 * Batak Toba (bbc-latn) added.
 * (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
 
-=== Other changes in 1.22 ===
+=== Other changes in 1.22.0 ===
 * redirect.php was removed. It was unused.
 * ClickTracking integration was dropped from the mediaWiki.user.bucket
   JavaScript function. The 'tracked' option is now ignored.
@@ -547,7 +577,7 @@ changes to languages because of Bugzilla reports.
 
 == Compatibility ==
 
-MediaWiki 1.22 requires PHP 5.3.2 or later.
+MediaWiki 1.22.0 requires PHP 5.3.2 or later.
 
 MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
 support for them is somewhat less mature. There is experimental support for
@@ -562,7 +592,7 @@ The supported versions are:
 
 == Upgrading ==
 
-1.22 has several database changes since 1.21, and will not work without schema
+1.22.0 has several database changes since 1.21, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
 table, the schema update may take quite long (minutes on a medium sized site,
 many hours on a large site).
@@ -608,3 +638,4 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 == IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
+

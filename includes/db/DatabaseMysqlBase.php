@@ -681,7 +681,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
-		return '[http://www.mysql.com/ MySQL]';
+		$version = $this->getServerVersion();
+		if ( strpos( $version, 'MariaDB' ) !== false ) {
+			return '[{{int:version-db-mariadb-url}} MariaDB]';
+		} elseif ( strpos( $version, 'percona' ) !== false ) {
+			return '[{{int:version-db-percona-url}} Percona Server]';
+		} else {
+			return '[{{int:version-db-mysql-url}} MySQL]';
+		}
 	}
 
 	/**

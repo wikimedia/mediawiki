@@ -281,7 +281,7 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
-		if( $linkCache->useDatabase() ) {
+		if ( $linkCache->useDatabase() ) {
 			wfProfileIn( __METHOD__ . '-check' );
 			$dbr = wfGetDB( DB_SLAVE );
 			$threshold = $this->parent->getOptions()->getStubThreshold();

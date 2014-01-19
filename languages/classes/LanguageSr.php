@@ -22,8 +22,6 @@
  */
 
 require_once __DIR__ . '/../LanguageConverter.php';
-require_once __DIR__ . '/LanguageSr_ec.php';
-require_once __DIR__ . '/LanguageSr_el.php';
 
 /**
  * There are two levels of conversion for Serbian: the script level
@@ -166,14 +164,16 @@ class SrConverter extends LanguageConverter {
 		// regexp for roman numbers
 		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
 
-		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks . $roman . '$|' . $breaks . $roman . $breaks . '/';
+		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks
+			. $roman . '$|' . $breaks . $roman . $breaks . '/';
 
 		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
 		$m = array_shift( $matches );
 		$this->loadTables();
 		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+			throw new MWException( "Broken variant table: "
+				. implode( ',', array_keys( $this->mTables ) ) );
 		}
 		$ret = $this->mTables[$toVariant]->replace( $m[0] );
 		$mstart = $m[1] + strlen( $m[0] );
@@ -218,7 +218,7 @@ class SrConverter extends LanguageConverter {
  *
  * @ingroup Language
  */
-class LanguageSr extends LanguageSr_ec {
+class LanguageSr extends Language {
 	function __construct() {
 		global $wgHooks;
 
@@ -237,41 +237,5 @@ class LanguageSr extends LanguageSr_ec {
 		);
 		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
 		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
-	}
-
-	/**
-	 * @param $count int
-	 * @param $forms array
-	 *
-	 * @return string
-	 */
-	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) {
-			return '';
-		}
-
-		// If the actual number is not mentioned in the expression, then just two forms are enough:
-		// singular for $count == 1
-		// plural   for $count != 1
-		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
-		if ( count( $forms ) === 2 ) {
-			return $count == 1 ? $forms[0] : $forms[1];
-		}
-
-		// @todo FIXME: CLDR defines 4 plural forms. Form with decimals missing.
-		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ru
-		$forms = $this->preConvertPlural( $forms, 3 );
-
-		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
-			return $forms[2];
-		} else {
-			switch ( $count % 10 ) {
-				case 1: return $forms[0];
-				case 2:
-				case 3:
-				case 4: return $forms[1];
-				default: return $forms[2];
-			}
-		}
 	}
 }

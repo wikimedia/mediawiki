@@ -2,7 +2,8 @@
 /**
  * Parse and evaluate a plural rule.
  *
- * http://unicode.org/reports/tr35/#Language_Plural_Rules
+ * UTS #35 Revision 33
+ * http://www.unicode.org/reports/tr35/tr35-33/tr35-numbers.html#Language_Plural_Rules
  *
  * @author Niklas Laxstrom, Tim Starling
  *
@@ -63,8 +64,42 @@ class CLDRPluralRuleEvaluator {
 	/**
 	 * Evaluate a compiled set of rules returned by compile(). Do not allow
 	 * the user to edit the compiled form, or else PHP errors may result.
+	 *
+	 * @param string The number to be evaluated against the rules, in English, or it
+	 *   may be a type convertible to string.
+	 * @param array The associative array of plural rules in pluralform => rule format.
+	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluateCompiled( $number, array $rules ) {
+		// Calculate the values of the operand symbols
+		$number = strval( $number );
+		if ( !preg_match( '/^ -? ( ([0-9]+) (?: \. ([0-9]+) )? )$/x', $number,  $m ) ) {
+			wfDebug( __METHOD__.': invalid number input, returning "other"' );
+			return count( $rules );
+		}
+		if ( !isset( $m[3] ) ) {
+			$operandSymbols = array(
+				'n' => intval( $m[1] ),
+				'i' => intval( $m[1] ),
+				'v' => 0,
+				'w' => 0,
+				'f' => 0,
+				't' => 0
+			);
+		} else {
+			$absValStr = $m[1];
+			$intStr = $m[2];
+			$fracStr = $m[3];
+			$operandSymbols = array(
+				'n' => floatval( $absValStr ),
+				'i' => intval( $intStr ),
+				'v' => strlen( $fracStr ),
+				'w' => strlen( rtrim( $fracStr, '0' ) ),
+				'f' => intval( $fracStr ),
+				't' => intval( rtrim( $fracStr, '0' ) ),
+			);
+		}
+
 		// The compiled form is RPN, with tokens strictly delimited by
 		// spaces, so this is a simple RPN evaluator.
 		foreach ( $rules as $i => $rule ) {
@@ -73,8 +108,8 @@ class CLDRPluralRuleEvaluator {
 			$nine = ord( '9' );
 			foreach ( StringUtils::explode( ' ', $rule ) as $token ) {
 				$ord = ord( $token );
-				if ( $token === 'n' ) {
-					$stack[] = $number;
+				if ( isset( $operandSymbols[$token] ) ) {
+					$stack[] = $operandSymbols[$token];
 				} elseif ( $ord >= $zero && $ord <= $nine ) {
 					$stack[] = intval( $token );
 				} else {
@@ -88,8 +123,8 @@ class CLDRPluralRuleEvaluator {
 				return $i;
 			}
 		}
-		// None of the provided rules match. The number belongs to caregory
-		// 'other' which comes last.
+		// None of the provided rules match. The number belongs to category
+		// 'other', which comes last.
 		return count( $rules );
 	}
 
@@ -227,8 +262,39 @@ class CLDRPluralRuleEvaluator_Range {
  * Helper class for converting rules to reverse polish notation (RPN).
  */
 class CLDRPluralRuleConverter {
-	public $rule, $pos, $end;
+	/**
+	 * The input string
+	 *
+	 * @var string
+	 */
+	public $rule;
+
+	/**
+	 * The current position
+	 *
+	 * @var int
+	 */
+	public $pos;
+
+	/**
+	 * The past-the-end position
+	 *
+	 * @var int
+	 */
+	public $end;
+
+	/**
+	 * The operator stack
+	 *
+	 * @var array
+	 */
 	public $operators = array();
+
+	/**
+	 * The operand stack
+	 *
+	 * @var array
+	 */
 	public $operands = array();
 
 	/**
@@ -257,14 +323,19 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Same for digits. Note that the grammar given in UTS #35 doesn't allow
-	 * negative numbers or decimals.
+	 * negative numbers or decimal separators.
 	 */
 	const NUMBER_CLASS = '0123456789';
 
 	/**
+	 * A character list of symbolic operands.
+	 */
+	const OPERAND_SYMBOLS = 'nivwft';
+
+	/**
 	 * An anchored regular expression which matches a word at the current offset.
 	 */
-	const WORD_REGEX = '/[a-zA-Z]+/A';
+	const WORD_REGEX = '/[a-zA-Z@]+/A';
 
 	/**
 	 * Convert a rule to RPN. This is the only public entry point.
@@ -365,17 +436,19 @@ class CLDRPluralRuleConverter {
 			return $token;
 		}
 
-		// Comma
-		if ( $this->rule[$this->pos] === ',' ) {
-			$token = $this->newOperator( ',', $this->pos, 1 );
-			$this->pos ++;
+		// Two-character operators
+		$op2 = substr( $this->rule, $this->pos, 2 );
+		if ( $op2 === '..' || $op2 === '!=' ) {
+			$token = $this->newOperator( $op2, $this->pos, 2 );
+			$this->pos += 2;
 			return $token;
 		}
 
-		// Dot dot
-		if ( substr( $this->rule, $this->pos, 2 ) === '..' ) {
-			$token = $this->newOperator( '..', $this->pos, 2 );
-			$this->pos += 2;
+		// Single-character operators
+		$op1 = $this->rule[$this->pos];
+		if ( $op1 === ',' || $op1 === '=' || $op1 === '%' ) {
+			$token = $this->newOperator( $op1, $this->pos, 1 );
+			$this->pos ++;
 			return $token;
 		}
 
@@ -414,11 +487,19 @@ class CLDRPluralRuleConverter {
 			return $token;
 		}
 
-		// The special numerical keyword "n"
-		if ( $word1 === 'n' ) {
-			$token = $this->newNumber( 'n', $this->pos );
+		// The single-character operand symbols
+		if ( strpos( self::OPERAND_SYMBOLS, $word1 ) !== false ) {
+			$token = $this->newNumber( $word1, $this->pos );
 			$this->pos ++;
 			return $token;
+		}
+
+		// Samples
+		if ( $word1 === '@integer' || $word1 === '@decimal' ) {
+			// Samples are like comments, they have no effect on rule evaluation.
+			// They run from the first sample indicator to the end of the string.
+			$this->pos = $this->end;
+			return false;
 		}
 
 		$this->error( 'unrecognised word' );
@@ -551,8 +632,28 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 		'r' => 'range',
 	);
 
+	/**
+	 * Map for converting the new operators introduced in Rev 33 to the old forms
+	 */
+	static $aliasMap = array(
+		'%' => 'mod',
+		'!=' => 'not-in',
+		'=' => 'in'
+	);
+
+	/**
+	 * Initialize a new instance of a CLDRPluralRuleConverter_Operator object
+	 *
+	 * @param CLDRPluralRuleConverter $parser The parser
+	 * @param string $name The operator name
+	 * @param int $pos The position
+	 * @param int $pos The length
+	 */
 	function __construct( $parser, $name, $pos, $length ) {
 		parent::__construct( $parser, $pos, $length );
+		if ( isset( self::$aliasMap[$name] ) ) {
+			$name = self::$aliasMap[$name];
+		}
 		$this->name = $name;
 	}
 

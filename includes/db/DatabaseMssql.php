@@ -655,7 +655,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return string wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
-		return "[http://www.microsoft.com/sql/ MS SQL Server]";
+		return "[{{int:version-db-mssql-url}} MS SQL Server]";
 	}
 
 	/**

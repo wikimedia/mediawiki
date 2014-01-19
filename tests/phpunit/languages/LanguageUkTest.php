@@ -6,7 +6,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageUk.php */
+/** Tests for Ukrainian */
 class LanguageUkTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
@@ -15,6 +15,17 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
+	}
+
+	/**
+	 * Test explicit plural forms - n=FormN forms
+	 * @covers Language::convertPlural
+	 */
+	public function testExplicitPlural() {
+		$forms = array( 'one', 'few', 'many', 'other', '12=dozen' );
+		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
+		$forms = array( 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' );
+		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );
 	}
 
 	/**
@@ -46,7 +57,7 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = array( '1=one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 

@@ -730,7 +730,12 @@ class CurlHttpRequest extends MWHttpRequest {
 
 		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
 		$this->curlOptions[CURLOPT_TIMEOUT] = $this->timeout;
-		$this->curlOptions[CURLOPT_CONNECTTIMEOUT_MS] = $this->connectTimeout * 1000;
+
+		// Only supported in curl >= 7.16.2
+		if ( defined( 'CURLOPT_CONNECTTIMEOUT_MS' ) ) {
+			$this->curlOptions[CURLOPT_CONNECTTIMEOUT_MS] = $this->connectTimeout * 1000;
+		}
+
 		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
 		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
 		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array( $this, "readHeader" );

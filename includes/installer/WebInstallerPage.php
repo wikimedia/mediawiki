@@ -480,12 +480,11 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$settings = '';
 		$defaultType = $this->getVar( 'wgDBtype' );
 
-		// Messages: config-support-mysql, config-support-postgres, config-support-oracle,
-		// config-support-sqlite
+		// Messages: config-dbsupport-mysql, config-dbsupport-postgres, config-dbsupport-oracle,
+		// config-dbsupport-sqlite
 		$dbSupport = '';
 		foreach ( $this->parent->getDBTypes() as $type ) {
-			$link = DatabaseBase::factory( $type )->getSoftwareLink();
-			$dbSupport .= wfMessage( "config-support-$type", $link )->plain() . "\n";
+			$dbSupport .= wfMessage( "config-dbsupport-$type" )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
 			wfMessage( 'config-support-info', trim( $dbSupport ) )->text() ) );
@@ -951,7 +950,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			/* Force a recache, so we load extensions descriptions */
 			global $wgLang;
 			$lc = Language::getLocalisationCache();
-			$lc->initialisedLangs = array();
+			$lc->setInitialisedLanguages( array() );
 			$lc->getItem( $wgLang->mCode, '' );
 			LinkCache::singleton()->useDatabase( false );
 
@@ -1184,10 +1183,14 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$extsAvailable = array_map( function($e) { if( isset($e['name']) ) return $e['name']; }, $this->parent->findExtensions() );
+		$extsAvailable = array_map(
+			function( $e ) {
+				if( isset( $e['name'] ) ) {
+					return $e['name'];
+				}
+			}, $this->parent->findExtensions() );
 		$extsToInstall = array();
 		foreach ( $extsAvailable as $key => $ext ) {
-				var_dump("config_ext-$ext");
 			if ( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
 				$extsToInstall[] = $extsAvailable[ $key ];
 			}
