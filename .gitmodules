@@ -102,6 +102,9 @@
 	path = extensions/googleAnalytics
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/googleAnalytics.git
 	branch = REL1_22
+[submodule "extensions/GoogleSiteVerification"]
+	path = extensions/GoogleSiteVerification
+	url = https://github.com/addshore/GoogleSiteVerification.git
 [submodule "extensions/HeaderTabs"]
 	path = extensions/HeaderTabs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/HeaderTabs.git
