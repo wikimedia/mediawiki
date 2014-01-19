@@ -186,8 +186,9 @@ class ApiParse extends ApiBase {
 			}
 
 			$popts = $this->makeParserOptions( $pageObj, $params );
+			$textProvided = !is_null( $text );
 
-			if ( is_null( $text ) ) {
+			if ( !$textProvided ) {
 				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
 					$this->setWarning(
 						"'title' used without 'text', and parsed page properties were requested " .
@@ -200,7 +201,7 @@ class ApiParse extends ApiBase {
 
 			// If we are parsing text, do not use the content model of the default
 			// API title, but default to wikitext to keep BC.
-			if ( !$titleProvided && is_null( $model ) ) {
+			if ( $textProvided && !$titleProvided && is_null( $model ) ) {
 				$model = CONTENT_MODEL_WIKITEXT;
 				$this->setWarning( "No 'title' or 'contentmodel' was given, assuming $model." );
 			}
@@ -710,14 +711,13 @@ class ApiParse extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		$wikitext = CONTENT_MODEL_WIKITEXT;
 
 		return array(
 			'text' => "Text to parse. Use {$p}title or {$p}contentmodel to control the content model",
 			'summary' => 'Summary to parse',
 			'redirects' => "If the {$p}page or the {$p}pageid parameter is set to a redirect, resolve it",
 			'title' => "Title of page the text belongs to. " .
-				"If omitted, \"API\" is used as the title with content model $wikitext",
+				"If omitted, {$p}contentmodel must be specified, and \"API\" will be used as the title",
 			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
 			'pageid' => "Parse the content of this page. Overrides {$p}page",
 			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
@@ -767,8 +767,8 @@ class ApiParse extends ApiBase {
 				"Only valid when used with {$p}text",
 			),
 			'contentmodel' => array(
-				"Content model of the input text. Default is the model of the " .
-				"specified ${p}title, or $wikitext if ${p}title is not specified",
+				"Content model of the input text. If omitted, ${p}title must be specified, " .
+					"and default will be the model of the specified ${p}title",
 				"Only valid when used with {$p}text",
 			),
 		);
@@ -814,7 +814,7 @@ class ApiParse extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',
-			'api.php?action=parse&text={{Project:Sandbox}}' => 'Parse wikitext',
+			'api.php?action=parse&text={{Project:Sandbox}}&contentmodel=wikitext' => 'Parse wikitext',
 			'api.php?action=parse&text={{PAGENAME}}&title=Test'
 				=> 'Parse wikitext, specifying the page title',
 			'api.php?action=parse&summary=Some+[[link]]&prop=' => 'Parse a summary',
