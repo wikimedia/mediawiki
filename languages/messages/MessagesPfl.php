@@ -140,9 +140,9 @@ $messages = array(
 'category-empty' => '"Die Sachgrubb hodd kä Said odda Medje."',
 'hidden-categories' => '{{PLURAL:$1|Vaschdegldi Sachgrubb|Vaschdeglde Sachgrubbe}}',
 'hidden-category-category' => 'Verschdegelde Grubbe',
-'category-subcat-count' => '{{PLURAL:$2|Die Sachgrubb hod die Unnagrubb.|Die Sachgrubb hod {{PLURAL:$1|Unnagrubb|$1 Unnagrubbe}}, vun gsomd $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Die Sachgrubb hodd die Unnagrubb.|Die Sachgrubb hodd {{PLURAL:$1|Unnagrubb|$1 Unnagrubbe}}, vun gsomd $2.}}',
 'category-subcat-count-limited' => 'Die Sachgrubb hod die {{PLURAL:$1|Unagrubb|$1 Unagrubbe}}.',
-'category-article-count' => '{{PLURAL:$2|Indɐ Sachgrubb hodds die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Sachgrubb, vun gsomd $2.}}',
+'category-article-count' => '{{PLURAL:$2|Die Sachgrubb hodd bloß die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gibbds inde Sachgrubb, vun gsomd $2.}}',
 'category-article-count-limited' => 'Die {{PLURAL:$1|Said|$1 Saide}} hodds inde Sachgrubb.',
 'category-file-count' => "{{PLURAL:$2|Die Sachgrubb hodd ä Said.|Die {{PLURAL:$1|Said isch änni vun $2 Saide:|S'werren $1 vun gsomd $2 Saide gzaischd:}}}}",
 'category-file-count-limited' => 'Die {{PLURAL:$1|Dadai|$1 Dadije}} hodds inde Sachgrubb.',
@@ -348,7 +348,7 @@ S konn soi, dasses ä odda mea Zaische drin hodd, wu im Tidl vunde Said nedd gbr
 'yourname' => 'Middawaidanõme:',
 'yourpassword' => 'Kennword:',
 'yourpasswordagain' => 'Kennword nomol oigewe:',
-'remembermypassword' => 'Moi Kennword uffm Rechna merge (hegschdns fa $1 {{PLURAL:$1|Daach|Daach}})',
+'remembermypassword' => 'Moi Kennword uffm Brausa merge (hegschdns fa $1 {{PLURAL:$1|Daach|Daach}})',
 'login' => 'Õmelde',
 'nav-login-createaccount' => 'Õmelde / Kondo õleesche',
 'loginprompt' => 'Cookies mugschd fa {{SITENAME}} schun õhawe.',
@@ -374,7 +374,7 @@ Nemmen onnare.',
 'passwordtooshort' => 'Kennword muss {{PLURAL:$1|1 Zaische|$1 Zaische}} hawe.',
 'password-name-match' => 'Doi Kennword deaf nedd so heese wie du.',
 'password-login-forbidden' => 'De Nõme uns Kennword sinn fabode.',
-'mailmypassword' => 'Naijs Kennword iwwa E-Mail schigge',
+'mailmypassword' => 'Kennword zriggsedze',
 'accountcreated' => 'Kondo õgleeschd',
 'login-abort-generic' => 'Hodd nedd gklabbd - Abgbroche',
 'loginlanguagelabel' => 'Schbrooch: $1',
@@ -542,6 +542,7 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'compareselectedversions' => 'Ausgawe midnonna vaglaische',
 'showhideselectedversions' => 'Zaisch/Vaschdeggl gwehldi Ausgawe',
 'editundo' => 'zriggnemme',
+'diff-multi' => '({{PLURAL:$1|Ä dzwische lischndi Ännarung|$1 dzwische lischende Ännarunge}} by {{PLURAL:$2|än Middawaida|$2 Middawaida}} nedd gzaischd)',
 
 # Search results
 'searchresults' => 'Eagewnis nochgugge',
@@ -549,8 +550,8 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'notextmatches' => 'Kä Iwwaoinschdimmunge midm Tegschd',
 'prevn' => 'ledschda {{PLURAL:$1|$1}}',
 'nextn' => 'negschd {{PLURAL:$1|$1}}',
-'prevn-title' => 'Frijari $1 {{PLURAL:$1|Eagewnis|Eagewnis}}',
-'nextn-title' => 'Negschdi $1 {{PLURAL:$1|Eagewnis|Eagewnis}}',
+'prevn-title' => 'Frijari $1 {{PLURAL:$1|Eagewniss|Eagewnisse}}',
+'nextn-title' => 'Negschdi $1 {{PLURAL:$1|Eagewniss|Eagewnisse}}',
 'shown-title' => 'Zaisch $1 {{PLURAL:$1|Eagewnis}} bro Said',
 'viewprevnext' => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Dohods ä Said \"[[:\$1]]\".'''",
@@ -683,7 +684,7 @@ Doi Address werd ned gzaischd, wõnse midda babbln.',
 'rclistfrom' => 'Zaisch die ledschde Ännarunge ab $1',
 'rcshowhideminor' => 'Glenni Ännarunge $1',
 'rcshowhidebots' => 'Bots $1',
-'rcshowhideliu' => 'Õgmelda Middawaida $1',
+'rcshowhideliu' => 'Õgmelde Middawaida $1',
 'rcshowhideanons' => 'Ned õgmelda Middawaida $1',
 'rcshowhidepatr' => '$1 iwabriefde Ännarunge',
 'rcshowhidemine' => 'Moi Beawaidunge $1',
@@ -697,7 +698,7 @@ Doi Address werd ned gzaischd, wõnse midda babbln.',
 'boteditletter' => 'B',
 'rc_categories' => 'Oigschrengd uff Sachgrubbe (abgdeeld middm "|")',
 'rc_categories_any' => 'Ebbes',
-'rc-enhanced-expand' => 'Änzlhaide zaische (dozu brauchds JavaScript)',
+'rc-enhanced-expand' => 'Änzlhaide zaische',
 'rc-enhanced-hide' => 'Õgawe vaschdeggle',
 
 # Recent changes linked
@@ -940,7 +941,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'contributions' => '{{GENDER:$1|Wassa gemachd hodd}}',
 'contributions-title' => 'Middawaidabaidräsch vun $1',
 'mycontris' => 'Baidräsch',
-'contribsub2' => 'Fa $1 ($2)',
+'contribsub2' => 'Fa {{GENDER:$3|$1}} ($2)',
 'uctop' => '(geschewedisch)',
 'month' => 'än Monad (un frieja):',
 'year' => 'Abm Johr (un frieja):',
@@ -1116,7 +1117,7 @@ Konnschdn Grund inde Zommefassung õgewwe.",
 'file-info-size' => '$1 × $2 Pixels, Dadaigreß: $3, MIME-Type: $4',
 'file-nohires' => 'Ke heheri Ufflesung vafieschba.',
 'svg-long-desc' => 'SVG-Datei, Grundgreß $1 × $2 Pixels, Dadaigreß: $3',
-'show-big-image' => 'Volli Ufflesung',
+'show-big-image' => 'Uaschbringlischi Dadai',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',
@@ -1173,6 +1174,16 @@ Wonn die Dadai vaännad worre isch, donn konns soi, daß zusedzlischi Õgawe fa 
 'specialpages-group-other' => 'Onare bsundare Saide',
 'specialpages-group-pagetools' => 'Wergzaisch fa Saide',
 'specialpages-group-wiki' => 'Daade un Wergzaisch',
+
+# External image whitelist
+'external_image_whitelist' => " #Loss die Zail wiese isch.<pre>
+#Geb unne Deel vunde regulere Ausdrigg (de Deel zwischede //) oi.
+#Die werren midde URLs vun aissare Bilda vaglische.
+#Die wu passen werren gzaischd un schunschd sieschdn n'Ling'g.
+#Zaile, wu midd # ofongen sinnen Kommenda.
+#Glä- odda Großschraiwung isch do egal.
+
+#Deel vun regulere Ausdrigg nochde Zeil oidrache. Loss die Zail do uuvaännad.</pre>",
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Bschildarungs]]-Filda:',

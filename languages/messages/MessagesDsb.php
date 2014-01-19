@@ -2586,7 +2586,7 @@ Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśe
 'range_block_disabled' => 'Móžnosć administratora, blokěrowaś cełe adresowe rumy, njejo aktiwěrowana.',
 'ipb_expiry_invalid' => 'Pódany cas jo njepłaśecy.',
 'ipb_expiry_temp' => 'Blokěrowanja schowanych wužywarskich mjenjow deje permanentne byś.',
-'ipb_hide_invalid' => 'Njejo móžno toś to konto pódtłocyś; jo snaź pśewjele změnow.',
+'ipb_hide_invalid' => 'Njejo móžno toś to konto pódtłocyś; ma wěcej ako {{PLURAL:$1|jadnu změnu|$1 změnje|$1 změny|$1 změnow}}.',
 'ipb_already_blocked' => '"$1" jo južo blokěrowany.',
 'ipb-needreblock' => '$1 jo južo zablokěrowany. Coš nastajenja změniś?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Druge blokěrowanje|Drugej blokěrowani|Druge blokěrowanja|Druge blokěrowanja}}',

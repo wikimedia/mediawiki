@@ -637,6 +637,7 @@ $1 لطفن سی تلاش هنی صبر بکید',
 پاک بیئن و جمشت سی ای بلگه سی راحتی تو فراهم بیه:",
 'moveddeleted-notice' => 'ای بلگه پاک بیه.
 پاک بین و جمشت ای بلگه سی سرچشمه دئین فراهم بیه',
+'log-fulllog' => 'دیئن همه پهرستنومه یا',
 'edit-conflict' => 'مخالفت نه ویرایشت بکید',
 'postedit-confirmation' => 'ویرایشتتو ذخیره بی',
 'edit-already-exists' => 'نبوئه یه گل بلگه تازه راس بکید.
@@ -700,6 +701,7 @@ $2',
 # Revision deletion
 'rev-deleted-comment' => '(ویرایشت چکسته جا وه جا بیه)',
 'rev-deleted-user' => '(نوم کاروری جا وه جا بیه)',
+'rev-deleted-event' => '(انجوم گر پهرستنومه جا وه جا بیه)',
 'rev-deleted-user-contribs' => '[نوم کاروری یا نشونی آی پی جا وه جا بیه - چیا قام بیه د ور هوم یاریانه ویرایشت بکید]',
 'rev-delundel' => 'آلشت وضئيت ديئن',
 'rev-showdeleted' => 'نشو دائن',
@@ -750,6 +752,7 @@ $2',
 'mergehistory-reason' => 'دليل:',
 
 # Merge log
+'mergelog' => 'سریک سازی پهرستنومه',
 'pagemerge-logentry' => ' [[$1]] وا [[$2]] سریک سازی بی (وانیریا که د $3 فره تر هئن)',
 'revertmerge' => 'بی لوئه',
 
@@ -835,6 +838,7 @@ $2',
 'stub-threshold-disabled' => 'د كار ونن',
 'recentchangesdays' => 'روزیا آلشتیا تازه باو نه نشو بیه:',
 'recentchangesdays-max' => 'فره ترین $1 {{جمی:$1|روز|روزیا}}',
+'prefs-help-recentchangescount' => 'یه شامل آلشتیا تازه،ویرگاریا بلگه و پهرستنومه یا هئ.',
 'savedprefs' => 'ویجه گیا هنی تو ذخیره بیه.',
 'timezonelegend' => 'وخت راساگه',
 'localtime' => 'وخت ولاتی:',
@@ -933,6 +937,7 @@ $2',
 'right-delete' => 'بلگیا نه پاک کو',
 'right-browsearchive' => 'بلگه یا پاک بیه نه پی جوری کو',
 'right-undelete' => 'ای بلگه نه حذف نكيد',
+'right-suppressionlog' => 'دیئن پهرستنومه یا خصوصی',
 'right-unblockself' => 'خوشه قلف نکید',
 'right-editinterface' => 'راوط کارور نه ویرایشت کو',
 'right-editusercssjs' => 'فایلیا جاوا اسکریپت و سی اس اس کاروریا هنی نه ویرایشت کو',
@@ -949,6 +954,10 @@ $2',
 
 # Special:Log/newusers
 'newuserlogpage' => 'راس بیه وا کارور',
+'newuserlogpagetext' => 'یه پهرستنومه راس بیئن کارور هئ.',
+
+# User rights log
+'rightslogtext' => 'یه پهرستنومه آلشتیا حقوق کارور هئ.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ای بلگه نه بحون',
@@ -969,7 +978,9 @@ $2',
 'action-deletedhistory' => 'ویرگار پاک بیه ای بلگه نه بوینیت',
 'action-browsearchive' => 'بلگه یا پاک بیه نه پی جوری بکید',
 'action-undelete' => 'ای بلگه نه پاک نکو',
+'action-suppressionlog' => 'ای پهرستنومه خصوصی نه بوینیت',
 'action-block' => 'ای کارور نه د ویرایشت کردن منع کو',
+'action-protect' => 'ریترازیا حفاظت د ای بلگه نه آلشت بکید',
 'action-import' => 'بلگه یا نه د ویکی هنی وارد بکید',
 'action-importupload' => 'بلگه یا نه د فایل سوار بیه وارد بکید',
 'action-siteadmin' => 'پاگا دونسمنی نه قلف بکید یا نکید',
@@ -1032,6 +1043,7 @@ $2',
 'uploadnologin' => 'وارد نبیه',
 'uploadnologintext' => 'لطفن $1 سی سوارکرد فایلیا.',
 'uploaderror' => 'خطا د سوار کردن',
+'uploadlog' => 'پهرستنومه سوارکرد',
 'uploadlogpage' => 'سوارکرد',
 'filename' => 'نوم فایل',
 'filedesc' => 'چكسته',
@@ -1222,6 +1234,7 @@ $2',
 
 # Special:Log
 'log' => 'نیسنن رخ ونیا',
+'all-logs-page' => 'همه پهرستنومه یا عمومی',
 
 # Special:AllPages
 'allpages' => 'همه بلگيا',
@@ -1246,6 +1259,8 @@ $2',
 'watchlist' => 'سیل برگ',
 'mywatchlist' => 'سیل برگ',
 'watchlistfor2' => 'سي $1 $2',
+'watchnologin' => 'وارد نبیه',
+'watchnologintext' => 'شما سی آلشت دئن سیل برگتو با [[ویجه:وامین اومائن کارور|وامین اومائه]]',
 'watch' => 'سيل كردن',
 'unwatch' => 'ديه نبيه',
 'watchlist-details' => '{{جمی:$1|$1 بلگه|$1 بلگیا}} د سیل برگتو هیش بلگه قسه کردن نی .',
@@ -1256,13 +1271,22 @@ $2',
 'actioncomplete' => 'عملكرد كامل بيه',
 'actionfailed' => 'عملكرد شكست حرده',
 'dellogpage' => 'لاگ پاك كردن',
+'deletionlog' => 'پهرستنومه پاک بیئن',
 
 # Rollback
 'rollbacklink' => 'ورگشتن',
 
+# Edit tokens
+'sessionfailure-title' => 'شکست حردن نشینگه',
+
 # Protect
 'protectlogpage' => 'حفاظت کردن',
 'protectedarticle' => 'حفاظت بيه [[$1]]',
+'modifiedarticleprotection' => 'ریتراز حفاظت د "[[$1]]" آلشت بیه',
+'protect-title' => 'ریتراز حفاظت د "$1" آلشت بیه',
+
+# Restriction levels
+'restriction-level-all' => 'هر ریترازی',
 
 # Undelete
 'undeletelink' => 'بوين/دوواره آماده با',
@@ -1331,10 +1355,19 @@ $2',
 # Namespace 8 related
 'allmessagesname' => 'نوم',
 'allmessagesdefault' => 'سفارشت متنی پيش فرض',
+'allmessages-language' => 'زون:',
 
 # Thumbnails
 'thumbnail-more' => 'گپ كردن',
 'thumbnail_error' => 'خطا د راس بیئن بن کلئکی:$1',
+
+# Special:Import
+'import-comment' => 'ویر و باور:',
+'import-token-mismatch' => 'کمبود د دونسمنیا نشینگه.
+لطفن هنی کوششت بکید.',
+
+# Import log
+'importlogpage' => 'پهرستنومه دئن',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'بلگه كارورتو',
@@ -1343,6 +1376,7 @@ $2',
 'tooltip-pt-watchlist' => 'نوم نوشت د بلگه يايی كه شما آلشتاشونه پيگئری  ميكيد',
 'tooltip-pt-mycontris' => 'يه گل د هومياريا شما',
 'tooltip-pt-login' => 'توصيه بو كه وارد بوئين، اما مجبوری ني',
+'tooltip-pt-anonlogin' => 'توصيه بو كه وارد بوئين، اما مجبوری ني',
 'tooltip-pt-logout' => 'د سيستم دراومائن',
 'tooltip-ca-talk' => 'قسه دباره محتوا بلگه',
 'tooltip-ca-edit' => 'شما تونيد ای  بلگه نه ويرايشت بكيد. لطف بكيد د دگمه پيش ديئن پيش د ذخيره كردن استفاده بكيد',
@@ -1393,6 +1427,12 @@ $2',
 'tooltip-summary' => 'يه چكسته كؤچك وارد بكيد',
 'interlanguage-link-title' => '$1-$2',
 
+# Info page
+'pageinfo-language' => 'بلگه مینونه زون',
+
+# Patrol log
+'patrol-log-page' => 'پهرستنومه گشتن',
+
 # Browsing diffs
 'previousdiff' => '← ويرايشت كۈهنه تر',
 'nextdiff' => 'ويرايشت تازه تر',
@@ -1427,6 +1467,17 @@ $2',
 *جی پی اس گپ حالت
 *جی پی اس همه حالت',
 
+# Exif tags
+'exif-usercomment' => 'ویر و باوریا کارور',
+'exif-jpegfilecomment' => 'ویر و باور فایل پی ان جی',
+'exif-languagecode' => 'زون',
+'exif-pngfilecomment' => 'ویر و باور فایل جی پی ان جی',
+'exif-giffilecomment' => 'ویر و باور فایل جی آی اف',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
+'exif-gpsaltitude-below-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه شو',
 'namespacesall' => 'همه شو',
@@ -1448,11 +1499,18 @@ $2',
 
 # Special:SpecialPages
 'specialpages' => 'بلگيا ويجه',
+'specialpages-group-changes' => 'آلشتیا تازه و پهرستنومه یا',
 
 # External image whitelist
 'external_image_whitelist' => 'یه خط نه ول بکید چی وه<pre>',
 
 # Special:Tags
 'tag-filter' => 'فيلتر [[Special:Tags|Tag]]:',
+
+# API errors
+'api-error-mustbeloggedin' => 'شما سی سوارکردن فایلیا با بیایت وامین',
+
+# Special:ExpandTemplates
+'expand_templates_remove_comments' => 'جا وه جا بیئن ویر و باوریا',
 
 );

@@ -2895,7 +2895,7 @@ Siehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen
 'range_block_disabled' => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid' => 'Die eingegebene Dauer ist ungültig.',
 'ipb_expiry_temp' => 'Benutzernamens-Sperren mit der Verstecken-Option müssen permanent sein.',
-'ipb_hide_invalid' => 'Dieses Konto kann nicht unterdrückt werden, da es zu viele Bearbeitungen aufweist.',
+'ipb_hide_invalid' => 'Dieses Konto kann nicht unterdrückt werden, da es mehr als {{PLURAL:$1|eine Bearbeitung|$1 Bearbeitungen}} aufweist.',
 'ipb_already_blocked' => '„$1“ ist bereits gesperrt',
 'ipb-needreblock' => '„$1“ ist bereits gesperrt. Möchtest du die Sperrparameter ändern?',
 'ipb-otherblocks-header' => 'Andere {{PLURAL:$1|Sperre|Sperren}}',

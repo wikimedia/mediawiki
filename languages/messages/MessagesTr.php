@@ -54,6 +54,7 @@
  * @author Szoszv
  * @author Tarikozket
  * @author Tarkovsky
+ * @author Trncmvsr
  * @author Universal Life
  * @author Urhixidur
  * @author Uğur Başak
@@ -2536,7 +2537,7 @@ Böyle sayfaların silinmesi, {{SITENAME}} sitesini bozmamak için sınırlanmak
 'delete-warning-toobig' => 'Bu sayfanın büyük bir değişiklik geçmişi var, $1 {{PLURAL:$1|revizyonun|revizyonun}} üzerinde.
 Bunu silmek {{SITENAME}} işlemlerini aksatabilir;
 dikkatle devam edin.',
-'deleting-backlinks-warning' => "'''Uyarı:''' Silmek üzere olduğunuz sayfaya başka sayfalardan bağlantılar var.",
+'deleting-backlinks-warning' => "'''Uyarı:''' Silmek üzere olduğunuz sayfaya başka sayfalardan bağlantıları var veya sayfanın bazı bölümleri başka sayfalar tarafından alıntı olarak kullanılıyor.",
 
 # Rollback
 'rollback' => 'değişiklikleri geri al',
@@ -2835,7 +2836,7 @@ Gizleme günlüğü referans için aşağıda sağlanmıştır:',
 'range_block_disabled' => 'Hizmetliler için aralık engellemesi oluşturma yeteneği devre dışı.',
 'ipb_expiry_invalid' => 'Geçersiz bitiş zamanı.',
 'ipb_expiry_temp' => 'Gizli kullanıcı adı engellemeleri kalıcı olmalı.',
-'ipb_hide_invalid' => 'Kullanıcı hesabı gizlenemiyor; çok fazla değişikliği olabilir.',
+'ipb_hide_invalid' => 'Kullanıcı hesabı gizlenemiyor;  {{PLURAL:$1|Bir düzenleme|$1 düzenleme}}den daha fazla düzenlemesi var.',
 'ipb_already_blocked' => '"$1" zaten engellenmiş',
 'ipb-needreblock' => '$1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
 'ipb-otherblocks-header' => 'Diğer {{PLURAL:$1|engelleme|engellemeler}}',

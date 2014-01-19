@@ -2461,7 +2461,7 @@ Palun kinnita, et tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et s
 Selle kustutamine on keelatud, et ära hoida ekslikku {{GRAMMAR:genitive|{{SITENAME}}}} töö häirimist.',
 'delete-warning-toobig' => 'See lehekülg on pika redigeerimislooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.
 Ettevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{{SITENAME}}}} andmebaasi töös.',
-'deleting-backlinks-warning' => "'''Hoiatus:''' Teised leheküljed viitavad leheküljele, mida oled kustutamas.",
+'deleting-backlinks-warning' => "'''Hoiatus:''' Teised leheküljed viitavad leheküljele, mida oled kustutamas, või see lehekülg on kasutuses mallina.",
 
 # Rollback
 'rollback' => 'Tühista muudatused',
@@ -2760,7 +2760,7 @@ Praegu jõus olevad blokeeringud ja redigeerimiskeelud leiad [[Special:BlockList
 'range_block_disabled' => 'Administraatori õigus blokeerida IP-aadresside vahemik on ära võetud.',
 'ipb_expiry_invalid' => 'Vigane aegumise tähtaeg.',
 'ipb_expiry_temp' => 'Peidetud kasutajanime blokeeringud peavad olema alalised.',
-'ipb_hide_invalid' => 'Selle konto varjamine ei õnnestunud. Sellelt võib olla tehtud liiga palju redigeerimisi.',
+'ipb_hide_invalid' => 'Seda kontot ei saa varjata, sest sellega on tehtud üle {{PLURAL:$1|ühe|$1}} muudatuse.',
 'ipb_already_blocked' => '"$1" on juba blokeeritud.',
 'ipb-needreblock' => '$1 on juba blokeeritud.
 Kas soovid muuta blokeeringu sätteid?',

@@ -408,7 +408,7 @@ $messages = array(
 'otherlanguages' => 'En otras linguas',
 'redirectedfrom' => '(Redirigido desde $1)',
 'redirectpagesub' => 'Hoja redirigida',
-'lastmodifiedat' => 'Esta hoja fue trocada por la dal cavo vez el $1, a las $2.',
+'lastmodifiedat' => 'Esta hoja fue trocada por la vez dalcavo en el $1, a las $2.',
 'viewcount' => 'Este pajina fue vijitado {{PLURAL:$1|una vez|$1 vezes}}.',
 'protectedpage' => 'Hoja guardada',
 'jumpto' => 'Saltar a:',
@@ -519,12 +519,12 @@ Esto puede indikar un yerro en la programa.',
 'readonlytext' => 'La base de datos esta blokeada a muevas entradas i otras modifikasyones,probablemente para mantenemento rutinas, Kuando akava se enkontra dispozible.
 
 El administrador ke blokeo dio esta esplikasyon: $1',
-'missing-article' => 'La basa de dados no topó el teksto de la hoja llamada "$1" $2.
+'missing-article' => 'La basa de dados no topó el teksto de una hoja llamada "$1" $2.
 
-En lo mas muncho, esto se cavsa de un "dif" anakróniko u de un atamiento de la istoria de una hoja que se efaçó.
+En lo mas muncho esto passa por cavsa de un atamiento (link) istoriko a una hoja efaçada.
 
-Si esto no es el cavso, puede ser que topates una chincha en el lojikal.
-Alora, avisa un [[Special:ListUsers/sysop|administrador]] si puede ser, también escriviéndolo la URL.',
+Si esto no es el cavso, puede ser que topates una chincha (un yerro) en el lojikal (proǵrama).
+Alora, házemos el plazer de avisar un [[Special:ListUsers/sysop|administrador]] y también escrivirlo la URL (el adresso). Mercí muncho.',
 'missingarticle-rev' => '(nº. de revisión: $1)',
 'missingarticle-diff' => '(Dif.: $1, $2)',
 'readonly_lag' => 'La base de datos se a blokeado mientres los servidores se sinkronizan',
@@ -985,7 +985,7 @@ Leyenda: (act) = diferencias con la versión actual,
 # Recent changes linked
 'recentchangeslinked' => 'Trocamientos conectados',
 'recentchangeslinked-feed' => 'Trocamientos conectados',
-'recentchangeslinked-toolbox' => 'Trocamientos relatados',
+'recentchangeslinked-toolbox' => 'Trocamientos atados',
 'recentchangeslinked-title' => 'Los trocamientos relacionados con "$1"',
 'recentchangeslinked-summary' => "Esto es la lista de los trocamientos dalcavo de las hojas que relatan a una hoja particòlar (o de los miembros de la kategoría particòlar).
 Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son '''reforçadas'''.",
@@ -1211,7 +1211,7 @@ Mira $2 para un registro de los efassados nuevos.',
 ** Redireksyon rota',
 
 # Rollback
-'rollbacklink' => 'aboltar',
+'rollbacklink' => 'hazer aboltar',
 
 # Protect
 'protectlogpage' => 'Protecciones de las hojas',
@@ -1364,7 +1364,7 @@ Si puede ser, escoge otro nombre.',
 'allmessages-filter-submit' => 'Ir',
 
 # Thumbnails
-'thumbnail-more' => 'Engrandece',
+'thumbnail-more' => 'Engrandecer',
 'thumbnail_error' => 'Yerro kriando la minyatura: $1',
 
 # Special:Import
@@ -1425,7 +1425,7 @@ Puedes ver su manadero',
 'tooltip-diff' => 'Mostra los trocamientos que él/ella hizo en el texhto.',
 'tooltip-compareselectedversions' => 'Ve las diferencias entre las dos versiones escogidas de esta hoja.',
 'tooltip-watch' => 'Ajusta esta hoja a tu lista de escojidas',
-'tooltip-rollback' => '«Abolta» abolta todos los trocamientos del kullaneador dalcavo, sólo en klikando una vez.',
+'tooltip-rollback' => '«Hazer aboltar» haze aboltar todos los trocamientos del usador dalcavo, sólo en klikando una vez.',
 'tooltip-undo' => '«Des-hazer» abolta este trocamiento y la avre en el modo de previsteo. Permete ajustar una razón en el somario.',
 'tooltip-summary' => 'Entrar un somaryo kurto',
 

@@ -2400,7 +2400,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => '編輯刪除理由',
 'delete-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除此類頁面的動作已經被限制，以防止在{{SITENAME}}上的意外擾亂。',
 'delete-warning-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。',
-'deleting-backlinks-warning' => "'''警告：'''您要刪除的頁面有其他頁面連接至此。",
+'deleting-backlinks-warning' => "'''警告：'''您要刪除的頁面有其他頁面連接至此或從此頁面transclude。",
 
 # Rollback
 'rollback' => '回退編輯',
@@ -2695,7 +2695,7 @@ $1被封禁的理由是“$2”',
 'range_block_disabled' => '只有管理員才能創建禁止查封的範圍。',
 'ipb_expiry_invalid' => '無效的終止時間。',
 'ipb_expiry_temp' => '隱藏用戶名封鎖必須是永久性的。',
-'ipb_hide_invalid' => '不能壓止這個賬戶；它可能有太多編輯。',
+'ipb_hide_invalid' => '不能抑制此賬戶；它擁有多於$1次編輯。',
 'ipb_already_blocked' => '已經封鎖「$1」',
 'ipb-needreblock' => '$1已經被封鎖。您是否想更改這個設定？',
 'ipb-otherblocks-header' => '其他{{PLURAL:$1|封鎖}}',

@@ -3612,7 +3612,8 @@ Preceded by legend example {{msg-mw|Recentchanges-legend-plusminus}}.',
 'recentchanges-legend-heading' => 'Used as a heading for legend box on [[Special:RecentChanges]] and [[Special:Watchlist]].
 {{Identical|Legend}}',
 'recentchanges-legend-newpage' => 'Used as legend in [[Special:RecentChanges]]. Preceded by {{msg-mw|Recentchanges-label-newpage}}.',
-'recentchanges-legend-plusminus' => 'A plus/minus sign with a number for the legend.',
+'recentchanges-legend-plusminus' => '{{optional}}
+A plus/minus sign with a number for the legend.',
 'rcnotefrom' => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
 The corresponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
@@ -9566,7 +9567,9 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
 'brackets' => '{{Optional}}',
-'quotation-marks' => 'Quotation marks, for quoting, sometimes titles etc., depending on the language.
+'quotation-marks' => '{{optional}}
+
+Quotation marks, for quoting, sometimes titles etc., depending on the language.
 
 See: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].
 

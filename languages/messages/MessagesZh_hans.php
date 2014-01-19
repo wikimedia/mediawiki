@@ -73,6 +73,7 @@
  * @author Xiaomingyan
  * @author Yfdyh000
  * @author 乌拉跨氪
+ * @author 御坂美琴
  * @author 燃玉
  * @author 阿pp
  */
@@ -2441,7 +2442,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => '编辑删除原因',
 'delete-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
-'deleting-backlinks-warning' => "'''警告：'''有其他页面链接到你要删除的页面。",
+'deleting-backlinks-warning' => "'''警告：'''有其他页面链接至或transclude自您要删除的页面。",
 
 # Rollback
 'rollback' => '回退编辑',
@@ -2731,7 +2732,7 @@ $1被封禁的理由是：“$2”',
 'range_block_disabled' => '管理员执行段封禁的权限已被禁用。',
 'ipb_expiry_invalid' => '无效的终止时间。',
 'ipb_expiry_temp' => '隐藏用户名的封禁必须是永久性的。',
-'ipb_hide_invalid' => '无法隐藏此账户，它可能有太多编辑。',
+'ipb_hide_invalid' => '无法封禁此账户；它拥有多于$1次编辑。',
 'ipb_already_blocked' => '“$1”已被封禁',
 'ipb-needreblock' => '$1已被封禁。您是否想更改封禁设置？',
 'ipb-otherblocks-header' => '其他{{PLURAL:$1|封禁}}',

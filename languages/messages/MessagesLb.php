@@ -1020,6 +1020,7 @@ Si gouf anscheinend geläscht.",
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.
 Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "Änneren" vun Ären Astellungen ausschalten.',
+'editpage-notsupportedcontentformat-title' => 'Format vum Inhalt gëtt net ënnerstëtzt',
 'editpage-notsupportedcontentformat-text' => 'De Format vum Inhalt $1 gëtt net vum Modell vum Inhalt $2 ënnerstëtzt.',
 
 # Content models
@@ -2359,7 +2360,7 @@ D'Läsche vu sou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENA
 'delete-warning-toobig' => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läschen dovu kann zu Stéierungen am Fonctionnement vun {{SITENAME}} féieren;
 dës Aktioun soll mat Virsiicht gemaach ginn.",
-'deleting-backlinks-warning' => "'''Opgepasst:''' Aner Säite linken op d'Säit déi Dir am Gaang sidd ze läschen.",
+'deleting-backlinks-warning' => "'''Opgepasst:''' Aner Säite linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
 
 # Rollback
 'rollback' => 'Ännerungen zrécksetzen',
@@ -2655,7 +2656,7 @@ Kuckt d'[[Special:BlockList|Spärlëscht]] fir déi aktuell Spären.",
 'range_block_disabled' => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_expiry_invalid' => "D'Dauer déi Dir uginn hutt ass ongülteg.",
 'ipb_expiry_temp' => 'Verstoppt Späre vu Benotzernimm solle permanent sinn.',
-'ipb_hide_invalid' => 'Dëse Benotzerkont kann net geläscht ginn; et ka sinn datt zevill Ännerunge vun deem Benotzer gemaach goufen.',
+'ipb_hide_invalid' => 'Dëse Benotzerkont kann net geläscht ginn; de Benotzer huet méi wéi {{PLURAL:$1|eng Ännerung|$1 Ännerunge}} gemaach.',
 'ipb_already_blocked' => '"$1" ass scho gespaart.',
 'ipb-needreblock' => "$1 ass scho gespaart. Wëllt Dir d'Parametere vun der Spär änneren?",
 'ipb-otherblocks-header' => 'Aner  {{PLURAL:$1|Spär|Spären}}',

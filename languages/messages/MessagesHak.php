@@ -9,6 +9,7 @@
  *
  * @author Anson2812
  * @author Dream hot
+ * @author EagerLin
  * @author Hakka
  * @author Jetlag
  * @author Mnemonic kek
@@ -234,7 +235,7 @@ $messages = array(
 'articlepage' => '查看內容頁面',
 'talk' => '討論',
 'views' => '查看數',
-'toolbox' => '工具箱',
+'toolbox' => 'Kûng-khí-siông',
 'userpage' => '查看用戶頁面',
 'projectpage' => '查看項目頁面',
 'imagepage' => '查看文件頁面',
@@ -291,8 +292,8 @@ $1',
 'youhavenewmessages' => '汝有$1（$2）。',
 'youhavenewmessagesfromusers' => '汝有來自{{PLURAL:$3|另一位用戶|$3位用戶}}嘅$1（$2）。',
 'youhavenewmessagesmanyusers' => '汝有來自多位用戶嘅$1（ $2 ）。',
-'newmessageslinkplural' => '{{PLURAL:$1|一條新信息|新信息}}',
-'newmessagesdifflinkplural' => '最新{{PLURAL:$1|更改|更改}}',
+'newmessageslinkplural' => '{{PLURAL:$1|yit-thiàu sîn sêu-sit|999=sîn sêu-sit}}',
+'newmessagesdifflinkplural' => 'chui-khiun{{PLURAL:$1|kiên-kói|kiên-kói}}',
 'youhavenewmessagesmulti' => '汝在$1肚有新消息',
 'editsection' => '編寫',
 'editold' => '編寫',
@@ -346,6 +347,10 @@ $1',
 'databaseerror' => '數據庫差錯',
 'databaseerror-text' => '出現資料庫查詢錯誤。
 邇可能表示軟件肚存在錯誤。',
+'databaseerror-textcl' => 'chṳ̂-liau-ku chhà-chhìm chho-ngu',
+'databaseerror-query' => 'chhà-chhìm:$1',
+'databaseerror-function' => 'kûng-nèn:$1',
+'databaseerror-error' => 'chho-ngu:$1',
 'laggedslavemode' => "'''警告：'''頁面可能毋包含最近嘅更新。",
 'readonly' => '數據庫分人鎖定',
 'enterlockreason' => '請撳入禁止訪問原因, 包括估計重新開放嘅時間',
@@ -379,6 +384,7 @@ $1',
 'cannotdelete-title' => '無辦法刪除頁面「$1」',
 'delete-hook-aborted' => '刪除分勾仔中止。
 其毋曾提供任何解釋。',
+'no-null-revision' => 'mò-fap chhóng-kien "$1" ya̍p-mien sîn-ke khûng-pa̍k siû-thin',
 'badtitle' => '有錯嘅標題',
 'badtitletext' => '所請求頁面嘅標題是無效嘅、毋存在嘅，跨語言或跨wiki鏈接嘅標題有錯。其可能包含一隻或還較多做毋得用於標題嘅字符。',
 'perfcached' => '下列係緩存數據，因此可能毋係最新嘅。最多{{PLURAL:$1|單淨有1嘅結果|$1嘅結果}}可用。',
@@ -899,7 +905,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'rows' => '行数：',
 'columns' => '列：',
 'searchresultshead' => '搜尋',
-'resultsperpage' => '每頁顯示鏈接數：',
 'stub-threshold' => '<a href="#" class="stub">短頁面鏈接</a>格式門檻值（字節）:',
 'recentchangesdays' => '最近更改肚嘅顯示日數：',
 'recentchangescount' => 'Chui-khiûn kiên-kói chûng ke phiên-siá chúng-su:',
@@ -1528,6 +1533,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'block-log-flags-noautoblock' => '禁用自動查封',
 'range_block_disabled' => '單淨管理員正做得創建禁止查封嘅範圍。',
 'ipb_expiry_invalid' => '無效嘅終止時間。',
+'ipb_hide_invalid' => 'Put-tet yit-chak yung-fu; Kì yû chhêu-ko {{PLURAL:$1|$1}} chhṳ-su phiên-siá',
 'ipb_already_blocked' => 'Yí-kîn fûng-só "$1"',
 'ipb_cant_unblock' => '差錯: 尋毋到查封ID$1。可能已經解除封禁。',
 'ip_range_invalid' => '無效嘅IP範圍。',

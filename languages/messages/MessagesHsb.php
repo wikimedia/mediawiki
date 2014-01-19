@@ -2591,7 +2591,7 @@ Hlej [[Special:BlockList|lisćinu blokowanjow]], zo by zablokowanjow pruwował.'
 'range_block_disabled' => 'Kmanosć administratorow, cyłe wobłuki IP-adresow blokować, je znjemóžnjena.',
 'ipb_expiry_invalid' => 'Čas spadnjenja je njepłaćiwy.',
 'ipb_expiry_temp' => 'Blokowanja schowanych wužiwarskich mjenow maja permanentne być.',
-'ipb_hide_invalid' => 'Njeje móžno tute konto potłóčić; ma snano přewjele změnow.',
+'ipb_hide_invalid' => 'Njeje móžno tute konto potłóčić; ma přez {{PLURAL:$1|jednu změnu|$1 změnje|$1 změny|$1 změnow}}.',
 'ipb_already_blocked' => 'Wužiwar „$1” je hižo zablokowany.',
 'ipb-needreblock' => '$1 je hižo zablokowany. Chceš nastajenja změnić?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Druhe blokowanje|Druhej blokowani|Druhe blokowanja|Druhe blokowanja}}',

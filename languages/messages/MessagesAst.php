@@ -1170,6 +1170,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-result-score' => 'Relevancia: $1%',
 'search-redirect' => '(redireición de $1)',
 'search-section' => '(seición $1)',
+'search-file-match' => '(casa col conteníu del ficheru)',
 'search-suggest' => 'Quixisti dicir: $1',
 'search-interwiki-caption' => 'Proyeutos hermanos',
 'search-interwiki-default' => '$1 resultaos:',
@@ -2283,7 +2284,7 @@ Restrinxóse l'esborráu d'estes páxines pa evitar perturbaciones accidentales 
 'delete-warning-toobig' => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
 Esborralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
 obra con precaución.",
-'deleting-backlinks-warning' => "'''Avisu:''' Otres páxines enllacen a la páxina que ta a piques de desaniciar.",
+'deleting-backlinks-warning' => "'''Avisu:''' Otres páxines enllacen a, o trescluyen de, la páxina que ta a piques de desaniciar.",
 
 # Rollback
 'rollback' => 'Revertir ediciones',
@@ -2584,7 +2585,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista de bl
 'range_block_disabled' => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
 'ipb_expiry_invalid' => 'Tiempu incorrectu.',
 'ipb_expiry_temp' => "Los bloqueos de nome d'usuariu escondíos han ser permanentes.",
-'ipb_hide_invalid' => 'Nun se pue desaniciar esta cuenta; seique tenga demasiaes ediciones.',
+'ipb_hide_invalid' => "Nun se pue desaniciar esta cuenta; tien más {{PLURAL:$1|d'una edición|de $1 ediciones}}.",
 'ipb_already_blocked' => '"$1" yá ta bloquiáu',
 'ipb-needreblock' => '$1 yá ta bloquiáu. ¿Quies camudar los parámetros?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}',
@@ -4002,4 +4003,6 @@ En realidá cuasi tolo qu'apaeza ente llaves dobles.",
 'expand_templates_generate_rawhtml' => 'Ver el HTML en bruto',
 'expand_templates_preview' => 'Vista previa',
 
+# Unknown messages
+'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 );

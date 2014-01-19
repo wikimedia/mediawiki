@@ -1408,6 +1408,7 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-result-score' => 'Độ phù hợp: $1%',
 'search-redirect' => '(đổi hướng $1)',
 'search-section' => '(đề mục $1)',
+'search-file-match' => '(khớp nội dung tập tin)',
 'search-suggest' => 'Có phải bạn muốn tìm: $1',
 'search-interwiki-caption' => 'Các dự án liên quan',
 'search-interwiki-default' => '$1 kết quả:',
@@ -2513,7 +2514,7 @@ Việc xóa các trang như vậy bị hạn chế để ngăn ngừa phá hoạ
 'delete-warning-toobig' => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu {{SITENAME}};
 hãy cẩn trọng khi thực hiện.',
-'deleting-backlinks-warning' => "'''Cảnh báo:''' Có trang khác liên kết đến trang mà bạn sắp xóa.",
+'deleting-backlinks-warning' => "'''Cảnh báo:''' Có trang khác liên kết đến hoặc nhúng trang mà bạn sắp xóa.",
 
 # Rollback
 'rollback' => 'Lùi tất cả sửa đổi',
@@ -2808,7 +2809,7 @@ Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'range_block_disabled' => 'Đã tắt khả năng cấm hàng loạt của quản lý.',
 'ipb_expiry_invalid' => 'Thời điểm hết hạn không hợp lệ.',
 'ipb_expiry_temp' => 'Cấm tên người dùng ẩn nên là cấm vô hạn.',
-'ipb_hide_invalid' => 'Không thể ẩn tài khoản này; có thể do nó có quá nhiều sửa đổi.',
+'ipb_hide_invalid' => 'Không thể ẩn tài khoản này; nó đã sửa đổi hơn {{PLURAL:$1|một lần|$1 lần}}.',
 'ipb_already_blocked' => '“$1” đã bị cấm rồi',
 'ipb-needreblock' => '$1 đã bị cấm. Bạn có muốn thay đổi các thiết lập?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Tác vụ cấm|Các tác vụ cấm}} khác',

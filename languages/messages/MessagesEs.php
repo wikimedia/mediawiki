@@ -1472,6 +1472,7 @@ Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-result-score' => 'Relevancia: $1%',
 'search-redirect' => '(redirige desde $1)',
 'search-section' => '(sección $1)',
+'search-file-match' => '(coincide con el contenido del archivo)',
 'search-suggest' => 'Quizás quieres buscar: $1',
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => 'Resultados de $1:',
@@ -4287,4 +4288,6 @@ También expande las funciones sintácticas como <code><nowiki>{{</nowiki>#langu
 'expand_templates_generate_rawhtml' => 'Mostrar HTML en crudo',
 'expand_templates_preview' => 'Previsualización',
 
+# Unknown messages
+'uploadinvalidxml' => 'No se pudo analizar el XML del archivo cargado.',
 );
