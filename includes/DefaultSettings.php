@@ -6981,6 +6981,12 @@ $wgSiteTypes = array(
  */
 $wgCompiledFiles = array();
 
+
+/** Enabled go to top button by default
+ * To disable, do "$wgShowTopButton = false;" in LocalSettings.php
+ */
+$wgShowTopButton = true;
+
 /**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
