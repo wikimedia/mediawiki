@@ -193,6 +193,14 @@ return array(
 		'position' => 'bottom',
 	),
 
+	/* Go to top button */
+	'topbutton' => array(
+		'scripts' => 'skins/common/topbutton.js',
+		'styles' => array(
+			'skins/common/topbutton.css' => array( 'media' => 'screen' ),
+		),
+	),
+
 	/* jQuery */
 
 	'jquery' => array(
