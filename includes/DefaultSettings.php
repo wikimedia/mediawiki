@@ -5510,10 +5510,15 @@ $wgRCMaxAge = 13 * 7 * 24 * 3600;
 $wgRCFilterByAge = false;
 
 /**
- * List of Days and Limits options to list in the Special:Recentchanges and
+ * List of Limits options to list in the Special:Recentchanges and
  * Special:Recentchangeslinked pages.
  */
 $wgRCLinkLimits = array( 50, 100, 250, 500 );
+
+/**
+ * List of Days options to list in the Special:Recentchanges and
+ * Special:Recentchangeslinked pages.
+ */
 $wgRCLinkDays = array( 1, 3, 7, 14, 30 );
 
 /**
