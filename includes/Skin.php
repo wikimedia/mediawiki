@@ -209,6 +209,13 @@ abstract class Skin extends ContextSource {
 			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
+
+		// Add go to top button if declared in LocalSettings.php
+		global $wgShowTopButton;
+		if($wgShowTopButton) {
+			$out->addModules('topbutton');
+		}
+
 		$user = $out->getUser();
 		$modules = array(
 			// modules that enhance the page content in some way
