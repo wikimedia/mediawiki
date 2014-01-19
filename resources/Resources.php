@@ -1,4 +1,4 @@
-<?php
+f<?php
 /**
  * Definition of core ResourceLoader modules.
  *
@@ -192,6 +192,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'position' => 'bottom',
 	),
+
 
 	/* jQuery */
 
@@ -1295,5 +1296,19 @@ return array(
 			'resources/oojs/oojs.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	/* Go to top button */
+	'mediawiki.topbutton' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.topbutton.js',
+		'styles' => array(
+			'resources/mediawiki/mediawiki.topbutton.css' => array( 'media' => 'screen' ),
+		),
+		'messages' => array(
+			'gototop-button',
+		),
+		'resources' => array(
+			'jquery.client',
+		),
 	),
 );

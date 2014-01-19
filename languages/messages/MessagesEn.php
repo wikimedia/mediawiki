@@ -5160,4 +5160,8 @@ In fact, it expands pretty much everything in double-braces.',
 'expand_templates_generate_xml'     => 'Show XML parse tree',
 'expand_templates_generate_rawhtml' => 'Show raw HTML',
 'expand_templates_preview'          => 'Preview',
+
+# Go To Top button text
+'gototop-button'					=>	'Go to top',
+
 );

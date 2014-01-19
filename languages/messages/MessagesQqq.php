@@ -10629,4 +10629,8 @@ test
 
 # Unknown messages
 'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
+
+# Go To Top button text
+'gototop-button' =>	'Text displayed for go to top button',
+
 );

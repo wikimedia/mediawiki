@@ -3984,6 +3984,9 @@ $wgMessageStructure = array(
 		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
 	),
+	'gototop-button' => array(
+		'gototop-button',
+	),
 );
 
 /** Comments for each block */

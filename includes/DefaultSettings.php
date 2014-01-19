@@ -6982,6 +6982,11 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+ * Enabled go to top button by default
+ */
+$wgShowTopButton = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
