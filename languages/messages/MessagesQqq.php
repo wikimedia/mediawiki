@@ -686,6 +686,7 @@ See also:
 'protectedpage' => "This message is displayed when trying to edit a page you can't edit because it has been protected.
 
 This message is the title for the message {{msg-mw|protectedpagetext}}.",
+'gototop-button' => 'Text displayed for go to top button',
 'jumpto' => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 {{Identical|Jump to}}',
 'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].

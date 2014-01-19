@@ -266,6 +266,7 @@ $wgMessageStructure = array(
 		'lastmodifiedat',
 		'viewcount',
 		'protectedpage',
+		'gototop-button',
 		'jumpto',
 		'jumptonavigation',
 		'jumptosearch',
@@ -4231,5 +4232,5 @@ Variants for Chinese language",
 	'cachedspecial' => 'SpecialCachedPage',
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
-	'expandtemplates' => 'Special:ExpandTemplates'
+	'expandtemplates' => 'Special:ExpandTemplates',
 );

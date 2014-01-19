@@ -206,9 +206,15 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
+			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI, $wgShowTopButton;
 
 		$out = $this->getOutput();
+
+		// Add go to top button if $wgShowTopButton is true
+		if ( $wgShowTopButton ) {
+			$out->addModules( 'mediawiki.topbutton' );
+		}
+
 		$user = $out->getUser();
 		$modules = array(
 			// modules that enhance the page content in some way

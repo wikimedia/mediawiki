@@ -893,6 +893,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'lastmodifiedat'     => 'This page was last modified on $1, at $2.',
 'viewcount'          => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'      => 'Protected page',
+'gototop-button'     => 'Go to top',
 'jumpto'             => 'Jump to:',
 'jumptonavigation'   => 'navigation',
 'jumptosearch'       => 'search',
