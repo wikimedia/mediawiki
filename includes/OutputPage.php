@@ -1573,6 +1573,7 @@ class OutputPage extends ContextSource {
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addModuleMessages( $parserOutput->getModuleMessages() );
+		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
@@ -2941,6 +2942,16 @@ $templates
 	}
 
 	/**
+	 * Get the javascript config vars to include on this page
+	 *
+	 * @return Array of javascript config vars
+	 * @since 1.23
+	 */
+	public function getJsConfigVars() {
+		return $this->mJsConfigVars;
+	}
+
+	/**
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
 	 * @param $keys {String|Array} Key or array of key/value pairs.
@@ -3072,7 +3083,7 @@ $templates
 		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars, $this ) );
 
 		// Merge in variables from addJsConfigVars last
-		return array_merge( $vars, $this->mJsConfigVars );
+		return array_merge( $vars, $this->getJsConfigVars() );
 	}
 
 	/**
