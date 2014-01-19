@@ -41,6 +41,7 @@ class ParserOutput extends CacheTime {
 		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
 		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
 		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
+		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
@@ -134,6 +135,8 @@ class ParserOutput extends CacheTime {
 	function getModuleScripts()          { return $this->mModuleScripts; }
 	function getModuleStyles()           { return $this->mModuleStyles; }
 	function getModuleMessages()         { return $this->mModuleMessages; }
+	/** @since 1.23 */
+	function getJsConfigVars()           { return $this->mJsConfigVars; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
@@ -319,6 +322,24 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add one or more variables to be set in mw.config in JavaScript.
+	 *
+	 * @param $keys {String|Array} Key or array of key/value pairs.
+	 * @param $value {Mixed} [optional] Value of the configuration variable.
+	 * @since 1.23
+	 */
+	public function addJsConfigVars( $keys, $value = null ) {
+		if ( is_array( $keys ) ) {
+			foreach ( $keys as $key => $value ) {
+				$this->mJsConfigVars[$key] = $value;
+			}
+			return;
+		}
+
+		$this->mJsConfigVars[$keys] = $value;
+	}
+
+	/**
 	 * Copy items from the OutputPage object into this one
 	 *
 	 * @param $out OutputPage object
@@ -328,6 +349,7 @@ class ParserOutput extends CacheTime {
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
 		$this->addModuleMessages( $out->getModuleMessages() );
+		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
 	}
