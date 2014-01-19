@@ -1,0 +1,17 @@
+#go-to-top {
+    position: fixed;
+    bottom: 2em;
+    left: 40px;
+    text-decoration: none;
+    color: #0645ad;
+    background-color: rgba(165, 155, 235, 0.80);
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+    border-radius: 4px; 
+ }
+
+#go-to-top:hover {    
+    background-color: rgba(135, 135, 135, 0.40);
+    cursor: pointer;
+}
