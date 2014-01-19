@@ -679,12 +679,6 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo FIXME: Title::getLength() documentation claims that it adds things
-	 *   to the link cache, so the local cache here should be unnecessary, but
-	 *   in fact calling getLength() repeatedly for the same $page does seem to
-	 *   run one query for each call?
-	 * @todo Document parameters
-	 *
 	 * @param $parser Parser
 	 * @param $page String Name of page to check (Default: empty string)
 	 * @param $raw String Should number be human readable with commas or just number
