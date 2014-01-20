@@ -1558,7 +1558,7 @@ Parameters:
 * $3 - a password (randomly generated)
 * $4 - a URL to the wiki ('<' + server name + script name + '>')
 * $5 - (Unused) number of days to password expiry date",
-'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times; also used by [[Special:ChangeEmail]] and [[Special:ChangePassword]].
+'login-throttled' => 'Error message shown at [[Special:UserLogin]] after the user has tried to login with incorrect password too many times.
 
 The user has to wait a certain time before trying to log in again.
 
@@ -1576,7 +1576,8 @@ Parameters:
 
 This is a protection against robots trying to find the password by trying lots of them.
 The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
-This message is used in html.',
+This message is used in html.
+{{identical|Login throttled}}',
 'login-abort-generic' => 'The generic unsuccessful login message is used unless otherwise specified by hook writers',
 'loginlanguagelabel' => 'Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. Parameters:
 * $1 - a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.
@@ -1617,7 +1618,26 @@ Parameters:
 'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
 'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
+'changepassword-throttled' => 'Error message shown at [[Special:ChangePassword]] after the user has tried to login with incorrect password too many times.
 
+The user has to wait a certain time before trying to log in again.
+
+Parameters:
+* $1 - the time to wait before the next login attempt. Automatically formatted using the following duration messages:
+** {{msg-mw|Duration-millennia}}
+** {{msg-mw|Duration-centuries}}
+** {{msg-mw|Duration-decades}}
+** {{msg-mw|Duration-years}}
+** {{msg-mw|Duration-weeks}}
+** {{msg-mw|Duration-days}}
+** {{msg-mw|Duration-hours}}
+** {{msg-mw|Duration-minutes}}
+** {{msg-mw|Duration-seconds}}
+
+This is a protection against robots trying to find the password by trying lots of them.
+The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
+This message is used in html.
+{{identical|Login throttle}}',
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
 {{Identical|Reset password}}',
@@ -1693,7 +1713,26 @@ Parameters:
 'changeemail-cancel' => 'Cancel button on [[Special:ChangeEmail]]
 
 {{Identical|Cancel}}',
+'changeemail-throttled' => 'Error message shown at [[Special:ChangeEmail]] after the user has tried to login with incorrect password too many times.
 
+The user has to wait a certain time before trying to log in again.
+
+Parameters:
+* $1 - the time to wait before the next login attempt. Automatically formatted using the following duration messages:
+** {{msg-mw|Duration-millennia}}
+** {{msg-mw|Duration-centuries}}
+** {{msg-mw|Duration-decades}}
+** {{msg-mw|Duration-years}}
+** {{msg-mw|Duration-weeks}}
+** {{msg-mw|Duration-days}}
+** {{msg-mw|Duration-hours}}
+** {{msg-mw|Duration-minutes}}
+** {{msg-mw|Duration-seconds}}
+
+This is a protection against robots trying to find the password by trying lots of them.
+The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
+This message is used in html.
+{{identical|Login throttle}}',
 # Special:ResetTokens
 'resettokens' => '{{doc-special|ResetTokens}}
 In this case "token" may be translated as "key", or similar.
