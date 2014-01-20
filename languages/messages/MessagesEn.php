@@ -1268,6 +1268,8 @@ If you choose to provide it, this will be used for giving the user attribution f
 # Change password dialog
 'changepassword'            => 'Change password',
 'changepassword-summary'    => '', # do not translate or duplicate this message to other languages
+'changepassword-throttled'  => 'You have made too many recent login attempts.
+Please wait $1 before trying again.',
 'resetpass_announce'        => 'You logged in with a temporary emailed code.
 To finish logging in, you must set a new password here:',
 'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
@@ -1338,6 +1340,8 @@ Temporary password: $2',
 'changeemail-password' => 'Your {{SITENAME}} password:',
 'changeemail-submit'   => 'Change email',
 'changeemail-cancel'   => 'Cancel',
+'changeemail-throttled' => 'You have made too many login attempts.
+Please wait $1 before trying again.',
 
 # Special:ResetTokens
 'resettokens'                 => 'Reset tokens',
