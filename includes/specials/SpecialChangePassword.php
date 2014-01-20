@@ -205,7 +205,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			throw new PasswordError( $this->msg( 'login-throttled' )
+			throw new PasswordError( $this->msg( 'changepassword-throttled' )
 				->params( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
 				->text()
 			);

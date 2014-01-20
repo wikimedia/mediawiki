@@ -232,7 +232,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			$this->error( array( 'login-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
+			$this->error( array( 'changeemail-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
 
 			return false;
 		}
