@@ -5894,6 +5894,11 @@ $wgExportMaxLinkDepth = 0;
 $wgExportFromNamespaces = false;
 
 /**
+ * Whether to allow exporting pages with a common prefix option
+ */
+$wgExportFromPrefix = true;
+
+/**
  * Whether to allow exporting the entire wiki into a single file
  */
 $wgExportAllowAll = false;
