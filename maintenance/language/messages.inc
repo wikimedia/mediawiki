@@ -581,6 +581,7 @@ $wgMessageStructure = array(
 		'retypenew',
 		'resetpass_submit',
 		'changepassword-success',
+        'changepassword-throttled',
 		'resetpass_forbidden',
 		'resetpass-no-info',
 		'resetpass-submit-loggedin',
@@ -620,7 +621,8 @@ $wgMessageStructure = array(
 		'changeemail-none',
 		'changeemail-password',
 		'changeemail-submit',
-		'changeemail-cancel',
+        'changeemail-cancel',
+        'changeemail-throttled'
 	),
 	'resettokens' => array(
 		'resettokens',
