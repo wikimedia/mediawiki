@@ -75,6 +75,7 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* Special:Export now has the ability to export pages within a prefix.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
