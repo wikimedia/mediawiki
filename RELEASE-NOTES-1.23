@@ -84,6 +84,7 @@ production.
   revision comparison pages using syntax such as [[Special:Diff/12345]],
   [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
 * New user accounts' personal and talk pages are now watched by them by default.
+* Special:Export now has the ability to export pages within a prefix.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

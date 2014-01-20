@@ -3520,27 +3520,29 @@ The latest log entry is provided below for reference:",
 Please choose another name.',
 
 # Export
-'export'            => 'Export pages',
-'export-summary'    => '', # do not translate or duplicate this message to other languages
-'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
+'export'               => 'Export pages',
+'export-summary'       => '', # do not translate or duplicate this message to other languages
+'exporttext'           => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
 This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
 To export pages, enter the titles in the text box below, one title per line, and select whether you want the current revision as well as all old revisions, with the page history lines, or the current revision with the info about the last edit.
 
 In the latter case you can also use a link, for example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
-'exportall'         => 'Export all pages',
-'exportcuronly'     => 'Include only the current revision, not the full history',
-'exportnohistory'   => "----
+'exportall'            => 'Export all pages',
+'exportcuronly'        => 'Include only the current revision, not the full history',
+'exportnohistory'      => "----
 <strong>Note:</strong> Exporting the full history of pages through this form has been disabled due to performance reasons.",
-'exportlistauthors' => 'Include a full list of contributors for each page',
-'export-submit'     => 'Export',
-'export-addcattext' => 'Add pages from category:',
-'export-addcat'     => 'Add',
-'export-addnstext'  => 'Add pages from namespace:',
-'export-addns'      => 'Add',
-'export-download'   => 'Save as file',
-'export-templates'  => 'Include templates',
-'export-pagelinks'  => 'Include linked pages to a depth of:',
+'exportlistauthors'    => 'Include a full list of contributors for each page',
+'export-submit'        => 'Export',
+'export-addcattext'    => 'Add pages from category:',
+'export-addcat'        => 'Add',
+'export-addnstext'     => 'Add pages from namespace:',
+'export-addns'         => 'Add',
+'export-addprefixtext' => 'Add pages with prefix:',
+'export-addprefix'     => 'Add',
+'export-download'      => 'Save as file',
+'export-templates'     => 'Include templates',
+'export-pagelinks'     => 'Include linked pages to a depth of:',
 
 # Namespace 8 related
 'allmessages'                   => 'System messages',

@@ -7155,7 +7155,8 @@ See also:
 Submit button text of this form is {{msg-mw|Export-addcat}}.
 
 See also:
-* {{msg-mw|Export-addnstext}}',
+* {{msg-mw|Export-addnstext}}
+* {{msg-mw|Export-addprefixtext}}',
 'export-addcat' => 'Used as label for input box in the form on [[Special:Export]].
 
 See also:
@@ -7164,8 +7165,17 @@ See also:
 'export-addnstext' => 'Message {{msg-mw|configure-setting-wgExportFromNamespaces}} refers to this one.
 
 See also:
-* {{msg-mw|Export-addcattext}}',
+* {{msg-mw|Export-addcattext}}
+* {{msg-mw|Export-addprefixtext}}',
 'export-addns' => '{{Identical|Add}}',
+'export-addprefixtext' => 'Used as label for "prefix" input box in the form on [[Special:Export]].
+
+Submit button of this form is {{msg-mw|Export-addprefix}}.
+
+See also:
+* {{msg-mw|Export-addcattext}}
+* {{msg-mw|Export-addnstext}}',
+'export-addprefix' => '{{Identical|Add}}',
 'export-download' => 'A label of checkbox option in [[Special:Export]]
 
 See also:
