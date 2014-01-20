@@ -1487,6 +1487,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-result-score' => 'Pertinence : $1%',
 'search-redirect' => '(redirection depuis $1)',
 'search-section' => '(section $1)',
+'search-file-match' => '(correspond au contenu du fichier)',
 'search-suggest' => 'Essayez avec cette orthographe : $1',
 'search-interwiki-caption' => 'Projets frères',
 'search-interwiki-default' => 'Résultats sur $1 :',
@@ -2596,7 +2597,7 @@ La suppression de telles pages a été restreinte pour prévenir des perturbatio
 'delete-warning-toobig' => "Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ;
 veuiller ne procéder qu'avec prudence.",
-'deleting-backlinks-warning' => "'''Attention :''' D’autres pages ont un lien vers la page que vous allez supprimer.",
+'deleting-backlinks-warning' => "'''Attention :''' D’autres pages ont un lien vers ou incorporent la page que vous allez supprimer.",
 
 # Rollback
 'rollback' => 'Révoquer les modifications',
@@ -2900,7 +2901,7 @@ Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissement
 'range_block_disabled' => 'Le droit administrateur de créer des blocages de plages IP est désactivé.',
 'ipb_expiry_invalid' => "Durée d'expiration incorrecte.",
 'ipb_expiry_temp' => "Les blocages de noms d'utilisateurs cachés doivent être permanents.",
-'ipb_hide_invalid' => 'Impossible de supprimer ce compte ; il semble avoir trop de modifications.',
+'ipb_hide_invalid' => 'Impossible de supprimer ce compte ; il semble avoir plus {{PLURAL:$1|d’une modification|de $1 modifications}}.',
 'ipb_already_blocked' => '« $1 » est déjà bloqué',
 'ipb-needreblock' => '$1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Autre blocage|Autres blocages}}',

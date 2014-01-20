@@ -55,13 +55,13 @@ $namespaceAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Bınê girey de xete bıonce:',
-'tog-justify' => 'Paragrafu ayar ke',
+'tog-underline' => 'Bınê gırey de xete bonce:',
+'tog-justify' => 'Paragrafu eyar ke',
 'tog-hideminor' => 'Vurnayisunê senıku pela vurnayisunê peyênu de wedare',
 'tog-hidepatrolled' => 'Vurnayisunê qontrolkerdu pela vurnayisê peyêni de wedare',
 'tog-newpageshidepatrolled' => 'Pelunê qontrolkerdu lista pelunê newu de wedare',
-'tog-extendwatchlist' => 'Lista şêrkerdene hira bıke ke vurnayişi pêro bıasê, teyna tewr peyêni nê',
-'tog-usenewrc' => 'Pele be vurnayisunê grube de vurnayisê peyêni u lista şêrkerdişi (JavaScript lazımo)',
+'tog-extendwatchlist' => 'Lista şêrkerdene hira bıke ke vurnayişi pêro basê, teyna tewr peyêni nê',
+'tog-usenewrc' => 'Vurnayisê ke pela vurnayisunê peyênun u lista şêrkerdişi derê inu grube ke.',
 'tog-numberheadings' => 'Sernustu be ho numra cı sane',
 'tog-showtoolbar' => 'Gozagunê hacetunê vurnayişi bıasne (JavaScript lazımo)',
 'tog-editondblclick' => 'Pê dı rey teqnayene pele sero bıguriye (JavaScript lazımo)',

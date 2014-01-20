@@ -146,7 +146,7 @@ $messages = array(
 'category-article-count' => '{{جمی:$2|ای دسه شومل بلگه نهاییه .| {{جمی:$1| بلگه هئ|$1 بلگیا هئن}} د ای دسه, خارج د $2 کل.}}',
 'category-article-count-limited' => 'نها {{جمی:$1|بلگه هئ|$1بلگیا هئن}} د دسه ایسنی .',
 'category-file-count' => '{{جمی:$2|ای دسه فقط شامل فایل نهایی هئ file.| نهایی {{جمی:$1|فایل هئ|$1 فایلیا هئن}} د ای دسه, وه در د کل $2 .}}',
-'category-file-count-limited' => ' {{جمی:$1|فایل هئ|1$فایلیا هئن}}نهایی هان د دسه ایسنی.',
+'category-file-count-limited' => ' {{جمی:$1|[جانیا هئ|1$جانیایا هئن}}نهایی هان د دسه ایسنی.',
 'listingcontinuesabbrev' => 'دماله',
 'index-category' => 'بلگيا سيائه دار',
 'noindex-category' => 'بلگيا بی سيائه',
@@ -792,9 +792,10 @@ $2',
 'searchprofile-everything-tooltip' => 'همه محتوا نه پی جوری كو (شاملا بلگيا چك چنه)',
 'searchprofile-advanced-tooltip' => 'نوم جايا نوم ديار بگرد',
 'search-result-size' => '$1 ({{جمی:$2|بی واچه يل|واچه تكی|واچه يل|$2 واچه يل|$2 واچه}})',
-'search-result-category-size' => '{{جمی:$1|1 اندوم|$1 اندومیا}} ({{جمی:$2|1 زیردسه|$2 زیردسه یا}}, {{جمی:$3|1 فایل|$3 فایلیا}}',
+'search-result-category-size' => '{{جمی:$1|1 اندوم|$1 اندومیا}} ({{جمی:$2|1 زیردسه|$2 زیردسه یا}}, {{جمی:$3|1 جانیا|$3 جانیایا}}',
 'search-redirect' => '(ورگشتن $1)',
 'search-section' => '(بشق $1)',
+'search-file-match' => '(یکی کردن مینونه جانیا)',
 'search-suggest' => 'منظورت يه بی:$1',
 'search-interwiki-caption' => 'پروجه یا خوئر',
 'search-interwiki-default' => '$1 نتیجه یا:',
@@ -948,6 +949,7 @@ $2',
 'right-viewmywatchlist' => 'سیل برگ خوتونه بوینیت',
 'right-viewmyprivateinfo' => 'دونسمنیا شصقی خوتونه بوینیت(چی نشونی ایمیل،نوم راستکی)',
 'right-editmyprivateinfo' => 'دونسمنیا شصقی خوتونه ویرایشت بکید(چی نشونی ایمیل،نوم راستکی)',
+'right-importupload' => 'دئن بلگه یا د یه گل جانیا سوار بیه',
 'right-siteadmin' => 'پاگا دونسمنی نه قلف بکید یا نکید',
 'right-sendemail' => 'سی کاروریا هنی ایمیل کل بکید',
 'right-passwordreset' => 'پاسورد ایمیلیا د نو دئه بیه نه بوینیت',
@@ -1051,6 +1053,7 @@ $2',
 'filereuploadsummary' => 'آلشتیا فایل:',
 'filesource' => 'سرچشمه:',
 'uploadedfiles' => 'فایلیا سواربیه',
+'badfilename' => 'نوم جانیا د "$1" آلشت بیه.',
 'empty-file' => 'فایلی که دئی ته حالی بیه.',
 'file-too-large' => 'فایلی که دئی ته فره گپ بی.',
 'filename-tooshort' => 'نوم فایل فره کؤچکه.',
@@ -1077,6 +1080,20 @@ $2',
 
 # File backend
 'backend-fail-notexists' => 'فایل $1 وجود ناره.',
+'backend-fail-delete' => 'نبوئه جانیا $1 پاک بوئه',
+'backend-fail-describe' => 'نبوئه گپ دونسمنیا سی جانیا"$1" آلشت بوئه.',
+'backend-fail-store' => 'نبوئه جانیا "$1" د "$2" امبار بوئه.',
+'backend-fail-move' => 'نبوئه جانیا "$1" د "$2" جا وه جا بوئه',
+'backend-fail-opentemp' => 'نبوئه جانیا موقتی وا بوئه.',
+'backend-fail-writetemp' => 'نبوئه د جانیا موقتی چی بنیسیت.',
+'backend-fail-read' => 'نبوئه جانیا"$1" حنه بوئه.',
+
+# Lock manager
+'lockmanager-fail-closelock' => 'نبوئه قلف جانیا سی "$1" بسه بوئه.',
+'lockmanager-fail-openlock' => 'نبوئه قلف جانیا سی "$1" وا بوئه.',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'نومه گه جانیایا نه د نو تازه کو',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'دسرسی منع بی',
@@ -1122,6 +1139,7 @@ $2',
 'filehist-dimensions' => 'بعديا',
 'filehist-filesize' => 'انازه فایل',
 'filehist-comment' => 'نظر',
+'filehist-missing' => 'گم بیئن جانیا',
 'imagelinks' => 'استفاده د فايل',
 'linkstoimage' => 'دمال بيه {{PLURAL:$1|ديس ونيا بلگه|$1 ديس ون بلگيا}} دای فایل:',
 'nolinkstoimage' => 'ایچه هیژ بلگه ای سی هوم پیوند بیئن وا ای فایل نی',
@@ -1129,6 +1147,7 @@ $2',
 'sharedupload-desc-here' => 'فایلی که د $1 شایت د مئن پروجیا هنی استفاده بیه.
 توضی دباره[$2 file description page] د هار نشو دئئه بیه',
 'filepage-nofile' => 'چنو فایلی وا ای نوم نئ.',
+'uploadnewversion-linktext' => 'یه گل نسقه تازه د ای جانیا سوار بکید',
 'shared-repo-from' => 'د $1',
 
 # File reversion
@@ -1176,6 +1195,7 @@ $2',
 'statistics-header-hooks' => 'آماریا هنی',
 'statistics-articles' => 'بلگه یا مینونه',
 'statistics-pages' => 'بلگیا',
+'statistics-files' => 'جانیا یا سوار بیه',
 'statistics-views-total' => 'همه نه بوینیت',
 'statistics-views-peredit' => 'هر ویرایشت نه بوینیت',
 'statistics-users-active' => 'کاروریا کارکو',
@@ -1242,6 +1262,8 @@ $2',
 $2',
 'allarticles' => 'همه بلگيا',
 'allpagessubmit' => 'رو',
+'allpagesbadtitle' => 'عنوان بلگه حاسته بیه معتور نی،یا  یه گل مئن زونی یا مئن ویکی عنوان غلطه.
+یه شایت شومل یکی با یا بیشتر کاراکتریا نبوئه که سی ای موضوعیا استفاده بوئن',
 
 # Special:Categories
 'categories' => 'دسه يا',
@@ -1291,6 +1313,7 @@ $2',
 # Undelete
 'undeletelink' => 'بوين/دوواره آماده با',
 'undeleteviewlink' => 'ديئن',
+'undelete-error-short' => 'خطا پاک نبیئن جانیا:$1',
 
 # Namespace form on various pages
 'namespace' => 'نوم جا:',
@@ -1351,6 +1374,7 @@ $2',
 
 # Export
 'export' => 'وه صحرا ديئن بلگيا',
+'export-download' => 'ذخیره کردن جانیا',
 
 # Namespace 8 related
 'allmessagesname' => 'نوم',
@@ -1359,10 +1383,14 @@ $2',
 
 # Thumbnails
 'thumbnail-more' => 'گپ كردن',
+'filemissing' => 'گم بیئن جانیا',
 'thumbnail_error' => 'خطا د راس بیئن بن کلئکی:$1',
 
 # Special:Import
+'import-upload-filename' => 'نوم جانیا:',
 'import-comment' => 'ویر و باور:',
+'importcantopen' => 'نبوئه جانیا دئه بیه نه وا بکید',
+'importnofile' => 'هیچ جانیا دئه بیه ای سوار نبیه.',
 'import-token-mismatch' => 'کمبود د دونسمنیا نشینگه.
 لطفن هنی کوششت بکید.',
 
@@ -1429,9 +1457,13 @@ $2',
 
 # Info page
 'pageinfo-language' => 'بلگه مینونه زون',
+'pageinfo-category-files' => 'شماره جانیایا',
 
 # Patrol log
 'patrol-log-page' => 'پهرستنومه گشتن',
+
+# Image deletion
+'filedeleteerror-short' => 'خطا پاک نبیئن جانیا:$1',
 
 # Browsing diffs
 'previousdiff' => '← ويرايشت كۈهنه تر',
@@ -1442,6 +1474,11 @@ $2',
 'file-nohires' => 'عسك ون بالاتري دش ني',
 'svg-long-desc' => 'اس وی جی فايل.نومنا $1 $2 پيكسل',
 'show-big-image' => 'فایل اصلی',
+
+# Special:NewFiles
+'newimages' => 'عسگدونی جانیایا تازه',
+'newimages-label' => 'نوم جانیا(یا بشقی د وه):',
+'sp-newimages-showfrom' => 'جانیایا تازه نه که $2 ، $2 شرو بینه نشو بیه',
 
 # Bad image list
 'bad_image_list' => 'دونسمنديانه وه ای شلگ وارد بكيت:
@@ -1468,7 +1505,10 @@ $2',
 *جی پی اس همه حالت',
 
 # Exif tags
+'exif-datetime' => 'آلشت دئن وخت و دمون جانیا',
 'exif-usercomment' => 'ویر و باوریا کارور',
+'exif-relatedsoundfile' => 'جانیا دنگ دار مرتوط',
+'exif-filesource' => 'سرچشمه جانیا',
 'exif-jpegfilecomment' => 'ویر و باور فایل پی ان جی',
 'exif-languagecode' => 'زون',
 'exif-pngfilecomment' => 'ویر و باور فایل جی پی ان جی',
@@ -1497,6 +1537,12 @@ $2',
 'version-ext-colheader-license' => 'ليسانس',
 'version-ext-colheader-credits' => 'نیسنه یا',
 
+# Special:Redirect
+'redirect-file' => 'نوم جانیا',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'نوم جانیا:',
+
 # Special:SpecialPages
 'specialpages' => 'بلگيا ويجه',
 'specialpages-group-changes' => 'آلشتیا تازه و پهرستنومه یا',
@@ -1508,6 +1554,8 @@ $2',
 'tag-filter' => 'فيلتر [[Special:Tags|Tag]]:',
 
 # API errors
+'api-error-filename-tooshort' => 'نوم جانیا فره کؤچکه.',
+'api-error-illegal-filename' => 'نوم جانیا اجازه دئه نئ.',
 'api-error-mustbeloggedin' => 'شما سی سوارکردن فایلیا با بیایت وامین',
 
 # Special:ExpandTemplates

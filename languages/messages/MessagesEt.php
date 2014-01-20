@@ -672,7 +672,7 @@ Võimalik, et keegi on selle juba kustutanud.',
 'badtitle' => 'Vigane pealkiri',
 'badtitletext' => 'Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
 See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.',
-'perfcached' => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad. Puhvris on saadaval kuni {{PLURAL:$1|üks tulemus|$1 tulemust}}.',
+'perfcached' => 'Järgmised andmed on puhverdatud ja ei pruugi olla kõige värskemad. Puhvris on saadaval kuni {{PLURAL:$1|üks tulemus|$1 tulemust}}.',
 'perfcachedts' => 'Järgmised andmed on vahemälus. Viimane uuendamisaeg: $2, kell $3. Puhvris on saadaval kuni {{PLURAL:$4|üks tulemus|$4 tulemust}}.',
 'querypage-no-updates' => 'Lehekülje uuendamine ei ole hetkel lubatud ning andmeid ei värskendata.',
 'viewsource' => 'Vaata lähteteksti',
@@ -821,8 +821,8 @@ Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul a
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'emailauthenticated' => 'Sinu e-posti aadressi kinnitamisaeg: $2 kell $3.',
 'emailnotauthenticated' => 'Sinu e-posti aadress pole veel kinnitatud.
-Järgnevate funktsioonidega seotud e-kirju ei saadeta.',
-'noemailprefs' => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
+Järgmiste funktsioonidega seotud e-kirju ei saadeta.',
+'noemailprefs' => 'Järgmiste võimaluste toimimiseks on vaja määrata e-posti aadress.',
 'emailconfirmlink' => 'Kinnita oma e-posti aadress',
 'invalidemailaddress' => 'E-posti aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
 Ole hea ja sisesta õige e-posti aadress või jäta väli tühjaks.',
@@ -1096,7 +1096,7 @@ Allpool on toodud uusim logisissekanne:",
 'cascadeprotectedwarning' => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult administraatori õigustega kasutajad saavad seda redigeerida, sest lehekülg on osa {{PLURAL:$1|järgmisest|järgmisest}} kaskaadkaitsega {{PLURAL:$1|leheküljest|lehekülgedest}}:",
 'titleprotectedwarning' => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''
 Allpool on toodud uusim logisissekanne:",
-'templatesused' => 'Sellel leheküljel on kasutusel {{PLURAL:$1|järgnev mall|järgnevad mallid}}:',
+'templatesused' => 'Sellel leheküljel on kasutusel {{PLURAL:$1|järgmine mall|järgmised mallid}}:',
 'templatesusedpreview' => 'Eelvaates {{PLURAL:$1|kasutatav mall|kasutatavad mallid}}:',
 'templatesusedsection' => 'Selles alaosas {{PLURAL:$1|kasutatav mall|kasutatavad mallid}}:',
 'template-protected' => '(kaitstud)',
@@ -1109,7 +1109,7 @@ Võid pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:User
 'sectioneditnotsupported-text' => 'Sellel leheküljel pole alaosa redigeerimine lubatud.',
 'permissionserrors' => 'Loatõrge',
 'permissionserrorstext' => 'Sul pole õigust seda teha {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:',
-'permissionserrorstext-withaction' => 'Sul pole lubatud {{lcfirst:$2}} {{PLURAL:$1|järgneval põhjusel|järgnevatel põhjustel}}:',
+'permissionserrorstext-withaction' => 'Sul pole lubatud {{lcfirst:$2}} {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:',
 'recreate-moveddeleted-warn' => "'''Hoiatus: Lood uuesti lehekülge, mis on varem kustutatud.'''
 
 Kaalu, kas lehekülje uuesti loomine on kohane.
@@ -1248,9 +1248,9 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-text' => "'''Kustutatud redaktsioonid ja sündmused kajastuvad endiselt lehekülje ajaloos ja logides, kuid osa nende sisust pole avalikult nähtav.'''
 {{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad peidetud sisu siiski vaadata ning seda vajadusel selle liidese kaudu taastada, kui see pole just täiendavalt keelatud.",
 'revdelete-confirm' => 'Kinnita, et soovid tõesti seda teha ning et saad aru tagajärgedest ja tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinsete kokkulepetega]].',
-'revdelete-suppress-text' => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
-* Võimalik laim
-* Sobimatu isiklik teave
+'revdelete-suppress-text' => "Andmed tuleks varjata '''ainult''' järgmistel juhtudel:
+* võimalik laim
+* sobimatu isiklik teave
 *: ''kodune aadress ja telefoninumber, isikukood jne''",
 'revdelete-legend' => 'Nähtavuse piirangute seadmine',
 'revdelete-hide-text' => 'Redaktsiooni tekst',
@@ -1755,14 +1755,14 @@ Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile
 'upload-recreate-warning' => "'''Hoiatus: Sellise nimega fail on kustutatud või teisaldatud.'''
 
 Selle lehe kustutamis- ja teisaldamislogi on kuvatud siin:",
-'uploadtext' => "Kasuta allpool olevat vormi failide üleslaadimiseks.
-Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide loendit]].
+'uploadtext' => "Kasuta allpool olevat vormi, et faile üles laadida.
+Et näha või leida varem üles laaditud faile, vaata [[Special:FileList|failide loendit]].
 Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimislogist]], kustutamiste ajalugu [[Special:Log/delete|kustutamislogist]].
 
-Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest.
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></code>''', et lisada täissuuruses pilt.
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|kirjeldus]]</nowiki></code>''', et lisada lehekülje vasakusse serva raamiga 200 piksli laiune pisipilt koos pildiallkirjaga (''kirjeldus'').
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></code>''', et linkida otse failile ilma seda kuvamata.",
+Et lisada fail artiklile, kasuta üht järgmistest süntaksitest:
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></code>''', et lisada täissuuruses pilt
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|kirjeldus]]</nowiki></code>''', et lisada lehekülje vasakusse serva raamiga 200 piksli laiune pisipilt koos pildiallkirjaga (''kirjeldus'')
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></code>''', et linkida otse failile ilma seda kuvamata",
 'upload-permitted' => 'Lubatud failitüübid: $1.',
 'upload-preferred' => 'Eelistatud failitüübid: $1.',
 'upload-prohibited' => 'Keelatud failitüübid: $1.',
@@ -1827,7 +1827,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'fileexists-shared-forbidden' => 'Samanimeline fail on juba olemas jagatud meediavaramus.
 Kui soovid siiski oma faili üles laadida, siis palun mine tagasi ja kasuta teist failinime.
 [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate' => 'See fail on {{PLURAL:$1|järgneva faili|järgnevate failide}} duplikaat:',
+'file-exists-duplicate' => 'See fail on {{PLURAL:$1|järgmise faili|järgmiste failide}} duplikaat:',
 'file-deleted-duplicate' => 'Selle failiga ([[:$1]]) identne fail on hiljuti kustutatud.
 Vaata selle faili kustutamise ajalugu enne jätkamist.',
 'file-deleted-duplicate-notitle' => 'Selle failiga identne fail on varem kustutatud ja pealkiri on varjatud.
@@ -2008,13 +2008,13 @@ Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 'filehist-missing' => 'Fail puudub',
 'imagelinks' => 'Failikasutus',
 'linkstoimage' => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
-'linkstoimage-more' => 'Sellele failile viitab enam kui $1 {{PLURAL:$1|lehekülg|lehekülge}}.
-Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esimesed $1 viitavat lehekülge}}.
+'linkstoimage-more' => 'Sellele failile viitab enam kui {{PLURAL:$1|üks lehekülg|$1 lehekülge}}.
+Järgmises loendis on näidatud ainult {{PLURAL:$1|esimene viitav lehekülg|esimesed $1 viitavat lehekülge}}.
 [[Special:WhatLinksHere/$2|Kogu loetelu]] on saadaval.',
 'nolinkstoimage' => 'Sellele pildile ei viita ükski lehekülg.',
 'morelinkstoimage' => 'Vaata [[Special:WhatLinksHere/$1|veel linke]], mis sellele failile viitavad.',
 'linkstoimage-redirect' => '$1 (failiümbersuunamine) $2',
-'duplicatesoffile' => '{{PLURAL:$1|Järgnev fail|Järgnevad $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
+'duplicatesoffile' => '{{PLURAL:$1|Järgmine fail|Järgmised $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
 'sharedupload' => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there' => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
 'sharedupload-desc-here' => 'See on jagatud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
@@ -2201,7 +2201,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'ancientpages' => 'Vanimad leheküljed',
 'move' => 'Teisalda',
 'movethispage' => 'Muuda pealkirja',
-'unusedimagestext' => 'Järgnevad failid on olemas, aga pole ühelegi leheküljele lisatud.
+'unusedimagestext' => 'Järgmised failid on olemas, aga pole ühelegi leheküljele lisatud.
 Pane tähele, et teised võrgukohad võivad viidata failile otselingiga ja seega võivad siin toodud failid olla ikkagi aktiivses kasutuses.',
 'unusedcategoriestext' => 'Need kategooriad pole ühelgi leheküljel ega teises kategoorias kasutuses.',
 'notargettitle' => 'Puudub sihtlehekülg',
@@ -2559,7 +2559,8 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'undeletepage' => 'Kustutatud lehekülgede vaatamine ja taastamine',
 'undeletepagetitle' => "'''Kustutatud redaktsioonid leheküljest [[:$1|$1]]'''.",
 'viewdeletedpage' => 'Kustutatud lehekülgede vaatamine',
-'undeletepagetext' => '{{PLURAL:$1|Järgnev lehekülg on kustutatud|Järgnevad leheküljed on kustutatud}}, kuid arhiivis veel olemas ja taastatavad. Arhiivi sisu kustutatakse perioodiliselt.',
+'undeletepagetext' => '{{PLURAL:$1|Järgmine lehekülg|Järgmised leheküljed}} on kustutatud, kuid arhiivis veel olemas ja taastatavad.
+Arhiivi sisu võidakse perioodiliselt kustutada.',
 'undelete-fieldset-title' => 'Redaktsioonide taastamine',
 'undeleteextrahelp' => "Kogu lehe ja selle ajaloo taastamiseks jäta kõik linnukesed tühjaks ja vajuta '''''{{int:undeletebtn}}'''''.
 Et taastada valikuliselt, tee linnukesed kastidesse, mida soovid taastada ja vajuta '''''{{int:undeletebtn}}'''''.",
@@ -3114,7 +3115,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'spamprotectiontitle' => 'Spämmitõrjefilter',
 'spamprotectiontext' => 'Rämpspostifilter oli lehekülje, mida sa salvestada tahtsid, blokeerinud.
 See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrgukohta.',
-'spamprotectionmatch' => 'Järgnev tekst vallandas meie rämpspostifiltri: $1',
+'spamprotectionmatch' => 'Järgmine tekst vallandas meie rämpspostifiltri: $1',
 'spambot_username' => 'MediaWiki spämmieemaldus',
 'spam_reverting' => 'Taastan viimase versiooni, mis ei sisalda linke aadressile $1.',
 'spam_blanking' => 'Kõik versioonid sisaldasid linke veebilehele $1. Lehekülg tühjendatud.',
@@ -3235,8 +3236,7 @@ Selle avamine võib su arvutit kahjustada.",
 
 # Special:NewFiles
 'newimages' => 'Uute failide galerii',
-'imagelisttext' => "
-Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.",
+'imagelisttext' => "Allpool on {{PLURAL:$1|'''ühe''' fail|'''$1''' faili}} $2 järjestatud loend.",
 'newimages-summary' => 'Sellel erilehel on viimati üles laaditud failid.',
 'newimages-legend' => 'Filter',
 'newimages-label' => 'Failinimi (või selle osa):',
@@ -3717,11 +3717,11 @@ Võid nüüd [[Special:UserLogin|sisse logida]].',
 'confirmemail_subject' => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',
 'confirmemail_body' => 'Keegi IP-aadressilt $1, ilmselt sa ise, registreeris selle e-posti aadressiga {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2".
 
-Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-posti teenuste aktiveerimiseks, ava oma võrgulehitsejas järgnev link:
+Kinnitamaks, et see kasutajakonto tõepoolest kuulub sulle ning e-posti teenuste aktiveerimiseks, ava oma võrgulehitsejas järgmine link:
 
 $3
 
-Kui see *pole* sinu loodud konto, ava järgnev link kinnituse tühistamiseks:
+Kui see *pole* sinu loodud konto, ava järgmine link kinnituse tühistamiseks:
 
 $5
 
@@ -3729,11 +3729,11 @@ Kinnituskood aegub kuupäeval $4.',
 'confirmemail_body_changed' => 'Keegi IP-aadressilt $1, ilmselt sa ise,
 muutis {{GRAMMAR:inessive|{{SITENAME}}}} konto "$2" e-posti aadressiks selle aadressi.
 
-Kinnitamaks, et see konto tõepoolest kuulub sulle ja e-posti teenuste taasaktiveerimiseks, ava oma veebilehitsejas järgnev link:
+Kinnitamaks, et see konto tõepoolest kuulub sulle ja e-posti teenuste taasaktiveerimiseks, ava oma veebilehitsejas järgmine link:
 
 $3
 
-Kui see *pole* sinu konto, ava järgnev link
+Kui see *pole* sinu konto, ava järgmine link
 kinnituse tühistamiseks:
 
 $5

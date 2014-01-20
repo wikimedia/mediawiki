@@ -1489,6 +1489,7 @@ $1",
 'search-result-score' => '関連度: $1%',
 'search-redirect' => '($1からのリダイレクト)',
 'search-section' => '($1の節)',
+'search-file-match' => '(ファイルの内容との一致)',
 'search-suggest' => 'もしかして: $1',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'search-interwiki-default' => '$1の結果:',
@@ -2628,7 +2629,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'このページには、 $1版を超える編集履歴があります。
 削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。
 十分に注意してください。',
-'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、他のページからリンクされています。",
+'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、他のページからリンクまたは参照読み込みされています。",
 
 # Rollback
 'rollback' => '編集を巻き戻し',
@@ -2937,7 +2938,7 @@ $1 のブロックの理由は「''$2''」です。",
 'range_block_disabled' => '範囲ブロックを作成する管理者機能は無効化されています。',
 'ipb_expiry_invalid' => '有効期限が無効です。',
 'ipb_expiry_temp' => '利用者名秘匿のブロックは、無期限ブロックになります。',
-'ipb_hide_invalid' => 'このアカウントを秘匿できません。編集回数が非常に多いためだと思われます。',
+'ipb_hide_invalid' => 'このアカウントを秘匿できません。編集回数が{{PLURAL:$1|$1回}}を超えています。',
 'ipb_already_blocked' => '「$1」は既にブロックされています。',
 'ipb-needreblock' => '$1 は既にブロックされています。設定を変更しますか?',
 'ipb-otherblocks-header' => 'その他の{{PLURAL:$1|ブロック}}',

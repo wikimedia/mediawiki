@@ -523,7 +523,7 @@ El administrador ke blokeo dio esta esplikasyon: $1',
 
 En lo mas muncho esto passa por cavsa de un atamiento (link) istoriko a una hoja efaçada.
 
-Si esto no es el cavso, puede ser que topates una chincha (un yerro) en el lojikal (proǵrama).
+Si esto no es el cavso, puede ser que topates una chincha (un yerro) en el lojikal (la proǵrama).
 Alora, házemos el plazer de avisar un [[Special:ListUsers/sysop|administrador]] y también escrivirlo la URL (el adresso). Mercí muncho.',
 'missingarticle-rev' => '(nº. de revisión: $1)',
 'missingarticle-diff' => '(Dif.: $1, $2)',
@@ -833,7 +833,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'searchprofile-articles-tooltip' => 'Buxcar en $1',
 'searchprofile-project-tooltip' => 'Buxcar en $1',
 'searchprofile-images-tooltip' => 'Buxcar dosyas',
-'searchprofile-everything-tooltip' => 'Bushkar en todo el kontenido (i mismo en las hojas de diskusyón)',
+'searchprofile-everything-tooltip' => 'Buxca en todo el contènido (y mismo en las hojas de diskusyón)',
 'searchprofile-advanced-tooltip' => 'Buxcar en espacios de nombres particòlares',
 'search-result-size' => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
 'search-result-category-size' => '{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 basho-kateggoria|$2 basho-kateggoria}}, {{PLURAL:$3|1 dossia|$3 dossias}})',
@@ -1426,7 +1426,7 @@ Puedes ver su manadero',
 'tooltip-compareselectedversions' => 'Ve las diferencias entre las dos versiones escogidas de esta hoja.',
 'tooltip-watch' => 'Ajusta esta hoja a tu lista de escojidas',
 'tooltip-rollback' => '«Hazer aboltar» haze aboltar todos los trocamientos del usador dalcavo, sólo en klikando una vez.',
-'tooltip-undo' => '«Des-hazer» abolta este trocamiento y la avre en el modo de previsteo. Permete ajustar una razón en el somario.',
+'tooltip-undo' => '«Des-hazer» abolta este trocamiento y lo avre en el modo de previsteo. Permete ajustar una razón en el somario.',
 'tooltip-summary' => 'Entrar un somaryo kurto',
 
 # Attribution

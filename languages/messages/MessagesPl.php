@@ -4011,6 +4011,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'version-license-title' => 'Licencja dla $1',
 'version-license-not-found' => 'Nie znaleziono szczegółowych informacji licencyjnych dla tego rozszerzenia.',
 'version-credits-title' => 'Lista autorów dla $1',
+'version-credits-not-found' => 'Dla tego rozszerzenia nie ma szczegółowych informacji o autorach.',
 'version-poweredby-credits' => "Ta wiki korzysta z oprogramowania '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
 'version-poweredby-others' => 'inni',
 'version-poweredby-translators' => 'tłumacze translatewiki.net',
