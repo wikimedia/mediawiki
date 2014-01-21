@@ -42,6 +42,10 @@
 	path = extensions/CheckUser
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CheckUser.git
 	branch = REL1_22
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
+	branch = REL1_22
 [submodule "extensions/Cite"]
 	path = extensions/Cite
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Cite.git
@@ -89,6 +93,10 @@
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
+	branch = REL1_22
+[submodule "extensions/Elastica"]
+	path = extensions/Elastica
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Elastica.git
 	branch = REL1_22
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
@@ -283,4 +291,5 @@
 	url = https://github.com/WikiWonders/foreground.git
 [submodule "skins/monaco"]
 	path = skins/monaco
-	url = https://github.com/dantman/monaco-port.git
+  url = https://github.com/dantman/monaco-port.git
+
