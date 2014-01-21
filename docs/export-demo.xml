@@ -1,4 +1,4 @@
-<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.8/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.8/ http://www.mediawiki.org/xml/export-0.8.xsd" version="0.8" xml:lang="en">
+<mediawiki xmlns="https://www.mediawiki.org/xml/export-0.8/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.mediawiki.org/xml/export-0.8/ https://www.mediawiki.org/xml/export-0.8.xsd" version="0.8" xml:lang="en">
   
   <!-- Optional global configuration info -->
   <siteinfo>
