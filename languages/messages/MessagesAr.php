@@ -1591,6 +1591,7 @@ $1",
 'search-result-score' => 'الارتباط: $1%',
 'search-redirect' => '(تحويلة $1)',
 'search-section' => '(قسم $1)',
+'search-file-match' => '(يطابق محتوى الملف)',
 'search-suggest' => 'أتقصد: $1',
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
@@ -2653,17 +2654,16 @@ $PAGEINTRO $NEWPAGE
 
 ملخص التعديل: $PAGESUMMARY $PAGEMINOREDIT
 
-الاتصال بالمحرر:
+اتصل بالمحرر:
 البريد: $PAGEEDITOR_EMAIL
 ويكي: $PAGEEDITOR_WIKI
 
-لن يكون هناك إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة تلك الصفحة.
-يمكنك أيضاً إزالة العلامات عن جميع الصفحات في قائمة مراقبتك.
+لن يكون هناك إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة تلك الصفحة أثناء تواجدك. يمكنك أيضاً إزالة العلامات عن جميع الصفحات في قائمة مراقبتك.
 
-                   نظام {{SITENAME}} للإعلام بالبريد الإلكتروني
+نظام {{SITENAME}} للإشعار
 
 --
-لتغيير إعدادات الإعلام بالبريد الإلكتروني الخاص بك، قم بزيارة
+لتغيير إعدادات الإشعار بالبريد الإلكتروني الخاص بك، قم بزيارة
 {{canonicalurl:{{#special:Preferences}}}}
 
 لتغيير إعدادات قائمة مراقبتك، قم بزيارة
@@ -2672,7 +2672,7 @@ $PAGEINTRO $NEWPAGE
 لحذف الصفحة من قائمة مراقبتك، قم بزيارة
 $UNWATCHURL
 
-للمقترحات والحصول على مساعدة إضافية:
+للمقترحات وللحصول على مساعدة إضافية:
 {{canonicalurl: {{MediaWiki:Helppage}}}}',
 'created' => 'أنشئت',
 'changed' => 'غيرت',
@@ -3018,7 +3018,7 @@ $1',
 'range_block_disabled' => 'إمكانية مدير النظام لمنع نطاق معطلة.',
 'ipb_expiry_invalid' => 'تاريخ الانتهاء غير صحيح.',
 'ipb_expiry_temp' => 'عمليات منع أسماء المستخدمين المخفية يجب أن تكون دائمة.',
-'ipb_hide_invalid' => 'غير قادر على إخفاء هذا الحساب؛ ربما يكون قد قام بالكثير من التعديلات.',
+'ipb_hide_invalid' => 'غير قادر على منع الحساب؛ لديه أكثر من {{PLURAL:$1|تعديل واحد|$1 تعديل}}.',
 'ipb_already_blocked' => '"$1" ممنوع حالياً',
 'ipb-needreblock' => '$1 ممنوع حالياً. هل تريد تغيير الإعدادات؟',
 'ipb-otherblocks-header' => '{{PLURAL:$1||المنع الآخر|المنعان الآخران|المنوعات الأخرى}}',
@@ -4113,6 +4113,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(اللغة الافتراضية)',
+'img-lang-info' => 'ترجم هذه الصورة إلى $1. $2',
 'img-lang-go' => 'اذهب',
 
 # Table pager
@@ -4277,7 +4278,17 @@ $5
 'version-hook-subscribedby' => 'يستخدم بواسطة',
 'version-version' => '(نسخة $1)',
 'version-svn-revision' => 'ن$1',
-'version-license' => 'الرخصة',
+'version-license' => 'ترخيص ميدياويكي',
+'version-ext-license' => 'ترخيص',
+'version-ext-colheader-name' => 'امتداد',
+'version-ext-colheader-version' => 'نسخة',
+'version-ext-colheader-license' => 'ترخيص',
+'version-ext-colheader-description' => 'وصف',
+'version-ext-colheader-credits' => 'مؤلفون',
+'version-license-title' => 'ترخيص لـ $1',
+'version-license-not-found' => 'لم يتم العثور على أي معلومات ترخيص لهذا الامتداد.',
+'version-credits-title' => 'العاملون على $1',
+'version-credits-not-found' => 'لم يتم العثور على أي معلومات للعاملين على هذا الامتداد.',
 'version-poweredby-credits' => "تدار هذه الويكي بواسطة '''[https://www.mediawiki.org/ ميدياويكي]'''، حقوق النشر © 2001-$1 $2.",
 'version-poweredby-others' => 'آخرون',
 'version-poweredby-translators' => 'مترجمو translatewiki.net',
@@ -4297,13 +4308,14 @@ $5
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath مسار السكريبت]',
 
 # Special:Redirect
-'redirect' => 'تحويل باسم ملف أو اسم مستخدم أو رقم مراجعة',
+'redirect' => 'تحويل حسب رقم الملف أو رقم المستخدم أو رقم الصفحة أو رقم مراجعة',
 'redirect-legend' => 'تحويل إلى ملف أو صفحة',
 'redirect-summary' => 'هذه الصفحة الخاصة تحوّل إلى ملف (باسمه) أو صفحة (برقم إحدى مراجعاتها) أو إلى صفحة مستخدم (برقمه التعريفي). الاستخدام [[{{#Special:Redirect}}/file/Example.jpg]] أو [[{{#Special:Redirect}}/revision/328429]] أو [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'حوّل',
 'redirect-lookup' => 'ابحث في:',
 'redirect-value' => 'الوجهة',
 'redirect-user' => 'رقم مستخدم',
+'redirect-page' => 'معرف الصفحة',
 'redirect-revision' => 'مراجعة صفحة',
 'redirect-file' => 'اسم ملف',
 'redirect-not-exists' => 'المطلوب غير موجود',
@@ -4497,6 +4509,7 @@ $5
 'api-error-overwrite' => 'لا يسمح بالكتابة فوق ملف موجود.',
 'api-error-stashfailed' => 'خطأ داخلي: فشل الملقم في تخزين الملفات المؤقتة.',
 'api-error-publishfailed' => 'خطأ داخلي: لم ينجح الخادوم في نشر ملف مؤقت',
+'api-error-stasherror' => 'حدث خطأ أثناء رفع الملف لتخزينه.',
 'api-error-timeout' => 'لم يستجب الملقم في الوقت المتوقع.',
 'api-error-unclassified' => 'حدث خطأ غير معروف',
 'api-error-unknown-code' => 'خطأ غير معروف : " $1 "',
@@ -4521,12 +4534,19 @@ $5
 'rotate-comment' => 'تدوير الصورة  {{PLURAL:$1||درجة واحدة|درجتان|$1 درجات|$1 درجة}} باتجاه عقارب الساعة',
 
 # Limit report
+'limitreport-title' => 'محلل سمات البيانات:',
 'limitreport-cputime' => 'زمن المعالجة المستغرق',
 'limitreport-cputime-value' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوان|$1 ثانية}}',
 'limitreport-walltime' => 'الزمن الحقيقي المستغرق',
 'limitreport-walltime-value' => '{{PLURAL:$1|أقل من ثانية|ثانية واحدة|ثانيتان|$1 ثوان|$1 ثانية}}',
+'limitreport-ppvisitednodes' => 'زار المعالج عقدة إحصاء',
+'limitreport-ppgeneratednodes' => 'أحدث المعالج عقدة إحصاء',
+'limitreport-postexpandincludesize' => 'بعد توسيع المساحة الشاملة',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|بايت|بايت}}',
-'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|بايت|بايت}}',
+'limitreport-templateargumentsize' => 'حجم نقاش القالب',
+'limitreport-templateargumentsize-value' => '$1/$2',
+'limitreport-expansiondepth' => 'أكثر عمق توسعي',
+'limitreport-expensivefunctioncount' => 'تحليل إحصاء وظيفة مكلف',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'فرد القوالب',
@@ -4539,10 +4559,14 @@ $5
 'expand_templates_input' => 'النص المدخل:',
 'expand_templates_output' => 'النتيجة',
 'expand_templates_xml_output' => 'خرج XML',
+'expand_templates_html_output' => 'ناتج خام HTML',
 'expand_templates_ok' => 'موافق',
 'expand_templates_remove_comments' => 'أزل التعليقات',
 'expand_templates_remove_nowiki' => 'أخفِ وسوم <nowiki> في الناتج',
 'expand_templates_generate_xml' => 'اعرض شجرة XML parse',
+'expand_templates_generate_rawhtml' => 'أظهر خام HTML',
 'expand_templates_preview' => 'عرض مسبق',
 
+# Unknown messages
+'uploadinvalidxml' => 'تعذر تحليل XML في الملف المرفوع.',
 );

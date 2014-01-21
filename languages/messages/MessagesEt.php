@@ -753,7 +753,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
-'userlogin-resetpassword-link' => 'Unustasid parooli?',
+'userlogin-resetpassword-link' => 'Kas unustasid parooli?',
 'helplogin-url' => 'Help:Sisselogimine',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'userlogin-loggedin' => 'Oled juba sisse logitud nimega {{GENDER:$1|$1}}.
@@ -3989,7 +3989,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 
 # HTML forms
 'htmlform-invalid-input' => 'Osaga sinu sisestatust on probleeme',
-'htmlform-select-badoption' => 'Antud number ei ole kõlbulik.',
+'htmlform-select-badoption' => 'Antud väärtus ei sobi.',
 'htmlform-int-invalid' => 'Antud väärtus ei ole täisarv.',
 'htmlform-float-invalid' => 'Määratud väärtus ei ole arvuline.',
 'htmlform-int-toolow' => 'Antud suurus on väiksem kui minimaalne $1',

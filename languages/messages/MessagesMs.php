@@ -19,6 +19,7 @@
  * @author Kurniasan
  * @author Meno25
  * @author Putera Luqman Tunku Andre
+ * @author SNN95
  * @author Urhixidur
  * @author Yosri
  * @author Zamwan
@@ -198,7 +199,7 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Gariskan pautan:',
+'tog-underline' => 'Garis bawah pautan:',
 'tog-justify' => 'Laraskan perenggan',
 'tog-hideminor' => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
 'tog-hidepatrolled' => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',

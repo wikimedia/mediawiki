@@ -1410,6 +1410,7 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-result-score' => 'Relevans: $1%',
 'search-redirect' => '(omdirigering $1)',
 'search-section' => '(avsnitt $1)',
+'search-file-match' => '(överensstämmer filens innehåll)',
 'search-suggest' => 'Menade du: $1',
 'search-interwiki-caption' => 'Systerprojekt',
 'search-interwiki-default' => 'Resultat i $1:',

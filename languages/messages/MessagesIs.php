@@ -367,7 +367,7 @@ $messages = array(
 'listingcontinuesabbrev' => 'frh.',
 'index-category' => 'Raðaðar skrár',
 'noindex-category' => 'Óraðaðar skrár',
-'broken-file-category' => 'Síður með brotna myndatengla',
+'broken-file-category' => 'Síður með brotna skráartengla',
 
 'about' => 'Um',
 'article' => 'Efnissíða',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Annabel
+ * @author Arent
  * @author AvatarTeam
  * @author B4bol4t
  * @author Basvb
@@ -1493,6 +1494,7 @@ Probeer een andere zoekopdracht.',
 'search-result-score' => 'Relevantie: $1%',
 'search-redirect' => '(doorverwijzing $1)',
 'search-section' => '(subkop $1)',
+'search-file-match' => '(komt overeen met de inhoud van het bestand)',
 'search-suggest' => 'Bedoelde u: $1',
 'search-interwiki-caption' => 'Zusterprojecten',
 'search-interwiki-default' => '$1 resultaten:',
@@ -2629,7 +2631,7 @@ Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk
 'delete-warning-toobig' => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren.
 Wees voorzichtig.',
-'deleting-backlinks-warning' => "'''Waarschuwing:''' andere pagina's verwijzen naar de pagina die u wilt verwijderen.",
+'deleting-backlinks-warning' => "'''Waarschuwing:''' andere pagina's gebruiken of verwijzen naar de pagina die u wilt verwijderen.",
 
 # Rollback
 'rollback' => 'Wijzigingen ongedaan maken',
@@ -2934,7 +2936,7 @@ Zie ook de [[Special:BlockList|blokkadelijst]] voor de op dit moment actieve blo
 'range_block_disabled' => 'De mogelijkheid voor beheerders om een groep IP-adressen te blokkeren is uitgeschakeld.',
 'ipb_expiry_invalid' => 'Ongeldige duur.',
 'ipb_expiry_temp' => 'Blokkades voor verborgen gebruikers moeten permanent zijn.',
-'ipb_hide_invalid' => 'Het is niet mogelijk deze gebruiker te verbergen; mogelijk heeft deze te veel bewerkingen gemaakt.',
+'ipb_hide_invalid' => 'Het is niet mogelijk deze gebruiker te verbergen;  deze heeft meer dan {{PLURAL:$1|een bewerking|$1 bewerkingen}} gedaan.',
 'ipb_already_blocked' => '"$1" is al geblokkeerd',
 'ipb-needreblock' => '$1 is al geblokkeerd.
 Wilt u de instellingen wijzigen?',
@@ -4381,4 +4383,6 @@ Vrijwel alle tekst tussen dubbele accolades wordt gesubstitueerd.',
 'expand_templates_generate_rawhtml' => 'Ruwe HTML weergeven',
 'expand_templates_preview' => 'Voorvertoning',
 
+# Unknown messages
+'uploadinvalidxml' => 'De XML in het geüploade bestand kon niet worden geparst.',
 );

@@ -2609,7 +2609,11 @@ PICT # тайп тайпан
 'version-parser-function-hooks' => 'Cинтаксисан къасторан функци схьалоцурш',
 'version-version' => '(Верси $1)',
 'version-license' => 'Бакъо',
+'version-ext-license' => 'Лицензи',
+'version-ext-colheader-name' => 'Шордарш',
 'version-ext-colheader-version' => 'Верси',
+'version-ext-colheader-license' => 'Лицензи',
+'version-ext-colheader-credits' => 'Автораш',
 'version-poweredby-credits' => "ХӀара вики болх беш ю '''[https://www.mediawiki.org/ MediaWiki]''' движок тӀехь, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'кхин',
 'version-license-info' => 'MediaWiki ю маьрша программин латораг, шу йиш ю фондас арахецна йолу GNU General Public License лицензица и яржо я хийца а.
