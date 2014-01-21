@@ -21,10 +21,10 @@ jQuery( function ( $ ) {
 		$lis
 		.removeClass( 'selected' )
 		.each( function () {
-			var	$li = $(this),
+			var	$li = $( this ),
 				$inputs = $li.find( 'input[type="radio"]' ),
-				$oldidRadio = $inputs.filter( '[name="oldid"]' ).eq(0),
-				$diffRadio = $inputs.filter( '[name="diff"]' ).eq(0);
+				$oldidRadio = $inputs.filter( '[name="oldid"]' ).eq( 0 ),
+				$diffRadio = $inputs.filter( '[name="diff"]' ).eq( 0 );
 
 			if ( !$oldidRadio.length || !$diffRadio.length ) {
 				return true;
@@ -60,7 +60,7 @@ jQuery( function ( $ ) {
 					$oldidRadio.css( 'visibility', 'hidden' );
 				}
 			}
-		});
+		} );
 
 		return true;
 	}
@@ -77,7 +77,7 @@ jQuery( function ( $ ) {
 	// Ideally we'd use e.target instead of $historySubmitter, but e.target points
 	// to the form element for submit actions, so.
 	$historyCompareForm.find( '.historysubmit' ).click( function () {
-		$historySubmitter = $(this);
+		$historySubmitter = $( this );
 	} );
 
 	// On submit we clone the form element, remove unneeded fields in the clone
@@ -92,7 +92,7 @@ jQuery( function ( $ ) {
 		if ( $historySubmitter ) {
 			$copyForm = $historyCompareForm.clone();
 			$copyRadios = $copyForm.find( '#pagehistory > li' ).find( 'input[name="diff"], input[name="oldid"]' );
-			$copyAction = $copyForm.find( '> [name="action"]');
+			$copyAction = $copyForm.find( '> [name="action"]' );
 
 			// Remove action=historysubmit and ids[..]=..
 			if ( $historySubmitter.hasClass( 'mw-history-compareselectedversions-button' ) ) {
@@ -110,8 +110,8 @@ jQuery( function ( $ ) {
 			// Also remove potentially conflicting id attributes that we don't need anyway
 			$copyForm
 				.css( 'display', 'none' )
-				.find('[id]')
-					.removeAttr('id')
+				.find( '[id]' )
+					.removeAttr( 'id' )
 				.end()
 				.insertAfter( $historyCompareForm )
 				.submit();

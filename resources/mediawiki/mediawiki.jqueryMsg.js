@@ -147,9 +147,9 @@
 
 		/**
 		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
-		 *    somefunction(a, b, c, d)
+		 *    somefunction( a, b, c, d )
 		 * is equivalent to
-		 *    somefunction(a, [b, c, d])
+		 *    somefunction( a, [b, c, d] )
 		 *
 		 * @param {string} key Message key.
 		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
@@ -181,9 +181,9 @@
 		var failableParserFn = getFailableParserFn( options );
 		/**
 		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
-		 *    somefunction(a, b, c, d)
+		 *    somefunction( a, b, c, d )
 		 * is equivalent to
-		 *    somefunction(a, [b, c, d])
+		 *    somefunction( a, [b, c, d] )
 		 *
 		 * We append to 'this', which in a jQuery plugin context will be the selected elements.
 		 * @param {string} key Message key.
@@ -395,8 +395,8 @@
 			// This may be because, to save code, memoization was removed
 
 			regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
-			regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
-			regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+			regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
+			regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
 			regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
 
 			backslash = makeStringParser( '\\' );
@@ -432,30 +432,30 @@
 			// Used to define "literals" without spaces, in space-delimited situations
 			function literalWithoutSpace() {
 				var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
-				return result === null ? null : result.join('');
+				return result === null ? null : result.join( '' );
 			}
 			// Used to define "literals" within template parameters. The pipe character is the parameter delimeter, so by default
 			// it is not a literal in the parameter
 			function literalWithoutBar() {
 				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
-				return result === null ? null : result.join('');
+				return result === null ? null : result.join( '' );
 			}
 
 			// Used for wikilink page names.  Like literalWithoutBar, but
 			// without allowing escapes.
 			function unescapedLiteralWithoutBar() {
 				var result = nOrMore( 1, regularLiteralWithoutBar )();
-				return result === null ? null : result.join('');
+				return result === null ? null : result.join( '' );
 			}
 
 			function literal() {
 				var result = nOrMore( 1, escapedOrRegularLiteral )();
-				return result === null ? null : result.join('');
+				return result === null ? null : result.join( '' );
 			}
 
 			function curlyBraceTransformExpressionLiteral() {
 				var result = nOrMore( 1, regularLiteralWithSquareBrackets )();
-				return result === null ? null : result.join('');
+				return result === null ? null : result.join( '' );
 			}
 
 			asciiAlphabetLiteral = makeRegexParser( /[A-Za-z]+/ );
@@ -588,7 +588,7 @@
 					whitespace,
 					asciiAlphabetLiteral,
 					htmlAttributeEquals,
-					choice(	[
+					choice( [
 						doubleQuotedHtmlAttributeValue,
 						singleQuotedHtmlAttributeValue
 					] )
@@ -679,7 +679,7 @@
 				endTagName = parsedCloseTagResult[1];
 				wrappedAttributes = parsedOpenTagResult[2];
 				attributes = wrappedAttributes.slice( 1 );
-				if ( isAllowedHtml( startTagName, endTagName, attributes) ) {
+				if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
 					result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ].concat( parsedHtmlContents );
 				} else {
 					// HTML is not allowed, so contents will remain how
@@ -736,7 +736,7 @@
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
-			colon = makeStringParser(':');
+			colon = makeStringParser( ':' );
 			templateContents = choice( [
 				function () {
 					var res = sequence( [
@@ -758,8 +758,8 @@
 					return [ res[0] ].concat( res[1] );
 				}
 			] );
-			openTemplate = makeStringParser('{{');
-			closeTemplate = makeStringParser('}}');
+			openTemplate = makeStringParser( '{{' );
+			closeTemplate = makeStringParser( '}}' );
 			nonWhitespaceExpression = choice( [
 				template,
 				wikilink,
@@ -1001,7 +1001,7 @@
 		 * Transform parsed structure into external link
 		 * If the href is a jQuery object, treat it as "enclosing" the link text.
 		 *              ... function, treat it as the click handler
-		 *		... string, treat it as a URI
+		 *              ... string, treat it as a URI
 		 * TODO: throw an error if nodes.length > 2 ?
 		 * @param {Array} of two elements, {jQuery|Function|String} and {String}
 		 * @return {jQuery}
@@ -1035,7 +1035,7 @@
 		extlinkparam: function ( nodes, replacements ) {
 			var replacement,
 				index = parseInt( nodes[0], 10 );
-			if ( index < replacements.length) {
+			if ( index < replacements.length ) {
 				replacement = replacements[index];
 			} else {
 				replacement = '$' + ( index + 1 );
@@ -1053,7 +1053,7 @@
 		plural: function ( nodes ) {
 			var forms, count;
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
-			forms = nodes.slice(1);
+			forms = nodes.slice( 1 );
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
@@ -1132,7 +1132,7 @@
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
 		// Do not use mw.jqueryMsg unless required
-		if ( this.format === 'plain' || !/\{\{|[\[<>]/.test(this.map.get( this.key ) ) ) {
+		if ( this.format === 'plain' || !/\{\{|[\[<>]/.test( this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}

@@ -11,9 +11,9 @@
 	 */
 	$.fn.goIn = function ( instantToggle ) {
 		if ( instantToggle === true ) {
-			return $(this).show();
+			return $( this ).show();
 		}
-		return $(this).stop( true, true ).fadeIn();
+		return $( this ).stop( true, true ).fadeIn();
 	};
 
 	/**
@@ -24,9 +24,9 @@
 	 */
 	$.fn.goOut = function ( instantToggle ) {
 		if ( instantToggle === true ) {
-			return $(this).hide();
+			return $( this ).hide();
 		}
-		return $(this).stop( true, true ).fadeOut();
+		return $( this ).stop( true, true ).fadeOut();
 	};
 
 	/**
@@ -35,8 +35,8 @@
 	 * @param {Function} callback Takes one parameter, which is {true} when the
 	 *  event is called immediately, and {jQuery.Event} when triggered from an event.
 	 */
-	$.fn.liveAndTestAtStart = function ( callback ){
-		$(this)
+	$.fn.liveAndTestAtStart = function ( callback ) {
+		$( this )
 			.live( 'change', callback )
 			.each( function () {
 				callback.call( this, true );
@@ -48,14 +48,14 @@
 		// Animate the SelectOrOther fields, to only show the text field when
 		// 'other' is selected.
 		$( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
-			var $other = $( '#' + $(this).attr( 'id' ) + '-other' );
+			var $other = $( '#' + $( this ).attr( 'id' ) + '-other' );
 			$other = $other.add( $other.siblings( 'br' ) );
-			if ( $(this).val() === 'other' ) {
+			if ( $( this ).val() === 'other' ) {
 				$other.goIn( instant );
 			} else {
 				$other.goOut( instant );
 			}
-		});
+		} );
 
 	} );
 
@@ -72,7 +72,7 @@
 			'class': 'htmlform-chzn-select mw-input ' + oldClass
 		} );
 		$oldContainer.find( 'input' ).each( function () {
-			var $oldInput = $(this),
+			var $oldInput = $( this ),
 			checked = $oldInput.prop( 'checked' ),
 			$option = $( '<option>' );
 			$option.prop( 'value', $oldInput.prop( 'value' ) );
