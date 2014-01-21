@@ -57,7 +57,7 @@
 			thumb.find( '.filename' ).text( file.name ).end()
 				.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
 
-			$canvas = $('<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>');
+			$canvas = $( '<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>' );
 			ctx = $canvas[0].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
@@ -93,8 +93,8 @@
 						width = img.width / img.height * previewSize;
 					}
 					// Determine the offset required to center the image
-					dx = (180 - width) / 2;
-					dy = (180 - height) / 2;
+					dx = ( 180 - width ) / 2;
+					dy = ( 180 - height ) / 2;
 					switch ( rotation ) {
 						// If a rotation is applied, the direction of the axis
 						// changes as well. You can derive the values below by
@@ -130,7 +130,7 @@
 					ctx.clearRect( 0, 0, 180, 180 );
 					ctx.rotate( rotation / 180 * Math.PI );
 					ctx.drawImage( img, x, y, width, height );
-					thumb.find('.mw-small-spinner').replaceWith($canvas);
+					thumb.find( '.mw-small-spinner' ).replaceWith( $canvas );
 
 					// Image size
 					info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
@@ -165,7 +165,7 @@
 			if ( callbackBinary && 'readAsBinaryString' in reader ) {
 				// To fetch JPEG metadata we need a binary string; start there.
 				// todo:
-				reader.onload = function() {
+				reader.onload = function () {
 					callbackBinary( reader.result );
 
 					// Now run back through the regular code path.
@@ -176,7 +176,7 @@
 				// readAsArrayBuffer replaces readAsBinaryString
 				// However, our JPEG metadata library wants a string.
 				// So, this is going to be an ugly conversion.
-				reader.onload = function() {
+				reader.onload = function () {
 					var i,
 						buffer = new Uint8Array( reader.result ),
 						string = '';
@@ -310,7 +310,7 @@
 		}
 
 		for ( i = $rows.length; i; i-- ) {
-			$row = $rows.eq(i - 1);
+			$row = $rows.eq( i - 1 );
 			$row
 				.find( 'input[name="wpSourceType"]' )
 				.change( createHandler( $row ) );

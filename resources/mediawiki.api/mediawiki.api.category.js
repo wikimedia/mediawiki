@@ -34,7 +34,7 @@
 						} );
 					}
 					d.resolve( exists );
-				})
+				} )
 				.fail( d.reject );
 
 			return d.promise( { abort: apiPromise.abort } );
@@ -61,7 +61,7 @@
 			apiPromise = this.get( {
 					list: 'allpages',
 					apprefix: prefix,
-					apnamespace: mw.config.get('wgNamespaceIds').category
+					apnamespace: mw.config.get( 'wgNamespaceIds' ).category
 				} )
 				.done( function ( data ) {
 					var texts = [];
@@ -71,7 +71,7 @@
 						} );
 					}
 					d.resolve( texts );
-				})
+				} )
 				.fail( d.reject );
 
 			return d.promise( { abort: apiPromise.abort } );

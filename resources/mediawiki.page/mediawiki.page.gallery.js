@@ -29,7 +29,7 @@
 		// Now on to justification.
 		// We may still get ragged edges if someone resizes their window. Could bind to
 		// that event, otoh do we really want to constantly be resizing galleries?
-		$( galleries ).each( function() {
+		$( galleries ).each( function () {
 			var lastTop,
 				$img,
 				imgWidth,
@@ -37,9 +37,9 @@
 				rows = [],
 				$gallery = $( this );
 
-			$gallery.children( 'li' ).each( function() {
+			$gallery.children( 'li' ).each( function () {
 				// Math.floor to be paranoid if things are off by 0.00000000001
-				var top = Math.floor( $(this ).position().top ),
+				var top = Math.floor( $( this ).position().top ),
 					$this = $( this );
 
 				if ( top !== lastTop ) {
@@ -74,9 +74,9 @@
 					captionWidth: $this.children().children( 'div.gallerytextwrapper' ).width(),
 					height: imgHeight
 				};
-			});
+			} );
 
-			(function () {
+			( function () {
 				var maxWidth,
 					combinedAspect,
 					combinedPadding,
@@ -200,7 +200,7 @@
 							$outerDiv.width( newWidth + padding );
 							$innerDiv.width( newWidth + padding );
 							$imageDiv.width( newWidth );
-							$caption.width( curRow[j].captionWidth + (newWidth - curRow[j].imgWidth ) );
+							$caption.width( curRow[j].captionWidth + ( newWidth - curRow[j].imgWidth ) );
 						}
 
 						hookInfo = {

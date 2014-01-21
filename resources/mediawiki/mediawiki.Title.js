@@ -388,9 +388,9 @@
 
 		/**
 		 * Example to declare existing titles:
-		 *     Title.exist.set(['User:John_Doe', ...]);
+		 *     Title.exist.set( ['User:John_Doe', ...] );
 		 * Eample to declare titles nonexistent:
-		 *     Title.exist.set(['File:Foo_bar.jpg', ...], false);
+		 *     Title.exist.set( ['File:Foo_bar.jpg', ...], false );
 		 *
 		 * @static
 		 * @property exist.set
