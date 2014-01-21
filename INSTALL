@@ -21,7 +21,7 @@ experience problems, as this configuration is not well tested. safe_mode is also
 not tested and unlikely to work.
 
 Support for rendering mathematical formulas requires installing the Math extension,
-see http://www.mediawiki.org/wiki/Extension:Math
+see https://www.mediawiki.org/wiki/Extension:Math
 
 Don't forget to check the RELEASE-NOTES file...
 
@@ -30,7 +30,7 @@ Additional documentation is available online, which may include more detailed
 notes on particular operating systems and workarounds for difficult hosting
 environments:
 
-http://www.mediawiki.org/wiki/Manual:Installation_guide
+https://www.mediawiki.org/wiki/Manual:Installation_guide
 
 
 ******************* WARNING *******************
@@ -56,7 +56,7 @@ ie. /wiki/index.php/Article.
   |  will appear. It is common in this case to use w as the folder name and  |
   |  /wiki/ as the virtual article path where your articles pretend to be.   |
   |                                                                          |
-  |    See: http://www.mediawiki.org/wiki/Manual:Short_URL                   |
+  |    See: https://www.mediawiki.org/wiki/Manual:Short_URL                  |
   +--------------------------------------------------------------------------+
 
 Hop into your browser and surf into the wiki directory. It'll direct you into
