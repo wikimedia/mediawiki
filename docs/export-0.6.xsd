@@ -19,10 +19,10 @@
 	redirect target and adds a separate sha1 tag for each revision.
 
 	The canonical URL to the schema document is:
-	http://www.mediawiki.org/xml/export-0.6.xsd
+	https://www.mediawiki.org/xml/export-0.6.xsd
 
 	Use the namespace:
-	http://www.mediawiki.org/xml/export-0.6/
+	https://www.mediawiki.org/xml/export-0.6/
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 		xmlns:mw="http://www.mediawiki.org/xml/export-0.6/"

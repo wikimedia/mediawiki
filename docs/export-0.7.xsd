@@ -26,10 +26,10 @@
 	Fix type for <id> within <contributor> to "nonNegativeInteger"
 
 	The canonical URL to the schema document is:
-	http://www.mediawiki.org/xml/export-0.7.xsd
+	https://www.mediawiki.org/xml/export-0.7.xsd
 
 	Use the namespace:
-	http://www.mediawiki.org/xml/export-0.7/
+	https://www.mediawiki.org/xml/export-0.7/
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 		xmlns:mw="http://www.mediawiki.org/xml/export-0.7/"
