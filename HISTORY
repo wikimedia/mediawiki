@@ -1831,7 +1831,7 @@ Selected changes since MediaWiki 1.17 that may be of interest:
   output.
 * (bug 14202) $wgUseTeX has been superseded by the Math extension. To re-enable
   math conversion after upgrading, obtain the Math extension from SVN or from
-  http://www.mediawiki.org/wiki/Extension:Math and add to LocalSettings.php:
+  https://www.mediawiki.org/wiki/Extension:Math and add to LocalSettings.php:
   require_once "$IP/extensions/Math/Math.php";
 * $wgProfiler is now a configuration array, see StartProfiler.sample for
   details.
@@ -1850,8 +1850,8 @@ Selected changes since MediaWiki 1.17 that may be of interest:
   whether a page is an article or not. $wgUseCommaCount is now deprecated.
 * $wgEnableDublinCoreRdf and $wgEnableCreativeCommonsRdf no longer work in core,
   and the functionality has been moved to the relevant extensions. See
-  http://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
-  http://www.mediawiki.org/wiki/Extension:CreativeCommonsRdf as appropriate.
+  https://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
+  https://www.mediawiki.org/wiki/Extension:CreativeCommonsRdf as appropriate.
 * (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
 * Removed $wgCheckCopyrightUpload from DefaultSettings, since the relevant feature
   was removed in about 1.5.
@@ -5787,7 +5787,7 @@ from first release, but nonessential bugfixes and feature developments
 will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.12 ===
 * Marking edits as bot edits with Special:Contributions?bot=1 now requires the
@@ -6240,7 +6240,7 @@ extensions which make use of the parser state may need compatibility changes.
 
 The new preprocessor syntax has been documented in Backus-Naur Form at:
 
-http://www.mediawiki.org/wiki/Preprocessor_ABNF
+https://www.mediawiki.org/wiki/Preprocessor_ABNF
 
 The ExpandTemplates extension now has the ability to generate an XML parse
 tree from wikitext source. This parse tree corresponds closely to the grammar
@@ -6248,7 +6248,7 @@ documented on that page.
 
 === API changes in 1.12 ===
 
-Full API documentation is available at http://www.mediawiki.org/wiki/API
+Full API documentation is available at https://www.mediawiki.org/wiki/API
 
 * (bug 11275) Enable descending sort in categorymembers
 * (bug 11308) Allow the API to output the image metadata
@@ -6339,7 +6339,7 @@ from first release, but nonessential bugfixes and feature developments
 will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes since 1.10 ==
 
@@ -6761,7 +6761,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == API changes since 1.10 ==
 
-Full API documentation is available at http://www.mediawiki.org/wiki/API
+Full API documentation is available at https://www.mediawiki.org/wiki/API
 
 * New properties: links, templates, images, langlinks, categories, external
   links
@@ -6927,7 +6927,7 @@ from first release, but nonessential bugfixes and feature developments
 will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+it from source control: https://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes ==
 
@@ -9945,7 +9945,7 @@ User accounts:
   groups. Note that this does *not* allow you to make pages which are only
   accessible to certain groups.
 
-  For details see: http://www.mediawiki.org/wiki/Manual:User_rights
+  For details see: https://www.mediawiki.org/wiki/Manual:User_rights
 
 E-mail:
   User-to-user e-mail can now be restricted to require a mail-back confirmation
@@ -10195,8 +10195,8 @@ Various bugfixes, small features, and a few experimental things:
 
 * 'live preview' reduces preview reload burden on supported browsers
 * support for external editors for files and wiki pages:
-  http://www.mediawiki.org/wiki/Manual:External_editors
-* Schema reworking: http://www.mediawiki.org/wiki/Proposed_Database_Schema_Changes/October_2004
+  https://www.mediawiki.org/wiki/Manual:External_editors
+* Schema reworking: https://www.mediawiki.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
 * (bug 510): Special:Randompage now works for other namespaces than NS_MAIN.
@@ -10879,7 +10879,7 @@ release for relevant bug fixes; see the changelog later in this file.
 If you have trouble, remember to read this whole file and the online FAQ page
 before asking for help:
 
-http://www.mediawiki.org/wiki/Manual:FAQ
+https://www.mediawiki.org/wiki/Manual:FAQ
 
 
 === READ THIS FIRST: Upgrading ===
@@ -10973,7 +10973,7 @@ For background information on nofollow see:
 * More extension hooks have been added.
 * Authentication plugin hook.
 * More internal code documentation, generated with phpdoc:
-  http://www.mediawiki.org/docs/html/
+  https://doc.wikimedia.org/mediawiki-core/master/php/html/
 
 
 === Optimization ===
@@ -11418,7 +11418,7 @@ Documentation for both end-users and site administrators is currently being
 built up on MediaWiki.org, and is covered under the GNU Free Documentation
 License:
 
-  http://www.mediawiki.org/
+  https://www.mediawiki.org/
 
 
 === Mailing list ===
