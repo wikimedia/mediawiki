@@ -76,6 +76,21 @@ jQuery( function ( $ ) {
 
 			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
 			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+			$( document.getElementById('mw-prefsection-'+name)).change(
+											function()
+												{$('.successbox').remove();
+												});
+}}	
+
+
+
+
+
+
+
+
+
+
 		}
 	}
 
@@ -85,7 +100,10 @@ jQuery( function ( $ ) {
 			ident, $li, $a;
 		if ( i === 0 ) {
 			$legend.parent().show();
-		}
+			$legend.parent().change(function(){
+							$('.successbox').remove();
+							});
+				}
 		ident = $legend.parent().attr( 'id' );
 
 		$li = $( '<li>' )
@@ -140,6 +158,7 @@ jQuery( function ( $ ) {
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
 		$(window).on( 'hashchange' , function () {
+			$('.successbox').remove();
 			var hash = window.location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
