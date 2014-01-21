@@ -174,7 +174,6 @@ $wgAutoloadLocalClasses = array(
 	'QueryPage' => 'includes/QueryPage.php',
 	'QuickTemplate' => 'includes/SkinTemplate.php',
 	'RawMessage' => 'includes/Message.php',
-	'RdfMetaData' => 'includes/Metadata.php',
 	'ReadOnlyError' => 'includes/Exception.php',
 	'RedirectSpecialArticle' => 'includes/specialpage/RedirectSpecialPage.php',
 	'RedirectSpecialPage' => 'includes/specialpage/RedirectSpecialPage.php',
