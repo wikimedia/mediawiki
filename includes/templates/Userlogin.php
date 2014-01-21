@@ -90,17 +90,6 @@ class UserloginTemplate extends BaseTemplate {
 				<label for='wpPassword1'>
 					<?php
 					$this->msg( 'userlogin-yourpassword' );
-
-					if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
-						echo ' ' . Linker::link(
-							SpecialPage::getTitleFor( 'PasswordReset' ),
-							$this->getMsg( 'userlogin-resetpassword-link' )->parse(),
-							array( 'class' => 'mw-ui-flush-right' )
-						);
-					}
-					?>
-				</label>
-				<?php
 				echo Html::input( 'wpPassword', null, 'password', array(
 					'class' => 'loginPassword mw-ui-input',
 					'id' => 'wpPassword1',
@@ -111,19 +100,21 @@ class UserloginTemplate extends BaseTemplate {
 					'placeholder' => $this->getMsg( 'userlogin-yourpassword-ph' )->text()
 				) );
 				?>
+				</label>
 			</div>
 
 			<?php
 			if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
-				$select = new XmlSelect( 'wpDomain', false, $this->data['domain'] );
-				$select->setAttribute( 'tabindex', 3 );
+				$doms = "";
 				foreach ( $this->data['domainnames'] as $dom ) {
-					$select->addOption( $dom );
+					$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
 				}
 			?>
 				<div class="mw-ui-vform-field" id="mw-user-domain-section">
 					<label for='wpDomain'><?php $this->msg( 'yourdomainname' ); ?></label>
-					<?php echo $select->getHTML(); ?>
+					<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>" tabindex="3">
+						<?php echo $doms; ?>
+					</select>
 				</div>
 			<?php } ?>
 
@@ -157,6 +148,17 @@ class UserloginTemplate extends BaseTemplate {
 					'mw-ui-big', 'mw-ui-block', 'mw-ui-constructive',
 				);
 				echo Html::submitButton( $this->getMsg( 'pt-login-button' )->text(), $attrs, $modifiers );
+				?>
+			</div>
+
+			<div class="mw-ui-vform-field" id="mw-userlogin-resetpassword">
+				<?php
+				if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
+					echo Linker::link(
+						SpecialPage::getTitleFor( 'PasswordReset' ),
+						$this->getMsg( 'userlogin-resetpassword-link' )->parse()
+					);
+				}
 				?>
 			</div>
 

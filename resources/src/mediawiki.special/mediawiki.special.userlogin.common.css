@@ -3,6 +3,11 @@
 	text-align: center;
 }
 
+#mw-userlogin-resetpassword {
+	text-align: center;
+}
+
+
 .mw-ui-vform .mw-secure {
 	/* @embed */
 	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
