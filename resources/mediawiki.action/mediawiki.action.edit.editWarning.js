@@ -10,7 +10,7 @@
 		// Get the original values of some form elements
 		$( '#wpTextbox1, #wpSummary' ).each( function () {
 			$( this ).data( 'origtext', $( this ).val() );
-		});
+		} );
 		var savedWindowOnBeforeUnload;
 		$( window )
 			.on( 'beforeunload.editwarning', function () {

@@ -171,7 +171,7 @@
 	 * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
 	 * e.g.
 	 *        $.fn.msg = mediaWiki.parser.getJqueryPlugin( options );
-	 *        var userlink = $( '<a>' ).click( function () { alert( "hello!!") } );
+	 *        var userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
 	 *        $( 'p#headline' ).msg( 'hello-user', userlink );
 	 *
 	 * @param {Array} parser options

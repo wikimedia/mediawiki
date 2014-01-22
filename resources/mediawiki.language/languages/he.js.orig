@@ -2,7 +2,7 @@
  * Hebrew (עברית) language functions
  */
 
-mediaWiki.language.convertGrammar = function ( word, form ) {
+mediaWiki.language.convertGrammar = function( word, form ) {
 	var grammarForms = mediaWiki.language.getData( 'he', 'grammarForms' );
 	if ( grammarForms && grammarForms[form] ) {
 		return grammarForms[form][word];

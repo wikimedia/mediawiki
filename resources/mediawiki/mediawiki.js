@@ -1274,7 +1274,7 @@ var mw = ( function ( $, undefined ) {
 				mw.loader.work();
 			}
 
-			function sortQuery(o) {
+			function sortQuery( o ) {
 				var sorted = {}, key, a = [];
 				for ( key in o ) {
 					if ( hasOwn.call( o, key ) ) {
@@ -1935,7 +1935,7 @@ var mw = ( function ( $, undefined ) {
 							mw.config.get( 'skin' ),
 							mw.config.get( 'wgResourceLoaderStorageVersion' ),
 							mw.config.get( 'wgUserLanguage' )
-						].join(':');
+						].join( ':' );
 					},
 
 					/**
@@ -1984,7 +1984,7 @@ var mw = ( function ( $, undefined ) {
 								mw.loader.store.items = data.items;
 								return;
 							}
-						} catch (e) {}
+						} catch ( e ) {}
 
 						if ( raw === undefined ) {
 							// localStorage failed; disable store
@@ -2064,7 +2064,7 @@ var mw = ( function ( $, undefined ) {
 							return;
 						}
 
-						mw.loader.store.items[key] = 'mw.loader.implement(' + args.join(',') + ');';
+						mw.loader.store.items[key] = 'mw.loader.implement(' + args.join( ',' ) + ');';
 						mw.loader.store.update();
 					},
 

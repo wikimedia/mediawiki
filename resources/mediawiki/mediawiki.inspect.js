@@ -140,11 +140,11 @@
 				// try to invoke it.
 				console.table.call( console, data );
 				return;
-			} catch (e) {}
+			} catch ( e ) {}
 			try {
 				console.log( $.toJSON( data, null, 2 ) );
 				return;
-			} catch (e) {}
+			} catch ( e ) {}
 			mw.log( data );
 		},
 
@@ -206,7 +206,7 @@
 
 					try {
 						css = module.style.css.join();
-					} catch (e) { return; } // skip
+					} catch ( e ) { return; } // skip
 
 					stats = inspect.auditSelectors( css );
 					modules.push( {
@@ -233,7 +233,7 @@
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
 						stats.totalSize = humanSize( $.byteLength( raw ) );
-					} catch (e) {}
+					} catch ( e ) {}
 				}
 				return [stats];
 			}
