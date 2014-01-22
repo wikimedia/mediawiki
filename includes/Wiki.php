@@ -155,19 +155,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Create an Article object of the appropriate class for the given page.
-	 *
-	 * @deprecated in 1.18; use Article::newFromTitle() instead
-	 * @param $title Title
-	 * @param $context IContextSource
-	 * @return Article object
-	 */
-	public static function articleFromTitle( $title, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return Article::newFromTitle( $title, $context );
-	}
-
-	/**
 	 * Performs the request.
 	 * - bad titles
 	 * - read restriction
