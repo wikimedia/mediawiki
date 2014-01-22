@@ -29,6 +29,8 @@
  */
 class LoadBalancer {
 	private $mServers, $mConns, $mLoads, $mGroupLoads;
+
+	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
 	private $mReadIndex, $mAllowLagged;
 
@@ -805,7 +807,7 @@ class LoadBalancer {
 	/**
 	 * Returns true if the specified index is a valid server index
 	 *
-	 * @param $i
+	 * @param string $i
 	 * @return bool
 	 */
 	function haveIndex( $i ) {
@@ -815,7 +817,7 @@ class LoadBalancer {
 	/**
 	 * Returns true if the specified index is valid and has non-zero load
 	 *
-	 * @param $i
+	 * @param string $i
 	 * @return bool
 	 */
 	function isNonZeroLoad( $i ) {
@@ -834,7 +836,7 @@ class LoadBalancer {
 	/**
 	 * Get the host name or IP address of the server with the specified index
 	 * Prefer a readable name if available.
-	 * @param $i
+	 * @param string $i
 	 * @return string
 	 */
 	function getServerName( $i ) {
@@ -903,6 +905,7 @@ class LoadBalancer {
 	function closeAll() {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
+				/** @var DatabaseBase $conn */
 				foreach ( $conns3 as $conn ) {
 					$conn->close();
 				}
@@ -919,7 +922,7 @@ class LoadBalancer {
 	 * Deprecated function, typo in function name
 	 *
 	 * @deprecated in 1.18
-	 * @param $conn
+	 * @param DatabaseBase $conn
 	 */
 	function closeConnecton( $conn ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -930,7 +933,7 @@ class LoadBalancer {
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 * @param $conn DatabaseBase
+	 * @param DatabaseBase $conn
 	 */
 	function closeConnection( $conn ) {
 		$done = false;
@@ -957,6 +960,7 @@ class LoadBalancer {
 	function commitAll() {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
+				/** @var DatabaseBase[] $conns3 */
 				foreach ( $conns3 as $conn ) {
 					if ( $conn->trxLevel() ) {
 						$conn->commit( __METHOD__, 'flush' );
@@ -976,6 +980,7 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
+			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					$conn->commit( __METHOD__, 'flush' );
@@ -1020,6 +1025,7 @@ class LoadBalancer {
 		$success = true;
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
+				/** @var DatabaseBase[] $conns3 */
 				foreach ( $conns3 as $conn ) {
 					if ( !$conn->ping() ) {
 						$success = false;
