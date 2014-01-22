@@ -26,7 +26,7 @@
 		$link = $( '<a>', {
 			text: showText,
 			href: '#'
-		}).click(function () {
+		} ).click( function () {
 			if ( $table.hasClass( 'collapsed' ) ) {
 				$( this ).text( hideText );
 			} else {
@@ -34,7 +34,7 @@
 			}
 			$table.toggleClass( 'expanded collapsed' );
 			return false;
-		});
+		} );
 
 		$col.append( $link );
 		$row.append( $col );

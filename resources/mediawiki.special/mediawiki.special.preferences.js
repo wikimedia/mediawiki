@@ -11,7 +11,7 @@ jQuery( function ( $ ) {
 	};
 
 	$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
-	$preftoc = $('<ul id="preftoc"></ul>')
+	$preftoc = $( '<ul id="preftoc"></ul>' )
 		.attr( 'role', 'tablist' );
 	$preferences = $( '#preferences' )
 		.addClass( 'jsprefs' )
@@ -34,7 +34,7 @@ jQuery( function ( $ ) {
 	$( '<div>' ).addClass( 'mw-navigation-hint' )
 		.text( mediaWiki.msg( 'prefs-tabs-navigation-hint' ) )
 		.attr( 'tabIndex', 0 )
-		.on( 'focus blur', function( e ) {
+		.on( 'focus blur', function ( e ) {
 			if ( e.type === 'blur' || e.type === 'focusout' ) {
 				$( this ).css( 'height', '0' );
 			} else {
@@ -81,7 +81,7 @@ jQuery( function ( $ ) {
 
 	// Populate the prefToc
 	$legends.each( function ( i, legend ) {
-		var $legend = $(legend),
+		var $legend = $( legend ),
 			ident, $li, $a;
 		if ( i === 0 ) {
 			$legend.parent().show();
@@ -106,7 +106,7 @@ jQuery( function ( $ ) {
 	} );
 
 	// Enable keyboard users to use left and right keys to switch tabs
-	$preftoc.on( 'keydown', function( event ) {
+	$preftoc.on( 'keydown', function ( event ) {
 		var keyLeft = 37,
 			keyRight = 39,
 			$el;
@@ -139,14 +139,14 @@ jQuery( function ( $ ) {
 	if ( 'onhashchange' in window &&
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
-		$(window).on( 'hashchange' , function () {
+		$( window ).on( 'hashchange' , function () {
 			var hash = window.location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 			} else if ( hash === '' ) {
 				switchPrefTab( 'personal', 'noHash' );
 			}
-		});
+		} );
 	// In older browsers we'll bind a click handler as fallback.
 	// We must not have onhashchange *and* the click handlers, other wise
 	// the click handler calls switchPrefTab() which sets the hash value,
@@ -155,7 +155,7 @@ jQuery( function ( $ ) {
 		$preftoc.on( 'click', 'li a', function ( e ) {
 			switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
 			e.preventDefault();
-		});
+		} );
 	}
 
 	/**

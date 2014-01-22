@@ -54,7 +54,7 @@
 		 */
 		switchPane: function ( e ) {
 			var currentPaneId = debug.$container.data( 'currentPane' ),
-				requestedPaneId = $(this).prop( 'id' ).substr( 9 ),
+				requestedPaneId = $( this ).prop( 'id' ).substr( 9 ),
 				$currentPane = $( '#mw-debug-pane-' + currentPaneId ),
 				$requestedPane = $( '#mw-debug-pane-' + requestedPaneId ),
 				hovDone = false;
@@ -69,8 +69,8 @@
 			// Skip hash fragment handling. Prevents screen from jumping.
 			e.preventDefault();
 
-			$( this ).addClass( 'current ');
-			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ');
+			$( this ).addClass( 'current ' );
+			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ' );
 
 			// Hide the current pane
 			if ( requestedPaneId === currentPaneId ) {
@@ -107,10 +107,10 @@
 			 * @return {jQuery}
 			 */
 			function bitDiv( id ) {
-				return $( '<div>' ).prop({
+				return $( '<div>' ).prop( {
 					id: 'mw-debug-' + id,
 					className: 'mw-debug-bit'
-				})
+				} )
 				.appendTo( $bits );
 			}
 
@@ -123,10 +123,10 @@
 			 */
 			function paneLabel( id, text ) {
 				return $( '<a>' )
-					.prop({
+					.prop( {
 						className: 'mw-debug-panelabel',
 						href: '#mw-debug-pane-' + id
-					})
+					} )
 					.text( text );
 			}
 
@@ -142,10 +142,10 @@
 				if ( count ) {
 					text = text + ' (' + count + ')';
 				}
-				return $( '<div>' ).prop({
+				return $( '<div>' ).prop( {
 					id: 'mw-debug-' + id,
 					className: 'mw-debug-bit mw-debug-panelink'
-				})
+				} )
 				.append( paneLabel( id, text ) )
 				.appendTo( $bits );
 			}
@@ -205,10 +205,10 @@
 				}
 
 				$( '<div>' )
-					.prop({
+					.prop( {
 						className: 'mw-debug-pane',
 						id: 'mw-debug-pane-' + id
-					})
+					} )
 					.append( panes[id] )
 					.appendTo( $container );
 			}

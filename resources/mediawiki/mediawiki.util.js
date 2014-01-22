@@ -117,7 +117,7 @@
 						.text( mw.msg( 'hidetoc' ) )
 						.click( function ( e ) {
 							e.preventDefault();
-							util.toggleToc( $(this) );
+							util.toggleToc( $( this ) );
 						} );
 					$tocTitle.append(
 						$tocToggleLink
@@ -204,11 +204,11 @@
 		 * This function returns the styleSheet object for convience (due to cross-browsers
 		 * difference as to where it is located).
 		 *
-		 *     var sheet = mw.util.addCSS('.foobar { display: none; }');
-		 *     $(foo).click(function () {
+		 *     var sheet = mw.util.addCSS( '.foobar { display: none; }' );
+		 *     $( foo ).click( function () {
 		 *         // Toggle the sheet on and off
 		 *         sheet.disabled = !sheet.disabled;
-		 *     });
+		 *     } );
 		 *
 		 * @param {string} text CSS to be appended
 		 * @return {CSSStyleSheet} Use .ownerNode to get to the `<style>` element.
@@ -508,7 +508,7 @@
 			// the ABNF:
 			//	1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
 			// With:
-			// - atext	: defined in RFC 5322 section 3.2.3
+			// - atext   : defined in RFC 5322 section 3.2.3
 			// - ldh-str : defined in RFC 1034 section 3.5
 			//
 			// (see STD 68 / RFC 5234 http://tools.ietf.org/html/std68)
@@ -556,7 +556,7 @@
 				// RegExp is case insensitive
 				'i'
 			);
-			return (null !== mailtxt.match( html5EmailRegexp ) );
+			return ( null !== mailtxt.match( html5EmailRegexp ) );
 		},
 
 		/**

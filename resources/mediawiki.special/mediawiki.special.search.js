@@ -11,22 +11,22 @@
 		}
 
 		// Create check all/none button
-		$checkboxes = $('#powersearch input[id^=mw-search-ns]');
-		$('#mw-search-togglebox').append(
-			$('<label>')
-				.text(mw.msg('powersearch-togglelabel'))
+		$checkboxes = $( '#powersearch input[id^=mw-search-ns]' );
+		$( '#mw-search-togglebox' ).append(
+			$( '<label>' )
+				.text( mw.msg( 'powersearch-togglelabel' ) )
 		).append(
-			$('<input type="button" />')
+			$( '<input type="button" />' )
 				.attr( 'id', 'mw-search-toggleall' )
-				.prop( 'value', mw.msg('powersearch-toggleall' ) )
+				.prop( 'value', mw.msg( 'powersearch-toggleall' ) )
 				.click( function () {
-					$checkboxes.prop('checked', true);
+					$checkboxes.prop( 'checked', true );
 				} )
 		).append(
-			$('<input type="button" />')
+			$( '<input type="button" />' )
 				.attr( 'id', 'mw-search-togglenone' )
-				.prop( 'value', mw.msg('powersearch-togglenone' ) )
-				.click( function() {
+				.prop( 'value', mw.msg( 'powersearch-togglenone' ) )
+				.click( function () {
 					$checkboxes.prop( 'checked', false );
 				} )
 		);
@@ -34,19 +34,19 @@
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
 		$( '#searchText, #powerSearchText' ).change( function () {
-			var searchterm = $(this).val();
+			var searchterm = $( this ).val();
 			$headerLinks.each( function () {
-				var parts = $(this).attr('href').split( 'search=' ),
+				var parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
 					prefix = 'search=';
-				if ( parts.length > 1 && parts[1].indexOf('&') >= 0 ) {
-					lastpart = parts[1].substring( parts[1].indexOf('&') );
+				if ( parts.length > 1 && parts[1].indexOf( '&' ) >= 0 ) {
+					lastpart = parts[1].substring( parts[1].indexOf( '&' ) );
 				} else {
 					prefix = '&search=';
 				}
 				this.href = parts[0] + prefix + encodeURIComponent( searchterm ) + lastpart;
-			});
-		}).trigger( 'change' );
+			} );
+		} ).trigger( 'change' );
 
 	} );
 

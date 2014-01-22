@@ -3,7 +3,7 @@
  * without a page reload. Currently, the only image formats that can be multi-page images are
  * PDF and DjVu files
  */
-( function (mw, $) {
+( function ( mw, $ ) {
 
 	// Initialize ajax request variable
 	var xhr;
@@ -71,7 +71,7 @@
 		} );
 	}
 
-	$( document ).ready( function() {
+	$( document ).ready( function () {
 		// The presence of table.multipageimage signifies that this file is a multi-page image
 		if ( mw.config.get( 'wgNamespaceNumber' ) === 6 && $( 'table.multipageimage' ).length !== 0 ) {
 			ajaxifyPageNavigation();
@@ -86,7 +86,7 @@
 					if ( state ) {
 						loadPage( state.url, true );
 					}
-				});
+				} );
 			}
 		}
 	} );
