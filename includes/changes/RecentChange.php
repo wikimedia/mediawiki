@@ -336,14 +336,6 @@ class RecentChange {
 		global $wgRCFeeds;
 
 		foreach ( $wgRCFeeds as $feed ) {
-			$engine = self::getEngine( $feed['uri'] );
-
-			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
-				$actionComment = $this->mExtra['actionCommentIRC'];
-			} else {
-				$actionComment = null;
-			}
-
 			$omitBots = isset( $feed['omit_bots'] ) ? $feed['omit_bots'] : false;
 
 			if (
@@ -351,6 +343,14 @@ class RecentChange {
 				$this->mAttribs['rc_type'] == RC_EXTERNAL
 			) {
 				continue;
+			}
+
+			$engine = self::getEngine( $feed['uri'] );
+
+			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
+				$actionComment = $this->mExtra['actionCommentIRC'];
+			} else {
+				$actionComment = null;
 			}
 
 			/** @var $formatter RCFeedFormatter */
@@ -366,9 +366,9 @@ class RecentChange {
 	 *
 	 * @param string $uri URI to get the engine object for
 	 * @throws MWException
-	 * @return object The engine object
+	 * @return RCFeedEngine The engine object
 	 */
-	private static function getEngine( $uri ) {
+	public static function getEngine( $uri ) {
 		global $wgRCEngines;
 
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
