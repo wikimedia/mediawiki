@@ -116,9 +116,6 @@ You cannot install or use MediaWiki unless this option is disabled.",
 	'config-mbstring'                 => "'''Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is active!'''
 This option causes errors and may corrupt data unpredictably.
 You cannot install or use MediaWiki unless this option is disabled.",
-	'config-ze1'                      => "'''Fatal: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] is active!'''
-This option causes horrible bugs with MediaWiki.
-You cannot install or use MediaWiki unless this option is disabled.",
 	'config-safe-mode'                => "'''Warning:''' PHP's [http://www.php.net/features.safe-mode safe mode] is active.
 It may cause problems, particularly if using file uploads and <code>math</code> support.",
 	'config-xml-bad'                  => "PHP's XML module is missing.
@@ -163,11 +160,8 @@ Installation aborted.",
 Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [//www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	'config-no-cli-uploads-check'     => "'''Warning:''' Your default directory for uploads (<code>$1</code>) is not checked for vulnerability
 to arbitrary script execution during the CLI install.",
-	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
-Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later ([//bugs.php.net/bug.php?id=45996 bug filed with PHP]).
-Installation aborted.',
-	'config-using531'                 => 'MediaWiki cannot be used with PHP $1 due to a bug involving reference parameters to <code>__call()</code>.
-Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to resolve this.
+	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions that is buggy and can cause hidden data corruption in MediaWiki and other web applications.
+Upgrade to libxml2 2.7.3 or later ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]).
 Installation aborted.',
 	'config-suhosin-max-value-length' => "Suhosin is installed and limits the GET parameter <code>length</code> to $1 bytes.
 MediaWiki's ResourceLoader component will work around this limit, but that will degrade performance.

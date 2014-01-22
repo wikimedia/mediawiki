@@ -116,11 +116,9 @@ abstract class Installer {
 		'envCheckDB',
 		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
-		'envCheckPHP531',
 		'envCheckMagicQuotes',
 		'envCheckMagicSybase',
 		'envCheckMbstring',
-		'envCheckZE1',
 		'envCheckSafeMode',
 		'envCheckXML',
 		'envCheckPCRE',
@@ -735,23 +733,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
-	 * reference parameters to __call() are not converted to null
-	 * @return bool
-	 */
-	protected function envCheckPHP531() {
-		$test = new PhpRefCallBugTester;
-		$test->execute();
-		if ( !$test->ok ) {
-			$this->showError( 'config-using531', phpversion() );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Environment check for magic_quotes_runtime.
 	 * @return bool
 	 */
@@ -786,20 +767,6 @@ abstract class Installer {
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
 			$this->showError( 'config-mbstring' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for zend.ze1_compatibility_mode.
-	 * @return bool
-	 */
-	protected function envCheckZE1() {
-		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
-			$this->showError( 'config-ze1' );
 
 			return false;
 		}

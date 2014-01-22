@@ -609,7 +609,6 @@ $wgAutoloadLocalClasses = array(
 	'MysqlUpdater' => 'includes/installer/MysqlUpdater.php',
 	'OracleInstaller' => 'includes/installer/OracleInstaller.php',
 	'OracleUpdater' => 'includes/installer/OracleUpdater.php',
-	'PhpRefCallBugTester' => 'includes/installer/PhpBugTests.php',
 	'PhpXmlBugTester' => 'includes/installer/PhpBugTests.php',
 	'PostgresInstaller' => 'includes/installer/PostgresInstaller.php',
 	'PostgresUpdater' => 'includes/installer/PostgresUpdater.php',
