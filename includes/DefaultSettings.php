@@ -6590,12 +6590,45 @@ $wgDebugAPI = false;
  * API module extensions.
  * Associative array mapping module name to class name.
  * Extension modules may override the core modules.
- * @todo Describe each of the variables, group them and add examples
+ *
+ * See ApiMain::$Modules for a list of the core modules.
  */
 $wgAPIModules = array();
+
+/**
+ * API format module extensions.
+ * Associative array mapping format module name to class name.
+ * Extension modules may override the core modules.
+ *
+ * See ApiMain::$Formats for a list of the core format modules.
+ */
 $wgAPIFormatModules = array();
+
+/**
+ * API Query meta module extensions.
+ * Associative array mapping meta module name to class name.
+ * Extension modules may override the core modules.
+ *
+ * See ApiQuery::$QueryMetaModules for a list of the core meta modules.
+ */
 $wgAPIMetaModules = array();
+
+/**
+ * API Query prop module extensions.
+ * Associative array mapping properties module name to class name.
+ * Extension modules may override the core modules.
+ *
+ * See ApiQuery::$QueryPropModules for a list of the core prop modules.
+ */
 $wgAPIPropModules = array();
+
+/**
+ * API Query list module extensions.
+ * Associative array mapping list module name to class name.
+ * Extension modules may override the core modules.
+ *
+ * See ApiQuery::$QueryListModules for a list of the core list modules.
+ */
 $wgAPIListModules = array();
 
 /**
