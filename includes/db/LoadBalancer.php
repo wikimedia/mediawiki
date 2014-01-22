@@ -278,7 +278,7 @@ class LoadBalancer {
 
 				// Perform post-connection backoff
 				$threshold = isset( $this->mServers[$i]['max threads'] )
-					? $this->mServers[$i]['max threads'] : false;
+					? $this->mServers[$i]['max threads'] : 0;
 				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
 
 				// Decrement reference counter, we are finished with this connection.
