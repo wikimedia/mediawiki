@@ -73,4 +73,24 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 	protected static function helperThrowAnException( $a, $b, &$c ) {
 		throw new Exception();
 	}
+
+	protected static function helperThrowException() {
+		throw new Exception();
+	}
+
+	function testExceptionChecksumIsConsistent() {
+		$checksum = array();
+		do {
+			try {
+				self::helperThrowException();
+			} catch( Exception $e ) {
+				$checksum[] = MWExceptionHandler::getTraceChecksum( $e );
+			}
+		} while( count($checksum) < 2 );
+
+		$this->assertCount( 2, $checksum, "Test must have generated two exceptions checsums" );
+		$this->assertEquals( $checksum[0], $checksum[1],
+			"Exceptions from the same code point should have same trace checksums"
+		);
+	}
 }

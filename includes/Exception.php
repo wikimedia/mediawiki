@@ -779,6 +779,32 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * Checksum of the stacktrace represented as string.
+	 *
+	 * This basically returns the md5 sum of the redacted stack trace, which is
+	 * a lame attempt at generating a signature for a given stacktrace.  The
+	 * redacted trace offers two advantages:
+	 *
+	 * 1) it does not vary depending on parameters passed to functions, which
+	 * helps catch traces exercice the same code path but having different
+	 * parameters
+	 * 2) avoids exposing potentially private data which could be recovered via
+	 * brute force.
+	 *
+	 * This method can be used to help deduplicate exceptions when sending them
+	 * in a log / * monitoring engine.
+	 *
+	 *
+	 * @since 1.23
+	 * @param Exception $e
+	 * @return string The md5 sum for the stacktrace represented as a string
+	 */
+	public static function getTraceChecksum( Exception $e ) {
+		# MUST be a redacted trace, see method comment
+		return md5( self::getRedactedTraceAsString( $e ) );
+	}
+
+	/**
 	 * If the exception occurred in the course of responding to a request,
 	 * returns the requested URL. Otherwise, returns false.
 	 *
@@ -803,12 +829,13 @@ class MWExceptionHandler {
 	 */
 	public static function getLogMessage( Exception $e ) {
 		$id = self::getLogId( $e );
+		$traceChecksum =  self::getTraceChecksum( $e );
 		$file = $e->getFile();
 		$line = $e->getLine();
 		$message = $e->getMessage();
 		$url = self::getURL() ?: '[no req]';
 
-		return "[$id] $url   Exception from line $line of $file: $message";
+		return "[$id][$traceChecksum] $url   Exception from line $line of $file: $message";
 	}
 
 	/**
@@ -867,6 +894,7 @@ class MWExceptionHandler {
 
 		$exceptionData = array(
 			'id' => self::getLogId( $e ),
+			'trace_checksum' => self::getTraceChecksum( $e ),
 			'file' => $e->getFile(),
 			'line' => $e->getLine(),
 			'message' => $e->getMessage(),
