@@ -19,6 +19,14 @@
 	background-image: url(@url);
 }
 
+.vertical-gradient ( @startColor: gray, @endColor: white, @startPos: 0, @endPos: 100% ) {
+	background-color: @endColor;
+	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
+	background-image: -webkit-gradient( linear, left top, left bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) ); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Safari 5.1+, Chrome 10+
+	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
+}
+
 /* Note gzip compression means that it is okay to embed twice */
 .background-image-svg(@svg, @fallback) {
 	background-image: url(@fallback);
