@@ -772,9 +772,16 @@ class MWExceptionHandler {
 	 * @return string
 	 */
 	public static function getLogId( Exception $e ) {
+		global $wgExceptionDedupId;
+
 		if ( !isset( $e->_mwLogId ) ) {
-			$e->_mwLogId = wfRandomString( 8 );
+			if ( $wgExceptionDedupId ) {
+				$e->_mwLogId = md5( $e->getTraceAsString() );
+			} else {
+				$e->_mwLogId = wfRandomString( 8 );
+			}
 		}
+
 		return $e->_mwLogId;
 	}
 

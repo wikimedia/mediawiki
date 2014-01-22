@@ -6167,6 +6167,11 @@ $wgSpecialPageCacheUpdates = array(
 $wgExceptionHooks = array();
 
 /**
+ * FIXME: document.
+ */
+$wgExceptionDedupId = false;
+
+/**
  * Page property link table invalidation lists. When a page property
  * changes, this may require other link tables to be updated (eg
  * adding __HIDDENCAT__ means the hiddencat tracking category will
