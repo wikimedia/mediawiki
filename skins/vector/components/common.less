@@ -23,7 +23,7 @@ body {
 	font-family: @content-font-family;
 }
 body {
-	background-color: #f6f6f6;
+	background-color: @menu-background-color;
 	font-size: @body-font-size;
 }
 
@@ -33,11 +33,11 @@ div#content {
 	margin-left: 10em;
 	padding: @content-padding;
 	/* Border on top, left, and bottom side */
-	border: 1px solid #a7d7f9;
+	border: 1px solid @content-border-color;
 	border-right-width: 0;
 	/* Merge the border with tabs' one (in their background image) */
 	margin-top: -1px;
-	background-color: white;
+	background-color: @body-background-color;
 	color: @content-font-color;
 	direction: ltr;
 }
