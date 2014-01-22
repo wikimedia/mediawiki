@@ -111,7 +111,7 @@ jQuery( function ( $ ) {
 			keyRight = 39,
 			$el;
 
-		if( event.keyCode === keyLeft ) {
+		if ( event.keyCode === keyLeft ) {
 			$el = $( '#preftoc li.selected' ).prev().find( 'a' );
 		} else if ( event.keyCode === keyRight ) {
 			$el = $( '#preftoc li.selected' ).next().find( 'a' );

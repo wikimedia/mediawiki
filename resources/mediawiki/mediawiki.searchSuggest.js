@@ -38,7 +38,7 @@
 			$form = context.config.$region.closest( 'form' );
 
 			formAction = $form.attr( 'action' );
-			baseHref = formAction + ( formAction.match(/\?/) ? '&' : '?' );
+			baseHref = formAction + ( formAction.match( /\?/ ) ? '&' : '?' );
 
 			linkParams = {};
 			$.each( $form.serializeArray(), function ( idx, obj ) {
@@ -125,7 +125,7 @@
 			// Generic selector for skins with multiple searchboxes (used by CologneBlue)
 			'.mw-searchInput'
 		];
-		$( searchboxesSelectors.join(', ') )
+		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
 				fetch: function ( query ) {
 					var $el;
