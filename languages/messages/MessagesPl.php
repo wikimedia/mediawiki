@@ -54,6 +54,7 @@
  * @author Stlmch
  * @author Stv
  * @author Szczepan1990
+ * @author Tar Lócesilion
  * @author Timpul
  * @author ToSter
  * @author Tsca
@@ -1258,7 +1259,7 @@ Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/del
 'rev-suppressed-no-diff' => "Nie można wyświetlić różnic, ponieważ jedna z wersji została '''usunięta'''.",
 'rev-deleted-unhide-diff' => "Jedna z porównywanych wersji została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
+Jeśli chcesz, możesz [$1 obejrzeć porównanie wersji].",
 'rev-suppressed-unhide-diff' => "Jedna z porównywanych wersji została '''ukryta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].
 Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
@@ -1569,8 +1570,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-nodatabase' => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin' => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
 'userrights-notallowed' => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
-'userrights-changeable-col' => 'Grupy, które możesz wybrać',
-'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać',
+'userrights-changeable-col' => 'Grupy, które możesz wybrać:',
+'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać:',
 'userrights-conflict' => 'Konflikt zmiany uprawnień użytkownika! Proszę sprawdzić i potwierdzić swoje zmiany.',
 'userrights-removed-self' => 'Pomyślnie odebrałeś sobie uprawnienia. W związku z tym nie masz już dostępu do tej strony.',
 

@@ -30,6 +30,7 @@
  * @author Krinkle
  * @author Kumar
  * @author Mayur
+ * @author Nikhil.kawale
  * @author Odisha1
  * @author Omprakash
  * @author Pulkitsingh01
@@ -43,6 +44,7 @@
  * @author Shantanoo
  * @author Shirayuki
  * @author Shrish
+ * @author Shubhamkanodia
  * @author Shyam
  * @author Shyam123.ckp
  * @author Siddhartha Ghai
@@ -462,8 +464,8 @@ $1',
 'youhavenewmessages' => 'आपके लिए $1 हैं। ($2)',
 'youhavenewmessagesfromusers' => 'आपके लिये {{PLURAL:$3|एक अन्य सदस्य|$3 अन्य सदस्यों}} के $1 हैं। ($2)',
 'youhavenewmessagesmanyusers' => 'आपके लिये $1 हैं। ($2)',
-'newmessageslinkplural' => '{{PLURAL:$1|एक नया सन्देश|नये सन्देश}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|पिछला|पिछले}} बदलाव',
+'newmessageslinkplural' => '{{PLURAL:$1|एक नया सन्देश|999=नये सन्देश}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|पिछला|999=पिछले}} बदलाव',
 'youhavenewmessagesmulti' => '$1 पर आपके लिए नया संदेश है',
 'editsection' => 'सम्पादन',
 'editold' => 'सम्पादन',
@@ -593,7 +595,8 @@ $2',
 'invalidtitle-knownnamespace' => '"$2" नामस्थान और "$3" नाम वाला गलत शीर्षक',
 'invalidtitle-unknownnamespace' => 'अज्ञात नामस्थान संख्या $1 और नाम "$2" वाला गलत शीर्षक',
 'exception-nologin' => 'लॉग इन नहीं किया है',
-'exception-nologin-text' => 'इस पृष्ठ अथवा कार्य के लिए आपको विकि में लॉग्ड इन होना आवश्यक है।',
+'exception-nologin-text' => 'इस पृष्ठ अथवा कार्य को सक्षम करने के लिए कृपया [[Special:Userlogin|लॉग इन]]करें।',
+'exception-nologin-text-manual' => 'इस पृष्ठ अथवा कार्य को सक्षम करने के लिए कृपया $1 करें।',
 
 # Virus scanner
 'virus-badscanner' => "गलत जमाव: अज्ञात वायरस जाँचक: ''$1''",
@@ -640,9 +643,12 @@ $2',
 'gotaccount' => "पहले से आपका खाता है? '''$1''' करें।",
 'gotaccountlink' => 'लॉग इन',
 'userlogin-resetlink' => 'अपनी प्रवेश जानकारी भूल गए हैं?',
-'userlogin-resetpassword-link' => 'अपना कूटशब्द रीसेट करें',
+'userlogin-resetpassword-link' => 'अपना पासवर्ड भूल गए?',
 'helplogin-url' => 'Help:लॉगिंग इन',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|लॉग इन करने में सहायता]]',
+'userlogin-loggedin' => 'आप {{GENDER:$1|$1}} के रूप में पहले से लॉग्ड इन हैं।
+किसी अन्य उपयोगकर्ता के रूप में लॉग इन करने के लिए निम्नलिखित फॉर्म का प्रयोग करें।',
+'userlogin-createanother' => 'एक अन्य खाता खोलें',
 'createacct-join' => 'अपनी जानकारी नीचे लिखें',
 'createacct-another-join' => 'नए खाते की जानकारी नीचे प्रदान करें।',
 'createacct-emailrequired' => 'ई-मेल पता',
@@ -693,7 +699,7 @@ $2',
 'passwordtooshort' => 'आपका कूटशब्द कम से कम {{PLURAL:$1|1 अक्षर|$1 अक्षरों}} का होना चाहिये।',
 'password-name-match' => 'आपका कूटशब्द आपके सदस्यनाम से भिन्न होना चाहिए।',
 'password-login-forbidden' => 'इस सदस्यनाम और कूटशब्द का उपयोग वर्जित है।',
-'mailmypassword' => 'ई-मेल द्वारा नया कूटशब्द भेजें',
+'mailmypassword' => 'कूटशब्द पुनःस्थापित करे',
 'passwordremindertitle' => '{{SITENAME}} के लिये नया अस्थायी कूटशब्द',
 'passwordremindertext' => 'किसी ने (शायद आपने ही, $1 आइ॰पी पते से) {{SITENAME}} ($4) पर इस्तेमाल के लिये नया कूटशब्द मँगाया है। सदस्य "$2" के लिए एक अस्थायी कूटशब्द बना दिया गया है, और यह अभी "$3" है। यदि यह आपकी ही मंशा थी, तो अब आपको सत्रारंभ करके एक नया कूटशब्द चुनना होगा।
 आपके अस्थायी कूटशब्द की अवधि {{PLURAL:$5|एक दिन|$5 दिनों}} में समाप्त हो जाएगी।
@@ -704,14 +710,14 @@ $2',
 'passwordsent' => '"$1" के ई-मेल पते पर एक नया कूटशब्द भेज दिया गया है।
 ई-मेल पाने बाद कृपया दुबारा लॉग इन करें।',
 'blocked-mailpassword' => 'आपके आइ॰पी पते को सम्पादन करने से अवरुद्ध कर दिया गया है, और गलत इस्तेमाल रोकने के लिये कूटशब्द पुनः प्राप्ति की सुविधा इस आइ॰पी पर बंद कर दी गई है।',
-'eauthentsent' => 'दर्ज किये हुए ई-मेल पते पर एक सत्यापन ई-मेल भेजा गया है।
-आपको उस ई-मेल में दिये हुए निर्देशों के अनुसार क्रियाएँ कर के ई-मेल पते का सत्यापन करना होगा, उसके पश्चात ही यहाँ से कोई दूसरा ई-मेल भेजा जाएगा।',
+'eauthentsent' => 'दर्ज किये हुए ई-मेल पते पर एक सत्यापन ई-मेल भेजा दिया गया है।
+आपको उस ई-मेल में दिये हुए निर्देशों के अनुसार ई-मेल पते का सत्यापन करना होगा, उसके पश्चात ही यहाँ से कोई दूसरा ई-मेल भेजा जाएगा।',
 'throttled-mailpassword' => 'पिछले {{PLURAL:$1|एक घंटे|$1 घंटों}} के दरमियान एक कूटशब्द स्मरण-पत्र भेजा जा चुका है।
 दुरुपयोग से बचाव के लिए हर {{PLURAL:$1|एक घंटे|$1 घंटों}} में एक कूटशब्द स्मरण-पत्र ही भेजा जाता है।',
 'mailerror' => 'ई-मेल भेजने में त्रुटि: $1',
 'acct_creation_throttle_hit' => 'आपके आइ॰पी पते से आए आगंतुक पिछले चौबीस घंटों में इस विकि पर {{PLURAL:$1|एक खाता|$1 खाते}} बना चुके हैं, इस समयावधि में यही अधिकतम सीमा है।
 अतः इस समय इस आइ॰पी पते का प्रयोग करने वाले आगंतुक और खाते नहीं खोल सकेंगे।',
-'emailauthenticated' => 'आपके ई-मेल पते की दिनांक $2 को $3 बजे पुष्टि हुई थी।',
+'emailauthenticated' => 'आपका ई-मेल पता $2 को $3 बजे सत्यापित किया गया।',
 'emailnotauthenticated' => 'आपके ई-मेल पते की पुष्टि नहीं हुई है।
 नीचे दी किसी भी सुविधा के लिये आपको ई-मेल नहीं भेजा जाएगा।',
 'noemailprefs' => 'इन सुविधाओं का प्रयोग करने के लिये अपनी वरीयताओं में ई-मेल पता दें।',
@@ -3135,7 +3141,7 @@ $1',
 'svg-long-desc' => 'SVG फ़ाईल, साधारणत: $1 × $2 पीक्सेल्स, फ़ाईलका आकार: $3',
 'svg-long-desc-animated' => 'ऐनिमेटिड एस॰वी॰जी फ़ाइल, $1 × $2 पिक्सेल, फ़ाइल साइज़: $3',
 'svg-long-error' => 'अमान्य एस॰वी॰जी फ़ाइल: $1',
-'show-big-image' => 'सम्पूर्ण रिज़ोल्यूशन',
+'show-big-image' => 'मूल आकार',
 'show-big-image-preview' => 'इस पूर्वावलोकन का आकार:  $1 ।',
 'show-big-image-other' => 'अन्य  {{PLURAL:$2| resolution|resolutions}}:  $1 ।',
 'show-big-image-size' => '$1 × $2  पिक्सेल',

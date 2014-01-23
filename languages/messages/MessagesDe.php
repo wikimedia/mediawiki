@@ -985,6 +985,8 @@ Wenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.',
 'retypenew' => 'Neues Passwort (nochmal):',
 'resetpass_submit' => 'Passwort übermitteln und anmelden',
 'changepassword-success' => 'Dein Passwort wurde erfolgreich geändert!',
+'changepassword-throttled' => 'Du hast kürzlich zu viele Anmeldeversuche unternommen.
+Bitte warte $1, bevor du es erneut versuchst.',
 'resetpass_forbidden' => 'Das Passwort kann nicht geändert werden.',
 'resetpass-no-info' => 'Du musst dich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-submit-loggedin' => 'Passwort ändern',
@@ -1040,6 +1042,8 @@ Temporäres Passwort: $2',
 'changeemail-password' => 'Dein {{SITENAME}}-Passwort:',
 'changeemail-submit' => 'E-Mail-Adresse ändern',
 'changeemail-cancel' => 'Abbrechen',
+'changeemail-throttled' => 'Du hast zu viele Anmeldeversuche unternommen.
+Bitte warte $1, bevor du es erneut versuchst.',
 
 # Special:ResetTokens
 'resettokens' => 'Tokens zurücksetzen',

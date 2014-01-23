@@ -2613,6 +2613,7 @@ PICT # тайп тайпан
 'version-ext-colheader-name' => 'Шордарш',
 'version-ext-colheader-version' => 'Верси',
 'version-ext-colheader-license' => 'Лицензи',
+'version-ext-colheader-description' => 'Цуьнах лаьцна',
 'version-ext-colheader-credits' => 'Автораш',
 'version-poweredby-credits' => "ХӀара вики болх беш ю '''[https://www.mediawiki.org/ MediaWiki]''' движок тӀехь, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'кхин',

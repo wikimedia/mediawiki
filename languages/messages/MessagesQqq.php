@@ -1605,19 +1605,6 @@ Used on the account creation form when creating another user's account. Similar 
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
 'changepassword-success' => 'Used in [[Special:ChangePassword]].',
-'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
-'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].
-
-Parameters:
-* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
-'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
-
-{{Identical|Change password}}',
-'resetpass-submit-cancel' => 'Used on [[Special:ResetPass]].
-{{Identical|Cancel}}',
-'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
-'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
-'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
 'changepassword-throttled' => 'Error message shown at [[Special:ChangePassword]] after the user has tried to login with incorrect password too many times.
 
 The user has to wait a certain time before trying to log in again.
@@ -1638,6 +1625,20 @@ This is a protection against robots trying to find the password by trying lots o
 The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
 This message is used in html.
 {{identical|Login throttled}}',
+'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
+'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].
+
+Parameters:
+* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
+'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
+
+{{Identical|Change password}}',
+'resetpass-submit-cancel' => 'Used on [[Special:ResetPass]].
+{{Identical|Cancel}}',
+'resetpass-wrong-oldpass' => 'Error message shown on [[Special:ChangePassword]] when the old password is not valid.',
+'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
+'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
+
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
 {{Identical|Reset password}}',
@@ -1733,6 +1734,7 @@ This is a protection against robots trying to find the password by trying lots o
 The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
 This message is used in html.
 {{identical|Login throttled}}',
+
 # Special:ResetTokens
 'resettokens' => '{{doc-special|ResetTokens}}
 In this case "token" may be translated as "key", or similar.

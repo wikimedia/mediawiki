@@ -25,6 +25,7 @@
  * @author Indech
  * @author Jens Liebenau
  * @author Jorge Morais
+ * @author Josep Maria 15.
  * @author Kaganer
  * @author Leonardo.stabile
  * @author Lijealso
@@ -1166,6 +1167,7 @@ Ela já existia.',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Sair desta página fará com que você perca quaisquer alterações feitas por você.
 Se você se autenticou, pode desabilitar este aviso na seção "Edição" das suas preferências.',
+'editpage-notsupportedcontentformat-title' => 'Formato de conteúdo não suportado',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1737,7 +1739,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'enhancedrc-history' => 'histórico',
 'recentchanges' => 'Mudanças recentes',
 'recentchanges-legend' => 'Opções das mudanças recentes',
-'recentchanges-summary' => 'Acompanhe nesta página as mudanças mais recentes da wiki.',
+'recentchanges-summary' => 'Acompanha nesta página as mudanças mais recentes desta wiki.',
 'recentchanges-noresult' => 'Nenhuma alteração correspondente a esses critérios foi realizada durante o período selecionado.',
 'recentchanges-feed-description' => "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 'recentchanges-label-newpage' => 'Esta edição criou uma nova página',
@@ -2151,6 +2153,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Random page in category
+'randomincategory-invalidcategory' => '"$1" não é um nome de categoria válido',
 'randomincategory-nopages' => 'Não há páginas na categoria [[:Category:$1|$1]].',
 'randomincategory-selectcategory' => 'Obter página aleatória da categoria: $1 $2',
 'randomincategory-selectcategory-submit' => 'Ir',
@@ -2253,6 +2256,7 @@ Agora redirecciona para [[$2]].',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Apenas proteções indefinidas',
 'protectedpages-cascade' => 'Apenas proteções em cascata',
+'protectedpages-noredirect' => 'Esconder redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedtitles' => 'Títulos protegidos',
 'protectedtitlesempty' => 'Neste momento, nenhum dos títulos está protegido com estes parâmetros.',
@@ -2830,7 +2834,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'range_block_disabled' => 'A funcionalidade de administrador para o bloqueio de gamas de IPs está desativada.',
 'ipb_expiry_invalid' => 'Tempo de expiração inválido.',
 'ipb_expiry_temp' => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
-'ipb_hide_invalid' => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
+'ipb_hide_invalid' => 'Não foi possível suprimir esta conta; ela possui mais de {{PLURAL:$1|uma edição|$1 edições}}.',
 'ipb_already_blocked' => '"$1" já se encontra bloqueado',
 'ipb-needreblock' => '$1 já se encontra bloqueado. Deseja alterar as configurações?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}',
@@ -3957,7 +3961,8 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-hook-name' => 'Nome do hook',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versão $1)',
-'version-license' => 'Licença',
+'version-license' => 'Licença do MediaWiki',
+'version-credits-not-found' => 'Nenhuma informação detalhada acerca dos créditos foi encontrada para esta extensão.',
 'version-poweredby-credits' => "Esta é uma wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'outros',
 'version-credits-summary' => 'Gostaríamos de reconhecer as seguintes pessoas pela sua contribuição para o [[Special:Version|MediaWiki]].',
