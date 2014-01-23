@@ -482,6 +482,18 @@ Drōva al mōdul ché sòta cme un êter utèint.",
 'userexists' => "Al nòm utèint scrét l'é bèle druvê.
 Siēlier 'n' êter nòm utèint.",
 'loginerror' => "Erōr 'd ingrès",
+'createacct-error' => "A gh'é stê un erōr ind al fêr l'utèinsa.",
+'createaccounterror' => "Imposébil fêr l'iscrisiòun: $1",
+'nocookiesnew' => "La registrasiòun  an n' é mìa finîda, e an n'é mìa stê pusébil andêr dèinter a {{SITENAME}} perchè i cookie în blûchê. Tōrna fêr l'ingrès cun al nòm e la cêva 'd ingrès apèina fât dôp avèir şbluchê i cùchi int al tó navigadōr.",
+'nocookieslogin' => "Per fêr l'ingrès a {{SITENAME}} a 's dēv druvêr i cookie che rişûlten bluchê. Tōrna fêr l'ingrès dôp avèir şbluchê i cùchi int al tó navigadōr.",
+'nocookiesfornew' => "L'iscrisiòun utèint an n'é mìa stêda fâta, perchè òm mìa prû cunfermêr la só urégin. Veréfica 'd avèir şbluchê i cookie, tōrna carghêr cla pàgina ché e prōva incòra.",
+'noname' => "Al nòm utèint scrét an n'é mìa vâlid.",
+'loginsuccesstitle' => 'Ingrès fât.',
+'loginsuccess' => "''' T'é stê coleghê al terminêl {{SITENAME}} cun al nòm utèint '''$1'''.",
+'nosuchuser' => 'An n\'é mìa registrê nisûn utèint cun al nòm "$1". I nòm utèin în sensébil al lètri grândi. Veréfica al nòm scrét o [[Special:UserLogin/signup|fà un nōv ingrès]].',
+'nosuchusershort' => "An gh'é mìa registrê un utèint ciamê ''$1''. Veréfica al nòm scrét.",
+'nouserspecified' => "L'é necesâri precişêr un nòm utèint.",
+'login-userblocked' => "Cl'utèinsa ché l'é bluchêda. An n'é pusébil fêr l'ingrès.",
 'mailmypassword' => "Tōrna mèter la cêva 'd ingrès",
 'accountcreated' => 'Ingrès fât',
 'loginlanguagelabel' => 'Léngva: $1',
@@ -836,8 +848,8 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'emailmessage' => 'Mesâg',
 
 # Watchlist
-'watchlist' => 'Sòt uservasiòun',
-'mywatchlist' => 'Sòt uservasiòun',
+'watchlist' => 'Tgnîr sòt ôc',
+'mywatchlist' => 'Tgnîr sòt ôc',
 'watchlistfor2' => "Da l'utèint $1 $2",
 'watchnologin' => "An t'é mìa gnû dèinter",
 'watch' => 'Và adrē',
@@ -1031,7 +1043,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 # Info page
 'pageinfo-header-edits' => 'Stòria dal mudéfichi',
 'pageinfo-views' => 'Nómer dal vîşiti',
-'pageinfo-watchers' => "Nómer  'd utèint che gh'àn la pàgina sòt uservasiòun.",
+'pageinfo-watchers' => "Nómer  'd utèint che gh'àn la pàgina sòt ôc.",
 'pageinfo-edits' => 'Nómer totêl dal mudéfichi',
 'pageinfo-authors' => 'Nómer totêl di divêrs avtôr',
 

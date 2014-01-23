@@ -483,9 +483,12 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'gotaccount' => "Tine già 'nu cunde? '''$1'''.",
 'gotaccountlink' => 'Tràse',
 'userlogin-resetlink' => "T'è scurdate le dettaglie pe trasè?",
-'userlogin-resetpassword-link' => "Azzere 'a passuord toje",
+'userlogin-resetpassword-link' => "T'è scurdate 'a passuord toje?",
 'helplogin-url' => 'Help:Trasenne',
 'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Aijute cu 'a trasute]]",
+'userlogin-loggedin' => "Tu ste jndre ggià cumme a {{GENDER:$1|$1}}.
+Ause 'u module aqquà sotte pe trasè cumme a 'n'otre utende.",
+'userlogin-createanother' => "Ccreje 'n'otre cunde",
 'createacct-join' => "Mitte le 'mbormaziune tune aqquà sotte.",
 'createacct-another-join' => "Mitte le 'mbormaziune d'u cunde nuève aqquà sotte.",
 'createacct-emailrequired' => 'Indirizze email',
@@ -613,7 +616,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 # Special:PasswordReset
 'passwordreset' => "Azzere 'a passuord",
 'passwordreset-text-one' => "Comblete stu module pe azzerà 'a passuord toje.",
-'passwordreset-text-many' => "{{PLURAL:$1|Inghie une de le cambe de date pe azzerà 'a passuord toje.}}",
+'passwordreset-text-many' => "{{PLURAL:$1|Inghie une de le cambe pe azzerà 'a passuord toje.}}",
 'passwordreset-legend' => "Azzere 'a passuord",
 'passwordreset-disabled' => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
 'passwordreset-emaildisabled' => "Le funziune de l'email onne state disabbilitate sus a sta uicchi.",
@@ -1433,8 +1436,8 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'action-block' => "blocche st'utende pe le cangiaminde",
 'action-protect' => "cange 'u levèlle de protezzione pe sta pàgene",
 'action-rollback' => "Annulle velocemende le cangiaminde de l'urteme utende ca ha cangiate 'na pàgena particolare",
-'action-import' => "'mborte sta pàgene da n'otra Uicchi",
-'action-importupload' => "'mborte sta pàgene da 'nu carecamende de 'nu file",
+'action-import' => "'mborte le pàggene da n'otra Uicchi",
+'action-importupload' => "'mborte le pàggene da 'nu carecamende de 'nu file",
 'action-patrol' => "signe l'otre cangiaminde cumme condrollate",
 'action-autopatrol' => 'signà le cangiaminde tue cumme condrollate',
 'action-unwatchedpages' => "vide 'a liste de le pàggene ca non ge sonde condrollete",
@@ -1461,7 +1464,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchanges-label-minor' => "Quiste ète 'nu cangiamende stuèdeche",
 'recentchanges-label-bot' => "Stu cangiamende ha state fatte da 'nu bot",
 'recentchanges-label-unpatrolled' => "Stu cangiamende non g'à state angore condrollate",
-'recentchanges-legend-newpage' => '$1 - pàgena nove',
+'recentchanges-legend-newpage' => "('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
 'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' (fine a '''$1''' mustrete).",
 'rclistfrom' => 'Fà vedè le urteme cangiaminde partenne da $1',
 'rcshowhideminor' => '$1 cangiaminde stuèdeche',
@@ -1984,6 +1987,7 @@ Mò s'avène redirette a [[$2]].",
 'listusers' => "Liste de l'utende",
 'listusers-editsonly' => "Fà vedè sulamende l'utinde cu cangiaminde fatte",
 'listusers-creationsort' => 'Arrenghete pe date de ccreazione',
+'listusers-desc' => "Arranghe jndr'à 'n'ordine ca scenne",
 'usereditcount' => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 'usercreated' => "{{GENDER:$3|Ccrejate}} 'u $1 a le ore $2",
 'newpages' => 'Pàggene nuève',
@@ -2199,14 +2203,14 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 
 Riepileghe de le cangiaminde: \$PAGESUMMARY \$PAGEMINOREDIT
 
-Condatte l'editore:
+Condatte 'u cangiatore:
 mail: \$PAGEEDITOR_EMAIL
 uicchi: \$PAGEEDITOR_WIKI
 
 Non ge stonne otre notifiche ce tu face otre attivitate senze ca tu visite sta pàgene.
-Tu puè pure azzerà 'a spunde de le notifiche pe tutte le pàggene condrollate jndr'à lista toje.
+Tu puè pure azzerà 'a spunde de le notifiche pe tutte le pàggene condrollate jndr'à l'elenghe tune.
 
-             Statte Bbuene, 'u sisteme de notificaziune de {{SITENAME}}
+Statte Bbuene, 'u sisteme de notificaziune de {{SITENAME}}
 
 --
 Pe cangià le 'mbostaziune de notifeche de l'email toje, vè vide
@@ -2215,7 +2219,7 @@ Pe cangià le 'mbostaziune de notifeche de l'email toje, vè vide
 Pe cangià le 'mbostaziune de l'elenghe de le pàggene condrollate tune, vè vide
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Pe scangellà 'a pàgene da 'a liste de le pàggene condrollate, vè vide
+Pe scangellà 'a pàgene da l'elenghe de le pàggene condrollate, vè vide
 \$UNWATCHURL
 
 Segnalaziune e otre assistenze:
@@ -2247,9 +2251,11 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'deleteotherreason' => 'Otre mutive de cchiù:',
 'deletereasonotherlist' => 'Otre mutive',
 'deletereason-dropdown' => "*Mutive comune de scangellaminde
-** Richieste de l'autore
+** Rummate
+** Vandalisme
 ** Violazione d'u Copyright
-** Vandalisme",
+** Richieste de l'autore
+** Redirezionamende scuasciate",
 'delete-edit-reasonlist' => 'Mutive de scangellazione de le cangiaminde',
 'delete-toobig' => "Sta pàgene tène 'na storie de cangiaminde troppe longhe, sus a $1 {{PLURAL:$1|revisione|revisiune}}.
 'U scangellamende de stuèzze de pàgene avène ristrette pe prevenì 'ngasinaminde accidentale de {{SITENAME}}.",
@@ -2272,7 +2278,7 @@ quacche otre ha cangiate o annullate ggià 'a pàgene.
 L'urteme cangiamende d'a pàgene ere de [[User:$3|$3]] ([[User talk:$3|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment' => "'U riepileghe d'u cangiamende ere: \"''\$1''\".",
 'revertpage' => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
-'revertpage-nouser' => "Le cangiaminde annullate da (nome utende luate) a l'urtema revisione da [[User:$1|$1]]",
+'revertpage-nouser' => "Le cangiaminde annullate da 'n'utende scunnute a l'urtema revisione da {{GENDER:$1|[[User:$1|$1]]}}",
 'rollback-success' => "Cangiaminde annullate da $1;
 turnate rete a l'urtema versione da $2.",
 
@@ -2895,6 +2901,7 @@ Puè vedè sulamende 'u sorgende.",
 Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'tooltip-preferences-save' => 'Reggistre le preferenze',
 'tooltip-summary' => "Mitte 'nu riepileghe piccinne",
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => "/* 'U CSS ca se iacchie aqquà avène applicate a tutte le masckere */",
@@ -3080,7 +3087,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'seconds' => '{{PLURAL:$1|seconde|seconde}}',
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minute}}',
 'hours' => '{{PLURAL:$1|$1ore|$1 ore}}',
-'days' => '{{PLURAL:$1|$1 sciurne|$1 sciurne}}',
+'days' => '{{PLURAL:$1|$1 sciurne}}',
 'weeks' => '{{PLURAL:$1|$1 sumàne}}',
 'months' => '{{PLURAL:$1|$1 mese|$1 mise}}',
 'years' => '{{PLURAL:$1|$1 anne}}',
@@ -3726,6 +3733,9 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'imgmultigo' => 'Veje!',
 'imgmultigoto' => "Veje 'a pàgene $1",
 
+# Language selector for translatable SVGs
+'img-lang-go' => 'Véje',
+
 # Table pager
 'ascending_abbrev' => 'asc',
 'descending_abbrev' => 'desc',
@@ -3889,6 +3899,13 @@ Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 'version-version' => '(Versione $1)',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'Licenze',
+'version-ext-license' => 'Licenze',
+'version-ext-colheader-name' => 'Estenzione',
+'version-ext-colheader-version' => 'Versione',
+'version-ext-colheader-license' => 'Licenze',
+'version-ext-colheader-description' => 'Descrizione',
+'version-ext-colheader-credits' => 'Auture',
+'version-license-title' => 'Licenziate pe $1',
 'version-poweredby-credits' => "Sta Uicchi jè fatte da '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'otre',
 'version-poweredby-translators' => 'tradutture de translatewiki.net',
@@ -3908,11 +3925,12 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 # Special:Redirect
 'redirect' => "Redirette da 'u file, utende o ID d'a revisione",
 'redirect-legend' => "Redirette a 'nu file o 'na pàgene",
-'redirect-summary' => "Sta pàgena speciale redirezione a 'nu file (date 'u nome d'u file), 'na pàgene (fate 'n'ID de revisione), o 'na pàgene utende (date 'n'ID numeriche de l'utende).",
+'redirect-summary' => "Sta pàgena speciale redirezione a 'nu file (date 'u nome d'u file), 'na pàgene (date 'n'ID de revisione), o 'na pàgene utende (date 'n'ID numeriche de l'utende). Ause: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].",
 'redirect-submit' => 'Véje',
 'redirect-lookup' => 'Mappature:',
 'redirect-value' => 'Valore:',
 'redirect-user' => "ID de l'utende",
+'redirect-page' => "ID d'a pàgene",
 'redirect-revision' => "Revisione d'a pàgene",
 'redirect-file' => "Nome d'u file",
 'redirect-not-exists' => 'Valore non acchiate',
@@ -3930,9 +3948,9 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 
 # Special:SpecialPages
 'specialpages' => 'Pàggene speciele',
+'specialpages-note-top' => 'Leggende',
 'specialpages-note' => '* Pàggene speciale normale.
-* <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>
-* <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
+* <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other' => 'Otre pàggene speciele',
 'specialpages-group-login' => 'Tràse / Reggistrate',
@@ -3970,7 +3988,10 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'tags-tag' => "Nome d'u tag",
 'tags-display-header' => "Accumme parene sus 'a liste de le cangiaminde",
 'tags-description-header' => "Descriziona comblete d'u significhete",
+'tags-active-header' => 'Attive?',
 'tags-hitcount-header' => 'Cangiaminde taggate',
+'tags-active-yes' => 'Sìne',
+'tags-active-no' => 'None',
 'tags-edit' => 'cange',
 'tags-hitcount' => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
@@ -4158,4 +4179,6 @@ In pratiche tutte quidde ca stè jndr'à le doppie parendesi graffe.<br />",
 'expand_templates_generate_xml' => "Fà vedè l'arvule de l'analisi XML",
 'expand_templates_preview' => 'Andeprime',
 
+# Unknown messages
+'uploadinvalidxml' => "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 );

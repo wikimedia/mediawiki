@@ -1914,7 +1914,7 @@ $1',
 'upload-file-error-text' => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|administratör]].',
 'upload-misc-error' => 'Okänt uppladdningsfel',
 'upload-misc-error-text' => 'Ett okänt fel inträffade under uppladdningen.
-Kontrollera att URL:en giltig och försök igen.
+Kontrollera att URL:en giltig och tillgänglig och försök igen.
 Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].',
 'upload-too-many-redirects' => 'URL-en innehöll för många omdirigeringar',
 'upload-unknown-size' => 'Okänd storlek',
@@ -1923,21 +1923,21 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 
 # File backend
 'backend-fail-stream' => 'Kunde inte strömma filen $1.',
-'backend-fail-backup' => 'Kunde inte säkerhetskopiera filen $1.',
+'backend-fail-backup' => "Kunde inte säkerhetskopiera filen ''$1''.",
 'backend-fail-notexists' => 'Filen $1 finns inte.',
 'backend-fail-hashes' => 'Kunde inte att hämta filhash för jämförelse.',
-'backend-fail-notsame' => 'En icke-identisk fil redan finns på $1.',
+'backend-fail-notsame' => "En icke-identisk fil finns redan på ''$1''.",
 'backend-fail-invalidpath' => '$1 är inte en giltig sökväg för att spara.',
-'backend-fail-delete' => 'Kunde inte radera filen $1.',
+'backend-fail-delete' => "Kunde inte radera filen ''$1''.",
 'backend-fail-describe' => 'Kunde inte att ändra metadata för filen "$1".',
-'backend-fail-alreadyexists' => 'Filen $1 finns redan.',
-'backend-fail-store' => 'Kunde inte spara filen $1 vid $2.',
-'backend-fail-copy' => 'Det gick inte att kopiera filen $1 till $2.',
-'backend-fail-move' => 'Kunde inte flytta filen $1 till $2.',
+'backend-fail-alreadyexists' => "Filen ''$1'' finns redan.",
+'backend-fail-store' => "Kunde inte spara filen ''$1'' vid ''$2''.",
+'backend-fail-copy' => 'Det gick inte att kopiera filen "$1" till "$2".',
+'backend-fail-move' => 'Kunde inte flytta filen "$1" till "$2".',
 'backend-fail-opentemp' => 'Kunde inte öppna temporär fil.',
 'backend-fail-writetemp' => 'Kunde inte skriva till temporär fil.',
 'backend-fail-closetemp' => 'Kunde inte stänga temporär fil.',
-'backend-fail-read' => 'Kunde inte läsa filen $1.',
+'backend-fail-read' => "Kunde inte läsa filen ''$1''.",
 'backend-fail-create' => 'Kunde inte skapa filen $1.',
 'backend-fail-maxsize' => 'Kunde inte skapa filen $1 eftersom den är större än {{PLURAL:$2|en byte|$2 bytes}}.',
 'backend-fail-readonly' => 'Lagringssystemet "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
@@ -2006,7 +2006,7 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'http-invalid-scheme' => 'URLer med "$1"-formen stöds inte',
 'http-request-error' => 'HTTP-begäran misslyckades på grund av okänt fel.',
 'http-read-error' => 'HTTP-läsfel.',
-'http-timed-out' => 'Time out för HTTP-begäran.',
+'http-timed-out' => 'HTTP-begäran avbröts.',
 'http-curl-error' => 'Fel vid hämtning av URL: $1',
 'http-bad-status' => 'Det uppstod ett problem under HTTP-begäran: $1 $2',
 
@@ -2059,7 +2059,7 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 'filehist-missing' => 'Fil saknas',
 'imagelinks' => 'Filanvändning',
 'linkstoimage' => 'Följande {{PLURAL:$1|sida|$1 sidor}} länkar till den här filen:',
-'linkstoimage-more' => 'Mer är {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
+'linkstoimage-more' => 'Mer änr {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
 Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.
 Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'nolinkstoimage' => 'Inga sidor länkar till den här filen.',
@@ -2070,7 +2070,7 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'sharedupload-desc-there' => 'Den här filen är från $1 och kan användas av andra projekt.
 Var god se [$2 filbeskrivningssidan] för mer information.',
 'sharedupload-desc-here' => 'Den här filen är från $1 och kan användas av andra projekt.
-Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
+Beskrivningen på dess [$2 filbeskrivningssida] där visas nedan.',
 'sharedupload-desc-edit' => 'Denna fil är från $1 och kan användas av andra projekt.
 Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'sharedupload-desc-create' => 'Denna fil är från $1 och kan användas av andra projekt.
@@ -2110,7 +2110,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 ** Upphovsrättsbrott
 ** Dubblettfil',
 'filedelete-edit-reasonlist' => 'Redigera anledningar för radering',
-'filedelete-maintenance' => 'Radering och återställning av filer tillfälligt avaktiverat under underhåll.',
+'filedelete-maintenance' => 'Radering och återställning av filer har tillfälligt avaktiverats under underhåll.',
 'filedelete-maintenance-title' => 'Kan inte radera filen',
 
 # MIME search
@@ -2138,12 +2138,12 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 # Random page in category
 'randomincategory' => 'Slumpsida i kategori',
 'randomincategory-invalidcategory' => '"$1" är inte ett giltigt kategorinamn.',
-'randomincategory-nopages' => 'Det finns inga sidor i [[:Category:$1]].',
+'randomincategory-nopages' => 'Det finns inga sidor i kategorin [[:Category:$1]].',
 'randomincategory-selectcategory' => 'Få slumpsida från kategori: $1 $2.',
 'randomincategory-selectcategory-submit' => 'Gå',
 
 # Random redirect
-'randomredirect' => 'Slumpvald omdirigering',
+'randomredirect' => 'Slumpmässig omdirigering',
 'randomredirect-nopages' => 'Det finns inte några omdirigeringar i namnrymden "$1".',
 
 # Statistics
@@ -2184,7 +2184,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'double-redirect-fixer' => 'Omdirigeringsrättaren',
 
 'brokenredirects' => 'Trasiga omdirigeringar',
-'brokenredirectstext' => 'Följande omdirigerar länkar till ej existerande sidor:',
+'brokenredirectstext' => 'Följande omdirigeringar länkar till ej existerande sidor:',
 'brokenredirects-edit' => 'redigera',
 'brokenredirects-delete' => 'radera',
 
@@ -2198,7 +2198,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|kategori|kategorier}}',
-'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|länk|länkar}}',
 'nmembers' => '$1 {{PLURAL:$1|medlem|medlemmar}}',
 'nmemberschanged' => '$1 → $2 {{PLURAL:$2|medlem|medlemmar}}',
@@ -2213,7 +2213,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
 'uncategorizedimages' => 'Ej kategoriserade filer',
 'uncategorizedtemplates' => 'Ej kategoriserade mallar',
-'unusedcategories' => 'Tomma kategorier',
+'unusedcategories' => 'Oanvända kategorier',
 'unusedimages' => 'Oanvända filer',
 'popularpages' => 'Populära sidor',
 'wantedcategories' => 'Önskade kategorier',
@@ -2225,7 +2225,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'wantedtemplates' => 'Önskade mallar',
 'mostlinked' => 'Sidor med flest länkar till sig',
 'mostlinkedcategories' => 'Kategorier med flest länkar till sig',
-'mostlinkedtemplates' => 'Mest använda mallar',
+'mostlinkedtemplates' => 'Mallar med flest länkar till sig',
 'mostcategories' => 'Sidor med flest kategorier',
 'mostimages' => 'Filer med flest länkar till sig',
 'mostinterwikis' => 'Sidor med flest interwikis',
@@ -2256,7 +2256,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'move' => 'Flytta',
 'movethispage' => 'Flytta denna sida',
 'unusedimagestext' => 'Följande filer existerar men är inte inlagda i någon sida.
-Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL. Filer kan därför  användas aktivt trots att de listas här.',
+Observera att andra webbplatser kan länka direkt till en fil med en URL. Filer kan därför användas aktivt trots att de listas här.',
 'unusedcategoriestext' => 'Följande kategorier finns men innehåller inga sidor eller underkategorier.',
 'notargettitle' => 'Inget mål',
 'notargettext' => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
@@ -2270,7 +2270,7 @@ Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL
 # Book sources
 'booksources' => 'Bokkällor',
 'booksources-search-legend' => 'Sök efter bokkällor',
-'booksources-go' => 'Sök',
+'booksources-go' => 'Gå',
 'booksources-text' => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
 'booksources-invalid-isbn' => 'Det angivna ISBN-numret verkar inte vara giltigt. Kontrollera källan för eventuella fel.',
 
@@ -2341,7 +2341,7 @@ Det krävs åtminstone en toppdomän, t.ex. "*.org".<br />
 'activeusers-intro' => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.',
 'activeusers-count' => '$1 {{PLURAL:$1|handling|handlingar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
 'activeusers-from' => 'Visa användare från och med:',
-'activeusers-hidebots' => 'Göm botar',
+'activeusers-hidebots' => 'Dölj botar',
 'activeusers-hidesysops' => 'Dölj administratörer',
 'activeusers-noresult' => 'Inga användare funna.',
 
@@ -2356,14 +2356,14 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'listgrouprights-rights' => 'Behörigheter',
 'listgrouprights-helppage' => 'Help:Gruppbehörigheter',
 'listgrouprights-members' => '(lista över medlemmar)',
-'listgrouprights-addgroup' => 'Kan lägga till {{PLURAL:$2|gruppen|grupperna}}: $1',
-'listgrouprights-removegroup' => 'Kan ta bort {{PLURAL:$2|gruppen|grupperna}}: $1',
-'listgrouprights-addgroup-all' => 'Kan lägga till alla användargrupper',
-'listgrouprights-removegroup-all' => 'Kan ta bort alla användargrupper',
-'listgrouprights-addgroup-self' => 'Kan lägga till {{PLURAL:$2|gruppen|grupperna}} till sitt eget konto: $1',
-'listgrouprights-removegroup-self' => 'Kan ta bort {{PLURAL:$2|gruppen|grupperna}} från sitt eget konto: $1',
-'listgrouprights-addgroup-self-all' => 'Kan lägga till alla grupperna till sitt eget konto',
-'listgrouprights-removegroup-self-all' => 'Kan ta bort alla grupperna från sitt eget konto',
+'listgrouprights-addgroup' => 'Lägg till {{PLURAL:$2|gruppen|grupperna}}: $1',
+'listgrouprights-removegroup' => 'Ta bort {{PLURAL:$2|gruppen|grupperna}}: $1',
+'listgrouprights-addgroup-all' => 'Lägg till alla användargrupper',
+'listgrouprights-removegroup-all' => 'Ta bort alla användargrupper',
+'listgrouprights-addgroup-self' => 'Lägg till {{PLURAL:$2|gruppen|grupperna}} på eget konto: $1',
+'listgrouprights-removegroup-self' => 'Ta bort {{PLURAL:$2|gruppen|grupperna}} från eget konto: $1',
+'listgrouprights-addgroup-self-all' => 'Lägg till alla grupperna till eget konto',
+'listgrouprights-removegroup-self-all' => 'Ta bort alla grupperna från eget konto',
 
 # Email user
 'mailnologin' => 'Ingen adress att skicka till',
@@ -2376,7 +2376,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post från användare "$1"',
-'usermaildisabled' => 'Användar-epost avaktiverat',
+'usermaildisabled' => 'Användar-e-post avaktiverat',
 'usermaildisabledtext' => 'Du kan inte skicka e-post till andra användare på den här wikin',
 'noemailtitle' => 'Ingen e-postadress',
 'noemailtext' => 'Den här användaren har inte angivit en giltig e-postadress.',
@@ -2396,7 +2396,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailccsubject' => 'Kopia av ditt meddelande till $1: $2',
 'emailsent' => 'E-post har nu skickats',
 'emailsenttext' => 'Ditt e-postmeddelande har skickats',
-'emailuserfooter' => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
+'emailuserfooter' => 'Denna e-post skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # User Messenger
 'usermessage-summary' => 'Lämnar systemmeddelande.',
@@ -2427,15 +2427,15 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchmethod-recent' => 'letar efter bevakade sidor bland senaste ändringar',
 'watchmethod-list' => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains' => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
-'iteminvalidname' => "Problem med sidan '$1', ogiltigt namn...",
-'wlnote' => "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}} från den $3, kl. $4.",
+'iteminvalidname' => "Problem med ''$1'', ogiltigt namn...",
+'wlnote' => "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}} från den $3 kl. $4.",
 'wlshowlast' => 'Visa senaste $1 timmarna $2 dygnen $3',
 'watchlist-options' => 'Alternativ för bevakningslistan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Bevakar...',
 'unwatching' => 'Avbevakar...',
-'watcherrortext' => 'Ett fel inträffade när du ändrade dina bevakningsinställningarna för " $1 ".',
+'watcherrortext' => 'Ett fel inträffade när du ändrade dina bevakningsinställningarna för "$1".',
 
 'enotif_mailer' => '{{SITENAME}}s system för att få meddelanden om förändringar per e-post',
 'enotif_reset' => 'Markera alla sidor som besökta',
@@ -2483,11 +2483,11 @@ Feedback och ytterligare hjälp:
 'changed' => 'ändrad',
 
 # Delete
-'deletepage' => 'Ta bort sida',
+'deletepage' => 'Radera sida',
 'confirm' => 'Bekräfta',
-'excontent' => "Före radering: '$1'",
-'excontentauthor' => "innehållet var: '$1' (den enda som skrivit var '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank' => "innehåll före tömning var: '$1'",
+'excontent' => 'Före radering: "$1"',
+'excontentauthor' => 'innehållet var: "$1" (den enda som skrivit var "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank' => 'innehåll före tömning var: "$1"',
 'exblank' => 'sidan var tom',
 'delete-confirm' => 'Radera "$1"',
 'delete-legend' => 'Radera',
@@ -2500,7 +2500,7 @@ Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta l
 Se $2 för noteringar om de senaste raderingarna.',
 'dellogpage' => 'Raderingslogg',
 'dellogpagetext' => 'Nedan listas de senaste raderingarna.',
-'deletionlog' => 'raderingsloggen',
+'deletionlog' => 'raderingslogg',
 'reverted' => 'Återgått till tidigare version',
 'deletecomment' => 'Anledning:',
 'deleteotherreason' => 'Annan/ytterligare anledning:',
@@ -2518,8 +2518,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 
 # Rollback
 'rollback' => 'Rulla tillbaka ändringar',
-'rollback_short' => 'Återställning',
-'rollbacklink' => 'rulla tillbaka',
+'rollback_short' => 'Tillbakarullning',
+'rollbacklink' => 'tillbakarullning',
 'rollbacklinkcount' => 'rulla tillbaka $1 {{PLURAL:$1|redigering|redigeringar}}',
 'rollbacklinkcount-morethan' => 'rulla tillbaka mer än $1 {{PLURAL:$1|redigering|redigeringar}}',
 'rollbackfailed' => 'Tillbakarullning misslyckades',
@@ -2541,26 +2541,26 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-
 'protectlogpage' => 'Skrivskyddslogg',
 'protectlogtext' => 'Detta är en lista över applicerande och borttagande av skrivskydd.
 Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över aktiva sidskydd.',
-'protectedarticle' => 'skyddade [[$1]]',
+'protectedarticle' => 'skrivskyddade [[$1]]',
 'modifiedarticleprotection' => 'ändrade skyddsnivån för "[[$1]]"',
-'unprotectedarticle' => 'tog bort skydd från "[[$1]]"',
-'movedarticleprotection' => 'flyttade skyddsinställningar från "[[$2]]" till "[[$1]]"',
-'protect-title' => 'Skyddsinställningar för "$1"',
+'unprotectedarticle' => 'tog bort skrivskydd från "[[$1]]"',
+'movedarticleprotection' => 'flyttade skrivskyddsinställningar från "[[$2]]" till "[[$1]]"',
+'protect-title' => 'Ändra skrivskyddsnivå för "$1"',
 'protect-title-notallowed' => 'Visa skyddsnivån för "$1"',
-'prot_1movedto2' => 'flyttade [[$1]] till [[$2]]',
+'prot_1movedto2' => '[[$1]] flyttades till [[$2]]',
 'protect-badnamespace-title' => 'Namnrymd som inte kan skrivskyddas',
 'protect-badnamespace-text' => 'Sidor i den här namnrymden kan inte skrivskyddas.',
-'protect-norestrictiontypes-text' => 'Denna sida kan inte skyddas eftersom det inte finns några begränsningstyper tillgängliga.',
-'protect-norestrictiontypes-title' => 'Oskyddbar sida',
+'protect-norestrictiontypes-text' => 'Denna sida kan inte skrivskyddas eftersom det inte finns några begränsningstyper tillgängliga.',
+'protect-norestrictiontypes-title' => 'Sidan kan inte skrivskyddas',
 'protect-legend' => 'Bekräfta skrivskydd av sida',
 'protectcomment' => 'Anledning:',
 'protectexpiry' => 'Varaktighet:',
 'protect_expiry_invalid' => 'Ogiltig varaktighetstid.',
-'protect_expiry_old' => 'Den angivna varaktighetentiden har redan passerats.',
-'protect-unchain-permissions' => 'Lås upp fler skyddsalternativ',
-'protect-text' => "Här kan du se och ändra skyddsnivån av sidan '''$1'''.",
-'protect-locked-blocked' => "Du kan inte ändra sidors skydd medan du är blockerad.
-Här kan du se gällande skyddsinställninger för sidan '''$1''':",
+'protect_expiry_old' => 'Den angivna varaktighetstiden har redan passerats.',
+'protect-unchain-permissions' => 'Lås upp fler skrivskyddsalternativ',
+'protect-text' => "Här kan du se och ändra skrivskyddsnivån av sidan '''$1'''.",
+'protect-locked-blocked' => "Du kan inte ändra sidors skrivskydd medan du är blockerad.
+Här kan du se gällande skrivskyddsinställninger för sidan '''$1''':",
 'protect-locked-dblock' => "Skrivskydd kan inte ändras då databasen är låst.
 Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
 'protect-locked-access' => "Ditt konto har inte behörighet att ändra skrivskydd på sidor.
@@ -2573,10 +2573,10 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'protect-level-sysop' => 'Enbart administratörer',
 'protect-summary-cascade' => 'kaskaderande',
 'protect-expiring' => 'upphör den $1 (UTC)',
-'protect-expiring-local' => 'löper ut $1',
+'protect-expiring-local' => 'upphör $1',
 'protect-expiry-indefinite' => 'på obestämd tid',
 'protect-cascade' => 'Skydda sidor som är inkluderade i den här sidan (kaskaderande skydd)',
-'protect-cantedit' => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
+'protect-cantedit' => 'Du kan inte ändra skrivskyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
 'protect-othertime' => 'Annan tidsperiod:',
 'protect-othertime-op' => 'annan tidsperiod',
 'protect-existing-expiry' => 'Gällande varaktighet: $2, kl. $3',
@@ -2587,7 +2587,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 ** Upprepad spam
 ** Redigeringskrig
 ** Sida med många besökare',
-'protect-edit-reasonlist' => 'Redigera skyddsanledningar',
+'protect-edit-reasonlist' => 'Redigera skrivskyddsanledningar',
 'protect-expiry-options' => '1 timme:1 hour,1 dygn:1 day,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
 'restriction-type' => 'Typ av skydd:',
 'restriction-level' => 'Skyddsnivå:',
@@ -2596,10 +2596,10 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'pagesize' => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redigering',
-'restriction-move' => 'Flyttning',
+'restriction-edit' => 'Redigera',
+'restriction-move' => 'Flytta',
 'restriction-create' => 'Skapa sidan',
-'restriction-upload' => 'Uppladdning',
+'restriction-upload' => 'Ladda upp',
 
 # Restriction levels
 'restriction-level-sysop' => 'helt låst',
@@ -2608,7 +2608,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 
 # Undelete
 'undelete' => 'Visa raderade sidor',
-'undeletepage' => 'Visa och återställ borttagna sidor',
+'undeletepage' => 'Visa och återställ raderade sidor',
 'undeletepagetitle' => "'''Härunder visas en lista över raderade versioner av [[:$1|$1]]'''.",
 'viewdeletedpage' => 'Visa raderade sidor',
 'undeletepagetext' => 'Följande {{PLURAL:$1|sida har blivit raderad|$1 sidor har blivit raderade}} men finns fortfarande i arkivet och kan återställas.
@@ -3073,7 +3073,7 @@ Spara den på din dator och ladda upp den här.',
 'tooltip-pt-preferences' => 'Dina inställningar',
 'tooltip-pt-watchlist' => 'Listan över sidor du bevakar för ändringar',
 'tooltip-pt-mycontris' => 'Lista över dina bidrag',
-'tooltip-pt-login' => 'Du får gärna logga in, men det är inte nödvändigt',
+'tooltip-pt-login' => 'Du uppmuntras att logga in, men det är inte nödvändigt',
 'tooltip-pt-anonlogin' => 'Du får gärna logga in, men det är inte nödvändigt',
 'tooltip-pt-logout' => 'Logga ut',
 'tooltip-ca-talk' => 'Diskussion om innehållssidan',

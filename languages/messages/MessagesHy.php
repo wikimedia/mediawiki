@@ -1236,7 +1236,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'rows' => 'Տողեր`',
 'columns' => 'Սյունակներ',
 'searchresultshead' => 'Որոնում',
-'resultsperpage' => 'Արդյունքների քանակը մեկ էջում.',
 'stub-threshold' => '<a href="#" class="stub">Պատառ հոդվածների հղումների</a> ձևավորման որոշման սահմանը.',
 'recentchangesdays' => 'Վերջին փոփոխություններում ցուցադրվող օրերի թիվը՝',
 'recentchangesdays-max' => '($1 {{PLURAL:$1|օրից|օրից}} ոչ ավել)',
@@ -2665,6 +2664,11 @@ $3
 
 # Special:Version
 'version' => 'ՄեդիաՎիքի տարբերակը',
+'version-ext-license' => 'Լիցենզիա',
+'version-ext-colheader-name' => 'Ընդլայնում',
+'version-ext-colheader-version' => 'Տարբերակ',
+'version-ext-colheader-license' => 'Լիցենզիա',
+'version-license-title' => 'Լիցենզիա $1-ի համար',
 'version-poweredby-credits' => "Այս վիքին աշխատում է '''[https://www.mediawiki.org/ MediaWiki]'''֊ով, copyright © 2001-$1 $2։",
 
 # Special:FileDuplicateSearch

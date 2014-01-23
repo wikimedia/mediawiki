@@ -12,6 +12,7 @@
  * @author Erythrii
  * @author Jose77
  * @author Kguirnela
+ * @author Midnight Gambler
  * @author Oxyzen
  * @author Tagimata
  * @author Taylortheturtle
@@ -1097,7 +1098,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'rows' => 'Mga linya:',
 'columns' => 'Mga kulumna:',
 'searchresultshead' => 'Pangita-a',
-'resultsperpage' => 'Mga pag-igu kada panid:',
 'stub-threshold' => 'Suludlan sang <a href="#" class="stub">stub sang link</a> nga pagkay-o (bytes):',
 'stub-threshold-disabled' => 'Gin-untat',
 'recentchangesdays' => 'Adlaw nga nabilin sa pagpakita sang mga bag-o nga pag-ilis:',
@@ -1360,7 +1360,7 @@ Ang imo adres sang e-mail wala ginapakita kon kontakon ka sang iban.',
 'rc_categories_any' => 'Bisan ano',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|mga bytes}} despues sang pagbag-o',
 'newsectionsummary' => '/* $1 */ bag-o nga seksyon',
-'rc-enhanced-expand' => 'Ipakita ang mga detalye (nagakilanlan sang JavaScript)',
+'rc-enhanced-expand' => 'Ipakita ang mga detalye',
 'rc-enhanced-hide' => 'Tagu-on ang mga detalye',
 'rc-old-title' => 'orihinal nga ginhimo bilang "$1"',
 
@@ -1582,7 +1582,7 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang pahina, pero indi ini ma apektu
 'contributions' => 'Mga kontribusyon sang {{GENDER:$1|naga-usar}}',
 'contributions-title' => 'Mga Kontribusyon sang Naga-Usar para $1',
 'mycontris' => 'Kontribusyon',
-'contribsub2' => 'Para $1 ($2)',
+'contribsub2' => 'Para {{GENDER:$3|$1}} ($2)',
 'uctop' => '(ibabaw)',
 'month' => 'Halin sa bulan (kag sang timprano):',
 'year' => 'Halin sa tu-ig (kag sang timprano):',
