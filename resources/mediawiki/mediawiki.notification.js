@@ -4,6 +4,8 @@
 	var notification,
 		// The #mw-notification-area div that all notifications are contained inside.
 		$area,
+		// Number of open notification boxes at any time
+		openNotificationCount = 0,
 		isPageReady = false,
 		preReadyNotifQueue = [];
 
@@ -92,11 +94,14 @@
 			autohideCount,
 			notif;
 
+		$area.show();
+
 		if ( this.isOpen ) {
 			return;
 		}
 
 		this.isOpen = true;
+		openNotificationCount++;
 
 		options = this.options;
 		$notification = this.$notification;
@@ -265,6 +270,7 @@
 			return;
 		}
 		this.isOpen = false;
+		openNotificationCount--;
 		// Clear any remaining timeout on close
 		this.pause();
 
@@ -316,6 +322,12 @@
 				complete: function () {
 					// Remove the notification
 					$( this ).remove();
+					// Hide the area manually after closing the last notification, since it has padding,
+					// causing it to obscure whatever is behind it in spite of being invisible (bug 52659).
+					// It's okay to do this before getting rid of the placeholder, as it's invisible as well.
+					if ( openNotificationCount === 0 ) {
+						$area.hide();
+					}
 					if ( options.placeholder ) {
 						// Use a fast slide up animation after closing to make it look like the notifications
 						// below slide up into place when the notification disappears
