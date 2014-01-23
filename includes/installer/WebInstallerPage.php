@@ -697,7 +697,8 @@ class WebInstaller_Name extends WebInstallerPage {
 				'var' => '_NamespaceType',
 				'label' => 'config-project-namespace',
 				'itemLabelPrefix' => 'config-ns-',
-				'values' => array( 'site-name', 'generic', 'other' ),
+				'values' => array( 'generic', 'site-name', 'other' ),
+				'value' => 'generic',
 				'commonAttribs' => array( 'class' => 'enableForOther',
 					'rel' => 'config_wgMetaNamespace' ),
 				'help' => $this->parent->getHelpBox( 'config-project-namespace-help' )

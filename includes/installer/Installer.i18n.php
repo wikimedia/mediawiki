@@ -368,7 +368,7 @@ In '''UTF-8 mode''', MySQL will know what character set your data is in, and can
 	'config-ns-other-default'         => 'MyWiki',
 	'config-project-namespace-help'   => 'Following Wikipedia\'s example, many wikis keep their policy pages separate from their content pages, in a "\'\'\'project namespace\'\'\'".
 All page titles in this namespace start with a certain prefix, which you can specify here.
-Usually, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
+Sometimes, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
 	'config-ns-invalid'               => 'The specified namespace "<nowiki>$1</nowiki>" is invalid.
 Specify a different project namespace.',
 	'config-ns-conflict'               => 'The specified namespace "<nowiki>$1</nowiki>" conflicts with a default MediaWiki namespace.
