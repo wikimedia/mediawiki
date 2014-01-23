@@ -142,6 +142,8 @@ production.
 * (bug 60543) Special:PrefixIndex forgot stripprefix=1 for "Next page" link
 * (bug 29762) Undoing an already-undone edit will now display an appropriate
   message instead of leading the user to make a null edit.
+* (bug 52659) mediawiki.notification: Notification area remained visible when
+  empty and thus was stealing pointer events from links on the page.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
