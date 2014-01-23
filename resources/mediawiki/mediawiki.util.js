@@ -106,12 +106,12 @@
 			} )();
 
 			// Table of contents toggle
-			mw.hook( 'wikipage.content' ).add( function () {
+			mw.hook( 'wikipage.content' ).add( function ( $content ) {
 				var $tocTitle, $tocToggleLink, hideTocCookie;
-				$tocTitle = $( '#toctitle' );
-				$tocToggleLink = $( '#togglelink' );
+				$tocTitle = $content.find( '#toctitle' );
+				$tocToggleLink = $content.find( '#togglelink' );
 				// Only add it if there is a TOC and there is no toggle added already
-				if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
+				if ( $content.find( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
 					hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
