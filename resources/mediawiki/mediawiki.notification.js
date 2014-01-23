@@ -92,6 +92,8 @@
 			autohideCount,
 			notif;
 
+		$area.show();
+
 		if ( this.isOpen ) {
 			return;
 		}
@@ -314,6 +316,13 @@
 			}, {
 				duration: options.speed,
 				complete: function () {
+					var cleanup = function () {
+						if ( $area.children().length === 0 ) {
+							// We need to hide the area manually, since it has padding, causing it to obscure
+							// whatever is behind it in spite of being invisible (bug 52659)
+							$area.hide();
+						}
+					};
 					// Remove the notification
 					$( this ).remove();
 					if ( options.placeholder ) {
@@ -322,7 +331,10 @@
 						$placeholder.slideUp( 'fast', function () {
 							// Remove the placeholder
 							$( this ).remove();
+							cleanup();
 						} );
+					} else {
+						cleanup();
 					}
 				}
 			} );
