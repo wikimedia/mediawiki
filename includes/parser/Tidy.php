@@ -155,19 +155,20 @@ class MWTidy {
 	 *
 	 * @param $text String
 	 * @param &$errorStr String: return the error string
+	 * @param &$tidyStatus int return value from Tidy
 	 * @return Boolean: whether the HTML is valid
 	 */
-	public static function checkErrors( $text, &$errorStr = null ) {
+	public static function checkErrors( $text, &$errorStr = null, &$tidyStatus = null ) {
 		global $wgTidyInternal;
 
-		$retval = 0;
+		$tidyStatus = 0;
 		if ( $wgTidyInternal ) {
-			$errorStr = self::execInternalTidy( $text, true, $retval );
+			$errorStr = self::execInternalTidy( $text, true, $tidyStatus );
 		} else {
-			$errorStr = self::execExternalTidy( $text, true, $retval );
+			$errorStr = self::execExternalTidy( $text, true, $tidyStatus );
 		}
 
-		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
+		return ( $tidyStatus < 0 && $errorStr == '' ) || $tidyStatus == 0;
 	}
 
 	/**

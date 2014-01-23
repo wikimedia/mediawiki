@@ -1003,7 +1003,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->markTestSkipped( 'Tidy extension not installed' );
 		}
 
-		$ok = MWTidy::checkErrors( $html, $errors );
-		$this->assertTrue( $ok, 'HTML validation errors: ' . $errors );
+		$errorBuffer = '';
+		$tidyStatus = 0;
+		MWTidy::checkErrors( $html, $errorBuffer, $tidyStatus );
+		$allErrors = preg_split( '/[\r\n]+/', $errorBuffer );
+
+		$errors = preg_grep(
+			'/^(.*Warning: (trimming empty|.* lacks ".*?" attribute).*|\s*)$/m',
+			$allErrors, PREG_GREP_INVERT
+		);
+
+		$this->assertEmpty( $errors, implode( "\n", $errors ) );
+		$this->assertLessThan( 2, $tidyStatus, 'HTML errors found: ' . implode( "\n", $allErrors ) );
 	}
 }
