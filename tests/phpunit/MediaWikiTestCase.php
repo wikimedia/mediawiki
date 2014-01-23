@@ -1003,7 +1003,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->markTestSkipped( 'Tidy extension not installed' );
 		}
 
-		$ok = MWTidy::checkErrors( $html, $errors );
-		$this->assertTrue( $ok, 'HTML validation errors: ' . $errors );
+		$errorBuffer = '';
+		MWTidy::checkErrors( $html, $errorBuffer );
+		$allErrors = preg_split( '/[\r\n]+/', $errorBuffer );
+
+		// Filter Tsidy warnings which aren't useful for us.
+		// Tidy eg. often cries about parameters missing which have actually
+		// been deprecated since HTML4, thus we should not care about them.
+		$errors = preg_grep(
+			'/^(.*Warning: (trimming empty|.* lacks ".*?" attribute).*|\s*)$/m',
+			$allErrors, PREG_GREP_INVERT
+		);
+
+		$this->assertEmpty( $errors, implode( "\n", $errors ) );
 	}
 }
