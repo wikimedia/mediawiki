@@ -1,0 +1,15 @@
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
+[submodule "extensions/ContributionTracking"]
+	path = extensions/ContributionTracking
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContributionTracking.git
+[submodule "extensions/ParserFunctions"]
+	path = extensions/ParserFunctions
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git
+[submodule "extensions/DonationEmailUnsubscribe"]
+	path = extensions/DonationEmailUnsubscribe
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingEmailUnsubscribe.git
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
