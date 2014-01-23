@@ -28,20 +28,7 @@
  * Search engine hook base class for Postgres
  * @ingroup Search
  */
-class SearchPostgres extends SearchEngine {
-
-	/**
-	 * @var DatabasePostgres
-	 */
-	protected $db;
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseSqlite: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
+class SearchPostgres extends SearchDatabase {
 	/**
 	 * Perform a full text search query via tsearch2 and return a result set.
 	 * Currently searches a page's current title (page.page_title) and
