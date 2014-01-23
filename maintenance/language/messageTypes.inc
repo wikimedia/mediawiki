@@ -271,6 +271,7 @@ $wgIgnoredMessages = array(
 	'autocomment-prefix',
 	'move-redirect-text',
 	'interlanguage-link-title-langonly',
+	'createaccount-hook-abort',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
