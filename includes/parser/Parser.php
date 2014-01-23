@@ -1988,7 +1988,7 @@ class Parser {
 			}
 
 			$ns = $nt->getNamespace();
-			$iw = $nt->getInterWiki();
+			$iw = $nt->getInterwiki();
 			wfProfileOut( __METHOD__ . "-title" );
 
 			if ( $might_be_img ) { # if this is actually an invalid link
