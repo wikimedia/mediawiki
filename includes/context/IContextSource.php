@@ -103,7 +103,7 @@ interface IContextSource {
 	 * Get the site configuration
 	 *
 	 * @since 1.23
-	 * @return SiteConfiguration
+	 * @return Config
 	 */
 	public function getConfig();
 
