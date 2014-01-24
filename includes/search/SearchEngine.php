@@ -47,6 +47,7 @@ class SearchEngine {
 
 	/** @var bool */
 	protected $showSuggestion = true;
+	private $sort = 'relevance';
 
 	/** @var array Feature values */
 	protected $features = array();
@@ -307,6 +308,43 @@ class SearchEngine {
 	 */
 	function setShowSuggestion( $showSuggestion ) {
 		$this->showSuggestion = $showSuggestion;
+	}
+
+	/**
+	 * Get the valid sort directions.  All search engines support 'relevance' but others
+	 * might support more. The default in all implementations should be 'relevance.'
+	 *
+	 * @since 1.23
+	 * @return array(string) the valid sort directions for setSort
+	 */
+	public function getValidSorts() {
+		return array( 'relevance' );
+	}
+
+	/**
+	 * Set the sort direction of the search results. Must be one returned by
+	 * SearchEngine::getValidSorts()
+	 *
+	 * @since 1.23
+	 * @throws InvalidArgumentException
+	 * @param string $sort sort direction for query result
+	 */
+	public function setSort( $sort ) {
+		if ( !in_array( $sort, $this->getValidSorts() ) ) {
+			throw new InvalidArgumentException( "Invalid sort: $sort. " .
+				"Must be one of: " . implode( ', ', $this->getValidSorts() ) );
+		}
+		$this->sort = $sort;
+	}
+
+	/**
+	 * Get the sort direction of the search results
+	 *
+	 * @since 1.23
+	 * @return string
+	 */
+	public function getSort() {
+		return $this->sort;
 	}
 
 	/**
