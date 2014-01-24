@@ -175,8 +175,6 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgRestrictionLevels;
-
 		return array(
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -184,7 +182,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			),
 			'level' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
+				ApiBase::PARAM_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), array( '' ) )
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -246,8 +244,6 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getResultProperties() {
-		global $wgRestrictionLevels;
-
 		return array(
 			'' => array(
 				'ns' => 'namespace',
@@ -277,7 +273,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			),
 			'level' => array(
 				'level' => array(
-					ApiBase::PROP_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
+					ApiBase::PROP_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), array( '' ) )
 				)
 			)
 		);

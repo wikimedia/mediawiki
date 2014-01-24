@@ -52,7 +52,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
-		global $wgHiddenPrefs, $wgRCMaxAge;
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -122,7 +121,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
-		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $wgHiddenPrefs ) ) {
+		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
 			$vals['realname'] = $user->getRealName();
 		}
 
@@ -181,7 +180,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getRateLimits() {
-		global $wgRateLimits;
 		$user = $this->getUser();
 		if ( !$user->isPingLimitable() ) {
 			return array(); // No limits
@@ -205,7 +203,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		// Now get the actual limits
 		$retval = array();
-		foreach ( $wgRateLimits as $action => $limits ) {
+		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
 				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {
 					$retval[$action][$cat]['hits'] = intval( $limits[$cat][0] );

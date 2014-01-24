@@ -624,10 +624,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $content && ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) ) {
-			global $wgAPIMaxUncachedDiffs;
 			static $n = 0; // Number of uncached diffs we've had
 
-			if ( $n < $wgAPIMaxUncachedDiffs ) {
+			if ( $n < $config->get( 'APIMaxUncachedDiffs' ) ) {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );

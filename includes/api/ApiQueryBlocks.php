@@ -109,14 +109,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
 		if ( isset( $params['ip'] ) ) {
-			global $wgBlockCIDRLimit;
+			$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
 			if ( IP::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
-				$cidrLimit = $wgBlockCIDRLimit['IPv4'];
+				$cidrLimit = $blockCIDRLimit['IPv4'];
 				$prefixLen = 0;
 			} elseif ( IP::isIPv6( $params['ip'] ) ) {
 				$type = 'IPv6';
-				$cidrLimit = $wgBlockCIDRLimit['IPv6'];
+				$cidrLimit = $blockCIDRLimit['IPv6'];
 				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
 				$this->dieUsage( 'IP parameter is not valid', 'param_ip' );
@@ -331,7 +331,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
-		global $wgBlockCIDRLimit;
+		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
 		$p = $this->getModulePrefix();
 
 		return array(
@@ -343,7 +343,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'ip' => array(
 				'Get all blocks applying to this IP or CIDR range, including range blocks.',
 				"Cannot be used together with bkusers. CIDR ranges broader than " .
-					"IPv4/{$wgBlockCIDRLimit['IPv4']} or IPv6/{$wgBlockCIDRLimit['IPv6']} " .
+					"IPv4/{$blockCIDRLimit['IPv4']} or IPv6/{$blockCIDRLimit['IPv6']} " .
 					"are not accepted"
 			),
 			'limit' => 'The maximum amount of blocks to list',
@@ -427,18 +427,18 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getPossibleErrors() {
-		global $wgBlockCIDRLimit;
+		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
 
 		return array_merge( parent::getPossibleErrors(),
 			$this->getRequireMaxOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(
 				array(
 					'code' => 'cidrtoobroad',
-					'info' => "IPv4 CIDR ranges broader than /{$wgBlockCIDRLimit['IPv4']} are not accepted"
+					'info' => "IPv4 CIDR ranges broader than /{$blockCIDRLimit['IPv4']} are not accepted"
 				),
 				array(
 					'code' => 'cidrtoobroad',
-					'info' => "IPv6 CIDR ranges broader than /{$wgBlockCIDRLimit['IPv6']} are not accepted"
+					'info' => "IPv6 CIDR ranges broader than /{$blockCIDRLimit['IPv6']} are not accepted"
 				),
 				array( 'code' => 'param_ip', 'info' => 'IP parameter is not valid' ),
 				array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
