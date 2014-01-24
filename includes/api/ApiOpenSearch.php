@@ -45,7 +45,6 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgEnableOpenSearchSuggest, $wgSearchSuggestCacheExpiry;
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
 		$limit = $params['limit'];
@@ -53,11 +52,11 @@ class ApiOpenSearch extends ApiBase {
 		$suggest = $params['suggest'];
 
 		// Some script that was loaded regardless of wgEnableOpenSearchSuggest, likely cached.
-		if ( $suggest && !$wgEnableOpenSearchSuggest ) {
+		if ( $suggest && !$this->getConfig()->get( 'EnableOpenSearchSuggest' ) ) {
 			$searches = array();
 		} else {
 			// Open search results may be stored for a very long time
-			$this->getMain()->setCacheMaxAge( $wgSearchSuggestCacheExpiry );
+			$this->getMain()->setCacheMaxAge( $this->getConfig()->get( 'SearchSuggestCacheExpiry' ) );
 			$this->getMain()->setCacheMode( 'public' );
 
 			$searcher = new StringPrefixSearch;
@@ -70,12 +69,10 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgOpenSearchDefaultLimit;
-
 		return array(
 			'search' => null,
 			'limit' => array(
-				ApiBase::PARAM_DFLT => $wgOpenSearchDefaultLimit,
+				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'OpenSearchDefaultLimit' ),
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 100,

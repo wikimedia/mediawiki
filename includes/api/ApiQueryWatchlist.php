@@ -557,8 +557,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	public function getResultProperties() {
-		global $wgLogTypes;
-
 		return array(
 			'' => array(
 				'type' => array(
@@ -627,7 +625,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logtype' => array(
-					ApiBase::PROP_TYPE => $wgLogTypes,
+					ApiBase::PROP_TYPE => $this->getConfig()->get( 'LogTypes' ),
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logaction' => array(

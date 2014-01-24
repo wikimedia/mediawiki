@@ -288,15 +288,14 @@ class ApiResult extends ApiBase {
 	 * @since 1.21 int $flags replaced boolean $override
 	 */
 	public function addValue( $path, $name, $value, $flags = 0 ) {
-		global $wgAPIMaxResultSize;
-
 		$data = &$this->mData;
 		if ( $this->mCheckingSize ) {
 			$newsize = $this->mSize + self::size( $value );
-			if ( $newsize > $wgAPIMaxResultSize ) {
+			$maxResultSize = $this->getConfig()->get( 'APIMaxResultSize' );
+			if ( $newsize > $maxResultSize ) {
 				$this->setWarning(
 					"This result was truncated because it would otherwise be larger than the " .
-						"limit of {$wgAPIMaxResultSize} bytes" );
+						"limit of {$maxResultSize} bytes" );
 
 				return false;
 			}

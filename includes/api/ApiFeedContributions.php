@@ -41,30 +41,29 @@ class ApiFeedContributions extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
-
-		if ( !$wgFeed ) {
+		$config = $this->getConfig();
+		if ( !$config->get( 'Feed' ) ) {
 			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 		}
 
-		if ( !isset( $wgFeedClasses[$params['feedformat']] ) ) {
+		$feedClasses = $config->get( 'FeedClasses' );
+		if ( !isset( $feedClasses[$params['feedformat']] ) ) {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
-		global $wgMiserMode;
-		if ( $params['showsizediff'] && $wgMiserMode ) {
+		if ( $params['showsizediff'] && $this->getConfig()->get( 'MiserMode' ) ) {
 			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
 		}
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
-		$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
+		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg . ' [' . $config->get( 'LanguageCode' ) . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
 		$target = $params['user'] == 'newbies'
 			? 'newbies'
 			: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
 
-		$feed = new $wgFeedClasses[$params['feedformat']] (
+		$feed = new $feedClasses[$params['feedformat']] (
 			$feedTitle,
 			htmlspecialchars( $msg ),
 			$feedUrl
@@ -82,8 +81,9 @@ class ApiFeedContributions extends ApiBase {
 			'showSizeDiff' => $params['showsizediff'],
 		) );
 
-		if ( $pager->getLimit() > $wgFeedLimit ) {
-			$pager->setLimit( $wgFeedLimit );
+		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
+		if ( $pager->getLimit() > $feedLimit ) {
+			$pager->setLimit( $feedLimit );
 		}
 
 		$feedItems = array();
@@ -159,8 +159,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgFeedClasses;
-		$feedFormatNames = array_keys( $wgFeedClasses );
+		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
 
 		return array(
 			'feedformat' => array(
