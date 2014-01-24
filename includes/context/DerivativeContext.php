@@ -88,9 +88,9 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
-	 * Get the SiteConfiguration object
+	 * Get the Config object
 	 *
-	 * @return SiteConfiguration
+	 * @return Config
 	 */
 	public function getConfig() {
 		if ( !is_null( $this->config ) ) {
