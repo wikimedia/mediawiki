@@ -69,6 +69,9 @@ production.
   'user' or 'bot'. The API will throw an error if the user is not logged
   in (user) or does not have the 'bot' userright (bot). Based off of the
   AssertEdit extension by Steve Sanbeg.
+* (bug 52061) A new <verbatim> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
