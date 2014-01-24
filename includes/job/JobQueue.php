@@ -298,7 +298,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Push a single jobs into the queue.
+	 * Push one or more jobs into the queue.
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
