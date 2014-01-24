@@ -155,7 +155,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['activeusers'] ) {
-			global $wgActiveUserDays;
 			$this->addTables( 'recentchanges' );
 
 			$this->addJoinConds( array( 'recentchanges' => array(
@@ -165,7 +164,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addFields( array( 'recentedits' => 'COUNT(*)' ) );
 
 			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
-			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 );
+			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $this->getConfig()->get( 'ActiveUserDays' ) * 24 * 3600 );
 			$this->addWhere( 'rc_timestamp >= ' . $db->addQuotes( $timestamp ) );
 
 			$this->addOption( 'GROUP BY', $userFieldToSort );
@@ -368,8 +367,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
-		global $wgActiveUserDays;
-
 		return array(
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
@@ -391,7 +388,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			),
 			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
-			'activeusers' => "Only list users active in the last {$wgActiveUserDays} days(s)"
+			'activeusers' => "Only list users active in the last {$this->getConfig()->get( 'ActiveUserDays' )} days(s)"
 		);
 	}
 
