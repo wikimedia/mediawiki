@@ -41,9 +41,7 @@ class ApiFeedContributions extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
-
-		if ( !$wgFeed ) {
+		if ( !$this->getConfig()->get( 'wgFeed' ) ) {
 			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 		}
 
@@ -51,13 +49,12 @@ class ApiFeedContributions extends ApiBase {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
-		global $wgMiserMode;
-		if ( $params['showsizediff'] && $wgMiserMode ) {
+		if ( $params['showsizediff'] && $this->getConfig()->get( 'wgMiserMode' ) ) {
 			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
 		}
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
-		$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
+		$feedTitle = $this->getConfig()->get( 'wgSitename' ) . ' - ' . $msg . ' [' . $this->getConfig()->get( 'wgLanguageCode' ) . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
 		$target = $params['user'] == 'newbies'
@@ -81,8 +78,9 @@ class ApiFeedContributions extends ApiBase {
 			'showSizeDiff' => $params['showsizediff'],
 		) );
 
-		if ( $pager->getLimit() > $wgFeedLimit ) {
-			$pager->setLimit( $wgFeedLimit );
+		$feedLimit = $this->getConfig()->get( 'wgFeedLimit' );
+		if ( $pager->getLimit() > $feedLimit ) {
+			$pager->setLimit( $feedLimit );
 		}
 
 		$feedItems = array();
@@ -158,8 +156,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgFeedClasses;
-		$feedFormatNames = array_keys( $wgFeedClasses );
+		$feedFormatNames = array_keys( $this->getConfig()->get( 'wgFeedClasses' ) );
 
 		return array(
 			'feedformat' => array(
