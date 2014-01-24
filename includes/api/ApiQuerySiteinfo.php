@@ -183,10 +183,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// 'case-insensitive' option is reserved for future
 		$data['case'] = $GLOBALS['wgCapitalLinks'] ? 'first-letter' : 'case-sensitive';
 
-		if ( isset( $GLOBALS['wgRightsCode'] ) ) {
-			$data['rightscode'] = $GLOBALS['wgRightsCode'];
-		}
-		$data['rights'] = $GLOBALS['wgRightsText'];
 		$data['lang'] = $GLOBALS['wgLanguageCode'];
 
 		$fallbacks = array();
