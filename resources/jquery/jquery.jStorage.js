@@ -3,31 +3,41 @@
  * Simple local storage wrapper to save data on the browser side, supporting
  * all major browsers - IE6+, Firefox2+, Safari4+, Chrome4+ and Opera 10.5+
  *
- * Copyright (c) 2010 - 2012 Andris Reinman, andris.reinman@gmail.com
+ * Author: Andris Reinman, andris.reinman@gmail.com
  * Project homepage: www.jstorage.info
  *
- * Licensed under MIT-style license:
+ * Licensed under Unlicense:
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * This is free and unencumbered software released into the public domain.
+ * 
+ * Anyone is free to copy, modify, publish, use, compile, sell, or
+ * distribute this software, either in source code form or as a compiled
+ * binary, for any purpose, commercial or non-commercial, and by any
+ * means.
+ * 
+ * In jurisdictions that recognize copyright laws, the author or authors
+ * of this software dedicate any and all copyright interest in the
+ * software to the public domain. We make this dedication for the benefit
+ * of the public at large and to the detriment of our heirs and
+ * successors. We intend this dedication to be an overt act of
+ * relinquishment in perpetuity of all present and future rights to this
+ * software under copyright law.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * For more information, please refer to <http://unlicense.org/>
  */
 
  (function(){
     var
         /* jStorage version */
-        JSTORAGE_VERSION = "0.3.0",
+        JSTORAGE_VERSION = "0.4.8",
 
         /* detect a dollar object or create one if not found */
         $ = window.jQuery || window.$ || (window.$ = {}),
@@ -46,15 +56,15 @@
         };
 
     // Break if no JSON support was found
-    if(!JSON.parse || !JSON.stringify){
+    if(!("parse" in JSON) || !("stringify" in JSON)){
         throw new Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");
     }
 
     var
         /* This is the object, that holds the cached values */
-        _storage = {},
+        _storage = {__jstorage_meta:{CRC32:{}}},
 
-        /* Actual browser storage (localStorage or globalStorage['domain']) */
+        /* Actual browser storage (localStorage or globalStorage["domain"]) */
         _storage_service = {jStorage:"{}"},
 
         /* DOM element for older IE versions, holds userData behavior */
@@ -79,41 +89,10 @@
         _pubsub_observers = {},
 
         /* skip published items older than current timestamp */
-        _pubsub_last = +new Date(), 
+        _pubsub_last = +new Date(),
 
         /* Next check for TTL */
         _ttl_timeout,
-
-        /* crc32 table */
-        _crc32Table = "00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 "+
-             "0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 "+
-             "6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 "+
-             "FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 "+
-             "A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 "+
-             "32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 "+
-             "56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 "+
-             "C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 "+
-             "E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 "+
-             "6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 "+
-             "12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE "+
-             "A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 "+
-             "DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 "+
-             "5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 "+
-             "2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF "+
-             "04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 "+
-             "7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 "+
-             "FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 "+
-             "A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C "+
-             "36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 "+
-             "5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 "+
-             "C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 "+
-             "EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D "+
-             "7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 "+
-             "18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 "+
-             "A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A "+
-             "D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A "+
-             "53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 "+
-             "2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D",
 
         /**
          * XML encoding and decoding as XML nodes can't be JSON'ized
@@ -159,8 +138,8 @@
             decode: function(xmlString){
                 var dom_parser = ("DOMParser" in window && (new DOMParser()).parseFromString) ||
                         (window.ActiveXObject && function(_xmlString) {
-                    var xml_doc = new ActiveXObject('Microsoft.XMLDOM');
-                    xml_doc.async = 'false';
+                    var xml_doc = new ActiveXObject("Microsoft.XMLDOM");
+                    xml_doc.async = "false";
                     xml_doc.loadXML(_xmlString);
                     return xml_doc;
                 }),
@@ -168,12 +147,10 @@
                 if(!dom_parser){
                     return false;
                 }
-                resultXML = dom_parser.call("DOMParser" in window && (new DOMParser()) || window, xmlString, 'text/xml');
+                resultXML = dom_parser.call("DOMParser" in window && (new DOMParser()) || window, xmlString, "text/xml");
                 return this.isXML(resultXML)?resultXML:false;
             }
-        },
-
-        _localStoragePolyfillSetKey = function(){};
+        };
 
 
     ////////////////////////// PRIVATE METHODS ////////////////////////
@@ -187,9 +164,9 @@
         var localStorageReallyWorks = false;
         if("localStorage" in window){
             try {
-                window.localStorage.setItem('_tmptest', 'tmpval');
+                window.localStorage.setItem("_tmptest", "tmpval");
                 localStorageReallyWorks = true;
-                window.localStorage.removeItem('_tmptest');
+                window.localStorage.removeItem("_tmptest");
             } catch(BogusQuotaExceededErrorOnIos5) {
                 // Thanks be to iOS5 Private Browsing mode which throws
                 // QUOTA_EXCEEDED_ERRROR DOM Exception 22.
@@ -209,7 +186,12 @@
         else if("globalStorage" in window){
             try {
                 if(window.globalStorage) {
-                    _storage_service = window.globalStorage[window.location.hostname];
+                    if(window.location.hostname == "localhost"){
+                        _storage_service = window.globalStorage["localhost.localdomain"];
+                    }
+                    else{
+                        _storage_service = window.globalStorage[window.location.hostname];
+                    }
                     _backend = "globalStorage";
                     _observer_update = _storage_service.jStorage_update;
                 }
@@ -217,14 +199,14 @@
         }
         /* Check if browser supports userData behavior */
         else {
-            _storage_elm = document.createElement('link');
+            _storage_elm = document.createElement("link");
             if(_storage_elm.addBehavior){
 
                 /* Use a DOM element to act as userData storage */
-                _storage_elm.style.behavior = 'url(#default#userData)';
+                _storage_elm.style.behavior = "url(#default#userData)";
 
                 /* userData element needs to be inserted into the DOM! */
-                document.getElementsByTagName('head')[0].appendChild(_storage_elm);
+                document.getElementsByTagName("head")[0].appendChild(_storage_elm);
 
                 try{
                     _storage_elm.load("jStorage");
@@ -258,10 +240,6 @@
         // remove dead keys
         _handleTTL();
 
-        // create localStorage and sessionStorage polyfills if needed
-        _createPolyfillStorage("local");
-        _createPolyfillStorage("session");
-
         // start listening for changes
         _setupObserver();
 
@@ -276,222 +254,6 @@
                 }
             }, false);
         }
-    }
-
-    /**
-     * Create a polyfill for localStorage (type="local") or sessionStorage (type="session")
-     *
-     * @param {String} type Either "local" or "session"
-     * @param {Boolean} forceCreate If set to true, recreate the polyfill (needed with flush)
-     */
-    function _createPolyfillStorage(type, forceCreate){
-        var _skipSave = false,
-            _length = 0,
-            i, 
-            storage,
-            storage_source = {};
-
-            var rand = Math.random();
-
-        if(!forceCreate && typeof window[type+"Storage"] != "undefined"){
-            return;
-        }
-
-        // Use globalStorage for localStorage if available
-        if(type == "local" && window.globalStorage){
-            localStorage = window.globalStorage[window.location.hostname];
-            return;
-        }
-
-        // only IE6/7 from this point on 
-        if(_backend != "userDataBehavior"){
-            return;
-        }
-
-        // Remove existing storage element if available
-        if(forceCreate && window[type+"Storage"] && window[type+"Storage"].parentNode){
-            window[type+"Storage"].parentNode.removeChild(window[type+"Storage"]);
-        }
-
-        storage = document.createElement("button");
-        document.getElementsByTagName('head')[0].appendChild(storage);
-
-        if(type == "local"){
-            storage_source = _storage;
-        }else if(type == "session"){
-            _sessionStoragePolyfillUpdate();
-        }
-
-        for(i in storage_source){
-
-            if(storage_source.hasOwnProperty(i) && i != "__jstorage_meta" && i != "length" && typeof storage_source[i] != "undefined"){
-                if(!(i in storage)){
-                    _length++;
-                }
-                storage[i] = storage_source[i];
-            }
-        }
-        
-        // Polyfill API
-
-        /**
-         * Indicates how many keys are stored in the storage
-         */
-        storage.length = _length;
-
-        /**
-         * Returns the key of the nth stored value
-         * 
-         * @param {Number} n Index position
-         * @return {String} Key name of the nth stored value
-         */
-        storage.key = function(n){
-            var count = 0, i;
-            _sessionStoragePolyfillUpdate();
-            for(i in storage_source){
-                if(storage_source.hasOwnProperty(i) && i != "__jstorage_meta" && i!="length" && typeof storage_source[i] != "undefined"){
-                    if(count == n){
-                        return i;
-                    }
-                    count++;
-                }
-            }
-        }
-
-        /**
-         * Returns the current value associated with the given key
-         *
-         * @param {String} key key name
-         * @return {Mixed} Stored value
-         */
-        storage.getItem = function(key){
-            _sessionStoragePolyfillUpdate();
-            if(type == "session"){
-                return storage_source[key];
-            }
-            return $.jStorage.get(key);
-        }
-
-        /**
-         * Sets or updates value for a give key
-         *
-         * @param {String} key Key name to be updated
-         * @param {String} value String value to be stored 
-         */
-        storage.setItem = function(key, value){
-            if(typeof value == "undefined"){
-                return;
-            }
-            storage[key] = (value || "").toString();
-        }
-
-        /**
-         * Removes key from the storage
-         *
-         * @param {String} key Key name to be removed
-         */
-        storage.removeItem = function(key){
-            if(type == "local"){
-                return $.jStorage.deleteKey(key);
-            }
-
-            storage[key] = undefined;
-            
-            _skipSave = true;
-            if(key in storage){
-                storage.removeAttribute(key);
-            }
-            _skipSave = false;
-        }
-
-        /**
-         * Clear storage
-         */
-        storage.clear = function(){
-            if(type == "session"){
-                window.name = "";
-                _createPolyfillStorage("session", true);
-                return;
-            }
-            $.jStorage.flush();
-        }
-
-        if(type == "local"){
-
-            _localStoragePolyfillSetKey = function(key, value){
-                if(key == "length"){
-                    return;
-                }
-                _skipSave = true;
-                if(typeof value == "undefined"){
-                    if(key in storage){
-                        _length--;
-                        storage.removeAttribute(key);
-                    }
-                }else{
-                    if(!(key in storage)){
-                        _length++;
-                    }
-                    storage[key] = (value || "").toString();
-                }
-                storage.length = _length;
-                _skipSave = false;
-            }
-        }
-
-        function _sessionStoragePolyfillUpdate(){
-                if(type != "session"){
-                    return;
-                }
-                try{
-                    storage_source = JSON.parse(window.name || "{}");
-                }catch(E){
-                    storage_source = {};
-                }
-            }
-
-        function _sessionStoragePolyfillSave(){
-            if(type != "session"){
-                return;
-            }
-            window.name = JSON.stringify(storage_source);
-        };
-
-        storage.attachEvent("onpropertychange", function(e){
-            if(e.propertyName == "length"){
-                return;
-            }
-
-            if(_skipSave || e.propertyName == "length"){
-                return;
-            }
-
-            if(type == "local"){
-                if(!(e.propertyName in storage_source) && typeof storage[e.propertyName] != "undefined"){
-                    _length ++;
-                }
-            }else if(type == "session"){
-                _sessionStoragePolyfillUpdate();
-                if(typeof storage[e.propertyName] != "undefined" && !(e.propertyName in storage_source)){
-                    storage_source[e.propertyName] = storage[e.propertyName];
-                    _length++;
-                }else if(typeof storage[e.propertyName] == "undefined" && e.propertyName in storage_source){
-                    delete storage_source[e.propertyName];
-                    _length--;
-                }else{
-                    storage_source[e.propertyName] = storage[e.propertyName];
-                }
-
-                _sessionStoragePolyfillSave();
-                storage.length = _length;
-                return;
-            }
-
-            $.jStorage.set(e.propertyName, storage[e.propertyName]);
-            storage.length = _length;
-        });
-
-        window[type+"Storage"] = storage;
     }
 
     /**
@@ -584,7 +346,7 @@
                     removed.push(key);
                     continue;
                 }
-                if(oldCrc32List[key] != newCrc32List[key]){
+                if(oldCrc32List[key] != newCrc32List[key] && String(oldCrc32List[key]).substr(0,2) == "2."){
                     updated.push(key);
                 }
             }
@@ -625,6 +387,11 @@
                     _observers[keys[i]][j](keys[i], action);
                 }
             }
+            if(_observers["*"]){
+                for(var j=0, jlen = _observers["*"].length; j<jlen; j++){
+                    _observers["*"][j](keys[i], action);
+                }
+            }
         }
     }
 
@@ -635,7 +402,12 @@
         var updateTime = (+new Date()).toString();
 
         if(_backend == "localStorage" || _backend == "globalStorage"){
-            _storage_service.jStorage_update = updateTime;
+            try {
+                _storage_service.jStorage_update = updateTime;
+            } catch (E8) {
+                // safari private mode has been enabled after the jStorage initialization
+                _backend = false;
+            }
         }else if(_backend == "userDataBehavior"){
             _storage_elm.setAttribute("jStorage_update", updateTime);
             _storage_elm.save("jStorage");
@@ -688,11 +460,11 @@
      * @param {String} key Key name
      */
     function _checkKey(key){
-        if(!key || (typeof key != "string" && typeof key != "number")){
-            throw new TypeError('Key name must be string or numeric');
+        if(typeof key != "string" && typeof key != "number"){
+            throw new TypeError("Key name must be string or numeric");
         }
         if(key == "__jstorage_meta"){
-            throw new TypeError('Reserved key name');
+            throw new TypeError("Reserved key name");
         }
         return true;
     }
@@ -745,13 +517,14 @@
      * Checks if there's any events on hold to be fired to listeners
      */
     function _handlePubSub(){
+        var i, len;
         if(!_storage.__jstorage_meta.PubSub){
             return;
         }
         var pubelm,
             _pubsubCurrent = _pubsub_last;
 
-        for(var i=len=_storage.__jstorage_meta.PubSub.length-1; i>=0; i--){
+        for(i=len=_storage.__jstorage_meta.PubSub.length-1; i>=0; i--){
             pubelm = _storage.__jstorage_meta.PubSub[i];
             if(pubelm[0] > _pubsub_last){
                 _pubsubCurrent = pubelm[0];
@@ -772,7 +545,9 @@
         if(_pubsub_observers[channel]){
             for(var i=0, len = _pubsub_observers[channel].length; i<len; i++){
                 // send immutable data that can't be modified by listeners
-                _pubsub_observers[channel][i](channel, JSON.parse(JSON.stringify(payload)));
+                try{
+                    _pubsub_observers[channel][i](channel, JSON.parse(JSON.stringify(payload)));
+                }catch(E){};
             }
         }
     }
@@ -814,32 +589,65 @@
         if(!_storage.__jstorage_meta.PubSub){
             _storage.__jstorage_meta.PubSub = [];
         }
-        
+
         _storage.__jstorage_meta.PubSub.unshift([+new Date, channel, payload]);
 
         _save();
         _publishChange();
     }
 
-    /**
-     * CRC32 calculation based on http://noteslog.com/post/crc32-for-javascript/
-     *
-     * @param {String} str String to be hashed
-     * @param {Number} [crc] Last crc value in case of streams
-     */
-    function _crc32(str, crc){
-        crc = crc || 0;
 
-        var n = 0, //a number between 0 and 255
-            x = 0; //an hex number
- 
-        crc = crc ^ (-1);
-        for(var i = 0, len = str.length; i < len; i++){
-            n = (crc ^ str.charCodeAt(i)) & 0xFF;
-            x = "0x" + _crc32Table.substr(n * 9, 8);
-            crc = (crc >>> 8)^x;
+    /**
+     * JS Implementation of MurmurHash2
+     *
+     *  SOURCE: https://github.com/garycourt/murmurhash-js (MIT licensed)
+     *
+     * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
+     * @see http://github.com/garycourt/murmurhash-js
+     * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
+     * @see http://sites.google.com/site/murmurhash/
+     *
+     * @param {string} str ASCII only
+     * @param {number} seed Positive integer only
+     * @return {number} 32-bit positive integer hash
+     */
+
+    function murmurhash2_32_gc(str, seed) {
+        var
+            l = str.length,
+            h = seed ^ l,
+            i = 0,
+            k;
+
+        while (l >= 4) {
+            k =
+                ((str.charCodeAt(i) & 0xff)) |
+                ((str.charCodeAt(++i) & 0xff) << 8) |
+                ((str.charCodeAt(++i) & 0xff) << 16) |
+                ((str.charCodeAt(++i) & 0xff) << 24);
+
+            k = (((k & 0xffff) * 0x5bd1e995) + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+            k ^= k >>> 24;
+            k = (((k & 0xffff) * 0x5bd1e995) + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+
+            h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16)) ^ k;
+
+            l -= 4;
+            ++i;
         }
-        return crc^(-1);
+
+        switch (l) {
+            case 3: h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+            case 2: h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+            case 1: h ^= (str.charCodeAt(i) & 0xff);
+                h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+        }
+
+        h ^= h >>> 13;
+        h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+        h ^= h >>> 15;
+
+        return h >>> 0;
     }
 
     ////////////////////////// PUBLIC INTERFACE /////////////////////////
@@ -881,11 +689,9 @@
 
             _storage[key] = value;
 
-            _storage.__jstorage_meta.CRC32[key] = _crc32(JSON.stringify(value));
+            _storage.__jstorage_meta.CRC32[key] = "2." + murmurhash2_32_gc(JSON.stringify(value), 0x9747b28c);
 
             this.setTTL(key, options.TTL || 0); // also handles saving and _publishChange
-
-            _localStoragePolyfillSetKey(key, value);
 
             _fireObservers(key, "updated");
             return value;
@@ -901,15 +707,13 @@
         get: function(key, def){
             _checkKey(key);
             if(key in _storage){
-                if(_storage[key] && typeof _storage[key] == "object" &&
-                        _storage[key]._is_xml &&
-                            _storage[key]._is_xml){
+                if(_storage[key] && typeof _storage[key] == "object" && _storage[key]._is_xml) {
                     return _XMLService.decode(_storage[key].xml);
                 }else{
                     return _storage[key];
                 }
             }
-            return typeof(def) == 'undefined' ? null : def;
+            return typeof(def) == "undefined" ? null : def;
         },
 
         /**
@@ -929,7 +733,6 @@
                 }
 
                 delete _storage.__jstorage_meta.CRC32[key];
-                _localStoragePolyfillSetKey(key, undefined);
 
                 _save();
                 _publishChange();
@@ -996,7 +799,6 @@
          */
         flush: function(){
             _storage = {__jstorage_meta:{CRC32:{}}};
-            _createPolyfillStorage("local", true);
             _save();
             _publishChange();
             _fireObservers(null, "flushed");
@@ -1016,7 +818,7 @@
 
         /**
          * Returns an index of all used keys as an array
-         * ['key1', 'key2',..'keyN']
+         * ["key1", "key2",.."keyN"]
          *
          * @return {Array} Used keys
         */
@@ -1106,7 +908,7 @@
         subscribe: function(channel, callback){
             channel = (channel || "").toString();
             if(!channel){
-                throw new TypeError('Channel not defined');
+                throw new TypeError("Channel not defined");
             }
             if(!_pubsub_observers[channel]){
                 _pubsub_observers[channel] = [];
@@ -1123,7 +925,7 @@
         publish: function(channel, payload){
             channel = (channel || "").toString();
             if(!channel){
-                throw new TypeError('Channel not defined');
+                throw new TypeError("Channel not defined");
             }
 
             _publish(channel, payload);
@@ -1134,7 +936,22 @@
          */
         reInit: function(){
             _reloadData();
-        }
+        },
+
+        /**
+         * Removes reference from global objects and saves it as jStorage
+         *
+         * @param {Boolean} option if needed to save object as simple "jStorage" in windows context
+         */
+         noConflict: function( saveInGlobal ) {
+            delete window.$.jStorage
+
+            if ( saveInGlobal ) {
+                window.jStorage = this;
+            }
+
+            return this;
+         }
     };
 
     // Initialize jStorage
