@@ -28,6 +28,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.toc.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Uri.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.user.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.util.test.js',
