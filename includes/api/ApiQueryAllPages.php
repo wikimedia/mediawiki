@@ -225,8 +225,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgRestrictionLevels;
-
 		return array(
 			'from' => null,
 			'continue' => null,
@@ -255,7 +253,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'prlevel' => array(
-				ApiBase::PARAM_TYPE => $wgRestrictionLevels,
+				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'RestrictionLevels' ),
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'prfiltercascade' => array(

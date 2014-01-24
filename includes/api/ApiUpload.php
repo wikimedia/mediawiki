@@ -34,8 +34,6 @@ class ApiUpload extends ApiBase {
 	protected $mParams;
 
 	public function execute() {
-		global $wgEnableAsyncUploads;
-
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() ) {
 			$this->dieUsageMsg( 'uploaddisabled' );
@@ -47,7 +45,7 @@ class ApiUpload extends ApiBase {
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported (jobs done in cli mode)
-		$this->mParams['async'] = ( $this->mParams['async'] && $wgEnableAsyncUploads );
+		$this->mParams['async'] = ( $this->mParams['async'] && $this->getConfig()->get( 'EnableAsyncUploads' ) );
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
@@ -471,8 +469,6 @@ class ApiUpload extends ApiBase {
 	 * Performs file verification, dies on error.
 	 */
 	protected function checkVerification( array $verification ) {
-		global $wgFileExtensions;
-
 		// @todo Move them to ApiBase's message map
 		switch ( $verification['status'] ) {
 			// Recoverable errors
@@ -504,7 +500,7 @@ class ApiUpload extends ApiBase {
 			case UploadBase::FILETYPE_BADTYPE:
 				$extradata = array(
 					'filetype' => $verification['finalExt'],
-					'allowed' => array_values( array_unique( $wgFileExtensions ) )
+					'allowed' => array_values( array_unique( $this->getConfig()->get( 'FileExtensions' ) ) )
 				);
 				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
 
@@ -666,8 +662,7 @@ class ApiUpload extends ApiBase {
 	 * Checks if asynchronous copy uploads are enabled and throws an error if they are not.
 	 */
 	protected function checkAsyncDownloadEnabled() {
-		global $wgAllowAsyncCopyUploads;
-		if ( !$wgAllowAsyncCopyUploads ) {
+		if ( !$this->getConfig()->get( 'AllowAsyncCopyUploads' ) ) {
 			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled' );
 		}
 	}

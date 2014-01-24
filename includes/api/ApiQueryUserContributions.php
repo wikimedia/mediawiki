@@ -517,8 +517,8 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
-		global $wgRCMaxAge;
 		$p = $this->getModulePrefix();
+		$RCMaxAge = $this->getConfig()->get( 'RCMaxAge' );
 
 		return array(
 			'limit' => 'The maximum number of contributions to return',
@@ -548,7 +548,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'show' => array(
 				"Show only items that meet thse criteria, e.g. non minor edits only: {$p}show=!minor",
 				"NOTE: If {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than",
-				"\$wgRCMaxAge ($wgRCMaxAge) won't be shown",
+				"\$wgRCMaxAge ($RCMaxAge) won't be shown",
 			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',

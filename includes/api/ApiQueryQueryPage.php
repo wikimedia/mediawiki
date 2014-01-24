@@ -35,10 +35,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		// Build mapping from special page names to QueryPage classes
-		global $wgAPIUselessQueryPages;
+		$uselessQueryPages = $this->getConfig()->get( 'APIUselessQueryPages' );
 		$this->qpMap = array();
 		foreach ( QueryPage::getPages() as $page ) {
-			if ( !in_array( $page[1], $wgAPIUselessQueryPages ) ) {
+			if ( !in_array( $page[1], $uselessQueryPages ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
 		}
@@ -56,8 +56,6 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
-		global $wgQueryCacheLimit;
-
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
@@ -77,7 +75,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
-				$r['maxresults'] = $wgQueryCacheLimit;
+				$r['maxresults'] = $this->getConfig()->get( 'QueryCacheLimit' );
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );

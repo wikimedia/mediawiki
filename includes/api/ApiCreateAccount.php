@@ -90,7 +90,6 @@ class ApiCreateAccount extends ApiBase {
 		$result = array();
 		if ( $status->isGood() ) {
 			// Success!
-			global $wgEmailAuthentication;
 			$user = $status->getValue();
 
 			if ( $params['language'] ) {
@@ -106,7 +105,7 @@ class ApiCreateAccount extends ApiBase {
 					'createaccount-title',
 					'createaccount-text'
 				) );
-			} elseif ( $wgEmailAuthentication && Sanitizer::validateEmail( $user->getEmail() ) ) {
+			} elseif ( $this->getConfig()->get( 'EmailAuthentication' ) && Sanitizer::validateEmail( $user->getEmail() ) ) {
 				// Send out an email authentication message if needed
 				$status->merge( $user->sendConfirmationMail() );
 			}
@@ -183,8 +182,6 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgEmailConfirmToEdit;
-
 		return array(
 			'name' => array(
 				ApiBase::PARAM_TYPE => 'user',
@@ -195,7 +192,7 @@ class ApiCreateAccount extends ApiBase {
 			'token' => null,
 			'email' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => $wgEmailConfirmToEdit
+				ApiBase::PARAM_REQUIRED => $this->getConfig()->get( 'EmailConfirmToEdit' ),
 			),
 			'realname' => null,
 			'mailpassword' => array(
@@ -293,10 +290,9 @@ class ApiCreateAccount extends ApiBase {
 		);
 
 		// 'passwordtooshort' has parameters. :(
-		global $wgMinimalPasswordLength;
 		$errors[] = array(
 			'code' => 'passwordtooshort',
-			'info' => wfMessage( 'passwordtooshort', $wgMinimalPasswordLength )
+			'info' => wfMessage( 'passwordtooshort', $this->getConfig()->get( 'MinimalPasswordLength' ) )
 				->inLanguage( 'en' )->useDatabase( false )->parse()
 		);
 

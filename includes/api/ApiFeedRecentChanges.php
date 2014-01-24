@@ -40,15 +40,16 @@ class ApiFeedRecentChanges extends ApiBase {
 	 * as an RSS/Atom feed.
 	 */
 	public function execute() {
-		global $wgFeed, $wgFeedClasses;
+		$config = $this->getConfig();
 
 		$this->params = $this->extractRequestParams();
 
-		if ( !$wgFeed ) {
+		if ( !$config->get( 'Feed' ) ) {
 			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 		}
 
-		if ( !isset( $wgFeedClasses[$this->params['feedformat']] ) ) {
+		$feedClasses = $config->get( 'FeedClasses' );
+		if ( !isset( $feedClasses[$this->params['feedformat']] ) ) {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
@@ -110,8 +111,8 @@ class ApiFeedRecentChanges extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgFeedClasses, $wgAllowCategorizedRecentChanges, $wgFeedLimit;
-		$feedFormatNames = array_keys( $wgFeedClasses );
+		$config = $this->getConfig();
+		$feedFormatNames = array_keys( $config->get( 'FeedClasses' ) );
 
 		$ret = array(
 			'feedformat' => array(
@@ -133,7 +134,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 50,
 				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => $wgFeedLimit,
+				ApiBase::PARAM_MAX => $config->get( 'FeedLimit' ),
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'from' => array(
@@ -157,7 +158,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'showlinkedto' => false,
 		);
 
-		if ( $wgAllowCategorizedRecentChanges ) {
+		if ( $config->get( 'AllowCategorizedRecentChanges' ) ) {
 			$ret += array(
 				'categories' => array(
 					ApiBase::PARAM_TYPE => 'string',

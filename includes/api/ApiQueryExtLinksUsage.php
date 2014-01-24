@@ -59,9 +59,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addOption( 'USE INDEX', 'el_index' );
 		$this->addWhere( 'page_id=el_from' );
 
-		global $wgMiserMode;
 		$miser_ns = array();
-		if ( $wgMiserMode ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$miser_ns = $params['namespace'];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -209,7 +208,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
-		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
 			'prop' => array(
@@ -230,7 +228,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',
 		);
 
-		if ( $wgMiserMode ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$desc['namespace'] = array(
 				$desc['namespace'],
 				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
