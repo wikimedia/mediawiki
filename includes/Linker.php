@@ -278,9 +278,9 @@ class Linker {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
-		if ( in_array( 'broken', $options ) && $target->mFragment !== '' ) {
+		if ( in_array( 'broken', $options ) && $target->hasFragment() ) {
 			$target = clone $target;
-			$target->mFragment = '';
+			$target->setFragment( '' );
 		}
 
 		# If it's a broken link, add the appropriate query pieces, unless
@@ -448,8 +448,7 @@ class Linker {
 			if ( !$name ) {
 				return $title;
 			}
-			$ret = SpecialPage::getTitleFor( $name, $subpage );
-			$ret->mFragment = $title->getFragment();
+			$ret = SpecialPage::getTitleFor( $name, $subpage, $title->getFragment() );
 			return $ret;
 		} else {
 			return $title;
