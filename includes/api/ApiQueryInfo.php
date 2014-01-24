@@ -57,21 +57,20 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
-		global $wgDisableCounters, $wgContentHandlerUseDB;
-
 		$pageSet->requestField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
 		if ( !$pageSet->isResolvingRedirects() ) {
 			$pageSet->requestField( 'page_is_redirect' );
 		}
 		$pageSet->requestField( 'page_is_new' );
-		if ( !$wgDisableCounters ) {
+		$config = $this->getConfig();
+		if ( !$config->get( 'DisableCounters' ) ) {
 			$pageSet->requestField( 'page_counter' );
 		}
 		$pageSet->requestField( 'page_touched' );
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
-		if ( $wgContentHandlerUseDB ) {
+		if ( $config->get( 'ContentHandlerUseDB' ) ) {
 			$pageSet->requestField( 'page_content_model' );
 		}
 	}
@@ -295,9 +294,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			: array();
 		$this->pageIsNew = $pageSet->getCustomField( 'page_is_new' );
 
-		global $wgDisableCounters;
-
-		if ( !$wgDisableCounters ) {
+		if ( !$this->getConfig()->get( 'DisableCounters' ) ) {
 			$this->pageCounter = $pageSet->getCustomField( 'page_counter' );
 		}
 		$this->pageTouched = $pageSet->getCustomField( 'page_touched' );
@@ -359,11 +356,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguage'] = $title->getPageLanguage()->getCode();
 
 		if ( $titleExists ) {
-			global $wgDisableCounters;
-
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
-			$pageInfo['counter'] = $wgDisableCounters
+			$pageInfo['counter'] = $this->getConfig()->get( 'DisableCounters' )
 				? ''
 				: intval( $this->pageCounter[$pageid] );
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
@@ -711,15 +706,14 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get the count of watchers and put it in $this->watchers
 	 */
 	private function getWatcherInfo() {
-		global $wgUnwatchedPageThreshold;
-
 		if ( count( $this->everything ) == 0 ) {
 			return;
 		}
 
 		$user = $this->getUser();
 		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
-		if ( !$canUnwatchedpages && !is_int( $wgUnwatchedPageThreshold ) ) {
+		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
+		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
 
@@ -737,7 +731,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		) );
 		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
 		if ( !$canUnwatchedpages ) {
-			$this->addOption( 'HAVING', "COUNT(*) >= $wgUnwatchedPageThreshold" );
+			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
 		}
 
 		$res = $this->select( __METHOD__ );

@@ -254,8 +254,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgSearchType;
-
 		$params = array(
 			'search' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -317,7 +315,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$alternatives[0] = self::BACKEND_NULL_PARAM;
 			}
 			$params['backend'] = array(
-				ApiBase::PARAM_DFLT => $wgSearchType,
+				ApiBase::PARAM_DFLT => $this->getConfig()->get( 'SearchType' ),
 				ApiBase::PARAM_TYPE => $alternatives,
 			);
 		}

@@ -558,9 +558,9 @@ class ApiParse extends ApiBase {
 			'and will be removed in MediaWiki 1.24. Use "prop=langlinks" ' .
 			'to generate your own HTML.' );
 
-		global $wgContLang, $wgHideInterlanguageLinks;
+		global $wgContLang;
 
-		if ( $wgHideInterlanguageLinks || count( $languages ) == 0 ) {
+		if ( $this->getConfig()->get( 'HideInterlanguageLinks' ) || count( $languages ) == 0 ) {
 			return '';
 		}
 

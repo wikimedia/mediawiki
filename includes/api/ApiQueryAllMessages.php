@@ -63,14 +63,13 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		if ( in_array( '*', $params['messages'] ) ) {
 			$message_names = Language::getMessageKeysFor( $langObj->getCode() );
 			if ( $params['includelocal'] ) {
-				global $wgLanguageCode;
 				$message_names = array_unique( array_merge(
 					$message_names,
 					// Pass in the content language code so we get local messages that have a
 					// MediaWiki:msgkey page. We might theoretically miss messages that have no
 					// MediaWiki:msgkey page but do have a MediaWiki:msgkey/lang page, but that's
 					// just a stupid case.
-					MessageCache::singleton()->getAllMessageKeys( $wgLanguageCode )
+					MessageCache::singleton()->getAllMessageKeys( $this->getConfig()->get( 'LanguageCode' ) )
 				) );
 			}
 			sort( $message_names );
