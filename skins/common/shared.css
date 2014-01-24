@@ -900,7 +900,12 @@ ul.mw-gallery-packed-overlay div.gallerytext {
 	position: relative; /* Resets opacity in old IE */
 }
 
+/* Poem */
+.mw-poem-indented {
+	display: inline-block;
+}
 
+/* AJAX loader */
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);

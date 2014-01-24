@@ -14379,6 +14379,159 @@ foobar.jpg
 !! end
 
 !! test
+<verbatim>
+!! input
+<verbatim>
+this
+is
+a
+test
+</verbatim>
+!! result
+<div class="poem">
+<p>this<br />
+is<br />
+a<br />
+test
+</p>
+</div>
+
+!! end
+
+!! test
+<poem> as alias for <verbatim>
+!! input
+<poem>
+this
+is
+a
+test
+</poem>
+!! result
+<div class="poem">
+<p>this<br />
+is<br />
+a<br />
+test
+</p>
+</div>
+
+!! end
+
+!! test
+<verbatim> with indentation
+!! input
+<verbatim>
+this is
+:indented
+we hope
+</verbatim>
+!! result
+<div class="poem">
+<p>this is<br />
+<span class="mw-poem-indented" style="margin-left: 1em;">indented</span><br />
+we hope
+</p>
+</div>
+
+!! end
+
+!!test
+<verbatim> with recursive parsing
+!!input
+<verbatim>
+this ''is'' a '''test'''
+</verbatim>
+!! result
+<div class="poem">
+<p>this <i>is</i> a <b>test</b>
+</p>
+</div>
+
+!!end
+
+
+!!test
+<verbatim> with leading whitespace
+!!input
+<verbatim>
+
+   test
+
+</verbatim>
+!! result
+<div class="poem">
+<p><br />
+&#160;&#160;&#160;test<br />
+</p>
+</div>
+
+!!end
+
+!!test
+Horizontal rule
+!!input
+<verbatim>
+some
+-----
+text
+</verbatim>
+!!result
+<div class="poem">
+<p>some<br />
+</p>
+<hr /><br />
+<p>text
+</p>
+</div>
+
+!!end
+
+!! test
+nested <verbatim><nowiki>
+!! input
+<verbatim><nowiki>
+this
+is
+a
+test
+</nowiki></verbatim>
+!! result
+<div class="poem">
+<p><br />
+this<br />
+is<br />
+a<br />
+test<br />
+
+</p>
+</div>
+
+!!end
+
+!! test
+nested <verbatim><nowiki> with formatting
+!! input
+<verbatim><nowiki>
+this
+'''is'''
+a
+test
+</nowiki></verbatim>
+!! result
+<div class="poem">
+<p><br />
+this<br />
+'''is'''<br />
+a<br />
+test<br />
+
+</p>
+</div>
+
+!! end
+
+!! test
 HTML Hex character encoding (spells the word "JavaScript")
 !! input
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
