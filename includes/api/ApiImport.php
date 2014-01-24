@@ -98,8 +98,6 @@ class ApiImport extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgImportSources;
-
 		return array(
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -110,7 +108,7 @@ class ApiImport extends ApiBase {
 				ApiBase::PARAM_TYPE => 'upload',
 			),
 			'interwikisource' => array(
-				ApiBase::PARAM_TYPE => $wgImportSources
+				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'ImportSources' ),
 			),
 			'interwikipage' => null,
 			'fullhistory' => false,

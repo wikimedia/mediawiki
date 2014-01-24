@@ -1962,15 +1962,13 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.21
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
-		global $wgDebugAPI;
-		if ( $wgDebugAPI !== true ) {
+		if ( $this->getConfig()->get( 'DebugAPI' ) !== true ) {
 			$this->dieUsageMsg( $error );
 		}
 
 		if ( is_string( $error ) ) {
 			$error = array( $error );
 		}
-
 		$parsed = $this->parseMsg( $error );
 		$this->setWarning( '$wgDebugAPI: ' . $parsed['code'] . ' - ' . $parsed['info'] );
 	}
