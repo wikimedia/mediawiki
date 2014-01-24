@@ -3630,21 +3630,93 @@ Parameters:
 
 The corresponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => 'Option text in [[Special:RecentChanges]]. Parameters:
-* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|rcshowhideminor-show}} or {{msg-mw|rcshowhideminor-hide}}',
+'rcshowhideminor-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.
+
+See also:
+* {{msg-mw|rcshowhideminor-hide}}
+{{Identical|Show}}',
+'rcshowhideminor-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.
+
+See also:
+* {{msg-mw|rcshowhideminor-show}}
+{{Identical|Hide}}',
 'rcshowhidebots' => 'Option text in [[Special:RecentChanges]]. Parameters:
-* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|rcshowhidebots-show}} or {{msg-mw|rcshowhidebots-hide}}
 {{Identical|$1 bots}}',
+'rcshowhidebots-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidebots}}.
+
+See also:
+* {{msg-mw|rcshowhidebots-show}}
+{{Identical|Show}}',
+'rcshowhidebots-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidebots}}.
+
+See also:
+* {{msg-mw|rcshowhidebots-hide}}
+{{Identical|Hide}}',
 'rcshowhideliu' => 'Option text in [[Special:RecentChanges]]. Parameters:
 * $1 - any one of the following messages:
-** {{msg-mw|Show}}
-** {{msg-mw|Hide}}',
+** {{msg-mw|rcshowhideliu-show}}
+** {{msg-mw|rcshowhideliu-hide}}',
+'rcshowhideliu-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideliu}}.
+
+See also:
+* {{msg-mw|rcshowhideliu-hide}}
+{{Identical|Show}}',
+'rcshowhideliu-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideliu}}.
+
+See also:
+* {{msg-mw|rcshowhideliu-show}}
+{{Identical|Hide}}',
 'rcshowhideanons' => 'Option text in [[Special:RecentChanges]]. Parameters:
-* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|rcshowhideanons-show}} or {{msg-mw|showhideanons-hide}}
 {{Identical|Anonymous user}}',
+'rcshowhideanons-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideanons}}.
+
+See also:
+* {{msg-mw|rcshowhideanons-hide}}
+{{Identical|Hide}}',
+'rcshowhideanons-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideanons}}.
+
+See also:
+* {{msg-mw|rcshowhideanons-show}}
+{{Identical|hide}}',
 'rcshowhidepatr' => 'Option text in [[Special:RecentChanges]]. Parameters:
-* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|rcshowhidepatr-show}} or {{msg-mw|rcshowhidepatr-hide}}',
+'rcshowhidepatr-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidepatr}}.
+
+See also:
+* {{msg-mw|rcshowhidepatr-hide}}
+{{Identical|Show}}',
+'rcshowhidepatr-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidepatr}}.
+
+See also:
+* {{msg-mw|rcshowhidepatr-show}}
+{{Identical|Hide}}',
 'rcshowhidemine' => 'Option text in [[Special:RecentChanges]]. Parameters:
-* $1 - the "show/hide" command, with the text taken from either {{msg-mw|Show}} or {{msg-mw|Hide}}',
+* $1 - the "show/hide" command, with the text taken from either {{msg-mw|rcshowhidemine-show}} or {{msg-mw|rcshowhidemine-hide}}',
+'rcshowhidemine-show' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidemine}}.
+
+See also:
+* {{msg-mw|rcshowhidemine-hide}}
+{{Identical|show}}',
+'rcshowhidemine-hide' => '{{doc-actionlink}}
+Option text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidemine}}.
+
+See also:
+* {{msg-mw|rcshowhidemine-show}}
+{{Identical|hide}}',
 'rclinks' => "Used on [[Special:RecentChanges]].
 * \$1 - a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
 * \$2 - a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
@@ -9573,7 +9645,7 @@ Quotation marks, for quoting, sometimes titles etc., depending on the language.
 
 See: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].
 
-Parameters: 
+Parameters:
 * $1 - text to be wrapped in quotation marks',
 
 # Multipage image navigation
