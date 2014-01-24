@@ -399,7 +399,6 @@ class ApiEditPage extends ApiBase {
 
 		$status = $ep->internalAttemptSave( $result, $user->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
-		global $wgMaxArticleSize;
 
 		switch ( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
@@ -423,7 +422,7 @@ class ApiEditPage extends ApiBase {
 
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:
-				$this->dieUsageMsg( array( 'contenttoobig', $wgMaxArticleSize ) );
+				$this->dieUsageMsg( array( 'contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) ) );
 
 			case EditPage::AS_READ_ONLY_PAGE_ANON:
 				$this->dieUsageMsg( 'noedit-anon' );
@@ -499,8 +498,6 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		global $wgMaxArticleSize;
-
 		return array_merge( parent::getPossibleErrors(),
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
@@ -519,7 +516,7 @@ class ApiEditPage extends ApiBase {
 				array( 'spamdetected', 'spam' ),
 				array( 'summaryrequired' ),
 				array( 'blockedtext' ),
-				array( 'contenttoobig', $wgMaxArticleSize ),
+				array( 'contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) ),
 				array( 'noedit-anon' ),
 				array( 'noedit' ),
 				array( 'actionthrottledtext' ),

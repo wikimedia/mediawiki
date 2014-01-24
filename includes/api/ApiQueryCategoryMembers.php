@@ -86,9 +86,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		// Scanning large datasets for rare categories sucks, and I already told
 		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
-		global $wgMiserMode;
 		$miser_ns = array();
-		if ( $wgMiserMode ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$miser_ns = $params['namespace'];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -339,7 +338,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
-		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
 			'title' => "Which category to enumerate (required). Must include " .
@@ -374,7 +372,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'limit' => 'The maximum number of pages to return.',
 		);
 
-		if ( $wgMiserMode ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$desc['namespace'] = array(
 				$desc['namespace'],
 				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",

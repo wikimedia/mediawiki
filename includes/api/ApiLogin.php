@@ -79,8 +79,6 @@ class ApiLogin extends ApiBase {
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
 
-		global $wgCookiePrefix, $wgPasswordAttemptThrottle;
-
 		$authRes = $loginForm->authenticateUserData();
 		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
@@ -100,14 +98,14 @@ class ApiLogin extends ApiBase {
 				$result['lguserid'] = intval( $user->getId() );
 				$result['lgusername'] = $user->getName();
 				$result['lgtoken'] = $user->getToken();
-				$result['cookieprefix'] = $wgCookiePrefix;
+				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
 				$result['sessionid'] = session_id();
 				break;
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
 				$result['token'] = $loginForm->getLoginToken();
-				$result['cookieprefix'] = $wgCookiePrefix;
+				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
 				$result['sessionid'] = session_id();
 				break;
 
@@ -149,7 +147,8 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::THROTTLED:
 				$result['result'] = 'Throttled';
-				$result['wait'] = intval( $wgPasswordAttemptThrottle['seconds'] );
+				$throttle = $this->getConfig()->get( 'PasswordAttemptThrottle' );
+				$result['wait'] = intval( $throttle['seconds'] );
 				break;
 
 			case LoginForm::USER_BLOCKED:

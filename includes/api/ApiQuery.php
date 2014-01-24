@@ -131,13 +131,13 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr = new ApiModuleManager( $this );
 
 		// Allow custom modules to be added in LocalSettings.php
-		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules;
+		$config = $this->getConfig();
 		$this->mModuleMgr->addModules( self::$QueryPropModules, 'prop' );
-		$this->mModuleMgr->addModules( $wgAPIPropModules, 'prop' );
+		$this->mModuleMgr->addModules( $config->get( 'APIPropModules' ), 'prop' );
 		$this->mModuleMgr->addModules( self::$QueryListModules, 'list' );
-		$this->mModuleMgr->addModules( $wgAPIListModules, 'list' );
+		$this->mModuleMgr->addModules( $config->get( 'APIListModules' ), 'list' );
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
-		$this->mModuleMgr->addModules( $wgAPIMetaModules, 'meta' );
+		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
