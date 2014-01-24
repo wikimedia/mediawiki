@@ -166,7 +166,6 @@ $messages = array(
 'tog-numberheadings' => 'Köpkes automatisch nummere',
 'tog-showtoolbar' => 'Laot edit toolbar zeen',
 'tog-editondblclick' => "Bewirk pagina's bie 'ne dobbelklik (JavaScript)",
-'tog-editsection' => 'Bewirke van secties via [bewirke] links',
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
 'tog-showtoc' => "Inhaudsopgaaf veur pagina's mit mie es 3 köpkes",
 'tog-rememberpassword' => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',

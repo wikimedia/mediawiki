@@ -49,7 +49,6 @@ $messages = array(
 'tog-numberheadings' => 'Atlary awtomatik usulda belgile',
 'tog-showtoolbar' => 'Redaktirleme mahalynda gural panelini görkez (JavaScript)',
 'tog-editondblclick' => 'Sahypany jübüt tyklap, redaktirläp başla (JavaScript)',
-'tog-editsection' => 'Her bir bölümde [redaktirle] çykgydyny görkez',
 'tog-editsectiononrightclick' => 'Bölümleri bölümiň adyna sag tyklap redaktirlemäge mümkinçilik döret (JavaScript)',
 'tog-showtoc' => 'Mazmun tablisasyny görkez (3 sanydan köp ady bar bolan sahypalar üçin)',
 'tog-rememberpassword' => 'Sessiýamy şu brauzerde ýatda sakla  (iň köp $1 {{PLURAL:$1|günläp|günläp}})',

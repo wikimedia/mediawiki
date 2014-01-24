@@ -330,7 +330,6 @@ $messages = array(
 'tog-numberheadings' => 'Numeroi otsikot automaattisesti',
 'tog-showtoolbar' => 'Näytä työkalupalkki',
 'tog-editondblclick' => 'Muokkaa sivuja kaksoisnapsautuksella',
-'tog-editsection' => 'Näytä muokkauslinkit jokaisen osion yläpuolella',
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla osion otsikkoa hiiren oikealla painikkeella',
 'tog-showtoc' => 'Näytä sisällysluettelo (sivuilla, joilla on yli kolme otsikkoa)',
 'tog-rememberpassword' => 'Muista kirjautuminen tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})',

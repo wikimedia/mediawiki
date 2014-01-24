@@ -204,7 +204,6 @@ $messages = array(
 'tog-numberheadings' => 'Automatisk nummerering af overskrifter',
 'tog-showtoolbar' => 'Vis værktøjslinje til redigering',
 'tog-editondblclick' => 'Redigér sider med dobbeltklik',
-'tog-editsection' => 'Redigér afsnit ved hjælp af [redigér]-henvisninger',
 'tog-editsectiononrightclick' => 'Redigér afsnit ved at højreklikke på deres titler',
 'tog-showtoc' => 'Vis indholdsfortegnelse (på sider med mere end tre afsnit)',
 'tog-rememberpassword' => 'Husk mig i denne browser (i højst $1 {{PLURAL:$1|dag|dage}})',

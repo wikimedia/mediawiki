@@ -170,7 +170,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerasion automatega de i titołi de sesion',
 'tog-showtoolbar' => 'Mostra ła bara de i strumenti de modifega (el richiede JavaScript)',
 'tog-editondblclick' => 'Modifega de łe pajine tramite dopio clic (el richiede JavaScript)',
-'tog-editsection' => 'Modifega de łe sesion tramite el cołegamento [modifega]',
 'tog-editsectiononrightclick' => 'Modifega de łe sesion tramite clic destro sol titoło (el richiede JavaScript)',
 'tog-showtoc' => "Mostra l'indexe par łe pajine con pì de 3 sesion",
 'tog-rememberpassword' => 'Tiente in mente la me password so sto computer (par un massimo de $1 {{PLURAL:$1|zorno|zorni}})',

@@ -25,7 +25,6 @@ $messages = array(
 'tog-numberheadings' => 'سربلگه خود شماره گر',
 'tog-showtoolbar' => 'نوار اوزار ويرايشت نشون بيه',
 'tog-editondblclick' => 'بلگيا نه وا دوبار پورنين ويرايشت بكيد',
-'tog-editsection' => 'ممكن بيئن ويرايشت بشخيا وا [ويرايشت]',
 'tog-editsectiononrightclick' => 'بهر ویرایشت نه وا راس کلیک کردن د بهر عنوانیا فعال کو',
 'tog-showtoc' => 'چیا مئن جدول نشو بیه',
 'tog-rememberpassword' => 'اومائن وا مئن منه د ای مرورگر د ویر داشتو(سی بیشترین$1{{PLURAL:$1|day|days}})',
@@ -213,7 +212,7 @@ $messages = array(
 'delete' => 'حذف كردن',
 'deletethispage' => 'ای بلگه نه حذف بكيد',
 'undeletethispage' => 'ای بلگه نه حذف نكيد',
-'undelete_short' => 'پاک نکو {{جمی:$1|یه گل ویرایشت|$1 ویرایشتیا}}',
+'undelete_short' => 'زنه کردن {{جمی:$1|یه گل ویرایشت|$1 ویرایشتیا}}',
 'viewdeleted_short' => 'بوینیت {{[جمی:$1|یه گل ویرایشت پاک بیه|$1ویرایشتیا پاک بیه}}',
 'protect' => 'حمايت بكيد',
 'protect_change' => 'آلشت بكيد',
@@ -705,6 +704,7 @@ $2',
 'rev-deleted-user-contribs' => '[نوم کاروری یا نشونی آی پی جا وه جا بیه - چیا قام بیه د ور هوم یاریانه ویرایشت بکید]',
 'rev-delundel' => 'آلشت وضئيت ديئن',
 'rev-showdeleted' => 'نشو دائن',
+'revisiondelete' => 'پاک کردن/زنه کردن وانئریا',
 'revdelete-no-file' => 'فایل مشقص بیه وجود ناره.',
 'revdelete-show-file-submit' => 'هری',
 'revdelete-selected' => "'''{{جمی:$2|وانیری انتخاو بیه|وانیریا انتخاو بیه}} د[[:$1]]:'''",
@@ -907,7 +907,9 @@ $2',
 'saveusergroups' => 'ذخیره کرد گرویا کاروری',
 'userrights-groupsmember' => 'اندوم:',
 'userrights-reason' => 'دليل:',
+'userrights-no-interwiki' => 'شما سی ویرایشت حقوق کارور د ویکی یا هنی دسرسی ناریت.',
 'userrights-nodatabase' => 'پاگا دونسمنی $1 یا نیئش یا د ولاتنشین نئ.',
+'userrights-notallowed' => 'شما سی اضاف کردن  حقوق کارور یا ورداشتنش دسرسی ناریت.',
 'userrights-changeable-col' => 'گرویایی که شما تونیت ویرایشت بکید',
 'userrights-unchangeable-col' => 'گرویایی که شما نتونیت ویرایشت بکید',
 
@@ -924,6 +926,10 @@ $2',
 'group-bot-member' => '{{حنس:$1|بوت}}',
 'group-sysop-member' => '{{جنس:$1|مدیر}}',
 'group-bureaucrat-member' => '{{جنس:$1|بروکرات}}',
+
+'grouppage-user' => '{{ns:project}}:کاروریا',
+'grouppage-bot' => '{{ns:project}}:بوت یا',
+'grouppage-bureaucrat' => '{{ns:project}}:دیوونداریا',
 
 # Rights
 'right-read' => 'حنن بلگیا',
@@ -1042,8 +1048,9 @@ $2',
 # Upload
 'upload' => 'بلم گير كردن فايلا',
 'uploadbtn' => 'سوار کردن فایل',
+'reuploaddesc' => 'سوار کردن نه رد بکید و د ورئردیت جابلگ سوارکرد',
 'uploadnologin' => 'وارد نبیه',
-'uploadnologintext' => 'لطفن $1 سی سوارکرد فایلیا.',
+'uploadnologintext' => 'لطفن $1 سی سوارکرد جانیایا.',
 'uploaderror' => 'خطا د سوار کردن',
 'uploadlog' => 'پهرستنومه سوارکرد',
 'uploadlogpage' => 'سوارکرد',
@@ -1052,31 +1059,35 @@ $2',
 'fileuploadsummary' => 'چکسه',
 'filereuploadsummary' => 'آلشتیا فایل:',
 'filesource' => 'سرچشمه:',
-'uploadedfiles' => 'فایلیا سواربیه',
+'uploadedfiles' => 'جانیایا سواربیه',
 'badfilename' => 'نوم جانیا د "$1" آلشت بیه.',
 'empty-file' => 'فایلی که دئی ته حالی بیه.',
 'file-too-large' => 'فایلی که دئی ته فره گپ بی.',
 'filename-tooshort' => 'نوم فایل فره کؤچکه.',
 'illegal-filename' => 'نوم فایل اجاره ندئه بیه.',
-'unknown-error' => 'یه گل خطا ناشناس ری ون کرده.',
-'savefile' => 'فایل نه ذخیره کو',
+'unknown-error' => 'یه گل خطا نادیار ری ون کرده.',
+'savefile' => 'جانیا نه ذخیره کو',
 'uploadedimage' => 'سوارکرد"[[$1]]"',
+'overwroteimage' => 'یه گل نسقه تازه د "[[$1]]" سوار بیه',
 'uploaddisabled' => 'سوار کردن د کار نئ.',
 'copyuploaddisabled' => 'سوار کردن وا یو آر ال د کار نئ.',
 'uploadfromurl-queued' => 'سوارکرد تو ها د گئ.',
 'uploaddisabledtext' => 'سوار کرد فایلیا د کار نئ.',
 'upload-source' => 'سرچشمه فایل',
-'sourcefilename' => 'سرچشمه نوم فایل:',
+'sourcefilename' => 'سرچشمه نوم جانیا:',
 'sourceurl' => 'سرچشمه يو آر ال:',
 'destfilename' => 'نوم فایل مقصد:',
-'watchthisupload' => 'ای فایل بوینیت',
+'watchthisupload' => 'ای جانیا نه بوینیت',
 'upload-success-subj' => 'سوار کرد خوش سرانجوم',
+'upload-success-msg' => 'سوارکرد شما سی [$2] خوو بی.وه د ایچه هئش:[[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'مشگل د سوارکردن',
+'upload-failure-msg' => 'یه گل مشلگل د سوارکردتو سی [$2] بی:$1',
 
 'upload-proto-error' => 'پروتکل نادروس',
-'upload-file-error' => 'خطا داخلی',
+'upload-file-error' => 'خطا مینونه',
 'upload-misc-error' => 'خطا سوار کرد ناشناخته',
 'upload-unknown-size' => 'انازه نادیار',
+'upload-copy-upload-invalid-domain' => 'ورداشتن سوارکردیا د ای پوشگئر د دسرس نئ.',
 
 # File backend
 'backend-fail-notexists' => 'فایل $1 وجود ناره.',
@@ -1103,6 +1114,9 @@ $2',
 'http-invalid-url' => 'یو آر ال نامعتور:$1',
 'http-read-error' => 'خطا د حنن اچ تی تی پی.',
 
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error28' => 'تموم بیئن مئلت سی سوار کرد',
+
 'license' => 'ليانس دار بيئن',
 'license-header' => 'د شكل ليسانس دار بيئن',
 'nolicense' => 'هیچی انتخاو نبیه',
@@ -1110,6 +1124,7 @@ $2',
 'upload_source_file' => '(یه گل فایل د انجومیار تو)',
 
 # Special:ListFiles
+'listfiles-summary' => 'ای بلگه یا ویجه همه جانیایا سوار بیه نه نشو می ئین.',
 'listfiles_search_for' => 'پی جوری سی نوم رسانه:',
 'imgfile' => 'فايل',
 'listfiles' => 'نوم گه فایل',
@@ -1144,6 +1159,7 @@ $2',
 'linkstoimage' => 'دمال بيه {{PLURAL:$1|ديس ونيا بلگه|$1 ديس ون بلگيا}} دای فایل:',
 'nolinkstoimage' => 'ایچه هیژ بلگه ای سی هوم پیوند بیئن وا ای فایل نی',
 'morelinkstoimage' => ' [[ویجه:چه هوم پیوندی ها ایچه/$1|هوم پیوندیا هنی]]سی ای فایل بونیت.',
+'sharedupload' => 'ای جانیا که د $1 هئ شایت د پروجه یا هنی استفاده بیه.',
 'sharedupload-desc-here' => 'فایلی که د $1 شایت د مئن پروجیا هنی استفاده بیه.
 توضی دباره[$2 file description page] د هار نشو دئئه بیه',
 'filepage-nofile' => 'چنو فایلی وا ای نوم نئ.',
@@ -1306,6 +1322,10 @@ $2',
 'protectedarticle' => 'حفاظت بيه [[$1]]',
 'modifiedarticleprotection' => 'ریتراز حفاظت د "[[$1]]" آلشت بیه',
 'protect-title' => 'ریتراز حفاظت د "$1" آلشت بیه',
+'restriction-type' => 'دسرسی:',
+
+# Restrictions (nouns)
+'restriction-upload' => 'سوار کرد',
 
 # Restriction levels
 'restriction-level-all' => 'هر ریترازی',
@@ -1313,6 +1333,7 @@ $2',
 # Undelete
 'undeletelink' => 'بوين/دوواره آماده با',
 'undeleteviewlink' => 'ديئن',
+'cannotundelete' => 'زنه کردن انجوم نبی:$1',
 'undelete-error-short' => 'خطا پاک نبیئن جانیا:$1',
 
 # Namespace form on various pages
@@ -1369,6 +1390,8 @@ $2',
 'block-log-flags-nocreate' => 'حساو راس کردن عاجز بیه.',
 
 # Move page
+'movenotallowed' => 'شما وه جا وه جا کردن بلگه دسرسی ناریت',
+'movenotallowedfile' => 'شما وه جا وه جا کردن جانیایا دسرسی ناریت',
 'movelogpage' => 'جاوه جا کردن',
 'revertmove' => 'لرستن',
 
@@ -1391,6 +1414,7 @@ $2',
 'import-comment' => 'ویر و باور:',
 'importcantopen' => 'نبوئه جانیا دئه بیه نه وا بکید',
 'importnofile' => 'هیچ جانیا دئه بیه ای سوار نبیه.',
+'import-upload' => 'سوار کرد دونسمنیا ایکس ام ال',
 'import-token-mismatch' => 'کمبود د دونسمنیا نشینگه.
 لطفن هنی کوششت بکید.',
 
@@ -1450,6 +1474,7 @@ $2',
 'tooltip-diff' => 'آلشتیا نه که شما د ای متن راس کردیته نشو بیئه',
 'tooltip-compareselectedversions' => 'فرخیا مینجا دو تا د دو بار دیئن ای بلگه نه بوینیت',
 'tooltip-watch' => 'ای بلگه نه د سیل برگتو اضاف بکید',
+'tooltip-upload' => 'شرو د سوار کرد',
 'tooltip-rollback' => '"ورگشتن" لرستن د حالت اول  سی ای بلگه  که سی  يه كه هومياری  نيايی اصلاح بيه وا يه پورنسن',
 'tooltip-undo' => 'انجوم نگرتن ای ویرایشت ورگن و همه فرمیا ویرایشت تانه که حالت پیش سیل واکو.یه اجازه میئه سی اضاف کردن یه دلیل د چکسته.',
 'tooltip-summary' => 'يه چكسته كؤچك وارد بكيد',
@@ -1477,6 +1502,7 @@ $2',
 
 # Special:NewFiles
 'newimages' => 'عسگدونی جانیایا تازه',
+'newimages-summary' => 'ای بلگه یا ویجه همه جانیایا سوار بیه نه نشو می ئین.',
 'newimages-label' => 'نوم جانیا(یا بشقی د وه):',
 'sp-newimages-showfrom' => 'جانیایا تازه نه که $2 ، $2 شرو بینه نشو بیه',
 
@@ -1546,6 +1572,7 @@ $2',
 # Special:SpecialPages
 'specialpages' => 'بلگيا ويجه',
 'specialpages-group-changes' => 'آلشتیا تازه و پهرستنومه یا',
+'specialpages-group-media' => 'گزارشتیا رسانه و سوارکردیا',
 
 # External image whitelist
 'external_image_whitelist' => 'یه خط نه ول بکید چی وه<pre>',
@@ -1554,6 +1581,8 @@ $2',
 'tag-filter' => 'فيلتر [[Special:Tags|Tag]]:',
 
 # API errors
+'api-error-badaccess-groups' => 'شما سی سوار کرد جانیایا د ای ویکی اجازه ناریت.',
+'api-error-copyuploaddisabled' => 'سوار کردن وا یو آر ال دی ای سرور غیرفعال بیه.',
 'api-error-filename-tooshort' => 'نوم جانیا فره کؤچکه.',
 'api-error-illegal-filename' => 'نوم جانیا اجازه دئه نئ.',
 'api-error-mustbeloggedin' => 'شما سی سوارکردن فایلیا با بیایت وامین',
@@ -1561,4 +1590,6 @@ $2',
 # Special:ExpandTemplates
 'expand_templates_remove_comments' => 'جا وه جا بیئن ویر و باوریا',
 
+# Unknown messages
+'uploadinvalidxml' => 'ایکس ام الی که سوار بیه نبوئه نوتیج با.',
 );

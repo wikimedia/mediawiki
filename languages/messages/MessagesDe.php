@@ -434,7 +434,6 @@ $messages = array(
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten',
-'tog-editsection' => 'Links zum Bearbeiten einzelner Abschnitte anzeigen',
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten',
 'tog-showtoc' => 'Anzeige eines Inhaltsverzeichnisses auf Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
@@ -4335,5 +4334,6 @@ faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
 'expand_templates_preview' => 'Vorschau',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'Das XML in der hochgeladenen Datei konnte nicht geparst werden.',
 );

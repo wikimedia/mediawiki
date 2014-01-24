@@ -326,7 +326,6 @@ $messages = array(
 'tog-numberheadings' => 'Automatyczna numeracja nagłówków',
 'tog-showtoolbar' => 'Pokaż pasek narzędzi',
 'tog-editondblclick' => 'Podwójne kliknięcie rozpoczyna edycję',
-'tog-editsection' => 'Możliwość edycji poszczególnych sekcji strony (link [edytuj])',
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję',
 'tog-showtoc' => 'Pokazuj spis treści (na stronach z więcej niż 3 nagłówkami)',
 'tog-rememberpassword' => 'Zapamiętaj moje hasło w przeglądarce (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',

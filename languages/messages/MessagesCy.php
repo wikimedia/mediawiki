@@ -129,7 +129,6 @@ $messages = array(
 'tog-numberheadings' => "Rhifo penawdau'n awtomatig",
 'tog-showtoolbar' => 'Dangos y bar offer golygu',
 'tog-editondblclick' => 'Golygu tudalennau wrth glicio ddwywaith',
-'tog-editsection' => 'Galluogi golygu adran trwy ddolennau [golygu] uwchben yr adran',
 'tog-editsectiononrightclick' => 'Galluogi golygu adran drwy dde-glicio ar bennawd yr adran',
 'tog-showtoc' => 'Dangos y daflen gynnwys (ar gyfer tudalennau sydd â mwy na 3 pennawd)',
 'tog-rememberpassword' => "Y porwr hwn i gofio'r manylion mewngofnodi (hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",

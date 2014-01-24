@@ -316,7 +316,6 @@ $messages = array(
 'tog-numberheadings' => 'Pealkirjade automaatnummerdus',
 'tog-showtoolbar' => 'Näita redigeerimise tööriistariba',
 'tog-editondblclick' => 'Redigeeri lehekülgi topeltklõpsu peale',
-'tog-editsection' => 'Näita alaosade redigeerimise linke',
 'tog-editsectiononrightclick' => 'Alusta alaosa redigeerimist paremklõpsuga alaosa pealkirjal',
 'tog-showtoc' => 'Näita sisukorda (lehtedel, millel on rohkem kui 3 pealkirja)',
 'tog-rememberpassword' => 'Parooli meeldejätmine tulevasteks seanssideks (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',

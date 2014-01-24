@@ -366,7 +366,6 @@ $messages = array(
 'tog-numberheadings' => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar' => 'Düzenleme araç çubuğunu göster',
 'tog-editondblclick' => 'Çift tıklayarak sayfaları düzenle',
-'tog-editsection' => 'Bölümleri [{{int:Editsection}}] bağlantıları ile düzenlemeyi etkinleştir',
 'tog-editsectiononrightclick' => 'Bölüm başlığına sağ tıklayarak bölümleri düzenleyebilme olanağı ver',
 'tog-showtoc' => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',

@@ -53,7 +53,6 @@ $messages = array(
 'tog-numberheadings' => 'Tìtoj ëd paràgraf<br />che as nùmero daspërlor',
 'tog-showtoolbar' => "Smon-e la bara dj'utiss ëd modìfica",
 'tog-editondblclick' => 'Dobia sgnacà për modifiché la pàgina',
-'tog-editsection' => "Abilité le modìfiche ëd session con j'anliure [modifiché]",
 'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima ai tìtoj col tast drit dël rat',
 'tog-showtoc' => "Smon-e la tàula dij contnù (për le pàgine che l'han pì che 3 session)",
 'tog-rememberpassword' => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di}})",
@@ -602,6 +601,8 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 'retypenew' => 'Che a scriva torna soa neuva ciav:',
 'resetpass_submit' => 'Argistré la ciav e rintré ant ël sistema',
 'changepassword-success' => "Soa ciav a l'é stàita modificà sensa problema!",
+'changepassword-throttled' => "A l'ha fàit tròpi tentativ recent d'intré ant ël sistema.
+Për piasì, ch'a speta $1 prima ëd prové torna.",
 'resetpass_forbidden' => 'Le ciav as peulo pa cambiesse',
 'resetpass-no-info' => 'A dev esse rintrà ant ël sustema për acede diretament a sta pàgina.',
 'resetpass-submit-loggedin' => "Cangé 'd ciav",
@@ -654,6 +655,8 @@ Ciav provisòria: $2',
 'changeemail-password' => 'Soa ciav su {{SITENAME}}:',
 'changeemail-submit' => "Cangé l'adrëssa ëd pòsta eletrònica",
 'changeemail-cancel' => 'Anulé',
+'changeemail-throttled' => "A l'ha fàit tròpi tentativ ëd rintré ant ël sistema.
+Për piasì, ch'a speta $1 prima ëd prové torna.",
 
 # Special:ResetTokens
 'resettokens' => 'Riamposté ij geton',
@@ -3964,5 +3967,6 @@ An efet, a espand praticament tut lòn ch'a-i é antrames dle grafe dobie.",
 'expand_templates_preview' => 'Preuva',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => "L'XML ant l'archivi carià a l'ha nen podù esse analisà.",
 );

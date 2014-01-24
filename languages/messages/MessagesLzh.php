@@ -161,7 +161,6 @@ $messages = array(
 'tog-numberheadings' => '生章數',
 'tog-showtoolbar' => '多寶列見（JavaScript）',
 'tog-editondblclick' => '纂頁雙擊（JavaScript）',
-'tog-editsection' => '纂段擊鏈',
 'tog-editsectiononrightclick' => '纂段右擊標（JavaScript）',
 'tog-showtoc' => '四章見目',
 'tog-rememberpassword' => '符節通越（達至$1日）',

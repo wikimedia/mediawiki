@@ -274,7 +274,6 @@ $messages = array(
 'tog-numberheadings' => "Uma siq'ikunata kikinmanta yupay",
 'tog-showtoolbar' => "Llamk'apuna sillwita rikuchiy",
 'tog-editondblclick' => "P'anqakunata llamk'apuy iskaylla ñit'iywan",
-'tog-editsection' => "Rakirilla llamk'apuyta saqillay [qillqay] t'inkiwan",
 'tog-editsectiononrightclick' => "Rakirilla llamk'apuyta saqillay paña butunta rakirip sutinpi ñit'ispa",
 'tog-showtoc' => "Yuyarina wachuchasqata rikuchiy (kimsamanta aswan uma siq'iyuq p'anqakunapaq)",
 'tog-rememberpassword' => "Ruraqpa sutiyta yaykuna rimaytapas yuyaykuy kay llika wamp'unapi ({{PLURAL:$1|huk p'unchawkama|$1 p'unchawkama}})",

@@ -24,7 +24,6 @@ $messages = array(
 'tog-numberheadings' => 'Autōmatiska galwasrīndan nummerinsna',
 'tog-showtoolbar' => 'Waidinnais sawinzlin stēisan pagaptin (JavaScript)',
 'tog-editondblclick' => 'Redigīs pāusans pra dwigubban pellis gnesnan (JavaScript)',
-'tog-editsection' => 'Ermazīnginais redigīsnan stēisan pāusas sekciōnin pra "[redigīs]" autengīnsenin',
 'tog-editsectiononrightclick' => 'Ermazīnginais redigīsnan stēisan pāusas sekciōnin pra tikrōman pellis knuppas gnesnan na tenesses tītelin',
 'tog-showtoc' => 'Waidinnais ēnturas listin (en pāusamans sen tūls nikāi 3 galwasrīndans)',
 'tog-rememberpassword' => 'Pamēnais enēisenes infōrmaciōnins en šismu kōmputerin (per maksimum of $1 {{PLURAL:$1|deinā|dēinans}})',

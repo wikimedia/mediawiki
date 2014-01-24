@@ -243,7 +243,6 @@ $messages = array(
 'tog-numberheadings' => 'Númera fyrirsagnir sjálfkrafa',
 'tog-showtoolbar' => 'Sýna breytingarverkfærastiku',
 'tog-editondblclick' => 'Breyta síðum þegar tvísmellt er',
-'tog-editsection' => 'Virkja hlutabreytingu með [breyta] tenglum',
 'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir',
 'tog-showtoc' => 'Sýna efnisyfirlit (fyrir síður með meira en 3 fyrirsagnir)',
 'tog-rememberpassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',

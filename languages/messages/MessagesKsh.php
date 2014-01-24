@@ -222,7 +222,6 @@ $messages = array(
 'tog-numberheadings' => 'Dun de Üvverschrefte automatisch nummereere',
 'tog-showtoolbar' => 'De Wärkzüchleß zom Ändere aanzeije',
 'tog-editondblclick' => 'Sigge met Dubbel-Klicke ändere',
-'tog-editsection' => 'Maach [{{int:Editsection}}]-Links aan de Avschnedde dran',
 'tog-editsectiononrightclick' => 'Afschnedde met Räächs-Klecke op de Üvverschrefte ändere',
 'tog-showtoc' => 'Zeich en Enhaldsüvversich bei Sigge met mieh wie drei Üvverschrefte dren',
 'tog-rememberpassword' => 'Op Duur enlogge op dämm Kompjuter un för dää Brauser (hält {{PLURAL:$1|för eine Daach|bes op $1 Dääsch|bloß för hück}})',

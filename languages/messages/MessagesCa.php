@@ -214,7 +214,6 @@ $messages = array(
 'tog-numberheadings' => 'Enumera automàticament els encapçalaments',
 'tog-showtoolbar' => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick' => 'Edita les pàgines amb un doble clic (cal JavaScript)',
-'tog-editsection' => 'Activa la modificació de seccions mitjançant els enllaços [modifica]',
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc' => 'Mostra la taula de continguts (per pàgines amb més de 3 seccions)',
 'tog-rememberpassword' => 'Recorda la sessió al navegador (per un màxim de {{PLURAL:$1|dia|dies}})',
@@ -757,6 +756,8 @@ Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu tr
 'retypenew' => 'Torneu a escriure la nova contrasenya:',
 'resetpass_submit' => 'Definiu una contrasenya i inicieu una sessió',
 'changepassword-success' => "S'ha canviat la vostra contrasenya amb èxit!",
+'changepassword-throttled' => "Heu realitzat massa intents d'inici de sessió.
+Espereu $1 abans de tornar-ho a provar.",
 'resetpass_forbidden' => 'No poden canviar-se les contrasenyes',
 'resetpass-no-info' => "Heu d'estar registrats en un compte per a poder accedir directament a aquesta pàgina.",
 'resetpass-submit-loggedin' => 'Canvia la contrasenya',
@@ -808,6 +809,8 @@ Contrasenya temporal: $2",
 'changeemail-password' => 'La vostra contrasenya a {{SITENAME}}:',
 'changeemail-submit' => 'Canvia de correu electrònic',
 'changeemail-cancel' => 'Cancel·la',
+'changeemail-throttled' => "Heu realitzat massa intents d'inici de sessió.
+Espereu $1 abans de tornar-ho a provar.",
 
 # Special:ResetTokens
 'resettokens' => 'Reinicia els testimonis',

@@ -330,7 +330,6 @@ $messages = array(
 'tog-numberheadings' => 'Vis nummererte overskrifter',
 'tog-showtoolbar' => 'Vis endringsverktøyline',
 'tog-editondblclick' => 'Endre sider med dobbeltklikk',
-'tog-editsection' => 'Endre avsnitt ved hjelp av [endre]-lenkje',
 'tog-editsectiononrightclick' => 'Endre avsnitt ved å høgreklikke på avsnittsoverskrifter',
 'tog-showtoc' => 'Vis innhaldsliste (for sider med meir enn tre bolkar)',
 'tog-rememberpassword' => 'Hugs innlogginga mi med denne nettlesaren (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',

@@ -74,7 +74,6 @@ $messages = array(
 'tog-numberheadings' => 'Auto-nga-ihap nga mga pagngaran',
 'tog-showtoolbar' => 'Igpakita an edit toolbar',
 'tog-editondblclick' => 'Igliwat in mga pakli ha doble nga klik',
-'tog-editsection' => 'Tugoti in seksyon nga pagliwat pinaagi hin [igliwat] nga mga sumpay',
 'tog-editsectiononrightclick' => 'Tugoti in pagliwat hin seksyon ha pag klik-ha-tuo dida hin mga ngaran o titulo hin seksyon',
 'tog-showtoc' => 'Igpakita in tabla hin sulod (para hin mga pakli nga sobra hin 3 ka titulo o pagngaran)',
 'tog-rememberpassword' => 'Hinumdomi an akon pan-sakob dinhi nga browser (para hin maximum nga $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',

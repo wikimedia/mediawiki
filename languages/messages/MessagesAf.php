@@ -219,7 +219,6 @@ $messages = array(
 'tog-numberheadings' => 'Nommer opskrifte outomaties',
 'tog-showtoolbar' => 'Wys redigeergereedskap',
 'tog-editondblclick' => 'Dubbelkliek om te wysig',
-'tog-editsection' => 'Wys [wysig]-skakels vir elke afdeling',
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc' => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
 'tog-rememberpassword' => "Onthou dat ek op hierdie rekenaar ingeteken het (vir 'n maksimum van $1 {{PLURAL:$1|dag|dae}})",

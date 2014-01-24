@@ -74,7 +74,6 @@ $messages = array(
 'tog-numberheadings' => 'Autonumberar los encabezaos',
 'tog-showtoolbar' => "Amosar la barra de ferramientes d'edición",
 'tog-editondblclick' => 'Editar páxines con doble clic',
-'tog-editsection' => "Activar la edición de seiciones per aciu d'enllaces [editar]",
 'tog-editsectiononrightclick' => 'Activar la edición de seiciones calcando col botón drechu nos títulos de seición',
 'tog-showtoc' => 'Amosar índiz (pa páxines con más de 3 encabezaos)',
 'tog-rememberpassword' => 'Recordar la mio identificación nesti ordenador (hasta un máximu de $1 {{PLURAL:$1|día|díes}})',

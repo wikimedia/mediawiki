@@ -181,7 +181,6 @@ Offers user to use alternative representation of [[Special:RecentChanges]] and w
 This is the toolbar: [[Image:Toolbar.png]]",
 'tog-editondblclick' => "{{Gender}}
 [[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
-'tog-editsection' => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections. {{Gender}}",
 'tog-editsectiononrightclick' => "{{Gender}}
 [[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
 'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'.
@@ -1600,7 +1599,8 @@ Used on the account creation form when creating another user's account. Similar 
 'resetpass_header' => 'Header on box on special page [[Special:ChangePassword]].
 
 {{Identical|Reset password}}',
-'oldpassword' => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
+'oldpassword' => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.
+{{Identical|Old password}}",
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit' => 'Submit button on [[Special:ChangePassword]]',
@@ -2324,7 +2324,6 @@ See also:
 * $2 - reason or {{msg-mw|Blockednoreason}}
 * $3 - username
 * $4 - current user's IP address",
-'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
 
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',
@@ -10673,5 +10672,6 @@ test
 'expand_templates_preview' => '{{Identical|Preview}}',
 
 # Unknown messages
+'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
 'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 );

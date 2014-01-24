@@ -294,7 +294,6 @@ $messages = array(
 'tog-numberheadings' => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar' => 'Zobraziť panel nástrojov úprav',
 'tog-editondblclick' => 'Upravovať stránky po dvojitom kliknutí',
-'tog-editsection' => 'Umožniť upravovanie sekcie prostredníctvom odkazov [upraviť]',
 'tog-editsectiononrightclick' => 'Umožniť upravovanie sekcie pravým kliknutím na nadpisy sekcií',
 'tog-showtoc' => 'Zobrazovať tabuľku s obsahom (pre stránky s viac ako 3 nadpismi)',
 'tog-rememberpassword' => 'Zapamätať si prihlásenie na tomto počítači (najviac $1 {{PLURAL:$1|deň|dni|dní}})',

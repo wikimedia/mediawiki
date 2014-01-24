@@ -379,7 +379,6 @@ $messages = array(
 'tog-numberheadings' => '見出しに番号を自動的に振る',
 'tog-showtoolbar' => '編集用のツールバーを表示',
 'tog-editondblclick' => 'ダブルクリックでページを編集',
-'tog-editsection' => '[編集]リンクから節を編集できるようにする',
 'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする',
 'tog-showtoc' => '目次を表示 (ページに見出しが4つ以上ある場合)',
 'tog-rememberpassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',

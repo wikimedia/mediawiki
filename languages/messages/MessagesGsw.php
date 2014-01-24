@@ -144,7 +144,6 @@ $messages = array(
 'tog-numberheadings' => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar' => 'Wärchzyyglyscht zum Bearbeite aazeige',
 'tog-editondblclick' => 'Syte ändere mit Doppelklick',
-'tog-editsection' => 'Links aazeige für ds Bearbeite vo einzelnen Absätz',
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick uf d Iberschrifte',
 'tog-showtoc' => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword' => 'Mit däm Browser duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',

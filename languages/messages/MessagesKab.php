@@ -54,7 +54,6 @@ $messages = array(
 'tog-numberheadings' => 'Izwal ɣur-sen imḍanen mebla ma serseɣ-iten',
 'tog-showtoolbar' => 'Ssken tafeggagt n ifecka n ubeddel',
 'tog-editondblclick' => 'Beddel isebtar mi wekkiɣ snat n tikwal',
-'tog-editsection' => 'Eǧǧ abeddel n umur s yizdayen [beddel]',
 'tog-editsectiononrightclick' => 'Ssermed abeddel n tigezmi s ukliki ayeffus ɣef izwal',
 'tog-showtoc' => 'Ssken agbur (i isebtar i yesɛan kter n 3 izwalen)',
 'tog-rememberpassword' => 'Cfu ɣef yisem n umseqdac inu di uselkim-agi (i afellay n $1 {{PLURAL:$1|ass|ussan}})',
@@ -2469,6 +2468,9 @@ Zeṛ [[Special:BlockList|umuɣ n isewḥal]] iwakken ad zṛeḍ isewḥal.',
 'blocklog-showsuppresslog' => 'Amseqdac agi, yetseweḥel dɣa yeweffer uqbel. Ad affeḍ aɣmis n tukksiwin ddaw-agi :',
 'blocklogentry' => 'yesewḥel [[$1]] ; alama : $2 $3',
 'reblock-logentry' => 'yebeddel iɣewwaren n usewḥel n [[$1]] s tasewtit ar $2 $3',
+'blocklogtext' => 'Wagi d-aɣmis n tigawin n usewḥel d aksusewḥel n imseqdacen.
+Tansiwin IP yestsuwḥelen s-uwurman ulac-itent deg umuɣ agi.
+Ẓer [[Special:BlockList|umuɣ n isewḥal]] iwakken ad ẓṛeḍ iḍeggiren d isewḥal yellan tura.',
 'unblocklogentry' => 'yekkes asewḥel n $1',
 'block-log-flags-anononly' => 'Imseqdacen udrigen kan',
 'block-log-flags-nocreate' => 'asnulfu n umiḍan yessegdel',
@@ -2480,7 +2482,7 @@ Zeṛ [[Special:BlockList|umuɣ n isewḥal]] iwakken ad zṛeḍ isewḥal.',
 'range_block_disabled' => 'Azref n unedbal i usnulfu n isewḥal n tagrummiwin IP yensa.',
 'ipb_expiry_invalid' => 'Tanzagt n tasewti ur teɣbel ara.',
 'ipb_expiry_temp' => 'Isewḥal n isemawen n imseqdacen yeffren ilaq ad illin d-imeɣlalen.',
-'ipb_hide_invalid' => 'Ulamek an ekkes amiḍan agi ; yesɛa aṭas ibeddilen.',
+'ipb_hide_invalid' => 'Ulamek an ekkes amiḍan agi ; yesɛa ugar n {{PLURAL:$1|yiwen abeddel|$1 ibeddilen}}.',
 'ipb_already_blocked' => '« $1 » yesewḥel yakan',
 'ipb-needreblock' => '« $1 » yesewḥel yakan. Tebɣiḍ ad beddeleḍ iɣewwaren ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Asewḥel nniḍen|Isewḥelen nniḍen}}',
@@ -3262,6 +3264,7 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'imgmultipageprev' => '← asebter ssabeq',
 'imgmultipagenext' => 'asebter ameḍfir →',
 'imgmultigo' => 'Ruḥ!',
+'imgmultigoto' => 'Ruḥ ar usebtar $1',
 
 # Table pager
 'ascending_abbrev' => 'asawen',
@@ -3325,6 +3328,9 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 # Special:Version
 'version' => 'Lqem',
 'version-specialpages' => 'isebtar usligen',
+'version-other' => 'Nniḍen',
+'version-version' => '(lqem $1)',
+'version-poweredby-others' => 'nniḍen',
 'version-software' => 'Iseɣẓanen i serkeben',
 'version-software-product' => 'Afaris',
 'version-software-version' => 'Lqem',
@@ -3453,6 +3459,10 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'feedback-adding' => 'Rnud iwenniten inek/inem ar usebter...',
 'feedback-error1' => 'Tuccḍa : Agmuḍ n API ur yetwaɛqel ara',
 'feedback-error3' => 'Tuccḍa : Ulac tamrarut n API',
+'feedback-close' => 'D ayen',
+
+# Search suggestions
+'searchsuggest-search' => 'Nadi',
 
 # API errors
 'api-error-badtoken' => 'Tuccḍa tagensit : yir « tiddest ».',
@@ -3475,6 +3485,10 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'duration-decades' => '$1 {{PLURAL:$1|amrawass|amrawussan}}',
 'duration-centuries' => '$1 {{PLURAL:$1|timiḍi|timiḍa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|agimseggwas|agimseggwasen}}',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|tasint|tisinin}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|tasint|tisinin}}',
 
 # Unknown messages
 'uploadinvalidxml' => 'XML deg ufaylu yekteren ur d-yetwesleḍ ara.',

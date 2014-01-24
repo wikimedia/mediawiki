@@ -218,7 +218,6 @@ $messages = array(
 'tog-numberheadings' => 'Automatski numeriši podnaslove',
 'tog-showtoolbar' => 'Pokaži alatnu traku (potreban JavaScript)',
 'tog-editondblclick' => 'Izmijeni stranice dvostrukim klikom (potreban JavaScript)',
-'tog-editsection' => 'Omogući uređivanje sekcija preko [uredi] linkova',
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
 'tog-showtoc' => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword' => 'Upamti moju prijavu za ovaj preglednik (za maksimum od $1 {{PLURAL:$1|dan|dana}})',

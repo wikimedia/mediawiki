@@ -357,7 +357,6 @@ $messages = array(
 'tog-numberheadings' => 'Beri nomor judul secara otomatis',
 'tog-showtoolbar' => 'Tampilkan bilah alat penyuntingan',
 'tog-editondblclick' => 'Sunting halaman dengan klik ganda',
-'tog-editsection' => 'Fungsikan penyuntingan subbagian melalui pranala [sunting]',
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian',
 'tog-showtoc' => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingat kata sandi saya di peramban ini (selama $1 {{PLURAL:$1|hari}})',

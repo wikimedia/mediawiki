@@ -94,7 +94,6 @@ $messages = array(
 'tog-numberheadings' => 'Koj yi jox lim seen bopp',
 'tog-showtoolbar' => 'Wone bànqaasu njëlu coppite bi (JavaScript)',
 'tog-editondblclick' => 'Cuq cuqaatal ngir soppi aw xët (JavaScript)',
-'tog-editsection' => 'Soppi ab xaaj jaare ko cib lëkkalekaay [Soppi]',
 'tog-editsectiononrightclick' => 'Soppi ab xaaj cib cuqub ndeyjoor ci kojam  (JavaScript)',
 'tog-showtoc' => 'Wone tëralinu ne-ne yi (ngir xët yi ëpp 3 xaaj)',
 'tog-rememberpassword' => 'Fattalikul sama baatujàll  (for a maximum of $1 {{PLURAL:$1|day|days}})',

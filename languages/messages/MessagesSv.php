@@ -336,7 +336,6 @@ $messages = array(
 'tog-numberheadings' => 'Automatisk numrerade rubriker',
 'tog-showtoolbar' => 'Visa redigeringsverktygsraden',
 'tog-editondblclick' => 'Redigera sidor med dubbelklick',
-'tog-editsection' => 'Aktivera redigering av avsnitt genom [redigera]-länkar',
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker',
 'tog-showtoc' => 'Visa innehållsförteckning (för sidor med minst fyra rubriker)',
 'tog-rememberpassword' => 'Kom ihåg min inloggning på den här webbläsaren (i maximalt $1 {{PLURAL:$1|dygn|dygn}})',

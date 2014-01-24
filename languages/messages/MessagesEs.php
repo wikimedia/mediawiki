@@ -394,7 +394,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar' => 'Mostrar la barra de edición',
 'tog-editondblclick' => 'Editar las páginas al pulsar dos veces en ellos con el ratón',
-'tog-editsection' => 'Activar la edición de secciones mediante el enlace [editar]',
 'tog-editsectiononrightclick' => 'Activar la edición de secciones pulsando el botón derecho en los títulos de secciones',
 'tog-showtoc' => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword' => 'Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})',

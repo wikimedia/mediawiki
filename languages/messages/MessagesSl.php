@@ -197,7 +197,6 @@ $messages = array(
 'tog-numberheadings' => 'Samodejno številči poglavja',
 'tog-showtoolbar' => 'Prikaži urejevalno orodno vrstico',
 'tog-editondblclick' => 'Omogoči urejanje strani z dvojnim klikom',
-'tog-editsection' => 'Omogoči urejanje delov prek povezav [{{int:editsection}}]',
 'tog-editsectiononrightclick' => 'Omogoči urejanje razdelkov z desnim klikanjem njihovih naslovov',
 'tog-showtoc' => 'Prikaži vsebino (strani z več kot tremi naslovi)',
 'tog-rememberpassword' => 'Zapomni si me v tem brskalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
