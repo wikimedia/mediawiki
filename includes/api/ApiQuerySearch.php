@@ -72,6 +72,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
+		if ( isset( $params['sort'] ) ) {
+			$search->setSort( $params['sort'] );
+		}
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -213,6 +216,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		global $wgSearchType;
 
+		// Get the valid sorts for the default search backend.  We can't pick the search
+		// backend using the srbackend param because we can't parse parameters without first
+		// calling this method.
+		$searchEngine = SearchEngine::create();
+		$validSorts = $searchEngine->getValidSorts();
 		$params = array(
 			'search' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -264,7 +272,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_SML1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
-			)
+			),
+			'sort' => array(
+				ApiBase::PARAM_DFLT => $searchEngine->getSort(),
+				ApiBase::PARAM_TYPE => $validSorts,
+			),
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();
@@ -303,7 +315,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			),
 			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
-			'limit' => 'How many total pages to return'
+			'limit' => 'How many total pages to return',
+			'sort' => 'Sort type of results',
 		);
 
 		if ( count( SearchEngine::getSearchTypes() ) > 1 ) {

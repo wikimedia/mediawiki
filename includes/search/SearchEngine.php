@@ -37,6 +37,7 @@ class SearchEngine {
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
 	protected $showSuggestion = true;
+	private $sort = 'relevance';
 
 	/// Feature values
 	protected $features = array();
@@ -301,6 +302,39 @@ class SearchEngine {
 	 */
 	function setShowSuggestion( $showSuggestion ) {
 		$this->showSuggestion = $showSuggestion;
+	}
+
+	/**
+	 * Get the valid sort directions.  All search engines support 'relevance' but others
+	 * might support more.  The default in all implementations should be 'relevance'.
+	 * @return array(string) the valid sort directions for setSort
+	 * @since 1.23
+	 */
+	function getValidSorts() {
+		return array( 'relevance' );
+	}
+
+	/**
+	 * Set the sort direction of the search results.  If $sort is not one of the strings
+	 * returned by $this->getValidSorts() then this will throw a UsageException.  The
+	 * default should be 'relevance' in all search engine implementations.
+	 * @param string $sort sort direction for query result
+	 * @since 1.23
+	 */
+	function setSort( $sort ) {
+		if ( !in_array( $sort, $this->getValidSorts() ) ) {
+			$valid = implode( '|', $this->getValidSorts() );
+			throw new UsageException( "Invalid sort:  $sort.  Must match /$valid/." );
+		}
+		$this->sort = $sort;
+	}
+
+	/**
+	 * @return the sort direction of the search results
+	 * @since 1.23
+	 */
+	function getSort() {
+		return $this->sort;
 	}
 
 	/**
