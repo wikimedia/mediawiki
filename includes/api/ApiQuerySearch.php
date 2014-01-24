@@ -72,6 +72,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
 		$search->showRedirects = $params['redirects'];
+		if ( isset( $params['sort'] ) ) {
+			$search->setSort( $params['sort'] );
+		}
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -264,7 +267,16 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_SML1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
-			)
+			),
+			'sort' => array(
+				ApiBase::PARAM_DFLT => 'relevance',
+				// We can't be sure which search backend the user is using because
+				// this method must be called before the search backend is chosen
+				// so we can't generate a real list of appropriate sorts.  So we
+				// allow any string here and validate it in the SearchEngine
+				// implementation.
+				ApiBase::PARAM_TYPE => 'string',
+			),
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();
@@ -282,6 +294,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+
 		$descriptions = array(
 			'search' => 'Search for all page titles (or content) that has this value',
 			'namespace' => 'The namespace(s) to enumerate',
@@ -303,12 +316,23 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			),
 			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
-			'limit' => 'How many total pages to return'
+			'limit' => 'How many total pages to return',
 		);
 
 		if ( count( SearchEngine::getSearchTypes() ) > 1 ) {
 			$descriptions['backend'] = 'Which search backend to use, if not the default';
+			$sorts = array();
+			foreach ( SearchEngine::getSearchTypes() as $type ) {
+				$engine = SearchEngine::create( $type );
+				$sorts = array_merge( $sorts, $engine->getValidSorts() );
+			}
+			$sorts = array_unique( $sorts );
+		} else {
+			$sorts = SearchEngine::create()->getValidSorts();
 		}
+		$sorts = array_map( function( $key ) { return " $key"; }, $sorts );
+		array_unshift( $sorts, 'Sort type of results' );
+		$descriptions['sort'] = $sorts;
 
 		return $descriptions;
 	}
