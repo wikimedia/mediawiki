@@ -69,11 +69,11 @@ class RequestContext implements IContextSource {
 	private $config;
 
 	/**
-	 * Set the SiteConfiguration object
+	 * Set the Config object
 	 *
-	 * @param SiteConfiguration $c
+	 * @param Config $c
 	 */
-	public function setConfig( SiteConfiguration $c ) {
+	public function setConfig( Config $c ) {
 		$this->config = $c;
 	}
 
@@ -84,8 +84,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			global $wgConf;
-			$this->config = $wgConf;
+			$this->config = Config::singleton();
 		}
 		return $this->config;
 	}
