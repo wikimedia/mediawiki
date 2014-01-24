@@ -193,6 +193,7 @@ changes to languages because of Bugzilla reports.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
+* RdfMetaData (unused)
 * TitleDependency (unused)
 * TitleListDependency (unused)
 * WikiError (deprecated in 1.17)
