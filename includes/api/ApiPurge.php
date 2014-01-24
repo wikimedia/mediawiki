@@ -54,17 +54,16 @@ class ApiPurge extends ApiBase {
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
 				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
-					global $wgEnableParserCache;
-
 					$popts = $page->makeParserOptions( 'canonical' );
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
 					$content = $page->getContent( Revision::RAW );
+					$enableParserCache = $this->getConfig()->get( 'EnableParserCache' );
 					$p_result = $content->getParserOutput(
 						$title,
 						$page->getLatest(),
 						$popts,
-						$wgEnableParserCache
+						$enableParserCache
 					);
 
 					# Update the links tables
@@ -74,7 +73,7 @@ class ApiPurge extends ApiBase {
 
 					$r['linkupdate'] = '';
 
-					if ( $wgEnableParserCache ) {
+					if ( $enableParserCache ) {
 						$pcache = ParserCache::singleton();
 						$pcache->save( $p_result, $page, $popts );
 					}

@@ -29,7 +29,6 @@
  */
 class ApiProtect extends ApiBase {
 	public function execute() {
-		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
@@ -74,7 +73,7 @@ class ApiProtect extends ApiBase {
 			if ( !in_array( $p[0], $restrictionTypes ) && $p[0] != 'create' ) {
 				$this->dieUsageMsg( array( 'protect-invalidaction', $p[0] ) );
 			}
-			if ( !in_array( $p[1], $wgRestrictionLevels ) && $p[1] != 'all' ) {
+			if ( !in_array( $p[1], $this->getConfig()->get( 'RestrictionLevels' ) ) && $p[1] != 'all' ) {
 				$this->dieUsageMsg( array( 'protect-invalidlevel', $p[1] ) );
 			}
 
