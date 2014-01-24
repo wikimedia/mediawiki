@@ -54,7 +54,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerar automaticamain ils titels',
 'tog-showtoolbar' => "Mussar la trav d'utensils per modifitgar",
 'tog-editondblclick' => 'Modifitgar paginas cun in clic dubel',
-'tog-editsection' => 'Mussar colliaziuns [modifitgar] per modifitgar singulas secziuns',
 'tog-editsectiononrightclick' => 'Activar la pussaivladad da modifitgar secziuns cun in clic dretg sin il titel',
 'tog-showtoc' => 'Mussar ina tabla da cuntegn sin paginas cun dapli che trais tetels',
 'tog-rememberpassword' => "S'annunziar permanantamain cun quest navigatur (per maximalmain $1 {{PLURAL:$1|di|dis}})",

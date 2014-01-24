@@ -338,7 +338,6 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de ferramentas de edição',
 'tog-editondblclick' => 'Editar páginas quando houver clique duplo',
-'tog-editsection' => 'Ativar a edição de seções com links [editar]',
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (requer JavaScript)',
 'tog-showtoc' => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword' => 'Recordar meus dados de acesso neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
@@ -4211,7 +4210,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-templateargumentsize' => 'Argumento do tamanho da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
-'limitreport-expensivefunctioncount' => 'Conta da função expansiva do analizador',
+'limitreport-expensivefunctioncount' => 'Número de funções do analisador custosas',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Expandir predefinições',

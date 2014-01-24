@@ -170,7 +170,6 @@ $messages = array(
 'tog-numberheadings' => 'Nadpisma awtomatiski numerěrowaś',
 'tog-showtoolbar' => 'Wobźěłowańsku rědku pokazaś',
 'tog-editondblclick' => 'Boki z dwójnym kliknjenim wobźěłaś',
-'tog-editsection' => 'Wobźěłanje wótstawkow pśez wótkaze [wobźěłaś] zmóžniś',
 'tog-editsectiononrightclick' => 'Wobźěłowanje wótrězkow pśez kliknjenje z pšaweju tastu myški zmóžniś',
 'tog-showtoc' => 'Wopśimjeśe pokazaś, jolic ma bok wěcej nježli 3 nadpisma',
 'tog-rememberpassword' => 'Z toś tym wobglědowakom pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',

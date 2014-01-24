@@ -156,7 +156,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerar titulos automaticamente',
 'tog-showtoolbar' => 'Monstrar instrumentario de modification',
 'tog-editondblclick' => 'Modificar paginas con duple clic',
-'tog-editsection' => 'Activar le modification de sectiones con ligamines "[modificar]"',
 'tog-editsectiononrightclick' => 'Permitter modification de sectiones con clic-a-dextra sur titulos de section',
 'tog-showtoc' => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',

@@ -99,7 +99,6 @@ $messages = array(
 'tog-numberheadings' => 'Nomeruida avtomatižikš pälkirjutesed',
 'tog-showtoolbar' => "Ozutada redaktiruindan panel'",
 'tog-editondblclick' => 'Redaktiruida lehtpoled kaksitadud plokul',
-'tog-editsection' => 'Ozutada "Redaktiruida"-kosketuz kaikuččen sekcijan täht',
 'tog-editsectiononrightclick' => 'Redaktiruida sekcijad hiren oiktal plokul pälkirjutesele',
 'tog-showtoc' => 'Ozutada südäiolend (lehtpoled, kudambil om enamba, mi 3 pälkirjutest)',
 'tog-rememberpassword' => 'Muštta minun kävutajan nimi neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',

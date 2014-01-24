@@ -389,7 +389,6 @@ $messages = array(
 'tog-numberheadings' => 'Koppen automatisch nummeren',
 'tog-showtoolbar' => 'Bewerkingswerkbalk weergeven',
 'tog-editondblclick' => 'Dubbelklikken voor bewerken',
-'tog-editsection' => 'Bewerken van deelpagina’s mogelijk maken via [bewerken]-koppelingen',
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop',
 'tog-showtoc' => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
@@ -958,6 +957,8 @@ Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'retypenew' => 'Herhaling nieuwe wachtwoord:',
 'resetpass_submit' => 'Wachtwoord instellen en aanmelden',
 'changepassword-success' => 'Uw wachtwoord is gewijzigd.',
+'changepassword-throttled' => 'U heeft recentelijk te veel mislukte aanmeldpogingen gedaan.
+Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'resetpass_forbidden' => 'Wachtwoorden kunnen niet gewijzigd worden',
 'resetpass-no-info' => 'U dient aangemeld zijn voordat u deze pagina kunt gebruiken.',
 'resetpass-submit-loggedin' => 'Wachtwoord wijzigen',
@@ -1008,6 +1009,8 @@ Tijdelijk wachtwoord: $2',
 'changeemail-password' => 'Uw wachtwoord voor {{SITENAME}}:',
 'changeemail-submit' => 'E-mailadres wijzigen',
 'changeemail-cancel' => 'Annuleren',
+'changeemail-throttled' => 'U heeft recentelijk te veel mislukte aanmeldpogingen gedaan.
+Wacht alstublieft $1 voordat u het opnieuw probeert.',
 
 # Special:ResetTokens
 'resettokens' => 'Tokens opnieuw instellen',

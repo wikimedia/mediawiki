@@ -196,7 +196,6 @@ $messages = array(
 'tog-numberheadings' => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar' => 'Ännerungstoolbar weisen',
 'tog-editondblclick' => 'Säite mat Duebelklick änneren',
-'tog-editsection' => "Linke fir d'Ännere vun eenzelnen Abschnitter weisen",
 'tog-editsectiononrightclick' => 'Eenzel Abschnitter mat Rietsklick änneren',
 'tog-showtoc' => 'Inhaltsverzeechnes weise bei Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword' => 'Meng Umeldung mat dësem Browser (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',

@@ -209,7 +209,6 @@ $messages = array(
 'tog-numberheadings' => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar' => 'Tunjukkan palang sunting (perlukan JavaScript)',
 'tog-editondblclick' => 'Dwiklik untuk sunting laman (JavaScript)',
-'tog-editsection' => 'Bolehkan penyuntingan bahagian melalui pautan [sunting]',
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian',
 'tog-showtoc' => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
 'tog-rememberpassword' => 'Ingat log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',

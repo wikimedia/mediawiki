@@ -63,7 +63,6 @@ $messages = array(
 'tog-numberheadings' => 'Wènèhana nomer judul secara otomatis',
 'tog-showtoolbar' => 'Tuduhna <em>toolbar</em> (batang piranti) panyuntingan (mbutuhaké JavaScript)',
 'tog-editondblclick' => 'Sunting kaca nganggo klik ping loro (mbutuhaké JavaScript)',
-'tog-editsection' => 'Fungsèkna panyuntingan sub-bagian ngliwati pranala [sunting]',
 'tog-editsectiononrightclick' => 'Fungsèkna panyuntingan sub-bagian mawa klik-tengen ing judul bagian (mbutuhaké JavaScript)',
 'tog-showtoc' => 'Tuduhna daftar isi (kanggo kaca sing nduwé luwih saka 3 sub-bagian)',
 'tog-rememberpassword' => 'Émut tembung sandi kula ing peramban punika (salebeting $1 {{PLURAL:$1|dinten|dinten}})',

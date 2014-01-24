@@ -244,7 +244,6 @@ $messages = array(
 'tog-numberheadings' => '標題自動編號',
 'tog-showtoolbar' => '顯示修改工具列（需要JavaScript）',
 'tog-editondblclick' => '撳兩下改嘢（需要JavaScript）',
-'tog-editsection' => '可以用 [修改] 掣更改個別段落',
 'tog-editsectiononrightclick' => '可以撳右掣更改個別段落（需要JavaScript）',
 'tog-showtoc' => '多過三段時顯示目錄',
 'tog-rememberpassword' => '響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})',

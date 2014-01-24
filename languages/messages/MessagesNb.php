@@ -329,7 +329,6 @@ $messages = array(
 'tog-numberheadings' => 'Autonummerer overskrifter',
 'tog-showtoolbar' => 'Vis verktøylinje',
 'tog-editondblclick' => 'Rediger sider ved å dobbeltklikke',
-'tog-editsection' => 'Rediger avsnitt ved hjelp av [rediger]-lenke',
 'tog-editsectiononrightclick' => 'Rediger avsnitt ved å høyreklikke på avsnittsoverskrift',
 'tog-showtoc' => 'Vis innholdsfortegnelse (for sider med flere enn tre avsnitt)',
 'tog-rememberpassword' => 'Husk meg i denne nettleseren (i høyst $1 {{PLURAL:$1|dag|dager}})',

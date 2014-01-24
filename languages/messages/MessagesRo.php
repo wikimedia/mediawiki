@@ -308,7 +308,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerotează automat secțiunile',
 'tog-showtoolbar' => 'Afișează bara de unelte pentru modificare',
 'tog-editondblclick' => 'Modifică paginile prin dublu clic',
-'tog-editsection' => 'Activează modificarea secțiunilor prin legăturile [modifică]',
 'tog-editsectiononrightclick' => 'Activează modificarea secţiunilor prin clic dreapta pe titlul secțiunii',
 'tog-showtoc' => 'Arată cuprinsul (pentru paginile cu mai mult de 3 paragrafe cu titlu)',
 'tog-rememberpassword' => 'Autentificare automată de la acest navigator (expiră după $1 {{PLURAL:$1|zi|zile|de zile}})',

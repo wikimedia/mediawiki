@@ -93,7 +93,6 @@ $messages = array(
 'tog-numberheadings' => 'Başlıqların avto-nömrələnməsi',
 'tog-showtoolbar' => 'Redaktə zamanı alətlər qutusunu göstər (JavaScript)',
 'tog-editondblclick' => 'Səhifələri iki kliklə redaktə etməyə başla (JavaScript)',
-'tog-editsection' => 'Hər bir bölmə üçün [redaktə]ni mümkün et',
 'tog-editsectiononrightclick' => 'Bölmələrin redaktəsini başlıqların üzərində sağ klik etməklə mümkün et (JavaScript)',
 'tog-showtoc' => 'Mündəricat siyahısını göstər (3 başlıqdan artıq olan səhifələrdə)',
 'tog-rememberpassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',

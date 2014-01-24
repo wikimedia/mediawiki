@@ -196,7 +196,6 @@ $messages = array(
 'tog-numberheadings' => 'Automatiškai numeruoti skyrelius',
 'tog-showtoolbar' => 'Rodyti redagavimo įrankinę (JavaScript)',
 'tog-editondblclick' => 'Puslapių redagavimas dvigubu spustelėjimu (JavaScript)',
-'tog-editsection' => 'Įjungti skyrelių redagavimą naudojant nuorodas [taisyti]',
 'tog-editsectiononrightclick' => 'Įjungti skyrelių redagavimą paspaudus skyrelio pavadinimą dešiniuoju pelės klavišu (JavaScript)',
 'tog-showtoc' => 'Rodyti turinį, jei puslapyje daugiau nei 3 skyreliai',
 'tog-rememberpassword' => 'Prisiminti prisijungimo informaciją šioje naršyklėje (daugiausiai $1 {{PLURAL:$1|dieną|dienas|dienų}})',

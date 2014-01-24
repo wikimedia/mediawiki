@@ -335,7 +335,6 @@ $messages = array(
 'tog-numberheadings' => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar' => 'Montri redakto-breton (per JavaScript)',
 'tog-editondblclick' => 'Redakti per duobla alklako (per JavaScript)',
-'tog-editsection' => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc' => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
 'tog-rememberpassword' => 'Memori mian ensalutadon ĉe ĉi tiu retumilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',

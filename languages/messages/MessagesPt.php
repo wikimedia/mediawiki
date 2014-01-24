@@ -331,7 +331,6 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo',
-'tog-editsection' => 'Possibilitar a edição de secções com links [editar]',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de seções por clique com o botão direito no título da seção',
 'tog-showtoc' => 'Mostrar índice (para páginas com mais de três seções)',
 'tog-rememberpassword' => 'Recordar os meus dados neste browser (no máximo, durante $1 {{PLURAL:$1|dia|dias}})',
@@ -4211,6 +4210,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Tamanho dos argumentos da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-expensivefunctioncount' => 'Número de funções do analisador custosas',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Expandir predefinições',

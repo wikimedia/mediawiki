@@ -393,7 +393,6 @@ $messages = array(
 'tog-numberheadings' => '自动编号标题',
 'tog-showtoolbar' => '显示编辑工具栏',
 'tog-editondblclick' => '双击编辑页面',
-'tog-editsection' => '启用[编辑]链接编辑段落',
 'tog-editsectiononrightclick' => '启用右击段落标题编辑段落',
 'tog-showtoc' => '显示目录（对于有多于3个标题的页面）',
 'tog-rememberpassword' => '在该浏览器记住我的登录状态（最长$1天）',
@@ -925,6 +924,7 @@ $2',
 'retypenew' => '确认密码：',
 'resetpass_submit' => '设定密码并登录',
 'changepassword-success' => '您已经修改了您的密码！',
+'changepassword-throttled' => '您最近尝试了多次登录。请等待$1后再试。',
 'resetpass_forbidden' => '无法更改密码',
 'resetpass-no-info' => '您必须登录后直接进入这个页面。',
 'resetpass-submit-loggedin' => '更改密码',
@@ -974,6 +974,7 @@ $2
 'changeemail-password' => '你的{{SITENAME}}密码：',
 'changeemail-submit' => '更改电子邮件地址',
 'changeemail-cancel' => '取消',
+'changeemail-throttled' => '您最近尝试了太多次登录。请等待$1后再试。',
 
 # Special:ResetTokens
 'resettokens' => '重置密钥',
@@ -4157,5 +4158,6 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'expand_templates_preview' => '预览',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '上传文件中的XML无法解析。',
 );

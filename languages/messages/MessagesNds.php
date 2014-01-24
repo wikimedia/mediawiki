@@ -225,7 +225,6 @@ $messages = array(
 'tog-numberheadings' => 'Överschrieven automatsch nummereern',
 'tog-showtoolbar' => 'Editeer-Warktüüchlist wiesen',
 'tog-editondblclick' => 'Sieden mit Dubbelklick ännern (JavaScript)',
-'tog-editsection' => 'Links för dat Ännern vun en Afsatz wiesen',
 'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick ännern (Javascript)',
 'tog-showtoc' => "Wiesen vun'n Inholtsverteken bi Sieten mit mehr as dree Överschriften",
 'tog-rememberpassword' => 'Duersam inloggen (för maximaal $1 {{PLURAL:$1|Dag|Daag}})',

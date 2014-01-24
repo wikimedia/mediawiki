@@ -190,7 +190,6 @@ $messages = array(
 'tog-numberheadings' => 'Niverenniñ emgefre an titloù',
 'tog-showtoolbar' => 'Diskouez ar varrenn ostilhoù aozañ',
 'tog-editondblclick' => 'Daouglikañ evit kemmañ pajennoù',
-'tog-editsection' => 'Kemmañ ur rann dre al liammoù [kemmañ]',
 'tog-editsectiononrightclick' => 'Kemmañ ur rann dre glikañ a-zehou war titl ar rann',
 'tog-showtoc' => 'Diskouez an daolenn<br /> (evit ar pennadoù zo ouzhpenn 3 rann enno)',
 'tog-rememberpassword' => "Derc'hel soñj eus ma ger-tremen war an urzhiataer-mañ (evit $1 devezh{{PLURAL:$1||}} d'ar muiañ)",

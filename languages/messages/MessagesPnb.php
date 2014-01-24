@@ -32,7 +32,6 @@ $messages = array(
 'tog-numberheadings' => 'آپ نمبر دین والیاں سرخیاں',
 'tog-showtoolbar' => 'ایڈٹ ٹولبار وکھاؤ',
 'tog-editondblclick' => 'صفیاں تے ڈبل کلک کرن تے تبدیلیاں لیاؤ',
-'tog-editsection' => 'سیکشن ایڈیٹنگ جوڑاں نال بناؤ',
 'tog-editsectiononrightclick' => 'سیکشن سرخی تے تبدیلی لیاؤ سجی کلک نال',
 'tog-showtoc' => 'آرٹیکل دی لسٹ دسو (3 توں چوکھیاں سرخیاں والے صفیاں دی)',
 'tog-rememberpassword' => 'اس براؤزر تے میرا ورتن ناں یاد رکھو ($1 {{PLURAL:$1|دن|دناں}} واسطے)',

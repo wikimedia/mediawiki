@@ -108,7 +108,6 @@ $messages = array(
 'tog-numberheadings' => 'Tolos-bilang na mga pamayohán',
 'tog-showtoolbar' => 'Ipahiling an barang-gamit nin pagliwat',
 'tog-editondblclick' => 'Liwaton an mga pahina sa pagdoble nin klik',
-'tog-editsection' => 'Paganaha an paghihirá kan seksyon sa paági kan [liwaton] na kilyawan',
 'tog-editsectiononrightclick' => 'Paganaha an seksyon nin pagliliwat sa pag-klik kan mga titulo nin seksyon',
 'tog-showtoc' => 'Ihayag an taytayan nin mga laog (para sa mga pahinang igwang sobra sa 3 pamayohan)',
 'tog-rememberpassword' => 'Giromdoma an sakong paglaóg sa kilyaw (browser) na ini (para sa maximum na $1 {{PLURAL:$1|aldaw|mga aldaw}})',

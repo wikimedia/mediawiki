@@ -295,7 +295,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar' => 'Mostrar a barra de ferramentas de edición',
 'tog-editondblclick' => 'Editar as páxinas logo de facer dobre clic',
-'tog-editsection' => 'Permitir a edición de seccións mediante as ligazóns "[editar]"',
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito nos títulos das seccións',
 'tog-showtoc' => 'Mostrar o índice (para as páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword' => 'Lembrar o meu contrasinal neste navegador (ata $1 {{PLURAL:$1|día|días}})',

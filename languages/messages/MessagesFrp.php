@@ -322,7 +322,6 @@ $messages = array(
 'tog-numberheadings' => 'Numerotar ôtomaticament los titros de sèccion',
 'tog-showtoolbar' => 'Montrar la bârra d’outils de changement (at fôta de JavaScript)',
 'tog-editondblclick' => 'Changiér des pâges sur doblo-clic (at fôta de JavaScript)',
-'tog-editsection' => 'Activar lo changement de sèccions avouéc los lims « [changiér] »',
 'tog-editsectiononrightclick' => 'Activar lo changement de sèccions per clic drêt sur lors titros (at fôta de JavaScript)',
 'tog-showtoc' => 'Montrar la trâbla de les matiéres (por les pâges qu’ant més de 3 sèccions)',
 'tog-rememberpassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',

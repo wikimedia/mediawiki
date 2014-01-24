@@ -279,7 +279,6 @@ $messages = array(
 'tog-numberheadings' => '標題自動編號',
 'tog-showtoolbar' => '顯示編輯工具欄',
 'tog-editondblclick' => '雙擊編輯頁面',
-'tog-editsection' => '允許通過點擊[編輯]連結編輯段落',
 'tog-editsectiononrightclick' => '允許右擊標題編輯段落',
 'tog-showtoc' => '顯示目錄 （針對一頁超過3個標題的頁面）',
 'tog-rememberpassword' => '在這個瀏覽器上記住我的登入狀態（最多 $1 天）',
@@ -825,6 +824,7 @@ $2',
 'retypenew' => '確認密碼：',
 'resetpass_submit' => '設定密碼並登入',
 'changepassword-success' => '您的密碼已成功變更！',
+'changepassword-throttled' => '您近期嘗試了多次登錄。請等待$1后再試。',
 'resetpass_forbidden' => '無法變更密碼',
 'resetpass-no-info' => '您必須登入後直接進入這個頁面。',
 'resetpass-submit-loggedin' => '變更密碼',
@@ -879,6 +879,7 @@ $2
 'changeemail-password' => '您的{{SITENAME}}密碼：',
 'changeemail-submit' => '變更電子郵件',
 'changeemail-cancel' => '取消',
+'changeemail-throttled' => '您近期嘗試了太多次登錄。請等待$1后再試。',
 
 # Special:ResetTokens
 'resettokens' => '重設密鑰',
@@ -4118,5 +4119,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'expand_templates_preview' => '預覽',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '上載檔案中的XML無法解析。',
 );

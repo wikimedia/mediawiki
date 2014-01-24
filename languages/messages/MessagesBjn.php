@@ -154,7 +154,6 @@ $messages = array(
 'tog-numberheadings' => 'Bari numur judul utumatis',
 'tog-showtoolbar' => 'Tampaiakan bilah-pakakas babak (parlu ada JavaScript)',
 'tog-editondblclick' => 'Babak tutungkaran wan klik ganda (parlu ada JavaScript)',
-'tog-editsection' => "Kawa'akan pambabakan sub-hagian malalui tautan [babak]",
 'tog-editsectiononrightclick' => "Kawa'akan mambabak sub-hagian lawan mang-klik kanan pada judul hagian (parlu ada JavaScript)",
 'tog-showtoc' => 'Tampaiakan daptar isi (gasan tungkaran-tungkaran nang baisi labih dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingatakan babuat log ulun pada panjalajah web ini (gasan salawas $1{{PLURAL:$1|hari|hahari}})',

@@ -27,6 +27,7 @@
  * @author Vietbio
  * @author Vinhtantran
  * @author Vương Ngân Hà
+ * @author Withoutaname
  * @author לערי ריינהארט
  */
 
@@ -347,7 +348,6 @@ $messages = array(
 'tog-numberheadings' => 'Tự động đánh số các đề mục',
 'tog-showtoolbar' => 'Hiển thị thanh định dạng',
 'tog-editondblclick' => 'Nhấn đúp để sửa đổi trang',
-'tog-editsection' => 'Cho phép sửa đổi đề mục qua liên kết [sửa]',
 'tog-editsectiononrightclick' => 'Bấm chuột phải vào đề mục để sửa đổi phần trang',
 'tog-showtoc' => 'Hiển thị mục lục (cho trang có trên 3 đề mục)',
 'tog-rememberpassword' => 'Nhớ thông tin đăng nhập của tôi trong trình duyệt này (cho đến $1 ngày)',
@@ -505,7 +505,7 @@ $messages = array(
 'vector-action-unprotect' => 'Đổi mức khóa',
 'vector-simplesearch-preference' => 'Hộp tìm kiếm đơn giản (cần bề ngoài Vectơ)',
 'vector-view-create' => 'Tạo',
-'vector-view-edit' => 'Sửa',
+'vector-view-edit' => 'Sửa đổi',
 'vector-view-history' => 'Xem lịch sử',
 'vector-view-view' => 'Đọc',
 'vector-view-viewsource' => 'Xem mã nguồn',
@@ -551,16 +551,16 @@ $messages = array(
 'postcomment' => 'Đề mục mới',
 'articlepage' => 'Xem trang nội dung',
 'talk' => 'Thảo luận',
-'views' => 'Xem',
+'views' => 'Hình dạng',
 'toolbox' => 'Công cụ',
 'userpage' => 'Xem trang thành viên',
 'projectpage' => 'Xem trang dự án',
 'imagepage' => 'Xem trang tập tin',
 'mediawikipage' => 'Thông điệp giao diện',
-'templatepage' => 'Trang bản mẫu',
-'viewhelppage' => 'Trang trợ giúp',
-'categorypage' => 'Trang thể loại',
-'viewtalkpage' => 'Trang thảo luận',
+'templatepage' => 'Xem trang bản mẫu',
+'viewhelppage' => 'Xem trang trợ giúp',
+'categorypage' => 'Xem trang thể loại',
+'viewtalkpage' => 'Xem trang thảo luận',
 'otherlanguages' => 'Ngôn ngữ khác',
 'redirectedfrom' => '(đổi hướng từ $1)',
 'redirectpagesub' => 'Trang đổi hướng',
@@ -883,6 +883,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'retypenew' => 'Gõ lại:',
 'resetpass_submit' => 'Chọn mật khẩu và đăng nhập',
 'changepassword-success' => 'Đã đổi mật khẩu thành công!',
+'changepassword-throttled' => 'Bạn thử đăng nhập gần đây nhiều lần quá. Xin chờ $1 trước khi bạn thử lần nữa.',
 'resetpass_forbidden' => 'Không được đổi mật khẩu',
 'resetpass-no-info' => 'Bạn phải đăng nhập mới có thể truy cập trực tiếp trang này.',
 'resetpass-submit-loggedin' => 'Thay đổi mật khẩu',
@@ -942,6 +943,7 @@ Mật khẩu tạm: $2',
 'changeemail-password' => 'Mật khẩu của bạn tại {{SITENAME}}:',
 'changeemail-submit' => 'Đổi địa chỉ',
 'changeemail-cancel' => 'Hủy bỏ',
+'changeemail-throttled' => 'Bạn thử đăng nhập nhiều lần quá. Xin chờ $1 trước khi bạn thử lần nữa.',
 
 # Special:ResetTokens
 'resettokens' => 'Đặt lại dấu hiệu',
@@ -4333,5 +4335,6 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'expand_templates_preview' => 'Xem trước',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'Không thể phân tích mã XML trong tập tin tải lên.',
 );

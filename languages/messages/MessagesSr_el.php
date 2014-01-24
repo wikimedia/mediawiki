@@ -316,7 +316,6 @@ $messages = array(
 'tog-numberheadings' => 'Samostalno numeriši podnaslove',
 'tog-showtoolbar' => 'Prikaži traku s alatkama za uređivanje',
 'tog-editondblclick' => 'Uređivanje stranica dvostrukim klikom',
-'tog-editsection' => 'Veze za uređivanje pojedinačnih odeljaka',
 'tog-editsectiononrightclick' => 'Uređivanje odeljaka desnim klikom na njihove naslove',
 'tog-showtoc' => 'Prikaži sadržaj stranica koje imaju više od tri podnaslova',
 'tog-rememberpassword' => 'Zapamti me na ovom pregledaču (najduže $1 {{PLURAL:$1|1=dan|dana}})',

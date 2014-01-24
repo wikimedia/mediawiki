@@ -152,7 +152,6 @@ $messages = array(
 'tog-numberheadings' => 'اتوماتیک شماره کتن عناوین',
 'tog-showtoolbar' => 'میله ابزار اصلاح پیش درا(جاوا)',
 'tog-editondblclick' => 'صفحات گون دو کلیک اصلاح کن(جاوا)',
-'tog-editsection' => 'فعال کتن کسمت اصلاح از طریق لینکان  [edit]',
 'tog-editsectiononrightclick' => 'فعال کتن اصلاح کسمت گون کلیک راست اور کسمت عناوین(جاوا)',
 'tog-showtoc' => 'جدول محتوای‌ء پیش دار( په صفحیانی که گیش چه 3 عنوانش هست)',
 'tog-rememberpassword' => 'من ورود ته ای کامپیوتر هیال بکن (په $1 {{PLURAL:$1|روچ|روچ}})',

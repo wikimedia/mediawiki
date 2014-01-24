@@ -226,7 +226,6 @@ $messages = array(
 'tog-numberheadings' => 'Numëro automatikish titujt',
 'tog-showtoolbar' => 'Trego mjetet e redaktimit (kërkon JavaScript)',
 'tog-editondblclick' => 'Redakto faqet me dopio-klik (kërkon JavaScript)',
-'tog-editsection' => 'Lejo redaktimin e seksioneve me anë të lidhjeve [redakto]',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve duke klikuar me të djathtën mbi titullin e seksionit (kërkon JavaScript)',
 'tog-showtoc' => 'Trego tabelën e përmbajtjes (për faqet me më shume se 3 tituj)',
 'tog-rememberpassword' => 'Mbaj mend fjalëkalimin tim në këtë shfletues (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',

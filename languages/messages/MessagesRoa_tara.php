@@ -35,7 +35,6 @@ $messages = array(
 'tog-numberheadings' => 'Testate auto-numerate',
 'tog-showtoolbar' => "Fà vedè 'a barra de le cangiaminde",
 'tog-editondblclick' => "Cange le pàggene cu 'nu doppie clic",
-'tog-editsection' => "Abbilite le cangiaminde d'a sezione ausanne le collagaminde [cange]",
 'tog-editsectiononrightclick' => "Abbilite le cangiaminde d'a sezione ausanne 'u pulsande destre d'u sciorge cazzanne sus a 'u titole",
 'tog-showtoc' => "Fa vedè 'a tabbelle de le condenute (pe le pàggene cu cchiù de 3 testate)",
 'tog-rememberpassword' => "Arrecuèrdete 'u nome mije sus a stu browser (pe 'nu massime de $1 {{PLURAL:$1|sciurne}})",

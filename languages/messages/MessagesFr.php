@@ -427,7 +427,6 @@ $messages = array(
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
 'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
-'tog-editsection' => 'Activer les modifications de sections grâce aux liens « [modifier] »',
 'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur les titres (nécessite JavaScript)',
 'tog-showtoc' => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
 'tog-rememberpassword' => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
@@ -974,6 +973,8 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 'retypenew' => 'Confirmer le nouveau mot de passe :',
 'resetpass_submit' => 'Changer le mot de passe et se connecter',
 'changepassword-success' => 'Votre mot de passe a été changé avec succès !',
+'changepassword-throttled' => 'Vous avez fait trop de tentatives de connexion récemment.
+Veuillez attendre $1 avant de réessayer.',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
 'resetpass-no-info' => 'Vous devez être connecté(e) pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',
@@ -1023,6 +1024,8 @@ Mot de passe temporaire : $2",
 'changeemail-password' => 'Votre mot de passe sur {{SITENAME}} :',
 'changeemail-submit' => 'Changer l’adresse de courriel',
 'changeemail-cancel' => 'Annuler',
+'changeemail-throttled' => 'Vous avez fait trop de tentatives de connexion.
+Veuillez attendre $1 avant de réessayer.',
 
 # Special:ResetTokens
 'resettokens' => 'Réinitialiser les jetons',

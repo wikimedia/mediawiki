@@ -325,7 +325,6 @@ $messages = array(
 'tog-numberheadings' => 'Fejezetcímek automatikus számozása',
 'tog-showtoolbar' => 'Szerkesztőeszközsor megjelenítése',
 'tog-editondblclick' => 'A lapok szerkesztése dupla kattintásra',
-'tog-editsection' => '[szerkesztés] linkek az egyes szakaszok szerkesztéséhez',
 'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással',
 'tog-showtoc' => 'Tartalomjegyzék megjelenítése a három fejezetnél többel rendelkező cikkeknél',
 'tog-rememberpassword' => 'Emlékezzen rám ezzel a böngészővel (legfeljebb {{PLURAL:$1|egy|$1}} napig)',

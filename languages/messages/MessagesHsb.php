@@ -165,7 +165,6 @@ $messages = array(
 'tog-numberheadings' => 'Nadpisma awtomatisce čisłować',
 'tog-showtoolbar' => 'Wobdźěłowansku lajstu pokazać',
 'tog-editondblclick' => 'Strony z dwójnym kliknjenjom wobdźěłować',
-'tog-editsection' => 'Wobdźěłowanje jednotliwych wotrězkow přez wotkazy [wobdźěłać] zmóžnić',
 'tog-editsectiononrightclick' => 'Wobdźěłowanje wotrězkow přez kliknjenje z prawej tastu na nadpisma wotrězkow zmóžnić',
 'tog-showtoc' => 'Zapis wobsaha pokazać (za strony z wjace hač 3 nadpismami)',
 'tog-rememberpassword' => 'Přizjewjenje na tutym wobhladowaku sej spomjatkować (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',

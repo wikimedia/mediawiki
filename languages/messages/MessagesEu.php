@@ -136,7 +136,6 @@ $messages = array(
 'tog-numberheadings' => 'Goiburukoak automatikoki zenbakitu',
 'tog-showtoolbar' => 'Aldaketen tresna-barra erakutsi',
 'tog-editondblclick' => 'Klik bikoitzaren bitartez orrialdeak aldatu',
-'tog-editsection' => 'Atalak [aldatu] loturen bitartez aldatzeko aukera gaitu',
 'tog-editsectiononrightclick' => 'Atalen izenburuetan eskuin klik eginez aldatzea gaitu',
 'tog-showtoc' => 'Edukien taula erakutsi (3 goiburukotik gorako orrialdeentzako)',
 'tog-rememberpassword' => 'Nire saioa ordenagailu honetan gorde ({{PLURAL:$1|egun baterako| $1 egunerako}} gehienez)',

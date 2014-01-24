@@ -55,7 +55,6 @@ $messages = array(
 'tog-numberheadings' => 'Uurskrifte automatisk nuumerierje',
 'tog-showtoolbar' => 'Beoarbaidengs-Reewen anwiese',
 'tog-editondblclick' => 'Sieden mäd Dubbeldklik beoarbaidje (JavaScript)',
-'tog-editsection' => 'Links toun Beoarbaidjen fon eenpelde Ousatse anwiese',
 'tog-editsectiononrightclick' => 'Eenpelde Ousatse mäd Gjuchtsklik beoarbaidje (JavaScript)',
 'tog-showtoc' => 'Anwiesen fon n Inhooldsferteeknis bie Artikkele mäd moor as 3 Uurskrifte',
 'tog-rememberpassword' => 'Mäd dissen Browser duurhaft ounmälded blieuwe (Maximoal foar $1 {{PLURAL:$1|Dai|Deege}})',

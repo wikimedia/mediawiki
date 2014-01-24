@@ -334,7 +334,6 @@ $messages = array(
 'tog-numberheadings' => 'Koppen vanzelf nummeren',
 'tog-showtoolbar' => 'Laot de warkbalke zien',
 'tog-editondblclick' => 'Mit dubbelklik bewarken',
-'tog-editsection' => 'Mit bewarkgedeelten',
 'tog-editsectiononrightclick' => 'Bewarken van deelziejen meugelik maken mit n rechtermuusklik op n tussenkop',
 'tog-showtoc' => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
