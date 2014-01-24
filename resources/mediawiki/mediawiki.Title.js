@@ -214,7 +214,8 @@
 		}
 
 		// Can't make a link to a namespace alone.
-		if ( title === '' && namespace !== NS_MAIN ) {
+		// "empty" local links can only be self-links with a fragment identifier.
+		if ( title === '' && ( namespace !== NS_MAIN || fragment === '' ) ) {
 			return false;
 		}
 
