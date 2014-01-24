@@ -186,12 +186,12 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgAPIModules, $wgAPIFormatModules;
+		$config = $this->getConfig();
 		$this->mModuleMgr = new ApiModuleManager( $this );
 		$this->mModuleMgr->addModules( self::$Modules, 'action' );
-		$this->mModuleMgr->addModules( $wgAPIModules, 'action' );
+		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
-		$this->mModuleMgr->addModules( $wgAPIFormatModules, 'format' );
+		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
 		$this->mResult = new ApiResult( $this );
 		$this->mEnableWrite = $enableWrite;
@@ -422,8 +422,6 @@ class ApiMain extends ApiBase {
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
 	protected function handleCORS() {
-		global $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions;
-
 		$originParam = $this->getParameter( 'origin' ); // defaults to null
 		if ( $originParam === null ) {
 			// No origin parameter, nothing to do
@@ -451,10 +449,11 @@ class ApiMain extends ApiBase {
 			return false;
 		}
 
+		$config = $this->getConfig();
 		$matchOrigin = self::matchOrigin(
 			$originParam,
-			$wgCrossSiteAJAXdomains,
-			$wgCrossSiteAJAXdomainExceptions
+			$config->get( 'CrossSiteAJAXdomains' ),
+			$config->get( 'CrossSiteAJAXdomainExceptions' )
 		);
 
 		if ( $matchOrigin ) {
@@ -511,29 +510,29 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
-		global $wgUseXVO, $wgVaryOnXFP;
 		$response = $this->getRequest()->response();
 		$out = $this->getOutput();
 
-		if ( $wgVaryOnXFP ) {
+		$config = $this->getConfig();
+
+		if ( $config->get( 'VaryOnXFP' ) ) {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 
 		if ( $this->mCacheMode == 'private' ) {
 			$response->header( 'Cache-Control: private' );
-
 			return;
 		}
 
+		$useXVO = $config->get( 'UseXVO' );
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( $wgUseXVO ) {
+			if ( $useXVO ) {
 				$response->header( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
 					$response->header( 'Cache-Control: private' );
-
 					return;
 				}
 				// Logged out, send normal public headers below
@@ -548,7 +547,7 @@ class ApiMain extends ApiBase {
 
 		// Send public headers
 		$response->header( $out->getVaryHeader() );
-		if ( $wgUseXVO ) {
+		if ( $useXVO ) {
 			$response->header( $out->getXVO() );
 		}
 
@@ -601,8 +600,6 @@ class ApiMain extends ApiBase {
 	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
-		global $wgShowHostnames;
-
 		$result = $this->getResult();
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		if ( !isset( $this->mPrinter ) ) {
@@ -618,6 +615,8 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		$config = $this->getConfig();
+
 		if ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - print usage screen
 			$errMessage = $e->getMessageArray();
@@ -627,9 +626,8 @@ class ApiMain extends ApiBase {
 				ApiResult::setContent( $errMessage, $this->makeHelpMsg() );
 			}
 		} else {
-			global $wgShowSQLErrors, $wgShowExceptionDetails;
 			// Something is seriously wrong
-			if ( ( $e instanceof DBQueryError ) && !$wgShowSQLErrors ) {
+			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
 				$info = 'Database query error';
 			} else {
 				$info = "Exception Caught: {$e->getMessage()}";
@@ -641,7 +639,7 @@ class ApiMain extends ApiBase {
 			);
 			ApiResult::setContent(
 				$errMessage,
-				$wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : ''
+				$config->get( 'ShowExceptionDetails' ) ? "\n\n{$e->getTraceAsString()}\n\n" : ''
 			);
 		}
 
@@ -656,7 +654,7 @@ class ApiMain extends ApiBase {
 		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid );
 		}
-		if ( $wgShowHostnames ) {
+		if ( $config->get( 'ShowHostnames' ) ) {
 			// servedby is especially useful when debugging errors
 			$result->addValue( null, 'servedby', wfHostName() );
 		}
@@ -674,8 +672,6 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	protected function setupExecuteAction() {
-		global $wgShowHostnames;
-
 		// First add the id to the top element
 		$result = $this->getResult();
 		$requestid = $this->getParameter( 'requestid' );
@@ -683,7 +679,7 @@ class ApiMain extends ApiBase {
 			$result->addValue( null, 'requestid', $requestid );
 		}
 
-		if ( $wgShowHostnames ) {
+		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 			$servedby = $this->getParameter( 'servedby' );
 			if ( $servedby ) {
 				$result->addValue( null, 'servedby', wfHostName() );
@@ -741,7 +737,6 @@ class ApiMain extends ApiBase {
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
-			global $wgShowHostnames;
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
@@ -750,7 +745,7 @@ class ApiMain extends ApiBase {
 				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
 
-				if ( $wgShowHostnames ) {
+				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				}
 
@@ -989,8 +984,7 @@ class ApiMain extends ApiBase {
 	 * @param $isError bool
 	 */
 	protected function printResult( $isError ) {
-		global $wgDebugAPI;
-		if ( $wgDebugAPI !== false ) {
+		if ( $this->getConfig()->get( 'DebugAPI' ) !== false ) {
 			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
@@ -1189,20 +1183,22 @@ class ApiMain extends ApiBase {
 	 * @return string
 	 */
 	public function makeHelpMsg() {
-		global $wgMemc, $wgAPICacheHelpTimeout;
+		global $wgMemc;
 		$this->setHelp();
 		// Get help text from cache if present
 		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
 			str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
-		if ( $wgAPICacheHelpTimeout > 0 ) {
+
+		$cacheHelpTimeout = $this->getConfig()->get( 'APICacheHelpTimeout' );
+		if ( $cacheHelpTimeout > 0 ) {
 			$cached = $wgMemc->get( $key );
 			if ( $cached ) {
 				return $cached;
 			}
 		}
 		$retval = $this->reallyMakeHelpMsg();
-		if ( $wgAPICacheHelpTimeout > 0 ) {
-			$wgMemc->set( $key, $retval, $wgAPICacheHelpTimeout );
+		if ( $cacheHelpTimeout > 0 ) {
+			$wgMemc->set( $key, $retval, $cacheHelpTimeout );
 		}
 
 		return $retval;

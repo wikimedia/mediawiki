@@ -143,8 +143,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$prefix = $params['prefix'];
 
 		if ( !is_null( $prefix ) ) {
-			global $wgMiserMode;
-			if ( $wgMiserMode ) {
+			if ( $this->getConfig()->get( 'MiserMode' ) ) {
 				$this->dieUsage( 'Prefix search disabled in Miser Mode', 'prefixsearchdisabled' );
 			}
 
@@ -421,8 +420,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgLogTypes, $wgLogActions, $wgLogActionsHandlers;
-
+		$config = $this->getConfig();
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -441,10 +439,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				)
 			),
 			'type' => array(
-				ApiBase::PARAM_TYPE => $wgLogTypes
+				ApiBase::PARAM_TYPE => $config->get( 'LogTypes' )
 			),
 			'action' => array(
-				ApiBase::PARAM_TYPE => array_keys( array_merge( $wgLogActions, $wgLogActionsHandlers ) )
+				ApiBase::PARAM_TYPE => array_keys(
+					array_merge(
+						$config->get( 'LogActions' ),
+						$config->get( 'LogActionsHandlers' )
+					)
+				)
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -504,8 +507,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getResultProperties() {
-		global $wgLogTypes;
-
 		return array(
 			'ids' => array(
 				'logid' => 'integer',
@@ -517,7 +518,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'type' => array(
 				'type' => array(
-					ApiBase::PROP_TYPE => $wgLogTypes
+					ApiBase::PROP_TYPE => $this->getConfig()->get( 'LogTypes' )
 				),
 				'action' => 'string'
 			),
