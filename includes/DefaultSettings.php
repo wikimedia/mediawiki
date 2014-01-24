@@ -970,7 +970,7 @@ $wgSVGMetadataCutoff = 262144;
  *
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic
  * browsers which can not perform basic stuff like MIME detection and which are
- * vulnerable to further idiots uploading crap files as images.
+ * vulnerable to further uploading of files such as images.
  *
  * When this directive is on, "<title>" will be allowed in files with an
  * "image/svg+xml" MIME type. You should leave this disabled if your web server

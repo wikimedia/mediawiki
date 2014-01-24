@@ -3339,8 +3339,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param $rev Revision object
 	 *
-	 * @todo This is a shitty interface function. Kill it and replace the
-	 * other shitty functions like doEditUpdates and such so it's not needed
+	 * @todo This interface function is not good. Kill it and replace the
+	 * other functions like doEditUpdates and such so it's not needed
 	 * anymore.
 	 * @deprecated since 1.18, use doEditUpdates()
 	 */

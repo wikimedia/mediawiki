@@ -1921,7 +1921,7 @@ class Parser {
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
-				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
+				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row makes it confusing,
 				# the real problem is with the $e1 regex
 				# See bug 1300.
 				#
@@ -4615,7 +4615,7 @@ class Parser {
 		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
 
 		# Allow translation of timezones through wiki. format() can return
-		# whatever crap the system uses, localised or not, so we cannot
+		# whatever the system uses, localised or not, so we cannot
 		# ship premade translations.
 		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
 		$msg = wfMessage( $key )->inContentLanguage();

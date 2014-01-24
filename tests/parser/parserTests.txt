@@ -9089,7 +9089,7 @@ wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
 !! article
 Template:dangerous
 !!text
-@<span onmouseover="alert('crap')">Oh no</span>
+@<span onmouseover="alert('BOO')">Oh no</span>
 !!endarticle
 
 !!test
