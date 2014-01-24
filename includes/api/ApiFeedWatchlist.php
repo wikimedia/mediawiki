@@ -51,16 +51,15 @@ class ApiFeedWatchlist extends ApiBase {
 	 * Wrap the result as an RSS/Atom feed.
 	 */
 	public function execute() {
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgLanguageCode;
-
 		try {
 			$params = $this->extractRequestParams();
 
-			if ( !$wgFeed ) {
+			if ( !$this->getConfig()->get( '$wgFeed' ) ) {
 				$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 			}
 
-			if ( !isset( $wgFeedClasses[$params['feedformat']] ) ) {
+			$feedClasses = $this->getConfig()->get( 'FeedClasses' );
+			if ( !isset( $feedClasses[$params['feedformat']] ) ) {
 				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 			}
 
@@ -76,7 +75,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'wlprop' => 'title|user|comment|timestamp',
 				'wldir' => 'older', // reverse order - from newest to oldest
 				'wlend' => $endTime, // stop at this time
-				'wllimit' => min( 50, $wgFeedLimit )
+				'wllimit' => min( 50, $this->getConfig()->get( 'FeedLimit' ) )
 			);
 
 			if ( $params['wlowner'] !== null ) {
@@ -129,7 +128,7 @@ class ApiFeedWatchlist extends ApiBase {
 
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
 
-			$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
+			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - ' . $msg . ' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feed = new $wgFeedClasses[$params['feedformat']] (
@@ -144,14 +143,14 @@ class ApiFeedWatchlist extends ApiBase {
 			$this->getMain()->setCacheMaxAge( 0 );
 
 			// @todo FIXME: Localise  brackets
-			$feedTitle = $wgSitename . ' - Error - ' .
+			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - Error - ' .
 				wfMessage( 'watchlist' )->inContentLanguage()->text() .
-				' [' . $wgLanguageCode . ']';
+				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->escaped();
-			$feed = new $wgFeedClasses[$feedFormat] ( $feedTitle, $msg, $feedUrl );
+			$feed = new $feedClasses[$feedFormat] ( $feedTitle, $msg, $feedUrl );
 
 			if ( $e instanceof UsageException ) {
 				$errorCode = $e->getCodeString();
@@ -212,8 +211,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		global $wgFeedClasses;
-		$feedFormatNames = array_keys( $wgFeedClasses );
+		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
 		$ret = array(
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',

@@ -790,7 +790,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getResultProperties() {
-		global $wgLogTypes;
 		$props = array(
 			'' => array(
 				'type' => array(
@@ -866,7 +865,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logtype' => array(
-					ApiBase::PROP_TYPE => $wgLogTypes,
+					ApiBase::PROP_TYPE => $config->get( 'LogTypes' ),
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logaction' => array(
