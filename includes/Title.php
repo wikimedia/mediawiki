@@ -706,6 +706,8 @@ class Title {
 	/**
 	 * Get the interwiki prefix
 	 *
+	 * Use Title::isExternal to check if a interwiki is set
+	 *
 	 * @return String Interwiki prefix
 	 */
 	public function getInterwiki() {
@@ -1193,6 +1195,8 @@ class Title {
 
 	/**
 	 * Get the Title fragment (i.e.\ the bit after the #) in text form
+	 *
+	 * Use Title::hasFragment to check for a fragment
 	 *
 	 * @return String Title fragment
 	 */
