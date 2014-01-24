@@ -3210,7 +3210,8 @@ class Title {
 		global $wgContLang, $wgLocalInterwiki;
 
 		# Initialisation
-		$this->mInterwiki = $this->mFragment = '';
+		$this->mInterwiki = '';
+		$this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
 
 		$dbkey = $this->mDbkeyform;
@@ -3305,10 +3306,6 @@ class Title {
 			break;
 		} while ( true );
 
-		# We already know that some pages won't be in the database!
-		if ( $this->isExternal() || NS_SPECIAL == $this->mNamespace ) {
-			$this->mArticleID = 0;
-		}
 		$fragment = strstr( $dbkey, '#' );
 		if ( false !== $fragment ) {
 			$this->setFragment( $fragment );
@@ -3378,9 +3375,9 @@ class Title {
 		// there are numerous ways to present the same IP. Having sp:contribs scan
 		// them all is silly and having some show the edits and others not is
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
-		$dbkey = ( $this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK )
-			? IP::sanitizeIP( $dbkey )
-			: $dbkey;
+		if ( $this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK ) {
+			$dbkey = IP::sanitizeIP( $dbkey );
+		}
 
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
@@ -3392,6 +3389,11 @@ class Title {
 		$this->mUrlform = wfUrlencode( $dbkey );
 
 		$this->mTextform = str_replace( '_', ' ', $dbkey );
+
+		# We already know that some pages won't be in the database!
+		if ( $this->isExternal() || $this->mNamespace == NS_SPECIAL ) {
+			$this->mArticleID = 0;
+		}
 
 		return true;
 	}
