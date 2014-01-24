@@ -185,12 +185,12 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		global $wgAPIModules, $wgAPIFormatModules;
+		$config = $this->getConfig();
 		$this->mModuleMgr = new ApiModuleManager( $this );
 		$this->mModuleMgr->addModules( self::$Modules, 'action' );
-		$this->mModuleMgr->addModules( $wgAPIModules, 'action' );
+		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
-		$this->mModuleMgr->addModules( $wgAPIFormatModules, 'format' );
+		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
 		$this->mResult = new ApiResult( $this );
 		$this->mEnableWrite = $enableWrite;
@@ -421,8 +421,6 @@ class ApiMain extends ApiBase {
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
 	protected function handleCORS() {
-		global $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions;
-
 		$originParam = $this->getParameter( 'origin' ); // defaults to null
 		if ( $originParam === null ) {
 			// No origin parameter, nothing to do
@@ -450,10 +448,11 @@ class ApiMain extends ApiBase {
 			return false;
 		}
 
+		$config = $this->getConfig();
 		$matchOrigin = self::matchOrigin(
 			$originParam,
-			$wgCrossSiteAJAXdomains,
-			$wgCrossSiteAJAXdomainExceptions
+			$config->get( 'CrossSiteAJAXdomains' ),
+			$config->get( 'CrossSiteAJAXdomainExceptions' )
 		);
 
 		if ( $matchOrigin ) {
@@ -510,29 +509,29 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
-		global $wgUseXVO, $wgVaryOnXFP;
 		$response = $this->getRequest()->response();
 		$out = $this->getOutput();
 
-		if ( $wgVaryOnXFP ) {
+		$config = $this->getConfig();
+
+		if ( $config->get( 'VaryOnXFP' ) ) {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 
 		if ( $this->mCacheMode == 'private' ) {
 			$response->header( 'Cache-Control: private' );
-
 			return;
 		}
 
+		$useXVO = $config->get( 'UseXVO' );
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( $wgUseXVO ) {
+			if ( $useXVO ) {
 				$response->header( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
 					$response->header( 'Cache-Control: private' );
-
 					return;
 				}
 				// Logged out, send normal public headers below
@@ -547,7 +546,7 @@ class ApiMain extends ApiBase {
 
 		// Send public headers
 		$response->header( $out->getVaryHeader() );
-		if ( $wgUseXVO ) {
+		if ( $useXVO ) {
 			$response->header( $out->getXVO() );
 		}
 
