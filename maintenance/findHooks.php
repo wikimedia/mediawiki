@@ -42,6 +42,11 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class FindHooks extends Maintenance {
+	/*
+	 * Hooks that are ignored
+	 */
+	protected static $ignore = array( 'testRunLegacyHooks' );
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Find hooks that are undocumented, missing, or just plain wrong';
@@ -255,8 +260,11 @@ class FindHooks extends Maintenance {
 		if ( $sort ) {
 			asort( $arr );
 		}
+
 		foreach ( $arr as $v ) {
-			$this->output( "$msg: $v\n" );
+			if ( !in_array( $v, self::$ignore ) ) {
+				$this->output( "$msg: $v\n" );
+			}
 		}
 	}
 }
