@@ -321,8 +321,7 @@ abstract class ApiQueryBase extends ApiBase {
 		);
 		$this->profileDBOut();
 
-		global $wgAPIMaxDBRows;
-		if ( $rowcount > $wgAPIMaxDBRows ) {
+		if ( $rowcount > $this->getConfig()->get( 'wgAPIMaxDBRows' ) ) {
 			return false;
 		}
 

@@ -36,14 +36,14 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, 'qp' );
 		// We need to do this to make sure $wgQueryPages is set up
 		// This SUCKS
-		global $IP;
+		$config = $this->getConfig();
+		$IP = $config->get( 'IP' );
 		require_once "$IP/includes/QueryPage.php";
 
 		// Build mapping from special page names to QueryPage classes
-		global $wgQueryPages, $wgAPIUselessQueryPages;
 		$this->qpMap = array();
-		foreach ( $wgQueryPages as $page ) {
-			if ( !in_array( $page[1], $wgAPIUselessQueryPages ) ) {
+		foreach ( $config->get( 'wgQueryPages' ) as $page ) {
+			if ( !in_array( $page[1], $config->get( 'wgAPIUselessQueryPages' ) ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
 		}
@@ -61,8 +61,6 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
-		global $wgQueryCacheLimit;
-
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
@@ -82,7 +80,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
-				$r['maxresults'] = $wgQueryCacheLimit;
+				$r['maxresults'] = $config->get( 'wgQueryCacheLimit' );
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
