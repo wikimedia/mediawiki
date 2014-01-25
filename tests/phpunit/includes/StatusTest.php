@@ -166,6 +166,29 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @dataProvider provideMockMessageDetails
+	 * @covers Status::fatal
+	 * @covers Status::getErrorsArray
+	 * @covers Status::getStatusArray
+	 */
+	public function testFatalWithMessage( $mockDetails ) {
+		$status = new Status();
+		$messages = $this->getMockMessages( $mockDetails );
+
+		foreach ( $messages as $message ) {
+			$status->fatal( $message );
+		}
+		$errors = $status->getErrorsArray();
+
+		$this->assertEquals( count( $messages ), count( $errors ) );
+		foreach ( $messages as $key => $message ) {
+			$expectedArray = array_merge( array( $message->getKey() ), $message->getParams() );
+			$this->assertEquals( $errors[$key], $expectedArray );
+		}
+		$this->assertFalse( $status->isOK() );
+	}
+
 	protected function getMockMessage( $key = 'key', $params = array() ) {
 		$message = $this->getMockBuilder( 'Message' )
 			->disableOriginalConstructor()
