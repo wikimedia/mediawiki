@@ -276,12 +276,14 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $method->invoke( $status, $params ) );
 	}
 
-	/**
-	 * @todo test cleanParams with a callback
-	 */
 	public static function provideCleanParams() {
+		$cleanCallback = function( $value ) {
+			return '-' . $value . '-';
+		};
+
 		return array(
 			array( false, array( 'foo' => 'bar' ), array( 'foo' => 'bar' ) ),
+			array( $cleanCallback, array( 'foo' => 'bar' ), array( 'foo' => '-bar-' ) ),
 		);
 	}
 
