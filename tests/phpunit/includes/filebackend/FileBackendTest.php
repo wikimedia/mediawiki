@@ -1892,7 +1892,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = self::baseStorePath();
 
 		// Should have no errors
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont-notexists" ) );
+		$this->backend->getFileList( array( 'dir' => "$base/unittest-cont-notexists" ) );
 
 		$files = array(
 			"$base/unittest-cont1/e/test1.txt",
@@ -2034,9 +2034,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $iter ) {
-			// no errors
-		}
+		$this->assertArrayOrTraversable( $iter );
 	}
 
 	/**
@@ -2237,9 +2235,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $file ) {
-			// no errors
-		}
+		$this->assertArrayOrTraversable( $iter );
 
 		$items = $this->listToArray( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
@@ -2371,7 +2367,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $this->backend->doQuickOperations( array( $params ) );
 	}
 
-	function tearDownFiles() {
+	private function tearDownFiles() {
 		foreach ( $this->filesToPrune as $file ) {
 			if ( is_file( $file ) ) {
 				unlink( $file );
@@ -2397,14 +2393,22 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->clean( array( 'dir' => "$base/$container", 'recursive' => 1 ) );
 	}
 
-	function assertBackendPathsConsistent( array $paths ) {
+	private function assertBackendPathsConsistent( array $paths ) {
 		if ( $this->backend instanceof FileBackendMultiWrite ) {
 			$status = $this->backend->consistencyCheck( $paths );
 			$this->assertGoodStatus( $status, "Files synced: " . implode( ',', $paths ) );
 		}
 	}
 
-	function assertGoodStatus( $status, $msg ) {
+	private function assertGoodStatus( $status, $msg ) {
 		$this->assertEquals( print_r( array(), 1 ), print_r( $status->errors, 1 ), $msg );
+	}
+
+	private function assertArrayOrTraversable( $actual, $message = ''  ){
+		if ( is_array( $actual ) ) {
+			$this->assertInternalType( 'array', $actual, $message );
+		} else {
+			$this->assertInstanceOf( 'Traversable', $actual, $message );
+		}
 	}
 }
