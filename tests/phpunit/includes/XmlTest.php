@@ -144,10 +144,7 @@ class XmlTest extends MediaWikiTestCase {
 		$prevYear = $curYear - 1;
 
 		$curMonth = intval( gmdate( 'n' ) );
-		$prevMonth = $curMonth - 1;
-		if ( $prevMonth == 0 ) {
-			$prevMonth = 12;
-		}
+
 		$nextMonth = $curMonth + 1;
 		if ( $nextMonth == 13 ) {
 			$nextMonth = 1;

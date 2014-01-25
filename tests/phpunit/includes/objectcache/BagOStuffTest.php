@@ -74,8 +74,6 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$fork &= !$this->cache instanceof MultiWriteBagOStuff;
 		if ( $fork ) {
 			// callback should take awhile now so that we can test concurrent merge attempts
-			$usleep = 5000;
-
 			$pid = pcntl_fork();
 			if ( $pid == -1 ) {
 				// can't fork, ignore this test...
