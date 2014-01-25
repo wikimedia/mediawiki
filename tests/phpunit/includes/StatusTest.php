@@ -200,7 +200,6 @@ class StatusTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers Status::merge
-	 * @todo test merge with $overwriteValue true
 	 */
 	public function testMerge() {
 		$status1 = new Status();
@@ -212,6 +211,23 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status1->merge( $status2 );
 		$this->assertEquals( 2, count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() ) );
+	}
+
+	/**
+	 * @covers Status::merge
+	 */
+	public function testMergeWithOverwriteValue() {
+		$status1 = new Status();
+		$status2 = new Status();
+		$message1 = $this->getMockMessage( 'warn1' );
+		$message2 = $this->getMockMessage( 'error2' );
+		$status1->warning( $message1 );
+		$status2->error( $message2 );
+		$status2->value = 'FooValue';
+
+		$status1->merge( $status2, true );
+		$this->assertEquals( 2, count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() ) );
+		$this->assertEquals( 'FooValue', $status1->getValue() );
 	}
 
 	/**
