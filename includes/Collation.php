@@ -514,7 +514,7 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
-	 * @deprecated in 1.22; use ArrayUtils::findLowerBound() instead
+	 * @deprecated in 1.23; use ArrayUtils::findLowerBound() instead
 	 *
 	 * @param array $valueCallback A function to call to get the value with
 	 *     a given array index.
@@ -528,7 +528,7 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		wfDeprecated( __METHOD__, '1.22' );
+		wfDeprecated( __METHOD__, '1.23' );
 		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
 	}
 
