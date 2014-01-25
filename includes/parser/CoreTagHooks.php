@@ -35,6 +35,8 @@ class CoreTagHooks {
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
+		$parser->setHook( 'verbatim', array( __CLASS__, 'verbatim' ) );
+		$parser->setHook( 'poem', array( __CLASS__, 'verbatim' ) ); # legacy alias
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}
@@ -118,5 +120,71 @@ class CoreTagHooks {
 	 */
 	static function gallery( $content, $attributes, $parser ) {
 		return $parser->renderImageGallery( $content, $attributes );
+	}
+
+	/**
+	 * Core parser tag hook function for 'verbatim', aka 'poem'.
+	 *
+	 * Outputs text, maintaining line breaks and providing a smaller, line-based
+	 * indentation. Suitable for poems and similar content.
+	 *
+	 * @param string $content The text inside the <verbatim> tag
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param boolean $frame
+	 * @return string
+	 */
+	static function verbatim( $content, $attributes, $parser, $frame = false ) {
+		// replace colons with indented spans
+		$text = preg_replace_callback( '/^(:+)(.+)$/m', array( __CLASS__, 'verbatimIndentVerse' ), $content );
+
+		// add a newline at beginning and end if there isn't one already
+		if ( substr( $text, 0, 1 ) !== "\n" ) {
+			$text = "\n$text";
+		}
+		if ( substr( $text, -1 ) !== "\n" ) {
+			$text = "$text\n";
+		}
+
+		// replace spaces at the beginning of a line with non-breaking spaces
+		$text = preg_replace_callback( '/^( +)/m', array( __CLASS__, 'verbatimReplaceSpaces' ), $text );
+
+		$text = $parser->recursiveTagParse( $text, $frame );
+
+		$attribs = Sanitizer::validateTagAttributes( $attributes, 'div' );
+
+		// Wrap output in a <div> with "poem" class.
+		if ( isset( $attribs['class'] ) ) {
+			$attribs['class'] = 'poem ' . $attribs['class'];
+		} else {
+			$attribs['class'] = 'poem';
+		}
+
+		return Html::rawElement( 'pre', $attribs, $text );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that replaces spaces with non-breaking spaces
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more spaces
+	 * @return string
+	 */
+	protected static function verbatimReplaceSpaces( $m ) {
+		return str_replace( ' ', '&#160;', $m[1] );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that wraps content in an indented span
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more colons
+	 *   - $m[2] consists of the text after the colons
+	 * @return string
+	 */
+	protected static function verbatimIndentVerse( $m ) {
+		$attribs = array(
+			'class' => 'mw-poem-indented',
+			'style' => 'margin-left: ' . strlen( $m[1] ) . 'em;'
+		);
+		return Html::rawElement( 'span', $attribs, $m[2] );
 	}
 }

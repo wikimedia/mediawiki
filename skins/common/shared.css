@@ -900,7 +900,22 @@ ul.mw-gallery-packed-overlay div.gallerytext {
 	position: relative; /* Resets opacity in old IE */
 }
 
+/* Poem */
+pre.poem {
+	font-family: inherit;
+	border: none;
+	background: inherit;
+	color: inherit;
+	padding: 0;
+	white-space: pre-line;
+	/* see also p, pre.poem declaration in commonElements.css */
+}
 
+.mw-poem-indented {
+	display: inline-block;
+}
+
+/* AJAX loader */
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);
