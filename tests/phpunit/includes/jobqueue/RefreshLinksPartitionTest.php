@@ -6,7 +6,7 @@
  * @group Database
  */
 class RefreshLinksPartitionTest extends MediaWikiTestCase {
-	function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed[] = 'page';
@@ -20,9 +20,6 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );
 
-		$dbw = wfGetDB( DB_MASTER );
-
-		$rows = array();
 		foreach ( $pages as $page ) {
 			list( $bns, $bdbkey ) = $page;
 			$bpage = WikiPage::factory( Title::makeTitle( $bns, $bdbkey ) );
