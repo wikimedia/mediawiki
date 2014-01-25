@@ -1892,7 +1892,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = self::baseStorePath();
 
 		// Should have no errors
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont-notexists" ) );
+		$this->backend->getFileList( array( 'dir' => "$base/unittest-cont-notexists" ) );
 
 		$files = array(
 			"$base/unittest-cont1/e/test1.txt",
@@ -2034,9 +2034,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $iter ) {
-			// no errors
-		}
+		$this->assertInternalType( 'array', $iter );
 	}
 
 	/**
@@ -2237,9 +2235,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
-		foreach ( $iter as $file ) {
-			// no errors
-		}
+		$this->assertInternalType( 'array', $iter );
 
 		$items = $this->listToArray( $iter );
 		$this->assertEquals( array(), $items, "Directory listing is empty." );
