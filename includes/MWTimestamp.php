@@ -389,8 +389,3 @@ class MWTimestamp {
 		return new self( $ts );
 	}
 }
-
-/**
- * @since 1.20
- */
-class TimestampException extends MWException {}

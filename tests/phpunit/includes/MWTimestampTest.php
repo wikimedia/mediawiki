@@ -3,7 +3,7 @@
 /**
  * Tests timestamp parsing and output.
  */
-class TimestampTest extends MediaWikiLangTestCase {
+class MWTimestampTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
