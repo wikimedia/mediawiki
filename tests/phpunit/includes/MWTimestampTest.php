@@ -12,6 +12,44 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers MWTimestamp::__construct
+	 */
+	public function testConstructWithNoTimestamp() {
+		$timestamp = new MWTimestamp();
+		$this->assertInternalType( 'string', $timestamp->getTimestamp() );
+		$this->assertNotEmpty( $timestamp->getTimestamp() );
+		$this->assertNotEquals( false, strtotime( $timestamp->getTimestamp( TS_MW ) ) );
+	}
+
+	/**
+	 * @covers MWTimestamp::__toString
+	 */
+	public function testToString() {
+		$timestamp = new MWTimestamp( '1406833268' ); // Equivlant to 20140731190108
+		$this->assertEquals( '1406833268', $timestamp->__toString() );
+	}
+
+	public function provideValidTimestampDifferences() {
+		return array(
+			array( '1406833268','1406833269', '00 00 00 01' ),
+			array( '1406833268','1406833329', '00 00 01 01' ),
+			array( '1406833268','1406836929', '00 01 01 01' ),
+			array( '1406833268','1406923329', '01 01 01 01' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideValidTimestampDifferences
+	 * @covers MWTimestamp::diff
+	 */
+	public function testDiff( $timestamp1, $timestamp2, $expected ) {
+		$timestamp1 = new MWTimestamp( $timestamp1 );
+		$timestamp2 = new MWTimestamp( $timestamp2 );
+		$diff = $timestamp1->diff( $timestamp2 );
+		$this->assertEquals( $expected, $diff->format( '%D %H %I %S' ) );
+	}
+
+	/**
 	 * Test parsing of valid timestamps and outputing to MW format.
 	 * @dataProvider provideValidTimestamps
 	 * @covers MWTimestamp::getTimestamp
