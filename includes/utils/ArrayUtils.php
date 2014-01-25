@@ -22,6 +22,8 @@
 
 /**
  * A collection of static methods to play with arrays.
+ *
+ * @since 1.21
  */
 class ArrayUtils {
 	/**
@@ -94,13 +96,15 @@ class ArrayUtils {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
+	 * @since 1.23
+	 *
 	 * @param array $valueCallback A function to call to get the value with
 	 *     a given array index.
-	 * @param $valueCount int The number of items accessible via $valueCallback,
+	 * @param int $valueCount The number of items accessible via $valueCallback,
 	 *     indexed from 0 to $valueCount - 1
-	 * @param $comparisonCallback array A callback to compare two values, returning
+	 * @param array $comparisonCallback A callback to compare two values, returning
 	 *     -1, 0 or 1 in the style of strcmp().
-	 * @param $target string The target value to find.
+	 * @param string $target The target value to find.
 	 *
 	 * @return int|bool The item index of the lower bound, or false if the target value
 	 *     sorts before all items.
@@ -142,9 +146,11 @@ class ArrayUtils {
 	 *
 	 * Note: empty arrays are removed.
 	 *
-	 * @param $array1 array The array to compare from
-	 * @param $array2 array An array to compare against
-	 * @param ... array More arrays to compare against
+	 * @since 1.23
+	 *
+	 * @param array $array1 The array to compare from
+	 * @param array $array2 An array to compare against
+	 * @param array ... More arrays to compare against
 	 * @return array An array containing all the values from array1
 	 *               that are not present in any of the other arrays.
 	 */
