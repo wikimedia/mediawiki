@@ -593,8 +593,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 
 		$page = $this->createPage( $title, $text, $model );
-		$hasLinks = wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-			array( 'pl_from' => $page->getId() ), __METHOD__ );
 
 		$editInfo = $page->prepareContentForEdit( $page->getContent() );
 

@@ -224,9 +224,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
-		$talkRev = Revision::newFromTitle( $talk );
-		$talkSize = $talkRev->getSize();
-
 		$exception = false;
 		try {
 			$this->doApiRequest( array(
@@ -249,6 +246,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		return;
 		/*
 		// Broken until using leavemessage with ignorewarnings is supported
+		$talkRev = Revision::newFromTitle( $talk );
+		$talkSize = $talkRev->getSize();
+
 		$job->run();
 
 		$this->assertFalse( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );
