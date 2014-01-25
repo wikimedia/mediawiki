@@ -224,9 +224,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
-		$talkRev = Revision::newFromTitle( $talk );
-		$talkSize = $talkRev->getSize();
-
 		$exception = false;
 		try {
 			$this->doApiRequest( array(

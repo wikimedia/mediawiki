@@ -391,7 +391,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
 		$this->forceRevisionDate( $rpage, '20120101000000' );
-		$baseTime = $rpage->getRevision()->getTimestamp();
 
 		// new edit to content
 		$page->doEditContent( new WikitextContent( "Foo bar" ),
