@@ -32,8 +32,6 @@ class RunningStatTest extends MediaWikiTestCase {
 			return pow( $mean - $x, 2 );
 		}, $this->points ) ) / ( count( $rstat ) - 1 );
 		$stddev = sqrt( $variance );
-		$min = min( $this->points );
-		$max = max( $this->points );
 
 		$this->assertEquals( count( $rstat ), count( $this->points ) );
 		$this->assertEquals( $rstat->min, min( $this->points ) );
