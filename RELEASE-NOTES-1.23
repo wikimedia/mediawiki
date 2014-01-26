@@ -75,6 +75,9 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* (bug 52061) A new <lines> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
