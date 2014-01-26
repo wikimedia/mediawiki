@@ -336,7 +336,6 @@ $messages = array(
 'tog-showtoolbar' => 'Montri redakto-breton (per JavaScript)',
 'tog-editondblclick' => 'Redakti per duobla alklako (per JavaScript)',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
-'tog-showtoc' => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
 'tog-rememberpassword' => 'Memori mian ensalutadon ĉe ĉi tiu retumilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
 'tog-watchcreations' => 'Aldoni miajn kreatajn paĝojn al mia atentaro',
 'tog-watchdefault' => 'Aldoni al mia atentaro paĝojn redaktitajn de mi',

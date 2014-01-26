@@ -193,7 +193,6 @@ $messages = array(
 'tog-showtoolbar' => 'Amostrar el chibuk de aparatos',
 'tog-editondblclick' => 'Trocar las hojas con doble klik',
 'tog-editsectiononrightclick' => 'Pueder trocar los kapítůlos, en pizando el botón derecho del ratón encima el títůlo',
-'tog-showtoc' => 'Àmostrar el cuadro de contènidos (para las hojas que tienen más de 3 títůlos de capítůlo)',
 'tog-rememberpassword' => 'Acordarse de mi entrada en este navigador (a lo más muńcho $1 {{PLURAL:$1|día|días}})',
 'tog-watchcreations' => 'Anyadir lad pajinas ke kree i archivos ke karge a mi lista',
 'tog-watchdefault' => 'Anyadir pajinas i archivos ke edite a mi lista',

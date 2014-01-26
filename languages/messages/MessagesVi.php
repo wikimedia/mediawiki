@@ -349,7 +349,6 @@ $messages = array(
 'tog-showtoolbar' => 'Hiển thị thanh định dạng',
 'tog-editondblclick' => 'Nhấn đúp để sửa đổi trang',
 'tog-editsectiononrightclick' => 'Bấm chuột phải vào đề mục để sửa đổi phần trang',
-'tog-showtoc' => 'Hiển thị mục lục (cho trang có trên 3 đề mục)',
 'tog-rememberpassword' => 'Nhớ thông tin đăng nhập của tôi trong trình duyệt này (cho đến $1 ngày)',
 'tog-watchcreations' => 'Tự động theo dõi các trang tôi viết mới và các tập tin tôi tải lên',
 'tog-watchdefault' => 'Tự động theo dõi các trang và tập tin tôi sửa',

@@ -183,8 +183,6 @@ This is the toolbar: [[Image:Toolbar.png]]",
 [[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
 'tog-editsectiononrightclick' => "{{Gender}}
 [[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
-'tog-showtoc' => "[[Special:Preferences]], tab 'Misc'.
-Offers user to show a table of contents automatically if a page has more than 3 headings (= 4 or more headings).",
 'tog-rememberpassword' => "{{Gender}}
 [[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.
 Parameters:
@@ -1624,7 +1622,9 @@ Parameters:
 This is a protection against robots trying to find the password by trying lots of them.
 The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
 This message is used in html.
-{{identical|Login throttled}}',
+
+See also:
+* {{msg-mw|Changeemail-throttled}}',
 'resetpass_forbidden' => "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 'resetpass-no-info' => 'Error message for [[Special:ChangePassword]].
 
@@ -1733,7 +1733,9 @@ Parameters:
 This is a protection against robots trying to find the password by trying lots of them.
 The number of attempts and waiting time are configured via [[mw:Manual:$wgPasswordAttemptThrottle|$wgPasswordAttemptThrottle]].
 This message is used in html.
-{{identical|Login throttled}}',
+
+See also:
+* {{msg-mw|Changepassword-throttled}}',
 
 # Special:ResetTokens
 'resettokens' => '{{doc-special|ResetTokens}}
@@ -8156,7 +8158,8 @@ See also:
 # Skin names
 'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook' => '{{optional}}',
-'skinname-modern' => '{{optional}}',
+'skinname-modern' => '{{optional}}
+{{Identical|Modern}}',
 'skinname-vector' => '{{optional}}',
 
 # Patrolling

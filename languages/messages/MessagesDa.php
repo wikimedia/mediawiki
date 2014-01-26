@@ -205,7 +205,6 @@ $messages = array(
 'tog-showtoolbar' => 'Vis værktøjslinje til redigering',
 'tog-editondblclick' => 'Redigér sider med dobbeltklik',
 'tog-editsectiononrightclick' => 'Redigér afsnit ved at højreklikke på deres titler',
-'tog-showtoc' => 'Vis indholdsfortegnelse (på sider med mere end tre afsnit)',
 'tog-rememberpassword' => 'Husk mig i denne browser (i højst $1 {{PLURAL:$1|dag|dage}})',
 'tog-watchcreations' => 'Tilføj sider, jeg opretter, og filer, jeg lægger op, til min overvågningsliste',
 'tog-watchdefault' => 'Tilføj sider og filer, jeg redigerer, til min overvågningsliste',

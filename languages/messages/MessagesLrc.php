@@ -26,7 +26,6 @@ $messages = array(
 'tog-showtoolbar' => 'نوار اوزار ويرايشت نشون بيه',
 'tog-editondblclick' => 'بلگيا نه وا دوبار پورنين ويرايشت بكيد',
 'tog-editsectiononrightclick' => 'بهر ویرایشت نه وا راس کلیک کردن د بهر عنوانیا فعال کو',
-'tog-showtoc' => 'چیا مئن جدول نشو بیه',
 'tog-rememberpassword' => 'اومائن وا مئن منه د ای مرورگر د ویر داشتو(سی بیشترین$1{{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'بلگیایی که مه راس کمه و فایلیایی که مه سوار کمه اضاف کو د سیل برگه مه',
 'tog-watchdefault' => 'بلگیا و فایلایی که مه ویرایشت کمه اضاف کو د سیل برگم',

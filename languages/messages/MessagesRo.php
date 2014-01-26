@@ -309,7 +309,6 @@ $messages = array(
 'tog-showtoolbar' => 'Afișează bara de unelte pentru modificare',
 'tog-editondblclick' => 'Modifică paginile prin dublu clic',
 'tog-editsectiononrightclick' => 'Activează modificarea secţiunilor prin clic dreapta pe titlul secțiunii',
-'tog-showtoc' => 'Arată cuprinsul (pentru paginile cu mai mult de 3 paragrafe cu titlu)',
 'tog-rememberpassword' => 'Autentificare automată de la acest navigator (expiră după $1 {{PLURAL:$1|zi|zile|de zile}})',
 'tog-watchcreations' => 'Adaugă paginile pe care le creez și fișierele pe care le încarc la lista mea de pagini urmărite',
 'tog-watchdefault' => 'Adaugă paginile și fișierele pe care le modific la lista mea de urmărire',
@@ -856,6 +855,8 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatoru
 'retypenew' => 'Reintroduceți noua parolă:',
 'resetpass_submit' => 'Setează parola și autentifică',
 'changepassword-success' => 'Parola dumneavoastră a fost schimbată cu succes!',
+'changepassword-throttled' => 'Ați avut prea multe încercări recente de a vă autentifica.
+Vă rugăm să așteptați $1 până să reîncercați.',
 'resetpass_forbidden' => 'Parolele nu pot fi schimbate.',
 'resetpass-no-info' => 'Trebuie să fiți autentificat pentru a accesa această pagină direct.',
 'resetpass-submit-loggedin' => 'Modifică parola',
@@ -911,6 +912,8 @@ Parolă temporară: $2',
 'changeemail-password' => 'Parola dumneavoastră la {{SITENAME}}:',
 'changeemail-submit' => 'Modifică adresa de e-mail',
 'changeemail-cancel' => 'Revocare',
+'changeemail-throttled' => 'Ați avut prea multe încercări de a vă autentifica.
+Vă rugăm să așteptați $1 până să reîncercați.',
 
 # Special:ResetTokens
 'resettokens' => 'Resetare jetoane',

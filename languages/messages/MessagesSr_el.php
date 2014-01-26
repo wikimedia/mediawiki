@@ -317,7 +317,6 @@ $messages = array(
 'tog-showtoolbar' => 'Prikaži traku s alatkama za uređivanje',
 'tog-editondblclick' => 'Uređivanje stranica dvostrukim klikom',
 'tog-editsectiononrightclick' => 'Uređivanje odeljaka desnim klikom na njihove naslove',
-'tog-showtoc' => 'Prikaži sadržaj stranica koje imaju više od tri podnaslova',
 'tog-rememberpassword' => 'Zapamti me na ovom pregledaču (najduže $1 {{PLURAL:$1|1=dan|dana}})',
 'tog-watchcreations' => 'Dodaj stranice koje napravim i datoteke koje pošaljem u spisak nadgledanja',
 'tog-watchdefault' => 'Dodaj stranice i datoteke koje izmenim u spisak nadgledanja',
@@ -1787,7 +1786,7 @@ Ukoliko imate ovu sliku u punoj veličini, pošaljite je, a ako nemate, promenit
 'fileexists-forbidden' => 'Datoteka s ovim nazivom već postoji i ne može se zameniti.
 Ako i dalje želite da pošaljete datoteku, vratite se i izaberite drugi naziv.
 [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Datoteka s ovim nazivom već postoji u zajedničkom skladištu.
+'fileexists-shared-forbidden' => 'Datoteka s ovim nazivom već postoji u zajedničkoj ostavi.
 Vratite se i pošaljite datoteku s drugim nazivom.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Ovo je duplikat {{PLURAL:$1|sledeće datoteke|sledećih datoteka}}:',

@@ -390,7 +390,6 @@ $messages = array(
 'tog-showtoolbar' => 'Bewerkingswerkbalk weergeven',
 'tog-editondblclick' => 'Dubbelklikken voor bewerken',
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop',
-'tog-showtoc' => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'tog-watchcreations' => "Pagina's die ik aanmaak en bestanden die ik upload automatisch volgen",
 'tog-watchdefault' => 'Pagina’s en bestanden die ik bewerk automatisch volgen',

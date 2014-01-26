@@ -162,7 +162,6 @@ $messages = array(
 'tog-showtoolbar' => '多寶列見（JavaScript）',
 'tog-editondblclick' => '纂頁雙擊（JavaScript）',
 'tog-editsectiononrightclick' => '纂段右擊標（JavaScript）',
-'tog-showtoc' => '四章見目',
 'tog-rememberpassword' => '符節通越（達至$1日）',
 'tog-watchcreations' => '哨己撰',
 'tog-watchdefault' => '哨己纂',

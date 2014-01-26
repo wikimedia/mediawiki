@@ -435,7 +435,6 @@ $messages = array(
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen',
 'tog-editondblclick' => 'Seiten mit Doppelklick bearbeiten',
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten',
-'tog-showtoc' => 'Anzeige eines Inhaltsverzeichnisses auf Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword' => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'tog-watchcreations' => 'Selbst erstellte Seiten und hochgeladene Dateien automatisch beobachten',
 'tog-watchdefault' => 'Selbst geänderte Seiten und Dateien automatisch beobachten',
@@ -3064,6 +3063,7 @@ Bitte besuche die Seiten [https://www.mediawiki.org/wiki/Localisation MediaWiki-
 'allmessages-prefix' => 'Präfixfilter:',
 'allmessages-language' => 'Sprache:',
 'allmessages-filter-submit' => 'Los',
+'allmessages-filter-translate' => 'Übersetzen',
 
 # Thumbnails
 'thumbnail-more' => 'vergrößern',

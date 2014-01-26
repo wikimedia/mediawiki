@@ -337,7 +337,6 @@ $messages = array(
 'tog-showtoolbar' => 'Visa redigeringsverktygsraden',
 'tog-editondblclick' => 'Redigera sidor med dubbelklick',
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker',
-'tog-showtoc' => 'Visa innehållsförteckning (för sidor med minst fyra rubriker)',
 'tog-rememberpassword' => 'Kom ihåg min inloggning på den här webbläsaren (i maximalt $1 {{PLURAL:$1|dygn|dygn}})',
 'tog-watchcreations' => 'Lägg till sidor jag skapar och filer jag laddar upp till min bevakningslista',
 'tog-watchdefault' => 'Lägg till sidor och filer jag redigerar i min bevakningslista',
@@ -883,6 +882,8 @@ Om du väljer att ange det, kommer det användas för att tillskriva användaren
 'retypenew' => 'Upprepa det nya lösenordet:',
 'resetpass_submit' => 'Ange lösenord och logga in',
 'changepassword-success' => 'Ditt lösenord har ändrats!',
+'changepassword-throttled' => 'Du har gjort för många misslyckade inloggningsförsök.
+Vänta $1 innan du försöker igen.',
 'resetpass_forbidden' => 'Lösenord kan inte ändras',
 'resetpass-no-info' => 'Du måste vara inloggad för att komma åt den här sidan direkt.',
 'resetpass-submit-loggedin' => 'Ändra lösenord',
@@ -934,6 +935,8 @@ Tillfälligt lösenord: $2',
 'changeemail-password' => 'Ditt lösenord till {{SITENAME}}:',
 'changeemail-submit' => 'Ändra e-post',
 'changeemail-cancel' => 'Avbryt',
+'changeemail-throttled' => 'Du har gjort för många inloggningsförsök.
+Vänta $1 innan du försöker igen.',
 
 # Special:ResetTokens
 'resettokens' => 'Återställ nycklar',
@@ -2518,7 +2521,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 # Rollback
 'rollback' => 'Rulla tillbaka ändringar',
 'rollback_short' => 'Tillbakarullning',
-'rollbacklink' => 'tillbakarullning',
+'rollbacklink' => 'rulla tillbaka',
 'rollbacklinkcount' => 'rulla tillbaka $1 {{PLURAL:$1|redigering|redigeringar}}',
 'rollbacklinkcount-morethan' => 'rulla tillbaka mer än $1 {{PLURAL:$1|redigering|redigeringar}}',
 'rollbackfailed' => 'Tillbakarullning misslyckades',
@@ -4223,4 +4226,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'expand_templates_generate_rawhtml' => 'Visa rå HTML',
 'expand_templates_preview' => 'Förhandsvisning',
 
+# Unknown messages
+'createaccount-hook-aborted' => '$1',
+'uploadinvalidxml' => 'XML-koden i den uppladdade filen kunde inte tolkas.',
 );

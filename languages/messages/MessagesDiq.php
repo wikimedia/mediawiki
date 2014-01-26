@@ -342,7 +342,6 @@ $messages = array(
 'tog-showtoolbar' => 'Toolbar virnayisi bivin (JavaScript lazımo)',
 'tog-editondblclick' => 'Per virnayisi di dilet klik bike (JavaScript lazımo)',
 'tog-editsectiononrightclick' => 'Qısıman be tıknayışê serrêze ra ebe gocega raşte bıvurne (JavaScript lazımo)',
-'tog-showtoc' => 'Tabloyê tedeesteyan bımocne (de pelanê be hirê sernuşteyan ra vêşêri de)',
 'tog-rememberpassword' => 'Parola mı nê cıgeyrayoği de bia xo viri (seba tewr zêde $1 {{PLURAL:$1|roce|rocan}}).',
 'tog-watchcreations' => 'Pelê ke mı afernayê u dosyeyê ke mı bar kerdê lista mına seyrkerdışi ke',
 'tog-watchdefault' => 'Pel u dosyeyê ke mı vurnayê lista mına seyrkerdışi ke',

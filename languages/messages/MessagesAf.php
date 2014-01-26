@@ -220,7 +220,6 @@ $messages = array(
 'tog-showtoolbar' => 'Wys redigeergereedskap',
 'tog-editondblclick' => 'Dubbelkliek om te wysig',
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
-'tog-showtoc' => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
 'tog-rememberpassword' => "Onthou dat ek op hierdie rekenaar ingeteken het (vir 'n maksimum van $1 {{PLURAL:$1|dag|dae}})",
 'tog-watchcreations' => 'Voeg bladsye wat ek skep en lêers wat ek oplaai by my dophoulys',
 'tog-watchdefault' => 'Voeg bladsye en lêers wat ek wysig by my dophoulys',

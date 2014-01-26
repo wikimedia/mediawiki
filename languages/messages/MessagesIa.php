@@ -157,7 +157,6 @@ $messages = array(
 'tog-showtoolbar' => 'Monstrar instrumentario de modification',
 'tog-editondblclick' => 'Modificar paginas con duple clic',
 'tog-editsectiononrightclick' => 'Permitter modification de sectiones con clic-a-dextra sur titulos de section',
-'tog-showtoc' => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'tog-watchcreations' => 'Adder le paginas que io crea e le files que io incarga a mi observatorio',
 'tog-watchdefault' => 'Adder le paginas e files que io modifica a mi observatorio',

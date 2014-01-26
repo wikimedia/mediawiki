@@ -335,7 +335,6 @@ $messages = array(
 'tog-showtoolbar' => 'Laot de warkbalke zien',
 'tog-editondblclick' => 'Mit dubbelklik bewarken',
 'tog-editsectiononrightclick' => 'Bewarken van deelziejen meugelik maken mit n rechtermuusklik op n tussenkop',
-'tog-showtoc' => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'tog-watchcreations' => "Spul wa'k anmake op mien volglieste zetten",
 'tog-watchdefault' => "Spul wa'k bewarke op mien volglieste zetten",

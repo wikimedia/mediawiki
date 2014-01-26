@@ -167,7 +167,6 @@ $messages = array(
 'tog-showtoolbar' => 'Laot edit toolbar zeen',
 'tog-editondblclick' => "Bewirk pagina's bie 'ne dobbelklik (JavaScript)",
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
-'tog-showtoc' => "Inhaudsopgaaf veur pagina's mit mie es 3 köpkes",
 'tog-rememberpassword' => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
 'tog-watchcreations' => "Volg autematis pagina's die ich aanmaak en bestenj die ich upload",
 'tog-watchdefault' => "Voog pagina's em bestenj die se bewirks toe aan dien volglies",

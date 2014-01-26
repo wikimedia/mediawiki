@@ -215,7 +215,6 @@ $messages = array(
 'tog-showtoolbar' => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick' => 'Edita les pàgines amb un doble clic (cal JavaScript)',
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
-'tog-showtoc' => 'Mostra la taula de continguts (per pàgines amb més de 3 seccions)',
 'tog-rememberpassword' => 'Recorda la sessió al navegador (per un màxim de {{PLURAL:$1|dia|dies}})',
 'tog-watchcreations' => 'Afegeix les pàgines que vagi creant i fitxers que carregui a la llista de seguiment',
 'tog-watchdefault' => 'Afegeix les pàgines que vagi editant a la llista de seguiment',

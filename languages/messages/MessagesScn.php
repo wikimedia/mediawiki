@@ -164,7 +164,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ammustra la barra dî strumenta pi lu canciamentu',
 'tog-editondblclick' => "Duppiu click pi canciari l'artìculu (richiedi Javascript)",
 'tog-editsectiononrightclick' => 'Abbìlita lu canciamentu dî sezzioni tràmiti duppiu click supra lu tìtulu dâ sezzioni (richiedi Javascript)',
-'tog-showtoc' => "Ammustra l'ìndici (pi artìculi cu cchiù di 3 sezzioni)",
 'tog-rememberpassword' => 'Arricorda la password supra stu navigaturi (pi ô massimu $1 {{PLURAL:$1|jornu|jorna}})',
 'tog-watchcreations' => "Agghiunci li pàggini criati a l'ossirvati spiciali",
 'tog-watchdefault' => "Agghiunci li pàggini canciati a l'ossirvati spiciali",

@@ -280,7 +280,6 @@ $messages = array(
 'tog-showtoolbar' => '顯示編輯工具欄',
 'tog-editondblclick' => '雙擊編輯頁面',
 'tog-editsectiononrightclick' => '允許右擊標題編輯段落',
-'tog-showtoc' => '顯示目錄 （針對一頁超過3個標題的頁面）',
 'tog-rememberpassword' => '在這個瀏覽器上記住我的登入狀態（最多 $1 天）',
 'tog-watchcreations' => '將我建立的頁面和上傳的檔案加入監視列表',
 'tog-watchdefault' => '將我更改的頁面和檔案加入監視列表',

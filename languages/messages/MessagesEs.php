@@ -25,6 +25,7 @@
  * @author Boivie
  * @author Candalua
  * @author Capmo
+ * @author Carlitosag
  * @author Cerealito
  * @author Ciencia Al Poder
  * @author Clerc
@@ -395,7 +396,6 @@ $messages = array(
 'tog-showtoolbar' => 'Mostrar la barra de edición',
 'tog-editondblclick' => 'Editar las páginas al pulsar dos veces en ellos con el ratón',
 'tog-editsectiononrightclick' => 'Activar la edición de secciones pulsando el botón derecho en los títulos de secciones',
-'tog-showtoc' => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword' => 'Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})',
 'tog-watchcreations' => 'Añadir las páginas que cree y los archivos que suba a mi lista de seguimento',
 'tog-watchdefault' => 'Añadir las páginas y archivos que edite a mi lista de seguimiento',
@@ -943,6 +943,8 @@ Establece una contraseña nueva aquí:',
 'retypenew' => 'Confirmar la contraseña nueva:',
 'resetpass_submit' => 'Establecer contraseña e iniciar sesión',
 'changepassword-success' => 'La contraseña ha sido cambiada con éxito.',
+'changepassword-throttled' => 'Has intentado acceder demasiadas veces.
+Espera $1 antes de intentarlo de nuevo.',
 'resetpass_forbidden' => 'No se pueden cambiar las contraseñas',
 'resetpass-no-info' => 'Debes iniciar sesión para acceder directamente a esta página.',
 'resetpass-submit-loggedin' => 'Cambiar contraseña',
@@ -1000,6 +1002,8 @@ Contraseña temporal: $2',
 'changeemail-password' => 'Tu contraseña en {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar correo electrónico',
 'changeemail-cancel' => 'Cancelar',
+'changeemail-throttled' => 'Has intentado acceder demasiadas veces.
+Espera $1 antes de intentarlo de nuevo.',
 
 # Special:ResetTokens
 'resettokens' => 'Restablecer claves',
@@ -2573,7 +2577,7 @@ Véase $2 para un registro de los borrados recientes.',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig' => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
 'delete-warning-toobig' => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
-'deleting-backlinks-warning' => "'''Advertencia:''' Hay enlaces desde otras páginas a la página que estás a punto de borrar.",
+'deleting-backlinks-warning' => "'''Advertencia:''' Otras páginas están enlazadas o son inclusión desde la página que estás por eliminar.",
 
 # Rollback
 'rollback' => 'Revertir ediciones',
@@ -2870,7 +2874,7 @@ Consulta la [[Special:BlockList|lista de bloqueos]] para ver la lista de bloqueo
 'range_block_disabled' => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid' => 'El tiempo de caducidad no es válido.',
 'ipb_expiry_temp' => 'Los bloqueos a nombres de usuario ocultos deben ser permanentes.',
-'ipb_hide_invalid' => 'Incapaz de suprimir esta cuenta; puede tener muchas ediciones.',
+'ipb_hide_invalid' => 'No se puede suprimir esta cuenta; tiene más de {{PLURAL:$1|una edición|$1 ediciones}}.',
 'ipb_already_blocked' => '"$1" ya se encuentra bloqueado.',
 'ipb-needreblock' => '$1 ya está bloqueado. ¿Quieres cambiar el bloqueo?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Otro bloqueo|Otros bloqueos}}',
@@ -3305,7 +3309,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'markaspatrolledtext' => 'Marcar este artículo como revisado',
 'markedaspatrolled' => 'Marcado como revisado',
 'markedaspatrolledtext' => 'La revisión seleccionada de [[:$1|$1]] ha sido marcada como revisada.',
-'rcpatroldisabled' => 'Revisión de los Cambios Recientes deshabilitada',
+'rcpatroldisabled' => 'Se ha desactivado la supervisión de cambios recientes',
 'rcpatroldisabledtext' => 'La capacidad de revisar los Cambios Recientes está deshabilitada en este momento.',
 'markedaspatrollederror' => 'No se puede marcar como patrullada',
 'markedaspatrollederrortext' => 'Debes especificar una revisión para marcarla como patrullada.',

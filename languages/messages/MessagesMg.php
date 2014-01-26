@@ -230,7 +230,6 @@ $messages = array(
 'tog-showtoolbar' => 'Haneho ny toolbar fanovana',
 'tog-editondblclick' => "Hanova pejy amin'ny alalan'ny tsindrim-boalavo roa misesy",
 'tog-editsectiononrightclick' => "Hampiasa ny fanovana fizarana amin'ny tsindry havanana eo amin'ny lohatenim-pizarana.",
-'tog-showtoc' => "Asehoy ny fanoroan-takila (ho an'ny pejy misy lohateny mihoatra ny 3)",
 'tog-rememberpassword' => "Tadidio ny tenimiafiko eto amin'ity solosaina ity (mandritry ny andro $1 fara-fahabetsany){{PLURAL:}}",
 'tog-watchcreations' => 'Hanaraka ny pejy foronoko ary ny rakitra ampidiriko',
 'tog-watchdefault' => 'Hanaraka ny pejy ary ny rakitra ovaiko',

@@ -341,7 +341,6 @@ $messages = array(
 'tog-showtoolbar' => 'संपादन साधनपट्टी दाखवा',
 'tog-editondblclick' => 'दुबार-टिचकुन पान संपादित करा',
 'tog-editsectiononrightclick' => 'विभाग शीर्षकावर उजव्या क्लिकने टिचकुन संपादन करणे शक्य करा',
-'tog-showtoc' => 'अनुक्रमणिका दाखवा(पानात ३ पेक्षा जास्त शीर्षके असल्यास)',
 'tog-rememberpassword' => 'माझा सनोंदप्रवेश (लॉग-ईन) या न्याहाळकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
 'tog-watchcreations' => 'मी तयार केलेली पाने आणि चढविलेल्या संचिका माझ्या निरीक्षणसूचीत टाका',
 'tog-watchdefault' => 'मी संपादित केलेली पाने आणि संचिका माझ्या निरीक्षणसूचीत टाका',
@@ -2891,6 +2890,7 @@ $1',
 'allmessages-prefix' => 'उपसर्गाने गाळा:',
 'allmessages-language' => 'भाषा:',
 'allmessages-filter-submit' => 'चला',
+'allmessages-filter-translate' => 'भाषांतर करा',
 
 # Thumbnails
 'thumbnail-more' => 'मोठे करा',

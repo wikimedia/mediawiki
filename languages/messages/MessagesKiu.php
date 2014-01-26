@@ -66,7 +66,6 @@ $messages = array(
 'tog-showtoolbar' => 'Gozagunê hacetunê vurnayişi bıasne (JavaScript lazımo)',
 'tog-editondblclick' => 'Pê dı rey teqnayene pele sero bıguriye (JavaScript lazımo)',
 'tog-editsectiononrightclick' => 'Qısımu be teqnayena serrêze ra ebe gozaga raste bıvurne (JavaScript lazımo)',
-'tog-showtoc' => 'Tablowê tedeestewu bıasne (de pelunê be hirê sernustu ra jêdêri de)',
 'tog-rememberpassword' => 'Parola mı nê cıcêrawoği de bia ho viri (serba tewr jêde $1 {{PLURAL:$1|roze|rozu}}).',
 'tog-watchcreations' => 'Pelê ke mı afernê u dosyê ke mı bar kerdê lista mına şêrkerdişi ke',
 'tog-watchdefault' => 'Pel u dosyê ke mı vurnê lista mına şêrkerdişi ke',

@@ -376,7 +376,6 @@ $messages = array(
 'tog-showtoolbar' => 'הצגת סרגל העריכה',
 'tog-editondblclick' => 'עריכת דפים בלחיצה כפולה',
 'tog-editsectiononrightclick' => 'עריכת פסקאות באמצעות לחיצה ימנית על כותרות הפסקאות',
-'tog-showtoc' => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
 'tog-rememberpassword' => 'שמירת הכניסה שלי בדפדפן זה ({{PLURAL:$1|ליום אחד|ליומיים|ל־$1 ימים}} לכל היותר)',
 'tog-watchcreations' => 'מעקב אחרי דפים שיצרתי וקבצים שהעליתי',
 'tog-watchdefault' => 'מעקב אחרי דפים וקבצים שערכתי',

@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Krish Dulal
  * @author Lkhatiwada
+ * @author Nirmal Dulal
  * @author RajeshPandey
  * @author Reedy
  * @author ne.wikipedia.org sysops
@@ -66,7 +67,6 @@ $messages = array(
 'tog-showtoolbar' => 'सम्पादन औजारबट्टा देखाउने',
 'tog-editondblclick' => 'दोहोरो क्लिकमा पृष्ठ सम्पादन गर्ने',
 'tog-editsectiononrightclick' => 'शीर्षकमा दाहिने क्लिकद्वारा खण्ड सम्पादन सक्षम पार्ने',
-'tog-showtoc' => 'सामग्री तालिका हेर्ने (तीन भन्दा बढी शीर्षक भएमा)',
 'tog-rememberpassword' => 'यस ब्राउजरमा मेरो प्रवेशलाई सम्झनुहोस् (अधिकतम $1 {{PLURAL:$1|दिन|दिनहरु}} सम्म)',
 'tog-watchcreations' => 'मेरो निगरानी सूचीमा मैले सृजना गरेको पृष्ठ र अपलोड जोड्ने',
 'tog-watchdefault' => 'मैले सम्पादन गरेको पृष्ठ र फाइल निगरानी सूचीमा थप्ने',
@@ -1098,7 +1098,7 @@ $1",
 याद गर्नुहोस् उनीहरुको {{SITENAME}}को सूची सामग्री पुरानो भएको हुनसक्छ ।',
 
 # Preferences page
-'preferences' => 'रोजाईहरू',
+'preferences' => 'रोजाइहरू',
 'mypreferences' => 'प्राथमिकताहरु',
 'prefs-edits' => 'सम्पादन संख्या:',
 'prefs-skin' => 'काँचुली',
@@ -1117,7 +1117,7 @@ $1",
 'prefs-watchlist-edits-max' => 'उच्चतम संख्या : १०००',
 'prefs-watchlist-token' => 'अवलोकन सूची टोकन:',
 'prefs-misc' => 'साधारण',
-'prefs-resetpass' => 'प्रवेशशव्द परिवर्रतन',
+'prefs-resetpass' => 'प्रवेश शब्द परिवर्तन',
 'prefs-changeemail' => 'इमेल परिवर्तन गर्ने',
 'prefs-setemail' => 'इमेल ठेगाना प्रविष्ट गर्ने',
 'prefs-email' => 'इमेल  विकल्पहरु',
@@ -3348,7 +3348,7 @@ $5
 'specialpages-group-pagetools' => 'पृष्ठ उपकरणहरू',
 'specialpages-group-wiki' => 'विकि डाटा र औजारहरु',
 'specialpages-group-redirects' => 'विशेष पृष्ठमा पठाउने',
-'specialpages-group-spam' => 'स्पाम उपकरणहरु',
+'specialpages-group-spam' => 'स्पाम उपकरणहरू',
 
 # Special:BlankPage
 'blankpage' => 'खाली पृष्ठहरू',

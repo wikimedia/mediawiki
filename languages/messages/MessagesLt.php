@@ -197,7 +197,6 @@ $messages = array(
 'tog-showtoolbar' => 'Rodyti redagavimo įrankinę (JavaScript)',
 'tog-editondblclick' => 'Puslapių redagavimas dvigubu spustelėjimu (JavaScript)',
 'tog-editsectiononrightclick' => 'Įjungti skyrelių redagavimą paspaudus skyrelio pavadinimą dešiniuoju pelės klavišu (JavaScript)',
-'tog-showtoc' => 'Rodyti turinį, jei puslapyje daugiau nei 3 skyreliai',
 'tog-rememberpassword' => 'Prisiminti prisijungimo informaciją šioje naršyklėje (daugiausiai $1 {{PLURAL:$1|dieną|dienas|dienų}})',
 'tog-watchcreations' => 'Pridėti puslapius, kuriuos aš sukuriu, į stebimų sąrašą',
 'tog-watchdefault' => 'Pridėti puslapius, kuriuos aš redaguoju, į stebimų sąrašą',

@@ -428,7 +428,6 @@ $messages = array(
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
 'tog-editondblclick' => 'Modifier des pages sur double-clic (nécessite JavaScript)',
 'tog-editsectiononrightclick' => 'Activer la modification de sections par clic droit sur les titres (nécessite JavaScript)',
-'tog-showtoc' => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
 'tog-rememberpassword' => 'Se souvenir de mon identification avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'tog-watchcreations' => "Ajouter les pages que je crée et les fichiers que j'importe à ma liste de suivi",
 'tog-watchdefault' => 'Ajouter les pages et les fichiers que je modifie à ma liste de suivi',
@@ -1273,9 +1272,9 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a mainten
 'converter-manual-rule-error' => 'Erreur détectée dans la règle manuelle de conversion de langue',
 
 # "Undo" feature
-'undo-success' => "Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c'est bien ce que vous voulez faire.",
+'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
-'undo-norev' => "La modification n'a pas pu être défaite parce qu'elle est inexistante ou qu'elle a été supprimée.",
+'undo-norev' => 'La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.',
 'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
 'undo-summary-username-hidden' => 'Annuler la révision $1 par un utilisateur masqué',
 
@@ -1584,7 +1583,7 @@ Toute personne la connaissant pourra lire votre liste de suivi, ne la communique
 'prefs-emailconfirm-label' => 'Confirmation du courriel :',
 'youremail' => 'Courriel :',
 'username' => "{{GENDER:$1|Nom d'utilisateur|Nom d'utilisatrice}} :",
-'uid' => "Numéro d'{{GENDER:$1|utilisateur|utilisatrice}}:",
+'uid' => 'Numéro d’{{GENDER:$1|utilisateur|utilisatrice}} :',
 'prefs-memberingroups' => '{{GENDER:$2|Membre}} {{PLURAL:$1|du groupe|des groupes}}:',
 'prefs-registration' => "Date d'inscription :",
 'yourrealname' => 'Nom réel :',
@@ -1858,24 +1857,24 @@ Cette information sera publique.',
 'upload-tryagain' => 'Envoyer la description du fichier modifiée',
 'uploadnologin' => 'Non connecté{{GENDER:||e|(e)}}',
 'uploadnologintext' => 'Vous devez $1 pour importer des fichiers.',
-'upload_directory_missing' => "Le répertoire d'import de fichier ($1) est introuvable et n'a pas pu être créé par le serveur web.",
-'upload_directory_read_only' => "Le répertoire d'import de fichier ($1) n'est pas accessible en écriture depuis le serveur web.",
-'uploaderror' => "Erreur lors de l'import",
+'upload_directory_missing' => 'Le répertoire d’import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.',
+'upload_directory_read_only' => 'Le répertoire d’import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.',
+'uploaderror' => 'Erreur lors de l’import',
 'upload-recreate-warning' => "'''Attention : Un fichier portant ce nom a été supprimé ou déplacé.'''
 
 Le journal des suppressions et celui des déplacements de cette page sont affichés ici pour informations :",
 'uploadtext' => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L'import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L’import est aussi enregistré dans le [[Special:Log/upload|journal d’import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
 Pour inclure un fichier dans une page, utilisez un lien de la forme :
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d'une image) ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l'afficher.",
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l’afficher.",
 'upload-permitted' => 'Formats de fichiers autorisés : $1.',
 'upload-preferred' => 'Formats de fichiers préférés : $1.',
 'upload-prohibited' => 'Formats de fichiers interdits : $1.',
-'uploadlog' => "Journal d'import de fichiers",
-'uploadlogpage' => "Journal d'import de fichiers",
+'uploadlog' => 'Journal d’import de fichiers',
+'uploadlogpage' => 'Journal d’import de fichiers',
 'uploadlogpagetext' => 'Voici la liste des derniers fichiers importés sur le serveur.
 Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentation plus visuelle.',
 'filename' => 'Nom du fichier',
@@ -1907,7 +1906,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'hookaborted' => 'La modification que vous avez essayé de faire a été annulée par une extension.',
 'illegal-filename' => "Le nom du fichier n'est pas autorisé.",
 'overwrite' => "Écraser un fichier existant n'est pas autorisé.",
-'unknown-error' => "Une erreur inconnue s'est produite.",
+'unknown-error' => 'Une erreur inconnue s’est produite.',
 'tmp-create-error' => 'Impossible de créer le fichier temporaire.',
 'tmp-write-error' => "Erreur d'écriture du fichier temporaire.",
 'large-file' => 'Les fichiers importés ne devraient pas dépasser $1 ; ce fichier fait $2.',
@@ -1945,22 +1944,22 @@ Vous devriez demander à quelqu'un la possibilité de vérifier le journal de ce
 'savefile' => 'Sauvegarder le fichier',
 'uploadedimage' => 'a importé « [[$1]] »',
 'overwroteimage' => 'a importé une nouvelle version de « [[$1]] »',
-'uploaddisabled' => "Désolé, l'import de fichiers est désactivé.",
+'uploaddisabled' => 'Désolé, l’import de fichiers est désactivé.',
 'copyuploaddisabled' => 'Import de fichier par URL désactivé.',
-'uploadfromurl-queued' => "Votre fichier a été mis dans la file d'attente.",
-'uploaddisabledtext' => "L'import de fichiers est désactivé sur ce wiki.",
+'uploadfromurl-queued' => 'Votre fichier a été mis dans la file d’attente.',
+'uploaddisabledtext' => 'L’import de fichiers est désactivé sur ce wiki.',
 'php-uploaddisabledtext' => "L'import de fichiers a été désactivé dans PHP. Vérifiez l'option de configuration file_uploads.",
 'uploadscripted' => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
 'uploadvirus' => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
-'uploadjava' => "C'est un fichier ZIP qui contient un fichier Java .class.
-Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent contourner des restrictions de sécurité.",
+'uploadjava' => 'C’est un fichier ZIP qui contient un fichier Java .class.
+Le téléchargement de fichiers Java n’est pas autorisé, car ils peuvent contourner certaines restrictions de sécurité.',
 'upload-source' => 'Fichier source',
 'sourcefilename' => 'Nom du fichier source :',
 'sourceurl' => 'URL source :',
 'destfilename' => 'Nom sous lequel le fichier sera enregistré :',
 'upload-maxfilesize' => 'Taille maximale du fichier : $1',
 'upload-description' => 'Description du fichier',
-'upload-options' => "Options d'import de fichiers",
+'upload-options' => 'Options d’import de fichiers',
 'watchthisupload' => 'Suivre ce fichier',
 'filewasdeleted' => "Un fichier avec ce nom a déjà été importé, puis supprimé.
 Vous devriez vérifier le $1 avant de l'importer à nouveau.",
@@ -1986,21 +1985,21 @@ PICT # divers
 'upload-failure-msg' => 'Il y a eu un problème avec votre import depuis [$2] :
 
 $1',
-'upload-warning-subj' => "Avertissement lors de l'import",
-'upload-warning-msg' => "Un problème est survenu lors de l'import depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire d'import]] pour le résoudre.",
+'upload-warning-subj' => 'Avertissement lors de l’import',
+'upload-warning-msg' => 'Un problème est survenu lors de l’import depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire d’import]] pour le résoudre.',
 
 'upload-proto-error' => 'Protocole incorrect',
-'upload-proto-error-text' => "L'import requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.",
+'upload-proto-error-text' => 'L’import requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error' => 'Erreur interne',
 'upload-file-error-text' => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
-'upload-misc-error' => "Erreur d'import inconnue",
-'upload-misc-error-text' => "Une erreur inconnue est survenue pendant l'import.
-Veuillez vérifier que l'URL est valide et accessible, puis essayer à nouveau.
-Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
-'upload-too-many-redirects' => "L'URL contient trop de redirections.",
+'upload-misc-error' => 'Erreur d’import inconnue',
+'upload-misc-error-text' => 'Une erreur inconnue est survenue pendant l’import.
+Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
+Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].',
+'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size' => 'Taille inconnue',
 'upload-http-error' => 'Une erreur HTTP est survenue : $1',
-'upload-copy-upload-invalid-domain' => "La copie des téléchargements n'est pas disponible depuis ce domaine.",
+'upload-copy-upload-invalid-domain' => 'La copie des téléversements n’est pas disponible depuis ce domaine.',
 
 # File backend
 'backend-fail-stream' => 'Impossible de lire le fichier $1.',
@@ -2054,12 +2053,12 @@ Il ne peut pas être correctement vérifié pour la sécurité.',
 Sa sécurité ne peut pas être correctement vérifiée.',
 
 # Special:UploadStash
-'uploadstash' => "Cache d'import",
-'uploadstash-summary' => "Cette page donne accès aux fichiers qui sont importés (ou en cours d'importation), mais ne sont pas encore publiés dans le wiki. Ces fichiers ne sont pas encore visibles, sauf pour l'utilisateur qui les a importés.",
+'uploadstash' => 'Cache d’import',
+'uploadstash-summary' => 'Cette page donne accès aux fichiers qui sont importés (ou en cours d’importation), mais ne sont pas encore publiés dans le wiki. Ces fichiers ne sont pas encore visibles, sauf pour l’utilisateur qui les a importés.',
 'uploadstash-clear' => 'Effacer les fichiers en cache',
-'uploadstash-nofiles' => "Vous n'avez pas de fichiers en cache d'import.",
-'uploadstash-badtoken' => "L'exécution de cette action a échoué, peut-être parce que vos informations d'identification ont expiré. Réessayez.",
-'uploadstash-errclear' => "L'effacement des fichiers a échoué.",
+'uploadstash-nofiles' => 'Vous n’avez pas de fichiers en cache d’import.',
+'uploadstash-badtoken' => 'L’exécution de cette action a échoué, peut-être parce que vos informations d’identification ont expiré. Réessayez.',
+'uploadstash-errclear' => 'La suppression des fichiers a échoué.',
 'uploadstash-refresh' => 'Actualiser la liste des fichiers',
 'invalid-chunk-offset' => 'Offset de segment non valide',
 
@@ -2093,7 +2092,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL injoignable',
-'upload-curl-error6-text' => "L'URL fournie ne peut pas être atteinte. Veuillez vérifier que l'URL est correcte et que le site est en ligne.",
+'upload-curl-error6-text' => 'L’URL fournie ne peut pas être atteinte. Veuillez vérifier que l’URL est correcte et que le site est en ligne.',
 'upload-curl-error28' => "Dépassement du délai lors de l'import",
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
@@ -2203,15 +2202,15 @@ Entrée : ''typedecontenu''/''sous-type'', par exemple <code>image/jpeg</code>."
 'download' => 'télécharger',
 
 # Unwatched pages
-'unwatchedpages' => "Pages ne faisant partie d'aucune liste de suivi",
+'unwatchedpages' => 'Pages ne faisant partie d’aucune liste de suivi',
 
 # List redirects
 'listredirects' => 'Liste des redirections',
 
 # Unused templates
 'unusedtemplates' => 'Modèles inutilisés',
-'unusedtemplatestext' => "Cette page liste toutes les pages de l'espace de noms « {{ns:template}} » qui ne sont incluses dans aucune autre page.
-N'oubliez pas de vérifier s'il n'y a pas d'autres liens vers les modèles avant de les supprimer.",
+'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « {{ns:template}} » qui ne sont incluses dans aucune autre page.
+N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèles avant de les supprimer.',
 'unusedtemplateswlh' => 'autres liens',
 
 # Random page
@@ -2338,8 +2337,8 @@ Les entrées <del>barrées</del> ont été résolues.',
 'ancientpages' => 'Pages les plus anciennement modifiées',
 'move' => 'Renommer',
 'movethispage' => 'Renommer cette page',
-'unusedimagestext' => "Les fichiers suivants existent, mais ne sont inclus dans aucune page.
-Veuillez noter que d'autres sites peuvent avoir un lien direct vers un fichier, et donc qu'un fichier peut être listé ici alors qu'il est en réalité utilisé sur ces sites.",
+'unusedimagestext' => 'Les fichiers suivants existent, mais ne sont inclus dans aucune page.
+Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier, et donc qu’un fichier peut être listé ici alors qu’il est en réalité utilisé sur ces sites.',
 'unusedcategoriestext' => 'Les catégories suivantes existent mais aucune page ou catégorie ne les utilise.',
 'notargettitle' => 'Pas de cible',
 'notargettext' => "Vous n'avez pas indiqué une page ou un utilisateur sur lequel vous souhaitez effectuer cette action.",
@@ -2700,22 +2699,22 @@ Voici les réglages actuels de la page '''$1''' :",
 'undeletepage' => 'Voir et restaurer des pages supprimées',
 'undeletepagetitle' => "'''La liste suivante contient des versions supprimées de [[:$1|$1]]'''.",
 'viewdeletedpage' => 'Voir les pages supprimées',
-'undeletepagetext' => "{{PLURAL:$1|La page suivante a été supprimée et se trouve|Les pages suivantes ont été supprimées et se trouvent}} dans la base de données archive, d'où {{PLURAL:$1|elle peut|elles peuvent}} encore être restaurée{{PLURAL:$1||s}}.
-L'archive peut être nettoyée périodiquement.",
+'undeletepagetext' => '{{PLURAL:$1|La page suivante a été supprimée et se trouve|Les pages suivantes ont été supprimées et se trouvent}} dans la base de données archive, d’où {{PLURAL:$1|elle peut|elles peuvent}} encore être restaurée{{PLURAL:$1||s}}.
+L’archive peut être nettoyée périodiquement.',
 'undelete-fieldset-title' => 'Restaurer les versions',
-'undeleteextrahelp' => "Pour restaurer l'historique complet de cette page, laissez toutes les cases décochées et cliquez sur '''''Restaurer'''''.
+'undeleteextrahelp' => "Pour restaurer l’historique complet de cette page, laissez toutes les cases décochées et cliquez sur '''''Restaurer'''''.
 Pour effectuer une restauration partielle, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.",
 'undeleterevisions' => '$1 {{PLURAL:$1|version archivée|versions archivées}}',
-'undeletehistory' => "Si vous restaurez la page, toutes les versions seront replacées dans l'historique.
-Si une nouvelle page avec le même nom a été créée depuis la suppression, les versions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
+'undeletehistory' => 'Si vous restaurez la page, toutes les versions seront replacées dans l’historique.
+Si une nouvelle page avec le même nom a été créée depuis la suppression, les versions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.',
 'undeleterevdel' => 'La restauration ne sera pas effectuée si, au final, la version la plus récente de la page ou du fichier reste partiellement supprimée.
 Dans de tels cas, vous devez décocher ou démasquer les versions effacées les plus récentes (en tête de liste).',
-'undeletehistorynoadmin' => "Cette page a été supprimée.
-Le motif de la suppression est indiqué dans le résumé ci-dessous, avec les détails des utilisateurs qui l'ont modifié avant sa suppression.
-Le contenu effectif de ces versions supprimées n'est accessible qu'aux administrateurs.",
+'undeletehistorynoadmin' => 'Cette page a été supprimée.
+Le motif de la suppression est indiqué dans le résumé ci-dessous, avec les détails des utilisateurs qui ont modifié la page avant sa suppression.
+Le contenu effectif de ces versions supprimées n’est accessible qu’aux administrateurs.',
 'undelete-revision' => 'Version supprimée de $1 (version du $4 à $5) par $3 :',
-'undeleterevision-missing' => "Version incorrecte ou manquante.
-Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou supprimée de l'archive.",
+'undeleterevision-missing' => 'Version incorrecte ou manquante.
+Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou supprimée de l’archive.',
 'undelete-nodiff' => 'Aucune version précédente trouvée.',
 'undeletebtn' => 'Restaurer',
 'undeletelink' => 'visualiser/rétablir',
@@ -2735,13 +2734,13 @@ Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la lis
 'undelete-search-box' => 'Rechercher des pages supprimées',
 'undelete-search-prefix' => 'Montrer les pages commençant par :',
 'undelete-search-submit' => 'Rechercher',
-'undelete-no-results' => "Aucune page correspondante n'a été trouvée dans les archives de suppression.",
+'undelete-no-results' => 'Aucune page correspondante n’a été trouvée dans les archives de suppression.',
 'undelete-filename-mismatch' => 'Impossible de restaurer la version du fichier datée du $1 : le nom de fichier ne correspond pas.',
 'undelete-bad-store-key' => 'Impossible de restaurer la version du fichier datée du $1 : le fichier était absent avant la suppression.',
-'undelete-cleanup-error' => "Erreur lors de la suppression du fichier d'archive inutilisé « $1 ».",
-'undelete-missing-filearchive' => "Impossible de restaurer le fichier d'archive avec l'identifiant $1 parce qu'il n'est pas dans la base de données.
-Il a peut-être déjà été restauré.",
-'undelete-error' => "Page d'erreur d'annulation",
+'undelete-cleanup-error' => 'Erreur lors de la suppression du fichier d’archive inutilisé « $1 ».',
+'undelete-missing-filearchive' => 'Impossible de restaurer le fichier d’archive avec l’identifiant $1 parce qu’il n’est pas dans la base de données.
+Il a peut-être déjà été restauré.',
+'undelete-error' => 'Page d’erreur d’annulation',
 'undelete-error-short' => 'Erreur lors de la restauration du fichier : $1',
 'undelete-error-long' => 'Des erreurs ont été rencontrées lors de la restauration du fichier :
 
@@ -2806,7 +2805,7 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 # Block/unblock
 'autoblockid' => 'Blocage automatique #$1',
 'block' => 'Bloquer l’utilisateur',
-'unblock' => "Débloquer l'utilisateur",
+'unblock' => 'Débloquer l’utilisateur',
 'blockip' => 'Bloquer l’utilisateur',
 'blockip-legend' => 'Bloquer l’utilisateur',
 'blockiptext' => 'Utilisez le formulaire ci-dessous pour bloquer les tentatives de modification faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.
@@ -2848,7 +2847,7 @@ Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.'
 'ipb-blocklist' => 'Voir les blocages existants',
 'ipb-blocklist-contribs' => 'Contributions pour $1',
 'unblockip' => 'Débloquer un utilisateur ou une adresse IP',
-'unblockiptext' => "Utilisez le formulaire ci-dessous pour rétablir l'accès aux modifications depuis une adresse IP ou un nom d'utilisateur.",
+'unblockiptext' => 'Utilisez le formulaire ci-dessous pour redonner les droits d’écriture à une adresse IP ou un nom d’utilisateur.',
 'ipusubmit' => 'Supprimer ce blocage',
 'unblocked' => '[[User:$1|$1]] a été débloqué{{GENDER:$1||e|(e)}}',
 'unblocked-range' => '$1 a été débloqué{{GENDER:$1||e|(e)}}',
@@ -2908,7 +2907,7 @@ Consultez la [[Special:BlockList|liste des blocages]] pour voir les bannissement
 'ipb_already_blocked' => '« $1 » est déjà bloqué',
 'ipb-needreblock' => '$1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Autre blocage|Autres blocages}}',
-'unblock-hideuser' => "Vous ne pouvez pas débloquer cet utilisateur, car son nom d'utilisateur a été masqué.",
+'unblock-hideuser' => 'Vous ne pouvez pas débloquer cet utilisateur, car son nom d’utilisateur a été masqué.',
 'ipb_cant_unblock' => "Erreur : identifiant de blocage $1 non trouvé.
 Il est possible qu'un déblocage ait déjà été effectué.",
 'ipb_blocked_as_range' => "Erreur : l'adresse IP $1 n'est pas bloquée directement et ne peut donc pas être débloquée.
@@ -2931,8 +2930,8 @@ Vous ne pouvez pas créer un compte.',
 'unlockdb' => 'Déverrouiller la base de données',
 'lockdbtext' => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, d'enregistrer leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des changements dans la base de données.
 Veuillez confirmer que c'est bien là ce que vous voulez faire et que vous déverrouillerez la base dès que votre opération de maintenance sera terminée.",
-'unlockdbtext' => "Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de changer leurs préférences, de modifier leur liste de suivi et d'effectuer les autres opérations nécessitant des changements dans la base de données.
-Veuillez confirmer que c'est bien là ce que vous voulez faire.",
+'unlockdbtext' => 'Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de changer leurs préférences, de modifier leur liste de suivi et d’effectuer les autres opérations nécessitant des changements dans la base de données.
+Veuillez confirmer que c’est bien là ce que vous voulez faire.',
 'lockconfirm' => 'Oui, je confirme que je souhaite verrouiller la base de données.',
 'unlockconfirm' => 'Oui, je confirme que je souhaite déverrouiller la base de données.',
 'lockbtn' => 'Verrouiller la base de données',
@@ -3057,8 +3056,8 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagesname' => 'Nom du message',
 'allmessagesdefault' => 'Message par défaut',
 'allmessagescurrent' => 'Message actuel',
-'allmessagestext' => "Ceci est la liste des messages disponibles dans l'espace MediaWiki.
-Veuillez visiter la [https://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.",
+'allmessagestext' => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
+Veuillez visiter la [https://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [//translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.',
 'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n'est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
 'allmessages-filter-legend' => 'Filtrer',
 'allmessages-filter' => 'Filtrer par état de modification :',
@@ -4090,7 +4089,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])',
 
 # Core parser functions
-'unknown_extension_tag' => "Balise d'extension « $1 » inconnue",
+'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
 'duplicate-defaultsort' => 'Attention : la clé de tri par défaut « $2 » écrase la précédente « $1 ».',
 
 # Special:Version

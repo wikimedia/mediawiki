@@ -191,7 +191,6 @@ $messages = array(
 'tog-showtoolbar' => 'Diskouez ar varrenn ostilhoù aozañ',
 'tog-editondblclick' => 'Daouglikañ evit kemmañ pajennoù',
 'tog-editsectiononrightclick' => 'Kemmañ ur rann dre glikañ a-zehou war titl ar rann',
-'tog-showtoc' => 'Diskouez an daolenn<br /> (evit ar pennadoù zo ouzhpenn 3 rann enno)',
 'tog-rememberpassword' => "Derc'hel soñj eus ma ger-tremen war an urzhiataer-mañ (evit $1 devezh{{PLURAL:$1||}} d'ar muiañ)",
 'tog-watchcreations' => "Ouzhpennañ ar pajennoù krouet ganin da'm roll evezhiañ",
 'tog-watchdefault' => "Ouzhpennañ ar pajennoù kemmet ganin da'm roll evezhiañ",

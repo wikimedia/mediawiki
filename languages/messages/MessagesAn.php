@@ -141,7 +141,6 @@ $messages = array(
 'tog-showtoolbar' => "Amostrar a barra de ferramientas d'edición (cal JavaScript)",
 'tog-editondblclick' => 'Activar edición de pachinas fendo-ie doble click (cal JavaScript)',
 'tog-editsectiononrightclick' => "Activar a edición de seccions punchando con o botón dreito d'o ratet <br /> en os títols de seccions (cal JavaScript)",
-'tog-showtoc' => "Amostrar l'endice (ta pachinas con más de 3 seccions)",
 'tog-rememberpassword' => "Remerar o mío nombre d'usuario en iste navegador (como muito por $1 {{PLURAL:$1|día|días}})",
 'tog-watchcreations' => 'Cosirar as pachinas que creye',
 'tog-watchdefault' => 'Cosirar as pachinas que edite',

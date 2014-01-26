@@ -326,7 +326,6 @@ $messages = array(
 'tog-showtoolbar' => 'Szerkesztőeszközsor megjelenítése',
 'tog-editondblclick' => 'A lapok szerkesztése dupla kattintásra',
 'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással',
-'tog-showtoc' => 'Tartalomjegyzék megjelenítése a három fejezetnél többel rendelkező cikkeknél',
 'tog-rememberpassword' => 'Emlékezzen rám ezzel a böngészővel (legfeljebb {{PLURAL:$1|egy|$1}} napig)',
 'tog-watchcreations' => 'Az általam létrehozott lapok és feltöltött fájlok felvétele a figyelőlistámra',
 'tog-watchdefault' => 'Az általam szerkesztett lapok és fájlok felvétele a figyelőlistámra',

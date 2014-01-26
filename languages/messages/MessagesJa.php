@@ -380,7 +380,6 @@ $messages = array(
 'tog-showtoolbar' => '編集用のツールバーを表示',
 'tog-editondblclick' => 'ダブルクリックでページを編集',
 'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする',
-'tog-showtoc' => '目次を表示 (ページに見出しが4つ以上ある場合)',
 'tog-rememberpassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'tog-watchcreations' => '自分が作成したページやアップロードしたファイルをウォッチリストに追加',
 'tog-watchdefault' => '自分が編集したページやファイルをウォッチリストに追加',
@@ -944,6 +943,8 @@ $1待ってから再度試してください。',
 'retypenew' => '新しいパスワードを再入力:',
 'resetpass_submit' => '再設定してログイン',
 'changepassword-success' => 'パスワードを変更しました!',
+'changepassword-throttled' => '最近のログインの試行回数が多すぎます。
+$1待ってから再度試してください。',
 'resetpass_forbidden' => 'パスワードは変更できません',
 'resetpass-no-info' => 'このページに直接アクセスするためにはログインしている必要があります。',
 'resetpass-submit-loggedin' => 'パスワードを変更',
@@ -1005,6 +1006,8 @@ $2
 'changeemail-password' => '{{SITENAME}}のパスワード:',
 'changeemail-submit' => 'メールアドレスを変更',
 'changeemail-cancel' => '中止',
+'changeemail-throttled' => 'ログインの試行回数が多すぎます。
+$1待ってから再度試してください。',
 
 # Special:ResetTokens
 'resettokens' => 'トークンの再設定',

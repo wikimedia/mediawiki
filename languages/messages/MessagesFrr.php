@@ -32,7 +32,6 @@ $messages = array(
 'tog-showtoolbar' => 'Werktjüch tu bewerkin wise',
 'tog-editondblclick' => 'Sidjen mä dobelklik bewerke',
 'tog-editsectiononrightclick' => 'Enkelt kirwer mä rochtsklik bewerke',
-'tog-showtoc' => 'Üüb sidjen mä muar üs trii auerskraften en indeks uunwise',
 'tog-rememberpassword' => 'Üüb diheer reegner üüb düür uunmelde (maksimaal för $1 {{PLURAL:$1|dai|daar}})',
 'tog-watchcreations' => "Salew maaget sidjen an huuchlooset datein leewen uun't uug behual",
 'tog-watchdefault' => "Salew feranert sidjen an datein leewen uun't uug behual",

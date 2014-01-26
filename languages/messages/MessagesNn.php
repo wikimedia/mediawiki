@@ -331,7 +331,6 @@ $messages = array(
 'tog-showtoolbar' => 'Vis endringsverktøyline',
 'tog-editondblclick' => 'Endre sider med dobbeltklikk',
 'tog-editsectiononrightclick' => 'Endre avsnitt ved å høgreklikke på avsnittsoverskrifter',
-'tog-showtoc' => 'Vis innhaldsliste (for sider med meir enn tre bolkar)',
 'tog-rememberpassword' => 'Hugs innlogginga mi med denne nettlesaren (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',
 'tog-watchcreations' => 'Legg til sidene eg opprettar og filene eg lastar opp på overvakingslista mi',
 'tog-watchdefault' => 'Legg til sidene og filene eg endrar på overvakingslista mi',

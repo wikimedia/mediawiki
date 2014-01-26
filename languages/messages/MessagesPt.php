@@ -332,7 +332,6 @@ $messages = array(
 'tog-showtoolbar' => 'Mostrar barra de edição',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo',
 'tog-editsectiononrightclick' => 'Possibilitar a edição de seções por clique com o botão direito no título da seção',
-'tog-showtoc' => 'Mostrar índice (para páginas com mais de três seções)',
 'tog-rememberpassword' => 'Recordar os meus dados neste browser (no máximo, durante $1 {{PLURAL:$1|dia|dias}})',
 'tog-watchcreations' => 'Adicionar as páginas e ficheiros que eu criar às minhas páginas vigiadas',
 'tog-watchdefault' => 'Adicionar as páginas e ficheiros que eu editar às minhas páginas vigiadas',

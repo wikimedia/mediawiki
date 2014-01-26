@@ -159,7 +159,6 @@ $messages = array(
 'tog-showtoolbar' => "Ipakita ang ''toolbar'' ng pagbabago (JavaScript)",
 'tog-editondblclick' => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
 'tog-editsectiononrightclick' => 'Payagan ang mga pagbabagong panseksyon sa pakanang pagpindot ng mga panseksyong pamagat (JavaScript)',
-'tog-showtoc' => 'Ipakita ang talaan ng mga nilalaman (sa mga pahinang may higit sa 3 punong pamagat)',
 'tog-rememberpassword' => 'Tandaan ang paglagda ko sa panghanaphanap na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'tog-watchcreations' => 'Idagdag sa aking tala ng mga binabantayan ang mga pahinang nilikha ko at mga talaksang ikinarga kong paitaas',
 'tog-watchdefault' => 'Idagdag sa aking tala ng mga binabantayan ang mga pahina at mga talaksang binago ko',

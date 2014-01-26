@@ -223,7 +223,6 @@ $messages = array(
 'tog-showtoolbar' => 'De Wärkzüchleß zom Ändere aanzeije',
 'tog-editondblclick' => 'Sigge met Dubbel-Klicke ändere',
 'tog-editsectiononrightclick' => 'Afschnedde met Räächs-Klecke op de Üvverschrefte ändere',
-'tog-showtoc' => 'Zeich en Enhaldsüvversich bei Sigge met mieh wie drei Üvverschrefte dren',
 'tog-rememberpassword' => 'Op Duur enlogge op dämm Kompjuter un för dää Brauser (hält {{PLURAL:$1|för eine Daach|bes op $1 Dääsch|bloß för hück}})',
 'tog-watchcreations' => 'Donn Sigge beim neu Aanlääje automattesch för ming Oppaßlėß vörschlonn',
 'tog-watchdefault' => 'Donn Sigge beim Ändere automattesch för ming Oppaßlėß vörschlonn',

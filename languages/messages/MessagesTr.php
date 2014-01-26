@@ -367,7 +367,6 @@ $messages = array(
 'tog-showtoolbar' => 'Düzenleme araç çubuğunu göster',
 'tog-editondblclick' => 'Çift tıklayarak sayfaları düzenle',
 'tog-editsectiononrightclick' => 'Bölüm başlığına sağ tıklayarak bölümleri düzenleyebilme olanağı ver',
-'tog-showtoc' => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'tog-watchcreations' => 'Açtığım sayfaları ve yüklediğim dosyaları izleme listeme ekle',
 'tog-watchdefault' => 'Düzenleme yaptığım sayfaları izleme listeme ekle',
@@ -912,6 +911,8 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'retypenew' => 'Yeni parolayı tekrar girin',
 'resetpass_submit' => 'Şifreyi ayarlayın ve oturum açın',
 'changepassword-success' => 'Parolanız başarıyla değiştirildi!',
+'changepassword-throttled' => 'Çok fazla yeni oturum açma girişiminde bulundunuz.
+Lütfen tekrar denemeden önce $1 bekleyin.',
 'resetpass_forbidden' => 'Parolalar değiştirilememektedir',
 'resetpass-no-info' => 'Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.',
 'resetpass-submit-loggedin' => 'Parolayı değiştir',
@@ -957,13 +958,15 @@ Geçici şifre: $2',
 'changeemail' => 'E-posta adresini değiştir',
 'changeemail-header' => 'Hesabın e-posta adresini değiştirin',
 'changeemail-text' => 'E-posta adresinizi değiştirmek için bu formu doldurun. Değişikliği onaylamak için parolanızı girmeniz gerekecektir.',
-'changeemail-no-info' => 'Bu sayfaya doğrudan ulaşabilmek için oturum açmış olmalısınız.',
+'changeemail-no-info' => 'Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.',
 'changeemail-oldemail' => 'Mevcut E-posta adresi:',
 'changeemail-newemail' => 'Yeni E-posta adresi:',
 'changeemail-none' => '(yok)',
 'changeemail-password' => '{{SITENAME}} parolanız:',
 'changeemail-submit' => "E-posta'yı değiştir",
 'changeemail-cancel' => 'İptal',
+'changeemail-throttled' => 'Çok fazla oturum açma girişiminde bulundunuz.
+Lütfen tekrar denemeden önce $1 bekleyin.',
 
 # Special:ResetTokens
 'resettokens' => 'Anahtarları sıfırla',
@@ -1054,7 +1057,7 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 Siz sayfayı görüntülerken taşınmış veya silinmiş olabilir.',
 'loginreqtitle' => 'Oturum açmanız gerekiyor',
 'loginreqlink' => 'oturum aç',
-'loginreqpagetext' => 'Diğer sayfaları görmek için $1 olmalısınız.',
+'loginreqpagetext' => 'Diğer sayfaları görmek için $1 .',
 'accmailtitle' => 'Parola gönderildi.',
 'accmailtext' => "[[User talk:$1|$1]] için rastgele oluşturulan parola $2 adresine gönderildi.
 

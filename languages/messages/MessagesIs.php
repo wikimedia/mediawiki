@@ -244,7 +244,6 @@ $messages = array(
 'tog-showtoolbar' => 'Sýna breytingarverkfærastiku',
 'tog-editondblclick' => 'Breyta síðum þegar tvísmellt er',
 'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir',
-'tog-showtoc' => 'Sýna efnisyfirlit (fyrir síður með meira en 3 fyrirsagnir)',
 'tog-rememberpassword' => 'Muna innskráninguna mína í þessum vafra (í allt að $1 {{PLURAL:$1|dag|daga}})',
 'tog-watchcreations' => 'Bæta síðum sem ég bý til og skrám sem ég hleð inn á vaktlistann minn',
 'tog-watchdefault' => 'Bæta síðum og skrám sem ég breyti á vaktlistann minn',

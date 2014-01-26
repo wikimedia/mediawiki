@@ -271,9 +271,8 @@ $messages = array(
 'tog-usenewrc' => 'Групаваць зьмены па старонках у апошніх зьменах і сьпісе назіраньня',
 'tog-numberheadings' => 'Аўтаматычная нумарацыя загалоўкаў',
 'tog-showtoolbar' => 'Паказваць панэль інструмэнтаў рэдагаваньня',
-'tog-editondblclick' => 'Рэдагаваць старонкі па падвойным пстрыку',
-'tog-editsectiononrightclick' => 'Рэдагаваць сэкцыі па правым пстрыку на загалоўку',
-'tog-showtoc' => 'Паказваць зьмест (для старонак з больш як 3 разьдзеламі)',
+'tog-editondblclick' => 'Рэдагаваць старонкі па падвойным націсканьні',
+'tog-editsectiononrightclick' => 'Рэдагаваць сэкцыі па націсканьні правай кнопкі мышы на загалоўку',
 'tog-rememberpassword' => 'Запомніць мяне ў гэтым браўзэры (ня больш за $1 {{PLURAL:$1|дзень|дні|дзён}})',
 'tog-watchcreations' => 'Дадаваць у мой сьпіс назіраньня створаныя мной старонкі і загружаныя файлы',
 'tog-watchdefault' => 'Дадаваць у мой сьпіс назіраньня старонкі і файлы, якія я рэдагаваў',
@@ -873,6 +872,8 @@ $2
 'changeemail-password' => 'Ваш пароль у {{GRAMMAR:месны|{{SITENAME}}}}:',
 'changeemail-submit' => 'Зьмяніць адрас электроннай пошты',
 'changeemail-cancel' => 'Скасаваць',
+'changeemail-throttled' => 'Вы зрабілі зашмат спробаў увайсьці ў сыстэму.
+Калі ласка, пачакайце $1 перад наступнай спробай.',
 
 # Special:ResetTokens
 'resettokens' => 'Скідваньне токенаў',
@@ -1131,6 +1132,9 @@ $2
 'cantcreateaccount-text' => "Стварэньне рахункаў з гэтага IP-адрасу ('''$1''') было заблякаванае [[User:$3|$3]].
 
 Прычына блякаваньня пададзеная $3: ''$2''",
+'cantcreateaccount-range-text' => "Стварэньне рахункаў з IP-адрасоў у дыяпазоне '''$1''', у які ўваходзіць ваш IP-адрас ('''$4'''), было забароненае {{GENDER:$3|ўдзельнікам|ўдзельніцай}} [[User:$3|$3]].
+
+{{GENDER:$3|Удзельнікам|Удзельніцай}} $3 была пададзеная наступная прычына: ''$2''.",
 
 # History pages
 'viewpagelogs' => 'Паказаць журналы падзеяў для гэтай старонкі',
@@ -1212,10 +1216,10 @@ $2
 * раскрыцьцё асабістых зьвестак
 *: ''хатнія адрасы, тэлефонныя нумары, нумары пашпартоў і г. д.''",
 'revdelete-legend' => 'Усталяваць абмежаваньні бачнасьці',
-'revdelete-hide-text' => 'Схаваць тэкст вэрсіі',
+'revdelete-hide-text' => 'Тэкст вэрсіі',
 'revdelete-hide-image' => 'Схаваць зьмест файла',
 'revdelete-hide-name' => 'Схаваць дзеяньне і мэту',
-'revdelete-hide-comment' => 'Схаваць кароткае апісаньне зьменаў',
+'revdelete-hide-comment' => 'Апісаньне зьменаў',
 'revdelete-hide-user' => 'Схаваць імя/IP-адрас удзельніка',
 'revdelete-hide-restricted' => 'Ужываць гэтыя абмежаваньні таксама і для адміністратараў',
 'revdelete-radio-same' => '(не зьмяняць)',
@@ -3846,7 +3850,7 @@ $5
 'version-hook-subscribedby' => 'Падпісаны на',
 'version-version' => '(Вэрсія $1)',
 'version-svn-revision' => '(r$2)',
-'version-license' => 'Ліцэнзія',
+'version-license' => 'Ліцэнзія MediaWiki',
 'version-poweredby-credits' => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'іншыя',
 'version-poweredby-translators' => 'перакладчыкі з translatewiki.net',

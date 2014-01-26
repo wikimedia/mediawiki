@@ -374,7 +374,6 @@ $messages = array(
 'tog-showtoolbar' => '편집에 툴바 보이기',
 'tog-editondblclick' => '더블 클릭으로 문서 편집하기',
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 문단 편집하기 활성화',
-'tog-showtoc' => '문서의 목차 보여주기 (머릿글이 4개 이상인 경우)',
 'tog-rememberpassword' => '이 브라우저에 로그인 상태를 저장하기(최대 $1{{PLURAL:$1|일}})',
 'tog-watchcreations' => '내가 만드는 문서와 내가 올린 파일을 주시문서 목록에 추가',
 'tog-watchdefault' => '내가 편집하는 문서와 파일을 주시문서 목록에 추가',
@@ -2423,7 +2422,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-blocked' => '(차단됨)',
 
 # Special:ActiveUsers
-'activeusers' => '활발한 사용자 목록',
+'activeusers' => '활동하는 사용자 목록',
 'activeusers-intro' => '다음은 최근 $1{{PLURAL:$1|일}} 동안 활동한 사용자의 목록입니다.',
 'activeusers-count' => '마지막 {{PLURAL:$3|$3일}} 사이의 {{PLURAL:$1|활동}} $1회',
 'activeusers-from' => '다음으로 시작하는 사용자를 보기:',
@@ -2702,7 +2701,7 @@ $UNWATCHURL
 # Undelete
 'undelete' => '삭제된 문서 보기',
 'undeletepage' => '삭제된 문서를 보거나 되살리기',
-'undeletepagetitle' => "'''아래는 [[:$1|$1]]의 삭제된 판입니다'''.",
+'undeletepagetitle' => "'''아래는 [[:$1|$1]] 판의 삭제된 판입니다'''.",
 'viewdeletedpage' => '삭제된 문서 보기',
 'undeletepagetext' => '다음 {{PLURAL:$1|문서는 삭제되었지만|문서 $1개는 삭제되었지만}} 아직 보관되어 있고 되살릴 수 있습니다.
 보관된 문서는 주기적으로 삭제될 것입니다.',
@@ -3408,7 +3407,7 @@ $1',
 
 # Special:NewFiles
 'newimages' => '새 파일 목록',
-'imagelisttext' => "{{PLURAL:$1|파일}} '''$1'''개를 $2 순으로 정렬한 목록입니다.",
+'imagelisttext' => "{{PLURAL:$1|파일}} '''$1'''개를 $2순으로 정렬한 목록입니다.",
 'newimages-summary' => '이 특수 문서는 최근에 올라온 파일을 나열하고 있습니다.',
 'newimages-legend' => '필터',
 'newimages-label' => '파일 이름 (또는 그 일부분):',
@@ -4004,7 +4003,7 @@ $5
 
 # Live preview
 'livepreview-loading' => '불러오는 중...',
-'livepreview-ready' => '불러 오는 중... 준비!',
+'livepreview-ready' => '불러오는 중... 준비!',
 'livepreview-failed' => '실시간 미리 보기 실패!
 일반 미리 보기를 이용하세요.',
 'livepreview-error' => '연결에 실패하였습니다: $1 "$2"
@@ -4071,7 +4070,7 @@ $5
 'version-ext-colheader-license' => '라이선스',
 'version-ext-colheader-description' => '설명',
 'version-ext-colheader-credits' => '저자',
-'version-license-title' => '$1 사용을 위한 라이센스',
+'version-license-title' => '$1용 라이센스',
 'version-license-not-found' => '이 확장기능에 대한 라이선스 세부 정보가 없습니다.',
 'version-credits-title' => '$1의 작성자',
 'version-credits-not-found' => '이 확장기능에 대한 크레딧 세부 정보가 없습니다.',
@@ -4150,7 +4149,7 @@ $5
 #모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
 
 # Special:Tags
-'tags' => '유효한 편집 태그',
+'tags' => '올바른 편집 태그',
 'tag-filter' => '[[Special:Tags|태그]] 필터:',
 'tag-filter-submit' => '필터',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|태그}}]]: $2)',

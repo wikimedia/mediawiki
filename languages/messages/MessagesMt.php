@@ -285,7 +285,6 @@ $messages = array(
 'tog-showtoolbar' => 'Uri l-kolonna tal-għodda għall-immodifikar (bżonn tal-JavaScript)',
 'tog-editondblclick' => "Immodifika l-paġni permezz ta' klikk doppju (bżonn tal-JavaScript)",
 'tog-editsectiononrightclick' => "L-immodifikar ta' sezzjonijiet bi klikk lemini fuq it-titli tas-sezzjonijiet (bżonn tal-JavaScript)",
-'tog-showtoc' => "Uri l-werrej (għal paġni b'iktar minn 3 sezzjonijiet)",
 'tog-rememberpassword' => "Ftakar il-login tiegħi fuq dan il-browżer (għal massimu ta' {{PLURAL:$1|ġurnata|$1 ġurnata}})",
 'tog-watchcreations' => "Żid il-paġni li noħloq u l-fajls li ntella' fil-lista ta' osservazzjoni tiegħi",
 'tog-watchdefault' => "Żid il-paġni u l-fajls li nimmodifika fil-lista ta' osservazzjoni personali",

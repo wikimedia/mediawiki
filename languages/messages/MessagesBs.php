@@ -292,7 +292,6 @@ $messages = array(
 'tog-showtoolbar' => 'Prikaži traku s alatkama za uređivanje',
 'tog-editondblclick' => 'Izmijeni stranice dvostrukim klikom',
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka',
-'tog-showtoc' => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword' => 'Zapamti moju šifru u ovom pregledniku (najviše $1 {{PLURAL:$1|dan|dana}})',
 'tog-watchcreations' => 'Dodaj stranice i datoteke koje napravim na moj spisak praćenih članaka',
 'tog-watchdefault' => 'Dodaj stranice i datoteke koje uređujem na moj spisak praćenih članaka',

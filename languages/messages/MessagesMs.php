@@ -210,7 +210,6 @@ $messages = array(
 'tog-showtoolbar' => 'Tunjukkan palang sunting (perlukan JavaScript)',
 'tog-editondblclick' => 'Dwiklik untuk sunting laman (JavaScript)',
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian',
-'tog-showtoc' => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
 'tog-rememberpassword' => 'Ingat log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'tog-watchcreations' => 'Tambahkan laman yang saya buat dan fail yang saya muat naik ke dalam senarai pantau',
 'tog-watchdefault' => 'Tambahkan laman dan fail yang saya sunting ke dalam senarai pantau',

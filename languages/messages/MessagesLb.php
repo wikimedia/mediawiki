@@ -197,7 +197,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ännerungstoolbar weisen',
 'tog-editondblclick' => 'Säite mat Duebelklick änneren',
 'tog-editsectiononrightclick' => 'Eenzel Abschnitter mat Rietsklick änneren',
-'tog-showtoc' => 'Inhaltsverzeechnes weise bei Säite mat méi wéi dräi Iwwerschrëften',
 'tog-rememberpassword' => 'Meng Umeldung mat dësem Browser (fir maximal $1 {{PLURAL:$1|Dag|Deeg}}) verhalen',
 'tog-watchcreations' => 'Säiten déi ech uleeën a Fichieren déi ech eroplueden op meng Iwwerwaachungslëscht derbäisetzen',
 'tog-watchdefault' => 'Säiten a Fichieren déi ech änneren op meng Iwwerwaachungslëscht derbäisetzen',
@@ -750,6 +749,8 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'retypenew' => 'Neit Passwuert nach eemol antippen:',
 'resetpass_submit' => 'Passwuert aginn an aloggen',
 'changepassword-success' => 'Äert Passwuert gouf geännert!',
+'changepassword-throttled' => 'Dir hutt rezent zevill dacks versicht Iech anzeloggen.
+Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'resetpass_forbidden' => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info' => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',
@@ -803,6 +804,8 @@ Temporärt Passwuert: $2',
 'changeemail-password' => 'Äert {{SITENAME}}-Passwuert:',
 'changeemail-submit' => 'Mailadress änneren',
 'changeemail-cancel' => 'Ofbriechen',
+'changeemail-throttled' => 'Dir hutt zevill dacks versicht Iech anzeloggen.
+Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 
 # Special:ResetTokens
 'resettokens' => 'Token zrécksetzen',
