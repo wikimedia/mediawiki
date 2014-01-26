@@ -73,7 +73,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 			__METHOD__
 		);
 		foreach ( $categoryRes as $row ) {
-			$this->currentCategoryCounts[ $row->cat_title ] = $row->cat_pages;
+			$this->currentCategoryCounts[ $row->cat_title ] = intval( $row->cat_pages );
 		}
 
 		// Back to start for display
