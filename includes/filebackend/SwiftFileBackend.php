@@ -1570,7 +1570,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Log an unexpected exception for this backend.
 	 * This also sets the Status object to have a fatal error.
 	 *
-	 * @param Status $code null
+	 * @param integer $code null
 	 * @param string $func
 	 * @param array $params
 	 * @param string $err Error string
