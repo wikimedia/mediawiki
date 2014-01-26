@@ -452,6 +452,7 @@ $specialPageAliases = array(
 	'Prefixindex'               => array( 'PrefixIndex' ) ,
 	'Protectedpages'            => array( 'ProtectedPages' ),
 	'Protectedtitles'           => array( 'ProtectedTitles' ),
+	'Purge'                     => array( 'Purge' ),
 	'Randompage'                => array( 'Random', 'RandomPage' ),
 	'RandomInCategory'          => array( 'RandomInCategory' ),
 	'Randomredirect'            => array( 'RandomRedirect' ),
