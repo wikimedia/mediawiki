@@ -41,7 +41,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	function execute( $subpage ) {
-		global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
 		// Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
@@ -388,8 +388,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return string XHTML
 	 */
 	public function doHeader( $opts ) {
-		global $wgScript;
-
 		$user = $this->getUser();
 
 		$this->setTopText( $opts );
