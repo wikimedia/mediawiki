@@ -33,7 +33,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param $par Parameter passed to the page
 	 */
 	function execute( $par ) {
-		global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
+		global $wgEnotifWatchlist,$wgShowUpdatedMarker;
 
 		$user = $this->getUser();
 		$output = $this->getOutput();
@@ -413,8 +413,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return string XHTML
 	 */
 	public function doHeader( $opts ) {
-		global $wgScript;
-
 		$user = $this->getUser();
 
 		$this->setTopText( $opts );
