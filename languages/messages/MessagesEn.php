@@ -2972,7 +2972,7 @@ Future changes to this page and its associated talk page will be listed there.',
 'watchmethod-list'     => 'checking watched pages for recent edits',
 'watchlistcontains'    => 'Your watchlist contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname'      => 'Problem with item "$1", invalid name...',
-'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last <strong>$1</strong> changes}} in the last {{PLURAL:$2|hour|<strong>$2</strong> hours}}, as of $3, $4.",
+'wlnote2'              => "Below are the changes in the last {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $2, $3.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
 'watchlist-options'    => 'Watchlist options',
 
