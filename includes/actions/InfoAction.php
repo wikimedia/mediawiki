@@ -585,8 +585,8 @@ class InfoAction extends FormlessAction {
 				);
 			}
 
-			if ( !$wgMiserMode && $pageCounts['transclusion']['to'] > 0 ) {
-				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
+			if ( $pageCounts['transclusion']['to'] > 0 ) {
+				if ( $wgMiserMode || $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
 					$more = Linker::link(
 						$whatLinksHere,
 						$this->msg( 'moredotdotdot' )->escaped(),
@@ -600,7 +600,7 @@ class InfoAction extends FormlessAction {
 				$pageInfo['header-properties'][] = array(
 					$this->msg( 'pageinfo-transclusions' )
 						->numParams( $pageCounts['transclusion']['to'] ),
-					Linker::formatTemplates(
+					$wgMiserMode ? $more : Linker::formatTemplates(
 						$transcludedTargets,
 						false,
 						false,
