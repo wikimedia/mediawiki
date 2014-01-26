@@ -411,7 +411,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
 	 * @param int|bool $offset
-	 * @oaram int|bool $limit
+	 * @param int|bool $limit
 	 * @return ResultWrapper
 	 */
 	function doQuery( $offset = false, $limit = false ) {
