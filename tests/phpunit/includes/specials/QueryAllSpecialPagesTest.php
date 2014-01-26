@@ -13,7 +13,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 global $IP;
-require_once "$IP/includes/QueryPage.php"; // Needed to populate $wgQueryPages
+require_once "$IP/includes/specialpage/QueryPage.php"; // Needed to populate $wgQueryPages
 
 /**
  * @covers QueryPage<extended>
