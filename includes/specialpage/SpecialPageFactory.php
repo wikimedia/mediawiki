@@ -98,6 +98,7 @@ class SpecialPageFactory {
 		'Listusers'                 => 'SpecialListUsers',
 		'Listadmins'                => 'SpecialListAdmins',
 		'Listbots'                  => 'SpecialListBots',
+		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 		'EditWatchlist'             => 'SpecialEditWatchlist',
 
@@ -180,7 +181,6 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
-		global $wgMiserMode;
 
 		if ( !is_object( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
@@ -204,10 +204,6 @@ class SpecialPageFactory {
 
 			if ( $wgEnableJavaScriptTest ) {
 				self::$list['JavaScriptTest'] = 'SpecialJavaScriptTest';
-			}
-
-			if ( !$wgMiserMode ) {
-				self::$list['Activeusers'] = 'SpecialActiveUsers';
 			}
 
 			// Add extension special pages
