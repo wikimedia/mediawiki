@@ -240,10 +240,14 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @param $par Mixed: parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgActiveUserDays;
+		global $wgActiveUserDays, $wgMiserMode;
 
 		$this->setHeaders();
 		$this->outputHeader();
+
+		if ( $wgMiserMode ) {
+			throw new ErrorPageError( 'activeusers', 'querypage-disabled' );
+		}
 
 		$out = $this->getOutput();
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
