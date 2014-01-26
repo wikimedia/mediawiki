@@ -35,7 +35,7 @@ class UpdateSpecialPages extends Maintenance {
 		$this->addOption( 'list', 'List special page names' );
 		$this->addOption( 'only', 'Only update "page"; case sensitive, ' .
 		'check correct case by calling this script with --list or on ' .
-		'includes/QueryPage.php. Ex: --only=BrokenRedirects', false, true );
+		'includes/specialpage/QueryPage.php. Ex: --only=BrokenRedirects', false, true );
 		$this->addOption( 'override', 'Also update pages that have updates disabled' );
 	}
 
@@ -48,7 +48,7 @@ class UpdateSpecialPages extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// This is needed to initialise $wgQueryPages
-		require_once "$IP/includes/QueryPage.php";
+		require_once "$IP/includes/specialpage/QueryPage.php";
 
 		foreach ( $wgQueryPages as $page ) {
 			list( $class, $special ) = $page;
