@@ -708,7 +708,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
 			$objHdrs['x-object-meta-sha1base36'] = false;
-			return false; // failed
+			return $objHdrs; // failed
 		}
 
 		$status = Status::newGood();
@@ -726,7 +726,7 @@ class SwiftFileBackend extends FileBackendStore {
 						'headers' => $this->authTokenHeaders( $auth ) + $objHdrs
 					) );
 					if ( $rcode >= 200 && $rcode <= 299 ) {
-						return true; // success
+						return $objHdrs; // success
 					}
 				}
 			}
@@ -734,7 +734,7 @@ class SwiftFileBackend extends FileBackendStore {
 		trigger_error( "Unable to set SHA-1 metadata for $path", E_USER_WARNING );
 		$objHdrs['x-object-meta-sha1base36'] = false;
 
-		return false; // failed
+		return $objHdrs; // failed
 	}
 
 	protected function doGetFileContentsMulti( array $params ) {
