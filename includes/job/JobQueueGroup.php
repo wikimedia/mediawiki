@@ -116,7 +116,7 @@ class JobQueueGroup {
 
 		$jobsByType = array(); // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
-			if ( $job instanceof Job ) {
+			if ( $job instanceof IJobSpecification ) {
 				$jobsByType[$job->getType()][] = $job;
 			} else {
 				throw new MWException( "Attempted to push a non-Job object into a queue." );

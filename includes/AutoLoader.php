@@ -636,6 +636,7 @@ $wgAutoloadLocalClasses = array(
 	'WebInstallerPage' => 'includes/installer/WebInstallerPage.php',
 
 	# includes/job
+	'IJobSpecification' => 'includes/job/JobSpecification.php',
 	'Job' => 'includes/job/Job.php',
 	'JobQueue' => 'includes/job/JobQueue.php',
 	'JobQueueAggregator' => 'includes/job/aggregator/JobQueueAggregator.php',
@@ -647,6 +648,7 @@ $wgAutoloadLocalClasses = array(
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
 	'JobQueueFederated' => 'includes/job/JobQueueFederated.php',
 	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
+	'JobSpecification' => 'includes/job/JobSpecification.php',
 
 	# includes/job/jobs
 	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
