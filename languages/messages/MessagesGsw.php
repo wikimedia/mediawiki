@@ -145,7 +145,6 @@ $messages = array(
 'tog-showtoolbar' => 'Wärchzyyglyscht zum Bearbeite aazeige',
 'tog-editondblclick' => 'Syte ändere mit Doppelklick',
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick uf d Iberschrifte',
-'tog-showtoc' => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword' => 'Mit däm Browser duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',
 'tog-watchcreations' => 'Sälber gmachti Sytene un uffegladeni Dateie automatisch  beobachte',
 'tog-watchdefault' => 'Sälber gändereti Syte un Dateie automatisch beobachte',

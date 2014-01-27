@@ -171,7 +171,6 @@ $messages = array(
 'tog-showtoolbar' => 'Wobźěłowańsku rědku pokazaś',
 'tog-editondblclick' => 'Boki z dwójnym kliknjenim wobźěłaś',
 'tog-editsectiononrightclick' => 'Wobźěłowanje wótrězkow pśez kliknjenje z pšaweju tastu myški zmóžniś',
-'tog-showtoc' => 'Wopśimjeśe pokazaś, jolic ma bok wěcej nježli 3 nadpisma',
 'tog-rememberpassword' => 'Z toś tym wobglědowakom pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'tog-watchcreations' => 'Boki, kótarež napórajom a dataje, kótarež nagrawam, wobglědowaś',
 'tog-watchdefault' => 'Boki a dataje , kótarež změnijom, wobglědowaś',
@@ -701,6 +700,8 @@ Jolic jo pódajoš, buźo se to wužywaś, aby pśinoski pśirědowało.',
 'retypenew' => 'Nowe šćitne gronidło (hyšći raz):',
 'resetpass_submit' => 'Šćitne gronidło nastajiś a se pśizjawiś',
 'changepassword-success' => 'Twóje gronidło jo se wuspěšnje změniło!',
+'changepassword-throttled' => 'Sy pśecesto wopytał se pśizjawiś.
+Pócakaj pšosym $1, nježli až wopytajoš znowego.',
 'resetpass_forbidden' => 'Gronidła njedaju se změniś',
 'resetpass-no-info' => 'Dejš pśizjawjony byś, aby direktny pśistup na toś ten bok měł.',
 'resetpass-submit-loggedin' => 'Gronidło změniś',
@@ -752,6 +753,8 @@ Nachylne gronidło: $2',
 'changeemail-password' => 'Twójo gronidło za {{GRAMMAR:akuzatiw|{{SITENAME}}}}',
 'changeemail-submit' => 'E-mailowu adresu změniś',
 'changeemail-cancel' => 'Pśetergnuś',
+'changeemail-throttled' => 'Sy pśecesto wopytał se pśizjawiś.
+Pócakaj pšosym $1, nježli až wopytajoš znowego.',
 
 # Special:ResetTokens
 'resettokens' => 'Tokeny slědk stajiś',
@@ -3970,5 +3973,6 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'expand_templates_preview' => 'Pśeglěd',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML w nagratej dataji njedajo se parsowaś.',
 );

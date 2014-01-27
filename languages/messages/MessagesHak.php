@@ -32,7 +32,6 @@ $messages = array(
 'tog-showtoolbar' => '展示編寫工具欄',
 'tog-editondblclick' => '雙撳編寫頁面',
 'tog-editsectiononrightclick' => '允許右撳標題編寫段落',
-'tog-showtoc' => '顯示目錄（針對一頁超過3隻標題嘅頁面）',
 'tog-rememberpassword' => '在邇隻瀏覽器記下亻厓嘅登入狀態（最多$1日）',
 'tog-watchcreations' => '加亻厓建立嘅頁面撈上傳嘅文件加入亻厓嘅監視列表',
 'tog-watchdefault' => '將亻厓編寫嘅頁面撈檔案加入亻厓嘅監視列表',

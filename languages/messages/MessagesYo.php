@@ -65,7 +65,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ìfihàn pẹpẹ irinṣẹ́ àtúnṣe',
 'tog-editondblclick' => "Ṣ'àtúnṣe àwọn ojúewé ní kíkàn lẹ́mẹjì",
 'tog-editsectiononrightclick' => 'Ìgbàláyè àtúnṣe abala nípa klííkì ọ̀tún lórí àkọlé abala',
-'tog-showtoc' => 'Ìfihàn tábìlì àkóónú (fún àwọn ojúewé tó ní ju orí ọ̀rọ̀ 3 lọ)',
 'tog-rememberpassword' => "Ṣè'rántí àkọọ́lẹ̀ ìwọlé mi lórí agbétàkùn yìí (fún {{PLURAL:$1|ọjọ́|ọjọ́}} $1 pípẹ́jùlọ)",
 'tog-watchcreations' => "Ṣ'àfikún ojúewé tí mo dá àti àwọn fáìlì tí mo rùsókè mọ́ ìmójútó mi",
 'tog-watchdefault' => "Ṣ'àfikún àwọn ojúewé àti fáìlì tí mo ṣ'àtúnse mọ́ ìmójútó mi",

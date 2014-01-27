@@ -122,7 +122,6 @@ $messages = array(
 'tog-showtoolbar' => 'Tahrirlash asboblari joylashgan yoʻlakchani koʻrsatish (JavaScript orqali)',
 'tog-editondblclick' => 'Sichqoncha tugmasini ikki marta bosish orqali tahrirlashni boshlash',
 'tog-editsectiononrightclick' => 'Boʻlim sarlavhasiga sichqonchaning oʻng tugmasi bilan bosib tahrirlashni boshlash',
-'tog-showtoc' => 'Mundarijani koʻrsatish (3 tadan koʻproq sarlavha bor sahifalarda)',
 'tog-rememberpassword' => 'Hisob ma’lumotlarim ushbu brauzerda eslab qolinsin (ko‘pi bilan $1 kunga)',
 'tog-watchcreations' => 'Men yaratgan sahifalarni va yuklagan fayllarni kuzatuv roʻyxatimga qoʻsh',
 'tog-watchdefault' => 'Men tahrirlagan sahifa va fayllarni kuzatuv roʻyxatimga qoʻsh',

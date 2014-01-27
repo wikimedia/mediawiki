@@ -137,7 +137,6 @@ $messages = array(
 'tog-showtoolbar' => 'Aldaketen tresna-barra erakutsi',
 'tog-editondblclick' => 'Klik bikoitzaren bitartez orrialdeak aldatu',
 'tog-editsectiononrightclick' => 'Atalen izenburuetan eskuin klik eginez aldatzea gaitu',
-'tog-showtoc' => 'Edukien taula erakutsi (3 goiburukotik gorako orrialdeentzako)',
 'tog-rememberpassword' => 'Nire saioa ordenagailu honetan gorde ({{PLURAL:$1|egun baterako| $1 egunerako}} gehienez)',
 'tog-watchcreations' => 'Sortzen ditudan orrialdeak eta fitxategiak nire jarraipen-zerrendara gehitu',
 'tog-watchdefault' => 'Aldatzen ditudan orrialdeak eta fitxategiak nire jarraipen-zerrendara gehitu',

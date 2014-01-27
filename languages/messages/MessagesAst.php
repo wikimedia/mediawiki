@@ -75,7 +75,6 @@ $messages = array(
 'tog-showtoolbar' => "Amosar la barra de ferramientes d'edición",
 'tog-editondblclick' => 'Editar páxines con doble clic',
 'tog-editsectiononrightclick' => 'Activar la edición de seiciones calcando col botón drechu nos títulos de seición',
-'tog-showtoc' => 'Amosar índiz (pa páxines con más de 3 encabezaos)',
 'tog-rememberpassword' => 'Recordar la mio identificación nesti ordenador (hasta un máximu de $1 {{PLURAL:$1|día|díes}})',
 'tog-watchcreations' => 'Amestar les páxines que creo y los ficheros que cargo a la mio llista de vixilancia',
 'tog-watchdefault' => "Amestar les páxines y ficheros qu'edito a la mio llista de vixilancia",
@@ -636,6 +635,8 @@ P'acabar d'aniciar sesión, tienes de configurar equí una contraseña nueva:",
 'retypenew' => 'Vuelvi a escribir la contraseña nueva:',
 'resetpass_submit' => 'Configurar la contraseña y aniciar sesión',
 'changepassword-success' => '¡Camudóse la contraseña correutamente!',
+'changepassword-throttled' => "Ficisti demasiaos intentos d'aniciu de sesión recientes.
+Por favor espera $1 enantes d'intentalo otra vuelta.",
 'resetpass_forbidden' => 'Nun puen camudase les contraseñes',
 'resetpass-no-info' => "Tienes d'aniciar sesión pa entrar direutamente a esta páxina.",
 'resetpass-submit-loggedin' => 'Camudar la contraseña',
@@ -691,6 +692,8 @@ Contraseña temporal: $2",
 'changeemail-password' => 'La to contraseña en {{SITENAME}}:',
 'changeemail-submit' => 'Camudar el corréu electrónicu',
 'changeemail-cancel' => 'Encaboxar',
+'changeemail-throttled' => "Ficisti demasiaos intentos d'aniciu de sesión.
+Por favor espera $1 enantes d'intentalo otra vuelta.",
 
 # Special:ResetTokens
 'resettokens' => 'Reaniciar los pases',
@@ -4003,5 +4006,6 @@ En realidá cuasi tolo qu'apaeza ente llaves dobles.",
 'expand_templates_preview' => 'Vista previa',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 );

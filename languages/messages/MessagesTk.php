@@ -50,7 +50,6 @@ $messages = array(
 'tog-showtoolbar' => 'Redaktirleme mahalynda gural panelini görkez (JavaScript)',
 'tog-editondblclick' => 'Sahypany jübüt tyklap, redaktirläp başla (JavaScript)',
 'tog-editsectiononrightclick' => 'Bölümleri bölümiň adyna sag tyklap redaktirlemäge mümkinçilik döret (JavaScript)',
-'tog-showtoc' => 'Mazmun tablisasyny görkez (3 sanydan köp ady bar bolan sahypalar üçin)',
 'tog-rememberpassword' => 'Sessiýamy şu brauzerde ýatda sakla  (iň köp $1 {{PLURAL:$1|günläp|günläp}})',
 'tog-watchcreations' => 'Döreden sahypalarymy gözegçilik sanawyma goş',
 'tog-watchdefault' => 'Redaktirlän sahypalarymy gözegçilik sanawyma goş',

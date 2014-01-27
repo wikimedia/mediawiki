@@ -31,7 +31,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ipakita ang edit toolbar (nagakilanlan JavaScript)',
 'tog-editondblclick' => 'Islan ang pahina kung i-doble klik mo (nagakilanlan JavaScript)',
 'tog-editsectiononrightclick' => 'Sugtan ang pag-ilis sang seksyon paagi sa pagtum-ok sang natoo sa mouse sa titulo sang seksyon (nagakinahanglan sang JavaScript)',
-'tog-showtoc' => 'Ipakita ang sinulatan sang nagabug-os (para sang mga panid nga may yara sang masobra sa 3 nga pangolohan)',
 'tog-rememberpassword' => 'Dumdumon ang akon password sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
 'tog-watchcreations' => 'Magdugang sang mga panid nga akon buhaton kag mga hilera nga akon igapasaka sa akon mga ginabantayan',
 'tog-watchdefault' => 'Idugang ang mga panid kag hilera nga akon ginbag-o sa akon mga ginabantayan',

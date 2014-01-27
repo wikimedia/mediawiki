@@ -323,7 +323,6 @@ $messages = array(
 'tog-showtoolbar' => 'Montrar la bârra d’outils de changement (at fôta de JavaScript)',
 'tog-editondblclick' => 'Changiér des pâges sur doblo-clic (at fôta de JavaScript)',
 'tog-editsectiononrightclick' => 'Activar lo changement de sèccions per clic drêt sur lors titros (at fôta de JavaScript)',
-'tog-showtoc' => 'Montrar la trâbla de les matiéres (por les pâges qu’ant més de 3 sèccions)',
 'tog-rememberpassword' => 'Sè rapelar de mon contresegno sur ceti navigator (por lo més $1 jorn{{PLURAL:$1||s}})',
 'tog-watchcreations' => 'Apondre les pâges que fé et pués los fichiérs que tèlèchârjo a ma lista de siuvu',
 'tog-watchdefault' => 'Apondre les pâges et los fichiérs que chanjo a ma lista de siuvu',

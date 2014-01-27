@@ -47,7 +47,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ipakita ti baras ti ramit ti panag-urnos',
 'tog-editondblclick' => 'Urnosen dagiti panid iti mamindua a panagpindut',
 'tog-editsectiononrightclick' => 'Pakabaelan ti panag-urnos ti paset babaen ti kanawan a panagpindut kadagiti titulo ti paset',
-'tog-showtoc' => 'Ipakita ti tabla dagiti linaon (para kadagiti panid nga adda ti ad-adu ngem dagiti 3 a paulo)',
 'tog-rememberpassword' => 'Laglagipem ti iseserrekko iti daytoy a pagbasabasa (iti kapaut nga $1 {{PLURAL:$1|aldaw|al-aldaw}})',
 'tog-watchcreations' => 'Agnayon kadagiti panid a pinartuatko ken papeles nga inkargak idiay listaan ti bambantayak',
 'tog-watchdefault' => 'Agnayon kadagiti panid ken papeles nga inurnosko idiay listaan ti bambantayak',

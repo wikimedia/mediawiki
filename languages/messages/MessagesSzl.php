@@ -77,7 +77,6 @@ $messages = array(
 'tog-showtoolbar' => 'Pokoż gurt werkcojgůw (JavaScript)',
 'tog-editondblclick' => 'Edycyjo napoczynajům dwa klikńyńća (JavaScript)',
 'tog-editsectiononrightclick' => 'Klikńyńće prawym kneflym myszy na titlu tajli<br />napoczyno jigo sprowjańy(JavaScript)',
-'tog-showtoc' => 'Pokoż spis treśći (na zajtach, kere majům wjyncyj kej trzi tajle)',
 'tog-rememberpassword' => 'Pamjyntej můj ausdruk na tym kůmputrze (nojdalij bez $1 {{PLURAL:$1|dźyń|dńůw}})',
 'tog-watchcreations' => 'Dowům pozůr na zajty, kere żech naszkryfloł',
 'tog-watchdefault' => 'Dowům pozůr na zajty, kere żech sprowjoł',

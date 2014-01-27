@@ -227,7 +227,6 @@ $messages = array(
 'tog-showtoolbar' => 'Trego mjetet e redaktimit (kërkon JavaScript)',
 'tog-editondblclick' => 'Redakto faqet me dopio-klik (kërkon JavaScript)',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve duke klikuar me të djathtën mbi titullin e seksionit (kërkon JavaScript)',
-'tog-showtoc' => 'Trego tabelën e përmbajtjes (për faqet me më shume se 3 tituj)',
 'tog-rememberpassword' => 'Mbaj mend fjalëkalimin tim në këtë shfletues (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',
 'tog-watchcreations' => 'Shtoi faqet e krijuara dhe skedat e ngarkuara prej meje tek lista e faqeve nën mbikqyrje',
 'tog-watchdefault' => 'Shto faqet dhe skedat e redaktuara prej meje tek lista e faqeve nën mbikqyrje',

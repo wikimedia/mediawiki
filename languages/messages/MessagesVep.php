@@ -100,7 +100,6 @@ $messages = array(
 'tog-showtoolbar' => "Ozutada redaktiruindan panel'",
 'tog-editondblclick' => 'Redaktiruida lehtpoled kaksitadud plokul',
 'tog-editsectiononrightclick' => 'Redaktiruida sekcijad hiren oiktal plokul pälkirjutesele',
-'tog-showtoc' => 'Ozutada südäiolend (lehtpoled, kudambil om enamba, mi 3 pälkirjutest)',
 'tog-rememberpassword' => 'Muštta minun kävutajan nimi neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations' => 'Ližata kaik minai sätud lehtpoled da failad minun kaclendkirjuteshe',
 'tog-watchdefault' => 'Ližata kaik minai toižetadud lehtpoled da failad minun kaclendkirjuteshe',

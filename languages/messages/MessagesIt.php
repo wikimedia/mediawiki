@@ -304,7 +304,6 @@ $messages = array(
 'tog-showtoolbar' => 'Mostra la barra degli strumenti di modifica',
 'tog-editondblclick' => 'Modifica delle pagine tramite doppio clic',
 'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo',
-'tog-showtoc' => "Mostra l'indice (per le pagine con più di 3 sezioni)",
 'tog-rememberpassword' => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'tog-watchcreations' => 'Aggiungi le pagine create e i file caricati agli osservati speciali',
 'tog-watchdefault' => 'Aggiungi le pagine e i file modificati agli osservati speciali',

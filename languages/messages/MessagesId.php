@@ -358,7 +358,6 @@ $messages = array(
 'tog-showtoolbar' => 'Tampilkan bilah alat penyuntingan',
 'tog-editondblclick' => 'Sunting halaman dengan klik ganda',
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian',
-'tog-showtoc' => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingat kata sandi saya di peramban ini (selama $1 {{PLURAL:$1|hari}})',
 'tog-watchcreations' => 'Tambahkan halaman yang saya buat ke daftar pantauan',
 'tog-watchdefault' => 'Tambahkan halaman yang saya sunting ke daftar pantauan',

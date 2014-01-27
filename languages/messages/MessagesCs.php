@@ -376,7 +376,6 @@ $messages = array(
 'tog-showtoolbar' => 'Zobrazit panel nástrojů',
 'tog-editondblclick' => 'Editovat stránky dvojklikem',
 'tog-editsectiononrightclick' => 'Umožnit editaci části stránky kliknutím pravým tlačítkem na nadpisy sekcí',
-'tog-showtoc' => 'Zobrazovat obsah (na stránkách s více než třemi nadpisy)',
 'tog-rememberpassword' => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'tog-watchcreations' => 'Přidávat mnou založené stránky a načtené soubory ke sledovaným',
 'tog-watchdefault' => 'Přidávat mnou editované stránky a soubory ke sledovaným',

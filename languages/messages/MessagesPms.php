@@ -54,7 +54,6 @@ $messages = array(
 'tog-showtoolbar' => "Smon-e la bara dj'utiss ëd modìfica",
 'tog-editondblclick' => 'Dobia sgnacà për modifiché la pàgina',
 'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima ai tìtoj col tast drit dël rat',
-'tog-showtoc' => "Smon-e la tàula dij contnù (për le pàgine che l'han pì che 3 session)",
 'tog-rememberpassword' => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di}})",
 'tog-watchcreations' => "Gionté le pàgine che i creo mi e j'archivi che i cario mi a la lista ëd lòn che im ten-o sot-euj",
 'tog-watchdefault' => "Gionté le pàgine e j'archivi che i modìfico mi a la lista dle ròbe ch'i ten-o sot-euj",

@@ -65,7 +65,6 @@ $messages = array(
 'tog-showtoolbar' => 'Rādīt rediģēšanas rīkjoslu',
 'tog-editondblclick' => 'Atvērt lapu rediģēšanai ar dubultklikšķi',
 'tog-editsectiononrightclick' => "Atvērt sadaļas rediģēšanas lapu, uzklikšķinot ar labo peles pogu uz sadaļas virsraksta (izmanto ''JavaScript'')",
-'tog-showtoc' => 'Parādīt satura rādītāju (lapām, kurās ir vairāk par 3 virsrakstiem)',
 'tog-rememberpassword' => 'Atcerēties manu lietotājvārdu pēc pārlūka aizvēršanas (ne vairāk kā $1 {{PLURAL:$1|diena|dienas}}).',
 'tog-watchcreations' => 'Pievienot manis radītās lapas un manis augšuplādētos failus uzraugāmo lapu sarakstam',
 'tog-watchdefault' => 'Pievienot manis izmainītās lapas un failus uzraugāmo lapu sarakstam',

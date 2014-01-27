@@ -47,7 +47,6 @@ $messages = array(
 'tog-showtoolbar' => 'Badle waala toolbar ke dekhao',
 'tog-editondblclick' => 'Dugnaa click pe panna ke badlo',
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo',
-'tog-showtoc' => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword' => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
 'tog-watchcreations' => 'Hamaar banawa waala panna aur upload karaa gais file ke hamaar dhyaan suchi me jorro',
 'tog-watchdefault' => 'Ham se badla gais panna aur file ke hamaar dhyaan suchi me jorro',

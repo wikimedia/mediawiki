@@ -166,7 +166,6 @@ $messages = array(
 'tog-showtoolbar' => 'Wobdźěłowansku lajstu pokazać',
 'tog-editondblclick' => 'Strony z dwójnym kliknjenjom wobdźěłować',
 'tog-editsectiononrightclick' => 'Wobdźěłowanje wotrězkow přez kliknjenje z prawej tastu na nadpisma wotrězkow zmóžnić',
-'tog-showtoc' => 'Zapis wobsaha pokazać (za strony z wjace hač 3 nadpismami)',
 'tog-rememberpassword' => 'Přizjewjenje na tutym wobhladowaku sej spomjatkować (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'tog-watchcreations' => 'Strony, kotrež wutworjam a dataje, kotrež nahrawam, swojim wobkedźbowankam přidać',
 'tog-watchdefault' => 'Strony a dataje, kotrež wobdźěłuju, swojim wobkedźbowankam přidać',
@@ -702,6 +701,7 @@ Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
 'retypenew' => 'Nowe hesło wospjetować:',
 'resetpass_submit' => 'Hesło posrědkować a so přizjewić',
 'changepassword-success' => 'Twoje hesło je so wuspěšnje změniło!',
+'changepassword-throttled' => 'Sy přehusto spytał so přizjewić. Počakaj prošu $1, prjedy hač hišće raz spytaš.',
 'resetpass_forbidden' => 'Hesła njedadźa so změnić.',
 'resetpass-no-info' => 'Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.',
 'resetpass-submit-loggedin' => 'Hesło změnić',
@@ -753,6 +753,8 @@ Nachwilne hesło: $2',
 'changeemail-password' => 'Twoje hesło za {{GRAMMAR:akuzatiw|{{SITENAME}}}}',
 'changeemail-submit' => 'E-mejlowu adresu změnić',
 'changeemail-cancel' => 'Přetorhnyć',
+'changeemail-throttled' => 'Sy přehusto spytał so přizjewić.
+Počakaj prošu $1, prjedy hač hišće raz spytaš.',
 
 # Special:ResetTokens
 'resettokens' => 'Tokeny wróćo stajić',
@@ -3960,5 +3962,6 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'expand_templates_preview' => 'Přehlad',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML w nahratej dataji njeda so parsować.',
 );

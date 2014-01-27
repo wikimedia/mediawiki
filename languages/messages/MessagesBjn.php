@@ -155,7 +155,6 @@ $messages = array(
 'tog-showtoolbar' => 'Tampaiakan bilah-pakakas babak (parlu ada JavaScript)',
 'tog-editondblclick' => 'Babak tutungkaran wan klik ganda (parlu ada JavaScript)',
 'tog-editsectiononrightclick' => "Kawa'akan mambabak sub-hagian lawan mang-klik kanan pada judul hagian (parlu ada JavaScript)",
-'tog-showtoc' => 'Tampaiakan daptar isi (gasan tungkaran-tungkaran nang baisi labih dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingatakan babuat log ulun pada panjalajah web ini (gasan salawas $1{{PLURAL:$1|hari|hahari}})',
 'tog-watchcreations' => 'Tambahi tungkaran nang ulun ulah ka daptar itihan',
 'tog-watchdefault' => 'Tambahi tungkaran nang ulun babak ka daptar itihan ulun',

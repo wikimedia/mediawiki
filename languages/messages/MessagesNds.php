@@ -226,7 +226,6 @@ $messages = array(
 'tog-showtoolbar' => 'Editeer-Warktüüchlist wiesen',
 'tog-editondblclick' => 'Sieden mit Dubbelklick ännern (JavaScript)',
 'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick ännern (Javascript)',
-'tog-showtoc' => "Wiesen vun'n Inholtsverteken bi Sieten mit mehr as dree Överschriften",
 'tog-rememberpassword' => 'Duersam inloggen (för maximaal $1 {{PLURAL:$1|Dag|Daag}})',
 'tog-watchcreations' => 'Nee schrevene Sieden op miene Oppasslist setten',
 'tog-watchdefault' => 'Op ne’e un ännerte Sieden oppassen',

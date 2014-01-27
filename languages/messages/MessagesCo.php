@@ -583,7 +583,7 @@ Parechji mudelli ùn seranu micca inclusi.",
 
 # Contributions
 'contributions' => 'Mudifiche fatte da i {{GENDER:$1|cuntributori|cuntributrici}}',
-'contributions-title' => 'Cuntribuzioni di $1',
+'contributions-title' => 'Cuntribuzione di $1',
 'mycontris' => 'Cuntribuzioni',
 'contribsub2' => 'Per {{GENDER:$3|$1}} ($2)',
 'month' => 'Da u mese (è nanzu):',
@@ -777,6 +777,9 @@ Parechji mudelli ùn seranu micca inclusi.",
 
 # Special:Tags
 'tags-edit' => 'mudificà',
+
+# New logging system
+'rightsnone' => '(nessunu)',
 
 # Special:ExpandTemplates
 'expand_templates_output' => 'Risultatu',

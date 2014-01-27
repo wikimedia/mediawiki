@@ -394,7 +394,6 @@ $messages = array(
 'tog-showtoolbar' => '显示编辑工具栏',
 'tog-editondblclick' => '双击编辑页面',
 'tog-editsectiononrightclick' => '启用右击段落标题编辑段落',
-'tog-showtoc' => '显示目录（对于有多于3个标题的页面）',
 'tog-rememberpassword' => '在该浏览器记住我的登录状态（最长$1天）',
 'tog-watchcreations' => '添加我创建的页面和我上传的文件至我的监视列表',
 'tog-watchdefault' => '添加我编辑的页面和文件至我的监视列表',

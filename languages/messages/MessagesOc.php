@@ -302,7 +302,6 @@ $messages = array(
 'tog-showtoolbar' => 'Far veire la barra de menú',
 'tog-editondblclick' => 'Modificar las paginas amb un clic doble',
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech suls títols de seccion',
-'tog-showtoc' => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
 'tog-rememberpassword' => 'Se remembrar de mon senhal sus aqueste ordinator (al mai $1 {{PLURAL:$1|jorn|jorns}})',
 'tog-watchcreations' => "Apondre las paginas que creï e los fichièrs qu'impòrti a ma lista de seguiment",
 'tog-watchdefault' => "Apondre las paginas que modifiqui e los fichièrs qu'impòrti a ma lista de seguiment",

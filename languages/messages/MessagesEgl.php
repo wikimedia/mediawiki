@@ -26,7 +26,6 @@ $messages = array(
 'tog-showtoolbar' => 'Fà vèder la bâra di strumèint ed mudéfica.',
 'tog-editondblclick' => "Mudéfica 'l pàgini cun un cléch dòpi.",
 'tog-editsectiononrightclick' => 'Mudéfica dal sesiòun per mèz dal cléch a dréta insém al tétol.',
-'tog-showtoc' => "Fà vèder al sûnt (p'r al pàgini cun pió 'd 3 sesiòun)",
 'tog-rememberpassword' => "Tîn a mèint la cêva 'd ingrès insém a cól navigadōr ché (per un mâsim ed $1{{PLURAL:$1|dé}}).",
 'tog-watchcreations' => "Zûnta al pàgini fâti e i file carghê int i tgnû 'd ôc specêl.",
 'tog-watchdefault' => "Zûnta al pàgini e i file mudifichê int i tgnû 'd ôc specêl.",

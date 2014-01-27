@@ -499,7 +499,6 @@ $messages = array(
 'tog-showtoolbar' => 'إظهار شريط التحرير',
 'tog-editondblclick' => 'تعديل الصفحات بالنقر المزدوج',
 'tog-editsectiononrightclick' => 'تفعيل تعديل الأقسام بالنقر باليمين على عناوين الأقسام',
-'tog-showtoc' => 'عرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 عناوين)',
 'tog-rememberpassword' => 'تذكر دخولي بهذا المتصفح (لمدة أقصاها {{PLURAL:$1||يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}})',
 'tog-watchcreations' => 'أضف الصفحات التي أنشئها والملفات التي أرفعها إلى قائمة مراقبتي.',
 'tog-watchdefault' => 'أضف الصفحات والملفات التي أعدلها إلى قائمة مراقبتي',
@@ -4543,7 +4542,7 @@ $5
 'limitreport-postexpandincludesize' => 'بعد توسيع المساحة الشاملة',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|بايت|بايت}}',
 'limitreport-templateargumentsize' => 'حجم نقاش القالب',
-'limitreport-templateargumentsize-value' => '$1/$2',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|بايت}}',
 'limitreport-expansiondepth' => 'أكثر عمق توسعي',
 'limitreport-expensivefunctioncount' => 'تحليل إحصاء وظيفة مكلف',
 

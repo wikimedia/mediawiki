@@ -56,7 +56,6 @@ $messages = array(
 'tog-showtoolbar' => 'Beoarbaidengs-Reewen anwiese',
 'tog-editondblclick' => 'Sieden mäd Dubbeldklik beoarbaidje (JavaScript)',
 'tog-editsectiononrightclick' => 'Eenpelde Ousatse mäd Gjuchtsklik beoarbaidje (JavaScript)',
-'tog-showtoc' => 'Anwiesen fon n Inhooldsferteeknis bie Artikkele mäd moor as 3 Uurskrifte',
 'tog-rememberpassword' => 'Mäd dissen Browser duurhaft ounmälded blieuwe (Maximoal foar $1 {{PLURAL:$1|Dai|Deege}})',
 'tog-watchcreations' => 'Aal do sälwen näi anlaide Sieden beooboachtje',
 'tog-watchdefault' => 'Aal do sälwen annerde Sieden beooboachtje',

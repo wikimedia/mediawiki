@@ -94,7 +94,6 @@ $messages = array(
 'tog-showtoolbar' => 'Redaktə zamanı alətlər qutusunu göstər (JavaScript)',
 'tog-editondblclick' => 'Səhifələri iki kliklə redaktə etməyə başla (JavaScript)',
 'tog-editsectiononrightclick' => 'Bölmələrin redaktəsini başlıqların üzərində sağ klik etməklə mümkün et (JavaScript)',
-'tog-showtoc' => 'Mündəricat siyahısını göstər (3 başlıqdan artıq olan səhifələrdə)',
 'tog-rememberpassword' => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'tog-watchcreations' => 'Yaratdığım səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchdefault' => 'Redaktə etdiyim səhifələri izlədiyim səhifələrə əlavə et',

@@ -245,7 +245,6 @@ $messages = array(
 'tog-showtoolbar' => '顯示修改工具列（需要JavaScript）',
 'tog-editondblclick' => '撳兩下改嘢（需要JavaScript）',
 'tog-editsectiononrightclick' => '可以撳右掣更改個別段落（需要JavaScript）',
-'tog-showtoc' => '多過三段時顯示目錄',
 'tog-rememberpassword' => '響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})',
 'tog-watchcreations' => '將我開嘅頁加入監視清單',
 'tog-watchdefault' => '將我修改嘅頁加入監視清單',

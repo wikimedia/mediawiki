@@ -202,7 +202,6 @@ $messages = array(
 'tog-showtoolbar' => 'सम्पादन औज़ारपट्टी दिखाएँ',
 'tog-editondblclick' => 'दुगुने क्लिक पर पृष्ठ संपादित करें',
 'tog-editsectiononrightclick' => 'अनुभाग शीर्षक पर दायाँ क्लिक करने पर अनुभाग सम्पादित करें',
-'tog-showtoc' => 'अनुक्रम दर्शायें (जिन पृष्ठों पर तीन से अधिक अनुभाग हों)',
 'tog-rememberpassword' => 'इस ब्राउज़र पर मेरा कूटशब्द  (अधिकतम $1 {{PLURAL:$1|दिन|दिनों}} तक) याद रखें',
 'tog-watchcreations' => 'मेरे द्वारा निर्मित पृष्ठों और मेरी अपलोड की फ़ाइलों को मेरी ध्यानसूची में जोड़ें',
 'tog-watchdefault' => 'मेरे द्वारा सम्पादित पृष्ठों और फ़ाइलों को मेरी ध्यानसूची में जोड़ें',
@@ -757,6 +756,8 @@ $2',
 'retypenew' => 'नया कूटशब्द पुन: लिखें:',
 'resetpass_submit' => 'कूटशब्द बनाएँ और लॉग इन करें',
 'changepassword-success' => 'आपका कूटशब्द बदल दिया गया है!',
+'changepassword-throttled' => 'आपने हाल ही में कई बार लॉग इन करने के प्रयास किये हैं।
+पुनः प्रयास करने से पहले कृपया $1 प्रतीक्षा करें।',
 'resetpass_forbidden' => 'कूटशब्द बदले नहीं जा सकते',
 'resetpass-no-info' => 'इस पृष्ठ का सीधे प्रयोग करने के लिए आपको लॉग इन करना होगा।',
 'resetpass-submit-loggedin' => 'कूटशब्द बदलें',
@@ -769,7 +770,7 @@ $2',
 # Special:PasswordReset
 'passwordreset' => 'कूटशब्द रीसेट',
 'passwordreset-text-one' => 'अपना कूटशब्द रीसेट करने के लिए यह फ़ॉर्म भरें।',
-'passwordreset-text-many' => '{{PLURAL:$1|अपना कूटशब्द रीसेट करने के लिए निम्न में से कोई एक भरें।}}',
+'passwordreset-text-many' => '{{PLURAL:$1|ईमेल के माध्यम से एक अस्थायी पासवर्ड प्राप्त करने के लिए कोई एक डिब्बा भरें।}}',
 'passwordreset-legend' => 'कूटशब्द रीसेट करें',
 'passwordreset-disabled' => 'कूटशब्द रीसेट करना इस विकी पर अक्षम है।',
 'passwordreset-emaildisabled' => 'इस विकि पर ई-मेल सुविधा अक्षम कर दी गयी है।',
@@ -808,6 +809,8 @@ $2
 'changeemail-password' => 'आपका {{SITENAME}} पासवर्ड:',
 'changeemail-submit' => 'ई-मेल बदलें',
 'changeemail-cancel' => 'रद्द करें',
+'changeemail-throttled' => 'आपने हाल ही में कई बार लॉग इन करने के प्रयास किये हैं।
+पुनः प्रयास करने से पहले कृपया $1 प्रतीक्षा करें।',
 
 # Special:ResetTokens
 'resettokens' => 'टोकन रीसेट करें',
@@ -1037,6 +1040,8 @@ $2
 'content-not-allowed-here' => '[[$2]] पृष्ठ पर "$1" सामग्री मना है।',
 'editwarning-warning' => 'इस पृष्ठ को छोड़ने पर आपके द्वारा किये गए कोई भी बदलाव गायब हो जाएँगे।
 यदि आपने लॉग इन किया हुआ है तो आप इस सूचना का दिखना अपनी वरीयताओं के "संपादन" भाग में बंद कर सकते हैं।',
+'editpage-notsupportedcontentformat-title' => 'सामग्री स्वरूप समर्थित नहीं है',
+'editpage-notsupportedcontentformat-text' => '$1 सामग्री स्वरूप $2 सामग्री मॉडल द्वारा समर्थित नहीं है।',
 
 # Content models
 'content-model-wikitext' => 'विकिटेक्स्ट',
@@ -1079,6 +1084,9 @@ $2
 'cantcreateaccount-text' => "इस आइ॰पी पते ('''$1''') को खाता निर्मित करने से [[User:$3|$3]] ने प्रतिबंधित किया है।
 
 इसके लिये $3 ने ''$2'' कारण दिया है।",
+'cantcreateaccount-range-text' => "'''$1''' की श्रेणी में आने वाले IP पतों से, जिसमें आपका IP पता ('''$4''') शामिल हैं, नए खातों की रचना [[सदस्य:$3|$3]] द्वारा अवरोधित की गयी है। 
+
+$3 द्वारा दिया गया कारण है:' $2 '",
 
 # History pages
 'viewpagelogs' => 'इस पृष्ठ का लॉग देखें',
@@ -1156,19 +1164,19 @@ $2
 {{SITENAME}} के अन्य प्रबंधक छिपी हुई सामग्री को देख पाएँगे, और इसी अंतरापृष्ठ के जरिए वे इसकी पुनर्स्थापना भी कर सकते हैं, बशर्ते कि अतिरिक्त प्रतिबंध न लगाए गए हों।",
 'revdelete-confirm' => 'पुष्टि करें कि आप यह कार्य करना चाहते हैं, आप इसका परिणाम समझते हैं, और आप ये [[{{MediaWiki:Policy-url}}|नीति]] के अनुसार कर रहे हैं।',
 'revdelete-suppress-text' => "छिपाने का प्रयोग '''केवल''' इन परिस्थितियों में होना चाहिए:
-* बदनाम करने वाली जानकारी
+* संभावित अपमानजनक जानकारी
 * अनुपयुक्त निजी जानकारी
-*: ''घर के पते व दूरभाष, सामाजिक सुरक्षा क्रमांक आदि''",
+*: ''घर के पते व दूरभाष, राष्ट्रीय पहचान क्रमांक आदि।''",
 'revdelete-legend' => 'दृश्य प्रतिबंध निश्चित करें',
-'revdelete-hide-text' => 'अवरतण का पाठ छुपाएँ',
+'revdelete-hide-text' => 'अवरतण पाठ',
 'revdelete-hide-image' => 'फ़ाइल का पाठ छुपाएँ',
 'revdelete-hide-name' => 'क्रिया और लक्ष्य को छुपाएँ',
-'revdelete-hide-comment' => 'संपादन टिप्पणी छुपाएँ',
-'revdelete-hide-user' => 'संपादक का सदस्यनाम/आइ॰पी छुपाएँ',
+'revdelete-hide-comment' => 'संपादन सारांश',
+'revdelete-hide-user' => 'संपादक का सदस्यनाम/आइ॰पी॰ पता',
 'revdelete-hide-restricted' => 'प्रबंधक सहित सभी सदस्यों से डाटा छुपाएँ',
 'revdelete-radio-same' => '‍‌(बदलें नहीं)',
-'revdelete-radio-set' => 'हाँ',
-'revdelete-radio-unset' => 'नहीं',
+'revdelete-radio-set' => 'छिपा हुआ',
+'revdelete-radio-unset' => 'दृश्य',
 'revdelete-suppress' => 'प्रबंधक सहित सभी सदस्यों से डाटा छुपाएँ',
 'revdelete-unsuppress' => 'पुनर्स्थापित अवतरणों पर से प्रतिबन्ध हटाएँ',
 'revdelete-log' => 'कारण:',
@@ -1285,6 +1293,7 @@ $1",
 'search-result-score' => 'संबद्ध: $1%',
 'search-redirect' => '($1 से पुनर्निर्देशित)',
 'search-section' => '(अनुभाग $1)',
+'search-file-match' => '(फ़ाइल सामग्री से मेल खाता है)',
 'search-suggest' => 'कहीं आपका मतलब $1 तो नहीं था?',
 'search-interwiki-caption' => 'अन्य प्रकल्प',
 'search-interwiki-default' => '$1 के परिणाम:',
@@ -1313,6 +1322,7 @@ $1",
 'preferences' => 'मेरी वरीयताएँ',
 'mypreferences' => 'पसंद',
 'prefs-edits' => 'संपादन संख्या:',
+'prefsnologintext2' => 'अपनी वरीयताओं को बदलने के लिए कृपया $1 करें।',
 'prefs-skin' => 'त्वचा',
 'skin-preview' => 'झलक',
 'datedefault' => 'खा़स पसंद नहीं',
@@ -1424,6 +1434,7 @@ HTML टैग की जाँच करें।',
 'prefs-tokenwatchlist' => 'टोकन',
 'prefs-diffs' => 'अंतर',
 'prefs-help-prefershttps' => 'यह वरीयता आपके अगले लॉगिन पर प्रभावी होगी।',
+'prefs-tabs-navigation-hint' => 'सुझाव: आप टैब्स सूची में टैब्स के बीच आवागमन करने के लिए बाएँ और दाएँ तीर कुंजियों का उपयोग कर सकते हैं।',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'ई-मेल पता वैध प्रतीत होता है',
@@ -1609,12 +1620,14 @@ HTML टैग की जाँच करें।',
 'recentchanges-label-minor' => 'यह एक छोटा सम्पादन है',
 'recentchanges-label-bot' => 'यह संपादन एक बॉट द्वारा किया गया था',
 'recentchanges-label-unpatrolled' => 'यह संपादन अभी जाँचा नहीं गया है',
-'recentchanges-legend-newpage' => '$1 - नया पन्ना',
+'recentchanges-label-plusminus' => 'पृष्ठ आकार इस बाइट्स संख्या से बदला',
+'recentchanges-legend-heading' => "'''कुंजी:'''",
+'recentchanges-legend-newpage' => '([[विशेष:NewPages|नए पन्नों की सूची]] को भी देखें)',
 'rcnotefrom' => "नीचे '''$2''' के बाद से ('''$1''' तक) हुए बदलाव दर्शाए गये हैं।",
 'rclistfrom' => '$1 से नये बदलाव दिखाएँ',
 'rcshowhideminor' => 'छोटे बदलाव $1',
 'rcshowhidebots' => 'बॉट $1',
-'rcshowhideliu' => 'लॉग्ड इन सदस्यों के बदलाव $1',
+'rcshowhideliu' => '$1 पंजीकृत सदस्य',
 'rcshowhideanons' => 'आइ॰पी सदस्यों के बदलाव $1',
 'rcshowhidepatr' => 'परीक्षित सम्पादन $1',
 'rcshowhidemine' => 'मेरे बदलाव $1',
@@ -1734,6 +1747,8 @@ HTML टैग की जाँच करें।',
 'file-exists-duplicate' => 'यह फ़ाइल निम्नलिखित {{PLURAL:$1|फ़ाइल|फ़ाइलों}} की प्रति है:',
 'file-deleted-duplicate' => 'इसी फ़ाइल ([[:$1]]) से हूबहू मेल खाती एक फ़ाइल पहले हटाई जा चुकी है।
 इसे फिर से अपलोड करने से पहले आपको पुरानी फ़ाइल का हटाने के इतिहास देख लेना चाहिए।',
+'file-deleted-duplicate-notitle' => 'इससे पहले इस फ़ाइल के समान एक फ़ाइल को हटाया गया है, और शीर्षक छिपा दिया गया है।
+इसे फिर से अपलोड करने से पहले आप किसी ऐसे व्यक्ति, जिसके पास छिपे फ़ाइल डेटा को देखने की क्षमता है, से स्थिति की समीक्षा करने के लिए कहें।',
 'uploadwarning' => 'अपलोड चेतावनी',
 'uploadwarning-text' => 'फ़ाइल विवरण को संशोधित कर फिर कोशिश करें।',
 'savefile' => 'फ़ाइल संजोयें',
@@ -1823,6 +1838,7 @@ $1',
 'backend-fail-internal' => 'भंडारण बैकेंड "$1" में कोई अज्ञात त्रुटि उत्पन्न हुई।',
 'backend-fail-contenttype' => '"$1" पर संजोने के लिये फ़ाइल का प्रकार नहीं निश्चित किया जा सका।',
 'backend-fail-batchsize' => 'भंडारण बैकेंड को $1 फ़ाइल {{PLURAL:$1|कार्य}} दिये गए थे; सीमा {{PLURAL:$2|$2 कार्य|$2 कार्यों}} की है।',
+'backend-fail-usable' => 'फ़ाइल "$1" को पर्याप्त अनुमति या अनुपस्थित डायरेक्ट्रीज़/कंटेनरों के कारण पढ़ा या लिखा नहीं जा सका।',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'भंडारण बैकेंड "$1" के जर्नल डाटाबेस से सम्पर्क नहीं हो पाया।',
@@ -1837,6 +1853,7 @@ $1',
 'lockmanager-fail-releaselock' => '"$1" के लिए लॉक हटाया नहीं जा सका।',
 'lockmanager-fail-db-bucket' => 'बकेट $1 में आवश्यक संख्या में लॉक डाटाबेसों से सम्पर्क नहीं हो पाया।',
 'lockmanager-fail-db-release' => 'डाटाबेस $1 से ताला हटाया नहीं जा सका।',
+'lockmanager-fail-svr-acquire' => 'सर्वर $1 पर तालों को प्राप्त नहीं किया जा सका।',
 'lockmanager-fail-svr-release' => 'सर्वर $1 से टाला हटाया नहीं जा सका।',
 
 # ZipDirectoryReader
@@ -2045,6 +2062,12 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'statistics-users-active' => 'सक्रिय सदस्य',
 'statistics-users-active-desc' => 'पिछले {{PLURAL:$1|एक दिन|$1 दिनों}} में कुछ गतिविधि रखने वाले सदस्य',
 'statistics-mostpopular' => 'सबसे अधिक देखे गए पृष्ठ',
+
+'pageswithprop' => 'पृष्ठ जिनमें पृष्ठ गुण हैं',
+'pageswithprop-legend' => 'पृष्ठ जिनमें पृष्ठ गुण हैं',
+'pageswithprop-text' => 'यह पृष्ठ पृष्ठ गुण का उपयोग कर रहे पन्नों को सूचीबद्ध करता है।',
+'pageswithprop-prop' => 'गुण का नाम:',
+'pageswithprop-submit' => 'खोजें',
 
 'doubleredirects' => 'दुगुने पुनर्निर्देश',
 'doubleredirectstext' => 'यह पृष्ठ उन पृष्ठों की सूची देता है जो अन्य पुनर्निर्देशित पृष्ठों की ओर पुनर्निर्देशित हैं।
@@ -4065,4 +4088,6 @@ $5
 'expand_templates_generate_xml' => 'XML का पार्स (parse) वृक्ष दर्शायें',
 'expand_templates_preview' => 'झलक',
 
+# Unknown messages
+'uploadinvalidxml' => 'अपलोड की गई XML फ़ाइल पार्स नहीं किया जा सका।',
 );

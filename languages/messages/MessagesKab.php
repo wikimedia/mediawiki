@@ -55,7 +55,6 @@ $messages = array(
 'tog-showtoolbar' => 'Ssken tafeggagt n ifecka n ubeddel',
 'tog-editondblclick' => 'Beddel isebtar mi wekkiɣ snat n tikwal',
 'tog-editsectiononrightclick' => 'Ssermed abeddel n tigezmi s ukliki ayeffus ɣef izwal',
-'tog-showtoc' => 'Ssken agbur (i isebtar i yesɛan kter n 3 izwalen)',
 'tog-rememberpassword' => 'Cfu ɣef yisem n umseqdac inu di uselkim-agi (i afellay n $1 {{PLURAL:$1|ass|ussan}})',
 'tog-watchcreations' => 'Rnu isebtar i xelqeɣ deg wumuɣ n uɛessi inu',
 'tog-watchdefault' => 'Rnu isebtar i ttbeddileɣ deg wumuɣ n uɛessi inu',
@@ -585,6 +584,8 @@ Ma teɛzemeḍ a t-tefkeḍ, ad yettuseqdac iwakken ad snen medden anwa yuran ti
 'retypenew' => 'Ɛiwed ssekcem n tbaḍnit amaynut:',
 'resetpass_submit' => 'Eg awal n tbaḍnit u kcem',
 'changepassword-success' => 'Awal n uɛaddi yettubeddel s lerbaḥ !',
+'changepassword-throttled' => 'Tɛerdeḍ ad qqeneḍ aṭas tiqwal deg dqiqat agi iɛddan.
+Ilaq ad rǧuḍ $1 uqbel ad ɛerdeḍ tikkelt nniḍen.',
 'resetpass_forbidden' => 'Ur zemreḍ ara ad beddeleḍ awalen n uɛaddi',
 'resetpass-no-info' => 'Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.',
 'resetpass-submit-loggedin' => 'Beddel awal n uɛaddi',
@@ -634,6 +635,8 @@ Awal n uɛddi akudan : $2',
 'changeemail-password' => 'Awal-ik/im n uɛaddi ɣef {{SITENAME}} :',
 'changeemail-submit' => 'Beddel tansa e-mail',
 'changeemail-cancel' => 'Semmewet',
+'changeemail-throttled' => 'Tɛerdeḍ ad qqeneḍ aṭas tiqwal.
+Ilaq ad rǧuḍ $1 uqbel ad ɛerdeḍ tikkelt nniḍen.',
 
 # Special:ResetTokens
 'resettokens' => 'Wennez tiddas',
@@ -1091,6 +1094,7 @@ Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 'search-result-score' => 'Taflest : $1%',
 'search-redirect' => '(asemmimeḍ $1)',
 'search-section' => '(tigezmi $1)',
+'search-file-match' => '(yzega i ugbur n ufaylu)',
 'search-suggest' => 'D awal $1 i tnadiḍ ?',
 'search-interwiki-caption' => 'Isenfaren atmaten',
 'search-interwiki-default' => 'Igemmaḍ ɣef $1 :',
@@ -2178,7 +2182,7 @@ Amḥu n isebtar am wagi yesɛa akref iwakken {{SITENAME}} ur yesɛu ara arway.'
 'delete-warning-toobig' => 'Asebtar agi yesɛa amezruy axatar n ibeddilen, ugaren $1 {{PLURAL:$1|lqem|ileqman}}.
 Tukksa-s tezmer ad terwi tiddit n taffa n isefka n {{SITENAME}} ;
 ilaq ad seqdeceḍ s-leɛqel.',
-'deleting-backlinks-warning' => "'''Ɣur-wet :''' Isebtar nniḍen sɛant azday ɣer asebtar i tebɣiḍ ad kkeseḍ.",
+'deleting-backlinks-warning' => "'''Ɣur-wet :''' Isebtar nniḍen sɛan azday ɣer asebtar i tebɣiḍ ad ekkeseḍ.",
 
 # Rollback
 'rollback' => 'Semmet ibeddilen',
