@@ -1993,9 +1993,6 @@ class EditPage {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
-		// Bug #19334: textarea jumps when editing articles in IE8
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
-
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# Enabled article-related sidebar, toplinks, etc.
