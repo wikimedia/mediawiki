@@ -1128,6 +1128,10 @@ HTML;
 			# unless the address is not sensible (e.g. private). However, prefer private
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			foreach ( $ipchain as $i => $curIP ) {
+				// ignore 'unknown' value from Squid when 'forwarded_for off' and try next
+				if ( $curIP === 'unknown' ) {
+					continue;
+				}
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
 					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
