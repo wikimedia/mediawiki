@@ -173,13 +173,13 @@ $datePreferences = array(
 $defaultDateFormat = 'dmy full';
 
 $dateFormats = array(
-	'dmy short time' => 'H:i',
+	'dmy short time' => 'H.i',
 	'dmy short date' => 'j. F Y',
-	'dmy short both' => 'H:i, j. M Y',
+	'dmy short both' => 'H.i, j. M Y',
 
-	'dmy full time' => 'H:i',
+	'dmy full time' => 'H.i',
 	'dmy full date' => 'j. F Y',
-	'dmy full both' => 'H:i, j. F Y',
+	'dmy full both' => 'H.i, j. F Y',
 );
 
 $fallback8bitEncoding = "iso-8859-2";
