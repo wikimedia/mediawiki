@@ -619,7 +619,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected static function pageCounts( Title $title ) {
-		global $wgRCMaxAge, $wgDisableCounters;
+		global $wgRCMaxAge, $wgDisableCounters, $wgMiserMode;
 
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
@@ -723,15 +723,19 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Counts for the number of transclusion links (to/from)
-		$result['transclusion']['to'] = (int)$dbr->selectField(
-			'templatelinks',
-			'COUNT(tl_from)',
-			array(
-				'tl_namespace' => $title->getNamespace(),
-				'tl_title' => $title->getDBkey()
-			),
-			__METHOD__
-		);
+		if ( $wgMiserMode ) {
+			$result['transclusion']['to'] = 0;
+		} else {
+			$result['transclusion']['to'] = (int)$dbr->selectField(
+				'templatelinks',
+				'COUNT(tl_from)',
+				array(
+					'tl_namespace' => $title->getNamespace(),
+					'tl_title' => $title->getDBkey()
+				),
+				__METHOD__
+			);
+		}
 
 		$result['transclusion']['from'] = (int)$dbr->selectField(
 			'templatelinks',
