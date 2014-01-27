@@ -35,6 +35,8 @@
  * @ingroup JobQueue
  */
 class RefreshLinksJob extends Job {
+	const PARSE_THRESHOLD_SEC = 1.0;
+
 	function __construct( $title, $params = '' ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
@@ -114,6 +116,8 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
+		$page = WikiPage::factory( $title );
+
 		// Fetch the current revision...
 		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
@@ -127,18 +131,17 @@ class RefreshLinksJob extends Job {
 		}
 
 		$parserOutput = false;
+		$parserOptions = $page->makeParserOptions( 'canonical' );
 		// If page_touched changed after this root job (with a good slave lag skew factor),
 		// then it is likely that any views of the pages already resulted in re-parses which
 		// are now in cache. This can be reused to avoid expensive parsing in some cases.
 		if ( isset( $this->params['rootJobTimestamp'] ) ) {
-			$page = WikiPage::factory( $title );
 			$skewedTimestamp = wfTimestamp( TS_UNIX, $this->params['rootJobTimestamp'] ) + 5;
 			if ( $page->getLinksTimestamp() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
 				// Something already updated the backlinks since this job was made
 				return true;
 			}
 			if ( $page->getTouched() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
-				$parserOptions = $page->makeParserOptions( 'canonical' );
 				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
 				if ( $parserOutput && $parserOutput->getCacheTime() <= $skewedTimestamp ) {
 					$parserOutput = false; // too stale
@@ -147,8 +150,21 @@ class RefreshLinksJob extends Job {
 		}
 		// Fetch the current revision and parse it if necessary...
 		if ( $parserOutput == false ) {
+			$start = microtime( true );
 			// Revision ID must be passed to the parser output to get revision variables correct
-			$parserOutput = $content->getParserOutput( $title, $revision->getId(), null, false );
+			$parserOutput = $content->getParserOutput(
+				$title, $revision->getId(), $parserOptions, false );
+			$ellapsed = microtime( true ) - $start;
+			// If it took a long time to render, then save this back to the cache to avoid
+			// wasted CPU by other apaches or job runners. We don't want to always save to
+			// cache as this cause cause high cache I/O and LRU churn when a template changes.
+			if ( $ellapsed >= self::PARSE_THRESHOLD_SEC
+				&& $page->isParserCacheUsed( $parserOptions, $revision->getId() )
+				&& $parserOutput->isCacheable()
+			) {
+				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
+				ParserCache::singleton()->save( $parserOutput, $page, $parserOptions, $ctime );
+			}
 		}
 
 		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
