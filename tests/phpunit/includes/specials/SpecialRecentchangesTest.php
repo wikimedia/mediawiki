@@ -63,13 +63,13 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			array( # expected
 				'rc_bot' => 0,
-				0 => sprintf( "rc_namespace != '%s'", NS_MAIN ),
+				0 => sprintf( "!(rc_namespace = '%s')", NS_MAIN ),
 			),
 			array(
 				'namespace' => NS_MAIN,
 				'invert' => 1,
 			),
-			"rc conditions with namespace inverted"
+			"rc conditions with namespace, inverted"
 		);
 	}
 
@@ -87,7 +87,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 				'namespace' => $ns1,
 				'associated' => 1,
 			),
-			"rc conditions with namespace inverted"
+			"rc conditions with associated namespace"
 		);
 	}
 
@@ -99,14 +99,14 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			array( # expected
 				'rc_bot' => 0,
-				0 => sprintf( "(rc_namespace != '%s' AND rc_namespace != '%s')", $ns1, $ns2 ),
+				0 => sprintf( "!((rc_namespace = '%s' OR rc_namespace = '%s'))", $ns1, $ns2 ),
 			),
 			array(
 				'namespace' => $ns1,
 				'associated' => 1,
 				'invert' => 1,
 			),
-			"rc conditions with namespace inverted"
+			"rc conditions with associated namespace, inverted"
 		);
 	}
 
