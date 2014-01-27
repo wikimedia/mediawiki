@@ -723,10 +723,10 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @return array
 	 */
-	protected function insertFields( Job $job ) {
+	protected function insertFields( IJobSpecification $job ) {
 		$dbw = $this->getMasterDB();
 
 		return array(

@@ -765,10 +765,10 @@ LUA;
 	}
 
 	/**
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @return array
 	 */
-	protected function getNewJobFields( Job $job ) {
+	protected function getNewJobFields( IJobSpecification $job ) {
 		return array(
 			// Fields that describe the nature of the job
 			'type' => $job->getType(),
@@ -780,8 +780,8 @@ LUA;
 			// Additional job metadata
 			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
 			'sha1' => $job->ignoreDuplicates()
-					? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
-					: '',
+				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
+				: '',
 			'timestamp' => time() // UNIX timestamp
 		);
 	}
