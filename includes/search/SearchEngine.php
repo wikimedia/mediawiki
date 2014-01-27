@@ -472,7 +472,6 @@ class SearchEngine {
 		}
 
 		$search = new $class( $dbr );
-		$search->setLimitOffset( 0, 0 );
 		return $search;
 	}
 
