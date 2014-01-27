@@ -248,20 +248,16 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// Namespace filtering
 		if ( $opts['namespace'] !== '' ) {
 			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
-			$operator = $opts['invert'] ? '!=' : '=';
-			$boolean = $opts['invert'] ? 'AND' : 'OR';
+			$condition = "rc_namespace = $selectedNS";
 
 			// Namespace association (bug 2429)
-			if ( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
-			} else {
-				// Also add the associated namespace
-				$associatedNS = $dbr->addQuotes(
-					MWNamespace::getAssociated( $opts['namespace'] )
-				);
-				$condition = "(rc_namespace $operator $selectedNS "
-					. $boolean
-					. " rc_namespace $operator $associatedNS)";
+			if ( $opts['associated'] ) {
+				$associatedNS = $dbr->addQuotes( MWNamespace::getAssociated( $opts['namespace'] ) );
+				$condition = "($condition OR rc_namespace = $associatedNS)";
+			}
+			
+			if ( $opts['invert'] ) {
+				$condition = "!($condition)";
 			}
 
 			$conds[] = $condition;
