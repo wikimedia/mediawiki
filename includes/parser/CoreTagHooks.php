@@ -35,6 +35,8 @@ class CoreTagHooks {
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
+		$parser->setHook( 'lines', array( __CLASS__, 'lines' ) );
+		$parser->setHook( 'poem', array( __CLASS__, 'lines' ) ); # legacy alias
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}
@@ -118,5 +120,72 @@ class CoreTagHooks {
 	 */
 	static function gallery( $content, $attributes, $parser ) {
 		return $parser->renderImageGallery( $content, $attributes );
+	}
+
+	/**
+	 * Core parser tag hook function for 'lines', aka 'poem'.
+	 *
+	 * Outputs text, maintaining line breaks and providing a smaller, line-based
+	 * indentation for line-initial colons instead of the default <dl>. Suitable
+	 * for line-based text such as poetry and similar content.
+	 *
+	 * @param string $content The text inside the <lines> tag
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param boolean $frame
+	 * @return string
+	 */
+	static function lines( $content, $attributes, $parser, $frame = false ) {
+		// replace colons with indented spans
+		$text = preg_replace_callback( '/^(:+)(.+)$/m', array( __CLASS__, 'linesIndentVerse' ), $content );
+
+		// add a newline at beginning and end if there isn't one already
+		if ( substr( $text, 0, 1 ) !== "\n" ) {
+			$text = "\n$text";
+		}
+		if ( substr( $text, -1 ) !== "\n" ) {
+			$text = "$text\n";
+		}
+
+		// replace spaces at the beginning of a line with non-breaking spaces
+		$text = preg_replace_callback( '/^( +)/m', array( __CLASS__, 'linesReplaceSpaces' ), $text );
+
+		$text = $parser->recursiveTagParse( $text, $frame );
+
+		$attribs = Sanitizer::validateTagAttributes( $attributes, 'div' );
+
+		// Wrap output in a <div> with "poem" class.
+		if ( isset( $attribs['class'] ) ) {
+			$attribs['class'] = 'poem ' . $attribs['class'];
+		} else {
+			$attribs['class'] = 'poem';
+		}
+
+		return Html::rawElement( 'pre', $attribs, $text );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that replaces spaces with non-breaking spaces
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more spaces
+	 * @return string
+	 */
+	protected static function linesReplaceSpaces( $m ) {
+		return str_replace( ' ', '&#160;', $m[1] );
+	}
+
+	/**
+	 * Callback for preg_replace_callback() that wraps content in an indented span
+	 * @param array $m Matches from the regular expression
+	 *   - $m[1] consists of 1 or more colons
+	 *   - $m[2] consists of the text after the colons
+	 * @return string
+	 */
+	protected static function linesIndentVerse( $m ) {
+		$attribs = array(
+			'class' => 'mw-poem-indented',
+			'style' => 'margin-left: ' . strlen( $m[1] ) . 'em;'
+		);
+		return Html::rawElement( 'span', $attribs, $m[2] );
 	}
 }
