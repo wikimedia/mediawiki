@@ -2923,27 +2923,6 @@ class WikiPage implements Page, IDBAccessObject {
 			return array( array( 'notvisiblerev' ) );
 		}
 
-		$set = array();
-		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
-			// Mark all reverted edits as bot
-			$set['rc_bot'] = 1;
-		}
-
-		if ( $wgUseRCPatrol ) {
-			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = 1;
-		}
-
-		if ( count( $set ) ) {
-			$dbw->update( 'recentchanges', $set,
-				array( /* WHERE */
-					'rc_cur_id' => $current->getPage(),
-					'rc_user_text' => $current->getUserText(),
-					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
-				), __METHOD__
-			);
-		}
-
 		// Generate the edit summary if necessary
 		$target = Revision::newFromId( $s->rev_id );
 		if ( empty( $summary ) ) {
@@ -2988,6 +2967,27 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( !$status->isOK() ) {
 			return $status->getErrorsArray();
+		}
+
+		$set = array();
+		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
+			// Mark all reverted edits as bot
+			$set['rc_bot'] = 1;
+		}
+
+		if ( $wgUseRCPatrol ) {
+			// Mark all reverted edits as patrolled
+			$set['rc_patrolled'] = 1;
+		}
+
+		if ( count( $set ) ) {
+			$dbw->update( 'recentchanges', $set,
+				array( /* WHERE */
+					'rc_cur_id' => $current->getPage(),
+					'rc_user_text' => $current->getUserText(),
+					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
+				), __METHOD__
+			);
 		}
 
 		if ( !empty( $status->value['revision'] ) ) {
