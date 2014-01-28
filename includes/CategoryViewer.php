@@ -283,7 +283,64 @@ class CategoryViewer extends ContextSource {
 		);
 		$this->flip = array( 'page' => false, 'subcat' => false, 'file' => false );
 
-		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
+        // Check if this is a dynamic category (has 'catquery' property set)
+        $catquery = $dbr->selectField(
+            array( 'page', 'page_props' ),
+            'pp_value',
+            array(
+                'page_namespace' => NS_CATEGORY,
+                'page_title' => $this->title->getDBkey(),
+                'pp_propname' => 'catquery' ),
+            __METHOD__,
+            array(),
+            array( 'page_props' => array( 'INNER JOIN', 'pp_page = page_id' ) )
+        );
+
+        if ( $catquery === false ) {
+            // classical category, iterate over all types
+            $types = array( 'page', 'subcat', 'file' );
+        } else {
+            $types = array( 'subcat', 'file' );
+            // dynamically supply pages from the search result
+            if ( isset( $this->from['page'] ) && $this->from['page'] !== null ) {
+                $offset = intval( $this->from['page'] );
+            } elseif ( isset( $this->until['page'] ) && $this->until['page'] !== null ) {
+                $offset = intval( $this->until['page'] );
+                if ( $offset > $this->limit ) {
+                    $offset -= $this->limit;
+                } else {
+                    $offset = 0;
+                }
+            } else {
+                $offset = 0;
+            }
+            $api = new ApiMain(
+                new DerivativeRequest(
+                    $this->getRequest(),
+                    array(
+                        'action' => 'query',
+                        'list' => 'search',
+                        'srsearch' => $catquery,
+                        'srwhat' => 'text',
+                        'srprop' => 'size',
+                        'sroffset' => $offset,
+                        'srlimit' => $this->limit,
+                    )
+                )
+            );
+            $api->execute();
+            $data = $api->getResult()->getData();
+            if ( isset( $data['query']['search'] ) ) {
+                foreach ( $data['query']['search'] as $res ) {
+                    $t = Title::makeTitle( $res['ns'], $res['title'] );
+                    $this->addPage( $t, $t->getCategorySortkey(), $res['size'] );
+                }
+                if ( isset( $data['query-continue']['search']['sroffset'] ) ) {
+                    $this->nextPage['page'] = $data['query-continue']['search']['sroffset'];
+                }
+            }
+        }
+		foreach ( $types as $type ) {
 			# Get the sortkeys for start/end, if applicable.  Note that if
 			# the collation in the database differs from the one
 			# set in $wgCategoryCollation, pagination might go totally haywire.
