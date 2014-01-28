@@ -84,7 +84,9 @@ class RequestContext implements IContextSource {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			$this->config = Config::factory();
+			// @todo In the future, we could move this to WebStart.php so
+			// the Config object is ready for when initialization happens
+			$this->config = ConfigFactory::singleton()->makeConfig( 'main' );
 		}
 
 		return $this->config;
