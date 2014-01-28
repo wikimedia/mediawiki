@@ -21,37 +21,49 @@
  */
 
 /**
- * Abstract class for get settings for
+ * Base class for configuration
  *
  * @since 1.23
  */
 abstract class Config {
 	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param string $prefix of the variable name
-	 * @return mixed
-	 */
-	abstract public function get( $name, $prefix = 'wg' );
-
-	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param mixed $value to set
-	 * @param string $prefix of the variable name
-	 * @return Status object indicating success or failure
-	 */
-	abstract public function set( $name, $value, $prefix = 'wg' );
-
-	/**
-	 * @param string|null $type class name for Config object,
-	 *        uses $wgConfigClass if not provided
+	 * Factory for getting configuration objects
+	 * @param string $backendClass IConfig implementation to use, default $wgConfigClass
+	 * @param array $config Configuration to pass to an implementation
 	 * @return Config
 	 */
-	public static function factory( $type = null ) {
-		if ( !$type ) {
-			global $wgConfigClass;
-			$type = $wgConfigClass;
-		}
+	public static function factory( $backendClass = null, $config = array() ) {
+		global $wgConfigClass;
 
-		return new $type;
+		$class = $backendClass ?: $wgConfigClass;
+		$conf = new $class();
+		$conf->setConfigConfig( $config );
+
+		return $conf;
 	}
+
+	/**
+	 * Get a configuration variable such as "Sitename" or "UploadMaintenance."
+	 *
+	 * @param string $name Name of configuration option
+	 * @return mixed Value configured
+	 * @throws ConfigException
+	 */
+	abstract public function get( $name );
+
+	/**
+	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
+	 *
+	 * @param string $name Name of configuration option
+	 * @param mixed $value Value to set
+	 * @throws ConfigException
+	 */
+	abstract public function set( $name, $value );
+
+	/**
+	 * Set configuration for this configuration. No op for base class.
+	 *
+	 * @param array $conf Array of configuration. Parameters will vary per backend
+	 */
+	public function setConfigConfig( array $conf ) {}
 }
