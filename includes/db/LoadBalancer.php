@@ -188,7 +188,7 @@ class LoadBalancer {
 	 * @return bool|int|string
 	 */
 	function getReaderIndex( $group = false, $wiki = false ) {
-		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
+		global $wgReadOnly, $wgDBtype;
 
 		# @todo FIXME: For now, only go through all this for mysql databases
 		if ( $wgDBtype != 'mysql' ) {
@@ -198,17 +198,12 @@ class LoadBalancer {
 		if ( count( $this->mServers ) == 1 ) {
 			# Skip the load balancing if there's only one server
 			return 0;
-		} elseif ( $group === false and $this->mReadIndex >= 0 ) {
+		} elseif ( $group === false && $this->mReadIndex >= 0 ) {
 			# Shortcut if generic reader exists already
 			return $this->mReadIndex;
 		}
 
 		wfProfileIn( __METHOD__ );
-
-		$totalElapsed = 0;
-
-		# convert from seconds to microseconds
-		$timeout = $wgDBClusterTimeout * 1e6;
 
 		# Find the relevant load array
 		if ( $group !== false ) {
@@ -225,7 +220,7 @@ class LoadBalancer {
 			$nonErrorLoads = $this->mLoads;
 		}
 
-		if ( !$nonErrorLoads ) {
+		if ( !count( $nonErrorLoads ) ) {
 			wfProfileOut( __METHOD__ );
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
@@ -235,93 +230,60 @@ class LoadBalancer {
 
 		$laggedSlaveMode = false;
 
+		# No server found yet
+		$i = false;
 		# First try quickly looking through the available servers for a server that
 		# meets our criteria
-		do {
-			$totalThreadsConnected = 0;
-			$overloadedServers = 0;
-			$currentLoads = $nonErrorLoads;
-			while ( count( $currentLoads ) ) {
-				if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
+		$currentLoads = $nonErrorLoads;
+		while ( count( $currentLoads ) ) {
+			if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
+				$i = ArrayUtils::pickRandom( $currentLoads );
+			} else {
+				$i = $this->getRandomNonLagged( $currentLoads, $wiki );
+				if ( $i === false && count( $currentLoads ) != 0 ) {
+					# All slaves lagged. Switch to read-only mode
+					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
+					$wgReadOnly = 'The database has been automatically locked ' .
+						'while the slave database servers catch up to the master';
 					$i = ArrayUtils::pickRandom( $currentLoads );
-				} else {
-					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
-					if ( $i === false && count( $currentLoads ) != 0 ) {
-						# All slaves lagged. Switch to read-only mode
-						wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
-						$wgReadOnly = 'The database has been automatically locked ' .
-							'while the slave database servers catch up to the master';
-						$i = ArrayUtils::pickRandom( $currentLoads );
-						$laggedSlaveMode = true;
-					}
-				}
-
-				if ( $i === false ) {
-					# pickRandom() returned false
-					# This is permanent and means the configuration or the load monitor
-					# wants us to return false.
-					wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
-					wfProfileOut( __METHOD__ );
-
-					return false;
-				}
-
-				wfDebugLog( 'connect', __METHOD__ . ": Using reader #$i: {$this->mServers[$i]['host']}...\n" );
-				$conn = $this->openConnection( $i, $wiki );
-
-				if ( !$conn ) {
-					wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki\n" );
-					unset( $nonErrorLoads[$i] );
-					unset( $currentLoads[$i] );
-					continue;
-				}
-
-				// Perform post-connection backoff
-				$threshold = isset( $this->mServers[$i]['max threads'] )
-					? $this->mServers[$i]['max threads'] : 0;
-				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
-
-				// Decrement reference counter, we are finished with this connection.
-				// It will be incremented for the caller later.
-				if ( $wiki !== false ) {
-					$this->reuseConnection( $conn );
-				}
-
-				if ( $backoff ) {
-					# Post-connection overload, don't use this server for now
-					$totalThreadsConnected += $backoff;
-					$overloadedServers++;
-					unset( $currentLoads[$i] );
-				} else {
-					# Return this server
-					break 2;
+					$laggedSlaveMode = true;
 				}
 			}
 
-			# No server found yet
-			$i = false;
+			if ( $i === false ) {
+				# pickRandom() returned false
+				# This is permanent and means the configuration or the load monitor
+				# wants us to return false.
+				wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
+				wfProfileOut( __METHOD__ );
 
-			# If all servers were down, quit now
-			if ( !count( $nonErrorLoads ) ) {
-				wfDebugLog( 'connect', "All servers down\n" );
-				break;
+				return false;
 			}
 
-			# Some servers must have been overloaded
-			if ( $overloadedServers == 0 ) {
-				throw new MWException( __METHOD__ . ": unexpectedly found no overloaded servers" );
-			}
-			# Back off for a while
-			# Scale the sleep time by the number of connected threads, to produce a
-			# roughly constant global poll rate
-			$avgThreads = $totalThreadsConnected / $overloadedServers;
-			$totalElapsed += $this->sleep( $wgDBAvgStatusPoll * $avgThreads );
-		} while ( $totalElapsed < $timeout );
+			wfDebugLog( 'connect', __METHOD__ .
+				": Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 
-		if ( $totalElapsed >= $timeout ) {
-			wfDebugLog( 'connect', "All servers busy\n" );
-			$this->mErrorConnection = false;
-			$this->mLastError = 'All servers busy';
+			$conn = $this->openConnection( $i, $wiki );
+			if ( !$conn ) {
+				wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki\n" );
+				unset( $nonErrorLoads[$i] );
+				unset( $currentLoads[$i] );
+				continue;
+			}
+
+			// Decrement reference counter, we are finished with this connection.
+			// It will be incremented for the caller later.
+			if ( $wiki !== false ) {
+				$this->reuseConnection( $conn );
+			}
+
+			# Return this server
+			break;
+		}
+
+		# If all servers were down, quit now
+		if ( !count( $nonErrorLoads ) ) {
+			wfDebugLog( 'connect', "All servers down\n" );
 		}
 
 		if ( $i !== false ) {
