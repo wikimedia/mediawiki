@@ -24,7 +24,8 @@ production.
 * Preferences 'watchcreations', 'watchdefault', 'enotifwatchlistpages' ("Add
   pages I create and files I upload to my watchlist", "Add pages and files I
   edit to my watchlist", "Email me when a page or file on my watchlist is
-  changed") are now enabled by default.
+  changed") are now enabled by default. In addition new user accounts' personal
+  and talk pages are now watched by them by default.
 * $wgLBFactoryConf: Class names have had underscores removed. The configuration
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 * $wgPasswordSenderName has been deprecated. To set a custom mailer name,
@@ -79,6 +80,7 @@ production.
 * [[Special:Diff]] was added, allowing users to create internal links to
   revision comparison pages using syntax such as [[Special:Diff/12345]],
   [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
+* New user accounts' personal and talk pages are now watched by them by default.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
