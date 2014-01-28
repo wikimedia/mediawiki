@@ -833,9 +833,9 @@ __INDEXATTR__;
 			if ( $forUpdateKey !== false && $join_conds ) {
 				unset( $options[$forUpdateKey] );
 
-				foreach ( $join_conds as $table => $join_cond ) {
+				foreach ( $join_conds as $table_cond => $join_cond ) {
 					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
-						$options['FOR UPDATE'][] = $table;
+						$options['FOR UPDATE'][] = $table_cond;
 					}
 				}
 			}
