@@ -1,13 +1,13 @@
 <?php
 
-class GlobalConfigTest extends MediaWikiTestCase {
+class GlobalVarConfigTest extends MediaWikiTestCase {
 
-	/** @var GlobalConfig $config */
+	/** @var GlobalVarConfig $config */
 	protected $config;
 
 	protected function setUp() {
 		parent::setUp();
-		$this->config = new GlobalConfig;
+		$this->config = new GlobalVarConfig;
 	}
 
 	public static function provideGet() {
@@ -23,7 +23,7 @@ class GlobalConfigTest extends MediaWikiTestCase {
 	 * @param string $name
 	 * @param array $params
 	 * @dataProvider provideGet
-	 * @covers GlobalConfig::get
+	 * @covers GlobalVarConfig::get
 	 */
 	public function testGet( $name, $params ) {
 		$rand = wfRandom();
