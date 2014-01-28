@@ -21,39 +21,58 @@
  */
 
 /**
- * Abstract class for get settings for
+ * Dispatcher for configuration in MediaWiki. To use config, construct
+ * this object and then call get() or set() as needed
  *
  * @since 1.23
  */
-
-abstract class Config {
-
+class Config implements IConfig {
 	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param string $prefix of the variable name
-	 * @return mixed
+	 * @var IConfig
 	 */
-	abstract public function get( $name, $prefix = 'wg' );
+	protected $backend;
 
 	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param mixed $value to set
-	 * @param string $prefix of the variable name
-	 * @return Status object indicating success or failure
+	 * Constructor
+	 * @param IConfig $backend The backend to use for configuration
+	 * @param array $config Any configuration for the backend
 	 */
-	abstract public function set( $name, $value, $prefix = 'wg' );
+	public function __construct( IConfig $backend ) {
+		$this->backend = $backend;
+		$this->config = $config;
+	}
 
 	/**
-	 * @param string|null $type class name for Config object,
-	 *        uses $wgConfigClass if not provided
+	 * Factory for getting configuration objects
+	 * @param string $backendClass IConfig implementation to use, default $wgConfigClass
+	 * @param array $config Configuration to pass to an implementation
 	 * @return Config
 	 */
-	public static function factory( $type = null ) {
-		if ( !$type ) {
-			global $wgConfigClass;
-			$type = $wgConfigClass;
+	public static function factory( $backendClass = null, $config = array() ) {
+		global $wgConfigClass;
+		static $configs = array();
+
+		$class = $backendClass ?: $wgConfigClass;
+		if ( !isset( $configs[$class] ) ) {
+			$configs[$class] = new self( new $class( $config ) );
 		}
 
-		return new $type;
+		return $configs[$class];
+	}
+
+	/**
+	 * @param string $name Name of configuration option
+	 */
+	public function get( $name ) {
+		return $this->backend->get( $name );
+	}
+
+	/**
+	 * @param string $name Name of configuration option
+	 * @param mixed $value Value to set
+	 * @throws ConfigException
+	 */
+	public function set( $name, $value ) {
+		$this->backend->set( $name, $value );
 	}
 }
