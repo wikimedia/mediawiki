@@ -107,9 +107,7 @@ if ( isset( $wgFooterIcons['copyright'] )
 	&& isset( $wgFooterIcons['copyright']['copyright'] )
 	&& $wgFooterIcons['copyright']['copyright'] === array()
 ) {
-	if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
-		$wgFooterIcons['copyright']['copyright'] = $wgCopyrightIcon;
-	} elseif ( $wgRightsIcon || $wgRightsText ) {
+	if ( $wgRightsIcon || $wgRightsText ) {
 		$wgFooterIcons['copyright']['copyright'] = array(
 			'url' => $wgRightsUrl,
 			'src' => $wgRightsIcon,
