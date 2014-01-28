@@ -21,9 +21,10 @@ production.
 * $wgSquidServersNoPurge now supports the use of Classless Inter-Domain
   Routing (CIDR) notation to specify contiguous blocks of IPv4 and/or IPv6
   addresses that should be trusted to provide X-Forwarded-For headers.
-* Preferences 'watchcreations' and 'watchdefault' ("Add pages I create and files
-  I upload to my watchlist", "Add pages and files I edit to my watchlist") are
-  now enabled by default.
+* Preferences 'watchcreations', 'watchdefault', 'enotifwatchlistpages' ("Add
+  pages I create and files I upload to my watchlist", "Add pages and files I
+  edit to my watchlist", "Email me when a page or file on my watchlist is
+  changed") are now enabled by default.
 * $wgLBFactoryConf: Class names have had underscores removed. The configuration
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
 * $wgPasswordSenderName has been deprecated. To set a custom mailer name,
