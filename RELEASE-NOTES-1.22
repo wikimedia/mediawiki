@@ -12,6 +12,8 @@ This is a security and bugfix release of the MediaWiki 1.22 branch.
 === Changes since 1.22.2 ===
 
 * (bug 60094) Make rebuildall.php work with PostgreSQL.
+* (bug 60531) Avoid variable naming conflicts in
+  DatabasePostgres::selectSQLText.
 
 == MediaWiki 1.22.2 ==
 
