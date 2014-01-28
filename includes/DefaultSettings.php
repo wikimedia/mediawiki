@@ -6471,12 +6471,6 @@ $wgActions = array(
 	'watch' => true,
 );
 
-/**
- * Array of disabled article actions, e.g. view, edit, delete, etc.
- * @deprecated since 1.18; just set $wgActions['action'] = false instead
- */
-$wgDisabledActions = array();
-
 /** @} */ # end actions }
 
 /*************************************************************************//**
