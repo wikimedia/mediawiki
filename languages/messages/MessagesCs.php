@@ -920,6 +920,8 @@ Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší pr
 'retypenew' => 'Napište znovu nové heslo',
 'resetpass_submit' => 'Nastavit heslo a přihlásit se',
 'changepassword-success' => 'Vaše heslo bylo úspěšně změněno!',
+'changepassword-throttled' => 'Provedli jste příliš mnoho pokusů o přihlášení.
+Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
 'resetpass_forbidden' => 'Hesla nelze změnit.',
 'resetpass-no-info' => 'K této stránce mají přímý přístup jen přihlášení uživatelé.',
 'resetpass-submit-loggedin' => 'Změnit heslo',
@@ -976,6 +978,8 @@ Dočasné heslo: $2',
 'changeemail-password' => 'Vaše heslo do {{gender:2sg|{{SITENAME}}}}:',
 'changeemail-submit' => 'Změnit e-mail',
 'changeemail-cancel' => 'Storno',
+'changeemail-throttled' => 'Provedli jste příliš mnoho pokusů o přihlášení.
+Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
 
 # Special:ResetTokens
 'resettokens' => 'Reinicializace klíčů',
@@ -2449,7 +2453,7 @@ Ve [[Special:Watchlist|sledovaných stránkách]] se tak budou objevovat budouc�
 'watchmethod-list' => 'hledají se nejnovější editace sledovaných stránek',
 'watchlistcontains' => 'Na vašem seznamu sledovaných stránek {{PLURAL:$1|je $1 položka|jsou $1 položky|je $1 položek}}.',
 'iteminvalidname' => 'Problém s položkou „$1“, neplatný název…',
-'wlnote' => "Níže {{PLURAL:$1|je poslední změna|jsou poslední '''$1''' změny|je posledních '''$1''' změn}} za {{PLURAL:$2|poslední hodinu|poslední '''$2''' hodiny|posledních '''$2''' hodin}} do $4, $3.",
+'wlnote2' => 'Níže jsou změny za {{PLURAL:$1|poslední hodinu|poslední <strong>$1</strong> hodiny|posledních <strong>$1</strong> hodin}} do $3, $2.',
 'wlshowlast' => 'Ukázat posledních $1 hodin $2 dnů $3',
 'watchlist-options' => 'Možnosti sledovaných stránek',
 
@@ -2989,6 +2993,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [https
 'allmessages-prefix' => 'Filtr podle začátku názvu:',
 'allmessages-language' => 'Jazyk:',
 'allmessages-filter-submit' => 'Použít',
+'allmessages-filter-translate' => 'přeložit',
 
 # Thumbnails
 'thumbnail-more' => 'Zvětšit',
@@ -3080,7 +3085,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'tooltip-pt-watchlist' => 'Seznam stránek, jejichž změny sleduji',
 'tooltip-pt-mycontris' => 'Seznam vašich příspěvků',
 'tooltip-pt-login' => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
-'tooltip-pt-anonlogin' => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
 'tooltip-pt-logout' => 'Odhlásit se',
 'tooltip-ca-talk' => 'Diskuse ke stránce',
 'tooltip-ca-edit' => 'Tuto stránku můžete editovat. Prosíme použijte tlačítko Ukázat náhled před uložením.',
@@ -4289,5 +4293,6 @@ V podstatě rozbalí prakticky všechno v dvojitých složených závorkách.',
 'expand_templates_preview' => 'Náhled',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML v načteném souboru nelze zpracovat.',
 );

@@ -51,6 +51,7 @@
  * @author Jean-Frédéric
  * @author JeanVoisin
  * @author Jens Liebenau
+ * @author Jul law
  * @author Klutzy
  * @author Korg
  * @author Korrigan
@@ -2511,7 +2512,7 @@ Les prochaines modifications de cette page et de la page de discussion associée
 'watchmethod-list' => 'vérification des pages suivies pour y trouver des modifications récentes',
 'watchlistcontains' => 'Votre liste de suivi référence $1 page{{PLURAL:$1||s}}.',
 'iteminvalidname' => "Problème avec l'élément « $1 » : le nom est invalide.",
-'wlnote' => "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les '''$1''' dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les '''$2''' dernières heures}}, depuis $3, $4.",
+'wlnote2' => 'Ci-dessous les modifications dans {{PLURAL:$1|la dernière heure|les <strong>$1</strong> dernières heures}}, à partir de $2, $3.',
 'wlshowlast' => 'Montrer les dernières $1 heures, les derniers $2 jours ou bien $3',
 'watchlist-options' => 'Options de la liste de suivi',
 
@@ -3067,6 +3068,7 @@ Veuillez visiter la [https://www.mediawiki.org/wiki/Localisation Localisation de
 'allmessages-prefix' => 'Filtrer par préfixe :',
 'allmessages-language' => 'Langue :',
 'allmessages-filter-submit' => 'Appliquer',
+'allmessages-filter-translate' => 'Traduire',
 
 # Thumbnails
 'thumbnail-more' => 'Agrandir',
@@ -3163,7 +3165,6 @@ Un dossier temporaire est manquant.",
 'tooltip-pt-watchlist' => 'La liste des pages dont vous suivez les modifications',
 'tooltip-pt-mycontris' => 'La liste de vos contributions',
 'tooltip-pt-login' => "Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n'est cependant pas obligatoire.",
-'tooltip-pt-anonlogin' => "Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier ; ce n'est cependant pas obligatoire.",
 'tooltip-pt-logout' => 'Se déconnecter',
 'tooltip-ca-talk' => 'Discussion au sujet de cette page de contenu',
 'tooltip-ca-edit' => "Vous pouvez modifier cette page.
@@ -4090,7 +4091,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l'éditeur normal]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
-'duplicate-defaultsort' => 'Attention : la clé de tri par défaut « $2 » écrase la précédente « $1 ».',
+'duplicate-defaultsort' => 'Attention : la clé de tri par défaut « $2 » écrase la précédente clé « $1 ».',
 
 # Special:Version
 'version' => 'Version',

@@ -881,6 +881,8 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'retypenew' => 'Powtórz nowe hasło',
 'resetpass_submit' => 'Ustaw hasło i zaloguj się',
 'changepassword-success' => 'Twoje hasło zostało pomyślnie zmienione!',
+'changepassword-throttled' => 'Ostatnio zbyt wiele razy próbowałeś zalogować się na to konto.
+Odczekaj $1, zanim ponowisz próbę.',
 'resetpass_forbidden' => 'Hasła nie mogą zostać zmienione',
 'resetpass-no-info' => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
 'resetpass-submit-loggedin' => 'Zmień hasło',
@@ -932,6 +934,8 @@ Tymczasowe hasło – $2',
 'changeemail-password' => 'Twoje hasło:',
 'changeemail-submit' => 'Zapisz nowy',
 'changeemail-cancel' => 'Anuluj',
+'changeemail-throttled' => 'Zbyt wiele razy próbowałeś zalogować się na to konto.
+Odczekaj $1, zanim ponowisz próbę.',
 
 # Special:ResetTokens
 'resettokens' => 'Resetuj tokeny',
@@ -1157,6 +1161,7 @@ Strona już istnieje.',
 'content-not-allowed-here' => 'Zawartość tego typu ($1) nie jest dozwolona na stronie [[$2]]',
 'editwarning-warning' => 'Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.
 Jeśli jesteś zalogowany możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce Edycja w swoich preferencjach.',
+'editpage-notsupportedcontentformat-title' => 'Nieobsługiwany format zawartości',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -1643,8 +1648,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-editusercssjs' => 'Edycja plików CSS i JS innych użytkowników',
 'right-editusercss' => 'Edycja plików CSS innych użytkowników',
 'right-edituserjs' => 'Edycja plików JS innych użytkowników',
-'right-editmyusercss' => 'Edytuj własne pliki CSS',
-'right-editmyuserjs' => 'Edytuj własne pliki JavaScript',
+'right-editmyusercss' => 'Edycja swoich plików CSS',
+'right-editmyuserjs' => 'Edycja swoich plików JavaScript',
 'right-viewmywatchlist' => 'Podgląd swojej listy obserwowanych stron',
 'right-editmywatchlist' => 'Edycja swojej listy obserwowanych stron. Niektóre akcje mogą dodawać strony do obserwowanych bez tego uprawnienia.',
 'right-viewmyprivateinfo' => 'Podgląd swoich prywatnych danych (np. adres e-mail, prawdziwe imię i nazwisko)',
@@ -1653,8 +1658,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-rollback' => 'Szybkie wycofanie zmian wprowadzonych przez użytkownika, który jako ostatni edytował jakąś stronę',
 'right-markbotedits' => 'Oznaczanie rewertu jako edycji bota',
 'right-noratelimit' => 'Brak ograniczeń przepustowości',
-'right-import' => 'Import stron z innych wiki',
-'right-importupload' => 'Import stron poprzez przesłanie pliku',
+'right-import' => 'Importowanie stron z innych wiki',
+'right-importupload' => 'Importowanie stron poprzez przesłanie pliku',
 'right-patrol' => 'Oznaczanie edycji jako „sprawdzone”',
 'right-autopatrol' => 'Automatyczne oznaczanie własnych edycji jako „sprawdzone”',
 'right-patrolmarks' => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
@@ -2430,7 +2435,6 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'watchmethod-list' => 'poszukiwanie obserwowanych stron wśród ostatnich zmian',
 'watchlistcontains' => 'Na liście obserwowanych przez Ciebie stron {{PLURAL:$1|znajduje się 1 pozycja|znajdują się $1 pozycje|znajduje się $1 pozycji}}.',
 'iteminvalidname' => 'Problem z pozycją „$1” – niepoprawna nazwa...',
-'wlnote' => "Poniżej pokazano {{PLURAL:$1|zmianę wykonaną|'''$1''' zmiany wykonane|'''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniej godziny|ostatnich '''$2''' godzin}}, licząc od $4 dnia $3.",
 'wlshowlast' => 'Pokaż ostatnie $1 godzin, $2 dni ($3)',
 'watchlist-options' => 'Opcje obserwowanych',
 
@@ -2608,7 +2612,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'restriction-level-all' => 'dowolny stopień',
 
 # Undelete
-'undelete' => 'Odtwórz usuniętą stronę',
+'undelete' => 'Przeglądanie usuniętych stron',
 'undeletepage' => 'Odtwarzanie usuniętych stron',
 'undeletepagetitle' => "'''Poniżej znajdują się usunięte wersje strony [[:$1]]'''.",
 'viewdeletedpage' => 'Zobacz usunięte wersje',
@@ -2988,6 +2992,7 @@ Odwiedź [https://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] or
 'allmessages-prefix' => 'Tytuły rozpoczynające się od',
 'allmessages-language' => 'Język:',
 'allmessages-filter-submit' => 'Pokaż',
+'allmessages-filter-translate' => 'Przetłumacz',
 
 # Thumbnails
 'thumbnail-more' => 'Powiększ',
@@ -3082,7 +3087,6 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-pt-watchlist' => 'Lista stron obserwowanych przez Ciebie',
 'tooltip-pt-mycontris' => 'Lista moich edycji',
 'tooltip-pt-login' => 'Zachęcamy do zalogowania się, choć nie jest to obowiązkowe.',
-'tooltip-pt-anonlogin' => 'Zachęcamy do zalogowania się, choć nie jest to obowiązkowe',
 'tooltip-pt-logout' => 'Wyloguj',
 'tooltip-ca-talk' => 'Dyskusja o zawartości tej strony',
 'tooltip-ca-edit' => 'Możesz edytować tę stronę. Przed zapisaniem zmian użyj przycisku podgląd.',
@@ -4286,4 +4290,6 @@ W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
 'expand_templates_generate_rawhtml' => 'Pokaż surowy HTML',
 'expand_templates_preview' => 'Podgląd',
 
+# Unknown messages
+'createaccount-hook-aborted' => '$1',
 );

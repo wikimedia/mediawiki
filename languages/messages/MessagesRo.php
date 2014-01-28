@@ -2406,7 +2406,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'watchmethod-list' => 'căutarea paginilor urmărite pentru schimbări recente',
 'watchlistcontains' => 'Lista de pagini urmărite conține $1 {{PLURAL:$1|element|elemente|de elemente}}.',
 'iteminvalidname' => "E o problemă cu elementul '$1', numele este invalid...",
-'wlnote' => "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele $1 schimbări|ultimele $1 de schimbări}} din {{PLURAL:$2|ultima oră|ultimele '''$2''' ore|ultimele '''$2''' de ore}}, așa cum era situația la $3, $4.",
+'wlnote2' => 'Mai jos se află schimbările din {{PLURAL:$1|ultima oră|ultimele <strong>$1</strong> ore|ultimele <strong>$1</strong> de ore}}, așa cum era situația la $2, $3.',
 'wlshowlast' => 'Arată ultimele $1 ore $2 zile $3',
 'watchlist-options' => 'Opțiuni listă de pagini urmărite',
 
@@ -2966,6 +2966,7 @@ Vă rugăm să vizitați [https://www.mediawiki.org/wiki/Localisation MediaWiki 
 'allmessages-prefix' => 'Filtru după prefix:',
 'allmessages-language' => 'Limbă:',
 'allmessages-filter-submit' => 'Du-te',
+'allmessages-filter-translate' => 'Traducere',
 
 # Thumbnails
 'thumbnail-more' => 'Extindere',
@@ -3060,7 +3061,6 @@ Un dosar temporar lipsește.',
 'tooltip-pt-watchlist' => 'Lista paginilor pe care le monitorizați',
 'tooltip-pt-mycontris' => 'Listă de contribuții',
 'tooltip-pt-login' => 'Sunteți încurajat să vă autentificați, deși acest lucru nu este obligatoriu.',
-'tooltip-pt-anonlogin' => 'Sunteți încurajat să vă autentificați, deși acest lucru nu este obligatoriu.',
 'tooltip-pt-logout' => 'Închideți sesiunea de lucru',
 'tooltip-ca-talk' => 'Discuții despre această pagină',
 'tooltip-ca-edit' => 'Puteți modifica această pagină. Înainte de a o salva vă rugăm s-o previzualizați.',

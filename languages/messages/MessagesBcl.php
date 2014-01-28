@@ -2186,7 +2186,6 @@ An maabot na mga pagbabâgo sa páhinang ini asin sa asosyadong páhina nin olay
 'watchmethod-list' => 'Pigsososog an mga pigbabantayan na páhina para mahiling an mga kaaagi pa sanan paghirá',
 'watchlistcontains' => 'An saimong lista nin pigbabantayan igwang $1 na {{PLURAL:$1|páhina|mga páhina}}.',
 'iteminvalidname' => "May problema sa bagay na '$1', salâ an pangaran...",
-'wlnote' => "Sa ibaba an {{PLURAL:$1|huring pagbabago|mga huring '''$1''' pagbabago}} sa nakaaging {{PLURAL:$2|oras|'''$2''' mga oras}}, magpoon pa kan $3, $4.",
 'wlshowlast' => 'Ipahilíng an nakaaging $1 na mga oras mga $2 na aldaw $3',
 'watchlist-options' => 'Bantay-listahan na mga pagpipilian',
 
@@ -2736,6 +2735,7 @@ Pakibisita an [https://www.mediawiki.org/wiki/Localisation Mediawiki Lokalisasyo
 'allmessages-prefix' => 'Pansara sa paagi kan enot-panigmit:',
 'allmessages-language' => 'Lengguwahe:',
 'allmessages-filter-submit' => 'Dumuman',
+'allmessages-filter-translate' => 'Idakit-taramon',
 
 # Thumbnails
 'thumbnail-more' => 'Padakuláon',
@@ -2833,7 +2833,6 @@ Paki-otro giraray.',
 'tooltip-pt-watchlist' => 'Sarong listahan kan mga pahina na saimong inaantabayanan para sa mga kaliwatan',
 'tooltip-pt-mycontris' => 'Sarong listahan kan saimong mga kontribusyon',
 'tooltip-pt-login' => 'Ika inaagyat na maglaog; alagad, bako tabi ining piriritan',
-'tooltip-pt-anonlogin' => 'Pig-aagda kang maglaog, alagad, bakô man ining piriritan.',
 'tooltip-pt-logout' => 'Magluwas',
 'tooltip-ca-talk' => 'Orolayan dapit sa laog kan pahina',
 'tooltip-ca-edit' => 'Ika makakaliwat kaining pahina. Tabi man gamiton an pindutan nin patanaw bago itatagama',

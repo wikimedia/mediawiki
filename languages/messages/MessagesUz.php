@@ -443,10 +443,9 @@ Ushbu xabar tarjimasini qoʻshish yoki oʻzgartirish uchun, iltimos, MediaWikini
 'virus-unknownscanner' => "noma'lum antivirus:",
 
 # Login and logout pages
-'logouttext' => "'''Siz saytdan muvaffaqiyatli chiqdingiz.'''
+'logouttext' => '<strong>Siz saytdan muvaffaqiyatli chiqdingiz.</strong>
 
-{{SITENAME}} saytidan anonim holda foydalanishda davom etishindiz mumkin. Yoki siz yana hozirgi yoki boshqa foydalanuvchi nomi bilan qaytadan tizimga kirishingiz mumkin.
-Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguningizga qadar xuddi tizimga kirganingizdagidek ko'rinishda davom etaverishi mumkin.",
+Brauzeringiz keshini tozalamaguningizgacha ayrim sahifalar tizimga kirganingizdek koʻrinishda davom etaverishi mumkin.',
 'yourname' => 'Foydalanuvchi nomi:',
 'userlogin-yourname' => 'Foydalanuvchi nomi',
 'userlogin-yourname-ph' => 'Foydalanuvchi nomingizni kiriting',
@@ -1214,7 +1213,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notanarticle' => 'Maqola emas',
 'watchlist-details' => 'Sizning kuzatuv roʻyxatingizda hozirda {{PLURAL:$1|bitta sahifa|$1ta sahifa}} mavjud (munozara sahifalarini hisobga olmaganda).',
 'wlheader-showupdated' => "Siz oxirgi marta kirganingizdan keyin oʻzgartirilgan sahifalar '''qalin''' yozuv bilan ajratib koʻrsatilgan.",
-'wlnote' => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
 'wlshowlast' => 'Oxirgi $1 soatdagi $2 kundagi tahrirlarni koʻrsat $3',
 'watchlist-options' => 'Kuzatuv roʻyxati moslamalari',
 
@@ -1515,7 +1513,6 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'tooltip-pt-watchlist' => 'Siz kuzatib borayotgan sahifalardagi oʻzgarishlar roʻyxati',
 'tooltip-pt-mycontris' => 'Hissalaringiz roʻyxati',
 'tooltip-pt-login' => 'Bu majburiyat mavjud bo‘lmasa-da, kirishingiz taklif qilinadi.',
-'tooltip-pt-anonlogin' => "Bu majburiyat bo'lmasada, kirishingiz taklif qilinadi.",
 'tooltip-pt-logout' => 'Chiqish',
 'tooltip-ca-talk' => 'Sahifa matni borasida munozara',
 'tooltip-ca-edit' => 'Siz bu sahifani tahrirlashingiz mumkin. Iltimos, saqlashdan oldin koʻrib chiqish tugmasidan foydalaning',

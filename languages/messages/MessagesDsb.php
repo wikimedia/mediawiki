@@ -2213,7 +2213,6 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'watchmethod-list' => 'Pśepytanje wobglědowanych bokow za aktualnymi změnami',
 'watchlistcontains' => 'Twója wobglědowańka wopśimujo $1 {{PLURAL:$1|bok|boka|boki|bokow}}.',
 'iteminvalidname' => 'Problem ze zapisom „$1“, njepłaśece mě.',
-'wlnote' => "{{PLURAL:$1|Slědujo slědna změna|slědujotej '''$1''' slědnej změnje|slěduju slědne '''$1''' změny}} {{PLURAL:$2|slědneje góźiny|slědneju '''$2''' góźinowu|slědnych '''$2''' góźinow}}, staw: $3, $4.",
 'wlshowlast' => 'Pokaž změny slědnych $1 góźinow, $2 dnjow abo $3 (w slědnych 30 dnjach).',
 'watchlist-options' => 'Opcije wobglědowańki',
 
@@ -2842,7 +2841,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-pt-watchlist' => 'Lisćina bokow, kótarež se wobglěduju',
 'tooltip-pt-mycontris' => 'Lisćina twójich pśinoskow',
 'tooltip-pt-login' => 'Pśizjawjenje njejo obligatoriske, ale lubje witane.',
-'tooltip-pt-anonlogin' => 'Pśizjawjenje njejo obligatoriske, ale lubje witane.',
 'tooltip-pt-logout' => 'Wótzjawiś',
 'tooltip-ca-talk' => 'Diskusija wó wopśimjeśu boka',
 'tooltip-ca-edit' => 'Móžoš bok wobźěłaś. Nježlic składujoš, wužywaj pšosym funkciju "pśeglěd".',

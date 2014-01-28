@@ -2268,7 +2268,6 @@ All weider Ännerungen op dëser Säit an der associéierter Diskussiounssäit g
 'watchmethod-list' => 'Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains' => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
 'iteminvalidname' => "Problem mam Element '$1', ongëltegen Numm ...",
-'wlnote' => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}, Stand: $3 ëm $4 Auer.",
 'wlshowlast' => "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 'watchlist-options' => 'Optioune vun der Iwwerwaachungslëscht',
 
@@ -2827,6 +2826,7 @@ Besicht w.e.g. [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisati
 'allmessages-prefix' => 'Nom Prefix filteren:',
 'allmessages-language' => 'Sprooch:',
 'allmessages-filter-submit' => 'Lass',
+'allmessages-filter-translate' => 'Iwwersetzen',
 
 # Thumbnails
 'thumbnail-more' => 'vergréisseren',
@@ -2920,7 +2920,6 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-pt-watchlist' => 'Lëscht vu Säiten, bei deenen Dir op Ännerungen oppasst',
 'tooltip-pt-mycontris' => 'Lëscht vun Äre Kontributiounen',
 'tooltip-pt-login' => 'Sech umelle gëtt gäre gesinn, Dir musst et awer net maachen.',
-'tooltip-pt-anonlogin' => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
 'tooltip-pt-logout' => 'Ofmellen',
 'tooltip-ca-talk' => 'Diskussioun iwwer de Säiteninhalt',
 'tooltip-ca-edit' => 'Dës Säit ka geännert ginn. Maacht vun der Méiglechkeet Gebrauch fir ze "kucken ouni ofzespäicheren" a kuckt ob alles an der Rei ass ier der ofspäichert.',

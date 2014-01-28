@@ -18,6 +18,7 @@
  * @author Dalba
  * @author E THP
  * @author Ebraminio
+ * @author Fatemi127
  * @author Goudarz
  * @author Huji
  * @author Ibrahim
@@ -2578,7 +2579,6 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchmethod-list' => 'بررسی صفحه‌های مورد پی‌گیری برای ویرایش‌های اخیر',
 'watchlistcontains' => 'فهرست پی‌گیری‌های شما حاوی $1 {{PLURAL:$1|صفحه|صفحه}} است.',
 'iteminvalidname' => 'مشکل با مورد «$1»، نام نامعتبر است...',
-'wlnote' => 'در زیر {{PLURAL:$1|تغییری|$1 تغییری}} که در {{PLURAL:$2|ساعت|$2 ساعت}} گذشته انجام شده موجود است، تاریخ آخرین بازیابی: $3، $4',
 'wlshowlast' => 'نمایش آخرین $1 ساعت $2 روز $3',
 'watchlist-options' => 'گزینه‌های پی‌گیری',
 
@@ -3148,6 +3148,7 @@ $1',
 'allmessages-prefix' => 'پالودن بر اساس پسوند:',
 'allmessages-language' => 'زبان:',
 'allmessages-filter-submit' => 'برو',
+'allmessages-filter-translate' => 'ترجمه',
 
 # Thumbnails
 'thumbnail-more' => 'بزرگ‌کردن',
@@ -3243,7 +3244,6 @@ $2',
 'tooltip-pt-watchlist' => 'فهرست صفحه‌هایی که شما تغییرات آن‌ها را پی‌گیری می‌کنید',
 'tooltip-pt-mycontris' => 'فهرست مشارکت‌های شما',
 'tooltip-pt-login' => 'توصیه می‌شود که به سامانه وارد شوید، گرچه اجباری نیست',
-'tooltip-pt-anonlogin' => 'توصیه می‌شود که به سامانه وارد شوید، لیکن اجباری نیست',
 'tooltip-pt-logout' => 'خروج از سامانه',
 'tooltip-ca-talk' => 'گفتگو پیرامون محتوای صفحه',
 'tooltip-ca-edit' => 'شما می‌توانید این صفحه را ویرایش کنید. لطفاً پیش از ذخیره از دکمهٔ پیش‌نمایش استفاده کنید.',

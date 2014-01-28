@@ -2361,7 +2361,7 @@ D\'ora in poi, le modifiche apportate alla pagina e alla sua discussione verrann
 'watchmethod-list' => 'controllo degli osservati speciali per modifiche recenti',
 'watchlistcontains' => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
 'iteminvalidname' => "Problemi con la pagina '$1', nome non valido...",
-'wlnote' => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse '''$2''' ore}}; i dati sono aggiornati alle $4 del $3.",
+'wlnote2' => "Di seguito le modifiche {{PLURAL:$1|nell'ultima ora|nelle ultime <strong>$1</strong> ore}}, da $2, $3.",
 'wlshowlast' => 'Mostra le ultime $1 ore $2 giorni $3',
 'watchlist-options' => 'Opzioni osservati speciali',
 
@@ -2895,6 +2895,7 @@ Visitare [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e 
 'allmessages-prefix' => 'Filtra per prefisso:',
 'allmessages-language' => 'Lingua:',
 'allmessages-filter-submit' => 'Vai',
+'allmessages-filter-translate' => 'Traduci',
 
 # Thumbnails
 'thumbnail-more' => 'Ingrandisci',
@@ -2987,7 +2988,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-pt-watchlist' => 'La lista delle pagine che stai tenendo sotto osservazione',
 'tooltip-pt-mycontris' => 'Elenco dei tuoi contributi',
 'tooltip-pt-login' => 'La registrazione è consigliata, anche se non obbligatoria',
-'tooltip-pt-anonlogin' => 'La registrazione è consigliata, anche se non obbligatoria',
 'tooltip-pt-logout' => 'Uscita (logout)',
 'tooltip-ca-talk' => 'Vedi le discussioni relative a questa pagina',
 'tooltip-ca-edit' => 'Puoi modificare questa pagina. Per favore usa il pulsante di anteprima prima di salvare',

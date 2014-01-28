@@ -2152,7 +2152,7 @@ Le modìfiche che a-i saran ant costa pàgina-sì e ant soa pàgina ëd discussi
 'watchmethod-list' => 'contròl ëd le pàgine che as ten sot-euj për vëdde se a-i sio staje dle modìfiche recente',
 'watchlistcontains' => "Soa lista dla ròba ch'as ten sot-euj a l'ha andrinta {{PLURAL:$1|na pàgina|$1 pàgine}}.",
 'iteminvalidname' => "Problema con l'element '$1', nòm nen vàlid...",
-'wlnote' => "Ambelessì sota a-i {{PLURAL:$1|é l'ùltima modìfica|son j'ùltime '''$1''' modìfiche}} ant {{PLURAL:$2|l'ùltima ora|j'ùltime '''$2''' ore}}, a parte da $3, $4.",
+'wlnote2' => "Sì-sota a-i son le modìfiche {{PLURAL:$1|ant l'ùltima ora|ant j'ùltime <strong>$1</strong> ore}}, a parte da $2, $3.",
 'wlshowlast' => "Smon-e j'ùltime $1 ore $2 dì $3",
 'watchlist-options' => "Opsion ëd la lista dla ròba ch'as ten sot-euj",
 
@@ -2713,6 +2713,7 @@ Për piasì, ch'a vìsita la [https://www.mediawiki.org/wiki/Localisation Locali
 'allmessages-prefix' => 'Filtré për prefiss:',
 'allmessages-language' => 'Lenga:',
 'allmessages-filter-submit' => 'Apliché',
+'allmessages-filter-translate' => 'Volté',
 
 # Thumbnails
 'thumbnail-more' => 'Slarghé',
@@ -2807,7 +2808,6 @@ Për piasì, ch'a preuva torna.",
 'tooltip-pt-watchlist' => 'Lista dle pàgine che chiel as ten sot euj.',
 'tooltip-pt-mycontris' => 'Lista ëd soe contribussion',
 'tooltip-pt-login' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
-'tooltip-pt-anonlogin' => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
 'tooltip-pt-logout' => 'Seurte da',
 'tooltip-ca-talk' => 'Discussion ansima a sta pàgina ëd contnù.',
 'tooltip-ca-edit' => 'A peul modifiché sa pàgina-sì. Për piasì, che as fasa na preuva anans che salvé.',

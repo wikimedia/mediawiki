@@ -853,8 +853,10 @@ See also:
 * {{msg-mw|Youhavenewmessages}}',
 'newmessageslinkplural' => "This is the first link displayed in an orange rectangle when a user gets a message on their talk page.
 
-Used as <code>$1</code> in messages {{msg-mw|youhavenewmessagesfromusers}}, {{msg-mw|youhavenewmessagesmanyusers}}, {{msg-mw|youhavenewmessages}}.
-
+Used as <code>$1</code> in the following messages:
+* {{msg-mw|youhavenewmessagesfromusers}}
+* {{msg-mw|youhavenewmessagesmanyusers}}
+* {{msg-mw|youhavenewmessages}}.
 Parameters:
 * $1 - 1 or 999:
 ** 1 - if there was '''one''' new edit since the last time the user has seen their talk page
@@ -1294,8 +1296,8 @@ See example: [[Special:UserLogin]]',
 
 See also:
 * {{msg-mw|Login}}
-* {{msg-mw|Accesskey-pt-login}}
-* {{msg-mw|Tooltip-pt-login}}
+* {{msg-mw|Accesskey-pt-anonlogin}}
+* {{msg-mw|Tooltip-pt-anonlogin}}
 {{Identical|Log in}}",
 'nav-login-createaccount' => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.
 {{Identical|Log in / create account}}",
@@ -5469,7 +5471,9 @@ See also:
 Parameters:
 * $1 - the number of hours for which the changes are shown
 * $2 - a date alone
-* $3 - a time alone',
+* $3 - a time alone
+See also:
+* {{msg-mw|Wlnote}}',
 'wlshowlast' => 'Appears on [[Special:Watchlist]]. Parameters:
 * $1 - a choice of different numbers of hours ("1 | 2 | 6 | 12")
 * $2 - a choice of different numbers of days ("1 | 3 | 7")
@@ -7191,7 +7195,8 @@ See also:
 'allmessages-filter-submit' => 'Used on [[Special:Allmessages]].
 
 {{Identical|Go}}',
-'allmessages-filter-translate' => 'Used on [[Special:Allmessages]]. Label for a link to translatewiki.net for a message to translate.',
+'allmessages-filter-translate' => 'Used on [[Special:Allmessages]]. Label for a link to translatewiki.net for a message to translate.
+{{Identical|Translate}}',
 
 # Thumbnails
 'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
@@ -7378,8 +7383,7 @@ See also:
 See also:
 * {{msg-mw|Import-noarticle}}
 * {{msg-mw|Importbadinterwiki}}',
-'import-nonewrevisions' => 'Used in [[Special:Import]] to indicate that no revisions were imported.
-This may be due to the revisions already being present, or to errors when importing them.',
+'import-nonewrevisions' => 'Used in [[Special:Import]].',
 'xml-error-string' => 'Parameters:
 * $1 - Some kind of message, perhaps name of the error?
 * $2 - line number
@@ -7426,17 +7430,6 @@ Parameters:
 'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
 
 This may happen if the content got corrupted or the serialization format is mis-reported.
-
-Parameters:
-* $1 - the name of the page the offending revision belongs to
-* $2 - the ID of the offending revision, as reported in the dump that is being imported
-* $3 - the content model reported for the offending revision in the dump that is being imported
-* $4 - the serialization format reported for the offending revision in the dump that is being imported
-{{Related|Import-error}}',
-'import-error-bad location' => 'Import error message displayed when trying to import a page to a title that is not allowed for this kind of content on this wiki.
-
-This may happen for content models bound to specific namespaces or title patterns, if the configuration of the allowed namespaces
-or titles differs from the configuration on the source wiki.
 
 Parameters:
 * $1 - the name of the page the offending revision belongs to

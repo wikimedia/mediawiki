@@ -91,6 +91,7 @@
  * @author Salvador alc
  * @author Sanbec
  * @author Savh
+ * @author Sethladan
  * @author Shirayuki
  * @author Spacebirdy
  * @author Stephensuleeman
@@ -2490,7 +2491,6 @@ La dirección de correo electrónico que indicaste en [[Special:Preferences|tus 
 'watchmethod-list' => 'revisando las páginas vigiladas en busca de cambios recientes',
 'watchlistcontains' => 'Tu lista de seguimiento posee $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname' => "Problema con el artículo '$1', nombre inválido...",
-'wlnote' => "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos '''$1''' cambios}} en {{PLURAL:$2|la última hora|las últimas '''$2''' horas}} a fecha de $4 $3.",
 'wlshowlast' => 'Ver los cambios de las últimas $1 horas, $2 días  $3',
 'watchlist-options' => 'Opciones de la lista de seguimiento',
 
@@ -3041,6 +3041,7 @@ Por favor visita [https://www.mediawiki.org/wiki/Localisation Localización Medi
 'allmessages-prefix' => 'Filtrar por prefijo:',
 'allmessages-language' => 'Idioma:',
 'allmessages-filter-submit' => 'Ir',
+'allmessages-filter-translate' => 'Traducir',
 
 # Thumbnails
 'thumbnail-more' => 'Aumentar',
@@ -3136,7 +3137,6 @@ No hay un directorio temporal.',
 'tooltip-pt-watchlist' => 'Lista de páginas cuyos cambios vigilas',
 'tooltip-pt-mycontris' => 'Lista de tus contribuciones',
 'tooltip-pt-login' => 'Te recomendamos iniciar sesión, sin embargo no es obligatorio',
-'tooltip-pt-anonlogin' => 'Te invitamos a registrarte, aunque no es obligatorio',
 'tooltip-pt-logout' => 'Salir de la sesión',
 'tooltip-ca-talk' => 'Discusión acerca del artículo',
 'tooltip-ca-edit' => 'Puedes editar esta página. Utiliza el botón de previsualización antes de guardar',
@@ -4001,7 +4001,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-parser-function-hooks' => 'Extensiones de funciones sintácticas',
 'version-hook-name' => 'Nombre de la extensión',
 'version-hook-subscribedby' => 'Suscrito por',
-'version-version' => '(Versión $1)',
+'version-version' => '($1)',
 'version-license' => 'Licencia de MediaWiki',
 'version-ext-license' => 'Licencia',
 'version-ext-colheader-name' => 'Extensión',

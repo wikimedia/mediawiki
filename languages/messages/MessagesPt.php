@@ -2443,7 +2443,6 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'watchmethod-list' => 'a procurar mudanças recentes nas páginas vigiadas',
 'watchlistcontains' => 'A sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname' => "Problema com item '$1', nome inválido...",
-'wlnote' => "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} até $3, $4.",
 'wlshowlast' => 'Ver últimas $1 horas $2 dias $3',
 'watchlist-options' => 'Opções da lista de páginas vigiadas',
 
@@ -3096,7 +3095,6 @@ Não há um diretório temporário.',
 'tooltip-pt-watchlist' => 'Lista de mudanças nas páginas que está a vigiar',
 'tooltip-pt-mycontris' => 'Lista das suas contribuições',
 'tooltip-pt-login' => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
-'tooltip-pt-anonlogin' => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-logout' => 'Terminar esta sessão na wiki',
 'tooltip-ca-talk' => 'Discussão sobre o conteúdo da página',
 'tooltip-ca-edit' => 'Pode editar esta página.

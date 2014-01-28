@@ -873,6 +873,8 @@ Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerk
 'retypenew' => 'Gjenta nytt passord:',
 'resetpass_submit' => 'Angi passord og logg inn',
 'changepassword-success' => 'Passordet ditt ble korrekt endret!',
+'changepassword-throttled' => 'Du har foretatt for mange nylige innloggingsforsøk.
+Vær vennlig å vente $1 før du prøver igjen.',
 'resetpass_forbidden' => 'Passord kan ikke endres',
 'resetpass-no-info' => 'Du må være logget inn for å gå til denne siden direkte',
 'resetpass-submit-loggedin' => 'Endre passord',
@@ -932,6 +934,7 @@ Midlertidig passord: $2',
 'changeemail-password' => 'Ditt passord på {{SITENAME}}:',
 'changeemail-submit' => 'Endre e-post',
 'changeemail-cancel' => 'Avbryt',
+'changeemail-throttled' => 'Du har foretatt for mange innloggingsforsøk. Vær vennlig å vente $1 før du prøver igjen.',
 
 # Special:ResetTokens
 'resettokens' => 'Nullstill merker',
@@ -2413,7 +2416,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'watchmethod-list' => 'sjekker siste endringer for sider i overvåkningslisten',
 'watchlistcontains' => 'Overvåkningslisten inneholder $1 {{PLURAL:$1|side|sider}}.',
 'iteminvalidname' => 'Problem med «$1», ugyldig navn&nbsp;…',
-'wlnote' => "Nedenfor er {{PLURAL:$1|den siste endringen|de siste '''$1''' endringene}} {{PLURAL:$2|den siste timen|de siste '''$2''' timene}}, fra den $3, kl. $4",
+'wlnote2' => 'Nedenfor er endringene {{PLURAL:$1|den siste timen|de siste <strong>$1</strong> timene}}, per $2 $3.',
 'wlshowlast' => 'Vis siste $1 timer $2 dager $3',
 'watchlist-options' => 'Alternativ for overvåkningslisten',
 
@@ -2960,6 +2963,7 @@ Besøk [//translatewiki.net translatewiki.net] om du ønsker å bidra med overse
 'allmessages-prefix' => 'Filtrer etter prefiks:',
 'allmessages-language' => 'Språk:',
 'allmessages-filter-submit' => 'Gå',
+'allmessages-filter-translate' => 'Oversett',
 
 # Thumbnails
 'thumbnail-more' => 'Forstørr',
@@ -3051,7 +3055,6 @@ Lagre den på din egen datamaskin og last den opp her.',
 'tooltip-pt-watchlist' => 'Liste over sider du overvåker for endringer.',
 'tooltip-pt-mycontris' => 'Liste over dine bidrag',
 'tooltip-pt-login' => 'Du oppfordres til å logge inn, men det er ikke obligatorisk',
-'tooltip-pt-anonlogin' => 'Du oppfordres til å logge inn, men det er ikke obligatorisk.',
 'tooltip-pt-logout' => 'Logg ut',
 'tooltip-ca-talk' => 'Diskusjon om innholdssiden',
 'tooltip-ca-edit' => 'Du kan redigere denne siden. Vennligst bruk forhåndsvisningsknappen før du lagrer.',

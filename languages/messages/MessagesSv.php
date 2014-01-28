@@ -2430,7 +2430,6 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchmethod-list' => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains' => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'iteminvalidname' => "Problem med ''$1'', ogiltigt namn...",
-'wlnote' => "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}} från den $3 kl. $4.",
 'wlshowlast' => 'Visa senaste $1 timmarna $2 dygnen $3',
 'watchlist-options' => 'Alternativ för bevakningslistan',
 
@@ -3076,7 +3075,6 @@ Spara den på din dator och ladda upp den här.',
 'tooltip-pt-watchlist' => 'Listan över sidor du bevakar för ändringar',
 'tooltip-pt-mycontris' => 'Lista över dina bidrag',
 'tooltip-pt-login' => 'Du uppmuntras att logga in, men det är inte nödvändigt',
-'tooltip-pt-anonlogin' => 'Du får gärna logga in, men det är inte nödvändigt',
 'tooltip-pt-logout' => 'Logga ut',
 'tooltip-ca-talk' => 'Diskussion om innehållssidan',
 'tooltip-ca-edit' => 'Du kan redigera den här sidan.

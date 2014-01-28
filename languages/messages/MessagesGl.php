@@ -915,7 +915,8 @@ Contrasinal temporal: $2',
 'changeemail-password' => 'O seu contrasinal en {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar o correo electrónico',
 'changeemail-cancel' => 'Cancelar',
-'changeemail-throttled' => 'Fixo demasiados intentos de acceder ao sistema. Por favor, agarde $1 antes de probar outra vez.',
+'changeemail-throttled' => 'Fixo demasiados intentos de acceder ao sistema.
+Por favor, agarde $1 antes de probar outra vez.',
 
 # Special:ResetTokens
 'resettokens' => 'Restablecer os pases',
@@ -1138,7 +1139,7 @@ Esta xa existe.',
 'editwarning-warning' => 'Deixar esta páxina pode causar a perda de calquera cambio feito.
 Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "Edición" das súas preferencias.',
 'editpage-notsupportedcontentformat-title' => 'Formato de contido non admitido',
-'editpage-notsupportedcontentformat-text' => 'O formato de contido $1 non é compatible co modelo de contido  $2.',
+'editpage-notsupportedcontentformat-text' => 'O formato de contido $1 non é compatible co modelo de contido $2.',
 
 # Content models
 'content-model-wikitext' => 'texto wiki',
@@ -1845,7 +1846,8 @@ Se aínda quere cargar o seu ficheiro, volva atrás e use outro nome.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate' => 'Un ficheiro idéntico a este ("[[:$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
-'file-deleted-duplicate-notitle' => 'Un ficheiro idéntico a este foi borrado con anterioridade, e o título foi suprimido. Debería contactar con alguén capaz de ver os datos de ficheiros borrados para que revise esta situación antes de voltar a subilo de novo.',
+'file-deleted-duplicate-notitle' => 'Un ficheiro idéntico a este foi borrado con anterioridade e o título foi suprimido.
+Debería contactar con alguén capaz de ver os datos de ficheiros borrados para que revise esta situación antes de subilo de novo.',
 'uploadwarning' => 'Advertencia ao cargar o ficheiro',
 'uploadwarning-text' => 'Por favor, modifique a descrición do ficheiro e inténteo de novo.',
 'savefile' => 'Gardar o ficheiro',
@@ -2421,7 +2423,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchmethod-list' => 'comprobando as páxinas vixiadas na procura de edicións recentes',
 'watchlistcontains' => 'A súa lista de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
 'iteminvalidname' => 'Hai un problema co elemento "$1", nome non válido...',
-'wlnote' => "A continuación {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} ata o $3 ás $4.",
+'wlnote2' => 'A continuación están as modificacións feitas {{PLURAL:$1|na última hora|nas últimas <strong>$1</strong> horas}}, ata o $2 ás $3.',
 'wlshowlast' => 'Mostrar as últimas $1 horas, os últimos $2 días ou $3',
 'watchlist-options' => 'Opcións de vixilancia',
 
@@ -2749,7 +2751,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'ipb-blockingself' => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser' => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
-'ipb-confirmaction' => 'Se está seguro de que quere facelo realmente, por favor marque o campo "{{int:ipb-confirm}}" abaixo.',
+'ipb-confirmaction' => 'Se está seguro de querer facelo, marque o campo "{{int:ipb-confirm}}" ao final.',
 'ipb-edit-dropdown' => 'Editar os motivos de bloqueo',
 'ipb-unblock-addr' => 'Desbloquear a $1',
 'ipb-unblock' => 'Desbloquear un usuario ou enderezo IP',
@@ -2812,7 +2814,7 @@ Olle a [[Special:BlockList|lista de bloqueos]] para comprobar os bloqueos vixent
 'range_block_disabled' => 'A funcionalidade de administrador de crear rangos de bloqueos está deshabilitada.',
 'ipb_expiry_invalid' => 'O tempo de duración non é válido.',
 'ipb_expiry_temp' => 'Os bloqueos a nomes de usuario agochados deberían ser permanentes.',
-'ipb_hide_invalid' => 'Non se pode suprimir esta conta; ten máis d{{PLURAL:$1|unha edición|e $1 edicións}}.',
+'ipb_hide_invalid' => 'Non se pode suprimir esta conta; ten máis {{PLURAL:$1|dunha edición|de $1 edicións}}.',
 'ipb_already_blocked' => '"$1" xa está bloqueado',
 'ipb-needreblock' => '$1 xa está bloqueado. Quere cambiar as configuracións?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Outro bloqueo|Outros bloqueos}}',
@@ -2981,6 +2983,7 @@ Por favor, visite a páxina de [https://www.mediawiki.org/wiki/Localisation loca
 'allmessages-prefix' => 'Filtrar por prefixo:',
 'allmessages-language' => 'Lingua:',
 'allmessages-filter-submit' => 'Mostrar',
+'allmessages-filter-translate' => 'Traducir',
 
 # Thumbnails
 'thumbnail-more' => 'Ampliar',
@@ -3074,7 +3077,6 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-pt-watchlist' => 'A lista de páxinas cuxas modificacións está a seguir',
 'tooltip-pt-mycontris' => 'Lista das súas contribucións',
 'tooltip-pt-login' => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
-'tooltip-pt-anonlogin' => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-logout' => 'Saír ao anonimato',
 'tooltip-ca-talk' => 'Conversa acerca do contido desta páxina',
 'tooltip-ca-edit' => 'Pode modificar esta páxina; antes de gardala, por favor, utilice o botón de vista previa',
@@ -4235,5 +4237,5 @@ De feito, expande case calquera cousa entre dúas chaves.',
 'expand_templates_preview' => 'Vista previa',
 
 # Unknown messages
-'uploadinvalidxml' => 'O XML do ficheiro cargado non pode ser interpretado.',
+'uploadinvalidxml' => 'Non se puido analizar o XML do ficheiro cargado.',
 );

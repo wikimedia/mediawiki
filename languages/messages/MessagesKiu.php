@@ -1324,7 +1324,6 @@ Kerem ke, nameo de bin bıcerrebne.',
 'tooltip-pt-watchlist' => 'Lista pelunê ke to guretê şêrkerdene',
 'tooltip-pt-mycontris' => 'Lista iştıraqunê sıma',
 'tooltip-pt-login' => 'Serba cıkotene sıma rê sılaiya; hama, na zeruriye niya',
-'tooltip-pt-anonlogin' => 'Serba cıkotene sıma rê sılaiya, hama na zeruriye niya.',
 'tooltip-pt-logout' => 'Veciye',
 'tooltip-ca-talk' => 'Pela tedeesteu sero hurênais',
 'tooltip-ca-edit' => 'Tı şikina na pele bıvurnê.

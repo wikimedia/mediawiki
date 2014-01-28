@@ -504,8 +504,30 @@ Siēlier 'n' êter nòm utèint.",
 'noemailcreate' => "L'é necesâri dêr un 'indirés ed pôsta eletrônica vâlid.",
 'passwordsent' => "'Na nōva cêva 'd ingrès l'é stêda spidîda a l'indiré ed pôsta eletrônica per l'utèint \"\$1\". Per piaşèir, fà un ingrès apèina 't la ricēv.",
 'blocked-mailpassword' => "Per pervèder abûş, an n'é mìa permès druvêr la funsiòun \"spidés 'na nōva cêva 'd ingrès\" da un indirés IP bluchê.",
+'eauthentsent' => "Un mesâg ed cunfèirma l'é stê spidî a l'indirés ed pôsta eletrônica sgnê ché. L'utèint per prèir inviêr di mesâg ed pôsta eletrônica al dēv andêr a drē al j istrusiòun scréti, in môd da cunfermêr ch' l'é ló al legétim proprietâri 'd l'indirés.",
+'throttled-mailpassword' => "Un mesâg ed pôsta eletrônica 'd arnōv ed la cêva 'd ingrès l'é bèle stê inviê da mēno 'd {{PLURAL:$1|1 ōra|$1 ōri}}. Per pervèder abûş, la funziòun 'd arnōv ed la cêva 'd ingrès la pōl èser druvêda sōl 'na vôlta ògni {{PLURAL:$1|1 ōra|$1 ōri}}.",
+'mailerror' => 'Erōr int la spedisiòun dal mesâg $1',
+'acct_creation_throttle_hit' => "{{PLURAL:$1|1 registrasiòun l'é bèle stêda fâta |$1 registrasiòun în bèle stêdi fâti}} da quelchidûn cun al tó 'stès indirés IP int l'ûltem dé: l'é al mâsim permés in cól peréiod ed tèimp ché. Per còst j utèint che drōven cl 'indirés IP ché, p'r al mumèint,  an 's pōl mìa registrêr.",
+'emailauthenticated' => "L'indirés ed pôsta eletrônica l'é stê cunfermê al $2 al $3.",
+'emailnotauthenticated' => "L'indirés ed pôsta eletrônica an n'é mìa incòra stê cunfermê.
+A gnirâ mìa spidî mesâg ed pôsta eletrônica p'r al funsiòun in elèinch ché sòta.",
+'noemailprefs' => "Scréver un indirés ed pôsta eletrônica per fêr funsionêr st' al funsiòun.",
+'emailconfirmlink' => 'Cunfèirma al tó indirés ed pôsta eletrônica',
+'invalidemailaddress' => "L'indirés ed pôsta eletrônica scrét in 'na manēra mìa vâlida.
+Scrév un indirés vâlid o vōda la caşèla.",
+'cannotchangeemail' => 'In cól wiki ché j indiré ed pôsta eletrônica an pōlen mìa èser cambiê.',
+'emaildisabled' => 'Cól sît ché an pōl mia spidîr mesâg ed pôsta eletrônica.',
 'accountcreated' => 'Ingrès fât',
+'accountcreatedtext' => "È stê fât 'n'utèisa per [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|msg]]).",
+'createaccount-title' => 'Per fêr un inscrisiòun a {{SITENAME}}',
+'createaccount-text' => "Quelchidûn l'à fât un inscrisiòun a  {{SITENAME}} (\$4) a nòm ed \$2 coleghê a cl'indirés ed pôsta eletrônica ché. La cêva 'd ingrès per l'utèint \"\$2\" l'é  impustêda a \"\$3\". 
+É necesâri fêr un ingrès préma ch' es pôl e cambiêr subét la cêva 'd ingrès. 
+Se l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.",
+'usernamehasherror' => 'Al nòm utèint al pōl mìa avèir i carâter hash',
+'login-throttled' => "În stê fât trôp tentatîv 'd ingrès in pôch tèimp. Spèta $1 e pó tōrna pruvêr.",
+'login-abort-generic' => "An t'é mìa stê arcgnusû - Scanşlê",
 'loginlanguagelabel' => 'Léngva: $1',
+'suspicious-userlogout' => "La tó dmânda per destachêret l'é stēda rifiutêda perchè la sèmbra spidîda da un navigadōr ch' al funsiòuna mìa o da un proxy di caching.",
 
 # Change password dialog
 'changepassword' => "Câmbia la cêva 'd ingrès",

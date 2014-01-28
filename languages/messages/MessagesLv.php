@@ -2345,6 +2345,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'allmessages-prefix' => 'Filtrēt pēc prefiksa:',
 'allmessages-language' => 'Valoda:',
 'allmessages-filter-submit' => 'Parādīt',
+'allmessages-filter-translate' => 'Tulkot',
 
 # Thumbnails
 'thumbnail-more' => 'Palielināt',
@@ -2416,7 +2417,6 @@ Lūdzu, mēģiniet vēlreiz.',
 'tooltip-pt-watchlist' => 'Tevis uzraudzītās lapas',
 'tooltip-pt-mycontris' => 'Tavs devums',
 'tooltip-pt-login' => 'Aicinām tevi ieiet {{grammar:lokatīvs|{{SITENAME}}}}, tomēr tas nav obligāti.',
-'tooltip-pt-anonlogin' => 'Aicinām tevi ieiet {{grammar:lokatīvs|{{SITENAME}}}}, tomēr tas nav obligāti.',
 'tooltip-pt-logout' => 'Iziet',
 'tooltip-ca-talk' => 'Diskusija par šī raksta lapu',
 'tooltip-ca-edit' => 'Izmainīt šo lapu. Lūdzam izmantot pirmskatu pirms lapas saglabāšanas.',
@@ -2497,8 +2497,8 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'spamprotectionmatch' => 'Spama filtram radās iebildumi pret šo tekstu: $1',
 'spambot_username' => 'MediaWiki surogātpasta tīrīšana',
 'spam_reverting' => 'Atjauno iepriekšējo versiju, kas nesatur saiti uz $1',
-'simpleantispam-label' => "Pretspama pārbaude. 
- '''NEAIZPILDĪT!'''",
+'simpleantispam-label' => 'Pretspama pārbaude. 
+<strong>Neaizpildiet</strong> šo!',
 
 # Info page
 'pageinfo-title' => 'Informācija par "$1"',

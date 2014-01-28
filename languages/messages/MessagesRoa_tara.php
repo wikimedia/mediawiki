@@ -2170,7 +2170,6 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watchmethod-list' => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
 'watchlistcontains' => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",
 'iteminvalidname' => "Probbleme cu 'a vosce '$1', nome invalide...",
-'wlnote' => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}, jndr'à $3, $4.",
 'wlshowlast' => "Vide l'urteme $1 ore $2 sciurne $3",
 'watchlist-options' => "Opzione d'a liste de le pàggene condrollete",
 
@@ -2741,6 +2740,7 @@ Pe piacere vè vide [https://www.mediawiki.org/wiki/Localisation Localizzazione 
 'allmessages-prefix' => 'Filtrate pe prefisse:',
 'allmessages-language' => 'Lènga:',
 'allmessages-filter-submit' => 'Veje',
+'allmessages-filter-translate' => 'Traduce',
 
 # Thumbnails
 'thumbnail-more' => 'Allarije',
@@ -2837,7 +2837,6 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'tooltip-pt-watchlist' => "'A liste de le pàggene ca ste condrolle pe le camgiaminde",
 'tooltip-pt-mycontris' => 'Liste de le condrebbute mie',
 'tooltip-pt-login' => "Tu si 'ncoraggiete a cullegarte, jidde non g'è 'n'obblighe.",
-'tooltip-pt-anonlogin' => "Tu si 'ncoraggiete a cullegarte; però non g'è 'n'obblighe.",
 'tooltip-pt-logout' => 'Isse',
 'tooltip-ca-talk' => "'Ngazzaminde sus 'a pàgene de le condenute",
 'tooltip-ca-edit' => "Tu puè cangià sta pàgene.

@@ -2544,7 +2544,6 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'watchmethod-list' => "controleer pagina's op volglijst op wijzigingen",
 'watchlistcontains' => "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst.",
 'iteminvalidname' => "Probleem met object '$1', ongeldige naam…",
-'wlnote' => 'Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}} per $3 om $4.',
 'wlshowlast' => 'Laatste $1 uur, $2 dagen bekijken ($3)',
 'watchlist-options' => 'Opties voor volglijst',
 
@@ -3113,6 +3112,7 @@ Ga naar [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [
 'allmessages-prefix' => 'Filteren op voorvoegsel:',
 'allmessages-language' => 'Taal:',
 'allmessages-filter-submit' => 'OK',
+'allmessages-filter-translate' => 'Vertalen',
 
 # Thumbnails
 'thumbnail-more' => 'Vergroten',
@@ -3209,7 +3209,6 @@ Een tijdelijke map is niet aanwezig.',
 'tooltip-pt-watchlist' => "Overzicht van pagina's die u volgt",
 'tooltip-pt-mycontris' => 'Overzicht van uw bijdragen',
 'tooltip-pt-login' => 'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht',
-'tooltip-pt-anonlogin' => 'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht',
 'tooltip-pt-logout' => 'Afmelden',
 'tooltip-ca-talk' => 'Overleg over deze pagina',
 'tooltip-ca-edit' => 'U kunt deze pagina bewerken. Gebruik de knop "Bewerking ter controle bekijken" voordat u de pagina opslaat',

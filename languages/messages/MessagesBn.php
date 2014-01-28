@@ -2144,7 +2144,6 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'watchmethod-list' => 'নজরে রাখা পাতাগুলিতে সাম্প্রতিক পরিবর্তন পরীক্ষা করা হচ্ছে',
 'watchlistcontains' => 'আপনার নজরতালিকায় $1 টি {{PLURAL:$1|পাতা|পাতা}} রয়েছে।',
 'iteminvalidname' => "'$1'নং আইটেমে সমস্যা, অবৈধ নাম...",
-'wlnote' => "নিচে $3, $4 তারিখ থেকে বিগত {{PLURAL:$2|১ ঘন্টায়|'''$2''' ঘন্টায়}} সংঘটিত {{PLURAL:$1|শেষ ১টি পরিবর্তন|শেষ '''$1'''টি পরিবর্তন}} দেখানো হল।",
 'wlshowlast' => 'দেখাও সর্বশেষ  $1 ঘন্টা $2 দিন $3',
 'watchlist-options' => 'নজর তালিকা পছন্দসমূহ',
 
@@ -2693,6 +2692,7 @@ $1',
 'allmessages-prefix' => 'প্রিফিক্স অনুযায়ী ফিল্টার:',
 'allmessages-language' => 'ভাষা:',
 'allmessages-filter-submit' => 'চলো',
+'allmessages-filter-translate' => 'অনুবাদ',
 
 # Thumbnails
 'thumbnail-more' => 'বড় করো',
@@ -2787,7 +2787,6 @@ $2',
 'tooltip-pt-watchlist' => 'যে পাতাগুলির পরিবর্তন আপনি নজরে রেখেছেন, তাদের তালিকা',
 'tooltip-pt-mycontris' => 'আপনার অবদানগুলোর তালিকা',
 'tooltip-pt-login' => 'আপনার লগ-ইন করাটা বাঞ্চনীয়, কিন্তু তা বাধ্যতামূলক নয়।',
-'tooltip-pt-anonlogin' => 'আপনাকে লগ ইন করতে উৎসাহ দেয়া হচ্ছে, তবে এটা বাধ্যতামূলক নয়।',
 'tooltip-pt-logout' => 'প্রস্থান',
 'tooltip-ca-talk' => 'বিষয়বস্তু পাতা সম্পর্কে আলোচনা',
 'tooltip-ca-edit' => 'আপনি এই পাতা সম্পাদনা করতে পারেন। অনুগ্রহ করে সংরক্ষণের আগে প্রাকদর্শন করুন।',

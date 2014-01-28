@@ -358,9 +358,9 @@ $messages = array(
 'hidden-category-category' => 'Faldir flokkar',
 'category-subcat-count' => '{{PLURAL:$2|Þessi flokkur hefur einungis eftirfarandi undirflokk.|Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}, af alls $2.}}',
 'category-subcat-count-limited' => 'Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}.',
-'category-article-count' => '{{PLURAL:$2|Þessi flokkur inniheldur aðeins eftirfarandi síðu.|Eftirfarandi {{PLURAL:$1|síða er|síður eru}} í þessum flokki, af alls $1.}}',
+'category-article-count' => 'Þessi flokkur inniheldur {{PLURAL:$1|$1 síðu|$1 síður}}, af alls {{PLURAL:$2|$2}}.',
 'category-article-count-limited' => 'Eftirfarandi {{PLURAL:$1|síða er|$1 síður eru}} í þessum flokki.',
-'category-file-count' => '{{PLURAL:$2|Þessi flokkur inniheldur einungis eftirfarandi skrá.|Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki, af alls $2.}}',
+'category-file-count' => 'Þessi flokkur inniheldur {{PLURAL:$1|$1 skrá|$1 skrár}}, af alls {{PLURAL:$2|$2}}.',
 'category-file-count-limited' => 'Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki.',
 'listingcontinuesabbrev' => 'frh.',
 'index-category' => 'Raðaðar skrár',
@@ -428,7 +428,7 @@ $messages = array(
 'delete' => 'Eyða',
 'deletethispage' => 'Eyða þessari síðu',
 'undeletethispage' => 'Endurvekja þessa síðu',
-'undelete_short' => 'Endurvekja {{PLURAL:$1|eina breytingu|$1 breytingar}}',
+'undelete_short' => 'Endurvekja {{PLURAL:$1|$1 breytingu|$1 breytingar}}',
 'viewdeleted_short' => 'Skoða {{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'protect' => 'Vernda',
 'protect_change' => 'breyta',
@@ -519,7 +519,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'collapsible-expand' => 'Sýna',
 'thisisdeleted' => 'Endurvekja eða skoða $1?',
 'viewdeleted' => 'Skoða $1?',
-'restorelink' => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
+'restorelink' => '$1 {{PLURAL:$1|eydd breyting|eyddar breytingar}}',
 'feedlinks' => 'Streymi:',
 'feed-invalid' => 'Röng tegund áskriftarstreymis.',
 'feed-unavailable' => 'Samræmisstreymi eru ekki fáanlegt',
@@ -740,7 +740,7 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'throttled-mailpassword' => 'Tölvupóstur til að endursetja lykilorðið hefur þegar verið sent, innan við {{PLURAL:$1|síðasta klukkutímans|$1 síðustu klukkutímanna}}.
 Til að koma í veg fyrir misnotkun, er aðeins einn tölvupóstur sendur {{PLURAL:$1|hvern klukkutíma|hverja $1 klukkutíma}}.',
 'mailerror' => 'Upp kom villa við sendingu tölvupósts: $1',
-'acct_creation_throttle_hit' => 'Því miður, hafa verið búnir til {{PLURAL:$1|1 aðgang|$1 aðganga}} nýr aðgangar í dag sem er hámarksfjöldi nýskráninga á einum degi.
+'acct_creation_throttle_hit' => 'Því miður, hafa verið búnir til {{PLURAL:$1|$1 nýr aðgangur|$1 nýjir aðgangar}} í dag sem er hámarksfjöldi nýskráninga á einum degi.
 Þú getur því miður ekki búið til nýjan aðgang frá þessari IP-tölu að svo stöddu.',
 'emailauthenticated' => 'Netfang þitt var staðfest þann $2 klukkan $3.',
 'emailnotauthenticated' => 'Tölvupóstfang þitt hefur ekki enn verið staðfest. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
@@ -1003,7 +1003,7 @@ Lausn er í gildi sem leyfir þér að breyta síðum: Stafatákn sem eru ekki �
 Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br />
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 '''EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!'''",
-'longpageerror' => "'''VILLA: Textinn sem þú sendir inn er $1 {{PLURAL:$1|kílóbæti|kílóbæti}} að lengd, en hámarkið er $2 {{PLURAL:$2|kílóbæti|kílóbæti}}. Ekki er hægt að vista textann.'''",
+'longpageerror' => "'''VILLA: Textinn sem þú sendir inn er $1 {{PLURAL:$1|kílóbæti}} að lengd, en hámarkið er $2 {{PLURAL:$2|kílóbæti}}. Ekki er hægt að vista textann.'''",
 'readonlywarning' => "'''AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.'''
 Þú ættir að klippa og líma textann yfir í textaskjal til þess að geyma hann til seinni tíma.
 
@@ -1308,7 +1308,7 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searcheverything-enable' => 'Leita í öllum nafnrýmum',
 'searchrelated' => 'tengt',
 'searchall' => 'öllum',
-'showingresults' => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
+'showingresults' => 'Sýni <strong>$1</strong> {{PLURAL:$1|niðurstöðu|niðurstöður}} frá og með #<strong>$2</strong>.',
 'showingresultsnum' => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
 'showingresultsheader' => "{{PLURAL:$5|Niðurstaða '''$1''' af '''$3'''|Niðurstöður'''$1 - $2''' af '''$3'''}} fyrir '''$4'''",
 'search-nonefound' => 'Engar niðurstöður pössuðu við fyrirspurnina.',
@@ -2300,7 +2300,6 @@ Frekari breytingar á henni eða spjallsíðu hennar munu verða sýndar þar.',
 'watchmethod-list' => 'leita að breytingum í vöktuðum síðum',
 'watchlistcontains' => 'Vaktlistinn þinn inniheldur {{PLURAL:$1|$1 síðu|$1 síður}}.',
 'iteminvalidname' => 'Vandamál með „$1“, rangt nafn...',
-'wlnote' => "Hér fyrir neðan {{PLURAL:$1|er síðasta breyting|eru síðustu '''$1''' breytingar}} {{PLURAL:$2|síðastliðinn klukkutímann|síðastliðna '''$2''' klukkutímana}}, frá $3, $4.",
 'wlshowlast' => 'Sýna síðustu $1 klukkutíma, $2 daga, $3',
 'watchlist-options' => 'Vaktlistastillingar',
 
@@ -2954,7 +2953,6 @@ Vinsamlegast reyndu aftur.',
 'tooltip-pt-watchlist' => 'Listi yfir síður sem þú fylgist með breytingum á',
 'tooltip-pt-mycontris' => 'Listi yfir framlög þín',
 'tooltip-pt-login' => 'Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki skylda.',
-'tooltip-pt-anonlogin' => 'Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.',
 'tooltip-pt-logout' => 'Útskráning',
 'tooltip-ca-talk' => 'Spallsíða þessarar síðu',
 'tooltip-ca-edit' => 'Þú getur breytt síðu þessari, vinsamlegast notaðu „forskoða“ hnappinn áður en þú vistar',
@@ -3025,7 +3023,7 @@ Vinsamlegast reyndu aftur.',
 'notacceptable' => 'Wiki vefþjónninn getur ekki útvegað gögn á því formi sem biðlarinn þinn getur lesið.',
 
 # Attribution
-'anonymous' => '{{PLURAL:$1|Óþekktur notandi|Óþekktir notendur}} á {{SITENAME}}',
+'anonymous' => '$1 {{PLURAL:$1|óþekktur notandi|óþekktir notendur}} á {{SITENAME}}',
 'siteuser' => '{{SITENAME}} notandi $1',
 'anonuser' => '{{SITENAME}} nafnlaus notandi $1',
 'lastmodifiedatby' => 'Þessari síðu var síðast breytt $1 klukkan $2 af $3.',
@@ -3156,7 +3154,7 @@ Vinsamlegast reyndu aftur.',
 
 # Special:NewFiles
 'newimages' => 'Myndasafn nýlegra skráa',
-'imagelisttext' => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
+'imagelisttext' => 'Hér fyrir neðan er $1 {{PLURAL:$1|skrá|skrám}} raðað $2.',
 'newimages-summary' => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',
 'newimages-legend' => 'Sía',
 'newimages-label' => 'Skráarnafn (eða hluti þess):',
@@ -3695,7 +3693,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.',
 'lag-warn-high' => 'Vegna mikils álags á vefþjónanna, kunna breytingar yngri en $1 {{PLURAL:$1|sekúnda|sekúndur}} ekki að vera á þessum lista.',
 
 # Watchlist editor
-'watchlistedit-numitems' => 'Á vaktlista þínum {{PLURAL:$1|er 1 síða|eru $1 síður}}, að undanskildum spjallsíðum.',
+'watchlistedit-numitems' => 'Á vaktlista þínum {{PLURAL:$1|er $1 síða|eru $1 síður}}, að undanskildum spjallsíðum.',
 'watchlistedit-noitems' => 'Vaktlistinn þinn inniheldur enga titla.',
 'watchlistedit-normal-title' => 'Breyta vaktlistanum',
 'watchlistedit-normal-legend' => 'Fjarlægja titla af vaktlistanum',
@@ -3712,8 +3710,8 @@ einn titil í hverri línu.
 'watchlistedit-raw-titles' => 'Titlar:',
 'watchlistedit-raw-submit' => 'Uppfæra vaktlistann',
 'watchlistedit-raw-done' => 'Vaktlistinn þinn hefur verið uppfærður.',
-'watchlistedit-raw-added' => '{{PLURAL:$1|Einum titli|$1 titlum}} var bætt við:',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1 titill var fjarlægður|$1 titlar voru fjarlægðir}}:',
+'watchlistedit-raw-added' => '$1 {{PLURAL:$1|titli|titlum}} var bætt við:',
+'watchlistedit-raw-removed' => '$1 {{PLURAL:$1|titill var fjarlægður|titlar voru fjarlægðir}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Sýna viðeigandi breytingar',

@@ -1259,6 +1259,7 @@ $2',
 'usercreated' => '{{جنسیت:$3|راس بیه}}د $1 at $2',
 'newpages' => 'بلگيا نو',
 'move' => 'جاوه جا بوئيت',
+'movethispage' => 'ای بگله نه جا وه جا كو',
 'pager-newer-n' => '{{جمی:$1|وانها تر 1وانها تر $1}}',
 'pager-older-n' => '{{جمی:$1|گپسالتر 1|گپسالتر $1}}',
 
@@ -1284,6 +1285,7 @@ $2',
 'categories' => 'دسه يا',
 
 # Special:LinkSearch
+'linksearch-ns' => 'نوم جا:',
 'linksearch-line' => '$1 داره د $2 هوم پیوند بوئه',
 
 # Special:ListGroupRights
@@ -1321,9 +1323,11 @@ $2',
 'protectedarticle' => 'حفاظت بيه [[$1]]',
 'modifiedarticleprotection' => 'ریتراز حفاظت د "[[$1]]" آلشت بیه',
 'protect-title' => 'ریتراز حفاظت د "$1" آلشت بیه',
+'prot_1movedto2' => '[[$1]] د [[$2]] جا وه جا بی',
 'restriction-type' => 'دسرسی:',
 
 # Restrictions (nouns)
+'restriction-move' => 'جاوه جا بوئيت',
 'restriction-upload' => 'سوار کرد',
 
 # Restriction levels
@@ -1380,6 +1384,7 @@ $2',
 # Block/unblock
 'ipboptions' => '2 ساعتیا:2 ساعت,1 رو:1 رو,3 روزا:3 رو,1 هفته:1 هفته,2 هفته یا:2 هفته,1 ما:1 ما,3 ما:3 میا,6 ما:6 مایا,1 سال:1سال,حد ناره:حد ناره',
 'ipblocklist' => 'كاروريا منع بيه',
+'blocklist-nousertalk' => 'نبوئه بلگه چک چنه خوتونه ویرایشت بکید',
 'blocklink' => 'بسته بوئه',
 'unblocklink' => 'بی قطی',
 'change-blocklink' => 'اجازه نديئن سی  آلشت',
@@ -1387,12 +1392,16 @@ $2',
 'blocklogpage' => 'قلف',
 'blocklogentry' => ' [[$1]] وا یه گل وخت تموم بیئن $2 و $3  قلف بیه',
 'block-log-flags-nocreate' => 'حساو راس کردن عاجز بیه.',
+'block-log-flags-nousertalk' => 'نبوئه بلگه چک چنه خوتونه ویرایشت بکید',
 
 # Move page
+'move-page' => '$1 جا وه جا کو',
 'movenotallowed' => 'شما وه جا وه جا کردن بلگه دسرسی ناریت',
 'movenotallowedfile' => 'شما وه جا وه جا کردن جانیایا دسرسی ناریت',
+'movepagebtn' => 'بلگه جا وه جا کو',
 'movelogpage' => 'جاوه جا کردن',
 'revertmove' => 'لرستن',
+'delete_and_move' => 'پاک و جا وه جا بوئه',
 
 # Export
 'export' => 'وه صحرا ديئن بلگيا',
@@ -1402,6 +1411,7 @@ $2',
 'allmessagesname' => 'نوم',
 'allmessagesdefault' => 'سفارشت متنی پيش فرض',
 'allmessages-language' => 'زون:',
+'allmessages-filter-submit' => 'رو',
 
 # Thumbnails
 'thumbnail-more' => 'گپ كردن',
@@ -1427,7 +1437,6 @@ $2',
 'tooltip-pt-watchlist' => 'نوم نوشت د بلگه يايی كه شما آلشتاشونه پيگئری  ميكيد',
 'tooltip-pt-mycontris' => 'يه گل د هومياريا شما',
 'tooltip-pt-login' => 'توصيه بو كه وارد بوئين، اما مجبوری ني',
-'tooltip-pt-anonlogin' => 'توصيه بو كه وارد بوئين، اما مجبوری ني',
 'tooltip-pt-logout' => 'د سيستم دراومائن',
 'tooltip-ca-talk' => 'قسه دباره محتوا بلگه',
 'tooltip-ca-edit' => 'شما تونيد ای  بلگه نه ويرايشت بكيد. لطف بكيد د دگمه پيش ديئن پيش د ذخيره كردن استفاده بكيد',
@@ -1543,10 +1552,21 @@ $2',
 'exif-gpsaltitude-above-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
 'exif-gpsaltitude-below-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
 
+'exif-gpsdop-good' => 'خو ($1)',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه شو',
 'namespacesall' => 'همه شو',
 'monthsall' => 'همه',
+
+# Multipage image navigation
+'imgmultigo' => 'رؤ!',
+
+# Language selector for translatable SVGs
+'img-lang-go' => 'رو',
+
+# Table pager
+'table_pager_limit_submit' => 'رو',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'آلشتیا مرتوط نه بوینیت',
@@ -1563,6 +1583,7 @@ $2',
 'version-ext-colheader-credits' => 'نیسنه یا',
 
 # Special:Redirect
+'redirect-submit' => 'رو',
 'redirect-file' => 'نوم جانیا',
 
 # Special:FileDuplicateSearch

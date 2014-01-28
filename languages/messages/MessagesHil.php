@@ -1712,7 +1712,6 @@ Sa ulihi nga kaso, pwede ka magusar sang isa ka sugpon, tulad sa [[{{#Special:Ex
 'tooltip-pt-watchlist' => 'Ang lista sang mga pahina nga imo ginabantayan para bag-ohon',
 'tooltip-pt-mycontris' => 'Lista sang imo kontribusyon',
 'tooltip-pt-login' => 'Gina-abi-abi ikaw nga man magsulod paagi sa pag log-in, apang indi ini kinahanglan gid buhaton',
-'tooltip-pt-anonlogin' => 'Ginasuportahan ka nga magsulod, ugaling indi ini kinahanglan.',
 'tooltip-pt-logout' => 'Mag guha',
 'tooltip-ca-talk' => 'Paghisayranay nahanungod sini nga panid',
 'tooltip-ca-edit' => 'Puede nimo islan ang unod sang sini nga panid. Palihog gamit sang preview button antes permanentehon ang gin ilisan.',
