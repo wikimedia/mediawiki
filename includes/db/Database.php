@@ -1254,11 +1254,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string|array $cond The condition array. See DatabaseBase::select() for details.
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. See DatabaseBase::select() for details.
+	 * @param string|array $join_conds The query join conditions. See DatabaseBase::select() for details.
 	 *
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	public function selectField( $table, $var, $cond = '', $fname = __METHOD__,
-		$options = array()
+		$options = array(), $join_conds = array()
 	) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
@@ -1266,7 +1267,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		$options['LIMIT'] = 1;
 
-		$res = $this->select( $table, $var, $cond, $fname, $options );
+		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
 
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;

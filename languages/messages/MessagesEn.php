@@ -374,6 +374,7 @@ $magicWords = array(
 	'pagesincategory_pages'   => array( 0,    'pages' ),
 	'pagesincategory_subcats' => array( 0,    'subcats' ),
 	'pagesincategory_files'   => array( 0,    'files' ),
+	'catquery'                => array( 0,    'catquery' ),
 );
 
 /**

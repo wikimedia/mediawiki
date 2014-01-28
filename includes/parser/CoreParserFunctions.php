@@ -54,7 +54,7 @@ class CoreParserFunctions {
 			'talkpagename', 'talkpagenamee', 'subjectpagename',
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
-			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+			'revisiontimestamp', 'revisionuser', 'cascadingsources', 'catquery',
 		);
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
@@ -1170,6 +1170,23 @@ class CoreParserFunctions {
 				$names[] = $sourceTitle->getPrefixedText();
 			}
 			return implode( $names, '|' );
+		}
+		return '';
+	}
+
+	/**
+	 * For category pages, sets property 'catquery' that will later be used to render search results
+	 * instead of the regular pages.
+	 *
+	 * @param Parser $parser
+	 * @param string $query
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function catquery( $parser, $query = '' ) {
+		if ( $query && $parser->getTitle()->inNamespace( NS_CATEGORY ) ) {
+			$parser->getOutput()->setProperty( 'catquery', $query );
 		}
 		return '';
 	}

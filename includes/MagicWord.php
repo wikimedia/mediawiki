@@ -151,6 +151,7 @@ class MagicWord {
 		'numberofadmins',
 		'numberofviews',
 		'cascadingsources',
+		'catquery',
 	);
 
 	/* Array of caching hints for ParserCache */
