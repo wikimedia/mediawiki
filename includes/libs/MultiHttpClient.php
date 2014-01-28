@@ -86,7 +86,7 @@ class MultiHttpClient {
  	 *   - err     : Any cURL error string
  	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req;
+	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
 	 *  </code>
 	 * @param array $req HTTP request array
 	 * @param array $opts
@@ -110,7 +110,7 @@ class MultiHttpClient {
  	 *   - err     : Any cURL error string
  	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req;
+	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
 	 *  </code>
 	 * All headers in the 'headers' field are normalized to use lower case names.
 	 * This is true for the request headers and the response headers. Integer-indexed
