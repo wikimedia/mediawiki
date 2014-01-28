@@ -677,8 +677,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function createTables() {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = $this->getDB( $serverIndex );
-			if ( $db->getType() !== 'mysql'
-				|| version_compare( $db->getServerVersion(), '4.1.0', '<' )
+			if ( $db->getType() !== 'mysql' )
 			) {
 				throw new MWException( __METHOD__ . ' is not supported on this DB server' );
 			}
