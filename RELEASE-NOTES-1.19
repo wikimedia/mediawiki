@@ -3,6 +3,13 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.11 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.10 ===
+* (bug 60339) SECURITY: Sanitize shell arguments to DjVu files, and other media formats
+
 == MediaWiki 1.19.10 ==
 
 This is a security release of the MediaWiki 1.19 branch.
