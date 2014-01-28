@@ -3367,9 +3367,11 @@ class Title {
 			$dbkey = self::capitalize( $dbkey, $this->mNamespace );
 		}
 
-		# Can't make a link to a namespace alone... "empty" local links can only be
-		# self-links with a fragment identifier.
-		if ( $dbkey == '' && !$this->isExternal() && $this->mNamespace != NS_MAIN ) {
+		# Can't make a link to a namespace alone.
+		# "empty" local links can only be self-links with a fragment identifier.
+		if ( $dbkey == '' && !$this->isExternal()
+			&& ( $this->mNamespace != NS_MAIN || !$this->hasFragment() )
+		) {
 			return false;
 		}
 
