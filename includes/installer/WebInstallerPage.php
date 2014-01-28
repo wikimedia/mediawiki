@@ -827,7 +827,11 @@ class WebInstaller_Name extends WebInstallerPage {
 		$msg = false;
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
-		$valid = $user && $user->getPasswordValidity( $pwd );
+		if ( $user ) {
+			$valid = $user->getPasswordValidity( $pwd );
+		} else {
+			$valid = false;
+		}
 		if ( strval( $pwd ) === '' ) {
 			# $user->getPasswordValidity just checks for $wgMinimalPasswordLength.
 			# This message is more specific and helpful.
