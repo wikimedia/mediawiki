@@ -408,7 +408,8 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/config
 	'Config' => 'includes/config/Config.php',
-	'GlobalConfig' => 'includes/config/GlobalConfig.php',
+	'ConfigException' => 'includes/config/ConfigException.php',
+	'GlobalVarConfig' => 'includes/config/GlobalVarConfig.php',
 
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
