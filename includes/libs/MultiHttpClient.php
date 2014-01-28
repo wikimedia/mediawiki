@@ -86,7 +86,7 @@ class MultiHttpClient {
  	 *   - err     : Any cURL error string
  	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req;
+	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
 	 *  </code>
 	 * @param array $req HTTP request array
 	 * @param array $opts
@@ -110,7 +110,7 @@ class MultiHttpClient {
  	 *   - err     : Any cURL error string
  	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req;
+	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
 	 *  </code>
 	 * All headers in the 'headers' field are normalized to use lower case names.
 	 * This is true for the request headers and the response headers. Integer-indexed
@@ -211,7 +211,8 @@ class MultiHttpClient {
 			$ch = $handles[$index];
 			curl_multi_remove_handle( $chm, $ch );
 			if ( curl_errno( $ch ) !== 0 ) {
-				$req['error'] = "(curl error: " . curl_errno( $ch ) . ") " . curl_error( $ch );
+				$req['response']['error'] = "(curl error: " .
+					curl_errno( $ch ) . ") " . curl_error( $ch );
 			}
 			// For convenience with the list() operator
 			$req['response'][0] = $req['response']['code'];
