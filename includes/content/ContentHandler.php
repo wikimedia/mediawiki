@@ -677,12 +677,19 @@ abstract class ContentHandler {
 	 * typically based on the namespace or some other aspect of the title, such as a special suffix
 	 * (e.g. ".svg" for SVG content).
 	 *
+	 * @note: this calls the ContentHandlerCanBeUsedOn hook which may be used to override which
+	 * content model can be used where.
+	 *
 	 * @param Title $title the page's title.
 	 *
 	 * @return bool true if content of this kind can be used on the given page, false otherwise.
 	 */
 	public function canBeUsedOn( Title $title ) {
-		return true;
+		$ok = true;
+
+		wfRunHooks( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok ) );
+
+		return $ok;
 	}
 
 	/**

@@ -847,6 +847,15 @@ content model name, but no entry for that model exists in $wgContentHandlers.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
+'ContentModelCanBeUsedOn': Called to determine whether that content model can
+be used on a given page. This is especially useful to prevent some content models
+to be used in some special location.
+$contentModel: ID of the content model in question
+$title: the Title in question.
+&$ok: Output parameter, whether it is OK to use $contentModel on $title.
+Handler functions that modify $ok should generally return false to prevent further
+hooks from further modifying $ok.
+
 'ConvertContent': Called by AbstractContent::convert when a conversion to another
 content model is requested.
 $content: The Content object to be converted.

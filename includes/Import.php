@@ -252,6 +252,16 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
+		if ( !$revision->getContent()->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
+			$this->notice( 'import-error-bad-location',
+				$revision->getTitle()->getPrefixedText(),
+				$revision->getID(),
+				$revision->getModel(),
+				$revision->getFormat() );
+
+			return false;
+		}
+
 		try {
 			$dbw = wfGetDB( DB_MASTER );
 			return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
@@ -262,6 +272,8 @@ class WikiImporter {
 				$revision->getModel(),
 				$revision->getFormat() );
 		}
+
+		return false;
 	}
 
 	/**

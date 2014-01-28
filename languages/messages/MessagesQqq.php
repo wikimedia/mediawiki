@@ -7378,7 +7378,8 @@ See also:
 See also:
 * {{msg-mw|Import-noarticle}}
 * {{msg-mw|Importbadinterwiki}}',
-'import-nonewrevisions' => 'Used in [[Special:Import]].',
+'import-nonewrevisions' => 'Used in [[Special:Import]] to indicate that no revisions were imported.
+This may be due to the revisions already being present, or to errors when importing them.',
 'xml-error-string' => 'Parameters:
 * $1 - Some kind of message, perhaps name of the error?
 * $2 - line number
@@ -7425,6 +7426,17 @@ Parameters:
 'import-error-unserialize' => 'Import error message displayed when a revision could not be unserialized.
 
 This may happen if the content got corrupted or the serialization format is mis-reported.
+
+Parameters:
+* $1 - the name of the page the offending revision belongs to
+* $2 - the ID of the offending revision, as reported in the dump that is being imported
+* $3 - the content model reported for the offending revision in the dump that is being imported
+* $4 - the serialization format reported for the offending revision in the dump that is being imported
+{{Related|Import-error}}',
+'import-error-bad location' => 'Import error message displayed when trying to import a page to a title that is not allowed for this kind of content on this wiki.
+
+This may happen for content models bound to specific namespaces or title patterns, if the configuration of the allowed namespaces
+or titles differs from the configuration on the source wiki.
 
 Parameters:
 * $1 - the name of the page the offending revision belongs to
