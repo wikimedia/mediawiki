@@ -311,7 +311,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// NOTE: make sure we only save the global once or a second call to
 			// setMwGlobals() on the same global would override the original
 			// value.
-			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
+			if ( !array_key_exists( $key, $this->mwGlobals ) && isset( $GLOBALS[$key] ) ) {
 				$this->mwGlobals[$key] = $GLOBALS[$key];
 			}
 
