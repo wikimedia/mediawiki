@@ -60,11 +60,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgConf = new SiteConfiguration;
 
 /**
- * Class name to use for accessing Config.
- * Currently only 'GlobalConfig' is available
+ * Registry of factory functions to create config objects:
+ * The 'main' key must be set, and the value should be a valid
+ * callable.
  * @since 1.23
  */
-$wgConfigClass = 'GlobalConfig';
+$wgConfigRegistry = array(
+	'main' => 'GlobalVarConfig::newInstance'
+);
 
 /**
  * MediaWiki version number
