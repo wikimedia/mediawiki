@@ -341,11 +341,6 @@ if ( !$wgEnotifMinorEdits ) {
 	$wgHiddenPrefs[] = 'enotifminoredits';
 }
 
-# $wgDisabledActions is deprecated as of 1.18
-foreach ( $wgDisabledActions as $action ) {
-	$wgActions[$action] = false;
-}
-
 # We always output HTML5 since 1.22, overriding these is no longer supported
 # we set them here for extensions that depend on its value.
 $wgHtml5 = true;
