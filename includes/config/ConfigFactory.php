@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014
  *
@@ -21,27 +22,38 @@
  */
 
 /**
- * Base class for configuration
+ * Factory class to create Config objects
  *
  * @since 1.23
  */
-abstract class Config {
+class ConfigFactory {
+
+	protected $configs = array();
+
+	public static function singleton() {
+		static $self = null;
+		if ( !$self ) {
+			$self = new self;
+		}
+		return $self;
+	}
 
 	/**
-	 * Get a configuration variable such as "Sitename" or "UploadMaintenance."
-	 *
-	 * @param string $name Name of configuration option
-	 * @return mixed Value configured
-	 * @throws ConfigException
+	 * Register a new config type
+	 * @param string $type
+	 * @param callable $callback
 	 */
-	abstract public function get( $name );
+	public function register( $type, $callback ) {
+		$this->configs[$type] = $callback;
+	}
 
 	/**
-	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
-	 *
-	 * @param string $name Name of configuration option
-	 * @param mixed $value Value to set
-	 * @throws ConfigException
+	 * Create a given Config type using the callback
+	 * provided earlier
+	 * @param string $type
+	 * @return Config
 	 */
-	abstract public function set( $name, $value );
+	public function makeConfig( $type ) {
+		return $this->configs[$type]();
+	}
 }
