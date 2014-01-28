@@ -38,6 +38,7 @@ production.
 * $wgSkipSkin, which has been replaceable by $wgSkipSkins since 2005 (r9249), is
   now formally deprecated.
 * Removed deprecated $wgDisabledActions as it is hardly used anywhere.
+* Deprecated $wgCopyrightIcon was removed.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
