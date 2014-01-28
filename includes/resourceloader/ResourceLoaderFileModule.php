@@ -683,14 +683,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		foreach ( $styles as $media => $files ) {
 			$uniqueFiles = array_unique( $files );
-			$styles[$media] = implode(
-				"\n",
-				array_map(
-					array( $this, 'readStyleFile' ),
-					$uniqueFiles,
-					array_fill( 0, count( $uniqueFiles ), $flip )
-				)
-			);
+			$styleFiles = array();
+			foreach ( $uniqueFiles as $file ) {
+				try {
+					$styleFiles[] = $this->readStyleFile( $file, $flip );
+				} catch ( MWException $e ) {
+					$styleFiles[] = ResourceLoader::formatException( $e );
+				}
+			}
+			$styles[$media] = implode( "\n", $styleFiles );
 		}
 		return $styles;
 	}
