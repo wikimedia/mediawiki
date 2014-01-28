@@ -5818,7 +5818,7 @@ $wgLicenseTerms = false;
  * Set this to some HTML to override the rights icon with an arbitrary logo
  * @deprecated since 1.18 Use $wgFooterIcons['copyright']['copyright']
  */
-$wgCopyrightIcon = null;
+ $wgFooterIcons['copyright']['copyright'] = null;
 
 /**
  * Set this to true if you want detailed copyright information forms on Upload.
