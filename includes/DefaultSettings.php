@@ -60,6 +60,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgConf = new SiteConfiguration;
 
 /**
+ * Class name to use for accessing Config.
+ * Currently only 'GlobalConfig' is available
+ * @since 1.23
+ */
+$wgConfigClass = 'GlobalConfig';
+
+/**
  * MediaWiki version number
  * @since 1.2
  */

@@ -405,6 +405,10 @@ $wgAutoloadLocalClasses = array(
 	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
 	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
 
+	# includes/config
+	'Config' => 'includes/config/Config.php',
+	'GlobalConfig' => 'includes/config/GlobalConfig.php',
+
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
 	'ContentHandler' => 'includes/content/ContentHandler.php',
