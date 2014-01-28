@@ -25,20 +25,20 @@
  *
  * @since 1.23
  */
-class GlobalConfig extends Config {
+class GlobalVarConfig extends Config {
 
 	/**
 	 * @see Config::get
 	 */
 	public function get( $name, $prefix = 'wg' ) {
-		return $GLOBALS[$prefix . $name];
+		return $GLOBALS[ $prefix . $name ];
 	}
 
 	/**
 	 * @see Config::set
 	 */
 	public function set( $name, $value, $prefix = 'wg' ) {
-		$GLOBALS[$prefix . $name] = $value;
-		return Status::newGood();
+		$GLOBALS[ $prefix . $name ] = $value;
+		return true;
 	}
 }

@@ -29,31 +29,13 @@
 abstract class Config {
 
 	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param string $prefix of the variable name
-	 * @return mixed
+	 * @param string $name Name of configuration option
 	 */
-	abstract public function get( $name, $prefix = 'wg' );
+	abstract public function get( $name );
 
 	/**
-	 * @param string $name configuration variable name without prefix
-	 * @param mixed $value to set
-	 * @param string $prefix of the variable name
-	 * @return Status object indicating success or failure
+	 * @param string $name Name of configuration option
+	 * @param mixed $value Value to set
 	 */
-	abstract public function set( $name, $value, $prefix = 'wg' );
-
-	/**
-	 * @param string|null $type class name for Config object,
-	 *        uses $wgConfigClass if not provided
-	 * @return Config
-	 */
-	public static function factory( $type = null ) {
-		if ( !$type ) {
-			global $wgConfigClass;
-			$type = $wgConfigClass;
-		}
-
-		return new $type;
-	}
+	abstract public function set( $name, $value );
 }
