@@ -61,10 +61,10 @@ $wgConf = new SiteConfiguration;
 
 /**
  * Class name to use for accessing Config.
- * Currently only 'GlobalConfig' is available
+ * Currently only 'GlobalVarConfig' is available
  * @since 1.23
  */
-$wgConfigClass = 'GlobalConfig';
+$wgConfigClass = 'GlobalVarConfig';
 
 /**
  * MediaWiki version number
