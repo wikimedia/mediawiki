@@ -200,6 +200,7 @@ changes to languages because of Bugzilla reports.
 * (bug 52811) Preference "Enable section editing via [edit] links" was removed.
 * (bug 52813) Preference "Show table of contents (for pages with more than
   3 headings)" was removed.
+* (bug 52810) Preference "Justify paragraphs" was removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
