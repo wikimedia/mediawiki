@@ -27,7 +27,7 @@
  * @ingroup SpecialPage
  */
 
-class SpecialContributions extends SpecialPage {
+class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
 	public function __construct() {
@@ -63,8 +63,9 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
 		if ( !strlen( $target ) ) {
-			$out->addHTML( $this->getForm() );
-
+			if ( !$this->including() ) {
+				$out->addHTML( $this->getForm() );
+			}
 			return;
 		}
 
@@ -169,8 +170,9 @@ class SpecialContributions extends SpecialPage {
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
-			$out->addHTML( $this->getForm() );
-
+			if ( !$this->including() ) {
+				$out->addHTML( $this->getForm() );
+			}
 			$pager = new ContribsPager( $this->getContext(), array(
 				'target' => $target,
 				'contribs' => $this->opts['contribs'],
@@ -214,10 +216,12 @@ class SpecialContributions extends SpecialPage {
 			}
 
 			if ( $message ) {
-				if ( !$this->msg( $message, $target )->isDisabled() ) {
-					$out->wrapWikiMsg(
-						"<div class='mw-contributions-footer'>\n$1\n</div>",
-						array( $message, $target ) );
+				if ( !$this->including() ) {
+					if ( !$this->msg( $message, $target )->isDisabled() ) {
+						$out->wrapWikiMsg(
+							"<div class='mw-contributions-footer'>\n$1\n</div>",
+							array( $message, $target ) );
+					}
 				}
 			}
 		}
