@@ -114,6 +114,7 @@ production.
   compiled without support for MySQL yet with support for another DBMS.
 * (bug 56199) Raw option of parser functions must now match complete word,
   to take effect.
+* (bug 60543) Special:PrefixIndex forgot stripprefix=1 for "Next page" link
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
