@@ -2147,6 +2147,9 @@ class OutputPage extends ContextSource {
 		$this->prepareErrorPage( $title );
 
 		if ( $msg instanceof Message ) {
+			if ( $params !== array() ) {
+				trigger_error( 'Argument ignored: $params. The message parameters argument is discarded when the $msg argument is a Message object instead of a string.', E_USER_NOTICE );
+			}
 			$this->addHTML( $msg->parseAsBlock() );
 		} else {
 			$this->addWikiMsgArray( $msg, $params );
