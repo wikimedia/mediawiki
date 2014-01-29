@@ -32,6 +32,11 @@ production.
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
 * $wgDBAhandler was removed as the only class using it was also removed
 * The 'max threads' setting was removed from $wgDBservers.
+* $wgLocalInterwikis is an array containing multiple local interwiki prefixes
+  (interwiki prefixes that point back to the current wiki). This effectively
+  allows more than one value of $wgLocalInterwiki to be specified and
+  understood by the parser. The value of $wgLocalInterwiki is automatically
+  appended to the end of this array.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -201,6 +206,9 @@ changes to languages because of Bugzilla reports.
 * (bug 52813) Preference "Show table of contents (for pages with more than
   3 headings)" was removed.
 * (bug 52810) Preference "Justify paragraphs" was removed.
+* RecentChange::mExtra['lang'] is no longer used. Extensions should read from
+  other configuration variables, including $wgLocalInterwikis, to identify the
+  current wiki.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

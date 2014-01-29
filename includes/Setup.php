@@ -265,6 +265,10 @@ if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
+if ( $wgLocalInterwiki ) {
+	$wgLocalInterwikis[] = $wgLocalInterwiki;
+}
+
 # Set default shared prefix
 if ( $wgSharedPrefix === false ) {
 	$wgSharedPrefix = $wgDBprefix;

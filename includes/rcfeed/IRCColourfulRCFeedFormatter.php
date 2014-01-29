@@ -30,7 +30,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 * @see RCFeedFormatter::getLine
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwiki,
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,
 			$wgCanonicalServer, $wgScript;
 		$attribs = $rc->getAttributes();
 		if ( $attribs['rc_type'] == RC_LOG ) {
@@ -88,8 +88,10 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			$flag .= ( $attribs['rc_type'] == RC_NEW ? "N" : "" ) . ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
 		}
 
-		if ( $feed['add_interwiki_prefix'] === true && $wgLocalInterwiki !== false ) {
-			$prefix = $wgLocalInterwiki;
+		if ( $feed['add_interwiki_prefix'] === true && count( $wgLocalInterwikis ) > 0 ) {
+			// doesn't really matter which local interwiki we use, they should
+			// all do the trick
+			$prefix = $wgLocalInterwikis[0];
 		} elseif ( $feed['add_interwiki_prefix'] ) {
 			$prefix = $feed['add_interwiki_prefix'];
 		} else {
