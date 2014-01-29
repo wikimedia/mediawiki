@@ -4,7 +4,7 @@
 // For Vector, that should be layered on top with vector-type
 .agora-field-styling() {
 
-	border: 1px solid @agoraGray;
+	border: 1px solid @colorGrayLight;
 
 	&:focus {
 		// Styling focus of native checkboxes etc on Mac is almost impossible.
@@ -12,12 +12,12 @@
 			outline: 0; // Removes OS field focus
 		}
 
-		box-shadow: @agoraBlueShadow 0px 0px 5px;
+		box-shadow: @colorProgressiveShadow 0px 0px 5px;
 
-		border-color: @agoraBlueShadow;
+		border-color: @colorProgressiveShadow;
 	}
 
-	color: @agoraTextColor;
+	color: @colorText;
 	padding: 0.35em 0.5em 0.35em 0.5em;
 
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
@@ -27,7 +27,7 @@
 .agora-label-styling() {
 	//font-weight: bold;
 	font-size: 0.9em;
-	color: darken(@agoraGray, 50%);
+	color: darken(@colorGrayLight, 50%);
 
 	* {
 		font-weight: normal;
@@ -48,7 +48,7 @@
 		height: auto;
 		margin: 0 0.1em 0em 0;
 		padding: 0;
-		border: 1px solid @agoraGray;
+		border: 1px solid @colorGrayLight;
 		cursor: pointer;
 	}
 }
