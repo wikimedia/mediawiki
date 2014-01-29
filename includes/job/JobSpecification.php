@@ -92,7 +92,7 @@ class JobSpecification implements IJobSpecification {
 	protected $title;
 
 	/** @var bool Expensive jobs may set this to true */
-	protected $removeDuplicates;
+	protected $ignoreDuplicates;
 
 	/**
 	 * @param string $type
@@ -108,7 +108,7 @@ class JobSpecification implements IJobSpecification {
 		$this->type = $type;
 		$this->params = $params;
 		$this->title = $title ?: Title::newMainPage();
-		$this->removeDuplicates = !empty( $opts['removeDuplicates'] );
+		$this->ignoreDuplicates = !empty( $opts['removeDuplicates'] );
 	}
 
 	/**
@@ -158,7 +158,7 @@ class JobSpecification implements IJobSpecification {
 	 * @return bool Whether only one of each identical set of jobs should be run
 	 */
 	public function ignoreDuplicates() {
-		return $this->removeDuplicates;
+		return $this->ignoreDuplicates;
 	}
 
 	/**
