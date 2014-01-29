@@ -21,8 +21,6 @@
 // Markup:
 // <button class="mw-ui-button">.mw-ui-button</button>
 // <button class="mw-ui-button" disabled>.mw-ui-button</button>
-// <button class="mw-ui-button mw-ui-quiet">.mw-ui-button</button>
-// <button class="mw-ui-button mw-ui-quiet" disabled>.mw-ui-button</button>
 //
 // Styleguide 2.1.
 .mw-ui-button {
@@ -61,10 +59,34 @@
 
 	// Styling for specific button types
 	// -----------------------------------------
+
+	// Big buttons
+	//
+	// Not all buttons are equal. You can emphasise certain actions over others
+	// using the mw-ui-big class.
+	//
+	// Markup:
+	// <button class="mw-ui-button mw-ui-big">.mw-ui-button</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-big">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-big">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-big">.mw-ui-destructive</button>
+	//
+	// Styleguide 2.1.6.
 	&.mw-ui-big {
 		font-size: @baseFontSize * 1.3;
 	}
 
+	// Block buttons
+	//
+	// Some buttons might need to be stacked.
+	//
+	// Markup:
+	// <button class="mw-ui-button mw-ui-block">.mw-ui-button</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-block">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-block">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-block">.mw-ui-destructive</button>
+	//
+	// Styleguide 2.1.5.
 	&.mw-ui-block {
 		display: block;
 		width: 100%;
@@ -78,8 +100,6 @@
 	// Markup:
 	// <button class="mw-ui-button mw-ui-progressive">.mw-ui-progressive</button>
 	// <button class="mw-ui-button mw-ui-progressive" disabled>.mw-ui-progressive</button>
-	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet">.mw-ui-progressive</button>
-	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet" disabled>.mw-ui-progressive</button>
 	//
 	// Styleguide 2.1.1.
 	&.mw-ui-progressive,
@@ -100,8 +120,6 @@
 	// Markup:
 	// <button class="mw-ui-button mw-ui-constructive">.mw-ui-constructive</button>
 	// <button class="mw-ui-button mw-ui-constructive" disabled>.mw-ui-constructive</button>
-	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet">.mw-ui-constructive</button>
-	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet" disabled>.mw-ui-constructive</button>
 	//
 	// Styleguide 2.1.2.
 	&.mw-ui-constructive {
@@ -121,8 +139,6 @@
 	// Markup:
 	// <button class="mw-ui-button mw-ui-destructive">.mw-ui-destructive</button>
 	// <button class="mw-ui-button mw-ui-destructive" disabled>.mw-ui-destructive</button>
-	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet">.mw-ui-destructive</button>
-	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet" disabled>.mw-ui-destructive</button>
 	//
 	// Styleguide 2.1.3.
 	&.mw-ui-destructive {
@@ -133,6 +149,20 @@
 		}
 	}
 
+	// Quiet buttons
+	//
+	// Use quiet buttons when they are less important and alongisde other progressive/destructive/progressive buttons.
+	//
+	// Markup:
+	// <button class="mw-ui-button mw-ui-quiet">.mw-ui-button</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-quiet" disabled>.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet">.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-quiet" disabled>.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-quiet" disabled>.mw-ui-progressive</button>
+	//
+	// Styleguide 2.1.4.
 	&.mw-ui-quiet {
 		background: transparent;
 		border: none;
