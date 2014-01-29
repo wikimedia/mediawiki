@@ -149,7 +149,7 @@ class UserloginTemplate extends BaseTemplate {
 				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
 					'id' => 'wpLoginAttempt',
 					'tabindex' => '6',
-					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-primary'
+					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
 				) );
 				?>
 			</div>
@@ -164,7 +164,7 @@ class UserloginTemplate extends BaseTemplate {
 					</div>
 				<?php } else { ?>
 					<div id="mw-createaccount-cta">
-						<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+						<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
 					</div>
 				<?php } ?>
 			<?php } ?>

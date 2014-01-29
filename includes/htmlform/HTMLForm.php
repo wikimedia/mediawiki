@@ -812,7 +812,8 @@ class HTMLForm extends ContextSource {
 			if ( $this->isVForm() ) {
 				// mw-ui-block is necessary because the buttons aren't necessarily in an
 				// immediate child div of the vform.
-				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-primary', 'mw-ui-block' );
+				// TODO Let client specify if the primary submit button is progressive or destructive
+				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-big', 'mw-ui-constructive', 'mw-ui-block' );
 			}
 
 			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
