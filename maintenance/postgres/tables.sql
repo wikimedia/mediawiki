@@ -377,6 +377,7 @@ CREATE TABLE uploadstash (
   us_key          TEXT,
   us_orig_path    TEXT,
   us_path         TEXT,
+  us_props        BYTEA,
   us_source_type  TEXT,
   us_timestamp    TIMESTAMPTZ,
   us_status       TEXT,

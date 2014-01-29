@@ -260,7 +260,7 @@ class UploadStash {
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath, // virtual URL
-			'us_props' => serialize( $fileProps ),
+			'us_props' => $dbw->encodeBlob( serialize( $fileProps ) ),
 			'us_size' => $fileProps['size'],
 			'us_sha1' => $fileProps['sha1'],
 			'us_mime' => $fileProps['mime'],
