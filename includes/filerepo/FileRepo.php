@@ -111,6 +111,9 @@ class FileRepo {
 	 */
 	protected $abbrvThreshold;
 
+	/** @var string The URL of the repo's favicon, if any  */
+	protected $favicon;
+
 	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
@@ -147,7 +150,7 @@ class FileRepo {
 		$optionalSettings = array(
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension'
+			'scriptExtension', 'favicon'
 		);
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -1853,7 +1856,7 @@ class FileRepo {
 
 		$optionalSettings = array(
 			'url', 'thumbUrl', 'initialCapital', 'descBaseUrl', 'scriptDirUrl', 'articleUrl',
-			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension'
+			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension', 'favicon'
 		);
 		foreach ( $optionalSettings as $k ) {
 			if ( isset( $this->$k ) ) {
