@@ -5850,6 +5850,17 @@ $wgShowCreditsIfMax = true;
  * Special:Import (for sysops). Since complete page history can be imported,
  * these should be 'trusted'.
  *
+ * This can either be a regular array, or an associative map specifying
+ * subprojects on the interwiki map of the target wiki, or a mix of the two,
+ * e.g.
+ * @code
+ *     $wgImportSources = array(
+ *         'wikipedia' => array( 'cs', 'en', 'fr', 'zh' ),
+ *         'wikispecies',
+ *         'wikia' => array( 'animanga', 'brickipedia', 'desserts' ),
+ *     );
+ * @endcode
+ *
  * If a user has the 'import' permission but not the 'importupload' permission,
  * they will only be able to run imports through this transwiki interface.
  */

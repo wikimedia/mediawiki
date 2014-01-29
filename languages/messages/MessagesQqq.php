@@ -7265,7 +7265,8 @@ See also:
 'import' => 'The title of the special page [[Special:Import]];',
 'importinterwiki' => 'Used as legend for the Import form in [[Special:Import]].',
 'import-interwiki-text' => 'Used as summary for the Import form in [[Special:Import]].',
-'import-interwiki-source' => 'Used as label for input box in [[Special:Import]].',
+'import-interwiki-sourcewiki' => 'Used as label for drop-down box in [[Special:Import]].',
+'import-interwiki-sourcepage' => 'Used as label for input box in [[Special:Import]].',
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.
 
 See also:
