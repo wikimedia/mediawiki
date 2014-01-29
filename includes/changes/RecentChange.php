@@ -52,7 +52,6 @@
  * mExtra:
  *  prefixedDBkey   prefixed db key, used by external app via msg queue
  *  lastTimestamp   timestamp of previous entry, used in WHERE clause during update
- *  lang            the interwiki prefix, automatically set in save()
  *  oldSize         text size before the change
  *  newSize         text size after the change
  *  pageStatus      status of the page: created, deleted, moved, restored, changed
@@ -233,13 +232,12 @@ class RecentChange {
 	 * @param $noudp bool
 	 */
 	public function save( $noudp = false ) {
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
+		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = array();
 		}
-		$this->mExtra['lang'] = $wgLocalInterwiki;
 
 		if ( !$wgPutIPinRC ) {
 			$this->mAttribs['rc_ip'] = '';
