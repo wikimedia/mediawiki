@@ -93,6 +93,7 @@ abstract class ImageHandler extends MediaHandler {
 		if ( !isset( $params['page'] ) ) {
 			$params['page'] = 1;
 		} else {
+			$params['page'] = intval( $params['page'] );
 			if ( $params['page'] > $image->pageCount() ) {
 				$params['page'] = $image->pageCount();
 			}
