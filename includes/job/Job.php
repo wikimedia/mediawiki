@@ -1,6 +1,6 @@
 <?php
 /**
- * Job queue base code.
+ * Job queue task base code.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,11 @@
 /**
  * Class to both describe a background job and handle jobs.
  * The queue aspects of this class are now deprecated.
+ * Using the class to push jobs onto queues is deprecated (use JobSpecification).
  *
  * @ingroup JobQueue
  */
-abstract class Job {
+abstract class Job implements IJobSpecification {
 	/** @var string */
 	public $command;
 
