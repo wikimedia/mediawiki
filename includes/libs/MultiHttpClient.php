@@ -1,9 +1,29 @@
 <?php
+/**
+ * HTTP service client
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 /**
  * Class to handle concurrent HTTP requests
  *
- * HTTP request maps use the following format:
+ * HTTP request maps are arrays that use the following format:
  *   - method   : GET/HEAD/PUT/POST/DELETE
  *   - url      : HTTP/HTTPS URL
  *   - query    : <query parameter field/value associative array> (uses RFC 3986)
@@ -14,6 +34,7 @@
  *                array bodies are encoded as multipart/form-data and strings
  *                use application/x-www-form-urlencoded (headers sent automatically)
  *   - stream   : resource to stream the HTTP response body to
+ * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
  * @author Aaron Schulz
  * @since 1.23
@@ -60,13 +81,13 @@ class MultiHttpClient {
 	 * @param array $req HTTP request array
 	 * @return array Response array for request
 	 */
-	public function run( array $req ) {
+	final public function run( array $req ) {
 		$req = $this->runMulti( array( $req ) );
 		return $req[0]['response'];
 	}
 
 	/**
-	 * Execute a set of HTTP(S) request concurrently
+	 * Execute a set of HTTP(S) requests concurrently
 	 *
 	 * The maps are returned by this method with the 'response' field set to a map of:
  	 *   - code    : HTTP response code or 0 if there was a serious cURL error
@@ -79,7 +100,8 @@ class MultiHttpClient {
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req;
 	 *  </code>
 	 * All headers in the 'headers' field are normalized to use lower case names.
-	 * This is true for the request headers and the response headers.
+	 * This is true for the request headers and the response headers. Integer-indexed
+	 * method/URL entries will also be changed to use the corresponding string keys.
 	 *
 	 * @param array $req Map of HTTP request arrays
 	 * @return array $reqs With response array populated for each
@@ -97,6 +119,14 @@ class MultiHttpClient {
 				'body'     => '',
 				'error'    => ''
 			);
+			if ( isset( $req[0] ) ) {
+				$req['method'] = $req[0]; // short-form
+				unset( $req[0] );
+			}
+			if ( isset( $req[1] ) ) {
+				$req['url'] = $req[1]; // short-form
+				unset( $req[1] );
+			}
 			if ( !isset( $req['method'] ) ) {
 				throw new Exception( "Request has no 'method' field set." );
 			} elseif ( !isset( $req['url'] ) ) {
@@ -121,6 +151,7 @@ class MultiHttpClient {
 			}
 			curl_multi_add_handle( $multiHandle, $handles[$index] );
 		}
+		unset( $req ); // don't assign over this by accident
 
 		// Execute the cURL handles concurrently...
 		$active = null; // handles still being processed
@@ -158,6 +189,7 @@ class MultiHttpClient {
 				unset( $req['_closeHandle'] );
 			}
 		}
+		unset( $req ); // don't assign over this by accident
 
 		return $reqs;
 	}
