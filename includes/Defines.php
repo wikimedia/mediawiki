@@ -165,11 +165,6 @@ define( 'ALF_NO_BLOCK_LOCK', 8 );
  * Date format selectors; used in user preference storage and by
  * Language::date() and co.
  */
-/*define( 'MW_DATE_DEFAULT', '0' );
-define( 'MW_DATE_MDY', '1' );
-define( 'MW_DATE_DMY', '2' );
-define( 'MW_DATE_YMD', '3' );
-define( 'MW_DATE_ISO', 'ISO 8601' );*/
 define( 'MW_DATE_DEFAULT', 'default' );
 define( 'MW_DATE_MDY', 'mdy' );
 define( 'MW_DATE_DMY', 'dmy' );
