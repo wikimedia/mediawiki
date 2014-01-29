@@ -21,18 +21,6 @@
  */
 
 /**
- * Int Number of characters in user_token field.
- * @ingroup Constants
- */
-define( 'USER_TOKEN_LENGTH', 32 );
-
-/**
- * Int Serialized record version.
- * @ingroup Constants
- */
-define( 'MW_USER_VERSION', 8 );
-
-/**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
  * @ingroup Constants
  */
@@ -58,11 +46,16 @@ class PasswordError extends MWException {
  */
 class User {
 	/**
-	 * Global constants made accessible as class constants so that autoloader
-	 * magic can be used.
+	 * @var int Number of characters in user_token field.
 	 */
-	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
-	const MW_USER_VERSION = MW_USER_VERSION;
+	const USER_TOKEN_LENGTH = 32;
+
+	/**
+	 * Int Serialized record version.
+	 * @ingroup Constants
+	 */
+	const MW_USER_VERSION = 8;
+
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
