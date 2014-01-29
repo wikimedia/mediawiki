@@ -505,8 +505,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings.php exists. If it does, return its variables,
-	 * merged with those from AdminSettings.php, as an array.
+	 * Determine if LocalSettings.php exists. If it does, return its variables.
 	 *
 	 * @return Array
 	 */
@@ -524,9 +523,6 @@ abstract class Installer {
 
 		require "$IP/includes/DefaultSettings.php";
 		require "$IP/LocalSettings.php";
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			require "$IP/AdminSettings.php";
-		}
 
 		return get_defined_vars();
 	}
