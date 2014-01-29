@@ -2130,9 +2130,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard error page
 	 *
+	 * showErrorPage( 'titlemsg', 'pagetextmsg' );
 	 * showErrorPage( 'titlemsg', 'pagetextmsg', array( 'param1', 'param2' ) );
 	 * showErrorPage( 'titlemsg', $messageObject );
-	 * showErrorPage( $titleMessageObj, $messageObject );
+	 * showErrorPage( $titleMessageObject, $messageObject );
 	 *
 	 * @param $title Mixed: message key (string) for page title, or a Message object
 	 * @param $msg Mixed: message key (string) for page text, or a Message object
