@@ -150,6 +150,8 @@ production.
   list=usercontribs.
 * list=watchlist now uses the querying user's rights rather than the wlowner's
   rights when checking whether wlprop=patrol is allowed.
+* (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
+  Title parameter is now deprecated.
 
 === Languages updated in 1.23 ===
 
