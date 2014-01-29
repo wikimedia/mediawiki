@@ -213,7 +213,7 @@ class UploadStash {
 			$this->userId . '.' .
 			$extension;
 
-		$this->fileProps[$key] = $fileProps;
+		$this->fileProps[$key] = $fileu;
 
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
@@ -483,6 +483,7 @@ class UploadStash {
 		}
 
 		$this->fileMetadata[$key] = (array)$row;
+		$this->fileMetadata[$key]['us_props'] = $dbr->decodeBlob( $row->us_props );
 
 		return true;
 	}
