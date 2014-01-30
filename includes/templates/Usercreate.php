@@ -254,7 +254,7 @@ class UsercreateTemplate extends BaseTemplate {
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
 					'submit',
 					array(
-						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-primary",
+						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive",
 						'id' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
 					)
