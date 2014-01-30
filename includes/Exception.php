@@ -317,7 +317,7 @@ class ErrorPageError extends MWException {
 	 * @param string|Message $msg Message key (string) for error text, or a Message object
 	 * @param array $params with parameters to wfMessage()
 	 */
-	function __construct( $title, $msg, $params = null ) {
+	function __construct( $title, $msg, $params = array() ) {
 		$this->title = $title;
 		$this->msg = $msg;
 		$this->params = $params;
@@ -356,7 +356,7 @@ class BadTitleError extends ErrorPageError {
 	 * @param string|Message $msg A message key (default: 'badtitletext')
 	 * @param array $params parameter to wfMessage()
 	 */
-	function __construct( $msg = 'badtitletext', $params = null ) {
+	function __construct( $msg = 'badtitletext', $params = array() ) {
 		parent::__construct( 'badtitle', $msg, $params );
 	}
 
@@ -426,7 +426,7 @@ class ReadOnlyError extends ErrorPageError {
 		parent::__construct(
 			'readonly',
 			'readonlytext',
-			wfReadOnlyReason()
+			wfReadOnlyReason() ?: array()
 		);
 	}
 }
@@ -501,12 +501,12 @@ class UserNotLoggedIn extends ErrorPageError {
 	 * @param string $titleMsg A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
 	 * @param array $params Parameters to wfMessage().
-	 *        Optional, default: null
+	 *        Optional, default: array()
 	 */
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
 		$titleMsg = 'exception-nologin',
-		$params = null
+		$params = array()
 	) {
 		parent::__construct( $titleMsg, $reasonMsg, $params );
 	}
