@@ -821,7 +821,7 @@ class Parser {
 	 * @since 1.19
 	 *
 	 * @throws MWException
-	 * @return Language|null
+	 * @return Language
 	 */
 	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();

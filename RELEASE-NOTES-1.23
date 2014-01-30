@@ -143,6 +143,8 @@ production.
   list=usercontribs.
 * list=watchlist now uses the querying user's rights rather than the wlowner's
   rights when checking whether wlprop=patrol is allowed.
+* Core parser functions returning a number now format the number according to
+  the page content language, not wiki content language.
 
 === Languages updated in 1.23 ===
 
