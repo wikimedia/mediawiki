@@ -107,6 +107,7 @@ class ApiQuery extends ApiBase {
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
 		'filerepoinfo' => 'ApiQueryFileRepoInfo',
+		'sites' => 'ApiQuerySites',
 	);
 
 	/**
