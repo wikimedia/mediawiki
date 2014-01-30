@@ -869,8 +869,10 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	protected function updateLinksTimestamp() {
 		if ( $this->mId ) {
+			// The link updates made here only reflect the freshness of the parser output
+			$timestamp = $this->mParserOutput->getCacheTime();
 			$this->mDb->update( 'page',
-				array( 'page_links_updated' => $this->mDb->timestamp() ),
+				array( 'page_links_updated' => $this->mDb->timestamp( $timestamp ) ),
 				array( 'page_id' => $this->mId ),
 				__METHOD__
 			);
