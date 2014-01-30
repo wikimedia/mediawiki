@@ -171,6 +171,8 @@ changes to languages because of Phabricator reports.
   Instead of --keep-uploads, use the same option to parserTests.php, but you
   must specify a directory with --upload-dir.
 * The 'jquery.arrowSteps' ResourceLoader module was removed.
+* (T62604) Core parser functions returning a number now format the number according
+  to the page content language, not wiki content language.
 
 == Compatibility ==
 
