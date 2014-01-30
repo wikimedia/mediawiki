@@ -66,16 +66,6 @@ class SearchEngine {
 	}
 
 	/**
-	 * If this search backend can list/unlist redirects
-	 * @deprecated since 1.18 Call supports( 'list-redirects' );
-	 * @return bool
-	 */
-	function acceptListRedirects() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return $this->supports( 'list-redirects' );
-	}
-
-	/**
 	 * @since 1.18
 	 * @param $feature String
 	 * @return Boolean
