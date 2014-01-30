@@ -32,6 +32,8 @@ production.
   the system message 'emailsender' should be modified (default: "{{SITENAME}}").
 * $wgDBAhandler was removed as the only class using it was also removed
 * The 'max threads' setting was removed from $wgDBservers.
+* Support for AdminSettings.php has been completely removed. All configuration
+  belongs in LocalSettings.php.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.

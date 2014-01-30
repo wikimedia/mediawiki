@@ -153,9 +153,6 @@ class CheckSyntax extends Maintenance {
 		if ( file_exists( "$IP/LocalSettings.php" ) ) {
 			$this->mFiles[] = "$IP/LocalSettings.php";
 		}
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			$this->mFiles[] = "$IP/AdminSettings.php";
-		}
 
 		$this->output( 'done.', 'listfiles' );
 	}

@@ -380,7 +380,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 	/**
 	 * Initiate an upgrade of the existing database
-	 * @param array $vars Variables from LocalSettings.php and AdminSettings.php
+	 * @param array $vars Variables from LocalSettings.php
 	 * @return Status
 	 */
 	protected function handleExistingUpgrade( $vars ) {

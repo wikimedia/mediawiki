@@ -90,12 +90,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require $maintenance->loadSettings();
 }
 
-if ( $maintenance->getDbType() === Maintenance::DB_ADMIN
-	&& is_readable( "$IP/AdminSettings.php" )
-) {
-	require "$IP/AdminSettings.php";
-}
-
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 	if ( $wgLocalisationCacheConf['storeClass'] === false && ( $wgLocalisationCacheConf['store'] == 'db' || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) ) ) {
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
