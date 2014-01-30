@@ -22,6 +22,8 @@
  */
 
 class UserloginTemplate extends BaseTemplate {
+	// Default value of $wgCookieExpiration
+	const DEFAULT_EXPIRATION_DAYS = 180;
 
 	function execute() {
 		global $wgCookieExpiration;
@@ -139,7 +141,11 @@ class UserloginTemplate extends BaseTemplate {
 								echo 'checked="checked"';
 							} ?>
 						>
-						<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
+						<?php echo $this->getMsg(
+							$expirationDays >= self::DEFAULT_EXPIRATION_DAYS
+								? 'userlogin-remembermypassword'
+								: 'userlogin-remembermypassword-days'
+						)->numParams( $expirationDays )->escaped(); ?>
 					</label>
 				<?php } ?>
 			</div>
