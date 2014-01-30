@@ -18,3 +18,8 @@
 	padding-top: 4em;
 }
 
+#mw-createaccount-join {
+	margin-left: 0.75em;
+	width: auto;
+	display: inline-block;
+}
