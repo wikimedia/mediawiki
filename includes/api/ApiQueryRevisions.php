@@ -143,8 +143,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// DifferenceEngine returns a rather ambiguous empty
 			// string if that's not the case
 			if ( $params['diffto'] != 0 ) {
-				$difftoRev = Revision::newFromID( $params['diffto'] );
-				if ( !$difftoRev ) {
+				$diffToRev = Revision::newFromID( $params['diffto'] );
+				if ( !$difTtoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}
 				if ( !$diffToRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
