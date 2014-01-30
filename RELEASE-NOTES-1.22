@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.22.3 ==
+
+This is a bugfix release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.2 ===
+
+* (bug 60543) Special:PrefixIndex forgot stripprefix=1 for "Next page" link
+
 == MediaWiki 1.22.2 ==
 
 This is a security and bugfix release of the MediaWiki 1.22 branch.
