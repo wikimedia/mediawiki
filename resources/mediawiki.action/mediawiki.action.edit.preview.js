@@ -12,7 +12,8 @@
 
 		e.preventDefault();
 
-		// Deprecated: Use mw.hook instead
+		mw.hook( 'LivePreviewPrepare' ).fire();
+		// Deprecated
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
 		$wikiPreview = $( '#wikiPreview' );
