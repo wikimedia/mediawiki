@@ -487,40 +487,58 @@ class CoreParserFunctions {
 		return $mwObject->matchStartToEnd( $value );
 	}
 
-	public static function formatRaw( $num, $raw ) {
+	public static function formatRaw( $num, $raw, Language $language ) {
 		if ( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
 			return $num;
 		} else {
-			global $wgContLang;
-			return $wgContLang->formatNum( $num );
+			return $language->formatNum( $num );
 		}
 	}
+
 	public static function numberofpages( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::pages(), $raw );
+		return self::formatRaw( SiteStats::pages(), $raw, $parser->getFunctionLang() );
 	}
+
 	public static function numberofusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::users(), $raw );
+		return self::formatRaw( SiteStats::users(), $raw, $parser->getFunctionLang() );
 	}
 	public static function numberofactiveusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::activeUsers(), $raw );
+		return self::formatRaw( SiteStats::activeUsers(), $raw, $parser->getFunctionLang() );
 	}
+
 	public static function numberofarticles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::articles(), $raw );
+		return self::formatRaw( SiteStats::articles(), $raw, $parser->getFunctionLang() );
 	}
+
 	public static function numberoffiles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::images(), $raw );
+		return self::formatRaw( SiteStats::images(), $raw, $parser->getFunctionLang() );
 	}
+
 	public static function numberofadmins( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::numberingroup( 'sysop' ), $raw );
+		return self::formatRaw(
+			SiteStats::numberingroup( 'sysop' ),
+			$raw,
+			$parser->getFunctionLang()
+		);
 	}
+
 	public static function numberofedits( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::edits(), $raw );
+		return self::formatRaw( SiteStats::edits(), $raw, $parser->getFunctionLang() );
 	}
+
 	public static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
-		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
+		return self::formatRaw(
+			SiteStats::pagesInNs( intval( $namespace ) ),
+			$raw,
+			$parser->getFunctionLang()
+		);
 	}
 	public static function numberingroup( $parser, $name = '', $raw = null ) {
-		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
+		return self::formatRaw(
+			SiteStats::numberingroup( strtolower( $name ) ),
+			$raw,
+			$parser->getFunctionLang()
+		);
 	}
 
 	/**
@@ -727,7 +745,7 @@ class CoreParserFunctions {
 
 		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
 		if ( !$title ) { # invalid title
-			return self::formatRaw( 0, $raw );
+			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
 		}
 		$wgContLang->findVariantLink( $name, $title, true );
 
@@ -753,7 +771,7 @@ class CoreParserFunctions {
 		}
 
 		$count = $cache[$name][$type];
-		return self::formatRaw( $count, $raw );
+		return self::formatRaw( $count, $raw, $parser->getFunctionLang() );
 	}
 
 	/**
@@ -769,7 +787,7 @@ class CoreParserFunctions {
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			return self::formatRaw( 0, $raw );
+			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
 		}
 
 		// fetch revision from cache/database and return the value
@@ -779,7 +797,7 @@ class CoreParserFunctions {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
 			$length = 0;
 		}
-		return self::formatRaw( $length, $raw );
+		return self::formatRaw( $length, $raw, $parser->getFunctionLang() );
 	}
 
 	/**
