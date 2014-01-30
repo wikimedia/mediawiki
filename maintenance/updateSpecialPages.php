@@ -34,18 +34,17 @@ class UpdateSpecialPages extends Maintenance {
 		parent::__construct();
 		$this->addOption( 'list', 'List special page names' );
 		$this->addOption( 'only', 'Only update "page"; case sensitive, ' .
-		'check correct case by calling this script with --list or on ' .
-		'includes/QueryPage.php. Ex: --only=BrokenRedirects', false, true );
+			'check correct case by calling this script with --list or on ' .
+			'includes/QueryPage.php. Ex: --only=BrokenRedirects', false, true );
 		$this->addOption( 'override', 'Also update pages that have updates disabled' );
 	}
 
 	public function execute() {
 		global $IP, $wgQueryPages, $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 
-		if ( !$this->hasOption( 'list' ) && !$this->hasOption( 'only' ) ) {
-			$this->doSpecialPageCacheUpdates();
-		}
 		$dbw = wfGetDB( DB_MASTER );
+
+		$this->doSpecialPageCacheUpdates( $dbw );
 
 		// This is needed to initialise $wgQueryPages
 		require_once "$IP/includes/QueryPage.php";
@@ -56,7 +55,7 @@ class UpdateSpecialPages extends Maintenance {
 
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {
-				$this->output( "$special\n" );
+				$this->output( "$special [QueryPage]\n" );
 				continue;
 			}
 
@@ -125,32 +124,39 @@ class UpdateSpecialPages extends Maintenance {
 		}
 	}
 
-	public function doSpecialPageCacheUpdates() {
+	public function doSpecialPageCacheUpdates( $dbw ) {
 		global $wgSpecialPageCacheUpdates;
-		$dbw = wfGetDB( DB_MASTER );
 
 		foreach ( $wgSpecialPageCacheUpdates as $special => $call ) {
-			if ( !is_callable( $call ) ) {
-				$this->error( "Uncallable function $call!" );
+			# --list : just show the name of pages
+			if ( $this->hasOption( 'list' ) ) {
+				$this->output( "$special [callback]\n" );
 				continue;
 			}
-			$this->output( sprintf( '%-30s ', $special ) );
-			$t1 = explode( ' ', microtime() );
-			call_user_func( $call, $dbw );
-			$t2 = explode( ' ', microtime() );
-			$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
-			$hours = intval( $elapsed / 3600 );
-			$minutes = intval( $elapsed % 3600 / 60 );
-			$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-			if ( $hours ) {
-				$this->output( $hours . 'h ' );
+
+			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $special ) {
+				if ( !is_callable( $call ) ) {
+					$this->error( "Uncallable function $call!" );
+					continue;
+				}
+				$this->output( sprintf( '%-30s ', $special ) );
+				$t1 = explode( ' ', microtime() );
+				call_user_func( $call, $dbw );
+				$t2 = explode( ' ', microtime() );
+				$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
+				$hours = intval( $elapsed / 3600 );
+				$minutes = intval( $elapsed % 3600 / 60 );
+				$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+				if ( $hours ) {
+					$this->output( $hours . 'h ' );
+				}
+				if ( $minutes ) {
+					$this->output( $minutes . 'm ' );
+				}
+				$this->output( sprintf( "completed in %.2fs\n", $seconds ) );
+				# Wait for the slave to catch up
+				wfWaitForSlaves();
 			}
-			if ( $minutes ) {
-				$this->output( $minutes . 'm ' );
-			}
-			$this->output( sprintf( "completed in %.2fs\n", $seconds ) );
-			# Wait for the slave to catch up
-			wfWaitForSlaves();
 		}
 	}
 }
