@@ -108,6 +108,8 @@ changes to languages because of Phabricator reports.
   Use ...->stashFile()->getFileKey() instead.
 * "Public domain" was removed as a wiki license option from the installer, in
   favour of CC-0.
+* (T62604) Core parser functions returning a number now format the number according
+  to the page content language, not wiki content language.
 
 == Compatibility ==
 
