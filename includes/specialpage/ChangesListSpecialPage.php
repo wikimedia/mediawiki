@@ -192,7 +192,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Return an array of conditions depending of options set in $opts
-	 * @todo Whyyyy is this mutating $opts…
 	 *
 	 * @param FormOptions $opts
 	 * @return array
@@ -202,15 +201,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$user = $this->getUser();
 		$conds = array();
 
-		// It makes no sense to hide both anons and logged-in users
-		// Where this occurs, force anons to be shown
-		$botsOnly = false;
+		// It makes no sense to hide both anons and logged-in users. When this occurs, try a guess on
+		// what the user meant and either show only bots or force anons to be shown.
+		$botsonly = false;
+		$hideanons = $opts['hideanons'];
 		if ( $opts['hideanons'] && $opts['hideliu'] ) {
-			// Check if the user wants to show bots only
 			if ( $opts['hidebots'] ) {
-				$opts['hideanons'] = false;
+				$hideanons = false;
 			} else {
-				$botsOnly = true;
+				$botsonly = true;
 			}
 		}
 
@@ -224,13 +223,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $user->useRCPatrol() && $opts['hidepatrolled'] ) {
 			$conds['rc_patrolled'] = 0;
 		}
-		if ( $botsOnly ) {
+		if ( $botsonly ) {
 			$conds['rc_bot'] = 1;
 		} else {
 			if ( $opts['hideliu'] ) {
 				$conds[] = 'rc_user = 0';
 			}
-			if ( $opts['hideanons'] ) {
+			if ( $hideanons ) {
 				$conds[] = 'rc_user != 0';
 			}
 		}
