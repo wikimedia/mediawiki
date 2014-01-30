@@ -105,6 +105,8 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* (T62604) Core parser functions returning a number now format the number according
+  to the page content language, not wiki content language.
 
 == Compatibility ==
 
