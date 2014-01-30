@@ -180,7 +180,6 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
-		global $wgMiserMode;
 
 		if ( !is_object( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
@@ -206,9 +205,7 @@ class SpecialPageFactory {
 				self::$list['JavaScriptTest'] = 'SpecialJavaScriptTest';
 			}
 
-			if ( !$wgMiserMode ) {
-				self::$list['Activeusers'] = 'SpecialActiveUsers';
-			}
+			self::$list['Activeusers'] = 'SpecialActiveUsers';
 
 			// Add extension special pages
 			self::$list = array_merge( self::$list, $wgSpecialPages );
