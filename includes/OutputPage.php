@@ -159,8 +159,9 @@ class OutputPage extends ContextSource {
 	);
 
 	/**
-	 * @EasterEgg I just love the name for this self documenting variable.
-	 * @todo document
+	 * Whether output is disabled.  If this is true, the 'output' method will do nothing.
+	 *
+	 * @var bool $mDoNothing
 	 */
 	var $mDoNothing = false;
 
