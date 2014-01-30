@@ -1282,10 +1282,15 @@ See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?t
 'createacct-yourpasswordagain-ph' => 'Placeholder text in create account form for re-enter password field.
 
 See example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]',
-'remembermypassword' => 'Used as checkbox label in [[Special:UserLogin]]. Parameters:
+'remembermypassword' => 'Used as checkbox label on [[Special:ChangePassword]]. Parameters:
 * $1 - number of days
 {{Identical|Remember my login on this computer}}',
-'userlogin-remembermypassword' => 'The text for a check box in [[Special:UserLogin]].',
+'userlogin-remembermypassword' => 'Used as checkbox label on [[Special:UserLogin]]. Parameters:
+* $1 - number of days (unused)
+{{Identical|Remember my login on this computer}}',
+'userlogin-remembermypassword-days' => 'Used as checkbox label on [[Special:UserLogin]]. Parameters:
+* $1 - number of days
+{{Identical|Remember my login on this computer}}',
 'userlogin-signwithsecure' => 'Text of link to HTTPS login form.
 
 See example: [[Special:UserLogin]]',

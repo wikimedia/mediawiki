@@ -24,7 +24,7 @@
 class UserloginTemplate extends BaseTemplate {
 
 	function execute() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgLoginRememberMeThreshold;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
@@ -139,7 +139,11 @@ class UserloginTemplate extends BaseTemplate {
 								echo 'checked="checked"';
 							} ?>
 						>
-						<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
+						<?php echo $this->getMsg(
+							$expirationDays > $wgLoginRememberMeThreshold
+								? 'userlogin-remembermypassword'
+								: 'userlogin-remembermypassword-days'
+						)->numParams( $expirationDays )->escaped(); ?>
 					</label>
 				<?php } ?>
 			</div>

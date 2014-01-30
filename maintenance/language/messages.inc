@@ -450,6 +450,7 @@ $wgMessageStructure = array(
 		'createacct-yourpasswordagain-ph',
 		'remembermypassword',
 		'userlogin-remembermypassword',
+		'userlogin-remembermypassword-days',
 		'userlogin-signwithsecure',
 		'yourdomainname',
 		'password-change-forbidden',

@@ -2707,6 +2707,13 @@ $wgVariantArticlePath = false;
 $wgLoginLanguageSelector = false;
 
 /**
+ * If $wgCookieExpiration is no larger than this many days, display the length
+ * of time (in days) the user will stay logged in next to the "Keep me logged
+ * in" checkbox on the login form.
+ */
+$wgLoginRememberMeThreshold = 30;
+
+/**
  * When translating messages with wfMessage(), it is not always clear what
  * should be considered UI messages and what should be content messages.
  *
