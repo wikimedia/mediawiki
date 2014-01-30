@@ -87,39 +87,31 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function getIndexField() {
-		return 'rc_user_text';
+		return 'qcc_title';
 	}
 
 	function getQueryInfo() {
 		$dbr = $this->getDatabase();
 
-		$conds = array( 'rc_user > 0' ); // Users - no anons
-		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes(
-			$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge * 24 * 3600 ) );
-
+		$conds = array(
+			'qcc_type' => 'activeusers',
+			'qcc_namespace' => NS_USER,
+			'user_name = qcc_title',
+			'rc_user_text = qcc_title'
+		);
 		if ( $this->requestedUser != '' ) {
-			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
+			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
-
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-				'ipblocks', '1', array( 'rc_user=ipb_user', 'ipb_deleted' => 1 )
+				'ipblocks', '1', array( 'user_id=ipb_user', 'ipb_deleted' => 1 )
 			) . ')';
 		}
 
 		return array(
-			'tables' => array( 'recentchanges' ),
-			'fields' => array(
-				'user_name' => 'rc_user_text', // for Pager inheritance
-				'rc_user_text', // for Pager
-				'user_id' => 'MAX(rc_user)', // Postgres
-				'recentedits' => 'COUNT(*)'
-			),
-			'options' => array(
-				'GROUP BY' => array( 'rc_user_text' ),
-				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
-			),
+			'tables' => array( 'querycachetwo', 'user', 'recentchanges' ),
+			'fields' => array( 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ),
+			'options' => array( 'GROUP BY' => array( 'qcc_title' ) ),
 			'conds' => $conds
 		);
 	}
@@ -249,6 +241,9 @@ class SpecialActiveUsers extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
 
+		// @TODO: mention level of staleness
+		self::doPeriodicUpdate();
+
 		$up = new ActiveUsersPager( $this->getContext(), null, $par );
 
 		# getBody() first to check, if empty
@@ -264,6 +259,118 @@ class SpecialActiveUsers extends SpecialPage {
 		} else {
 			$out->addWikiMsg( 'activeusers-noresult' );
 		}
+	}
+
+	/**
+	 * Update the query cache as needed (using exclusion and staggered updates)
+	 *
+	 * @TODO: hook this into updateSpecialPages.php for cron support?
+	 * This will get stale if no one really views it (though it won't matter much then).
+	 *
+	 * @return boolean Success
+	 */
+	public static function doPeriodicUpdate() {
+		global $wgActiveUserDays, $wgMiserMode;
+
+		$now = time();
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$lastUpdated = $dbr->selectField( 'querycache_info',
+			'qci_timestamp',
+			array( 'qci_type' => 'activeusers' )
+		);
+		$lastUnix = $lastUpdated ? wfTimestamp( TS_UNIX, $lastUpdated ) : 1;
+
+		if ( $lastUnix < ( $now - 1800 ) ) { // data needs update
+			$dbw = wfGetDB( DB_MASTER );
+			if ( !$dbw->lock( 'activeusers', __METHOD__, 1 ) ) {
+				return false; // exclusive update
+			}
+			$dbw->startAtomic( __METHOD__ );
+
+			// Pick the date range to fetch from. This is normally from the last
+			// update to till the present time, but has a limited window for sanity.
+			// If the window is limited, multiple runs are need to fully populate it.
+			$sTimestamp = max( $lastUnix, $now - $wgActiveUserDays * 24 * 3600 );
+			$eTimestamp = $wgMiserMode ? min( $sTimestamp + 3600, $now ) : $now;
+
+			// Get all the users active since the last update
+			$res = $dbw->select(
+				array( 'recentchanges' ),
+				array( 'rc_user_text', 'lastedittime' => 'MAX(rc_timestamp)' ),
+				array(
+					'rc_user > 0', // Users - no anons
+					'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
+					'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $sTimestamp ) ),
+					'rc_timestamp <= ' . $dbr->addQuotes( $dbr->timestamp( $eTimestamp ) )
+				),
+				__METHOD__,
+				array(
+					'GROUP BY' => array( 'rc_user_text' ),
+					'USE INDEX' => array( 'recentchanges' => 'rc_timestamp' ),
+					'ORDER BY' => 'NULL' // avoid filesort
+				)
+			);
+			$names = array();
+			foreach ( $res as $row ) {
+				$names[$row->rc_user_text] = $row->lastedittime;
+			}
+
+			// Rotate out users that have not edited in too long (according to old data set)
+			$dbw->delete( 'querycachetwo',
+				array(
+					'qcc_type' => 'activeusers',
+					'qcc_value < ' . $dbr->addQuotes(
+						$dbr->timestamp( $now - $wgActiveUserDays * 24 * 3600 ) )
+				),
+				__METHOD__
+			);
+
+			// Find which of the recently active users are already accounted for
+			if ( count( $names ) ) {
+				$res = $dbw->select( 'querycachetwo',
+					array( 'user_name' => 'qcc_title' ),
+					array(
+						'qcc_type' => 'activeusers',
+						'qcc_namespace' => NS_USER,
+						'qcc_title' => array_keys( $names ) ),
+					__METHOD__,
+					array( 'FOR UPDATE' )
+				);
+				foreach ( $res as $row ) {
+					unset( $names[$row->user_name] );
+				}
+			}
+
+			// Insert the users that need to be added to the list (which their last edit time
+			if ( count( $names ) ) {
+				$newRows = array();
+				foreach ( $names as $name => $lastEditTime ) {
+					$newRows[] = array(
+						'qcc_type'  => 'activeusers',
+						'qcc_namespace' => NS_USER,
+						'qcc_title' => $name,
+						'qcc_value' => $lastEditTime,
+						'qcc_namespacetwo' => 0, // unused
+						'qcc_titletwo' => '' // unused
+					);
+				}
+				$dbw->insert( 'querycachetwo', $newRows, __METHOD__ );
+			}
+
+			// Touch the data freshness timestamp
+			$dbw->replace( 'querycache_info',
+				array( 'qci_type' ),
+				array( 'qci_type' => 'activeusers',
+					'qci_timestamp' => $dbw->timestamp( $eTimestamp ) ), // not always $now
+				__METHOD__
+			);
+
+			$dbw->unlock( 'activeusers', __METHOD__ );
+			$dbw->endAtomic( __METHOD__ );
+		}
+
+		return true;
 	}
 
 	protected function getGroupName() {
