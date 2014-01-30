@@ -116,20 +116,29 @@ class HTMLCacheUpdateJob extends Job {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$timestamp = $dbw->timestamp();
 
-		// Don't invalidated pages that were already invalidated
-		$touchedCond = isset( $this->params['rootJobTimestamp'] )
-			? array( "page_touched < " .
-				$dbw->addQuotes( $dbw->timestamp( $this->params['rootJobTimestamp'] ) ) )
-			: array();
+		// The page_touched field will need to be bumped for these pages.
+		// Only bump it to the present time if no "rootJobTimestamp" was known.
+		// If it is known, it can be used instead, which avoids invalidating output
+		// that was in fact generated *after* the relevant dependency change time
+		// (e.g. template edit). This is particularily useful since refreshLinks jobs
+		// save back parser output and usually run along side htmlCacheUpdate jobs;
+		// their saved output would be invalidated by using the current timestamp.
+		if ( isset( $this->params['rootJobTimestamp'] ) ) {
+			$touchTimestamp = $this->params['rootJobTimestamp'];
+		} else {
+			$touchTimestamp = wfTimestampNow();
+		}
 
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
 		foreach ( array_chunk( $pageIds, $wgUpdateRowsPerQuery ) as $batch ) {
 			$dbw->update( 'page',
-				array( 'page_touched' => $timestamp ),
-				array( 'page_id' => $batch ) + $touchedCond,
+				array( 'page_touched' => $dbw->timestamp( $touchTimestamp ) ),
+				array( 'page_id' => $batch,
+					// don't invalidated pages that were already invalidated
+					"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $touchTimestamp ) )
+				),
 				__METHOD__
 			);
 		}
@@ -137,7 +146,7 @@ class HTMLCacheUpdateJob extends Job {
 		$titleArray = TitleArray::newFromResult( $dbw->select(
 			'page',
 			array( 'page_namespace', 'page_title' ),
-			array( 'page_id' => $pageIds, 'page_touched' => $timestamp ),
+			array( 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $touchTimestamp ) ),
 			__METHOD__
 		) );
 
