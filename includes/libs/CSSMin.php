@@ -223,8 +223,6 @@ class CSSMin {
 				return $ruleWithRemapped;
 			}
 		}, $source );
-
-		return $source;
 	}
 
 	/**
