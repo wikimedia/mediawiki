@@ -147,7 +147,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !$difftoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}
-				if ( !$diffToRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
 					$params['diffto'] = null;
 				}
