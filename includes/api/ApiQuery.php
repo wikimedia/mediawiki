@@ -89,6 +89,7 @@ class ApiQuery extends ApiBase {
 		'random' => 'ApiQueryRandom',
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'search' => 'ApiQuerySearch',
+		'sites' => 'ApiQuerySites',
 		'tags' => 'ApiQueryTags',
 		'usercontribs' => 'ApiQueryContributions',
 		'users' => 'ApiQueryUsers',
