@@ -41,8 +41,11 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var PDO */
 	protected $mConn;
 
+	/** @var FSLockManager (hopefully on the same server as the DB) */
+	protected $lockMgr;
+
 	function __construct( $p = null ) {
-		global $wgSharedDB;
+		global $wgSharedDB, $wgSQLiteDataDir;
 
 		if ( !is_array( $p ) ) { // legacy calling pattern
 			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
@@ -67,6 +70,8 @@ class DatabaseSqlite extends DatabaseBase {
 				}
 			}
 		}
+
+		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "$wgSQLiteDataDir/locks" ) );
 	}
 
 	/**
@@ -864,6 +869,22 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		return $s;
+	}
+
+	public function lock( $lockName, $method, $timeout = 5 ) {
+		global $wgSQLiteDataDir;
+
+		if ( !is_dir( "$wgSQLiteDataDir/locks" ) ) { // create dir as needed
+			if ( !is_writable( $wgSQLiteDataDir ) || !mkdir( "$wgSQLiteDataDir/locks" ) ) {
+				throw new DBError( "Cannot create directory \"$wgSQLiteDataDir/locks\"." );
+			}
+		}
+
+		return $this->lockMgr->lock( array( $lockName ), LockManager::LOCK_EX, $timeout )->isOK();
+	}
+
+	public function unlock( $lockName, $method ) {
+		return $this->lockMgr->unlock( array( $lockName ), LockManager::LOCK_EX )->isOK();
 	}
 
 	/**
