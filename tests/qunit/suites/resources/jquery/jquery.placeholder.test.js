@@ -1,8 +1,8 @@
-(function($) {
+(function ($) {
 
 	QUnit.module('jquery.placeholder', QUnit.newMwEnvironment());
 
-	QUnit.test('caches results of feature tests', 2, function(assert) {
+	QUnit.test('caches results of feature tests', 2, function (assert) {
 		assert.strictEqual(typeof $.fn.placeholder.input, 'boolean', '$.fn.placeholder.input');
 		assert.strictEqual(typeof $.fn.placeholder.textarea, 'boolean', '$.fn.placeholder.textarea');
 	});
@@ -20,7 +20,7 @@
 			'<input id="input-type-password" type="password" placeholder="e.g. hunter2">' +
 			'<textarea id="textarea" name="message" placeholder="Your message goes here"></textarea>' +
 		'</form>',
-	testElement = function($el, assert) {
+	testElement = function ($el, assert) {
 
 		var el = $el[0],
 			placeholder = el.getAttribute('placeholder');
@@ -67,32 +67,32 @@
 		$el.placeholder(placeholder);
 	};
 
-	QUnit.test('emulates placeholder for <input type=text>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <input type=text>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#input-type-text'), assert);
 	});
 
-	QUnit.test('emulates placeholder for <input type=search>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <input type=search>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#input-type-search'), assert);
 	});
 
-	QUnit.test('emulates placeholder for <input type=email>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <input type=email>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#input-type-email'), assert);
 	});
 
-	QUnit.test('emulates placeholder for <input type=url>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <input type=url>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#input-type-url'), assert);
 	});
 
-	QUnit.test('emulates placeholder for <input type=tel>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <input type=tel>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#input-type-tel'), assert);
 	});
 
-	QUnit.test('emulates placeholder for <input type=password>', 13, function(assert) {
+	QUnit.test('emulates placeholder for <input type=password>', 13, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 
 		var selector = '#input-type-password',
@@ -137,7 +137,7 @@
 
 	});
 
-	QUnit.test('emulates placeholder for <textarea></textarea>', 22, function(assert) {
+	QUnit.test('emulates placeholder for <textarea></textarea>', 22, function (assert) {
 		$('<div>').html(html).appendTo($('#qunit-fixture'));
 		testElement($('#textarea'), assert);
 	});

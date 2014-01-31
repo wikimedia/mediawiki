@@ -66,11 +66,12 @@
 					imgHeight = 0;
 				}
 
-				rows[rows.length-1][rows[rows.length-1].length] = {
+				rows[rows.length - 1][rows[rows.length - 1].length] = {
 					$elm: $this,
 					width: $this.outerWidth(),
 					imgWidth: imgWidth,
-					aspect: imgWidth / imgHeight, // XXX: can divide by 0 ever happen?
+					// XXX: can divide by 0 ever happen?
+					aspect: imgWidth / imgHeight,
 					captionWidth: $this.children().children( 'div.gallerytextwrapper' ).width(),
 					height: imgHeight
 				};
@@ -136,7 +137,7 @@
 						// Also on the off chance there is a bug in this
 						// code, would prevent accidentally expanding to
 						// be 10 billion pixels wide.
-						mw.log( 'mw.page.gallery: Cannot fit row, aspect is ' + preferredHeight/curRowHeight );
+						mw.log( 'mw.page.gallery: Cannot fit row, aspect is ' + preferredHeight / curRowHeight );
 						if ( i === rows.length - 1 ) {
 							// If its the last row, and we can't fit it,
 							// don't make the entire row huge.
@@ -159,7 +160,12 @@
 					}
 					if ( preferredHeight < 5 ) {
 						// Well something clearly went wrong...
-						mw.log( {maxWidth: maxWidth, combinedPadding: combinedPadding, combinedAspect: combinedAspect, wantedWidth: wantedWidth } );
+						mw.log( {
+							maxWidth: maxWidth,
+							combinedPadding: combinedPadding,
+							combinedAspect: combinedAspect,
+							wantedWidth: wantedWidth
+						} );
 						mw.log( 'mw.page.gallery: [BUG!] Fitting row ' + i + ' to too small a size: ' + preferredHeight );
 						// Skip this row.
 						continue;
@@ -181,7 +187,6 @@
 						$imageElm = $imageDiv.find( 'img' ).first();
 						imageElm = $imageElm.length ? $imageElm[0] : null;
 						$caption = $outerDiv.find( 'div.gallerytextwrapper' );
-
 
 						// Since we are going to re-adjust the height, the vertical
 						// centering margins need to be reset.
