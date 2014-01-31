@@ -38,12 +38,6 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var resource */
 	protected $mLastResult;
 
-	/**
-	 * @var string
-	 * @todo Seems to serve no purpose. Remove?
-	 */
-	private $mName;
-
 	/** @var PDO */
 	protected $mConn;
 
@@ -63,7 +57,7 @@ class DatabaseSqlite extends DatabaseBase {
 				'foreign' => isset( $args[6] ) ? $args[6] : false
 			);
 		}
-		$this->mName = $p['dbname'];
+		$this->mDBname = $p['dbname'];
 		parent::__construct( $p );
 		// parent doesn't open when $user is false, but we can work with $dbName
 		if ( $p['dbname'] && !$this->isOpen() ) {
