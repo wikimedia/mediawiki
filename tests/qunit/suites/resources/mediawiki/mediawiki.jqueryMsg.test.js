@@ -680,7 +680,6 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 		'Escaped attributes are parsed correctly'
 	);
 
-
 	mw.messages.set( 'jquerymsg-wikitext-contents-parsed', '<i>[http://example.com Example]</i>' );
 	assert.htmlEqual(
 		formatParse( 'jquerymsg-wikitext-contents-parsed' ),

@@ -2,8 +2,6 @@
  * These plugins provide extra functionality for interaction with textareas.
  */
 ( function ( $ ) {
-	/*jshint noempty:false */
-
 	if ( document.selection && document.selection.createRange ) {
 		// On IE, patch the focus() method to restore the windows' scroll position
 		// (bug 32241)

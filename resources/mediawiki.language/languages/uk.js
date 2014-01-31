@@ -3,7 +3,6 @@
  */
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
-	/*jshint noempty:false */
 	var grammarForms = mediaWiki.language.getData( 'uk', 'grammarForms' );
 	if ( grammarForms && grammarForms[form] ) {
 		return grammarForms[form][word];

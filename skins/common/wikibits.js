@@ -240,7 +240,7 @@ win.importStylesheet = function ( page ) {
 	return win.importStylesheetURI( uri );
 };
 
-win.importStylesheetURI = function( url, media ) {
+win.importStylesheetURI = function ( url, media ) {
 	var l = document.createElement( 'link' );
 	l.rel = 'stylesheet';
 	l.href = url;
