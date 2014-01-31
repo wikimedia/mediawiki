@@ -675,7 +675,7 @@ class SpecialVersion extends SpecialPage {
 			}
 		} elseif ( isset( $extension['description'] ) ) {
 			// Non localized version
-			$description = $out->parseInline( $extension['description'] );
+			$description = $extension['description'];
 		} else {
 			$description = '';
 		}
