@@ -955,11 +955,16 @@ class WebInstaller_Options extends WebInstallerPage {
 			LinkCache::singleton()->useDatabase( false );
 
 			foreach ( $extensions as $ext ) {
+				if ( isset( $ext['descriptionmsg'] ) ) {
+					$desc = wfMessage( $ext['descriptionmsg'] )->useDatabase( false )->parse();
+				} else {
+					$desc = '';
+				}
 				$extHtml .= $this->parent->getCheckBox( array(
 						'var' => "ext-{$ext['name']}",
 						'rawtext' => "<b>{$ext['name']}</b>: " .
-						wfMessage( $ext['descriptionmsg'] )->useDatabase( false )->parse(),
-					) );
+						$desc,
+				) );
 
 			}
 
