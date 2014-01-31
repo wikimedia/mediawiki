@@ -2969,6 +2969,16 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status->getErrorsArray();
 		}
 
+		// raise error, when the edit is a edit without a new version
+		if ( empty( $status->value['revision'] ) ) {
+			$resultDetails = array( 'current' => $current );
+			return array( array( 'alreadyrolled',
+					htmlspecialchars( $this->mTitle->getPrefixedText() ),
+					htmlspecialchars( $fromP ),
+					htmlspecialchars( $current->getUserText() )
+			) );
+		}
+
 		$set = array();
 		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
 			// Mark all reverted edits as bot
@@ -2990,11 +3000,7 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		if ( !empty( $status->value['revision'] ) ) {
-			$revId = $status->value['revision']->getId();
-		} else {
-			$revId = false;
-		}
+		$revId = $status->value['revision']->getId();
 
 		wfRunHooks( 'ArticleRollbackComplete', array( $this, $guser, $target, $current ) );
 
