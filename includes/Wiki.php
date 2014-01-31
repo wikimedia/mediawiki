@@ -640,7 +640,8 @@ class MediaWiki {
 			// Start a background process to run some of the jobs
 			wfProfileIn( __METHOD__ . '-exec' );
 			$retVal = 1;
-			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', $n ) );
+			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php",
+				array( '--wiki', wfWikiID(), '--maxjobs', $n ) );
 			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
 			if ( wfIsWindows() ) {
 				// Using START makes this async and also works around a bug where using
