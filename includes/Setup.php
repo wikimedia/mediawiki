@@ -565,7 +565,7 @@ if ( !defined( 'MW_SETUP_NO_CONTEXT' ) ) {
 	$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 	if ( !is_object( $wgAuth ) ) {
-		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
+		$wgAuth = new AuthPlugin;
 		wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 	}
 
