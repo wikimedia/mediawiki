@@ -803,25 +803,32 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none of a certain set of parameters is set and not false.
-	 * @param array $params of parameter names
+	 *
+	 * @since 1.23
+	 * @param array $params User provided set of parameters
+	 * @param string ... List of parameter names to check
 	 */
 	public function requireAtLeastOneParameter( $params ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
 
-		$intersection = array_intersect( array_keys( array_filter( $params,
-			array( $this, "parameterNotEmpty" ) ) ), $required );
+		$intersection = array_intersect(
+			array_keys( array_filter( $params, array( $this, "parameterNotEmpty" ) ) ),
+			$required
+		);
 
 		if ( count( $intersection ) == 0 ) {
-			$this->dieUsage( "At least one of the parameters {$p}" . implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
+			$this->dieUsage( "At least one of the parameters {$p}" .
+				implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
 		}
 	}
 
 	/**
 	 * Generates the possible errors requireAtLeastOneParameter() can die with
 	 *
-	 * @param $params array
+	 * @since 1.23
+	 * @param $params array Array of parameter key names
 	 * @return array
 	 */
 	public function getRequireAtLeastOneParameterErrorMessages( $params ) {
@@ -829,7 +836,10 @@ abstract class ApiBase extends ContextSource {
 		$params = implode( ", {$p}", $params );
 
 		return array(
-			array( 'code' => "{$p}missingparam", 'info' => "At least one of the parameters {$p}{$params} is required" ),
+			array(
+				'code' => "{$p}missingparam",
+				'info' => "At least one of the parameters {$p}{$params} is required",
+			),
 		);
 	}
 
