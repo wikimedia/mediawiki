@@ -189,7 +189,6 @@
 				$el.attr( 'maxlength', elLimit );
 			}
 
-
 			// Safe base value, used to determine the path between the previous state
 			// and the state that triggered the event handler below - and enforce the
 			// limit approppiately (e.g. don't chop from the end if text was inserted

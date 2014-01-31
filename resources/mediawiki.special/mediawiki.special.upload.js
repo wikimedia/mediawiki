@@ -140,7 +140,7 @@
 				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
-				/*jshint camelcase: false, nomen: false */
+				/*jshint camelcase:false, nomen:false */
 				try {
 					meta = mw.libs.jpegmeta( data, file.fileName );
 					meta._binary_data = null;
@@ -262,7 +262,6 @@
 
 			return true;
 		}
-
 
 		/**
 		 * Initialization

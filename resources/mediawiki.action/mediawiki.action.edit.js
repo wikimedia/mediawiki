@@ -27,12 +27,12 @@
 			};
 		}
 		var $image = $( '<img>' ).attr( {
-			width : 23,
+			width: 23,
 			height: 22,
-			src   : b.imageFile,
-			alt   : b.speedTip,
-			title : b.speedTip,
-			id    : b.imageId || undefined,
+			src: b.imageFile,
+			alt: b.speedTip,
+			title: b.speedTip,
+			id: b.imageId || undefined,
 			'class': 'mw-toolbar-editbutton'
 		} ).click( function () {
 			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );

@@ -179,7 +179,6 @@
 				.replace( rUnderscoreTrim, '' );
 		}
 
-
 		// Reject illegal characters
 		if ( title.match( rInvalid ) ) {
 			return false;
@@ -270,7 +269,6 @@
 			return new Title();
 		};
 	}() );
-
 
 	/* Static members */
 
@@ -574,7 +572,6 @@
 	 * @method
 	 */
 	Title.prototype.toString = Title.prototype.getPrefixedDb;
-
 
 	/**
 	 * @alias #getPrefixedText
