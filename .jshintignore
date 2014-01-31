@@ -1,14 +1,14 @@
 # Generated documentation
-docs/html/
-docs/js/
-resources/mediawiki.ui/docs
+docs/html/**
+docs/js/**
+resources/mediawiki.ui/docs/**
 
 # kss template for mediawiki ui documentation
-resources/styleguide-template
+resources/styleguide-template/**
 
 # third-party libs
-extensions/
-node_modules/
+extensions/**
+node_modules/**
 resources/jquery/jquery.appear.js
 resources/jquery/jquery.async.js
 resources/jquery/jquery.cycle.all.js
@@ -23,12 +23,12 @@ resources/jquery/jquery.mockjax.js
 resources/jquery/jquery.qunit.js
 resources/jquery/jquery.validate.js
 resources/jquery/jquery.xmldom.js
-resources/jquery.effects/
-resources/jquery.tipsy/
-resources/jquery.ui/
-resources/mediawiki.libs/
+resources/jquery.effects/**
+resources/jquery.tipsy/**
+resources/jquery.ui/**
+resources/mediawiki.libs/**
 resources/jquery.chosen/chosen.jquery.js
-resources/oojs/
+resources/oojs/**
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
