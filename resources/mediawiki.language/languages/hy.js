@@ -15,7 +15,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	switch ( form ) {
 		case 'genitive': // սեռական հոլով
 			if ( word.substr( -1 ) === 'ա' ) {
-				word = word.substr( 0, word.length -1 )  + 'այի';
+				word = word.substr( 0, word.length - 1 ) + 'այի';
 			} else if ( word.substr( -1 ) === 'ո' ) {
 				word = word.substr( 0, word.length - 1 ) + 'ոյի';
 			} else if ( word.substr( -4 ) === 'գիրք' ) {

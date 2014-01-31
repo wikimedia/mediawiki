@@ -19,7 +19,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			word = word.replace( /tio$/i,'tionis' ); // 3rd declension singular (partly)
 			word = word.replace( /ns$/i, 'ntis' );
 			word = word.replace( /as$/i, 'atis' );
-			word = word.replace( /es$/i ,'ei' ); // 5th declension singular
+			word = word.replace( /es$/i, 'ei' ); // 5th declension singular
 			break;
 		case 'accusative':
 			// only a few declensions, and even for those mostly the singular only
@@ -31,7 +31,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			word = word.replace( /tio$/i,'tionem' ); // 3rd declension singular (partly)
 			word = word.replace( /ns$/i, 'ntem' );
 			word = word.replace( /as$/i, 'atem');
-			word = word.replace( /es$/i ,'em' ); // 5th declension singular
+			word = word.replace( /es$/i, 'em' ); // 5th declension singular
 			break;
 		case 'ablative':
 			// only a few declensions, and even for those mostly the singular only
@@ -43,7 +43,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			word = word.replace( /tio$/i,'tione' ); // 3rd declension singular (partly)
 			word = word.replace( /ns$/i, 'nte' );
 			word = word.replace( /as$/i, 'ate');
-			word = word.replace( /es$/i ,'e' ); // 5th declension singular
+			word = word.replace( /es$/i, 'e' ); // 5th declension singular
 			break;
 	}
 	return word;
