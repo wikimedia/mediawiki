@@ -22,6 +22,9 @@ production.
   the "Signature" button on the edit toolbar will be displayed.
 * $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
   feature that was never enabled by default.
+* Deprecated $wgEditEncoding variable has been removed; was only used for
+  Esperanto language character conversion. Now recommended to use input methods
+  provided by UniversalLanguageSelector extension.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.

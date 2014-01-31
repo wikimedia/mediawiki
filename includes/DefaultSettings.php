@@ -2748,15 +2748,6 @@ $wgDummyLanguageCodes = array(
 );
 
 /**
- * Character set for use in the article edit box. Language-specific encodings
- * may be defined.
- *
- * This historic feature is one of the first that was added by former MediaWiki
- * team leader Brion Vibber, and is used to support the Esperanto x-system.
- */
-$wgEditEncoding = '';
-
-/**
  * Set this to true to replace Arabic presentation forms with their standard
  * forms in the U+0600-U+06FF block. This only works if $wgLanguageCode is
  * set to "ar".
