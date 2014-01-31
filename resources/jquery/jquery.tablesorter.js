@@ -68,8 +68,6 @@
  */
 
 ( function ( $, mw ) {
-	/*jshint onevar:false */
-
 	/* Local scope */
 
 	var ts,
@@ -78,8 +76,9 @@
 	/* Parser utility functions */
 
 	function getParserById( name ) {
-		var len = parsers.length;
-		for ( var i = 0; i < len; i++ ) {
+		var i,
+			len = parsers.length;
+		for ( i = 0; i < len; i++ ) {
 			if ( parsers[i].id.toLowerCase() === name.toLowerCase() ) {
 				return parsers[i];
 			}
@@ -228,18 +227,19 @@
 	}
 
 	function appendToTable( table, cache ) {
-		var row = cache.row,
+		var i, pos, l, j,
+			row = cache.row,
 			normalized = cache.normalized,
 			totalRows = normalized.length,
 			checkCell = ( normalized[0].length - 1 ),
 			fragment = document.createDocumentFragment();
 
-		for ( var i = 0; i < totalRows; i++ ) {
-			var pos = normalized[i][checkCell];
+		for ( i = 0; i < totalRows; i++ ) {
+			pos = normalized[i][checkCell];
 
-			var l = row[pos].length;
+			l = row[pos].length;
 
-			for ( var j = 0; j < l; j++ ) {
+			for ( j = 0; j < l; j++ ) {
 				fragment.appendChild( row[pos][j] );
 			}
 
@@ -260,11 +260,12 @@
 	 * @param $table jQuery object for a <table>
 	 */
 	function emulateTHeadAndFoot( $table ) {
-		var $rows = $table.find( '> tbody > tr' );
-		if( !$table.get(0).tHead ) {
-			var $thead = $( '<thead>' );
+		var $thead, $tfoot, i, len,
+			$rows = $table.find( '> tbody > tr' );
+		if ( !$table.get(0).tHead ) {
+			$thead = $( '<thead>' );
 			$rows.each( function () {
-				if ( $(this).children( 'td' ).length > 0 ) {
+				if ( $(this).children( 'td' ).length ) {
 					// This row contains a <td>, so it's not a header row
 					// Stop here
 					return false;
@@ -273,11 +274,11 @@
 			} );
 			$table.find(' > tbody:first').before( $thead );
 		}
-		if( !$table.get(0).tFoot ) {
-			var $tfoot = $( '<tfoot>' );
-			var len = $rows.length;
-			for ( var i = len-1; i >= 0; i-- ) {
-				if( $( $rows[i] ).children( 'td' ).length > 0 ){
+		if ( !$table.get(0).tFoot ) {
+			$tfoot = $( '<tfoot>' );
+			len = $rows.length;
+			for ( i = len - 1; i >= 0; i-- ) {
+				if ( $( $rows[i] ).children( 'td' ).length ){
 					break;
 				}
 				$tfoot.prepend( $( $rows[i] ));
@@ -301,13 +302,13 @@
 			var rowspan,
 				headersIndex = [];
 			$tableRows.each( function ( rowIndex ) {
-				$.each( this.cells, function( index2, cell ) {
+				$.each( this.cells, function ( index2, cell ) {
 					rowspan = Number( cell.rowSpan );
 					for ( i = 0; i < rowspan; i++ ) {
-						if ( headersIndex[rowIndex+i] === undefined ) {
-							headersIndex[rowIndex+i] = $( [] );
+						if ( headersIndex[rowIndex + i] === undefined ) {
+							headersIndex[rowIndex + i] = $( [] );
 						}
-						headersIndex[rowIndex+i].push( cell );
+						headersIndex[rowIndex + i].push( cell );
 					}
 				} );
 			} );
@@ -425,14 +426,15 @@
 	}
 
 	function multisort( table, sortList, cache ) {
-		var sortFn = [];
-		var len = sortList.length;
-		for ( var i = 0; i < len; i++ ) {
+		var i,
+			sortFn = [],
+			len = sortList.length;
+		for ( i = 0; i < len; i++ ) {
 			sortFn[i] = ( sortList[i][1] ) ? sortTextDesc : sortText;
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
-			var col, ret;
-			for ( var i = 0; i < len; i++ ) {
+			var i, col, ret;
+			for ( i = 0; i < len; i++ ) {
 				col = sortList[i][0];
 				ret = sortFn[i].call( this, array1[col], array2[col] );
 				if ( ret !== 0 ) {
@@ -446,25 +448,27 @@
 	}
 
 	function buildTransformTable() {
-		var digits = '0123456789,.'.split( '' );
-		var separatorTransformTable = mw.config.get( 'wgSeparatorTransformTable' );
-		var digitTransformTable = mw.config.get( 'wgDigitTransformTable' );
+		var ascii, localised, i, digitClass,
+			digits = '0123456789,.'.split( '' ),
+			separatorTransformTable = mw.config.get( 'wgSeparatorTransformTable' ),
+			digitTransformTable = mw.config.get( 'wgDigitTransformTable' );
+
 		if ( separatorTransformTable === null || ( separatorTransformTable[0] === '' && digitTransformTable[2] === '' ) ) {
 			ts.transformTable = false;
 		} else {
 			ts.transformTable = {};
 
 			// Unpack the transform table
-			var ascii = separatorTransformTable[0].split( '\t' ).concat( digitTransformTable[0].split( '\t' ) );
-			var localised = separatorTransformTable[1].split( '\t' ).concat( digitTransformTable[1].split( '\t' ) );
+			ascii = separatorTransformTable[0].split( '\t' ).concat( digitTransformTable[0].split( '\t' ) );
+			localised = separatorTransformTable[1].split( '\t' ).concat( digitTransformTable[1].split( '\t' ) );
 
 			// Construct regex for number identification
-			for ( var i = 0; i < ascii.length; i++ ) {
+			for ( i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[localised[i]] = ascii[i];
 				digits.push( $.escapeRE( localised[i] ) );
 			}
 		}
-		var digitClass = '[' + digits.join( '', digits ) + ']';
+		digitClass = '[' + digits.join( '', digits ) + ']';
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
@@ -474,11 +478,13 @@
 	}
 
 	function buildDateTable() {
-		var regex = [];
+		var i, name,
+			regex = [];
+
 		ts.monthNames = {};
 
-		for ( var i = 0; i < 12; i++ ) {
-			var name = mw.language.months.names[i].toLowerCase();
+		for ( i = 0; i < 12; i++ ) {
+			name = mw.language.months.names[i].toLowerCase();
 			ts.monthNames[name] = i + 1;
 			regex.push( $.escapeRE( name ) );
 			name = mw.language.months.genitive[i].toLowerCase();
@@ -511,7 +517,9 @@
 	 * @param $table jQuery object for a <table>
 	 */
 	function explodeRowspans( $table ) {
-		var rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
+		var spanningRealCellIndex, rowSpan, colSpan,
+			cell, i, $tds, $clone, $nextRows,
+			rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
 
 		// Short circuit
 		if ( !rowspanCells.length ) {
@@ -522,9 +530,10 @@
 		// account colspans. We also cache the rowIndex to avoid having to take
 		// cell.parentNode.rowIndex in the sorting function below.
 		$table.find( '> tbody > tr' ).each( function () {
-			var col = 0;
-			var l = this.cells.length;
-			for ( var i = 0; i < l; i++ ) {
+			var i,
+				col = 0,
+				l = this.cells.length;
+			for ( i = 0; i < l; i++ ) {
 				this.cells[i].realCellIndex = col;
 				this.cells[i].realRowIndex = this.rowIndex;
 				col += this.cells[i].colSpan;
@@ -549,7 +558,6 @@
 		}
 		resortCells();
 
-		var spanningRealCellIndex, rowSpan, colSpan;
 		function filterfunc() {
 			return this.realCellIndex >= spanningRealCellIndex;
 		}
@@ -566,15 +574,15 @@
 				resortCells();
 			}
 
-			var cell = rowspanCells.shift();
+			cell = rowspanCells.shift();
 			rowSpan = cell.rowSpan;
 			colSpan = cell.colSpan;
 			spanningRealCellIndex = cell.realCellIndex;
 			cell.rowSpan = 1;
-			var $nextRows = $( cell ).parent().nextAll();
-			for ( var i = 0; i < rowSpan - 1; i++ ) {
-				var $tds = $( $nextRows[i].cells ).filter( filterfunc );
-				var $clone = $( cell ).clone();
+			$nextRows = $( cell ).parent().nextAll();
+			for ( i = 0; i < rowSpan - 1; i++ ) {
+				$tds = $( $nextRows[i].cells ).filter( filterfunc );
+				$clone = $( cell ).clone();
 				$clone[0].realCellIndex = spanningRealCellIndex;
 				if ( $tds.length ) {
 					$tds.each( fixTdCellIndex );
@@ -590,15 +598,17 @@
 		ts.collationTable = mw.config.get( 'tableSorterCollation' );
 		ts.collationRegex = null;
 		if ( ts.collationTable ) {
-			var keys = [];
+			var key,
+				keys = [];
 
 			// Build array of key names
-			for ( var key in ts.collationTable ) {
-				if ( ts.collationTable.hasOwnProperty(key) ) { //to be safe
+			for ( key in ts.collationTable ) {
+				// Check hasOwn to be safe
+				if ( ts.collationTable.hasOwnProperty(key) ) {
 					keys.push(key);
 				}
 			}
-			if (keys.length) {
+			if ( keys.length ) {
 				ts.collationRegex = new RegExp( '[' + keys.join( '' ) + ']', 'ig' );
 			}
 		}
@@ -684,7 +694,7 @@
 			construct: function ( $tables, settings ) {
 				return $tables.each( function ( i, table ) {
 					// Declare and cache.
-					var $headers, cache, config,
+					var $headers, cache, config, sortCSS, sortMsg,
 						$table = $( table ),
 						firstTime = true;
 
@@ -715,8 +725,8 @@
 					$.data( table, 'tablesorter', { config: config } );
 
 					// Get the CSS class names, could be done else where.
-					var sortCSS = [ config.cssDesc, config.cssAsc ];
-					var sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
+					sortCSS = [ config.cssDesc, config.cssAsc ];
+					sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
 
 					// Build headers
 					$headers = buildHeaders( table, sortMsg );
@@ -789,15 +799,17 @@
 							this.order = this.count % 2;
 							this.count++;
 
-							var cell = this;
+							var cell, columns, newSortList, i;
+
+							cell = this;
 							// Get current column index
-							var columns = table.headerToColumns[ this.headerIndex ];
-							var newSortList = $.map( columns, function (c) {
+							columns = table.headerToColumns[ this.headerIndex ];
+							newSortList = $.map( columns, function ( c ) {
 								// jQuery "helpfully" flattens the arrays...
 								return [[c, cell.order]];
 							});
 							// Index of first column belonging to this header
-							var i = columns[0];
+							i = columns[0];
 
 							if ( !e[config.sortMultiSortKey] ) {
 								// User only wants to sort on one column set
@@ -856,7 +868,7 @@
 					 *
 					 * @param sortList {Array} (optional) List of sort objects.
 					 */
-					$table.data( 'tablesorter' ).sort = function( sortList ) {
+					$table.data( 'tablesorter' ).sort = function ( sortList ) {
 
 						if ( firstTime ) {
 							setupForFirstSort();

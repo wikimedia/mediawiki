@@ -70,7 +70,6 @@ jQuery( function ( $ ) {
 	// Set initial state
 	updateDiffRadios();
 
-
 	// Prettify url output for HistoryAction submissions,
 	// to cover up action=historysubmit construction.
 
