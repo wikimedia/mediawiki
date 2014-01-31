@@ -548,8 +548,7 @@ class WebRequest {
 	public function getText( $name, $default = '' ) {
 		global $wgContLang;
 		$val = $this->getVal( $name, $default );
-		return str_replace( "\r\n", "\n",
-			$wgContLang->recodeInput( $val ) );
+		return str_replace( "\r\n", "\n", $val );
 	}
 
 	/**

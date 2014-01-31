@@ -311,7 +311,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				Xml::input(
 					'wpNewTitleMain',
 					60,
-					$wgContLang->recodeForEdit( $newTitle->getText() ),
+					$newTitle->getText(),
 					array(
 						'type' => 'text',
 						'id' => 'wpNewTitleMain',

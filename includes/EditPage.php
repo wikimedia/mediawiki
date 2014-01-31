@@ -2596,7 +2596,6 @@ class EditPage {
 				return;
 			}
 		}
-		$summary = $wgContLang->recodeForEdit( $summary );
 		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
 		list( $label, $input ) = $this->getSummaryInput( $summary, $labelText, array( 'class' => $summaryClass ), array() );
 		$wgOut->addHTML( "{$label} {$input}" );
@@ -3751,9 +3750,8 @@ HTML
 	 */
 	function safeUnicodeOutput( $text ) {
 		global $wgContLang;
-		$codedText = $wgContLang->recodeForEdit( $text );
 		return $this->checkUnicodeCompliantBrowser()
-			? $codedText
+			? $text
 			: $this->makesafe( $codedText );
 	}
 

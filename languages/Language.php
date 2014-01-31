@@ -2777,36 +2777,19 @@ class Language {
 	/**
 	 * @param $s string
 	 * @return string
+	 * @deprecated no-op since 1.23
 	 */
 	function recodeForEdit( $s ) {
-		# For some languages we'll want to explicitly specify
-		# which characters make it into the edit box raw
-		# or are converted in some way or another.
-		global $wgEditEncoding;
-		if ( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
-			return $s;
-		} else {
-			return $this->iconv( 'UTF-8', $wgEditEncoding, $s );
-		}
+		return $s;
 	}
 
 	/**
 	 * @param $s string
 	 * @return string
+	 * @deprecated no-op since 1.23
 	 */
 	function recodeInput( $s ) {
-		# Take the previous into account.
-		global $wgEditEncoding;
-		if ( $wgEditEncoding != '' ) {
-			$enc = $wgEditEncoding;
-		} else {
-			$enc = 'UTF-8';
-		}
-		if ( $enc == 'UTF-8' ) {
-			return $s;
-		} else {
-			return $this->iconv( $enc, 'UTF-8', $s );
-		}
+		return $s;
 	}
 
 	/**
