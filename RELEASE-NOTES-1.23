@@ -34,6 +34,9 @@ production.
 * The 'max threads' setting was removed from $wgDBservers.
 * Support for AdminSettings.php has been completely removed. All configuration
   belongs in LocalSettings.php.
+* Deprecated $wgEditEncoding variable has been removed; was only used for
+  Esperanto language character conversion. Now recommended to use input methods
+  provided by UniversalLanguageSelector extension.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.

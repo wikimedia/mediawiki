@@ -111,7 +111,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 */
 	function showForm( $err ) {
-		global $wgContLang, $wgFixDoubleRedirects, $wgMaximumMovedPages;
+		global $wgFixDoubleRedirects, $wgMaximumMovedPages;
 
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
@@ -311,7 +311,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				Xml::input(
 					'wpNewTitleMain',
 					60,
-					$wgContLang->recodeForEdit( $newTitle->getText() ),
+					$newTitle->getText(),
 					array(
 						'type' => 'text',
 						'id' => 'wpNewTitleMain',
