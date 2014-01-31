@@ -128,7 +128,7 @@ jQuery( function ( $ ) {
 	// make the selected tab visible.
 	hash = window.location.hash;
 	if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-		switchPrefTab( hash.replace( '#mw-prefsection-' , '' ) );
+		switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 	}
 
 	// In browsers that support the onhashchange event we will not bind click
@@ -140,7 +140,7 @@ jQuery( function ( $ ) {
 	if ( 'onhashchange' in window &&
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
-		$( window ).on( 'hashchange' , function () {
+		$( window ).on( 'hashchange', function () {
 			var hash = window.location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );

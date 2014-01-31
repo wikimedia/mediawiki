@@ -1,0 +1,23 @@
+{
+  "name": "mediawiki",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gerrit.wikimedia.org/r/p/mediawiki/core.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://git.wikimedia.org/blob/mediawiki%2Fcore.git/master/COPYING"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "0.4.2",
+    "grunt-contrib-jshint": "0.8.0",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-jscs-checker": "0.4.0"
+  }
+}

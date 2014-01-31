@@ -14,18 +14,18 @@
 	var oldParser,
 		slice = Array.prototype.slice,
 		parserDefaults = {
-			magic : {
-				'SITENAME' : mw.config.get( 'wgSiteName' )
+			magic: {
+				'SITENAME': mw.config.get( 'wgSiteName' )
 			},
 			// This is a whitelist based on, but simpler than, Sanitizer.php.
 			// Self-closing tags are not currently supported.
-			allowedHtmlElements : [
+			allowedHtmlElements: [
 				'b',
 				'i'
 			],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist
-			allowedHtmlCommonAttributes : [
+			allowedHtmlCommonAttributes: [
 				// HTML
 				'id',
 				'class',
@@ -41,9 +41,9 @@
 			// Attributes allowed for specific elements.
 			// Key is element name in lower case
 			// Value is array of allowed attributes for that element
-			allowedHtmlAttributesByElement : {},
-			messages : mw.messages,
-			language : mw.language,
+			allowedHtmlAttributesByElement: {},
+			messages: mw.messages,
+			language: mw.language,
 
 			// Same meaning as in mediawiki.js.
 			//
@@ -850,7 +850,6 @@
 				replacement,
 				curlyBraceTransformExpressionLiteral
 			] );
-
 
 			/**
 			 * Starts the parse

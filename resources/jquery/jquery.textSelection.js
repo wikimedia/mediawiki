@@ -2,8 +2,6 @@
  * These plugins provide extra functionality for interaction with textareas.
  */
 ( function ( $ ) {
-	/*jshint noempty:false */
-
 	if ( document.selection && document.selection.createRange ) {
 		// On IE, patch the focus() method to restore the windows' scroll position
 		// (bug 32241)
@@ -13,7 +11,7 @@
 					var $w, state, result;
 					if ( arguments.length === 0 ) {
 						$w = $( window );
-						state = {top: $w.scrollTop(), left: $w.scrollLeft()};
+						state = { top: $w.scrollTop(), left: $w.scrollLeft() };
 						result = jqFocus.apply( this, arguments );
 						window.scrollTo( state.top, state.left );
 						return result;
@@ -73,7 +71,6 @@
 					el = this.get( 0 );
 
 				if ( $(el).is( ':hidden' ) ) {
-					// Do nothing
 					retval = '';
 				} else if ( document.selection && document.selection.createRange ) {
 					activateElementOnIE( el );
@@ -143,108 +140,109 @@
 					}
 
 					isSample = false;
-					if ( this.style.display === 'none' ) {
-						// Do nothing
-					} else if ( document.selection && document.selection.createRange ) {
-						// IE
+					// Do nothing if display none
+					if ( this.style.display !== 'none' ) {
+						if ( document.selection && document.selection.createRange ) {
+							// IE
 
-						// Note that IE9 will trigger the next section unless we check this first.
-						// See bug 35201.
+							// Note that IE9 will trigger the next section unless we check this first.
+							// See bug 35201.
 
-						activateElementOnIE( this );
-						if ( context ) {
-							context.fn.restoreCursorAndScrollTop();
-						}
-						if ( options.selectionStart !== undefined ) {
-							$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
-						}
-
-						selText = $(this).textSelection( 'getSelection' );
-						scrollTop = this.scrollTop;
-						range = document.selection.createRange();
-
-						checkSelectedText();
-						insertText = pre + selText + post;
-						if ( options.splitlines ) {
-							insertText = doSplitLines( selText, pre, post );
-						}
-						if ( options.ownline && range.moveStart ) {
-							range2 = document.selection.createRange();
-							range2.collapse();
-							range2.moveStart( 'character', -1 );
-							// FIXME: Which check is correct?
-							if ( range2.text !== '\r' && range2.text !== '\n' && range2.text !== '' ) {
-								insertText = '\n' + insertText;
-								pre += '\n';
+							activateElementOnIE( this );
+							if ( context ) {
+								context.fn.restoreCursorAndScrollTop();
 							}
-							range3 = document.selection.createRange();
-							range3.collapse( false );
-							range3.moveEnd( 'character', 1 );
-							if ( range3.text !== '\r' && range3.text !== '\n' && range3.text !== '' ) {
-								insertText += '\n';
-								post += '\n';
+							if ( options.selectionStart !== undefined ) {
+								$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
 							}
-						}
 
-						range.text = insertText;
-						if ( isSample && options.selectPeri && range.moveStart ) {
-							range.moveStart( 'character', - post.length - selText.length );
-							range.moveEnd( 'character', - post.length );
-						}
-						range.select();
-						// Restore the scroll position
-						this.scrollTop = scrollTop;
-					} else if ( this.selectionStart || this.selectionStart === 0 ) {
-						// Mozilla/Opera
+							selText = $(this).textSelection( 'getSelection' );
+							scrollTop = this.scrollTop;
+							range = document.selection.createRange();
 
-						$(this).focus();
-						if ( options.selectionStart !== undefined ) {
-							$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
-						}
-
-						selText = $(this).textSelection( 'getSelection' );
-						startPos = this.selectionStart;
-						endPos = this.selectionEnd;
-						scrollTop = this.scrollTop;
-						checkSelectedText();
-						if ( options.selectionStart !== undefined
-								&& endPos - startPos !== options.selectionEnd - options.selectionStart )
-						{
-							// This means there is a difference in the selection range returned by browser and what we passed.
-							// This happens for Chrome in the case of composite characters. Ref bug #30130
-							// Set the startPos to the correct position.
-							startPos = options.selectionStart;
-						}
-
-						insertText = pre + selText + post;
-						if ( options.splitlines ) {
-							insertText = doSplitLines( selText, pre, post );
-						}
-						if ( options.ownline ) {
-							if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
-								insertText = '\n' + insertText;
-								pre += '\n';
+							checkSelectedText();
+							insertText = pre + selText + post;
+							if ( options.splitlines ) {
+								insertText = doSplitLines( selText, pre, post );
 							}
-							if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
-								insertText += '\n';
-								post += '\n';
+							if ( options.ownline && range.moveStart ) {
+								range2 = document.selection.createRange();
+								range2.collapse();
+								range2.moveStart( 'character', -1 );
+								// FIXME: Which check is correct?
+								if ( range2.text !== '\r' && range2.text !== '\n' && range2.text !== '' ) {
+									insertText = '\n' + insertText;
+									pre += '\n';
+								}
+								range3 = document.selection.createRange();
+								range3.collapse( false );
+								range3.moveEnd( 'character', 1 );
+								if ( range3.text !== '\r' && range3.text !== '\n' && range3.text !== '' ) {
+									insertText += '\n';
+									post += '\n';
+								}
 							}
-						}
-						this.value = this.value.substring( 0, startPos ) + insertText +
-							this.value.substring( endPos, this.value.length );
-						// Setting this.value scrolls the textarea to the top, restore the scroll position
-						this.scrollTop = scrollTop;
-						if ( window.opera ) {
-							pre = pre.replace( /\r?\n/g, '\r\n' );
-							selText = selText.replace( /\r?\n/g, '\r\n' );
-							post = post.replace( /\r?\n/g, '\r\n' );
-						}
-						if ( isSample && options.selectPeri && !options.splitlines ) {
-							this.selectionStart = startPos + pre.length;
-							this.selectionEnd = startPos + pre.length + selText.length;
-						} else {
-							this.selectionStart = startPos + insertText.length;
-							this.selectionEnd = this.selectionStart;
+
+							range.text = insertText;
+							if ( isSample && options.selectPeri && range.moveStart ) {
+								range.moveStart( 'character', -post.length - selText.length );
+								range.moveEnd( 'character', -post.length );
+							}
+							range.select();
+							// Restore the scroll position
+							this.scrollTop = scrollTop;
+						} else if ( this.selectionStart || this.selectionStart === 0 ) {
+							// Mozilla/Opera
+
+							$(this).focus();
+							if ( options.selectionStart !== undefined ) {
+								$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+							}
+
+							selText = $(this).textSelection( 'getSelection' );
+							startPos = this.selectionStart;
+							endPos = this.selectionEnd;
+							scrollTop = this.scrollTop;
+							checkSelectedText();
+							if ( options.selectionStart !== undefined
+									&& endPos - startPos !== options.selectionEnd - options.selectionStart )
+							{
+								// This means there is a difference in the selection range returned by browser and what we passed.
+								// This happens for Chrome in the case of composite characters. Ref bug #30130
+								// Set the startPos to the correct position.
+								startPos = options.selectionStart;
+							}
+
+							insertText = pre + selText + post;
+							if ( options.splitlines ) {
+								insertText = doSplitLines( selText, pre, post );
+							}
+							if ( options.ownline ) {
+								if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
+									insertText = '\n' + insertText;
+									pre += '\n';
+								}
+								if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
+									insertText += '\n';
+									post += '\n';
+								}
+							}
+							this.value = this.value.substring( 0, startPos ) + insertText +
+								this.value.substring( endPos, this.value.length );
+							// Setting this.value scrolls the textarea to the top, restore the scroll position
+							this.scrollTop = scrollTop;
+							if ( window.opera ) {
+								pre = pre.replace( /\r?\n/g, '\r\n' );
+								selText = selText.replace( /\r?\n/g, '\r\n' );
+								post = post.replace( /\r?\n/g, '\r\n' );
+							}
+							if ( isSample && options.selectPeri && !options.splitlines ) {
+								this.selectionStart = startPos + pre.length;
+								this.selectionEnd = startPos + pre.length + selText.length;
+							} else {
+								this.selectionStart = startPos + insertText.length;
+								this.selectionEnd = this.selectionStart;
+							}
 						}
 					}
 					$(this).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
@@ -366,35 +364,36 @@
 			setSelection: function ( options ) {
 				return this.each( function () {
 					var selection, length, newLines;
-					if ( $(this).is( ':hidden' ) ) {
-						// Do nothing
-					} else if ( this.selectionStart || this.selectionStart === 0 ) {
-						// Opera 9.0 doesn't allow setting selectionStart past
-						// selectionEnd; any attempts to do that will be ignored
-						// Make sure to set them in the right order
-						if ( options.start > this.selectionEnd ) {
-							this.selectionEnd = options.end;
-							this.selectionStart = options.start;
-						} else {
-							this.selectionStart = options.start;
-							this.selectionEnd = options.end;
-						}
-					} else if ( document.body.createTextRange ) {
-						selection = rangeForElementIE( this );
-						length = this.value.length;
-						// IE doesn't count \n when computing the offset, so we won't either
-						newLines = this.value.match( /\n/g );
-						if ( newLines ) {
-							length = length - newLines.length;
-						}
-						selection.moveStart( 'character', options.start );
-						selection.moveEnd( 'character', -length + options.end );
+					// Do nothing if hidden
+					if ( !$(this).is( ':hidden' ) ) {
+						if ( this.selectionStart || this.selectionStart === 0 ) {
+							// Opera 9.0 doesn't allow setting selectionStart past
+							// selectionEnd; any attempts to do that will be ignored
+							// Make sure to set them in the right order
+							if ( options.start > this.selectionEnd ) {
+								this.selectionEnd = options.end;
+								this.selectionStart = options.start;
+							} else {
+								this.selectionStart = options.start;
+								this.selectionEnd = options.end;
+							}
+						} else if ( document.body.createTextRange ) {
+							selection = rangeForElementIE( this );
+							length = this.value.length;
+							// IE doesn't count \n when computing the offset, so we won't either
+							newLines = this.value.match( /\n/g );
+							if ( newLines ) {
+								length = length - newLines.length;
+							}
+							selection.moveStart( 'character', options.start );
+							selection.moveEnd( 'character', -length + options.end );
 
-						// This line can cause an error under certain circumstances (textarea empty, no selection)
-						// Silence that error
-						try {
-							selection.select();
-						} catch ( e ) { }
+							// This line can cause an error under certain circumstances (textarea empty, no selection)
+							// Silence that error
+							try {
+								selection.select();
+							} catch ( e ) { }
+						}
 					}
 				});
 			},
@@ -461,40 +460,41 @@
 				}
 				return this.each(function () {
 					var scroll, range, savedRange, pos, oldScrollTop;
-					if ( $(this).is( ':hidden' ) ) {
-						// Do nothing
-					} else if ( this.selectionStart || this.selectionStart === 0 ) {
-						// Mozilla
-						scroll = getCaretScrollPosition( this );
-						if ( options.force || scroll < $(this).scrollTop() ||
-								scroll > $(this).scrollTop() + $(this).height() ) {
-							$(this).scrollTop( scroll );
-						}
-					} else if ( document.selection && document.selection.createRange ) {
-						// IE / Opera
-						/*
-						 * IE automatically scrolls the selected text to the
-						 * bottom of the textarea at range.select() time, except
-						 * if it was already in view and the cursor position
-						 * wasn't changed, in which case it does nothing. To
-						 * cover that case, we'll force it to act by moving one
-						 * character back and forth.
-						 */
-						range = document.body.createTextRange();
-						savedRange = document.selection.createRange();
-						pos = $(this).textSelection( 'getCaretPosition' );
-						oldScrollTop = this.scrollTop;
-						range.moveToElementText( this );
-						range.collapse();
-						range.move( 'character', pos + 1);
-						range.select();
-						if ( this.scrollTop !== oldScrollTop ) {
-							this.scrollTop += range.offsetTop;
-						} else if ( options.force ) {
-							range.move( 'character', -1 );
+					// Do nothing if hidden
+					if ( !$(this).is( ':hidden' ) ) {
+						if ( this.selectionStart || this.selectionStart === 0 ) {
+							// Mozilla
+							scroll = getCaretScrollPosition( this );
+							if ( options.force || scroll < $(this).scrollTop() ||
+									scroll > $(this).scrollTop() + $(this).height() ) {
+								$(this).scrollTop( scroll );
+							}
+						} else if ( document.selection && document.selection.createRange ) {
+							// IE / Opera
+							/*
+							 * IE automatically scrolls the selected text to the
+							 * bottom of the textarea at range.select() time, except
+							 * if it was already in view and the cursor position
+							 * wasn't changed, in which case it does nothing. To
+							 * cover that case, we'll force it to act by moving one
+							 * character back and forth.
+							 */
+							range = document.body.createTextRange();
+							savedRange = document.selection.createRange();
+							pos = $(this).textSelection( 'getCaretPosition' );
+							oldScrollTop = this.scrollTop;
+							range.moveToElementText( this );
+							range.collapse();
+							range.move( 'character', pos + 1);
 							range.select();
+							if ( this.scrollTop !== oldScrollTop ) {
+								this.scrollTop += range.offsetTop;
+							} else if ( options.force ) {
+								range.move( 'character', -1 );
+								range.select();
+							}
+							savedRange.select();
 						}
-						savedRange.select();
 					}
 					$(this).trigger( 'scrollToPosition' );
 				} );
