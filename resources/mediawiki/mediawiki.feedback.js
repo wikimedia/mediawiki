@@ -161,9 +161,12 @@
 		 * The section of the dialog to show.
 		 */
 		display: function ( s ) {
-			this.$dialog.dialog( { buttons:{} } ); // hide the buttons
-			this.$dialog.find( '.feedback-mode' ).hide(); // hide everything
-			this.$dialog.find( '.feedback-' + s ).show(); // show the desired div
+			// Hide the buttons
+			this.$dialog.dialog( { buttons: {} } );
+			// Hide everything
+			this.$dialog.find( '.feedback-mode' ).hide();
+			// Show the desired div
+			this.$dialog.find( '.feedback-' + s ).show();
 		},
 
 		/**
