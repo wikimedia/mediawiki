@@ -1803,7 +1803,8 @@ Note that using the navigation links will reset this column.',
 'showhideselectedversions'    => 'Change visibility of selected revisions',
 'editundo'                    => 'undo',
 'diff-empty'                  => '(No difference)',
-'diff-multi'                  => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-sameuser'         => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by the same user not shown)',
+'diff-multi-otherusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one other user|$2 users}} not shown)',
 'diff-multi-manyusers'        => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
 'difference-missing-revision' => '{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.
 

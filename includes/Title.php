@@ -4431,8 +4431,10 @@ class Title {
 	}
 
 	/**
-	 * Get the number of authors between the given revisions or revision IDs.
+	 * Get the authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
+	 *
+	 * @since 1.23
 	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range by default)
 	 * @param int|Revision $new New revision or rev ID (first after range by default)
@@ -4442,9 +4444,9 @@ class Title {
 	 *     'include_new' Include $new in the range; $old is excluded.
 	 *     'include_both' Include both $old and $new in the range.
 	 *     Unknown option values are ignored.
-	 * @return int Number of revision authors in the range; zero if not both revisions exist
+	 * @return array|null Names of revision authors in the range; null if not both revisions exist
 	 */
-	public function countAuthorsBetween( $old, $new, $limit, $options = array() ) {
+	public function getAuthorsBetween( $old, $new, $limit, $options = array() ) {
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
@@ -4455,8 +4457,9 @@ class Title {
 		// Add $old->getPage() != $new->getPage() || $old->getPage() != $this->getArticleID()
 		// in the sanity check below?
 		if ( !$old || !$new ) {
-			return 0; // nothing to compare
+			return null; // nothing to compare
 		}
+		$authors = array();
 		$old_cmp = '>';
 		$new_cmp = '<';
 		$options = (array)$options;
@@ -4472,12 +4475,19 @@ class Title {
 		}
 		// No DB query needed if $old and $new are the same or successive revisions:
 		if ( $old->getId() === $new->getId() ) {
-			return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
+			return ( $old_cmp === '>' && $new_cmp === '<' ) ? array() : array( $old->getRawUserText() );
 		} elseif ( $old->getId() === $new->getParentId() ) {
-			if ( $old_cmp === '>' || $new_cmp === '<' ) {
-				return ( $old_cmp === '>' && $new_cmp === '<' ) ? 0 : 1;
+			if ( $old_cmp === '>=' && $new_cmp === '<=' ) {
+				$authors[] = $old->getRawUserText();
+				if ( $old->getRawUserText() != $new->getRawUserText() ) {
+					$authors[] = $new->getRawUserText();
+				}
+			} elseif ( $old_cmp === '>=' ) {
+				$authors[] = $old->getRawUserText();
+			} elseif ( $new_cmp === '<=' ) {
+				$authors[] = $new->getRawUserText();
 			}
-			return ( $old->getRawUserText() === $new->getRawUserText() ) ? 1 : 2;
+			return $authors;
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
@@ -4488,7 +4498,29 @@ class Title {
 			), __METHOD__,
 			array( 'LIMIT' => $limit + 1 ) // add one so caller knows it was truncated
 		);
-		return (int)$dbr->numRows( $res );
+		foreach ( $res as $row ) {
+			$authors[] = $row->rev_user_text;
+		}
+		return $authors;
+	}
+
+	/**
+	 * Get the number of authors between the given revisions or revision IDs.
+	 * Used for diffs and other things that really need it.
+	 *
+	 * @param int|Revision $old Old revision or rev ID (first before range by default)
+	 * @param int|Revision $new New revision or rev ID (first after range by default)
+	 * @param int $limit Maximum number of authors
+	 * @param string|array $options (Optional): Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
+	 *     Unknown option values are ignored.
+	 * @return int Number of revision authors in the range; zero if not both revisions exist
+	 */
+	public function countAuthorsBetween( $old, $new, $limit, $options = array() ) {
+		$authors = $this->getAuthorsBetween( $old, $new, $limit, $options );
+		return $authors ? count( $authors ) : 0;
 	}
 
 	/**

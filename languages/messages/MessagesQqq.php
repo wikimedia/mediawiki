@@ -2809,12 +2809,20 @@ See also:
 This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 {{Identical|Undo}}',
 'diff-empty' => 'This message appears instead of a "diff" when comparing two revisions that are identical.',
-'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
+'diff-multi-sameuser' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions were all created by the same user as the new revision.
 
 Parameters:
 * $1 - the number of revisions
-* $2 - the number of distinct users who made those revisions
 See also:
+* {{msg-mw|Diff-multi-otherusers}}
+* {{msg-mw|Diff-multi-manyusers}}",
+'diff-multi-otherusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and at least one of the intermediate revisions was created by a user other than the user who created the new revision.
+
+Parameters:
+* $1 - the number of revisions
+* $2 - the number of distinct other users who made those revisions
+See also:
+* {{msg-mw|Diff-multi-sameuser}}
 * {{msg-mw|Diff-multi-manyusers}}",
 'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.
 
@@ -2822,7 +2830,8 @@ Parameters:
 * $1 - the number of revisions, will always be 101 or more
 * $2 - the number of users that were found, which was limited at 100
 See also:
-* {{msg-mw|Diff-multi}}",
+* {{msg-mw|Diff-multi-sameuser}}
+* {{msg-mw|Diff-multi-otherusers}}",
 'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
 
 Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
