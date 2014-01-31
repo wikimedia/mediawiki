@@ -4,7 +4,8 @@
 jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
-		$tzSelect, $tzTextbox, $localtimeHolder, servertime;
+		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
+		$checkBoxes;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -253,4 +254,18 @@ jQuery( function ( $ ) {
 			sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
 		} );
 	}
+
+	// To disable all 'namespace' checkboxes in Search preferences
+	// when 'Search in all namespaces' checkbox is ticked.
+	$checkBoxes = $( '#mw-htmlform-advancedsearchoptions input[id^=mw-input-wpsearchnamespaces]' );
+	if ( $( '#mw-input-wpsearcheverything' ).prop( 'checked' ) ) {
+		$checkBoxes.prop( 'disabled' , true );
+	}
+	$( '#mw-input-wpsearcheverything' ).change( function () {
+		if ( $( this ).prop( 'checked' ) ) {
+			$checkBoxes.prop( 'disabled' , true );
+		} else {
+			$checkBoxes.prop( 'disabled',false );
+		}
+	} );
 } );
