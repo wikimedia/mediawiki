@@ -13,7 +13,7 @@
  * @version 2.1.0
  * @license MIT
  */
-(function($) {
+(function ($) {
 
 	var isInputSupported = 'placeholder' in document.createElement('input'),
 		isTextareaSupported = 'placeholder' in document.createElement('textarea'),
@@ -25,10 +25,10 @@
 
 	if (isInputSupported && isTextareaSupported) {
 
-		placeholder = prototype.placeholder = function(text) {
+		placeholder = prototype.placeholder = function (text) {
 			var hasArgs = arguments.length;
 
-			if( hasArgs ) {
+			if (hasArgs) {
 				changePlaceholder.call(this, text);
 			}
 
@@ -39,18 +39,17 @@
 
 	} else {
 
-		placeholder = prototype.placeholder = function(text) {
+		placeholder = prototype.placeholder = function (text) {
 			var $this = this,
 				hasArgs = arguments.length;
 
-			if(hasArgs) {
+			if (hasArgs) {
 				changePlaceholder.call(this, text);
 			}
 
-
 			$this
 				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
-				.filter(function() {
+				.filter(function () {
 					return !$(this).data('placeholder-enabled');
 				})
 				.bind({
@@ -66,7 +65,7 @@
 		placeholder.textarea = isTextareaSupported;
 
 		hooks = {
-			'get': function(element) {
+			'get': function (element) {
 				var $element = $(element),
 					$passwordInput = $element.data('placeholder-password');
 				if ($passwordInput) {
@@ -75,7 +74,7 @@
 
 				return $element.data('placeholder-enabled') && $element.hasClass('placeholder') ? '' : element.value;
 			},
-			'set': function(element, value) {
+			'set': function (element, value) {
 				var $element = $(element),
 					$passwordInput = $element.data('placeholder-password');
 				if ($passwordInput) {
@@ -95,7 +94,7 @@
 						setPlaceholder.call(element);
 					}
 				} else if ($element.hasClass('placeholder')) {
-					if(!clearPlaceholder.call(element, true, value)) {
+					if (!clearPlaceholder.call(element, true, value)) {
 						element.value = value;
 					}
 				} else {
@@ -115,20 +114,20 @@
 			propHooks.value = hooks;
 		}
 
-		$(function() {
+		$(function () {
 			// Look for forms
-			$(document).delegate('form', 'submit.placeholder', function() {
+			$(document).delegate('form', 'submit.placeholder', function () {
 				// Clear the placeholder values so they don't get submitted
 				var $inputs = $('.placeholder', this).each(clearPlaceholder);
-				setTimeout(function() {
+				setTimeout(function () {
 					$inputs.each(setPlaceholder);
 				}, 10);
 			});
 		});
 
 		// Clear placeholder values upon page reload
-		$(window).bind('beforeunload.placeholder', function() {
-			$('.placeholder').each(function() {
+		$(window).bind('beforeunload.placeholder', function () {
+			$('.placeholder').each(function () {
 				this.value = '';
 			});
 		});
@@ -139,7 +138,7 @@
 		// Return an object of element attributes
 		var newAttrs = {},
 			rinlinejQuery = /^jQuery\d+$/;
-		$.each(elem.attributes, function(i, attr) {
+		$.each(elem.attributes, function (i, attr) {
 			if (attr.specified && !rinlinejQuery.test(attr.name)) {
 				newAttrs[attr.name] = attr.value;
 			}
@@ -162,7 +161,7 @@
 			} else {
 				input.value = '';
 				$input.removeClass('placeholder');
-				if(input === safeActiveElement()) {
+				if (input === safeActiveElement()) {
 					input.select();
 				}
 			}
@@ -217,10 +216,10 @@
 	function changePlaceholder(text) {
 		var hasArgs = arguments.length,
 			$input = this;
-		if(hasArgs) {
-			if($input.attr('placeholder') !== text) {
+		if (hasArgs) {
+			if ($input.attr('placeholder') !== text) {
 				$input.prop('placeholder', text);
-				if($input.hasClass('placeholder')) {
+				if ($input.hasClass('placeholder')) {
 					$input[0].value = text;
 				}
 			}
