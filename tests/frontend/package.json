@@ -1,0 +1,13 @@
+{
+  "name": "mediawiki",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "0.4.2",
+    "grunt-contrib-jshint": "0.8.0",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-jscs-checker": "0.4.0"
+  }
+}

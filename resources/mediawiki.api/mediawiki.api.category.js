@@ -84,7 +84,6 @@
 				.promise( { abort: apiPromise.abort } );
 		},
 
-
 		/**
 		 * Get the categories that a particular page on the wiki belongs to
 		 * @param {mw.Title} title

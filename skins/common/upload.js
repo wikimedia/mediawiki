@@ -85,7 +85,6 @@ function uploadSetup() {
 		wpLicenseTbody.insertBefore( row, wpLicenseRow.nextSibling );
 	}
 
-
 	// fillDestFile setup
 	uploadSourceIds = mw.config.get( 'wgUploadSourceIds' );
 	len = uploadSourceIds.length;
@@ -98,7 +97,7 @@ function uploadSetup() {
 }
 
 wgUploadWarningObj = window.wgUploadWarningObj = {
-	responseCache: { '' : '&nbsp;' },
+	responseCache: { '': '&nbsp;' },
 	nameToCheck: '',
 	typing: false,
 	delay: 500, // ms
@@ -303,7 +302,7 @@ window.toggleFilenameFiller = function () {
 
 wgUploadLicenseObj = window.wgUploadLicenseObj = {
 
-	responseCache: { '' : '' },
+	responseCache: { '': '' },
 
 	fetchPreview: function ( license ) {
 		var cached, title;

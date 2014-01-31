@@ -29,7 +29,6 @@
 		} );
 	} );
 
-
 	QUnit.test( 'API error', function ( assert ) {
 		QUnit.expect( 1 );
 
