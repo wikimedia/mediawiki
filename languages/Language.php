@@ -2667,9 +2667,6 @@ class Language {
 	 * @return string
 	 */
 	function iconv( $in, $out, $string ) {
-		# This is a wrapper for iconv in all languages except esperanto,
-		# which does some nasty x-conversions beforehand
-
 		# Even with //IGNORE iconv can whine about illegal characters in
 		# *input* string. We just ignore those too.
 		# REF: http://bugs.php.net/bug.php?id=37166
@@ -3087,46 +3084,27 @@ class Language {
 		}
 	}
 
-	function initEncoding() {
-		# Some languages may have an alternate char encoding option
-		# (Esperanto X-coding, Japanese furigana conversion, etc)
-		# If this language is used as the primary content language,
-		# an override to the defaults can be set here on startup.
-	}
+	/**
+	 * @deprecated no-op since 1.26
+	 */
+	function initEncoding() {}
 
 	/**
 	 * @param string $s
 	 * @return string
+	 * @deprecated no-op since 1.26
 	 */
 	function recodeForEdit( $s ) {
-		# For some languages we'll want to explicitly specify
-		# which characters make it into the edit box raw
-		# or are converted in some way or another.
-		global $wgEditEncoding;
-		if ( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
-			return $s;
-		} else {
-			return $this->iconv( 'UTF-8', $wgEditEncoding, $s );
-		}
+		return $s;
 	}
 
 	/**
 	 * @param string $s
 	 * @return string
+	 * @deprecated no-op since 1.26
 	 */
 	function recodeInput( $s ) {
-		# Take the previous into account.
-		global $wgEditEncoding;
-		if ( $wgEditEncoding != '' ) {
-			$enc = $wgEditEncoding;
-		} else {
-			$enc = 'UTF-8';
-		}
-		if ( $enc == 'UTF-8' ) {
-			return $s;
-		} else {
-			return $this->iconv( $enc, 'UTF-8', $s );
-		}
+		return $s;
 	}
 
 	/**

@@ -522,19 +522,16 @@ class WebRequest {
 	 * Fetch a text string from the given array or return $default if it's not
 	 * set. Carriage returns are stripped from the text, and with some language
 	 * modules there is an input transliteration applied. This should generally
-	 * be used for form "<textarea>" and "<input>" fields. Used for
-	 * user-supplied freeform text input (for which input transformations may
-	 * be required - e.g.  Esperanto x-coding).
+	 * be used for form "<textarea>" and "<input>" fields, and for
+	 * user-supplied freeform text input.
 	 *
 	 * @param string $name
 	 * @param string $default Optional
 	 * @return string
 	 */
 	public function getText( $name, $default = '' ) {
-		global $wgContLang;
 		$val = $this->getVal( $name, $default );
-		return str_replace( "\r\n", "\n",
-			$wgContLang->recodeInput( $val ) );
+		return str_replace( "\r\n", "\n", $val );
 	}
 
 	/**

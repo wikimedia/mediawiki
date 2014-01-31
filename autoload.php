@@ -624,7 +624,6 @@ $wgAutoloadLocalClasses = array(
 	'LanguageConverter' => __DIR__ . '/languages/LanguageConverter.php',
 	'LanguageCu' => __DIR__ . '/languages/classes/LanguageCu.php',
 	'LanguageDsb' => __DIR__ . '/languages/classes/LanguageDsb.php',
-	'LanguageEo' => __DIR__ . '/languages/classes/LanguageEo.php',
 	'LanguageEs' => __DIR__ . '/languages/classes/LanguageEs.php',
 	'LanguageEt' => __DIR__ . '/languages/classes/LanguageEt.php',
 	'LanguageFi' => __DIR__ . '/languages/classes/LanguageFi.php',
