@@ -834,6 +834,7 @@ $wgAutoloadLocalClasses = array(
 	'ParameterizedPassword' => 'includes/password/ParameterizedPassword.php',
 	'Password' => 'includes/password/Password.php',
 	'Pbkdf2Password' => 'includes/password/Pbkdf2Password.php',
+	'WhirlpoolPassword' => 'includes/password/WhirlpoolPassword.php',
 	'PepperedPassword' => 'includes/password/PepperedPassword.php',
 
 	# includes/profiler

@@ -3980,6 +3980,13 @@ $wgPasswordConfig = array(
 			'bcrypt',
 		),
 	),
+	'E' => array(
+		'class' => 'LayeredParameterizedPassword',
+		'types' => array(
+			'B',
+			'whirlpool',
+		),
+	),
 	'bcrypt' => array(
 		'class' => 'BcryptPassword',
 		'cost' => 5,
@@ -3989,6 +3996,10 @@ $wgPasswordConfig = array(
 		'algo' => 'sha256',
 		'cost' => '10000',
 		'length' => '224',
+	),
+	'whirlpool' => array(
+		'class' => 'WhirlpoolPassword',
+		'cost' => 8,
 	),
 );
 
