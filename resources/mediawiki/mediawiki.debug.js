@@ -228,7 +228,6 @@
 			$( '<colgroup>' ).appendTo( $table );
 			$( '<colgroup>' ).css( 'width', 350 ).appendTo( $table );
 
-
 			entryTypeText = function ( entryType ) {
 				switch ( entryType ) {
 					case 'log':
@@ -284,7 +283,6 @@
 					.append( $( '<td>' ).text( query['function'] ) )
 				.appendTo( $table );
 			}
-
 
 			return $table;
 		},

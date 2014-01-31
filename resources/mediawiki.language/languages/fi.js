@@ -34,7 +34,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			break;
 		case 'illative':
 			// Double the last letter and add 'n'
-			word += word.substr(  word.length-1 ) + 'n';
+			word += word.substr(  word.length - 1 ) + 'n';
 			break;
 		case 'inessive':
 			word += ( aou ? 'ssa' : 'ssä' );

@@ -79,7 +79,6 @@
 		isEmptyObject: $.isEmptyObject
 	};
 
-
 	/**
 	 * CompletenessTest
 	 * @constructor

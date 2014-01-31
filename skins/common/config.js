@@ -98,7 +98,7 @@
 		// Show/Hide memcached servers when needed
 		$( 'input[name$="config_wgMainCacheType"]' ).change( function () {
 			var $memc = $( '#config-memcachewrapper' );
-			if( $( 'input[name$="config_wgMainCacheType"]:checked' ).val() === 'memcached' ) {
+			if ( $( 'input[name$="config_wgMainCacheType"]:checked' ).val() === 'memcached' ) {
 				$memc.show( 'slow' );
 			} else {
 				$memc.hide( 'slow' );
