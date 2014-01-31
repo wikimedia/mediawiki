@@ -253,4 +253,18 @@ jQuery( function ( $ ) {
 			sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
 		} );
 	}
+	// To select all 'namespace' checkboxes in Search preferences
+	// when 'Search in all namespaces' checkbox is ticked.
+	var $checkboxes = $( '#mw-htmlform-advancedsearchoptions input[id^=mw-input-wpsearchnamespaces]' );
+	if ( $( '#mw-input-wpsearcheverything' ).is ( ':checked' ) )	{
+		$checkboxes.attr( 'checked' , true ).prop( 'disabled' , true );
+	}
+	$( '#mw-input-wpsearcheverything' ).change( function()	{
+		if ( $( this ).is( ':checked' ) )  { 
+			$checkboxes.attr( 'checked' , true ).prop( 'disabled' , true );
+		} else {
+			$checkboxes.removeAttr( 'disabled' );
+		}
+	});
+	
 } );
