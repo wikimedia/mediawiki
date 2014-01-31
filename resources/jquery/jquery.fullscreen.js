@@ -173,4 +173,9 @@
 			return this;
 		}
 	};
+
+	$.support.fullscreen = 'requestFullscreen' in document.documentElement
+		|| 'msRequestFullScreen' in document.documentElement
+		|| 'webkitRequestFullScreen' in document.documentElement
+		|| ( 'mozRequestFullScreen' in document.documentElement && document.mozFullScreenEnabled );
 }( jQuery ) );
