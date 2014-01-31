@@ -139,8 +139,6 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 */
 	function showForm( $err ) {
-		global $wgContLang;
-
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
 		$out = $this->getOutput();
@@ -316,7 +314,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'title' => [
 					'id' => 'wpNewTitleMain',
 					'name' => 'wpNewTitleMain',
-					'value' => $wgContLang->recodeForEdit( $newTitle->getText() ),
+					'value' => $newTitle->getText(),
 					// Inappropriate, since we're expecting the user to input a non-existent page's title
 					'suggestions' => false,
 				],
