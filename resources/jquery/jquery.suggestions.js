@@ -142,7 +142,7 @@ $.suggestions = {
 			i, expWidth, matchedText, maxWidth, text;
 
 		// Validate creation using fallback values
-		switch( property ) {
+		switch ( property ) {
 			case 'fetch':
 			case 'cancel':
 			case 'special':
@@ -281,7 +281,7 @@ $.suggestions = {
 						}
 						// Apply new width for results box, if any
 						if ( expWidth > context.data.$container.width() ) {
-							maxWidth = context.config.maxExpandFactor*context.data.$textbox.width();
+							maxWidth = context.config.maxExpandFactor * context.data.$textbox.width();
 							context.data.$container.width( Math.min( expWidth, maxWidth ) );
 						}
 						// autoEllipse the results. Has to be done after changing the width

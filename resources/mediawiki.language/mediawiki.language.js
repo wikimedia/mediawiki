@@ -96,7 +96,7 @@ $.extend( mw.language, {
 	 */
 	preConvertPlural: function ( forms, count ) {
 		while ( forms.length < count ) {
-			forms.push( forms[ forms.length-1 ] );
+			forms.push( forms[ forms.length - 1 ] );
 		}
 		return forms;
 	},
