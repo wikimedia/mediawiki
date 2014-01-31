@@ -3026,7 +3026,7 @@ class EditPage {
 	 * @param string $summary The text of the summary to display
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
-		global $wgOut, $wgContLang;
+		global $wgOut;
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
@@ -3038,7 +3038,6 @@ class EditPage {
 				return;
 			}
 		}
-		$summary = $wgContLang->recodeForEdit( $summary );
 		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
 		list( $label, $input ) = $this->getSummaryInput(
 			$summary,
@@ -4175,11 +4174,9 @@ HTML
 	 * @return string
 	 */
 	protected function safeUnicodeOutput( $text ) {
-		global $wgContLang;
-		$codedText = $wgContLang->recodeForEdit( $text );
 		return $this->checkUnicodeCompliantBrowser()
-			? $codedText
-			: $this->makeSafe( $codedText );
+			? $text
+			: $this->makesafe( $text );
 	}
 
 	/**
