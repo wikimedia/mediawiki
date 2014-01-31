@@ -91,7 +91,7 @@ relativeforfloats = window.relativeforfloats = function () {
 setrelative = window.setrelative = function ( nodes ) {
 	var i = 0;
 	while ( i < nodes.length ) {
-		if( ( ( nodes[i].style.float && nodes[i].style.float !== ( 'none' ) ||
+		if ( ( ( nodes[i].style.float && nodes[i].style.float !== ( 'none' ) ||
 			( nodes[i].align && nodes[i].align !== ( 'none' ) ) ) &&
 			( !nodes[i].style.position || nodes[i].style.position !== 'relative' ) ) )
 		{
@@ -135,7 +135,7 @@ window.onbeforeprint = function () {
 	}
 };
 
-window.onafterprint = function() {
+window.onafterprint = function () {
 	for ( var i = 0; i < expandedURLs.length; i++ ) {
 		if ( expandedURLs[i] ) {
 			expandedURLs[i].removeNode( true );

@@ -68,8 +68,6 @@
  */
 
 ( function ( $, mw ) {
-	/*jshint onevar:false */
-
 	/* Local scope */
 
 	var ts,
