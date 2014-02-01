@@ -512,7 +512,10 @@ class LocalisationCache {
 		// Disable APC caching
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
 		include $_fileName;
-		ini_set( 'apc.cache_by_default', $_apcEnabled );
+
+		wfSuppressWarnings();
+			ini_set( 'apc.cache_by_default', $_apcEnabled );
+		wfRestoreWarnings();
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );
