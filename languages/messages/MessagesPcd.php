@@ -19,7 +19,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Loïens soulinés:',
-'tog-justify' => 'Aligner ches paragrafes',
 'tog-hideminor' => 'Muche ches tiots edits din ches nouvieus cangemints',
 'tog-hidepatrolled' => 'Mucher chés wardés édichons din chés nouvieus canjemints',
 'tog-newpageshidepatrolled' => 'Muche ches paches pormenées del lisse ed ches nouvèles paches',
@@ -27,9 +26,7 @@ $messages = array(
 'tog-numberheadings' => 'liméro automatique ed ches intétes',
 'tog-showtoolbar' => "Afiquer chés otis pou l'édichon (i feut JavaScript)",
 'tog-editondblclick' => 'Éditer ches paches aveuc un doube buke (i feut JavaScript)',
-'tog-editsection' => "Pérmet l'édichion del sekchion via [edit] loïens",
 'tog-editsectiononrightclick' => "Pérmet l'édichion del sekchion par un droé buke su ch'tite del sekchion (i feut JavaScript)",
-'tog-showtoc' => "Aficher l'tabe ed ches étnus (pou ches paches aveuc plu ed 3 intétes)",
 'tog-rememberpassword' => "Warder min lodjine su chl'ordinateu-lo (pour un maximum éd $1 {{PLURAL:$1|jour|jours}})",
 'tog-watchcreations' => "Ajouter chés paches qu'éj crée et pi chés fichiés qu'éj téléquertche édseur em lisse à suire",
 'tog-watchdefault' => "Ajouter chés paches pi chés fichiés qu'éj cange édseur em lisse à suire.",
@@ -464,7 +461,6 @@ Léginde : ({{MediaWiki:Cur}}) = différinches aveuc el vérchon à ch'momint-ch
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compérer chés couésies contérbuchons',
 'editundo' => "n'poin foaire",
-'diff-multi' => '({{PLURAL:$1|Un canjemint intarmédiaire|$1 canjemints intarmédiaires}} par {{PLURAL:$2|un uzeu|$2 uzeus}} {{PLURAL:$1|est muché|sont muchées}})',
 
 # Search results
 'searchresults' => 'Tracher chés résultats',

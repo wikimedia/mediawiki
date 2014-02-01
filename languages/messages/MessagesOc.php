@@ -292,7 +292,6 @@ $linkTrail = "/^([a-zàâçéèêîôû]+)(.*)$/sDu";
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Soslinhar los ligams :',
-'tog-justify' => 'Justificar los paragrafs',
 'tog-hideminor' => 'Amagar los darrièrs cambiaments menors',
 'tog-hidepatrolled' => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',
 'tog-newpageshidepatrolled' => 'Amagar las paginas susvelhadas de la lista de las paginas novèlas',
@@ -1309,7 +1308,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showhideselectedversions' => 'Afichar/amagar las versions seleccionadas',
 'editundo' => 'desfar',
 'diff-empty' => '(Pas cap de diferéncia)',
-'diff-multi' => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 'difference-missing-revision' => "{{PLURAL:$2|Una revision|$2 revisions}} d'aquesta diferéncia ($1) {{PLURAL:$2|es pas estada trobada|son pas estadas trobadas}}.
 
@@ -2342,7 +2340,6 @@ per modificar vòstra lista de seguiment.',
 'watchmethod-list' => 'verificacion de las paginas seguidas per de modificacions recentas',
 'watchlistcontains' => 'Vòstra lista de seguiment conten $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname' => "Problèma amb l'article « $1 » : lo nom es invalid...",
-'wlnote' => "Çaijós {{PLURAL:$1|se tròba la darrièra modificacion efectuada|se tròban las $1 darrièras modificacions efectuadas}} pendent {{PLURAL:$2|la darrièra ora|las '''$2''' darrièras oras}} dempuèi $3, $4.",
 'wlshowlast' => 'Far veire las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
 'watchlist-options' => 'Opcions de la lista de seguiment',
 
@@ -2959,7 +2956,6 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'tooltip-pt-watchlist' => 'La lista de las paginas que seguissètz',
 'tooltip-pt-mycontris' => 'Lista de vòstras contribucions',
 'tooltip-pt-login' => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
-'tooltip-pt-anonlogin' => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
 'tooltip-pt-logout' => 'Se desconnectar',
 'tooltip-ca-talk' => "Discussion a prepaus d'aquesta pagina",
 'tooltip-ca-edit' => 'Podètz modificar aquesta pagina. Mercé de previsualizar abans d’enregistrar.',

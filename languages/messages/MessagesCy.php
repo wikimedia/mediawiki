@@ -120,7 +120,6 @@ $linkTrail = "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)$/sDu";
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Tanlinellu cysylltiadau:',
-'tog-justify' => 'Unioni paragraffau',
 'tog-hideminor' => 'Cuddio golygiadau bychain yn rhestr y newidiadau diweddar',
 'tog-hidepatrolled' => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
 'tog-newpageshidepatrolled' => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag rhestr y tudalennau newydd',
@@ -1142,7 +1141,6 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'showhideselectedversions' => 'Dangos/cuddio y diwygiadau dewisedig',
 'editundo' => 'dadwneud',
 'diff-empty' => '(Dim gwahaniaeth)',
-'diff-multi' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan {{PLURAL:$2||un defnyddiwr|$2 ddefnyddiwr|$2 defnyddiwr|$2 o ddefnyddwyr|$2 o ddefnyddwyr}}.)',
 'diff-multi-manyusers' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan mwy na $2 {{PLURAL:$2|o ddefnyddwyr}}.)',
 'difference-missing-revision' => "Ni chafwyd hyd i $1 {{PLURAL:$2|diwygiad|diwygiad|ddiwygiad|diwygiad}} o'r gwahaniaeth ($1) {{PLURAL:$2|hwn}}.
 
@@ -2189,7 +2187,6 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'watchmethod-list' => "yn chwilio'r tudalennau ar y rhestr wylio am ddiwygiadau diweddar",
 'watchlistcontains' => '{{PLURAL:$1|Nid oes dim tudalennau|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr wylio.',
 'iteminvalidname' => "Problem gyda'r eitem '$1', enw annilys...",
-'wlnote' => "{{PLURAL:\$1|Ni fu unrhyw newid|Isod mae'r '''\$1''' newid diweddaraf|Isod mae'r '''\$1''' newid diweddaraf|Isod mae'r '''\$1''' newid diweddaraf|Isod mae'r '''\$1''' newid diweddaraf|Isod mae'r '''\$1''' newid diweddaraf}} yn ystod {{PLURAL:\$2||yr awr|y ddwyawr|y teirawr|y \"\$2\" awr|y(r) \"\$2\" awr}} ddiwethaf, fel ag yr oedd am \$4, \$3.",
 'wlshowlast' => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
 'watchlist-options' => 'Dewisiadau ar gyfer y rhestr wylio',
 
@@ -2843,7 +2840,6 @@ Mae ffolder dros dro yn eisiau.',
 'tooltip-pt-watchlist' => 'Rydych yn dilyn hynt y tudalennau sydd ar y rhestr hon',
 'tooltip-pt-mycontris' => 'Rhestr eich cyfraniadau yn nhrefn amser',
 'tooltip-pt-login' => "Fe'ch anogir i fewngofnodi, er nad oes rhaid gwneud.",
-'tooltip-pt-anonlogin' => "Fe'ch anogir i fewngofnodi, er nad oes rhaid gwneud.",
 'tooltip-pt-logout' => 'Allgofnodi',
 'tooltip-ca-talk' => 'Sgwrsio am y dudalen',
 'tooltip-ca-edit' => "Gallwch olygu'r dudalen hon. Da o beth fyddai defnyddio'r botwm 'Dangos rhagolwg' cyn rhoi ar gadw.",

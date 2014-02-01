@@ -325,7 +325,6 @@ $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Verwiezingen onderstrepen',
-'tog-justify' => "Alinea's uutvullen",
 'tog-hideminor' => 'Kleine wiezigingen verbargen in "Leste wiezigingen"',
 'tog-hidepatrolled' => 'Wiezigingen die emarkeerd bin verbargen in "Leste wiezigingen"',
 'tog-newpageshidepatrolled' => 'Ziejen die emarkeerd bin, verbargen in de lieste mit nieje artikels',
@@ -1351,7 +1350,6 @@ In de [[Special:BlockList|blokkeerlieste]] bin de blokkeringen, die noen van toe
 'showhideselectedversions' => 'Ekeuzen versies bekieken/verbargen',
 'editundo' => 'weerummedreien',
 'diff-empty' => '(Gien verschil)',
-'diff-multi' => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies}} van {{PLURAL:$2|1 gebruker|$2 gebrukers}} tussen die der niet bie staon.)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} deur meer as $2 {{PLURAL:$2|gebruker|gebrukers}} niet weeregeven)',
 'difference-missing-revision' => "{{PLURAL:$2|Eén versie|$2 versies}} van disse verschillen ($1) {{PLURAL:$2|is|bin}} niet evunnen.
 
@@ -2387,7 +2385,6 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 'watchmethod-list' => 'Kik joew nao volglieste veur de leste wiezigingen',
 'watchlistcontains' => 'Der {{PLURAL:$1|steet 1 zied|staon $1 ziejen}} op joew volglieste.',
 'iteminvalidname' => "Verkeerde naam '$1'",
-'wlnote' => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofgeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
 'wlshowlast' => 'Laot de veurbieje $1 uur $2 dagen $3 zien',
 'watchlist-options' => 'Opsies veur de volglieste',
 
@@ -3031,7 +3028,6 @@ De tiedelike map is niet anwezig.',
 'tooltip-pt-watchlist' => 'Lieste van bladzieden die op miene volglieste stoan',
 'tooltip-pt-mycontris' => 'Liest van oew biejdraegen',
 'tooltip-pt-login' => 'Iej wördt van harte oetneugd um oe an te melden as gebroeker, mer t is nich verplicht',
-'tooltip-pt-anonlogin' => 'Iej wördt van harte oetneugd um oe an te maelden as gebroeker, mer t is nich verplicht',
 'tooltip-pt-logout' => 'Ofmaelden',
 'tooltip-ca-talk' => 'Loat n oaverlegtekst oaver disse bladziede zeen',
 'tooltip-ca-edit' => 'Bewaerk disse bladziede',

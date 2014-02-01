@@ -275,7 +275,6 @@ $linkPrefixCharset = 'A-\\x{10ffff}';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ħoloq sottolinjati:',
-'tog-justify' => 'Iġġustifika l-paragrafi',
 'tog-hideminor' => 'Aħbi l-modifiki minuri fit-tibdil riċenti',
 'tog-hidepatrolled' => 'Aħbi l-modifiki verifikati fit-tibdil riċenti',
 'tog-newpageshidepatrolled' => 'Aħbi l-paġni verifikati mil-lista tal-paġni l-ġodda',
@@ -1231,7 +1230,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'compareselectedversions' => 'Qabbel il-verżjonijiet magħżula',
 'showhideselectedversions' => 'Uri/aħbi reviżjonijiet magħżula',
 'editundo' => 'ħassar',
-'diff-multi' => '(Mhux qed {{PLURAL:$1|tintwera reviżjoni intermedja|jintwerew $1 reviżjonijit intermedji}} minn {{PLURAL:$2|utent|$2 utenti}})',
 'diff-multi-manyusers' => '(Mhux qed {{PLURAL:$1|tintwera reviżjoni intermedja|jintwerew $1 reviżjonijit intermedji}} mingħand iktar minn $2 {{PLURAL:$2|utent|$2 utenti}})',
 
 # Search results
@@ -1558,7 +1556,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-label-minor' => 'Din hi modifika minuri',
 'recentchanges-label-bot' => 'Din il-modifika ġiet effettwata minn bot',
 'recentchanges-label-unpatrolled' => 'Din il-modifika għadha ma ġietx verifikata',
-'recentchanges-legend-newpage' => '$1 - paġna ġdida',
+'recentchanges-label-plusminus' => "Id-daqs tal-paġna nbidel b'dan in-numru ta' bytes",
+'recentchanges-legend-newpage' => '(ara wkoll il-[[Special:NewPages|lista tal-paġni l-ġodda]])',
 'rcnotefrom' => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 'rclistfrom' => 'Uri l-modifiki ġodda jibdew minn $1',
 'rcshowhideminor' => '$1 modifiki żgħar',
@@ -2186,7 +2185,6 @@ Kwalunkwe modifika li ssir fil-futur, kemm fuq din il-paġna u fil-paġna ta\' d
 'watchmethod-list' => 'Kontroll tal-osservati speċjali għal modifiki riċenti',
 'watchlistcontains' => "Il-lista ta' osservazzjoni fiha {{PLURAL:$1|paġna|$1 paġni}}.",
 'iteminvalidname' => "Problema bil-paġna'$1', l-isem mhux validu...",
-'wlnote' => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}, sal-$3, fil-$4.",
 'wlshowlast' => 'Uri l-aħħar $1 siegħat $2 ġranet $3',
 'watchlist-options' => "Opzjonijiet tal-lista ta' osservazzjoni",
 
@@ -2794,7 +2792,6 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'tooltip-pt-watchlist' => "Il-lista ta' paġni li qiegħed tosserva",
 'tooltip-pt-mycontris' => 'Lista tal-kontribuzzjonijiet tiegħek',
 'tooltip-pt-login' => 'Tirreġistra ruħek huwa avviżat però mhux obbligatorju.',
-'tooltip-pt-anonlogin' => 'Tirreġistra ruħek huwa avviżat, anki jekk mhux obbligatorju.',
 'tooltip-pt-logout' => "Oħroġ (illogja 'l barra)",
 'tooltip-ca-talk' => 'Diskussjoni dwar il-kontenut tal-paġna',
 'tooltip-ca-edit' => "Tista' timmodifika din il-paġna. Jekk jogħġbok uża l-buttuna tad-dehra proviżorja qabel ma ssalva l-modifiki.",
@@ -3748,10 +3745,12 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'rightsnone' => '(xejn)',
 
 # Feedback
+'feedback-bugornote' => 'Jekk int lest biex tiddeskrivi problema teknika fid-dettall, jekk jogħbok [$1 irraporta l-bug].
+Inkella, tista\' tuża l-formola sempliċi t\'hawn taħt. Il-kumment tiegħek se jiżdied mal-paġna "[$3 $2]", flimkien ma\' isem l-utent tiegħek.',
 'feedback-subject' => 'Suġġett:',
 'feedback-message' => 'Messaġġ:',
 'feedback-cancel' => 'Annulla',
-'feedback-submit' => 'Ibgħat r-rispons',
+'feedback-submit' => 'Ibgħat il-messaġġ',
 'feedback-error1' => 'Żball: Riżultat mhux rikonoxxut mill-API',
 'feedback-error2' => 'Żball: Modifika mhux esegwita',
 'feedback-error3' => 'Żball: L-ebda risposta mill-API',

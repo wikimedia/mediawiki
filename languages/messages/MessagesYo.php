@@ -55,7 +55,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ìfàlàsábẹ́ àwọn àjápọ̀:',
-'tog-justify' => "Ṣ'àlàyé gbólóhùn ọ̀rọ̀",
 'tog-hideminor' => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kékeré nínú àwọn àtúnse tuntun',
 'tog-hidepatrolled' => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe oníìṣọ́ nínú àwọn àtúnṣe tuntun',
 'tog-newpageshidepatrolled' => 'Ìbòmọ́lẹ̀ àwọn ojúewé oníìṣọ́ lọ́dọ̀ àtòjọ ojúewé tuntun',
@@ -1086,7 +1085,6 @@ Kò ṣe é bòmọ́lẹ̀.',
 'showhideselectedversions' => 'Ìfihàn/ìbòmọ́lẹ̀ àwọn àtúnyẹ̀wò ṣíṣàyàn',
 'editundo' => 'dápadà',
 'diff-empty' => '(Kò ní yàtọ̀)',
-'diff-multi' => '({{PLURAL:$1|Àtúnyẹ̀wò inú àrin kan|Àwọn àtúnyẹ̀wò inú àrin $1}} látọwọ́ {{PLURAL:$2|oníṣe kan|àwọn oníṣe $2}} kò jẹ́ fífihàn)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Àtúnyẹ̀wò inú àrin kan|Àwọn àtúnyẹ̀wò inú àrin $1}} látọwọ́ {{PLURAL:$2|oníṣe|àwọn oníṣe}} tó pọ̀ju $2 lọ kò jẹ́ fífihàn)',
 'difference-missing-revision' => '{{PLURAL:$2|Àtúnyẹ̀wò kan|Àwọn àtúnyẹ̀wò $2}} ìyàtọ̀ yìí ($1) kò {{PLURAL:$2|sí|sí}}.
 
@@ -2105,7 +2103,6 @@ A óò ṣ\'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti 
 'watchmethod-list' => 'únwo àwọn ojúewé mímójútó fún àwọn àtúnṣe tuntun',
 'watchlistcontains' => 'Àwọn ìmójútó yín ní {{PLURAL:$1|ojúewé|àwọn ojúewé}} $1 nínú.',
 'iteminvalidname' => "Ìṣòro wà pẹ̀lú '$1', orúkọ àìtọ́...",
-'wlnote' => "Lábẹ́ {{PLURAL:$1|ni àtúnṣe tó gbẹ̀yìn|ni àwọn àtúnṣe '''$1''' tí wọn gbẹ̀yìn}} ní {{PLURAL:$2|wákàtí kan|wákàtí '''$2'''}} sẹ́yìn, títí dí ọjọ́ $3, $4.",
 'wlshowlast' => 'Ìfihàn wákàtí $1 sẹ́yìn ọjọ́ $2 sẹ́yìn $3',
 'watchlist-options' => 'Àṣàyàn ìmójútọ́',
 
@@ -2760,7 +2757,6 @@ Fáìlì náà jẹ́ rírùsóké ní àbọ̀.',
 'tooltip-pt-watchlist' => 'Àkójọ àwọn ojúewé tí ẹ̀ ún mójútó bóyá wọ́nyí padà',
 'tooltip-pt-mycontris' => 'Àkójọ àwọn àfikún yín',
 'tooltip-pt-login' => 'A gbà yín níyànjú kí ẹwọlé, bótilẹ̀jẹ́pẹ́ kò pọndandan.',
-'tooltip-pt-anonlogin' => 'A gbàyín níyànjú láti wọlé, bótilẹ̀jẹ́pé kò ṣe dandan.',
 'tooltip-pt-logout' => 'Ìjáde',
 'tooltip-ca-talk' => 'Ìfọ̀rọ̀wérọ̀ nípa ohun inú ojúewé yìí',
 'tooltip-ca-edit' => 'Ẹ le ṣe àtúnṣe sí ojúewé yìí.

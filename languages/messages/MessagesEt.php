@@ -307,7 +307,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linkide allakriipsutus:',
-'tog-justify' => 'Lõikude rööpjoondus',
 'tog-hideminor' => 'Peida pisiparandused viimastes muudatustes',
 'tog-hidepatrolled' => 'Peida kontrollitud redaktsioonid viimastes muudatustes',
 'tog-newpageshidepatrolled' => 'Peida uute lehtede loendis kontrollitud leheküljed',
@@ -1344,7 +1343,6 @@ Pane tähele, et navigeerimislinkide kasutamine lähtestab redaktsioonide valiku
 'showhideselectedversions' => 'Muuda valitud redaktsioonide nähtavust',
 'editundo' => 'eemalda',
 'diff-empty' => '(Erinevus puudub)',
-'diff-multi' => '({{PLURAL:$1|Ühte|$1}} vahepealset {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ühte|$1}} vahepealset rohkem kui {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'difference-missing-revision' => 'Selle erinevuste vaate {{PLURAL:$2|üht|$2}} redaktsiooni ($1) ei leitud.
 
@@ -1365,7 +1363,7 @@ Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin 
 'shown-title' => 'Näita lehekülje kohta $1 {{PLURAL:$1|tulemus|tulemust}}',
 'viewprevnext' => 'Näita ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on olemas.'''",
-'searchmenu-new' => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\".'''",
+'searchmenu-new' => '<strong>Loo lehekülg pealkirjaga "[[:$1]]".</strong> {{PLURAL:$2|0=|Vaata ka leitud lehekülge.|Vaata ka leitud otsitulemusi.}}',
 'searchprofile-articles' => 'Sisuleheküljed',
 'searchprofile-project' => 'Abi- ja projektilehed',
 'searchprofile-images' => 'Multimeedia',
@@ -2376,6 +2374,7 @@ Edasised muudatused sellel leheküljel ja seotud aruteluleheküljel tuuakse ära
 'watchmethod-list' => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains' => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|lehekülg|lehekülge}}.',
 'iteminvalidname' => "Probleem üksusega '$1'. Selle nimes on viga.",
+'wlnote2' => 'Allpool on viimase {{PLURAL:$1|tunni|<strong>$1</strong> tunni}} jooksul tehtud muudatused seisuga $2, $3.',
 'wlshowlast' => 'Näita viimast $1 tundi $2 päeva. $3',
 'watchlist-options' => 'Jälgimisloendi seaded',
 
@@ -2933,6 +2932,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [https://www
 'allmessages-prefix' => 'Eesliitefilter:',
 'allmessages-language' => 'Keel:',
 'allmessages-filter-submit' => 'Mine',
+'allmessages-filter-translate' => 'Tõlgi',
 
 # Thumbnails
 'thumbnail-more' => 'Suurenda',
@@ -2987,7 +2987,7 @@ Fail oli vaid osaliselt üleslaaditud.',
 Puudub ajutine kataloog.',
 'import-parse-failure' => 'Viga XML-i importimisel',
 'import-noarticle' => 'Ühtki lehekülge polnud importida!',
-'import-nonewrevisions' => 'Kõik versioonid on eelnevalt imporditud.',
+'import-nonewrevisions' => 'Ühtegi redaktsiooni ei imporditud (kõik on juba olemas või tõrgete tõttu vahele jäetud).',
 'xml-error-string' => '$1 real $2, tulbas $3 (bait $4): $5',
 'import-upload' => 'Laadi üles XML-andmed',
 'import-token-mismatch' => 'Seansiandmed läksid kaduma.
@@ -2998,6 +2998,7 @@ Palun ürita uuesti.',
 'import-error-interwiki' => 'Lehekülge "$1" ei impordita, sest selle pealkirja hoitakse välislinkide (interviki) jaoks.',
 'import-error-special' => 'Lehekülge "$1" ei impordita, sest see kuulub erinimeruumi, kus pole leheküljed lubatud.',
 'import-error-invalid' => 'Lehekülge "$1" ei impordita, sest selle pealkiri on vigane.',
+'import-error-bad-location' => 'Redaktsiooni $2 sisumudeliga $3 ei saa talletada siin vikis leheküljel "$1", mis seda mudelit ei toeta.',
 'import-options-wrong' => '{{PLURAL:$2|Vale valik|Valed valikud}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Etteantud juurlehekülje pealkiri on vigane.',
 'import-rootpage-nosubpage' => 'Juurlehekülje nimeruumis "$1" pole alamleheküljed lubatud.',

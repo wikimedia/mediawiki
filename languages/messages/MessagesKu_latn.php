@@ -112,7 +112,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Xetekê di bin girêdanê de çêke:',
-'tog-justify' => 'Gotar bi forma "block"',
 'tog-hideminor' => 'Guherandinên biçûk ji listêya guherandinên dawî veşêre',
 'tog-hidepatrolled' => 'Guherandinên hatine kontrolkirin ji nav guherandinên dawî veşêre',
 'tog-newpageshidepatrolled' => 'Rûpelên hatine kontrolkirin ji lîsteya rûpelên nû veşêre',
@@ -121,9 +120,7 @@ $messages = array(
 'tog-numberheadings' => 'Sernavan otomatîk bihejmêre',
 'tog-showtoolbar' => 'Tiştên guherandinê bibîne (JavaScript bibîne)',
 'tog-editondblclick' => 'Rûpelan bi du klîkan biguherîne (Java Script gireke)',
-'tog-editsection' => 'Girêdanan ji bo guherandina beşan biweşîne',
 'tog-editsectiononrightclick' => 'Beşekê bi rast-klîkekê biguherîne (JavaScript gireke)',
-'tog-showtoc' => 'Tabloya naverokê nîşan bide (ji bo rûpelan zêdetirî sê sernavan)',
 'tog-rememberpassword' => 'Qeyda min di vê komputerê de biparêze (herî zêde ji bo $1 {{PLURAL:$1|rojekê|rojan}})',
 'tog-watchcreations' => 'Rûpelên min çêkirin, têxe nav lîsteya min a şopandinê',
 'tog-watchdefault' => 'Rûpelên min guhertin, têxe nav lîsteya min a şopandinê',
@@ -810,7 +807,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'compareselectedversions' => 'Guhertoyan bide ber hev',
 'showhideselectedversions' => 'Revîzyonên bijartî nîşan bide/veşêre',
 'editundo' => 'betal bike',
-'diff-multi' => '({{PLURAL:$1|Guhertoyeke|Guhertoyên {{PLURAL:$2|bikarhêner|bikarhêneran}} di navbera herduyan de}} {{PLURAL:$1|nayê|nayên}} dîtin.)',
 
 # Search results
 'searchresults' => 'Encamên lêgerînê',
@@ -1407,7 +1403,6 @@ Gava tu bixwazî wê rûpelê ji nav lîsteya xwe ya şopandinê derbixî, li se
 'wlheader-enotif' => 'Agahdariya E-nameyê pêk tê.',
 'wlheader-showupdated' => "Ev rûpela hatî guhertin dema te lê meyzand bi '''nivîsa stûr''' tê xuyakirin.",
 'watchlistcontains' => 'Di lîsteya şopandina te de {{PLURAL:$1|rûpelek heye|$1 rûpel hene}}.',
-'wlnote' => "Niha {{PLURAL:$1|xeyrandinê|'''$1''' xeyrandinên}} dawî yê {{PLURAL:$2|seetê|'''$2''' seetên}} dawî {{PLURAL:$1|tê|tên}} dîtin.",
 'wlshowlast' => 'Guhertinên berî $1 saetan, $2 rojan, ya $3 nîşan bide',
 'watchlist-options' => 'Vebijarkên lîsteya şopandinê',
 

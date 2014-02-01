@@ -88,7 +88,6 @@ $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sorlignî les loyéns:',
-'tog-justify' => 'Djustifyî les hagnons',
 'tog-hideminor' => 'Èn nén mostrer les dierins candjmints mineurs',
 'tog-hidepatrolled' => 'Èn nén mostrer les candjmints ddja patrouyîs',
 'tog-newpageshidepatrolled' => 'Èn nén mostrer el djivêye des novelès pådjes les cenes dedja patrouyeyes',
@@ -97,9 +96,7 @@ $messages = array(
 'tog-numberheadings' => 'Limerotaedje otomatike des tites',
 'tog-showtoolbar' => "Mostrer l' bår d' usteyes e môde candjmint (JavaScript)",
 'tog-editondblclick' => 'Candjî les pådjes avou on dobe-clitch (JavaScript)',
-'tog-editsection' => "Eployî les loyéns «[candjî]» po candjî rén k' ene seccion",
 'tog-editsectiononrightclick' => 'Candjî les seccions avou on dobe-clitch sol tite (JavaScript)',
-'tog-showtoc' => "Mostrer l' tåvlea d' ådvins<br />(po ls årtikes avou pus di 3 seccions)",
 'tog-rememberpassword' => "Rimimbrer m' sicret inte les sessions (nén dpus ki po $1 {{PLURAL:$1|djoû|djoûs}})",
 'tog-watchcreations' => "Mete les pådjes ki dj' askepeye dins l' djivêye des pådjes shuvowes",
 'tog-watchdefault' => "Shuve les årtikes ki dj' fwai ou ki dj' candje",
@@ -1419,7 +1416,6 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 'watchmethod-list' => "Cwerant après les pådjes shuvowes k' ont stî candjeyes dierinnmint",
 'watchlistcontains' => 'I gn a {{PLURAL:$1|$1 pådje|$1 pådjes}} e vosse djivêye des pådjes a shuve.',
 'iteminvalidname' => "Åk n' a nén stî avou «$1», li no n' est nén valide...",
-'wlnote' => "Chal pa dzo {{PLURAL:$1|li dierin candjmint|les '''$1''' dierins candjmints}} {{PLURAL:$2|del dierinne eure|des '''$2''' dierinnès eures}}, disk' å $3 a $4.",
 'wlshowlast' => 'Mostrer les dierin(nè)s $1 eures, $2 djoûs ou $3',
 'watchlist-options' => 'Tchuzes del djivêye des shuvous',
 
@@ -1827,7 +1823,6 @@ Et s' el schaper so voste éndjole, et poy li ristitchî droci.",
 'tooltip-pt-watchlist' => 'Li djivêye des pådjes ki vos shujhoz po cwand ele sont candjeyes.',
 'tooltip-pt-mycontris' => 'Djivêye des ovraedjes da minne',
 'tooltip-pt-login' => "Vos estoz ecoraedjî d' vos elodjî, mins nerén, c' est nén oblidjî.",
-'tooltip-pt-anonlogin' => "Vos estoz ecoraedjî d' vos elodjî, mins nerén, c' est nén oblidjî.",
 'tooltip-pt-logout' => 'Vos dislodjî',
 'tooltip-ca-talk' => 'Copene åd fwait do contnou del pådje',
 'tooltip-ca-edit' => "Vos ploz candjî cisse pådje ci. S' i vs plait, eployîz l' boton «Vey divant» po vs acertiner k' tot est comifåt dvant d' schaper vos candjmints.",

@@ -17,6 +17,7 @@
  * @author Gulmammad
  * @author Kaganer
  * @author Khan27
+ * @author Matma Rex
  * @author Mushviq Abdulla
  * @author PPerviz
  * @author PrinceValiant
@@ -84,7 +85,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Keçidlərin altını xətlə:',
-'tog-justify' => 'Mətni səhifə boyu payla',
 'tog-hideminor' => 'Son dəyişikliklərdə kiçik redaktələri gizlə',
 'tog-hidepatrolled' => 'Yoxlanılmış redaktələri son dəyişikliklərdə göstərmə',
 'tog-newpageshidepatrolled' => 'Yoxlanılmış səhifələri yeni səhifə siyahısında göstərmə',
@@ -847,11 +847,9 @@ $3 tərəfindən verilən səbəb ''$2''",
 'last' => 'son',
 'page_first' => 'birinci',
 'page_last' => 'sonuncu',
-'histlegend' => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">Aşağıda sadalanan hər hansı bir versiyası görmək üçün, tarixinin üzərinə tıklayın.</span> <span style=\"white-space:nowrap;\">Daha çox kömək üçün, [[Kömək:Səhifə keçmişi|səhifə keçmişi]] səhifəsinə baxın.</span><br /><span style=\"white-space:nowrap;\">Xarici vasitələr: <!-- [http://toolserver.org/~tparis/articleinfo/index.php?article={{FULLPAGENAMEE}}&lang=tr&wiki=wikipedia Təftiş keçmişinin statistikası] '''·'''</span> <span style=\"white-space:nowrap;\"> -->[http://wikipedia.ramselehof.de/wikiblame.php?lang=tr&article={{FULLPAGENAMEE}} Təftiş keçmişini axtarmaq] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=tr&wikifam=.wikipedia.org&grouped=on&page={{FULLPAGENAMEE}} Töhfəsi olanlar] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=trwiki_p&titles={{FULLPAGENAMEE}} İzləyənlərin sayı] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/tr/latest/{{FULLPAGENAMEE}} Səhifəyə baxılma statistikası]</span></div>
-----
-Fərqləri seçmə və göstərmə: müqayisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə (enter+a) və ya \"müqayisə et\" düyməsinə vurun.
+'histlegend' => 'Fərqləri seçmə və göstərmə: müqayisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə (enter+a) və ya "müqayisə et" düyməsinə vurun.
 
-Açıqlama: '''(hh)''' = hal-hazırkı versiya ilə olan fərqlər, '''(son)''' = əvvəlki versiya ilə olan fərqlər, '''k''' = kiçik redaktələr.</span>",
+Açıqlama: <strong>({{int:cur}})</strong> = hal-hazırkı versiya ilə olan fərqlər, <strong>({{int:last}})</strong> = əvvəlki versiya ilə olan fərqlər, <strong>{{int:minoreditletter}}</strong> = kiçik redaktələr.</span>',
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'history-show-deleted' => 'Yalnız silinənlər',
 'histfirst' => 'Ən əvvəlki',
@@ -956,7 +954,6 @@ $1",
 'compareselectedversions' => 'Seçilən versiyaları müqayisə et',
 'showhideselectedversions' => 'Seçilən versiyaları göstər/gizlə',
 'editundo' => 'əvvəlki halına qaytar',
-'diff-multi' => '({{PLURAL:$2|Bir istifadəçi|$2 istifadəçi}} tərəfindən edilən {{PLURAL:$1|bir ara redaktə|$1 ara redaktə}} göstərilmir)',
 'diff-multi-manyusers' => '({{PLURAL:$2|Bir istifadəçi|$2 istifadəçi}} tərəfindən edilən {{PLURAL:$1|bir ara redaktə|$1 ara redaktə}} göstərilmir)',
 
 # Search results
@@ -1764,7 +1761,6 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'watchmethod-list' => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
 'watchlistcontains' => 'İzləmə siyahınızda $1 {{PLURAL:$1|səhifə|səhifə}} var.',
 'iteminvalidname' => "'$1' ilə bağlı problem, adı düzgün deyil...",
-'wlnote' => "Aşağıdakı {{PLURAL:$1|'''$1''' dəyişiklik|'''$1''' dəyişiklik}} son {{PLURAL:$2|saatda|'''$2''' saatda}} edilmişdir.",
 'wlshowlast' => 'Bunları göstər: son $1 saatı $2 günü $3',
 'watchlist-options' => 'İzlədiyim səhifələrin nizamlamaları',
 
@@ -2238,7 +2234,6 @@ Zəhmət olmasa başqa ad seçin.',
 'tooltip-pt-watchlist' => 'İzləməyə götürdüyüm səhifələr',
 'tooltip-pt-mycontris' => 'Etdiyim dəyişikliklərin siyahısı',
 'tooltip-pt-login' => 'Daxil olmanız tövsiyə olunur, amma bu məcburi tələb deyil.',
-'tooltip-pt-anonlogin' => 'Daxil olmanız tövsiyə olunur, amma tələb olunmur.',
 'tooltip-pt-logout' => 'Sistemdən çıx',
 'tooltip-ca-talk' => 'Məqalə haqqındə müzakirə edib, münasibətivi bildir',
 'tooltip-ca-edit' => 'Bu səhifəni redaktə edə bilərsiniz. Lütfən əvvəlcə sınaq gostərişi edin.',

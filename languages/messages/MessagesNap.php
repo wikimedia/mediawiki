@@ -57,7 +57,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => "Sottolinia 'e jonte:",
-'tog-justify' => "Alliniamento d''e paracrafe mpare",
 'tog-hideminor' => "Annascunne 'e cagne piccirille  'int'a ll'úrdeme cagne",
 'tog-hidepatrolled' => "Annascunne 'e cagne 'verificate' 'int'a ll'úrdeme cagne",
 'tog-extendwatchlist' => "Spanne ll'asservate speciale pe fà vedé tutte 'e cagnàmiente, nun solo l'ultimo",
@@ -65,9 +64,7 @@ $messages = array(
 'tog-numberheadings' => "Annúmmera automatecamente 'e títule",
 'tog-showtoolbar' => "Aspone 'a barra d''e stromiente 'e cagno",
 'tog-editondblclick' => "Cagna 'e pàggene cliccanno ddoje vote",
-'tog-editsection' => "Permette 'e cagnà 'e sezzione cu a jonta [cagna]",
 'tog-editsectiononrightclick' => "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione",
-'tog-showtoc' => "Mosta ll'innece pe 'e paggene cu cchiù 'e 3 sezzione",
 'tog-rememberpassword' => "Ricurda 'a registrazzione pe' cchiu sessione (ppe 'numassimo 'e $1 {{PLURAL:$1|juorno|juorne}})",
 
 'underline-always' => 'Sèmpe',

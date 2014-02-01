@@ -16,7 +16,6 @@ $fallback = 'it';
 $messages = array(
 # User preference toggles
 'tog-underline' => "Tîra 'na rîga sòta i colegamèint.",
-'tog-justify' => 'Mésa in ōrdin di carâter di peréiod.',
 'tog-hideminor' => "Lōga 'l mudéfichi pió céchi int al j ûltmi mudéfichi.",
 'tog-hidepatrolled' => "Lōga 'l mudéfichi verifichêdi int al j ûltmi mudéfichi",
 'tog-newpageshidepatrolled' => "Lōga al pàgini verifichêdi da l'elèinch dal pàgini pió nōvi.",
@@ -433,6 +432,7 @@ Guêrda che soquânti pàgini a prén vèdres incòra cme s'ét fós incòra col
 'remembermypassword' => "Tîn a mèint la cêva 'd ingrès insém a cól navigadōr ché (per un mâsim ed $1{{PLURAL:$1|dé}}).",
 'userlogin-remembermypassword' => 'Sèimper coleghê',
 'userlogin-signwithsecure' => 'Drōva un colegamèint sicûr',
+'yourdomainname' => 'Precişêr al duméni:',
 'password-change-forbidden' => "An n'é mìa pusébil mudifichêr la cêva 'd ingrès insém a sté wiki.",
 'externaldberror' => "È sucès un erōr cun al terminêl ed certificasiòun ed validitê d'ed fōra, opór an 's gh'à mìa al j autorişasiòun necesâri per arnuvêr l' ingrès d'ed fōra.",
 'login' => 'Và dèinter',
@@ -528,20 +528,45 @@ Se l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.
 'login-abort-generic' => "An t'é mìa stê arcgnusû - Scanşlê",
 'loginlanguagelabel' => 'Léngva: $1',
 'suspicious-userlogout' => "La tó dmânda per destachêret l'é stēda rifiutêda perchè la sèmbra spidîda da un navigadōr ch' al funsiòuna mìa o da un proxy di caching.",
+'createacct-another-realname-tip' => "Druvêr al nòm vèira l'é 'na siēlta personêla; s' es pèinsa 'd ruvêrel al gnirâ uşê per dêr la paternitê di lavōr spidî.",
+
+# Email sending
+'php-mail-error-unknown' => 'Erōr mìa cngusû int la funsiòun PHP mail().',
+'user-mail-no-addy' => "T'é serchê de spidîr un mesâg cun la pôsta eletrônica sèinsa 'n indirés.",
+'user-mail-no-body' => "A s'é serchê de spidîr un mesâg ed pôsta eltrônica vōd o dimòndi cûrt.",
 
 # Change password dialog
 'changepassword' => "Câmbia la cêva 'd ingrès",
+'resetpass_announce' => "L'ingrès l'é stê fâ cun un côdis pruvişôri, spidî cun la pôsta eletrônica. Per finîr l'ingrès l'é necesâri impustêr 'na nōva cêva 'd ingrès.",
+'resetpass_header' => "Câmbia la cêva 'd ingrès ed l'inscrisiòun.",
 'oldpassword' => "Cêva 'd ingès vècia:",
 'newpassword' => "Nōva cêva 'd ingrès:",
+'retypenew' => "Scrév incòra la nōva cêva 'd ingrès:",
+'resetpass_submit' => "Scrév la cêva 'd ingrès e và dèinter al sît",
+'changepassword-success' => "La cêva 'd ingrès l'é stêda nudifichêda!",
+'changepassword-throttled' => "În stê fât trôp tentatîv 'd ingrès in pôch tèimp. Spèta $1 e pó tōrna pruvêr.",
+'resetpass_forbidden' => "An 'né mìa pusébil mudifichêr la cêva 'd ingrès",
+'resetpass-no-info' => "Per andêr dèinter a cla pàgina ché 't gh'ê da fêr l'ingrès.",
 'resetpass-submit-loggedin' => "Câmbia la cêva 'd ingrès",
 'resetpass-submit-cancel' => 'Scanşèla',
+'resetpass-wrong-oldpass' => "Cêva 'd ingrès pruvişôria o còla 'd adès mìa vâlida.
+La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser stê dmandê 'na nōva pruvişôria.",
 'resetpass-temp-password' => "Cêva 'd ingrès pruvişôria:",
+'resetpass-abort-generic' => "La mudéfica 'd la cêva 'd ingrès l'é stêda fermêda da un şlungamèint.",
 
 # Special:PasswordReset
 'passwordreset' => "Câmbia la cêva 'd ingrès",
+'passwordreset-text-one' => "Impés cól môdul ché per  turnêr a impustêr la tó cêva 'd ingrès.",
+'passwordreset-text-many' => "{{PLURAL:$1|Impés ûn di câmp per ricēver 'na cêva 'd ingrès pruvişôria per mèz ed la pôsta eletrônica}}",
 'passwordreset-legend' => "Tōrna mèter la cêva 'd ingrès",
+'passwordreset-disabled' => "In cla wiki ché an pōlen mia turnêr impustêr al cêvi 'd ingrès",
+'passwordreset-emaildisabled' => 'In cla wiki ché è stê bluchê al funsiòun ed la pôsta eletrônica.',
 'passwordreset-username' => 'Nòm utèint:',
 'passwordreset-domain' => 'Proprietê:',
+'passwordreset-capture' => 'Vōt vèder còl che dèinter int al mesâg ed pôsta eletrônica?',
+'passwordreset-capture-help' => "S' es sernés cla caşèla ché, l'indirés ed pôsta eletrônica (cun la cêva 'd ingrès pruvişôria), év vîn fâ vèder, d'ed là 'd èser spidî a l'utèint.",
+'passwordreset-email' => 'Indirés pôsta eletrônica',
+'passwordreset-emailtitle' => "Particulêr ed l'utèint só {{SITENAME}}",
 
 # Edit page toolbar
 'bold_sample' => 'Grasèt',
@@ -641,7 +666,6 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'lineno' => 'Rîga $1:',
 'compareselectedversions' => 'Cunfrûnta al versiòun sernîdi.',
 'editundo' => 'scanşèla',
-'diff-multi' => "({{PLURAL:$2|'Na revişion ed mèz|$1 revişiòun ed mèz}} di {{PLURAL:$2|un utèint|$2 utèint}} mìa {{PLURAL:$1|fâta vèder|fâti vèder}})",
 
 # Search results
 'searchresults' => "Rişultê 'd la sērca",

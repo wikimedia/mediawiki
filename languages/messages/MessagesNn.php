@@ -321,7 +321,6 @@ $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Strek under lenkjer:',
-'tog-justify' => 'Blokkjusterte avsnitt',
 'tog-hideminor' => 'Gøym småplukk i lista over siste endringar',
 'tog-hidepatrolled' => 'Gøym patruljerte endringar i lista over siste endringar',
 'tog-newpageshidepatrolled' => 'Gøym patruljerte sider frå lista over nye sider',
@@ -1306,7 +1305,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'showhideselectedversions' => 'Vis/løyn valde versjonar',
 'editundo' => 'angre',
 'diff-empty' => '(Ingen skilnad)',
-'diff-multi' => '({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} frå {{PLURAL:$2|éin brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})',
 'difference-missing-revision' => '{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.
 
@@ -2309,7 +2307,6 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchmethod-list' => 'sjekkar om dei overvaka sidene har blitt endra i det siste',
 'watchlistcontains' => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}}.',
 'iteminvalidname' => 'Problem med «$1», ugyldig namn...',
-'wlnote' => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} {{PLURAL:$2|den siste timen|dei siste '''$2''' timane}}, for $3, kl. $4.",
 'wlshowlast' => 'Vis siste $1 timane $2 dagane $3',
 'watchlist-options' => 'Alternativ for overvakingslista',
 
@@ -2925,7 +2922,6 @@ Vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [/
 'tooltip-pt-watchlist' => 'Liste over sidene du overvakar.',
 'tooltip-pt-mycontris' => 'Liste over bidraga dine',
 'tooltip-pt-login' => 'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.',
-'tooltip-pt-anonlogin' => 'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.',
 'tooltip-pt-logout' => 'Logg ut',
 'tooltip-ca-talk' => 'Diskusjon om innhaldssida',
 'tooltip-ca-edit' => 'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.',

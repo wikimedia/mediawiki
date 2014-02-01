@@ -114,7 +114,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Dislienükön yümis:',
-'tog-justify' => 'Lonedükön bagafis',
 'tog-hideminor' => 'Klänedön redakamis pülik su lised votükamas nulik',
 'tog-hidepatrolled' => 'Klänedön redakamis pezepöl in lised votükamas nulik.',
 'tog-newpageshidepatrolled' => 'Klänedön padis pezepöl in lised padas nulik',
@@ -123,9 +122,7 @@ $messages = array(
 'tog-numberheadings' => 'Givön itjäfidiko nümis dilädatiädes',
 'tog-showtoolbar' => 'Jonön redakamastumemi',
 'tog-editondblclick' => 'Dälön redakön padis pö drän telik mugaknopa',
-'tog-editsection' => 'Dälön redakami dilädas me yüms: [redakön]',
 'tog-editsectiononrightclick' => 'Dälön redakami diläda me klik mugaknopa detik su dilädatiäds',
-'tog-showtoc' => 'Jonön ninädalisedi (su pads labü diläds plu 3)',
 'tog-rememberpassword' => 'Dakipolös nunädamanünis obik in bevüresodatävöm at (muiko {{PLURAL:$1|del|dels}} $1)',
 'tog-watchcreations' => 'Läükön padis fa ob pejafölis e ragivis fa ob pelöpükölis lä galädalised obik',
 'tog-watchdefault' => 'Läükön padis e ragivis fa ob peredakölis la galädalised obik',
@@ -929,7 +926,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
 'showhideselectedversions' => 'Jonön/klänedön fomamis pevälöl',
 'editundo' => 'sädunön',
-'diff-multi' => '({{PLURAL:$1|Revid vüik bal|Revids vüik $1}} fa {{PLURAL:$2|geban bal|gebans $2}} no {{PLURAL:$1|pejonon|pejonons}})',
 
 # Search results
 'searchresults' => 'Sukaseks',
@@ -1692,7 +1688,6 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'watchmethod-list' => 'vestigam votükamas brefabüik padas galädaliseda',
 'watchlistcontains' => 'Galädalised olik labon {{PLURAL:$1|padi|padis}} $1.',
 'iteminvalidname' => "Fikul tefü el '$1': nem no lonöföl...",
-'wlnote' => "Is palisedons votükam{{PLURAL:$1| lätik|s lätik '''$1'''}} dü düp{{PLURAL:$2| lätik|s lätik '''$2'''}}.",
 'wlshowlast' => 'Jonolöd: düpis lätik $1, delis lätik $2, $3',
 'watchlist-options' => 'Paramets galädaliseda',
 
@@ -2215,7 +2210,6 @@ Dakipolös oni su nünöm olik e löpükolös oni isio.',
 'tooltip-pt-watchlist' => 'Lised padas, kö galädol tefü votükams',
 'tooltip-pt-mycontris' => 'Lised keblünotas olik',
 'tooltip-pt-login' => 'Binos gudik, ab no bligik, ad nunädön oyi.',
-'tooltip-pt-anonlogin' => 'Binos gudik - ab no zesüdik - ad nunädön oli.',
 'tooltip-pt-logout' => 'Senunädön oki',
 'tooltip-ca-talk' => 'Bespik dö ninädapad',
 'tooltip-ca-edit' => 'Kanol redakön padi at. Gebolös, begö! büologedi bü dakip.',

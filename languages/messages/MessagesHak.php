@@ -22,7 +22,6 @@ $fallback = 'zh-hant';
 $messages = array(
 # User preference toggles
 'tog-underline' => '鏈接加底線：',
-'tog-justify' => '段落對齊',
 'tog-hideminor' => '隱藏最近更改肚嘅細微編寫',
 'tog-hidepatrolled' => '隱藏最近更改肚巡查過嘅編寫',
 'tog-newpageshidepatrolled' => '隱藏新頁面清單肚巡查過嘅頁面',
@@ -838,7 +837,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較選定嘅修訂版本',
 'editundo' => '撤銷',
-'diff-multi' => '（吂展示$2隻用戶嘅$1嘅中間版本）',
 
 # Search results
 'searchresults' => '搜尋結果',

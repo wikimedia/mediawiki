@@ -24,7 +24,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ربطو خط کشیدگی',
-'tog-justify' => 'خطان  برابری',
 'tog-hideminor' => 'موجودہ وختہ بیرو تبدیلیان موژار معمولی ترمیماتن کھوشتاؤے',
 'tog-hidepatrolled' => 'موجودہ وختہ بیرو تبدیلیان موژار گشتی ترمیماتن کھوشتاؤے',
 'tog-newpageshidepatrolled' => 'جدید صفحاتی فہرستہ گشتی صفحاتن کھوشاوے',
@@ -33,9 +32,7 @@ $messages = array(
 'tog-numberheadings' => 'سرخیانتے تان لمبار دیت',
 'tog-showtoolbar' => 'تدوینی اوزاردانن پشاؤے ( JavaScript ضرورت بوی)',
 'tog-editondblclick' => 'کلکہ صفحاتن  ترمیم (JavaScript ضرورت بوی)',
-'tog-editsection' => '[ترمیم] روابطان ذریعا سطری ترمیم کاریو فعال کورے',
 'tog-editsectiononrightclick' => 'سطری عنواناتا فروسکی کلکو ذریعا سطری ترمیم کاریو فعال ساؤزاوے',
-'tog-showtoc' => 'فہرستِ مندرجات پشاؤے (3 زیات سرخی والا صفحاتن بچے)',
 'tog-rememberpassword' => 'ھیہ کمپیوٹرا مہ داخل کاردو معلوماتن یاد لاکھے(کم از کم $1 {{PLURAL:$1|بس|بس}})',
 'tog-watchcreations' => 'مہ مرتب کاردو صفحاتن مہ  زیرِنظرفہرستہ شامل کورے',
 'tog-watchdefault' => 'مہ ترمیم کاردو صفحاتن مہ  زیرِنظرفہرستہ شامل کورے',
@@ -605,7 +602,6 @@ $1 (صفحہ موجود نیکی)',
 'lineno' => 'لکیر $1:',
 'compareselectedversions' => 'منتخب متـنو موازنہ',
 'editundo' => 'استرجع',
-'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
 
 # Search results
 'searchresults' => 'تلاشو نتیجہ',

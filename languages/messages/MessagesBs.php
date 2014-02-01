@@ -14,6 +14,7 @@
  * @author Edinwiki
  * @author Fulup
  * @author Geitost
+ * @author KWiki
  * @author Kaganer
  * @author Kal-El
  * @author Malafaya
@@ -282,7 +283,6 @@ $linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podvuci veze:',
-'tog-justify' => 'Uravnjaj pasuse',
 'tog-hideminor' => 'Sakrij male izmjene u spisku nedavnih izmjena',
 'tog-hidepatrolled' => 'Sakrij patrolirane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled' => 'Sakrij patrolirane stranice sa spiska novih stranica',
@@ -1310,7 +1310,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'showhideselectedversions' => 'Pokaži/sakrij odabrane verzije',
 'editundo' => 'ukloni ovu izmjenu',
 'diff-empty' => '(Nema razlike)',
-'diff-multi' => '({{PLURAL:$1|Nije prikazana jedna međurevizija|Nisu prikazane $1 međurevizije|Nije prikazano $1 međurevizija}} od {{PLURAL:$2|jednog korisnika|$2 korisnika}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Jedna međurevizija|$1 međurevizije|$1 međurevizija}} od više od $2 {{PLURAL:$2|korisnika|korisnika}} {{PLURAL:$1|nije prikazana|nisu prikazane}})',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna izmjena|$2 izmjene}} od ove razlike ($1) ne {{PLURAL:$2|postoji|postoje}}.
 
@@ -1656,11 +1655,11 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'recentchanges-legend' => 'Postavke nedavnih izmjena',
 'recentchanges-summary' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description' => 'Na ovoj stranici možete pratiti nedavne izmjene.',
-'recentchanges-label-newpage' => 'Ovom izmjenom se pravi nova stranica',
+'recentchanges-label-newpage' => 'Ovom izmjenom pravi se nova stranica',
 'recentchanges-label-minor' => 'Ovo je mala izmjena',
-'recentchanges-label-bot' => 'Ova izmjenu je načinio bot',
+'recentchanges-label-bot' => 'Ovu izmjenu napravio je bot',
 'recentchanges-label-unpatrolled' => 'Ova izmjena još nije patrolirana',
-'recentchanges-label-plusminus' => 'Veličina stranice je se promjenila za ovoliko bajtova',
+'recentchanges-label-plusminus' => 'Veličina stranice promijenila se za ovoliko bajtova',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(također pogledajte [[Special:NewPages|spisak novih stranica]])',
 'rcnotefrom' => 'Ispod su izmjene od <b>$2</b> (do <b>$1</b> prikazano).',
@@ -2337,7 +2336,6 @@ Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti n
 'watchmethod-list' => 'provjerava se da li ima nedavnih izmjena u praćenim stranicama',
 'watchlistcontains' => 'Vaš spisak praćenih članaka sadrži $1 {{PLURAL:$1|stranicu|stranica}}.',
 'iteminvalidname' => "Problem sa '$1', neispravno ime...",
-'wlnote' => "Ispod je {{PLURAL:$1|najskorija izmjena|'''$1''' najskorije izmjene|'''$1''' najskorijih izmjena}} načinjenih {{PLURAL:$2|posljednjeg sata|u posljednjih '''$2''' sata|u posljednjih '''$2''' sati}}, od $3, $4.",
 'wlshowlast' => 'Prikaži posljednjih $1 sati $2 dana $3',
 'watchlist-options' => 'Opcije spiska praćenja',
 
@@ -2458,7 +2456,7 @@ Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za pregled tr
 'protect-title-notallowed' => 'Pregled stepena zaštite za "$1"',
 'prot_1movedto2' => 'članak [[$1]] premješten na [[$2]]',
 'protect-badnamespace-title' => 'Nezaštitljiv imenski prostor',
-'protect-badnamespace-text' => 'Stranice u ovom imenskom prostoru se ne mogu zaštititi.',
+'protect-badnamespace-text' => 'Stranice u ovom imenskom prostoru ne mogu se zaštititi.',
 'protect-norestrictiontypes-text' => 'Ova stranica se ne može zaštititi jer nema dostupnih oblika ograničenja.',
 'protect-norestrictiontypes-title' => 'Nezaštitljiva strana',
 'protect-legend' => 'Potvrdite zaštitu',
@@ -2526,8 +2524,8 @@ Arhiva moše biti periodično čišćena.',
 'undeleteextrahelp' => "Da vratite cijelu historiju članka, ostavite sve kutijice neoznačene i kliknite '''''{{int:undeletebtn}}'''''.
 Da bi izvršili selektivno vraćanje, odaberite kutijice koje odgovaraju revizijama koje želite vratiti, i kliknite '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '{{PLURAL:$1|$1 revizija arhivirana|$1 revizije arhivirane|$1 revizija arhivirano}}',
-'undeletehistory' => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.
-Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
+'undeletehistory' => 'Ako vratite stranicu, sve će revizije biti vraćene u njenu historiju.
+Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije pojavit će se u njenoj ranijoj historiji.',
 'undeleterevdel' => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelimično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
 'undeletehistorynoadmin' => 'Ova stranica je izbrisana.  Ispod se nalazi dio historije brisanja i historija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
@@ -2989,7 +2987,6 @@ Nedostaje privremeni folder.',
 'tooltip-pt-watchlist' => 'Spisak članaka koje pratite.',
 'tooltip-pt-mycontris' => 'Spisak vašeg doprinosa',
 'tooltip-pt-login' => 'Predlažemo da se prijavite, ali nije obvezno.',
-'tooltip-pt-anonlogin' => 'Prijava nije obavezna, ali donosi mnogo koristi.',
 'tooltip-pt-logout' => 'Odjava sa projekta {{SITENAME}}',
 'tooltip-ca-talk' => 'Razgovor o sadržaju',
 'tooltip-ca-edit' => 'Možete da uređujete ovaj članak. Molimo Vas, koristite dugme "Prikaži izgled',

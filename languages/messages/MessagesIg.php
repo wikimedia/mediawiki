@@ -76,7 +76,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Okpürụ ahiri jikodo:',
-'tog-justify' => 'Tinyé ndelita na ọkwa',
 'tog-hideminor' => 'Zonari orü ntàkírí na nwerue mẹrẹ ogẹ nsó',
 'tog-hidepatrolled' => 'Zonari orü ha hụrụ na nwerue mẹrẹ ogẹ nsó',
 'tog-newpageshidepatrolled' => 'Zonari orü ha hụrụ shí ndetu ihü ohúrù',
@@ -85,9 +84,7 @@ $messages = array(
 'tog-numberheadings' => 'Onuogụgụ-otu anyi mere ya maka ishi edemede',
 'tog-showtoolbar' => 'Zi igbe orü (Í gí nwere JavaScript)',
 'tog-editondblclick' => 'Rüwá na élu ihü mgbe I kpạtạrạ (ö chọrọ JavaScript)',
-'tog-editsection' => 'Gbanyé orürü nkeji shi [rüwá] jikodo',
 'tog-editsectiononrightclick' => 'Kpa na áká nri Í gbanyé orürü nkeji na ishi nkeji (ö chọrọ JavaScript)',
-'tog-showtoc' => 'Zi agada ihe níle (maka ihü nwere ishis ká áto)',
 'tog-rememberpassword' => 'Chetá edemede éjim a banyé na orunótuá (nke ukwu nke rürü {{PLURAL:$1|chi|chi}} $1)',
 'tog-watchcreations' => 'Tinyé ihüm na eké na ndetu ihem ne lé',
 'tog-watchdefault' => 'Tinyé ihü m na rüoru élu na ndetu ihem ne lé',

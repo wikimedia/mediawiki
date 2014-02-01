@@ -16,7 +16,6 @@ $rtl = true;
 $messages = array(
 # User preference toggles
 'tog-underline' => 'هوم پیوند زیرخط دار:',
-'tog-justify' => 'فاصله نيائن سی پاراگرافيا',
 'tog-hideminor' => 'قام كردن ويرايشتيا كؤچك مئن آلشتيا تازه',
 'tog-hidepatrolled' => 'قام كردن ويرايشتيا تیه دیار کرده مئن آلشتيا تازه',
 'tog-newpageshidepatrolled' => 'بلگیا تیه دیار کرده نه مئن نوم گه بلگیا تازه قام کو',
@@ -230,7 +229,7 @@ $messages = array(
 'toolbox' => 'اوزاريا',
 'userpage' => 'ديئن بلگه كارور',
 'projectpage' => 'ديئن بلگه پروجه',
-'imagepage' => 'ديئن بلگه فايل',
+'imagepage' => 'ديئن بلگه جانیا',
 'mediawikipage' => 'ديئن بلگه پيغوم',
 'templatepage' => 'ديئن بلگه قالو',
 'viewhelppage' => 'ديئن بلگه هومياری',
@@ -316,7 +315,7 @@ $1',
 'nstab-media' => 'بلگه رسانه',
 'nstab-special' => 'بلگيا ويجه',
 'nstab-project' => 'بلگه پروجه',
-'nstab-image' => 'فاين',
+'nstab-image' => 'جانیا',
 'nstab-mediawiki' => 'پيغوم',
 'nstab-template' => 'قالو',
 'nstab-help' => 'بلگه هومياری',
@@ -557,7 +556,7 @@ $1 لطفن سی تلاش هنی صبر بکید',
 'headline_tip' => 'قدم 2 خط سر ون',
 'nowiki_sample' => 'د ایچه یه گل متن بی شلک وارد بکید',
 'nowiki_tip' => 'شلک ویکی نه ندید بگر',
-'image_tip' => 'فایل محاط بيه',
+'image_tip' => 'جانیا محاط بيه',
 'media_tip' => 'فایل هوم پیوند',
 'sig_tip' => 'امضا شما و برچسو وخت',
 'hr_tip' => 'خط افق ونه(سوا سوا دش استفاده کو)',
@@ -765,7 +764,6 @@ $2',
 'showhideselectedversions' => 'شلک دیئن وانیریا انتخاو بیه نه آلشت بکید',
 'editundo' => 'رد كردن',
 'diff-empty' => '(بی فرق)',
-'diff-multi' => '({{جمی:$1|یه گل دوواره دیئن مینجایی|$1مینجا دوواره دیئنیا}} وا {{جمی:$2|یه کارور|$2 کاروریا}} نشو دئه نی)',
 'diff-multi-manyusers' => '({{جمی:$1|یه گل وانیری مینجاگرته|$1وانیریا مینجا گرته}} بیشتر د $2 {{جمی:$2|کارور|کاروریا}} نشو دئه نبیه)',
 
 # Search results
@@ -955,6 +953,7 @@ $2',
 'right-viewmyprivateinfo' => 'دونسمنیا شصقی خوتونه بوینیت(چی نشونی ایمیل،نوم راستکی)',
 'right-editmyprivateinfo' => 'دونسمنیا شصقی خوتونه ویرایشت بکید(چی نشونی ایمیل،نوم راستکی)',
 'right-importupload' => 'دئن بلگه یا د یه گل جانیا سوار بیه',
+'right-unwatchedpages' => 'دیئن نوم گه بلگه یا دیئه نبیه',
 'right-siteadmin' => 'پاگا دونسمنی نه قلف بکید یا نکید',
 'right-sendemail' => 'سی کاروریا هنی ایمیل کل بکید',
 'right-passwordreset' => 'پاسورد ایمیلیا د نو دئه بیه نه بوینیت',
@@ -990,6 +989,7 @@ $2',
 'action-protect' => 'ریترازیا حفاظت د ای بلگه نه آلشت بکید',
 'action-import' => 'بلگه یا نه د ویکی هنی وارد بکید',
 'action-importupload' => 'بلگه یا نه د فایل سوار بیه وارد بکید',
+'action-unwatchedpages' => 'دیئن نوم گه بلگه یا دیئه نبیه',
 'action-siteadmin' => 'پاگا دونسمنی نه قلف بکید یا نکید',
 'action-sendemail' => 'ایمیلیانه کل کو',
 'action-editmywatchlist' => 'سیل برگ خوتونه ویرایشت بکید',
@@ -1213,6 +1213,7 @@ $2',
 'statistics-files' => 'جانیا یا سوار بیه',
 'statistics-views-total' => 'همه نه بوینیت',
 'statistics-views-peredit' => 'هر ویرایشت نه بوینیت',
+'statistics-users' => 'ثوت نام بیه [[ویجه:نوم گه کاروریا|کاروریا]]',
 'statistics-users-active' => 'کاروریا کارکو',
 'statistics-mostpopular' => 'بلگه یایی که بیشتر دیئه بینه',
 
@@ -1256,8 +1257,11 @@ $2',
 'shortpages' => 'بلگه یا کؤچک',
 'longpages' => 'بلگه یا گپ',
 'protectedpages' => 'بلگه یا حفاظت بيه',
+'listusers' => 'نوم گه کارور',
+'listusers-editsonly' => 'فقط کاروریایی که ویرایشت می کن نشو بیه',
 'usercreated' => '{{جنسیت:$3|راس بیه}}د $1 at $2',
 'newpages' => 'بلگيا نو',
+'newpages-username' => 'نوم كاروری:',
 'move' => 'جاوه جا بوئيت',
 'movethispage' => 'ای بگله نه جا وه جا كو',
 'pager-newer-n' => '{{جمی:$1|وانها تر 1وانها تر $1}}',
@@ -1284,15 +1288,28 @@ $2',
 # Special:Categories
 'categories' => 'دسه يا',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'هومیاریا پاک بیه کارور',
+
 # Special:LinkSearch
 'linksearch-ns' => 'نوم جا:',
 'linksearch-line' => '$1 داره د $2 هوم پیوند بوئه',
+
+# Special:ListUsers
+'listusers-noresult' => 'هیچ کاروری پیدا نبی',
+
+# Special:ActiveUsers
+'activeusers' => 'نوم گه کاروریا کارکو',
+'activeusers-noresult' => 'هیچ کاروری پیدا نبی',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(نوم گه اندومیا)',
 
 # Email user
 'emailuser' => 'ای كارور نه ايميل كو',
+'emailuser-title-target' => 'ایمیل سی ای {{جنس:$1|کارور}}',
+'emailpage' => 'ایمیل کارور',
+'emailusername' => 'نوم كاروری:',
 
 # Watchlist
 'watchlist' => 'سیل برگ',
@@ -1305,6 +1322,8 @@ $2',
 'watchlist-details' => '{{جمی:$1|$1 بلگه|$1 بلگیا}} د سیل برگتو هیش بلگه قسه کردن نی .',
 'wlshowlast' => 'آخرین$1 ساعتیا $2و روزیا $3 نشو بیئه',
 'watchlist-options' => 'گزینیا سیل برگ',
+
+'enotif_impersonal_salutation' => '{{نوم سیلجا}} کارور',
 
 # Delete
 'actioncomplete' => 'عملكرد كامل بيه',
@@ -1324,6 +1343,8 @@ $2',
 'modifiedarticleprotection' => 'ریتراز حفاظت د "[[$1]]" آلشت بیه',
 'protect-title' => 'ریتراز حفاظت د "$1" آلشت بیه',
 'prot_1movedto2' => '[[$1]] د [[$2]] جا وه جا بی',
+'protect-default' => 'همه کاروریا اجازه دارن',
+'protect-othertime' => 'وخت هنی:',
 'restriction-type' => 'دسرسی:',
 
 # Restrictions (nouns)
@@ -1382,9 +1403,18 @@ $2',
 'whatlinkshere-filters' => 'فيلتريا',
 
 # Block/unblock
+'block' => 'منع کارور',
+'blockip' => 'منع کارور',
+'ipbother' => 'وخت هنی:',
 'ipboptions' => '2 ساعتیا:2 ساعت,1 رو:1 رو,3 روزا:3 رو,1 هفته:1 هفته,2 هفته یا:2 هفته,1 ما:1 ما,3 ما:3 میا,6 ما:6 مایا,1 سال:1سال,حد ناره:حد ناره',
+'ipbhidename' => 'نوم کاروری نه سی ویرایشت یا و نوم گه یا قام کو',
+'unblockip' => 'کارور منع نبیه',
+'blocklist' => 'كاروريا منع بيه',
 'ipblocklist' => 'كاروريا منع بيه',
+'ipblocklist-legend' => 'یه گل کارور منع بیه بجوریت',
+'blocklist-timestamp' => 'چسب ون وخت',
 'blocklist-nousertalk' => 'نبوئه بلگه چک چنه خوتونه ویرایشت بکید',
+'ipblocklist-empty' => 'جاگه نوم گه حالیه',
 'blocklink' => 'بسته بوئه',
 'unblocklink' => 'بی قطی',
 'change-blocklink' => 'اجازه نديئن سی  آلشت',
@@ -1400,6 +1430,7 @@ $2',
 'movenotallowedfile' => 'شما وه جا وه جا کردن جانیایا دسرسی ناریت',
 'movepagebtn' => 'بلگه جا وه جا کو',
 'movelogpage' => 'جاوه جا کردن',
+'movelogpagetext' => 'د هار یه گل نوم گه د جا وه جایی یا بلگه هئ',
 'revertmove' => 'لرستن',
 'delete_and_move' => 'پاک و جا وه جا بوئه',
 
@@ -1507,6 +1538,7 @@ $2',
 'file-nohires' => 'عسك ون بالاتري دش ني',
 'svg-long-desc' => 'اس وی جی فايل.نومنا $1 $2 پيكسل',
 'show-big-image' => 'فایل اصلی',
+'file-info-png-repeat' => '$1 بازی کرده{{جمی:$1|وخت|وختیا}}',
 
 # Special:NewFiles
 'newimages' => 'عسگدونی جانیایا تازه',
@@ -1540,13 +1572,21 @@ $2',
 
 # Exif tags
 'exif-datetime' => 'آلشت دئن وخت و دمون جانیا',
+'exif-make' => 'سازنه دیربین',
 'exif-usercomment' => 'ویر و باوریا کارور',
 'exif-relatedsoundfile' => 'جانیا دنگ دار مرتوط',
+'exif-datetimeoriginal' => 'دمون و وخت راس بیئن دونسمنیا',
 'exif-filesource' => 'سرچشمه جانیا',
+'exif-gpstimestamp' => 'وخت جی پی اس (ساعت اتمی)',
 'exif-jpegfilecomment' => 'ویر و باور فایل پی ان جی',
 'exif-languagecode' => 'زون',
+'exif-datetimeexpires' => 'وا نها دش استفاده نبوئه',
 'exif-pngfilecomment' => 'ویر و باور فایل جی پی ان جی',
 'exif-giffilecomment' => 'ویر و باور فایل جی آی اف',
+
+'exif-componentsconfiguration-0' => 'نی یش',
+
+'exif-exposureprogram-1' => 'دسی',
 
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
@@ -1593,12 +1633,26 @@ $2',
 'specialpages' => 'بلگيا ويجه',
 'specialpages-group-changes' => 'آلشتیا تازه و پهرستنومه یا',
 'specialpages-group-media' => 'گزارشتیا رسانه و سوارکردیا',
+'specialpages-group-users' => 'کاروریا و حقوق',
+'specialpages-group-pages' => 'نوم گه بلگه یا',
 
 # External image whitelist
 'external_image_whitelist' => 'یه خط نه ول بکید چی وه<pre>',
 
 # Special:Tags
 'tag-filter' => 'فيلتر [[Special:Tags|Tag]]:',
+'tags-display-header' => 'دیاری کردن د نوم گه آلشتیا',
+
+# Special:ComparePages
+'compare-title-not-exists' => 'سرون مشقص بیه وجود ناره.',
+'compare-revision-not-exists' => 'وانئری که شما تی دیار کردیته وجود ناره.',
+
+# New logging system
+'revdelete-uname-hid' => 'نوم کاروری قام بیه',
+'revdelete-uname-unhid' => 'نوم کاروری قام نبیه',
+
+# Feedback
+'feedback-close' => 'انجوم بی',
 
 # API errors
 'api-error-badaccess-groups' => 'شما سی سوار کرد جانیایا د ای ویکی اجازه ناریت.',

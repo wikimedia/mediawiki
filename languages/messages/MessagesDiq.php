@@ -332,7 +332,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bınê gırey de xete bance:',
-'tog-justify' => 'Paragrafan eyar ke',
 'tog-hideminor' => 'Vurnayışanê şenıkan pela vurnayışanê peyênan de bınımne',
 'tog-hidepatrolled' => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',
 'tog-newpageshidepatrolled' => 'Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne',
@@ -492,9 +491,9 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'Mewzu vıraze',
-'vector-action-delete' => 'Bestern',
-'vector-action-move' => 'Ber',
-'vector-action-protect' => 'Star ke',
+'vector-action-delete' => 'Bestere',
+'vector-action-move' => 'Bere',
+'vector-action-protect' => 'Bışevekne',
 'vector-action-undelete' => 'Esterıtışi peyser bıgê',
 'vector-action-unprotect' => 'Starkerdışi bıvurne',
 'vector-simplesearch-preference' => 'Çuweya cı geyreyış de rehater aktiv ke (Tenya vector skin de)',
@@ -532,7 +531,7 @@ $messages = array(
 'undeletethispage' => 'Na perer mebesterne',
 'undelete_short' => '{{PLURAL:$1|Yew vurnayışi|$1 Vurnayışan}} mestere',
 'viewdeleted_short' => '{{PLURAL:$1|Yew vurnayışo esterıte|$1 Vurnayışanê esterıtan}} bımocne',
-'protect' => 'Star ke',
+'protect' => 'Bışevekne',
 'protect_change' => 'bıvurne',
 'protectthispage' => 'Ena pele bıpawe',
 'unprotect' => 'Starkerdışi bıvurne',
@@ -1212,7 +1211,7 @@ Sebebo ke terefê $3 ra diyao ''$2''",
 'page_last' => 'peyên',
 'histlegend' => "Ferqê weçinayışi: Qutiya versiyonan mor ke u  ''enter''i bıpıloxne ya zi makera cêrêne bıpıloxne.<br /> 
 Lecant: '''({{int:cur}})''' = ferqê versiyonê peyêni, '''({{int:last}})''' = ferqê versiyonê verêni, '''{{int:minoreditletter}}''' = vurnayışo werdi.",
-'history-fieldset-title' => 'Bewni tarixer',
+'history-fieldset-title' => 'Tarixi bıvêne',
 'history-show-deleted' => 'Tenya esterıt',
 'histfirst' => 'Verênêr',
 'histlast' => 'Peyênêr',
@@ -1362,7 +1361,6 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'showhideselectedversions' => 'Revizyonanê weçinıtan bımocne/bınımne',
 'editundo' => 'peyser bıgê',
 'diff-empty' => '(Babetna niyo)',
-'diff-multi' => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
 'diff-multi-manyusers' => '({{PLURAL:$1|jew timar kerdışo qıckeko|$1 timar kerdışo qıckeko}} timar kerdo, $2 {{PLURAL:$2|Karber|karberi}} memocne)',
 'difference-missing-revision' => 'Ferqê {{PLURAL:$2|Yew rewizyonê|$2 rewizyonê}} {{PLURAL:$2|dı|dı}} ($1) sero çıniyo.
 
@@ -1397,7 +1395,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'search-result-size' => '$1 ({{PLURAL:$2|1 çekuyo|$2 çekuyê}})',
 'search-result-category-size' => '{{PLURAL:$1|1 eza|$1 ezayan}} ({{PLURAL:$2|1 kategoriyê bini|$2 kategirayanê binan}}, {{PLURAL:$3|1 dosya|$3 dosyayan}})',
 'search-result-score' => 'Eleqa: $1%',
-'search-redirect' => '(ber $1)',
+'search-redirect' => '($1 ra ardış)',
 'search-section' => '(qısmê $1)',
 'search-suggest' => 'To va: $1',
 'search-interwiki-caption' => 'Projey Bıray',
@@ -2070,7 +2068,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # File reversion
 'filerevert' => '$1 reyna biyere',
-'filerevert-legend' => 'Dosya ber weziyet do verên',
+'filerevert-legend' => 'Dosya raçarne',
 'filerevert-intro' => "Ti ho ena dosyayê '''[[Media:$1|$1]]'''î  [$4 versiyonê $3, $2] rê reyna anî.",
 'filerevert-comment' => 'Sebeb:',
 'filerevert-defaultcomment' => 'Versiyonê $2, $1 rê reyna ard',
@@ -2587,7 +2585,7 @@ Tı eşkeno seviyeye kılit kerdışi bıvurno, feqat tı nıeşken "cascading p
 
 # Restrictions (nouns)
 'restriction-edit' => 'Bıvurne',
-'restriction-move' => 'Ber',
+'restriction-move' => 'Bere',
 'restriction-create' => 'Vıraze',
 'restriction-upload' => 'Bar ke',
 
@@ -2906,7 +2904,7 @@ Yewna name bınus.',
 'movenosubpage' => 'pelê bınıni yê no peli çino.',
 'movereason' => 'Sebeb:',
 'revertmove' => 'peyser bia',
-'delete_and_move' => 'Bestern u ber',
+'delete_and_move' => 'Bestere û bere',
 'delete_and_move_text' => '==gani hewn a bıbıo/bıesteriyo==
 
 " no [[:$1]]" name de yew pel ca ra esto. şıma wazeni pê hewn a kerdışê ey peli vurnayişê nameyi bıkeri?',

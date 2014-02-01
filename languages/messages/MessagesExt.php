@@ -21,7 +21,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Surrayal atihus:',
-'tog-justify' => 'Encahal párrafus',
 'tog-hideminor' => 'Açonchal eicionis chiqueninas en "úrtimus chambus"',
 'tog-hidepatrolled' => 'Açonchal eicionis vegilás en úrtimus chambus',
 'tog-newpageshidepatrolled' => 'Açonchal páginas vegilás ena nueva lista',
@@ -30,9 +29,7 @@ $messages = array(
 'tog-numberheadings' => 'Autu-numeral entítulus',
 'tog-showtoolbar' => "Muestral la barra d'eición (JavaScript)",
 'tog-editondblclick' => 'Eital páhinas haziendu dobri click (JavaScript)',
-'tog-editsection' => 'Premitil eital mensahis gastandu el atihu [eital]',
 'tog-editsectiononrightclick' => 'Premitil eital secionis pulsandu el botón de la derecha<br /> enus entítulus de secionis (JavaScript)',
-'tog-showtoc' => 'Muestral cuairu e continius (pa páhinas con mas de 3 entítulus)',
 'tog-rememberpassword' => 'Recordal la mi cuenta nesti ordinaol (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Vehilal las páhinas que yo crei',
 'tog-watchdefault' => "Vehilal las páhinas qu'eiti",
@@ -727,7 +724,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Comparal velsionis aseñalás',
 'editundo' => 'esjazel',
-'diff-multi' => '(Nu se {{PLURAL:$1|muestra una revisión entelmeya|muestran $1 revisionis entelmeyas}}.)',
 
 # Search results
 'searchresults' => 'Landeal resurtaus',
@@ -1347,7 +1343,6 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'watchmethod-list' => 'Revisandu las páhinas vehilás en cata los úrtimus chambus',
 'watchlistcontains' => 'Ai $1 {{PLURAL:$1|páhina|páhinas}} ena tu lista e seguimientu.',
 'iteminvalidname' => "Pobrema con el artículu '$1', nombri nu premitiu...",
-'wlnote' => "Embahu {{PLURAL:$1|es el úrtimu chambu|son los úrtimus '''$1''' chambus}} enas úrtimas {{PLURAL:$2|oras|'''$2''' oras}}.",
 'wlshowlast' => 'Muestral úrtimus $1 oras $2 dias $3',
 'watchlist-options' => 'Ocionis de la mi lista e seguimientu',
 
@@ -1782,7 +1777,6 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'tooltip-pt-watchlist' => 'Lista e páhinas enas que vehilas los chambus',
 'tooltip-pt-mycontris' => 'Los mis endirguis',
 'tooltip-pt-login' => 'Te recomendamus que te rustris, inque nu es mestel.',
-'tooltip-pt-anonlogin' => 'Te recomendamus que te rustris, inque nu es mestel.',
 'tooltip-pt-logout' => 'Salil',
 'tooltip-ca-talk' => 'Caraba al tentu el artículu',
 'tooltip-ca-edit' => 'Pueis eital esta página.

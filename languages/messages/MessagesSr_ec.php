@@ -396,7 +396,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Подвлачење веза:',
-'tog-justify' => 'Поравнај пасусе',
 'tog-hideminor' => 'Сакриј мање измене у списку скорашњих измена',
 'tog-hidepatrolled' => 'Сакриј прегледане измене у списку скорашњих измена',
 'tog-newpageshidepatrolled' => 'Сакриј прегледане странице са списка нових страница',
@@ -1437,7 +1436,6 @@ $1",
 'showhideselectedversions' => 'Прикажи/сакриј изабране измене',
 'editundo' => 'поништи',
 'diff-empty' => '(Нема разлике)',
-'diff-multi' => '({{PLURAL:$1|није приказана међуизмена|нису приказане $1 међуизмене|није приказано $1 међуизмена}} {{PLURAL:$2|једног|$2|$2}} корисника)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Није приказана међуизмена|Нису приказане $1 међуизмене|Није приказано $1 међуизмена}} од више од $2 корисника)',
 'difference-missing-revision' => 'Не могу да пронађем {{PLURAL:$2|једну измену|$2 измене|$2 измена}} од ове разлике ($1).
 
@@ -1921,8 +1919,8 @@ $1",
 'uploadwarning' => 'Упозорење при отпремању',
 'uploadwarning-text' => 'Измените опис датотеке и покушајте поново.',
 'savefile' => 'Сачувај датотеку',
-'uploadedimage' => '{{GENDER:|је послао|је послала|је послао}} „[[$1]]“',
-'overwroteimage' => '{{GENDER:|је послао|је послала}} нову верзију датотеке „[[$1]]“',
+'uploadedimage' => 'је послао „[[$1]]“',
+'overwroteimage' => 'је послао нову верзију датотеке „[[$1]]“',
 'uploaddisabled' => 'Отпремање је онемогућено.',
 'copyuploaddisabled' => 'Слање путем URL адресе је онемогућено.',
 'uploadfromurl-queued' => 'Слање је стављено на списак чекања.',
@@ -2181,7 +2179,7 @@ $1',
 
 # MIME search
 'mimesearch' => 'MIME претрага',
-'mimesearch-summary' => 'Ова страница омогућава филтрирање датотека према њиховим врстама MIME.
+'mimesearch-summary' => 'Ова страница омогућава филтрирање датотека према њиховим MIME типовима.
 Улазни подаци: contenttype/subtype, нпр. <code>image/jpeg</code>.',
 'mimetype' => 'MIME врста:',
 'download' => 'преузми',
@@ -2609,10 +2607,10 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage' => 'Дневник закључавања',
-'protectlogtext' => 'Испод је списак измена у виду заштите страница.
+'protectlogtext' => 'Испод је списак заштићених страница.
 Погледајте [[Special:ProtectedPages|списак заштићених страница]] за више детаља.',
 'protectedarticle' => '{{GENDER:|је заштитио|је заштитила}} „[[$1]]“',
-'modifiedarticleprotection' => '{{GENDER:|је променио|је променила|је променио}} степен заштите за „[[$1]]“',
+'modifiedarticleprotection' => 'је променио степен заштите за „[[$1]]“',
 'unprotectedarticle' => 'је скинуо заштиту са странице „[[$1]]“',
 'movedarticleprotection' => '{{GENDER:|је преместио|је преместила|је преместио}} поставке заштите са „[[$2]]“ на „[[$1]]“',
 'protect-title' => 'Степен заштите за „$1“',
@@ -3047,7 +3045,7 @@ $1',
 'allmessages' => 'Системске поруке',
 'allmessagesname' => 'Назив',
 'allmessagesdefault' => 'Подразумевани текст',
-'allmessagescurrent' => 'Текст поруке',
+'allmessagescurrent' => 'Тренутни текст поруке',
 'allmessagestext' => 'Ово је списак свих системских порука које су доступне у именском простору „Медијавики“.
 Посетите [https://www.mediawiki.org/wiki/Localisation Медијавики локализацију] и [//translatewiki.net Транслејтвики] ако желите да помогнете у превођењу.',
 'allmessagesnotsupportedDB' => "Ова страница не може да се користи јер је '''\$wgUseDatabaseMessages''' онемогућен.",
@@ -3056,7 +3054,7 @@ $1',
 'allmessages-filter-unmodified' => 'неизмењене',
 'allmessages-filter-all' => 'све',
 'allmessages-filter-modified' => 'измењене',
-'allmessages-prefix' => 'Филтрирај по предметку:',
+'allmessages-prefix' => 'Филтрирај по префиксу:',
 'allmessages-language' => 'Језик:',
 'allmessages-filter-submit' => 'Иди',
 

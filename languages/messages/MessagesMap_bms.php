@@ -18,7 +18,6 @@ $fallback = 'jv, id';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garisen ngisoré pranala:',
-'tog-justify' => 'Ratakna paragraf',
 'tog-hideminor' => 'Umpetna suntingan cilik nang owahan anyar',
 'tog-hidepatrolled' => 'Umpetna suntingan sing wis dipatroli nang owahan anyar',
 'tog-newpageshidepatrolled' => 'Umpetna kaca sing wis dipatroli sekang daftar kaca anyar',
@@ -27,9 +26,7 @@ $messages = array(
 'tog-numberheadings' => 'Aweh nomer judul secara otomatis',
 'tog-showtoolbar' => 'Tidhokna bilah alat penyuntingan',
 'tog-editondblclick' => 'Nyunting kaca nganggo dobel klik (mbutuhna JavaScript)',
-'tog-editsection' => 'Aktifna penyuntingan subbagian ngliwati pranala [sunting]',
 'tog-editsectiononrightclick' => 'Aktifna penyuntingan subbagian nganggo klik-tengen nang judul bagian (mbutuhna JavaScript)',
-'tog-showtoc' => 'Tidhokna daftar isine (kanggo kaca sing duwe lewih sekang 3 subbagian)',
 'tog-rememberpassword' => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
 'tog-watchcreations' => 'Tambahna kaca gaweanne inyong lan berkas sing tek unggah nang daptar pangawasanne inyong',
 'tog-watchdefault' => 'Tambahna kaca lan berkas sing tek-sunting maring daptar pangawasanne inyong',
@@ -894,7 +891,6 @@ Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 'compareselectedversions' => 'Bandingna revisi kapilih',
 'showhideselectedversions' => 'Tidokna/umpetna revisi kapilih',
 'editundo' => 'batalna',
-'diff-multi' => 'Ana ({{PLURAL:$1|Siji|$1}} revisi antara sekang {{PLURAL:$2|siji|$2}} panganggo sing ora ditidokna)',
 'diff-multi-manyusers' => 'Ana ({{PLURAL:$1|Siji|$1}} revisi antara gaweane lewih sekang {{PLURAL:$2|siji|$2}} panganggo sing ora ditidokna)',
 
 # Search results

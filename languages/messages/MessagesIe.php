@@ -135,7 +135,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ultracatenun:',
-'tog-justify' => 'Justificar paragrafes',
 'tog-hideminor' => 'Ocultar redactiones minori in nov changes',
 'tog-hidepatrolled' => 'Ocultar redactiones vigilat in nov changes',
 'tog-newpageshidepatrolled' => 'Ocultar págines vigilat de liste de nov págines',
@@ -144,9 +143,7 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar rublicas',
 'tog-showtoolbar' => 'Monstrar barre de redactional utensiles',
 'tog-editondblclick' => 'Redacter págines per duplic clacca',
-'tog-editsection' => 'Permisser redaction de division usant catenunes [redacter]',
 'tog-editsectiononrightclick' => 'Redacter singul sectiones per dextri clacca',
-'tog-showtoc' => 'Monstrar tabelle de contenetes (por págines che plu de 3 divisiones)',
 'tog-rememberpassword' => 'Memorar mi registre in ti computator (por um max de $1 {{PLURAL:$1|die|dies}})',
 'tog-watchcreations' => 'Automaticmen viligar págines e files, queles yo ha creat.',
 'tog-watchdefault' => 'Automaticmen vigilar págines e files, queles yo ha redactet.',
@@ -669,7 +666,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Comparar revisiones selectet',
 'editundo' => 'anullar',
-'diff-multi' => '({{PLURAL:$1|Un revision intermediari|$1 revisiones intermediari}} per {{PLURAL:$2|un usator|$2 usatores}} ne monstrat)',
 
 # Search results
 'searchresults' => 'Serch-resultates',
@@ -1047,7 +1043,6 @@ Li descrition in su [$2 págine de descrition] es monstrat in infra.',
 'watchmethod-recent' => 'controlant nov redactiones por págines vigilat',
 'watchmethod-list' => 'controlant págines vigilat por nov redactiones',
 'watchlistcontains' => 'Tui liste de págines vigilat contene $1 {{PLURAL:$1|págine|págines}}.',
-'wlnote' => "Infra {{PLURAL:$1|es li ultim change|es li ultim '''$1''' changes}} in li ultim {{PLURAL:$2|hor|'''$2''' hores}}.",
 'wlshowlast' => 'Monstra ultim $1 hores $2 dies $3',
 'watchlist-options' => 'Optiones de liste de págines vigilat',
 
@@ -1228,7 +1223,6 @@ $1',
 'tooltip-pt-watchlist' => 'Liste de vigilat págines',
 'tooltip-pt-mycontris' => 'Liste de tui contributiones',
 'tooltip-pt-login' => 'Tu es incorrageat crear un conto, ma to ne es un deventie.',
-'tooltip-pt-anonlogin' => 'Vu es incorageat por crear un conto; támen, it ne esser mandatorio',
 'tooltip-pt-logout' => 'Surtir',
 'tooltip-ca-talk' => 'Discussion pri li articul.',
 'tooltip-ca-edit' => 'Redacter ti págine. Ples usar li buton de prevision antequam conservar.',

@@ -152,7 +152,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '鏈墊線：',
-'tog-justify' => '齊段落',
 'tog-hideminor' => '隱近校',
 'tog-hidepatrolled' => '隱近巡',
 'tog-newpageshidepatrolled' => '隱新巡',
@@ -1011,7 +1010,6 @@ $1",
 'compareselectedversions' => '辨二擇',
 'showhideselectedversions' => '示／藏之擇',
 'editundo' => '悔',
-'diff-multi' => '（$2作未示之審有$1）',
 'diff-multi-manyusers' => '（$2多作未示之審有$1）',
 
 # Search results
@@ -1858,7 +1856,6 @@ $1',
 'watchmethod-list' => '報近易…',
 'watchlistcontains' => '共$1哨。',
 'iteminvalidname' => "'$1'謬名。",
-'wlnote' => '近<b>$2</b>時有$1者易。',
 'wlshowlast' => '見近$1時、$2天、$3時易',
 'watchlist-options' => '哨項',
 
@@ -2358,7 +2355,6 @@ $1',
 'tooltip-pt-watchlist' => '收矚目、治眼線、賞萌茂',
 'tooltip-pt-mycontris' => '刻勛功、追作續、慰苦勞',
 'tooltip-pt-login' => '設書齋、錄功績、廣放哨',
-'tooltip-pt-anonlogin' => '設書齋、錄功績、廣放哨',
 'tooltip-pt-logout' => '凡事盡，乘雲飄',
 'tooltip-ca-talk' => '求異見、辯是非、妥紛擾',
 'tooltip-ca-edit' => '拓文意、校誤謬、潤辭藻',

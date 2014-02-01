@@ -26,7 +26,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Collegaminde sottolinèate:',
-'tog-justify' => 'Giustifeche le paragrafe',
 'tog-hideminor' => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-hidepatrolled' => "Scunne le cangiaminde condrollate jndr'à le cangiaminde recende",
 'tog-newpageshidepatrolled' => "Scunne le pàggene tenute sotte condrolle da l'elenghe de le pàggene nuève",
@@ -1100,7 +1099,6 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'showhideselectedversions' => 'Fà vedè/scunne le revisiune selezionate',
 'editundo' => 'annulle',
 'diff-empty' => '(Nisciuna differenze)',
-'diff-multi' => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} de {{PLURAL:$2|'n'utende|$2 utinde}} non ge se vèdene)",
 'diff-multi-manyusers' => "({{PLURAL:$1|'Na revisione de 'mmienze|$1 revisiune de 'mmienze}} non g'è viste da cchiù de $2 {{PLURAL:$2|utende|utinde}})",
 'difference-missing-revision' => "{{PLURAL:$2|'Na revisione|$2 revisiune}} de sta differenze ($1) {{PLURAL:$2|non g'onne|non g'onne}} state acchiate.
 
@@ -1462,6 +1460,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchanges-label-minor' => "Quiste ète 'nu cangiamende stuèdeche",
 'recentchanges-label-bot' => "Stu cangiamende ha state fatte da 'nu bot",
 'recentchanges-label-unpatrolled' => "Stu cangiamende non g'à state angore condrollate",
+'recentchanges-legend-heading' => "'''Leggende:'''",
 'recentchanges-legend-newpage' => "('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
 'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' (fine a '''$1''' mustrete).",
 'rclistfrom' => 'Fà vedè le urteme cangiaminde partenne da $1',

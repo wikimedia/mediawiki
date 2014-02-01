@@ -542,7 +542,6 @@ Ealaidarung: '''({{int:cur}})''' = Unnaschied zu jezd,
 'compareselectedversions' => 'Ausgawe midnonna vaglaische',
 'showhideselectedversions' => 'Zaisch/Vaschdeggl gwehldi Ausgawe',
 'editundo' => 'zriggnemme',
-'diff-multi' => '({{PLURAL:$1|Ä dzwische lischndi Ännarung|$1 dzwische lischende Ännarunge}} by {{PLURAL:$2|än Middawaida|$2 Middawaida}} nedd gzaischd)',
 
 # Search results
 'searchresults' => 'Eagewnis nochgugge',

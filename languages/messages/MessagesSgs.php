@@ -61,16 +61,13 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pabrauktė nūruodas:',
-'tog-justify' => 'Līgintė pastraipas palē abi poses',
 'tog-hideminor' => 'Pakavuotė mažus pataisėmus vielībūju taisīmu sārašė',
 'tog-extendwatchlist' => 'Ėšpliestė keravuojamu sāraša, kū ruodītu vėsus tėnkamus pakeitėmus',
 'tog-usenewrc' => 'Grupoutė keitėmus vielībūsiūs pakeitėmūs ė keravuojamu poslapiu sārašė',
 'tog-numberheadings' => 'Autuomatėškā numeroutė skėrsnelios',
 'tog-showtoolbar' => 'Ruodītė redagavėma rakondinė (JavaScript)',
 'tog-editondblclick' => 'Poslapiu redagavėms dvėgobu paspaudėmu (JavaScript)',
-'tog-editsection' => 'Ijongtė skėrsneliu redagavėma nauduojant nūruodas [taisītė]',
 'tog-editsectiononrightclick' => 'Ijongtė skėrsneliu redagavėma paspaudos skėrsnelė pavadėnėma<br />dešėniouju pelies klavėšu (JavaScript)',
-'tog-showtoc' => 'Ruodītė torėni, jē poslapī daugiau kāp 3 skėrsnelē',
 'tog-rememberpassword' => 'Atmintė prėsėjongėma infuormacėjė šėtom kuompioterī (daugiausē $1 {{PLURAL:$1|dėina|dėinuom}})',
 'tog-watchcreations' => 'Pridietė poslapius, katrūs sokorio, i keravuojamu sāraša',
 'tog-watchdefault' => 'Pridietė poslapius, katrūs taisau, i keravuojamu sāraša',
@@ -693,7 +690,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'lineno' => 'Eilotė $1:',
 'compareselectedversions' => 'Palīgintė pasėrinktas versėjės',
 'editundo' => 'atšauktė',
-'diff-multi' => '($2 {{PLURAL:$2|nauduotoja|nauduotoju|naudotoju}} $1 {{PLURAL:$1|tarpėnis keitėms nier ruodomos|tarpėnē keitėmā nier ruodomė|tarpėniu keitėmu nier ruodoma}})',
 
 # Search results
 'searchresults' => 'Paėiškuos rezoltatā',
@@ -1252,7 +1248,6 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 'watchmethod-recent' => 'tėkrėnamė vielībė̅jė pakeitėmā keravuojamiems poslapiams',
 'watchmethod-list' => 'Ėiškuoma vielībūju pakeitėmu keravuojamūs poslapiūs',
 'watchlistcontains' => 'Tamstas kervuojamu sārašė īr $1 {{PLURAL:$1|poslapis|poslapē|poslapiu}}.',
-'wlnote' => "Ruoduoma '''$1''' paskotėniu pakeitėmu, atlėktū par '''$2''' paskotėniu adīnu.",
 'wlshowlast' => 'Ruodītė paskotėniu $1 adīnu, $2 dėinū a $3 pakeitėmus',
 'watchlist-options' => 'Keravuojamu sāroša pasėrinkėmā',
 

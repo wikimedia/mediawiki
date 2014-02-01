@@ -67,7 +67,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podsztrychńyńcy linkůw:',
-'tog-justify' => 'Wyrůwnywej tekst we akapitach (justowańy)',
 'tog-hideminor' => 'Schow drobne pomjyńańa we ńydowno pomjyńanych',
 'tog-hidepatrolled' => 'Schow sprowdzůne sprowjyńa we ńydowno pomjyńanych',
 'tog-newpageshidepatrolled' => 'Schow sprawdzůne zajty na wykoźe nowych zajtůw',
@@ -967,7 +966,6 @@ $1",
 'compareselectedversions' => 'zrůwnej uobrane wersyje',
 'showhideselectedversions' => 'Ukoż/ukryj uobrane wersyje',
 'editundo' => 'uodćepej',
-'diff-multi' => '(Ńy pokozano {{PLURAL:$1|jydnyj wersyji postrzedńij|$1 wersyji postrzedńich}}, sprowjanej bez {{PLURAL:$2|jydnygo sprowjorza|$2 sprowjorzow}} .)',
 'diff-multi-manyusers' => '(Ńy pokozano {{PLURAL:$1|jydnyj wersyji postrzedńij|$1 wersyji postrzedńich}}, sprowjanej bez {{PLURAL:$2|jydnygo sprowjorza|$2 sprowjorzow}} .)',
 'difference-missing-revision' => '{{PLURAL:$2|Wersyjo|$2 wersyje|$2 wersyji}} #$1 zajty "{{PAGENAME}}" ńy {{PLURAL:$2|uostoła znaleźůno|uostoły znaleźůne|uostoło znaleźůnych}}. Zauobycz je to skiż starygo linky do wyćępanyj zajty. Powůd wyćepańa nojdźesz we [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejerze].',
 
@@ -1711,7 +1709,6 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 'watchmethod-list' => 'šnupańy w zajtach, na kere dowoš pozůr pośrůd půmjyńanych na uostatku',
 'watchlistcontains' => 'Lista zajtůw, na kere dowoš pozůr mo {{PLURAL:$1|jedna pozycja|$1 pozycje|$1 pozycyji}}.',
 'iteminvalidname' => 'Problym ze pozycjům „$1”, felerne mjano...',
-'wlnote' => "Půńižy pokazano {{PLURAL:$1|ostatńy sprawjyńy dokůnane|ostatńy '''$1''' sprawjyńe dokůnane|ostatńych '''$1''' sprawjyń dokůnanych}} bez {{PLURAL:$2|uostatńo godźina|uostatńich '''$2''' godźin}}.",
 'wlshowlast' => 'Pokož uostatńy $1 godźin $2 dńi ($3)',
 'watchlist-options' => 'Uopcyje artikli na kere dowosz pozůr',
 
@@ -2220,7 +2217,6 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-pt-watchlist' => 'Lista artiklůw, na kere dowosz pozůr',
 'tooltip-pt-mycontris' => 'Lista uody mje sprowjonych',
 'tooltip-pt-login' => 'Chćeli by my, cobyś śe nalogowoł, nale to ńy je powinne',
-'tooltip-pt-anonlogin' => 'Zachyncůmy do zalůgowańo śe, nale to ńy je uobowjůnzek',
 'tooltip-pt-logout' => 'Uodloguj śe ze wiki',
 'tooltip-ca-talk' => 'Dyskusyjo uo tym artiklu',
 'tooltip-ca-edit' => 'Mogesz sprowjać ta zajta. Podwjela spamjyntosz půmjyńańo, klikńij we knefel "Uobźyrej".',

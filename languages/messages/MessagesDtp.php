@@ -16,7 +16,6 @@ $fallback = 'ms';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Mangagaris pioputan:',
-'tog-justify' => 'Kasagaan kiparagrap',
 'tog-hideminor' => 'Lisoko idit tokoro ih wagu kaalanai.',
 'tog-hidepatrolled' => 'Lisoko idit tinamangan ih wagu kaalanai',
 'tog-newpageshidepatrolled' => 'Lisoko bolikon tinamangan mantad lis bolikon kawawagu',
@@ -25,9 +24,7 @@ $messages = array(
 'tog-numberheadings' => 'oporian-mongonumbur it tuluhon',
 'tog-showtoolbar' => 'Pokitono kakamotbar mongidit (momoguno JawaSikrip)',
 'tog-editondblclick' => 'Idito bolikon momoguno induaan todos (momoguno JawaSikrip)',
-'tog-editsection' => 'Pabanaro sikson mongidit mamakai noputan (idit)',
 'tog-editsectiononrightclick' => 'Pabanaro sikson mongidit momoguno todos golibang id sikson tuluon (momoguno JawaSikrip)',
-'tog-showtoc' => 'Pokitono mija sinuang-suang (montok bolikon di kolobi do 3 tuluhon)',
 'tog-rememberpassword' => 'Soroho ot loginku id popogihuman diti (gisom solinaid do $1 {{PLURAL:$1|tadau|madau}})',
 'tog-watchcreations' => 'Ruhangai bolikon di winonsoiku om nogi pail pinosuangku id lisintanganku',
 'tog-watchdefault' => 'Ruhangai bolikon om tangapail di niditku id lisintanganku',
@@ -900,7 +897,6 @@ Intaai [[Special:BlockList|lis nantaban]] montok lis kawawagu karaja mogoduh om 
 'compareselectedversions' => 'Popitimbang sinimakan nopili',
 'showhideselectedversions' => 'Pokitono/polisoko sinimakan nopili',
 'editundo' => 'suguto mongidit',
-'diff-multi' => '({{PLURAL:$1|Iso sinimakan pintangaan|$1 tongosinimakan pintangaan}} di {{PLURAL:$2|iso momomoguno|$2 momomoguno}} awu pokitonon)',
 
 # Search results
 'searchresults' => 'Kootuson nihuman',

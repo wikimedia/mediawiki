@@ -210,7 +210,6 @@ $linkTrail = "/^([a-z]+)(.*)$/sD";
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Onderstreep skakels.',
-'tog-justify' => 'Justeer paragrawe.',
 'tog-hideminor' => 'Moenie klein wysigings in die onlangse wysigingslys wys nie.',
 'tog-hidepatrolled' => 'Versteek gepatrolleerde wysigings in onlangse wysigingslys',
 'tog-newpageshidepatrolled' => 'Versteek gepatrolleerde wysigings van nuwe bladsy lys',
@@ -1242,7 +1241,6 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'showhideselectedversions' => 'Wys/versteek gekose weergawes',
 'editundo' => 'maak ongedaan',
 'diff-empty' => '(Geen verskil)',
-'diff-multi' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur {{PLURAL:$2|een gebruiker|$2 gebruikers}} word nie gewys nie)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} deur meer as $2 {{PLURAL:$2|gebruiker|gebruikers}} nie gewys nie)',
 'difference-missing-revision' => "{{PLURAL:$2|'n Weergawe|$2 weergawes}} van die verskil ($1) {{PLURAL:$2|is|is}} nie gevind nie.
 
@@ -1263,7 +1261,7 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'shown-title' => '$1 {{PLURAL:$1|resultaat|resultate}} per bladsy',
 'viewprevnext' => 'Wys ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Daar is reeds 'n bladsy genaamd \"[[:\$1]]\" op die wiki'''",
-'searchmenu-new' => "'''Skep die bladsy \"[[:\$1]]\" op hierdie wiki'''",
+'searchmenu-new' => '<strong>Skep die bladsy "[[:$1]]" op hierdie wiki</strong> {{PLURAL:$2|0=|Sien ook die bladsy wat in u soektog gevind is.|Sien ook die soekresultate wat gevind is.}}',
 'searchprofile-articles' => 'Inhoudelike bladsye',
 'searchprofile-project' => 'Hulp- en projekbladsye',
 'searchprofile-images' => 'Multimedia',
@@ -1999,8 +1997,10 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 'randompage-nopages' => 'Daar is geen bladsye in die volgende {{PLURAL:$2|naamruimte|naamruimtes}} nie: $1.',
 
 # Random page in category
+'randomincategory' => 'Lukrake bladsy in die kategorie',
 'randomincategory-invalidcategory' => '"$1" is nie \'n geldige kategorienaam nie.',
 'randomincategory-nopages' => 'Daar is geen bladsye in kategorie [[:Category:$1|$1]].',
+'randomincategory-selectcategory' => "Kry 'n lukrake bladsy uit hierdie kategorie: $1 $2.",
 'randomincategory-selectcategory-submit' => 'Gaan',
 
 # Random redirect
@@ -2285,7 +2285,6 @@ Toekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal h
 'watchmethod-list' => 'kontroleer bladsye op dophoulys vir wysigings',
 'watchlistcontains' => 'Jou dophoulys bevat $1 {{PLURAL:$1|bladsy|bladsye}}.',
 'iteminvalidname' => "Probleem met item '$1', ongeldige naam...",
-'wlnote' => "Hier volg die laaste {{PLURAL:$1|verandering|'''$1''' veranderings}} binne die laaste {{PLURAL:$2|uur|'''$2''' ure}}, soos vanaf $3 om $4.",
 'wlshowlast' => 'Wys afgelope $1 ure, $2 dae of $3',
 'watchlist-options' => 'Opsies vir dophoulys',
 
@@ -2845,6 +2844,7 @@ Gaan na [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [
 'allmessages-prefix' => 'Filter op voorvoegsel:',
 'allmessages-language' => 'Taal:',
 'allmessages-filter-submit' => 'Laat waai',
+'allmessages-filter-translate' => 'Vertaal',
 
 # Thumbnails
 'thumbnail-more' => 'Vergroot',
@@ -2941,7 +2941,6 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'tooltip-pt-watchlist' => 'Die lys bladsye wat u vir veranderinge dophou',
 'tooltip-pt-mycontris' => 'Lys van my bydraes',
 'tooltip-pt-login' => 'U word aangemoedig om aan te meld. Dit is egter nie verpligtend nie.',
-'tooltip-pt-anonlogin' => 'U word aangemoedig om aan te meld. Dit is egter nie verpligtend nie',
 'tooltip-pt-logout' => 'Teken uit',
 'tooltip-ca-talk' => 'Bespreking oor die inhoudbladsy',
 'tooltip-ca-edit' => 'U kan hierdie bladsy wysig. Gebruik asseblief die voorskoufunksie vóór u dit stoor.',
@@ -3779,7 +3778,15 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'version-hook-name' => 'Hoek naam',
 'version-hook-subscribedby' => 'Gebruik deur',
 'version-version' => '(Weergawe $1)',
-'version-license' => 'Lisensie',
+'version-license' => 'MediaWiki se lisensie',
+'version-ext-license' => 'Lisensie',
+'version-ext-colheader-name' => 'Uitbreiding',
+'version-ext-colheader-version' => 'Weergawe',
+'version-ext-colheader-license' => 'Lisensie',
+'version-ext-colheader-description' => 'Beskrywing',
+'version-ext-colheader-credits' => 'Outeurs',
+'version-license-title' => 'Lisensie vir $1',
+'version-credits-title' => 'Krediete vir $1',
 'version-poweredby-credits' => "Hierdie wiki word aangedryf deur '''[https://www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
 'version-poweredby-others' => 'andere',
 'version-poweredby-translators' => 'translatewiki.net-vertalers',
@@ -3804,6 +3811,7 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'redirect-lookup' => 'Soek volgens:',
 'redirect-value' => 'Waarde:',
 'redirect-user' => 'Gebruiker-ID',
+'redirect-page' => 'Bladsy-ID',
 'redirect-revision' => 'Bladsy-weergawe',
 'redirect-file' => 'Lêernaam',
 'redirect-not-exists' => 'Waarde nie gevind nie',

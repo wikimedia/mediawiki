@@ -51,6 +51,7 @@
  * @author Subhashkataria21.90
  * @author Sunil Mohan
  * @author Taxman
+ * @author Venky2834
  * @author Vibhijain
  * @author Wikiconference
  * @author לערי ריינהארט
@@ -192,7 +193,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline' => 'कड़ियाँ अधोरेखन:',
-'tog-justify' => 'परिच्छेद समान करें',
 'tog-hideminor' => 'हाल में हुए बदलावों में छोटे बदलाव छिपाएँ',
 'tog-hidepatrolled' => 'हाल में हुए बदलावों में परीक्षित बदलाव छिपाएँ',
 'tog-newpageshidepatrolled' => 'नए पृष्ठों की सूची में परीक्षित पृष्ठ छिपाएँ',
@@ -1257,7 +1257,6 @@ $1",
 'showhideselectedversions' => 'चयनित अवतरण दिखाएँ/छिपाएँ',
 'editundo' => 'पूर्ववत करें',
 'diff-empty' => '(कोई अंतर नहीं)',
-'diff-multi' => '({{PLURAL:$2|एक योगदानकर्ता|$2 योगदानकर्ताओं}} द्वारा {{PLURAL:$1|किया बीच का एक|किए बीच के $1}} अवतरण दर्शाए नहीं हैं।)',
 'diff-multi-manyusers' => '({{PLURAL:$2|एक योगदानकर्ता|$2 योगदानकर्ताओं}} द्वारा {{PLURAL:$1|किया बीच का एक|किए बीच के $1}} अवतरण दर्शाए नहीं हैं।)',
 'difference-missing-revision' => 'इस अंतर {{PLURAL:$2|का एक अवतरण|के $2 अवतरण}} ($1) नहीं {{PLURAL:$2|पाया गया|पाए गए}}।
 
@@ -2321,6 +2320,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'watchmethod-list' => 'ध्यानसूची में दिये गये पृष्ठों में हाल में हुए बदलाव देख रहे हैं',
 'watchlistcontains' => 'आपकी ध्यानसूची में $1 {{PLURAL:$1|पृष्ठ}} हैं।',
 'iteminvalidname' => "'$1' के साथ समस्या, अवैध नाम...",
+'wlnote2' => '$2,$3 तक आखरी {{PLURAL:$1|घंटे|<strong>$1</strong>घंटों}} में बदलाव निम्नलिखित हैं।',
 'wlshowlast' => 'पिछले $1 घंटे $2 दिन $3 देखें',
 'watchlist-options' => 'ध्यानसूची विकल्प',
 
@@ -2884,6 +2884,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'allmessages-prefix' => 'उपसर्ग के आधार पर छानें:',
 'allmessages-language' => 'भाषा:',
 'allmessages-filter-submit' => 'जाएँ',
+'allmessages-filter-translate' => 'अनुवाद करें',
 
 # Thumbnails
 'thumbnail-more' => 'बड़ा करें',

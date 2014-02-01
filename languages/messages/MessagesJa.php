@@ -370,7 +370,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'リンクの下線:',
-'tog-justify' => '段落に均等割り付けを設定',
 'tog-hideminor' => '最近の更新に細部の編集を表示しない',
 'tog-hidepatrolled' => '最近の更新に巡回済みの編集を表示しない',
 'tog-newpageshidepatrolled' => '新しいページの一覧に巡回済みのページを表示しない',
@@ -1454,7 +1453,8 @@ $1',
 'showhideselectedversions' => '選択した版を表示/非表示',
 'editundo' => '取り消し',
 'diff-empty' => '(相違点なし)',
-'diff-multi' => '({{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
+'diff-multi-sameuser' => '(同じ利用者による、{{PLURAL:$1|間の$1版}}が非表示)',
+'diff-multi-otherusers' => '({{PLURAL:$2|他の1人の利用者|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
 'diff-multi-manyusers' => '({{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示)',
 'difference-missing-revision' => '指定された{{PLURAL:$2|$2版}}の差分 ($1) が見つかりませんでした。
 

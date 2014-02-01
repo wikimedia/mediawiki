@@ -63,10 +63,8 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linggs undârschdrajchn:',
-'tog-justify' => 'Dhägsd in Blogsads',
 'tog-hideminor' => 'Glaane ändrungn ned ôôdsajchn',
 'tog-hidepatrolled' => 'Ned dsajchn in dâ „Ledschdâ Ändrungn“, was an andrar schon brüüfd had',
-'tog-showtoc' => 'Inhalds-fârdsajchnis ôôdsajchn baj määr wi 3 iiwârschrifdn',
 'tog-rememberpassword' => 'Uf dem Ghombjuudâr schdändich ôôgmäld blajwn (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Ale fon miir sälwâr gmachdn sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchdefault' => 'Ale fon miir gändârdnd sajdn soln uf mâj beoobachdungs-lischdn',
@@ -475,7 +473,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'lineno' => 'Dsajln $1:',
 'compareselectedversions' => 'Ausgwäälde wärsjoona fârglajchn',
 'editundo' => 'riggängich machng',
-'diff-multi' => '({{PLURAL:$1|A dazwischaliengde Version|$1 dazwischaliengde Versiona}} von {{PLURAL:$2|am Nutzer|$2 Nutzern}} {{PLURAL:$1|wird|werrn}} ned ozeichd)',
 
 # Search results
 'searchresults' => 'Bam suchng gfundne sachng',
@@ -551,7 +548,6 @@ Zu deiner Informadion folchd des Lösch- un Verschäibungs-Logbuch miid der Begr
 'rows' => 'Soofiil dsajln:',
 'columns' => 'Soofiil schbaldn',
 'searchresultshead' => 'Suuchn',
-'resultsperpage' => 'Broo rudsch dsajchn:',
 'recentchangesdays' => 'Wiifiil dääch dsrig baj  „Ledschdn ändrungn“',
 'recentchangesdays-max' => 'Hegschdns $1 {{PLURAL:$1|daach|dääch}}',
 'recentchangescount' => 'Wiifiil ändrungn dsrig baj „Ledschdn ändrungn“',

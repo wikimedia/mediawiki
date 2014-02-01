@@ -85,7 +85,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Rëddaatu lëkkalekaay yi :',
-'tog-justify' => 'Maaseel xise yi',
 'tog-hideminor' => 'Nëbb coppite yu néewal yi mujj',
 'tog-hidepatrolled' => 'Nëbb coppite yi ñuy fuglu ci coppite yu mujj yi',
 'tog-newpageshidepatrolled' => 'Nëbb xët yi ñuy fuglu, yi ci limu xët yu bees yi',
@@ -834,7 +833,6 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'lineno' => 'Rëdd $1 :',
 'compareselectedversions' => 'Méngale sumb yi nga fal',
 'editundo' => 'neenal',
-'diff-multi' => '({{PLURAL:$1|am sumb mu diggu feeñul|$1 sumb yu diggu feeñuñu}}.)',
 
 # Search results
 'searchresults' => 'Ngértey ceet gi',
@@ -1542,7 +1540,6 @@ Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa
 'watchmethod-list' => 'saytug xët yi ñuy topp ngir ay coppite yu mujj',
 'watchlistcontains' => "Sa limu toppte am na '''$1''' {{PLURAL:$1|xët|xët}}.",
 'iteminvalidname' => 'Ay jafe-jafe ak xët wii di « $1 » : tur bi baaxul.',
-'wlnote' => 'Fii ci suuf {{PLURAL:$1| ngay gis coppite yu mujj yi|ngay gis $1 coppite yu mujj}} ci {{PLURAL:$2|waxtu gu mujj gi|<b>$2</b> waxtu yu mujj}}.',
 'wlshowlast' => 'wone $1 waxtu yu mujj, $2 bess yu mujj, walla $3.',
 'watchlist-options' => 'Tànneefi limu toppte bi',
 
@@ -1923,7 +1920,6 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 'tooltip-pt-watchlist' => 'Limu xët yi ngay topp',
 'tooltip-pt-mycontris' => 'Limu say cëru',
 'tooltip-pt-login' => 'Woo nan la ngir nga xammeku, waaye doonul lu manuta ñakk.',
-'tooltip-pt-anonlogin' => 'woo nan la ngir nga xammeku, waaye doonul lu manuta ñakk.',
 'tooltip-pt-logout' => 'Génn',
 'tooltip-ca-talk' => 'Waxtaan yi ñeel xët wii',
 'tooltip-ca-edit' => 'Man ngaa soppi xët wi. Ngir yàlla wonendil laataa ngay denc.',

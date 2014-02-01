@@ -37,7 +37,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Fo-loidhneadh nan ceanglaichean:',
-'tog-justify' => 'Taobhaich na h-earrannan',
 'tog-hideminor' => 'Falaich mùthaidhean beaga ann an liosta nam mùthaidhean ùra',
 'tog-hidepatrolled' => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',
 'tog-newpageshidepatrolled' => 'Falaich duilleagan fo fhaire ann an liosta nan duilleagan ùra',
@@ -46,9 +45,7 @@ $messages = array(
 'tog-numberheadings' => 'Cuir àireamhan ri ceann-sgrìobhaidhean leis fhèin',
 'tog-showtoolbar' => 'Seall am bàr-inneal deasachaidh',
 'tog-editondblclick' => 'Tòisich air deasachadh duilleige le briogadh dùbailte',
-'tog-editsection' => 'Cuir am comas deasachadh earainn le ceanglaichean [deasaich]',
 'tog-editsectiononrightclick' => "Cuir an comas deasachadh earrainn le briogadh deas air tiotal de dh'earrainn",
-'tog-showtoc' => 'Seall an clàr-innse (air duilleagan air a bheil barrachd air 3 ceann-sgrìobhaidhean)',
 'tog-rememberpassword' => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|latha|làithean|latha}})",
 'tog-watchcreations' => "Cuir duilleagan a chruthaicheas mi air a' chlàr-fhaire agam",
 'tog-watchdefault' => "Cuir duilleagan a dheasaicheas mi air a' chlàr-fhaire agam",
@@ -1090,7 +1087,6 @@ Thoir an aire gun dèid an colbh seo ath-shuidheachadh ma chleachdas tu ceanglai
 'showhideselectedversions' => 'Seall/Falaich na lèirmheasan a thagh thu',
 'editundo' => 'neo-dhèan',
 'diff-empty' => '(Gun diofar eatarra)',
-'diff-multi' => '({{PLURAL:$1|Aon lèirmheas eadar-mheadhanach||$1 lèirmheasan eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach}} le {{PLURAL:$2|aon chleachdaiche|$2 chleachdaiche|$2 cleachdaichean|$2 cleachdaiche}} gun sealltainn)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Aon lèirmheas eadar-mheadhanach||$1 lèirmheasan eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach}} le {{PLURAL:$2|aon chleachdaiche|$2 chleachdaiche|$2 cleachdaichean|$2 cleachdaiche}} gun sealltainn)',
 
 # Search results
@@ -1491,7 +1487,6 @@ Nochdaidh mùthaidhean a nithear air an duilleag seo \'s air an duilleag deasbai
 'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
 'watchmethod-list' => "A' sgrùdadh duilleagan air d' fhaire airson deasachaidhean ùra",
 'watchlistcontains' => 'Tha $1 {{PLURAL:$1|duilleag|dhuilleag|duilleagan|duilleag}} air do chlàr-faire.',
-'wlnote' => 'Seo {{PLURAL:$1|an $1 mhùthadh|$1 mhùthadh|na $1 mùthaidhean|$1 mùthadh}} mu dheireadh san {{PLURAL:$2|$2 uair a thìde|$2 uair a thìde|$2 uairean a thìde|$2 uair a thìde}} mu dheireadh, mar a bha e $3, $4.',
 'wlshowlast' => 'Seall na $1 uairean a thìde mu dheireadh $2 làithean mu dheireadh $3',
 'watchlist-options' => 'Roghainnean mo chlàir-faire',
 

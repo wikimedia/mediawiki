@@ -65,7 +65,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bagisa ha ilarom an mga sumpay:',
-'tog-justify' => 'Ig-justify an mga parrapho',
 'tog-hideminor' => 'Tago-a an mga gagmay nga pagliwat ha mga bag-o pa la nga mga kabag-ohan',
 'tog-hidepatrolled' => 'Tago-a in mga gin-patrol o binantayan nga mga pagliwat ha mga dipala naiha nga mga kabag-ohan',
 'tog-newpageshidepatrolled' => 'Tago-a an mga gin-patrol o binantayan nga mga pakli tikang han talaan hin bag-o nga pakli',
@@ -75,7 +74,6 @@ $messages = array(
 'tog-showtoolbar' => 'Igpakita an edit toolbar',
 'tog-editondblclick' => 'Igliwat in mga pakli ha doble nga klik',
 'tog-editsectiononrightclick' => 'Tugoti in pagliwat hin seksyon ha pag klik-ha-tuo dida hin mga ngaran o titulo hin seksyon',
-'tog-showtoc' => 'Igpakita in tabla hin sulod (para hin mga pakli nga sobra hin 3 ka titulo o pagngaran)',
 'tog-rememberpassword' => 'Hinumdomi an akon pan-sakob dinhi nga browser (para hin maximum nga $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
 'tog-watchcreations' => 'Igdugang in mga pakli nga akon ginhimo ngan mga paypay nga akon ginkarga ngadto han akon angay timan-an',
 'tog-watchdefault' => 'Igdugang in mga pakli ngan mga paypay nga akon ginliwat ngadto han akon angay timan-an',
@@ -935,7 +933,6 @@ Diri mo ini malalabtan.',
 'compareselectedversions' => 'Igkumpara an mga pinili nga pagbabag-o',
 'editundo' => 'Igpawara an ginbuhat',
 'diff-empty' => '(Waray pagkakaiba)',
-'diff-multi' => '({{PLURAL:$1|Usa nga panbutnga nga pagbag-o|$1 nga panbutnga nga pagbag-o}} ni {{PLURAL:$2|usa nga gumaramit|$2 nga mga gumaramit}} waray ginpakita)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uska sapit-nahiuna nga rebisyon|$1 nga mga sapit-nanhiuna nga rebisyon}} nga may labaw nga $2 {{PLURAL:$2|gumaramit|mga gumaramit}} in diri ginpapakita)',
 
 # Search results

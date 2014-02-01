@@ -350,7 +350,6 @@ Mõnõd šabloonad eväd lee lizettü.",
 'lineno' => 'Viiru $1:',
 'compareselectedversions' => 'Võrrõõ valitsõttuit verzijoit',
 'editundo' => 'kummut',
-'diff-multi' => 'Eb õõ näütettü {{PLURAL:$1|õsa-võttaja|õsa-võttajije}} {{PLURAL:$2|$2 väli-verssija $1|väli-verssijad $1}}',
 
 # Search results
 'searchresults' => 'Etsüü tulõmuhsõd',

@@ -21,7 +21,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Kuritan sa idalom ang mga tabid:',
-'tog-justify' => 'Tadlongon ang mga parapo',
 'tog-hideminor' => 'Tagu-on ang menor nga gin-islan sa bag-o lang gid na-obra',
 'tog-hidepatrolled' => 'Taguon ang mga nabantayan nga na islan na nga bag-o lang gin obra',
 'tog-newpageshidepatrolled' => 'Taguon ang mga nabantayan  nga pahina sa bag-ong lista sang mga pahina',
@@ -1005,7 +1004,6 @@ Tandai nga ang paggamit sang mga link sa pagnabigar magaliwat sining hilera.',
 'compareselectedversions' => 'I-kompara ang pinilian nga mga rebisyon',
 'showhideselectedversions' => 'Ipakita/taguon ang mga ginpili nga pagbag-o',
 'editundo' => 'bawi-on ang pag ilis',
-'diff-multi' => '({{PLURAL:$1|Isa ka tunga-tunga nga pagbag-o|$1 ka tunga-tunga nga mga pagbag-o}} sang {{PLURAL:$2|isa ka manuggamit|$2 ka mga manuggamit}} nga wala ginpakita)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Isa ka tunga-tunga nga pagbag-o|$1 ka tunga-tunga nga mga pagbag-o}} sang masobra $2 ka {{PLURAL:$2|manuggamit|mga manuggamit}} nga wala ginpakita)',
 'difference-missing-revision' => 'May {{PLURAL:$2|isa ka pagbag-o|$2 ka mga pagbag-o}} san sini nga kinalain ($1) ang wala makita.
 

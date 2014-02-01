@@ -234,7 +234,6 @@ $linkPrefixCharset = 'áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z–-';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Undirstrika tengla:',
-'tog-justify' => 'Jafna málsgreinar',
 'tog-hideminor' => 'Fela minniháttar breytingar í nýlegum breytingum',
 'tog-hidepatrolled' => 'Fela yfirfarnar breytingar í nýlegum breytingum',
 'tog-newpageshidepatrolled' => 'Fela yfirfarnar breytingar í listanum yfir nýjar síður',
@@ -1263,7 +1262,6 @@ Athugaðu að með því að nota flakktenglana er þessi dálkur endurstilltur.
 'showhideselectedversions' => 'Sýna/fela valdar breytingar',
 'editundo' => 'Taka aftur þessa breytingu',
 'diff-empty' => '(Enginn munur)',
-'diff-multi' => '$1 ({{PLURAL:$1|millibreyting ekki sýnd|millibreytingar ekki sýndar}} frá $2 {{PLURAL:$2|notanda|notendum}}.)',
 'diff-multi-manyusers' => '($1 {{PLURAL:$1|millibreyting ekki sýnd|millibreytingar ekki sýndar}} frá fleiri en $2 {{PLURAL:$2|notanda|notendum}}.)',
 'difference-missing-revision' => '$2 {{PLURAL:$2|útgáfa|útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.
 

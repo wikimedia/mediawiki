@@ -125,7 +125,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Wekea mstari viungo:',
-'tog-justify' => 'Sawazisha ibara',
 'tog-hideminor' => 'Ficha mabadilisho madogo ya hivi karibuni',
 'tog-hidepatrolled' => 'Ficha kurasa zilizofanyiwa doria kwenye mabadiliko ya karibuni',
 'tog-newpageshidepatrolled' => 'Ficha kurasa zilizofanyiwa doria kwenye orodha ya kurasa mpya',
@@ -134,9 +133,7 @@ $messages = array(
 'tog-numberheadings' => 'Vichwa vya habari vijipange namba-vyenyewe',
 'tog-showtoolbar' => 'Onyesha mwambaa wa zana za kuhariria',
 'tog-editondblclick' => 'Hariri ukurasa kwa kubonyeza mara mbili',
-'tog-editsection' => 'Wezesha sehemu ya kuandikia kwa kutumia viungo vya [hariri]',
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
-'tog-showtoc' => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
 'tog-rememberpassword' => 'Kumbuka kuingia kwangu pamoja na neno la siri katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
 'tog-watchcreations' => 'Ongeza kurasa nilizoumba katika maangalizi yangu',
 'tog-watchdefault' => 'Ongeza kurasa zote nilizohariri katika maangalizi yangu',
@@ -1060,7 +1057,6 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'compareselectedversions' => 'Linganisha mapitio mawili uliyochagua',
 'showhideselectedversions' => 'Onyesha/ficha mapitio yaliyoteuliwa',
 'editundo' => 'tengua',
-'diff-multi' => '(Haionyeshwi {{PLURAL:$1|pitio moja la katikati lililoandikwa|mapitio $1 ya katikati yaliyoandikwa}} na {{PLURAL:$2|mtumiaji moja|watumiaji $2}})',
 
 # Search results
 'searchresults' => 'Matokeo ya utafutaji',
@@ -1974,7 +1970,6 @@ Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo.',
 'watchmethod-list' => 'Kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
 'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|pages|kurasa}}.',
 'iteminvalidname' => "Shida na kitu  '$1' ,  jina batili...",
-'wlnote' => "{{PLURAL:$1|is the last change|Mabadiliko '''$1''' ya}} mwisho katika {{PLURAL:$2|hour|masaa '''$2''' yaliyopita yanaonyeshwa}} chini, ilivyokuwa saa $4, tarehe $3.",
 'wlshowlast' => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options' => 'Hitiari za maangalizi',
 
@@ -2462,7 +2457,6 @@ Tafadhali jaribu tena.',
 'tooltip-pt-watchlist' => 'Orodha ya kurasa unazofuatilia kwa mabadiliko',
 'tooltip-pt-mycontris' => 'Orodha ya michango yako',
 'tooltip-pt-login' => 'Tunakushajiisha kuingia, lakini siyo lazima.',
-'tooltip-pt-anonlogin' => 'Tunakushajiisha kuingia, lakini siyo lazima',
 'tooltip-pt-logout' => 'Toka',
 'tooltip-ca-talk' => 'Mazungumzo kuhusu makala',
 'tooltip-ca-edit' => 'Unaweza kuhariri ukurasa huu.  Tafadhali tumia kitufe cha kuhakikisha kabla ya kuhifadhi.',

@@ -348,7 +348,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garis bawahi pranala:',
-'tog-justify' => 'Ratakan paragraf',
 'tog-hideminor' => 'Sembunyikan suntingan kecil di perubahan terbaru',
 'tog-hidepatrolled' => 'Sembunyikan suntingan terpatroli di perubahan terbaru',
 'tog-newpageshidepatrolled' => 'Sembunyikan halaman terpatroli dari daftar halaman baru',
@@ -1382,7 +1381,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
 'editundo' => 'balikkan',
 'diff-empty' => '(Tidak ada perbedaan)',
-'diff-multi' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Satu|$1}} revisi antara oleh lebih dari $2 {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 'difference-missing-revision' => '{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.
 
@@ -2438,7 +2436,6 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'watchmethod-list' => 'periksa halaman yang dipantau terhadap perubahan terbaru',
 'watchlistcontains' => 'Daftar pantauan Anda berisi $1 {{PLURAL:$1|halaman|halaman}}.',
 'iteminvalidname' => "Ada masalah dengan '$1', namanya tidak sah...",
-'wlnote' => "Di bawah ini adalah {{PLURAL:$1|perubahan|'''$1''' perubahan}} terakhir dalam '''$2''' jam terakhir, per $3, $4.",
 'wlshowlast' => 'Tampilkan $1 jam $2 hari terakhir $3',
 'watchlist-options' => 'Opsi daftar pantauan',
 
@@ -3075,7 +3072,6 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-pt-watchlist' => 'Daftar halaman yang saya pantau.',
 'tooltip-pt-mycontris' => 'Daftar kontribusi Anda',
 'tooltip-pt-login' => 'Anda disarankan untuk masuk log, meskipun hal itu tidak diwajibkan.',
-'tooltip-pt-anonlogin' => 'Anda disarankan untuk masuk log, meskipun hal itu tidak diwajibkan.',
 'tooltip-pt-logout' => 'Keluar log',
 'tooltip-ca-talk' => 'Pembicaraan halaman isi',
 'tooltip-ca-edit' => 'Anda dapat menyunting halaman ini. Gunakan tombol pratayang sebelum menyimpan',

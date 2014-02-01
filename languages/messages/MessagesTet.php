@@ -74,7 +74,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Subliña ligasaun sira:',
-'tog-justify' => 'Justifika parágrafu sira',
 'tog-hideminor' => "Lá'os hatudu muda ki-ki'ik iha mudansa foufoun sira",
 'tog-usenewrc' => 'Iha lista "mudansa foufoun sira" no "lista hateke": Hatudu mudansa iha grupu sira - grupu ida ba pájina ida (presiza JavaScript)',
 'tog-showtoolbar' => 'Hatudu kaixa edita (presiza JavaScript)',

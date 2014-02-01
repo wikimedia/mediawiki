@@ -318,7 +318,6 @@ $linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podcrtane poveznice',
-'tog-justify' => 'Poravnaj odlomke i zdesna',
 'tog-hideminor' => 'Sakrij manje izmjene u nedavnim promjenama',
 'tog-hidepatrolled' => 'Sakrij pregledane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled' => 'Sakrij pregledane stranice iz popisa novih stranica',
@@ -1322,7 +1321,6 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'showhideselectedversions' => 'Otkrij/sakrij odabrane izmjene',
 'editundo' => 'ukloni ovu izmjenu',
 'diff-empty' => 'Nema razlike inačica',
-'diff-multi' => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{PLURAL:$2|jednog|$2|$2}} suradnika)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)',
 'difference-missing-revision' => '{{PLURAL:$2|Uređivanje|$2 uređivanja}} sljedeće šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.
 
@@ -2324,7 +2322,6 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'watchmethod-list' => 'provjera praćanih stranica za nedavne promjene',
 'watchlistcontains' => 'Vaš popis praćenja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
 'iteminvalidname' => "Problem s izborom '$1', ime nije valjano...",
-'wlnote' => "Ovdje {{PLURAL:$1|je posljednja $1 promjena|su posljednje $1 promjene|je posljednjih $1 promjena}} u {{PLURAL:$2|posljednjem '''$2''' satu|posljednja '''$2''' sata|posljednjih '''$2''' sati}}, od $3, $4.",
 'wlshowlast' => 'Prikaži zadnjih $1 sati $2 dana $3',
 'watchlist-options' => 'Izbornik popisa praćenja',
 
@@ -2409,6 +2406,7 @@ Sva vremena su prema poslužiteljevom vremenu.',
 'delete-edit-reasonlist' => 'Uredi razloge brisanja',
 'delete-toobig' => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje takvih stranica je ograničeno da se onemoguće slučajni problemi u radu {{SITENAME}}.',
 'delete-warning-toobig' => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje može poremetiti bazu podataka {{SITENAME}}; postupajte s oprezom.',
+'deleting-backlinks-warning' => "'''Upozorenje:''' brišete stranicu koja je uključena u druge ili druge stranice povezuju na nju.",
 
 # Rollback
 'rollback' => 'Ukloni posljednju promjenu',
@@ -2962,7 +2960,6 @@ Snimite je na svoje računalo i postavite je ovdje.',
 'tooltip-pt-watchlist' => 'Popis stranica koje pratite.',
 'tooltip-pt-mycontris' => 'Popis mojih doprinosa',
 'tooltip-pt-login' => 'Predlažemo Vam da se prijavite, ali nije obvezno.',
-'tooltip-pt-anonlogin' => 'Predlažemo Vam da se prijavite, ali nije obvezno.',
 'tooltip-pt-logout' => 'Odjavi se',
 'tooltip-ca-talk' => 'Razgovor o stranici',
 'tooltip-ca-edit' => 'Možete uređivati ovu stranicu. Koristite Pregled kako će izgledati prije nego što snimite.',

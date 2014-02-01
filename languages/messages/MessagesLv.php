@@ -55,7 +55,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pasvītrot saites:',
-'tog-justify' => 'Izlīdzināt rindkopām abas malas',
 'tog-hideminor' => 'Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā',
 'tog-hidepatrolled' => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',
 'tog-newpageshidepatrolled' => 'Paslēpt pārbaudītās lapas jauno lapu sarakstā',
@@ -959,7 +958,6 @@ $1",
 'showhideselectedversions' => 'Rādīt/slēpt izvēlētās versijas',
 'editundo' => 'atcelt',
 'diff-empty' => '(Nav atšķirību)',
-'diff-multi' => '({{PLURAL:$1|Viena starpversija|$1 starpversijas}} no {{PLURAL:$2|viena lietotāja|$2 lietotājiem}} nav parādīta)',
 
 # Search results
 'searchresults' => 'Meklēšanas rezultāti',
@@ -1289,7 +1287,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'rclistfrom' => 'Parādīt jaunas izmaiņas kopš $1',
 'rcshowhideminor' => '$1 maznozīmīgos',
 'rcshowhidebots' => '$1 botus',
-'rcshowhideliu' => '$1 reģistrēti lietotāji',
+'rcshowhideliu' => '$1 reģistrētos lietotājus',
 'rcshowhideanons' => '$1 anonīmos',
 'rcshowhidepatr' => '$1 pārbaudītie labojumi',
 'rcshowhidemine' => '$1 manus',

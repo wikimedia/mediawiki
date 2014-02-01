@@ -161,7 +161,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sotołinea i cołegamenti:',
-'tog-justify' => 'Paragrafo: giustifegà',
 'tog-hideminor' => 'Scondi i canbiamenti picenini in tei "Ultimi canbiamenti"',
 'tog-hidepatrolled' => 'Scondi i canbiamenti verificà in tei "Ultimi canbiamenti"',
 'tog-newpageshidepatrolled' => "Scondi łe pajine verifegae da l'elenco de łe pajine pì resenti",
@@ -1150,7 +1149,6 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'showhideselectedversions' => 'Mostra/scondi version selessionà',
 'editundo' => 'tira indrìo',
 'diff-empty' => '(Nissuna difarensa)',
-'diff-multi' => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de pi de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 'difference-missing-revision' => "{{PLURAL:$2|Na version|$2 version}} de sta difarensa ($1) {{PLURAL:$2|nó ła xe sta trovà|nó łe xe stae trovae}}.
 
@@ -2152,7 +2150,6 @@ I futuri canbiamenti a sta pàjina e a ła so pàjina de discusion i vegnarà el
 'watchmethod-list' => 'controło de i osservati speciałi par modifeghe recenti',
 'watchlistcontains' => 'La lista de i osservati speciałi la contien {{PLURAL:$1|una pagina|$1 pagine}}.',
 'iteminvalidname' => "Problemi con la voxe '$1', nome mìa vałido...",
-'wlnote' => "Cuà soto te cati {{PLURAL:$1|'l ultimo canbiamento|i ultimi '''$1''' canbiamenti}} inte {{PLURAL:$2|l'ultema ora|łe ultime '''$2''' ore}}; i dati i xe axornai a łe $4 del $3.",
 'wlshowlast' => 'Mostra le ultime $1 ore $2 zorni $3',
 'watchlist-options' => "Inpostassion de le pagine tegnùe d'ocio",
 
@@ -2781,7 +2778,6 @@ Salveło so'l to conpiuter e carghelo cuà.",
 'tooltip-pt-watchlist' => "La lista de le pagine che te sì drio tegner d'ocio",
 'tooltip-pt-mycontris' => 'Elenco de i to contributi',
 'tooltip-pt-login' => 'Te consiliemo de registrarte, ma no te ghè da farlo par forsa.',
-'tooltip-pt-anonlogin' => "Te consigliemo de registrarte, ma no'l xe obligatorio.",
 'tooltip-pt-logout' => 'Và fora',
 'tooltip-ca-talk' => 'Discussion sul contenuto de sta pagina',
 'tooltip-ca-edit' => 'Te poli canbiar sta pagina. Par piaser dòpara el boton de anteprima, prima de salvar.',

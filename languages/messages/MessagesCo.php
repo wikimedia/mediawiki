@@ -16,6 +16,13 @@
 $fallback = 'it';
 
 $messages = array(
+# User preference toggles
+'tog-hideminor' => "Piattà e mudifiche minore in l'ultime mudifiche",
+'tog-hidepatrolled' => "Piattà e mudifiche verificate in l'ultime mudifiche",
+'tog-newpageshidepatrolled' => 'Piattà e pagine verificate da a lista di e pagine più recente',
+'tog-watchlisthidebots' => 'Piattà e mudifiche di i boti in e pagine speciale',
+'tog-showhiddencats' => 'Mustrà e categurie nascoste',
+
 'underline-always' => 'Sempre',
 'underline-never' => 'Mai',
 
@@ -70,7 +77,12 @@ $messages = array(
 'oct' => 'ott',
 'nov' => 'nuv',
 'dec' => 'dic',
+'january-date' => '{{PLURAL:$1|1°|$1}} ghjennaghju',
+'february-date' => '{{PLURAL:$1|1°|$1}} ferraghju',
+'march-date' => '{{PLURAL:$1|1°|$1}} marzu',
 'may-date' => '{{PLURAL:$1|1°|$1}} maghju',
+'june-date' => '{{PLURAL:$1|1°|$1}} ghjugnu',
+'july-date' => '{{PLURAL:$1|1°|$1}} lugliu',
 'august-date' => '{{PLURAL:$1|1°|$1}} aostu',
 'september-date' => '{{PLURAL:$1|1°|$1}} sittembre',
 'november-date' => '{{PLURAL:$1|1°|$1}} nuvembre',
@@ -88,6 +100,7 @@ $messages = array(
 'article' => 'Articulu',
 'newwindow' => '(si apre in una nova finestra)',
 'cancel' => 'Annullà',
+'moredotdotdot' => 'Di più...',
 'morenotlisted' => "'Ssa lista ùn hè micca cumpletta",
 'mypage' => 'A me pagina',
 'mytalk' => 'Discussione',
@@ -97,6 +110,8 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Truvà',
+'qbbrowse' => 'Sfuglià',
+'qbedit' => 'Mudificà',
 'qbpageoptions' => 'Issa pagina',
 'qbmyoptions' => 'E mo pagine',
 

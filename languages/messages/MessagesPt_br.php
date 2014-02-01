@@ -329,7 +329,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sublinhar links:',
-'tog-justify' => 'Justificar parágrafos',
 'tog-hideminor' => 'Ocultar edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Ocultar edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Ocultar páginas patrulhadas da lista de páginas novas',
@@ -1377,7 +1376,6 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'showhideselectedversions' => 'Exibir/ocultar edições selecionadas',
 'editundo' => 'desfazer',
 'diff-empty' => '(Sem diferença)',
-'diff-multi' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de {{PLURAL:$2|um usuário|$2 usuários}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuário}} não {{PLURAL:$1|apresentada|apresentadas}})',
 'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
 

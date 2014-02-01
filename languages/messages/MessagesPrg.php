@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Autengīnsenin paglaubasnā',
-'tog-justify' => 'Izlīginais tekstan prei abbans pāusans',
 'tog-hideminor' => 'Kliptinais malkans tikrisnans en panzdaumamans kitawīdinsnans',
 'tog-hidepatrolled' => 'Kliptinais izbandātans redigīsenins en panzdaumamans kitawīdinsnans',
 'tog-newpageshidepatrolled' => 'Kliptinais izbandātans pāusans iz listin stēisan nāunan pāusan',
@@ -750,7 +749,6 @@ Nawigaciōnis autengīsenin terpausnā naikinna etrīnksenin en kōlunei.',
 'lineno' => 'Rindā $1:',
 'compareselectedversions' => 'Paligīnais etrīnktans wersiōnins',
 'editundo' => 'Naikinnais redigīsenin',
-'diff-multi' => '(Ni pawaidinnā di $1{{PLURAL:$1|wersiōnin|wersiōnins}}  sirzdau šans)',
 
 # Search results
 'searchresults' => 'Laukīsnas rezultātai',
@@ -1524,7 +1522,6 @@ Eraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan 
 'watchmethod-list' => 'Izbandasnā stēisan nadirītan pāusan laukīntei panzdaumans kitawīdisnans',
 'watchlistcontains' => 'En twajjai listin stēisan nadirītan ast $1 {{PLURAL:$1|pāusan|pāusai}}.',
 'iteminvalidname' => 'Prōblamans sen elamēntan "$1", nitikrōmiska pabilisnā...',
-'wlnote' => "Zemmais pawaidinnā di {{PLURAL:$1|panzdauman kitawīdinsnan|panzdaumans '''$1''' kitawīdinsnans}} en {{PLURAL:$2|panzdauman stundin|'''$2''' panzdaumans stundins}}.",
 'wlshowlast' => 'Waidinnais panzdaumans $1 stūndins, $2 dēinans ($3)',
 'watchlist-options' => 'Nadirītan listis mazīngiskwas',
 
@@ -2005,7 +2002,6 @@ Madli bandais etkūmps.',
 'tooltip-pt-watchlist' => 'Listi stēisan pāusan nadirītan prō tin',
 'tooltip-pt-mycontris' => 'Listi twajāsan ēndijan',
 'tooltip-pt-login' => 'Rēidimai, kai tū enēilai, šlāit sta ni ast izkīnintan',
-'tooltip-pt-anonlogin' => 'Rēidimai kāi enēilai, adder sta ni ast izkīnintan',
 'tooltip-pt-logout' => 'Izjaīs',
 'tooltip-ca-talk' => 'Diskusiōni ezze šisse pāusas ēnturan',
 'tooltip-ca-edit' => 'Tū mazzi redigītun šin pāusan.

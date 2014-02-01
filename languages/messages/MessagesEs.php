@@ -387,7 +387,6 @@ $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Subrayar los enlaces:',
-'tog-justify' => 'Justificar los párrafos',
 'tog-hideminor' => 'Ocultar las ediciones menores en los cambios recientes',
 'tog-hidepatrolled' => 'Ocultar las ediciones patrulladas en los cambios recientes',
 'tog-newpageshidepatrolled' => 'Ocultar las páginas patrulladas de la lista de páginas nuevas',
@@ -1439,7 +1438,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'showhideselectedversions' => 'Mostrar/ocultar versiones seleccionadas',
 'editundo' => 'deshacer',
 'diff-empty' => '(Sin diferencias)',
-'diff-multi' => '(No se {{PLURAL:$1|muestra una edición intermedia realizada|muestran $1 ediciones intermedias realizadas}} por {{PLURAL:$2|un usuario|$2 usuarios}})',
 'diff-multi-manyusers' => '(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|un usuario|$2 usuarios}})',
 'difference-missing-revision' => 'No {{PLURAL:$2|se ha encontrado|se han encontrado}} {{PLURAL:$2|una revisión|$2 revisiones}} de esta diferencia ($1).
 
@@ -3095,7 +3093,7 @@ Se subió sólo parcialmente.',
 No hay un directorio temporal.',
 'import-parse-failure' => 'Error de lectura al importar XML',
 'import-noarticle' => '¡No hay páginas para importar!',
-'import-nonewrevisions' => 'Todas las revisiones fueron previamente importadas.',
+'import-nonewrevisions' => 'Ninguna revisión fue importada (todas ya estaban presentes o fueron omitido debido a errores).',
 'xml-error-string' => '$1 en la línea $2, col $3 (byte $4): $5',
 'import-upload' => 'Subir datos XML',
 'import-token-mismatch' => 'Pérdida de datos de sesión. Por favor, inténtalo de nuevo.',
@@ -4089,7 +4087,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 #Colocar todos los fragmentos regex arriba de esta línea. Deja esta línea exactamente como está</pre>',
 
 # Special:Tags
-'tags' => 'Cambio de etiquetas válida',
+'tags' => 'Etiquetas de cambios',
 'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit' => 'Filtro',
 'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetas}}]]: $2)',

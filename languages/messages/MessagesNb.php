@@ -320,7 +320,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Strek under lenker:',
-'tog-justify' => 'Blokkjusterte avsnitt',
 'tog-hideminor' => 'Skjul mindre redigeringer i siste endringer',
 'tog-hidepatrolled' => 'Skjul patruljerte redigeringer i siste endringer',
 'tog-newpageshidepatrolled' => 'Skjul patruljerte sider fra listen over nye sider',
@@ -1366,7 +1365,6 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'showhideselectedversions' => 'Vis/skjul valgte versjoner',
 'editundo' => 'fjern',
 'diff-empty' => '(Ingen forskjell)',
-'diff-multi' => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} av {{PLURAL:$2|én bruker|$2 brukere}} vises ikke)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} av mer enn $2 {{PLURAL:$2|bruker|brukere}} vises ikke)',
 'difference-missing-revision' => '{{PLURAL:$2|En revisjon|$2 revisjoner}} av denne forskjellen ($1) {{PLURAL:$2|ble|ble}} ikke funnet.
 

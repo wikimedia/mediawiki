@@ -209,7 +209,6 @@ $linkTrail = '/^([a-zčćđžš]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podvuci linkove:',
-'tog-justify' => 'Uravnaj pasuse',
 'tog-hideminor' => 'Sakrij manje izmjene u spisku nedavnih izmjena',
 'tog-hidepatrolled' => 'Sakrij patrolirane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled' => 'Sakrij patrolirane stranice sa spiska novih stranica',
@@ -1247,7 +1246,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'showhideselectedversions' => 'Pokaži/sakrij odabrane verzije',
 'editundo' => 'ukloni ovu izmjenu - уклони ову измену',
 'diff-empty' => '(nema razlike)',
-'diff-multi' => '({{PLURAL:$1|Nije prikazana jedna međuverzija|Nisu prikazane $1 međuverzije|Nije prikazano $1 međuverzija}}) od strane {{PLURAL:$2|korisnika|korisnika}}',
 'diff-multi-manyusers' => '({{PLURAL:$1|Nije prikazana jedna međuverzija|Nisu prikazane $1 međuverzije|Nije prikazano $1 međuverzija}}) od strane {{PLURAL:$2|korisnika|korisnika}}',
 'difference-missing-revision' => 'Ne mogu da pronađem {{PLURAL:$2|jednu izmenu|$2 izmene|$2 izmena}} od ove razlike ($1).
 

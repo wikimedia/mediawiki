@@ -16,6 +16,7 @@
  * @author Rachitrali
  * @author Reedy
  * @author Tahir mq
+ * @author Wamiq
  * @author Wisesabre
  * @author ZxxZxxZ
  * @author לערי ריינהארט
@@ -168,34 +169,31 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ربط کی خط کشیدگی:',
-'tog-justify' => 'سطور کی برابری',
-'tog-hideminor' => 'حالیہ تبدیلیوں میں معمولی ترمیمات چُھپاؤ',
-'tog-hidepatrolled' => 'حالیہ تبدیلیوں میں گشتی ترمیمات چُھپاؤ',
-'tog-newpageshidepatrolled' => 'جدید صفحاتی فہرست میں گشتی صفحات چُھپاؤ',
-'tog-extendwatchlist' => 'زیرِنظرفہرست کو پھیلاؤ تاکہ اِس میں تمام ترمیمات نظر آئیں، نہ کہ صرف حالیہ ترین',
-'tog-usenewrc' => 'افزودہ حالیہ تبدیلیاں استعمال کریں (JavaScript درکار ہوگا)',
-'tog-numberheadings' => 'سرخیوں کو خود نمبر دو',
-'tog-showtoolbar' => 'تدوینی اوزاردان دکھاؤ ( JavaScript چاہئے)',
-'tog-editondblclick' => 'طقین پر صفحات کی ترمیم (JavaScript چاہئے)',
-'tog-editsection' => '[ترمیم] روابط کے ذریعے سطری ترمیم کاری فعال کرو',
+'tog-hideminor' => 'حالیہ تبدیلیوں میں معمولی ترامیم چھپائیے',
+'tog-hidepatrolled' => 'حالیہ تبدیلیوں میں گشتی ترامیم چھپائیے',
+'tog-newpageshidepatrolled' => 'جدید صفحات کی فہرست میں گشتی صفحات چھپائیے',
+'tog-extendwatchlist' => 'زیر نظر فہرست کی توسیع کیجئے تاکہ تمام تبدیلیاں، نہ کہ صرف سب سے حالیہ تداوین دیکھی کجا سکیں',
+'tog-usenewrc' => 'حالیہ تبدیلیوں میں اور زیر نظر فہرست میں تبدیلیوں کو بلحاظ صفحہ گروہ بند کیجئے',
+'tog-numberheadings' => 'سرخیوں کو خودکار نمبر دیجئے',
+'tog-showtoolbar' => 'تدوینی اوزاردان دکھائیے',
+'tog-editondblclick' => 'طقین پر صفحات کی ترمیم کیجئے',
 'tog-editsectiononrightclick' => 'سطری عنوانات پر دایاں طق کے ذریعے سطری ترمیم کاری فعال بناؤ',
-'tog-showtoc' => 'فہرستِ مندرجات دکھاؤ (3 سے زیادہ سرخیوں والے صفحات کیلئے)',
 'tog-rememberpassword' => 'اِس متصفح پر میرے داخلِ نوشتگی معلومات یاد رکھو (زیادہ سے زیادہ $1 {{PLURAL:$1|دِن|ایام}} کیلئے)',
-'tog-watchcreations' => 'میرے مرتب شدہ صفحات کو میری زیرِنظرفہرست میں شامل کیا کرو',
-'tog-watchdefault' => 'میرے ترمیم شدہ صفحات کو میری زیرِنظرفہرست میں شامل کیا کرو',
-'tog-watchmoves' => 'میں جن صفحات کو منتقل کرتا ہوں، اُن کو میری زیرِنظرفہرست میں شامل کیا کرو',
-'tog-watchdeletion' => 'میں جن صفحات کو حذف کروں، اُن کو میری زیرِنظرفہرست میں شامل کیا کرو',
+'tog-watchcreations' => 'میرے تخلیق کردہ صفحات اور میری زبر اثقال کردہ ملفات کو میری زیر نظر فہرست میں شامل کیا کیجئے',
+'tog-watchdefault' => 'میرے تدوین شدہ صفحات اور ملفات کو میری زیر نظر فہرست میں شامل کیا کیجئے',
+'tog-watchmoves' => 'میرے منتقل کردہ صفحات اور ملفات کو میری زیر نظر فہرست میں شامل کیا کیجئے',
+'tog-watchdeletion' => 'میرے حذف کردہ صفحات اور ملفات کو میری زیر نظر فہرست میں شامل کیا کیجئے',
 'tog-minordefault' => 'تمام ترمیمات کو ہمیشہ بطورِ معمولی ترمیم نشانزد کیا کرو',
 'tog-previewontop' => 'تدوینی خانہ سے پہلے نمائش دکھاؤ',
 'tog-previewonfirst' => 'پہلی ترمیم پر نمائش دکھاؤ',
-'tog-enotifwatchlistpages' => 'جب میری زیرِنظرفہرست پر کوئی صفحہ میں تبدیلی واقع ہو تو مجھے برقی ڈاک بھیجو',
+'tog-enotifwatchlistpages' => 'جب میرے زیر نظر صفحہ یا ملف میں کوئی تبدیلی ہو تو مجھے برقی ڈاک بھیجئے',
 'tog-enotifusertalkpages' => 'جب میرا تبادلۂ خیال صفحہ میں تبدیلی واقع ہو تو مجھے برقی ڈاک بھیجو',
-'tog-enotifminoredits' => 'صفحات میں معمولی ترمیمات کے بارے میں بھی مجھے برقی ڈاک بھیجو',
+'tog-enotifminoredits' => 'مجھے صفحات اور ملفات میں کی جانے والی معمولی ترامیم کی خبر بھی بذریعہ برقی ڈاک دیجئے',
 'tog-enotifrevealaddr' => 'خبرداری برقی خطوط میں میرا برقی ڈاک پتہ ظاہر کرو',
 'tog-shownumberswatching' => 'دیکھنے والے صارفین کی تعداد دکھاؤ',
 'tog-oldsig' => 'موجودہ دستخط:',
 'tog-fancysig' => '(سادہ دستخط بلا خودکار ربط)',
-'tog-uselivepreview' => 'براہِ راست نمائش استعمال کرو (JavaScript چاہئے نیز تجرباتی)',
+'tog-uselivepreview' => 'براہ راست نمائش (آزمائشی) استعمال کیجئے',
 'tog-forceeditsummary' => 'جب میں ترمیمی خلاصہ خالی چھوڑوں تو مجھے آگاہ کرو',
 'tog-watchlisthideown' => 'زیرِنظرفہرست سے میری ترمیمات چھپاؤ',
 'tog-watchlisthidebots' => 'زیرِنظرفہرست میں سے روبالی ترمیمات چھپاؤ',
@@ -206,11 +204,13 @@ $messages = array(
 'tog-ccmeonemails' => 'دیگر صارفین کو ارسال کردہ برقی خطوط کی نقول مجھے ارسال کریں۔',
 'tog-diffonly' => 'مختلفات کے نیچے صفحے کی مشمولات مت دکھاؤ',
 'tog-showhiddencats' => 'پوشیدہ زمرہ جات دکھاؤ',
+'tog-norollbackdiff' => 'استرجع کی انجام دہی کے بعد فرق ترک کیجئے',
 'tog-useeditwarning' => 'خبردار مجھے جب میں غیر محفوظ کردہ تبدیلیوں کے ساتھ ایک ترمیم کے صفحے کو چھوڑ دو',
+'tog-prefershttps' => 'دخول نوشتہ کے دوران محفوظ کنکشن استعمال کیجئے',
 
 'underline-always' => 'ہمیشہ',
 'underline-never' => 'کبھی نہیں',
-'underline-default' => 'متصفح کا طے شدہ',
+'underline-default' => 'جلد یا متصفح کا ڈیفالٹ',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'خانۂ تدوین کا اندازِ تحریر:',
@@ -270,6 +270,18 @@ $messages = array(
 'oct' => 'اکتوبر',
 'nov' => 'نومبر',
 'dec' => 'دسمبر',
+'january-date' => '$1 جنوری',
+'february-date' => '$1 فروری',
+'march-date' => '$1 مارچ',
+'april-date' => '$1 اپریل',
+'may-date' => '$1 مئی',
+'june-date' => '$1 جون',
+'july-date' => '$1 جولائی',
+'august-date' => '$1 اگست',
+'september-date' => '$1 ستمبر',
+'october-date' => '$1 اکتوبر',
+'november-date' => '$1 نومبر',
+'december-date' => '$1 دسمبر',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
@@ -281,6 +293,8 @@ $messages = array(
 'hidden-category-category' => 'پوشیدہ زمرہ جات',
 'category-subcat-count' => '{{PLURAL:$2|اِس زمرہ میں صرف درج ذیل ذیلی زمرہ ہے.|اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ|$1 ذیلی زمرہ جات}}, کل $2 میں سے.}}',
 'category-subcat-count-limited' => 'اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات ہیں}}.',
+'category-article-count' => '{{PLURAL:$2|اس زمرہ میں صرف یہ درج ذیل صفحہ مشمول ہے۔|اس زمرہ کے کل $2 صفحات میں سے $1 {{PLURAL:$1|صفحہ|صفحات}} درج ذیل {{PLURAL:$1|ہے|ہیں}}۔',
+'category-article-count-limited' => 'یہ درج ذیل {{PLURAL:$1|صفحہ|$1 صفحات}} اس زمرہ میں مشمول {{PLURAL:$1|ہے|ہیں}}۔',
 'listingcontinuesabbrev' => '۔جاری',
 'noindex-category' => 'غیر مندرج صفحات',
 
@@ -1290,7 +1304,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatch' => 'زیرنظرمنسوخ',
 'watchlist-details' => 'آپ کی زیرِنظرفہرست پر {{PLURAL:$1|$1 صفحہ ہے|$1 صفحات ہیں}}، اِس میں تبادلۂ خیال صفحات کی تعداد شامل نہیں.',
 'watchlistcontains' => 'آپ کی زیرنظرفہرست میں $1 صفحات ہیں۔',
-'wlnote' => 'نیچےآخری $1 تبدیلیاں ہیں جو کے پیچھلے <b>$2</b> گھنٹوں میں کی گئیں۔',
 'wlshowlast' => 'دکھائیں آخری $1 گھنٹے $2 دن $3',
 'watchlist-options' => 'اختیارات برائے زیرِنظرفہرست',
 

@@ -120,7 +120,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sotlinee leams',
-'tog-justify' => 'Justifiche paragraf',
 'tog-hideminor' => 'Plate lis piçulis modifichis tai ultins cambiaments',
 'tog-hidepatrolled' => 'Plate lis modifichis controladis intai ultins cambiaments',
 'tog-newpageshidepatrolled' => 'Plate lis pagjinis verificadis de liste des pagjinis gnovis',
@@ -129,9 +128,7 @@ $messages = array(
 'tog-numberheadings' => 'Numerazion automatiche dai titui',
 'tog-showtoolbar' => 'Mostre sbare dai imprescj pe modifiche (JavaScript)',
 'tog-editondblclick' => 'Cambie lis pagjinis fracant dôs voltis',
-'tog-editsection' => 'Inserìs un leam [cambie] pe editazion veloç di une sezion',
 'tog-editsectiononrightclick' => 'Modifiche une sezion fracant cul tast diestri<br /> sui titui des sezions',
-'tog-showtoc' => 'Mostre la tabele dai contignûts pes pagjinis cun plui di 3 sezions',
 'tog-rememberpassword' => 'Visiti di me su chest sgarfadôr (par un massim di $1 {{PLURAL:$1|zornade|zornadis}})',
 'tog-watchcreations' => 'Zonte  lis pagjinis creadis e i file cjariats aes oservadis specials',
 'tog-watchdefault' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
@@ -736,7 +733,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'lineno' => 'Rie $1:',
 'compareselectedversions' => 'Confronte versions selezionadis',
 'editundo' => 'anule',
-'diff-multi' => '({{PLURAL:$1|Une revision intermedie|$1 revisions intermediis}} di {{PLURAL:$2|un utent no mostrade|$2 utents no mostradis}})',
 
 # Search results
 'searchresults' => 'Risultâts de ricercje',
@@ -1220,7 +1216,6 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'wlheader-enotif' => 'Notifiche par pueste eletroniche ativade.',
 'wlheader-showupdated' => "Lis pagjinis gambiadis de ultime volte che tu lis âs cjaladis a son mostradis in '''gruessut'''",
 'watchlistcontains' => 'Tu stâs tignint di voli $1 {{PLURAL:$1|pagjine|pagjinis}}.',
-'wlnote' => "Ca sot {{PLURAL:$1|al è il cambiament plui recent|a son i '''$1''' cambiaments plui recents}} {{PLURAL:$2|inte ultime ore|intes '''$2''' oris passadis}}.",
 'wlshowlast' => 'Mostre ultimis $1 oris $2 zornadis $3',
 'watchlist-options' => 'Opzions pe liste dai tignûts di voli',
 
@@ -1462,7 +1457,6 @@ Par plasê va su [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 'tooltip-pt-watchlist' => 'La liste des pagjinis che tu stâs tignint di voli',
 'tooltip-pt-mycontris' => 'Liste dai tiei contribûts',
 'tooltip-pt-login' => 'La regjistrazion e je conseade, ancje se no obligatorie.',
-'tooltip-pt-anonlogin' => 'La regjistrazion e je conseade, ma no si scugne fâle',
 'tooltip-pt-logout' => 'Jes (logout)',
 'tooltip-ca-talk' => 'Discussions su cheste pagjine',
 'tooltip-ca-edit' => 'Tu puedis cambiâ cheste pagjine. Par plasê dopre il boton de anteprime prime di salvâ.',

@@ -313,7 +313,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Solegnér los lims :',
-'tog-justify' => 'Justifiar los paragrafos',
 'tog-hideminor' => 'Cachiér los petiôts changements dedens los dèrriérs changements',
 'tog-hidepatrolled' => 'Cachiér los changements gouardâs dedens los dèrriérs changements',
 'tog-newpageshidepatrolled' => 'Cachiér les pâges gouardâyes entre-mié la lista de les pâges novèles',
@@ -1360,7 +1359,6 @@ Notâd que l’usâjo des lims de navigacion rebeterat a zérô cela colona.',
 'showhideselectedversions' => 'Montrar / cachiér les vèrsions chouèsies',
 'editundo' => 'dèfâre',
 'diff-empty' => '(Niona difèrence)',
-'diff-multi' => '({{PLURAL:$1|Na vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per {{PLURAL:$2|un utilisator|$2 utilisators}} {{PLURAL:$1|est pas montrâye|sont pas montrâyes}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Na vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per més de $2 utilisator{{PLURAL:$2||s}} {{PLURAL:$1|est pas montrâye|sont pas montrâyes}})',
 'difference-missing-revision' => '{{PLURAL:$2|Na vèrsion|$2 vèrsions}} de cela difèrence ($1) {{PLURAL:$2|est pas étâye trovâye|sont pas étâyes trovâyes}}.
 
@@ -2388,7 +2386,6 @@ Los changements que vegnont de ceta pâge et de la sina pâge de discussion y se
 'watchmethod-list' => 'contrôlo de les pâges siuvues por y trovar des novéls changements',
 'watchlistcontains' => 'Voutra lista de siuvu contint $1 pâge{{PLURAL:$1||s}}.',
 'iteminvalidname' => 'Problèmo avouéc la piéce « $1 », nom pas justo...',
-'wlnote' => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|l’hora passâye|les '''$2''' hores passâyes}}, dês $3 a $4.",
 'wlshowlast' => 'Montrar les $1 hores passâyes, los $2 jorns passâs ou ben $3',
 'watchlist-options' => 'Chouèx de la lista de siuvu',
 
@@ -3039,7 +3036,6 @@ Volyéd tornar èprovar.',
 'tooltip-pt-watchlist' => 'La lista de les pâges que vos siude los changements',
 'tooltip-pt-mycontris' => 'La lista de voutres contribucions',
 'tooltip-pt-login' => 'Vos éte encoragiê a vos branchiér ; portant, o est pas oblegatouèro.',
-'tooltip-pt-anonlogin' => 'Vos éte encoragiê a vos branchiér ; portant, o est pas oblegatouèro.',
 'tooltip-pt-logout' => 'Sè dèbranchiér',
 'tooltip-ca-talk' => 'Discussion sur ceta pâge de contegnu',
 'tooltip-ca-edit' => 'Vos pouede changiér ceta pâge.

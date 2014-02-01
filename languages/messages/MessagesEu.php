@@ -127,7 +127,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Loturak azpimarratu:',
-'tog-justify' => 'Paragrafoak justifikatu',
 'tog-hideminor' => 'Azken aldaketetan aldaketa txikiak ezkutatu',
 'tog-hidepatrolled' => 'Ezkutatu patruilatutako aldaketa azken aldaketetan',
 'tog-newpageshidepatrolled' => 'Ezkutatu patruilatutako orriak, orri-zerrenda berritik',
@@ -1140,7 +1139,6 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'showhideselectedversions' => 'Erakutsi/ezkutatu aukeratutako berrikuspenak',
 'editundo' => 'desegin',
 'diff-empty' => '(Ez dago alderik)',
-'diff-multi' => '({{PLURAL:$1|Ez da tarteko berrikuspen bat|Ez dira tarteko $1 berrikuspen}} erakusten {{PLURAL:$2|lankide batena|$2 lankiderena}}.)',
 
 # Search results
 'searchresults' => 'Bilaketaren emaitzak',

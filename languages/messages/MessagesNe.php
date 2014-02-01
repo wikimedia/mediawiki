@@ -57,7 +57,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'सम्बन्ध निम्न रेखाङ्कन:',
-'tog-justify' => 'अनुच्छेद जस्टिफाइ(justify) गर्ने',
 'tog-hideminor' => 'भर्खरका मामूली सम्पादनहरुलाई लुकाउने',
 'tog-hidepatrolled' => 'गस्ती(patrolled)सम्पादनहरु हालका परिवर्तनहरुमा लुकाउने',
 'tog-newpageshidepatrolled' => 'गस्ती गरिएका पृष्ठहरू नयाँ पृष्ठ सूचीबाट लुकाउने',
@@ -1041,7 +1040,6 @@ $1",
 'compareselectedversions' => 'छानिएका संस्करणहरू दाँज्नुहोस्',
 'showhideselectedversions' => 'छानिएका पुनरावलोकनहरु देखाउने/लुकाउने',
 'editundo' => 'रद्द गर्ने',
-'diff-multi' => '({{PLURAL:$2|एक प्रयोगकर्ता|$2 प्रयोगकर्ताहरु}}द्वारा {{PLURAL:$1|एउटा मध्यवर्ती संशोधन|$1 मध्यवर्ती संशोधनहरू}} नदेखाइएको)',
 'diff-multi-manyusers' => '($2 {{PLURAL:$2|भन्दा अधिक प्रयोगकर्ता|भन्दा अधिक प्रयोगकर्ताहरु}}द्वारा {{PLURAL:$1|एउटा मध्यवर्ती संशोधन|$1 मध्यवर्ती संशोधनहरु}} नदेखाइएको)',
 
 # Search results

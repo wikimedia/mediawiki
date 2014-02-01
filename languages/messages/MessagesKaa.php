@@ -155,16 +155,13 @@ $linkPrefixCharset = 'a-zıA-Zİ\\x80-\\xff';
 $messages = array(
 # User preference toggles
 'tog-underline' => "Siltewdin' astın sız:",
-'tog-justify' => "Tekstti bettin' ken'ligi boyınsha tuwrılaw",
 'tog-hideminor' => "Aqırg'ı o'zgerislerden kishilerin jasır",
 'tog-extendwatchlist' => "Baqlaw dizimin barlıq o'zgerislerdi ko'rsetetug'ın qılıp ken'eyt (tek aqırg'ıların emes)",
 'tog-usenewrc' => "Ken'eytilgen jaqındag'ı o'zgerislerdi qollan (JavaScript bolıwın talap etedi)",
 'tog-numberheadings' => 'Atamalardı avtomat nomerle',
 'tog-showtoolbar' => "O'zgertiw a'sbapların ko'rset (JavaScript)",
 'tog-editondblclick' => "Eki ma'rte basıp o'zgertiw (JavaScript)",
-'tog-editsection' => "Bo'limlerdi [o'zgertiw] siltew arqalı o'zgertiwdi qos",
 'tog-editsectiononrightclick' => "Bo'lim atamasın on' jaqqa basıp o'zgertiwdi qos (JavaScript)",
-'tog-showtoc' => "Mazmunın ko'rset (3-ten artıq bo'limi bar betlerge)",
 'tog-rememberpassword' => "Menin' kirgenimdi usı kompyuterde saqlap qal (en' ko'bi menen $1 {{PLURAL:$1|ku'nge|ku'nge}} shekem)",
 'tog-watchcreations' => 'Men jaratqan betlerdi baqlaw dizimime qos',
 'tog-watchdefault' => "Men o'zgeris kiritken betlerdi baqlaw dizimime qos",
@@ -783,7 +780,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'lineno' => 'Qatar No $1:',
 'compareselectedversions' => "Saylang'an nusqalardı salıstırıw",
 'editundo' => 'qaytar',
-'diff-multi' => "({{PLURAL:$2|bir paydalanıwshı|$2 paydalanıwshı}} ta'repinen {{PLURAL:$1|aralıq bir nusqa|aralıq $1 nusqa}} ko'rsetilmeydi.)",
 
 # Search results
 'searchresults' => "İzlew na'tiyjeleri",
@@ -1354,7 +1350,6 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'watchlist-details' => "Baqlaw dizimin'izde (sa'wbet betlerin esapqa almag'anda) {{PLURAL:$1|1 bet|$1 bet}} bar.",
 'wlheader-enotif' => "E-mail arqalı eskertiw qosılg'an.",
 'watchlistcontains' => "Sizin' baqlaw dizimin'izde {{PLURAL:$1|1 bet|$1 bet}} bar.",
-'wlnote' => "To'mende aqırg'ı {{PLURAL:$2|saattag'ı|'''$2''' saattag'ı}} {{PLURAL:$1|aqırg'ı o'zgeris bar|aqırg'ı '''$1''' o'zgeris bar}}.",
 'wlshowlast' => "Aqırg'ı $1 saat, $2 ku'n, $3 ko'rset",
 'watchlist-options' => "Baqlaw diziminin' sazlawları",
 
@@ -1641,7 +1636,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'tooltip-pt-watchlist' => "O'zgerislerin baqlap turg'an betler dizimi",
 'tooltip-pt-mycontris' => "Sizin' u'lesler dizimin'iz",
 'tooltip-pt-login' => "Kiriwin'iz usınıladı, biraq ma'jbu'riy bolmag'an xalda.",
-'tooltip-pt-anonlogin' => "Kiriwin'iz usınıladı, biraq ma'jbu'riy bolmag'an xalda.",
 'tooltip-pt-logout' => "Shıg'ıw",
 'tooltip-ca-talk' => "Mag'lıwmat beti haqqında diskussiya",
 'tooltip-ca-edit' => "Siz bul betti o'zgertiwin'izge boladi. Iltimas betti saqlawdan aldın ko'rip shig'ıw knopkasın paydalanın'.",

@@ -217,7 +217,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Nënvizo lidhjet:',
-'tog-justify' => 'Rregullo paragrafët',
 'tog-hideminor' => 'Fshih redaktimet e vogla në ndryshimet e fundit',
 'tog-hidepatrolled' => 'Fshih redaktimet e vrojtuara në ndryshimet e fundit',
 'tog-newpageshidepatrolled' => 'Fshih faqet e vrojtuara nga lista e faqeve të reja',
@@ -1180,7 +1179,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
 'showhideselectedversions' => 'Shfaq/fshih versionet e zgjedhura',
 'editundo' => 'zhbëje',
-'diff-multi' => '({{PLURAL:$1|Një version i ndërmjetshëm|$1 versione të ndërmjetshme}} nga {{PLURAL:$2|një përdorues|$2 përdorues}} i/të pashfaqur)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Një versioni i ndërmjetshëm|$1 versione të ndërmjetshme}} nga më shumë se $2 {{PLURAL:$2|përdorues|përdorues}} i/të pashfaqur)',
 
 # Search results
@@ -2152,7 +2150,6 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watchmethod-list' => 'duke parë faqet nën mbikqyrje për ndryshimet e fundit',
 'watchlistcontains' => 'Lista mbikqyrëse e juaj ka $1 {{PLURAL:$1|faqe|faqe}}.',
 'iteminvalidname' => "Problem me artikullin '$1', titull jo i saktë...",
-'wlnote' => "Më poshtë {{PLURAL:$1|është ndryshimi i fundit|janë '''$1''' ndryshimet e fundit}} në {{PLUARAL:$2:orën e fundit|'''$2''' orët e fundit}}, që nga $3, $4.",
 'wlshowlast' => 'Trego $1 orët $2 ditët $3',
 'watchlist-options' => 'Mundësitë e listës mbikqyrëse',
 
@@ -2801,7 +2798,6 @@ Ju lutemi provoni përsëri.',
 'tooltip-pt-watchlist' => 'Lista e faqeve nën mbikqyrjen tuaj.',
 'tooltip-pt-mycontris' => 'Lista e kontributeve tuaja',
 'tooltip-pt-login' => 'Identifikimi nuk është i detyrueshëm, megjithatë ne jua rekomandojmë.',
-'tooltip-pt-anonlogin' => 'Të hysh brenda nuk është e detyrueshme, por ka shumë përparësi.',
 'tooltip-pt-logout' => 'Dalje',
 'tooltip-ca-talk' => 'Diskutim për faqen përmbajtje',
 'tooltip-ca-edit' => 'Ju mund ta redaktoni këtë faqe. Përdorni butonin Trego parapamjen para se të ruani ndryshimet.',

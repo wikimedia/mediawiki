@@ -20,7 +20,6 @@ $fallback = 'es';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Miñcewirilpe lasun',
-'tog-justify' => 'Xvrvmpe cijkantvkun',
 'tog-showtoolbar' => 'Pengelün kümeelün ñi chemkün',
 'tog-editondblclick' => 'Wirin pakina epu klik mew',
 'tog-rememberpassword' => 'Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})',
@@ -388,7 +387,6 @@ Rulpakünuy feychi kangelkülelu dungu.",
 'lineno' => 'Wif $1:',
 'compareselectedversions' => 'Trürümün dullinngelu malün',
 'editundo' => 'wüñoeltun',
-'diff-multi' => '(Pengelngelay {{PLURAL:$1 trürümün epu malün engu}} ta dewmafi {{PLURAL:$2|kiñe kellufe|$2 pu kellufe}})',
 
 # Search results
 'searchresults' => 'Tripalu chi kintun mew',

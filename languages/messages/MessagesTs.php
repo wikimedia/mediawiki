@@ -13,7 +13,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Hlanganisa nkhwatiheto:',
-'tog-justify' => 'Hikahata xirhapa',
 'tog-hideminor' => 'Tumbeta mindzulamiso leyi tsongo',
 'tog-hidepatrolled' => 'Tumbeta ku cinca loku languteriweke eka kucinca ka sweswinyana',
 'tog-newpageshidepatrolled' => 'Tumbeta kucinca loku languteriweke eka nxaxamelo wa matluka lamantswa',
@@ -22,9 +21,7 @@ $messages = array(
 'tog-numberheadings' => 'Tinhloko-mhaka leti hleriweke',
 'tog-showtoolbar' => 'Komba xiangarhi xo cinca (yitirhisa ntsalo wa Java)',
 'tog-editondblclick' => 'Lulamisa matluka hi ku thlava kambirhi (yitirhisa ntsalo wa Java)',
-'tog-editsection' => 'Pfula ku lulamisa xiyenge hi ku tirhisa xithlavinyeti xo [edit|lulamisa]',
 'tog-editsectiononrightclick' => 'Pfula ku lulamisa hi swiyenge hi ku thlava nhlokomhaka ya xiyenge (yitirhisa ntsalo wa Java)',
-'tog-showtoc' => 'Komba nxaxamelo wa leswingandzeni (eka tinhlokomhaka tinharhu kumbe kutlula)',
 'tog-rememberpassword' => 'Tsundzuka ku nghena eka Khompuyuta leyi (kufikela eka $1 {{PLURAL:$1|siku|masiku}})',
 'tog-watchcreations' => 'Hoxa matluka lawa ndzi matumbuluxaka eka leswi ndziswi languteke',
 'tog-watchdefault' => 'Hoxa matluka lawa ndzi malulamisaka eka leswi ndziswi languteke',
@@ -479,7 +476,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'lineno' => 'Ntila $1:',
 'compareselectedversions' => 'Hambaniisa exikarhi ka mindzulamiso leyi langiweke',
 'editundo' => 'Thlerisela',
-'diff-multi' => '({{PLURAL:$1|ndzulamiso lowu landzeleke|$1 mindzulamiso leyi landzeleke}} hi {{PLURAL:$2|mutirhisi|$2 wavatirhisi}} leyingakombiwangiki)',
 
 # Search results
 'searchresults' => 'Lavisisa eka mimbuyelo',

@@ -44,7 +44,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Lingiq ala tõmmadaq',
-'tog-justify' => 'Lõiguveereq sirgõs',
 'tog-hideminor' => 'Käkiq perämäidsin muutmiisin ärq väikuq parandusõq',
 'tog-hidepatrolled' => 'Käkiq perämäidsi muutmiisi nimekirän ärq muutmisõq, miä ommaq perräkaemisnimekirän',
 'tog-newpageshidepatrolled' => 'Käkiq vahtsidõ lehti nimekirän ärq ülekaeduq leheq',
@@ -53,9 +52,7 @@ $messages = array(
 'tog-numberheadings' => 'Päälkirjo automaatnummõrdus',
 'tog-showtoolbar' => 'Näütäq toimõndusõ tüüriistaripa',
 'tog-editondblclick' => 'Toimõndaq artikliid topõltklõpsu pääle',
-'tog-editsection' => 'Lupaq lõikõ toimõndaq [toimõndaq]-linkõga',
 'tog-editsectiononrightclick' => 'Lupaq lõikõ toimõndaq hüäpoolidsõ klõpsutusõga lõigu päälkirä pääl',
-'tog-showtoc' => 'Näütäq sisukõrda (rohkõmb ku kolmõ vaihõpäälkiräga lehile)',
 'tog-rememberpassword' => 'Salasõna miildejätmine tulõvaidsis kõrros (kõgõ inämb $1 {{PLURAL:$1|pääväs|pääväs}})',
 'tog-watchcreations' => 'Panõq muq luuduq leheq ja üleslaadiduq teedüstüq muq perräkaemisnimekirjä',
 'tog-watchdefault' => 'Panõq perräkaemisnimekirjä muq muudõduq leheq ja teedüstüq',
@@ -780,7 +777,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdõlõq valituid kujjõ',
 'editundo' => 'võtaq tagasi',
-'diff-multi' => '(Naidõ kujjõ vaihõl om {{PLURAL:$1|üts toimõndus|$1 kujjo, miä ommaq {{PLURAL:$2|üte pruukja tettüq|$2 esiq pruukja tettüq}}}}.)',
 
 # Search results
 'searchresults' => 'Otsmisõ tulõmiq',
@@ -1326,7 +1322,6 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watchmethod-list' => 'perräkaetavidõ lehti perämädseq muutmisõq',
 'watchlistcontains' => 'Perräkaemisnimekirän om $1 {{PLURAL:$1|leht|lehte}}.',
 'iteminvalidname' => "Hädä lehega '$1'! Lehe nimen om viga.",
-'wlnote' => "Tan om '''$1''' {{PLURAL:$1|muutminõ|muutmist}} viimädse '''$2''' tunni ao seen.",
 'wlshowlast' => 'Näütäq viimädseq $1 tunni $2 päivä $3',
 'watchlist-options' => 'Perräkaemisnimekirä säädmine',
 
@@ -1723,7 +1718,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'tooltip-pt-watchlist' => 'Nimekiri lehist, mil tahtnuq silmä pääl hoitaq',
 'tooltip-pt-mycontris' => 'Suq toimõnduisi nimekiri',
 'tooltip-pt-login' => 'Mineq nimega sisse vai tiiq hindäle pruukjanimi (soovitav).',
-'tooltip-pt-anonlogin' => 'Mineq nimega sisse vai tiiq hindäle pruukjanimi (soovitav).',
 'tooltip-pt-logout' => 'Mineq nime alt vällä',
 'tooltip-ca-talk' => 'Arotus lehe sisu üle',
 'tooltip-ca-edit' => 'Saa võit taad lehte toimõndaq.',

@@ -165,7 +165,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how to underline links. {{Gender}}",
-'tog-justify' => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice to justify paragraphs or not. {{Gender}}",
 'tog-hideminor' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not. {{Gender}}",
 'tog-hidepatrolled' => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
 'tog-newpageshidepatrolled' => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
@@ -2813,25 +2812,19 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}
 
 Parameters:
 * $1 - the number of revisions
-See also:
-* {{msg-mw|Diff-multi-otherusers}}
-* {{msg-mw|Diff-multi-manyusers}}",
+{{Related|Diff-multi}}",
 'diff-multi-otherusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and at least one of the intermediate revisions was created by a user other than the user who created the new revision.
 
 Parameters:
 * $1 - the number of revisions
 * $2 - the number of distinct other users who made those revisions
-See also:
-* {{msg-mw|Diff-multi-sameuser}}
-* {{msg-mw|Diff-multi-manyusers}}",
+{{Related|Diff-multi}}",
 'diff-multi-manyusers' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.
 
 Parameters:
 * $1 - the number of revisions, will always be 101 or more
 * $2 - the number of users that were found, which was limited at 100
-See also:
-* {{msg-mw|Diff-multi-sameuser}}
-* {{msg-mw|Diff-multi-otherusers}}",
+{{Related|Diff-multi}}",
 'difference-missing-revision' => 'Text displayed when the requested revision does not exist using a diff link.
 
 Example: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]
@@ -7445,6 +7438,12 @@ Parameters:
 * $2 - the ID of the offending revision, as reported in the dump that is being imported
 * $3 - the content model reported for the offending revision in the dump that is being imported
 * $4 - the serialization format reported for the offending revision in the dump that is being imported
+{{Related|Import-error}}',
+'import-error-bad-location' => 'Parameters:
+* $1 - page title
+* $2 - revision ID
+* $3 - content model
+* $4 - (Unused) format
 {{Related|Import-error}}',
 'import-options-wrong' => 'Used as error message on [[Special:Import]], when one of the options has an error.
 

@@ -45,7 +45,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Lienks onderstreepn:',
-'tog-justify' => 'Paragraeven uutvullen',
 'tog-hideminor' => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-hidepatrolled' => "Gemarkeerde wiezigiengen verbarg'n in juust angepast",
 'tog-newpageshidepatrolled' => "Gemarkeerde pagina's verbarg'n in de lieste mei nuwe pagina's",
@@ -54,9 +53,7 @@ $messages = array(
 'tog-numberheadings' => 'Koppn automaotisch nummern',
 'tog-showtoolbar' => 'Bewerkiengswerkbalke weerheven (JavaScript vereist)',
 'tog-editondblclick' => 'Dubbelklikkn voe bewerkn (JavaScript vereist)',
-'tog-editsection' => "Bewerken van deêlpahina's meuhlijk maeken via [bewerken]-koppeliengen",
 'tog-editsectiononrightclick' => "Bewerken van deêlpahina's meulijk maeken mie een rechtermuusklik op een tussenkopje (JavaScript vereist)",
-'tog-showtoc' => "Inoudsopgaeve weerheven (voe pahina's mie minstes 3 tussenkopjes)",
 'tog-rememberpassword' => 'Anmeldhehevens ontouwen (maximaal $1 {{PLURAL:$1|dag|daege}})',
 'tog-watchcreations' => "Pahina's die ak anmik automaotisch volhen",
 'tog-watchdefault' => "Pahina's die ak bewerk automaotisch volhen",
@@ -765,7 +762,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'lineno' => 'Rehel $1:',
 'compareselectedversions' => 'Anevienkte versies verhelieken',
 'editundo' => 'onedaene maeken',
-'diff-multi' => 'Von {{PLURAL:$2|eên gebruker|$2 gebrukers}} ({{PLURAL:$1|wor eên tussenlihhende versie|worn $1 tussenlihhende versies}} nie weereheven)',
 
 # Search results
 'searchresults' => 'Zoekresultaoten',

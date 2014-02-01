@@ -11,6 +11,7 @@
  * @author Aze
  * @author Dosmiin Barsbold
  * @author Felipe Aira
+ * @author Jewel457
  * @author Jojit fb
  * @author Kaganer
  * @author Namayan
@@ -149,7 +150,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pagsasalungguhit ng kawing:',
-'tog-justify' => 'Pantayin ang mga talata',
 'tog-hideminor' => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
 'tog-hidepatrolled' => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',
 'tog-newpageshidepatrolled' => 'Itago ang napatrolyang mga pahina mula talaan ng bagong pahina',
@@ -572,7 +572,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'createacct-yourpasswordagain-ph' => 'Muling ilagay ang hudyat',
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'userlogin-remembermypassword' => 'Panatilihin akong nakalagda',
-'userlogin-signwithsecure' => 'Gumamit ng wastong koneksyon',
+'userlogin-signwithsecure' => 'Gumamit ng ligtas na koneksyon',
 'yourdomainname' => 'Dominyo mo:',
 'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
 'externaldberror' => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
@@ -592,18 +592,18 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'gotaccount' => 'May kuwenta ka na ba? $1.',
 'gotaccountlink' => 'Lumagda',
 'userlogin-resetlink' => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',
-'userlogin-resetpassword-link' => 'Nakalimutan ang hudyat?',
-'userlogin-createanother' => 'Lumikha ng isang akawnt',
-'createacct-join' => 'Ilagay ang iyong impormasyon sa baba.',
-'createacct-another-join' => 'Ilagay ang impormasyon ng bagong akawnt sa baba.',
+'userlogin-resetpassword-link' => 'Nakalimutan ba ang iyong hudyat?',
+'userlogin-createanother' => 'Lumikha ng iba pang akawnt',
+'createacct-join' => 'Ilagay ang iyong impormasyon sa ibaba.',
+'createacct-another-join' => 'Ilagay ang impormasyon ng bagong akawnt sa ibaba.',
 'createacct-emailrequired' => 'Direksiyong e-liham:',
 'createaccountmail' => 'Gumamit ng pansamantalang walang-piling hudyat at ipadala ito sa direksiyong e-liham na nakasaad sa ibaba',
 'createacct-realname' => 'Tunay na pangalan (maaaring wala)',
 'createaccountreason' => 'Dahilan:',
 'createacct-reason' => 'Dahilan',
 'createacct-reason-ph' => 'Bakit ka gagawa ng isa pang akawnt?',
-'createacct-imgcaptcha-ph' => 'Ilagay ang tekstong makikita sa taas.',
-'createacct-benefit-heading' => '{{SITENAME}} ay linikha ng mga taong tulad mo.',
+'createacct-imgcaptcha-ph' => 'Ilagay ang tekstong makikita sa itaas.',
+'createacct-benefit-heading' => '{{SITENAME}} ay nilikha ng mga taong iyong katulad.',
 'badretype' => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
 'userexists' => 'May gumagamit na ng ipinasok na bansag.
 Pumili po ng ibang pangalan.',
@@ -637,7 +637,7 @@ Pakisubok muli.',
 'passwordtooshort' => 'Ang mga hudyat ay dapat mayroong {{PLURAL:$1|1 panitik|$1 panitik}} (karakter).',
 'password-name-match' => 'Dapat magkaiba ang hudyat mo sa bansag mo.',
 'password-login-forbidden' => 'Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at hudyat.',
-'mailmypassword' => 'Muling itakda ang hudyat',
+'mailmypassword' => 'Baguhin ang hudyat',
 'passwordremindertitle' => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 'passwordremindertext' => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong
 hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha
@@ -1164,7 +1164,6 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'compareselectedversions' => 'Paghambingin ang mga napiling bersyon',
 'showhideselectedversions' => 'Ipakita/itago ang napiling mga bersyon',
 'editundo' => 'ibalik',
-'diff-multi' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinakikita.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinapakikita.)',
 'difference-missing-revision' => 'Hindi natagpuan ang {{PLURAL:$2|isang rebisyon|$2 mga rebisyon}} ng kaibahang ($1) ito.
 
@@ -1247,7 +1246,7 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'prefs-setemail' => 'Magtakda ng direksiyong e-liham',
 'prefs-email' => 'Mga pagpipilian para sa e-liham',
 'prefs-rendering' => 'Hitsura',
-'saveprefs' => 'Sagipin',
+'saveprefs' => 'Itala',
 'restoreprefs' => 'Ibalik ang lahat ng likas na mga pagtatakda',
 'prefs-editing' => 'May binabago',
 'rows' => 'Mga pahalang na hanay:',
@@ -2173,7 +2172,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'watchmethod-list' => 'sinusuri ang binabantayang mga pahina para sa mga kamakailan lamang na mga pagbabago',
 'watchlistcontains' => 'Naglalaman ng $1 {{PLURAL:$1|pahina|mga pahina}} ang iyong talaan ng mga binabantayan.',
 'iteminvalidname' => "May suliranin ang bagay na '$1', hindi tanggap na pangalan...",
-'wlnote' => "Nasa ibaba ang {{PLURAL:$1|pinakahuling pagbabago|pinakahuling '''$1''' mga pagbabago}} sa loob ng huling {{PLURAL:$2|oras|'''$2''' mga oras}}, magmula noong $3 sa ganap na ika-$4.",
+'wlnote2' => 'Nasa ibaba ang mga pagbabago sa nakaraang {{PLURAL:$1|oras|<strong>$1',
 'wlshowlast' => 'Ipakita ang huling $1 mga oras $2 mga araw $3',
 'watchlist-options' => 'Mga pagpipilian para sa talaan ng mga binabantayan',
 
@@ -2721,6 +2720,7 @@ Pakidalaw ang [https://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWi
 'allmessages-prefix' => 'Salain ayon sa unlapi:',
 'allmessages-language' => 'Wika:',
 'allmessages-filter-submit' => 'Gawin',
+'allmessages-filter-translate' => 'Isalin',
 
 # Thumbnails
 'thumbnail-more' => 'Palakihin',
@@ -2811,7 +2811,6 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-pt-watchlist' => 'Ang talaan ng mga pagbabago sa mga pahinang binabantayan mo',
 'tooltip-pt-mycontris' => 'Talaan ng mga ambag mo',
 'tooltip-pt-login' => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
-'tooltip-pt-anonlogin' => 'Hinihimok kang lumagda, bagaman hindi ito kinakailangan.',
 'tooltip-pt-logout' => 'Umalis sa pagkakalagda',
 'tooltip-ca-talk' => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit' => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',

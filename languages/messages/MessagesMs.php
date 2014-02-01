@@ -200,7 +200,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garis bawah pautan:',
-'tog-justify' => 'Laraskan perenggan',
 'tog-hideminor' => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
 'tog-hidepatrolled' => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',
 'tog-newpageshidepatrolled' => 'Sorokkan laman yang telah dironda daripada senarai laman baru',
@@ -1232,7 +1231,6 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'showhideselectedversions' => 'Tunjukkan/sorokkan versi yang dipilih',
 'editundo' => 'batal',
 'diff-empty' => '(Tiada perbezaan)',
-'diff-multi' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
 'diff-multi-manyusers' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh lebih daripada $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
 'difference-missing-revision' => '{{PLURAL:$2|Satu semakan|$2 semakan}} bagi perbezaan ini ($1) tidak ditemui.
 

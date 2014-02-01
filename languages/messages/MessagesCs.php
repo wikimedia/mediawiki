@@ -26,6 +26,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Mr. Richard Bolla
+ * @author Paxt
  * @author Quinn
  * @author Ragimiri
  * @author Reaperman
@@ -366,7 +367,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podtrhávat odkazy:',
-'tog-justify' => 'Zarovnat odstavce do bloku',
 'tog-hideminor' => 'Skrýt malé editace v posledních změnách',
 'tog-hidepatrolled' => 'Skrýt patrolované editace v posledních změnách',
 'tog-newpageshidepatrolled' => 'Skrýt patrolované stránky ze seznamu nových stránek',
@@ -921,7 +921,7 @@ Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší pr
 'resetpass_submit' => 'Nastavit heslo a přihlásit se',
 'changepassword-success' => 'Vaše heslo bylo úspěšně změněno!',
 'changepassword-throttled' => 'Provedli jste příliš mnoho pokusů o přihlášení.
-Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
+Čekejte prosím $1 a zkuste to znovu.',
 'resetpass_forbidden' => 'Hesla nelze změnit.',
 'resetpass-no-info' => 'K této stránce mají přímý přístup jen přihlášení uživatelé.',
 'resetpass-submit-loggedin' => 'Změnit heslo',
@@ -979,7 +979,7 @@ Dočasné heslo: $2',
 'changeemail-submit' => 'Změnit e-mail',
 'changeemail-cancel' => 'Storno',
 'changeemail-throttled' => 'Provedli jste příliš mnoho pokusů o přihlášení.
-Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
+Čekejte prosím $1 a zkuste to znovu.',
 
 # Special:ResetTokens
 'resettokens' => 'Reinicializace klíčů',
@@ -1404,7 +1404,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'showhideselectedversions' => 'Zobrazit/skrýt vybrané revize',
 'editundo' => 'zrušit editaci',
 'diff-empty' => '(Žádný rozdíl)',
-'diff-multi' => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od {{PLURAL:$2|1 uživatele|$2 uživatelů}}.)',
 'diff-multi-manyusers' => '(Není zobrazeno $1 mezilehlých verzí od více než $2 {{PLURAL:$2|uživatele|uživatelů}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.
 
@@ -1425,7 +1424,7 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'shown-title' => 'Zobrazit $1 {{PLURAL:$1|výsledek|výsledky|výsledků}} na stránku',
 'viewprevnext' => 'Ukázat ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Na této wiki existuje stránka nazvaná „[[:$1]]“.'''",
-'searchmenu-new' => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
+'searchmenu-new' => '<strong>Vytvořte na této wiki stránku „[[:$1]]“!</strong> {{PLURAL:$2|0=|Prohlédněte si také stránku nalezenou vaším hledáním.|Prohlédněte si také stránky nalezené vaším hledáním.}}',
 'searchprofile-articles' => 'Články',
 'searchprofile-project' => 'Nápověda a projektové stránky',
 'searchprofile-images' => 'Multimédia',
@@ -1441,7 +1440,7 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-result-score' => 'Relevantnost: $1 %',
 'search-redirect' => '(přesměrování $1)',
 'search-section' => '(část $1)',
-'search-file-match' => '(odpovídá obsah souboru)',
+'search-file-match' => '(odpovídá obsahu souboru)',
 'search-suggest' => 'Mysleli jste: $1',
 'search-interwiki-caption' => 'Sesterské projekty',
 'search-interwiki-default' => 'Výsledky z $1:',
@@ -3043,7 +3042,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'importuploaderrortemp' => 'Nepodařilo se načíst importní soubor. Není k dispozici dočasná složka.',
 'import-parse-failure' => 'Chyba při importu XML',
 'import-noarticle' => 'Není určena žádná stránka na import!',
-'import-nonewrevisions' => 'Všechny verze již byly dříve importovány.',
+'import-nonewrevisions' => 'Žádné revize nebyly importovány (buď již byly všechny importovány dříve, nebo byly přeskočeny kvůli chybám).',
 'xml-error-string' => '$1 na řádku $2, sloupec $3 (bajt $4): $5',
 'import-upload' => 'Importovat XML data',
 'import-token-mismatch' => 'Ztratila se data relace. Zkuste to znovu.',
@@ -3054,6 +3053,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-error-special' => 'Stránka „$1“ se neimportuje, protože patří do speciálního jmenného prostoru, do kterého stránky nepatří.',
 'import-error-invalid' => 'Stránka „$1“ se neimportuje, protože její název je neplatný.',
 'import-error-unserialize' => 'Nepodařilo se deserializovat revizi $2 stránky „$1“. Revize měla používat model obsahu $3 serializovaný jako $4.',
+'import-error-bad-location' => 'Revizi $2 používající obsahový model $3 nelze uložit na "$1" na této wiki, neboť tento model není na této stránce podporován.',
 'import-options-wrong' => '{{PLURAL:$2|Chybná volba|Chybné volby}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Zadaný název kořenové stránky je neplatný.',
 'import-rootpage-nosubpage' => 'Ve jmenném prostoru „$1“ kořenové stránky nejsou dovoleny podstránky.',

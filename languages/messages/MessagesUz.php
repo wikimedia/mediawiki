@@ -112,7 +112,6 @@ $linkPrefixCharset = 'a-zA-Z\\x80-\\xffʻʼ«„';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Havolalarning tagiga chizish:',
-'tog-justify' => 'Matnni sahifaning eni boʻyicha tekislash',
 'tog-hideminor' => 'Yangi oʻzgarishlar roʻyxatida kichik tahrirlarni yashirish',
 'tog-hidepatrolled' => 'Yangi oʻzgarishlar roʻyxatida tekshirilgan tahrirlarni yashirish',
 'tog-newpageshidepatrolled' => 'Yangi sahifalar roʻyxatida tekshirilgan sahifalarni yashirish',
@@ -734,7 +733,6 @@ Bu yerda: '''({{int:cur}})''' = hozirgi koʻrinish bilan farqi, '''({{int:last}}
 'compareselectedversions' => 'Tanlangan versiyalarni solishtir',
 'showhideselectedversions' => 'Tanlangan versiyalarni koʻrsatish/yashirish',
 'editundo' => 'qaytarish',
-'diff-multi' => '({{PLURAL:$2|Bitta foydalanuvchining|$2 ta foydalanuvchining}} {{PLURAL:$1|bitta oraliq versiyasi|$1 ta oraliq versiyalari}} koʻrsatilmadi)',
 
 # Search results
 'searchresults' => 'Qidiruv natijalari',
@@ -750,7 +748,7 @@ Bu yerda: '''({{int:cur}})''' = hozirgi koʻrinish bilan farqi, '''({{int:last}}
 'shown-title' => 'Sahifada $1 ta natija koʻrsatish',
 'viewprevnext' => 'Koʻrish ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Ushbu vikida \"[[:\$1]]\" nomli sahifa mavjud.'''",
-'searchmenu-new' => "'''Ushbu vikida \"[[:\$1]]\" sahifasini yarat!'''",
+'searchmenu-new' => '<strong>\'\'\'Ushbu vikida "[[:$1]]" sahifasini yarat!</strong> {{PLURAL:$2|0=|Shuningdek qidiruvingiz orqali topilgan sahifani qarang.|Shuningdek topilgan qidiruv natijalarini qarang.}}',
 'searchprofile-articles' => 'Maqolalar',
 'searchprofile-project' => 'Yordam va loyiha sahifalari',
 'searchprofile-images' => 'Multimedia',

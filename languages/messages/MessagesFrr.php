@@ -22,7 +22,6 @@ $linkTrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ferwisangen onerstrik:',
-'tog-justify' => 'Tekst üs blook saat',
 'tog-hideminor' => 'Letj anrangen fersteeg',
 'tog-hidepatrolled' => 'Letj anrangen fersteeg',
 'tog-newpageshidepatrolled' => 'Kontroliaret sidjen bi a "Nei sidjen" fersteeg',
@@ -1057,7 +1056,6 @@ A nawigatjuun-links saat ales weder turag üüb di ual stant.',
 'showhideselectedversions' => 'Werjuunen wise of fersteeg',
 'editundo' => 'turagsaat',
 'diff-empty' => '(nään ferskeel)',
-'diff-multi' => '({{PLURAL:$1|Ian werjuun diartesken|$1 werjuunen diartesken}} faan {{PLURAL:$2|ään brüker|$2 brükern}} {{PLURAL:$1|woort|wurd}} ei uunwiset)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ian werjuun diartesken|$1 werjuunen diartesken}} faan muar üs $2 {{PLURAL:$2|brüker|brükern}} wurd ei uunwiset)',
 'difference-missing-revision' => "{{PLURAL:$2|Ian werjuun|$2 werjuunen}} faan di ferskeel ($1) {{PLURAL:$2|as|san}} ei fünjen wurden.
 
@@ -2084,7 +2082,6 @@ Feranrangen faan detdiar sidj wurd üüb detdiar list fäästhäälen.",
 'watchmethod-list' => "Sidjen, diar dü uun't uug heest, am a leetst feranrangen beluke",
 'watchlistcontains' => "Dü häälst $1 {{PLURAL:$1|sidj|sidjen}} uun't uug.",
 'iteminvalidname' => 'Mä di iindrach „$1“ stemet wat ei, di nööm as ferkiard.',
-'wlnote' => "Diar {{PLURAL:$1|stäänt det leetst feranrang|stun a leetst '''$1''' feranrangen}} faan a leetst {{PLURAL:$2|stünj|'''$2''' stünjen}}. Stant: $3, klook $4.",
 'wlshowlast' => 'Wise a feranrangen faan leetst $1 stünjen, $2 daar of $3.',
 'watchlist-options' => "Iinstelangen för't uunwisin",
 
@@ -2713,7 +2710,6 @@ Transwiki-import-aktjuunen wurd uun't [[Special:Log/import|Import-logbuk]] fää
 'tooltip-pt-watchlist' => "Sidjen, diar dü uun't uug behual wel",
 'tooltip-pt-mycontris' => 'List mä aanj bidracher',
 'tooltip-pt-login' => 'Wan dü di uunmeldest, heest dü muar mögelkhaiden. Dü säärst det oober ei.',
-'tooltip-pt-anonlogin' => 'Wan dü di uunmeldest, heest dü muar mögelkhaiden. Dü säärst det oober ei.',
 'tooltip-pt-logout' => 'Ufmelde',
 'tooltip-ca-talk' => 'Diskusjuun auer di artiikel',
 'tooltip-ca-edit' => 'Sidj bewerke. Luke di det iarst ans uun, iar dü det seekerst.',

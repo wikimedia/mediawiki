@@ -16,7 +16,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linkiga hoos ka calaamadeysan:',
-'tog-justify' => 'Geesdhig baaragaraafyada',
 'tog-hideminor' => 'Qari bedelada yar ee isbedelada dhow',
 'tog-hidepatrolled' => 'Qari wax bedelkii ugu danbeeyay oo la waardiyeeyay',
 'tog-newpageshidepatrolled' => 'Ka qari maqaalada la waardiyeeyay maqaalada kale ee cusub',
@@ -25,9 +24,7 @@ $messages = array(
 'tog-numberheadings' => 'Lambarada automaatik ahaan u tirinaayo Cinwaanada',
 'tog-showtoolbar' => 'Itus bedelka qalabka shaqada (waxaa loo baahanyahay JavaScript)',
 'tog-editondblclick' => 'wax ka bedel maqaalada labo jeer la riixay (waxaa loo baahanyahay JavaScript)',
-'tog-editsection' => 'Fasax wax ka bedelida cutubyada dhinaca linkiyada [wax ka bedel]',
 'tog-editsectiononrightclick' => 'Fasax cutub wax ka bedelida hadii batoonka midig ee dooliga <br /> dhag lagu siiyo cinwaanka korkiisa (JavaScript)',
-'tog-showtoc' => "I'tus jadwalka (boggaga leh in kabadan 3 qoraalada sare)",
 'tog-rememberpassword' => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga (ilaa  $1 {{PLURAL:$1|maalin|maalmood}})',
 'tog-watchcreations' => 'Ku dar boggaga aan aniga sameeyay liiskayga waardiyaha',
 'tog-watchdefault' => 'Ku dar boggaga aan wax ka bedelo liiskayga waardiyaha',

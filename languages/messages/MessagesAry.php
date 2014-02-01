@@ -18,7 +18,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ṣetter l-lyanaṫ:',
-'tog-justify' => 'Jusṫifyé l-paragrafaṫ',
 'tog-hideminor' => 'Ĥebbi ṫ-ṫeĝdilaṫ l-leĥĥrin',
 'tog-hidepatrolled' => 'Ĥebbi ṫ-ṫeĝdilaṫ l-mraqbin fe ṫ-ṫeĝdilaṫ l-leĥĥrin',
 'tog-newpageshidepatrolled' => 'Ĥebbi ṣ-ṣefḫaṫ l-mraqbin men ṣ-ṣefḫaṫ j-jdad',
@@ -27,9 +26,7 @@ $messages = array(
 'tog-numberheadings' => 'Nemra otomaṫikiya dyal l-ĝanawin',
 'tog-showtoolbar' => 'Werri l-barra dyal ṫ-ṫeĝdilaṫ (kayḫṫaj JavaScript)',
 'tog-editondblclick' => 'Baċ ṫṣayeb ṣ-ṣefḫa ĥaṣek ṫbrek 2 merraṫ (kayḫṫaj JavaScript)',
-'tog-editsection' => 'Aktivé ṫ-ṫeĝdilaṫ dyal s-seksyon be l-lyanaṫ « [Ĝeddel] »',
 'tog-editsectiononrightclick' => 'Baċ ṫbeddel l-ĝonwan dyal ċi seksyon brek ĝlih be l-imniya (kayḫṫaj JavaScript)',
-'tog-showtoc' => 'biyn lfahras dyal lmohtawayat (bnisba lsafahat li ktr mn 3 dlaanawin)',
 'tog-rememberpassword' => 'Ĝqel ĝla smiyṫi fe had l-ordinaṫør (ġir limoddaṫ {{PLURAL:$1|yom waḫed|$1 iyyam}})',
 'tog-watchcreations' => 'zid sfahi li nchatha f qaaimat lmoraqaba',
 'tog-watchdefault' => 'zid sfahi li adltha f qaaimat lmoraqaba',
@@ -870,7 +867,6 @@ $1",
 'compareselectedversions' => 'Qaren lé-versyon li meĝzolin',
 'showhideselectedversions' => 'wrri/ĥbbi l-morajaĝṫ l-mĥṫaṛa',
 'editundo' => 'Rjeĝ',
-'diff-multi' => '({{PLURAL:$1|ṃoṛajaĝa waṣita wḫda|$1 dl-ṃoṛajaĝaṫ l-waṣita}} ṫaĝṫ {{PLURAL:$2|mosṫĥdim waḫf|$2 dl-mosṫĥdimin}} ma mbeyyna-ċ)',
 'diff-multi-manyusers' => '({{PLURAL:$1|ṃoṛajaĝa waṣita wḫda|$1 dl-ṃoṛajaĝaṫ l-waṣita}} ṫaĝṫ kṫr mn $2 {{PLURAL:$2|l-mosṫĥdim|dl-mosṫĥdimin}} ma mbeyyna-ċ)',
 
 # Search results

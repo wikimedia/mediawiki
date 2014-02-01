@@ -320,7 +320,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Кlел сиз хьака хьажориган:',
-'tog-justify' => 'Нисде йоза шораллий агlонца',
 'tog-hideminor' => 'Къайладаха кигийра нисдарш оц могӀама керла хийцамехь',
 'tog-hidepatrolled' => 'Къайладаха гӀаролладина нисдарш оц могӀама керла нисдаршкахь',
 'tog-newpageshidepatrolled' => 'Къайлайаха гlароллайина агlонаш оц могlама керла агlонашкахь',
@@ -1162,7 +1161,6 @@ $1",
 'showhideselectedversions' => 'Гайта/къайлаяха хаьржина башхонаш',
 'editundo' => 'цаоьшу',
 'diff-empty' => '(башхалла яц)',
-'diff-multi' => '({{PLURAL:$1|1=гайтина яц $1 юккъера верси|гайтина яц $1 юккъера версеш}} {{PLURAL:$2|1=$2 декъашхочун|$2 декъашхой}})',
 
 # Search results
 'searchresults' => 'Лахарна хилам',
@@ -1175,7 +1173,7 @@ $1",
 'shown-title' => 'АгӀона чохь $1 {{PLURAL:$1|1=дӀаяздар|дӀаяздарш}} гайта',
 'viewprevnext' => 'Хьажа ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''ХӀокху вики чохь йолуш ю ишта агӀо «[[:$1]]»'''",
-'searchmenu-new' => "'''Кхолла ишта агlо «[[:$1]]» хlокху вики-кхолламашчохь!'''",
+'searchmenu-new' => "'''Кхолла ишта агӀо «[[:$1]]» хӀокху {{PLURAL:$2|0=|вики-проектехь.}}'''",
 'searchprofile-articles' => 'Къаьстина агlонаш',
 'searchprofile-project' => 'ГӀона а проектан а агӀонаш',
 'searchprofile-images' => 'Мультимедиа',
@@ -1514,6 +1512,8 @@ $1",
 'ignorewarning' => 'ХӀума дац чуяккха файл',
 'ignorewarnings' => 'ДӀахедар тергал ца дан',
 'badfilename' => 'Файлан цӀе хийцина → $1.',
+'filetype-banned-type' => "'''«.$1»''' — {{PLURAL:$4|1=ца магийна файлан тайп|ца магийна файлийн тайпанаш}}.
+{{PLURAL:$3|1=Магийна файлан тайп ю|Магийна файлийн тайпанаш ю:}} $2.",
 'emptyfile' => 'Ахьа чуйоккхуш йолу файл еса хийла там бу. Иза гӀалат хийла мега файлан цӀе нийса язйина йоцу дела. Дехар до хьажа бакъалла и юьй ахьа чуйоккхуш йолу файл.',
 'fileexists' => 'Иштта цӀе йолу файл йолуш ю. Дехар до, хьажа <strong>[[:$1]]</strong>, лаьий хьуна и хийца. 
 [[$1|thumb]]',
@@ -1562,6 +1562,9 @@ JD # Jenoptik
 MGP # Pentax
 PICT # тайп тайпан
  #</pre> <!-- битийша хlара могlа ша мабарра -->',
+
+# File backend
+'backend-fail-readonly' => 'ХӀара «$1» хӀинца еша бен таро яц. Бахьна: «$2»',
 
 # HTTP errors
 'http-timed-out' => 'Хьежаран хан чекхели HTTP-жоп дехаран.',
@@ -1625,9 +1628,12 @@ PICT # тайп тайпан
 'filedelete' => '$1 — дӀаяккхар',
 'filedelete-legend' => 'ДӀаяккха файл',
 'filedelete-intro' => "Хьо файл '''[[Media:$1|$1]]''' дӀаяккха гӀерта цунна массо истори цхьан.",
+'filedelete-intro-old' => '<span class="plainlinks">Ахьа дӀайоккхуш ю верси \'\'\'[[Media:$1|$1]]\'\'\' цу [$4 $3, $2].</span>',
 'filedelete-comment' => 'Бахьан:',
 'filedelete-submit' => 'ДӀаяккха',
 'filedelete-success' => '$1 дӀаяккхи.',
+'filedelete-success-old' => "Верси '''[[Media:$1|$1]]''' цу $3 $2 дӀаяьккхина.",
+'filedelete-nofile' => "'''$1''' яц.",
 'filedelete-otherreason' => 'Кхин бахьан:',
 'filedelete-reason-otherlist' => 'Кхин бахьан',
 'filedelete-reason-dropdown' => '* Даржина долу дӀаяккхаран баьхьанаш 
@@ -1828,7 +1834,7 @@ PICT # тайп тайпан
 'activeusers-noresult' => 'Декъашхой цакарий.',
 
 # Special:ListGroupRights
-'listgrouprights' => 'Декъашхойн тобанаши бакъонаш',
+'listgrouprights' => 'Декъашхойн тобанийн бакъонаш',
 'listgrouprights-summary' => 'Лахахьа гойту декъашхошна яла йиш йолу бакъонаш. [[{{MediaWiki:Listgrouprights-helppage}}|хьажа кхин хааме]].',
 'listgrouprights-key' => 'Легенда:
 * <span class="listgrouprights-granted">Ела бакъонаш</span>
@@ -2244,10 +2250,11 @@ PICT # тайп тайпан
 # Namespace 8 related
 'allmessages' => 'Гlирса хаамаш',
 'allmessagesname' => 'Хаам',
-'allmessagesdefault' => 'Шаьшха йоза',
+'allmessagesdefault' => 'Ӏад дитарца йоза',
 'allmessagescurrent' => 'Карарчу хенан йоза',
 'allmessagestext' => 'ХӀара «MediaWiki» цӀерийн меттигера системан хаамийн могӀа бу.
 Хьайна MediaWiki тая лууш делахь, дехар до, проект [//translatewiki.net translatewiki.net] [https://www.mediawiki.org/wiki/Localisation юьйцучу хьажа].',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' дӀаяйина хилар бахьнехь хӀара агӀо дӀачӀаьгӀна ю.",
 'allmessages-filter-legend' => 'Литтар',
 'allmessages-filter' => 'Литтар оцу хьола хийцамца:',
 'allmessages-filter-unmodified' => 'Хийцан йоцурш',
@@ -2256,6 +2263,7 @@ PICT # тайп тайпан
 'allmessages-prefix' => 'Литтар оцу дешахьалхе:',
 'allmessages-language' => 'Мотт:',
 'allmessages-filter-submit' => 'Дехьа гӀо',
+'allmessages-filter-translate' => 'Гочйе',
 
 # Thumbnails
 'thumbnail-more' => 'Доккха де',

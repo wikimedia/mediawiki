@@ -25,7 +25,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Unnerline airtins:',
-'tog-justify' => 'Justifee paragraphs',
 'tog-hideminor' => 'Hide smaa edits in recent chynges',
 'tog-hidepatrolled' => 'Hide patrolled edits in recent chynges',
 'tog-newpageshidepatrolled' => 'Hide patrolled pages frae the new page list',
@@ -34,9 +33,7 @@ $messages = array(
 'tog-numberheadings' => 'Auto-nummer heidins',
 'tog-showtoolbar' => 'Shaw edit toolbar',
 'tog-editondblclick' => 'Edit pages on dooble-dab (JavaScript)',
-'tog-editsection' => 'Enable section editin via [edit] airtins',
 'tog-editsectiononrightclick' => 'Enable section editin bi richt-dabbin on section teitles (JavaScript)',
-'tog-showtoc' => 'Shaw table o contents (for pages wi mair nor 3 heidins)',
 'tog-rememberpassword' => 'Mynd password ower sessions (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Add pages ye mak tar yer watchleet',
 'tog-watchdefault' => 'Add pages ye edit tae yer watchleet',
@@ -674,7 +671,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
 'editundo' => 'undo',
-'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} nae shown)',
 
 # Search results
 'searchresults' => 'Rake results',
@@ -729,7 +725,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'saveprefs' => 'Hain preferences',
 'prefs-editing' => 'Editin',
 'searchresultshead' => 'Rake result settins',
-'resultsperpage' => 'Hits tae shaw per page',
 'stub-threshold-disabled' => 'Tuckie',
 'recentchangescount' => 'Nummer o teitles in recent chynges',
 'savedprefs' => 'Yer preferences haes been hained.',
@@ -1046,7 +1041,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlist-details' => "{{PLURAL:$1|$1 page|$1 pages}} on yer watchleet, nae countin' collogue pages.",
 'watchlistcontains' => 'Yer watchleet contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname' => "Trouble wi eitem '$1', invalid name...",
-'wlnote' => "Ablo is the lest $1 {{PLURAL:$1|chynge|chynges}} in the lest {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast' => 'Shaw lest $1 hours $2 days $3',
 'watchlist-options' => 'Watchleet options',
 

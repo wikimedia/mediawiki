@@ -157,7 +157,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links óngersjtriepe',
-'tog-justify' => 'Paragrafe oetvölle',
 'tog-hideminor' => 'Versjtaek klein bewirkinge bie recènte verangeringe',
 'tog-hidepatrolled' => 'Gemarkeerde wieziginge verberge in recente wieziginge',
 'tog-newpageshidepatrolled' => "Gemarkeerde pagina's verberge in de lies mit nuuj pagina's",
@@ -1065,7 +1064,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
 'showhideselectedversions' => 'Tuin/versjtaek geselecteerde versies',
 'editundo' => 'maak óngedaon',
-'diff-multi' => '({{PLURAL:$1|Ein tusseligkende versie|$1 Tusseligkende versies}} dórch {{PLURAL:$2|eine gebroeker|$2 gebroekers}} {{PLURAL:$1|weurt|waere}} neet getuund)',
 'diff-multi-manyusers' => '($1 tösseligkende versies door mier es $2 gebroekers waere neet waergaeve)',
 
 # Search results
@@ -2038,7 +2036,6 @@ Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weur
 'watchmethod-list' => "controlere van gevolgde pazjena's veur recènte verangeringe",
 'watchlistcontains' => "Dien volglies bevat $1 {{PLURAL:$1|pazjena|pazjena's}}.",
 'iteminvalidname' => "Probleem mit object '$1', ongeljige naam...",
-'wlnote' => "Hieónger {{PLURAL:$1|steit de lètste verangering|staon de lètste $1 verangeringe}} van {{PLURAL:$2|'t lètste oer|de lètste <b>$2</b> oer}} óp $3 óm $4.",
 'wlshowlast' => 'Tuin lètste $1 ore $2 daag $3',
 'watchlist-options' => 'Opties veur volglies',
 
@@ -2643,7 +2640,6 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 'tooltip-pt-watchlist' => "De lies van gevolgde pagina's.",
 'tooltip-pt-mycontris' => 'Lies van dien biedrage',
 'tooltip-pt-login' => "De weurs aangemeudig om d'ch aan te melje, meh 't is neet verplich.",
-'tooltip-pt-anonlogin' => 'De weurs aangemodigd om in te logge, meh t is neet verplich.',
 'tooltip-pt-logout' => 'Aafmelde',
 'tooltip-ca-talk' => 'Euverlèk euver dit artikel',
 'tooltip-ca-edit' => 'De kins dees pagina verangere.',

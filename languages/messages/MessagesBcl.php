@@ -99,7 +99,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linyahan an kilyawan:',
-'tog-justify' => 'Pantayón an mga talodtód',
 'tog-hideminor' => 'Tagóon an mga saradít na paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-hidepatrolled' => 'Tagóa an patrolyadong mga paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-newpageshidepatrolled' => 'Tagóa an patrolyadong mga pahina gikan sa listahan kan bàgong pahina',
@@ -1144,7 +1143,6 @@ Tandaan na an paggagamit kan nabigasyong nin mga kasurugponan makakapagliwat kai
 'showhideselectedversions' => 'Ihayag/itago mga piniling pagbabago',
 'editundo' => 'sulíton',
 'diff-empty' => '(Mayong kalaenan)',
-'diff-multi' => '({{PLURAL:$1|Saro intermediate na pagbabago|$1 mga intermediate na mga pagbabago}} by {{PLURAL:$2|sarong paragamit|$2 mga paragamit}} dae pinaghahayag)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Sarong intermediate na pagbabago|$1 mga intermediate na mga pagbabago}} na sobra sa $2 {{PLURAL:$2|paragamit|mga paragamit}} dae pinaghahayag)',
 'difference-missing-revision' => '{{PLURAL:$2|sarong rebisyon|$2 mga rebisyon}} kaining diperensiya ($1) {{PLURAL:$2|na iyo an|kaidto na iyo an}} dae nanagboan.
 

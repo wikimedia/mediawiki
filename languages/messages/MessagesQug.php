@@ -39,7 +39,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Tinkikunana uraypi aspishpa rikuchina',
-'tog-justify' => 'Aspinakunata alli paktachina',
 'tog-hideminor' => 'mushuk killkaykunapak kamupi, uchilla killkaykunata pakana',
 'tog-hidepatrolled' => 'mushuk killkaykunapak kamupi, ña rikushka killkaykunata pakana',
 'tog-newpageshidepatrolled' => 'Mushuk pankakunapak kamupi, ña rikushka pankakunata pakana',
@@ -48,7 +47,6 @@ $messages = array(
 'tog-numberheadings' => 'Uma killkaykunata yupayta churak antawata llankachina',
 'tog-showtoolbar' => 'Llamkana antakunata rikuchina (Javascriptwanlla)',
 'tog-editondblclick' => 'Ishkayta klik rurashpa pankapi killkanata kallarina (JavaScriptwanlla)',
-'tog-editsection' => 'Rakikunata [Killkana] tinkiwan killkankapak arinina',
 'tog-rememberpassword' => 'Ñukapak shuti, yaykuna yupaytapash kay wampunapi kipaka churankapak yuyana ({{PLURAL:$1|puncha|punchakuna}}kamanlla)',
 'tog-watchcreations' => 'Ñukapak wacharishka pankakunata rikuna',
 'tog-watchdefault' => 'Ñukapak shukchishka pankakunata rikuna',
@@ -456,7 +454,6 @@ Kay (kaykunachu) kachashkakunaka cunkashkami kashka.",
 'lineno' => '$1 aspi',
 'compareselectedversions' => 'Kay akllashka pankakunaka imashpa mana shinami kapan willana',
 'editundo' => 'Kutichina',
-'diff-multi' => '({{PLURAL:$2|Shuk rurakpa|$2 rurakkunapa}} {{PLURAL:$1|chawpipi shuk mushuk killkayta mana rikuchishkachu|chawpipi $1 mushuk killkaykunata mana rikuchishkachu}})',
 
 # Search results
 'searchresults' => 'Maskaymanta pankakuna',

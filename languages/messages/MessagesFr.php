@@ -419,7 +419,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Souligner les liens :',
-'tog-justify' => 'Justifier les paragraphes',
 'tog-hideminor' => 'Masquer les modifications mineures dans les changements récents',
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées dans la liste des nouvelles pages',
@@ -1453,7 +1452,6 @@ Assurez-vous que cette opération conservera la continuité de l'historique de l
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo' => 'annuler',
 'diff-empty' => '(Aucune différence)',
-'diff-multi' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
 'diff-multi-manyusers' => "({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})",
 'difference-missing-revision' => "{{PLURAL:$2|Une révision|$2 révisions}} de cette différence ($1) {{PLURAL:$2|n'a pas été trouvée|n'ont pas été trouvées}}.
 
@@ -3123,7 +3121,7 @@ Son contenu n'a été transféré que partiellement.",
 Un dossier temporaire est manquant.",
 'import-parse-failure' => "Échec lors de l'analyse du XML à importer",
 'import-noarticle' => 'Aucune page à importer !',
-'import-nonewrevisions' => 'Toutes les versions ont été importées auparavant.',
+'import-nonewrevisions' => 'Aucune révision importée (toutes étaient déjà présentes, ou ignorées du fait d’erreurs).',
 'xml-error-string' => '$1 à la ligne $2, colonne $3 (octet $4) : $5',
 'import-upload' => 'Import de données XML',
 'import-token-mismatch' => 'Perte des données de session. Veuillez réessayez.',
@@ -3134,6 +3132,7 @@ Un dossier temporaire est manquant.",
 'import-error-special' => "La page « $1 » n'est pas importée parce qu'elle appartient à un espace de noms spécial qui n'en autorise aucune.",
 'import-error-invalid' => "Page « $1 » n'est pas importée parce que son nom n'est pas valide.",
 'import-error-unserialize' => 'La révision $2 de la page « $1 » ne peut pas être désérialisée. La révision est indiquée comme utilisant le modèle de contenu $3 sérialisé en $4.',
+'import-error-bad-location' => 'La révision $2 utilisant le modèle de contenu $3 n’a pas pu être stocké sur « $1 » sur ce wiki, car ce modèle n’est pas supporté sur cette page.',
 'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}} : <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
 'import-rootpage-nosubpage' => "L'espace de noms « $1 » de la page racine n'autorise pas les sous-pages.",

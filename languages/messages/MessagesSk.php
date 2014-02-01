@@ -285,7 +285,6 @@ $linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podčiarkovať odkazy:',
-'tog-justify' => 'Zarovnávať okraje odstavcov',
 'tog-hideminor' => 'V posledných úpravách nezobrazovať drobné úpravy',
 'tog-hidepatrolled' => 'Skryť strážené úpravy v Posledných úpravách',
 'tog-newpageshidepatrolled' => 'Skryť strážené stránky zo zoznamu nových stránok',
@@ -779,7 +778,7 @@ Skontrolujte preklepy alebo sa [[Special:UserLogin/signup|zaregistrujte ako nov�
 'passwordtooshort' => 'Heslo musí mať dĺžku aspoň $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'password-name-match' => 'Vaše heslo musí byť iné ako vaše používateľské meno.',
 'password-login-forbidden' => 'Použitie tohto používateľského mena a hesla bolo zakázané.',
-'mailmypassword' => 'Pošlite mi e-mailom dočasné heslo',
+'mailmypassword' => 'Obnoviť heslo',
 'passwordremindertitle' => 'Nové dočasné heslo pre {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'passwordremindertext' => 'Niekto (pravdepodobne vy, z IP adresy $1)
 požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}} ($4).
@@ -1327,7 +1326,6 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'showhideselectedversions' => 'Zobraziť/skryť vybrané revízie',
 'editundo' => 'vrátiť',
 'diff-empty' => '(Žiaden rozdiel)',
-'diff-multi' => '{{PLURAL:$1|Jedna medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od {{PLURAL:$2|jedného používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}}.',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od viac ako {{PLURAL:$2|$2 používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}})',
 'difference-missing-revision' => '{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.
 
@@ -1348,7 +1346,7 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'shown-title' => 'Zobraziť $1 {{PLURAL:$1|výsledok|výsledky|výsledkov}} na stránku',
 'viewprevnext' => 'Zobraziť ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "*Stránka '''[[$1]]'''",
-'searchmenu-new' => "'''Vytvoriť stránku „[[:$1|$1]]“ na tejto wiki'''",
+'searchmenu-new' => '<strong>Vytvoriť na tejto wiki stránku „[[:$1|$1]]“!</strong> {{PLURAL:$2|0=|Pozrite si tiež stránku nájdenú vašim vyhľadávaním.|Pozrite si tiež stránky nájdené vašim vyhľadávaním.}}',
 'searchprofile-articles' => 'Stránky s obsahom',
 'searchprofile-project' => 'Stránky pomocníka a projektu',
 'searchprofile-images' => 'Multimédiá',
@@ -1689,7 +1687,7 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
 'rcshowhideminor' => '$1 drobné úpravy',
 'rcshowhidebots' => '$1 botov',
-'rcshowhideliu' => '$1 prihlásených používateľov',
+'rcshowhideliu' => '$1 registrovaní užívatelia',
 'rcshowhideanons' => '$1 anonymných používateľov',
 'rcshowhidepatr' => '$1 úpravy strážených stránok',
 'rcshowhidemine' => '$1 moje úpravy',
@@ -2367,7 +2365,6 @@ Budú tam uvedené aj budúce úpravy tejto stránky a jej diskusie.',
 'watchmethod-list' => 'kontrolujú posledné úpravy v sledovaných stránkach',
 'watchlistcontains' => 'Váš zoznam sledovaných obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}}.',
 'iteminvalidname' => 'Problém s položkou „$1“, neplatné meno...',
-'wlnote' => "Nižšie {{PLURAL:$1|je posledná jedna zmena|sú posledné '''$1''' zmeny|je posledných '''$1''' zmien}} za {{PLURAL:$2|poslednú hodinu|posledné '''$2''' hodiny|posledných '''$2''' hodín}} do $4, $3.",
 'wlshowlast' => 'Zobraziť posledných $1 hodín $2 dní $3',
 'watchlist-options' => 'Nastavenia zoznamu sledovaných',
 
@@ -3015,7 +3012,6 @@ Uložte ho na svoj disk a nahrajte sem.',
 'tooltip-pt-watchlist' => 'Zoznam stránok, na ktorých sledujete zmeny.',
 'tooltip-pt-mycontris' => 'Zoznam vašich príspevkov',
 'tooltip-pt-login' => 'Odporúčame vám prihlásiť sa, nie je to však povinné.',
-'tooltip-pt-anonlogin' => 'Odporúčame vám prihlásiť sa, nie je to však povinné.',
 'tooltip-pt-logout' => 'Odhlásiť',
 'tooltip-ca-talk' => 'Diskusia o obsahu stránky',
 'tooltip-ca-edit' => 'Môžete upravovať túto stránku. Prosím, pred uložením použite tlačidlo Zobraziť náhľad.',

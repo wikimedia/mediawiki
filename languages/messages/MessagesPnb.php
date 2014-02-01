@@ -23,7 +23,6 @@ $rtl = true;
 $messages = array(
 # User preference toggles
 'tog-underline' => 'حوڑ تھلے لین:',
-'tog-justify' => 'پیراگراف ثابت کرو',
 'tog-hideminor' => 'چھوٹیاں تبدیلیاں چھپاؤ',
 'tog-hidepatrolled' => 'ویکھیاں تبدیلیاں لکاؤ',
 'tog-newpageshidepatrolled' => 'نویاں صفیاں توں ویکھیاں تبدیلیاں لکاؤ',
@@ -921,7 +920,6 @@ $1",
 'compareselectedversions' => 'چنے صفحے آپنے سامنے کرو',
 'showhideselectedversions' => 'وکھاؤ/لکاؤ چنیاں دہرائیاں',
 'editundo' => 'واپس',
-'diff-multi' => '({{PLURAL:$1|اک درمیانی تبدیلی|$1 درمیانی تبدیلی}} {{PLURAL:$2|اک ورتن والا|$2 ورتن والے}} کولوں نئیں وکھائی گئی۔)',
 'diff-multi-manyusers' => '({{انیک:$1|اک وشکارلی ریوین|$1 وشکارلیاں ریویناں}} توں ود $2 {{انیک:$2|ورتن والا|ورتن والا}} نئیں دسی گئی)',
 
 # Search results
@@ -1894,7 +1892,6 @@ $1",
 'watchmethod-list' => 'ویکھے کے صفے نیڑے ہون والیاں تبدیلیاں دی پڑتال',
 'watchlistcontains' => 'تھواڈی اکھ تھلے رکھی لسٹ چ $1 {{PLURAL:$1|صفہ|صفے}}  نیں۔',
 'iteminvalidname' => "'$1' نال رپھڑ، ناں غلط",
-'wlnote' => "تھلے {{PLURAL:\$1|آخری تبدیلی|آخری تبدیلیاں '''1\$''' }} آخر تے {{PLURAL:\$2|کینٹہ|'''2\$''' کینٹے}} 3\$، 4\$.",
 'wlshowlast' => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
 'watchlist-options' => 'نظر تھلے رکھن دیاں راہواں',
 
@@ -2531,7 +2528,6 @@ $1',
 'tooltip-pt-watchlist' => 'او صفحے جنہاں وچ تبدیلیاں تسی ویکھ رہے او',
 'tooltip-pt-mycontris' => 'میرے کم',
 'tooltip-pt-login' => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
-'tooltip-pt-anonlogin' => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-logout' => 'باہر آؤ',
 'tooltip-ca-talk' => 'اس صفحے دے بار وچ گل بات',
 'tooltip-ca-edit' => 'تسیں اس صفے تے لکھ سکدے او۔

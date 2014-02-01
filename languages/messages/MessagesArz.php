@@ -303,7 +303,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'حط خط تحت اللينكات:',
-'tog-justify' => 'ساوى الپاراجرافات',
 'tog-hideminor' => 'خبى التعديلات الصغيره من اجدد التغييرات',
 'tog-hidepatrolled' => 'خبى التعديلات المتراجعه من اخر التعديلات',
 'tog-newpageshidepatrolled' => 'خبى الصفح المتراجعه من ليستة الصفح الجديده',
@@ -1197,7 +1196,6 @@ $1",
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'عرض/تخبية المراجعات المختاره.',
 'editundo' => 'استرجاع',
-'diff-multi' => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)',
 'diff-multi-manyusers' => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)',
 
 # Search results

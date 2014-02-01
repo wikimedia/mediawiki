@@ -37,7 +37,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Jorr ke niche line khicho:',
-'tog-justify' => 'Paragraphs ke justify karo',
 'tog-hideminor' => 'Chhota aur nawaa badlao ke lukao',
 'tog-hidepatrolled' => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled' => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
@@ -1079,7 +1078,6 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'showhideselectedversions' => 'Chuna gae versions ke dekhao/lukao',
 'editundo' => 'Pahile jaise kar do',
 'diff-empty' => '(ek rakam)',
-'diff-multi' => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} karis hae, ke  nai dekhawa jae hai.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} se jaada log karin hae, ke  nai dekhawa jae hai.)',
 'difference-missing-revision' => 'Ii badlao ($1) {{PLURAL:$2|was|were}} pe {{PLURAL:$2|One revision|$2 revisions}} nai pawa gais hae
 Iske kaaran ii hoe sake hae ki ek mitawa gais panna se link karaa jaawe hae.
@@ -2104,7 +2102,6 @@ Ii panna ke aage ke badlao aur usse jurra baat waala panna ki suchi hian pe hae.
 'watchmethod-list' => 'dhyan me rakkha gais panna ke nawaa badlao ke khatir check karaa jaawe hai',
 'watchlistcontains' => 'Aap ke dhyan suchi me  $1 {{PLURAL:$1|panna|panna}} hai.',
 'iteminvalidname' => "'$1' chij se kuchh garrbarr hai, galat naam...",
-'wlnote' => "Niche ke {{PLURAL:$1|pahile waala badlao hai| pahile '''$1''' badlao hai}} pichhle {{PLURAL:$2|ghanta|'''$2''' ghanta}} me as of $3, $4..",
 'wlshowlast' => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
 'watchlist-options' => 'Dhyan suchi ke options',
 
@@ -2775,7 +2772,6 @@ Meharbani kar ke, fir se kosis karo.',
 'tooltip-pt-watchlist' => 'Panna ke suchi jispe aap dhyan rakhaa hae',
 'tooltip-pt-mycontris' => 'Aap ke yogdaan ke suchi',
 'tooltip-pt-login' => 'Aap log in kartaa tab achchha rahataa; lekin jaruri nai hae.',
-'tooltip-pt-anonlogin' => 'Aap ke login kare ke encourage karaa jaawe hai lekin ii jaruri nai hai',
 'tooltip-pt-logout' => 'Log out',
 'tooltip-ca-talk' => 'Content waala panna ke baare me salah',
 'tooltip-ca-edit' => 'Aap ii panna ke badle sakta hai. Meherbaani kar ke bachae se pahile preview button ke kaam me laana.',

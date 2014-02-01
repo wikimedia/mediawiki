@@ -108,7 +108,6 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Холбааны шыяры:',
-'tog-justify' => 'Арынның дооразының аайы-биле сөзүглелди дескилээри',
 'tog-hideminor' => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннерни чажырар',
 'tog-hidepatrolled' => 'Амгы өскерлиишкиннер арында истээн өскерлиишкиннерни чажырары',
 'tog-newpageshidepatrolled' => 'Чаа арыннарның даңзындан истээн арыннарны чажырары',
@@ -116,7 +115,6 @@ $messages = array(
 'tog-numberheadings' => 'Эгелерин авто-санаар',
 'tog-showtoolbar' => 'Өскертир херекселдерни көргүзер (JavaScript)',
 'tog-editondblclick' => 'Арынны өскертирде ийи катап базар (JavaScript)',
-'tog-editsection' => '[өскертири] деп холбаалар-биле section editing enable.',
 'tog-rememberpassword' => 'Мени бо компьютерге сактыры ($1 {{PLURAL:$1|1=хүн|хүн}} ишти)',
 'tog-watchcreations' => 'Мээң чаяан арыннарымны хайгаарал даңзымче немээри.',
 'tog-watchdefault' => 'Мээң өскерткен арыннарымны хайгаарал даңзымче немээри.',
@@ -588,7 +586,6 @@ Please check if you want to create/edit this page.',
 'lineno' => 'Одуруг $1:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
 'editundo' => 'чөрчүүрү',
-'diff-multi' => '({{PLURAL:$2|$2 киржикчиниң}} {{PLURAL:$1|$1 түр хевирин көргүспээн}})',
 
 # Search results
 'searchresults' => 'Түңнелдер',

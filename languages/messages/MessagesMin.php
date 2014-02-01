@@ -165,7 +165,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garih bawahi tautan:',
-'tog-justify' => 'Ratokan paragraf',
 'tog-hideminor' => 'Suruakan suntiangan ketek di parubahan baru',
 'tog-hidepatrolled' => 'Suruakan suntiangan nan lah dipatroli di parubahan tabaru',
 'tog-newpageshidepatrolled' => 'Suruakan laman nan lah dipatroli dari daftar laman baru',
@@ -174,9 +173,7 @@ $messages = array(
 'tog-numberheadings' => 'Agiah nomor judul sacaro otomatis',
 'tog-showtoolbar' => 'Tunjuakan bilah panyuntiangan (paralu JavaScript)',
 'tog-editondblclick' => 'Suntiang laman jo klik duo kali (paralu JavaScript)',
-'tog-editsection' => 'Aktipan panyuntiangan subbagian malalui pautan [suntiang]',
 'tog-editsectiononrightclick' => 'Aktipan bagian panyuntiangan jo mangklik kanan pado judul bagian (paralu JavaScript)',
-'tog-showtoc' => 'Tunjuakan daftar isi (untuak laman nan labiah dari 3 subbagian)',
 'tog-rememberpassword' => 'Ingek log masuak denai di paramban ko (salamo $1 {{PLURAL:$1|hari}})',
 'tog-watchcreations' => 'Tambahan laman nan den buek jo gambar nan den unggah ka daftar pantau',
 'tog-watchdefault' => 'Tambahan laman jo gambar nan den suntiang ka daftar pantau',
@@ -1128,7 +1125,6 @@ $1",
 'compareselectedversions' => 'Bandiangan versi tapiliah',
 'showhideselectedversions' => 'Tunjuakan/suruakan versi tapiliah',
 'editundo' => 'batal',
-'diff-multi' => '({{PLURAL:$1|$1 revisi antaro}} dek {{PLURAL:$2|$2 pangguno}} indak ditampilan)',
 
 # Search results
 'searchresults' => 'Hasil pancarian',
@@ -1806,7 +1802,6 @@ Parubahan laman ko tamasuak laman rundiangnyo akan ditampilan disinan.',
 'unwatchthispage' => 'Batal pantau laman ko',
 'watchlist-details' => '{{PLURAL:$1|$1 laman}} dalam daftar pantau Sanak, indak tamasuak laman rundiangnyo.',
 'wlheader-showupdated' => "Laman nan alah barubah sajak kunjuangan tarakhia Sanak ditunjuakan jo '''hurup taba'''",
-'wlnote' => "Di bawah ko ado $1 {{PLURAL:$1|parubahan}} dalam {{PLURAL:$2|'''$2''' jam}} iko, sampai tanggal $3, pukua $4.",
 'wlshowlast' => 'Tunjuakan $1 jam parubahan dalam $2 hari tarakhia $3',
 'watchlist-options' => 'Piliahan daftar pantau',
 
@@ -2189,7 +2184,6 @@ Jikok Sanak hanyo nio mangimpor versi tabaru, Sanak dapek malakuannyo labiah cap
 'tooltip-pt-watchlist' => 'Daftar laman nan dipantau.',
 'tooltip-pt-mycontris' => 'Daftar jariah Sanak',
 'tooltip-pt-login' => 'Sanak disaranan untuak masuak log; walaupun indak wajib',
-'tooltip-pt-anonlogin' => 'Sanak disaranan untuak masuak log; walaupun indak wajib',
 'tooltip-pt-logout' => 'Kalua log',
 'tooltip-ca-talk' => 'Parudiangan tantang isi laman',
 'tooltip-ca-edit' => 'Angku dapek manyuntiang laman ko. Silakan gunoan tombol pratonton sabalun manyimpan',

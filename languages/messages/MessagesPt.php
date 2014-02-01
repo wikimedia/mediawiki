@@ -322,7 +322,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sublinhar ligação:',
-'tog-justify' => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Esconder páginas patrulhadas na lista de páginas novas',
@@ -1381,7 +1380,6 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo' => 'desfazer',
 'diff-empty' => '(Sem diferenças)',
-'diff-multi' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
 'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
 

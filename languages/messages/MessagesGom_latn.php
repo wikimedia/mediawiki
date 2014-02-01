@@ -345,7 +345,6 @@ Vivron: '''({{int:cur}})''' = halinchi uzollnie borobor forok, '''({{int:last}})
 'lineno' => 'Line ank $1:',
 'compareselectedversions' => 'Nivodloleo uzollneo comparar kor',
 'editundo' => "rod'd kor",
-'diff-multi' => "({{PLURAL:$2|Eka vapuddpean|$2 vapuddpeamni}} {{PLURAL:$1|kel'li ek modli uzollnni|kel'leo $1 modleo uzollnneo}} dakhonk nant)",
 
 # Search results
 'searchresults' => 'Sodacho nikal',

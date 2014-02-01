@@ -57,6 +57,7 @@
  * @author Raoli
  * @author Remember the dot
  * @author Rippitippi
+ * @author Rosh
  * @author S.Örvarr.S
  * @author SabineCretella
  * @author Sannita
@@ -294,7 +295,6 @@ $linkTrail = '/^([a-zàéèíîìóòúù]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sottolinea i collegamenti:',
-'tog-justify' => 'Allineamento giustificato dei paragrafi',
 'tog-hideminor' => 'Nascondi le modifiche minori nelle ultime modifiche',
 'tog-hidepatrolled' => 'Nascondi le modifiche verificate nelle ultime modifiche',
 'tog-newpageshidepatrolled' => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
@@ -1320,7 +1320,8 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'showhideselectedversions' => 'Mostra/nascondi versioni selezionate',
 'editundo' => 'annulla',
 'diff-empty' => '(Nessuna differenza)',
-'diff-multi' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un utente|$2 utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
+'diff-multi-sameuser' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di uno stesso utente non sono mostrate )',
+'diff-multi-otherusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un altro utente|$2 utenti}} non mostrate)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
 'difference-missing-revision' => '{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.
 
@@ -1341,7 +1342,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'shown-title' => 'Mostra {{PLURAL:$1|un risultato|$1 risultati}} per pagina',
 'viewprevnext' => 'Vedi ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Sul sito esiste una pagina il cui nome è \"[[:\$1]]\"'''",
-'searchmenu-new' => 'Crea la pagina "[[:$1]]" su questo sito',
+'searchmenu-new' => '<strong>Crea la pagina "[[:$1]]" su questo wiki!</strong> {{PLURAL:$2|0=|Vedi anche la pagina trovata con la tua ricerca|Vedi anche i risultati della ricerca}}',
 'searchprofile-articles' => 'Pagine di contenuti',
 'searchprofile-project' => 'Pagine di aiuto e relative al progetto',
 'searchprofile-images' => 'Multimedia',
@@ -2946,7 +2947,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importuploaderrortemp' => "Caricamento del file per l'importazione non riuscito. Manca una cartella temporanea.",
 'import-parse-failure' => "Errore di analisi nell'importazione XML",
 'import-noarticle' => 'Nessuna pagina da importare.',
-'import-nonewrevisions' => 'Tutte le revisioni sono già state importate in precedenza.',
+'import-nonewrevisions' => 'Nessuna versione importata (erano già tutte presenti, o saltate a causa di errori)',
 'xml-error-string' => '$1 a riga $2, colonna $3 (byte $4): $5',
 'import-upload' => 'Carica dati XML',
 'import-token-mismatch' => 'I dati relativi alla sessione sono andati persi. Riprovare.',
@@ -2957,6 +2958,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-error-special' => 'La pagina "$1" non viene importata perché appartiene a un namespace speciale che non permette pagine.',
 'import-error-invalid' => 'La pagina "$1" non viene importata perché il suo nome non è valido.',
 'import-error-unserialize' => 'La versione $2 della pagina "$1" non può essere de-serializzata. La versione è stata segnalata per utilizzare il modello di contenuto $3 serializzato come $4.',
+'import-error-bad-location' => 'La versione $2 usa un modello di contenuto $3 che non può essere memorizzato in "$1" di questo wiki, poiché la pagina non supporta questo modello.',
 'import-options-wrong' => '{{PLURAL:$2|Opzione sbagliata|Opzioni sbagliate}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La pagina principale fornita non è un titolo valido.',
 'import-rootpage-nosubpage' => 'Il namespace "$1" della pagina principale non permette di avere sottopagine.',

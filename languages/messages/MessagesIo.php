@@ -111,7 +111,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sub-strekizez ligili:',
-'tog-justify' => 'Adjustigez paragrafi',
 'tog-hideminor' => 'Celez mikra redaktaji de recenta chanji',
 'tog-hidepatrolled' => 'Celez patroliita redakti en recenta chanji',
 'tog-newpageshidepatrolled' => 'Celez patroliita pagini en la listo di nova pagino',
@@ -120,9 +119,7 @@ $messages = array(
 'tog-numberheadings' => 'Autonumerez tituli',
 'tog-showtoolbar' => 'Montrez redaktilo (JavaScript bezonesas)',
 'tog-editondblclick' => 'Redaktez pagini kande on klikus dufoye (JavaScript bezonesas)',
-'tog-editsection' => 'Kapabligez redakto di secioni per [redaktar]-ligamini',
 'tog-editsectiononrightclick' => 'Kapabligez redakto di secioni kande on dextra-klikus tituli di secioni (JavaScript bezonesas)',
-'tog-showtoc' => 'Montrez indexo (por pagini havanta plu multa kam 3 tituli)',
 'tog-rememberpassword' => "Memorez mea pasovorto en ca ''browser'' (maxime $1 {{PLURAL:$1|dio|dii}})",
 'tog-watchcreations' => 'Adjuntez pagini kreota da me ad mea surveyaji',
 'tog-watchdefault' => 'Adjuntez pagini redaktota da me ad mea surveyaji',
@@ -1045,7 +1042,6 @@ Volutez kontrolar <strong>[[:$1]]</strong> se vu ne esas certa pri chanjar olu.
 'watchmethod-list' => 'serchante recenta redakti en la listo di surveyaji',
 'watchlistcontains' => 'Vua listo di surveyaji kontenas $1 {{PLURAL:$1|pagino|pagini}}.',
 'iteminvalidname' => "Problemo en la artiklo '$1', nevalida nomo...",
-'wlnote' => "Infre esas la lasta {{PLURAL:$1|chanjo|'''$1''' chanji}} dum la lasta {{PLURAL:$2|horo|'''$2''' hori}}.",
 'wlshowlast' => 'Montrar la lasta $1 hori $2 dii $3',
 'watchlist-options' => 'Surveryo-listo selekti',
 

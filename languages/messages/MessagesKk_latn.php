@@ -356,16 +356,13 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Siltemeniñ astın sız:',
-'tog-justify' => 'Ejelerdi eni boýınşa twralaw',
 'tog-hideminor' => 'Jwıqtağı özgeristerden şağın öñdemelerdi jasır',
 'tog-extendwatchlist' => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',
 'tog-usenewrc' => 'Keñeýtilgen jwıqtağı özgerister (JavaScript)',
 'tog-numberheadings' => 'Bas joldardı özdiktik nomirle',
 'tog-showtoolbar' => 'Öñdew qwraldar jolağın körset (JavaScript)',
 'tog-editondblclick' => 'Qos nuqımdap öñdew (JavaScript)',
-'tog-editsection' => 'Bölimderdi [öñdew] siltemesimen öñdewin qos',
 'tog-editsectiononrightclick' => 'Bölim taqırıbın oñ nuqwmen öñdewin qos (JavaScript)',
-'tog-showtoc' => 'Mazmunın körset (3-ten arta bölimi barılarğa)',
 'tog-rememberpassword' => 'Kirgenimdi osı komp′ywterde umıtpa (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Men bastağan betterdi baqılaw tizimime üste',
 'tog-watchdefault' => 'Men öñdegen betterdi baqılaw tizimime üste',
@@ -1037,7 +1034,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'lineno' => 'Jol nömiri $1:',
 'compareselectedversions' => 'Bölektengen nusqalardı salıstırw',
 'editundo' => 'joqqa şığarw',
-'diff-multi' => '(Aradağı $1 tüzetw körsetilmegen.)',
 
 # Search results
 'searchresults' => 'İzdew nätïjeleri',
@@ -1639,7 +1635,6 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 'watchmethod-list' => 'jwıqtağı özgerister üşin baqılawlı betterdi tekserw',
 'watchlistcontains' => 'Baqılaw tizimiñizde $1 bet bar.',
 'iteminvalidname' => "'$1' danada aqaw bar — jaramsız ataw…",
-'wlnote' => "Tömende soñğı {{PLURAL:$2|sağatta|'''$2''' sağatta}} bolğan, {{PLURAL:$1|jwıqtağı özgeris|jwıqtağı '''$1''' özgeris}} körsetiledi.",
 'wlshowlast' => 'Soñğı $1 sağattağı, $2 kündegi, $3 bolğan özgeristi körsetw',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2109,7 +2104,6 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 'tooltip-pt-watchlist' => 'Özgeristerin baqılap turğan better tizimim.',
 'tooltip-pt-mycontris' => 'Ülesterimdiñ tizimi',
 'tooltip-pt-login' => 'Kirwiñizdi usınamız, ol mindetti emes.',
-'tooltip-pt-anonlogin' => 'Kirwiñizdi usınamız, biraq, ol mindetti emes.',
 'tooltip-pt-logout' => 'Şığw',
 'tooltip-ca-talk' => 'Mağlumat betti talqılaw',
 'tooltip-ca-edit' => 'Bul betti öñdeý alasız. Saqtawdıñ aldında «Qarap şığw» batırmasın nuqıñız.',

@@ -69,7 +69,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Nënvizoji vegzat',
-'tog-justify' => 'Drejto kryerreshtat',
 'tog-hideminor' => 'Mshef redaktimet e vogla të bâme së voni',
 'tog-hidepatrolled' => 'Mshef redaktimet e mbikëqyruna në ndryshimet e fundit',
 'tog-newpageshidepatrolled' => 'Mshef redaktimet e mbikëqyruna prej listës së faqeve të reja',
@@ -78,9 +77,7 @@ $messages = array(
 'tog-numberheadings' => 'Numëro automatikisht mbititujt',
 'tog-showtoolbar' => 'Trego butonat për redaktim (JavaScript)',
 'tog-editondblclick' => 'Redakto faqet me klikim të dyfishtë (JavaScript)',
-'tog-editsection' => 'Lejo redaktimin e seksioneve me opcionin [redakto]',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve tue klikue me të djathtë mbi titull (JavaScript)',
-'tog-showtoc' => 'Trego përmbajtjen<br />(për faqet me mâ shum se 3 tituj)',
 'tog-rememberpassword' => 'Ruej fjalëkalimin tem në këtë shfletues (për $1 {{PLURAL:$1|ditë|ditë}})',
 'tog-watchcreations' => 'Shtoji në listë mbikëqyrëse faqet që i krijoj vetë',
 'tog-watchdefault' => 'Shtoji në listë mbikëqyrëse faqet që i redaktoj',
@@ -858,7 +855,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhme',
 'editundo' => 'ktheje',
-'diff-multi' => '({{PLURAL:$1|Një redaktim ndërmjet nuk është|$1 redaktime ndërmjet nuk janë}} treguar.)',
 
 # Search results
 'searchresults' => 'Rezultatet e kërkimit',
@@ -939,7 +935,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'rows' => 'Rreshta:',
 'columns' => 'Kolona:',
 'searchresultshead' => 'Kërkimi',
-'resultsperpage' => 'Gjetje për faqe:',
 'stub-threshold' => 'Pragu për formatimin e <a href="#" class="stub">vegzave të cungueme</a> në (byte):',
 'recentchangesdays' => 'Numri i ditëve për me i tregue te ndryshimet e freskëta:',
 'recentchangesdays-max' => '(maksimum $1 {{PLURAL:$1|ditë|ditë}})',

@@ -30,7 +30,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'འོག་ཐིག་འཐེན་པ།',
-'tog-justify' => 'ཚིག་གི་ཚད་སྙོམས་པ།',
 'tog-hideminor' => 'རྩོམ་སྒྲིག་ཆུང་ཚགས་སྦས་བ།',
 'tog-hidepatrolled' => 'ལྟ་ཞིབ་བྱས་པའི་རྩོམ་སྒྲིག་སྦས་བ།',
 'tog-newpageshidepatrolled' => 'ཤོག་ངོས་གསར་བར་ལྟ་ཞིབ་བྱས་པའི་རྩོམ་སྒྲིག་སྦས་བ།',
@@ -39,7 +38,6 @@ $messages = array(
 'tog-numberheadings' => 'རང་སྒྲིག་ཨང་རྟགས་འགོ་བརྗོད།',
 'tog-showtoolbar' => 'རྩོམ་སྒྲིག་ལག་ཆ་སྟོན།(JavaScript ཡི་བརྡ་ཆད་དགོས།)',
 'tog-editondblclick' => 'ཤོག་ངོས་རྩོམ་སྒྲིག་བྱེད་པར་ལན་གཉིས་རྡེབ།(JavaScript ཡི་བརྡ་ཆད་དགོས།)',
-'tog-editsection' => '[སྒྲིག་བཅོས།]འབྲེལ་མཐུད་གནོན་ཏེ་སྒྲིགབཅོས་སྡེ་ཚན་ཡོད་པར་འགྱིས།',
 'tog-rememberpassword' => 'ངའི་ནང་འཛུལ་བཤར་ལྟ་ཆས་འདི་རུ་མང་མཐའ་ཉིན $1 {{PLURAL:$1}} དྲན་པར་མཛོད།',
 'tog-watchcreations' => 'ངའི་ལྟ་ཐོའི་གྲས་སུ་གསར་བཟོ་བྱས་པ་ལ་ཤོག་ངོས་ཁ་སྣོན།',
 'tog-watchdefault' => 'ངའི་ལྟ་ཐོའི་གྲས་སུ་རྩོམ་སྒྲིག་བྱས་པ་ལ་ཤོག་ངོས་ཁ་སྣོན།',

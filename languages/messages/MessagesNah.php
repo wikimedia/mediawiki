@@ -80,7 +80,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Mokìnxòîkuilòtzàswis tzòwilistìn:',
-'tog-justify' => 'Mokintêtènyèktlàlis in tlâkuilispaltìn',
 'tog-hideminor' => 'Motlàtìs tepỉtzìn tlayèktlàlilistli ìpan welok tlapảtlalistli',
 'tog-hidepatrolled' => 'Motlàtìs tlapîpialli tlayèktlàlilistli ìpan welok tlapảtlalistli',
 'tog-newpageshidepatrolled' => 'Mokintlàtis tlapîpialtlaìxtlapaltìn ìwikpa ìtlapòpòwaltekpànal in yâyankuik tlaìxtlapaltìn',
@@ -88,7 +87,6 @@ $messages = array(
 'tog-usenewrc' => 'Molōloāzqueh in tlapatlaliztli in yancuīc tlapatlaliztli āmapan īhuān in tlachiyaliztli tlapōhualāmapan (monequi JavaScript)',
 'tog-showtoolbar' => 'Motlaīxtlatīz in tlachihchīhualōni pāntli',
 'tog-editondblclick' => 'Tiquimpatlāz in zāzanilli intlā ōme tiquimpachoa',
-'tog-showtoc' => 'Tiquittāz in tlein cah zāzotlahcuilōlco',
 'tog-rememberpassword' => 'Ticpiyāz moMotlatequitiltilīltōca īhuān motlahtōlichtacāyo inīn chīuhpōhualhuazco (īxquich {{PLURAL:$1|tōnalli}})',
 'tog-watchcreations' => 'Moaquiāz in āmatl mā niquinyōcoya īhuān in tlahcuilōlli mā niquinquetza īpan notlachiyaliz',
 'tog-watchdefault' => 'Moaquiāz āmatl īhuān tlahcuilōlli mā niquinpatla in notlachiyaliz',
@@ -579,7 +577,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'history-title' => '«$1» tlahcuilōlloh ītlaihittaliz',
 'lineno' => 'Pāntli $1:',
 'editundo' => 'Tichuelōz',
-'diff-multi' => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta in ōquichīuh|$1 Tlapatlaliztli nepantlah ahmo mottah in ōquinchīuh}}  {{PLURAL:$2|cē tlatequitiltilīlli|$2 tlatequitiltilīltin}})',
 
 # Search results
 'searchresults' => 'Tlatēmoliztli',
@@ -1226,7 +1223,6 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-pt-watchlist' => 'Zāzaniltin tiquintlachiya ic tlapatlaliztli',
 'tooltip-pt-mycontris' => 'Notlahcuilōl',
 'tooltip-pt-login' => 'Tihuelīti timocalaqui, tēl ahmo tihuīquilia.',
-'tooltip-pt-anonlogin' => 'Tihuelīti timocalaqui, tēl ahmo tihuīquilia.',
 'tooltip-pt-logout' => 'Tiquīzāz',
 'tooltip-ca-talk' => 'Inīn tlahcuilōlli ītēixnāmiquiliz',
 'tooltip-ca-edit' => 'Tihuelīti ticpatla inīn zāzanilli. Timitztlātlauhtiah, tiquiclica achtochīhualizpan achtopa ticpiya.',

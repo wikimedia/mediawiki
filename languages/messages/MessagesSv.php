@@ -327,7 +327,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Stryk under länkar:',
-'tog-justify' => 'Marginaljustera stycken',
 'tog-hideminor' => 'Visa inte mindre redigeringar i senaste ändringar',
 'tog-hidepatrolled' => 'Dölj patrullerade redigeringar i senaste ändringar',
 'tog-newpageshidepatrolled' => 'Göm patrullerade sidor från listan över nya sidor',
@@ -1125,7 +1124,7 @@ Den senaste loggposten tillhandahålls nedan som referens:",
 'templatesusedsection' => '{{PLURAL:$1|Mall|Mallar}} som används i det här avsnittet:',
 'template-protected' => '(skyddad)',
 'template-semiprotected' => '(delvis skyddad)',
-'hiddencategories' => 'Denna sida är medlem i följande {{PLURAL:$1|dold kategori|dolda kategorier}}:',
+'hiddencategories' => 'Denna sida är medlem i {{PLURAL:$1|en dold kategori|$1 dolda kategorier}}:',
 'edittools' => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetext' => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
 Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skapa ett användarkonto]].',
@@ -1375,7 +1374,6 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo' => 'gör ogjord',
 'diff-empty' => '(Ingen skillnad)',
-'diff-multi' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en användare|$2 användare}} visas inte)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} av denna skillnad ($1) kunde inte hittas.
 
@@ -1396,7 +1394,7 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'shown-title' => 'Visa $1 {{PLURAL:$1|resultat|resultat}} per sida',
 'viewprevnext' => 'Visa ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.''' {{PLURAL:\$2|0=|Se även de andra sökresultaten som hittades.}}",
-'searchmenu-new' => "'''Skapa sidan \"[[:\$1]]\" på denna wiki!'''",
+'searchmenu-new' => '<strong>Skapa sidan "[[:$1]]" på denna wiki!</strong> {{PLURAL:$2|0=|Se även sidan som hittades med din sökning.|Se även sidorna som hittades med din sökning.}}',
 'searchprofile-articles' => 'Innehållssidor',
 'searchprofile-project' => 'Hjälp- och projektsidor',
 'searchprofile-images' => 'Multimedia',
@@ -2251,7 +2249,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'listusers-creationsort' => 'Sortera efter datum skapat',
 'listusers-desc' => 'Sortera i fallande ordning',
 'usereditcount' => '$1 {{PLURAL:$1|redigering|redigeringar}}',
-'usercreated' => '{{GENDER:$3|Skapat}} $1 $2',
+'usercreated' => '{{GENDER:$3|Skapade}} den $1 $2',
 'newpages' => 'Nya sidor',
 'newpages-username' => 'Användare:',
 'ancientpages' => 'Äldsta sidorna',
@@ -2430,6 +2428,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchmethod-list' => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains' => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'iteminvalidname' => "Problem med ''$1'', ogiltigt namn...",
+'wlnote2' => 'Nedan finns de senaste $1 ändringarna under {{PLURAL:$1|den senaste timmen|de senaste <strong>$2</strong> timmarna}} från den $3 kl. $4.',
 'wlshowlast' => 'Visa senaste $1 timmarna $2 dygnen $3',
 'watchlist-options' => 'Alternativ för bevakningslistan',
 
@@ -2542,7 +2541,7 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-
 'protectlogpage' => 'Skrivskyddslogg',
 'protectlogtext' => 'Detta är en lista över applicerande och borttagande av skrivskydd.
 Se [[Special:ProtectedPages|listan över skyddade sidor]] för listan över aktiva sidskydd.',
-'protectedarticle' => 'skrivskyddade [[$1]]',
+'protectedarticle' => 'skrivskyddade "[[$1]]"',
 'modifiedarticleprotection' => 'ändrade skyddsnivån för "[[$1]]"',
 'unprotectedarticle' => 'tog bort skrivskydd från "[[$1]]"',
 'movedarticleprotection' => 'flyttade skrivskyddsinställningar från "[[$2]]" till "[[$1]]"',
@@ -2982,6 +2981,7 @@ Besök [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] elle
 'allmessages-prefix' => 'Filtrera efter prefix:',
 'allmessages-language' => 'Språk:',
 'allmessages-filter-submit' => 'Gå',
+'allmessages-filter-translate' => 'Översätt',
 
 # Thumbnails
 'thumbnail-more' => 'Förstora',
@@ -3123,7 +3123,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-minoredit' => 'Markera som mindre ändring',
 'tooltip-save' => 'Spara dina ändringar',
 'tooltip-preview' => 'Förhandsgranska dina ändringar, vänligen använd detta innan du sparar!',
-'tooltip-diff' => 'Visa vilka förändringar du har gjort av texten.',
+'tooltip-diff' => 'Visa vilka ändringar du har gjort i texten.',
 'tooltip-compareselectedversions' => 'Visa skillnaden mellan de två markerade versionerna av den här sidan.',
 'tooltip-watch' => 'Lägg till den här sidan i din bevakningslista',
 'tooltip-watchlistedit-normal-submit' => 'Ta bort titlar',

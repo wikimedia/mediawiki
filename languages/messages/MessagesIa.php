@@ -147,7 +147,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sublinear ligamines:',
-'tog-justify' => 'Justificar paragraphos',
 'tog-hideminor' => 'Celar le modificationes minor in le modificationes recente',
 'tog-hidepatrolled' => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-newpageshidepatrolled' => 'Celar le paginas patruliate del lista de nove paginas',
@@ -715,6 +714,8 @@ Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'retypenew' => 'Repete le nove contrasigno:',
 'resetpass_submit' => 'Definir contrasigno e aperir un session',
 'changepassword-success' => 'Tu contrasigno ha essite cambiate!',
+'changepassword-throttled' => 'Tu ha recentemente facite troppo de tentativas de aperir session.
+Per favor attende $1 ante de probar lo novemente.',
 'resetpass_forbidden' => 'Le contrasignos non pote esser cambiate',
 'resetpass-no-info' => 'Tu debe aperir un session pro poter acceder directemente a iste pagina.',
 'resetpass-submit-loggedin' => 'Cambiar contrasigno',
@@ -775,6 +776,8 @@ Contrasigno temporari: $2',
 'changeemail-password' => 'Contrasigno de {{SITENAME}}:',
 'changeemail-submit' => 'Cambiar e-mail',
 'changeemail-cancel' => 'Cancellar',
+'changeemail-throttled' => 'Tu ha facite troppo de tentativas de aperir session.
+Per favor attende $1 ante de probar lo novemente.',
 
 # Special:ResetTokens
 'resettokens' => 'Reinitialisar indicios',
@@ -1223,7 +1226,6 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'showhideselectedversions' => 'Revelar/celar le versiones seligite',
 'editundo' => 'disfacer',
 'diff-empty' => '(Nulle differentia)',
-'diff-multi' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per {{PLURAL:$2|un usator|$2 usatores}} non es monstrate)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)',
 'difference-missing-revision' => '{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.
 
@@ -1260,6 +1262,7 @@ Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-result-score' => 'Relevantia: $1%',
 'search-redirect' => '(redirection ab $1)',
 'search-section' => '(section $1)',
+'search-file-match' => '(corresponde al contento del file)',
 'search-suggest' => 'Esque tu vole dicer: $1',
 'search-interwiki-caption' => 'Projectos fratres',
 'search-interwiki-default' => 'Resultatos de $1:',
@@ -2293,7 +2296,7 @@ Le modificationes futur in iste pagina e in le pagina de discussion associate es
 'watchmethod-list' => 'cerca modificationes recente in paginas sub observation',
 'watchlistcontains' => 'Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname' => "Problema con entrata '$1', nomine invalide...",
-'wlnote' => "Ecce le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}, a partir del $3 a $4.",
+'wlnote2' => 'Ecce le cambiamentos in le ultime {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir del $2 a $3.',
 'wlshowlast' => 'Revelar ultime $1 horas $2 dies $3',
 'watchlist-options' => 'Optiones del observatorio',
 
@@ -2383,7 +2386,7 @@ Le deletion de tal paginas ha essite restringite pro impedir le disruption accid
 'delete-warning-toobig' => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAME}};
 procede con caution.',
-'deleting-backlinks-warning' => "'''Attention:''' Il ha altere paginas con ligamines al pagina que tu es sur le puncto de deler.",
+'deleting-backlinks-warning' => "'''Attention:''' Il ha altere paginas que liga a o transclude le pagina que tu es sur le puncto de deler.",
 
 # Rollback
 'rollback' => 'Revocar modificationes',
@@ -2693,7 +2696,7 @@ Vide le [[Special:BlockList|lista de blocadas]] pro le lista de bannimentos e bl
 'range_block_disabled' => 'Le capacitate del administratores a blocar intervallos de adresses IP es disactivate.',
 'ipb_expiry_invalid' => 'Tempore de expiration invalide.',
 'ipb_expiry_temp' => 'Le blocadas de nomines de usator celate debe esser permanente.',
-'ipb_hide_invalid' => 'Impossibile supprimer iste conto; illo pote haber troppo de modificationes.',
+'ipb_hide_invalid' => 'Impossibile supprimer iste conto; illo ha plus de {{PLURAL:$1|un modification|$1 modificationes}}.',
 'ipb_already_blocked' => '"$1" es ja blocate',
 'ipb-needreblock' => '$1 es ja blocate. Esque tu vole cambiar le configurationes?',
 'ipb-otherblocks-header' => 'Altere {{PLURAL:$1|blocada|blocadas}}',
@@ -2868,6 +2871,7 @@ Per favor visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisa
 'allmessages-prefix' => 'Filtrar per prefixo:',
 'allmessages-language' => 'Lingua:',
 'allmessages-filter-submit' => 'Va',
+'allmessages-filter-translate' => 'Traducer',
 
 # Thumbnails
 'thumbnail-more' => 'Aggrandir',
@@ -2919,7 +2923,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'importuploaderrortemp' => 'Le incargamento del file de importation ha fallite. Un directorio temporari manca.',
 'import-parse-failure' => 'Error syntactic durante importation XML',
 'import-noarticle' => 'Nulle pagina a importar!',
-'import-nonewrevisions' => 'Tote le versiones habeva ja essite importate anteriormente.',
+'import-nonewrevisions' => 'Nulle version ha essite importate (totes esseva jam presente o ha essite saltate a causa de errores).',
 'xml-error-string' => '$1 al linea $2, col $3 (byte $4): $5',
 'import-upload' => 'Incargar datos XML',
 'import-token-mismatch' => 'Perdita del datos del session. Per favor reprova.',
@@ -2930,6 +2934,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-error-special' => 'Le pagina "$1" non es importate perque illo pertine a un spatio de nomines special que non permitte paginas.',
 'import-error-invalid' => 'Le pagina "$1" non es importate perque su nomine es invalide.',
 'import-error-unserialize' => 'Le version $2 del pagina "$1" non pote esser disserialisate. Il ha essite reportate que iste version usa le modello de contento $3 serialisate como $4.',
+'import-error-bad-location' => 'Le version $2 que usa le modello de contento $3 non pote esser immagazinate in "$1" in iste wiki, perque iste modello non es supportate in iste pagina.',
 'import-options-wrong' => 'Mal {{PLURAL:$2|option|optiones}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Le pagina radice specificate es un titulo invalide.',
 'import-rootpage-nosubpage' => 'Le spatio de nomines "$1" del pagina radice non permitte subpaginas.',
@@ -2961,7 +2966,6 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'tooltip-pt-watchlist' => 'Le lista de paginas del quales tu seque le modificationes',
 'tooltip-pt-mycontris' => 'Lista de tu contributiones',
 'tooltip-pt-login' => 'Nos recommenda que tu te authentica, ma non es obligatori.',
-'tooltip-pt-anonlogin' => 'Nos recommenda que tu te authentica, ma non es obligatori.',
 'tooltip-pt-logout' => 'Clauder session',
 'tooltip-ca-talk' => 'Discussiones a proposito del pagina de contento',
 'tooltip-ca-edit' => 'Tu pote modificar iste pagina.

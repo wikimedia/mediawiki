@@ -145,7 +145,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garisi di bawah tautan',
-'tog-justify' => 'Ratakan paragraf',
 'tog-hideminor' => 'Sungkupakan babakan sapalih dalam paubahan pahanyarnya',
 'tog-hidepatrolled' => 'Sungkupakan babakan taawasi dalam paubahan pahanyarnya',
 'tog-newpageshidepatrolled' => 'Sungkupakan tungkaran nang diitihi matan daptar tungkaran hanyar',
@@ -1093,7 +1092,6 @@ Catatan bahwasa mamuruk tautan napigasi akan mambulikakan setelan kolum ngini.',
 'compareselectedversions' => 'Tandingakan ralatan nang dipilih',
 'showhideselectedversions' => 'Tampaiakan/sungkupakan ralatan-ralatan',
 'editundo' => 'walangi',
-'diff-multi' => '({{PLURAL:$1|Asa ralatan tangah|$1 raralatan tangah}} ulih {{PLURAL:$2|asa pamakai|$2 papamakai}} kada ditampaiakan)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Asa ralatan tangah|$1 raralatan tangah}} ulih labih pada $2 {{PLURAL:$2|pamuruk|papamuruk}} kada ditampaiakan)',
 
 # Search results
@@ -2067,7 +2065,6 @@ Paubahan-paubahan salanjutnya pada tungkaran ngini dan tungkaran pamandiran tara
 'watchmethod-list' => 'pariksa tutungkaran nang diitihi gasan bababakan pahanyarnya',
 'watchlistcontains' => 'Paitihan Pian mangandung $1 {{PLURAL:$1|tungkaran|tutungkaran}}.',
 'iteminvalidname' => "Masalah awan barang '$1', bangaran kada sah...",
-'wlnote' => "Di bawah naya adalah {{PLURAL:$1|paubahan|'''$1''' paubahan}} tauncit dalam '''$2''' jam tauncit, par $3, $4.",
 'wlshowlast' => 'Tampaiakan $1 jam $2 hari pahabisan $3',
 'watchlist-options' => 'Pilihan daptar itihan',
 
@@ -2701,7 +2698,6 @@ Muhun cubai pulang.',
 'tooltip-pt-watchlist' => 'Daptar tungkaran-tungkaran nang Pian itihi paubahannya',
 'tooltip-pt-mycontris' => 'Daptar sumbangan Pian',
 'tooltip-pt-login' => 'Pian sabaiknya babuat ka dalam log; tagal ngini kada kawajiban pang',
-'tooltip-pt-anonlogin' => 'Pian sabaiknya babuat ka dalam log; tagal ini kada kawajiban pang',
 'tooltip-pt-logout' => 'Kaluar',
 'tooltip-ca-talk' => 'Pamandiran pasal isi tungkaran',
 'tooltip-ca-edit' => 'Pian kawa mambabak tungkaran ngini. Tabéngkéng amun mamakai picikan titilikan sabalum manyimpan',

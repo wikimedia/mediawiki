@@ -49,7 +49,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'በመያያዣ ስር አስምር',
-'tog-justify' => 'አንቀጾችን አስተካክል',
 'tog-hideminor' => 'በቅርብ ጊዜ የተደረጉ አነስተኛ እርማቶችን ደብቅ',
 'tog-hidepatrolled' => 'ተደጋጋሚ እርማቶችን ከቅርብ ጌዜ እርማቶች ዝርዝር ውስጥ ደብቅ',
 'tog-newpageshidepatrolled' => 'በተደጋጋሚ የታዩ ገፆችን ከአዲስ ገፆች ዝርዝር ውስጥ ደብቅ።',
@@ -58,9 +57,7 @@ $messages = array(
 'tog-numberheadings' => 'አርዕስቶችን በራስገዝ ቁጥር ስጥ',
 'tog-showtoolbar' => '«አርም» ትዕዛዝ-መስጫ ይታይ (JavaScript)',
 'tog-editondblclick' => 'ሁለቴ መጫን ገጹን ማረም ያስችል (JavaScript ያስፈልጋል)',
-'tog-editsection' => 'በ[አርም] መያያዣ ክፍል ማረምን አስችል',
 'tog-editsectiononrightclick' => 'የክፍል አርዕስት ላይ በቀኝ በመጫን ክፍል ማረምን አስችል (JavaScript)',
-'tog-showtoc' => 'ከ3 አርዕስቶች በላይ ሲሆን የማውጫ ሰንጠረዥ ይታይ',
 'tog-rememberpassword' => 'ለሚቀጥለው ጊዜ በዚህ ኮምፒውተር ላይ በአባልነት ስሜ መግባቴን (ቢበዛ ለ$1 {{PLURAL:$1|ቀን|ቀናት}}) አስታውስ።',
 'tog-watchcreations' => 'እኔ የምፈጥራቸውን ገጾችና የምልካቸውን ፋይሎች ወደምከታተላቸው ገጾች ዝርዝር ውስጥ ጨምር',
 'tog-watchdefault' => 'ያረምኳቸውን ገጾች እና ፋይሎች ወደምከታተላቸው ገጾች ዝርዝር ውስጥ ጨምር',
@@ -790,7 +787,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'lineno' => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo' => 'ለውጡ ይገልበጥ',
-'diff-multi' => '(ከነዚህ 2 እትሞች መካከል በ{{PLURAL:$2|አንድ አባል |$2 አባላት}} {{PLURAL:$1|የተደረገ አንድ ለውጥ አይታይም|የተደረጉ $1 ለውጦች አይታዩም}}።)',
 
 # Search results
 'searchresults' => 'የፍለጋ ውጤቶች',
@@ -1514,7 +1510,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchmethod-recent' => 'የቅርብ ለውጦችን ለሚከታተሉት ገጾች በመፈለግ',
 'watchmethod-list' => 'የሚከታተሉትን ገጾች ለቅርብ ለውጦች በመፈለግ',
 'watchlistcontains' => 'አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።',
-'wlnote' => 'ባለፉት <b>$2</b> ሰዓቶች የተደረጉት $1 መጨረሻ ለውጦች እታች ይገኛሉ።',
 'wlshowlast' => 'ያለፉት $1 ሰዓት፤ $2 ቀን፤ $3 ይታዩ።',
 'watchlist-options' => 'የዝርዝሩ ምርጫዎች',
 
@@ -1953,7 +1948,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'tooltip-pt-watchlist' => 'እርስዎ ስለ ለውጦች የሚከታተሏቸው ገጾች',
 'tooltip-pt-mycontris' => 'የተሳተፍክባቸው/ሽባቸው ቦታዎች ዝርዝር',
 'tooltip-pt-login' => 'በብዕር ስም መግባትዎ ጠቃሚ ቢሆንም አስፈላጊነት አይደለም',
-'tooltip-pt-anonlogin' => 'በብዕር ስም መግባትዎ ጠቃሚ ቢሆንም አስፈላጊነት አይደለም',
 'tooltip-pt-logout' => 'ከብዕር ስምዎ ለመውጣት',
 'tooltip-ca-talk' => 'ስለ ገጹ ለመወያየት',
 'tooltip-ca-edit' => 'ይህን ገጽ ለማዘጋጀት ይችላሉ!',

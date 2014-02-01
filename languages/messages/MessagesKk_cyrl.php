@@ -362,7 +362,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Сілтеменің астын сызу:',
-'tog-justify' => 'Ежелерді ені бойынша туралау',
 'tog-hideminor' => 'Жуықтағы өзгерістерден шағын өңдемелерді жасыру',
 'tog-hidepatrolled' => 'Тексерілген өңдеулерді соңғы өзгерістер тізімінде көрсетпеу',
 'tog-newpageshidepatrolled' => 'Тексерілген беттерді жаңа беттер тізімінде көрсетпеу',
@@ -583,7 +582,7 @@ $messages = array(
 'categorypage' => 'Санат бетін қарау',
 'viewtalkpage' => 'Талқылау бетін қарау',
 'otherlanguages' => 'Басқа тілдерде',
-'redirectedfrom' => '($1 бетінен айдатылған)',
+'redirectedfrom' => '($1 бетінен бағытталған)',
 'redirectpagesub' => 'Айдату беті',
 'lastmodifiedat' => 'Бұл беттің соңғы өзгертілген кезі: $2, $1.',
 'viewcount' => 'Бұл бет {{PLURAL:$1|бір рет|$1 уақыт}} қатыналған.',
@@ -1304,7 +1303,6 @@ $1",
 'showhideselectedversions' => 'Бөлектенген нұсқаларды көрсет/жасыр',
 'editundo' => 'жоққа шығару',
 'diff-empty' => '(айырмашылығы жоқ)',
-'diff-multi' => '($2 қатысушының арадағы $1 түзетуі көрсетілмеген)',
 
 # Search results
 'searchresults' => 'Іздеу нәтижелері',

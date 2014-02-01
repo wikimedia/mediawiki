@@ -145,7 +145,6 @@ $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Keppelings ûnderstreekje:',
-'tog-justify' => 'Paragrafen útfolje',
 'tog-hideminor' => "Tekstwizigings wei litte út 'Koartlyn feroare'",
 'tog-hidepatrolled' => 'Markearre feroarings ferskûlje yn resinte feroarings',
 'tog-newpageshidepatrolled' => "Markearre siden ferskûlje yn 'e list mei nije siden",
@@ -154,9 +153,7 @@ $messages = array(
 'tog-numberheadings' => 'Koppen fansels nûmerje',
 'tog-showtoolbar' => 'Brûk arkbalke by bewurkjen',
 'tog-editondblclick' => 'Dûbelklik jout bewurkingsside (freget JavaScript)',
-'tog-editsection' => 'Jou [bewurk]-keppelings foar seksjebewurking',
 'tog-editsectiononrightclick' => 'Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)',
-'tog-showtoc' => 'Ynhâldsopjefte, foar siden mei mear as twa koppen',
 'tog-rememberpassword' => 'Oare kear fansels oanmelde (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => "Set siden dy't jo begjinne yn jo folchlist",
 'tog-watchdefault' => "Sides dy't jo feroare hawwe folgje",
@@ -937,7 +934,6 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 'compareselectedversions' => 'Ferlykje selektearre ferzjes',
 'showhideselectedversions' => 'Oantikke ferzjes wol/net sjen litte',
 'editundo' => 'werom sette',
-'diff-multi' => '({{PLURAL:$1|Ien tuskenlizzende ferzje wurdt|$1 tuskenlizzende ferzjes wurde}} net sjen litten.)',
 
 # Search results
 'searchresults' => 'Sykresultaat',
@@ -1704,7 +1700,6 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'watchmethod-list' => 'Folge ...',
 'watchlistcontains' => 'Jo folgje op it stuit $1 {{PLURAL:$1|side|siden}}.',
 'iteminvalidname' => 'Misse namme: "$1" ...',
-'wlnote' => "Dit {{PLURAL:$1|is de lêste feroaring|binne de lêste '''$1''' feroarings}} yn de lêste {{PLURAL:$2|oer|'''$2''' oeren}}.",
 'wlshowlast' => 'Lit feroarings sjen fan de lêste $1 oeren $2 dagen $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching

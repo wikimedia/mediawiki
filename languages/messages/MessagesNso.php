@@ -48,9 +48,7 @@ $messages = array(
 'tog-hideminor' => 'Fihla diphetogo tše nnyenyane',
 'tog-showtoolbar' => "Bontšha ''toolbar'' yago fetola (JavaScript)",
 'tog-editondblclick' => 'Fetola matlakala ka go thathapa gabedi (JavaScript)',
-'tog-editsection' => 'Dumella go fetola sekgao ka [fetola] hlomaganyo',
 'tog-editsectiononrightclick' => 'Dumella go fetola sekgao ka thathapa ka lagoja thaetlele ya sekgao (JavaScript)',
-'tog-showtoc' => 'Bontšha Tatelano ya dikagare (go matlakala a goba le dihlogo tša go feta 3)',
 'tog-rememberpassword' => 'Gopola sedi yaka ya go tsena khomphutha ye (bogolo bja  $1 bja {{PLURAL:$1| ya letšatši le|ya matšatši}})',
 'tog-watchcreations' => 'Tsenya matlaka a mafsa ao ke a ngwalago go lenano laka la ditlhapetšo',
 'tog-watchdefault' => 'Tsenya matlaka ao ke a fetolago go lenano laka la ditlhapetšo',
@@ -538,7 +536,6 @@ fetola tshenolo',
 'lineno' => 'Mothalo $1:',
 'compareselectedversions' => 'Bapetša diphapang tšeo di kgethilwego',
 'editundo' => 'dirolla',
-'diff-multi' => '({{PLURAL:$1|Phetogo ya bjale ye tee|$1 tša diphetogo tša bjale}} tša {{PLURAL:$2|mošumiši o tee|$2 tša bašumiši}} gadi laetšwe)',
 
 # Search results
 'searchresults' => 'Sephetho sa go fetleka',

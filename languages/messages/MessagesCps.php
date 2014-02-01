@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Kuritan sa idalum ang mga link',
-'tog-justify' => 'Tadlungon ang mga talata',
 'tog-hideminor' => 'Itago ang mga gamay nga ginliwat sang mini lang ginbag-o',
 'tog-hidepatrolled' => 'Itago ang mga napatrolya nga mga na-islan sang mini lang ginbag-o',
 'tog-newpageshidepatrolled' => 'Itago ang mga napatrolya nga mga pahina halin sa bag-o nga lista sang pahina',
@@ -24,9 +23,7 @@ $messages = array(
 'tog-numberheadings' => 'Insigida nga pag-isip sang numero sa mga titulo',
 'tog-showtoolbar' => 'Ipakita ang toolbar sang pag-ilis (kinahanglan ang JavaScript)',
 'tog-editondblclick' => 'Liwaton ang mga pahina sa duwa ka pindot {kinahanglan ang Javascript}',
-'tog-editsection' => 'Pasugtan ang pagilis sang mga seksyon pamaagi sa mga [ilis] nga link',
 'tog-editsectiononrightclick' => 'Pasugtan ang pag-ilis sang mga bahin pama-agi sa tu-o nga pagpindot sa mga titulo sang pahina {kinanglan ang JavaScript}',
-'tog-showtoc' => 'Ipakita ang listahan sang mga kaundan (sa mga pahina nga may madamu pa sa 3 ka titulo)',
 'tog-rememberpassword' => 'Dumduma ang pagsulod ko sa mini nga kompyuter (pinakadamu na ang $1 {{PLURAL:$1|adlaw|mga adlaw}})',
 'tog-watchcreations' => 'Idugang sa akon balantayan ang mga pahina nga gin-ubra ko.',
 'tog-watchdefault' => 'Idugang sa akon balantayan ang mga pahina nga akon na-islan',

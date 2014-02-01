@@ -156,7 +156,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Wotkazy podšmórnić:',
-'tog-justify' => 'Tekst w blokowej sadźbje',
 'tog-hideminor' => 'Snadne změny w aktualnych změnach schować',
 'tog-hidepatrolled' => 'Dohladawane změny w aktualnych změnach schować',
 'tog-newpageshidepatrolled' => 'Dohladowane strony z lisćiny nowych stronow schować',
@@ -1172,7 +1171,6 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'showhideselectedversions' => 'Wubrane wersije pokazać/schować',
 'editundo' => 'cofnyć',
 'diff-empty' => '(Žadyn rozdźěl)',
-'diff-multi' => '({{PLURAL:$1|Jedna mjezywersija|$1 mjezywersiji|$1 mjezywersije|$1 mjezywersijow}} wot {{PLURAL:$2|jednoho wužiwarja|$2 wužiwarjow|$2 wužiwarjow|$2 wužiwarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Jedna mjezywersija|$1 mjezywersiji|$1 mjezywersije|$1 mjezywersijow}} wot wjace hač {{PLURAL:$2|jednoho wužiwarja|$2 wužiwarjow|$2 wužiwarjow|$2 wužiwarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna wersija|$2 wersiji|$2 wersije|$2 wersijow}} tutoho rozdźěla ($1) {{PLURAL:$2|njeje so namakała|njejstej so namakałoj|njejsu namakali|njeje so namakało}}.
 

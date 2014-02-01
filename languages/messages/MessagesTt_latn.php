@@ -94,7 +94,6 @@ $linkTrail = '/^([a-zäçğıñöşü“»]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sıltamalarnıñ astına sızu:',
-'tog-justify' => 'Tekst kiñlek buyınça tigezlänsen',
 'tog-hideminor' => 'Soñğı üzgärtülär isemlegendä keçe üzgärtülär yäşerelsen',
 'tog-hidepatrolled' => 'Tikşerelgän üzgärtülär yaña üzgärtülär isemlegennän yäşerelsen.',
 'tog-newpageshidepatrolled' => 'Tikşerelgän bitlär yaña bitlär isemlegennän yäşerelsen',
@@ -103,9 +102,7 @@ $messages = array(
 'tog-numberheadings' => 'Atamalar avtomat räweştä nomerlansın',
 'tog-showtoolbar' => 'Üzgärtü waqıtında qorallarnıñ öske panele kürsätelsen (JavaScript kiräk)',
 'tog-editondblclick' => 'Bitlärgä ike çirtterü belän üzgärtü bite açılsın (JavaScript kiräk)',
-'tog-editsection' => 'Här bülektä «üzgärtü» sıltaması kürsätelsen',
 'tog-editsectiononrightclick' => 'Bülek isemenä tıçqannıñ uñ çirttermäse belän törtkäç üzgärtü bite açılsın (JavaScript kiräk)',
-'tog-showtoc' => 'Eçtälek kürsätelsen (3 tän kübräk başlamlı bitlärdä)',
 'tog-rememberpassword' => 'Xisap yazmamnı bu brauzerda saqlansın (iñ küp $1 {{PLURAL:$1|kön|kön|kön}}gä qädär)',
 'tog-watchcreations' => 'Tözegän bitlärem küzätü isemlegemä östälsen',
 'tog-watchdefault' => 'Üzgärtkän bitlärem küzätü isemlegemä östälsen',

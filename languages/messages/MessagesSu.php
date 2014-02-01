@@ -129,7 +129,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Gurat-handapan tutumbu',
-'tog-justify' => 'Lempengkeun alinéa',
 'tog-hideminor' => 'Sumputkeun éditan minor dina nu anyar robah',
 'tog-hidepatrolled' => 'Sumputkeun anu geus diroris ti béréndélan nu anyar robah',
 'tog-newpageshidepatrolled' => 'Sumputkeun nu geus diroris tina béréndélan kaca anyar',
@@ -138,9 +137,7 @@ $messages = array(
 'tog-numberheadings' => 'Nomeran lulugu sacara otomatis',
 'tog-showtoolbar' => "Témbongkeun ''toolbar'' édit (JavaScript)",
 'tog-editondblclick' => 'Édit kaca ku klik ganda (JavaScript)',
-'tog-editsection' => 'Tambahkeun tumbu [édit] ngarah bisa ngarobah eusi bab',
 'tog-editsectiononrightclick' => 'Fungsikeun ngédit sub-bagean kalawan klik-katuhu dina judul bagean (JavaScript)',
-'tog-showtoc' => 'Témbongkeun daptar eusi<br />(pikeun kaca nu leuwih ti tilu subjudul)',
 'tog-rememberpassword' => 'Apalkeun login kuring dina ieu panyungsi (pikeun paling lila $1 {{PLURAL:$1|poé|poé}})',
 'tog-watchcreations' => 'Tambahkeun kaca-kaca jieunan kuring jeung berkas muatan kuring kana awaskeuneun',
 'tog-watchdefault' => 'Tambahkeun kaca jeung berkas anu diédit ku kuring kana awaskeuneun',
@@ -994,7 +991,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'compareselectedversions' => 'Bandingkeun vérsi nu dipilih',
 'showhideselectedversions' => 'Témbongkeun/sumputkeun révisi nu dipilih',
 'editundo' => 'bolaykeun',
-'diff-multi' => '({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya {{PLURAL:$2|hiji kontributor|$2 kontributor}} teu ditémbongkeun)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Hiji révisi antara|$1 révisi antara}} karya leuwih ti {{PLURAL:$2|pamaké|pamaké}} teu ditémbongkeun)',
 
 # Search results
@@ -1818,7 +1814,6 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'watchmethod-list' => 'mariksa nu anyar robah na kaca nu diawaskeun',
 'watchlistcontains' => 'Anjeun ngawaskeun $1 {{PLURAL:$1|kaca|kaca}}.',
 'iteminvalidname' => "Masalah dina '$1', ngaran teu bener...",
-'wlnote' => "Di handap ieu mangrupa $1 {{PLURAL:$1|robahan|robahan}} ahir salila '''$2''' jam.",
 'wlshowlast' => 'Témbongkeun $1 jam $2 poé $3 ahir',
 'watchlist-options' => 'Pilihan awaskeuneun',
 
@@ -2298,7 +2293,6 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 'tooltip-pt-watchlist' => 'Daptar kaca nu diawaskeun ku anjeun parobahanana.',
 'tooltip-pt-mycontris' => 'Daptar tulisan Anjeun',
 'tooltip-pt-login' => 'Leuwih hadé asup log, sanajan teu wajib',
-'tooltip-pt-anonlogin' => 'Anjeun leuwih hadé asup log, sanajan teu wajib.',
 'tooltip-pt-logout' => 'Kaluar log',
 'tooltip-ca-talk' => 'Sawala ngeunaan eusi kaca',
 'tooltip-ca-edit' => 'Anjeun bisa ngédit kaca ieu. Paké tombol pramidang méméh nyimpen.',

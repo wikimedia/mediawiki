@@ -46,7 +46,6 @@ $namespaceGenderAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ferwiese unnerstriekje:',
-'tog-justify' => 'Text as Bloksats',
 'tog-hideminor' => 'Litje Annerengen uutbländje',
 'tog-hidepatrolled' => 'Kontrollierde Annerengen in do "Lääste Annerengen" uutbländje',
 'tog-newpageshidepatrolled' => 'Kontrollierde Sieden ap ju Lieste „Näie Sieden“ ferbierge',
@@ -924,7 +923,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'compareselectedversions' => 'Wäälde Versione ferglieke',
 'showhideselectedversions' => 'Uutwäälde Versione wiese/fersteete',
 'editundo' => 'tounichte moakje',
-'diff-multi' => ' ({{PLURAL:$1|Ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} fon {{PLURAL:$2|n Benutser|$2 Benutsere}} {{PLURAL:$1|wäd|wäide}} nit wiesd)',
 'diff-multi-manyusers' => ' ({{PLURAL:$1|Ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} fon moor as {{PLURAL:$2|Benutser|$2 Benutsere}} nit wiesd)',
 
 # Search results
@@ -1835,7 +1833,6 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'watchmethod-list' => 'Uurpröiwjen fon ju Beooboachtengslieste ätter lääste Beoarbaidengen',
 'watchlistcontains' => 'Jou Beooboachtengslieste änthaalt $1 {{PLURAL:$1|Siede|Sieden}}.',
 'iteminvalidname' => "Problem mäd dän Iendraach '$1', ungultige Noome...",
-'wlnote' => "Hier {{PLURAL:$1|foulget do lääste Annerenge|foulgje do lääste '''$1''' Annerengen}} fon do lääste {{PLURAL:$2|Uur|'''$2''' Uuren}}.",
 'wlshowlast' => 'Wies do lääste $1 Uuren, $2 Deege, of $3 (in do lääste 30 Deege).',
 'watchlist-options' => 'Anwiesoptione',
 
@@ -2414,7 +2411,6 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 'tooltip-pt-watchlist' => 'Lieste fon do beooboachtede Sieden',
 'tooltip-pt-mycontris' => 'Lieste fon dien Biedraage',
 'tooltip-pt-login' => 'Jou ientoulogjen wäd wäil jädden blouked, man is neen Plicht.',
-'tooltip-pt-anonlogin' => 'Sik ientoulogjen wäd wäil jädden blouked, man is neen Plicht.',
 'tooltip-pt-logout' => 'Oumäldje',
 'tooltip-ca-talk' => 'Diskussion uur dän Inhoold fon ju Siede',
 'tooltip-ca-edit' => 'Siede beoarbaidje. Jädden foar dät Spiekerjen ju Foarbekiekfunktion benutsje.',

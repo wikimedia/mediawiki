@@ -14,7 +14,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Zawmna hnuairinna',
-'tog-justify' => 'Hlawm tinte tlang tirual rawh',
 'tog-hideminor' => 'Siamţhatna tenau tihdanglam thar zingah tilang suh',
 'tog-hidepatrolled' => 'Siamţhat venhim tihdanglam thar zingah tilang suh',
 'tog-newpageshidepatrolled' => 'Phêk venhim phêk thar tlarah tilang suh',
@@ -23,9 +22,7 @@ $messages = array(
 'tog-numberheadings' => 'A thupuite amahin nambar inpêktir rawh',
 'tog-showtoolbar' => 'Siamṭhatna hmanraw-liang tilang rawh (JavaScript a ngai)',
 'tog-editondblclick' => 'Hmehphìrin phêk siamṭha rawh (JavaScript a ngai)',
-'tog-editsection' => 'Hlawm hrang siamṭhatna [siamṭhatna] zawmna hmangin awmtir rawh',
 'tog-editsectiononrightclick' => 'Hlawm thupui ding-hmeh hmangin hlawm siamţhat theihna awmtir rawh (JavaScript a ngai)',
-'tog-showtoc' => 'A chhunga thu awm te tilang rawh (thupui 3 aia tam phêk tan)',
 'tog-rememberpassword' => 'He ka rangpuifannaah hian min hre reng rawh (a rei berah ni $1  {{PLURAL:$1}})',
 'tog-watchcreations' => 'Ka phêk siamte leh ka taksa hlankaite ka ralvèn zing-ah telh rawh',
 'tog-watchdefault' => 'Ka phêk siamţhatte ka ralvèn zing-ah telh rawh',
@@ -703,7 +700,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 'lineno' => 'Tlar $1:',
 'compareselectedversions' => 'Ennawnna i thlan tâkte khaikhin rawh le',
 'editundo' => 'tihletna',
-'diff-multi' => '(Hmangtu {{PLURAL:$2|1-in|$2-ten}} a karlaka {{PLURAL:$2|a|an}} ennawnna {{PLURAL:$1|1|$1-te}} tihlan a ni lo)',
 
 # Search results
 'searchresults' => 'Zawn hmuhte',
@@ -1640,7 +1636,6 @@ Khawngaihin tum nawn leh rawh.',
 'tooltip-pt-watchlist' => 'Tihdanglam tùra i ruahman phêkte',
 'tooltip-pt-mycontris' => 'I kutthawhna-ho ziahchhuahna',
 'tooltip-pt-login' => 'Inziak lut tura duh i ni; amaherawhchu a ţül kher lo.',
-'tooltip-pt-anonlogin' => 'Inziak lut tura duh i ni; amaherawhchu, a ţül kher lo',
 'tooltip-pt-logout' => 'Chhuahna',
 'tooltip-ca-talk' => 'He phêk chungchang sawihona',
 'tooltip-ca-edit' => 'Hemi phek hi i siamţha thei.

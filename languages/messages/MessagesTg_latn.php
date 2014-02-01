@@ -14,7 +14,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Zerpajvandho xat kaşida şavand:',
-'tog-justify' => 'Tamomcenkardani bandho',
 'tog-hideminor' => "Nişon nadodani taƣjiroti çuz'i dar fehristi taƣjiroti oxir",
 'tog-hidepatrolled' => 'Pinhon kardani viroişhoi gaştxūrda dar taƣjiroti oxir',
 'tog-newpageshidepatrolled' => 'Pinhoni sahifahoi gaştxūrda az fehristi sahifahoi nav',
@@ -23,9 +22,7 @@ $messages = array(
 'tog-numberheadings' => 'şumoraguzori~i xudkori invonho',
 'tog-showtoolbar' => 'Namoişi navori abzori viroiş (JavaScript)',
 'tog-editondblclick' => 'Viroiş namudani sahifaho hangomi du karat paxş namudani tugmai muşak (JavaScript)',
-'tog-editsection' => 'Içozat dodani viroişi qismati sahifa ba vositai pajvandi [viroiş]',
 'tog-editsectiononrightclick' => 'Ba kor andoxtani viroişi sarlavhahoi qismatho bo kliki rost (ÇavaSkript)',
-'tog-showtoc' => 'Namoişi fehristi mundariçon (baroi maqolahoi bo beş az 3 sarlavha)',
 'tog-rememberpassword' => 'Vurudi manro dar in mururgar dar xotir nigoh dor (haddi aksar to $1 {{PLURAL:$1|rūz|rūz}})',
 'tog-watchcreations' => 'Doxil namudani sahifahoe, ki man soxtaam ba fehristi nazaroti man',
 'tog-watchdefault' => 'Sahifahoi eçodkardaamro ba fehristi pajgiriam ilova kuned',
@@ -669,7 +666,6 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'lineno' => 'Satri $1:',
 'compareselectedversions' => 'Nusxahoi intixobşudaro muqoisa kuned',
 'editundo' => 'botil',
-'diff-multi' => '({{PLURAL:$1|viroişi mijonī|$1 viroişoti mijonī}} nişon doda naşudaast.)',
 
 # Search results
 'searchresults' => 'Natiçahoi çustuçū',
@@ -1228,7 +1224,6 @@ Agar şumo dertar az fehristi nazarotaton in sahifaro hazv kardan xohed, dar men
 'watchmethod-list' => 'barrasiji sahifahoi pajgirişuda baroi viroişhoi oxir',
 'watchlistcontains' => 'Fehristi pajgirihoi şumo $1 {{PLURAL:$1|sahifaro|sahifahoro}} dar bar megirad.',
 'iteminvalidname' => "Muşkilī bo mavridi '$1', nomi nomū'tabar ast...",
-'wlnote' => "Dar zer {{PLURAL:$1|oxirin taƣjir|'''$1''' oxirin taƣjirot}} dar $2 soati oxir {{PLURAL:omadaast|omadaand}}.",
 'wlshowlast' => 'Namoişi oxirin $1 soat $2 rūzho $3',
 'watchlist-options' => 'Ixtijoroti fehristi pajgiriho',
 
@@ -1650,7 +1645,6 @@ Pas onro ba kompjuteraton zaxira karda inço borguzorī kuned.",
 'tooltip-pt-watchlist' => 'Rūjxati sahifahoe, ki taƣjirothojaşonro Şumo nazorat mekuned',
 'tooltip-pt-mycontris' => 'Fehristi hissaguzorihoi şumo',
 'tooltip-pt-login' => 'Tavsija meşavad ki ba sistem vorid şavad, lekin içborī nest.',
-'tooltip-pt-anonlogin' => 'Ba şumo tavzeh meşavad, ki ba sistem vorid şaved, lekin in içborī nest.',
 'tooltip-pt-logout' => 'Xuruç az sistem',
 'tooltip-ca-talk' => 'Bahsi matni tarkibiji in sahifa',
 'tooltip-ca-edit' => 'Şumo in sahifaro viroiş karda metavoned. Peş az zaxira kardani sahifa peşnamoişro istifoda bared.',

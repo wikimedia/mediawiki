@@ -107,16 +107,13 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sotturìnia li cullegamenti:',
-'tog-justify' => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor' => "Cua li mudìfigghi minori i' l'ulthimi mudìfigghi",
 'tog-extendwatchlist' => "Musthra tutti li mudìfigghi a li abbaidaddi ippiziari, nò soru l'ulthimi.",
 'tog-usenewrc' => "Utirizza l'ulthimi mudìfigghi abanzaddi (dumanda JavaScript)",
 'tog-numberheadings' => 'Numarazioni otomàtigga di li tìturi di sezzioni',
 'tog-showtoolbar' => "Musthra barra di l'isthrumenti di mudìfigga (dumanda JavaScript)",
 'tog-editondblclick' => 'Mudìfigga di li pàgini attrabessu dóppiu clic (dumanda JavaScript)',
-'tog-editsection' => 'Mudìfigga di li sezzioni attrabessu lu cullegamentu [mudifigga]',
 'tog-editsectiononrightclick' => "Mudìfigga di li sezzioni attrabessu lu clic dresthu i' lu tìturu (nezzessàriu JavaScript)",
-'tog-showtoc' => "Musthra l'indizi pa li pàgini cun più di 3 sezzioni",
 'tog-rememberpassword' => "Ammenta la paràura d'órdhini (nezzessàriu azzittà li cookie) (for a maximum of $1 {{PLURAL:$1|dì|dì}})",
 'tog-watchcreations' => "Aggiungi li pàgini criaddi a l'abbaidaddi ippiziari",
 'tog-watchdefault' => "Aggiungi li pàgini mudìfiggaddi a l'abbaidaddi ippiziari",
@@ -760,7 +757,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Cunfronta li versioni sciubaraddi',
 'editundo' => 'annulla',
-'diff-multi' => '({{PLURAL:$1|Una ribisioni di mezu nò musthradda|$1 ribisioni di mezu nò musthraddi}}.)',
 
 # Search results
 'searchresults' => 'Risulthaddi di la zercha',
@@ -1283,7 +1279,6 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'watchmethod-list' => "cuntrollu di l'abbaidaddi ippiziari pa mudìfigghi rizzenti",
 'watchlistcontains' => "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina|$1 pàgini}}.",
 'iteminvalidname' => "Probremi cu' la pàgina '$1', innòmmu nò vàriddu...",
-'wlnote' => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|so erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} {{PLURAL:$2|i' la ulthima ora|i' li ulthimi '''$2''' ori}}.",
 'wlshowlast' => 'Musthra li ulthimi $1 ori $2 dì $3',
 'watchlist-options' => 'Opzioni abbaidaddi ippiziari',
 
@@ -1680,7 +1675,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-pt-watchlist' => "La listha di li pàgini ch'isthai tinendi sottu osseivvazioni",
 'tooltip-pt-mycontris' => 'Listha di li tó cuntributi',
 'tooltip-pt-login' => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória',
-'tooltip-pt-anonlogin' => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória.',
 'tooltip-pt-logout' => 'Iscidda',
 'tooltip-ca-talk' => 'Vèdi li dischussioni reratibi a chistha pàgina',
 'tooltip-ca-edit' => "Pói mudìfiggà chistha pàgina. Pa piazeri usa lu buttoni d'antiprimma primma di saivvà",

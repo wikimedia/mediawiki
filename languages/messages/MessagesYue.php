@@ -235,7 +235,6 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $messages = array(
 # User preference toggles
 'tog-underline' => '連結加底線：',
-'tog-justify' => '拍齊段落',
 'tog-hideminor' => '最新更改唔顯示小修改',
 'tog-hidepatrolled' => '響最近修改度隱藏巡查過嘅編輯',
 'tog-newpageshidepatrolled' => '響新頁清單度隱藏巡查過嘅版',
@@ -1071,7 +1070,6 @@ $1",
 'compareselectedversions' => '比較被選嘅修訂',
 'showhideselectedversions' => '顯示／隱藏揀咗嘅修訂',
 'editundo' => '復原',
-'diff-multi' => '（由$2位用戶所做嘅$1個中途修訂冇顯示到）',
 'diff-multi-manyusers' => '（由$2位更多用戶所做嘅$1個中途修訂冇顯示到）',
 
 # Search results
@@ -1954,7 +1952,6 @@ $1',
 'watchmethod-list' => '睇緊被監視頁有乜新修改',
 'watchlistcontains' => '你嘅監視清單裏面有$1頁。',
 'iteminvalidname' => "項目'$1'出錯，無效嘅名稱...",
-'wlnote' => "以下係最近'''$2'''個鐘之內嘅最新$1次修改。",
 'wlshowlast' => '顯示最近 $1 個鐘 $2 日 $3 嘅修改',
 'watchlist-options' => '監視清單選項',
 
@@ -2503,7 +2500,6 @@ $1',
 'tooltip-pt-watchlist' => '你所監視嘅頁面更改一覽',
 'tooltip-pt-mycontris' => '你嘅貢獻一覽',
 'tooltip-pt-login' => '建議你去登入；但係唔係一定嘅',
-'tooltip-pt-anonlogin' => '建議你去登入；但係唔係一定嘅',
 'tooltip-pt-logout' => '登出',
 'tooltip-ca-talk' => '關於內容頁嘅討論',
 'tooltip-ca-edit' => '你可以編輯呢一頁。請在儲存之前先預覽一吓。',

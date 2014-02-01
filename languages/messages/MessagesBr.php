@@ -181,7 +181,6 @@ $linkTrail = "/^((?:c\'h|C\'H|C\'h|c’h|C’H|C’h|[a-zA-Zàâçéèêîôûä
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Liammoù islinennet',
-'tog-justify' => 'Rannbennadoù marzekaet',
 'tog-hideminor' => "Kuzhat ar c'hemmoù nevez dister",
 'tog-hidepatrolled' => "Kuzhat ar c'hemmoù evezhiet e-touez ar c'hemmoù diwezhañ",
 'tog-newpageshidepatrolled' => 'Kuzhat ar pajennoù evezhiet diouzh roll ar pajennoù nevez',
@@ -1201,7 +1200,6 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'showhideselectedversions' => 'Diskouez/Kuzhat ar stummoù diuzet',
 'editundo' => 'dizober',
 'diff-empty' => '(Disheñvelder ebet)',
-'diff-multi' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant {{PLURAL:$2|un implijer|$2 implijer}} kuzhet.)",
 'diff-multi-manyusers' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant muioc'h eget $2 {{PLURAL:$2|implijer|implijer}} kuzhet.)",
 'difference-missing-revision' => "!!{{PLURAL:$2|Un adweladur|$2 adweladurioù}} eus an disheñvelder ($1) {{PLURAL:$2|n'eo ket bet kavet|n'int ket bet adkavet}}.
 
@@ -2242,7 +2240,6 @@ Amañ e vo rollet ar c\'hemmoù da zont evit ar bajenn-mañ hag ar bajenn gaozea
 'watchmethod-list' => "Gwiriañ ar c'hemmoù diwezhañ evit ar pajennoù evezhiet",
 'watchlistcontains' => '$1 {{PLURAL:$1|pajenn|pajenn}} zo en ho rollad evezhiañ',
 'iteminvalidname' => "Ur gudenn zo gant ar pennad « $1 » : n'eo ket mat e anv...",
-'wlnote' => "Setu aze {{PLURAL:$1|ar c'hemm diwezhañ|ar '''$1''' kemm diwezhañ}} c'hoarvezet e-kerzh an {{PLURAL:$2|eurvezh|'''$2''' eurvezh}} ziwezhañ, evit an $3 da $4.",
 'wlshowlast' => 'Diskouez an $1 eurvezh $2 devezh diwezhañ $3',
 'watchlist-options' => 'Dibarzhioù ar roll evezhiañ',
 
@@ -2881,7 +2878,6 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 'tooltip-pt-watchlist' => "Roll ar pajennoù evezhiet ganeoc'h.",
 'tooltip-pt-mycontris' => 'Roll ho tegasadennoù',
 'tooltip-pt-login' => "Daoust ma n'eo ket ret, ec'h aliomp deoc'h kevreañ",
-'tooltip-pt-anonlogin' => "Daoust ma n'eo ket ret, ec'h aliomp deoc'h kevreañ.",
 'tooltip-pt-logout' => 'Digevreañ',
 'tooltip-ca-talk' => 'Kaozeadennoù diwar-benn ar pennad',
 'tooltip-ca-edit' => 'Gallout a rit kemmañ ar bajenn-mañ. Implijit ar stokell Rakwelet a-raok enrollañ, mar plij.',

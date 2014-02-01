@@ -307,7 +307,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podvlačenje veza:',
-'tog-justify' => 'Poravnaj pasuse',
 'tog-hideminor' => 'Sakrij manje izmene u spisku skorašnjih izmena',
 'tog-hidepatrolled' => 'Sakrij pregledane izmene u spisku skorašnjih izmena',
 'tog-newpageshidepatrolled' => 'Sakrij pregledane stranice sa spiska novih stranica',
@@ -1321,7 +1320,6 @@ Korišćenje navigacionih veza će poništiti ovu kolonu.',
 'showhideselectedversions' => 'Prikaži/sakrij izabrane izmene',
 'editundo' => 'poništi',
 'diff-empty' => '(Nema razlike)',
-'diff-multi' => '({{PLURAL:$1|nije prikazana međuizmena|nisu prikazane $1 međuizmene|nije prikazano $1 međuizmena}} {{PLURAL:$2|jednog|$2|$2}} korisnika)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Nije prikazana međuizmena|Nisu prikazane $1 međuizmene|Nije prikazano $1 međuizmena}} od više od $2 korisnika)',
 'difference-missing-revision' => 'Ne mogu da pronađem {{PLURAL:$2|jednu izmenu|$2 izmene|$2 izmena}} od ove razlike ($1).
 
@@ -1795,8 +1793,8 @@ Pogledajte istoriju brisanja pre ponovnog slanja.',
 'uploadwarning' => 'Upozorenje pri otpremanju',
 'uploadwarning-text' => 'Izmenite opis datoteke i pokušajte ponovo.',
 'savefile' => 'Sačuvaj datoteku',
-'uploadedimage' => '{{GENDER:|je poslao|je poslala|je poslao}} „[[$1]]“',
-'overwroteimage' => '{{GENDER:|je poslao|je poslala}} novu verziju datoteke „[[$1]]“',
+'uploadedimage' => 'je poslao „[[$1]]“',
+'overwroteimage' => 'je poslao novu verziju datoteke „[[$1]]“',
 'uploaddisabled' => 'Otpremanje je onemogućeno.',
 'copyuploaddisabled' => 'Slanje putem URL adrese je onemogućeno.',
 'uploadfromurl-queued' => 'Slanje je stavljeno na spisak čekanja.',
@@ -2055,7 +2053,7 @@ Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 
 # MIME search
 'mimesearch' => 'MIME pretraga',
-'mimesearch-summary' => 'Ova stranica omogućava filtriranje datoteka prema njihovim vrstama MIME.
+'mimesearch-summary' => 'Ova stranica omogućava filtriranje datoteka prema njihovim MIME tipovima.
 Ulazni podaci: contenttype/subtype, npr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME vrsta:',
 'download' => 'preuzmi',
@@ -2466,10 +2464,10 @@ Vratite se na prethodnu stranicu, ponovo je učitajte i pokušajte ponovo.',
 
 # Protect
 'protectlogpage' => 'Dnevnik zaključavanja',
-'protectlogtext' => 'Ispod je spisak izmena u vidu zaštite stranica.
+'protectlogtext' => 'Ispod je spisak zaštićenih stranica.
 Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za više detalja.',
 'protectedarticle' => '{{GENDER:|je zaštitio|je zaštitila}} „[[$1]]“',
-'modifiedarticleprotection' => '{{GENDER:|je promenio|je promenila|je promenio}} stepen zaštite za „[[$1]]“',
+'modifiedarticleprotection' => 'je promenio stepen zaštite za „[[$1]]“',
 'unprotectedarticle' => 'je skinuo zaštitu sa stranice „[[$1]]“',
 'movedarticleprotection' => '{{GENDER:|je premestio|je premestila|je premestio}} postavke zaštite sa „[[$2]]“ na „[[$1]]“',
 'protect-title' => 'Stepen zaštite za „$1“',
@@ -2904,7 +2902,7 @@ U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{M
 'allmessages' => 'Sistemske poruke',
 'allmessagesname' => 'Naziv',
 'allmessagesdefault' => 'Podrazumevani tekst',
-'allmessagescurrent' => 'Tekst poruke',
+'allmessagescurrent' => 'Trenutni tekst poruke',
 'allmessagestext' => 'Ovo je spisak svih sistemskih poruka koje su dostupne u imenskom prostoru „Medijaviki“.
 Posetite [https://www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i [//translatewiki.net Translejtviki] ako želite da pomognete u prevođenju.',
 'allmessagesnotsupportedDB' => "Ova stranica ne može da se koristi jer je '''\$wgUseDatabaseMessages''' onemogućen.",
@@ -2913,7 +2911,7 @@ Posetite [https://www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i
 'allmessages-filter-unmodified' => 'neizmenjene',
 'allmessages-filter-all' => 'sve',
 'allmessages-filter-modified' => 'izmenjene',
-'allmessages-prefix' => 'Filtriraj po predmetku:',
+'allmessages-prefix' => 'Filtriraj po prefiksu:',
 'allmessages-language' => 'Jezik:',
 'allmessages-filter-submit' => 'Idi',
 

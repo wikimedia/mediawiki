@@ -187,7 +187,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pabraukti nuorodas:',
-'tog-justify' => 'Lygiuoti pastraipas pagal abi puses',
 'tog-hideminor' => 'Slėpti smulkius pakeitimus naujausių keitimų sąraše',
 'tog-hidepatrolled' => 'Slėpti patikrintus keitimus paskutinių keitimų sąraše',
 'tog-newpageshidepatrolled' => 'Slėpti patikrintus puslapius iš naujausių straipsnių sąrašo',
@@ -1181,7 +1180,6 @@ Prašome patikrinti sąrašus.',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',
 'showhideselectedversions' => 'Rodyti/slėpti pasirinktas versijas',
 'editundo' => 'atšaukti',
-'diff-multi' => '($2 {{PLURAL:$2|naudotojo|naudotojų|naudotojų}} $1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}})',
 'diff-multi-manyusers' => '(daugiau nei $2 {{PLURAL:$2|naudotojo|naudotojų|naudotojų}} $1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}})',
 
 # Search results
@@ -2165,7 +2163,6 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'watchmethod-list' => 'ieškoma naujausių keitimų stebimuose puslapiuose',
 'watchlistcontains' => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
 'iteminvalidname' => 'Problema su elementu „$1“, neteisingas vardas...',
-'wlnote' => "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per '''$2''' {{PLURAL:$2|paskutinę valandą|paskutines valandas|paskutinių valandų}}, nuo $3 $4.",
 'wlshowlast' => 'Rodyti paskutinių $1 valandų, $2 dienų ar $3 pakeitimus',
 'watchlist-options' => 'Stebimųjų sąrašo parinktys',
 
@@ -2819,7 +2816,6 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'tooltip-pt-watchlist' => 'Puslapių sąrašas, kuriuos jūs pasirinkote stebėti.',
 'tooltip-pt-mycontris' => 'Jūsų darytų keitimų sąrašas',
 'tooltip-pt-login' => 'Rekomenduojame prisijungti, nors tai nėra privaloma.',
-'tooltip-pt-anonlogin' => 'Rekomenduojame prisijungti, nors tai nėra privaloma.',
 'tooltip-pt-logout' => 'Atsijungti',
 'tooltip-ca-talk' => 'Puslapio turinio aptarimas',
 'tooltip-ca-edit' => 'Jūs galite redaguoti šį puslapį. Nepamirškite paspausti peržiūros mygtuką prieš išsaugodami.',

@@ -326,7 +326,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Substreki ligilojn',
-'tog-justify' => 'Alkadrigi liniojn',
 'tog-hideminor' => 'Kaŝi malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>',
 'tog-hidepatrolled' => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled' => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
@@ -1359,7 +1358,6 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'showhideselectedversions' => 'Montri/kaŝi elektitajn versiojn',
 'editundo' => 'malfari',
 'diff-empty' => '(Neniu diferenco)',
-'diff-multi' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de pli ol {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Unu revizio|$2 revizioj}} de ĉi tiu malsameco ($1) ne {{PLURAL:$2|estis|estis}} trovebla.
 

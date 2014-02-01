@@ -195,7 +195,6 @@ $linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Understreg henvisninger:',
-'tog-justify' => 'Vis afsnit med lige marginer',
 'tog-hideminor' => 'Skjul mindre ændringer i listen over seneste ændringer',
 'tog-hidepatrolled' => 'Skjul patruljerede redigeringer i seneste ændringer',
 'tog-newpageshidepatrolled' => 'Skjul patruljerede sider på listen over nye sider',
@@ -1229,7 +1228,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',
 'editundo' => 'fjern redigering',
 'diff-empty' => '(Ingen forskel)',
-'diff-multi' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af {{PLURAL:$2|en bruger|$2 brugere}} ikke vist)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.
 
@@ -2281,7 +2279,6 @@ Fremtidige ændringer af denne side og dens tilknyttede diskussionsside vil bliv
 'watchmethod-list' => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchlistcontains' => 'Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.',
 'iteminvalidname' => "Problem med '$1', ugyldigt navn...",
-'wlnote' => "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste '''$1''' ændringer}} i {{PLURAL:$2|den sidste time|'''de sidste $2 timer}}''' op til den $3 kl. $4.",
 'wlshowlast' => 'Vis de seneste $1 timer $2 dage $3',
 'watchlist-options' => 'Indstillinger for overvågningslisten',
 
@@ -2919,7 +2916,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-pt-watchlist' => 'Listen over sider du overvåger for ændringer.',
 'tooltip-pt-mycontris' => 'Liste over dine bidrag',
 'tooltip-pt-login' => 'Du opfordres til at logge på, men det er ikke obligatorisk.',
-'tooltip-pt-anonlogin' => 'Du opfordres til at logge på, men det er ikke obligatorisk',
 'tooltip-pt-logout' => 'Log af',
 'tooltip-ca-talk' => 'Diskussion om indholdet på siden',
 'tooltip-ca-edit' => 'Du kan redigere denne side. Brug venligst forhåndsvisning før du gemmer.',

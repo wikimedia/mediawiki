@@ -187,7 +187,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linken ënnersträichen:',
-'tog-justify' => "Ränner vum Text riichten (''justify'')",
 'tog-hideminor' => 'Kleng Ännerungen an de rezenten Ännerunge verstoppen',
 'tog-hidepatrolled' => 'Iwwerkuckten Ännerungen an de "Rezenten Ännerungen" verstoppen',
 'tog-newpageshidepatrolled' => 'Iwwerkuckte Säiten op der Lëscht vun den "Neie Säite" verstoppen',
@@ -1235,7 +1234,8 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'showhideselectedversions' => 'Erausgesicht Versioune weisen/verstoppen',
 'editundo' => 'zréck',
 'diff-empty' => '(Keen Ënnerscheed)',
-'diff-multi' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun deemselwechte Benotzer net gewisen)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem anere|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)',
 'difference-missing-revision' => '{{PLURAL:$2|Eng Versioun|$2 Versioune}} vun dëser Differenz ($1) {{PLURAL:$2|gouf|goufen}} net fonnt.
 
@@ -1256,7 +1256,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'shown-title' => '$1 {{PLURAL:$1|Resultat|Resultater}} pro Säit weisen',
 'viewprevnext' => 'Weis ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "* Säit '''[[$1]]'''",
-'searchmenu-new' => "'''Opmaache vun der Säit ''[[:$1|$1]]'' op dëser Wiki!'''",
+'searchmenu-new' => "<strong>Opmaache vun der Säit ''[[:$1]]'' op dëser Wiki!</strong> {{PLURAL:$2|0=|Kuckt och d'Säit déi Dir beim siche fonnt hutt.|Kuckt och d'Resultater déi Dir beim siche fonnt hutt.}}",
 'searchprofile-articles' => 'Säite mat Inhalt',
 'searchprofile-project' => 'Hëllef a Projetssäiten',
 'searchprofile-images' => 'Multimedia',
@@ -2268,6 +2268,7 @@ All weider Ännerungen op dëser Säit an der associéierter Diskussiounssäit g
 'watchmethod-list' => 'Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift',
 'watchlistcontains' => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
 'iteminvalidname' => "Problem mam Element '$1', ongëltegen Numm ...",
+'wlnote2' => 'Hei sinn déi lescht Ännerunge aus {{PLURAL:$1|der leschter Stonn|de leschte(n) <strong>$1</strong> Stonnen}}, Stand: $2 ëm $3 Auer.“',
 'wlshowlast' => "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 'watchlist-options' => 'Optioune vun der Iwwerwaachungslëscht',
 
@@ -2878,7 +2879,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'importuploaderrortemp' => "D'Eropluede vum Fichier huet net funktionéiert. En temporäre Repertoire feelt.",
 'import-parse-failure' => 'Feeler bei engem XML-Import',
 'import-noarticle' => "Keng Säit fir z'importéieren!",
-'import-nonewrevisions' => "All d'Versioune goufe scho virdrunn importéiert.",
+'import-nonewrevisions' => 'Et goufe keng Versiounen importéiert (se waren al entweder scho virdrun importéiert ginn oder se goufen iwwersprong well Feeler dra waren).',
 'xml-error-string' => '$1 an der Zeil $2, Spalt $3, (Byte $4): $5',
 'import-upload' => 'XML-Daten importéieren',
 'import-token-mismatch' => "D'Date vun ärer Sessioun si verluer gaang. Versicht et w.e.g. nach eemol.",
@@ -4024,4 +4025,6 @@ Faktesch alles wat tëscht duebelen Accolade steet gëtt ausgewäert.',
 'expand_templates_generate_rawhtml' => 'HTML-Format weisen',
 'expand_templates_preview' => 'Kucken ouni ofzespäicheren',
 
+# Unknown messages
+'createaccount-hook-aborted' => '$1',
 );

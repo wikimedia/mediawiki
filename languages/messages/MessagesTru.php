@@ -379,7 +379,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'lineno' => 'Serṫo $1:',
 'compareselectedversions' => 'Compare selected revisions',
 'editundo' => 'slag',
-'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
 
 # Search results
 'searchresults' => 'Nafqe duKruxyayḍux',

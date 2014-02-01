@@ -161,7 +161,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Wótkaze pódšmarnuś:',
-'tog-justify' => 'Tekst do bloka zrownaś',
 'tog-hideminor' => 'Małe změny w aktualnych změnach schowaś',
 'tog-hidepatrolled' => 'Doglědowane změny w aktualnych změnach schowaś',
 'tog-newpageshidepatrolled' => 'Doglědowane boki z lisćiny nowych bokow schowaś',
@@ -1171,7 +1170,6 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'showhideselectedversions' => 'Wubrane wersije pokazaś/schowaś',
 'editundo' => 'wótwrośiś',
 'diff-empty' => '(Žeden rozdźěl)',
-'diff-multi' => '({{PLURAL:$1|Jadna mjazywersija|$1 mjazywersiji|$1 mjazywersije|$1 mjazywersijow}} wót {{PLURAL:$2|jadnogo wužywarja|$2 wužywarjowu|$2 wužywarjow|$2 wužywarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Jadna mjazywersija|$1 mjazywersiji|$1 mjazywersije|$1 mjazywersijow}} wót wěcej ako {{PLURAL:$2|jadnogo wužywarja|$2 wužywarjowu|$2 wužywarjow|$2 wužywarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 'difference-missing-revision' => '{{PLURAL:$2|Jadna wersija|$2 wersiji|$2 wersije|$2 wersijow}} toś togo rozdźěla ($1) {{PLURAL:$2|njejo se namakała|njejstej se namakałej|njejsu namakali|njejo se namakało}}.
 

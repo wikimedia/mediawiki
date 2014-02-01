@@ -143,7 +143,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => ':لینکانآ خط کش',
-'tog-justify' => 'پاراگرافنآ همتراز کن',
 'tog-hideminor' => 'هوردین تغییراتآ ته نوکین تغییرات پناه کن',
 'tog-hidepatrolled' => 'ته نوکین تغییرات اصلاحاتی که گردگ بیتگن پناه کن',
 'tog-newpageshidepatrolled' => 'پناه کتن صفحاتی که گردگ بوتگن چه لیست نوکین صفحه',
@@ -906,7 +905,6 @@ $1",
 'compareselectedversions' => 'مقایسه انتخاب بوتگین نسخه یان',
 'showhideselectedversions' => 'نمایش/پنهان کتن نسخ انتخابی',
 'editundo' => 'خنثی کتن',
-'diff-multi' => '({{PLURAL:$1|یک متوسطین بازبینیان میانی}} پیش دارگ نه بیت .)',
 
 # Search results
 'searchresults' => 'نتایج گردگ',
@@ -1702,7 +1700,6 @@ PICT # misc.
 'watchmethod-list' => 'کنترل صفحاتی که چارگ بنت په نوکین اصلاحات',
 'watchlistcontains' => 'شمی لیست چارگ شامل  $1 {{PLURAL:$1|صفحه|صفحات}}.',
 'iteminvalidname' => "مشکل گون آیتم  '$1', نامعتبر  این نام",
-'wlnote' => "جهلء {{PLURAL:$1|آهرین تغییر هست|آهرین هست'''$1''' تغییرات}} ته آهرین {{PLURAL:$2|ساعت|'''$2''' ساعات}}.",
 'wlshowlast' => 'پیش دار آهرین $1  ساعات $2 روچان $3',
 'watchlist-options' => 'گزینه یان لیست چارگ',
 
@@ -2240,7 +2237,6 @@ $1',
 'tooltip-pt-watchlist' => 'لیست صفحیانی که شما تغییرات آیانا رند گرگیت',
 'tooltip-pt-mycontris' => 'لیست شمی مشارکتان',
 'tooltip-pt-login' => 'شر ترنت که وارد بیت، بله شی اجبار نهنت',
-'tooltip-pt-anonlogin' => 'چه شما دست بندی بیت وارد بیت، بله شی هنگت ضرورت نهنت.',
 'tooltip-pt-logout' => 'در بیگ',
 'tooltip-ca-talk' => 'بحث دباره محتوای صفحه',
 'tooltip-ca-edit' => 'شما تونیت ای صفحه یا اصلاح کنیت. لطفا چه بازبین دکمه پیش چه ذخیره کتن استفاده کنیت.',

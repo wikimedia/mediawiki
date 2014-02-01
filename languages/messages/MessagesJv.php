@@ -54,7 +54,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Garisen ngisoré pranala:',
-'tog-justify' => 'Ratakaké paragrap',
 'tog-hideminor' => 'Dhelikaké suntingan cilik ing owah-owahan pungkasan',
 'tog-hidepatrolled' => 'Dhelikaké suntingan kapanto ing owah-owahan pungkasan',
 'tog-newpageshidepatrolled' => 'Dhelikaké kaca kapanto saka daptar kaca anyar',
@@ -1065,7 +1064,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'showhideselectedversions' => 'Tampilaké/dhelikaké révisi kapilih',
 'editundo' => 'batalna',
 'diff-empty' => '(Ora ana bedane)',
-'diff-multi' => '({{PLURAL:$1Siji rèvisi sedhengan|$1 rèvisi sedhengan}} déning {{PLURAL:$2|sak panganggo|$2 panganggo}} ora dituduhaké)',
 'diff-multi-manyusers' => '({{PLURAL:$1Siji rèvisi sedhengan|$1 rèvisi sedhengan}} déning luwih saka $2 {{PLURAL:$2|panganggo|panganggo}} ora dituduhaké)',
 'difference-missing-revision' => '{{PLURAL:$2|Sak pambenahan|$2 pambenahan}} saka prabédan iki ($1) {{PLURAL:$2|ora ditemokaké|ora ditemokaké}}.
 
@@ -2100,7 +2098,6 @@ Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhè
 'watchmethod-list' => 'priksa kaca sing diawasi kanggo owah-owahan anyar',
 'watchlistcontains' => 'Daftar pangawasan panjenengan isiné ana $1 {{PLURAL:$1|kaca|kaca}}.',
 'iteminvalidname' => "Ana masalah karo '$1', jenengé ora absah...",
-'wlnote' => "Ngisor iki {{PLURAL:$1|owahan pungkasan|'''$1''' owahan pungkasan}} {{PLURAL:$2|jam|'''$2''' jam}} kapungkur, per $3, $4.",
 'wlshowlast' => 'Tuduhna $1 jam $2 dina $3 pungkasan',
 'watchlist-options' => 'Opsi daftar pangawasan',
 
@@ -2740,7 +2737,6 @@ Simpen nèng komputer Sampéyan lan unggaha nèng kéné.',
 'tooltip-pt-watchlist' => 'Daftar kaca sing tak-awasi.',
 'tooltip-pt-mycontris' => 'Daftar kontribusi panjenengan',
 'tooltip-pt-login' => 'Panjenengan diaturi mlebu log, nanging ora dikudokaké.',
-'tooltip-pt-anonlogin' => 'Panjenengan disaranaké mlebu log, nanging ora diwajibaké.',
 'tooltip-pt-logout' => 'Log metu (oncat)',
 'tooltip-ca-talk' => 'Dhiskusi perkara isi',
 'tooltip-ca-edit' => 'Sunting kaca iki. Nganggoa tombol pratayang sadurungé nyimpen.',

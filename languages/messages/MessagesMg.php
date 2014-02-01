@@ -220,7 +220,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Hanipika ny rohy:',
-'tog-justify' => 'Hanitsy ny andiany',
 'tog-hideminor' => "Hanitsika ny fiovana madinika ao amin'ny fiovana farany",
 'tog-hidepatrolled' => "Hanitrika ny fiovana voaara-maso ao amin'ny fiovana farany",
 'tog-newpageshidepatrolled' => "Hanitsika ny pejy voaara-maso ao amin'ny pejy vaovao",
@@ -1253,7 +1252,6 @@ Marino raha manohy ny tantaram-pejy ity asa ity.",
 'showhideselectedversions' => 'Aseho/asitrika ireo ny versiona voasafidy',
 'editundo' => 'esory',
 'diff-empty' => '(Tsy misy mahasamihafa)',
-'diff-multi' => "({{PLURAL:$1|Famerenana tokana|Famerenana $1}} nataon'ny {{PLURAL:$2|mpikambana iray|mpikambana $2}} tsy miseho)",
 'diff-multi-manyusers' => "Tsy naseho ny antiôna $1{{PLURAL:}} nataon'ny mpikambana $2.",
 
 # Search results

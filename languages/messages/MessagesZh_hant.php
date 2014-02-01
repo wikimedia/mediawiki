@@ -270,7 +270,6 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '連結加底線：',
-'tog-justify' => '段落對齊',
 'tog-hideminor' => '隱藏最近更改中的小修改',
 'tog-hidepatrolled' => '隱藏最近更改中巡查過的編輯',
 'tog-newpageshidepatrolled' => '隱藏新頁面清單中巡查過的頁面',
@@ -1285,7 +1284,6 @@ $1",
 'showhideselectedversions' => '顯示／隱藏選定的修訂版本',
 'editundo' => '復原',
 'diff-empty' => '（沒有差異）',
-'diff-multi' => '（由{{PLURAL:$2|1名用戶|$2名用戶}}作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}}未被顯示）',
 'diff-multi-manyusers' => '（由多於$2名用戶作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}} 未被顯示）',
 'difference-missing-revision' => '{{PLURAL:$2|1次修訂|$2 次修訂}}差異($1)不存在。
 
@@ -2928,6 +2926,7 @@ $2',
 'import-error-special' => '「$1」未能導入因為該頁面使用一個不能創建頁面的特殊名字空間。',
 'import-error-invalid' => '「$1」不能導入，因為名字無效。',
 'import-error-unserialize' => '頁面「$1」的修訂版本「$2」不能反序列。該修訂版本是以$3內容模式序列為$4。',
+'import-error-bad-location' => '於此wiki使用的內容模式$3的修訂版本$2並無可能存儲為「$1」，這是因為此種模式於該頁面無法支援。',
 'import-options-wrong' => '{{PLURAL:$2|選項}}出錯：<nowiki>$1</nowiki>',
 'import-rootpage-invalid' => '指定的根頁標題無效。',
 'import-rootpage-nosubpage' => '名字空間「$1」的根頁面不允許子頁面。',
@@ -3743,7 +3742,7 @@ $5
 'colon-separator' => '：',
 'word-separator' => '',
 'parentheses' => '（$1）',
-'quotation-marks' => '“$1”',
+'quotation-marks' => '「$1」',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',

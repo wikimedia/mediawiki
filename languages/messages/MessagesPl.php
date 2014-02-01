@@ -317,7 +317,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podkreślenie linków',
-'tog-justify' => 'Wyrównuj tekst w akapitach do obu marginesów',
 'tog-hideminor' => 'Ukryj drobne edycje w ostatnich zmianach',
 'tog-hidepatrolled' => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled' => 'Ukryj sprawdzone strony na liście nowych stron',
@@ -1375,7 +1374,6 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'showhideselectedversions' => 'Pokaż lub ukryj zaznaczone wersje',
 'editundo' => 'anuluj edycję',
 'diff-empty' => '(Brak różnic)',
-'diff-multi' => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'diff-multi-manyusers' => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony "{{PAGENAME}}" nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.
 
@@ -2435,6 +2433,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'watchmethod-list' => 'poszukiwanie obserwowanych stron wśród ostatnich zmian',
 'watchlistcontains' => 'Na liście obserwowanych przez Ciebie stron {{PLURAL:$1|znajduje się 1 pozycja|znajdują się $1 pozycje|znajduje się $1 pozycji}}.',
 'iteminvalidname' => 'Problem z pozycją „$1” – niepoprawna nazwa...',
+'wlnote2' => 'Poniżej pokazano zmiany wykonane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich <strong>$1</strong> godzin}}, licząc od $4, $3.',
 'wlshowlast' => 'Pokaż ostatnie $1 godzin, $2 dni ($3)',
 'watchlist-options' => 'Opcje obserwowanych',
 
@@ -3045,7 +3044,7 @@ Zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 Brak katalogu dla plików tymczasowych.',
 'import-parse-failure' => 'nieudana analiza składni importowanego XML',
 'import-noarticle' => 'Brak stron do zaimportowania!',
-'import-nonewrevisions' => 'Wszystkie wersje zostały już wcześniej zaimportowane.',
+'import-nonewrevisions' => 'Nie zaimportowano żadnych wersji (wszystkie były już obecne albo pominięte z powodu błędów).',
 'xml-error-string' => '$1 linia $2, kolumna $3 (bajt $4): $5',
 'import-upload' => 'Prześlij dane w formacie XML',
 'import-token-mismatch' => 'Utracono dane sesji. Proszę spróbować ponownie.',

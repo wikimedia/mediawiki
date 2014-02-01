@@ -101,7 +101,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Levconhani gluyasiki se',
-'tog-justify' => 'Emaven kuparkieem',
 'tog-hideminor' => 'Palsera va <i>Noeltaf betakseem</i> mezolonaf',
 'tog-hidepatrolled' => 'Palsera va fieyen betaks div noeltaf betakseem',
 'tog-newpageshidepatrolled' => 'Palsera va fieyenu bu mal vexala dem warzafu bu',
@@ -110,9 +109,7 @@ $messages = array(
 'tog-numberheadings' => 'Mivaskafa vergumveltotukara',
 'tog-showtoolbar' => 'Nedira va tidexekak ke betararude',
 'tog-editondblclick' => 'Ta bubetara tolon vulegal (JavaScript tir adraf)',
-'tog-editsection' => 'Betara va gabot kan "[Betara]" gluyasiki',
 'tog-editsectiononrightclick' => 'Betara va gabot talton vulegason<br /> va gabotvergumvelt',
-'tog-showtoc' => 'Nedira va ugak<br /> (icde teliz dem lo 3 gabot)',
 'tog-rememberpassword' => 'Mo bati nedisiki va jinaf remravlem setiker (cugon $1 {{PLURAL:$1|viel|viel}})',
 'tog-watchcreations' => 'Kosuzdasikira va jinon betayan bueem',
 'tog-watchdefault' => 'Va jinon reduyun ik betayan telizeem suzdá',
@@ -780,7 +777,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'compareselectedversions' => 'Dodisukera va toloy reban siatos',
 'showhideselectedversions' => 'Nedira/palsera va reban betaks',
 'editundo' => 'dimaskira',
-'diff-multi' => '({{PLURAL:$1|1 walif betaks|$1 walif betaks}} gan {{PLURAL:$2|tanoy webesik|$2 webesik}} me zo nedid)',
 
 # Search results
 'searchresults' => 'Aneyaradanekseem',
@@ -1420,7 +1416,6 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'watchmethod-list' => 'ageltara va suzdan bueem icde noeltafa betara',
 'watchlistcontains' => 'Rinafi suzdasiki va $1 bu ruldar',
 'iteminvalidname' => 'Zvak icde « $1 » teliz : yolt tir mewadaf...',
-'wlnote' => "Vleveon tid tela '''$1''' ironokafa betara mali '''$2''' ironokaf bartiv.",
 'wlshowlast' => 'Nedira va ironokaf $1 bartiv isu $2 viel isu $3',
 'watchlist-options' => 'Suzdasikiolkeem',
 
@@ -1825,7 +1820,6 @@ Va [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [//tr
 'tooltip-pt-watchlist' => 'Rinon suzdan betan bueem',
 'tooltip-pt-mycontris' => 'Jinaf webekseem',
 'tooltip-pt-login' => 'Pataredura zo koldar voxe me tir vrebafa.',
-'tooltip-pt-anonlogin' => 'Zo bristul da va int kogluyal, wori batcoba me tir vrebafa.',
 'tooltip-pt-logout' => 'Voldogluyara',
 'tooltip-ca-talk' => 'Keyaksera va telizbu',
 'tooltip-ca-edit' => 'Va batu bu robetal. Va "Abdinedira" vulegasiki abdi giwara vay favel !',

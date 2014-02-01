@@ -61,7 +61,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links unterstreichen:',
-'tog-justify' => 'Text ois Blocksotz',
 'tog-hideminor' => 'Kloane Änderrungen ausblenden',
 'tog-hidepatrolled' => 'Kontroilirde Änderrungen in dé „Létzten Änderrungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kóntróilirde Seiten auf da Listen „Neiche Seiten“ vaberng',
@@ -70,9 +69,7 @@ $messages = array(
 'tog-numberheadings' => 'Ywerschriften autómaatisch nummerrirn',
 'tog-showtoolbar' => 'Beorweiten-Werkzeigleisten åzoang (JavaScript werd braucht)',
 'tog-editondblclick' => 'Seiten mid am Dóppedrucker beorweiden (JavaScript werd braucht)',
-'tog-editsection' => "Links zum beorweiten voh d' oahzelnen Obschnitt åzoang",
 'tog-editsectiononrightclick' => 'Oahzelne Obschnitt mid am Rechtsdrucker beorweiten (JavaScript werd braucht)',
-'tog-showtoc' => 'Åzoang vom Inhoidsvazeichnis bei Seiten mid merer ois drei Ywerschriften',
 'tog-rememberpassword' => 'Mim Browser dauerhoft ågmödt bleim (maximaal $1 {{PLURAL:$1|Toog|Toog}})',
 'tog-watchcreations' => 'Voh mir söwer eihgstöde Seiten autómaatisch beówochten',
 'tog-watchdefault' => 'Voh mir söwer gänderde Seiten autómaatisch beówochten',
@@ -665,7 +662,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'lineno' => 'Zein $1:',
 'compareselectedversions' => 'Ausgwejde Versiona vagleicha',
 'editundo' => 'zruck doa',
-'diff-multi' => '({{PLURAL:$1|A dazwischnliegade Version|$1 dazwiscenliegade Versiona}} {{PLURAL:$2|vonam Nutza|vo $2 Nutzan}} {{PLURAL:$1|wead|wean}} ned ozoagt)',
 
 # Search results
 'searchresults' => 'Suachergebniss',
@@ -1107,7 +1103,6 @@ Waunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, dru
 'watchmethod-list' => 'Ywerpriaffm voh da Beówochtungslisten auf létzde Beorwatungen',
 'watchlistcontains' => 'Deih Beówochtungslisten enthoitt $1 {{PLURAL:$1|Seiten|Seiten}}.',
 'iteminvalidname' => 'Próblém mim Eihtrog „$1“, néd gütiger Naum.',
-'wlnote' => "Es {{PLURAL:$1|fóigt d' létzde Änderrung|fóing d' létzden '''$1''' Änderrungen}} voh da/dé {{PLURAL:$2|Stund| '''$2''' Stunden}}. Staund: $3, $4 Uar.",
 'wlshowlast' => 'Zoag dé Änderrungen voh dé létzden $1 Stunden, $2 Dog óder $3 (in dé létzden 30 Dog).',
 'watchlist-options' => 'Mei Beobochta: Optiona',
 

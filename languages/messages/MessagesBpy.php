@@ -48,7 +48,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'লিঙ্কর তলে দুরগ দিক:',
-'tog-justify' => 'অনুচ্ছেদহানির দুরগি দ্বিয়পারাদেত্ত মান্নাকরিক',
 'tog-hideminor' => 'হুরু পতানি গুর',
 'tog-hidepatrolled' => 'পরীক্ষাইসে পতা অতা হাদিএহানর পতানিত আরুম কর',
 'tog-newpageshidepatrolled' => 'পরীক্ষাইসে পতা অতা নুৱা পাতার লাতঙে আরুম কর',
@@ -57,9 +56,7 @@ $messages = array(
 'tog-numberheadings' => 'নিজেলত্ত পাজালার চিঙনাঙ',
 'tog-showtoolbar' => 'পতানির আতিয়ার দেহাদে (জাভাস্ক্রিপ্ট)',
 'tog-editondblclick' => 'দ্বিমাউ যাতিয়া পতাহান পতিক (জাভাস্ক্রিপ্ট)',
-'tog-editsection' => '[পতিক] লিঙ্ক এহান্ন পরিচ্ছদ পতানি অক',
 'tog-editsectiononrightclick' => 'পরিচ্ছদ পতানির য়্যাথাঙহান বাতেদের গোথামগ <br /> পরিচ্ছদর চিঙনাঙর গজে যাতিলে দে (জাভাস্ক্রিপ্ট)',
-'tog-showtoc' => 'বিষয়র মাঠেলহানি দেহাদে (যে পাতারতা ৩হানর গজে চিঙনাঙ আসে)',
 'tog-rememberpassword' => 'এরে ব্রাউজারর গজে সেশনর কা খন্তাচাবি মনে থ(সর্বোচ্চ $1 {{PLURAL:$1|দিনর|দিনর}} কা)',
 'tog-watchcreations' => 'যে পতাহানি মি ইকরিসু অতা মর তালাবির তালিকাত থ',
 'tog-watchdefault' => 'যে পতাহানি মি পতাসু অতা মর তালাবির তালিকাত থ',
@@ -792,7 +789,6 @@ $2',
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
 'showhideselectedversions' => 'বাসিসি রিভিশনহানি দেখাদে/গুর',
 'editundo' => 'আলকর',
-'diff-multi' => '({{PLURAL:$2|আতাকুরা আগ |$2 গ আতাকুরা}} সম্পাদন অসে {{PLURAL:$1|হমবুকর রিভিসন আহান|$1 হমবুকর রিভিসন হানি}} দেহাদেনা এহাত না মিহিসে।)',
 
 # Search results
 'searchresults' => 'বিসারলে অতার ফলাফল',

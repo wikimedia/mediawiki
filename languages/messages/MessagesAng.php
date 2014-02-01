@@ -45,7 +45,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Mearc under hlencan:',
-'tog-justify' => 'Macian cwidfloccas rihte',
 'tog-hideminor' => 'Hȳdan lytela adihtunga in nīwra andwendinga getæle',
 'tog-hidepatrolled' => 'Hȳdan weardoda adihtunga in nīwra andwendinga getæle',
 'tog-newpageshidepatrolled' => 'Hȳdan weardode trametas in nīwra andwendinga getæle',
@@ -54,9 +53,7 @@ $messages = array(
 'tog-numberheadings' => 'Settan rīm on fōrecwidas selflīce',
 'tog-showtoolbar' => 'Īwan þā adihtunge tōlmearce',
 'tog-editondblclick' => 'Adihtan trametas mid twifealdum mȳs swenge',
-'tog-editsection' => 'Þafian dǣla adihtunge mid [adihtan] hlencum',
 'tog-editsectiononrightclick' => 'Þafian dǣla adihtunge þurh swīðran healfe mȳs swengas on dǣla titulum',
-'tog-showtoc' => 'Īwan innunge tabulan (for trametum þe mā þonne 3 fōrecwidas habbaþ)',
 'tog-rememberpassword' => 'Gemynan mīne inmeldunge on þissum spearctellende (oþ $1 {{PLURAL:$1|dæg|dagas}} lengest)',
 'tog-watchcreations' => 'Ēacnian mīn behealdungtæl mid trametum þā ic scieppe and ymelum þā ic hlade on nett.',
 'tog-watchdefault' => 'Ēacnian mīn behealdungtæl mid trametum and ymelum þā ic adihte.',
@@ -896,7 +893,6 @@ Gif se brūcend asifte hine. synderlīce sind ymelan geīwda þǣre þe se brūc
 'unwatchthispage' => 'Ablinnan behealdunge',
 'watchlist-details' => '{{PLURAL:$1|Þǣr is $1 tramet|Þǣr sind $1 trameta}} on þīnum behealdunggetæle, nā arīmedum mōtunga trametum.',
 'watchlistcontains' => 'Þīn behealdungtæl hæfþ $1 {{PLURAL:$1|tramet|trameta}}.',
-'wlnote' => "Niðer {{PLURAL:$1|is sēo nīwoste andwendung|sind þā nīwostan '''$1''' andwendunga}} in {{PLURAL:$2|þǣre latostan tīde|þǣm latostan '''$2''' tīda}}, fram: $3, $4.",
 'wlshowlast' => 'Īwan þā nīwostan $1 tīda $2 daga $3',
 'watchlist-options' => 'Behealdungtæles cyras',
 

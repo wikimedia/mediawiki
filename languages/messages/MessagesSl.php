@@ -188,7 +188,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Podčrtavanje povezav:',
-'tog-justify' => 'Poravnavaj odstavke',
 'tog-hideminor' => 'Skrij manjše popravke v zadnjih spremembah',
 'tog-hidepatrolled' => 'Skrij pregledana urejanja v zadnjih spremembah',
 'tog-newpageshidepatrolled' => 'Skrij pregledane strani iz seznama novih strani',
@@ -756,6 +755,8 @@ Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
 'retypenew' => 'Ponovno vpišite geslo:',
 'resetpass_submit' => 'Nastavi geslo in se prijavi',
 'changepassword-success' => 'Vaše geslo je bilo uspešno spremenjeno!',
+'changepassword-throttled' => 'Nedavno ste izvedli preveč poskusov prijave.
+Prosimo, počakajte $1, preden poskusite znova.',
 'resetpass_forbidden' => 'Gesla ne morete spremeniti',
 'resetpass-no-info' => 'Za neposreden dostop do te strani morate biti prijavljeni.',
 'resetpass-submit-loggedin' => 'Spremenite geslo',
@@ -816,6 +817,8 @@ Začasno geslo: $2',
 'changeemail-password' => 'Vaše geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}:',
 'changeemail-submit' => 'Spremeni e-naslov',
 'changeemail-cancel' => 'Prekliči',
+'changeemail-throttled' => 'Izvedli ste preveč poskusov prijave.
+Prosimo, počakajte $1, preden poskusite znova.',
 
 # Special:ResetTokens
 'resettokens' => 'Ponastavitev žetonov',
@@ -1033,6 +1036,7 @@ Izgleda, da je bila izbrisana.',
 'editwarning-warning' => 'Če zapustite stran, boste morda izgubili vse spremembe, ki ste jih naredili.
 Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »Urejanje« v svojih nastavitvah.',
 'editpage-notsupportedcontentformat-title' => 'Oblika vsebine ni podprta',
+'editpage-notsupportedcontentformat-text' => 'Model vsebine $2 ne podpira oblike vsebine $1.',
 
 # Content models
 'content-model-wikitext' => 'wikibesedilo',
@@ -1247,7 +1251,6 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'showhideselectedversions' => 'Prikaži/skrij izbrane redakcije',
 'editundo' => 'razveljavi',
 'diff-empty' => '(Ni razlike)',
-'diff-multi' => '({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} {{PLURAL:$2|$2 uporabnika|$2 uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})',
 'difference-missing-revision' => '{{PLURAL:$2|Ene redakcije|$2 redakcij}} razlike ($1) {{PLURAL:$2|nisem}} našel.
 
@@ -1268,7 +1271,7 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'shown-title' => 'Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}} na stran',
 'viewprevnext' => 'Prikazujem ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Na tem wikiju obstaja stran »[[:$1]]«'''",
-'searchmenu-new' => "'''Ustvari stran »[[:$1]]« na tem wikiju!'''",
+'searchmenu-new' => '<strong>Ustvari stran »[[:$1]]« na tem wikiju!</strong> {{PLURAL:$2|0=|Oglejte si tudi rezultate iskanja.}}',
 'searchprofile-articles' => 'Članki',
 'searchprofile-project' => 'Pomoč in projektne strani',
 'searchprofile-images' => 'Večpredstavnost',
@@ -1284,6 +1287,7 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-result-score' => 'Ustreznost: $1%',
 'search-redirect' => '(preusmeritev $1)',
 'search-section' => '(razdelek $1)',
+'search-file-match' => '(ujema se z vsebino datoteke)',
 'search-suggest' => 'Iščete morda: $1',
 'search-interwiki-caption' => 'Sorodni projekti',
 'search-interwiki-default' => '$1 zadetkov:',
@@ -2315,7 +2319,7 @@ Tam bodo navedene prihodnje spremembe te strani in pripadajoče pogovorne strani
 'watchmethod-list' => 'med spremljanimi stranmi iščem nedavna urejanja',
 'watchlistcontains' => 'Spremljate $1 {{PLURAL:$1|stran|strani}}.',
 'iteminvalidname' => 'Težava z izbiro »$1«, neveljavno ime ...',
-'wlnote' => "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} '''$1''' {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji '''$2''' uri|zadnjih '''$2''' urah}}, od $3, $4.",
+'wlnote2' => 'Spodaj so navedene spremembe v {{PLURAL:$1|zadnji uri|zadnjih <strong>$1</strong> urah}}, od $2, $3.',
 'wlshowlast' => 'Prikaži zadnjih $1 ur; $2 dni; $3;',
 'watchlist-options' => 'Možnosti spiska nadzorov',
 
@@ -2404,7 +2408,7 @@ Izbris takšnih strani je bil omejen v izogib neželenim motnjam {{GRAMMAR:dativ
 'delete-warning-toobig' => 'Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.
 Njeno brisanje lahko zmoti obratovanje zbirke podatkov {{GRAMMAR:dative|{{SITENAME}}}};
 nadaljujte s previdnostjo.',
-'deleting-backlinks-warning' => "'''Opozorilo:''' Druge strani se povezujejo na stran, ki jo nameravate izbrisati.",
+'deleting-backlinks-warning' => "'''Opozorilo:''' Druge strani se povezujejo na ali vključujejo stran, ki jo nameravate izbrisati.",
 
 # Rollback
 'rollback' => 'Vrni spremembe',
@@ -2644,6 +2648,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 'ipb-blockingself' => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-confirmhideuser' => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
+'ipb-confirmaction' => 'Če ste prepričani, da to res želite storiti, označite polje »{{int:ipb-confirm}}« na dnu.',
 'ipb-edit-dropdown' => 'Uredi razloge blokade',
 'ipb-unblock-addr' => 'Deblokiraj $1',
 'ipb-unblock' => 'Odblokirajte uporabniško ime ali IP-naslov',
@@ -2706,7 +2711,7 @@ Dnevnik skrivanja je na voljo spodaj:',
 'range_block_disabled' => 'Možnost administratorjev za blokiranje urejanja IP-razponom je onemogočena.',
 'ipb_expiry_invalid' => 'Neveljaven čas preteka',
 'ipb_expiry_temp' => 'Blokade skritih uporabniških imen morajo biti trajne.',
-'ipb_hide_invalid' => 'Ne morem skriti tega računa; morda ima preveč urejanj.',
+'ipb_hide_invalid' => 'Ne morem skriti tega računa; ima več kot $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}.',
 'ipb_already_blocked' => '"$1" je že blokiran',
 'ipb-needreblock' => '$1 je že blokiran.
 Ali želite spremeniti nastavitve blokade?',
@@ -2880,6 +2885,7 @@ Za lokalizacijo in prevajanje obiščite [https://www.mediawiki.org/wiki/Localis
 'allmessages-prefix' => 'Filtriraj po predponi:',
 'allmessages-language' => 'Jezik:',
 'allmessages-filter-submit' => 'Pojdi',
+'allmessages-filter-translate' => 'Prevedi',
 
 # Thumbnails
 'thumbnail-more' => 'Povečaj',
@@ -2934,7 +2940,7 @@ Datoteka je bila prenesena samo delno.',
 Manjka začasna mapa.',
 'import-parse-failure' => 'Neuspeh razčlenitve uvoza XML',
 'import-noarticle' => 'Ni strani za uvoz!',
-'import-nonewrevisions' => 'Vse redakcije so bile že prej uvožene.',
+'import-nonewrevisions' => 'Uvozil nisem nobene redakcije (vse so bile že prisotne ali pa sem jih preskočil zaradi napak).',
 'xml-error-string' => '$1 v vrstici $2, znak $3 (zlog $4): $5',
 'import-upload' => 'Naložite podatke XML',
 'import-token-mismatch' => 'Izguba podatkov o seji.
@@ -2946,6 +2952,7 @@ Prosimo, poskusite znova.',
 'import-error-special' => 'Strani »$1« nismo uvozili, ker spada k posebnemu imenskemu prostoru, ki ne dovoljuje strani.',
 'import-error-invalid' => 'Strani »$1« nismo uvozili, ker njeno ime ni veljavno.',
 'import-error-unserialize' => 'Redakcije $2 strani »$1« ni bilo mogoče deserializirati. Redakcija bi naj uporabljala model vsebine $3, serializiran kot $4.',
+'import-error-bad-location' => 'Redakcije $2, ki uporablja model vsebine $3, na tem wikiju ne morete straniti na »$1«, saj omenjeni model ni podprt na tej strani.',
 'import-options-wrong' => '{{PLURAL:$2|Napačna možnost|Napačni možnosti|Napačne možnosti}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Podana korenska stran ni veljaven naslov.',
 'import-rootpage-nosubpage' => 'Imenski prostor »$1« korenske strani ne dovoli podstrani.',
@@ -2977,7 +2984,6 @@ Prosimo, poskusite znova.',
 'tooltip-pt-watchlist' => 'Seznam strani, katerih spremembe spremljate',
 'tooltip-pt-mycontris' => 'Seznam vaših prispevkov',
 'tooltip-pt-login' => 'Prijava ni obvezna, vendar je zaželena',
-'tooltip-pt-anonlogin' => 'Prijava ni obvezna, vendar je zaželena',
 'tooltip-pt-logout' => 'Odjavite se',
 'tooltip-ca-talk' => 'Pogovor o strani',
 'tooltip-ca-edit' => 'Stran lahko uredite. Preden jo shranite, uporabite gumb za predogled.',

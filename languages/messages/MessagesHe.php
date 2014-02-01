@@ -24,6 +24,7 @@
  * @author Rotemliss
  * @author YaronSh
  * @author אור שפירא
+ * @author דולב
  * @author ערן
  * @author פדיחה
  * @author שומבלע
@@ -366,7 +367,6 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'סימון קישורים בקו תחתי:',
-'tog-justify' => 'יישור פסקאות',
 'tog-hideminor' => 'הסתרת שינויים משניים ברשימת השינויים האחרונים',
 'tog-hidepatrolled' => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
 'tog-newpageshidepatrolled' => 'הסתרת דפים בדוקים ברשימת הדפים החדשים',
@@ -390,7 +390,7 @@ $messages = array(
 'tog-enotifrevealaddr' => 'חשיפת כתובת הדוא"ל שלך בהודעות דוא"ל',
 'tog-shownumberswatching' => 'הצגת מספר המשתמשים העוקבים',
 'tog-oldsig' => 'החתימה הנוכחית:',
-'tog-fancysig' => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
+'tog-fancysig' => 'התייחסות לחתימה כקוד ויקי (ללא קישור אוטומטי)',
 'tog-uselivepreview' => 'שימוש בתצוגה מקדימה מהירה (ניסיוני)',
 'tog-forceeditsummary' => 'הצגת אזהרה בעת הכנסת תקציר עריכה ריק',
 'tog-watchlisthideown' => 'הסתרת העריכות שלי ברשימת המעקב',
@@ -494,7 +494,7 @@ $messages = array(
 'category-subcat-count-limited' => 'קטגוריה זו כוללת את {{PLURAL:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}.',
 'category-article-count' => '{{PLURAL:$2|קטגוריה זו כוללת את הדף הבא בלבד|דף קטגוריה זה כולל את {{PLURAL:$1|הדף הבא|$1 הדפים הבאים}}, מתוך $2 בקטגוריה כולה}}.',
 'category-article-count-limited' => 'קטגוריה זו כוללת את {{PLURAL:$1|הדף הבא|$1 הדפים הבאים}}.',
-'category-file-count' => '{{PLURAL:$2|קטגוריה זו כוללת את הקובץ הבא בלבד|דף קטגוריה זה כולל את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}, מתוך $2 בקטגוריה כולה}}.',
+'category-file-count' => '{{PLURAL:$2|קטגוריה זו כוללת את הקובץ הבא בלבד|קטגוריה זו כוללת את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}, מתוך $2 בקטגוריה כולה}}.',
 'category-file-count-limited' => 'קטגוריה זו כוללת את {{PLURAL:$1|הקובץ הבא|$1 הקבצים הבאים}}.',
 'listingcontinuesabbrev' => '(המשך)',
 'index-category' => 'דפים המופיעים במנועי חיפוש',
@@ -1425,7 +1425,6 @@ $1",
 'showhideselectedversions' => 'הצגת/הסתרת הגרסאות שנבחרו',
 'editundo' => 'ביטול',
 'diff-empty' => '(אין הבדלים)',
-'diff-multi' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של {{PLURAL:$2|משתמש אחד|$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'difference-missing-revision' => '{{PLURAL:$2|גרסה אחת|$2 גרסאות}} של ההבדל הזה בין שתי גרסאות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.
 

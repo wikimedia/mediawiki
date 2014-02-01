@@ -135,7 +135,6 @@ $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links unterstryche',
-'tog-justify' => 'Tekscht als Blocksatz',
 'tog-hideminor' => 'Keini «chlyni Änderige» aazeige',
 'tog-hidepatrolled' => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled' => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
@@ -1164,7 +1163,6 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'showhideselectedversions' => 'Uusgwehlti Versione zeige/verstecke',
 'editundo' => 'rückgängig',
 'diff-empty' => '(kei Unterschid)',
-'diff-multi' => '({{PLURAL:$1|Ei Version|$1 Versione}} vu {{PLURAL:$2|eim Benutzer|$2 Benutzer}}, {{PLURAL:$1|wu derzwische lyt, wird|wu derzwische lige, wäre}} nit aazeigt)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ei Version|$1 Versione}} vu meh {{PLURAL:$2|eim Benutzer|$2 Benutzer}}, {{PLURAL:$1|wu derzwische lyt un nit aazeigt wird|wu derzwische lige un nit aazeigt wäre}})',
 'difference-missing-revision' => '{{PLURAL:$2|Ei Version|$2 Versione}} vui däre Unterschidsaazeig ($1) {{PLURAL:$2|isch|sin}} nit gfunde wore.
 

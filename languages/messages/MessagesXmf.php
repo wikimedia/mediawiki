@@ -25,7 +25,6 @@ $fallback = 'ka';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'რცხუეფიშ ათოღაზუა:',
-'tog-justify' => 'გამანგი აბზაცეფი',
 'tog-hideminor' => 'დოფული ციქა რედაქტირაფა ეკონია თირაფეფს',
 'tog-hidepatrolled' => 'დოფულით პატრულირებულ რედაქტირაფეფი ასერდეიან თირაფეფს',
 'tog-newpageshidepatrolled' => 'დოფულით პატრულირებულ ხასჷლეფი ახალ ხასჷლეფიშ ერკებულშე',
@@ -34,9 +33,7 @@ $messages = array(
 'tog-numberheadings' => 'ავტომატურო დონომერე დუდჯოხოეფი',
 'tog-showtoolbar' => 'რედაქტირაფაშ ხეჭკუდეფიშ ძირაფა (ითხინს JavaScript-ის)',
 'tog-editondblclick' => 'ხასჷლეფიშ რედაქტირაფა ჟირმანგი გეწკანტაფათ (ითხინს JavaScript-ის)',
-'tog-editsection' => 'ჩართი სექციაშ რედაქტირაფა [რედაქტირაფაშ] რცხუეფით',
 'tog-editsectiononrightclick' => 'ჩართი სექციაშ რედაქტირაფა სექციაშ ჯოხოშა მარძგვან გეწკანტაფათ (ითხინს JavaScript-ის)"',
-'tog-showtoc' => 'ქაძირი გჷშაგორალი (სუმშე უმოს დუდჯოხოამ ხასჷლეფშო)',
 'tog-showhiddencats' => 'ქაძირი ფულირი კატეგორიეფი',
 
 'underline-always' => 'ირო',
@@ -387,7 +384,6 @@ $messages = array(
 'lineno' => 'ღოზი $1:',
 'compareselectedversions' => 'გიშაგორილ ვერსიეფიშ მეზიმაფა',
 'editundo' => 'გოუქვაფა',
-'diff-multi' => '( {{PLURAL:$2|ართი მახვარებუშ|$2 მახვარებუშ}} {{PLURAL:$1|ართი შქაშქუმალირი რევიზია|$1 შქაშქუმალირი რევიზია}} ვა რე ძირაფილი)',
 
 # Search results
 'searchresults' => 'გორუაშ მოღალირობეფ',

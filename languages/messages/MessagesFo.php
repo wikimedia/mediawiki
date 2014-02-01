@@ -113,7 +113,6 @@ $linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Undirstrika leinki:',
-'tog-justify' => 'Lat tekstin fáa javnan kant til høgru',
 'tog-hideminor' => 'Krógva minni broytingar í seinastu broytingum',
 'tog-hidepatrolled' => 'Krógva eftirkannaðar rættingar í seinastu broytingum',
 'tog-newpageshidepatrolled' => 'Goym eftirkannaðar síður frá listanum yvir nýggjar síður',
@@ -122,9 +121,7 @@ $messages = array(
 'tog-numberheadings' => 'Sjálvvirkandi talmerking av yvirskriftum',
 'tog-showtoolbar' => 'Vís rættingar-tóllinju',
 'tog-editondblclick' => 'Rætta síður við at tvíklikkja',
-'tog-editsection' => 'Rætta greinpart við hjálp av [rætta] leinkjum',
 'tog-editsectiononrightclick' => 'Rætta reglubrot við at høgraklikkja á reglubrotsyvirskrift',
-'tog-showtoc' => 'Vís innihaldsyvirlit (fyri síður við meira enn trimun yvirskriftum)',
 'tog-rememberpassword' => 'Minst til mítt loyniorð á hesum kaga (í mesta lagi í $1 {{PLURAL:$1|dag|dagar}})',
 'tog-watchcreations' => 'Legg síður, sum eg stovni og fílur sum eg leggi út, afturat mínum eftirlitslista',
 'tog-watchdefault' => 'Legg síður sum eg rætti afturat mínum eftirlitslista',
@@ -1144,7 +1141,6 @@ Tryggja tær, at henda broyting fer at varðveita framhaldssøguna hjá síðuni
 'showhideselectedversions' => 'Vís/fjal valdu versjónir',
 'editundo' => 'afturstilla',
 'diff-empty' => '(Ongin munur)',
-'diff-multi' => '({{PLURAL:$1|Ein versjón herímillum|$1 versjónir sum liggja ímillum}} av {{PLURAL:$2|einum brúkara|$2 brúkarar}} ikki víst)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein versjón sum liggur ímillum|$1 versjónir sum liggja ímillum}} skrivaðar av meira enn $2 {{PLURAL:$2|brúkara|brúkarum}} ikki víst)',
 
 # Search results
@@ -2127,7 +2123,6 @@ Framtíðar broytingar á hesi síðu og tilknýttu kjaksíðuni verða at sígg
 'watchmethod-list' => 'kannar síður undir eftirliti fyri feskar broytingar',
 'watchlistcontains' => 'Títt eftirlit inniheldur {{PLURAL:$1|eina síðu|$1 síður}}.',
 'iteminvalidname' => "Trupulleiki við luti '$1', ógyldugt navn...",
-'wlnote' => "Niðanfyri {{PLURAL:$1|stendur seinasta broytingin|standa seinastu '''$1''' broytingarnar}} seinasta/u {{PLURAL:$2| tíman|'''$2''' tímarnar}} hin $3 kl. $4",
 'wlshowlast' => 'Vís seinastu $1 tímar $2 dagar $3',
 'watchlist-options' => 'Møguleikar í ansingarlistanum',
 
@@ -2675,7 +2670,6 @@ Vinarliga royn aftur.',
 'tooltip-pt-watchlist' => 'Ein listi við síðum sum tú eftiransar fyri broytingum',
 'tooltip-pt-mycontris' => 'Yvirlit yvir títt íkast',
 'tooltip-pt-login' => 'Vit mæla til at tú ritar inn, tað er tó ikki eitt krav.',
-'tooltip-pt-anonlogin' => 'Vit mæla til at tú ritar inn, tað er tó ikki eitt krav',
 'tooltip-pt-logout' => 'Rita út',
 'tooltip-ca-talk' => 'Kjak um innihaldssíðuna',
 'tooltip-ca-edit' => 'Tú kanst broyta hesa síðuna. Vinarliga nýt forskoðanarknøttin áðrenn tú goymir.',

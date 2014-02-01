@@ -154,7 +154,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Suttalìnia li culligamenti:',
-'tog-justify' => 'Alliniamentu dû paràgrafu: giustificatu',
 'tog-hideminor' => "Ammuccia li canciamenti nichi nta l'ùrtimi canciamenti",
 'tog-hidepatrolled' => "Ammuccia li mudìfichi fatti ntâ l'ùrtimi canciamenti",
 'tog-newpageshidepatrolled' => "Ammuccia li pàggini virificati di l'alencu dî pàgging cchiù novi",
@@ -1000,7 +999,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'compareselectedversions' => 'Fari lu paraguni',
 'showhideselectedversions' => 'Ammustra/ammuccia virsioni silizziunati',
 'editundo' => 'annulla',
-'diff-multi' => '({{PLURAL:$1|Na rivisioni ntirmèdia|$1 rivisioni ntirmedi}} di {{PLURAL:$2|nu utenti|$2 utenti}} nun {{PLURAL:$1|ammusciata|ammusciati}}.)',
 
 # Search results
 'searchresults' => 'Risurtati dâ circata',
@@ -1793,7 +1791,6 @@ Protucolli suppurtati: <code>$1</code>',
 'watchmethod-list' => "cuntrollu di l'ossirvati spiciali pi canciamenti ricenti",
 'watchlistcontains' => 'La tò lista di ossirvati spiciali cunteni {{PLURAL:$1|na pàggina|$1 pàggini}}.',
 'iteminvalidname' => "Prubbremi cu la pàggina '$1', nomu nun vàlidu...",
-'wlnote' => "Sutta attrovi l'ùrtim{{PLURAL:$1|u canciamentu|i $1 canciamenti}}, nta l'ùrtim{{PLURAL:$1|a ura|i '''$2''' uri}}.",
 'wlshowlast' => "Ammustra l'ùrtimi $1 uri $2 jorna $3",
 'watchlist-options' => 'Opzioni ussirvati spiciali',
 
@@ -2302,7 +2299,6 @@ Visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [/
 'tooltip-pt-watchlist' => 'La lista dî pàggini ca stai tinennu sutta ossirvazzioni',
 'tooltip-pt-mycontris' => "L'alencu dî tò cuntribbuti",
 'tooltip-pt-login' => 'La riggistrazzioni è cunzigghiata, puru siddu nun obbrigatoria.',
-'tooltip-pt-anonlogin' => 'La riggistrazzioni è cunzigghiata, puru siddu nun obbrigatoria.',
 'tooltip-pt-logout' => 'Nisciuta (logout)',
 'tooltip-ca-talk' => 'Vidi li discussioni rilativi a sta pàggina',
 'tooltip-ca-edit' => "Poi canciari sta pàggina. Pi favuri usa lu pulsanti d'antiprima prima di sarvari.",

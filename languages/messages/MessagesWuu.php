@@ -23,7 +23,6 @@ $fallback = 'zh-hans';
 $messages = array(
 # User preference toggles
 'tog-underline' => '鏈接下橫線：',
-'tog-justify' => '段對齊',
 'tog-hideminor' => '此垡變化裏囥脫小編',
 'tog-hidepatrolled' => '此垡變化裏囥脫巡脫編',
 'tog-newpageshidepatrolled' => '新頁表裏囥脫巡脫頁',
@@ -32,9 +31,7 @@ $messages = array(
 'tog-numberheadings' => '標題自動編號',
 'tog-showtoolbar' => '顯示編傢伙欄',
 'tog-editondblclick' => '捺兩記編頁',
-'tog-editsection' => '用【編寫】鏈接編段',
 'tog-editsectiononrightclick' => '用右捺標題編段',
-'tog-showtoc' => '顯示目錄（為超過3個標題個頁）',
 'tog-rememberpassword' => '箇流覽器裏記牢我個登錄狀態（記$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations' => '畀我建个页搭我传个文件加进我个关注表里去',
 'tog-watchdefault' => '畀我编个页搭文件加进我个关注表里去',
@@ -914,7 +911,6 @@ $1",
 'compareselectedversions' => '比较选中个版本',
 'showhideselectedversions' => '显示／囥脱选定修订版本',
 'editundo' => '撤销',
-'diff-multi' => '（$2个用户个$1个中央版本朆显示。）',
 
 # Search results
 'searchresults' => '搜寻结果',
@@ -1576,7 +1572,6 @@ $1",
 'tooltip-pt-watchlist' => '监控修改页面列表',
 'tooltip-pt-mycontris' => '你侬个贡献列表',
 'tooltip-pt-login' => '鼓励大家登录进来，不过也弗是板定要求',
-'tooltip-pt-anonlogin' => '鼓励登录，必过倒也弗是必须个。',
 'tooltip-pt-logout' => '登出',
 'tooltip-ca-talk' => '讨论内容页',
 'tooltip-ca-edit' => '箇页你侬好编。保存之前望望相起。',

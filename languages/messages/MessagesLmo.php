@@ -105,7 +105,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sutulinia i ligam',
-'tog-justify' => 'Paràgraf: giüstifigaa',
 'tog-hideminor' => 'Scund i mudifegh men impurtant in di "cambiament recent"',
 'tog-hidepatrolled' => 'Scund i mudifegh verifegaa intra i ültem mudifegh',
 'tog-newpageshidepatrolled' => 'Scund i paginn verifegaa de la lista di paginn növ',
@@ -114,10 +113,8 @@ $messages = array(
 'tog-numberheadings' => 'Utu-nümerazión di paragraf',
 'tog-showtoolbar' => 'Fá vidé ai butún da redataziún (JavaScript)',
 'tog-editondblclick' => 'Redatá i pagin cun al dópi clich (JavaScript)',
-'tog-editsection' => 'Abilità edizion di seczion par ligam',
 'tog-editsectiononrightclick' => 'Abilitá redatazziún dai sezziún cun al clic<br />
 süi titul dai sezziún (JavaScript)',
-'tog-showtoc' => "Fà vidè l'indes per i paginn cun püssee de 3 sezión",
 'tog-rememberpassword' => "Regòrdass la mè paròla d'urdin (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations' => "Giunta i paginn ch'hoo creaa mì a la lista di paginn che tegni sot ögg",
 'tog-watchdefault' => "Gjüntá i pagin redataa in dala lista dii pagin tegnüü d'öcc",
@@ -637,7 +634,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'rows' => 'Riich:',
 'columns' => 'Culònn:',
 'searchresultshead' => 'Cerca',
-'resultsperpage' => 'Resültaa pər pagina:',
 'recentchangescount' => "Nümer de mudifegh da mustrà per ''default'':",
 'savedprefs' => 'I preferenz hinn stai salvaa.',
 'timezonelegend' => 'Lucalitaa',

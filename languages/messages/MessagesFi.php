@@ -321,7 +321,6 @@ $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linkkien alleviivaus:',
-'tog-justify' => 'Tasaa kappaleet',
 'tog-hideminor' => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-hidepatrolled' => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',
 'tog-newpageshidepatrolled' => 'Piilota tarkastetut sivut uusien sivujen listalta',
@@ -1349,7 +1348,6 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'showhideselectedversions' => 'Näytä tai piilota valitut versiot',
 'editundo' => 'kumoa',
 'diff-empty' => '(ei eroavaisuuksia)',
-'diff-multi' => '(Näytettyjen versioiden välissä on {{PLURAL:$1|yksi muokkaus|$1 versiota, jotka ovat {{PLURAL:$2|yhden käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 'diff-multi-manyusers' => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.
 

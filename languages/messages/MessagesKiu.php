@@ -56,7 +56,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bınê gırey de xete bonce:',
-'tog-justify' => 'Paragrafu eyar ke',
 'tog-hideminor' => 'Vurnayisunê senıku pela vurnayisunê peyênu de wedare',
 'tog-hidepatrolled' => 'Vurnayisunê qontrolkerdu pela vurnayisê peyêni de wedare',
 'tog-newpageshidepatrolled' => 'Pelunê qontrolkerdu lista pelunê newu de wedare',
@@ -691,7 +690,6 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'lineno' => 'Rêza $1i:',
 'compareselectedversions' => 'Varyantunê weçinıtun têver sane',
 'editundo' => 'peyser bia',
-'diff-multi' => '({{PLURAL:$1|Jü çımraviarnaena wertey|$1 çımraviarnaena wertey}} terefê {{PLURAL:$2|zu karberi|$2 karberu}} ra nêasnino)',
 
 # Search results
 'searchresults' => 'Neticê cıfeteliyaene',

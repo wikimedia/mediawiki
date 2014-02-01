@@ -20,7 +20,6 @@ $fallback = 'ru';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ӏинкаш белгалде:',
-'tog-justify' => 'Яздам оагӀува шоралца хьанийсде',
 'tog-hideminor' => 'ЗӀамига хувцамаш керда хувцаман дагарленашках къайлаяккха',
 'tog-hidepatrolled' => 'Керда хувцаман дагарленач дӀанийсаяь хувцамаш къайладаккха',
 'tog-newpageshidepatrolled' => 'Керда оагӀувна дагарленач дӀанийсаяь хувцамаш къайладаккха',
@@ -29,9 +28,7 @@ $messages = array(
 'tog-numberheadings' => 'Корталенашт аланза таьрахьал де',
 'tog-showtoolbar' => 'ГӀалатнийcдара юкъе лакхера гӀорсан гартакх хьахьокха (JavaScript)',
 'tog-editondblclick' => 'Шозза цлицакацa oагӀув хувца (JavaScript)',
-'tog-editsection' => 'ХӀара дакъа "хувца" яха Ӏинк хьахьокха',
 'tog-editsectiononrightclick' => 'Декъам хувца кертмугӀа аьтта цлицака я (JavaScript)',
-'tog-showtoc' => 'Кортанче хьокха (кхьаннена дукхагӀа кертмугӀанаш йoлa оагӀувна)',
 'tog-rememberpassword' => '(укх $1 {{PLURAL:$1|1=ден|деношк}}) мара са чувалара/ялара дагалоаца дезаш дац',
 'tog-watchcreations' => 'Аз яь йола оагӀувнаш теркама дагарле йолач чуяьккха',
 'tog-watchdefault' => 'Аз хийца йола оагӀувнаш теркама дагарле йолач чуяьккха',
@@ -495,7 +492,6 @@ $messages = array(
 'lineno' => 'МугI $1:',
 'compareselectedversions' => 'Хьаржа доржамаша тарона тIа хьажа',
 'editundo' => 'юхавала/яла',
-'diff-multi' => '({{PLURAL:$1|1=$1 юкъара доржам хьахьекха дац|$1 юкъара доржамаш хьахьекха дац}} {{PLURAL:$2|1=$2 дакъалаьцархочунна|$2 дакъалаьцархоший}})',
 
 # Search results
 'searchresults' => 'Тохкама гIулакхахилар',

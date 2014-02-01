@@ -35,7 +35,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '下划链接',
-'tog-justify' => '对到段落',
 'tog-hideminor' => '该朝子𠮶改动弆到𠮶细修改',
 'tog-hidepatrolled' => '到个昼子𠮶修改里头弆到巡查过𠮶编辑',
 'tog-newpageshidepatrolled' => '到新页清单里头弆到巡查过𠮶页面',
@@ -44,9 +43,7 @@ $messages = array(
 'tog-numberheadings' => '标题自动编号',
 'tog-showtoolbar' => '显示编辑工具栏（JavaScript）',
 'tog-editondblclick' => '按两下改吖（JavaScript）',
-'tog-editsection' => '可以用[编写]链接来编写个别段落',
 'tog-editsectiononrightclick' => '可以按右键来编写只把子段落（JavaScript）',
-'tog-showtoc' => '超过三只标题就显到目录',
 'tog-rememberpassword' => '到个只电脑记到我𠮶密码（至多$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations' => '拿偶开嘞𠮶页面加到偶𠮶监视列表',
 'tog-watchdefault' => '拿偶改嘞𠮶页面加到偶𠮶监视列表',
@@ -697,7 +694,6 @@ $2',
 'lineno' => '第$1行:',
 'compareselectedversions' => '比较拣正𠮶版本',
 'editundo' => '还原',
-'diff-multi' => '{{PLURAL:$2|1只用户|$2只用户}}舞𠮶{{PLURAL:$1|一只中途修改|$1只中途修改}}冇拕显示）',
 
 # Search results
 'searchresults' => '寻到𠮶结果',
@@ -1218,7 +1214,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchmethod-list' => '望吖监视页里头最晏𠮶改动',
 'watchlistcontains' => '倷𠮶监视列表包含$1只页面。',
 'iteminvalidname' => "页面'$1'出错，无效命名...",
-'wlnote' => "下底系最近'''$2'''钟头内𠮶最晏'''$1'''道修改:",
 'wlshowlast' => '显示近来$1钟头$2日$3𠮶改动',
 'watchlist-options' => '监视清单选项',
 
@@ -1625,7 +1620,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'tooltip-pt-watchlist' => '偶𠮶监视列表',
 'tooltip-pt-mycontris' => '偶𠮶贡献列表',
 'tooltip-pt-login' => '登入系伓强制𠮶，但佢会有蛮多好处',
-'tooltip-pt-anonlogin' => '登入系伓强制𠮶，但佢会有蛮多好处',
 'tooltip-pt-logout' => '登出',
 'tooltip-ca-talk' => '内容页𠮶讨论',
 'tooltip-ca-edit' => '倷编得正个页，但劳烦倷望佢一眼起再存到佢。',

@@ -56,7 +56,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '下劃連結',
-'tog-justify' => '對到段落',
 'tog-hideminor' => '該晝子嗰改動弆到嗰細修改',
 'tog-hidepatrolled' => '到箇晝子嗰修改裡頭弆到巡查過嗰編輯',
 'tog-newpageshidepatrolled' => '到新頁清單裡頭弆到巡查過嗰頁面',
@@ -65,9 +64,7 @@ $messages = array(
 'tog-numberheadings' => '標題自動編號',
 'tog-showtoolbar' => '顯示編輯工具欄（JavaScript）',
 'tog-editondblclick' => '捺兩下來改下（JavaScript）',
-'tog-editsection' => '可以用[編寫]連結來編寫個別段落',
 'tog-editsectiononrightclick' => '可以按右鍵來編寫隻把子段落（JavaScript）',
-'tog-showtoc' => '超過三隻標題就顯到目錄',
 'tog-rememberpassword' => '到箇隻電腦記到我嗰密碼（至多$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations' => '搦我開嗰頁面加到我嗰監視列表',
 'tog-watchdefault' => '搦我改嗰頁面加到我嗰監視列表',
@@ -718,7 +715,6 @@ $2',
 'lineno' => '第$1行:',
 'compareselectedversions' => '對比揀正嗰版本',
 'editundo' => '還原',
-'diff-multi' => '{{PLURAL:$2|1隻用戶|$2隻用戶}}舞嗰{{PLURAL:$1|一隻中途修改|$1隻中途修改}}冇拕顯示）',
 
 # Search results
 'searchresults' => '尋到嗰結果',
@@ -1239,7 +1235,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchmethod-list' => '望吖監視頁裡頭頂晏嗰改動',
 'watchlistcontains' => '倷嗰監視列表包含$1隻頁面。',
 'iteminvalidname' => "頁面'$1'出錯，無效命名...",
-'wlnote' => "下底係最近'''$2'''鐘頭內嗰最晏'''$1'''道修改:",
 'wlshowlast' => '顯示箇日子$1鐘頭$2日$3嗰改動',
 'watchlist-options' => '監視清單選項',
 
@@ -1646,7 +1641,6 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'tooltip-pt-watchlist' => '汝嗰監視列表嗰改動',
 'tooltip-pt-mycontris' => '汝嗰貢獻列表',
 'tooltip-pt-login' => '汝登入會得佢蠻多惠，但冇人訛得汝。',
-'tooltip-pt-anonlogin' => '汝登入會得佢蠻多惠，但冇人訛得汝。',
 'tooltip-pt-logout' => '登出',
 'tooltip-ca-talk' => '內容頁嗰討論',
 'tooltip-ca-edit' => '汝編得正箇頁，但勞為汝望多一眼起，再存到佢。',

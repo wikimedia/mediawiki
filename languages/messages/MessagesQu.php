@@ -265,7 +265,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => "T'inkikunata uranpi sikwiy",
-'tog-justify' => 'Rakirikunata paqtachiy',
 'tog-hideminor' => '«Ñaqha hukchasqa» nisqapi aslla hukchasqakunata pakay',
 'tog-hidepatrolled' => "Patrullasqa llamk'apusqakunata ñaqha hukchasqapi pakay",
 'tog-newpageshidepatrolled' => "Patrullasqa llamk'apusqakunata musuq p'anqakunapi pakay",
@@ -1271,7 +1270,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'showhideselectedversions' => 'Akllasqa musuqchasqakunata rikuchiy/pakay',
 'editundo' => 'kutichiy',
 'diff-empty' => '(Manam wak hina kanchu)',
-'diff-multi' => "({{PLURAL:$2|Huk ruraqpa|$2 ruraqpa}} {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
 'diff-multi-manyusers' => "({{PLURAL:$2|Hukmanta|$2-manta}} aswan ruraqkunap {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
 'difference-missing-revision' => "Kay wakin kaymanta ($1) {{PLURAL:$2|huk musuqchasqa|$2 musuqchasqakuna}} manam tarisqachu.
 
@@ -2275,7 +2273,6 @@ Qampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamayta
 'watchmethod-list' => "watiqasqayki p'anqakunata ñaqha hukchasqakunapaq llanchispa",
 'watchlistcontains' => "Watiqana sutisuyuykipiqa $1 {{PLURAL:$1|p'anqam|p'anqakunam}} kachkan.",
 'iteminvalidname' => "'$1' nisqa qillqaqa sasachakunmi, sutinqa manam allinchu...",
-'wlnote' => "Kay qatiqpiqa {{PLURAL:$1|qhipaq hukchasqam|'''$1''' qhipaq hukchasqakunam}} qhipaq {{PLURAL:$2|urapim|'''$2''' urakunapim}}, musuqchasqa $3, $4.",
 'wlshowlast' => "$1 ura, $2 p'unchaw $3-mantapacha hukchasqakunata rikuchiy",
 'watchlist-options' => 'Watiqana sutisuyupaq allinkachinakuna',
 
@@ -2895,7 +2892,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'tooltip-pt-watchlist' => "Ruraqpa hukchasqakunakama watiqasqan p'anqakuna",
 'tooltip-pt-mycontris' => "Llamk'apusqaykikuna",
 'tooltip-pt-login' => 'Kallpachaykiku yaykunaykiqa allinmi nispa, mana manu kanayki kaptinpas',
-'tooltip-pt-anonlogin' => 'Kallpachaykiku yaykunaykiqa allinmi nispa, mana manu kanayki kaptinpas',
 'tooltip-pt-logout' => "Llamk'apuy tiyaymanta lluqsiy",
 'tooltip-ca-talk' => "Qillqasqap samiqninmanta rimanakuna p'anqa",
 'tooltip-ca-edit' => "Kay p'anqata llamk'apuytam atinki. Ama hina kaspa, manaraq waqaychaspa ñawpaqta qhawarillay.",

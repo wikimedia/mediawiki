@@ -50,6 +50,7 @@
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Red Baron
+ * @author Reditec
  * @author Reedy
  * @author Remember the dot
  * @author Revolus
@@ -425,7 +426,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Links unterstreichen:',
-'tog-justify' => 'Text als Blocksatz',
 'tog-hideminor' => 'Kleine Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
@@ -609,7 +609,7 @@ $messages = array(
 'searcharticle' => 'Seite',
 'history' => 'Versionen',
 'history_short' => 'Versionsgeschichte',
-'updatedmarker' => 'Änderung seit meinem letzten Besuch',
+'updatedmarker' => 'Änderung seit deinem letzten Besuch',
 'printableversion' => 'Druckversion',
 'permalink' => 'Permanenter Link',
 'print' => 'Drucken',
@@ -1468,7 +1468,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo' => 'rückgängig machen',
 'diff-empty' => '(kein Unterschied)',
-'diff-multi' => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} des gleichen Benutzers werden nicht angezeigt)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem anderen Benutzer|$2 Benutzern}} werden nicht angezeigt)',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)',
 'difference-missing-revision' => '{{PLURAL:$2|Eine Version|$2 Versionen}} dieser Unterschiedsanzeige ($1) {{PLURAL:$2|wurde|wurden}} nicht gefunden.
 
@@ -1489,7 +1490,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'shown-title' => 'Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite',
 'viewprevnext' => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat.'''",
-'searchmenu-new' => "'''Erstelle die Seite „[[:$1]]“ in diesem Wiki.'''",
+'searchmenu-new' => '<strong>Erstelle die Seite „[[:$1]]“ in diesem Wiki.</strong> {{PLURAL:$2|0=|Siehe auch die mit deiner Suche gefundene Seite.|Siehe auch die gefundenen Suchergebnisse.}}',
 'searchprofile-articles' => 'Inhaltsseiten',
 'searchprofile-project' => 'Hilfe- und Projektseiten',
 'searchprofile-images' => 'Multimedia',
@@ -3115,7 +3116,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'importuploaderrortemp' => 'Das Hochladen der Importdatei ist fehlgeschlagen. Ein temporäres Verzeichnis fehlt.',
 'import-parse-failure' => 'Fehler beim XML-Import:',
 'import-noarticle' => 'Es wurde keine zu importierende Seite angegeben!',
-'import-nonewrevisions' => 'Alle Versionen wurden bereits zu einem früheren Zeitpunkt importiert.',
+'import-nonewrevisions' => 'Es wurden keine Versionen importiert. Entweder waren alle bereits vorhanden oder wurden aufgrund von Fehlern übersprungen.',
 'xml-error-string' => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 'import-upload' => 'XML-Dateien importieren',
 'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
@@ -3126,6 +3127,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-error-special' => 'Die Seite „$1“ wurde nicht importiert, da sie zu einem besonderen Namensraum gehört, in dem keine Seiten möglich sind.',
 'import-error-invalid' => 'Seite „$1“ wurde nicht importiert, da deren Name ungültig ist.',
 'import-error-unserialize' => 'Die Version $2 der Seite „$1“ konnte nicht deserialisiert werden. Die Version wurde zur Verwendung des Inhaltsmodells $3 gemeldet, das als $4 serialisiert ist.',
+'import-error-bad-location' => 'Die Version $2, die das Inhaltsmodell $3 verwendet, kann auf diesem Wiki nicht unter „$1“ gespeichert werden, da dieses Modell auf dieser Seite nicht unterstützt wird.',
 'import-options-wrong' => 'Falsche {{PLURAL:$2|Option|Optionen}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Der angegebene Stammseitenname ist ungültig.',
 'import-rootpage-nosubpage' => 'Im Namensraum „$1“ der Stammseite sind keine Unterseiten erlaubt.',

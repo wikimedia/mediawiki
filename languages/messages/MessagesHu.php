@@ -316,7 +316,6 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Hivatkozások aláhúzása:',
-'tog-justify' => 'Bekezdések sorkizárása',
 'tog-hideminor' => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled' => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
@@ -1321,7 +1320,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'showhideselectedversions' => 'Kiválasztott változatok láthatóságának beállítása',
 'editundo' => 'visszavonás',
 'diff-empty' => '(Nincs különbség)',
-'diff-multi' => '({{PLURAL:$2|egy|$2}} szerkesztő {{PLURAL:$1|egy|$1}} közbeeső változata nincs mutatva)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
 'difference-missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 $2 változata nem létezik.
 
@@ -2329,7 +2327,6 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchmethod-list' => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains' => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
 'iteminvalidname' => "Probléma a '$1' elemmel: érvénytelen név...",
-'wlnote' => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának ideje $3, $4.",
 'wlshowlast' => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
 'watchlist-options' => 'A figyelőlista beállításai',
 
@@ -2974,7 +2971,6 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-pt-watchlist' => 'Az általad figyelemmel kísért oldalak utolsó változtatásai',
 'tooltip-pt-mycontris' => 'A közreműködéseid listája',
 'tooltip-pt-login' => 'Bejelentkezni javasolt, de nem kötelező.',
-'tooltip-pt-anonlogin' => 'Bejelentkezni javasolt, de nem kötelező.',
 'tooltip-pt-logout' => 'Kijelentkezés',
 'tooltip-ca-talk' => 'Az oldal tartalmának megvitatása',
 'tooltip-ca-edit' => 'Te is szerkesztheted ezt az oldalt. Mentés előtt használd az előnézet gombot.',

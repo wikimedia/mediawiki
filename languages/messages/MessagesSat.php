@@ -22,7 +22,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Joṛaoko latarre dag udugoḱma:',
-'tog-justify' => 'Olaḱ kạli mońjte sajao:',
 'tog-hideminor' => 'Nitaḱ bodolaḱre huḍiṅ kạmi danaṅme',
 'tog-hidepatrolled' => 'Joṛaoakanaḱko nãwã bodolaḱte danaṅkam',
 'tog-newpageshidepatrolled' => 'Biḍạakanaḱ sakamko nãwã sakamreaḱ talikare danȧkam',
@@ -31,9 +30,7 @@ $messages = array(
 'tog-numberheadings' => 'Mukhiạ kathako do actege piṛhipiṛhite sajaḱma',
 'tog-showtoolbar' => 'Joṛaoakanaḱ ṭulbar udugoḱma',
 'tog-editondblclick' => 'Bar dhao lin kate sakam torjomão reaḱ ạidari emogoḱma',
-'tog-editsection' => '[Joṛao] Pahaṭako do joṛao hotete aćtege hoyoḱ lạgit aidạri em ocoḱma',
 'tog-editsectiononrightclick' => 'Pahaṭa reaḱ pahaṭa guṭkathare jojom seć lin hotete <br /> pahaṭa sompadon lạgitte ektiạr em hoyoḱma (JavaScript)',
-'tog-showtoc' => 'Ṭibilre menaḱako ńel ( sakamkore 3 khon jạti hedlayenko)',
 'tog-rememberpassword' => 'Noa sendrare amaḱ boloḱ reaḱ katha (katha cạbi) disạimẽ (jạstite $1 {{PLURAL:$1din reaḱ din reaḱ}} lạgit)',
 'tog-watchcreations' => 'Ińaḱ tear sakam ar rakaṕ páelko ińaḱ ńelogoḱ tạlikare ńeloḱ ma',
 'tog-watchdefault' => 'Ińaḱ purạoakanaḱ sakam ar phayelko do ińaḱ ńeloḱ tạlikare joṛaoḱma',
@@ -671,7 +668,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'lineno' => 'Sạr $1:',
 'compareselectedversions' => 'Noa barea nãwã bachawanaḱ talare tolonayme',
 'editundo' => 'ruạṛ',
-'diff-multi' => '({{PLURAL:$2 mit́ṭen beoharic $2 hoṛ beoharkin}} Sompadon hoena {{PLURAL:$1 mit́ṭen do mitghạṛi lạgit sudhrạo mit́ṭen do mitghạṛi lạgit sudhrạo}} baṅ uduḱlena.)',
 
 # Search results
 'searchresults' => 'Se̠ndra fo̠l',

@@ -45,7 +45,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Suttastritgar colliaziuns:',
-'tog-justify' => "Text en furma da 'bloc'",
 'tog-hideminor' => 'Zuppentar pitschnas midadas en las ultimas midadas',
 'tog-hidepatrolled' => 'Zuppentar midadas controlladas en las «ultimas midadas»',
 'tog-newpageshidepatrolled' => 'Zuppentar paginas controlladas en las «paginas novas»',
@@ -1005,7 +1004,6 @@ Fa stim che navigar cun agid da las coalliziuns reinizialisescha tia tscherna.',
 'compareselectedversions' => 'cumparegliar las versiuns selecziunadas',
 'showhideselectedversions' => 'Mussar/zuppentar las versiuns tschernidas',
 'editundo' => 'revocar',
-'diff-multi' => '({{PLURAL:$1|Ina versiun|$1 versiuns}} {{PLURAL:$2|dad in utilisader|da $2 utilisaders}} tranter en na {{PLURAL:$1|vegn betg mussada|na vegnan betg mussadas}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ina versiun|$1 versiuns}} tranteren da dapli che $2 {{PLURAL:$2|utilisader|utilisaders}} na vegn betg mussada)',
 'difference-missing-revision' => "{{PLURAL:$2|Ina versiun|$2 versiuns}} da questa differenza ($1) {{PLURAL:$2|n'è betg vegnida chattada|n'èn betg vegnidas chattadas}}.
 
@@ -2005,7 +2003,6 @@ Midadas futuras vid questa pagina e la pagina da discussiun appertegnenta vegnan
 'watchmethod-list' => 'intercurir las paginas observadas davart novas midadas',
 'watchlistcontains' => "Tia glista d'observaziun cuntegna $1 {{PLURAL:$1|pagina|paginas}}.",
 'iteminvalidname' => "Problem cun endataziun '$1', num nunvalid...",
-'wlnote' => "Sutvart {{PLURAL:$1|è l'ultima midada|èn las ultimas '''$1''' midadas}} entaifer {{PLURAL:$2|l'ultima ura|las ultimas '''$2''' uras}}. Actualisà ils $3 las $4.",
 'wlshowlast' => 'Mussar: las ultimas $1 uras, ils ultims $2 dis u $3.',
 'watchlist-options' => "Opziuns per la glista d'observaziun",
 
@@ -2666,7 +2663,6 @@ Emprova danovamain.',
 'tooltip-pt-watchlist' => 'La glista da las paginas da las qualas jau observ las midadas',
 'tooltip-pt-mycontris' => 'Mussar la glista da tut tias contribuziuns',
 'tooltip-pt-login' => "I fiss bun sche ti s'annunziassas, ti na stos dentant betg.",
-'tooltip-pt-anonlogin' => "I fiss bun sche ti t'annunziassas; quai n'è dentant betg obligatoric.",
 'tooltip-pt-logout' => 'Sortir',
 'tooltip-ca-talk' => "Discussiuns davart il cuntegn da l'artitgel",
 'tooltip-ca-edit' => "Ti pos modifitgar questa pagina.

@@ -37,7 +37,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pinag-ugisan ti silpo:',
-'tog-justify' => 'Limpiaen dagiti parapo',
 'tog-hideminor' => 'Ilemmeng dagiti bassit a panagbaliw kadagiti naudi a sinuk-sukatan',
 'tog-hidepatrolled' => 'Ilemmeng dagiti napatruliaan nga inurnos kadagiti naudi a sinuk-sukatan',
 'tog-newpageshidepatrolled' => 'Ilemmeng dagiti napatruliaan a panid manipud ti baro a listaan ti panid',
@@ -1106,7 +1105,6 @@ Usaren ti radio a buton a tukol ti pinagtipon iti laeng panagbaliw a naaramid id
 'showhideselectedversions' => 'Ipakita/ilemmeng dagiti napili a nabaliwan',
 'editundo' => 'ibabawi',
 'diff-empty' => '(Awan ti paggiddiatan)',
-'diff-multi' => '({{PLURAL:$1|Maysa nga agtengnga a panangbalbaliw|Dagiti $1 nga agtennga a panangbalbaliw}} babaen {{PLURAL:$2|ti agararamat|dagiti $2 nga agararamat}} ti saan a naipakita)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Maysa nga agtengnga a panangbalbaliw|Dagiti $1 nga agtengnga a panangbalbaliw}} babaen ti ad-adu ngem $2 {{PLURAL:$2|nga agar-aramat|kadagiti agar-aramat}} ti saan a naipakita)',
 'difference-missing-revision' => '{{PLURAL:$2|Maysa a panagbalbaliw|$2 kadagiti panagbalbaliw}} iti daytoy a paggiddiatan ($1) {{PLURAL:$2|ket ti|ket dagiti}} saan a naburikan.
 
@@ -2159,7 +2157,6 @@ Dagiti masakbayan a panagsukat iti daytoy a panid ken dagiti mainaig a tungtunga
 'watchmethod-list' => 'kitkitaen dagiti bambantayan a panid kadagiti kinaudi nga inurnos',
 'watchlistcontains' => 'Ti listaan ti bambantayam ket aglaon ti $1 {{PLURAL:$1|a panid|a pampanid}}.',
 'iteminvalidname' => "Parikut iti banag '$1', imbalido a nagan...",
-'wlnote' => "Adda dita baba {{PLURAL:$1|ti kaudian a panagsukat|dagiti kaudian a '''$1''' a panagsukat}} iti napalabas a {{PLURAL:$2|nga oras|'''$2''' nga or-oras}}, manipud idi $3, $4.",
 'wlshowlast' => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
 'watchlist-options' => 'Dagiti pagpilian ti listaan a bambantayan',
 
@@ -2823,7 +2820,6 @@ Pangngaasi a padasem manen.',
 'tooltip-pt-watchlist' => 'Listaan dagiti panid a sipsiputem para iti panakabalbaliw',
 'tooltip-pt-mycontris' => 'Listaan dagiti inaramidmo',
 'tooltip-pt-login' => 'Maisingasing a sumrekka; nupay kasta, daytoy ket saan a maipapilit',
-'tooltip-pt-anonlogin' => 'Maisingasing a sumrekka; nupay kasta, daytoy ket saan a maipapilit',
 'tooltip-pt-logout' => 'Rummuar',
 'tooltip-ca-talk' => 'Pagtungtungan a maipapan ti linaon ti panid',
 'tooltip-ca-edit' => 'Mabalinmo nga urnosen daytoy a panid. Pangngaasi nga aramatem ti buton ti panagipadas sakbay nga agidulin',

@@ -126,7 +126,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sottolineâ i collegamenti',
-'tog-justify' => 'Alliniamento di paragrafi giustificòu',
 'tog-hideminor' => 'asconde e modifiche minori inte ùrtime modifiche',
 'tog-hidepatrolled' => 'Ascondi e modifiche verificæ inte ùrtime modifiche',
 'tog-newpageshidepatrolled' => "Ascondi e paggine verificæ da  l'elenco de paggine ciù reçenti",
@@ -135,9 +134,7 @@ $messages = array(
 'tog-numberheadings' => 'Nùmeraçion aotomàtica di tìtoli de seçión',
 'tog-showtoolbar' => 'Fanni vedde a barra di strumenti de modìffica (serve JavaScript)',
 'tog-editondblclick' => 'Modifica e paggine co-o doggio clic (serve Javascrpt)',
-'tog-editsection' => 'Modifica e seçión co-o colegamento [modifica]',
 'tog-editsectiononrightclick' => 'Modifica e seçión co-o clic drito in sciô tìtolo (serve Javascipt)',
-'tog-showtoc' => "Fanni védde l'indiçe pe-e pàgine con ciù de 3 seçioìn",
 'tog-rememberpassword' => "Arregorda a mæ paròlla d'ordine (a-o màscimo pe $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations' => 'Azonzi e paggine che creo e i file che carrego a-i oservæ speciâli',
 'tog-watchdefault' => 'Azonzi e paggine e i files che modiffico a-i mæ sotta oservaçion',
@@ -734,7 +731,6 @@ Legenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a ve
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Confronta e verscioîn selessionæ',
 'editundo' => 'Anùlla',
-'diff-multi' => '({{PLURAL:$1|Inna revixón intermedia|$1 de revixoìn intermedie}} de {{PLURAL:$2|un utente|$2 utenti}} no son mostræ)',
 
 # Search results
 'searchresults' => 'Resultati da reçerca',

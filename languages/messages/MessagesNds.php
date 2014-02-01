@@ -216,7 +216,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Verwies ünnerstrieken',
-'tog-justify' => 'Text as Blocksatz',
 'tog-hideminor' => 'Kene lütten Ännern in letzte Ännern wiesen',
 'tog-hidepatrolled' => 'Nakeken Ännern bi „Toletzt ännert“ nich wiesen',
 'tog-newpageshidepatrolled' => 'Nakeken Ännern bi „Ne’e Sieden“ nich wiesen',
@@ -1031,7 +1030,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'compareselectedversions' => 'Ünnerscheed twischen den utwählten Versionen wiesen',
 'showhideselectedversions' => 'Utwählt Versionen wiesen/versteken',
 'editundo' => 'rutnehmen',
-'diff-multi' => '({{PLURAL:$1|Een Twischenversion|$1 Twischenversionen}} von {{PLURAL:$2|een Bruker|$2 Brukers}} warrt nich wiest.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Een Twischenversion|$1 Twischenversionen}} von mehr as $2 {{PLURAL:$2|Bruker|Brukers}} warrt nich wiest)',
 
 # Search results
@@ -1825,7 +1823,6 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'watchmethod-list' => 'Oppasslist na letzte Ännern nakieken',
 'watchlistcontains' => 'Diene Oppasslist bargt {{PLURAL:$1|ene Siet|$1 Sieden}}.',
 'iteminvalidname' => "Problem mit den Indrag '$1', ungülligen Naam...",
-'wlnote' => "Ünnen {{PLURAL:$1|steiht de letzte Ännern|staht de letzten $1 Ännern}} vun de {{PLURAL:$2|letzte Stünn|letzten '''$2''' Stünnen}}.",
 'wlshowlast' => 'Wies de letzten $1 Stünnen $2 Daag $3',
 'watchlist-options' => 'Optionen för de Oppasslist',
 
@@ -2343,7 +2340,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'tooltip-pt-watchlist' => 'Mien Oppasslist',
 'tooltip-pt-mycontris' => 'List vun dien Bidrääg',
 'tooltip-pt-login' => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
-'tooltip-pt-anonlogin' => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
 'tooltip-pt-logout' => 'Afmellen',
 'tooltip-ca-talk' => 'Diskuschoon över disse Siet',
 'tooltip-ca-edit' => 'Du kannst disse Siet ännern. Bruuk dat vör dat Spiekern.',

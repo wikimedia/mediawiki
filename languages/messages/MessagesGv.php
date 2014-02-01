@@ -35,7 +35,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Cur linnaghyn fo chianglaghyn:',
-'tog-justify' => 'Cur meeryn ayns un linney',
 'tog-hideminor' => "Follee myn-arraghyn ayns caghlaaghyn s'noa",
 'tog-hidepatrolled' => "Follee arraghyn er nyn scrutaghey ayns caghlaaghyn s'noa",
 'tog-newpageshidepatrolled' => "Follee duillagyn er nyn scrutaghey 'sy rolley duillagyn noa",

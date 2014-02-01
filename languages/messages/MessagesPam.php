@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Gulisan lang panglalam deng suglung:',
-'tog-justify' => 'Pipanten-panten la reng parapu (paragraph)',
 'tog-hideminor' => 'Isalikut la reng mangalating edit kareng bayung mengayalili',
 'tog-hidepatrolled' => "Isalikut la reng edit a babanten (''controlled edits'') kareng bayung mengayalili",
 'tog-newpageshidepatrolled' => "Isalikut la reng bulung a babanten (''patrolled pages'') king listaan king bayung bulung (''new page list'')",
@@ -26,10 +25,7 @@ $messages = array(
 'tog-numberheadings' => 'Tambing lang dinan nomiru deng pamagat',
 'tog-showtoolbar' => 'Ipakit ya panaliling toolbar (JavaScript)',
 'tog-editondblclick' => 'Alilan la reng bulung kapamilatan ning makataduang pamagpindut (JavaScript)',
-'tog-editsection' => 'Paganan ya ing pamag-edit king dake (section editing) kapamilatan da reng suglung a [edit]
-Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'tog-editsectiononrightclick' => "Paganan ya ing pamag-edit seksiyon (section editing) kapamilata'ning pamag right click kareng pamagat da reng seksiyon (JavaScript)",
-'tog-showtoc' => 'Pakit ya ing kalamnan [table of contents] (kareng bulung a maki 3 o mas dakal a pamagat)',
 'tog-rememberpassword' => '↓Tandanan ya ing kanakung login keng computer a ini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Idagdag la deng bulung a lelengan ku kareng babanten',
 'tog-watchdefault' => 'Idagdag la reng bulung a inalilan ku kareng babanten',
@@ -718,7 +714,6 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'lineno' => 'Gulis $1:',
 'compareselectedversions' => 'Pikumpara/piyanti la reng mepiling bersion',
 'editundo' => 'iurung',
-'diff-multi' => '({{PLURAL:$1|1 a pamagbayung miyalilan na |$1 pamagbayung miyalilan na}} a e makalto.)',
 
 # Search results
 'searchresults' => 'Ding linual (resulta) king pamanintun',
@@ -1319,7 +1314,6 @@ click me ing \"Tuknangan ing pamagbante\" (Unwatch) king gilid na ning bulung.",
 'watchmethod-list' => 'susurian la reng bulung a babanten para kareng bayung mengayalili',
 'watchlistcontains' => 'Atin yang $1 {{PLURAL:$1|a bulung|bulung}} ing kekang tala ring babanten (watchlist).',
 'iteminvalidname' => "Maki prublema king '$1', e maliari ing lagyu...",
-'wlnote' => "{{PLURAL:$1|Ing makatuki ing tauling|Ding makatuki ring tauling '''$1''' miyalilan}} kilub {{PLURAL:$2|ning tauling metung a oras|ding tauling '''$2''' oras}}.",
 'wlshowlast' => 'Pakit la reng tauling $1 oras $2 aldo $3',
 'watchlist-options' => "Deng maliaring gawan kareng listaan da reng babanten (''watchlist'')",
 
@@ -1778,7 +1772,6 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'tooltip-pt-watchlist' => 'Ing tala da reng bulung nung nu mu babanten ing mengayalilan',
 'tooltip-pt-mycontris' => 'Tala/listaan da reng kekang ambag',
 'tooltip-pt-login' => 'Agkat da kang mag login, oneng e sapilitan iti.',
-'tooltip-pt-anonlogin' => 'Pakisabi ming mag-login ka, oneng e sapilitan iti.',
 'tooltip-pt-logout' => 'Mag log out',
 'tooltip-ca-talk' => 'Pamisabi-sabi tungkul king bulung kalamnan (content page)',
 'tooltip-ca-edit' => 'Malyari meng samasan ing bulung a ini. Pakigamit me pamu ing "pasinag a pipindutan" bayu me isikap.',

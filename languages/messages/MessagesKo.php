@@ -364,7 +364,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '링크에 밑줄:',
-'tog-justify' => '문단 정렬하기',
 'tog-hideminor' => '최근 바뀜에서 사소한 편집을 숨기기',
 'tog-hidepatrolled' => '최근 바뀜에서 검토한 편집을 숨기기',
 'tog-newpageshidepatrolled' => '새 문서 목록에서 검토한 문서를 숨기기',
@@ -1437,7 +1436,6 @@ $1",
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',
 'editundo' => '편집 취소',
 'diff-empty' => '(차이 없음)',
-'diff-multi' => '({{PLURAL:$2|한 사용자의|사용자 $2명의}} {{PLURAL:$1|중간의 편집 $1개}} 숨겨짐)',
 'diff-multi-manyusers' => '({{PLURAL:$2|한 사용자의|사용자 $2명 이상의}} {{PLURAL:$1|중간의 편집 $1개}} 숨겨짐)',
 'difference-missing-revision' => '문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 {{PLURAL:$2|없습니다}}.
 

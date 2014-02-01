@@ -65,7 +65,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sorrayar enllaces:',
-'tog-justify' => 'Xustificar párrafos',
 'tog-hideminor' => 'Anubrir les ediciones menores nos cambeos recientes',
 'tog-hidepatrolled' => 'Anubrir les ediciones vixilaes nos cambeos recientes',
 'tog-newpageshidepatrolled' => 'Anubrir les páxines vixilaes na llista de páxines nueves',
@@ -1135,7 +1134,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showhideselectedversions' => 'Amosar/anubrir les versiones seleicionaes',
 'editundo' => 'desfacer',
 'diff-empty' => '(Nun hai diferencies)',
-'diff-multi' => "({{PLURAL:$1|Nun s'amuesa 1 revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} {{PLURAL:$2|d'un usuariu|de $2 usuarios}} )",
 'diff-multi-manyusers' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
 'difference-missing-revision' => "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).
 
@@ -2197,6 +2195,7 @@ Los futuro cambeos nesta páxina y na so páxina d\'alderique asociada apaecerá
 'watchmethod-list' => 'comprobando ediciones recientes nes páxines vixilaes',
 'watchlistcontains' => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
 'iteminvalidname' => "Problema col elementu '$1', nome non válidu...",
+'wlnote2' => 'Abaxo tan los cambios {{PLURAL:$1|na cabera hora|nes caberes <strong>$1</strong> hores}}, el día $2 a les $3.',
 'wlshowlast' => 'Amosar les últimes $1 hores $2 díes $3',
 'watchlist-options' => 'Opciones de la llista de vixilancia',
 
@@ -2754,6 +2753,7 @@ Por favor visita [https://www.mediawiki.org/wiki/Localisation Llocalización de 
 'allmessages-prefix' => 'Peñerar pol prefixu:',
 'allmessages-language' => 'Llingua:',
 'allmessages-filter-submit' => 'Dir',
+'allmessages-filter-translate' => 'Traducir',
 
 # Thumbnails
 'thumbnail-more' => 'Agrandar',
@@ -2805,7 +2805,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'importuploaderrortemp' => "Falló la xubida del archivu d'importación. Falta una carpeta temporal.",
 'import-parse-failure' => "Fallu nel análisis d'importación XML",
 'import-noarticle' => '¡Nun hai páxina pa importar!',
-'import-nonewrevisions' => 'Toles revisiones fueran importaes previamente.',
+'import-nonewrevisions' => "Nun s'importó denguna revision (o yá taben toes presentes, o se saltaron por errores).",
 'xml-error-string' => '$1 na llinia $2, col $3 (byte $4): $5',
 'import-upload' => 'Xubir datos XML',
 'import-token-mismatch' => 'Perdiéronse los datos de la sesión. Intentalo otra vuelta.',
@@ -2816,6 +2816,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-error-special' => "La páxina «$1» nun s'importó porque pertenez a un espaciu de nomes especial que nun permite les páxines.",
 'import-error-invalid' => "La páxina «$1» nun s'importó porque tien un nome inválidu.",
 'import-error-unserialize' => 'Nun se pudo quitar la serialización de la revisión $2 de la páxina "$1". Nel informe figura que la revisión usa\'l modelu de conteníu $3 serializáu como $4.',
+'import-error-bad-location' => 'La revisión $2 qu\'usa\'l modelu de conteníu $3 nun pue guardase na páxina "$1" d\'esta wiki, porque esi modelu nun tien sofitu na páxina.',
 'import-options-wrong' => '{{PLURAL:$2|Opción enquivocada|Opciones enquivocaes}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La páxina raíz dada ye un títulu inválidu.',
 'import-rootpage-nosubpage' => 'L\'espaciu de nomes "$1" de la páxina raíz nun permite subpáxines.',

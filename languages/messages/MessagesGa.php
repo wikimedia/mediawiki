@@ -98,7 +98,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Folínte faoi naisc:',
-'tog-justify' => 'Comhfhadaigh na paragraif',
 'tog-hideminor' => 'Ná taispeáin mionathruithe i measc na n-athruithe is déanaí',
 'tog-hidepatrolled' => 'Folaigh giotaí eagartha smachtaithe sna athruithe is déanaí',
 'tog-newpageshidepatrolled' => 'Folaigh leathanaigh smachtaithe ó liosta leathanaigh úire',
@@ -107,9 +106,7 @@ $messages = array(
 'tog-numberheadings' => 'Uimhrigh ceannteidil go huathoibríoch',
 'tog-showtoolbar' => 'Taispeáin an barra uirlisí eagair (JavaScript)',
 'tog-editondblclick' => 'Déghliogáil chun leathanaigh a chur in eagar (JavaScript)',
-'tog-editsection' => 'Cumasaigh mír-eagarthóireacht le naisc mar seo: [athrú]',
 'tog-editsectiononrightclick' => 'Cumasaigh mír-eagarthóireacht le deaschliceáil<br /> ar cheannteidil (JavaScript)',
-'tog-showtoc' => "Taispeáin an clár ábhair (d'ailt le níos mó ná 3 ceannteidil)",
 'tog-rememberpassword' => 'Cuimhnigh orm ar an ríomhaire seo (ar feadh uastréimhse de $1 {{PLURAL:$1|lá|lá}})',
 'tog-watchcreations' => 'Cuir ar mo liosta faire leathanaigh a chruthaím',
 'tog-watchdefault' => 'Déan faire ar leathanaigh a athraím',
@@ -758,7 +755,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'lineno' => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo' => 'cealaigh',
-'diff-multi' => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} le {{PLURAL:$2|úsáideoir amháin|$2 úsáideoirí}} nach thaispeántar.)',
 
 # Search results
 'searchresults' => 'Torthaí an chuardaigh',
@@ -1258,7 +1254,6 @@ agus beidh '''cló trom''' ar a theideal san [[Special:RecentChanges|liosta de n
 'watchmethod-list' => 'ag seiceáil na leathanaigh faire ar do chuid athruithe deireanacha',
 'watchlistcontains' => 'Tá {{PLURAL:$1|leathanach amháin|$1 leathanaigh}} ar do liosta faire.',
 'iteminvalidname' => "Fadhb leis an mír '$1', ainm neamhbhailí...",
-'wlnote' => "Is {{PLURAL:$1|é seo thíos an t-athrú deireanach|iad seo thíos na '''$1''' athruithe deireanacha}} {{PLURAL:$2|san uair deireanach|sna '''$2''' uaire deireanacha}}.",
 'wlshowlast' => 'Líon na n-uair is déanaí le taispeáint: $1. Líon na laethanta is déanaí le taispeáint: $2. Taispeáin $3.',
 'watchlist-options' => 'Roghanna don liosta faire',
 
@@ -1649,7 +1644,6 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'tooltip-pt-watchlist' => 'Liosta de na leathanaigh a bhfuil tú á bhfaire ar athruithe',
 'tooltip-pt-mycontris' => 'Liosta do chuid dréachtaí',
 'tooltip-pt-login' => 'Moltar duit logáil isteach, ach níl sé riachtanach.',
-'tooltip-pt-anonlogin' => 'Moltar duit logáil isteach, ach níl sé riachtanach.',
 'tooltip-pt-logout' => 'Logáil amach',
 'tooltip-ca-talk' => 'Plé maidir leis an leathanach ábhair',
 'tooltip-ca-edit' => 'Is féidir leat an leathanach seo a athrú. Más é do thoil é, bain úsáid as an cnaipe réamhamhairc roimh sábháil a dhéanamh.',

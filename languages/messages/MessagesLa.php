@@ -163,7 +163,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Versores linea denotandi:',
-'tog-justify' => 'Iustificare paragrapha',
 'tog-hideminor' => 'Celare recensiones minores in indice nuper mutatorum',
 'tog-hidepatrolled' => 'Redactiones censae inter nuper mutatas celandae',
 'tog-newpageshidepatrolled' => 'Paginae censae inter nouissime creatas celandae',
@@ -172,9 +171,7 @@ $messages = array(
 'tog-numberheadings' => 'Subtituli numeris adornandi',
 'tog-showtoolbar' => 'Affigere trabem redigentem',
 'tog-editondblclick' => 'Percussus duplex redactionem hortetur',
-'tog-editsection' => 'Paginarum segmenta [redigere] hortari',
 'tog-editsectiononrightclick' => 'Paginarum segmenta dextero percussu in titulis redigenda',
-'tog-showtoc' => 'Indicem plurium quam III segmentorum paginis praebere',
 'tog-rememberpassword' => 'Memorare tesserae meae hoc in navigatro inter conventa ({{PLURAL:$1|die|diebus}} $1 tenus)',
 'tog-watchcreations' => 'Paginas quas creo et fasciculos quos impono in paginarum custoditarum indicem addere',
 'tog-watchdefault' => 'Paginas et fasciculos quos recenseo in paginarum custoditarum indicem addere',
@@ -858,7 +855,6 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'showhideselectedversions' => 'Monstrare/celare emendationes selectas',
 'editundo' => 'abrogare',
 'diff-empty' => '(Nulla dissimilitudo)',
-'diff-multi' => '(Inter has {{PLURAL:$1|una emendatio|$1 emendationes}} ab {{PLURAL:$2|uno usore|$2 usoribus}} {{PLURAL:$1|facta|factae}} non {{PLURAL:$1|videtur|videntur}})',
 
 # Search results
 'searchresults' => 'Eventum investigationis',
@@ -1521,7 +1517,6 @@ Mutationes posthac huic paginae et paginae disputationis ibi notabuntur.',
 'watchmethod-list' => 'paginas custoditas quaerens pro recensitis recentibus',
 'watchlistcontains' => 'Index paginarum custoditarum tuus $1 {{PLURAL:$1|paginam|paginas}} habet.',
 'iteminvalidname' => "Aerumna cum pagina '$1', nomen non est rectum...",
-'wlnote' => "Subter {{PLURAL:$1|est mutatio proxima|sunt '''$1''' mutationes proximae}} in {{PLURAL:$2|proxima hora|proximis '''$2''' horis}} ex $4, $3.",
 'wlshowlast' => 'Monstrare proximas $1 horas $2 dies $3',
 'watchlist-options' => 'Indicis paginarum custoditarum praeferentiae',
 
@@ -1939,7 +1934,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'tooltip-pt-watchlist' => 'Paginae quae custodis ut eorum mutationes facilius vides',
 'tooltip-pt-mycontris' => 'Index conlationum tuarum',
 'tooltip-pt-login' => 'Te conventum aperire hortamur, non autem requisitum',
-'tooltip-pt-anonlogin' => 'Te conventum aperire hortamur, non autem requisitum',
 'tooltip-pt-logout' => 'Conventum concludere',
 'tooltip-ca-talk' => 'Disputatio de hac pagina',
 'tooltip-ca-edit' => 'Hanc paginam recensere potes. Quaesumus praevisum inspice antequam servas.',

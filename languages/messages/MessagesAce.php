@@ -165,7 +165,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Bôh garéh yup peunawôt:',
-'tog-justify' => 'Peurata paragraf',
 'tog-hideminor' => 'Peusom neuandam bacut bak neuubah barô',
 'tog-hidepatrolled' => 'Peusom neuandam teurunda bak neuubah barô',
 'tog-newpageshidepatrolled' => 'Peusom laman teurunda nibak dapeuta ôn barô',
@@ -174,9 +173,7 @@ $messages = array(
 'tog-numberheadings' => 'Bôh numbôi nan keudroë',
 'tog-showtoolbar' => 'Peuleumah bateuëng alat andam',
 'tog-editondblclick' => 'Andam laman ngön duwa gö teugön',
-'tog-editsection' => 'Peujeuet andam bideuëng röt hubông [andam]',
 'tog-editsectiononrightclick' => 'Peujeuët andam bideueng ngön teugön blah uneun bak nan bideueng',
-'tog-showtoc' => 'Peuleumah dapeuta asoe (keu laman-laman nyang na leubèh nibak 3 boh aneuk ulèë)',
 'tog-rememberpassword' => 'Ingat lôn tamöng bak peuramban nyoë (keu paléng trép $1 {{PLURAL:$1|uroë}})',
 'tog-watchcreations' => 'Tamah laman nyang lôn peugöt u dapeuta keunalön',
 'tog-watchdefault' => 'Tamah laman nyang lôn-andam u dapeuta keunalon',
@@ -898,7 +895,6 @@ Dalèh $3 nyoe nakeuh ''$2''",
 'compareselectedversions' => 'Peubandéng curak teupiléh',
 'editundo' => 'pubateuë',
 'diff-empty' => '(Hana bida)',
-'diff-multi' => '({{PLURAL:$1|Saboh|$1}} geunantoë antara nyang geupeugot le {{PLURAL:$2|sidroe|$2}} ureueng nguy hana geupeuleumah)',
 
 # Search results
 'searchresults' => 'Hasé mita',
@@ -965,7 +961,6 @@ Dalèh $3 nyoe nakeuh ''$2''",
 'prefs-editing' => 'Neuandam',
 'rows' => 'Baréh:',
 'searchresultshead' => 'Mita',
-'resultsperpage' => 'Hasé lam saboh laman:',
 'stub-threshold-disabled' => 'Geupeumaté',
 'timezoneuseoffset' => "La'én (peuteuntèe bidajih)",
 'timezoneregion-america' => 'Amirika',

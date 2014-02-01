@@ -40,7 +40,6 @@ $linkTrail = '/^([a-zÄäÇçĞğŇňÖöŞşÜüÝýŽž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Çykgytlaryň aşagyny çyz:',
-'tog-justify' => 'Teksti iki ýaňa deňle',
 'tog-hideminor' => '"Soňky üýtgeşmeler" sahypasynda ujypsyzja özgerdişleri gizle',
 'tog-hidepatrolled' => '"Soňky üýtgeşmeler" sahypasynda patrullyk edilen özgerdişleri gizle',
 'tog-newpageshidepatrolled' => 'Patrullyk edilen sahypalary täze sahypalaryň sanawynda gizle',
@@ -914,7 +913,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'compareselectedversions' => 'Saýlanan wersiýalary deňeşdir',
 'showhideselectedversions' => 'Saýlanan wersiýalary görkez/gizle',
 'editundo' => 'yzyna al',
-'diff-multi' => '({{PLURAL:$2|Bir ulanyjy|$2 ulanyjy}} tarapyndan edilen {{PLURAL:$1|aralyk wersiýa|$1 sany aralyk wersiýa}} görkezilmeýär)',
 'diff-multi-manyusers' => '($2 ulanyjydan köp {{PLURAL:$2|ulanyjy|ulanyjy}} tarapyndan edilen {{PLURAL:$1|aralyk wersiýa|$1 sany aralyk wersiýa}} görkezilmeýär)',
 
 # Search results
@@ -1792,7 +1790,6 @@ Aňsatlyk bilen saýlap almak üçin bolsa, [[Special:RecentChanges|soňky üýt
 'watchmethod-list' => 'gözegçilikde saklaýan sahypalaryňyzdaky soňky özgerdişler barlanylýar',
 'watchlistcontains' => 'Gözegçilik sanawyňyzda $1 sany {{PLURAL:$1|sahypa|sahypa}} bar.',
 'iteminvalidname' => "'$1' elementinde problema bar, nädogry at...",
-'wlnote' => "Aşakda soňky {{PLURAL:$2|bir sagatda|'''$2''' sagatda}} edilen {{PLURAL:$1|soňky üýtgeşme|soňky '''$1''' üýtgeşme}} görkezilýär.",
 'wlshowlast' => 'Soňky $1 sagady $2 güni görkez $3',
 'watchlist-options' => 'Gözegçilik sanawynyň opsiýalary',
 
@@ -2360,7 +2357,6 @@ Kompýuteriňize ýazdyryň we şu ýere ýükläň.',
 'tooltip-pt-watchlist' => 'Gözegçilikde saklaýan sahypalarym',
 'tooltip-pt-mycontris' => 'Eden goşantlaryňyzyň sanawy',
 'tooltip-pt-login' => 'Hasaba girmegiňiz maslahat berilýär, ýöne hökmany däl.',
-'tooltip-pt-anonlogin' => 'Sessiýa açmagyňyz maslahat berilýär, yöne hökmany däl',
 'tooltip-pt-logout' => 'Hasapdan çyk',
 'tooltip-ca-talk' => 'Sahypanyň mazmuny barada garaýşyňy beýan et',
 'tooltip-ca-edit' => 'Bu sahypany redaktirläp bilersiňiz. Ýazdyrmankaňyz synlap görmekligi ýatdan çykarmaň.',

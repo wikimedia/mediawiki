@@ -90,7 +90,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Jonoštada kosketused:',
-'tog-justify' => 'Tazoitada tekst lehtpolen levedusen mödhe',
 'tog-hideminor' => 'Peitta pened redakcijad veresiden toižetusiden nimikirjuteses',
 'tog-hidepatrolled' => 'Peitta patruliruidud redakcijad veresiden toižetusiden nimikirjuteses',
 'tog-newpageshidepatrolled' => 'Peitta patruliruidud redakcijad uziden lehtpoliden nimikirjuteses',
@@ -941,7 +940,6 @@ Tö ei voigoi kävutada sidä.',
 'compareselectedversions' => 'Rindatada valitud versijad',
 'showhideselectedversions' => 'Ozutada/peitta valitud versijad',
 'editundo' => 'heitta pätand',
-'diff-multi' => "({{PLURAL:$1|üks' keskmäine versii ei ole|$1 keskmäšt versijad ei olgoi}} {{PLURAL:$2|one user|$2 users}} ozutadud)",
 
 # Search results
 'searchresults' => "Ectä rezul'tatad",
@@ -2284,7 +2282,6 @@ Ei ole pordaigašt failhodrad.',
 'tooltip-pt-watchlist' => 'Lehtpoled, kudambid minä kaclen',
 'tooltip-pt-mycontris' => 'Minun redakcijoiden nimikirjutez',
 'tooltip-pt-login' => 'Naku sab kirjutadas sistemha, no necidä ei tarbiž radon täht',
-'tooltip-pt-anonlogin' => 'Naku sab kirjutadas sistemha, no necidä ei tarbiž radon täht',
 'tooltip-pt-logout' => 'Lähtta sistemaspäi',
 'tooltip-ca-talk' => 'Diskussii neciš lehtpoles',
 'tooltip-ca-edit' => "Sab redaktiruida necidä lehtpol't.

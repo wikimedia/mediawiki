@@ -213,7 +213,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Dun de Links ungerstriche:',
-'tog-justify' => 'Dun de Avschnedde em Blocksatz aanzeije',
 'tog-hideminor' => 'Dun de klein Mini-Änderunge (<strong>M</strong>) en de Liss  met „{{int:Recentchanges}}“ <strong>nit</strong> aanzeije',
 'tog-hidepatrolled' => 'Dun de nohjeloorte Änderunge en de „{{int:recentchanges}}“ eez ens <strong>nit</strong> aanzeije',
 'tog-newpageshidepatrolled' => 'Dun de nohjeloorte Änderunge en de Leß „{{int:newpages}}“ eez ens <strong>nit</strong> aanzeije',
@@ -1347,7 +1346,6 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'showhideselectedversions' => 'De ußjewählte Versione aanzeije udder vershteiche',
 'editundo' => 'De letzte Änderung zeröck nämme',
 'diff-empty' => '(Keine Ongerscheid)',
-'diff-multi' => '(Mer don hee {{PLURAL:$1|eij Version|$1 Versione|keij Version}} dozwesche beim Verjliesche översprenge. Di sin vun jesamp {{PLURAL:$2|einem Metmaacher|$2 Metmaachere|keinem Metmaacher}} jemaat woode)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein Version|$1 Versione|kei Version}} dozwesche vun mieh wi {{PLURAL:$2|einem Metmaacher|$2 Metmaachere|keinem Metmaacher}} wääde nit jezeish)',
 'difference-missing-revision' => '{{PLURAL:$2|Ein Version|$2 Versione}} vun heh däm Verjlisch zwesche Versione ($1) {{PLURAL:$2|hammer}} nit jefonge.
 
@@ -2457,7 +2455,6 @@ Wann di Sigg udder ier Klaafsigg verändert weed, kütt dat af jäz heh en di Op
 'watchmethod-list' => 'Ben de Oppassliss am pröfe, noh de letzte Änderung',
 'watchlistcontains' => 'En dä Oppassliss {{PLURAL:$1|es ein Sigg|sinner <strong>$1</strong> Sigge|sinner <strong>kein</strong> Sigge}}.',
 'iteminvalidname' => 'Dä Endrach „$1“ hät ene kapodde Name.',
-'wlnote' => '{{PLURAL:$1|Hee es de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Mer han kein Äbderunge en}} de letzte {{PLURAL:$2|Stund|<strong>$2</strong> Stunde|<strong>noll</strong> Stunde}} zigg em $3 öm $4 Uhr.',
 'wlshowlast' => 'Zeich de letzte | $1 | Stunde | $2 | Dage | $3 | aan, dun',
 'watchlist-options' => 'Eijeschaffte fun de Oppassless',
 
@@ -3118,7 +3115,6 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-pt-watchlist' => 'De Liss met de Sigge en Dinge eije Oppassliss',
 'tooltip-pt-mycontris' => 'en Liss met Dinge eije Beidräch',
 'tooltip-pt-login' => 'Do moß Desch nit Enlogge, kannz_E ävver jähn maache!',
-'tooltip-pt-anonlogin' => 'Wöhr nett wann De enlogge dääts, moß ävver nit.',
 'tooltip-pt-logout' => 'Ußlogge',
 'tooltip-ca-talk' => 'Dun die Sigg met däm Klaaf övver heh de Sigg aanzeije',
 'tooltip-ca-edit' => 'De kanns die Sigg heh ändere — für em Avspeichere, donn eetß ens enen Bleck op de Vör-Aansich',
