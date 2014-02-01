@@ -1103,6 +1103,13 @@ return array(
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.log' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.log.js',
+		'dependencies' => array(
+			'jquery.ui.autocomplete',
+			'mediawiki.api'
+		),
+	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
