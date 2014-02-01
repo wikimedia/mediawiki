@@ -461,6 +461,13 @@ return array(
 		),
 		'group' => 'jquery.ui',
 	),
+	'jquery.ui.autocompleteMediaWikiUser' => array(
+		'scripts' => 'resources/jquery.ui/jquery.ui.autocomplete.mediawikiuser.js',
+		'dependencies' => array(
+			'jquery.ui.autocomplete',
+			'mediawiki.api'
+		)
+	),
 	'jquery.ui.button' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.button.js',
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget' ),
