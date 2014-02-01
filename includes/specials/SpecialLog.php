@@ -45,6 +45,7 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 		global $wgLogRestrictions;
 
 		$this->setHeaders();
