@@ -942,7 +942,7 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Get parser options suitable for rendering the primary article wikitext
+	 * Get parser options suitable for rendering and caching the article
 	 *
 	 * @param IContextSource|User|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
@@ -951,8 +951,6 @@ abstract class ContentHandler {
 	 *                                            so use an IContextSource object if possible.
 	 *        - 'canonical': Canonical options (anonymous user with default
 	 *                                            preferences and content language).
-	 *
-	 * @param IContextSource|User|string $context
 	 *
 	 * @throws MWException
 	 * @return ParserOptions
