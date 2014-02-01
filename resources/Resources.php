@@ -461,6 +461,13 @@ return array(
 		),
 		'group' => 'jquery.ui',
 	),
+	'jquery.ui.autocompleteMediaWikiUser' => array(
+		'scripts' => 'resources/jquery.ui/jquery.ui.autocomplete.mediawikiuser.js',
+		'dependencies' => array(
+			'jquery.ui.autocomplete',
+			'mediawiki.api'
+		)
+	),
 	'jquery.ui.button' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.button.js',
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget' ),
@@ -1102,6 +1109,10 @@ return array(
 	),
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
+	),
+	'mediawiki.special.log' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.log.js',
+		'dependencies' => 'jquery.ui.autocompleteMediaWikiUser'
 	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.movePage.js',
