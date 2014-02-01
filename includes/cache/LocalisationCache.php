@@ -510,9 +510,15 @@ class LocalisationCache {
 	protected function readPHPFile( $_fileName, $_fileType ) {
 		wfProfileIn( __METHOD__ );
 		// Disable APC caching
-		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
+		wfSuppressWarnings();
+			$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
+		wfRestoreWarnings();
+		
 		include $_fileName;
-		ini_set( 'apc.cache_by_default', $_apcEnabled );
+
+		wfSuppressWarnings();
+			ini_set( 'apc.cache_by_default', $_apcEnabled );
+		wfRestoreWarnings();
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );
