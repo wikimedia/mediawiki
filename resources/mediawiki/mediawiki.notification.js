@@ -8,17 +8,17 @@
 		preReadyNotifQueue = [];
 
 	/**
-	 * Creates a Notification object for 1 message.
-	 * Does not insert anything into the document (see #start).
+	 * A Notification object for 1 message.
 	 *
-	 * The "_" in the name is to avoid a bug (http://github.com/senchalabs/jsduck/issues/304)
+	 * The "_" in the name is to avoid a bug (http://github.com/senchalabs/jsduck/issues/304).
 	 * It is not part of the actual class name.
 	 *
 	 * @class mw.Notification_
 	 * @alternateClassName mw.Notification
-	 * @private
 	 *
-	 * @constructor
+	 * @constructor The constructor is not globally accessible; use mw.notification.notify instead.
+	 *  This does not insert anything into the document (see #start).
+	 * @private
 	 */
 	function Notification( message, options ) {
 		var $notification, $notificationTitle, $notificationContent;
@@ -255,7 +255,6 @@
 	 * Close/hide the notification.
 	 *
 	 * @param {Object} options An object containing options for the closing of the notification.
-	 *  These are typically only used internally.
 	 *
 	 *  - speed: Use a close speed different than the default 'slow'.
 	 *  - placeholder: Set to false to disable the placeholder transition.
@@ -332,6 +331,7 @@
 	 * Helper function, take a list of notification divs and call
 	 * a function on the Notification instance attached to them.
 	 *
+	 * @private
 	 * @param {jQuery} $notifications A jQuery object containing notification divs
 	 * @param {string} fn The name of the function to call on the Notification instance
 	 */
@@ -426,7 +426,7 @@
 		 * @param {HTMLElement|jQuery|mw.Message|string} message
 		 * @param {Object} options The options to use for the notification.
 		 *  See #defaults for details.
-		 * @return {Object} Object with a close function to close the notification
+		 * @return {mw.Notification} Notification object
 		 */
 		notify: function ( message, options ) {
 			var notif;
@@ -439,7 +439,8 @@
 			} else {
 				preReadyNotifQueue.push( notif );
 			}
-			return { close: $.proxy( notif.close, notif ) };
+
+			return notif;
 		},
 
 		/**
