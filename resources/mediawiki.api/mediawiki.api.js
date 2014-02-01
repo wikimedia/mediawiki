@@ -234,12 +234,6 @@
 			apiPromise = this.get( {
 					action: 'tokens',
 					type: type
-				}, {
-					// Due to the API assuming we're logged out if we pass the callback-parameter,
-					// we have to disable jQuery's callback system, and instead parse JSON string,
-					// by setting 'jsonp' to false.
-					// TODO: This concern seems genuine but no other module has it. Is it still
-					// needed and/or should we pass this by default?
 				} )
 				.done( function ( data ) {
 					// If token type is not available for this user,
