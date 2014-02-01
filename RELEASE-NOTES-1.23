@@ -153,6 +153,7 @@ production.
   list=usercontribs.
 * list=watchlist now uses the querying user's rights rather than the wlowner's
   rights when checking whether wlprop=patrol is allowed.
+* Added prop 'limitreportdata' and 'limitreporthtml' to action=parse.
 
 === Languages updated in 1.23 ===
 
