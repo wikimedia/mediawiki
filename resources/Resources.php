@@ -919,6 +919,13 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.userSuggest' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.userSuggest.js',
+		'dependencies' => array(
+			'jquery.suggestions',
+			'mediawiki.api'
+		)
+	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => array(

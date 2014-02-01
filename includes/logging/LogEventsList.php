@@ -253,7 +253,8 @@ class LogEventsList extends ContextSource {
 			'user',
 			'mw-log-user',
 			15,
-			$user
+			$user,
+			array( 'class' => 'mw-autocomplete-user' )
 		);
 
 		return '<span style="white-space: nowrap">' . $label . '</span>';
