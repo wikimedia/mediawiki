@@ -36,12 +36,17 @@ div#simpleSearch {
 			outline: none;
 		}
 
+		// These rules MAY NOT be merged because of how CSS requires browsers
+		// to parse unrecognized selectors!
 		&.placeholder {
 			color: #999;
 		}
-
-		&:-ms-input-placeholder,
-		&:-moz-placeholder,
+		&:-ms-input-placeholder {
+			color: #999;
+		}
+		&:-moz-placeholder {
+			color: #999;
+		}
 		&::-webkit-input-placeholder {
 			color: #999;
 		}
