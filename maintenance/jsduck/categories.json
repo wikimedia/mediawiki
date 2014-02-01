@@ -25,6 +25,7 @@
 					"mw.inspect",
 					"mw.inspect.reports",
 					"mw.notification",
+					"mw.Notification_",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*"
