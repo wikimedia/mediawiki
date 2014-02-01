@@ -191,30 +191,6 @@
 		},
 
 		/**
-		 * Hide/show the table of contents element
-		 *
-		 * @param {jQuery} $toggleLink A jQuery object of the toggle link.
-		 * @param {Function} [callback] Function to be called after the toggle is
-		 *  completed (including the animation).
-		 * @return {Mixed} Boolean visibility of the toc (true if it's visible)
-		 * or Null if there was no table of contents.
-		 * @deprecated since 1.23 Use jQuery
-		 */
-		toggleToc: function ( $toggleLink, callback ) {
-			var ret, $tocList = $( '#toc ul:first' );
-
-			// This function shouldn't be called if there's no TOC,
-			// but just in case...
-			if ( !$tocList.length ) {
-				return null;
-			}
-			ret = $tocList.is( ':hidden' );
-			$toggleLink.click();
-			$tocList.promise().done( callback );
-			return ret;
-		},
-
-		/**
 		 * Grab the URL parameter value for the given parameter.
 		 * Returns null if not found.
 		 *

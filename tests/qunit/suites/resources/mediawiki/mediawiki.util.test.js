@@ -71,38 +71,6 @@
 		$( style.ownerNode ).remove();
 	} );
 
-	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
-		var tocHtml, $toggleLink;
-
-		function actionC() {
-			QUnit.start();
-		}
-
-		function actionB() {
-			assert.strictEqual( mw.util.toggleToc( $toggleLink, actionC ), true, 'Return boolean true if the TOC is now visible.' );
-		}
-
-		function actionA() {
-			assert.strictEqual( mw.util.toggleToc( $toggleLink, actionB ), false, 'Return boolean false if the TOC is now hidden.' );
-		}
-
-		assert.strictEqual( mw.util.toggleToc(), null, 'Return null if there is no table of contents on the page.' );
-
-		tocHtml = '<div id="toc" class="toc">' +
-			'<div id="toctitle">' +
-			'<h2>Contents</h2>' +
-			'</div>' +
-			'<ul><li></li></ul>' +
-			'</div>';
-		$( tocHtml ).appendTo( '#qunit-fixture' );
-		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
-		$toggleLink = $( '#togglelink' );
-
-		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
-
-		actionA();
-	} );
-
 	QUnit.test( 'getParamValue', 5, function ( assert ) {
 		var url;
 
