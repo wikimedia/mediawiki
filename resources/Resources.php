@@ -804,6 +804,14 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.toc' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.toc.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
+		'messages' => array( 'showtoc', 'hidetoc' ),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -822,11 +830,10 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
 			'jquery.client',
-			'jquery.cookie',
 			'jquery.mwExtension',
 			'mediawiki.notify',
+			'mediawiki.toc',
 		),
-		'messages' => array( 'showtoc', 'hidetoc' ),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
