@@ -45,6 +45,7 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->getOutput()->addModules( 'jquery.ui.autocomplete.mediawikiuser' );
 		global $wgLogRestrictions;
 
 		$this->setHeaders();
