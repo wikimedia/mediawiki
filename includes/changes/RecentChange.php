@@ -60,8 +60,6 @@
  * temporary:       not stored in the database
  *      notificationtimestamp
  *      numberofWatchingusers
- *
- * @todo document functions and variables
  */
 class RecentChange {
 	// Constants for the rc_source field.  Extensions may also have
@@ -546,7 +544,6 @@ class RecentChange {
 	/**
 	 * Makes an entry in the database corresponding to page creation
 	 * Note: the title object must be loaded with the new id using resetArticleID()
-	 * @todo Document parameters and return
 	 *
 	 * @param $timestamp
 	 * @param $title Title
