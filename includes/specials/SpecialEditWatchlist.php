@@ -103,6 +103,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
 				} elseif ( $this->toc !== false ) {
 					$out->prependHTML( $this->toc );
+					$out->addModules( 'mediawiki.toc' );
 				}
 				break;
 		}
