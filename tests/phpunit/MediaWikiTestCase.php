@@ -405,16 +405,18 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		User::resetIdByNameCache();
 
-		//Make sysop user
-		$user = User::newFromName( 'UTSysop' );
+		if ( false ) {
+			//Make sysop user
+			$user = User::newFromName( 'UTSysop' );
 
-		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
-			$user->setPassword( 'UTSysopPassword' );
+			if ( $user->idForName() == 0 ) {
+				$user->addToDatabase();
+				$user->setPassword( 'UTSysopPassword' );
 
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
-			$user->saveSettings();
+				$user->addGroup( 'sysop' );
+				$user->addGroup( 'bureaucrat' );
+				$user->saveSettings();
+			}
 		}
 
 		//Make 1 page with 1 revision
