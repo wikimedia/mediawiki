@@ -1,8 +1,6 @@
 /**
- * jQuery fullscreen plugin v2.0.0
- * https://github.com/theopolisme/jquery-fullscreen/tree/v2.0.0
- *
- * Documentation at <https://github.com/theopolisme/jquery-fullscreen/blob/v2.0.0/README.md>
+ * jQuery fullscreen plugin
+ * https://github.com/theopolisme/jquery-fullscreen
  *
  * Copyright (c) 2013 Theopolisme <theopolismewiki@gmail.com>
  *
@@ -113,6 +111,62 @@
 		return this;
 	}
 
+	function toggleFullscreen () {
+		var fullscreenElement = ( document.fullscreenElement ||
+				document.mozFullScreenElement ||
+				document.webkitFullscreenElement ||
+				document.msFullscreenElement );
+		var element = this.get(0),
+			$element = this.first();
+
+		if ( fullscreenElement && this.get(0) === fullscreenElement ) {
+			if ( document.exitFullscreen ) {
+				document.exitFullscreen();
+			} else if ( document.mozCancelFullScreen ) {
+				document.mozCancelFullScreen();
+			} else if ( document.webkitCancelFullScreen ) {
+				document.webkitCancelFullScreen();
+			} else if ( document.msCancelFullScreen ) {
+				document.msCancelFullScreen();
+			} else {
+				// Unable to cancel fullscreen mode
+				return this;
+			}
+			// We don't need to remove the fullscreen class here,
+			// because it will be removed in handleFullscreenChange.
+			// But we should change the data on the element so the
+			// caller can check for success.
+			this.first().data( 'isFullscreened', false );
+		}
+		else{
+  				
+			if ( element ) {
+				if ( element.requestFullscreen ) {
+					element.requestFullscreen();
+				} else if ( element.mozRequestFullScreen ) {
+					element.mozRequestFullScreen();
+				} else if ( element.webkitRequestFullscreen ) {
+					element.webkitRequestFullscreen();
+				} else if ( element.msRequestFullscreen ) {
+					element.msRequestFullscreen();
+				} else {
+					// Unable to make fullscreen
+					$element.data( 'isFullscreened', false );
+					return this;
+				}
+				// Add the fullscreen class and data attribute to `element`
+				$element.addClass( fsClass ).data( 'isFullscreened', true );
+				return this;
+			} else {
+				$element.data( 'isFullscreened', false );
+				return this;
+		 	}
+		}
+
+		return this;
+		
+	}
+	
 	/**
 	 * Set up fullscreen handling and install necessary event handlers.
 	 * Return false if fullscreen is not supported.
@@ -173,4 +227,19 @@
 			return this;
 		}
 	};
+	/**Toogle the fullscreen handling ,exit the fullscreen mode if present
+	 * in fullscreen mode and enters the fullscreen mode if not present in
+	 * fullscreen mode
+	 * @return {jquery}
+	 * */
+	  $.fn.toggleFullscreen = function () {
+		if ( setupFullscreen() ) {
+			$.fn.toggleFullscreen = toggleFullscreen;
+			return this.toggleFullscreen();
+		} else {
+			$.fn.toggleFullscreen = function () { return this; };
+			return this;
+		}
+	};
+	  
 }( jQuery ) );
