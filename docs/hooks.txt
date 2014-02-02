@@ -2190,6 +2190,17 @@ $nav_urls: array of tabs
 To alter the structured navigation links in SkinTemplates, there are three
 hooks called in different spots:
 
+'SkinTemplateLanguageLinks': Called by SkinTemplate skins after language links
+have been generated, but before they have been rendered (useful for adding
+more).
+&$sk: SkinTemplate object
+&$languageLinks: An array of arrays containing the attributes of each <a> tag
+  to be output (the key 'text' contains the link text). The 'class' attribute
+  should contain the CSS class 'interlanguage-link'. Here is a sample object in
+  the $languageLinks array:
+    array( 'href' => ..., 'class' => 'interlanguage-link red-and-fancy',
+    'text' => ..., 'title' => ..., 'lang' => ..., 'hreflang' => ... )
+
 'SkinTemplateNavigation': Called on content pages after the tabs have been
 added, but before variants have been added.
 'SkinTemplateNavigation::SpecialPage': Called on special pages after the special

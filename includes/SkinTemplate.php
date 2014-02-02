@@ -186,6 +186,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		wfRunHooks( 'SkinTemplateLanguageLinks', array( &$this, &$languageLinks ) );
+
 		return $languageLinks;
 	}
 
