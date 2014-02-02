@@ -152,6 +152,7 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			$targetUser = $status->value;
+			$targetUser->clearInstanceCache();
 
 			if ( $request->getVal( 'conflictcheck-originalgroups' ) !== implode( ',', $targetUser->getGroups() ) ) {
 				$out->addWikiMsg( 'userrights-conflict' );
