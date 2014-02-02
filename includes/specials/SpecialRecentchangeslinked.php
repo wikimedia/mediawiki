@@ -234,17 +234,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $extraOpts;
 	}
 
-	public function getFeedObject( $feedFormat ) {
-		$feed = new ChangesFeed( $feedFormat, false );
-		$feedObj = $feed->getFeedObject(
-			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
-				->inContentLanguage()->text(),
-			$this->msg( 'recentchangeslinked-feed' )->inContentLanguage()->text(),
-			$this->getPageTitle()->getFullURL()
-		);
-		return array( $feed, $feedObj );
-	}
-
 	/**
 	 * @return Title
 	 */

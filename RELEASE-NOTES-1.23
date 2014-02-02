@@ -215,6 +215,9 @@ changes to languages because of Bugzilla reports.
   3 headings)" was removed.
 * (bug 52810) Preference "Justify paragraphs" was removed.
 * OutputPage::showErrorPage raises a notice if arguments are incoherent.
+* SpecialRecentChanges no longer includes any functionality for generating feeds
+  - it has been factored out to ApiFeedRecentChanges. Old URLs redirect to new
+  ones.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
