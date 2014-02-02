@@ -3462,6 +3462,12 @@ $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 $wgLocalInterwiki = false;
 
 /**
+ * Array for multiple $wgLocalInterwiki values, in case there are several
+ * interwiki prefixes pointing to the current wiki.
+ */
+$wgLocalInterwikis = array();
+
+/**
  * Expiry time for cache of interwiki table
  */
 $wgInterwikiExpiry = 10800;
