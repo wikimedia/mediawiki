@@ -38,10 +38,19 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
+		// Backwards-compatibility: redirect to new feed URLs
+		$feedFormat = $this->getRequest()->getVal( 'feed' );
+		if ( !$this->including() && $feedFormat ) {
+			$query = $this->getFeedQuery();
+			$query['feedformat'] = $feedFormat === 'atom' ? 'atom' : 'rss';
+			$this->getOutput()->redirect( wfAppendQuery( wfScript( 'api' ), $query ) );
+			return;
+		}
+
 		// 10 seconds server-side caching max
 		$this->getOutput()->setSquidMaxage( 10 );
 		// Check if the client has a cached version
-		$lastmod = $this->checkLastModified( $this->feedFormat );
+		$lastmod = $this->checkLastModified();
 		if ( $lastmod === false ) {
 			return;
 		}
@@ -142,8 +151,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	public function validateOptions( FormOptions $opts ) {
-		global $wgFeedLimit;
-		$opts->validateIntBounds( 'limit', 0, $this->feedFormat ? $wgFeedLimit : 5000 );
+		$opts->validateIntBounds( 'limit', 0, 5000 );
 		parent::validateOptions( $opts );
 	}
 
@@ -244,16 +252,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return $rows;
 	}
 
-	/**
-	 * Output feed links.
-	 */
 	public function outputFeedLinks() {
-		$feedQuery = $this->getFeedQuery();
-		if ( $feedQuery !== '' ) {
-			$this->getOutput()->setFeedAppendQuery( $feedQuery );
-		} else {
-			$this->getOutput()->setFeedAppendQuery( false );
+		$this->addFeedLinks( $this->getFeedQuery() );
+	}
+
+	/**
+	 * Get URL query parameters for action=feedrecentchanges API feed of current recent changes view.
+	 *
+	 * @return array
+	 */
+	private function getFeedQuery() {
+		global $wgFeedLimit;
+		$query = array_filter( $this->getOptions()->getAllValues(), function ( $value ) {
+			// API handles empty parameters in a different way
+			return $value !== '';
+		} );
+		$query['action'] = 'feedrecentchanges';
+		if ( $query['limit'] > $wgFeedLimit ) {
+			$query['limit'] = $wgFeedLimit;
 		}
+		return $query;
 	}
 
 	/**
@@ -465,62 +483,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Don't use this if we are using the patrol feature, patrol changes don't
 	 * update the timestamp
 	 *
-	 * @param string $feedFormat
 	 * @return string|bool
 	 */
-	public function checkLastModified( $feedFormat ) {
+	public function checkLastModified() {
 		$dbr = $this->getDB();
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
-		if ( $feedFormat || !$this->getUser()->useRCPatrol() ) {
-			if ( $lastmod && $this->getOutput()->checkLastModified( $lastmod ) ) {
-				# Client cache fresh and headers sent, nothing more to do.
-				return false;
-			}
-		}
-
 		return $lastmod;
-	}
-
-	/**
-	 * Return an array with a ChangesFeed object and ChannelFeed object.
-	 *
-	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
-	 * @return array
-	 */
-	public function getFeedObject( $feedFormat ) {
-		$changesFeed = new ChangesFeed( $feedFormat, 'rcfeed' );
-		$formatter = $changesFeed->getFeedObject(
-			$this->msg( 'recentchanges' )->inContentLanguage()->text(),
-			$this->msg( 'recentchanges-feed-description' )->inContentLanguage()->text(),
-			$this->getPageTitle()->getFullURL()
-		);
-
-		return array( $changesFeed, $formatter );
-	}
-
-	/**
-	 * Get the query string to append to feed link URLs.
-	 *
-	 * @return string
-	 */
-	public function getFeedQuery() {
-		global $wgFeedLimit;
-
-		$options = $this->getOptions()->getChangedValues();
-
-		// wfArrayToCgi() omits options set to null or false
-		foreach ( $options as &$value ) {
-			if ( $value === false ) {
-				$value = '0';
-			}
-		}
-		unset( $value );
-
-		if ( isset( $options['limit'] ) && $options['limit'] > $wgFeedLimit ) {
-			$options['limit'] = $wgFeedLimit;
-		}
-
-		return wfArrayToCgi( $options );
 	}
 
 	/**

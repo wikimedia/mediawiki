@@ -272,6 +272,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiEmailUser' => 'includes/api/ApiEmailUser.php',
 	'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 	'ApiFeedContributions' => 'includes/api/ApiFeedContributions.php',
+	'ApiFeedRecentChanges' => 'includes/api/ApiFeedRecentChanges.php',
 	'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 	'ApiFileRevert' => 'includes/api/ApiFileRevert.php',
 	'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
