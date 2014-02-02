@@ -173,4 +173,20 @@
 			return this;
 		}
 	};
+	/**Toogle the fullscreen handling ,exit the fullscreen mode if present
+	*in fullscreen mode and enters the fullscreen mode if not present in 
+	*fullscreen mode
+	*@return {jquery}
+	**/
+	$.fn.toggleFullscreen = function () {
+		if( this.get(0) === fullscreenElement  ){
+			$fn.enterFullscreen = enterFullscreen;
+			return this.enterFullscreen();
+		}
+		else{
+			$fn.exitFullscreen = exitFullscreen;
+			return this.exitFullscreen();
+		}
+	};
+
 }( jQuery ) );
