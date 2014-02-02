@@ -160,14 +160,28 @@ class ChangesFeed {
 	}
 
 	/**
-	 * Generate the feed items given a row from the database.
+	 * Generate the feed items given a row from the database, printing the feed.
 	 * @param $rows DatabaseBase resource with recentchanges rows
 	 * @param $feed Feed object
 	 */
 	public static function generateFeed( $rows, &$feed ) {
 		wfProfileIn( __METHOD__ );
-
+		$items = self::buildItems( $rows );
 		$feed->outHeader();
+		foreach ( $items as $item ) {
+			$feed->outItem( $item );
+		}
+		$feed->outFooter();
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Generate the feed items given a row from the database.
+	 * @param $rows DatabaseBase resource with recentchanges rows
+	 */
+	public static function buildItems( $rows ) {
+		wfProfileIn( __METHOD__ );
+		$items = array();
 
 		# Merge adjacent edits by one user
 		$sorted = array();
@@ -203,7 +217,7 @@ class ChangesFeed {
 				$url = $title->getFullURL();
 			}
 
-			$item = new FeedItem(
+			$items[] = new FeedItem(
 				$title->getPrefixedText(),
 				FeedUtils::formatDiff( $obj ),
 				$url,
@@ -212,10 +226,10 @@ class ChangesFeed {
 					? wfMessage( 'rev-deleted-user' )->escaped() : $obj->rc_user_text,
 				$talkpage
 			);
-			$feed->outItem( $item );
 		}
-		$feed->outFooter();
+
 		wfProfileOut( __METHOD__ );
+		return $items;
 	}
 
 }
