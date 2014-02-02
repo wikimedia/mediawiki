@@ -4063,7 +4063,7 @@ class Title {
 		foreach ( $subpages as $oldSubpage ) {
 			$count++;
 			if ( $count > $wgMaximumMovedPages ) {
-				$retval[$oldSubpage->getPrefixedTitle()] =
+				$retval[$oldSubpage->getPrefixedText()] =
 						array( 'movepage-max-pages',
 							$wgMaximumMovedPages );
 				break;
