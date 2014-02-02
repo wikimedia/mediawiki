@@ -56,6 +56,7 @@ class ApiMain extends ApiBase {
 		'parse' => 'ApiParse',
 		'opensearch' => 'ApiOpenSearch',
 		'feedcontributions' => 'ApiFeedContributions',
+		'feedrecentchanges' => 'ApiFeedRecentChanges',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',

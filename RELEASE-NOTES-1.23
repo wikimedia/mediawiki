@@ -281,6 +281,9 @@ changes to languages because of Bugzilla reports.
   is transcluded.
 * (bug 62198) window.$j has been deprecated.
 * Preference "Disable link title conversion" was removed.
+* SpecialRecentChanges no longer includes any functionality for generating feeds
+  - it has been factored out to ApiFeedRecentChanges. Old URLs redirect to new
+  ones.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
