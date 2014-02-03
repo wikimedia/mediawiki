@@ -3437,6 +3437,7 @@ The right to move any page that is not protected from moving.
 {{Identical|Move page}}',
 'right-move-subpages' => '{{doc-right|move-subpages}}',
 'right-move-rootuserpages' => '{{doc-right|move-rootuserpages}}',
+'right-move-categorypages' => '{{doc-right|move-categorypages}}',
 'right-movefile' => '{{doc-right|movefile}}',
 'right-suppressredirect' => '{{doc-right|suppressredirect}}',
 'right-upload' => '{{doc-right|upload}}
@@ -3604,6 +3605,7 @@ In [[Special:Log]]',
 'action-move' => '{{Doc-action|move}}',
 'action-move-subpages' => '{{Doc-action|move-subpages}}',
 'action-move-rootuserpages' => '{{Doc-action|move-rootuserpages}}',
+'action-move-categorypages' => '{{Doc-action|move-categorypages}}',
 'action-movefile' => '{{doc-action|movefile}}',
 'action-upload' => '{{Doc-action|upload}}',
 'action-reupload' => '{{Doc-action|reupload}}',
@@ -6994,11 +6996,14 @@ See also:
 * {{msg-mw|move-watch|label for checkbox}}
 {{Identical|Move page}}',
 'moveuserpage-warning' => 'Used as warning in [[Special:MovePage]], when moving a user page.',
+'movecategorypage-warning' => 'Used as warning in [[Special:MovePage]], when moving a category page.',
 'movenologintext' => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.
 
 See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-category-page}}
+* {{msg-mw|cant-move-to-category-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}",
 'movenotallowed' => 'Used as error message.
@@ -7006,6 +7011,8 @@ See also:
 See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-category-page}}
+* {{msg-mw|cant-move-to-category-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenologintext}}',
 'movenotallowedfile' => 'Used as error message.
@@ -7013,12 +7020,16 @@ See also:
 See also:
 * {{msg-mw|cant-move-user-page}}
 * {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-category-page}}
+* {{msg-mw|cant-move-to-category-page}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
 'cant-move-user-page' => 'Used as error message.
 
 See also:
 * {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-category-page}}
+* {{msg-mw|cant-move-to-category-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
@@ -7026,6 +7037,26 @@ See also:
 
 See also:
 * {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-category-page}}
+* {{msg-mw|cant-move-to-category-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
+'cant-move-category-page' => 'Used as error message.
+
+See also:
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-to-category-page}}
+* {{msg-mw|movenotallowedfile}}
+* {{msg-mw|movenotallowed}}
+* {{msg-mw|movenologintext}}',
+'cant-move-to-category-page' => 'Used as error message.
+
+See also:
+* {{msg-mw|cant-move-user-page}}
+* {{msg-mw|cant-move-to-user-page}}
+* {{msg-mw|cant-move-category-page}}
 * {{msg-mw|movenotallowedfile}}
 * {{msg-mw|movenotallowed}}
 * {{msg-mw|movenologintext}}',
