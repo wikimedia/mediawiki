@@ -1967,6 +1967,12 @@ $form: the PreferencesForm object. This is a ContextSource as well
 $key: the section name
 &$legend: the legend text. Defaults to wfMessage( "prefs-$key" )->text() but may be overridden
 
+'PreferencesFormPreSave': Override preferences being saved
+ $formData: array of user submitted data
+ $form: PreferencesForm object, also a ContextSource
+ $user: User object with preferences to be saved set
+ &$result: boolean indicating success
+
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns : array of int namespace keys to search in

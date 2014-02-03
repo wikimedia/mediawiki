@@ -1446,6 +1446,7 @@ class Preferences {
 				$user->setOption( $key, $value );
 			}
 
+			wfRunHooks( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
 			$user->saveSettings();
 		}
 
