@@ -175,7 +175,7 @@ class SkinTemplate extends Skin {
 				}
 
 				$ilInterwikiCodeBCP47 = wfBCP47( $ilInterwikiCode );
-				$languageLinks[] = array(
+				$languageLink = array(
 					'href' => $languageLinkTitle->getFullURL(),
 					'text' => $ilLangName,
 					'title' => $ilTitle,
@@ -183,6 +183,8 @@ class SkinTemplate extends Skin {
 					'lang' => $ilInterwikiCodeBCP47,
 					'hreflang' => $ilInterwikiCodeBCP47,
 				);
+				wfRunHooks( 'SkinTemplateGetLanguageLink', array( &$languageLink, $languageLinkTitle ) );
+				$languageLinks[] = $languageLink;
 			}
 		}
 
