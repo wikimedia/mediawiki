@@ -98,7 +98,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * cleanSig() should do nothing if disabled
+	 * cleanSig() should not force subst templates if disabled
 	 * @covers Parser::cleanSig
 	 */
 	public function testCleanSigDisabled() {
@@ -107,7 +107,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
 
-		$this->assertEquals( "{{Foo}} ~~~~", $outputText );
+		$this->assertEquals( "{{Foo}} ", $outputText );
 	}
 
 	/**

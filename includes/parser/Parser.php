@@ -4989,16 +4989,16 @@ class Parser {
 			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
 		}
 
-		# Option to disable this feature
-		if ( !$this->mOptions->getCleanSignatures() ) {
-			return $text;
-		}
-
 		# @todo FIXME: Regex doesn't respect extension tags or nowiki
 		#  => Move this logic to braceSubstitution()
 		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
+
+		# Option to disable this feature
+		if ( !$this->mOptions->getCleanSignatures() && preg_match( $substRegex, $text ) ) {
+			return self::cleanSigInSig( $text );
+		}
 
 		$text = preg_replace( $substRegex, $substText, $text );
 		$text = self::cleanSigInSig( $text );
