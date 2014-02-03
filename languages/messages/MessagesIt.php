@@ -1110,7 +1110,7 @@ Esiste già.',
 'invalid-content-data' => 'Dati contenuti non validi',
 'content-not-allowed-here' => 'Contenuto in "$1" non consentito nella pagine [[$2]]',
 'editwarning-warning' => 'Lasciare questa pagina potrebbe causare la perdita di tutte le modifiche fatte.
-Se hai effettuato l\'accesso, puoi disattivare questo avviso nella sezione "Casella di modifica" delle tue preferenze.',
+Se hai effettuato l\'accesso, puoi disattivare questo avviso nella sezione "{{int:prefs-editing}}" delle tue preferenze.',
 'editpage-notsupportedcontentformat-title' => 'Formato contenuto non supportato',
 'editpage-notsupportedcontentformat-text' => 'Il formato del contenuto $1 non è supportato dal modello di contenuto $2.',
 
@@ -1320,9 +1320,9 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'showhideselectedversions' => 'Mostra/nascondi versioni selezionate',
 'editundo' => 'annulla',
 'diff-empty' => '(Nessuna differenza)',
-'diff-multi-sameuser' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di uno stesso utente non sono mostrate )',
-'diff-multi-otherusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di {{PLURAL:$2|un altro utente|$2 utenti}} non mostrate)',
-'diff-multi-manyusers' => '({{PLURAL:$1|Una revisione intermedia|$1 revisioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
+'diff-multi-sameuser' => '({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di uno stesso utente non sono mostrate )',
+'diff-multi-otherusers' => '({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di {{PLURAL:$2|un altro utente|$2 utenti}} non mostrate)',
+'diff-multi-manyusers' => '({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})',
 'difference-missing-revision' => '{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.
 
 Questo si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.

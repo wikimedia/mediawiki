@@ -507,6 +507,7 @@ $1',
 'passwordreset-username' => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'passwordreset-domain' => 'ܪܘܚܬܐ:',
 'passwordreset-email' => 'ܡܘܢܥܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
+'passwordreset-emailsent' => 'ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܐܫܬܕܪ ܠܣܘܝܡ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢ ܐܚܪܝܢ',
 
 # Special:ChangeEmail
 'changeemail' => 'ܫܚܠܦ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',

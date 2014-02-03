@@ -1159,7 +1159,7 @@ Strona już istnieje.',
 'invalid-content-data' => 'Zawartość strony zawiera nieprawidłowe dane',
 'content-not-allowed-here' => 'Zawartość tego typu ($1) nie jest dozwolona na stronie [[$2]]',
 'editwarning-warning' => 'Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.
-Jeśli jesteś zalogowany możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce Edycja w swoich preferencjach.',
+Jeśli jesteś zalogowany, możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce „{{int:prefs-editing}}” w swoich preferencjach.',
 'editpage-notsupportedcontentformat-title' => 'Nieobsługiwany format zawartości',
 
 # Content models
@@ -1393,7 +1393,7 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'shown-title' => 'Pokaż po $1 {{PLURAL:$1|wyniku|wyniki|wyników}} na stronę',
 'viewprevnext' => 'Zobacz ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "* Strona '''[[$1]]'''",
-'searchmenu-new' => "'''Utwórz stronę „[[:$1|$1]]” na tej wiki.'''",
+'searchmenu-new' => '<strong>Utwórz stronę „[[:$1]]” na tej wiki!<strong> {{PLURAL:$2|0=|Zobacz też stronę z wynikami wyszukiwania.|Zobacz też wyniki wyszukiwania.}}',
 'searchprofile-articles' => 'Strony',
 'searchprofile-project' => 'Strony pomocy i projektu',
 'searchprofile-images' => 'Multimedia',
@@ -2433,7 +2433,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'watchmethod-list' => 'poszukiwanie obserwowanych stron wśród ostatnich zmian',
 'watchlistcontains' => 'Na liście obserwowanych przez Ciebie stron {{PLURAL:$1|znajduje się 1 pozycja|znajdują się $1 pozycje|znajduje się $1 pozycji}}.',
 'iteminvalidname' => 'Problem z pozycją „$1” – niepoprawna nazwa...',
-'wlnote2' => 'Poniżej pokazano zmiany wykonane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich <strong>$1</strong> godzin}}, licząc od $4, $3.',
+'wlnote2' => 'Poniżej pokazano zmiany wykonane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich <strong>$1</strong> godzin}}, licząc od $2, $3.',
 'wlshowlast' => 'Pokaż ostatnie $1 godzin, $2 dni ($3)',
 'watchlist-options' => 'Opcje obserwowanych',
 

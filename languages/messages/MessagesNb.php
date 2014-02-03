@@ -1151,7 +1151,8 @@ Slette- og flytteloggen vises nedenfor.',
 'content-failed-to-parse' => 'Klarte ikke å tolke innholdet $2 for innholdsmodellen $1: $3',
 'invalid-content-data' => 'Ugyldig innhold',
 'content-not-allowed-here' => 'Innholdsmodellen «$1» er ikke tillatt på siden [[$2]]',
-'editwarning-warning' => 'Ved å forlate siden kan du miste alle endringer du har utført. Om du er logget inn kan du slå av denne advarselen under «Redigering»-seksjonen i innstillingene.',
+'editwarning-warning' => 'Ved å forlate siden kan du miste alle endringer du har gjort.
+Hvis du er innlogget, kan du slå av denne advarselen under "{{int:prefs-editing}}"-avsnittet i dine innstillinger.',
 'editpage-notsupportedcontentformat-title' => 'Innholdsformatet er ikke støttet',
 'editpage-notsupportedcontentformat-text' => 'Innholdsformatet $1 er ikke støttet av innholdsmodellen $2.',
 

@@ -1914,7 +1914,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 # File backend
 'backend-fail-stream' => 'Non se puido transmitir o ficheiro "$1".',
 'backend-fail-backup' => 'Non se puido facer unha copia de seguridade do ficheiro "$1".',
-'backend-fail-notexists' => 'Non existe o ficheiro "$1".',
+'backend-fail-notexists' => 'O ficheiro "$1" non existe.',
 'backend-fail-hashes' => 'Non se puideron obter os cardinais do ficheiro por comparación.',
 'backend-fail-notsame' => 'Xa existe un ficheiro chamado "$1", con contidos diferentes.',
 'backend-fail-invalidpath' => '"$1" non é unha ruta de almacenamento válida.',

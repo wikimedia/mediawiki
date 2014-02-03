@@ -1746,7 +1746,7 @@ Promenite naziv datoteke i ponovo je pošaljite.',
 {{PLURAL:$3|Poželjna vrsta datoteke je|Poželjne vrste datoteka su}} $2.',
 'filetype-banned-type' => "'''„.$1“''' {{PLURAL:$4|je zabranjena vrsta datoteke|su zabranjene vrste datoteka}}.
 {{PLURAL:$3|Dozvoljena vrsta datoteke je|Dozvoljene vrste datoteka su}} $2.",
-'filetype-missing' => 'Ova datoteka nema ekstenziju.',
+'filetype-missing' => 'Ova datoteka nema ekstenziju (npr. „.jpg“).',
 'empty-file' => 'Poslata datoteka je prazna.',
 'file-too-large' => 'Poslata datoteka je prevelika.',
 'filename-tooshort' => 'Naziv datoteke je prekratak.',

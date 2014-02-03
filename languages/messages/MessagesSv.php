@@ -1155,7 +1155,7 @@ Den finns redan.',
 'invalid-content-data' => 'Ogiltig innehållsdata',
 'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
 'editwarning-warning' => 'Om du lämnar den här sidan kommer du att förlora alla ändringar du har gjort.
-Om du är inloggad kan du slå av den här varningen under "Redigering" i dina inställningar.',
+Om du är inloggad kan du slå av den här varningen under "{{int:prefs-editing}}" i dina inställningar.',
 'editpage-notsupportedcontentformat-title' => 'Innehållsformat stöds inte',
 'editpage-notsupportedcontentformat-text' => 'Innehållsformatet $1 stöds inte av innehållsmodellen $2.',
 
@@ -1374,6 +1374,8 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo' => 'gör ogjord',
 'diff-empty' => '(Ingen skillnad)',
+'diff-multi-sameuser' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av samma användare visas inte)',
+'diff-multi-otherusers' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en annan användare|$2 användare}} visas inte)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} av denna skillnad ($1) kunde inte hittas.
 

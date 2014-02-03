@@ -1551,7 +1551,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-bot' => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-label-unpatrolled' => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
 'recentchanges-label-plusminus' => 'Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù',
-'recentchanges-legend-heading' => '"Alc\'hwez :"',
+'recentchanges-legend-heading' => "'''Alc'hwez :'''",
 'recentchanges-legend-newpage' => '(gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])',
 'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",

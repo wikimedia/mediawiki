@@ -871,7 +871,7 @@ A esist già.",
 'invalid-content-data' => 'Dat dël contnù pa bon',
 'content-not-allowed-here' => "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[$2]]",
 'editwarning-warning' => "Chité sta pàgina-sì a peul feje perde tute le modìfiche ch'a l'ha fàit.
-S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «Modìfica» dij sò gust.",
+S'a l'é rintrà ant ël sistema, a peul disabilité st'avis ant la session «{{int:prefs-editing}}» dij sò gust.",
 'editpage-notsupportedcontentformat-title' => 'Formà ëd contnù nen mantnù',
 'editpage-notsupportedcontentformat-text' => "Ël formà ëd contnù $1 a l'é nen mantnù dal model Ëd contnù $2.",
 

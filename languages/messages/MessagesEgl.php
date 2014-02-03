@@ -567,6 +567,48 @@ La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser 
 'passwordreset-capture-help' => "S' es sernés cla caşèla ché, l'indirés ed pôsta eletrônica (cun la cêva 'd ingrès pruvişôria), év vîn fâ vèder, d'ed là 'd èser spidî a l'utèint.",
 'passwordreset-email' => 'Indirés pôsta eletrônica',
 'passwordreset-emailtitle' => "Particulêr ed l'utèint só {{SITENAME}}",
+'passwordreset-emailtext-ip' => "Quelchidûn (prubabilmèint té, cun l'indirés IP $1) l'à dmandê de spidîregh 'na nōva cêva 'd ingrès per andêr dèinter a {{SITENAME}} ($4). {{PLURAL:$3|L'utèint inscrét| J utèint inscrét}} a sté indirés ed pôsta eletrônica în:
+ 
+$2 
+
+{{PLURAL:$3|Cla cêva 'd ingrès pruvişôria la scadrà| St' al cêvi 'd ingrès pruvişôri ché scadrân}} dôp {{PLURAL:$5|ûn dé|$5 dé}}. Ét duvrés andêr dèinter e sernîr 'na cêva 'd ingrès nōva adès. 
+
+Se t'é mìa stê té a fêr la dmânda, o s' ét t'é ricurdê la cêva 'd ingrès uriginêla e an 't vō mia pió cambiêrla, ét pō scanşlêr cól mesâg ché e cuntinvêr a druvêr la tó cêva 'd ingrès vècia.",
+'passwordreset-emailtext-user' => "L'utèint $1 ed {{SITENAME}} l'à dmandê de spidîregh 'na nōva cêva 'd ingrès per andêr dèinter a {{SITENAME}} ($4). {{PLURAL:$3|L'utèint inscrét| J utèint inscrét}} a sté indirés ed pôsta eletrônica în:
+
+$2 
+
+{{PLURAL:$3|Cla cêva 'd ingrès pruvişôria ché la scadrà| St' al cêvi 'd ingrès pruvişôri ché scadrân}} dôp {{PLURAL:$5|ûn dé|$5 dé}}. Ét duvrés andêr dèinter e sernîr 'na cêva 'd ingrès nōva adès. 
+
+Se t'é mìa stê té a fêr la dmânda, o s' ét t'é ricurdê la cêva 'd ingrès uriginêla e an 't vō mia pió cambiêrla, ét pō scanşlêr cól mesâg ché e cuntinvêr a druvêr la tó cêva 'd ingrès vècia",
+'passwordreset-emailelement' => "Nòm utèint: $1.
+Cêva 'd ingrès pruvişôria: $2",
+'passwordreset-emailsent' => "É stê spidî un mesâg ed pôsta eletrônica per turnêr a impustêr la cêva 'd ingrès.",
+'passwordreset-emailsent-capture' => "É stê spidî un mesâg ed pôsta eletrônica per turnêr a impustêr la cêva 'd ingrès, ché sòta a gh'é al tèst che gh'é scrét.",
+'passwordreset-emailerror-capture' => "É stê fât un mesâg ed pôsta eletrônica per turnêr a impustêr la cêva 'd ingrès, scréta ché 'd sègvit. La spedisiòun {{GENDER:$2|a l'utèint}} an n'é mia 'riusîda:$1",
+
+# Special:ChangeEmail
+'changeemail' => "Câmbia l'indirés ed la pôsta eletrônica",
+'changeemail-header' => "Câmbia l'indirés ed la pôsta eletrônica 'd la tó inscrisiòun.",
+'changeemail-text' => "Impés sté mòdul per cambiêr al tó indirés ed pòsta eletrônica. A srà necesâri mèter dèinter la cêva 'd ingrès per cunfermêr la mudéfica.",
+'changeemail-no-info' => "Per andêr dèinter diretamèint a cla pàgina ché 't gh'ê da fêr l'ingrès.",
+'changeemail-oldemail' => "L'indirés ed la pôsta eletrànica 'd adès.",
+'changeemail-newemail' => 'Nōv indirés ed pàsta eletrônica:',
+'changeemail-none' => '(nisûn)',
+'changeemail-password' => "La cêva 'd ingrès só {{SITENAME}}:",
+'changeemail-submit' => "Cambiêr l'indirés ed pôsta eletrônica",
+'changeemail-cancel' => 'Scanşèla',
+'changeemail-throttled' => "În stê fât trôp tentatîv 'd ingrès in pôch tèimp. Spèta $1 e pó tōrna pruvêr dôp.",
+
+# Special:ResetTokens
+'resettokens' => "Tōrna 'd impustêr la cêva",
+'resettokens-text' => "Ché 't pō turnêr a impustêr al cêvi ch'ét permèten l'ingrès a precîşi infurmasiòun privêdi lighêdi a la tó utèinsa. Ét duvrés fêrel se per chêş ét j ê spartîdi cun quelchidûn o se al j infurmasiòun ed la tó utèinsa în  in perécol.",
+'resettokens-no-tokens' => "An gh'é mìa di token da turnêr a impustêr.",
+'resettokens-legend' => "Tōrna 'd impustêr la cêva",
+'resettokens-token-label' => "$1 (valōr 'd adèsa: $2)",
+'resettokens-watchlist-token' => "Token p'r al feed web (Atom/RSS) dal [[Special:Watchlist|mudéfichi al pàgini ch'ét tîn sòt' ôc]]",
+'resettokens-done' => 'Token turnê a impustêr.',
+'resettokens-resetbutton' => 'Més a zēro i token sernî',
 
 # Edit page toolbar
 'bold_sample' => 'Grasèt',
@@ -588,13 +630,16 @@ La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser 
 
 # Edit pages
 'summary' => 'Sûnt:',
+'subject' => 'Argumèint (tétol):',
 'minoredit' => "Còsta l'é 'na mudéfica céca",
 'watchthis' => 'Tîn adrē a cla pàgina ché',
 'savearticle' => 'Sêlva la pàgina',
 'preview' => 'Guêrda préma',
 'showpreview' => "Guêrda préma 'd salvêr",
+'showlivepreview' => 'Guêrda préma diretamèint',
 'showdiff' => 'Guêrda i cambiamèint',
 'anoneditwarning' => "'''Atensiòun:''' Ingrès mìa fât. Al tó indirés IP al srà sgnê int la stòria ed cla pàgina chè.",
+'anonpreviewwarning' => "\"An n'é mìa stê fât l'ingrès. Mèinter es sêlva la pàgina, l'indirés IP al srà sgnê int la stòria 'd la pàgina.\"",
 'blockedtitle' => 'Utèint bluchê',
 'newarticle' => '(Nōv)',
 'newarticletext' => "Al colegamèint apèina fât al cumbîna cun 'na pàgina ch' an n'é mìa incòra stêda fâta. S'ét vō fêr la pàgina adès, l'é asê cumincêr a scréver al tèst int la caşèla ché sòt (per vedèr infurmasiòun pió precîşi guêrda la [[{{MediaWiki:Helppage}}|pàgina 'd ajót]]). Se al colegamèint  l'é stê avêrt per erōr, l'é asê clichêr al pulsânt \"Indrē\" dal tó navigadōr.",

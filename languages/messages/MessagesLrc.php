@@ -258,7 +258,7 @@ $messages = array(
 'disclaimers' => 'منكرون',
 'disclaimerpage' => 'پروجه:منكر بيئن كاروريا',
 'edithelp' => 'هومياری سی ويرايشت',
-'helppage' => 'هومياری:محتوا',
+'helppage' => 'هومياری:مینونه',
 'mainpage' => 'سرآسونه',
 'mainpage-description' => 'سرآسونه',
 'policy-url' => 'پروجه:خط و مش',
@@ -1319,13 +1319,18 @@ $2',
 'watchnologintext' => 'شما سی آلشت دئن سیل برگتو با [[ویجه:وامین اومائن کارور|وامین اومائه]]',
 'watch' => 'سيل كردن',
 'unwatch' => 'ديه نبيه',
+'notanarticle' => 'مینونه هیچ بلگه ای نئ',
 'watchlist-details' => '{{جمی:$1|$1 بلگه|$1 بلگیا}} د سیل برگتو هیش بلگه قسه کردن نی .',
+'wlheader-enotif' => 'وارسیاری ایمیل فعال بیه.',
 'wlshowlast' => 'آخرین$1 ساعتیا $2و روزیا $3 نشو بیئه',
 'watchlist-options' => 'گزینیا سیل برگ',
 
+'enotif_mailer' => '{{نوم سیلجا}} وارسیاری ایمیل زننه',
 'enotif_impersonal_salutation' => '{{نوم سیلجا}} کارور',
 
 # Delete
+'excontent' => 'مینونه :"$1" بی',
+'exbeforeblank' => 'مینونه حالی دمایی:"$1" بی',
 'actioncomplete' => 'عملكرد كامل بيه',
 'actionfailed' => 'عملكرد شكست حرده',
 'dellogpage' => 'لاگ پاك كردن',
@@ -1521,6 +1526,7 @@ $2',
 
 # Info page
 'pageinfo-language' => 'بلگه مینونه زون',
+'pageinfo-content-model' => 'شلگ مینونه بلگه',
 'pageinfo-category-files' => 'شماره جانیایا',
 
 # Patrol log
@@ -1545,6 +1551,9 @@ $2',
 'newimages-summary' => 'ای بلگه یا ویجه همه جانیایا سوار بیه نه نشو می ئین.',
 'newimages-label' => 'نوم جانیا(یا بشقی د وه):',
 'sp-newimages-showfrom' => 'جانیایا تازه نه که $2 ، $2 شرو بینه نشو بیه',
+
+# Human-readable timestamps
+'monday-at' => 'دوشمه د $1',
 
 # Bad image list
 'bad_image_list' => 'دونسمنديانه وه ای شلگ وارد بكيت:
@@ -1579,6 +1588,8 @@ $2',
 'exif-filesource' => 'سرچشمه جانیا',
 'exif-gpstimestamp' => 'وخت جی پی اس (ساعت اتمی)',
 'exif-jpegfilecomment' => 'ویر و باور فایل پی ان جی',
+'exif-citycreated' => 'شهری که عسگ دش گرته بیه',
+'exif-citydest' => 'شهر دیار بیه',
 'exif-languagecode' => 'زون',
 'exif-datetimeexpires' => 'وا نها دش استفاده نبوئه',
 'exif-pngfilecomment' => 'ویر و باور فایل جی پی ان جی',
@@ -1594,6 +1605,8 @@ $2',
 
 'exif-gpsdop-good' => 'خو ($1)',
 
+'exif-iimcategory-ace' => 'هنریا، رهزیشت و زیستگه',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه شو',
 'namespacesall' => 'همه شو',
@@ -1607,6 +1620,9 @@ $2',
 
 # Table pager
 'table_pager_limit_submit' => 'رو',
+
+# Auto-summaries
+'autosumm-replace' => 'مینونه وا "َ$1" جاگزین بی',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'آلشتیا مرتوط نه بوینیت',
@@ -1648,7 +1664,9 @@ $2',
 'compare-revision-not-exists' => 'وانئری که شما تی دیار کردیته وجود ناره.',
 
 # New logging system
+'revdelete-content-hid' => 'مینونه قام بیه',
 'revdelete-uname-hid' => 'نوم کاروری قام بیه',
+'revdelete-content-unhid' => 'مینونه قام نبیه',
 'revdelete-uname-unhid' => 'نوم کاروری قام نبیه',
 
 # Feedback

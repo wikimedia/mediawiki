@@ -1131,7 +1131,7 @@ See on juba olemas.',
 'invalid-content-data' => 'Vigased sisuandmed',
 'content-not-allowed-here' => 'Lehekülg [[$2]] ei või sisaldada $1i.',
 'editwarning-warning' => 'Sellelt leheküljelt lahkumise tõttu võivad tehtud muudatused kaotsi minna.
-Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "Toimetamine" keelata.',
+Kui oled sisse loginud, saad selle hoiatuse eelistuste alaosas "{{int:prefs-editing}}" keelata.',
 'editpage-notsupportedcontentformat-title' => 'Sisuvormingu tugi puudub',
 'editpage-notsupportedcontentformat-text' => 'Sisumudelil $2 puudub sisuvormingu $1 tugi.',
 
@@ -1343,6 +1343,8 @@ Pane tähele, et navigeerimislinkide kasutamine lähtestab redaktsioonide valiku
 'showhideselectedversions' => 'Muuda valitud redaktsioonide nähtavust',
 'editundo' => 'eemalda',
 'diff-empty' => '(Erinevus puudub)',
+'diff-multi-sameuser' => '(ei näidata sama kasutaja {{PLURAL:$1|üht|$1}} vahepealset redaktsiooni)',
+'diff-multi-otherusers' => '(ei näidata {{PLURAL:$2|ühe teise|$2}} kasutaja {{PLURAL:$1|üht|$1}} vahepealset redaktsiooni)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ühte|$1}} vahepealset rohkem kui {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 'difference-missing-revision' => 'Selle erinevuste vaate {{PLURAL:$2|üht|$2}} redaktsiooni ($1) ei leitud.
 

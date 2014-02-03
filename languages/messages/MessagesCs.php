@@ -22,6 +22,7 @@
  * @author Littledogboy
  * @author Martin Kozák
  * @author Matěj Grabovský
+ * @author Matěj Suchánek
  * @author Mercy
  * @author Michawiki
  * @author Mormegil
@@ -1189,7 +1190,7 @@ Zřejmě byla smazána.',
 'invalid-content-data' => 'Obsažená data jsou chybná',
 'content-not-allowed-here' => 'Obsah typu $1 není na stránce [[$2]] dovolen.',
 'editwarning-warning' => 'Opuštěním této stránky se mohou veškeré provedené změny ztratit.
-Přihlášení uživatelé si mohou toto varování vypnout na záložce „Editace“ v uživatelském nastavení.',
+Přihlášení uživatelé si mohou toto varování vypnout na záložce „{{int:prefs-editing}}“ v uživatelském nastavení.',
 'editpage-notsupportedcontentformat-title' => 'Nepodporovaný formát obsahu',
 'editpage-notsupportedcontentformat-text' => 'Model obsahu $2 nepodporuje formát obsahu $1.',
 
@@ -1404,6 +1405,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'showhideselectedversions' => 'Zobrazit/skrýt vybrané revize',
 'editundo' => 'zrušit editaci',
 'diff-empty' => '(Žádný rozdíl)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od stejného uživatele.)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od {{PLURAL:$2|1 dalšího uživatele|$2 dalších uživatelů}}.)',
 'diff-multi-manyusers' => '(Není zobrazeno $1 mezilehlých verzí od více než $2 {{PLURAL:$2|uživatele|uživatelů}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.
 
@@ -2548,7 +2551,7 @@ Rady a kontakt:
 'cantrollback' => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
 'alreadyrolled' => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
 
-Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Poslední editaci této stránky {{PLURAL:$3|provedl|provedla|provedl uživatel}} [[User:$3|$3]] ([[User talk:$3|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Shrnutí editace bylo: ''„$1“''.",
 'revertpage' => 'Editace uživatele „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]]) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“',
 'revertpage-nouser' => 'Editace skrytého uživatele vráceny do předchozího stavu, jehož {{GENDER:$1|autorem|autorkou}} je „[[User:$1|$1]]“',

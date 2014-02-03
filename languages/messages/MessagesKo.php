@@ -1218,7 +1218,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'invalid-content-data' => '잘못된 내용 데이터입니다',
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
 'editwarning-warning' => '이 페이지에서 벗어나면 저장하지 않은 바뀜이 모두 사라집니다.
-로그인을 했다면, 환경 설정의 "편집 상자"에서 이 경고를 띄우지 않도록 설정할 수 있습니다.',
+로그인을 했다면, 환경 설정의 "{{int:편집 상자}}"에서 이 경고를 띄우지 않도록 설정할 수 있습니다.',
 'editpage-notsupportedcontentformat-title' => '지원하지 않는 컨텐츠 형식',
 'editpage-notsupportedcontentformat-text' => '컨텐츠 모델 $2 에서는 컨텐츠형식 $1을 지원하지 않습니다.',
 
@@ -1436,6 +1436,8 @@ $1",
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',
 'editundo' => '편집 취소',
 'diff-empty' => '(차이 없음)',
+'diff-multi-sameuser' => '(같은 사용자에 의한 {{PLURAL:$1|하나의 중간 편집|$1개의 중간 편집}}이 숨겨짐)',
+'diff-multi-otherusers' => '({{PLURAL:$2|한 명의 사용자|$2명의 사용자}}에 의한 {{PLURAL:$1|$1개의 중간 편집}}이 숨겨짐)',
 'diff-multi-manyusers' => '({{PLURAL:$2|한 사용자의|사용자 $2명 이상의}} {{PLURAL:$1|중간의 편집 $1개}} 숨겨짐)',
 'difference-missing-revision' => '문서 비교에서 {{PLURAL:$2|하나|$2개}}의 판($1)을 찾을 수 {{PLURAL:$2|없습니다}}.
 
@@ -1456,7 +1458,8 @@ $1",
 'shown-title' => '쪽마다 {{PLURAL:$1|결과}} $1개씩 보기',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) 보기',
 'searchmenu-exists' => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
-'searchmenu-new' => "'''이 위키에 \"[[:\$1]]\" 문서를 만드세요!'''",
+'searchmenu-new' => '<strong>이 위키에 "[[:$1]]" 문서를 만드세요!</strong>
+{{PLURAL:$2|0=|검색으로 찾은 문서들을 참조하세요.}}',
 'searchprofile-articles' => '본문',
 'searchprofile-project' => '도움말 및 프로젝트 문서',
 'searchprofile-images' => '멀티미디어',
@@ -3136,7 +3139,7 @@ $2',
 임시 폴더가 존재하지 않습니다.',
 'import-parse-failure' => 'XML 문서 분석 실패',
 'import-noarticle' => '가져올 문서가 없습니다!',
-'import-nonewrevisions' => '이전에 이미 모든 판을 가져왔습니다.',
+'import-nonewrevisions' => '가져온 판 없음(모든 판이 이미 존재하거나 오류로 인해 건너뛰었을 수도 있습니다.)',
 'xml-error-string' => '$3단 $2줄 (바이트 $4)에서 $1: $5',
 'import-upload' => 'XML 데이터 올리기',
 'import-token-mismatch' => '세션 데이터가 손실되었습니다.
@@ -3148,6 +3151,7 @@ $2',
 'import-error-special' => '"$1" 문서는 특수 문서에 속해 있기 때문에 가져오지 않습니다.',
 'import-error-invalid' => '"$1" 문서는 제목이 잘못되었기 때문에 가져오지 않습니다.',
 'import-error-unserialize' => '"$1" 문서의 $2 판이 일렬적이지 않습니다. $3 내용 모델을 사용하여 $4 형식으로 일렬화되도록 판을 보고했습니다.',
+'import-error-bad-location' => '$3 내용 모델을 사용하는 $2 판을 이 위키의 "$1"에 저장할 수 없습니다. 모델을 문서에서 지원하지 않습니다.',
 'import-options-wrong' => '잘못된 {{PLURAL:$2|선택 사항}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => '주어진 루트 문서는 잘못된 제목입니다.',
 'import-rootpage-nosubpage' => '루트 문서의 "$1" 이름공간은 하위 문서를 허용하지 않습니다.',
@@ -4350,5 +4354,6 @@ $5
 'expand_templates_preview' => '미리 보기',
 
 # Unknown messages
+'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '업로드된 파일의 XML의 구문을 분석할 수 없습니다.',
 );
