@@ -41,6 +41,7 @@ changes to languages because of Bugzilla reports.
 * Removed XmlDumpWriter::schemaVersion(). (deprecated since 1.20)
 * Removed LogEventsList::getDisplayTitle(). (deprecated since 1.20)
 * Removed Preferences::trySetUserEmail(). (deprecated since 1.20)
+* Removed mw.user.name() and mw.user.anonymous() methods. (deprecated since 1.20)
 
 == Compatibility ==
 
