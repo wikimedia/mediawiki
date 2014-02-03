@@ -275,7 +275,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
 		$contentType = $this->getContentType( $params['dst'], null, $params['src'] );
 
-		$handle = fopen( $params['src'], 'rb+' );
+		$handle = fopen( $params['src'], 'rb' );
 		if ( $handle === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
