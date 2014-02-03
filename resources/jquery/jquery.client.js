@@ -169,6 +169,13 @@
 						version = match[1];
 					}
 				}
+				// And Amazon Silk's lies about being Android on mobile or Safari on desktop
+				if ( match = ua.match( /\bsilk\/([0-9.\-_]*)/ ) ) {
+					if ( match[1] ) {
+						name = 'silk';
+						version = match[1];
+					}
+				}
 
 				versionNumber = parseFloat( version, 10 ) || 0.0;
 
