@@ -10,7 +10,6 @@
 	} );
 
 	QUnit.test( 'user status', 7, function ( assert ) {
-
 		// Forge an anonymous user
 		mw.config.set( 'wgUserName', null );
 		delete mw.config.values.wgUserId;
