@@ -9,7 +9,12 @@
 
 		d1 = api.get( {} )
 			.done( function ( data ) {
-				assert.deepEqual( data, [], 'If request succeeds without errors, resolve deferred' );
+				if ( !( data instanceof Array ) ) {
+					delete data.debuginfo;
+					assert.deepEqual( data, {}, 'If request succeeds without errors, resolve deferred' );
+				} else {
+					assert.deepEqual( data, [], 'If request succeeds without errors, resolve deferred' );
+				}
 			} );
 
 		d2 = api.get( {
@@ -21,7 +26,12 @@
 
 		d3 = api.post( {} )
 			.done( function ( data ) {
-				assert.deepEqual( data, [], 'Simple POST request' );
+				if ( !( data instanceof Array ) ) {
+					delete data.debuginfo;
+					assert.deepEqual( data, {}, 'Simple POST request' );
+				} else {
+					assert.deepEqual( data, [], 'Simple POST request' );
+				}
 			} );
 
 		// After all are completed, continue the test suite.
