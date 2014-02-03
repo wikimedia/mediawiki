@@ -437,6 +437,41 @@
 					ltr: true,
 					rtl: true
 				}
+			},
+			// Amazon Silk
+			'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.0.13.81_10003810) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true': {
+				title: 'Silk',
+				platform: 'Desktop',
+				profile: {
+					name: 'silk',
+					layout: 'webkit',
+					layoutVersion: 533,
+					platform: 'unknown',
+					version: '1.0.13.81_10003810',
+					versionBase: '1',
+					versionNumber: 1
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
+			'Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/535.19 (KHTML, like Gecko) Silk/2.1 Mobile Safari/535.19 Silk-Accelerated=true': {
+				title: 'Silk',
+				platform: 'Mobile',
+				profile: {
+					name: 'silk',
+					layout: 'webkit',
+					layoutVersion: 535,
+					platform: 'unknown',
+					version: '2.1',
+					versionBase: '2',
+					versionNumber: 2.1
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
 			}
 		},
 		testMap = {
