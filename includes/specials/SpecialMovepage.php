@@ -163,6 +163,11 @@ class MovePageForm extends UnlistedSpecialPage {
 					"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
 					'moveuserpage-warning'
 				);
+			} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
+				$out->wrapWikiMsg(
+					"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
+					'movecategorypage-warning'
+				);
 			}
 
 			$out->addWikiMsg( $wgFixDoubleRedirects ?
