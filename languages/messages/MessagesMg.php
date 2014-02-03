@@ -1044,7 +1044,7 @@ Efa misy izy.',
 'invalid-content-data' => "Data anaty votoatiny tsy miady amin'ny fepetra",
 'content-not-allowed-here' => "Votoatiny ''$1'' voarara eo amin'ny pejy [[$2]]",
 'editwarning-warning' => "Mety hahavery ny fanovana nataonao ny fialanao amin'ity pejy ity.
-Raha tafiditra ianao dia azonao esorina ity fampitandremana ity ao amin'ny fizarana \"Fanovàna\" ao amin'ny safidinao",
+Raha tafiditra ianao dia azonao esorina ity fampitandremana ity ao amin'ny fizarana \"{{int:prefs-editing}}\" ao amin'ny safidinao.",
 
 # Content models
 'content-model-wikitext' => 'wiki-soratra',

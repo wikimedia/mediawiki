@@ -1193,7 +1193,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'contributions-title' => '$1 de iştırakê karberi',
 'mycontris' => 'İştıraqi',
 'contribsub2' => 'Serba $1 ($2)',
-'uctop' => '(ser)',
+'uctop' => '(rocane)',
 'month' => 'Asme ra (u ravêr):',
 'year' => 'Serre ra (u ravêr):',
 

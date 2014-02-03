@@ -2180,9 +2180,7 @@ Parameters:
 'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
 * $1 - the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
 * $2 - the title of the page in question',
-'editwarning-warning' => "{{doc-important|Do ''not'' use <nowiki>{{int:prefs-editing}}</nowiki> for \"Editing\". It is forbidden in this message, see [[mwr:68405]].}}
-
-but you can see the text of that button here: {{msg-mw|Prefs-editing}}",
+'editwarning-warning' => 'Uses {{msg-mw|Prefs-editing}}',
 'editpage-notsupportedcontentformat-title' => 'Title of error page shown when using an incompatible format on EditPage',
 'editpage-notsupportedcontentformat-text' => 'Error message shown when using an incompatible format on EditPage. Parameters:
 * $1 - the format id

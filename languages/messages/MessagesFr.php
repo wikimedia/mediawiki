@@ -1241,7 +1241,7 @@ Elle existe déjà.",
 'invalid-content-data' => 'Données du contenu non valides',
 'content-not-allowed-here' => 'Le contenu « $1 » n’est pas autorisé sur la page [[$2]]',
 'editwarning-warning' => 'Quitter cette page vous fera perdre toutes les modifications que vous avez faites.
-Si vous êtes connecté, vous pouvez désactiver cet avertissement dans la section « Modification » de vos préférences.',
+Si vous êtes connecté, vous pouvez désactiver cet avertissement dans la section « {{int:prefs-editing}} » de vos préférences.',
 'editpage-notsupportedcontentformat-title' => 'Format de contenu non pris en charge',
 'editpage-notsupportedcontentformat-text' => "Le format de contenu $1 n'est pas pris en charge par le modèle de contenu $2 .",
 
@@ -1452,6 +1452,8 @@ Assurez-vous que cette opération conservera la continuité de l'historique de l
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo' => 'annuler',
 'diff-empty' => '(Aucune différence)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Une révision intermédiaire par le même utilisateur non affichée|$1 révisions intermédiaires par le même utilisateur non affichées}})',
+'diff-multi-otherusers' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un autre utilisateur|$2 utilisateurs}} non {{PLURAL:$1|affichée|affichées}})',
 'diff-multi-manyusers' => "({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})",
 'difference-missing-revision' => "{{PLURAL:$2|Une révision|$2 révisions}} de cette différence ($1) {{PLURAL:$2|n'a pas été trouvée|n'ont pas été trouvées}}.
 
@@ -1472,7 +1474,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'shown-title' => 'Afficher $1 résultat{{PLURAL:$1||s}} par page',
 'viewprevnext' => 'Voir ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Il existe une page nommée « [[:$1]] » sur ce wiki.''' {{PLURAL:$2|0=|Voyez également les autres résultats de votre recherche.}}",
-'searchmenu-new' => "'''Créer la page « [[:$1|$1]] » sur ce wiki !''' {{PLURAL:$2|0=|Voyez également la page trouvée avec votre recherche.|Voyez également les résultats de votre recherche.}}",
+'searchmenu-new' => '<strong>Créer la page « [[:$1|$1]] » sur ce wiki !</strong> {{PLURAL:$2|0=|Voyez également la page trouvée avec votre recherche.|Voyez également les résultats de votre recherche.}}',
 'searchprofile-articles' => 'Pages de contenu',
 'searchprofile-project' => "Pages d'aide et de projet",
 'searchprofile-images' => 'Multimédia',

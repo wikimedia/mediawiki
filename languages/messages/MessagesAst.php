@@ -917,8 +917,8 @@ Esta yá esiste.',
 'content-failed-to-parse' => 'Fallu al analizar el conteníu $2 pal modelu $1: $3',
 'invalid-content-data' => 'Datos del conteníu inválidos',
 'content-not-allowed-here' => 'El conteníu «$1» nun se permite na páxina [[$2]]',
-'editwarning-warning' => 'Salir d\'esta páxina pue causar la perda de cualesquier cambiu fechu.
-Si aniciasti sesión, pue desactivase esti avisu na seición "Edición" de les tos preferencies.',
+'editwarning-warning' => "Salir d'esta páxina pue causar la perda de cualesquier cambiu fechu.
+Si anició sesión, pue desactivar esti avisu na seición «{{int:prefs-editing}}» de les preferencies.",
 'editpage-notsupportedcontentformat-title' => 'El formatu del conteníu nun tien sofitu',
 'editpage-notsupportedcontentformat-text' => 'El formatu del conteníu, $1, nun tien sofitu del modelu de conteníu $2.',
 
@@ -1134,6 +1134,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showhideselectedversions' => 'Amosar/anubrir les versiones seleicionaes',
 'editundo' => 'desfacer',
 'diff-empty' => '(Nun hai diferencies)',
+'diff-multi-sameuser' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} del mesmu usuariu)",
+'diff-multi-otherusers' => "(Nun s'{{PLURAL:$1|amuesa una revisión intermedia|amuesen $1 revisiones intermedies}} {{PLURAL:$2|d'otru usuariu|de $2 usuarios}})",
 'diff-multi-manyusers' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
 'difference-missing-revision' => "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).
 
@@ -1154,7 +1156,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'shown-title' => 'Amosar $1 {{PLURAL:$1|resultáu|resultaos}} por páxina',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Hai una páxina nomada \"[[\$1]]\" nesta wiki'''",
-'searchmenu-new' => "'''¡Crear la páxina \"[[:\$1]]\" nesta wiki!'''",
+'searchmenu-new' => "<strong>¡Crear la páxina «[[:$1]]» nesta wiki!</strong> {{PLURAL:$2|0=|Vea tamién la páxina que s'alcontró cola gueta.|Vea tamién los resultaos qu'alcontró la gueta.}}",
 'searchprofile-articles' => 'Páxines de conteníu',
 'searchprofile-project' => 'Páxines de proyeutu y ayuda',
 'searchprofile-images' => 'Multimedia',

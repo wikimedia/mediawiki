@@ -1235,7 +1235,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'invalid-content-data' => '本文データが無効です',
 'content-not-allowed-here' => 'ページ [[$2]] では、「$1」コンテンツは許可されていません',
 'editwarning-warning' => 'このページを離れると、あなたが行なった変更がすべて失われてしまうかもしれません。
-ログインしている場合、個人設定の「編集」タブでこの警告を表示しないようにすることができます。',
+ログインしている場合、個人設定の「{{int:prefs-editing}}」タブでこの警告を表示しないようにすることができます。',
 'editpage-notsupportedcontentformat-title' => '対応していないコンテンツ形式',
 'editpage-notsupportedcontentformat-text' => 'コンテンツ モデル $2 は、コンテンツ形式 $1 に対応していません。',
 

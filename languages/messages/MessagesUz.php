@@ -127,8 +127,8 @@ $messages = array(
 'tog-watchmoves' => 'Men koʻchirgan sahifa va fayllarni kuzatuv roʻyxatimga qoʻsh',
 'tog-watchdeletion' => 'Men oʻchirgan sahifa va fayllarni kuzatuv roʻyxatimga qoʻsh',
 'tog-minordefault' => 'Sukut boʻyicha barcha tahrirlarimni «kichik tahrir» etib belgilash',
-'tog-previewontop' => 'Tahrir oynasi tepasida koʻrib chiqish',
-'tog-previewonfirst' => 'Tahrirlashga oʻtiboq koʻrib chiqishni boshlash',
+'tog-previewontop' => 'Koʻrib chiqish imkoniyati tahrir oynasi tepasida boʻlsin',
+'tog-previewonfirst' => 'Tahrirlashga oʻtgandayoq koʻrib chiqishni boshlash',
 'tog-enotifwatchlistpages' => 'Kuzatuv roʻyxatimdagi sahifa yoki fayllar oʻzgartirilsa, menga bu haqda xat yuborilsin',
 'tog-enotifusertalkpages' => 'Munozara sahifam oʻzgartirilsa, menga bu haqda xat yuborilsin',
 'tog-enotifminoredits' => 'Kichik tahrir qilinsa ham e-pochtamga bu haqda xat yuborilsin',
@@ -426,6 +426,8 @@ $1',
 'actionthrottled' => 'Tezlik cheklovi',
 'protectedpagetext' => 'Bu sahifa tahrirlash va boshqa oʻzgartirishlar kiritishdan himoyalangan.',
 'viewsourcetext' => 'Siz bu sahifaning manbasini koʻrishingiz va uni nusxasini olishingiz mumkin:',
+'protectedinterface' => 'Ushbu sahifada dasturiy taʼminot interfeysi xabari mavjud. Bezoriliklardan saqlash uchun uni oʻzgartirish taʼqiqlangan.
+Ushbu xabar tarjimasini qoʻshish yoki oʻzgartirish uchun, iltimos, MediaWikining [//translatewiki.net/ translatewiki.net] mahalliylashtirish saytidan foydalaning.',
 'editinginterface' => "'''Diqqat:''' Siz dasturiy taʼminot interfeysi matni mavjud boʻlgan sahifani tahrirlamoqdasiz.
 Uning oʻzgartirilishi ushbu vikidagi boshqa foydalanuvchilar uchun ham interfeys oʻzgarishiga olib keladi.
 Ushbu xabar tarjimasini qoʻshish yoki oʻzgartirish uchun, iltimos, MediaWikining [//translatewiki.net/ translatewiki.net] mahalliylashtirish saytidan foydalaning.",
@@ -519,7 +521,7 @@ Ism yozilishini tekshirib koʻring.',
 
 # Change password dialog
 'changepassword' => 'Maxfiy soʻzni oʻzgartirish',
-'resetpass_header' => "Hisob mahfiy so'zini o'zgartirish",
+'resetpass_header' => 'Maxfiy soʻzni oʻzgartirish',
 'oldpassword' => "Eski mahfiy so'z:",
 'newpassword' => "Yangi mahfiy so'z:",
 'retypenew' => 'Yangi mahfiy soʻzni qayta tering:',
@@ -562,7 +564,7 @@ Vaqtinchalik maxfiy so'z: $2",
 'headline_tip' => '2-darajadagi sarlavha',
 'nowiki_sample' => 'Bu yerga formatlash zarur boʻlmagan matnni qoʻying',
 'nowiki_tip' => "Viki-formatlashga e'tibor qilmaslik",
-'image_tip' => 'Qoʻshilgan tasvir',
+'image_tip' => 'Fayl oʻrnatish',
 'media_tip' => 'Faylga havola',
 'sig_tip' => 'Imzoingiz va sana',
 'hr_tip' => "Yotiq (gorizontal) chiziq (ko'p ishlatmang)",
@@ -574,7 +576,7 @@ Vaqtinchalik maxfiy so'z: $2",
 'watchthis' => 'Sahifani kuzatish',
 'savearticle' => 'Saqlash',
 'preview' => 'Ko‘rib chiqish',
-'showpreview' => 'Ko‘rib chiqish',
+'showpreview' => 'Koʻrib chiqish',
 'showlivepreview' => 'Tezkor koʻrib chiqish',
 'showdiff' => 'O‘zgarishlarni ko‘rsatish',
 'anoneditwarning' => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
@@ -982,6 +984,10 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'upload' => 'Fayl yuklash',
 'uploadbtn' => 'Fayl yuklash',
 'uploaderror' => 'Yuklashda xatolik',
+'upload-recreate-warning' => '<strong>Diqqat: bunday nomli fayl avval yoʻqotilgan yoki koʻchirilgan.</strong>
+
+Quyida bu sahifaga oid yoʻqotish va koʻchirish qaydlari keltirilgan:',
+'upload-permitted' => 'Yuklash mumkin fayl turlari: $1.',
 'uploadlogpage' => 'Yuklash qaydlari',
 'filename' => 'Fayl nomi',
 'filedesc' => 'Qisqa izoh',
@@ -990,11 +996,20 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'filestatus' => 'Tarqatish shartlari:',
 'filesource' => 'Manba:',
 'uploadedfiles' => 'Yuklangan fayllar',
+'ignorewarnings' => 'Ogohlantirishlarga eʼtibor qilma',
 'uploadedimage' => '"[[$1]]"ni yukladi',
 'overwroteimage' => '"[[$1]]"ning yangi versiyasini yukladi',
+'upload-source' => 'Yuklanayotgan fayl',
+'sourcefilename' => 'Fayl nomi:',
+'destfilename' => 'Fayl nomi:',
+'upload-maxfilesize' => 'Faylning maksimal oʻlchami: $1',
+'upload-description' => 'Fayl tavsifi',
+'upload-options' => 'Yuklash moslamalari',
+'watchthisupload' => 'Bu faylni kuzatish',
 
 'license' => 'Litsenziyalash:',
 'license-header' => 'Litsenziyalash',
+'upload_source_file' => '(kompyuteringizdagi fayl)',
 
 # Special:ListFiles
 'listfiles-summary' => 'Ushbu maxsus sahifada barcha yuklangan fayllar koʻrsatilgan.',
@@ -1074,7 +1089,7 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 'uncategorizedcategories' => 'Turkumlashtirilmagan turkumlar',
 'uncategorizedimages' => 'Turkumlashtirilmagan fayllar',
 'uncategorizedtemplates' => 'Turkumlashtirilmagan andozalar',
-'unusedcategories' => 'Ishlatilinmagan turkumlar',
+'unusedcategories' => 'Ishlatilmayotgan turkumlar',
 'unusedimages' => 'Ishlatilinmagan fayllar',
 'wantedcategories' => 'Talab qilinayotgan turkumlar',
 'mostcategories' => 'Eng koʻp turkumli sahifalar',
@@ -1122,9 +1137,9 @@ Natijalarni jurnal nomi, foydalanuvchi nomi (harflar katta-kichikligi inobatga o
 
 # Special:Categories
 'categories' => 'Turkumlar',
-'categoriespagetext' => 'The following {{PLURAL:$1|category contains|categories contain}} pages or media.
-[[Special:UnusedCategories|Unused categories]] are not shown here.
-Also see [[Special:WantedCategories|wanted categories]].',
+'categoriespagetext' => 'Quyidagi {{PLURAL:$1|turkumda|turkumlarda}} sahifa yoki media-fayllar mavjud.
+[[Special:UnusedCategories|Ishlatilmayotgan turkumlar]] bu yerda koʻrsatilmaydi.
+Shuningdek qarang: [[Special:WantedCategories|talab qilinayotgan turkumlar]].',
 'categoriesfrom' => 'Quyidagidan boshlanuvchi turkumlarni koʻrsatish:',
 'special-categories-sort-count' => 'miqdori bo‘yicha saralash',
 'special-categories-sort-abc' => 'alifbo bo‘yicha saralash',
@@ -1716,5 +1731,8 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 # API errors
 'api-error-unknown-code' => 'Noaniq xato: "$1".',
 'api-error-unknownerror' => 'Noaniq xato: "$1".',
+
+# Limit report
+'limitreport-title' => 'Tahlillagich maʼlumotlari:',
 
 );

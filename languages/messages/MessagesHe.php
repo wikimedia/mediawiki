@@ -23,6 +23,7 @@
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
  * @author YaronSh
+ * @author Yona b
  * @author אור שפירא
  * @author דולב
  * @author ערן
@@ -932,6 +933,8 @@ $2',
 'retypenew' => 'חזרה על הסיסמה החדשה:',
 'resetpass_submit' => 'הגדרת הסיסמה וכניסה לחשבון',
 'changepassword-success' => 'סיסמתכם שונתה בהצלחה!',
+'changepassword-throttled' => 'ביצעתם לאחרונה ניסיונות רבים מדי להיכנס לחשבון זה.
+אנא המתינו $1 לפני שתנסו שוב.',
 'resetpass_forbidden' => 'לא ניתן לשנות סיסמאות.',
 'resetpass-no-info' => 'יש להיכנס לחשבון כדי לגשת לדף זה באופן ישיר.',
 'resetpass-submit-loggedin' => 'שינוי סיסמה',
@@ -990,6 +993,8 @@ $2
 'changeemail-password' => 'סיסמה ב{{grammar:תחילית|{{SITENAME}}}}:',
 'changeemail-submit' => 'שינוי כתובת הדוא"ל',
 'changeemail-cancel' => 'ביטול',
+'changeemail-throttled' => 'ביצעתם ניסיונות רבים מדי להיכנס לחשבון זה.
+אנא המתינו $1 לפני שתנסו שוב.',
 
 # Special:ResetTokens
 'resettokens' => 'איפוס אסימונים',
@@ -1208,7 +1213,7 @@ $2
 'invalid-content-data' => 'מידע שגוי על התוכן',
 'content-not-allowed-here' => 'תוכן מסוג "$1" אינו מותר בדף [[$2]]',
 'editwarning-warning' => 'עזיבת דף זה עשויה לגרום לאובדן כל השינויים שביצעתם.
-אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "עריכה" שבהעדפות שלכם.',
+אם אתם מחוברים לחשבון, תוכלו לבטל אזהרה זו בחלק "{{int:prefs-editing}}" שבהעדפות שלכם.',
 'editpage-notsupportedcontentformat-title' => 'סוג התוכן אינו נתמך',
 'editpage-notsupportedcontentformat-text' => 'תוכן מסוג $1 אינו נתמך על־ידי מודל התוכן $2.',
 
@@ -1425,6 +1430,8 @@ $1",
 'showhideselectedversions' => 'הצגת/הסתרת הגרסאות שנבחרו',
 'editundo' => 'ביטול',
 'diff-empty' => '(אין הבדלים)',
+'diff-multi-sameuser' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} ממשתמש אחד אינן מוצגות',
+'diff-multi-otherusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}}  {{PLURAL:$2|ממשתמש אחד|מ-$2 משתמשים}}  אינן מוצגות)',
 'diff-multi-manyusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'difference-missing-revision' => '{{PLURAL:$2|גרסה אחת|$2 גרסאות}} של ההבדל הזה בין שתי גרסאות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.
 
@@ -1445,7 +1452,8 @@ $1",
 'shown-title' => 'הצגת {{PLURAL:$1|תוצאה אחת|$1 תוצאות}} בדף',
 'viewprevnext' => 'צפייה ב: ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''קיים דף בשם \"[[:\$1]]\" באתר זה.'''",
-'searchmenu-new' => "'''יצירת הדף \"[[:\$1]]\" באתר זה.'''",
+'searchmenu-new' => "<strong>'''יצירת הדף \"[[:\$1]]\" באתר זה.'''</strong> 
+{{PLURAL:\$2|0=|ראו גם את הדף שנמצא בחיפוש שלכם.|ראו גם את תוצאות החיפוש שלכם.}}",
 'searchprofile-articles' => 'דפי תוכן',
 'searchprofile-project' => 'עזרה ודפי המיזם',
 'searchprofile-images' => 'מולטימדיה',
@@ -2491,6 +2499,7 @@ $1',
 'watchmethod-list' => 'בודק את העריכות האחרונות בדפים שברשימת המעקב',
 'watchlistcontains' => 'רשימת המעקב כוללת {{PLURAL:$1|דף אחד|$1 דפים}}.',
 'iteminvalidname' => 'בעיה עם $1, שם שגוי…',
+'wlnote2' => 'להלן השינויים האחרונים ב{{PLURAL:$1|שעה האחרונה|-<strong> $1 </strong> שעות האחרונות}}, מ-$2, $3.',
 'wlshowlast' => '(הצגת $1 שעות אחרונות | $2 ימים אחרונים | $3)',
 'watchlist-options' => 'אפשרויות ברשימת המעקב',
 
@@ -3049,6 +3058,7 @@ $1',
 'allmessages-prefix' => 'סינון לפי קידומת:',
 'allmessages-language' => 'שפה:',
 'allmessages-filter-submit' => 'הצגה',
+'allmessages-filter-translate' => 'תרגום',
 
 # Thumbnails
 'thumbnail-more' => 'הגדלה',

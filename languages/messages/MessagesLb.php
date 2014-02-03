@@ -1020,7 +1020,7 @@ Si gouf anscheinend geläscht.",
 'invalid-content-data' => 'Donnéeë vum Inhalt sinn net valabel',
 'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 'editwarning-warning' => 'Wann Dir dës Säit verloosst kann dat dozou féieren datt Dir all Ännerungen, déi Dir gemaach hutt, verléiert.
-Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "Änneren" vun Ären Astellungen ausschalten.',
+Wann Dir ageloggt sidd, kënnt Dir dës Warnung an der Sektioun "{{int:prefs-editing}}" vun Ären Astellungen ausschalten.',
 'editpage-notsupportedcontentformat-title' => 'Format vum Inhalt gëtt net ënnerstëtzt',
 'editpage-notsupportedcontentformat-text' => 'De Format vum Inhalt $1 gëtt net vum Modell vum Inhalt $2 ënnerstëtzt.',
 

@@ -1551,6 +1551,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges' => 'Tibdil riċenti',
 'recentchanges-legend' => 'Opzjonijiet tat-tibdil riċenti',
 'recentchanges-summary' => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
+'recentchanges-noresult' => 'L-ebda bidla ma saret matul il-perjodu mogħti li tissodisfa dawn il-kriterji.',
 'recentchanges-feed-description' => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
 'recentchanges-label-newpage' => 'Din il-modifika ħolqot paġna ġdida',
 'recentchanges-label-minor' => 'Din hi modifika minuri',

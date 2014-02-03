@@ -1173,8 +1173,8 @@ $2
 'content-failed-to-parse' => 'Απέτυχε η ανάλυση  περιεχομένου του $2 για το μοντέλο $1:$3',
 'invalid-content-data' => 'Μη έγκυρα δεδομένα περιεχομένου',
 'content-not-allowed-here' => 'Το περιεχόμενο «$1» δεν επιτρέπεται στη σελίδα [[$2]]',
-'editwarning-warning' => 'Αφήνοντας αυτή τη σελίδα μπορεί να σας κάνει να χάσετε κάποιες αλλαγές που έχετε κάνει.
-Αν έχετε συνδεθεί, μπορείτε να απενεργοποιήσετε αυτή την προειδοποίηση στην  ενότητα "Επεξεργασία" των προτιμήσεών σας.',
+'editwarning-warning' => 'Αφήνοντας αυτή τη σελίδα μπορεί να έχει ως συνέπεια να χαθούν κάποιες αλλαγές που έχετε κάνει.
+Αν έχετε συνδεθεί, μπορείτε να απενεργοποιήσετε αυτή την προειδοποίηση στην  ενότητα "{{int:prefs-editing}}"  των προτιμήσεών σας.',
 
 # Content models
 'content-model-wikitext' => 'βικικείμενο',
@@ -3888,6 +3888,11 @@ $5
 'version-hook-subscribedby' => 'Υπογεγραμμένο από',
 'version-version' => '(Έκδοση $1)',
 'version-license' => 'Άδεια χρήσης',
+'version-ext-license' => 'Άδεια χρήσης',
+'version-ext-colheader-name' => 'Επέκταση',
+'version-ext-colheader-version' => 'Έκδοση',
+'version-ext-colheader-license' => 'Άδεια χρήσης',
+'version-ext-colheader-description' => 'Περιγραφή',
 'version-poweredby-credits' => "Αυτό το wiki λειτουργεί με το λογισμικό '''[https://www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others' => 'άλλοι',
 'version-poweredby-translators' => 'translatewiki.net μεταφραστές',

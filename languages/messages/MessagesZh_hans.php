@@ -1158,7 +1158,7 @@ $2
 'content-failed-to-parse' => '未能将 $2 内容转换为 $1：$3',
 'invalid-content-data' => '无效的内容数据',
 'content-not-allowed-here' => '[[$2]]页面上不允许“$1”内容',
-'editwarning-warning' => '离开本页面可能导致你失去任何你已经作出的更改。如果你处于登录状态，你可以在你的设置的“编辑”部分停用该警告。',
+'editwarning-warning' => '离开本页面可能导致你失去任何你已经作出的更改。如果你处于登录状态，你可以在你的设置的“{{int:prefs-editing}}”部分停用该警告。',
 'editpage-notsupportedcontentformat-title' => '内容格式尚不支持',
 'editpage-notsupportedcontentformat-text' => '内容模型$2尚不支持内容格式$1。',
 
@@ -1734,7 +1734,7 @@ $1",
 'newsectionsummary' => '/* $1 */ 新段落',
 'rc-enhanced-expand' => '显示细节',
 'rc-enhanced-hide' => '隐藏细节',
-'rc-old-title' => '最初被创建为" $1 "',
+'rc-old-title' => '最初创建为“$1”',
 
 # Recent changes linked
 'recentchangeslinked' => '相关更改',
