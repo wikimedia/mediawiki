@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.api', QUnit.newMwEnvironment() );
 
 	QUnit.asyncTest( 'Basic functionality', function ( assert ) {
@@ -9,7 +9,12 @@
 
 		d1 = api.get( {} )
 			.done( function ( data ) {
-				assert.deepEqual( data, [], 'If request succeeds without errors, resolve deferred' );
+				if ( $.isArray( data ) ) {
+					assert.deepEqual( data, [], 'If request succeeds without errors, resolve deferred' );
+				} else {
+					delete data.debuginfo;
+					assert.deepEqual( data, {}, 'If request succeeds without errors, resolve deferred' );
+				}
 			} );
 
 		d2 = api.get( {
@@ -21,7 +26,12 @@
 
 		d3 = api.post( {} )
 			.done( function ( data ) {
-				assert.deepEqual( data, [], 'Simple POST request' );
+				if ( $.isArray( data ) ) {
+					assert.deepEqual( data, [], 'Simple POST request' );
+				} else {
+					delete data.debuginfo;
+					assert.deepEqual( data, {}, 'Simple POST request' );
+				}
 			} );
 
 		// After all are completed, continue the test suite.
@@ -58,4 +68,4 @@
 			QUnit.start();
 		} );
 	} );
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );
