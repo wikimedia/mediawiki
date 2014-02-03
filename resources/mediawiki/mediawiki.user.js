@@ -169,6 +169,7 @@
 		 *         expires: 7
 		 *     } );
 		 *
+		 * @deprecated since 1.23
 		 * @param {string} key Name of bucket
 		 * @param {Object} options Bucket configuration options
 		 * @param {Object} options.buckets List of bucket-name/relative-probability pairs (required,
