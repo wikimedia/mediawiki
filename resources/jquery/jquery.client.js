@@ -169,6 +169,13 @@
 						version = match[1];
 					}
 				}
+				// And Amazon Silk's lies about being Android on mobile or Safari on desktop
+				if ( ua.indexOf( 'silk' ) !== -1 ) {
+					if ( match[1] ) {
+						name = 'silk';
+						version = match[1];
+					}
+				}
 
 				versionNumber = parseFloat( version, 10 ) || 0.0;
 
