@@ -55,7 +55,7 @@ class FileOpBatch {
 	 * @return Status
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
 		$status = Status::newGood();
 
 		$n = count( $performOps );
@@ -135,8 +135,6 @@ class FileOpBatch {
 
 		// Attempt each operation (in parallel if allowed and possible)...
 		self::runParallelBatches( $pPerformOps, $status );
-
-		wfProfileOut( __METHOD__ );
 
 		return $status;
 	}
