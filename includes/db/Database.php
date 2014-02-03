@@ -2696,7 +2696,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
 		}
-		$rows = is_array( reset( $rows ) ) ? $rows : array( $rows );
+
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
 
 		if ( count( $uniqueIndexes ) ) {
 			$clauses = array(); // list WHERE clauses that each identify a single row

@@ -996,7 +996,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( !count( $rows ) ) {
 			return true; // nothing to do
 		}
-		$rows = is_array( reset( $rows ) ) ? $rows : array( $rows );
+
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
 
 		$table = $this->tableName( $table );
 		$columns = array_keys( $rows[0] );
