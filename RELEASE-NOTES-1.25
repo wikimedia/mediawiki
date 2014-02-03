@@ -27,6 +27,8 @@ changes to languages because of Bugzilla reports.
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it. 
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
+* Removed deprecated (since MW 1.20) mw.user.name() and mw.user.anonymous()
+  methods.
 
 == Compatibility ==
 
