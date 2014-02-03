@@ -89,14 +89,6 @@
 		},
 
 		/**
-		 * @inheritdoc #getName
-		 * @deprecated since 1.20 use #getName instead
-		 */
-		name: function () {
-			return user.getName();
-		},
-
-		/**
 		 * Get date user registered, if available
 		 *
 		 * @return {Date|boolean|null} Date user registered, or false for anonymous users, or
@@ -122,14 +114,6 @@
 		 */
 		isAnon: function () {
 			return user.getName() === null;
-		},
-
-		/**
-		 * @inheritdoc #isAnon
-		 * @deprecated since 1.20 use #isAnon instead
-		 */
-		anonymous: function () {
-			return user.isAnon();
 		},
 
 		/**
