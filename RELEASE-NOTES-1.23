@@ -216,6 +216,7 @@ changes to languages because of Bugzilla reports.
 * (bug 52810) Preference "Justify paragraphs" was removed.
 * OutputPage::showErrorPage raises a notice if arguments are incoherent.
 * mw.user.bucket has been deprecated.
+* mw.user.name and mw.user.anonymous have been removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
