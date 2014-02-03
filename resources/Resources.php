@@ -51,6 +51,18 @@ return array(
 	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
 	/**
+	 * Basic normalisation styles for skins to make browsers render elements more
+	 * consistently (before applying their own styles).
+	 */
+	'skins.common.normalize' => array(
+		'styles' => array(
+			'common/normalize.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+
+	/**
 	 * Common skin styles, grouped into three graded levels.
 	 *
 	 * Level 1 "elements":
