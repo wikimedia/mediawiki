@@ -164,10 +164,7 @@
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
-			} )
-			// If the forms include any fulltext search thingies, remove them as they
-			// would interfere with selecting suggestions
-			.closest( 'form' ).find( '[name="fulltext"]' ).remove();
+			} );
 
 		// Ensure that the thing is actually present!
 		if ( $searchRegion.length === 0 ) {
@@ -196,6 +193,9 @@
 			},
 			$region: $searchRegion
 		} );
+
+		// If the form includes any fallback fulltext search buttons, remove them
+		$searchInput.closest( 'form' ).find( '.mw-fallbackSearchButton' ).remove();
 
 		// In most skins (at least Monobook and Vector), the font-size is messed up in <body>.
 		// (they use 2 elements to get a sane font-height). So, instead of making exceptions for
