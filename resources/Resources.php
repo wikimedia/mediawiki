@@ -1041,6 +1041,15 @@ return array(
 		'dependencies' => array( 'jquery.spinner' )
 	),
 
+	/* MediaWiki skin resources */
+
+	'mediawiki.skin.normalize' => array(
+		'styles' => array(
+			'resources/mediawiki.skin/normalize.less',
+			'resources/mediawiki.skin/normalize.ie.less',
+		),
+	),
+
 	/* MediaWiki Special pages */
 
 	'mediawiki.special' => array(
