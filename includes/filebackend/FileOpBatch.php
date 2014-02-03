@@ -55,14 +55,12 @@ class FileOpBatch {
 	 * @return Status
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
 		$status = Status::newGood();
 
 		$n = count( $performOps );
 		if ( $n > self::MAX_BATCH_SIZE ) {
 			$status->fatal( 'backend-fail-batchsize', $n, self::MAX_BATCH_SIZE );
-			wfProfileOut( __METHOD__ );
-
 			return $status;
 		}
 
@@ -108,8 +106,6 @@ class FileOpBatch {
 				$status->success[$index] = false;
 				++$status->failCount;
 				if ( !$ignoreErrors ) {
-					wfProfileOut( __METHOD__ );
-
 					return $status; // abort
 				}
 			}
@@ -123,8 +119,6 @@ class FileOpBatch {
 		if ( count( $entries ) ) {
 			$subStatus = $journal->logChangeBatch( $entries, $batchId );
 			if ( !$subStatus->isOK() ) {
-				wfProfileOut( __METHOD__ );
-
 				return $subStatus; // abort
 			}
 		}
@@ -135,8 +129,6 @@ class FileOpBatch {
 
 		// Attempt each operation (in parallel if allowed and possible)...
 		self::runParallelBatches( $pPerformOps, $status );
-
-		wfProfileOut( __METHOD__ );
 
 		return $status;
 	}
