@@ -52,6 +52,14 @@ return array(
 
 	/* MediaWiki base skinning modules */
 
+	// Browser rendering normalisation (Level 0)
+	'mediawiki.skinning.normalize' => array(
+		'styles' => array(
+			'resources/lib/normalize/normalize.css',
+			'resources/lib/normalize/normalize.ie.css',
+		),
+	),
+
 	/**
 	 * Common skin styles, grouped into three graded levels.
 	 *
@@ -132,7 +140,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-
 
 	/**
 	 * Skins
