@@ -444,7 +444,7 @@ class VectorTemplate extends BaseTemplate {
 			// * The mediawiki.searchSuggest module, after doing tests for the broken browsers, removes
 			//   the 'fulltext' button and handles 'fulltext' search itself; this will reveal the 'go'
 			//   button and cause it to be used.
-			echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton' ) );
+			echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton mw-fallbackSearchButton' ) );
 			echo $this->makeSearchButton( 'go', array( 'id' => 'searchButton', 'class' => 'searchButton' ) );
 			?>
 		</div>
