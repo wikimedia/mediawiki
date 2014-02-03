@@ -149,9 +149,8 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param array $pPerformOps
+	 * @param array $pPerformOps Batches of file ops (batches use original indexes)
 	 * @param Status $status
-	 * @return bool Success
 	 */
 	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
 		$aborted = false; // set to true on unexpected errors
@@ -172,12 +171,8 @@ class FileOpBatch {
 			// If attemptAsync() returns a Status, it was either due to an error
 			// or the backend does not support async ops and did it synchronously.
 			foreach ( $performOpsBatch as $i => $fileOp ) {
-				if ( !$fileOp->failed() ) { // failed => already has Status
-					// If the batch is just one operation, it's faster to avoid
-					// pipelining as that can involve creating new TCP connections.
-					$subStatus = ( count( $performOpsBatch ) > 1 )
-						? $fileOp->attemptAsync()
-						: $fileOp->attempt();
+				if ( !isset( $status->success[$i] ) ) { // didn't already fail in precheck()
+					$subStatus = $fileOp->attemptAsync();
 					if ( $subStatus->value instanceof FileBackendStoreOpHandle ) {
 						$opHandles[$i] = $subStatus->value; // deferred
 					} else {
@@ -189,7 +184,7 @@ class FileOpBatch {
 			$statuses = $statuses + $backend->executeOpHandlesInternal( $opHandles );
 			// Marshall and merge all the responses (blocking)...
 			foreach ( $performOpsBatch as $i => $fileOp ) {
-				if ( !$fileOp->failed() ) { // failed => already has Status
+				if ( !isset( $status->success[$i] ) ) { // didn't already fail in precheck()
 					$subStatus = $statuses[$i];
 					$status->merge( $subStatus );
 					if ( $subStatus->isOK() ) {
@@ -203,7 +198,5 @@ class FileOpBatch {
 				}
 			}
 		}
-
-		return $status;
 	}
 }
