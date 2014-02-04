@@ -496,6 +496,12 @@ var mw = ( function ( $, undefined ) {
 		 */
 		messages: new Map(),
 
+		/**
+		 * Stores blobs (arbitrary data passed from server as part of ResourceLoader modules)
+		 * @property {mw.Map}
+		 */
+		blobs: new Map(),
+
 		/* Public Methods */
 
 		/**
@@ -1138,6 +1144,11 @@ var mw = ( function ( $, undefined ) {
 					mw.messages.set( registry[module].messages );
 				}
 
+				// Register blobs
+				if ( typeof registry[module].blobs === 'function' ) {
+					registry[module].blobs();
+				}
+
 				if ( $.isReady || registry[module].async ) {
 					// Make sure we don't run the scripts until all (potentially asynchronous)
 					// stylesheet insertions have completed.
@@ -1579,7 +1590,7 @@ var mw = ( function ( $, undefined ) {
 				 * When #load or #using requests one or more modules, the server
 				 * response contain calls to this function.
 				 *
-				 * All arguments are required.
+				 * All arguments except for blobs are required.
 				 *
 				 * @param {string} module Name of module
 				 * @param {Function|Array} script Function with module code or Array of URLs to
@@ -1598,8 +1609,9 @@ var mw = ( function ( $, undefined ) {
 				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
 				 *
 				 * @param {Object} msgs List of key/value pairs to be added to mw#messages.
+				 * @param {Function} blobs Callback
 				 */
-				implement: function ( module, script, style, msgs ) {
+				implement: function ( module, script, style, msgs, blobs ) {
 					// Validate input
 					if ( typeof module !== 'string' ) {
 						throw new Error( 'module must be a string, not a ' + typeof module );
@@ -1625,6 +1637,7 @@ var mw = ( function ( $, undefined ) {
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+					registry[module].blobs = blobs;
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';

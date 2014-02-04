@@ -105,6 +105,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $messages = array();
+	/**
+	 * Array: List of blob files to include
+	 * @par Usage:
+	 * @code
+	 * aray( [blob-file], [blob-file => alias] )
+	 * @endcode
+	 */
+	protected $blobs = array();
 	/** String: Name of group to load this module in */
 	protected $group;
 	/** String: Position on the page to load this module at */
@@ -185,6 +193,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         ),
 	 *         // Messages to always load
 	 *         'messages' => [array of message key strings],
+	 *         // Blobs of arbitrary data to include in module
+	 *         'blobs' => [array of blob filenames],
 	 *         // Group which this module should be loaded together with
 	 *         'group' => [group name string],
 	 *         // Position on the page to load this module at
@@ -215,6 +225,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'debugScripts':
 				case 'loaderScripts':
 				case 'styles':
+				case 'blobs':
 					$this->{$member} = (array)$option;
 					break;
 				// Collated lists of file paths
@@ -285,6 +296,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$urls = array();
 		foreach ( $this->getScriptFiles( $context ) as $file ) {
 			$urls[] = $this->getRemotePath( $file );
+		}
+		if ( $this->blobs ) {
+			$urls[] = ResourceLoader::makeLoaderURL(
+				array( $this->getName() ),
+				$context->getLanguage(),
+				$context->getSkin(),
+				$context->getUser(),
+				$context->getVersion(),
+				true, // debug
+				'blobs', // only
+				$context->getRequest()->getBool( 'printable' ),
+				$context->getRequest()->getBool( 'handheld' )
+			);
 		}
 		return $urls;
 	}
@@ -445,7 +469,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$context->getDebug() ? $this->debugScripts : array(),
 			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
-			$this->loaderScripts
+			$this->loaderScripts,
+			$this->blobs
 		);
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
@@ -492,6 +517,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'skinStyles',
 			'dependencies',
 			'messages',
+			'blobs',
 			'targets',
 			'group',
 			'position',
@@ -814,5 +840,37 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$this->localFileRefs += array_keys( $result['files'] );
 		$cache->set( $key, $result );
 		return $result['compiled'];
+	}
+
+	/**
+	 * Returns JavaScript code initializing module's blobs
+	 *
+	 * @return string: JavaScript
+	 */
+	public function getBlobsScript() {
+		$js = '';
+
+		wfProfileIn( __METHOD__ );
+		foreach ( $this->blobs as $key => $value ) {
+			if ( is_int( $key ) ) {
+				$fileName = $name = $value;
+			} else {
+				$fileName = $key;
+				$name = $value;
+			}
+			$name = "{$this->getName()}:$name";
+			$localPath = $this->getLocalPath( $fileName );
+			if ( file_exists( $localPath ) ) {
+				$content = file_get_contents( $localPath );
+				$js .= Xml::encodeJsCall( 'mw.blobs.set', array( $name, $content ) );
+			} else {
+				$msg = __METHOD__ . ": blob file not found: \"$fileName\"";
+				wfDebugLog( 'resourceloader', $msg );
+				wfProfileOut( __METHOD__ );
+				throw new MWException( $msg );
+			}
+		}
+		wfProfileOut( __METHOD__ );
+		return $js;
 	}
 }
