@@ -892,7 +892,7 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -947,34 +947,45 @@ class EditPage {
 							# Warn the user that something went wrong
 							$undoMsg = 'failure';
 						} else {
-							# Inform the user of our success and set an automatic edit summary
-							$undoMsg = 'success';
+							$oldContent = $this->mArticle->getPage()->getContent( Revision::RAW );
+							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
-							# If we just undid one rev, use an autosummary
-							$firstrev = $oldrev->getNext();
-							if ( $firstrev && $firstrev->getId() == $undo ) {
-								$userText = $undorev->getUserText();
-								if ( $userText === '' ) {
-									$undoSummary = wfMessage(
-										'undo-summary-username-hidden',
-										$undo
-									)->inContentLanguage()->text();
-								} else {
-									$undoSummary = wfMessage(
-										'undo-summary',
-										$undo,
-										$userText
-									)->inContentLanguage()->text();
+							if ( $newContent->equals( $oldContent ) ) {
+								# Tell the user that the undo results in no change,
+								# i.e. the revisions were already undone.
+								$undoMsg = 'nochange';
+								$content = false;
+							} else {
+								# Inform the user of our success and set an automatic edit summary
+								$undoMsg = 'success';
+
+								# If we just undid one rev, use an autosummary
+								$firstrev = $oldrev->getNext();
+								if ( $firstrev && $firstrev->getId() == $undo ) {
+									$userText = $undorev->getUserText();
+									if ( $userText === '' ) {
+										$undoSummary = wfMessage(
+											'undo-summary-username-hidden',
+											$undo
+										)->inContentLanguage()->text();
+									} else {
+										$undoSummary = wfMessage(
+											'undo-summary',
+											$undo,
+											$userText
+										)->inContentLanguage()->text();
+									}
+									if ( $this->summary === '' ) {
+										$this->summary = $undoSummary;
+									} else {
+										$this->summary = $undoSummary . wfMessage( 'colon-separator' )
+											->inContentLanguage()->text() . $this->summary;
+									}
+									$this->undidRev = $undo;
 								}
-								if ( $this->summary === '' ) {
-									$this->summary = $undoSummary;
-								} else {
-									$this->summary = $undoSummary . wfMessage( 'colon-separator' )
-										->inContentLanguage()->text() . $this->summary;
-								}
-								$this->undidRev = $undo;
+								$this->formtype = 'diff';
 							}
-							$this->formtype = 'diff';
 						}
 					} else {
 						// Failed basic sanity checks.
@@ -983,7 +994,7 @@ class EditPage {
 						$undoMsg = 'norev';
 					}
 
-					// Messages: undo-success, undo-failure, undo-norev
+					// Messages: undo-success, undo-failure, undo-norev, undo-nochange
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );

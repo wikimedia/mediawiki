@@ -2301,6 +2301,9 @@ See also:
 'undo-norev' => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
 {{Identical|Undo}}',
+'undo-nochange' => 'Message appears if an attempt to revert an edit by clicking the "undo" link results in an edit making no change to the current version of the page.
+
+{{Identical|Undo}}',
 'undo-summary' => 'Edit summary for an undo action. Parameters:
 * $1 - revision ID
 * $2 - username
