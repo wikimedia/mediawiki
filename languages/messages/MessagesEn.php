@@ -1854,6 +1854,7 @@ Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searchrelated'                    => 'related',
 'searchall'                        => 'all',
 'showingresults'                   => "Showing below up to {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} starting with #<strong>$2</strong>.",
+'showingresultsinrange'            => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} in range #'''$2''' to #'''$3'''.", #bug11269 
 'showingresultsnum'                => "Showing below {{PLURAL:$3|<strong>1</strong> result|<strong>$3</strong> results}} starting with #<strong>$2</strong>.",
 'showingresultsheader'             => "{{PLURAL:$5|Result <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 - $2</strong> of <strong>$3</strong>}} for <strong>$4</strong>",
 'search-nonefound'                 => 'There were no results matching the query.',
