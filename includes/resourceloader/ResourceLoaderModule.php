@@ -31,6 +31,7 @@ abstract class ResourceLoaderModule {
 	const TYPE_SCRIPTS = 'scripts';
 	const TYPE_STYLES = 'styles';
 	const TYPE_MESSAGES = 'messages';
+	const TYPE_BLOBS = 'blobs';
 	const TYPE_COMBINED = 'combined';
 
 	# sitewide core module like a skin file or jQuery component
@@ -157,6 +158,15 @@ abstract class ResourceLoaderModule {
 			$context->getRequest()->getBool( 'handheld' )
 		);
 		return array( $url );
+	}
+
+	/**
+	 * Returns JavaScript code initializing module's blobs
+	 * @return string: JavaScript code
+	 */
+	public function getBlobsScript() {
+		// Stub, override expected
+		return '';
 	}
 
 	/**
