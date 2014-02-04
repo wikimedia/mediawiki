@@ -19,8 +19,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private $mOldGetPreferencesHooks = false;
 
-	private static $Success = array( 'options' => 'success' );
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -204,6 +202,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->method( 'setOption' );
 
 		$this->mUserMock->expects( $this->never() )
+			->method( 'getOption' );
+
+		$this->mUserMock->expects( $this->never() )
 			->method( 'saveSettings' );
 
 		try {
@@ -234,7 +235,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array()
+		), $response );
 	}
 
 	public function testResetKinds() {
@@ -252,7 +256,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array()
+		), $response );
 	}
 
 	public function testOptionWithValue() {
@@ -264,22 +271,37 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->with( $this->equalTo( 'name' ), $this->equalTo( 'value' ) );
 
 		$this->mUserMock->expects( $this->once() )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'name' ) )
+			->will( $this->returnValue( 'value' ) );
+
+		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
 
 		$request = $this->getSampleRequest( array( 'optionname' => 'name', 'optionvalue' => 'value' ) );
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'name', 'value' => 'value' )
+			)
+		), $response );
 	}
 
 	public function testOptionResetValue() {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->once() )
+		$this->mUserMock->expects( $this->at( 4 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'name' ), $this->identicalTo( null ) );
+
+		$this->mUserMock->expects( $this->at( 5 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'name' ) )
+			->will( $this->returnValue( null ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
@@ -287,7 +309,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$request = $this->getSampleRequest( array( 'optionname' => 'name' ) );
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'name', 'value' => null )
+			)
+		), $response );
 	}
 
 	public function testChange() {
@@ -302,18 +329,33 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->with( $this->equalTo( 'willBeNull' ), $this->identicalTo( null ) );
 
 		$this->mUserMock->expects( $this->at( 5 ) )
-			->method( 'getOptions' );
+			->method( 'getOption' )
+			->with( $this->equalTo( 'willBeNull' ) )
+			->will( $this->returnValue( null ) );
 
 		$this->mUserMock->expects( $this->at( 6 ) )
+			->method( 'getOptions' );
+
+		$this->mUserMock->expects( $this->at( 7 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeEmpty' ), $this->equalTo( '' ) );
 
-		$this->mUserMock->expects( $this->at( 7 ) )
+		$this->mUserMock->expects( $this->at( 8 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'willBeEmpty' ) )
+			->will( $this->returnValue( '' ) );
+
+		$this->mUserMock->expects( $this->at( 9 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 8 ) )
+		$this->mUserMock->expects( $this->at( 10 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeHappy' ), $this->equalTo( 'Happy' ) );
+
+		$this->mUserMock->expects( $this->at( 11 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'willBeHappy' ) )
+			->will( $this->returnValue( 'Happy' ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
@@ -322,7 +364,14 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'willBeNull', 'value' => null ),
+				1 => array( 'name' => 'willBeEmpty', 'value' => '' ),
+				2 => array( 'name' => 'willBeHappy', 'value' => 'Happy' ),
+			)
+		), $response );
 	}
 
 	public function testResetChangeOption() {
@@ -337,11 +386,21 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->with( $this->equalTo( 'willBeHappy' ), $this->equalTo( 'Happy' ) );
 
 		$this->mUserMock->expects( $this->at( 6 ) )
-			->method( 'getOptions' );
+			->method( 'getOption' )
+			->with( $this->equalTo( 'willBeHappy' ) )
+			->will( $this->returnValue( 'Happy' ) );
 
 		$this->mUserMock->expects( $this->at( 7 ) )
+			->method( 'getOptions' );
+
+		$this->mUserMock->expects( $this->at( 8 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'name' ), $this->equalTo( 'value' ) );
+
+		$this->mUserMock->expects( $this->at( 9 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'name' ) )
+			->will( $this->returnValue( 'value' ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
@@ -355,7 +414,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $this->getSampleRequest( $args ) );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'willBeHappy', 'value' => 'Happy' ),
+				1 => array( 'name' => 'name', 'value' => 'value' )
+			)
+		), $response );
 	}
 
 	public function testMultiSelect() {
@@ -367,16 +432,36 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->with( $this->equalTo( 'testmultiselect-opt1' ), $this->identicalTo( true ) );
 
 		$this->mUserMock->expects( $this->at( 4 ) )
-			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->identicalTo( null ) );
+			->method( 'getOption' )
+			->with( $this->equalTo( 'testmultiselect-opt1' ) )
+			->will( $this->returnValue( true ) );
 
 		$this->mUserMock->expects( $this->at( 5 ) )
 			->method( 'setOption' )
-			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->identicalTo( false ) );
+			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->identicalTo( null ) );
 
 		$this->mUserMock->expects( $this->at( 6 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'testmultiselect-opt2' ) )
+			->will( $this->returnValue( null ) );
+
+		$this->mUserMock->expects( $this->at( 7 ) )
+			->method( 'setOption' )
+			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->identicalTo( false ) );
+
+		$this->mUserMock->expects( $this->at( 8 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'testmultiselect-opt3' ) )
+			->will( $this->returnValue( false ) );
+
+		$this->mUserMock->expects( $this->at( 9 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'testmultiselect-opt4' ), $this->identicalTo( false ) );
+
+		$this->mUserMock->expects( $this->at( 10 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'testmultiselect-opt4' ) )
+			->will( $this->returnValue( false ) );
 
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
@@ -387,7 +472,15 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'testmultiselect-opt1', 'value' => '1' ),
+				1 => array( 'name' => 'testmultiselect-opt2', 'value' => null ),
+				2 => array( 'name' => 'testmultiselect-opt3', 'value' => false ),
+				3 => array( 'name' => 'testmultiselect-opt4', 'value' => false )
+			)
+		), $response );
 	}
 
 	public function testSpecialOption() {
@@ -409,6 +502,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				'options' => array(
 					'*' => "Validation error for 'special': cannot be set by this module"
 				)
+			),
+			'changes' => array(
+				0 => array( 'name' => 'special', 'special' => '' )
 			)
 		), $response );
 	}
@@ -432,6 +528,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 				'options' => array(
 					'*' => "Validation error for 'unknownOption': not a valid preference"
 				)
+			),
+			'changes' => array(
+				0 => array( 'name' => 'unknownOption', 'invalid' => '' )
 			)
 		), $response );
 	}
@@ -444,6 +543,11 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->method( 'setOption' )
 			->with( $this->equalTo( 'userjs-option' ), $this->equalTo( '1' ) );
 
+		$this->mUserMock->expects( $this->at( 4 ) )
+			->method( 'getOption' )
+			->with( $this->equalTo( 'userjs-option' ) )
+			->will( $this->returnValue( '1' ) );
+
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
 
@@ -453,6 +557,11 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$response = $this->executeQuery( $request );
 
-		$this->assertEquals( self::$Success, $response );
+		$this->assertEquals( array(
+			'options' => 'success',
+			'changes' => array(
+				0 => array( 'name' => 'userjs-option', 'value' => '1' )
+			)
+		), $response );
 	}
 }
