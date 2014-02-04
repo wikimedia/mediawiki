@@ -376,7 +376,7 @@ class SpecialSearch extends SpecialPage {
 		// prev/next links
 		if ( $num || $this->offset ) {
 			// Show the create link ahead
-			$this->showCreateLink( $t, $num );
+			$this->showCreateLink( $t, $num, $titleMatches, $textMatches );
 			$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
@@ -422,7 +422,7 @@ class SpecialSearch extends SpecialPage {
 			} else {
 				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
 					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
-				$this->showCreateLink( $t, $num );
+				$this->showCreateLink( $t, $num, $titleMatches, $textMatches );
 			}
 		}
 		$out->addHtml( "</div>" );
@@ -437,12 +437,16 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * @param $t Title
 	 * @param int $num The number of search results found
+	 * @param $titleMatches null|SearchResultSet results from title search
+	 * @param $textMatches null|SearchResultSet results from text search
 	 */
-	protected function showCreateLink( $t, $num ) {
+	protected function showCreateLink( $t, $num, $titleMatches, $textMatches ) {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
-		if ( is_null( $t ) || $t->getDBkey() === '' ) {
+		if ( is_null( $t ) || $t->getDBkey() === '' ||
+				( $titleMatches !== null && $titleMatches->searchContainedSyntax() ) ||
+				( $textMatches !== null && $textMatches->searchContainedSyntax() ) ) {
 			// invalid title
 			// preserve the paragraph for margins etc...
 			$this->getOutput()->addHtml( '<p></p>' );
