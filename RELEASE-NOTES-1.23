@@ -162,6 +162,7 @@ production.
 * (bug 23005) Added action=revisiondelete.
 * Added siprop=restrictions to API action=query&meta=siteinfo for querying
   possible page restriction (protection) levels and types.
+* Added prop 'limitreportdata' and 'limitreporthtml' to action=parse.
 
 === Languages updated in 1.23 ===
 
