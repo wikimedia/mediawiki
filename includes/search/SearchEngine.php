@@ -314,7 +314,7 @@ class SearchEngine {
 			$this->namespaces = null;
 			$parsed = substr( $query, strlen( $allkeyword ) );
 		} elseif ( strpos( $query, ':' ) !== false ) {
-			$prefix = substr( $query, 0, strpos( $query, ':' ) );
+			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$index = $wgContLang->getNsIndex( $prefix );
 			if ( $index !== false ) {
 				$this->namespaces = array( $index );
