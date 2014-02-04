@@ -34,15 +34,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
-		// We need to do this to make sure $wgQueryPages is set up
-		// This SUCKS
-		global $IP;
-		require_once "$IP/includes/QueryPage.php";
-
 		// Build mapping from special page names to QueryPage classes
-		global $wgQueryPages, $wgAPIUselessQueryPages;
+		global $wgAPIUselessQueryPages;
 		$this->qpMap = array();
-		foreach ( $wgQueryPages as $page ) {
+		foreach ( QueryPage::getPages() as $page ) {
 			if ( !in_array( $page[1], $wgAPIUselessQueryPages ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
