@@ -62,13 +62,7 @@
 			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
 
 			// this is the container <div>, jQueryfied
-			this
-				.append(
-					// the <span> is needed for $.autoEllipsis to work
-					$( '<span>' )
-						.css( 'whiteSpace', 'nowrap' )
-						.text( text )
-				)
+			this.text( text )
 				.wrap(
 					$( '<a>' )
 						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
@@ -95,13 +89,11 @@
 						$( '<div>' )
 							.addClass( 'special-query' )
 							.text( query )
-							.autoEllipsis()
 					)
 					.show();
 			} else {
 				$el.find( '.special-query' )
-					.text( query )
-					.autoEllipsis();
+					.text( query );
 			}
 
 			if ( $el.parent().hasClass( 'mw-searchSuggest-link' ) ) {

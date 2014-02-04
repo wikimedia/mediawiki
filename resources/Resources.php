@@ -320,7 +320,7 @@ return array(
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
-		'dependencies' => 'jquery.autoEllipsis',
+		'dependencies' => 'jquery.highlightText',
 	),
 	'jquery.tabIndex' => array(
 		'scripts' => 'resources/jquery/jquery.tabIndex.js',
@@ -857,7 +857,6 @@ return array(
 			'searchsuggest-containing',
 		),
 		'dependencies' => array(
-			'jquery.autoEllipsis',
 			'jquery.client',
 			'jquery.placeholder',
 			'jquery.suggestions',
