@@ -22,57 +22,6 @@
  */
 
 /**
- * List of query page classes and their associated special pages,
- * for periodic updates.
- *
- * DO NOT CHANGE THIS LIST without testing that
- * maintenance/updateSpecialPages.php still works.
- */
-global $wgQueryPages; // not redundant
-$wgQueryPages = array(
-//         QueryPage subclass, Special page name, Limit (false for none, none for the default)
-// ----------------------------------------------------------------------------
-	array( 'AncientPagesPage', 'Ancientpages' ),
-	array( 'BrokenRedirectsPage', 'BrokenRedirects' ),
-	array( 'DeadendPagesPage', 'Deadendpages' ),
-	array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
-	array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
-	array( 'LinkSearchPage', 'LinkSearch' ),
-	array( 'ListredirectsPage', 'Listredirects' ),
-	array( 'LonelyPagesPage', 'Lonelypages' ),
-	array( 'LongPagesPage', 'Longpages' ),
-	array( 'MIMEsearchPage', 'MIMEsearch' ),
-	array( 'MostcategoriesPage', 'Mostcategories' ),
-	array( 'MostimagesPage', 'Mostimages' ),
-	array( 'MostinterwikisPage', 'Mostinterwikis' ),
-	array( 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ),
-	array( 'MostlinkedtemplatesPage', 'Mostlinkedtemplates' ),
-	array( 'MostlinkedPage', 'Mostlinked' ),
-	array( 'MostrevisionsPage', 'Mostrevisions' ),
-	array( 'FewestrevisionsPage', 'Fewestrevisions' ),
-	array( 'ShortPagesPage', 'Shortpages' ),
-	array( 'UncategorizedCategoriesPage', 'Uncategorizedcategories' ),
-	array( 'UncategorizedPagesPage', 'Uncategorizedpages' ),
-	array( 'UncategorizedImagesPage', 'Uncategorizedimages' ),
-	array( 'UncategorizedTemplatesPage', 'Uncategorizedtemplates' ),
-	array( 'UnusedCategoriesPage', 'Unusedcategories' ),
-	array( 'UnusedimagesPage', 'Unusedimages' ),
-	array( 'WantedCategoriesPage', 'Wantedcategories' ),
-	array( 'WantedFilesPage', 'Wantedfiles' ),
-	array( 'WantedPagesPage', 'Wantedpages' ),
-	array( 'WantedTemplatesPage', 'Wantedtemplates' ),
-	array( 'UnwatchedPagesPage', 'Unwatchedpages' ),
-	array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
-	array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
-);
-wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
-
-global $wgDisableCounters;
-if ( !$wgDisableCounters ) {
-	$wgQueryPages[] = array( 'PopularPagesPage', 'Popularpages' );
-}
-
-/**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
@@ -107,6 +56,64 @@ abstract class QueryPage extends SpecialPage {
 	 * Wheter to show prev/next links
 	 */
 	protected $shownavigation = true;
+
+	/**
+	 * Get a list of query page classes and their associated special pages,
+	 * for periodic updates.
+	 *
+	 * DO NOT CHANGE THIS LIST without testing that
+	 * maintenance/updateSpecialPages.php still works.
+	 * @return array
+	 */
+	public static function getPages() {
+		global $wgDisableCounters;
+		static $qp = null;
+
+		if ( $qp === null ) {
+			// QueryPage subclass, Special page name
+			$qp = array(
+				array( 'AncientPagesPage', 'Ancientpages' ),
+				array( 'BrokenRedirectsPage', 'BrokenRedirects' ),
+				array( 'DeadendPagesPage', 'Deadendpages' ),
+				array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
+				array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
+				array( 'LinkSearchPage', 'LinkSearch' ),
+				array( 'ListredirectsPage', 'Listredirects' ),
+				array( 'LonelyPagesPage', 'Lonelypages' ),
+				array( 'LongPagesPage', 'Longpages' ),
+				array( 'MIMEsearchPage', 'MIMEsearch' ),
+				array( 'MostcategoriesPage', 'Mostcategories' ),
+				array( 'MostimagesPage', 'Mostimages' ),
+				array( 'MostinterwikisPage', 'Mostinterwikis' ),
+				array( 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ),
+				array( 'MostlinkedtemplatesPage', 'Mostlinkedtemplates' ),
+				array( 'MostlinkedPage', 'Mostlinked' ),
+				array( 'MostrevisionsPage', 'Mostrevisions' ),
+				array( 'FewestrevisionsPage', 'Fewestrevisions' ),
+				array( 'ShortPagesPage', 'Shortpages' ),
+				array( 'UncategorizedCategoriesPage', 'Uncategorizedcategories' ),
+				array( 'UncategorizedPagesPage', 'Uncategorizedpages' ),
+				array( 'UncategorizedImagesPage', 'Uncategorizedimages' ),
+				array( 'UncategorizedTemplatesPage', 'Uncategorizedtemplates' ),
+				array( 'UnusedCategoriesPage', 'Unusedcategories' ),
+				array( 'UnusedimagesPage', 'Unusedimages' ),
+				array( 'WantedCategoriesPage', 'Wantedcategories' ),
+				array( 'WantedFilesPage', 'Wantedfiles' ),
+				array( 'WantedPagesPage', 'Wantedpages' ),
+				array( 'WantedTemplatesPage', 'Wantedtemplates' ),
+				array( 'UnwatchedPagesPage', 'Unwatchedpages' ),
+				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
+				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
+			);
+			wfRunHooks( 'wgQueryPages', array( &$qp ) );
+
+			if ( !$wgDisableCounters ) {
+				$qp[] = array( 'PopularPagesPage', 'Popularpages' );
+			}
+		}
+
+		return $qp;
+	}
 
 	/**
 	 * A mutator for $this->listoutput;

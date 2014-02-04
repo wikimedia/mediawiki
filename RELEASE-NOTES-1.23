@@ -48,6 +48,8 @@ production.
   allows more than one value of $wgLocalInterwiki to be specified and
   understood by the parser. The value of $wgLocalInterwiki is automatically
   prepended to the start of this array.
+* $wgQueryPages has been removed. Query Pages should be added to by using the
+  wgQueryPages hook.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
