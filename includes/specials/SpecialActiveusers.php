@@ -353,8 +353,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$dbw->delete( 'querycachetwo',
 			array(
 				'qcc_type' => 'activeusers',
-				'qcc_value < ' . $dbw->addQuotes(
-					$dbw->timestamp( $now - $wgActiveUserDays * 86400 ) )
+				'qcc_value < ' . $dbw->addQuotes( $now - $wgActiveUserDays * 86400 ) // TS_UNIX
 			),
 			__METHOD__
 		);
@@ -382,7 +381,7 @@ class SpecialActiveUsers extends SpecialPage {
 					'qcc_type'  => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => $name,
-					'qcc_value' => $lastEditTime,
+					'qcc_value' => wfTimestamp( TS_UNIX, $lastEditTime ),
 					'qcc_namespacetwo' => 0, // unused
 					'qcc_titletwo' => '' // unused
 				);
