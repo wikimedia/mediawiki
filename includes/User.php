@@ -2450,6 +2450,8 @@ class User {
 	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
 	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
 	 *              be used by user scripts.
+	 * - 'special' - "preferences" that are not accessible via User::getOptions
+	 *               or User::setOptions.
 	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
 	 *              These are usually legacy options, removed in newer versions.
 	 *
@@ -2466,6 +2468,7 @@ class User {
 			'registered-multiselect',
 			'registered-checkmatrix',
 			'userjs',
+			'special',
 			'unused'
 		);
 	}
@@ -2489,6 +2492,13 @@ class User {
 
 		$prefs = Preferences::getPreferences( $this, $context );
 		$mapping = array();
+
+		// Pull out the "special" options, so they don't get converted as
+		// multiselect or checkmatrix.
+		$specialOptions = array_fill_keys( Preferences::getSaveBlacklist(), true );
+		foreach ( $specialOptions as $name => $value ) {
+			unset( $prefs[$name] );
+		}
 
 		// Multiselect and checkmatrix options are stored in the database with
 		// one key per option, each having a boolean value. Extract those keys.
@@ -2532,6 +2542,8 @@ class User {
 				$mapping[$key] = 'registered-multiselect';
 			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
 				$mapping[$key] = 'registered-checkmatrix';
+			} elseif ( isset( $specialOptions[$key] ) ) {
+				$mapping[$key] = 'special';
 			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
 				$mapping[$key] = 'userjs';
 			} else {

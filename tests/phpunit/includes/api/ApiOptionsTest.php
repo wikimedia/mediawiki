@@ -116,6 +116,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'testmultiselect-opt2' => 'registered-multiselect',
 			'testmultiselect-opt3' => 'registered-multiselect',
 			'testmultiselect-opt4' => 'registered-multiselect',
+			'special' => 'special',
 		);
 
 		if ( $options === null ) {
@@ -387,6 +388,29 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$response = $this->executeQuery( $request );
 
 		$this->assertEquals( self::$Success, $response );
+	}
+
+	public function testSpecialOption() {
+		$this->mUserMock->expects( $this->never() )
+			->method( 'resetOptions' );
+
+		$this->mUserMock->expects( $this->never() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array(
+			'change' => 'special=1'
+		) );
+
+		$response = $this->executeQuery( $request );
+
+		$this->assertEquals( array(
+			'options' => 'success',
+			'warnings' => array(
+				'options' => array(
+					'*' => "Validation error for 'special': cannot be set by this module"
+				)
+			)
+		), $response );
 	}
 
 	public function testUnknownOption() {

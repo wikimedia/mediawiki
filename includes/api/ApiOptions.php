@@ -98,6 +98,9 @@ class ApiOptions extends ApiBase {
 						$validation = true;
 					}
 					break;
+				case 'special':
+					$validation = "cannot be set by this module";
+					break;
 				case 'unused':
 				default:
 					$validation = "not a valid preference";
