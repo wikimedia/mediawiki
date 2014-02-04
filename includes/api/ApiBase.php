@@ -1372,13 +1372,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Throw a UsageException based on the errors in the Status object.
+	 * Get error (as code, string) from a Status object.
 	 *
-	 * @since 1.22
+	 * @since 1.23
 	 * @param Status $status Status object
-	 * @throws MWException
+	 * @return array of code and error string
 	 */
-	public function dieStatus( $status ) {
+	public function getErrorFromStatus( $status ) {
 		if ( $status->isGood() ) {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
@@ -1406,7 +1406,20 @@ abstract class ApiBase extends ContextSource {
 			// Translate message to code, for backwards compatability
 			$code = ApiBase::$messageMap[$code]['code'];
 		}
-		$this->dieUsage( $msg->inLanguage( 'en' )->useDatabase( false )->plain(), $code );
+		return array( $code, $msg->inLanguage( 'en' )->useDatabase( false )->plain() );
+	}
+
+	/**
+	 * Throw a UsageException based on the errors in the Status object.
+	 *
+	 * @since 1.22
+	 * @param Status $status Status object
+	 * @throws MWException
+	 */
+	public function dieStatus( $status ) {
+
+		list( $code, $msg ) = $this->getErrorFromStatus( $status );
+		$this->dieUsage( $msg, $code );
 	}
 
 	// @codingStandardsIgnoreStart Allow long lines. Cannot split these.
