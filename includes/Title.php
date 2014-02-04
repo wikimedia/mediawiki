@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation a title within %MediaWiki.
+ * Representation of a title within %MediaWiki.
  *
  * See title.txt
  *
@@ -1500,9 +1500,7 @@ class Title {
 	 * Get a real URL referring to this title, with interwiki link and
 	 * fragment
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @see wfExpandUrl
 	 * @param $query
 	 * @param $query2 bool
@@ -1528,8 +1526,12 @@ class Title {
 	}
 
 	/**
-	 * Get a URL with no fragment or server name.  If this page is generated
-	 * with action=render, $wgServer is prepended.
+	 * Get a URL with no fragment or server name (relative URL) from a Title object.
+	 * If this page is generated with action=render, however,
+	 * $wgServer is prepended to make an absolute URL.
+	 *
+	 * @see self::getFullURL to always get an absolute URL.
+	 * @see self::newFromText to produce a Title object.
 	 *
 	 * @param string|array $query an optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
@@ -1542,7 +1544,7 @@ class Title {
 	 *   The second parameter is deprecated since 1.19. Pass it as a key,value
 	 *   pair in the first parameter array instead.
 	 *
-	 * @return String the URL
+	 * @return String of the URL.
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
@@ -1630,12 +1632,10 @@ class Title {
 	 * The result obviously should not be URL-escaped, but does need to be
 	 * HTML-escaped if it's being output in HTML.
 	 *
-	 * See getLocalURL for the arguments.
-	 *
 	 * @param $query
 	 * @param $query2 bool
 	 * @param $proto Protocol to use; setting this will cause a full URL to be used
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @return String the URL
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
@@ -1655,9 +1655,7 @@ class Title {
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, without a server name or fragment
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @param $query string
 	 * @param $query2 bool|string
 	 * @return String the URL
@@ -1672,9 +1670,7 @@ class Title {
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, including the server name and fragment
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @return String the URL
 	 * @deprecated since 1.19
 	 */
@@ -1692,9 +1688,7 @@ class Title {
 	 * if $wgInternalServer is not set. If the server variable used is
 	 * protocol-relative, the URL will be expanded to http://
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @return String the URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -1713,9 +1707,7 @@ class Title {
 	 *
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @return string The URL
 	 * @since 1.18
 	 */
@@ -1729,9 +1721,7 @@ class Title {
 	/**
 	 * HTML-escaped version of getCanonicalURL()
 	 *
-	 * See getLocalURL for the arguments.
-	 *
-	 * @see self::getLocalURL
+	 * @see self::getLocalURL for the arguments.
 	 * @since 1.18
 	 * @return string
 	 * @deprecated since 1.19
