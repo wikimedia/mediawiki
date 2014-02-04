@@ -73,7 +73,7 @@ class ActiveUsersPager extends UsersPager {
 	public function setupOptions() {
 		$this->opts = new FormOptions();
 
-		$this->opts->add( 'hidebots', false, FormOptions::BOOL );
+		$this->opts->add( 'hidebots', true, FormOptions::BOOL );
 		$this->opts->add( 'hidesysops', false, FormOptions::BOOL );
 
 		$this->opts->fetchValuesFromRequest( $this->getRequest() );
