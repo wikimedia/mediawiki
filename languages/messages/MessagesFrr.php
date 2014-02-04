@@ -583,6 +583,8 @@ Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.',
 'retypenew' => 'Skriiw det paaswurd noch ans weder hen:',
 'resetpass_submit' => 'Paaswurd saat an uunmelde',
 'changepassword-success' => 'Din paaswurd as feranert wurden!',
+'changepassword-throttled' => 'Dü heest tufölsis fersoocht, di uuntumeldin.
+Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 'resetpass_forbidden' => 'Det paaswurd koon ei feranert wurd.',
 'resetpass-no-info' => 'Dü skel di uunmelde, am üüb det sidj tutugripen.',
 'resetpass-submit-loggedin' => 'Paaswurd feranre',
@@ -634,6 +636,8 @@ Tidjwiis paaswurd: $2',
 'changeemail-password' => 'Din {{SITENAME}} paaswurd:',
 'changeemail-submit' => 'E-mail adres feranre',
 'changeemail-cancel' => 'Ufbreeg',
+'changeemail-throttled' => 'Dü heest tufölsis fersoocht, di uuntumeldin.
+Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 
 # Special:ResetTokens
 'resettokens' => 'Tokens turagsaat',
@@ -848,7 +852,7 @@ Uun't strik- an fersküüw-logbuk oner stäänt muar diartu.",
 'invalid-content-data' => 'Diar stäänt wat uun, wat diar ei hen hiart',
 'content-not-allowed-here' => '„$1“ mut ei skrewen wurd üüb sidj [[$2]]',
 'editwarning-warning' => 'Wan dü detheer sidj slotst, kön feranrangen ferleesen gung.
-Üs uunmeldet brüker könst dü detheer wäärnang bi din iinstelangen oner „Bewerke“ wechknipse.',
+Üs uunmeldet brüker könst dü detheer wäärnang bi din iinstelangen oner „{{int:prefs-editing}}“ ufstel.',
 'editpage-notsupportedcontentformat-title' => 'Detdiar formoot gongt ei.',
 'editpage-notsupportedcontentformat-text' => 'Det formoot $1 gongt ei mä det model $2.',
 
@@ -1056,6 +1060,8 @@ A nawigatjuun-links saat ales weder turag üüb di ual stant.',
 'showhideselectedversions' => 'Werjuunen wise of fersteeg',
 'editundo' => 'turagsaat',
 'diff-empty' => '(nään ferskeel)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Ian werjuun diartesken|$1 werjuunen diartesken}} faan disalew brüker {{PLURAL:$1|woort|wurd}} ei uunwiset)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Ian werjuun diartesken|$1 werjuunen diartesken}} faan {{PLURAL:$2|ään öödern brüker|$2 ööder brükern}} {{PLURAL:$1|woort|wurd}} ei uunwiset)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ian werjuun diartesken|$1 werjuunen diartesken}} faan muar üs $2 {{PLURAL:$2|brüker|brükern}} wurd ei uunwiset)',
 'difference-missing-revision' => "{{PLURAL:$2|Ian werjuun|$2 werjuunen}} faan di ferskeel ($1) {{PLURAL:$2|as|san}} ei fünjen wurden.
 
@@ -1076,7 +1082,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'shown-title' => 'Wise $1 {{PLURAL:$1|resultaat|resultaaten}} per sidj',
 'viewprevnext' => 'Wise ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Deer as en sid nååmd \"[[:\$1]]\" önj jüdeer Wiki'''",
-'searchmenu-new' => "'''Maage det sidj „[[:$1]]“ uun detheer wiki.'''",
+'searchmenu-new' => '<strong>Maage det sidj „[[:$1]]“ uun detheer wiki!</strong> {{PLURAL:$2|0=|Luke uk bi det fünjen sidj.|Luke uk bi a fünjen sidjen.}}',
 'searchprofile-articles' => 'Artiikler',
 'searchprofile-project' => 'Halep- an Projektsidjen',
 'searchprofile-images' => 'Multimedia',
@@ -1092,6 +1098,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-result-score' => 'Relewans: $1 %',
 'search-redirect' => '(widjerfeerd faan „$1“)',
 'search-section' => '(kirew $1)',
+'search-file-match' => '(fünjen tekst)',
 'search-suggest' => 'Mendst dü „$1“?',
 'search-interwiki-caption' => 'Saster-projekten',
 'search-interwiki-default' => '$1 resultaaten:',
@@ -2082,6 +2089,7 @@ Feranrangen faan detdiar sidj wurd üüb detdiar list fäästhäälen.",
 'watchmethod-list' => "Sidjen, diar dü uun't uug heest, am a leetst feranrangen beluke",
 'watchlistcontains' => "Dü häälst $1 {{PLURAL:$1|sidj|sidjen}} uun't uug.",
 'iteminvalidname' => 'Mä di iindrach „$1“ stemet wat ei, di nööm as ferkiard.',
+'wlnote2' => 'Diar stun a feranrangen faan a leetst {{PLURAL:$1|stünj|<strong>$1</strong> stünjen}}, üüb a stant faan $2, $3.',
 'wlshowlast' => 'Wise a feranrangen faan leetst $1 stünjen, $2 daar of $3.',
 'watchlist-options' => "Iinstelangen för't uunwisin",
 
@@ -2161,7 +2169,7 @@ Halep an muar diartu: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => "Grünjer för't striken bewerke",
 'delete-toobig' => 'Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Sok sidjen kön ei so gau stregen wurd, ööders san a servers plaat.',
 'delete-warning-toobig' => "Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Det striken koon komer maage bi't dootenbeenk.",
-'deleting-backlinks-warning' => "'''Paase üüb:''' Diar ferwise noch ööder sidjen üüb det sidj, diar dü strik wel.",
+'deleting-backlinks-warning' => "'''Paase üüb:''' Diar ferwise noch ööder sidjen üüb det sidj, diar dü strik wel. Of det sidj as noch huarööders iinbünjen.",
 
 # Rollback
 'rollback' => 'Feranrangen turagsaat',
@@ -2458,7 +2466,7 @@ Luke bi't [[Special:BlockList|sperlist]] för aal jo aktuel speren.",
 'range_block_disabled' => 'Det mögelkhaid, hialer adresrümer tu sperin, as ei aktiif.',
 'ipb_expiry_invalid' => 'Didiar tidjrüm gongt ei.',
 'ipb_expiry_temp' => 'Ferbürgen brükernööm-speren skel permanent wees.',
-'ipb_hide_invalid' => 'Detdiar brükerkonto koon ei ferbürgen wurd, auer diar tuföl feranrangen uun a ferluup stun.',
+'ipb_hide_invalid' => 'Detdiar brükerkonto koon ei ferbürgen wurd, auer diar muar üs {{PLURAL:$1|ian feranrang|$1 feranrangen}} uun a ferluup stun.',
 'ipb_already_blocked' => '„$1“ as al speret',
 'ipb-needreblock' => '$1 as al speret. Wel dü a speriinstelangen feranre?',
 'ipb-otherblocks-header' => 'Ööder {{PLURAL:$1|sper|speren}}',
@@ -2619,6 +2627,7 @@ Wees so gud an beschük a sidjen [https://www.mediawiki.org/wiki/Localisation Me
 'allmessages-prefix' => 'Filter mä prefix:',
 'allmessages-language' => 'Spriak:',
 'allmessages-filter-submit' => 'Widjer',
+'allmessages-filter-translate' => 'Auersaat',
 
 # Thumbnails
 'thumbnail-more' => 'Fergratre',
@@ -2668,7 +2677,7 @@ Transwiki-import-aktjuunen wurd uun't [[Special:Log/import|Import-logbuk]] fää
 'importuploaderrortemp' => "Bi't huuchschüüren faan det importdatei as wat skiaf gingen. Diar as nian tidjwiis fertiaknis.",
 'import-parse-failure' => "Bi't importiarin faan det XML-datei as wat skiaf gingen.",
 'import-noarticle' => 'Diar as nian sidj tu importiarin bestemet wurden.',
-'import-nonewrevisions' => 'Aal jodiar werjuunen san al ans importiaret wurden.',
+'import-nonewrevisions' => 'Diar wurd nian werjuunen importiaret, auer jo eder al diar wiar of auersprüngen wurden san.',
 'xml-error-string' => '$1 uun rä $2, türn $3 (byte $4): $5',
 'import-upload' => 'XML-datein importiare',
 'import-token-mismatch' => 'Session dooten san wech. Ferschük det noch ans weder.',
@@ -2679,6 +2688,7 @@ Transwiki-import-aktjuunen wurd uun't [[Special:Log/import|Import-logbuk]] fää
 'import-error-special' => 'Det sidj „$1“ as ei importiaret wurden, auer hat tu en nöömrüm hiart, huar nian sidjen mögelk san.',
 'import-error-invalid' => 'Det sidj „$1“ as ei importiaret wurden, auer di nööm ei stemet.',
 'import-error-unserialize' => 'Det werjuun $2 faan det sidj „$1“ küd ei deserialisiaret wurd. Det werjuun woort mä det münster $3 brükt, an det as mä $4 serialisiaret.',
+'import-error-bad-location' => 'Det feranrang $2 mä model $3 koon ei üs "$1" üüb detheer wiki seekert wurd, auer detdiar model heer ei brükt wurd koon.',
 'import-options-wrong' => 'Ferkiard {{PLURAL:$2|iinstelang|iinstelangen}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Didiar sidjennööm as ferkiard.',
 'import-rootpage-nosubpage' => 'Uun di nöömrüm „$1“ jaft at nian onersidjen.',
@@ -3818,4 +3828,7 @@ Uk parser-funktjuunen liküs <code><nowiki>{{</nowiki>#language:…}}</code> an 
 'expand_templates_generate_rawhtml' => 'Rä HTML uunwise',
 'expand_templates_preview' => 'Föörskau',
 
+# Unknown messages
+'createaccount-hook-aborted' => '$1',
+'uploadinvalidxml' => "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 );

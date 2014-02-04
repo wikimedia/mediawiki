@@ -1156,7 +1156,7 @@ Nó đã tồn tại.',
 'invalid-content-data' => 'Dữ liệu nội dung không hợp lệ',
 'content-not-allowed-here' => 'Không cho phép đưa nội dung “$1” vào trang [[$2]]',
 'editwarning-warning' => 'Rời khỏi trang này sẽ khiến bạn mất các sửa đổi đã thực hiện.
-Nếu đã đăng nhập, bạn có thể tắt cảnh báo này tại mục “Sửa đổi” trong tùy chọn cá nhân.',
+Nếu đã đăng nhập, bạn có thể tắt cảnh báo này tại mục “{{int:prefs-editing}}” trong tùy chọn cá nhân.',
 'editpage-notsupportedcontentformat-title' => 'Không hỗ trợ định dạng nội dung',
 'editpage-notsupportedcontentformat-text' => 'Mô hình nội dung $2 không hỗ trợ định dạng nội dung $1.',
 
