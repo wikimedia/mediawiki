@@ -4214,6 +4214,14 @@ See also:
 * {{msg-mw|zip-wrong-format}}
 * {{msg-mw|uploadjava}}
 * {{msg-mw|uploadvirus}}',
+'uploadscriptednamespace' => 'Used as error message when uploading a file. This error is specific to SVG files, when they include a namespace that has not been whitelisted.
+
+Parameters:
+* $1 - the invalid namespace name
+See also:
+* {{msg-mw|zip-wrong-format}}
+* {{msg-mw|uploadjava}}
+* {{msg-mw|uploadvirus}}',
 'uploadvirus' => 'Error message displayed when uploaded file contains a virus.
 
 Parameters:

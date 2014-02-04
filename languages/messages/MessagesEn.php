@@ -2366,6 +2366,7 @@ You should ask someone with the ability to view suppressed file data to review t
 'php-uploaddisabledtext'         => 'File uploads are disabled in PHP.
 Please check the file_uploads setting.',
 'uploadscripted'                 => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
+'uploadscriptednamespace'     => 'This SVG file contains an illegal namespace \'$1\'',
 'uploadinvalidxml'               => 'The XML in the uploaded file could not be parsed.',
 'uploadvirus'                    => 'The file contains a virus!
 Details: $1',
