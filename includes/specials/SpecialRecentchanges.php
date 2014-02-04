@@ -506,7 +506,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function getFeedQuery() {
 		global $wgFeedLimit;
 
-		$this->getOptions()->validateIntBounds( 'limit', 0, $wgFeedLimit );
 		$options = $this->getOptions()->getChangedValues();
 
 		// wfArrayToCgi() omits options set to null or false
@@ -516,6 +515,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 		}
 		unset( $value );
+
+		if ( isset( $options['limit'] ) && $options['limit'] > $wgFeedLimit ) {
+			$options['limit'] = $wgFeedLimit;
+		}
 
 		return wfArrayToCgi( $options );
 	}
