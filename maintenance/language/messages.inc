@@ -990,6 +990,7 @@ $wgMessageStructure = array(
 		'searchrelated',
 		'searchall',
 		'showingresults',
+		'showingresultsinrange',
 		'showingresultsnum',
 		'showingresultsheader',
 		'search-nonefound',
