@@ -361,6 +361,15 @@ class ApiParse extends ApiBase {
 			$result_array['properties'] = $this->formatProperties( $p_result->getProperties() );
 		}
 
+		if ( isset( $prop['limitreportdata'] ) ) {
+			$result_array['limitreportdata'] = $this->formatLimitReportData( $p_result->getLimitReportData() );
+		}
+		if ( isset( $prop['limitreporthtml'] ) ) {
+			$limitreportHtml = EditPage::getPreviewLimitReport( $p_result );
+			$result_array['limitreporthtml'] = array();
+			ApiResult::setContent( $result_array['limitreporthtml'], $limitreportHtml );
+		}
+
 		if ( $params['generatexml'] ) {
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
 				$this->dieUsage( "generatexml is only supported for wikitext content", "notwikitext" );
@@ -389,6 +398,7 @@ class ApiParse extends ApiBase {
 			'sections' => 's',
 			'headitems' => 'hi',
 			'properties' => 'pp',
+			'limitreportdata' => 'lr',
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -644,6 +654,25 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
+	private function formatLimitReportData( $limitReportData ) {
+		$result = array();
+		$apiResult = $this->getResult();
+
+		foreach ( $limitReportData as $name => $value ) {
+			$entry = array();
+			$entry['name'] = $name;
+			if ( !is_array( $value ) ) {
+				$value = array( $value );
+			}
+			$apiResult->setIndexedTagName( $value, 'param' );
+			$apiResult->setIndexedTagName_recursive( $value, 'param' );
+			$entry = array_merge( $entry, $value );
+			$result[] = $entry;
+		}
+
+		return $result;
+	}
+
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) ) {
@@ -687,6 +716,8 @@ class ApiParse extends ApiBase {
 					'iwlinks',
 					'wikitext',
 					'properties',
+					'limitreportdata',
+					'limitreporthtml',
 				)
 			),
 			'pst' => false,
@@ -741,6 +772,10 @@ class ApiParse extends ApiBase {
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
 				' properties     - Gives various properties defined in the parsed wikitext',
+				' limitreportdata - Gives the limit report in a structured way.',
+				"                   Gives no data, when {$p}disablepp is set.",
+				' limitreporthtml - Gives the HTML version of the limit report.',
+				"                   Gives no data, when {$p}disablepp is set.",
 			),
 			'effectivelanglinks' => array(
 				'Includes language links supplied by extensions',
