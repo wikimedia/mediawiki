@@ -8,13 +8,6 @@
  * @group Database
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
-global $IP;
-require_once "$IP/includes/QueryPage.php"; // Needed to populate $wgQueryPages
-
 /**
  * @covers QueryPage<extended>
  */
@@ -41,8 +34,7 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	function __construct() {
 		parent::__construct();
 
-		global $wgQueryPages;
-		foreach ( $wgQueryPages as $page ) {
+		foreach ( QueryPage::getPages() as $page ) {
 			$class = $page[0];
 			if ( !in_array( $class, $this->manualTest ) ) {
 				$this->queryPages[$class] = new $class;

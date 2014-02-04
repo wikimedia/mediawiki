@@ -40,17 +40,14 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgQueryPages, $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
+		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 
 		if ( !$this->hasOption( 'list' ) && !$this->hasOption( 'only' ) ) {
 			$this->doSpecialPageCacheUpdates();
 		}
 		$dbw = wfGetDB( DB_MASTER );
 
-		// This is needed to initialise $wgQueryPages
-		require_once "$IP/includes/QueryPage.php";
-
-		foreach ( $wgQueryPages as $page ) {
+		foreach ( QueryPage::getPages() as $page ) {
 			list( $class, $special ) = $page;
 			$limit = isset( $page[2] ) ? $page[2] : null;
 
