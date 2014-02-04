@@ -773,6 +773,30 @@ class DatabaseOracle extends DatabaseBase {
 		return $retval;
 	}
 
+	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+		$fname = __METHOD__
+	) {
+		if ( !count( $rows ) ) {
+			return true; // nothing to do
+		}
+
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$sequenceData = $this->getSequenceData( $table );
+		if ( $sequenceData !== false ) {
+			// add sequence column to each list of columns, when not set
+			foreach ( $rows as &$row ) {
+				if ( !isset( $row[$sequenceData['column']] ) ) {
+					$row[$sequenceData['column']] = 'GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')';
+				}
+			}
+		}
+
+		return parent::upsert( $table, $rows, $uniqueIndexes, $set, $fname );
+	}
+
 	function tableName( $name, $format = 'quoted' ) {
 		/*
 		Replace reserved words with better ones
