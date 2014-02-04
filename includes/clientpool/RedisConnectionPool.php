@@ -210,7 +210,7 @@ class RedisConnectionPool {
 			}
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
-			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() . "\n" );
+			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() );
 
 			return false;
 		}
@@ -279,7 +279,7 @@ class RedisConnectionPool {
 	 * @param RedisException $e
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
-		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
+		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() );
 		foreach ( $this->connections[$server] as $key => $connection ) {
 			if ( $cref->isConnIdentical( $connection['conn'] ) ) {
 				$this->idlePoolSize -= $connection['free'] ? 1 : 0;

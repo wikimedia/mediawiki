@@ -3608,12 +3608,12 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOutput = ParserCache::singleton()->getDirty( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
-			wfDebugLog( 'dirty', "dirty missing\n" );
+			wfDebugLog( 'dirty', 'dirty missing' );
 			wfDebug( __METHOD__ . ": no dirty cache\n" );
 			return false;
 		} else {
 			wfDebug( __METHOD__ . ": sending dirty output\n" );
-			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}\n" );
+			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}" );
 			$this->isDirty = true;
 			return true;
 		}

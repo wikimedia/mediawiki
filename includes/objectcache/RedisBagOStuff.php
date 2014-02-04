@@ -343,7 +343,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * Log a fatal error
 	 */
 	protected function logError( $msg ) {
-		wfDebugLog( 'redis', "Redis error: $msg\n" );
+		wfDebugLog( 'redis', "Redis error: $msg" );
 	}
 
 	/**

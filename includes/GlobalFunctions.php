@@ -2868,7 +2868,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$pipes = null;
 	$proc = proc_open( $cmd, $desc, $pipes );
 	if ( !$proc ) {
-		wfDebugLog( 'exec', "proc_open() failed: $cmd\n" );
+		wfDebugLog( 'exec', "proc_open() failed: $cmd" );
 		$retval = -1;
 		return '';
 	}
@@ -2983,7 +2983,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 
 	if ( $logMsg !== false ) {
-		wfDebugLog( 'exec', "$logMsg: $cmd\n" );
+		wfDebugLog( 'exec', "$logMsg: $cmd" );
 	}
 
 	return $outBuffer;

@@ -1418,11 +1418,11 @@ class User {
 				$ipList = gethostbynamel( $host );
 
 				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
+					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!" );
 					$found = true;
 					break;
 				} else {
-					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base.\n" );
+					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base." );
 				}
 			}
 		}

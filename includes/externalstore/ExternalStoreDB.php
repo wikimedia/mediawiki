@@ -187,27 +187,27 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$cacheID = ( $itemID === false ) ? "$cluster/$id" : "$cluster/$id/";
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
 			wfDebugLog( 'ExternalStoreDB-cache',
-				"ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
+				"ExternalStoreDB::fetchBlob cache hit on $cacheID" );
 
 			return $externalBlobCache[$cacheID];
 		}
 
 		wfDebugLog( 'ExternalStoreDB-cache',
-			"ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
+			"ExternalStoreDB::fetchBlob cache miss on $cacheID" );
 
 		$dbr = $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ),
 			'blob_text', array( 'blob_id' => $id ), __METHOD__ );
 		if ( $ret === false ) {
 			wfDebugLog( 'ExternalStoreDB',
-				"ExternalStoreDB::fetchBlob master fallback on $cacheID\n" );
+				"ExternalStoreDB::fetchBlob master fallback on $cacheID" );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField( $this->getTable( $dbw ),
 				'blob_text', array( 'blob_id' => $id ), __METHOD__ );
 			if ( $ret === false ) {
 				wfDebugLog( 'ExternalStoreDB',
-					"ExternalStoreDB::fetchBlob master failed to find $cacheID\n" );
+					"ExternalStoreDB::fetchBlob master failed to find $cacheID" );
 			}
 		}
 		if ( $itemID !== false && $ret !== false ) {
@@ -239,7 +239,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( $ids ) {
 			wfDebugLog( __CLASS__, __METHOD__ .
 				" master fallback on '$cluster' for: " .
-				implode( ',', array_keys( $ids ) ) . "\n" );
+				implode( ',', array_keys( $ids ) ) );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$res = $dbw->select( $this->getTable( $dbr ),
@@ -247,7 +247,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				array( 'blob_id' => array_keys( $ids ) ),
 				__METHOD__ );
 			if ( $res === false ) {
-				wfDebugLog( __CLASS__, __METHOD__ . " master failed on '$cluster'\n" );
+				wfDebugLog( __CLASS__, __METHOD__ . " master failed on '$cluster'" );
 			} else {
 				$this->mergeBatchResult( $ret, $ids, $res );
 			}
@@ -255,7 +255,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( $ids ) {
 			wfDebugLog( __CLASS__, __METHOD__ .
 				" master on '$cluster' failed locating items: " .
-				implode( ',', array_keys( $ids ) ) . "\n" );
+				implode( ',', array_keys( $ids ) ) );
 		}
 
 		return $ret;

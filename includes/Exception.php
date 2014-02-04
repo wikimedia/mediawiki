@@ -901,7 +901,7 @@ class MWExceptionHandler {
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() . "\n" );
+				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() );
 			} else {
 				wfDebugLog( 'exception', $log );
 			}

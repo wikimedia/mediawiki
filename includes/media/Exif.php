@@ -829,13 +829,13 @@ class Exif {
 		}
 
 		if ( $action === true ) {
-			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)" );
 		} elseif ( $action === false ) {
-			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)" );
 		} elseif ( $action === null ) {
-			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)" );
 		} else {
-			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n" );
+			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')" );
 		}
 	}
 
@@ -851,9 +851,9 @@ class Exif {
 		}
 		$class = ucfirst( __CLASS__ );
 		if ( $io ) {
-			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'\n" );
+			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'" );
 		} else {
-			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'\n" );
+			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'" );
 		}
 	}
 }

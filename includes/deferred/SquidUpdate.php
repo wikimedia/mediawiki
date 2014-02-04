@@ -139,7 +139,7 @@ class SquidUpdate {
 			return;
 		}
 
-		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
+		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
 		if ( $wgHTCPRouting ) {
 			self::HTCPPurge( $urlArr );
@@ -200,7 +200,7 @@ class SquidUpdate {
 		if ( !$conn ) {
 			$errstr = socket_strerror( socket_last_error() );
 			wfDebugLog( 'squid', __METHOD__ .
-				": Error opening UDP socket: $errstr\n" );
+				": Error opening UDP socket: $errstr" );
 			wfProfileOut( __METHOD__ );
 
 			return;
@@ -230,7 +230,7 @@ class SquidUpdate {
 			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
 			if ( !$conf ) {
 				wfDebugLog( 'squid', __METHOD__ .
-					"No HTCP rule configured for URL {$url} , skipping\n" );
+					"No HTCP rule configured for URL {$url} , skipping" );
 				continue;
 			}
 
@@ -266,7 +266,7 @@ class SquidUpdate {
 				$htcpTransID, $htcpSpecifier, 2 );
 
 			wfDebugLog( 'squid', __METHOD__ .
-				"Purging URL $url via HTCP\n" );
+				"Purging URL $url via HTCP" );
 			foreach ( $conf as $subconf ) {
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$subconf['host'], $subconf['port'] );

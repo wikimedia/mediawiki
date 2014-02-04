@@ -139,7 +139,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( !$status->isOk() ) {
 			return $status;
 		}
-		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds.\n" );
+		wfDebugLog( 'fileconcatenate', "Combined $i chunks in $tAmount seconds." );
 
 		// File system path
 		$this->mTempPath = $tmpPath;
@@ -158,7 +158,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mLocalFile = parent::stashFile( $this->user );
 		$tAmount = microtime( true ) - $tStart;
 		$this->mLocalFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
-		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds.\n" );
+		wfDebugLog( 'fileconcatenate', "Stashed combined file ($i chunks) in $tAmount seconds." );
 
 		return $status;
 	}

@@ -144,10 +144,10 @@ class LoadBalancer {
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
 				if ( $lag === false ) {
-					wfDebugLog( 'replication', "Server #$i is not replicating\n" );
+					wfDebugLog( 'replication', "Server #$i is not replicating" );
 					unset( $loads[$i] );
 				} elseif ( isset( $this->mServers[$i]['max lag'] ) && $lag > $this->mServers[$i]['max lag'] ) {
-					wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)\n" );
+					wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)" );
 					unset( $loads[$i] );
 				}
 			}
@@ -240,7 +240,7 @@ class LoadBalancer {
 				$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All slaves lagged. Switch to read-only mode
-					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
+					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
 					$wgReadOnly = 'The database has been automatically locked ' .
 						'while the slave database servers catch up to the master';
 					$i = ArrayUtils::pickRandom( $currentLoads );
@@ -252,17 +252,17 @@ class LoadBalancer {
 				# pickRandom() returned false
 				# This is permanent and means the configuration or the load monitor
 				# wants us to return false.
-				wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false\n" );
+				wfDebugLog( 'connect', __METHOD__ . ": pickRandom() returned false" );
 
 				return false;
 			}
 
 			wfDebugLog( 'connect', __METHOD__ .
-				": Using reader #$i: {$this->mServers[$i]['host']}...\n" );
+				": Using reader #$i: {$this->mServers[$i]['host']}..." );
 
 			$conn = $this->openConnection( $i, $wiki );
 			if ( !$conn ) {
-				wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki\n" );
+				wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki" );
 				unset( $nonErrorLoads[$i] );
 				unset( $currentLoads[$i] );
 				continue;
@@ -280,7 +280,7 @@ class LoadBalancer {
 
 		# If all servers were down, quit now
 		if ( !count( $nonErrorLoads ) ) {
-			wfDebugLog( 'connect', "All servers down\n" );
+			wfDebugLog( 'connect', "All servers down" );
 		}
 
 		if ( $i !== false ) {

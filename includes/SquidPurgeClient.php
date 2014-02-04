@@ -373,7 +373,7 @@ class SquidPurgeClient {
 	 * @param $msg string
 	 */
 	protected function log( $msg ) {
-		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg\n" );
+		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg" );
 	}
 }
 
