@@ -951,7 +951,7 @@ Ar trebui să faceți acest lucru numai dacă le-ați partajat accidental cu alt
 'summary' => 'Rezumat:',
 'subject' => 'Subiect / titlu:',
 'minoredit' => 'Aceasta este o modificare minoră',
-'watchthis' => 'Monitorizează această pagină',
+'watchthis' => 'Urmărește această pagină',
 'savearticle' => 'Salvare pagină',
 'preview' => 'Previzualizare',
 'showpreview' => 'Previzualizare',
@@ -1134,7 +1134,7 @@ Ea există deja.',
 'invalid-content-data' => 'Date de conținut invalide',
 'content-not-allowed-here' => 'Conținutul de tip „$1” nu este permis pe pagina [[$2]]',
 'editwarning-warning' => 'Părăsind această pagină, există riscul pierderii modificărilor efectuate.
-Dacă sunteți autentificat, puteți dezactiva această avertizare în secțiunea „Modificare” a preferințelor dumneavoastră.',
+Dacă sunteți autentificat, puteți dezactiva această avertizare în secțiunea „{{int:prefs-editing}}” a preferințelor dumneavoastră.',
 'editpage-notsupportedcontentformat-title' => 'Formatul conținutului nu este acceptat',
 'editpage-notsupportedcontentformat-text' => 'Formatul de conținut $1 nu este acceptat de modelul de conținut $2.',
 
@@ -1349,6 +1349,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'showhideselectedversions' => 'Șterge/recuperează versiunile marcate',
 'editundo' => 'anulare',
 'diff-empty' => '(Nicio diferență)',
+'diff-multi-sameuser' => '(Nu {{PLURAL:$1|s-a afișat o versiune intermediară efectuată|s-au afișat $1 versiuni intermediare efectuate|s-au afișat $1 de versiuni intermediare efectuate}} de același utilizator)',
+'diff-multi-otherusers' => '(Nu {{PLURAL:$1|s-a afișat o versiune intermediară efectuată|s-au afișat $1 versiuni intermediare efectuate|s-au afișat $1 de versiuni intermediare efectuate}} de {{PLURAL:$2|un alt utilizator|alți $2 utilizatori|alți $2 de utilizatori}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 'difference-missing-revision' => '{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.
 

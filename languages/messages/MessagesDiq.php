@@ -1209,8 +1209,8 @@ Sebebo ke terefê $3 ra diyao ''$2''",
 'last' => 'peyên',
 'page_first' => 'verên',
 'page_last' => 'peyên',
-'histlegend' => "Ferqê weçinayışi: Qutiya versiyonan mor ke u  ''enter''i bıpıloxne ya zi makera cêrêne bıpıloxne.<br /> 
-Lecant: '''({{int:cur}})''' = ferqê versiyonê peyêni, '''({{int:last}})''' = ferqê versiyonê verêni, '''{{int:minoreditletter}}''' = vurnayışo werdi.",
+'histlegend' => "Ferqê weçinıtışi: Qutiya versiyonan seba têversanayış işaret ke û dest be ''enter''i ya zi gocega cêrêne ro ne.<br />
+Cedwel: <strong>({{int:ferq}})</strong> = ferqê verziyonê peyêni, <strong>({{int:peyên}})</strong> = ferqê versiyonê verêni, <strong>{{int:q}}</strong> = vurnayışo werdi.",
 'history-fieldset-title' => 'Tarixi bıvêne',
 'history-show-deleted' => 'Tenya esterıtey',
 'histfirst' => 'Verênêr',
