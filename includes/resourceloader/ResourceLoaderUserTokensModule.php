@@ -46,6 +46,8 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 			'editToken' => $wgUser->getEditToken(),
 			'patrolToken' => ApiQueryRecentChanges::getPatrolToken( null, null ),
 			'watchToken' => ApiQueryInfo::getWatchToken( null, null ),
+                        'deleteToken' => ApiQueryInfo::getDeleteToken( null, null ),
+                        'moveToken' => ApiQueryInfo::getMoveToken( null, null ),
 		);
 	}
 
