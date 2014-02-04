@@ -138,8 +138,8 @@ $.suggestions = {
 	 */
 	configure: function ( context, property, value ) {
 		var newCSS,
-			$autoEllipseMe, $result, $results, childrenWidth,
-			i, expWidth, matchedText, maxWidth, text;
+			$result, $results, childrenWidth,
+			i, expWidth, maxWidth, text;
 
 		// Validate creation using fallback values
 		switch( property ) {
@@ -237,8 +237,6 @@ $.suggestions = {
 						$results = context.data.$container.children( '.suggestions-results' );
 						$results.empty();
 						expWidth = -1;
-						$autoEllipseMe = $( [] );
-						matchedText = null;
 						for ( i = 0; i < context.config.suggestions.length; i++ ) {
 							/*jshint loopfunc:true */
 							text = context.config.suggestions[i];
@@ -259,15 +257,11 @@ $.suggestions = {
 							if ( typeof context.config.result.render === 'function' ) {
 								context.config.result.render.call( $result, context.config.suggestions[i], context );
 							} else {
-								// Add <span> with text
-								$result.append( $( '<span>' )
-										.css( 'whiteSpace', 'nowrap' )
-										.text( text )
-									);
+								$result.text( text );
 							}
 
 							if ( context.config.highlightInput ) {
-								matchedText = context.data.prevText;
+								$result.highlightText( context.data.prevText );
 							}
 
 							// Widen results box if needed
@@ -277,19 +271,13 @@ $.suggestions = {
 								// factor in any padding, margin, or border space on the parent
 								expWidth = childrenWidth + ( context.data.$container.width() - $result.width() );
 							}
-							$autoEllipseMe = $autoEllipseMe.add( $result );
 						}
+
 						// Apply new width for results box, if any
 						if ( expWidth > context.data.$container.width() ) {
 							maxWidth = context.config.maxExpandFactor*context.data.$textbox.width();
 							context.data.$container.width( Math.min( expWidth, maxWidth ) );
 						}
-						// autoEllipse the results. Has to be done after changing the width
-						$autoEllipseMe.autoEllipsis( {
-							hasSpan: true,
-							tooltip: true,
-							matchText: matchedText
-						} );
 					}
 				}
 				break;
