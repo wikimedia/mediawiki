@@ -2990,10 +2990,10 @@ See also:
 * $3 - total number of results
 * $4 - the search term
 * $5 - number of results',
-'showingresultsinrange' => , 'Used in pagination of [[Special:MostLinkedCategories]]. Parameters:
+'showingresultsinrange' => 'Used in pagination of [[Special:MostLinkedCategories]]. Parameters:
 * $1 - the total number of results in the batch shown
 * $2 - the number of the first item listed
-* $3 - the number of last item in the batch shown'
+* $3 - the number of last item in the batch shown',
 'search-nonefound' => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
 'powersearch-legend' => 'Advanced search
 
