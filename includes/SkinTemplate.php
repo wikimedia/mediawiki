@@ -1838,7 +1838,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * @param $key string, usually a key from the list you are generating this link from.
 	 * @param $item array, of list item data containing some of a specific set of keys.
-	 * The "id" and "class" keys will be used as attributes for the list item,
+	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
 	 *
 	 * @param $options array
@@ -1855,7 +1855,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * list item directly so they will not be passed to makeLink
 	 * (however the link will still support a tooltip and accesskey from it)
 	 * If you need an id or class on a single link you should include a "links"
-	 * array with just one link item inside of it.
+	 * array with just one link item inside of it. If you want to add a title
+	 * to the list item itself, you can set "itemtitle" to the value.
 	 * $options is also passed on to makeLink calls
 	 *
 	 * @return string
@@ -1869,7 +1870,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		} else {
 			$link = $item;
 			// These keys are used by makeListItem and shouldn't be passed on to the link
-			foreach ( array( 'id', 'class', 'active', 'tag' ) as $k ) {
+			foreach ( array( 'id', 'class', 'active', 'tag', 'itemtitle' ) as $k ) {
 				unset( $link[$k] );
 			}
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
@@ -1893,6 +1894,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 			$attrs['class'] .= ' active';
 			$attrs['class'] = trim( $attrs['class'] );
+		}
+		if ( isset( $item['itemtitle'] ) ) {
+			$attrs['title'] = $item['itemtitle'];
 		}
 		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
 	}
