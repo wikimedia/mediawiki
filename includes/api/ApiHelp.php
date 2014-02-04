@@ -98,7 +98,7 @@ class ApiHelp extends ApiBase {
 			}
 
 			if ( $module !== null ) {
-				$r[] = $this->buildModuleHelp( $module, $type );
+				$r[ $module->getModuleName() ] = $this->buildModuleHelp( $module );
 			}
 		}
 
@@ -107,19 +107,69 @@ class ApiHelp extends ApiBase {
 	}
 
 	/**
-	 * @param  $module ApiBase
-	 * @param  $type String What type of request is this? e.g. action, query, list, prop, meta, format
-	 * @return string
+	 * @param ApiBase $module
+	 * @return array
 	 */
-	private function buildModuleHelp( $module, $type ) {
-		$msg = ApiMain::makeHelpMsgHeader( $module, $type );
+	private function buildModuleHelp( $module ) {
+		return array(
+			'name' => $module->getModuleName(),
+			'description' => $module->getDescription(),
+			'helpmessage' => $module->makeHelpMsg(),
+			'mustbeposted' => $module->mustBePosted(),
+			'iswritemode' => $module->isWriteMode(),
+			'needstoken' => $module->needsToken(),
+			'params' => $this->buildModuleParams( $module )
+		);
+	}
 
-		$msg2 = $module->makeHelpMsg();
-		if ( $msg2 !== false ) {
-			$msg .= $msg2;
+	/**
+	 * @param ApiBase $module
+	 * @return array
+	 */
+	private function buildModuleParams( $module ) {
+		$ret = array();
+		$final = $module->getFinalParams();
+		$descs = $module->getParamDescription();
+		foreach( $final as $param => $details ) {
+			$paramArray = array();
+
+			if( array_key_exists( $param, $descs ) ) {
+				$paramArray['description'] = $descs[$param];
+			}
+
+			if( is_array( $details ) ) {
+				if( array_key_exists( APIBASE::PARAM_DFLT, $details ) ) {
+					$paramArray['default'] = $details[APIBASE::PARAM_DFLT];
+				}
+				if( array_key_exists( APIBASE::PARAM_ISMULTI, $details ) ) {
+					$paramArray['ismulti'] = $details[ APIBASE::PARAM_ISMULTI];
+				}
+				if( array_key_exists( APIBASE::PARAM_TYPE, $details ) ) {
+					$paramArray['type'] = $details[APIBASE::PARAM_TYPE];
+				}
+				if( array_key_exists( APIBASE::PARAM_MAX, $details ) ) {
+					$paramArray['max'] = $details[APIBASE::PARAM_MAX];
+				}
+				if( array_key_exists( APIBASE::PARAM_MAX2, $details ) ) {
+					$paramArray['max2'] = $details[APIBASE::PARAM_MAX2];
+				}
+				if( array_key_exists( APIBASE::PARAM_MIN, $details ) ) {
+					$paramArray['min'] = $details[APIBASE::PARAM_MIN];
+				}
+				if( array_key_exists( APIBASE::PARAM_ALLOW_DUPLICATES, $details ) ) {
+					$paramArray['allowduplicates'] = $details[APIBASE::PARAM_ALLOW_DUPLICATES];
+				}
+				if( array_key_exists( APIBASE::PARAM_DEPRECATED, $details ) ) {
+					$paramArray['deprecated'] = $details[APIBASE::PARAM_DEPRECATED];
+				}
+				if( array_key_exists( APIBASE::PARAM_REQUIRED, $details ) ) {
+					$paramArray['required'] = $details[APIBASE::PARAM_REQUIRED];
+				}
+			}
+
+			$ret[$param] = $paramArray;
 		}
-
-		return $msg;
+		return $ret;
 	}
 
 	public function shouldCheckMaxlag() {
