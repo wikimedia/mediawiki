@@ -51,6 +51,12 @@
 				"classes": [
 					"mw.page*"
 				]
+			},
+			{
+				"name": "Interfaces",
+				"classes": [
+					"mw.Feedback"
+				]
 			}
 		]
 	},
