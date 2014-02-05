@@ -55,16 +55,17 @@ div#simpleSearch {
 
 		// These rules MAY NOT be merged because of how CSS requires browsers
 		// to parse unrecognized selectors!
+		// FIXME: Does black placeholder text on certain browsers really matter?
+		// For inputs that use jquery.placeholder.js e.g. IE9-
 		&.placeholder {
 			color: #999;
 		}
+		// Stop black placeholder text in IE10+
 		&:-ms-input-placeholder {
 			color: #999;
 		}
+		// Stop black placeholder text in Firefox 18-
 		&:-moz-placeholder {
-			color: #999;
-		}
-		&::-webkit-input-placeholder {
 			color: #999;
 		}
 
