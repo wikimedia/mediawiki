@@ -1,10 +1,32 @@
 <?php
 
+/* Modules registered when $wgEnableJavaScriptTest is true */
+
 return array(
 
-	/* Test suites for MediaWiki core modules */
+	/* Utilities */
 
-	'mediawiki.tests.qunit.suites' => array(
+	'test.mediawiki.qunit.testrunner' => array(
+		'scripts' => array(
+			'tests/qunit/data/testrunner.js',
+		),
+		'dependencies' => array(
+			'jquery.getAttrs',
+			'jquery.qunit',
+			'jquery.qunit.completenessTest',
+			'mediawiki.page.ready',
+			'mediawiki.page.startup',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	/*
+		Test suites for MediaWiki core modules
+		These must have a dependency on test.mediawiki.qunit.testrunner!
+	*/
+
+	'test.mediawiki.qunit.suites' => array(
 		'scripts' => array(
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.autoEllipsis.test.js',
@@ -66,6 +88,7 @@ return array(
 			'mediawiki.special.recentchanges',
 			'mediawiki.language',
 			'mediawiki.cldr',
+			'test.mediawiki.qunit.testrunner',
 		),
 	)
 );
