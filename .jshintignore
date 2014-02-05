@@ -11,8 +11,8 @@ extensions/
 node_modules/
 resources/jquery/jquery.appear.js
 resources/jquery/jquery.async.js
-resources/jquery/jquery.cycle.all.js
 resources/jquery/jquery.cookie.js
+resources/jquery/jquery.cycle.all.js
 resources/jquery/jquery.farbtastic.js
 resources/jquery/jquery.form.js
 resources/jquery/jquery.hoverIntent.js
@@ -23,12 +23,13 @@ resources/jquery/jquery.mockjax.js
 resources/jquery/jquery.qunit.js
 resources/jquery/jquery.validate.js
 resources/jquery/jquery.xmldom.js
+resources/jquery.chosen/chosen.jquery.js
 resources/jquery.effects/
 resources/jquery.tipsy/
 resources/jquery.ui/
 resources/mediawiki.libs/
-resources/jquery.chosen/chosen.jquery.js
 resources/oojs/
+resources/sinonjs/
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
