@@ -34,6 +34,9 @@ This is a maintenance release of the MediaWiki 1.22 branch.
 This is a security and bugfix release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.2 ===
+
+* (bug 60543) Special:PrefixIndex forgot stripprefix=1 for "Next page" link
+* (bug 60094) Make rebuildall.php work with PostgreSQL.
 * (bug 60771) SECURITY: Disallow uploading SVG files using non-whitelisted
   namespaces. Also disallow iframe elements. User will get an error
   including the namespace name if they use a non- whitelisted namespace.
