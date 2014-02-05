@@ -29,6 +29,8 @@
 	 * You can also launch the feedback form with a prefilled subject and body.
 	 * See the docs for the #launch() method.
 	 *
+	 * @class
+	 * @constructor
 	 * @param {Object} [options]
 	 * @param {mw.Api} [options.api] if omitted, will just create a standard API
 	 * @param {mw.Title} [options.title="Feedback"] The title of the page where you collect
