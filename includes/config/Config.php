@@ -25,9 +25,7 @@
  *
  * @since 1.23
  */
-
 abstract class Config {
-
 	/**
 	 * @param string $name configuration variable name without prefix
 	 * @param string $prefix of the variable name

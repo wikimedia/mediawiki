@@ -59,10 +59,10 @@ class ForeignAPIRepo extends FileRepo {
 	/** @var int Redownload thumbnail files after a month (86400*30) */
 	protected $fileCacheExpiry = 2592000;
 
-	/** @var array  */
+	/** @var array */
 	protected $mFileExists = array();
 
-	/** @var array  */
+	/** @var array */
 	private $mQueryCache = array();
 
 	/**

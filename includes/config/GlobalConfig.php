@@ -39,6 +39,7 @@ class GlobalConfig extends Config {
 	 */
 	public function set( $name, $value, $prefix = 'wg' ) {
 		$GLOBALS[$prefix . $name] = $value;
+
 		return Status::newGood();
 	}
 }

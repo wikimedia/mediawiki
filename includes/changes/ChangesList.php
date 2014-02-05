@@ -248,6 +248,7 @@ class ChangesList extends ContextSource {
 	public function endRecentChangesList() {
 		$out = $this->rclistOpen ? "</ul>\n" : '';
 		$out .= '</div>';
+
 		return $out;
 	}
 

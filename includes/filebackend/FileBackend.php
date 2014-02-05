@@ -105,7 +105,7 @@ abstract class FileBackend {
 	protected $fileJournal;
 
 	/** Flags for supported features */
-	const ATTR_HEADERS  = 1;
+	const ATTR_HEADERS = 1;
 	const ATTR_METADATA = 2;
 
 	/**

@@ -88,7 +88,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected $mReducedLineNumbers = false;
 
-	/** @var string Link to action=markpatrolled  */
+	/** @var string Link to action=markpatrolled */
 	protected $mMarkPatrolledLink = null;
 
 	/** @var bool Show rev_deleted content if allowed */
@@ -965,7 +965,8 @@ class DifferenceEngine extends ContextSource {
 			$limit = 100; // use diff-multi-manyusers if too many users
 			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
 			$numUsers = count( $users );
-			if( $numUsers == 1 && $users[0] == $newRev->getRawUserText() ) {
+
+			if ( $numUsers == 1 && $users[0] == $newRev->getRawUserText() ) {
 				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 			}
 

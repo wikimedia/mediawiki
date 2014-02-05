@@ -258,11 +258,12 @@ class LocalRepo extends FileRepo {
 			}
 		}
 
-		$fileMatchesSearch = function( File $file, array $search ) {
+		$fileMatchesSearch = function ( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
 			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
 				? $search['private']
 				: null;
+
 			return (
 				$file->exists() &&
 				(
@@ -275,9 +276,8 @@ class LocalRepo extends FileRepo {
 		};
 
 		$repo = $this;
-		$applyMatchingFiles = function( ResultWrapper $res, &$searchSet, &$finalFiles )
-			use ( $repo, $fileMatchesSearch, $flags )
-		{
+		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
+		use ( $repo, $fileMatchesSearch, $flags ) {
 			global $wgContLang;
 			$info = $repo->getInfo();
 			foreach ( $res as $row ) {
@@ -290,7 +290,7 @@ class LocalRepo extends FileRepo {
 					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
 				}
 				foreach ( $dbKeysLook as $dbKey ) {
-					if ( isset( $searchSet[$dbKey])
+					if ( isset( $searchSet[$dbKey] )
 						&& $fileMatchesSearch( $file, $searchSet[$dbKey] )
 					) {
 						$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
@@ -347,7 +347,7 @@ class LocalRepo extends FileRepo {
 					$file->redirectedFrom( $title->getDBkey() );
 					if ( $flags & FileRepo::NAME_AND_TIME_ONLY ) {
 						$finalFiles[$dbKey] = array(
-							'title'     => $file->getTitle()->getDBkey(),
+							'title' => $file->getTitle()->getDBkey(),
 							'timestamp' => $file->getTimestamp()
 						);
 					} else {
@@ -503,6 +503,7 @@ class LocalRepo extends FileRepo {
 	 */
 	function getInfo() {
 		global $wgFavicon;
+
 		return array_merge( parent::getInfo(), array(
 			'favicon' => wfExpandUrl( $wgFavicon ),
 		) );

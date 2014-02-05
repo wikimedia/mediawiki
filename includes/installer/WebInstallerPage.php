@@ -1291,7 +1291,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 		) {
 			// JS appears to be the only method that works consistently with IE7+
 			$this->addHtml( "\n<script>jQuery( function () { document.location = " .
-			Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
+				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
 		}

@@ -17,6 +17,7 @@
  *
  * @file
  */
+
 class RCCacheEntry extends RecentChange {
 	public $curlink;
 	public $difflink;

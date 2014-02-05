@@ -495,7 +495,7 @@ abstract class HTMLFormField {
 
 		$ret = array();
 
-		foreach( $list as $key ) {
+		foreach ( $list as $key ) {
 			if ( in_array( $key, $boolAttribs ) ) {
 				if ( !empty( $this->mParams[$key] ) ) {
 					$ret[$key] = '';

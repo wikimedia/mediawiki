@@ -256,7 +256,7 @@ class LinksUpdate extends SqlDataUpdate {
 			$job = new RefreshLinksJob(
 				$title,
 				array(
-					'table'     => $table,
+					'table' => $table,
 					'recursive' => true,
 				) + Job::newRootJobParams( // "overall" refresh links job info
 					"refreshlinks:{$table}:{$title->getPrefixedText()}"

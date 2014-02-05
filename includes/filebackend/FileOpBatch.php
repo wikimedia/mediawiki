@@ -61,6 +61,7 @@ class FileOpBatch {
 		$n = count( $performOps );
 		if ( $n > self::MAX_BATCH_SIZE ) {
 			$status->fatal( 'backend-fail-batchsize', $n, self::MAX_BATCH_SIZE );
+
 			return $status;
 		}
 

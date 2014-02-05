@@ -98,6 +98,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue',
 					$params['continue'] !== null ? $params['continue'] : '0|0'
 				);
+
 				return;
 			}
 		}
@@ -144,6 +145,7 @@ class ApiQueryContributors extends ApiQueryBase {
 					// of anoncontributors
 					$this->setContinueEnumParameter( 'continue', $continuePages );
 				}
+
 				return;
 			}
 		} elseif ( $params['excluderights'] ) {
@@ -182,6 +184,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
+
 				return;
 			}
 
@@ -191,6 +194,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			);
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
+
 				return;
 			}
 		}
@@ -268,7 +272,6 @@ class ApiQueryContributors extends ApiQueryBase {
 			)
 		);
 	}
-
 
 	public function getDescription() {
 		return 'Get the list of logged-in contributors and ' .

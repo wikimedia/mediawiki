@@ -97,10 +97,10 @@ abstract class File {
 	/** @var Title|string|bool */
 	protected $title;
 
-	/** @var string Text of last error  */
+	/** @var string Text of last error */
 	protected $lastError;
 
-	/** @var string Main part of the title, with underscores (Title::getDBkey)  */
+	/** @var string Main part of the title, with underscores (Title::getDBkey) */
 	protected $redirected;
 
 	/** @var Title */
@@ -586,6 +586,7 @@ abstract class File {
 		if ( !$handler ) {
 			return false;
 		}
+
 		return $handler->getCommonMetaArray( $this );
 	}
 
@@ -1328,7 +1329,7 @@ abstract class File {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'thumb' ) . '/' .
-			$this->getArchiveThumbRel( $archiveName, $suffix );
+		$this->getArchiveThumbRel( $archiveName, $suffix );
 	}
 
 	/**
