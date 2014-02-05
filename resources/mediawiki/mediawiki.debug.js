@@ -35,7 +35,7 @@
 		 * Shouldn't be called before the document is ready
 		 * (since it binds to elements on the page).
 		 *
-		 * @param {Object} data Defaults to 'debugInfo' from mw.config
+		 * @param {Object} [data] Defaults to 'debugInfo' from mw.config
 		 */
 		init: function ( data ) {
 
@@ -51,6 +51,9 @@
 
 		/**
 		 * Switch between panes
+		 *
+		 * Should be called with an HTMLElement as its thisArg,
+		 * because it's meant to be an event handler.
 		 *
 		 * TODO: Store cookie for last pane open.
 		 *
@@ -268,6 +271,8 @@
 
 		/**
 		 * Build query list pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildQueryTable: function () {
 			var $table, i, length, query;
@@ -298,6 +303,8 @@
 
 		/**
 		 * Build legacy debug log pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildDebugLogTable: function () {
 			var $list, i, length, line;
@@ -315,6 +322,8 @@
 
 		/**
 		 * Build request information pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildRequestPane: function () {
 
@@ -351,6 +360,8 @@
 
 		/**
 		 * Build included files pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildIncludesPane: function () {
 			var $table, i, length, file;
