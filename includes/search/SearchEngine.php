@@ -672,6 +672,15 @@ class SearchResultSet {
 	function free() {
 		// ...
 	}
+
+	/**
+	 * Did the search contain search syntax?  If so, Special:Search won't offer
+	 * the user a link to a create a page named by the search string because the
+	 * name would contain the search syntax.
+	 */
+	public function searchContainedSyntax() {
+		return false;
+	}
 }
 
 /**
