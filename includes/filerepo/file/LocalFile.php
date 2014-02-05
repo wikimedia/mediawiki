@@ -2249,10 +2249,10 @@ class LocalFileRestoreBatch {
 	/** @var array List of file IDs to restore */
 	private $ids;
 
-	/** @var bool Add all revisions of the file  */
+	/** @var bool Add all revisions of the file */
 	private $all;
 
-	/** @var bool Wether to remove all settings for suppressed fields  */
+	/** @var bool Wether to remove all settings for suppressed fields */
 	private $unsuppress = false;
 
 	/**
@@ -2620,16 +2620,12 @@ class LocalFileMoveBatch {
 	/** @var Title */
 	protected $target;
 
-	/** @var   */
 	protected $cur;
 
-	/** @var   */
 	protected $olds;
 
-	/** @var   */
 	protected $oldCount;
 
-	/** @var   */
 	protected $archive;
 
 	/** @var DatabaseBase */

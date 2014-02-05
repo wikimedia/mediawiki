@@ -86,6 +86,7 @@ class RequestContext implements IContextSource {
 		if ( $this->config === null ) {
 			$this->config = Config::factory();
 		}
+
 		return $this->config;
 	}
 

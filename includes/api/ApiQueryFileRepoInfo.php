@@ -36,6 +36,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	protected function getInitialisedRepoGroup() {
 		$repoGroup = RepoGroup::singleton();
 		$repoGroup->initialiseRepos();
+
 		return $repoGroup;
 	}
 

@@ -470,7 +470,6 @@ class ArchivedFile {
 		}
 
 		throw new MWException( "Unknown type '$type'." );
-
 	}
 
 	/**

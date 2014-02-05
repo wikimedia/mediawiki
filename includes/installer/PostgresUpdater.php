@@ -27,7 +27,6 @@
  * @ingroup Deployment
  * @since 1.17
  */
-
 class PostgresUpdater extends DatabaseUpdater {
 
 	/**

@@ -223,7 +223,8 @@ class LocalSettingsGenerator {
 			}
 			if ( $this->groupPermissions['*']['edit'] === false
 				&& $this->groupPermissions['*']['createaccount'] === false
-				&& $this->groupPermissions['*']['read'] !== false ) {
+				&& $this->groupPermissions['*']['read'] !== false
+			) {
 				$noFollow = "\n# Set \$wgNoFollowLinks to true if you open up your wiki to editing by\n"
 					. "# the general public and wish to apply nofollow to external links as a\n"
 					. "# deterrent to spammers. Nofollow is not a comprehensive anti-spam solution\n"

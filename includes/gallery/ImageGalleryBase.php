@@ -28,10 +28,10 @@
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
-	/** @var array Gallery images  */
+	/** @var array Gallery images */
 	protected $mImages;
 
-	/** @var bool Whether to show the filesize in bytes in categories   */
+	/** @var bool Whether to show the filesize in bytes in categories */
 	protected $mShowBytes;
 
 	/** @var bool Whether to show the filename. Default: true */
@@ -242,7 +242,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $html Additional HTML text to be shown. The name and size
 	 *   of the image are always shown.
 	 * @param string $alt Alt text for the image
-	 * @param string $link  Override image link (optional)
+	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
 	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {

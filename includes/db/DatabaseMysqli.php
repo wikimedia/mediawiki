@@ -244,6 +244,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	protected function mysqlFieldType( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
+
 		return $field->type;
 	}
 
