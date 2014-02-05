@@ -738,6 +738,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.api',
 			'mediawiki.Title',
+			'user.tokens',
 		),
 	),
 	'mediawiki.api.login' => array(

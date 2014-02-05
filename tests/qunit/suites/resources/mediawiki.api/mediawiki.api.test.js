@@ -81,4 +81,47 @@
 		this.server.respond();
 	} );
 
+	QUnit.test( 'getToken( cached )', function ( assert ) {
+		QUnit.expect( 2 );
+
+		var api = new mw.Api();
+
+		// Get editToken for local wiki, this should not make
+		// a request as it should be retrieved from user.tokens.
+		api.getToken( 'edit' )
+			.done( function ( token ) {
+				assert.ok( token.length, 'Got a token' );
+			} )
+			.fail( function ( err ) {
+				assert.equal( '', err, 'API error' );
+			} );
+
+		assert.equal( this.server.requests.length, 0, 'Requests made' );
+	} );
+
+	QUnit.test( 'getToken( uncached )', function ( assert ) {
+		QUnit.expect( 2 );
+
+		var api = new mw.Api();
+
+		// Get a token of a type that isn't prepopulated by user.tokens.
+		// Could use "block" or "delete" here, but those could in theory
+		// be added to user.tokens, use a fake one instead.
+		api.getToken( 'testaction' )
+			.done( function ( token ) {
+				assert.ok( token.length, 'Got a token' );
+			} )
+			.fail( function ( err ) {
+				assert.equal( '', err, 'API error' );
+			} );
+
+		assert.equal( this.server.requests.length, 1, 'Requests made' );
+
+		this.server.respond( function ( request ) {
+			request.respond( 200, { 'Content-Type': 'application/json' },
+				'{ "tokens": { "testactiontoken": "0123abc" } }'
+			);
+		} );
+	} );
+
 }( mediaWiki ) );
