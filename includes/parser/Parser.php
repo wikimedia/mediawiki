@@ -4594,14 +4594,13 @@ class Parser {
 
 	/**
 	 * Pre-save transform helper function
-	 * @private
 	 *
 	 * @param $text string
 	 * @param $user User
 	 *
 	 * @return string
 	 */
-	function pstPass2( $text, $user ) {
+	private function pstPass2( $text, $user ) {
 		global $wgContLang;
 
 		# Note: This is the timestamp saved as hardcoded wikitext to
