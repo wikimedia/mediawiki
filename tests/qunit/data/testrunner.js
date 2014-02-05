@@ -150,14 +150,14 @@
 					mw.config.values = freshConfigCopy( localEnv.config );
 					mw.messages.values = freshMessagesCopy( localEnv.messages );
 
-					localEnv.setup();
+					localEnv.setup.call( this );
 				},
 
 				teardown: function () {
 					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 						+ ': ' + QUnit.config.current.testName + '"' );
 
-					localEnv.teardown();
+					localEnv.teardown.call( this );
 
 					// Farewell, mock environment!
 					mw.config.values = liveConfig;
