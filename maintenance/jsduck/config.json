@@ -21,6 +21,7 @@
 		"../../resources/mediawiki.action/mediawiki.action.edit.js",
 		"../../resources/mediawiki.action/mediawiki.action.view.postEdit.js",
 		"../../resources/mediawiki.page/mediawiki.page.startup.js",
+		"../../resources/mediawiki.page/mediawiki.page.watch.ajax.js",
 		"../../resources/mediawiki.api",
 		"../../resources/mediawiki.language",
 		"../../resources/jquery/jquery.localize.js",

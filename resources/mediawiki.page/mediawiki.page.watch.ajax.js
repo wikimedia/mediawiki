@@ -1,20 +1,20 @@
 /**
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than navigating to a different URI.
+ *
+ * @class mw.page.watch.ajax
  */
 ( function ( mw, $ ) {
-	/**
-	 * The name of the page to watch or unwatch.
-	 */
+	// The name of the page to watch or unwatch
 	var title = mw.config.get( 'wgRelevantPageName', mw.config.get( 'wgPageName' ) );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
 	 * "loading" class.
 	 *
-	 * @param $link {jQuery} Anchor tag of (un)watch link.
-	 * @param action {String} One of 'watch', 'unwatch'.
-	 * @param state {String} [optional] 'idle' or 'loading'. Default is 'idle'.
+	 * @param {jQuery} $link Anchor tag of (un)watch link
+	 * @param {string} action One of 'watch', 'unwatch'
+	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
 	 */
 	function updateWatchLink( $link, action, state ) {
 		var accesskeyTip, msgKey, $li, otherAction;
@@ -25,12 +25,10 @@
 		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 
-		/**
-		 * Trigger a 'watchpage' event for this List item.
-		 * Announce the otherAction value as the first param.
-		 * Used to monitor the state of watch link.
-		 * TODO: Revise when system wide hooks are implemented
-		 */
+		// Trigger a 'watchpage' event for this List item.
+		// Announce the otherAction value as the first param.
+		// Used to monitor the state of watch link.
+		// TODO: Revise when system wide hooks are implemented
 		if ( state === undefined ) {
 			$li.trigger( 'watchpage.mw', otherAction );
 		}
@@ -62,16 +60,18 @@
 	}
 
 	/**
-	 * @todo This should be moved somewhere more accessible.
-	 * @param url {String}
-	 * @return {String} The extracted action, defaults to 'view'.
+	 * TODO: This should be moved somewhere more accessible.
+	 *
+	 * @private
+	 * @param {string} url
+	 * @return {string} The extracted action, defaults to 'view'
 	 */
 	function mwUriGetAction( url ) {
 		var action, actionPaths, key, i, m, parts;
 
 		actionPaths = mw.config.get( 'wgActionPaths' );
 
-		// @todo Does MediaWiki give action path or query param
+		// TODO: Does MediaWiki give action path or query param
 		// precedence ? If the former, move this to the bottom
 		action = mw.util.getParamValue( 'action', url );
 		if ( action !== null ) {
@@ -95,7 +95,7 @@
 		return 'view';
 	}
 
-	// Expose local methods
+	// Expose public methods
 	mw.page.watch = {
 		updateWatchLink: updateWatchLink
 	};
