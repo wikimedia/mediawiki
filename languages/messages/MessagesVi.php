@@ -1192,6 +1192,7 @@ Những tham số này sẽ bị bỏ đi.',
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
 'undo-failure' => 'Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.',
 'undo-norev' => 'Sửa đổi không thể hồi phục vì nó không tồn tại hoặc đã bị xóa.',
+'undo-nochange' => 'Hình như sửa đổi này đã được lùi lại rồi.',
 'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]])',
 'undo-summary-username-hidden' => 'Đã lùi lại sửa đổi $1 của một người dùng ẩn',
 

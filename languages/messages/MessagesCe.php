@@ -1921,6 +1921,7 @@ PICT # тайп тайпан
 ** авторан лаамца
 ** авторан бакъонаш талхор',
 'delete-edit-reasonlist' => 'Бахьанин список нисяр',
+'deleting-backlinks-warning' => "'''ДӀахьедар.''' Ахьа дӀайоккхуш йолчун тӀе товжийна кхин агӀонаш ю.",
 
 # Rollback
 'rollback' => 'Юхабаккха хийцам',
@@ -2473,8 +2474,10 @@ PICT # тайп тайпан
 'exif-bitspersample' => 'Бесан кIоргалла',
 'exif-photometricinterpretation' => 'Беснин модель',
 'exif-orientation' => 'Суьртан хьал',
+'exif-ycbcrpositioning' => 'Y а C а компонентин листаран кеп',
 'exif-xresolution' => 'Шоралла',
 'exif-yresolution' => 'Локхалла',
+'exif-referenceblackwhite' => 'Ӏаьржа а къай а тӀадамийн меттиг',
 'exif-datetime' => 'Файл хийцина терахь а хан',
 'exif-imagedescription' => 'Суьртан цӏе',
 'exif-make' => 'Камера арахоьцург',
@@ -2482,17 +2485,33 @@ PICT # тайп тайпан
 'exif-software' => 'Лелина программа',
 'exif-copyright' => 'Авторан бакъо ерг',
 'exif-exifversion' => 'Верси Exif',
+'exif-flashpixversion' => 'Ловш йолу верси FlashPix',
 'exif-colorspace' => 'Беснашан хьал',
+'exif-componentsconfiguration' => 'Бесара компонентин конфигураци',
 'exif-compressedbitsperpixel' => 'Бесан кIоргалла дацдина чул тӀехьа',
 'exif-pixelxdimension' => 'Суьртан локхалла',
 'exif-datetimeoriginal' => 'Дуьххьарлера терахь а хан',
 'exif-datetimedigitized' => 'Оцифровк йина терахь а хан а',
-'exif-exposuretime' => 'Экспозицин хан',
+'exif-subsectime' => 'Файлан хийцам баран хан секундашкахь',
+'exif-exposuretime' => 'Сурт доккхуш йолу серлон хьал',
 'exif-fnumber' => 'Диафрагмин дукхалла',
-'exif-maxaperturevalue' => 'Минимальни диафрагмин дукхалла',
+'exif-shutterspeedvalue' => 'APEX чура дешнаш',
+'exif-aperturevalue' => 'APEX чура оьз',
+'exif-exposurebiasvalue' => 'Сурт доккхуш яла оьшу серло меттаяло',
+'exif-maxaperturevalue' => 'Минимальни оьзан дукхалла',
+'exif-meteringmode' => 'Сурт доккхуш яла серло юьстаран хьал',
+'exif-flash' => 'Серлона статус',
 'exif-focallength' => 'Фокусни бохалла',
+'exif-focalplanexresolution' => 'X магийна фокалан тӀапа',
+'exif-focalplaneyresolution' => 'Y магийна фокалан тӀапа',
+'exif-focalplaneresolutionunit' => 'Магоран фокалан дустар',
 'exif-sensingmethod' => 'Сенсоран тайп',
 'exif-filesource' => 'Файлан хьост',
+'exif-customrendered' => 'Кхин тӀе кечдар',
+'exif-exposuremode' => 'Сурт доккхуш йолу серлон хьал харжар',
+'exif-whitebalance' => 'Къайн баланс',
+'exif-digitalzoomratio' => 'Терхьаш дукха хиларан коэффициент',
+'exif-scenecapturetype' => 'Сурт доккхуш йолу меттиган тайп',
 'exif-imageuniqueid' => 'Суьртан номер (ID)',
 'exif-gpslatitude' => 'Шоралла',
 'exif-gpslongitude' => 'Дохалла',
@@ -2527,13 +2546,26 @@ PICT # тайп тайпан
 
 'exif-xyresolution-i' => '$1 тӏадамаш дюйман',
 
+'exif-meteringmode-5' => 'Матрин',
+
 'exif-lightsource-1' => 'Ден хьехам',
+'exif-lightsource-4' => 'Серло',
 'exif-lightsource-9' => 'Хаза хенан хӀоттам',
 'exif-lightsource-10' => 'Мархаш йолу',
+
+'exif-focalplaneresolutionunit-2' => 'дюйм',
 
 'exif-filesource-3' => 'Терахьийн суртдохку аппарат',
 
 'exif-scenetype-1' => 'Сурт даьккхина нис дуьххьал',
+
+'exif-customrendered-0' => 'ХӀума дийна дац',
+'exif-customrendered-1' => 'Нийса доцу кечдар',
+
+'exif-whitebalance-0' => 'Къайн автоматически баланс',
+'exif-whitebalance-1' => 'Куьйга хӀоттийна къайн баланс',
+
+'exif-scenecapturetype-0' => 'Стандартан',
 
 'exif-gaincontrol-0' => 'Яц',
 
@@ -2542,6 +2574,8 @@ PICT # тайп тайпан
 'exif-saturation-0' => 'Лартӏахь',
 
 'exif-sharpness-0' => 'Лартӏахь',
+
+'exif-ycbcrpositioning-1' => 'Юкъйина',
 
 'exif-dc-date' => 'Терахь(ш)',
 'exif-dc-rights' => 'Бакъонаш',

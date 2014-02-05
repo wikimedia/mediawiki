@@ -684,6 +684,7 @@ $1",
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
 
 'ok' => 'Valider',
+'pagetitle' => '$1 — {{SITENAME}}',
 'retrievedfrom' => 'Récupérée de « $1 »',
 'youhavenewmessages' => '{{PLURAL:$3|Vous avez}} $1 ($2).',
 'youhavenewmessagesfromusers' => "{{PLURAL:$4|Vous avez}} $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
@@ -1214,6 +1215,7 @@ La dernière entrée du journal est affichée ci-dessous pour référence :",
 'template-semiprotected' => '(semi-protégé)',
 'hiddencategories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
 'edittools' => '<!-- Tout texte entré ici sera affiché sous les boîtes de modification ou les formulaires de téléversement de fichier. -->',
+'edittools-upload' => '—',
 'nocreatetext' => '{{SITENAME}} a restreint la possibilité de créer de nouvelles pages.
 Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Special:UserLogin|vous connecter ou créer un compte]].',
 'nocreate-loggedin' => "Vous n'avez pas la permission de créer de nouvelles pages.",
@@ -1275,6 +1277,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a mainten
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
 'undo-norev' => 'La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.',
+'undo-nochange' => 'Il semble que la modification aie déjà été annulée.',
 'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
 'undo-summary-username-hidden' => 'Annuler la révision $1 par un utilisateur masqué',
 
@@ -1435,6 +1438,7 @@ Assurez-vous que cette opération conservera la continuité de l'historique de l
 'mergehistory-comment' => '[[:$1]] fusionnée avec [[:$2]] : $3',
 'mergehistory-same-destination' => "Les pages d'origine et de destination ne peuvent pas être la même",
 'mergehistory-reason' => 'Motif :',
+'mergehistory-revisionrow' => '$1 ($2) $3 — $4 $5 $6',
 
 # Merge log
 'mergelog' => 'Journal des fusions',
@@ -2748,6 +2752,7 @@ Il a peut-être déjà été restauré.',
 $1',
 'undelete-show-file-confirm' => 'Êtes-vous sûr de vouloir visionner une version supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?',
 'undelete-show-file-submit' => 'Oui',
+'undelete-revision-row' => '$1 $2 ($3) $4 — $5 $6 $7 $8 $9',
 
 # Namespace form on various pages
 'namespace' => 'Espace de noms :',
@@ -3237,6 +3242,7 @@ Vous pouvez toutefois en visualiser la source.',
 'print.css' => '/* Le CSS placé ici affectera les impressions */',
 'noscript.css' => '/* Le CSS placé ici affectera les utilisateurs ayant désactivé Javascript. */',
 'group-autoconfirmed.css' => '/* Le CSS placé ici affectera les utilisateurs auto-confirmés seulement. */',
+'group-user.css' => '/* Le CSS placé ici n’affectera que les utilisateurs enregistrés. */',
 'group-bot.css' => '/* Le CSS placé ici affectera les robots seulement. */',
 'group-sysop.css' => '/* Le CSS inclus ici n’affectera que les administrateurs */',
 'group-bureaucrat.css' => '/* Le CSS inclus ici n’affectera que les bureaucrates */',
@@ -3248,6 +3254,7 @@ Vous pouvez toutefois en visualiser la source.',
 'modern.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 'vector.js' => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
 'group-autoconfirmed.js' => '/* Le JavaScript inclus ici n’affectera que les utilisateurs auto-confirmés */',
+'group-user.js' => '/* Le JavaScript placé ici ne sera chargé que pour les utilisateurs enregistrés. */',
 'group-bot.js' => '/* Le JavaScript inclus ici n’affectera que les robots */',
 'group-sysop.js' => '/* Le JavaScript inclus ici n’affectera que les administrateurs */',
 'group-bureaucrat.js' => '/* Le JavaScript inclus ici n’affectera que les bureaucrates */',
@@ -3369,6 +3376,7 @@ $1',
 Si vous l'exécutez, votre système peut être compromis.",
 'imagemaxsize' => "Taille maximale des images :<br />''(pour les pages de description de fichier)''",
 'thumbsize' => 'Taille de la miniature :',
+'widthheight' => '$1&nbsp;×&nbsp;$2',
 'widthheightpage' => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info' => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size' => '$1 × $2 pixels, taille du fichier : $3, type MIME : $4',
@@ -3402,6 +3410,10 @@ Si vous l'exécutez, votre système peut être compromis.",
 'sp-newimages-showfrom' => 'Afficher les nouveaux fichiers à partir du $1 à $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1, $2&nbsp;×&nbsp;$3',
+'seconds-abbrev' => '$1&nbsp;s',
+'minutes-abbrev' => '$1&nbsp;min',
+'hours-abbrev' => '$1&nbsp;h',
 'days-abbrev' => '$1 j',
 'seconds' => '{{PLURAL:$1|$1 seconde|$1 secondes}}',
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minutes}}',
@@ -3431,6 +3443,22 @@ Si vous l'exécutez, votre système peut être compromis.",
 
 Seules les listes d’énumération (commençant par *) sont prises en compte. Le premier lien d’une ligne doit être celui d’une mauvaise image.
 Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l’image peut apparaître.',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-arab',
+'variantname-ku-latn' => 'ku-latn',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'tg-cyrl',
+'variantname-tg-latn' => 'tg-latn',
+
+# Variants for Inuktitut language
+'variantname-ike-cans' => 'ike-cans',
+'variantname-ike-latn' => 'ike-latn',
+
+# Variants for Tachelhit language
+'variantname-shi-tfng' => 'shi-tfng',
+'variantname-shi-latn' => 'shi-latn',
 
 # Metadata
 'metadata' => 'Métadonnées',
@@ -3630,6 +3658,19 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-personinimage' => 'Personne représentée',
 'exif-originalimageheight' => "Hauteur de l'image avant qu'elle ait été recadrée",
 'exif-originalimagewidth' => "Largeur de l'image avant qu'elle ait été recadrée",
+
+# Make & model, can be wikified in order to link to the camera and model name
+'exif-contact-value' => '$1
+
+$2
+<div class="adr">
+$3
+
+$6 $4, $5
+
+$7
+</div>
+$8',
 
 # Exif attributes
 'exif-compression-1' => 'Non compressé',
@@ -3985,15 +4026,26 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'autosumm-new' => 'Page créée avec « $1 »',
 
 # Size units
-'size-bytes' => '$1 o',
-'size-kilobytes' => '$1 Kio',
-'size-megabytes' => '$1 Mio',
-'size-gigabytes' => '$1 Gio',
-'size-terabytes' => '$1 Tio',
-'size-petabytes' => '$1 Pio',
+'size-bytes' => '$1&nbsp;o',
+'size-kilobytes' => '$1&nbsp;Kio',
+'size-megabytes' => '$1&nbsp;Mio',
+'size-gigabytes' => '$1&nbsp;Gio',
+'size-terabytes' => '$1&nbsp;Tio',
+'size-petabytes' => '$1&nbsp;Pio',
 'size-exabytes' => '$1 Eio',
-'size-zetabytes' => '$1 Zio',
+'size-zetabytes' => '$1&nbsp;Zio',
 'size-yottabytes' => '$1 Yio',
+
+# Bitrate units
+'bitrate-bits' => '$1&nbsp;bps',
+'bitrate-kilobits' => '$1&nbsp;kbps',
+'bitrate-megabits' => '$1&nbsp;Mbps',
+'bitrate-gigabits' => '$1&nbsp;Gbps',
+'bitrate-terabits' => '$1&nbsp;Tbps',
+'bitrate-petabits' => '$1&nbsp;Pbps',
+'bitrate-exabits' => '$1&nbsp;Ebps',
+'bitrate-zetabits' => '$1&nbsp;Zbps',
+'bitrate-yottabits' => '$1&nbsp;Ybps',
 
 # Live preview
 'livepreview-loading' => 'Chargement...',

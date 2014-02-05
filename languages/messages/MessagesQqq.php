@@ -55,6 +55,7 @@
  * @author Huji
  * @author IAlex
  * @author INkubusse
+ * @author Incnis Mrsi
  * @author Iniquity
  * @author Iwan Novirion
  * @author Jon Harald Søby
@@ -403,8 +404,8 @@ Parameters:
 Parameters:
 * $1 - number of subcategories shown',
 'category-article-count' => 'This message is used on category pages. Parameters:
-* $1 - number of pages shown
-* $2 - total number of pages in category',
+* $1 – number of pages shown
+* $2 – total number of pages in category',
 'category-article-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
 
 Parameters:
@@ -412,7 +413,7 @@ Parameters:
 'category-file-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
 
 Parameters:
-* $1 - number of files shown
+* $1 – number of files shown
 * $2 - total number of files in category',
 'category-file-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
 
@@ -2301,9 +2302,7 @@ See also:
 'undo-norev' => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
 {{Identical|Undo}}',
-'undo-nochange' => 'Message appears if an attempt to revert an edit by clicking the "undo" link results in an edit making no change to the current version of the page.
-
-{{Identical|Undo}}',
+'undo-nochange' => 'Message appears if an attempt to revert an edit by clicking the "undo" link results in an edit making no change to the current version of the page.',
 'undo-summary' => 'Edit summary for an undo action. Parameters:
 * $1 - revision ID
 * $2 - username
@@ -8531,9 +8530,23 @@ Variant option for wikis with variants conversion enabled.',
 
 # Variants for Serbian language
 'variantname-sr-ec' => '{{optional}}
-Varient Option for wikis with variants conversion enabled.',
+Variant Option for wikis with variants conversion enabled.
+
+Note that <code>sr-ec</code> is not a conforming BCP47 language tag. Wikis should be migrated by:
+* allowing it only as a legacy alias of the preferred tag <code>sr-cyrl</code> (possibly insert a tracking category in templates as long as they must support the legacy tag),
+* making the new tag the default to look first, before looking for the old tag,
+* moving the translations to the new code by renaming them,
+* checking links in source pages still using the legacy tag to change it to the new tag,
+* possibly cleanup the redirect pages.',
 'variantname-sr-el' => '{{optional}}
-Varient Option for wikis with variants conversion enabled.',
+Variant Option for wikis with variants conversion enabled.
+
+Note that <code>sr-el</code> is not a conforming BCP47 language tag. Wikis should be migrated by:
+* allowing it only as a legacy alias of the preferred tag <code>sr-latn</code> (possibly insert a tracking category in templates as long as they must support the legacy tag),
+* making the new tag the default to look first, before looking for the old tag,
+* moving the translations to the new code by renaming them,
+* checking links in source pages still using the legacy tag to change it to the new tag,
+* possibly cleanup the redirect pages.',
 'variantname-sr' => '{{optional}}
 Varient Option for wikis with variants conversion enabled.',
 
@@ -9607,7 +9620,11 @@ px is the abbreviation for "pixel".',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '{{optional}}',
-'comma-separator' => '{{optional}}',
+'comma-separator' => '{{optional}}
+
+Warning: languages have different usages of punctuation, and sometimes they are swapped (e.g. openining and closing quotation marks, or full stop and colon in Armenian), or change their form (the full stop in Chinese and Japanese, the prefered "colon" in Armenian used in fact as the regular full stop, the comma in Arabic, Armenian, and Chinese...)
+
+Their spacing (before or after) may also vary across languages (for example French requires a non-breaking space, preferably narrow if the browser supports NNBSP, on the inner side of some punctuations like quotation/question/exclamation marks, colon, and semicolons).',
 'colon-separator' => "{{optional}}
 Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
 'pipe-separator' => '{{optional}}',
@@ -9729,7 +9746,7 @@ Bitrate (of a file, typically) in kilobits (1 kilobit = 1000 bits).',
 'bitrate-megabits' => '{{optional}}
 Bitrate (of a file, typically) in megabits (1 megabits = 1000×1000 bits).',
 'bitrate-gigabits' => '{{optional}}
-Bitrate (of a file, typically) in gibibits (1 gigabits = 1000×1000×1000 bits).',
+Bitrate (of a file, typically) in gigabits (1 gigabits = 1000×1000×1000 bits).',
 'bitrate-terabits' => '{{optional}}
 Bitrate (of a file, typically) in terabits (1 terabits = 1000×1000×1000×1000 bits).',
 'bitrate-petabits' => '{{optional}}

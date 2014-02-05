@@ -1350,6 +1350,7 @@ $2',
 'prot_1movedto2' => '[[$1]] د [[$2]] جا وه جا بی',
 'protect-default' => 'همه کاروریا اجازه دارن',
 'protect-othertime' => 'وخت هنی:',
+'protect-expiry-options' => '1 ساعت:1 ساعت,1 روز:1 روز,1 هفته:1 هفته,2 هفته:2 هفته,1 ما:1 ما,3 ما:3 ما,6 ما:6 ما,1 سال:1 سال,بی حساو:بی حساو',
 'restriction-type' => 'دسرسی:',
 
 # Restrictions (nouns)
@@ -1411,7 +1412,7 @@ $2',
 'block' => 'منع کارور',
 'blockip' => 'منع کارور',
 'ipbother' => 'وخت هنی:',
-'ipboptions' => '2 ساعتیا:2 ساعت,1 رو:1 رو,3 روزا:3 رو,1 هفته:1 هفته,2 هفته یا:2 هفته,1 ما:1 ما,3 ما:3 میا,6 ما:6 مایا,1 سال:1سال,حد ناره:حد ناره',
+'ipboptions' => '2 ساعتیا:2 ساعت,1 رو:1 رو,3 روزا:3 رو,1 هفته:1 هفته,2 هفته یا:2 هفته,1 ما:1 ما,3 ما:3 میا,6 ما:6 مایا,1 سال:1سال,بی حساو:بی حساو',
 'ipbhidename' => 'نوم کاروری نه سی ویرایشت یا و نوم گه یا قام کو',
 'unblockip' => 'کارور منع نبیه',
 'blocklist' => 'كاروريا منع بيه',
@@ -1552,6 +1553,10 @@ $2',
 'newimages-label' => 'نوم جانیا(یا بشقی د وه):',
 'sp-newimages-showfrom' => 'جانیایا تازه نه که $2 ، $2 شرو بینه نشو بیه',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'days' => '{{جمی:$1|1$ روز|$1 روز}}',
+'years' => '{{جمی:$1|$1 سال|$1 سال}}',
+
 # Human-readable timestamps
 'monday-at' => 'دوشمه د $1',
 
@@ -1599,6 +1604,10 @@ $2',
 
 'exif-exposureprogram-1' => 'دسی',
 
+'exif-lightsource-1' => 'روشنایی روز',
+
+'exif-scenecapturetype-3' => 'چی شو',
+
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
 'exif-gpsaltitude-below-sealevel' => '$1 {{جمی:$1|متر|متریا}} وارؤ د ریتراز دریا',
@@ -1616,6 +1625,7 @@ $2',
 'imgmultigo' => 'رؤ!',
 
 # Language selector for translatable SVGs
+'img-lang-default' => '(زون پیش زمینه)',
 'img-lang-go' => 'رو',
 
 # Table pager
@@ -1678,6 +1688,10 @@ $2',
 'api-error-filename-tooshort' => 'نوم جانیا فره کؤچکه.',
 'api-error-illegal-filename' => 'نوم جانیا اجازه دئه نئ.',
 'api-error-mustbeloggedin' => 'شما سی سوارکردن فایلیا با بیایت وامین',
+
+# Durations
+'duration-days' => '$1{{جمی:$1|روز|روزیا}}',
+'duration-years' => '$1{{جمی:$1| سال|سالیا}}',
 
 # Special:ExpandTemplates
 'expand_templates_remove_comments' => 'جا وه جا بیئن ویر و باوریا',

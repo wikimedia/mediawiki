@@ -1034,7 +1034,7 @@ Izgleda, da je bila izbrisana.',
 'invalid-content-data' => 'Neveljavni podatki vsebine',
 'content-not-allowed-here' => 'Vsebina »$1« ni dovoljena na strani [[$2]]',
 'editwarning-warning' => 'Če zapustite stran, boste morda izgubili vse spremembe, ki ste jih naredili.
-Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »Urejanje« v svojih nastavitvah.',
+Če ste prijavljeni, lahko to opozorilo onemogočite v razdelku »{{int:prefs-editing}}« v svojih nastavitvah.',
 'editpage-notsupportedcontentformat-title' => 'Oblika vsebine ni podprta',
 'editpage-notsupportedcontentformat-text' => 'Model vsebine $2 ne podpira oblike vsebine $1.',
 
@@ -1070,6 +1070,7 @@ Naslednji argumenti so bili izpuščeni.",
 'undo-success' => 'Urejanje ste razveljavili. Prosimo, preverite prikazano primerjavo redakcij in, če ustrezajo, shranite spremembe.',
 'undo-failure' => 'Zaradi navzkrižij urejanj, ki so se vmes pojavila, tega urejanja ni moč razveljaviti.',
 'undo-norev' => 'Urejanja ni mogoče razveljaviti, ker ne obstaja ali je bilo izbrisano.',
+'undo-nochange' => 'Zdi se, da je urejanje nekdo že razveljavil.',
 'undo-summary' => 'Redakcija $1 uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) razveljavljena',
 'undo-summary-username-hidden' => 'Razveljavi redakcijo $1 skritega uporabnika',
 

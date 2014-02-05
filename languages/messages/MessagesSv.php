@@ -2430,7 +2430,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchmethod-list' => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains' => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'iteminvalidname' => "Problem med ''$1'', ogiltigt namn...",
-'wlnote2' => 'Nedan finns de senaste $1 ändringarna under {{PLURAL:$1|den senaste timmen|de senaste <strong>$2</strong> timmarna}} från den $3 kl. $4.',
+'wlnote2' => 'Nedan finns ändringarna från {{PLURAL:$1|den senaste timmen|de senaste <strong>$1</strong> timmarna}}, med början den $2 kl. $3.',
 'wlshowlast' => 'Visa senaste $1 timmarna $2 dygnen $3',
 'watchlist-options' => 'Alternativ för bevakningslistan',
 

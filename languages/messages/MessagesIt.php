@@ -1146,6 +1146,7 @@ Alcuni template non verranno inclusi.",
 Controlla le differenze mostrate sotto fra le due versioni per essere certo che il contenuto corrisponda a quanto desiderato, e quindi salvare le modifiche per completare la procedura di annullamento.',
 'undo-failure' => 'Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.',
 'undo-norev' => 'La modifica non può essere annullata perché non esiste o è stata cancellata.',
+'undo-nochange' => 'Sembra che la modifica sia già stata annullata.',
 'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]])',
 'undo-summary-username-hidden' => 'Annullata la modifica $1 di un utente nascosto',
 

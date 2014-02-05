@@ -2522,7 +2522,7 @@ Rady a kontakt:
 'confirmdeletetext' => 'Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'actioncomplete' => 'Provedeno',
 'actionfailed' => 'Operace se nezdařila',
-'deletedtext' => 'Stránka nebo soubor „$1“ byla smazána. $2 zaznamenává poslední smazání.',
+'deletedtext' => 'Stránka nebo soubor „$1“ byl(a) smazán(a). $2 zaznamenává poslední smazání.',
 'dellogpage' => 'Kniha smazaných stránek',
 'dellogpagetext' => 'Zde je seznam posledních smazaných stránek.',
 'deletionlog' => 'Kniha smazaných stránek',
@@ -2539,7 +2539,7 @@ Rady a kontakt:
 'delete-edit-reasonlist' => 'Editovat důvody smazání',
 'delete-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{PLURAL:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
 'delete-warning-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{PLURAL:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
-'deleting-backlinks-warning' => "'''Upozornění:''' Stránka, kterou se chystáte smazat, je na jiných stránkách odkazována nebo vkládána.",
+'deleting-backlinks-warning' => "'''Upozornění:''' Stránka, kterou se chystáte smazat, je na jiných stránkách odkazována nebo je do nich vložena.",
 
 # Rollback
 'rollback' => 'Vrátit zpět editace',

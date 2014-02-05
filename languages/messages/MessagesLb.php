@@ -1049,6 +1049,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnendrënner fir nozekuckeen ob et sou richteg ass, duerno späichert w.e.g d'Ännerungen of, fir dës Aktioun ofzeschléissen.",
 'undo-failure' => "D'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.",
 'undo-norev' => "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
+'undo-nochange' => "D'Ännerung gouf anscheinend schonn zeréckgesat.",
 'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) annulléieren.',
 'undo-summary-username-hidden' => 'Versioun $1 vun engem verstoppte Benotzer zrécksetzen',
 
