@@ -22,8 +22,6 @@
 				"classes": [
 					"mw.Title",
 					"mw.Uri",
-					"mw.inspect",
-					"mw.inspect.reports",
 					"mw.notification",
 					"mw.user",
 					"mw.util",
@@ -50,6 +48,14 @@
 				"name": "Page",
 				"classes": [
 					"mw.page*"
+				]
+			},
+			{
+				"name": "Debug",
+				"classes": [
+					"mw.inspect",
+					"mw.inspect.reports",
+					"mw.Debug"
 				]
 			}
 		]

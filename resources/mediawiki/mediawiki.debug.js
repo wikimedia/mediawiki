@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for the new debug toolbar, enabled through $wgDebugToolbar.
  *
  * @author John Du Hart
@@ -11,18 +11,22 @@
 	var debug,
 		hovzer = $.getFootHovzer();
 
+	/**
+	 * @class mw.Debug
+	 * @singleton
+	 */
 	debug = mw.Debug = {
 		/**
 		 * Toolbar container element
 		 *
-		 * @var {jQuery}
+		 * @property {jQuery}
 		 */
 		$container: null,
 
 		/**
 		 * Object containing data for the debug toolbar
 		 *
-		 * @var {Object}
+		 * @property {Object}
 		 */
 		data: {},
 
@@ -31,7 +35,7 @@
 		 * Shouldn't be called before the document is ready
 		 * (since it binds to elements on the page).
 		 *
-		 * @param {Object} data, defaults to 'debugInfo' from mw.config
+		 * @param {Object} [data] Defaults to 'debugInfo' from mw.config
 		 */
 		init: function ( data ) {
 
@@ -46,10 +50,10 @@
 		},
 
 		/**
-		 * Switches between panes
+		 * Switches between panes - should be called with an HTMLElement
+		 * as its thisArg, because it's meant to be an event handler.
+		 * TODO Store cookie for last pane open
 		 *
-		 * @todo Store cookie for last pane open
-		 * @context {Element}
 		 * @param {jQuery.Event} e
 		 */
 		switchPane: function ( e ) {
@@ -103,6 +107,7 @@
 			/**
 			 * Returns a jQuery element for a debug-bit div
 			 *
+			 * @private
 			 * @param id
 			 * @return {jQuery}
 			 */
@@ -117,6 +122,7 @@
 			/**
 			 * Returns a jQuery element for a pane link
 			 *
+			 * @private
 			 * @param id
 			 * @param text
 			 * @return {jQuery}
@@ -133,6 +139,7 @@
 			/**
 			 * Returns a jQuery element for a debug-bit div with a for a pane link
 			 *
+			 * @private
 			 * @param id CSS id snippet. Will be prefixed with 'mw-debug-'
 			 * @param text Text to show
 			 * @param count Optional count to show
@@ -261,6 +268,8 @@
 
 		/**
 		 * Query list pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildQueryTable: function () {
 			var $table, i, length, query;
@@ -291,6 +300,8 @@
 
 		/**
 		 * Legacy debug log pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildDebugLogTable: function () {
 			var $list, i, length, line;
@@ -308,6 +319,8 @@
 
 		/**
 		 * Request information pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildRequestPane: function () {
 
@@ -344,6 +357,8 @@
 
 		/**
 		 * Included files pane
+		 *
+		 * @return {jQuery}
 		 */
 		buildIncludesPane: function () {
 			var $table, i, length, file;
