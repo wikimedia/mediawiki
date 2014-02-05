@@ -10,6 +10,7 @@
 	"--": [
 		"./external.js",
 		"../../resources/mediawiki/mediawiki.js",
+		"../../resources/mediawiki/mediawiki.htmlform.js",
 		"../../resources/mediawiki/mediawiki.log.js",
 		"../../resources/mediawiki/mediawiki.util.js",
 		"../../resources/mediawiki/mediawiki.Title.js",

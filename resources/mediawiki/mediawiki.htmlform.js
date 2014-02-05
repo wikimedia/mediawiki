@@ -1,4 +1,5 @@
 /**
+ * @class jQuery.plugin.htmlform
  * Utility functions for jazzing up HTMLForm elements.
  */
 ( function ( mw, $ ) {
@@ -6,7 +7,7 @@
 	/**
 	 * jQuery plugin to fade or snap to visible state.
 	 *
-	 * @param {boolean} instantToggle [optional]
+	 * @param {boolean} [instantToggle=false]
 	 * @return {jQuery}
 	 */
 	$.fn.goIn = function ( instantToggle ) {
@@ -19,7 +20,7 @@
 	/**
 	 * jQuery plugin to fade or snap to hiding state.
 	 *
-	 * @param {boolean} instantToggle [optional]
+	 * @param {boolean} [instantToggle=false]
 	 * @return jQuery
 	 */
 	$.fn.goOut = function ( instantToggle ) {
@@ -32,8 +33,8 @@
 	/**
 	 * Bind a function to the jQuery object via live(), and also immediately trigger
 	 * the function on the objects with an 'instant' parameter set to true.
-	 * @param {Function} callback Takes one parameter, which is {true} when the
-	 *  event is called immediately, and {jQuery.Event} when triggered from an event.
+	 * @param {Function} callback
+	 * @param {boolean/jQuery.Event} callback.immediate True when the event is called immediately, an event object when triggered from an event.
 	 */
 	$.fn.liveAndTestAtStart = function ( callback ) {
 		$( this )
