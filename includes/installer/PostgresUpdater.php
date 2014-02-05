@@ -260,7 +260,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'job', 'job_cmd_token', '(job_cmd, job_token, job_random)' ),
 			array( 'addPgIndex', 'job', 'job_cmd_token_id', '(job_cmd, job_token, job_id)' ),
 			array( 'addPgIndex', 'filearchive', 'fa_sha1', '(fa_sha1)' ),
-			array( 'addPgIndex', 'logging', 'logging_user_text_type_time', '(log_user_text, log_type, log_timestamp)' ),
+			array( 'addPgIndex', 'logging', 'logging_user_text_type_time',
+				'(log_user_text, log_type, log_timestamp)' ),
 			array( 'addPgIndex', 'logging', 'logging_user_text_time', '(log_user_text, log_timestamp)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(

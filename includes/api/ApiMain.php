@@ -39,7 +39,6 @@
  * @ingroup API
  */
 class ApiMain extends ApiBase {
-
 	/**
 	 * When no format parameter is given, this format will be used
 	 */
@@ -1148,7 +1147,10 @@ class ApiMain extends ApiBase {
 			array( 'code' => 'maxlag', 'info' => 'Waiting for host: x seconds lagged' ),
 			array( 'code' => 'maxlag', 'info' => 'Waiting for a database server: x seconds lagged' ),
 			array( 'code' => 'assertuserfailed', 'info' => 'Assertion that the user is logged in failed' ),
-			array( 'code' => 'assertbotfailed', 'info' => 'Assertion that the user has the bot right failed' ),
+			array(
+				'code' => 'assertbotfailed',
+				'info' => 'Assertion that the user has the bot right failed'
+			),
 		) );
 	}
 

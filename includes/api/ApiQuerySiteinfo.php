@@ -573,12 +573,20 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
 						}
 					}
+
 					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
 						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
-						$ret['license'] = SpecialPage::getTitleFor( 'Version', "License/{$ext['name']}" )->getLinkURL();
+						$ret['license'] = SpecialPage::getTitleFor(
+							'Version',
+							"License/{$ext['name']}"
+						)->getLinkURL();
 					}
+
 					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
-						$ret['credits'] = SpecialPage::getTitleFor( 'Version', "Credits/{$ext['name']}" )->getLinkURL();
+						$ret['credits'] = SpecialPage::getTitleFor(
+							'Version',
+							"Credits/{$ext['name']}"
+						)->getLinkURL();
 					}
 				}
 				$data[] = $ret;

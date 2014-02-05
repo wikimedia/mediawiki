@@ -360,7 +360,13 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['commenthidden'] = '';
 				$anyHidden = true;
 			}
-			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_COMMENT, $this->getUser() ) ) {
+
+			$userCanView = Revision::userCanBitfield(
+				$row->rev_deleted,
+				Revision::DELETED_COMMENT, $this->getUser()
+			);
+
+			if ( $userCanView ) {
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $row->rev_comment;
 				}

@@ -67,8 +67,12 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_CATEGORY ) );
-		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_CATEGORY ) );
+		$from = ( $params['from'] === null
+			? null
+			: $this->titlePartToKey( $params['from'], NS_CATEGORY ) );
+		$to = ( $params['to'] === null
+			? null
+			: $this->titlePartToKey( $params['to'], NS_CATEGORY ) );
 		$this->addWhereRange( 'cat_title', $dir, $from, $to );
 
 		$min = $params['min'];

@@ -827,7 +827,9 @@ __INDEXATTR__;
 	 * can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to do
 	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
 	 */
-	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
+	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
+		$options = array(), $join_conds = array()
+	) {
 		if ( is_array( $options ) ) {
 			$forUpdateKey = array_search( 'FOR UPDATE', $options );
 			if ( $forUpdateKey !== false && $join_conds ) {
@@ -1063,7 +1065,7 @@ __INDEXATTR__;
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * 
+	 *
 	 * @param string $seqName
 	 * @return int|null
 	 */
@@ -1564,7 +1566,7 @@ SQL;
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' . implode( ', ', $options['FOR UPDATE'] );
-		} else if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
 

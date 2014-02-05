@@ -677,7 +677,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
 			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
-			'commonmetadata' => ' commonmetadata - Lists file format generic metadata for the version of the image',
+			'commonmetadata' => ' commonmetadata - Lists file format generic metadata ' .
+				'for the version of the image',
 			'extmetadata' =>    ' extmetadata   - Lists formatted metadata combined ' .
 				'from multiple sources. Results are HTML formatted.',
 			'archivename' =>    ' archivename   - Adds the file name of the archive ' .
