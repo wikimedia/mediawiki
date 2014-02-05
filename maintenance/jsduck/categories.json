@@ -44,6 +44,12 @@
 					"mw.language*",
 					"mw.cldr"
 				]
+			},
+			{
+				"name": "Page",
+				"classes": [
+					"mw.page*"
+				]
 			}
 		]
 	},
