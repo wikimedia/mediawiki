@@ -148,8 +148,17 @@ class SkinTemplate extends Skin {
 				$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
 
 				if ( strval( $ilLangName ) === '' ) {
-					$ilLangName = $languageLinkText;
+					$ilDisplayTextMsg = wfMessage( "interlanguage-link-$ilInterwikiCode" )->
+						inContentLanguage();
+					if ( !$ilDisplayTextMsg->isBlank() ) {
+						// Use custom MW message for the display text
+						$ilLangName = $ilDisplayTextMsg->text();
+					} else {
+						// Last resort: fallback to the language link target
+						$ilLangName = $languageLinkText;
+					}
 				} else {
+					// Use the language autonym as display text
 					$ilLangName = $this->formatLanguageName( $ilLangName );
 				}
 
@@ -159,9 +168,11 @@ class SkinTemplate extends Skin {
 					$ilInterwikiCode,
 					$userLang->getCode()
 				);
-
+				
 				$languageLinkTitleText = $languageLinkTitle->getText();
-				if ( $languageLinkTitleText === '' ) {
+				if ( $ilLangLocalName === '' ) {
+					$ilTitle = $languageLinkTitle->getInterwiki() . ":$languageLinkTitleText";
+				} elseif ( $languageLinkTitleText === '' ) {
 					$ilTitle = wfMessage(
 						'interlanguage-link-title-langonly',
 						$ilLangLocalName
