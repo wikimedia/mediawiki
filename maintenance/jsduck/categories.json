@@ -10,7 +10,6 @@
 					"mw.Message",
 					"mw.loader",
 					"mw.loader.store",
-					"mw.log",
 					"mw.html",
 					"mw.html.Cdata",
 					"mw.html.Raw",
@@ -22,8 +21,6 @@
 				"classes": [
 					"mw.Title",
 					"mw.Uri",
-					"mw.inspect",
-					"mw.inspect.reports",
 					"mw.notification",
 					"mw.Notification_",
 					"mw.user",
@@ -57,6 +54,15 @@
 				"name": "Interfaces",
 				"classes": [
 					"mw.Feedback"
+				]
+			},
+			{
+				"name": "Development",
+				"classes": [
+					"mw.log",
+					"mw.inspect",
+					"mw.inspect.reports",
+					"mw.Debug"
 				]
 			}
 		]
