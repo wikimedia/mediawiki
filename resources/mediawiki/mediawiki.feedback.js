@@ -1,41 +1,40 @@
-/**
+/*!
  * mediawiki.feedback
  *
  * @author Ryan Kaldari, 2010
  * @author Neil Kandalgaonkar, 2010-11
  * @since 1.19
- *
- * This is a way of getting simple feedback from users. It's useful
- * for testing new features -- users can give you feedback without
- * the difficulty of opening a whole new talk page. For this reason,
- * it also tends to collect a wider range of both positive and negative
- * comments. However you do need to tend to the feedback page. It will
- * get long relatively quickly, and you often get multiple messages
- * reporting the same issue.
- *
- * It takes the form of thing on your page which, when clicked, opens a small
- * dialog box. Submitting that dialog box appends its contents to a
- * wiki page that you specify, as a new section.
- *
- * Not compatible with LiquidThreads.
- *
- * Minimal example in how to use it:
- *
- *    var feedback = new mw.Feedback();
- *    $( '#myButton' ).click( function () { feedback.launch(); } );
- *
- * You can also launch the feedback form with a prefilled subject and body.
- * See the docs for the launch() method.
  */
 ( function ( mw, $ ) {
 	/**
-	 * Thingy for collecting user feedback on a wiki page
-	 * @param {Array} options -- optional, all properties optional.
-	 *  api: {mw.Api} if omitted, will just create a standard API
-	 *  title: {mw.Title} the title of the page where you collect feedback. Defaults to "Feedback".
-	 *  dialogTitleMessageKey: {String} message key for the title of the dialog box
-	 *  bugsLink: {mw.Uri|String} url where bugs can be posted
-	 *  bugsListLink: {mw.Uri|String} url where bugs can be listed
+	 * This is a way of getting simple feedback from users. It's useful
+	 * for testing new features -- users can give you feedback without
+	 * the difficulty of opening a whole new talk page. For this reason,
+	 * it also tends to collect a wider range of both positive and negative
+	 * comments. However you do need to tend to the feedback page. It will
+	 * get long relatively quickly, and you often get multiple messages
+	 * reporting the same issue.
+	 *
+	 * It takes the form of thing on your page which, when clicked, opens a small
+	 * dialog box. Submitting that dialog box appends its contents to a
+	 * wiki page that you specify, as a new section.
+	 *
+	 * Not compatible with LiquidThreads.
+	 *
+	 * Minimal example in how to use it:
+	 *
+	 *     var feedback = new mw.Feedback();
+	 *     $( '#myButton' ).click( function () { feedback.launch(); } );
+	 *
+	 * You can also launch the feedback form with a prefilled subject and body.
+	 * See the docs for the launch() method.
+	 *
+	 * @param {Array} [options]
+	 * @param {mw.Api} [options.api] if omitted, will just create a standard API
+	 * @param {mw.Title} [options.title="Feedback"] the title of the page where you collect feedback. Defaults to "Feedback".
+	 * @param {string} [options.dialogTitleMessageKey="feedback-submit"] Message key for the title of the dialog box
+	 * @param {string} [options.bugsLink="//bugzilla.wikimedia.org/enter_bug.cgi"] URL where bugs can be posted
+	 * @param {mw.Uri/string} [options.bugsListLink="//bugzilla.wikimedia.org/query.cgi"] URL where bugs can be listed
 	 */
 	mw.Feedback = function ( options ) {
 		if ( options === undefined ) {
@@ -67,6 +66,9 @@
 	};
 
 	mw.Feedback.prototype = {
+		/**
+		 * Sets up interface
+		 */
 		setup: function () {
 			var $feedbackPageLink,
 				$bugNoteLink,
@@ -148,16 +150,27 @@
 
 		},
 
+		/**
+		 * Displays a section of the dialog.
+		 *
+		 * @param {string} s The section of the dialog to show - should be one of form, bugs, submitting, thanks, or error
+		 */
 		display: function ( s ) {
 			this.$dialog.dialog( { buttons:{} } ); // hide the buttons
 			this.$dialog.find( '.feedback-mode' ).hide(); // hide everything
 			this.$dialog.find( '.feedback-' + s ).show(); // show the desired div
 		},
 
+		/**
+		 * Display the submitting section.
+		 */
 		displaySubmitting: function () {
 			this.display( 'submitting' );
 		},
 
+		/**
+		 * Display the bugs section.
+		 */
 		displayBugs: function () {
 			var fb = this,
 				bugsButtons = {};
@@ -173,6 +186,9 @@
 			} );
 		},
 
+		/**
+		 * Display the thanks section.
+		 */
 		displayThanks: function () {
 			var fb = this,
 				closeButton = {};
@@ -187,9 +203,9 @@
 
 		/**
 		 * Display the feedback form
-		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
-		 *  subject: {String}
-		 *	message: {String}
+		 * @param {Object} [contents] Prefilled contents for the feedback form.
+		 * @param {string} [contents.subject] The subject of the feedback
+		 * @param {string} [contents.message] The content of the feedback
 		 */
 		displayForm: function ( contents ) {
 			var fb = this,
@@ -209,6 +225,11 @@
 			this.$dialog.dialog( { buttons: formButtons } ); // put the buttons back
 		},
 
+		/**
+		 * Display an error on the form.
+		 *
+		 * @param {string} message Should be a valid message key.
+		 */
 		displayError: function ( message ) {
 			var fb = this,
 				closeButton = {};
@@ -220,10 +241,16 @@
 			this.$dialog.dialog( { buttons: closeButton } );
 		},
 
+		/**
+		 * Close the feedback form.
+		 */
 		cancel: function () {
 			this.$dialog.dialog( 'close' );
 		},
 
+		/**
+		 * Submit the feedback form.
+		 */
 		submit: function () {
 			var subject, message,
 				fb = this;
@@ -264,9 +291,9 @@
 
 		/**
 		 * Modify the display form, and then open it, focusing interface on the subject.
-		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
-		 *						subject: {String}
-		 *						message: {String}
+		 * @param {Object} [contents] Prefilled contents for the feedback form.
+		 * @param {string} [contents.subject] The subject of the feedback
+		 * @param {string} [contents.message] The content of the feedback
 		 */
 		launch: function ( contents ) {
 			this.displayForm( contents );
