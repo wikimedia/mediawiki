@@ -176,8 +176,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		} elseif ( $mode == 'all' ) {
 			$this->addWhereFld( 'ar_namespace', $params['namespace'] );
 
-			$from = $params['from'] === null ? null : $this->titlePartToKey( $params['from'], $params['namespace'] );
-			$to = $params['to'] === null ? null : $this->titlePartToKey( $params['to'], $params['namespace'] );
+			$from = $params['from'] === null
+				? null
+				: $this->titlePartToKey( $params['from'], $params['namespace'] );
+			$to = $params['to'] === null
+				? null
+				: $this->titlePartToKey( $params['to'], $params['namespace'] );
 			$this->addWhereRange( 'ar_title', $dir, $from, $to );
 
 			if ( isset( $params['prefix'] ) ) {

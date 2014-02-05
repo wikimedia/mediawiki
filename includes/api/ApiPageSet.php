@@ -39,7 +39,6 @@
  * @since 1.21 derives from ApiBase instead of ApiQueryBase
  */
 class ApiPageSet extends ApiBase {
-
 	/**
 	 * Constructor flag: The new instance of ApiPageSet will ignore the 'generator=' parameter
 	 * @since 1.21
@@ -536,7 +535,9 @@ class ApiPageSet extends ApiBase {
 	 * @return array Array suitable for inclusion in the response
 	 * @since 1.23
 	 */
-	public function getInvalidTitlesAndRevisions( $invalidChecks = array( 'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'missingTitles', 'interwikiTitles' ) ) {
+	public function getInvalidTitlesAndRevisions( $invalidChecks = array( 'invalidTitles',
+		'special', 'missingIds', 'missingRevIds', 'missingTitles', 'interwikiTitles' )
+	) {
 		$result = array();
 		if ( in_array( "invalidTitles", $invalidChecks ) ) {
 			self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );

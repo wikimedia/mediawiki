@@ -97,14 +97,19 @@ class ApiRevisionDelete extends ApiBase {
 		$data = $this->extractStatusInfo( $status );
 		$data['target'] = $targetObj->getFullText();
 		$data['items'] = array();
+
 		foreach ( $status->itemStatuses as $id => $s ) {
 			$data['items'][$id] = $this->extractStatusInfo( $s );
 			$data['items'][$id]['id'] = $id;
 		}
+
 		$list->reloadFromMaster();
+		// @codingStandardsIgnoreStart Avoid function calls in a FOR loop test part
 		for ( $item = $list->reset(); $list->current(); $item = $list->next() ) {
 			$data['items'][$item->getId()] += $item->getApiData( $this->getResult() );
 		}
+		// @codingStandardsIgnoreEnd
+
 		$data['items'] = array_values( $data['items'] );
 		$result->setIndexedTagName( $data['items'], 'i' );
 		$result->addValue( null, $this->getModuleName(), $data );
@@ -232,10 +237,12 @@ class ApiRevisionDelete extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=revisiondelete&target=Main%20Page&type=revision&ids=12345&hide=content&token=123ABC'
-			=> 'Hide content for revision 12345 on the Main Page',
-			'api.php?action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&reason=BLP%20violation&token=123ABC'
-			=> 'Hide all data on log entry 67890 with the reason "BLP violation"',
+			'api.php?action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
+				'hide=content&token=123ABC'
+				=> 'Hide content for revision 12345 on the Main Page',
+			'api.php?action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
+				'reason=BLP%20violation&token=123ABC'
+				=> 'Hide all data on log entry 67890 with the reason "BLP violation"',
 		);
 	}
 

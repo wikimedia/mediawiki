@@ -154,7 +154,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->titlePartToKey( $params['to'], $params['namespace'] ) );
 		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
 
-
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey(
 				$params['prefix'], $params['namespace'] ), $db->anyString() ) );

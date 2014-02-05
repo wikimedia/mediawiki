@@ -48,12 +48,20 @@ class ApiWatch extends ApiBase {
 		// title is still supported for backward compatibility
 		if ( !isset( $params['title'] ) ) {
 			$pageSet->execute();
-			$res = $pageSet->getInvalidTitlesAndRevisions( array( 'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'interwikiTitles' ) );
+			$res = $pageSet->getInvalidTitlesAndRevisions( array(
+				'invalidTitles',
+				'special',
+				'missingIds',
+				'missingRevIds',
+				'interwikiTitles'
+			) );
+
 			foreach ( $pageSet->getMissingTitles() as $title ) {
 				$r = $this->watchTitle( $title, $user, $params );
 				$r['missing'] = 1;
 				$res[] = $r;
 			}
+
 			foreach ( $pageSet->getGoodTitles() as $title ) {
 				$r = $this->watchTitle( $title, $user, $params );
 				$res[] = $r;
@@ -64,9 +72,13 @@ class ApiWatch extends ApiBase {
 			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), function ( $x ) {
 				return $x !== null && $x !== false;
 			} ) );
+
 			if ( $extraParams ) {
 				$p = $this->getModulePrefix();
-				$this->dieUsage( "The parameter {$p}title can not be used with ".  implode( ", ", $extraParams ), 'invalidparammix' );
+				$this->dieUsage(
+					"The parameter {$p}title can not be used with " . implode( ", ", $extraParams ),
+					'invalidparammix'
+				);
 			}
 
 			$title = Title::newFromText( $params['title'] );
@@ -78,7 +90,9 @@ class ApiWatch extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
-	private function watchTitle( Title $title, User $user, array $params, $compatibilityMode = false ) {
+	private function watchTitle( Title $title, User $user, array $params,
+		$compatibilityMode = false
+	) {
 		if ( !$title->isWatchable() ) {
 			return array( 'title' => $title->getPrefixedText(), 'watchable' => 0 );
 		}
@@ -115,7 +129,6 @@ class ApiWatch extends ApiBase {
 		if ( !is_null( $oldLang ) ) {
 			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
 		}
-
 
 		if ( !$status->isOK() ) {
 			if ( $compatibilityMode ) {

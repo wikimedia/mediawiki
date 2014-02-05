@@ -1218,7 +1218,8 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		// Run all requests for the first stage, then the next, and so on
-		for ( $stage = 0; $stage < count( $httpReqsByStage ); ++$stage ) {
+		$reqCount = count( $httpReqsByStage );
+		for ( $stage = 0; $stage < $reqCount; ++$stage ) {
 			$httpReqs = $this->http->runMulti( $httpReqsByStage[$stage] );
 			foreach ( $httpReqs as $index => $httpReq ) {
 				// Run the callback for each request of this operation
