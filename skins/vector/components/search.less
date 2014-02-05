@@ -90,7 +90,8 @@ div#simpleSearch {
 		height: 100%;
 		cursor: pointer;
 		/* Hide button text and replace it with the image. */
-		text-indent: 100%;
+		/* This would be 100% if not for Firefox shenanigans (bug 60900). */
+		text-indent: 200%;
 		/* Needed to make IE6 respect the text-indent. */
 		line-height: 1;
 		/* Opera 12 on RTL flips the text in a funny way without this. */
