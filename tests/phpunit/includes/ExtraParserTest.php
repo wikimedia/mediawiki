@@ -82,7 +82,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 */
 	public function testCleanSig() {
 		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
+		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~", $title );
 
 		$this->assertEquals( "{{SUBST:Foo}} ", $outputText );
 	}
@@ -95,7 +95,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgCleanSignatures', false );
 
 		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
+		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~", $title );
 
 		$this->assertEquals( "{{Foo}} ~~~~", $outputText );
 	}

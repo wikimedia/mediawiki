@@ -4678,27 +4678,16 @@ class Parser {
 	 * Do not reuse this parser instance after calling getUserSig(),
 	 * as it may have changed if it's the $wgParser.
 	 *
-	 * @param $user User
-	 * @param string|bool $nickname nickname to use or false to use user's default nickname
-	 * @param $fancySig Boolean|null whether the nicknname is the complete signature
-	 *                  or null to use default value
+	 * @param User $user User to build the signature for
+	 * @param Title|null $title Title to parse with
 	 * @return string
 	 */
-	function getUserSig( &$user, $nickname = false, $fancySig = null ) {
+	function getUserSig( &$user, $title = null ) {
 		global $wgMaxSigChars;
 
 		$username = $user->getName();
-
-		# If not given, retrieve from the user object.
-		if ( $nickname === false ) {
-			$nickname = $user->getOption( 'nickname' );
-		}
-
-		if ( is_null( $fancySig ) ) {
-			$fancySig = $user->getBoolOption( 'fancysig' );
-		}
-
-		$nickname = $nickname == null ? $username : $nickname;
+		$nickname = $user->getOption( 'nickname', $username );
+		$fancySig = $user->getBoolOption( 'fancysig' );
 
 		if ( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
@@ -4707,7 +4696,11 @@ class Parser {
 			# Sig. might contain markup; validate this
 			if ( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
-				return $this->cleanSig( $nickname, true );
+				if ( !$title ) {
+					global $wgTitle;
+					$title = $wgTitle;
+				}
+				return $this->cleanSig( $nickname, $wgTitle, true );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
@@ -4742,14 +4735,14 @@ class Parser {
 	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures @see cleanSigInSig
 	 * 2) Substitute all transclusions
 	 *
-	 * @param $text String
+	 * @param string $text
+	 * @param Title $title
 	 * @param bool $parsing Whether we're cleaning (preferences save) or parsing
 	 * @return String: signature text
 	 */
-	public function cleanSig( $text, $parsing = false ) {
+	public function cleanSig( $text, $title, $parsing = false ) {
 		if ( !$parsing ) {
-			global $wgTitle;
-			$this->startParse( $wgTitle, new ParserOptions, self::OT_PREPROCESS, true );
+			$this->startParse( $title, new ParserOptions, self::OT_PREPROCESS, true );
 		}
 
 		# Option to disable this feature
