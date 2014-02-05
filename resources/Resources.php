@@ -1183,21 +1183,6 @@ return array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.version.css',
 	),
 
-	/* MediaWiki Tests */
-
-	'mediawiki.tests.qunit.testrunner' => array(
-		'scripts' => 'tests/qunit/data/testrunner.js',
-		'dependencies' => array(
-			'jquery.getAttrs',
-			'jquery.qunit',
-			'jquery.qunit.completenessTest',
-			'mediawiki.page.startup',
-			'mediawiki.page.ready',
-		),
-		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-
 	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.ajax' => array(

@@ -289,7 +289,7 @@ class ResourceLoader {
 
 		// Get core test suites
 		$testModules = array();
-		$testModules['qunit'] = include "$IP/tests/qunit/QUnitTestResources.php";
+		$testModules['qunit'] = array();
 		// Get other test suites (e.g. from extensions)
 		wfRunHooks( 'ResourceLoaderTestModules', array( &$testModules, &$this ) );
 
@@ -300,8 +300,10 @@ class ResourceLoader {
 			// on document-ready, it will run once and finish. If some tests arrive
 			// later (possibly after QUnit has already finished) they will be ignored.
 			$module['position'] = 'top';
-			$module['dependencies'][] = 'mediawiki.tests.qunit.testrunner';
+			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
 		}
+
+		$testModules['qunit'] = ( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
 
 		foreach ( $testModules as $id => $names ) {
 			// Register test modules

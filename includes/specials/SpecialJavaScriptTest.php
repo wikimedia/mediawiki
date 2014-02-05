@@ -139,7 +139,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$out = $this->getOutput();
 
-		$out->addModules( 'mediawiki.tests.qunit.testrunner' );
+		$out->addModules( 'test.mediawiki.qunit.testrunner' );
 		$qunitTestModules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 		$out->addModules( $qunitTestModules );
 

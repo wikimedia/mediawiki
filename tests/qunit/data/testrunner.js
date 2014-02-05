@@ -315,7 +315,7 @@
 	 * initializations defined above in this file.
 	 */
 	envExecCount = 0;
-	QUnit.module( 'mediawiki.tests.qunit.testrunner', QUnit.newMwEnvironment( {
+	QUnit.module( 'test.mediawiki.qunit.testrunner', QUnit.newMwEnvironment( {
 		setup: function () {
 			envExecCount += 1;
 			this.mwHtmlLive = mw.html;
@@ -420,7 +420,7 @@
 
 	} );
 
-	QUnit.module( 'mediawiki.tests.qunit.testrunner-after', QUnit.newMwEnvironment() );
+	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', 3, function ( assert ) {
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'extra teardown() callback was ran.' );
