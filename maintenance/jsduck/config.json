@@ -6,10 +6,12 @@
 	"--eg-iframe": "./eg-iframe.html",
 	"--warnings": ["-no_doc"],
 	"--builtin-classes": true,
+	"--external": "HTMLElement",
 	"--output": "../../docs/js",
 	"--": [
 		"./external.js",
 		"../../resources/mediawiki/mediawiki.js",
+		"../../resources/mediawiki/mediawiki.debug.js",
 		"../../resources/mediawiki/mediawiki.log.js",
 		"../../resources/mediawiki/mediawiki.util.js",
 		"../../resources/mediawiki/mediawiki.Title.js",
