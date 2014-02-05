@@ -1,4 +1,4 @@
-/*global CompletenessTest */
+/*global CompletenessTest, sinon */
 /*jshint evil: true */
 ( function ( $, mw, QUnit, undefined ) {
 	'use strict';
@@ -63,6 +63,63 @@
 		label: 'Run CompletenessTest',
 		tooltip: 'Run the completeness test'
 	} );
+
+	/**
+	 * SinonJS
+	 *
+	 * Glue code for nicer integration with QUnit setup/teardown
+	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
+	 * Fixes:
+	 * - Work properly with asynchronous QUnit by using module setup/teardown
+	 *   instead of synchronously wrapping QUnit.test.
+	 */
+	sinon.assert.fail = function ( msg ) {
+		QUnit.assert.ok( false, msg );
+	};
+	sinon.assert.pass = function ( msg ) {
+		QUnit.assert.ok( true, msg );
+	};
+	sinon.config = {
+		injectIntoThis: true,
+		injectInto: null,
+		properties: ['spy', 'stub', 'mock', 'clock', 'sandbox'],
+		// Don't fake timers by default
+		useFakeTimers: false,
+		useFakeServer: false
+	};
+	( function () {
+		var orgModule = QUnit.module;
+
+		function setup() {
+			/*jshint validthis:true */
+			var config = sinon.getConfig( sinon.config );
+			config.injectInto = this;
+			sinon.sandbox.create( config );
+		}
+
+		function teardown() {
+			/*jshint validthis:true */
+			this.sandbox.verifyAndRestore();
+		}
+
+		QUnit.module = function ( name, localEnv ) {
+			localEnv = localEnv || {};
+			orgModule( name, {
+				setup: function () {
+					setup.call( this );
+					if ( localEnv.setup ) {
+						localEnv.setup.call( this );
+					}
+				},
+				teardown: function () {
+					teardown.call( this );
+					if ( localEnv.teardown ) {
+						localEnv.teardown.call( this );
+					}
+				}
+			} );
+		};
+	}() );
 
 	// Initiate when enabled
 	if ( QUnit.urlParams.completenesstest ) {
