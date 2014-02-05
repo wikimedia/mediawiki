@@ -55,16 +55,19 @@ div#simpleSearch {
 
 		// These rules MAY NOT be merged because of how CSS requires browsers
 		// to parse unrecognized selectors!
+		// Note these rules ensure that placeholder text can be distinguished from
+		// standard text. In browsers which make this distinction clear these rules
+		// are not necessary.
+		// For inputs that use jquery.placeholder.js e.g. IE9-
 		&.placeholder {
 			color: #999;
 		}
+		// Distinguish placeholder text in IE10+
 		&:-ms-input-placeholder {
 			color: #999;
 		}
+		// Distinguish placeholder text in Firefox 18-
 		&:-moz-placeholder {
-			color: #999;
-		}
-		&::-webkit-input-placeholder {
 			color: #999;
 		}
 
