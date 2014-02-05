@@ -6,6 +6,14 @@ return array(
 
 	/* Utilities */
 
+	'test.sinonjs' => array(
+		'scripts' => array(
+			'resources/sinonjs/sinon-1.8.1.js',
+			'resources/sinonjs/sinon-ie-1.8.1.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 	'test.mediawiki.qunit.testrunner' => array(
 		'scripts' => array(
 			'tests/qunit/data/testrunner.js',
@@ -16,6 +24,7 @@ return array(
 			'jquery.qunit.completenessTest',
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
+			'test.sinonjs',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
