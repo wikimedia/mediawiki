@@ -21,7 +21,25 @@
 				dataType: 'json'
 			}
 		},
-		tokenCache = {};
+		/**
+		 * @private
+		 * @static
+		 * @property {Object} Keyed by ajax url and symbolic name for
+		 *  the individual request
+		 */
+		deferreds = {};
+
+
+	// Pre-populate with fake ajax deferreds to safe http requests for tokens
+	// we already have on the page via the user.tokens module (bug 34733).
+	deferreds[ defaultOptions.ajax.url ] = {};
+	$.each( mw.user.tokens.get(), function ( key, value ) {
+		// This requires #getToken to use the same key as user.tokens.
+		// Format: token-type + "Token" (eg. editToken, patrolToken, watchToken).
+		deferreds[ defaultOptions.ajax.url ][ key ] = $.Deferred()
+			.resolve( value )
+			.promise( { abort: function () {} } );
+	} );
 
 	/**
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
@@ -195,63 +213,73 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithToken: function ( tokenType, params ) {
-			var api = this, hasOwn = tokenCache.hasOwnProperty;
-			if ( hasOwn.call( tokenCache, tokenType ) && tokenCache[tokenType] !== undefined ) {
-				params.token = tokenCache[tokenType];
+			var api = this;
+
+			return api.getToken( tokenType ).then( function ( token ) {
+				params.token = token;
 				return api.post( params ).then(
+					// If no error, return to caller as-is
 					null,
+					// Error handler
 					function ( code ) {
 						if ( code === 'badtoken' ) {
-							// force a new token, clear any old one
-							tokenCache[tokenType] = params.token = undefined;
-							return api.post( params );
+							// Clear from cache
+							deferreds[ this.defaults.ajax.url ][ tokenType + 'Token' ] =
+								params.token = undefined;
+
+							// Try again, once
+							return api.getToken( tokenType ).then( function ( token ) {
+								params.token = token;
+								return api.post( params );
+							} );
 						}
-						// Pass the promise forward, so the caller gets error codes
+
+						// Different error, pass on to let caller handle the error code
 						return this;
 					}
 				);
-			} else {
-				return api.getToken( tokenType ).then( function ( token ) {
-					tokenCache[tokenType] = params.token = token;
-					return api.post( params );
-				} );
-			}
+			} );
 		},
 
 		/**
-		 * Api helper to grab any token.
+		 * Get a token for a certain action from the API.
 		 *
-		 * @param {string} type Token type.
+		 * @param {string} type Token type
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 */
 		getToken: function ( type ) {
 			var apiPromise,
+				deferredGroup = deferreds[ this.defaults.ajax.url ],
+				d = deferredGroup && deferredGroup[ type + 'Token' ];
+
+			if ( !d ) {
 				d = $.Deferred();
 
-			apiPromise = this.get( {
-					action: 'tokens',
-					type: type
-				}, {
-					// Due to the API assuming we're logged out if we pass the callback-parameter,
-					// we have to disable jQuery's callback system, and instead parse JSON string,
-					// by setting 'jsonp' to false.
-					// TODO: This concern seems genuine but no other module has it. Is it still
-					// needed and/or should we pass this by default?
-				} )
-				.done( function ( data ) {
-					// If token type is not available for this user,
-					// key '...token' is missing or can contain Boolean false
-					if ( data.tokens && data.tokens[type + 'token'] ) {
-						d.resolve( data.tokens[type + 'token'] );
-					} else {
-						d.reject( 'token-missing', data );
-					}
-				} )
-				.fail( d.reject );
+				apiPromise = this.get( { action: 'tokens', type: type } )
+					.done( function ( data ) {
+						// If token type is not available for this user,
+						// key '...token' is missing or can contain Boolean false
+						if ( data.tokens && data.tokens[type + 'token'] ) {
+							d.resolve( data.tokens[type + 'token'] );
+						} else {
+							d.reject( 'token-missing', data );
+						}
+					} )
+					.fail( d.reject );
 
-			return d.promise( { abort: apiPromise.abort } );
+				// Attach abort handler
+				d.abort = apiPromise.abort;
+
+				// Store deferred now so that we can use this again even if it isn't ready yet
+				if ( !deferredGroup ) {
+					deferredGroup = deferreds[ this.defaults.ajax.url ] = {};
+				}
+				deferredGroup[ type + 'Token' ] = d;
+			}
+
+			return d.promise( { abort: d.abort } );
 		}
 	};
 

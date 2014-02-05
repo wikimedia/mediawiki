@@ -81,4 +81,18 @@
 		this.server.respond();
 	} );
 
+	QUnit.test( 'getToken', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var api = new mw.Api();
+
+		api.getToken( 'edit' )
+			.done( function ( token ) {
+				assert.ok( token.length, 'Edit token' );
+			} )
+			.fail( function ( err ) {
+				assert.equal( '', err, 'Edit token ' );
+			} );
+	} );
+
 }( mediaWiki ) );
