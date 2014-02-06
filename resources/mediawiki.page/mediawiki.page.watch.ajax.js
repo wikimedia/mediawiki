@@ -19,6 +19,12 @@
 	function updateWatchLink( $link, action, state ) {
 		var accesskeyTip, msgKey, $li, otherAction;
 
+		// Don't fail if no link was found or no action was given,
+		// this can happen when calling the exposed function and the link was changed by a user script
+		if ( !$link || !$link.length || !action ) {
+			return;
+		}
+
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
@@ -69,8 +75,6 @@
 	function mwUriGetAction( url ) {
 		var action, actionPaths, key, i, m, parts;
 
-		actionPaths = mw.config.get( 'wgActionPaths' );
-
 		// @todo Does MediaWiki give action path or query param
 		// precedence ? If the former, move this to the bottom
 		action = mw.util.getParamValue( 'action', url );
@@ -78,6 +82,7 @@
 			return action;
 		}
 
+		actionPaths = mw.config.get( 'wgActionPaths' );
 		for ( key in actionPaths ) {
 			if ( actionPaths.hasOwnProperty( key ) ) {
 				parts = actionPaths[key].split( '$1' );
