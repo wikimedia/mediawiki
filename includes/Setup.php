@@ -417,8 +417,8 @@ MWExceptionHandler::installHandler();
 wfProfileOut( $fname . '-exception' );
 
 wfProfileIn( $fname . '-includes' );
-require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/normal/UtfNormalUtil.php";
+require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 
@@ -456,8 +456,6 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 		)
 	);
 }
-
-$wgDeferredUpdateList = array(); // b/c
 
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
@@ -503,22 +501,21 @@ if ( $wgCommandLineMode ) {
 }
 
 wfProfileOut( $fname . '-misc1' );
-if ( !defined( 'MW_SETUP_NO_CACHE' ) ) {
-	wfProfileIn( $fname . '-memcached' );
+wfProfileIn( $fname . '-memcached' );
 
-	$wgMemc = wfGetMainCache();
-	$messageMemc = wfGetMessageCacheStorage();
-	$parserMemc = wfGetParserCacheStorage();
-	$wgLangConvMemc = wfGetLangConverterCacheStorage();
+$wgMemc = wfGetMainCache();
+$messageMemc = wfGetMessageCacheStorage();
+$parserMemc = wfGetParserCacheStorage();
+$wgLangConvMemc = wfGetLangConverterCacheStorage();
 
-	wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
-		get_class( $messageMemc ) . '[message] ' .
-		get_class( $parserMemc ) . "[parser]\n" );
+wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
+	get_class( $messageMemc ) . '[message] ' .
+	get_class( $parserMemc ) . "[parser]\n" );
 
-	wfProfileOut( $fname . '-memcached' );
-	# # Most of the config is out, some might want to run hooks here.
-	wfRunHooks( 'SetupAfterCache' );
-}
+wfProfileOut( $fname . '-memcached' );
+
+# # Most of the config is out, some might want to run hooks here.
+wfRunHooks( 'SetupAfterCache' );
 
 wfProfileIn( $fname . '-session' );
 
@@ -537,44 +534,42 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 }
 
 wfProfileOut( $fname . '-session' );
+wfProfileIn( $fname . '-globals' );
 
-if ( !defined( 'MW_SETUP_NO_CONTEXT' ) ) {
-	wfProfileIn( $fname . '-globals' );
+$wgContLang = Language::factory( $wgLanguageCode );
+$wgContLang->initEncoding();
+$wgContLang->initContLang();
 
-	$wgContLang = Language::factory( $wgLanguageCode );
-	$wgContLang->initEncoding();
-	$wgContLang->initContLang();
+// Now that variant lists may be available...
+$wgRequest->interpolateTitle();
+$wgUser = RequestContext::getMain()->getUser(); # BackCompat
 
-	// Now that variant lists may be available...
-	$wgRequest->interpolateTitle();
-	$wgUser = RequestContext::getMain()->getUser(); # BackCompat
+/**
+ * @var $wgLang Language
+ */
+$wgLang = new StubUserLang;
 
-	/**
-	 * @var $wgLang Language
-	 */
-	$wgLang = new StubUserLang;
+/**
+ * @var OutputPage
+ */
+$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
 
-	/**
-	 * @var OutputPage
-	 */
-	$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
+/**
+ * @var $wgParser Parser
+ */
+$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
-	/**
-	 * @var $wgParser Parser
-	 */
-	$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
-
-	if ( !is_object( $wgAuth ) ) {
-		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
-		wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
-	}
-
-	# Placeholders in case of DB error
-	$wgTitle = null;
-
-	wfProfileOut( $fname . '-globals' );
+if ( !is_object( $wgAuth ) ) {
+	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
+	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
+# Placeholders in case of DB error
+$wgTitle = null;
+
+$wgDeferredUpdateList = array();
+
+wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 
 # Extension setup functions for extensions other than skins
