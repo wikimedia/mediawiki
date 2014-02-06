@@ -37,8 +37,9 @@
 			if ( nav === undefined ) {
 				nav = window.navigator;
 			}
+
 			// Use the cached version if possible
-			if ( profileCache[nav.userAgent] === undefined ) {
+			if ( profileCache[ nav.userAgent + '|' + nav.platform ] === undefined ) {
 
 				var
 					versionNumber,
@@ -174,7 +175,7 @@
 
 				/* Caching */
 
-				profileCache[nav.userAgent] = {
+				profileCache[ nav.userAgent + '|' + nav.platform  ] = {
 					name: name,
 					layout: layout,
 					layoutVersion: layoutversion,
@@ -184,7 +185,7 @@
 					versionNumber: versionNumber
 				};
 			}
-			return profileCache[nav.userAgent];
+			return profileCache[ nav.userAgent + '|' + nav.platform  ];
 		},
 
 		/**
