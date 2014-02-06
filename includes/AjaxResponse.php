@@ -215,7 +215,7 @@ class AjaxResponse {
 		$fname = 'AjaxResponse::checkLastModified';
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n" );
+			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n", 'log' );
 			return false;
 		}
 
