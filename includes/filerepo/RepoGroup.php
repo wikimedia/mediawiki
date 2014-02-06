@@ -42,7 +42,7 @@ class RepoGroup {
 	/** @var array */
 	protected $foreignInfo;
 
-	/** @var ProcessCacheLRU  */
+	/** @var ProcessCacheLRU */
 	protected $cache;
 
 	/** @var RepoGroup */

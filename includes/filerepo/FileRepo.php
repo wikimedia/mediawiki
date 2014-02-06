@@ -55,7 +55,7 @@ class FileRepo {
 	/** @var Array Map of zones to config */
 	protected $zones = array();
 
-	/** @var string URL of thumb.php  */
+	/** @var string URL of thumb.php */
 	protected $thumbScriptUrl;
 
 	/** @var bool Whether to skip media file transformation on parse and rely
@@ -111,7 +111,7 @@ class FileRepo {
 	 */
 	protected $abbrvThreshold;
 
-	/** @var string The URL of the repo's favicon, if any  */
+	/** @var string The URL of the repo's favicon, if any */
 	protected $favicon;
 
 	/**
@@ -505,7 +505,7 @@ class FileRepo {
 				$searchName = File::normalizeTitle( $title )->getDBkey(); // must be valid
 				if ( $flags & self::NAME_AND_TIME_ONLY ) {
 					$result[$searchName] = array(
-						'title'     => $file->getTitle()->getDBkey(),
+						'title' => $file->getTitle()->getDBkey(),
 						'timestamp' => $file->getTimestamp()
 					);
 				} else {

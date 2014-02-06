@@ -1406,6 +1406,7 @@ abstract class ApiBase extends ContextSource {
 			// Translate message to code, for backwards compatability
 			$code = ApiBase::$messageMap[$code]['code'];
 		}
+
 		return array( $code, $msg->inLanguage( 'en' )->useDatabase( false )->plain() );
 	}
 

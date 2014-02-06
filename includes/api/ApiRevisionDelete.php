@@ -129,6 +129,7 @@ class ApiRevisionDelete extends ApiBase {
 			$this->getResult()->setIndexedTagName( $warnings, 'w' );
 			$ret['warnings'] = $warnings;
 		}
+
 		return $ret;
 	}
 
@@ -159,6 +160,7 @@ class ApiRevisionDelete extends ApiBase {
 			$message['rendered'] = $msg->useDatabase( false )->inLanguage( 'en' )->plain();
 			$ret[] = $message;
 		}
+
 		return $ret;
 	}
 

@@ -30,7 +30,7 @@ class FSFile {
 	/** @var string Path to file */
 	protected $path;
 
-	/** @var string File SHA-1 in base 36  */
+	/** @var string File SHA-1 in base 36 */
 	protected $sha1Base36;
 
 	/**

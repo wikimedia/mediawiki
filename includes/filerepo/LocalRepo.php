@@ -258,11 +258,12 @@ class LocalRepo extends FileRepo {
 			}
 		}
 
-		$fileMatchesSearch = function( File $file, array $search ) {
+		$fileMatchesSearch = function ( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
 			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
 				? $search['private']
 				: null;
+
 			return (
 				$file->exists() &&
 				(
@@ -275,7 +276,7 @@ class LocalRepo extends FileRepo {
 		};
 
 		$repo = $this;
-		$applyMatchingFiles = function( ResultWrapper $res, &$searchSet, &$finalFiles )
+		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
 			use ( $repo, $fileMatchesSearch, $flags )
 		{
 			global $wgContLang;
@@ -290,7 +291,7 @@ class LocalRepo extends FileRepo {
 					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
 				}
 				foreach ( $dbKeysLook as $dbKey ) {
-					if ( isset( $searchSet[$dbKey])
+					if ( isset( $searchSet[$dbKey] )
 						&& $fileMatchesSearch( $file, $searchSet[$dbKey] )
 					) {
 						$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
@@ -309,6 +310,7 @@ class LocalRepo extends FileRepo {
 		foreach ( array_keys( $searchSet ) as $dbKey ) {
 			$imgNames[] = $this->getNameFromTitle( File::normalizeTitle( $dbKey ) );
 		}
+
 		if ( count( $imgNames ) ) {
 			$res = $dbr->select( 'image',
 				LocalFile::selectFields(), array( 'img_name' => $imgNames ), __METHOD__ );
@@ -328,6 +330,7 @@ class LocalRepo extends FileRepo {
 				);
 			}
 		}
+
 		if ( count( $oiConds ) ) {
 			$res = $dbr->select( 'oldimage',
 				OldLocalFile::selectFields(), $dbr->makeList( $oiConds, LIST_OR ), __METHOD__ );
@@ -339,15 +342,17 @@ class LocalRepo extends FileRepo {
 			if ( !empty( $search['ignoreRedirect'] ) ) {
 				continue;
 			}
+
 			$title = File::normalizeTitle( $dbKey );
 			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
+
 			if ( $redir && $redir->getNamespace() == NS_FILE ) {
 				$file = $this->newFile( $redir );
 				if ( $file && $fileMatchesSearch( $file, $search ) ) {
 					$file->redirectedFrom( $title->getDBkey() );
 					if ( $flags & FileRepo::NAME_AND_TIME_ONLY ) {
 						$finalFiles[$dbKey] = array(
-							'title'     => $file->getTitle()->getDBkey(),
+							'title' => $file->getTitle()->getDBkey(),
 							'timestamp' => $file->getTimestamp()
 						);
 					} else {
@@ -503,6 +508,7 @@ class LocalRepo extends FileRepo {
 	 */
 	function getInfo() {
 		global $wgFavicon;
+
 		return array_merge( parent::getInfo(), array(
 			'favicon' => wfExpandUrl( $wgFavicon ),
 		) );

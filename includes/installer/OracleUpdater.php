@@ -94,8 +94,8 @@ class OracleUpdater extends DatabaseUpdater {
 				'patch-ufg_group-length-increase-255.sql' ),
 
 			//1.23
-			array( 'addIndex', 'logging', 'i06',  'patch-logging_user_text_type_time_index.sql' ),
-			array( 'addIndex', 'logging', 'i07',  'patch-logging_user_text_time_index.sql' ),
+			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

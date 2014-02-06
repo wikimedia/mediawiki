@@ -19,6 +19,7 @@
  *
  * @file
  */
+
 class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).

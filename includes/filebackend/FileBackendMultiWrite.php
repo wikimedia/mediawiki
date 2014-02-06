@@ -45,7 +45,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected $backends = array();
 
-	/** @var int Index of master backend  */
+	/** @var int Index of master backend */
 	protected $masterIndex = -1;
 
 	/** @var int Bitfield */
@@ -569,6 +569,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	public function getFileXAttributes( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileXAttributes( $realParams );
 	}
 

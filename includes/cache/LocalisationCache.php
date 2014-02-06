@@ -559,6 +559,7 @@ class LocalisationCache {
 				unset( $data[$key] );
 			}
 		}
+
 		// The JSON format only supports messages, none of the other variables, so wrap the data
 		return array( 'messages' => $data );
 	}

@@ -501,6 +501,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// prefix.
 			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
 		}
+
 		return substr( $t->getDbKey(), 0, -1 );
 	}
 

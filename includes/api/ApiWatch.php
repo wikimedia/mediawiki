@@ -134,11 +134,11 @@ class ApiWatch extends ApiBase {
 			if ( $compatibilityMode ) {
 				$this->dieStatus( $status );
 			}
-			$res['error'] =  $this->getErrorFromStatus( $status );
+			$res['error'] = $this->getErrorFromStatus( $status );
 		}
+
 		return $res;
 	}
-
 
 	/**
 	 * Get a cached instance of an ApiPageSet object
@@ -148,6 +148,7 @@ class ApiWatch extends ApiBase {
 		if ( $this->mPageSet === null ) {
 			$this->mPageSet = new ApiPageSet( $this );
 		}
+
 		return $this->mPageSet;
 	}
 
@@ -183,11 +184,13 @@ class ApiWatch extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
+
 		return $result;
 	}
 
 	public function getParamDescription() {
 		$psModule = $this->getPageSet();
+
 		return $psModule->getParamDescription() + array(
 			'title' => 'The page to (un)watch. use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',

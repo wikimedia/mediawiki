@@ -724,6 +724,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		wfProfileOut( __METHOD__ . '-miss' );
 		$this->cheapCache->set( $path, 'xattr', array( 'map' => $fields, 'latest' => $latest ) );
+
 		return $fields;
 	}
 
@@ -1681,12 +1682,15 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected static function normalizeXAttributes( array $xattr ) {
 		$newXAttr = array( 'headers' => array(), 'metadata' => array() );
+
 		foreach ( $xattr['headers'] as $name => $value ) {
 			$newXAttr['headers'][strtolower( $name )] = $value;
 		}
+
 		foreach ( $xattr['metadata'] as $name => $value ) {
 			$newXAttr['metadata'][strtolower( $name )] = $value;
 		}
+
 		return $newXAttr;
 	}
 

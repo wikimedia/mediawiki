@@ -2758,7 +2758,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string $delTable The table to delete from.
 	 * @param string $joinTable The other table.
 	 * @param string $delVar The variable to join on, in the first table.
-	 * @param string$joinVar The variable to join on, in the second table.
+	 * @param string $joinVar The variable to join on, in the second table.
 	 * @param array $conds Condition array of field names mapped to variables,
 	 *   ANDed together in the WHERE clause
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
