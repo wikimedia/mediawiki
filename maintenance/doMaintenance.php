@@ -53,6 +53,8 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
+# Start the external library autoloader
+require_once "$IP/libs/autoload.php";
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 # Stub the profiler

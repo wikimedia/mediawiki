@@ -91,6 +91,9 @@ if ( $IP === false ) {
 	}
 }
 
+# Start the external library autoloader
+require_once "$IP/libs/autoload.php";
+
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
