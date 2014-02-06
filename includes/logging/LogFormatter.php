@@ -573,7 +573,7 @@ class LogFormatter {
 	}
 
 	/**
-	 * Gets the luser provided comment
+	 * Gets the user provided comment
 	 * @return string HTML
 	 */
 	public function getComment() {
