@@ -52,6 +52,7 @@ $messages = array(
 'tog-diffonly' => 'Kaladuwanaanshaha hoostooda qari qoraalka bogga',
 'tog-showhiddencats' => 'Itusi ereykoobyada qarsoon',
 'tog-norollbackdiff' => 'ha isticmaalin kala duwanaanshaha markii aad dib u soo celisay kadib',
+'tog-prefershttps' => 'Adeegso mar kasta qad aamin ah markaad soo galeeyso',
 
 'underline-always' => 'Marwalba',
 'underline-never' => 'Marnaba',
@@ -489,6 +490,7 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
 
 # Change password dialog
+'changepassword' => 'Bedel ereysirta',
 'resetpass_announce' => 'waxaa ku soo geshay eraysir ku meelgaar ah  oo e-mail laguugu soo diray.
 Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qortaa eraysir oo cusub:',
 'resetpass_header' => 'bedel  ereyga sirta ee akoon-ka',
@@ -637,7 +639,7 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 ''Sababtoo ah {{SITENAME}}han wuxuu leeyahay HTML ceyriin ah, horfiirintiisa waxaa loo qariyey si looga hortago weerar ka yimaada JavaScriptga.''
 
 '''Hadii wax ka bedlkaan uu yahay mid xaq ah, fadlan markale isku day. Hadii aysan weli shaqaynin, is kuday inaad  ka baxdo ee markale soo gudagal.'''",
-'editing' => 'Waxaad badalaysaa $1',
+'editing' => 'Waxaad bedel ku samaynaysaa $1',
 'creating' => 'Sameyta $1',
 'editingsection' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
 'editingcomment' => 'Waxaad wax ka bedelaysaa $1 (qeyb yar)',
@@ -807,6 +809,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'timezoneregion-atlantic' => 'Badweynta Atlaantik',
 'allowemail' => 'Ogolow in e-mail ay kaagatimaado isticmaalayaasha kale',
 'prefs-searchoptions' => 'Dooqyada raadinta',
+'prefs-emailconfirm-label' => 'Hubinta Email-ka:',
 'youremail' => 'E-mail:',
 'username' => 'Gudagal:',
 'uid' => 'Lambarka isticmaalaha:',

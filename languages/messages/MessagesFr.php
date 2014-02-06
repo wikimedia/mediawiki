@@ -457,7 +457,7 @@ $messages = array(
 'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
 'tog-useeditwarning' => "M'avertir quand je quitte une page de modification sans publier les changements",
-'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté(e)',
+'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté',
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
@@ -815,7 +815,7 @@ Le motif avancé est « ''$2'' ».",
 L'administrateur qui l'a verrouillé a fourni ce motif : « $3 ».",
 'invalidtitle-knownnamespace' => "Titre invalide avec l'espace de noms « $2 » et l'intitulé « $3 »",
 'invalidtitle-unknownnamespace' => "Titre invalide avec le numéro d'espace de noms $1 et l'intitulé « $2 » inconnus",
-'exception-nologin' => 'Non connecté(e)',
+'exception-nologin' => 'Non connecté',
 'exception-nologin-text' => 'Veuillez [[Special:Userlogin|vous connecter]] pour pouvoir accéder à cette page ou cette action.',
 'exception-nologin-text-manual' => 'Veuillez $1 pour pouvoir accéder à cette page ou cette action.',
 
@@ -867,7 +867,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'userlogin-resetpassword-link' => 'Mot de passe oublié ?',
 'helplogin-url' => 'Help:Connexion',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
-'userlogin-loggedin' => 'Vous êtes déjà connecté{{GENDER:$1||e|(e)}} en tant que {{GENDER:$1|$1}}.
+'userlogin-loggedin' => 'Vous êtes déjà connecté{{GENDER:$1||e}} en tant que {{GENDER:$1|$1}}.
 Utilisez le formulaire ci-dessous pour vous connecter avec un autre compte utilisateur.',
 'userlogin-createanother' => 'Créer un autre compte',
 'createacct-join' => 'Entrez vos informations ci-dessous.',
@@ -976,7 +976,7 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 'changepassword-throttled' => 'Vous avez fait trop de tentatives de connexion récemment.
 Veuillez attendre $1 avant de réessayer.',
 'resetpass_forbidden' => 'Les mots de passe ne peuvent pas être changés',
-'resetpass-no-info' => 'Vous devez être connecté(e) pour avoir accès à cette page.',
+'resetpass-no-info' => 'Vous devez être connecté pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer de mot de passe',
 'resetpass-submit-cancel' => 'Annuler',
 'resetpass-wrong-oldpass' => 'Mot de passe actuel ou temporaire invalide.
@@ -1017,7 +1017,7 @@ Mot de passe temporaire : $2",
 'changeemail' => 'Changer l’adresse de courriel',
 'changeemail-header' => 'Changer l’adresse de courriel du compte',
 'changeemail-text' => 'Remplissez ce formulaire pour changer votre adresse de courriel. Vous devrez entrer votre mot de passe pour confirmer ce changement.',
-'changeemail-no-info' => 'Vous devez être connecté(e) pour pouvoir accéder directement à cette page.',
+'changeemail-no-info' => 'Vous devez être connecté pour pouvoir accéder directement à cette page.',
 'changeemail-oldemail' => 'Adresse de courriel actuelle :',
 'changeemail-newemail' => 'Nouvelle adresse de courriel :',
 'changeemail-none' => '(aucune)',
@@ -1071,7 +1071,7 @@ Vous devriez le faire si vous les avez partagés accidentellement avec quelqu'un
 'showlivepreview' => 'Aperçu rapide',
 'showdiff' => 'Voir les modifications',
 'anoneditwarning' => "'''Attention :''' vous n'êtes pas identifié(e). Votre adresse IP sera enregistrée dans l'historique de cette page.",
-'anonpreviewwarning' => "''Vous n'êtes pas identifié(e). Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
+'anonpreviewwarning' => "''Vous n'êtes pas identifié. Sauvegarder enregistrera votre adresse IP dans l'historique des modifications de la page.''",
 'missingsummary' => "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.
 Si vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext' => 'Veuillez entrer un commentaire ci-dessous.',
@@ -1120,7 +1120,7 @@ Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette p
 'loginreqpagetext' => 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => "Un mot de passe généré aléatoirement pour [[User talk:$1|$1]] a été envoyé à $2.
-Il peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après s’être connecté{{GENDER:$1||e|(e)}}.",
+Il peut être modifié sur la page ''[[Special:ChangePassword|Changement de mot de passe]]'' après connexion.",
 'newarticle' => '(Nouveau)',
 'newarticletext' => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée]. 
 Pour créer cette page, entrez votre texte dans la boîte ci-après (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations). 
@@ -1504,6 +1504,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'searchrelated' => 'reliés',
 'searchall' => 'tout',
 'showingresults' => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du n°<b>$2</b>.',
+'showingresultsinrange' => 'Afficher ci-dessous jusqu’à {{PLURAL:$1|<strong>1</strong> résultat|<strong>$1</strong> résultats}} dans la série #<strong>$2</strong> à #<strong>$3</strong>.',
 'showingresultsnum' => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du n°<b>$2</b>.',
 'showingresultsheader' => "{{PLURAL:$5|Résultat '''$1'''|Résultats '''$1–$2'''}} de '''$3''' pour '''$4'''",
 'search-nonefound' => "Il n'y a aucun résultat correspondant à la requête.",
@@ -1860,7 +1861,7 @@ Cette information sera publique.',
 'uploadbtn' => 'Importer le fichier',
 'reuploaddesc' => "Annuler et retourner au formulaire d'import",
 'upload-tryagain' => 'Envoyer la description du fichier modifiée',
-'uploadnologin' => 'Non connecté{{GENDER:||e|(e)}}',
+'uploadnologin' => 'Pas connecté',
 'uploadnologintext' => 'Vous devez $1 pour importer des fichiers.',
 'upload_directory_missing' => 'Le répertoire d’import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.',
 'upload_directory_read_only' => 'Le répertoire d’import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.',
@@ -2496,8 +2497,8 @@ L'adresse électronique que vous avez indiquée dans [[Special:Preferences|vos p
 'watchlistfor2' => 'Pour $1 $2',
 'nowatchlist' => 'Votre liste de suivi ne référence aucune page.',
 'watchlistanontext' => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',
-'watchnologin' => 'Non connecté(e)',
-'watchnologintext' => 'Vous devez être [[Special:UserLogin|identifié(e)]] pour modifier votre liste de suivi.',
+'watchnologin' => 'Non connecté',
+'watchnologintext' => 'Vous devez être [[Special:UserLogin|identifié]] pour modifier votre liste de suivi.',
 'addwatch' => 'Ajouter à la liste de suivi',
 'addedwatchtext' => 'La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
 Les prochaines modifications de cette page et de la page de discussion associée y seront répertoriées.',
@@ -2844,7 +2845,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
 Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.',
-'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain{{GENDER:||e|(e)}} de vouloir faire cela ?',
+'ipb-blockingself' => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain{{GENDER:||e}} de vouloir faire cela ?',
 'ipb-confirmhideuser' => "Vous êtes sur le point de bloquer un utilisateur avec « cacher l'utilisateur » activé. Cela supprime le nom de l'utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?",
 'ipb-confirmaction' => 'Si vous êtes sûr de vraiment vouloir le faire, veuillez cocher le champ « {{int:ipb-confirm}} » en bas.',
 'ipb-edit-dropdown' => 'Modifier les motifs de blocage par défaut',
@@ -2855,8 +2856,8 @@ Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.'
 'unblockip' => 'Débloquer un utilisateur ou une adresse IP',
 'unblockiptext' => 'Utilisez le formulaire ci-dessous pour redonner les droits d’écriture à une adresse IP ou un nom d’utilisateur.',
 'ipusubmit' => 'Supprimer ce blocage',
-'unblocked' => '[[User:$1|$1]] a été débloqué{{GENDER:$1||e|(e)}}',
-'unblocked-range' => '$1 a été débloqué{{GENDER:$1||e|(e)}}',
+'unblocked' => '[[User:$1|$1]] a été débloqué{{GENDER:$1||e}}',
+'unblocked-range' => 'Le compte $1 a été débloqué',
 'unblocked-id' => 'Le blocage $1 a été enlevé',
 'blocklist' => 'Utilisateurs bloqués',
 'ipblocklist' => 'Utilisateurs bloqués',
@@ -2888,8 +2889,8 @@ Consultez la [[Special:BlockList|liste des blocages]] pour revoir les blocages.'
 'change-blocklink' => 'modifier le blocage',
 'contribslink' => 'contributions',
 'emaillink' => 'Envoyer un courriel',
-'autoblocker' => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
-Le motif fourni pour le blocage de $1 est : « $2 ».',
+'autoblocker' => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
+Le motif fourni pour le blocage de $1 est « $2 »',
 'blocklogpage' => 'Journal des blocages',
 'blocklog-showlog' => 'Cet utilisateur a été bloqué précédemment. Le journal des blocages est disponible ci-dessous :',
 'blocklog-showsuppresslog' => 'Cet utilisateur a été bloqué et caché précédemment. Le journal des suppressions est disponible ci-dessous :',
@@ -2929,7 +2930,7 @@ Vous ne pouvez pas créer un compte.',
 'xffblockreason' => "Une adresse IP dans l'en-tête X-Forwarded-For, soit la vôtre ou celle d'un serveur proxy que vous utilisez, a été bloquée. La raison du blocage initial est : $1",
 'cant-see-hidden-user' => "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
 'ipbblocked' => "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué",
-'ipbnounblockself' => "Vous n'êtes pas autorisé{{GENDER:||e|(e)}} à vous débloquer vous-même",
+'ipbnounblockself' => "Vous n'êtes pas autorisé{{GENDER:||e}} à vous débloquer vous-même",
 
 # Developer tools
 'lockdb' => 'Verrouiller la base de données',

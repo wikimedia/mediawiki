@@ -640,7 +640,23 @@ Cêva 'd ingrès pruvişôria: $2",
 'showdiff' => 'Guêrda i cambiamèint',
 'anoneditwarning' => "'''Atensiòun:''' Ingrès mìa fât. Al tó indirés IP al srà sgnê int la stòria ed cla pàgina chè.",
 'anonpreviewwarning' => "\"An n'é mìa stê fât l'ingrès. Mèinter es sêlva la pàgina, l'indirés IP al srà sgnê int la stòria 'd la pàgina.\"",
+'missingsummary' => "'''Atensiòun:''' an n'é mìa stê precişê al mutîv de sté mudéfica. S'es tōrna a clichêr insém a \"{{int:savearticle}}\" la mudéfica la gnirà salvêda cun al mutîv vōd.",
+'missingcommenttext' => 'Scréver un cumèint ché sòta.',
+'missingcommentheader' => "'''Atensiòun:''' an n'é mìa stê precişê al mutîv/al tétol de sté mudéfica. S'es tōrna a clichêr insém a \"{{int:savearticle}}\" la mudéfica la gnirà salvêda sèinsa tétol.",
+'summary-preview' => 'Guêrda préma sûnt:',
+'subject-preview' => 'Guêrda préma argumèint/tétol:',
 'blockedtitle' => 'Utèint bluchê',
+'blockedtext' => " '''Al tō nòm utèint o indirés IP l'é stê bluchê.'''
+
+Al blôch l'é stê fât da $1. Al mutîv dal blôch l'é còst:  ''$2''.
+
+*Inési dal blôch: $8
+*Scadèinsa dal blôch: $6
+*Intervâl ed blôch: $7
+
+S' ét vō, l'é pusébil mètres in cuntât cun $1 o 'n êter [[{{MediaWiki:Grouppage-sysop}}|aministradōr]] per discóter dal blôch.
+
+Guêrda che la funsiòun 'Scrév a l'utèint' an n'é mìa in ôvra s' an n'é mìa stê registrtê un indirés ed pôsta eletrônica vâlid int al tō [[Special:Preferences| preferèinsi]] o se sté funsiòun l'é stêda bluchêda. L'indirés IP 'd adèsa l'é $3, al nóme ID dal blôch l'é #$5. T'é perghê ed precişêr tót j elemèint ed préma per ògni dmânda de spiegasiòun",
 'newarticle' => '(Nōv)',
 'newarticletext' => "Al colegamèint apèina fât al cumbîna cun 'na pàgina ch' an n'é mìa incòra stêda fâta. S'ét vō fêr la pàgina adès, l'é asê cumincêr a scréver al tèst int la caşèla ché sòt (per vedèr infurmasiòun pió precîşi guêrda la [[{{MediaWiki:Helppage}}|pàgina 'd ajót]]). Se al colegamèint  l'é stê avêrt per erōr, l'é asê clichêr al pulsânt \"Indrē\" dal tó navigadōr.",
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',

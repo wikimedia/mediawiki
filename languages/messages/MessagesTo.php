@@ -419,7 +419,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'lineno' => 'Laini hono $1:',
 'compareselectedversions' => 'Fakatatau ongo paaki fili',
 'editundo' => 'vete',
-'diff-multi' => '(Naʻe ʻikai ʻasi mai ʻa e paaki lotoloto ʻe $1).',
 
 # Search results
 'searchresults' => 'kumi hono ʻātunga',
@@ -749,7 +748,6 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'watchmethod-list' => 'ʻoku siviʻi ʻa e ngaahi peesi fakaleʻo ki he toki fatu',
 'watchlistcontains' => 'ʻOku ʻi ai ha peesi ʻe $1 ʻi hoʻo hokohoko leʻo.',
 'iteminvalidname' => "Meʻa fihi mo e meʻa '$1', hingo taʻeʻaongaʻi...",
-'wlnote' => 'ʻOku ʻasi ʻi lalo ʻa e liliu fakamuimui ʻe $1 ʻi he houa fakamuimui ʻe <b>$2</b>.',
 'wlshowlast' => 'ʻAsi mai houa fakamuimui ʻe $1, ʻaho ʻe $2, $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching

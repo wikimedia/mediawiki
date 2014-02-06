@@ -2465,7 +2465,7 @@ Delok [[Special:BlockList|daptar blokir]] kanggo ninjo blokiran.',
 Log blokiran sumadhiya nèng ngisor kanggo rujukan:',
 'blocklog-showsuppresslog' => 'Panganggo iki wis tau diblokir lan didhelikaké sakdurungé.
 Log brèdèlan sumadhiya nèng ngisor kanggo rujukan:',
-'blocklogentry' => 'mblokir "[[$1]]" dipun watesi wedalipun $2 $3',
+'blocklogentry' => 'mblokir "[[$1]]" dipun watesi wekdalipun $2 $3',
 'reblock-logentry' => 'Ngowahi sèting pamblokiran [[$1]] kanthi wektu daluwarsa $2 $3',
 'blocklogtext' => 'Ing ngisor iki kapacak log pamblokiran lan panjabelan blokir panganggo.
 Alamat IP sing diblokir sacara otomatis ora ana ing daftar iki.

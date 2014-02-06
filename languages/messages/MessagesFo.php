@@ -612,7 +612,7 @@ Eftirkanna um tú hevur stavað rætt, ella [[Special:UserLogin/signup|stovna ei
 'passwordtooshort' => 'Loyniorð mugu vera í minsta lagi {{PLURAL:$1|1 bókstav, tal, tekn|$1 bókstavir, tøl og tekn}}.',
 'password-name-match' => 'Loyniorðið hjá tær má vera annarleiðis enn títt brúkaranavn.',
 'password-login-forbidden' => 'Tað er ikki loyvt at brúka hetta brúkaranavnið og loyniorðið.',
-'mailmypassword' => 'Send mær eitt nýtt loyniorð við t-posti',
+'mailmypassword' => 'Nullstilla loyniorðið',
 'passwordremindertitle' => 'Nýtt fyribils loyniorð fyri {{SITENAME}}',
 'passwordremindertext' => 'Onkur (óivað tú, frá IP adressu $1) hevur umbiðið eitt nýtt loyniorð fyri {{SITENAME}}  $4. Eitt fyribils loyniorð fyri brúkara "$2" er nú gjørt og er sent til "$3". Um hetta var tað tú vildi, so mást tú rita inn og velja eitt nýtt loyniorð nú. 
 Títt fyribils loyniorð gongur út um {{PLURAL:$5|ein dag|$5 dagar}}.
@@ -1157,7 +1157,7 @@ Tryggja tær, at henda broyting fer at varðveita framhaldssøguna hjá síðuni
 'shown-title' => 'Vís $1 {{PLURAL:$1|úrslit|úrslit}} á hvørjari síðu',
 'viewprevnext' => 'Vís ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Tað er longu ein síða sum eitur \"[[:\$1]]\" á hesi wiki.'''",
-'searchmenu-new' => "'''Stovna síðuna \"[[:\$1]]\" á hesi wiki!'''",
+'searchmenu-new' => '<strong>\'\'\'Stovna síðuna "[[:$1]]" á hesi wiki!</strong> {{PLURAL:$2|0=|Sí eisini síðuna sum varð funnin við tínari leiting.|Sí eisini leitiúrslitini ið funnin vóru.}}',
 'searchprofile-articles' => 'Innihaldssíður',
 'searchprofile-project' => 'Hjálpar og verkætlanar síður',
 'searchprofile-images' => 'Fjølmiðlar - multimedia',
@@ -1491,7 +1491,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'rclistfrom' => 'Sýn nýggjar broytingar byrjandi við $1',
 'rcshowhideminor' => '$1 minni rættingar',
 'rcshowhidebots' => '$1 bottar',
-'rcshowhideliu' => '$1 skrásettar brúkarar',
+'rcshowhideliu' => '$1 skrásettir brúkarar',
 'rcshowhideanons' => '$1 navnleysar brúkarar',
 'rcshowhidepatr' => '$1 eftirhugdar rættingar',
 'rcshowhidemine' => '$1 mínar rættingar',
@@ -2432,7 +2432,7 @@ Sí [[Special:BlockList|sperringarlistan]] fyri at síggja allar sperringar.',
 'contribslink' => 'íkøst',
 'emaillink' => 'send teldupost',
 'autoblocker' => 'Sjálvvirkandi sperring tí at tín IP adressa nýliga er blivin brúkt av "[[User:$1|$1]]".
-Orsøkin ið varð nevnd fyri at sperra $1 er "\'\'$2\'\'"',
+Orsøkin ið varð nevnd fyri at sperra $1 er "$2"',
 'blocklogpage' => 'Bannagerðabók',
 'blocklog-showlog' => 'Hesin brúkarin hevur fyrr verið sperraður.
 Sperringarloggurin er vístur niðanfyri til kunningar:',

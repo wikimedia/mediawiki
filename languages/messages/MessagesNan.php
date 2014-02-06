@@ -28,7 +28,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Liân-kiat oē té-sûn:',
-'tog-justify' => 'pâi-chê  tōaⁿ-lo̍h',
 'tog-hideminor' => 'Am chòe-kīn ê sió kái-piàn',
 'tog-hidepatrolled' => 'Am chòe-kīn sûn koè--ê  kái-piàn',
 'tog-newpageshidepatrolled' => 'Sin-ia̍h ê chheng-toaⁿ am sûn koè--ê',
@@ -37,9 +36,7 @@ $messages = array(
 'tog-numberheadings' => 'Phiau-tê chū-tōng pian-hō',
 'tog-showtoolbar' => 'Hián-sī pian-chi̍p ke-si-tiâu (su-iàu JavaScript)',
 'tog-editondblclick' => 'Siang-ji̍h ia̍h-bīn to̍h ē-tàng pian-chi̍p (su-iàu JavaScript)',
-'tog-editsection' => 'Ji̍h [siu-kái] chit-ê liân-kiat to̍h ē-tàng pian-chi̍p toāⁿ-lo̍h',
 'tog-editsectiononrightclick' => 'Chiàⁿ-ji̍h (right click) toāⁿ-lo̍h (section) phiau-tê to̍h ē-tàng pian-chi̍p toāⁿ-lo̍h (su-iàu JavaScript)',
-'tog-showtoc' => 'Hián-sī bo̍k-chhù (3-ê phiau-tê í-siōng ê ia̍h)',
 'tog-rememberpassword' => 'Kì tiâu bi̍t-bé, āu-chōa iōng (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Kā goá khui ê ia̍h ka-ji̍p kàm-sī-toaⁿ lāi-té',
 'tog-watchdefault' => 'Kā goá pian-chi̍p kòe ê ia̍h ka-ji̍p kàm-sī-toaⁿ lāi-té',
@@ -851,7 +848,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchmethod-recent' => 'tng teh kíam-cha choè-kīn ê siu-kái, khoàⁿ ū kàm-sī ê ia̍h bô',
 'watchmethod-list' => 'tng teh kiám-cha kàm-sī ê ia̍h khoàⁿ chòe-kīn ū siu-kái bô',
 'watchlistcontains' => 'Lí ê kàm-sī-toaⁿ siu $1 ia̍h.',
-'wlnote' => "Ē-kha sī '''$2''' tiám-cheng í-lāi siōng sin ê $1 ê kái-piàn.",
 'wlshowlast' => 'Hián-sī chêng $1 tiám-cheng $2 ji̍t $3',
 
 # Delete
@@ -1000,7 +996,6 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'tooltip-pt-preferences' => 'Lí ê siat-tēng',
 'tooltip-pt-mycontris' => 'Lí ê kòng-hiàn lia̍t-toaⁿ',
 'tooltip-pt-login' => 'Hi-bāng lí teng-ji̍p; m̄-ko bô kiông-chè',
-'tooltip-pt-anonlogin' => 'Hi-bāng lí teng-ji̍p; m̄-ko bô kiông-chè',
 'tooltip-pt-logout' => 'Teng-chhut',
 'tooltip-ca-talk' => 'Loē-iông ê thó-lūn',
 'tooltip-ca-edit' => 'Lí ē-sái kái chit ia̍h. Beh chhûn chìn-chiân, chhiáⁿ chhi̍h  sing-khoàⁿ-māi ê liú-á',

@@ -2519,7 +2519,7 @@ Ch'a consulta la [[Special:BlockList|lista dij blocagi]] për rivëdde ij blocag
 'change-blocklink' => 'modifiché ël blocagi',
 'contribslink' => 'contribussion',
 'emaillink' => 'mandé un mëssagi eletrònich',
-'autoblocker' => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent «[[User:$1|$1]]». Ël motiv për bloché $1 a l'é stait: «'''$2'''»",
+'autoblocker' => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent «[[User:$1|$1]]». Ël motiv për bloché $1 a l'é stait «'''$2'''»",
 'blocklogpage' => 'Registr dij blocagi',
 'blocklog-showlog' => "St'utent-sì a l'é già stàit blocà ant ël passà. Ël registr dij blocagi a l'é disponìbil sì-sota 'me arferiment:",
 'blocklog-showsuppresslog' => "St'utent-sì a l'é già stàit blocà e stërmà. Ël registr ëd j'eliminassion a l'é smonù sì-sota për arferiment:",

@@ -1741,7 +1741,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges-legend-heading' => "'''Teckenförklaring:'''",
 'recentchanges-legend-newpage' => '(se även [[Special:NewPages|listan över nya sidor]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
+'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' ändringar visas).",
 'rclistfrom' => 'Visa ändringar från och med $1',
 'rcshowhideminor' => '$1 mindre ändringar',
 'rcshowhidebots' => '$1 robotar',

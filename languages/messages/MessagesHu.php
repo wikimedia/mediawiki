@@ -1116,7 +1116,7 @@ Már létezik.',
 'invalid-content-data' => 'Érvénytelen tartalom adat',
 'content-not-allowed-here' => '"$1" tartalom nem engedélyezett a [[$2]] oldalon',
 'editwarning-warning' => 'A lap elhagyásával az összes itt végzett változtatás elveszhet.
-Ha be vagy jelentkezve letilthatod ezt a figyelmeztetést a beállításaid „Szerkesztés” szakaszában.',
+Ha be vagy jelentkezve letilthatod ezt a figyelmeztetést a beállításaid „{{int:prefs-editing}}” szakaszában.',
 
 # Content models
 'content-model-wikitext' => 'wikiszöveg',

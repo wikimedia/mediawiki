@@ -1517,6 +1517,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchrelated' => 'verwandt',
 'searchall' => 'alle',
 'showingresults' => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
+'showingresultsinrange' => 'Unten {{PLURAL:$1|wird <strong>ein</strong> Ergebnis|werden bis zu <strong>$1</strong> Ergebnisse}} im Bereich <strong>$2</strong> bis <strong>$3</strong> angezeigt.',
 'showingresultsnum' => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$3''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'showingresultsheader' => "{{PLURAL:$5|Ergebnis '''$1''' von '''$3'''|Ergebnisse '''$1–$2''' von '''$3'''}} für '''$4'''",
 'search-nonefound' => 'Zu deiner Suchanfrage wurden keine Ergebnisse gefunden.',
@@ -2512,7 +2513,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 'removedwatchtext' => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch' => 'Beobachten',
 'watchthispage' => 'Seite beobachten',
-'unwatch' => 'nicht mehr beobachten',
+'unwatch' => 'Nicht mehr beobachten',
 'unwatchthispage' => 'Nicht mehr beobachten',
 'notanarticle' => 'Keine Seite',
 'notvisiblerev' => 'Version wurde gelöscht',
@@ -2529,7 +2530,7 @@ Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werde
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Beobachten …',
-'unwatching' => 'Nicht beobachten …',
+'unwatching' => 'Nicht mehr beobachten …',
 'watcherrortext' => 'Beim Ändern der Beobachtungslisteneinstellungen für „$1“ ist ein Fehler aufgetreten.',
 
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benachrichtigungsdienst',
@@ -2878,7 +2879,8 @@ Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperr
 'change-blocklink' => 'Sperre ändern',
 'contribslink' => 'Beiträge',
 'emaillink' => 'E-Mail senden',
-'autoblocker' => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|$1]] benutzt. Grund der Benutzersperre: „$2“.',
+'autoblocker' => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|$1]] benutzt.
+Grund der Benutzersperre: „$2“',
 'blocklogpage' => 'Benutzersperr-Logbuch',
 'blocklog-showlog' => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:',
 'blocklog-showsuppresslog' => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} wurde schon früher gesperrt und versteckt.
@@ -3541,7 +3543,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpssatellites' => 'Für die Messung benutzte Satelliten',
 'exif-gpsstatus' => 'Empfängerstatus',
 'exif-gpsmeasuremode' => 'Messverfahren',
-'exif-gpsdop' => 'Maßpräzision',
+'exif-gpsdop' => 'Messgenauigkeit',
 'exif-gpsspeedref' => 'Geschwindigkeitseinheit',
 'exif-gpsspeed' => 'Geschwindigkeit des GPS-Empfängers',
 'exif-gpstrackref' => 'Referenz für Bewegungsrichtung',

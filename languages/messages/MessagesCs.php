@@ -1226,6 +1226,7 @@ Tyto argumenty byly vynechány.',
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
 'undo-failure' => 'Editace nemohla být zrušena kvůli konfliktu mezilehlých editací.',
 'undo-norev' => 'Tuto editaci není možné vrátit, protože neexistuje nebo byla smazána.',
+'undo-nochange' => 'Zdá se, že editace již byla zrušena.',
 'undo-summary' => 'Zrušena verze $1 od uživatele [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuse]])',
 'undo-summary-username-hidden' => 'Zrušena verze $1 od skrytého uživatele',
 
@@ -1452,7 +1453,8 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searcheverything-enable' => 'Hledat ve všech jmenných prostorech',
 'searchrelated' => 'související',
 'searchall' => 'vše',
-'showingresults' => 'Zobrazuji <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
+'showingresults' => 'Níže zobrazuji nejvýše <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
+'showingresultsinrange' => 'Níže zobrazuji nejvýše <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} v rozsahu #<strong>$2</strong>–#<strong>$3</strong>.',
 'showingresultsnum' => 'Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsheader' => "{{PLURAL:$5|Výsledek '''$1''' z '''$3'''|Výsledky '''$1–$2''' z '''$3'''}} pro '''$4'''",
 'search-nonefound' => 'Na váš dotaz nebyly nalezeny žádné výsledky.',
@@ -2522,7 +2524,8 @@ Rady a kontakt:
 'confirmdeletetext' => 'Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'actioncomplete' => 'Provedeno',
 'actionfailed' => 'Operace se nezdařila',
-'deletedtext' => 'Stránka nebo soubor „$1“ byl(a) smazán(a). $2 zaznamenává poslední smazání.',
+'deletedtext' => '„$1“ bylo smazáno.
+$2 zaznamenává poslední smazání.',
 'dellogpage' => 'Kniha smazaných stránek',
 'dellogpagetext' => 'Zde je seznam posledních smazaných stránek.',
 'deletionlog' => 'Kniha smazaných stránek',
@@ -2812,7 +2815,8 @@ Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]]
 'change-blocklink' => 'změnit blok',
 'contribslink' => 'příspěvky',
 'emaillink' => 'poslat e-mail',
-'autoblocker' => 'Byli jste automaticky zablokováni, protože sdílíte IP adresu s uživatelem „[[User:$1|$1]]“. Důvod zablokování tohoto uživatele: „$2“',
+'autoblocker' => '{{GENDER:|Byl jste automaticky zablokován|Byla jste automaticky zablokována|Byli jste automaticky zablokováni}}, protože vaši IP adresu nedávno {{GENDER:$1|používal uživatel|používala uživatelka}} „[[User:$1|$1]]“.
+Důvod zablokování {{GENDER:$1|uživatele $1|uživatelky $1}}: „$2“',
 'blocklogpage' => 'Kniha zablokování',
 'blocklog-showlog' => '{{GENDER:$1|Tento uživatel byl dříve blokován.|Tato uživatelka byla dříve blokována.|Tento uživatel byl dříve blokován.}}
 Zde je pro přehled zobrazen výpis z knihy zablokování:',

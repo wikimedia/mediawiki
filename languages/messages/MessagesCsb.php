@@ -40,7 +40,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Pòdsztrëchiwùjë lënczi:',
-'tog-justify' => 'Wërównanié (justifikacëjô) paragrafów',
 'tog-hideminor' => 'Zatacë môłi edicëje w slédnëch zmianach',
 'tog-hidepatrolled' => 'Zatacë sprôdzoné edicëje slédnych zjinakach',
 'tog-newpageshidepatrolled' => 'Zatacë sprôdzoné edicëje w lësce nowich starnów',
@@ -49,9 +48,7 @@ $messages = array(
 'tog-numberheadings' => 'Aùtomatné numerowanié nôgłówków',
 'tog-showtoolbar' => 'Wëskrzrni listwã nôrzãdzów edicëji (nót je JavaScript)',
 'tog-editondblclick' => 'Editëjë starnë przez dëbeltné klëkniãcé (nót je JavaScript)',
-'tog-editsection' => 'Włączô edicëjã dzélów starnë przez lënczi [edicëjô]',
 'tog-editsectiononrightclick' => 'Włączë edicëjã sekcëji bez klëkniãcé prawą knąpą mëszë<br />na titlu sekcëji (JavaScript)',
-'tog-showtoc' => 'Pòkażë spisënk zamkłoscë (dlô starnów z wicy jak 3 nôgłówkama)',
 'tog-rememberpassword' => 'Spamiãtôj mòją parolã na tim kòmpùtrze (maksymalno przez $1 {{PLURAL:$1|dzéń|dni|dniów}})',
 'tog-watchcreations' => 'Dodôwôj starnë, chtërné ùsôdzã, do mòji lëstë ùzérónëch artiklów',
 'tog-watchdefault' => 'Dodôwôj starnë, chtërné editëjã do mòji lëstë ùzérónëch artiklów',
@@ -584,7 +581,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'rows' => 'Régów:',
 'columns' => 'Kòlumnów:',
 'searchresultshead' => 'Szëkba',
-'resultsperpage' => 'Rezultatów na starnã:',
 'stub-threshold' => 'Greńca dlô fòrmatowaniô <a href="#" class="stub">lënków stubów</a>:',
 'recentchangesdays' => 'Kùli dni pòkazëwac w slédnëch edicëjach:',
 'recentchangescount' => 'Domëslnô wielëna wëskrzëniónych edicëjów',
@@ -888,7 +884,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'wlheader-showupdated' => "Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
 'watchmethod-list' => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
 'watchlistcontains' => 'Na twòji lësce ùzérónëch artiklów {{PLURAL:$1|je 1 strana|są $1 starnë|je $1 starnów}}.',
-'wlnote' => "Niżi môsz wëskrzënioné {{PLURAL:$1|slédną zmianã|'''$1''' slédnëch zmianów}} zrobioné òb {{PLURAL:$2|gòdzënã|'''$2''' gòdzënë/gòdzënów}}.",
 'wlshowlast' => 'Wëskrzëni zjinaczi z $1 gòdzënów $2 dni $3',
 'watchlist-options' => 'Òptacëje ùzérónych',
 

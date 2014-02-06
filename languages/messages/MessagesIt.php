@@ -1369,6 +1369,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'searchrelated' => 'correlati',
 'searchall' => 'tutti',
 'showingresults' => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
+'showingresultsinrange' => '{{PLURAL:$1|Viene mostrato|Vengono mostrati}} sotto {{PLURAL:$1|<strong>1</strong> risultato|<strong>$1</strong> risultati}} dal <strong>$2</strong> al <strong>$3</strong>.',
 'showingresultsnum' => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Risultato '''$1''' di '''$3'''|Risultati '''$1 - $2''' di '''$3'''}} per '''$4'''",
 'search-nonefound' => 'La ricerca non ha prodotto risultati.',

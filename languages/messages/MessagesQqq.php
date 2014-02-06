@@ -60,6 +60,7 @@
  * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Joseph
+ * @author Kaganer
  * @author Karduelis
  * @author Kazu89
  * @author Kghbln
@@ -414,7 +415,7 @@ Parameters:
 
 Parameters:
 * $1 – number of files shown
-* $2 - total number of files in category',
+* $2 – total number of files in category',
 'category-file-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
 
 Parameters:
@@ -2980,6 +2981,12 @@ Parameters:
 * $2 - the number of the first item listed
 See also:
 * {{msg-mw|Showingresultsnum}}',
+'showingresultsinrange' => 'Used in pagination of [[Special:MostLinkedCategories]]. Parameters:
+* $1 - the total number of results in the batch shown
+* $2 - the number of the first item listed
+* $3 - the number of last item in the batch shown
+
+See also {{msg-mw|Showingresults}}',
 'showingresultsnum' => 'Parameters:
 * $1 - (Unused) the total number of results in the batch shown
 * $2 - the first number in the batch of results
@@ -2992,10 +2999,6 @@ See also:
 * $3 - total number of results
 * $4 - the search term
 * $5 - number of results',
-'showingresultsinrange' => 'Used in pagination of [[Special:MostLinkedCategories]]. Parameters:
-* $1 - the total number of results in the batch shown
-* $2 - the number of the first item listed
-* $3 - the number of last item in the batch shown',
 'search-nonefound' => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
 'powersearch-legend' => 'Advanced search
 

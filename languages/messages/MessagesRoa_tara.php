@@ -883,7 +883,7 @@ Pare proprie ca l'onne scangellete.",
 'invalid-content-data' => "Condenute d'u date invalide",
 'content-not-allowed-here' => '"$1" condenute non g\'è permesse sus \'a pàgene [[$2]]',
 'editwarning-warning' => 'Assenne da sta pàgene tu puè perdè tutte le date ca è cangiate.
-Ce tu è trasute, tu puè disabbilità st\'avvertimende jndr\'à sezione "Cangiaminde..." de le preferenze tune.',
+Ce tu è trasute, tu puè disabbilità st\'avvertimende jndr\'à sezione "{{int:prefs-editing}}" de le preferenze tune.',
 
 # Content models
 'content-model-wikitext' => 'Uicchiteste',
@@ -2541,8 +2541,8 @@ Vide [[Special:BlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'change-blocklink' => "cange 'u blocche",
 'contribslink' => 'condrebbute',
 'emaillink' => "manne 'n'e-mail",
-'autoblocker' => 'Autobloccate purcè l\'indirizze IP tue ha state recendemente ausate da "[[User:$1|$1]]".
-\'U mutive date pu blocche de $1 ète: "$2"',
+'autoblocker' => 'Autobloccate purcè l\'indirizze IP tune ha state ausate urtemamende da "[[User:$1|$1]]".
+\'U mutive date pu blocche de $1 ète "$2"',
 'blocklogpage' => 'Archivije de le Bloccaminde',
 'blocklog-showlog' => "Stu utende ha state bloccate precedendemende.
 L'archivije de le bloccaminde 'u puè acchià aqquà sotte pe riferimende:",

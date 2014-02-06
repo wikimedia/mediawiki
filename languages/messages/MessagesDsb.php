@@ -956,7 +956,7 @@ Eksistěrujo južo.',
 'invalid-content-data' => 'Njepłaśiwe wopśimjeśowe daty',
 'content-not-allowed-here' => 'Wopśimjeśe "$1" njejo na boku [[$2]] dowólone',
 'editwarning-warning' => 'Gaž toś ten bok se spušća, mógu se změny zgubiś, kótarež sy pśewjadł.
-Jolic sy pśizjawjeny, móžoš toś to warnowanje we wótrězku „Wobźěłaś“ swójich nastajenjow znjemóžniś.',
+Jolic sy pśizjawjeny, móžoš toś to warnowanje we wótrězku „{{int:prefs-editing}}“ swójich nastajenjow znjemóžniś.',
 'editpage-notsupportedcontentformat-title' => 'Wopśimjeśowy format se njepódpěra.',
 'editpage-notsupportedcontentformat-text' => 'Wopśimjeśowy format $1 njepódpěra se pśez wopśimjeśowy model $2.',
 
@@ -1190,7 +1190,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'shown-title' => '$1 {{PLURAL:$1|wuslědk|wuslědka|wuslědki|wuslědkow}} na bok pokazaś',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) pokazaś',
 'searchmenu-exists' => "'''Jo bok z mjenim \"[[\$1]]\" na toś tom wikiju'''",
-'searchmenu-new' => "'''Napóraj bok \"[[:\$1|\$1]]\" na toś tom wikiju!'''",
+'searchmenu-new' => '<strong>Napóraj bok "[[:$1]]" na toś tom wikiju!</strong> {{PLURAL:$2|0=|Glej teke bok namakany z twójim pytanim.|Glej teke namakane pytańske wuslědki.}}',
 'searchprofile-articles' => 'Wopśimjeśowe boki',
 'searchprofile-project' => 'Pomoc a projektowe boki',
 'searchprofile-images' => 'Multimedia',
@@ -2567,7 +2567,7 @@ Glědaj do [[Special:BlockList|lisćiny blokěrowanjow]], aby blokěrowanja pśe
 'change-blocklink' => 'Blokěrowanje změniś',
 'contribslink' => 'pśinoski',
 'emaillink' => 'E-mail pósłaś',
-'autoblocker' => 'Awtomatiski blokěrowany, dokulaž twója IP-adresa jo se rowno wót "[[User:$1|$1]]". Pśicyna za blokěrowanje wužywarja $1 jo: "$2".',
+'autoblocker' => 'Awtomatiski blokěrowany, dokulaž twója IP-adresa jo se rowno wót "[[User:$1|$1]]" wužyła. Pśicyna za blokěrowanje wužywarja $1 jo: "$2".',
 'blocklogpage' => 'Protokol blokěrowanjow',
 'blocklog-showlog' => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował. Protokol blokěrowanjow pódawa se dołojce ako referenca:',
 'blocklog-showsuppresslog' => 'Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:',
@@ -2747,6 +2747,7 @@ Pšosym wobglědaj [https://www.mediawiki.org/wiki/Localisation lokalizaciju Med
 'allmessages-prefix' => 'Pó prefiksu filtrěrowaś:',
 'allmessages-language' => 'Rěc:',
 'allmessages-filter-submit' => 'Wótpósłaś',
+'allmessages-filter-translate' => 'Pśełožyś',
 
 # Thumbnails
 'thumbnail-more' => 'Pówětšyś',
@@ -2797,7 +2798,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'importuploaderrortemp' => 'Nagrawanje importoweje dataje njejo se raźiło. Temporarny zapis felujo.',
 'import-parse-failure' => 'Zmólka pśi XML-imporśe:',
 'import-noarticle' => 'Žeden bok za import!',
-'import-nonewrevisions' => 'Wšykne wersije buchu južo pjerwjej importowane.',
+'import-nonewrevisions' => 'Žedne wersije zaimportěrowane (wšykne pak su južo eksistěrowali pak su so zmólkow dla pśeskócyli).',
 'xml-error-string' => '$1 smužka $2, słup $3, (Byte $4): $5',
 'import-upload' => 'XML-daty nagraś',
 'import-token-mismatch' => 'Zgubjenje posejźeńskich datow. Pšosym wopytaj hyšći raz.',
