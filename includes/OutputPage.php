@@ -685,7 +685,7 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 		if ( !$wgCachePages ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED\n", 'log' );
+			wfDebug( __METHOD__ . ": CACHE DISABLED\n" );
 			return false;
 		}
 
