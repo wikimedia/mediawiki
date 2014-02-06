@@ -199,7 +199,7 @@ class SpecialSearch extends SpecialPage {
 		if ( !is_null( $t ) ) {
 			global $wgGoToEdit;
 			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
-			wfDebugLog( 'nogomatch', $t->getText(), 'private' );
+			wfDebugLog( 'nogomatch', $t->getFullText(), 'private' );
 
 			# If the feature is enabled, go straight to the edit page
 			if ( $wgGoToEdit ) {
