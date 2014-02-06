@@ -2510,14 +2510,14 @@ $templates
 			// Our XML declaration is output by Html::htmlHeader.
 			// http://www.whatwg.org/html/semantics.html#attr-meta-http-equiv-content-type
 			// http://www.whatwg.org/html/semantics.html#charset
-			$ret .= Html::element( 'meta', array( 'charset' => 'UTF-8' ) );
+			$ret .= Html::element( 'meta', array( 'charset' => 'UTF-8' ) ) . "\n";
 		}
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
 		// Avoid Internet Explorer "compatibility view", so that
 		// jQuery can work correctly.
-		$ret .= Html::element( 'meta', array( 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=EDGE' ) );
+		$ret .= Html::element( 'meta', array( 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=EDGE' ) ) . "\n";
 
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
