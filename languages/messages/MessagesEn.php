@@ -3360,7 +3360,7 @@ See the [[Special:BlockList|block list]] to review blocks.',
 'contribslink'                    => 'contribs',
 'emaillink'                       => 'send email',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
-The reason given for $1\'s block is "<em>$2</em>"',
+The reason given for $1\'s block is "$2"',
 'blocklogpage'                    => 'Block log',
 'blocklog-showlog'                => 'This user has been blocked previously.
 The block log is provided below for reference:',
