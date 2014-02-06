@@ -1404,10 +1404,9 @@ class Preferences {
 	 *
 	 * @param $formData
 	 * @param $form PreferencesForm
-	 * @param $entryPoint string
 	 * @return bool|Status|string
 	 */
-	static function tryFormSubmit( $formData, $form, $entryPoint = 'internal' ) {
+	static function tryFormSubmit( $formData, $form ) {
 		global $wgHiddenPrefs, $wgAuth;
 
 		$user = $form->getModifiedUser();
@@ -1468,7 +1467,7 @@ class Preferences {
 	 * @return Status
 	 */
 	public static function tryUISubmit( $formData, $form ) {
-		$res = self::tryFormSubmit( $formData, $form, 'ui' );
+		$res = self::tryFormSubmit( $formData, $form );
 
 		if ( $res ) {
 			$urlOptions = array( 'success' => 1 );
