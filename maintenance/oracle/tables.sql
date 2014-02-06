@@ -19,7 +19,7 @@ CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
   user_touched              TIMESTAMP(6) WITH TIME ZONE,
   user_registration         TIMESTAMP(6) WITH TIME ZONE,
   user_editcount            NUMBER,
-  user_password_expires     TIMESTAMP(6) WITH TIME ZONE NULL DEFAULT NULL
+  user_password_expires     TIMESTAMP(6) WITH TIME ZONE
 );
 ALTER TABLE &mw_prefix.mwuser ADD CONSTRAINT &mw_prefix.mwuser_pk PRIMARY KEY (user_id);
 CREATE UNIQUE INDEX &mw_prefix.mwuser_u01 ON &mw_prefix.mwuser (user_name);
@@ -28,7 +28,8 @@ CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.mwuser
-  VALUES (0,'Anonymous',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
+  (user_id, user_name, user_options, user_touched, user_registration, user_editcount)
+  VALUES (0,'Anonymous','', current_timestamp, current_timestamp,0);
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
@@ -73,6 +74,7 @@ CREATE TABLE &mw_prefix.page (
   page_is_new        CHAR(1)           DEFAULT '0' NOT NULL,
   page_random        NUMBER(15,14) NOT NULL,
   page_touched       TIMESTAMP(6) WITH TIME ZONE,
+  page_links_updated TIMESTAMP(6) WITH TIME ZONE,
   page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
   page_len           NUMBER        DEFAULT 0 NOT NULL,
   page_content_model VARCHAR2(32)
@@ -85,7 +87,7 @@ CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_name
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
-  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0, NULL);
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, NULL, 0, 0, NULL);
 
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
@@ -403,7 +405,7 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE &mw_prefix.recentchanges (
   rc_id              NUMBER      NOT NULL,
   rc_timestamp       TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  rc_cur_time        TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
+  rc_cur_time        TIMESTAMP(6) WITH TIME ZONE,
   rc_user            NUMBER          DEFAULT 0 NOT NULL,
   rc_user_text       VARCHAR2(255)         NOT NULL,
   rc_namespace       NUMBER     DEFAULT 0 NOT NULL,
@@ -416,6 +418,7 @@ CREATE TABLE &mw_prefix.recentchanges (
   rc_this_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_last_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_type            CHAR(1)         DEFAULT '0' NOT NULL,
+  rc_source					 VARCHAR2(16),
   rc_patrolled       CHAR(1)         DEFAULT '0' NOT NULL,
   rc_ip              VARCHAR2(15),
   rc_old_len         NUMBER,
