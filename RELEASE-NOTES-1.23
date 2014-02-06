@@ -158,6 +158,8 @@ production.
 * (bug 32151) ApiWatch now has pageset capabilities (titles/pageids/generators).
   Title parameter is now deprecated.
 * (bug 23005) Added action=revisiondelete.
+* Added siprop=restrictions to API action=query&meta=siteinfo for querying
+  possible page restriction (protection) levels and types.
 
 === Languages updated in 1.23 ===
 
