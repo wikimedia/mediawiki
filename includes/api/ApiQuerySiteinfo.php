@@ -78,6 +78,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'rightsinfo':
 					$fit = $this->appendRightsInfo( $p );
 					break;
+				case 'restrictions':
+					$fit = $this->appendRestrictions( $p );
+					break;
 				case 'languages':
 					$fit = $this->appendLanguages( $p );
 					break;
@@ -615,6 +618,25 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	protected function appendRestrictions( $property ) {
+		global $wgRestrictionTypes, $wgRestrictionLevels,
+			$wgCascadingRestrictionLevels, $wgSemiprotectedRestrictionLevels;
+
+		$data = array(
+			'types' => $wgRestrictionTypes,
+			'levels' => $wgRestrictionLevels,
+			'cascadinglevels' => $wgCascadingRestrictionLevels,
+			'semiprotectedlevels' => $wgSemiprotectedRestrictionLevels,
+		);
+
+		$this->getResult()->setIndexedTagName( $data['types'], 'type' );
+		$this->getResult()->setIndexedTagName( $data['levels'], 'level' );
+		$this->getResult()->setIndexedTagName( $data['cascadinglevels'], 'level' );
+		$this->getResult()->setIndexedTagName( $data['semiprotectedlevels'], 'level' );
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
@@ -737,6 +759,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'extensions',
 					'fileextensions',
 					'rightsinfo',
+					'restrictions',
 					'languages',
 					'skins',
 					'extensiontags',
@@ -778,6 +801,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' extensions            - Returns extensions installed on the wiki',
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
+				' restrictions          - Returns information on available restriction (protection) types',
 				' languages             - Returns a list of languages MediaWiki supports' .
 					"(optionally localised by using {$p}inlanguagecode)",
 				' skins                 - Returns a list of all enabled skins',
