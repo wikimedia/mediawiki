@@ -33,12 +33,16 @@
 		 */
 		profile: function ( nav ) {
 			/*jshint boss: true */
+			var key;
 
 			if ( nav === undefined ) {
 				nav = window.navigator;
 			}
+
+			key = nav.userAgent + '|' + nav.platform;
+
 			// Use the cached version if possible
-			if ( profileCache[nav.userAgent] === undefined ) {
+			if ( profileCache[ key ] === undefined ) {
 
 				var
 					versionNumber,
@@ -174,7 +178,7 @@
 
 				/* Caching */
 
-				profileCache[nav.userAgent] = {
+				profileCache[ key ] = {
 					name: name,
 					layout: layout,
 					layoutVersion: layoutversion,
@@ -184,7 +188,7 @@
 					versionNumber: versionNumber
 				};
 			}
-			return profileCache[nav.userAgent];
+			return profileCache[ key ];
 		},
 
 		/**
