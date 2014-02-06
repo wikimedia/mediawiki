@@ -20,6 +20,9 @@
  * @file
  */
 
+// Include the external library autoloader managed via Composer
+require_once "$IP/libs/autoload.php";
+
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses
@@ -491,6 +494,10 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/debug
 	'MWDebug' => 'includes/debug/Debug.php',
+	'MWLogger' => 'includes/debug/Logger.php',
+	'MWLoggerSpi' => 'includes/debug/LoggerSpi.php',
+	'MWLoggerMonologSpi' => 'includes/debug/monolog/MonologSpi.php',
+	'MwLogHandler' => 'includes/debug/monolog/MwLogHandler.php',
 
 	# includes/deferred
 	'DataUpdate' => 'includes/deferred/DataUpdate.php',

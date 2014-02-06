@@ -4940,6 +4940,52 @@ $wgDebugDumpSql = false;
 $wgDebugLogGroups = array();
 
 /**
+ * Default service provider for creating MWLogger instances.
+ *
+ * This can either be the name of a class implementing the LoggerSpi with
+ * a zero argument constructor or a callable that will return an LoggerSpi
+ * instance. Alternately the MWLogger::registerProvider method can be called
+ * to inject a LoggerSpi instance into MWLogger and bypass the use of this
+ * configuration variable.
+ *
+ * @since 1.23
+ * @var $wgMWLoggerDefaultSpi array|callable
+ */
+$wgMWLoggerDefaultSpi = 'MWLoggerMonologSpi';
+
+/**
+ * Feature switch to enable use of PSR-3 logger for legacy global logging
+ * functions.
+ *
+ * When enabled wfDebug, wfDebugLog, wfLogDBError, wfLogProfilingData will all
+ * route their log events to MWLogger instances.
+ *
+ * @since 1.23
+ */
+$wgUseMWLoggerForLegacyFunctions = false;
+
+/**
+ * Configuration for MonologFactory logger factory.
+ *
+ * Default configuration installs a null handler that will silently discard
+ * all logging events.
+ *
+ * @since 1.23
+ */
+$wgMWLoggerMonologSpiConfig = array(
+	'loggers' => array(
+		'@default' => array(
+			'handlers' => array( 'null' ),
+		),
+	),
+	'handlers' => array(
+		'null' => array(
+			'class' => '\\Monolog\\Logger\\NullHandler',
+		),
+	),
+);
+
+/**
  * Display debug data at the bottom of the main content area.
  *
  * Useful for developers and technical users trying to working on a closed wiki.
