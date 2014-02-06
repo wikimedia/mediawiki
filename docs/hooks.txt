@@ -2193,6 +2193,13 @@ link" tab.
 $sktemplate: SkinTemplate object
 $nav_urls: array of tabs
 
+'SkinTemplateGetLanguageLink': After building the data for a language link from
+which the actual html is constructed.
+&$languageLink: array containing data about the link. The following keys can be
+  modified: href, text, title, class, lang, hreflang. Each of them is a string.
+$languageLinkTitle: Title object belonging to the external language link
+$title: Title object of the page the link belongs to
+
 To alter the structured navigation links in SkinTemplates, there are three
 hooks called in different spots:
 
