@@ -44,13 +44,13 @@ class GitInfo {
 	 * @param string $dir The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
-		$this->basedir = "{$dir}/.git";
+		$this->basedir = "{$dir}".DIRECTORY_SEPARATOR.".git";
 		if ( is_readable( $this->basedir ) && !is_dir( $this->basedir ) ) {
 			$GITfile = file_get_contents( $this->basedir );
 			if ( strlen( $GITfile ) > 8 && substr( $GITfile, 0, 8 ) === 'gitdir: ' ) {
 				$path = rtrim( substr( $GITfile, 8 ), "\r\n" );
 				$isAbsolute = $path[0] === '/' || substr( $path, 1, 1 ) === ':';
-				$this->basedir = $isAbsolute ? $path : "{$dir}/{$path}";
+				$this->basedir = $isAbsolute ? $path : "{$dir}".DIRECTORY_SEPARATOR."{$path}";
 			}
 		}
 	}
