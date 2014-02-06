@@ -5577,6 +5577,10 @@ $wgRC2UDPOmitBots = false;
  *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
  *     produce the text to send.
  *   * 'omit_bots' -- whether the bot edits should be in the feed
+ *   * 'omit_anon' -- whether anonymous edits should be in the feed
+ *   * 'omit_user' -- whether edits by registered users should be in the feed
+ *   * 'omit_minor' -- whether minor edits should be in the feed
+ *   * 'omit_patrolled' -- whether patrolled edits should be in the feed
  *  The IRC-specific options are:
  *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
  *     $wgLocalInterwiki.

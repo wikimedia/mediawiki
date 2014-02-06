@@ -333,11 +333,23 @@ class RecentChange {
 	public function notifyRCFeeds() {
 		global $wgRCFeeds;
 
+		$performer = $this->getPerformer();
+
 		foreach ( $wgRCFeeds as $feed ) {
-			$omitBots = isset( $feed['omit_bots'] ) ? $feed['omit_bots'] : false;
+			$feed += array(
+				'omit_bots' => false,
+				'omit_anon' => false,
+				'omit_user' => false,
+				'omit_minor' => false,
+				'omit_patrolled' => false,
+			);
 
 			if (
-				( $omitBots && $this->mAttribs['rc_bot'] ) ||
+				( $feed['omit_bots'] && $this->mAttribs['rc_bot'] ) ||
+				( $feed['omit_anon'] && $performer->isAnon() ) ||
+				( $feed['omit_user'] && !$performer->isAnon() ) ||
+				( $feed['omit_minor'] && $this->mAttribs['rc_minor'] ) ||
+				( $feed['omit_patrolled'] && $this->mAttribs['rc_patrolled'] ) ||
 				$this->mAttribs['rc_type'] == RC_EXTERNAL
 			) {
 				continue;
