@@ -19,6 +19,16 @@
 	function updateWatchLink( $link, action, state ) {
 		var accesskeyTip, msgKey, $li, otherAction;
 
+		// A valid but empty jQuery object shouldn't throw a TypeError
+		if ( !$link.length ) {
+			return;
+		}
+
+		// Invalid actions shouldn't silently turn the page in an unrecoverable state
+		if ( action !== 'watch' && action !== 'unwatch' ) {
+			throw new Error( 'Invalid action' );
+		}
+
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
@@ -69,8 +79,6 @@
 	function mwUriGetAction( url ) {
 		var action, actionPaths, key, i, m, parts;
 
-		actionPaths = mw.config.get( 'wgActionPaths' );
-
 		// TODO: Does MediaWiki give action path or query param
 		// precedence ? If the former, move this to the bottom
 		action = mw.util.getParamValue( 'action', url );
@@ -78,6 +86,7 @@
 			return action;
 		}
 
+		actionPaths = mw.config.get( 'wgActionPaths' );
 		for ( key in actionPaths ) {
 			if ( actionPaths.hasOwnProperty( key ) ) {
 				parts = actionPaths[key].split( '$1' );
