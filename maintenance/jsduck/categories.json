@@ -42,7 +42,8 @@
 				"name": "Language",
 				"classes": [
 					"mw.language*",
-					"mw.cldr"
+					"mw.cldr",
+					"mw.jqueryMsg"
 				]
 			},
 			{

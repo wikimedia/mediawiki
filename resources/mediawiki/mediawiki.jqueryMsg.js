@@ -1,4 +1,4 @@
-/**
+/*!
 * Experimental advanced wikitext parser-emitter.
 * See: http://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
 *
@@ -6,6 +6,11 @@
 * @author mflaschen@wikimedia.org
 */
 ( function ( mw, $ ) {
+	/**
+	 * @class mw.jqueryMsg
+	 * @singleton
+	 */
+
 	var oldParser,
 		slice = Array.prototype.slice,
 		parserDefaults = {
@@ -59,6 +64,7 @@
 	 *
 	 * Object elements of children (jQuery, HTMLElement, TextNode, etc.) will be left as is.
 	 *
+	 * @private
 	 * @param {jQuery} $parent Parent node wrapped by jQuery
 	 * @param {Object|string|Array} children What to append, with the same possible types as jQuery
 	 * @return {jQuery} $parent
@@ -82,6 +88,7 @@
 	/**
 	 * Decodes the main HTML entities, those encoded by mw.html.escape.
 	 *
+	 * @private
 	 * @param {string} encode Encoded string
 	 * @return {string} String with those entities decoded
 	 */
@@ -96,19 +103,19 @@
 
 	/**
 	 * Given parser options, return a function that parses a key and replacements, returning jQuery object
+	 *
+	 * Try to parse a key and optional replacements, returning a jQuery object that may be a tree of jQuery nodes.
+	 * If there was an error parsing, return the key and the error message (wrapped in jQuery). This should put the error right into
+	 * the interface, without causing the page to halt script execution, and it hopefully should be clearer how to fix it.
+	 * @private
 	 * @param {Object} parser options
-	 * @return {Function} accepting ( String message key, String replacement1, String replacement2 ... ) and returning {jQuery}
+	 * @return {Function}
+	 * @return {Array} return.args First element is the key, replacements may be in array in 2nd element, or remaining elements.
+	 * @return {jQuery} return.return
 	 */
 	function getFailableParserFn( options ) {
 		var parser = new mw.jqueryMsg.parser( options );
-		/**
-		 * Try to parse a key and optional replacements, returning a jQuery object that may be a tree of jQuery nodes.
-		 * If there was an error parsing, return the key and the error message (wrapped in jQuery). This should put the error right into
-		 * the interface, without causing the page to halt script execution, and it hopefully should be clearer how to fix it.
-		 *
-		 * @param {Array} first element is the key, replacements may be in array in 2nd element, or remaining elements.
-		 * @return {jQuery}
-		 */
+
 		return function ( args ) {
 			var key = args[0],
 				argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
@@ -123,7 +130,6 @@
 	mw.jqueryMsg = {};
 
 	/**
-	 * Class method.
 	 * Returns a function suitable for use as a global, to construct strings from the message key (and optional replacements).
 	 * e.g.
 	 *       window.gM = mediaWiki.parser.getMessageFunction( options );
@@ -132,8 +138,16 @@
 	 * Like the old gM() function this returns only strings, so it destroys any bindings. If you want to preserve bindings use the
 	 * jQuery plugin version instead. This is only included for backwards compatibility with gM().
 	 *
-	 * @param {Array} parser options
-	 * @return {Function} function suitable for assigning to window.gM
+	 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
+	 *    somefunction( a, b, c, d )
+	 * is equivalent to
+	 *    somefunction( a, [b, c, d] )
+	 *
+	 * @param {Object} options parser options
+	 * @return {Function} Function suitable for assigning to window.gM
+	 * @return {string} return.key Message key.
+	 * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
+	 * @return {string} return.return Rendered HTML.
 	 */
 	mw.jqueryMsg.getMessageFunction = function ( options ) {
 		var failableParserFn = getFailableParserFn( options ),
@@ -145,16 +159,6 @@
 			format = parserDefaults.format;
 		}
 
-		/**
-		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
-		 *    somefunction( a, b, c, d )
-		 * is equivalent to
-		 *    somefunction( a, [b, c, d] )
-		 *
-		 * @param {string} key Message key.
-		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
-		 * @return {string} Rendered HTML.
-		 */
 		return function () {
 			var failableResult = failableParserFn( arguments );
 			if ( format === 'text' || format === 'escaped' ) {
@@ -166,30 +170,29 @@
 	};
 
 	/**
-	 * Class method.
 	 * Returns a jQuery plugin which parses the message in the message key, doing replacements optionally, and appends the nodes to
 	 * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
 	 * e.g.
 	 *        $.fn.msg = mediaWiki.parser.getJqueryPlugin( options );
-	 *        var userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
+	 *        var userlink = $( '`<a`>' ).click( function () { alert( "hello!!" ) } );
 	 *        $( 'p#headline' ).msg( 'hello-user', userlink );
 	 *
-	 * @param {Array} parser options
-	 * @return {Function} function suitable for assigning to jQuery plugin, such as $.fn.msg
+	 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
+	 *    somefunction( a, b, c, d )
+	 * is equivalent to
+	 *    somefunction( a, [b, c, d] )
+	 *
+	 * We append to 'this', which in a jQuery plugin context will be the selected elements.
+	 *
+	 * @param {Object} options Parser options
+	 * @return {Function} Function suitable for assigning to jQuery plugin, such as $.fn.msg
+	 * @return {string} return.key Message key.
+	 * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
+	 * @return {jQuery} return.return
 	 */
 	mw.jqueryMsg.getPlugin = function ( options ) {
 		var failableParserFn = getFailableParserFn( options );
-		/**
-		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
-		 *    somefunction( a, b, c, d )
-		 * is equivalent to
-		 *    somefunction( a, [b, c, d] )
-		 *
-		 * We append to 'this', which in a jQuery plugin context will be the selected elements.
-		 * @param {string} key Message key.
-		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
-		 * @return {jQuery} this
-		 */
+
 		return function () {
 			var $target = this.empty();
 			// TODO: Simply appendWithoutParsing( $target, failableParserFn( arguments ).contents() )
@@ -202,9 +205,11 @@
 	};
 
 	/**
+	 * @class
 	 * The parser itself.
 	 * Describes an object, whose primary duty is to .parse() message keys.
-	 * @param {Array} options
+	 * @private
+	 * @param {Object} options
 	 */
 	mw.jqueryMsg.parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
@@ -227,8 +232,12 @@
 		 * if they key is "message-key" and onlyCurlyBraceTransform is true.
 		 *
 		 * This cache is shared by all instances of mw.jqueryMsg.parser.
+		 * NOTE: We promise, it's static - when you create this empty object
+		 * in the prototype, each new instance of the class gets a reference
+		 * to the same empty object.
 		 *
 		 * @static
+		 * @property {Object}
 		 */
 		astCache: {},
 
@@ -236,18 +245,19 @@
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
 		 * If an error is thrown, returns original key, and logs the error
-		 * @param {String} key Message key.
+		 * @param {string} key Message key.
 		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
 			return this.emitter.emit( this.getAst( key ), replacements );
 		},
+
 		/**
 		 * Fetch the message string associated with a key, return parsed structure. Memoized.
 		 * Note that we pass '[' + key + ']' back for a missing message here.
-		 * @param {String} key
-		 * @return {String|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
+		 * @param {string} key
+		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
 			var cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' ), wikiText;
@@ -268,7 +278,7 @@
 		 * CAVEAT: This does not parse all wikitext. It could be more efficient, but it's pretty good already.
 		 * n.b. We want to move this functionality to the server. Nothing here is required to be on the client.
 		 *
-		 * @param {String} message string wikitext
+		 * @param {string} message string wikitext
 		 * @throws Error
 		 * @return {Mixed} abstract syntax tree
 		 */
@@ -290,7 +300,13 @@
 			// =========================================================
 			// parsing combinators - could be a library on its own
 			// =========================================================
-			// Try parsers until one works, if none work return null
+
+			/**
+			 * Try parsers until one works, if none work return null
+			 * @private
+			 * @param {Function[]} ps
+			 * @return {string|null}
+			 */
 			function choice( ps ) {
 				return function () {
 					var i, result;
@@ -303,8 +319,14 @@
 					return null;
 				};
 			}
-			// try several ps in a row, all must succeed or return null
-			// this is the only eager one
+
+			/**
+			 * Try several ps in a row, all must succeed or return null.
+			 * This is the only eager one.
+			 * @private
+			 * @param {Function[]} ps
+			 * @return {string|null}
+			 */
 			function sequence( ps ) {
 				var i, res,
 					originalPos = pos,
@@ -319,8 +341,15 @@
 				}
 				return result;
 			}
-			// run the same parser over and over until it fails.
-			// must succeed a minimum of n times or return null
+
+			/**
+			 * Run the same parser over and over until it fails.
+			 * Must succeed a minimum of n times or return null.
+			 * @private
+			 * @param {number} n
+			 * @param {Function} p
+			 * @return {string|null}
+			 */
 			function nOrMore( n, p ) {
 				return function () {
 					var originalPos = pos,
@@ -337,16 +366,30 @@
 					return result;
 				};
 			}
-			// There is a general pattern -- parse a thing, if that worked, apply transform, otherwise return null.
-			// But using this as a combinator seems to cause problems when combined with nOrMore().
-			// May be some scoping issue
+
+			/**
+			 * There is a general pattern -- parse a thing, if that worked, apply transform, otherwise return null.
+			 * TODO But using this as a combinator seems to cause problems when combined with nOrMore().
+			 * May be some scoping issue
+			 * @private
+			 * @param {Function} p
+			 * @param {Function} fn
+			 * @return {string/null}
+			 */
 			function transform( p, fn ) {
 				return function () {
 					var result = p();
 					return result === null ? null : fn( result );
 				};
 			}
-			// Helpers -- just make ps out of simpler JS builtin types
+
+			/**
+			 * Just make parsers out of simpler JS builtin types
+			 * @private
+			 * @param {string} s
+			 * @return {Function}
+			 * @return {string} return.return
+			 */
 			function makeStringParser( s ) {
 				var len = s.length;
 				return function () {
@@ -364,6 +407,7 @@
 			 * The regex being passed in should start with a ^ to anchor it to the start
 			 * of the string.
 			 *
+			 * @private
 			 * @param {RegExp} regex anchored regex
 			 * @return {Function} function to parse input based on the regex
 			 */
@@ -378,11 +422,10 @@
 				};
 			}
 
-			/**
-			 *  ===================================================================
-			 *  General patterns above this line -- wikitext specific parsers below
-			 *  ===================================================================
-			 */
+			// ===================================================================
+			// General patterns above this line -- wikitext specific parsers below
+			// ===================================================================
+
 			// Parsing functions follow. All parsing functions work like this:
 			// They don't accept any arguments.
 			// Instead, they just operate non destructively on the string 'input'
@@ -889,7 +932,7 @@
 		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
 		 * Must return a single node to parents -- a jQuery with synthetic span
 		 * However, unwrap any other synthetic spans in our children and pass them upwards
-		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
+		 * @param {Mixed[]} nodes - some single nodes, some arrays of nodes
 		 * @return {jQuery}
 		 */
 		concat: function ( nodes ) {
@@ -1121,6 +1164,12 @@
 	// But moving it to extensions breaks it (?!)
 	// Need to fix plugin so it could do attributes as well, then will be okay to remove this.
 	window.gM = mw.jqueryMsg.getMessageFunction();
+
+	/**
+	 * @method
+	 * @member jQuery
+	 * @see mw.jqueryMsg#getPlugin
+	 */
 	$.fn.msg = mw.jqueryMsg.getPlugin();
 
 	// Replace the default message parser with jqueryMsg

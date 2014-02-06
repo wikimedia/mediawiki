@@ -15,6 +15,7 @@
 		"../../resources/mediawiki/mediawiki.Title.js",
 		"../../resources/mediawiki/mediawiki.Uri.js",
 		"../../resources/mediawiki/mediawiki.inspect.js",
+		"../../resources/mediawiki/mediawiki.jqueryMsg.js",
 		"../../resources/mediawiki/mediawiki.notify.js",
 		"../../resources/mediawiki/mediawiki.notification.js",
 		"../../resources/mediawiki/mediawiki.user.js",
