@@ -160,7 +160,7 @@
 					} );
 				} )
 				// AJAX success just means "200 OK" response, also check API error codes
-				.done( function ( result ) {
+				.done( function ( result, textStatus, jqXHR ) {
 					if ( result === undefined || result === null || result === '' ) {
 						apiDeferred.reject( 'ok-but-empty',
 							'OK response but empty result (check HTTP headers?)'
@@ -169,7 +169,7 @@
 						var code = result.error.code === undefined ? 'unknown' : result.error.code;
 						apiDeferred.reject( code, result );
 					} else {
-						apiDeferred.resolve( result );
+						apiDeferred.resolve( result, jqXHR );
 					}
 				} );
 
