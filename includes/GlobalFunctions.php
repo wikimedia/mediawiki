@@ -933,6 +933,7 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all' ) {
 	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgUseMWLoggerForLegacyFunctions;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -954,12 +955,22 @@ function wfDebug( $text, $dest = 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
-		# Strip unprintables; they can switch terminal modes when binary data
-		# gets dumped, which is pretty annoying.
-		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
-		$text = $wgDebugLogPrefix . $text;
-		wfErrorLog( $text, $wgDebugLogFile );
+	if ( !$wgProfileOnly ) {
+		if ( $wgUseMWLoggerForLegacyFunctions ) {
+			$log = MWLogger::getInstance( 'wfDebug' );
+			$ctx = array();
+			if ( $wgDebugLogPrefix !== '' ) {
+				$ctx['prefix'] = $wgDebugLogPrefix;
+			}
+			$log->debug( trim($text), $ctx );
+
+		} elseif ( $wgDebugLogFile != '' ) {
+			# Strip unprintables; they can switch terminal modes when binary data
+			# gets dumped, which is pretty annoying.
+			$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
+			$text = $wgDebugLogPrefix . $text;
+			wfErrorLog( $text, $wgDebugLogFile );
+		}
 	}
 }
 
@@ -1041,7 +1052,7 @@ function wfDebugMem( $exact = false ) {
  *     - false: same as 'private'
  */
 function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
-	global $wgDebugLogGroups;
+	global $wgDebugLogGroups, $wgUseMWLoggerForLegacyFunctions;
 
 	$text = trim( $text ) . "\n";
 
@@ -1054,7 +1065,15 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 
 	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
 		if ( $dest !== 'private' ) {
-			wfDebug( "[$logGroup] $text", $dest );
+			if ( $wgUseMWLoggerForLegacyFunctions ) {
+				$log = MWLogger::getInstance( $logGroup );
+				$log->debug( trim($text), array(
+					'wiki' => wfWikiID(),
+					'host' => wfHostname(),
+				) );
+			} else {
+				wfDebug( "[$logGroup] $text", $dest );
+			}
 		}
 		return;
 	}
@@ -1076,7 +1095,16 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	$time = wfTimestamp( TS_DB );
 	$wiki = wfWikiID();
 	$host = wfHostname();
-	wfErrorLog( "$time $host $wiki: $text", $destination );
+	if ( $wgUseMWLoggerForLegacyFunctions ) {
+		$log = MWLogger::getInstance( $destination );
+		$log->debug( trim($text), array(
+			'wiki' => $wiki,
+			'host' => $host,
+		) );
+
+	} else {
+		wfErrorLog( "$time $host $wiki: $text", $destination );
+	}
 }
 
 /**
@@ -1085,10 +1113,10 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
  * @param string $text database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBerrorLogTZ;
+	global $wgDBerrorLog, $wgDBerrorLogTZ, $wgUseMWLoggerForLegacyFunctions;
 	static $logDBErrorTimeZoneObject = null;
 
-	if ( $wgDBerrorLog ) {
+	if ( $wgDBerrorLog || $wgUseMWLoggerForLegacyFunctions ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
 
@@ -1106,8 +1134,17 @@ function wfLogDBError( $text ) {
 
 		$date = $d->format( 'D M j G:i:s T Y' );
 
-		$text = "$date\t$host\t$wiki\t$text";
-		wfErrorLog( $text, $wgDBerrorLog );
+		if ( $wgUseMWLoggerForLegacyFunctions ) {
+			$log = MWLogger::getInstance( 'wfLogDBError' );
+			$log->error( trim($text), array(
+				'wiki' => $wiki,
+				'host' => $host,
+			) );
+
+		} else {
+			$text = "$date\t$host\t$wiki\t$text";
+			wfErrorLog( $text, $wgDBerrorLog );
+		}
 	}
 }
 
@@ -1225,7 +1262,7 @@ function wfErrorLog( $text, $file ) {
  */
 function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfileLimit, $wgUser;
+	global $wgProfileLimit, $wgUser, $wgUseMWLoggerForLegacyFunctions;
 
 	StatCounter::singleton()->flush();
 
@@ -1245,43 +1282,79 @@ function wfLogProfilingData() {
 
 	$profiler->logData();
 
-	// Check whether this should be logged in the debug file.
-	if ( $wgDebugLogFile == '' || ( !$wgDebugRawPage && wfIsDebugRawPage() ) ) {
+	if ( $wgUseMWLoggerForLegacyFunctions ) {
+		// FIXME: this is ugly and needs refactoring
+		$log = MWLogger::getInstance( 'wfLogProfilingData' );
+		$ctx = array(
+			'elapsed' => $elapsed,
+			'url' => urldecode( $requestUrl ),
+		);
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$ctx['client_ip'] = $_SERVER['HTTP_CLIENT_IP'];
+		}
+		if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
+			$ctx['from'] = $_SERVER['HTTP_FROM'];
+		}
+		if ( isset( $ctx['forwarded_for'] ) ||
+			isset( $ctx['client_ip'] ) ||
+			isset( $ctx['from'] ) ) {
+			$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
+		}
+		if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
+			$ctx['anon'] = 'anon';
+		}
+
+		// Command line script uses a FauxRequest object which does not have
+		// any knowledge about an URL and throw an exception instead.
+		try {
+			$ctx['url'] = $wgRequest->getRequestURL();
+		} catch ( MWException $e ) {
+			$ctx['url'] = 'n/a';
+		}
+
+		$log->info( $profiler->getOutput(), $ctx );
+
+	} elseif ( $wgDebugLogFile == '' ||
+		( !$wgDebugRawPage && wfIsDebugRawPage() ) ) {
 		return;
-	}
 
-	$forward = '';
-	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-		$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
-	}
-	if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-		$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
-	}
-	if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
-		$forward .= ' from ' . $_SERVER['HTTP_FROM'];
-	}
-	if ( $forward ) {
-		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
-	}
-	// Don't load $wgUser at this late stage just for statistics purposes
-	// @todo FIXME: We can detect some anons even if it is not loaded. See User::getId()
-	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
-		$forward .= ' anon';
-	}
+	} else {
+		$forward = '';
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
+		}
+		if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
+			$forward .= ' from ' . $_SERVER['HTTP_FROM'];
+		}
+		if ( $forward ) {
+			$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
+		}
+		// Don't load $wgUser at this late stage just for statistics purposes
+		// @todo FIXME: We can detect some anons even if it is not loaded. See User::getId()
+		if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
+			$forward .= ' anon';
+		}
 
-	// Command line script uses a FauxRequest object which does not have
-	// any knowledge about an URL and throw an exception instead.
-	try {
-		$requestUrl = $wgRequest->getRequestURL();
-	} catch ( MWException $e ) {
-		$requestUrl = 'n/a';
+		// Command line script uses a FauxRequest object which does not have
+		// any knowledge about an URL and throw an exception instead.
+		try {
+			$requestUrl = $wgRequest->getRequestURL();
+		} catch ( MWException $e ) {
+			$requestUrl = 'n/a';
+		}
+
+		$log = sprintf( "%s\t%04.3f\t%s\n",
+			gmdate( 'YmdHis' ), $elapsed,
+			urldecode( $requestUrl . $forward ) );
+
+		wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
 	}
-
-	$log = sprintf( "%s\t%04.3f\t%s\n",
-		gmdate( 'YmdHis' ), $elapsed,
-		urldecode( $requestUrl . $forward ) );
-
-	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
 }
 
 /**
