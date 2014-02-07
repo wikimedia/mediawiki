@@ -1780,7 +1780,6 @@ class Title {
 	 *
 	 * @deprecated in 1.19; use userCan(), quickUserCan() or getUserPermissionsErrors() instead
 	 * @return Bool
-	 * @todo fold these checks into userCan()
 	 */
 	public function userCanRead() {
 		wfDeprecated( __METHOD__, '1.19' );
