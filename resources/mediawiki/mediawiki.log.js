@@ -8,28 +8,32 @@
 
 ( function ( mw, $ ) {
 
-	/**
-	 * @class mw.log
-	 * @singleton
-	 */
+	// Reference to dummy
+	// We don't need the dummy, but it has other methods on it
+	// that we need to restore afterwards.
+	var original = mw.log,
+		slice = Array.prototype.slice;
 
 	/**
-	 * Logs a message to the console.
+	 * Logs a message to the console in debug mode.
 	 *
 	 * In the case the browser does not have a console API, a console is created on-the-fly by appending
 	 * a `<div id="mw-log-console">` element to the bottom of the body and then appending this and future
 	 * messages to that, instead of the console.
 	 *
+	 * @member mw.log
 	 * @param {string...} msg Messages to output to console.
 	 */
 	mw.log = function () {
 		// Turn arguments into an array
-		var	args = Array.prototype.slice.call( arguments ),
+		var args = slice.call( arguments ),
 			// Allow log messages to use a configured prefix to identify the source window (ie. frame)
 			prefix = mw.config.exists( 'mw.log.prefix' ) ? mw.config.get( 'mw.log.prefix' ) + '> ' : '';
 
 		// Try to use an existing console
-		if ( window.console !== undefined && $.isFunction( window.console.log ) ) {
+		// Generally we can cache this, but in this case we want to re-evaluate this as a
+		// global property live so that things like Firebug Lite can take precedence.
+		if ( window.console && window.console.log ) {
 			args.unshift( prefix );
 			window.console.log.apply( window.console, args );
 			return;
@@ -73,54 +77,8 @@
 		} );
 	};
 
-	/**
-	 * Write a message the console's warning channel.
-	 * Also logs a stacktrace for easier debugging.
-	 * Each action is silently ignored if the browser doesn't support it.
-	 *
-	 * @param {string...} msg Messages to output to console
-	 */
-	mw.log.warn = function () {
-		var console = window.console;
-		if ( console && console.warn ) {
-			console.warn.apply( console, arguments );
-			if ( console.trace ) {
-				console.trace();
-			}
-		}
-	};
-
-	/**
-	 * Create a property in a host object that, when accessed, will produce
-	 * a deprecation warning in the console with backtrace.
-	 *
-	 * @param {Object} obj Host object of deprecated property
-	 * @param {string} key Name of property to create in `obj`
-	 * @param {Mixed} val The value this property should return when accessed
-	 * @param {string} [msg] Optional text to include in the deprecation message.
-	 */
-	mw.log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
-		obj[key] = val;
-	} : function ( obj, key, val, msg ) {
-		msg = 'MWDeprecationWarning: Use of "' + key + '" property is deprecated.' +
-			( msg ? ( ' ' + msg ) : '' );
-		try {
-			Object.defineProperty( obj, key, {
-				configurable: true,
-				enumerable: true,
-				get: function () {
-					mw.log.warn( msg );
-					return val;
-				},
-				set: function ( newVal ) {
-					mw.log.warn( msg );
-					val = newVal;
-				}
-			} );
-		} catch ( err ) {
-			// IE8 can throw on Object.defineProperty
-			obj[key] = val;
-		}
-	};
+	// Restore original methods
+	mw.log.warn = original.warn;
+	mw.log.deprecate = original.deprecate;
 
 }( mediaWiki, jQuery ) );

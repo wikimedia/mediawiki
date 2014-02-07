@@ -438,19 +438,6 @@ var mw = ( function ( $, undefined ) {
 			} );
 		},
 
-		/**
-		 * Dummy placeholder for {@link mw.log}
-		 * @method
-		 */
-		log: ( function () {
-			var log = function () {};
-			log.warn = function () {};
-			log.deprecate = function ( obj, key, val ) {
-				obj[key] = val;
-			};
-			return log;
-		}() ),
-
 		// Make the Map constructor publicly available.
 		Map: Map,
 
@@ -527,6 +514,75 @@ var mw = ( function ( $, undefined ) {
 		msg: function () {
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
+
+		/**
+		 * Dummy placeholder for {@link mw.log}
+		 * @method
+		 */
+		log: ( function () {
+			// Also update the restoration of methods in mediawiki.log.js
+			// when adding or removing methods here.
+			var log = function () {};
+
+			/**
+			 * @class mw.log
+			 * @singleton
+			 */
+
+			/**
+			 * Write a message the console's warning channel.
+			 * Also logs a stacktrace for easier debugging.
+			 * Each action is silently ignored if the browser doesn't support it.
+			 *
+			 * @param {string...} msg Messages to output to console
+			 */
+			log.warn = function () {
+				var console = window.console;
+				if ( console && console.warn ) {
+					console.warn.apply( console, arguments );
+					if ( console.trace ) {
+						console.trace();
+					}
+				}
+			};
+
+			/**
+			 * Create a property in a host object that, when accessed, will produce
+			 * a deprecation warning in the console with backtrace.
+			 *
+			 * @param {Object} obj Host object of deprecated property
+			 * @param {string} key Name of property to create in `obj`
+			 * @param {Mixed} val The value this property should return when accessed
+			 * @param {string} [msg] Optional text to include in the deprecation message.
+			 */
+			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
+				obj[key] = val;
+			} : function ( obj, key, val, msg ) {
+				msg = 'MWDeprecationWarning: Use of "' + key + '" property is deprecated.' +
+					( msg ? ( ' ' + msg ) : '' );
+				try {
+					Object.defineProperty( obj, key, {
+						configurable: true,
+						enumerable: true,
+						get: function () {
+							mw.track( 'mw.deprecate', key );
+							log.warn( msg );
+							return val;
+						},
+						set: function ( newVal ) {
+							mw.track( 'mw.deprecate', key );
+							log.warn( msg );
+							val = newVal;
+						}
+					} );
+				} catch ( err ) {
+					// IE8 can throw on Object.defineProperty
+					obj[key] = val;
+				}
+			};
+
+			return log;
+		}() ),
 
 		/**
 		 * Client-side module loader which integrates with the MediaWiki ResourceLoader
