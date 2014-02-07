@@ -15,7 +15,10 @@
 	height: 5em;
 	background-position: bottom left;
 	background-repeat: repeat-x;
-	.vertical-gradient(@body-background-color, @menu-background-color, 40%, 100%);
+	/* This image is only a fallback (for IE 6-9), so we do not @embed it. */
+	background-image: url('images/page-fade.png');
+	.vertical-gradient(@body-background-color, @menu-background-color, 50%, 100%);
+	background-color: @body-background-color;
 }
 
 #mw-head-base {
