@@ -151,6 +151,9 @@ production.
 * The deprecated action=parse&prop=languageshtml has been removed.
 * (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
   errors when no pages are given.
+* (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
+  setnotificationtimestamp) will now include continuation information when
+  using a generator.
 
 === Languages updated in 1.24 ===
 
