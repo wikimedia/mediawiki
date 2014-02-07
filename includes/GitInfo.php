@@ -169,13 +169,15 @@ class GitInfo {
 			return false;
 		}
 
+		wfSuppressWarnings();
 		$configArray = parse_ini_file( $config, true );
+		wfRestoreWarnings();
 		$remote = false;
 
 		// Use the "origin" remote repo if available or any other repo if not.
 		if ( isset( $configArray['remote origin'] ) ) {
 			$remote = $configArray['remote origin'];
-		} else {
+		} elseif ( is_array( $configArray ) ) {
 			foreach ( $configArray as $sectionName => $sectionConf ) {
 				if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
 					$remote = $sectionConf;
