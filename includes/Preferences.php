@@ -374,14 +374,6 @@ class Preferences {
 						'section' => 'personal/i18n',
 						'help-message' => 'prefs-help-variant',
 					);
-
-					if ( !$wgDisableTitleConversion ) {
-						$defaultPreferences['noconvertlink'] = array(
-							'type' => 'toggle',
-							'section' => 'personal/i18n',
-							'label-message' => 'tog-noconvertlink',
-						);
-					}
 				} else {
 					$defaultPreferences["variant-$langCode"] = array(
 						'type' => 'api',

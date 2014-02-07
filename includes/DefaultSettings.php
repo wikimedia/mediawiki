@@ -3994,7 +3994,6 @@ $wgDefaultUserOptions = array(
 	'minordefault' => 0,
 	'newpageshidepatrolled' => 0,
 	'nickname' => '',
-	'noconvertlink' => 0,
 	'norollbackdiff' => 0,
 	'numberheadings' => 0,
 	'previewonfirst' => 0,

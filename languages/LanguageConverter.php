@@ -768,8 +768,7 @@ class LanguageConverter {
 				( $isredir == 'no'
 					|| $action == 'edit'
 					|| $action == 'submit'
-					|| $linkconvert == 'no'
-					|| $wgUser->getOption( 'noconvertlink' ) == 1 ) ) ) {
+					|| $linkconvert == 'no' ) ) ) {
 			return;
 		}
 
