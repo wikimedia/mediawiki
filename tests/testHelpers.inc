@@ -399,6 +399,22 @@ class TestFileIterator implements Iterator {
 		if ( $this->readNextTest() ) {
 			$this->index++;
 			return true;
+		} else if ( $this->index < 0 ) {
+			// PHPUnit will complain if the iterator returns zero tests. So
+			// return one, and seek to the end of the file so the next read
+			// will be eof.
+			$this->test = array(
+				'test' => 'Dummy test so PHPUnit doesn\'t complain about no tests',
+				'input' => 'dummy',
+				'result' => "<p>dummy\n</p>",
+				'options' => '',
+				'config' => '',
+			);
+			if ( fseek( $this->fh, 0, SEEK_END ) ) {
+				throw new MWException( "Couldn't fseek to the end of '$this->file'\n" );
+			}
+			$this->index++;
+			return true;
 		} else {
 			$this->eof = true;
 		}
