@@ -1197,17 +1197,17 @@ class AutoLoader {
 			}
 
 			if ( isset( self::$autoloadLocalClassesLower[$lowerClass] ) ) {
-				if ( function_exists( 'wfDebug' ) ) {
-					wfDebug( "Class {$className} was loaded using incorrect case.\n" );
+				if ( function_exists( 'wfDebugLog' ) ) {
+					wfDebugLog( 'autoloader', "Class {$className} was loaded using incorrect case" );
 				}
 				$filename = self::$autoloadLocalClassesLower[$lowerClass];
 			}
 		}
 
 		if ( !$filename ) {
-			if ( function_exists( 'wfDebug' ) ) {
+			if ( function_exists( 'wfDebugLog' ) ) {
 				# FIXME: This is not very polite.  Assume we do not manage the class.
-				wfDebug( "Class {$className} not found; skipped loading\n" );
+				wfDebugLog( 'autoloader', "Class {$className} not found; skipped loading" );
 			}
 
 			# Give up
