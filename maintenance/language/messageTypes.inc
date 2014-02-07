@@ -280,7 +280,6 @@ $wgOptionalMessages = array(
 	'feed-rss',
 	'unit-pixel',
 	'userrights-irreversible-marker',
-	'tog-noconvertlink',
 	'variantname-zh-hans',
 	'variantname-zh-hant',
 	'variantname-zh-cn',
