@@ -49,7 +49,6 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 		$gss = new GetSlaveServer();
 		$gss->loadParamsAndArgs();
 		$gss->execute();
-		$gss->globals();
 
 		// The main answer
 		$output = $this->getActualOutput();
