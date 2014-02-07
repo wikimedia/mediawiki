@@ -121,8 +121,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		wfProfileOut( __METHOD__ );
 
-		// @todo i18n: This should use a comma separator instead of a hard coded comma, right?
-		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . $lang->specialList( $link, $lang->commaList( $description_items ) ) . "</li>\n";
 	}
 
 	/**
