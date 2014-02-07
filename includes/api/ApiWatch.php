@@ -43,6 +43,9 @@ class ApiWatch extends ApiBase {
 		}
 
 		$params = $this->extractRequestParams();
+
+		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+
 		$pageSet = $this->getPageSet();
 		// by default we use pageset to extract the page to work on.
 		// title is still supported for backward compatibility
@@ -88,6 +91,7 @@ class ApiWatch extends ApiBase {
 			$res = $this->watchTitle( $title, $user, $params, true );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
+		$this->getResult()->endContinuation( 'standard' );
 	}
 
 	private function watchTitle( Title $title, User $user, array $params,
@@ -180,6 +184,7 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
+			'continue' => '',
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -196,6 +201,7 @@ class ApiWatch extends ApiBase {
 			'unwatch' => 'If set the page will be unwatched rather than watched',
 			'uselang' => 'Language to show the message in',
 			'token' => 'A token previously acquired via prop=info',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

@@ -118,8 +118,6 @@ class ApiQuery extends ApiBase {
 	private $mParams;
 	private $mNamedDB = array();
 	private $mModuleMgr;
-	private $mGeneratorContinue;
-	private $mUseLegacyContinue;
 
 	/**
 	 * @param ApiMain $main
@@ -245,23 +243,24 @@ class ApiQuery extends ApiBase {
 	public function execute() {
 		$this->mParams = $this->extractRequestParams();
 
-		// $pagesetParams is a array of parameter names used by the pageset generator
-		//   or null if pageset has already finished and is no longer needed
-		// $completeModules is a set of complete modules with the name as key
-		$this->initContinue( $pagesetParams, $completeModules );
-
 		// Instantiate requested modules
 		$allModules = array();
 		$this->instantiateModules( $allModules, 'prop' );
-		$propModules = $allModules; // Keep a copy
+		$propModules = array_keys( $allModules );
 		$this->instantiateModules( $allModules, 'list' );
 		$this->instantiateModules( $allModules, 'meta' );
 
 		// Filter modules based on continue parameter
-		$modules = $this->initModules( $allModules, $completeModules, $pagesetParams !== null );
+		list( $generatorDone, $modules ) = $this->getResult()->beginContinuation(
+			$this->mParams['continue'], $allModules, $propModules
+		);
 
-		// Execute pageset if in legacy mode or if pageset is not done
-		if ( $completeModules === null || $pagesetParams !== null ) {
+		if ( !$generatorDone ) {
+			// Query modules may optimize data requests through the $this->getPageSet()
+			// object by adding extra fields from the page table.
+			foreach ( $modules as $module ) {
+				$module->requestExtraData( $this->mPageSet );
+			}
 			// Populate page/revision information
 			$this->mPageSet->execute();
 			// Record page information (title, namespace, if exists, etc)
@@ -287,135 +286,10 @@ class ApiQuery extends ApiBase {
 		// Set the cache mode
 		$this->getMain()->setCacheMode( $cacheMode );
 
-		if ( $completeModules === null ) {
-			return; // Legacy continue, we are done
-		}
-
-		// Reformat query-continue result section
-		$result = $this->getResult();
-		$qc = $result->getData();
-		if ( isset( $qc['query-continue'] ) ) {
-			$qc = $qc['query-continue'];
-			$result->unsetValue( null, 'query-continue' );
-		} elseif ( $this->mGeneratorContinue !== null ) {
-			$qc = array();
-		} else {
-			// no more "continue"s, we are done!
-			return;
-		}
-
-		// we are done with all the modules that do not have result in query-continue
-		$completeModules = array_merge( $completeModules, array_diff_key( $modules, $qc ) );
-		if ( $pagesetParams !== null ) {
-			// The pageset is still in use, check if all props have finished
-			$incompleteProps = array_intersect_key( $propModules, $qc );
-			if ( count( $incompleteProps ) > 0 ) {
-				// Properties are not done, continue with the same pageset state - copy current parameters
-				$main = $this->getMain();
-				$contValues = array();
-				foreach ( $pagesetParams as $param ) {
-					// The param name is already prefix-encoded
-					$contValues[$param] = $main->getVal( $param );
-				}
-			} elseif ( $this->mGeneratorContinue !== null ) {
-				// Move to the next set of pages produced by pageset, properties need to be restarted
-				$contValues = $this->mGeneratorContinue;
-				$pagesetParams = array_keys( $contValues );
-				$completeModules = array_diff_key( $completeModules, $propModules );
-			} else {
-				// Done with the pageset, finish up with the the lists and meta modules
-				$pagesetParams = null;
-			}
-		}
-
-		$continue = '||' . implode( '|', array_keys( $completeModules ) );
-		if ( $pagesetParams !== null ) {
-			// list of all pageset parameters to use in the next request
-			$continue = implode( '|', $pagesetParams ) . $continue;
-		} else {
-			// we are done with the pageset
-			$contValues = array();
-			$continue = '-' . $continue;
-		}
-		$contValues['continue'] = $continue;
-		foreach ( $qc as $qcModule ) {
-			foreach ( $qcModule as $qcKey => $qcValue ) {
-				$contValues[$qcKey] = $qcValue;
-			}
-		}
-		$this->getResult()->addValue( null, 'continue', $contValues );
-	}
-
-	/**
-	 * Parse 'continue' parameter into the list of complete modules and a list of generator parameters
-	 * @param array|null $pagesetParams Returns list of generator params or null if pageset is done
-	 * @param array|null $completeModules Returns list of finished modules (as keys), or null if legacy
-	 */
-	private function initContinue( &$pagesetParams, &$completeModules ) {
-		$pagesetParams = array();
-		$continue = $this->mParams['continue'];
-		if ( $continue !== null ) {
-			$this->mUseLegacyContinue = false;
-			if ( $continue !== '' ) {
-				// Format: ' pagesetParam1 | pagesetParam2 || module1 | module2 | module3 | ...
-				// If pageset is done, use '-'
-				$continue = explode( '||', $continue );
-				$this->dieContinueUsageIf( count( $continue ) !== 2 );
-				if ( $continue[0] === '-' ) {
-					$pagesetParams = null; // No need to execute pageset
-				} elseif ( $continue[0] !== '' ) {
-					// list of pageset params that might need to be repeated
-					$pagesetParams = explode( '|', $continue[0] );
-				}
-				$continue = $continue[1];
-			}
-			if ( $continue !== '' ) {
-				$completeModules = array_flip( explode( '|', $continue ) );
-			} else {
-				$completeModules = array();
-			}
-		} else {
-			$this->mUseLegacyContinue = true;
-			$completeModules = null;
-		}
-	}
-
-	/**
-	 * Validate sub-modules, filter out completed ones, and do requestExtraData()
-	 * @param array $allModules An dict of name=>instance of all modules requested by the client
-	 * @param array|null $completeModules List of finished modules, or null if legacy continue
-	 * @param bool $usePageset True if pageset will be executed
-	 * @return array Array of modules to be processed during this execution
-	 */
-	private function initModules( $allModules, $completeModules, $usePageset ) {
-		$modules = $allModules;
-		$tmp = $completeModules;
-		$wasPosted = $this->getRequest()->wasPosted();
-
-		/** @var $module ApiQueryBase */
-		foreach ( $allModules as $moduleName => $module ) {
-			if ( !$wasPosted && $module->mustBePosted() ) {
-				$this->dieUsageMsgOrDebug( array( 'mustbeposted', $moduleName ) );
-			}
-			if ( $completeModules !== null && array_key_exists( $moduleName, $completeModules ) ) {
-				// If this module is done, mark all its params as used
-				$module->extractRequestParams();
-				// Make sure this module is not used during execution
-				unset( $modules[$moduleName] );
-				unset( $tmp[$moduleName] );
-			} elseif ( $completeModules === null || $usePageset ) {
-				// Query modules may optimize data requests through the $this->getPageSet()
-				// object by adding extra fields from the page table.
-				// This function will gather all the extra request fields from the modules.
-				$module->requestExtraData( $this->mPageSet );
-			} else {
-				// Error - this prop module must have finished before generator is done
-				$this->dieContinueUsageIf( $this->mModuleMgr->getModuleGroup( $moduleName ) === 'prop' );
-			}
-		}
-		$this->dieContinueUsageIf( $completeModules !== null && count( $tmp ) !== 0 );
-
-		return $modules;
+		// Write the continuation data into the result
+		$this->getResult()->endContinuation(
+			$this->mParams['continue'] === null ? 'raw' : 'standard'
+		);
 	}
 
 	/**
@@ -447,11 +321,15 @@ class ApiQuery extends ApiBase {
 	 * @param string $param Parameter name to read modules from
 	 */
 	private function instantiateModules( &$modules, $param ) {
+		$wasPosted = $this->getRequest()->wasPosted();
 		if ( isset( $this->mParams[$param] ) ) {
 			foreach ( $this->mParams[$param] as $moduleName ) {
 				$instance = $this->mModuleMgr->getModule( $moduleName, $param );
 				if ( $instance === null ) {
 					ApiBase::dieDebug( __METHOD__, 'Error instantiating module' );
+				}
+				if ( !$wasPosted && $instance->mustBePosted() ) {
+					$this->dieUsageMsgOrDebug( array( 'mustbeposted', $moduleName ) );
 				}
 				// Ignore duplicates. TODO 2.0: die()?
 				if ( !array_key_exists( $moduleName, $modules ) ) {
@@ -563,22 +441,16 @@ class ApiQuery extends ApiBase {
 	 * This method is called by the generator base when generator in the smart-continue
 	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
 	 * until the post-processing when it is known if the generation should continue or repeat.
+	 * @deprecated @since 1.24
 	 * @param ApiQueryGeneratorBase $module Generator module
 	 * @param string $paramName
 	 * @param mixed $paramValue
 	 * @return bool True if processed, false if this is a legacy continue
 	 */
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
-		if ( $this->mUseLegacyContinue ) {
-			return false;
-		}
-		$paramName = $module->encodeParamName( $paramName );
-		if ( $this->mGeneratorContinue === null ) {
-			$this->mGeneratorContinue = array();
-		}
-		$this->mGeneratorContinue[$paramName] = $paramValue;
-
-		return true;
+		wfDeprecated( __METHOD__, '1.24' );
+		$this->getResult()->setGeneratorContinueParam( $module, $paramName, $paramValue );
+		return $this->getParameter( 'continue' ) !== null;
 	}
 
 	/**

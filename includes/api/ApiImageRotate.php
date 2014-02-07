@@ -52,6 +52,8 @@ class ApiImageRotate extends ApiBase {
 		$params = $this->extractRequestParams();
 		$rotation = $params['rotation'];
 
+		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
 
@@ -131,6 +133,7 @@ class ApiImageRotate extends ApiBase {
 		$apiResult = $this->getResult();
 		$apiResult->setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
+		$apiResult->endContinuation( 'standard' );
 	}
 
 	/**
@@ -185,6 +188,7 @@ class ApiImageRotate extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
+			'continue' => '',
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -199,6 +203,7 @@ class ApiImageRotate extends ApiBase {
 		return $pageSet->getFinalParamDescription() + array(
 			'rotation' => 'Degrees to rotate image clockwise',
 			'token' => 'Edit token. You can get one of these through action=tokens',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

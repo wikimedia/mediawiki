@@ -58,6 +58,13 @@ class ApiResult extends ApiBase {
 
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
+	private $continueAllModules = array();
+	private $continueGeneratedModules = array();
+	private $continuationData = array();
+	private $generatorContinuationData = array();
+	private $generatorParams = array();
+	private $generatorDone = false;
+
 	/**
 	 * @param ApiMain $main
 	 */
@@ -411,5 +418,182 @@ class ApiResult extends ApiBase {
 
 	public function execute() {
 		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
+	}
+
+	/**
+	 * Parse a 'continue' parameter and return status information.
+	 *
+	 * This must be balanced by a call to endContinuation().
+	 *
+	 * @since 1.24
+	 * @param string|null $continue The "continue" parameter, if any
+	 * @param array $allModules Contains ApiBase instances that will be executed
+	 * @param array $generatedModules Names of modules that depend on the generator
+	 * @return array Two elements: a boolean indicating if the generator is done,
+	 *   and an array of modules to actually execute.
+	 */
+	public function beginContinuation(
+		$continue, array $allModules = array(), array $generatedModules = array()
+	) {
+		$this->continueGeneratedModules = $generatedModules
+			? array_combine( $generatedModules, $generatedModules )
+			: array();
+		$this->continuationData = array();
+		$this->generatorContinuationData = array();
+		$this->generatorParams = array();
+
+		$skip = array();
+		if ( is_string( $continue ) && $continue !== '' ) {
+			$continue = explode( '||', $continue );
+			$this->dieContinueUsageIf( count( $continue ) !== 2 );
+			$this->generatorDone = ( $continue[0] === '-' );
+			if ( !$this->generatorDone ) {
+				$this->generatorParams = explode( '|', $continue[0] );
+			}
+			$skip = explode( '|', $continue[1] );
+		}
+
+		$this->continueAllModules = array();
+		$runModules = array();
+		foreach ( $allModules as $module ) {
+			$name = $module->getModuleName();
+			if ( in_array( $name, $skip ) ) {
+				$this->continueAllModules[$name] = false;
+				// Prevent spurious "unused parameter" warnings
+				$module->extractRequestParams();
+			} else {
+				$this->continueAllModules[$name] = true;
+				$runModules[] = $module;
+			}
+		}
+
+		return array(
+			$this->generatorDone,
+			$runModules,
+		);
+	}
+
+	/**
+	 * Set the continuation parameter for a module
+	 *
+	 * @since 1.24
+	 * @param ApiBase $module
+	 * @param string $paramName
+	 * @param string|array $paramValue
+	 */
+	public function setContinueParam( ApiBase $module, $paramName, $paramValue ) {
+		$name = $module->getModuleName();
+		if ( !isset( $this->continueAllModules[$name] ) ) {
+			throw new MWException(
+				"Module '$name' called ApiResult::setContinueParam but was not " .
+				'passed to ApiResult::beginContinuation'
+			);
+		}
+		if ( !$this->continueAllModules[$name] ) {
+			throw new MWException(
+				"Module '$name' was not supposed to have been executed, but " .
+				'it was executed anyway'
+			);
+		}
+		$paramName = $module->encodeParamName( $paramName );
+		if ( is_array( $paramValue ) ) {
+			$paramValue = join( '|', $paramValue );
+		}
+		$this->continuationData[$name][$paramName] = $paramValue;
+	}
+
+	/**
+	 * Set the continuation parameter for the generator module
+	 *
+	 * @since 1.24
+	 * @param ApiBase $module
+	 * @param string $paramName
+	 * @param string|array $paramValue
+	 */
+	public function setGeneratorContinueParam( ApiBase $module, $paramName, $paramValue ) {
+		$name = $module->getModuleName();
+		$paramName = $module->encodeParamName( $paramName );
+		if ( is_array( $paramValue ) ) {
+			$paramValue = join( '|', $paramValue );
+		}
+		$this->generatorContinuationData[$name][$paramName] = $paramValue;
+	}
+
+	/**
+	 * Close continuation, writing the data into the result
+	 *
+	 * @since 1.24
+	 * @param string $style 'standard' for the new style since 1.21, 'raw' for
+	 *   the style used in 1.20 and earlier.
+	 */
+	public function endContinuation( $style = 'standard' ) {
+		if ( $style === 'raw' ) {
+			$key = 'query-continue';
+			$data = array_merge_recursive(
+				$this->continuationData, $this->generatorContinuationData
+			);
+		} else {
+			$key = 'continue';
+			$data = array();
+
+			$finishedModules = array_diff(
+				array_keys( $this->continueAllModules ),
+				array_keys( $this->continuationData )
+			);
+
+			// First, grab the non-generator-using continuation data
+			$continuationData = array_diff_key(
+				$this->continuationData, $this->continueGeneratedModules
+			);
+			foreach ( $continuationData as $module => $kvp ) {
+				$data += $kvp;
+			}
+
+			// Next, handle the generator-using continuation data
+			$continuationData = array_intersect_key(
+				$this->continuationData, $this->continueGeneratedModules
+			);
+			if ( $continuationData ) {
+				// Some modules are unfinished: include those params, and copy
+				// the generator params.
+				foreach ( $continuationData as $module => $kvp ) {
+					$data += $kvp;
+				}
+				$data += array_intersect_key(
+					$this->getMain()->getRequest()->getValues(),
+					array_flip( $this->generatorParams )
+				);
+			} else if ( $this->generatorContinuationData ) {
+				// All the generator-using modules are complete, but the
+				// generator isn't. Continue the generator and restart the
+				// generator-using modules
+				$this->generatorParams = array();
+				foreach ( $this->generatorContinuationData as $kvp ) {
+					$this->generatorParams = array_merge(
+						$this->generatorParams, array_keys( $kvp )
+					);
+					$data += $kvp;
+				}
+				$finishedModules = array_diff(
+					$finishedModules, $this->continueGeneratedModules
+				);
+			} else {
+				// Generator and prop modules are all done. Mark it so.
+				$this->generatorDone = true;
+			}
+
+			// Set 'continue' if any continuation data is set or if the generator
+			// still needs to run
+			if ( $data || !$this->generatorDone ) {
+				$data['continue'] =
+					( $this->generatorDone ? '-' : join( '|', $this->generatorParams ) ) .
+					'||' . join( '|', $finishedModules );
+			}
+		}
+		if ( $data ) {
+			$this->disableSizeCheck();
+			$this->addValue( null, $key, $data, ApiResult::ADD_ON_TOP );
+			$this->enableSizeCheck();
+		}
 	}
 }

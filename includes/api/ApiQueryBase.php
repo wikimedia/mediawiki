@@ -399,15 +399,10 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Set a query-continue value
 	 * @param string $paramName Parameter name
-	 * @param string $paramValue Parameter value
+	 * @param string|array $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
-		$paramName = $this->encodeParamName( $paramName );
-		$msg = array( $paramName => $paramValue );
-		$result = $this->getResult();
-		$result->disableSizeCheck();
-		$result->addValue( 'query-continue', $this->getModuleName(), $msg, ApiResult::ADD_ON_TOP );
-		$result->enableSizeCheck();
+		$this->getResult()->setContinueParam( $this, $paramName, $paramValue );
 	}
 
 	/**
@@ -668,16 +663,14 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	}
 
 	/**
-	 * Overrides base in case of generator & smart continue to
-	 * notify ApiQueryMain instead of adding them to the result right away.
+	 * Overridden to set the generator param if in generator mode
 	 * @param string $paramName Parameter name
-	 * @param string $paramValue Parameter value
+	 * @param string|array $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
-		// If this is a generator and query->setGeneratorContinue() returns false, treat as before
-		if ( $this->mGeneratorPageSet === null
-			|| !$this->getQuery()->setGeneratorContinue( $this, $paramName, $paramValue )
-		) {
+		if ( $this->mGeneratorPageSet !== null ) {
+			$this->getResult()->setGeneratorContinueParam( $this, $paramName, $paramValue );
+		} else {
 			parent::setContinueEnumParameter( $paramName, $paramValue );
 		}
 	}

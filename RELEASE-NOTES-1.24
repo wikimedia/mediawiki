@@ -51,6 +51,9 @@ production.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
   field which is true iff protocol-relative urls can be used to access
   a particular interwiki map entry.
+* (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
+  setnotificationtimestamp) will now include continuation information when
+  using a generator.
 
 === Languages updated in 1.24 ===
 
