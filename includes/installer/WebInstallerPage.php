@@ -827,7 +827,11 @@ class WebInstaller_Name extends WebInstallerPage {
 		$msg = false;
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
-		$valid = $user && $user->getPasswordValidity( $pwd );
+		if ( $user ) {
+			$valid = $user->getPasswordValidity( $pwd );
+		} else {
+			$valid = 'config-admin-name-invalid';
+		}
 		if ( strval( $pwd ) === '' ) {
 			# $user->getPasswordValidity just checks for $wgMinimalPasswordLength.
 			# This message is more specific and helpful.
@@ -835,8 +839,6 @@ class WebInstaller_Name extends WebInstallerPage {
 		} elseif ( $pwd !== $this->getVar( '_AdminPassword2' ) ) {
 			$msg = 'config-admin-password-mismatch';
 		} elseif ( $valid !== true ) {
-			# As of writing this will only catch the username being e.g. 'FOO' and
-			# the password 'foo'
 			$msg = $valid;
 		}
 		if ( $msg !== false ) {
