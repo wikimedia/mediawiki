@@ -2498,6 +2498,18 @@ $wgInterwikiMagic = true;
 $wgHideInterlanguageLinks = false;
 
 /**
+ * List of additional interwiki prefixes that should be treated as
+ * interlanguage links (i.e. placed in the sidebar).
+ * Notes:
+ * - This will not do anything unless the prefixes are defined in the interwiki
+ *   map.
+ * - The display text for these custom interlanguage links will be fetched from
+ *   the system message "interlanguage-link-xyz" where xyz is the prefix in
+ *   this array.
+ */
+$wgExtraInterlanguageLinkPrefixes = array();
+
+/**
  * List of language names or overrides for default names in Names.php
  */
 $wgExtraLanguageNames = array();

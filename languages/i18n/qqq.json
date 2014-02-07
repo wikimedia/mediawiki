@@ -2624,6 +2624,8 @@
 	"tooltip-summary": "Used as tooltip for Summary input box in Editor page.\n\nSee also:\n* {{msg-mw|Summary}}\n* {{msg-mw|Accesskey-summary}}\n* {{msg-mw|Tooltip-summary}}",
 	"interlanguage-link-title": "{{Optional}}\nFormat of a sidebar interwiki link tooltip. Parameters:\n* $1 - page name in the target wiki\n* $2 - target wiki language autonym",
 	"interlanguage-link-title-langonly": "{{ignored}}Interlanguage link title. Parameters: $1 replaced with a language name.",
+	"interlanguage-link-title-nonlang": "{{Optional}}\nFormat of a tooltip for a sidebar interwiki link that points to a specific project. Parameters:\n* $1 - page name in the target wiki\n* $2 - name of the target wiki (probably not a language name)",
+	"interlanguage-link-title-nonlangonly": "{{ignored}}Interlanguage link title. Parameters: $1 replaced with name of the target wiki (probably not a language name).",
 	"common.css": "{{optional}}\nCSS applied to all users.",
 	"cologneblue.css": "{{optional}}",
 	"monobook.css": "{{optional}}\nCSS applied to users using Monobook skin.",

@@ -2462,6 +2462,8 @@
     "tooltip-summary": "Enter a short summary",
     "interlanguage-link-title": "$1 – $2",
     "interlanguage-link-title-langonly": "$1",
+    "interlanguage-link-title-nonlang": "$1 – $2",
+    "interlanguage-link-title-nonlangonly": "$1",
     "common.css": "/* CSS placed here will be applied to all skins */",
     "cologneblue.css": "/* CSS placed here will affect users of the Cologne Blue skin */",
     "monobook.css": "/* CSS placed here will affect users of the MonoBook skin */",

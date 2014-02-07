@@ -152,8 +152,17 @@ class SkinTemplate extends Skin {
 				$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
 
 				if ( strval( $ilLangName ) === '' ) {
-					$ilLangName = $languageLinkText;
+					$ilDisplayTextMsg = wfMessage( "interlanguage-link-$ilInterwikiCode" )
+						->inContentLanguage();
+					if ( !$ilDisplayTextMsg->isDisabled() ) {
+						// Use custom MW message for the display text
+						$ilLangName = $ilDisplayTextMsg->text();
+					} else {
+						// Last resort: fallback to the language link target
+						$ilLangName = $languageLinkText;
+					}
 				} else {
+					// Use the language autonym as display text
 					$ilLangName = $this->formatLanguageName( $ilLangName );
 				}
 
@@ -165,7 +174,29 @@ class SkinTemplate extends Skin {
 				);
 
 				$languageLinkTitleText = $languageLinkTitle->getText();
-				if ( $languageLinkTitleText === '' ) {
+				if ( $ilLangLocalName === '' ) {
+					$ilFriendlySiteName = wfMessage( "interlanguage-link-sitename-$ilInterwikiCode" );
+					if ( !$ilFriendlySiteName->isDisabled() ) {
+						if ( $languageLinkTitleText === '' ) {
+							$ilTitle = wfMessage(
+								'interlanguage-link-title-nonlangonly',
+								$ilFriendlySiteName->text()
+							)->text();
+						} else {
+							$ilTitle = wfMessage(
+								'interlanguage-link-title-nonlang',
+								$languageLinkTitleText,
+								$ilFriendlySiteName->text()
+							)->text();
+						}
+					} else {
+						// we have nothing friendly to put in the title, so fall back to
+						// displaying the interlanguage link itself in the title text
+						// (similar to what is done in page content)
+						$ilTitle = $languageLinkTitle->getInterwiki() .
+							":$languageLinkTitleText";
+					}
+				} elseif ( $languageLinkTitleText === '' ) {
 					$ilTitle = wfMessage(
 						'interlanguage-link-title-langonly',
 						$ilLangLocalName
