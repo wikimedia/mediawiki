@@ -22,6 +22,7 @@
  * @author GoEThe
  * @author Hamilton Abreu
  * @author Helder.wiki
+ * @author Imperadeiro98
  * @author Indech
  * @author Jens Liebenau
  * @author Jorge Morais
@@ -882,6 +883,8 @@ Para prosseguir, será necessário definir uma nova palavra-chave.',
 'retypenew' => 'Repita a palavra-chave nova:',
 'resetpass_submit' => 'Definir palavra-chave e entrar',
 'changepassword-success' => 'A sua palavra-chave foi alterada com êxito!',
+'changepassword-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
+Por favor, aguarde $1 antes de tentar novamente.',
 'resetpass_forbidden' => 'Não é possível alterar palavras-chave',
 'resetpass-no-info' => 'Precisa estar autenticado para aceder diretamente a esta página.',
 'resetpass-submit-loggedin' => 'Alterar palavra-chave',
@@ -933,6 +936,8 @@ Palavra-chave temporária: $2',
 'changeemail-password' => 'A sua senha na wiki {{SITENAME}}:',
 'changeemail-submit' => 'Alterar correio electrónico',
 'changeemail-cancel' => 'Cancelar',
+'changeemail-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
+Por favor, aguarde $1 antes de tentar novamente.',
 
 # Special:ResetTokens
 'resettokens' => 'Redefinir chaves',
@@ -1162,9 +1167,10 @@ Ela já existia.',
 'content-failed-to-parse' => 'Falha ao analisar conteúdo $2 para modelo $1:$3',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
-'editwarning-warning' => 'Sair desta página fará com que você perca quaisquer alterações feitas por você.
-Se você se autenticou, pode desabilitar este aviso na seção "Edição" das suas preferências.',
+'editwarning-warning' => 'Sair desta página fará com que você perca quaisquer alterações feitas por si.
+Se você se autenticou, pode desativar este aviso na secção "{{int:prefs-editing}}" das suas preferências.',
 'editpage-notsupportedcontentformat-title' => 'Formato de conteúdo não suportado',
+'editpage-notsupportedcontentformat-text' => 'O formato de conteúdo $1 não é suportado pelo modelo de conteúdo $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitexto',
@@ -1199,6 +1205,7 @@ Verifique a comparação abaixo, para se certificar que corresponde ao que prete
 Depois grave as alterações, para finalizar e desfazer a edição.',
 'undo-failure' => 'Não foi possível desfazer a edição por conflito com alterações intermédias.',
 'undo-norev' => 'Não foi possível desfazer a edição porque ela não existe ou foi apagada.',
+'undo-nochange' => 'A edição parece já ter sido desfeita.',
 'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
 'undo-summary-username-hidden' => 'Desfazer a revisão  $1  por um usuário oculto',
 
@@ -1207,6 +1214,9 @@ Depois grave as alterações, para finalizar e desfazer a edição.',
 'cantcreateaccount-text' => "A criação de contas a partir deste endereço IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
 O motivo apresentado por $3 foi ''$2''",
+'cantcreateaccount-range-text' => "A criação de conta a partir dos Endereços IP no intervalo '''$1''', que inclui o seu Endereço IP ('''$4'''), foi bloqueado por [[User:$3|$3]].
+
+A razão dada por $3 é ''$2''",
 
 # History pages
 'viewpagelogs' => 'Ver registos para esta página',
@@ -1425,6 +1435,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
 'showingresults' => "{{PLURAL:$1|É apresentado '''um''' resultado|São apresentados até '''$1''' resultados}} abaixo{{PLURAL:$1||, começando pelo '''$2'''º}}.",
+'showingresultsinrange' => 'Mostrando abaixo até {{PLURAL:$1|strong>1</strong>resultado|strong>$1</strong> resultados}} entre #<strong>$2</strong> e #<strong>$3</strong>.',
 'showingresultsnum' => "{{PLURAL:$3|É apresentado '''um''' resultado|São apresentados '''$3''' resultados}} abaixo{{PLURAL:$3||, começando pelo '''$2'''º}}.",
 'showingresultsheader' => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'search-nonefound' => 'A pesquisa não produziu resultados.',
@@ -2807,7 +2818,8 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'change-blocklink' => 'alterar bloqueio',
 'contribslink' => 'contribs',
 'emaillink' => 'enviar correio electrónico',
-'autoblocker' => 'Foi automaticamente bloqueado, pois o seu endereço IP foi recentemente usado por "[[User:$1|$1]]". O motivo apresentado para o bloqueio de $1 foi: "$2".',
+'autoblocker' => 'Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por "[[User:$1|$1]]". 
+O motivo apresentado para o bloqueio de $1 é: "$2".',
 'blocklogpage' => 'Registo de bloqueio',
 'blocklog-showlog' => 'Este utilizador foi já bloqueado anteriormente.
 O registo de bloqueios é fornecido abaixo para referência:',
@@ -3051,7 +3063,7 @@ O ficheiro foi recebido parcialmente.',
 Não há um diretório temporário.',
 'import-parse-failure' => 'Falha ao importar dados XML',
 'import-noarticle' => 'Sem páginas para importar!',
-'import-nonewrevisions' => 'Todas as revisões já tinham sido importadas anteriormente.',
+'import-nonewrevisions' => 'Nenhuma revisão foi importada (já estavam todas presentes ou foram ignoradas devido a erros).',
 'xml-error-string' => '$1 na linha $2, coluna $3 (byte $4): $5',
 'import-upload' => 'Enviar dados em XML',
 'import-token-mismatch' => 'Perda dos dados da sessão. Tente novamente, por favor.',
@@ -3195,8 +3207,8 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'spam_reverting' => 'A reverter para a última revisão que não contém links para $1',
 'spam_blanking' => 'Todas as revisões continham links para $1; a esvaziar',
 'spam_deleting' => 'Todas as revisões continham links para $1; a eliminar',
-'simpleantispam-label' => "Verificação contra spam
-'''NÃO''' preencha isto!",
+'simpleantispam-label' => 'Verificação contra spam.
+<strong>NÃO</strong> preencha isto!',
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
@@ -3845,10 +3857,10 @@ Este código de confirmação expira a $4.',
 'scarytranscludetoolong' => '[URL longa demais]',
 
 # Delete conflict
-'deletedwhileediting' => "'''Aviso''': Esta página foi eliminada após ter começado a editá-la!",
-'confirmrecreate' => "Enquanto você editava esta página, o utilizador [[User:$1|$1]] ([[User talk:$1|Discussão]]) eliminou-a pelo seguinte motivo:
-: ''$2''
-Confirme que deseja realmente recriar esta página, por favor.",
+'deletedwhileediting' => '<strong>AVISO:</strong> Esta página foi eliminada depois de você ter começado a editá-la!',
+'confirmrecreate' => 'Depois de você ter começado a editar esta página, o utilizador [[User:$1|$1]] ([[User talk:$1|conversar]]) eliminou-a pelo seguinte motivo:
+: <em>$2</em>
+Por favor, confirme que você quer realmente recriar esta página.',
 'confirmrecreate-noreason' => 'O utilizador [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou esta página depois de você ter começado a editá-la. Confirme que deseja recriar a página, por favor.',
 'recreate' => 'Recriar',
 
@@ -3937,7 +3949,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
-'duplicate-defaultsort' => 'Aviso: A chave de ordenação padrão "$2" sobrepõe-se à anterior chave de ordenação padrão "$1".',
+'duplicate-defaultsort' => '<strong>Aviso:</strong> A chave de ordenação padrão "$2" sobrepõe-se à anterior "$1".',
 
 # Special:Version
 'version' => 'Versão',
@@ -3957,7 +3969,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-version' => '(Versão $1)',
 'version-license' => 'Licença do MediaWiki',
 'version-credits-not-found' => 'Nenhuma informação detalhada acerca dos créditos foi encontrada para esta extensão.',
-'version-poweredby-credits' => "Esta é uma wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits' => 'Esta wiki é potenciada por <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.',
 'version-poweredby-others' => 'outros',
 'version-credits-summary' => 'Gostaríamos de reconhecer as seguintes pessoas pela sua contribuição para o [[Special:Version|MediaWiki]].',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.

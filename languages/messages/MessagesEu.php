@@ -17,6 +17,7 @@
  * @author Malafaya
  * @author Nemo bis
  * @author Reedy
+ * @author Subi
  * @author Theklan
  * @author Unai Fdz. de Betoño
  * @author Urhixidur
@@ -3549,6 +3550,10 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-hook-subscribedby' => 'Hauen harpidetzarekin',
 'version-version' => '(Bertsioa $1)',
 'version-license' => 'Lizentzia',
+'version-ext-license' => 'Lizentzia',
+'version-ext-colheader-version' => 'Bertsioa',
+'version-ext-colheader-license' => 'Lizentzia',
+'version-ext-colheader-credits' => 'Egileak',
 'version-poweredby-credits' => "Wiki hau '''[https://www.mediawiki.org/ MediaWiki]'''k sustatzen du (copyright © 2001-$1 $2).",
 'version-poweredby-others' => 'beste batzuk',
 'version-poweredby-translators' => 'translatewiki.net itzultzaileak',

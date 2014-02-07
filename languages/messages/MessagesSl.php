@@ -1252,6 +1252,8 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'showhideselectedversions' => 'Prikaži/skrij izbrane redakcije',
 'editundo' => 'razveljavi',
 'diff-empty' => '(Ni razlike)',
+'diff-multi-sameuser' => '({{PLURAL:$1|1=Vmesna redakcija|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} istega uporabnika ni prikazana)',
+'diff-multi-otherusers' => '({{PLURAL:$1|1=Vmesna redakcija|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} {{PLURAL:$2|1=drugega uporabnika|$2 uporabnikov}} ni prikazana)',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})',
 'difference-missing-revision' => '{{PLURAL:$2|Ene redakcije|$2 redakcij}} razlike ($1) {{PLURAL:$2|nisem}} našel.
 
@@ -1298,6 +1300,7 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'searchrelated' => 'povezano',
 'searchall' => 'vse',
 'showingresults' => "Prikazujem do '''$1''' {{PLURAL:$1|zadetek|zadetka|zadetke|zadetkov}}, začenši s št. '''$2'''.",
+'showingresultsinrange' => 'Spodaj prikazujem {{PLURAL:$1|1=<strong>1</strong> rezultat|<strong>$1</strong> rezultata|<strong>$1</strong> rezultate|<strong>$1</strong> rezultatov}} v razponu od št. <strong>$2</strong> do št. <strong>$3</strong>.',
 'showingresultsnum' => "Prikazujem '''$3''' {{PLURAL:$3|zadetek|zadetka|zadetke|zadetkov|zadetkov}}, začenši s št. '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Zadetek '''$1''' od '''$3'''|Zadetki '''$1 - $2''' od skupno '''$3'''}} za povpraševanje '''$4'''",
 'search-nonefound' => 'Ni bilo zadetkov, ki ustrezajo poizvedbi.',

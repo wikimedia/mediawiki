@@ -1025,7 +1025,7 @@ Ja existeix.",
 'invalid-content-data' => 'Dades de contingut no vàlides',
 'content-not-allowed-here' => 'No és permés el contingut "$1" a la pàgina [[$2]]',
 'editwarning-warning' => "Si sortiu d'aquesta pàgina perdreu tots els canvis que hàgiu fet.
-Si teniu un compte d'usuari, podeu eliminar aquest avís a la secció «Caixa d'edició» de les vostres preferències.",
+Si teniu un compte d'usuari, podeu eliminar aquest avís a la secció «{{int:prefs-editing}}» de les vostres preferències.",
 'editpage-notsupportedcontentformat-title' => "No s'admet el format del contingut",
 'editpage-notsupportedcontentformat-text' => "No s'admet el format del contingut $1 pel model de contingut $2.",
 
@@ -1061,6 +1061,7 @@ Se n'han omès els arguments.",
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
 'undo-failure' => 'No pot desfer-se la modificació perquè hi ha edicions entre mig que hi entren en conflicte.',
 'undo-norev' => "No s'ha pogut desfer l'edició perquè no existeix o s'ha suprimit.",
+'undo-nochange' => "Sembla que ja s'ha desfet la modificació.",
 'undo-summary' => 'Es desfà la revisió $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussió]])',
 'undo-summary-username-hidden' => "Desfés la revisió $1 d'un usuari ocult",
 
@@ -1241,6 +1242,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'showhideselectedversions' => 'Mostra/oculta les versions seleccionades',
 'editundo' => 'desfés',
 'diff-empty' => '(Cap diferència)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} del mateix usuari que no es mostren)',
 'diff-multi-manyusers' => "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",
 'difference-missing-revision' => "{{PLURAL:$2|Una revisió|$2 revisions}} d'aquesta diferència ($1) no {{PLURAL:$2|s'ha|s'han}} trobat.
 
@@ -2826,6 +2828,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'allmessages-prefix' => 'Filtra per prefix:',
 'allmessages-language' => 'Idioma:',
 'allmessages-filter-submit' => 'Vés-hi',
+'allmessages-filter-translate' => 'Tradueix',
 
 # Thumbnails
 'thumbnail-more' => 'Amplia',
