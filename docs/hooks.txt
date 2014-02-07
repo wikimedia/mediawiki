@@ -2243,6 +2243,11 @@ $dummy: Called when SkinTemplateToolboxEnd is used from a BaseTemplate skin,
   dummy parameter with "$dummy=false" in their code and return without echoing
   any HTML to avoid creating duplicate toolbox items.
 
+'SkinVectorStyleModules': Called when defining the list of module styles to be
+loaded by the Vector skin.
+$skin: SkinVector object
+&$styles: Array of module names whose style will be loaded for the skin
+
 'SoftwareInfo': Called by Special:Version for returning information about the
 software.
 $software: The array of software in format 'name' => 'version'. See
