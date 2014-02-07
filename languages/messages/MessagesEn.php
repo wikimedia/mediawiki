@@ -974,6 +974,8 @@ See [[Special:Version|version page]].',
 'sort-ascending'               => 'Sort ascending',
 'interlanguage-link-title'     => '$1 – $2', # only translate this message to other languages if you have to change it
 'interlanguage-link-title-langonly' => '$1', # do not translate or duplicate this message to other languages
+'interlanguage-link-title-nonlang' => '$1 – $2', # only translate this message to other languages if you have to change it
+'interlanguage-link-title-nonlangonly' => '$1', # do not translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
