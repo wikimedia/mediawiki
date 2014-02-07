@@ -162,6 +162,9 @@ production.
 * (bug 23005) Added action=revisiondelete.
 * Added siprop=restrictions to API action=query&meta=siteinfo for querying
   possible page restriction (protection) levels and types.
+* (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
+  setnotificationtimestamp) will now include continuation information when
+  using a generator.
 
 === Languages updated in 1.23 ===
 

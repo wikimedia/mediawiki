@@ -46,6 +46,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
 
+		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+
 		$pageSet = $this->getPageSet();
 		if ( $params['entirewatchlist'] && $pageSet->getDataSource() !== null ) {
 			$this->dieUsage(
@@ -169,6 +171,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			$apiResult->setIndexedTagName( $result, 'page' );
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $result );
+
+		$apiResult->endContinuation( 'standard' );
 	}
 
 	/**
@@ -214,6 +218,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			'newerthanrevid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
+			'continue' => '',
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -229,6 +234,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			'torevid' => 'Revision to set the notification timestamp to (one page only)',
 			'newerthanrevid' => 'Revision to set the notification timestamp newer than (one page only)',
 			'token' => 'A token previously acquired via prop=info',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
