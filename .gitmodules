@@ -261,9 +261,6 @@
 	path = extensions/UniversalLanguageSelector
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UniversalLanguageSelector.git
 	branch = REL1_22
-[submodule "extensions/Validator"]
-	path = extensions/Validator
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
 [submodule "extensions/Variables"]
 	path = extensions/Variables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Variables.git
