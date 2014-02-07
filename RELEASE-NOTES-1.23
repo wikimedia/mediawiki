@@ -249,6 +249,9 @@ production.
 * Added list=prefixsearch that works like action=opensearch but can be used as
   a generator.
 * (bug 24782) Various modules will now use unique continuation parameters.
+* (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
+  setnotificationtimestamp) will now include continuation information when
+  using a generator.
 
 === Languages updated in 1.23 ===
 
