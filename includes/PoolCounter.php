@@ -186,7 +186,8 @@ abstract class PoolCounterWork {
 	 * @return void
 	 */
 	function logError( $status ) {
-		wfDebugLog( 'poolcounter', $status->getWikiText() );
+		wfDebugLog( 'poolcounter', "Pool key '{$this->key}':"
+			. $status->getMessage()->inLanguage( 'en' )->useDatabase( false )->text() );
 	}
 
 	/**
