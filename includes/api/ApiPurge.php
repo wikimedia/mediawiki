@@ -38,6 +38,8 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
+		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+
 		$forceLinkUpdate = $params['forcelinkupdate'];
 		$forceRecursiveLinkUpdate = $params['forcerecursivelinkupdate'];
 		$pageSet = $this->getPageSet();
@@ -102,6 +104,8 @@ class ApiPurge extends ApiBase {
 		if ( $values ) {
 			$apiResult->addValue( null, 'redirects', $values );
 		}
+
+		$apiResult->endContinuation();
 	}
 
 	/**
@@ -128,7 +132,8 @@ class ApiPurge extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = array(
 			'forcelinkupdate' => false,
-			'forcerecursivelinkupdate' => false
+			'forcerecursivelinkupdate' => false,
+			'continue' => '',
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -143,6 +148,7 @@ class ApiPurge extends ApiBase {
 				'forcelinkupdate' => 'Update the links tables',
 				'forcerecursivelinkupdate' => 'Update the links table, and update ' .
 					'the links tables for any page that uses this page as a template',
+				'continue' => 'When more results are available, use this to continue',
 			);
 	}
 
