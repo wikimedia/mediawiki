@@ -12,6 +12,7 @@
  * @author Andrew971218
  * @author Bencmq
  * @author Breawycker
+ * @author Byfserag
  * @author Ch.Andrew
  * @author Cwlin0416
  * @author Danny0838
@@ -1307,7 +1308,7 @@ $1",
 'shown-title' => '每頁顯示 $1 項結果',
 'viewprevnext' => '檢視（$1 {{int:pipe-separator}} $2）（$3）',
 'searchmenu-exists' => "'''在這個 wiki 上已有一頁面叫做「[[:$1]]」。'''",
-'searchmenu-new' => '<strong>於此wiki建立這個頁面「[[:$1]]」！</strong>請參見已發現之搜尋結果。',
+'searchmenu-new' => '<strong>於此wiki建立這個頁面「[[:$1]]」！</strong>請參見已發現之$2條搜尋結果。',
 'searchprofile-articles' => '內容頁面',
 'searchprofile-project' => '幫助和計劃頁面',
 'searchprofile-images' => '多媒體',
@@ -2316,7 +2317,7 @@ $1',
 'watchmethod-list' => '檢查最近編輯的被監視頁面',
 'watchlistcontains' => '您的監視列表包含$1個頁面。',
 'iteminvalidname' => "頁面 '$1' 錯誤，無效命名...",
-'wlnote2' => '以下是新近<strong>$1</strong>小時的更改，作為$2，$3。',
+'wlnote2' => '以下是新近<strong>$1</strong>小時的更改，截至$2 $3。',
 'wlshowlast' => '顯示最近$1小時；$2天；$3的修改。',
 'watchlist-options' => '監視列表選項',
 

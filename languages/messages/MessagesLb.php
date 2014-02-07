@@ -2638,7 +2638,7 @@ Kuckt d'[[Special:BlockList|Spär-Lëscht]] fir all Spären nozekucken.",
 'change-blocklink' => 'Spär änneren',
 'contribslink' => 'Kontributiounen',
 'emaillink' => 'Mail schécken',
-'autoblocker' => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "[[User:$1|$1]]" deelt.
+'autoblocker' => 'Dir sidd automatesch gespaart well Är IP-Adress rezent vum "[[User:$1|$1]]" benotzt gouf.
 De Grond dee fir d\'Spär vum $1 ugi gouf ass: "$2".',
 'blocklogpage' => 'Spärlëscht',
 'blocklog-showlog' => "Dëse Benotzer war virdru gespaart. D'Lëscht vun de Späre ass als Referenz hei ënnendrënner:",

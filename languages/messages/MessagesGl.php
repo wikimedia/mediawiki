@@ -1136,7 +1136,7 @@ Esta xa existe.',
 'invalid-content-data' => 'Datos de contido inválidos',
 'content-not-allowed-here' => 'O contido "$1" non está permitido na páxina "[[$2]]"',
 'editwarning-warning' => 'Deixar esta páxina pode causar a perda de calquera cambio feito.
-Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "Edición" das súas preferencias.',
+Se accedeu ao sistema, pode desactivar esta mensaxe de advertencia na sección "{{int:prefs-editing}}" das súas preferencias.',
 'editpage-notsupportedcontentformat-title' => 'Formato de contido non admitido',
 'editpage-notsupportedcontentformat-text' => 'O formato de contido $1 non é compatible co modelo de contido $2.',
 
@@ -1173,6 +1173,7 @@ Estes argumentos foron omitidos.",
 Comprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer; despois, garde os cambios para desfacer a edición.',
 'undo-failure' => 'Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.',
 'undo-norev' => 'A edición non se pode desfacer porque non existe ou foi eliminada.',
+'undo-nochange' => 'Semella que alguén xa desfixo a edición.',
 'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])',
 'undo-summary-username-hidden' => 'Desfíxose a edición $1 dun usuario agochado',
 
@@ -1401,6 +1402,7 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'searchrelated' => 'relacionado',
 'searchall' => 'todo',
 'showingresults' => "{{PLURAL:$1|Móstrase '''1''' resultado|Móstranse '''$1''' resultados}}, comezando polo número '''$2'''.",
+'showingresultsinrange' => '{{PLURAL:$1|Móstrase <strong>1</strong> resultado|Móstranse <strong>$1</strong> resultados}}, comezando polo número <strong>$2</strong> e rematando polo número <strong>$3</strong>.',
 'showingresultsnum' => "A continuación {{PLURAL:$3|móstrase '''1''' resultado|móstranse '''$3''' resultados}}, comezando polo número '''$2'''.",
 'showingresultsheader' => "{{PLURAL:\$5|Resultado '''\$1''' de '''\$3'''|Resultados do '''\$1''' ao '''\$2''', dun total de '''\$3''',}} para \"'''\$4'''\"",
 'search-nonefound' => 'Non se atopou ningún resultado que coincidise coa procura.',
@@ -2793,7 +2795,7 @@ Olle a [[Special:BlockList|lista de bloqueos]] para revisalo.',
 'change-blocklink' => 'cambiar o bloqueo',
 'contribslink' => 'contribucións',
 'emaillink' => 'enviar un correo',
-'autoblocker' => 'Foi autobloqueado porque "[[User:$1|$1]]" usou recentemente o seu  mesmo enderezo IP.
+'autoblocker' => 'Foi bloqueado automaticamente porque "[[User:$1|$1]]" usou recentemente o seu mesmo enderezo IP.
 O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage' => 'Rexistro de bloqueos',
 'blocklog-showlog' => 'Este usuario xa foi bloqueado con anterioridade. Velaquí está o rexistro de bloqueos por se quere consultalo:',

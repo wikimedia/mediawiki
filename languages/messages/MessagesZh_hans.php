@@ -75,6 +75,7 @@
  * @author 乌拉跨氪
  * @author 御坂美琴
  * @author 燃玉
+ * @author 范
  * @author 阿pp
  */
 
@@ -843,9 +844,9 @@ $2',
 'createacct-submit' => '创建您的账户',
 'createacct-another-submit' => '创建另一个账户',
 'createacct-benefit-heading' => '{{SITENAME}}是由像您这样的人建立的。',
-'createacct-benefit-body1' => '{{PLURAL:$1|编辑}}',
-'createacct-benefit-body2' => '{{PLURAL:$1|页面}}',
-'createacct-benefit-body3' => '最近{{PLURAL:$1|贡献者}}',
+'createacct-benefit-body1' => '{{PLURAL:$1|次编辑}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|个页面}}',
+'createacct-benefit-body3' => '位最近{{PLURAL:$1|贡献者}}',
 'badretype' => '您所输入的密码并不相同。',
 'userexists' => '用户名已存在。请使用其他名称。',
 'loginerror' => '登录错误',
@@ -2361,7 +2362,7 @@ $1',
 'watchmethod-list' => '查看监视页中的最新修改',
 'watchlistcontains' => '您的监视列表包含$1个页面。',
 'iteminvalidname' => "页面'$1'错误，无效命名...",
-'wlnote2' => '以下是最近<strong>$1</strong>小时的变化，作为$2，$3。',
+'wlnote2' => '以下是最近<strong>$1</strong>小时的变化，截至$2 $3。',
 'wlshowlast' => '显示过去$1小时或$2天内的$3',
 'watchlist-options' => '监视列表选项',
 

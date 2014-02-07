@@ -685,7 +685,7 @@ Møguliga hevur tú longu broytt títt loyniorð ella biðið um eitt nýtt fyri
 # Special:PasswordReset
 'passwordreset' => 'Nullstilla loyniorðið',
 'passwordreset-text-one' => 'Útfyll henda teigin fyri at nullstilla títt loyniorð.',
-'passwordreset-text-many' => '{{PLURAL:$1|Útfyll ein av teigunum fyri at nullstilla títt loyniorð.}}',
+'passwordreset-text-many' => '{{PLURAL:$1|Útfyll í ein av teigunum fyri at móttaka eitt fyribils loyniorð við telduposti.}}',
 'passwordreset-legend' => 'Nulstilla loyniorðið',
 'passwordreset-disabled' => 'Tað ber ikki til at nullstilla loyniorðið á hesi wiki.',
 'passwordreset-emaildisabled' => 'Teldupost funksjónir eru óvirknar á hesi wiki.',
@@ -950,7 +950,7 @@ Síðan er longu til.',
 'invalid-content-data' => 'Ógyldug innihalds dáta',
 'content-not-allowed-here' => '"$1" innihald er ikki loyvt á síðu [[$2]]',
 'editwarning-warning' => 'Um tú fert frá hesi síðuni, so kanst tú missa tær broytingar ið tú hevur gjørt.
-Um tú hevur ritað inn, so kanst tú sláa hesa ávaring frá í "Rættingar" partinum í tínum innstillingum.',
+Um tú hevur ritað inn, so kanst tú sláa hesa ávaring frá í "{{int:prefs-editing}}" partinum í tínum innstillingum.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -2639,7 +2639,7 @@ Goym hana á tínari teldu og legg hana so út her.",
 'importuploaderrorsize' => 'Útleggjan av innflutningsfílu miseydnaðist.
 Fílan er størri enn mest loyvda upload-støddin.',
 'import-noarticle' => 'Ongin síða at innflyta!',
-'import-nonewrevisions' => 'Allar versjónir eru longu innfluttar.',
+'import-nonewrevisions' => 'Ongar versjónir vóru innfluttar (allar vóru antin longu tilstaðar, ella koyrdar burtur orsakað av feilum).',
 'xml-error-string' => '$1 á linju $2, rekkju $3 (byte $4): $5',
 'import-upload' => 'Legg út XML dáta',
 'import-token-mismatch' => 'Misti setunardáta (sesjónsdáta).
@@ -3098,8 +3098,8 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'version-other' => 'Annað',
 'version-hooks' => 'Krókur',
 'version-hook-name' => 'Krókurnavn',
-'version-version' => '(Útgáva $1)',
-'version-license' => 'Lisensur',
+'version-version' => '(Versjón $1)',
+'version-license' => 'MediaWiki Lisensur',
 'version-poweredby-credits' => "Henda wiki verður rikin av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'onnur',
 'version-poweredby-translators' => 'translatewiki.net týðarar',

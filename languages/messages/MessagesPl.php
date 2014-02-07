@@ -1603,7 +1603,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 # Rights
 'right-read' => 'Czytanie treści stron',
 'right-edit' => 'Edycja stron',
-'right-createpage' => 'Tworzenie stron (nie będących stronami dyskusji)',
+'right-createpage' => 'Tworzenie stron (niebędących stronami dyskusji)',
 'right-createtalk' => 'Tworzenie stron dyskusji',
 'right-createaccount' => 'Tworzenie kont użytkowników',
 'right-minoredit' => 'Oznaczanie edycji jako drobnych',

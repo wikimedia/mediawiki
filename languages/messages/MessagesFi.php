@@ -2384,6 +2384,7 @@ Tulevaisuudessa sivuun ja sen keskustelusivuun teht채v채t muutokset listataan t�
 'watchmethod-list' => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
 'iteminvalidname' => 'Sivun $1 kanssa oli ongelmia. Sivun nimess채 on vikaa.',
+'wlnote2' => 'Alla on muutokset viimeisen {{PLURAL:$1|tunnin|<strong>$1</strong> tunnin}} ajalta $2 kello $3 asti.',
 'wlshowlast' => 'N채yt채 viimeiset $1 tuntia tai $2 p채iv채채, $3',
 'watchlist-options' => 'Tarkkailulistan asetukset',
 

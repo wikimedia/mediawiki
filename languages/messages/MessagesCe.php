@@ -2383,7 +2383,7 @@ PICT # тайп тайпан
 'skinname-vector' => 'Векторни',
 
 # Patrolling
-'markaspatrolledtext' => 'Пайден агӏо хилар билгало ян',
+'markaspatrolledtext' => 'Билгала йе хӀара агӀо хьаьжна сана',
 'markedaspatrollednotify' => 'АгӀо «$1» пайдане хилар билгалдина',
 
 # Patrol log
