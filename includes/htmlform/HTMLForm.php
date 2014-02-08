@@ -790,7 +790,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getButtons() {
-		$html = '<span class="mw-htmlform-submit-buttons">';
+		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
 			$attribs = array();
@@ -822,24 +822,17 @@ class HTMLForm extends ContextSource {
 				);
 			}
 
-			$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
-
-			// Buttons are top-level form elements in table and div layouts,
-			// but vform wants all elements inside divs to get spaced-out block
-			// styling.
-			if ( $this->isVForm() ) {
-				$html = Html::rawElement( 'div', null, "\n$html\n" );
-			}
+			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
 
 		if ( $this->mShowReset ) {
-			$html .= Html::element(
-					'input',
-					array(
-						'type' => 'reset',
-						'value' => $this->msg( 'htmlform-reset' )->text()
-					)
-				) . "\n";
+			$buttons .= Html::element(
+				'input',
+				array(
+					'type' => 'reset',
+					'value' => $this->msg( 'htmlform-reset' )->text()
+				)
+			) . "\n";
 		}
 
 		foreach ( $this->mButtons as $button ) {
@@ -857,10 +850,18 @@ class HTMLForm extends ContextSource {
 				$attrs['id'] = $button['id'];
 			}
 
-			$html .= Html::element( 'input', $attrs );
+			$buttons .= Html::element( 'input', $attrs ) . "\n";
 		}
 
-		$html .= '</span>';
+		$html = Html::rawElement( 'span',
+			array( 'class' => 'mw-htmlform-submit-buttons' ), "\n$buttons" ) . "\n";
+
+		// Buttons are top-level form elements in table and div layouts,
+		// but vform wants all elements inside divs to get spaced-out block
+		// styling.
+		if ( $this->mShowSubmit && $this->isVForm() ) {
+			$html = Html::rawElement( 'div', null, "\n$html" ) . "\n";
+		}
 
 		return $html;
 	}
