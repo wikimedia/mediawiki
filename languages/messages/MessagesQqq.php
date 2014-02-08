@@ -10881,4 +10881,23 @@ test
 'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
+# Unknown messages
+'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
+'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
+
+# Tracking categories special page
+'trackingcategories' => 'Special:TrackingCategories page implementing list of Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-summary' => 'Description for [[Special:TrackingCategories]] page [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-msg' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.',
+'trackingcategories-name' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the name of the tracking category in the content language.',
+'trackingcategories-desc' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the inclusion criteria for the category.',
+'noindex-category-desc' => 'No-index category-description',
+'index-category-desc' => 'Index category-description',
+'post-expand-template-inclusion-category-desc' => 'Post expand template inclusion category description',
+'post-expand-template-argument-category-desc' => 'Post expand template argument category description',
+'expensive-parserfunction-category-desc' => 'Too many expensive parser functions (like #ifexists) included on a page. See Manual:$wgExpensiveParserFunctionLimit.',
+'broken-file-category-desc' => 'Broken file category description',
+'hidden-category-category-desc' => 'Hidden-category category description',
+'trackingcategories-nodesc' => 'Tracking category description not available message',
+'trackcategories-disabled' => 'Tracking category disabled message',
 );

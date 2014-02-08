@@ -466,6 +466,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'SpecialPages' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Tags'                      => array( 'Tags' ),
+	'TrackingCategories'        => array( 'TrackingCategories' ),
 	'Unblock'                   => array( 'Unblock' ),
 	'Uncategorizedcategories'   => array( 'UncategorizedCategories' ),
 	'Uncategorizedimages'       => array( 'UncategorizedFiles', 'UncategorizedImages' ),
@@ -2941,6 +2942,22 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-addgroup-self-all'    => 'Add all groups to own account',
 'listgrouprights-removegroup-self-all' => 'Remove all groups from own account',
 
+# Tracking categories page
+'trackingcategories'                           => 'Tracking categories',
+'trackingcategories-summary'                   => 'This page lists tracking categories which are automatically populated by the MediaWiki software. Their names can be changed by altering the relevant system messages in the {{ns:8}} namespace.',
+'trackingcategories-msg'                       => 'Category message',
+'trackingcategories-name'                      => 'Message name',
+'trackingcategories-desc'                      => 'Category inclusion criteria',	
+'noindex-category-desc'                        => 'This article has the <nowiki>__NOINDEX__</nowiki> magic word on it (and is in a namespace where that flag is allowed), and hence is not indexed by robots.',
+'index-category-desc'                          => 'This article has the <nowiki>__INDEX__</nowiki> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn\'t be.',
+'post-expand-template-inclusion-category-desc' => 'After expanding all the templates, the article size is bigger than $wgMaxArticleSize, so some templates weren\'t expanded.',
+'post-expand-template-argument-category-desc'  => 'After expanding a template argument (something in triple braces, like {{{Foo}}}), the page is bigger than $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc'       => 'Too many expensive parser functions (like #ifexists) included on a page. See Manual:$wgExpensiveParserFunctionLimit.',
+'broken-file-category-desc'                    => 'Category added if the page contains a broken file link (a link to embed a file when the file does not exist).',
+'hidden-category-category-desc'                => 'This is a category with <nowiki>__HIDDENCAT__</nowiki> on it, which prevent it from showing up in the category links box on pages, by default.',
+'trackingcategories-nodesc'                    => 'Description not available',
+'trackcategories-disabled'                     => 'Category is disabled',
+
 # Email user
 'mailnologin'              => 'No send address',
 'mailnologintext'          => 'You must be [[Special:UserLogin|logged in]] and have a valid email address in your [[Special:Preferences|preferences]] to send email to other users.',
@@ -5205,5 +5222,4 @@ In fact, it expands pretty much everything in double-braces.',
 'expand_templates_generate_xml'     => 'Show XML parse tree',
 'expand_templates_generate_rawhtml' => 'Show raw HTML',
 'expand_templates_preview'          => 'Preview',
-
 );

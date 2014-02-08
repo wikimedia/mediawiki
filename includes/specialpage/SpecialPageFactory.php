@@ -79,6 +79,7 @@ class SpecialPageFactory {
 		'Categories'                => 'SpecialCategories',
 		'Listredirects'             => 'ListredirectsPage',
 		'PagesWithProp'             => 'SpecialPagesWithProp',
+		'TrackingCategories'        => 'SpecialTrackingCategories',
 
 		// Login/create account
 		'Userlogin'                 => 'LoginForm',
@@ -339,7 +340,8 @@ class SpecialPageFactory {
 				return new $className;
 			} elseif ( is_array( $rec ) ) {
 				// @deprecated, officially since 1.18, unofficially since forever
-				wfDebug( "Array syntax for \$wgSpecialPages is deprecated, define a subclass of SpecialPage instead." );
+				wfDebug( "Array syntax for \$wgSpecialPages is deprecated,
+					define a subclass of SpecialPage instead." );
 				$className = array_shift( $rec );
 				self::getList()->$realName = MWFunction::newObj( $className, $rec );
 			}

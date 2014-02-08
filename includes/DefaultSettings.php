@@ -3608,6 +3608,24 @@ $wgNamespacesWithSubpages = array(
 );
 
 /**
+  * Array holding default tracking category names.
+  * Array contains the system messages for each tracking category.
+  * Tracking categories allow pages with certain characteristics to be tracked.
+  * It works by adding any such page to a category automatically.
+  *
+  * @since 1.23
+  */
+$wgTrackingCategories = array(
+	'index-category',
+	'noindex-category',
+	'expensive-parserfunction-category',
+	'post-expand-template-argument-category',
+	'post-expand-template-inclusion-category',
+	'hidden-category-category',
+	'broken-file-category',
+);
+
+/**
  * Array of namespaces which can be deemed to contain valid "content", as far
  * as the site statistics are concerned. Useful if additional namespaces also
  * contain "content" which should be considered when generating a count of the
@@ -5531,7 +5549,8 @@ $wgGitBin = '/usr/bin/git';
  * @since 1.20
  */
 $wgGitRepositoryViewers = array(
-	'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://git.wikimedia.org/commit/%r/%H',
+	'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)'
+		=> 'https://git.wikimedia.org/commit/%r/%H',
 	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)'
 		=> 'https://git.wikimedia.org/commit/%r/%H',
 );
