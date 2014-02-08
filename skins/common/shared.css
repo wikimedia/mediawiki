@@ -900,7 +900,23 @@ ul.mw-gallery-packed-overlay div.gallerytext {
 	position: relative; /* Resets opacity in old IE */
 }
 
+/* <lines> aka <poem> */
+pre.poem {
+	font-family: sans-serif; /* for IE < 8, which does not support inherit here */
+	font: inherit;
+	border: none;
+	background: inherit;
+	color: inherit;
+	padding: 0;
+	white-space: pre-line;
+	/* see also p, pre.poem declaration in commonElements.css */
+}
 
+.mw-poem-indented {
+	display: inline-block;
+}
+
+/* AJAX loader */
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);

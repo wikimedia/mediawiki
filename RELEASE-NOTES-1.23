@@ -86,6 +86,12 @@ production.
 * New user accounts' personal and talk pages are now watched by them by default.
 * Added SkinTemplateGetLanguageLink hook to allow changing the html of language
   links.
+* (bug 52061) A new <lines> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled (unless your wiki relies on the
+  old "compact" attribute, which is no longer available). Note also that any CSS
+  changes made to the .poem or div.poem classes must be changed to use the
+  pre.poem selector.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
