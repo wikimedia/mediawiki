@@ -112,7 +112,14 @@ class ParserCache {
 	}
 
 	/**
-	 * Used to provide a unique id for the PoolCounter.
+	 * Generates a key for caching the given article considering
+	 * the given parser options.
+	 *
+	 * @note Which parser options influence the cache key
+	 * is controlled via ParserOutput::recordOption() or
+	 * ParserOptions::addExtraKey().
+	 *
+	 * @note Used by Article to provide a unique id for the PoolCounter.
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
@@ -141,6 +148,7 @@ class ParserCache {
 				return false;
 			}
 
+			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
 			$usedOptions = $optionsKey->mUsedOptions;
 			wfDebug( "Parser cache options found.\n" );
 		} else {

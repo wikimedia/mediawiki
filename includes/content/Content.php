@@ -252,6 +252,10 @@ interface Content {
 	 * is needed, $generateHtml can be set to false; in that case,
 	 * $result->getText() may return null.
 	 *
+	 * @note To control which options are used in the cache key for the
+	 *       generated parser output, implementations of this method
+	 *       may call ParserOutput::recordOption() on the output object.
+	 *
 	 * @param $title Title The page title to use as a context for rendering
 	 * @param $revId null|int The revision being rendered (optional)
 	 * @param $options null|ParserOptions Any parser options
