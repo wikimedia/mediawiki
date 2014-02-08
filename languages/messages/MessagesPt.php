@@ -2924,7 +2924,7 @@ Nestes casos, terá de mover a página de discussão manualmente, ou fundi-la co
 'move-watch' => 'Vigiar esta página',
 'movepagebtn' => 'Mover página',
 'pagemovedsub' => 'Página movida com sucesso',
-'movepage-moved' => '\'\'\'"$1" foi movida para "$2"\'\'\'',
+'movepage-moved' => '<strong>"$1" foi movida para "$2"</strong>',
 'movepage-moved-redirect' => 'Foi criado um redirecionamento.',
 'movepage-moved-noredirect' => 'A criação de um redirecionamento foi suprimida.',
 'articleexists' => 'Uma página com este nome já existe, ou o nome que escolheu é inválido.
@@ -2963,10 +2963,10 @@ não é possível mover uma página para ela mesma.',
 'imageinvalidfilename' => 'O nome do ficheiro alvo é inválido',
 'fix-double-redirects' => 'Atualizar todos os redirecionamentos que apontem para o título original',
 'move-leave-redirect' => 'Criar um redirecionamento',
-'protectedpagemovewarning' => "'''Aviso:''' Esta página foi protegida de maneira a que apenas utilizadores com privilégio de administrador possam movê-la.
-O último registo é apresentado abaixo para referência:",
-'semiprotectedpagemovewarning' => "'''Nota:''' Esta página protegida de maneira a que apenas utilizadores registados possam movê-la.
-O último registo é apresentado abaixo para referência:",
+'protectedpagemovewarning' => '<strong>Aviso:</strong> Esta página foi protegida de modo que apenas os utilizadores com privilégios de administrador possam movê-la.
+A última entrada é fornecido abaixo como referência:',
+'semiprotectedpagemovewarning' => '<strong>Note:</strong> Esta página foi protegida de modo que apenas utilizadores registados a possam mover.
+A última entrada é fornecida abaixo como referência:',
 'move-over-sharedrepo' => '== O ficheiro existe ==
 [[:$1]] já existe num repositório partilhado. Mover um ficheiro para o título [[:$1]] irá sobrepô-lo ao ficheiro partilhado.',
 'file-exists-sharedrepo' => 'O nome de ficheiro que escolheu já é utilizado num repositório partilhado.
@@ -2981,8 +2981,8 @@ Para exportar páginas, introduza os títulos na caixa de texto abaixo (um títu
 Se desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportall' => 'Exportar todas as páginas',
 'exportcuronly' => 'Incluir apenas a edição atual, não o histórico completo',
-'exportnohistory' => "----
-'''Nota:''' a exportação do histórico completo de páginas através deste formulário foi desativada por afetar o desempenho do sistema.",
+'exportnohistory' => '----
+<strong>Nota:</strong> A exportação do histórico completo de páginas através deste formulário foi desativada devido a motivos de desempenho.',
 'exportlistauthors' => 'Incluir uma lista completa de colaboradores para cada página',
 'export-submit' => 'Exportar',
 'export-addcattext' => 'Adicionar à lista páginas da categoria:',
@@ -3000,7 +3000,7 @@ Se desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWik
 'allmessagescurrent' => 'Texto atual',
 'allmessagestext' => 'Esta é a lista das mensagens de sistema disponíveis no espaço nominal MediaWiki.
 Se deseja colaborar na localização genérica do MediaWiki, visite [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e a [//translatewiki.net translatewiki.net].',
-'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
+'allmessagesnotsupportedDB' => 'Esta página não pode ser usada porque a <strong>$wgUseDatabaseMessages</strong> foi desativada.',
 'allmessages-filter-legend' => 'Filtro',
 'allmessages-filter' => 'Filtrar pelo estado de personalização:',
 'allmessages-filter-unmodified' => 'Não modificadas',
@@ -3297,9 +3297,9 @@ $1',
 'nextdiff' => 'Edição posterior →',
 
 # Media information
-'mediawarning' => "'''Aviso''': Este tipo de ficheiro pode conter código malicioso.
-Executá-lo poderá comprometer a segurança do seu sistema.",
-'imagemaxsize' => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
+'mediawarning' => '<strong>AVISO:</strong> Este tipo de arquivo pode conter código malicioso.
+Se o executar, o seu sistema pode ficar comprometido.',
+'imagemaxsize' => 'Tamanho limite da imagem:<br /><em>(para páginas com descrições de arquivos)</em>',
 'thumbsize' => 'Tamanho de miniaturas:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info' => 'tamanho: $1, tipo MIME: $2',
@@ -3318,12 +3318,12 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'file-info-png-looped' => 'ciclo infinito',
 'file-info-png-repeat' => 'reproduzido $1 {{PLURAL:$1|vez|vezes}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogramas}}',
-'file-no-thumb-animation' => "'''Nota: Devido a limitações técnicas, miniaturas deste ficheiro não serão animadas.'''",
-'file-no-thumb-animation-gif' => "'''Nota: Devido a limitações técnicas, miniaturas de imagens GIF de alta resolução tais como esta não serão animadas.'''",
+'file-no-thumb-animation' => '<strong>Nota: Devido a limitações técnicas, miniaturas deste ficheiro não serão animadas.</strong>',
+'file-no-thumb-animation-gif' => '<strong>Nota: Devido a limitações técnicas, miniaturas de GIFs com imagens de alta resolução como este não serão animadas.</strong>',
 
 # Special:NewFiles
 'newimages' => 'Galeria de novos ficheiros',
-'imagelisttext' => "Abaixo é apresentada uma lista {{PLURAL:$1|de '''um''' ficheiro, organizado|de '''$1''' ficheiros, organizados}} $2.",
+'imagelisttext' => 'Abaixo está uma lista de <strong>$1</strong> {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.',
 'newimages-summary' => 'Esta página especial mostra os ficheiros mais recentemente enviados.',
 'newimages-legend' => 'Filtrar',
 'newimages-label' => 'Nome de ficheiro (ou parte dele):',

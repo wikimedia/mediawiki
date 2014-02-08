@@ -1460,7 +1460,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-email' => 'E‐mail',
 'prefs-rendering' => 'Wygląd',
 'saveprefs' => 'Zapisz',
-'restoreprefs' => 'Przywróć wszystkie domyślne preferencje (we wszystkich sekcjach)',
+'restoreprefs' => 'Przywróć wszystkie domyślne preferencje (we wszystkich zakładkach)',
 'prefs-editing' => 'Edycja',
 'rows' => 'Wiersze',
 'columns' => 'Kolumny',
@@ -2799,7 +2799,7 @@ Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'change-blocklink' => 'zmień blokadę',
 'contribslink' => 'edycje',
 'emaillink' => 'wyślij e‐mail',
-'autoblocker' => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
+'autoblocker' => 'Zablokowano Cię automatycznie, ponieważ twój adres IP był ostatnio używany przez „[[User:$1|$1]]”.
 Przyczyna blokady $1 to: „$2”',
 'blocklogpage' => 'Historia blokad',
 'blocklog-showlog' => '{{GENDER:$1|Ten użytkownik był|Ta użytkowniczka była}} już wcześniej {{GENDER:$1|blokowany|blokowana}}. Poniżej znajduje się rejestr blokad:',

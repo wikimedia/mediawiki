@@ -1181,7 +1181,7 @@ Sayfa zaten mevcut.',
 'invalid-content-data' => 'Geçersiz içerik verisi',
 'content-not-allowed-here' => '"$1" içeriğine, [[$2]] sayfasında izin verilmemekte.',
 'editwarning-warning' => 'Bu sayfadan ayrılmak yaptığınız herhangi bir değişikliği kaybetmenize sebep olabilir.
-Eğer giriş yaptıysanız, bu uyarıyı, tercihlerinizin "Sayfa yazma alanı" bölümünde devre dışı bırakabilirsiniz.',
+Eğer giriş yaptıysanız, bu uyarıyı, tercihlerinizin "{{int:prefs-editing}}" bölümünde devre dışı bırakabilirsiniz.',
 'editpage-notsupportedcontentformat-title' => 'İçerik biçimi desteklenmiyor',
 'editpage-notsupportedcontentformat-text' => '$1 içerik biçimi $2 içerik modeli tarafından desteklenmiyor.',
 
@@ -1418,7 +1418,7 @@ Ayrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme g
 'shown-title' => 'Sayfa başına $1 {{PLURAL:$1|sonuç|sonuç}} göster',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) gör',
 'searchmenu-exists' => "'''Bu vikide \"[[:\$1]]\" adında bir sayfa mevcut'''",
-'searchmenu-new' => "'''Bu vikide \"[[:\$1]]\" sayfasını oluştur!'''",
+'searchmenu-new' => '<strong>Bu vikide "[[:$1]]" sayfasını oluştur!</strong> {{PLURAL:$2|0=|Ayrıca aramınızda bulunan sayfayı görün.|Ayrıca bulunan arama sonuçlarını görün.}}',
 'searchprofile-articles' => 'İçerik sayfaları',
 'searchprofile-project' => 'Yardım ve proje sayfaları',
 'searchprofile-images' => 'Çokluortam',

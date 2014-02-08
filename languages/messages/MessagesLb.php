@@ -812,6 +812,7 @@ Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'resettokens-legend' => 'Token zrécksetzen',
 'resettokens-tokens' => 'Token:',
 'resettokens-token-label' => '$1 (aktuelle Wäert: $2)',
+'resettokens-watchlist-token' => 'Token fir de Webfeed (Atom/RSS) vun den [[Special:Watchlist|Ännerungen op Säite vun Ärer Iwwerwaachungslëscht]]',
 'resettokens-done' => 'Token zréckgesat.',
 'resettokens-resetbutton' => 'Selectionéiert Tokens zrécksetzen',
 
@@ -1273,6 +1274,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-result-score' => 'Relevanz: $1 %',
 'search-redirect' => '(Viruleedung $1)',
 'search-section' => '(Abschnitt $1)',
+'search-file-match' => '(Inhalt vum Fichier passt)',
 'search-suggest' => 'Mengt Dir: $1',
 'search-interwiki-caption' => 'Schwësterprojeten',
 'search-interwiki-default' => '$1 Resultater:',
@@ -4028,4 +4030,5 @@ Faktesch alles wat tëscht duebelen Accolade steet gëtt ausgewäert.',
 
 # Unknown messages
 'createaccount-hook-aborted' => '$1',
+'uploadinvalidxml' => 'Den XML am eropgelueden Fichier konnt net verschafft ginn.',
 );

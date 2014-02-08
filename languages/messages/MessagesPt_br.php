@@ -24,6 +24,7 @@
  * @author Dicionarista
  * @author Diego Queiroz
  * @author Eduardo.mps
+ * @author Elival
  * @author Emufarmers
  * @author Everton137
  * @author Francisco Leandro
@@ -1164,7 +1165,7 @@ Ela já existia.',
 'invalid-content-data' => 'Dados de conteúdo inválidos',
 'content-not-allowed-here' => 'Conteúdo do tipo "$1" não é permitido na página [[$2]]',
 'editwarning-warning' => 'Abandonar esta página pode fazer com que você perca todas as alterações que fez.
-Se você estiver autenticado, você pode desabilitar este aviso na seção "Edição" de suas preferências.',
+Se você estiver autenticado, você pode desabilitar este aviso na seção {{int:prefs-editing}}"  de suas preferências.',
 'editpage-notsupportedcontentformat-title' => 'Formato do conteúdo não suportado',
 'editpage-notsupportedcontentformat-text' => 'O formato de conteúdo $1 não é suportando pelo modelo de conteúdo $2.',
 
@@ -1396,7 +1397,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
-'searchmenu-new' => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
+'searchmenu-new' => '<strong>Criar a página "[[:$1]]" nesta wiki!</strong>{{PLURAL:$2|0=| Veja também a página encontrada com sua pesquisa.|Veja também os resultados das pesquisas encontradas.}}',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Ajuda e páginas de projeto',
 'searchprofile-images' => 'Multimídia',
@@ -2529,7 +2530,7 @@ A eliminação de tais páginas foi restrita, a fim de se evitarem problemas aci
 'delete-warning-toobig' => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
-'deleting-backlinks-warning' => "'''Cuidado:''' Outras páginas redirecionam para a página que você está prestes a deletar.",
+'deleting-backlinks-warning' => "'''Cuidado:''' Outras páginas se ligam ou redirecionam para a página que você está prestes a deletar.",
 
 # Rollback
 'rollback' => 'Reverter edições',
@@ -2804,7 +2805,8 @@ Consulte a [[Special:BlockList|lista de bloqueios]].',
 'change-blocklink' => 'alterar bloqueio',
 'contribslink' => 'contribs',
 'emaillink' => 'enviar um e-mail',
-'autoblocker' => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "[[User:$1|$1]]". O motivo apresentado foi: "$2".',
+'autoblocker' => 'Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por "[[User:$1|$1]]". 
+O motivo apresentado para o bloqueio de $1 é: "$2".',
 'blocklogpage' => 'Registro de bloqueio',
 'blocklog-showlog' => 'Este usuário já foi bloqueado anteriormente.
 O registro de bloqueio é fornecido abaixo, para referência:',
@@ -2826,7 +2828,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'range_block_disabled' => 'A funcionalidade de bloquear gamas de IPs encontra-se desativada.',
 'ipb_expiry_invalid' => 'Tempo de expiração inválido.',
 'ipb_expiry_temp' => 'Bloqueios com nome de usuário ocultado devem ser permanentes.',
-'ipb_hide_invalid' => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
+'ipb_hide_invalid' => 'Não foi possível suprimir esta conta; ela tem mais de {{PLURAL:$1|uma}}edições.',
 'ipb_already_blocked' => '"$1" já se encontra bloqueado',
 'ipb-needreblock' => '$1 já se encontra bloqueado. Deseja alterar as configurações?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}',
@@ -3042,7 +3044,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'importuploaderrortemp' => 'O envio do arquivo a ser importado falhou. Não há um diretório temporário.',
 'import-parse-failure' => 'Falha ao importar dados XML',
 'import-noarticle' => 'Sem páginas para importar!',
-'import-nonewrevisions' => 'Todas as edições já haviam sido importadas.',
+'import-nonewrevisions' => 'Nenhuma revisão foi importada (já estavam todas presentes ou foram ignoradas devido a erros).',
 'xml-error-string' => '$1 na linha $2, coluna $3 (byte $4): $5',
 'import-upload' => 'Enviar dados em XML',
 'import-token-mismatch' => 'Perda dos dados da sessão. Por favor tente novamente.',
@@ -4205,7 +4207,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'limitreport-templateargumentsize' => 'Argumento do tamanho da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-expansiondepth' => 'Máxima profundidade de expansão',
-'limitreport-expensivefunctioncount' => 'Número de funções do analisador custosas',
+'limitreport-expensivefunctioncount' => 'Contagem de funções do analisador custosas',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Expandir predefinições',

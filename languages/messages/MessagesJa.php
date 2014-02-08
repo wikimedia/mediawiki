@@ -53,6 +53,7 @@
  * @author Vigorous action
  * @author W.CC
  * @author Web comic
+ * @author What here area team
  * @author Whym
  * @author Yanajin66
  * @author לערי ריינהארט
@@ -1501,6 +1502,7 @@ $1',
 'searchrelated' => '関連',
 'searchall' => 'すべて',
 'showingresults' => '<strong>$2</strong> 件目以降の最大 {{PLURAL:$1|<strong>$1</strong> 件の結果}}を表示しています。',
+'showingresultsinrange' => '<strong>$2</strong> 件目以降の最大 {{PLURAL:$1|<strong>$1</strong> 件の結果}}を表示しています。',
 'showingresultsnum' => '<strong>$2</strong> 件目以降の {{PLURAL:$3|<strong>$3</strong> 件の結果}}を表示しています。',
 'showingresultsheader' => '「<strong>$4</strong>」の検索結果 {{PLURAL:$5|<strong>$3</strong> 件中の <strong>$1</strong> 件目|<strong>$3</strong> 件中の <strong>$1</strong> 件目から <strong>$2</strong> 件目}}',
 'search-nonefound' => '問い合わせに合致する検索結果はありませんでした。',

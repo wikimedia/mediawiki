@@ -1263,7 +1263,7 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'shown-title' => 'Mostra $1 {{PLURAL:$1|resultat|resultats}} per pàgina',
 'viewprevnext' => 'Vés a ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki'''",
-'searchmenu-new' => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
+'searchmenu-new' => '<strong>Crea la pàgina «[[:$1]]» en aquest wiki!</strong> {{PLURAL:$2|0=|Vegeu també la pàgina trobada amb la cerca.|Vegeu també els resultats de cerca trobats.}}',
 'searchprofile-articles' => 'Pàgines de contingut',
 'searchprofile-project' => "Pàgines d'ajuda i de projecte",
 'searchprofile-images' => 'Multimèdia',
@@ -2271,6 +2271,7 @@ S\'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corre
 'watchmethod-list' => "s'està comprovant si hi ha edicions recents en les pàgines vigilades",
 'watchlistcontains' => 'La vostra llista de seguiment conté {{PLURAL:$1|una única pàgina|$1 pàgines}}.',
 'iteminvalidname' => "Hi ha un problema amb l'element '$1': el nom no és vàlid...",
+'wlnote2' => "A continuació es presenten els canvis durant {{PLURAL:$1|l'última hora|les últimes <strong>$1</strong> hores}}, a partir de $2, $3.",
 'wlshowlast' => '<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>',
 'watchlist-options' => 'Opcions de la llista de seguiment',
 

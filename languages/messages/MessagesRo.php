@@ -1170,6 +1170,7 @@ Acsete argumente au fost omise.',
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',
 'undo-failure' => 'Modificarea nu poate fi reversibilă datorită conflictului de modificări intermediare.',
 'undo-norev' => 'Modificarea nu poate fi reversibilă pentru că nu există sau pentru că a fost ștearsă.',
+'undo-nochange' => 'Se pare că această modificare a fost deja anulată.',
 'undo-summary' => 'Anularea modificării $1 făcute de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discuție]])',
 'undo-summary-username-hidden' => 'Anularea versiunii $1 a unui utilizator ascuns',
 
@@ -1397,6 +1398,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'searchrelated' => 'relaționat',
 'searchall' => 'toate',
 'showingresults' => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate|apar '''$1''' de rezultate}} începând cu nr. <b>$2</b>.",
+'showingresultsinrange' => 'Mai jos se afișează un număr de până la {{PLURAL:$1|<strong>1</strong> rezultat|<strong>$1</strong> rezultate|<strong>$1</strong> de rezultate}} din intervalul #<strong>$2</strong> la #<strong>$3</strong>.',
 'showingresultsnum' => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu nr. <b>$2</b>.",
 'showingresultsheader' => "{{PLURAL:$5|Rezultatul '''$1''' din '''$3'''|Rezultatele '''$1 - $2''' din '''$3'''}} pentru '''$4'''",
 'search-nonefound' => 'Nu sunt rezultate conforme interogării.',
@@ -2770,7 +2772,7 @@ Vedeți [[Special:BlockList|lista blocărilor]] pentru a revizui adresele blocat
 'change-blocklink' => 'modifică blocarea',
 'contribslink' => 'contribuții',
 'emaillink' => 'trimite e-mail',
-'autoblocker' => 'Autoblocat fiindcă folosiți aceeași adresă IP ca și „[[User:$1|$1]]”.
+'autoblocker' => 'Blocat automat, deoarece adresa dumneavoastră IP a fost utilizată recent de „[[User:$1|$1]]”.
 Motivul blocării utilizatorului $1 este: „$2”',
 'blocklogpage' => 'Jurnal blocări',
 'blocklog-showlog' => 'Acest utilizator a fost blocat în trecut.
