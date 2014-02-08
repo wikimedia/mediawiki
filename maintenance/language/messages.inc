@@ -3986,6 +3986,24 @@ $wgMessageStructure = array(
 		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
 	),
+	'trackingcategories' => array(
+		'trackingcategories',
+		'trackingcategories-summary',
+		'trackingcategories',
+		'trackingcategories-summary',
+		'trackingcatmsg',
+		'trackingcatname',
+		'trackingcatdesc',
+		'noindex-category-desc',
+		'index-category-desc',
+		'post-expand-template-inclusion-category-desc',
+		'post-expand-template-argument-category-desc',
+		'expensive-parserfunction-category-desc',
+		'broken-file-category-desc',
+		'hidden-category-category-desc',
+		'trackingcat-nodesc',
+		'trackcat-disabled',
+	),
 );
 
 /** Comments for each block */
@@ -4234,4 +4252,5 @@ Variants for Chinese language",
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
 	'expandtemplates' => 'Special:ExpandTemplates'
+	'trackingcategories' => 'Special:TrackingCategories'
 );
