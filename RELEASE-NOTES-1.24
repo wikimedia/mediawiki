@@ -19,6 +19,12 @@ production.
 * HTMLForm now supports multiple copies of an input field or set of input
   fields, e.g. the form may request "one or more usernames" without having to
   have the user enter delimited list of names into a text field.
+* (bug 52061) A new <lines> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled (unless your wiki relies on the
+  old "compact" attribute, which is no longer available). Note also that any CSS
+  changes made to the div.poem selector must be changed to use the pre.poem
+  selector, or alternatively just the .poem class selector.
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
