@@ -5443,6 +5443,10 @@ See also:
 'listgrouprights-removegroup-self-all' => 'Used on [[Special:ListGroupRights]].
 {{Related|Listgrouprights}}',
 
+# Tracking categories special page
+'trackingcategories' => 'Name of the page implementing Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-summary' => 'Description for Tracking categories page [[mw:Help:Tracking categories|tracking category]]',
+
 # Email user
 'mailnologin' => 'Used in [[Special:EmailUser]].
 

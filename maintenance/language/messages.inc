@@ -4023,6 +4023,10 @@ $wgMessageStructure = array(
 		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
 	),
+	'trackingcategories' => array(
+		'trackingcategories',
+		'trackingcategories-summary',
+	),
 );
 
 /** Comments for each block */
@@ -4270,5 +4274,6 @@ Variants for Chinese language",
 	'cachedspecial' => 'SpecialCachedPage',
 	'rotation' => 'Image rotation',
 	'limitreport' => 'Limit report',
-	'expandtemplates' => 'Special:ExpandTemplates'
+	'expandtemplates' => 'Special:ExpandTemplates',
+	'trackingcategories' => 'Special tracking categories page',
 );
