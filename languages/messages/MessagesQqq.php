@@ -10881,4 +10881,23 @@ test
 'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
+# Unknown messages
+'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
+'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
+
+#Tracking categories special page
+'trackingcategories' => 'Name of the page implementing Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-summary' => 'Description for Tracking categories page [[mw:Help:Tracking categories|tracking category]]',
+'trackingcatmsg' => 'TrackingCategory Table column header-Message',
+'trackingcatname' => 'TrackingCategory Table column header-Name',
+'trackingcatdesc' => 'TrackingCategory Table column header-Category inclusion criteria',	
+'noindex-category-desc' => 'No-index category-description',
+'index-category-desc' => 'Index category-description',
+'post-expand-template-inclusion-category-desc' => 'Post expand template inclusion category description',
+'post-expand-template-argument-category-desc' => 'Post expand template argument category description',
+'expensive-parserfunction-category-desc' => 'Too many expensive parser functions (like #ifexists) included on a page. See Manual:$wgExpensiveParserFunctionLimit.',
+'broken-file-category-desc' => 'Broken file category description',
+'hidden-category-category-desc' => 'Hidden-category category description',
+'trackingcat-nodesc' => 'Tracking category no description available message',
+'trackcat-disabled' => 'Tracking category disabled message',
 );
