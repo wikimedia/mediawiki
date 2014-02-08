@@ -4952,6 +4952,17 @@ See the following search results:
 'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]].
 {{Identical|Hide redirect}}',
 'protectedpagesempty' => 'Used in [[Special:ProtectedPages]], when there are no protected pages with the specified parameters.',
+'protectedpages-timestamp' => 'This is a column header for dates and times in the table on the page [[Special:ProtectedPages]].
+{{Identical|Timestamp}}',
+'protectedpages-page' => 'This is a column header in the table on the page [[Special:ProtectedPages]].',
+'protectedpages-expiry' => 'This is a column header in the table on the page [[Special:ProtectedPages]].
+{{Identical|Expire}}',
+'protectedpages-performer' => 'This is a column header in the table on the page [[Special:ProtectedPages]].',
+'protectedpages-params' => 'This is a column header in the table on the page [[Special:ProtectedPages]].',
+'protectedpages-reason' => 'This is a column header in the table on the page [[Special:ProtectedPages]].
+{{Identical|Reason}}',
+'protectedpages-unknown-timestamp' => 'This is shown, when the date and time is unknown for a protection on the page [[Special:ProtectedPages]].',
+'protectedpages-unknown-performer' => 'This is shown, when the protecting user is unknown for a protection on the page [[Special:ProtectedPages]].',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'listusers' => '{{doc-special|ListUsers}}',
