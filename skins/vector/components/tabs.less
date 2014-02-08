@@ -3,8 +3,7 @@ Styling for namespace tabs (page, discussion) and views (read, edit, view histor
 */
 
 /* Navigation Labels */
-div.vectorTabs h3,
-div.vectorMenu h3 span {
+div.vectorTabs h3 {
 	display: none;
 }
 
@@ -124,7 +123,7 @@ div.vectorMenu {
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
 	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
 	/* @noflip */
-	background-position: 100% 60%;
+	background-position: 100% 70%;
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
@@ -133,7 +132,7 @@ div.vectorMenuFocus {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG) */
 	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
-	background-position: 100% 60%;
+	background-position: 100% 70%;
 }
 
 body.rtl div.vectorMenu {
@@ -149,6 +148,7 @@ div#mw-head div.vectorMenu h3 {
 	background-repeat: no-repeat;
 	background-position: bottom left;
 	margin-left: -1px;
+	font-size: 1em;
 }
 
 /* IGNORED BY IE6 */
@@ -167,20 +167,24 @@ div.vectorMenu#p-variants #mw-vector-current-variant {
 	border: none;
 }
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorMenu h3 span {
+	display: block;
+	float: left;
+	font-size: 0.8em;
+	padding-left: 0.7em;
+	padding-top: 1.375em;
+	font-weight: normal;
+	color: @collapsible-nav-heading-color;
+}
+
 div.vectorMenu h3 a {
-	display: inline-block;
-	width: 24px;
-	height: 1.9em;
+	float: left;
+	width: 20px;
+	height: 2.5em;
 	text-decoration: none;
 	.background-image('images/tab-break.png');
 	background-repeat: no-repeat;
 	background-position: bottom right;
-}
-
-/* IGNORED BY IE6 */
-div.vectorMenu h3 > a {
-	display: block;
 }
 
 div.vectorMenu div.menu {
