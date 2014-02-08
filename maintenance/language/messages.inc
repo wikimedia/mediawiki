@@ -3986,6 +3986,10 @@ $wgMessageStructure = array(
 		'expand_templates_generate_rawhtml',
 		'expand_templates_preview',
 	),
+	'trackingcategories' => array(
+		'trackingcategories',
+		'trackingcategories-summary',
+	),
 );
 
 /** Comments for each block */
