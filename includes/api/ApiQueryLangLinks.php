@@ -36,6 +36,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgContLang;
+
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
 			return;
 		}
@@ -44,6 +46,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 		if ( isset( $params['title'] ) && !isset( $params['lang'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'lang' ) );
+		}
+
+		// When param is set, but no code is given, default to content language
+		if ( $params['langname'] === '' ) {
+			$params['langname'] = $wgContLang->getCode();
 		}
 
 		$this->addFields( array(
@@ -104,10 +111,16 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array( 'lang' => $row->ll_lang );
-			if ( $params['url'] ) {
-				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
-				if ( $title ) {
+			$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
+			if ( $title ) {
+				if ( $params['url'] ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+				}
+				if ( $params['langname'] !== null ) {
+					$entry['langname'] = Language::fetchLanguageName( $title->getInterwiki(), $params['langname'] );
+				}
+				if ( $params['autonym'] ) {
+					$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
 				}
 			}
 			ApiResult::setContent( $entry, $row->ll_title );
@@ -134,6 +147,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			),
 			'continue' => null,
 			'url' => false,
+			'langname' => null,
+			'autonym' => false,
 			'lang' => null,
 			'title' => null,
 			'dir' => array(
@@ -151,6 +166,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
 			'url' => 'Whether to get the full URL',
+			'langname' => array(
+				'Whether to get the localised language name (best effort, use CLDR extension)',
+				'Set to empty string for content language',
+			),
+			'autonym' => 'Whether to get the native language name',
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
@@ -162,6 +182,14 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'' => array(
 				'lang' => 'string',
 				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'langname' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'autonym' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				),
