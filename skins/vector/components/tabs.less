@@ -3,8 +3,7 @@ Styling for namespace tabs (page, discussion) and views (read, edit, view histor
 */
 
 /* Navigation Labels */
-div.vectorTabs h3,
-div.vectorMenu h3 span {
+div.vectorTabs h3 {
 	display: none;
 }
 
@@ -120,21 +119,8 @@ div.vectorMenu {
 	direction: ltr;
 	/* @noflip */
 	float: left;
-	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
-	/* @noflip */
-	background-position: 100% 60%;
-	background-repeat: no-repeat;
 	cursor: pointer;
-	.transition(background-position 250ms);
-}
-
-div.vectorMenu.menuForceShow {
-	background-position: 100% 100%;
-}
-
-div.vectorMenuFocus {
-	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
-	background-position: 100% 60%;
+	position: relative;
 }
 
 body.rtl div.vectorMenu {
@@ -142,19 +128,19 @@ body.rtl div.vectorMenu {
 	direction: rtl;
 }
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
 div#mw-head div.vectorMenu h3 {
 	/* @noflip */
 	float: left;
 	.background-image('images/tab-break.png');
 	background-repeat: no-repeat;
-	background-position: bottom left;
+	background-position: bottom right;
 	margin-left: -1px;
-}
-
-/* IGNORED BY IE6 */
-div#mw-head div.vectorMenu > h3 {
-	background-image: none;
+	font-size: 1em;
+	height: 2.5em;
+	// This effectively moves the "background border" outside of the element to act like a real
+	// border. It is necessary for the dropdown (div.vectorMenu div.menu) to align well.
+	padding-right: 1px;
+	margin-right: -1px;
 }
 
 div#mw-head div.vectorMenu h4,
@@ -168,47 +154,51 @@ div.vectorMenu#p-variants #mw-vector-current-variant {
 	border: none;
 }
 
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorMenu h3 a {
-	display: inline-block;
-	width: 24px;
-	height: 1.9em;
-	text-decoration: none;
-	.background-image('images/tab-break.png');
-	background-repeat: no-repeat;
-	background-position: bottom right;
+div.vectorMenu h3 span {
+	display: block;
+	font-size: 0.8em;
+	padding-left: 0.7em;
+	padding-top: 1.375em;
+	margin-right: 20px;
+	font-weight: normal;
+	color: @menu-main-heading-color;
 }
 
-/* IGNORED BY IE6 */
-div.vectorMenu h3 > a {
-	display: block;
+div.vectorMenu h3 a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 2.5em;
+	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
+	background-position: 100% 70%;
+	background-repeat: no-repeat;
+	.transition(all 250ms);
+}
+
+div.vectorMenu.menuForceShow h3 a {
+	-webkit-transform: rotate(-45deg) translate(-5px, 5px);
+	-moz-transform: rotate(-45deg) translate(-5px, 5px);
+	-ms-transform: rotate(-45deg) translate(-5px, 5px);
+	transform: rotate(-45deg) translate(-5px, 5px);
+}
+
+div.vectorMenuFocus h3 a {
+	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
 }
 
 div.vectorMenu div.menu {
-	position: relative;
-	display: none;
+	// Match the width of the dropdown "heading" (the tab)
+	min-width: 100%;
+	position: absolute;
+	top: 2.5em;
+	left: -1px;
+	background-color: white;
+	border: solid 1px silver;
+	border-top-width: 0;
 	clear: both;
 	text-align: left;
-}
-
-/* OVERRIDDEN BY COMPLIANT BROWSERS */
-body.rtl div.vectorMenu div.menu {
-	/* @noflip */
-	margin-left: 24px;
-}
-
-/* IGNORED BY IE6 */
-body.rtl div.vectorMenu > div.menu {
-	/* @noflip */
-	margin-left: auto;
-}
-
-/* IGNORED BY IE6 */
-/* Also fixes old versions of FireFox */
-body.rtl div.vectorMenu > div.menu,
-x:-moz-any-link {
-	/* @noflip */
-	margin-left: 23px;
+	display: none;
 }
 
 /* Enable forcing showing of the menu for accessibility */
@@ -218,15 +208,10 @@ div.vectorMenu.menuForceShow div.menu {
 }
 
 div.vectorMenu ul {
-	position: absolute;
-	background-color: white;
-	border: solid 1px silver;
-	border-top-width: 0;
 	list-style-type: none;
 	list-style-image: none;
 	padding: 0;
 	margin: 0;
-	margin-left: -1px;
 	text-align: left;
 }
 
