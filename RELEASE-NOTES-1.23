@@ -101,6 +101,12 @@ production.
    $wgDBWindowsAuthentication, which makes the web server authenticate against
    the database server using Integrated Windows Authentication instead of
    $wgDBuser/$wgDBpassword.
+* (bug 52061) A new <lines> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled (unless your wiki relies on the
+  old "compact" attribute, which is no longer available). Note also that any CSS
+  changes made to the div.poem selector must be changed to use the pre.poem
+  selector, or alternatively just the .poem class selector.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
