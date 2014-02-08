@@ -28,6 +28,7 @@ $wgMessageStructure = array(
 	),
 	'toggles' => array(
 		'tog-underline',
+		'tog-justify',
 		'tog-hideminor',
 		'tog-hidepatrolled',
 		'tog-newpageshidepatrolled',
