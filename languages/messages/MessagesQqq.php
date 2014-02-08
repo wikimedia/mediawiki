@@ -10709,4 +10709,21 @@ test
 # Unknown messages
 'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
 'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
+
+# Tracking categories special page
+'trackingcategories' => 'Name of the page implementing Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-summary' => 'Description for Tracking categories page [[mw:Help:Tracking categories|tracking category]]',
+'trackingcatmsg' => 'Tracking category list table header-Message',
+'trackingcatname' => 'Tracking category list table header-Name',
+'trackingcatdesc' => 'Tracking category list table header-Inclusion criteria',
+'noindex-category-desc' => 'No-index category-description',
+'index-category-desc' => 'Index category-description',
+'post-expand-template-inclusion-category-desc' => 'Post expand template inclusion category-description',
+'post-expand-template-argument-category-desc' => 'Post expand template argument category-description',
+'expensive-parserfunction-category-desc' => 'Expensive parser function category-description',
+'broken-file-category-desc' => 'Broken file category-description',
+'hidden-category-category-desc' => 'Hidden-category category-description',
+'trackingcat-nodesc' => 'Description not available for tracking category.',
+'trackcat-disabled' => 'Tracking category disabled ie Category Message doesn\'t exist.',
+
 );
