@@ -5166,4 +5166,9 @@ In fact, it expands pretty much everything in double-braces.',
 'expand_templates_generate_xml'     => 'Show XML parse tree',
 'expand_templates_generate_rawhtml' => 'Show raw HTML',
 'expand_templates_preview'          => 'Preview',
+
+#Tracking categories page
+'trackingcategories'                => 'Tracking categories',
+'trackingcategories-summary'		=> 'Display list of tracking categories',
+
 );

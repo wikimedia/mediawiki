@@ -7024,6 +7024,21 @@ $wgSiteTypes = array(
 $wgCompiledFiles = array();
 
 /**
+  *Array holding default tracking category names
+  *
+  * @since 1.23
+  */
+$wgTrackingCat = array(
+	'index-category',
+	'noindex-category',
+	'expensive-parserfunction-category',
+	'post-expand-template-argument-category',
+	'post-expand-template-inclusion-category',
+	'hidden-category-category',
+	'broken-file-category',
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

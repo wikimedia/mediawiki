@@ -1016,6 +1016,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialVersion' => 'includes/specials/SpecialVersion.php',
 	'SpecialWatchlist' => 'includes/specials/SpecialWatchlist.php',
 	'SpecialWhatLinksHere' => 'includes/specials/SpecialWhatlinkshere.php',
+	'SpecialTrackingCategories'	=> 'includes/specials/SpecialTrackingCategories.php',
 	'UncategorizedCategoriesPage' => 'includes/specials/SpecialUncategorizedcategories.php',
 	'UncategorizedImagesPage' => 'includes/specials/SpecialUncategorizedimages.php',
 	'UncategorizedPagesPage' => 'includes/specials/SpecialUncategorizedpages.php',
