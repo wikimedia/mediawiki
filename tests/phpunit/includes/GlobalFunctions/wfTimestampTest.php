@@ -75,10 +75,10 @@ class WfTimestampTest extends MediaWikiTestCase {
 			array( '20380119031408', TS_UNIX, '2147483648', 'Latest 32 bit unix time + 1' ),
 			array( '-2147483649', TS_MW, '19011213204551', '1901 negative unix time to MediaWiki' ),
 			array( '-5331871504', TS_MW, '18010115123456', '1801 negative unix time to MediaWiki' ),
-			array( '0117-08-09 12:34:56', TS_RFC2822, 'Tue, 09 Aug 0117 12:34:56 GMT', 'Death of Roman Emperor [[Trajan]]' ),
+			array( '0117-08-09 12:34:56', TS_RFC2822, 'Mon, 09 Aug 0117 12:34:56 GMT', 'Death of Roman Emperor [[Trajan]]' ),
 
 			/* @todo FIXME: 00 to 101 years are taken as being in [1970-2069] */
-			array( '-58979923200', TS_RFC2822, 'Sun, 01 Jan 0101 00:00:00 GMT', '1/1/101' ),
+			array( '-58979923200', TS_RFC2822, 'Sat 01 Jan 0101 00:00:00 GMT', '1/1/101' ),
 			array( '-62135596800', TS_RFC2822, 'Mon, 01 Jan 0001 00:00:00 GMT', 'Year 1' ),
 
 			/* It is not clear if we should generate a year 0 or not
