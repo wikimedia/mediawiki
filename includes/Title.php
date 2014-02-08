@@ -3876,7 +3876,20 @@ class Title {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			// @todo FIXME: $params?
-			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
+			$logId = $log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
+
+			// reread inserted pr_ids for log relation
+			$insertedPrIds = $dbw->select(
+				'page_restrictions',
+				'pr_id',
+				array( 'pr_page' => $redirid ),
+				__METHOD__
+			);
+			$logRelationsValues = array();
+			foreach ( $insertedPrIds as $prid ) {
+				$logRelationsValues[] = $prid->pr_id;
+			}
+			$log->addRelations( 'pr_id', $logRelationsValues, $logId );
 		}
 
 		# Update watchlists
