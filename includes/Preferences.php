@@ -761,6 +761,14 @@ class Preferences {
 			'label-message' => 'tog-showhiddencats'
 		);
 
+		if ( $wgAllowUserCssPrefs ) {
+			$defaultPreferences['justify'] = array(
+				'type' => 'toggle',
+				'section' => 'rendering/advancedrendering',
+				'label-message' => 'tog-justify',
+			);
+		}
+
 		$defaultPreferences['numberheadings'] = array(
 			'type' => 'toggle',
 			'section' => 'rendering/advancedrendering',
