@@ -72,7 +72,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	private $propertyFilter = array(
 		'user', 'userid', 'comment', 'parsedcomment',
-		'mediatype', 'archivename',
+		'mediatype', 'archivename', 'uploadwarning',
 	);
 
 	public function getAllowedParams() {
