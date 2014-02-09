@@ -487,6 +487,10 @@ class ApiParse extends ApiBase {
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
 				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+				// localised language name in user language (maybe set by uselang=)
+				$entry['langname'] = Language::fetchLanguageName( $title->getInterwiki(), $this->getLanguage()->getCode() );
+				// native language name
+				$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
 			}
 			ApiResult::setContent( $entry, $bits[1] );
 			$result[] = $entry;
