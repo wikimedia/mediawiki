@@ -163,6 +163,7 @@ production.
 * Added siprop=restrictions to API action=query&meta=siteinfo for querying
   possible page restriction (protection) levels and types.
 * Added prop 'limitreportdata' and 'limitreporthtml' to action=parse.
+* (bug 58627) Provide language names on action=parse&prop=langlinks.
 
 === Languages updated in 1.23 ===
 
