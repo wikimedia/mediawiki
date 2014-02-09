@@ -2668,6 +2668,7 @@ PICT # тайп тайпан
 'version-ext-colheader-credits' => 'Автораш',
 'version-poweredby-credits' => "ХӀара вики болх беш ю '''[https://www.mediawiki.org/ MediaWiki]''' движок тӀехь, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'кхин',
+'version-poweredby-translators' => 'гочдархой translatewiki.net',
 'version-license-info' => 'MediaWiki ю маьрша программин латораг, шу йиш ю фондас арахецна йолу GNU General Public License лицензица и яржо я хийца а.
 
 MediaWiki яржош ю и шуна пайдане хир яц те аьлла, амма  ЦХЬА ЮКЪАРАХИЛАР ДОЦУШ. Хь. кхин. лицензи мадарра GNU General Public License .
@@ -2676,6 +2677,9 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'version-software' => 'ДӀахӀоттийна программин латтор',
 'version-software-version' => 'Верси',
 'version-entrypoints' => 'ЧугӀо адресин тӀадамаш',
+'version-entrypoints-header-entrypoint' => 'Яздаран тӀадам',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath АгӀона тӀе некъ]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Скриптан тӀе некъ]',
 
 # Special:Redirect
 'redirect' => 'Декъашхочун файлан тӀера дӀасхьажор',

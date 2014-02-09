@@ -819,10 +819,10 @@ Baliteke orrialdea begiratzen zenuen bitartean norbaitek ezabatu edo izenburua a
 Bere IP helbidea erabili beharko da beraz identifikatzeko.
 Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea.
 Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:UserLogin/signup|Izena eman]] edo [[Special:UserLogin|saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
-'noarticletext' => 'Oraindik ez dago testurik orrialde honetan.
-Beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bilatu lotutako logak],
-edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu]</span>.',
+'noarticletext' => 'Oraindik ez dago testurik orri honetan.
+Edukiz hornitzeko, aukera hauek dituzu: beste orri batzuetan [[Special:Search/{{PAGENAME}}|orri izenburu hau bilatzea]],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} lotutako logak bilatzea],
+edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} orri hau editatzea]</span>.',
 'noarticletext-nopermission' => 'Une honetan ez dago testurik orrialde honetan.
 Beste orrialdeetan [[Special:Search/{{PAGENAME}}|izenburu hau bilatu dezakezu]],
 edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} erlazionatutako erregistroak bilatu]</span>, baina ez duzu orrialde hau sortzeko baimenik.',

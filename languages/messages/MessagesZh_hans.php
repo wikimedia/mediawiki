@@ -2363,7 +2363,7 @@ $1',
 'watchlistcontains' => '您的监视列表包含$1个页面。',
 'iteminvalidname' => "页面'$1'错误，无效命名...",
 'wlnote2' => '以下是最近<strong>$1</strong>小时的变化，截至$2 $3。',
-'wlshowlast' => '显示过去$1小时或$2天内的$3',
+'wlshowlast' => '显示过去$1小时$2天$3',
 'watchlist-options' => '监视列表选项',
 
 # Displayed when you click the "watch" button and it is in the process of watching

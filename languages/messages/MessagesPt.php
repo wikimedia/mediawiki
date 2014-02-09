@@ -1410,7 +1410,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
-'searchmenu-new' => "'''Crie a página \"[[:\$1]]\" nesta wiki!'''",
+'searchmenu-new' => '<strong>Crie a página "[[:$1]]" nesta wiki!</strong> {{PLURAL:$2|0=|Veja também a página encontrada na pesquisa.|Veja também os resultados da pesquisa.}}',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Páginas de ajuda e de projeto',
 'searchprofile-images' => 'Multimédia',

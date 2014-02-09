@@ -748,6 +748,8 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'retypenew' => 'Gentag ny adgangskode:',
 'resetpass_submit' => 'Gem adgangskode og log på',
 'changepassword-success' => 'Din adgangskode er nu ændret!',
+'changepassword-throttled' => 'Du har forsøgt at logge på for mange gange for nylig.
+Vent venligst $1, før du prøver igen.',
 'resetpass_forbidden' => 'Adgangskoder kan ikke ændres',
 'resetpass-no-info' => 'Du skal være logget på for at komme direkte til denne side.',
 'resetpass-submit-loggedin' => 'Skift adgangskode',
@@ -799,6 +801,8 @@ Midlertidig adgangskode: $2',
 'changeemail-password' => 'Din adgangskode til {{SITENAME}}:',
 'changeemail-submit' => 'Ændre e-mail',
 'changeemail-cancel' => 'Afbryd',
+'changeemail-throttled' => 'Du har forsøgt at logge på for mange gange.
+Vent venligst $1, før du prøver igen.',
 
 # Special:ResetTokens
 'resettokens' => 'Nulstil nøgler',
@@ -1016,7 +1020,7 @@ Den ser du til at være slettet.',
 'invalid-content-data' => 'Ugyldig indholdsdata',
 'content-not-allowed-here' => '"$1" indhold er ikke tilladt på siden [[$2]]',
 'editwarning-warning' => 'Hvis du forlader siden nu, risikerer du at miste alle ændringer, som du har lavet.
-Denne advarsel kan slås fra under "Redigering" i dine indstillinger.',
+Denne advarsel kan slås fra under "{{int:prefs-editing}}" i dine indstillinger.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',

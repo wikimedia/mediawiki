@@ -673,6 +673,8 @@ Fyri at gera innritanina lidna, mást tú velja tær eitt nýtt loyniorð her:',
 'retypenew' => 'Skriva nýtt loyniorð umaftur:',
 'resetpass_submit' => 'Vel loyniorð og rita inn',
 'changepassword-success' => 'Títt loyniorð er nú broytt!',
+'changepassword-throttled' => 'Tú hevur roynt at rita inn ov nógvar ferðir nýliga.
+Vinarliga bíða $1 áðrenn tú roynir aftur.',
 'resetpass_forbidden' => 'Loyniorð kunnu ikki broytast',
 'resetpass-no-info' => 'Tú mást vera loggaður á fyri at fáa beinleiðis atgongd til hesa síðu.',
 'resetpass-submit-loggedin' => 'Broyt loyniorð',
@@ -726,6 +728,8 @@ Fyribils loyniorð: $2',
 'changeemail-password' => 'Títt {{SITENAME}} loyniorð:',
 'changeemail-submit' => 'Broyt t-post',
 'changeemail-cancel' => 'Ógilda',
+'changeemail-throttled' => 'Tú hevur roynt at rita inn ov nógvar ferðir.
+Vinarliga bíða $1 áðrenn tú roynir aftur.',
 
 # Special:ResetTokens
 'resettokens' => 'Nullstilla lyklar',
@@ -1486,6 +1490,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'recentchanges-label-minor' => 'Hetta er ein lítil rætting',
 'recentchanges-label-bot' => 'Henda rætting varð gjørd av einum botti',
 'recentchanges-label-unpatrolled' => 'Henda rætting er ikki blivin eftirkannað enn',
+'recentchanges-legend-heading' => "'''Teknfrágreiðing:'''",
 'recentchanges-legend-newpage' => '(sí eisini [[Special:NewPages|yvirlit yvir nýggjar síður]])',
 'rcnotefrom' => "Niðanfyri standa broytingarnar síðani '''$2''', (upp til '''$1''' er sýndar).",
 'rclistfrom' => 'Sýn nýggjar broytingar byrjandi við $1',
@@ -2184,6 +2189,10 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'delete-edit-reasonlist' => 'Rætta orsøkir til striking',
 'delete-toobig' => 'Henda síðan hevur eina langa rættingar søgu, meira enn $1 {{PLURAL:$1|versjón|versjónir}}. 
 Striking av slíkum síðum er avmarkað fyri at forða fyri at onkur av óvart kemur til at forstýra {{SITENAME}}.',
+'delete-warning-toobig' => 'Henda síðan hevur eina langa rættingarsøgu, yvir $1 {{PLURAL:$1|versjón|versjónir}}.
+Um tú slettar hana kann tað órógva virksemi hjá dátugrunninum {{SITENAME}};
+far varliga fram.',
+'deleting-backlinks-warning' => "'''Ávaring:''' Aðrar síður slóða til ella hava síðuna við, ið tú ert í ferð við at sletta.",
 
 # Rollback
 'rollback' => 'Rulla broytingar aftur',
@@ -2227,6 +2236,8 @@ Sí [[Special:ProtectedPages|listan fyri vardar síður]] fyri at síggja listan
 'protect-legend' => 'Vátta friðing',
 'protectcomment' => 'Orsøk:',
 'protectexpiry' => 'Gongur út:',
+'protect_expiry_invalid' => 'Útloypstíðin er ógyldug.',
+'protect_expiry_old' => 'Útgongutíðin er longu farin.',
 'protect-text' => "Her kanst tú síggja og broyta verjustøðuna fyri síðuna '''$1'''.",
 'protect-locked-blocked' => "Tú kanst ikki broyta verjustøðu á síðu, meðan tú ert sperrað/ur.
 Her er aktuella innstillingin hjá síðuni '''$1''':",
@@ -2594,6 +2605,7 @@ Vinarliga vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'allmessages-prefix' => 'Filtrera eftir forstavilsi:',
 'allmessages-language' => 'Mál:',
 'allmessages-filter-submit' => 'Far',
+'allmessages-filter-translate' => 'Týð',
 
 # Thumbnails
 'thumbnail-more' => 'Víðka',
@@ -2608,6 +2620,7 @@ $2',
 'thumbnail_invalid_params' => 'Ógyldug thumbnail parametur',
 'thumbnail_dest_directory' => 'Tað bar ikki til at upprætta málmappu',
 'thumbnail_image-type' => 'Myndaslagið verður ikki stuðlað',
+'thumbnail_gd-library' => 'Ófullkomin GD bókasavns konfigurasjón: manglar funksjón $1',
 'thumbnail_image-missing' => 'Fílan sær út til at mangla: $1',
 
 # Special:Import
@@ -2962,11 +2975,23 @@ Onnur metadáta verða fjald sum standard.
 
 'exif-meteringmode-0' => 'Ókent',
 'exif-meteringmode-1' => 'Miðal',
+'exif-meteringmode-255' => 'Annað',
 
+'exif-lightsource-0' => 'Ókent',
 'exif-lightsource-1' => 'Dagsljós',
+'exif-lightsource-2' => 'Ljósrør',
+'exif-lightsource-3' => 'Gløðilampa',
+'exif-lightsource-4' => 'Blits',
 'exif-lightsource-9' => 'Gott veður',
 'exif-lightsource-10' => 'Skýggjað veður',
 'exif-lightsource-11' => 'Skuggi',
+'exif-lightsource-12' => 'Dagsljós ljósrør (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Dagshvítt ljósrør (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Kalthvítt ljósrør (W 3900 – 4500K)',
+'exif-lightsource-15' => 'Hvítt ljósrør (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standardljós A',
+'exif-lightsource-18' => 'Standardljós B',
+'exif-lightsource-19' => 'Standardljós C',
 
 'exif-scenecapturetype-1' => 'Landsskap',
 'exif-scenecapturetype-2' => 'Portrett',
