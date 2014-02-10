@@ -475,3 +475,6 @@
 [submodule "extensions/SemanticForms"]
 	path = extensions/SemanticForms
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticForms.git
+[submodule "extensions/MobileApp"]
+	path = extensions/MobileApp
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MobileApp.git
