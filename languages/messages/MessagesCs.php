@@ -4300,6 +4300,5 @@ V podstatě rozbalí prakticky všechno v dvojitých složených závorkách.',
 'expand_templates_preview' => 'Náhled',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML v načteném souboru nelze zpracovat.',
 );

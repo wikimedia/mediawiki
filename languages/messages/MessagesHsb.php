@@ -3959,6 +3959,5 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'expand_templates_preview' => 'Přehlad',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML w nahratej dataji njeda so parsować.',
 );

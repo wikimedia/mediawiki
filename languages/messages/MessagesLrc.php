@@ -1293,6 +1293,7 @@ $2',
 
 # Special:LinkSearch
 'linksearch-ns' => 'نوم جا:',
+'linksearch-ok' => 'پی جوری',
 'linksearch-line' => '$1 داره د $2 هوم پیوند بوئه',
 
 # Special:ListUsers
@@ -1309,6 +1310,7 @@ $2',
 'emailuser' => 'ای كارور نه ايميل كو',
 'emailuser-title-target' => 'ایمیل سی ای {{جنس:$1|کارور}}',
 'emailpage' => 'ایمیل کارور',
+'defemailsubject' => '{{نوم سیل جا}} ایمیل د کارور "$1"',
 'emailusername' => 'نوم كاروری:',
 
 # Watchlist
@@ -1322,11 +1324,14 @@ $2',
 'notanarticle' => 'مینونه هیچ بلگه ای نئ',
 'watchlist-details' => '{{جمی:$1|$1 بلگه|$1 بلگیا}} د سیل برگتو هیش بلگه قسه کردن نی .',
 'wlheader-enotif' => 'وارسیاری ایمیل فعال بیه.',
+'wlheader-showupdated' => 'بلگه یایی که د آخرین کرتی که شما دشو دیئن کردیته آلشت بینه د <strong>توپر</strong>نشون دئه بینه',
 'wlshowlast' => 'آخرین$1 ساعتیا $2و روزیا $3 نشو بیئه',
 'watchlist-options' => 'گزینیا سیل برگ',
 
 'enotif_mailer' => '{{نوم سیلجا}} وارسیاری ایمیل زننه',
+'enotif_reset' => 'همه بلگه یا دیئه بینه نشودار بکید',
 'enotif_impersonal_salutation' => '{{نوم سیلجا}} کارور',
+'enotif_lastvisited' => 'همه آلشتیا$1 د اوسه که شما د آخرین بار دیئته بوینیت.',
 
 # Delete
 'excontent' => 'مینونه :"$1" بی',
@@ -1364,6 +1369,8 @@ $2',
 'undeletelink' => 'بوين/دوواره آماده با',
 'undeleteviewlink' => 'ديئن',
 'cannotundelete' => 'زنه کردن انجوم نبی:$1',
+'undelete-search-title' => 'بلگه یا پاک بیه نه پی جوری کو',
+'undelete-search-submit' => 'پی جوری',
 'undelete-error-short' => 'خطا پاک نبیئن جانیا:$1',
 
 # Namespace form on various pages
@@ -1419,6 +1426,7 @@ $2',
 'ipblocklist' => 'كاروريا منع بيه',
 'ipblocklist-legend' => 'یه گل کارور منع بیه بجوریت',
 'blocklist-timestamp' => 'چسب ون وخت',
+'ipblocklist-submit' => 'پی جوری',
 'blocklist-nousertalk' => 'نبوئه بلگه چک چنه خوتونه ویرایشت بکید',
 'ipblocklist-empty' => 'جاگه نوم گه حالیه',
 'blocklink' => 'بسته بوئه',
@@ -1525,6 +1533,11 @@ $2',
 'tooltip-summary' => 'يه چكسته كؤچك وارد بكيد',
 'interlanguage-link-title' => '$1-$2',
 
+# Attribution
+'anonymous' => 'ناشناس {{جمی:$1|کارور|کاروریا}}  {{سیل جا}}',
+'anonuser' => '{{سیل جا}}  کارور ناشناس $1',
+'siteusers' => '{{نوم سیل جا}} {{جمی:$2|کارور|کاروریا}} $1',
+
 # Info page
 'pageinfo-language' => 'بلگه مینونه زون',
 'pageinfo-content-model' => 'شلگ مینونه بلگه',
@@ -1551,6 +1564,7 @@ $2',
 'newimages' => 'عسگدونی جانیایا تازه',
 'newimages-summary' => 'ای بلگه یا ویجه همه جانیایا سوار بیه نه نشو می ئین.',
 'newimages-label' => 'نوم جانیا(یا بشقی د وه):',
+'ilsubmit' => 'پی جوری',
 'sp-newimages-showfrom' => 'جانیایا تازه نه که $2 ، $2 شرو بینه نشو بیه',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
@@ -1595,6 +1609,7 @@ $2',
 'exif-jpegfilecomment' => 'ویر و باور فایل پی ان جی',
 'exif-citycreated' => 'شهری که عسگ دش گرته بیه',
 'exif-citydest' => 'شهر دیار بیه',
+'exif-fixtureidentifier' => 'نوم ثاوت',
 'exif-languagecode' => 'زون',
 'exif-datetimeexpires' => 'وا نها دش استفاده نبوئه',
 'exif-pngfilecomment' => 'ویر و باور فایل جی پی ان جی',
@@ -1681,6 +1696,9 @@ $2',
 
 # Feedback
 'feedback-close' => 'انجوم بی',
+
+# Search suggestions
+'searchsuggest-search' => 'پی جوری',
 
 # API errors
 'api-error-badaccess-groups' => 'شما سی سوار کرد جانیایا د ای ویکی اجازه ناریت.',

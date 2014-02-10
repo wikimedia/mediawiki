@@ -4161,6 +4161,5 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'expand_templates_preview' => '预览',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '上传文件中的XML无法解析。',
 );

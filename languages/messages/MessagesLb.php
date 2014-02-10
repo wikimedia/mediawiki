@@ -4029,6 +4029,5 @@ Faktesch alles wat tëscht duebelen Accolade steet gëtt ausgewäert.',
 'expand_templates_preview' => 'Kucken ouni ofzespäicheren',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'Den XML am eropgelueden Fichier konnt net verschafft ginn.',
 );

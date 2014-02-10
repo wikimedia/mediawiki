@@ -4122,6 +4122,5 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'expand_templates_preview' => '預覽',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '上載檔案中的XML無法解析。',
 );

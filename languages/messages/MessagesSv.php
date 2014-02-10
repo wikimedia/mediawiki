@@ -1192,6 +1192,7 @@ Dessa parametrar har uteslutits.',
 Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra, och spara sedan ändringarna nedan för att göra redigeringen ogjord.',
 'undo-failure' => 'Redigeringen kunde inte göras ogjord på grund av konflikt med mellanliggande redigeringar.',
 'undo-norev' => 'Redigeringen kan inte göras ogjord eftersom den inte finns eller har raderats.',
+'undo-nochange' => 'Det verkar som att redigeringen redan har blivit ogjord.',
 'undo-summary' => 'Gör version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]]) ogjord',
 'undo-summary-username-hidden' => 'Gör version $1 av en dold användare ogjord',
 
@@ -3035,7 +3036,7 @@ Spara den på din dator och ladda upp den här.',
 'importuploaderrortemp' => 'Uppladdningen av importfilen misslyckades. En temporär katalog saknas.',
 'import-parse-failure' => 'Tolkningsfel vid XML-import',
 'import-noarticle' => 'Inga sidor att importera!',
-'import-nonewrevisions' => 'Alla sidversioner hade importerats tidigare.',
+'import-nonewrevisions' => 'Inga sidversioner importerades (alla var antingen redan där eller hoppades över p.g.a. fel).',
 'xml-error-string' => '$1 på rad $2, kolumn $3 (byte $4): $5',
 'import-upload' => 'Ladda upp XML-data',
 'import-token-mismatch' => 'Sessionsdata har förlorats. Var god pröva igen.',
@@ -4227,6 +4228,5 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'expand_templates_preview' => 'Förhandsvisning',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML-koden i den uppladdade filen kunde inte tolkas.',
 );

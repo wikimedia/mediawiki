@@ -4289,6 +4289,4 @@ W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
 'expand_templates_generate_rawhtml' => 'Pokaż surowy HTML',
 'expand_templates_preview' => 'Podgląd',
 
-# Unknown messages
-'createaccount-hook-aborted' => '$1',
 );

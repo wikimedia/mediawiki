@@ -10707,6 +10707,5 @@ test
 'expand_templates_preview' => '{{Identical|Preview}}',
 
 # Unknown messages
-'createaccount-hook-aborted' => 'Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}',
 'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 );

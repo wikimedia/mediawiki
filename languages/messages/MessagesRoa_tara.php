@@ -1119,7 +1119,7 @@ Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={
 'shown-title' => 'Fà vedè le $1 {{PLURAL:$1|resultete|resultete}} pe pàgene',
 'viewprevnext' => 'Vide ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Stè 'na pàgene nnumenete \"[[\$1]]\" sus 'a sta Uicchipèdie'''",
-'searchmenu-new' => "'''[[:\$1|Ccreje]] 'a pàgene \"[[:\$1|\$1]]\" sus 'a sta Uicchipèdie!'''",
+'searchmenu-new' => '<strong>[[:$1|Ccreje]] \'a pàgene "[[:$1|$1]]" sus \'a sta Uicchipèdie!</strong> \'Ndruche pure {{PLURAL:$2|0=|\'a pàgene acchiate cu \'a ricerca toje.|le resultate acchiate da \'a ricerche.}}',
 'searchprofile-articles' => 'Vôsce',
 'searchprofile-project' => 'Pàggene de ajiute e de pruggette',
 'searchprofile-images' => 'Multimedia',

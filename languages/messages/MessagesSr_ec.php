@@ -4229,7 +4229,7 @@ $5
 * <span class="mw-specialpagerestricted">Ограничене посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',
 'specialpages-group-other' => 'Остале посебне странице',
-'specialpages-group-login' => 'Пријава/регистрација',
+'specialpages-group-login' => 'Пријава / регистрација',
 'specialpages-group-changes' => 'Скорашње измене и дневници',
 'specialpages-group-media' => 'Извештаји о мултимедијалном садржају и отпремања',
 'specialpages-group-users' => 'Корисници и корисничка права',

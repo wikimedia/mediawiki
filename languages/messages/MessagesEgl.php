@@ -657,10 +657,32 @@ Al blôch l'é stê fât da $1. Al mutîv dal blôch l'é còst:  ''$2''.
 S' ét vō, l'é pusébil mètres in cuntât cun $1 o 'n êter [[{{MediaWiki:Grouppage-sysop}}|aministradōr]] per discóter dal blôch.
 
 Guêrda che la funsiòun 'Scrév a l'utèint' an n'é mìa in ôvra s' an n'é mìa stê registrtê un indirés ed pôsta eletrônica vâlid int al tō [[Special:Preferences| preferèinsi]] o se sté funsiòun l'é stêda bluchêda. L'indirés IP 'd adèsa l'é $3, al nóme ID dal blôch l'é #$5. T'é perghê ed precişêr tót j elemèint ed préma per ògni dmânda de spiegasiòun",
+'autoblockedtext' => "Cl'indirés IP ché l'è stê bluchê in avtomâtich perché spartî cun 'n êter utèint, bluchê ânca ló da $1. Al mutîv dal blôch l'é còst:
+
+''$2''
+ 
+*Inési dal blôch: $8 
+*Scadèinsa dal blôch: $6 
+*Intervâl ed blôch: $7
+ 
+S' ét vō, l'é pusébil mètres in cuntât cun $1 o 'n êter [[{{MediaWiki:Grouppage-sysop}}|aministradōr]] per dmandêr spiegasiòun insém al blôch. Guêrda che la funsiòun 'Scrév a l'utèint' an n'é mìa in ôvra s' an n'é mìa stê registrtê un indirés ed pôsta eletrônica vâlid int al tō [[Special:Preferences| preferèinsi]] e, in tót al manēri, se int al tachêr al blôch, sté funsiòun l'é stêda bluchêda. L'indirés IP 'd adèsa l'é $3, al nóme ID dal blôch l'é #$5. T'é perghê ed precişêr tót j elemèint ed préma per ògni dmânda de spiegasiòun",
+'blockednoreason' => 'nisûn mutîv sgnê',
+'whitelistedittext' => 'Per mudifichêr al pàgini è necesâri $1.',
+'confirmedittext' => "Per avèir al permès ed mudufichêr dal pàgini l'è necesâri cunfermêr al tó indirés ed pôsta eletrônica.
+Per impustêr e cunfermêr l'indirés dervîres dal [[Special:Preferences|preferèinsi]].",
+'nosuchsectiontitle' => 'Impusébil catêr la sesiòun',
+'nosuchsectiontext' => "A  t' é pruvê 'd mudifichêr 'na sesiòun ch' l' an gh'è mìa. La pré èser stêda spustêda e scanşlêda mèinter t'ēr adrē vèder la pàgina.",
+'loginreqtitle' => 'Ingrès e-dmandê',
+'loginreqlink' => "fêr l'ingrès",
+'loginreqpagetext' => 'Per vèder dal j êtri pàgini è necesâri $1.',
+'accmailtitle' => "Cêva 'd ingrès spidîda.",
+'accmailtext' => "'Na cêva 'd ingrés l'è stêda fâta a chêş per [[User talk:$1|$1]] e l'è stêda spidîda a $2. Cla cêva 'd ingrès ché la pōl èser cambiêda int la pàgina per ''[[Special:ChangePassword|cambiêr la cêva 'd ingrès]]'' subét dôp avèir fât l'ingrès.",
 'newarticle' => '(Nōv)',
 'newarticletext' => "Al colegamèint apèina fât al cumbîna cun 'na pàgina ch' an n'é mìa incòra stêda fâta. S'ét vō fêr la pàgina adès, l'é asê cumincêr a scréver al tèst int la caşèla ché sòt (per vedèr infurmasiòun pió precîşi guêrda la [[{{MediaWiki:Helppage}}|pàgina 'd ajót]]). Se al colegamèint  l'é stê avêrt per erōr, l'é asê clichêr al pulsânt \"Indrē\" dal tó navigadōr.",
+'anontalkpagetext' => "----'' Còsta l'è la pàgina 'd discusiòun ed 'n utèint sèinsa nòm, ch' an n' à mìa incòra fât 'n' utèinsa o in tót al manēri an n'è mìa drē druvêrla. Per arcgnòsrel l'è dòunca necesâri druvê al só indirés IP. J indirés IP a pōlen èser spartî cun êter utèint. Se t'è un utèint sèinsa nòm e 't pèins che i cumèint in cla pàgina ché an riguêrden mìa tè, [[Special:UserLogin/signup|fa 'n' utèinsa nōva]] o [[Special:UserLogin|vîn dèinter cun còla ch' ét gh'ê bèle]] per schivşêr, in futûr,  'd èser cunfûş cun 'd j êter utèint sèinsa nòm.''",
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',
 'noarticletext-nopermission' => "In cól mumèint ché la pàgina serchêda l'é vōda. L'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît o<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] <span>, mó an 't gh'ê mìa al permès ed fêr cla pàgina ché.",
+'missing-revision' => "La revişiòun #\$1 'd la pagina \"{{PAGENAME}}\" l' an gh'è mìa. Còst, ed sôlit, a sucēd mèint'r as va drē a 'n colegamèint a 'na pàgina scanşlêda, in 'na stòria, di lavōr fât, mìa arnuvêda. I particulêr a 's pōlen catêr int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
 'note' => "'''Nôta:'''",
 'previewnote' => "'''Ricôrdet che còsta l'é sōl 'na guardêda préma 'd salvêr.'''
 Al tō mudéfichi în MIA incòra stêdi salvêdi.",

@@ -3425,7 +3425,7 @@ $1',
 'hours' => '$1시간',
 'days' => '$1일',
 'weeks' => '$1주',
-'months' => '$1달',
+'months' => '$1개월',
 'years' => '$1년',
 'ago' => '$1 전',
 'just-now' => '방금',
@@ -4354,6 +4354,5 @@ $5
 'expand_templates_preview' => '미리 보기',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => '업로드된 파일의 XML의 구문을 분석할 수 없습니다.',
 );

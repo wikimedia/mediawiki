@@ -3970,6 +3970,5 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'expand_templates_preview' => 'Pśeglěd',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'XML w nagratej dataji njedajo se parsowaś.',
 );

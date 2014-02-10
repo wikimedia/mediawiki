@@ -4338,6 +4338,5 @@ faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
 'expand_templates_preview' => 'Vorschau',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => 'Das XML in der hochgeladenen Datei konnte nicht geparst werden.',
 );

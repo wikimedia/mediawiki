@@ -4009,6 +4009,5 @@ En realidá cuasi tolo qu'apaeza ente llaves dobles.",
 'expand_templates_preview' => 'Vista previa',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 );

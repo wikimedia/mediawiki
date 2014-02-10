@@ -4066,7 +4066,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 * <span class="mw-specialpagerestricted">Ograničene posebne stranice</span>',
 'specialpages-group-maintenance' => 'Izveštaji održavanja',
 'specialpages-group-other' => 'Ostale posebne stranice',
-'specialpages-group-login' => 'Prijava/registracija',
+'specialpages-group-login' => 'Prijava / registracija',
 'specialpages-group-changes' => 'Skorašnje izmene i dnevnici',
 'specialpages-group-media' => 'Izveštaji o multimedijalnom sadržaju i otpremanja',
 'specialpages-group-users' => 'Korisnici i korisnička prava',

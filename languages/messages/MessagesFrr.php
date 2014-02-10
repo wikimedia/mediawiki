@@ -3829,6 +3829,5 @@ Uk parser-funktjuunen liküs <code><nowiki>{{</nowiki>#language:…}}</code> an 
 'expand_templates_preview' => 'Föörskau',
 
 # Unknown messages
-'createaccount-hook-aborted' => '$1',
 'uploadinvalidxml' => "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 );
