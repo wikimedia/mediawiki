@@ -275,10 +275,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return string
 	 */
 	protected function mysqlRealEscapeString( $s ) {
-		if ( is_integer( $s ) ) {
-			// HHVM fatals passing numbers to real_escape_string
-			$s = (string) $s;
-		}
 		return $this->mConn->real_escape_string( $s );
 	}
 
