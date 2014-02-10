@@ -123,6 +123,7 @@ $wgIgnoredMessages = array(
 	'recentchanges-url',
 	'recentchangestext',
 	'revision-info-current',
+	'createaccount-hook-aborted',
 	'revision-nav',
 	'rfcurl',
 	'shareddescriptionfollows',
