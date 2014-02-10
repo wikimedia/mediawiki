@@ -262,6 +262,7 @@ class LoadBalancer {
 
 			$conn = $this->openConnection( $i, $wiki );
 			if ( !$conn ) {
+				$i = false;
 				wfDebugLog( 'connect', __METHOD__ . ": Failed connecting to $i/$wiki" );
 				unset( $nonErrorLoads[$i] );
 				unset( $currentLoads[$i] );
