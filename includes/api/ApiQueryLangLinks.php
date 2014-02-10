@@ -41,9 +41,21 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
+		$prop = array_flip( (array)$params['prop'] );
 
 		if ( isset( $params['title'] ) && !isset( $params['lang'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'lang' ) );
+		}
+
+		// Handle deprecated param
+		if ( $params['url'] ) {
+			if ( count( $prop ) ) {
+				$this->dieUsage(
+					"Parameter '{$this->getModulePrefix()}url' cannot be used with {$this->getModulePrefix()}prop",
+					'badparams'
+				);
+			}
+			$prop = array_flip( array( 'url' ) );
 		}
 
 		$this->addFields( array(
@@ -104,7 +116,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array( 'lang' => $row->ll_lang );
-			if ( $params['url'] ) {
+			if ( isset( $prop['url'] ) ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
@@ -133,7 +145,16 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
-			'url' => false,
+			'url' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'url',
+				)
+			),
 			'lang' => null,
 			'title' => null,
 			'dir' => array(
@@ -150,7 +171,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return array(
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
-			'url' => 'Whether to get the full URL',
+			'url' => "Whether to get the full URL (Cannot be used with {$this->getModulePrefix()}prop)",
+			'prop' => array(
+				'Which additional properties to get for each interlanguage link',
+				' url - Adds the full URL',
+			),
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
