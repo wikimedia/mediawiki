@@ -797,7 +797,7 @@ class ApiParse extends ApiBase {
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
-			'generatexml' => "Generate XML parse tree (requires contentmodel=$wikitext)",
+			'generatexml' => "Generate XML parse tree (requires contentmodel=wikitext)",
 			'preview' => 'Parse in preview mode',
 			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
 			'disabletoc' => 'Disable table of contents in output',
