@@ -127,6 +127,11 @@ div.vectorMenu {
 	background-position: 100% 60%;
 	background-repeat: no-repeat;
 	cursor: pointer;
+	.transition(background-position 250ms);
+}
+
+div.vectorMenu.menuForceShow {
+	background-position: 100% 100%;
 }
 
 div.vectorMenuFocus {
@@ -212,7 +217,7 @@ x:-moz-any-link {
 
 /* Enable forcing showing of the menu for accessibility */
 div.vectorMenu:hover div.menu,
-div.vectorMenu div.menuForceShow {
+div.vectorMenu.menuForceShow div.menu {
 	display: block;
 }
 
