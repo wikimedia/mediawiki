@@ -746,6 +746,7 @@ class ApiParse extends ApiBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+		$wikitext = CONTENT_MODEL_WIKITEXT;
 
 		return array(
 			'text' => "Text to parse. Use {$p}title or {$p}contentmodel to control the content model",
