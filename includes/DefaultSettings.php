@@ -3142,14 +3142,23 @@ $wgResourceBasePath = null;
 
 /**
  * Maximum time in seconds to cache resources served by the resource loader.
+ * Used to set last modified headers (max-age/s-maxage).
  *
- * @todo Document array structure
+ * Following options to distinguish:
+ * - versioned: Used for modules with a version, because changing version
+ *   numbers causes cache misses. This has normally long expiry time.
+ * - unversioned: Used for modules without a version to propagate changes
+ *   quickly to clients. Also used for modules with errors to recover quickly.
+ *   This has normally short expiry time.
+ *
+ * Expiry time for the options to distinguish:
+ * - server: Squid/Varnish but also any other public proxy cache between the
+ *   client and MediaWiki.
+ * - client: On the client side (e.g. in the browser cache).
  */
 $wgResourceLoaderMaxage = array(
 	'versioned' => array(
-		// Squid/Varnish but also any other public proxy cache between the client and MediaWiki
 		'server' => 30 * 24 * 60 * 60, // 30 days
-		// On the client side (e.g. in the browser cache).
 		'client' => 30 * 24 * 60 * 60, // 30 days
 	),
 	'unversioned' => array(
