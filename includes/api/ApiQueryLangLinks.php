@@ -117,6 +117,12 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
+			if ( isset( $prop['langname'] ) ) {
+				$entry['langname'] = Language::fetchLanguageName( $row->ll_lang, $params['inlanguagecode'] );
+			}
+			if ( isset( $prop['autonym'] ) ) {
+				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
+			}
 			ApiResult::setContent( $entry, $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
@@ -131,6 +137,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgContLang;
 		return array(
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -148,6 +155,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'url',
+					'langname',
+					'autonym',
 				)
 			),
 			'lang' => null,
@@ -159,6 +168,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					'descending'
 				)
 			),
+			'inlanguagecode' => $wgContLang->getCode(),
 		);
 	}
 
@@ -169,11 +179,15 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'url' => "Whether to get the full URL (Cannot be used with {$this->getModulePrefix()}prop)",
 			'prop' => array(
 				'Which additional properties to get for each interlanguage link',
-				' url - Adds the full URL',
+				' url      - Adds the full URL',
+				' langname - Adds the localised language name (best effort, use CLDR extension)',
+				"            Use {$this->getModulePrefix()}inlanguagecode to control the language",
+				' autonym  - Adds the native language name',
 			),
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 			'dir' => 'The direction in which to list',
+			'inlanguagecode' => 'Language code for localised language names',
 		);
 	}
 
@@ -182,6 +196,14 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'' => array(
 				'lang' => 'string',
 				'url' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'langname' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'autonym' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				),
