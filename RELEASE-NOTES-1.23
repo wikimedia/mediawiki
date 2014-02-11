@@ -164,6 +164,7 @@ production.
   possible page restriction (protection) levels and types.
 * Added prop 'limitreportdata' and 'limitreporthtml' to action=parse.
 * (bug 58627) Provide language names on action=parse&prop=langlinks.
+* Deprecated llurl= in favour of llprop=url for action=query&prop=langlinks.
 
 === Languages updated in 1.23 ===
 
