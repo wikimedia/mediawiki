@@ -182,7 +182,7 @@ CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg
 --
 CREATE TABLE /*_*/user_newtalk (
   -- Key to user.user_id
-  user_id int NOT NULL default 0,
+  user_id int unsigned NOT NULL default 0,
   -- If the user is an anonymous user their IP address is stored here
   -- since the user_id of 0 is ambiguous
   user_ip varbinary(40) NOT NULL default '',
@@ -207,7 +207,7 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 --
 CREATE TABLE /*_*/user_properties (
   -- Foreign key to user.user_id
-  up_user int NOT NULL,
+  up_user int unsigned NOT NULL,
 
   -- Name of the option being saved. This is indexed for bulk lookup.
   up_property varbinary(255) NOT NULL,
@@ -733,7 +733,7 @@ CREATE TABLE /*_*/hitcounter (
 --
 CREATE TABLE /*_*/ipblocks (
   -- Primary key, introduced for privacy.
-  ipb_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  ipb_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Blocked IP address in dotted-quad form or user name.
   ipb_address tinyblob NOT NULL,
@@ -912,7 +912,7 @@ CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1(10));
 --
 CREATE TABLE /*_*/filearchive (
   -- Unique row id
-  fa_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  fa_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Original base filename; key to image.img_name, page.page_title, etc
   fa_name varchar(255) binary NOT NULL default '',
@@ -933,7 +933,7 @@ CREATE TABLE /*_*/filearchive (
   fa_storage_key varbinary(64) default '',
 
   -- Deletion information, if this file is deleted.
-  fa_deleted_user int,
+  fa_deleted_user int unsigned,
   fa_deleted_timestamp binary(14) default '',
   fa_deleted_reason text,
 
@@ -1032,7 +1032,7 @@ CREATE INDEX /*i*/us_timestamp ON /*_*/uploadstash (us_timestamp);
 -- the last few days, see Article::editUpdates()
 --
 CREATE TABLE /*_*/recentchanges (
-  rc_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  rc_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   rc_timestamp varbinary(14) NOT NULL default '',
 
   -- This is no longer used
@@ -1391,7 +1391,7 @@ CREATE TABLE /*_*/page_restrictions (
   -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
   pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Page to apply restrictions to (Foreign Key to page).
-  pr_page int NOT NULL,
+  pr_page int unsigned NOT NULL,
   -- The protection type (edit, move, etc)
   pr_type varbinary(60) NOT NULL,
   -- The protection level (Sysop, autoconfirmed, etc)
@@ -1427,7 +1427,7 @@ CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 
 -- Name/value pairs indexed by page_id
 CREATE TABLE /*_*/page_props (
-  pp_page int NOT NULL,
+  pp_page int unsigned NOT NULL,
   pp_propname varbinary(60) NOT NULL,
   pp_value blob NOT NULL
 ) /*$wgDBTableOptions*/;
@@ -1446,11 +1446,11 @@ CREATE TABLE /*_*/updatelog (
 -- A table to track tags for revisions, logs and recent changes.
 CREATE TABLE /*_*/change_tag (
   -- RCID for the change
-  ct_rc_id int NULL,
+  ct_rc_id int unsigned NULL,
   -- LOGID for the change
-  ct_log_id int NULL,
+  ct_log_id int unsigned NULL,
   -- REVID for the change
-  ct_rev_id int NULL,
+  ct_rev_id int unsigned NULL,
   -- Tag applied
   ct_tag varchar(255) NOT NULL,
   -- Parameters for the tag, presently unused
@@ -1468,11 +1468,11 @@ CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_i
 -- that only works on MySQL 4.1+
 CREATE TABLE /*_*/tag_summary (
   -- RCID for the change
-  ts_rc_id int NULL,
+  ts_rc_id int unsigned NULL,
   -- LOGID for the change
-  ts_log_id int NULL,
+  ts_log_id int unsigned NULL,
   -- REVID for the change
-  ts_rev_id int NULL,
+  ts_rev_id int unsigned NULL,
   -- Comma-separated list of tags
   ts_tags blob NOT NULL
 ) /*$wgDBTableOptions*/;

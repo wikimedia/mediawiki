@@ -28,6 +28,7 @@
  * @since 1.17
  */
 class MysqlUpdater extends DatabaseUpdater {
+
 	protected function getCoreUpdateList() {
 		return array(
 			array( 'disableContentHandlerUseDB' ),
@@ -250,6 +251,20 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+			array( 'modifyField', 'change_tag', 'ct_rc_id', 'patch-ct_rc_id-int-unsigned.sql' ),
+			array( 'modifyField', 'change_tag', 'ct_log_id', 'patch-ct_log_id-int-unsigned.sql' ),
+			array( 'modifyField', 'change_tag', 'ct_rev_id', 'patch-ct_rev_id-int-unsigned.sql' ),
+			array( 'modifyField', 'filearchive', 'fa_id', 'patch-fa_id-int-unsigned.sql' ),
+			array( 'modifyField', 'filearchive', 'fa_deleted_user', 'patch-fa_deleted_user-int-unsigned.sql' ),
+			array( 'modifyField', 'ipblocks', 'ipb_id', 'patch-ipb_id-int-unsigned.sql' ),
+			array( 'modifyField', 'page_props', 'pp_page', 'patch-pp_page-int-unsigned.sql' ),
+			array( 'modifyField', 'page_restrictions', 'pr_page', 'patch-pr_page-int-unsigned.sql' ),
+			array( 'modifyField', 'recentchanges', 'rc_id', 'patch-rc_id-int-unsigned.sql' ),
+			array( 'modifyField', 'tag_summary', 'ts_rc_id', 'patch-ts_rc_id-int-unsigned.sql' ),
+			array( 'modifyField', 'tag_summary', 'ts_log_id', 'patch-ts_log_id-int-unsigned.sql' ),
+			array( 'modifyField', 'tag_summary', 'ts_rev_id', 'patch-ts_rev_id-int-unsigned.sql' ),
+			array( 'modifyField', 'user_newtalk', 'user_id', 'patch-user_newtalk-user_id-int-unsigned.sql' ),
+			array( 'modifyField', 'user_properties', 'up_user', 'patch-up_user-int-unsigned.sql' ),
 		);
 	}
 
