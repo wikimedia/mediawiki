@@ -32,7 +32,7 @@ interface LoadMonitor {
 	 *
 	 * @param LoadBalancer $parent
 	 */
-	function __construct( $parent );
+	public function __construct( $parent );
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
@@ -40,7 +40,7 @@ interface LoadMonitor {
 	 * @param string|bool $group The selected query group. Default: false
 	 * @param string|bool $wiki Default: false
 	 */
-	function scaleLoads( &$loads, $group = false, $wiki = false );
+	public function scaleLoads( &$loads, $group = false, $wiki = false );
 
 	/**
 	 * Return an estimate of replication lag for each server
@@ -50,22 +50,17 @@ interface LoadMonitor {
 	 *
 	 * @return array
 	 */
-	function getLagTimes( $serverIndexes, $wiki );
+	public function getLagTimes( $serverIndexes, $wiki );
 }
 
 class LoadMonitorNull implements LoadMonitor {
-	function __construct( $parent ) {
+	public function __construct( $parent ) {
 	}
 
-	function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
-	/**
-	 * @param array $serverIndexes
-	 * @param string $wiki
-	 * @return array
-	 */
-	function getLagTimes( $serverIndexes, $wiki ) {
+	public function getLagTimes( $serverIndexes, $wiki ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 }
@@ -80,33 +75,21 @@ class LoadMonitorMySQL implements LoadMonitor {
 	/** @var LoadBalancer */
 	public $parent;
 
-	/**
-	 * @param LoadBalancer $parent
-	 */
-	function __construct( $parent ) {
+	public function __construct( $parent ) {
 		$this->parent = $parent;
 	}
 
-	/**
-	 * @param array $loads
-	 * @param bool $group
-	 * @param bool $wiki
-	 */
-	function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
-	/**
-	 * @param array $serverIndexes
-	 * @param string $wiki
-	 * @return array
-	 */
-	function getLagTimes( $serverIndexes, $wiki ) {
+	public function getLagTimes( $serverIndexes, $wiki ) {
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
 			// Single server only, just return zero without caching
 			return array( 0 => 0 );
 		}
 
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		$expiry = 5;
 		$requestRate = 10;
 
@@ -124,7 +107,6 @@ class LoadMonitorMySQL implements LoadMonitor {
 			$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
 			if ( mt_rand( 0, $chance ) != 0 ) {
 				unset( $times['timestamp'] ); // hide from caller
-				wfProfileOut( __METHOD__ );
 
 				return $times;
 			}
@@ -142,7 +124,6 @@ class LoadMonitorMySQL implements LoadMonitor {
 		} elseif ( is_array( $times ) ) {
 			# Could not acquire lock but an old cache exists, so use it
 			unset( $times['timestamp'] ); // hide from caller
-			wfProfileOut( __METHOD__ );
 
 			return $times;
 		}
@@ -162,8 +143,6 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$times['timestamp'] = time();
 		$wgMemc->set( $memcKey, $times, $expiry + 10 );
 		unset( $times['timestamp'] ); // hide from caller
-
-		wfProfileOut( __METHOD__ );
 
 		return $times;
 	}
