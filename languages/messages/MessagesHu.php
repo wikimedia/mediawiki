@@ -2327,6 +2327,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchmethod-list' => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains' => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
 'iteminvalidname' => "Probléma a '$1' elemmel: érvénytelen név...",
+'wlnote2' => 'Alább az utolsó {{PLURAL:$1| <strong> $1 </strong> óra}} változásai láthatók. A lista frissítésének ideje  $2 $3',
 'wlshowlast' => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
 'watchlist-options' => 'A figyelőlista beállításai',
 

@@ -874,8 +874,8 @@ Bıne vındere u newe ra dest pê bıkere.',
 'login-abort-generic' => 'Dekewtışê şıma xırabo-terkneyayo',
 'loginlanguagelabel' => 'Zıwan: $1',
 'suspicious-userlogout' => 'Waştişê tu ya veciyayişi kebul nibiya cunki ihtimal o ke waştiş yew browser ya zi proksiyê heripiyaye ra ameya.',
-'createacct-another-realname-tip' => 'Nameyo raştay keyfiyo.
-Şıma namey xo raştay bınusne se xebtiyayışan de namey şıma do bıaso.',
+'createacct-another-realname-tip' => 'Nameyo raştıkên keyfiyo.
+Şıma nameyo xoyo raştıkên ke bımocnê, seba iştırakanê karberi be ney ra istıfade beno.',
 
 # Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyoni de xırabin vıcyê.",
@@ -949,9 +949,9 @@ Kerem ke verdi dekewten $1 bıpawe.',
 
 # Special:ResetTokens
 'resettokens' => 'Nışanan reset ke',
-'resettokens-text' => 'Tiya de hesab de şımaya eleqedar tay malumati kılite icazeti şıma şeni  sıfır keri.
+'resettokens-text' => 'Şıma tiya de hesabê şıma ra elaqedar tayê kılitê icazetê cıresayışê melumati şenê sıfır kerê.
 
-Şıma na ğırabina kerda vıla se yana hesab de şıma de xırabin esta se ney bıkeri.',
+Şıma be ğeletiye ra ke nê kerdê vıla ya zi hesabê şıma de xırabiye ke esta, naye bıkerê.',
 'resettokens-no-tokens' => 'Nışanê reseti çıniyê',
 'resettokens-legend' => 'Nışanan reset ke',
 'resettokens-tokens' => 'Nışani:',
@@ -1162,7 +1162,7 @@ Pel ca ra esto.',
 'content-not-allowed-here' => '"$1" sero per da [[$2]] rê mısade nêdeyêno',
 'editwarning-warning' => 'ihtimal o ke wexta şıma peli ra bıveci, vurnayiş o ke şıma kerdo, hewna şiyêro .
 eke şıma kewtê hesabê xo, no hişyari tercihanê xo ra şıma eşkeni "Vurnayış"\'i vındarne.',
-'editpage-notsupportedcontentformat-title' => 'Formata zerreki qebul nêvinena',
+'editpage-notsupportedcontentformat-title' => 'Formatê zerreki qebul nêbeno',
 
 # Content models
 'content-model-wikitext' => 'wikimetin',
@@ -1371,8 +1371,8 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'showhideselectedversions' => 'Revizyonanê weçinıtan bımocne/bınımne',
 'editundo' => 'peyser bıgê',
 'diff-empty' => '(Babetna niyo)',
-'diff-multi-sameuser' => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
-'diff-multi-otherusers' => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
+'diff-multi-sameuser' => '(Terefê eyni karberi ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni nêmocnê}})',
+'diff-multi-otherusers' => '(Terefê {{PLURAL:$2|yew karberi|$2 karberan}} ra {{PLURAL:$1|yew revizyono miyanên nêmocno|$1 revizyonê miyanêni nêmocnê}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|jew timar kerdışo qıckeko|$1 timar kerdışo qıckeko}} timar kerdo, $2 {{PLURAL:$2|Karber|karberi}} memocne)',
 'difference-missing-revision' => 'Ferqê {{PLURAL:$2|Yew rewizyonê|$2 rewizyonê}} {{PLURAL:$2|dı|dı}} ($1) sero çıniyo.
 
@@ -1380,7 +1380,7 @@ No normal de werênayış dê pelanê besterneyan dı ena xırabin asena.
 Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.',
 
 # Search results
-'searchresults' => 'Neticeya geyrayışi',
+'searchresults' => 'Neticeyê geyrayışi',
 'searchresults-title' => 'Qandê "$1" neticeyê geyrayışi',
 'toomanymatches' => 'Zêde teki (zewci) peyser çarnay, şıma rê zehmet, be persê do bin ra bıcerrebnên.',
 'titlematches' => 'Tekê (zewcê) sernameyê pele',
@@ -1393,7 +1393,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'shown-title' => 'bimocne $1î  {{PLURAL:$1|netice|neticeyan}} ser her pel',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) bıvênên',
 'searchmenu-exists' => "''Ena 'Wikipediya de ser \"[[:\$1]]\" yew pel esto'''",
-'searchmenu-new' => '<strong>Na wiki de pela "[[:$1]]"\'i vıraze!</strong> {{PLURAL:$2|0=|Zewmi prea ke şıma geyrayê cı ay bıvinê.|Nericanê cı geyrayış da xo bıvinê.}}',
+'searchmenu-new' => '<strong>Na wiki de pela "[[:$1]]" vıraze!</strong> {{PLURAL:$2|0=|Sewbina pela ke şıma geyrayê cı aye bıvênê.|Yew zi neticanê cıgeyrayışê xo bıvênê.}}',
 'searchprofile-articles' => 'Pelê tedeestey',
 'searchprofile-project' => 'Pelê peşti û procey',
 'searchprofile-images' => 'Multimedya',
@@ -1419,7 +1419,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searchrelated' => 'eleqeyın',
 'searchall' => 'pêro',
 'showingresults' => '#<strong>$2</strong> netican ra {{PLURAL:$1|<strong>1</strong> netice cêr dero|<strong>$1</strong> neticey cêr derê}}.',
-'showingresultsinrange' => '{{PLURAL:$1|<strong>1</strong> netice|<strong>$1</strong> neticey}} ra #<strong>$2</strong> hetana #<strong>$3</strong>.êyê cêrde asenê.',
+'showingresultsinrange' => '{{PLURAL:$1|<strong>1</strong> netice|<strong>$1</strong> neticey}} be mabeynê #<strong>$2</strong> ra be #<strong>$3</strong> cêr asenê.',
 'showingresultsnum' => '#<strong>$2</strong> netican ra {{PLURAL:$3|<strong>1</strong> netice cêr dero|<strong>$3</strong> neticey cêr derê}}.',
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' hetê '''$3'''}} qe '''$4'''",
 'search-nonefound' => 'Zey perskerdışê şıma netice nêvêniya.',
@@ -4121,13 +4121,13 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'version-svn-revision' => '(r$2)',
 'version-license' => 'Lisansê MediaWiki',
 'version-ext-license' => 'Lisans',
-'version-ext-colheader-name' => 'Dergen',
+'version-ext-colheader-name' => 'Dergiye',
 'version-ext-colheader-version' => 'Versiyon',
 'version-ext-colheader-license' => 'Lisans',
-'version-ext-colheader-description' => 'Akerdış',
-'version-ext-colheader-credits' => 'Nuştoği',
-'version-license-title' => 'Semedê $1 lisans',
-'version-credits-title' => 'Semedê $1 krediy',
+'version-ext-colheader-description' => 'Şınasnayış',
+'version-ext-colheader-credits' => 'Nuştekari',
+'version-license-title' => 'Semedê $1 ra lisans',
+'version-credits-title' => 'Semedê $1 ra krediy',
 'version-poweredby-credits' => "Ena wiki, dezginda '''[https://www.mediawiki.org/ MediaWiki]''' ya piya vıraziyaya, heqê telifi © 2001-$1 $2.",
 'version-poweredby-others' => 'Zewmi',
 'version-poweredby-translators' => "Açernere translatewiki.net'i",
@@ -4347,7 +4347,7 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'api-error-overwrite' => 'Ser yew dosyayê ke hama esta, ser ey qeyd nibena.',
 'api-error-stashfailed' => 'Xırabiya zerrek:Wasteri idari dosyey kerdi vıni.',
 'api-error-publishfailed' => 'Xetaya zerrey: Cıgeyrayoği nêşiya dosyaya rocaniye akero.',
-'api-error-stasherror' => 'Dosya cay berkerden de xeta vıcyê',
+'api-error-stasherror' => 'Dosya embari rê ke bar biye xeta veciye.',
 'api-error-timeout' => 'Cıwab dayışê wasteri peyra mend.',
 'api-error-unclassified' => 'Yew xeteyê nizanyeni biya.',
 'api-error-unknown-code' => "$1'dı jew xeta vıciye",

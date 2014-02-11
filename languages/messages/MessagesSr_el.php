@@ -732,7 +732,7 @@ Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još pr
 'userlogin' => 'Prijava/registracija',
 'userloginnocreate' => 'Prijava',
 'logout' => 'Odjava',
-'userlogout' => 'Odjava',
+'userlogout' => 'Odjavi me',
 'notloggedin' => 'Niste prijavljeni',
 'userlogin-noaccount' => 'Nemate nalog?',
 'userlogin-joinproject' => 'Otvorite ga',
