@@ -5430,13 +5430,6 @@ if ( !isset( $wgCommandLineMode ) ) {
 $wgCommandLineDarkBg = false;
 
 /**
- * Array for extensions to register their maintenance scripts with the
- * system. The key is the name of the class and the value is the full
- * path to the file
- */
-$wgMaintenanceScripts = array();
-
-/**
  * Set this to a string to put the wiki into read-only mode. The text will be
  * used as an explanation to users.
  *
