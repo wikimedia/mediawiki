@@ -448,6 +448,7 @@ class MediaWiki {
 			if ( function_exists( 'fastcgi_finish_request' ) ) {
 				fastcgi_finish_request();
 			}
+			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );
@@ -583,6 +584,7 @@ class MediaWiki {
 			wfProfileOut( 'main-try-filecache' );
 		}
 
+		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
 		// Now commit any transactions, so that unreported errors after
@@ -602,9 +604,6 @@ class MediaWiki {
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
 
-		// Execute a job from the queue
-		$this->doJobs();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
@@ -617,14 +616,18 @@ class MediaWiki {
 	}
 
 	/**
-	 * Do a job from the job queue
+	 * Potentially open a socket and sent an HTTP request back to the server
+	 * to run a specified number of jobs. This registers a callback to cleanup
+	 * the socket once it's done.
 	 */
-	private function doJobs() {
-		global $wgJobRunRate, $wgPhpCli, $IP;
+	protected function triggerJobs() {
+		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
+
+		$section = new ProfileSection( __METHOD__ );
 
 		if ( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
@@ -636,51 +639,41 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
-			// Start a background process to run some of the jobs
-			wfProfileIn( __METHOD__ . '-exec' );
-			$retVal = 1;
-			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php",
-				array( '--wiki', wfWikiID(), '--maxjobs', $n ) );
-			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
-			if ( wfIsWindows() ) {
-				// Using START makes this async and also works around a bug where using
-				// wfShellExec() with a quoted script name causes a filename syntax error.
-				$cmd = "START /B \"bg\" $cmd";
-			} else {
-				$cmd = "$cmd &";
-			}
-			wfShellExec( $cmd, $retVal );
-			wfProfileOut( __METHOD__ . '-exec' );
+		$query = array( 'action' => 'runjobs',
+			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
+		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
+
+		$errno = $errstr = null;
+		$info = wfParseUrl( $wgServer );
+		$sock = fsockopen(
+			$info['host'],
+			isset( $info['port'] ) ? $info['port'] : 80,
+			$errno,
+			$errstr
+		);
+		if ( !$sock ) {
+			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
+			return;
+		}
+
+		$url = wfAppendQuery( "{$wgScriptPath}/api{$wgScriptExtension}", $query );
+		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\n\r\n";
+
+		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );
+		// Send a cron API request to be performed in the background.
+		// Give up if this takes to long to send (which should be rare).
+		stream_set_timeout( $sock, 1 );
+		$bytes = fwrite( $sock, $req );
+		if ( $bytes !== strlen( $req ) ) {
+			wfDebugLog( 'runJobs', "Failed to start cron API (socket write error)\n" );
 		} else {
-			try {
-				// Fallback to running the jobs here while the user waits
-				$group = JobQueueGroup::singleton();
-				do {
-					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-					if ( $job ) {
-						$output = $job->toString() . "\n";
-						$t = - microtime( true );
-						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-						$success = $job->run();
-						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-						$group->ack( $job ); // done
-						$t += microtime( true );
-						$t = round( $t * 1000 );
-						if ( $success === false ) {
-							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-						} else {
-							$output .= "Success, Time: $t ms\n";
-						}
-						wfDebugLog( 'jobqueue', $output );
-					}
-				} while ( --$n && $job );
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during job execution to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				MWExceptionHandler::logException( $e );
+			// Do not wait for the response (the script should handle client aborts).
+			// Make sure that we don't close before that script reaches ignore_user_abort().
+			$status = fgets( $sock );
+			if ( !preg_match( '#^HTTP/\d\.\d 204 #', $status ) ) {
+				wfDebugLog( 'runJobs', "Failed to start cron API: received '$status'\n" );
 			}
 		}
+		fclose( $sock );
 	}
 }
