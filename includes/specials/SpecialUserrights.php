@@ -152,7 +152,10 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			$targetUser = $status->value;
-			$targetUser->clearInstanceCache();
+			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
+				$targetUser->clearInstanceCache(); // bug 38989
+			}
+
 
 			if ( $request->getVal( 'conflictcheck-originalgroups' ) !== implode( ',', $targetUser->getGroups() ) ) {
 				$out->addWikiMsg( 'userrights-conflict' );
