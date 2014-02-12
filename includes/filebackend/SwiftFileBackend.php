@@ -1591,7 +1591,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return string
 	 */
 	private function getCredsCacheKey( $username ) {
-		return wfMemcKey( 'backend', $this->getName(), 'usercreds', $username );
+		$parts = array( 'swiftcredentials', md5( $this->swiftAuthUrl ), $username );
+		return str_replace( ' ', '_', implode( ':', $parts ) );
 	}
 
 	/**
