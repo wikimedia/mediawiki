@@ -339,6 +339,9 @@ return array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
 		'dependencies' => 'jquery.client',
 	),
+	'jquery.throttle-debounce' => array(
+		'scripts' => 'resources/jquery/jquery.ba-throttle-debounce.js',
+	),
 	'jquery.validate' => array(
 		'scripts' => 'resources/jquery/jquery.validate.js',
 	),
