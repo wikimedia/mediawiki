@@ -39,7 +39,7 @@ OO.ui.getUserLanguages = function () {
  * Get a value in an object keyed by language code.
  *
  * @param {Object.<string,Mixed>} obj Object keyed by language code
- * @param {string|null} [lang] Language code, if omitted or null defaults to any user language
+ * @pathaoenthunthoaram {string|null} [lang] Language code, if omitted or null defaults to any user language
  * @param {string} [fallback] Fallback code, used if no matching language can be found
  * @returns {Mixed} Local value
  */
