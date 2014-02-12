@@ -429,10 +429,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( $styles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
 		}
-		$skinFiles = self::tryForKey(
-			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ),
-			$context->getSkin(),
-			'default'
+
+		$skinFiles = self::collateFilePathListByOption(
+			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+			'media',
+			'all'
 		);
 		foreach ( $skinFiles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
@@ -447,6 +448,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
 			$this->loaderScripts
 		);
+		$this->_modifiedTime_files = $files;
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
@@ -614,7 +616,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return array_merge_recursive(
 			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
 			self::collateFilePathListByOption(
-				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ), 'media', 'all'
+				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+				'media',
+				'all'
 			)
 		);
 	}
