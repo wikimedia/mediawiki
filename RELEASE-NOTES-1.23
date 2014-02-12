@@ -244,6 +244,9 @@ changes to languages because of Bugzilla reports.
 * mw.loader.go and mw.loader.version have been removed.
 * (bug 52815) Preference "Enable simplified search bar (Vector skin only)"
   was removed.
+* When $wgJobRunRate is higher that zero, jobs are now executed via an
+  asynchronous HTTP request to a MediaWiki entry point. This may require
+  increasing the number of server worker threads.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
