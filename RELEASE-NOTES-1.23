@@ -9,6 +9,9 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+* When $wgJobRunRate is higher that zero, jobs are now executed via an
+  asynchronous HTTP request to a MediaWiki entry point. This may require
+  increasing the number of server worker threads.
 * $wgDebugLogGroups values may be set to an associative array with a
   'destination' key specifying the log destination. The array may also contain
   a 'sample' key with a positive integer value N indicating that the log group
