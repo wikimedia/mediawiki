@@ -3458,8 +3458,18 @@ $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
 /**
  * The interwiki prefix of the current wiki, or false if it doesn't have one.
+ * @deprecated since 1.23; use $wgLocalInterwikis instead
  */
 $wgLocalInterwiki = false;
+
+/**
+ * Array for multiple $wgLocalInterwiki values, in case there are several
+ * interwiki prefixes that point to the current wiki.
+ *
+ * Note, recent changes feeds use only the first entry in this array (or
+ * $wgLocalInterwiki, if it is set). See $wgRCFeeds
+ */
+$wgLocalInterwikis = array();
 
 /**
  * Expiry time for cache of interwiki table
@@ -5550,8 +5560,10 @@ $wgRC2UDPPort = false;
 $wgRC2UDPPrefix = '';
 
 /**
- * If this is set to true, $wgLocalInterwiki will be prepended to links in the
- * IRC feed. If this is set to a string, that string will be used as the prefix.
+ * If this is set to true, the value of $wgLocalInterwiki (or, if that is not
+ * set, the first entry in the $wgLocalInterwikis array) will be prepended to
+ * links in the IRC feed. If this is set to a string, that string will be used
+ * as the prefix.
  *
  * @deprecated since 1.22, use $wgRCFeeds
  */
@@ -5579,11 +5591,12 @@ $wgRC2UDPOmitBots = false;
  *   * 'omit_bots' -- whether the bot edits should be in the feed
  *  The IRC-specific options are:
  *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *     $wgLocalInterwiki.
+ *     $wgLocalInterwiki (or, if that is not set, the first entry in the
+ *     $wgLocalInterwikis array)
  *  The JSON-specific options are:
  *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
- *  To ensure backwards-compatability, whenever $wgRC2UDPAddress is set, a
+ *  To ensure backwards-compatibility, whenever $wgRC2UDPAddress is set, a
  *  'default' feed will be created reusing the deprecated $wgRC2UDP* variables.
  *
  * @example $wgRCFeeds['example'] = array(
