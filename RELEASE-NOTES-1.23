@@ -248,6 +248,9 @@ changes to languages because of Bugzilla reports.
   was removed.
 * A user_password_expires column has been added to the user table. The User
   object expects this column to exist. Use update.php to create this new field.
+* When $wgJobRunRate is higher that zero, jobs are now executed via an
+  asynchronous HTTP request to a MediaWiki entry point. This may require
+  increasing the number of server worker threads.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
