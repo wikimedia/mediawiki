@@ -583,6 +583,10 @@ class MediaWiki {
 			wfProfileOut( 'main-try-filecache' );
 		}
 
+		// Add in an element to trigger loading of chron.php
+		$this->triggerJobs();
+
+		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
 		// Now commit any transactions, so that unreported errors after
@@ -602,9 +606,6 @@ class MediaWiki {
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
 
-		// Execute a job from the queue
-		$this->doJobs();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
@@ -617,10 +618,13 @@ class MediaWiki {
 	}
 
 	/**
-	 * Do a job from the job queue
+	 * Potentially open a socket and sent an HTTP request back to the server
+	 * to run a specified number of jobs. This registers a callback to cleanup
+	 * the socket once it's done.
 	 */
-	private function doJobs() {
-		global $wgJobRunRate, $wgPhpCli, $IP;
+	protected function triggerJobs() {
+		global $wgJobRunRate, $wgSecretKey;
+		global $wgServer, $wgScriptPath, $wgScriptExtension;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -636,51 +640,119 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
-			// Start a background process to run some of the jobs
-			wfProfileIn( __METHOD__ . '-exec' );
-			$retVal = 1;
-			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php",
-				array( '--wiki', wfWikiID(), '--maxjobs', $n ) );
-			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
-			if ( wfIsWindows() ) {
-				// Using START makes this async and also works around a bug where using
-				// wfShellExec() with a quoted script name causes a filename syntax error.
-				$cmd = "START /B \"bg\" $cmd";
-			} else {
-				$cmd = "$cmd &";
-			}
-			wfShellExec( $cmd, $retVal );
-			wfProfileOut( __METHOD__ . '-exec' );
-		} else {
-			try {
-				// Fallback to running the jobs here while the user waits
-				$group = JobQueueGroup::singleton();
-				do {
-					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-					if ( $job ) {
-						$output = $job->toString() . "\n";
-						$t = - microtime( true );
-						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-						$success = $job->run();
-						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-						$group->ack( $job ); // done
-						$t += microtime( true );
-						$t = round( $t * 1000 );
-						if ( $success === false ) {
-							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-						} else {
-							$output .= "Success, Time: $t ms\n";
-						}
-						wfDebugLog( 'jobqueue', $output );
-					}
-				} while ( --$n && $job );
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during job execution to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				MWExceptionHandler::logException( $e );
-			}
+		$query = array( 'action' => 'runJobs', 'maxJobs' => $n, 'expiry' => microtime( true ) + 5 );
+		$query['sig'] = hash_hmac( 'sha1',
+			"{$query['action']}\n{$query['maxJobs']}\n{$query['expiry']}", $wgSecretKey );
+
+		$errno = $errstr = null;
+		$info = wfParseUrl( $wgServer );
+		$sock = fsockopen(
+			$info['host'],
+			isset( $info['port'] ) ? $info['port'] : 80,
+			$errno,
+			$errstr
+		);
+		if ( !$sock ) {
+			wfDebug( "Failed to start chron.php (socket error $errno): $errstr\n" );
+			return;
 		}
+
+		$url = wfAppendQuery( "{$wgScriptPath}/chron{$wgScriptExtension}", $query );
+		$req = "GET $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\n\r\n";
+
+		wfDebug( "Running $n job(s) via '$url'\n" );
+		// Start sending the chron.php request in the background...
+		$bytesSent = strlen( $req );
+		stream_set_blocking( $sock, 0 );
+		$bytesSent += (int)fwrite( $sock, $req );
+		// If the chron.php request wasn't sent by the end of this PHP request,
+		// then wait around for a while to push out the request. This does not
+		// wait for the response. The script expects this and uses ignore_user_abort().
+		register_shutdown_function( function() use ( $sock, $req, $bytesSent ) {
+			if ( $bytesSent < strlen( $req ) ) {
+				stream_set_blocking( $sock, 1 );
+				stream_set_timeout( $sock, 3 );
+				fwrite( $sock, substr( $req, $bytesSent ) );
+			}
+			fclose( $sock );
+		} );
+	}
+
+	/**
+	 * Do a job from the job queue
+	 *
+	 * @return array|string Jobs attempt/completion info or error string
+	 */
+	public function executeChron() {
+		global $wgJobRunRate, $wgSecretKey;
+
+		$info = array( 'attempted' => 0, 'completed' => 0 );
+		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
+			return 'NOT_ENABLED';
+		}
+
+		$request = $this->context->getRequest();
+
+		$cSig = hash_hmac( 'sha1',
+			$request->getVal( 'action' ) . "\n" .
+			$request->getInt( 'maxJobs' ) . "\n" .
+			$request->getFloat( 'expiry' ),
+			$wgSecretKey
+		);
+		$rSig = $request->getVal( 'sig' );
+
+		// Time-insensitive signature verification
+		if ( strlen( $rSig ) !== strlen( $cSig ) ) {
+			$verified = false;
+		} else {
+			$result = 0;
+			for ( $i = 0; $i < strlen( $cSig ); $i++ ) {
+				$result |= ord( $cSig{$i} ) ^ ord( $rSig{$i} );
+			}
+			$verified = ( $result == 0 );
+		}
+
+		if ( !$verified || $request->getInt( 'expiry' ) < microtime( true ) ) {
+			return 'INVALID_SIGNATURE'; // bad or stale signature
+		} elseif ( $request->getVal( 'action' ) !== 'runJobs' ) {
+			return 'INVALID_ACTION';
+		}
+
+		// Client will usually disconnect before checking the response
+		ignore_user_abort( true ); // jobs may take a bit of time
+
+		$n = max( 1, $this->context->getRequest()->getInt( 'maxJobs' ) ); // jobs to run
+		try {
+			// Fallback to running the jobs here while the user waits
+			$group = JobQueueGroup::singleton();
+			do {
+				$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+				if ( $job ) {
+					++$info['attempted'];
+					$output = $job->toString() . "\n";
+					$t = - microtime( true );
+					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
+					$success = $job->run();
+					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
+					$group->ack( $job ); // done
+					$t += microtime( true );
+					$t = round( $t * 1000 );
+					if ( $success === false ) {
+						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+					} else {
+						$output .= "Success, Time: $t ms\n";
+					}
+					wfDebugLog( 'jobqueue', $output );
+				}
+				++$info['completed'];
+			} while ( --$n && $job );
+		} catch ( MWException $e ) {
+			// We don't want exceptions thrown during job execution to
+			// be reported to the user since the output is already sent.
+			// Instead we just log them.
+			MWExceptionHandler::logException( $e );
+		}
+
+		return array( 'jobs' => $info );
 	}
 }
