@@ -7,6 +7,7 @@
 	"--warnings": ["-no_doc"],
 	"--builtin-classes": true,
 	"--output": "../../docs/js",
+	"--external": "HTMLElement,HTMLDocument,Window",
 	"--": [
 		"./external.js",
 		"../../resources/mediawiki/mediawiki.js",
