@@ -590,7 +590,7 @@ $1',
 
 'ok' => 'Ek!',
 'retrievedfrom' => 'Elŝutita el  "$1"',
-'youhavenewmessages' => 'Vi havas $1 ($2).',
+'youhavenewmessages' => '{{PLURAL:$3|Vi havas}} $1 ($2).',
 'youhavenewmessagesfromusers' => 'Riceviĝis $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).',
 'youhavenewmessagesmanyusers' => 'Riceviĝis $1 de multaj uzantoj ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|999=novaj mesaĝoj}}',
@@ -741,6 +741,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'yourname' => 'Salutnomo:',
 'userlogin-yourname' => 'Uzantonomo',
 'userlogin-yourname-ph' => 'Enigu vian uzantonomon',
+'createacct-another-username-ph' => 'Enigu la salutnomon:',
 'yourpassword' => 'Pasvorto:',
 'userlogin-yourpassword' => 'Pasvorto',
 'userlogin-yourpassword-ph' => 'Enigu vian pasvorton',
@@ -777,6 +778,7 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'createacct-emailrequired' => 'Retpoŝta adreso',
 'createacct-emailoptional' => 'Retpoŝta adreso (nedeviga)',
 'createacct-email-ph' => 'Enigu vian retpoŝtan adreson',
+'createacct-another-email-ph' => 'Enigu la retpoŝtan adreson',
 'createaccountmail' => 'Uzi provizoran hazardsignan pasvorton kaj sendi ĝin al la retpoŝta adreso ĉi-suba',
 'createacct-realname' => 'Vera nomo (nedeviga)',
 'createaccountreason' => 'Kialo:',
@@ -933,6 +935,7 @@ Provizora pasvorto: $2',
 'changeemail-cancel' => 'Nuligi',
 
 # Special:ResetTokens
+'resettokens' => 'Renovigi ŝlosilojn',
 'resettokens-no-tokens' => 'Ne estas ŝlosiloj renovigeblaj.',
 'resettokens-legend' => 'Renovigi ŝlosilojn',
 'resettokens-tokens' => 'Ŝlosiloj:',
@@ -1695,6 +1698,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|ekde lasta vizito}}',
 'enhancedrc-history' => 'historio',
 'recentchanges' => 'Lastaj ŝanĝoj',
 'recentchanges-legend' => 'Opcioj pri lastaj ŝanĝoj',
@@ -1989,6 +1993,7 @@ Kiam oni filtras ĝin laŭ uzanto, nur la aktuala versio de la dosiero estos mon
 'listfiles_size' => 'Grandeco',
 'listfiles_description' => 'Priskribo',
 'listfiles_count' => 'Versioj',
+'listfiles-latestversion' => 'Nuna versio',
 'listfiles-latestversion-yes' => 'Jes',
 'listfiles-latestversion-no' => 'Ne',
 
@@ -2086,6 +2091,12 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'randompage' => 'Hazarda paĝo',
 'randompage-nopages' => 'Ne ekzistas paĝoj en la {{PLURAL:$2|nomspaco|nomspacoj}}: "$1".',
 
+# Random page in category
+'randomincategory' => 'Hazarda paĝo en kategorio',
+'randomincategory-invalidcategory' => '"$1" ne estas valida kategoria nomo.',
+'randomincategory-nopages' => 'Ne estas paĝoj en la kategorio [[:Category:$1|$1]].',
+'randomincategory-selectcategory-submit' => 'Ek',
+
 # Random redirect
 'randomredirect' => 'Hazarda alidirekto',
 'randomredirect-nopages' => 'Estas neniuj alidirektiloj en la nomspaco "$1".',
@@ -2113,6 +2124,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 
 'pageswithprop' => 'Paĝoj kun paĝa atributo',
 'pageswithprop-legend' => 'Paĝoj kun paĝa atributo',
+'pageswithprop-text' => 'Ĉi tiu paĝo listigas paĝoj kiu uzas iajn paĝajn ecojn.',
 'pageswithprop-prop' => 'Nomo de la atributo:',
 'pageswithprop-submit' => 'Ek',
 
@@ -3067,6 +3079,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-undo' => '"Malfari" malfaris ĉi tiun redakton kaj malfermas la redakto-paĝon en antaŭvida reĝimo. Permesas aldoni kialon en la resumo.',
 'tooltip-preferences-save' => 'Konservi preferojn',
 'tooltip-summary' => 'Enigu mallongan resumon',
+'interlanguage-link-title' => '$1 — $2',
 
 # Stylesheets
 'common.css' => '/* La jena CSS influos la aspekton de ĉiaj temoj. */',
@@ -3151,6 +3164,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-magic-words' => '{{PLURAL:$1|Magia vorto|Magiaj vortoj}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkluzivita ŝablono|Inkluzivitaj ŝablonoj}} ($1)',
+'pageinfo-transclusions' => '{{PLURAL:$1|Paĝo transinkluzivita|Paĝoj transinkluzivitaj}} en ($1)',
 'pageinfo-toolboxlink' => 'Informoj pri la paĝo',
 'pageinfo-redirectsto' => 'Alidirektas al',
 'pageinfo-redirectsto-info' => 'Informo',
@@ -3925,6 +3939,11 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 
 # Special:Redirect
 'redirect-submit' => 'Ek',
+'redirect-value' => 'Valoro:',
+'redirect-user' => 'Salutnomo',
+'redirect-revision' => 'Revizio de la paĝo',
+'redirect-file' => 'Dosiernomo',
+'redirect-not-exists' => 'Valoro ne trovita',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Serĉu duplikatajn dosierojn',
@@ -3972,12 +3991,16 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'tags' => 'Validaj ŝanĝaj etikedoj',
 'tag-filter' => '[[Special:Tags|Etikeda]] filtrilo:',
 'tag-filter-submit' => 'Filtrilo',
+'tag-list-wrapper' => '([[Special:Tags|{{PLURAL:$1|Etikedo|Etikedoj}}]]: $2)',
 'tags-title' => 'Etikedoj',
 'tags-intro' => 'Ĉi tiu paĝo montras la etikedojn kun kiuj la programaro markus redakton, kaj iliaj signifoj.',
 'tags-tag' => 'Etikeda nomo',
 'tags-display-header' => 'Aspekto en ŝanĝaj listoj',
 'tags-description-header' => 'Plena priskribo pri signifo',
+'tags-active-header' => 'Aktiva',
 'tags-hitcount-header' => 'Markitaj ŝanĝoj',
+'tags-active-yes' => 'Jes',
+'tags-active-no' => 'Ne',
 'tags-edit' => 'redakti',
 'tags-hitcount' => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 
@@ -3996,7 +4019,8 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'dberr-header' => 'Ĉi tiu vikio havas problemon',
 'dberr-problems' => 'Bedaŭrinde, ĉi tiu retejo suferas pro teknikaj problemoj.',
 'dberr-again' => 'Bonvolu atendi kelkajn minutojn kaj reŝargi.',
-'dberr-info' => '(Ne povas kontakti la datenbazan servilon: $1)',
+'dberr-info' => '(Ne eblas kontakti la datenbazan servilon: $1)',
+'dberr-info-hidden' => '(Ne eblas kontakti la datenbazan servilon)',
 'dberr-usegoogle' => 'Vi povas serĉi Guglon dume.',
 'dberr-outofdate' => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',
 'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
@@ -4128,6 +4152,14 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
+# Image rotation
+'rotate-comment' => 'Bildo pivotita $1 {{PLURAL:$1|gradon|gradojn}} dekstren',
+
+# Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
+'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bitoko|bitokoj}}',
+
 # Special:ExpandTemplates
 'expandtemplates' => 'Ampleksigi ŝablonojn',
 'expand_templates_intro' => 'Ĉi tiu speciala paĝo traktas tekston kaj ampleksigas ĉiujn ŝablonojn en ĝi rekursie.
@@ -4144,4 +4176,6 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'expand_templates_generate_xml' => 'Montri XML-sintaksarbon',
 'expand_templates_preview' => 'Antaŭrigardo',
 
+# Unknown messages
+'uploadinvalidxml' => 'Ne eblas interpreti la XML-sintakson en la alŝutita dosiero',
 );

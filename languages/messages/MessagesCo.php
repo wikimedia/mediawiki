@@ -296,6 +296,7 @@ $messages = array(
 'previewnote' => "'''Attentu: questa ùn hè ch'è una previsualisazzione.'''
 E to mudifiche ùn sò ancora state salvate!",
 'editing' => 'Mudifica di $1',
+'creating' => 'A pagina $1 hà da esse creata',
 'editingsection' => 'Mudifica di $1 (sezzione)',
 'editingcomment' => 'Mudifica di $1 (cummentu)',
 'editconflict' => 'Cunflittu di mudificazione: $1',
@@ -322,6 +323,7 @@ Parechji mudelli ùn seranu micca inclusi.",
 'revision-info' => 'Versione di e $4 à e $5 di $2',
 'previousrevision' => '← Versione menu ricente',
 'currentrevisionlink' => 'Ultima revisione',
+'cur' => 'att',
 'page_first' => 'prima',
 'history-fieldset-title' => 'Parcorre a cronolugia',
 'history-show-deleted' => 'Solu quelli cancellati',
@@ -728,6 +730,9 @@ Parechji mudelli ùn seranu micca inclusi.",
 # Attribution
 'anonymous' => '{{PLURAL:$1|Utilizatore anonimu|Utilizatori anonimi}} di {{SITENAME}}',
 'others' => 'altri',
+
+# Info page
+'pageinfo-toolboxlink' => 'Infurmazione annantu à a pagina',
 
 # Media information
 'file-nohires' => 'Una diversione incù una risoluzione più alta ùn hè micca dispunibile.',

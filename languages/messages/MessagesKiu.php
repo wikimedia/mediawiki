@@ -468,7 +468,7 @@ Nustena cı qontrol ke.',
 Kerem ke, oncia bıcerrebne.',
 'wrongpasswordempty' => 'Parola thale kota cı.
 Kerem ke, oncia bıcerrebne.',
-'passwordtooshort' => 'Paroley tewr senık ebe {{PLURAL:$1|1 karakter|$1 karakteru}} gunê derg bê.',
+'passwordtooshort' => 'Paroley gunê tewr senık ebe {{PLURAL:$1|1 karakter|$1 karakteru}} derg bê.',
 'password-name-match' => 'Parola sıma namê sımaê karberi ra gunê ferqın bo.',
 'password-login-forbidden' => 'Namê nê karberi u gurenaena parola qedeğen biya.',
 'mailmypassword' => 'E-mail sera parola newiye bırusne',
@@ -794,7 +794,7 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'badsig' => "İmza kala nêvêrdiye.
 Etiketê ''HTML''i qontrol ke.",
 'badsiglength' => 'İmza to zaf derga.
-Gunê $1 {{PLURAL:$1|herfe|herfun}} ra senık bo.',
+$1 gunê {{PLURAL:$1|herfe|herfu}} ra senık bo.',
 'yourgender' => 'Cınsiyet:',
 'gender-male' => 'Cüamêrd',
 'gender-female' => 'Cüanıke',
