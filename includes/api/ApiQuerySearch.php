@@ -197,10 +197,46 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$result = $matches->next();
 		}
 
+		$hasInterwikiResults = false;
+		if ( isset( $searchInfo['interwiki'] ) && $matches->hasInterwikiResults() ) {
+			$matches = $matches->getInterwikiResults();
+			$iwprefixes = array();
+			$hasInterwikiResults = true;
+
+			// Include number of results if requested
+			if ( isset( $searchInfo['totalhits'] ) ) {
+				$totalhits = $matches->getTotalHits();
+				if ( $totalhits !== null ) {
+					$apiResult->addValue( array( 'query', 'interwikisearchinfo' ),
+						'totalhits', $totalhits );
+				}
+			}
+
+			$result = $matches->next();
+
+			while ( $result ) {
+				$title = $result->getTitle();
+				$vals = array(
+					'namespace' => $result->getInterwikiNamespaceText(),
+					'title' => $title->getText(),
+					'url' => $title->getFullUrl(),
+				);
+
+				$apiResult->addValue( array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+					null, $vals );
+				$result = $matches->next();
+			}
+		}
+
 		if ( is_null( $resultPageSet ) ) {
 			$apiResult->setIndexedTagName_internal( array(
 				'query', $this->getModuleName()
 			), 'p' );
+			if ( $hasInterwikiResults ) {
+				$apiResult->setIndexedTagName_internal( array(
+					'query', 'interwiki' . $this->getModuleName()
+				), 'p' );
+			}
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -236,6 +272,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'totalhits',
 					'suggestion',
+					'interwiki',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
