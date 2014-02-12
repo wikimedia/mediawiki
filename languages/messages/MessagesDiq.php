@@ -836,7 +836,7 @@ Nuştışê xo qonrol kerên, ya zi [[Special:UserLogin/signup|yew hesabo newe a
 'login-userblocked' => 'No karber/na karbere blokekerdeyo/blokekerdiya. Cıkewtışi rê musade çıniyo.',
 'wrongpassword' => 'Parola ğeleta. Rêna / fına bıcerrebne .',
 'wrongpasswordempty' => 'Parola tola, venga. tekrar bınuse.',
-'passwordtooshort' => 'Derganiya parola wa tewr tayn {{PLURAL:$1|1 karakter|$1 karakteran}} dı bo.',
+'passwordtooshort' => 'Paroley gani tewr senık be {{PLURAL:$1|1 karakter|$1 karakteran}} derg bê.',
 'password-name-match' => 'Parola u nameyê şıma gani zeypê (seypê) nêbo.',
 'password-login-forbidden' => 'No namey karberi u parola karkerdışê cı  kerdo xırab.',
 'mailmypassword' => 'Parola reset ke',
@@ -1518,8 +1518,8 @@ Na game tepeya nêerziyena.',
 'prefs-help-signature' => 'Peran de vatenana de vatışi"<nowiki>~~~~</nowiki>" ya do imza bé, no bahdo beno çerğé imza u wahdey zemani',
 'badsig' => 'Îmzayê tu raşt niyo.
 Etiketê HTMLî kontrol bike.',
-'badsiglength' => 'İmzayê şıma zaf dergo.
-$1 gani bınê no {{PLURAL:$1|karakter|karakter}} de bıbo.',
+'badsiglength' => 'İmzaya şıma zaf derga.
+$1 gani {{PLURAL:$1|karakter|karakteran}} ra şenık bo.',
 'yourgender' => 'Çıçiy cı esto?',
 'gender-unknown' => 'Ez detay nivana',
 'gender-male' => 'Perané wiki camérd deyne ezo vırnena',
