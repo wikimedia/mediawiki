@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (3b61a8d77c)
+ * OOjs UI v0.1.0-pre (a290673bbd)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Feb 11 2014 14:46:28 GMT-0800 (PST)
+ * Date: Wed Feb 12 2014 13:52:08 GMT-0800 (PST)
  */
 ( function () {
 
@@ -121,6 +121,19 @@ OO.ui.msg = function ( key ) {
 		message = '[' + key + ']';
 	}
 	return message;
+};
+
+OO.ui.deferMsg = function ( key ) {
+	return function () {
+		return OO.ui.msg( key );
+	};
+};
+
+OO.ui.resolveMsg = function ( msg ) {
+	if ( $.isFunction( msg ) ) {
+		return msg();
+	}
+	return msg;
 };
 
 } )();
@@ -868,6 +881,9 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
 /**
  * Container for elements in a child frame.
  *
+ * There are two ways to specify a title: set the static `title` property or provide a `title`
+ * property in the configuration options. The latter will override the former.
+ *
  * @class
  * @abstract
  * @extends OO.ui.Element
@@ -876,6 +892,8 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
  * @constructor
  * @param {OO.ui.WindowSet} windowSet Window set this dialog is part of
  * @param {Object} [config] Configuration options
+ * @cfg {string|Function} [title] Title string or function that returns a string
+ * @cfg {string} [icon] Symbolic name of icon
  * @fires initialize
  */
 OO.ui.Window = function OoUiWindow( windowSet, config ) {
@@ -890,6 +908,8 @@ OO.ui.Window = function OoUiWindow( windowSet, config ) {
 	this.visible = false;
 	this.opening = false;
 	this.closing = false;
+	this.title = OO.ui.resolveMsg( config.title || this.constructor.static.title );
+	this.icon = config.icon || this.constructor.static.icon;
 	this.frame = new OO.ui.Frame( { '$': this.$ } );
 	this.$frame = this.$( '<div>' );
 	this.$ = function () {
@@ -957,13 +977,13 @@ OO.mixinClass( OO.ui.Window, OO.EventEmitter );
 OO.ui.Window.static.icon = 'window';
 
 /**
- * Localized message for title.
+ * Window title.
  *
  * @static
  * @inheritable
- * @property {string}
+ * @property {string|Function} Title string or function that returns a string
  */
-OO.ui.Window.static.titleMessage = null;
+OO.ui.Window.static.title = null;
 
 /* Methods */
 
@@ -1018,13 +1038,21 @@ OO.ui.Window.prototype.getWindowSet = function () {
 };
 
 /**
- * Get the title of the window.
+ * Get the window title.
  *
- * Use #titleMessage to set this unless you need to do something fancy.
- * @returns {string} Window title
+ * @returns {string} Title text
  */
 OO.ui.Window.prototype.getTitle = function () {
-	return OO.ui.msg( this.constructor.static.titleMessage );
+	return this.title;
+};
+
+/**
+ * Get the window icon.
+ *
+ * @returns {string} Symbolic name of icon
+ */
+OO.ui.Window.prototype.getIcon = function () {
+	return this.icon;
 };
 
 /**
@@ -1050,11 +1078,32 @@ OO.ui.Window.prototype.setSize = function ( width, height ) {
 /**
  * Set the title of the window.
  *
- * @param {string} [customTitle] Custom title, override the #titleMessage
+ * @param {string|Function} title Title text or a function that returns text
  * @chainable
  */
-OO.ui.Window.prototype.setTitle = function ( customTitle ) {
-	this.$title.text( customTitle || this.getTitle() );
+OO.ui.Window.prototype.setTitle = function ( title ) {
+	this.title = OO.ui.resolveMsg( title );
+	if ( this.$title ) {
+		this.$title.text( title );
+	}
+	return this;
+};
+
+/**
+ * Set the icon of the window.
+ *
+ * @param {string} icon Symbolic name of icon
+ * @chainable
+ */
+OO.ui.Window.prototype.setIcon = function ( icon ) {
+	if ( this.$icon ) {
+		this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
+	}
+	this.icon = icon;
+	if ( this.$icon ) {
+		this.$icon.addClass( 'oo-ui-icon-' + this.icon );
+	}
+
 	return this;
 };
 
@@ -1119,12 +1168,10 @@ OO.ui.Window.prototype.fitWidthToContents = function ( min, max ) {
 OO.ui.Window.prototype.initialize = function () {
 	// Properties
 	this.$ = this.frame.$;
-	this.$title = this.$( '<div class="oo-ui-window-title"></div>' );
-	if ( this.getTitle() ) {
-		this.setTitle();
-	}
+	this.$title = this.$( '<div class="oo-ui-window-title"></div>' )
+		.text( this.title );
 	this.$icon = this.$( '<div class="oo-ui-window-icon"></div>' )
-		.addClass( 'oo-ui-icon-' + this.constructor.static.icon );
+		.addClass( 'oo-ui-icon-' + this.icon );
 	this.$head = this.$( '<div class="oo-ui-window-head"></div>' );
 	this.$body = this.$( '<div class="oo-ui-window-body"></div>' );
 	this.$foot = this.$( '<div class="oo-ui-window-foot"></div>' );
@@ -2090,7 +2137,8 @@ OO.ui.GroupElement.prototype.clearItems = function () {
  * @param {jQuery} $icon Icon node, assigned to #$icon
  * @param {Object} [config] Configuration options
  * @cfg {Object|string} [icon=''] Symbolic icon name, or map of icon names keyed by language ID;
- *  use the 'default' key to specify the icon to be used when there is no icon in the user's language.
+ *  use the 'default' key to specify the icon to be used when there is no icon in the user's
+ *  language
  */
 OO.ui.IconedElement = function OoUiIconedElement( $icon, config ) {
 	// Config intialization
@@ -2102,20 +2150,45 @@ OO.ui.IconedElement = function OoUiIconedElement( $icon, config ) {
 
 	// Initialization
 	this.$icon.addClass( 'oo-ui-iconedElement-icon' );
-	this.setIcon( config.icon );
+	this.setIcon( config.icon || this.constructor.static.icon );
 };
+
+/* Static Properties */
+
+OO.ui.IconedElement.static = {};
+
+/**
+ * Icon.
+ *
+ * Value should be the unique portion of an icon CSS class name, such as 'up' for 'oo-ui-icon-up'.
+ *
+ * For i18n purposes, this property can be an object containing a `default` icon name property and
+ * additional icon names keyed by language code.
+ *
+ * Example of i18n icon definition:
+ *     { 'default': 'bold-a', 'en': 'bold-b', 'de': 'bold-f' }
+ *
+ * @static
+ * @inheritable
+ * @property {Object|string} Symbolic icon name, or map of icon names keyed by language ID;
+ *  use the 'default' key to specify the icon to be used when there is no icon in the user's
+ *  language
+ */
+OO.ui.IconedElement.static.icon = null;
 
 /* Methods */
 
 /**
- * Set the icon.
+ * Set icon.
  *
  * @method
- * @param {Object|string} [value] Symbolic name of icon to use
+ * @param {Object|string} icon Symbolic icon name, or map of icon names keyed by language ID;
+ *  use the 'default' key to specify the icon to be used when there is no icon in the user's
+ *  language
  * @chainable
  */
-OO.ui.IconedElement.prototype.setIcon = function ( value ) {
-	var icon = OO.isPlainObject( value ) ? OO.ui.getLocalValue( value, null, 'default' ) : value;
+OO.ui.IconedElement.prototype.setIcon = function ( icon ) {
+	icon = OO.isPlainObject( icon ) ? OO.ui.getLocalValue( icon, null, 'default' ) : icon;
 
 	if ( this.icon ) {
 		this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
@@ -2131,6 +2204,16 @@ OO.ui.IconedElement.prototype.setIcon = function ( value ) {
 
 	return this;
 };
+
+/**
+ * Get icon.
+ *
+ * @method
+ * @returns {string} Icon
+ */
+OO.ui.IconedElement.prototype.getIcon = function () {
+	return this.icon;
+};
 /**
  * Element containing an indicator.
  *
@@ -2140,8 +2223,8 @@ OO.ui.IconedElement.prototype.setIcon = function ( value ) {
  * @constructor
  * @param {jQuery} $indicator Indicator node, assigned to #$indicator
  * @param {Object} [config] Configuration options
- * @cfg {string} [indicator=''] Symbolic indicator name
- * @cfg {string} [indicatorTitle=''] Description of indicator meaning
+ * @cfg {string} [indicator] Symbolic indicator name
+ * @cfg {string} [indicatorTitle] Indicator title text or a function that return text
  */
 OO.ui.IndicatedElement = function OoUiIndicatedElement( $indicator, config ) {
 	// Config intialization
@@ -2150,32 +2233,56 @@ OO.ui.IndicatedElement = function OoUiIndicatedElement( $indicator, config ) {
 	// Properties
 	this.$indicator = $indicator;
 	this.indicator = null;
+	this.indicatorLabel = null;
 
 	// Initialization
 	this.$indicator.addClass( 'oo-ui-indicatedElement-indicator' );
-	this.setIndicator( config.indicator );
-	this.setIndicatorTitle( config.indicatorTitle );
+	this.setIndicator( config.indicator || this.constructor.static.indicator );
+	this.setIndicatorTitle( config.indicatorTitle  || this.constructor.static.indicatorTitle );
 };
+
+/* Static Properties */
+
+OO.ui.IndicatedElement.static = {};
+
+/**
+ * indicator.
+ *
+ * @static
+ * @inheritable
+ * @property {string|null} Symbolic indicator name or null for no indicator
+ */
+OO.ui.IndicatedElement.static.indicator = null;
+
+/**
+ * Indicator title.
+ *
+ * @static
+ * @inheritable
+ * @property {string|Function|null} Indicator title text, a function that return text or null for no
+ *  indicator title
+ */
+OO.ui.IndicatedElement.static.indicatorTitle = null;
 
 /* Methods */
 
 /**
- * Set the indicator.
+ * Set indicator.
  *
  * @method
- * @param {string} [value] Symbolic name of indicator to use
+ * @param {string|null} indicator Symbolic name of indicator to use or null for no indicator
  * @chainable
  */
-OO.ui.IndicatedElement.prototype.setIndicator = function ( value ) {
+OO.ui.IndicatedElement.prototype.setIndicator = function ( indicator ) {
 	if ( this.indicator ) {
 		this.$indicator.removeClass( 'oo-ui-indicator-' + this.indicator );
 		this.indicator = null;
 	}
-	if ( typeof value === 'string' ) {
-		value = value.trim();
-		if ( value.length ) {
-			this.$indicator.addClass( 'oo-ui-indicator-' + value );
-			this.indicator = value;
+	if ( typeof indicator === 'string' ) {
+		indicator = indicator.trim();
+		if ( indicator.length ) {
+			this.$indicator.addClass( 'oo-ui-indicator-' + indicator );
+			this.indicator = indicator;
 		}
 	}
 	this.$element.toggleClass( 'oo-ui-indicatedElement', !!this.indicator );
@@ -2184,20 +2291,43 @@ OO.ui.IndicatedElement.prototype.setIndicator = function ( value ) {
 };
 
 /**
- * Set the indicator label.
+ * Set indicator label.
  *
  * @method
- * @param {string} [value] Description of indicator meaning
+ * @param {string|Function|null} indicator Indicator title text, a function that return text or null
+ *  for no indicator title
  * @chainable
  */
-OO.ui.IndicatedElement.prototype.setIndicatorTitle = function ( value ) {
-	if ( typeof value === 'string' && value.length ) {
-		this.$indicator.attr( 'title', value );
+OO.ui.IndicatedElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
+	this.indicatorTitle = indicatorTitle = OO.ui.resolveMsg( indicatorTitle );
+
+	if ( typeof indicatorTitle === 'string' && indicatorTitle.length ) {
+		this.$indicator.attr( 'title', indicatorTitle );
 	} else {
 		this.$indicator.removeAttr( 'title' );
 	}
 
 	return this;
+};
+
+/**
+ * Get indicator.
+ *
+ * @method
+ * @returns {string} title Symbolic name of indicator
+ */
+OO.ui.IndicatedElement.prototype.getIndicator = function () {
+	return this.indicator;
+};
+
+/**
+ * Get indicator title.
+ *
+ * @method
+ * @returns {string} Indicator title text
+ */
+OO.ui.IndicatedElement.prototype.getIndicatorTitle = function () {
+	return this.indicatorTitle;
 };
 /**
  * Element containing a label.
@@ -2208,7 +2338,7 @@ OO.ui.IndicatedElement.prototype.setIndicatorTitle = function ( value ) {
  * @constructor
  * @param {jQuery} $label Label node, assigned to #$label
  * @param {Object} [config] Configuration options
- * @cfg {jQuery|string} [label=''] Label text
+ * @cfg {jQuery|string|Function} [label] Label nodes, text or a function that returns nodes or text
  */
 OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 	// Config intialization
@@ -2220,12 +2350,22 @@ OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 
 	// Initialization
 	this.$label.addClass( 'oo-ui-labeledElement-label' );
-	this.setLabel( config.label );
+	this.setLabel( config.label || this.constructor.static.label );
 };
 
 /* Static Properties */
 
 OO.ui.LabeledElement.static = {};
+
+/**
+ * Label.
+ *
+ * @static
+ * @inheritable
+ * @property {string|Function|null} Label text; a function that returns a nodes or text; or null for
+ *  no label
+ */
+OO.ui.LabeledElement.static.label = null;
 
 /* Methods */
 
@@ -2233,27 +2373,37 @@ OO.ui.LabeledElement.static = {};
  * Set the label.
  *
  * @method
- * @param {jQuery|string} [value] jQuery HTML node selection or string text value to use for label
+ * @param {jQuery|string|Function|null} label Label nodes; text; a function that retuns nodes or
+ *  text; or null for no label
  * @chainable
  */
-OO.ui.LabeledElement.prototype.setLabel = function ( value ) {
+OO.ui.LabeledElement.prototype.setLabel = function ( label ) {
 	var empty = false;
 
-	if ( typeof value === 'string' && value.trim() ) {
-		this.$label.text( value );
-		this.label = value;
-	} else if ( value instanceof jQuery ) {
-		this.$label.empty().append( value );
-		this.label = value;
+	this.label = label = OO.ui.resolveMsg( label ) || null;
+	if ( typeof label === 'string' && label.trim() ) {
+		this.$label.text( label );
+	} else if ( label instanceof jQuery ) {
+		this.$label.empty().append( label );
 	} else {
 		this.$label.empty();
-		this.label = null;
 		empty = true;
 	}
 	this.$element.toggleClass( 'oo-ui-labeledElement', !empty );
 	this.$label.css( 'display', empty ? 'none' : '' );
 
 	return this;
+};
+
+/**
+ * Get the label.
+ *
+ * @method
+ * @returns {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ */
+OO.ui.LabeledElement.prototype.getLabel = function () {
+	return this.label;
 };
 
 /**
@@ -2332,7 +2482,7 @@ OO.ui.PopuppableElement.prototype.hidePopup = function () {
  * @constructor
  * @param {jQuery} $label Titled node, assigned to #$titled
  * @param {Object} [config] Configuration options
- * @cfg {string} [title=''] Title text
+ * @cfg {string|Function} [title] Title text or a function that returns text
  */
 OO.ui.TitledElement = function OoUiTitledElement( $titled, config ) {
 	// Config intialization
@@ -2340,28 +2490,54 @@ OO.ui.TitledElement = function OoUiTitledElement( $titled, config ) {
 
 	// Properties
 	this.$titled = $titled;
+	this.title = null;
 
 	// Initialization
-	this.setTitle( config.title );
+	this.setTitle( config.title || this.constructor.static.title );
 };
+
+/* Static Properties */
+
+OO.ui.TitledElement.static = {};
+
+/**
+ * Title.
+ *
+ * @static
+ * @inheritable
+ * @property {string|Function} Title text or a function that returns text
+ */
+OO.ui.TitledElement.static.title = null;
 
 /* Methods */
 
 /**
- * Set the label.
+ * Set title.
  *
  * @method
- * @param {string} [value] Title text
+ * @param {string|Function|null} title Title text, a function that returns text or null for no title
  * @chainable
  */
-OO.ui.TitledElement.prototype.setTitle = function ( value ) {
-	if ( typeof value === 'string' && value.length ) {
-		this.$titled.attr( 'title', value );
+OO.ui.TitledElement.prototype.setTitle = function ( title ) {
+	this.title = title = OO.ui.resolveMsg( title ) || null;
+
+	if ( typeof title === 'string' && title.length ) {
+		this.$titled.attr( 'title', title );
 	} else {
 		this.$titled.removeAttr( 'title' );
 	}
 
 	return this;
+};
+
+/**
+ * Get title.
+ *
+ * @method
+ * @returns {string} Title string
+ */
+OO.ui.TitledElement.prototype.getTitle = function () {
+	return this.title;
 };
 /**
  * Generic toolbar tool.
@@ -2370,33 +2546,38 @@ OO.ui.TitledElement.prototype.setTitle = function ( value ) {
  * @abstract
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconedElement
- * @mixins OO.ui.LabeledElement
  *
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
  * @param {Object} [config] Configuration options
+ * @cfg {string|Function} [title] Title text or a function that returns text
  */
 OO.ui.Tool = function OoUiTool( toolGroup, config ) {
+	// Config intialization
+	config = config || {};
+
 	// Parent constructor
 	OO.ui.Widget.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ) );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ) );
+	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
 
 	// Properties
 	this.toolGroup = toolGroup;
 	this.toolbar = this.toolGroup.getToolbar();
 	this.active = false;
+	this.$title = this.$( '<span>' );
 	this.$link = this.$( '<a>' );
+	this.title = null;
 
 	// Events
 	this.toolbar.connect( this, { 'updateState': 'onUpdateState' } );
 
 	// Initialization
+	this.$title.addClass( 'oo-ui-tool-title' );
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
-		.append( this.$icon, this.$label );
+		.append( this.$icon, this.$title );
 	this.$element
 		.data( 'oo-ui-tool', this )
 		.addClass(
@@ -2404,8 +2585,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 			this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' )
 		)
 		.append( this.$link );
-	this.setIcon( this.constructor.static.icon );
-	this.updateLabel();
+	this.setTitle( config.title || this.constructor.static.title );
 };
 
 /* Inheritance */
@@ -2413,7 +2593,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
 
 OO.mixinClass( OO.ui.Tool, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.Tool, OO.ui.LabeledElement );
 
 /* Events */
 
@@ -2446,25 +2625,7 @@ OO.ui.Tool.static.name = '';
 OO.ui.Tool.static.group = '';
 
 /**
- * Symbolic name of icon.
- *
- * Value should be the unique portion of an icon CSS class name, such as 'up' for 'oo-ui-icon-up'.
- *
- * For i18n purposes, this property can be an object containing a `default` icon name property and
- * additional icon names keyed by language code.
- *
- * Example of i18n icon definition:
- *     { 'default': 'bold-a', 'en': 'bold-b', 'de': 'bold-f' }
- *
- * @abstract
- * @static
- * @property {string|Object}
- * @inheritable
- */
-OO.ui.Tool.static.icon = '';
-
-/**
- * Message key for tool title.
+ * Tool title.
  *
  * Title is used as a tooltip when the tool is part of a bar tool group, or a label when the tool
  * is part of a list or menu tool group. If a trigger is associated with an action by the same name
@@ -2473,10 +2634,10 @@ OO.ui.Tool.static.icon = '';
  *
  * @abstract
  * @static
- * @property {string}
+ * @property {string|Function} Title text or a function that returns text
  * @inheritable
  */
-OO.ui.Tool.static.titleMessage = '';
+OO.ui.Tool.static.title = '';
 
 /**
  * Tool can be automatically added to tool groups.
@@ -2559,11 +2720,23 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
  * Get the tool title.
  *
  * @method
- * @returns {string} [title] Title text
+ * @param {string|Function} title Title text or a function that returns text
+ * @chainable
+ */
+OO.ui.Tool.prototype.setTitle = function ( title ) {
+	this.title = OO.ui.resolveMsg( title );
+	this.updateTitle();
+	return this;
+};
+
+/**
+ * Get the tool title.
+ *
+ * @method
+ * @returns {string} Title text
  */
 OO.ui.Tool.prototype.getTitle = function () {
-	var key = this.constructor.static.titleMessage;
-	return typeof key === 'string' ? OO.ui.msg( key ) : '';
+	return this.title;
 };
 
 /**
@@ -2577,30 +2750,26 @@ OO.ui.Tool.prototype.getName = function () {
 };
 
 /**
- * Update the label.
+ * Update the title.
  *
  * @method
  */
-OO.ui.Tool.prototype.updateLabel = function () {
-	var title = this.getTitle(),
-		labelTooltips = this.toolGroup.constructor.static.labelTooltips,
+OO.ui.Tool.prototype.updateTitle = function () {
+	var titleTooltips = this.toolGroup.constructor.static.titleTooltips,
 		accelTooltips = this.toolGroup.constructor.static.accelTooltips,
 		accel = this.toolbar.getToolAccelerator( this.constructor.static.name ),
 		tooltipParts = [];
 
-	this.setLabel(
-		this.$( '<span>' )
-			.addClass( 'oo-ui-tool-title' )
-			.text( title )
-			.add(
-				this.$( '<span>' )
-					.addClass( 'oo-ui-tool-accel' )
-					.text( accel )
-			)
-	);
+	this.$title.empty()
+		.text( this.title )
+		.append(
+			this.$( '<span>' )
+				.addClass( 'oo-ui-tool-accel' )
+				.text( accel )
+		);
 
-	if ( labelTooltips && typeof title === 'string' && title.length ) {
-		tooltipParts.push( title );
+	if ( titleTooltips && typeof this.title === 'string' && this.title.length ) {
+		tooltipParts.push( this.title );
 	}
 	if ( accelTooltips && typeof accel === 'string' && accel.length ) {
 		tooltipParts.push( accel );
@@ -3016,7 +3185,7 @@ OO.mixinClass( OO.ui.ToolGroup, OO.ui.GroupElement );
  * @property {boolean}
  * @inheritable
  */
-OO.ui.ToolGroup.static.labelTooltips = false;
+OO.ui.ToolGroup.static.titleTooltips = false;
 
 /**
  * Show acceleration labels in tooltips.
@@ -3178,7 +3347,7 @@ OO.ui.ToolGroup.prototype.populate = function () {
 			if ( !tool ) {
 				// Auto-initialize tools on first use
 				this.tools[name] = tool = toolFactory.create( name, this );
-				tool.updateLabel();
+				tool.updateTitle();
 			}
 			this.toolbar.reserveTool( tool );
 			add.push( tool );
@@ -3442,7 +3611,7 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  * @cfg {boolean} [autoFocus=false] Focus on the first focusable element when changing to a page
  * @cfg {boolean} [outlined=false] Show an outline
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
- * @cfg {Object[]} [adders List of adders for controls, each with name, icon and title properties
+ * @cfg {Object[]} [adders] List of adders for controls, each with name, icon and title properties
  */
 OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	// Initialize configuration
@@ -3834,8 +4003,8 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	this.name = name;
 	this.icon = config.icon || '';
 	this.indicator = config.indicator || '';
-	this.indicatorTitle = config.indicatorTitle || '';
-	this.label = config.label || '';
+	this.indicatorTitle = OO.ui.resolveMsg( config.indicatorTitle ) || '';
+	this.label = OO.ui.resolveMsg( config.label ) || '';
 	this.level = config.level || 0;
 	this.movable = !!config.movable;
 
@@ -4065,7 +4234,7 @@ OO.inheritClass( OO.ui.BarToolGroup, OO.ui.ToolGroup );
 
 /* Static Properties */
 
-OO.ui.BarToolGroup.static.labelTooltips = true;
+OO.ui.BarToolGroup.static.titleTooltips = true;
 
 OO.ui.BarToolGroup.static.accelTooltips = true;
 /**
@@ -4094,7 +4263,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Mixin constructors
 	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
 	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ) );
+	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
 	OO.ui.TitledElement.call( this, this.$element, config );
 	OO.ui.ClippableElement.call( this, this.$group );
 
@@ -4117,7 +4286,6 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	this.$element
 		.addClass( 'oo-ui-popupToolGroup' )
 		.prepend( this.$handle );
-	this.setLabel( config.label ? OO.ui.msg( config.label ) : '' );
 };
 
 /* Inheritance */
@@ -4284,7 +4452,7 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 
 	for ( name in this.tools ) {
 		if ( this.tools[name].isActive() ) {
-			labelTexts.push( this.tools[name].$label.find( '.oo-ui-tool-title' ).text() );
+			labelTexts.push( this.tools[name].getTitle() );
 		}
 	}
 
@@ -5060,8 +5228,6 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  * @constructor
  * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
- * @cfg {jQuery|string} [label] Option label
- * @cfg {string} [icon] Symbolic name of icon
  * @cfg {boolean} [selected=false] Select option
  * @cfg {boolean} [highlighted=false] Highlight option
  * @cfg {string} [rel] Value for `rel` attribute in DOM, allowing per-option styling
@@ -6929,11 +7095,10 @@ OO.ui.TextInputMenuWidget.prototype.onWindowResize = function () {
  * @chainable
  */
 OO.ui.TextInputMenuWidget.prototype.show = function () {
-	this.position();
-
 	// Parent method
 	OO.ui.MenuWidget.prototype.show.call( this );
 
+	this.position();
 	this.$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
 	return this;
 };

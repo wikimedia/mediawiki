@@ -6,6 +6,7 @@
         ]
     },
     "ooui-dialog-action-close": "Փակել",
-    "ooui-outline-control-move-down": "Իջեցնել",
-    "ooui-outline-control-move-up": "Բարձրացնել"
+    "ooui-outline-control-move-down": "Իջեցնել կետը",
+    "ooui-outline-control-move-up": "Բարձրացնել կետը",
+    "ooui-toolbar-more": "Ավելին"
 }
