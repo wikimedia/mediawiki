@@ -256,6 +256,9 @@ changes to languages because of Bugzilla reports.
   object expects this column to exist. Use update.php to create this new field.
 * The jquery.delayedBind ResourceLoader module was deprecated in favor of the
   jquery.throttle-debounce module. It will be removed in MediaWiki 1.24.
+* When $wgJobRunRate is higher that zero, jobs are now executed via an
+  asynchronous HTTP request to a MediaWiki entry point. This may require
+  increasing the number of server worker threads.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

@@ -358,6 +358,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiRevisionDelete' => 'includes/api/ApiRevisionDelete.php',
 	'ApiRollback' => 'includes/api/ApiRollback.php',
 	'ApiRsd' => 'includes/api/ApiRsd.php',
+	'ApiRunJobs' => 'includes/api/ApiRunJobs.php',
 	'ApiSetNotificationTimestamp' => 'includes/api/ApiSetNotificationTimestamp.php',
 	'ApiTokens' => 'includes/api/ApiTokens.php',
 	'ApiUnblock' => 'includes/api/ApiUnblock.php',
