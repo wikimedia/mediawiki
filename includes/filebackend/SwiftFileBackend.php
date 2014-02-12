@@ -1534,6 +1534,7 @@ class SwiftFileBackend extends FileBackendStore {
 						'auth_token' => $rhdrs['x-auth-token'],
 						'storage_url' => $rhdrs['x-storage-url']
 					);
+					$this->srvCache->set( $cacheKey, $this->authCreds, ceil( $this->authTTL / 2 ) );
 					$this->authSessionTimestamp = time();
 				} elseif ( $rcode === 401 ) {
 					$this->onError( null, __METHOD__, array(), "Authentication failed.", $rcode );
