@@ -489,6 +489,7 @@ class MediaWiki {
 
 	private function main() {
 		global $wgUseFileCache, $wgTitle, $wgUseAjax;
+		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension;
 
 		wfProfileIn( __METHOD__ );
 
@@ -583,7 +584,19 @@ class MediaWiki {
 			wfProfileOut( 'main-try-filecache' );
 		}
 
+		// Actually do the work of the request and build up any output
 		$this->performRequest();
+
+		// Add in an element to trigger loading of chron.php
+		if ( $wgJobRunRate > 0 ) {
+			$html = Html::element( 'img', array(
+				'src'   => "{$wgServer}/{$wgScriptPath}/chron{$wgScriptExtension}",
+				'style' => 'visibility: hidden'
+			) );
+			Hooks::register( 'BeforePageDisplay', function( $out ) use ( $html ) {
+				$out->addHtml( "$html\n" );
+			} );
+		}
 
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
@@ -602,9 +615,6 @@ class MediaWiki {
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
 
-		// Execute a job from the queue
-		$this->doJobs();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
@@ -619,8 +629,8 @@ class MediaWiki {
 	/**
 	 * Do a job from the job queue
 	 */
-	private function doJobs() {
-		global $wgJobRunRate, $wgPhpCli, $IP;
+	public function executeJobs() {
+		global $wgJobRunRate;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -636,51 +646,33 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
-			// Start a background process to run some of the jobs
-			wfProfileIn( __METHOD__ . '-exec' );
-			$retVal = 1;
-			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php",
-				array( '--wiki', wfWikiID(), '--maxjobs', $n ) );
-			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
-			if ( wfIsWindows() ) {
-				// Using START makes this async and also works around a bug where using
-				// wfShellExec() with a quoted script name causes a filename syntax error.
-				$cmd = "START /B \"bg\" $cmd";
-			} else {
-				$cmd = "$cmd &";
-			}
-			wfShellExec( $cmd, $retVal );
-			wfProfileOut( __METHOD__ . '-exec' );
-		} else {
-			try {
-				// Fallback to running the jobs here while the user waits
-				$group = JobQueueGroup::singleton();
-				do {
-					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-					if ( $job ) {
-						$output = $job->toString() . "\n";
-						$t = - microtime( true );
-						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-						$success = $job->run();
-						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-						$group->ack( $job ); // done
-						$t += microtime( true );
-						$t = round( $t * 1000 );
-						if ( $success === false ) {
-							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-						} else {
-							$output .= "Success, Time: $t ms\n";
-						}
-						wfDebugLog( 'jobqueue', $output );
+		try {
+			// Fallback to running the jobs here while the user waits
+			$group = JobQueueGroup::singleton();
+			do {
+				$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+				if ( $job ) {
+					$output = $job->toString() . "\n";
+					$t = - microtime( true );
+					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
+					$success = $job->run();
+					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
+					$group->ack( $job ); // done
+					$t += microtime( true );
+					$t = round( $t * 1000 );
+					if ( $success === false ) {
+						$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+					} else {
+						$output .= "Success, Time: $t ms\n";
 					}
-				} while ( --$n && $job );
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during job execution to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				MWExceptionHandler::logException( $e );
-			}
+					wfDebugLog( 'jobqueue', $output );
+				}
+			} while ( --$n && $job );
+		} catch ( MWException $e ) {
+			// We don't want exceptions thrown during job execution to
+			// be reported to the user since the output is already sent.
+			// Instead we just log them.
+			MWExceptionHandler::logException( $e );
 		}
 	}
 }
