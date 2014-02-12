@@ -82,6 +82,71 @@ class ResourceLoaderModuleTest extends MediaWikiTestCase {
 			'Class is significant'
 		);
 	}
+
+	/**
+	 */
+	public function testF() {
+		$context = self::getResourceLoaderContext();
+
+		$params = array(
+			'scripts' => array( 'foo.js', 'bar.js' ),
+			'dependencies' => array( 'jquery', 'mediawiki' ),
+			'messages' => array( 'hello', 'world' ),
+			'styles' => array(
+				'foo.css',
+			),
+			'skinStyles' => array(
+				'vector' => array(
+					'foo-vector.css',
+					'foo-vector-hd.css' => array(
+						'media' => 'screen and (min-width: 982px)'
+					),
+				),
+				'monobook' => array(
+					'foo-monobook.css',
+				),
+				'default' => 'foo-other.css'
+			),
+		);
+		$module = new ResourceLoaderFileModuleTestModule( $params );
+
+
+		$this->assertEquals(
+			$module->test_getStyleFiles( $context ),
+			array(
+				'all' => array(
+					'foo.css',
+					'foo-vector.css',
+				),
+				'screen and (min-width: 982px)' => array(
+					'foo-vector-hd.css',
+				),
+			),
+			'Style files'
+		);
+		$module->getModifiedTime( $context );
+		$this->assertEquals(
+			$module->test_getModifiedTime_files( $context ),
+			array(
+				'foo.css',
+				'foo-vector.css',
+				'foo-vector-hd.css',
+				'foo.js',
+				'bar.js',
+			),
+			'Files'
+		);
+	}
 }
 
-class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {}
+class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
+
+	// Make public
+	public function test_getStyleFiles( $context ) {
+		return $this->getStyleFiles( $context );
+	}
+
+	public function test_getModifiedTime_files() {
+		return $this->_modifiedTime_files;
+	}
+}
