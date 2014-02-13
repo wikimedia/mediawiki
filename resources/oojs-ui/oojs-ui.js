@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (a290673bbd)
+ * OOjs UI v0.1.0-pre (7788dc6700)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Feb 12 2014 13:52:08 GMT-0800 (PST)
+ * Date: Thu Feb 13 2014 13:56:07 GMT-0800 (PST)
  */
 ( function () {
 
@@ -176,6 +176,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	// Properties
 	this.$ = config.$ || OO.ui.Element.getJQuery( document );
 	this.$element = this.$( this.$.context.createElement( this.getTagName() ) );
+	this.elementGroup = null;
 
 	// Initialization
 	if ( Array.isArray( config.classes ) ) {
@@ -557,6 +558,26 @@ OO.ui.Element.prototype.getElementWindow = function () {
  */
 OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
 	return OO.ui.Element.getClosestScrollableContainer( this.$element[0] );
+};
+
+/**
+ * Get group element is in.
+ *
+ * @returns {OO.ui.GroupElement|null} Group element, null if none
+ */
+OO.ui.Element.prototype.getElementGroup = function () {
+	return this.elementGroup;
+};
+
+/**
+ * Set group element is in.
+ *
+ * @param {OO.ui.GroupElement|null} group Group element, null if none
+ * @chainable
+ */
+OO.ui.Element.prototype.setElementGroup = function ( group ) {
+	this.elementGroup = group;
+	return this;
 };
 
 /**
@@ -1654,11 +1675,12 @@ OO.ui.Widget = function OoUiWidget( config ) {
 	OO.EventEmitter.call( this );
 
 	// Properties
-	this.disabled = config.disabled;
+	this.disabled = null;
+	this.wasDisabled = null;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-widget' );
-	this.setDisabled( this.disabled );
+	this.setDisabled( !!config.disabled );
 };
 
 /* Inheritance */
@@ -1666,6 +1688,13 @@ OO.ui.Widget = function OoUiWidget( config ) {
 OO.inheritClass( OO.ui.Widget, OO.ui.Element );
 
 OO.mixinClass( OO.ui.Widget, OO.EventEmitter );
+
+/* Events */
+
+/**
+ * @event disable
+ * @param {boolean} disabled Widget is disabled
+ */
 
 /* Methods */
 
@@ -1680,21 +1709,35 @@ OO.ui.Widget.prototype.isDisabled = function () {
 };
 
 /**
+ * Update the disabled state, in case of changes in parent widget.
+ *
+ * @method
+ * @chainable
+ */
+OO.ui.Widget.prototype.updateDisabled = function () {
+	this.setDisabled( this.disabled );
+	return this;
+};
+
+/**
  * Set the disabled state of the widget.
  *
  * This should probably change the widgets's appearance and prevent it from being used.
  *
  * @method
- * @param {boolean} disabled Disable button
+ * @param {boolean} disabled Disable widget
  * @chainable
  */
 OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
+	var isDisabled;
+
 	this.disabled = !!disabled;
-	if ( this.disabled ) {
-		this.$element.addClass( 'oo-ui-widget-disabled' );
-	} else {
-		this.$element.removeClass( 'oo-ui-widget-disabled' );
+	isDisabled = this.isDisabled();
+	if ( isDisabled !== this.wasDisabled ) {
+		this.$element.toggleClass( 'oo-ui-widget-disabled', isDisabled );
+		this.emit( 'disable', isDisabled );
 	}
+	this.wasDisabled = isDisabled;
 	return this;
 };
 /**
@@ -2058,6 +2101,7 @@ OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
 			}
 			item.connect( this, events );
 		}
+		item.setElementGroup( this );
 		$items = $items.add( item.$element );
 	}
 
@@ -2097,6 +2141,7 @@ OO.ui.GroupElement.prototype.removeItems = function ( items ) {
 			if ( this.aggregate ) {
 				item.disconnect( this );
 			}
+			item.setElementGroup( null );
 			this.items.splice( index, 1 );
 			item.$element.detach();
 			this.$items = this.$items.not( item.$element );
@@ -2123,6 +2168,7 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 			item.disconnect( this );
 		}
 	}
+	item.setElementGroup( null );
 	this.items = [];
 	this.$items.detach();
 	this.$items = this.$( [] );
@@ -4517,6 +4563,97 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
 	this.setActive( false );
 };
 /**
+ * Group widget.
+ *
+ * Use together with OO.ui.ItemWidget to make disabled state inheritable.
+ *
+ * @class
+ * @abstract
+ * @extends OO.ui.GroupElement
+ *
+ * @constructor
+ * @param {jQuery} $group Container node, assigned to #$group
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.GroupWidget = function OoUiGroupWidget( $element, config ) {
+	// Parent constructor
+	OO.ui.GroupElement.call( this, $element, config );
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.GroupWidget, OO.ui.GroupElement );
+
+/* Methods */
+
+/**
+ * Set the disabled state of the widget.
+ *
+ * This will also update the disabled state of child widgets.
+ *
+ * @method
+ * @param {boolean} disabled Disable widget
+ * @chainable
+ */
+OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
+	var i, len;
+
+	// Parent method
+	OO.ui.Widget.prototype.setDisabled.call( this, disabled );
+
+	// During construction, #setDisabled is called before the OO.ui.GroupElement constructor
+	if ( this.items ) {
+		for ( i = 0, len = this.items.length; i < len; i++ ) {
+			this.items[i].updateDisabled();
+		}
+	}
+
+	return this;
+};
+/**
+ * Item widget.
+ *
+ * Use together with OO.ui.GroupWidget to make disabled state inheritable.
+ *
+ * @class
+ * @abstract
+ *
+ * @constructor
+ */
+OO.ui.ItemWidget = function OoUiItemWidget() {
+	//
+};
+
+/* Methods */
+
+/**
+ * Check if widget is disabled.
+ *
+ * Checks parent if present, making disabled state inheritable.
+ *
+ * @returns {boolean} Widget is disabled
+ */
+OO.ui.ItemWidget.prototype.isDisabled = function () {
+	return this.disabled ||
+		( this.elementGroup instanceof OO.ui.Widget && this.elementGroup.isDisabled() );
+};
+
+/**
+ * Set group element is in.
+ *
+ * @param {OO.ui.GroupElement|null} group Group element, null if none
+ * @chainable
+ */
+OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
+	// Parent method
+	OO.ui.Element.prototype.setElementGroup.call( this, group );
+
+	// Initialize item disabled states
+	this.updateDisabled();
+
+	return this;
+};
+/**
  * Container for multiple related buttons.
  *
  * @class
@@ -5240,6 +5377,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 	OO.ui.Widget.call( this, config );
 
 	// Mixin constructors
+	OO.ui.ItemWidget.call( this );
 	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
 	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
 	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
@@ -5268,6 +5406,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 
 OO.inheritClass( OO.ui.OptionWidget, OO.ui.Widget );
 
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.ItemWidget );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.LabeledElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatedElement );
@@ -5413,7 +5552,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	OO.ui.Widget.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupElement.call( this, this.$element, config );
+	OO.ui.GroupWidget.call( this, this.$element, config );
 
 	// Properties
 	this.pressed = false;
@@ -5437,7 +5576,10 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 
 OO.inheritClass( OO.ui.SelectWidget, OO.ui.Widget );
 
+// Need to mixin base class as well
 OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupElement );
+
+OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 
 /* Events */
 
