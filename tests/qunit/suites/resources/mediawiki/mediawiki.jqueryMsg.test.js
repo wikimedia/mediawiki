@@ -1,6 +1,7 @@
 ( function ( mw, $ ) {
-	var mwLanguageCache = {}, formatText, formatParse, formatnumTests, specialCharactersPageName,
-		expectedListUsers, expectedEntrypoints;
+	var mwLanguageCache = {}, formatText, formatEscaped, formatParse,
+		formatnumTests, specialCharactersPageName,
+		expectedListUsers, expectedEntrypoints, fakeLog;
 
 	// When the expected result is the same in both modes
 	function assertBothModes( assert, parserArguments, expectedResult, assertMessage ) {
@@ -48,7 +49,9 @@
 			formatText = mw.jqueryMsg.getMessageFunction( {
 				format: 'text'
 			} );
-
+			formatEscaped = mw.jqueryMsg.getMessageFunction( {
+				format: 'escaped'
+			} );
 			formatParse = mw.jqueryMsg.getMessageFunction( {
 				format: 'parse'
 			} );
@@ -274,8 +277,8 @@
 		mw.messages.set( 'pipe-trick', '[[Tampa, Florida|]]' );
 		assert.equal(
 			formatParse( 'pipe-trick' ),
-			'pipe-trick: Parse error at position 0 in input: [[Tampa, Florida|]]',
-			'Pipe trick should return error string.'
+			'[[Tampa, Florida|]]',
+			'Pipe trick should not be parsed.'
 		);
 
 		expectedMultipleBars = '<a title="Main Page" href="/wiki/Main_Page">Main|Page</a>';
@@ -709,5 +712,31 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 		'Self-closing tags don\'t cause a parse error'
 	);
 } );
+
+	QUnit.test( 'Behavior in case of invalid wikitext', 4, function ( assert ) {
+		var logSpy = this.sandbox.spy( mw.log, 'warn' );
+
+		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
+
+		assert.equal(
+			formatParse( 'invalid-wikitext' ),
+			'&lt;b&gt;{{FAIL}}&lt;/b&gt;',
+			'Invalid wikitext: \'parse\' format'
+		);
+
+		assert.equal(
+			formatEscaped( 'invalid-wikitext' ),
+			'&lt;b&gt;{{FAIL}}&lt;/b&gt;',
+			'Invalid wikitext: \'escaped\' format'
+		);
+
+		assert.equal(
+			formatText( 'invalid-wikitext' ),
+			'<b>{{FAIL}}</b>',
+			'Invalid wikitext: \'text\' format'
+		);
+
+		assert.equal( logSpy.callCount, 3, 'mw.log.warn calls' );
+	} );
 
 }( mediaWiki, jQuery ) );
