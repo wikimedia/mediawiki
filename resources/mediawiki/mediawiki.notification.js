@@ -23,7 +23,7 @@
 	function Notification( message, options ) {
 		var $notification, $notificationTitle, $notificationContent;
 
-		$notification = $( '<div class="mw-notification"></div>' )
+		$notification = $( '<div class="mw-notification noprint"></div>' )
 			.data( 'mw.notification', this )
 			.addClass( options.autoHide ? 'mw-notification-autohide' : 'mw-notification-noautohide' );
 
