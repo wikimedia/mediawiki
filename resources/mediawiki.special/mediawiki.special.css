@@ -276,6 +276,13 @@ span.mw-protectedpages-unknown {
 	font-size: 90%;
 }
 
+/**** Special:ProtectedTitles ****/
+table.mw-protectedtitles span.mw-usertoollinks,
+span.mw-protectedtitles-actions {
+	white-space: nowrap;
+	font-size: 90%;
+}
+
 /**** Special:UserRights ****/
 .mw-userrights-disabled {
 	color: #888;
