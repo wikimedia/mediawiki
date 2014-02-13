@@ -122,7 +122,14 @@
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				return $( '<span>' ).text( key + ': ' + e.message );
+				var fallback = parser.settings.messages.get( key );
+				// 'text' should not be escaped; 'plain' never reaches here; 'parse' is escaped later
+				if ( parser.settings.format === 'escaped' ) {
+					fallback = mw.html.escape( fallback );
+				}
+
+				mw.log.warn( 'mediawiki.jqueryMsg: ' + key + ': ' + e.message );
+				return $( '<span>' ).text( fallback );
 			}
 		};
 	}
