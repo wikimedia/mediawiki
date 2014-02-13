@@ -122,7 +122,9 @@
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				return $( '<span>' ).text( key + ': ' + e.message );
+				var fallback = parser.settings.messages.get( key );
+				mw.log.warn( 'mediawiki.jqueryMsg: ' + key + ': ' + e.message );
+				return $( '<span>' ).text( fallback );
 			}
 		};
 	}

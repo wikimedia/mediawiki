@@ -297,11 +297,13 @@
 
 		// Pipe trick is not supported currently, but should not parse as text either.
 		mw.messages.set( 'pipe-trick', '[[Tampa, Florida|]]' );
+		this.suppressWarnings();
 		assert.equal(
 			formatParse( 'pipe-trick' ),
-			'pipe-trick: Parse error at position 0 in input: [[Tampa, Florida|]]',
-			'Pipe trick should return error string.'
+			'[[Tampa, Florida|]]',
+			'Pipe trick should not be parsed.'
 		);
+		this.restoreWarnings();
 
 		expectedMultipleBars = '<a title="Main Page" href="/wiki/Main_Page">Main|Page</a>';
 		mw.messages.set( 'multiple-bars', '[[Main Page|Main|Page]]' );
@@ -733,5 +735,26 @@ QUnit.test( 'HTML', 26, function ( assert ) {
 		'Self-closing tags don\'t cause a parse error'
 	);
 } );
+
+	QUnit.test( 'Behavior in case of invalid wikitext', 3, function ( assert ) {
+		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
+
+		this.suppressWarnings();
+		var logSpy = this.sandbox.spy( mw.log, 'warn' );
+
+		assert.equal(
+			formatParse( 'invalid-wikitext' ),
+			'&lt;b&gt;{{FAIL}}&lt;/b&gt;',
+			'Invalid wikitext: \'parse\' format'
+		);
+
+		assert.equal(
+			formatText( 'invalid-wikitext' ),
+			'<b>{{FAIL}}</b>',
+			'Invalid wikitext: \'text\' format'
+		);
+
+		assert.equal( logSpy.callCount, 2, 'mw.log.warn calls' );
+	} );
 
 }( mediaWiki, jQuery ) );
