@@ -84,8 +84,10 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			// Segregate items by wiki ID for the sake of bookkeeping
 			$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : wfWikiID();
 
-			$url = $be->getContainerStoragePath( 'data' ) . '/' .
-				rawurlencode( $wiki ) . "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}";
+			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );
+			$url .= ( $be instanceof FSFileBackend )
+				? "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}" // keep directories small
+				: "/{$rand[0]}/{$rand[1]}/{$id}"; // container sharding is only 2-levels
 
 			$be->prepare( array( 'dir' => dirname( $url ), 'noAccess' => 1, 'noListing' => 1 ) );
 			if ( $be->create( array( 'dst' => $url, 'content' => $data ) )->isOK() ) {
