@@ -142,6 +142,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return WikiPage|null
 	 */
 	public static function newFromID( $id, $from = 'fromdb' ) {
+		// page id's are never 0 or negative, see bug 61166
+		if ( $id < 1 ) {
+			return;
+		}
+
 		$from = self::convertSelectType( $from );
 		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_SLAVE );
 		$row = $db->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
