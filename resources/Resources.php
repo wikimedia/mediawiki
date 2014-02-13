@@ -1278,10 +1278,10 @@ return array(
 
 	'oojs-ui' => array(
 		'scripts' => array(
-			'resources/oojs/oojs-ui.js',
+			'resources/oojs-ui/oojs-ui.js',
 		),
 		'styles' => array(
-			'resources/oojs/oojs-ui.svg.css',
+			'resources/oojs-ui/oojs-ui.svg.css',
 		),
 		'messages' => array(
 			'ooui-dialog-action-close',
