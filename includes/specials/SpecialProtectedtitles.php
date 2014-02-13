@@ -37,6 +37,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		// Purge expired entries on one in every 10 queries
 		if ( !mt_rand( 0, 10 ) ) {
@@ -57,72 +58,12 @@ class SpecialProtectedtitles extends SpecialPage {
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML(
 				$pager->getNavigationBar() .
-					'<ul>' . $pager->getBody() . '</ul>' .
+					$pager->getBody() .
 					$pager->getNavigationBar()
 			);
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedtitlesempty' );
 		}
-	}
-
-	/**
-	 * Callback function to output a restriction
-	 *
-	 * @param object $row Database row
-	 * @return string
-	 */
-	function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
-
-		static $infinity = null;
-
-		if ( is_null( $infinity ) ) {
-			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
-		}
-
-		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
-		if ( !$title ) {
-			wfProfileOut( __METHOD__ );
-
-			return Html::rawElement(
-				'li',
-				array(),
-				Html::element(
-					'span',
-					array( 'class' => 'mw-invalidtitle' ),
-					Linker::getInvalidTitleDescription(
-						$this->getContext(),
-						$row->pt_namespace,
-						$row->pt_title
-					)
-				)
-			) . "\n";
-		}
-
-		$link = Linker::link( $title );
-		$description_items = array();
-		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
-		$description_items[] = $protType;
-		$lang = $this->getLanguage();
-		$expiry = strlen( $row->pt_expiry ) ?
-			$lang->formatExpiry( $row->pt_expiry, TS_MW ) :
-			$infinity;
-
-		if ( $expiry != $infinity ) {
-			$user = $this->getUser();
-			$description_items[] = $this->msg(
-				'protect-expiring-local',
-				$lang->userTimeAndDate( $expiry, $user ),
-				$lang->userDate( $expiry, $user ),
-				$lang->userTime( $expiry, $user )
-			)->escaped();
-		}
-
-		wfProfileOut( __METHOD__ );
-
-		// @todo i18n: This should use a comma separator instead of a hard coded comma, right?
-		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
 
 	/**
@@ -215,7 +156,7 @@ class SpecialProtectedtitles extends SpecialPage {
  * @todo document
  * @ingroup Pager
  */
-class ProtectedTitlesPager extends AlphabeticPager {
+class ProtectedTitlesPager extends TablePager {
 	public $mForm, $mConds;
 
 	function __construct( $form, $conds = array(), $type, $level, $namespace,
@@ -229,20 +170,30 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		parent::__construct( $form->getContext() );
 	}
 
-	function getStartBody() {
+	function preprocessResults( $result ) {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
-		$this->mResult->seek( 0 );
 		$lb = new LinkBatch;
+		$userids = array();
 
-		foreach ( $this->mResult as $row ) {
+		foreach ( $result as $row ) {
 			$lb->add( $row->pt_namespace, $row->pt_title );
+			$userids[] = $row->pt_user;
+		}
+
+		// fill LinkBatch with user page and user talk
+		$userCache = UserCache::singleton();
+		$userCache->doQuery( $userids, array(), __METHOD__ );
+		foreach ( $userids as $userid ) {
+			$name = $userCache->getProp( $userid, 'name' );
+			if ( $name !== false ) {
+				$lb->add( NS_USER, $name );
+				$lb->add( NS_USER_TALK, $name );
+			}
 		}
 
 		$lb->execute();
 		wfProfileOut( __METHOD__ );
-
-		return '';
 	}
 
 	/**
@@ -252,8 +203,98 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		return $this->mForm->getTitle();
 	}
 
-	function formatRow( $row ) {
-		return $this->mForm->formatRow( $row );
+	function getFieldNames() {
+		static $headers = null;
+
+		if ( $headers == array() ) {
+			$headers = array(
+				'pt_timestamp' => 'protectedtitles-timestamp',
+				'pt_page' => 'protectedtitles-page',
+				'pt_expiry' => 'protectedtitles-expiry',
+				'pt_user' => 'protectedtitles-user',
+				'pt_params' => 'protectedtitles-params',
+				'pt_reason' => 'protectedtitles-reason',
+			);
+			foreach ( $headers as $key => $val ) {
+				$headers[$key] = $this->msg( $val )->text();
+			}
+		}
+
+		return $headers;
+	}
+
+	function formatValue( $name, $value ) {
+		/** @var $row object */
+		$row = $this->mCurrentRow;
+
+		$formatted = '';
+
+		switch ( $name ) {
+			case 'pt_timestamp':
+				$formatted = $this->getLanguage()->userTimeAndDate( $value, $this->getUser() );
+				break;
+
+			case 'pt_page':
+				$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
+				if ( !$title ) {
+					$formatted = Html::element(
+						'span',
+						array( 'class' => 'mw-invalidtitle' ),
+						Linker::getInvalidTitleDescription(
+							$this->getContext(),
+							$row->pt_namespace,
+							$row->pt_title
+						)
+					);
+				} else {
+					$formatted = Linker::link( $title );
+				}
+				break;
+
+			case 'pt_expiry':
+				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */true );
+				$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
+				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
+					$changeProtection = Linker::linkKnown(
+						$title,
+						$this->msg( 'protect_change' )->escaped(),
+						array(),
+						array( 'action' => 'unprotect' )
+					);
+					$formatted .= ' ' . Html::rawElement(
+						'span',
+						array( 'class' => 'mw-protectedtitles-actions' ),
+						$this->msg( 'parentheses' )->rawParams( $changeProtection )->escaped()
+					);
+				}
+				break;
+
+			case 'pt_user':
+				$username = UserCache::singleton()->getProp( $value, 'name' );
+				if ( $username === false ) {
+					$formatted = htmlspecialchars( $value );
+				} else {
+					$formatted = Linker::userLink( $value, $username )
+						. Linker::userToolLinks( $value, $username );
+				}
+				break;
+
+			case 'pt_reason':
+				// Field is nullable, take a null reason as a empty reason
+				$formatted = Linker::formatComment( $value !== null ? $value : '' );
+				break;
+
+			case 'pt_params':
+				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
+				$formatted = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
+				break;
+
+			default:
+				$formatted = "Unable to format $name";
+				break;
+		}
+
+		return $formatted;
 	}
 
 	/**
@@ -272,13 +313,33 @@ class ProtectedTitlesPager extends AlphabeticPager {
 
 		return array(
 			'tables' => 'protected_titles',
-			'fields' => array( 'pt_namespace', 'pt_title', 'pt_create_perm',
-				'pt_expiry', 'pt_timestamp' ),
+			'fields' => array(
+				'pt_namespace',
+				'pt_title',
+				'pt_create_perm',
+				'pt_expiry',
+				'pt_timestamp',
+				'pt_user',
+				'pt_reason',
+			),
 			'conds' => $conds
 		);
 	}
 
+	public function getTableClass() {
+		return 'TablePager mw-protectedtitles';
+	}
+
 	function getIndexField() {
 		return 'pt_timestamp';
+	}
+
+	function getDefaultSort() {
+		return 'pt_timestamp';
+	}
+
+	function isFieldSortable( $name ) {
+		// no index for sorting exists
+		return false;
 	}
 }

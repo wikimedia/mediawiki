@@ -2779,6 +2779,12 @@ It now redirects to [[$2]].',
 'protectedtitles'                 => 'Protected titles',
 'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
+'protectedtitles-timestamp'       => 'Timestamp',
+'protectedtitles-page'            => 'Page',
+'protectedtitles-expiry'          => 'Expires',
+'protectedtitles-user'            => 'Protecting user',
+'protectedtitles-params'          => 'Protect parameters',
+'protectedtitles-reason'          => 'Reason',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # do not translate or duplicate this message to other languages
 'listusers-editsonly'             => 'Show only users with edits',

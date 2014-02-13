@@ -90,6 +90,8 @@ production.
   links.
 * Added MessageCache::get hook as a new way to customize messages across
   multiple sites.
+* Special:ProtectedTitles shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
