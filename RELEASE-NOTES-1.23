@@ -90,6 +90,8 @@ production.
   links.
 * Added MessageCache::get hook as a new way to customize messages across
   multiple sites.
+* Added jquery.throttle-debounce ResourceLoader module to limit the number of
+  callbacks for frequently occurring events.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

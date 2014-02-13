@@ -11,6 +11,7 @@ extensions/
 node_modules/
 resources/jquery/jquery.appear.js
 resources/jquery/jquery.async.js
+resources/jquery/jquery.ba-throttle-debounce.js
 resources/jquery/jquery.cookie.js
 resources/jquery/jquery.cycle.all.js
 resources/jquery/jquery.farbtastic.js
