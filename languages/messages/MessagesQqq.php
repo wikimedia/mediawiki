@@ -7280,8 +7280,10 @@ See also:
 *$1 is a function name of the GD library',
 'thumbnail_image-missing' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
 *$1 is the path incl. filename of the missing image',
-'thumbnail_image-failure-limit' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
-*$1 is the maximum allowed number of failed attempts',
+'thumbnail_image-failure-limit' => 'Used as <code>$1</code> in {{msg-mw|Thumbnail error}}.
+
+Parameters:
+* $1 - the maximum allowed number of failed attempts',
 
 # Special:Import
 'import' => 'The title of the special page [[Special:Import]];',

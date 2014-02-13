@@ -731,7 +731,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 'badtitletext' => '요청한 문서 제목이 잘못되었거나, 비어있거나, 잘못된 인터위키 제목으로 링크했습니다.
 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
 'perfcached' => '다음 자료는 캐시된 것이므로 새로 바뀐 내용을 반영하지 못할 수도 있습니다. 캐시에 최대 {{PLURAL:$1|$1개의 결과}}가 있습니다.',
-'perfcachedts' => '다음 자료는 캐시된 것으로, $1에 마지막으로 새로 고쳐졌습니다.  캐시에 최대 {{PLURAL:$4|결과 $4개}}가 있습니다.',
+'perfcachedts' => '다음 자료는 캐시된 것으로, $1에 마지막으로 새로 고쳐졌습니다. 캐시에 최대 {{PLURAL:$4|결과 $4개}}가 있습니다.',
 'querypage-no-updates' => '이 문서의 새로 고침이 현재 비활성화되어 있습니다.
 이 문서의 자료를 잠시 동안 새로 고치지 않을 것입니다.',
 'viewsource' => '원본 보기',
@@ -833,7 +833,7 @@ $2',
 'createacct-imgcaptcha-ph' => '위에 보이는 텍스트를 입력하세요',
 'createacct-submit' => '계정 만들기',
 'createacct-another-submit' => '다른 계정 만들기',
-'createacct-benefit-heading' => '{{SITENAME}}(은)는 여러분과 같은 사람으로 이루어집니다.',
+'createacct-benefit-heading' => '{{SITENAME}} 프로젝트는 여러분과 같은 사람들이 만들어 갑니다.',
 'createacct-benefit-body1' => '{{PLURAL:$1|편집}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|문서}}',
 'createacct-benefit-body3' => '최근 {{PLURAL:$1|기여자}}',
@@ -1255,6 +1255,7 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 편집 되돌리기를 완료하려면 이 편집을 되돌리려면 아래의 바뀐 내용을 확인한 후 저장해주세요.',
 'undo-failure' => '중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.',
 'undo-norev' => '문서가 없거나 삭제되었기 때문에 편집을 되돌릴 수 없습니다.',
+'undo-nochange' => '편집이 이미 되돌려진 것으로 나타납니다.',
 'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]])의 $1판 편집을 되돌림',
 'undo-summary-username-hidden' => '숨겨진 사용자가 $1 판을 되돌림',
 
@@ -1485,7 +1486,8 @@ $1",
 'searchrelated' => '관련',
 'searchall' => '모두',
 'showingresults' => "'''$2'''번 부터의 {{PLURAL:$1|결과 '''1'''개|결과 '''$1'''개}}입니다.",
-'showingresultsnum' => "'''$2'''번 부터의 {{PLURAL:$3|결과 '''1'''개|결과 '''$3'''개}} 입니다.",
+'showingresultsinrange' => '#<strong>$2</strong>부터 #<strong>$3</strong>까지의 범위에서 <strong>$1</strong>개의 {{PLURAL:$1|결과}}가 아래에 보입니다.',
+'showingresultsnum' => "'''$2'''번 부터의 {{PLURAL:$3|결과 '''1'''개|결과 '''$3'''개}}입니다.",
 'showingresultsheader' => "'''$4''' 검색어에 대한 {{PLURAL:$5|결과 '''$3'''개 중 '''$1'''개|결과 '''$3'''개 중 '''$1 - $2'''번째}}",
 'search-nonefound' => '검색어와 일치하는 결과가 없습니다.',
 'powersearch-legend' => '고급 검색',
@@ -2254,7 +2256,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'pageswithprop-legend' => '문서 속성이 있는 문서',
 'pageswithprop-text' => '이 문서는 특정 문서 속성을 사용한 문서를 나타냅니다.',
 'pageswithprop-prop' => '속성 이름:',
-'pageswithprop-submit' => '가기',
+'pageswithprop-submit' => '찾기',
 'pageswithprop-prophidden-long' => '숨겨진 긴 텍스트 속성 값 ($1)',
 'pageswithprop-prophidden-binary' => '숨겨진 이진 속성 값 ($1)',
 
@@ -4013,7 +4015,7 @@ $5
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '최근 $1{{PLURAL:$1|초}} 안에 바뀐 문서는 이 목록에서 빠졌을 수 있습니다.',
-'lag-warn-high' => '데이터베이스 서버의 과도한 부하 때문에 최근 $1{{PLURAL:$1|초}} 안에 바뀐 문서 목록은 보여지지 않을 수 있습니다.',
+'lag-warn-high' => '데이터베이스 서버의 과도한 부하 때문에 최근 $1{{PLURAL:$1|초}} 안에 바뀐 문서 목록은 보이지 않을 수 있습니다.',
 
 # Watchlist editor
 'watchlistedit-numitems' => '토론 문서를 제외하고 {{PLURAL:$1|문서 1개|문서 $1개}}를 주시하고 있습니다.',

@@ -1214,7 +1214,7 @@ Depois grave as alterações, para finalizar e desfazer a edição.',
 'cantcreateaccount-text' => "A criação de contas a partir deste endereço IP ('''$1''') foi bloqueada por [[User:$3|$3]].
 
 O motivo apresentado por $3 foi ''$2''",
-'cantcreateaccount-range-text' => "A criação de conta a partir dos Endereços IP no intervalo '''$1''', que inclui o seu Endereço IP ('''$4'''), foi bloqueado por [[User:$3|$3]].
+'cantcreateaccount-range-text' => "A criação de conta a partir dos endereços IP no intervalo '''$1''', que inclui o seu endereço IP ('''$4'''), foi bloqueada por [[User:$3|$3]].
 
 A razão dada por $3 é ''$2''",
 

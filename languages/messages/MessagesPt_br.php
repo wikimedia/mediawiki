@@ -47,6 +47,7 @@
  * @author Malafaya
  * @author ManoDbo
  * @author Matheus Sousa L.T
+ * @author Matma Rex
  * @author McDutchie
  * @author MetalBrasil
  * @author MisterSanderson
@@ -888,6 +889,8 @@ Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a
 'retypenew' => 'Reintroduza a nova senha',
 'resetpass_submit' => 'Definir senha e entrar',
 'changepassword-success' => 'Sua senha foi alterada com sucesso!',
+'changepassword-throttled' => 'Você realizou demasiadas tentativas de se registrar.
+Por favor, aguarde $1 antes de tentar novamente.',
 'resetpass_forbidden' => 'As senhas não podem ser alteradas',
 'resetpass-no-info' => 'Você precisa estar autenticado para acessar esta página diretamente.',
 'resetpass-submit-loggedin' => 'Alterar senha',
@@ -943,6 +946,8 @@ Senha temporária: $2',
 'changeemail-password' => 'Sua senha para o wiki {{SITENAME}}:',
 'changeemail-submit' => 'Alterar e-mail',
 'changeemail-cancel' => 'Cancelar',
+'changeemail-throttled' => 'Você realizou demasiadas tentativas de se registrar.
+Por favor, aguarde $1 antes de tentar novamente.',
 
 # Special:ResetTokens
 'resettokens' => 'Reiniciar os tokens',
@@ -1201,6 +1206,7 @@ Estes argumentos foram omitidos.',
 'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
 'undo-failure' => 'A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.',
 'undo-norev' => 'A edição não pôde ser desfeita porque não existe ou foi apagada.',
+'undo-nochange' => 'Parece que a edição já foi desfeita.',
 'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
 'undo-summary-username-hidden' => 'Desfazer a revisão $1 de um usuário oculto',
 
@@ -1209,6 +1215,9 @@ Estes argumentos foram omitidos.',
 'cantcreateaccount-text' => "Este IP ('''$1''') foi bloqueado de criar novas contas por [[User:$3|$3]].
 
 A justificativa apresentada por $3 foi ''$2''",
+'cantcreateaccount-range-text' => "A criação de conta a partir dos endereços IP no intervalo '''$1''', que inclui o seu endereço IP ('''$4'''), foi bloqueada por [[User:$3|$3]].
+
+A razão dada por $3 é ''$2''",
 
 # History pages
 'viewpagelogs' => 'Ver registros para esta página',
@@ -1377,6 +1386,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'showhideselectedversions' => 'Exibir/ocultar edições selecionadas',
 'editundo' => 'desfazer',
 'diff-empty' => '(Sem diferença)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Uma revisão intermediária|$1 revisões intermediárias}} pelo mesmo usuário não estão sendo mostradas)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Uma revisão intermediária por {{PLURAL:$2|um outro usuário|$2 usuários}} não está sendo mostrada|$1 revisões intermediárias por {{PLURAL:$2|um outro usuário|$2 usuários}} não estão sendo mostradas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuário}} não {{PLURAL:$1|apresentada|apresentadas}})',
 'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
 
@@ -1413,6 +1424,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-result-score' => 'Relevância: $1%',
 'search-redirect' => '(redirecionamento de $1)',
 'search-section' => '(seção $1)',
+'search-file-match' => '(coincide com o conteúdo do arquivo)',
 'search-suggest' => 'Você quis dizer: $1',
 'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
@@ -2994,6 +3006,7 @@ Acesse [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [/
 'allmessages-prefix' => 'Filtrar por prefixo:',
 'allmessages-language' => 'Língua:',
 'allmessages-filter-submit' => 'Ir',
+'allmessages-filter-translate' => 'Traduzir',
 
 # Thumbnails
 'thumbnail-more' => 'Ampliar',
@@ -4128,7 +4141,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
-'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
+'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[$2 $1]".',
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Relatar um bug novo',

@@ -715,6 +715,7 @@ $2',
 'customjsprotected' => 'Vi ne rajtas redakti ĉi tiun Ĝavaskriptan paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
 'mycustomcssprotected' => 'Vi ne havas la rajton redakti tiun ĉi CSS-paĝon.',
 'mycustomjsprotected' => 'Vi ne havas la rajton redakti tiun ĉi JavaScript-paĝon.',
+'mypreferencesprotected' => 'Vi ne havas permeson por redakti viajn preferojn.',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi tiu titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
@@ -774,7 +775,11 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'userlogin-resetpassword-link' => 'Ĉu vi forgesis vian pasvorton?',
 'helplogin-url' => 'Help:Ensalutado',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Helpo pri ensalutado]]',
+'userlogin-loggedin' => 'Vi jam estas ensalutita kiel {{GENDER:$1|$1}}.
+Uzu la formularon suben por ensaluti kiel alia uzanto.',
+'userlogin-createanother' => 'Krei alian konton',
 'createacct-join' => 'Suben enigu informojn pri vi',
+'createacct-another-join' => 'Enigu la informon de la nova konto suben.',
 'createacct-emailrequired' => 'Retpoŝta adreso',
 'createacct-emailoptional' => 'Retpoŝta adreso (nedeviga)',
 'createacct-email-ph' => 'Enigu vian retpoŝtan adreson',
@@ -889,6 +894,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 # Special:PasswordReset
 'passwordreset' => 'Restarigo de pasvorto',
 'passwordreset-text-one' => 'Plenigu ĉi tiun formularon por renovigi vian pasvorton.',
+'passwordreset-text-many' => '{{PLURAL:$1|Plenumu unu el la kampoj por restarigi vian pasvorton.}}',
 'passwordreset-legend' => 'Refari pasvorton',
 'passwordreset-disabled' => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
 'passwordreset-emaildisabled' => 'Retpoŝtaj funkcioj estas malfunkciigitaj en tiu ĉi vikio.',
@@ -1630,6 +1636,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'right-viewmywatchlist' => 'Rigardi vian atentaron',
 'right-viewmyprivateinfo' => 'Vidi viajn proprajn privatajn informojn (ekz. retpoŝtan adreson, veran nomon)',
 'right-editmyprivateinfo' => 'Redakti viajn proprajn privatajn informojn (ekz. retpoŝtan adreson, veran nomon)',
+'right-editmyoptions' => 'Redakti proprajn preferojn',
 'right-rollback' => 'Tuj malfari la redaktojn de la lasta uzanto kiu redaktis specifan paĝon',
 'right-markbotedits' => 'Marki restarigitajn redaktojn kiel robotajn redaktojn',
 'right-noratelimit' => 'Ne influita de po-limoj',
@@ -1993,6 +2000,7 @@ Kiam oni filtras ĝin laŭ uzanto, nur la aktuala versio de la dosiero estos mon
 'listfiles_size' => 'Grandeco',
 'listfiles_description' => 'Priskribo',
 'listfiles_count' => 'Versioj',
+'listfiles-show-all' => 'Inkluzivi malaktualajn versiojn de bildoj',
 'listfiles-latestversion' => 'Nuna versio',
 'listfiles-latestversion-yes' => 'Jes',
 'listfiles-latestversion-no' => 'Ne',
@@ -2095,7 +2103,8 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'randomincategory' => 'Hazarda paĝo en kategorio',
 'randomincategory-invalidcategory' => '"$1" ne estas valida kategoria nomo.',
 'randomincategory-nopages' => 'Ne estas paĝoj en la kategorio [[:Category:$1|$1]].',
-'randomincategory-selectcategory-submit' => 'Ek',
+'randomincategory-selectcategory' => 'Iri al hazarda paĝo el kategorio: $1 $2.$1',
+'randomincategory-selectcategory-submit' => 'Ek!',
 
 # Random redirect
 'randomredirect' => 'Hazarda alidirekto',
@@ -2936,6 +2945,8 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'thumbnail-more' => 'Pligrandigi',
 'filemissing' => 'Mankanta dosiero',
 'thumbnail_error' => 'Okazis eraro ĉe kreado de antaŭvida bildeto: $1',
+'thumbnail_error_remote' => 'Eraro-mesaĝo de $1:
+$2',
 'djvu_page_error' => 'DjVu-a paĝo el intervalo',
 'djvu_no_xml' => 'Ne povas akiri XML por DjVu dosiero',
 'thumbnail-temp-create' => 'Ne povas krei provizoran bildetan dosieron',
@@ -3268,6 +3279,14 @@ $1',
 'hours-ago' => 'antaŭ $1 {{PLURAL:$1|horo|horoj}}',
 'minutes-ago' => 'antaŭ $1 {{PLURAL:$1|minuto|minutoj}}',
 'seconds-ago' => 'antaŭ $1 {{PLURAL:$1|sekundo|sekundoj}}',
+'monday-at' => 'Lundo je $1',
+'tuesday-at' => 'Mardo je $1',
+'wednesday-at' => 'Merkredo je $1',
+'thursday-at' => 'Ĵaŭdo je $1',
+'friday-at' => 'Vendredo je $1',
+'saturday-at' => 'Sabato je $1',
+'sunday-at' => 'Dimanĉo je $1',
+'yesterday-at' => 'Hieraŭ je $1',
 
 # Bad image list
 'bad_image_list' => 'La formato estas jen:
@@ -3924,6 +3943,7 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-license' => 'Permesilo de MediaWiki',
 'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[https://www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others' => 'aliaj',
+'version-poweredby-translators' => 'tradukantoj de translatewiki.net',
 'version-credits-summary' => 'Ni ŝatus agnoski la sekvajn personojn pro siaj kontribuoj al [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.
 
@@ -3939,6 +3959,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 
 # Special:Redirect
 'redirect-submit' => 'Ek',
+'redirect-lookup' => 'Traserĉi:',
 'redirect-value' => 'Valoro:',
 'redirect-user' => 'Salutnomo',
 'redirect-revision' => 'Revizio de la paĝo',
@@ -4038,6 +4059,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'htmlform-selectorother-other' => 'Alia',
 'htmlform-no' => 'Ne',
 'htmlform-yes' => 'Jes',
+'htmlform-chosen-placeholder' => 'Elektu opcion',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
@@ -4159,6 +4181,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bitoko|bitokoj}}',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bitoko|bitokoj}}',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Ampleksigi ŝablonojn',

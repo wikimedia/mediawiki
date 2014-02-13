@@ -1134,8 +1134,9 @@ Se on jo olemassa.',
 'invalid-content-data' => 'Virheellinen sisältö',
 'content-not-allowed-here' => 'Sivun [[$2]] sisältö ei voi olla tyyppiä $1.',
 'editwarning-warning' => 'Tältä sivulta poistuminen saattaa aiheuttaa kaikkien tekemiesi muutosten katoamisen.
-Jos olet kirjautuneena sisään, voit poistaa tämän varoituksen käytöstä asetuksissa osiossa "Muokkaus".',
+Jos olet kirjautunut sisään, voit poistaa tämän varoituksen käytöstä omien asetuksien osiossa "{{int:prefs-editing}}".',
 'editpage-notsupportedcontentformat-title' => 'Sisällön muotoa ei tueta',
+'editpage-notsupportedcontentformat-text' => 'Sisällön muotoa $1 ei tueta sisältömallilla $2.',
 
 # Content models
 'content-model-wikitext' => 'wikiteksti',
@@ -1169,6 +1170,7 @@ Nämä muuttujat on jätetty käsittelemättä.",
 Varmista alla olevasta vertailusta, että haluat saada aikaan tämän lopputuloksen, ja sen jälkeen tallenna alla näkyvät muutokset.',
 'undo-failure' => 'Muokkausta ei voi kumota välissä olevien ristiriitaisten muutosten vuoksi.',
 'undo-norev' => 'Muokkausta ei voida kumota, koska sitä ei ole olemassa tai se on poistettu.',
+'undo-nochange' => 'Tämä muokkaus näyttää olevan jo kumottu.',
 'undo-summary' => 'Kumottu muokkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 'undo-summary-username-hidden' => 'Kumottu muokkaus $1, jonka on tehnyt piilotettu käyttäjä',
 
@@ -1348,6 +1350,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'showhideselectedversions' => 'Näytä tai piilota valitut versiot',
 'editundo' => 'kumoa',
 'diff-empty' => '(ei eroavaisuuksia)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Yhtä välissä olevaa versiota|$1 välissä olevaa versiota}} samalta käyttäjältä ei näytetä)',
+'diff-multi-otherusers' => '({{PLURAL:$1|Yhtä välissä olevaa versiota|$1 välissä olevaa versiota}} {{PLURAL:$2|toisen käyttäjän tekemänä|$2 käyttäjän tekeminä}} ei näytetä)',
 'diff-multi-manyusers' => '(Versioiden välissä on {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta, jotka on tehnyt {{PLURAL:$2|yksi käyttäjä|yli $2 eri käyttäjää}}}}.)',
 'difference-missing-revision' => '{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.
 
@@ -2975,7 +2979,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'importuploaderrortemp' => 'Tuontitiedoston tallennus epäonnistui. Väliaikaistiedostojen kansio puuttuu.',
 'import-parse-failure' => 'XML-tuonti epäonnistui jäsennysvirheen takia.',
 'import-noarticle' => 'Ei sivua tuotavaksi!',
-'import-nonewrevisions' => 'Kaikki versiot on tuotu aiemmin.',
+'import-nonewrevisions' => 'Ei tuotu yhtään versiota, koska kaikki versiot ovat jo täällä tai ne on ohitettu virheiden vuoksi.',
 'xml-error-string' => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
 'import-upload' => 'Tallenna XML-tiedosto',
 'import-token-mismatch' => 'Istuntotiedot ovat kadonneet. Yritä uudelleen.',

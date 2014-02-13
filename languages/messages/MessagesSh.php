@@ -1068,7 +1068,7 @@ Ovakvi argumenti se trebaju izbjegavati.",
 Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a zatim spremite promjene da bi ste završili vraćanje izmjene.',
 'undo-failure' => 'Izmjene se ne mogu vratiti zbog konflikta sa izmjenama u međuvremenu.',
 'undo-norev' => 'Izmjena se ne može vratiti jer ne postoji ranija ili je obrisana.',
-'undo-summary' => 'Vraćena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
+'undo-summary' => 'Poništena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
 'undo-summary-username-hidden' => 'Poništi izmjenu $1 od skrivenog korisnika',
 
 # Account creation failure

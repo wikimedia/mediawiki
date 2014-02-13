@@ -1931,7 +1931,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'statistics-edits' => "Ediciones de páxines dende qu'entamó {{SITENAME}}",
 'statistics-edits-average' => "Media d'ediciones por páxina",
 'statistics-views-total' => 'Visites totales',
-'statistics-views-total-desc' => "Les vistes de páxines non-esistentes y especiales nun s'incluyen",
+'statistics-views-total-desc' => "Nun s'incluyen les visites a les páxines inesistentes y especiales",
 'statistics-views-peredit' => 'Visites por edición',
 'statistics-users' => '[[Special:ListUsers|Usuarios]] rexistraos',
 'statistics-users-active' => 'Usuarios activos',
@@ -2078,8 +2078,8 @@ Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usu
 
 # Special:Categories
 'categories' => 'Categoríes',
-'categoriespagetext' => "{{PLURAL:$1|La categoría darréu contién|Les categoríes darréu contienen}} páxines o ficheros multimedia.
-Les [[Special:UnusedCategories|categoríes non usaes]] nun s'amuesen equí.
+'categoriespagetext' => "{{PLURAL:$1|La siguiente categoría contién|Les siguientes categoríes contienen}} páxines o ficheros multimedia.
+Les [[Special:UnusedCategories|categoríes nun usaes]] nun s'amuesen equí.
 Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'categoriesfrom' => "Amosar categoríes qu'emprimen por:",
 'special-categories-sort-count' => 'ordenar por tamañu',
@@ -2774,6 +2774,7 @@ $2",
 'thumbnail_image-type' => "Triba d'imaxe ensin sofitu",
 'thumbnail_gd-library' => 'Configuración incompleta de la biblioteca GD: falta la función $1',
 'thumbnail_image-missing' => "Paez que falta'l ficheru: $1",
+'thumbnail_image-failure-limit' => 'Hebo demasiaos intentos recientes que fallaron ($1 o más) al representar esta miniatura. Vuelva a intentalo más sero.',
 
 # Special:Import
 'import' => 'Importar páxines',

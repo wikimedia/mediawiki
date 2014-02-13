@@ -1375,6 +1375,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'showhideselectedversions' => 'Pokaż lub ukryj zaznaczone wersje',
 'editundo' => 'anuluj edycję',
 'diff-empty' => '(Brak różnic)',
+'diff-multi-otherusers' => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'diff-multi-manyusers' => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony "{{PAGENAME}}" nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.
 

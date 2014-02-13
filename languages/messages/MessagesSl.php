@@ -2906,6 +2906,7 @@ $2',
 'thumbnail_image-type' => 'Vrsta slike ni podprta',
 'thumbnail_gd-library' => 'Nepopolna konfiguracija knjižice GD: manjka funkcija $1',
 'thumbnail_image-missing' => 'Kaže, da datoteka manjka: $1',
+'thumbnail_image-failure-limit' => 'Nedavno je bilo preveč spodletelih poskusov ($1 ali več) izdelave sličice. Prosimo, poskusite znova pozneje.',
 
 # Special:Import
 'import' => 'Uvoz strani',

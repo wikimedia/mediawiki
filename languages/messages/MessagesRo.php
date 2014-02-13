@@ -2985,6 +2985,7 @@ $2',
 'thumbnail_image-type' => 'Acest tip de imagine nu este suportat',
 'thumbnail_gd-library' => 'Configurație incompletă a bibliotecii GD: lipsește funcția $1',
 'thumbnail_image-missing' => 'Fișierul următor nu poate fi găsit: $1',
+'thumbnail_image-failure-limit' => 'Recent au existat prea multe încercări nereușite ($1 sau mai multe) pentru a randa această miniatură. Încercați din nou mai târziu.',
 
 # Special:Import
 'import' => 'Importare pagini',

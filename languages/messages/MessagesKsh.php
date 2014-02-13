@@ -571,6 +571,7 @@ un doht em och de URL vun dä Sigg heh sage.',
 'cannotdelete-title' => 'Mer künne di Sigg „$1“ nit fott schmiiße.',
 'delete-hook-aborted' => 'Et Fottschmiiße wood affjebroche övver ene sujenannte „Hoke“ en de ẞoffwäer.
 Ene Jrond weße mer nit.',
+'no-null-revision' => 'Mer kunnte kein onveränderte neue Väsjohn vun dä Sigg „$1“ aanlääje.',
 'badtitle' => 'Verkihrte Üvverschreff',
 'badtitletext' => 'De Üvverschreff es esu nit en Odenung. Et muss jet dren stonn.
 Et künnt sin, dat ein vun de speziell Zeiche dren steiht,
@@ -623,7 +624,7 @@ Dä Wiki_Köbes dovun hät beim Deeschmaache als Jrond aanjejovve: „$3“',
 'invalidtitle-knownnamespace' => '„$3“ es ene onjöltijje Tittel för em Appachtemang „$2“',
 'invalidtitle-unknownnamespace' => '„$2“ es ene onjöltijje Tittel för e Appachtemang met dä verkehte Nommer $1.',
 'exception-nologin' => 'Nit enjelogg',
-'exception-nologin-text' => 'Heh di Sigg udder heh dä Opdraach jeiht blooß, wann De heh em Wiki enjelogg bes.',
+'exception-nologin-text' => 'Heh di Sigg udder heh dä Opdraach jeiht blooß, wann De heh [[Special:Userlogin|em Wiki enjelogg]] bes.',
 'exception-nologin-text-manual' => 'De mööds ald $1, öm heh di Sigg udder di Axjuhn zohjriife ze dörve.',
 
 # Virus scanner
@@ -674,7 +675,7 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'userlogin-resetpassword-link' => 'Paßwoot verjäße?',
 'helplogin-url' => 'Help:Övver et Enlogge',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hölp bem Enlogge]]',
-'userlogin-loggedin' => 'Do bes ald als {{GENDER:$1|Metmaacher|Metmaacherėn|Metmaacher|Metmaacherėn|Metmaacher}} [[User:$1]] enjelogg. Met heh dämm Fommolaa kanns De jäz onger enem andere Nahme enlogge.',
+'userlogin-loggedin' => 'Do bes ald als {{GENDER:$1|dä Metmaacher|de Metmaacherėn|dä Metmaacher|de Metmaacherėn|däMetmaacher}} [[User:$1]] enjelogg. Met heh dämm Fommolaa kanns De jäz onger enem andere Nahme enlogge.',
 'userlogin-createanother' => 'Donn ene zohsäzlejje Zohjang aanlääje',
 'createacct-join' => 'Jiv Ding Daate en:',
 'createacct-another-join' => 'Maach de nüüdeje Aanjaabe för dä neue Zohjaang.',
@@ -817,6 +818,7 @@ Wann dä aanjejovve es, weet_e jebruch, öm öffentlesch de Schriiver för Beidr
 'retypenew' => 'Noch ens dat neue Passwood:',
 'resetpass_submit' => 'E neu Zweschepasswood övvermeddele un aanmellde',
 'changepassword-success' => 'Et Paßwood es jeändert.',
+'changepassword-throttled' => 'Do häs zoh öff versöhk, enzelogge. Waat $1 Ih dat De es widder probeers.',
 'resetpass_forbidden' => 'E Passwoot kann nit jeändert wääde.',
 'resetpass-no-info' => 'Do mööts ad enjelogg sin, öm tiräk op di Sigg jonn ze dörve',
 'resetpass-submit-loggedin' => 'Passwood tuusche',
@@ -882,6 +884,7 @@ Do moß Ding Paßwoot enjävve, öm Ding Änderong ze bschtäätejje.',
 'changeemail-password' => 'Ding Passwoot {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}}:',
 'changeemail-submit' => 'Lohß jonn!',
 'changeemail-cancel' => 'Ophüre',
+'changeemail-throttled' => 'Do häs zoh öff versöhk, enzelogge. Waat $1 Ih dat De es widder probeers.',
 
 # Special:ResetTokens
 'resettokens-token-label' => '$1 (Em Momang es et: $2)',
@@ -1137,6 +1140,8 @@ Ene Jrond weße mer nit.',
 'content-not-allowed-here' => 'Ene Enhalld vun dä Zoot „$1“ es op dä Sigg „[[$2]]“ nit zohjelohße.',
 'editwarning-warning' => 'Wann de vun hee dä Sigg fott jeihß, doh künnte all Ding Änderonge aan dä Sigg verschött jonn.
 Do kanns heh di Warnung affschallde, wann de aanjemelldt un enjelogg bes, dann kriß de se nieh mieh wider. Jangk doför en dä Afschnett „{{int:prefs-editing}}“ en Dinge Enschtellonge.',
+'editpage-notsupportedcontentformat-title' => 'Dat Fommat vun enem Enhalld künne mer nit.',
+'editpage-notsupportedcontentformat-text' => 'Dat Fommat $1 vun enem Enhalld künne mer nit mem Modäll $2.',
 
 # Content models
 'content-model-wikitext' => 'Wikitäx',
@@ -1168,6 +1173,7 @@ Do kanns heh di Warnung affschallde, wann de aanjemelldt un enjelogg bes, dann k
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheid un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
 'undo-failure' => 'Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.',
 'undo-norev' => "Do ka'mer nix zeröck nämme. Di Version jidd_et nit, odder se es verstoche odder fottjeschmesse woode.",
+'undo-nochange' => 'Di Änderong schingk ald retuur jemaat woode ze sin.',
 'undo-summary' => 'De Änderung $1 fum [[Special:Contributions/$2|$2]] ([[User talk:$2|Klaaf]]) zeröck jenomme.',
 'undo-summary-username-hidden' => 'Nemm di Väsjohn $1 vun enem verschtoche Metmaacher widder retuur.',
 
@@ -1366,7 +1372,8 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'shown-title' => 'Zeisch {{PLURAL:$1|ein|$1|nix}} pro Sigg',
 'viewprevnext' => 'Bläddere: ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "*Sigg '''[[$1]]'''",
-'searchmenu-new' => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",
+'searchmenu-new' => '<strong>Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje.</strong>
+{{PLURAL:$2|Beloor Der ävver och die Sigg, di beim Söhke jefonge wood.|Beloor Der ävver och die Sigge, di beim Söhke jefonge woode sin.|}}',
 'searchprofile-articles' => 'Sigge vum Enhalt',
 'searchprofile-project' => 'Hülp- ov Projäk-Sigge',
 'searchprofile-images' => 'Dateie met Medije',
@@ -3021,6 +3028,7 @@ Wenn De jenerell aan [https://www.mediawiki.org/wiki/Localisation MediaWiki sing
 'allmessages-prefix' => 'Name fängk aan met:',
 'allmessages-language' => 'Schprooch:',
 'allmessages-filter-submit' => 'Lohß Jonn!',
+'allmessages-filter-translate' => 'Övversäze!',
 
 # Thumbnails
 'thumbnail-more' => 'Jrößer aanzeije',
@@ -3237,6 +3245,7 @@ Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 'pageinfo-length' => 'Bytes en dä Sigg',
 'pageinfo-article-id' => 'Dä Sigg ier Nommer en dä Daatebangk',
 'pageinfo-language' => 'De Schprooch vum Sigge-Enhallt',
+'pageinfo-content-model' => 'Et Modäll för der Enhalld vun dä Sigg',
 'pageinfo-robot-policy' => 'Et opnämme es för Söhkmaschiine',
 'pageinfo-robot-index' => 'zohjelohße',
 'pageinfo-robot-noindex' => 'verbodde',
@@ -4068,6 +4077,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-ext-colheader-description' => 'Beschrevve',
 'version-ext-colheader-credits' => 'Schriiver',
 'version-license-title' => '‎Lėzänz för $1',
+'version-license-not-found' => 'Mer han kein Lezänzenfommazjuhne för heh dat Zohsazprojramm jefonge.',
 'version-poweredby-credits' => "Dat Wiki heh löp met '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'sönß wää',
 'version-poweredby-translators' => 'de Övversäzer em translatewiki.net',
@@ -4089,7 +4099,7 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 # Special:Redirect
 'redirect' => 'Ömleide op en Dattei, ene Metmaacher udder de Väsjohn vun ener Sigg',
 'redirect-legend' => 'Ömleide ob_en Dattei udder Sigg',
-'redirect-summary' => 'Heh di {{int:specialpage}} leidt öm ob_en Dattei — doh mößd_Er ene Nahme aanjävve — udder en Sigg — doh mößd_Er en Kännong för en Väsjoh aanjävve — udder en Metmaachersigg — doh mößd_Er enem Metmaacher sing Kännong aanjävve.',
+'redirect-summary' => 'Heh di {{int:specialpage}} leidt öm ob_en Dattei — doh mößd_Er ene Nahme aanjävve, för e Beischpell:[[{{#Special:Redirect}}/file/Example.jpg]] — udder en Sigg — doh mößd_Er en Kännong för, udder en Väsjuhn aanjävve, för e Beischpell esu: [[{{#Special:Redirect}}/page/64308]] udder [[{{#Special:Redirect}}/revision/328429]] — udder en Metmaachersigg — doh mößd_Er enem Metmaacher sing Kännong aanjävve, för e Beischpell: [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Lohß Jonn!',
 'redirect-lookup' => 'Söhk noh:',
 'redirect-value' => 'Kännong udder Nahme:',

@@ -3091,6 +3091,7 @@ $2",
 'thumbnail_image-type' => "Type d'image non supporté",
 'thumbnail_gd-library' => 'Configuration incomplète de la bibliothèque GD : fonction $1 introuvable',
 'thumbnail_image-missing' => 'Le fichier suivant est introuvable : $1',
+'thumbnail_image-failure-limit' => 'Il y a eu récemment trop de tentatives échouées ($1 ou plus) pour restituer cette vignette. Veuillez réessayer ultérieurement.',
 
 # Special:Import
 'import' => 'Importer des pages',
