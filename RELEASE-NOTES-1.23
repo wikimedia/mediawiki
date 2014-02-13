@@ -34,6 +34,8 @@ production.
 * The 'max threads' setting was removed from $wgDBservers.
 * Support for AdminSettings.php has been completely removed. All configuration
   belongs in LocalSettings.php.
+* Special:ProtectedPages shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
