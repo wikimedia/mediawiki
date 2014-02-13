@@ -144,7 +144,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public static function newFromID( $id, $from = 'fromdb' ) {
 		// page id's are never 0 or negative, see bug 61166
 		if ( $id < 1 ) {
-			return;
+			return null;
 		}
 
 		$from = self::convertSelectType( $from );
