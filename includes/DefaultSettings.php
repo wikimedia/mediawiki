@@ -5965,14 +5965,13 @@ $wgExtensionMessagesFiles = array();
  * @code
  *    $wgMessagesDirs['VisualEditor'] = array(
  *        __DIR__ . '/lib/ve/modules/ve/i18n',
- *        __DIR__ . '/modules/ve-mw/i18n',
- *        __DIR__ . '/modules/ve-wmf/i18n',
+ *        __DIR__ . '/modules/oojs-ui/i18n',
  *    )
  * @endcode
  * @since 1.23
  */
 $wgMessagesDirs = array(
-	"$IP/resources/oojs/i18n",
+	"$IP/resources/oojs-ui/i18n",
 );
 
 /**
