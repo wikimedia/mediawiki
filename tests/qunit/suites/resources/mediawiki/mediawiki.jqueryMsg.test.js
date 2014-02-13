@@ -17,6 +17,7 @@
 				// The values for gender are not significant,
 				// what matters is which of the values is choosen by the parser
 				'gender-msg': '$1: {{GENDER:$2|blue|pink|green}}',
+				'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
 
 				'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
 
@@ -141,32 +142,49 @@
 		assert.equal( formatParse( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
 	} );
 
-	QUnit.test( 'Gender', 11, function ( assert ) {
+	QUnit.test( 'Gender', 15, function ( assert ) {
+		var originalGender = mw.user.options.get( 'gender' );
+
 		// TODO: These tests should be for mw.msg once mw.msg integrated with mw.jqueryMsg
 		// TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
-		var user = mw.user;
-
-		user.options.set( 'gender', 'male' );
+		mw.user.options.set( 'gender', 'male' );
 		assert.equal(
 			formatParse( 'gender-msg', 'Bob', 'male' ),
 			'Bob: blue',
 			'Masculine from string "male"'
 		);
 		assert.equal(
-			formatParse( 'gender-msg', 'Bob', user ),
+			formatParse( 'gender-msg', 'Bob', mw.user ),
 			'Bob: blue',
 			'Masculine from mw.user object'
 		);
-
-		user.options.set( 'gender', 'unknown' );
 		assert.equal(
-			formatParse( 'gender-msg', 'Foo', user ),
-			'Foo: green',
-			'Neutral from mw.user object' );
+			formatParse( 'gender-msg-currentuser' ),
+			'blue',
+			'Masculine for current user'
+		);
+
+		mw.user.options.set( 'gender', 'female' );
 		assert.equal(
 			formatParse( 'gender-msg', 'Alice', 'female' ),
 			'Alice: pink',
 			'Feminine from string "female"' );
+		assert.equal(
+			formatParse( 'gender-msg', 'Alice', mw.user ),
+			'Alice: pink',
+			'Feminine from mw.user object'
+		);
+		assert.equal(
+			formatParse( 'gender-msg-currentuser' ),
+			'pink',
+			'Feminine for current user'
+		);
+
+		mw.user.options.set( 'gender', 'unknown' );
+		assert.equal(
+			formatParse( 'gender-msg', 'Foo', mw.user ),
+			'Foo: green',
+			'Neutral from mw.user object' );
 		assert.equal(
 			formatParse( 'gender-msg', 'User' ),
 			'User: green',
@@ -175,6 +193,11 @@
 			formatParse( 'gender-msg', 'User', 'unknown' ),
 			'User: green',
 			'Neutral from string "unknown"'
+		);
+		assert.equal(
+			formatParse( 'gender-msg-currentuser' ),
+			'green',
+			'Neutral for current user'
 		);
 
 		mw.messages.set( 'gender-msg-one-form', '{{GENDER:$1|User}}: $2 {{PLURAL:$2|edit|edits}}' );
@@ -208,6 +231,8 @@
 			' test',
 			'Invalid syntax should result in {{gender}} simply being stripped away'
 		);
+
+		mw.user.options.set( 'gender', originalGender );
 	} );
 
 	QUnit.test( 'Grammar', 2, function ( assert ) {
