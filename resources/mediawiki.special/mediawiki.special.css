@@ -264,6 +264,18 @@ td.mw-statistics-numbers {
 	text-align: right;
 }
 
+/**** Special:ProtectedPages ****/
+table.mw-protectedpages span.mw-usertoollinks,
+span.mw-protectedpages-length,
+span.mw-protectedpages-actions {
+	white-space: nowrap;
+	font-size: 90%;
+}
+span.mw-protectedpages-unknown {
+	color: grey;
+	font-size: 90%;
+}
+
 /**** Special:UserRights ****/
 .mw-userrights-disabled {
 	color: #888;

@@ -2355,6 +2355,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Truncate for whole multibyte characters
 		$reason = $wgContLang->truncate( $reason, 255 );
 
+		$logRelationsValues = array();
+		$logRelationsField = null;
+
 		if ( $id ) { // Protection of existing page
 			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
 				return Status::newGood();
@@ -2389,11 +2392,24 @@ class WikiPage implements Page, IDBAccessObject {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
 
+			$logRelationsField = 'pr_id';
+
 			// Update restrictions table
 			foreach ( $limit as $action => $restrictions ) {
+				$dbw->delete(
+					'page_restrictions',
+					array(
+						'pr_page' => $id,
+						'pr_type' => $action
+					),
+					__METHOD__
+				);
 				if ( $restrictions != '' ) {
-					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
-						array( 'pr_page' => $id,
+					$dbw->insert(
+						'page_restrictions',
+						array(
+							'pr_id' => $dbw->nextSequenceValue( 'page_restrictions_pr_id_seq' ),
+							'pr_page' => $id,
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
 							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
@@ -2401,9 +2417,7 @@ class WikiPage implements Page, IDBAccessObject {
 						),
 						__METHOD__
 					);
-				} else {
-					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
-						'pr_type' => $action ), __METHOD__ );
+					$logRelationsValues[] = $dbw->insertId();
 				}
 			}
 
@@ -2456,7 +2470,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Update the protection log
 		$log = new LogPage( 'protect' );
-		$log->addEntry( $logAction, $this->mTitle, $reason, $params, $user );
+		$logId = $log->addEntry( $logAction, $this->mTitle, $reason, $params, $user );
+		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {
+			$log->addRelations( $logRelationsField, $logRelationsValues, $logId );
+		}
 
 		return Status::newGood();
 	}
