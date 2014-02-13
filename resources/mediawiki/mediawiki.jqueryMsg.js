@@ -785,13 +785,20 @@
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
+			function templateWithEmptyFirstParameter() {
+				var result = sequence( [
+					templateName,
+					colon
+				] );
+				return result === null ? null : [ result[0], '' ];
+			}
 			colon = makeStringParser( ':' );
 			templateContents = choice( [
 				function () {
 					var res = sequence( [
 						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
 						// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
-						choice( [ templateWithReplacement, templateWithOutReplacement ] ),
+						choice( [ templateWithReplacement, templateWithOutReplacement, templateWithEmptyFirstParameter ] ),
 						nOrMore( 0, templateParam )
 					] );
 					return res === null ? null : res[0].concat( res[1] );
@@ -1125,15 +1132,22 @@
 		 * @return {string} selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
-			var gender, forms;
+			var gender,
+				maybeUser = nodes[0],
+				forms = nodes.slice( 1 );
 
-			if  ( nodes[0] && nodes[0].options instanceof mw.Map ) {
-				gender = nodes[0].options.get( 'gender' );
-			} else {
-				gender = nodes[0];
+			// Empty argument to {{GENDER:}} means the current user
+			if ( maybeUser === '' ) {
+				maybeUser = mw.user;
 			}
 
-			forms = nodes.slice( 1 );
+			// If we are passed a mw.User-like object, check their gender.
+			// Otherwise, assume the gender string itself was passed ('male', 'female' or 'unknown').
+			if ( maybeUser && maybeUser.options instanceof mw.Map ) {
+				gender = maybeUser.options.get( 'gender' );
+			} else {
+				gender = maybeUser;
+			}
 
 			return this.language.gender( gender, forms );
 		},
