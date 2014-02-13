@@ -5958,21 +5958,21 @@ $wgExtensionMessagesFiles = array();
  *
  * @par Simple example:
  * @code
- *    $wgMessagesDirs['ConfirmEdit'] = __DIR__ . '/i18n';
+ *    $wgMessagesDirs['Example'] = __DIR__ . '/i18n';
  * @endcode
  *
  * @par Complex example:
  * @code
- *    $wgMessagesDirs['VisualEditor'] = array(
- *        __DIR__ . '/lib/ve/modules/ve/i18n',
- *        __DIR__ . '/modules/ve-mw/i18n',
- *        __DIR__ . '/modules/ve-wmf/i18n',
+ *    $wgMessagesDirs['Example'] = array(
+ *        __DIR__ . '/lib/ve/i18n',
+ *        __DIR__ . '/lib/oojs-ui/i18n',
+ *        __DIR__ . '/i18n',
  *    )
  * @endcode
  * @since 1.23
  */
 $wgMessagesDirs = array(
-	"$IP/resources/oojs/i18n",
+	"$IP/resources/oojs-ui/i18n",
 );
 
 /**
