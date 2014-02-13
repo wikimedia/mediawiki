@@ -785,13 +785,20 @@
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
+			function templateWithOutFirstParameter() {
+				var result = sequence( [
+					templateName,
+					colon
+				] );
+				return result === null ? null : [ result[0], '' ];
+			}
 			colon = makeStringParser( ':' );
 			templateContents = choice( [
 				function () {
 					var res = sequence( [
 						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
 						// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
-						choice( [ templateWithReplacement, templateWithOutReplacement ] ),
+						choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
 						nOrMore( 0, templateParam )
 					] );
 					return res === null ? null : res[0].concat( res[1] );
@@ -1117,23 +1124,33 @@
 
 		/**
 		 * Transform parsed structure according to gender.
-		 * Usage {{gender:[ gender | mw.user object ] | masculine form|feminine form|neutral form}}.
-		 * The first node is either a string, which can be "male" or "female",
-		 * or a User object (not a username).
 		 *
-		 * @param {Array} nodes List of nodes, [ {string|mw.User}, {string}, {string}, {string} ]
-		 * @return {string} selected gender form according to current language
+		 * Usage: {{gender:[ mw.user object | '' | 'male' | 'female' | 'unknown' ] | masculine form | feminine form | neutral form}}.
+		 *
+		 * The first node must be one of:
+		 * - the mw.user object (or a compatible one)
+		 * - an empty string - indicating the current user, same effect as passing the mw.user object
+		 * - a gender string ('male', 'female' or 'unknown')
+		 *
+		 * @param {Array} nodes List of nodes, [ {string|mw.user}, {string}, {string}, {string} ]
+		 * @return {string} Selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
-			var gender, forms;
+			var gender,
+				maybeUser = nodes[0],
+				forms = nodes.slice( 1 );
 
-			if  ( nodes[0] && nodes[0].options instanceof mw.Map ) {
-				gender = nodes[0].options.get( 'gender' );
-			} else {
-				gender = nodes[0];
+			if ( maybeUser === '' ) {
+				maybeUser = mw.user;
 			}
 
-			forms = nodes.slice( 1 );
+			// If we are passed a mw.user-like object, check their gender.
+			// Otherwise, assume the gender string itself was passed .
+			if ( maybeUser && maybeUser.options instanceof mw.Map ) {
+				gender = maybeUser.options.get( 'gender' );
+			} else {
+				gender = maybeUser;
+			}
 
 			return this.language.gender( gender, forms );
 		},

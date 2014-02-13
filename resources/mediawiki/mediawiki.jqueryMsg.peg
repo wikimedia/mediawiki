@@ -23,6 +23,7 @@ template
 templateContents
   = twr:templateWithReplacement p:templateParam* { return twr.concat(p) }
   / twr:templateWithOutReplacement p:templateParam* { return twr.concat(p) }
+  / twr:templateWithOutFirstParameter p:templateParam* { return twr.concat(p) }
   / t:templateName p:templateParam* { return p.length ? [ t, p ] : [ t ] }
 
 templateWithReplacement
@@ -30,6 +31,9 @@ templateWithReplacement
 
 templateWithOutReplacement
   = t:templateName ":" p:paramExpression { return [ t, p ] }
+
+templateWithOutFirstParameter
+  = t:templateName ":" { return [ t, "" ] }
 
 templateParam
   = "|" e:paramExpression* { return e.length > 1 ? [ "CONCAT" ].concat(e) : e[0]; }
