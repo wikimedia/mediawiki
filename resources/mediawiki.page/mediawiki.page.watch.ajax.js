@@ -72,7 +72,7 @@
 		actionPaths = mw.config.get( 'wgActionPaths' );
 
 		// TODO: Does MediaWiki give action path or query param
-		// precedence ? If the former, move this to the bottom
+		// precedence? If the former, move this to the bottom
 		action = mw.util.getParamValue( 'action', url );
 		if ( action !== null ) {
 			return action;
@@ -81,7 +81,7 @@
 		for ( key in actionPaths ) {
 			if ( actionPaths.hasOwnProperty( key ) ) {
 				parts = actionPaths[key].split( '$1' );
-				for ( i = 0; i < parts.length; i += 1 ) {
+				for ( i = 0; i < parts.length; i++ ) {
 					parts[i] = $.escapeRE( parts[i] );
 				}
 				m = new RegExp( parts.join( '(.+)' ) ).exec( url );
@@ -129,46 +129,41 @@
 			updateWatchLink( $link, action, 'loading' );
 
 			api = new mw.Api();
+
 			api[action]( title )
-			.done( function ( watchResponse ) {
-				var otherAction;
+				.done( function ( watchResponse ) {
+					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-				otherAction = action === 'watch' ? 'unwatch' : 'watch';
+					mw.notify( $.parseHTML( watchResponse.message ), {
+						tag: 'watch-self'
+					} );
 
-				mw.notify( $.parseHTML( watchResponse.message ), {
-					tag: 'watch-self'
+					// Set link to opposite
+					updateWatchLink( $link, otherAction );
+
+					// Update the "Watch this page" checkbox on action=edit when the
+					// page is watched or unwatched via the tab (bug 12395).
+					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched !== undefined );
+				} )
+				.fail( function () {
+					var cleanTitle, msg, link;
+
+					// Reset link to non-loading mode
+					updateWatchLink( $link, action );
+
+					// Format error message
+					cleanTitle = title.replace( /_/g, ' ' );
+					link = mw.html.element(
+						'a', {
+							href: mw.util.getUrl( title ),
+							title: cleanTitle
+						}, cleanTitle
+					);
+					msg = mw.message( 'watcherrortext', link );
+
+					// Report to user about the error
+					mw.notify( msg, { tag: 'watch-self' } );
 				} );
-
-				// Set link to opposite
-				updateWatchLink( $link, otherAction );
-
-				// Bug 12395 - update the watch checkbox on edit pages when the
-				// page is watched or unwatched via the tab.
-				if ( watchResponse.watched !== undefined ) {
-					$( '#wpWatchthis' ).prop( 'checked', true );
-				} else {
-					$( '#wpWatchthis' ).prop( 'checked', false );
-				}
-			} )
-			.fail( function () {
-				var cleanTitle, msg, link;
-
-				// Reset link to non-loading mode
-				updateWatchLink( $link, action );
-
-				// Format error message
-				cleanTitle = title.replace( /_/g, ' ' );
-				link = mw.html.element(
-					'a', {
-						href: mw.util.getUrl( title ),
-						title: cleanTitle
-					}, cleanTitle
-				);
-				msg = mw.message( 'watcherrortext', link );
-
-				// Report to user about the error
-				mw.notify( msg, { tag: 'watch-self' } );
-			} );
 		} );
 	} );
 
