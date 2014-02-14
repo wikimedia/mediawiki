@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (7788dc6700)
+ * OOjs UI v0.1.0-pre (7d3223b8f4)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Feb 13 2014 13:56:07 GMT-0800 (PST)
+ * Date: Thu Feb 13 2014 18:36:08 GMT-0800 (PST)
  */
 ( function () {
 
@@ -2163,12 +2163,13 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 	var i, len, item;
 
 	// Remove all items
-	if ( this.aggregate ) {
-		for ( i = 0, len = this.items.length; i < len; i++ ) {
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		item = this.items[i];
+		if ( this.aggregate ) {
 			item.disconnect( this );
 		}
+		item.setElementGroup( null );
 	}
-	item.setElementGroup( null );
 	this.items = [];
 	this.$items.detach();
 	this.$items = this.$( [] );
