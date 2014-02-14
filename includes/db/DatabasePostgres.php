@@ -729,13 +729,15 @@ __INDEXATTR__;
 	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array() ) {
-		$forUpdateKey = array_search( 'FOR UPDATE', $options );
-		if ( $forUpdateKey !== false && $join_conds ) {
-			unset( $options[$forUpdateKey] );
+		if ( is_array( $options ) ) {
+			$forUpdateKey = array_search( 'FOR UPDATE', $options );
+			if ( $forUpdateKey !== false && $join_conds ) {
+				unset( $options[$forUpdateKey] );
 
-			foreach ( $join_conds as $table => $join_cond ) {
-				if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
-					$options['FOR UPDATE'][] = $table;
+				foreach ( $join_conds as $table_cond => $join_cond ) {
+					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
+						$options['FOR UPDATE'][] = $table_cond;
+					}
 				}
 			}
 		}
