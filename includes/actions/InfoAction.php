@@ -289,6 +289,9 @@ class InfoAction extends FormlessAction {
 		if ( isset( $pageProperties['noindex'] ) ) {
 			$pOutput->setIndexPolicy( 'noindex' );
 		}
+		if ( isset( $pageProperties['index'] ) ) {
+			$pOutput->setIndexPolicy( 'index' );
+		}
 
 		// Use robot policy logic
 		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
