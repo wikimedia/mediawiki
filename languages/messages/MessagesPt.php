@@ -38,6 +38,7 @@
  * @author Malafaya
  * @author Manuel Menezes de Sequeira
  * @author Masked Rogue
+ * @author Matma Rex
  * @author McDutchie
  * @author MetalBrasil
  * @author Minh Nguyen
@@ -4143,7 +4144,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
-'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[ $2  $1 ]".',
+'feedback-thanks' => 'Obrigado! O seu comentário foi adicionado à página "[$2 $1]".',
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Comunicar um novo defeito.',

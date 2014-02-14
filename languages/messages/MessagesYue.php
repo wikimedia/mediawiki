@@ -8,6 +8,7 @@
  * @file
  *
  * @author Anson2812
+ * @author Antonytse
  * @author Horacewai2
  * @author Justincheng12345
  * @author Kaganer
@@ -241,8 +242,8 @@ $messages = array(
 'tog-extendwatchlist' => '展開監視清單去顯示全部更改，唔係淨係最新嘅',
 'tog-usenewrc' => '用強化版最近更改（需要JavaScript）',
 'tog-numberheadings' => '標題自動編號',
-'tog-showtoolbar' => '顯示修改工具列（需要JavaScript）',
-'tog-editondblclick' => '撳兩下改嘢（需要JavaScript）',
+'tog-showtoolbar' => '顯示修改工具列',
+'tog-editondblclick' => '撳兩下改嘢',
 'tog-editsectiononrightclick' => '可以撳右掣更改個別段落（需要JavaScript）',
 'tog-rememberpassword' => '響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})',
 'tog-watchcreations' => '將我開嘅頁加入監視清單',
@@ -257,7 +258,7 @@ $messages = array(
 'tog-enotifminoredits' => '小修改都要電郵通知我',
 'tog-enotifrevealaddr' => '喺電郵通知信上面話畀人聽我嘅電郵地址',
 'tog-shownumberswatching' => '顯示有幾多人監視',
-'tog-oldsig' => '原有簽名嘅預覽：',
+'tog-oldsig' => '現有簽名：',
 'tog-fancysig' => '將簽名以維基字對待（冇自動連結）',
 'tog-uselivepreview' => '用即時預覽（需要JavaScript）（實驗緊）',
 'tog-forceeditsummary' => '我冇入修改註解時通知我',
@@ -337,6 +338,18 @@ $messages = array(
 'oct' => '10月',
 'nov' => '11月',
 'dec' => '12月',
+'january-date' => '1月$1號',
+'february-date' => '2月$1號',
+'march-date' => '3月$1號',
+'april-date' => '4月$1號',
+'may-date' => '5月$1號',
+'june-date' => '6月$1號',
+'july-date' => '7月$1號',
+'august-date' => '8月$1號',
+'september-date' => '9月$1號',
+'october-date' => '10月$1號',
+'november-date' => '11月$1號',
+'december-date' => '12月$1號',
 
 # Categories related messages
 'pagecategories' => '屬於$1類',
@@ -486,6 +499,7 @@ $1',
 'ok' => 'OK',
 'retrievedfrom' => '由 "$1" 收',
 'youhavenewmessages' => '你有$1（$2）。',
+'newmessageslinkplural' => '新訊息',
 'youhavenewmessagesmulti' => '你響 $1 有新信',
 'editsection' => '編輯',
 'editold' => '編輯',
@@ -612,8 +626,13 @@ $1',
 'gotaccount' => '已經有戶口？ $1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '唔記得簽到資料？',
+'userlogin-resetpassword-link' => '唔記得密碼？',
+'userlogin-createanother' => '開過個戶口',
+'createacct-emailrequired' => '電郵地址',
 'createaccountmail' => '用電郵',
 'createaccountreason' => '原因：',
+'createacct-reason-ph' => '開過個戶口嘅原因',
+'createacct-submit' => '開戶口',
 'badretype' => '你入嘅密碼唔一致。',
 'userexists' => '你入嘅用戶名已經有人用咗，唔該揀過個名啦。',
 'loginerror' => '登入錯誤',
@@ -636,7 +655,7 @@ $1',
 'passwordtooshort' => '你嘅密碼最少要有$1個半形字元。',
 'password-name-match' => '你嘅密碼一定要同你嘅用戶名唔一樣。',
 'password-login-forbidden' => '呢個用戶名同密碼嘅利用係被禁止嘅。',
-'mailmypassword' => '寄個新密碼',
+'mailmypassword' => '重設密碼',
 'passwordremindertitle' => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext' => '有人（可能係你，IP 位置 $1）
 請求 {{SITENAME}} 嘅新密碼 ($4)。
@@ -696,7 +715,18 @@ $1',
 
 # Special:PasswordReset
 'passwordreset' => '密碼重設',
-'passwordreset-username' => '用戶名',
+'passwordreset-legend' => '重設密碼',
+'passwordreset-username' => '用戶名：',
+'passwordreset-domain' => '域名：',
+'passwordreset-email' => '電郵地址：',
+'passwordreset-emailelement' => '用戶名：$1
+臨時密碼：$2',
+
+# Special:ChangeEmail
+'changeemail' => '改電郵地址',
+'changeemail-submit' => '轉電郵',
+'changeemail-cancel' => '取消',
+'changeemail-throttled' => '你試咗登入太多次，請喺$1後再試過。',
 
 # Edit page toolbar
 'bold_sample' => '粗體字',
@@ -806,6 +836,7 @@ $1',
 'note' => "'''留意：'''",
 'previewnote' => "'''請記住呢個只係預覽。'''
 更改嘅内容重未儲存！",
+'continue-editing' => '去編輯區',
 'previewconflict' => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview' => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。'''
 請再試過喇。如果仍然唔得嘅話，試下[[Special:UserLogout|登出]]，然後重新登入。",
@@ -930,7 +961,7 @@ $1',
 'history-fieldset-title' => '瀏覽歷史',
 'history-show-deleted' => '只顯示刪除咗嘅',
 'histfirst' => '最早',
-'histlast' => '最近',
+'histlast' => '最新',
 'historysize' => '($1 {{PLURAL:$1|byte|bytes}})',
 'historyempty' => '(空)',
 
@@ -1187,7 +1218,7 @@ $1",
 'prefs-emailconfirm-label' => '電郵確認:',
 'youremail' => '電郵:',
 'username' => '用戶名:',
-'uid' => '用戶 ID:',
+'uid' => '{{GENDER:$1|用戶}}ID：',
 'prefs-memberingroups' => '{{PLURAL:$1|一|多}}組嘅成員:',
 'prefs-registration' => '註冊時間:',
 'yourrealname' => '真名:',
@@ -1262,8 +1293,8 @@ $1",
 
 'group-user-member' => '用戶',
 'group-autoconfirmed-member' => '自動確認用戶',
-'group-bot-member' => '機械人',
-'group-sysop-member' => '操作員',
+'group-bot-member' => '{{GENDER:$1|機械人}}',
+'group-sysop-member' => '{{GENDER:$1|管理員}}',
 'group-bureaucrat-member' => '事務員',
 'group-suppress-member' => '監督',
 
@@ -1543,6 +1574,10 @@ $1',
 'upload-unknown-size' => '未知嘅大細',
 'upload-http-error' => '一個HTTP錯誤發生咗: $1',
 
+# File backend
+'backend-fail-notexists' => '檔案$1唔存在。',
+'backend-fail-delete' => '刪唔到檔案「$1」。',
+
 # ZipDirectoryReader
 'zip-file-open-error' => '在開啟檔案進行ZIP檢查時出錯。',
 'zip-wrong-format' => '呢個唔係一個ZIP檔案。',
@@ -1785,6 +1820,7 @@ $1',
 'protectedpages-indef' => '只有無期保謢頁',
 'protectedpages-cascade' => '只有連串保護頁',
 'protectedpagesempty' => '響呢啲參數度，現時無頁面響度保護緊。',
+'protectedpages-reason' => '原因',
 'protectedtitles' => '保護咗嘅標題',
 'protectedtitlesempty' => '響呢啲參數之下並無標題保護住。',
 'listusers' => '用戶一覽',
@@ -1818,7 +1854,7 @@ $1',
 
 # Special:Log
 'specialloguserlabel' => '用戶:',
-'speciallogtitlelabel' => '標題:',
+'speciallogtitlelabel' => '目標（題目或者用戶）：',
 'log' => '日誌',
 'all-logs-page' => '全部嘅公共日誌',
 'alllogstext' => '響{{SITENAME}}度全部日誌嘅綜合顯示。你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
@@ -1929,7 +1965,7 @@ $1',
 'usermessage-editor' => '系統訊息',
 
 # Watchlist
-'watchlist' => '監視清單',
+'watchlist' => '監視名單',
 'mywatchlist' => '監視清單',
 'watchlistfor2' => '$1嘅監視清單 $2',
 'nowatchlist' => '你嘅監視清單度並冇任何項目。',
@@ -2066,8 +2102,8 @@ wiki: $PAGEEDITOR_WIKI
 'protect-cascadeon' => '呢一版現時正響度保護緊，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，而當中又開咗連串保護。你可以更改呢一版嘅保護等級，但係呢個修改係唔會影響到嗰個連串保護。',
 'protect-default' => '容許全部用戶',
 'protect-fallback' => '需要"$1"嘅許可',
-'protect-level-autoconfirmed' => '限制新嘅同未註冊嘅用戶',
-'protect-level-sysop' => '只限操作員',
+'protect-level-autoconfirmed' => '只限已經自動確認嘅用戶',
+'protect-level-sysop' => '只限管理員',
 'protect-summary-cascade' => '連串保護',
 'protect-expiring' => '響 $1 (UTC) 到期',
 'protect-expiry-indefinite' => '唔定',

@@ -2313,6 +2313,14 @@ $1',
 'protectedpages-cascade' => 'Само каскадни заштити',
 'protectedpages-noredirect' => 'Скриј пренасочувања',
 'protectedpagesempty' => 'Во моментов нема заштитени страници со параметрите кои ги зададовте.',
+'protectedpages-timestamp' => 'Време и датум',
+'protectedpages-page' => 'Страница',
+'protectedpages-expiry' => 'Истекува',
+'protectedpages-performer' => 'Заштитувач',
+'protectedpages-params' => 'Параметри на заштитата',
+'protectedpages-reason' => 'Причина',
+'protectedpages-unknown-timestamp' => 'Непознато',
+'protectedpages-unknown-performer' => 'Непознат корисник',
 'protectedtitles' => 'Заштитени наслови',
 'protectedtitlesempty' => 'Во овој момент нема заштитени наслови кои ги задоволуваат наведените критериуми.',
 'listusers' => 'Список на корисници',
@@ -3415,8 +3423,8 @@ $1',
 'minutes-abbrev' => '$1 м',
 'hours-abbrev' => '$1 ч',
 'days-abbrev' => '$1 д',
-'seconds' => '{{PLURAL:$1|$1 секунда|$1 секунди}}',
-'minutes' => '{{PLURAL:$1|$1 минута|$1 минути}}',
+'seconds' => '{{PLURAL:$1|една секунда|$1 секунди}}',
+'minutes' => '{{PLURAL:$1|една минута|$1 минути}}',
 'hours' => '{{PLURAL:$1|$1 час|$1 часа}}',
 'days' => '{{PLURAL:$1|$1 ден|$1 дена}}',
 'weeks' => '{{PLURAL:$1|$1 недела|$1 недели}}',
@@ -3427,8 +3435,8 @@ $1',
 
 # Human-readable timestamps
 'hours-ago' => 'пред $1 {{PLURAL:$1|час|часа}}',
-'minutes-ago' => 'пред $1 {{PLURAL:$1|минута|минути}}',
-'seconds-ago' => 'пред $1 {{PLURAL:$1|секунда|секунди}}',
+'minutes-ago' => 'пред {{PLURAL:$1|една минута|$1 минути}}',
+'seconds-ago' => 'пред {{PLURAL:$1|една секунда|$1 секунди}}',
 'monday-at' => 'понеделникот во $1',
 'tuesday-at' => 'вторникот во $1',
 'wednesday-at' => 'средата во $1',
@@ -4080,7 +4088,7 @@ $5
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Промените во {{PLURAL:$1|последната секунда|последните $1 секунди}} може да не бидат прикажани во списокот.',
-'lag-warn-high' => 'Поради преоптовареност на податочниот опслужувач, промените понови од $1 {{PLURAL:$1|секунда|секунди}}
+'lag-warn-high' => 'Поради преоптовареност на податочниот опслужувач, промените понови од {{PLURAL:$1|една секунда|$1 секунди}}
 може да не бидат прикажани во списокот.',
 
 # Watchlist editor
@@ -4434,8 +4442,8 @@ $5
 'api-error-verification-error' => 'Податотеката е оштетена или има погрешна наставка.',
 
 # Durations
-'duration-seconds' => '$1 {{PLURAL:$1|секунда|секунди}}',
-'duration-minutes' => '$1 {{PLURAL:$1|минута|минути}}',
+'duration-seconds' => '{{PLURAL:$1|една секунда|$1 секунди}}',
+'duration-minutes' => '{{PLURAL:$1|една минута|$1 минути}}',
 'duration-hours' => '$1 {{PLURAL:$1|час|часа}}',
 'duration-days' => '$1 {{PLURAL:$1|ден|дена}}',
 'duration-weeks' => '$1 {{PLURAL:$1|недела|недели}}',
@@ -4450,9 +4458,9 @@ $5
 # Limit report
 'limitreport-title' => 'Профилни парсерски податоци:',
 'limitreport-cputime' => 'Употреба на обработувачко време',
-'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-cputime-value' => '{{PLURAL:$1|една секунда|$1 секунди}}',
 'limitreport-walltime' => 'Употреба на вистинско време',
-'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
+'limitreport-walltime-value' => '{{PLURAL:$1|една секунда|$1 секунди}}',
 'limitreport-ppvisitednodes' => 'Бр. на пројдени јазли од предобработувачот',
 'limitreport-ppgeneratednodes' => 'Бр. на создадени јазли од предобработувачот',
 'limitreport-postexpandincludesize' => 'Големина на вклученото по проширувањето',

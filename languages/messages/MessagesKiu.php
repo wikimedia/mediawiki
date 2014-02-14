@@ -790,11 +790,11 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'yourrealname' => 'Namo rastıkên:',
 'yourlanguage' => 'Zon:',
 'yourvariant' => 'Varyant:',
-'yournick' => 'İmza:',
+'yournick' => 'İmza newiye:',
 'badsig' => "İmza kala nêvêrdiye.
 Etiketê ''HTML''i qontrol ke.",
 'badsiglength' => 'İmza to zaf derga.
-$1 gunê {{PLURAL:$1|herfe|herfu}} ra senık bo.',
+A gunê ebe $1 {{PLURAL:$1|herfe|herfu}} ra jêde mebo.',
 'yourgender' => 'Cınsiyet:',
 'gender-male' => 'Cüamêrd',
 'gender-female' => 'Cüanıke',

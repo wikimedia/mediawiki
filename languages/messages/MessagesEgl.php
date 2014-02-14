@@ -683,6 +683,10 @@ Per impustêr e cunfermêr l'indirés dervîres dal [[Special:Preferences|prefer
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',
 'noarticletext-nopermission' => "In cól mumèint ché la pàgina serchêda l'é vōda. L'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît o<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] <span>, mó an 't gh'ê mìa al permès ed fêr cla pàgina ché.",
 'missing-revision' => "La revişiòun #\$1 'd la pagina \"{{PAGENAME}}\" l' an gh'è mìa. Còst, ed sôlit, a sucēd mèint'r as va drē a 'n colegamèint a 'na pàgina scanşlêda, in 'na stòria, di lavōr fât, mìa arnuvêda. I particulêr a 's pōlen catêr int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
+'userpage-userdoesnotexist' => 'L\'inscrisiòun "<nowiki>$1</nowiki>" la cumbîna mìa cun \'n utèint registrê. Ét sicûr ed vrèir fêr o mudifichêr cla pàgina ché.',
+'userpage-userdoesnotexist-view' => 'L\'utèin "$1" an n\'à mìa fât l\'inscrisiòun.',
+'blocked-notice-logextract' => "Cl'utèint ché adèsa l'é bluchê. 
+Per infurmasiòun l'ûltem elemèint dal regéster di blôch l'é scrét ché sòta:",
 'note' => "'''Nôta:'''",
 'previewnote' => "'''Ricôrdet che còsta l'é sōl 'na guardêda préma 'd salvêr.'''
 Al tō mudéfichi în MIA incòra stêdi salvêdi.",

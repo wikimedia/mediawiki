@@ -1321,6 +1321,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'showhideselectedversions' => 'Otkrij/sakrij odabrane izmjene',
 'editundo' => 'ukloni ovu izmjenu',
 'diff-empty' => 'Nema razlike inačica',
+'diff-multi-sameuser' => '{{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} istog suradnika',
 'diff-multi-manyusers' => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)',
 'difference-missing-revision' => '{{PLURAL:$2|Uređivanje|$2 uređivanja}} sljedeće šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.
 
@@ -1366,6 +1367,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchrelated' => 'povezano',
 'searchall' => 'sve',
 'showingresults' => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, počevši od '''$2'''.",
+'showingresultsinrange' => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, u rasponu od '''$2''' do '''$3'''.",
 'showingresultsnum' => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Rezultat '''$1''' od '''$3'''|Rezultati '''$1 - $2''' od '''$3'''}} za '''$4'''",
 'search-nonefound' => 'Ne postoje rezultati koji se podudaraju s upitom.',
