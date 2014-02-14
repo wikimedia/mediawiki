@@ -41,7 +41,7 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testSecureAndSplit() {
 		$this->setMwGlobals( array(
-			'wgLocalInterwiki' => 'localtestiw',
+			'wgLocalInterwikis' => array( 'localtestiw' ),
 			'wgHooks' => array(
 				'InterwikiLoadPrefix' => array(
 					function ( $prefix, &$data ) {
