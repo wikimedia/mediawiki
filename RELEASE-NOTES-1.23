@@ -41,6 +41,11 @@ production.
 * $wgSkipSkin, which has been replaceable by $wgSkipSkins since 2005 (r9249), is
   now formally deprecated.
 * Removed deprecated $wgDisabledActions as it is hardly used anywhere.
+* $wgLocalInterwikis is an array containing multiple local interwiki prefixes
+  (interwiki prefixes that point back to the current wiki). This effectively
+  allows more than one value of $wgLocalInterwiki to be specified and
+  understood by the parser. The value of $wgLocalInterwiki is automatically
+  prepended to the start of this array.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
@@ -265,6 +270,9 @@ changes to languages because of Bugzilla reports.
 * The jquery.delayedBind ResourceLoader module was deprecated in favor of the
   jquery.throttle-debounce module. It will be removed in MediaWiki 1.24.
 * mw.user.bucket has been deprecated.
+* RecentChange::mExtra['lang'] is no longer used. Extensions should read from
+  other configuration variables, including $wgLocalInterwikis, to identify the
+  current wiki.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

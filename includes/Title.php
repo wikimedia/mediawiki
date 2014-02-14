@@ -3200,7 +3200,7 @@ class Title {
 	 * @return Bool true on success
 	 */
 	private function secureAndSplit() {
-		global $wgContLang, $wgLocalInterwiki;
+		global $wgContLang, $wgLocalInterwikis;
 
 		# Initialisation
 		$this->mInterwiki = '';
@@ -3273,17 +3273,17 @@ class Title {
 					$this->mInterwiki = $wgContLang->lc( $p );
 
 					# Redundant interwiki prefix to the local wiki
-					if ( $wgLocalInterwiki !== false
-						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki )
-					) {
-						if ( $dbkey == '' ) {
-							# Can't have an empty self-link
-							return false;
+					foreach ( $wgLocalInterwikis as $localIW ) {
+						if ( 0 == strcasecmp( $this->mInterwiki, $localIW ) ) {
+							if ( $dbkey == '' ) {
+								# Can't have an empty self-link
+								return false;
+							}
+							$this->mInterwiki = '';
+							$firstPass = false;
+							# Do another namespace split...
+							continue 2;
 						}
-						$this->mInterwiki = '';
-						$firstPass = false;
-						# Do another namespace split...
-						continue;
 					}
 
 					# If there's an initial colon after the interwiki, that also
