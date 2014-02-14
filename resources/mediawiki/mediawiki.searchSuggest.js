@@ -32,13 +32,13 @@
 
 		// Compute form data for search suggestions functionality.
 		function computeResultRenderCache( context ) {
-			var $form, formAction, baseHref, linkParams;
+			var $form, baseHref, linkParams;
 
 			// Compute common parameters for links' hrefs
 			$form = context.config.$region.closest( 'form' );
 
-			formAction = $form.attr( 'action' );
-			baseHref = formAction + ( formAction.match( /\?/ ) ? '&' : '?' );
+			baseHref = $form.attr( 'action' );
+			baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
 			linkParams = {};
 			$.each( $form.serializeArray(), function ( idx, obj ) {
@@ -185,10 +185,9 @@
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input ) {
-					$input.closest( 'form' ).append(
-						$( '<input type="hidden" name="fulltext" value="1"/>' )
-					);
-					$input.closest( 'form' ).submit();
+					$input.closest( 'form' )
+						.append( $( '<input type="hidden" name="fulltext" value="1"/>' ) )
+						.submit();
 				}
 			},
 			$region: $searchRegion
