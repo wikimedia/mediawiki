@@ -1322,6 +1322,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'editundo' => 'ukloni ovu izmjenu',
 'diff-empty' => 'Nema razlike inačica',
 'diff-multi-sameuser' => '{{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} istog suradnika',
+'diff-multi-otherusers' => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{PLURAL:$2|jednog|$2}} suradnika)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)',
 'difference-missing-revision' => '{{PLURAL:$2|Uređivanje|$2 uređivanja}} sljedeće šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.
 

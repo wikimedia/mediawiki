@@ -48,6 +48,7 @@
  * @author Opraco
  * @author Paulo Juntas
  * @author Pedroca cerebral
+ * @author Polyethylen
  * @author Rafael Vargas
  * @author Rei-artur
  * @author Remember the dot
@@ -1391,6 +1392,8 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo' => 'desfazer',
 'diff-empty' => '(Sem diferenças)',
+'diff-multi-sameuser' => '(Há {{PLURAL:$1|uma edição intermédia|$1 edições intermédias}} do mesmo utilizador que não estão a ser apresentadas)',
+'diff-multi-otherusers' => '(Há {{PLURAL:$1|uma revisão intermédia|$1 revisões intermédias}} de {{PLURAL:$2|outro utilizador|$2 utilizadores}} que não {{PLURAL:$1|está a ser apresentada|estão a ser apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
 'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
 
@@ -2542,7 +2545,7 @@ A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evita
 'delete-warning-toobig' => 'Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
 prossiga com precaução.',
-'deleting-backlinks-warning' => "'''Aviso:''' Outras páginas têm ligação à página que está prestes a eliminar.",
+'deleting-backlinks-warning' => "'''Aviso:''' Outras páginas possuem ligação à ou são transcluídas da página que está prestes a eliminar.",
 
 # Rollback
 'rollback' => 'Reverter edições',

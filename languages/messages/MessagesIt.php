@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Amire80
  * @author Andria
+ * @author Ankabel
  * @author Aushulz
  * @author Beta16
  * @author Blaisorblade
@@ -2180,7 +2181,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'protectedpages-timestamp' => 'Data e ora',
 'protectedpages-page' => 'Pagina',
 'protectedpages-expiry' => 'Scadenza',
-'protectedpages-params' => 'Parametri della protezione',
+'protectedpages-params' => 'Parametri di protezione',
 'protectedpages-reason' => 'Motivo',
 'protectedpages-unknown-timestamp' => 'Sconosciuto',
 'protectedpages-unknown-performer' => 'Utente sconosciuto',

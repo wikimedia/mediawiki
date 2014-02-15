@@ -687,9 +687,25 @@ Per impustêr e cunfermêr l'indirés dervîres dal [[Special:Preferences|prefer
 'userpage-userdoesnotexist-view' => 'L\'utèin "$1" an n\'à mìa fât l\'inscrisiòun.',
 'blocked-notice-logextract' => "Cl'utèint ché adèsa l'é bluchê. 
 Per infurmasiòun l'ûltem elemèint dal regéster di blôch l'é scrét ché sòta:",
+'clearyourcache' => "'''Nôta:''' dôpa vèir salvê a pré èser necesâri pulîr la memôria pruvişôria dal navigadôr per vèder i cambiamèint.
+*'''Firefox / Safari''': tgnîr cucê al tâst dal lètri grândi e clichêr insém a \"Ricarica\" opór cucêr i tâst ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' insém a un Mac)
+*'''Google Chrome''': cucêr i tâst ''Ctrl-Shift-R'' (''⌘-Shift-R'' insém a un Mac) 
+*'''Internet Explorer''': tgnîr cucê al tâst ''Ctrl'' mènter es fà cléch insém a ''Refresh'', opór cucêr ''Ctrl-F5'' 
+*'''Opera''': svudêr dal tót la memôria pruvişôria 'd la lésta ''Strumenti → Preferenze''",
+'usercssyoucanpreview' => "'''Cunséli:''' drōva al tâst 'Guêrda préma' per pruvêr al tó nōv CSS préma 'd salvêrel'''",
+'userjsyoucanpreview' => "'''Cunséli:''' drōva al tâst 'Guêrda préma' per pruvêr al tó nōv  JavaScript préma 'd salvêrel'''",
+'usercsspreview' => "'''Còsta l'é sōl 'na guardêda al tó CSS préma 'd salvêr al mudéfichi ch'în stêdi fâti.Ricôrdet che al mudéfichi în mìa incòra stêdi salvêdi!'''",
+'userjspreview' => "'''Còsta l'é sōl 'na guardêda préma 'd salvêr al mudéfichi per pruvêr al tó JavaScript personêl. Ricôrdet che al mudéfichi în mìa incòra stêdi salvêdi!'''",
+'sitecsspreview' => "'''Còsta l'é sōl 'na guardêda 'l CSS préma 'd salvêrel. Ricôrdet che al mudéfichi în mìa incòra stêdi salvêdi!'''",
+'sitejspreview' => "'''Còsta l'é sōl 'na guardêda préma per pruvêr al JavaScript. Ricôrdet che al mudéfichi în mìa incòra stêdi salvêdi!'''",
+'userinvalidcssjstitle' => "'''Atensiòun:''' An gh'é nisóna skin cun al nòm \"\$1\". As fà nutêr che al pàgini per i .css e .js personêl a gh'àn la préma lètra dal tétol in céch, per eşèimpi {{ns:user}}:Eşèimpi/vector.css e non {{ns:user}}:Eşèimpi/Vector.css.",
+'updated' => '(Arnuvê)',
 'note' => "'''Nôta:'''",
 'previewnote' => "'''Ricôrdet che còsta l'é sōl 'na guardêda préma 'd salvêr.'''
 Al tō mudéfichi în MIA incòra stêdi salvêdi.",
+'continue-editing' => "Và int la zôna 'd mudéfica",
+'previewconflict' => "La vésta la cumbîna cun al tèst int la zôna 'd mudéfica tèst ché d'ed sōver e l'é cme la srà la pàgina s'ed decéd ed clichêr insém a \"Sêlva la pàgina\" in cól mumèint ché.",
+'session_fail_preview' => "'''An n'é mìa stê pusébil registrêr la mudéfica perchè a s' în pêrsi al j infurmasiòun relatîvi a la sesiòun. Tōrna a pruvêr. Se al prublēma al cunténva, a 's pōl pruvêr [[Special:UserLogout|ed coleghêres]] e fêr un ingrès nōv.'''",
 'editing' => 'Mudéfica ed $1',
 'editingsection' => 'Mudéfica ed $1 (sesiòun)',
 'editingcomment' => 'Mudéfica e $1 (sesiòun nōva)',

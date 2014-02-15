@@ -887,6 +887,7 @@ Diar mut ei muar üs {{PLURAL:$2|1|$2}} brükt wurd. Nü {{PLURAL:$1|woort diar 
 Luke oner, of dü det uk würelk du wel, an do seekre din feranrangen.',
 'undo-failure' => 'Det feranrang küd ei stregen wurd, auer di kirew uuntesken feranert wurden as.',
 'undo-norev' => 'Det feranrang küd ei turagsaat wurd, auer diar niks as of auer det sidj stregen wurden as.',
+'undo-nochange' => 'Detdiar feranrang as wel al ans turagsaat wurden.',
 'undo-summary' => 'Feranrang $1 faan [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusjuun]]) turagsaat.',
 'undo-summary-username-hidden' => 'Feranrang $1 faan en ferbürgenen brüker turagsaat',
 
@@ -1108,6 +1109,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'searchrelated' => 'ferbünjen',
 'searchall' => 'aaltumaal',
 'showingresults' => "Heer {{PLURAL:$1|as '''1''' resultaat|san '''$1''' resultaaten}}, jo began mä numer '''$2.'''",
+'showingresultsinrange' => 'Oner {{PLURAL:$1|woort <strong>ian</strong> resultaat|wurd bit tu <strong>$1</strong> resultaaten}} tesken <strong>$2</strong> an <strong>$3</strong> uunwiset.',
 'showingresultsnum' => "Heer {{PLURAL:$3|as '''1''' resultaat|san '''$3''' resultaaten}}, jo began mä numer '''$2.'''",
 'showingresultsheader' => "{{PLURAL:$5|resultaat '''$1''' faan '''$3'''|resultaaten '''$1-$2''' faan '''$3'''}}, för '''$4.'''",
 'search-nonefound' => 'För din uunfraag san nian resultaaten fünjen wurden.',
@@ -1906,6 +1908,14 @@ Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det s
 'protectedpages-cascade' => 'Bluas sidjen mä kaskaaden-seekerhaid',
 'protectedpages-noredirect' => 'Widjerfeerangen fersteeg',
 'protectedpagesempty' => 'Uun uugenblak san sok sidjen ei seekert.',
+'protectedpages-timestamp' => 'Tidjstempel',
+'protectedpages-page' => 'Sidj',
+'protectedpages-expiry' => 'Lääpt uf di',
+'protectedpages-performer' => 'Seekert faan',
+'protectedpages-params' => 'Seekerangsdooten',
+'protectedpages-reason' => 'Grünj',
+'protectedpages-unknown-timestamp' => 'Ünbekäänd',
+'protectedpages-unknown-performer' => 'Ünbekäänd brüker',
 'protectedtitles' => 'Seekert sidjennöömer',
 'protectedtitlesempty' => 'Uun uugenblak san sok sidjen ei speret.',
 'listusers' => 'Brükerfertiaknis',
@@ -2644,6 +2654,7 @@ $2',
 'thumbnail_image-type' => 'Sok bilen kön ei brükt wurd',
 'thumbnail_gd-library' => 'GD-bibleteek ei gans diar: Det funktjuun $1 waant',
 'thumbnail_image-missing' => 'Det datei as wel ei diar: $1',
+'thumbnail_image-failure-limit' => 'Detdiar föörskaubil as uun a leetst tidj tufölsis ($1 of muarsis) feranert wurden. Ferschük det leeder man noch ans.',
 
 # Special:Import
 'import' => 'Sidjen importiare',
@@ -3324,7 +3335,7 @@ Ferwisangen uun det salew rä wurd üs ütjnoomen uunsen, huar det datei dach uu
 'exif-gpsdirection-t' => 'Rochtwisin kurs',
 'exif-gpsdirection-m' => 'Magneetisk kurs',
 
-'exif-ycbcrpositioning-1' => 'Sentriaret',
+'exif-ycbcrpositioning-1' => 'Uun a maden',
 'exif-ycbcrpositioning-2' => 'Uun naiberskap',
 
 'exif-dc-contributor' => 'Bidracher faan',

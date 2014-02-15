@@ -655,9 +655,9 @@ Detta kan tyda på en bugg i mjukvaran.',
 'databaseerror-query' => 'Fråga: $1',
 'databaseerror-function' => 'Funktion: $1',
 'databaseerror-error' => 'Fel: $1',
-'laggedslavemode' => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
+'laggedslavemode' => '<strong>Varning:</strong> Sidan kan sakna de senaste uppdateringarna.',
 'readonly' => 'Databasen är låst',
-'enterlockreason' => 'Ange varför sidan låsts, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
+'enterlockreason' => 'Ange varför sidan låsts, och ge en uppskattning av hur länge låset kommer att släppas',
 'readonlytext' => 'Databasen är tillfälligt låst för nya inlägg och andra modifieringar, förmodligen på grund av rutinmässigt underhåll, efter vilket den kommer den att återgå till normalläge.
 
 Den administratör som låste den har angivit följande förklaring: $1',
@@ -1031,16 +1031,16 @@ Det kan ha flyttats eller raderats medan du tittade på sidan.',
 'accmailtitle' => 'Lösenord skickat.',
 'accmailtext' => "Ett slumpgenererat lösenord för [[User talk:$1|$1]] har skickats till $2. Det kan ändras på sidan ''[[Special:ChangePassword|ändra lösenord]]'' när du loggar in.",
 'newarticle' => '(Ny)',
-'newarticletext' => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
+'newarticletext' => 'Du har klickat på en länk till en sida som inte finns ännu. För att skapa sidan, börja att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du kom hit av misstag kan du bara trycka på <strong>tillbaka</strong>-knappen i din webbläsare.',
 'anontalkpagetext' => "----''Detta är diskussionssidan för en anonym användare som inte ännu skapat ett konto, eller som inte använder det.
 Därför måste vi använda den numeriska IP-adressen för att identifiera honom/henne.
 En sådan IP-adress kan delas av flera användare.
 Om du är en anonym användare och känner att irrelevanta kommentarer har riktats mot dig, vänligen [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]] för att undvika framtida förväxlingar med andra anonyma användare.''",
 'noarticletext' => 'Det finns just nu ingen text på denna sida.
-Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
+Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
 'noarticletext-nopermission' => 'Det finns för tillfället ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] på andra sidor,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar]</span>.',
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar]</span> men du har inte behörighet att skapa sidan.',
 'missing-revision' => 'Revisionen #$1 av sidan med namnet "{{PAGENAME}}" finns inte.
 
 Detta orsakas vanligen av efter en gammal historiklänk till en sida som har raderats.
@@ -1396,7 +1396,7 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'nextn-title' => 'Nästa $1 {{PLURAL:$1|resultat|resultat}}',
 'shown-title' => 'Visa $1 {{PLURAL:$1|resultat|resultat}} per sida',
 'viewprevnext' => 'Visa ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-exists' => "'''Det finns en sida med namnet \"[[:\$1]]\" på denna wiki.''' {{PLURAL:\$2|0=|Se även de andra sökresultaten som hittades.}}",
+'searchmenu-exists' => '<strong>Det finns en sida med namnet "[[:$1]]" på denna wiki.</strong> {{PLURAL:$2|0=|Se även de andra sökresultaten som hittades.}}',
 'searchmenu-new' => '<strong>Skapa sidan "[[:$1]]" på denna wiki!</strong> {{PLURAL:$2|0=|Se även sidan som hittades med din sökning.|Se även sidorna som hittades med din sökning.}}',
 'searchprofile-articles' => 'Innehållssidor',
 'searchprofile-project' => 'Hjälp- och projektsidor',
@@ -1533,7 +1533,7 @@ Programvaran använder detta värde för att adressera dig till andra med rätt 
 'prefs-help-realname' => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'prefs-help-email' => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.',
-'prefs-help-email-others' => 'Du kan också välja att låta andra användare kontakta dig genom din användar- eller diskussionssida utan att avslöja din identitet.',
+'prefs-help-email-others' => 'Du kan också välja att låta andra kontakta dig med e-post genom en länk på din användar- eller diskussionssida. Din e-postadress avslöjas inte när andra användare kontaktar dig.',
 'prefs-help-email-required' => 'E-postadress måste anges.',
 'prefs-info' => 'Grundläggande information',
 'prefs-i18n' => 'Internationalisering',
@@ -2284,7 +2284,7 @@ Observera att andra webbplatser kan länka direkt till en fil med en URL. Filer 
 # Book sources
 'booksources' => 'Bokkällor',
 'booksources-search-legend' => 'Sök efter bokkällor',
-'booksources-go' => 'Gå',
+'booksources-go' => 'Visa',
 'booksources-text' => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
 'booksources-invalid-isbn' => 'Det angivna ISBN-numret verkar inte vara giltigt. Kontrollera källan för eventuella fel.',
 
@@ -2672,7 +2672,7 @@ $1',
 
 # Namespace form on various pages
 'namespace' => 'Namnrymd:',
-'invert' => 'Uteslut vald namnrymd',
+'invert' => 'Invertera val',
 'tooltip-invert' => 'Markera denna ruta för att dölja ändringar på sidor inom det valda namnrymden (och tillhörande namnrymden om det är markerat)',
 'namespace_association' => 'Associerad namnrymd',
 'tooltip-namespace_association' => 'Markera denna ruta för att även inkludera diskussions- eller ämnesnamnrymden som är associerad med den valda namnrymden',
@@ -2928,7 +2928,7 @@ Välj något annat namn istället.',
 'movesubpagetext' => 'Denna sida har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.',
 'movenosubpage' => 'Denna sida har inga undersidor.',
 'movereason' => 'Anledning:',
-'revertmove' => 'flytta tillbaka',
+'revertmove' => 'återställ',
 'delete_and_move' => 'Radera och flytta',
 'delete_and_move_text' => '==Radering krävs==
 Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
@@ -3115,12 +3115,12 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-n-currentevents' => 'Hitta bakgrundsinformation om aktuella händelser',
 'tooltip-n-recentchanges' => 'Lista över senaste ändringar i wikin',
 'tooltip-n-randompage' => 'Gå till en slumpmässigt vald sida',
-'tooltip-n-help' => 'Hjälp och information',
+'tooltip-n-help' => 'Platsen för att hitta',
 'tooltip-t-whatlinkshere' => 'Lista över alla wikisidor som länkar hit',
 'tooltip-t-recentchangeslinked' => 'Visa senaste ändringarna av sidor som den här sidan länkar till',
 'tooltip-feed-rss' => 'RSS-matning för den här sidan',
 'tooltip-feed-atom' => 'Atom-matning för den här sidan',
-'tooltip-t-contributions' => 'Visa lista över bidrag från den här användaren',
+'tooltip-t-contributions' => 'En lista över bidrag från den här användaren',
 'tooltip-t-emailuser' => 'Skicka e-post till den här användaren',
 'tooltip-t-upload' => 'Ladda upp filer',
 'tooltip-t-specialpages' => 'Lista över alla specialsidor',
@@ -3148,7 +3148,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-upload' => 'Starta uppladdning',
 'tooltip-rollback' => '"Tillbakarullning" tar med en knapptryckning bort ändringar som gjorts av den som senast redigerade sidan',
 'tooltip-undo' => '"Gör ogjord" återställer denna redigering och öppnar redigeringsrutan med förhandsgranskning.
-Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
+Den ger möjlighet att skriva en motivering i redigeringssammanfattningen.',
 'tooltip-preferences-save' => 'Spara inställningar',
 'tooltip-summary' => 'Skriv en kort sammanfattning',
 'interlanguage-link-title' => '$1 - $2',

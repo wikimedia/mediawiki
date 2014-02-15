@@ -1141,7 +1141,7 @@ Ovakve argumente bi trebalo izbegavati.",
 # "Undo" feature
 'undo-success' => 'Izmena se može vratiti.
 Proverite razlike ispod, pa sačuvajte izmene.',
-'undo-failure' => 'Ne mogu da vratim izmenu zbog postojanja sukobljenih međuizmena.',
+'undo-failure' => 'Ova izmena se ne može poništiti zbog konflikta izmena.',
 'undo-norev' => 'Ne mogu da vratim izmenu jer ne postoji ili je obrisana.',
 'undo-summary' => 'Poništena izmena $1 {{GENDER:$2|korisnika|korisnice}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
 
@@ -1619,7 +1619,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'action-createaccount' => 'otvaranje ovog korisničkog naloga',
 'action-minoredit' => 'označavanje ove izmene kao manje',
 'action-move' => 'premesti ovu stranicu',
-'action-move-subpages' => 'premesti ovu stranicu, kao i njene podstranice',
+'action-move-subpages' => 'premeštanje ove stranice i njenih podstranica',
 'action-move-rootuserpages' => 'premeštanje osnovnih korisničkih stranica',
 'action-movefile' => 'premesti ovu datoteku',
 'action-upload' => 'slanje ove datoteke',

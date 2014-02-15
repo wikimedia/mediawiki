@@ -1354,7 +1354,7 @@ $1",
 'showhideselectedversions' => '显示/隐藏选择的版本',
 'editundo' => '撤销',
 'diff-empty' => '（没有差异）',
-'diff-multi-sameuser' => '（相同用户的{{PLURAL:$1|一个|$1个}}中间修订版本未显示',
+'diff-multi-sameuser' => '（相同用户的{{PLURAL:$1|一个|$1个}}中间修订版本未显示）',
 'diff-multi-otherusers' => '（{{PLURAL:$1|某位用户|$2位用户}}的{{PLURAL:$1|一个|$1个}}中间修订版本未显示）',
 'diff-multi-manyusers' => '（未显示超过$2个用户的$1个中间版本）',
 'difference-missing-revision' => '此差异对比的{{PLURAL:$2|一个修订|$2个修订}}（$1）{{PLURAL:$2|没有}}找到。
