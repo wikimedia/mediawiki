@@ -236,6 +236,7 @@ changes to languages because of Bugzilla reports.
   againt further render attempts for 1 hour. $wgAttemptFailureEpoch can be
   altered to reset all rate-limited thumbnails at once.
 * (bug 56572) Builds of the OOjs and OOjs UI libraries are now available.
+* mw.loader.go and mw.loader.version have been removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
