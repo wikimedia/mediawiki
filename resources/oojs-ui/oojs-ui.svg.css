@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre-svg (7d3223b8f4)
+ * OOjs UI v0.1.0-pre-svg (424b40373e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Feb 13 2014 18:36:08 GMT-0800 (PST)
+ * Date: Fri Feb 14 2014 17:57:32 GMT-0800 (PST)
  */
 /*csslint vendor-prefix:false */
 
@@ -500,6 +500,7 @@ a.oo-ui-buttonedElement-button {
 /* OO.ui.FieldsetLayout */
 
 .oo-ui-fieldsetLayout {
+	position: relative;
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -516,12 +517,78 @@ a.oo-ui-buttonedElement-button {
 .oo-ui-fieldsetLayout > legend.oo-ui-labeledElement-label {
 	font-size: 1.5em;
 	margin-bottom: 0.5em;
+	padding-left: 0;
 }
 
-.oo-ui-fieldsetLayout-decorated > legend.oo-ui-labeledElement-label {
+.oo-ui-fieldsetLayout.oo-ui-iconedElement > legend.oo-ui-labeledElement-label {
 	padding-left: 1.75em;
-	background-position: left center;
+}
+
+.oo-ui-fieldsetLayout.oo-ui-iconedElement > .oo-ui-iconedElement-icon {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0.5em;
+	width: 2em;
+	height: 2em;
+	background-position: center center;
 	background-repeat: no-repeat;
+}
+
+/* OO.ui.FieldLayout */
+
+.oo-ui-fieldLayout {
+	margin-bottom: 1em;
+}
+
+.oo-ui-fieldLayout:last-child {
+	margin-bottom: 0;
+}
+
+.oo-ui-fieldLayout:before,
+.oo-ui-fieldLayout:after {
+    content: " ";
+    display: table;
+}
+
+.oo-ui-fieldLayout:after {
+    clear: both;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labeledElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labeledElement-label {
+	display: block;
+	float: left;
+	width: 35%;
+	padding-top: 0.5em;
+	margin-right: 5%;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
+	display: block;
+	float: left;
+	width: 60%;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labeledElement-label {
+	text-align: right;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labeledElement-label {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0.75em 0.5em 0.5em 0.5em;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-field {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0.5em 0;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labeledElement-label {
+	padding: 0.5em 0;
 }
 
 /* OO.ui.BookletLayout */
@@ -996,6 +1063,7 @@ a.oo-ui-buttonedElement-button {
 
 .oo-ui-buttonGroupWidget {
 	display: inline-block;
+	white-space: nowrap;
 	border-radius: 0.3em;
 }
 
@@ -1112,6 +1180,22 @@ a.oo-ui-buttonedElement-button {
 	left: 4em;
 }
 
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-important {
+	font-weight: bold;
+}
+
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-placeholder {
+	font-style: italic;
+}
+
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-iconedElement-icon,
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-indicatedElement-indicator {
+	opacity: 0.5;
+}
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-labeledElement-label {
+	color: #698AA0;
+}
+
 /* OO.ui.OutlineControlsWidget */
 
 .oo-ui-outlineControlsWidget {
@@ -1150,9 +1234,9 @@ a.oo-ui-buttonedElement-button {
 	cursor: default;
 }
 
-/* OO.ui.InputLabelWidget */
+/* OO.ui.LabelWidget */
 
-.oo-ui-inputLabelWidget {
+.oo-ui-labelWidget {
 	padding: 0.5em 0;
 }
 
@@ -1235,21 +1319,6 @@ a.oo-ui-buttonedElement-button {
 	background-repeat: no-repeat;
 }
 
-/* OO.ui.CheckboxWidget */
-.oo-ui-checkboxWidget .oo-ui-labeledElement-label {
-	display: inline-block;
-	vertical-align: middle;
-	padding-left: 0.5em;
-}
-
-.oo-ui-checkboxWidget input {
-	vertical-align: middle;
-}
-
-.oo-ui-checkboxWidget.oo-ui-widget-disabled .oo-ui-labeledElement-label {
-	opacity: 0.5;
-}
-
 /* OO.ui.MenuWidget */
 
 .oo-ui-menuWidget {
@@ -1303,6 +1372,7 @@ a.oo-ui-buttonedElement-button {
 
 .oo-ui-buttonSelectWidget {
 	display: inline-block;
+	white-space: nowrap;
 	border-radius: 0.3em;
 }
 
