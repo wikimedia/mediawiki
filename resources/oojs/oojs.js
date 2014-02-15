@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.6
+ * OOjs v1.0.7-pre (9c04f3e917)
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2013 OOjs Team and other contributors.
+ * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Dec 10 2013 22:43:42 GMT+0100 (CET)
+ * Date: Fri Feb 14 2014 17:51:43 GMT-0800 (PST)
  */
 ( function ( global ) {
 
@@ -22,7 +22,6 @@ var
 	toString = oo.toString;
 
 /* Class Methods */
-
 
 /**
  * Assert whether a value is a plain object or not.
@@ -64,23 +63,27 @@ oo.isPlainObject = function ( obj ) {
  *  multiple constructors consider storing an instance of the other constructor in a
  *  property instead, or perhaps use a mixin (see oo.mixinClass).
  *
- *     function Foo() {}
- *     Foo.prototype.jump = function () {};
+ *     function Thing() {}
+ *     Thing.prototype.exists = function () {};
  *
- *     function FooBar() {}
- *     oo.inheritClass( FooBar, Foo );
- *     FooBar.prop.feet = 2;
- *     FooBar.prototype.walk = function () {};
+ *     function Person() {
+ *         this.constructor.super.apply( this, arguments );
+ *     }
+ *     oo.inheritClass( Person, Thing );
+ *     Person.static.defaultEyeCount = 2;
+ *     Person.prototype.walk = function () {};
  *
- *     function FooBarQuux() {}
- *     OO.inheritClass( FooBarQuux, FooBar );
- *     FooBarQuux.prototype.jump = function () {};
+ *     function Jumper() {
+ *         this.constructor.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( Jumper, Person );
+ *     Jumper.prototype.jump = function () {};
  *
- *     FooBarQuux.prop.feet === 2;
- *     var fb = new FooBar();
- *     fb.jump();
- *     fb.walk();
- *     fb instanceof Foo && fb instanceof FooBar && fb instanceof FooBarQuux;
+ *     Jumper.static.defaultEyeCount === 2;
+ *     var x = new Jumper();
+ *     x.jump();
+ *     x.walk();
+ *     x instanceof Thing && x instanceof Person && x instanceof Jumper;
  *
  * @method
  * @param {Function} targetFn
@@ -94,6 +97,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	var targetConstructor = targetFn.prototype.constructor;
 
+	targetFn.super = originFn;
 	targetFn.prototype = Object.create( originFn.prototype, {
 		// Restore constructor property of targetFn
 		constructor: {
@@ -502,9 +506,9 @@ oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
 	}
 	// Add binding
 	bindings.push( {
-		'callback': callback,
-		'args': args,
-		'context': context
+		callback: callback,
+		args: args,
+		context: context
 	} );
 	return this;
 };
