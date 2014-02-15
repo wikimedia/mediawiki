@@ -2777,21 +2777,28 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 		}
 
-		$this->doDeleteUpdates( $id, $content );
-
 		// Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 
+		// Insert the log first, since doDeleteUpdates will clear the article ID,
+		// but don't publish immediately.  Publishing can go out over the network
+		// (e.g. UDP), which unlike the insert can not be rolled back.
+		//
+		// Wait until after the (optional) commit just in case the transaction
+		// rolls back in doDeleteUpdates.
 		$logEntry = new ManualLogEntry( $logtype, 'delete' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->mTitle );
 		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
-		$logEntry->publish( $logid );
+
+		$this->doDeleteUpdates( $id, $content );
 
 		if ( $commit ) {
 			$dbw->commit( __METHOD__ );
 		}
+
+		$logEntry->publish( $logid );
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
