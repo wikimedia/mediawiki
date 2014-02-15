@@ -2908,6 +2908,8 @@ $wgDefaultSkin = 'vector';
  * Specify the name of a skin that should not be presented in the list of
  * available skins.  Use for blacklisting a skin which you do not want to
  * remove from the .../skins/ directory
+ *
+ * @deprecated since 1.23; use $wgSkipSkins instead
  */
 $wgSkipSkin = '';
 
