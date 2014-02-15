@@ -475,7 +475,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * @return int ID of the log entry
 	 * @throws MWException
 	 */
-	public function insert( IDatabase $dbw = null ) {
+	public function insert( IDatabase $dbw = null, $pageId = null ) {
 		global $wgContLang;
 
 		$dbw = $dbw ?: wfGetDB( DB_MASTER );
@@ -491,7 +491,10 @@ class ManualLogEntry extends LogEntryBase {
 		# Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
 
-		$data = array(
+		if ( $pageId === null ) {
+                    $pageId = $this->getTarget()->getArticleID();
+                }
+                $data = array(
 			'log_id' => $id,
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
@@ -500,7 +503,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_user_text' => $this->getPerformer()->getName(),
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
-			'log_page' => $this->getTarget()->getArticleID(),
+			'log_page' => $pageId,
 			'log_comment' => $comment,
 			'log_params' => serialize( (array)$this->getParameters() ),
 		);

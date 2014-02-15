@@ -2786,7 +2786,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->mTitle );
 		$logEntry->setComment( $reason );
-		$logid = $logEntry->insert();
+		$logid = $logEntry->insert( null, $id );
 		$logEntry->publish( $logid );
 
 		if ( $commit ) {

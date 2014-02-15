@@ -81,6 +81,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		) );
 
 		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
+		$this->addFieldsIf( array( 'log_page' ), $this->fld_ids
+			&& ( !$fld_action || $fld_action === 'delete' )
+			&& ( !$fld_type || $fld_type === 'delete' ) );
 		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf(
@@ -328,8 +331,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				if ( $this->fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
+				$vals['pageid'] = 0;
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $row->page_id );
+					if ( intval( $row->page_id ) ) {
+						$vals['pageid'] = intval( $row->page_id );
+					} else {
+						if ( intval( $row->log_page ) ) {
+							$vals['pageid'] = intval( $row->log_page );
+						}
+					}
 				}
 				if ( $this->fld_details && $row->log_params !== '' ) {
 					self::addLogParams(
