@@ -1708,7 +1708,7 @@ var mw = ( function ( $, undefined ) {
 							if ( type === 'text/css' ) {
 								// IE7-8 throws security warnings when inserting a <link> tag
 								// with a protocol-relative URL set though attributes (instead of
-								// properties) - when on HTTPS. See also bug #.
+								// properties) - when on HTTPS. See also bug 41331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
