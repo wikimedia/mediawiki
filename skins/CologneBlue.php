@@ -283,7 +283,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			<?php } ?>
 		</div>
 	</div>
-	<div id="article" role="main">
+	<div id="article" class="mw-body" role="main">
 		<?php if ( $this->getSkin()->getSiteNotice() ) { ?>
 		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
 		<?php } ?>
