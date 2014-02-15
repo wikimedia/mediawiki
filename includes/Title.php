@@ -3241,7 +3241,6 @@ class Title {
 		}
 
 		# Namespace or interwiki prefix
-		$firstPass = true;
 		$prefixRegexp = "/^(.+?)_*:_*(.*)$/S";
 		do {
 			$m = array();
@@ -3262,12 +3261,6 @@ class Title {
 						}
 					}
 				} elseif ( Interwiki::isValidInterwiki( $p ) ) {
-					if ( !$firstPass ) {
-						# Can't make a local interwiki link to an interwiki link.
-						# That's just crazy!
-						return false;
-					}
-
 					# Interwiki link
 					$dbkey = $m[2];
 					$this->mInterwiki = $wgContLang->lc( $p );
@@ -3280,7 +3273,6 @@ class Title {
 								return false;
 							}
 							$this->mInterwiki = '';
-							$firstPass = false;
 							# Do another namespace split...
 							continue 2;
 						}
