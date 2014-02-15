@@ -2831,6 +2831,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 		}
 
+		// Clone the title, so we have the information we need when we log
+		$logTitle = clone $this->mTitle;
+
 		$this->doDeleteUpdates( $id, $content );
 
 		// Log the deletion, if the page was suppressed, log it at Oversight instead
@@ -2838,7 +2841,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$logEntry = new ManualLogEntry( $logtype, 'delete' );
 		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );

@@ -51,6 +51,8 @@ production.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
   field which is true iff protocol-relative urls can be used to access
   a particular interwiki map entry.
+* ApiQueryLogEvents now provides logpage, which is the page ID from the
+  logging table, if ids are requested and the user has the permissions.
 
 === Languages updated in 1.24 ===
 
