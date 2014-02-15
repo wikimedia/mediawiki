@@ -48,6 +48,8 @@ production.
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
+* ApiQueryLogEvents now provides logpage, which is the page ID from the
+  logging table, if ids are requested and the user has the permissions.
 
 === Languages updated in 1.24 ===
 
