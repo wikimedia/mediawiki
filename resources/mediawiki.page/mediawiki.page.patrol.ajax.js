@@ -16,6 +16,9 @@
 		$patrolLinks.on( 'click', function ( e ) {
 			var $spinner, href, rcid, apiRequest;
 
+			// Start preloading the notification module (normally loaded by mw.notify())
+			mw.loader.load( 'mediawiki.notification' );
+
 			// Hide the link and create a spinner to show it inside the brackets.
 			$spinner = $.createSpinner( {
 				size: 'small',
