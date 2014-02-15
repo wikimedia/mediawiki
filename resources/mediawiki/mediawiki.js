@@ -1801,14 +1801,6 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * @inheritdoc #getVersion
-				 * @deprecated since 1.18 use #getVersion instead
-				 */
-				version: function () {
-					return mw.loader.getVersion.apply( mw.loader, arguments );
-				},
-
-				/**
 				 * Get the state of a module.
 				 *
 				 * @param {string} module Name of module to get state for
@@ -1829,19 +1821,6 @@ var mw = ( function ( $, undefined ) {
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
-				},
-
-				/**
-				 * Load the `mediawiki.user` module.
-				 *
-				 * For backwards-compatibility with cached pages from before 2013 where:
-				 *
-				 * - the `mediawiki.user` module didn't exist yet
-				 * - `mw.user` was still part of mediawiki.js
-				 * - `mw.loader.go` still existed and called after `mw.loader.load()`
-				 */
-				go: function () {
-					mw.loader.load( 'mediawiki.user' );
 				},
 
 				/**
