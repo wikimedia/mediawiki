@@ -1832,19 +1832,6 @@ var mw = ( function ( $, undefined ) {
 				},
 
 				/**
-				 * Load the `mediawiki.user` module.
-				 *
-				 * For backwards-compatibility with cached pages from before 2013 where:
-				 *
-				 * - the `mediawiki.user` module didn't exist yet
-				 * - `mw.user` was still part of mediawiki.js
-				 * - `mw.loader.go` still existed and called after `mw.loader.load()`
-				 */
-				go: function () {
-					mw.loader.load( 'mediawiki.user' );
-				},
-
-				/**
 				 * @inheritdoc mw.inspect#runReports
 				 * @method
 				 */
