@@ -172,6 +172,15 @@ production.
 * (bug 58627) Provide language names on action=parse&prop=langlinks.
 * Deprecated llurl= in favour of llprop=url for action=query&prop=langlinks.
 * Added llprop=langname and llprop=autonym for action=query&prop=langlinks.
+* action&query&list=logevents now uses log_page (the page ID from the
+  logging table) as pageid for deletions.  This is available on
+  deletions going forward.  For deletions before the page_id was stored,
+  it uses 0.
+
+  Previously, it used the current (as of query time) page_id of a page
+  with the same namespace and title as the deleted page.  This was a
+  bug, since that page ID was not related to the deletion action.  If
+  the page did not exist at query time, it would use 0.
 
 === Languages updated in 1.23 ===
 

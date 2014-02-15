@@ -80,7 +80,27 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_deleted',
 		) );
 
+		$type = null;
+		$action = null;
+
+		if ( !is_null( $params['action'] ) ) {
+			list( $type, $action ) = explode( '/', $params['action'] );
+			$this->addWhereFld( 'log_type', $type );
+			$this->addWhereFld( 'log_action', $action );
+		} elseif ( !is_null( $params['type'] ) ) {
+			$type = $params['type'];
+			$this->addWhereFld( 'log_type', $type );
+		}
+
 		$this->addFieldsIf( array( 'log_id', 'page_id' ), $this->fld_ids );
+
+		// TODO (mattflaschen, 2014-02-20):
+		// log_page is currently only used for deletions (delete type and delete action)
+		// However, it may make sense to use for other log events as well.
+		$includesDeletions = ( $type === null ) ||
+			( $type === 'delete' && ( $action === null || $action === 'delete' ) );
+
+		$this->addFieldsIf( array( 'log_page' ), $this->fld_ids && $includesDeletions );
 		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf(
@@ -101,14 +121,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN',
 				array( 'log_id=ct_log_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-		}
-
-		if ( !is_null( $params['action'] ) ) {
-			list( $type, $action ) = explode( '/', $params['action'] );
-			$this->addWhereFld( 'log_type', $type );
-			$this->addWhereFld( 'log_action', $action );
-		} elseif ( !is_null( $params['type'] ) ) {
-			$this->addWhereFld( 'log_type', $params['type'] );
 		}
 
 		$this->addTimestampWhereRange(
@@ -329,7 +341,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $row->page_id );
+					if ( $row->log_type === 'delete' && $row->log_action === 'delete' ) {
+						$vals['pageid'] = intval( $row->log_page );
+					} else {
+						$vals['pageid'] = intval( $row->page_id );
+					}
 				}
 				if ( $this->fld_details && $row->log_params !== '' ) {
 					self::addLogParams(
