@@ -83,7 +83,9 @@ class TitleTest extends MediaWikiTestCase {
 			'remotetestiw: Talk: # anchor',
 			'remotetestiw: #bar',
 			'remotetestiw: Talk:',
-			'remotetestiw: Talk: Foo'
+			'remotetestiw: Talk: Foo',
+			'localtestiw:remotetestiw:',
+			'localtestiw:remotetestiw:foo'
 		) as $text ) {
 			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
 		}
