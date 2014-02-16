@@ -1332,6 +1332,7 @@ class SwiftFileBackend extends FileBackendStore {
 					return $stat;
 				} else {
 					$this->containerStatCache->set( $container, 'stat', $stat ); // cache it
+					$this->setContainerCache( $container, $stat ); // update persistent cache
 				}
 			} elseif ( $rcode === 404 ) {
 				return false;
