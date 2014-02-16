@@ -169,6 +169,9 @@
 	path = extensions/MyVariables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MyVariables.git
 	branch = REL1_22
+[submodule "extensions/NewUserMessage"]
+	path = extensions/NewUserMessage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NewUserMessage.git
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nuke.git
@@ -181,7 +184,7 @@
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git
 	branch = REL1_22
-	[submodule "extensions/PdfBook"]
+[submodule "extensions/PdfBook"]
 	path = extensions/PdfBook
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PdfBook.git
 	branch = master
@@ -289,4 +292,3 @@
 [submodule "skins/monaco"]
 	path = skins/monaco
   url = https://github.com/dantman/monaco-port.git
-
