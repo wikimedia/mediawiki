@@ -884,11 +884,6 @@ $wgUseImageMagick = false;
 $wgImageMagickConvertCommand = '/usr/bin/convert';
 
 /**
- * The identify command shipped with ImageMagick
- */
-$wgImageMagickIdentifyCommand = '/usr/bin/identify';
-
-/**
  * Sharpening parameter to ImageMagick
  */
 $wgSharpenParameter = '0x0.4';
