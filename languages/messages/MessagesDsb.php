@@ -1219,6 +1219,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'searchrelated' => 'swójźbne',
 'searchall' => 'wše',
 'showingresults' => "How {{PLURAL:|jo '''1''' wuslědk|stej '''$1''' wuslědka|su '''$1''' wuslědki}} wót cysła '''$2'''.",
+'showingresultsinrange' => 'Dołojce pokazujo se do {{PLURAL:$1|<strong>1</strong> wuslědka|<strong>$1</strong> wuslědkowu|<strong>$1</strong> wuslědkow}} we wobłuku <strong>$2</strong> až do <strong>$3</strong>.',
 'showingresultsnum' => "How {{PLURAL:$3|jo '''1''' wuslědk|stej '''$3''' wuslědka|su '''$3''' wuslědki}} wót cysła '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Wuslědk '''$1''' z '''$3'''|Wuslědki '''$1 - $2''' z '''$3'''}} za '''$4'''",
 'search-nonefound' => 'Njejsu se wuslědki namakali, kótarež wótpowěduju napšašowanjeju.',
@@ -2776,6 +2777,7 @@ $2',
 'thumbnail_image-type' => 'Wobrazy typ se njepódpěra',
 'thumbnail_gd-library' => 'Njedopołna konfiguracija GD-biblioteki: felujuca funkcija $1',
 'thumbnail_image-missing' => 'Zda se, až dataja felujo: $1',
+'thumbnail_image-failure-limit' => 'Njedawno jo pśewjele wopytow było, kótarež jo se njeraźiło ($1 abo wěcej), aby toś tu miniaturu kresliło. Pšosym wopytajśo pózdźej hyšći raz.',
 
 # Special:Import
 'import' => 'Boki importěrowaś',
@@ -2821,6 +2823,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-error-special' => 'Bok "$1" se njeimportěrujo, dokulaž słuša k wósebnemu mjenjowemu rumoju, kótaryž njedowólujo boki.',
 'import-error-invalid' => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo njepłaśiwe.',
 'import-error-unserialize' => 'Wersija $2 boka "$1" njedajo se wótserializěrowaś. Wersija jo se za wužywanje wopśimjeśowego $3 k wěsći dała, kótaryž jo ako $4 serializěrowany.',
+'import-error-bad-location' => 'Wersija $2, kótaraž wužywa wopśimjeśowy model $3, njedajo se pód "$1" w toś tom wikiju składowaś, dokulaž model njepódpěra se na toś tom boku.',
 'import-options-wrong' => '{{PLURAL:$2|Wopacna opcija|Wopacnej opciji|Wopacne opcije|Wopacne opcije}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Pódany kórjenjowy bok jo njepłaśiwy.',
 'import-rootpage-nosubpage' => 'Mjenjowy rum "$1" kórjenjowego boka njedowólujo pódboki.',

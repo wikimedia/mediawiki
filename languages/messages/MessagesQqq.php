@@ -10047,7 +10047,9 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-parser-extensiontags' => 'Part of [[Special:Version]].
 This message is followed by the list of parser extension tags like <code><nowiki><charinsert></nowiki></code>, <code><nowiki><coordinates></nowiki></code>, etc.',
 'version-parser-function-hooks' => 'Shown in [[Special:Version]]',
-'version-hook-name' => 'Shown in [[Special:Version]]',
+'version-hook-name' => 'Shown in [[Special:Version]].
+
+For meaning of hook see [[mw:Special:MyLanguage/Manual:Hooks|mw:Manual:Hooks]] and [[w:Hooking]].',
 'version-hook-subscribedby' => 'Shown in [[Special:Version]]',
 'version-version' => '{{Optional}}
 Used in [[Special:Version]]. Preceded by the MediaWiki extension name.

@@ -9,6 +9,7 @@
  *
  * @author Agbad
  * @author Amire80
+ * @author Crazy Ivan
  * @author Dekel E
  * @author Drorsnir
  * @author Guycn1
@@ -1431,7 +1432,7 @@ $1",
 'showhideselectedversions' => 'הצגת/הסתרת הגרסאות שנבחרו',
 'editundo' => 'ביטול',
 'diff-empty' => '(אין הבדלים)',
-'diff-multi-sameuser' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} ממשתמש אחד אינן מוצגות',
+'diff-multi-sameuser' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} ממשתמש אחד אינן מוצגות)',
 'diff-multi-otherusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}}  {{PLURAL:$2|ממשתמש אחד|מ-$2 משתמשים}}  אינן מוצגות)',
 'diff-multi-manyusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'difference-missing-revision' => '{{PLURAL:$2|גרסה אחת|$2 גרסאות}} של ההבדל הזה בין שתי גרסאות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.

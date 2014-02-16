@@ -861,7 +861,7 @@ Zure aldaketak ez dira oraindik gorde!",
 Aldaketa ezeztatua izan da testuaren galtzea galarazteko.
 Hau batzuetan gertatzen da buggyan oinarritutako web proxy zerbitzua erabiltzean.'''",
 'edit_form_incomplete' => "'''Aldaketa formularioaren atal batzuk ez dira iritsi zerbitzarira; bi aldiz ziurtatu zure aldaketak osorik daudela eta berriro saiatu.'''",
-'editing' => '$1 aldatzen',
+'editing' => '«$1» aldatzen',
 'creating' => '$1 sortzen',
 'editingsection' => '$1 aldatzen (atala)',
 'editingcomment' => '$1 aldatzen (atal berria)',

@@ -2088,6 +2088,8 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'protectedpagesempty' => 'Elo si keng Säite mat dëse Parameteren gespaart.',
 'protectedpages-timestamp' => 'Zäitstempel',
 'protectedpages-page' => 'Säit',
+'protectedpages-expiry' => 'Spär bis',
+'protectedpages-params' => 'Parameter vun der Spär',
 'protectedpages-reason' => 'Grond',
 'protectedpages-unknown-timestamp' => 'Onbekannt',
 'protectedpages-unknown-performer' => 'Onbekannte Benotzer',

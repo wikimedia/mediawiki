@@ -1220,6 +1220,7 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'searchrelated' => 'přiwuzny',
 'searchall' => 'wšě',
 'showingresults' => "Deleka so hač {{PLURAL:$1|'''1''' wuslědk pokazuje|'''$1''' wuslědkaj pokazujetej|'''$1''' wuslědki pokazuja|'''$1''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
+'showingresultsinrange' => 'Deleka so do {{PLURAL:$1|<strong>1</strong> wuslědka|<strong>$1</strong> wuslědkow}} we wobłuku <strong>$2</strong> hač do <strong>$3</strong> pokazuje.',
 'showingresultsnum' => "Deleka so {{PLURAL:$3|'''1''' wuslědk pokazuje|'''$3''' wuslědkaj pokazujetej|'''$3''' wuslědki pokazuja|'''$3''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Wuslědk '''$1''' z '''$3'''|Wuslědki '''$1 - $2''' z '''$3'''}} za '''$4'''",
 'search-nonefound' => 'Njebuchu wuslědki namakane, kotrež naprašowanju wotpowěduja.',
@@ -2774,6 +2775,7 @@ $2',
 'thumbnail_image-type' => 'Wobrazowy typ so njepodpěruje',
 'thumbnail_gd-library' => 'Njedospołna konfiguracija GD-biblioteki: falowaca funkcija $1',
 'thumbnail_image-missing' => 'Zda so, zo dataja faluje: $1',
+'thumbnail_image-failure-limit' => 'Njedawno je přewjele pospytow było, kotrež je so nimokuliło ($1 abo wjace), zo by tutu miniaturu rysowało. Prošu spytajće pozdźišo hišće raz.',
 
 # Special:Import
 'import' => 'Strony importować',

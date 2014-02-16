@@ -790,7 +790,7 @@ Diqet kerê, beno ke tedeestê {{SITENAME}} uza endi rozane niyê.",
 'yourrealname' => 'Namo rastıkên:',
 'yourlanguage' => 'Zon:',
 'yourvariant' => 'Varyant:',
-'yournick' => 'İmza newiye:',
+'yournick' => 'Leqeme:',
 'badsig' => "İmza kala nêvêrdiye.
 Etiketê ''HTML''i qontrol ke.",
 'badsiglength' => 'İmza to zaf derga.
