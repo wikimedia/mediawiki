@@ -5009,6 +5009,7 @@ See the following search results:
 'deadendpagestext' => 'Introductory text for [[Special:DeadendPages]]',
 'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
+'protectedpages-summary' => 'Summary of [[Special:ProtectedPages]].',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]].
 {{Identical|Hide redirect}}',
@@ -5029,6 +5030,7 @@ This refers to expiry timestamp.
 {{Identical|Unknown}}',
 'protectedpages-unknown-performer' => 'This is shown, when the protecting user is unknown for a protection on the page [[Special:ProtectedPages]].',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
+'protectedtitles-summary' => 'Summary of [[Special:ProtectedTitles]].',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
