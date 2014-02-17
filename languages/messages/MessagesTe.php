@@ -1441,7 +1441,7 @@ $1",
 'right-ipblock-exempt' => 'ఐపీ నిరోధాలు, ఆటో నిరోధాలు, శ్రేణి నిరోధాలను తప్పించు',
 'right-proxyunbannable' => 'ప్రాక్సీల ఆటోమాటిక్ నిరోధాన్ని తప్పించు',
 'right-unblockself' => 'స్వీయ అనిరోధం',
-'right-protect' => 'సంరక్షణ స్థాయిలను మార్చు, సంరక్షిత పేజీలలో దిద్దుబాటు చెయ్యి',
+'right-protect' => 'సంరక్షణ స్థాయిలను మార్చు, కాస్కేడ్-రక్షిత పేజీలలో దిద్దుబాటు చెయ్యి',
 'right-editprotected' => '"{{int:protect-level-sysop}}" గా సంక్షించబడిన పేజీలను సరిదిద్దు',
 'right-editsemiprotected' => '"{{int:protect-level-autoconfirmed}}" గా సంరక్షించబడ్డ పేజీలను మార్చు',
 'right-editinterface' => 'యూజరు ఇంటరుఫేసులో దిద్దుబాటు చెయ్యి',
@@ -1528,6 +1528,7 @@ $1",
 'recentchanges' => 'ఇటీవలి మార్పులు',
 'recentchanges-legend' => 'ఇటీవలి మార్పుల ఎంపికలు',
 'recentchanges-summary' => 'వికీలో ఇటీవలే జరిగిన మార్పులను ఈ పేజీలో గమనించవచ్చు.',
+'recentchanges-noresult' => 'ఈ నియమాలకు సరిపోలే మార్పులు ఇచ్చిన కాలంలో లేవు.',
 'recentchanges-feed-description' => 'ఈ ఫీడు ద్వారా వికీలో జరుగుతున్న మార్పుల గురించి ఎప్పటికప్పుడు సమాచారాన్ని పొందండి.',
 'recentchanges-label-newpage' => 'ఈ మార్పు కొత్త పేజీని సృష్టించింది',
 'recentchanges-label-minor' => 'ఇది ఒక చిన్న మార్పు',
@@ -1699,6 +1700,7 @@ $1',
 'upload-too-many-redirects' => 'ఆ URLలో చాలా దారిమార్పులు ఉన్నాయి',
 'upload-unknown-size' => 'సైజు తెలియదు',
 'upload-http-error' => 'ఒక HTTP పొరపాటు జరిగింది: $1',
+'upload-copy-upload-invalid-domain' => 'ఈ డొమెయిన్ నుంచి కాపీ ఎక్కింపులు కుదరదు.',
 
 # File backend
 'backend-fail-stream' => '"$1" ఫైలును స్ట్రీమింగు చెయ్యలేకపోయాం.',
@@ -1724,6 +1726,18 @@ $1',
 'backend-fail-internal' => 'స్టోరేజీ బ్యాక్‍ఎండ్ "$1" లో ఏదో తెలియని లోపం దొర్లింది.',
 'backend-fail-contenttype' => '"$1" లో దాచాల్సిన ఫైలు యొక్క కంటెంటు రకమేంటో నిర్ధారించలేకపోయాం.',
 'backend-fail-batchsize' => 'స్టోరేజీ బ్యాక్‍ఎండ్ కు $1 ఫైలు {{PLURAL:$1|ఆపరేషన్|ఆపరేషన్ల}} తో కూడిన బ్యాచ్ ఒకటి ఇవ్వబడింది; పరిమితి: $2 {{PLURAL:$2|ఆపరేషన్|ఆపరేషన్లు}}.',
+'backend-fail-usable' => 'సరిపడా అనుమతులు లేకపోవడం వలన గానీ, అవసరమైన డైరెక్టరీలు/కంటెయినర్లు లేకపోవడం వలనగానీ "$1" ఫైలును చదవడం, రాయడం చెయ్యలేకపోయాం.',
+
+# Lock manager
+'lockmanager-notlocked' => '"$1" తాళం తియ్యలేకపోయాం; అదసలు లాక్ అయ్యేలేదు..',
+'lockmanager-fail-closelock' => '"$1" యొక్క లాక్ ఫైలును మూయలేకపోయాం.',
+'lockmanager-fail-deletelock' => '"$1" యొక్క లాక్ ఫైలును తొలగించలేకపోయాం.',
+'lockmanager-fail-acquirelock' => '"$1" కోసం లాక్ ను పొందలేకపోయాం.',
+'lockmanager-fail-openlock' => '"$1" కోసం లాక్ ఫైలును తెరవలేకపోయాం.',
+'lockmanager-fail-releaselock' => '"$1" యొక్క లాక్ ను విడుదల చెయ్యలేకపోయాం.',
+'lockmanager-fail-db-release' => 'డేటాబేసు $1 పై లాకులను విడుదల చెయ్యలేకపోయాం.',
+'lockmanager-fail-svr-acquire' => 'సర్వరు $1 పై లాకులను పొందలేకపోయాం.',
+'lockmanager-fail-svr-release' => 'సర్వరు $1 పై లాకులను విడుదల చెయ్యలేకపోయాం.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ఈ ఫైలును ZIP పరీక్ష కోసం తెరవబోతే, ఏదో తెలియని లోపం ఎదురైంది.',
@@ -1734,7 +1748,10 @@ $1',
 దీనిపై సరైన భద్రతా పరీక్షలు చెయ్యలేం.',
 
 # Special:UploadStash
+'uploadstash' => 'భోషాణం ఎక్కింపు',
 'uploadstash-summary' => 'ఎక్కించినప్పటికీ వికీలో ప్రచురితం కాని  (లేదా ఎక్కింపు జరుగుతున్న) ఫైళ్ళు ఈ పేజీలో కనిపిస్తాయి. ఈ ఫైళ్ళు ఎక్కించిన వాడుకరికి తప్ప మరొకరికి కనబడవు.',
+'uploadstash-clear' => 'భోషాణం లోని ఫైళ్లను తీసివెయ్యి',
+'uploadstash-nofiles' => 'మీకు ఫైళ్ళ భోషాణమేమీ లేదు.',
 'uploadstash-badtoken' => 'ఆ చర్య విఫలమైంది. బహుశా మీ ఎడిటింగు అనుమతులకు కాలం చెల్లిందేమో. మళ్ళీ ప్రయత్నించండి.',
 'uploadstash-errclear' => 'ఫైళ్ళ తీసివేత విఫలమైంది.',
 'uploadstash-refresh' => 'దస్త్రాల జాబిజాను తాజాకరించు',
@@ -1792,6 +1809,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listfiles_size' => 'పరిమాణం',
 'listfiles_description' => 'వివరణ',
 'listfiles_count' => 'కూర్పులు',
+'listfiles-show-all' => 'బొమ్మల పాత కూర్పులను కలుపు',
 'listfiles-latestversion' => 'ప్రస్తుత కూర్పు',
 'listfiles-latestversion-yes' => 'అవును',
 'listfiles-latestversion-no' => 'కాదు',
@@ -1827,6 +1845,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 మరింత సమాచారం కోసం, దయచేసి [$2 ఫైలు వివరణ పేజీ]ని చూడండి.',
 'sharedupload-desc-here' => 'ఈ ఫైలు $1 నుండి మరియు దీనిని ఇతర ప్రాజెక్టులలో కూడా ఉపయోగిస్తూ ఉండవచ్చు.
 దీని [$2 ఫైలు వివరణ పేజీ] లో ఉన్న వివరణని క్రింద చూపించాం.',
+'sharedupload-desc-edit' => 'ఈ ఫైలు $1 లోనిది. దాన్ని ఇతర ప్రాజెక్టులు కూడా వాడుతూ ఉండి ఉండవచ్చు.
+దాని [$2 ఫైలు వివరణ పేజీ] లోని వివరణను మారుస్తారేమో చూడండి.',
+'sharedupload-desc-create' => 'ఈ ఫైలు $1 లోనిది. దాన్ని ఇతర ప్రాజెక్టులు కూడా వాడుతూ ఉండి ఉండవచ్చు.
+దాని [$2 ఫైలు వివరణ పేజీ] లోని వివరణను మారుస్తారేమో చూడండి.',
 'filepage-nofile' => 'ఈ పేరుతో ఏ ఫైలు లేదు.',
 'filepage-nofile-link' => 'ఈ పేరుతో ఏ ఫైలూ లేదు, కానీ మీరు $1 ను అప్‌లోడ్ చెయ్యవచ్చు.',
 'uploadnewversion-linktext' => 'ఈ దస్త్రపు కొత్త కూర్పును ఎక్కించండి',
@@ -1888,8 +1910,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'randompage-nopages' => 'ఈ క్రింది {{PLURAL:$2|పెరుబరిలో|పెరుబరులలో}} పేజీలు ఏమి లేవు:$1',
 
 # Random page in category
+'randomincategory' => 'వర్గంలోని యాదృచ్చిక పేజీ',
 'randomincategory-invalidcategory' => '"$1" అనేది సరైన పర్గం పేరు కాదు.',
 'randomincategory-nopages' => '[[:Category:$1|$1]] వర్గంలో పేజీలేమీ లేవు.',
+'randomincategory-selectcategory' => 'ఈ వర్గం నుంచి ఒక యాదృచ్ఛిక పేజీని చూడండి: $1 $2.',
 'randomincategory-selectcategory-submit' => 'వెళ్ళు',
 
 # Random redirect
@@ -1917,7 +1941,13 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'statistics-users-active-desc' => 'గత {{PLURAL:$1|రోజు|$1 రోజుల}}లో ఒక్క చర్యైనా చేసిన వాడుకరులు',
 'statistics-mostpopular' => 'ఎక్కువగా చూసిన పేజీలు',
 
+'pageswithprop' => 'ఒక పేజీ లక్షణం కలిగిన పేజీలు',
+'pageswithprop-legend' => 'ఒక పేజీ లక్షణం కలిగిన పేజీలు',
+'pageswithprop-text' => 'ఫలానా పేజీ లక్షణం కలిగిన పేజీల జాబితాను ఈ పేజీలో చూడవచ్చు.',
+'pageswithprop-prop' => 'లక్షణం పేరు:',
 'pageswithprop-submit' => 'వెళ్ళు',
+'pageswithprop-prophidden-long' => 'long text లక్షణం విలువ దాచబడింది ($1)',
+'pageswithprop-prophidden-binary' => 'binary లక్షణం విలువ దాచబడింది ($1)',
 
 'doubleredirects' => 'జంట దారిమార్పులు',
 'doubleredirectstext' => 'ఇతర దారిమార్పు పుటలకి తీసుకెళ్ళే దారిమార్పులని ఈ పుట చూపిస్తుంది.
@@ -1964,6 +1994,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'wantedpages' => 'కోరిన పేజీలు',
 'wantedpages-badtitle' => 'ఫలితాల సమితిలో తప్పుడు శీర్షిక: $1',
 'wantedfiles' => 'కావలసిన ఫైళ్ళు',
+'wantedfiletext-cat' => 'కింది ఫైళ్ళను వాడారు, కానీ అవి ఉనికిలో లేవు. బయటి రిపాజిటరీలలోని ఫైళ్ళను, అవి ఉనికిలో ఉన్నప్పటికీ, చూపవచ్చు. అటువంటి తప్పు పాజిటివులు <del>కొట్టివేయబడతాయి</del>. పైగా, ఉనికిలో లేని ఫైళ్ళను ఇమిడ్చే పేజీలు [[:$1]] లో చేర్చబడతాయి.',
+'wantedfiletext-nocat' => 'కింది ఫైళ్ళను వాడారు, కానీ అవి ఉనికిలో లేవు. బయటి రిపాజిటరీలలోని ఫైళ్ళను, అవి ఉనికిలో ఉన్నప్పటికీ, చూపవచ్చు. అటువంటి తప్పు పాజిటివులు <del>కొట్టివేయబడతాయి</del>.',
 'wantedtemplates' => 'కావాల్సిన మూసలు',
 'mostlinked' => 'అధిక లింకులు చూపే పేజీలు',
 'mostlinkedcategories' => 'అధిక లింకులు చూపే వర్గాలు',
@@ -1984,6 +2016,14 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'protectedpages-cascade' => 'కాస్కేడింగు రక్షణలు మాత్రమే',
 'protectedpages-noredirect' => 'దారిమార్పులను దాచు',
 'protectedpagesempty' => 'ఈ పరామితులతో ప్రస్తుతం ఏ పేజీలు కూడా సంరక్షించబడి లేవు.',
+'protectedpages-timestamp' => 'కాలముద్ర',
+'protectedpages-page' => 'పేజీ',
+'protectedpages-expiry' => 'కాలం చెల్లేది',
+'protectedpages-performer' => 'రక్షించబడే వాడుకరి',
+'protectedpages-params' => 'సంరక్షణ పరామితులు',
+'protectedpages-reason' => 'కారణం',
+'protectedpages-unknown-timestamp' => 'తెలియని',
+'protectedpages-unknown-performer' => 'తెలియని వాడుకరి',
 'protectedtitles' => 'సంరక్షిత శీర్షికలు',
 'protectedtitlesempty' => 'ఈ పరామితులతో ప్రస్తుతం శీర్షికలేమీ సరక్షించబడి లేవు.',
 'listusers' => 'వాడుకరుల జాబితా',
@@ -2194,30 +2234,30 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'enotif_anon_editor' => 'అజ్ఞాత వాడుకరి $1',
 'enotif_body' => 'ప్రియమైన $WATCHINGUSERNAME,
 
+$PAGEINTRO $NEWPAGE
 
-{{SITENAME}}లో $PAGETITLE అనే పేజీని $PAGEEDITDATE సమయానికి $PAGEEDITOR $CHANGEDORCREATED, ప్రస్తుత కూర్పు కొరకు $PAGETITLE_URL చూడండి.
+చేర్పరి సారాంశం: $PAGESUMMARY $PAGEMINOREDIT
 
-$NEWPAGE
-
-రచయిత సారాంశం: $PAGESUMMARY $PAGEMINOREDIT
-
-రచయితను సంప్రదించండి:
+చేర్పరిని సంప్రదించండి:
 మెయిలు: $PAGEEDITOR_EMAIL
 వికీ: $PAGEEDITOR_WIKI
 
-మీరు ఈ పేజీకి వెళ్తే తప్ప ఇక ముందు ఈ పేజీకి జరిగే మార్పుల గురించిన వార్తలను మీకు పంపించము. మీ వీక్షణజాబితా లోని అన్ని పేజీలకు ఉన్న గమనింపు జెండాలను మార్చుకోవచ్చు.
+మీరు లాగినై ఈ పేజీకి వెళ్తే తప్ప ఇక ముందు జరిగే కార్యకలాపాల గురించిన వార్తలను మీకు పంపించము. మీ వీక్షణజాబితా లోని అన్ని పేజీలకు ఉన్న గమనింపు జెండాలను మార్చుకోవచ్చు.
 
-             మీ స్నేహపూర్వక {{SITENAME}} గమనింపుల వ్యవస్థ
+మీ స్నేహపూర్వక {{SITENAME}} గమనింపుల వ్యవస్థ
 
 --
-మీ వీక్షణజాబితా అమరికలను మార్చుకునేందుకు,
-{{canonicalurl:{{#special:EditWatchlist}}}} ని చూడండి.
+మీ ఈమెయిలు గమనింపుల అమరికలను మార్చుకునేందుకు, చూడండి
+{{canonicalurl:{{#special:Preferences}}}}
 
-ఈ పేజీని మీ వీక్షణజాబితా నుండి తొలగించుకునేందుకు,
-$UNWATCHURL కి వెళ్ళండి.
+మీ వీక్షణ జాబితా అమరికలను మార్చుకునేందుకు, చూడండి
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
-మీ అభిప్రాయాలు చెప్పేందుకు మరియు మరింత సహాయానికై:
-{{canonicalurl:{{MediaWiki:helppage}}}}',
+మీ వీక్షణ జాబితా నుండి పేజీని తొలగించేందుకు, చూడండి
+$UNWATCHURL
+
+ఫీడుబ్యాకుకు, ఇతర సహాయం కోసం:
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 'created' => 'సృష్టించారు',
 'changed' => 'మార్చారు',
 
@@ -2251,7 +2291,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'delete-edit-reasonlist' => 'తొలగింపు కారణాలని మార్చండి',
 'delete-toobig' => 'ఈ పేజీకి $1 {{PLURAL:$1|కూర్పుకు|కూర్పులకు}} మించిన, చాలా పెద్ద దిద్దుబాటు చరితం ఉంది. {{SITENAME}}కు అడ్డంకులు కలగడాన్ని నివారించేందుకు గాను, అలాంటి పెద్ద పేజీల తొలగింపును నియంత్రించాం.',
 'delete-warning-toobig' => 'ఈ పేజీకి $1 {{PLURAL:$1|కూర్పుకు|కూర్పులకు}} మించిన, చాలా పెద్ద దిద్దుబాటు చరితం ఉంది. దాన్ని తొలగిస్తే {{SITENAME}}కి చెందిన డేటాబేసు కార్యాలకు ఆటంకం కలగొచ్చు; అప్రమత్తతో ముందుకుసాగండి.',
-'deleting-backlinks-warning' => "'''హెచ్చరిక:''' మీరు తొలగించబోతున్న పేజీకి ఇతర పేజీల నుండి లింకులు ఉన్నాయి.",
+'deleting-backlinks-warning' => "'''హెచ్చరిక:''' మీరు తొలగించబోతున్న పేజీకి ఇతర పేజీల నుండి లింకులు ఉన్నాయి లేదా ఇక్కడ నుండి ట్రాన్స్‍క్లూడు అవుతున్నాయి.",
 
 # Rollback
 'rollback' => 'దిద్దుబాట్లను రద్దుచేయి',
@@ -2384,6 +2424,7 @@ $1',
 'undelete-bad-store-key' => '$1 టైమ్‌స్టాంపు కలిగిన ఫైలు తొలగింపును రద్దు చెయ్యలేకున్నాం: తొలగింపుకు ముందే ఫైలు కనబడటం లేదు.',
 'undelete-cleanup-error' => 'వాడని భాండారం ఫైలు "$1" తొలగింపును రద్దు చెయ్యడంలో లోపం దొర్లింది.',
 'undelete-missing-filearchive' => 'ID $1 కలిగిన భాండారం ఫైలు డేటాబేసులో లేకపోవడం చేత దాన్ని పునస్థాపించలేకున్నాం. దాని తొలగింపును ఇప్పటికే రద్దుపరచి ఉండవచ్చు.',
+'undelete-error' => 'పుటను తిరిగి సృష్టించుటలో దోషం',
 'undelete-error-short' => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపం దొర్లింది',
 'undelete-error-long' => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపాలు దొర్లాయి',
 'undelete-show-file-confirm' => '$2 నాడు $3 సమయాన ఉన్న "<nowiki>$1</nowiki>" ఫైలు యొక్క తొలగించిన కూర్పుని మీరు నిజంగానే చూడాలనుకుంటున్నారా?',
@@ -2481,6 +2522,7 @@ $1',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] నిరోధించబడింది.<br />
 నిరోధాల సమీక్ష కొరకు [[Special:BlockList|నిరోధాల జాబితా]] చూడండి.',
 'ipb-blockingself' => 'మిమ్మల్ని మీరే నిరోధించుకోబోతున్నారు! అదే మీ నిశ్చయమా?',
+'ipb-confirmaction' => 'మీరు నిజంగానే ఆ పని చెయ్యాలనుకుంటే, కింద ఉన్న "{{int:ipb-confirm}}" ఫీల్డును చెక్ చెయ్యండి.',
 'ipb-edit-dropdown' => 'నిరోధపు కారణాలను మార్చండి',
 'ipb-unblock-addr' => '$1 పై ఉన్న నిరోధాన్ని తొలగించండి',
 'ipb-unblock' => 'వాడుకరి పేరుపై లేదా ఐపీ చిరునామాపై ఉన్న నిరోధాన్ని తొలగించండి',
@@ -2522,7 +2564,8 @@ $1',
 'change-blocklink' => 'నిరోధాన్ని మార్చండి',
 'contribslink' => 'రచనలు',
 'emaillink' => 'ఈ-మెయిలును పంపించు',
-'autoblocker' => 'మీ ఐ.పీ. అడ్రసును "[[User:$1|$1]]" ఇటీవల వాడుట చేత, అది ఆటోమాటిక్‌గా నిరోధించబడినది. $1ను నిరోధించడానికి కారణం: "\'\'\'$2\'\'\'"',
+'autoblocker' => 'మీ ఐ.పీ. అడ్రసును ఇటీవల "[[User:$1|$1]]" వాడటం చేత, అది ఆటోమాటిక్‌గా నిరోధించబడినది. 
+$1 ను నిరోధించడానికి కారణం: "$2"',
 'blocklogpage' => 'నిరోధాల చిట్టా',
 'blocklog-showlog' => 'ఈ వాడుకరిని గతంలో నిరోధించారు.
 మీ సమాచారం కోసం నిరోధపు చిట్టాని క్రింద ఇచ్చాం:',
@@ -2656,6 +2699,7 @@ $1',
 'immobile-target-namespace-iw' => 'పేజీని తరలించడానికి అంతర్వికీ లింకు సరైన లక్ష్యం కాదు.',
 'immobile-source-page' => 'ఈ పేజీని తరలించలేరు.',
 'immobile-target-page' => 'ఆ లక్ష్యిత శీర్షికకి తరలించలేము.',
+'bad-target-model' => 'కోరుకున్న గమ్య స్థానం వేరే కంటెంటు మోడల్‍ను వాడుతోంది. $1 నుండి $2 కు మార్చలేం.',
 'imagenocrossnamespace' => 'ఫైలును, ఫైలుకు చెందని నేమ్‌స్పేసుకు తరలించలేం',
 'nonfile-cannot-move-to-file' => 'దస్త్రాలు కానివాటిని దస్త్రపు పేరుబరికి తరలించలేరు',
 'imagetypemismatch' => 'ఈ కొత్త ఫైలు ఎక్స్&zwnj;టెన్షన్ ఫైలు రకానికి సరిపోలేదు',
@@ -2682,6 +2726,7 @@ $1',
 'exportcuronly' => 'ప్రస్తుత కూర్పు మాత్రమే, పూర్తి చరితం వద్దు',
 'exportnohistory' => "----
 '''గమనిక:''' ఈ ఫారాన్ని ఉపయోగించి పేజీలయొక్క పూర్తి చరిత్రను ఎగుమతి చేయడాన్ని సర్వరుపై వత్తిడి పెరిగిన కారణంగా ప్రస్తుతం నిలిపివేశారు.",
+'exportlistauthors' => 'ప్రతీపేజీలోను చేర్పరుల పూర్తి జాబితాను కూడా ఉంచు',
 'export-submit' => 'ఎగుమతించు',
 'export-addcattext' => 'ఈ వర్గంలోని పేజీలను చేర్చు:',
 'export-addcat' => 'చేర్చు',
@@ -2724,6 +2769,7 @@ $2',
 'thumbnail_image-type' => 'ఈ బొమ్మ రకానికి మద్దతు లేదు',
 'thumbnail_gd-library' => 'అసంపూర్ణ GD సంచయపు ఏర్పాటు: $1 ఫంక్షను లేదు.',
 'thumbnail_image-missing' => 'ఫైలు తప్పిపోయినట్లున్నది: $1',
+'thumbnail_image-failure-limit' => 'ఈ థంబ్‍నెయిల్‍ను రెండరు చెయ్యడానికి చాలా ఎక్కువ విఫలయత్నాలు ($1 లేదా అంతకంటే ఎక్కువ) జరిగాయి. కాస్తాగి మళ్ళీ ప్రయత్నించండి.',
 
 # Special:Import
 'import' => 'పేజీలను దిగుమతి చేసుకోండి',
@@ -2772,6 +2818,7 @@ $2',
 'import-error-invalid' => 'పేజీ "$1" పేరు సరైనది కాదు కాబట్టి దాన్ని దిగుమతి చెయ్యలేదు.',
 'import-options-wrong' => 'తప్పు {{PLURAL:$2|ఐచ్ఛికం|ఐచ్ఛికాలు}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'ఇచ్చిన మూలపు పేజీ సరైన శీర్షిక కాదు.',
+'import-rootpage-nosubpage' => 'మూలపేజీ యొక్క పేరుబరి "$1" ఉపపేజీలను అనుమతించదు.',
 
 # Import log
 'importlogpage' => 'దిగుమతుల చిట్టా',
@@ -2784,6 +2831,10 @@ $2',
 # JavaScriptTest
 'javascripttest' => 'జావాస్క్రిప్ట్ పరీక్ష',
 'javascripttest-title' => '$1 పరీక్షలు నడుస్తున్నాయి',
+'javascripttest-pagetext-noframework' => 'ఈ పేజీ JavaScript పరీక్షల కోసం ఉద్దేశించబడింది.',
+'javascripttest-pagetext-unknownframework' => 'తెలియని పరీక్షా ఫ్రేమ్‍వర్కు "$1".',
+'javascripttest-pagetext-frameworks' => 'కింది పరీక్షా ఫ్రేమ్‍వర్కులలో ఒకదాన్ని ఎంచుకోండి: $1',
+'javascripttest-qunit-intro' => 'mediawiki.org లోని [$1 పరీక్షా డాక్యుమెంటేషన్] చూడండి.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'మీ వాడుకరి పేజీ',
@@ -2877,6 +2928,9 @@ $2',
 'spambot_username' => 'మీడియావికీ స్పాము శుద్ధి',
 'spam_reverting' => '$1 కు లింకులు లేని గత కూర్పుకు తిరిగి తీసుకెళ్తున్నాం',
 'spam_blanking' => '$1 కు లింకులు ఉన్న కూర్పులన్నిటినీ ఖాళీ చేస్తున్నాం',
+'spam_deleting' => '$1 కు లింకులున్న కూర్పులను తొలగిస్తున్నాం',
+'simpleantispam-label' => 'యాంటీ స్పామ్ పరీక్ష.
+దీన్ని <strong>పూరించకండి</strong>!',
 
 # Info page
 'pageinfo-title' => '"$1" గురించి సమాచారం',
@@ -2889,6 +2943,8 @@ $2',
 'pageinfo-length' => 'పేజీ నిడివి (బైట్లలో)',
 'pageinfo-article-id' => 'పేజీ ఐడీ',
 'pageinfo-language' => 'పేజీ విషయపు భాష',
+'pageinfo-content-model' => 'పేజీ కంటెంటు మోడల్',
+'pageinfo-robot-policy' => 'రోబోట్లచే ఇండెక్సవుతోంది',
 'pageinfo-robot-index' => 'అనుమతించబడింది',
 'pageinfo-robot-noindex' => 'అనుమతించబడలేదు',
 'pageinfo-views' => 'వీక్షణల సంఖ్య',
@@ -2902,7 +2958,9 @@ $2',
 'pageinfo-lastuser' => 'ఇట్టీవలి మార్పుచేర్పుల కర్త',
 'pageinfo-lasttime' => 'చివరిసారిగా మార్పు చేసిన తేదీ',
 'pageinfo-edits' => 'మొత్తం మార్పుల సంఖ్య',
+'pageinfo-authors' => 'ప్రత్యేక కర్తల మొత్తం సంఖ్య',
 'pageinfo-recent-edits' => 'ఇటీవలి మార్పుల సంఖ్య (గత $1 లోపు)',
+'pageinfo-recent-authors' => 'ప్రత్యేక కర్తల ఇటీవలి సంఖ్య',
 'pageinfo-magic-words' => 'చమత్కార {{PLURAL:$1|పదం|పదాలు}} ($1)',
 'pageinfo-hidden-categories' => 'దాచిన {{PLURAL:$1|వర్గం|వర్గాలు}} ($1)',
 'pageinfo-templates' => 'ట్రాన్స్‍క్లూడు చేసిన {{PLURAL:$1|మూస|మూసలు}} ($1)',
@@ -3370,6 +3428,8 @@ $1',
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',
 'exif-gpsdirection-m' => 'అయస్కాంత దిశ',
 
+'exif-ycbcrpositioning-1' => 'మధ్యగతం చేయబడిన',
+
 'exif-dc-contributor' => 'సహాయకులు',
 'exif-dc-date' => 'తేదీ‍‍(లు)',
 'exif-dc-publisher' => 'ప్రచురణకర్త',
@@ -3759,6 +3819,7 @@ $5
 
 # Search suggestions
 'searchsuggest-search' => 'వెతుకు',
+'searchsuggest-containing' => 'కలిగియున్న...',
 
 # API errors
 'api-error-badaccess-groups' => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',
@@ -3783,6 +3844,7 @@ $5
 'api-error-illegal-filename' => 'ఆ పైల్ పేరు అనుమతించబడదు.',
 'api-error-internal-error' => 'అంతర్గత లోపం: ఈ వికీలో మీ ఎక్కింపును ప్రాసెసు చెయ్యడంలో ఎదో తప్పు జరిగింది.',
 'api-error-invalid-file-key' => 'అంతర్గత దోషము: తాత్కాలిక నిల్వలో ఫైల్ కనపడలేదు.',
+'api-error-missingparam' => 'అంతర్గత దోషం: అభ్యర్ధనలో పరామితులు అన్నీ లేవు.',
 'api-error-mustbeloggedin' => 'దస్త్రాలను ఎక్కించడానికి మీరు ప్రవేశించివుండాలి.',
 'api-error-noimageinfo' => 'ఎక్కింపు జయప్రదమైంది. కానీ సర్వరు, ఆ ఫైలు గురించిన సమాచారమేమీ ఇవ్వలేదు.',
 'api-error-nomodule' => 'అంతర్గత దోషము: ఎక్కింపు పర్వికము అమర్చబడలేదు.',
@@ -3837,4 +3899,6 @@ $5
 'expand_templates_generate_rawhtml' => 'ముడి HTML ను చూపించు',
 'expand_templates_preview' => 'మునుజూపు',
 
+# Unknown messages
+'uploadinvalidxml' => 'ఎక్కించిన ఫైలులోని XML ను పార్సు చెయ్యలేకపోయాం.',
 );

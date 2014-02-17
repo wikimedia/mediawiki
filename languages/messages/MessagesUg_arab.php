@@ -1322,6 +1322,7 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'prefs-displaywatchlist' => 'كۆرسىتىش تاللانما',
 'prefs-tokenwatchlist' => 'ئاچقۇچ',
 'prefs-diffs' => 'پەرقلەر',
+'prefs-help-prefershttps' => 'بۇ سەپلەك، سىز قايتا تىزىمغا كىرگەندە ئىشلەيدۇ.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'ئېلخەت ئادرېسى ئىناۋەتلىك',

@@ -20,6 +20,7 @@
  * @author Geitost
  * @author Herr Mlinka
  * @author Kaganer
+ * @author Kolega2357
  * @author Luka Krstulovic
  * @author MaGa
  * @author MayaSimFan
@@ -2425,7 +2426,8 @@ Posljednju promjenu napravio je [[User:$3|$3]] ([[User talk:$3|Razgovor]]{{int:p
 'editcomment' => "Sažetak promjene je bio: \"''\$1''\".",
 'revertpage' => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1',
 'revertpage-nouser' => 'Vraćene izmjene suradnika (suradničko ime uklonjeno) na posljednju inačicu suradnika [[User:$1|$1]]',
-'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
+'rollback-success' => 'Uklonjeno uređivanje {{GENDER:$1|suradnika|suradnice}} $1
+vraćeno na zadnju inačicu {{GENDER:$2|suradnika|suradnice}} $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Prekid sesije',

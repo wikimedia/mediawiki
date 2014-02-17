@@ -20,6 +20,7 @@
  * @author Dani
  * @author Dj
  * @author Dorgan
+ * @author Einstein2
  * @author Enbéká
  * @author Geitost
  * @author Glanthor Reviol
@@ -1665,7 +1666,7 @@ A műveletet nem lehet visszavonni.',
 'rclistfrom' => '$1 után történt változtatások megtekintése',
 'rcshowhideminor' => 'apró szerkesztések $1',
 'rcshowhidebots' => 'botok szerkesztéseinek $1',
-'rcshowhideliu' => '$1 bejelentkezett felhasználó',
+'rcshowhideliu' => 'bejelentkezett szerkesztők szerkesztéseinek $1',
 'rcshowhideanons' => 'névtelen szerkesztések $1',
 'rcshowhidepatr' => 'ellenőrzött szerkesztések $1',
 'rcshowhidemine' => 'saját szerkesztések $1',

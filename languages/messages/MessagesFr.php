@@ -20,6 +20,7 @@
  * @author Crochet.david
  * @author Csisc
  * @author Damouns
+ * @author Darkdadaah
  * @author DavidL
  * @author Delhovlyn
  * @author Dereckson
@@ -1761,7 +1762,7 @@ Cette information sera publique.',
 'newuserlogpagetext' => "Cette page affiche l'historique des créations de comptes utilisateur.",
 
 # User rights log
-'rightslog' => "Journal des modifications de droits d'utilisateurs",
+'rightslog' => 'Journal des modifications de droits d’utilisateurs',
 'rightslogtext' => "Voici l'historique des modifications des droits des utilisateurs.",
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2356,7 +2357,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'unusedcategoriestext' => 'Les catégories suivantes existent mais aucune page ou catégorie ne les utilise.',
 'notargettitle' => 'Pas de cible',
 'notargettext' => "Vous n'avez pas indiqué une page ou un utilisateur sur lequel vous souhaitez effectuer cette action.",
-'nopagetitle' => 'Aucune telle page cible',
+'nopagetitle' => 'Page cible inexistante',
 'nopagetext' => "La page cible que vous avez indiquée n'existe pas.",
 'pager-newer-n' => '{{PLURAL:$1|plus récente|$1 plus récentes}}',
 'pager-older-n' => '{{PLURAL:$1|plus ancienne|$1 plus anciennes}}',
@@ -2374,7 +2375,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 # Special:Log
 'specialloguserlabel' => 'Auteur :',
 'speciallogtitlelabel' => 'Cible (titre ou utilisateur):',
-'log' => "Journaux d'opérations",
+'log' => 'Journaux d’opérations',
 'all-logs-page' => 'Tous les journaux publics',
 'alllogstext' => "Affichage combiné de tous les journaux disponibles sur {{SITENAME}}.<br />
 Vous pouvez personnaliser l'affichage en sélectionnant le type de journal, le nom d'utilisateur ou la page concernée (ces deux derniers étant sensibles à la casse).",
@@ -2660,7 +2661,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protectexpiry' => 'Date d’expiration :',
 'protect_expiry_invalid' => "La date d'expiration est invalide.",
 'protect_expiry_old' => "La date d'expiration est déjà passée.",
-'protect-unchain-permissions' => "Déverrouiller davantage d'options de protection",
+'protect-unchain-permissions' => 'Déverrouiller davantage d’options de protection',
 'protect-text' => "Vous pouvez consulter et modifier le niveau de protection de la page '''$1'''.",
 'protect-locked-blocked' => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",

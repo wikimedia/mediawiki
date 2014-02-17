@@ -781,7 +781,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'viewprevnext' => 'Guêrda ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Int al sît a gh'é 'na pàgina cun al nòm [[:$1]].'''
 {{PLURAL:$2|0=|Guêrda ânca chiêter ch'în stê catê.}}",
-'searchmenu-new' => "'''Şvilópa la pàgina \"[[:\$1]]\" insém a cól sît ché! '''{{PLURAL:\$2|0=|Guêrda ânch i rişultêt catê}}.",
+'searchmenu-new' => '<strong>Şvilópa la pàgina "[[:$1]]" insém a cól sît ché!</strong> {{PLURAL:$2|0=|Guêrda ânch la pàgina che t\'é serchê|Guêrda ânch i rişultêt catê}}.',
 'searchprofile-articles' => "Pàgini 'd j argumèint",
 'searchprofile-project' => "Pàgini 'd ajót e relatîvi al prugèt.",
 'searchprofile-images' => 'Multimèdia',

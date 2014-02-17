@@ -4159,7 +4159,7 @@ $5
 'duplicate-defaultsort' => 'Внимание. Ключ сортировки по умолчанию «$2» переопределяет прежний ключ сортировки по умолчанию «$1».',
 
 # Special:Version
-'version' => 'Версия MediaWiki',
+'version' => 'Версия',
 'version-extensions' => 'Установленные расширения',
 'version-specialpages' => 'Служебные страницы',
 'version-parserhooks' => 'Перехватчики синтаксического анализатора',

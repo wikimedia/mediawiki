@@ -37,6 +37,7 @@
  * @author Helder.wiki
  * @author Jaideraf
  * @author Jesielt
+ * @author Jgpacker
  * @author Jorge Morais
  * @author Kaganer
  * @author Leonardo.stabile
@@ -3953,7 +3954,7 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'version-antispam' => 'Prevenção contra spam',
 'version-skins' => 'Temas',
 'version-other' => 'Diversos',
-'version-mediahandlers' => 'Executores de média',
+'version-mediahandlers' => 'Executores de mídia',
 'version-hooks' => 'Hooks',
 'version-parser-extensiontags' => 'Etiquetas de extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" de "parser"',

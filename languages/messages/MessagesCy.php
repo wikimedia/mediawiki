@@ -1999,6 +1999,14 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'protectedpages-cascade' => 'A sgydol-ddiogelwyd yn unig',
 'protectedpages-noredirect' => 'Cuddio ailgyfeiriadau',
 'protectedpagesempty' => "Does dim tudalennau wedi eu diogelu gyda'r paramedrau hyn.",
+'protectedpages-timestamp' => 'Stamp amser',
+'protectedpages-page' => 'Tudalen',
+'protectedpages-expiry' => 'Daw i ben',
+'protectedpages-performer' => 'Y diogelwr',
+'protectedpages-params' => "Paramedrau'r diogelu",
+'protectedpages-reason' => 'Rheswm',
+'protectedpages-unknown-timestamp' => 'Anhysbys',
+'protectedpages-unknown-performer' => 'Defnyddiwr anhysbys',
 'protectedtitles' => 'Teitlau wedi eu diogelu',
 'protectedtitlesempty' => "Ar hyn o bryd nid oes unrhyw deitlau wedi eu diogelu a'r paramedrau hyn.",
 'listusers' => 'Rhestr defnyddwyr',
@@ -2745,6 +2753,7 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki 
 'allmessages-prefix' => 'Hidlo yn ôl rhagddodiad:',
 'allmessages-language' => 'Iaith:',
 'allmessages-filter-submit' => 'Eler',
+'allmessages-filter-translate' => 'Cyfieithu',
 
 # Thumbnails
 'thumbnail-more' => 'Chwyddo',
@@ -3946,7 +3955,10 @@ Defnydd:
 'expand_templates_ok' => 'Iawn',
 'expand_templates_remove_comments' => 'Peidio â dangos sylwadau',
 'expand_templates_remove_nowiki' => "Cuddio'r tagiau <nowiki> wrth ehangu",
+'expand_templates_generate_xml' => 'Dangos y goeden dosrannu XML',
 'expand_templates_generate_rawhtml' => 'Dangos HTML crai',
 'expand_templates_preview' => 'Rhagolwg',
 
+# Unknown messages
+'uploadinvalidxml' => "Ni ellid dosrannu'r XML yn y ffeil a uwchlwythwyd.",
 );

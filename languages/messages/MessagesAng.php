@@ -280,7 +280,7 @@ $1',
 'pool-errorunknown' => 'Uncūþ wōh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'Gecȳþness ymbe {{SITENAME}}',
+'aboutsite' => 'Gecȳþness ymbe {{GRAMMAR:wrēgendlīc|{{SITENAME}}}}',
 'aboutpage' => 'Project:Gecȳþness',
 'copyright' => 'Man mæg innunge under $1 findan.',
 'copyrightpage' => '{{ns:project}}:Gelīcnessriht',

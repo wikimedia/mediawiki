@@ -779,6 +779,8 @@ Ger-tremen da c'hortoz : $2",
 'changeemail-password' => 'Ho ker-tremen war {{SITENAME}}:',
 'changeemail-submit' => "Cheñch chomlec'h postel",
 'changeemail-cancel' => 'Nullañ',
+'changeemail-throttled' => "Betek re hoc'h heus klasket kevreañ en aner.
+Gortozit $1, mar plij, a-raok esaeañ en-dro.",
 
 # Special:ResetTokens
 'resettokens' => 'Adderaouekaat ar jedoueroù',
@@ -1026,6 +1028,7 @@ A-gostez eo bet lezet an arventenn-se.',
 'undo-success' => "Gallout a reer dizober ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
 'undo-failure' => "N'eus ket bet tu da zisteuler ar c'hemm-mañ abalamour d'un tabut gant kemmoù degaset e-keit-se.",
 'undo-norev' => "N'eus ket bet gallet degas ar c'hemmoù-mañ rak pe n'eus ket anezho pe int bet diverket.",
+'undo-nochange' => "War a seblant eo bet nullet ar c'hemm dija.",
 'undo-summary' => 'Dizober kemmoù $1 a-berzh [[Special:Contributions/$2|$2]] ([[User talk:$2|kaozeal]])',
 'undo-summary-username-hidden' => 'Dizober ar reizhadenn $1 gant un implijer kuzhet',
 
@@ -1236,6 +1239,7 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-result-score' => 'Klotadusted : $1%',
 'search-redirect' => '(adkas $1)',
 'search-section' => '(rann $1)',
+'search-file-match' => "(klotañ a ra gant endalc'had ar restr)",
 'search-suggest' => "N'hoc'h eus ket soñjet kentoc'h e : $1",
 'search-interwiki-caption' => 'Raktresoù kar',
 'search-interwiki-default' => "$1 disoc'h :",
@@ -2051,6 +2055,14 @@ $1 {{PLURAL:$1|rummad|rummad}}',
 'protectedpages-cascade' => 'Gwarez dre skalierad hepken',
 'protectedpages-noredirect' => 'Kuzhat an adkasoù',
 'protectedpagesempty' => "N'eus pajenn gwarezet ebet gant an arventennoù-mañ evit poent.",
+'protectedpages-timestamp' => 'Deiziad hag eur',
+'protectedpages-page' => 'Pajenn',
+'protectedpages-expiry' => "A ya d'e dermen",
+'protectedpages-performer' => 'Gwareziñ an implijer',
+'protectedpages-params' => 'Arventennoù gwareziñ',
+'protectedpages-reason' => 'Abeg',
+'protectedpages-unknown-timestamp' => 'Dianav',
+'protectedpages-unknown-performer' => 'Implijer dianav',
 'protectedtitles' => 'Titloù gwarezet',
 'protectedtitlesempty' => "N'eus bet gwarezet titl ebet dezhañ an arventennoù-se evit poent.",
 'listusers' => 'Roll an implijerien',
@@ -2787,6 +2799,7 @@ Kit da welet [https://www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki]
 'allmessages-prefix' => 'Silañ dre rakger',
 'allmessages-language' => 'Yezh :',
 'allmessages-filter-submit' => 'Mont',
+'allmessages-filter-translate' => 'Treiñ',
 
 # Thumbnails
 'thumbnail-more' => 'Brasaat',
@@ -3079,7 +3092,7 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'svg-long-desc' => 'restr SVG file, pizhder $1 × $2 piksel, ment ar restr : $3',
 'svg-long-desc-animated' => 'Restr SVG bev, ment $1 × $2 piksel, ment ar restr: $3',
 'svg-long-error' => 'Restr SVG direizh : $1',
-'show-big-image' => 'Pizhder leun',
+'show-big-image' => 'Restr orin',
 'show-big-image-preview' => 'Ment ar rakweled-mañ : $1.',
 'show-big-image-other' => '{{PLURAL:$2|pizhder all|pizhderioù all}} : $1.',
 'show-big-image-size' => '$1 × $2 piksel',
@@ -4005,9 +4018,8 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'expandtemplates' => 'Emled ar patromoù',
 'expand_templates_intro' => "Kemer a ra ar bajenn dibar-mañ tammoù testenn hag astenn a ra an holl batromoù enni en un doare azkizat.
 Astenn a ra ivez an arc'hwelioù parser evel
-<nowiki>{{</nowiki>#language:…}}, hag an argemmoù evel
-<nowiki>{{</nowiki>CURRENTDAY}}&mdash; e gwirionez, koulz lavaret kement tra zo etre briataennoù.
-Ober a ra kement-mañ dre c'hervel ar bazenn a zegouezh digant parser MediaWiki e-unan.",
+<code><nowiki>{{</nowiki>#language:…}}</code>, hag an argemmoù evel
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code. E gwirionez, koulz lavaret kement tra zo etre briataennoù doubl.",
 'expand_templates_title' => 'Titl ar gendestenn, evit {{FULLPAGENAME}} h.a. :',
 'expand_templates_input' => 'Merkañ ho testenn amañ :',
 'expand_templates_output' => "Disoc'h",

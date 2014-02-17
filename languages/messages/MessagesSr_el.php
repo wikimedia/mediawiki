@@ -2514,7 +2514,7 @@ Možete da promenite stepen zaštite, ali to neće uticati na prenosivu zaštitu
 'protect-edit-reasonlist' => 'Uredi razloge zaštićivanja',
 'protect-expiry-options' => '1 sat:1 hour,1 dan:1 day,1 nedelja:1 week,2 nedelje:2 weeks,1 mesec:1 month,3 meseca:3 months,6 meseci:6 months,1 godina:1 year,trajno:infinite',
 'restriction-type' => 'Dozvola:',
-'restriction-level' => 'Stepen ograničenja:',
+'restriction-level' => 'Nivo zaštite:',
 'minimum-size' => 'Najmanja veličina',
 'maximum-size' => 'Najveća veličina:',
 'pagesize' => '(bajtovi)',
@@ -2528,7 +2528,7 @@ Možete da promenite stepen zaštite, ali to neće uticati na prenosivu zaštitu
 # Restriction levels
 'restriction-level-sysop' => 'potpuno zaštićeno',
 'restriction-level-autoconfirmed' => 'poluzaštićeno',
-'restriction-level-all' => 'bilo koji stepen',
+'restriction-level-all' => 'svi nivoi',
 
 # Undelete
 'undelete' => 'Prikaz obrisanih stranica',

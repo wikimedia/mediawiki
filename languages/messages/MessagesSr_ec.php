@@ -2657,7 +2657,7 @@ $UNWATCHURL
 'protect-edit-reasonlist' => 'Уреди разлоге заштићивања',
 'protect-expiry-options' => '1 сат:1 hour,1 дан:1 day,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,трајно:infinite',
 'restriction-type' => 'Дозвола:',
-'restriction-level' => 'Степен ограничења:',
+'restriction-level' => 'Ниво заштите:',
 'minimum-size' => 'Најмања величина',
 'maximum-size' => 'Највећа величина:',
 'pagesize' => '(бајтови)',
@@ -2671,7 +2671,7 @@ $UNWATCHURL
 # Restriction levels
 'restriction-level-sysop' => 'потпуно заштићено',
 'restriction-level-autoconfirmed' => 'полузаштићено',
-'restriction-level-all' => 'било који степен',
+'restriction-level-all' => 'сви нивои',
 
 # Undelete
 'undelete' => 'Приказ обрисаних страница',
