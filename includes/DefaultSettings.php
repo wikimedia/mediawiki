@@ -869,6 +869,13 @@ $wgContentHandlers = array(
 );
 
 /**
+ * Whether to enable server-side image thumbnailing. If false, images will
+ * always be sent to the client in full resolution, with appropriate width= and
+ * height= attributes on the <img> tag for the client to do its own scaling.
+ */
+$wgUseImageResize = true;
+
+/**
  * Resizing can be done using PHP's internal image libraries or using
  * ImageMagick or another third-party converter, e.g. GraphicMagick.
  * These support more file formats than PHP, which only supports PNG,
@@ -1065,11 +1072,6 @@ $wgGenerateThumbnailOnParse = true;
  * Show thumbnails for old images on the image description page
  */
 $wgShowArchiveThumbnails = true;
-
-/**
- * Obsolete, always true, kept for compatibility with extensions
- */
-$wgUseImageResize = true;
 
 /**
  * If set to true, images that contain certain the exif orientation tag will
