@@ -101,7 +101,6 @@
         getTitle: function() {
             var title, $e = this.$element, o = this.options;
             fixTitle($e);
-            var title, o = this.options;
             if (typeof o.title == 'string') {
                 title = $e.attr(o.title == 'title' ? 'original-title' : o.title);
             } else if (typeof o.title == 'function') {
