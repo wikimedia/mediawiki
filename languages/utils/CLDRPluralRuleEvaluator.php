@@ -5,7 +5,7 @@
  * UTS #35 Revision 33
  * http://www.unicode.org/reports/tr35/tr35-33/tr35-numbers.html#Language_Plural_Rules
  *
- * @author Niklas Laxstrom, Tim Starling
+ * @author Niklas Laxström, Tim Starling
  *
  * @copyright Copyright © 2010-2012, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0
