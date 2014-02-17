@@ -2763,7 +2763,7 @@ It now redirects to [[$2]].',
 'deadendpagestext'                => 'The following pages do not link to other pages in {{SITENAME}}.',
 'protectedpages'                  => 'Protected pages',
 'protectedpages-indef'            => 'Indefinite protections only',
-'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
+'protectedpages-summary'          => 'This page lists existing pages that are currently protected. For a list of titles that are protected from creation, see [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade'          => 'Cascading protections only',
 'protectedpages-noredirect'       => 'Hide redirects',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
@@ -2777,7 +2777,7 @@ It now redirects to [[$2]].',
 'protectedpages-unknown-performer' => 'Unknown user',
 'protectedpages-unknown-reason'   => '—', # do not translate or duplicate this message to other languages
 'protectedtitles'                 => 'Protected titles',
-'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
+'protectedtitles-summary'         => 'This page lists titles that are currently protected from creation. For a list of existing pages that are protected, see [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # do not translate or duplicate this message to other languages
