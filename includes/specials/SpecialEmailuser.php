@@ -143,7 +143,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			}
 			$out->addHTML( $this->userForm( $this->mTarget ) );
 
-			return false;
+			return;
 		}
 
 		$this->mTargetObj = $ret;
@@ -159,7 +159,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$form->loadData();
 
 		if ( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ) {
-			return false;
+			return;
 		}
 
 		$result = $form->show();
