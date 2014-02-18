@@ -14,6 +14,8 @@ abstract class HTMLFormField {
 	protected $mID;
 	protected $mClass = '';
 	protected $mDefault;
+	protected $mOptions = false;
+	protected $mOptionsLabelsNotFromMessage = false;
 
 	/**
 	 * @var bool If true will generate an empty div element with no label
@@ -506,6 +508,71 @@ abstract class HTMLFormField {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Given an array of msg-key => value mappings, returns an array with keys
+	 * being the message texts.
+	 *
+	 * @param array $options
+	 * @return array
+	 */
+	private function lookupOptionsKeys( $options ) {
+		$ret = array();
+		foreach ( $options as $key => $value ) {
+			$key = $this->msg( $key )->plain();
+			$ret[$key] = is_array( $value ) ? $this->lookupOptionsKeys($field, $value) : $value;
+		}
+		return $ret;
+	}
+
+	/**
+	 * Fetch the array of options from the field's parameters. In order, this
+	 * checks 'options-messages', 'options', then 'options-message'.
+	 *
+	 * @return array|null Options array
+	 */
+	public function getOptions() {
+		if ( $this->mOptions === false ) {
+			if ( array_key_exists( 'options-messages', $this->mParams ) ) {
+				$this->mOptions = $this->lookupOptionsKeys( $this->mParams['options-messages'] );
+			} elseif ( array_key_exists( 'options', $this->mParams ) ) {
+				$this->mOptionsLabelsNotFromMessage = true;
+				$this->mOptions = $this->mParams['options'];
+			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
+				/** @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication? */
+				$message = $this->msg( $this->mParams['options-message'] )->plain();
+
+				$optgroup = false;
+				$this->mOptions = array();
+				foreach ( explode( "\n", $message ) as $option ) {
+					$value = trim( $option );
+					if ( $value == '' ) {
+						continue;
+					} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+						# A new group is starting...
+						$value = trim( substr( $value, 1 ) );
+						$optgroup = $value;
+					} elseif ( substr( $value, 0, 2 ) == '**' ) {
+						# groupmember
+						$opt = trim( substr( $value, 2 ) );
+						if ( $optgroup === false ) {
+							$this->mOptions[$opt] = $opt;
+						} else {
+							$this->mOptions[$optgroup][$opt] = $opt;
+						}
+					} else {
+						# groupless reason list
+						$optgroup = false;
+						$this->mOptions[$option] = $option;
+					}
+				}
+			} else {
+				$this->mOptions = null;
+			}
+		}
+
+		return $this->mOptions;
 	}
 
 	/**

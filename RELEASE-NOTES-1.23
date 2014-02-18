@@ -101,6 +101,9 @@ production.
    $wgDBWindowsAuthentication, which makes the web server authenticate against
    the database server using Integrated Windows Authentication instead of
    $wgDBuser/$wgDBpassword.
+* HTMLForm 'select', 'selectandother', 'selectorother', 'multiselect', and
+  'radio' fields can now use message keys as labels via the 'options-messages'
+  parameter, which overrides the 'options' parameter.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

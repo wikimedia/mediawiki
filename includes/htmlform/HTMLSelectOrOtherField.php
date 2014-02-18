@@ -5,15 +5,16 @@
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
 	function __construct( $params ) {
-		if ( !in_array( 'other', $params['options'], true ) ) {
+		parent::__construct( $params );
+		$this->getOptions();
+		if ( !in_array( 'other', $this->mOptions, true ) ) {
 			$msg =
 				isset( $params['other'] )
 					? $params['other']
 					: wfMessage( 'htmlform-selectorother-other' )->text();
-			$params['options'][$msg] = 'other';
+			$this->mOptions[$msg] = 'other';
 		}
 
-		parent::__construct( $params );
 	}
 
 	static function forceToStringRecursive( $array ) {
@@ -28,12 +29,12 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$valInSelect = false;
 
 		if ( $value !== false ) {
-			$valInSelect = in_array( $value, HTMLFormField::flattenOptions( $this->mParams['options'] ) );
+			$valInSelect = in_array( $value, HTMLFormField::flattenOptions( $this->getOptions() ) );
 		}
 
 		$selected = $valInSelect ? $value : 'other';
 
-		$opts = self::forceToStringRecursive( $this->mParams['options'] );
+		$opts = self::forceToStringRecursive( $this->getOptions() );
 
 		$select = new XmlSelect( $this->mName, $this->mID, $selected );
 		$select->addOptions( $opts );
