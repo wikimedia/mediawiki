@@ -675,8 +675,7 @@ See also:
 'lastmodifiedat' => 'This message is shown below each page, in the footer with the logos and links.
 
 Parameters:
-* $1 - date
-* $2 - time
+* $1 - how long ago, relative to current time, the page was modified
 See also:
 * {{msg-mw|Lastmodifiedatby}}',
 'viewcount' => 'Used as page-view counter. Parameters:

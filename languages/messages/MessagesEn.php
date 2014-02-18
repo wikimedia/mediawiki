@@ -888,7 +888,7 @@ future releases. Also note that since each list value is wrapped in a unique
 'redirectedfrom'     => '(Redirected from $1)',
 'redirectpagesub'    => 'Redirect page',
 'talkpageheader'     => '-', # do not translate or duplicate this message to other languages
-'lastmodifiedat'     => 'This page was last modified on $1, at $2.',
+'lastmodifiedat'     => 'This page was last modified $1',
 'viewcount'          => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'      => 'Protected page',
 'jumpto'             => 'Jump to:',

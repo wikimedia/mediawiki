@@ -885,9 +885,8 @@ abstract class Skin extends ContextSource {
 		}
 
 		if ( $timestamp ) {
-			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
-			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
-			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->text();
+			$mwTs = new MWTimestamp( $timestamp );
+			$s = $this->msg( 'lastmodifiedat', $mwTs->getRelativeTimestamp() )->text();
 		} else {
 			$s = '';
 		}
