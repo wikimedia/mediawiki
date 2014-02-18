@@ -83,7 +83,9 @@ class TitleTest extends MediaWikiTestCase {
 			'remotetestiw: Talk: # anchor',
 			'remotetestiw: #bar',
 			'remotetestiw: Talk:',
-			'remotetestiw: Talk: Foo'
+			'remotetestiw: Talk: Foo',
+			// anchor
+			'remotetestiw&nbsp;: Talk: F&#x3000;oo#__ _a~~~nch&#202A;o&nbsp;r__ _'
 		) as $text ) {
 			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
 		}
@@ -509,6 +511,39 @@ class TitleTest extends MediaWikiTestCase {
 			# Title, expected base, optional message
 			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),
 			array( 'User:John_Doe/subOne', 'subOne' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideConvertByteClassToUnicodeClass
+	 * @covers Title::getFragmentForURL
+	 */
+	public function testGetFragmentForURL( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected, $title->getFragmentForURL(), $msg );
+	}
+
+	public static function provideGetFragmentForURL() {
+		return array(
+			# Title, expected base, optional message
+			array( 'Foo', '' ),
+			// Bug 17006
+			//array( 'Foo#', '#' ),
+			//array( '#', '#' ),
+			array( '#ANCHOR __ _  anchor', '#ANCHOR_anchor' ),
+			array( '#anchor:(&"18$!+\\', '#anchor:.28.26.2218.24.21.2B.5C' ),
+			array(
+				'#a#&#91;&#93;&#123;&#125;&lt;&gt;&#124;::~~~/../&#xA0;&#x1680;&#x180E;z',
+				'#a.23.5B.5D.7B.7D.3C.3E.7C::.7E.7E.7E.2F...2F.C2.A0.E1.9A.80.E1.A0.8Ez'
+			),
+			array(
+				"#a \n\r\t\v\f\xE2\x80\x8E\xE2\x80\xAAz",
+				'a_.0A.0D.09.EF.BF.BD.EF.BF.BD.E2.80.8E.E2.80.AAz'
+			),
+			array(
+				'#a&#x2000;&#x200A;&#x2028;&#x2029;&#x202F;&#x205F;&#x3000;z',
+				'#a.E2.80.82.E2.80.8A.E2.80.A8.E2.80.A9.E2.80.AF.E2.81.9F.E3.80.80z'
+			),
 		);
 	}
 }

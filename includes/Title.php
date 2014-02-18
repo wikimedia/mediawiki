@@ -1237,7 +1237,7 @@ class Title {
 	 * @param string $fragment text
 	 */
 	public function setFragment( $fragment ) {
-		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
+		$this->mFragment = Sanitizer::normalizeSectionNameWhitespace( substr( $fragment, 1 ) );
 	}
 
 	/**
@@ -3209,6 +3209,17 @@ class Title {
 
 		$dbkey = $this->mDbkeyform;
 
+		$fragment = strstr( $dbkey, '#' );
+		if ( false !== $fragment ) {
+			if ( strpos( $fragment, UTF8_REPLACEMENT ) !== false ) {
+				# Contained illegal UTF-8 sequences or forbidden Unicode chars.
+				return false;
+			}
+
+			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
+			$this->setFragment( $fragment );
+		}
+
 		# Strip Unicode bidi override characters.
 		# Sometimes they slip into cut-n-pasted page titles, where the
 		# override chars get included in list displays.
@@ -3236,7 +3247,7 @@ class Title {
 			$dbkey = trim( $dbkey, '_' ); # remove any subsequent whitespace
 		}
 
-		if ( $dbkey == '' ) {
+		if ( $dbkey == '' && $fragment === false ) {
 			return false;
 		}
 
@@ -3276,7 +3287,7 @@ class Title {
 					if ( $wgLocalInterwiki !== false
 						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki )
 					) {
-						if ( $dbkey == '' ) {
+						if ( $dbkey == '' && $fragment === false ) {
 							# Can't have an empty self-link
 							return false;
 						}
@@ -3298,15 +3309,6 @@ class Title {
 			}
 			break;
 		} while ( true );
-
-		$fragment = strstr( $dbkey, '#' );
-		if ( false !== $fragment ) {
-			$this->setFragment( $fragment );
-			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
-			# remove whitespace again: prevents "Foo_bar_#"
-			# becoming "Foo_bar_"
-			$dbkey = preg_replace( '/_*$/', '', $dbkey );
-		}
 
 		# Reject illegal characters.
 		$rxTc = self::getTitleInvalidRegex();
