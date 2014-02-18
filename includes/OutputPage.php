@@ -2059,6 +2059,12 @@ class OutputPage extends ContextSource {
 			}
 
 			$this->addModules( $coreModules );
+
+			$this->addModuleStyles( array(
+				// So wiki content can use mediawiki.ui buttons
+				'mediawiki.ui.button',
+			) );
+
 			foreach ( $modules as $group ) {
 				$this->addModules( $group );
 			}
