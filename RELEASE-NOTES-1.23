@@ -114,6 +114,8 @@ production.
   whether to send a watchlist email notification.
 * (bug 42026) Special:Contributions now includes an option to filter page
   creations, similar to the topOnly option.
+* Add mediawiki.ui.button styling to all pages so wiki content can use styled
+  buttons.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
