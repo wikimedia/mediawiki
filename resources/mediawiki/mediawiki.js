@@ -984,6 +984,8 @@ var mw = ( function ( $, undefined ) {
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
 			 * @param {Function} [callback] Callback which will be run when the script is done
+			 * @param {boolean} [async=false] Whether to load modules asynchronously.
+			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
 			function addScript( src, callback, async ) {
 				/*jshint evil:true */
@@ -1235,8 +1237,8 @@ var mw = ( function ( $, undefined ) {
 			 * @param {string|string[]} dependencies Module name or array of string module names
 			 * @param {Function} [ready] Callback to execute when all dependencies are ready
 			 * @param {Function} [error] Callback to execute when any dependency fails
-			 * @param {boolean} [async] If true, load modules asynchronously even if
-			 *  document ready has not yet occurred.
+			 * @param {boolean} [async=false] Whether to load modules asynchronously.
+			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
 			function request( dependencies, ready, error, async ) {
 				var n;
@@ -1309,7 +1311,8 @@ var mw = ( function ( $, undefined ) {
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
-			 * @param {boolean} async If true, use an asynchronous request even if document ready has not yet occurred
+			 * @param {boolean} async Whether to load modules asynchronously.
+			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
 				var request = $.extend(
@@ -1317,7 +1320,6 @@ var mw = ( function ( $, undefined ) {
 					currReqBase
 				);
 				request = sortQuery( request );
-				// Asynchronously append a script tag to the end of the body
 				// Append &* to avoid triggering the IE6 extension check
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
@@ -1685,10 +1687,9 @@ var mw = ( function ( $, undefined ) {
 				 * @param {string} [type='text/javascript'] mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
-				 * @param {boolean} [async] If true, load modules asynchronously
-				 *  even if document ready has not yet occurred. If false, block before
-				 *  document ready and load async after. If not set, true will be
-				 *  assumed if loading a URL, and false will be assumed otherwise.
+				 * @param {boolean} [async] Whether to load modules asynchronously.
+				 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
+				 *  Defaults to `true` if loading a URL, `false` otherwise.
 				 */
 				load: function ( modules, type, async ) {
 					var filtered, m, module, l;
