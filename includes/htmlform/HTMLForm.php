@@ -306,15 +306,22 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Initialise a new Object for the field
+	 * Get the HTMLFormField subclass for this descriptor.
 	 *
-	 * @param $fieldname string
-	 * @param string $descriptor input Descriptor, as described above
+	 * The descriptor can be passed either 'class' which is the name of
+	 * a HTMLFormField subclass, or a shorter 'type' which is an alias.
+	 * This makes sure the 'class' is always set, and also is returned by
+	 * this function for ease.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $fieldname Name of the field
+	 * @param array $descriptor Input Descriptor, as described above
 	 *
 	 * @throws MWException
-	 * @return HTMLFormField subclass
+	 * @return string Name of a HTMLFormField subclass
 	 */
-	static function loadInputFromParameters( $fieldname, $descriptor ) {
+	public static function getClassFromDescriptor( $fieldname, &$descriptor ) {
 		if ( isset( $descriptor['class'] ) ) {
 			$class = $descriptor['class'];
 		} elseif ( isset( $descriptor['type'] ) ) {
@@ -325,8 +332,22 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( !$class ) {
-			throw new MWException( "Descriptor with no class: " . print_r( $descriptor, true ) );
+			throw new MWException( "Descriptor with no class for $fieldname: " . print_r( $descriptor, true ) );
 		}
+		return $class;
+	}
+
+	/**
+	 * Initialise a new Object for the field
+	 *
+	 * @param string $fieldname Name of the field
+	 * @param array $descriptor Input Descriptor, as described above
+	 *
+	 * @throws MWException
+	 * @return HTMLFormField subclass
+	 */
+	public static function loadInputFromParameters( $fieldname, $descriptor ) {
+		$class = self::getClassFromDescriptor( $fieldname, $descriptor );
 
 		$descriptor['fieldname'] = $fieldname;
 
