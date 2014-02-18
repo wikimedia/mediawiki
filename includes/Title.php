@@ -3894,7 +3894,7 @@ class Title {
 
 		$dbw->commit( __METHOD__ );
 
-		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
+		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid, $reason ) );
 		return true;
 	}
 
