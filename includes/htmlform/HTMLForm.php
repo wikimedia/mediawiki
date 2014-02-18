@@ -50,7 +50,12 @@
  *    'default'             -- default value when the form is displayed
  *    'id'                  -- HTML id attribute
  *    'cssclass'            -- CSS class
- *    'options'             -- varies according to the specific object.
+ *    'options'             -- associative array mapping labels to values.
+ *                             Some field types support multi-level arrays.
+ *    'options-messages'    -- associative array mapping message keys to values.
+ *                             Some field types support multi-level arrays.
+ *    'options-message'     -- message key to be parsed to extract the list of
+ *                             options (like 'ipbreason-dropdown').
  *    'label-message'       -- message key for a message to use as the label.
  *                             can be an array of msg key and then parameters to
  *                             the message.
