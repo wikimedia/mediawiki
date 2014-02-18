@@ -325,7 +325,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( !$class ) {
-			throw new MWException( "Descriptor with no class: " . print_r( $descriptor, true ) );
+			throw new MWException( "Descriptor with no class for $fieldname: " . print_r( $descriptor, true ) );
 		}
 
 		$descriptor['fieldname'] = $fieldname;
