@@ -897,8 +897,12 @@ return array(
 	),
 	'mediawiki.action.edit.editWarning' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.editWarning.js',
+		'dependencies' => array(
+			'mediawiki.jqueryMsg'
+		),
 		'messages' => array(
 			'editwarning-warning',
+			'prefs-editing'
 		),
 	),
 	// Alias for backwards compatibility
