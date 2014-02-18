@@ -2032,6 +2032,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'deadendpagestext' => 'Slědowace strony njejsu z druhimi stronami w tutym wikiju zwjazane.',
 'protectedpages' => 'Škitane strony',
 'protectedpages-indef' => 'Jenož strony z njewobmjezowanym škitom',
+'protectedpages-summary' => 'Tuta specialna strona naliči wšě strony, kotrež su přećiwo přesunjenju abo wobdźěłowanju škitane.',
 'protectedpages-cascade' => 'Jenož strony z kaskadowym škitom',
 'protectedpages-noredirect' => 'Dalesposrědkowanja schować',
 'protectedpagesempty' => 'Tuchwilu žane.',

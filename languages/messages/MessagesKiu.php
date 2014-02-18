@@ -1250,7 +1250,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'contribslink' => 'iştıraqi',
 'emaillink' => 'e-poste bırusne',
 'autoblocker' => 'Sıma otomatikmen kılit biy, çıke adresa sımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gurenina.
-Sebebê kılit-biyaena $1\'i: "$2"o',
+Sebebê kılitbiyaena $1\'i "$2"o',
 'blocklogpage' => 'Protokolê kilıti',
 'blocklogentry' => '[[$1]] hata peyê $2 $3ine kilıt bi',
 'reblock-logentry' => 'kilıt-kerdena [[$1]]i hata peyê $2 $3ine vurnê',

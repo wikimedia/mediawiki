@@ -1160,8 +1160,8 @@ Pel ca ra esto.',
 'content-failed-to-parse' => 'Qandê madela $3 zereyê $1, $2 sero nêagozyayo',
 'invalid-content-data' => 'Zerrey malumati nêravêrdeyo',
 'content-not-allowed-here' => '"$1" sero per da [[$2]] rê mısade nêdeyêno',
-'editwarning-warning' => 'ihtimal o ke wexta şıma peli ra bıveci, vurnayiş o ke şıma kerdo, hewna şiyêro .
-eke şıma kewtê hesabê xo, no hişyari tercihanê xo ra şıma eşkeni "Vurnayış"\'i vındarne.',
+'editwarning-warning' => 'Wexto ke şıma na pele ra veciyê, beno ke vurnayışê şıma vindi bê.
+Eke şıma kewtê hesabê xo, şıma şenê nê balantışi qısmê "{{int:prefs-editing}}"i de tercihanê xo ra bıvındarnê.',
 'editpage-notsupportedcontentformat-title' => 'Formatê zerreki qebul nêbeno',
 
 # Content models
@@ -1461,7 +1461,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'prefs-rendering' => 'Asayış',
 'saveprefs' => 'Qeyd ke',
 'restoreprefs' => 'Sazanê hesıbyaya pêron newe ke',
-'prefs-editing' => 'Cay pela nustısi',
+'prefs-editing' => 'Vurnayış',
 'rows' => 'Xeti:',
 'columns' => 'Estûni:',
 'searchresultshead' => 'Cı geyre',
@@ -2237,6 +2237,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'deadendpagestext' => 'Ena pelan ke {{SITENAME}} de zerrî ey de link çini yo.',
 'protectedpages' => 'Pelê pawıtiyey',
 'protectedpages-indef' => 'têna pawıteyê bêmuddeti',
+'protectedpages-summary' => 'têna pawıteyê têdimî',
 'protectedpages-cascade' => 'Kilit biyaye ke teyna cascadiye',
 'protectedpages-noredirect' => 'Hetenayışan bınımnê',
 'protectedpagesempty' => 'pê ney parametreyan pelê pawiteyi çinî',
@@ -2802,8 +2803,8 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'change-blocklink' => 'kılitkerdışi bıvurne',
 'contribslink' => 'iştıraqi',
 'emaillink' => 'e-poste bırışe',
-'autoblocker' => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena.
-Sebebê kılit-biyayışê $1\'i: "$2"o',
+'autoblocker' => 'Şıma otomatikmen kılit biy, çıke adresa şımaya \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena.
+Sebebê kılitbiyayışê $1\'i "$2"o',
 'blocklogpage' => 'Qeydê bloqi',
 'blocklog-showlog' => 'verniyê no/na karberi cıwa ver geriyayo/ya.',
 'blocklog-showsuppresslog' => 'verniyê no/na karberi cıwa ver geriyayo/ya.',

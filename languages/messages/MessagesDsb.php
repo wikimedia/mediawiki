@@ -2028,6 +2028,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'deadendpagestext' => 'Slědujuce boki njewótkazuju na druge boki we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'protectedpages' => 'Šćitane boki',
 'protectedpages-indef' => 'Jano boki pokazaś, kótarež su na njewěsty cas šćitane',
+'protectedpages-summary' => 'Toś ten specialny bok pokazujo wšykne boki, kótarež njamgu se mimo wósebnych pšawow wobźěłowaś a pśesuwaś.',
 'protectedpages-cascade' => 'Jano boki z kaskadowym šćitom',
 'protectedpages-noredirect' => 'Dalejpósrědnjenja schowaś',
 'protectedpagesempty' => 'Z toś tymi parametrami njejsu tuchylu žedne boki šćitane.',

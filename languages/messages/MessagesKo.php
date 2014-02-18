@@ -4324,7 +4324,7 @@ $5
 'duration-hours' => '$1{{PLURAL:$1|시간}}',
 'duration-days' => '$1{{PLURAL:$1|일}}',
 'duration-weeks' => '$1{{PLURAL:$1|주}}',
-'duration-years' => '$1{{PLURAL:$1|년}}',
+'duration-years' => '$1년',
 'duration-decades' => '$1{{PLURAL:$1|0년}}',
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',

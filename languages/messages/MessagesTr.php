@@ -46,6 +46,7 @@
  * @author Nemo bis
  * @author Rapsar
  * @author Reedy
+ * @author Rhinestorm
  * @author Runningfridgesrule
  * @author Sadrettin
  * @author Srhat
@@ -368,8 +369,8 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bölüm başlığına sağ tıklayarak bölümleri düzenleyebilme olanağı ver',
 'tog-rememberpassword' => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'tog-watchcreations' => 'Açtığım sayfaları ve yüklediğim dosyaları izleme listeme ekle',
-'tog-watchdefault' => 'Düzenleme yaptığım sayfaları izleme listeme ekle',
-'tog-watchmoves' => 'Taşıdığım sayfaları izleme listeme ekle',
+'tog-watchdefault' => 'Düzenleme yaptığım sayfaları ve dosyaları izleme listeme ekle',
+'tog-watchmoves' => 'Taşıdığım sayfaları ve dosyaları izleme listeme ekle',
 'tog-watchdeletion' => 'Sildiğim sayfaları ve dosyaları izleme listeme ekle',
 'tog-minordefault' => 'Varsayılan olarak bütün düzenlemeleri küçük olarak işaretle',
 'tog-previewontop' => 'Ön izlemeyi düzenleme kutusunun üstünde göster',
@@ -529,7 +530,7 @@ $messages = array(
 'namespaces' => 'Ad alanları',
 'variants' => 'Türevler',
 
-'navigation-heading' => 'Dolaşım menüsü',
+'navigation-heading' => 'Gezinti menüsü',
 'errorpagetitle' => 'Hata',
 'returnto' => '$1 sayfasına geri dön.',
 'tagline' => '{{SITENAME}} sitesinden',

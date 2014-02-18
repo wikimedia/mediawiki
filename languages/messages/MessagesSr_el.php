@@ -4181,7 +4181,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'logentry-rights-rights' => '$1 je {{GENDER:$1|promenio|promenila}} članstvo grupe za $3 iz $4 u $5',
 'logentry-rights-rights-legacy' => '$1 je {{GENDER:$2|promenio|promenila}} čalnstvo grupe za $3',
 'logentry-rights-autopromote' => '$1 je automatski {{GENDER:$1|unapređen|unapređena}} iz $4 u $5',
-'rightsnone' => '(ništa)',
+'rightsnone' => '(nema)',
 
 # Feedback
 'feedback-bugornote' => 'Ako ste spremni da detaljno opišete tehnički problem, onda [$1 prijavite grešku].

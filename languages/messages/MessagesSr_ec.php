@@ -4344,7 +4344,7 @@ $5
 'logentry-rights-rights' => '$1 је {{GENDER:$2|променио|променила}} чланство групе за $3 из $4 у $5',
 'logentry-rights-rights-legacy' => '$1 је {{GENDER:$2|променио|променила}} чланство групе за $3',
 'logentry-rights-autopromote' => '$1 је аутоматски {{GENDER:$2|унапређен|унапређена}} из $4 у $5',
-'rightsnone' => '(ништа)',
+'rightsnone' => '(нема)',
 
 # Feedback
 'feedback-bugornote' => 'Ако сте спремни да детаљно опишете технички проблем, онда [$1 пријавите грешку].

@@ -737,7 +737,7 @@ Tendría de facelo si los compartió con alguién de mou accidental o si la so c
 'showpreview' => 'Amosar previsualización',
 'showlivepreview' => 'Vista rápida',
 'showdiff' => 'Amosar cambeos',
-'anoneditwarning' => "'''Avisu:''' Nun anició sesión.
+'anoneditwarning' => "<strong>Avisu:</strong> Nun anició sesión.
 La direición IP quedará grabada nel historial d'edición d'esta páxina.",
 'anonpreviewwarning' => "''Nun aniciasti sesión. Al guardar quedará rexistrada la to direición IP nel historial d'edición d'esta páxina.''",
 'missingsummary' => "'''Recordatoriu:''' Nun conseñasti un resume d'edición.
@@ -863,9 +863,9 @@ Vas tener que fusionar los tos cambios dientro del testu esistente.
 'nonunicodebrowser' => "'''Avisu: El to navegador nun cumple la norma Unicode.''' Hai un sistema alternativu que te permite editar páxines de forma segura: los caráuteres non-ASCII apaecerán nel cuadru d'edición como códigos hexadecimales.",
 'editingold' => "'''AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambios que se ficieron dende esta revisión van perdese.'''",
 'yourdiff' => 'Diferencies',
-'copyrightwarning' => "Por favor, ten en cuenta que toles collaboraciones de {{SITENAME}} considerense espublizaes baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu s'edite ensin midida y se distribuya al debalu, nun lu pongas equí.<br />
-Amás tas prometiendonos qu'escribisti esto tu mesmu o que copiastilo d'una fonte llibre de dominiu públicu o asemeyao.
-'''¡Nun unvies obres con drechos d'autor ensin permisu!'''",
+'copyrightwarning' => "Por favor, ten en cuenta que toles collaboraciones de {{SITENAME}} considérense espublizaes baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu s'edite ensin midida y se distribuya al debalu, nun lu pongas equí.<br />
+Amás tas prometiéndonos qu'escribisti esto tu mesmu, o que lo copiasti d'una fonte llibre, de dominiu públicu o asemeyada.
+<strong>¡Nun unvies obres con drechos d'autor ensin permisu!</strong>",
 'copyrightwarning2' => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} se puen editar, alterar o desaniciar por otros usuarios. Si nun quies que'l to trabayu s'edite ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu, o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 '''¡Nun pongas trabayos con drechos d'autor ensin permisu!'''",
@@ -3666,7 +3666,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'autosumm-blank' => 'Desaniciáu el conteníu de la páxina',
 'autosumm-replace' => "Sustituyendo la páxina por '$1'",
 'autoredircomment' => 'Redirixendo a [[$1]]',
-'autosumm-new' => "Páxina creada con '$1'",
+'autosumm-new' => 'Páxina creada con «$1»',
 
 # Size units
 'size-gigabytes' => '$1 XB',
