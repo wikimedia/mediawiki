@@ -704,7 +704,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $objHdrs; // nothing to do
 		}
 
-		$section = new ProfileSection( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
 		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
 
 		$auth = $this->getAuthentication();
@@ -1306,6 +1306,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return array|bool|null False on 404, null on failure
 	 */
 	protected function getContainerStat( $container, $bypassCache = false ) {
+		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
+
 		if ( $bypassCache ) { // purge cache
 			$this->containerStatCache->clear( $container );
 		} elseif ( !$this->containerStatCache->has( $container, 'stat' ) ) {
@@ -1317,11 +1319,13 @@ class SwiftFileBackend extends FileBackendStore {
 				return null;
 			}
 
+			wfProfileIn( __METHOD__. "-{$this->name}-miss" );
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
 				'method' => 'HEAD',
 				'url' => $this->storageUrl( $auth, $container ),
 				'headers' => $this->authTokenHeaders( $auth )
 			) );
+			wfProfileOut( __METHOD__ . "-{$this->name}-miss" );
 
 			if ( $rcode === 204 ) {
 				$stat = array(
