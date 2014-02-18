@@ -65,7 +65,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
 			$this->dieUsage(
-				'Use "gaifilterredir=nonredirects" option instead of "redirects" ' .
+				'"redirects" option is prohibited for performance ' .
 					'when using allimages as a generator',
 				'params'
 			);

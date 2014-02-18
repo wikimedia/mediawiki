@@ -50,7 +50,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
 			$this->dieUsage(
-				'Use "gapfilterredir=nonredirects" option instead of "redirects" ' .
+				'"redirects" option is prohibited for performance ' .
 					'when using allpages as a generator',
 				'params'
 			);
