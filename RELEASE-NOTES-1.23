@@ -105,6 +105,8 @@ production.
 * HTMLForm 'select', 'selectandother', 'selectorother', 'multiselect', and
   'radio' fields can now use message keys as labels via the 'options-messages'
   parameter, which overrides the 'options' parameter.
+* Add mediawiki.ui.button styling to all pages so wiki content can use styled
+  buttons.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
