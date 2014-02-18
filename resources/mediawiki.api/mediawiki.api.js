@@ -112,7 +112,8 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} Done: API response data. Fail: Error code
+		 * @return {jQuery.Promise} Done: API response data and the jqXHR object.
+		 *  Fail: Error code
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
