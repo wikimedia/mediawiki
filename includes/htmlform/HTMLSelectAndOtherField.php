@@ -19,63 +19,17 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$params['other'] = null;
 		}
 
-		if ( array_key_exists( 'options', $params ) ) {
-			# Options array already specified
-		} elseif ( array_key_exists( 'options-message', $params ) ) {
-			# Generate options array from a system message
-			$params['options'] =
-				self::parseMessage( wfMessage( $params['options-message'] )->inContentLanguage()->plain(),
-					$params['other'] );
-		} else {
+		parent::__construct( $params );
+
+		if ( $this->getOptions() === null ) {
 			# Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
 		}
-		$this->mFlatOptions = self::flattenOptions( $params['options'] );
-
-		parent::__construct( $params );
-	}
-
-	/**
-	 * Build a drop-down box from a textual list.
-	 *
-	 * @param string $string message text
-	 * @param string $otherName name of "other reason" option
-	 *
-	 * @return Array
-	 * @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication?
-	 */
-	public static function parseMessage( $string, $otherName = null ) {
-		if ( $otherName === null ) {
-			$otherName = wfMessage( 'htmlform-selectorother-other' )->plain();
+		if ( !in_array( 'other', $this->mOptions, true ) ) {
+			$this->mOptions[$params['other']] = 'other';
 		}
+		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 
-		$optgroup = false;
-		$options = array( $otherName => 'other' );
-
-		foreach ( explode( "\n", $string ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				# A new group is starting...
-				$value = trim( substr( $value, 1 ) );
-				$optgroup = $value;
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				# groupmember
-				$opt = trim( substr( $value, 2 ) );
-				if ( $optgroup === false ) {
-					$options[$opt] = $opt;
-				} else {
-					$options[$optgroup][$opt] = $opt;
-				}
-			} else {
-				# groupless reason list
-				$optgroup = false;
-				$options[$option] = $option;
-			}
-		}
-
-		return $options;
 	}
 
 	function getInputHTML( $value ) {
