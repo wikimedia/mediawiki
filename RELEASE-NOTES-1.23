@@ -28,8 +28,9 @@ production.
   and talk pages are now watched by them by default.
 * $wgLBFactoryConf: Class names have had underscores removed. The configuration
   should be updated if LBFactory_Simple or LBFactory_Multi is configured.
-* $wgPasswordSenderName has been deprecated. To set a custom mailer name,
-  the system message 'emailsender' should be modified (default: "{{SITENAME}}").
+* $wgPasswordSenderName has been removed and is no longer functional. To set a
+  custom mailer name, the system message 'emailsender' should be modified
+  (default: "{{SITENAME}}").
 * $wgDBAhandler was removed as the only class using it was also removed
 * The 'max threads' setting was removed from $wgDBservers.
 * Support for AdminSettings.php has been completely removed. All configuration
