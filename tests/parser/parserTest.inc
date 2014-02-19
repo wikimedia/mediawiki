@@ -642,48 +642,65 @@ class ParserTest {
 		// foo="bar baz"
 		// foo=[[bar baz]]
 		// foo=bar,"baz quux"
-		$regex = '/\b
-			([\w-]+)						# Key
-			\b
-			(?:\s*
-				=						# First sub-value
-				\s*
-				(
-					"
-						[^"]*			# Quoted val
-					"
+		// foo={...json...}
+		$defs = '(?(DEFINE)
+			(?<qstr>					# Quoted string
+				"
+				(?:[^\\\\"] | \\\\.)*
+				"
+			)
+			(?<json>
+				\{		# Open bracket
+				(?:
+					[^"{}] |				# Not a quoted string or object, or
+					(?&qstr) |				# A quoted string, or
+					(?&json)				# A json object (recursively)
+				)*
+				\}		# Close bracket
+			)
+            (?<value>
+				(?:
+					(?&qstr)			# Quoted val
 				|
 					\[\[
 						[^]]*			# Link target
 					\]\]
 				|
 					[\w-]+				# Plain word
+				|
+					(?&json)			# JSON object
 				)
-				(?:\s*
-					,					# Sub-vals 1..N
-					\s*
-					(
-						"[^"]*"			# Quoted val
-					|
-						\[\[[^]]*\]\]	# Link target
-					|
-						[\w-]+			# Plain word
-					)
-				)*
+			)
+		)';
+		$regex = '/'.$defs.'\b
+			(?<k>[\w-]+)				# Key
+			\b
+			(?:\s*
+				=						# First sub-value
+				\s*
+				(?<v>
+					(?&value)
+					(?:\s*
+						,				# Sub-vals 1..N
+						\s*
+						(?&value)
+					)*
+				)
 			)?
 			/x';
+		$valueregex = '/'.$defs.'(?&value)/x';
 
 		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
 			foreach ( $matches as $bits ) {
-				array_shift( $bits );
-				$key = strtolower( array_shift( $bits ) );
-				if ( count( $bits ) == 0 ) {
+				$key = strtolower( $bits[ 'k' ] );
+				if ( !isset( $bits[ 'v' ] ) ) {
 					$opts[$key] = true;
-				} elseif ( count( $bits ) == 1 ) {
-					$opts[$key] = $this->cleanupOption( array_shift( $bits ) );
 				} else {
-					// Array!
-					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $bits );
+					preg_match_all( $valueregex, $bits[ 'v' ], $vmatches );
+					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $vmatches[0] );
+					if ( count( $opts[$key] ) == 1 ) {
+						$opts[$key] = $opts[$key][0];
+					}
 				}
 			}
 		}
@@ -692,11 +709,15 @@ class ParserTest {
 
 	private function cleanupOption( $opt ) {
 		if ( substr( $opt, 0, 1 ) == '"' ) {
-			return substr( $opt, 1, -1 );
+			return stripcslashes( substr( $opt, 1, -1 ) );
 		}
 
 		if ( substr( $opt, 0, 2 ) == '[[' ) {
 			return substr( $opt, 2, -2 );
+		}
+
+		if ( substr( $opt, 0, 1 ) == '{' ) {
+			return FormatJson::decode( $opt, true );
 		}
 		return $opt;
 	}
