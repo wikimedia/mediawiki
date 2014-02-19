@@ -1928,7 +1928,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-help-recentchangescount' => 'This includes recent changes, page histories, and logs.',
 'prefs-help-watchlist-token2'   => 'This is the secret key to the web feed of your watchlist.
 Anyone who knows it will be able to read your watchlist, so do not share it.
-[[Special:ResetTokens|Click here if you need to reset it]].',
+If you need to, [[Special:ResetTokens|you can reset it]].',
 'savedprefs'                    => 'Your preferences have been saved.',
 'timezonelegend'                => 'Time zone:',
 'localtime'                     => 'Local time:',
