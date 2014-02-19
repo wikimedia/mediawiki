@@ -226,7 +226,6 @@ $messages = array(
 'vector-action-protect' => 'Panalipda',
 'vector-action-undelete' => 'Igbalik an ginpara',
 'vector-action-unprotect' => 'Liwani an panalipod',
-'vector-simplesearch-preference' => 'Ginpadulot an yinano nga pamiling nga kahon (Panit vector la)',
 'vector-view-create' => 'Himo-a',
 'vector-view-edit' => 'Igliwat',
 'vector-view-history' => 'Kitaa an kaagi',

@@ -424,7 +424,6 @@ $messages = array(
 'vector-action-protect' => 'ការពារ',
 'vector-action-undelete' => 'ឈប់លុបចោល',
 'vector-action-unprotect' => 'ប្ដូរការការពារ',
-'vector-simplesearch-preference' => 'ប្រើរបារស្វែងរកសាមញ្ញ (សំរាប់តែសំបកវ៉ិចទ័រប៉ុណ្ណោះ)',
 'vector-view-create' => 'បង្កើត​',
 'vector-view-edit' => 'កែប្រែ​',
 'vector-view-history' => 'មើល​ប្រវត្តិ​',

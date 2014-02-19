@@ -369,7 +369,6 @@ $messages = array(
 'vector-action-protect' => 'Zaštiti',
 'vector-action-undelete' => 'Vrati obrisano',
 'vector-action-unprotect' => 'Promijeni zaštitu',
-'vector-simplesearch-preference' => 'Omogući traku za pojednostavljenu pretragu (samo Vector skin)',
 'vector-view-create' => 'Napravi',
 'vector-view-edit' => 'Uredi',
 'vector-view-history' => 'Pregled historije',

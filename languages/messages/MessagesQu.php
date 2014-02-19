@@ -427,7 +427,6 @@ $messages = array(
 'vector-action-protect' => 'Amachay',
 'vector-action-undelete' => 'Qullusqata paqarichiy',
 'vector-action-unprotect' => 'Amachayta wakinchay',
-'vector-simplesearch-preference' => 'Maskanapaq sikllallachasqa sinruta atichiy (Vector qarallapi)',
 'vector-view-create' => 'Kamariy',
 'vector-view-edit' => "Llamk'apuy",
 'vector-view-history' => 'Wiñay kawsayta qhaway',
@@ -2626,7 +2625,8 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'change-blocklink' => "hark'ayta hukniraqchay",
 'contribslink' => "llamk'apusqakuna",
 'emaillink' => 'e-chaskita kachay',
-'autoblocker' => 'Kikinmanta hark\'asqam kanki, "[[User:$1|$1]]" sutiyuq ruraq IP huchhaykita ñaqha llamk\'arquptinmi. Hark\'aqqa "[[User:$1|$1]]"-ta hark\'aspa kaytam nirqan, kayrayku: "$2".',
+'autoblocker' => 'Kikinmanta hark\'asqam kanki, "[[User:$1|$1]]" sutiyuq ruraq IP huchhaykita ñaqha llamk\'arquptinmi.
+Hark\'aqqa $1-ta hark\'aspa kaytam nirqan, kayrayku: "\'\'$2"\'\'.',
 'blocklogpage' => "Ruraq hark'asqakuna",
 'blocklog-showlog' => "Kay ruraqqa ñawpaqta hark'asqam. Hark'ay hallch'ataqa kaypim rikunki willasunaykipaq:",
 'blocklog-showsuppresslog' => "Kay ruraqqa ñawpaqta hark'asqam pakasqapas. Ñit'ipay hallch'ataqa kaypim rikunki willasunaykipaq:",

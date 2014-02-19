@@ -207,7 +207,6 @@ $messages = array(
 'vector-action-protect' => 'Beorgan',
 'vector-action-undelete' => 'Scieppan tramet eft',
 'vector-action-unprotect' => 'Andwendan beorgunge',
-'vector-simplesearch-preference' => 'Ānfealdlīc sēcunge mearc (synderlīce on Vector scinne)',
 'vector-view-create' => 'Scieppan',
 'vector-view-edit' => 'Adihtan',
 'vector-view-history' => 'Stǣr',

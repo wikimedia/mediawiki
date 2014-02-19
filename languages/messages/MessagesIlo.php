@@ -198,7 +198,6 @@ $messages = array(
 'vector-action-protect' => 'Salakniban',
 'vector-action-undelete' => 'Isubli ti inikkat',
 'vector-action-unprotect' => 'Sukatan ti salaknib',
-'vector-simplesearch-preference' => 'Pakabaelan ti napalaka a baras ti panagbiruk (Kudil a Vector laeng)',
 'vector-view-create' => 'Agaramid',
 'vector-view-edit' => 'Urnosen',
 'vector-view-history' => 'Kitaen ti pakasaritaan',

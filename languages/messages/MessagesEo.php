@@ -486,7 +486,6 @@ $messages = array(
 'vector-action-protect' => 'Protekti',
 'vector-action-undelete' => 'Malforigi',
 'vector-action-unprotect' => 'Ŝanĝi protektadon',
-'vector-simplesearch-preference' => 'Ebligi simpligitan serĉan strion (nur Vektora etoso)',
 'vector-view-create' => 'Krei',
 'vector-view-edit' => 'Redakti',
 'vector-view-history' => 'Vidi historion',

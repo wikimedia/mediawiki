@@ -281,7 +281,6 @@ $messages = array(
 'vector-action-protect' => 'Diogelu',
 'vector-action-undelete' => 'Adfer',
 'vector-action-unprotect' => 'Newid y diogelwch',
-'vector-simplesearch-preference' => 'Galluogi bar chwilio syml (gwedd Vector yn unig)',
 'vector-view-create' => 'Dechrau',
 'vector-view-edit' => 'Golygu',
 'vector-view-history' => 'Gweld yr hanes',

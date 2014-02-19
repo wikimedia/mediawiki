@@ -469,7 +469,6 @@ $messages = array(
 'vector-action-protect' => 'Zaštiti',
 'vector-action-undelete' => 'Vrati',
 'vector-action-unprotect' => 'Promeni zaštitu',
-'vector-simplesearch-preference' => 'Uprošćeno polje za pretragu (samo za temu „Vektorsko“)',
 'vector-view-create' => 'Napravi',
 'vector-view-edit' => 'Uredi',
 'vector-view-history' => 'Istorija',
@@ -1528,7 +1527,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'group-all' => '(svi)',
 
 'group-user-member' => '{{GENDER:$1|korisnik|korisnica|korisnik}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|automatski potvrđen korisnik|automatski potvrđena korisnica|automatski potvrđen korisnik}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatski potvrđen korisnik|automatski potvrđena korisnica}}',
 'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|administrator|administratorka}}',
 'group-bureaucrat-member' => '{{GENDER:$1|birokrata|birokratkinja}}',

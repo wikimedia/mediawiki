@@ -651,7 +651,6 @@ $messages = array(
 'vector-action-protect' => 'احم',
 'vector-action-undelete' => 'ألغ الحذف',
 'vector-action-unprotect' => 'غير الحماية',
-'vector-simplesearch-preference' => 'تفعيل شريط البحث المبسط (لمظهر فكتور فقط)',
 'vector-view-create' => 'أنشئ',
 'vector-view-edit' => 'عدل',
 'vector-view-history' => 'اعرض التاريخ',

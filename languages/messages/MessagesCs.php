@@ -530,7 +530,6 @@ $messages = array(
 'vector-action-protect' => 'Zamknout',
 'vector-action-undelete' => 'Obnovit',
 'vector-action-unprotect' => 'Změnit zámek',
-'vector-simplesearch-preference' => 'Zapnout zjednodušené vyhledávání (pouze vzhled Vektor)',
 'vector-view-create' => 'Založit',
 'vector-view-edit' => 'Editovat',
 'vector-view-history' => 'Zobrazit historii',

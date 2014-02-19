@@ -461,7 +461,6 @@ $messages = array(
 'vector-action-protect' => 'Protejare',
 'vector-action-undelete' => 'Recuperare',
 'vector-action-unprotect' => 'Modificare protecție',
-'vector-simplesearch-preference' => 'Activează bara de căutare simplificată (exclusiv pentru interfața Vector)',
 'vector-view-create' => 'Creare',
 'vector-view-edit' => 'Modificare',
 'vector-view-history' => 'Istoric',

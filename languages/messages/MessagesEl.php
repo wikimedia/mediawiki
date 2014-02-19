@@ -534,7 +534,6 @@ $messages = array(
 'vector-action-protect' => 'Προστασία',
 'vector-action-undelete' => 'Επαναφορά',
 'vector-action-unprotect' => 'Αλλαγή προστασίας',
-'vector-simplesearch-preference' => 'Ενεργοποίηση απλοποιημένης μπάρας αναζήτησης (μόνον για skin Vector)',
 'vector-view-create' => 'Δημιουργία',
 'vector-view-edit' => 'Επεξεργασία',
 'vector-view-history' => 'Προβολή ιστορικού',

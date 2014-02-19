@@ -354,7 +354,6 @@ $messages = array(
 'vector-action-protect' => 'सुरक्षित करें',
 'vector-action-undelete' => 'हटाना वापस लें',
 'vector-action-unprotect' => 'सुरक्षा बदलें',
-'vector-simplesearch-preference' => 'सरलीकृत खोजपट्टी सुझाव सक्षम करें। (केवल वॅक्टर त्वचा हेतु)',
 'vector-view-create' => 'बनाएँ',
 'vector-view-edit' => 'सम्पादन',
 'vector-view-history' => 'इतिहास देखें',

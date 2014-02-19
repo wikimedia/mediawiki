@@ -37,6 +37,7 @@
  * @author Jding2010
  * @author Jetlag
  * @author Jidanni
+ * @author Jienus
  * @author Jimmy xu wrk
  * @author Kaganer
  * @author KaiesTse
@@ -548,7 +549,6 @@ $messages = array(
 'vector-action-protect' => '保护',
 'vector-action-undelete' => '还原',
 'vector-action-unprotect' => '更改保护',
-'vector-simplesearch-preference' => '启用简化的搜索栏（仅Vector皮肤）',
 'vector-view-create' => '创建',
 'vector-view-edit' => '编辑',
 'vector-view-history' => '查看历史',
@@ -2180,6 +2180,7 @@ $1',
 'deadendpagestext' => '以下页面没有链接至{{SITENAME}}的其它页面。',
 'protectedpages' => '受保护页面',
 'protectedpages-indef' => '仅无限期保护',
+'protectedpages-summary' => '本页面列出当前受保护的页面。要浏览受限制创建的标题列表，请参见[[{{#special:ProtectedTitles}}]]。',
 'protectedpages-cascade' => '仅连锁保护',
 'protectedpages-noredirect' => '隐藏重定向',
 'protectedpagesempty' => '在这些参数下没有页面正在保护。',
@@ -2192,6 +2193,7 @@ $1',
 'protectedpages-unknown-timestamp' => '未知',
 'protectedpages-unknown-performer' => '未知用户',
 'protectedtitles' => '受保护标题',
+'protectedtitles-summary' => '本页面列出当前限制创建的标题。要浏览受限制页面的列表，请参见[[{{#special:ProtectedPages}}]]。',
 'protectedtitlesempty' => '在这些参数之下并无标题正在保护。',
 'listusers' => '用户列表',
 'listusers-editsonly' => '只显示有编辑的用户',

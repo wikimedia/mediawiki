@@ -206,7 +206,6 @@ $messages = array(
 'vector-action-protect' => 'Protege',
 'vector-action-undelete' => 'Arcuperé',
 'vector-action-unprotect' => 'Cangé la protession',
-'vector-simplesearch-preference' => "Abilité la bara d'arserca semplificà (mach për la pel Vector)",
 'vector-view-create' => 'Creé',
 'vector-view-edit' => 'Modifiché',
 'vector-view-history' => 'Smon-e la stòria',

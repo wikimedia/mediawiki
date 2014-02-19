@@ -396,7 +396,6 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '去睇刪除咗嘅頁面',
 'vector-action-unprotect' => '解除保護',
-'vector-simplesearch-preference' => '打開加強搵嘢建議（只限Vector畫面）',
 'vector-view-create' => '建立',
 'vector-view-edit' => '編輯',
 'vector-view-history' => '睇吓歷史',

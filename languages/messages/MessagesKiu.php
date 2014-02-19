@@ -202,7 +202,6 @@ $messages = array(
 'vector-action-protect' => 'Bısevekne',
 'vector-action-undelete' => 'Esterıtene peyser bıcê',
 'vector-action-unprotect' => 'Rake',
-'vector-simplesearch-preference' => 'Tewsiyunê cıcêraişiê raverberdu rake (Teyna vector skin de)',
 'vector-view-create' => 'Vıraze',
 'vector-view-edit' => 'Bıvurne',
 'vector-view-history' => 'Tarixi basne',

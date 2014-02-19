@@ -205,7 +205,6 @@ $messages = array(
 'vector-action-protect' => 'Хамгаалах',
 'vector-action-undelete' => 'Үл устгах',
 'vector-action-unprotect' => 'Хамгаалалтаа солих',
-'vector-simplesearch-preference' => 'Хялбарчилсан хайлтын талбарыг идэвхижүүлэх (зөвхөн Вектор скин)',
 'vector-view-create' => 'Үүсгэх',
 'vector-view-edit' => 'Засварлах',
 'vector-view-history' => 'Түүхийг үзэх',

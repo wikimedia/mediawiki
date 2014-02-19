@@ -177,7 +177,6 @@ $messages = array(
 'vector-action-protect' => 'Prutēz',
 'vector-action-undelete' => 'Fà al recóper',
 'vector-action-unprotect' => 'Câmbia la prutesiòun',
-'vector-simplesearch-preference' => 'Drōva la bâra per la sērca pió fâcila (sōl per la skin Vector)',
 'vector-view-create' => 'Invèinta',
 'vector-view-edit' => 'Mudéfica',
 'vector-view-history' => 'Guêrda la stôria',

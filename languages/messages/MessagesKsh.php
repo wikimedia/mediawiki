@@ -375,7 +375,6 @@ $messages = array(
 'vector-action-protect' => 'Schöze!',
 'vector-action-undelete' => 'Zerökholle!',
 'vector-action-unprotect' => 'Schoz ändere!',
-'vector-simplesearch-preference' => 'Donn et eijfachere Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
 'vector-view-create' => 'Neu Schriive!',
 'vector-view-edit' => 'Ändere!',
 'vector-view-history' => 'Versione zeije!',

@@ -343,7 +343,6 @@ $messages = array(
 'vector-action-protect' => 'Gwareziñ',
 'vector-action-undelete' => 'Diziverkañ',
 'vector-action-unprotect' => 'Cheñch gwarez',
-'vector-simplesearch-preference' => "Aotren ar c'hinnigoù klask gwellaet (gant Vektor nemetken)",
 'vector-view-create' => 'Krouiñ',
 'vector-view-edit' => 'Kemmañ',
 'vector-view-history' => 'Gwelet an istor',
@@ -626,6 +625,8 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'userlogin-resetpassword-link' => 'Ankouaet ho peus ho ker-tremen ?',
 'helplogin-url' => 'Help:Kevreañ',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Skoazell evit kevreañ]]',
+'userlogin-loggedin' => "Kevreet oc'h dija evel {{GENDER:$1|$1}}.
+Implijit ar furmskrid amañ dindan evit kevreañ evel un implijer all.",
 'userlogin-createanother' => 'Krouiñ ur gont all',
 'createacct-join' => 'Skrivit ho titouroù amañ dindan.',
 'createacct-another-join' => 'Ebarzhiñ titouroù ar gont nevez amañ dindan.',
@@ -729,6 +730,8 @@ Gortozit $1, mar plij, a-raok esaeañ en-dro.",
 'retypenew' => 'Adskrivañ ar ger-tremen nevez :',
 'resetpass_submit' => 'Cheñch ar ger-tremen ha kevreañ',
 'changepassword-success' => 'Cheñchet eo bet ho ker-tremen !',
+'changepassword-throttled' => "Betek re hoc'h heus klasket kevreañ en aner.
+Gortozit $1, mar plij, a-raok esaeañ en-dro.",
 'resetpass_forbidden' => "N'haller ket cheñch ar gerioù-termen",
 'resetpass-no-info' => "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
 'resetpass-submit-loggedin' => 'Cheñch ger-tremen',
@@ -1526,8 +1529,8 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'action-block' => 'mirout ouzh an impplijer-mañ da zegas kemmoù',
 'action-protect' => 'kemmañ liveoù gwareziñ ar bajenn-mañ',
 'action-rollback' => 'disteuler prim kemmoù an implijer diwezhañ kemmet gantañ ur bajenn resis',
-'action-import' => 'Enporzhiañ ar bajenn-mañ adal ur wiki all',
-'action-importupload' => 'Enporzhiañ ar bajenn-mañ adal ur restr pellgarget',
+'action-import' => 'Enporzhiañ pajennoù eus ur wiki all',
+'action-importupload' => 'Enporzhiañ pajennoù eus ur restr pellgarget',
 'action-patrol' => 'merkañ kemmoù ar re all evel gwiriet',
 'action-autopatrol' => 'bezañ merket ho tegasadennoù evel gwiriet',
 'action-unwatchedpages' => "gwelet roll ar pajennoù n'int ket evezhiet",
@@ -3658,6 +3661,7 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(yezh dre ziouer)',
+'img-lang-info' => 'Diskouez ar skeudenn-mañ e $1. $2',
 'img-lang-go' => 'Mont',
 
 # Table pager

@@ -481,7 +481,6 @@ $messages = array(
 'vector-action-protect' => 'Beskytt',
 'vector-action-undelete' => 'Gjenopprett',
 'vector-action-unprotect' => 'Endre beskyttelse',
-'vector-simplesearch-preference' => 'Aktiver forenklet søkefelt (kun for drakten Vector)',
 'vector-view-create' => 'Opprett',
 'vector-view-edit' => 'Rediger',
 'vector-view-history' => 'Vis historikk',

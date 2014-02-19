@@ -213,7 +213,6 @@ $messages = array(
 'vector-action-protect' => 'قوغدا',
 'vector-action-undelete' => 'ئەسلىگە قايتۇر',
 'vector-action-unprotect' => 'قوغداش ئۆزگەرت',
-'vector-simplesearch-preference' => 'ئاددىي ئىزدەش ئىستون ئاچ (پەقەت ۋېكتور قېلىپ)',
 'vector-view-create' => 'قۇر',
 'vector-view-edit' => 'تەھرىر',
 'vector-view-history' => 'تارىخ كۆرسەت',

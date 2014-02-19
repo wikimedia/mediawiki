@@ -468,7 +468,6 @@ $messages = array(
 'vector-action-protect' => 'Kaitse',
 'vector-action-undelete' => 'Taasta',
 'vector-action-unprotect' => 'Muuda kaitset',
-'vector-simplesearch-preference' => 'Kasuta lihtsustatud otsiriba (ainult Vektori-kujunduses)',
 'vector-view-create' => 'Loo',
 'vector-view-edit' => 'Muuda',
 'vector-view-history' => 'Näita ajalugu',

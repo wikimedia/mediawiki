@@ -322,7 +322,6 @@ $messages = array(
 'vector-action-protect' => 'Šćitaś',
 'vector-action-undelete' => 'Wótnowiś',
 'vector-action-unprotect' => 'Šćit změniś',
-'vector-simplesearch-preference' => 'Zjadnorjonu pytańsku lejstwu zmóžniś (jano drastwa Vector)',
 'vector-view-create' => 'Napóraś',
 'vector-view-edit' => 'Wobźěłaś',
 'vector-view-history' => 'Wersije a awtory',

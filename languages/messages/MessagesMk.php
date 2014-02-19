@@ -517,7 +517,6 @@ $messages = array(
 'vector-action-protect' => 'Заштити',
 'vector-action-undelete' => 'Врати',
 'vector-action-unprotect' => 'Измени заштита',
-'vector-simplesearch-preference' => 'Овозможи упростено поле за пребарување (само за рувото „Векторско“)',
 'vector-view-create' => 'Создај',
 'vector-view-edit' => 'Уреди',
 'vector-view-history' => 'Историја',

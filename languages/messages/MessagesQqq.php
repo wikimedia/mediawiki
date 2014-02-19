@@ -508,7 +508,6 @@ This page is only linked in CologneBlue (an old skin), not in Monobook or Vector
 {{Identical|Undelete}}',
 'vector-action-unprotect' => 'Tab at top of page, in vector skin.
 {{Identical|Change protection}}',
-'vector-simplesearch-preference' => 'Preference for enhanced search suggestion in the Vector skin.',
 'vector-view-create' => 'Tab label in the Vector skin. See for example {{canonicalurl:Foo|useskin=vector}}
 {{Identical|Create}}',
 'vector-view-edit' => 'Tab label in the Vector skin. See for example {{canonicalurl:Main_Page|useskin=vector}}
@@ -4670,7 +4669,7 @@ Parameters:
 'shared-repo-name-wikimediacommons' => '{{optional}}
 {{Identical|Wikimedia Commons}}',
 'filepage.css' => '{{Optional}}',
-'upload-disallowed-here' => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right priviledge.',
+'upload-disallowed-here' => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right privilege.',
 
 # File reversion
 'filerevert' => 'Used as page title. Parameters:
@@ -5009,7 +5008,10 @@ See the following search results:
 'deadendpagestext' => 'Introductory text for [[Special:DeadendPages]]',
 'protectedpages' => '{{doc-special|ProtectedPages}}',
 'protectedpages-indef' => 'Option in [[Special:ProtectedPages]]',
-'protectedpages-summary' => 'Summary of [[Special:ProtectedPages]].',
+'protectedpages-summary' => 'Summary of [[Special:ProtectedPages]].
+
+See also:
+* {{msg-mw|Protectedtitles-summary}}',
 'protectedpages-cascade' => 'Option in [[Special:ProtectedPages]]',
 'protectedpages-noredirect' => 'Option in [[Special:ProtectedPages]].
 {{Identical|Hide redirect}}',
@@ -5030,7 +5032,10 @@ This refers to expiry timestamp.
 {{Identical|Unknown}}',
 'protectedpages-unknown-performer' => 'This is shown, when the protecting user is unknown for a protection on the page [[Special:ProtectedPages]].',
 'protectedtitles' => '{{doc-special|ProtectedTitles}}',
-'protectedtitles-summary' => 'Summary of [[Special:ProtectedTitles]].',
+'protectedtitles-summary' => 'Summary of [[Special:ProtectedTitles]].
+
+See also:
+* {{msg-mw|Protectedpages-summary}}',
 'protectedtitlesempty' => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [[mw:Project:Protected_titles|help page on MediaWiki]] for more information.',
 'listusers' => '{{doc-special|ListUsers}}',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',

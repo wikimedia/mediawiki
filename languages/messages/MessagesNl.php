@@ -55,6 +55,7 @@
  * @author Troefkaart
  * @author Tvdm
  * @author User555
+ * @author Vogone
  * @author WTM
  * @author Wiki13
  * @author Wikiklaas
@@ -542,7 +543,6 @@ $messages = array(
 'vector-action-protect' => 'Beveiligen',
 'vector-action-undelete' => 'Terugplaatsen',
 'vector-action-unprotect' => 'Beveiliging wijzigen',
-'vector-simplesearch-preference' => 'Vereenvoudigd zoeken inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create' => 'Aanmaken',
 'vector-view-edit' => 'Bewerken',
 'vector-view-history' => 'Geschiedenis weergeven',
@@ -1458,7 +1458,7 @@ Let op dat het gebruiken van de navigatiekoppelingen deze kolom opnieuw instelt.
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
 'editundo' => 'ongedaan maken',
 'diff-empty' => '(geen verschil)',
-'diff-multi-sameuser' => '({{PLURAL:$1|Een tussenliggende revisie|$1 tussenliggende revisies}} door dezelfde gebruiken niet weergegeven)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Een tussenliggende revisie|$1 tussenliggende revisies}} door dezelfde gebruiker niet weergegeven)',
 'diff-multi-otherusers' => '({{PLURAL:$1|Een tussenliggende revisie|$1 tussenliggende revisies}} door {{PLURAL:$2|een andere gebruiker|$2 gebruikers}} niet weergegeven)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
 'difference-missing-revision' => '{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.
@@ -2923,7 +2923,8 @@ Zie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.',
 'change-blocklink' => 'blokkade wijzigen',
 'contribslink' => 'bijdragen',
 'emaillink' => 'e-mail verzenden',
-'autoblocker' => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
+'autoblocker' => 'Automatisch geblokkeerd omdat uw IP-adres onlangs gebruikt is door "[[User:$1|$1]]".
+De reden voor blokkade van $1 is: \'\'$2\'\'',
 'blocklogpage' => 'Blokkeerlogboek',
 'blocklog-showlog' => 'Deze gebruiker is voorheen geblokkeerd geweest.
 Het blokkeerlogboek wordt hieronder ter referentie weergegeven:',

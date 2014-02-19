@@ -458,7 +458,6 @@ $messages = array(
 'vector-action-protect' => 'Proteggi',
 'vector-action-undelete' => 'Recupera',
 'vector-action-unprotect' => 'Cambia la protezione',
-'vector-simplesearch-preference' => 'Abilita la barra per la ricerca semplificata (solo per la skin Vector)',
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Modifica',
 'vector-view-history' => 'Cronologia',

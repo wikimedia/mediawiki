@@ -531,7 +531,6 @@ $messages = array(
 'vector-action-protect' => 'הגנה',
 'vector-action-undelete' => 'ביטול מחיקה',
 'vector-action-unprotect' => 'שינוי הגנה',
-'vector-simplesearch-preference' => 'הפעלת סרגל חיפוש מפושט (בעיצוב וקטור בלבד)',
 'vector-view-create' => 'יצירה',
 'vector-view-edit' => 'עריכה',
 'vector-view-history' => 'הצגת היסטוריה',

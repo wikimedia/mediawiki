@@ -606,7 +606,6 @@ $messages = array(
 'vector-action-protect' => 'Защитить',
 'vector-action-undelete' => 'Восстановить',
 'vector-action-unprotect' => 'Изменить защиту',
-'vector-simplesearch-preference' => 'Включить упрощённую строку поиска (только для оформления «Векторное»)',
 'vector-view-create' => 'Создание',
 'vector-view-edit' => 'Править',
 'vector-view-history' => 'История',

@@ -394,7 +394,6 @@ $messages = array(
 'vector-action-protect' => 'Vernda',
 'vector-action-undelete' => 'Hætta við eyðingu',
 'vector-action-unprotect' => 'Breyta verndunarstigi',
-'vector-simplesearch-preference' => 'Virkja einfaldaða leitarstiku (Vector-þemað eingöngu)',
 'vector-view-create' => 'Skapa',
 'vector-view-edit' => 'Breyta',
 'vector-view-history' => 'Breytingaskrá',

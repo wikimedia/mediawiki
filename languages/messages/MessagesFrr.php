@@ -183,7 +183,6 @@ $messages = array(
 'vector-action-protect' => 'Seekre',
 'vector-action-undelete' => 'Weder iinstel',
 'vector-action-unprotect' => 'Sidjenseekerhaid',
-'vector-simplesearch-preference' => 'Ianfacher schüklist iinstel (bluas bi Vector)',
 'vector-view-create' => 'Maage',
 'vector-view-edit' => 'Bewerke',
 'vector-view-history' => 'Ferluup uunluke',

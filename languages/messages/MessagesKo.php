@@ -526,7 +526,6 @@ $messages = array(
 'vector-action-protect' => '보호',
 'vector-action-undelete' => '되살리기',
 'vector-action-unprotect' => '보호 설정 바꾸기',
-'vector-simplesearch-preference' => '단순한 검색 막대 사용하기 (벡터 스킨 전용)',
 'vector-view-create' => '만들기',
 'vector-view-edit' => '편집',
 'vector-view-history' => '역사',

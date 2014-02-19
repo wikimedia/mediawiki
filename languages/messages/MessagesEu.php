@@ -289,7 +289,6 @@ $messages = array(
 'vector-action-protect' => 'Babestu',
 'vector-action-undelete' => 'Berreskuratu',
 'vector-action-unprotect' => 'Babesa aldatu',
-'vector-simplesearch-preference' => 'Bilaketa barra sinplifikatua gaitu (Vector itxurarekin bakarrik)',
 'vector-view-create' => 'Sortu',
 'vector-view-edit' => 'Aldatu',
 'vector-view-history' => 'Historia ikusi',
@@ -2238,7 +2237,7 @@ Ikus [[Special:ProtectedPages|orri babestuen zerrenda]], orain indarrean dauden 
 'movedarticleprotection' => 'babes hobespenak "[[$2]]"tik "[[$1]]"(e)ra mugitu dira',
 'protect-title' => '«$1» babesten',
 'protect-title-notallowed' => '"$1"en babes maila ikusi',
-'prot_1movedto2' => '$1 izenburua $2(r)engatik aldatu da',
+'prot_1movedto2' => '«$1» orria «$2» izenera aldatu da',
 'protect-badnamespace-title' => 'Izen-tarte ez babesgarria',
 'protect-badnamespace-text' => 'Izen-tarte honetako orrialdeak ezin dira babestu.',
 'protect-norestrictiontypes-text' => 'Orrialde hau ezin da babestu ez daudelako mugapen mota eskuragarririk.',
@@ -2249,7 +2248,7 @@ Ikus [[Special:ProtectedPages|orri babestuen zerrenda]], orain indarrean dauden 
 'protect_expiry_invalid' => 'Babesaldiaren bukaerako data ez da baliozkoa.',
 'protect_expiry_old' => 'Babesaldiaren bukaera iraganekoa da.',
 'protect-unchain-permissions' => 'Babes aukerak desblokeatu',
-'protect-text' => "'''$1''' orrialdearen babes maila ikusi eta aldatu egin beharko zenuke.",
+'protect-text' => '«$1» orriaren babes maila ikusi eta aldatu egin beharko zenuke.',
 'protect-locked-blocked' => "Babes-mailak ezin dira aldatu blokeatuta dagoen bitartean.
 Hemen daude '''$1''' orrialdearen egungo ezarpenak:",
 'protect-locked-dblock' => "Babes-mailak ezin dira aldatu, datu-basea blokeatuta baitago.
@@ -2532,18 +2531,24 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 # Move page
 'move-page' => 'Mugitu «$1»',
 'move-page-legend' => 'Orrialdea mugitu',
-'movepagetext' => "Beheko formularioa erabiliz orrialde baten izena aldatuko da, historia osoa izen berrira mugituz.
-Izenburu zaharra izenburu berrira daraman birbideratze bilakatuko da.
-Jatorrizko izenburura doazen birbideratzeak automatikoki egunera ditzakezu.
-Ezetz aukeratzen baduzu, egiazta itzazu birbideratze [[Special:DoubleRedirects|bikoitz]] edo [[Special:BrokenRedirects|apurtuak]].
-Loturak modu zuzenean mantentzea zure erantzukizuna da.
-
-Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo birbideratze bat.
+'movepagetext' => "Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo birbideratze bat.
 Horrek esan nahi du hanka sartzekotan orrialde baten jatorrizko izenburua berreskuratu daitekeela, baina ezin dela jada existitzen den orrialde baten gainean idatzi.
 
 '''Oharra!'''
 Aldaketa hau drastikoa eta ustekabekoa izan daiteke orrialde oso ezagunetan;
-mesedez, egiazta ezazu honen ondorioak ulertzen dituzula, jarraitu baino lehen.",
+mesedez, egiazta ezazu honen ondorioak ulertzen dituzula, jarraitu baino lehen.
+Inprimaki hau erabiliz, orri baten izena aldatuko da, eta haren historia izen berrira eraman.
+Izenburu zaharra izenburu berrirantz birzuzendutako orri bihurtuko da.
+Jatorrizko izenburura doazen birzuzenketak automatikoki egunera ditzakezu.
+Halako eguneratze automatikorik ez egitea aukeratzen baduzu, egiazta itzazu birbideratze [[Special:DoubleRedirects|bikoitzak]] eta [[Special:BrokenRedirects|apurtuak]].
+Zure ardura da loturak behar den tokirantz bideratzea.
+
+Gogoan izan ezazu ezazu: orriaren izena <strong>ez</strong> da aldatuko baldin jarri nahi duzun izenburua duen orria dagoeneko sortuta badago, salbu eta historiarik gabeko birzuzenketa orri bat bada.
+Hau da, nahasten baldin bazara, mugitu duzun orria lehengo izenburura itzultzeko modua badago, eta ezin duzun lehendik sortuta dagoen orri bat gainidatzi.
+
+<strong>Kontuz!</strong>
+Oso erabilia den orri batean, aldaketa hau bat-batekoa eta ustekabekoa izan liteke;
+zalantzarik baldin baduzu, lehenbizi adieraz ezazu zure asmoa eztabaida orrian, beste wikilarien iritziak jasotzeko.",
 'movepagetalktext' => "Dagokion eztabaida orrialdea berarekin batera mugitu da, honako kasu hauetan '''ezik:'''
 * Hutsik ez dagoen eztabaida orrialde bat existitzen bada izen berrian.
 * Beheko koadroa hautatzen ez baduzu.

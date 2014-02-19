@@ -478,7 +478,6 @@ $messages = array(
 'vector-action-protect' => 'Lapvédelem',
 'vector-action-undelete' => 'Visszaállítás',
 'vector-action-unprotect' => 'Védelem módosítása',
-'vector-simplesearch-preference' => 'Egyszerűsített keresési sáv engedélyezése (csak Vector felületen)',
 'vector-view-create' => 'Létrehozás',
 'vector-view-edit' => 'Szerkesztés',
 'vector-view-history' => 'Laptörténet',

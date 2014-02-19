@@ -531,7 +531,6 @@ $messages = array(
 'vector-action-protect' => 'Захистити',
 'vector-action-undelete' => 'Відновити',
 'vector-action-unprotect' => 'Зміна захисту',
-'vector-simplesearch-preference' => 'Увімкнути спрощене поле пошуку (лише для оформлення "Векторне")',
 'vector-view-create' => 'Створити',
 'vector-view-edit' => 'Редагувати',
 'vector-view-history' => 'Переглянути історію',
