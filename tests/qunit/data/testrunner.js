@@ -1,6 +1,6 @@
 /*global CompletenessTest, sinon */
 /*jshint evil: true */
-( function ( $, mw, QUnit, undefined ) {
+( function ( $, mw, QUnit ) {
 	'use strict';
 
 	var mwTestIgnore, mwTester,
@@ -164,17 +164,27 @@
 		liveMessages = mw.messages.values;
 
 		function freshConfigCopy( custom ) {
+			var copy, warn;
 			// Tests should mock all factors that directly influence the tested code.
-			// For backwards compatibility though we set mw.config to a copy of the live config
-			// and extend it with the (optionally) given custom settings for this test
-			// (instead of starting blank with only the given custmo settings).
-			// This is a shallow copy, so we don't end up with settings taking an array value
-			// extended with the custom settings - setting a config property means you override it,
-			// not extend it.
-			return $.extend( {}, liveConfig, custom );
+			// For backwards compatibility though we set mw.config to a fresh copy of the live
+			// config. This way any modifications made to mw.config during the test will not
+			// affect other tests, nor the global scope outside the test runner.
+			// This is a shallow copy, since overriding an array or object value via "custom"
+			// should replace it. Setting a config property means you override it, not extend it.
+			// NOTE: It is important that we temporarily disable mw.log#warn as extend() will
+			// trigger MWDeprecationWarning for each of the deprecated properties.
+			warn = mw.log.warn;
+			mw.log.warn = $.noop;
+
+			copy = $.extend( {}, liveConfig, custom );
+
+			mw.log.warn = warn;
+
+			return copy;
 		}
 
 		function freshMessagesCopy( custom ) {
+			// Can't do inheritance here since we want to do a deep copy.
 			return $.extend( /*deep=*/true, {}, liveMessages, custom );
 		}
 
