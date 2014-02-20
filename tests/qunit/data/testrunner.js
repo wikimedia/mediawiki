@@ -1,6 +1,6 @@
 /*global CompletenessTest, sinon */
 /*jshint evil: true */
-( function ( $, mw, QUnit, undefined ) {
+( function ( $, mw, QUnit ) {
 	'use strict';
 
 	var mwTestIgnore, mwTester,
@@ -158,23 +158,35 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var log, liveConfig, liveMessages;
+		var log, liveConfig, liveMessages, create;
+
+		// Polyfill for ES5 Object.create
+		create = Object.hasOwnProperty( 'create' ) ? Object.create : function ( parent ) {
+			function Parent() {}
+			Parent.prototype = parent;
+			return new Parent();
+		};
 
 		liveConfig = mw.config.values;
 		liveMessages = mw.messages.values;
 
 		function freshConfigCopy( custom ) {
 			// Tests should mock all factors that directly influence the tested code.
-			// For backwards compatibility though we set mw.config to a copy of the live config
-			// and extend it with the (optionally) given custom settings for this test
-			// (instead of starting blank with only the given custmo settings).
-			// This is a shallow copy, so we don't end up with settings taking an array value
-			// extended with the custom settings - setting a config property means you override it,
-			// not extend it.
-			return $.extend( {}, liveConfig, custom );
+			// For backwards compatibility though we set mw.config to a fresh object that
+			// inheritsfrom the live config. This way any modifications made to mw.config
+			// during the test will not affect other tests, nor the global scope outside
+			// the test runner.
+			// Inheritance works like a shallow copy. This is exactly what we want in this case,
+			// since overriding an array or object value via "custom" should replace it.
+			// Setting a config property means you override it, not extend it.
+			// NOTE: Another reason it is important that this is based on an inheritance
+			// instead of extend(), is that extend() would trigger MWDeprecationWarning
+			// for each of the deprecated properties.
+			return $.extend( create( liveConfig ), custom );
 		}
 
 		function freshMessagesCopy( custom ) {
+			// Can't do inheritance here since we want to do a deep copy.
 			return $.extend( /*deep=*/true, {}, liveMessages, custom );
 		}
 
