@@ -30,6 +30,7 @@
 		"../../resources/mediawiki.language",
 		"../../resources/jquery/jquery.localize.js",
 		"../../resources/jquery/jquery.spinner.js",
-		"../../resources/oojs"
+		"../../resources/oojs",
+		"../../resources/oojs-ui"
 	]
 }
