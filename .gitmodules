@@ -169,6 +169,9 @@
 	path = extensions/MyVariables
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MyVariables.git
 	branch = REL1_22
+[submodule "extensions/NativeSvgHandler"]
+	path = extensions/NativeSvgHandler
+	url = https://github.com/p12tic/NativeSvgHandler.git
 [submodule "extensions/NewUserMessage"]
 	path = extensions/NewUserMessage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NewUserMessage.git
@@ -232,6 +235,9 @@
 	path = extensions/SpamBlacklist
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SpamBlacklist.git
 	branch = REL1_22
+[submodule "extensions/SubpageFun"]
+	path = extensions/SubpageFun
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageFun.git
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SyntaxHighlight_GeSHi.git
@@ -292,6 +298,3 @@
 [submodule "skins/monaco"]
 	path = skins/monaco
   url = https://github.com/dantman/monaco-port.git
-[submodule "extensions/SubpageFun"]
-	path = extensions/SubpageFun
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageFun.git
