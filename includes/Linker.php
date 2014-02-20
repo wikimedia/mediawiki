@@ -779,9 +779,7 @@ class Linker {
 		$noscale = false;
 		$manualthumb = false;
 
-		if ( !$exists ) {
-			$outerWidth = $hp['width'] + 2;
-		} else {
+		if ( $exists ) {
 			if ( isset( $fp['manualthumb'] ) ) {
 				# Use manually specified thumbnail
 				$manual_title = Title::makeTitleSafe( NS_FILE, $fp['manualthumb'] );
@@ -807,12 +805,6 @@ class Linker {
 				}
 				$thumb = $file->transform( $hp );
 			}
-
-			if ( $thumb ) {
-				$outerWidth = $thumb->getWidth() + 2;
-			} else {
-				$outerWidth = $hp['width'] + 2;
-			}
 		}
 
 		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
@@ -829,7 +821,7 @@ class Linker {
 			$fp['link-url'] = $url;
 		}
 
-		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\">";
 		if ( !$exists ) {
 			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 			$zoomIcon = '';
