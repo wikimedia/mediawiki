@@ -222,7 +222,7 @@ class LoginForm extends SpecialPage {
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
-			$this->mainLoginForm( $error->toString() );
+			$this->mainLoginForm( $error->toString(), $status->isOK() ? 'warning' : 'error' );
 			return;
 		}
 
@@ -258,7 +258,7 @@ class LoginForm extends SpecialPage {
 		$status = $this->addNewAccountInternal();
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
-			$this->mainLoginForm( $error->toString() );
+			$this->mainLoginForm( $error->toString(), $status->isOK() ? 'warning' : 'error' );
 			return false;
 		}
 
@@ -400,13 +400,25 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
-		# Now create a dummy user ($u) and check if it is valid
-		$name = trim( $this->mUsername );
+		// Now create a dummy user ($u) and check if it is valid.
+		// Leading/trailing/multiple whitespace characters are never accepted in usernames and users
+		// know that, don't warn if someone accidentally types it. We do warn about underscores.
+		$name = trim( preg_replace( '/\s+/', ' ', $this->mUsername ) );
 		$u = User::newFromName( $name, 'creatable' );
 		if ( !is_object( $u ) ) {
 			return Status::newFatal( 'noname' );
 		} elseif ( 0 != $u->idForName() ) {
 			return Status::newFatal( 'userexists' );
+		} elseif ( $name !== $u->getName() ) {
+			// User name was adjusted due to technical restrictions (e.g. first letter capitalized).
+			// This is normally handled by a client-side check, but users with JavaScript disabled get here.
+			$status = Status::newGood();
+			$status->warning( 'createacct-normalization', $name, $u->getName() );
+
+			// Set the form field to the correct name, so the user can just hit the button again.
+			$this->mUsername = $u->getName();
+
+			return $status;
 		}
 
 		if ( $this->mCreateaccountMail ) {
