@@ -1220,7 +1220,7 @@ Anledningen enligt $3 var ''$2''",
 'page_first' => 'första',
 'page_last' => 'sista',
 'histlegend' => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
-Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
+Förklaring: '''({{int:cur}})''' = skillnad mot senaste version; '''({{int:last}})''' = skillnad mot föregående version; '''{{int:minoreditletter}}''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',
 'history-show-deleted' => 'Endast borttagna',
 'histfirst' => 'äldsta',
@@ -1532,7 +1532,7 @@ Programvaran använder detta värde för att adressera dig till andra med rätt 
 'prefs-help-realname' => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'prefs-help-email' => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.',
-'prefs-help-email-others' => 'Du kan också välja att låta andra kontakta dig med e-post genom en länk på din användar- eller diskussionssida. Din e-postadress avslöjas inte när andra användare kontaktar dig.',
+'prefs-help-email-others' => 'Du kan också välja att låta andra kontakta dig via e-post genom en länk på din användar- eller diskussionssida. Din e-postadress avslöjas inte när andra användare kontaktar dig.',
 'prefs-help-email-required' => 'E-postadress måste anges.',
 'prefs-info' => 'Grundläggande information',
 'prefs-i18n' => 'Internationalisering',
@@ -2244,6 +2244,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'deadendpagestext' => 'Följande sidor saknar länkar till andra sidor på {{SITENAME}}.',
 'protectedpages' => 'Skyddade sidor',
 'protectedpages-indef' => 'Endast skydd på obestämd tid',
+'protectedpages-summary' => 'Denna sida listar befintliga sidor som för närvarande är skyddade. För en lista över titlar som skyddas från att skapas, se [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Endast kaskaderande skydd',
 'protectedpages-noredirect' => 'Dölj omdirigeringar',
 'protectedpagesempty' => 'Inga sidor är skyddade under de villkoren.',
@@ -2256,6 +2257,7 @@ Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt
 'protectedpages-unknown-timestamp' => 'Okänd',
 'protectedpages-unknown-performer' => 'Okänd användare',
 'protectedtitles' => 'Skyddade titlar',
+'protectedtitles-summary' => 'Denna sida listar de titlar som skyddas från att skapas. För en lista över befintliga sidor som är skyddade, se [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Just nu finns inga skyddade sidtitlar med de parametrarna.',
 'listusers' => 'Användarlista',
 'listusers-editsonly' => 'Visa endast användare som redigerat',
@@ -3939,7 +3941,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',
-'duplicate-defaultsort' => 'Varning: Standardsorteringsnyckeln "$2" tar över från den tidigare standardsorteringsnyckeln "$1".',
+'duplicate-defaultsort' => '\'\'\'Varning:\'\'\' Standardsorteringsnyckeln "$2" tar över från den tidigare standardsorteringsnyckeln "$1".',
 
 # Special:Version
 'version' => 'Version',
@@ -4032,8 +4034,8 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 
 # External image whitelist
 'external_image_whitelist' => '#Lämna den här raden precis som den är<pre>
-#Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) här nedan
-#Dessa kommer att jämföras med URL:er för externa (hotlinkade) bilder
+#Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) nedan
+#Dessa kommer att jämföras med URL:er för externa bilder
 #De som matchar kommer att visas som bilder, annars visas bara en länk till bilden
 #Rader som börjar med # behandlas som kommentarer
 #Detta är skiftläges-okänsligt

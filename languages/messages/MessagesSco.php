@@ -10,6 +10,7 @@
  * @author (vinny)
  * @author Avicennasis
  * @author Derek Ross
+ * @author John Reid
  * @author Malafaya
  * @author OchAyeTheNoo
  * @author Omnipaedista
@@ -264,6 +265,7 @@ $messages = array(
 'toc' => 'Table o contents',
 'showtoc' => 'shaw',
 'hidetoc' => 'scouk',
+'collapsible-collapse' => 'Collapse.',
 'thisisdeleted' => 'View or cower $1?',
 'viewdeleted' => 'View $1?',
 'restorelink' => '{{PLURAL:$1|one delete edit|$1 delete edits}}',
@@ -591,6 +593,8 @@ Ye shuld check that it is guid tae keep editin this page.
 The deletion and flit log for this page is providit here:",
 'moveddeleted-notice' => 'This page haes bin deletit. 
 The deletion and flit log fur the page are provided below fur reference.',
+'editwarning-warning' => 'Leain this page micht cause ye tae lose oni chynges ye\'v made.
+Gif ye\'r loggit in, ye can disable this warning in the "{{int:prefs-editing}}" section o yer preferences.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Wairnin:''' Template include size is tae lairge. 
@@ -603,6 +607,7 @@ Thae arguments hae been left oot.',
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the chynges albo tae check that this is whit ye wint tae dae, an then hain the chynges albo tae be duin undooin the edit.',
 'undo-failure' => 'The edit culdnae be undone acause o conflictin edits inatween.',
+'undo-nochange' => 'The edit appears tae hae awready been ondone.',
 'undo-summary' => 'Undo reveision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Collogue]])',
 
 # Account creation failure
@@ -671,6 +676,8 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
 'editundo' => 'undo',
+'diff-multi-sameuser' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} bi the same uiser no shown)',
+'diff-multi-otherusers' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} bi {{PLURAL:$2|one other user|$2 users}} not shown)',
 
 # Search results
 'searchresults' => 'Rake results',
@@ -704,6 +711,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'searchrelated' => 'related',
 'searchall' => 'aw',
 'showingresults' => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
+'showingresultsinrange' => 'Showin ablow up til {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} in range #<strong>$2</strong> to #<strong>$3</strong>.',
 'showingresultsnum' => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Ootcome '''$1''' of '''$3'''|Ootcomes '''$1 - $2''' of '''$3'''}} for '''$4'''",
 'search-nonefound' => "Thare wur na ootcomes matching th' query.",
@@ -727,6 +735,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'searchresultshead' => 'Rake result settins',
 'stub-threshold-disabled' => 'Tuckie',
 'recentchangescount' => 'Nummer o teitles in recent chynges',
+'prefs-help-watchlist-token2' => 'This is the hidlins key til the wab feed o yer watchleet. Onibodie wha kens this can read yer watchleel, sae dinna share it. Gif ye need to, [[Special:ResetTokens|You ca reset it]].',
 'savedprefs' => 'Yer preferences haes been hained.',
 'servertime' => 'Server time is nou',
 'guesstimezone' => 'Fill in frae brouser',
@@ -954,6 +963,16 @@ Th' description oan tis [$2 file description page] thare is shown below.",
 'prefixindex' => 'All pages with prefix',
 'longpages' => 'Lang pages',
 'deadendpages' => 'Deid-end pages',
+'protectedpages-summary' => 'This page leets existing pages that are nou protectit. Fer a leet o titles that are protectit fae creation, see [[{{#special:ProtectedTitles}}]].',
+'protectedpages-timestamp' => 'Timestamp.',
+'protectedpages-page' => 'Page.',
+'protectedpages-expiry' => 'Dies',
+'protectedpages-performer' => 'Protecting uisser',
+'protectedpages-params' => 'Protection guidins',
+'protectedpages-reason' => 'Raison',
+'protectedpages-unknown-timestamp' => "Onken't",
+'protectedpages-unknown-performer' => "Onken't user",
+'protectedtitles-summary' => 'This page leets titles that are nou protectit fae creation. Fer a leet of exeesting pages that are protectit, see [[{{#special:ProtectedPages}}]].',
 'listusers' => 'Uiser leet',
 'usercreated' => 'Created on $1 at $2',
 'newpages' => 'New pages',
@@ -1041,6 +1060,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlist-details' => "{{PLURAL:$1|$1 page|$1 pages}} on yer watchleet, nae countin' collogue pages.",
 'watchlistcontains' => 'Yer watchleet contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname' => "Trouble wi eitem '$1', invalid name...",
+'wlnote2' => 'Ablow ar the chynges in the hainmaist {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $3, $2.',
 'wlshowlast' => 'Shaw lest $1 hours $2 days $3',
 'watchlist-options' => 'Watchleet options',
 
@@ -1114,6 +1134,8 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'viewdeletedpage' => 'View delete pages',
 'undeletepagetext' => 'The follaein pages haev bin deleted but are aye in the archive an
 can be restored. The archive micht be redd oot noo an then.',
+'undeleteextrahelp' => "In order tae restore the page's entire histerie, lea aw checkboxes onselected an clap on <strong><em>{{int:undeletebtn}}</em></strong>.
+Tae perform ae selective restoration, check the boxes corresponding til the revisions tae be restored, an clap on <strong><em>{{int:undeletebtn}}</em></strong>.",
 'undeletehistory' => 'Gin ye restore the page, aa reveisions will be restored til the history.
 Gin a neow page wi the same name haes bin created syne the deletion, the restored
 reveisions will appear in the aulder history, an the current reveision o the live page winna be autaematically replaced.',
@@ -1124,6 +1146,9 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'undeleteviewlink' => 'view',
 'undeletedrevisions' => '{{PLURAL:$1|1 reveision|$1 reveisions}} restored',
 'cannotundelete' => 'Undelete didna wirk; some ither bodie micht hae aareadies undeletit the page.',
+'undeletedpage' => '<strong>$1 has been restored</strong>
+
+Consult the [[Special:Log/delete|deletion log]] fer ae record o recent deletions an restorations.',
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
@@ -1156,6 +1181,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'whatlinkshere-page' => 'Page:',
 'linkshere' => "The follaein pages airts tae '''[[:$1]]''':",
 'nolinkshere' => "Nae pages airt tae '''[[:$1]]'''.",
+'nolinkshere-ns' => 'No pages aiet til <strong>[[:$1]]</strong> in the choosen namespace.',
 'isredirect' => 'reguidal page',
 'istemplate' => 'transclusion',
 'isimage' => 'file link',
@@ -1191,7 +1217,7 @@ tae an afore-blockit IP address or uisername.',
 'unblocklink' => 'unblock',
 'change-blocklink' => 'chynge block',
 'contribslink' => 'contreibs',
-'autoblocker' => 'Autaematically blockit syne yer IP address haes been uised recently bi "[[User:$1|$1]]". The raeson gien for $1\'s block is "\'\'$2\'\'"',
+'autoblocker' => 'Autaematically blockit syne yer IP address haes been uised recently bi "[[User:$1|$1]]". The raeson gien fer $1\'s block is "$2"',
 'blocklogpage' => 'Block log',
 'blocklogentry' => 'blockit [[$1]] wi an expiry time o $2 $3',
 'blocklogtext' => 'This is a log o uiser blockin an unblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:BlockList|IP block leet]] for the leet o bans and blocks on the gae the nou.',
@@ -1217,24 +1243,37 @@ tae an afore-blockit IP address or uisername.',
 
 # Move page
 'move-page-legend' => 'Flit page',
-'movepagetext' => "Uisin the form ablo will rename a page, flittin aa its history tae the new name.
-The auld teitle will become a reguidal page tae the new teitle.
-Airtins tae the auld page teitle willna be chynged;
-be siccar tae check for dooble or brucken reguidals.
-You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang.
+'movepagetext' => "Uisin the form ablow will rename ae page, muiving aw o its histerie til the new name.
+The auld title will become ae redirect page til the new title.
+Ye can update redirects that point til the original title autaematicly.
+Gif ye chuis no tae, be sair tae check fer [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
+Ye'r responsible fer making sair that airtins continue tae pynt til whaur they'r supposed to gae.
 
-Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history.
-This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page
+Note that the page will <strong>no</strong> be muived gif there is awready ae page at the new title, onless the latter is ae redirect an has nae past edit history.
+This means that ye can rename ae page back til whaur it wis renamed fae gif ye mak ae mistak, an ye canna o'erwrite aen existing page.
 
-'''WARNIN!'''
-This can be a drastic and unexpectit chynge for a popular page;
-please be siccar ye unnerstaun the consequences o this afore proceedin.",
+<strong>Warning!</strong>
+This can be ae drastic an onexpected chynge fer ae popular page;
+please be sair ye unnerstaun the consequences o this afore proceeding.",
+'movepagetext-noredirectfixer' => "Uising the form ablow will rename ae page, muiving aw o its histerie til the new name.
+The auld title will become ae redirect page til the new title.
+Be sair tae check fer [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
+Ye'r responsible fer making sair that airtins continue tae pynt whaur thay'r supposed to gae.
+
+Note that the page will <strong>no</strong> be muived gif there's awready ae page at the new title, onless it is tuim an has naw past edit history.
+This means that you can rename a page back to whaur it wis renamed fae gif ye mak ae mistak, an ye canna o'erwrite an existin page.
+
+<strong>Warnin!</strong>
+This can be ae drastic an onexpectit chynge fer ae popular page;
+please be sair ye unnerstaun the consequences of this afore proceedin.",
 'movepagetalktext' => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle' => 'Flit page:',
+'moveuserpage-warning' => "<strong>Warning:</strong> Ye'r aboot tae muiv ae uiser page. Please note that yinly the page will be muivd and the uiser will <em>no</em> be renamed.",
 'movenologintext' => 'Ye maun be a registert uiser an [[Special:UserLogin|loggit in]] tae flit a page.',
 'newtitle' => 'Tae new teitle',
 'movepagebtn' => 'Flit page',
 'pagemovedsub' => 'Flittin succeedit',
+'movepage-moved' => '<strong>"$1" has been muived til "$2"</strong>',
 'articleexists' => "A page o that name aareadies exists, or the name ye'v waled isna guid. Please wale anither name.",
 'movetalk' => 'Flit "collogue" page an aa, gin it\'s applicable.',
 'movelogpage' => 'Flit log',
@@ -1248,6 +1287,10 @@ The destination airticle "[[:$1]]" aareadies exists. Div ye want tae delete it f
 'delete_and_move_confirm' => 'Aye, delete the page',
 'delete_and_move_reason' => 'Delete for tae mak wey for flittin',
 'selfmove' => 'Ootgaun an incomin teitles is the same; canna flit a page ower itsel.',
+'protectedpagemovewarning' => '<strong>Warning:</strong> This page has been protected sae that yinly uisers wi administrater preevileges can muiv it.
+The hainmaist log entry is provided ablow fer reference:',
+'semiprotectedpagemovewarning' => '<strong>Note:</strong> This page has been protected sae that yinly registered uisers can muiv it.
+The hainmaist log entry is provided ablow fer reference:',
 
 # Export
 'export' => 'Export pages',
@@ -1257,6 +1300,8 @@ Tae export airticle pages, enter the teitles in the text box ablo, ae teitle tae
 
 In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for the airticle "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly' => 'Include juist the current revision, no the fou history',
+'exportnohistory' => '----
+<strong>Note:</strong> Exporting the ful histerie o pages through this form has been disabled caus o performance raisons.',
 
 # Namespace 8 related
 'allmessages' => 'Aa seestem messages',
@@ -1265,11 +1310,13 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'allmessagescurrent' => 'Text the nou',
 'allmessagestext' => 'This is a leet o aa seestem messages available in the MediaWiki: namespace.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nae supportit acause '''\$wgUseDatabaseMessages''' is aff.",
+'allmessages-filter-translate' => "O'erset",
 
 # Thumbnails
 'thumbnail-more' => 'Eik',
 'filemissing' => 'File missin',
 'thumbnail_error' => 'Error creating thumbnail: $1',
+'thumbnail_image-failure-limit' => "There hae been o'er mony recent failed attempts ($1 or more) tae render this thumbnail. Please try again later.",
 
 # Special:Import
 'importtext' => 'Please export the file frae the soorce wiki uisin the Special:Export utility, hain it in yer disc an uplaid it here.',
@@ -1277,6 +1324,8 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'importsuccess' => 'Importit fine!',
 'importhistoryconflict' => 'Conflictin history revision exists (micht hae importit this page afore)',
 'importnosources' => 'Nae transwiki import soorces haes been defined an direct history uplaids is disabled.',
+'import-nonewrevisions' => 'Nae revisions imported (aw were either awready present, or skipped cause o errors).',
+'import-error-bad-location' => 'Revision $2 uising content model $3 canna be stored on "$1" on this wiki, syn that model isna supported on that page.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Yer uiser page',
@@ -1348,6 +1397,8 @@ You ken view its source',
 # Spam protection
 'spamprotectiontext' => 'The page ye wanted tae save wis blockit bi the spam filter. This is maist likely caused bi an airtin til an outby site.',
 'spamprotectionmatch' => 'The follaein text is whit triggered wir spam filter: $1',
+'simpleantispam-label' => 'Anti-spam check.
+Dae <strong>NO</strong> ful this in!',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merk as patrolled',
@@ -1364,12 +1415,15 @@ You ken view its source',
 'nextdiff' => 'Newer edit →',
 
 # Media information
-'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.",
-'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
+'mediawarning' => '<strong>Warning:</strong> This file type micht contain maleecious code.
+Bi executing it, yer system micht be compromised.',
+'imagemaxsize' => 'Eimage size limit:<br /><em>(fer file description pages)</em>',
 'file-info-size' => '$1 × $2 pixels, file size: $3, MIME type: $4',
 'file-nohires' => 'Na higher resolution available.',
 'svg-long-desc' => 'SVG file, nominally $1 × $2 pixels, file size: $3',
 'show-big-image' => 'Full resolution',
+'file-no-thumb-animation' => '<strong>Note: Due til technical limitations, thumbnails o this file will no be animated.</strong>',
+'file-no-thumb-animation-gif' => '<strong>Note: Due til technical limitations, thumbnails o hich resolution GIF eimages sic as this will no be animated.</strong>',
 
 # Special:NewFiles
 'newimages' => 'Gallery o new files',
@@ -1448,7 +1502,7 @@ $5
 This confirmation code will end at $4.',
 
 # Delete conflict
-'deletedwhileediting' => 'Warnin: This page haes been delete syne ye stertit editin!',
+'deletedwhileediting' => '<strong>Warning:</strong> This page wis deletit efter ye sterted editing!',
 'confirmrecreate' => "Uiser [[User:$1|$1]] ([[User talk:$1|collogue]]) deletit this airticle efter ye stertit editin, giein the raeson:
 : ''$2''
 Please confirm that ye really want tae recreate this airticle.",
@@ -1478,6 +1532,9 @@ Please confirm that ye really want tae recreate this airticle.",
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Wairnin:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
+
+# Special:Version
+'version-poweredby-credits' => 'This wiki is pwred bi <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copiericht © 2001-$1 $2.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Filename:',

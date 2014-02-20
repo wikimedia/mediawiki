@@ -1366,7 +1366,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'editundo' => 'De letzte Änderung zeröck nämme',
 'diff-empty' => '(Keine Ongerscheid)',
 'diff-multi-sameuser' => '(Mer don hee {{PLURAL:$1|eij Väsjohn|$1 Väsjohne|keij Väsjohn}} dozwesche nit zeije.   Se {{PLURAL:$1|es|sin|wöhr}} vum sällve Metmaacher)',
-'diff-multi-otherusers' => '(Mer don hee {{PLURAL:$1|eij Väsjohn|$1 Väsjohne|keij Väsjohn}} dozwesche vun {{PLURAL:$1|einem|$1 ongerscheidlijje|keinem}} Metmaacher nit zeije)',
+'diff-multi-otherusers' => '(Mer don hee {{PLURAL:$1|eij Väsjohn|$1 Väsjohne|keij Väsjohn}} dozwesche vun {{PLURAL:$2|einem|$2 ongerscheidlijje|keinem}} Metmaacher nit zeije)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein Version|$1 Versione|kei Version}} dozwesche vun mieh wi {{PLURAL:$2|einem Metmaacher|$2 Metmaachere|keinem Metmaacher}} wääde nit jezeish)',
 'difference-missing-revision' => '{{PLURAL:$2|Ein Version|$2 Versione}} vun heh däm Verjlisch zwesche Versione ($1) {{PLURAL:$2|hammer}} nit jefonge.
 

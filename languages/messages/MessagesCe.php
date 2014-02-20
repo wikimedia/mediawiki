@@ -2558,6 +2558,7 @@ PICT # тайп тайпан
 'exif-orientation-1' => 'Лартӏахь',
 
 'exif-xyresolution-i' => '$1 тӏадамаш дюйман',
+'exif-xyresolution-c' => '$1 тӀадамаш сантиметрна',
 
 'exif-meteringmode-5' => 'Матрин',
 

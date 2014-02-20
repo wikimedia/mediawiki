@@ -2237,7 +2237,7 @@ Ikus [[Special:ProtectedPages|orri babestuen zerrenda]], orain indarrean dauden 
 'movedarticleprotection' => 'babes hobespenak "[[$2]]"tik "[[$1]]"(e)ra mugitu dira',
 'protect-title' => '«$1» babesten',
 'protect-title-notallowed' => '"$1"en babes maila ikusi',
-'prot_1movedto2' => '«$1» orria «$2» izenera aldatu da',
+'prot_1movedto2' => '«[[$1]]» orria «[[$2]]» izenera aldatu da',
 'protect-badnamespace-title' => 'Izen-tarte ez babesgarria',
 'protect-badnamespace-text' => 'Izen-tarte honetako orrialdeak ezin dira babestu.',
 'protect-norestrictiontypes-text' => 'Orrialde hau ezin da babestu ez daudelako mugapen mota eskuragarririk.',

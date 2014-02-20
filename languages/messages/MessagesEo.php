@@ -363,6 +363,7 @@ $messages = array(
 'tog-showhiddencats' => 'Montri kaŝitajn kategoriojn',
 'tog-norollbackdiff' => 'Preterlasi ŝanĝoelmontron post malfaro',
 'tog-useeditwarning' => 'Averti min kiam mi forlasas redaktan paĝon kun nekonservitaj ŝanĝoj',
+'tog-prefershttps' => 'Ĉiam uzu sekuran konekton ensalutite',
 
 'underline-always' => 'Ĉiam',
 'underline-never' => 'Neniam',
@@ -688,6 +689,7 @@ Eble ĝi estis jam forigita de iu alia.',
 'cannotdelete-title' => 'Ne eblas forigi paĝon "$1"',
 'delete-hook-aborted' => 'Forigo estis ĉesigita per programa etendaĵo de MediaWiki.
 Ĝi ne donis eksplikon.',
+'no-null-revision' => 'Ne eblis krei novan nulan revizion por paĝo "$1"',
 'badtitle' => 'Fuŝa titolo',
 'badtitletext' => 'La petita paĝotitolo estis malvalida, malplena, aŭ malĝuste ligita interlingva aŭ intervikia titolo.
 Ĝi eble enhavas unu aŭ pliaj signoj, kiuj ne povas esti uzataj en titoloj.',
@@ -714,6 +716,7 @@ $2',
 'customjsprotected' => 'Vi ne rajtas redakti ĉi tiun Ĝavaskriptan paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
 'mycustomcssprotected' => 'Vi ne havas la rajton redakti tiun ĉi CSS-paĝon.',
 'mycustomjsprotected' => 'Vi ne havas la rajton redakti tiun ĉi JavaScript-paĝon.',
+'myprivateinfoprotected' => 'Vi ne havas permeson por redakti vian privatan informon.',
 'mypreferencesprotected' => 'Vi ne havas permeson por redakti viajn preferojn.',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi tiu titolo estas protektita de kreado de [[User:$1|$1]].
@@ -1626,6 +1629,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'right-unblockself' => 'Malforbari oni mem',
 'right-protect' => 'Ŝanĝi protektniveloj kaj redakti protektitajn paĝojn',
 'right-editprotected' => 'Redakti protektitajn paĝojn (sen kaskada protektado)',
+'right-editsemiprotected' => 'Redakti paĝojn protektitajn kiel "{{int:protect-level-autoconfirmed}}"',
 'right-editinterface' => 'Redakti la uzantointerfacon',
 'right-editusercssjs' => 'Redaktu CSS- kaj JS-dosierojn de aliaj uzantoj',
 'right-editusercss' => 'Redaktu CSS-dosierojn de aliaj uzantoj',

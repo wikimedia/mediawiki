@@ -2298,11 +2298,21 @@ See also:
 {{Identical|Undo}}',
 'undo-failure' => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
+See also:
+* {{msg-mw|Undo-norev}}
+* {{msg-mw|Undo-nochange}}
 {{Identical|Undo}}',
 'undo-norev' => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
+See also:
+* {{msg-mw|Undo-failure}}
+* {{msg-mw|Undo-nochange}}
 {{Identical|Undo}}',
-'undo-nochange' => 'Message appears if an attempt to revert an edit by clicking the "undo" link results in an edit making no change to the current version of the page.',
+'undo-nochange' => 'Message appears if an attempt to revert an edit by clicking the "undo" link results in an edit making no change to the current version of the page.
+
+See also:
+* {{msg-mw|Undo-failure}}
+* {{msg-mw|Undo-norev}}',
 'undo-summary' => 'Edit summary for an undo action. Parameters:
 * $1 - revision ID
 * $2 - username

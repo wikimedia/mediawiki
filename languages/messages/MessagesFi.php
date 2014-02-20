@@ -1373,7 +1373,8 @@ Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 
 $1 {{int:pipe-separator}} $2',
 'searchmenu-exists' => "'''Tässä wikissä on sivu nimellä [[:$1]].'''",
-'searchmenu-new' => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",
+'searchmenu-new' => '<strong>Luo sivu "[[:$1]]" tähän wikiin.</strong>{{PLURAL:$2|0=|Katso myös sivua, joka löytyi hakutoiminnolla.
+|Katso myös hakutuloksia.}}',
 'searchprofile-articles' => 'Sisältösivut',
 'searchprofile-project' => 'Ohje- ja projektisivut',
 'searchprofile-images' => 'Kuvat ja tiedostot',
@@ -1399,6 +1400,7 @@ $1 {{int:pipe-separator}} $2',
 'searchrelated' => 'samankaltainen',
 'searchall' => 'kaikki',
 'showingresults' => '{{PLURAL:$1|<strong>Yksi</strong> tulos|<strong>$1</strong> tulosta}} tuloksesta <strong>$2</strong> alkaen.',
+'showingresultsinrange' => 'Alla näytetään enintään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong> – <strong>$3</strong>.',
 'showingresultsnum' => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'showingresultsheader' => "{{PLURAL:$5|Tulokset '''$1'''–'''$3'''|Tulokset '''$1'''–'''$2''' kaikkiaan '''$3''' osuman joukosta}} haulle '''$4'''",
 'search-nonefound' => 'Hakusi ei tuottanut tulosta.',
@@ -1827,6 +1829,8 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Tämä tiedosto on kaksoiskappale {{PLURAL:$1|seuraavasta tiedostosta|seuraavista tiedostoista}}:',
 'file-deleted-duplicate' => 'Tiedosto, joka on identtinen tämän tiedoston kanssa ([[:$1]]) on aiemmin poistettu. Katso kyseisen tiedoston poistoloki ennen kuin jatkat uudelleentallentamista.',
+'file-deleted-duplicate-notitle' => 'Tämän tiedoston kanssa samanlainen tiedosto on aikaisemmin poistettu ja tiedoston nimi on häivytetty.
+Sinun on syytä pyytää jotakuta häivytettyjen tietojen näkemiseen oikeutettua käyttäjää katsomaan tiedoston tiedot asian arvioimiseksi ennen kuin jatkat tiedoston lataamista tietokantaan.',
 'uploadwarning' => 'Tallennusvaroitus',
 'uploadwarning-text' => 'Muuta alla olevaa tiedostokuvausta ja yritä uudelleen.',
 'savefile' => 'Tallenna',
@@ -2198,6 +2202,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'deadendpagestext' => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
 'protectedpages' => 'Suojatut sivut',
 'protectedpages-indef' => 'Vain ikuisesti suojatut',
+'protectedpages-summary' => 'Tällä sivulla on luetteloitu ne sivut, jotka ovat tällä hetkellä suojattuja. Jos haluat nähdä luettelon niistä sivujen nimistä, jotka on suojattu uudelleenluonnilta, katso  [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Vain tarttuvasti suojatut',
 'protectedpages-noredirect' => 'Piilota ohjaukset',
 'protectedpagesempty' => 'Mitään sivuja ei ole tällä hetkellä suojattu näillä asetuksilla.',
@@ -2205,11 +2210,12 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'protectedpages-page' => 'Sivu',
 'protectedpages-expiry' => 'Vanhentuu',
 'protectedpages-performer' => 'Suojauksen asettanut',
-'protectedpages-params' => 'Suojauksen parametrit',
+'protectedpages-params' => 'Suojauksen asetukset',
 'protectedpages-reason' => 'Syy',
 'protectedpages-unknown-timestamp' => 'Tuntematon',
 'protectedpages-unknown-performer' => 'Tuntematon käyttäjä',
 'protectedtitles' => 'Suojatut sivunimet',
+'protectedtitles-summary' => 'Tällä sivulla on lueteltu ne sivut, jotka ovat tällä hetkellä suojatut uudelleenluonnilta. Jos haluat nähdä luettelon suojatuista olemassa olevista sivuista, katso [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',
 'listusers' => 'Käyttäjälista',
 'listusers-editsonly' => 'Näytä vain käyttäjät, joilla on muokkauksia',
@@ -2549,8 +2555,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 ** Suuri näkyvyys',
 'protect-edit-reasonlist' => 'Muokkaa suojaussyitä',
 'protect-expiry-options' => '1 tunti:1 hour,1 päivä:1 day,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite',
-'restriction-type' => 'Rajoitus',
-'restriction-level' => 'Suojaus',
+'restriction-type' => 'Rajoitus:',
+'restriction-level' => 'Suojaustaso:',
 'minimum-size' => 'Vähimmäiskoko',
 'maximum-size' => 'Enimmäiskoko',
 'pagesize' => 'tavua',
@@ -2564,7 +2570,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 # Restriction levels
 'restriction-level-sysop' => 'täysin suojattu',
 'restriction-level-autoconfirmed' => 'osittaissuojattu',
-'restriction-level-all' => 'mikä tahansa suojaus',
+'restriction-level-all' => 'kaikki tasot',
 
 # Undelete
 'undelete' => 'Tarkastele poistettuja sivuja',
@@ -2951,6 +2957,8 @@ $2',
 'thumbnail_image-type' => 'Kuvamuoto ei ole tuettu',
 'thumbnail_gd-library' => 'GD-kirjastoa ei ole asennettu oikein. Funktio $1 puuttuu.',
 'thumbnail_image-missing' => 'Tiedosto näyttää puuttuvan: $1',
+'thumbnail_image-failure-limit' => 'Tätä kuvan näyttöasettelua (thumbnail) on yritetty toteuttaa liian monta kertaa epäonnistuneesti ($1 tai enemmän).
+Ole hyvä ja yritä myöhemmin uudelleen.',
 
 # Special:Import
 'import' => 'Tuo sivuja',
@@ -4169,4 +4177,6 @@ Toisin sanoen melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.',
 'expand_templates_generate_rawhtml' => 'Näytä raaka HTML',
 'expand_templates_preview' => 'Esikatselu',
 
+# Unknown messages
+'uploadinvalidxml' => 'Ladatun tiedoston XML-koodia ei voitu jäsentää kunnolla.',
 );
