@@ -157,7 +157,7 @@ class ApiCreateAccount extends ApiBase {
 			}
 		} else {
 			// Everything was fine.
-			$result['result'] = 'success';
+			$result['result'] = 'Success';
 		}
 
 		// Give extensions a chance to modify the API result data
@@ -229,7 +229,7 @@ class ApiCreateAccount extends ApiBase {
 			'createaccount' => array(
 				'result' => array(
 					ApiBase::PROP_TYPE => array(
-						'success',
+						'Success',
 						'warning',
 						'needtoken'
 					)
