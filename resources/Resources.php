@@ -826,7 +826,10 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.notification' => array(
-		'styles' => 'resources/mediawiki/mediawiki.notification.css',
+		'styles' => array(
+			'resources/mediawiki/mediawiki.notification.css',
+			'resources/mediawiki/mediawiki.notification.hideForPrint.css' => array( 'media' => 'print' ),
+		),
 		'scripts' => 'resources/mediawiki/mediawiki.notification.js',
 		'dependencies' => array(
 			'mediawiki.page.startup',
