@@ -797,8 +797,7 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
-				// @todo FIXME: Undefined variable %env
-				$err = wfShellExecWithStderr( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
 					$this->logErrorForExternalProcess( $retval, $err, $cmd );
