@@ -1,0 +1,31 @@
+// This is a separate file because importing the mixin causes
+// the keyframes blocks to be included in the output, regardless
+// of whether .rotation is used.
+@-webkit-keyframes rotate {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.rotation(@time) {
+	-webkit-animation-name: rotate;
+	-webkit-animation-duration: @time;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	animation-name: rotate;
+	animation-duration: @time;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
