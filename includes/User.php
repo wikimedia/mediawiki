@@ -781,23 +781,24 @@ class User {
 	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
-		// Force usernames to capital
-		global $wgContLang;
-		$name = $wgContLang->ucfirst( $name );
-
-		# Reject names containing '#'; these will be cleaned up
-		# with title normalisation, but then it's too late to
-		# check elsewhere
+		// Reject names containing '#'. These will be cleaned up with title normalisation, but then it's
+		// too late to check elsewhere.
+		// @todo Why do we do this when $validate === false?
 		if ( strpos( $name, '#' ) !== false ) {
 			return false;
 		}
 
-		// Clean up name according to title rules
-		$t = ( $validate === 'valid' ) ?
-			Title::newFromText( $name ) : Title::makeTitle( NS_USER, $name );
-		// Check for invalid titles
-		if ( is_null( $t ) ) {
-			return false;
+		if ( $validate === false ) {
+			// Only capitalize the name and transform underscores to spaces
+			$t = Title::makeTitle( NS_USER, $wgContLang->ucfirst( $name ) );
+		} else {
+			// Clean up name according to title rules and reject invalid page titles. Note that titles in
+			// the User namespace are always capitalized, see MWNamespace::$alwaysCapitalizedNamespaces and
+			// documentation for $wgCapitalLinkOverrides.
+			$t = Title::makeTitleSafe( NS_USER, $name );
+			if ( is_null( $t ) ) {
+				return false;
+			}
 		}
 
 		// Reject various classes of invalid names
