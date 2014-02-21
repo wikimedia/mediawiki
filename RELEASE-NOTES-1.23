@@ -246,6 +246,8 @@ changes to languages because of Bugzilla reports.
 * mw.loader.go and mw.loader.version have been removed.
 * (bug 52815) Preference "Enable simplified search bar (Vector skin only)"
   was removed.
+* A user_password_expires column has been added to the user table. The User
+  object expects this column to exist. Use update.php to create this new field.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
