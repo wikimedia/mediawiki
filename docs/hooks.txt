@@ -277,6 +277,10 @@ $user: the User object about to be created (read-only, incomplete)
 $targetUser: the user whom to send talk page email notification
 $title: the page title
 
+'SendWatchlistEmailNotification': Return true to send watchlist email notification
+$targetUser: the user whom to send watchlist email notification
+$title: the page title
+
 'AbortChangePassword': Return false to cancel password change.
 $user: the User object to which the password change is occuring
 $mOldpass: the old password provided by the user
