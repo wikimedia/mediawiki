@@ -163,7 +163,6 @@ $messages = array(
 'vector-action-protect' => 'Tingoligai',
 'vector-action-undelete' => 'Kada pugaso',
 'vector-action-unprotect' => 'Alanai tingolig',
-'vector-simplesearch-preference' => 'Pasagao pogigihum bar noinsanangan (Pongulit tuntuduk nopo)',
 'vector-view-create' => 'Pomonsoi',
 'vector-view-edit' => 'Idito',
 'vector-view-history' => 'Intaai susuyan',

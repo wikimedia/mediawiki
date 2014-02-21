@@ -216,7 +216,6 @@ $messages = array(
 'vector-action-protect' => 'Mbroj',
 'vector-action-undelete' => 'Kthe fshimjen mbrapsht',
 'vector-action-unprotect' => 'Hiq mbrojtjen',
-'vector-simplesearch-preference' => 'Aktivizo sugjerime të avancueme në kërkim (vetëm për Vector skin)',
 'vector-view-create' => 'Krijo',
 'vector-view-edit' => 'Redakto',
 'vector-view-history' => 'Shih historinë',

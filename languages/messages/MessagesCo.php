@@ -372,6 +372,7 @@ Parechji mudelli ùn seranu micca inclusi.",
 'searchrelated' => 'currilati',
 'showingresultsheader' => "{{PLURAL:$5|Risultatu '''$1''' di '''$3'''|Risultati '''$1 - $2''' di '''$3'''}} per '''$4'''",
 'search-nonefound' => 'A ricerca ùn hà micca datu risultati.',
+'powersearch-ns' => 'Circà in u spaziu di nomi',
 
 # Preferences page
 'preferences' => 'Preferenze',

@@ -176,7 +176,6 @@ $messages = array(
 'vector-action-protect' => 'रक्षण करू',
 'vector-action-undelete' => 'आपस लाउ',
 'vector-action-unprotect' => 'सुरक्षा बदलू',
-'vector-simplesearch-preference' => 'परिष्कृत खोज सुझाव समर्थ करू (सदिश स्वरूप मात्र)',
 'vector-view-create' => 'बनाउ',
 'vector-view-edit' => 'सम्पादन करू',
 'vector-view-history' => 'इतिहास देखू',

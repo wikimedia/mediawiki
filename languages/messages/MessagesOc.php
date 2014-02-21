@@ -454,7 +454,6 @@ $messages = array(
 'vector-action-protect' => 'Protegir',
 'vector-action-undelete' => 'Restablir',
 'vector-action-unprotect' => 'Suprimir la proteccion',
-'vector-simplesearch-preference' => "Activar la barra de recèrca simplificada (solament per l'abilhatge Vector)",
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Modificar',
 'vector-view-history' => "Veire l'istoric",

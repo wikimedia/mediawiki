@@ -183,7 +183,6 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '恢復',
 'vector-action-unprotect' => '更改保護',
-'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限Vector外皮）',
 'vector-view-create' => '建立',
 'vector-view-edit' => '編寫',
 'vector-view-history' => '查看歷史',

@@ -360,7 +360,6 @@ $messages = array(
 'vector-action-protect' => 'שיצן',
 'vector-action-undelete' => 'מבטל זיין אויסמעקן',
 'vector-action-unprotect' => 'ענדערונג באַשיצונג',
-'vector-simplesearch-preference' => 'דערמעגלעכן פֿאַרפשוטערטן זוך פאַס (נאר וועקטאר)',
 'vector-view-create' => 'שאַפֿן',
 'vector-view-edit' => 'רעדאַקטירן',
 'vector-view-history' => 'ווײַזן היסטאָריע',

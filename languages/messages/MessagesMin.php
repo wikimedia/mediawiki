@@ -325,7 +325,6 @@ $messages = array(
 'vector-action-protect' => 'Linduangkan',
 'vector-action-undelete' => 'Pambatalan pangapuihan',
 'vector-action-unprotect' => 'Tuka palinduangan',
-'vector-simplesearch-preference' => 'Aktipan kotak pancarian sadarano (hanyo kulik Vector)',
 'vector-view-create' => 'Buek',
 'vector-view-edit' => 'Suntiang',
 'vector-view-history' => 'Riwayaik',

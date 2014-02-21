@@ -590,7 +590,7 @@ S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò trava
 
 # Change password dialog
 'changepassword' => 'Cangé la ciav',
-'resetpass_announce' => "A l'é rintrà ant ël sistema con na ciav provisòria mandà për pòsta eletrònica. Për podèj livré la procedura a l'ha da butesse na ciav neuva ambelessì:",
+'resetpass_announce' => "Për podèj livré la procedura a l'ha da butesse na ciav neuva.",
 'resetpass_text' => '<!-- Gionté ël test ambelessì -->',
 'resetpass_header' => 'Cangé la ciav dël cont',
 'oldpassword' => 'Veja ciav:',
@@ -606,8 +606,13 @@ Për piasì, ch'a speta $1 prima ëd prové torna.",
 'resetpass-submit-cancel' => 'Anulé',
 'resetpass-wrong-oldpass' => "Ciav provisòria o corenta nen bon-a.
 Peul desse ch'a l'ha già cambià la ciav o a l'ha ciamà na neuva ciav provisòria.",
+'resetpass-recycled' => "Për piasì, ch'a cangia soa ciav an cheicòs ëd diferent da soa ciav atual.",
+'resetpass-temp-emailed' => "A l'é rintrà ant ël sistema con un còdes temporani mandà për pòsta eletrònica.
+Për finì ëd rintré ant ël sistema, a dev definì na neuva ciav ambelessì:",
 'resetpass-temp-password' => 'Ciav provisòria:',
 'resetpass-abort-generic' => "La modìfica ëd la ciav a l'é stàita anulà da n'estension.",
+'resetpass-expired' => "Soa ciav a l'é scadùa. Për piasì, ch'a definissa na ciav neuva për rintré ant ël sistema.",
+'resetpass-expired-soft' => "Soa ciav a l'é scadùa e a l'ha damanca d'esse arnovà. Për piasì, ch'a serna na neuva ciav adess o ch'a sgnaca su anulé për cangela pi tard.",
 
 # Special:PasswordReset
 'passwordreset' => 'Ri-inissialisassion ëd la ciav',

@@ -44,7 +44,7 @@ $messages = array(
 'tog-previewontop' => 'Shaw scance afore edit box an no efter it',
 'tog-previewonfirst' => 'Shaw scance on first edit',
 'tog-enotifwatchlistpages' => 'Send me an email on page chynges',
-'tog-enotifusertalkpages' => 'Send me an email whan ma uiser collogue page is chynged',
+'tog-enotifusertalkpages' => 'Send me ae email whan ma uiser talk page is chynged',
 'tog-enotifminoredits' => 'Send me an email for smaa edits o pages an aa',
 'tog-enotifrevealaddr' => 'Shaw ma email address in notification mails',
 'tog-shownumberswatching' => 'Shaw the nummer o watching uisers',
@@ -145,7 +145,7 @@ $messages = array(
 'moredotdotdot' => 'Mair...',
 'mypage' => 'Ma page',
 'mytalk' => 'Ma collogue',
-'anontalk' => 'Collogue for this IP',
+'anontalk' => 'Talk fer this IP address',
 'navigation' => 'Navigation',
 'and' => '&#32;an',
 
@@ -200,7 +200,7 @@ $messages = array(
 'unprotectthispage' => 'Loose the fend for this page',
 'newpage' => 'New page',
 'talkpage' => 'Blether ower this page',
-'talkpagelinktext' => 'Collogue',
+'talkpagelinktext' => 'Talk',
 'specialpage' => 'Byordinar Page',
 'personaltools' => 'Personal tuils',
 'postcomment' => 'Eik a message',
@@ -608,7 +608,7 @@ Thae arguments hae been left oot.',
 'undo-success' => 'The edit can be undone. Please check the chynges albo tae check that this is whit ye wint tae dae, an then hain the chynges albo tae be duin undooin the edit.',
 'undo-failure' => 'The edit culdnae be undone acause o conflictin edits inatween.',
 'undo-nochange' => 'The edit appears tae hae awready been ondone.',
-'undo-summary' => 'Undo reveision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Collogue]])',
+'undo-summary' => 'Undo reveision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Canna mak accoont',
@@ -700,7 +700,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'searchprofile-articles-tooltip' => 'Rake in $1',
 'searchprofile-project-tooltip' => 'Rake in $1',
 'searchprofile-images-tooltip' => 'Rake fur files',
-'searchprofile-everything-tooltip' => 'Rake aw of content (including collogue pages)',
+'searchprofile-everything-tooltip' => 'Rake aw o content (including talk pages)',
 'searchprofile-advanced-tooltip' => 'Rake in custom namespaces',
 'search-result-size' => '$1 ({{PLURAL:$2|1 word|$2 words}})',
 'search-result-category-size' => '{{PLURAL:$1|1 member|$1 members}} ({{PLURAL:$2|1 subcategory|$2 subcategories}}, {{PLURAL:$3|1 file|$3 files}})',
@@ -758,8 +758,8 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'email' => 'E-mail',
 'prefs-help-realname' => 'Rael name is optional an gin ye chuise tae provide it this will be uised tae gie ye attreibution for yer wark.',
 'prefs-help-email' => 'E-mail is optional, bit is needed fur password resets, shuid ye forget yer password.',
-'prefs-help-email-others' => "Ye kin an choose tae let others contact ye by e-mail thro' a link oan yer uiser or collogue  page. 
-Yer e-mail address insae revealed whin ither uisers contact ye.",
+'prefs-help-email-others' => 'Ye can chuise tae let ithers contact ye bi wab-mail through ae link on yer uiser or talk page.
+Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'prefs-help-email-required' => 'Yer e-mail address is needit.',
 'prefs-diffs' => 'Diffs',
 
@@ -1057,7 +1057,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchthispage' => 'Leuk ower this page',
 'unwatch' => 'Unwatch',
 'notanarticle' => 'No a content page',
-'watchlist-details' => "{{PLURAL:$1|$1 page|$1 pages}} on yer watchleet, nae countin' collogue pages.",
+'watchlist-details' => '{{PLURAL:$1|$1 page|$1 pages}} on yer watchleet, no countin talk pages.',
 'watchlistcontains' => 'Yer watchleet contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname' => "Trouble wi eitem '$1', invalid name...",
 'wlnote2' => 'Ablow ar the chynges in the hainmaist {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $3, $2.',
@@ -1169,7 +1169,7 @@ Consult the [[Special:Log/delete|deletion log]] fer ae record o recent deletions
 'sp-contributions-blocklog' => 'block log',
 'sp-contributions-uploads' => 'uploads',
 'sp-contributions-logs' => 'logs',
-'sp-contributions-talk' => 'collogue',
+'sp-contributions-talk' => 'talk',
 'sp-contributions-search' => 'Rake fur contreibutions',
 'sp-contributions-username' => 'IP address or uisername:',
 'sp-contributions-toponly' => 'Ainlie shaw edits that are latest revisions',
@@ -1266,7 +1266,11 @@ This means that you can rename a page back to whaur it wis renamed fae gif ye ma
 <strong>Warnin!</strong>
 This can be ae drastic an onexpectit chynge fer ae popular page;
 please be sair ye unnerstaun the consequences of this afore proceedin.",
-'movepagetalktext' => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
+'movepagetalktext' => 'The associated talk page will be autaematically muived alang wi it <strong>onless:</strong>
+*A no-empty talk page awreadie exists unner the new name, or
+*You oncheck the box ablow.
+
+In thir cases, ye will hae tae muiv or merge the page manually gif ye sae desire.',
 'movearticle' => 'Flit page:',
 'moveuserpage-warning' => "<strong>Warning:</strong> Ye'r aboot tae muiv ae uiser page. Please note that yinly the page will be muivd and the uiser will <em>no</em> be renamed.",
 'movenologintext' => 'Ye maun be a registert uiser an [[Special:UserLogin|loggit in]] tae flit a page.',
@@ -1275,7 +1279,7 @@ please be sair ye unnerstaun the consequences of this afore proceedin.",
 'pagemovedsub' => 'Flittin succeedit',
 'movepage-moved' => '<strong>"$1" has been muived til "$2"</strong>',
 'articleexists' => "A page o that name aareadies exists, or the name ye'v waled isna guid. Please wale anither name.",
-'movetalk' => 'Flit "collogue" page an aa, gin it\'s applicable.',
+'movetalk' => 'Muiv associated talk page',
 'movelogpage' => 'Flit log',
 'movelogpagetext' => "A leet o pages that's flitted is ablo.",
 'movereason' => 'Raeson:',
@@ -1329,7 +1333,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Yer uiser page',
-'tooltip-pt-mytalk' => 'Yer collogue page',
+'tooltip-pt-mytalk' => 'Yer talk page',
 'tooltip-pt-preferences' => 'Ma preferences',
 'tooltip-pt-watchlist' => "Th' leet o' pages yer monitoring fur changes",
 'tooltip-pt-mycontris' => 'Leet o yer contreibutions',
@@ -1503,9 +1507,9 @@ This confirmation code will end at $4.',
 
 # Delete conflict
 'deletedwhileediting' => '<strong>Warning:</strong> This page wis deletit efter ye sterted editing!',
-'confirmrecreate' => "Uiser [[User:$1|$1]] ([[User talk:$1|collogue]]) deletit this airticle efter ye stertit editin, giein the raeson:
-: ''$2''
-Please confirm that ye really want tae recreate this airticle.",
+'confirmrecreate' => 'Uiser [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page efter ye started eiditing wi raison:
+: <em>$2</em>
+Please confirm that ye really want te recreate this page.',
 
 # action=purge
 'confirm_purge_button' => 'Aye',

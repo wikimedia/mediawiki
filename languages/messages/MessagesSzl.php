@@ -226,7 +226,6 @@ $messages = array(
 'vector-action-protect' => 'Zawrzij',
 'vector-action-undelete' => 'Wćep',
 'vector-action-unprotect' => 'Uodymkńij',
-'vector-simplesearch-preference' => 'Używej zaawansowane podpowjedźi sznupańo (ino lo skůrki Wektor)',
 'vector-view-create' => 'Stwůrz',
 'vector-view-edit' => 'Sprowjej',
 'vector-view-history' => 'Uobocz gyszichta',

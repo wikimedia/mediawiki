@@ -334,7 +334,6 @@ $messages = array(
 'vector-action-protect' => 'Сæхгæнын',
 'vector-action-undelete' => 'Рацаразын',
 'vector-action-unprotect' => 'Ивын хъахъхъæд',
-'vector-simplesearch-preference' => 'Баиу кæнын æнцонгонд агурыны формæ (Вектор цармæн æрмæст)',
 'vector-view-create' => 'Скæнын',
 'vector-view-edit' => 'Ивын',
 'vector-view-history' => 'Истори',

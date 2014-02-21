@@ -279,7 +279,6 @@ $messages = array(
 'vector-action-protect' => 'Всокотити',
 'vector-action-undelete' => 'Обновити',
 'vector-action-unprotect' => 'Змінити замок',
-'vector-simplesearch-preference' => 'Поволити спрощене поле гляданя (лем взгляд Vector )',
 'vector-view-create' => 'Створити',
 'vector-view-edit' => 'Едітовати',
 'vector-view-history' => 'Видїти історію',

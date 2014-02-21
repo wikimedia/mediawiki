@@ -228,7 +228,6 @@ $messages = array(
 'vector-action-protect' => 'ಸಂರಕ್ಷಿಸು',
 'vector-action-undelete' => 'ಅಳಿಸಬೇಡ',
 'vector-action-unprotect' => 'ರಕ್ಷಣೆಯನ್ನು ಬದಲಾವಣೆ',
-'vector-simplesearch-preference' => 'ವರ್ಧಿಸಿದ ಹುಡುಕು ಸಲಹೆಗಳನ್ನು (ಕೇವಲ ವೆಕ್ಟರ್ ಚರ್ಮ) ಸಕ್ರಿಯಗೊಳಿಸಿ',
 'vector-view-create' => 'ಸೃಷ್ಟಿಸು',
 'vector-view-edit' => 'ಸಂಪಾದಿಸಿ',
 'vector-view-history' => 'ಇತಿಹಾಸವನ್ನು ನೋಡಿ',

@@ -195,7 +195,6 @@ $messages = array(
 'vector-action-protect' => 'লুকর',
 'vector-action-undelete' => 'নাপুসি',
 'vector-action-unprotect' => 'লুকরানিহান সিলকর',
-'vector-simplesearch-preference' => 'বিসারানির কা পরামর্শ থা করেই (হুদ্দা ভেক্টর স্কিনর কা)',
 'vector-view-create' => 'হঙকরিক',
 'vector-view-edit' => 'পতানি',
 'vector-view-history' => 'ইতিহাস চেইক',

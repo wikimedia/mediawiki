@@ -205,7 +205,6 @@ $messages = array(
 'vector-action-protect' => 'Kaidsaq',
 'vector-action-undelete' => 'Tiiq tagasi',
 'vector-action-unprotect' => 'Muudaq kaidsõt',
-'vector-simplesearch-preference' => 'Lupaq lihtsüstedüt otsmisripa (õnnõ Vektor-kujondusõn)',
 'vector-view-create' => 'Luuq',
 'vector-view-edit' => 'Toimõndaq',
 'vector-view-history' => 'Näütäq aoluku',

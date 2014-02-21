@@ -226,7 +226,6 @@ $messages = array(
 'vector-action-protect' => 'Protedjî',
 'vector-action-undelete' => 'Rapexhî',
 'vector-action-unprotect' => "Candjî l' protedjaedje",
-'vector-simplesearch-preference' => 'Permete les amidreyès sudjestions di cweraedje (pea «Vector» seulmint)',
 'vector-view-create' => 'Ahiver',
 'vector-view-edit' => 'Candjî',
 'vector-view-history' => "Vey l' istwere",

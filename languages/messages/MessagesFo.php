@@ -274,7 +274,6 @@ $messages = array(
 'vector-action-protect' => 'Friða',
 'vector-action-undelete' => 'Endurstovna',
 'vector-action-unprotect' => 'Broyt verju',
-'vector-simplesearch-preference' => 'Ger lættari leititeig virknan (bert Vector útsjónd)',
 'vector-view-create' => 'Stovna',
 'vector-view-edit' => 'Rætta',
 'vector-view-history' => 'Vís søgu',

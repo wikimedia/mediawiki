@@ -168,7 +168,6 @@ $messages = array(
 'vector-action-protect' => 'Pangapinan',
 'vector-action-undelete' => 'Dulaon ang pagpanas',
 'vector-action-unprotect' => 'Ilisan ang pagpangapin',
-'vector-simplesearch-preference' => 'Sugdan ang mas ginpamaayo nga suhestiyon sa pagpangita (Para sa vector nga panit lamang)',
 'vector-view-create' => 'Himuon',
 'vector-view-edit' => 'Ilisan',
 'vector-view-history' => 'Lantawon ang kasaysayan',

@@ -285,7 +285,6 @@ $messages = array(
 'vector-action-protect' => 'Linda',
 'vector-action-undelete' => 'Rudisha',
 'vector-action-unprotect' => 'Badilisha ulinzi',
-'vector-simplesearch-preference' => 'Kuwezesha madokezo imara ya tafutaji (umbo la Vector tu)',
 'vector-view-create' => 'Anzisha',
 'vector-view-edit' => 'Hariri',
 'vector-view-history' => 'Fungua historia',

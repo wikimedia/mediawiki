@@ -206,7 +206,6 @@ $messages = array(
 'vector-action-protect' => 'Mmesten',
 'vector-action-undelete' => 'Uɣaled',
 'vector-action-unprotect' => 'Beddel amesten',
-'vector-simplesearch-preference' => 'Sermed tafeggast taḥerfit n unadi (i "Vector" kan)',
 'vector-view-create' => 'Snulfu',
 'vector-view-edit' => 'Ẓẓiẓreg',
 'vector-view-history' => 'Ẓeṛ amazray',

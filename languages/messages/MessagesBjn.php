@@ -293,7 +293,6 @@ $messages = array(
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Pawalangan pahapusan',
 'vector-action-unprotect' => 'Palindungan',
-'vector-simplesearch-preference' => 'Kawa-akan saran panggagaian tingkat lanjut (Vector skin haja)',
 'vector-view-create' => 'Ulah',
 'vector-view-edit' => 'Babak',
 'vector-view-history' => 'Tiringi halam',

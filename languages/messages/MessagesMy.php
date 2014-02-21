@@ -220,7 +220,6 @@ $messages = array(
 'vector-action-protect' => 'ထိမ်း​သိမ်း​ပါ​',
 'vector-action-undelete' => 'မဖျက်တော့ရန်',
 'vector-action-unprotect' => 'ကာကွယ်ခြင်းကို ပြောင်းလဲရန်',
-'vector-simplesearch-preference' => 'ရိုးရှင်းသော ရှာဖွေမှုဘားကို အသုံးပြုရန် (Vector skin သာ)',
 'vector-view-create' => 'စတင်ရေးသားရန်',
 'vector-view-edit' => 'ပြင်ရန်',
 'vector-view-history' => 'ရာဇဝင်ကြည့်ရန်',

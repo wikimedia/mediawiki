@@ -253,7 +253,6 @@ $messages = array(
 'vector-action-protect' => 'Ахова',
 'vector-action-undelete' => 'Аднавіць',
 'vector-action-unprotect' => 'Змяніць ахову',
-'vector-simplesearch-preference' => 'Уключыць пашыраны пошук прапаноў (толькі для тэмы Vector)',
 'vector-view-create' => 'Стварыць',
 'vector-view-edit' => 'Правіць',
 'vector-view-history' => 'Паказаць гісторыю',

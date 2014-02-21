@@ -466,7 +466,6 @@ $messages = array(
 'vector-action-protect' => 'حمايه',
 'vector-action-undelete' => 'الغى المسح',
 'vector-action-unprotect' => 'غير الحمايه',
-'vector-simplesearch-preference' => ' تشغيل شريط التدوير  المبسط (لمظهر فيكتور بس)',
 'vector-view-create' => 'اعمل',
 'vector-view-edit' => 'تعديل',
 'vector-view-history' => 'استعراض التاريخ',

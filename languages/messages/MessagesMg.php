@@ -381,7 +381,6 @@ $messages = array(
 'vector-action-protect' => 'Arovy',
 'vector-action-undelete' => 'Avereno',
 'vector-action-unprotect' => 'Hanala ny fiarovana',
-'vector-simplesearch-preference' => "Hampiasa ny bara fikarohana notsorina (ho an'ny skin Vector ihany)",
 'vector-view-create' => 'Foronona',
 'vector-view-edit' => 'Hanova',
 'vector-view-history' => 'Hijery ny tantara',

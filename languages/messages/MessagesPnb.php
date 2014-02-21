@@ -170,7 +170,6 @@ $messages = array(
 'vector-action-protect' => 'بچاؤ',
 'vector-action-undelete' => 'واپس لیاؤ',
 'vector-action-unprotect' => 'تبدیلی بچاؤ',
-'vector-simplesearch-preference' => 'کھوج چ چنگے مشورے آن کرو',
 'vector-view-create' => 'بناؤ',
 'vector-view-edit' => 'لکھو',
 'vector-view-history' => 'تریخ وکھاؤ',

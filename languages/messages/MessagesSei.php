@@ -17,16 +17,13 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Squóráam linkám:',
-'tog-justify' => 'Icáitom paragraphám',
 'tog-hideminor' => 'Camaát editicúnos pac-quimáaxat camjöx cmaa iti',
 'tog-extendwatchlist' => 'Expand listade cáminot zo cohuatlöx jömde quíix applicablix',
 'tog-usenewrc' => 'Camjöx cmaa enhancöx (JavaScript)',
 'tog-numberheadings' => 'Auto-numberom text corridór',
 'tog-showtoolbar' => 'Cohuatlöx ticpatlöx toolbar (JavaScript)',
 'tog-editondblclick' => 'Ticpatlöx páhinám 2 clickám mii (JavaScript)',
-'tog-editsection' => 'Ton ticpatlöx seccion [edit] linkám via',
 'tog-editsectiononrightclick' => 'Ton ticpatlöx seccion pok clickám mii<br /> seccion titelám iti (JavaScript)',
-'tog-showtoc' => 'Cohuatlöx insacualte (páhinám bajlip 3 text corridór mii)',
 'tog-rememberpassword' => 'Qualtiinii he quimx canj jan ordinator iti (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Plusöx páhinám he hun he listade cáminot',
 'tog-watchdefault' => 'Plusöx páhinám he ticpatlöx he listade cáminot',
@@ -546,7 +543,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'lineno' => 'Pozxáat $1:',
 'compareselectedversions' => 'Comparenom verción selectón',
 'editundo' => 'iixponintöx',
-'diff-multi' => '({{PLURAL:$1|1 revicion páult|$1 revición páultíi}} necohuatlöx.)',
 
 # Search results
 'searchresults' => 'Resuluámde yahöx',

@@ -15,6 +15,7 @@
  * @author Chrumps
  * @author Clamira
  * @author Cysioland
+ * @author Dalis
  * @author Debeet
  * @author Derbeth
  * @author Equadus
@@ -889,6 +890,8 @@ Odczekaj $1, zanim ponowisz próbę.',
 Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(‐aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password' => 'Tymczasowe hasło:',
 'resetpass-abort-generic' => 'Zmiana hasła została przerwana przez rozszerzenie.',
+'resetpass-expired' => 'Twoje hasło wygasło. Proszę ustawić nowe hasło do logowania.',
+'resetpass-expired-soft' => 'Twoje hasło wygasło i musi zostać zresetowane. Proszę wybrać nowe hasło albo kliknąć przycisk Anuluj, aby zresetować je później.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
@@ -1160,6 +1163,7 @@ Strona już istnieje.',
 'editwarning-warning' => 'Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.
 Jeśli jesteś zalogowany, możesz wyłączyć wyświetlanie tego ostrzeżenia w zakładce „{{int:prefs-editing}}” w swoich preferencjach.',
 'editpage-notsupportedcontentformat-title' => 'Nieobsługiwany format zawartości',
+'editpage-notsupportedcontentformat-text' => 'Format zawartości $1 nie jest obsługiwany modelem treści $2.',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -1411,6 +1415,7 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'search-result-score' => 'Trafność: $1%',
 'search-redirect' => '(przekierowanie $1)',
 'search-section' => '(sekcja $1)',
+'search-file-match' => '(odpowiada zawartości pliku)',
 'search-suggest' => 'Czy chodziło Ci o: $1',
 'search-interwiki-caption' => 'Projekty siostrzane',
 'search-interwiki-default' => 'Wyniki dla $1:',
@@ -4302,4 +4307,6 @@ W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
 'expand_templates_generate_rawhtml' => 'Pokaż surowy HTML',
 'expand_templates_preview' => 'Podgląd',
 
+# Unknown messages
+'uploadinvalidxml' => 'Nie udało się przeanalizować XML w załadowanym pliku.',
 );

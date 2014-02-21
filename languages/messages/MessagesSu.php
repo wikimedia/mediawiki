@@ -277,7 +277,6 @@ $messages = array(
 'vector-action-protect' => 'Konci',
 'vector-action-undelete' => 'Bolaykeun ngahapus',
 'vector-action-unprotect' => 'Robah protéksi',
-'vector-simplesearch-preference' => 'Aktipkeun saran pamaluruhan lengkep (ukur kulit Véktor)',
 'vector-view-create' => 'Jieun',
 'vector-view-edit' => 'Édit',
 'vector-view-history' => 'Témbongkeun jujutan',

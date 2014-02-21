@@ -377,7 +377,6 @@ $messages = array(
 'vector-action-protect' => 'Mbroje',
 'vector-action-undelete' => 'Anullo fshirjen',
 'vector-action-unprotect' => 'Ndrysho mbrojtjen',
-'vector-simplesearch-preference' => 'Aktivizo kërkimin e thjeshtëzuar (vetëm për veshjen Vector)',
 'vector-view-create' => 'Krijo',
 'vector-view-edit' => 'Redakto',
 'vector-view-history' => 'Shiko historikun',

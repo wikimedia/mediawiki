@@ -313,7 +313,6 @@ $messages = array(
 'vector-action-protect' => '緘',
 'vector-action-undelete' => '覽刪',
 'vector-action-unprotect' => '啟',
-'vector-simplesearch-preference' => '增尋之案（限Vector皮）',
 'vector-view-create' => '立',
 'vector-view-edit' => '纂',
 'vector-view-history' => '覽史',

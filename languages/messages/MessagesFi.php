@@ -1373,7 +1373,7 @@ Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 
 $1 {{int:pipe-separator}} $2',
 'searchmenu-exists' => "'''Tässä wikissä on sivu nimellä [[:$1]].'''",
-'searchmenu-new' => '<strong>Luo sivu "[[:$1]]" tähän wikiin.</strong>{{PLURAL:$2|0=|Katso myös sivua, joka löytyi hakutoiminnolla.
+'searchmenu-new' => '<strong>Luo sivu "[[:$1]]" tähän wikiin.</strong> {{PLURAL:$2|0=|Katso myös sivua, joka löytyi hakutoiminnolla.
 |Katso myös hakutuloksia.}}',
 'searchprofile-articles' => 'Sisältösivut',
 'searchprofile-project' => 'Ohje- ja projektisivut',

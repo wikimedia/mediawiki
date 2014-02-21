@@ -352,7 +352,6 @@ $messages = array(
 'vector-action-protect' => 'ਸੁਰੱਖਿਆ',
 'vector-action-undelete' => 'ਹਟਾਉਣਾ-ਵਾਪਸ',
 'vector-action-unprotect' => 'ਸੁਰੱਖਿਆ ਬਦਲੋ',
-'vector-simplesearch-preference' => 'ਸਧਾਰਨ ਖੋਜ ਸਲਾਹ ਪੱਟੀ ਯੋਗ ਕਰੋ (ਸਿਰਫ਼ ਵਿਕਟਰ ਸਕਿੰਨ ਵਿਚ)',
 'vector-view-create' => 'ਬਣਾਓ',
 'vector-view-edit' => 'ਸੋਧੋ',
 'vector-view-history' => 'ਅਤੀਤ ਵੇਖੋ',

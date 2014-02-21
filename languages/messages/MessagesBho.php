@@ -209,7 +209,6 @@ $messages = array(
 'vector-action-protect' => 'संरक्षित करीं',
 'vector-action-undelete' => 'मत मिटाईं',
 'vector-action-unprotect' => 'सुरक्षा बदलीं',
-'vector-simplesearch-preference' => 'सरलीकृत खोज पट्टी सक्षम करीं (केवल वेक्टर स्कीन)',
 'vector-view-create' => 'बनाईं',
 'vector-view-edit' => 'सम्पादन',
 'vector-view-history' => 'इतिहास देखीं',

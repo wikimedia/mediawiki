@@ -326,7 +326,6 @@ $messages = array(
 'vector-action-protect' => 'Peulindông',
 'vector-action-undelete' => 'Bateuë sampôh',
 'vector-action-unprotect' => 'Gantoe neulindông',
-'vector-simplesearch-preference' => 'Peuudép beunteueng mita biasa (kulét Vèctor khöng)',
 'vector-view-create' => 'Peugöt',
 'vector-view-edit' => 'Andam',
 'vector-view-history' => 'Eu riwayat',

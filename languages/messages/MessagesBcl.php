@@ -260,7 +260,6 @@ $messages = array(
 'vector-action-protect' => 'Protektaran',
 'vector-action-undelete' => 'Bawion sa pagkapara',
 'vector-action-unprotect' => 'Ribayan an proteksyon',
-'vector-simplesearch-preference' => 'Paganahon an pinagyanong panukod sa paghahanap (Pansolong kublit sana)',
 'vector-view-create' => 'Magmukna',
 'vector-view-edit' => 'Liwatón',
 'vector-view-history' => 'Tanawon sa historiya',

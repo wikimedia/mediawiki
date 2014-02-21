@@ -289,7 +289,6 @@ $messages = array(
 'vector-action-protect' => 'Араламс',
 'vector-action-undelete' => 'Мърдафтомс',
 'vector-action-unprotect' => 'Араламать полафтомс',
-'vector-simplesearch-preference' => 'Нодамс тевс тёждялгтотф кядьёнксонь седяфксть (аньцек векторонь лангакс)',
 'vector-view-create' => 'Тиемс',
 'vector-view-edit' => 'Петнемс',
 'vector-view-history' => 'История няфтемс',

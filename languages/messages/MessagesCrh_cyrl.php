@@ -255,7 +255,6 @@ $messages = array(
 'vector-action-protect' => 'Къорчала',
 'vector-action-undelete' => 'Янъыдан ярат',
 'vector-action-unprotect' => 'Къорчалавны денъиштир',
-'vector-simplesearch-preference' => 'Саделештирильген къыдырув сатырыны ишлет (тек Вектор корюниши ичюн)',
 'vector-view-create' => 'Ярат',
 'vector-view-edit' => 'Денъиштир',
 'vector-view-history' => 'Кечмишини косьтер',

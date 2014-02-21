@@ -178,7 +178,6 @@ $messages = array(
 'vector-action-protect' => 'Reksa',
 'vector-action-undelete' => 'Batalna pambusakan',
 'vector-action-unprotect' => 'Owahi pangreksan',
-'vector-simplesearch-preference' => 'Aktifna bilah panggoletan sing wis deringkes (nang kulit Vector thok)',
 'vector-view-create' => 'Gawe',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Sajarah kaca',

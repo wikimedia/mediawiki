@@ -705,7 +705,15 @@ Al tō mudéfichi în MIA incòra stêdi salvêdi.",
 'continue-editing' => "Và int la zôna 'd mudéfica",
 'previewconflict' => "La vésta la cumbîna cun al tèst int la zôna 'd mudéfica tèst ché d'ed sōver e l'é cme la srà la pàgina s'ed decéd ed clichêr insém a \"Sêlva la pàgina\" in cól mumèint ché.",
 'session_fail_preview' => "'''An n'é mìa stê pusébil registrêr la mudéfica perchè a s' în pêrsi al j infurmasiòun relatîvi a la sesiòun. Tōrna a pruvêr. Se al prublēma al cunténva, a 's pōl pruvêr [[Special:UserLogout|ed coleghêres]] e fêr un ingrès nōv.'''",
+'session_fail_preview_html' => "'''An n'é mìa stê pusébil registrêr la mudéfica perchè în andêdi persi al j infurmasiòun relatîvi a la sesiòun.'''
+
+''Pôst che in {{SITENAME}} a gh'é al permès ed druvêr l' HTML sèinsa lémit, an 's pōl mìa guardêr préma la pàgina mudifichêda; a 's trâta ed 'n'amzûra 'd sicurèsa cûntra j atâch JavaScript.''
+
+''' Se còst l'é un tentatîv legétim ed mudéfica, pruvêr incòra. Se al prublēma l'armâgn, a 's pōl pruvêr a [[Special:UserLogout|sarêr al colegamèint]] e fêr un nōv ingrès.'''",
+'token_suffix_mismatch' => "'''La mudéfica an n'é mìa stêda salvêda perchè al ''client'' l'à fât vèder ed gestîr in môd e-sbaliê i carâter di pûn e dal virgûli int al ''token'' lighê a la mudéfica. Per schivşêr di pusébil erōr int al tèst ed la pàgina, è stê rifiutê tóta la mudéfica. Dla vôlti cla situasiòun ché la pōl sucēder quând a vînen druvê soquânt servési ''proxy'' sèinsa nòm via internèt che preşèinten di ''bug''.'''",
+'edit_form_incomplete' => "'''Soquânti pêrt dal môdul ed mudéfica în mìa rivêdi al ''server''; controlêr che al mudéfichi sién intâti e turnêr a pruvêr'''",
 'editing' => 'Mudéfica ed $1',
+'creating' => "T'é drē fêr $1",
 'editingsection' => 'Mudéfica ed $1 (sesiòun)',
 'editingcomment' => 'Mudéfica e $1 (sesiòun nōva)',
 'editconflict' => "Cuntrâst 'd edisiòun só $1",

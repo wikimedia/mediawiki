@@ -362,7 +362,6 @@ $messages = array(
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Batal hapus',
 'vector-action-unprotect' => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Bolehkan bar carian ringkas (kulit Vector sahaja)',
 'vector-view-create' => 'Cipta',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Lihat sejarah',

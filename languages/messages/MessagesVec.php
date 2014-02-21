@@ -321,7 +321,6 @@ $messages = array(
 'vector-action-protect' => 'Protezi',
 'vector-action-undelete' => 'Recupera',
 'vector-action-unprotect' => 'Canbia ła protesion',
-'vector-simplesearch-preference' => "Abiłita ła sbara par ła riserca senplifegà (soło che par l'interfacia Vector)",
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Canbia',
 'vector-view-history' => 'Varda ła storia',

@@ -249,7 +249,6 @@ $messages = array(
 'vector-action-protect' => 'Kaita',
 'vector-action-undelete' => 'Pördutada',
 'vector-action-unprotect' => 'Toižetada kaičend',
-'vector-simplesearch-preference' => 'Kävutada levitadud ecmižabud (vaiše Vektor-nägun täht)',
 'vector-view-create' => 'Säta',
 'vector-view-edit' => 'Redaktiruida',
 'vector-view-history' => 'Kacta istorii',

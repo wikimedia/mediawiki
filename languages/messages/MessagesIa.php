@@ -309,7 +309,6 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protection',
-'vector-simplesearch-preference' => 'Activar le barra de recerca simplificate (solmente in apparentia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Modificar',
 'vector-view-history' => 'Vider historia',

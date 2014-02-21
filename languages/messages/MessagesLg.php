@@ -158,7 +158,6 @@ $messages = array(
 'vector-action-protect' => 'Ssiba',
 'vector-action-undelete' => 'Zawo',
 'vector-action-unprotect' => 'Kyusa ebikugizo',
-'vector-simplesearch-preference' => "Wiki esobole okukuwa amagezi ku by'onoonya (kino kikolera mu ndabika ya Vector yokka)",
 'vector-view-create' => 'Lukolewo',
 'vector-view-edit' => 'Kyusa',
 'vector-view-history' => 'Ennanda ya fayiro eno',

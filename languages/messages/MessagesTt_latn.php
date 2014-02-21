@@ -239,7 +239,6 @@ $messages = array(
 'vector-action-protect' => 'Yaqlaw',
 'vector-action-undelete' => 'Qaytaru',
 'vector-action-unprotect' => 'Yaqlawnı beterü',
-'vector-simplesearch-preference' => 'Ezläw öçen kiñäytelgän yärdäm xäbärlären kürsätü («Vektorlı» bizäleşe öçen genä qullanılıa)',
 'vector-view-create' => 'Tözü',
 'vector-view-edit' => 'Üzgärtü',
 'vector-view-history' => 'Tarixın qaraw',

@@ -420,7 +420,6 @@ $messages = array(
 'vector-action-protect' => 'କିଳିବେ',
 'vector-action-undelete' => 'ଲିଭାଇବେ ନାହିଁ',
 'vector-action-unprotect' => 'କିଳିବେ ନାହିଁ',
-'vector-simplesearch-preference' => 'ସରଳ ଖୋଜା ବାରଟିକୁ ସଚଳ କରିବେ (କେବଳ ଭେକ୍ଟର ସ୍କିନ)',
 'vector-view-create' => 'ତିଆରି କରନ୍ତୁ',
 'vector-view-edit' => 'ସମ୍ପାଦନା (Edit)',
 'vector-view-history' => 'ଇତିହାସ',

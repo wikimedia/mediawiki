@@ -198,7 +198,6 @@ $messages = array(
 'vector-action-protect' => 'Bachao',
 'vector-action-undelete' => 'Pahile jaise karo',
 'vector-action-unprotect' => 'Surakchha ke badlo',
-'vector-simplesearch-preference' => 'Aur achchhaa se khoje ke salah do (Khaali vector skin)',
 'vector-view-create' => 'Banao',
 'vector-view-edit' => 'Badlo',
 'vector-view-history' => 'Itihaas dekho',

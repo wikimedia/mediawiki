@@ -483,7 +483,6 @@ $messages = array(
 'vector-action-protect' => 'Vern',
 'vector-action-undelete' => 'Gjenopprett',
 'vector-action-unprotect' => 'Endra vern',
-'vector-simplesearch-preference' => 'Slå på forenkla søkjefelt (berre for Vector-drakta)',
 'vector-view-create' => 'Opprett',
 'vector-view-edit' => 'Endre',
 'vector-view-history' => 'Sjå historikken',

@@ -357,7 +357,6 @@ $messages = array(
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
 'vector-action-unprotect' => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
 'vector-view-history' => 'Se historik',

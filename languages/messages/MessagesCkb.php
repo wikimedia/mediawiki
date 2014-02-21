@@ -349,7 +349,6 @@ $messages = array(
 'vector-action-protect' => 'بیپارێزە',
 'vector-action-undelete' => 'سڕینەوە بگەڕێنەوە',
 'vector-action-unprotect' => 'پاراستنی بگۆڕە',
-'vector-simplesearch-preference' => 'گەڕانی ساکار چالاک بکە (تەنیا بۆ پێستەی ڤێکتۆر)',
 'vector-view-create' => 'دروستکردن',
 'vector-view-edit' => 'دەستکاریی بکە',
 'vector-view-history' => 'مێژووەکەی ببینە',

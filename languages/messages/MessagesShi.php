@@ -161,7 +161,6 @@ $messages = array(
 'vector-action-protect' => 'Ḥbu',
 'vector-action-undelete' => 'Rard may mayḥiydn',
 'vector-action-unprotect' => 'Ḥiyd aḥbu',
-'vector-simplesearch-preference' => 'Mmurzm immalatn n icnubcn lan atig (I Vector waḥdut )',
 'vector-view-create' => 'Skert',
 'vector-view-edit' => 'Ara',
 'vector-view-history' => 'Mel amzruy',

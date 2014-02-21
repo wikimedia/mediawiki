@@ -219,7 +219,6 @@ $messages = array(
 'vector-action-protect' => 'सुरक्षित गर्ने',
 'vector-action-undelete' => 'हटाएको रद्द गर्ने',
 'vector-action-unprotect' => 'सुरक्षा परिवर्तन गर्ने',
-'vector-simplesearch-preference' => 'साधारण खोज सुझावहरु सक्रिय पार्ने (भेक्टर त्वचाको लागि मात्र)',
 'vector-view-create' => 'सृजना गर्ने',
 'vector-view-edit' => 'सम्पादन',
 'vector-view-history' => 'इतिहास हेर्ने',

@@ -487,7 +487,6 @@ $messages = array(
 'vector-action-protect' => 'Beveiligen',
 'vector-action-undelete' => 'Weerummeplaotsen',
 'vector-action-unprotect' => 'Beveiliging wiezigen',
-'vector-simplesearch-preference' => 'Vereenvoudigd zeuken anzetten (allinnig mit Vector-vormgeving)',
 'vector-view-create' => 'Anmaken',
 'vector-view-edit' => 'Bewarken',
 'vector-view-history' => 'Geschiedenisse bekieken',

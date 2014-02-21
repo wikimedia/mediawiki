@@ -279,7 +279,6 @@ $messages = array(
 'vector-action-protect' => 'Protecher',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protección',
-'vector-simplesearch-preference' => "Habilitar socherencias de busca amilloradas (nomás ta l'apariencia Vector)",
 'vector-view-create' => 'Creyar',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => "Amostrar l'historial",

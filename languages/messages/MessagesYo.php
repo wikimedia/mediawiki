@@ -215,7 +215,6 @@ $messages = array(
 'vector-action-protect' => 'Àbò',
 'vector-action-undelete' => 'Ìmúkúrò ìparẹ́',
 'vector-action-unprotect' => 'Ìyípadà àbò',
-'vector-simplesearch-preference' => 'Ìgbàláyè pẹpẹ ìṣàwárí ọnídídẹ̀rọ̀ (awọ Vector nìkan)',
 'vector-view-create' => "Ṣ'èdá",
 'vector-view-edit' => 'Àtúnṣe',
 'vector-view-history' => 'Wo ìtàn',

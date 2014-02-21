@@ -191,7 +191,6 @@ $messages = array(
 'vector-action-protect' => 'Bescherm',
 'vector-action-undelete' => 'Plaets truhhe',
 'vector-action-unprotect' => "Beveiligienge anpass'n",
-'vector-simplesearch-preference' => "Verbetterde zoeksuggesties anzett'n (alleêne vò 't Vector uterlik)",
 'vector-view-create' => 'Anmaeken',
 'vector-view-edit' => 'Bewerk',
 'vector-view-history' => "Geschiedenisse bekiek'n",

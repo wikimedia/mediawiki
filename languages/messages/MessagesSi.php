@@ -354,7 +354,6 @@ $messages = array(
 'vector-action-protect' => 'ආරක්‍ෂණය',
 'vector-action-undelete' => 'මකාදැමීම අවලංගු කරන්න',
 'vector-action-unprotect' => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
-'vector-simplesearch-preference' => 'සුළු කළ සෙවුම් බාරය (වෙක්ටර් තීමය සඳහා පමණි)',
 'vector-view-create' => 'තනන්න',
 'vector-view-edit' => 'සංස්කරණය',
 'vector-view-history' => 'ඉතිහාසය නරඹන්න',

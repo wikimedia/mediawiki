@@ -184,7 +184,6 @@ $messages = array(
 'vector-action-protect' => '保',
 'vector-action-undelete' => '弗刪',
 'vector-action-unprotect' => '换保护状态',
-'vector-simplesearch-preference' => '用简单搜寻条（只Vector皮肤好用）',
 'vector-view-create' => '建',
 'vector-view-edit' => '编',
 'vector-view-history' => '望页史',

@@ -207,7 +207,6 @@ $messages = array(
 'vector-action-protect' => 'Уларыйбат гын',
 'vector-action-undelete' => 'Төннөр',
 'vector-action-unprotect' => 'Көмүскэлин уларыт',
-'vector-simplesearch-preference' => 'Көрдөбүл устуруокатын судургу барылын туруор («Векторга» эрэ)',
 'vector-view-create' => 'Ай',
 'vector-view-edit' => 'Уларыт',
 'vector-view-history' => 'Устуоруйатын көрүү',

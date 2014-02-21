@@ -974,7 +974,7 @@ Wenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.',
 
 # Change password dialog
 'changepassword' => 'Passwort ändern',
-'resetpass_announce' => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
+'resetpass_announce' => 'Um die Anmeldung abzuschließen, musst du ein neues Passwort wählen.',
 'resetpass_text' => '<!-- Ergänze den Text hier -->',
 'resetpass_header' => 'Passwort ändern',
 'oldpassword' => 'Altes Passwort:',
@@ -990,8 +990,11 @@ Bitte warte $1, bevor du es erneut versuchst.',
 'resetpass-submit-cancel' => 'Abbrechen',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
+'resetpass-recycled' => 'Bitte setze dein Passwort auf ein anderes Passwort als dein aktuelles fest.',
 'resetpass-temp-password' => 'Temporäres Passwort:',
 'resetpass-abort-generic' => 'Die Passwortänderung wurde durch eine Erweiterung abgebrochen.',
+'resetpass-expired' => 'Dein Passwort ist abgelaufen. Bitte lege ein neues Passwort zur Anmeldung fest.',
+'resetpass-expired-soft' => 'Dein Passwort ist abgelaufen und muss zurückgesetzt werden. Bitte wähle jetzt ein neues Passwort aus oder klicke auf „Abbrechen“, um es später zurückzusetzen.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',

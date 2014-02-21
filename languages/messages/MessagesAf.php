@@ -371,7 +371,6 @@ $messages = array(
 'vector-action-protect' => 'Beskerm',
 'vector-action-undelete' => 'Ontskrap',
 'vector-action-unprotect' => 'Wysig beskerming',
-'vector-simplesearch-preference' => 'Aktiveer vereenvoudigde soekbalk (slegs vir die Vektor-omslag)',
 'vector-view-create' => 'Skep',
 'vector-view-edit' => 'Wysig',
 'vector-view-history' => 'Wys geskiedenis',

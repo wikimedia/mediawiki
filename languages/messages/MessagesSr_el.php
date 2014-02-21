@@ -2165,6 +2165,7 @@ Sada je preusmerenje na [[$2]].',
 'protectedpages' => 'Zaštićene stranice',
 'protectedpages-indef' => 'samo neograničene zaštite',
 'protectedpages-cascade' => 'samo prenosive zaštite',
+'protectedpages-noredirect' => 'sakrij preusmerenja',
 'protectedpagesempty' => 'Nema zaštićenih stranica s ovim parametrima.',
 'protectedtitles' => 'Zaštićeni naslovi',
 'protectedtitlesempty' => 'Nema zaštićenih naslova s ovim parametrima.',
@@ -2436,6 +2437,7 @@ Pogledajte ''$2'' za više detalja.",
 Brisanje takvih stranica je ograničeno da bi se sprečilo slučajno opterećenje servera.',
 'delete-warning-toobig' => 'Ova stranica ima veliku istoriju, preko $1 {{PLURAL:$1|izmene|izmene|izmena}}.
 Njeno brisanje može poremetiti bazu podataka, stoga postupajte s oprezom.',
+'deleting-backlinks-warning' => "'''Upozorenje:''' Brišete stranicu koja je uključena u druge stranice ili druge stranice vode na nju.",
 
 # Rollback
 'rollback' => 'Vrati izmene',

@@ -161,7 +161,6 @@ $messages = array(
 'vector-action-protect' => 'Difaac',
 'vector-action-undelete' => 'Ha tirtirin',
 'vector-action-unprotect' => 'Bedel difaacida',
-'vector-simplesearch-preference' => 'Shid kuwa ugu fiican oo kuu soo jeedinaayo raadinta  (Jirka vector kaliya)',
 'vector-view-create' => 'Sameey',
 'vector-view-edit' => 'Wax ka bedel',
 'vector-view-history' => 'Itusi taariikhda',

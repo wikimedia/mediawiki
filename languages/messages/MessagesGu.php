@@ -316,7 +316,6 @@ $messages = array(
 'vector-action-protect' => 'સુરક્ષિત કરો',
 'vector-action-undelete' => 'રદ કરેલું પાછું વાળો',
 'vector-action-unprotect' => 'સુરક્ષા બદલો',
-'vector-simplesearch-preference' => 'સરળ શોધ પટ્ટી સક્રીય કરો (માત્ર વેક્ટર સ્કિન)',
 'vector-view-create' => 'બનાવો',
 'vector-view-edit' => 'ફેરફાર કરો',
 'vector-view-history' => 'ઇતિહાસ જુઓ',

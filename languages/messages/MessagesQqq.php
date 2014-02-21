@@ -1642,7 +1642,7 @@ Parameters:
 'resetpass-temp-emailed' => 'Message shown on [[Special:ChangePassword]] when a user logs in with a temporary password, and must set a new password.',
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
 'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
-'resetpass-expired' => 'Generic error message shown on [[Special:ChangePassword]] when a user\'s password is expired',
+'resetpass-expired' => "Generic error message shown on [[Special:ChangePassword]] when a user's password is expired",
 'resetpass-expired-soft' => 'Generic marning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time',
 
 # Special:PasswordReset

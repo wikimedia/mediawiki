@@ -310,7 +310,6 @@ $messages = array(
 'vector-action-protect' => 'Һаҡларға',
 'vector-action-undelete' => 'Тергеҙергә',
 'vector-action-unprotect' => 'Һаҡлауҙы үҙгәртергә',
-'vector-simplesearch-preference' => 'Ябайлаштырылған эҙләү тәҡдимдәрен ҡулланырға ("Векторлы" күренеш өсөн генә)',
 'vector-view-create' => 'Яһау',
 'vector-view-edit' => 'Үҙгәртергә',
 'vector-view-history' => 'Тарихты ҡарау',

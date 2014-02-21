@@ -186,7 +186,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'vector-action-protect' => 'Goraga al',
 'vector-action-undelete' => 'Öçürmäni yzyna al',
 'vector-action-unprotect' => 'Goragy üýtget',
-'vector-simplesearch-preference' => 'Giňeldilen gözleg tekliplerini aç (Diňe Vector bezegi üçin)',
 'vector-view-create' => 'Döret',
 'vector-view-edit' => 'Redaktirle',
 'vector-view-history' => 'Geçmişi gör',

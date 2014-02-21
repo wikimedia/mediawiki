@@ -436,7 +436,6 @@ $messages = array(
 'vector-action-protect' => 'Ipproteġi',
 'vector-action-undelete' => 'Irkupra',
 'vector-action-unprotect' => 'Biddel il-protezzjoni',
-'vector-simplesearch-preference' => 'Ippermetti suġġerimenti għat-tfittxija avvanzata (disponibbli biss għall-aspett grafiku Vector)',
 'vector-view-create' => 'Oħloq',
 'vector-view-edit' => 'Editja',
 'vector-view-history' => 'Ara l-kronoloġija',

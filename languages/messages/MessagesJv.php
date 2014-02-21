@@ -215,7 +215,6 @@ $messages = array(
 'vector-action-protect' => 'Reksa',
 'vector-action-undelete' => 'Batalna pambusakan',
 'vector-action-unprotect' => 'Owahi pangreksan',
-'vector-simplesearch-preference' => 'Urubaké wilah panggolèkan ringkes (namung kulit Vèktor)',
 'vector-view-create' => 'Gawé',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Sajarah kaca',

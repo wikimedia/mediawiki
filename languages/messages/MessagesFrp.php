@@ -474,7 +474,6 @@ $messages = array(
 'vector-action-protect' => 'Protègiér',
 'vector-action-undelete' => 'Refâre',
 'vector-action-unprotect' => 'Changiér la protèccion',
-'vector-simplesearch-preference' => 'Activar la bârra de rechèrche simplifiâye (solament por l’habelyâjo « Vèctor »)',
 'vector-view-create' => 'Fâre',
 'vector-view-edit' => 'Changiér',
 'vector-view-history' => 'Vêre l’historico',

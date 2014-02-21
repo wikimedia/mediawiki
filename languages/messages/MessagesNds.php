@@ -362,7 +362,6 @@ $messages = array(
 'vector-action-protect' => 'Schulen',
 'vector-action-undelete' => 'Wedderhalen',
 'vector-action-unprotect' => 'Siedenschuul ännern',
-'vector-simplesearch-preference' => 'Verbeterte Söökvörslääg anstellen (blot mit’n Skin Vector)',
 'vector-view-create' => 'Opstellen',
 'vector-view-edit' => 'Ännern',
 'vector-view-history' => 'Historie bekieken',

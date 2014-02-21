@@ -332,7 +332,6 @@ $messages = array(
 'vector-action-protect' => 'დაცვა',
 'vector-action-undelete' => 'აღდგენა',
 'vector-action-unprotect' => 'დაცვის შეცვლა',
-'vector-simplesearch-preference' => 'ძიების გაფართოებული ველის ჩართვა (მხოლოდ ვექტორული იერსახისთვის)',
 'vector-view-create' => 'შექმნა',
 'vector-view-edit' => 'რედაქტირება',
 'vector-view-history' => 'ისტორია',

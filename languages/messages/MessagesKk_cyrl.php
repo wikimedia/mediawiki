@@ -523,7 +523,6 @@ $messages = array(
 'vector-action-protect' => 'Қорғау',
 'vector-action-undelete' => 'Жоймау',
 'vector-action-unprotect' => 'Қорғанысты өзгерту',
-'vector-simplesearch-preference' => 'Кеңейтілген іздеу құралын қосу (Векторлық безендіру үшін ғана)',
 'vector-view-create' => 'Бастау',
 'vector-view-edit' => 'Өңдеу',
 'vector-view-history' => 'Тарихын қарау',

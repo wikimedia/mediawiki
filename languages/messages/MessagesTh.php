@@ -359,7 +359,6 @@ $messages = array(
 'vector-action-protect' => 'ป้องกัน',
 'vector-action-undelete' => 'กู้คืน',
 'vector-action-unprotect' => 'เปลี่ยนค่าการป้องกัน',
-'vector-simplesearch-preference' => 'เปิดใช้งานแถบค้นหาอย่างง่าย (เฉพาะหน้าตาเวกเตอร์)',
 'vector-view-create' => 'สร้าง',
 'vector-view-edit' => 'แก้ไข',
 'vector-view-history' => 'ดูประวัติ',

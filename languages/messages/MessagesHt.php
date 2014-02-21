@@ -146,7 +146,6 @@ $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Souliyen lyen yo :',
-'tog-justify' => 'Aliyen paragraf yo',
 'tog-hideminor' => 'Kache tout modifikasyon resan yo ki tou piti',
 'tog-hidepatrolled' => 'Kache modifikasyon yo ki fèk fèt pou moun ki ap veye yo',
 'tog-newpageshidepatrolled' => 'Kache paj ki siveye yo nan mitan lis nouvo paj yo',
@@ -155,9 +154,7 @@ $messages = array(
 'tog-numberheadings' => 'Nimewote otomatikman tit yo',
 'tog-showtoolbar' => 'Montre meni modifikasyon an (sa mande JavaScript)',
 'tog-editondblclick' => 'Klike de fwa pou modifye yon paj (sa mande JavaScript)',
-'tog-editsection' => 'Pemèt modifye yon seksyon grasa lyen [modifye] yo',
 'tog-editsectiononrightclick' => 'Pemèt modifye yon seksyon lè ou klike a dwat sou tit seksyon an (sa mande JavaScript)',
-'tog-showtoc' => 'Montre tab de matyè yo (pou tout paj ki gen plis pase 3 tit)',
 'tog-rememberpassword' => 'Sonje mopas mwen nan òdinatè sa (pou $1 {{PLURAL:$1|jou|jou}} maximum)',
 'tog-watchcreations' => 'Mete paj mwen kreye yo nan lis swivi mwen.',
 'tog-watchdefault' => 'Mete paj mwen edite yo nan lis swivi mwen',
@@ -294,7 +291,6 @@ $messages = array(
 'vector-action-protect' => 'Pwoteje',
 'vector-action-undelete' => 'Retabli',
 'vector-action-unprotect' => 'Pa pwoteje',
-'vector-simplesearch-preference' => 'Aktive sijèsyon rechèch ranfòse yo (pou estil Vector sèlman)',
 'vector-view-create' => 'Kreye',
 'vector-view-edit' => 'Modifye',
 'vector-view-history' => 'Gade istorik',
@@ -855,7 +851,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'lineno' => 'Liy $1 :',
 'compareselectedversions' => 'Konpare vèsyon ki seleksyone yo',
 'editundo' => 'Revoke',
-'diff-multi' => '(Genyen {{PLURAL:$1|yon revizyon|$1 revizyon yo}} ki te fèt pa {{PLURAL:$2|yon itilizatè|$2 itilizatè yo}} nan mitan evolisyon ki kache)',
 
 # Search results
 'searchresults' => 'Rezilta yo pou rechèch la',

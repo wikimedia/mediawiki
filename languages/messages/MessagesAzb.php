@@ -245,7 +245,6 @@ $messages = array(
 'vector-action-protect' => 'قورو',
 'vector-action-undelete' => 'سیلمگی قایتار',
 'vector-action-unprotect' => 'قوروماغی دَییشدیر',
-'vector-simplesearch-preference' => 'ساده‌لشدیریلمیش آختاریش چوبوغو (یالنیز Vector دَری‌سینده)',
 'vector-view-create' => 'یارات',
 'vector-view-edit' => 'دَییشدیر',
 'vector-view-history' => 'گئچمیشه باخ',

@@ -304,7 +304,6 @@ $messages = array(
 'vector-action-protect' => 'Besjirm',
 'vector-action-undelete' => 'Plaats trök',
 'vector-action-unprotect' => 'Anger beveiliging',
-'vector-simplesearch-preference' => "Sjakel nuuj zeuksuggesties in (allein veur 't vectoroeterlik)",
 'vector-view-create' => 'Maak aan',
 'vector-view-edit' => 'Bewirk',
 'vector-view-history' => 'Bekiek de gesjiedenis',

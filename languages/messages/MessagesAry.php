@@ -165,7 +165,6 @@ $messages = array(
 'vector-action-protect' => 'Ḫami',
 'vector-action-undelete' => 'rja lhadf',
 'vector-action-unprotect' => 'Ḫiyed l-ḫimaya',
-'vector-simplesearch-preference' => 'ĥddem qṫiraḫaṫ l-bḫṫ l-mḫssna (ġir mĝa Vector)',
 'vector-view-create' => 'Ĥṫareĝ',
 'vector-view-edit' => 'Ĝedel',
 'vector-view-history' => 'Ṫariĥ l-fiċyé',

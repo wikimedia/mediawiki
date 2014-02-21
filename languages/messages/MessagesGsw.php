@@ -297,7 +297,6 @@ $messages = array(
 'vector-action-protect' => 'Schitze',
 'vector-action-undelete' => 'Widerhärstelle',
 'vector-action-unprotect' => 'Syteschutz ändere',
-'vector-simplesearch-preference' => 'Vereifachti Suechvorschleg aktiviere (nume Vector)',
 'vector-view-create' => 'Aalege',
 'vector-view-edit' => 'Bearbeite',
 'vector-view-history' => 'Versionsgschicht',

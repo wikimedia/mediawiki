@@ -56,7 +56,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ТехьэпӀэхэр щӀэтхъэн:',
-'tog-justify' => 'БгъуагъкӀэ напэкӀуэцӀыр зэгъэзэхуэн',
 'tog-hideminor' => 'Гъэтэрэзыгъуэ цӀыкӀухэр гъэпшкӀун, щӀэуэ яхъуэжахэм я тхылъым',
 'tog-hidepatrolled' => 'Гъэтэрэзыгъуэ зыщӀэлъыплъахэр гъэпшкӀун, щӀэуэ яхъуэжахэм я тхылъым',
 'tog-newpageshidepatrolled' => 'НапэкӀуэцӀ зыщӀэлъыплъахэр гъэпшкӀун, напэкӀуэцӀ щӀэхэм я тхылъым',
@@ -65,9 +64,7 @@ $messages = array(
 'tog-numberheadings' => 'Псалъащхьэхэм автоматику номер ятын',
 'tog-showtoolbar' => 'Гъэтэрэзыным идежь ищхьэ пэнелыр гъэлъэгъуэн (JavaScript)',
 'tog-editondblclick' => 'ТӀуанэ текъузэгъуэкӀэ напэкӀуэцӀхэр гъэтэрэзын (requires JavaScript)',
-'tog-editsection' => 'Лъэныкъуэ къэс техьэпӀэ [гъэтэрэзын] гъэлъэгъуэн',
 'tog-editsectiononrightclick' => 'Псалъашъхьэм, дзыгъуэм и ижырабгъу текъузэгъуэмкӀэ секциэхэр гъэтэрэзын (JavaScript)',
-'tog-showtoc' => 'Зэхэлъыгъуэр гъэлъэгъуэн (псэлъашъхьищ нэхъыбу зиӀэ напэкӀуэцӀхэм)',
 'tog-rememberpassword' => 'Компутерым си логиныр щыхъумэн (мы нэхъыбу $1 {{PLURAL:$1|махуэ|маху}})',
 'tog-watchcreations' => 'Сэ сщIа напэкIуэцIхэр сызыкIэлъыплъ тхылъым хэлъхьэн',
 'tog-watchdefault' => 'Сэ схъуэжа напэкIуэцIхэр сызыкIэлъыплъ тхылъым хэлъхьэн',
@@ -205,7 +202,6 @@ $messages = array(
 'vector-action-protect' => 'Хъумэн',
 'vector-action-undelete' => 'ЗыфӀэгъэувэжын',
 'vector-action-unprotect' => 'Хъумэныр техыжын',
-'vector-simplesearch-preference' => 'Лъыхъуэгъуэ нэхъ зэхэхауэ дэӀэпыкъуэгъухэр хэгъэнэн (Векторым шъхьэкӀэ къуэдей)',
 'vector-view-create' => 'ЩӀын',
 'vector-view-edit' => 'Гъэтэрэзын',
 'vector-view-history' => 'Тхыдэм еплъын',
@@ -917,7 +913,6 @@ $1",
 'compareselectedversions' => 'Хэха версиэхэр зэгъэпщэн',
 'showhideselectedversions' => 'Гъэлъэгъуэн/гъэпшкӀун версиэ хэхахэр',
 'editundo' => 'щӀегъуэжын',
-'diff-multi' => '({{PLURAL:$1|курыт версиэ $1-м ер гъэлъэгъуакъым|курыт версиэхэр $1-м ер гъэлъэгъуакъым}} {{PLURAL:$2|цӀыхухэт 2$|цӀыхухэтхэм 2$}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|курыт версиэ $1-м ер гъэлъэгъуащ|курыт версиэхэр $1-м ер гъэлъэгъуащ}}, щӀахэщ $2 нэхъыбэу {{PLURAL:$2|цӀыхухэт|цӀыхухэтхэм}})',
 
 # Search results

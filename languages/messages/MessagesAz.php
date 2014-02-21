@@ -246,7 +246,6 @@ $messages = array(
 'vector-action-protect' => 'Mühafizə et',
 'vector-action-undelete' => 'Bərpa et',
 'vector-action-unprotect' => 'Mühafizəni kənarlaşdır',
-'vector-simplesearch-preference' => 'İnkişaf etmiş axtarma təkliflərini gətir (yalnız Vector görünüşü üçün)',
 'vector-view-create' => 'Yarat',
 'vector-view-edit' => 'Redaktə',
 'vector-view-history' => 'Tarixçəyə bax',
