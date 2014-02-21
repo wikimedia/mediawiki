@@ -254,14 +254,14 @@ class User {
 	 * @see newFromSession()
 	 * @see newFromRow()
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->clearInstanceCache( 'defaults' );
 	}
 
 	/**
 	 * @return string
 	 */
-	function __toString() {
+	public function __toString() {
 		return $this->getName();
 	}
 
@@ -1625,7 +1625,7 @@ class User {
 	 * @param bool $bFromSlave whether to check the slave database instead of the master
 	 * @return bool
 	 */
-	function isBlockedFrom( $title, $bFromSlave = false ) {
+	public function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
 		wfProfileIn( __METHOD__ );
 
@@ -3557,7 +3557,7 @@ class User {
 	 * Get whether the user is allowed to create an account.
 	 * @return bool
 	 */
-	function isAllowedToCreateAccount() {
+	public function isAllowedToCreateAccount() {
 		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
 	}
 
@@ -3885,7 +3885,7 @@ class User {
 	 * @note Call saveSettings() after calling this function to commit the change.
 	 * @return bool Returns true
 	 */
-	function invalidateEmail() {
+	public function invalidateEmail() {
 		$this->load();
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
@@ -3898,7 +3898,7 @@ class User {
 	 * Set the e-mail authentication timestamp.
 	 * @param string $timestamp TS_MW timestamp
 	 */
-	function setEmailAuthenticationTimestamp( $timestamp ) {
+	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
 		wfRunHooks( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
