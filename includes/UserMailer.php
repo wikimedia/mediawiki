@@ -649,7 +649,9 @@ class EmailNotification {
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
 					) {
-						$this->compose( $watchingUser );
+						if ( wfRunHooks( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
+							$this->compose( $watchingUser );
+						}
 					}
 				}
 			}
