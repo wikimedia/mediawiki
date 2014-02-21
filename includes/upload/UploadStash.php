@@ -483,6 +483,7 @@ class UploadStash {
 		}
 
 		$this->fileMetadata[$key] = (array)$row;
+		$this->fileMetadata[$key]['us_props'] = $dbr->decodeBlob( $row->us_props );
 
 		return true;
 	}
