@@ -3068,6 +3068,7 @@ Feedback and further assistance:
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'             => 'Action complete',
 'actionfailed'               => 'Action failed',
+'deleting-backlinks-warning' => "'''Warning:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Other pages]] link to or transclude from the page you are about to delete.",
 'deletedtext'                => '"$1" has been deleted.
 See $2 for a record of recent deletions.',
 'dellogpage'                 => 'Deletion log',
