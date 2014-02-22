@@ -83,7 +83,6 @@ return array(
 			'jquery.client',
 			'jquery.color',
 			'jquery.colorUtil',
-			'jquery.delayedBind',
 			'jquery.getAttrs',
 			'jquery.hidpi',
 			'jquery.highlightText',

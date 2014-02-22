@@ -236,9 +236,6 @@ return array(
 		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'jquery.delayedBind' => array(
-		'scripts' => 'resources/src/jquery/jquery.delayedBind.js',
-	),
 	'jquery.expandableField' => array(
 		'scripts' => 'resources/src/jquery/jquery.expandableField.js',
 	),
