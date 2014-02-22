@@ -46,7 +46,7 @@ class SpecialDiff extends RedirectSpecialPage {
 		$parts = explode( '/', $subpage );
 
 		// Try to parse the values given, generating somewhat pretty URLs if possible
-		if ( count( $parts ) === 1 ) {
+		if ( count( $parts ) === 1 && $parts[0] !== '' ) {
 			$this->mAddedRedirectParams['diff'] = $parts[0];
 		} elseif ( count( $parts ) === 2 ) {
 			$this->mAddedRedirectParams['oldid'] = $parts[0];
