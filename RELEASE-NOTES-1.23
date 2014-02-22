@@ -248,6 +248,8 @@ changes to languages because of Bugzilla reports.
   was removed.
 * A user_password_expires column has been added to the user table. The User
   object expects this column to exist. Use update.php to create this new field.
+* The jquery.delayedBind ResourceLoader module was deprecated in favor of the
+  jquery.throttle-debounce module.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
