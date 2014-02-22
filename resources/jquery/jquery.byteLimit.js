@@ -209,20 +209,35 @@
 			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = trimValForByteLength(
+				var res, positionFromEnd;
+
+				res = trimValForByteLength(
 					prevSafeVal,
 					this.value,
 					elLimit,
 					fn
 				);
 
-				// Only set value property if it was trimmed, because whenever the
-				// value property is set, the browser needs to re-initiate the text context,
-				// which moves the cursor at the end the input, moving it away from wherever it was.
-				// This is a side-effect of limiting after the fact.
+				// Only set 'value' property if it was trimmed.
+				//
+				// Whenever the 'value' property is set, the browser needs to re-initiate the text context,
+				// which moves the cursor to the end of the input, moving it away from wherever it was. This
+				// is a side-effect of limiting after the fact.
+				//
+				// If we're running on a browser that supports the 'selectionStart' and 'selectionEnd'
+				// properties (everything other than IE<=8), restore the caret position afterwards;
+				// otherwise we can't do much. We could try using IE-only APIs to do this, but meh. We
+				// calculate the position from the end as we're usually trimming the text from the end.
 				if ( res.trimmed === true ) {
-					this.value = res.newVal;
+					if ( 'selectionStart' in this ) {
+						positionFromEnd = this.value.length - this.selectionStart;
+						this.value = res.newVal;
+						this.selectionStart = this.selectionEnd = this.value.length - positionFromEnd;
+					} else {
+						this.value = res.newVal;
+					}
 				}
+
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
 				// trimValForByteLength to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (bug 40850).
