@@ -582,10 +582,7 @@ class Message {
 		# Maybe transform using the full parser
 		if ( $this->format === 'parse' ) {
 			$string = $this->parseText( $string );
-			$m = array();
-			if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-				$string = $m[1];
-			}
+			$string = Parser::stripInline( $string );
 		} elseif ( $this->format === 'block-parse' ) {
 			$string = $this->parseText( $string );
 		} elseif ( $this->format === 'text' ) {

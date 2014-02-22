@@ -1683,13 +1683,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
 		$parsed = $this->parse( $text, $linestart, $interface );
-
-		$m = array();
-		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?/sU', $parsed, $m ) ) {
-			$parsed = $m[1];
-		}
-
-		return $parsed;
+		return Parser::stripInline( $parsed );
 	}
 
 	/**
