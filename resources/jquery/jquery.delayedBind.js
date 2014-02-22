@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 /**
  * Function that escapes spaces in event names. This is needed because
  * "_delayedBind-foo bar-1000" refers to two events
@@ -73,4 +73,11 @@ $.fn.extend( {
 	}
 } );
 
-}( jQuery ) );
+mw.log.deprecate( $.fn, 'delayedBind', $.fn.delayedBind,
+	'Use the jquery.throttle-debounce module instead' );
+mw.log.deprecate( $.fn, 'delayedBindCancel', $.fn.delayedBindCancel,
+	'Use the jquery.throttle-debounce module instead' );
+mw.log.deprecate( $.fn, 'delayedBindUnbind', $.fn.delayedBindUnbind,
+	'Use the jquery.throttle-debounce module instead' );
+
+}( mediaWiki, jQuery ) );
