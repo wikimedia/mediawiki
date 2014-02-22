@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre-svg (424b40373e)
+ * OOjs UI v0.1.0-pre-svg (21e0142be0)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 14 2014 17:57:32 GMT-0800 (PST)
+ * Date: Fri Feb 21 2014 19:43:29 GMT-0800 (PST)
  */
 /*csslint vendor-prefix:false */
 
@@ -1324,9 +1324,7 @@ a.oo-ui-buttonedElement-button {
 .oo-ui-menuWidget {
 	position: absolute;
 	background: #fff;
-	margin-top: -1px;
 	border: solid 1px #ccc;
-	border-radius: 0 0 0.25em 0.25em;
 	box-shadow: 0 0.15em 1em 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -1336,6 +1334,84 @@ a.oo-ui-buttonedElement-button {
 	height: 0;
 	overflow: hidden;
 	opacity: 0;
+}
+
+.oo-ui-menuWidget-above {
+	bottom: 2.5em;
+	margin-bottom: -1px;
+	border-radius: 0.25em 0.25em 0 0;
+}
+
+.oo-ui-menuWidget-below {
+	top: 2.5em;
+	margin-top: -1px;
+	border-radius: 0 0 0.25em 0.25em;
+}
+
+/* OO.ui.InlineMenuWidget */
+
+.oo-ui-inlineMenuWidget {
+	position: relative;
+	display: inline-block;
+	margin: 0.25em 0;
+	min-width: 20em;
+}
+
+.oo-ui-inlineMenuWidget-handle {
+	display: inline-block;
+	width: 100%;
+	height: 2.5em;
+	border: solid 1px rgba(0,0,0,0.1);
+	border-radius: 0.25em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+.oo-ui-inlineMenuWidget:hover .oo-ui-inlineMenuWidget-handle {
+	border-color: rgba(0,0,0,0.2);
+}
+
+.oo-ui-inlineMenuWidget-handle .oo-ui-indicatedElement-indicator,
+.oo-ui-inlineMenuWidget-handle .oo-ui-iconedElement-icon {
+	position: absolute;
+	top: 0;
+	width: 2.5em;
+	height: 2.5em;
+	background-position: center center;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+}
+
+.oo-ui-inlineMenuWidget-handle .oo-ui-indicatedElement-indicator {
+	right: 0;
+}
+
+.oo-ui-inlineMenuWidget-handle .oo-ui-iconedElement-icon {
+	left: 0.25em;
+}
+
+.oo-ui-inlineMenuWidget-handle .oo-ui-labeledElement-label {
+	line-height: 2.5em;
+	margin: 0 0.5em;
+}
+
+.oo-ui-inlineMenuWidget.oo-ui-iconedElement .oo-ui-inlineMenuWidget-handle .oo-ui-labeledElement-label {
+	margin-left: 3em;
+}
+
+.oo-ui-inlineMenuWidget.oo-ui-indicatedElement .oo-ui-inlineMenuWidget-handle .oo-ui-labeledElement-label {
+	margin-right: 2em;
+}
+
+.oo-ui-inlineMenuWidget .oo-ui-menuWidget {
+	width: 100%;
 }
 
 /* OO.ui.MenuItemWidget */

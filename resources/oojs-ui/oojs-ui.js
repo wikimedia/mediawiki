@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (424b40373e)
+ * OOjs UI v0.1.0-pre (21e0142be0)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 14 2014 17:57:32 GMT-0800 (PST)
+ * Date: Fri Feb 21 2014 19:43:29 GMT-0800 (PST)
  */
 ( function () {
 
@@ -551,13 +551,25 @@ OO.ui.Element.prototype.getElementWindow = function () {
 };
 
 /**
+ * Get dimensions of element.
+ *
+ * @static
+ * @return {Object} Dimensions object with `borders`, `scroll`, `scrollbar` and `rect` properties
+ */
+OO.ui.Element.prototype.getElementDimensions = function () {
+	return OO.ui.Element.getDimensions( this.$element[0] );
+};
+
+/**
  * Get closest scrollable container.
  *
  * @method
+ * @param {string} [direction] Find the container that scolls in a particular direction, e.g. 'x'
+ *   or 'y', omit to find a container that scrolls in any direction
  * @see #static-method-getClosestScrollableContainer
  */
-OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
-	return OO.ui.Element.getClosestScrollableContainer( this.$element[0] );
+OO.ui.Element.prototype.getClosestScrollableElementContainer = function ( direction ) {
+	return OO.ui.Element.getClosestScrollableContainer( this.$element[0], direction );
 };
 
 /**
@@ -6107,7 +6119,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	OO.ui.ClippableElement.call( this, this.$group, config );
 
 	// Properties
-	this.newItems = [];
+	this.newItems = null;
 	this.$input = config.input ? config.input.$input : null;
 	this.$previousFocus = null;
 	this.isolated = !config.input;
@@ -6257,6 +6269,11 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	// Parent method
 	OO.ui.SelectWidget.prototype.addItems.call( this, items, index );
 
+	// Auto-initialize
+	if ( !this.newItems ) {
+		this.newItems = [];
+	}
+
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 		if ( this.visible ) {
@@ -6277,7 +6294,7 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
  * @chainable
  */
 OO.ui.MenuWidget.prototype.show = function () {
-	var i, len;
+	var i, len, scd, eld, top, bottom, above;
 
 	if ( this.items.length ) {
 		this.$element.show();
@@ -6289,12 +6306,26 @@ OO.ui.MenuWidget.prototype.show = function () {
 			this.$previousFocus = this.$( ':focus' );
 			this.$input.focus();
 		}
-		if ( this.newItems.length ) {
+		if ( this.newItems && this.newItems.length ) {
 			for ( i = 0, len = this.newItems.length; i < len; i++ ) {
 				this.newItems[i].fitLabel();
 			}
-			this.newItems = [];
+			this.newItems = null;
 		}
+
+		// Try to render below
+		this.$element.toggleClass( 'oo-ui-menuWidget-above', false );
+		this.$element.toggleClass( 'oo-ui-menuWidget-below', true );
+
+		// Check for clipping
+		eld = this.getElementDimensions();
+		scd = OO.ui.Element.getDimensions( this.getClosestScrollableElementContainer( 'y' ) );
+		top = eld.rect.top - ( scd.rect.top + scd.borders.top );
+		bottom = scd.rect.bottom - scd.borders.bottom - scd.scrollbar.bottom - eld.rect.bottom;
+
+		above = bottom < 0;
+		this.$element.toggleClass( 'oo-ui-menuWidget-above', above );
+		this.$element.toggleClass( 'oo-ui-menuWidget-below', !above );
 
 		this.setClipping( true );
 	}
@@ -6321,6 +6352,101 @@ OO.ui.MenuWidget.prototype.hide = function () {
 	this.setClipping( false );
 
 	return this;
+};
+/**
+ * Inline menu of options.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.IndicatedElement
+ * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.TitledElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {Object} [menu] Configuration options to pass to menu widget
+ */
+OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
+	// Configuration initialization
+	config = $.extend( { 'indicator': 'down' }, config );
+
+	// Parent constructor
+	OO.ui.Widget.call( this, config );
+
+	// Mixin constructors
+	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
+	OO.ui.TitledElement.call( this, this.$label, config );
+
+	// Properties
+	this.menu = new OO.ui.MenuWidget( $.extend( { '$': this.$ }, config.menu ) );
+	this.$handle = this.$( '<span>' );
+
+	// Events
+	this.$element.on( { 'click': OO.ui.bind( this.onClick, this ) } );
+	this.menu.connect( this, { 'select': 'onMenuSelect' } );
+
+	// Initialization
+	this.$handle
+		.addClass( 'oo-ui-inlineMenuWidget-handle' )
+		.append( this.$icon, this.$label, this.$indicator );
+	this.$element
+		.addClass( 'oo-ui-inlineMenuWidget' )
+		.append( this.$handle, this.menu.$element );
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.InlineMenuWidget, OO.ui.Widget );
+
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IndicatedElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.TitledElement );
+
+/* Methods */
+
+/**
+ * Get the menu.
+ *
+ * @return {OO.ui.MenuWidget} Menu of widget
+ */
+OO.ui.InlineMenuWidget.prototype.getMenu = function () {
+	return this.menu;
+};
+
+/**
+ * Handles menu select events.
+ *
+ * @method
+ * @param {OO.ui.MenuItemWidget} item Selected menu item
+ */
+OO.ui.InlineMenuWidget.prototype.onMenuSelect = function ( item ) {
+	this.setLabel( item.getLabel() );
+};
+
+/**
+ * Handles mouse click events.
+ *
+ * @method
+ * @param {jQuery.Event} e Mouse click event
+ */
+OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
+	// Skip clicks within the menu
+	if ( $.contains( this.menu.$element[0], e.target ) ) {
+		return;
+	}
+
+	if ( !this.disabled ) {
+		if ( this.menu.isVisible() ) {
+			this.menu.hide();
+		} else {
+			this.menu.show();
+		}
+	}
+	return false;
 };
 /**
  * Creates an OO.ui.MenuSectionItemWidget object.
@@ -7143,6 +7269,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {string} [icon] Symbolic name of icon
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
+ * @cfg {boolean} [autosize=false] Automatically resize to fit content
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	config = config || {};
@@ -7153,6 +7280,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Properties
 	this.pending = 0;
 	this.multiline = !!config.multiline;
+	this.autosize = !!config.autosize;
 
 	// Events
 	this.$input.on( 'keypress', OO.ui.bind( this.onKeyPress, this ) );
@@ -7204,6 +7332,37 @@ OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.TextInputWidget.prototype.onEdit = function () {
+	var $clone, scrollHeight, innerHeight, outerHeight;
+
+	// Automatic size adjustment
+	if ( this.multiline && this.autosize ) {
+		$clone = this.$input.clone()
+			.val( this.$input.val() )
+			.css( { 'height': 0 } )
+			.insertAfter( this.$input );
+		// Set inline height property to 0 to measure scroll height
+		scrollHeight = $clone[0].scrollHeight;
+		// Remove inline height property to measure natural heights
+		$clone.css( 'height', '' );
+		innerHeight = $clone.innerHeight();
+		outerHeight = $clone.outerHeight();
+		$clone.remove();
+		// Only apply inline height when expansion beyond natural height is needed
+		this.$input.css(
+			'height',
+			// Use the difference between the inner and outer height as a buffer
+			scrollHeight > outerHeight ? scrollHeight + ( outerHeight - innerHeight ) : ''
+		);
+	}
+
+	// Parent method
+	return OO.ui.InputWidget.prototype.onEdit.call( this );
+};
+
+/**
  * Get input element.
  *
  * @method
@@ -7215,6 +7374,26 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
 };
 
 /* Methods */
+
+/**
+ * Checks if input supports multiple lines.
+ *
+ * @method
+ * @returns {boolean} Input supports multiple lines
+ */
+OO.ui.TextInputWidget.prototype.isMultiline = function () {
+	return !!this.multiline;
+};
+
+/**
+ * Checks if input automatically adjusts its size.
+ *
+ * @method
+ * @returns {boolean} Input automatically adjusts its size
+ */
+OO.ui.TextInputWidget.prototype.isAutosizing = function () {
+	return !!this.autosize;
+};
 
 /**
  * Checks if input is pending.
