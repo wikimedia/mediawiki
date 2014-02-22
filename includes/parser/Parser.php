@@ -6122,4 +6122,20 @@ class Parser {
 		}
 		return $parsedWidthParam;
 	}
+
+	/**
+	 * Strip outer <p></p> tag from a parsed single paragraph HTML.
+	 * Returns original HTML if there's no wrapping <p> tag.
+	 *
+	 * @param string $html
+	 * @return string
+	 */
+	public static function stripInline( $html ) {
+		$m = array();
+		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?/sU', $html, $m ) ) {
+			$html = $m[1];
+		}
+
+		return $html;
+	}
 }
