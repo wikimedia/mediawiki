@@ -519,4 +519,16 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $error, $errors[0]['message'] );
 	}
 
+	/**
+	 * @covers Status::__wakeup
+	 */
+	public function testWakeUpSanitizesCallback() {
+		$status = new Status();
+		$status->cleanCallback = function( $value ) {
+			return '-' . $value . '-';
+		};
+		$status->__wakeup();
+		$this->assertEquals( false, $status->cleanCallback );
+	}
+
 }
