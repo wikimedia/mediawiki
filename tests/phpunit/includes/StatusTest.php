@@ -531,4 +531,29 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertEquals( false, $status->cleanCallback );
 	}
 
+	/**
+	 * @dataProvider provideNonObjectMessages
+	 * @covers Status::getStatusArray
+	 */
+	public function testGetStatusArrayWithNonObjectMessages( $nonObjMsg ) {
+		$status = new Status();
+		if( !array_key_exists( 1, $nonObjMsg ) ) {
+			$status->warning( $nonObjMsg[0] );
+		} else {
+			$status->warning( $nonObjMsg[0], $nonObjMsg[1] );
+		}
+
+		$array = $status->getWarningsArray(); // We use getWarningsArray to access getStatusArray
+
+		$this->assertEquals( 1, count( $array ) );
+		$this->assertEquals( $nonObjMsg, $array[0] );
+	}
+
+	public static function provideNonObjectMessages() {
+		return array(
+			array( array( 'ImaString', array( 'param1' => 'value1' ) ) ),
+			array( array( 'ImaString' ) ),
+		);
+	}
+
 }
