@@ -1726,10 +1726,7 @@ function wfMsgExt( $key, $options ) {
 		}
 
 		if ( $parseInline ) {
-			$m = array();
-			if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-				$string = $m[1];
-			}
+			$string = Parser::stripOuterParagraph( $string );
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
 		$string = $messageCache->transform( $string,

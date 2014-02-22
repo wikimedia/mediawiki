@@ -6400,4 +6400,25 @@ class Parser {
 
 		return $recursiveCheck;
 	}
+
+	/**
+	 * Strip outer <p></p> tag from the HTML source of a single paragraph.
+	 *
+	 * Returns original HTML if the <p/> tag has any attributes, if there's no wrapping <p/> tag,
+	 * or if there is more than one <p/> tag in the input HTML.
+	 *
+	 * @param string $html
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function stripOuterParagraph( $html ) {
+		$m = array();
+		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) ) {
+			if ( strpos( $m[1], '</p>' ) === false ) {
+				$html = $m[1];
+			}
+		}
+
+		return $html;
+	}
 }
