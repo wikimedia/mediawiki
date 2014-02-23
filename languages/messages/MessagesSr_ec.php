@@ -1479,7 +1479,8 @@ $1",
 'searcheverything-enable' => 'сви именски простори',
 'searchrelated' => 'повезано',
 'searchall' => 'све',
-'showingresults' => "Испод {{PLURAL:$1|је приказан '''1''' резултат|су приказана '''$1''' резултата|је приказано '''$1''' резултата}} почев од броја '''$2'''.",
+'showingresults' => 'Испод {{PLURAL:$1|је приказан <strong>1</strong> резултат|су приказана <strong>$1</strong> резултата|је приказано <strong>$1</strong> резултата}} почев од броја <strong>$2</strong>.',
+'showingresultsinrange' => 'Испод {{PLURAL:$1|је приказан <strong>1</strong> резултат|су приказана <strong>$1</strong> резултата|је приказано <strong>$1</strong> резултата}}, у распону од <strong>$2</strong> до <strong>$3</strong>.',
 'showingresultsnum' => "Испод {{PLURAL:$3|је приказан '''1''' резултат|су приказана '''$3''' резултата|је приказано '''$3''' резултата}} почев од броја '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Резултат '''$1''' од '''$3'''|Резултата '''$1 – $2''' од '''$3'''}} за '''$4'''",
 'search-nonefound' => 'Нема поклапања.',
@@ -2173,7 +2174,7 @@ $1',
 ** Кршење ауторских права
 ** Дупликати датотека',
 'filedelete-edit-reasonlist' => 'Уреди разлоге брисања',
-'filedelete-maintenance' => 'Брисање и враћање датотека је привремено онемогућено током одржавања.',
+'filedelete-maintenance' => 'Брисање и враћање датотека је привремено онемогућено због одржавања.',
 'filedelete-maintenance-title' => 'Не могу да обришем датотеку',
 
 # MIME search
@@ -4214,7 +4215,7 @@ $5
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Претрага дупликата',
-'fileduplicatesearch-summary' => 'Претрага дуплираних датотека према вредностима дисперзије.',
+'fileduplicatesearch-summary' => 'Претрага дуплираних датотека према хеш вредности.',
 'fileduplicatesearch-legend' => 'Претрага дупликата',
 'fileduplicatesearch-filename' => 'Назив датотеке:',
 'fileduplicatesearch-submit' => 'Претражи',

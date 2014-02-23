@@ -738,8 +738,7 @@ Wann Dir en ugitt, gëtt e benotzt fir d'Benotzerattributiounen fir Är Aarbecht
 
 # Change password dialog
 'changepassword' => 'Passwuert änneren',
-'resetpass_announce' => 'Dir sidd mat engem temporären , per E-Mail geschéckte Code ageloggt.
-Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
+'resetpass_announce' => 'Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn.',
 'resetpass_text' => '<!-- Schreiwt ären Text heihin-->',
 'resetpass_header' => 'Passwuert vum Benotzerkont änneren',
 'oldpassword' => 'Aalt Passwuert:',
@@ -755,8 +754,10 @@ Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'resetpass-submit-cancel' => 'Annulléieren',
 'resetpass-wrong-oldpass' => 'Net valabelt temporäert oder aktuellt Passwuert.
 Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwuert ugefrot.',
+'resetpass-recycled' => 'Ännert Äert Passwuert w.e.g. op een anert Passwuert wéi Äert aktuellt Passwuert.',
 'resetpass-temp-password' => 'Temporäert Passwuert:',
 'resetpass-abort-generic' => "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
+'resetpass-expired' => 'Äert Passwuert ass ofgelaf. Gitt w.e.g. en neit Passwuert u fir Iech anzeloggen.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
@@ -1375,7 +1376,7 @@ Dëst kann net réckgängeg gemaach ginn.",
 'prefs-help-variant' => 'Är léifste Variant oder Orthographie an där Inhaltssäite vun dëser Wiki gewise solle ginn.',
 'yournick' => 'Ënnerschrëft:',
 'prefs-help-signature' => 'Bemierkungen op Diskussiounssäite solle mat "<nowiki>~~~~</nowiki>" ënnerschriwwe ginn. Dëst gëtt dann an Är Ënnerschrëft an en Zäitstempel ëmgewandelt.',
-'badsig' => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
+'badsig' => "D'Syntax vun Ärer Ënnerschrëft ass net korrekt; iwwerpréift w.e.g. den HTML Code.",
 'badsiglength' => 'Är Ënnerschrëft ass ze laang.
 Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'yourgender' => 'Wéi wëllt Dir beschriwwe ginn?',
@@ -1936,7 +1937,7 @@ Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'filerevert-defaultcomment' => "zréckgesat op d'Versioun vum $1, $2 Auer",
 'filerevert-submit' => 'Zrécksetzen',
 'filerevert-success' => "'''[[Media:$1|$1]]''' gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
-'filerevert-badversion' => 'Et gëtt keng Versioun vun deem Fichier mat der Zäitinformatioun déi Dir uginn hutt.',
+'filerevert-badversion' => 'Et gëtt keng vireg lokal Versioun vun deem Fichier mat der Zäitinformatioun déi Dir uginn hutt.',
 
 # File deletion
 'filedelete' => 'Läsch "$1"',
@@ -2058,7 +2059,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'uncategorizedimages' => 'Biller ouni Kategorie',
 'uncategorizedtemplates' => 'Schablounen ouni Kategorie',
 'unusedcategories' => 'Net benotzt Kategorien',
-'unusedimages' => 'Net benotzt Biller',
+'unusedimages' => 'Net benotzt Fichieren',
 'popularpages' => 'Populär Säiten',
 'wantedcategories' => 'Gewënscht Kategorien',
 'wantedpages' => 'Gewënscht Säiten',
@@ -2095,7 +2096,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'protectedpages-unknown-performer' => 'Onbekannte Benotzer',
 'protectedtitles' => 'Gespaarten Titel',
 'protectedtitles-summary' => 'Dës Titele goufe gespaart an et ka keng Säit mat esou engem Titel gemaach ginn.',
-'protectedtitlesempty' => 'Zur Zäit si mat de Parameteren déi Dir uginn hutt keng Säite fir neit Uleeë gespaart.',
+'protectedtitlesempty' => 'Elo si mat de Parameteren déi Dir uginn hutt keng Säite fir neit Uleeë gespaart.',
 'listusers' => 'Benotzerlëscht',
 'listusers-editsonly' => 'Nëmme Benotzer mat Ännerunge weisen',
 'listusers-creationsort' => 'Nom Datum vum Uleeën zortéieren',
@@ -2163,7 +2164,7 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 [[Special:UnusedCategories|Netbenotzt Kategorië]] ginn hei net gewisen.
 Kuckt och [[Special:WantedCategories|Gewënscht Kategorien]].',
 'categoriesfrom' => 'Weis Kategorien ugefaange bei:',
-'special-categories-sort-count' => 'No der Zuel zortéieren',
+'special-categories-sort-count' => 'no der Zuel zortéieren',
 'special-categories-sort-abc' => 'alphabetesch zortéieren',
 
 # Special:DeletedContributions
@@ -2207,7 +2208,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'listgrouprights-rights' => 'Rechter',
 'listgrouprights-helppage' => 'Help:Grupperechter',
 'listgrouprights-members' => '(Lëscht vun de Memberen)',
-'listgrouprights-addgroup' => 'Kann {{PLURAL:$2|dës Grupp|dës Gruppen}} derbäisetzen: $1',
+'listgrouprights-addgroup' => 'Dës {{PLURAL:$2|Grupp|Gruppen}} derbäisetzen: $1',
 'listgrouprights-removegroup' => 'Kann {{PLURAL:$2|dëse Gruppe|dës Gruppen}} ewechhuelen: $1',
 'listgrouprights-addgroup-all' => 'Kann all Gruppen derbäisetzen',
 'listgrouprights-removegroup-all' => 'Ka Benotzer aus alle Gruppen eraushuelen',
@@ -2218,7 +2219,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 
 # Email user
 'mailnologin' => 'Keng E-Mailadress',
-'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gëlteg E-Mail Adress an Äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
+'mailnologintext' => 'Dir musst [[Special:UserLogin|ageloggt]] sinn an eng gëlteg E-Mail Adress an Ären [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser' => 'Dësem Benotzer eng E-Mail schécken',
 'emailuser-title-target' => '{{GENDER:$1|Dëser Benotzerin|Dësem Benotzer}} eng Mail schécken',
 'emailuser-title-notarget' => 'Dem Benotzer eng E-Mail schécken',

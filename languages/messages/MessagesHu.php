@@ -856,7 +856,7 @@ Várj $1, mielőtt újra próbálkozol.',
 
 # Change password dialog
 'changepassword' => 'Jelszócsere',
-'resetpass_announce' => 'Az e-mailben elküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell adnod egy új jelszót:',
+'resetpass_announce' => 'Az ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell adnod egy új jelszót:',
 'resetpass_text' => '<!-- Ide írd a szöveget -->',
 'resetpass_header' => 'A fiókhoz tartozó jelszó megváltoztatása',
 'oldpassword' => 'Régi jelszó:',
@@ -2694,7 +2694,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'blocklogpage' => 'Blokkolási napló',
 'blocklog-showlog' => 'Ez a felhasználó már blokkolva volt korábban. A blokkolási napló ide vonatkozó része alább látható:',
 'blocklog-showsuppresslog' => 'Ez a felhasználó korábban blokkot kapott, és a naplóbejegyzés el lett rejtve. Az elrejtési napló alább látható tájékoztatásként:',
-'blocklogentry' => '„[[$1]]” blokkolva $2 $3 időtartamra',
+'blocklogentry' => '„[[$1]]” blokkolva $2 időtartamra $3',
 'reblock-logentry' => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
 'blocklogtext' => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az automatikus blokkolt IP címek nem szerepelnek a listában. Lásd még [[Special:BlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry' => '„$1” blokkolása feloldva',

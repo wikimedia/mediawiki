@@ -845,7 +845,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatoru
 
 # Change password dialog
 'changepassword' => 'Schimbare parolă',
-'resetpass_announce' => 'Sunteți autentificat cu un cod temporar trimis pe e-mail. Pentru a termina acțiunea de autentificare, trebuie să setați o parolă nouă aici:',
+'resetpass_announce' => 'Pentru a finaliza acțiunea de autentificare, trebuie să setați o parolă nouă.',
 'resetpass_text' => '<!-- Adăugați text aici -->',
 'resetpass_header' => 'Modificare parolă',
 'oldpassword' => 'Parola veche:',
@@ -861,8 +861,13 @@ Vă rugăm să așteptați $1 până să reîncercați.',
 'resetpass-submit-cancel' => 'Revocare',
 'resetpass-wrong-oldpass' => 'Parolă curentă sau temporară incorectă.
 Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
+'resetpass-recycled' => 'Vă rugăm să vă schimbați parola în altceva decât parola curentă.',
+'resetpass-temp-emailed' => 'Sunteți autentificat cu un cod temporar primit pe e-mail.
+Pentru a finaliza acțiunea de autentificare, trebuie să setați o parolă nouă aici:',
 'resetpass-temp-password' => 'Parolă temporară:',
 'resetpass-abort-generic' => 'Schimbarea parolei a fost anulată de către o extensie.',
+'resetpass-expired' => 'Parola dumneavoastră a expirat. Alegeți o parolă nouă pentru a vă autentifica.',
+'resetpass-expired-soft' => 'Parola dumneavoastră a expirat și trebuie schimbată. Alegeți o parolă nouă acum sau apăsați Revocare pentru a o reseta mai târziu.',
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',

@@ -1363,7 +1363,8 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searcheverything-enable' => 'svi imenski prostori',
 'searchrelated' => 'povezano',
 'searchall' => 'sve',
-'showingresults' => "Ispod {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od broja '''$2'''.",
+'showingresults' => 'Ispod {{PLURAL:$1|je prikazan <strong>1</strong> rezultat|su prikazana <strong>$1</strong> rezultata|je prikazano <strong>$1</strong> rezultata}} počev od broja <strong>$2</strong>.',
+'showingresultsinrange' => 'Ispod {{PLURAL:$1|je prikazan <strong>1</strong> rezultat|su prikazana <strong>$1</strong> rezultata|je prikazano <strong>$1</strong> rezultata}}, u rasponu od <strong>$2</strong> do <strong>$3</strong>.',
 'showingresultsnum' => "Ispod {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od broja '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|1=Rezultat '''$1''' od '''$3'''|Rezultata '''$1 – $2''' od '''$3'''}} za '''$4'''",
 'search-nonefound' => 'Nema poklapanja.',
@@ -2047,7 +2048,7 @@ Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 ** Kršenje autorskih prava
 ** Duplikati datoteka',
 'filedelete-edit-reasonlist' => 'Uredi razloge brisanja',
-'filedelete-maintenance' => 'Brisanje i vraćanje datoteka je privremeno onemogućeno tokom održavanja.',
+'filedelete-maintenance' => 'Brisanje i vraćanje datoteka je privremeno onemogućeno zbog održavanja.',
 'filedelete-maintenance-title' => 'Ne mogu da obrišem datoteku',
 
 # MIME search
@@ -4052,7 +4053,7 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Pretraga duplikata',
-'fileduplicatesearch-summary' => 'Pretraga dupliranih datoteka prema vrednostima disperzije.',
+'fileduplicatesearch-summary' => 'Pretraga dupliranih datoteka prema heš vrednosti.',
 'fileduplicatesearch-legend' => 'Pretraga duplikata',
 'fileduplicatesearch-filename' => 'Naziv datoteke:',
 'fileduplicatesearch-submit' => 'Pretraži',

@@ -933,8 +933,7 @@ $1待ってから再度試してください。',
 
 # Change password dialog
 'changepassword' => 'パスワードの変更',
-'resetpass_announce' => 'メールでお送りした仮パスワードでログインしました。
-ログインを完了するには、ここで新しいパスワードを設定する必要があります:',
+'resetpass_announce' => 'ログインを完了するには、新しいパスワードを設定する必要があります。',
 'resetpass_text' => '<!-- ここに文を挿入 -->',
 'resetpass_header' => 'アカウントのパスワードの変更',
 'oldpassword' => '古いパスワード:',
@@ -950,8 +949,13 @@ $1待ってから再度試してください。',
 'resetpass-submit-cancel' => '中止',
 'resetpass-wrong-oldpass' => '仮パスワードまたは現在のパスワードが正しくありません。
 パスワードを既に変更した、または新しい仮パスワードを依頼した可能性があります。',
+'resetpass-recycled' => '現在のパスワードとは異なるパスワードを設定してください。',
+'resetpass-temp-emailed' => 'メールでお送りした一時的なコードでログインしています。
+ログインを完了するには、新しいパスワードをここで設定してください:',
 'resetpass-temp-password' => '仮パスワード:',
 'resetpass-abort-generic' => '拡張機能により、パスワードの変更は取り消されました。',
+'resetpass-expired' => 'パスワードの有効期限が切れました。ログインするには新しいパスワードを設定してください。',
+'resetpass-expired-soft' => 'パスワードの有効期限が切れたため、再設定する必要があります。新しいパスワードを今すぐ設定するか、またはキャンセルをクリックしてあとで再設定してください。',
 
 # Special:PasswordReset
 'passwordreset' => 'パスワードの再設定',

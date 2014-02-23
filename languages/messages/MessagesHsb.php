@@ -683,6 +683,9 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'suspicious-userlogout' => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 'createacct-another-realname-tip' => '* Woprawdźite mjeno je opcionalne.
 Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
+'pt-login' => 'Přizjewić',
+'pt-createaccount' => 'Konto załožić',
+'pt-userlogout' => 'Wotzjewić',
 
 # Email sending
 'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
@@ -691,7 +694,7 @@ Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
 
 # Change password dialog
 'changepassword' => 'Hesło změnić',
-'resetpass_announce' => 'Sy so z nachwilnym e-mejlowanym kodom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić:',
+'resetpass_announce' => 'Zo by přizjewjenje skónčił, dyrbiš nowe hesło postajić.',
 'resetpass_text' => '<!-- Tu tekst zasunyć -->',
 'resetpass_header' => 'Kontowe hesło změniś',
 'oldpassword' => 'Stare hesło:',
@@ -706,8 +709,13 @@ Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
 'resetpass-submit-cancel' => 'Přetorhnyć',
 'resetpass-wrong-oldpass' => 'Njepłaćiwe nachwilne abo aktualne hesło.
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
+'resetpass-recycled' => 'Prošu staj swoje hesło na druhe hesło hač twoje aktualne hesło.',
+'resetpass-temp-emailed' => 'Sy so z nachwilnym e-mejlowym kodom přizjewił.
+Zo by přizjewjenje skónčił, dyrbiš tu nowe hesło postajić:',
 'resetpass-temp-password' => 'Nachwilne hesło:',
 'resetpass-abort-generic' => 'Měnjenje hesła je so přez rozšěrjenje přetorhnyło.',
+'resetpass-expired' => 'Twoje hesło je spadnyło. Prošu postaj nowe hesło za přizjewjenje.',
+'resetpass-expired-soft' => 'Twoje hesło je spadnyło a dyrbi so wróćo stajić. Prošu wubjer nětko druhe hesło abo klikń na "Přetorhnyć", zo by jo pozdźišo wróćo stajił.',
 
 # Special:PasswordReset
 'passwordreset' => 'Hesło wróćo stajić',
@@ -2044,6 +2052,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'protectedpages-unknown-timestamp' => 'Njeznaty',
 'protectedpages-unknown-performer' => 'Njeznaty wužiwar',
 'protectedtitles' => 'Škitane titule',
+'protectedtitles-summary' => 'Tuta strona nalistuje titule, kotrež su tuchwilu přećiwo wutworjenju škitane. Za lisćinu eksistowacych stronow, kotrež su škitane, hlej [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Žane titule njejsu tuchwilu z tutymi parametrami škitane.',
 'listusers' => 'Lisćina wužiwarjow',
 'listusers-editsonly' => 'Jenož wužiwarjow ze změnami pokazać',

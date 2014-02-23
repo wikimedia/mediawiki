@@ -690,7 +690,7 @@ Jolic jo pódajoš, buźo se to wužywaś, aby pśinoski pśirědowało.',
 
 # Change password dialog
 'changepassword' => 'Šćitne gronidło změniś',
-'resetpass_announce' => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',
+'resetpass_announce' => 'Aby pśizjawjenje skóńcył, musyš nowe gronidło póstajiś.',
 'resetpass_text' => '<!-- Dodaj how tekst -->',
 'resetpass_header' => 'Kontowe gronidło změniś',
 'oldpassword' => 'Stare šćitne gronidło:',
@@ -706,8 +706,12 @@ Pócakaj pšosym $1, nježli až wopytajoš znowego.',
 'resetpass-submit-cancel' => 'Pśetergnuś',
 'resetpass-wrong-oldpass' => 'Njepłaśiwe nachylne abo aktualne gronidło.
 Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło pominał.',
+'resetpass-recycled' => 'Pšosym staj swójo gronidło na druge gronidło ako twójo aktualne gronidło.',
+'resetpass-temp-emailed' => 'Sy z nachylnym e-mailowym kodom pśizjawjony. Aby pśizjawjenje skóńcył, musyš how nowe gronidło póstajiś:',
 'resetpass-temp-password' => 'Nachylne gronidło:',
 'resetpass-abort-generic' => 'Změnjanje gronidła jo se pśez rozšyrjenje pśetergnuło.',
+'resetpass-expired' => 'Twójo gronidło jo pśepadnyło. Pšosym póstaj nowe gronidło za pśizjawjenje.',
+'resetpass-expired-soft' => 'Twójo gronidło jo pśepadnyło a musy se slědk stajiś. Pšosym wubjeŕ něnto druge gronidło abo klikni na "Pśetergnuś", aby jo pózdźej slědk stajił.',
 
 # Special:PasswordReset
 'passwordreset' => 'Gronidło slědk stajiś',
@@ -2040,6 +2044,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'protectedpages-unknown-timestamp' => 'Njeznaty',
 'protectedpages-unknown-performer' => 'Njeznaty wužywaŕ',
 'protectedtitles' => 'Šćitane titele',
+'protectedtitles-summary' => 'Toś ten bok nalicyjo titele, kótarež su tuchylu pśeśiwo napóranjoju šćitane. Za lisćinu eksistěrujucych bokow, kótarež su šćitane, glej [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Tuchylu njejsu žedne boki z pódanych parametrami šćitane.',
 'listusers' => 'Lisćina wužywarjow',
 'listusers-editsonly' => 'Jano wužywarjow ze změnami pokazaś',

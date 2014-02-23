@@ -26,6 +26,7 @@
  * @author YaronSh
  * @author Yona b
  * @author אור שפירא
+ * @author איתן96
  * @author דולב
  * @author ערן
  * @author פדיחה
@@ -1799,7 +1800,7 @@ $1",
 'recentchanges-label-minor' => 'זוהי עריכה משנית',
 'recentchanges-label-bot' => 'עריכה זו בוצעה על־ידי בוט',
 'recentchanges-label-unpatrolled' => 'עריכה זו טרם נבדקה',
-'recentchanges-label-plusminus' => 'גודל הדף השתנה במספר כזה של בתים',
+'recentchanges-label-plusminus' => 'גודל הדף השתנה במספר זה של בתים',
 'recentchanges-legend-heading' => "'''מקרא:'''",
 'recentchanges-legend-newpage' => '(ראו גם [[Special:NewPages|רשימת דפים חדשים]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
@@ -2313,6 +2314,7 @@ $1',
 'protectedpages-cascade' => 'הגנות מדורגות בלבד',
 'protectedpages-noredirect' => 'הסתרת הפניות',
 'protectedpagesempty' => 'אין כרגע דפים מוגנים עם הפרמטרים הללו.',
+'protectedpages-timestamp' => 'חותם זמן',
 'protectedpages-page' => 'דף',
 'protectedpages-expiry' => 'זמן פקיעה',
 'protectedpages-performer' => 'הוגן על ידי',

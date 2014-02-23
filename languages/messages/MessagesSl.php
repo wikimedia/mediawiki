@@ -745,8 +745,7 @@ Prosimo, počakajte $1, preden poskusite znova.',
 
 # Change password dialog
 'changepassword' => 'Zamenjava gesla',
-'resetpass_announce' => 'Trenutno ste prijavljeni z začasno e-poštno kodo.
-Za zaključitev prijave, morate tukaj nastaviti novo geslo:',
+'resetpass_announce' => 'Za zaključitev prijave morate tukaj nastaviti novo geslo:',
 'resetpass_text' => '<!-- Namesto te vrstice vstavite besedilo -->',
 'resetpass_header' => 'Spremeni geslo',
 'oldpassword' => 'Staro geslo:',
@@ -762,8 +761,12 @@ Prosimo, počakajte $1, preden poskusite znova.',
 'resetpass-submit-cancel' => 'Prekliči',
 'resetpass-wrong-oldpass' => 'Neveljavno začano ali trenutno geslo.
 Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo.',
+'resetpass-recycled' => 'Prosimo, ponastavite svoje geslo na nekaj drugega kot svoje trenutno geslo.',
+'resetpass-temp-emailed' => 'Trenutno ste prijavljeni z začasno kodo, poslano z e-pošto. Za zaključitev prijave morate tukaj nastaviti novo geslo:',
 'resetpass-temp-password' => 'Začasno geslo:',
 'resetpass-abort-generic' => 'Razširitev je prekinila spremembo gesla.',
+'resetpass-expired' => 'Vaše geslo je poteklo. Prosimo, nastavite novo geslo za prijavo.',
+'resetpass-expired-soft' => 'Vaše geslo je poteklo in ga morate ponastaviti. Prosimo, izberite novo geslo zdaj ali kliknite Prekliči, da ga ponastavite pozneje.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',

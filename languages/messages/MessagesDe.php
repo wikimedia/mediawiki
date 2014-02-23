@@ -991,6 +991,8 @@ Bitte warte $1, bevor du es erneut versuchst.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-recycled' => 'Bitte setze dein Passwort auf ein anderes Passwort als dein aktuelles fest.',
+'resetpass-temp-emailed' => 'Du hast dich mit einem temporären E-Mail-Code angemeldet.
+Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort festlegen:',
 'resetpass-temp-password' => 'Temporäres Passwort:',
 'resetpass-abort-generic' => 'Die Passwortänderung wurde durch eine Erweiterung abgebrochen.',
 'resetpass-expired' => 'Dein Passwort ist abgelaufen. Bitte lege ein neues Passwort zur Anmeldung fest.',

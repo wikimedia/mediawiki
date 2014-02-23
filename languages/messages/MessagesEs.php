@@ -933,8 +933,7 @@ Si se proporciona, se usará para dar al usuario la atribución de su trabajo.',
 
 # Change password dialog
 'changepassword' => 'Cambiar contraseña',
-'resetpass_announce' => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico.
-Establece una contraseña nueva aquí:',
+'resetpass_announce' => 'Para completar el inicio de sesión, debes definir una contraseña nueva.',
 'resetpass_text' => '<!-- Añada texto aquí -->',
 'resetpass_header' => 'Cambiar la contraseña de la cuenta',
 'oldpassword' => 'Contraseña antigua:',

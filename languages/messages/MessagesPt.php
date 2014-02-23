@@ -342,10 +342,10 @@ $messages = array(
 'tog-minordefault' => 'Por omissão, marcar todas as edições como menores',
 'tog-previewontop' => 'Mostrar a antevisão antes da caixa de edição',
 'tog-previewonfirst' => 'Mostrar a antevisão na primeira edição',
-'tog-enotifwatchlistpages' => 'Notificar-me por correio electrónico quando uma página ou ficheiro vigiado for alterado',
-'tog-enotifusertalkpages' => 'Notificar-me por correio electrónico quando a minha página de discussão é editada',
-'tog-enotifminoredits' => 'Notificar-me por correio electrónico também sobre edições menores de páginas ou ficheiros',
-'tog-enotifrevealaddr' => 'Revelar o meu endereço de correio electrónico nas notificações',
+'tog-enotifwatchlistpages' => 'Notificar-me por correio eletrónico quando uma página ou ficheiro vigiado for alterado',
+'tog-enotifusertalkpages' => 'Notificar-me por correio eletrónico quando a minha página de discussão é editada',
+'tog-enotifminoredits' => 'Notificar-me por correio eletrónico também sobre edições menores de páginas ou ficheiros',
+'tog-enotifrevealaddr' => 'Revelar o meu endereço de correio eletrónico nas notificações',
 'tog-shownumberswatching' => 'Mostrar o número de utilizadores a vigiar',
 'tog-oldsig' => 'Assinatura existente:',
 'tog-fancysig' => 'Tratar assinatura como texto wiki (sem link automático)',
@@ -357,7 +357,7 @@ $messages = array(
 'tog-watchlisthideliu' => 'Esconder edições de utilizadores autenticados ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideanons' => 'Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidepatrolled' => 'Esconder edições patrulhadas ao listar mudanças às páginas vigiadas',
-'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores',
+'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio eletrónico que eu enviar a outros utilizadores',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Mostrar categorias ocultas',
 'tog-noconvertlink' => 'Impossibilitar a conversão dos títulos de links',
@@ -751,7 +751,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'userlogin-remembermypassword' => 'Manter-me autenticado',
 'userlogin-signwithsecure' => 'Use uma ligação segura',
 'yourdomainname' => 'O seu domínio:',
-'password-change-forbidden' => 'Não pode alterar senhas nesta wiki.',
+'password-change-forbidden' => 'Não pode alterar palavras-chave nesta wiki.',
 'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticação',
 'nav-login-createaccount' => 'Entrar / criar conta',
@@ -831,36 +831,36 @@ Se o pedido foi feito por si, entre agora na sua conta e escolha uma palavra-cha
 A palavra-chave temporária expira após {{PLURAL:$5|um dia|$5 dias}}.
 
 Caso outra pessoa tenha feito o pedido, ou se entretanto se recordou da sua palavra-chave e já não deseja alterá-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
-'noemail' => 'Não foi registado um endereço de correio electrónico para o utilizador "$1".',
-'noemailcreate' => 'Precisa de fornecer um endereço de correio electrónico válido',
-'passwordsent' => 'Foi enviada uma palavra-chave nova para o endereço de correio electrónico do utilizador "$1".
+'noemail' => 'Não foi registado um endereço de correio eletrónico para o utilizador "$1".',
+'noemailcreate' => 'Tem de fornecer um endereço de correio eletrónico válido',
+'passwordsent' => 'Foi enviada uma palavra-chave nova para o endereço de correio eletrónico do utilizador "$1".
 Volte a autenticar-se após recebê-la, por favor.',
 'blocked-mailpassword' => 'O seu endereço IP foi bloqueado e, portanto, não será possível utilizar a função de recuperação da palavra-chave, para prevenir o uso abusivo.',
-'eauthentsent' => 'Foi enviada uma mensagem de confirmação para o endereço de correio electrónico que elegeu.
+'eauthentsent' => 'Foi enviada uma mensagem de confirmação para o endereço de correio eletrónico que especificou.
 Antes que seja enviada qualquer outra mensagem para a conta, terá de seguir as instruções na mensagem enviada, de modo a confirmar que a conta lhe pertence.',
 'throttled-mailpassword' => 'Já foi enviada um email de recuperação de palavra-chave {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para prevenir abusos, só um email de recuperação de palavra-chave pode ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror' => 'Erro ao enviar correio: $1',
 'acct_creation_throttle_hit' => 'Visitantes desta wiki com o seu endereço IP criaram $1 {{PLURAL:$1|conta|contas}} no último dia, o que é o máximo permitido neste período de tempo.
 Em resultado, visitantes com este endereço IP não podem criar mais nenhuma conta neste momento.',
-'emailauthenticated' => 'O seu endereço de correio electrónico foi confirmado a $2, às $3.',
-'emailnotauthenticated' => 'O seu endereço de correio electrónico ainda não foi confirmado.
-Não serão enviados emails de nenhuma das seguintes funcionalidades.',
+'emailauthenticated' => 'O seu endereço de correio eletrónico foi confirmado a $2, às $3.',
+'emailnotauthenticated' => 'O seu endereço de correio eletrónico ainda não foi confirmado.
+Não lhe serão enviadas mensagens por nenhuma das seguintes funcionalidades.',
 'noemailprefs' => 'Especifique um endereço de correio eletrónico nas suas preferências para ativar estas funcionalidades.',
-'emailconfirmlink' => 'Confirme o seu endereço de correio electrónico',
+'emailconfirmlink' => 'Confirme o seu endereço de correio eletrónico',
 'invalidemailaddress' => 'O endereço de correio eletrónico não pode ser aceite porque parece ter um formato inválido.
 Introduza um endereço formatado corretamente ou deixe o campo vazio.',
-'cannotchangeemail' => 'Os endereços de correio electrónico das contas não podem ser alterados nesta wiki.',
-'emaildisabled' => 'Este site não consegue enviar e-mails.',
+'cannotchangeemail' => 'Os endereços de correio eletrónico das contas não podem ser alterados nesta wiki.',
+'emaildisabled' => 'Este site não consegue enviar mensagens de correio eletrónico.',
 'accountcreated' => 'Conta criada',
 'accountcreatedtext' => 'A conta de utilizador para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) foi criada.',
 'createaccount-title' => 'Criação de conta na {{SITENAME}}',
-'createaccount-text' => 'Alguém criou uma conta com o nome $2 para o seu endereço de correio electrónico, na wiki {{SITENAME}} ($4), com a palavra-chave "$3".
+'createaccount-text' => 'Alguém criou uma conta com o nome $2 para o seu endereço de correio eletrónico, na wiki {{SITENAME}} ($4), com a palavra-chave "$3".
 Deve agora autenticar-se e alterar a sua palavra-chave.
 
 Se a conta foi criada por engano, pode ignorar esta mensagem.',
 'usernamehasherror' => 'O nome de utilizador não pode conter o símbolo de cardinal (#).',
-'login-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
+'login-throttled' => 'Realizou demasiadas tentativas de autenticação com esta conta.
 Aguarde $1 antes de tentar novamente, por favor.',
 'login-abort-generic' => 'A sua autenticação não teve êxito - Cancelada',
 'loginlanguagelabel' => 'Língua: $1',
@@ -870,43 +870,47 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
-'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de correio electrónico',
-'user-mail-no-body' => 'Tentou mandar email sem conteúdo ou com conteúdo demasiado pequeno.',
+'user-mail-no-addy' => 'Tentou enviar uma mensagem sem um endereço de correio eletrónico.',
+'user-mail-no-body' => 'Tentou enviar uma mensagem sem conteúdo ou com um conteúdo demasiado pequeno.',
 
 # Change password dialog
 'changepassword' => 'Alterar palavra-chave',
-'resetpass_announce' => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.
-Para prosseguir, será necessário definir uma nova palavra-chave.',
+'resetpass_announce' => 'Para completar a autenticação, tem de definir uma palavra-chave nova.',
 'resetpass_text' => '<!-- Adicionar texto aqui -->',
 'resetpass_header' => 'Alterar palavra-chave da conta',
 'oldpassword' => 'Palavra-chave anterior:',
 'newpassword' => 'Palavra-chave nova:',
 'retypenew' => 'Repita a palavra-chave nova:',
 'resetpass_submit' => 'Definir palavra-chave e entrar',
-'changepassword-success' => 'A sua palavra-chave foi alterada com êxito!',
-'changepassword-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
-Por favor, aguarde $1 antes de tentar novamente.',
+'changepassword-success' => 'A sua palavra-chave foi alterada!',
+'changepassword-throttled' => 'Realizou demasiadas tentativas de autenticação com esta conta.
+Aguarde $1 antes de tentar novamente, por favor.',
 'resetpass_forbidden' => 'Não é possível alterar palavras-chave',
 'resetpass-no-info' => 'Precisa estar autenticado para aceder diretamente a esta página.',
 'resetpass-submit-loggedin' => 'Alterar palavra-chave',
 'resetpass-submit-cancel' => 'Cancelar',
 'resetpass-wrong-oldpass' => 'Palavra-chave temporária ou atual inválida.
 Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova palavra-chave temporária.',
+'resetpass-recycled' => 'Redefina a sua palavra-chave para uma diferente da atual, por favor.',
+'resetpass-temp-emailed' => 'Autenticou-se usando um código temporário.
+Para completar a autenticação, tem de definir uma palavra-chave nova aqui:',
 'resetpass-temp-password' => 'Palavra-chave temporária:',
-'resetpass-abort-generic' => 'A alteração da senha foi cancelada por uma extensão.',
+'resetpass-abort-generic' => 'A alteração da palavra-chave foi cancelada por uma extensão.',
+'resetpass-expired' => 'A sua palavra-chave expirou. Para autenticar-se, defina uma nova.',
+'resetpass-expired-soft' => 'A sua palavra-chave expirou e tem de ser redefinida. Escolha uma nova agora ou clique cancelar para redefini-la mais tarde.',
 
 # Special:PasswordReset
-'passwordreset' => 'Repor palavra-chave',
-'passwordreset-text-one' => 'Preencha este formulário para repor a sua palavra-passe.',
-'passwordreset-text-many' => '{{PLURAL:$1|Preencha um dos campos para redefinir sua senha via correio eletrónico.}}',
-'passwordreset-legend' => 'Reiniciar a palavra-chave',
-'passwordreset-disabled' => 'O reinício da palavra-chave foi impossibilitado nesta wiki.',
-'passwordreset-emaildisabled' => 'Recursos de e-mail foram desativados neste wiki.',
+'passwordreset' => 'Redefinir palavra-chave',
+'passwordreset-text-one' => 'Preencha este formulário para receber uma palavra-passe temporária por correio eletrónico.',
+'passwordreset-text-many' => '{{PLURAL:$1|Preencha um dos campos para receber uma palavra-chave temporária por correio eletrónico.}}',
+'passwordreset-legend' => 'Redefinir palavra-chave',
+'passwordreset-disabled' => 'A redefinição da palavra-chave foi impossibilitada nesta wiki.',
+'passwordreset-emaildisabled' => 'A funcionalidade de correio eletrónico foi desativada nesta wiki.',
 'passwordreset-username' => 'Nome de utilizador:',
 'passwordreset-domain' => 'Domínio:',
-'passwordreset-capture' => 'Ver o email resultante?',
-'passwordreset-capture-help' => 'Se marcar esta caixa, poderá ver a mensagem (com a senha temporária) que será enviada ao utilizador.',
-'passwordreset-email' => 'Correio electrónico:',
+'passwordreset-capture' => 'Ver a mensagem resultante?',
+'passwordreset-capture-help' => 'Se marcar esta caixa, a mensagem (com a palavra-chave temporária) ser-lhe-á mostrada e enviada ao utilizador.',
+'passwordreset-email' => 'Correio eletrónico:',
 'passwordreset-emailtitle' => 'Detalhes da conta na {{SITENAME}}',
 'passwordreset-emailtext-ip' => 'Alguém (provavelmente você, a partir do endereço IP $1) pediu a recuperação da palavra-passe no projeto {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de utilizador está associada|As seguintes contas de utilizador estão associadas}} a este correio eletrónico:
 
@@ -923,22 +927,22 @@ Deve autenticar-se e escolher uma palavra-passe nova agora. Se outra pessoa fez 
 'passwordreset-emailelement' => 'Utilizador: $1
 Palavra-chave temporária: $2',
 'passwordreset-emailsent' => 'Foi enviado um correio eletrónico para recuperação da palavra-passe.',
-'passwordreset-emailsent-capture' => 'Foi enviado um e-mail de recuperação da palavra-passe, que é mostrado abaixo.',
-'passwordreset-emailerror-capture' => 'Foi gerado o e-mail de reposição de palavra-passe mostrado abaixo, contudo falhou o seu envio para {{GENDER:$2|o utilizador|a utilizadora}}: $1',
+'passwordreset-emailsent-capture' => 'Foi enviado um correio eletrónico para recuperação da palavra-passe, que é mostrado abaixo.',
+'passwordreset-emailerror-capture' => 'Foi gerado um correio eletrónico para redefinição da palavra-chave, mostrado abaixo, mas o seu envio para {{GENDER:$2|o utilizador|a utilizadora}} falhou: $1',
 
 # Special:ChangeEmail
-'changeemail' => 'Alterar o endereço de correio electrónico',
-'changeemail-header' => 'Alterar o endereço de correio electrónico da conta',
-'changeemail-text' => 'Preencha este formulário para alterar o endereço de correio electrónico. Para confirmar esta alteração terá de introduzir a sua palavra-chave.',
-'changeemail-no-info' => 'Para aceder diretamente a esta página tem de estar autenticado.',
-'changeemail-oldemail' => 'Correio electrónico actual:',
-'changeemail-newemail' => 'Correio electrónico novo:',
+'changeemail' => 'Alterar o endereço de correio eletrónico',
+'changeemail-header' => 'Alterar o endereço de correio eletrónico da conta',
+'changeemail-text' => 'Preencha este formulário para alterar o endereço de correio eletrónico. Para confirmar esta alteração terá de introduzir a sua palavra-chave.',
+'changeemail-no-info' => 'Tem de autenticar-se para aceder diretamente a esta página.',
+'changeemail-oldemail' => 'Correio eletrónico atual:',
+'changeemail-newemail' => 'Correio eletrónico novo:',
 'changeemail-none' => '(nenhum)',
 'changeemail-password' => 'A sua senha na wiki {{SITENAME}}:',
-'changeemail-submit' => 'Alterar correio electrónico',
+'changeemail-submit' => 'Alterar correio eletrónico',
 'changeemail-cancel' => 'Cancelar',
-'changeemail-throttled' => 'Você realizou demasiadas tentativas de autenticação com esta conta.
-Por favor, aguarde $1 antes de tentar novamente.',
+'changeemail-throttled' => 'Realizou demasiadas tentativas de autenticação com esta conta.
+Aguarde $1 antes de tentar novamente, por favor.',
 
 # Special:ResetTokens
 'resettokens' => 'Redefinir chaves',
@@ -994,25 +998,23 @@ Se clicar novamente \"{{int:savearticle}}\", a sua edição será gravada sem as
 'summary-preview' => 'Antevisão do resumo:',
 'subject-preview' => 'Antevisão do assunto/cabeçalho:',
 'blockedtitle' => 'O utilizador está bloqueado',
-'blockedtext' => 'O seu nome de utilizador ou endereço IP foram bloqueados
+'blockedtext' => '<strong>O seu nome de utilizador ou endereço IP foram bloqueados.</strong>
 
 O bloqueio foi realizado por $1.
-O motivo apresentado foi \'\'$2\'\'.
+O motivo apresentado foi <em>$2</em>.
 
 * Início do bloqueio: $8
 * Expiração do bloqueio: $6
 * Destinatário do bloqueio: $7
 
 Pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
-
-Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
-
+Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
 O seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.
 Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.',
-'autoblockedtext' => 'O seu endereço IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.
+'autoblockedtext' => 'O seu endereço IP foi bloqueado de forma automática porque foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.
 O motivo apresentado foi:
 
-:\'\'$2\'\'
+:<em>$2</em>
 
 * Início do bloqueio: $8
 * Expiração do bloqueio: $6
@@ -1020,15 +1022,15 @@ O motivo apresentado foi:
 
 Pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.
 
-Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
+Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.
 
 O seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.
 Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.',
 'blockednoreason' => 'sem motivo especificado',
 'whitelistedittext' => 'Precisa de $1 para poder editar páginas.',
-'confirmedittext' => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
+'confirmedittext' => 'Precisa de confirmar o seu endereço de correio eletrónico antes de começar a editar páginas.
 Introduza e valide o endereço através das [[Special:Preferences|preferências do utilizador]], por favor.',
-'nosuchsectiontitle' => 'Não foi possível encontrar a seção',
+'nosuchsectiontitle' => 'Não foi possível encontrar a secção',
 'nosuchsectiontext' => 'Tentou editar uma secção que não existe.
 Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'loginreqtitle' => 'Autenticação necessária',
@@ -1207,8 +1209,8 @@ Depois grave as alterações, para finalizar e desfazer a edição.',
 'undo-failure' => 'Não foi possível desfazer a edição por conflito com alterações intermédias.',
 'undo-norev' => 'Não foi possível desfazer a edição porque ela não existe ou foi apagada.',
 'undo-nochange' => 'A edição parece já ter sido desfeita.',
-'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
-'undo-summary-username-hidden' => 'Desfazer a revisão  $1  por um usuário oculto',
+'undo-summary' => 'Desfez a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',
+'undo-summary-username-hidden' => 'Desfez a edição $1 de um utilizador oculto',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
@@ -1476,9 +1478,9 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-watchlist-token' => 'Chave secreta da lista de páginas vigiadas:',
 'prefs-misc' => 'Diversos',
 'prefs-resetpass' => 'Alterar palavra-chave',
-'prefs-changeemail' => 'Alterar correio electrónico',
-'prefs-setemail' => 'Definir um endereço de correio electrónico',
-'prefs-email' => 'Opções do correio electrónico',
+'prefs-changeemail' => 'Alterar correio eletrónico',
+'prefs-setemail' => 'Definir um endereço de correio eletrónico',
+'prefs-email' => 'Opções do correio eletrónico',
 'prefs-rendering' => 'Aparência',
 'saveprefs' => 'Gravar',
 'restoreprefs' => 'Repor todas as configurações padrão (em todas as secções)',
@@ -1512,7 +1514,7 @@ Qualquer pessoa que conheça a chave será capaz de ler a sua lista de páginas 
 'timezoneregion-europe' => 'Europa',
 'timezoneregion-indian' => 'Oceano Índico',
 'timezoneregion-pacific' => 'Oceano Pacífico',
-'allowemail' => 'Aceitar correio electrónico de outros utilizadores',
+'allowemail' => 'Aceitar correio eletrónico de outros utilizadores',
 'prefs-searchoptions' => 'Pesquisa',
 'prefs-namespaces' => 'Espaços nominais',
 'defaultns' => 'Por omissão, pesquisar nestes espaços nominais:',
@@ -1525,7 +1527,7 @@ Qualquer pessoa que conheça a chave será capaz de ler a sua lista de páginas 
 As suas preferências serão modificadas para os valores predefinidos do site.
 Esta operação não pode ser desfeita.',
 'prefs-emailconfirm-label' => 'Confirmação do endereço:',
-'youremail' => 'Correio electrónico:',
+'youremail' => 'Correio eletrónico:',
 'username' => 'Nome de {{GENDER:$1|utilizador|utilizadora}}:',
 'uid' => 'Identificação de {{GENDER:$1|utilizador|utilizadora}}:',
 'prefs-memberingroups' => '{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:',
@@ -1546,12 +1548,12 @@ Não deverá conter mais de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'prefs-help-gender' => 'Esta preferência é opcional.
 O software usa o seu valor para o endereçar e para o mencionar a outros usando o género gramatical apropriado.
 Esta informação será pública.',
-'email' => 'Correio electrónico',
+'email' => 'Correio eletrónico',
 'prefs-help-realname' => 'O fornecimento do nome verdadeiro é opcional.
 Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu trabalho.',
-'prefs-help-email' => 'Opcional: o endereço de correio electrónico é opcional, mas será necessário para reiniciar a palavra-chave caso esqueça a antiga.',
-'prefs-help-email-others' => 'Também pode optar por permitir que outros entrem em contacto consigo por correio electrónico, através de um link nas suas páginas de utilizador ou de discussão, sem revelar o seu endereço de correio electrónico.',
-'prefs-help-email-required' => 'É necessário o endereço de correio electrónico.',
+'prefs-help-email' => 'Opcional: o endereço de correio eletrónico é opcional, mas será necessário para redefinir a palavra-chave caso esqueça a antiga.',
+'prefs-help-email-others' => 'Também pode optar por permitir que outros entrem em contacto consigo por correio eletrónico, através de um link nas suas páginas de utilizador ou de discussão, sem revelar o seu endereço de correio eletrónico.',
+'prefs-help-email-required' => 'É necessário o endereço de correio eletrónico.',
 'prefs-info' => 'Informações básicas',
 'prefs-i18n' => 'Internacionalização',
 'prefs-signature' => 'Assinatura',
@@ -1570,7 +1572,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'prefs-tokenwatchlist' => 'Chave',
 'prefs-diffs' => 'Diferenças',
 'prefs-help-prefershttps' => 'Esta preferência terá efeito no seu próximo início de sessão.',
-'prefs-tabs-navigation-hint' => 'Dica: Você pode utilizar as setas direita-esquerda do teclado para navegar entre as guias na lista.',
+'prefs-tabs-navigation-hint' => 'Dica: Pode usar as setas direita e esquerda do teclado para navegar entre os separadores.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'Parece válido',
@@ -1658,7 +1660,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'right-suppressrevision' => 'Rever e restaurar revisões ocultadas dos administradores',
 'right-suppressionlog' => 'Ver registos privados',
 'right-block' => 'Impedir outros utilizadores de editarem',
-'right-blockemail' => 'Impedir um utilizador de enviar correio electrónico',
+'right-blockemail' => 'Impedir um utilizador de enviar correio eletrónico',
 'right-hideuser' => 'Bloquear um nome de utilizador, escondendo-o do público',
 'right-ipblock-exempt' => 'Contornar bloqueios de IP, bloqueios automáticos e bloqueios de gamas de IPs',
 'right-proxyunbannable' => 'Contornar bloqueios automáticos de proxies',
@@ -1691,8 +1693,8 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'right-userrights-interwiki' => 'Editar privilégios de utilizadores noutras wikis',
 'right-siteadmin' => 'Bloquear e desbloquear a base de dados',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
-'right-sendemail' => 'Enviar correio electrónico a outros utilizadores',
-'right-passwordreset' => 'Ver emails de reposição de palavras-chave',
+'right-sendemail' => 'Enviar correio eletrónico a outros utilizadores',
+'right-passwordreset' => 'Ver mensagens de redefinição da palavra-chave',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Registo de criação de utilizadores',
@@ -2265,10 +2267,12 @@ Agora redirecciona para [[$2]].',
 'deadendpagestext' => 'As seguintes páginas não contêm links para outras páginas na {{SITENAME}}.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Apenas proteções indefinidas',
+'protectedpages-summary' => 'Esta página lista as páginas protegidas. Para ver os títulos protegidos, cuja criação está impossibilitada, consulte [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Apenas proteções em cascata',
 'protectedpages-noredirect' => 'Esconder redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedtitles' => 'Títulos protegidos',
+'protectedtitles-summary' => 'Esta página lista os títulos protegidos, cuja criação está impossibilitada. Para ver as páginas protegidas consulte [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Neste momento, nenhum dos títulos está protegido com estes parâmetros.',
 'listusers' => 'Utilizadores',
 'listusers-editsonly' => 'Mostrar apenas utilizadores com edições',
@@ -2394,32 +2398,32 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 
 # Email user
 'mailnologin' => 'Não existe endereço de envio',
-'mailnologintext' => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
-'emailuser' => 'Enviar correio electrónico a este utilizador',
+'mailnologintext' => 'Precisa de estar [[Special:UserLogin|autenticado]] e ter um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio eletrónico a outros utilizadores.',
+'emailuser' => 'Enviar correio eletrónico a este utilizador',
 'emailuser-title-target' => 'Enviar correio eletrónico a {{GENDER:$1|este utilizador|esta utilizadora}}',
-'emailuser-title-notarget' => 'Enviar correio electrónico ao utilizador',
-'emailpage' => 'Enviar correio electrónico ao utilizador',
+'emailuser-title-notarget' => 'Enviar correio eletrónico ao utilizador',
+'emailpage' => 'Enviar correio eletrónico ao utilizador',
 'emailpagetext' => 'Pode usar o formulário abaixo para enviar uma mensagem por correio eletrónico para {{GENDER:$1|este utilizador|esta utilizadora}}.
 O endereço de correio que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder diretamente.',
 'usermailererror' => 'O sistema de correio devolveu o erro:',
-'defemailsubject' => 'Correio electrónico da {{SITENAME}}, do utilizador "$1"',
-'usermaildisabled' => 'Correio eletrónico do utilizador foi desativado',
-'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
-'noemailtitle' => 'Sem endereço de correio electrónico',
-'noemailtext' => 'Este utilizador não especificou um endereço de correio electrónico válido.',
-'nowikiemailtitle' => 'Correio electrónico não é permitido',
-'nowikiemailtext' => 'Este utilizador optou por não receber correio electrónico de outros utilizadores.',
+'defemailsubject' => 'Correio eletrónico da {{SITENAME}}, do utilizador "$1"',
+'usermaildisabled' => 'O correio eletrónico do utilizador foi desativado',
+'usermaildisabledtext' => 'Não pode enviar correio eletrónico a outros utilizadores desta wiki',
+'noemailtitle' => 'Sem endereço de correio eletrónico',
+'noemailtext' => 'Este utilizador não especificou um endereço de correio eletrónico válido.',
+'nowikiemailtitle' => 'Correio eletrónico não é permitido',
+'nowikiemailtext' => 'Este utilizador optou por não receber correio eletrónico de outros utilizadores.',
 'emailnotarget' => 'O nome do destinatário não existe ou é inválido.',
 'emailtarget' => 'Introduza o nome de utilizador do destinatário.',
 'emailusername' => 'Utilizador:',
 'emailusernamesubmit' => 'Enviar',
-'email-legend' => 'Enviar correio electrónico para outro utilizador da {{SITENAME}}',
+'email-legend' => 'Enviar uma mensagem a outro utilizador da {{SITENAME}}',
 'emailfrom' => 'De:',
 'emailto' => 'Para:',
 'emailsubject' => 'Assunto:',
 'emailmessage' => 'Mensagem:',
 'emailsend' => 'Enviar',
-'emailccme' => 'Enviar uma cópia desta mensagem para o meu correio electrónico.',
+'emailccme' => 'Enviar uma cópia desta mensagem para o meu correio eletrónico.',
 'emailccsubject' => 'Cópia da sua mensagem para $1: $2',
 'emailsent' => 'Mensagem enviada',
 'emailsenttext' => 'A sua mensagem foi enviada.',
@@ -2449,7 +2453,7 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'notanarticle' => 'Não é uma página de conteúdo',
 'notvisiblerev' => 'Edição eliminada',
 'watchlist-details' => '{{PLURAL:$1|Existe $1 página|Existem $1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
-'wlheader-enotif' => 'A notificação por correio electrónico está activa.',
+'wlheader-enotif' => 'A notificação por correio eletrónico está ativa.',
 'wlheader-showupdated' => "As páginas modificadas desde a última vez que as visitou aparecem destacadas a '''negrito'''.",
 'watchmethod-recent' => 'a procurar páginas vigiadas nas mudanças recentes',
 'watchmethod-list' => 'a procurar mudanças recentes nas páginas vigiadas',
@@ -2479,23 +2483,22 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff' => 'Consulte $1 para ver esta alteração.',
 'enotif_anon_editor' => 'utilizador anónimo $1',
-'enotif_body' => '{{GENDER:$WATCHINGUSERNAME|Caro|Cara|Caro(a)}},
+'enotif_body' => '{{GENDER:$WATCHINGUSERNAME|Caro|Cara|Caro(a)}} $WATCHINGUSERNAME,
 
 $PAGEINTRO $NEWPAGE
 
 Resumo da edição: $PAGESUMMARY $PAGEMINOREDIT
 
 Contacte o editor:
-correio electrónico: $PAGEEDITOR_EMAIL
+correio eletrónico: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Até que visite novamente esta página com a sua conta ligada, não receberá mais notificações das alterações futuras.
-Pode também reactivar as notificações para todas páginas na sua lista de páginas vigiadas.
+Até se autenticar e visitar novamente esta página, não receberá mais notificações das alterações futuras. Também pode reativar as notificações para todas páginas na sua lista de páginas vigiadas.
 
 O seu sistema de notificação amigável da {{SITENAME}}
 
 --
-Para alterar as suas preferências das notificações por correio electrónico, visite
+Para alterar as suas preferências de notificação por correio eletrónico, visite
 {{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
@@ -2764,7 +2767,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 ** Nome de utilizador inaceitável',
 'ipb-hardblock' => 'Impedir que utilizadores autenticados editem a partir deste endereço IP',
 'ipbcreateaccount' => 'Impedir criação de contas de utilizador',
-'ipbemailban' => 'Impedir utilizador de enviar correio electrónico',
+'ipbemailban' => 'Impedir utilizador de enviar correio eletrónico',
 'ipbenableautoblock' => 'Bloquear automaticamente o endereço IP mais recente deste utilizador e todos os endereços IP subsequentes a partir dos quais ele tente editar',
 'ipbsubmit' => 'Bloquear este utilizador',
 'ipbother' => 'Outro período:',
@@ -2812,7 +2815,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'anononlyblock' => 'apenas anón.',
 'noautoblockblock' => 'bloqueio automático desativado',
 'createaccountblock' => 'criação de conta bloqueada',
-'emailblock' => 'correio electrónico bloqueado',
+'emailblock' => 'correio eletrónico bloqueado',
 'blocklist-nousertalk' => 'impedido de editar a própria página de discussão',
 'ipblocklist-empty' => 'A lista de bloqueios encontra-se vazia.',
 'ipblocklist-no-results' => 'O endereço IP ou nome de utilizador procurado não se encontra bloqueado.',
@@ -2820,8 +2823,8 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'unblocklink' => 'desbloquear',
 'change-blocklink' => 'alterar bloqueio',
 'contribslink' => 'contribs',
-'emaillink' => 'enviar correio electrónico',
-'autoblocker' => 'Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por "[[User:$1|$1]]". 
+'emaillink' => 'enviar correio eletrónico',
+'autoblocker' => 'Foi automaticamente bloqueado, porque o seu endereço IP foi recentemente usado por "[[User:$1|$1]]". 
 O motivo apresentado para o bloqueio de $1 é: "$2".',
 'blocklogpage' => 'Registo de bloqueio',
 'blocklog-showlog' => 'Este utilizador foi já bloqueado anteriormente.
@@ -2837,7 +2840,7 @@ Consulte a [[Special:BlockList|lista de bloqueios]] para obter a lista de bloque
 'block-log-flags-anononly' => 'apenas utilizadores anónimos',
 'block-log-flags-nocreate' => 'criação de contas impossibilitada',
 'block-log-flags-noautoblock' => 'bloqueio automático desativado',
-'block-log-flags-noemail' => 'correio electrónico bloqueado',
+'block-log-flags-noemail' => 'correio eletrónico bloqueado',
 'block-log-flags-nousertalk' => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'ativado o bloqueio automático melhorado',
 'block-log-flags-hiddenname' => 'nome de utilizador ocultado',
@@ -3215,7 +3218,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
-'pageinfo-not-current' => 'Desculpe, é impossível fornecer esta informação para revisõe antigas.',
+'pageinfo-not-current' => 'Desculpe, é impossível fornecer esta informação para revisões antigas.',
 'pageinfo-header-basic' => 'Informação básica',
 'pageinfo-header-edits' => 'Histórico de edições',
 'pageinfo-header-restrictions' => 'Proteção da página',
@@ -3783,12 +3786,12 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'monthsall' => 'todos',
 
 # Email address confirmation
-'confirmemail' => 'Confirmar endereço de correio electrónico',
-'confirmemail_noemail' => 'Não tem um endereço de correio electrónico válido nas suas [[Special:Preferences|preferências de utilizador]].',
-'confirmemail_text' => 'A {{SITENAME}} requer que valide o seu endereço de correio electrónico antes de usar as funcionalidades de correio.
+'confirmemail' => 'Confirmar endereço de correio eletrónico',
+'confirmemail_noemail' => 'Não tem um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências de utilizador]].',
+'confirmemail_text' => 'A {{SITENAME}} requer que valide o seu endereço de correio eletrónico antes de usar as funcionalidades de correio.
 Clique o botão abaixo para enviar uma mensagem de confirmação para o seu endereço.
-A mensagem incluíra uma URL que contém um código;
-insira a URL no seu browser para confirmar que o seu endereço de correio electrónico é válido.',
+A mensagem incluirá uma URL que contém um código;
+insira a URL no seu browser para confirmar que o seu endereço de correio eletrónico é válido.',
 'confirmemail_pending' => 'Um código de confirmação já lhe foi enviado;
 caso tenha criado a conta recentemente, é recomendado que aguarde alguns minutos até o receber antes de tentar pedir um novo código.',
 'confirmemail_send' => 'Enviar código de confirmação',
@@ -3796,15 +3799,15 @@ caso tenha criado a conta recentemente, é recomendado que aguarde alguns minuto
 'confirmemail_oncreate' => 'Foi enviado um código de confirmação para o seu endereço de correio eletrónico.
 Este código não é necessário para se autenticar no sistema, mas será necessário para ativar qualquer funcionalidade baseada no uso de correio na wiki.',
 'confirmemail_sendfailed' => 'A {{SITENAME}} não conseguiu enviar a mensagem de confirmação.
-Verifique se o seu endereço de correio electrónico tem caracteres inválidos.
+Verifique se o seu endereço de correio eletrónico tem caracteres inválidos.
 
 O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid' => 'Código de confirmação inválido. O código poderá ter expirado.',
-'confirmemail_needlogin' => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
-'confirmemail_success' => 'O seu endereço de correio electrónico foi confirmado.
+'confirmemail_needlogin' => 'Precisa de $1 para confirmar o seu endereço de correio eletrónico.',
+'confirmemail_success' => 'O seu endereço de correio eletrónico foi confirmado.
 Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
-'confirmemail_loggedin' => 'O seu endereço de correio electrónico foi confirmado.',
-'confirmemail_subject' => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',
+'confirmemail_loggedin' => 'O seu endereço de correio eletrónico foi confirmado.',
+'confirmemail_subject' => 'Confirmação de endereço de correio eletrónico da {{SITENAME}}',
 'confirmemail_body' => 'Alguém, provavelmente você a partir do endereço IP $1,
 registrou uma conta "$2" com este endereço de correio eletrónico na {{SITENAME}}.
 
@@ -3850,8 +3853,8 @@ para cancelar a confirmação do endereço de correio eletrónico:
 $5
 
 Este código de confirmação expira a $4.',
-'confirmemail_invalidated' => 'Confirmação de endereço de correio electrónico cancelada',
-'invalidateemail' => 'Cancelar confirmação de correio electrónico',
+'confirmemail_invalidated' => 'Confirmação de endereço de correio eletrónico cancelada',
+'invalidateemail' => 'Cancelar confirmação do correio eletrónico',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusão interwikis foi impossibilitada]',
@@ -4239,4 +4242,6 @@ De fato, expande tudo o que estiver entre chaves duplas.",
 'expand_templates_generate_xml' => 'Mostrar a árvore de análise sintáctica do XML',
 'expand_templates_preview' => 'Antevisão do resultado',
 
+# Unknown messages
+'uploadinvalidxml' => 'Erro detectado na análise do XML do ficheiro carregado.',
 );

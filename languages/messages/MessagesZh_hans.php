@@ -915,7 +915,7 @@ $2',
 
 # Change password dialog
 'changepassword' => '更改密码',
-'resetpass_announce' => '您是通过发送到电子邮箱的临时密码登录的。要完成登录，请设定一个新的密码：',
+'resetpass_announce' => '要完成登录，您必须设置一个新密码。',
 'resetpass_text' => '<!-- 在这里添加文字 -->',
 'resetpass_header' => '更改账户密码',
 'oldpassword' => '旧密码：',
@@ -929,8 +929,12 @@ $2',
 'resetpass-submit-loggedin' => '更改密码',
 'resetpass-submit-cancel' => '取消',
 'resetpass-wrong-oldpass' => '临时密码或当前密码无效。您可能已经更改了您的密码，或者请求了新的临时密码。',
+'resetpass-recycled' => '请重置您的密码为与当前密码不同的密码。',
+'resetpass-temp-emailed' => '您通过一个暂时电子邮件发送的代码登录。要完成登录，您必须在此设置一个新密码：',
 'resetpass-temp-password' => '临时密码：',
 'resetpass-abort-generic' => '密码更改已被一个扩展插件中止。',
+'resetpass-expired' => '您的密码已经过期。请设置一个新的密码登录。',
+'resetpass-expired-soft' => '您的密码已经过期，并且需要重置。请现在选择一个新密码，或单击取消以便稍后重置。',
 
 # Special:PasswordReset
 'passwordreset' => '重置密码',

@@ -861,7 +861,7 @@ Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 
 # Change password dialog
 'changepassword' => 'Salasanan vaihto',
-'resetpass_announce' => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',
+'resetpass_announce' => 'Jotta sisäänkirjautuminen onnistuu, sinun pitää asettaa uusi salasana.',
 'resetpass_text' => '<!-- Lisää tekstiä tähän -->',
 'resetpass_header' => 'Muuta tunnuksen salasana',
 'oldpassword' => 'Vanha salasana:',
@@ -877,8 +877,13 @@ Odota $1 ennen kuin yrität uudelleen.',
 'resetpass-submit-cancel' => 'Peruuta',
 'resetpass-wrong-oldpass' => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
+'resetpass-recycled' => 'Sinun täytyy valita uudeksi salasanaksi jokin muu kuin nykyinen salasanasi.',
+'resetpass-temp-emailed' => 'Olet kirjautunut sisään väliaikaisella sähköpostitse toimitetulla koodilla.
+Jotta pääset kirjautumaan sisään kunnolla, sinun on nyt asetettava uusi salasana tässä:',
 'resetpass-temp-password' => 'Väliaikainen salasana:',
 'resetpass-abort-generic' => 'Laajennus keskeytti salasanan vaihdon.',
+'resetpass-expired' => 'Salasanasi on vanhentunut. Valitse uusi salasana, jotta pääset kirjautumaan sisään.',
+'resetpass-expired-soft' => 'Salasanasi on vanhentunut ja se pitää uudistaa. Valitse nyt uusi salasana tai peruuta toiminto, niin voit uudistaa salasanan myöhemmin.',
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan uudistus',
@@ -2202,7 +2207,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'deadendpagestext' => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
 'protectedpages' => 'Suojatut sivut',
 'protectedpages-indef' => 'Vain ikuisesti suojatut',
-'protectedpages-summary' => 'Tällä sivulla on luetteloitu ne sivut, jotka ovat tällä hetkellä suojattuja. Jos haluat nähdä luettelon niistä sivujen nimistä, jotka on suojattu uudelleenluonnilta, katso  [[{{#special:ProtectedTitles}}]].',
+'protectedpages-summary' => 'Tällä sivulla on lueteltu tällä hetkellä suojatut sivut. Nähdäksesi luettelon sivuista, jotka on suojattu uudelleenluonnilta, katso  [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Vain tarttuvasti suojatut',
 'protectedpages-noredirect' => 'Piilota ohjaukset',
 'protectedpagesempty' => 'Mitään sivuja ei ole tällä hetkellä suojattu näillä asetuksilla.',
@@ -2215,7 +2220,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'protectedpages-unknown-timestamp' => 'Tuntematon',
 'protectedpages-unknown-performer' => 'Tuntematon käyttäjä',
 'protectedtitles' => 'Suojatut sivunimet',
-'protectedtitles-summary' => 'Tällä sivulla on lueteltu ne sivut, jotka ovat tällä hetkellä suojatut uudelleenluonnilta. Jos haluat nähdä luettelon suojatuista olemassa olevista sivuista, katso [[{{#special:ProtectedPages}}]].',
+'protectedtitles-summary' => 'Tällä sivulla on lueteltu ne sivut, jotka on tällä hetkellä suojattu uudelleenluonnilta. Nähdäksesi luettelon olemassaolevista suojatuista sivuista katso [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',
 'listusers' => 'Käyttäjälista',
 'listusers-editsonly' => 'Näytä vain käyttäjät, joilla on muokkauksia',
@@ -2957,8 +2962,7 @@ $2',
 'thumbnail_image-type' => 'Kuvamuoto ei ole tuettu',
 'thumbnail_gd-library' => 'GD-kirjastoa ei ole asennettu oikein. Funktio $1 puuttuu.',
 'thumbnail_image-missing' => 'Tiedosto näyttää puuttuvan: $1',
-'thumbnail_image-failure-limit' => 'Tätä kuvan näyttöasettelua (thumbnail) on yritetty toteuttaa liian monta kertaa epäonnistuneesti ($1 tai enemmän).
-Ole hyvä ja yritä myöhemmin uudelleen.',
+'thumbnail_image-failure-limit' => 'Tätä kuvaketta on yritetty tulkita epäonnistuneesti liian monta kertaa ($1 tai enemmän). Ole hyvä ja yritä myöhemmin uudelleen.',
 
 # Special:Import
 'import' => 'Tuo sivuja',

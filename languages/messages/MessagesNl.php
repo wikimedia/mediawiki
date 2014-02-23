@@ -946,8 +946,7 @@ Als u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor
 
 # Change password dialog
 'changepassword' => 'Wachtwoord wijzigen',
-'resetpass_announce' => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.
-Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
+'resetpass_announce' => 'Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_text' => '<!-- Voeg hier tekst toe -->',
 'resetpass_header' => 'Wachtwoord wijzigen',
 'oldpassword' => 'Huidige wachtwoord:',
@@ -963,6 +962,9 @@ Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'resetpass-submit-cancel' => 'Annuleren',
 'resetpass-wrong-oldpass' => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
+'resetpass-recycled' => 'Gelieve uw wachtwoord op iets anders dan uw huidige wachtwoord in te stellen.',
+'resetpass-temp-emailed' => 'U bent aangemeld met een tijdelijk code die u per e-mail hebt ontvangen.
+Om het inloggen te voltooien moet u hier een nieuw wachtwoord instellen:',
 'resetpass-temp-password' => 'Tijdelijk wachtwoord:',
 'resetpass-abort-generic' => 'De wachtwoordwijziging is afgebroken door een uitbreiding.',
 
@@ -1276,7 +1278,7 @@ Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt.
 Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
 'undo-norev' => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
-'undo-nochange' => 'De bewerking lijkt al ongedaan te zijn gemaakt.',
+'undo-nochange' => 'De bewerking lijkt al ongedaan gemaakt te zijn.',
 'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
 'undo-summary-username-hidden' => 'Versie $1 door een verborgen gebruiker ongedaan gemaakt',
 

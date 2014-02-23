@@ -131,7 +131,7 @@ $messages = array(
 'december-date' => 'Dicèmber $1',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Categoréia!Categoréi}}',
+'pagecategories' => '{{PLURAL:$1|Categoréia|Categoréi}}',
 'category_header' => "Pàgini 'd la categoréia $1",
 'subcategories' => 'Sòt-categoréi',
 'category-media-header' => "File int la categoréia ''$1''",
@@ -536,7 +536,7 @@ Se l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.
 
 # Change password dialog
 'changepassword' => "Câmbia la cêva 'd ingrès",
-'resetpass_announce' => "L'ingrès l'é stê fâ cun un côdis pruvişôri, spidî cun la pôsta eletrônica. Per finîr l'ingrès l'é necesâri impustêr 'na nōva cêva 'd ingrès.",
+'resetpass_announce' => "Per finîr l'ingrès, l'é necesâri impustêr 'na nōva cêva 'd ingrès.",
 'resetpass_header' => "Câmbia la cêva 'd ingrès ed l'inscrisiòun.",
 'oldpassword' => "Cêva 'd ingès vècia:",
 'newpassword' => "Nōva cêva 'd ingrès:",

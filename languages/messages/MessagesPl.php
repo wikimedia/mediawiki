@@ -871,8 +871,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 
 # Change password dialog
 'changepassword' => 'Zmiana hasła',
-'resetpass_announce' => '{{GENDER:|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e‐mail.
-Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
+'resetpass_announce' => 'Aby zakończyć proces logowania, musisz ustawić nowe hasło.',
 'resetpass_text' => '<!-- Dodaj tekst -->',
 'resetpass_header' => 'Zmień hasło dla swojego konta',
 'oldpassword' => 'Stare hasło',

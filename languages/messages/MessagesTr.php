@@ -901,8 +901,7 @@ Eğer gerçek adınızı belirtirseniz, çalışmalarınıza atıfta bulunulmas�
 
 # Change password dialog
 'changepassword' => 'Parolayı değiştir',
-'resetpass_announce' => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
-Girişi bitirmek için, burada yeni bir parola yazın:',
+'resetpass_announce' => 'Girişinizi tamamlayabilmeniz için, yeni bir parola oluşturmanız gereklidir.',
 'resetpass_text' => '<!-- Metini buraya ekleyin -->',
 'resetpass_header' => 'Hesap şifresini değiştir',
 'oldpassword' => 'Eski parola',

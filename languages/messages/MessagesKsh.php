@@ -674,7 +674,7 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'userlogin-resetpassword-link' => 'Paßwoot verjäße?',
 'helplogin-url' => 'Help:Övver et Enlogge',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hölp bem Enlogge]]',
-'userlogin-loggedin' => 'Do bes ald als {{GENDER:$1|dä Metmaacher|de Metmaacherėn|dä Metmaacher|de Metmaacherėn|däMetmaacher}} [[User:$1]] enjelogg. Met heh dämm Fommolaa kanns De jäz onger enem andere Nahme enlogge.',
+'userlogin-loggedin' => 'Do bes ald als {{GENDER:$1|dä Metmaacher|de Metmaacherėn|dä Metmaacher|de Metmaacherėn|däMetmaacher}} [[User:$1]] enjelogg. Met heh dämm Fommolaa kanns De jäz ävver onger enem andere Nahme enlogge.',
 'userlogin-createanother' => 'Donn ene zohsäzlejje Zohjang aanlääje',
 'createacct-join' => 'Jiv Ding Daate en:',
 'createacct-another-join' => 'Maach de nüüdeje Aanjaabe för dä neue Zohjaang.',
@@ -809,7 +809,7 @@ Wann dä aanjejovve es, weet_e jebruch, öm öffentlesch de Schriiver för Beidr
 
 # Change password dialog
 'changepassword' => 'Passwood *',
-'resetpass_announce' => 'De beß jez enjelogg med ennem Zweschepasswoot, wat De övver e-mail krääje häs. Dat kanns De nit einfar_esu behallde. Alsu donn jetz e neu Passwoot för op Duur aanjevve.',
+'resetpass_announce' => 'Do moß jäz e neu Paßwoot för op Duur aanjevve.',
 'resetpass_text' => '<!-- Donn der Täx hee dobei -->',
 'resetpass_header' => 'Neu Passwood faßlääje',
 'oldpassword' => 'Et ahle Passwood:',
@@ -825,8 +825,12 @@ Wann dä aanjejovve es, weet_e jebruch, öm öffentlesch de Schriiver för Beidr
 'resetpass-wrong-oldpass' => 'Dat Zweschepaßwood udder dat aktoälle Paßwood stemmp nit.
 Möjjelesch, Do häs Ding Paßwood ald jetuusch, künnt och sin,
 Do häs Der enzwesche e neu Zweschepaßwood jehollt.',
+'resetpass-recycled' => 'Donn för Ding neu Paßwoot jät anders aanjävve, wi Ding Paßwoot vun jäz.',
+'resetpass-temp-emailed' => 'Do beß jez enjelogg med ennem Zweschepasswoot, wat De övver e-mail krääje häs. Dat kanns De nit einfar_esu behallde. Alsu donn jetz e neu Passwoot för op Duur aanjevve.',
 'resetpass-temp-password' => 'Zweschepasswood:',
 'resetpass-abort-generic' => 'E Zohsazprojramm häd_et nit zohjelohße, et Paßwoot ze ändere.',
+'resetpass-expired' => 'Di Paßwood es afjeloufe. Donn jetz e neu Passwoot för et Enlogg faßlääje.',
+'resetpass-expired-soft' => 'Ding Paßwood es afjeloufe u moß neu jesaz wääde. Bes esu jood_un donn e neu Paßwoot ußsöhke, udder donn op {{int:cancel}} jonn, öm et schpääder ze säze.',
 
 # Special:PasswordReset
 'passwordreset' => 'Et Paßwoot zeröck säze',
@@ -1006,7 +1010,7 @@ zwesche de ungerscheidlichste IP Adresse wähßele, womöchlich ohne dat hä et 
 Metmaacher bes, un fings, dat heh Saache an Dich jeschrevve wääde, wo Do jar nix met am Hot häs, dann bes Do
 wahrscheinlich och nit jemeint. Denk villeich ens drüvver noh, datte Dich [[Special:UserLogin/signup|anmelde]] deis,
 domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere namenlose Metmaacher heh. Wann de aanjemelldt bes un deis [[Special:UserLogin|enlogge]], dann kam_mer Desch och fun alle andere Metmaacher ongerschejde.</i>',
-'noarticletext' => '<span class="plainlinks">Em Momang es keine Tex op dä Sigg. Jangk en de Texte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], odder [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} donn en de Logböcher donoh loore], oder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan] ze schrieve, oder jangk zeröck wo de her koms. Do hät Dinge Brauser ene Knopp för.</span>',
+'noarticletext' => '<span class="plainlinks">Em Momang es keine Täx op heh dä Sigg. Jangk en de Täxte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söhke]], udder [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} donn en de Logböscher donoh loore], udder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang di Sigg aan] ze schrieve, udder jangk zeröck woh De heer kohms. Do hät Dinge Brauser ene Knopp för.</span>',
 'noarticletext-nopermission' => 'Op dä Sigg es em Momang nix drop.
 Do kanns noh däm Tittel vun heh dä Sigg [[Special:Search/{{PAGENAME}}|em Tex op ander Sigge söhke]],
 udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbööscher nohloore]</span>.',
@@ -2508,7 +2512,7 @@ Wann di Sigg udder ier Klaafsigg verändert weed, kütt dat af jäz heh en di Op
 'watcherrortext' => 'Ene Fähler es opjetrodde beim Ändere vun de Enshtällonge för Ding Oppaßleß för „$1“',
 
 'enotif_mailer' => '{{ucfirst:{{GRAMMAR:Genitive singe male|{{SITENAME}}}}}} Nohreechte-Versand',
-'enotif_reset' => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
+'enotif_reset' => 'Saz all Änderonge op „Aanjeluurt“, un fäädesch.',
 'enotif_impersonal_salutation' => 'Metmaacher {{GRAMMAR:Genitiv vun|{{SITENAME}}}}',
 'enotif_subject_deleted' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} fott jeschmeße.',
 'enotif_subject_created' => '{{GENDER:$2|Dä Metmaacher|Et|Dä Metmaacher|De Metmaacherėn|Dä Metmaacher}} $2 hät di Sigg $1 {{GRAMMAR:en 3|{{ucfirst:{{SITENAME}}}}}} aanjelaat.',
@@ -2569,7 +2573,7 @@ Do kanns heh noh Hölp luure:
 'historywarning' => '<strong>Opjepass:</strong> Die Sigg, di De fott schmiiße wells, hät {{PLURAL:$1|ein ällder Version|ald Stöcker $1 ällder Versione|jaa kei ällder Versione}}.',
 'confirmdeletetext' => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss heh jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
 <strong>Dun et nor, wann dat met de [[{{MediaWiki:Policy-url}}|Rejelle]] wirklich zosamme jeiht!</strong>',
-'actioncomplete' => 'Erledich',
+'actioncomplete' => 'Jedonn!',
 'actionfailed' => 'Dat es donevve jejange',
 'deletedtext' => 'De Sigg „$1“ es jetz fottjeschmesse woode. Luur Der „$2“ aan, do häs De en Liss met de Neuste fottjeschmesse Sigge.',
 'dellogpage' => 'Logboch met de fottjeschmesse Sigge',

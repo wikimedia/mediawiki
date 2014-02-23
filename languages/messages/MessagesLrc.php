@@ -177,7 +177,6 @@ $messages = array(
 'vector-action-protect' => 'حمايت بكيد',
 'vector-action-undelete' => 'حذف نبيئني',
 'vector-action-unprotect' => 'حمايت آلشت بكيد',
-'vector-simplesearch-preference' => 'یه گل اوزار پی جوری ساده نه دروس بکید',
 'vector-view-create' => 'راس كردن',
 'vector-view-edit' => 'ويرايشت',
 'vector-view-history' => 'ديئن ويرگار',
@@ -1569,6 +1568,7 @@ $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'days' => '{{جمی:$1|1$ روز|$1 روز}}',
+'months' => '{{جمی:$1|$1 ما|$1 مایا}}',
 'years' => '{{جمی:$1|$1 سال|$1 سال}}',
 
 # Human-readable timestamps

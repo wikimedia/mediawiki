@@ -863,7 +863,7 @@ Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerk
 
 # Change password dialog
 'changepassword' => 'Endre passord',
-'resetpass_announce' => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
+'resetpass_announce' => 'For å fullføre innloggingen må du angi et nytt passord.',
 'resetpass_text' => '<!-- Legg til tekst her -->',
 'resetpass_header' => 'Endre passord',
 'oldpassword' => 'Gammelt passord:',
@@ -879,8 +879,13 @@ Vær vennlig å vente $1 før du prøver igjen.',
 'resetpass-submit-cancel' => 'Avbryt',
 'resetpass-wrong-oldpass' => 'Ugyldig midlertidig eller nåværende passord.
 Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.',
+'resetpass-recycled' => 'Vær vennlig å endre passordet til noe annen enn gjeldende passord.',
+'resetpass-temp-emailed' => 'Du logget inn med en midlertidig kode sendt på e-post.
+For å avslutte innloggingen må du angi et nytt passord her:',
 'resetpass-temp-password' => 'Midlertidig passord:',
 'resetpass-abort-generic' => 'Endring av passord har blitt avbrutt av en utvidelse.',
+'resetpass-expired' => 'Passordet ditt har utløpt. Vær vennlig å angi et nytt passord for å logge inn.',
+'resetpass-expired-soft' => 'Passordet ditt har utløpt og må endres. Vær vennlig å angi et nytt passord, eller klikk avbryt for å endre det senere.',
 
 # Special:PasswordReset
 'passwordreset' => 'Tilbakestilling av passord',
@@ -2230,6 +2235,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'deadendpagestext' => 'Følgende sider lenker ikke til andre sider på {{SITENAME}}.',
 'protectedpages' => 'Låste sider',
 'protectedpages-indef' => 'Kun beskyttelser på ubestemt tid',
+'protectedpages-summary' => 'Denne siden viser en liste av eksisterende sider som for tiden er beskyttet. For å se en liste av sider som er beskyttet mot opprettelse, se [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Kun dypbeskyttelse',
 'protectedpages-noredirect' => 'Skjul omdirigeringer',
 'protectedpagesempty' => 'Ingen sider er for øyeblikket låst med disse paramterne.',
@@ -2242,6 +2248,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'protectedpages-unknown-timestamp' => 'Ukjent',
 'protectedpages-unknown-performer' => 'Ukjent bruker',
 'protectedtitles' => 'Beskyttede titler',
+'protectedtitles-summary' => 'Denne siden viser en liste av eksisterende sider som for tiden er beskyttet mot opprettelse. For å se en liste av sider som er beskyttet, se [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Ingen titler beskyttes med disse parameterne for øyeblikket.',
 'listusers' => 'Brukerliste',
 'listusers-editsonly' => 'Vis bare brukere med redigeringer',

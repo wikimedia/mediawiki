@@ -585,7 +585,7 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 
 # Change password dialog
 'changepassword' => 'Cambiar a clau',
-'resetpass_announce' => 'Ha encetato una sesión con una clau temporal que se le ninvió por correu. Por favor, escriba aquí una nueva clau:',
+'resetpass_announce' => 'Ta rematar o inicio de sesión, ha de definir una nueva clau:',
 'resetpass_text' => '<!-- Adiba aquí o testo -->',
 'resetpass_header' => "Cambiar a clau d'a cuenta",
 'oldpassword' => 'Clau antiga:',

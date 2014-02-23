@@ -814,7 +814,7 @@ $2',
 
 # Change password dialog
 'changepassword' => '變更密碼',
-'resetpass_announce' => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
+'resetpass_announce' => '要完成登入，您必須設定一個新密碼。',
 'resetpass_text' => '<!-- 在此處加入文字 -->',
 'resetpass_header' => '變更帳號密碼',
 'oldpassword' => '舊密碼：',
@@ -829,8 +829,12 @@ $2',
 'resetpass-submit-cancel' => '取消',
 'resetpass-wrong-oldpass' => '無效的臨時或現有的密碼。
 您可能已成功地更改了您的密碼，或者已經請求一個新的臨時密碼。',
+'resetpass-recycled' => '請將您的密碼重置為不同一個。',
+'resetpass-temp-emailed' => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼：',
 'resetpass-temp-password' => '臨時密碼：',
 'resetpass-abort-generic' => '擴充元件已中止了更改密碼操作。',
+'resetpass-expired' => '您的密碼已過期。請設置新密碼以登錄。',
+'resetpass-expired-soft' => '您的密碼已過期，現需重置。請設置新密碼以登錄，或點擊取消以稍後重置。',
 
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',
