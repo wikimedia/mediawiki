@@ -240,7 +240,6 @@ class SiteStats {
 			'ss_good_articles',
 			'ss_total_pages',
 			'ss_users',
-			'ss_active_users',
 			'ss_images',
 		) as $member ) {
 			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
@@ -360,7 +359,6 @@ class SiteStatsInit {
 	 * - Boolean: whether to use the master DB
 	 * - DatabaseBase: database connection to use
 	 * @param array $options of options, may contain the following values
-	 * - update Boolean: whether to update the current stats (true) or write fresh (false) (default: false)
 	 * - views Boolean: when true, do not update the number of page views (default: true)
 	 * - activeUsers Boolean: whether to update the number of active users (default: false)
 	 */
@@ -381,12 +379,7 @@ class SiteStatsInit {
 			$counter->views();
 		}
 
-		// Update/refresh
-		if ( $options['update'] ) {
-			$counter->update();
-		} else {
-			$counter->refresh();
-		}
+		$counter->refresh();
 
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
@@ -395,39 +388,21 @@ class SiteStatsInit {
 	}
 
 	/**
-	 * Update the current row with the selected values
+	 * Refresh site_stats.
 	 */
-	public function update() {
-		list( $values, $conds ) = $this->getDbParams();
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'site_stats', $values, $conds, __METHOD__ );
-	}
-
-	/**
-	 * Refresh site_stats. Erase the current record and save all
-	 * the new values.
-	 */
-	public function refresh() {
-		list( $values, $conds, $views ) = $this->getDbParams();
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'site_stats', $conds, __METHOD__ );
-		$dbw->insert( 'site_stats', array_merge( $values, $conds, $views ), __METHOD__ );
-	}
-
-	/**
-	 * Return three arrays of params for the db queries
-	 * @return Array
-	 */
-	private function getDbParams() {
+	protected function refresh() {
 		$values = array(
+			'ss_row_id' => 1,
 			'ss_total_edits' => $this->mEdits,
 			'ss_good_articles' => $this->mArticles,
 			'ss_total_pages' => $this->mPages,
 			'ss_users' => $this->mUsers,
-			'ss_images' => $this->mFiles
+			'ss_images' => $this->mFiles,
+		) + (
+			$this->mViews ? array( 'ss_total_views' => $this->mViews ) : array()
 		);
-		$conds = array( 'ss_row_id' => 1 );
-		$views = array( 'ss_total_views' => $this->mViews );
-		return array( $values, $conds, $views );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->upsert( 'site_stats', $values, 'ss_row_id', $values, __METHOD__ );
 	}
 }
