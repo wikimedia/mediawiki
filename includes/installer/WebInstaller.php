@@ -167,6 +167,9 @@ class WebInstaller extends Installer {
 			foreach ( $rightsProfile as $group => $rightsArr ) {
 				$ls->setGroupRights( $group, $rightsArr );
 			}
+			$fp = fopen("LocalSettings.php","w") ;
+			fwrite($fp,$ls->getText()) ;
+			fclose($fp) ;
 			echo $ls->getText();
 
 			return $this->session;
