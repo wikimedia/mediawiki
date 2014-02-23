@@ -240,7 +240,6 @@ class SiteStats {
 			'ss_good_articles',
 			'ss_total_pages',
 			'ss_users',
-			'ss_active_users',
 			'ss_images',
 		) as $member ) {
 			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
@@ -410,8 +409,8 @@ class SiteStatsInit {
 	public function refresh() {
 		list( $values, $conds, $views ) = $this->getDbParams();
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'site_stats', $conds, __METHOD__ );
-		$dbw->insert( 'site_stats', array_merge( $values, $conds, $views ), __METHOD__ );
+		$row = array_merge( $values, $conds, $views );
+		$dbw->upsert( 'site_stats', $row, $conds, $row, __METHOD__ );
 	}
 
 	/**
