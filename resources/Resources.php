@@ -1333,6 +1333,9 @@ return array(
 		),
 		'position' => 'top',
 	),
+
+	/* MediaWiki UI */
+
 	'mediawiki.ui' => array(
 		'skinStyles' => array(
 			'default' => 'resources/mediawiki.ui/default.less',
@@ -1360,7 +1363,6 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-
 	'oojs-ui' => array(
 		'scripts' => array(
 			'resources/oojs-ui/oojs-ui.js',
