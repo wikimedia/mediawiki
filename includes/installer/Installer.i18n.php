@@ -554,7 +554,8 @@ You have successfully installed MediaWiki.
 The installer has generated a <code>LocalSettings.php</code> file.
 It contains all your configuration.
 
-You will need to download it and put it in the base of your wiki installation (the same directory as index.php). The download should have started automatically.
+You will need to download it and put it in the base of your wiki installation (the same directory as
+index.php). The download should have started automatically.
 
 If the download was not offered, or if you cancelled it, you can restart the download by clicking the link below:
 
@@ -563,6 +564,11 @@ $3
 <strong>Note:</strong> If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
 When that has been done, you can <strong>[$2 enter your wiki]</strong>.",
+	'config-install-done-copied'             => "<strong>Congratulations!</strong>
+You have successfully installed MediaWiki.
+
+The installer has generated and copied the <code>LocalSettings.php</code> file.
+You can now <strong>[$1 enter your wiki]</strong>.",
 	'config-download-localsettings' => 'Download <code>LocalSettings.php</code>',
 	'config-help' => 'help',
 	'config-nofile'     => 'File "$1" could not be found. Has it been deleted?',
@@ -1010,6 +1016,8 @@ See also:
 * $1 is the URL to LocalSettings download
 * $2 is a link to the wiki.
 * $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.',
+	'config-install-done-copied' => 'Parameters:
+* $1 is a link to the wiki.',
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
 	'config-help' => 'This is used in help boxes.
 {{Identical|Help}}',
