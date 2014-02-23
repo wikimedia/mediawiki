@@ -167,6 +167,7 @@ class WebInstaller extends Installer {
 			foreach ( $rightsProfile as $group => $rightsArr ) {
 				$ls->setGroupRights( $group, $rightsArr );
 			}
+
 			echo $ls->getText();
 
 			return $this->session;
