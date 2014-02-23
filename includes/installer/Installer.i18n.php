@@ -551,10 +551,10 @@ Skipping default list.",
 	'config-install-done'             => "<strong>Congratulations!</strong>
 You have successfully installed MediaWiki.
 
-The installer has generated a <code>LocalSettings.php</code> file.
+The installer has generated and copied a <code>LocalSettings.php</code> file.
 It contains all your configuration.
 
-You will need to download it and put it in the base of your wiki installation (the same directory as index.php). The download should have started automatically.
+If found missing, you will need to download it and put it in the base of your wiki installation (the same directory as index.php). The download should have started automatically.
 
 If the download was not offered, or if you cancelled it, you can restart the download by clicking the link below:
 
