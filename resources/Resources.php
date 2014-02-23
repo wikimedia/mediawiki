@@ -50,6 +50,8 @@ return array(
 	// Scripts for the dynamic language specific data, like grammar forms.
 	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
+	/* MediaWiki skin base */
+
 	/**
 	 * Common skin styles, grouped into three graded levels.
 	 *
@@ -72,35 +74,37 @@ return array(
 	 *     Essentially this level is for styles that are common to MonoBook clones. And since practically every skin
 	 *     that currently exists within core is a MonoBook clone, all our core skins currently use this level.
 	 *
-	 * These modules are typically loaded by addModuleStyles which has absolutely no concept of dependency
-	 * management. As a result the skins.common.* modules contain duplicate stylesheet references instead of
-	 * setting 'dependencies' to the lower level the module is based on. For this reason avoid including multiple
-	 * skins.common.* modules into your skin as this will result in duplicate css.
+	 * These modules are typically loaded by addModuleStyles(), which has absolutely no concept of dependency management.
+	 * As a result they contain duplicate stylesheet references instead of setting 'dependencies' to the lower level the
+	 * module is based on. For this reason avoid including more than one of them into your skin as this will result in
+	 * duplicate CSS.
 	 */
-	'skins.common.elements' => array(
+	'mediawiki.skinbase.elements' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/elements.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	'skins.common.content' => array(
+	'mediawiki.skinbase.content' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/elements.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/content.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	'skins.common.interface' => array(
+	'mediawiki.skinbase.interface' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/elements.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/content.css' => array( 'media' => 'screen' ),
+			'resources/mediawiki.skinbase/interface.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	/**
+	 * Basic print styles suitable for all skins.
+	 */
+	'mediawiki.skinbase.print' => array(
+		'styles' => array(
+			'resources/mediawiki.skinbase/print.css' => array( 'media' => 'print' ),
+		),
 	),
 
 	/**
@@ -1280,11 +1284,6 @@ return array(
 		),
 		'position' => 'top', // Temporary hack for legacy support
 	),
-	'mediawiki.legacy.commonPrint' => array(
-		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
 	'mediawiki.legacy.config' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'scripts' => 'common/config.js',
@@ -1333,6 +1332,9 @@ return array(
 		),
 		'position' => 'top',
 	),
+
+	/* MediaWiki UI */
+
 	'mediawiki.ui' => array(
 		'skinStyles' => array(
 			'default' => 'resources/mediawiki.ui/default.less',
@@ -1360,7 +1362,6 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-
 	'oojs-ui' => array(
 		'scripts' => array(
 			'resources/oojs-ui/oojs-ui.js',
