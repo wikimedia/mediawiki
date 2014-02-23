@@ -167,11 +167,22 @@ class WebInstaller extends Installer {
 			foreach ( $rightsProfile as $group => $rightsArr ) {
 				$ls->setGroupRights( $group, $rightsArr );
 			}
+
 			echo $ls->getText();
 
 			return $this->session;
 		}
-
+		
+		if($this->request->getVal( 'page' ) == "Complete") {
+			$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
+			$rightsProfile = $this->rightsProfiles[$this->getVar( '_RightsProfile' )];
+			foreach ( $rightsProfile as $group => $rightsArr ) {
+				$ls->setGroupRights( $group, $rightsArr );
+			}
+			$fp = fopen("LocalSettings.php","w") ;
+			fwrite($fp,$ls->getText()) ;
+			fclose($fp) ;
+		}
 		$cssDir = $this->request->getVal( 'css' );
 		if ( $cssDir ) {
 			$cssDir = ( $cssDir == 'rtl' ? 'rtl' : 'ltr' );
@@ -267,6 +278,8 @@ class WebInstaller extends Installer {
 		# Execute the page.
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
+		//tries to automatically copy the LocalSettings.php file
+		//to the desired location.
 
 		if ( $page->isSlow() ) {
 			$this->disableTimeLimit();
