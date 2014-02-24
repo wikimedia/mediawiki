@@ -415,7 +415,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		global $wgBlockCIDRLimit;
 
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
+			$this->getRequireMaxOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(
 				array(
 					'code' => 'cidrtoobroad',
