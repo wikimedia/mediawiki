@@ -582,6 +582,9 @@ Për piasì, ch'a speta $1 prima ëd prové torna.",
 'suspicious-userlogout' => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador rot o da l'archiviassion an local d'un prëstanòm.",
 'createacct-another-realname-tip' => "Ël nòm ver a l'é opsional.
 S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò travaj.",
+'pt-login' => 'Rintré ant ël sistema',
+'pt-createaccount' => 'Creé un cont',
+'pt-userlogout' => 'Seurte dal sistema',
 
 # Email sending
 'php-mail-error-unknown' => 'Eror pa conossù ant la funsion mail() ëd PHP.',

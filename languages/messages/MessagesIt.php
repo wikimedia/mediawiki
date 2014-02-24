@@ -27,6 +27,7 @@
  * @author Danmaz74
  * @author Darth Kule
  * @author DexterMorgan
+ * @author Diana
  * @author F. Cosoleto
  * @author FRacco
  * @author Felis
@@ -828,6 +829,9 @@ Attendi $1 e riprova in seguito.',
 'loginlanguagelabel' => 'Lingua: $1',
 'suspicious-userlogout' => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 'createacct-another-realname-tip' => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
+'pt-login' => 'Entra',
+'pt-createaccount' => 'Registrati',
+'pt-userlogout' => 'Esci',
 
 # Email sending
 'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
@@ -836,7 +840,7 @@ Attendi $1 e riprova in seguito.',
 
 # Change password dialog
 'changepassword' => 'Cambia password',
-'resetpass_announce' => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
+'resetpass_announce' => 'Per completare la registrazione, è necessario impostare una nuova password.',
 'resetpass_text' => '<!-- Aggiungere il testo qui -->',
 'resetpass_header' => "Cambia la password dell'account",
 'oldpassword' => 'Vecchia password:',
@@ -852,8 +856,12 @@ Attendi $1 e riprova in seguito.',
 'resetpass-submit-cancel' => 'Annulla',
 'resetpass-wrong-oldpass' => 'Password temporanea o attuale non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
+'resetpass-recycled' => 'Si prega di reimpostare con una password diversa dalla password attuale.',
+'resetpass-temp-emailed' => "L'accesso è stato effettuato con un codice temporaneo, inviato via email. Per completare la registrazione, è necessario impostare una nuova password:",
 'resetpass-temp-password' => 'Password temporanea:',
 'resetpass-abort-generic' => "La modifica della password è stata interrotta da un'estensione.",
+'resetpass-expired' => "La password è scaduta. Si prega di impostare una nuova password per effettuare l'accesso.",
+'resetpass-expired-soft' => 'La tua password è scaduta e deve essere reimpostata. Si prega di scegliere una nuova password o fare clic su annulla per reimpostarla successivamente.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',

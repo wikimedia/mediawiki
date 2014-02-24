@@ -788,6 +788,9 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'loginlanguagelabel' => 'Rimay: $1',
 'suspicious-userlogout' => "Lluqsiy mañakuyniykiqa mananchasqam karqan, waqllisqa wamp'unamanta icha pakaq proksimanta kachasqa kaspanchá.",
 'createacct-another-realname-tip' => "* Chiqap sutiqa munanallapaqmi. Quwaptiykiqa, llamk'apusqakunam paywan sananchasqa kanqa.",
+'pt-login' => 'Yaykuy',
+'pt-createaccount' => 'Musuq rakiqunata kichariy',
+'pt-userlogout' => 'Lluqsiy',
 
 # Email sending
 'php-mail-error-unknown' => 'Mana riqsisqa pantasqa PHP mail() rurananpi',
@@ -796,7 +799,7 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 
 # Change password dialog
 'changepassword' => 'Yaykuna rimata hukchay',
-'resetpass_announce' => "E-chaskiwan kachasqa mit'alla yaykuna rimawanmi yaykurqunki. Ama hina kaspa, musuq yaykuna rimaykita qillqamuy:",
+'resetpass_announce' => "E-chaskiwan kachasqa mit'alla yaykuna rimawanmi yaykurqunki. Yaykunaykita tukunaykipaqqa, musuq yaykuna rimaykita churay:",
 'resetpass_text' => '<!-- Añada texto aquí -->',
 'resetpass_header' => 'Yaykuna rimata hukchay',
 'oldpassword' => "Mawk'a yaykuna rima:",
@@ -1619,6 +1622,7 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'recentchanges-label-minor' => "Kayqa aslla llamk'apuymi",
 'recentchanges-label-bot' => "Kayqa rurana antachap llamk'apusqanmi",
 'recentchanges-label-unpatrolled' => "Kay llamk'apusqaqa manaraqmi patrullasqachu",
+'recentchanges-legend-heading' => "'''Sut'ichana:'''",
 'recentchanges-legend-newpage' => "([[Special:NewPages|musuq p'anqakunatapas]] qhaway)",
 'rcnotefrom' => "Kay qatiqpiqa '''$2'''-mantapacha ('''$1'''-kama) hukchasqakunatam rikunki.",
 'rclistfrom' => '$1-manta musuq hukchasqakunata rikuchiy',
@@ -2088,7 +2092,16 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'protectedpages' => "Amachasqa p'anqakuna",
 'protectedpages-indef' => 'Wiñaypaq amachasqakuna chaylla',
 'protectedpages-cascade' => 'Phaqchallallapi amachay',
+'protectedpages-noredirect' => 'Pusapunakunata pakay',
 'protectedpagesempty' => "Kay kuskanachina tupukunawan amachasqa p'anqakunaqa manam kachkanchu.",
+'protectedpages-timestamp' => "Pacha q'illpay",
+'protectedpages-page' => "P'anqa",
+'protectedpages-expiry' => 'Puchukan',
+'protectedpages-performer' => 'Amachaq ruraq',
+'protectedpages-params' => 'Amachanapaq kuskanachina tupukuna',
+'protectedpages-reason' => 'Kayrayku',
+'protectedpages-unknown-timestamp' => 'Mana riqsisqa',
+'protectedpages-unknown-performer' => 'Mana riqsisqa ruraq',
 'protectedtitles' => "Amachasqa p'anqa sutikuna",
 'protectedtitlesempty' => "Manam kachkanchu kay kuskanachina tupukunawan amachasqa p'anqakuna.",
 'listusers' => 'Tukuy ruraqkuna',
@@ -2802,6 +2815,7 @@ Ama hina kaspa, [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'allmessages-prefix' => "Ch'illchina, ñawpaq k'askaqkama:",
 'allmessages-language' => 'Rimay:',
 'allmessages-filter-submit' => 'Riy',
+'allmessages-filter-translate' => "T'ikray",
 
 # Thumbnails
 'thumbnail-more' => 'Hatunchay',
@@ -3635,6 +3649,10 @@ Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy
 'imgmultigo' => 'Riy!',
 'imgmultigoto' => "$1 sutiyuq p'anqaman riy",
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(kikinmanta rimay)',
+'img-lang-go' => 'Riy',
+
 # Table pager
 'ascending_abbrev' => 'wich',
 'descending_abbrev' => 'uray',
@@ -3711,8 +3729,17 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'version-hook-subscribedby' => 'Kay runap mañaykusqan:',
 'version-version' => '(Musuqchasqa $1)',
 'version-license' => 'Saqillay',
+'version-ext-license' => 'Saqillay',
+'version-ext-colheader-name' => "Mast'ariy",
+'version-ext-colheader-version' => 'Musuqchasqa',
+'version-ext-colheader-license' => 'Saqillay',
+'version-ext-colheader-description' => "T'iktuna",
+'version-ext-colheader-credits' => 'Ruraqkuna',
+'version-license-title' => '$1-paq saqillay',
+'version-credits-title' => '$1-paq añayniy',
 'version-poweredby-credits' => "Kay wikitaqa '''[https://www.mediawiki.org/ MediaWiki-m]''' atichin, copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'hukkuna',
+'version-poweredby-translators' => "translatewiki.net t'ikraqkuna",
 'version-credits-summary' => "Kay qatiqpi runakunatam [[Special:Version|MediaWiki]] nisqapaq llamk'apusqankunapaq riqsichiyta munayku.",
 'version-license-info' => "MediaWiki llamp'u kaqqa qispim; mast'ariytam icha wakinchaytam atinki GNU General Public License nisqa saqillaypa kamachisqankama, Free Software Foundation nisqap uyaychasqan; saqillaypa iskay ñiqin musuqchasqan, munaspaykiqa aswan musuq musuqchasqan.
 
@@ -3733,6 +3760,7 @@ MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIY
 'redirect-lookup' => 'Maskay:',
 'redirect-value' => 'Chani:',
 'redirect-user' => 'Ruraqpa kikin kaynin',
+'redirect-page' => "P'anqap ID-nin",
 'redirect-revision' => "P'anqamanta musuqchasqa",
 'redirect-file' => 'Willañiqip sutin',
 'redirect-not-exists' => 'Chaniqa manam tarisqachu',
@@ -3750,6 +3778,7 @@ MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIY
 
 # Special:SpecialPages
 'specialpages' => "Sapaq p'anqakuna",
+'specialpages-note-top' => "Sut'ichana",
 'specialpages-note' => '* Sapsipaq sapaq p\'anqakuna.
 * <span class="mw-specialpagerestricted">Sapaqkunallapaq sapaq p\'anqakuna.</span>',
 'specialpages-group-maintenance' => 'Hatalliy willaykuna',
@@ -3956,7 +3985,11 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'expandtemplates' => "Plantillakunata mast'ariy",
 'expand_templates_input' => 'Yaykuchina qillqa:',
 'expand_templates_output' => 'Lluqsiynin:',
+'expand_templates_xml_output' => 'XML lluqsichiy',
+'expand_templates_html_output' => 'Chawa HTML lluqsichiy',
+'expand_templates_ok' => 'Arí niy',
 'expand_templates_remove_comments' => 'Willapusqakunata qichuy',
+'expand_templates_generate_rawhtml' => 'Chawa HTML-ta rikuchiy',
 'expand_templates_preview' => 'Ñawpaqta qhawallay',
 
 # Unknown messages

@@ -837,6 +837,9 @@ Vă rugăm să așteptați $1 până să reîncercați.',
 'suspicious-userlogout' => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
 'createacct-another-realname-tip' => 'Numele real este opțional.
 Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatorului munca sa.',
+'pt-login' => 'Autentificare',
+'pt-createaccount' => 'Creare cont',
+'pt-userlogout' => 'Închide sesiunea',
 
 # Email sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',

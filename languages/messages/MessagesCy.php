@@ -647,6 +647,9 @@ Oedwch $1 cyn mentro eto.',
 'suspicious-userlogout' => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
 'createacct-another-realname-tip' => "Gallwch ddewis roi eich enw go iawn.
 Os y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
+'pt-login' => 'Mewngofnodwch',
+'pt-createaccount' => 'Creu cyfri',
+'pt-userlogout' => 'Allgofnodi',
 
 # Email sending
 'php-mail-error-unknown' => 'Gwall anhysbys yng ngweithrediad post() PHP',
@@ -655,22 +658,27 @@ Os y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
 
 # Change password dialog
 'changepassword' => 'Newid y cyfrinair',
-'resetpass_announce' => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
-Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
+'resetpass_announce' => 'I orffen mewngofnodi, rhaid i chi bennu cyfrinair newydd.',
 'resetpass_header' => 'Newid cyfrinair y cyfrif',
 'oldpassword' => 'Hen gyfrinair:',
 'newpassword' => 'Cyfrinair newydd:',
 'retypenew' => 'Ail-deipiwch y cyfrinair newydd:',
 'resetpass_submit' => 'Gosod y cyfrinair a mewngofnodi',
 'changepassword-success' => "Llwyddodd y newid i'ch cyfrinair!",
+'changepassword-throttled' => 'Rydych wedi ceisio logio mewn yn rhy aml.
+Arhoswch am $1 cyn trio eto.',
 'resetpass_forbidden' => 'Ni ellir newid cyfrineiriau',
 'resetpass-no-info' => 'Ni allwch fynd at y dudalen hon yn uniongyrchol heblaw eich bod wedi mewngofnodi.',
 'resetpass-submit-loggedin' => 'Newidier y cyfrinair',
 'resetpass-submit-cancel' => 'Diddymu',
 'resetpass-wrong-oldpass' => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
+'resetpass-recycled' => 'Ailosodwch eich cyfrinair os gwelwch yn dda i rywbeth heblaw eich cyfrinair cyfredol.',
+'resetpass-temp-emailed' => "Rydych wedi mewngofnodi gyda chod dros dro. I gwbwlhau hyn, mae'n rhaid i chi ailosod eich cyfrinair yma:",
 'resetpass-temp-password' => 'Cyfrinair dros dro:',
 'resetpass-abort-generic' => 'Mae estyniad wedi atal newid y cyfrinair.',
+'resetpass-expired' => 'Mae oes eich cyfrinair wedi dod i ben. Gosodwch gyfrinair newydd i fewngofnodi.',
+'resetpass-expired-soft' => "Mae eich cyfrinair wedi dod i ben ac mae'n rhaid ei ailosod. Dewisiwch gyfrinair newydd sbon nawr, neu ailosodwch ef rywdro eto.",
 
 # Special:PasswordReset
 'passwordreset' => 'Ailosod cyfrinair',
@@ -714,6 +722,8 @@ Y cyfrinair dros dro: $2",
 'changeemail-password' => 'Eich cyfrinair ar {{SITENAME}}:',
 'changeemail-submit' => 'Newidier y cyfeiriad e-bost',
 'changeemail-cancel' => 'Diddymer',
+'changeemail-throttled' => "'Da chi wedi trio mewngofnodi gormod o weithiau.
+Daliwch eich gafael am $1 cyn ceisio eto.",
 
 # Special:ResetTokens
 'resettokens' => 'Ailosod tocynnau',
@@ -927,6 +937,8 @@ Mae ar gael yn barod.',
 'content-not-allowed-here' => 'Nid yw cynnwys ar ffurf "$1" yn cael ei ganiatau ar y dudalen [[$2]]',
 'editwarning-warning' => 'Os y gadewch y dudalen hon mae\'n bosib y collwch eich newidiadau iddi.
 Os ydych wedi mewngofnodi gallwch ddiddymu\'r rhybudd hwn yn yr adran "{{int:prefs-editing}}" yn eich dewisiadau.',
+'editpage-notsupportedcontentformat-title' => 'Dydy fformat y cynnwys hwn ddim yn cael ei gefnogi gennym.',
+'editpage-notsupportedcontentformat-text' => 'Dydy fformat y cynnwys ddim yn cael ei gefnogi gan gynnwys model $2.',
 
 # Content models
 'content-model-wikitext' => 'cystrawen wici',
@@ -960,6 +972,7 @@ Cafodd yr argiau hyn eu hepgor.",
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
 'undo-failure' => 'Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.',
 'undo-norev' => "Ni ellid dadwneud y golygiad oherwydd nad yw'n bod neu iddo gael ei ddileu.",
+'undo-nochange' => 'Ymddengys fod y golygiad wedi ei ddadwneud yn barod.',
 'undo-summary' => 'Dadwneud y golygiad $1 gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 'undo-summary-username-hidden' => 'Dadwneud y golygiad $1 gan ddefnyddiwr cudd',
 
@@ -1140,6 +1153,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'showhideselectedversions' => 'Dangos/cuddio y diwygiadau dewisedig',
 'editundo' => 'dadwneud',
 'diff-empty' => '(Dim gwahaniaeth)',
+'diff-multi-sameuser' => 'Mae ({{PLURAL:$1|un golygiad|$1 golygiadau}} gan yr un defnyddiwr heb ei ddangos.',
 'diff-multi-manyusers' => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan mwy na $2 {{PLURAL:$2|o ddefnyddwyr}}.)',
 'difference-missing-revision' => "Ni chafwyd hyd i $1 {{PLURAL:$2|diwygiad|diwygiad|ddiwygiad|diwygiad}} o'r gwahaniaeth ($1) {{PLURAL:$2|hwn}}.
 
@@ -1185,6 +1199,7 @@ Mae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'searchrelated' => 'erthyglau eraill tebyg',
 'searchall' => 'oll',
 'showingresults' => "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
+'showingresultsinrange' => 'Yn cael ei ddangos isod yn y rhediad Showing below up to {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} #<strong>$2</strong> i #<strong>$3</strong>.',
 'showingresultsnum' => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5||Canlyniad '''$1''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''}} ar gyfer '''$4'''",
 'search-nonefound' => "Ni chafwyd dim canlyniadau i'r ymholiad.",
@@ -2194,6 +2209,7 @@ Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos
 'watchmethod-list' => "yn chwilio'r tudalennau ar y rhestr wylio am ddiwygiadau diweddar",
 'watchlistcontains' => '{{PLURAL:$1|Nid oes dim tudalennau|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr wylio.',
 'iteminvalidname' => "Problem gyda'r eitem '$1', enw annilys...",
+'wlnote2' => 'Isod, fe welwch y newidiadau yn yr  {{PLURAL:$1|hour|<strong>$1</strong> awr diwethaf}}, a hynny ar $2, $3.',
 'wlshowlast' => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
 'watchlist-options' => 'Dewisiadau ar gyfer y rhestr wylio',
 
@@ -2769,6 +2785,7 @@ $2',
 'thumbnail_image-type' => "Nid yw'r math hwn o ddelwedd yn cael ei gynnal",
 'thumbnail_gd-library' => 'Mae ffurfwedd y llyfrgell GD yn anghyflawn: y ffwythiant $1 yn eisiau',
 'thumbnail_image-missing' => "Mae'n debyg bod y ffeil yn eisiau: $1",
+'thumbnail_image-failure-limit' => "'Da chi 'di methu gormod o weithiau (\$ neu fwy) i rendro'r ciplun. Ceisiwch eto nes ymlaen.",
 
 # Special:Import
 'import' => 'Mewnforio tudalennau',

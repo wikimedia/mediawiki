@@ -925,6 +925,9 @@ $1待ってから再度試してください。',
 'suspicious-userlogout' => '壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
 'createacct-another-realname-tip' => '本名は省略できます。
 入力すると、その利用者の著作物の帰属表示に使われます。',
+'pt-login' => 'ログイン',
+'pt-createaccount' => 'アカウント作成',
+'pt-userlogout' => 'ログアウト',
 
 # Email sending
 'php-mail-error-unknown' => 'PHPのmail()関数での不明なエラーです。',

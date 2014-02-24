@@ -1324,7 +1324,7 @@ See example: [[Special:UserLogin]]',
 * $1 - a link to the account creation form, and the text of it is {{msg-mw|Nologinlink}}
 {{Identical|Do not have an account}}',
 'nologinlink' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED.
-{{Identical|Create an account}}',
+{{Identical|Create account}}',
 'createaccount' => '{{doc-special|CreateAccount|unlisted=1}}
 {{Identical|Create account}}',
 'gotaccount' => 'Since 1.22 no longer used in core, but may be used by some extensions. DEPRECATED. Parameter:

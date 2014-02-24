@@ -261,8 +261,8 @@ $messages = array(
 'mainpage' => 'سرآسونه',
 'mainpage-description' => 'سرآسونه',
 'policy-url' => 'پروجه:خط و مش',
-'portal' => 'تلگه جمی',
-'portal-url' => 'پروجه:تلگه جمی',
+'portal' => 'درآسونه کومله یکی',
+'portal-url' => 'پروجه:تلگه کومله یکی',
 'privacy' => 'رهبرد رازداری',
 'privacypage' => 'پروجه: خط مشی راز واداشتن',
 

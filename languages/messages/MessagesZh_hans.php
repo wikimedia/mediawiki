@@ -907,6 +907,9 @@ $2',
 'suspicious-userlogout' => '注销请求被拒绝，因为它似乎是由有设计缺陷的浏览器或缓存代理发出的。',
 'createacct-another-realname-tip' => '真实姓名是选填项目。
 如果你选择提供它，它将会用于贡献署名。',
+'pt-login' => '登录',
+'pt-createaccount' => '创建账户',
+'pt-userlogout' => '退出',
 
 # Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 函数中的未知错误',

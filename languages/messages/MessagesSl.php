@@ -737,6 +737,9 @@ Prosimo, počakajte $1, preden poskusite znova.',
 'suspicious-userlogout' => 'Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.',
 'createacct-another-realname-tip' => 'Pravo ime ni obvezno.
 Če se ga odločite navesti, bo uporabljeno za priznavanje uporabnikovega dela.',
+'pt-login' => 'Prijava',
+'pt-createaccount' => 'Ustvari račun',
+'pt-userlogout' => 'Odjava',
 
 # Email sending
 'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',

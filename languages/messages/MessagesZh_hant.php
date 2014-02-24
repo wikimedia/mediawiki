@@ -806,6 +806,9 @@ $2',
 'suspicious-userlogout' => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 'createacct-another-realname-tip' => '真實姓名為選填。
 如果您選擇提供，它將用於貢獻署名。',
+'pt-login' => '登入',
+'pt-createaccount' => '建立帳戶',
+'pt-userlogout' => '登出',
 
 # Email sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',

@@ -905,6 +905,9 @@ $2',
 'suspicious-userlogout' => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
 'createacct-another-realname-tip' => 'Вистинското име е незадолжително.
 Доколку изберете да го внесете, тоа може да се искористи за оддавање на заслуги за Вашата работа.',
+'pt-login' => 'Најава',
+'pt-createaccount' => 'Направи сметка',
+'pt-userlogout' => 'Одјава',
 
 # Email sending
 'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
@@ -1461,7 +1464,7 @@ $1",
 'searchprofile-images-tooltip' => 'Пребарување на податотеки',
 'searchprofile-everything-tooltip' => 'Пребарување по сета содржина (вклучувајќи страници за разговор)',
 'searchprofile-advanced-tooltip' => 'Пребарување во именски простори по избор',
-'search-result-size' => '$1 ({{PLURAL:$2|1 збор|$2 збора}})',
+'search-result-size' => '$1 ({{PLURAL:$2|еден збор|$2 збора}})',
 'search-result-category-size' => '{{PLURAL:$1|1 член|$1 члена}} ({{PLURAL:$2|1 поткатегорија|$2 поткатегории}}, {{PLURAL:$3|1 податотека|$3 податотеки}})',
 'search-result-score' => 'Релевантност: $1%',
 'search-redirect' => '(пренасочување $1)',

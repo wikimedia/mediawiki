@@ -904,6 +904,9 @@ Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
 'suspicious-userlogout' => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 'createacct-another-realname-tip' => 'Skutečné jméno je nepovinné.
 Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.',
+'pt-login' => 'Přihlášení',
+'pt-createaccount' => 'Vytvoření účtu',
+'pt-userlogout' => 'Odhlásit se',
 
 # Email sending
 'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
@@ -912,7 +915,7 @@ Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší pr
 
 # Change password dialog
 'changepassword' => 'Změna hesla',
-'resetpass_announce' => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
+'resetpass_announce' => 'Abyste dokončili přihlášení, musíte si nastavit nové heslo.',
 'resetpass_text' => '<!-- Sem přidejte text -->',
 'resetpass_header' => 'Změna hesla',
 'oldpassword' => 'Staré heslo:',
@@ -928,8 +931,13 @@ Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší pr
 'resetpass-submit-cancel' => 'Storno',
 'resetpass-wrong-oldpass' => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
+'resetpass-recycled' => 'Jako nové heslo si prosím nastavte něco jiného než stávající heslo.',
+'resetpass-temp-emailed' => 'Přihlašujete se dočasným heslem zaslaným e-mailem.
+Abyste dokončili přihlášení, nastavte si zde nové heslo:',
 'resetpass-temp-password' => 'Dočasné heslo:',
 'resetpass-abort-generic' => 'Změna hesla byla zablokována rozšířením.',
+'resetpass-expired' => 'Platnost vašeho hesla vypršela. Pro přihlášení si nastavte nové heslo.',
+'resetpass-expired-soft' => 'Platnost vašeho hesla vypršela, musíte si nastavit nové. Zvolte si nové heslo nebo klikněte na storno a nastavte si ho později.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
@@ -2279,7 +2287,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'protectedpages-unknown-timestamp' => 'Neznámé',
 'protectedpages-unknown-performer' => 'Neznámý uživatel',
 'protectedtitles' => 'Zamčené názvy stránek',
-'protectedtitles-summary' => 'Tato stránka obsahuje seznam názvů, které jsou momentálně zamčeny proti založení. Seznam existujících zamčených stránek najdete na [[{{#special:ProtectedTitles}}]].',
+'protectedtitles-summary' => 'Tato stránka obsahuje seznam názvů, které jsou momentálně zamčeny proti založení. Seznam existujících zamčených stránek najdete na [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'S těmito parametry nejsou zamčeny žádné názvy.',
 'listusers' => 'Uživatelé',
 'listusers-editsonly' => 'Zobrazit pouze uživatele s editacemi',
@@ -3171,6 +3179,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'print.css' => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
 'noscript.css' => '/* Zde uvedené CSS bude ovlivňovat uživatele s vypnutým JavaScriptem */',
 'group-autoconfirmed.css' => '/* Zde uvedené CSS bude ovlivňovat pouze automaticky schválené uživatele */',
+'group-user.css' => '/* Zde uvedené CSS bude ovlivňovat pouze registrované uživatele */',
 'group-bot.css' => '/* Zde uvedené CSS bude ovlivňovat pouze boty */',
 'group-sysop.css' => '/* Zde uvedené CSS bude ovlivňovat pouze správce */',
 'group-bureaucrat.css' => '/* Zde uvedené CSS bude ovlivňovat pouze byrokraty */',
@@ -3182,6 +3191,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'modern.js' => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
 'vector.js' => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
 'group-autoconfirmed.js' => '/* Zde uvedený JavaScript bude použit pouze pro automaticky schválené uživatele */',
+'group-user.js' => '/* Zde uvedený JavaScript bude použit pouze pro registrované uživatele */',
 'group-bot.js' => '/* Zde uvedený JavaScript bude použit pouze pro boty */',
 'group-sysop.js' => '/* Zde uvedený JavaScript bude použit pouze pro správce */',
 'group-bureaucrat.js' => '/* Zde uvedený JavaScript bude použit pouze pro byrokraty */',
@@ -3567,6 +3577,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-compression-2' => '1-rozměrné modifikované Huffmanovo kódování délky běhu CCITT Group 3',
 'exif-compression-3' => 'Kódování faxů CCITT Group 3',
 'exif-compression-4' => 'Kódování faxů CCITT Group 4',
+'exif-compression-6' => 'JPEG (starý)',
 
 'exif-copyrighted-true' => 'Chráněno autorským právem',
 'exif-copyrighted-false' => 'Bez informací o autorských právech',

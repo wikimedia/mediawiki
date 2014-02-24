@@ -938,6 +938,9 @@ Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'suspicious-userlogout' => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 'createacct-another-realname-tip' => 'Echte naam is optioneel.
 Als u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor uw werk.',
+'pt-login' => 'Aanmelden',
+'pt-createaccount' => 'Registreren',
+'pt-userlogout' => 'Afmelden',
 
 # Email sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',

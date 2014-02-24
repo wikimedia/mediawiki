@@ -445,7 +445,7 @@ $messages = array(
 'hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category' => 'Piilotetut luokat',
 'category-subcat-count' => '{{PLURAL:$2|Tässä luokassa on seuraava alaluokka.|{{PLURAL:$1|Seuraava alaluokka kuuluu|Seuraavat $1 alaluokkaa kuuluvat}} tähän luokkaan. Alaluokkien kokonaismäärä luokassa on $2.}}',
-'category-subcat-count-limited' => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
+'category-subcat-count-limited' => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|seuraavat $1 alaluokkaa}}.',
 'category-article-count' => '{{PLURAL:$2|Tässä luokassa on seuraava sivu.|{{PLURAL:$1|Seuraava sivu kuuluu|Seuraavat $1 sivua kuuluvat}} tähän luokkaan. Sivujen kokonaismäärä luokassa on $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Tämä sivu kuuluu|Nämä $1 sivua kuuluvat}} nykyiseen luokkaan.',
 'category-file-count' => '{{PLURAL:$2|Tässä luokassa on seuraava tiedosto.|{{PLURAL:$1|Seuraava tiedosto kuuluu|Seuraavat $1 tiedostoa kuuluvat}} tähän luokkaan. Tiedostoja luokassa on yhteensä $2.}}',
@@ -853,6 +853,9 @@ Odota $1 ennen kuin yrität uudelleen.',
 'suspicious-userlogout' => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 'createacct-another-realname-tip' => 'Vapaaehtoinen.
 Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
+'pt-login' => 'Kirjaudu sisään',
+'pt-createaccount' => 'Luo tunnus',
+'pt-userlogout' => 'Kirjaudu ulos',
 
 # Email sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
@@ -1405,7 +1408,7 @@ $1 {{int:pipe-separator}} $2',
 'searchrelated' => 'samankaltainen',
 'searchall' => 'kaikki',
 'showingresults' => '{{PLURAL:$1|<strong>Yksi</strong> tulos|<strong>$1</strong> tulosta}} tuloksesta <strong>$2</strong> alkaen.',
-'showingresultsinrange' => 'Alla näytetään enintään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong> – <strong>$3</strong>.',
+'showingresultsinrange' => 'Alla näytetään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong> – <strong>$3</strong>.',
 'showingresultsnum' => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'showingresultsheader' => "{{PLURAL:$5|Tulokset '''$1'''–'''$3'''|Tulokset '''$1'''–'''$2''' kaikkiaan '''$3''' osuman joukosta}} haulle '''$4'''",
 'search-nonefound' => 'Hakusi ei tuottanut tulosta.',
@@ -4086,7 +4089,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'feedback-error3' => 'Virhe: Ohjelmointirajapinta ei vastaa',
 'feedback-thanks' => 'Kiitos. Palautteesi on jätetty sivulle [$2 $1].',
 'feedback-close' => 'Valmis',
-'feedback-bugcheck' => 'Hyvä! Varmista, että ohjelmointivirhe ei vielä löydy [$1 tästä listasta].',
+'feedback-bugcheck' => 'Hyvä! Varmista vielä, että ohjelmointivirhettä ei löydy [$1 tunnettujen virheiden luettelosta].',
 'feedback-bugnew' => 'Olen varmistanut. Ilmoitan uuden ohjelmointivirheen',
 
 # Search suggestions
@@ -4130,7 +4133,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-timeout' => 'Palvelin ei vastannut odotetun ajan kuluessa.',
 'api-error-unclassified' => 'Tapahtui tuntematon virhe.',
 'api-error-unknown-code' => 'Tuntematon virhe: $1.',
-'api-error-unknown-error' => 'Sisäinen virhe: Jotain meni vikaan kun tiedostosi yritettiin tallentaa.',
+'api-error-unknown-error' => 'Sisäinen virhe: Jotain meni vikaan kun tiedostoasi yritettiin tallentaa.',
 'api-error-unknown-warning' => 'Tuntematon varoitus: $1.',
 'api-error-unknownerror' => 'Tuntematon virhe: $1.',
 'api-error-uploaddisabled' => 'Tiedostojen tallentaminen ei ole käytössä.',
@@ -4165,10 +4168,11 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Mallineiden laajennus',
-'expand_templates_intro' => 'Tämä toimintosivu ottaa syötteekseen tekstiä ja laajentaa kaikki mallineet rekursiivisesti sekä jäsenninfunktiot, kuten
-<code><nowiki>{{</nowiki>#language:...}}</code>, ja -muuttujat, kuten
+'expand_templates_intro' => 'Tämä toimintosivu ottaa syötteeksi tekstiä ja laajentaa kaikki siinä olevat mallineet rekursiivisesti.
+Se myös laajentaa tuetut parserifunktiot kuten
+<code><nowiki>{{</nowiki>#language:...}}</code> ja -muuttujat kuten
 <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
-Toisin sanoen melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.',
+Käytännössä se laajentaa melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.',
 'expand_templates_title' => 'Otsikko (esimerkiksi muuttujaa {{FULLPAGENAME}} varten)',
 'expand_templates_input' => 'Teksti',
 'expand_templates_output' => 'Tulos',

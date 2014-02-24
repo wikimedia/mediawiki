@@ -966,6 +966,9 @@ Bitte warte $1, bevor du es erneut probierst.',
 'suspicious-userlogout' => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
 'createacct-another-realname-tip' => 'Der bürgerliche Name ist optional.
 Wenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.',
+'pt-login' => 'Anmelden',
+'pt-createaccount' => 'Benutzerkonto erstellen',
+'pt-userlogout' => 'Abmelden',
 
 # Email sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',

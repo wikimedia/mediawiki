@@ -682,6 +682,9 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'suspicious-userlogout' => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 'createacct-another-realname-tip' => 'Napšawdne mě jo opcionalne.
 Jolic jo pódajoš, buźo se to wužywaś, aby pśinoski pśirědowało.',
+'pt-login' => 'Pśizjawiś',
+'pt-createaccount' => 'Konto załožyś',
+'pt-userlogout' => 'Wótzjawiś',
 
 # Email sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',

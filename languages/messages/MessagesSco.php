@@ -194,6 +194,7 @@ $messages = array(
 'namespaces' => 'Namespaces',
 'variants' => 'Variants',
 
+'navigation-heading' => 'Navigâtion menu',
 'errorpagetitle' => 'Error',
 'returnto' => 'Return tae $1.',
 'tagline' => 'Frae {{SITENAME}}',
@@ -217,6 +218,7 @@ $messages = array(
 'deletethispage' => 'Delete this page',
 'undeletethispage' => 'Ondelete this page',
 'undelete_short' => 'Undelete {{PLURAL:$1|ane edit|$1 edits}}',
+'viewdeleted_short' => 'View {{PLURAL:$1|yin deletit eidit|$1 deletit eidits}}',
 'protect' => 'Fend',
 'protect_change' => 'chynge',
 'protectthispage' => 'Fend this page',
@@ -346,6 +348,7 @@ A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:spec
 This micht be cause o ae bug in the saffware.',
 'databaseerror-textcl' => 'Ae database speirin mistak has occurred.',
 'databaseerror-query' => 'Speirin: $1',
+'databaseerror-function' => 'Fwnction: $1',
 'databaseerror-error' => 'Mistake: $1',
 'laggedslavemode' => 'Warning: Page micht nae contain recent updates',
 'readonly' => 'Database lockit',
@@ -557,6 +560,9 @@ Please wait $1 afore trying again.",
 'suspicious-userlogout' => 'Yer request tae log oot wis denied cause it luiks like it wis sent bi ae broken brouser or caching proxy.',
 'createacct-another-realname-tip' => 'Real name is aen optie.
 Gif ye chuise tae provide it, this will be uised fer giein the uiser attreebution fer their wark.',
+'pt-login' => 'Log in',
+'pt-createaccount' => 'Create accoont',
+'pt-userlogout' => 'Log oot',
 
 # Email sending
 'php-mail-error-unknown' => "Onken't mistak in PHP's mail() function.",
@@ -580,6 +586,74 @@ Please wait $1 afore trying again.",
 'resetpass-submit-cancel' => 'Cancel',
 'resetpass-wrong-oldpass' => 'Onvalid temporarie or current passwaird.
 Ye micht hae awreadie been successful in chyngin yer passwaird or requested ae new temporarie passwaird.',
+'resetpass-recycled' => 'Please reset yerr passwaird til sommit ither than yer current passwaird.',
+'resetpass-temp-emailed' => 'Ye loggit in wi ae temperie mailed code.
+Tae finish loggin in, ye maun set ae new passwaird here:',
+'resetpass-temp-password' => 'Temperie passwaird:',
+'resetpass-abort-generic' => 'Passwaird chynge haes been aborted bi aen extension.',
+'resetpass-expired' => 'Yer passwaird haes expired. Please set ae new passwaird tae log-in.',
+'resetpass-expired-soft' => 'Yer passwaird haes expired, an needs tae be reset. Please chuise ae new passwaird nou, or clap oan cancel tae reset it later.',
+
+# Special:PasswordReset
+'passwordreset' => 'Reset passwaird',
+'passwordreset-text-one' => 'Compleate this form tae receive ae temperie passwaird via wab-mail.',
+'passwordreset-text-many' => '{{PLURAL:$1|Fill in yin o the fields tae receive ae temperie passwaird via wab-mail.}}',
+'passwordreset-legend' => 'Reset passwaird',
+'passwordreset-disabled' => 'Passwaird resets hae been disabled oan this wiki.',
+'passwordreset-emaildisabled' => 'Wab-mail features hae been disabled oan this wiki.',
+'passwordreset-username' => 'Uisername:',
+'passwordreset-capture' => 'View the resultin wab-mail?',
+'passwordreset-capture-help' => 'Gif ye check this box, the wab-mail (wi the temperie passwaird) will be shawn til ye an be sent til the uiser ava.',
+'passwordreset-email' => 'Wab-mail address:',
+'passwordreset-emailtitle' => 'Accoont details oan {{SITENAME}}',
+'passwordreset-emailtext-ip' => "Somebodie (likely ye, fae IP address $1) requested ae reset o yer passwaird fer {{SITENAME}} ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}}
+associated wi this wab-mail address:
+
+$2
+
+{{PLURAL:$3|This temperie passwaird|These temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
+Ye shid log in an chuise ae new passwaird nou. Gif some ither bodie made this request, or gif ye'v mynded yer oreeginal passwaird, an ye nae longer
+wish tae chynge it, ye can ignore this message an continue uising yer auld passwaird.",
+'passwordreset-emailtext-user' => "Uiser $1 oan {{SITENAME}} requested ae reset o yer passwaird fer {{SITENAME}}
+($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}} associated wi this wab-mail address:
+
+$2
+
+{{PLURAL:$3|This temperie passwaird|These temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
+Ye shid log in an chuise ae new password nou. Gif some ither bodie made this request, or gif ye'v mynded yer oreeginal passwaird, an ye nae longer wish tae chynge it, ye can ignore this message an continue uisin yer auld
+passwaird.",
+'passwordreset-emailelement' => 'Uisername: $1
+Temperie passwaird: $2',
+'passwordreset-emailsent' => 'Ae passwaird reset wab-mail haes been sent.',
+'passwordreset-emailsent-capture' => 'Ae passwaird reset wab-mail haas been sent, this is shawn ablow.',
+'passwordreset-emailerror-capture' => 'Ae passwaird reset wab-mail wis generated, (this is shawn ablow), but sendin it til the {{GENDER:$2|uiser}} failed: $1',
+
+# Special:ChangeEmail
+'changeemail' => 'Chynge wab-mail address',
+'changeemail-header' => 'Chynge accoont wab-mail address',
+'changeemail-text' => 'Compleate this form tae chynge yer wab-mail address. Ye will need tae enter yer passwaird tae confirm this chynge.',
+'changeemail-no-info' => 'Ye maun be loggit in tae access this page directly.',
+'changeemail-oldemail' => 'Current wab-mail address:',
+'changeemail-newemail' => 'New wab-mail address:',
+'changeemail-none' => '(nane)',
+'changeemail-password' => 'Yer {{SITENAME}} passwaird:',
+'changeemail-submit' => 'Chynge wab-mail',
+'changeemail-cancel' => 'Cancel.',
+'changeemail-throttled' => "Ye'v made ower moni recent login attempts.
+Please wait $1 afore trying again.",
+
+# Special:ResetTokens
+'resettokens' => 'Reset tokens.',
+'resettokens-text' => 'Ye can reset tokens that permit ye access til certain private data associated wi yer accoont here.
+
+Ye shid dae it gif ye accidentally shaired theim wi somebodie or gif yer accoont haes been compromised.',
+'resettokens-no-tokens' => 'Thaur ar nae tokens tae reset.',
+'resettokens-legend' => 'Reset tokens.',
+'resettokens-tokens' => "Tokens':",
+'resettokens-token-label' => '$1 (value the nou: $2)',
+'resettokens-watchlist-token' => 'Token fer the wab feed (Atom/RSS) o [[Special:Watchlist|chynges til pages oan yer watchleet]]',
+'resettokens-done' => "Tokens' reset.",
+'resettokens-resetbutton' => 'Reset selected tokens.',
 
 # Edit page toolbar
 'bold_sample' => 'Bauld text',
@@ -612,6 +686,7 @@ Ye micht hae awreadie been successful in chyngin yer passwaird or requested ae n
 'showlivepreview' => 'Live leuk ower',
 'showdiff' => 'Shaw chynges',
 'anoneditwarning' => "Ye arna loggit in. Yer IP address will be recordit in this page's edit history.",
+'anonpreviewwarning' => "<em>Ye'r no loggit in. hainin will record yer IP address in this page's eidit history.</em>",
 'missingsummary' => "'''Mynd:''' Ye hivna gien an edit summary. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
 'missingcommenttext' => 'Please enter a comment ablo.',
 'missingcommentheader' => '<strong>Mynd:</strong> Ye\'v no provided ae subject/headline fer this comment.
@@ -671,7 +746,14 @@ Ye can [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages,
  or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].</span>',
 'noarticletext-nopermission' => 'There isna oni tex in this page the nou.
 Ye can [[Special:Search/{{PAGENAME}}|rake fer this page title]] in ither pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the relatit logs]</span>, but ye dina hae permeession tae create this page.',
+'missing-revision' => 'The revision #$1 o the page named "{{PAGENAME}}" disna exist.
+
+This is usually caused bi follaein aen ootdated histerie link til ae page that haes been deletit.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'userpage-userdoesnotexist' => 'Uiser accoont "<nowiki>$1</nowiki>" hasnae been registerit. Please check gin ye wint tae mak or edit this page.',
+'userpage-userdoesnotexist-view' => 'Uiser accoont "$1" isna registered.',
+'blocked-notice-logextract' => 'This uiser is currently blockit.
+The latest block log entry is provided ablow fer reference:',
 'clearyourcache' => "<strong>Tak tent:</strong> Efter hainin, ye micht hae tae bypass yer brouser's cache tae see the chynges.
 * <strong>Firefox / Safari:</strong> Hold <em>Shift</em> while clapin <em>Relaid</em>, or press either <em>Ctrl-F5</em> or <em>Ctrl-R</em> (<em>⌘-R</em> on a Mac)
 * <strong>Google Chrome:</strong> Press <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> on a Mac)
@@ -682,11 +764,16 @@ Ye can [[Special:Search/{{PAGENAME}}|rake fer this page title]] in ither pages, 
 'usercsspreview' => "<strong>Mynd that ye'r yinly previewing yer uiser CSS.
 It haesna been hained yet!</strong>",
 'userjspreview' => "'''Mynd that ye're juist testin/previewing yer uiser JavaScript; it haesna been hained yet!'''",
+'sitecsspreview' => "<strong>Mynd that ye'r yinly previewing this CSS.
+It's no been hained yet!</strong>",
+'sitejspreview' => "<strong>Mynd that ye'r yinly previewing this JavaScript code.
+It's no been hained yet!</strong>",
 'userinvalidcssjstitle' => "'''Warnin:''' There isnae a skin \"\$1\". Mynd that yer ain .css an .js pages uise a lowercase teetle, e.g. {{ns:user}}:Foo/vector.css instead o {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Updatit)',
 'note' => "'''Mynd:'''",
 'previewnote' => '<strong>Mynd that this is yinly ae scænce-ower.</strong>
 Yer chynges hae no been hained yet!',
+'continue-editing' => 'Gae til eiditing area',
 'previewconflict' => 'This scance reflects the text in the upper text editin area like it will kythe gin ye chuise tae save.',
 'session_fail_preview' => "'''Sairy! We culdnae process yer edit acause o a loss o term data.
 Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.'''",
@@ -699,7 +786,9 @@ Gif it still disna wairk, try [[Special:UserLogout|loggin oot]] an loggin back i
 'token_suffix_mismatch' => "'''Yer edit haes been rejectit acause yer client made a richt mess o the punctuation characters
 in the edit token. The edit haes been rejectit tae hinder corruption o the page text.
 This whiles happens when ye are uisin a bruken web-based anonymous proxy service.'''",
+'edit_form_incomplete' => '<strong>Some pairts o the eidit form didna reach the server; dooble-check that yer eidits ar intact an try again.</strong>',
 'editing' => 'Editin $1',
+'creating' => 'Makin $1',
 'editingsection' => 'Editin $1 (section)',
 'editingcomment' => 'Editin $1 (new section)',
 'editconflict' => 'Edit conflict: $1',
@@ -730,6 +819,8 @@ The latest log entry is provided ablow fer reference:',
 'semiprotectedpagewarning' => '<strong>Note:</strong> This page haes been protected sae that yinly registered uisers can eidit it.
 The latest log entry is provided ablow fer reference:',
 'cascadeprotectedwarning' => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:",
+'titleprotectedwarning' => '<strong>Warnishment: This page haes been protected sae that [[Special:ListGroupRights|speecific richts]] ar needed tae create it.</strong>
+The latest log entry is provided ablow fer reference:',
 'templatesused' => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview' => '{{PLURAL:$1|Template|Templates}} uised in this scænce-ower:',
 'templatesusedsection' => '{{PLURAL:$1|Template|Templates}} uised in this section:',
@@ -739,6 +830,8 @@ The latest log entry is provided ablow fer reference:',
 'nocreatetext' => '{{SITENAME}} haes restricted the ability tae mak new pages.
 Ye can gae back an edit aen existing page, or [[Special:UserLogin|log in or mak aen accoont]].',
 'nocreate-loggedin' => 'Ye dinnae hae the richts tae mak new pages.',
+'sectioneditnotsupported-title' => 'Section eiditin isna supported',
+'sectioneditnotsupported-text' => 'Section eiditing isna supported in this page.',
 'permissionserrors' => 'Permission mistak',
 'permissionserrorstext' => 'Ye dinnae hae the richts tae dae that, acause o the followin {{PLURAL:$1|grund|grunds}}:',
 'permissionserrorstext-withaction' => 'Ye dinna hae the richts tae $2, for the follaein {{PLURAL:$1|reason|reasons}}:',
@@ -748,28 +841,67 @@ Ye shuld check that it is guid tae keep editin this page.
 The deletion and flit log for this page is providit here:",
 'moveddeleted-notice' => 'This page haes bin deletit. 
 The deletion and flit log fur the page are provided below fur reference.',
+'log-fulllog' => 'View ful log',
+'edit-hook-aborted' => 'Eidit aborted bi huik.
+It gae naw explanation.',
+'edit-gone-missing' => 'Coudna update the page.
+It appears tae hae been deletit.',
+'edit-conflict' => 'Eidit conflict.',
+'edit-no-change' => 'Yer eidit wis ignored cause nae chynge wis made til the tex.',
+'postedit-confirmation' => 'Yer eidit wis hained.',
+'edit-already-exists' => 'Coudna mak ae new page.
+It awreadie exists.',
+'defaultmessagetext' => 'Defaut message tex',
+'content-failed-to-parse' => 'Failed tae parse $2 content fer $1 model: $3',
+'invalid-content-data' => 'Onvalid content data',
+'content-not-allowed-here' => '"$1" content isna permited oan the page [[$2]]',
 'editwarning-warning' => 'Leain this page micht cause ye tae lose oni chynges ye\'v made.
 Gif ye\'r loggit in, ye can disable this warning in the "{{int:prefs-editing}}" section o yer preferences.',
+'editpage-notsupportedcontentformat-title' => 'Content format isna supported',
+'editpage-notsupportedcontentformat-text' => 'The content format $1 isna supported bi the content model $2.',
+
+# Content models
+'content-model-wikitext' => 'wikitex',
+'content-model-text' => 'plain tex',
 
 # Parser/template warnings
+'expensive-parserfunction-warning' => '<strong>Warnishment:</strong> This page contains ower moni expensive parser function caws.
+
+It shid hae less than $2 {{PLURAL:$2|caw|caws}}, thaur {{PLURAL:$1|is nou $1 caw|ar noo $1 caws}}.',
+'expensive-parserfunction-category' => 'Pages wi ower moni expensive parser function caws',
 'post-expand-template-inclusion-warning' => "'''Wairnin:''' Template include size is tae lairge. 
 Some templates wull nae be included.",
 'post-expand-template-inclusion-category' => 'Pages whaur template include size is exceeded',
 'post-expand-template-argument-warning' => 'Tak tent: This page hauds at least the ae template argument that haes an ower muckle expansion size.
 Thir arguments hae been left oot.',
 'post-expand-template-argument-category' => 'Pages containing omitted template arguments',
+'parser-template-loop-warning' => 'Template luip detected: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Template recursion depth limit owershote ($1)',
+'language-converter-depth-warning' => 'Leid converter depth limit owershote ($1)',
+'node-count-exceeded-category' => 'Pages whaur node-coont is owershote',
+'node-count-exceeded-warning' => 'Page owershote the node-coont',
+'expansion-depth-exceeded-category' => 'Pages whaur expansion depth is owershote',
+'expansion-depth-exceeded-warning' => 'Page owershote the expansion depth',
+'parser-unstrip-loop-warning' => 'Unstrip luip detected',
+'parser-unstrip-recursion-limit' => 'Unstrip recursion limit owershote ($1)',
+'converter-manual-rule-error' => 'mistak detected in manual leid conversion rule',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the chynges albo tae check that this is whit ye wint tae dae, an then hain the chynges albo tae be duin undooin the edit.',
 'undo-failure' => 'The edit culdnae be undone acause o conflictin edits inatween.',
+'undo-norev' => 'The eidit coudna be ondone cause it disna exist or wis deletit.',
 'undo-nochange' => 'The edit appears tae hae awready been ondone.',
 'undo-summary' => 'Undo reveision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
+'undo-summary-username-hidden' => 'Ondae revision $1 bi ae hidden uiser',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Canna mak accoont',
 'cantcreateaccount-text' => "Accoont makkin frae this IP address ('''$1''') haes been blockit by [[User:$3|$3]].
 
 The grund for this, given by $3 is ''$2''",
+'cantcreateaccount-range-text' => "Accoont creation fae IP addresses in the range '''$1''', that inclædes yer IP address ('''$4'''), haes been blockit bi [[User:$3|$3]].
+
+The raison gien bi $3 is ''$2''",
 
 # History pages
 'viewpagelogs' => 'Leuk at logs for this page',
@@ -806,37 +938,150 @@ Try [[Special:Search|rakin on the wiki]] for new pages ye micht be interestit in
 'rev-deleted-comment' => '(eidit summarie remuived)',
 'rev-deleted-user' => '(uisername removit)',
 'rev-deleted-event' => '(log action remuived)',
+'rev-deleted-user-contribs' => '[uisername or IP address remuived - eidit hidden fae contreebutions]',
 'rev-deleted-text-permission' => 'This page revision haes been <strong>deletit</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
+'rev-deleted-text-unhide' => 'This page revision haes been <strong>deletit</strong>.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
+Ye can still [$1 view this revision] gif ye wish tae proceed.',
+'rev-suppressed-text-unhide' => 'This page revision haes been <strong>suppressed</strong>.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
+Ye can still [$1 view this revision] gif ye wish tae proceed.',
 'rev-deleted-text-view' => 'This page revision haes been <strong>deletit</strong>.
 You can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
+'rev-suppressed-text-view' => 'This page revision haes been <strong>suppressed</strong>.
+Ye can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
+'rev-deleted-no-diff' => 'Ye canna view this diff cause yin o the revisions haes been <strong>deletit</strong>.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
+'rev-suppressed-no-diff' => 'Ye cannae view this diff cause yin o the revisions haes been <strong>deletit</strong>.',
+'rev-deleted-unhide-diff' => 'Yin o the revisions o this diff haes been <strong>deletit</strong>.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
+Ye can still [$1 view this diff] gif ye wish tae proceed.',
+'rev-suppressed-unhide-diff' => 'Yin o the revisions o this diff haes been <strong>suppressed</strong>.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
+Ye can still [$1 view this diff] gif you wish to proceed.',
+'rev-suppressed-diff-view' => 'Yin o the revisions o this diff haes been <strong>suppressed</strong>.
+Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
 'rev-delundel' => 'shaw/scug',
+'rev-showdeleted' => 'shaw',
 'revisiondelete' => 'Delete/undelete revisions',
 'revdelete-nooldid-title' => 'Onvalid target revision',
+'revdelete-nooldid-text' => "Ye'v either no speecified ae target reveesion(s) tae perform this function, the speecified revision disna exist, or ye'r attempting te hide the current reveesion.",
+'revdelete-no-file' => 'The file speecified disna exist.',
+'revdelete-show-file-confirm' => 'Ar ye sair ye wish tae view ae deletit reveesion o the file "<nowiki>$1</nowiki>" fae $2 at $3?',
+'revdelete-show-file-submit' => 'Ai',
+'revdelete-selected' => '<strong>{{PLURAL:$2|Selected reveesion|Selected reveesions}} o [[:$1]]:</strong>',
+'revdelete-text' => '<strong>Deletit revisions an events will still appear in the page histerie an logs, but pairts o their content will be onaccessible til the public.</strong>
+Ither admeenistraters oan {{SITENAME}} will still be able tae access the hidden content an can ondelete it again through this same interface, onless addeetional restrictions ar set.',
+'revdelete-confirm' => "Please confirm that ye'r ettlin tae dae this, that ye unnerstaunn the consequences, an that ye'r daein this in accordance wi [[{{MediaWiki:Policy-url}}|the policie]].",
+'revdelete-suppress-text' => 'Suppression shid <strong>yinly</strong> be uised fer the follaein cases:
+* poteentially libeloos information
+* onappropriate personal information
+*: <em>hame addresses an telephane nummers, national ideentification nummers, etc.</em>',
+'revdelete-legend' => 'Set visibeelitie restreections',
+'revdelete-hide-text' => 'Reveesion tex',
+'revdelete-hide-image' => 'Hide file content.',
+'revdelete-hide-name' => 'Hide aiction an target',
+'revdelete-hide-comment' => 'Eidit summarie',
+'revdelete-hide-user' => "Eiditor's uisername/IP address",
+'revdelete-hide-restricted' => 'Suppress data fae admeenistraters aes weel aes ithers',
+'revdelete-radio-same' => '(dinna chynge)',
 'revdelete-radio-set' => 'Hidden',
 'revdelete-radio-unset' => 'Visible',
+'revdelete-suppress' => 'Suppress data fae admeenistraters aes weel aes ithers',
+'revdelete-unsuppress' => 'Remuiv restreections oan restored reveesions',
+'revdelete-log' => 'Raison:',
+'revdelete-submit' => 'Applie til selected {{PLURAL:$1|reveesion|reveesions}}',
+'revdelete-success' => '<strong>Reveesion veesibeelitie successfully updated.</strong>',
+'revdelete-failure' => '<strong>Reveesion veesibeelitie coudna be updated:</strong>
+$1',
+'logdelete-success' => '<strong>Log veesibeelitie successfully set.</strong>',
+'logdelete-failure' => '<strong>Log veesibddlitie coudna be set:</strong>
+$1',
 'revdel-restore' => 'change visibility',
 'pagehist' => 'Page history',
+'deletedhist' => 'Deletit histerie',
+'revdelete-hide-current' => 'Mistak hidin the item dated $2, $1: This is the current reveesion.
+It cannna be hidden.',
+'revdelete-show-no-access' => 'Mistak shawin the eitem dated $2, $1: This eitem haes been maurked "restreected".
+Ye dinna hae access til it.',
+'revdelete-modify-no-access' => 'Mistak modifiein the eitem dated $2, $1: This eitem haes been maurked "restreected".
+Ye dinna hae access til it.',
+'revdelete-modify-missing' => 'Mistak modifiein item ID $1: It is missing fae the database!',
+'revdelete-no-change' => '<strong>Warnishment:</strong> The eitem dated $2, $1 awreadie haed the requested veesibeelitie settins.',
+'revdelete-concurrent-change' => "Mistak modifiein the eitem dated $2, $1: Its status appears tae'v been chynged bi some ither bodie while ye attempted tae modifie it.
+Please check the logs.",
+'revdelete-only-restricted' => 'Mistak hidin the item dated $2, $1: Ye canna suppress eitems fae view bi admeenistraters wioot selectin yin o the ither veesibeelitie opties ava.',
+'revdelete-reason-dropdown' => '*Commyn delete raisons
+** Copiericht violation
+** Onappropriate comment or personal information
+** Onappropriate username
+** Potentially libelous information',
+'revdelete-otherreason' => 'Ither/addeetional raison:',
+'revdelete-reasonotherlist' => 'Ither raison',
+'revdelete-edit-reasonlist' => 'Eidit delete raisons',
+'revdelete-offender' => 'Reveesion author:',
+
+# Suppression log
+'suppressionlog' => 'Suppreession log',
+'suppressionlogtext' => 'Ablow is ae leet o deletions an blocks involvin content hidden fae admeenistraters.
+See the [[Special:BlockList|block leet]] fer the leet o currentlie operational bans an blocks.',
 
 # History merging
+'mergehistory' => 'Merge page histeries',
+'mergehistory-header' => 'This page lets ye merge reveesions o the histerie o yin source page intil ae newer page.
+Mak sair that this chynge will maintain historical page conteenuitie.',
+'mergehistory-box' => 'Merge reveesions o twa pages:',
 'mergehistory-from' => 'Soorce page:',
+'mergehistory-into' => 'Destinâtion page:',
+'mergehistory-list' => 'Mergeable eidit history',
+'mergehistory-merge' => 'The follaein revisions o [[:$1]] can be merged intil [[:$2]].
+Uise the radio button column tae merge in yinly the reveesions maed at an afore the speecified time.
+Note that uising the navigâtion links will reset this column.',
+'mergehistory-go' => 'Shaw mergeable eidits',
+'mergehistory-submit' => 'Merge reveesions',
+'mergehistory-empty' => 'Naw reveesions can be merged.',
+'mergehistory-success' => '$3 {{PLURAL:$3|reveesion|reveesions}} o [[:$1]] successfully merged intil [[:$2]].',
+'mergehistory-fail' => 'Onable tae perform histerie merge, please recheck the page an time parameters.',
+'mergehistory-no-source' => 'Source page $1 disna exist.',
+'mergehistory-no-destination' => 'Destinâtion page $1 disna exist.',
+'mergehistory-invalid-source' => 'Source page maun be ae valid title.',
+'mergehistory-invalid-destination' => 'Destinâtion page maun be ae valid title.',
+'mergehistory-autocomment' => 'Merged [[:$1]] intil [[:$2]]',
+'mergehistory-comment' => 'Merged [[:$1]] intil [[:$2]]: $3',
+'mergehistory-same-destination' => 'Soorce an destinâtion pages canna be the same',
 'mergehistory-reason' => 'Raeson:',
 
 # Merge log
+'mergelog' => 'Merge log.',
+'pagemerge-logentry' => 'merged [[$1]] intil [[$2]] (reveesions up til $3)',
 'revertmerge' => 'Unmerge',
+'mergelogpagetext' => 'Ablow is ae leet o the maist recent merges o yin page histerie intil anither.',
 
 # Diffs
 'history-title' => 'Revision histerie o "$1"',
+'difference-title' => 'Difference atween reveesions of "$1"',
+'difference-title-multipage' => 'Difference atween pages "$1" an "$2"',
+'difference-multipage' => '(Difference atween pages)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
+'showhideselectedversions' => 'Chynge veesibeelitie o selected reveesions',
 'editundo' => 'undo',
+'diff-empty' => '(Naw difference)',
 'diff-multi-sameuser' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} bi the same uiser no shown)',
 'diff-multi-otherusers' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} bi {{PLURAL:$2|one other user|$2 users}} not shown)',
+'diff-multi-manyusers' => '({{PLURAL:$1|Yin intermeediate reveesion|$1 intermeediate reveesions}} bi mair than $2 {{PLURAL:$2|uiser|uisers}} no shawn)',
+'difference-missing-revision' => '{{PLURAL:$2|Yin reveesion|$2 reveesions}} o this difference ($1) {{PLURAL:$2|was|were}} na fond.
+
+This is usually caused bi follaein aen ootdated diff link til ae page that haes been deletit.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 
 # Search results
 'searchresults' => 'Rake results',
 'searchresults-title' => 'Rake affcome for "$1"',
+'toomanymatches' => 'Ower moni matches were returned, please try ae different speirin',
 'titlematches' => 'Airticle teitle matches',
+'textmatches' => 'Page tex matches',
 'notextmatches' => 'Nae page text matches',
 'prevn' => 'foregaun {{PLURAL:$1|$1}}',
 'nextn' => 'neist {{PLURAL:$1|$1}}',
@@ -858,10 +1103,16 @@ You can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/delete|
 'searchprofile-advanced-tooltip' => 'Rake in custom namespaces',
 'search-result-size' => '$1 ({{PLURAL:$2|1 word|$2 words}})',
 'search-result-category-size' => '{{PLURAL:$1|1 member|$1 members}} ({{PLURAL:$2|1 subcategory|$2 subcategories}}, {{PLURAL:$3|1 file|$3 files}})',
+'search-result-score' => 'Relevanc: $1%',
 'search-redirect' => '(redirect $1)',
 'search-section' => '(section $1)',
+'search-file-match' => '(matches file content.)',
 'search-suggest' => 'Did ye mean: $1',
+'search-interwiki-caption' => "Sister projec's",
+'search-interwiki-default' => "$1 results':",
 'search-interwiki-more' => '(more)',
+'search-relatedarticle' => 'Relatit',
+'searcheverything-enable' => 'Rake in aw namespaces',
 'searchrelated' => 'related',
 'searchall' => 'aw',
 'showingresults' => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
@@ -869,19 +1120,36 @@ You can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/delete|
 'showingresultsnum' => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
 'showingresultsheader' => "{{PLURAL:$5|Ootcome '''$1''' of '''$3'''|Ootcomes '''$1 - $2''' of '''$3'''}} for '''$4'''",
 'search-nonefound' => "Thare wur na ootcomes matching th' query.",
+'powersearch-legend' => 'Advanced rake',
+'powersearch-ns' => 'Rake in namespaces:',
 'powersearch-redir' => 'Leet redirects',
+'powersearch-togglelabel' => "Chec':",
 'powersearch-toggleall' => 'Aw',
+'powersearch-togglenone' => 'Nane',
+'search-external' => 'Eixternal rake',
 'searchdisabled' => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
+'search-error' => 'Ae mistak haes occurred while rakin: $1',
 
 # Preferences page
+'preferences' => 'Ma preferences',
 'mypreferences' => 'Ma preferences',
+'prefs-edits' => 'Nummer o eidits:',
+'prefsnologintext2' => 'Please $1 tae chynge yer preferences.',
 'prefs-skin' => 'Huil',
 'skin-preview' => 'First Leuk',
 'datedefault' => 'Nae preference',
+'prefs-beta' => 'Beta features.',
 'prefs-datetime' => 'Date an time',
+'prefs-labs' => 'Labs featurs',
+'prefs-user-pages' => 'Uiser pages',
 'prefs-personal' => 'Uiser data',
 'prefs-rc' => 'Recent chynges an shawin stubs',
 'prefs-watchlist' => 'Watchleet',
+'prefs-watchlist-days' => 'Days tae shaw in watchleet:',
+'prefs-watchlist-days-max' => 'Mucklest $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-edits' => 'Mucklest nummer o chynges tae shaw in expanded watchleet:',
+'prefs-watchlist-edits-max' => 'Mucklest nummer: 1000',
+'prefs-watchlist-token' => 'Watchleet token:',
 'prefs-misc' => 'Antrin settins',
 'prefs-resetpass' => 'Chynge passwaird',
 'saveprefs' => 'Hain preferences',

@@ -801,6 +801,9 @@ Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööv
 'createacct-another-realname-tip' => 'Dä reschteje Nahme kam_mer fott lohße.
 
 Wann dä aanjejovve es, weet_e jebruch, öm öffentlesch de Schriiver för Beidrääsch ze nänne.',
+'pt-login' => 'Enlogge',
+'pt-createaccount' => 'Ene neue Zohjang aanmälde',
+'pt-userlogout' => 'Ußlogge',
 
 # Email sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler met dä Funxjohn <code lang="en">mail()</code> vum PHP',

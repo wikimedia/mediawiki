@@ -1037,6 +1037,9 @@ $2',
 'suspicious-userlogout' => 'رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.',
 'createacct-another-realname-tip' => 'الاسم الحقيقي اختياري.
 إذا اخترت توفيره فسيستخدم لنسبة عمل المستخدم إليه.',
+'pt-login' => 'تسجيل الدخول',
+'pt-createaccount' => 'أنشئ حساباً',
+'pt-userlogout' => 'تسجيل الخروج',
 
 # Email sending
 'php-mail-error-unknown' => "خطأ غير معروف في وظيفة البريد PHP's mail()",
@@ -1045,8 +1048,7 @@ $2',
 
 # Change password dialog
 'changepassword' => 'غير كلمة السر',
-'resetpass_announce' => 'تم تسجيل دخولك بكلمة سر مؤقتة.
-للدخول بشكل نهائي، يجب عليك ضبط كلمة سر جديدة هنا:',
+'resetpass_announce' => 'لإنهاء عملية تسجيل الدخول، يجب تعيين كلمة سر جديدة.',
 'resetpass_text' => '<!-- أضف نصا هنا -->',
 'resetpass_header' => 'غير كلمة سر الحساب',
 'oldpassword' => 'كلمة السر القديمة:',
@@ -1061,8 +1063,12 @@ $2',
 'resetpass-submit-cancel' => 'إلغاء',
 'resetpass-wrong-oldpass' => 'كلمة سر حالية أو مؤقتة غير صحيحة.
 ربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.',
+'resetpass-recycled' => 'الرجاء إعادة تعيين كلمة السر الخاصة بك إلى تركيبة أخرى غير كلمة السر الحالية.',
+'resetpass-temp-emailed' => 'أنت مسجل الدخول حالياً بتركيبة مرسلة عبر البريد الإلكتروني. لإكمال عملية تسجيل الدخول‘ يجب إعادة تعيين كلمة السر هنا:',
 'resetpass-temp-password' => 'كلمة سر مؤقتة:',
 'resetpass-abort-generic' => 'منعت مُلحقة إتمام صيرورة تغيير كلمة السّر.',
+'resetpass-expired' => 'انتهت مدة صلاحية كلمة السر الخاصة بك. الرجاء تعيين كلمة سر جديدة لتسجيل الدخول.',
+'resetpass-expired-soft' => 'انتهت مدة صلاحية كلمة السر الخاصة بك. الرجاء تعيين كلمة سر جديدة الآن أو النقر على زر إلغاء لإعادة تعيين كلمة السر لاحقاً.',
 
 # Special:PasswordReset
 'passwordreset' => 'إعادة ضبط كلمة السر',
@@ -2434,10 +2440,20 @@ $1',
 'deadendpagestext' => 'الصفحات التالية لا تصل إلى صفحات أخرى في {{SITENAME}}.',
 'protectedpages' => 'صفحات محمية',
 'protectedpages-indef' => 'عمليات الحماية غير المحددة فقط',
+'protectedpages-summary' => 'تحتوي هذه الصفحة على أسماء العناوين المحمية حالياً. لمطالعة قائمة الصفحات التي تم فرض حماية على إنشائها انظر [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'الحماية المضمنة فقط',
 'protectedpages-noredirect' => 'أخفِ التحويلات',
 'protectedpagesempty' => 'لا توجد صفحات محمية حاليا بهذه المحددات.',
+'protectedpages-timestamp' => 'ختم زمني',
+'protectedpages-page' => 'الصفحة',
+'protectedpages-expiry' => 'ينتهي في',
+'protectedpages-performer' => 'حماية مستخدم',
+'protectedpages-params' => 'معاملات الحماية',
+'protectedpages-reason' => 'السبب',
+'protectedpages-unknown-timestamp' => 'غير معروف',
+'protectedpages-unknown-performer' => 'مستخدم غير معروف',
 'protectedtitles' => 'عناوين محمية',
+'protectedtitles-summary' => 'تحتوي هذه الصفحة على أسماء العناوين المحمية حالياً من الإنشاء. لمطالعة قائمة الصفحات التي تم إنشائها وحمايتها انظر [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
 'listusers' => 'قائمة الأعضاء',
 'listusers-editsonly' => 'اعرض المستخدمين الذين أجروا تعديلات فقط',
@@ -3212,6 +3228,7 @@ $2',
 'thumbnail_image-type' => 'نوع الصورة غير مدعوم',
 'thumbnail_gd-library' => 'ضبط مكتبة GD غير مكتمل: دالة مفقودة $1',
 'thumbnail_image-missing' => 'الملف يبدو أنه مفقود: $1',
+'thumbnail_image-failure-limit' => 'هناك الكثير من المحاولات الفاشلة مؤخراً ($1 أو أكثر) لتَصْيير هذه الصورة المصغرة. الرجاء المحاولة مرة أخرى لاحقاً.',
 
 # Special:Import
 'import' => 'استيراد صفحات',
@@ -4555,9 +4572,7 @@ $5
 'expandtemplates' => 'فرد القوالب',
 'expand_templates_intro' => 'تتعامل هذه الصفحة الخاصة مع نصوص الويكي وتقوم بفرد كل القوالب الموجودة به.
 وتقوم أيضا بفرد دوال القوالب مثل
-<nowiki>{{</nowiki>#language:...}}، والمتغيرات مثل
-<nowiki>{{</nowiki>يوم}}-- وتقوم التعامل مع كل ما بين الأقواس المزدوجة.
-تقوم بفعل هذا عن طريق استدعاء المعالج المناسب من الميدياويكي.',
+<code><nowiki>{{</nowiki>#language:…}}</code> and variables like <code><nowiki>{{</nowiki>CURRENTDAY}}</code>. حقيقةً، تقوم التعامل مع كل ما بين الأقواس المزدوجة.',
 'expand_templates_title' => 'عنوان صفحة هذا النص، لأجل معالجة {{FULLPAGENAME}} إلخ.:',
 'expand_templates_input' => 'النص المدخل:',
 'expand_templates_output' => 'النتيجة',

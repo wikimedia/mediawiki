@@ -867,6 +867,9 @@ Aguarde $1 antes de tentar novamente, por favor.',
 'suspicious-userlogout' => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 'createacct-another-realname-tip' => 'O fornecimento do nome verdadeiro é opcional.
 Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu trabalho.',
+'pt-login' => 'Autenticação',
+'pt-createaccount' => 'Criar uma conta',
+'pt-userlogout' => 'Sair',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
@@ -1431,6 +1434,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-result-score' => 'Relevancia: $1%',
 'search-redirect' => '(redirecionamento de $1)',
 'search-section' => '(seção $1)',
+'search-file-match' => '(coincide com o conteúdo do ficheiro)',
 'search-suggest' => 'Será que queria dizer: $1',
 'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
@@ -1440,7 +1444,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
 'showingresults' => "{{PLURAL:$1|É apresentado '''um''' resultado|São apresentados até '''$1''' resultados}} abaixo{{PLURAL:$1||, começando pelo '''$2'''º}}.",
-'showingresultsinrange' => 'Mostrando abaixo até {{PLURAL:$1|strong>1</strong>resultado|strong>$1</strong> resultados}} entre #<strong>$2</strong> e #<strong>$3</strong>.',
+'showingresultsinrange' => 'Mostrando abaixo até {{PLURAL:$1|<strong>1</strong> resultado|<strong>$1</strong> resultados}} entre #<strong>$2</strong> e #<strong>$3</strong>.',
 'showingresultsnum' => "{{PLURAL:$3|É apresentado '''um''' resultado|São apresentados '''$3''' resultados}} abaixo{{PLURAL:$3||, começando pelo '''$2'''º}}.",
 'showingresultsheader' => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'search-nonefound' => 'A pesquisa não produziu resultados.',
@@ -1888,6 +1892,7 @@ Caso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um
 'file-exists-duplicate' => 'Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate' => 'Um ficheiro idêntico a este ([[:$1]]) foi eliminado anteriormente.
 Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.',
+'file-deleted-duplicate-notitle' => 'Um ficheiro idêntico a este foi eliminado anteriormente, e o título foi suprimido. Você deve pedir a alguém capaz de ver os dados de ficheiros eliminados para que revise a situação antes de carregar novamente este ficheiro.',
 'uploadwarning' => 'Aviso de envio',
 'uploadwarning-text' => 'Modifique a descrição do ficheiro abaixo e tente novamente, por favor.',
 'savefile' => 'Gravar ficheiro',
@@ -2271,6 +2276,10 @@ Agora redirecciona para [[$2]].',
 'protectedpages-cascade' => 'Apenas proteções em cascata',
 'protectedpages-noredirect' => 'Esconder redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
+'protectedpages-timestamp' => 'Timestamp',
+'protectedpages-expiry' => 'Expira em',
+'protectedpages-params' => 'Parâmetros de protecção',
+'protectedpages-unknown-performer' => 'Utilizador desconhecido',
 'protectedtitles' => 'Títulos protegidos',
 'protectedtitles-summary' => 'Esta página lista os títulos protegidos, cuja criação está impossibilitada. Para ver as páginas protegidas consulte [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Neste momento, nenhum dos títulos está protegido com estes parâmetros.',
@@ -2459,6 +2468,7 @@ Modificações futuras desta página e da respetiva página de discussão serão
 'watchmethod-list' => 'a procurar mudanças recentes nas páginas vigiadas',
 'watchlistcontains' => 'A sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname' => "Problema com item '$1', nome inválido...",
+'wlnote2' => 'Estão listadas abaixo as mudanças realizadas {{PLURAL:$1|na última hora|nas últimas <strong>$1</strong> horas}}, a partir de $2, $3.',
 'wlshowlast' => 'Ver últimas $1 horas $2 dias $3',
 'watchlist-options' => 'Opções da lista de páginas vigiadas',
 
@@ -2778,11 +2788,12 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'ipb-change-block' => 'Voltar a bloquear o utilizador com estes parâmetros',
 'ipb-confirm' => 'Confirmar o bloqueio',
 'badipaddress' => 'Endereço IP inválido',
-'blockipsuccesssub' => 'Bloqueio bem sucedido',
+'blockipsuccesssub' => 'Bloqueio efetuado',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
 Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself' => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registros. Tem a certeza de que pretende fazê-lo?',
+'ipb-confirmaction' => 'Se tem a certeza de que quer fazê-lo, marque o campo "{{int:ipb-confirm}}" ao fundo.',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
 'ipb-unblock-addr' => 'Desbloquear $1',
 'ipb-unblock' => 'Desbloquear um utilizador ou endereço IP',
@@ -3015,6 +3026,7 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [https://www
 'allmessages-prefix' => 'Filtrar pelos caracteres iniciais:',
 'allmessages-language' => 'Língua:',
 'allmessages-filter-submit' => 'Filtrar',
+'allmessages-filter-translate' => 'Traduzir',
 
 # Thumbnails
 'thumbnail-more' => 'Ampliar',
@@ -3031,6 +3043,7 @@ $2',
 'thumbnail_image-type' => 'Tipo de imagem não suportado',
 'thumbnail_gd-library' => 'Configuração da biblioteca GD incompleta: função $1 em falta',
 'thumbnail_image-missing' => 'Ficheiro em falta: $1',
+'thumbnail_image-failure-limit' => 'Ocorreram demasiadas tentativas recentes ($1 ou mais) de criação desta miniatura. Tente novamente mais tarde, por favor.',
 
 # Special:Import
 'import' => 'Importar páginas',
@@ -3096,7 +3109,7 @@ Não há um diretório temporário.',
 'javascripttest' => 'Teste de JavaScript',
 'javascripttest-title' => 'Executando os testes $1',
 'javascripttest-pagetext-noframework' => 'Esta página é reservada para a execução de testes de JavaScript.',
-'javascripttest-pagetext-unknownframework' => 'Estrutura de testes "$1" desconhecido.',
+'javascripttest-pagetext-unknownframework' => 'Estrutura de testes "$1" desconhecida.',
 'javascripttest-pagetext-frameworks' => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
 'javascripttest-pagetext-skins' => 'Escolher um tema para executar os testes com:',
 'javascripttest-qunit-intro' => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
@@ -3889,7 +3902,7 @@ Por favor, confirme que você quer realmente recriar esta página.',
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(língua padrão)',
-'img-lang-info' => 'Renderizar essa imagem em $1. $2',
+'img-lang-info' => 'Compor esta imagem em $1. $2',
 'img-lang-go' => 'Ir',
 
 # Table pager
@@ -3912,7 +3925,7 @@ Por favor, confirme que você quer realmente recriar esta página.',
 
 # Live preview
 'livepreview-loading' => 'A carregar…',
-'livepreview-ready' => 'A carregando… Terminado!',
+'livepreview-ready' => 'A carregar... Terminado!',
 'livepreview-failed' => 'A antevisão instantânea falhou!
 Tente a antevisão normal.',
 'livepreview-error' => 'Falha ao ligar: $1 "$2"
@@ -3974,9 +3987,18 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-hook-subscribedby' => 'Subscrito por',
 'version-version' => '(Versão $1)',
 'version-license' => 'Licença do MediaWiki',
-'version-credits-not-found' => 'Nenhuma informação detalhada acerca dos créditos foi encontrada para esta extensão.',
+'version-ext-license' => 'Licença',
+'version-ext-colheader-name' => 'Extensão',
+'version-ext-colheader-version' => 'Versão',
+'version-ext-colheader-license' => 'Licença',
+'version-ext-colheader-description' => 'Descrição',
+'version-ext-colheader-credits' => 'Autores',
+'version-license-title' => 'Licença para $1',
+'version-license-not-found' => 'Não foi encontrada informação detalhada da licença para esta extensão.',
+'version-credits-not-found' => 'Não foi encontrada informação detalhada dos créditos para esta extensão.',
 'version-poweredby-credits' => 'Esta wiki é potenciada por <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.',
 'version-poweredby-others' => 'outros',
+'version-poweredby-translators' => 'os tradutores da translatewiki.net',
 'version-credits-summary' => 'Gostaríamos de reconhecer as seguintes pessoas pela sua contribuição para o [[Special:Version|MediaWiki]].',
 'version-license-info' => 'O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
 
@@ -3991,13 +4013,14 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'version-entrypoints-header-url' => 'URL',
 
 # Special:Redirect
-'redirect' => 'Redireccionar pelo ID do ficheiro, utilizador ou revisão',
+'redirect' => 'Redireccionar pelo ID do ficheiro, do utilizador ou da revisão',
 'redirect-legend' => 'Redirecionar para um ficheiro ou página',
-'redirect-summary' => 'Esta página especial redirecciona a um ficheiro (dado o nome do ficheiro), a uma página (dado um ID de revisão) ou a uma página de utilizador (dado o ID do utilizador). Utilização: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
+'redirect-summary' => 'Esta página especial redirecciona para um ficheiro (dado o nome do ficheiro), para uma página (dado um ID de revisão ou página) ou para uma página de utilizador (dado um ID numérico do utilizador). Utilização: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]] ou [[{{#Special:Redirect}}/user/101]].',
 'redirect-submit' => 'Ir',
 'redirect-lookup' => 'Pesquisa:',
 'redirect-value' => 'Valor:',
 'redirect-user' => 'Identificador do utilizador',
+'redirect-page' => 'Identificador (ID) da página',
 'redirect-revision' => 'Revisão da página',
 'redirect-file' => 'Nome do ficheiro',
 'redirect-not-exists' => 'Valor não encontrado',
@@ -4191,6 +4214,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'api-error-overwrite' => 'Não é permitido sobrescrever um ficheiro existente.',
 'api-error-stashfailed' => 'Erro interno: O servidor não conseguiu armazenar o ficheiro temporário.',
 'api-error-publishfailed' => 'Erro interno: Servidor não conseguiu publicar ficheiro temporário.',
+'api-error-stasherror' => 'Ocorreu um erro no upload do ficheiro escondido.',
 'api-error-timeout' => 'O servidor não respondeu no prazo esperado.',
 'api-error-unclassified' => 'Ocorreu um erro desconhecido',
 'api-error-unknown-code' => 'Erro desconhecido: "$1"',
@@ -4220,26 +4244,32 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
 'limitreport-walltime' => 'Tempo real de utilização',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|segundo|segundos}}',
+'limitreport-ppvisitednodes' => 'Número de nós visitados pelo pré-processador',
+'limitreport-ppgeneratednodes' => 'Número de nós gerados pelo pré-processador',
+'limitreport-postexpandincludesize' => 'Tamanho de inclusão após expansão',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
 'limitreport-templateargumentsize' => 'Tamanho dos argumentos da predefinição',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|byte|bytes}}',
+'limitreport-expansiondepth' => 'Profundidade máxima de expansão',
 'limitreport-expensivefunctioncount' => 'Número de funções do analisador custosas',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Expandir predefinições',
 'expand_templates_intro' => "Esta página especial recebe um texto e expande recursivamente todas as predefinições nele existentes.
 Também expande funções do analisador sintático ''(parser)'', tais como
-<nowiki>{{</nowiki>#language:...}}, e variáveis, tais como
+<nowiki>{{</nowiki>#language:...}}, e variáveis, como
 <nowiki>{{</nowiki>CURRENTDAY}}.
-De fato, expande tudo o que estiver entre chaves duplas.",
+Na verdade, expande tudo o que estiver entre chavetas duplas.",
 'expand_templates_title' => 'Título de contexto para {{FULLPAGENAME}} etc.:',
 'expand_templates_input' => 'Texto a expandir:',
 'expand_templates_output' => 'Resultado',
 'expand_templates_xml_output' => 'Resultado XML',
+'expand_templates_html_output' => 'Resultado HTML puro',
 'expand_templates_ok' => 'Expandir',
 'expand_templates_remove_comments' => 'Remover comentários',
 'expand_templates_remove_nowiki' => "Suprimir ''tags'' <nowiki> no resultado",
 'expand_templates_generate_xml' => 'Mostrar a árvore de análise sintáctica do XML',
+'expand_templates_generate_rawhtml' => 'Mostrar o HTML puro',
 'expand_templates_preview' => 'Antevisão do resultado',
 
 # Unknown messages

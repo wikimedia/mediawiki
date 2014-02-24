@@ -730,6 +730,9 @@ Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'createacct-another-realname-tip' => "De richtegen Numm ass fakultativ.
 
 Wann Dir en ugitt, gëtt e benotzt fir d'Benotzerattributiounen fir Är Aarbecht zouzeuerdnen.",
+'pt-login' => 'Aloggen',
+'pt-createaccount' => 'Benotzerkont opmaachen',
+'pt-userlogout' => 'Ausloggen',
 
 # Email sending
 'php-mail-error-unknown' => 'Onbekannte Feeler an der PHP-Mail-Funktioun',

@@ -681,6 +681,8 @@ Maghintay po muna bago subukan uli.',
 'login-abort-generic' => 'Bigo ang paglagda mo - Pinigil',
 'loginlanguagelabel' => 'Wika: $1',
 'suspicious-userlogout' => "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
+'pt-createaccount' => 'Lumikha ng akawnt',
+'pt-userlogout' => 'Umalis sa pagkakatala',
 
 # Email sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
@@ -688,8 +690,7 @@ Maghintay po muna bago subukan uli.',
 
 # Change password dialog
 'changepassword' => 'Baguhin ang hudyat',
-'resetpass_announce' => 'Lumagda ka sa pamamagitan ng isang pansamantalang ini-e-liham na kodigo.
-Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
+'resetpass_announce' => 'Para sa ganap na pagtala, magtalaga ng panibagong password.',
 'resetpass_text' => '<!-- Magdagdag ng teksto rito -->',
 'resetpass_header' => 'Baguhin ang hudyat ng kuwenta',
 'oldpassword' => 'Lumang hudyat:',
@@ -703,7 +704,11 @@ Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
 'resetpass-submit-cancel' => 'Kanselahin',
 'resetpass-wrong-oldpass' => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
+'resetpass-recycled' => 'Ireset ang iyong password sa pamamagitan ng paggamit ng iba pa maliban sa iyong ginagamit sa kasalukuyan.',
+'resetpass-temp-emailed' => 'Nakapagtala sa pamamagitan ng pansamantalang email code.
+Para sa ganap na pagtatala, magtakda ng panibagong password dito:',
 'resetpass-temp-password' => 'Pansamantalang hudyat:',
+'resetpass-expired-soft' => 'Napaso na ang iyong password at kailangan ireset. Pumili ng bagong password o iklik ang cancel upang i-reset sa ibang pagkakataon.',
 
 # Special:PasswordReset
 'passwordreset' => 'Muling pagtatakda ng hudyat',

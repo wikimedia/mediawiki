@@ -16,6 +16,7 @@
  * @author Meno25
  * @author Pasanbhathiya2
  * @author Romaine
+ * @author Sahan.ssw
  * @author Singhalawap
  * @author Thushara
  * @author චතුනි අලහප්පෙරුම
@@ -231,6 +232,7 @@ $messages = array(
 'tog-noconvertlink' => 'සබැඳියන්ගේ ශීර්ෂ පෙරැළීම අක්‍රීය කරන්න',
 'tog-norollbackdiff' => 'පුනරාවර්තනයක් කිරීමෙන් පසු වෙනස්වීම් අත්හරින්න',
 'tog-useeditwarning' => 'මා සංස්කරණ පිටුවක් සුරකිනු නොලැබූ වෙනස්කිරීම් සමඟ අතහැර යන විට අවවාද කරන්න',
+'tog-prefershttps' => 'සැම විටම ඇතුළු වීමේදී ආරක්ෂාකාරී ජාලයක් භාවිතා කරන්න',
 
 'underline-always' => 'සැමවිටම කරන්න',
 'underline-never' => 'කිසිවිටෙක නොකරන්න',
@@ -516,6 +518,8 @@ $1",
 # General errors
 'error' => 'දෝෂය',
 'databaseerror' => 'දත්ත-ගබඩා දෝෂය',
+'databaseerror-function' => 'ශ්‍රිතය:$1',
+'databaseerror-error' => 'දෝෂය: $1',
 'laggedslavemode' => "'''අවවාදයයි:''' මෑත යාවත්කාලීන කිරීම් මෙම පිටුවෙහි අඩංගු නොවීමට ඉඩ ඇත.",
 'readonly' => 'දත්තසංචිතය අගුළුලා ඇත',
 'enterlockreason' => 'අවුරා දැමීමට හේතුවක් සපයන අතරතුර, ඇවිරීම මුදාහැරීමට බලාපොරොත්තු වන කාලසීමාව නිමානය කර දක්වන්න',
@@ -627,9 +631,12 @@ $2',
 'gotaccount' => 'දැනටමත් ගිණුමක් තිබේද? $1.',
 'gotaccountlink' => 'පිවිසෙන්න',
 'userlogin-resetlink' => 'ඔබේ පිවිසුම් තොරතුරු අමතකද?',
+'userlogin-resetpassword-link' => 'ඔබේ මුරපදය නැති වුනාද?',
 'helplogin-url' => 'Help:ප්‍රවිෂ්ට වීම',
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|ප්‍රවිෂ්ට වීමට උදවු වන්න]]',
+'userlogin-createanother' => 'තවත් ගිණුමක් ආරම්භ කරන්න',
 'createacct-join' => 'ඔබගේ තොරතුරු පහත ඇතුළු කරන්න.',
+'createacct-another-join' => 'නව ගිණුමේ දත්ත පහත ඇතුළු කරන්න.',
 'createacct-emailrequired' => 'වි-තැපෑල ලිපිනය',
 'createacct-emailoptional' => 'වි-තැපෑල ලිපිනය (විකල්ප)',
 'createacct-email-ph' => 'ඔබගේ වි-තැපෑල ලිපිනය ඇතුළු කරන්න',
@@ -718,6 +725,11 @@ $2',
 'login-abort-generic' => 'ඔබගේ පිවිසීම අසාර්ථකයි - අතහැර දමනලදී',
 'loginlanguagelabel' => 'භාෂාව: $1',
 'suspicious-userlogout' => 'නිෂ්ක්‍රමණය සඳහා ඔබගේ අයැදුම නිෂ්ප්‍රභා කෙරුනේ එය යොමු කොට ඇත්තේ භින්න(කැඩුනු) බ්‍රවුසරයකින් හෝ නිවේෂණය කෙරෙමින් පවතින ප්‍රොක්සියක් වෙතින් යැයි බැලූ බැල්මට පෙනෙන බැවිනි.',
+'createacct-another-realname-tip' => 'සැබෑ නාමය හෙළි කිරීම වෛකල්පිකයි.
+ඔබ විසින් එය හෙළි කල හොත්, ඔබගේ කෘතීන් සඳහා ඔබහට කතෘ-බුහුමන් පිරිනැමීමට එය භාවිතා කරනු ඇත.',
+'pt-login' => 'පිවිසෙන්න',
+'pt-createaccount' => 'ගිණුමක් තනන්න',
+'pt-userlogout' => 'නික්මීම',
 
 # Email sending
 'php-mail-error-unknown' => 'php mail() ශ්‍රිතයේ හඳුනානොගත් ගැටළුවකි',
@@ -734,6 +746,8 @@ $2',
 'retypenew' => 'නව මුර-පදය නැවත ඇතුළු කරන්න:',
 'resetpass_submit' => 'මුර-පදය පූරණය කොට ඉන් පසු ප්‍රවිෂ්ට වන්න',
 'changepassword-success' => 'ඔබගේ මුර-පදය සාර්ථක ලෙස වෙනස් කරන ලදී!',
+'changepassword-throttled' => 'ඔබ විසින් මෑතදී  පමණට වඩා වාර ගණනක් පිවිසීමෙහි උත්සාහයන් දරා ඇත.
+යළි උත්සාහ කිරීමට පෙර $1 වේලාවක් රැඳී සිටින්න.',
 'resetpass_forbidden' => 'මුර-පදයන් වෙනස් කිරීම  සිදු කල නොහැක',
 'resetpass-no-info' => 'මෙම පිටුව සෘජු ලෙස පරිශීලනය කෙරුමට ඔබ පළමු ප්‍රවිෂ්ට විය යුතුය.',
 'resetpass-submit-loggedin' => 'මුර-පදය වෙනස්කරන්න',
@@ -741,6 +755,7 @@ $2',
 'resetpass-wrong-oldpass' => 'තාවකාලික හෝ වත්මන් මුර-පදය අනීතිකයි.
 ඔබ දැනටමත් සාර්ථක ලෙස ඔබගේ මුර-පදය වෙනස් කොට හෝ නව තාවකාලික මුර-පදයක් ඉල්ලා සිට හෝ ඇතිවා විය හැක.',
 'resetpass-temp-password' => 'තාවකාලික මුර-පදය:',
+'resetpass-expired' => 'ඔබගේ මුරපදය කල් ඉකුත්වී ඇත.කරුණාකර නව මුරපදයක් සකස් කරන්න.',
 
 # Special:PasswordReset
 'passwordreset' => 'මුරපදය වෙනස් කරන්න',
@@ -778,6 +793,8 @@ $2
 'changeemail-password' => 'ඔබේ {{SITENAME}} මුරපදය:',
 'changeemail-submit' => 'විද්‍යුත් තැපෑල  වෙනස් කරන්න',
 'changeemail-cancel' => 'අවලංගු කරන්න',
+'changeemail-throttled' => 'ඔබ විසින් මෑතදී  පමණට වඩා වාර ගණනක් පිවිසීමෙහි උත්සාහයන් දරා ඇත.
+යළි උත්සාහ කිරීමට පෙර $1 වේලාවක් රැඳී සිටින්න.',
 
 # Edit page toolbar
 'bold_sample' => 'තදකුරු පෙළ',
@@ -987,6 +1004,7 @@ $2
 'invalid-content-data' => 'වලංගු නොවන අන්තර්ගත දත්ත',
 'editwarning-warning' => 'අවධානයට: මෙම පිටුවෙන් නික්ම යාම ඔබ සිදු කළ වෙනස්කම් නැතිවී යෑමට හේතු විය හැක.
 ඔබ ප්‍රවිෂ්ටවී ඇත්නම්, ඔබගේ වරණයන්වල "සංසකරණය කිරීම්" කොටසේ ඇති මෙම අනතුරු ඇඟවීම අක්‍රීය කළ හැක.',
+'editpage-notsupportedcontentformat-title' => 'අන්තර්ගත සකැස්ම ක්‍රියා නොකරයි',
 
 # Content models
 'content-model-wikitext' => 'විකිපෙළ',
@@ -1183,11 +1201,13 @@ $1",
 
 # Diffs
 'history-title' => '$1:  සංශෝධන ඉතිහාසය',
+'difference-title-multipage' => '"$1" හා "$2" පිටු අතර වෙනස',
 'difference-multipage' => 'පිටු අතර වෙනස',
 'lineno' => '$1 පේළිය:',
 'compareselectedversions' => 'තෝරාගත් සංශෝධන සසඳන්න',
 'showhideselectedversions' => 'තෝරාගත් සංශෝධන පෙන්වන්න/සඟවන්න',
 'editundo' => 'අහෝසිය',
+'diff-empty' => '(වෙනසක් නොමැත)',
 'diff-multi-manyusers' => '(පරිශීලකයන් $2 කට වඩා වැඩි ගණනකගේ ආසන්න පුනරීක්‍ෂණ $1ක් පෙන්වා නොමැත)',
 
 # Search results
@@ -1220,6 +1240,7 @@ $1",
 'search-result-score' => 'අදාළතාව: $1%',
 'search-redirect' => '($1 යළි-යොමු කරන්න)',
 'search-section' => '($1 ඡේදය)',
+'search-file-match' => '(ගොනු දත්ත සැසදේ)',
 'search-suggest' => 'ඔබ අදහස් කළේ මෙයද: $1',
 'search-interwiki-caption' => 'සොයුරු ව්‍යාපෘති',
 'search-interwiki-default' => '$1 වෙතින් ප්‍රතිඵල:',
@@ -1342,6 +1363,8 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-dateformat' => 'දින ආකෘතිය',
 'prefs-timeoffset' => 'වේලා හිලව්ව',
 'prefs-advancedediting' => 'ප්‍රධාන විකල්පයන්',
+'prefs-editor' => 'සංස්කාරක',
+'prefs-preview' => 'පෙරදසුන',
 'prefs-advancedrc' => 'වැඩිදුර සැකසුම් තෝරාගැනීම',
 'prefs-advancedrendering' => 'වැඩිදුර සැකසුම් තෝරාගැනීම',
 'prefs-advancedsearchoptions' => 'ප්‍රගත විකල්පයන්',
@@ -1349,7 +1372,9 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-displayrc' => 'දර්ශන සැකසුම් තෝරාගැනීම',
 'prefs-displaysearchoptions' => 'විකල්ප පෙන්වන්න',
 'prefs-displaywatchlist' => 'විකල්ප පෙන්වන්න',
+'prefs-tokenwatchlist' => 'ටෝකනය',
 'prefs-diffs' => 'වෙනස',
+'prefs-help-prefershttps' => 'ඔබගේ අභිරුචිය මීළඟ ඇතුළු වීමේ සිට ක්‍රියාත්මක වනු ඇත.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => 'විද්‍යුත්-තැපැල් ලිපිනය අනීතික බවක් පෙනෙයි.',
@@ -1509,6 +1534,7 @@ HTML ටැගයන් පිරික්සන්න.',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|වෙනස්වීම|වෙනස්වීම්}}',
+'enhancedrc-history' => 'ඉතිහාසය',
 'recentchanges' => 'මෑත වෙනස්කිරීම්',
 'recentchanges-legend' => '‍නව වෙනස්වීම් සැකසුම් තෝරාගැනීම',
 'recentchanges-summary' => 'මෙම පිටුවේ විකියට සිදුකල ඉතා මෑත වෙනස්වීම් පසුහඹන්න.',
@@ -1811,6 +1837,8 @@ When filtered by user, only files where that user uploaded the most recent versi
 'listfiles_size' => 'විශාලත්වය',
 'listfiles_description' => 'විස්තරය',
 'listfiles_count' => 'සංස්කරනය',
+'listfiles-latestversion-yes' => 'ඔව්',
+'listfiles-latestversion-no' => 'නැත',
 
 # File description page
 'file-anchor-link' => 'ගොනුව',
@@ -1848,6 +1876,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'uploadnewversion-linktext' => 'මෙම ගොනුවෙහි නව අනුවාදයක් උඩුගත කරන්න',
 'shared-repo-from' => '$1 වෙතින්',
 'shared-repo' => 'හවුල් සුරක්ෂිතාගාරයකි',
+'upload-disallowed-here' => 'ඔබට මෙම ගොනුව උඩින් ලිවිය නොහැක.',
 
 # File reversion
 'filerevert' => '$1 ප්‍රතිවර්තනය කරන්න',
@@ -1902,6 +1931,12 @@ When filtered by user, only files where that user uploaded the most recent versi
 'randompage' => 'අහඹු පිටුව',
 'randompage-nopages' => 'පහත {{PLURAL:$2|නාමඅවකාශය|නාමඅවකාශ}}:$1 හි කිසිදු පිටුවක් නොමැත.',
 
+# Random page in category
+'randomincategory' => 'ප්‍රවර්ගයේ අහඹු පිටු',
+'randomincategory-invalidcategory' => '"$1" වලංගු ප්‍රවර්ග නාමයක් නොවේ.',
+'randomincategory-nopages' => ' [[:ප්‍රවර්ගය:$1|$1]] ප්‍රවර්ගයේ පිටු නොමැත.',
+'randomincategory-selectcategory-submit' => 'යන්න',
+
 # Random redirect
 'randomredirect' => 'අහුඹු යළි-යොමුකිරීම',
 'randomredirect-nopages' => '"$1" නාම-අවකාශයෙහි යළි-යොමුවීම් නොමැත.',
@@ -1926,6 +1961,10 @@ When filtered by user, only files where that user uploaded the most recent versi
 'statistics-users-active' => 'ක්‍රියාශීලි පරිශීලකයන්',
 'statistics-users-active-desc' => 'පසුගිය {{PLURAL:$1|දිනය|දින $1}} තුලදී කිසියම් ක්‍රියාවක් සිදු කල පරිශීලකයන්',
 'statistics-mostpopular' => 'බෙහෙවින් නරඹනු ලබන පිටු',
+
+'pageswithprop-prop' => 'ගුණ නාමය:',
+'pageswithprop-submit' => 'යන්න',
+'pageswithprop-prophidden-binary' => 'ද්විමය ගුණ අගය සැඟවී ($1)',
 
 'doubleredirects' => 'ද්විත්ව යළි-යොමුකිරීම්',
 'doubleredirectstext' => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
@@ -1987,11 +2026,19 @@ When filtered by user, only files where that user uploaded the most recent versi
 'protectedpages-indef' => 'අනිශ්චිත ආරක්ෂණයන් පමණයි',
 'protectedpages-cascade' => 'තීරු-දර්ශන ආරක්ෂණයන් පමණයි',
 'protectedpagesempty' => 'මෙම පරාමිතීන් හා සමග සැලකූ කල,  කිසිදු පිටුවක් දැනට ආරක්ෂිත වී නොමැත.',
+'protectedpages-page' => 'පිටුව',
+'protectedpages-expiry' => 'ඉකුත් වන්නේ',
+'protectedpages-performer' => 'පරිශීලකයා සුරැකීම',
+'protectedpages-params' => 'ආරක්ෂා පරාමිතිය',
+'protectedpages-reason' => 'හේතුව',
+'protectedpages-unknown-timestamp' => 'අඥාත',
+'protectedpages-unknown-performer' => 'නොදන්නා පරිශීලක',
 'protectedtitles' => 'ආරක්‍ෂිත ශීර්ෂයන්',
 'protectedtitlesempty' => 'මෙම පරාමිතීන් හා සමග සැලකූ කල, කිසිදු ශීර්ෂයක් දැනට ආරක්ෂිත වී නොමැත.',
 'listusers' => 'පරිශීලක ලැයිස්තුව',
 'listusers-editsonly' => 'සංස්කරණයන් සිදුකර ඇති පරිශීලකයන් පමණක් පෙන්වන්න',
 'listusers-creationsort' => 'තැනූ දින අනුව සුබෙදන්න',
+'listusers-desc' => 'අවරෝහණ පිළිවෙලට සකස් කරන්න',
 'usereditcount' => ' {{PLURAL:$1|සංස්කරණ එකකි|සංස්කරණ $1 කි}}',
 'usercreated' => '$1 දින $2 වේලාවේදී {{GENDER:$3|තනන ලදි}}',
 'newpages' => 'නව පිටු',
@@ -2111,6 +2158,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'mailnologin' => 'යායුතු ලිපිනය නොමැත',
 'mailnologintext' => 'අනෙකුත් පරිශීලකයන්හට  විද්‍යුත්-තැපැල් යැවුමට පෙරාතුව, ඔබ [[Special:UserLogin|ප්‍රවිෂ්ට වී]], ඔබගේ  [[Special:Preferences|අභිරුචියන්හි]]  නීතික විද්‍යුත්-තැපැල් ලිපිනයක් සඳහන් කර තිබිය යුතුය.',
 'emailuser' => 'මෙම පරිශීලක වෙත විද්‍යුත්-ලිපියක් යවන්න',
+'emailuser-title-notarget' => ' පරිශීලකට විද්‍යුත්-ලිපියක් යවන්න',
 'emailpage' => ' පරිශීලකට විද්‍යුත්-ලිපියක් යවන්න',
 'emailpagetext' => 'මෙම පරිශීලකයා හට විද්‍යුත්-තැපෑල් පණිවුඩයක් යැවීම සඳහා මෙම ආකෘති පත්‍රය භාවිතා කිරීමට ඔබ හට හැක.
 ලබන්නා විසින් සෘජු ලෙස ඔබ හට පිළිතුරු එවනු හැකි වන පරිදි, ඔබ විසින් [[Special:Preferences|ඔබගේ පරිශීලක අභිරුචියන්]] හි ඇතුළත් කල විද්‍යුත්-තැපැල් ලිපිනය,  විද්‍යුත්-තැපෑලෙහි "වෙතින්" ලිපිනයෙහි පෙන්නුම් කරනු ඇත.',

@@ -66,6 +66,7 @@
  * @author Lucyin
  * @author Manohisoa
  * @author Mattho69
+ * @author Maxime Corbin
  * @author McDutchie
  * @author Meithal
  * @author Metroitendo
@@ -957,6 +958,9 @@ Veuillez attendre $1 avant d'essayer à nouveau.",
 'suspicious-userlogout' => "Votre demande de déconnexion a été refusée car il semble qu'elle a été envoyée par un navigateur cassé ou la mise en cache d'un proxy.",
 'createacct-another-realname-tip' => 'Le vrai nom est optionnel.
 Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisateur ses travaux.',
+'pt-login' => 'Se connecter',
+'pt-createaccount' => 'Créer un compte',
+'pt-userlogout' => 'Se déconnecter',
 
 # Email sending
 'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
@@ -965,7 +969,7 @@ Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisate
 
 # Change password dialog
 'changepassword' => 'Changer de mot de passe',
-'resetpass_announce' => "Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l'enregistrement, vous devez entrer un nouveau mot de passe ici :",
+'resetpass_announce' => "Pour terminer l'enregistrement, vous devez fournir un nouveau mot de passe.",
 'resetpass_text' => '<!-- Ajoutez le texte ici -->',
 'resetpass_header' => 'Changer le mot de passe du compte',
 'oldpassword' => 'Ancien mot de passe :',
@@ -981,8 +985,13 @@ Veuillez attendre $1 avant de réessayer.',
 'resetpass-submit-cancel' => 'Annuler',
 'resetpass-wrong-oldpass' => 'Mot de passe actuel ou temporaire invalide.
 Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mot de passe temporaire.',
+'resetpass-recycled' => 'Veuillez réinitialiser votre mot de passe à quelque chose d’autre que l’actuel.',
+'resetpass-temp-emailed' => 'Vous êtes connecté avec un code temporaire fourni par courriel.
+Pour terminer la connexion, vous devez fournir un nouveau mot de passe ici :',
 'resetpass-temp-password' => 'Mot de passe temporaire :',
 'resetpass-abort-generic' => 'La modification du mot de passe a été annulée par une extension.',
+'resetpass-expired' => 'Votre mot de passe a expiré. Veuillez en fournir un nouveau pour vous connecter.',
+'resetpass-expired-soft' => 'Votre mot de passe a expiré, et doit être réinitialisé. Veuillez en choisir un nouveau maintenant, ou cliquer sur annuler pour le faire plus tard.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',

@@ -864,6 +864,9 @@ Vänta $1 innan du försöker igen.',
 'suspicious-userlogout' => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
 'createacct-another-realname-tip' => 'Riktiga namnet är valfritt.
 Om du väljer att ange det, kommer det användas för att tillskriva användaren för sitt arbete.',
+'pt-login' => 'Logga in',
+'pt-createaccount' => 'Skapa konto',
+'pt-userlogout' => 'Logga ut',
 
 # Email sending
 'php-mail-error-unknown' => 'Okänt fel i PHP:s mail()-funktion',
@@ -872,7 +875,7 @@ Om du väljer att ange det, kommer det användas för att tillskriva användaren
 
 # Change password dialog
 'changepassword' => 'Byt lösenord',
-'resetpass_announce' => 'Du loggade in med ett temporärt lösenord. För att slutföra inloggningen måste du välja ett nytt lösenord.',
+'resetpass_announce' => 'För att slutföra inloggningen måste du välja ett nytt lösenord.',
 'resetpass_text' => '<!-- Lägg till text här -->',
 'resetpass_header' => 'Ändra lösenord för konto',
 'oldpassword' => 'Gammalt lösenord:',
@@ -888,8 +891,13 @@ Vänta $1 innan du försöker igen.',
 'resetpass-submit-cancel' => 'Avbryt',
 'resetpass-wrong-oldpass' => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
+'resetpass-recycled' => 'Var god återställ ditt lösenord till någonting annat än ditt aktuella lösenord.',
+'resetpass-temp-emailed' => 'Du loggade in med en temporär kod som skickats via e-post.
+För att slutföra inloggningen måste du välja ett nytt lösenord här:',
 'resetpass-temp-password' => 'Tillfälligt lösenord:',
 'resetpass-abort-generic' => 'Lösenordsändring av har avbrutits av ett tillägg.',
+'resetpass-expired' => 'Ditt lösenord har gått ut. Var god välj ett nytt lösenord för att logga in.',
+'resetpass-expired-soft' => 'Ditt lösenord har gått ut och behöver återställas. Var god välj ett nytt lösenord nu eller klicka på avbryt för att återställa det senare.',
 
 # Special:PasswordReset
 'passwordreset' => 'Återställ lösenord',
