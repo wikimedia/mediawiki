@@ -1665,4 +1665,598 @@ sana siguraduan mung aintindian mung mayap ing kabaldugan na niti bayu mu isundu
 Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung a saparadu nung ita ing buri mung gawan.",
 'movearticle' => 'Ialis ya ing bulung',
 'movenologintext' => 'Kailangan, metung kang talagamit a makarehistru at [[Special:UserLogin|maka-login]] ka ba kang makapanalis bulung.',
-'movenotallowed'
+'movenotallowed' => 'Ala kang paintulut a manalis bulung king {{SITENAME}}.',
+'newtitle' => 'King bayung bansag:',
+'move-watch' => 'Banten ya ing bulung a ini',
+'movepagebtn' => 'Iyalis ya ing bulung',
+'pagemovedsub' => 'Merapat ing pamanalis',
+'movepage-moved' => '\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'',
+'articleexists' => 'Ing bulung a yan atinang miki lagyu, okaya
+ing lagyu ginamit mu e malyari.
+Gumamit na kang aliwang lagyu.',
+'cantmove-titleprotected' => 'E ka maliaring manalis bulung keni uling protektadu/makakambil ya king pangalalang ing bayung bansag',
+'movetalk' => 'Iyalis me ing kayabe nang bulung-pisasabian (talk page)',
+'movelogpage' => 'Iyalis ya ing tala/log',
+'movelogpagetext' => 'Makabili ya king lalam ing tala (list) da reng bulung a miyalis.',
+'movereason' => 'Sangkan:',
+'revertmove' => 'isubli',
+'delete_and_move' => 'Buran at ialis',
+'delete_and_move_text' => '==Kailangan ing pamamura==
+Atiu ne ing "[[:$1]]" a bulung a puntalan.
+Buri meng buran bang malaus ing pamanales?',
+'delete_and_move_confirm' => 'Wa, buran ya ing bulung',
+'delete_and_move_reason' => 'Mebura ya bang malaus ing pamanalis',
+'selfmove' => 'Pareu ya ing penibatan ampo ing puntalan;
+e maliaring itumpak king sarili na ing metung a bulung.',
+'imagenocrossnamespace' => 'E ne ayalis ing larawan king pirinan lagyung e-panglarawan (non-image namespace)',
+'imagetypemismatch' => 'E ne kaparis ning bayung file extension itang kayang uri (type)',
+
+# Export
+'export' => 'Maglual (export) bulung',
+'exporttext' => 'Maliari mung ilual (export) ing kasulatan (text) ampong amlat pamanalili (editing history) ning partikular a bulung o grupu da reing bulung a makabalut king XML. Maliari yang ilub (import) king aliwang wiki kapamilatan ning MediaWiki a daralan king [[Special:Import|bulung pamaglub]] (import page).
+
+Bang maglual (export) kareng bulung, isulat mo reng bansag ketang text box king lalam, metung a bansag king balang gulis, at pilinan mu nung buri me ing salukuyan a a balung pati na detang sadiang bersion, kayabe la reng gulis tungkul king amlat bulung (page history), o ita mung salukuyan a bersion, kayabe ing impormasiun ketang tauling me-edit.
+
+Ketang tauling kasu, makagamit ka muring suglung (link), alimbawa, ing [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para king bulung a "[[{{MediaWiki:Mainpage}}]]".',
+'exportcuronly' => 'Ita mung salukuyan a bersion ing iyabe, aliwa ing mabilug a amlat',
+'exportnohistory' => "----
+'''Kapabaluan:''' Makapatda ing pamaglual (export) ning kumpletung amlat da reng bulung kapamilatan ning form a ini uling miyapektuan ing pamangimut o pamang-gana ning sistema.",
+'export-submit' => 'Ilual (export)',
+'export-addcattext' => 'Mandagdag bulung ibat king kategoriya:',
+'export-addcat' => 'Idagdag',
+'export-download' => 'I-save ya antimong simpan (file)',
+'export-templates' => 'Iyabe la reng modelu (templates)',
+
+# Namespace 8 related
+'allmessages' => 'Mensahi ning system',
+'allmessagesname' => 'Lagyu',
+'allmessagesdefault' => 'Sulat a lunto nung alang mepili (default)',
+'allmessagescurrent' => 'Kasalungsungan a kulitan',
+'allmessagestext' => 'Deng makatuki ila reng system message a atyu king pirinan lagyu (namespace) ning MediaWiki.',
+'allmessagesnotsupportedDB' => "E maliaring gamitan ing bulung a ini uling ing '''\$wgUseDatabaseMessages''' makapatda ya.",
+
+# Thumbnails
+'thumbnail-more' => 'Paragulan',
+'filemissing' => 'Ala yu ing file',
+'thumbnail_error' => 'Migkamaling maglalang thumbnail: $1',
+'djvu_page_error' => 'Ala yu king saklo na ing bulung DjVu',
+'djvu_no_xml' => 'E menikuang XML para king simpan (file) a DjVu file',
+'thumbnail_invalid_params' => 'E la matatanggap deng sukad a thumbnail (thumbnail parameters)',
+'thumbnail_dest_directory' => 'E makapaglalang piyakitan da reng puntalan (destination directory)',
+
+# Special:Import
+'import' => 'Maglub bulung',
+'importinterwiki' => 'Pamaglub a transwiki (transwiki import)',
+'import-interwiki-text' => 'Mamili kang wiki ampong bansag bulung a ilub.
+Manatili la reng petsa ring pamagbayu ampo reng lagyu ring editor.
+Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) ketang [[Special:Log/import|import log]].',
+'import-interwiki-history' => 'Kopian la reng eganaganang bersion ning amlat para king bulung a ini.',
+'import-interwiki-submit' => 'Maglub (import)',
+'import-interwiki-namespace' => 'Iyalis la king pirinan lagyu (namespace) deng bulung:',
+'import-comment' => 'Komentu:',
+'importtext' => 'Pakilual (export) me ing simpan (file) manibat ketang pikuanan a wiki a gagamitan ya ing Special:Export utilit. Potang kayi, i-save me king kekang disk at ilulan (upload) me keni.',
+'importstart' => 'Maglub bulung...',
+'import-revision-count' => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}}',
+'importnopages' => 'Alang bulung a ilub (import).',
+'importfailed' => 'E melaus ing pamaglub (import failed): <nowiki>$1</nowiki>',
+'importunknownsource' => 'E makikilala ing uri ning pikukuanan a mipalub (unknown import source typle)',
+'importcantopen' => 'E mibusni ing simpan ding milub (import file)',
+'importbadinterwiki' => 'Maki diperensia ya ing suglung a interwiki',
+'importnotext' => 'Ala yang laman o sulat',
+'importsuccess' => 'Yari na ing pamaglub! (import finished)',
+'importhistoryconflict' => 'E la mipapareu deng pamagbayu king amlat (mapaliaring milub neng sadia ing bulung a aini).',
+'importnosources' => 'Alang pikuanan a transwiki kareng pamaglub (imports)  a mituldu (defined), at makapatda ing diretsung pamaglulan kareng amlat.',
+'importnofile' => 'Alang milulan a simpan a milub (import file).',
+'importuploaderrorsize' => 'E melaus ing pamaglulan kareng simpan a milub (import file). Mas maragul ya ing simpan kesa ketang dagul a mipaintulutan.',
+'importuploaderrorpartial' => 'E melaus ing pamaglub king simpan. Metung na mung dake ning simpan ing milulan.',
+'importuploaderrortemp' => 'E melaus ing pamaglulan ning simpan a pepalub (import file). Mawawala ya ing metung a pansamantalang (temporary) folder.',
+'import-parse-failure' => 'Mebigu ing XML import parse',
+'import-noarticle' => 'Alang bulung a ilub!',
+'import-nonewrevisions' => 'Mipalub (imported) nong sadia deng mangalating pamagbayu.',
+'xml-error-string' => '$1 king gulis a $2, col $3 (byte $4): $5',
+
+# Import log
+'importlogpage' => 'Tala da reng mipalub (import log)',
+'importlogpagetext' => 'Pamaniubuk ding talapanibalang maglub bulung a maki amlat ding mibayu ibat kareng aliwang wiki.',
+'import-logentry-upload' => "milub ya ing [[$1]] kapamilata'ning pamaglulan simpan (file upload)",
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}}',
+'import-logentry-interwiki' => 'me-transwiking $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}} ibat $2',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage' => 'Ing kekang bulung talagamit (user page)',
+'tooltip-pt-anonuserpage' => 'Ing bulung talagamit para king IP a i-edit mu antimong',
+'tooltip-pt-mytalk' => 'Ing kekang bulung pisasabian',
+'tooltip-pt-anontalk' => 'Pamisabi-sabi tungkul kareng edit ibat kaniting ip address',
+'tooltip-pt-preferences' => 'Deng pinili ku',
+'tooltip-pt-watchlist' => 'Ing tala da reng bulung nung nu mu babanten ing mengayalilan',
+'tooltip-pt-mycontris' => 'Tala/listaan da reng kekang ambag',
+'tooltip-pt-login' => 'Agkat da kang mag login, oneng e sapilitan iti.',
+'tooltip-pt-logout' => 'Mag log out',
+'tooltip-ca-talk' => 'Pamisabi-sabi tungkul king bulung kalamnan (content page)',
+'tooltip-ca-edit' => 'Malyari meng samasan ing bulung a ini. Pakigamit me pamu ing "pasinag a pipindutan" bayu me isikap.',
+'tooltip-ca-addsection' => "Mangibili kang bayung dake o ''section''.",
+'tooltip-ca-viewsource' => 'Protektadu/makakambil ya ing bulung a ini. Malyari meng lon ing kayang pikuanan (source).',
+'tooltip-ca-history' => 'Deng milabas a bersion ning bulung a ini.',
+'tooltip-ca-protect' => 'Protektan/kambilan ya ing bulung a ini',
+'tooltip-ca-delete' => 'Buran ya ing bulung a ini',
+'tooltip-ca-undelete' => 'Isubli la reng me-edit king bulung a ini bayu ya mebura',
+'tooltip-ca-move' => 'Iyalis ya ining bulung',
+'tooltip-ca-watch' => 'Idagdag ya ining bulung king listaan da reng babanten mu',
+'tooltip-ca-unwatch' => 'Lako ya ing bulung a ini kareng kekang babanten',
+'tooltip-search' => 'Maintun {{SITENAME}}',
+'tooltip-search-go' => 'Munta ka king bulung a maki lagyung eksaktung anti kaniti, nung atin',
+'tooltip-search-fulltext' => 'Maintun kareng bulung para king sulat a ini',
+'tooltip-p-logo' => 'Pun Bulung',
+'tooltip-n-mainpage' => 'Munta king Pun Bulung',
+'tooltip-n-mainpage-description' => 'Munta ka king pun bulung',
+'tooltip-n-portal' => 'Tungkul keng proyektu, nanung agawa mu, nung nu ka makapanintun king kailangan mu',
+'tooltip-n-currentevents' => 'Maintun kang impormasiun a maki kaugnayan kareng mibabalitang kasulungsungan a malilyari',
+'tooltip-n-recentchanges' => 'Ing tala da reng bayung mengayalili king wiki.',
+'tooltip-n-randompage' => 'Maglulan ka andiang sanung bulung',
+'tooltip-n-help' => 'Ing lugal nung nu malyaring abalu.',
+'tooltip-t-whatlinkshere' => 'Tala da reng eganaganang bulung ning wiki a pakasuglung keni',
+'tooltip-t-recentchangeslinked' => 'Bayung mengayalili kareng bulung a makasuglung ibat king bulung a ini',
+'tooltip-feed-rss' => 'RSS feed para king bulung a ini',
+'tooltip-feed-atom' => 'Atom feed para king bulung a ini',
+'tooltip-t-contributions' => 'Lon ya ing tala da reng inambag ning talagamit a ini',
+'tooltip-t-emailuser' => 'Magparla kang e-mail kaniting talagamit',
+'tooltip-t-upload' => 'Maglulan simpan (upload files)',
+'tooltip-t-specialpages' => 'Listaan da reng anggang espesial a bulung',
+'tooltip-t-print' => 'Kopia ning bulung a ini a maliaring i-print',
+'tooltip-t-permalink' => 'Permanenting suglung kaniting bersion ning bulung',
+'tooltip-ca-nstab-main' => 'Lon ya ing bulung ding kalamnan (content page)',
+'tooltip-ca-nstab-user' => 'Lon ya ing bulung ding talagamit',
+'tooltip-ca-nstab-media' => 'Lon ya ing bulung ding media',
+'tooltip-ca-nstab-special' => 'Metung yang bulung a espesial ini, e me maliaring i-edit itang mismung bulung',
+'tooltip-ca-nstab-project' => 'Lon ya ing bulung ding proyektu',
+'tooltip-ca-nstab-image' => 'Lon ya ing bulung simpan (file page)',
+'tooltip-ca-nstab-mediawiki' => 'Lon ya ing system message',
+'tooltip-ca-nstab-template' => 'Lon ya ing modelu',
+'tooltip-ca-nstab-help' => 'Lon ya ing bulung saup (help page)',
+'tooltip-ca-nstab-category' => 'Lon ya ing bulung pang-kategoriya (category page)',
+'tooltip-minoredit' => 'Markan ya ini antimong malating pamag-edit',
+'tooltip-save' => 'Isikap mo reng binayu mu',
+'tooltip-preview' => 'Lawen mo reng elilan mu keng pasinag. bayu me isikap!',
+'tooltip-diff' => 'Ipakit nung sanu ing inalilan mu ketang makasulat.',
+'tooltip-compareselectedversions' => 'Pakit la reng pamiyaliwa da reng aduang mepiling bersion ning bulung a ini.',
+'tooltip-watch' => 'Idagdag ya ing bulung a ini kareng kekang babanten',
+'tooltip-recreate' => 'Isubli ya ing bulung angiang mebura ne',
+'tooltip-upload' => 'Umpisan ya ing pamaglulan',
+'tooltip-rollback' => "Susubli no ning \"rollback\" deng miyalilan o edit kaniting bulung ning tauling talayambag king metung a ''pindut (click)''",
+'tooltip-undo' => "Ing \"balikgawan (undo)\" susubli ne ing edit at bubusni ne ing edit form king pasinag mode.
+Paintulutan na ing pamandagdag king sangkan king sampulung (''summary'').",
+'tooltip-summary' => '↓Palub kang makuyad a kabilugan',
+
+# Stylesheets
+'common.css' => '/** CSS mikabit keni maging mabisa ya karing eganaganang pabalat */',
+'monobook.css' => '/* CSS a mikabit keni miapectuan la reng gagamit king Monobook a pabalat */',
+
+# Scripts
+'common.js' => '/* Agiang nanung JavaScript a atiu keni misampa la kareng eganaganang gagamit balang misampang bulung. */',
+
+# Metadata
+'notacceptable' => 'E makapamieng data king ayus (format) a abasa ning kekang client ing wiki server.',
+
+# Attribution
+'anonymous' => 'Ing/Deng gagamit king {{SITENAME}} a e pepakilala.',
+'siteuser' => 'talagamit ning {{SITENAME}} $1',
+'lastmodifiedatby' => 'Ining bulung tauli neng elilan $3 aniang $2, $1.',
+'othercontribs' => 'Agpang basi king obra nang $1.',
+'others' => 'aliwa',
+'siteusers' => '{{SITENAME}} user(s) $1
+talagamit {{SITENAME}} $1',
+'creditspage' => 'Deng minambag king bulung a ini',
+'nocredits' => 'Alang impormasiun tungkul kareng minambag king bulung a ini.',
+
+# Spam protection
+'spamprotectiontitle' => 'Panialak king spam',
+'spamprotectiontext' => 'Sebatan ne ning panialak spam ing bulung a buri mung i-save.
+Mapaliaring ing sangkan metung yang suglung king karinan king kilual (link to an external site).',
+'spamprotectionmatch' => 'Ing makatuking sulat ing minialangi ketang panialak spam: $1',
+'spambot_username' => 'pamaglinis na king spam ning MediaWiki',
+'spam_reverting' => 'Misusubli ya king tauling bersion a yalang suglung king $1',
+'spam_blanking' => 'Deng anggang pamagbayung maki suglung king $1, magblangku',
+
+# Patrolling
+'markaspatrolleddiff' => 'Tatakan yang babanten (patrolled)',
+'markaspatrolledtext' => 'Tatakan yang babanten da (patrolled) ing bulung a ini',
+'markedaspatrolled' => 'Tatakan yang babanten',
+'markedaspatrolledtext' => 'Mitatakan yang babanten ing mepiling pamagbayu.',
+'rcpatroldisabled' => 'Makapatda ya ing Recent Changes Patrol (Talabante Kareng Bayung Miyalilan)',
+'rcpatroldisabledtext' => 'Kasalungsungan yang makapatda ing Recent Changes Patrol (Talabante Kareng Bayung Miyalilan).',
+'markedaspatrollederror' => 'E maliaring tatakan a babanten',
+'markedaspatrollederrortext' => 'Kailangan mung mamiling pamagbayung markan mung babanten.',
+'markedaspatrollederror-noautopatrol' => 'E mo maliaring tatakan a babanten (patrolled) detang sarili mung elilan.',
+
+# Patrol log
+'patrol-log-page' => 'Tala ning pamagbante (patrol long)',
+
+# Image deletion
+'deletedrevision' => 'Meburang matuang pamagbayu $1',
+'filedeleteerror-short' => 'Migkamali ya king pamamura king simpan: $1',
+'filedeleteerror-long' => 'Ating lintong pamagkamali aniang buburan ya ing bulung:
+
+$1',
+'filedelete-missing' => 'E maliaring buran ing simpan (file) a "$1", uling alang simpan a anti kaniti.',
+'filedelete-old-unregistered' => 'Ala yu king database ing mepiling pamagbayung simpan (specified file revision) a "$1".',
+'filedelete-current-unregistered' => 'Ala yu king database ing mepiling simpan a "$1".',
+'filedelete-archive-read-only' => 'E ne asulatan ning webserver ing piyakitan simpanan (archive directory) a "$1".',
+
+# Browsing diffs
+'previousdiff' => '←  Minunang edit',
+'nextdiff' => 'Mas bayung edit/pamanalili →',
+
+# Media information
+'mediawarning' => "'''Kapiadian''': Mapaliaring atin yang code a makarok (malicious) ing simpan (file) a ini, at nung paganan me, maliari yang masira ing kekang system.",
+'imagemaxsize' => 'E la dapat migit king bilang a iti deng larawan kareng bulung pamilarawan simpan (file description pages):',
+'thumbsize' => 'Kasindagul kuku (thumbnail size):',
+'widthheightpage' => '$1 × $2, $3 bulung',
+'file-info' => 'dagul ning simpan [file]: $1, MIME type: $2',
+'file-info-size' => '$1 × $2 pixel, sukad ning simpan: $3, MIME type: $4',
+'file-nohires' => 'Ala nang mas malino pa.',
+'svg-long-desc' => 'SVG file, masasabing $1 × $2 pixels, dagul ning simpan: $3',
+'show-big-image' => 'Pekamalino',
+
+# Special:NewFiles
+'newimages' => 'Pirinan kareng bayung simpan (new files)',
+'imagelisttext' => "Ing makatuki tala yang '''$1''' {{PLURAL:$1|simpan|simpan}} a misamasan $2.",
+'newimages-summary' => 'Ining bulung a makabukud papakit no reng simpan (file) a tauling milulan.',
+'showhidebots' => '($1 bot)',
+'noimages' => 'Ala kang akit.',
+'ilsubmit' => 'Manintun',
+'bydate' => 'agpang keng aldo',
+'sp-newimages-showfrom' => 'Pakit la reng bayung simpan (files) manibat king $2, $1',
+
+# Bad image list
+'bad_image_list' => 'Ing ayus (format) yapin ing makatuki:
+
+Den mung bageng makalista (gulis a magumpisa king *) ing makayabe.
+Kailangan yang suglung king simpan (file) a maki dipirensia (bad file) ing mumunang sulung king gulis.
+Kailangan, e la mamayun king patakaran (exceptions) deng suglung katuki na, alimbawa, deng bulung nung nu ya lunto king gulis (inline) ing simpan.',
+
+# Metadata
+'metadata' => 'Kaugneng impormasiun (Metadata)',
+'metadata-help' => 'Atin yang karagdagang imporamasiun ing simpan a ini, a mapalyaring ibat king digital camera o scanner e a kinanua o mig-digitize kaniti.
+Nung mibayu ya ing simpan manibat ketang orihinal nang kabilyan, mapalyaring e na la makayagpang ketang simpan a mibayu deng áliwang detalye.',
+'metadata-expand' => 'Ipalto la reng kumpletung detalye',
+'metadata-collapse' => 'Isalikut la reng kumpletung detalye',
+'metadata-fields' => 'Deng EXIF metadata field a makalista king mensahing iti kayabe la king image page display potang makapitpit (collapsed) ya ing metadata table.
+Detang aliwa tambing (by default) lang makasalikut.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
+
+# Exif tags
+'exif-imagewidth' => 'Lapad',
+'exif-imagelength' => 'Katas',
+'exif-bitspersample' => 'Bit balang dake (component)',
+'exif-compression' => 'Paralan/sistema ning pamamitpit (compression scheme)',
+'exif-photometricinterpretation' => 'Pamanayus (composition) kareng pixel',
+'exif-orientation' => 'Pangabili/ayus (orientation)',
+'exif-samplesperpixel' => 'Bilang da reng dake (components)',
+'exif-planarconfiguration' => 'Pamaniamasan king data (data arrangement)',
+'exif-xresolution' => 'Linong pakera (horizontal resolution)',
+'exif-yresolution' => 'Linong patikdo (vertical resolution)',
+'exif-stripoffsets' => 'Pangabili ning data tungkul king larawan (image data location)',
+'exif-jpeginterchangeformatlength' => 'Byte ning JPEG data',
+'exif-primarychromaticities' => 'Chromaticities da reng primarities',
+'exif-referenceblackwhite' => 'Paris da reng maputi ampong matuling a reference value',
+'exif-datetime' => 'Petsa ampong oras ning pamanaliling simpan (file change)',
+'exif-imagedescription' => 'Bansag ning larawan',
+'exif-make' => 'Ginawa king camera',
+'exif-model' => 'Modelu ning camera',
+'exif-software' => 'Software a megamit',
+'exif-artist' => 'Sinulat',
+'exif-copyright' => 'Tatalan king katulirang mangopia/copyright',
+'exif-exifversion' => 'Bersion ning Exif',
+'exif-flashpixversion' => 'Bersion ning Flashpix a susuportan na',
+'exif-colorspace' => 'Pirinan kule (color space)',
+'exif-componentsconfiguration' => 'Kabaldugan ning balang dake (component)',
+'exif-compressedbitsperpixel' => 'Paralan/ayus pamamitpit larawan (image compression mode)',
+'exif-pixelydimension' => 'Ustung lapad ning larawan',
+'exif-pixelxdimension' => 'Ustung katas ning larawan',
+'exif-usercomment' => 'Komentu da ring talagamit',
+'exif-relatedsoundfile' => 'Makaugneng simpan a katni (audio file)',
+'exif-datetimeoriginal' => 'Petsa ampong oras ning pamaglalang king data (data generation)',
+'exif-datetimedigitized' => 'Petsa ampong oras ning pamag-digitize',
+'exif-subsectime' => 'PetsaOras subsecond',
+'exif-subsectimeoriginal' => 'PetsaOrasOrihinal subsecond',
+'exif-subsectimedigitized' => 'PetsaOrasMakadigitize subsecond',
+'exif-exposuretime' => 'Oras a makabilad (exposure time)',
+'exif-exposuretime-format' => '$1 seg ($2)',
+'exif-isospeedratings' => 'sukad king bilis a ISO (ISO speed rating)',
+'exif-shutterspeedvalue' => 'Bilis ning shutter',
+'exif-aperturevalue' => 'Busbus (aperture)',
+'exif-brightnessvalue' => 'Sala',
+'exif-maxaperturevalue' => 'Pekamaragul a busbus king gabun (maximum land aperture)',
+'exif-subjectdistance' => 'Dayu ning kukwanan',
+'exif-meteringmode' => 'Paralan ning pamaniukad (metering mode)',
+'exif-lightsource' => 'Panibatan ning salâ',
+'exif-focallength' => 'Focal length ning lenti',
+'exif-subjectarea' => 'Leparan ning kukuanan (subject area)',
+'exif-flashenergy' => 'Enerhia ning flash',
+'exif-subjectlocation' => 'Lugal/karinan ning kukuanan',
+'exif-filesource' => 'Pikuanan king simpan',
+'exif-scenetype' => 'Uri ning eksena (scene type)',
+'exif-customrendered' => 'Pasadiang pamanayus king larawan (custom image processing)',
+'exif-exposuremode' => 'Paralan ning pamamilad (exposure mode)',
+'exif-whitebalance' => 'Timbang ning Maputi (White Balance)',
+'exif-scenecapturetype' => 'Uri ning pamangua king eksena (scene capture type)',
+'exif-gaincontrol' => 'Pamag-control king eksena',
+'exif-contrast' => 'Pamiyaliwa (contrast)',
+'exif-imageuniqueid' => 'ID ning larawan a alang kalupa (unique image ID)',
+'exif-gpsversionid' => 'Bersion ning tatak a GPS (GPS tag version)',
+'exif-gpslatituderef' => 'Latitude king Pangulu o Mauli',
+'exif-gpslongituderef' => 'Longitude king Aslagan o Albugan',
+'exif-gpsaltituderef' => 'Dalerayan king kátas (Altitude reference)',
+'exif-gpsaltitude' => 'Kátas',
+'exif-gpstimestamp' => 'Oras a GPS (relong atomiku)',
+'exif-gpssatellites' => 'Deng satellite a megamit king pamaniukad',
+'exif-gpsstatus' => 'Kabilian nin tatanggap (receiver status)',
+'exif-gpsmeasuremode' => 'Paralan ning pamanyukad',
+'exif-gpsspeedref' => 'Sukad king bilis (speed unit)',
+'exif-gpsspeed' => 'Bilis ning talatanggap GPS (GPS receiver)',
+'exif-gpstrack' => 'Direksiun ning kimut',
+'exif-gpsimgdirectionref' => 'Dalerayan (reference) para king direksiun/arapan ning larawan',
+'exif-gpsimgdirection' => 'Direksiun/arapan ning larawan',
+'exif-gpsmapdatum' => 'Datos king pamaniukad leparan (geodetic survey data) a megamit',
+'exif-gpsdestlatituderef' => 'Dalerayan (reference) king latitude ning puntalan',
+'exif-gpsdestlongituderef' => 'Dalerayan para king longitude ning puntalan',
+'exif-gpsdestlongitude' => 'Longitude ning puntalan',
+'exif-gpsdestbearingref' => 'Dalerayan king kabilian ning puntalan (reference for bearing of destination)',
+'exif-gpsdestbearing' => 'Kabilian ning puntalan (bearing of destination)',
+'exif-gpsdestdistanceref' => 'Dalerayan (reference) king dayu ketang puntalan',
+'exif-gpsdestdistance' => 'Dayu ketang puntalan',
+'exif-gpsprocessingmethod' => 'Lagyu ning paralan ning pamag-prosesu king GPS',
+'exif-gpsareainformation' => 'Lagyu ning lugal king GPS',
+'exif-gpsdatestamp' => 'Petsa ning GPS',
+'exif-gpsdifferential' => 'Pamanulid king pamialiwa ning GPS (GPS differential correction)',
+'exif-worldregioncreated' => 'Labuad nung nu ya meyakua ing litratu',
+'exif-countrycreated' => 'Bangsa nung nokarin ya meyakua ing litratu',
+'exif-countrydest' => 'Bangsang makalto',
+'exif-provinceorstatedest' => 'Lalawigan o bangsang makalto',
+'exif-citydest' => 'Lakanbalen makalto',
+'exif-objectname' => 'Makuyad a bansag',
+'exif-source' => 'Pikuanan',
+'exif-cameraownername' => 'Mikibandi keng paglitratu',
+
+# Exif attributes
+'exif-compression-1' => 'E makapitpit (uncompressed)',
+
+'exif-unknowndate' => 'E makabili ing petsa',
+
+'exif-orientation-1' => 'Karaniwan',
+'exif-orientation-2' => 'Mitumbalik yang pakera (horizontally)',
+'exif-orientation-3' => 'Pepadurut yang 180°',
+'exif-orientation-4' => 'Mitumbalik yang patikdo (vertically)',
+'exif-orientation-5' => 'Dinurut yang 90° pa-kaili at mitumbalik yang patikdo (vertically)',
+'exif-orientation-6' => 'Pepadurut yang 90° a pa-wanan',
+'exif-orientation-7' => 'Dinurut yang 90° pa-wanan at mitumbalik patikdo (vertically)',
+'exif-orientation-8' => 'Pepadurut yang 90° a pa-kaili',
+
+'exif-planarconfiguration-1' => 'ayus a bikual-bikual (chunky format)',
+'exif-planarconfiguration-2' => 'ayus a patag (planar format)',
+
+'exif-componentsconfiguration-0' => 'alang anti kaniti',
+
+'exif-exposureprogram-0' => 'E malino/e mirinan kabaldugan (undefined)',
+'exif-exposureprogram-1' => 'Gematan (manual)',
+'exif-exposureprogram-2' => 'Karaniwan a program',
+'exif-exposureprogram-3' => 'Pamituki-tuki king aperture/busbus (aperture priority)',
+'exif-exposureprogram-4' => 'Pamituki-tuki king shutter/paniara (shutter priority)',
+'exif-exposureprogram-5' => 'Makudtang program [creative program] (makakiling king lalam ning field)',
+'exif-exposureprogram-6' => 'Program a kikimit [action] (makakiling king mabilis a shutter)',
+'exif-exposureprogram-7' => 'Askeng patikdo/portrait mode (kareng letratung malapit nung mapula ya ing gulut/background)',
+'exif-exposureprogram-8' => 'Askeng pakera/landscape mode (kareng letratung pakera nung nu malino [in focus] ya ing gulut/background)',
+
+'exif-subjectdistance-value' => '$1 metru',
+
+'exif-meteringmode-0' => 'Alang impormasiun',
+'exif-meteringmode-3' => 'Tuldik (spot)',
+'exif-meteringmode-255' => 'Aliwa',
+
+'exif-lightsource-0' => 'E mesabi',
+'exif-lightsource-1' => 'Sala ning aldo',
+'exif-lightsource-2' => 'Salang fluorescent',
+'exif-lightsource-3' => 'Tungsten (bombilla)',
+'exif-lightsource-9' => 'Masanting a panaun',
+'exif-lightsource-10' => 'Maulap a panaun',
+'exif-lightsource-11' => 'Masalilung',
+'exif-lightsource-17' => 'Karaniwan a sulung A',
+'exif-lightsource-18' => 'Karaniwan a sulung B',
+'exif-lightsource-19' => 'Karaniwan a sulung C',
+'exif-lightsource-255' => 'Aliwang pikuanan sala',
+
+'exif-focalplaneresolutionunit-2' => 'pulgada',
+
+'exif-sensingmethod-1' => 'E mebanggit (undefined)',
+
+'exif-scenetype-1' => 'Metung a letratung deretsung mekua',
+
+'exif-customrendered-0' => 'Karaniwan a paralan',
+'exif-customrendered-1' => 'Paralan/prosesung pasadia (custom process)',
+
+'exif-exposuremode-0' => 'Tambing/otomatikung makabilad (auto exposure)',
+
+'exif-scenecapturetype-0' => 'Karaniwan (standard)',
+'exif-scenecapturetype-1' => 'Pakera (landscape)',
+'exif-scenecapturetype-2' => 'Patikdo (portrait)',
+'exif-scenecapturetype-3' => 'Eksena neng bengi',
+
+'exif-gaincontrol-0' => 'Ala',
+
+'exif-contrast-0' => 'Karaniwan',
+'exif-contrast-1' => 'Lambut',
+'exif-contrast-2' => 'Sias',
+
+'exif-saturation-0' => 'Karaniwan',
+
+'exif-sharpness-0' => 'Karaniwan (normal)',
+'exif-sharpness-1' => 'Malambut',
+'exif-sharpness-2' => 'Masias',
+
+'exif-subjectdistancerange-0' => 'E malino',
+'exif-subjectdistancerange-2' => 'Malapit pangakua',
+'exif-subjectdistancerange-3' => 'Marayu pangakua',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Latitude king Pangulu/Norti',
+'exif-gpslatitude-s' => 'Latitude king Mauli/Sur',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Longitude king Aslagan',
+'exif-gpslongitude-w' => 'Longitude king Albugan',
+
+'exif-gpsstatus-a' => 'Kasalungsungan a mararapat ing pamaniukad',
+
+'exif-gpsmeasuremode-2' => 'Pamaniukad a 2-dimensional',
+'exif-gpsmeasuremode-3' => 'Pamaniukad a 3-dimensional',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometru balang oras',
+'exif-gpsspeed-m' => 'Milla balang oras',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Tutung direksiun',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'eganagana',
+'namespacesall' => 'ila ngan',
+'monthsall' => 'eganagana',
+
+# Email address confirmation
+'confirmemail' => 'Patutwan mung keka ya itang e-mail address',
+'confirmemail_noemail' => 'Ala kang ustung e-mail address a makabili ketang kekang [[Special:Preferences|pinili ning talagamit (user preferences)]].',
+'confirmemail_text' => 'Kaylangan king wiking iti ing patutwan me pamu ing kekang e-mail address bayu
+mo aluban detang pamangamit a maki kaugnayan king e-mail. I-click me ing button
+king lalam ba yang magparlang e-mail kekang babye patune. Kayabe ya ketang e-mail
+ing metung a suglung a maki code; ibili me ketang kekang browser itang suglung
+ba mung patutwan a ustu ya ing kekang e-mail address.',
+'confirmemail_pending' => 'Atin nang miparalang confirmation code keka kapamilatan ning e-mail;
+nung kaibat-ibat mu pamung miglalang e-mail account, panayan me pamung datang kilub ning mapilan a minutu bayu ka maniad bayung code.',
+'confirmemail_send' => 'Magparla kang confirmation code',
+'confirmemail_sent' => 'Patutuan ing e-mail miparla ya.',
+'confirmemail_oncreate' => 'Ating miparalang confirmation code ketang kekang e-mail address.
+E me kailangan ining code bang mag-login, oneng kailanganan meng ibie bayu mo apaliari deng gamit (features) nang makabasi king e-mail ning wiki.',
+'confirmemail_sendfailed' => 'E miparala ing sulat ning kumpirmasiun.
+Pakabasan me ing address, pota atin yang letra/kulit a e maliari.
+
+Misubli ya mailer: $1',
+'confirmemail_invalid' => 'E ustu ing confirmation code.
+Mapaliaring mepasu ne ing code.',
+'confirmemail_needlogin' => 'Kailangan mung $1 ba meng akumpirma ing kekang e-mail address.',
+'confirmemail_success' => 'Mekumpirma ne ing kekang e-mail address.
+Maliari na kang mag-login at gumamit king wiki.',
+'confirmemail_loggedin' => 'Mekumpirma ne ing kekang e-mail address.',
+'confirmemail_subject' => 'Pamagkumpirma na king e-mail address ning {{SITENAME}}',
+'confirmemail_body' => 'Ating tau, mapaliaring ika, ibat king IP address $1,
+ing migrehistrung account a "$2" a maki e-mail address a anti kaniti king {{SITENAME}}.
+
+Ba mung kumpirmang keka ya pin ing account a ini at paganan mo
+reng gamit a pang e-mal (e-mail features) king {{SITENAME}}, busni me ining suglung king kekang browser:
+
+$3
+
+Nung *aliwa* ika ing migrehistru king account, tukian me
+ing suglung a ini ba meng iurung ing pamagkumpirma king e-mail address:
+
+$5
+
+Mayari/mapasu ya ining confirmation code keng $4.',
+'confirmemail_invalidated' => 'Mibawi ing pamagkumpirma ning e-mail address',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[Masiadu yang makaba ing URL; pasensia na ka]',
+
+# Delete conflict
+'deletedwhileediting' => 'Kapiadian: Mebura ya ing bulung ini kaibat mung migumpisang mag-edit!',
+'recreate' => 'Lalangan yang pasibayu',
+
+# action=purge
+'confirm_purge_button' => 'Sigi',
+'confirm-purge-top' => 'Ilako ya king simpanan (cache) ing bulung a ine?',
+
+# Multipage image navigation
+'imgmultipageprev' => '← minunang bulung',
+'imgmultipagenext' => 'tutuking bulung →',
+'imgmultigo' => 'Sulung!',
+
+# Table pager
+'table_pager_next' => 'Tutuking bulung',
+'table_pager_prev' => 'Minunang bulung',
+'table_pager_first' => 'Mumunang bulung',
+'table_pager_last' => 'Tauling bulung',
+'table_pager_limit' => 'Magpaltong $1 lagiu king balang bulung',
+'table_pager_limit_submit' => 'Sulung',
+'table_pager_empty' => 'Alang linual/resulta',
+
+# Auto-summaries
+'autosumm-blank' => 'Lalako la ngan deng laman ning bulung',
+'autosumm-replace' => "Ing '$1' alilan ne ing bulung",
+'autoredircomment' => 'Lilipat ya king [[$1]]',
+'autosumm-new' => 'Bayung bulung: $1',
+
+# Live preview
+'livepreview-loading' => 'Máglulan…',
+'livepreview-ready' => 'Máglulan… Makasadia ne!',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Mapalyaring e la lunto king listaan a ini deng miyalilan a mas bayu king $1 segundu',
+
+# Watchlist editor
+'watchlistedit-noitems' => 'Ala yang bansag ing kekang tala ring babanten (watchlist).',
+'watchlistedit-normal-title' => 'I-edit ya ing tala ring babanten (watchlist)',
+'watchlistedit-normal-legend' => 'Ilako la reng bansag king tala ring babanten (watchlist)',
+'watchlistedit-normal-submit' => 'Ilako la reng bansag',
+'watchlistedit-raw-title' => 'I-edit ya ing tala ring babanten a e pa metagin (raw watchlist)',
+'watchlistedit-raw-legend' => 'I-edit ya ing tala ring babanten a e pa metagin (raw watchlist)',
+'watchlistedit-raw-titles' => 'Bansag:',
+'watchlistedit-raw-done' => 'Mibayu ne ing kekang tala ring babanten (watchlist).',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Lon la reng miyalilan a makaugne kaniti',
+'watchlisttools-edit' => 'Lon ya ampong i-edit ing tala ding babanten (watchlist)',
+'watchlisttools-raw' => 'I-edit ya ing e pa metagin a tala ding babanten (raw watchlist)',
+
+# Special:Version
+'version' => 'Bersion',
+'version-specialpages' => 'Bulung a makabukud',
+'version-other' => 'Aliwa',
+'version-version' => '(Bersion $1)',
+'version-license' => 'Lisensia',
+'version-software-product' => 'Produktu',
+'version-software-version' => 'Bersion',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch' => 'Maintun simpan (file) a kapareu',
+'fileduplicatesearch-legend' => 'Maintun kapareu',
+'fileduplicatesearch-filename' => 'Lagyungsimpan (filename):',
+'fileduplicatesearch-submit' => 'Maintun',
+'fileduplicatesearch-result-1' => 'Ala yang eksaktung kapareu ing simpan (file) a "$1".',
+
+# Special:SpecialPages
+'specialpages' => 'Bulung a makabukud',
+'specialpages-group-other' => 'Aliwa pang bulung a makabukud',
+'specialpages-group-login' => 'Mag-login / magrehistru',
+'specialpages-group-changes' => 'Bayung mengayalili ampong tala (logs)',
+'specialpages-group-media' => 'Ulat king media ampong pamaglulan (uploads)',
+'specialpages-group-users' => 'Talagamit ampong katuliran',
+'specialpages-group-highuse' => 'Deng bulung a magamitan',
+
+# New logging system
+'revdelete-restricted' => 'ipairal la reng limitasiun kareng sysop',
+'revdelete-unrestricted' => 'ilako la reng makabawal kareng sysops',
+'rightsnone' => '(ala)',
+
+);
