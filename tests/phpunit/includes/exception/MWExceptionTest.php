@@ -1,14 +1,12 @@
 <?php
 /**
- * Tests for includes/Exception.php.
- *
  * @author Antoine Musso
  * @copyright Copyright © 2013, Antoine Musso
  * @copyright Copyright © 2013, Wikimedia Foundation Inc.
  * @file
  */
 
-class ExceptionTest extends MediaWikiTestCase {
+class MWExceptionTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
