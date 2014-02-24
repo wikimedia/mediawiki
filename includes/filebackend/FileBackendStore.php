@@ -1565,7 +1565,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string
 	 */
 	private function containerCacheKey( $container ) {
-		return wfMemcKey( 'backend', $this->getName(), 'container', $container );
+		return "filebackend:{$this->name}:{$this->wikiId}:container:{$container}";
 	}
 
 	/**
@@ -1646,7 +1646,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
-		return wfMemcKey( 'backend', $this->getName(), 'file', sha1( $path ) );
+		return "filebackend:{$this->name}:{$this->wikiId}:file:" . sha1( $path );
 	}
 
 	/**
