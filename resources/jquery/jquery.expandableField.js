@@ -56,7 +56,7 @@
 			args = arguments;
 
 		$( this ).each( function () {
-			var key, context;
+			var key, context, timeout;
 
 			/* Construction / Loading */
 
@@ -122,10 +122,13 @@
 				$( this )
 					.addClass( 'expandableField' )
 					.focus( function ( e ) {
+						clearTimeout( timeout );
 						$.expandableField.expandField( e, context );
 					} )
-					.delayedBind( 250, 'blur', function ( e ) {
-						$.expandableField.condenseField( e, context );
+					.blur( function ( e ) {
+						timeout = setTimeout( function () {
+							$.expandableField.condenseField( e, context );
+						}, 250 );
 					} );
 			}
 			// Store the context for next time

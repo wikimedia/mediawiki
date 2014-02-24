@@ -24,13 +24,14 @@
 			} );
 		} );
 
-		// if we haven't already bound our resize hanlder, bind it now
+		// if we haven't already bound our resize handler, bind it now
 		if ( !$.collapsibleTabs.boundEvent ) {
-			$( window )
-				.delayedBind( 500, 'resize', function () {
-					$.collapsibleTabs.handleResize();
-				} );
+			$( window ).on( 'resize', $.debounce( 500, function () {
+				$.collapsibleTabs.handleResize();
+			} ) );
+			$.collapsibleTabs.boundEvent = true;
 		}
+
 		// call our resize handler to setup the page
 		$.collapsibleTabs.handleResize();
 		return this;
@@ -101,9 +102,6 @@
 			}
 			return $settings;
 		},
-		/**
-		 * @param {jQuery.Event} e
-		 */
 		handleResize: function () {
 			$.collapsibleTabs.instances.each( function () {
 				var $el = $( this ),

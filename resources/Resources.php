@@ -150,7 +150,7 @@ return array(
 			'vector/vector.js',
 		),
 		'position' => 'top',
-		'dependencies' => 'jquery.delayedBind',
+		'dependencies' => 'jquery.throttle-debounce',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
@@ -238,7 +238,6 @@ return array(
 	),
 	'jquery.expandableField' => array(
 		'scripts' => 'resources/jquery/jquery.expandableField.js',
-		'dependencies' => 'jquery.delayedBind',
 	),
 	'jquery.farbtastic' => array(
 		'scripts' => 'resources/jquery/jquery.farbtastic.js',
