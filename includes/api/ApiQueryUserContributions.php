@@ -298,6 +298,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhere( 'rev_id = page_latest' );
 		}
 
+		if ( $this->params['newonly'] ) {
+			$this->addWhere( 'rev_parent_id = 0' );
+		}
+
 		$this->addOption( 'USE INDEX', $index );
 	}
 
@@ -481,6 +485,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'tag' => null,
 			'toponly' => false,
+			'newonly' => false,
 		);
 	}
 
@@ -520,6 +525,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',
+			'newonly' => 'Only list changes which are page creations',
 		);
 	}
 
