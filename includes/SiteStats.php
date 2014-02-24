@@ -221,6 +221,8 @@ class SiteStats {
 	/**
 	 * Is the provided row of site stats sane, or should it be regenerated?
 	 *
+	 * Checks only fields which are filled by SiteStatsInit::refresh.
+	 *
 	 * @param $row
 	 *
 	 * @return bool
@@ -229,7 +231,6 @@ class SiteStats {
 		if ( $row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
-			|| $row->ss_users < $row->ss_active_users
 		) {
 			return false;
 		}
