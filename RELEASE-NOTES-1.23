@@ -187,6 +187,8 @@ production.
 * (bug 58627) Provide language names on action=parse&prop=langlinks.
 * Deprecated llurl= in favour of llprop=url for action=query&prop=langlinks.
 * Added llprop=langname and llprop=autonym for action=query&prop=langlinks.
+* prop=redirects is added, to return redirects to the pages in the query.
+* list=allredirects is added, to list all redirects pointing to a namespace.
 
 === Languages updated in 1.23 ===
 
