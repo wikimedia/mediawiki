@@ -28,7 +28,7 @@
 class PermissionsError extends ErrorPageError {
 	public $permission, $errors;
 
-	function __construct( $permission, $errors = array() ) {
+	public function __construct( $permission, $errors = array() ) {
 		global $wgLang;
 
 		$this->permission = $permission;
@@ -49,7 +49,7 @@ class PermissionsError extends ErrorPageError {
 		$this->errors = $errors;
 	}
 
-	function report() {
+	public function report() {
 		global $wgOut;
 
 		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );

@@ -31,7 +31,7 @@ class BadTitleError extends ErrorPageError {
 	 * @param string|Message $msg A message key (default: 'badtitletext')
 	 * @param array $params parameter to wfMessage()
 	 */
-	function __construct( $msg = 'badtitletext', $params = array() ) {
+	public function __construct( $msg = 'badtitletext', $params = array() ) {
 		parent::__construct( 'badtitle', $msg, $params );
 	}
 
@@ -39,7 +39,7 @@ class BadTitleError extends ErrorPageError {
 	 * Just like ErrorPageError::report() but additionally set
 	 * a 400 HTTP status code (bug 33646).
 	 */
-	function report() {
+	public function report() {
 		global $wgOut;
 
 		// bug 33646: a badtitle error page need to return an error code
