@@ -11,7 +11,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	/**
 	 * @expectedException MWException
 	 */
-	function testMwexceptionThrowing() {
+	public function testMwexceptionThrowing() {
 		throw new MWException();
 	}
 
@@ -21,7 +21,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 * @dataProvider provideExceptionClasses
 	 */
-	function testJsonSerializeExceptions( $exception_class ) {
+	public function testJsonSerializeExceptions( $exception_class ) {
 		$json = MWExceptionHandler::jsonSerializeException(
 			new $exception_class()
 		);
@@ -29,7 +29,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 			"The $exception_class exception should be JSON serializable, got false." );
 	}
 
-	function provideExceptionClasses() {
+	public function provideExceptionClasses() {
 		return array(
 			array( 'Exception' ),
 			array( 'MWException' ),
@@ -46,7 +46,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 * @param $key String Name of the key to validate in the serialized JSON
 	 * @dataProvider provideJsonSerializedKeys
 	 */
-	function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
+	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
 
 		# Make sure we log a backtrace:
 		$this->setMwGlobals( array( 'wgLogExceptionBacktrace' => true ) );
@@ -66,7 +66,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	/**
 	 * Returns test cases: exception class, key name, gettype()
 	 */
-	function provideJsonSerializedKeys() {
+	public function provideJsonSerializedKeys() {
 		$testCases = array();
 		foreach ( array( 'Exception', 'MWException' ) as $exClass ) {
 			$exTests = array(
@@ -89,7 +89,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 *
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
-	function testJsonserializeexceptionBacktracingEnabled() {
+	public function testJsonserializeexceptionBacktracingEnabled() {
 		$this->setMwGlobals( array( 'wgLogExceptionBacktrace' => true ) );
 		$json = json_decode(
 			MWExceptionHandler::jsonSerializeException( new Exception() )
@@ -103,7 +103,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 *
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
-	function testJsonserializeexceptionBacktracingDisabled() {
+	public function testJsonserializeexceptionBacktracingDisabled() {
 		$this->setMwGlobals( array( 'wgLogExceptionBacktrace' => false ) );
 		$json = json_decode(
 			MWExceptionHandler::jsonSerializeException( new Exception() )

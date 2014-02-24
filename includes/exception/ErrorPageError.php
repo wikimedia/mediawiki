@@ -34,7 +34,7 @@ class ErrorPageError extends MWException {
 	 * @param string|Message $msg Message key (string) for error text, or a Message object
 	 * @param array $params with parameters to wfMessage()
 	 */
-	function __construct( $title, $msg, $params = array() ) {
+	public function __construct( $title, $msg, $params = array() ) {
 		$this->title = $title;
 		$this->msg = $msg;
 		$this->params = $params;
@@ -52,7 +52,7 @@ class ErrorPageError extends MWException {
 		parent::__construct( $enMsg->text() );
 	}
 
-	function report() {
+	public function report() {
 		global $wgOut;
 
 		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );

@@ -30,14 +30,14 @@ class FatalError extends MWException {
 	/**
 	 * @return string
 	 */
-	function getHTML() {
+	public function getHTML() {
 		return $this->getMessage();
 	}
 
 	/**
 	 * @return string
 	 */
-	function getText() {
+	public function getText() {
 		return $this->getMessage();
 	}
 }

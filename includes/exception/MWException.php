@@ -29,7 +29,7 @@ class MWException extends Exception {
 	 *
 	 * @return bool
 	 */
-	function useOutputPage() {
+	public function useOutputPage() {
 		return $this->useMessageCache() &&
 		!empty( $GLOBALS['wgFullyInitialised'] ) &&
 		!empty( $GLOBALS['wgOut'] ) &&
@@ -42,7 +42,7 @@ class MWException extends Exception {
 	 * @since 1.23
 	 * @return boolean
 	 */
-	function isLoggable() {
+	public function isLoggable() {
 		return true;
 	}
 
@@ -51,7 +51,7 @@ class MWException extends Exception {
 	 *
 	 * @return bool
 	 */
-	function useMessageCache() {
+	public function useMessageCache() {
 		global $wgLang;
 
 		foreach ( $this->getTrace() as $frame ) {
@@ -70,7 +70,7 @@ class MWException extends Exception {
 	 * @param array $args arguments to pass to the callback functions
 	 * @return string|null string to output or null if any hook has been called
 	 */
-	function runHooks( $name, $args = array() ) {
+	public function runHooks( $name, $args = array() ) {
 		global $wgExceptionHooks;
 
 		if ( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) {
@@ -113,7 +113,7 @@ class MWException extends Exception {
 	 * The function also has other parameters that are arguments for the message
 	 * @return string message with arguments replaced
 	 */
-	function msg( $key, $fallback /*[, params...] */ ) {
+	public function msg( $key, $fallback /*[, params...] */ ) {
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
@@ -130,7 +130,7 @@ class MWException extends Exception {
 	 *
 	 * @return string html to output
 	 */
-	function getHTML() {
+	public function getHTML() {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
@@ -155,7 +155,7 @@ class MWException extends Exception {
 	 *
 	 * @return string
 	 */
-	function getText() {
+	public function getText() {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
@@ -172,7 +172,7 @@ class MWException extends Exception {
 	 *
 	 * @return string
 	 */
-	function getPageTitle() {
+	public function getPageTitle() {
 		global $wgSitename;
 		return $this->msg( 'pagetitle', "$1 - $wgSitename", $this->msg( 'internalerror', 'Internal error' ) );
 	}
@@ -184,7 +184,7 @@ class MWException extends Exception {
 	 * @deprecated since 1.22 Use MWExceptionHandler::getLogId instead.
 	 * @return string
 	 */
-	function getLogId() {
+	public function getLogId() {
 		wfDeprecated( __METHOD__, '1.22' );
 		return MWExceptionHandler::getLogId( $this );
 	}
@@ -197,7 +197,7 @@ class MWException extends Exception {
 	 * @deprecated since 1.22 Use MWExceptionHandler::getLogMessage instead.
 	 * @return string
 	 */
-	function getLogMessage() {
+	public function getLogMessage() {
 		wfDeprecated( __METHOD__, '1.22' );
 		return MWExceptionHandler::getLogMessage( $this );
 	}
@@ -205,7 +205,7 @@ class MWException extends Exception {
 	/**
 	 * Output the exception report using HTML.
 	 */
-	function reportHTML() {
+	public function reportHTML() {
 		global $wgOut;
 		if ( $this->useOutputPage() ) {
 			$wgOut->prepareErrorPage( $this->getPageTitle() );
@@ -241,7 +241,7 @@ class MWException extends Exception {
 	 * Output a report about the exception and takes care of formatting.
 	 * It will be either HTML or plain text based on isCommandLine().
 	 */
-	function report() {
+	public function report() {
 		global $wgMimeType;
 
 		MWExceptionHandler::logException( $this );
@@ -267,7 +267,7 @@ class MWException extends Exception {
 	 *
 	 * @return bool
 	 */
-	static function isCommandLine() {
+	public static function isCommandLine() {
 		return !empty( $GLOBALS['wgCommandLineMode'] );
 	}
 }

@@ -11,7 +11,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @covers MWExceptionHandler::getRedactedTrace
 	 */
-	function testGetRedactedTrace() {
+	public function testGetRedactedTrace() {
 		$refvar = 'value';
 		try {
 			$array = array( 'a', 'b' );
