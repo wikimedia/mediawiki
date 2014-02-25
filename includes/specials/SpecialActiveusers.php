@@ -242,7 +242,7 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
 
 		// Occasionally merge in new updates
-		$seconds = self::mergeActiveUsers( 600 );
+		$seconds = min( self::mergeActiveUsers( 600 ), $wgActiveUserDays * 86400 );
 		// Mention the level of staleness
 		$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
 			$this->getLanguage()->formatDuration( $seconds ) );
@@ -270,7 +270,7 @@ class SpecialActiveUsers extends SpecialPage {
 
 	/**
 	 * @param integer $period Seconds (do updates no more often than this)
-	 * @return integer How many seconds old the cache is
+	 * @return integer How many seconds old the cache is (0 if no cache exists)
 	 */
 	public static function mergeActiveUsers( $period ) {
 		global $wgActiveUserDays;
@@ -283,7 +283,12 @@ class SpecialActiveUsers extends SpecialPage {
 		if ( !wfReadOnly() ) {
 			if ( !$cTime || ( time() - wfTimestamp( TS_UNIX, $cTime ) ) > $period ) {
 				$dbw = wfGetDB( DB_MASTER );
-				self::doQueryCacheUpdate( $dbw, 2 * $period );
+				if ( $dbw->estimateRowCount( 'recentchanges' ) <= 10000 ) {
+					$window = $wgActiveUserDays * 86400; // small wiki
+				} else {
+					$window = $period * 2;
+				}
+				self::doQueryCacheUpdate( $dbw, $window );
 			}
 		}
 		return ( time() -
