@@ -1265,6 +1265,9 @@ Marino raha manohy ny tantaram-pejy ity asa ity.",
 'editundo' => 'esory',
 'diff-empty' => '(Tsy misy mahasamihafa)',
 'diff-multi-manyusers' => "Tsy naseho ny antiôna $1{{PLURAL:}} nataon'ny mpikambana $2.",
+'difference-missing-revision' => "Tsy hita ny versiona $2{{PLURAL:$2||}} ny fahasamihafanna ($1) an'ity pejy ity.
+
+Vokatry ny fanarahana rohy fampitahana lany daty mankany amy pejy efa voafafa izan . Ho hita eo amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafàna] ny antsipirihany.",
 
 # Search results
 'searchresults' => 'Valim-pikarohana',
@@ -1280,7 +1283,7 @@ Marino raha manohy ny tantaram-pejy ity asa ity.",
 'shown-title' => 'Aseho valiny $1 isaky ny pejy iray{{PLURAL:}}',
 'viewprevnext' => 'Hijery ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Misy pejy mitondra anarana « [[:$1]] » eto amin'ity wiki ity'''",
-'searchmenu-new' => "'''Hamorona ny pejy \"[[:\$1]]\" eto amin'ity wiki ity!'''",
+'searchmenu-new' => '<strong>Hamorona ny pejy "[[:$1]]" eto amin\'ity wiki ity!</strong> {{PLURAL:$2|0=|Jereo koa ny pejy hita tamin\'ny karokao.|Jereo koa ny valim-pikarohana hita.}}',
 'searchprofile-articles' => 'Pejy misy votoatiny',
 'searchprofile-project' => 'Pejy fanampiana sy pejy tetikasa',
 'searchprofile-images' => 'Multimedia',
@@ -1881,8 +1884,7 @@ ity wiki ity dia no-regler-na ho sarababem-bahoaka.",
 'upload_source_file' => " (rakitra eo amin'ny milinao)",
 
 # Special:ListFiles
-'listfiles-summary' => "Ahitana ny rakitra rehetra nampidirina ity pejy manokana ity.
-Rehefa sivanin'ny mpikambana iray izy ity, ny rakitra izay ahitana santiôna vaovao indrindra izay nalefan'io mpikamana io no aseho.",
+'listfiles-summary' => 'Ahitana ny rakitra rehetra nampidirina ity pejy manokana ity.',
 'listfiles_search_for' => 'Hitady anarana media :',
 'imgfile' => 'rakitra',
 'listfiles' => "Lisitran'ny rakitra",
@@ -2342,10 +2344,12 @@ Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'deletecomment' => 'Antony :',
 'deleteotherreason' => 'antony hafa miampyy:',
 'deletereasonotherlist' => 'antony',
-'deletereason-dropdown' => "* Antom-pamafana matetika miasa
+'deletereason-dropdown' => "* Antom-pamafàna miverimberina matetika
+** Rohy fandotoana
+** Fanimbana pejy
+** Tsy fanajana zom-pamorona
 ** Hataka avy amin'ny tompony
-** Tsi-fanajana ny zom-pamorona
-** Fandotoana",
+** Fihodinana tapaka",
 'delete-edit-reasonlist' => 'Hanova ny antony amafana pejy',
 'delete-toobig' => "Ity pejy ity dia manana tantaram-panovana lava be, izany hoe manana versiona {{PLURAL:$1}} $1.
 Noferana mba tsy hikorontana ny fandehanan'i {{SITENAME}} ny famafana ireo pejy ireo.{{PLURAL:$1|}}",
@@ -3190,12 +3194,14 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpsaltituderef' => 'Haambo tsiahy',
 'exif-gpsaltitude' => 'Haambo',
 'exif-gpstimestamp' => 'Ora GPS (famantaranandro atômika)',
+'exif-gpssatellites' => "Zanabolana mampiasaina ho an'ilay refy",
 'exif-gpsmeasuremode' => 'Fomba fandrefesana',
 'exif-gpsdop' => 'Hatsiko ny fandrefesana',
 'exif-gpsspeedref' => 'Mari-drefi-kafainganana',
 'exif-gpsspeed' => 'Hafaingam-pandray GPS',
 'exif-gpsimgdirection' => "Fitodihan'ny sary",
 'exif-gpsdestlatitude' => 'Laharam-pehintany tanjona',
+'exif-gpsdestlongitude' => 'Laharan-jarahasina tanjona',
 'exif-gpsareainformation' => 'Anaram-paritra GPS',
 'exif-gpsdatestamp' => 'Daty GPS',
 'exif-worldregioncreated' => 'Faritany nangalana ity ilay sary',
@@ -3305,12 +3311,34 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-flash-fired-1' => 'Nirehitra ny flash',
 'exif-flash-return-0' => 'Tsy misy stirôbôskôpy mamerina lefa fahitana',
 'exif-flash-mode-3' => 'Toetra aotômatika',
+'exif-flash-function-1' => "Tsy misy lefan'ny flash",
+'exif-flash-redeye-1' => 'Fanoherana ny fisiana maso mena',
 
 'exif-focalplaneresolutionunit-2' => 'Posy',
 
 'exif-sensingmethod-1' => 'Tsy voafaritra',
 
+'exif-gaincontrol-0' => 'Tsy misy',
+'exif-gaincontrol-1' => 'Fahazoana miabo kely',
+'exif-gaincontrol-2' => 'Fitomboana miabo be',
+'exif-gaincontrol-3' => 'Fitomboana miiba kely',
+'exif-gaincontrol-4' => 'Fitomboana miiba be',
+
+'exif-contrast-0' => 'Tsotra',
+'exif-contrast-1' => 'Kely',
+'exif-contrast-2' => 'Ambony',
+
+'exif-saturation-0' => 'Tsotra',
+'exif-saturation-1' => 'Ambany',
+'exif-saturation-2' => 'Ambony',
+
+'exif-sharpness-0' => 'Tsotra',
+'exif-sharpness-1' => 'Malefaka',
+
+'exif-subjectdistancerange-0' => 'Tsy fantatra',
 'exif-subjectdistancerange-1' => 'Makrô',
+'exif-subjectdistancerange-2' => 'Fijerena akaiky',
+'exif-subjectdistancerange-3' => 'Fijerena lavitra',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Avaratra',
@@ -3330,8 +3358,56 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpsspeed-m' => "Maily isak'ora",
 'exif-gpsspeed-n' => 'Knot',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometatra',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Mile naotika',
+
+'exif-gpsdop-excellent' => 'Tena tsara ($1)',
+'exif-gpsdop-good' => 'Tsara ($1)',
+'exif-gpsdop-moderate' => 'Eo ho eo ihany ($1)',
+'exif-gpsdop-fair' => 'Tsara ihany ($1)',
+'exif-gpsdop-poor' => 'Kely ($1)',
+
+'exif-objectcycle-a' => 'Maraina ihany',
+'exif-objectcycle-p' => 'Hariva ihany',
+'exif-objectcycle-b' => 'Sady maraina no hariva',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Tena avaratra',
 'exif-gpsdirection-m' => "Avaratra arak'andriamby",
+
+'exif-dc-contributor' => 'Mpandray anjara',
+'exif-dc-date' => 'Daty',
+'exif-dc-publisher' => 'Mpamoaka',
+'exif-dc-rights' => 'Zo',
+'exif-dc-source' => 'Haino aman-jery niaviana',
+'exif-dc-type' => 'Karazana baino aman-jery',
+
+'exif-rating-rejected' => 'Nolavina',
+
+'exif-isospeedratings-overflow' => 'Mahery ny 65535',
+
+'exif-iimcategory-ace' => 'Kanto, kolontsaina ary fialam-boly',
+'exif-iimcategory-clj' => 'Heloka aman-jo',
+'exif-iimcategory-dis' => 'Voina aman-doza',
+'exif-iimcategory-fin' => 'Toe-karena',
+'exif-iimcategory-edu' => 'Fanabeazana',
+'exif-iimcategory-evn' => 'Tontolo iainana',
+'exif-iimcategory-hth' => 'Fahasalamana',
+'exif-iimcategory-lab' => 'Asa',
+'exif-iimcategory-lif' => 'Fomba fiainana sy fialam-boly',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Finoana',
+'exif-iimcategory-sci' => 'Siansa sy teknôlôjia',
+'exif-iimcategory-soi' => 'Olana ara-tsosialy',
+'exif-iimcategory-spo' => 'Fanatanjahan-tena',
+'exif-iimcategory-war' => 'Ady, tsy fandriampahalemana',
+'exif-iimcategory-wea' => "Toetr'andro",
+
+'exif-urgency-normal' => 'Tsotra ($1)',
+'exif-urgency-low' => 'Ambany ($1)',
+'exif-urgency-high' => 'Ambony ($1)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'rehetra',
@@ -3391,6 +3467,7 @@ Azafady hamafiso fa tena irinao averina hoforonina tokoa ity lahatsoratra ity.",
 'confirm-purge-top' => "Fafana ve ny cache-n'ity pejy ity?",
 
 # action=watch/unwatch
+'confirm-watch-button' => 'OK',
 'confirm-watch-top' => 'Hanaraka ity pejy ity?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => "Hanala ity pejy ity amin'ny lisitry ny pejy arahinao?",
@@ -3463,8 +3540,8 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 'version-variables' => 'Miova',
 'version-other' => 'Samihafa',
 'version-hook-subscribedby' => "Nalefan'i",
-'version-version' => '(Santiôna $1)',
-'version-license' => 'Lisansy',
+'version-version' => '($1)',
+'version-license' => 'Lisansa Mediawiki',
 'version-poweredby-others' => 'hafa',
 'version-software' => 'Rindrankahy voapetraka',
 'version-software-product' => 'Vokatra',
@@ -3552,7 +3629,13 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 
 # New logging system
 'logentry-delete-delete' => "nofafan'i $1 ny pejy $3",
-'logentry-suppress-delete' => "nofafan'i $1 ny pejy $3",
+'logentry-suppress-delete' => "{{GENDER:$2|nofafan'i}} $1 ny pejy $3",
+'revdelete-content-hid' => 'votoatiny nafenina',
+'revdelete-summary-hid' => 'ambangovangom-panovana nafenina',
+'revdelete-uname-hid' => 'anaram-pikambana nafenina',
+'revdelete-content-unhid' => 'votoatiny naseho',
+'revdelete-summary-unhid' => 'ambangovangom-panovana naseho',
+'revdelete-uname-unhid' => 'anaram-pikambana naseho',
 'revdelete-restricted' => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
 'logentry-move-move' => "nanova ny anaran'i $3 ho $4 i $1",
@@ -3576,8 +3659,16 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 'feedback-error3' => "Hadisoana: Tsy nisy valiny avy amin'ny API",
 'feedback-thanks' => "Misaotra! lanefa tany amin'ilay pejy ''[$2 $1]'' ilay fanehoan-kevitrao.",
 'feedback-close' => 'Vita',
+'feedback-bugnew' => 'Efa nomariniko. Hitory baogy iray',
+
+# Search suggestions
+'searchsuggest-search' => 'Karohy',
+'searchsuggest-containing' => 'misy...',
 
 # API errors
+'api-error-badaccess-groups' => "Tsy afaka mampiditra rakitra eto amin'ity wiki ity ianao.",
+'api-error-badtoken' => 'Hadisoana anaty : "token" diso.',
+'api-error-copyuploaddisabled' => "Tsy avela atao eto amin'ity lohamilina ity ny fampidiran-drakitra amin'ny alalan'ny URL.",
 'api-error-empty-file' => 'Tsy misy na inona na inna ilay rakitra nalefanao.',
 'api-error-emptypage' => 'Tsy azo atao ny mamorona pejy vaovao tsy misy votoatiny.',
 'api-error-fetchfileerror' => 'Hadisoana naaty : misy hadisoana nitranga teo am-pangalana ilay rakitra.',
@@ -3608,4 +3699,6 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 'api-error-uploaddisabled' => "Tsy alefa eto amin'ity wiki ity ny fandefasan-drakita.",
 'api-error-verification-error' => 'Mety tapaka ity rakitra ity, na diso tovan-drakitra.',
 
+# Unknown messages
+'uploadinvalidxml' => "Tsy afaka vakiana ny XML tao anatin'ilay rakitra nafaranao.",
 );

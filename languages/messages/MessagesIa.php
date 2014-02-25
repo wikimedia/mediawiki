@@ -696,6 +696,9 @@ Per favor attende $1 ante de probar lo novemente.',
 'suspicious-userlogout' => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
 'createacct-another-realname-tip' => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar al usator attribution pro su contributiones.',
+'pt-login' => 'Aperir session',
+'pt-createaccount' => 'Crear conto',
+'pt-userlogout' => 'Clauder session',
 
 # Email sending
 'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',

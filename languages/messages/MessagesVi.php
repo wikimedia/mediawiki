@@ -18,6 +18,7 @@
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
  * @author Prenn
+ * @author Skye Darcy
  * @author Thaisk
  * @author Thanhtai2009
  * @author Tmct
@@ -864,6 +865,9 @@ Xin hãy bỏ qua thông điệp này nếu tài khoản này không phải do b
 'createacct-another-realname-tip' => 'Tên thật là không bắt buộc. 
 
 Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
+'pt-login' => 'Đăng nhập',
+'pt-createaccount' => 'Tạo tài khoản',
+'pt-userlogout' => 'Đăng xuất',
 
 # Email sending
 'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',

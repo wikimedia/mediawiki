@@ -399,6 +399,7 @@ Parameters:
 'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
 
 Parameters:
+* $1 - number of subcategories shown
 * $2 - total number of subcategories in category',
 'category-subcat-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
 

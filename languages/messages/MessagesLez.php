@@ -146,12 +146,12 @@ $messages = array(
 'dec' => 'дек',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|1=Категория|Категорияр}}',
+'pagecategories' => '{{PLURAL:$1|1=Категори|Категорияр}}',
 'category_header' => '«$1» категориядин ччинар',
 'subcategories' => 'агъакатегорияр',
 'category-media-header' => '"$1" категориядин медиа',
 'category-empty' => "''Алай чӀава и категория ичӀи я.\"",
-'hidden-categories' => '{{PLURAL:$1|1=Чуьнуьхай категория|Чуьнуьхай категорияр}}',
+'hidden-categories' => '{{PLURAL:$1|1=Чуьнуьхай категори|Чуьнуьхай категорияр}}',
 'hidden-category-category' => 'Чуьнуьхай категорияр',
 'category-subcat-count' => '{{PLURAL:$2|И категорияда анжах гуьгъуьна авай подкатегория ава.|$2-кай {{PLURAL:$1|1=агъакатегория|$1 агъакатегорияр}} къалурнава }}',
 'category-subcat-count-limited' => 'И категорияда {{PLURAL:$1|1=агъакатегория|$1 агъакатегорияр}} ава.',
@@ -191,7 +191,6 @@ $messages = array(
 'vector-action-protect' => 'Хуьн',
 'vector-action-undelete' => 'ТуькӀуьр хъувун',
 'vector-action-unprotect' => 'Хуьн дегишарун',
-'vector-simplesearch-preference' => 'Гегьенш жагъурунин рикӀел гъун кутун (кьилди «Вектор» акунар патал)',
 'vector-view-create' => 'ТуькӀуьрун',
 'vector-view-edit' => 'Дуьзарин',
 'vector-view-history' => 'Тарихдиз килигун',
@@ -238,7 +237,7 @@ $messages = array(
 'articlepage' => 'Къене авайбурун ччиндиз килигун',
 'talk' => 'Веревирд авун',
 'views' => 'Килигунар',
-'toolbox' => 'Алатрин кьвати',
+'toolbox' => 'Алатар',
 'userpage' => 'Уртахдин ччиниз килигун',
 'projectpage' => 'Проектдин ччиниз килигун',
 'imagepage' => 'Файлдин ччиниз килигун',
@@ -509,7 +508,7 @@ $messages = array(
 'history-fieldset-title' => 'Тарихдиз килигун',
 'history-show-deleted' => 'Анжах алуднавайбур',
 'histfirst' => 'Виридалайни цIуру',
-'histlast' => 'Мукьвара хьайи',
+'histlast' => 'Гилан цlийига',
 'historyempty' => '(ичIи)',
 
 # Revision feed
@@ -565,7 +564,7 @@ $messages = array(
 'nextn' => 'Гуьгъуьнин {{PLURAL:$1|$1}}',
 'prevn-title' => 'Вилик фейи  $1 {{PLURAL:$1|1=нетижа|нетижаяр}}',
 'nextn-title' => 'КЪведай $1 {{PLURAL:$1|1=нетижа|нетижаяр}}',
-'shown-title' => 'Ччина $1 {{PLURAL:$1|1=нетижа|нетижа}} къалурун',
+'shown-title' => 'Къалурин $1 {{PLURAL:$1|1=нетижа|нетижаяр}} чъина',
 'viewprevnext' => 'Килигун ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''И вики-проектда \"[[:\$1]]\" тlвар алай ччин ава.'''",
 'searchmenu-new' => "'''И вики-проектда «[[:$1]]» ччин туькӀуьрун!'''",
@@ -579,7 +578,7 @@ $messages = array(
 'searchprofile-images-tooltip' => 'Файлар жугъура',
 'searchprofile-everything-tooltip' => 'Вири ччинра къекъуьгъ (веревирдрин ччинар кваз)',
 'searchprofile-advanced-tooltip' => 'Ганвай тlварарин генгвилера къекъуьгъ',
-'search-result-size' => '$1 ({{PLURAL:$2|1=1 гаф|$2 гаф}})',
+'search-result-size' => '$1 ({{PLURAL:$2|1=1 гаф|$2 гафap}})',
 'search-result-category-size' => '{{PLURAL:$1|1=1 элемент|$1 элементар}} ({{PLURAL:$2|1=1 агъакатегория|$2 агъакатегорияр}}, {{PLURAL:$3|1=1 файл|$3 файлар}})',
 'search-redirect' => '(рахкъурун $1)',
 'search-section' => '(пай $1)',
@@ -867,7 +866,7 @@ $messages = array(
 'withoutinterwiki-submit' => 'Къалурун',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|1=байт|байтар}}',
+'nbytes' => '$1 {{PLURAL:$1|баjт|баjтар}}',
 'nmembers' => '$1 {{PLURAL:$1|1=уьзви|уьзвияр}}',
 'lonelypages' => 'Eтим xъувун',
 'prefixindex' => 'Префикс галай вири ччинар',
