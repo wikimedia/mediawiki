@@ -51,3 +51,17 @@
 	-webkit-transition: @string;
 	transition: @string;
 }
+
+/* Being used by the rotation animation */
+.animation (...) {
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	-o-animation: @arguments;
+	animation: @arguments;
+}
+
+.transform-rotate (@deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	transform: rotate(@deg);
+}
