@@ -47,16 +47,13 @@ $linkPrefixCharset = 'a-zA-Z"\\x{80}-\\x{10ffff}';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ссылкăсене аялтан туртса палармалла:',
-'tog-justify' => 'Страницăри текста сарлакăшĕпе вырнаçтармалла',
 'tog-hideminor' => 'Юлашки улшăнусене кăтарнă страницăра пĕчĕк тӳрлетӳ çеç кĕртнисене кăтартмалла мар',
 'tog-extendwatchlist' => 'Пĕтĕм улшăнусене кăтартакан анлă сăнав списокĕ',
 'tog-usenewrc' => 'Юлашки улшăнусен лайăхлатнă списокĕ (JavaScript)',
 'tog-numberheadings' => 'Заголовоксене хăй тĕллĕн номерлесе пымалла.',
 'tog-showtoolbar' => 'Тӳрлетнĕ чухне çӳлти хатĕрсен хăмине кăтартмалла (JavaScript)',
 'tog-editondblclick' => 'Иккĕ пуссан статьяна тӳрлетмелле (JavaScript)',
-'tog-editsection' => '«Тӳрлет» ссылкăна кашни пайра кăтартмалла',
 'tog-editsectiononrightclick' => 'Шăшин сылтăм пускăчне пуссан статья пайне тӳрлетмелле (JavaScript)',
-'tog-showtoc' => 'Тупмаллине кăтартмалла (3, е ытларах заголовок пулсан)',
 'tog-rememberpassword' => 'Мана ку компьютер çинче астуса хăвармалла (for a maximum of $1 {{PLURAL:$1|1=day|days}})',
 'tog-watchcreations' => 'Эпĕ тунă страницăсене сăнав списокне кĕртмелле',
 'tog-watchdefault' => 'Тӳрлетнĕ страницăсене сăнав списокне кĕртмелле',

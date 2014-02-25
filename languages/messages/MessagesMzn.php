@@ -274,7 +274,6 @@ $messages = array(
 'vector-action-protect' => 'زلفن بزوئن',
 'vector-action-undelete' => 'دباره بنویشته بیّن',
 'vector-action-unprotect' => 'زلفن عوض هاکردن',
-'vector-simplesearch-preference' => 'فعال هاکردن پیشنهادون بگردستن پیشرفته (فقط پوسته برداری دله)',
 'vector-view-create' => 'بساتن',
 'vector-view-edit' => 'دچی‌ین',
 'vector-view-history' => 'تاریخچه ره بَدی‌ین',

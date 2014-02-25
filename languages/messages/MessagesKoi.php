@@ -70,12 +70,12 @@ $messages = array(
 'dec' => 'дек',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Категория|Категория}}',
+'pagecategories' => '{{PLURAL:$1|1=Категория|Категория}}',
 'category_header' => '"$1" категорияын листбоккез',
 'subcategories' => 'Поснитжык категорияэз',
 'category-media-header' => '"$1" категорияись файллэз',
 'category-empty' => 'Этiя категорияын öнi нем абу',
-'hidden-categories' => '{{PLURAL:$1|Сайöвтöм категория|Сайöвтöм категорияэз}}',
+'hidden-categories' => '{{PLURAL:$1|1=Сайöвтöм категория|Сайöвтöм категорияэз}}',
 'hidden-category-category' => 'Сайöвтöм категорияэз',
 'category-subcat-count' => '{{PLURAL:$2|Этiя категорияын дзир öтiк субкатегория.|{{PLURAL:$1|Мыччалöма $1 субкатегория}}  $2-ись.}}',
 'category-subcat-count-limited' => 'Этiя категорияын {{PLURAL:$1|$1 субкатегория|$1 субкатегория|$1 субкатегория}}',
@@ -206,7 +206,7 @@ $messages = array(
 'yourname' => 'Уджкерисьлöн пыран ним:',
 'yourpassword' => 'Пароль:',
 'yourpasswordagain' => 'Мöдпöвсьöтны пароль',
-'remembermypassword' => 'Видзны менчим пыран ним этiя компьютер тöдвылын (не дыржык {{PLURAL:$1| лунся|лунся}})',
+'remembermypassword' => 'Видзны менчим пыран ним этiя компьютер тöдвылын (не дыржык {{PLURAL:$1|1= лунся|лунся}})',
 'login' => 'Пырны ним увтын',
 'nav-login-createaccount' => 'Пыран / гижöтчан',
 'userlogin' => 'Висьтасьны нето гижöтчыны',
@@ -274,12 +274,12 @@ $messages = array(
 'yourtext' => 'Текстыт',
 'yourdiff' => 'Неöткодьыс',
 'copyrightwarning' => "Тöд: текстас быдöс содтöттэз нето мöдкодьсьöтöммез  йöзöтсьöны лэдзöг $2 под вылын (видзöт $1). Он ко мöд,  медбы тексттэтö унаöтлiсö нето мöдкодьсьöтлiсö йöзыс,  эн и пукты нiйö татчö.   <br /> Этася тэ кыв сетан миянлö,  ачым пö лоа авторöн пыртан содтöттэзлiсь, нето босьта пö нiйö öшмöсiсь, кöда оз öв пытшкöссö одзлань йöзöтöмись да мöдкодьсьöтöмись.  <br /> '''ЭН ПУКТЫ ЮАСЬТÖГ ТАТЧÖ  АВТОРЛÖ ПОЗЬÖМ СЬÖРТI ДОРЙÖМ МАТЕРИАЛЛЭЗ!'''",
-'templatesused' => 'Этiя листбок вылiсь {{PLURAL:$1|шаблон|шаблоннэз}}:',
-'templatesusedpreview' => 'Одзвыв нёджалан листбок вылiсь {{PLURAL:$1|шаблон|шаблоннэз}}:',
+'templatesused' => 'Этiя листбок вылiсь {{PLURAL:$1|1=шаблон|шаблоннэз}}:',
+'templatesusedpreview' => 'Одзвыв нёджалан листбок вылiсь {{PLURAL:$1|1=шаблон|шаблоннэз}}:',
 'template-protected' => '(дорйöм)',
 'template-semiprotected' => '(мымдакö дорйöм)',
-'hiddencategories' => 'Этiя листбок пырö $1 {{PLURAL:$1|сайöвтöм категория|сайöвтöм категория|сайöвтöм категорияэз}} коласö:',
-'permissionserrorstext-withaction' => 'Тэныт оз позь керны $2 то {{PLURAL:$1|мыля|мыля}}:',
+'hiddencategories' => 'Этiя листбок пырö $1 {{PLURAL:$1|сайöвтöм категория|сайöвтöм категорияэз|сайöвтöм категория}} коласö:',
+'permissionserrorstext-withaction' => 'Тэныт оз позь керны $2 то {{PLURAL:$1|1=мыля|мыля}}:',
 
 # History pages
 'viewpagelogs' => 'Мыччавны журналлэз этiя листбок понда',
@@ -327,7 +327,7 @@ $messages = array(
 'searchprofile-everything' => 'Быдлаись',
 'searchprofile-articles-tooltip' => 'Кошшан $1ын',
 'searchprofile-project-tooltip' => 'Кошшан $1ын',
-'search-result-size' => '$1 ({{PLURAL:$2|1 кыв|$2 кыв}})',
+'search-result-size' => '$1 ({{PLURAL:$2|1=1 кыв|$2 кыв}})',
 'search-redirect' => '(иньдöтöм $1 вылiсь)',
 'search-section' => '(юкöт № $1)',
 'search-suggest' => 'Поди  колö $1',
@@ -361,7 +361,7 @@ $messages = array(
 'yourlanguage' => 'Кыв:',
 'yournick' => 'Виль кырымпас:',
 'badsiglength' => 'Кырымпасыт кузьöв.
-Сылö оз туй лоны $1 {{PLURAL:$1|шыпасся|шыпасся}} кузьжык.',
+Сылö оз туй лоны $1 {{PLURAL:$1|1=шыпасся|шыпасся}} кузьжык.',
 'gender-unknown' => 'Мыччавтöм',
 'gender-male' => 'Айка',
 'gender-female' => 'Инька',
@@ -427,7 +427,7 @@ $messages = array(
 'filehist-dimensions' => 'Ыжда',
 'filehist-comment' => 'Пасйöт',
 'imagelinks' => 'Файл дынö ыстöттэз',
-'linkstoimage' => '{{PLURAL:$1|Сэтшöм листбок|$1 Сэтшöм листбоккез}} ыстiсьö(ны) этiя файл вылö:',
+'linkstoimage' => '{{PLURAL:$1|1=Сэтшöм листбок|$1 Сэтшöм листбоккез}} ыстiсьö(ны) этiя файл вылö:',
 'sharedupload' => 'Этiя файл $1-ись да вермас овны и мöдiк проекттэзын',
 'uploadnewversion-linktext' => 'Кышавны этiя файллiсь виль версия',
 
@@ -443,7 +443,7 @@ $messages = array(
 'brokenredirects-delete' => 'чышкыны',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|байт|байт}}',
+'nbytes' => '$1 {{PLURAL:$1|1=байт|байт}}',
 'nmembers' => '$1 {{PLURAL:$1|объект|объект|объект}}',
 'prefixindex' => 'Листбок ниммезлiсь пондöтчаннэз мыччалан',
 'shortpages' => 'Дженыт листбоккез',
@@ -453,8 +453,8 @@ $messages = array(
 'ancientpages' => 'Медваж листбоккез',
 'move' => 'Вежны ним',
 'movethispage' => 'Вежны листбокыслiсь ним',
-'pager-newer-n' => '{{PLURAL:$1|вильжык 1|вильжык $1}}',
-'pager-older-n' => '{{PLURAL:$1|важжык 1|важжык $1}}',
+'pager-newer-n' => '{{PLURAL:$1|1=вильжык 1|вильжык $1}}',
+'pager-older-n' => '{{PLURAL:$1|1=важжык 1|важжык $1}}',
 
 # Book sources
 'booksources' => 'Небöггез-öшмöссэз',
@@ -531,7 +531,7 @@ $messages = array(
 'protect-text' => "Татöн тэ верман видзöтны да вежны '''$1''' листбок понда дорьян тшупöт.",
 'protect-locked-access' => "Уджкерисьлöн нимыт оз тырмы, мед вежны листбокыслiсь дорьян тшупöт.
 Öння лöсьöтаннэз '''$1''' листбок понда:",
-'protect-cascadeon' => 'Этiя листбокыс дорйöм, мыля сiя пыртöм улынжык висьталöм {{PLURAL:$1|листбокö|листбокö}}, кытчö лöсьöтöм каскад нёж дорьян.
+'protect-cascadeon' => 'Этiя листбокыс дорйöм, мыля сiя пыртöм улынжык висьталöм {{PLURAL:$1|1=листбокö|листбокö}}, кытчö лöсьöтöм каскад нёж дорьян.
 Тэ верман вежны этiя листбоклiсь дорьян тшупöт, но каскад нёж дорьян сысянь оз вежсьы.',
 'protect-default' => 'Дорйытöм',
 'protect-fallback' => 'Колö мед лэдзис «$1»',

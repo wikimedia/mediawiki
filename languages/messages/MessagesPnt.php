@@ -60,7 +60,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Υπογράμμιση συνδεσμίων:',
-'tog-justify' => 'Στοίχισην παραγραφίων',
 'tog-editondblclick' => 'Άλλαγμαν σελιδίων με διπλόν κλικ (JavaScript)',
 'tog-previewonfirst' => 'Δείξον πρώτον τέρεμαν σο πρώτον άλλαγμαν',
 'tog-shownumberswatching' => "Δείξον τοι χρήστς π' δεαβάζνε",
@@ -576,7 +575,6 @@ $messages = array(
 'lineno' => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo' => 'αναίρεση',
-'diff-multi' => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
 
 # Search results
 'searchresults' => 'Εύρον αποτελέσματα',

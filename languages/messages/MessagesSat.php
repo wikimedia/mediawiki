@@ -168,7 +168,6 @@ $messages = array(
 'vector-action-protect' => 'Bańcao',
 'vector-action-undelete' => 'Bań getgiḍi',
 'vector-action-unprotect' => 'Bodol rukhiyạ',
-'vector-simplesearch-preference' => 'Arhõ jạsti sendra poramorso keṭećmẽ (khali vecṭor skinre lạgit)',
 'vector-view-create' => 'Tearme',
 'vector-view-edit' => 'So̠mpado̠n',
 'vector-view-history' => 'Jạṛ ńelme',

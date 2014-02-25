@@ -245,7 +245,6 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|chanjo|chanjos}}',
 'recentchanges' => 'Resenti chanjos',
-'rcnote' => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $4, $5.",
 'rcshowhideminor' => '$1 minori modifikos',
 'rcshowhideanons' => '$1 anonimi useres',
 'rcshowhidemine' => '$1 men modifikos',

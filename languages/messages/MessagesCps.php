@@ -161,7 +161,6 @@ $messages = array(
 'vector-action-protect' => 'Protektahan',
 'vector-action-undelete' => 'Indi pag panason',
 'vector-action-unprotect' => 'Islan ang proteksyon',
-'vector-simplesearch-preference' => 'Paganahon ang ginpanami nga mga suhestiyon sa pagpangita (panit nga Vector lang)',
 'vector-view-create' => 'Ubrahon',
 'vector-view-edit' => 'Bag-uhon',
 'vector-view-history' => 'Ipakita ang kasaysayan',

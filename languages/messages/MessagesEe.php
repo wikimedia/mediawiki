@@ -322,7 +322,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 # Recent changes
 'recentchanges' => 'Tɔtrɔ yeyewo',
 'recentchanges-legend' => 'Tatiawo na tɔtrɔ yeyewo',
-'rcnote' => "Afisia wofia {{PLURAL:$1|tɔtrɔ '''1''' susue|tɔtrɔ '''$1''' susuewo}} le {{PLURAL:$2|ŋkeke si|ŋkeke '''$2''' mamleawo siwo}} vayi la me, le $5, $4.",
 'rcnotefrom' => "Tɔtrɔwo siwo wowɔ tso '''$2''' (wofia vaseɖe '''$1''') le afii.",
 'rclistfrom' => 'Fia tɔtrɔ yeyewo tso $1',
 'rcshowhideminor' => '$1 tɔtrɔ suewo',
@@ -421,7 +420,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 # Watchlist
 'watch' => 'Le ŋku ɖe eŋu',
 'watchthispage' => 'Le ŋku ɖe axa sia ŋu',
-'wlnote' => "Afisia wofia {{PLURAL:$1|tɔtrɔ '''1''' mamlea|tɔtrɔ '''$1''' mamleawo}} le {{PLURAL:$2|gaƒoƒo mamlea si|gaƒoƒo '''$2''' mamleawo siwo}} vayi la me.",
 'wlshowlast' => 'Fia gaƒoƒo $1 ŋkeke $2 mamleawo. $3',
 
 # Delete

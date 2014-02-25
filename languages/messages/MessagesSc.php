@@ -58,7 +58,6 @@ $linkTrail = "/^([a-z]+)(.*)$/sD";
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sutalìnea is cullegamentos',
-'tog-justify' => 'Alliniamentu paràgrafos giustificados',
 'tog-hideminor' => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
 'tog-hidepatrolled' => 'Cua is acontzos verificados in is ùrtimas mudàntzias',
 'tog-newpageshidepatrolled' => 'Cua is pàginas verificadas dae sa lista de is pàginas noas',
@@ -67,9 +66,7 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numeratzione de is tìtulos',
 'tog-showtoolbar' => "Ammustra s'amusta de is ainas pro is acontzos (esigit JavaScript)",
 'tog-editondblclick' => 'Acontza pàginas cun dòpiu click (esigit JavaScript)',
-'tog-editsection' => 'Acontza setziones dae su butone [acontza]',
 'tog-editsectiononrightclick' => "Abilita s'acontzu de is setziones cun dòpiu click in is tìtulos de is setziones (esigit JavaScript)",
-'tog-showtoc' => "Ammustra s'ìndixe de is cuntènnidos (pro pàginas cun prus de 3 setziones)",
 'tog-rememberpassword' => 'Ammenta sa sessione in custu navigadore (pro unu màssimu de $1 {{PLURAL:$1|die|dies}})',
 'tog-watchcreations' => 'Aciungi is pàginas chi apo creadu a sa watchlist mea',
 'tog-watchdefault' => 'Aciungi is pàginas chi apo acontzadu a sa watchlist mea',

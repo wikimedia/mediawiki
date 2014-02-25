@@ -188,7 +188,6 @@ $messages = array(
 'vector-action-protect' => 'Коргоо',
 'vector-action-undelete' => 'Калыбына келтирүү',
 'vector-action-unprotect' => 'Коргоону өзгөртүү',
-'vector-simplesearch-preference' => 'Жөнөкөйлөтүлгөн издөө сабын жандыруу («Вектор» темасында гана)',
 'vector-view-create' => 'Түзүү',
 'vector-view-edit' => 'Оңдоо',
 'vector-view-history' => 'Тарыхын кароо',

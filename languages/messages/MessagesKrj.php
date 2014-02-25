@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => "Koritan ang dalum kang manga ''link'':",
-'tog-justify' => 'Tururupungun ang kilid kang manga paragraph',
 'tog-hideminor' => "Tagoon ang gagmay nga ''edit'' sa mga bag-o nga ilis",
 'tog-extendwatchlist' => "Palapadun ang ''watchlist'' agud nga mapakita ang tanan nga ginasogtan nga pag-ilis",
 'tog-numberheadings' => "Automatiko nga togroan kang nomero ang manga ''heading''",
@@ -28,7 +27,6 @@ $messages = array(
 'tog-watchmoves' => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpanghalin ko",
 'tog-watchdeletion' => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpamara ko",
 'tog-previewonfirst' => 'Ipakita ang preview sa ona nga ilis',
-'tog-nocache' => "Ontatun ang ''page caching''",
 'tog-enotifwatchlistpages' => 'Padarhan ako kang e-mail kon may nag-ilis kang pahina nga akun ginabantayan',
 'tog-enotifminoredits' => "Padarhan man ako kang ''e-mail'' tohay sa manga gagmay nga pag-ilis sa manga pahina",
 'tog-shownumberswatching' => "Ipakita ang karakuun kang manga ''user'' nga galantaw",

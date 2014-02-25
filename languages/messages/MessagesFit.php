@@ -16,7 +16,6 @@ $fallback = 'fi';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Linkitten alleviivaus',
-'tog-justify' => 'Tassaa kappalheet',
 'tog-hideminor' => 'Piilota pienet muutokset vereksen muutoksitten listasta',
 'tog-hidepatrolled' => 'Piilota tarkastetut muutokset vereksen muutoksitten listasta',
 'tog-newpageshidepatrolled' => 'Piilota tarkastetut sivut uusitten sivuitten listalta',
@@ -25,9 +24,7 @@ $messages = array(
 'tog-numberheadings' => 'Nymreeraa rypriikit',
 'tog-showtoolbar' => 'Näytä työneuvopalkki (JavaScript)',
 'tog-editondblclick' => 'Mookkaa sivuja kaksoisknapituksella (JavaScript)',
-'tog-editsection' => 'Aktiveeraa seksuuni mookkaus [mookkaus]-linkilä',
 'tog-editsectiononrightclick' => 'Aktiveeraa seksuuni mookkaus oikeapuolen klikkauksella seksuuni tittelhiin (JavaScript)',
-'tog-showtoc' => 'Näytä sisältölista (sivuile, joila on yli 3 rypriikkiä)',
 'tog-rememberpassword' => 'Muista minun lokkauksen tässä weppilukijassa (eninthään $1 {{PLURAL:$1|päivä|päivää}})',
 'tog-watchcreations' => 'Lissää sivut mitä luon valvontasivule',
 'tog-watchdefault' => 'Lissää sivut mitä mie mookkaan valvontasivule',
@@ -36,7 +33,6 @@ $messages = array(
 'tog-minordefault' => 'Markeeraa auttomaattisesti kaikki muutokset pieneks',
 'tog-previewontop' => 'Näytä esitarkastelu mookkauspaikan yläpuolela',
 'tog-previewonfirst' => 'Näytä esitarkastelu kun mookkaus alethaan',
-'tog-nocache' => 'Älä säästä sivuja weppilukijan välimuisthiin',
 'tog-enotifwatchlistpages' => 'Lähätä e-postipreivi mulle kun sivu minun valvontalistala on muutettu',
 'tog-enotifusertalkpages' => 'Lähätä sähköposti, kun käyttäjäsivun keskustelusivu muuttuu',
 'tog-enotifminoredits' => 'Lähätä epostieto pienistäki muutoksista',
@@ -130,7 +126,6 @@ $messages = array(
 'vector-action-protect' => 'Suojaa',
 'vector-action-undelete' => 'Pane takashiin',
 'vector-action-unprotect' => 'Muuta suojaa',
-'vector-simplesearch-preference' => 'Ota käythöön paranetut hakuehotukset (vain Vector-ulkoasu)',
 'vector-view-create' => 'Luo',
 'vector-view-edit' => 'Mookkaa',
 'vector-view-history' => 'Näytä histuuria',
@@ -331,7 +326,6 @@ Merkinät: (nyk.) = eroavaisuuet nykyisheen versuunhiin, (eel.) = eroavaisuuet e
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja sivu versuunia',
 'editundo' => 'kumota',
-'diff-multi' => '(Näytetyitten versuunitten välissä on {{PLURAL:$1|yks mookkaus|$1 versuunit, jokka on {{PLURAL:$2|yhen käyttäjän tekemiä|$2 eri käyttäjän tekemiä}}}}.)',
 
 # Search results
 'searchresults' => 'Hakutulokset',
@@ -387,7 +381,6 @@ Merkinät: (nyk.) = eroavaisuuet nykyisheen versuunhiin, (eel.) = eroavaisuuet e
 'recentchanges-label-minor' => 'Tämä on pieni muutos',
 'recentchanges-label-bot' => 'Tämän muutoksen teki botti',
 'recentchanges-label-unpatrolled' => 'Tätä muutosta ei ole vielä tarkistettu',
-'rcnote' => 'Alla on {{PLURAL:$1|yks muutos|$1 vereksimät muutokset}} {{PLURAL:$2|yhen päivän|$2 viimi päivän}} ajalta $4 kello $5 asti.',
 'rcnotefrom' => "Alla on muutokset '''$2'''lähtien. (korkeinthaans '''$1''' näytethään).",
 'rclistfrom' => 'Näytä uuet muutokset jälkhiin $1',
 'rcshowhideminor' => '$1 pienet muutokset',

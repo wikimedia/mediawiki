@@ -19,16 +19,13 @@ $fallback = 'da';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Understreg henvesnenger',
-'tog-justify' => 'Ves ertikler ve lege margener',
 'tog-hideminor' => "Skjul mendre ændrenger i'n liste åver seneste ændrenger",
 'tog-extendwatchlist' => 'Udvedet liste ve seneste ændrenger',
 'tog-usenewrc' => 'Førbedret liste åver seneste ændrenger (JavaScript)',
 'tog-numberheadings' => 'Åtåmatisk nåmererenge åf åverskrefter',
 'tog-showtoolbar' => 'Ves værktøjslenje til redigærenge (JavaScript)',
 'tog-editondblclick' => 'Redigær sider ve dåbeltklik (JavaScript)',
-'tog-editsection' => 'Redigær åfsnet ve hjælp åf [redigær]-henvesnenger',
 'tog-editsectiononrightclick' => 'Redigær åfsnet ve at klikke på deres titler (JavaScript)',
-'tog-showtoc' => 'Ves endholtsførtegnelse (i artikler ve mære end tre åfsnet)',
 'tog-rememberpassword' => 'Husk adgengskode til næste besøĝ frå denne kompjuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Tilføj sider a åpretter til miin åvervågnengsliste',
 'tog-watchdefault' => 'Tilføj sider a redigærer til miin åvervågnengsliste',
@@ -37,7 +34,6 @@ $messages = array(
 'tog-minordefault' => 'Markær søm standård ål redigærenge søm mendre',
 'tog-previewontop' => 'Ves førhåndsvesnenge åver æ rædigerengsboks',
 'tog-previewonfirst' => 'Ves førhåndsvesnenge når du stårtst ve at redigære',
-'tog-nocache' => 'Slå caching åf sider frå',
 'tog-enotifwatchlistpages' => 'Send mig en e-mail ve sideændrenger',
 'tog-enotifusertalkpages' => 'Send mig en e-mail når miin brugerdiskusjeside ændres',
 'tog-enotifminoredits' => 'Send mig også en e-mail ve mendre ændrenger åf åvervågede sider',
@@ -416,7 +412,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'lineno' => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo' => 'baĝgøt',
-'diff-multi' => '(Æ hersenengssammenlegnenge vetåger {{PLURAL:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)',
 
 # Search results
 'prevn' => 'førge {{PLURAL:$1|$1}}',
@@ -445,7 +440,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'nchanges' => '$1 {{PLURAL:$1|ændrenge|ændrenger}}',
 'recentchanges' => 'Seneste ændrenger',
 'recentchanges-feed-description' => 'Ve dette fiid ken du følge de seneste ændrenger på {{SITENAME}}.',
-'rcnote' => "Herunder ses {{PLURAL:$1|'''1''' ændrenge|de sedste '''$1''' ændrenger}} frå {{PLURAL:$2|i dåg|de sedste '''$2''' dåg}}, søm i $3.",
 'rcnotefrom' => "Nedenfør ses ændrengerne frå '''$2''' til '''$1''' vest.",
 'rclistfrom' => 'Ves nye ændrenger startende frå $1',
 'rcshowhideminor' => '$1 lile ændrenger',

@@ -55,25 +55,23 @@ $messages = array(
 'tog-hidepatrolled' => 'Берпуметӥ тупатонъёслэн списоксэс партрулировать каремын воштонъёстэк возьматыны',
 'tog-newpageshidepatrolled' => 'Выль бамъёслэн списоксэс партрулировать каремын бамъёстэк возьматыны',
 'tog-extendwatchlist' => 'Чаклан списокын вань тупатонъёсты возьматыны (озьытэк берпуметӥоссэс гинэ)',
-'tog-usenewrc' => 'Выль тупатонъёслэн списоксэс умояллям сямен возьматыны (JavsScript кулэ)',
+'tog-usenewrc' => 'Выль тупатонъёслэсь списоксэс умояллям сямен возьматыны (JavsScript кулэ)',
 'tog-numberheadings' => 'Заголовокъёсты автоматически нумеровать карыны',
 'tog-showtoolbar' => 'Тупатон тӥрлыкъёслэн панельзэс возьматыны (JavaScript кулэ)',
-'tog-editondblclick' => 'Бамъёсты шырлэн валтӥсь зӥбонэз кык пол ӝог зӥбиськыкуз тупатыны (JavaScript кулэ)',
-'tog-editsection' => 'Котькуд секциез [тапатоно] чӧлсконэн возьматыны',
-'tog-editsectiononrightclick' => 'Cекциосты шырлэн бур кнопкаез заголовок вылын зӥбиськыкуз тупатыны (JavaScript кулэ)',
-'tog-showtoc' => 'Пуштросэз возьматоно (2-лэсь трос заголовокъем бамъёс понна)',
-'tog-rememberpassword' => 'Мынам пыроннимме та браузерлэн тодаз возьыны ($1 яке $1-лэсь ӧжытгес нунал ӵоже гинэ)',
+'tog-editondblclick' => 'Бамъёсты шырлэсь зӥбонзэ кык пол зӥбыса тупатыны (JavaScript кулэ)',
+'tog-editsectiononrightclick' => 'Cекциолэсь заголовок вылазы шырлэн бур кнопкаеныз зӥбыса тупатонзэс лэзьыны (JavaScript кулэ)',
+'tog-rememberpassword' => 'Мынэсьтым пыроннимме та браузерын возьыны ($1 нуналлэсь кемагес ӧвӧл)',
 'tog-watchcreations' => 'Мынэсьтым кылдытэм бамъёсме но ӝуткам файлъёсме чаклан списокам пыртыны',
-'tog-watchdefault' => 'Бамъёсты, кудъёстэс мон тупатӥсько, мынам чаклкан списокам пыртыны',
-'tog-watchmoves' => 'Бамъёсты, кудъёстэс мон мукет интые выжтӥсько, мынам чаклкан списокам пыртыны',
-'tog-watchdeletion' => 'Бамъёсты, кудъёстэс мон ӵушисько, мынам чаклкан списоке пыртыны',
+'tog-watchdefault' => 'Мынэсьтым тупатэм бамъёсме но файлъёсме чаклан списокам пыртыны',
+'tog-watchmoves' => 'Мынэсьтым мукет интые выжтэм бамъёсме но файлъёсме чаклан списокам пыртыны',
+'tog-watchdeletion' => 'Мынэсьтым ӵушыса быдтэм бамъёсме но файлъёсме чаклан списоке пыртыны',
 'tog-minordefault' => 'Вань воштонъёсты «ичи воштон» пусэн пусйыны',
 'tog-previewontop' => 'Утён азьвыл учконлэсь укнозэ тупатон укнолэсь азьвылгес возьматыны',
 'tog-previewonfirst' => 'Бам нырысьсэ утиськыкуз уётн азьвыл учконэз возьматыны',
 
 'underline-always' => 'Котьку',
 'underline-never' => 'Ноку',
-'underline-default' => 'Браузерысь настройкаосты уже кутоно',
+'underline-default' => 'Браузерлэсь настройкаоссэ уже кутоно',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Тупатон бусыысь шрифтлэн стилез',
@@ -135,18 +133,18 @@ $messages = array(
 'dec' => 'тст',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Категория|Категориос}}',
+'pagecategories' => '{{PLURAL:$1|1=Категория|Категориос}}',
 'category_header' => '«$1» категориысь бамъёс',
 'subcategories' => 'Подкатегориос',
 'category-media-header' => '«$1» категориысь файлъёс',
 'category-empty' => "''Та категориын али бамъёс но, файлъёс но ӧвӧл.''",
-'hidden-categories' => '{{PLURAL:$1|Ватэм категория|Ватэм категориос}}',
+'hidden-categories' => '{{PLURAL:$1|1=Ватэм категория|Ватэм категориос}}',
 'hidden-category-category' => 'Ватэм категориос',
-'category-subcat-count' => '{{PLURAL:$2|Со категориын одӥг подкатегория гинэ.|Возьматэмын $1 подкатегория $2 пӧлысь.}}',
+'category-subcat-count' => '{{PLURAL:$2|1=Со категориын одӥг подкатегория гинэ.|Возьматэмын $1 подкатегория $2 пӧлысь.}}',
 'category-subcat-count-limited' => 'Со категориын $1 подкатегория.',
-'category-article-count' => '{{PLURAL:$2|Со категориын одӥг бам гинэ.|Возьматэмын $1 бам $2 пӧлысь.}}',
+'category-article-count' => '{{PLURAL:$2|1=Со категориын одӥг бам гинэ.|Возьматэмын $1 бам $2 пӧлысь.}}',
 'category-article-count-limited' => 'Со категориын $1 бам.',
-'category-file-count' => '{{PLURAL:$2|Со категориын одӥг файл гинэ.|Возьматэмын $1 файл $2 пӧлысь.}}',
+'category-file-count' => '{{PLURAL:$2|1=Со категориын одӥг файл гинэ.|Возьматэмын $1 файл $2 пӧлысь.}}',
 'category-file-count-limited' => 'Со категориын $1 файл.',
 'listingcontinuesabbrev' => 'азьлань',
 'index-category' => 'Индексировать кароно бамъёс',
@@ -155,7 +153,7 @@ $messages = array(
 'about' => 'Та сярысь',
 'article' => 'Статья',
 'mypage' => 'Ас бам',
-'mytalk' => 'викиавтор сярысь вераськон',
+'mytalk' => 'Викиавтор сярысь вераськон',
 'anontalk' => 'Со IP-адрес сярысь вераськон',
 'navigation' => 'Навигация',
 
@@ -191,7 +189,7 @@ $messages = array(
 'protect' => 'Утьыны',
 'talkpagelinktext' => 'Вераськон',
 'talk' => 'Вераськон',
-'toolbox' => 'Инструментъёс',
+'toolbox' => 'Тӥрлык',
 'jumptonavigation' => 'навигация',
 'jumptosearch' => 'утчан',
 
@@ -238,12 +236,12 @@ $messages = array(
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 
 # Revision deletion
-'revdelete-radio-set' => 'Бен',
-'revdelete-radio-unset' => 'Ӧвӧл',
+'revdelete-radio-set' => 'Ватэм',
+'revdelete-radio-unset' => 'Адӟымон',
 
 # Search results
 'searchresults' => 'Шедьтэмын',
-'search-result-size' => '$1 кыл({{PLURAL:$2|1 word|$2 words}})',
+'search-result-size' => '$1 кыл({{PLURAL:$2|1=1 word|$2 words}})',
 
 # Preferences page
 'preferences' => 'настройкаос',

@@ -169,7 +169,6 @@ $messages = array(
 'history-title' => 'titiraqtaugiarngarut mappitaq kingunittinni "$1"',
 'lineno' => 'tukiqsiq $1:',
 'editundo' => 'ipiutjaapaa',
-'diff-multi' => '({{PLURAL:$1|atausiq kimmiuvuq titiraqtaugiarngarut|$1 kimmiuvuq titiraqtaugiarngarut}} ajuqtuq uvva.)',
 
 # Search results
 'nextn' => 'tagga {{PLURAL:$1|$1}}',

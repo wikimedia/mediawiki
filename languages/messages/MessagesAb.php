@@ -126,7 +126,7 @@ $messages = array(
 'dec' => 'ҧхҷ',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
+'pagecategories' => '{{PLURAL:$1|1=Акатегориа|Акатегориақәа}}',
 
 'article' => 'Адаҟьа',
 'mytalk' => 'Сахцәажәара',

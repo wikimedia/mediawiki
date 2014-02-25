@@ -296,7 +296,6 @@ $messages = array(
 'vector-action-protect' => 'Gardar',
 'vector-action-undelete' => 'Restituer',
 'vector-action-unprotect' => 'Desgardar',
-'vector-simplesearch-preference' => 'Simplificat serch-liste (solmen Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Redacter',
 'vector-view-history' => 'Historie de versiones',

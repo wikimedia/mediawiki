@@ -18,9 +18,6 @@
  */
 
 $messages = array(
-# User preference toggles
-'tog-justify' => 'jufmei co mulno selkuspe',
-
 'underline-always' => 'roroi',
 'underline-never' => 'noroi',
 
@@ -85,6 +82,7 @@ $messages = array(
 'listingcontinuesabbrev' => "co'unai",
 
 'about' => 've skicu',
+'cancel' => 'naljetnygau',
 'moredotdotdot' => '.au zmadu',
 'mytalk' => 'lo casnu be mi',
 'navigation' => 'ckupau',
@@ -112,6 +110,7 @@ $messages = array(
 'variants' => 'loi jutsi',
 
 'errorpagetitle' => 'fliba',
+'returnto' => "xrugau fi la'e zoi gy. $1 .gy",
 'tagline' => "ra'i {{SITENAME}}",
 'help' => 'sidju ckupau',
 'search' => 'sisku',
@@ -146,7 +145,7 @@ $messages = array(
 'jumptosearch' => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'អំពី {{SITENAME}}',
+'aboutsite' => "skicu la'e zoi gy.{{SITENAME}}.gy",
 'aboutpage' => "Project:sera'a",
 'copyright' => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
 'copyrightpage' => "{{ns:project}}:fukyzifpo'e",
@@ -173,7 +172,7 @@ $messages = array(
 'editsectionhint' => "stika lo te fendi noi du la'oi $1",
 'toc' => 'ckupau pagbu',
 'showtoc' => 'jarco',
-'hidetoc' => 'toljarco',
+'hidetoc' => 'cancygau',
 'thisisdeleted' => 'View or restore $1?',
 'viewdeleted' => 'View $1?',
 'restorelink' => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
@@ -186,7 +185,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'lo ckupau',
-'nstab-user' => 'pilno kibypapri',
+'nstab-user' => 'lo pilno kibypapri',
 'nstab-media' => 'Media page',
 'nstab-special' => 'steci ckupau',
 'nstab-project' => 'gungunma ckupau',
@@ -212,10 +211,17 @@ $messages = array(
 'gotaccountlink' => "co'a se jaspu",
 'loginlanguagelabel' => 'to bangu toi $1',
 
+# Change password dialog
+'resetpass-submit-cancel' => 'naljetnygau',
+
 # Special:PasswordReset
 'passwordreset-username' => 'to pilno cmene toi',
 
+# Special:ChangeEmail
+'changeemail-cancel' => 'naljetnygau',
+
 # Edit page toolbar
+'link_tip' => 'lo nenri judri',
 'extlink_sample' => 'http://www.example.com link title',
 'media_tip' => 'judri lo vreji',
 
@@ -225,7 +231,7 @@ $messages = array(
 'watchthis' => 'zgana ti',
 'savearticle' => 'stogau lo ckupau',
 'showpreview' => 'zganygau lo jai se troci',
-'showdiff' => 'jarco lo te frica',
+'showdiff' => 'catlu lo jai te frica',
 'loginreqlink' => "co'a se jaspu",
 'newarticle' => 'to cnino toi',
 'previewnote' => "'''do o'i morji lo du'u di'e jai se troci se zgana po'o'''
@@ -237,6 +243,7 @@ $messages = array(
 
 # History pages
 'revisionasof' => "ve farvi soi se detri la'oi $1",
+'previousrevision' => 'lo laldo zmadu versio',
 'cur' => 'cab',
 'last' => "prula'i",
 'page_first' => 'pamoi',
@@ -258,7 +265,9 @@ $messages = array(
 'prevn' => 'lo lidne {{PLURAL:$1|$1}}',
 'nextn' => 'lo se lidne {{PLURAL:$1|$1}}',
 'prevn-title' => 'lo lidne $1 {{PLURAL:$1|result|results}}',
+'shown-title' => 'zganygau $1 lo {{PLURAL:$1|danfu}} fau ro papri',
 'searchprofile-articles' => 'lo se vasru papri',
+'searchprofile-images' => 'tarti vreji',
 'searchprofile-everything' => "ro co'e",
 'searchprofile-advanced' => 'lo tcila',
 'searchprofile-articles-tooltip' => "sisku fi la'oi $1",
@@ -272,7 +281,7 @@ $messages = array(
 # Preferences page
 'preferences' => 'lo se nelci',
 'mypreferences' => 'lo se nelci',
-'prefs-rc' => 'puzi nu stika',
+'prefs-rc' => 'lo nu puzi stika',
 'prefs-editing' => "ca'o stika",
 'searchresultshead' => "tu'a le se sisku",
 'savedprefs' => 'le do zmaselnei pu vreji',
@@ -282,17 +291,18 @@ $messages = array(
 'action-edit' => 'stika lo vi ckupau',
 
 # Recent changes
-'recentchanges' => 'puzi nunstika',
+'recentchanges' => 'lo nu puzi stika',
 'recentchanges-summary' => 'liste loi nu puzi galfi la .uikis.',
 'rcshowhidebots' => '$1 lo zmiku',
-'rcshowhideliu' => '$1 lo samyzva',
+'rcshowhideliu' => '$1 lo se jaspu pilno',
 'diff' => 'te frica',
 'hist' => 'galfi plivei',
-'hide' => 'Toljarco',
+'hide' => 'cancygau',
 'show' => 'Jarco',
 'minoreditletter' => 'm',
 'newpageletter' => 'n',
 'boteditletter' => 'z',
+'rc-enhanced-expand' => 'zganygau lo tcila',
 
 # Recent changes linked
 'recentchangeslinked' => 'lo srana nu gasnu',
@@ -300,8 +310,8 @@ $messages = array(
 'recentchangeslinked-page' => 'to ckupau cmene toi',
 
 # Upload
-'upload' => 'benji pa vreji',
-'uploadbtn' => 'benji pa vreji',
+'upload' => 'benji lo pa vreji',
+'uploadbtn' => 'benji lo pa vreji',
 'filedesc' => 'to ve skicu toi',
 
 # File description page
@@ -401,6 +411,8 @@ $messages = array(
 'tooltip-pt-login' => "e'u do co'a pilno lo jaspu ije ku'i do na bilga",
 'tooltip-pt-logout' => "co'u se jaspu",
 'tooltip-ca-talk' => 'lo nu casnu lo se vasru be lo dei ckupau',
+'tooltip-ca-history' => 'lo purci versio be lo dei papri',
+'tooltip-ca-protect' => 'bandu lo dei papri',
 'tooltip-ca-delete' => 'vimcu lo vi ckupau',
 'tooltip-ca-move' => 'ko galfi lo cmene be lo vi ckupau',
 'tooltip-ca-watch' => 'jmive lo dei ckupau lo se zgana liste pe do',
@@ -411,14 +423,15 @@ $messages = array(
 'tooltip-n-mainpage' => 'vitke lo ralju ckupau',
 'tooltip-n-mainpage-description' => 'vitke lo ralju ckupau',
 'tooltip-n-portal' => "srana lo dei proiekto je zo'e noi ka'e se zukte do vau je lo stuzi be lo plixau info",
-'tooltip-n-recentchanges' => "liste lo puzi nunstika vreji be bu'u lo vi uitke",
+'tooltip-n-recentchanges' => "liste lo vreji be lo nu puzi stika bu'u lo dei uitki",
 'tooltip-n-randompage' => 'jarco lo cunso ckupau',
 'tooltip-n-help' => 'sidju kibypapri',
 'tooltip-t-whatlinkshere' => "nu liste lo zifyga'ikibjudri poi ke'a kibjorne le vi ckupau",
 'tooltip-t-recentchangeslinked' => "lo puzi nunga'i pe lo kibypapri poi kibjorne le vi ckupau",
-'tooltip-t-upload' => 'benji lo vreji',
+'tooltip-t-upload' => 'benji lo pa vreji',
 'tooltip-t-specialpages' => 'liste ro steci ckupau',
 'tooltip-t-print' => 'lo prina versio be lo dei ckupau',
+'tooltip-t-permalink' => 'lo stodi judri be lo dei versio be lo dei papri',
 'tooltip-ca-nstab-main' => 'catlu lo se vasru ckupau',
 'tooltip-ca-nstab-project' => 'cpacu lo gungunma ckupau',
 'tooltip-ca-nstab-image' => 'catlu lo ckupau pe lo vreji',
@@ -429,6 +442,13 @@ $messages = array(
 # Info page
 'pageinfo-toolboxlink' => 'lo info be lo ckupau',
 
+# Bad image list
+'bad_image_list' => "lo formate cu jai ve ciksi do'e di'e
+
+i lo po'o liste cmima (to lo linji poi zo'oi * cu pamoi lerfu ke'a) cu se pilno
+i lo pamoi ke linji judrysni cu ei judrysni lo jai se curmi nai fail
+i ro lo se lidne judrysni pe lo bi'unai linji cu nai jai se javni vau je va'i me lo papri poi lo fail sinxa ka'e zvati lo bi'unai linji",
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => "ro co'e",
 'namespacesall' => "ro co'e",
@@ -436,5 +456,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'steci ckupau',
+
+# Feedback
+'feedback-cancel' => 'naljetnygau',
 
 );

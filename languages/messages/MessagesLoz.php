@@ -16,12 +16,10 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => "Tumana ling'ko:",
-'tog-justify' => 'Singanyekile silamina',
 'tog-usenewrc' => 'Inenset petuho nca (JavaScript)',
 'tog-numberheadings' => 'Auto-palo mukunguna',
 'tog-showtoolbar' => "Kamukile hloli ye ng'i toolbar (bulukezi JavaScript)",
 'tog-editondblclick' => "Hloli ye ng'i petulo di 'klik' dubo (JavaScript)",
-'tog-editsection' => "Nyembulisize [hloli ye ng'i] di akes di lyangutukezi ling'ki",
 'tog-rememberpassword' => 'Askevusize zwa menuhile kwa bye kompyuta (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Pusize petulo a hloli di zwa mukoloko di kentezi',
 'tog-watchdefault' => "Pusize petulo a hloli ye ng'i di zwa mukoloko di kentezi",
@@ -429,7 +427,6 @@ Informasi: (bye) = petuho a nca selt,
 'lineno' => 'Lani $1:',
 'compareselectedversions' => 'Bapisize',
 'editundo' => "afi hloli ye ng'i",
-'diff-multi' => '({{PLURAL:$1|1 selt amebusilize|$1 selt amebusilize}} ni kamukile.)',
 
 # Search results
 'searchresults' => 'Fatukile kamukile',
@@ -458,7 +455,6 @@ Informasi: (bye) = petuho a nca selt,
 'rows' => 'Roo:',
 'columns' => 'Kalom:',
 'searchresultshead' => 'Fatukile',
-'resultsperpage' => 'Hit di petulo:',
 'default' => 'auto',
 'prefs-files' => 'Imegini',
 'youremail' => 'Imeli:',

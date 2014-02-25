@@ -319,7 +319,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'lineno' => 'Sïeve $1:',
 'compareselectedversions' => 'Mohtedidh veeljeme låhkoeh',
 'editundo' => 'ov-darjodh',
-'diff-multi' => '({{PLURAL:$1|Akte gaskese gïehtjedamme|$1 gaskese gïehtjedammeh}} vuesehte ijje.)',
 
 # Search results
 'searchresults' => 'Ohtsedh resultaateh',
@@ -364,7 +363,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'nchanges' => '$1 {{PLURAL:$1|värrhtoedimmie|värrhtoedimmieh}}',
 'recentchanges' => 'Männgan värrhtoedimmieh',
 'recentchanges-feed-description' => 'Dåeriedidh männgan värrhtoedimmie sïjse wiki meatan dïhte feed.',
-'rcnote' => "Vuelen vuesehte {{PLURAL:$1|dïhte männgan värrhtoedimmie|dah männgan '''$1''' värrhtoedimmieh}} nuelesne dah {{PLURAL:$2|männgan biejjie|männgan '''$2''' biejjieh}}, ihke $5, $4.",
 'rcnotefrom' => "Vuelelen vuesehte dah männgan '''$1''' värrhtoedimmieh männgan '''$2'''.",
 'rclistfrom' => 'Vuesehte orre värrhtoedimmieh aelkedh raejeste $1',
 'rcshowhideminor' => '$1 ohtje värrhtoedimmie',
@@ -634,7 +632,6 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 'ipadressorusername' => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'ipbother' => 'Jeatjebh tïjje:',
 'ipboptions' => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite',
-'ipbotheroption' => 'jeatjebh',
 'ipblocklist' => 'Lästoe bijjelen tjöödtjehtidh IP tjaalesijjieh jih nuhtjiennommeh',
 'ipblocklist-submit' => 'Ohtsedh',
 'blocklink' => 'tjöödtjehtidh',

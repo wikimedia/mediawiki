@@ -287,7 +287,6 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 # Block/unblock
 'blockip' => 'Isara ed para ayan manag-usar',
 'ipbreason' => 'Katonongan',
-'ipbreasonotherlist' => 'Arom ya katonongan',
 'ipbsubmit' => 'Isebel ed sayan manag-usar',
 'badipaddress' => 'Aga nayarin IP address',
 'ipusubmit' => 'Aga la isebel so ayan address',

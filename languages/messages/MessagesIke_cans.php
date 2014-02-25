@@ -190,7 +190,6 @@ $messages = array(
 'history-title' => 'ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ ᒪᑉᐱᑕᖅ ᑭᖑᓂᑦᑎᓐᓂ "$1"',
 'lineno' => 'ᑐᑭᖅᓯᖅ $1:',
 'editundo' => 'ᐃᐱᐅᑦᔮᐹ',
-'diff-multi' => '({{PLURAL:$1|ᐊᑕᐅᓯᖅ ᑭᒻᒥᐅᕗᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ|$1 ᑭᒻᒥᐅᕗᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ}} ᐊᔪᖅᑐᖅ ᐅᕝᕙ.)',
 
 # Search results
 'nextn' => 'ᑕᒡᒐ {{PLURAL:$1|$1}}',

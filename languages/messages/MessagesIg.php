@@ -222,7 +222,6 @@ $messages = array(
 'vector-action-protect' => 'Cẹdolu',
 'vector-action-undelete' => 'Á gbàkashikwà',
 'vector-action-unprotect' => 'Nchẹdo mgbanwe',
-'vector-simplesearch-preference' => 'Kwe okwu ụmá nchöwa di (akpụkpọ Vector náni)',
 'vector-view-create' => 'Ké',
 'vector-view-edit' => 'Mèzi',
 'vector-view-history' => 'Zí ịta',

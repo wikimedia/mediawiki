@@ -152,7 +152,11 @@ If the file has been modified from its original state, some details may not full
 'confirmemail_invalidated' => 'Email address confirmation cancelled',
 
 # Special:Version
-'version-license' => 'Licence',
+'version-license' => 'MediaWiki Licence',
+'version-ext-license' => 'Licence',
+'version-ext-colheader-license' => 'Licence',
+'version-license-title' => 'Licence for $1',
+'version-license-not-found' => 'No detailed licence information was found for this extension.',
 'version-credits-summary' => 'We would like to recognise the following persons for their contribution to [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation; either version 2 of the Licence, or (at your option) any later version.
 

@@ -162,7 +162,6 @@ $messages = array(
 'vector-action-protect' => 'Venhimna',
 'vector-action-undelete' => 'Lak kir lehna',
 'vector-action-unprotect' => 'Venhimna dinhmun tidanglam rawh',
-'vector-simplesearch-preference' => 'Zawn awlsam lehzualna rawtna awmtir rawh (Vektawr vun tan chauh)',
 'vector-view-create' => 'Siamna',
 'vector-view-edit' => 'Siamţhatna',
 'vector-view-history' => 'Hunhlui-chanchin',

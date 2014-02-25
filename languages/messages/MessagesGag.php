@@ -98,16 +98,13 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Baalantıların altını çiz',
-'tog-justify' => 'Paragrafları düz',
 'tog-hideminor' => 'Küçük diişmäkleri "Bitki diişmäkler" sayfasında sakla',
 'tog-extendwatchlist' => 'İlerlemiş bakmaa listası',
 'tog-usenewrc' => 'İlerlemiş bitki diişmäkler listası (JavaScript uymêêr)',
 'tog-numberheadings' => 'Başlıklara avtomatik nomer yaz',
 'tog-showtoolbar' => 'Diişmäk yapar känä yardımcı tuşları göster. (JavaScript)',
 'tog-editondblclick' => 'Sayfayı çift tuşlayarak diiştirmää başla (JavaScript)',
-'tog-editsection' => 'Bölümleri [diiştir] baalantılarılan diiştirmää hakkı ver',
 'tog-editsectiononrightclick' => 'Bölüm başlıına saa tuşla basarak bölümü düzmää izin ver.(JavaScript)',
-'tog-showtoc' => 'İçindäkiler tablițasını düz<br />(3-tän çok başlıı olan sayfalar için)',
 'tog-rememberpassword' => 'Parolu hatırla (en fazla $1 {{PLURAL:$1|gün|gün}})',
 'tog-watchcreations' => 'Yarattıım sayfaları bakmaa listama ekle',
 'tog-watchdefault' => 'Diişmäk yapılan sayfayı bakmaa listasına ekle',
@@ -554,7 +551,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'lineno' => '$1. liniya:',
 'compareselectedversions' => 'Karşılaştır versiyaları ani seçildi',
 'editundo' => 'geeri al',
-'diff-multi' => '({{PLURAL:$1|Ara versiya|$1 ara versiyalar}} gösterilmedi.)',
 
 # Search results
 'searchresults' => 'Aaramak rezultatları',

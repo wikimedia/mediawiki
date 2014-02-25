@@ -89,10 +89,8 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Kahalalo i nā loulou:',
-'tog-justify' => 'Ho‘okaulihi i nā paukū',
 'tog-hideminor' => 'E hūnā i nā ho‘opololei iki ma nā loli hou',
 'tog-editondblclick' => 'Ho‘opololei i nā ‘ao‘ao ma ke kōmi pālua (JavaScript)',
-'tog-showtoc' => 'Hō‘ike i ka papa kuhikuhi',
 'tog-rememberpassword' => 'Hoʻomanaʻo iaʻu ma kēia lolo uila (no ka palena nui o $1 {{PLURAL:$1|lā|mau lā}})',
 'tog-watchcreations' => 'Ho‘ohui i nā ‘ao‘ao i hana ai au i ka‘u papa nānā pono',
 'tog-watchdefault' => 'Ho‘ohui i nā ‘ao‘ao i ho‘opololei ai au i ka‘u papa nānā pono',

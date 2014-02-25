@@ -114,7 +114,6 @@ $messages = array(
 'vector-action-protect' => 'Kobátela',
 'vector-action-undelete' => 'Kolímwisa tɛ̂',
 'vector-action-unprotect' => ' Kobátela tɛ̂',
-'vector-simplesearch-preference' => 'Kolamusa bokáni bwa boluki bobakísámí (káka na Vector)',
 'vector-view-create' => 'Kokela',
 'vector-view-edit' => 'Kobɔngisa',
 'vector-view-history' => 'Komɔ́nisa mokóló',
@@ -416,7 +415,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'recentchanges-legend' => 'Mapɔni ma mbóngwana ya nsúka',
 'recentchanges-feed-description' => 'Kolanda mbóngwana ya nsúka ya wiki o ebale eye.',
 'recentchanges-label-minor' => 'Ezalí mbóngwana ya mokɛ́',
-'rcnote' => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1''' ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, o ntángo $5 o mokɔlɔ $4.",
 'rcshowhideminor' => '$1 mbóngwana ya mokɛ́',
 'rcshowhidebots' => '$1 barobot',
 'rcshowhideliu' => '$1 basáleli bamíkitólí',
@@ -529,7 +527,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'watchthispage' => 'Kolanda lonkásá óyo',
 'unwatch' => 'Kolanda tɛ́',
 'watchlist-details' => '{{PLURAL:$1|Lonkásá $1 elandámí|Nkásá $1 bilandámí}}, longola nkásá ya ntembe.',
-'wlnote' => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|ngonga|ngonga '''$2'''}} ya nsúka.",
 'wlshowlast' => 'Komɔ́nisa ngónga $1 ya nsúka, mikɔlɔ $2 mya nsúka tǒ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching

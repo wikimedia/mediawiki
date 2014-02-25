@@ -174,7 +174,6 @@ $messages = array(
 'vector-action-protect' => 'Pó-hō·',
 'vector-action-undelete' => 'chhú-siau thâi tiàu',
 'vector-action-unprotect' => 'Chhú-siau pó-hō·',
-'vector-simplesearch-preference' => 'Chhái-iōng ka-kiông-pán ê chhiau-soh kiàn-gī ( chí hān tī Vector bīn-phoê)',
 'vector-view-create' => 'Khai-sí siá',
 'vector-view-edit' => 'Siu-kái',
 'vector-view-history' => 'khoàⁿ le̍k-sú',

@@ -38,7 +38,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Haiguy joajuha',
-'tog-justify' => 'embojoja haipyvo',
 'tog-hideminor' => 'Eñomi ñemyatyrõ michĩva «ñemoambue pyahúpe»',
 'tog-extendwatchlist' => 'Eipyso tembiapo rapykueho rysýi opaite ñemoambue ikatúvape',
 'tog-usenewrc' => "Ñemoambue ojejapo ramóva (ndoikói opaite 'navegador'-pe)",
@@ -247,7 +246,6 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 # Diffs
 'lineno' => 'Jehai $1:',
 'editundo' => 'embyai',
-'diff-multi' => '($1 ediciones intermedias no se muestran.)',
 
 # Search results
 'searchresults' => 'Ojejuhúva jeheka',
@@ -283,7 +281,6 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 # Recent changes
 'nchanges' => '$1 ñemoambue',
 'recentchanges' => 'Oñemoambue pyahúva',
-'rcnote' => "Iguýpe oĩ umi {{PLURAL:$1|'''1'''|$1}} oñemoambue pyahúva ko ara{{PLURAL:$2|'''1'''|$2}}ndýpe, hekopyahúva $5, $4.",
 'rclistfrom' => 'Tojehechauka oñemoambue pyahúva $1 guive',
 'rcshowhideminor' => '$1 jehaijey michĩva',
 'rcshowhideliu' => '$1 puruhára ohejáva teraguapy',

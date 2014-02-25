@@ -21,7 +21,6 @@ $fallback = 'fr';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Souligner les liens:',
-'tog-justify' => 'Égalisez les paragraphes',
 'tog-hideminor' => 'Cachez les petits changements dans la liste des derniers changements',
 'tog-hidepatrolled' => '↓ Cachez les petits changements dans la liste des derniers changements',
 'tog-newpageshidepatrolled' => '↓Cache pages patrollés de la list des pages nouveau',
@@ -30,9 +29,7 @@ $messages = array(
 'tog-numberheadings' => 'Mettre les numéros sus les en-têtes',
 'tog-showtoolbar' => "Montrer la barre d'outils des changements (JavaScript)",
 'tog-editondblclick' => 'Faire un clic-double pour changer la page (JavaScript)',
-'tog-editsection' => 'Changer une section avec les liens [changer]',
 'tog-editsectiononrightclick' => 'Changer une section en faisant un clic droit sus son nom (JavaScript)',
-'tog-showtoc' => 'Montrer la table des matières (pour les pages avec plus que 3 têtes)',
 'tog-rememberpassword' => 'Garder mon mot de passe (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Additionner les pages que je crée à ma liste des pages guettées',
 'tog-watchdefault' => 'Additionner les pages que je change à ma liste des pages guettées',
@@ -41,7 +38,6 @@ $messages = array(
 'tog-minordefault' => "Marquer tous les petits changements d'après le réglage",
 'tog-previewontop' => "Montrer la vue d'avance au-dessus la boëte de changement",
 'tog-previewonfirst' => "Montrer la vue d'avance au temps du premier changement",
-'tog-nocache' => 'Arrêter le cache des pages',
 'tog-enotifwatchlistpages' => 'Envoyer un e-mail quand une de mes pages guettées est changée',
 'tog-enotifusertalkpages' => 'Envoyer un e-mail quand ma page de discussion est changée',
 'tog-enotifminoredits' => 'Envoyer un e-mail même pour les petits changements',
@@ -567,7 +563,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'lineno' => 'Ligne $1:',
 'compareselectedversions' => 'Comparer les versions choisies',
 'editundo' => 'renverser',
-'diff-multi' => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
 
 # Search results
 'searchresults' => 'Résultats de la charche',

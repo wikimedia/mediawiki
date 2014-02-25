@@ -153,16 +153,13 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Poti strepi ondro den miti:',
-'tog-justify' => 'Fiti na ala tu sey',
 'tog-hideminor' => 'Kibri pikin kenki ini laste kenki',
 'tog-extendwatchlist' => 'Moro langa "Tan luku" réy',
 'tog-usenewrc' => 'Moro betre Laste Kenki (JavaScript)',
 'tog-numberheadings' => 'Gi den ede wan nomru sondro fu yepi',
 'tog-showtoolbar' => 'Sori Kenki-Wrokosani-barki (JavaScript)',
 'tog-editondblclick' => 'Naki tu tron fu kenki (JavaScript)',
-'tog-editsection' => 'Gi primisi fu kenki pisi-papira nanga [kenki]-miti',
 'tog-editsectiononrightclick' => "Gi primisi fu kenki pisi-papira nanga wan naki n'a leti-anu sey na tapu wan pisi-ede (JavaScript)",
-'tog-showtoc' => 'Sori san de (gi papira nanga moro leki 3 pisi-ede)',
 'tog-rememberpassword' => 'Memre mi psawortu (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Tan luku den papira di mi meki',
 'tog-watchdefault' => 'Tan luku den papira di mi kenki',
@@ -618,7 +615,6 @@ A kan ben trowe efu dribi.
 'lineno' => 'Lini $1:',
 'compareselectedversions' => 'Luku den difrenti fu den versi di teki',
 'editundo' => "drai pot' baka",
-'diff-multi' => '(No e sori {{PLURAL:$1|wan versi|$1 versi}} na mindrisey.)',
 
 # Search results
 'searchresults' => 'Sukuleysi',
@@ -645,7 +641,6 @@ A kan ben trowe efu dribi.
 'rows' => 'Rei:',
 'columns' => 'Kolum:',
 'searchresultshead' => 'Suku',
-'resultsperpage' => 'Ris ies papira:',
 'stub-threshold' => 'Dupolo fu seti <a href="#" class="stub">stub</a>:',
 'recentchangesdays' => 'Teki fu dey tu libi si ini bakaseywan kenki:',
 'recentchangescount' => 'Teki fu peprewoysi ini bakaseywan kenki:',

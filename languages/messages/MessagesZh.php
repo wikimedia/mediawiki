@@ -7,10 +7,16 @@
  * @ingroup Language
  * @file
  *
+ * @author Cwek
+ * @author Gakmo
  * @author Kuailong
+ * @author Li3939108
  * @author PhiLiP
+ * @author Qiyue2001
  * @author Shizhao
+ * @author StephDC
  * @author Wong128hk
+ * @author Xiaomingyan
  */
 
 # Stub message file for converter code "zh"
@@ -173,18 +179,84 @@ $specialPageAliases = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline' => '鏈接下劃線：',
+'tog-hideminor' => '于最近更改列表中隱藏小編輯',
+'tog-showtoolbar' => '顯示編輯工具欄（需要 JavaScript）',
+'tog-editondblclick' => '双击以编辑页面',
+'tog-editsectiononrightclick' => '允许通过右击章节标题来编辑章节',
+'tog-rememberpassword' => '让浏览器记住我的登录（最大记录为$1天）',
+'tog-watchcreations' => '将我创建的页面和上传的文件添加到监视列表',
+'tog-watchdefault' => '将我编辑过的页面和上传的文件添加到监视列表',
+'tog-watchmoves' => '将我移动过的页面和上传的文件添加到监视列表',
+'tog-watchdeletion' => '将我删除的页面和文件添加到监视列表',
+'tog-minordefault' => '默认所有编辑为小编辑',
+'tog-previewontop' => '在编辑框前显示预览',
+'tog-previewonfirst' => '在第一次编辑时显示预览',
+'tog-enotifwatchlistpages' => '当在我监视列表的页面或文件发生更改时以电子邮件通知我',
+'tog-enotifusertalkpages' => '当我的用户讨论页发生更改时以电子邮件通知我',
+'tog-watchlisthideown' => '从监视列表隐藏我的编辑',
+'tog-watchlisthidebots' => '在监视列表中隐藏機器人用戶的修改',
+'tog-watchlisthideminor' => '在监视列表中隐藏小修改',
+'tog-norollbackdiff' => '進行回退後略過差異比較',
+
+# Font style option in Special:Preferences
+'editfont-monospace' => '等寬字體',
+
+# Categories related messages
+'category_header' => '分类“$1”中的页面',
+'subcategories' => '子分类',
+'hidden-category-category' => '隐藏的分类',
+
+'about' => '关于',
+'cancel' => '取消',
+'moredotdotdot' => '更多……',
+'mypage' => '页面',
+'mytalk' => '讨论',
+'anontalk' => '这个IP地址的讨论页',
+'navigation' => '导航',
+
+# Cologne Blue skin
+'qbbrowse' => '浏览',
+'qbedit' => '编辑',
+'qbpageoptions' => '该页',
+'faq' => '常见问题',
+'faqpage' => 'Project:常见问题',
+
+# Vector skin
+'vector-action-delete' => '删除',
+'vector-action-move' => '移动',
+'vector-view-create' => '创建',
+'vector-view-edit' => '编辑',
+'vector-view-history' => '查看历史',
+
+'newpage' => '最新页面',
+
+# Login and logout pages
+'userlogin-noaccount' => '没有账户？',
+'createacct-join' => '请在下面输入您的资料',
+
+# Edit pages
+'editing' => '编辑“$1”',
+
+# Miscellaneous special pages
+'newpages' => '最新页面',
+
+# Tooltip help for the actions
+'interlanguage-link-title' => '$1 – $2',
+
 /*
 Short names for language variants used for language conversion links.
 Variants for Chinese language
 */
 'variantname-zh-hans' => '简体',
 'variantname-zh-hant' => '繁體',
-'variantname-zh-cn'   => '大陆简体',
-'variantname-zh-tw'   => '台灣正體',
-'variantname-zh-hk'   => '香港繁體',
-'variantname-zh-mo'   => '澳門繁體',
-'variantname-zh-sg'   => '新加坡简体',
-'variantname-zh-my'   => '大马简体',
-'variantname-zh'      => '不转换',
+'variantname-zh-cn' => '大陆简体',
+'variantname-zh-tw' => '台灣正體',
+'variantname-zh-hk' => '香港繁體',
+'variantname-zh-mo' => '澳門繁體',
+'variantname-zh-sg' => '新加坡简体',
+'variantname-zh-my' => '大马简体',
+'variantname-zh' => '不转换',
 
 );

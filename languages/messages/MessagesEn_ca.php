@@ -9,6 +9,7 @@
  *
  * @author Dantman
  * @author FrigidNinja
+ * @author Nemo bis
  * @author Shirayuki
  * @author Techman224
  * @author គីមស៊្រុន
@@ -19,7 +20,7 @@ $messages = array(
 'talk' => 'Discussion',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'អំពី {{SITENAME}}',
+'aboutsite' => 'About {{SITENAME}}',
 'mainpage' => 'Main Page',
 
 'editsection' => 'edit',

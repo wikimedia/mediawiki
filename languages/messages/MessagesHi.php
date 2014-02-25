@@ -53,6 +53,7 @@
  * @author Taxman
  * @author Venky2834
  * @author Vibhijain
+ * @author Vivek Rai
  * @author Wikiconference
  * @author לערי ריינהארט
  * @author आलोक
@@ -738,6 +739,9 @@ $2',
 'suspicious-userlogout' => 'अपका लॉग आउट करने का अनुरोध अस्वीकृत कर दिया गया है क्योंकि ऐसा प्रतीत होता है कि यह किसी खराब ब्राउज़र या कैश करने वाली प्रॉक्सी द्वारा भेजा गया था।',
 'createacct-another-realname-tip' => 'असली नाम देना आवश्यक नहीं है।
 यदि आप प्रदान करते हैं तो इसका प्रयोग सदस्य के योगदानों के लिये उनको श्रेय (attribution) देने के लिये किया जायेगा।',
+'pt-login' => 'लॉग इन',
+'pt-createaccount' => 'खाता बनाएँ',
+'pt-userlogout' => 'लॉगआउट',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP के mail() फ़ंक्शन में अज्ञात त्रुटि हुई।',
@@ -746,8 +750,7 @@ $2',
 
 # Change password dialog
 'changepassword' => 'कूटशब्द बदलें',
-'resetpass_announce' => 'आप ई-मेल से प्राप्त अस्थायी कोड से लॉग इन हुए हैं।
-लॉग इन को पूरा करने के लिये आपको यहाँ एक नया कूटशब्द देना होगा:',
+'resetpass_announce' => 'लॉग इन को पूरा करने के लिये आपको यहाँ एक नया कूटशब्द देना होगा:',
 'resetpass_text' => '<!-- पाठ यहाँ लिखें -->',
 'resetpass_header' => 'खाते का कूटशब्द बदलें',
 'oldpassword' => 'पुराना कूटशब्द:',
@@ -763,8 +766,13 @@ $2',
 'resetpass-submit-cancel' => 'रद्द करें',
 'resetpass-wrong-oldpass' => 'अवैध अस्थायी या वर्तमान कूटशब्द।
 संभव है कि या तो आपने पहले ही सफलतापूर्वक अपना कूटशब्द बदल लिया हो, या आपने एक नए अस्थायी कूटशब्द का अनुरोध किया हो।',
+'resetpass-recycled' => 'कृपया अपना वर्तमान पासवर्ड के अलावा किसी अन्य में रिसेट करें।',
+'resetpass-temp-emailed' => 'आपने एक अस्थायी कोड ईमेल के साथ लॉग इन किया.
+लॉगिंग पूरा करने के लिए, आपको यहाँ एक नया पासवर्ड सेट करना होगा:',
 'resetpass-temp-password' => 'अस्थायी कूटशब्द:',
 'resetpass-abort-generic' => 'कूटशब्द में बदलाव किसी एक्सटेंशन द्वारा रोक दिया गया है।',
+'resetpass-expired' => 'आपके पासवर्ड की समय सीमा समाप्त हो चुकी है। कृपया लॉगइन करने के लिए एक नया पासवर्ड सेट करें।',
+'resetpass-expired-soft' => "आपका पासवर्ड समाप्त हो गया है, और रीसेट किये जाने की जरूरत है। कृपया अब एक नया पासवर्ड चुनें, या बाद में पुनर्स्थापित करने के लिए ' रद्द करें ' क्लिक करें।",
 
 # Special:PasswordReset
 'passwordreset' => 'कूटशब्द रीसेट',
@@ -2137,6 +2145,12 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'protectedpages-cascade' => 'केवल सोपानी सुरक्षा',
 'protectedpages-noredirect' => 'पुनर्निर्देश छुपाएँ',
 'protectedpagesempty' => 'इस समय इन नियमों द्वारा कोई पृष्ठ सुरक्षित नहीं हैं।',
+'protectedpages-timestamp' => 'टाइम मोहर',
+'protectedpages-page' => 'पृष्ठ',
+'protectedpages-expiry' => 'समाप्ति:',
+'protectedpages-performer' => 'उपयोगकर्ता की सुरक्षा',
+'protectedpages-params' => 'संरक्षण पैरामीटर्स',
+'protectedpages-reason' => 'कारण',
 'protectedtitles' => 'सुरक्षित शीर्षक',
 'protectedtitlesempty' => 'इन नियमों द्वारा कोई भी शीर्षक सुरक्षित नहीं हैं।',
 'listusers' => 'सदस्यसूची',

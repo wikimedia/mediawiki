@@ -80,7 +80,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sublinhar lhigaçones:',
-'tog-justify' => 'Justeficar parágrafos',
 'tog-hideminor' => 'Scunder eidiçones mais pequeinhas nas redadeiras altaraçones',
 'tog-hidepatrolled' => 'Scunder eidiçones patrulhadas nas redadeiras altaraçones',
 'tog-newpageshidepatrolled' => 'Scunder  páiginas patrulhadas na lhista de páiginas nuobas',
@@ -89,9 +88,7 @@ $messages = array(
 'tog-numberheadings' => 'Outo-numerar cabeçalhos',
 'tog-showtoolbar' => "Amostrar barra d'eidiçon (JavaScrit)",
 'tog-editondblclick' => 'Eiditar páiginas quando houbir un clique duplo (JavaScrit)',
-'tog-editsection' => "Possiblitar l'eidiçon de cachos cun lhigaçones [eiditar]",
 'tog-editsectiononrightclick' => "Posseblitar l'eidiçon de cachos por clique cul boton dreito ne l títalo de la seçon (JavaScrit)",
-'tog-showtoc' => 'Amostrar índice (para páiginas cun mais de trés cachos)',
 'tog-rememberpassword' => 'Recordar la mie palabra-chabe antre sessones (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Ajuntar las páiginas que you criar a las minhas páiginas begiadas',
 'tog-watchdefault' => 'Ajuntar las páiginas que you eiditar a las minhas páiginas begiadas',
@@ -533,7 +530,6 @@ Legenda: (atu) = defrénças de la berson atual,
 'compareselectedversions' => 'Cumparar las bersones marcadas',
 'showhideselectedversions' => 'Amostrar/ocultar bersones selecionadas',
 'editundo' => 'çfazer',
-'diff-multi' => '({{PLURAL:$1|ua eidiçon antermédia nun stá a ser amostrada|$1 eidiçones antermédias nun stan a ser amostradas}}.)',
 
 # Search results
 'searchresults' => 'Resultados de la percura',

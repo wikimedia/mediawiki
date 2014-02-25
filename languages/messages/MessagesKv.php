@@ -81,7 +81,7 @@ $messages = array(
 'december-gen' => 'ӧшым',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Категория|Категория}}',
+'pagecategories' => '{{PLURAL:$1|1=Категория|Категория}}',
 
 'article' => 'Гижӧд',
 'cancel' => 'Дугӧдны',

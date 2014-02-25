@@ -145,7 +145,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => '下劃綫鏈接',
-'tog-justify' => '調蜀調幾段',
 'tog-hideminor' => '藏起最近改變其過要修改',
 'tog-hidepatrolled' => '藏起最近改變其巡邏修改',
 'tog-numberheadings' => '自動編號其標題',
@@ -299,7 +298,6 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '取消刪除',
 'vector-action-unprotect' => '改變保護',
-'vector-simplesearch-preference' => '允許簡化其搜索欄（儷有矢量皮膚才有）',
 'vector-view-create' => '創建',
 'vector-view-edit' => '修改',
 'vector-view-history' => '看歷史',
@@ -774,7 +772,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'compareselectedversions' => '比並揀選版本',
 'showhideselectedversions' => '顯/藏揀選其調整',
 'editundo' => '取消',
-'diff-multi' => '{{PLURAL:$1}}（臺中有$2寫其$1萆版本無顯示）',
 
 # Search results
 'searchresults' => '討結果',
@@ -811,7 +808,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'prefs-misc' => '其它',
 'saveprefs' => '保存',
 'searchresultshead' => '尋討',
-'resultsperpage' => '每頁訪問量：',
 'recentchangescount' => '這般改變其條目：',
 'savedprefs' => '汝其設定已經乞保存了。',
 'timezonelegend' => '時區：',

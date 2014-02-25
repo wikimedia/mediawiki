@@ -161,7 +161,6 @@ $messages = array(
 'vector-action-protect' => 'Лораде',
 'vector-action-undelete' => 'Юхаоттаде',
 'vector-action-unprotect' => 'Лорам хувца',
-'vector-simplesearch-preference' => 'Яьржа лахарий довзамаш чуяьккха (Vector skin only)',
 'vector-view-create' => 'Кхолларле',
 'vector-view-edit' => 'Хувцам',
 'vector-view-history' => 'Искар',

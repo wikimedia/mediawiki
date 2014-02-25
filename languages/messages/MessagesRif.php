@@ -11,6 +11,7 @@
  * @author Aryaz
  * @author Dalinanir
  * @author Jose77
+ * @author Mmistmurt
  * @author MoubarikBelkasim
  * @author Urhixidur
  */
@@ -55,7 +56,7 @@ $messages = array(
 'october-gen' => 'Ktubar',
 'november-gen' => 'Nuwanbir',
 'december-gen' => 'Dujanbir',
-'jan' => 'Yennayer',
+'jan' => 'Yen',
 'feb' => 'Yebrayer',
 'mar' => 'Mars',
 'apr' => 'Abrir',
@@ -316,7 +317,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 'lineno' => 'Tabrit $1:',
 'compareselectedversions' => 'Smequdda tunɣilin a',
 'editundo' => 'kkes min ggiɣ',
-'diff-multi' => '({{PLURAL:$1|ijj n ufegged|$1 ifeggiden}} war ad twamlen ca.)',
 
 # Search results
 'searchresults' => 'Tifellawin n tarezzut',
@@ -356,7 +356,6 @@ mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 'nchanges' => '$1 {{PLURAL:$1|tiẓṛegt|tiẓṛigin}}',
 'recentchanges' => 'Tiẓṛigin tineggura',
 'recentchanges-feed-description' => 'Bbar tiẓṛigin timayutin n wiki deg usudem(feed) a .',
-'rcnote' => "Awadday {{PLURAL:$1|d '''1''' taẓṛigt|d '''$1''' tiẓṛigin tinggura}} deg {{PLURAL:$2|ass anggaru |'''$2''' ussan inggura}}, am di $5, $4.",
 'rcnotefrom' => "ɣar wadday d tiẓṛigin zi '''$2''' (ar '''$1''' ).",
 'rclistfrom' => 'Ẓar tiẓṛigin timaynutin ig ibeddan zi $1',
 'rcshowhideminor' => '$1 tiẓṛigin d-timeẓyanin',

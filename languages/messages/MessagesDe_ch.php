@@ -214,6 +214,7 @@ Du hast darauf keinen Zugriff.',
 'right-passwordreset' => 'Passwort eines Benutzers zurücksetzen und das dazu verschickte E-Mail einsehen',
 
 # Recent changes
+'recentchanges-label-plusminus' => 'Die Änderung der Seitengrösse in Bytes',
 'rc_categories' => 'Nur Seiten aus den Kategorien (getrennt mit «|»):',
 'rc-old-title' => 'ursprünglich erstellt als «$1»',
 

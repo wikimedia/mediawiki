@@ -9,6 +9,8 @@
  *
  * @author *Surak*
  * @author ChrisiPK
+ * @author Das Schäfchen
+ * @author Filzstift
  * @author Geitost
  * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
@@ -35,7 +37,7 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 
 'view-pool-error' => 'Entschuldigung, die Server sind im Moment überlastet.
-Zu viele Benutzer versuchen diese Seite zu besuchen.
+Zu viele Benutzer versuchen, diese Seite zu besuchen.
 Bitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.
 
 $1',
@@ -74,12 +76,14 @@ Nutzen Sie bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungspro
 
 Beachten Sie, dass einige Seiten noch anzeigen können, dass Sie angemeldet sind, solange Sie nicht Ihren Browsercache geleert haben.",
 'welcomecreation-msg' => 'Ihr Benutzerkonto wurde erstellt.
-Vergissen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
+Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ändern.',
 'yourdomainname' => 'Ihre Domain:',
 'password-change-forbidden' => 'Sie können auf diesem Wiki keine Passwörter ändern.',
 'externaldberror' => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'nologin' => 'Sie haben kein Benutzerkonto? $1.',
 'gotaccount' => "Haben Sie bereits ein Benutzerkonto? '''$1'''.",
+'userlogin-loggedin' => 'Sie sind bereits als {{GENDER:$1|$1}} angemeldet.
+Benutzen Sie das unten stehende Formular, um sich unter einem anderen Benutzernamen anzumelden.',
 'userexists' => 'Dieser Benutzername ist schon vergeben.
 Bitte wählen Sie einen anderen.',
 'nocookiesnew' => 'Der Benutzerzugang wurde erstellt, aber Sie sind nicht angemeldet.
@@ -541,7 +545,6 @@ Bitte geben Sie den Grund für die Sperre an.',
 'autoblocker' => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit [[User:$1|$1]] benutzen. Grund der Benutzersperre: „$2“.',
 'ipb-needreblock' => '„$1“ ist bereits gesperrt. Möchten Sie die Sperrparameter ändern?',
 'proxyblockreason' => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Internet-Provider oder Ihre Systemadministratoren und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
-'cant-block-while-blocked' => 'Sie können keine anderen Benutzer sperren, während Sie selbst gesperrt sind.',
 'cant-see-hidden-user' => 'Der Benutzer, den Sie versuchen zu sperren, wurde bereits gesperrt und verborgen. Da Sie das „hideuser“-Recht nicht haben, können Sie die Benutzersperre nicht sehen und nicht bearbeiten.',
 'ipbblocked' => 'Sie können keine anderen Benutzer sperren oder entsperren, da Sie selbst gesperrt sind',
 'ipbnounblockself' => 'Sie haben nicht die Berechtigung, sich selbst zu entsperren',
@@ -657,7 +660,6 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_needlogin' => 'Sie müssen sich $1, um Ihre E-Mail-Adresse zu bestätigen.',
 'confirmemail_success' => 'Ihre E-Mail-Adresse wurde erfolgreich bestätigt. Sie können sich jetzt [[Special:UserLogin|anmelden]].',
 'confirmemail_loggedin' => 'Ihre E-Mail-Adresse wurde erfolgreich bestätigt.',
-'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
 'confirmemail_body' => 'Hallo,
 
 jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat das Benutzerkonto „$2“ bei {{SITENAME}} registriert.

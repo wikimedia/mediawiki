@@ -8,6 +8,7 @@
  * @file
  *
  * @author Daniel Harahap
+ * @author John Vandenberg
  * @author Marvel manalu
  * @author Naval Scene
  * @author Stephensuleeman
@@ -23,7 +24,6 @@ $fallback = 'id';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Ondolhon panait',
-'tog-justify' => 'Padasip paragrap',
 'tog-hideminor' => 'Tabunihon editing na metmet di parubaan na imbaru',
 'tog-hidepatrolled' => 'Bunihon panotaan na metmet di parubaan na imbaru',
 'tog-numberheadings' => 'Bahen nomor judul otomatis',
@@ -238,7 +238,7 @@ $messages = array(
 'nstab-mediawiki' => 'Tona',
 'nstab-template' => 'Templat',
 'nstab-help' => 'Alaman pangurupion',
-'nstab-category' => 'Hategori',
+'nstab-category' => 'Kategori',
 
 # General errors
 'error' => 'Hasesega',
@@ -438,7 +438,6 @@ Parubaan na binahenmu dang di simpan dope!",
 'recentchanges-label-minor' => 'Sada panotaan na metmet',
 'recentchanges-label-bot' => 'Panotaan on diulahon bot',
 'recentchanges-label-unpatrolled' => 'Panotaan on ndang dipamanat dope',
-'rcnote' => "Na di toru on ima {{PLURAL:$1|'''1'''|'''$1'''}} perubaan  di bagasan {{PLURAL:$2|'''1''' ari|'''$2''' ari}} na parpudi, olat ni $4 pukul $5.",
 'rclistfrom' => 'Patuduhon parubaan na imbaru mamungka sian $1',
 'rcshowhideminor' => '$1 panotaan na metmet',
 'rcshowhidebots' => '$1 bot',

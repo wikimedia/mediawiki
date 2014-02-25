@@ -525,7 +525,6 @@ Neem contact op met je internetprovider of je helpdesk en stel die op de hoogte 
 'sorbsreason' => 'Je IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.',
 'sorbs_create_account_reason' => 'Je IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 Je kunt geen gebruiker registreren.',
-'cant-block-while-blocked' => 'Je kunt andere gebruikers niet blokkeren terwijl je zelf geblokkeerd bent.',
 'cant-see-hidden-user' => 'De gebruiker die je probeert te blokken is al geblokkeerd en verborgen.
 Omdat je het recht "hideuser" niet hebt, kun je de blokkade van de gebruiker niet bekijken of bewerken.',
 'ipbblocked' => 'Je kunt geen andere gebruikers (de)blokkeren, omdat je zelf geblokkeerd bent',
@@ -604,7 +603,6 @@ Sla de uitvoer op je eigen computer op, en voeg die daarna hier toe.',
 'tooltip-pt-watchlist' => "Overzicht van pagina's die je volgt",
 'tooltip-pt-mycontris' => 'Overzicht van je bijdragen',
 'tooltip-pt-login' => 'Je wordt van harte uitgenodigd om je aan te melden als gebruiker, maar dit is niet verplicht',
-'tooltip-pt-anonlogin' => 'Je wordt van harte uitgenodigd om je aan te melden als gebruiker, maar dit is niet verplicht',
 'tooltip-ca-edit' => 'Je kunt deze pagina bewerken.
 Gebruik de voorbeeldweergaveknop alvorens te bewaren.',
 'tooltip-ca-viewsource' => 'Deze pagina is beveiligd.
@@ -645,7 +643,6 @@ Het e-mailprogramma meldde: $1',
 'confirmemail_success' => 'Je e-mailadres is bevestigd.
 Je kunt jezelf nu [[Special:UserLogin|aanmelden]] en {{SITENAME}} gebruiken.',
 'confirmemail_loggedin' => 'Je e-mailadres is nu bevestigd.',
-'confirmemail_error' => 'Er is iets verkeerd gegaan tijdens het opslaan van je bevestiging.',
 'confirmemail_body' => 'Iemand, waarschijnlijk jijzelf, met het IP-adres $1,
 heeft zich met dit e-mailadres geregistreerd als gebruiker "$2" op {{SITENAME}}.
 

@@ -195,7 +195,6 @@ Te rog notari la din kontribuţi al {{SITENAME}} sunt konsideraere relesavat sup
 
 # Recent changes
 'recentchanges' => 'şumbărae recentae',
-'rcnote' => "Mai hos se flă {{PLURAL:\$|ultima modifikare|ultimele '''\$1''' modifikări}} din {{PLURAL:\$2|ultima zi|ultimele '''\$2''' zile}}, encepând cu \$5, \$4.",
 'rcshowhideminor' => '$1 modifikările minore',
 'rcshowhidebots' => '$1 roboti',
 'rcshowhideliu' => '$1 utilizatori prilasnaeri',

@@ -52,7 +52,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Putim lain ananit long ol link:',
-'tog-justify' => "Soim ol paragraf i pulmapim sipes long lephan i go long raithan (''justify'')",
 'tog-hideminor' => 'Noken soim ol liklik senis insait long ol nupela senis',
 'tog-hidepatrolled' => 'Noken soim ol lukluk senis insait long ol nupela senis',
 'tog-newpageshidepatrolled' => 'Noken soim ol lukluk senis insait long ol nupela pes',
@@ -61,9 +60,7 @@ $messages = array(
 'tog-numberheadings' => 'Putim ol namba i go long wanwan hap bilong pes',
 'tog-showtoolbar' => 'Soim ol liklik link long wokim senis kwiktaim (i nidim JavaScript)',
 'tog-editondblclick' => 'Senisim pes taim yu paitim tupela taim kwiktaim (i nidim JavaScript)',
-'tog-editsection' => 'Soim ol [senisim] link long wanwan hap bilong ol pes',
 'tog-editsectiononrightclick' => 'Senisim ol hap bilong pes taim yu paitim nem bilong hap<br />wantaim raithan-klik (i nidim Javascript)',
-'tog-showtoc' => 'Soim ol nem bilong hap insait long liklik bokis, taim igat antap long 3 hap long pes',
 'tog-rememberpassword' => 'Holim yusanem bilong mi long dispela komputa (holim pas longpela taim $1 {{PLURAL:$1|de|de}})',
 'tog-watchcreations' => 'Putim ol nupela pes mi wokim na fail mi salim long lukautbuk',
 'tog-watchdefault' => 'Putim ol pes na fail mi senisim long lukautbuk bilong mi',

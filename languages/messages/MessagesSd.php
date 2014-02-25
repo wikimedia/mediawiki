@@ -513,7 +513,6 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 'lineno' => 'سِٽَ $1:',
 'compareselectedversions' => 'چونڊيل پرت ڀيٽيو',
 'editundo' => 'اڻڪريو',
-'diff-multi' => '({{PLURAL:$1|هڪ وسطي مسودو|$1 وسطي مسودا}} لڪايل.)',
 
 # Search results
 'prevn' => 'پويان {{PLURAL:$1|$1}}',

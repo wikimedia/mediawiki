@@ -58,7 +58,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Заалһиг татас татх:',
-'tog-justify' => 'Зүүл тегшлтн',
 'tog-hideminor' => 'Шидрә сольлһна сеткүлд баһ хүврлһиг бултулх',
 'tog-hidepatrolled' => 'Шидрә сольлһна сеткүлд шүүсн хүврлһиг бултулх',
 'tog-newpageshidepatrolled' => 'Шин халхна сеткүләс шүүсн хүврлһиг бултулх',
@@ -67,9 +66,7 @@ $messages = array(
 'tog-numberheadings' => 'То-диг чикән даах',
 'tog-showtoolbar' => 'Ора зер-зев үзлх (JavaScript кергтә)',
 'tog-editondblclick' => 'Давхр индстлһар чиклх (JavaScript кергтә)',
-'tog-editsection' => '«Чиклх» заавр болвчн хүвд үзүлх',
 'tog-editsectiononrightclick' => 'Һарчига барун индстлһар хүвиг чиклх (JavaScript кергтә)',
-'tog-showtoc' => 'Һарг үзүлх (3 икәр толһата халхсд)',
 'tog-rememberpassword' => 'Намаг эн тоолдврт тодлх ($1 {{PLURAL:$1|1=өдрт|өдрмүдт}} икәр биш)',
 'tog-watchcreations' => 'Би эврәннь немгдсн халхс шинҗллһнә сеткүлд немх',
 'tog-watchdefault' => 'Би эврәннь чиклсн халхс шинҗллһнә сеткүлд немх',

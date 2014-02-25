@@ -307,7 +307,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'lineno' => 'Rīnda $1:',
 'compareselectedversions' => 'Līdzinţ vēļdõt redaktsijḑi',
 'editundo' => 'kištānt jarā',
-'diff-multi' => '({{PLURAL:$1|Īdtõ|$1}} vail-vȯlbizt {{PLURAL:$2|īd|$2}} kȭlbatijiz redaktsijõ äb nägţõbõd.)',
 
 # Search results
 'searchresults' => 'Vȯtšimiz rezultātõd',

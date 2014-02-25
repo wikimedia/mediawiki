@@ -181,7 +181,6 @@ $messages = array(
 'vector-action-protect' => 'Zazychrëjë',
 'vector-action-undelete' => 'Doprowôdzë nazôd',
 'vector-action-unprotect' => 'Òdzychrëjë',
-'vector-simplesearch-preference' => 'Włączë awansowóné pòdpòwiescë szëkbë (blós dlô skórczi Wektor)',
 'vector-view-create' => 'Ùsôdzë',
 'vector-view-edit' => 'Edicëjô',
 'vector-view-history' => 'Historëjô lopka',

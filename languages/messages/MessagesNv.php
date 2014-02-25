@@ -226,7 +226,6 @@ $messages = array(
 'nchanges' => '$1 {{PLURAL:$1|łahgo ályaaígíí|łahgo ályaaígíí}}',
 'recentchanges' => 'Áníídí łahgo ályaaígíí',
 'recentchanges-feed-description' => 'áníídí łahgo ályaaígíí',
-'rcnote' => "{{PLURAL:$2|jį́į́dą́ą́ʼ |}} {{PLURAL:$1|'''1''' łahgo ályaaígíí tʼéiyá|'''$1''' łahgo ályaaígíí}}, {{PLURAL:$2||'''$2di''' yiskánídą́ą́ʼ kojįʼ, }} ($5, $4)",
 'rcshowhideminor' => 'naaltsoos tʼáá áłtsʼíísígo łahgo ályaaígíí $1',
 'rcshowhidebots' => "''bots''ígíí $1",
 'rcshowhideliu' => 'chodayoołʼįįhí ééhozinígíí $1',

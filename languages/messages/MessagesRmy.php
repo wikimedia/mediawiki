@@ -297,7 +297,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 # Recent changes
 'recentchanges' => 'Neve paruvimata',
 'recentchanges-summary' => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.',
-'rcnote' => 'Tele si le palutne <strong>$1</strong> paruvimata andar le palutne <strong>$2</strong> divesa.',
 'rcnotefrom' => "Tele si le averutnimata katar '''$2''' (inklen '''$1''' averutnimata, shai te paruves o gin alosarindoi aver tele).",
 'rclistfrom' => 'Dikh le paruvimata ji kai $1',
 'rcshowhideminor' => '$1 tikne editisaripena',
@@ -377,7 +376,6 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'watch' => 'Dikh la',
 'unwatch' => 'Na mai dikh',
 'unwatchthispage' => 'Na mai dikh',
-'wlnote' => 'Tele si le palutne $1 paruvimata ande palutne <b>$2</b> ore.',
 
 'enotif_reset' => 'Thov semno kai patrya so dikhlem',
 
@@ -403,7 +401,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # Undelete
 'undelete' => 'Dikh le khosle patrya',
 'undeletebtn' => 'Le palpale',
-'undeletereset' => 'Khos le paruvimata',
 
 # Namespace form on various pages
 'namespace' => 'Rig:',
@@ -454,7 +451,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'tooltip-pt-watchlist' => 'I lista le pajinenge so dikhav lendar (monitorizav).',
 'tooltip-pt-mycontris' => 'Le mire editisarimata',
 'tooltip-pt-login' => 'Mishto si te identifikares tut, pale na si musai.',
-'tooltip-pt-anonlogin' => 'Mishto si te identifikares tut, pale na si musai.',
 'tooltip-pt-logout' => 'Kathe aćhaves i sesiyunya',
 'tooltip-ca-talk' => 'Diskuciya le artikoleske',
 'tooltip-ca-edit' => 'Shai te editisares kadaya pajina. Mangas te paledikhes o teksto anglal te uxtaves les.',

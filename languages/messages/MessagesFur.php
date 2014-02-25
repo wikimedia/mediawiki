@@ -281,7 +281,6 @@ $messages = array(
 'vector-action-protect' => 'Protêç',
 'vector-action-undelete' => 'Recupere',
 'vector-action-unprotect' => 'Gambie la protezion',
-'vector-simplesearch-preference' => 'Abilite la bare di ricjerche semplificade (dome pe Vector Skin)',
 'vector-view-create' => 'Cree',
 'vector-view-edit' => 'Cambie',
 'vector-view-history' => 'Cjale il storic',

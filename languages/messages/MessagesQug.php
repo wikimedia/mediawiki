@@ -170,7 +170,6 @@ $messages = array(
 'vector-action-protect' => 'Harkana',
 'vector-action-undelete' => 'Kutin wacharichina',
 'vector-action-unprotect' => 'Harkayta shukchina',
-'vector-simplesearch-preference' => 'Ashtawan alli maskankapak imakunata arinina (Vectorwanlla)',
 'vector-view-create' => 'Kamarina',
 'vector-view-edit' => 'Killkana',
 'vector-view-history' => 'Wiñay kawsayta rikuna',

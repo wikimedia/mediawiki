@@ -151,7 +151,6 @@ $messages = array(
 'vector-action-protect' => 'Garantir',
 'vector-action-undelete' => "N'poin défacher",
 'vector-action-unprotect' => "Canger l'garantie",
-'vector-simplesearch-preference' => "Actionner l'barette pour chés traches simpes (seulemint pour l'habillure Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Éditer',
 'vector-view-history' => "Vir l'histoère",

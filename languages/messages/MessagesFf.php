@@ -21,7 +21,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Diidtol jokke',
-'tog-justify' => 'Fonndito lelnanɗe',
 'tog-hideminor' => 'Duuɗ taƴtanɗe pamare e bayle cakkitiiɗe',
 'tog-hidepatrolled' => 'Suuɗ taƴtanɗe deenaaɗe ɗee e bayle cakkitiiɗe',
 'tog-newpageshidepatrolled' => 'Suuɗ kelle deenaaɗe e doggol kelle kese',

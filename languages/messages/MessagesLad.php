@@ -344,7 +344,6 @@ $messages = array(
 'vector-action-protect' => 'Guadrar',
 'vector-action-undelete' => 'Traer atrás',
 'vector-action-unprotect' => 'Trocar proteksyon',
-'vector-simplesearch-preference' => 'Aktivar barra de buskida simplifikada (solamente kon aspekto Vector)',
 'vector-view-create' => 'Criar',
 'vector-view-edit' => 'Trocar',
 'vector-view-history' => 'Ver la istoria',

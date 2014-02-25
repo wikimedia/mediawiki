@@ -38,16 +38,13 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sulinia lias:',
-'tog-justify' => 'Ajusta paragrafes',
 'tog-hideminor' => 'Asconda editas minor en cambias resente',
 'tog-extendwatchlist' => 'Grandi la lista oservada per mostra tota cambias aplicable',
 'tog-usenewrc' => 'Aumenta cambias resente (JavaScript)',
 'tog-numberheadings' => 'Dona automatica numeros a titula',
 'tog-showtoolbar' => 'Mostra la bara de utiles per edita (JavaScript)',
 'tog-editondblclick' => 'Edita pajes a du clicas (JavaScript)',
-'tog-editsection' => 'Engrana la edita de sesion via lias de {edita}.',
 'tog-editsectiononrightclick' => 'Engrana la edita de sesion par clica a la destra a titulos de sesion (JavaScript)',
-'tog-showtoc' => 'Mostra la table de contenis (per pajes con plu ce tre titulos)',
 'tog-rememberpassword' => 'Memora me sinia per entra a esta computador (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Junta la pajes ce me ia creada a me lista de pajes oservada',
 'tog-watchdefault' => 'Junta pajes ce me ia edita a me lista de pajes oservada',
@@ -424,7 +421,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'lineno' => 'Linia $1:',
 'compareselectedversions' => 'Compare varias elejeda',
 'editundo' => 'desfa',
-'diff-multi' => '({{PLURAL:$1|$1 revise|$1 revises}} medial no mostrada.)',
 
 # Search results
 'searchresults' => 'Resultas de xerca',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bombola
+ * @author Ceas08
  * @author Dato deutschland
  * @author Dawid Deutschland
  * @author Erdemaslancan
@@ -150,9 +151,11 @@ $messages = array(
 
 # Vector skin
 'vector-action-delete' => 'Jili',
+'vector-action-move' => 'Tori',
 'vector-action-protect' => 'İçvi',
 'vector-view-create' => 'dokʼidi',
 'vector-view-edit' => 'Doktiri',
+'vector-view-view' => 'İǩitxi',
 'variants' => "Variant'epe",
 
 'errorpagetitle' => 'Çilata',
@@ -242,6 +245,7 @@ Muşeni? Çunki am butʼkʼa, jileri na ren a butʼkʼaşi golaxteri versiyoni r
 Eger sebebi aya na va renna, pʼrogramis ar çilata z*irit.
 Mu iqʼven! Aya, a [[Special:ListUsers/sysop|adminis]], URL-ti çʼareli şekʼilite rapʼortʼi doçʼarit.',
 'missingarticle-rev' => '(revizyoni#: $1)',
+'badtitle' => 'Varixmarinen boxoxia',
 'badtitletext' => 'Na içʼaren butʼkʼaşi coxo ya çilatoni ren ya boşi ren varna inter-nena do inter-vikʼişi kʼontʼaktʼis na uğutʼu şeni mtini varen.
 Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.',
 'viewsource' => 'Odudes o3ʼkʼedi',
@@ -257,8 +261,10 @@ Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.'
 'userlogout' => 'Siteşen Kogamaxti',
 'nologin' => "Hesabi va giğuni? '''$1'''",
 'nologinlink' => 'Hesabi dokʼidi.',
+'createaccount' => 'Hesabi dokʼidi',
 'gotaccountlink' => 'Sitʼeşa amaxti',
 'mailmypassword' => 'Ağne pʼarola-çkimi moncğoni',
+'loginlanguagelabel' => 'Nena: $1',
 
 # Change password dialog
 'oldpassword' => "Mcveşi p'arola:",
@@ -328,6 +334,7 @@ Edo amuş metʼi, ak mxuciş meçamu ginonna, meşvelape ti-skani kʼala oçʼar
 Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 (iptineri) = iptineri versiyoni kʼala na ren farkʼi, Çʼ = çʼitʼa oktiroba.',
 'history-fieldset-title' => 'Golaxteris o3ʼkʼedi',
+'history-show-deleted' => 'Xvala nijilenepe',
 'histfirst' => 'irişen mcveşi',
 'histlast' => 'irişen ağani',
 
@@ -405,7 +412,6 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'recentchanges' => 'Çodinaşi oktirobape',
 'recentchanges-legend' => 'Çodinaşi oktirobape tercihepe',
 'recentchanges-feed-description' => 'Am feedis vikiʼs na ixvenu irişen sonni oktirobape gatxozi.',
-'rcnote' => "$4 tarixi do saatʼi $5 şakis, çodinaşi {{PLURAL:$2|1 ndğas|'''$2''' ndğas}} na ixvenu, {{PLURAL:$1|'''1''' oktiroba|'''$1''' oktiroba}}, tude ren.",
 'rclistfrom' => '$1 tarixişen doni na ixvenu oktirobape ko3ʼiri',
 'rcshowhideminor' => 'çʼitʼa oktirobape $1',
 'rcshowhidebots' => 'botʼepe $1',
@@ -445,6 +451,7 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'filehist-help' => 'Dosyaşi tarixi oz*iru şeni Ndğa/Ora burme-muşis na renan tarixepes o3ʼkʼedi.',
 'filehist-deleteall' => 'mteli jili',
 'filehist-deleteone' => 'jili',
+'filehist-revert' => 'komoiği',
 'filehist-current' => 'A3ʼineri',
 'filehist-datetime' => 'Dğa/Ora',
 'filehist-thumb' => 'Mçʼitʼa sureti',
@@ -571,10 +578,10 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 'blanknamespace' => '(Dudi)',
 
 # Contributions
-'contributions' => 'Maxmareşi meşvelape',
+'contributions' => '{{GENDER:$1|User}} işi meşvelape',
 'contributions-title' => '$1 şeni maxmareş meşvelape',
 'mycontris' => 'Çkimi meşvelape',
-'contribsub2' => '$1 ($2)',
+'contribsub2' => '{{GENDER:$3|$1}} ($2) işen',
 'uctop' => '(dudi)',
 'month' => 'Tuta:',
 'year' => '3ʼana:',
@@ -674,6 +681,7 @@ Mu iqʼven başka coxo doçʼari.',
 'tooltip-search' => '{{SITENAME}}-iş doloxe mgori',
 'tooltip-search-go' => 'Eger korenna, am coxos na uğun ar butʼkʼaşa idi',
 'tooltip-search-fulltext' => 'Am nçʼara şeni butʼkʼape mgori',
+'tooltip-p-logo' => 'Dudi but̆ǩaşa idi',
 'tooltip-n-mainpage' => 'Dudi butʼkʼaşa idi',
 'tooltip-n-mainpage-description' => 'Dudi butʼkʼaşa idi',
 'tooltip-n-portal' => 'Proje şeni, şeyepe so gaz*iren, mu gaxvenen',

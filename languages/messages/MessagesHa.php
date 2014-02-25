@@ -13,7 +13,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline' => 'A shaya zaruruwa',
-'tog-justify' => 'A daidaita sakin layuka',
 'tog-hideminor' => 'A ɓoye ƙananan gyare-gyare na baya-bayan nan',
 'tog-hidepatrolled' => 'A ɓoye gyare-gyaren kan ido a cikin gyare-gyare bayan-bayan nan',
 'tog-newpageshidepatrolled' => 'A ɓoye shafuna kan ido a cikin sabbin shafuna',
@@ -22,9 +21,7 @@ $messages = array(
 'tog-numberheadings' => 'A lambace kanun matani kai tsaye',
 'tog-showtoolbar' => 'A nuna sandar kayan aiki ta gyarawa (ana buƙatar JavaScript)',
 'tog-editondblclick' => 'A gyara shafuna da dabar-kiliki (ana buƙatar JavaScript)',
-'tog-editsection' => 'A lamunta gyara sashe ta hanyar zaruruwan [gyarawa]',
 'tog-editsectiononrightclick' => 'A lamunta gyara shashe da kilikin dama a kan kanun shashe (ana buƙatar JavaScript)',
-'tog-showtoc' => 'A nuna jadawalin kanu (cikin shafuna masu fiye da kanu 3)',
 'tog-rememberpassword' => 'A adana bayanan loginkina a wannan kwamfyuta (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'A daɗa shafunan da na ƙirƙira a cikin jerina na kan ido',
 'tog-watchdefault' => 'A daɗa shafunan da na gyara a cikin jerina na kan ido',
@@ -33,7 +30,6 @@ $messages = array(
 'tog-minordefault' => 'A alamta gyare-gyarena a matsayin ƙanana bisa manufa',
 'tog-previewontop' => 'A nuna filin rigya-gani sama ga filin gyare-gyare',
 'tog-previewonfirst' => 'A nuna rigya-gani tun gyaran farin',
-'tog-nocache' => 'A tsayar da kacin shafi',
 'tog-enotifwatchlistpages' => 'A shaida mani ta Imel idan wani shafin jeerina na bin-sau ya sauya',
 'tog-enotifusertalkpages' => 'A shaida mani ta Imel idan shafina na muhawara ya sauya',
 'tog-enotifminoredits' => 'A shaida mani ta Imel game da ko da ƙaramin gyara ne',
@@ -373,7 +369,6 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 'recentchanges' => 'Sauye-sauyen baya-bayan nan',
 'recentchanges-legend' => 'Zaɓi na sauye-sauyen baya-bayan nan',
 'recentchanges-feed-description' => 'Bi sawun sauye-sauyen ƙarshe na wikin da ke cikin wannan kwarare',
-'rcnote' => "A nan ƙasa an nuna {{PLURAL:$1|sauyi '''1'''|sauye-sauyen ƙarshe '''$1'''}} a cikin {{PLURAL:$2|awowi 24 da suka shige|'''$2''' kwanaki}}, har zuwa $5, $4.",
 'rclistfrom' => 'Nuna sabbin sauye-sauye tun daga $1',
 'rcshowhideminor' => '$1 ƙananen sauye-sauye',
 'rcshowhidebots' => 'Rabuwat $1',
@@ -582,7 +577,6 @@ Kuna iya sake wa wannan shafi matakin kariya, amma hakan ba zai yi tasiri ga kar
 # Block/unblock
 'blockip' => "Hana ma'aikaci",
 'ipbreason' => 'Dalili:',
-'ipbreasonotherlist' => 'Wani dalili',
 'ipboptions' => 'awa 2:2 hours,kwana 1:1 day,kwana 3:3 days,mako 1:1 week,mako 2:2 weeks,wata 1:1 month,wata 3:3 months,wata 6:6 months,shekara 1:1 year,illa masha allahu:infinite',
 'ipblocklist' => "Adireshin IP da ma'aikatan da aka hana",
 'ipblocklist-submit' => 'Nema',

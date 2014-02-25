@@ -68,7 +68,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Binadlisan nga mga sumpay:',
-'tog-justify' => 'Ihusto ang mga parapo',
 'tog-hideminor' => 'Ipakita ang gamayng pag-usab sa mga bag-ong giusab',
 'tog-hidepatrolled' => 'Tagoa ang mga napatrol nga pag-usab sa mga bag-ong giusab',
 'tog-newpageshidepatrolled' => 'Tagoa ang napatrol nga mga panid gikan sa talaan sa mga bag-ong panid',
@@ -77,9 +76,7 @@ $messages = array(
 'tog-numberheadings' => 'Awtomatiko ang pagnumero sa mga heading',
 'tog-showtoolbar' => 'Ipakita ang toolbar sa pag-edit (JavaScript)',
 'tog-editondblclick' => 'I-edit ang panid inig dobol-klik (JavaScript)',
-'tog-editsection' => 'Mausab ang mga seksiyon gamit ang [usba] nga sumpay',
 'tog-editsectiononrightclick' => 'Mahimo ang pag-usab sa seksyon pinaagi sa pag-right click sa titulo sa seksyon (JavaScript kinahanglan)',
-'tog-showtoc' => 'Ipakita ang talaan sa sulod (alang sa mga panid nga may daghan pa sa 3 ka heading)',
 'tog-rememberpassword' => 'Hinumdomi ako sa kining kompyuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Bantayi ang akong gisugdang mga panid',
 'tog-watchdefault' => 'Bantayi ang akong giusab nga mga panid',
@@ -729,7 +726,6 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'rows' => 'Mga row:',
 'columns' => 'Mga kolum:',
 'searchresultshead' => 'Pangitaa',
-'resultsperpage' => 'Mga hit matag panid:',
 'stub-threshold' => 'Threshold para sa <a href="#" class="stub">stub link</a> formatting (bytes):',
 'recentchangesdays' => 'Mga adlaw nga ipakita sa bag-ong giusab:',
 'recentchangesdays-max' => 'Maximum $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}',

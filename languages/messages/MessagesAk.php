@@ -35,7 +35,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Twa lenk nyina ase:',
-'tog-justify' => 'Gyastefae mparagraf',
 'tog-hideminor' => 'Suma nsesae a wɔakɔ so a wɔnnkyɛree koraa',
 'tog-hidepatrolled' => 'Suma nsesae a wɔapatrole wɔn ndansa yi ara',
 'tog-newpageshidepatrolled' => 'Suma nkrataafa a wɔapatrole wɔn fi krataafa-foforo lest no so',

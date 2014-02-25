@@ -9,6 +9,7 @@
  *
  * @author Amire80
  * @author Bjargal
+ * @author Elvonudinium
  * @author Korol Bumi
  * @author Soul Train
  * @author Губин Михаил
@@ -78,14 +79,16 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Холбооһо доогуурнь зураха:',
-'tog-justify' => 'Мүр тэгшэлхэ',
-'tog-watchcreations' => 'Минии үүсхэһэн хуудаһа болон ашаалһан файлыем хинаха жагсаалтада оруула',
+'tog-watchcreations' => 'Минии үүдхэһэн хуудаһа болон ашаалһан файлыем хинаха жагсаалтада оруула',
 'tog-watchdefault' => 'Минии заһаһан хуудаһа болон файлыем хинаха жагсаалтада оруула',
 'tog-watchmoves' => 'Минии зөөһэн хуудаһа болон файлыем хинаха жагсаалтада оруула',
 'tog-watchdeletion' => 'Минии усадхаһан хуудаһа болон файлыем хинаха жагсаалтада оруула',
 'tog-minordefault' => 'Бүхы заһабариие бага зэргын гэжэ үгэгдэмэлөөр тэмдэглэ',
 'tog-previewontop' => 'Уридшалан харахые заһабарилха талбарай урда үзүүлэ',
 'tog-previewonfirst' => 'Уридшалан харахые эхилжэ заһаха үедэ үзүүлэ',
+
+'underline-always' => 'хододоол',
+'underline-never' => 'хэзээшье',
 
 # Dates
 'sunday' => 'Няма',
@@ -138,32 +141,64 @@ $messages = array(
 'oct' => '10 һара',
 'nov' => '11 һара',
 'dec' => '12 һара',
+'january-date' => '1 һарын $1',
+'february-date' => '2 һарын $1',
+'march-date' => '3 һарын $1',
+'april-date' => '4 һарын $1',
+'may-date' => '5 һарын $1',
+'june-date' => '6 һарын $1',
+'july-date' => '7 һарын $1',
+'august-date' => '8 һарын $1',
+'september-date' => '9 һарын $1',
+'october-date' => '10 һарын $1',
+'november-date' => '11 һарын $1',
+'december-date' => '12 һарын $1',
 
 # Categories related messages
-'category_header' => 'Категори "$1" үгүүллүүд',
+'category_header' => '"$1" категориин үгүүлэлнүүд',
 
 'cancel' => 'Болихо',
-'mytalk' => 'Минии хэлэлсэл',
-'navigation' => 'Залуур',
+'moredotdotdot' => 'Үшөө...',
+'morenotlisted' => 'Энэ жагсаалта дүүргэһэнгүй.',
+'mypage' => 'Хуудаһан',
+'mytalk' => 'Хэлэлсэл',
+'anontalk' => 'Энэ IP адресаарнь хэлэхэ',
+'navigation' => 'Залуурдалга',
+'and' => '&#32;ба',
+
+# Cologne Blue skin
+'qbfind' => 'Хайха',
+'qbedit' => 'Заһабарилха',
 
 # Vector skin
-'vector-action-addsection' => 'Шэнэ хэсэг',
+'vector-action-addsection' => 'Һэдэб нэмэхэ',
 'vector-action-delete' => 'Усадхаха',
-'vector-view-create' => 'Үүсхэхэ',
-'vector-view-edit' => 'Заһаха',
-'vector-view-history' => 'Түүхэ',
+'vector-view-create' => 'Үүдхэхэ',
+'vector-view-edit' => 'Заһабарилха',
+'vector-view-history' => 'Түүхые хараха',
 'vector-view-view' => 'Уншаха',
+'vector-view-viewsource' => 'эшэ үндэһэндэнь хандаха',
 'actions' => 'γйлэ',
+'variants' => 'Хубилбари',
 
-'navigation-heading' => 'Залуур',
+'navigation-heading' => 'Тамаралгын меню',
 'errorpagetitle' => 'Алдуу',
+'tagline' => '{{SITENAME}} сайтһаа мэдээлэл',
 'help' => 'Туһаламжа',
-'search' => 'Бэдэрхэ',
-'searchbutton' => 'Бэдэрхэ',
+'search' => 'Хайха',
+'searchbutton' => 'Хайлта',
+'go' => 'Ябаха',
+'searcharticle' => 'Ябаха',
+'history' => 'Хуудаһанай түүхэ',
 'history_short' => 'Түүхэ',
-'edit' => 'Заһаха',
-'create' => 'Үүсхэхэ',
-'protect' => 'Түһэл',
+'printableversion' => 'Хэблэхэ хубилбари',
+'permalink' => 'Үргэлжын холбооһон',
+'print' => 'Хэблэхэ',
+'view' => 'Харуулха',
+'edit' => 'Заһабарилха',
+'create' => 'Үүдхэхэ',
+'delete' => 'Усадхаха',
+'protect' => 'Хамгаалха',
 'protect_change' => 'Хубилалга',
 'newpage' => 'Шэнэ хуудаһан',
 'talkpage' => 'Тус хуудаһа хэлэлсэхэ',
@@ -173,90 +208,121 @@ $messages = array(
 'postcomment' => 'Шэнэ бүлэг',
 'talk' => 'Хэлэлсэхэ',
 'views' => 'Үзэһэн',
-'toolbox' => 'Багажын хайрсаг',
-'projectpage' => 'Түһэлэй хуудаһан',
+'toolbox' => 'Багажа зэбсэг',
+'projectpage' => 'Түлэблэлгын хуудаһые хараха',
 'otherlanguages' => 'Бусад хэлээр',
-'jumptosearch' => 'бэдэрхэ',
+'jumpto' => 'Шууд ошохо:',
+'jumptonavigation' => 'тамаралга',
+'jumptosearch' => 'хайха',
 'pool-errorunknown' => 'Танигдаагүй алдуу',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => '{{SITENAME}} тухай',
-'aboutpage' => 'Project:Түһэл тухай',
+'aboutpage' => 'Project:Түлэблэлгын тухай',
 'currentevents' => 'Мүнөө боложо байгаа үйлэ ябадал',
 'currentevents-url' => 'Project:Һонин мэдээн',
+'disclaimers' => 'Татагалзалнууд',
+'disclaimerpage' => 'Project:Ниитэ татагалзал',
 'helppage' => 'Help:Агуулга',
 'mainpage' => 'Нюур хуудаһан',
 'mainpage-description' => 'Нюур хуудаһан',
 'portal' => 'Хурал',
 'portal-url' => 'Project:Хурал',
+'privacy' => 'Хубиин мэдээлэлэй талаар баримталал',
+'privacypage' => 'Project:Хубиин мэдээлэлэй талаар баримталал',
 
 'ok' => 'За',
-'editsection' => 'заһаха',
-'editold' => 'заһаха',
-'viewsourcelink' => 'эхэ үүсэбэрииень үзэхэ',
+'retrievedfrom' => '"$1" холбооһоо абагдаһан',
+'editsection' => 'заһабарилха',
+'editold' => 'заһабарилха',
+'viewsourceold' => 'эшэ үндэһэндэнь хандаха',
+'editlink' => 'заһабарилха',
+'viewsourcelink' => 'эшэ үндэһэндэнь хандаха',
 'editsectionhint' => '$1 гэһэн бүлэг заһаха',
 'toc' => 'Агуулга',
+'showtoc' => 'харуулха',
+'hidetoc' => 'нюуха',
+'collapsible-collapse' => 'Нюуха',
+'collapsible-expand' => 'Дэлгээхэ',
+'site-atom-feed' => '$1 Атом фиид',
 'red-link-title' => '$1 (хуудаһан үгы байна)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Хуудаһан',
+'nstab-user' => 'Хэрэглэгшын хуудаһан',
+'nstab-media' => 'Медиагай хуудаһан',
 'nstab-special' => 'Тусхай хуудаһан',
-'nstab-project' => 'Түһэлэй хуудаһан',
+'nstab-project' => 'Түлэблэлгын хуудаһан',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Бэшэг',
-'nstab-template' => 'Загвар',
-'nstab-category' => 'Ангилал',
+'nstab-template' => 'Загбар',
+'nstab-help' => 'Туһаламжын хуудаһан',
+'nstab-category' => 'Категори',
+
+# General errors
+'error' => 'Алдуу',
+'internalerror' => 'Доторой алдуу',
+'internalerror_info' => 'Доторой алдуу: $1',
 
 # Login and logout pages
-'login' => 'Орохо',
-'nav-login-createaccount' => 'Нэбтэржэ орохо / дансатай болохо',
-'userlogin' => 'Нэбтэржэ орохо / дансатай болохо',
+'welcomeuser' => 'Морилжо хайрлыт, $1!',
+'welcomecreation-msg' => 'Танай данса үүдхэһэн байна.
+Та танай {{SITENAME}} [[Special:Preferences|preferences]]-ые өөршэлхэ боломжотойт.',
+'yourname' => 'Хэрэглэгшын нэрэ:',
+'userlogin-yourname' => 'Хэрэглэгшын нэрэ:',
+'userlogin-yourname-ph' => 'Танай хэрэглэгшын нэрые оруулагты',
+'createacct-another-username-ph' => 'Хэрэглэгшын нэрые оруулагты',
+'yourpassword' => 'Нюуса үгэ:',
+'login' => 'Нэбтэрхэ',
+'nav-login-createaccount' => 'Нэбтэрхэ / данса үүдхэхэ',
+'userlogin' => 'Нэбтэрхэ / данса үүдхэхэ',
 'logout' => 'Гараха',
 'userlogout' => 'Гараха',
-'createaccount' => 'Данса үүсхэхэ',
-'gotaccountlink' => 'Нэбтэржэ орохо',
+'createaccount' => 'Данса үүдхэхэ',
+'gotaccountlink' => 'Нэбтэрхэ',
 'loginlanguagelabel' => 'Хэлэн: $1',
 
 # Edit pages
-'savearticle' => 'Хуудаһа хадагалха',
-'showpreview' => 'Уридшалан үзүүлхэ',
-'showdiff' => 'Хубилалта харуулха',
+'savearticle' => 'Хуудаһые хадагалха',
+'showpreview' => 'Уридшалан хараха',
+'showdiff' => 'Хубилалтые харуул',
 'newarticle' => '(Шэнэ)',
 'template-protected' => '(хамгаалалтатай)',
 'permissionserrorstext-withaction' => 'Та доро тодорхойлһон $1 ушар шалтагаанһаа боложо, $2 эрхэгүйт.',
 
 # Revision deletion
 'rev-delundel' => 'харуулха/нюуха',
-'revdel-restore' => 'харагдахыень ондоо болгохо',
+'revdel-restore' => 'харагдасыень хубилгаха',
 
 # Diffs
 'editundo' => 'болюулха',
 
 # Search results
-'searchmenu-new' => "'''Байгуулха үгүүлэл \"[[:\$1]]\"!'''",
-'searchprofile-articles' => 'Үгүүллүүд',
-'searchprofile-images-tooltip' => 'Файл бэдэрхэ',
-'search-result-size' => '$1 ({{PLURAL:$2|1 word|$2 words}})',
+'searchmenu-new' => "'''Энэ викидэ \"[[:\$1]]\" гэһэн хуудаһа үүсхэхэ!''' Мүн олдоһон ондоо хуудаһа харагты.\"",
+'searchprofile-articles' => 'Агуулгын хуудаһанууд',
+'searchprofile-images-tooltip' => 'Файл хайха',
+'search-result-size' => '$1 (ниитэ $2 үгэ�)',
 
 # Preferences page
-'mypreferences' => 'Минии тааруулга',
-'prefs-datetime' => 'Огноо болон саг',
+'mypreferences' => 'Тааруулга',
+'prefs-datetime' => 'Огноо ба саг',
 'youremail' => 'Сахим шуудан:',
 'yourrealname' => 'Бодото нэрэ:',
 'yourlanguage' => 'Хэлэн:',
-'yourgender' => 'Хүйһэн:',
-'gender-male' => 'Эрэ',
+'yourgender' => 'Хүйһыетнай хэн гэжэ заабал болохоб?',
+'gender-male' => 'Эрэ хүн',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'Хубилалга энэ үгүүлэл',
+'action-edit' => 'энэ хуудаһа заһабарилха',
 
 # Recent changes
 'recentchanges' => 'Һүүлшын хубилалта',
-'diff' => 'хубилалга',
-'hist' => 'Түүхэ',
+'diff' => 'илгаа',
+'hist' => 'түүхэ',
 'hide' => 'Нюуха',
 
 # Recent changes linked
+'recentchangeslinked' => 'Холбогдохо хубилалта',
 'recentchangeslinked-toolbox' => 'Холбогдохо хубилалта',
 
 # Upload
@@ -271,32 +337,36 @@ $messages = array(
 'filehist-user' => 'Хэрэглэгшэ',
 
 # Random page
-'randompage' => 'Санамсаргүй хуудас',
+'randompage' => 'Һанамсаргүй хуудаһан',
 
 # Statistics
 'statistics' => 'Тоо бүридхэл',
 
 # Miscellaneous special pages
-'newpages' => 'Шэнэ үгүүллүүд',
+'nbytes' => '$1 {{PLURAL:$1|байт|байтууд}}',
+'newpages' => 'Шэнэ хуудаһанууд',
 'ancientpages' => 'Хуушарһан хуудаһан',
-'move' => 'Нэрэмжэ',
+'move' => 'Шэлжүүлхэ',
 
 # Special:Log
-'log' => 'Логууд',
+'log' => 'Логнууд',
 
 # Special:AllPages
-'allpages' => 'Соохи бүхы хуудаһан',
-'allarticles' => 'Үгүүллүүд',
+'allpages' => 'Бүхы хуудаһан',
+'allarticles' => 'Бүхы хуудаһан',
 
 # Special:Categories
-'categories' => 'Категори',
+'categories' => 'Категоринууд',
 
 # Watchlist
 'mywatchlist' => 'Ажаглаха зүйл',
-'watch' => 'Хаража байха',
+'watch' => 'Ажаглаха',
 
 # Undelete
 'undeletelink' => 'хараха/һэргээхэ',
+
+# Namespace form on various pages
+'blanknamespace' => '(Гол)',
 
 # Contributions
 'mycontris' => 'Минии оруулһан зүйл',
@@ -304,6 +374,7 @@ $messages = array(
 'sp-contributions-talk' => 'Хэлэлсэл',
 
 # What links here
+'whatlinkshere' => 'Эндэ холбогдоһон хуудаһанууд',
 'whatlinkshere-page' => 'Хуудаһан:',
 
 # Block/unblock
@@ -323,18 +394,30 @@ $messages = array(
 'thumbnail-more' => 'Томоруулха',
 
 # Tooltip help for the actions
+'tooltip-pt-login' => 'Бидэ та нэбтэрхые хүсэнэбди; гэбэшье, та заататай байна.',
 'tooltip-pt-logout' => 'Гараха',
-'tooltip-ca-talk' => 'Үгүүлэлынь хэлэлсэл',
-'tooltip-ca-addsection' => 'Шэнэ хэсэг',
-'tooltip-search' => 'Бэдэрхэ {{SITENAME}}',
-'tooltip-search-fulltext' => 'Бэдэрхэ үгүүллүүд',
-'tooltip-p-logo' => 'Нюур хуудаһан',
-'tooltip-n-mainpage' => 'Нюур хуудаһа руу шэлжэхэ',
-'tooltip-n-mainpage-description' => 'Нюур хуудаһа руу шэлжэхэ',
-'tooltip-n-recentchanges' => 'Энэ Википеэдийн сайтдахи хубилалтанууд',
-'tooltip-feed-atom' => 'Атом',
+'tooltip-ca-talk' => 'Агуулгын хуудаһанай хэлэлсэл',
+'tooltip-ca-edit' => 'Та энэ хуудаһа заһабарилжа боломжотой. "Уридшалан үзэлхэ" гэһэн тобшые хэрэглээрэй.',
+'tooltip-ca-addsection' => 'Шэнэ хэһэг эхилүүлхэ',
+'tooltip-ca-history' => 'Энэ хуудаһанай үмэнэхи заһабаринууд',
+'tooltip-ca-delete' => 'энэ хуудаһые усадхаха',
+'tooltip-search' => '{{SITENAME}} сайтһаа бэдэрхэ',
+'tooltip-search-fulltext' => 'Хуудаһанһаа бэдэрхэ бэшэбэри',
+'tooltip-p-logo' => 'Нюур хуудаһанда ошохо',
+'tooltip-n-mainpage' => 'Нюур хуудаһанда ошохо',
+'tooltip-n-mainpage-description' => 'Нюур хуудаһанда ошохо',
+'tooltip-n-portal' => 'Түһэл, өөрын оруулалта, туһалбари тухай мэдээлэл',
+'tooltip-n-currentevents' => 'Мүнөө боложо байгаа үйлэ ябадал тухай һониниие дуулаха',
+'tooltip-n-recentchanges' => 'Тус Викиин һүүлшын хубилалтанууд',
+'tooltip-n-randompage' => 'Гэнтын хуудаһые нээхэ',
+'tooltip-n-help' => 'Туһалалсалгые олохо газар',
+'tooltip-t-whatlinkshere' => 'Эндэ холбогдоһон хуудаһануудай жагсаалта',
+'tooltip-t-recentchangeslinked' => 'Энэ хуудаһаһаа холбоогдоһон хуудаһуудай шэнэ хубилалтууд',
+'tooltip-feed-atom' => 'Тус хуудаһанай Атом фиид',
 'tooltip-t-upload' => 'Файл ашаалха',
 'tooltip-t-specialpages' => 'Бүхы тусхай хуудаһанай жагсаалта',
+'tooltip-t-print' => 'Энэ хуудаһанай хэблэхэ хубилбари',
+'tooltip-ca-nstab-main' => 'Үгүүлэлэй хуудаһые үзэхэ',
 
 # Exif tags
 'exif-languagecode' => 'Хэлэн',
