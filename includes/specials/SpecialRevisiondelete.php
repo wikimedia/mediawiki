@@ -66,26 +66,31 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'check-label' 	=> 'revdelete-hide-text',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
+			'text'          => 'revdelete-text-text',
 		),
 		'archive' => array(
 			'check-label' 	=> 'revdelete-hide-text',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
+			'text'          => 'revdelete-text-text',
 		),
 		'oldimage' => array(
 			'check-label' 	=> 'revdelete-hide-image',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
+			'text'          => 'revdelete-text-image',
 		),
 		'filearchive' => array(
 			'check-label' 	=> 'revdelete-hide-image',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
+			'text'          => 'revdelete-text-image',
 		),
 		'logging' => array(
 			'check-label'	=> 'revdelete-hide-name',
 			'success' 		=> 'logdelete-success',
 			'failure' 		=> 'logdelete-failure',
+			'text'          => 'logdelete-text',
 		),
 	);
 
@@ -431,7 +436,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @todo FIXME: Wikimedia-specific policy text
 	 */
 	protected function addUsageText() {
-		$this->getOutput()->addWikiMsg( 'revdelete-text' );
+		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>\n$2", $this->typeLabels['text'], 'revdelete-text-others' );
 		if ( $this->getUser()->isAllowed( 'suppressrevision' ) ) {
 			$this->getOutput()->addWikiMsg( 'revdelete-suppress-text' );
 		}
