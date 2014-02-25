@@ -104,7 +104,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
-	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
+	public function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
 		$refreshCache = false, $unhide = false
 	) {
 		if ( $context instanceof IContextSource ) {
@@ -122,14 +122,14 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * @param $value bool
 	 */
-	function setReducedLineNumbers( $value = true ) {
+	public function setReducedLineNumbers( $value = true ) {
 		$this->mReducedLineNumbers = $value;
 	}
 
 	/**
 	 * @return Language
 	 */
-	function getDiffLang() {
+	public function getDiffLang() {
 		if ( $this->mDiffLang === null ) {
 			# Default language in which the diff text is written.
 			$this->mDiffLang = $this->getTitle()->getPageLanguage();
@@ -141,14 +141,14 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * @return bool
 	 */
-	function wasCacheHit() {
+	public function wasCacheHit() {
 		return $this->mCacheHit;
 	}
 
 	/**
 	 * @return int
 	 */
-	function getOldid() {
+	public function getOldid() {
 		$this->loadRevisionIds();
 
 		return $this->mOldid;
@@ -157,7 +157,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * @return Bool|int
 	 */
-	function getNewid() {
+	public function getNewid() {
 		$this->loadRevisionIds();
 
 		return $this->mNewid;
@@ -170,7 +170,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param int $id revision ID
 	 * @return mixed URL or false
 	 */
-	function deletedLink( $id ) {
+	public function deletedLink( $id ) {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'archive', '*',
@@ -196,7 +196,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param int $id revision ID
 	 * @return string wikitext fragment
 	 */
-	function deletedIdMarker( $id ) {
+	public function deletedIdMarker( $id ) {
 		$link = $this->deletedLink( $id );
 		if ( $link ) {
 			return "[$link $id]";
@@ -225,7 +225,7 @@ class DifferenceEngine extends ContextSource {
 			$this->getLanguage()->listToText( $missing ), count( $missing ) );
 	}
 
-	function showDiffPage( $diffOnly = false ) {
+	public function showDiffPage( $diffOnly = false ) {
 		wfProfileIn( __METHOD__ );
 
 		# Allow frames except in certain special cases
@@ -533,7 +533,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Show the new revision of the page.
 	 */
-	function renderNewRevision() {
+	public function renderNewRevision() {
 		wfProfileIn( __METHOD__ );
 		$out = $this->getOutput();
 		$revHeader = $this->getRevisionHeader( $this->mNewRev );
@@ -616,7 +616,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return bool
 	 */
-	function showDiff( $otitle, $ntitle, $notice = '' ) {
+	public function showDiff( $otitle, $ntitle, $notice = '' ) {
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
 			$this->showMissingRevision();
@@ -633,7 +633,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Add style sheets and supporting JS for diff display.
 	 */
-	function showDiffStyle() {
+	public function showDiffStyle() {
 		$this->getOutput()->addModuleStyles( 'mediawiki.action.history.diff' );
 	}
 
@@ -645,7 +645,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $notice HTML between diff header and body
 	 * @return mixed
 	 */
-	function getDiff( $otitle, $ntitle, $notice = '' ) {
+	public function getDiff( $otitle, $ntitle, $notice = '' ) {
 		$body = $this->getDiffBody();
 		if ( $body === false ) {
 			return false;
@@ -778,7 +778,7 @@ class DifferenceEngine extends ContextSource {
 	 * @since 1.21
 	 * @throws MWException if $old or $new are not instances of TextContent.
 	 */
-	function generateContentDiffBody( Content $old, Content $new ) {
+	public function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
 			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; " .
 				"override generateContentDiffBody to fix this." );
@@ -803,7 +803,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
-	function generateDiffBody( $otext, $ntext ) {
+	public function generateDiffBody( $otext, $ntext ) {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		return $this->generateTextDiffBody( $otext, $ntext );
@@ -818,7 +818,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string $ntext new text, must be already segmented
 	 * @return bool|string
 	 */
-	function generateTextDiffBody( $otext, $ntext ) {
+	public function generateTextDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
@@ -924,7 +924,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return mixed
 	 */
-	function localiseLineNumbers( $text ) {
+	public function localiseLineNumbers( $text ) {
 		return preg_replace_callback(
 			'/<!--LINE (\d+)-->/',
 			array( &$this, 'localiseLineNumbersCb' ),
@@ -932,7 +932,7 @@ class DifferenceEngine extends ContextSource {
 		);
 	}
 
-	function localiseLineNumbersCb( $matches ) {
+	public function localiseLineNumbersCb( $matches ) {
 		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) {
 			return '';
 		}
@@ -944,7 +944,7 @@ class DifferenceEngine extends ContextSource {
 	 * If there are revisions between the ones being compared, return a note saying so.
 	 * @return string
 	 */
-	function getMultiNotice() {
+	public function getMultiNotice() {
 		if ( !is_object( $this->mOldRev ) || !is_object( $this->mNewRev ) ) {
 			return '';
 		} elseif ( !$this->mOldPage->equals( $this->mNewPage ) ) {
@@ -1064,7 +1064,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string
 	 */
-	function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
+	public function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		// shared.css sets diff in interface language/dir, but the actual content
 		// is often in a different language, mostly the page content language/dir
 		$tableClass = 'diff diff-contentalign-' . htmlspecialchars( $this->getDiffLang()->alignStart() );
@@ -1113,7 +1113,7 @@ class DifferenceEngine extends ContextSource {
 	 * Use specified text instead of loading from the database
 	 * @deprecated since 1.21, use setContent() instead.
 	 */
-	function setText( $oldText, $newText ) {
+	public function setText( $oldText, $newText ) {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
@@ -1126,7 +1126,7 @@ class DifferenceEngine extends ContextSource {
 	 * Use specified text instead of loading from the database
 	 * @since 1.21
 	 */
-	function setContent( Content $oldContent, Content $newContent ) {
+	public function setContent( Content $oldContent, Content $newContent ) {
 		$this->mOldContent = $oldContent;
 		$this->mNewContent = $newContent;
 
@@ -1139,7 +1139,7 @@ class DifferenceEngine extends ContextSource {
 	 * (Defaults to page content language).
 	 * @since 1.19
 	 */
-	function setTextLanguage( $lang ) {
+	public function setTextLanguage( $lang ) {
 		$this->mDiffLang = wfGetLangObj( $lang );
 	}
 
@@ -1208,7 +1208,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return bool
 	 */
-	function loadRevisionData() {
+	public function loadRevisionData() {
 		if ( $this->mRevisionsLoaded ) {
 			return true;
 		}
@@ -1288,7 +1288,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return bool
 	 */
-	function loadText() {
+	public function loadText() {
 		if ( $this->mTextLoaded == 2 ) {
 			return true;
 		}
@@ -1322,7 +1322,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return bool
 	 */
-	function loadNewText() {
+	public function loadNewText() {
 		if ( $this->mTextLoaded >= 1 ) {
 			return true;
 		}
