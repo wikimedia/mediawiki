@@ -20,7 +20,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 		} catch ( Exception $e ) {
 		}
 
-		# Make sure our strack trace contains an array and an object passed to
+		# Make sure our stack trace contains an array and an object passed to
 		# some function in the stacktrace. Else, we can not assert the trace
 		# redaction achieved its job.
 		$trace = $e->getTrace();
