@@ -250,8 +250,10 @@ abstract class BagOStuff {
 	 * @param $value mixed
 	 * @param $exptime int
 	 * @return bool success
+	 * @deprecated 1.23
 	 */
 	public function replace( $key, $value, $exptime = 0 ) {
+		wfDeprecated( __METHOD__, '1.23' );
 		if ( $this->get( $key ) !== false ) {
 			return $this->set( $key, $value, $exptime );
 		}
