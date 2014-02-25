@@ -3075,8 +3075,7 @@ class Language {
 	 * wfMessage( 'message' )->numParams( $num )->text()
 	 * </code>
 	 *
-	 * See LanguageGu.php for the Gujarati implementation and
-	 * $separatorTransformTable on MessageIs.php for
+	 * See $separatorTransformTable on MessageIs.php for
 	 * the , => . and . => , implementation.
 	 *
 	 * @todo check if it's viable to use localeconv() for the decimal
