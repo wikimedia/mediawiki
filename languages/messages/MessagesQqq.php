@@ -2489,8 +2489,17 @@ Parameters:
 * $1 - number of log events
 See also:
 * {{msg-mw|Revdelete-selected}}',
-'revdelete-text' => '{{RevisionDelete}}
-This is the introduction explaining the feature.',
+'revdelete-text-text' => '{{RevisionDelete}}
+This is the introduction explaining the feature.
+See also: {{msg-mw|revdelete-text-image}}, {{msg-mw|logdelete-text}}, {{msg-mw|revdelete-text-others}}',
+'revdelete-text-image' => '{{RevisionDelete}}
+This is the introduction explaining the feature.
+See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|logdelete-text}}, {{msg-mw|revdelete-text-others}}',
+'logdelete-text' => '{{RevisionDelete}}
+This is the introduction explaining the feature.
+See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-image}}, {{msg-mw|revdelete-text-others}}',
+'revdelete-text-others'       => '{{RevisionDelete}}
+This message is shown after one of: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-image}}, {{msg-mw|revdelete-text-logging}}',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 
 Refers to {{msg-mw|Policy-url}}.

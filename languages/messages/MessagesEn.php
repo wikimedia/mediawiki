@@ -1712,8 +1712,10 @@ function, the specified revision does not exist, or you are attempting to hide t
 'revdelete-show-file-submit'  => 'Yes',
 'revdelete-selected'          => "<strong>{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:</strong>",
 'logdelete-selected'          => "<strong>{{PLURAL:$1|Selected log event|Selected log events}}:</strong>",
-'revdelete-text'              => "<strong>Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.</strong>
-Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
+'revdelete-text-text'         => 'Deleted revisions will still appear in the page history, but parts of their content will be inaccessible to the public.',
+'revdelete-text-image'        => 'Deleted files will still appear in the file history, but parts of their content will be inaccessible to the public.',
+'logdelete-text'              => 'Deleted events will still appear in the logs, but parts of their content will be inaccessible to the public.',
+'revdelete-text-others'       => 'Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
 'revdelete-confirm'           => 'Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'revdelete-suppress-text'     => "Suppression should <strong>only</strong> be used for the following cases:
 * potentially libelous information
