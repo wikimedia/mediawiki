@@ -237,37 +237,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Non-atomic implementation of replace(). Could perhaps be done atomically
-	 * with WATCH or scripting, but this function is rarely used.
-	 */
-	public function replace( $key, $value, $expiry = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
-
-		list( $server, $conn ) = $this->getConnection( $key );
-		if ( !$conn ) {
-			return false;
-		}
-		if ( !$conn->exists( $key ) ) {
-			return false;
-		}
-
-		$expiry = $this->convertToRelative( $expiry );
-		try {
-			if ( !$expiry ) {
-				$result = $conn->set( $key, $this->serialize( $value ) );
-			} else {
-				$result = $conn->setex( $key, $expiry, $this->serialize( $value ) );
-			}
-		} catch ( RedisException $e ) {
-			$result = false;
-			$this->handleException( $conn, $e );
-		}
-
-		$this->logRequest( 'replace', $key, $server, $result );
-		return $result;
-	}
-
-	/**
 	 * Non-atomic implementation of incr().
 	 *
 	 * Probably all callers actually want incr() to atomically initialise
