@@ -65,7 +65,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		// Order is significant here
 		$this->addTables( array( 'logging', 'user', 'page' ) );
-		$this->addOption( 'STRAIGHT_JOIN' );
 		$this->addJoinConds( array(
 			'user' => array( 'LEFT JOIN',
 				'user_id=log_user' ),
