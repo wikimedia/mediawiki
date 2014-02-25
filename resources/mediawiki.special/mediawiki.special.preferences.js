@@ -262,10 +262,6 @@ jQuery( function ( $ ) {
 		$checkBoxes.prop( 'disabled', true );
 	}
 	$( '#mw-input-wpsearcheverything' ).change( function () {
-		if ( $( this ).prop( 'checked' ) ) {
-			$checkBoxes.prop( 'disabled', true );
-		} else {
-			$checkBoxes.prop( 'disabled', false );
-		}
+		$checkBoxes.prop( 'disabled', $( this ).prop( 'checked' ) );
 	} );
 } );
