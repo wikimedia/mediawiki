@@ -63,26 +63,31 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	static $UILabels = array(
 		'revision' => array(
+			'selected'		=> 'revdelete-selected-text',
 			'check-label' 	=> 'revdelete-hide-text',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 		),
 		'archive' => array(
+			'selected'		=> 'revdelete-selected-text',
 			'check-label' 	=> 'revdelete-hide-text',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 		),
 		'oldimage' => array(
+			'selected'		=> 'revdelete-selected-file',
 			'check-label' 	=> 'revdelete-hide-image',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 		),
 		'filearchive' => array(
+			'selected'		=> 'revdelete-selected-file',
 			'check-label' 	=> 'revdelete-hide-image',
 			'success' 		=> 'revdelete-success',
 			'failure' 		=> 'revdelete-failure',
 		),
 		'logging' => array(
+			'selected'		=> 'logdelete-selected',
 			'check-label'	=> 'revdelete-hide-name',
 			'success' 		=> 'logdelete-success',
 			'failure' 		=> 'logdelete-failure',
@@ -330,12 +335,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showForm() {
 		$UserAllowed = true;
 
-		if ( $this->typeName == 'logging' ) {
-			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
-		} else {
-			$this->getOutput()->addWikiMsg( 'revdelete-selected',
-				$this->targetObj->getPrefixedText(), count( $this->ids ) );
-		}
+		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
+			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
 		$this->getOutput()->addHTML( "<ul>" );
 

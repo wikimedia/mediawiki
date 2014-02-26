@@ -1710,8 +1710,9 @@ function, the specified revision does not exist, or you are attempting to hide t
 'revdelete-no-file'           => 'The file specified does not exist.',
 'revdelete-show-file-confirm' => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'revdelete-show-file-submit'  => 'Yes',
-'revdelete-selected'          => "<strong>{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:</strong>",
-'logdelete-selected'          => "<strong>{{PLURAL:$1|Selected log event|Selected log events}}:</strong>",
+'revdelete-selected-text'     => "{{PLURAL:$1|Selected revision|Selected revisions}} of [[:$2]]:",
+'revdelete-selected-file'     => "{{PLURAL:$1|Selected file version|Selected file versions}} of [[:$2]]:",
+'logdelete-selected'          => "{{PLURAL:$1|Selected log event|Selected log events}}:",
 'revdelete-text'              => "<strong>Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.</strong>
 Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
 'revdelete-confirm'           => 'Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',

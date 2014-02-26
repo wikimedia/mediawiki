@@ -2478,18 +2478,29 @@ Parameters:
 'revdelete-show-file-submit' => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
 
 {{Identical|Yes}}',
-'revdelete-selected' => '{{RevisionDelete}}
+'revdelete-selected-text' => '{{RevisionDelete}}
 Parameters:
-* $1 - page title
-* $2 - number of revisions
+* $1 - number of revisions
+* $2 - page title
 See also:
 * {{msg-mw|Logdelete-selected}}
+* {{msg-mw|Revdelete-selected-file}}
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+'revdelete-selected-file' => '{{RevisionDelete}}
+Parameters:
+* $1 - number of file versions
+* $2 - file name
+See also:
+* {{msg-mw|Logdelete-selected}}
+* {{msg-mw|Revdelete-selected-text}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 'logdelete-selected' => '{{RevisionDelete}}
 Parameters:
 * $1 - number of log events
+* $2 - localized name of Special:Log, maybe with type as subpage [unused]
 See also:
-* {{msg-mw|Revdelete-selected}}',
+* {{msg-mw|Revdelete-selected-text}}
+* {{msg-mw|Revdelete-selected-file}}',
 'revdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
