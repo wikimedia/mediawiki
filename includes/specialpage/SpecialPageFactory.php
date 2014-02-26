@@ -536,19 +536,32 @@ class SpecialPageFactory {
 		return $ret;
 	}
 
+	private static function getShortestElement( $arr ) {
+		$shortest = '';
+		$length = PHP_INT_MAX;
+		foreach ( $arr as $elem ) {
+			if ( strlen( $elem ) < $length ) {
+				$shortest = $elem;
+				$length = strlen( $elem );
+			}
+		}
+		return $shortest;
+	}
+
 	/**
 	 * Get the local name for a specified canonical name
 	 *
 	 * @param string $name
 	 * @param string|bool $subpage
+	 * @param bool $shortest
 	 * @return string
 	 */
-	static function getLocalNameFor( $name, $subpage = false ) {
+	static function getLocalNameFor( $name, $subpage = false, $shortest = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
 
 		if ( isset( $aliases[$name][0] ) ) {
-			$name = $aliases[$name][0];
+			$name = $shortest ? SpecialPageFactory::getShortestElement( $aliases[$name] ) : $aliases[$name][0];
 		} else {
 			// Try harder in case someone misspelled the correct casing
 			$found = false;
@@ -556,7 +569,7 @@ class SpecialPageFactory {
 				if ( strcasecmp( $name, $n ) === 0 ) {
 					wfWarn( "Found alias defined for $n when searching for " .
 						"special page aliases for $name. Case mismatch?" );
-					$name = $values[0];
+					$name = $shortest ? getShortestElement( $values ) : $values[0];
 					$found = true;
 					break;
 				}
